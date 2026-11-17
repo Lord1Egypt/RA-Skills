@@ -1,48 +1,62 @@
-## Description: <br>
-Guides agents through data analysis and visualization, including metric definition, chart selection, statistical checks, and decision-ready reporting from SQL, spreadsheets, BI tools, notebooks, and exported tables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data analysis and visualization guidance for querying databases, generating reports, automating spreadsheets, and turning raw data into clear, actionable insights.
 
-## Publisher: <br>
-[subaru0573](https://clawhub.ai/user/subaru0573) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[subaru0573](https://clawhub.ai/user/subaru0573)
 
-## Use Case: <br>
-Developers, analysts, and business stakeholders use this skill to turn raw or ambiguous data requests into metric contracts, rigorous analysis plans, charts, and concise decision briefs. It is suited for KPI debugging, experiment readouts, cohort and funnel analysis, anomaly reviews, executive reporting, and data quality checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The published metadata includes unrelated crypto and purchase capability tags that may overstate what the documentation-only skill does. <br>
-Mitigation: Review the capability tags before release and remove tags that are not supported by the artifact behavior. <br>
-Risk: Future use with real databases or sensitive exports could expose private or business-critical data if the agent is granted tools or credentials. <br>
-Mitigation: Review each agent action separately before connecting to databases, handling sensitive exports, running queries, or installing related skills. <br>
-Risk: Data analysis outputs can be misleading when metric definitions, sample size, confounders, or source quality are unclear. <br>
-Mitigation: Use the skill's metric contract, statistical rigor checklist, caveat, and escalation guidance before presenting conclusions or recommendations. <br>
+## Use Case:
 
+Developers, analysts, and business stakeholders use this skill to structure data analysis, visualization, reporting, KPI debugging, experiment readouts, cohort and funnel analysis, anomaly reviews, and decision-ready summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/subaru0573/super-data-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/subaru0573) <br>
-- [Metric contracts](artifact/metric-contracts.md) <br>
-- [Chart selection](artifact/chart-selection.md) <br>
-- [Decision briefs](artifact/decision-briefs.md) <br>
-- [Analytical pitfalls](artifact/pitfalls.md) <br>
-- [Analysis techniques](artifact/techniques.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with optional SQL, Python, spreadsheet formulas, chart specifications, and report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no external endpoints, persistent memory, or local storage are required by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill has a broad activation scope for data analysis work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrower SQL, spreadsheet, dashboard, or reporting skill when a specialized workflow is a better fit.
+
+Risk: Sensitive datasets may be shared unnecessarily during analysis tasks.
+
+Mitigation: Provide only the data needed for the decision, and redact confidential or personal information unless it is required for the analysis.
+
+Risk: Analytical outputs can be misleading when metric definitions, sample size, comparison baselines, or confounders are unclear.
+
+Mitigation: Define the metric contract, quantify uncertainty, test obvious confounders, and downgrade or block conclusions when the data cannot support the claim.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/subaru0573/skills/super-data-analysis)
+- [Metric Contracts](artifact/metric-contracts.md)
+- [Chart Selection](artifact/chart-selection.md)
+- [Decision Briefs](artifact/decision-briefs.md)
+- [Analytical Pitfalls](artifact/pitfalls.md)
+- [Analysis Techniques](artifact/techniques.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or structured text, with code, SQL, shell commands, spreadsheet formulas, tables, or chart recommendations when the task requires them.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include metric definitions, uncertainty ranges, caveats, decision briefs, recommended next actions, and escalation notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

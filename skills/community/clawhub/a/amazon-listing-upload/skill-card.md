@@ -1,48 +1,67 @@
-## Description: <br>
-Amazon Seller Central listing guidance for creating product listings, applying for GTIN exemptions, preparing FBA shipments, writing listing content, and managing inventory workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon Seller Central listing management and optimization for creating product listings, applying for GTIN exemptions, setting up FBA shipments, writing optimized product content, and managing Amazon inventory across US, UK, EU, and JP marketplaces.
 
-## Publisher: <br>
-[sanchez0623](https://clawhub.ai/user/sanchez0623) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sanchez0623](https://clawhub.ai/user/sanchez0623)
 
-## Use Case: <br>
-External sellers and operators use this skill to prepare Amazon Seller Central listing content, check category and image requirements, plan GTIN exemption requests, and organize FBA shipment steps before taking action in Seller Central. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Supplement listing language and advertising-related sections can create Amazon account or compliance risk. <br>
-Mitigation: Review health claims, keywords, and promotional wording with qualified compliance support before using them in a live listing. <br>
-Risk: Agent-assisted Seller Central actions could affect live listings, prices, inventory, shipments, disposal, or customer shipping data. <br>
-Mitigation: Require explicit human approval before publishing listings, changing prices or inventory, creating shipments, disposing of inventory, or entering customer shipping data. <br>
-Risk: Amazon policies and category requirements change frequently. <br>
-Mitigation: Verify current Seller Central requirements before submitting listings, GTIN exemption requests, or FBA shipment plans. <br>
+## Use Case:
 
+External Amazon sellers and marketplace operators use this skill to prepare Seller Central listings, GTIN exemption applications, FBA shipment steps, product content, image checklists, pricing notes, and inventory guidance. It is not intended for legal, tax, trademark, account suspension, or Amazon Advertising workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sanchez0623/amazon-listing-upload) <br>
-- [Amazon Listing Workflow](references/listing-workflow.md) <br>
-- [GTIN Exemption Guide](references/gtin-exemption-guide.md) <br>
-- [FBA Workflow](references/fba-workflow.md) <br>
-- [Amazon Category Requirements](references/category-requirements.md) <br>
-- [Product Information Template](templates/product_template.txt) <br>
-- [Image Checklist](templates/image-checklist.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown text with workflow steps, listing drafts, checklists, and template-style fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No credential environment variables detected; browser access is listed for Seller Central navigation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: Regulated-category listing guidance may lead to noncompliant supplement or health claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all regulated-category content against current Amazon, FDA, and FTC requirements before publishing.
+
+Risk: The artifact includes risky supplement example copy that should not be reused directly.
+
+Mitigation: Treat examples as drafting aids only and replace claims with substantiated, compliant product-specific language.
+
+Risk: The artifact contains advertising-related guidance outside the stated scope.
+
+Mitigation: Do not use this skill for PPC or Amazon Advertising workflows; use reviewed advertising-specific guidance instead.
+
+Risk: Amazon marketplace and category policies change frequently.
+
+Mitigation: Verify current Seller Central requirements before submitting listings, exemptions, or FBA shipments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sanchez0623/skills/amazon-listing-upload)
+- [Amazon Category Requirements](references/category-requirements.md)
+- [FBA Workflow](references/fba-workflow.md)
+- [GTIN Exemption Guide](references/gtin-exemption-guide.md)
+- [Listing Workflow](references/listing-workflow.md)
+- [Product Information Template](templates/product_template.txt)
+- [Amazon Product Image Checklist](templates/image-checklist.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance and plain-text listing templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; browser access may be used to verify current Amazon requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,6 @@
+{
+  "question": {"_type": "Value", "dtype": "string"},
+  "subject":  {"_type": "Value", "dtype": "string"},
+  "choices":  {"_type": "Sequence", "feature": {"_type": "Value", "dtype": "string"}},
+  "answer":   {"_type": "ClassLabel", "names": ["A", "B", "C", "D"]}
+}

@@ -1,44 +1,64 @@
-## Description: <br>
-Purchase products from Amazon and Shopify stores through conversational checkout. Use when user shares a product URL or says "buy", "order", or "purchase" with a store link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Purchase products from Amazon and Shopify stores through conversational checkout.
 
-## Publisher: <br>
-[tsyvic](https://clawhub.ai/user/tsyvic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tsyvic](https://clawhub.ai/user/tsyvic)
 
-## Use Case: <br>
-External users use this skill to buy products from Amazon or Shopify store links through a conversational checkout flow that collects shipping details, uses a BasisTheory payment token, submits the purchase through Rye, and reports order status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate real purchases and is financially sensitive. <br>
-Mitigation: Set a spending limit, review the item and total, and require an explicit same-turn confirmation before each order. <br>
-Risk: The skill handles shipping details and BasisTheory token IDs, and may save tokens or addresses in agent memory. <br>
-Mitigation: Save payment tokens and addresses only after explicit user permission; use a fresh BasisTheory token when memory handling is unclear. <br>
-Risk: Checkout depends on external services and store fulfillment through Rye, BasisTheory, Amazon, and Shopify stores. <br>
-Mitigation: Install and use the skill only when those services and the store checkout flow are trusted. <br>
+## Use Case:
 
+External users use this skill to buy products from Amazon or Shopify product links through a chat-based checkout flow. The skill collects shipping details, obtains or reuses a payment token, submits a Rye purchase request, and reports order status back to the user.
 
-## Reference(s): <br>
-- [Buy Anything ClawHub Page](https://clawhub.ai/tsyvic/buy-anything) <br>
-- [Rye API Documentation](https://docs.rye.com) <br>
-- [BasisTheory](https://basistheory.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce purchase status summaries, spending-limit prompts, payment-token handling guidance, and curl-based Rye API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.10 (source: server release evidence) <br>
+Risk: The skill can place real purchases and may reuse saved payment tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a fresh user confirmation in the same turn before every order, including orders using a saved token, and confirm the final total before purchase.
+
+Risk: Reusable payment tokens, shipping details, and purchase preferences may be saved in agent memory.
+
+Mitigation: Prefer a fresh payment token for each purchase when memory handling is uncertain, save tokens and addresses only with explicit permission, and delete saved data when requested.
+
+Risk: Product content, API responses, or pasted text could contain instructions that conflict with the user's intent.
+
+Mitigation: Act only on purchase, address-change, token-reuse, or confirmation-skip instructions that come directly from the user's messages.
+
+Risk: Shell commands that embed user-supplied values can create command-injection exposure.
+
+Mitigation: Use the documented quoted heredoc curl pattern so product URLs, addresses, names, and token values are passed as request data instead of interpolated into the shell command.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tsyvic/skills/buy-anything)
+- [Publisher Profile](https://clawhub.ai/user/tsyvic)
+- [Rye API Documentation](https://docs.rye.com)
+- [BasisTheory](https://basistheory.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces purchase-flow instructions, confirmation prompts, curl requests, order polling guidance, and user-facing order summaries.]
+
+## Skill Version(s):
+
+3.0.10 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

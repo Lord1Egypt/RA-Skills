@@ -1,44 +1,63 @@
-## Description: <br>
-Aggregates current Chinese hot-trend lists from Zhihu, Weibo, Baidu, Bilibili, Douyin, and Toutiao, then outputs ranked reports, JSON data, and content topic recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates Chinese hot-trend lists from Zhihu, Weibo, Baidu, Bilibili, Douyin, and Toutiao, with optional JSON output and content-topic recommendations.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-External creators, operators, and agents use this skill to fetch public Chinese trend lists across six platforms, compare hot topics, export JSON, and draft content angles from current trends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to public trend platforms when invoked. <br>
-Mitigation: Install it only in environments where outbound requests to Zhihu, Weibo, Baidu, Bilibili, Douyin, and Toutiao are acceptable, and review network policy before deployment. <br>
-Risk: Generic trigger phrases such as “热点” or “趋势” may activate the skill more often than intended. <br>
-Mitigation: Narrow local trigger phrases or require an explicit platform or command phrase in workflows where accidental invocation would be disruptive. <br>
-Risk: Live platform APIs can be unavailable, region-limited, or change response formats. <br>
-Mitigation: Treat missing platform results as expected operational degradation and verify trend-sensitive outputs before publication or business use. <br>
+## Use Case:
 
+External users and content operators use this skill to fetch current Chinese-platform trend lists, compare cross-platform heat, and generate lightweight content-topic angles from public trend data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-hot-trends-6) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text trend report by default, optional JSON array, and Markdown-oriented topic recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on live public platform endpoints and may skip platforms that are unavailable or region-limited.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill makes live requests to public third-party trend endpoints, so results may be unavailable, rate-limited, or region-dependent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Handle empty or partial platform results as expected operating conditions and rerun or narrow the platform selection when needed.
+
+Risk: Short trend-related prompts may activate the skill even when the user did not intend to fetch Chinese platform trends.
+
+Mitigation: Invoke it only when the user asks for hot trends, current hotspots, or platform trend rankings, and clarify the target platform if the request is ambiguous.
+
+Risk: Trend data and generated topic angles can reflect fast-changing or platform-specific popularity signals rather than verified facts.
+
+Mitigation: Treat output as discovery guidance and verify important claims against the linked source platform pages before publication or decision-making.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-hot-trends-6)
+- [Zhihu hot-list API](https://api.zhihu.com/topstory/hot-lists/total?limit={})
+- [Weibo hot-search API](https://weibo.com/ajax/side/hotSearch)
+- [Baidu realtime board API](https://top.baidu.com/api/board?platform=wise&tab=realtime)
+- [Bilibili ranking API](https://api.bilibili.com/x/web-interface/ranking/v2?rid=0&type=all)
+- [Douyin web search endpoint](https://www.douyin.com/aweme/v1/web/general/search/single/?keyword_type=0&count={}&device_platform=webapp&aid=6383)
+- [Toutiao hot-board feed endpoint](https://www.toutiao.com/api/pc/feed/?tab_name=hot_board&category=hot_board)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance, shell commands]
+
+**Output Format:** [Terminal text report or JSON array, with optional Markdown-style topic recommendation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports platform selection, per-platform result limits, JSON output, and optional content-topic recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

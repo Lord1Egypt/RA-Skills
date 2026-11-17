@@ -1,39 +1,54 @@
-## Description: <br>
-Display network connections, listening ports, and routing tables for network troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Display network connections, listening ports, and routing tables for network diagnostics.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers, operators, and support engineers use this skill to inspect local network connections, listening ports, routing information, interface addresses, DNS servers, and socket statistics while diagnosing network issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diagnostic output can expose sensitive local network details such as listening ports, routes, interface addresses, DNS servers, or process names. <br>
-Mitigation: Review command output before sharing it outside the trusted troubleshooting context, and redact host-specific or sensitive details when needed. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect local network sockets, listening services, routes, DNS servers, and interface addresses while diagnosing network issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/netstat) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with shell command examples and command output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local network state such as ports, routes, interface addresses, DNS servers, and process names.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Network diagnostic output can reveal local sockets, listening ports, routes, DNS servers, interfaces, and related process information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in trusted local environments and review output before sharing it outside the diagnostic context.
+
+Risk: The script creates a per-user data directory under ~/.local/share/netstat.
+
+Mitigation: Install only when this local filesystem behavior is acceptable for the target user account.
+
+## Reference(s):
+
+- [Netstat skill page](https://clawhub.ai/bytesagain3/skills/netstat)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands and terminal text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may display local socket, process, route, DNS, and interface information.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

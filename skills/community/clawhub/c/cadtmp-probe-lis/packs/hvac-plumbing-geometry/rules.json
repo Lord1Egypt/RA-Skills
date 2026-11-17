@@ -1,0 +1,319 @@
+{
+  "schema_version": 1,
+  "confidence": {
+    "direct_label": 0.95,
+    "pattern_match": 0.78,
+    "geometry_pattern": 0.86,
+    "inferred": 0.5
+  },
+  "view_rules": [
+    {
+      "type": "plumbing_plan",
+      "patterns": [
+        "给水平面",
+        "排水平面",
+        "雨水",
+        "污水",
+        "给排水",
+        "PLUMBING",
+        "WATER",
+        "DRAIN"
+      ]
+    },
+    {
+      "type": "hvac_plan",
+      "patterns": [
+        "暖通",
+        "空调",
+        "通风",
+        "防排烟",
+        "HVAC",
+        "VENTILATION",
+        "AIR CONDITION"
+      ]
+    },
+    {
+      "type": "fire_water_plan",
+      "patterns": [
+        "消防水平面",
+        "喷淋",
+        "消火栓",
+        "FIRE WATER",
+        "SPRINKLER",
+        "HYDRANT"
+      ]
+    },
+    {
+      "type": "pump_room",
+      "patterns": [
+        "泵房",
+        "水泵房",
+        "机房",
+        "PUMP ROOM",
+        "MECHANICAL ROOM"
+      ]
+    },
+    {
+      "type": "riser_detail",
+      "patterns": [
+        "系统图",
+        "立管图",
+        "管道系统",
+        "RISER",
+        "DIAGRAM"
+      ]
+    },
+    {
+      "type": "support_hanger",
+      "patterns": [
+        "支吊架",
+        "抗震支架",
+        "支吊点",
+        "SUPPORT",
+        "HANGER"
+      ]
+    },
+    {
+      "type": "hvac_detail",
+      "patterns": [
+        "风管大样",
+        "风口",
+        "风机盘管",
+        "风井",
+        "DUCT DETAIL",
+        "AIR DIFFUSER"
+      ]
+    }
+  ],
+  "system_rules": [
+    {
+      "system": "water_supply",
+      "patterns": [
+        "给水",
+        "冷水",
+        "热水",
+        "中水",
+        "WATER SUPPLY",
+        "WS"
+      ]
+    },
+    {
+      "system": "drainage",
+      "patterns": [
+        "排水",
+        "污水",
+        "废水",
+        "雨水",
+        "DRAIN",
+        "SANITARY",
+        "SEWER"
+      ]
+    },
+    {
+      "system": "fire_water",
+      "patterns": [
+        "消防水",
+        "喷淋",
+        "消火栓",
+        "FIRE",
+        "SPRINKLER",
+        "HYDRANT"
+      ]
+    },
+    {
+      "system": "hvac",
+      "patterns": [
+        "空调",
+        "暖通",
+        "通风",
+        "新风",
+        "防排烟",
+        "HVAC",
+        "AC",
+        "VENT"
+      ]
+    },
+    {
+      "system": "condensate",
+      "patterns": [
+        "冷凝水",
+        "凝水",
+        "CONDENSATE"
+      ]
+    },
+    {
+      "system": "support",
+      "patterns": [
+        "支吊架",
+        "抗震支架",
+        "支吊点",
+        "SUPPORT",
+        "HANGER"
+      ]
+    }
+  ],
+  "component_rules": [
+    {
+      "category": "pipe",
+      "system": "water_supply",
+      "patterns": [
+        "给水管",
+        "DN",
+        "De",
+        "D",
+        "冷水管",
+        "热水管",
+        "PIPE"
+      ]
+    },
+    {
+      "category": "drain_pipe",
+      "system": "drainage",
+      "patterns": [
+        "排水管",
+        "雨水管",
+        "污水管",
+        "立管",
+        "DRAIN"
+      ]
+    },
+    {
+      "category": "fire_device",
+      "system": "fire_water",
+      "patterns": [
+        "喷淋头",
+        "消火栓",
+        "消防泵",
+        "报警阀",
+        "SPRINKLER",
+        "HYDRANT",
+        "ALARM VALVE"
+      ]
+    },
+    {
+      "category": "hvac_unit",
+      "system": "hvac",
+      "patterns": [
+        "风机盘管",
+        "新风机组",
+        "空调机组",
+        "风机",
+        "AHU",
+        "FCU",
+        "FAN"
+      ]
+    },
+    {
+      "category": "air_diffuser",
+      "system": "hvac",
+      "patterns": [
+        "风口",
+        "送风口",
+        "回风口",
+        "排烟口",
+        "DIFFUSER",
+        "AIR OUTLET"
+      ]
+    },
+    {
+      "category": "duct",
+      "system": "hvac",
+      "patterns": [
+        "风管",
+        "送风管",
+        "回风管",
+        "排风管",
+        "DUCT"
+      ]
+    },
+    {
+      "category": "support",
+      "system": "support",
+      "patterns": [
+        "支吊架",
+        "抗震支架",
+        "吊架",
+        "支架",
+        "SUPPORT",
+        "HANGER"
+      ]
+    }
+  ],
+  "reference_patterns": {
+    "pipe_spec": "(?<![0-9A-Z])((?:DN|De|D)\\d{1,4}(?:\\.\\d+)?)",
+    "elevation": "标高\\s*[-+]?\\d+(?:\\.\\d{1,3})?",
+    "hvac_spec": "(?<![0-9A-Z])((?:FH|FJ|PH|PJ|AHU|FCU|PAU)\\s*[-_]?\\d{1,3})",
+    "riser": "(?<![0-9A-Z])((?:JL|PL|FL|RL|WL|NL)\\s*[-_]?\\d{1,3}[A-Za-z]?)"
+  },
+  "scale_pattern": "1\\s*[:：]\\s*\\d{1,5}",
+  "unit_patterns": {
+    "mm": [
+      "单位\\s*[:：]?\\s*mm",
+      "mm"
+    ],
+    "m": [
+      "单位\\s*[:：]?\\s*m"
+    ]
+  },
+  "layer_rules": [
+    {
+      "category": "pipe",
+      "patterns": [
+        "给水",
+        "冷水",
+        "热水",
+        "PIPE",
+        "WS",
+        "给"
+      ]
+    },
+    {
+      "category": "drain_pipe",
+      "patterns": [
+        "排水",
+        "雨水",
+        "污水",
+        "DRAIN",
+        "SEWER"
+      ]
+    },
+    {
+      "category": "fire_device",
+      "patterns": [
+        "消防",
+        "喷淋",
+        "SPRINKLER",
+        "FIRE"
+      ]
+    },
+    {
+      "category": "hvac_unit",
+      "patterns": [
+        "空调",
+        "暖通",
+        "风机盘管",
+        "AHU",
+        "FCU",
+        "HVAC"
+      ]
+    },
+    {
+      "category": "duct",
+      "patterns": [
+        "风管",
+        "DUCT",
+        "送风",
+        "回风"
+      ]
+    },
+    {
+      "category": "support",
+      "patterns": [
+        "支吊架",
+        "支架",
+        "SUPPORT",
+        "HANGER"
+      ]
+    }
+  ]
+}

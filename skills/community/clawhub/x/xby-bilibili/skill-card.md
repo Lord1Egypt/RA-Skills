@@ -1,42 +1,50 @@
-## Description: <br>
-用于哔哩哔哩API的MCP服务器，支持视频搜索、用户内容获取等多种操作，适用于哔哩哔哩内容管理和数据分析场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an MCP-style Bilibili API skill for video search, user lookup, user content retrieval, danmaku retrieval, collections, and related content analysis workflows.
 
-## Publisher: <br>
-[alinklab](https://clawhub.ai/user/alinklab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alinklab](https://clawhub.ai/user/alinklab)
 
-## Use Case: <br>
-Developers and content analysts use this skill to search Bilibili users and videos, retrieve user posts, collections, and danmaku, and summarize API results for content management or data analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a third-party Xiaobenyang API key and may save it to a local .env file in plaintext. <br>
-Mitigation: Prefer setting XBY_APIKEY through the environment, avoid sharing unnecessary credentials, and remove any saved .env key after use. <br>
-Risk: Bilibili-related queries and requested content identifiers are sent to Xiaobenyang's API service. <br>
-Mitigation: Use the skill only when you trust the third-party service and avoid submitting sensitive or private query content. <br>
+## Use Case:
 
+Developers and content operators use this skill to route Bilibili search, user, video, danmaku, dynamic, submission, and collection queries through the XiaoBenYang API and return structured results for content management or analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alinklab/skills/xby-bilibili) <br>
-- [Xiaobenyang API key site](https://xiaobenyang.com) <br>
-- [Xiaobenyang MCP API endpoint](https://mcp.xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, JSON, guidance, configuration] <br>
-**Output Format:** [JSON API responses summarized as text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an XBY_APIKEY for Xiaobenyang API access; upstream results are returned in the raw field before the agent summarizes them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release; artifact frontmatter is 1.0.0) <br>
+Risk: The skill stores XBY_APIKEY in a local plaintext .env file, which can expose billing, quota, or private-data access if the project directory is shared, synced, committed, or has broad file permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide XBY_APIKEY through a secure environment or secret manager where possible, ensure .env is ignored by version control, avoid shared or synced project directories, restrict file access, and rotate the key if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alinklab/skills/xby-bilibili)
+- [XiaoBenYang API key portal](https://xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, API calls, configuration guidance]
+
+**Output Format:** [Structured Python dictionaries with success, raw, and message fields, typically summarized to the user as text or Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires XBY_APIKEY before API calls; output content depends on upstream XiaoBenYang and Bilibili API responses.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

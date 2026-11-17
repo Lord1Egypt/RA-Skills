@@ -1,41 +1,64 @@
-## Description: <br>
-Searches CNKI, applies source/year filters or sorting, and guides batch PDF downloads through a Playwright and Microsoft Edge workflow with reusable local login state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从中国知网（CNKI）检索、筛选、排序并批量下载学术文献 PDF，使用 Playwright 和 Microsoft Edge 完成需要可视化登录的流程。
 
-## Publisher: <br>
-[lfp1979](https://clawhub.ai/user/lfp1979) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lfp1979](https://clawhub.ai/user/lfp1979)
 
-## Use Case: <br>
-External users and researchers use this skill to search CNKI, configure filters or sorting, handle first-run login, and download a requested number of academic paper PDFs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a CNKI entry URL and browser login state locally for reuse. <br>
-Mitigation: Review or delete scripts/user_config.json and scripts/browser_data when saved URL or session reuse is not desired. <br>
-Risk: An automated Edge session can access CNKI using an institution or personal login. <br>
-Mitigation: Run only in a trusted workspace and avoid setting CNKI_USER_DATA_DIR to a shared browser profile unless session reuse is intentional. <br>
+## Use Case:
 
+Students, researchers, and agents assisting literature collection use this skill to search CNKI, apply year/source filters and sorting, open result details, and download a requested number of PDFs through a configured CNKI or institutional entry URL.
 
-## Reference(s): <br>
-- [Config JSON Schema](references/config-schema.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lfp1979/skills/cnki-download) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local JSON config files and trigger a Playwright/Edge process that downloads PDFs to scripts/download/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The workflow asks agents to run browser automation outside the sandbox.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution and avoid granting broad host privileges beyond what is needed to open Edge and run the CNKI pipeline.
+
+Risk: Login sessions are retained in a browser_data profile.
+
+Mitigation: Use only trusted CNKI or institution URLs and clear the saved browser profile when the session is no longer needed.
+
+Risk: Dependency installation and browser downloads can affect the local environment.
+
+Mitigation: Use deterministic dependency installation from the bundled package metadata and review installed packages before production use.
+
+Risk: Downloaded files and web paths are handled broadly.
+
+Mitigation: Validate CNKI or proxy hosts, constrain download destinations, and sanitize output filenames before wider deployment.
+
+## Reference(s):
+
+- [CNKI Download Skill Page](https://clawhub.ai/lfp1979/skills/cnki-download)
+- [Config JSON Schema](references/config-schema.md)
+- [Microsoft Edge](https://www.microsoft.com/edge)
+- [CNKI](https://www.cnki.net/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local JSON configuration and download PDF files under the skill's download directory.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

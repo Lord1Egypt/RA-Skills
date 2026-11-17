@@ -1,41 +1,49 @@
-## Description: <br>
-AI Success Resume lets an agent answer questions from a fictional AI entrepreneur profile covering education, career history, skills, startup experience, income sources, learning methods, and interview experience. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI领域成功25岁人物档案。用户可以询问这位AI创业者的教育背景、职业经历、技能栈、创业历程、收入来源、学习方法、面试经验等。触发词：AI简历、成功简历、陈逸飞、AI创业者档案。
 
-## Publisher: <br>
-[keningiyou](https://clawhub.ai/user/keningiyou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keningiyou](https://clawhub.ai/user/keningiyou)
 
-## Use Case: <br>
-External users and agents use this skill to answer career, learning, product-building, and AI entrepreneurship questions from a simulated 25-year-old AI founder profile. The skill is suitable for illustrative guidance, not as verified biographical or financial evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The named person, products, income, followers, and career details are fictional and could be mistaken for verified real-world claims. <br>
-Mitigation: State that the profile is simulated and avoid presenting it as evidence about a real person or company. <br>
-Risk: Career, business, or technical advice derived from the profile may be incomplete or unsuitable for a user's real situation. <br>
-Mitigation: Encourage users to verify important career, business, and technical decisions against current authoritative sources before acting. <br>
+## Use Case:
 
+External users can ask an agent for Chinese-language career inspiration, learning paths, entrepreneurship examples, interview preparation, and technology-stack discussion based on a fictional AI founder profile.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/keningiyou/ai-success-resume) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/keningiyou) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses based on the embedded fictional profile] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses may be written in first or third person and should preserve the fictional, simulated nature of the profile.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may mistake the résumé, income numbers, social accounts, and product history for verified real-world facts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Frame the profile as fictional and simulated, and verify any career, business, or financial claims before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keningiyou/skills/ai-success-resume)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are grounded in a static fictional profile and should preserve the simulated nature of the résumé, income numbers, accounts, and product history.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

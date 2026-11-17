@@ -1,8 +1,7 @@
-# 广告线索表单（clue）
+﻿# 广告线索表单（clue）
 
-> 所属 skill：`siluzan-tso`。
->
-> 支持 **TikTok** 和 **Meta（Facebook）** 两种媒体。
+> 支持 **TikTok** 和 **Meta（Facebook）** 两种媒体。流程见 `workflows.md` **W11**。
+> **建** Meta Instant Form 线索广告走 **W13** `meta-ad`，本命令只**拉已有**留资。
 
 > **注意**：线索数据直接来自媒体 API，**不支持服务端分页**，数据量大时建议 `--json-out <路径>` 落盘后自行处理。
 

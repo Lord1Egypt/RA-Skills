@@ -1,45 +1,58 @@
-## Description: <br>
-Install and apply ClawJection bundles when a user asks to install a ClawJection, run a ClawJection, or configure an OpenClaw instance from a ClawJection repo, archive, or local bundle. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and apply ClawJection bundles when a user asks to install a ClawJection, run a ClawJection, or configure an OpenClaw instance from a ClawJection repo, archive, or local bundle.
 
-## Publisher: <br>
-[nmadeleidev](https://clawhub.ai/user/nmadeleidev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nmadeleidev](https://clawhub.ai/user/nmadeleidev)
 
-## Use Case: <br>
-Developers and operators use this skill to install or run ClawJection bundles that configure a local OpenClaw instance from a Git repository, archive, zip file, or local directory. The agent follows the bundle manifest, runs the declared entrypoint, reads the structured result, and performs ordered follow-up actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Downloaded or local ClawJection bundles can run code and alter an OpenClaw setup. <br>
-Mitigation: Use trusted sources, inspect the manifest and entrypoint, prefer pinned commits or verified archives, and back up OpenClaw configuration before applying a bundle. <br>
-Risk: Bundles may request auth setup, command execution, follow-up actions, or overwrites of core files. <br>
-Mitigation: Require explicit user approval before auth setup, command execution, follow-up actions, or overwrites of core OpenClaw files. <br>
-Risk: Secrets could be written into workspace files during bundle execution. <br>
-Mitigation: Keep secrets out of workspace files unless the bundle explicitly requires that behavior and the user agrees. <br>
+## Use Case:
 
+Developers and engineers use this skill to install or run ClawJection bundles that modify a local OpenClaw instance, install tools or skills, and apply ordered follow-up actions returned by the bundle.
 
-## Reference(s): <br>
-- [ClawJection on ClawHub](https://clawhub.ai/nmadeleidev/clawjection) <br>
-- [ClawJection standard](standard/v1.md) <br>
-- [ClawJection manifest schema](schemas/clawjection.schema.json) <br>
-- [ClawJection result schema](schemas/result.schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and references to JSON manifests or result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ordered follow-up actions returned by a ClawJection bundle.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: ClawJection bundles can run local entrypoint code that changes OpenClaw configuration, identity files, tools, skills, and auth setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted, pinned, and reviewed bundle sources, preferably in a disposable or backed-up environment, and require explicit approval before running entrypoints.
+
+Risk: Bundle-supplied follow-up actions may continue changing the environment after the entrypoint finishes.
+
+Mitigation: Review follow-up actions before applying them and verify installed CLIs, skills, or configuration changes before claiming success.
+
+Risk: Secrets can be exposed if a bundle writes credentials into workspace files.
+
+Mitigation: Keep secrets out of workspace files unless the bundle explicitly requires it and the user approves that behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nmadeleidev/skills/clawjection)
+- [Publisher profile](https://clawhub.ai/user/nmadeleidev)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ordered follow-up actions based on ClawJection bundle result JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

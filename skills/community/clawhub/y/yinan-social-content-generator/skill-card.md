@@ -1,41 +1,56 @@
-## Description: <br>
-Generate social media content (posts, captions, images) for multiple platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates platform-optimized social posts, captions, images, and content calendar artifacts for Twitter/X, Instagram, LinkedIn, and Facebook.
 
-## Publisher: <br>
-[yinanping-CPU](https://clawhub.ai/user/yinanping-CPU) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yinanping-cpu](https://clawhub.ai/user/yinanping-cpu)
 
-## Use Case: <br>
-Marketing, social media, and developer users use this skill to draft platform-optimized posts, captions, image prompts, and content calendar assets for Twitter/X, Instagram, LinkedIn, and Facebook. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: AI mode sends post topics and image prompts to OpenAI. <br>
-Mitigation: Use --no-ai for local template-only generation when needed, and avoid entering confidential campaign or client information. <br>
-Risk: Optional publishing workflows require social-platform API credentials. <br>
-Mitigation: Keep .env files and API tokens out of source control, and do not provide platform tokens or run upload workflows unless the uploader code has been separately reviewed. <br>
-Risk: Generated social content may be inaccurate, off-brand, or unsuitable for publication without review. <br>
-Mitigation: Review generated posts, captions, metadata, and images before publishing or scheduling them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yinanping-CPU/yinan-social-content-generator) <br>
+## Use Case:
 
+Marketing teams, creators, and developers use this skill to draft platform-specific social content, optional images, and calendar outputs before human review or scheduling.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; generated artifacts include post.txt, metadata.json, and optional PNG images.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports AI-backed generation through OpenAI when configured, with a template-only fallback via --no-ai.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Topics and prompts can expose secrets, embargoed campaign plans, customer data, or confidential business details to OpenAI APIs.
+
+Mitigation: Do not include sensitive or confidential content in prompts unless that use has been approved for the connected OpenAI account and data handling policy.
+
+Risk: Generated social content can be inaccurate, off-brand, or unsuitable for publication without review.
+
+Mitigation: Install and use the skill as a draft-generation tool, with explicit human review before publishing or scheduling content.
+
+Risk: Optional upload workflows and platform API credentials can affect real social accounts if enabled without governance.
+
+Mitigation: Treat upload credentials cautiously, store them outside generated artifacts, and require explicit review before any post is published to a real account.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yinanping-cpu/skills/yinan-social-content-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Images, JSON metadata, Files, Shell commands, Configuration guidance]
+
+**Output Format:** [Plain text posts, PNG images, JSON metadata, and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call OpenAI APIs for text and image generation; can fall back to template-based text generation when AI dependencies are unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

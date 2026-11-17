@@ -1,48 +1,53 @@
-## Description: <br>
-Applies anti-sycophancy checklist to override agreement bias. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applies anti-sycophancy checklist to override agreement bias
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and agent users apply this skill when they want an assistant to test claims, avoid agreement bias, preserve distinctions, and state evidence-based conclusions directly during analysis, debate, conflict review, or multi-turn reasoning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation triggers may make ordinary analysis or debate responses more adversarial or less deferential than intended. <br>
-Mitigation: Use the skill where skeptical, evidence-focused reasoning is desired and review outputs for tone and fit before relying on them. <br>
-Risk: The skill intentionally overrides agreement bias, so it may produce direct conclusions that feel socially uncomfortable. <br>
-Mitigation: Check that conclusions remain grounded in the provided evidence, preserve relevant distinctions, and avoid unnecessary escalation. <br>
+## Use Case:
 
+AI agents use this skill to evaluate contested claims, interpersonal conflicts, and reasoning errors with explicit evidence checks and structured conclusions. It is intended for truth-seeking analysis that avoids reflexive agreement and unnecessary pushback.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/athola/skills/nm-imbue-rigorous-reasoning) <br>
-- [OpenClaw Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/imbue) <br>
-- [Priority Signals](artifact/modules/priority-signals.md) <br>
-- [Conflict Analysis Protocol](artifact/modules/conflict-analysis.md) <br>
-- [Debate Methodology](artifact/modules/debate-methodology.md) <br>
-- [Engagement Principles](artifact/modules/engagement-principles.md) <br>
-- [Correction Protocol](artifact/modules/correction-protocol.md) <br>
-- [Incremental Reasoning](artifact/modules/incremental-reasoning.md) <br>
-- [Pattern Completion Protocol](artifact/modules/pattern-completion.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown reasoning guidance and checklist-style instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill; may direct the agent to track reasoning checkpoints and TodoWrite items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: ClawHub release evidence) <br>
+Risk: The security assessment notes a broad activation condition, so the reasoning framework may be applied outside the contested-claim situations it describes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when a contested claim or relevant reasoning red flag is present, and follow the specific workflow that fits the question.
+
+Risk: A supporting path referenced by the skill is absent from this release bundle, so that material was not covered by the partial security scan.
+
+Mitigation: Verify and review the referenced supporting material before relying on the procedure that points to it.
+
+## Reference(s):
+
+- [Project homepage (Clawdis metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Text]
+
+**Output Format:** [Markdown prose and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Context-dependent analysis with explicit reasoning steps and conclusions.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

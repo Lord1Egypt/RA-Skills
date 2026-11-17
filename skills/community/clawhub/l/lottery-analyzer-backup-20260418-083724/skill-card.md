@@ -1,46 +1,59 @@
-## Description: <br>
-A lottery analysis assistant for SSQ and DLT that analyzes historical draw data, tracks statistical patterns, and generates number recommendations for reference. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lottery Analyzer Backup 20260418 083724 analyzes SSQ and DLT lottery data, tracks statistics and trends, and generates statistical number recommendations from included or user-provided draw data.
 
-## Publisher: <br>
-[xixiaohe](https://clawhub.ai/user/xixiaohe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xixiaohe](https://clawhub.ai/user/xixiaohe)
 
-## Use Case: <br>
-External users and developers use this skill to analyze bundled or custom SSQ and DLT lottery history, inspect hot and cold numbers, review trends, and generate statistical recommendation outputs. The skill is for entertainment and reference workflows and does not guarantee winning outcomes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify bundled lottery CSV data and save prediction, report, and result JSON files locally. <br>
-Mitigation: Install only when local file updates are acceptable, review generated files, and use no-save behavior when prediction history should not be retained. <br>
-Risk: Optional message-hook integration may process lottery-looking messages and trigger updates automatically. <br>
-Mitigation: Do not enable hook integration unless that behavior is intentional, and keep message patterns scoped to expected lottery data formats. <br>
-Risk: Lottery recommendations may be overinterpreted as reliable predictions. <br>
-Mitigation: Present outputs as statistical reference and entertainment only, and preserve the skill's warning that results do not guarantee winning outcomes. <br>
+## Use Case:
 
+External users and agents use this skill to analyze lottery history, inspect hot and cold numbers, review trend patterns, and generate statistical SSQ or DLT number recommendations. Outputs should be treated as entertainment and reference material, not as guaranteed winning predictions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xixiaohe/lottery-analyzer-backup-20260418-083724) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/xixiaohe) <br>
-- [README](README.md) <br>
-- [Quick Start](QUICK_START.md) <br>
-- [Skill definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON files, Guidance] <br>
-**Output Format:** [Markdown instructions, Python and shell snippets, console text, and JSON analysis or prediction files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save prediction history, reports, results, and updated lottery CSV data locally unless run with no-save behavior where supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Lottery recommendations may be mistaken for guaranteed financial outcomes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present recommendations as entertainment and reference material, preserve the no-guarantee disclaimer, and encourage responsible spending.
+
+Risk: The skill writes local prediction history, reports, and updated draw data.
+
+Mitigation: Run it in an approved workspace, review generated files before sharing, and keep backups of trusted source data before updates.
+
+Risk: The package includes Chinese-language lottery behavior and stray 3D prediction files beyond the stated SSQ/DLT scope.
+
+Mitigation: Review package scope before deployment and remove unrelated prediction files if the release should be limited to SSQ and DLT analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xixiaohe/skills/lottery-analyzer-backup-20260418-083724)
+- [README](README.md)
+- [Quick start guide](QUICK_START.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and local JSON report or prediction files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local prediction history, reports, and updated lottery draw data.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

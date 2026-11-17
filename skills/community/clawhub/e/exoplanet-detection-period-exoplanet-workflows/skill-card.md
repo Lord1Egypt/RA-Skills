@@ -1,42 +1,55 @@
-## Description: <br>
-General workflows and best practices for planning exoplanet detection and characterization pipelines from light curve data, including method selection and troubleshooting detection issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+General workflows and best practices for exoplanet detection and characterization from light curve data. Use when planning an exoplanet analysis pipeline, understanding when to use different methods, or troubleshooting detection issues.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers, researchers, and analysts use this skill to plan light-curve workflows for exoplanet detection, select period-search methods, and troubleshoot candidate validation issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scientific thresholds, dependencies, or linked methods may be outdated or unsuitable for a specific research decision. <br>
-Mitigation: Verify thresholds, dependencies, and linked methods against current library documentation and domain literature before relying on results. <br>
-Risk: Over-aggressive preprocessing, missing flux uncertainties, or period aliasing can weaken or misidentify transit signals. <br>
-Mitigation: Use conservative preprocessing, include flux uncertainties, inspect each preprocessing step, and validate candidates with signal metrics, phase-folded plots, odd-even checks, and data-gap review. <br>
+## Use Case:
 
+Developers, researchers, and analysts use this skill to plan light-curve workflows for exoplanet detection, choose between TLS, Lomb-Scargle, and BLS period searches, and troubleshoot candidate validation issues.
 
-## Reference(s): <br>
-- [Lightkurve Tutorials](https://lightkurve.github.io/lightkurve/tutorials/index.html) <br>
-- [Transit Least Squares GitHub](https://github.com/hippke/tls) <br>
-- [Transit Least Squares Tutorials](https://github.com/hippke/tls/tree/master/tutorials) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with occasional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only; does not execute analysis or access credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Python package installation can create reproducibility or environment-isolation issues if dependencies are installed globally or left unpinned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the listed packages in a virtual environment or container, and pin versions when reproducibility matters.
+
+Risk: Incorrect preprocessing or weak validation can lead users to overstate exoplanet candidates from noisy light-curve data.
+
+Mitigation: Review preprocessing choices, visualize each step, and validate candidates with signal metrics, phase-folded plots, odd-even checks, and multiple-transit evidence.
+
+## Reference(s):
+
+- [Lightkurve Tutorials](https://lightkurve.github.io/lightkurve/tutorials/index.html)
+- [Transit Least Squares GitHub](https://github.com/hippke/tls)
+- [Transit Least Squares Tutorials](https://github.com/hippke/tls/tree/master/tutorials)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No bundled executable code; dependency installation is described for user-managed Python environments.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

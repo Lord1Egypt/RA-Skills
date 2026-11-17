@@ -1,40 +1,54 @@
-## Description: <br>
-Helps users buying a power bank calculate the mAh capacity, output wattage, and charging protocol they need from their devices, travel habits, and usage - brand-neutral, region-aware. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps power bank buyers calculate the mAh capacity, output wattage, fast-charging protocol, port configuration, and safety certifications they need from their devices, travel habits, and region.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External users and buying-assistance agents use this skill to interview a power-bank buyer, calculate required capacity, output wattage, charging protocol, and port needs, then produce a brand-neutral specification recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Power-bank specs, prices, availability, certifications, airline rules, and reviews can change after the skill text was published. <br>
-Mitigation: Verify current product specifications, certifications, airline limits, prices, availability, and reviews before buying. <br>
-Risk: The skill supports purchase decisions but is not a purchasing agent. <br>
-Mitigation: Treat its output as decision support and make the final purchase only after checking current seller and manufacturer information. <br>
+## Use Case:
 
+External users use this skill during a power bank purchase decision to identify required capacity, wattage, charging protocol, ports, travel constraints, and regional certification checks before evaluating products.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arbazex/power-bank-buying-consultant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes capacity calculations, wattage and protocol guidance, regional certification checks, and product research prompts; no code execution or credentials required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Product suggestions may become stale as prices, availability, specifications, certifications, and airline rules change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat suggestions as research starting points and verify current product details, certifications, and airline rules before purchase.
+
+Risk: The consultation may ask for device models, travel context, and country or region to size the power bank and identify certification needs.
+
+Mitigation: Share only the details needed for the buying decision and avoid adding unrelated personal information.
+
+## Reference(s):
+
+- [ClawHub listing](https://clawhub.ai/arbazex/skills/power-bank-buying-consultant)
+- [Publisher profile](https://clawhub.ai/user/arbazex)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational consultation followed by structured Markdown recommendations with calculations and optional product suggestions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include up to five product suggestions as research starting points after required specifications are determined.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

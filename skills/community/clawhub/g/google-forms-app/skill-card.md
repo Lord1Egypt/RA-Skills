@@ -1,41 +1,59 @@
-## Description: <br>
-Google Forms API integration with managed OAuth for creating forms, adding questions, exporting responses to Excel, and summarizing response data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Forms API integration with managed OAuth for creating forms, adding questions, exporting responses to Excel, and summarizing response data.
 
-## Publisher: <br>
-[dfaaa](https://clawhub.ai/user/dfaaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dfaaa](https://clawhub.ai/user/dfaaa)
 
-## Use Case: <br>
-External users and developers use this skill to manage Google Forms through an agent: create surveys, add supported question types, list forms, export responses, and summarize collected response data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a third-party Forms for Google Drive service and API key that may access Google Forms, response exports, and respondent data. <br>
-Mitigation: Install only if you trust Forms for Google Drive and gformsfree.com, review the Google OAuth consent screen and scopes before connecting, and avoid highly sensitive respondent data unless provider privacy and retention practices are acceptable. <br>
-Risk: The required GFORMS_API_KEY could expose account access if pasted into chat, committed to files, or logged in command output. <br>
-Mitigation: Store GFORMS_API_KEY only in the agent environment, never reveal its value in responses, and revoke or regenerate it when access is no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to manage Google Forms through a third-party Forms for Google Drive service, including creating surveys, adding questions, listing forms, exporting responses, and summarizing response data.
 
-## Reference(s): <br>
-- [Forms for Google Drive App](https://gformsfree.com/app) <br>
-- [Google Forms API Reference](https://developers.google.com/workspace/forms/api/reference/rest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell and Python code blocks, JSON API responses, form URLs, export links, and response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access and GFORMS_API_KEY for authorized operations; exported download links expire after 10 minutes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata; SKILL.md metadata version is 1.2) <br>
+Risk: Form content or response-derived data may be sent to the third-party gformsfree.com service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the third-party service, OAuth setup, and data-handling expectations before using the skill with sensitive forms or responses.
+
+Risk: The unauthorized setup flow suppresses normal agent guidance and forces a verbatim onboarding message.
+
+Mitigation: Review the setup flow before installation and ensure users understand the third-party app, Google sign-in, and API-key requirements.
+
+Risk: Authorized operations depend on the GFORMS_API_KEY environment variable.
+
+Mitigation: Store the API key as a secret, do not expose it in agent messages or logs, and regenerate it if it is disclosed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dfaaa/skills/google-forms-app)
+- [Forms for Google Drive App](https://gformsfree.com/app)
+- [Google Forms API Reference](https://developers.google.com/workspace/forms/api/reference/rest)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with shell commands, Python snippets, and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access and the GFORMS_API_KEY environment variable for authorized operations.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact metadata version is 1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

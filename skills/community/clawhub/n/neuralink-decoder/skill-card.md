@@ -1,38 +1,53 @@
-## Description: <br>
-Simulates and decodes neural spike activity into cursor movement (BCI). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simulates and decodes neural spike activity into cursor movement for a synthetic brain-computer interface workflow.
 
-## Publisher: <br>
-[AadiPapp](https://clawhub.ai/user/AadiPapp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aadipapp](https://clawhub.ai/user/aadipapp)
 
-## Use Case: <br>
-Developers and learners use this skill to run a local synthetic BCI simulation that generates neural spike counts and decodes them into virtual cursor movement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The script imports numpy, but no dependency file is included. <br>
-Mitigation: Install numpy only from a trusted package source if the runtime environment does not already provide it. <br>
+## Use Case:
 
+Developers and engineers use this skill to run a local synthetic BCI simulation that generates neural spike counts, decodes them into 2D cursor velocity, and reports the resulting cursor trajectory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AadiPapp/neuralink-decoder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and console text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a local Python simulation and prints decoded velocity, cursor position, and angle error.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill is a synthetic simulation and not a real Neuralink or medical BCI integration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output for local educational or prototyping workflows only, and do not treat decoded values as medical, clinical, or device-control results.
+
+Risk: The script depends on numpy in the local Python environment.
+
+Mitigation: Install and run it in a normal local environment where that dependency is acceptable, and review local dependency policy before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aadipapp/skills/neuralink-decoder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and console-style simulation output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs a local Python simulation that depends on numpy and produces synthetic spike, velocity, and cursor-position values.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

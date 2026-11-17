@@ -1,5 +1,5 @@
 ## Description: <br>
-A video automation skill that helps agents generate scripts, narration, subtitles, cover images, and assembled videos from a topic using edge-tts and ffmpeg. <br>
+Generates AI-assisted video workflows for scripts, voiceovers, subtitles, covers, and ffmpeg-based editing from a topic or source material. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,37 +11,33 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External creators, marketing teams, educators, and developers use this skill to turn a topic into short-form video assets, including scripts, narration text, subtitles, covers, and assembled media. It is suited for batch content production and platform-specific video workflows. <br>
+Content creators, marketing teams, educators, and developers use this skill to turn video topics or source material into scripts, voiceover text, generated assets, shell commands, and local video pipeline outputs for short-form or promotional videos. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can run local commands, process media with ffmpeg, and create files in the Desktop or a selected folder. <br>
-Mitigation: Use a workspace where local command execution and media processing are acceptable, and pass an explicit output directory before running generation workflows. <br>
-Risk: Narration text, prompts, or generated content may be sent to third-party TTS or video services. <br>
-Mitigation: Do not process sensitive scripts or private business content unless the user accepts the relevant provider terms and data exposure. <br>
-Risk: Generated output may include hardcoded promotional copy or other unwanted marketing text. <br>
-Mitigation: Inspect generated scripts, narration, subtitles, and final videos before publishing or sharing them. <br>
-Risk: The security evidence flags a risky rendering path and unusual output paths may behave unexpectedly. <br>
-Mitigation: Avoid unusual characters in output paths until the rendering path is fixed, and review command behavior before batch runs. <br>
+Risk: The security scan verdict is suspicious because the runnable video pipeline may perform materially different work than a user expects from the description. <br>
+Mitigation: Review the bundled scripts, generated commands, and planned output directory before installing or running the skill. <br>
+Risk: The skill can create local files and invoke ffmpeg, edge-tts, package installation commands, and optional external API calls. <br>
+Mitigation: Run it in a controlled workspace, approve dependencies explicitly, and avoid using private source material with third-party providers unless sharing is intended. <br>
 
 
 ## Reference(s): <br>
 - [ClawHub skill page](https://clawhub.ai/nh5gntnf78-oss/skills/video-auto-generator) <br>
 - [Kling AI developer site](https://klingai.com/) <br>
-- [Kling image generation API endpoint](https://api.klingai.com/v3/images/generations) <br>
+- [Kling AI image generation API endpoint](https://api.klingai.com/v3/images/generations) <br>
 - [HeyGen video generation API endpoint](https://api.heygen.com/v2/video/generate) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with code blocks plus generated script, narration, image, audio, and video files] <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
+**Output Format:** [Markdown guidance with inline shell commands, Python/PowerShell code, JSON reports, text scripts, and generated local media files] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may depend on local ffmpeg, Python packages, edge-tts, and optional third-party video APIs.] <br>
+**Other Properties Related to Output:** [May create local script, voice, image, report, and video files; may invoke ffmpeg, edge-tts, package installation commands, and optional external video or avatar APIs.] <br>
 
 ## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+1.0.1 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

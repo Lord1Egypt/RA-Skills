@@ -1,43 +1,50 @@
-## Description: <br>
-Multi-project tracker with status dashboards, milestone tracking, stalled project detection, priority scoring, and automated weekly progress reports. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Multi-project tracker with status dashboards, milestone tracking, stalled project detection, priority scoring, and automated weekly progress reports.
 
-## Publisher: <br>
-[Clawdssen](https://clawhub.ai/user/Clawdssen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC-BY-NC-4.0 <br>
+## Publisher:
 
+[clawdssen](https://clawhub.ai/user/clawdssen)
 
-## Use Case: <br>
-Developers, creators, and project owners use this skill to maintain local Markdown project records, dashboards, milestone logs, stalled-project checks, priority scores, and weekly progress reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC-BY-NC-4.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill maintains persistent local project files that may accumulate sensitive project, stakeholder, or business-planning details. <br>
-Mitigation: Keep the tracker scoped to a dedicated projects/ folder and avoid storing confidential details unless that is intended. <br>
-Risk: New project entries or dashboard changes could be created when a user casually mentions a project. <br>
-Mitigation: Ask for confirmation before creating new project records or materially changing project status. <br>
-Risk: Automated stalled-project flags and priority recommendations can be misleading if project records are incomplete or stale. <br>
-Mitigation: Review generated dashboards and weekly recommendations before using them for planning decisions. <br>
+## Use Case:
 
+External users use this skill to have an agent maintain Markdown project dashboards, milestone logs, stalled-project flags, priority scores, weekly reviews, and status updates across multiple projects.
 
-## Reference(s): <br>
-- [Project Tracker Advanced Patterns](references/advanced-patterns.md) <br>
-- [Project Tracker on ClawHub](https://clawhub.ai/Clawdssen/project-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown project records, dashboards, review reports, status updates, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local project files under a dedicated projects/ folder when used as directed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release metadata) <br>
+Risk: The skill can create or update local Markdown project records, which may add noisy or unintended files or capture sensitive business details if prompts are broad.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit requests for specific project entries or dashboard updates, review generated records before relying on them, and avoid storing sensitive business details unless appropriate.
+
+## Reference(s):
+
+- [Project Tracker on ClawHub](https://clawhub.ai/clawdssen/skills/project-tracker)
+- [Project Tracker Advanced Patterns](artifact/references/advanced-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown project records, dashboards, weekly reviews, priority-scoring tables, and status updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local project-tracking files when requested]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

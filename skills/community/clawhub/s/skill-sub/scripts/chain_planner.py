@@ -16,20 +16,88 @@ chain_planner.py - Chain Planner v1.29.1
 import argparse
 import json
 import os
+import re
 import sys
 from pathlib import Path
+
+# 门禁系统
+import chain_gate as gate
 
 SCRIPTS_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPTS_DIR))
 
 
+# ============================================================
+# v1.30.0: 意图分解器 — 将自然语言拆解为时序子意图
+# ============================================================
+
+_SEQUENCE_MARKERS = [
+    # 先后型：先A再B、先A然后B、先A接着B
+    (r'先(.+?)(?:再|然后|接着|而[后後])(.+)', 'SEQ2'),
+    # 前后型（多字标记优先）
+    (r'(.+?)(?:然后|之后|接着|之後)(.+)', 'SEQ2'),
+    # 前后型（单字 后/後，排除"最后"的误切）
+    (r'(.+?)(?:(?<!最)[后後])(.+)', 'SEQ2'),
+    # 目的型：A以便B、A以B、A用来B、A为了B
+    (r'(.+?)(?:以便|以|用来|用于|为了)(.+)', 'SEQ2'),
+    # 箭头型：A→B、A->B、A>>B
+    (r'(.+?)[→\->>](.+)', 'SEQ2'),
+    # 列表型：1. X 2. Y 或 1、X 2、Y
+    (r'(?:^|[。；;])\s*(\d+)[.、]\s*(.+?)', 'SEQ_MULTI'),
+]
+
+
+def _decompose_intent(intent, depth=0):
+    """将自然语言意图拆解为时序子意图列表。
+
+    输入："分析数据后做PPT"
+    输出：["分析数据", "做PPT"]
+
+    "分析数据后做PPT然后发邮件"
+    输出：["分析数据", "做PPT", "发邮件"]（递归拆分右侧）
+
+    无法拆解时返回 [intent]（退化行为，保持现状兼容）。
+    """
+    if not intent or depth > 3:
+        return [intent] if intent else []
+
+    # 在所有标记中找最左边的匹配（用分隔符位置，不是匹配整体起点）
+    best_match = None
+    for pattern, mode in _SEQUENCE_MARKERS:
+        match = re.search(pattern, intent)
+        if match:
+            # SEQ2 用 group(1) 结束位置（即分隔符位置）判断先后
+            sep_pos = match.end(1) if mode == 'SEQ2' else match.start()
+            if best_match is None or sep_pos < best_match['sep_pos']:
+                best_match = {'pattern': pattern, 'mode': mode, 'match': match, 'sep_pos': sep_pos}
+
+    if best_match:
+        mode = best_match['mode']
+        match = best_match['match']
+        if mode == 'SEQ2':
+            part_a = match.group(1).strip()
+            part_b = match.group(2).strip()
+            parts = [p for p in [part_a] if len(p) >= 2]
+            sub_b = _decompose_intent(part_b, depth + 1)
+            parts.extend(sub_b)
+            if len(parts) >= 2:
+                return parts
+        elif mode == 'SEQ_MULTI':
+            parts = re.findall(r'\d+[.、]\s*(.+?)(?=\d+[.、]|$)', intent)
+            parts = [p.strip() for p in parts if len(p.strip()) >= 2]
+            if len(parts) >= 2:
+                return parts
+
+    return [intent]
+
+
 def _import_extras():
     """延迟导入依赖模块"""
     from step_indexer import cmd_search as step_search
-    from step_link_validator import validate_link
+    from step_link_validator import validate_link, validate_chain
     from chain_manager import PathManager, ChainManager, _save_blueprint_snapshot
     from skill_extractor import find_skill_dir, extract_step_semantics
-    return step_search, validate_link, PathManager, ChainManager, _save_blueprint_snapshot, find_skill_dir, extract_step_semantics
+    return step_search, validate_link, validate_chain, PathManager, ChainManager, _save_blueprint_snapshot, find_skill_dir, extract_step_semantics
 
 
 # ============================================================
@@ -38,26 +106,52 @@ def _import_extras():
 
 def cmd_plan(args):
     """交互规划模式：意图 → 搜索 → 选步骤 → validate → 创建"""
-    step_search, validate_link, PathManager, ChainManager, _, find_skill_dir, extract_step_semantics = _import_extras()
+    step_search, validate_link, validate_chain, PathManager, ChainManager, _, find_skill_dir, extract_step_semantics = _import_extras()
 
     intent = args.intent
+    gs = gate._default_state()
+    gs["chain_name"] = f"plan:{intent[:20]}"
+    gate.save_state(gs)
+    gate.set_gate("blueprint_verified", "open",
+                  "chain_planner 假定蓝皮书已校验（由 search 命令前置检测）", gs)
     print(f"🧩 链规划: {intent}")
     print(f"{'='*55}")
 
-    # 1. 搜索候选步骤
-    print(f"\n🔍 第1步: 搜索匹配步骤...")
-    candidates = _search_steps(intent, step_search, args.min_score)
-    if not candidates:
-        print(f"❌ 未找到匹配的步骤，请调整意图或降低 --min-score")
-        return 1
+    # v1.30.0: 意图分解
+    sub_intents = _decompose_intent(intent)
+    if len(sub_intents) > 1:
+        print(f"\n🔀 检测到时序意图，拆解为 {len(sub_intents)} 个子步骤：")
+        for i, si in enumerate(sub_intents, 1):
+            print(f"   步骤{i}: {si}")
+    else:
+        sub_intents = [intent]
+    gate.set_gate("intent_decomposed", "open", f"拆为{len(sub_intents)}个子意图", gs)
 
-    print(f"   找到 {len(candidates)} 个候选步骤（显示前 {min(args.topk, len(candidates))} 个）：")
-    for i, c in enumerate(candidates[:args.topk], 1):
-        print(f"   {i}. [{c['score']}] {c['step_id']}: {c['step_name'][:40]}")
-        if c.get("consumes"):
-            print(f"      输入: {'; '.join(c['consumes'][:2])}")
-        if c.get("produces"):
-            print(f"      输出: {'; '.join(c['produces'][:2])}")
+    # 1. 对每个子意图分别搜索候选步骤
+    gate.check("intent_decomposed", gs)
+    print(f"\n🔍 第1步: 搜索匹配步骤...")
+    all_candidates_by_sub = []
+    for i, si in enumerate(sub_intents):
+        label = f"[子意图{i+1}: {si}]" if len(sub_intents) > 1 else ""
+        candidates = _search_steps(si, step_search, args.min_score)
+
+        if not candidates:
+            print(f"   {'  ' if not label else label} ❌ 未找到匹配步骤")
+            all_candidates_by_sub.append([])
+            continue
+
+        print(f"   {'  ' if not label else label} 找到 {len(candidates)} 个候选：")
+        for j, c in enumerate(candidates[:args.topk], 1):
+            print(f"     {j}. [{c['score']}] {c['step_id']}: {c['step_name'][:35]}")
+        all_candidates_by_sub.append(candidates)
+
+    # 汇总展示
+    total_candidates = sum(len(c) for c in all_candidates_by_sub)
+    if total_candidates == 0:
+        gate.block("steps_searched", "所有子意图均无匹配步骤，请调整意图或降低 --min-score", gs)
+    gate.set_gate("steps_searched", "open", f"共{total_candidates}个候选", gs)
+
+    gate.check("steps_searched", gs)
 
     # 2. LLM 选取步骤（输出给 AI，由 AI 返回 step_id 列表）
     print(f"\n🤖 第2步: LLM 选取步骤")
@@ -68,7 +162,32 @@ def cmd_plan(args):
         print(f"   chain_planner.py plan \\")
         print(f"     --intent \"{intent}\" \\")
         print(f"     --steps \"skill-A.步1,skill-B.步3,skill-A.步5\"")
+        gate.set_gate("steps_selected", "blocked", "LLM 未提供步骤ID", gs)
         return 0
+
+    gate.set_gate("steps_selected", "open", f"选了{len(args.steps.split(','))}步", gs)
+
+    # === HOOK: LLM 链逻辑验证（Agent 通过 --llm-chain-check 传入） ===
+    if args.llm_chain_check:
+        try:
+            lcc = json.loads(args.llm_chain_check)
+        except json.JSONDecodeError:
+            gate.block("llm_chain_verified", "llm-chain-check JSON 解析失败", gs)
+        if not lcc.get("passed", False):
+            reason = lcc.get("reason", "LLM 判断链逻辑不合理")
+            gate.block("llm_chain_verified", reason, gs)
+        gate.set_gate("llm_chain_verified", "open", lcc.get("reason", "通过"), gs)
+        if lcc.get("milestones"):
+            args.milestones = ",".join(str(m) for m in lcc["milestones"])
+    else:
+        gate.set_gate("llm_chain_verified", "open", "未提供 llm-chain-check（跳过）", gs)
+        # 如果 lcc 同时传了 milestones，也一并处理
+
+    # === HOOK: 里程碑门禁（Agent 通过 --milestones 传入） ===
+    if args.milestones:
+        gate.set_gate("milestones_set", "open", f"里程碑: {args.milestones}", gs)
+    else:
+        gate.set_gate("milestones_set", "blocked", "未指定里程碑步骤", gs)
 
     # 3. 校验步骤可用性
     print(f"\n✅ 第3步: 校验步骤可用性...")
@@ -134,9 +253,52 @@ def cmd_plan(args):
         print(f"\n⚠️  检测到 {gaps_found} 个衔接缺口，建议检查后手动补充粘连点步骤")
         if not args.force:
             print(f"   使用 --force 强制创建（会生成无粘连点的链）")
+            gate.set_gate("io_validated", "blocked", f"{gaps_found}个缺口需要补充粘连点", gs)
             return 1
 
-    # 5. 构建步骤 JSON
+    gate.set_gate("io_validated", "open", f"校验{gaps_found}个缺口", gs)
+
+    # v1.30.0: 全链 DAG 连通性验证
+    gate.check("io_validated", gs)
+    print(f"\n🔗 第4b步: 全链 I/O 连通性验证...")
+    chain_result = validate_chain(validated)
+    if chain_result["warnings"]:
+        for w in chain_result["warnings"]:
+            print(f"   ⚠️  {w}")
+    print(f"   连通率: {chain_result['chain_score']}")
+    if chain_result["connected"]:
+        print(f"   ✅ I/O 流图连通")
+    else:
+        print(f"   ⚠️  存在 I/O 断链，建议检查步骤间的数据传递")
+        if chain_result["orphan_produces"]:
+            for o in chain_result["orphan_produces"]:
+                if not o.get("is_final_output"):
+                    print(f"     孤儿输出: 步骤{o['step_idx']+1}「{o['step_name']}」→ {o['desc']}")
+        if chain_result["missing_consumes"]:
+            for m in chain_result["missing_consumes"]:
+                if not m.get("is_external_input"):
+                    print(f"     断链输入: 步骤{m['step_idx']+1}「{m['step_name']}」→ {m['desc']}")
+
+    if not chain_result["connected"] and not args.force:
+        gate.block("chain_connected", f"DAG连通率{chain_result['chain_score']}，存在I/O断链", gs)
+    gate.set_gate("chain_connected", "open", f"连通率{chain_result['chain_score']}", gs)
+
+    # === HOOK: 黏连点门禁（Agent 通过 --adhesion 传入） ===
+    if args.adhesion:
+        try:
+            adh = json.loads(args.adhesion)
+        except json.JSONDecodeError:
+            gate.block("adhesion_resolved", "adhesion JSON 解析失败", gs)
+        if not adh.get("resolved", False):
+            gate.block("adhesion_resolved", adh.get("reason", "黏连点未解决"), gs)
+        gate.set_gate("adhesion_resolved", "open",
+                      adh.get("reason", f'{len(adh.get("solutions", []))}个方案'), gs)
+    else:
+        gate.set_gate("adhesion_resolved", "open", "无缺口，无需黏连点", gs)
+
+    # 5. 构建步骤 JSON — 前置门禁：chain_connected
+    gate.check("chain_connected", gs)
+    gate.check("adhesion_resolved", gs)
     steps_json = []
     for i, v in enumerate(validated, 1):
         step = {
@@ -166,12 +328,14 @@ def cmd_plan(args):
         user_specified=args.user
     )
     if success:
+        gate.set_gate("chain_saved", "open", f"链 {chain_name} 已保存", gs)
         print(f"   ✅ {msg}")
         print(f"   链目录: {cm.path_manager.chains_dir / chain_name}")
         print(f"   ├── chain.json")
         print(f"   └── blueprints.json")
         return 0
     else:
+        gate.set_gate("chain_saved", "blocked", f"保存失败: {msg}", gs)
         print(f"   ❌ {msg}")
         return 1
 
@@ -199,23 +363,44 @@ def cmd_script(args):
 
 def cmd_suggest(args):
     """增强推荐：搜索步骤 + 自动 validate 衔接"""
-    step_search, validate_link, _, _, _, find_skill_dir, extract_step_semantics = _import_extras()
+    step_search, validate_link, _, _, _, _, find_skill_dir, extract_step_semantics = _import_extras()
 
     intent = args.intent
+    sub_intents = _decompose_intent(intent)
+
     print(f"🔍 增强推荐: {intent}")
     print(f"{'='*55}")
 
-    candidates = _search_steps(intent, step_search, args.min_score)
-    if not candidates:
+    # 逐个子意图搜索
+    all_candidates = []
+    for i, si in enumerate(sub_intents):
+        candidates = _search_steps(si, step_search, args.min_score)
+        if candidates:
+            # 标记所属步骤
+            for c in candidates:
+                c["_sub_intent_idx"] = i
+                c["_sub_intent"] = si
+            all_candidates.extend(candidates)
+
+    if not all_candidates:
         print(f"❌ 未找到匹配步骤")
         return 1
 
-    print(f"\n📋 候选步骤 ({len(candidates)} 个):")
-    print(f"{'':-<100}")
-    print(f"{'排名':<4} {'步骤ID':<35} {'分数':<6} {'步骤名':<30} {'I/O'}")
+    # 按子意图分组展示
+    print(f"\n📋 候选步骤 ({len(all_candidates)} 个, {len(sub_intents)} 个子意图):")
     print(f"{'':-<100}")
 
-    for i, c in enumerate(candidates[:args.topk], 1):
+    last_sub_idx = -1
+    display_idx = 0
+    for c in all_candidates:
+        sub_idx = c.get("_sub_intent_idx", 0)
+        if sub_idx != last_sub_idx:
+            if len(sub_intents) > 1:
+                print(f"\n  【子意图 {sub_idx+1}: {c.get('_sub_intent', sub_intents[sub_idx])}】")
+            last_sub_idx = sub_idx
+        display_idx += 1
+        if display_idx > args.topk:
+            break
         step_id = c["step_id"][:34]
         name = c["step_name"][:28]
         io = ""
@@ -223,15 +408,16 @@ def cmd_suggest(args):
             io += "📤"
         if c.get("consumes"):
             io += "📥"
-        print(f"{i:<4} {step_id:<35} {c['score']:<6} {name:<30} {io}")
+        print(f"  {display_idx:<3} [{c['score']}] {step_id:<35} {name:<30} {io}")
 
-    # 对推荐结果做自动衔接分析：看任意两个步骤之间能否串联
-    print(f"\n🔗 自动衔接分析（前 {min(5, len(candidates))} 个候选):")
-    chain_candidates = candidates[:5]
+    # 对推荐结果做自动衔接分析：看同子意图间能否串联
+    print(f"\n🔗 自动衔接分析:")
+    chain_candidates = all_candidates[:5]
     for i in range(len(chain_candidates) - 1):
         a = chain_candidates[i]
         b = chain_candidates[i + 1]
-        # 构建简易 interface
+        if a.get("_sub_intent_idx", 0) > b.get("_sub_intent_idx", 0):
+            continue  # 跨意图，跳过（意图本身有先后顺序）
         iface_a = {"consumes": [{"type": "text", "desc": d} for d in a.get("consumes", [])],
                    "produces": [{"type": "text", "desc": d} for d in a.get("produces", [])]}
         iface_b = {"consumes": [{"type": "text", "desc": d} for d in b.get("consumes", [])],
@@ -243,8 +429,9 @@ def cmd_suggest(args):
     if args.json:
         result = {
             "intent": intent,
-            "total": len(candidates),
-            "candidates": candidates[:args.topk],
+            "sub_intents": sub_intents,
+            "total": len(all_candidates),
+            "candidates": all_candidates[:args.topk],
         }
         print(f"\n{json.dumps(result, ensure_ascii=False, indent=2)}")
 
@@ -264,6 +451,7 @@ def _search_steps(intent, step_search_fn, min_score):
             self.skill = ""
             self.json = True
             self.limit = 100
+            self.ignore_stale = True  # 内部搜索跳过过期检测，由调用方负责更新
 
     # 捕获 JSON 输出
     old_stdout = sys.stdout
@@ -342,6 +530,9 @@ def main():
     p_plan.add_argument("--topk", type=int, default=10, help="显示候选数")
     p_plan.add_argument("--force", action="store_true", help="强制创建（忽略衔接缺口）")
     p_plan.add_argument("--user", action="store_true", help="标记为用户指定链（自愈时跳过）")
+    p_plan.add_argument("--llm-chain-check", default="", help="LLM 链逻辑验证结果 JSON")
+    p_plan.add_argument("--milestones", default="", help="里程碑步骤序号（逗号分隔，如 1,3,5）")
+    p_plan.add_argument("--adhesion", default="", help="黏连点补充方案 JSON")
 
     # script
     p_script = subparsers.add_parser("script", help="全自动生成链")

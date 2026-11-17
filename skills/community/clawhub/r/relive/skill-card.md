@@ -1,44 +1,65 @@
-## Description: <br>
-Relive helps an agent create and converse with AI digital replicas from chat logs, reference audio, and optional images, with text, voice, or video output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Relive helps an agent create and operate an AI digital persona from chat logs, images, and optional audio or video materials to mimic a person's personality, voice, and appearance.
 
-## Publisher: <br>
-[JoonasKahnwald](https://clawhub.ai/user/JoonasKahnwald) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joonaskahnwald](https://clawhub.ai/user/joonaskahnwald)
 
-## Use Case: <br>
-External users and agent operators use Relive to build a persona from authorized chat, voice, and image materials, then converse with that persona through text, voice, or video while preserving character-specific context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persists imported chats, derived personality profiles, voice references, generated media, and future conversations for each character. <br>
-Mitigation: Install only when persistent local storage is acceptable, and manually inspect or delete character storage and USER.md entries when they are no longer needed. <br>
-Risk: The skill can create replicas of real people from sensitive chat, voice, and image material. <br>
-Mitigation: Use it only with clear authorization from the person represented or another lawful basis, and avoid non-consensual impersonation, deception, or forgery. <br>
-Risk: Voice and video flows may send content or configuration to third-party services such as OpenAI or Volc Engine. <br>
-Mitigation: Review OpenAI and Volc Engine API settings before use and do not process sensitive material through those services without appropriate consent and authorization. <br>
+## Use Case:
 
+External users and developers use Relive to initialize a character workspace, import chat logs, build a persona profile, retrieve conversation context, and produce text, voice, or video persona replies. It should be used only with explicit rights and consent for the person's chats, voice, and likeness.
 
-## Reference(s): <br>
-- [ClawHub Relive release page](https://clawhub.ai/JoonasKahnwald/relive) <br>
-- [CosyVoice repository](https://github.com/FunAudioLLM/CosyVoice.git) <br>
-- [Volc Engine video generation documentation](https://www.volcengine.com/docs/82379/1099522) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, audio, video] <br>
-**Output Format:** [JSON command files, Markdown profile and chat files, text replies, and optional generated audio or video files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Voice mode requires reference audio with matching transcript text; video mode requires reference image configuration and a configured Volc Engine endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and manifest.json) <br>
+Risk: The skill processes highly sensitive identity data, including private chats, voice samples, and likeness references.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with explicit rights and consent for the person's chats, voice, and likeness, and avoid deceptive, forged, or impersonation use.
+
+Risk: The upload flow accepts a file path and may read unintended local files if pointed at the wrong location.
+
+Mitigation: Run the skill in an isolated workspace and pass only the intended chat-log files to the upload command.
+
+Risk: Uploaded chats, generated profiles, conversation history, indexes, and media outputs are persisted in plaintext storage directories.
+
+Mitigation: Limit access to the workspace, remove stored character data when it is no longer needed, and avoid placing unrelated secrets or API keys in the runtime environment.
+
+Risk: Voice and video modes can send prompts, images, or generated content to configured external model providers.
+
+Mitigation: Review provider configuration before use, disclose external processing where required, and configure only the API keys needed for the selected output mode.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joonaskahnwald/skills/relive)
+- [Relive README](artifact/README.md)
+- [Relive skill instructions](artifact/SKILL.md)
+- [CosyVoice repository](https://github.com/FunAudioLLM/CosyVoice.git)
+- [Volc Engine inference endpoint documentation](https://www.volcengine.com/docs/82379/1099522)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance, files]
+
+**Output Format:** [JSON command files, Markdown profiles and chat exports, plain text replies, and optional WAV or MP4 artifact paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores character source data, generated profiles, runtime conversation logs, retrieval indexes, and generated media under per-character storage directories.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

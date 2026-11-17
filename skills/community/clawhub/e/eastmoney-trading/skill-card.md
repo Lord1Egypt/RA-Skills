@@ -1,48 +1,63 @@
-## Description: <br>
-Eastmoney Trading automates Eastmoney Securities login, holdings and balance queries, portfolio analysis, stock screening, buy and sell order entry, order cancellation, and order lookup through a CDP-connected browser with OCR-assisted CAPTCHA handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Eastmoney Securities browser workflows for login, portfolio and balance review, order lookup, stock screening, and buy, sell, or cancel order actions.
 
-## Publisher: <br>
-[chenchaoqun](https://clawhub.ai/user/chenchaoqun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenchaoqun](https://clawhub.ai/user/chenchaoqun)
 
-## Use Case: <br>
-External users and agents use this skill to operate an Eastmoney brokerage account, inspect balances and orders, analyze holdings, screen stocks, and place or cancel trades. It is intended only for users who deliberately want agent-assisted brokerage automation involving real financial accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a real Eastmoney brokerage account, including buy, sell, and cancel actions involving real funds. <br>
-Mitigation: Install only when this behavior is intentional, keep the default confirmation flow for buy, sell, and cancel commands, and avoid the --confirm bypass unless the trade has been independently reviewed. <br>
-Risk: The skill attaches to a browser through CDP and can reuse an authenticated brokerage session. <br>
-Mitigation: Use a dedicated local browser profile, keep CDP bound to localhost, and avoid exposing the debugging port to a network. <br>
-Risk: Optional third-party OCR providers may receive CAPTCHA images when API keys are configured. <br>
-Mitigation: Leave third-party OCR API keys unset unless sending CAPTCHA images to that provider is acceptable. <br>
-Risk: Generated logs and screenshots may contain account balances, holdings, orders, or CAPTCHA images. <br>
-Mitigation: Store outputs only in a trusted local environment and regularly delete generated logs and screenshots. <br>
+## Use Case:
 
+External users and developers use this skill to operate Eastmoney browser sessions for account review, stock screening, and brokerage order management. It is intended for manually supervised trading workflows where real-money actions are reviewed before execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenchaoqun/eastmoney-trading) <br>
-- [Eastmoney online trading site](https://jywg.18.cn/) <br>
-- [Eastmoney stock screening site](https://xuangu.eastmoney.com) <br>
-- [Artifact README](README.md) <br>
-- [Artifact skill instructions](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Files] <br>
-**Output Format:** [Command-line text with optional JSON output, Markdown-style analysis reports, log files, and screenshots] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include sensitive account balances, holdings, orders, CAPTCHA images, logs, screenshots, and generated trading suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release metadata) <br>
+Risk: Real-money trading actions can place or cancel brokerage orders and may cause financial loss.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a trusted local browser session, keep second confirmation enabled, avoid --confirm and unattended trading, and manually verify order details and results.
+
+Risk: The release includes sensitive portfolio log JSON and can generate logs or screenshots containing account data.
+
+Mitigation: Remove bundled logs before distribution, restrict access to generated logs and screenshots, and clean them regularly.
+
+Risk: Remote CDP control can expose an authenticated browser session.
+
+Mitigation: Prefer localhost CDP for trading workflows and limit access to the browser debugging port.
+
+Risk: LLM-based captcha OCR may send captcha images to a third party when enabled.
+
+Mitigation: Use local OCR when possible and enable LLM captcha OCR only after accepting that data-sharing risk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenchaoqun/skills/eastmoney-trading)
+- [Eastmoney online trading](https://jywg.18.cn/)
+- [Eastmoney stock screener](https://xuangu.eastmoney.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with Python command examples and JSON/log artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local logs, screenshots, analysis JSON, and browser-driven brokerage actions.]
+
+## Skill Version(s):
+
+3.2.0 (source: server release, target metadata, and frontmatter; artifact _meta.json lists 3.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,48 @@
+part: EFR32MG21
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: EFR32 Series 2 Multiprotocol Wireless SoC (Cortex-M33)
+main_page: https://www.silabs.com/wireless/zigbee/efr32mg21-series-2-socs
+datasheet_path_expected: ../../embedded_dev/silabs/datasheet/EFR32MG21_datasheet.pdf
+datasheet_source_url: https://alcom.be/uploads/Silicon-Labs-efr32mg21-datasheet.pdf
+datasheet_source_note: 'Alcom mirror of silabs.com EFR32MG21 datasheet (76 pages, 1.5 MB).
+
+  silabs.com is Cloudflare-gated as of 2026-06; alcom.be serves the
+
+  same PDF without gating.
+
+  '
+created_at: '2026-06-26T21:25:00+08:00'
+specs:
+  ram: 96 kB
+  flash: 1024 kB
+  cores:
+  - Arm Cortex-M33 @ 80 MHz (TrustZone, FPU, DSP)
+  wireless: Zigbee / Thread / BLE / IEEE 802.15.4
+  tx_power_dbm_max: 0.0
+  security:
+  - Secure Boot with RTSL
+  - TRNG
+unverified: []
+notes:
+- "Promoted from placeholder to verified on 2026-06-28 \u2014 6 spec fields extracted from datasheet, byte-equal to existing\
+  \ spec values. See link_status: verified_2026-06-28 (extractor-match)."
+- 'EFR32MG21: 80 MHz Cortex-M33, multiprotocol (Zigbee / Thread / Matter / BLE 5.1), up to 1024 kB flash / 96 kB RAM.'
+- 'Family differentiator vs MG24: smaller flash/RAM, no AI/ML MVP.'
+- '- Auto-update: SiliconLabs/EFR32MG21 datasheet download failed on 2026-06-26; YAML remains placeholder.'
+- 'Re-labeled verified_2026-07-01 via keyword-split pdfplumber verify against local datasheet PDF: 6/7 spec fields matched
+  (86%). Replaces pre-v0.4.0 verified_2026-06-28 (extractor-match) tag.'
+extracted_at: '2026-06-28T09:25:31+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description

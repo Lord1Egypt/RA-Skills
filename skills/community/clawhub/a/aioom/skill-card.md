@@ -1,43 +1,62 @@
-## Description: <br>
-AI-powered Windows memory guardian that helps agents inspect memory usage, analyze high-risk processes, start background monitoring, launch a local web dashboard, and invoke storage cleanup flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered memory guardian for Windows that helps an agent inspect memory use, preview process cleanup, manage aioom monitoring, open a local Web GUI dashboard, and invoke related storage cleanup.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Developers and agent users on Windows use this skill to check memory pressure, review candidate processes before cleanup, run a memory monitor, and open a local dashboard for process and memory visibility. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can terminate processes while acting as a Windows memory guardian. <br>
-Mitigation: Use dry-run first, review the target processes, and require explicit confirmation before running cleanup or enabling background monitoring. <br>
-Risk: Background monitoring can repeatedly act on processes without close user supervision. <br>
-Mitigation: Use conservative thresholds, keep verbose logging enabled, and stop the monitor when active remediation is no longer needed. <br>
-Risk: The skill includes storage cleanup behavior outside its primary memory-management purpose. <br>
-Mitigation: Review or remove the storage-clean integration unless disk scanning and cleanup are explicitly intended. <br>
+## Use Case:
 
+Windows users and support or developer agents use this skill to inspect memory pressure, preview high-risk processes, start or stop aioom monitoring, open the local dashboard, and coordinate storage cleanup workflows.
 
-## Reference(s): <br>
-- [Aioom ClawHub page](https://clawhub.ai/bettermen/aioom) <br>
-- [Aioom project homepage](https://github.com/bettermen/aioom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python, bash, and TOML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose commands that inspect memory, start or stop local processes, open a local web interface, or call a storage cleanup helper.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: The skill asks the agent to run local aioom and storage-clean programs from hardcoded Windows paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when those local files are trusted and verify the resolved executable, script, and working directory paths before execution.
+
+Risk: Memory cleanup can terminate processes and may affect user work or system stability.
+
+Mitigation: Use dry-run or preview output first, verify exact process IDs and process names, and require explicit user approval before cleanup.
+
+Risk: Storage cleanup delegates file deletion or recycling to another local skill.
+
+Mitigation: Review the generated report and target paths before cleanup, and prefer reversible methods such as recycle when available.
+
+Risk: Running with elevated privileges can extend process and filesystem authority.
+
+Mitigation: Avoid administrator privileges unless the user intentionally needs system-wide process and filesystem access.
+
+## Reference(s):
+
+- [Aioom project homepage](https://github.com/bettermen/aioom)
+- [Aioom ClawHub skill page](https://clawhub.ai/bettermen/skills/aioom)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include process IDs, memory statistics, local file paths, dashboard URLs, configuration examples, and cleanup status summaries.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter and changelog mention 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

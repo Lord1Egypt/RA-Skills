@@ -1,44 +1,57 @@
-## Description: <br>
-Binary classification-based human portrait segmentation for complete body contour recognition and image matting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Binary classification-based human portrait segmentation for complete body contour recognition and image matting.
 
-## Publisher: <br>
-[Neck-cn](https://clawhub.ai/user/Neck-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[neck-cn](https://clawhub.ai/user/neck-cn)
 
-## Use Case: <br>
-Developers and agents use this skill to send a selected portrait image or image URL to Tencent Cloud SegmentPortraitPic and return portrait segmentation results for matting workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected portrait images or image URLs are sent to Tencent Cloud and may contain personal data. <br>
-Mitigation: Use this skill only with images approved for Tencent Cloud processing and avoid sending sensitive portraits unless the deployment policy permits it. <br>
-Risk: Tencent Cloud API credentials may incur charges or be exposed if stored in shared shell profiles. <br>
-Mitigation: Use least-privilege Tencent Cloud credentials, prefer short-lived or isolated environment configuration, and avoid committing or sharing secrets. <br>
-Risk: The script can install the Tencent Cloud SDK at runtime if it is missing. <br>
-Mitigation: Preinstall and pin the Tencent Cloud SDK in a controlled virtual environment before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TencentCloud YT Segment Portrait on ClawHub](https://clawhub.ai/Neck-cn/tencentcloud-yt-segment-portrait) <br>
-- [SegmentPortraitPic API Reference](references/SegmentPortraitPicApi.md) <br>
-- [Tencent Cloud SegmentPortraitPic Documentation](https://cloud.tencent.com/document/product/1208/42970) <br>
-- [Tencent Cloud Portrait Segmentation Console](https://console.cloud.tencent.com/bda/segment-portrait-pic) <br>
+## Use Case:
 
+Developers and agents use this skill to send a portrait image or image URL to Tencent Cloud's SegmentPortraitPic API and return image matting results. It is intended for workflows that need a segmented portrait image and mask URL rather than model-generated guesses.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON response with ResultImageUrl and ResultMaskUrl, plus Markdown setup and execution guidance in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Tencent Cloud API credentials and network access; returned image and mask URLs may be time-limited.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Portrait images or image URLs are sent to Tencent Cloud for processing.
+
+Mitigation: Use the skill only for images approved for Tencent Cloud processing, and avoid submitting sensitive portraits unless the workflow has appropriate consent and privacy review.
+
+Risk: The script can install an unpinned Tencent SDK dependency at runtime.
+
+Mitigation: Install a pinned, reviewed Tencent SDK in the execution environment before use and disable or review runtime dependency installation.
+
+Risk: Tencent Cloud credentials are required and may be long-lived if stored in shell startup files.
+
+Mitigation: Use narrowly scoped credentials, prefer temporary/session credentials where available, and avoid storing secrets in persistent shell profile files.
+
+## Reference(s):
+
+- [SegmentPortraitPic API Reference](references/SegmentPortraitPicApi.md)
+- [Tencent Cloud SegmentPortraitPic Documentation](https://cloud.tencent.com/document/product/1208/42970)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON responses and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns Tencent Cloud result image and mask URLs when successful; errors are returned as JSON.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

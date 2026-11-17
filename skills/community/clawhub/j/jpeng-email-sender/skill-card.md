@@ -1,41 +1,54 @@
-## Description: <br>
-Email sending skill via SMTP or API providers. Supports attachments, HTML templates, and batch sending. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email sending skill via SMTP or API providers. Supports attachments, HTML templates, and batch sending.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and operators use this skill to configure and trigger SMTP or email-provider sends, including HTML messages, attachments, and batch recipient workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Credential-backed email sending can transmit messages, attachments, or batches to unintended recipients. <br>
-Mitigation: Use tightly scoped email-provider credentials and require explicit preview and approval of every recipient list, attachment, subject, body, and batch send before transmission. <br>
-Risk: The release evidence flags broad email-sending capability without enough user-control safeguards. <br>
-Mitigation: Review the send_email.py implementation before installation and run the skill only in workflows with clear human approval gates. <br>
+## Use Case:
 
+Developers and agents use this skill to send individual emails, automated notifications, HTML messages with attachments, or batch email campaigns through SMTP or supported email API providers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-email-sender) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can describe provider credentials, recipient inputs, attachments, HTML templates, and batch sending options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Outbound email, attachments, and batch campaigns can send unintended, sensitive, or non-compliant messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where outbound email is intended and recipients, message content, attachments, consent, and anti-spam obligations are reviewed before sending.
+
+Risk: SMTP or email API credentials can grant broad email-sending capability if over-scoped or exposed.
+
+Mitigation: Use appropriately scoped credentials, store them securely, and avoid embedding secrets in prompts, source files, logs, or shared artifacts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-email-sender)
+- [ClawHub publisher profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger outbound email delivery, attachments, and batch sends when configured with SMTP or provider credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

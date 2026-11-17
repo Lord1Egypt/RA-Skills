@@ -22,7 +22,7 @@ export APIFY_TOKEN=your_token
 export OPENAI_API_KEY=your_key
 export CIVIC_AUTH_ENABLED=true          # optional
 export CIVIC_CLIENT_ID=your_client_id   # preferred when CIVIC auth is enabled
-export CIVIC_ACCESS_TOKEN=your_civic_access_token  # optional for CLI demos (skips prompt)
+export CIVIC_ACCESS_TOKEN=eyJ...        # optional for CLI demos (skips prompt)
 # export CIVIC_GATEWAY_KEY=your_key      # optional fallback
 ```
 
@@ -31,7 +31,6 @@ Then ask your agent:
 > "Generate ads for https://sarahsbakery.com"
 
 If you need help retrieving `CIVIC_ACCESS_TOKEN` in a Next.js app, use the example in `examples/civic-nextjs-token-route.ts`.
-Never commit real credentials or access tokens to source control.
 
 ## Manual Testing
 

@@ -1,41 +1,49 @@
-## Description: <br>
-Reads local text, Word, and Excel files that the user is already authorized to access, including files in protected enterprise environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads local text, Word .docx, and Excel .xlsx files that the user is authorized to access, including files available through enterprise security-policy environments.
 
-## Publisher: <br>
-[endcy](https://clawhub.ai/user/endcy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[endcy](https://clawhub.ai/user/endcy)
 
-## Use Case: <br>
-Developers and AI agents use this skill to read explicitly named local files and return their contents for analysis, summarization, or follow-up work. It is intended for files the user can already access through authorized local applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Local files read by the helper may be exposed to the AI session output. <br>
-Mitigation: Use the skill only with explicitly named files whose contents are appropriate to share in the current AI/tool context. <br>
-Risk: Credentials, secrets, private business documents, or broad filesystem paths could disclose sensitive information if selected. <br>
-Mitigation: Avoid using the skill on secrets or sensitive private documents unless the user has confirmed that disclosure into the session is acceptable. <br>
+## Use Case:
 
+Developers and agents use this skill to extract readable content from local files they intentionally select, including text, source and configuration files, .docx documents, and .xlsx spreadsheets, when those files are accessible under normal permissions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/endcy/encrypted-file-reader) <br>
-- [Publisher profile](https://clawhub.ai/user/endcy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text file contents on stdout or error text on stderr.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The caller provides a local file path; supported inputs include text files, .docx, and .xlsx files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The skill can read and print sensitive local files, including environment files, private configuration, and infrastructure state, into agent-visible output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on files intentionally selected for the task, and avoid secrets, production environment files, cloud state files, private configs, and untrusted Office documents unless disclosure to the agent is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/endcy/skills/encrypted-file-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Plain text emitted to stdout, with errors emitted to stderr]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads a user-provided local file path; successful output may contain sensitive file contents.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

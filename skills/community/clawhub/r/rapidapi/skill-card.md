@@ -1,42 +1,58 @@
-## Description: <br>
-Template-driven RapidAPI client with auto-registered actions and a universal call entrypoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Template-driven RapidAPI client with auto-registered actions and a universal call entrypoint.
 
-## Publisher: <br>
-[web3aivc](https://clawhub.ai/user/web3aivc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[web3aivc](https://clawhub.ai/user/web3aivc)
 
-## Use Case: <br>
-Developers and automation agents use this skill to call repeatable RapidAPI endpoints through named JSON templates or a direct RapidAPI request entrypoint. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The RapidAPI key can be sent to caller-chosen non-RapidAPI hosts when non-RapidAPI hosts are allowed. <br>
-Mitigation: Set ALLOW_NON_RAPIDAPI_HOSTS=false unless other hosts are explicitly required, and review templates before use. <br>
-Risk: RAPIDAPI_KEY is a paid-service secret that could require rotation if exposed. <br>
-Mitigation: Provide the key through secret management or environment injection, restrict use to trusted callers, and rotate it if exposure is suspected. <br>
-Risk: Direct ad hoc calls can reach endpoints outside the reviewed template set. <br>
-Mitigation: Prefer reviewed action templates and avoid unreviewed direct calls in shared or production workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/web3aivc/rapidapi) <br>
-- [Template schema documentation](docs/template-schema.md) <br>
+## Use Case:
 
+Developers and agent workflows use this skill to make repeatable RapidAPI calls from JSON templates, list registered actions, import endpoint definitions, and receive normalized JSON or error responses.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON responses with optional JavaScript and shell usage snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses template-defined query, body, header, and path parameters; requires RAPIDAPI_KEY for live calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence; artifact package.json reports 0.2.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send the user's RapidAPI key to non-RapidAPI or caller-chosen hosts by default.
+
+Mitigation: Disable non-RapidAPI hosts by default, allowlist approved hosts, remove arbitrary direct calls, and verify or remove bundled non-RapidAPI templates before use with valuable credentials.
+
+Risk: Request data and credentials are sent to external services selected by templates or direct-call input.
+
+Mitigation: Use only trusted templates and endpoints, avoid sensitive inputs unless data sharing is approved, and document external-service handling expectations for users.
+
+Risk: A RapidAPI key may already have been exposed through untrusted direct-call input or unverified templates.
+
+Mitigation: Rotate the RapidAPI key if the implementation has been used with untrusted inputs or unverified templates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/web3aivc/skills/rapidapi)
+- [Template Schema Details](docs/template-schema.md)
+- [README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Code, Shell commands, Configuration]
+
+**Output Format:** [JSON response objects with JavaScript and shell usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns stable ok/status/data/error/meta fields for API results.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact/package.json lists 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

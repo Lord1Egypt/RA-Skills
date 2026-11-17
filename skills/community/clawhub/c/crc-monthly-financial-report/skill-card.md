@@ -1,41 +1,61 @@
-## Description: <br>
-Generates monthly financial report text, Markdown, Word, and JSON files from a fixed-format finance Excel draft. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates monthly financial report text, Markdown, Word, and JSON summary files from a fixed-format finance Excel workbook.
 
-## Publisher: <br>
-[qiqikuaidianpao](https://clawhub.ai/user/qiqikuaidianpao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiqikuaidianpao](https://clawhub.ai/user/qiqikuaidianpao)
 
-## Use Case: <br>
-Finance teams and agents use this skill to convert allowed fixed-template monthly Excel workbooks into draft monthly financial reports and a Word download for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial workbooks and generated report files may contain sensitive business data. <br>
-Mitigation: Use only authorized workbooks in the current workspace, keep generated files access-controlled, and treat Word download links as sensitive. <br>
-Risk: Generated reports are drafts based on fixed-template workbook parsing and may contain placeholders or values that require business review. <br>
-Mitigation: Review the workbook, extracted metrics, generated report text, and any highlighted placeholders before using the report as a final financial statement. <br>
+## Use Case:
 
+Finance teams and agents use this skill to turn a fixed-format monthly Excel workbook into a reviewable financial report draft and a Word file for download. It is for report drafting and handoff, not audit judgment, accounting adjustments, or changing source workbook figures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qiqikuaidianpao/crc-monthly-financial-report) <br>
-- [Publisher profile](https://clawhub.ai/user/qiqikuaidianpao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated report artifacts include Markdown, Word, and JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated Word download link may be sensitive and should be shared only with authorized users.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server-resolved release metadata) <br>
+Risk: Uploaded workbooks or changed templates can lead to incorrect extracted figures or an incorrect report period.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the workbook, selected sheet, report period, and generated financial figures against the source file before use.
+
+Risk: The generated report is a draft and may contain attribution placeholders or business explanations that are not final judgments.
+
+Mitigation: Have finance reviewers replace or approve placeholder reasoning and final operating judgments before distribution.
+
+Risk: Dependency drift in Excel or Word libraries can change parsing or document generation behavior.
+
+Mitigation: Use pinned, reviewed versions of openpyxl, xlrd, and python-docx for production use.
+
+Risk: Generated report files may contain sensitive financial information in the local workspace or platform download path.
+
+Mitigation: Run the skill in an isolated workspace when possible and handle generated files according to internal financial-data controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiqikuaidianpao/skills/crc-monthly-financial-report)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, json, guidance]
+
+**Output Format:** [Markdown report text plus generated .md, .docx, and .json files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated Word output may include red-highlighted attribution placeholders for human review.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

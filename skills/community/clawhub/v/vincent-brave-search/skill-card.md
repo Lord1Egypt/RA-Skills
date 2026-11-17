@@ -1,44 +1,58 @@
-## Description: <br>
-Web and news search powered by Brave Search for agents that need current web results, news articles, or lookup support through Vincent's pay-per-call credit system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web and news search powered by Brave Search for agents that need current information, with pay-per-call Vincent credits.
 
-## Publisher: <br>
-[glitch003](https://clawhub.ai/user/glitch003) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[glitch003](https://clawhub.ai/user/glitch003)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent run Brave-backed web and news searches, manage Vincent DATA_SOURCES credentials, and report result metadata including per-call cost and remaining credit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Vincent search credits and can guide agents through paid credit top-ups, including wallet-based payment flows. <br>
-Mitigation: Use prepaid or limited balances, review top-ups manually, and avoid enabling an agent wallet for this skill unless the payment behavior is intended. <br>
-Risk: A reusable DATA_SOURCES credential is stored locally for agent use. <br>
-Mitigation: Store credentials only in the declared config locations, restrict filesystem access where possible, and revoke the Vincent secret when access is no longer needed. <br>
-Risk: Search queries are sent through Vincent and Brave-backed services. <br>
-Mitigation: Avoid submitting sensitive queries unless the operator accepts the data flow and Vincent account controls are configured appropriately. <br>
+## Use Case:
 
+Developers and agent operators use this skill to let agents run web and news searches, return current result data, and track per-call Vincent credit usage.
 
-## Reference(s): <br>
-- [Vincent homepage](https://heyvincent.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/glitch003/vincent-brave-search) <br>
-- [Publisher profile](https://clawhub.ai/user/glitch003) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include Vincent metadata such as call cost and remaining credit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.69 (source: ClawHub server release evidence) <br>
+Risk: The skill invokes the Vincent CLI at runtime using an unpinned latest package reference.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or preinstall a reviewed Vincent CLI version before enabling the skill.
+
+Risk: The skill supports wallet-funded credit purchases and an auto-replenish pattern.
+
+Mitigation: Require human approval, strict external spend limits, and no exposed agent wallet unless autonomous top-up is explicitly approved.
+
+Risk: The skill stores a scoped DATA_SOURCES credential in local configuration paths.
+
+Mitigation: Protect the configured credential paths, keep search credentials separate from payment credentials, and revoke the key if access is no longer needed.
+
+## Reference(s):
+
+- [Vincent homepage](https://heyvincent.ai)
+- [ClawHub skill page](https://clawhub.ai/glitch003/skills/vincent-brave-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON search result examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search responses include result metadata and Vincent credit usage fields.]
+
+## Skill Version(s):
+
+1.0.69 (source: server release evidence; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

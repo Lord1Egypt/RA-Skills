@@ -1,40 +1,58 @@
-## Description: <br>
-Reviews outpatient chronic disease OCR record arrays for diabetes or hypertension and returns a review decision with supporting reasons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews outpatient chronic disease OCR records for diabetes or hypertension and returns raw review JSON plus a natural-language decision and reasoning summary.
 
-## Publisher: <br>
-[aaiccee](https://clawhub.ai/user/aaiccee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaiccee](https://clawhub.ai/user/aaiccee)
 
-## Use Case: <br>
-Healthcare operations teams and developers use this skill to run auxiliary chronic disease review checks on OCR-derived outpatient records and summarize the decision and reasoning. It is intended to support audit workflows, not to replace clinician judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical OCR contents may include sensitive patient information, and the security evidence says privacy promises are not enforced before data is sent to a remote service. <br>
-Mitigation: Use the skill only when authorized to send the OCR contents to the configured backend, redact patient identifiers before use, verify the endpoint, and treat generated JSON and text outputs as sensitive medical records. <br>
-Risk: The review decision and reasoning are auxiliary workflow outputs and may be incomplete or inappropriate for clinical decision-making. <br>
-Mitigation: Require review by qualified clinical or audit staff before relying on the output for care, eligibility, or operational decisions. <br>
+## Use Case:
 
+Developers and healthcare operations teams use this skill to submit OCR text arrays for outpatient chronic disease audit support, focused on diabetes and hypertension review outcomes. It returns the service response and a readable conclusion with supporting reasons.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aaiccee/chronic-disease-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Text, JSON, Files] <br>
-**Output Format:** [Raw JSON response file and natural-language text summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes review output files locally and requires an OCR-array JSON input plus a diabetes or hypertension disease code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact metadata) <br>
+Risk: Sensitive medical OCR text may be sent to the configured remote review service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the service destination, legal basis, and data-sharing controls before use; provide only approved minimum-necessary inputs.
+
+Risk: Review results are saved to disk by default despite the skill's no-persistence claim.
+
+Mitigation: Write outputs only to approved or ephemeral locations and handle all response files as sensitive medical records.
+
+Risk: Audit conclusions may be mistaken for medical diagnosis or treatment advice.
+
+Mitigation: Use the output as administrative review support and require appropriate human review for clinical or eligibility decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aaiccee/skills/chronic-disease-review)
+- [Chronic disease review service](https://shangbao.yunzhisheng.cn/skills/chronic-disease)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands]
+
+**Output Format:** [JSON response plus natural-language text summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes response JSON and summary text files to configurable paths; default paths are under ../runs/med-chronic-disease-review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

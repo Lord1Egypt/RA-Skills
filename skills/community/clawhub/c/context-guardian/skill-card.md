@@ -1,45 +1,61 @@
-## Description: <br>
-Proactive context monitoring with smart 3-level alerts. Know when to restart before quality degrades. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proactive context monitoring with smart 3-level alerts. Know when to restart before quality degrades.
 
-## Publisher: <br>
-[brucey0017-cloud](https://clawhub.ai/user/brucey0017-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[brucey0017-cloud](https://clawhub.ai/user/brucey0017-cloud)
 
-## Use Case: <br>
-Developers and agent users use this skill to monitor OpenClaw context usage during heartbeat or manual checks and receive threshold-based alerts before quality degrades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on local OpenClaw session status output and jq; missing tools or unexpected output may prevent alerts from appearing. <br>
-Mitigation: Verify jq and the OpenClaw CLI are available before enabling recurring checks, and test a manual check in the target environment. <br>
-Risk: The skill writes local alert history, and resetting state can cause prior alert suppression history to be lost. <br>
-Mitigation: Review the configured history path and reset the state file only when intentionally retesting or clearing local alert history. <br>
+## Use Case:
 
+Developers and OpenClaw users use Context Guardian to monitor context usage during heartbeat or manual checks, receive threshold-based alerts, and decide when to wrap up, compress context, or restart a session.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/brucey0017-cloud/context-guardian) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/brucey0017-cloud) <br>
-- [README](README.md) <br>
-- [Heartbeat Integration Example](examples/heartbeat-integration.md) <br>
-- [Manual Check Example](examples/manual-check.md) <br>
-- [Custom Configuration Example](examples/custom-config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local alert state is stored under memory/context-guardian-state.json when tracking is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill stores recent context usage percentages in a local state file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces where local context-usage history is acceptable, and review or clear memory/context-guardian-state.json according to workspace policy.
+
+Risk: The documented reset flow deletes the local state file with rm.
+
+Mitigation: Run the reset command only when intentionally clearing alert history, and verify the target path before deleting state.
+
+Risk: Alerts depend on OpenClaw context status being available and accurately parsed.
+
+Mitigation: Confirm heartbeat or manual checks can read session status before relying on the alerts for session-management decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucey0017-cloud/skills/context-guardian)
+- [README](artifact/README.md)
+- [Heartbeat integration example](artifact/examples/heartbeat-integration.md)
+- [Manual check example](artifact/examples/manual-check.md)
+- [Custom configuration example](artifact/examples/custom-config.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Bash and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces threshold-based context alerts and updates a local state history when context usage can be read.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release, frontmatter, manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

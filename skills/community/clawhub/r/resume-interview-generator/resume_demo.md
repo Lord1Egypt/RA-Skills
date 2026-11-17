@@ -5,9 +5,9 @@
 ## 个人信息
 
 - **姓名：** 候选人 A
-- **电话：** 138-0000-0000
-- **邮箱：** candidate.a@example.com
-- **GitHub：** https://github.com/example/candidate-a
+- **电话：** 已脱敏
+- **邮箱：** 已脱敏
+- **GitHub：** 已脱敏
 
 ---
 

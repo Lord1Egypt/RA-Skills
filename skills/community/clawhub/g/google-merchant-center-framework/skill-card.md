@@ -1,40 +1,54 @@
-## Description: <br>
-Google Merchant Center analysis and optimization framework for Shopping feed health, product disapprovals, title optimization, price competitiveness, Shopping campaign readiness, and GMC diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Merchant Center analysis and optimization framework for Shopping feed health, product disapprovals, title optimization, price competitiveness, campaign readiness, and GMC diagnostic tasks.
 
-## Publisher: <br>
-[lac5q](https://clawhub.ai/user/lac5q) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lac5q](https://clawhub.ai/user/lac5q)
 
-## Use Case: <br>
-Ecommerce operators, marketers, and agents use this skill to diagnose Google Merchant Center accounts, prioritize feed and product fixes, and prepare Shopping campaigns from provided account context or optional live GMC data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live Merchant Center access or user-provided exports may expose sensitive business data. <br>
-Mitigation: Use trusted integrations, grant the minimum needed permissions, and avoid sharing unnecessary account, feed, screenshot, or diagnostic data. <br>
-Risk: Recommendations may be incomplete or incorrect when based on partial account context. <br>
-Mitigation: Review proposed feed, pricing, appeal, and campaign changes against current account diagnostics and policy requirements before applying them. <br>
+## Use Case:
 
+External merchants, ecommerce operators, and agency analysts use this skill to audit Google Merchant Center feed health, prioritize disapproval fixes, improve listing quality, assess price competitiveness, and prepare Shopping campaigns.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/lac5q/google-merchant-center-framework) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown with scores, prioritized findings, fix instructions, and check-in plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Estimates should be marked when based on incomplete data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Live Google Merchant Center integrations can expose account, pricing, feed, campaign, or appeal data beyond the intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the connected account and data scope before use, and grant only the access needed for the diagnostic task.
+
+Risk: Pricing, feed, campaign, or appeal recommendations may affect real merchant operations if applied automatically.
+
+Mitigation: Treat recommendations as reviewable advice and approve any account, feed, campaign, or appeal changes before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lac5q/skills/google-merchant-center-framework)
+- [ClawHub publisher profile](https://clawhub.ai/user/lac5q)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown analysis with prioritized findings, exact fix instructions, action plans, and optional code, shell command, or configuration snippets when relevant.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Starts with a feed health score, groups issues by severity, marks estimates based on incomplete data, and ends with 7-day and 30-day check-in plans.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

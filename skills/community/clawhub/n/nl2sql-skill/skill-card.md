@@ -1,40 +1,52 @@
-## Description: <br>
-Converts natural-language data questions into read-only SQL queries, repairs query failures, and produces natural-language answers and Markdown analysis reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts natural-language data questions into read-only SQL queries and Markdown analysis reports using a staged multi-agent workflow.
 
-## Publisher: <br>
-[shlysz](https://clawhub.ai/user/shlysz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[shlysz](https://clawhub.ai/user/shlysz)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and data analysts use this skill to turn natural-language business questions into SQL, interpret query results, and produce structured Markdown data analysis reports.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Agent-driven database reads may expose sensitive tables or data outside the intended analysis scope.
+
+Mitigation: Connect the agent through database-side read-only roles scoped to expected schemas and avoid highly sensitive tables unless users explicitly expect analysis of that data.
+
+Risk: Generated SQL or analysis reports may be incomplete or misleading if schema linking, query repair, or supplemental queries choose the wrong fields.
+
+Mitigation: Review generated SQL, query results, and report conclusions before using them for business decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, data analysts, and agent builders use this skill to turn business questions into database queries and structured analysis reports. It is intended for natural-language data lookup, SQL drafting, query-result explanation, and Markdown reporting workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SQL could access sensitive or overly broad data if connected to unrestricted databases. <br>
-Mitigation: Use a least-privilege read-only database account and restrict available schemas, tables, and rows before enabling the skill. <br>
-Risk: Generated or repaired queries may be incorrect, misleading, or expensive to execute. <br>
-Mitigation: Review queries before execution where appropriate, enforce query timeouts and result limits, and use logging and result redaction for sensitive environments. <br>
+**Output Format:** [Markdown reports with SQL code blocks and concise natural-language answers]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/shlysz/nl2sql-skill) <br>
+**Other Properties Related to Output:** [Produces read-only SELECT/WITH SQL and reports failures after bounded self-repair attempts.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown report with SQL code blocks and natural-language analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces SELECT or WITH SQL guidance, natural-language answers, and optional follow-up query suggestions.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

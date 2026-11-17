@@ -1,41 +1,60 @@
-## Description: <br>
-Agent Team 构建器通过多轮交互澄清需求，并为 OpenClaw 自动创建 Agent 配置、工作空间和 Bootstrap 文件。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps OpenClaw users plan and create agent teams through guided requirement gathering, configuration analysis, conflict checks, workspace setup, bootstrap file generation, and OpenClaw configuration updates.
 
-## Publisher: <br>
-[8421bit](https://clawhub.ai/user/8421bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[8421bit](https://clawhub.ai/user/8421bit)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to plan multi-agent setups, detect configuration conflicts, create agent workspaces and bootstrap files, and update OpenClaw routing after review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently edit global OpenClaw configuration and create agent files. <br>
-Mitigation: Review generated configuration changes before applying them, use simple safe agent IDs, and keep backups before modifying OpenClaw state. <br>
-Risk: Config backups and channel settings may expose sensitive local or account information. <br>
-Mitigation: Protect OpenClaw configuration backups and restrict channel allow-lists instead of accepting broad routing access. <br>
-Risk: Mutating repair or restart commands can change the local OpenClaw environment. <br>
-Mitigation: Run `openclaw doctor --fix` or gateway restart only when local OpenClaw changes are intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/8421bit/claw-team-builder) <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to design additional agents, check for conflicts with existing OpenClaw settings, and generate the configuration, workspace directories, and bootstrap files needed to add those agents.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with configuration snippets, generated files, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update OpenClaw configuration, workspaces, bootstrap files, and validation commands after user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read and modify the local OpenClaw configuration.
+
+Mitigation: Review generated configuration paths and keep the automatic openclaw.json backup before accepting changes.
+
+Risk: Channel credentials such as app secrets may be passed through command-line arguments.
+
+Mitigation: Avoid entering production secrets on the command line when possible and prefer a protected secret-management workflow.
+
+Risk: Validation and gateway commands such as openclaw doctor --fix and openclaw gateway restart can change local runtime state.
+
+Mitigation: Run the workflow against a test OpenClaw configuration first and confirm the requested state-changing command before execution.
+
+Risk: Bootstrap file generation depends on packaged template files.
+
+Mitigation: Confirm the expected template files are present before relying on generated IDENTITY.md, SOUL.md, or USER.md output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/8421bit/skills/claw-team-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JavaScript helper scripts, and OpenClaw JSON configuration changes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local OpenClaw directories and bootstrap files and may update openclaw.json after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 InvAssistant — 数据获取模块
 统一的 Yahoo Finance 数据获取，包含 429 重试和限流延迟。
@@ -20,7 +19,7 @@ def fetch_stock(symbol, days=60, retries=3):
     获取单只股票的历史 OHLCV 数据。
 
     Args:
-        symbol: 股票代码 (如 "TSLA", "^VIX")
+        symbol: 股票代码 (如 "AAPL", "^VIX")
         days: 获取天数 (默认60)
         retries: 失败重试次数 (默认3)
 

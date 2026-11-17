@@ -1,40 +1,56 @@
-## Description: <br>
-Call GET /api/imdb/title-extended-details-query/v1 for IMDb Extended Details through JustOneAPI with id. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/imdb/title-extended-details-query/v1 for IMDb Extended Details through JustOneAPI with id.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and external users use this skill to look up IMDb title extended details through JustOneAPI for title enrichment and catalog research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires JUST_ONE_API_TOKEN, which is sensitive and may be exposed through pasted values, command lines, URLs, screenshots, or logs. <br>
-Mitigation: Use a limited or easily rotated token when available, pass it through the documented environment variable, avoid sharing token values, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+External developers and agents use this skill to retrieve IMDb title extended details, including title information, images, and genres, for title enrichment and catalog research.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-imdb-title-extended-details-query) <br>
-- [JustOneAPI API homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_extended_details_query&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and an IMDb title id; optional languageCountry controls localization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token may be exposed through command arguments or full request URL logging.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in environments where process arguments and request URLs are not broadly logged, avoid sharing diagnostics or command output, and rotate the token if it may have been captured.
+
+Risk: The token may have billing, quota, or account-sensitive access.
+
+Mitigation: Review the token scope before installation and use the least-privileged token available for the IMDb endpoint.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-imdb-title-extended-details-query)
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_extended_details_query&utm_content=project_link)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_extended_details_query&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [Short endpoint-specific summary followed by raw JSON from the API when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and an IMDb title id; optional languageCountry controls language and country preferences.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

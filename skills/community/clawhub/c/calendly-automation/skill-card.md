@@ -1,39 +1,53 @@
-## Description: <br>
-Automate Calendly scheduling, event management, invitee tracking, availability checks, and organization administration via Rube MCP (Composio). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate Calendly scheduling, event management, invitee tracking, availability checks, and organization administration via Rube MCP (Composio). Always search tools first for current schemas.
 
-## Publisher: <br>
-[sohamganatra](https://clawhub.ai/user/sohamganatra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sohamganatra](https://clawhub.ai/user/sohamganatra)
 
-## Use Case: <br>
-Developers and operators use this skill to guide agents through Calendly scheduling workflows, including listing events, checking availability, creating scheduling links, managing invitees, canceling events, and administering organization invitations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide event cancellation and organization administration actions that may affect other people's schedules or account access. <br>
-Mitigation: Confirm the target event, invitee, organization, or user with the requester before executing high-impact Calendly actions. <br>
-Risk: The skill depends on an external Rube MCP connection and Calendly OAuth permissions. <br>
-Mitigation: Install only when the Rube MCP connection is trusted and grant only the Calendly permissions needed for the intended workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Rube MCP endpoint](https://rube.app/mcp) <br>
+## Use Case:
 
+Developers and operators use this skill to guide agents through Calendly workflows, including event lookup, invitee management, scheduling link creation, availability checks, cancellation, and organization administration through Rube MCP.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with tool sequences, parameters, and cautions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs guide an agent to use Rube MCP Calendly tools and to confirm high-impact actions before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Calendly OAuth access can expose calendar and organization workflows through Rube MCP.
+
+Mitigation: Trust the Rube MCP/Composio connection before installation and authorize only the Calendly scopes needed.
+
+Risk: Cancellation and organization-management actions can affect invitees or account membership.
+
+Mitigation: Confirm destructive or administrative actions with the user before executing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sohamganatra/skills/calendly-automation)
+- [Rube MCP Endpoint](https://rube.app/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration]
+
+**Output Format:** [Markdown guidance with ordered tool sequences and parameter notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Rube MCP with an active Calendly OAuth connection; recommends searching tools first for current schemas.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

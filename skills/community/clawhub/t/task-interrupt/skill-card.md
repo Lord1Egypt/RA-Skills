@@ -1,44 +1,55 @@
-## Description: <br>
-Provides task interruption guidance and shell tools for stopping long-running agent work, cleaning resources, and preserving task state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+任务打断机制 helps OpenClaw agents interrupt long-running or stalled tasks through stop signals, polling checks, checkpointing, and cleanup guidance.
 
-## Publisher: <br>
-[guyxlouspg](https://clawhub.ai/user/guyxlouspg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guyxlouspg](https://clawhub.ai/user/guyxlouspg)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add stop-command handling, stop-flag checks, checkpointing, and cleanup behavior to long-running agent sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Interrupt controls can stop or signal the wrong task when session IDs or process ownership are not scoped. <br>
-Mitigation: Validate session IDs, bind stop requests to the correct owned session and process, and restrict who may trigger stop commands. <br>
-Risk: Temporary stop-flag files can be tampered with or reused if they are not protected. <br>
-Mitigation: Use restrictive file permissions, verify flag age and ownership before acting, and clear stale flags promptly. <br>
-Risk: Checkpoint and state files may contain sensitive task data. <br>
-Mitigation: Keep checkpoints minimal, avoid storing secrets, and apply a clear cleanup policy. <br>
+## Use Case:
 
+Developers and agent integrators use this skill to add task interruption behavior to OpenClaw agents and subagents, including user-triggered stopping, checkpoint saving, and resource cleanup for long-running work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guyxlouspg/task-interrupt) <br>
-- [OpenClaw documentation](https://openclaw.org/docs) <br>
-- [AgentSkill specification](https://clawhub.com/specs/agent-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with bash and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes stop-flag commands and integration guidance for session IDs, checkpoints, and cleanup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The interrupt mechanism can grant process-control and filesystem mutation authority with unsafe scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and harden the mechanism before installation, including strict session ID allowlists and validated session-to-PID ownership before sending SIGINT or deleting files.
+
+Risk: Stop flags and state files may be exposed or altered if stored in broadly shared temporary paths.
+
+Mitigation: Store flags in a private 0700 directory, create files atomically without following links, encode JSON values safely, and avoid shell exec for script invocation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guyxlouspg/skills/task-interrupt)
+- [OpenClaw 官方文档](https://openclaw.org/docs)
+- [AgentSkill 规范](https://clawhub.com/specs/agent-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JavaScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes task-interruption workflow guidance, stop-flag script usage, checkpointing patterns, and cleanup recommendations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Finds hotels near a specified attraction, landmark, or scenic spot by verifying the point of interest and searching FlyAI/Fliggy hotel results sorted by distance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find hotels closest to a specific attraction, landmark, or scenic spot by verifying the POI, searching hotels through FlyAI/Fliggy, sorting by distance, and presenting booking links with POI context.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to find accommodation close to a named attraction, confirm the POI, and present nearby hotel options with distance, pricing, ratings, and booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to install an unpinned global FlyAI CLI package and fallback material can escalate to sudo. <br>
-Mitigation: Require a manually reviewed, non-privileged or sandboxed installation path, and do not allow the agent to run sudo or global npm installation automatically. <br>
-Risk: Hotel and POI searches send travel-search details to FlyAI/Fliggy. <br>
-Mitigation: Limit prompts to the minimum travel details needed for search and avoid unnecessary personal, identity, passport, payment-adjacent, or sensitive itinerary information. <br>
-Risk: The artifact instructs internal raw query logging without clear privacy controls. <br>
-Mitigation: Disable, minimize, or review logging before deployment, and avoid retaining raw user travel queries unless the deployment has appropriate privacy controls. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to find hotels near a named attraction or landmark, with results grounded in FlyAI/Fliggy CLI output rather than model memory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/flyai-find-hotel-near-attraction) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Runbook](references/runbook.md) <br>
-- [Templates](references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with CLI command examples, POI context, hotel comparison tables, and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses FlyAI CLI results as the source for POI details, hotel distance, price, rating, and booking links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill depends on a commercial FlyAI/Fliggy CLI and may send destination, POI, date, and preference details to that service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users when an external CLI/service is used and avoid entering sensitive travel details unless they accept the service exposure.
+
+Risk: The skill asks agents to install an unpinned global npm package and includes a sudo fallback.
+
+Mitigation: Install the CLI manually from a trusted source, prefer a pinned version, and do not allow automatic sudo or global npm installation from the skill.
+
+Risk: Hotel recommendations can be misleading if generated from model memory instead of live CLI results.
+
+Mitigation: Require POI verification and hotel search command output before presenting hotel names, prices, ratings, distances, or booking links.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dingtom336-gif/skills/flyai-find-hotel-near-attraction)
+- [Fallbacks](references/fallbacks.md)
+- [Playbooks](references/playbooks.md)
+- [Runbook](references/runbook.md)
+- [Templates](references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown with CLI command execution and distance-sorted hotel tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Hotel, POI, price, rating, distance, and booking-link details must come from FlyAI/Fliggy CLI output.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,52 @@
-## Description: <br>
-Check for OpenClaw updates, perform updates, and manage version status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check for OpenClaw updates, perform updates, and manage version status. Provides automatic update checking, version comparison, and seamless updating of the OpenClaw agent platform.
 
-## Publisher: <br>
-[rothcold](https://clawhub.ai/user/rothcold) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rothcold](https://clawhub.ai/user/rothcold)
 
-## Use Case: <br>
-Developers and operators use this skill to check OpenClaw version status, apply pnpm-based OpenClaw updates, restart the gateway, and verify update results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Update commands can install a different OpenClaw package version than intended. <br>
-Mitigation: Confirm the package source and target version before running pnpm or OpenClaw update commands. <br>
-Risk: Restarting the OpenClaw gateway can interrupt active service. <br>
-Mitigation: Schedule gateway restarts during an acceptable maintenance window and verify gateway status afterward. <br>
-Risk: Cron-based update checks can run more often or at different times than intended. <br>
-Mitigation: Configure any scheduled update checks deliberately and review the schedule before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/rothcold/openclaw-update-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/rothcold) <br>
+## Use Case:
 
+Developers and operators use this skill to check OpenClaw version status, apply pnpm-based updates, and restart or verify the OpenClaw gateway after maintenance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OpenClaw and pnpm commands plus version-check guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Global OpenClaw update commands can change the installed agent platform on the target machine.
+
+Mitigation: Confirm the package source, current version, and target machine before running update commands, and keep a rollback path available.
+
+Risk: Restarting the OpenClaw gateway can briefly interrupt service.
+
+Mitigation: Plan the restart for an acceptable maintenance window and verify gateway status after the update.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rothcold/skills/openclaw-update-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes OpenClaw status, update, gateway restart, and optional environment variable guidance.]
+
+## Skill Version(s):
+
+1.1.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

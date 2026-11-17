@@ -1,39 +1,54 @@
-## Description: <br>
-Jail reference tool. Use when working with jail in sysops contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jail reference tool. Use when working with jail in sysops contexts.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers, operators, and sysops practitioners use this skill as a quick local reference for jail-related concepts, commands, troubleshooting, performance, security, migration, and checklist guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides generic jail and sysops reference guidance that may not match a specific production environment. <br>
-Mitigation: Treat the output as quick-reference material and verify operational, security, and compliance steps against local production documentation before applying changes. <br>
+## Use Case:
 
+Developers and sysops practitioners use this skill for quick reference checklists, commands, and troubleshooting guidance related to jail-oriented operational tasks.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/jail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text emitted by local shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-specific reference sections for intro, quickstart, patterns, debugging, performance, security, migration, cheatsheet, help, and version.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: The guidance is generic and may be mistaken for authoritative jail documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as checklist-style support and verify procedures against the target platform's official documentation before production changes.
+
+Risk: The broad term 'jail' may activate in unrelated sysops conversations.
+
+Mitigation: Confirm the requested task is about this Jail reference before applying its guidance.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ckchzh/skills/jail)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local reference output with command-specific sections.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

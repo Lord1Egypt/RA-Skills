@@ -1,47 +1,65 @@
-## Description: <br>
-Helps agents use flyai CLI results to plan air cargo routes, freight shipping, parcel air transport, and oversized luggage travel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search passenger-flight route options for air-cargo planning, freight shipping, parcel air transport, and oversized luggage using flyai CLI output.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel-support agents use this skill to collect route details, run flyai flight searches, compare passenger flight options as cargo planning references, and present booking links with cargo caveats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Flight results may be mistaken for confirmed air cargo booking or cargo acceptance. <br>
-Mitigation: Present results as planning references and tell users to confirm shipment eligibility with the airline cargo department or a freight forwarder. <br>
-Risk: The skill behavior includes logging raw travel queries, which may capture sensitive travel details. <br>
-Mitigation: Avoid entering passport, visa, payment, or other sensitive details unless logging is removed or clearly controlled. <br>
-Risk: Global or privileged install commands can change the user's system-wide package environment. <br>
-Mitigation: Run install steps only after verifying the package source and avoiding sudo unless the user explicitly accepts the system-wide change. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to assemble flight-route options for cargo, parcel, freight, and oversized-luggage planning from flyai CLI results. The skill is useful for comparing timing, price, and routing before confirming real cargo handling with an airline cargo department or freight forwarder.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dingtom336-gif/cargo-flight) <br>
-- [Publisher profile](https://clawhub.ai/user/dingtom336-gif) <br>
-- [Parameter and output templates](references/templates.md) <br>
-- [Scenario playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline flyai CLI commands, comparison tables, booking links, and cargo caveats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output; every listed result should include a detailUrl booking link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill asks agents to install an unpinned third-party CLI and may escalate to sudo or global npm installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a sandbox or managed environment where flyai-cli is preinstalled, pinned, and reviewed; do not run sudo or global npm installs during skill execution.
+
+Risk: The skill runs shell commands derived from user-provided travel parameters.
+
+Mitigation: Restrict execution to the documented flyai commands and parameters, quote user inputs, and reject unsupported flags or command substitutions.
+
+Risk: Execution logging can store raw user queries that may include shipment, identity, or travel details.
+
+Mitigation: Avoid entering sensitive shipment or identity details and disable or redact local execution logs where possible.
+
+Risk: The skill can overstate cargo-booking capability because flyai searches scheduled passenger flights.
+
+Mitigation: Present results as passenger-flight planning links and require users to confirm actual cargo handling with the airline cargo department or a freight forwarder.
+
+## Reference(s):
+
+- [Cargo-flight skill page](https://clawhub.ai/dingtom336-gif/skills/cargo-flight)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, comparison tables, cargo notes, and booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI output; listed results are expected to include detailUrl booking links; cargo booking must be confirmed with a carrier cargo department or freight forwarder.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

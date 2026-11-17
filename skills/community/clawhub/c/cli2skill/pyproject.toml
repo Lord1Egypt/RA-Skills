@@ -1,0 +1,21 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cli2skill"
+version = "0.1.0"
+description = "Turn any CLI into an Agent Skill — zero MCP overhead"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+keywords = ["agent", "skill", "cli", "mcp", "claude-code", "codex", "gemini"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Software Development :: Code Generators",
+]
+
+[project.scripts]
+cli2skill = "cli2skill.main:app"

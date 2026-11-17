@@ -1,80 +1,77 @@
 ---
-name: agntdata-linkedin
-description: "LinkedIn API integration with a single agntdata API key (Bearer token). Fetch company profiles, jobs, people, posts, and professional network insights. Use this skill when users want LinkedIn data for sales, recruiting, or enrichment. For other social data platforms, use the agnt-data skill (https://clawhub.ai/agntdata/agnt-data)."
-version: 1.0.15
+name: linkedin-data
+description: "LinkedIn API integration with a single superagnt API key (Bearer token). Fetch company profiles, jobs, people, posts, and professional network insights. Use this skill when users want LinkedIn data for sales, recruiting, or enrichment. For other social data platforms, use the social-data skill (https://clawhub.ai/superagnt/skills/social-data)."
+version: 2.0.14
+author: superagnt
+license: MIT-0
+platforms: [macos, linux, windows]
+required_environment_variables:
+  - SUPERAGNT_API_KEY
 metadata:
+  hermes:
+    tags: [linkedin-data, lead-generation, sales, recruiting]
   openclaw:
     requires:
       env:
-        - AGNTDATA_API_KEY
+        - SUPERAGNT_API_KEY
       bins:
         - curl
-    primaryEnv: AGNTDATA_API_KEY
+    primaryEnv: SUPERAGNT_API_KEY
     emoji: "💼"
-    homepage: https://agnt.mintlify.app/apis/social/linkedin
+    homepage: https://superagnt.com/r/ch-linkedin-data-docs
 ---
 
-# LinkedIn API
+# LinkedIn Data
 
-The agntdata LinkedIn Data API provides comprehensive, real-time access to LinkedIn&#x27;s professional network data through a single unified endpoint. Instead of juggling multiple vendor accounts, API keys, and billing dashboards, you get one key and one credit balance that covers company enrichment, profile lookups, job board data, post analytics, article retrieval, and location search. Every response is structured JSON optimized for downstream AI processing — no scraping, no browser automation, no CAPTCHA solving. Whether you&#x27;re building an AI sales agent that needs account research before outreach, a recruiting copilot that assembles candidate dossiers, or a market intelligence pipeline that tracks competitor hiring trends, this API delivers the data your agents need to make informed decisions at scale.
+The superagnt LinkedIn Data API provides comprehensive, real-time access to LinkedIn&#x27;s professional network data through a single unified endpoint. Instead of juggling multiple vendor accounts, API keys, and billing dashboards, you get one key and one credit balance that covers company enrichment, profile lookups, job board data, post analytics, article retrieval, and location search. Every response is structured JSON optimized for downstream AI processing — no scraping, no browser automation, no CAPTCHA solving. Whether you&#x27;re building an AI sales agent that needs account research before outreach, a recruiting copilot that assembles candidate dossiers, or a market intelligence pipeline that tracks competitor hiring trends, this API delivers the data your agents need to make informed decisions at scale.
 
-## Recommended: Install the Plugin
+## Alternative install: the scoped MCP server
 
-**For the best experience, install the OpenClaw plugin for LinkedIn API instead of this skill.** The plugin provides native MCP tools, automatic authentication, and structured parameter validation.
+If this client speaks MCP, you can connect the LinkedIn Data facet
+server instead of using this skill's curl calls — the same endpoints below as
+native MCP tools with structured parameters and OAuth sign-in, scoped to this
+capability:
 
-Skill (this document):
-
-```bash
-clawhub install agntdata-linkedin
+```
+https://mcp.superagnt.com/mcp/linkedin
 ```
 
-Plugin (native tools; npm package matches `package.json`):
+That URL publishes full OAuth discovery: an MCP-capable client needs the URL
+and nothing else (approve once in the browser). On clients that hold a bearer
+instead, add it as an `Authorization: Bearer` header. Per-client setup lines:
+https://www.superagnt.com/install?facet=linkedin
 
-```bash
-openclaw plugins install @agntdata/openclaw-linkedin
-```
-
-This skill is useful for environments where plugins are not supported.
+This skill document stays fully usable on curl-only environments — everything
+below works with just the API key.
 
 ## Authentication
 
-Before making API calls, you need an API key. Get one from the [agntdata dashboard](https://app.agntdata.dev/dashboard).
-
-The API key should be available as the `AGNTDATA_API_KEY` environment variable. Every request must include it as a Bearer token:
+Get an API key from the [superagnt app](https://superagnt.com/r/ch-linkedin-data-key) and export it as
+`SUPERAGNT_API_KEY`. Every request sends it as a Bearer token:
 
 ```
-Authorization: Bearer $AGNTDATA_API_KEY
+Authorization: Bearer $SUPERAGNT_API_KEY
 ```
 
-If the environment variable is not set, ask the user to provide their API key or direct them to https://app.agntdata.dev/dashboard to create one.
+If the variable is not set, ask the user for their key or point them at
+https://superagnt.com/r/ch-linkedin-data-key.
 
-## API Key Activation
+## Verify the install (do this first)
 
-After setting your API key, activate it by calling the registration endpoint. This only needs to be done once per key:
+One call proves the key, the credit balance, and this source end to end:
 
 ```bash
-curl -X POST https://api.agntdata.dev/v1/register \
-  -H "Authorization: Bearer $AGNTDATA_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"intendedApis": ["linkedin"], "useCase": "Brief description of your use case"}'
+curl -s https://api.superagnt.com/v1/credits \
+  -H &#x27;Authorization: Bearer $SUPERAGNT_API_KEY&#x27;
 ```
 
-Replace the `useCase` value with a short description of how you plan to use this API.
-
-## Discovery Endpoints
-
-These public endpoints (no API key required) let you explore this platform's capabilities:
-
-```bash
-curl https://api.agntdata.dev/v1/platforms/linkedin
-```
-
-Returns: full endpoint list, OpenAPI spec, features, and use cases.
+A JSON result means you are live. A 401 means the key is wrong or missing; a
+402 means the workspace is out of credits — the superagnt app shows both.
 
 ## Base URL
 
 ```
-https://api.agntdata.dev/v1/data/linkedin
+https://api.superagnt.com/v1/data/linkedin
 ```
 
 ## Available Endpoints
@@ -136,12 +133,13 @@ https://api.agntdata.dev/v1/data/linkedin
 
 ## Tool Schemas
 
-The following JSON defines all available tools with their parameters. Each tool maps to an API endpoint.
+The following JSON defines every operation with its parameters. Each tool maps
+to an API endpoint under the base URL.
 
 ```json
 [
   {
-    "name": "agntdata_linkedin_Get_Company_By_Domain",
+    "name": "superagnt_linkedin_Get_Company_By_Domain",
     "description": "Get Company By Domain",
     "method": "GET",
     "path": "/get-company-by-domain",
@@ -159,7 +157,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Company_Details_by_ID",
+    "name": "superagnt_linkedin_Get_Company_Details_by_ID",
     "description": "Get Company Details by ID",
     "method": "GET",
     "path": "/get-company-details-by-id",
@@ -177,7 +175,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Company_Details",
+    "name": "superagnt_linkedin_Get_Company_Details",
     "description": "Get Company Details",
     "method": "GET",
     "path": "/get-company-details",
@@ -195,7 +193,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Profile_School_Interests",
+    "name": "superagnt_linkedin_Get_Profile_School_Interests",
     "description": "Get Profile School Interests",
     "method": "POST",
     "path": "/profiles/interests/schools",
@@ -214,7 +212,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Profile_Newsletter_Interests",
+    "name": "superagnt_linkedin_Get_Profile_Newsletter_Interests",
     "description": "Get Profile Newsletter Interests",
     "method": "POST",
     "path": "/profiles/interests/newsletters",
@@ -233,7 +231,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Similar_Profiles",
+    "name": "superagnt_linkedin_Get_Similar_Profiles",
     "description": "Get Similar Profiles",
     "method": "GET",
     "path": "/similar-profiles",
@@ -251,7 +249,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Profile_Positions_With_Skills",
+    "name": "superagnt_linkedin_Get_Profile_Positions_With_Skills",
     "description": "Get Profile Positions With Skills",
     "method": "GET",
     "path": "/profiles/position-skills",
@@ -269,7 +267,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Profile_Company_Interest",
+    "name": "superagnt_linkedin_Get_Profile_Company_Interest",
     "description": "Get Profile Company Interest",
     "method": "POST",
     "path": "/profiles/interests/companies",
@@ -288,7 +286,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Profile_Data___Recommendations",
+    "name": "superagnt_linkedin_Profile_Data___Recommendations",
     "description": "Profile Data & Recommendations",
     "method": "GET",
     "path": "/all-profile-data",
@@ -306,7 +304,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Given_Recommendations",
+    "name": "superagnt_linkedin_Get_Given_Recommendations",
     "description": "Get Given Recommendations",
     "method": "GET",
     "path": "/get-given-recommendations",
@@ -328,7 +326,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_profile_with_connections_and_posts",
+    "name": "superagnt_linkedin_profile_with_connections_and_posts",
     "description": "Get Profile Data, Connection & Follower Count and Posts",
     "method": "GET",
     "path": "/profile-data-connection-count-posts",
@@ -346,7 +344,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_About_The_Profile",
+    "name": "superagnt_linkedin_About_The_Profile",
     "description": "About The Profile",
     "method": "GET",
     "path": "/about-this-profile",
@@ -364,7 +362,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_profile_with_connection_count",
+    "name": "superagnt_linkedin_profile_with_connection_count",
     "description": "Get Profile Data and Connection & Follower Count",
     "method": "GET",
     "path": "/data-connection-count",
@@ -382,7 +380,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Received_Recommendations",
+    "name": "superagnt_linkedin_Get_Received_Recommendations",
     "description": "Get Received Recommendations",
     "method": "GET",
     "path": "/get-received-recommendations",
@@ -404,7 +402,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Profile_s_Comments",
+    "name": "superagnt_linkedin_Get_Profile_s_Comments",
     "description": "Get Profile's Comments",
     "method": "GET",
     "path": "/get-profile-comments",
@@ -422,7 +420,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Profile_Reactions",
+    "name": "superagnt_linkedin_Get_Profile_Reactions",
     "description": "Get Profile Reactions",
     "method": "GET",
     "path": "/get-profile-likes",
@@ -448,7 +446,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Profile_Post_and_Comments",
+    "name": "superagnt_linkedin_Get_Profile_Post_and_Comments",
     "description": "Get Profile Post and Comments",
     "method": "GET",
     "path": "/get-profile-post-and-comments",
@@ -466,7 +464,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Profile_Connection___Follower_Count",
+    "name": "superagnt_linkedin_Get_Profile_Connection___Follower_Count",
     "description": "Get Profile Connection & Follower Count",
     "method": "GET",
     "path": "/connection-count",
@@ -484,7 +482,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Profile_Post_Comment",
+    "name": "superagnt_linkedin_Get_Profile_Post_Comment",
     "description": "Get Profile Post Comment",
     "method": "GET",
     "path": "/get-profile-posts-comments",
@@ -515,7 +513,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Search_People_by_URL",
+    "name": "superagnt_linkedin_Search_People_by_URL",
     "description": "Search People by URL",
     "method": "POST",
     "path": "/search-people-by-url",
@@ -530,7 +528,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Profile_Data",
+    "name": "superagnt_linkedin_Get_Profile_Data",
     "description": "Get Profile Data",
     "method": "GET",
     "path": "/",
@@ -548,7 +546,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Search_People",
+    "name": "superagnt_linkedin_Search_People",
     "description": "Search People",
     "method": "GET",
     "path": "/search-people",
@@ -595,7 +593,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Profile_Data_By_URL",
+    "name": "superagnt_linkedin_Get_Profile_Data_By_URL",
     "description": "Get Profile Data By URL",
     "method": "GET",
     "path": "/get-profile-data-by-url",
@@ -613,7 +611,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Profile_Group_Interests",
+    "name": "superagnt_linkedin_Get_Profile_Group_Interests",
     "description": "Get Profile Group Interests",
     "method": "POST",
     "path": "/profiles/interests/groups",
@@ -632,7 +630,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Profile_Top_Voice_Interests",
+    "name": "superagnt_linkedin_Get_Profile_Top_Voice_Interests",
     "description": "Get Profile Top Voice Interests",
     "method": "POST",
     "path": "/profiles/interests/top-voices",
@@ -651,7 +649,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Profile_s_Posts",
+    "name": "superagnt_linkedin_Get_Profile_s_Posts",
     "description": "Get Profile's Posts",
     "method": "GET",
     "path": "/get-profile-posts",
@@ -681,7 +679,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Post_Reactions",
+    "name": "superagnt_linkedin_Get_Post_Reactions",
     "description": "Get Post Reactions",
     "method": "POST",
     "path": "/get-post-reactions",
@@ -704,7 +702,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Profile_Top_Position",
+    "name": "superagnt_linkedin_Get_Profile_Top_Position",
     "description": "Get Profile Top Position",
     "method": "GET",
     "path": "/profiles/positions/top",
@@ -722,7 +720,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Company_s_Post",
+    "name": "superagnt_linkedin_Get_Company_s_Post",
     "description": "Get Company's Post",
     "method": "GET",
     "path": "/get-company-posts",
@@ -748,7 +746,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Company_Pages_People_Also_Viewed",
+    "name": "superagnt_linkedin_Get_Company_Pages_People_Also_Viewed",
     "description": "Get Company Pages People Also Viewed",
     "method": "GET",
     "path": "/get-company-pages-people-also-viewed",
@@ -763,7 +761,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Company_Insights__PREMIUM",
+    "name": "superagnt_linkedin_Get_Company_Insights__PREMIUM",
     "description": "Get Company Insights [PREMIUM]",
     "method": "GET",
     "path": "/get-company-insights",
@@ -781,7 +779,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Search_Posts",
+    "name": "superagnt_linkedin_Search_Posts",
     "description": "Search Posts",
     "method": "POST",
     "path": "/search-posts",
@@ -840,7 +838,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Search_Jobs_V2",
+    "name": "superagnt_linkedin_Search_Jobs_V2",
     "description": "Search Jobs V2",
     "method": "GET",
     "path": "/search-jobs-v2",
@@ -910,7 +908,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Profile_s_Posted_Jobs",
+    "name": "superagnt_linkedin_Get_Profile_s_Posted_Jobs",
     "description": "Get Profile's Posted Jobs",
     "method": "GET",
     "path": "/profiles/posted-jobs",
@@ -928,7 +926,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Company_Post_Comments",
+    "name": "superagnt_linkedin_Get_Company_Post_Comments",
     "description": "Get Company Post Comments",
     "method": "GET",
     "path": "/get-company-post-comments",
@@ -955,7 +953,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Company_Employees_Count",
+    "name": "superagnt_linkedin_Get_Company_Employees_Count",
     "description": "Get Company Employees Count",
     "method": "POST",
     "path": "/get-company-employees-count",
@@ -974,7 +972,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Search_Companies",
+    "name": "superagnt_linkedin_Search_Companies",
     "description": "Search Companies",
     "method": "POST",
     "path": "/companies/search",
@@ -1009,7 +1007,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Job_Details",
+    "name": "superagnt_linkedin_Get_Job_Details",
     "description": "Get Job Details",
     "method": "GET",
     "path": "/get-job-details",
@@ -1027,7 +1025,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Article_Comments",
+    "name": "superagnt_linkedin_Get_Article_Comments",
     "description": "Get Article Comments",
     "method": "GET",
     "path": "/get-article-comments",
@@ -1053,7 +1051,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Article_Reactions",
+    "name": "superagnt_linkedin_Get_Article_Reactions",
     "description": "Get Article Reactions",
     "method": "GET",
     "path": "/get-article-reactions",
@@ -1075,7 +1073,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Article",
+    "name": "superagnt_linkedin_Get_Article",
     "description": "Get Article",
     "method": "GET",
     "path": "/get-article",
@@ -1093,7 +1091,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_User_Articles",
+    "name": "superagnt_linkedin_Get_User_Articles",
     "description": "Get User Articles",
     "method": "GET",
     "path": "/get-user-articles",
@@ -1112,7 +1110,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Post_Reposts",
+    "name": "superagnt_linkedin_Get_Post_Reposts",
     "description": "Get Post Reposts",
     "method": "POST",
     "path": "/posts/reposts",
@@ -1135,7 +1133,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Post",
+    "name": "superagnt_linkedin_Get_Post",
     "description": "Get Post",
     "method": "GET",
     "path": "/get-post",
@@ -1153,7 +1151,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Company_Jobs",
+    "name": "superagnt_linkedin_Get_Company_Jobs",
     "description": "Get Company Jobs",
     "method": "POST",
     "path": "/company-jobs",
@@ -1172,7 +1170,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Search_Jobs",
+    "name": "superagnt_linkedin_Search_Jobs",
     "description": "Search Jobs",
     "method": "GET",
     "path": "/search-jobs",
@@ -1238,7 +1236,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Health_Check",
+    "name": "superagnt_linkedin_Health_Check",
     "description": "Health Check",
     "method": "GET",
     "path": "/health",
@@ -1248,7 +1246,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Hiring_Team",
+    "name": "superagnt_linkedin_Get_Hiring_Team",
     "description": "Get Hiring Team",
     "method": "GET",
     "path": "/get-hiring-team",
@@ -1267,7 +1265,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Search_Locations",
+    "name": "superagnt_linkedin_Search_Locations",
     "description": "Search Locations",
     "method": "GET",
     "path": "/search-locations",
@@ -1285,7 +1283,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Search_Post_by_Hashtag",
+    "name": "superagnt_linkedin_Search_Post_by_Hashtag",
     "description": "Search Post by Hashtag",
     "method": "POST",
     "path": "/search-posts-by-hashtag",
@@ -1312,7 +1310,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Company_Jobs_Count",
+    "name": "superagnt_linkedin_Get_Company_Jobs_Count",
     "description": "Get Company Jobs Count",
     "method": "GET",
     "path": "/get-company-jobs-count",
@@ -1330,7 +1328,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_linkedin_Get_Profile_Recent_Activity_Time",
+    "name": "superagnt_linkedin_Get_Profile_Recent_Activity_Time",
     "description": "Get Profile Recent Activity Time",
     "method": "GET",
     "path": "/get-profile-recent-activity-time",
@@ -1353,8 +1351,8 @@ The following JSON defines all available tools with their parameters. Each tool 
 ## Example
 
 ```bash
-curl -X GET &#x27;https://api.agntdata.dev/v1/data/linkedin/get-company-details?username&#x3D;microsoft&#x27; \
-  -H &#x27;Authorization: Bearer $AGNTDATA_API_KEY&#x27;
+curl -X GET &#x27;https://api.superagnt.com/v1/data/linkedin/get-company-details?username&#x3D;microsoft&#x27; \
+  -H &#x27;Authorization: Bearer $SUPERAGNT_API_KEY&#x27;
 ```
 
 ## Use Cases
@@ -1370,18 +1368,16 @@ curl -X GET &#x27;https://api.agntdata.dev/v1/data/linkedin/get-company-details?
 - Investment research agents gathering company data for due diligence
 - Outbound automation platforms personalizing messages with real professional context
 
-## Other Platforms
+## Scope
 
-agntdata provides unified access to social data across multiple platforms. Explore other available APIs:
-
-```bash
-curl https://api.agntdata.dev/v1/platforms
-```
-
-Available platforms: LinkedIn, YouTube, TikTok, X, Instagram, Reddit, Facebook. Each uses the same API key and follows the same patterns.
+This skill covers LinkedIn Data only — the endpoints listed above,
+nothing else. The same API key also works with superagnt's other data sources
+and platform tools, but those are separate listings that the user installs or
+enables themselves; this skill does not add or enable anything beyond what is
+documented here. The public catalog is at `https://api.superagnt.com/v1/platforms`.
 
 ## Links
 
-- [Documentation](https://agnt.mintlify.app)
-- [API Reference](https://agnt.mintlify.app/apis/social/linkedin)
-- [ClawHub skill](https://clawhub.ai/agntdata/agntdata-linkedin)
+- [Documentation](https://superagnt.com/r/ch-linkedin-data-docs)
+- [superagnt app / API keys](https://superagnt.com/r/ch-linkedin-data-key)
+- [This listing](https://clawhub.ai/superagnt/skills/linkedin-data)

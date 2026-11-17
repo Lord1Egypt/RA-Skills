@@ -1,43 +1,57 @@
-## Description: <br>
-Combine high-quality Markdown to HTML rendering with robust HTML to Markdown extraction in one skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Markdown into styled standalone HTML and converts HTML files, raw HTML, URLs, and directories into clean Markdown with cleanup profiles, metadata, reports, and batch modes.
 
-## Publisher: <br>
-[520xiaomumu](https://clawhub.ai/user/520xiaomumu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[520xiaomumu](https://clawhub.ai/user/520xiaomumu)
 
-## Use Case: <br>
-Developers and content engineers use this skill to convert Markdown into presentable standalone HTML and to extract clean Markdown from HTML files, raw HTML, URLs, or batches of documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch URLs and read or write selected local paths during conversion. <br>
-Mitigation: Use explicit input and output paths, fetch only intended URLs, and avoid broad private directories in batch mode. <br>
-Risk: Generated HTML from untrusted Markdown or HTML may contain content that is unsafe to publish or open without review. <br>
-Mitigation: Review generated HTML before publishing or sharing it, especially when the source content is untrusted. <br>
-Risk: The Node conversion path depends on npm packages. <br>
-Mitigation: Install dependencies from the included lockfile and review dependency updates before use. <br>
+## Use Case:
 
+Developers, documentation maintainers, and content engineers use this skill to choose and run Markdown-to-HTML or HTML-to-Markdown conversion workflows for readable pages, cleaned article or documentation extracts, batch conversions, metadata frontmatter, and quality reports.
 
-## Reference(s): <br>
-- [Conversion profiles reference](references/profiles.md) <br>
-- [ClawHub skill page](https://clawhub.ai/520xiaomumu/html-markdown-hybrid) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; conversion scripts produce Markdown, HTML, JSON reports, and frontmatter metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on selected conversion direction, profile, theme, input path or URL, and output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence and package.json) <br>
+Risk: The HTML-to-Markdown workflow can fetch arbitrary URLs, which may expose private services or cloud metadata if run in a permissive network environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run URL conversion in a network-restricted environment, avoid internal or metadata endpoints, and use allowlisted sources for bulk URL jobs.
+
+Risk: Generated HTML from untrusted Markdown or converted content may contain unsafe active content when opened or published.
+
+Mitigation: Only open or publish generated HTML from trusted input, or sanitize the HTML before distribution.
+
+Risk: The release was flagged for review because hostile input and dependency age can affect conversion safety at scale.
+
+Mitigation: Review dependencies before bulk use, scan outputs from untrusted sources, and follow the server guidance for hostile input handling.
+
+## Reference(s):
+
+- [Conversion Profiles](references/profiles.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples; scripts can emit HTML files, Markdown files, and JSON reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports single-file, raw-string, directory, and URL-list conversion modes; Node dependencies are required for the Node conversion pipeline.]
+
+## Skill Version(s):
+
+1.1.1 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

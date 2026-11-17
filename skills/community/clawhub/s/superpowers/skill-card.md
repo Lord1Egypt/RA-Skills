@@ -1,45 +1,63 @@
-## Description: <br>
-Spec-first, TDD, subagent-driven software development workflow for building features, debugging issues, and finishing development branches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spec-first, TDD, subagent-driven software development workflow for planning, implementing, debugging, and finishing coding tasks with tests, reviews, commits, and user gates.
 
-## Publisher: <br>
-[wlshlad85](https://clawhub.ai/user/wlshlad85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wlshlad85](https://clawhub.ai/user/wlshlad85)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to follow a structured software-development workflow: brainstorm, write implementation plans, execute tasks with TDD and subagents, debug systematically, and finish branches with test verification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow may run tests, create commits, spawn subagents, and help merge branches or open pull requests. <br>
-Mitigation: Review generated plans, commands, diffs, branch names, and pull request text before execution. <br>
-Risk: Plan files and subagent prompts can expose sensitive project details if secrets or credentials are included. <br>
-Mitigation: Do not put secrets or private credentials into plan files or subagent prompts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Superpowers Dev Workflow on ClawHub](https://clawhub.ai/wlshlad85/superpowers) <br>
-- [Brainstorming Reference](references/brainstorming.md) <br>
-- [Writing Plans Reference](references/writing-plans.md) <br>
-- [Subagent-Driven Development Reference](references/subagent-development.md) <br>
-- [Systematic Debugging Reference](references/systematic-debugging.md) <br>
-- [Test-Driven Development Reference](references/tdd.md) <br>
-- [Finishing a Development Branch Reference](references/finishing-branch.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to structure feature work, debugging, and branch completion through brainstormed designs, detailed plans, TDD, subagent reviews, test verification, and explicit user choices for merge or PR actions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, code snippets, plans, review prompts, and branch-operation choices] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create design docs and implementation plans, propose commands, spawn subagents, and guide commits, merges, or pull requests when the host agent has those tools.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow can run project tests, git commands, create commits, and guide branch merge, push, PR, or discard actions.
+
+Mitigation: Review higher-impact branch prompts carefully before approving them, keep work on a branch, and require passing tests before merge or PR actions.
+
+Risk: The structured planning and subagent loops can be heavyweight for very small coding changes.
+
+Mitigation: Use it for non-trivial feature, debugging, and branch-completion work; handle one-line fixes, code reading, and non-code tasks directly.
+
+Risk: Generated plans, implementation steps, or subagent outputs could contain incorrect or incomplete technical guidance.
+
+Mitigation: Require failing tests first, spec review, code-quality review, and full test verification before accepting or merging changes.
+
+## Reference(s):
+
+- [Superpowers Dev Workflow on ClawHub](https://clawhub.ai/wlshlad85/skills/superpowers)
+- [Publisher profile](https://clawhub.ai/user/wlshlad85)
+- [Brainstorming Reference](references/brainstorming.md)
+- [Writing Plans Reference](references/writing-plans.md)
+- [Subagent-Driven Development Reference](references/subagent-development.md)
+- [Systematic Debugging Reference](references/systematic-debugging.md)
+- [Test-Driven Development Reference](references/tdd.md)
+- [Finishing a Development Branch Reference](references/finishing-branch.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create planning documents, tests, commits, branch actions, and subagent prompts when the host agent has the required tools and user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

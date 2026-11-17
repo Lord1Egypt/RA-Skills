@@ -1,47 +1,67 @@
-## Description: <br>
-Huo15 Wecom Plugin connects OpenClaw agents to WeCom through Bot WebSocket, Bot Webhook, Agent app, and customer-service channels, with multi-account routing, encrypted media handling, document and calendar tools, MCP integration, and outbound messaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects OpenClaw agents to WeCom through Bot WebSocket, self-built Agent API, and WeCom customer-service channels, with media handling and document, calendar, and MCP tool access.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers and administrators use this skill to connect OpenClaw agents with enterprise WeCom messaging, customer-service, media, document, calendar, and multi-account workflows. It is intended for WeCom, not personal WeChat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the skill gives agents broad company-chat, document, calendar, account, and local-file powers. <br>
-Mitigation: Review the skill before installation, use least-privilege WeCom apps and secrets, and add human approval around delete, share, permission, calendar, and account actions. <br>
-Risk: The security evidence advises against exposure to untrusted chats or customer-service users without additional controls. <br>
-Mitigation: Restrict who can message the bot, avoid untrusted customer-service exposure by default, and apply organization-specific policy controls before broad rollout. <br>
-Risk: The release requires sensitive WeCom credentials and can read configured local media paths. <br>
-Mitigation: Store secrets in managed configuration, rotate them as needed, and narrow or disable local media roots unless the deployment explicitly needs local file access. <br>
+## Use Case:
 
+Developers and teams use this skill to connect OpenClaw agents to enterprise WeCom conversations, route replies across Bot WebSocket, Agent API, and customer-service channels, and expose WeCom document, calendar, media, and collaboration capabilities to agents.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhaobod1/huo15-wecom-plugin) <br>
-- [Project homepage](https://cnb.cool/huo15/ai/huo15-wecom-plugin) <br>
-- [README](README.md) <br>
-- [Changelog 2.9.5](CHANGELOG.md) <br>
-- [WeCom Calendar API documentation](https://developer.work.weixin.qq.com/document/path/93329) <br>
-- [WeCom app share information documentation](https://developer.work.weixin.qq.com/document/path/95813) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, TypeScript plugin behavior, JSON/YAML configuration examples, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send WeCom messages, upload or download media, and invoke WeCom document, calendar, and MCP tools when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.9.5 (source: package.json, CHANGELOG, server release metadata) <br>
+Risk: The plugin can read and send local files through media handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit media localRoots to dedicated staging directories and require human confirmation before file uploads.
+
+Risk: The plugin can mutate WeCom business documents and calendars.
+
+Mitigation: Use scoped WeCom credentials, restrict tool access to trusted agents, and review destructive document or calendar actions before execution.
+
+Risk: Dynamic agent configuration can persist new routing and workspace state.
+
+Mitigation: Disable dynamicAgents until intentionally configured, set account and agent limits, and review generated workspace paths.
+
+Risk: The security evidence recommends upgrading vulnerable dependencies before production use.
+
+Mitigation: Run dependency review and update vulnerable packages before deploying in production.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-wecom-plugin)
+- [Project homepage listed in artifact](https://cnb.cool/huo15/ai/huo15-wecom-plugin)
+- [WeCom calendar API documentation](https://developer.work.weixin.qq.com/document/path/93329)
+- [WeCom upstream configuration documentation](https://developer.work.weixin.qq.com/document/path/95813)
+- [WeCom document tool guide](SKILLS_DOC.md)
+- [WeCom calendar tool guide](SKILLS_CAL.md)
+- [Release changelog](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON/YAML configuration examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose WeCom messages, media uploads, document/calendar operations, and plugin configuration changes.]
+
+## Skill Version(s):
+
+2.9.5 (source: server release, package.json, and changelog; SKILL.md frontmatter lists 2.9.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

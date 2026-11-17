@@ -1,42 +1,57 @@
-## Description: <br>
-Search LinkedIn posts by keywords using the Apify actor harvestapi/linkedin-post-search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches LinkedIn posts by keyword with the Apify harvestapi/linkedin-post-search actor, including optional author, company, date, sorting, pagination, reactions, and comments controls.
 
-## Publisher: <br>
-[Godefroy](https://clawhub.ai/user/Godefroy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[godefroy](https://clawhub.ai/user/godefroy)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to search and retrieve LinkedIn posts that match keywords, author or company filters, date limits, and sort preferences through Apify. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: LinkedIn search terms, filters, and retrieved post data are sent through Apify. <br>
-Mitigation: Use the skill only when that data flow is acceptable, and review Apify and LinkedIn compliance obligations before broad or sensitive collection. <br>
-Risk: Apify tokens may appear in tokenized API URLs, logs, or command history. <br>
-Mitigation: Use a dedicated or scoped APIFY_API_TOKEN where possible and avoid sharing logs, transcripts, or shell history that contain token URLs. <br>
-Risk: Scraping reactions and comments can increase collected data volume and cost. <br>
-Mitigation: Set explicit maxPosts, maxComments, and maxReactions limits before running searches. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Godefroy/linkedin-search-posts) <br>
-- [Publisher profile](https://clawhub.ai/user/Godefroy) <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to construct Apify actor requests for LinkedIn post searches, monitor runs, and retrieve JSON datasets for posts, comments, or reactions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON request/response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Apify API invocation guidance and describes JSON result fields for LinkedIn posts, reactions, and comments.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Apify tokens passed in URL query strings may be exposed through process listings, shell history, logs, or copied command output.
+
+Mitigation: Use a dedicated least-privileged Apify token, avoid logging tokenized URLs, and prefer bearer-token headers when adapting the commands.
+
+Risk: Actor runs and optional reaction or comment scraping can incur usage costs.
+
+Mitigation: Set bounded maxPosts, maxReactions, and maxComments values and monitor Apify usage during runs.
+
+Risk: LinkedIn search results may be incomplete and each search query is limited to 85 characters.
+
+Mitigation: Treat results as a non-exhaustive dataset, keep queries within the documented limit, and verify important findings before relying on them.
+
+## Reference(s):
+
+- [LinkedIn Search Posts ClawHub page](https://clawhub.ai/godefroy/skills/linkedin-search-posts)
+- [Apify actor run endpoint](https://api.apify.com/v2/acts/harvestapi~linkedin-post-search/runs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API Calls, JSON]
+
+**Output Format:** [Markdown guidance with bash curl examples and JSON result descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires APIFY_API_TOKEN; retrieves Apify actor run and dataset JSON; optional comment and reaction scraping can increase result volume and cost.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

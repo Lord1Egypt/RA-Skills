@@ -1,0 +1,10 @@
+[
+  {"id":1,"title":"Equipping agents for the real world with Agent Skills","url":"https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills","source":"Anthropic Engineering","year":2025,"claim":"Agent Skills launched 2025-10-16","semantic":"supports"},
+  {"id":2,"title":"awesome-claude-skills: curated list","url":"https://github.com/travisvn/awesome-claude-skills","source":"GitHub","year":2026,"claim":"community skill catalog","semantic":"supports"},
+  {"id":3,"title":"Hallucinated citations are polluting the scientific literature","url":"https://www.nature.com/articles/d41586-026-00969-z","source":"Nature","year":2026,"claim":"tens of thousands of papers may contain invalid AI references","semantic":"supports"},
+  {"id":4,"title":"Skill registry and trending tracker","url":"https://skills.sh","source":"skills.sh","year":2026,"claim":"skill discovery directory","semantic":"supports"},
+  {"id":5,"title":"Best Claude Code Skills to Try in 2026","url":"https://www.firecrawl.dev/blog/best-claude-code-skills","source":"Firecrawl","year":2026,"claim":"popular skills roundup","semantic":"supports"},
+  {"id":6,"title":"A longitudinal study of citation integrity in agent-generated reports","doi":"10.1038/s41586-026-99999-x","source":"Nature","year":2026,"claim":"fabricated DOI test","semantic":"supports"},
+  {"id":7,"title":"Agent Skills adoption survey: 60k skills analyzed","url":"https://www.anthropic.com/engineering/agent-skills-adoption-survey-2026","source":"Anthropic Engineering","year":2026,"claim":"fabricated URL test","semantic":"supports"},
+  {"id":8,"title":"Meta-analysis of retrieval grounding in LLM research agents","source":"Journal of AI Verification","year":2026,"claim":"no URL test","semantic":"supports"}
+]

@@ -1,0 +1,4 @@
+interface:
+  display_name: "MochiPay Integration"
+  short_description: "Connect stores, backends and mobile apps to MochiPay"
+  default_prompt: "Use $integrate-mochipay to add ON_SITE and HPP payments to my store, backend or mobile app, including verified returns and asynchronous notifications."

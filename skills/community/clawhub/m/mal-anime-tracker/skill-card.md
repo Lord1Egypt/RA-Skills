@@ -1,41 +1,55 @@
-## Description: <br>
-Track and manage MyAnimeList anime and manga lists, get anime details, rankings, seasonal updates, and receive new episode notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and manage MyAnimeList anime and manga lists, query titles and forums, and generate update notifications for new episodes.
 
-## Publisher: <br>
-[josetseph](https://clawhub.ai/user/josetseph) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[josetseph](https://clawhub.ai/user/josetseph)
 
-## Use Case: <br>
-External users and anime viewers use this skill to search MyAnimeList, inspect anime and manga lists, update anime status, remove list entries, refresh OAuth credentials, and produce notification text for new episode checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OAuth tokens can grant access to MyAnimeList account data and list-management actions. <br>
-Mitigation: Store tokens in OpenClaw vault or another secret manager, avoid sharing them in terminals or files, and rotate tokens if exposed. <br>
-Risk: Update and delete commands can change or remove MyAnimeList entries. <br>
-Mitigation: Double-check anime IDs and intended statuses before running list-changing commands, especially delete. <br>
+## Use Case:
 
+External users and anime or manga fans use this skill to search MyAnimeList, inspect personal lists, update or remove anime list entries, refresh OAuth tokens, and produce episode-update notification text for OpenClaw delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/josetseph/mal-anime-tracker) <br>
-- [MyAnimeList Developer Portal](https://myanimelist.net/apiconfig) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON or text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MyAnimeList OAuth credentials for account-specific commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.3 (source: server-resolved release metadata) <br>
+Risk: The skill requires MyAnimeList OAuth credentials that can read and modify MAL account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store credentials in the OpenClaw vault or another secret manager, avoid shell profiles and project .env files, and do not run token commands where output is logged.
+
+Risk: Update and delete commands can change or remove entries from a user's MyAnimeList anime list.
+
+Mitigation: Manually confirm anime IDs and intended status changes before running update or delete commands.
+
+## Reference(s):
+
+- [MAL Anime Tracker on ClawHub](https://clawhub.ai/josetseph/skills/mal-anime-tracker)
+- [MyAnimeList Developer Portal](https://myanimelist.net/apiconfig)
+- [MyAnimeList API OpenAPI Specification](artifact/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON or text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command output can include MyAnimeList search results, list data, status update responses, delete confirmations, refreshed OAuth tokens, and episode-update notification text.]
+
+## Skill Version(s):
+
+1.9.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

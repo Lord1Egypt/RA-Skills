@@ -1,47 +1,57 @@
-## Description: <br>
-Deploy a remote MCP server on Vercel with Next.js and mcp-handler. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy a remote MCP server on Vercel with Next.js and mcp-handler.
 
-## Publisher: <br>
-[lucaperret](https://clawhub.ai/user/lucaperret) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucaperret](https://clawhub.ai/user/lucaperret)
 
-## Use Case: <br>
-Developers and engineers use this skill to add a Streamable HTTP MCP endpoint to a Next.js application and deploy it on Vercel for clients such as Claude Desktop, claude.ai, Smithery, and other MCP clients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public MCP endpoints may expose write or delete operations to remote clients without adequate access control. <br>
-Mitigation: Add real authentication and authorization before exposing write or destructive tools, and review each tool annotation before deployment. <br>
-Risk: Deployment commands may target the wrong Vercel account or project. <br>
-Mitigation: Confirm the active Vercel account, project, and production target before running deployment commands. <br>
-Risk: Generated route code or dependency versions may not match the application's production requirements. <br>
-Mitigation: Review the generated route code, lock dependency versions, and test the MCP initialize request before publishing the endpoint. <br>
+## Use Case:
 
+Developers and engineers use this skill to create, deploy, test, and publish Vercel-hosted MCP endpoints for Next.js applications.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lucaperret/mcp-vercel) <br>
-- [Skill Homepage](https://github.com/lucaperret/agent-skills) <br>
-- [mcp-handler](https://github.com/vercel/mcp-handler) <br>
-- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) <br>
-- [Vercel MCP Documentation](https://vercel.com/docs/mcp) <br>
-- [Smithery Publishing](https://smithery.ai/new) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript, JavaScript, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance for creating and deploying a Vercel-hosted MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated MCP tools may expose sensitive APIs or perform create, update, or delete operations without adequate review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each generated tool before deployment, use accurate MCP safety annotations, and require authentication for sensitive APIs.
+
+Risk: Vercel serverless constraints can break deployments that depend on files outside the configured root directory or writable local storage.
+
+Mitigation: Keep runtime dependencies inside the deployed project root and handle filesystem writes defensively for serverless execution.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/lucaperret/agent-skills)
+- [mcp-handler](https://github.com/vercel/mcp-handler)
+- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
+- [Vercel MCP docs](https://vercel.com/docs/mcp)
+- [Smithery](https://smithery.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with TypeScript and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes MCP route examples, tool annotations, deployment checks, and publishing guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

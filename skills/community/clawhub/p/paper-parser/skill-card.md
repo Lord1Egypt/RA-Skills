@@ -1,43 +1,60 @@
-## Description: <br>
-Paper Parser helps agents parse academic papers and research PDFs with MinerU, extracting structured content such as sections, formulas, tables, figures, and references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paper Parser helps agents parse academic papers and research PDFs with MinerU, extracting structured content such as titles, abstracts, sections, figures, tables, formulas, and references.
 
-## Publisher: <br>
-[mzlzyca](https://clawhub.ai/user/mzlzyca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzlzyca](https://clawhub.ai/user/mzlzyca)
 
-## Use Case: <br>
-Researchers, graduate students, literature review tools, and academic content managers use this skill to parse PDFs or arXiv paper URLs with MinerU and extract structured paper content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MinerU token is required for extraction and could expose account access if shared or committed. <br>
-Mitigation: Treat MINERU_TOKEN as a secret, configure it only in trusted environments, and avoid storing it in source files or logs. <br>
-Risk: Private or sensitive documents may be processed through MinerU's CLI/API service. <br>
-Mitigation: Use the service only for documents whose privacy and retention implications are acceptable for the user's environment. <br>
+## Use Case:
 
+Developers, researchers, graduate students, and academic content workflows use this skill to guide agents through extracting structured content from research PDFs and paper URLs with MinerU.
 
-## Reference(s): <br>
-- [MinerU](https://mineru.net) <br>
-- [MinerU Token Management](https://mineru.net/apiManage/token) <br>
-- [MinerU GitHub Repository](https://github.com/opendatalab/MinerU) <br>
-- [MinerU Open API CLI](https://github.com/opendatalab/MinerU-Ecosystem/cli/mineru-open-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance centers on the mineru-open-api CLI, token configuration, PDF inputs, and optional output directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release evidence) <br>
+Risk: The skill depends on installing and running the third-party MinerU CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install MinerU only from the expected publisher or source, avoid elevated privileges, and pin a version where practical.
+
+Risk: MinerU authentication uses MINERU_TOKEN.
+
+Mitigation: Expose MINERU_TOKEN only when needed and keep it out of logs, prompts, and shared configuration.
+
+Risk: PDF files or URLs submitted through MinerU may be processed by MinerU's API service.
+
+Mitigation: Confirm document handling requirements before submitting confidential, regulated, or third-party-restricted papers.
+
+## Reference(s):
+
+- [Paper Parser on ClawHub](https://clawhub.ai/mzlzyca/skills/paper-parser)
+- [MinerU](https://mineru.net)
+- [OpenDataLab MinerU GitHub Repository](https://github.com/opendatalab/MinerU)
+- [MinerU Token Management](https://mineru.net/apiManage/token)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include MinerU CLI commands, token setup steps, PDF input notes, model selection, output directory usage, and parsing constraints.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

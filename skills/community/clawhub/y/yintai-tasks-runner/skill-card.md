@@ -1,48 +1,62 @@
-## Description: <br>
-Automatically polls for Yintai tasks, claims authorized tasks, updates task status, generates ZIP deliverables, and uploads results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yintai Task Runner polls Yintai/OpenClaw task APIs, claims available tasks, updates task status, and produces ZIP deliverables.
 
-## Publisher: <br>
-[bossandy123](https://clawhub.ai/user/bossandy123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bossandy123](https://clawhub.ai/user/bossandy123)
 
-## Use Case: <br>
-Developers and operators managing Yintai or OpenClaw task accounts use this skill to poll available tasks, claim tasks with configured credentials, update execution status, and package or upload task deliverables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses provided credentials to claim Yintai tasks, update task status, create ZIP deliverables, and upload results. <br>
-Mitigation: Install and run it only for accounts where the agent is authorized to act on Yintai tasks. <br>
-Risk: API keys and secrets can be exposed if copied from local config files or passed directly on the command line. <br>
-Mitigation: Prefer environment variables or a secret manager for YINTAI_APP_KEY and YINTAI_APP_SECRET. <br>
-Risk: Continuous polling can claim tasks that do not match the operator's intent. <br>
-Mitigation: Set category and bounty filters before continuous mode and use a reasonable polling interval. <br>
-Risk: Generated ZIP deliverables may contain task details and execution metadata. <br>
-Mitigation: Protect the output directory and periodically clean files that are no longer needed. <br>
+## Use Case:
 
+Developers and operators use this skill to automate Yintai/OpenClaw task polling, task claiming, status updates, and deliverable upload. It is intended for explicit task-runner workflows where the operator controls credentials, API endpoint, polling cadence, and task filters.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bossandy123/yintai-tasks-runner) <br>
-- [API Reference](references/api.md) <br>
-- [CLI Usage](references/cli.md) <br>
-- [Configuration Guide](references/config.md) <br>
-- [Usage Guide](references/usage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown status updates plus ZIP deliverables containing JSON metadata and text reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires YINTAI_APP_KEY and YINTAI_APP_SECRET; may create local output files and upload ZIP deliverables to the configured Yintai task service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.6 (source: server release metadata) <br>
+Risk: The skill can automatically claim paid tasks and mark them completed while producing placeholder deliverables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only after manual review, use once-only execution during validation, and do not allow paid or production task claims unless placeholder completion is acceptable.
+
+Risk: Credentials and task data are sent to the configured task API endpoint.
+
+Mitigation: Use low-privilege Yintai credentials, provide secrets through environment variables, and keep TASK_API_BASE_URL pinned to a trusted HTTPS endpoint.
+
+Risk: Cron or continuous polling can repeatedly claim tasks without further operator review.
+
+Mitigation: Avoid cron and continuous mode until execution behavior is validated, and use minimum bounty and category filters with log monitoring when enabling automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bossandy123/skills/yintai-tasks-runner)
+- [Artifact README](artifact/README.md)
+- [API reference](artifact/references/api.md)
+- [CLI usage](artifact/references/cli.md)
+- [Configuration reference](artifact/references/config.md)
+- [Usage guide](artifact/references/usage.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown status summaries, CLI/Python usage guidance, and ZIP deliverable files containing JSON metadata and text reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 plus YINTAI_APP_KEY and YINTAI_APP_SECRET; optional configuration includes TASK_API_BASE_URL, TASK_POLL_INTERVAL, TASK_OUTPUT_DIR, minimum bounty, and category filters.]
+
+## Skill Version(s):
+
+1.1.6 (source: server release evidence; artifact frontmatter lists 1.1.0 and pyproject.toml lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-Helps agents route SYSU campus workflows on macOS 12+ through the published sysu-anything-apple runtime so Calendar and Reminders items can be created for timetables, homework, reservations, career events, leave, and work-study tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through macOS 12+ SYSU campus workflows that sync supported tasks into Apple Calendar and Apple Reminders.
 
-## Publisher: <br>
-[qybaihe](https://clawhub.ai/user/qybaihe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qybaihe](https://clawhub.ai/user/qybaihe)
 
-## Use Case: <br>
-Students, staff, and agent operators working with SYSU services use this skill to turn campus tasks into Apple Calendar events and Apple Reminders on supported macOS hosts. The skill guides command selection, login checks, preview behavior, and confirmation-gated writes for SYSU workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The runtime can write to Apple Calendar and Reminders and uses SYSU session data stored under ~/.sysu-anything. <br>
-Mitigation: Install only when the sysu-anything npm package is trusted, run apple doctor before sync, and confirm the relevant SYSU login state before executing write workflows. <br>
-Risk: Confirmation-gated commands can submit bookings, signups, leave requests, or other campus-service changes. <br>
-Mitigation: Review generated commands before allowing any --confirm action; use preview or detail commands for local Calendar and Reminders import when remote submission is not intended. <br>
-Risk: Apple sync is only supported on macOS 12+ and should not proceed when the native bridge or permissions are unavailable. <br>
-Mitigation: Run sysu-anything-apple apple doctor first and fall back to sysu-anything without the Apple sync layer on unsupported hosts. <br>
+## Use Case:
 
+Developers and agent users use this skill to turn SYSU campus scheduling, homework, reservation, career, leave, travel, and work-study requests into checked commands that can create or update Apple Calendar events and Reminders on supported Macs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qybaihe/sysu-anything-apple) <br>
-- [SYSU-Anything repository](https://github.com/qybaihe/SYSU-Anything) <br>
-- [SYSU anything Apple overview](references/overview.md) <br>
-- [Career Apple integration](references/career.md) <br>
-- [Libic Apple integration](references/libic.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend JSON output from the underlying CLI when another agent or script needs structured results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.6 (source: server release metadata and package.json) <br>
+Risk: The runtime is installed from mutable npm package code and can perform write-capable actions against Apple Calendar, Apple Reminders, and SYSU account state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the publisher qybaihe is trusted, prefer pinned npm versions, review the resolved package before running npx/npm, and require explicit confirmation before --confirm or Apple-write commands.
+
+Risk: Apple sync depends on macOS Calendar/Reminders permissions and a working native bridge.
+
+Mitigation: Run sysu-anything-apple apple doctor before the first sync or after macOS permission changes, and stop if the doctor check fails.
+
+Risk: Some campus workflows distinguish preview-only, local-import, and remote-write behavior, which can lead to misleading local items if commands are chosen loosely.
+
+Mitigation: Check the relevant SYSU login or status command first, use detail/local-import commands for local-only events, and reserve --confirm for intended remote writes.
+
+## Reference(s):
+
+- [SYSU Anything Apple overview](references/overview.md)
+- [Career Apple integration](references/career.md)
+- [Libic Apple integration](references/libic.md)
+- [ClawHub skill page](https://clawhub.ai/qybaihe/skills/sysu-anything-apple)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON-output recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend --json for machine-readable command output; write-capable actions should be gated by runtime checks and explicit confirmation.]
+
+## Skill Version(s):
+
+0.3.6 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

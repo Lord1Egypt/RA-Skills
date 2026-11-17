@@ -1,40 +1,57 @@
-## Description: <br>
-Unified memory-and-growth operating system for agents that need layered memory, self-model-driven promotion rules, preflight and retro loops, and gate-based recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SageMaker gives agents a unified memory-and-growth operating system for layered memory, self-model calibration, preflight and retro loops, and gate-based recovery.
 
-## Publisher: <br>
-[tenured-master-chef-607](https://clawhub.ai/user/tenured-master-chef-607) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tenured-master-chef-607](https://clawhub.ai/user/tenured-master-chef-607)
 
-## Use Case: <br>
-Agents and their operators use this skill to maintain reusable local memory across tasks, including short-term evidence, mid-term synthesis, long-term collaboration constraints, transferable knowledge, and self-model calibration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated memory files may capture secrets or sensitive personal data if users store them there. <br>
-Mitigation: Review memory files periodically and avoid storing secrets or sensitive personal data. <br>
-Risk: Proposed changes to identity or behavior-governance files could alter agent behavior in unintended ways. <br>
-Mitigation: Require approval before applying changes to identity or behavior-governance files. <br>
+## Use Case:
 
+Developers and agent operators use SageMaker to equip an agent with a consistent memory workflow that captures short-term evidence, promotes reusable conclusions, calibrates a self-model, and gates daily or weekly memory updates.
 
-## Reference(s): <br>
-- [ClawHub skill page: SageMaker](https://clawhub.ai/tenured-master-chef-607/sagemaker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with file paths, JSON gate schema, and optional PowerShell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces proposal-first memory and governance updates; no executable code is bundled in the release artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Persistent memory can affect later tasks if inaccurate or unreviewed guidance is promoted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review memory changes before promotion and keep memory scoped per project or user.
+
+Risk: Repository text, documents, web content, and tool output can become standing behavioral rules if treated as trusted memory.
+
+Mitigation: Treat external content and tool output as untrusted evidence unless approved before promotion into persistent memory.
+
+Risk: Mandatory memory updates and broad future influence require review before installation.
+
+Mitigation: Install only when persistent memory behavior is desired and review the skill's memory-update workflow before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tenured-master-chef-607/skills/sagemaker)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with file paths, JSON examples, and PowerShell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can direct creation or update of persistent memory files and gate state.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

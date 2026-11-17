@@ -1,42 +1,58 @@
-## Description: <br>
-Generates Gitea repository activity reports, asks an agent to summarize progress, and prepares HTML email reports for repository administrators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects Gitea repository commit activity, asks an AI agent to summarize progress and risks, renders HTML progress reports, and sends them by email to repository administrators.
 
-## Publisher: <br>
-[zhcolin0313](https://clawhub.ai/user/zhcolin0313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhcolin0313](https://clawhub.ai/user/zhcolin0313)
 
-## Use Case: <br>
-Developers and engineering leads use this skill to collect Gitea commit activity over a selected time window, summarize team progress, identify inactive contributors or vague commits, and send routine progress reports to repository administrators. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect broad Gitea repository activity and email reports without a mandatory send confirmation step. <br>
-Mitigation: Use a read-only, least-privilege Gitea token, scope runs to intended repositories, preview report content, and confirm recipients before sending. <br>
-Risk: HTML email reports can include repository and commit content that may be sensitive or malformed. <br>
-Mitigation: Review generated HTML before delivery and add escaping or sanitization for untrusted repository data. <br>
-Risk: Runtime setup depends on temporary files and unpinned Python package ranges. <br>
-Mitigation: Clean up temporary report files after use and pin dependency versions for controlled deployments. <br>
+## Use Case:
 
+Developers and team leads use this skill to generate routine progress reports from visible Gitea repositories over a default or specified time window and email repository administrators.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhcolin0313/gitea-routine-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, HTML, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Text guidance with shell commands, structured JSON report data, and HTML email content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GITEA_URL and a Gitea personal access token; may process all visible repositories unless scoped to a repository.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release evidence and skill.yaml) <br>
+Risk: The skill handles a Gitea personal access token and private repository activity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install with a narrowly scoped read-only Gitea token and restrict permissions on ~/.config/gitea-routine-report/.env.
+
+Risk: Reports are sent by email to repository administrator addresses, which can expose repository activity to unintended recipients if configuration or defaults are wrong.
+
+Mitigation: Verify the configured Gitea URL and review recipients before sending reports.
+
+Risk: Repository content and AI-generated summaries may be unsafe or misleading in HTML reports.
+
+Mitigation: Treat repository content and summaries as untrusted until HTML escaping, safer temporary files, and stronger confirmation boundaries are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhcolin0313/skills/gitea-routine-report)
+- [Publisher profile](https://clawhub.ai/user/zhcolin0313)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, HTML, shell commands, configuration, guidance]
+
+**Output Format:** [Structured JSON from reporting scripts, AI-generated JSON summaries, and HTML email bodies.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GITEA_URL and a narrowly scoped GITEA_TOKEN; can target all visible repositories or a specific owner/repo and time window.]
+
+## Skill Version(s):
+
+1.2.2 (source: skill.yaml and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

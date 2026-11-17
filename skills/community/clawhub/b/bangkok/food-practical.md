@@ -100,7 +100,7 @@ Same challenges as vegetarian, plus:
 ## Alcohol in Bangkok
 
 ### Legal Drinking
-- **Age**: 21 years old (but rarely checked)
+- **Age**: 20 years old (but rarely checked)
 - **Hours**: Officially 11 AM - 2 PM and 5 PM - midnight
 - **Reality**: Many places serve outside hours, especially in entertainment zones
 

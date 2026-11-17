@@ -1,41 +1,58 @@
-## Description: <br>
-Shared Brain provides a persistent memory layer for multi-agent OpenClaw workspaces so agents can queue, curate, and share durable project facts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shared persistent memory layer across multiple AI agents for keeping durable workspace facts synchronized through a queued, heartbeat-curated shared-brain file.
 
-## Publisher: <br>
-[ohernandez-dev-blossom](https://clawhub.ai/user/ohernandez-dev-blossom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ohernandez-dev-blossom](https://clawhub.ai/user/ohernandez-dev-blossom)
 
-## Use Case: <br>
-Developers and workspace operators use this skill to install and maintain shared persistent memory across multiple AI agents. It helps agents write validated facts to a queue, curate them into a canonical memory file, and load current project ground truth at startup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workspace-wide persistent memory can influence every agent in the workspace. <br>
-Mitigation: Review the skill before installation, run sb-install.sh --dry-run first, and back up AGENTS.md, HEARTBEAT.md, and existing memory files before applying changes. <br>
-Risk: Untrusted or sensitive content stored in shared memory could propagate into future agent sessions. <br>
-Mitigation: Restrict who can write to the queue and do not store secrets, webhook content, user content, emails, or other untrusted external text in the shared brain. <br>
+## Use Case:
 
+Developers and operators use this skill to set up shared persistent memory in multi-agent OpenClaw workspaces, so agents can record durable infrastructure, project, decision, campaign, and security facts. It is intended for workspace initialization, fact propagation, stale-memory cleanup, and shared ground-truth maintenance.
 
-## Reference(s): <br>
-- [Heartbeat Integration](references/heartbeat-integration.md) <br>
-- [Shared Brain on ClawHub](https://clawhub.ai/ohernandez-dev-blossom/shared-brain) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration file changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Installs and updates workspace memory files, AGENTS.md startup instructions, HEARTBEAT.md curation steps, and local helper scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill changes agent startup behavior and introduces shared persistent memory that can influence future agent work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installed scripts and run sb-install.sh with --dry-run before applying workspace changes.
+
+Risk: Automatic curation can overwrite cross-agent facts even though the release claims conflicts require review.
+
+Mitigation: Restrict who can write to the queue and manually review conflicts before relying on curated shared-brain facts.
+
+Risk: The current curator should not be treated as strong integrity protection for shared workspace facts.
+
+Mitigation: Use the shared brain as advisory memory, keep authoritative decisions in reviewed project documentation, and audit queue changes for sensitive entries.
+
+## Reference(s):
+
+- [Heartbeat Integration](references/heartbeat-integration.md)
+- [ClawHub Skill Page](https://clawhub.ai/ohernandez-dev-blossom/skills/shared-brain)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown]
+
+**Output Format:** [Markdown guidance with bash command examples and workspace file changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces instructions for installing and operating shared memory scripts; the scripts create and update local Markdown memory files.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

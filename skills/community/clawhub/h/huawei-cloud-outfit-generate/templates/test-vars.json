@@ -1,0 +1,48 @@
+{
+  "skill_name": "huawei-cloud-outfit-generate",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "Argument help (syntax)",
+      "command": "python3 scripts/generate_outfit.py --help",
+      "expected": "argparse help printed, exit 0; contains --seed/--style/--season/--format",
+      "type": "syntax",
+      "executor": "script"
+    },
+    {
+      "id": "TC-02",
+      "name": "Default Markdown outfit with a fixed seed",
+      "command": "python3 scripts/generate_outfit.py --seed 20240501 --format markdown",
+      "expected": "Markdown outfit with 上装 / 下装 / 鞋履 / 配饰, one item each",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-03",
+      "name": "Plain-text outfit output",
+      "command": "python3 scripts/generate_outfit.py --seed 42 --format text",
+      "expected": "Plain-text outfit, one item per category",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-04",
+      "name": "Style and season filters",
+      "command": "python3 scripts/generate_outfit.py --seed 7 --style casual --season autumn --format json",
+      "expected": "JSON outfit with style=休闲 and season=秋; every item a strict match (fallbacks empty)",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-05",
+      "name": "Reproducible output for the same seed",
+      "command": "python3 scripts/generate_outfit.py --seed 555 --format json",
+      "expected": "JSON outfit object; identical for repeated runs with the same seed",
+      "type": "readonly",
+      "executor": "script"
+    }
+  ],
+  "env_vars_required": [],
+  "notes": "Pure local Python 3 skill: no Huawei Cloud credentials, CLI, SDK, or network access. All cases are read-only and only read the built-in wardrobe. When the smoke harness cannot execute interpreter commands, the structural self-check plus the unit tests under tests/ cover the behaviour."
+}

@@ -1,0 +1,316 @@
+# house-skills-kit 工具库 · 城市规则库（数据外置：改政策改这里，不改代码）
+# 铁律：每个数字标注 as_of（数据时点）；正式使用前须逐城核对当地官方最新公告
+rules_version: "2026.08.31-r3"
+as_of_note: "本文件所有档位为演示档位，正式使用前须逐城核对官方最新公告"
+
+default:
+  lpr:                           # LPR变动影响（⑦-20，08-31新增）
+    lpr_5y: 3.50                 # 5年期以上LPR%（2025-05-20起未动；中行官方表至2026-07-20；每月20日发布0.05%步长）
+    lpr_1y: 3.00                 # 1年期LPR%（同上时点）
+    repricing_cycle_default: 12  # 默认重定价周期（月）；2024-11-01央行11号公告起可申请改3/6个月（存续期仅一次）
+  holding:                       # 持有成本（⑦-21，08-31新增）
+    heating_fee: 0               # 取暖费 元/㎡·采暖季（南方默认0；北方城市档覆盖：北京24/邢台20/廊坊22/吉林27/四平28.3）
+    risk_free: 1.55              # 资金占用参考利率%（五大行5年存款，2024口径；rent.py deposit_bench同源）
+    rent_tax_rate: 2.5           # 个人出租住房综合征收率%（京沪深2.5/广州4/成都备案0；月租≤10万免增值税；优惠至2027-12-31）
+  invest:                        # 买房vs理财（⑦-22，08-31新增）
+    wealth_avg: 1.98             # 银行理财平均收益率%（银行业理财登记托管中心2025年报，较2024年2.65%降67BP历史新低；2026-03普益月均1.01%仍在下探）
+    deposit_1y: 0.95             # 一年期定存%（2025口径）
+    cost_pct: 2.0                # 交易成本综合%（买契税+卖增值税/个税/中介简化口径，--cost-pct可调）
+  loanterm:                      # 房龄与贷款年限（⑦-25，08-31新增；三线取短，各银行差异大以经办行为准）
+    max_term: 30                 # 商贷上限（年）
+    age_plus_term_cap: 40        # 房龄+贷款年限≤40（部分银行30/50）
+    age_cap: 65                  # 借款人年龄+贷款年限≤65（部分银行70/80）
+    pf_max_term: 25              # 公积金上限（国管25/地方30）
+    pf_retire_plus5: 65          # 公积金退休+5口径（男65/女60演示档）
+  sunshine:                      # 日照楼间距（⑦-27，08-31新增；物理口径=1/tan(冬至正午高度角)）
+    floor_h: 2.9                 # 住宅层高（m）
+    latitude: 25.0               # 默认纬度（昆明演示档；城市档覆盖：北京39.9/上海31.2/广州23.1/哈尔滨45.8）
+  loan:
+    _as_of: "2026.08 通用档"
+    commercial_rate: 0.031        # 商贷首套参考利率（演示值）
+    provident_rate: 0.025         # 公积金 5 年以上首套
+    max_years_commercial: 30
+    max_years_provident: 30
+    downpay_min_first: 0.15       # 首套最低首付成数
+    downpay_min_second: 0.25
+  tax:
+    _as_of: "2026.01.01 增值税法施行（财政部 税务总局公告2025年第17号）；契税按2024年16号公告140㎡线"
+    deed_tax:                     # 契税（2024.12.01起全国140㎡线，首二套≤140均1%）
+      first_140le: 0.01           # 首套 ≤140㎡
+      first_140gt: 0.015          # 首套 >140㎡
+      second_140le: 0.01          # 二套 ≤140㎡
+      second_140gt: 0.02          # 二套 >140㎡
+      third_plus: 0.03            # 三套及以上
+    vat_full2: 0.0                # 满2年（含）免征：全国统一含北上广深
+    vat_rate: 0.03                # 未满2年：3%征收率（2025年17号公告，自5%下调）
+    vat_price_in: 1               # 1=含税价换算：税=价÷(1+3%)×3%
+    vat_extra_rate: 0.12          # 附加=增值税额×12%（城建7%+教育3%+地方2%，市区口径演示）
+    indiv_tax:
+      full5_unique: 0.0           # 满五唯一免
+      normal: 0.01                # 核定1%（或差额20%，提供原值时取低）
+    stamp_tax: 0.0                # 印花税率（住宅免征=0；非住宅 0.0005 双方各半）
+    fees:                         # 交易费用（真实交易不止税；均可--set覆盖）
+      agent_rate: 0.02            # 中介费率 2%——老何08-30批复：大多数城市1.5%-2%区间，统一取2%；
+                                  # 城市间差异用城市段覆盖或--set agent_rate=0.015即时改
+      agent_split: both           # 中介费承担：buyer/seller/both（both=双方各半，演示默认）
+      transaction_fee: 6          # 交易手续费 元/㎡（住宅，买卖双方各半）
+      registration: 80            # 不动产登记费 元/套（买方，住宅80）
+      mortgage_reg: 80            # 抵押登记费 元/套（买方贷款时）
+      appraisal_rate: 0.001       # 贷款评估费率（贷款额×0.1%演示）
+      guarantee_rate: 0.006       # 赎楼/担保费率（卖方未清余额×0.6%演示，各城差异大）
+      land_gain_rate: 0.02        # 土地收益金（房改房/经适房：成交价×2%，卖方）
+  newhome:                       # 一手房（新房）交易/交房费用（⑦-6）
+    _as_of: "2026.08 演示档：维修基金/物业费各城差异大，正式用前逐城核对"
+    repair_fund_mode: per_area    # 维修基金口径：per_area=按类型表元/㎡；per_price=总价百分比
+    repair_fund_table:            # 首期维修资金 元/㎡（按物业类型；城市段可整表覆盖）
+      walkup: 90                  # 多层/不带电梯（≤6层无电梯，演示档）
+      elevator: 110               # 高层/带电梯（≥7层，演示档）
+      nonresidential: 130         # 非住宅（小区内商铺/车位等，演示档）
+    repair_fund_per_area: 110     # 兼容旧参数：类型表缺档时的兜底
+    repair_fund_per_price: 0.0    # 维修基金 占总价比（per_price 模式用）
+    property_fee: 2.5             # 物业费 元/㎡/月（演示：普通住宅1.5-3.5）
+    prepaid_months: 12            # 交房预收物业费月数（常见3-12，演示取整年）
+    gas_install: 2800             # 燃气初装/开户费（元；已含在房价的城市段改0）
+    registration: 80              # 不动产登记费 元/套（住宅80，非住宅550；含首本不动产权证书）
+    cert_fee_extra: 10            # 证书工本费：首本免费，加发每本10元（共有/车位加证时）
+    agent_rate: 0                 # 一手房通常无中介费（渠道佣金开发商出）；渠道单可--set
+    transfer_tax_note: "一手房无增值税/个税（卖方是开发商，税费在开发商环节）"
+  discount:
+    _as_of: "2026.08 通用演示"
+    payment_discounts:            # 语义：优惠点数（0.02=一次性付款让2个点）
+      one_time: 0.02
+      mortgage: 0.0
+    development_discounts:       # 语义：支付因子（0.98=98折）演示
+      open_discount: 0.98
+      fullpay_quick: 0.99
+    order_note: "先楼层与付款等价格型修正，后营销型折扣依次相乘（折上折）"
+  prepayment:                    # 提前还款（⑦-3）常见行情默认档——各银行以借款合同为准
+    penalty_rate: 0.0            # 违约金率（还款满1-3年多为0；未满期或部分银行收已还本金1%等）
+    min_prepay: 10000            # 最低提前还款额（多数银行1万起、按万取整）
+  capacity:                      # 购房能力（⑦-5）银行审贷双线口径
+    dti: 0.5                     # 月供收入比上限（含存量负债；多数银行0.5，宽松0.55）
+    min_down_first: 0.15         # 首套最低首付（2026-05央行新政下限15%；个别城市二成）
+    min_down_second: 0.25        # 二套最低首付（多城25%-30%，城市段可覆盖）
+  recognition:                   # 首套二套认定（⑥）——2023-08三部门推动"认房不认贷"，全国已落地；如个别城市恢复认贷，城市段覆盖 commerce_mode
+    commerce_mode: no_loan       # 商贷：no_loan=认房不认贷（主流）/ home_and_loan=认房又认贷
+    fund_mode: home_and_loan     # 公积金：普遍认房又认贷+看公积金使用次数
+  fund:                          # 公积金贷款额度（⑦-16，08-31新增）——四限取最低框架（昆明细则2024-12第十条/武汉公式FAQ 2026-05）；系数为演示梯度，--set 可覆盖
+    base_cap_single: 600000      # 单缴存人上限（演示默认；昆明2026-04-07起70万见城市档）
+    base_cap_couple: 1000000     # 双缴存人上限（演示默认）
+    balance_multiple: 20         # 余额倍数（全国常见20倍；深圳16倍、长沙按个贷率14-20倍浮动）
+    months_coef_table: "6:12:0.5;12:24:0.8;24:36:1.0;36:60:1.2;60:99999:1.5"  # 缴存月数:下限含-上限不含:系数（武汉2026-05官方梯度）
+    repay_coef: 0.40             # 还贷能力系数（缴存基数×40%为月供上限；武汉35%、昆明旧档45%——演示取40%）
+    max_years: 30
+    provident_rate: 0.025        # 5年以上首套（与loan域一致）
+    downpay_min_first: 0.20
+    downpay_min_second: 0.30
+    boost_multi_child: 0.30      # 多子女上浮（昆明+30%）
+    boost_green: 0.20            # 现房/绿建上浮（昆明+20%，与多子女可叠加至50%）
+    boost_elite: 0.50            # 高层次人才上浮（昆明+50%）
+    boost_cap: 0.50              # 上浮封顶（非人才情形；elite单列见城市档说明）
+  commission:                    # 佣金/提成（⑦-17，08-31新增）——行情演示档，以合同约定为准
+    resale_buyer_rate: 0.02      # 二手买方费率（昆明2%/链家北京2023-09各1%；行业2%-2.7%）
+    resale_seller_rate: 0.01     # 二手卖方费率（昆明1%；单边收费城市可设0）
+    channel_rate: 0.03           # 新房渠道固定点位（常见2%-3%；难卖盘5%-8%，台山2025限佣8-10%）
+    agent_share: 0.35            # 经纪人提成占佣金比例（行业25%-40%）
+    tier_example: "1000000:0.025;3000000:0.03;999999999:0.035"  # 阶梯示例（全额跳档vs分段累进双算法）
+  efficiency:                    # 得房率/单价换算（⑦-18，08-31新增）——行业参考区间，非官方标准
+    rate_garden: 0.86            # 洋房/低密 82-90%
+    rate_plate: 0.82             # 小高层板楼 80-85%
+    rate_tower: 0.77             # 高层塔楼 75-80%
+    rate_super: 0.75             # 超高层 72-78%
+    rate_apartment: 0.62         # 商住公寓 55-70%（公摊大）
+    rate_default: 0.78           # 未指定类型默认
+    use_coef: 0.88               # 套内建面→使用面积系数（扣墙体/阳台半积，85-90%中值）
+  rent:                          # 租金回报率（⑦-19，08-31新增）——静态口径，未计房价涨跌
+    deposit_bench: 0.0155        # 五大行5年存款基准（2024"1字头"，随利率调整--set覆盖）
+    national50: 0.0206           # 2024重点50城租金回报率均值（麟评居住大数据研究院，创新高）
+    loan_commercial: 0.031       # 商贷参照利率（以租养贷判定线）
+    vacancy: 0.05                # 空置+换租损耗（演示档5%）
+    tax_rate: 0.05               # 个人出租住房综合税负（各地优惠口径2.5%-5%，以税务核定为准）
+    maint: 0.005                 # 年维修保养占房价（0.5%）
+
+cities:
+  北京:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.030
+    tax:
+      vat_extra: 0.006
+      _note: "增值税附加演示口径"
+    holding:
+      heating_fee: 24             # 北京大网集中供暖 元/㎡·采暖季（北京本地宝2025-2026；独网燃气30/热计量基本价12）
+    sunshine:
+      latitude: 39.9              # 北京纬度（冬至正午高度角26.6°→系数≈1.99）
+    districts:
+      通州:
+        _note: "副中心政策演示样例（须核对）"
+  上海:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.030
+  深圳:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.030
+  广州:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.030
+  昆明:
+    _as_of: "2026.08 演示档；维修资金档=老何08-30口径；公积金档=2026-04-07新政（有效期1年，到期前复查）"
+    loan:
+      commercial_rate: 0.031
+    fund:                          # 昆明公积金（2026-04-07《关于优化调整住房公积金个人住房贷款政策的通知》，新华网2026-04-05）
+      base_cap_single: 700000      # 单缴存人 70 万
+      base_cap_couple: 1000000     # 双缴存人 100 万
+      balance_multiple: 20         # 余额倍数演示值（中心按个贷率等动态调整，待官方公式页复核）
+      boost_multi_child: 0.30      # 多子女（首套+二套）上浮30% → 单91万/双130万
+      boost_green: 0.20            # 现房/星级绿建/绿色生态小区 上浮20% → 单84万/双120万
+      boost_cap: 0.50              # 两情形叠加至+50% → 单105万/双150万
+      boost_elite: 0.50            # 高层次人才（兴滇惠才卡/春城惠才卡）上浮50% → 单105万/双150万
+    commission:                    # 昆明市中介行业收费标准（2019-04昆明信息港）：二手买2%卖1%，租赁≤1月租金
+      resale_buyer_rate: 0.02
+      resale_seller_rate: 0.01
+      channel_rate: 0.03           # 昆明新房渠道行情点位（演示，以项目合同为准）
+    prepayment:                    # 提前还款（⑦-3）——各银行差异大，以下为常见行情，--set可覆盖
+      penalty_rate: 0.0            # 违约金率（还款满1-3年多为0；未满期或部分银行收已还本金1%等）
+      min_prepay: 10000            # 最低提前还款额（多数银行1万起、按万取整）
+    newhome:
+      _as_of: "昆明维修资金：高层90元/㎡（老何08-30口径）；其他类型为演示值待核对"
+      repair_fund_table:
+        walkup: 90                  # 多层/不带电梯（演示值，昆明官方档待核对）
+        elevator: 90                # 高层/带电梯=90元/㎡（老何08-30口径）
+        nonresidential: 130         # 非住宅（演示值待核对）
+  成都:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.031
+  武汉:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.031
+    fund:                          # 武汉公积金（2026-05-26官网公式FAQ：余额×20倍×缴存时间系数；还贷=基数×35%×12×年限）
+      balance_multiple: 20
+      months_coef_table: "6:12:0.5;12:24:0.8;24:36:1.0;36:60:1.2;60:99999:1.5"
+      repay_coef: 0.35
+      base_cap_single: 600000      # 演示值，武汉现行上限以中心公告为准
+      base_cap_couple: 1000000
+  杭州:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.030
+  南京:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.031
+  重庆:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.031
+  西安:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.031
+  郑州:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.031
+  长沙:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.031
+  合肥:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.031
+  青岛:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.031
+  宁波:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.031
+  福州:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.031
+  厦门:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.030
+  天津:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.031
+  苏州:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.030
+  无锡:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.031
+  佛山:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.030
+    newhome:
+      _as_of: "南海区2026-09-01起维修资金新标准（佛山全市其他区可能不同）"
+      repair_fund_table:
+        walkup: 85                  # 住宅不带电梯 85元/㎡（南海区通告，2026-09-01施行）
+        elevator: 91                # 住宅带电梯 91元/㎡（南海区通告，2026-09-01施行）
+        nonresidential: 107         # 非住宅 107元/㎡（南海区通告，2026-09-01施行）
+  东莞:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.030
+  昆山:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.030
+  珠海:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.030
+  南宁:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.031
+  贵阳:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.031
+  太原:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.031
+  南昌:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.031
+  石家庄:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.031
+  长春:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.031
+  哈尔滨:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.031
+  大连:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.031
+  兰州:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.031
+  乌鲁木齐:
+    _as_of: "2026.08 演示档"
+    loan:
+      commercial_rate: 0.031

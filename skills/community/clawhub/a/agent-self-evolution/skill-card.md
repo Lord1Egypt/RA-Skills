@@ -1,45 +1,56 @@
-## Description: <br>
-Make your agent get better on its own by setting up golden tests, running automated evaluations, and tracking improvement over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agent builders set up golden tests, automated evaluations, improvement tracking, and ablation testing to measure and improve agent behavior over time.
 
-## Publisher: <br>
-[dario-github](https://clawhub.ai/user/dario-github) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dario-github](https://clawhub.ai/user/dario-github)
 
-## Use Case: <br>
-Developers and agent maintainers use this skill to define golden tests, evaluate agent behavior, compare ablation conditions, and identify regressions or weak dimensions before changing an agent configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer can delete the configured installation directory during a failed update. <br>
-Mitigation: Review the install script before use and set EVOLUTION_INSTALL_DIR only to a dedicated, non-critical directory. <br>
-Risk: Evaluation runs may exercise agent files, prompts, or memory content that should not be altered during testing. <br>
-Mitigation: Run tests against copies or sandboxed agent files and use a dedicated LLM API key for judging. <br>
-Risk: Installing directly from a moving repository can change behavior between installs. <br>
-Mitigation: Install from a reviewed, pinned commit or release when using the skill in a controlled environment. <br>
+## Use Case:
 
+Developers and agent builders use this skill to install and apply an agent evaluation workflow with golden tests, multidimensional scoring, ablation experiments, and iterative improvement loops.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dario-github/agent-self-evolution) <br>
-- [Project Homepage](https://github.com/dario-github/agent-self-evolution) <br>
-- [nous-safety Companion Project](https://github.com/dario-github/nous) <br>
-- [biomorphic-memory Companion Project](https://github.com/dario-github/biomorphic-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python >= 3.11 and an LLM API key for evaluation judging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The installer downloads mutable remote code and runs it locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream repository before installation, prefer a pinned release or commit, and install in an isolated virtual environment.
+
+Risk: The installer can delete the directory selected by EVOLUTION_INSTALL_DIR during fallback reinstall.
+
+Mitigation: Set EVOLUTION_INSTALL_DIR only to a disposable installation path and avoid directories containing important data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dario-github/skills/agent-self-evolution)
+- [Agent Self-Evolution Homepage](https://github.com/dario-github/agent-self-evolution)
+- [nous-safety Companion Project](https://github.com/dario-github/nous)
+- [biomorphic-memory Companion Project](https://github.com/dario-github/biomorphic-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require Python 3.11+, an LLM API key for evaluation judging, and local shell execution for installation.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release metadata; artifact frontmatter says 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

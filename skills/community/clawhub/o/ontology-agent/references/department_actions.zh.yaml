@@ -1,0 +1,336 @@
+# 逻辑层 · 权威部门动作目录（去重融合）
+# 主轴：OPB-Skills (chendongqi, MIT, 91 技能/24 部门，最全)
+# 互补：Frog1205 (legal 密集) / slavingia (创业增长) / ReScienceLab (SEO·社媒·品牌) / sober568 (OPC 五阶段诊断)
+# 工作流思路：easychen (CC-BY-NC-SA) —— 其授权不要求本产品对其署名或纳入其内容
+# 来源代号（内部溯源，仅开发期使用）：
+#   OPB  = chendongqi/OPB-Skills
+#   Frog = Frog1205/OPC-Skills
+#   slav = slavingia/skills
+#   ReS  = ReScienceLab/opc-skills
+#   sober= sober568/opc-zhinao
+#   easy = easychen/opc-methodology（按 CC-BY-NC-SA 授权使用）
+#   WSHU = 天津市微数人工智能科技有限责任公司自创扩展动作（24 部门扩展，登记 IP 扩展增量）
+# 字段：slug(英文标识) / name(中文显示名) / source(来源代号) / note(可选)
+
+meta:
+  version: 0.2.0
+  department_count: 24
+  action_total: 177
+  principle: 精选广度（每部门去重并集权威动作），非 90+ 原始文件堆砌
+  note: 12 核心部门 = 141 动作；12 可选部门行动层于 2026-08-15 补齐（6 部门复用核心动作、6 部门新增 WSHU 原创扩展动作 18 条），合计 177 条动作绑定、159 个唯一 action_spec。修复此前 tools_ref 指向不存在 section 导致可选部门专家 0 能力的 bug。
+
+departments:
+
+  # ───────────────────────── 1. 负责人 / 综合决策 ─────────────────────────
+  lead:
+    display: 负责人 / 综合决策 / 组织与个人发展
+    note: OPC 一人公司中负责人即个人；涵盖公司战略、自我管理、组织学习
+    actions:
+      - { slug: strategic-startup-mentor,        name: 创业指导师,   source: OPB }
+      - { slug: strategic-startup-simulator,     name: 创业模拟器,   source: OPB }
+      - { slug: personal-review,                 name: 周期性复盘,   source: OPB }
+      - { slug: personal-planning,               name: 规划助手,     source: OPB }
+      - { slug: personal-talent-discovery,       name: 天赋发现顾问, source: OPB }
+      - { slug: personal-goal-manager,           name: 目标管理,     source: OPB }
+      - { slug: personal-habit-builder,          name: 习惯养成,     source: OPB }
+      - { slug: personal-career-planner,         name: 职业规划,     source: OPB }
+      - { slug: personal-time-manager,           name: 时间管理,     source: OPB }
+      - { slug: personal-health-manager,          name: 健康管理,     source: OPB }
+      - { slug: personal-human3,                 name: HUMAN3.0评估, source: OPB }
+      - { slug: learning-planner,                name: 学习规划,     source: OPB }
+      - { slug: knowledge-manager,               name: 知识管理,     source: OPB }
+      - { slug: company-values,                  name: 公司价值观,   source: slav }
+
+  # ───────────────────────── 2. 行政 / 运营 ─────────────────────────
+  admin:
+    display: 行政 / 运营 / 活动
+    actions:
+      - { slug: user-operations,                 name: 用户运营,     source: OPB }
+      - { slug: event-planner,                   name: 活动策划,     source: OPB }
+
+  # ───────────────────────── 3. 人力 ─────────────────────────
+  hr:
+    display: 人力资源
+    note: OPC 一人公司多为自管理，但保留标准化 HR 动作以备 SME / 多人员包
+    actions:
+      - { slug: hr-recruiter,                    name: 招聘助手,     source: OPB }
+      - { slug: hr-performance,                  name: 绩效管理,     source: OPB }
+      - { slug: hr-compensation,                 name: 薪酬设计,     source: OPB }
+
+  # ───────────────────────── 4. 财务 ─────────────────────────
+  finance:
+    display: 财务 / 税务
+    actions:
+      - { slug: finance-planner,                 name: 财务规划,     source: OPB }
+      - { slug: finance-cost-analyst,            name: 成本分析,     source: OPB }
+      - { slug: finance-investment-analyst,      name: 投资分析,     source: OPB }
+
+  # ───────────────────────── 5. 法务 / 合规 ─────────────────────────
+  legal:
+    display: 法务 / 合规
+    note: 以 Frog1205 的 legal 系列补足 OPB 的合规三件套，形成深度法务动作集
+    actions:
+      - { slug: legal-contract-reviewer,         name: 合同审查,     source: OPB }
+      - { slug: legal-compliance-checker,        name: 合规检查,     source: OPB }
+      - { slug: legal-ip-manager,                name: 知识产权管理, source: OPB }
+      - { slug: legal-overview,                  name: 法律总览,     source: Frog }
+      - { slug: legal-agreement,                 name: 协议起草,     source: Frog }
+      - { slug: legal-compare,                   name: 条款比对,     source: Frog }
+      - { slug: legal-freelancer,                name: 自由职业法务, source: Frog }
+      - { slug: legal-missing,                   name: 缺失条款,     source: Frog }
+      - { slug: legal-nda,                       name: 保密协议,     source: Frog }
+      - { slug: legal-negotiate,                 name: 法务谈判,     source: Frog }
+      - { slug: legal-plain,                     name: 白话法律,     source: Frog }
+      - { slug: legal-privacy,                   name: 隐私合规,     source: Frog }
+      - { slug: legal-report-pdf,                name: 法律报告,     source: Frog }
+      - { slug: legal-review,                    name: 法律审查,     source: Frog }
+      - { slug: legal-risks,                     name: 法律风险,     source: Frog }
+      - { slug: legal-terms,                     name: 条款生成,     source: Frog }
+      - { slug: opc-compliance-diagnosis,        name: OPC合规诊断,  source: sober }
+
+  # ───────────────────────── 6. 研发 / 产品 / 技术 / 设计 / QA / DevOps ─────────────────────────
+  rnd:
+    display: 研发 / 产品 / 技术 / 设计 / 质量 / 运维安全
+    note: 技术与产品实现中枢；垂直专项（汽车座舱/Android/ASPICE）标 industry_specific，按行业包取舍
+    actions:
+      # 产品
+      - { slug: product-industry-analyst,        name: 行业分析,     source: OPB }
+      - { slug: product-researcher,              name: 产品调研,     source: OPB }
+      - { slug: product-market-researcher,       name: 市场调研,     source: OPB }
+      - { slug: product-ideation-pm,             name: 产品创意PM,   source: OPB }
+      - { slug: product-ai-remake,               name: AI产品重做,   source: OPB }
+      # 通用研发
+      - { slug: rnd-frontend-review,             name: 前端审查,     source: OPB }
+      - { slug: rnd-code-simplify,               name: 代码简化,     source: OPB }
+      - { slug: rnd-requirements-writer,         name: 需求编写,     source: OPB }
+      - { slug: rnd-fullstack-architect,         name: 全栈架构,     source: OPB }
+      - { slug: rnd-api-design,                  name: API设计,      source: OPB }
+      - { slug: rnd-db-table-design,             name: 数据库表设计, source: OPB }
+      - { slug: rnd-technical-writer,            name: 技术写作,     source: OPB }
+      - { slug: rnd-blog-planner,                name: 博客系列规划, source: OPB }
+      - { slug: rnd-arch-diagrammer,             name: 架构图绘制,   source: OPB }
+      - { slug: rnd-frontend-design,             name: 前端设计,     source: OPB }
+      # 垂直专项（行业包按需启用）
+      - { slug: rnd-cockpit-architect,           name: 座舱架构,     source: OPB, industry_specific: true }
+      - { slug: rnd-android-architect,           name: Android架构,  source: OPB, industry_specific: true }
+      - { slug: rnd-android-perf,                name: Android性能,  source: OPB, industry_specific: true }
+      - { slug: rnd-anr-analyzer,                name: ANR分析,      source: OPB, industry_specific: true }
+      - { slug: rnd-auto-issue,                 name: 座舱问题分析, source: OPB, industry_specific: true }
+      - { slug: rnd-aspice-sys2swe,              name: ASPICE需求拆解, source: OPB, industry_specific: true }
+      - { slug: rnd-aspice-reviewer,             name: ASPICE需求评审, source: OPB, industry_specific: true }
+      # 设计
+      - { slug: design-ui-ux,                    name: UI/UX设计,    source: OPB }
+      - { slug: design-visual,                   name: 视觉设计,     source: OPB }
+      - { slug: design-remotion,                 name: 视频生成,     source: OPB }
+      # 测试
+      - { slug: test-case-writer,                name: 测试用例,     source: OPB }
+      - { slug: test-automation,                 name: 自动化测试,   source: OPB }
+      - { slug: test-performance,                name: 性能测试,     source: OPB }
+      - { slug: test-security,                   name: 安全测试,     source: OPB }
+      - { slug: test-manager,                    name: 测试管理,     source: OPB }
+      # 质量
+      - { slug: quality-system-builder,          name: 质量体系建设, source: OPB }
+      - { slug: quality-monitor,                 name: 质量监控,     source: OPB }
+      - { slug: quality-auditor,                 name: 质量审计,     source: OPB }
+      - { slug: quality-improvement,             name: 质量改进,     source: OPB }
+      - { slug: quality-risk-manager,            name: 质量风险,     source: OPB }
+      # 运维 / 安全
+      - { slug: devops-system-ops,               name: 系统运维,     source: OPB }
+      - { slug: devops-engineer,                 name: DevOps,       source: OPB }
+      - { slug: devops-cloud-arch,               name: 云架构,       source: OPB }
+      - { slug: sec-strategist,                  name: 安全策略,     source: OPB }
+      - { slug: sec-data-security,               name: 数据安全,     source: OPB }
+      - { slug: sec-incident-response,           name: 安全响应,     source: OPB }
+      # 元技能（工具）
+      - { slug: meta-skill-creator,              name: 技能创建器,   source: OPB }
+      - { slug: opc-template-engine,             name: OPC模板引擎,  source: ReS }
+      - { slug: opc-add-skill-engine,            name: 新增OPC技能,  source: ReS }
+
+  # ───────────────────────── 7. 内容营销 / 品牌 / 视觉 ─────────────────────────
+  mkt_content:
+    display: 内容营销 / 品牌 / 视觉 / 文案
+    actions:
+      - { slug: content-app-namer,               name: 应用起名,     source: OPB }
+      - { slug: content-creator,                 name: 内容创作,     source: OPB }
+      - { slug: content-audio,                   name: 音频生成,     source: OPB }
+      - { slug: content-video-script,            name: 视频脚本,     source: OPB }
+      - { slug: content-altay,                   name: 散文写作,     source: OPB }
+      - { slug: content-oss-article,             name: 开源文章,     source: OPB }
+      - { slug: content-notebooklm,              name: 研究助手,     source: OPB }
+      - { slug: mkt-ad-copywriter,               name: 广告文案,     source: OPB }
+      - { slug: brand-manager,                   name: 品牌管理,     source: OPB }
+      - { slug: brand-pr-strategist,             name: 公关策略,     source: OPB }
+      - { slug: brand-reputation,                name: 舆情监控,     source: OPB }
+      - { slug: design-banner,                   name: 横幅创作,     source: ReS }
+      - { slug: design-logo,                     name: Logo创作,     source: ReS }
+      - { slug: design-image-ai,                 name: AI图像,       source: ReS }
+
+  # ───────────────────────── 8. 分销 / 渠道 / 商务拓展 ─────────────────────────
+  mkt_dist:
+    display: 分销 / 渠道 / 商务拓展
+    actions:
+      - { slug: bd-partnership,                  name: 合作伙伴管理, source: OPB }
+      - { slug: bd-negotiator,                   name: 商务谈判,     source: OPB }
+      - { slug: bd-channel-dev,                  name: 渠道拓展,     source: OPB }
+      - { slug: dist-reddit,                     name: Reddit分发,   source: ReS }
+      - { slug: dist-twitter,                    name: Twitter分发,  source: ReS }
+      - { slug: dist-producthunt,                name: ProductHunt,  source: ReS }
+      - { slug: dist-requesthunt,                name: 需求猎手,     source: ReS }
+
+  # ───────────────────────── 9. SEO / 增长 / 社媒获客 ─────────────────────────
+  mkt_seo:
+    display: SEO / 增长 / 社媒获客
+    actions:
+      - { slug: seo-optimizer,                   name: SEO优化,      source: OPB }
+      - { slug: seo-geo,                         name: 地理SEO,      source: ReS }
+      - { slug: seo-domain-hunter,               name: 域名猎手,     source: ReS }
+      - { slug: growth-user-ops,                 name: 用户增长,     source: OPB }
+      - { slug: growth-sustainably,              name: 可持续增长,   source: slav }
+      - { slug: growth-first-customers,          name: 首批客户,     source: slav }
+      - { slug: growth-pricing,                  name: 定价策略,     source: slav }
+
+  # ───────────────────────── 10. 销售 / 客户 ─────────────────────────
+  sales:
+    display: 销售 / 客户 / 客服
+    actions:
+      - { slug: sales-strategist,                name: 销售策略,     source: OPB }
+      - { slug: sales-crm,                       name: CRM管理,      source: OPB }
+      - { slug: sales-forecaster,                name: 销售预测,     source: OPB }
+      - { slug: support-customer-service,         name: 客服助手,     source: OPB }
+      - { slug: support-technical,                name: 技术支持,     source: OPB }
+
+  # ───────────────────────── 11. 数据 / 分析 / BI ─────────────────────────
+  data:
+    display: 数据 / 分析 / 商业智能
+    actions:
+      - { slug: data-analyst,                    name: 数据分析,     source: OPB }
+      - { slug: data-user-behavior,               name: 用户行为分析, source: OPB }
+      - { slug: data-bi,                         name: 商业智能,     source: OPB }
+
+  # ───────────────────────── 12. 战略 / 商业模式 / 创业诊断 ─────────────────────────
+  strategy:
+    display: 战略 / 商业模式 / 创业方法论与诊断
+    note: 创业阶段方法论 + OPC 五阶段诊断 + 独立重写的工作流（来源 easy 为思想借鉴、自有表达）
+    actions:
+      - { slug: strategy-validate-idea,          name: 创意验证,     source: slav }
+      - { slug: strategy-mvp,                    name: MVP设计,      source: slav }
+      - { slug: strategy-marketing-plan,         name: 营销计划,     source: slav }
+      - { slug: strategy-find-community,         name: 社群发现,     source: slav }
+      - { slug: strategy-processize,             name: 流程化,       source: slav }
+      - { slug: strategy-minimalist-review,      name: 极简复盘,     source: slav }
+      # OPC 五阶段诊断（sober568）
+      - { slug: diagnosis-idea-feasibility,      name: 创意可行性,   source: sober }
+      - { slug: diagnosis-mvp-design,            name: 诊断MVP设计,  source: sober }
+      - { slug: diagnosis-seed-coldstart,        name: 种子冷启动,   source: sober }
+      - { slug: diagnosis-scale-growth,          name: 规模增长,     source: sober }
+      - { slug: diagnosis-feasibility-score,     name: 可行性打分,   source: sober }
+      - { slug: diagnosis-report-export,         name: 诊断报告导出, source: sober }
+      - { slug: diagnosis-user-feedback,         name: 用户反馈,     source: sober }
+      # 独立重写的工作流（easychen 思想借鉴，自有表达，不复制其文本）
+      - { slug: wf-opc-orchestrator,            name: OPC编排器,    source: easy, derived: true }
+      - { slug: wf-conversion-loop,             name: 转化循环,     source: easy, derived: true }
+      - { slug: wf-asset-ops,                   name: 资产运营,     source: easy, derived: true }
+      - { slug: wf-business-model,              name: 商业模式设计, source: easy, derived: true }
+      - { slug: wf-value-proposition,           name: 价值主张,     source: easy, derived: true }
+      - { slug: wf-niche-positioning,           name: 细分定位,     source: easy, derived: true }
+      - { slug: wf-dashboard-review,            name: 仪表盘复盘,   source: easy, derived: true }
+      - { slug: wf-resource-audit,              name: 资源审计,     source: easy, derived: true }
+      - { slug: wf-mvp-designer,                name: MVP设计器,    source: easy, derived: true }
+
+  # ════════════════════════════════════════════════════════════════
+  # 二、12 可选部门（按需激活，core: false）— 行动层补齐（2026-08-15）
+  # 修复：此前 experts-template 中 tools_ref 指向不存在的 section，
+  #       导致激活可选部门后 build_experts 取到 0 能力（静默空壳专家）。
+  # 下列 section 使 24 部门模板每个 code 都能解析到真实动作。
+  # ════════════════════════════════════════════════════════════════
+
+  # 产品（需求定义侧，区别于 rnd 实现侧）：复用 rnd 下 product-* 动作
+  product:
+    display: 产品经理 / 需求定义 / 路线图
+    actions:
+      - { slug: product-industry-analyst,        name: 行业分析,     source: OPB }
+      - { slug: product-researcher,              name: 产品调研,     source: OPB }
+      - { slug: product-market-researcher,       name: 市场调研,     source: OPB }
+      - { slug: product-ideation-pm,            name: 产品创意PM,   source: OPB }
+      - { slug: product-ai-remake,              name: AI产品重做,   source: OPB }
+
+  # 设计（视觉侧，区别于 mkt_content 文案侧）：复用 rnd 下 design-* 动作
+  design:
+    display: 设计 / 品牌视觉 / UI·UX
+    actions:
+      - { slug: design-ui-ux,                    name: UI/UX设计,    source: OPB }
+      - { slug: design-visual,                   name: 视觉设计,     source: OPB }
+      - { slug: design-remotion,                 name: 视频生成,     source: OPB }
+
+  # 质量（品控侧）：复用 rnd 下 quality-* 动作
+  quality:
+    display: 质量管理 / QA / 品控
+    actions:
+      - { slug: quality-system-builder,          name: 质量体系建设, source: OPB }
+      - { slug: quality-monitor,                 name: 质量监控,     source: OPB }
+      - { slug: quality-auditor,                 name: 质量审计,     source: OPB }
+      - { slug: quality-improvement,             name: 质量改进,     source: OPB }
+      - { slug: quality-risk-manager,            name: 质量风险,     source: OPB }
+
+  # 客服（售后侧）：复用 sales 下 support-customer-service 动作
+  customer_service:
+    display: 客户服务 / 工单 / 客诉
+    actions:
+      - { slug: support-customer-service,        name: 客服助手,     source: OPB }
+
+  # 公关（媒体侧，区别于 mkt_content 自有内容侧）：复用 mkt_content 下 brand-* 动作
+  pr:
+    display: 公关 / 媒体关系 / 声誉
+    actions:
+      - { slug: brand-pr-strategist,             name: 公关策略,     source: OPB }
+      - { slug: brand-reputation,                name: 舆情监控,     source: OPB }
+
+  # 运营（经营统筹侧）：复用 admin 下动作
+  operations:
+    display: 运营 / 流程编排 / 跨部门协调
+    actions:
+      - { slug: user-operations,                 name: 用户运营,     source: OPB }
+      - { slug: event-planner,                   name: 活动策划,     source: OPB }
+
+  # ── 以下 6 部门为 24 部门扩展原创动作（WSHU 自创，登记为微数数据 IP 扩展增量）──
+  procurement:
+    display: 采购供应链 / 供应商 / 库存 / 履约
+    actions:
+      - { slug: procurement-sourcing,            name: 供应商寻源,   source: WSHU }
+      - { slug: procurement-negotiation,         name: 采购议价,     source: WSHU }
+      - { slug: procurement-inventory,           name: 库存策略,     source: WSHU }
+
+  investor:
+    display: 投融资 / 融资材料 / 资本运作
+    actions:
+      - { slug: investor-bp,                     name: 融资BP,       source: WSHU }
+      - { slug: investor-relations,              name: 投资人关系,   source: WSHU }
+      - { slug: investor-valuation,              name: 估值与条款,   source: WSHU }
+
+  csm:
+    display: 客户成功 / 续费 / 增购
+    actions:
+      - { slug: csm-health,                      name: 健康度监测,   source: WSHU }
+      - { slug: csm-renewal,                     name: 续费推进,     source: WSHU }
+      - { slug: csm-upsell,                      name: 增购挖掘,     source: WSHU }
+
+  international:
+    display: 出海跨境 / 本地化 / 海外合规
+    actions:
+      - { slug: intl-localization,               name: 本地化,       source: WSHU }
+      - { slug: intl-compliance,                 name: 海外合规,     source: WSHU }
+      - { slug: intl-growth,                     name: 跨境增长,     source: WSHU }
+
+  risk:
+    display: 风控内控 / 风险地图 / 审计
+    actions:
+      - { slug: risk-map,                        name: 风险地图,     source: WSHU }
+      - { slug: risk-control,                    name: 内控流程,     source: WSHU }
+      - { slug: risk-audit,                      name: 审计反舞弊,   source: WSHU }
+
+  it_security:
+    display: IT与安全 / 资产 / 网络 / 备份
+    actions:
+      - { slug: it-asset,                        name: 资产与权限,   source: WSHU }
+      - { slug: it-network,                      name: 网络安全,     source: WSHU }
+      - { slug: it-backup,                       name: 备份容灾,     source: WSHU }

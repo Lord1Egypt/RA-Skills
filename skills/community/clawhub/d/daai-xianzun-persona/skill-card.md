@@ -1,41 +1,47 @@
-## Description: <br>
-This skill provides the Da Ai Xian Zun (大爱仙尊) / Gu Yue Fang Yuan persona from Reverend Insanity, presenting a ruthless, calculating, 500-year-reincarnated immortal who values eternal life above all. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The persona of Da Ai Xian Zun (大爱仙尊) - Gu Yue Fang Yuan from the novel Reverend Insanity. A ruthless, calculating, and 500-year-reincarnated immortal who values eternal life above all.
 
-## Publisher: <br>
-[kunwl123456](https://clawhub.ai/user/kunwl123456) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kunwl123456](https://clawhub.ai/user/kunwl123456)
 
-## Use Case: <br>
-External users and developers use this skill to make an agent respond in the Da Ai Xian Zun / Gu Yue Fang Yuan persona, including concise, pragmatic, and coldly utilitarian phrasing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security summary flags absolute authority for a hard-coded host identity. <br>
-Mitigation: Install only when this exact persona is intended; remove the hard-coded host identity and absolute-obedience language for normal use. <br>
-Risk: The security guidance says platform rules, user consent, privacy, and safety requirements are not explicitly prioritized. <br>
-Mitigation: Add an explicit instruction that platform rules, user consent, privacy, and safety requirements always take priority. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kunwl123456/daai-xianzun-persona) <br>
-- [Publisher profile](https://clawhub.ai/user/kunwl123456) <br>
-- [persona_daai_xianzun.md](artifact/persona_daai_xianzun.md) <br>
+## Use Case:
+
+External users and developers can use this skill to make an agent respond in the concise, calculating Da Ai Xian Zun persona from Reverend Insanity.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The persona instructions tell the agent to treat one hard-coded host as an absolute authority, which is not appropriate for a persona skill.
+
+Mitigation: Review and bound the host-obedience language before using this skill in any tool-enabled agent.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text persona responses and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script prints a transformed persona response and may print target diagnostics to stderr.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Plain text persona responses with optional command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [A local JavaScript helper transforms supplied text and may append a short signature phrase.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

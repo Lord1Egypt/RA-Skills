@@ -8,6 +8,7 @@ Also provides shared helpers (extract_probability, is_settled) used by other mod
 from __future__ import annotations
 
 import json
+import math
 import re
 import socket
 import urllib.error
@@ -96,12 +97,71 @@ def slugify(text: str) -> str:
 # HTTP helper
 # ---------------------------------------------------------------------------
 
+# Byte cap on API responses: normal Gamma payloads are well under 5 MB; the cap
+# stops a pathological/oversized response from exhausting memory. Callers treat
+# the raised error like any other fetch failure (structured SR_* error).
+MAX_RESPONSE_BYTES = 20 * 1024 * 1024
+
+
+# ---------------------------------------------------------------------------
+# Outbound fetch guard
+#
+# SKILL.md declares exactly two data hosts. A declaration that nothing enforces
+# is just prose, so it is enforced here: a fetch to anything else is refused
+# before the socket opens. This also closes the shape the audit named —
+# "unrestricted URL fetching permits requests to internal services and cloud
+# metadata endpoints" — because an internal address is by definition not one of
+# the two allowed hosts.
+# ---------------------------------------------------------------------------
+
+ALLOWED_FETCH_HOSTS = frozenset({"gamma-api.polymarket.com", "clob.polymarket.com"})
+
+
+def assert_allowed_fetch_url(url: str) -> None:
+    """Raise ValueError unless the URL targets a declared Polymarket host."""
+    parts = urllib.parse.urlsplit(url)
+    if parts.scheme != "https":
+        raise ValueError(f"refusing non-HTTPS data fetch: {parts.scheme or '(none)'}://…")
+    host = (parts.hostname or "").lower()
+    if host not in ALLOWED_FETCH_HOSTS:
+        raise ValueError(
+            f"refusing fetch to {host or '(no host)'}: this skill only reads from "
+            + ", ".join(sorted(ALLOWED_FETCH_HOSTS))
+        )
+
+class _AllowlistRedirectHandler(urllib.request.HTTPRedirectHandler):
+    """Re-check every redirect hop against the allowlist.
+
+    Validating only the first URL leaves the guard trivially bypassable: the
+    API could answer 302 and urllib would follow it anywhere. The webhook path
+    learned this earlier; the fetch guard was written without it, and the audit
+    caught the gap ("Polymarket fetch code can follow redirects outside the
+    stated network"). One invariant, every place that implements it.
+    """
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        try:
+            assert_allowed_fetch_url(newurl)
+        except ValueError as exc:
+            raise urllib.error.HTTPError(newurl, code, f"redirect refused: {exc}", headers, fp)
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+def _allowlisted_opener() -> urllib.request.OpenerDirector:
+    return urllib.request.build_opener(_AllowlistRedirectHandler())
+
+
+
 def _api_get(path: str, timeout: int = HTTP_TIMEOUT) -> Any:
     """GET request to gamma API. Returns parsed JSON or raises."""
     url = f"{GAMMA_API_BASE}{path}"
+    assert_allowed_fetch_url(url)
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        return json.loads(resp.read().decode("utf-8"))
+    with _allowlisted_opener().open(req, timeout=timeout) as resp:
+        body = resp.read(MAX_RESPONSE_BYTES + 1)
+        if len(body) > MAX_RESPONSE_BYTES:
+            raise ValueError("Polymarket API response exceeded size cap")
+        return json.loads(body.decode("utf-8"))
 
 
 # ---------------------------------------------------------------------------
@@ -296,7 +356,7 @@ def fetch_market_current_result(market_id: str) -> tuple[dict[str, Any] | None, 
             if market is not None:
                 # Transient snapshot context for HIT-alert display only.
                 # Deliberately NOT added inside normalize_market: that output
-                # is persisted to watchlist.json by the add/discover flow,
+                # is persisted to watchlist.json by the add/onboard flow,
                 # and these point-in-time values must not leak into it.
                 market["clob_token_id"] = extract_clob_token_id(raw)
                 market["volume_24h"] = _safe_float(raw.get("volume24hr"))
@@ -358,11 +418,18 @@ def fetch_market_current(market_id: str) -> dict[str, Any] | None:
 # ---------------------------------------------------------------------------
 
 def _safe_float(value: Any) -> float | None:
-    """float() that returns None instead of raising on bad input."""
+    """float() that returns None instead of raising on bad input.
+
+    Also rejects NaN/Infinity (never legitimate for display fields, and NaN
+    would corrupt JSON output) and huge ints that overflow float().
+    """
     try:
-        return float(value)
-    except (TypeError, ValueError):
+        result = float(value)
+    except (TypeError, ValueError, OverflowError):
         return None
+    if not math.isfinite(result):
+        return None
+    return result
 
 
 def extract_clob_token_id(raw: dict[str, Any]) -> str:
@@ -402,8 +469,9 @@ def fetch_price_history_points(clob_token_id: str) -> list[Any]:
             f"{CLOB_API_BASE}/prices-history"
             f"?market={urllib.parse.quote(token)}&interval=1w&fidelity=360"
         )
+        assert_allowed_fetch_url(url)
         req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-        with urllib.request.urlopen(req, timeout=TREND_HTTP_TIMEOUT) as resp:
+        with _allowlisted_opener().open(req, timeout=TREND_HTTP_TIMEOUT) as resp:
             data = json.loads(resp.read().decode("utf-8"))
         history = data.get("history") if isinstance(data, dict) else None
         return history if isinstance(history, list) else []
@@ -471,6 +539,160 @@ def is_settled(market: dict[str, Any]) -> bool:
 def safe_name(entry_id: str) -> str:
     """Convert entry_id to filesystem-safe name for baseline files."""
     return re.sub(r"[:/\\]", "_", entry_id)
+
+
+# ---------------------------------------------------------------------------
+# Discover: keyword search + trending browse (v1.3.0)
+# Read-only and stateless — touches no watchlist/baseline/cache state, and is
+# never called from cron/schedule paths (user-initiated only).
+# ---------------------------------------------------------------------------
+
+DISCOVER_DEFAULT_LIMIT = 10
+DISCOVER_MAX_LIMIT = 25
+
+
+def _normalize_discover_event(event: Any) -> dict[str, Any] | None:
+    """Normalize one Gamma event for discover output. Returns None if unusable."""
+    if not isinstance(event, dict):
+        return None
+    # Defensive: both discover endpoints are asked for open events only, but
+    # public-search has returned settled events without the events_status filter.
+    if event.get("closed") is True or event.get("active") is False:
+        return None
+    title = str(event.get("title") or "").strip()
+    slug = str(event.get("slug") or "").strip()
+    if not title or not slug:
+        return None
+
+    raw_markets = event.get("markets", [])
+    if not isinstance(raw_markets, list):
+        raw_markets = []
+    candidates: list[dict[str, Any]] = []
+    for m in raw_markets:
+        if not isinstance(m, dict):
+            continue
+        if m.get("closed") is True or m.get("active") is False:
+            continue
+        question = first_non_null(m, ["question", "title", "name"])
+        probability = extract_probability(m)
+        if question is None or probability is None:
+            continue
+        if not math.isfinite(probability) or not 0.0 <= probability <= 100.0:
+            continue
+        candidates.append({
+            "question": str(question),
+            "probability": probability,
+            "volume_24h": _safe_float(m.get("volume24hr")) or 0.0,
+        })
+    candidates.sort(key=lambda item: item["volume_24h"], reverse=True)
+    top_markets = [
+        {"question": item["question"], "probability": item["probability"]}
+        for item in candidates[:3]
+    ]
+
+    end_date = first_non_null(event, ["endDate", "end_date", "endDateIso"])
+    return {
+        "title": title,
+        "slug": slug,
+        "url": f"https://polymarket.com/event/{slug}",
+        "volume_24h": _safe_float(event.get("volume24hr")),
+        "liquidity": _safe_float(event.get("liquidity")),
+        "end_date": str(end_date)[:10] if end_date else None,
+        "market_count": sum(1 for m in raw_markets if isinstance(m, dict)),
+        "top_markets": top_markets,
+    }
+
+
+def rank_discover_events(events: list[Any], limit: int) -> list[dict[str, Any]]:
+    """Filter, sort by 24h volume desc, dedupe by slug, and cap to limit.
+
+    Sort happens BEFORE dedupe so that when duplicate slugs disagree, the
+    highest-volume copy wins (dedupe-first would let a stale low-volume copy
+    suppress the real one).
+    """
+    normalized: list[dict[str, Any]] = []
+    for event in events:
+        item = _normalize_discover_event(event)
+        if item is not None:
+            normalized.append(item)
+    normalized.sort(key=lambda e: e.get("volume_24h") or 0.0, reverse=True)
+    deduped: list[dict[str, Any]] = []
+    seen_slugs: set[str] = set()
+    for item in normalized:
+        if item["slug"] in seen_slugs:
+            continue
+        seen_slugs.add(item["slug"])
+        deduped.append(item)
+    return deduped[:limit]
+
+
+def discover_events(
+    query: str = "",
+    limit: int = DISCOVER_DEFAULT_LIMIT,
+) -> tuple[list[dict[str, Any]] | None, dict[str, str] | None]:
+    """Discover open Polymarket events by keyword search or trending browse.
+
+    Empty query browses trending (volume24hr desc); non-empty query hits the
+    Gamma public-search endpoint. Returns (results, None) on success or
+    (None, error_dict) on failure — same convention as
+    fetch_market_current_result.
+    """
+    query = (query or "").strip()
+    try:
+        limit = int(limit)
+    except (TypeError, ValueError):
+        limit = DISCOVER_DEFAULT_LIMIT
+    limit = max(1, min(limit, DISCOVER_MAX_LIMIT))
+
+    try:
+        if query:
+            encoded = urllib.parse.quote(query)
+            # Ranking pool floor of 20: with tiny limits, a bare limit*2 pool
+            # makes "top by volume" arbitrary. Single-page only by design —
+            # deeper pagination is not worth the extra API weight for a
+            # user-facing top-N (documented in Design Spec §3.11).
+            pool = min(50, max(limit * 2, 20))
+            data = _api_get(
+                f"/public-search?q={encoded}"
+                f"&limit_per_type={pool}&events_status=active"
+            )
+            # events may be present-but-null in the documented schema: treat
+            # any non-list container as an empty result, not an error.
+            raw_events = data.get("events") if isinstance(data, dict) else None
+            events = raw_events if isinstance(raw_events, list) else []
+        else:
+            data = _api_get(
+                "/events?active=true&closed=false"
+                f"&order=volume24hr&ascending=false&limit={limit}"
+            )
+            events = data if isinstance(data, list) else []
+        return rank_discover_events(events, limit), None
+    except urllib.error.HTTPError as exc:
+        return None, {
+            "code": "SR_SOURCE_UNAVAILABLE",
+            "message": f"Polymarket API returned HTTP {exc.code}.",
+        }
+    except urllib.error.URLError as exc:
+        reason = getattr(exc, "reason", None)
+        if isinstance(reason, socket.timeout):
+            return None, {
+                "code": "SR_TIMEOUT",
+                "message": "Polymarket API timed out while discovering markets.",
+            }
+        return None, {
+            "code": "SR_SOURCE_UNAVAILABLE",
+            "message": "Could not reach Polymarket API.",
+        }
+    except TimeoutError:
+        return None, {
+            "code": "SR_TIMEOUT",
+            "message": "Polymarket API timed out while discovering markets.",
+        }
+    except Exception:
+        return None, {
+            "code": "SR_SOURCE_UNAVAILABLE",
+            "message": "Could not discover markets from Polymarket API.",
+        }
 
 
 # ---------------------------------------------------------------------------

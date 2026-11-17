@@ -1,41 +1,54 @@
-## Description: <br>
-linkfoxai-image-tool helps agents upload images, create scene variants, replace products, remove image backgrounds, and retrieve image-generation task results through Linkfox/ZNOPEN image tooling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+linkfoxai-image-tool helps agents complete Linkfox/Ziniao image upload, scene fission, product replacement, and automatic image matting tasks, using local scripts when available and falling back to the Linkfox OpenAPI service when needed.
 
-## Publisher: <br>
-[ziniao-open](https://clawhub.ai/user/ziniao-open) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ziniao-open](https://clawhub.ai/user/ziniao-open)
 
-## Use Case: <br>
-External users and agents use this skill to run supported Linkfox image workflows directly, including image upload, scene fission, product replacement, automatic image matting, and result lookup. It is intended for requests where the user wants the final processed image result rather than integration guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may store a provider API key locally for Linkfox/ZNOPEN API access. <br>
-Mitigation: Use a scoped API key, confirm before allowing the agent to save credentials, and rotate or revoke the key when it is no longer needed. <br>
-Risk: Selected images may be uploaded to the provider for processing. <br>
-Mitigation: Send only images that are appropriate for external provider processing and avoid submitting sensitive or restricted content unless policy allows it. <br>
+## Use Case:
 
+External users and developers use this skill to route supported Linkfox/Ziniao image workflows through an agent, including image uploads, scene fission, product replacement, auto matting, and result-status checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ziniao-open/linkfoxai-image-tool) <br>
-- [Linkfox OpenAPI router](https://sbappstoreapi.ziniao.com/openapi-router) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Text or JSON responses with image URLs, task identifiers, status values, and error details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a ZNOPEN_API_KEY or local ~/.znopen/config.json when calling the provider API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may store the Ziniao/Open API key in a predictable local plaintext config file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited-scope API key when possible, restrict local file access, and rotate the key if it may have been exposed.
+
+Risk: Image data and prompts may be sent to the declared third-party API.
+
+Mitigation: Avoid processing sensitive images or prompts unless the user accepts third-party transfer for this workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ziniao-open/skills/linkfoxai-image-tool)
+- [Linkfox OpenAPI router](https://sbappstoreapi.ziniao.com/openapi-router)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown or plain text containing API results, task identifiers, image result URLs, and status/error details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require ZNOPEN_API_KEY and may send image data and prompts to the declared third-party API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

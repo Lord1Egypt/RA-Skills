@@ -1,45 +1,66 @@
-## Description: <br>
-Build digital twin patient models to test drug efficacy and toxicity in virtual environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build digital twin patient models to test drug efficacy and toxicity in virtual environments.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers and researchers use this skill to build virtual patient models from genotype, clinical, and imaging JSON data and simulate drug efficacy, toxicity, and dose optimization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive patient-like genotype, clinical, and imaging data. <br>
-Mitigation: Use synthetic or de-identified data unless appropriate authorization and privacy controls are in place. <br>
-Risk: The skill produces dosing, efficacy, and toxicity-style outputs that could be mistaken for clinical guidance. <br>
-Mitigation: Treat outputs as research simulations only and require qualified clinical review before any real-world decision-making. <br>
-Risk: The skill runs Python code with dependencies and reads or writes local JSON files. <br>
-Mitigation: Install and run it in an isolated environment, pin and review dependencies, and restrict input and output paths. <br>
+## Use Case:
 
+Developers, researchers, and clinical simulation teams use this skill to model patient-specific genotype, clinical, and imaging data for virtual drug efficacy, toxicity, and dose optimization analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AIPOCH-AI/digital-twin-patient-builder) <br>
-- [Publisher profile](https://clawhub.ai/user/AIPOCH-AI) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [Artifact implementation](artifact/scripts/main.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, code, shell commands] <br>
-**Output Format:** [JSON simulation results with terminal summaries and Python API return dictionaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires patient and drug profile JSON inputs; may write simulation results to a local JSON file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and target metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill handles sensitive patient and genomic data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only synthetic or properly de-identified data unless operating in a controlled environment with permission to process patient information.
+
+Risk: Dose recommendations and medical simulation outputs are unvalidated.
+
+Mitigation: Treat all efficacy, toxicity, and dosing outputs as research output that requires qualified medical review before any clinical use.
+
+Risk: The skill writes simulation results and accepts user-supplied input and output paths.
+
+Mitigation: Restrict input and output paths to the workspace and review outputs before sharing.
+
+Risk: Network/API behavior is not adequately documented by the publisher.
+
+Mitigation: Do not enable or assume network/API use until the publisher documents what data leaves the machine.
+
+Risk: Dependency behavior may change across installs.
+
+Mitigation: Pin and review dependencies before installation.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/aipoch-ai/skills/digital-twin-patient-builder)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, files]
+
+**Output Format:** [JSON simulation results with console text and Python API objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes dose-level efficacy, toxicity risk, optimal dose, PK metrics, and concentration profile data.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-查询淘宝闪购每日隐藏的大额福利优惠券和红包。包含通用红包、超市红包、夜宵红包、买药红包、零食红包、学生专享等。无需扫码，无需复制口令，搜索专用口令词即可获得隐藏各类福利活动，安全便捷，通过API获取当日最新活动。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询淘宝闪购每日隐藏的大额福利优惠券和红包，包含通用红包、超市红包、夜宵红包、买药红包、零食红包、学生专享等，并通过固定 API 获取当日最新活动。
 
-## Publisher: <br>
-[z65919](https://clawhub.ai/user/z65919) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[z65919](https://clawhub.ai/user/z65919)
 
-## Use Case: <br>
-External users use this skill to fetch current Taobao Shāngòu promotion keywords, coupons, and red packet instructions from the disclosed third-party API, then search those keywords in the Taobao app. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Coupon results come from a third-party API and may be inaccurate, unavailable, or promotional in nature. <br>
-Mitigation: Review returned offers in the Taobao app before acting on them. <br>
-Risk: The skill depends on network access to one disclosed external API, so fresh results may fail if that API is unavailable. <br>
-Mitigation: Use the locally cached latest response when available, and treat cached offers as potentially stale. <br>
+## Use Case:
 
+External users use this skill to fetch and display current Taobao Shāngòu coupon, red-packet, and activity search terms so they can search for those benefits in the Taobao app.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/z65919/shangou-bonus) <br>
-- [Jumanjian promotion API](https://v.jumanjian.com/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands] <br>
-**Output Format:** [Plain text with dated promotion entries and usage instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May cache the latest API response locally when data is fetched successfully.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill displays coupon instructions supplied by a third-party API, so the content may change, be promotional, or be inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present returned coupon instructions as third-party content and have users verify offers in the Taobao app before relying on them.
+
+Risk: The source text mentions daily reminders, which could be misunderstood as consent to recurring notifications.
+
+Mitigation: Create any reminder only after a separate explicit user request and confirmation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/z65919/skills/shangou-bonus)
+- [聚满减 API endpoint](https://v.jumanjian.com/api/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code]
+
+**Output Format:** [Markdown-like text with coupon titles, search terms, descriptions, detailed instructions, and optional shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs API-provided coupon content and can cache the latest JSON response locally.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

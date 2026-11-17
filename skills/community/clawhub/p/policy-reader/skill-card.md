@@ -1,41 +1,55 @@
-## Description: <br>
-Reference tool for business covering Policy Reader intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Policy Reader is a business reference skill that provides quick lookup documentation for policy-reader concepts, quickstarts, patterns, troubleshooting, performance, security, migration, and cheatsheets.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Business, security, and operations users can ask an agent to retrieve concise Policy Reader reference guidance for onboarding, troubleshooting, migration, performance, and security review tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reference guidance may be generic or incomplete for a specific organization's policy, compliance, or security environment. <br>
-Mitigation: Review the generated guidance against current internal policies and applicable requirements before operational use. <br>
-Risk: Server security guidance notes that related maintainer workflows may use broad local permissions or send diffs to configured reviewer tools. <br>
-Mitigation: Review helper behavior and intended targets before running any maintainer or moderation workflow. <br>
+## Use Case:
 
+Developers, security practitioners, and business users use Policy Reader to retrieve concise reference guidance for policy-reader workflows and related operational topics.
 
-## Reference(s): <br>
-- [Policy Reader on ClawHub](https://clawhub.ai/bytesagain3/policy-reader) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, or network access are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill is documentation-style reference material and should not be treated as a verified policy engine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the output against current organizational policy before applying it to business or security decisions.
+
+Risk: The bundled shell script reports version 4.0.0 while server release metadata and SKILL.md identify the release as 4.0.1.
+
+Mitigation: Use server release metadata for release identity and update the script version before relying on CLI version output.
+
+## Reference(s):
+
+- [Policy Reader on ClawHub](https://clawhub.ai/bytesagain3/skills/policy-reader)
+- [bytesagain3 Publisher Profile](https://clawhub.ai/user/bytesagain3)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text with Markdown headings, lists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output; no credentials, network access, or external API calls.]
+
+## Skill Version(s):
+
+4.0.1 (source: server release metadata and SKILL.md frontmatter; bundled script reports 4.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

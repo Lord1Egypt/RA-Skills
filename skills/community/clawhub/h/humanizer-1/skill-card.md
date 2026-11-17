@@ -1,43 +1,59 @@
-## Description: <br>
-Remove signs of AI-generated writing from text and rewrite it to sound more natural and human-written. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Humanizer 1 helps agents revise text to reduce common signs of AI-generated writing and make drafts read more naturally.
 
-## Publisher: <br>
-[hanxueda](https://clawhub.ai/user/hanxueda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanxueda](https://clawhub.ai/user/hanxueda)
 
-## Use Case: <br>
-Writers, editors, and agents use this skill to review selected text for common AI-writing patterns and produce a more natural rewrite while preserving the original meaning and tone. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be misused to hide AI assistance or evade authorship and disclosure expectations. <br>
-Mitigation: Use it only where rewriting is allowed, and follow any academic, workplace, legal, compliance, or publication disclosure rules. <br>
-Risk: The rewritten output may change meaning, tone, attribution, or nuance in sensitive or third-party-authored content. <br>
-Mitigation: Review changes before saving or publishing, especially for academic, legal, compliance, professional, or third-party-authored material. <br>
+## Use Case:
 
+External users and developers use this skill to edit drafts, reviews, and documents so the writing sounds less formulaic while preserving the intended meaning and tone.
 
-## Reference(s): <br>
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) <br>
-- [Wikipedia: WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup) <br>
-- [Humanizer 1 on ClawHub](https://clawhub.ai/hanxueda/humanizer-1) <br>
-- [Publisher profile](https://clawhub.ai/user/hanxueda) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text containing the rewritten text and, when useful, a short summary of changes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill rewrites user-provided text and may suggest edits before saving or publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can be misused to disguise AI-written text where disclosure is required.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for legitimate editing and readability work, and follow school, workplace, publication, legal, and platform disclosure rules.
+
+Risk: The skill can change meaning, tone, or attribution while rewriting prose.
+
+Mitigation: Review the rewritten text against the source before accepting or publishing it.
+
+Risk: The skill may write changes back to files when the hosting agent grants editing tools.
+
+Mitigation: Inspect proposed edits before allowing write-back operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hanxueda/skills/humanizer-1)
+- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
+- [Wikipedia: WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Text or Markdown containing a rewritten version and, when useful, a brief summary of changes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May edit files when the hosting agent grants read/write/edit tools; review changes before writing them back.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 2.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

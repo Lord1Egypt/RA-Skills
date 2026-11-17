@@ -1,0 +1,21 @@
+sequenceDiagram
+ participant Web as Browser client
+ participant API as Order service API
+ participant DB as Persistent database
+ Web->>API: Query order details and current payment status
+ API->>API: Validate identity and order access
+ API->>DB: Cache miss: read order records
+ DB-->>API: Return order records and payment status
+ API-->>Web: Return results and update the page
+
+ activate API
+ alt Cache hit
+ API-->>Web: Return cached result
+ else Cache miss
+ loop Retry failed query
+ API->>DB: Read records
+ DB-->>API: Return result
+ end
+ end
+ API-)Web: Async update notification
+ deactivate API

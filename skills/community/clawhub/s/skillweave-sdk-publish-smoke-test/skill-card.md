@@ -1,39 +1,58 @@
-## Description: <br>
-Verifies ClawHub publish flows from the TypeScript client with a non-trivial SKILL.md body. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verifies ClawHub publish flows from the TypeScript client with a non-trivial SKILL.md body.
 
-## Publisher: <br>
-[nashirjamali](https://clawhub.ai/user/nashirjamali) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nashirjamali](https://clawhub.ai/user/nashirjamali)
 
-## Use Case: <br>
-Developers and release engineers use this skill as a repeatable checklist for validating Skillweave or ClawHub skill publishing from a TypeScript client, including API payload construction, publish verification, and common validation failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing with a real namespace or production slug can create or update registry entries unintentionally. <br>
-Mitigation: Use a test slug or namespace when validating publish flows, and confirm slug policy before republishing or undeleting skills. <br>
-Risk: The publishing workflow requires CLAWHUB_TOKEN, which could be exposed if handled carelessly. <br>
-Mitigation: Load the token from a local environment file or secret store, keep it out of version control, and use least-privilege publish access. <br>
+## Use Case:
 
+Developers and release engineers use this skill as a repeatable checklist for validating that a Skillweave or ClawHub client can publish a skill bundle and that the published artifact contains expected files.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown with a TypeScript code block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only checklist; no hidden executable code is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A broad or mishandled ClawHub token could allow unintended publishing activity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped token with only the publish permissions needed for the target namespace or slug.
+
+Risk: Publishing the wrong files or absolute local paths could expose sensitive local details in the uploaded archive.
+
+Mitigation: Review the file list before publishing, include only expected relative paths, and avoid sensitive files.
+
+Risk: Publishing to the wrong slug or version could overwrite or create an unintended release target.
+
+Mitigation: Confirm the slug and semantic version before invoking publishSkill and verify the published listing afterward.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/nashirjamali/skills/skillweave-sdk-publish-smoke-test)
+- [Publisher profile](https://clawhub.ai/user/nashirjamali)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with checklist steps and TypeScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no hidden code or persistence found in server security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

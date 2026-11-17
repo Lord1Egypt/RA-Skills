@@ -1,38 +1,48 @@
-## Description: <br>
-Generates a JSON packaging plan from a codebase auditor file inventory so deployment-related configuration and CI/CD files can be grouped consistently. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes codebase-auditor file inventories and generates optimized deployment packaging plans for critical environment, configuration, CI/CD, credential, and database files.
 
-## Publisher: <br>
-[ink5725](https://clawhub.ai/user/ink5725) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ink5725](https://clawhub.ai/user/ink5725)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and release engineers use this skill to convert a codebase auditor's critical_files inventory into a JSON deployment packaging plan for environment, configuration, CI/CD, credential, and database configuration files.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The generated packaging plan can include raw secrets such as private keys, service-account credentials, and .env files in deployment artifacts.
+
+Mitigation: Review and change the workflow before use so raw secrets are excluded by default and supplied through a secret manager or runtime injection.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and release engineers use this skill to turn an auditor-provided JSON list of critical files into a deployment packaging plan. The plan identifies environment, configuration, CI/CD, credential, and database files that may need coordinated handling across environments. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Configuration, JSON, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated packaging plans can include credential files, which may create a secret-leakage risk if bundled into deployment artifacts. <br>
-Mitigation: Review each plan as sensitive, exclude secrets from deployable bundles by default, and use secret managers or runtime injection for credentials. <br>
+**Output Format:** [JSON file plus concise console status text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ink5725/backup-optimizer) <br>
+**Other Properties Related to Output:** [The bundled script reads a JSON inventory and writes packaging_plan.json under the selected output directory.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration] <br>
-**Output Format:** [JSON packaging plan with console status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes packaging_plan.json to the configured output directory; generated plans should be treated as sensitive when they list credential locations.] <br>
+1.0.0 (source: server release metadata and changelog)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

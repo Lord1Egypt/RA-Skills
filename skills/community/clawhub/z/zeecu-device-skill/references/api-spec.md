@@ -81,7 +81,7 @@ Body:
 [
   {
     "_requestBody": {
-      "apiKey": "sk_live_a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6"
+      "apiKey": "REDACTED-SECRET"
     }
   }
 ]
@@ -141,7 +141,7 @@ Body:
 [
   {
     "_requestBody": {
-      "apiKey": "sk_live_a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6",
+      "apiKey": "REDACTED-SECRET",
       "tuid": "T123456789"
     }
   }
@@ -212,7 +212,7 @@ Body:
 [
   {
     "_requestBody": {
-      "apiKey": "sk_live_a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6",
+      "apiKey": "REDACTED-SECRET",
       "tuid": "T123456789",
       "startTime": 1713849600000,
       "endTime": 1714454400000

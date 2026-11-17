@@ -1,44 +1,58 @@
-## Description: <br>
-Archon Vault manages encrypted Archon DID vaults for client-side encrypted backups, restores, disaster recovery, and multi-party vault access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Encrypted distributed storage using Archon DID vaults. Manage vaults, backup and restore workspace/config/memory with multi-party access control. Use for creating/managing DID vaults, backing up files, restoring from vault, disaster recovery, or managing vault contents and membership.
 
-## Publisher: <br>
-[macterra](https://clawhub.ai/user/macterra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[macterra](https://clawhub.ai/user/macterra)
 
-## Use Case: <br>
-Developers and operators use this skill to create and manage Archon DID vaults, add or remove vault members, and back up or restore workspace, configuration, and memory files. It is suited for encrypted distributed backup workflows that require client-side encryption and controlled sharing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create broad workspace, configuration, and memory backups that may include sensitive local data. <br>
-Mitigation: Review the backup scope and .backup-ignore before running backup scripts, and verify restored files before merging them into a live environment. <br>
-Risk: Recovery workflows depend on sensitive Archon wallet material, passphrases, and a 12-word mnemonic. <br>
-Mitigation: Protect ~/.archon.env with restrictive permissions, store the mnemonic offline, and avoid passing the mnemonic directly in shell commands where it can be exposed through shell history or process listings. <br>
-Risk: The scripts dynamically invoke the @didcid/keymaster package and default to a public gatekeeper URL. <br>
-Mitigation: Use this skill only when the package and Archon service are trusted, and confirm ARCHON_GATEKEEPER_URL before backup or recovery operations. <br>
-Risk: Temporary archives may remain in /tmp during backup verification or failed cleanup paths. <br>
-Mitigation: Remove leftover temporary backup archives after verification or recovery, especially on shared systems. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Archon Vault ClawHub Page](https://clawhub.ai/macterra/archon-vault) <br>
-- [Archon Gatekeeper](https://archon.technology) <br>
+## Use Case:
 
+Developers and operators use this skill to manage Archon DID vaults, back up workspace and configuration data, restore backups, verify backup integrity, and manage multi-party vault access.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local backup archives, restored files, environment variables, and Archon vault identifiers.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles wallet recovery secrets and broad workspace/configuration backups.
+
+Mitigation: Review and harden the scripts before real use, avoid passing mnemonics on the command line, and run only in an account or environment scoped to the exact vault and files intended for protection.
+
+Risk: Backup exclusions, temporary files, and restore extraction can expose or overwrite sensitive data if used carelessly.
+
+Mitigation: Use private temporary directories with cleanup, fail closed on backup exclusions, validate ZIP contents before extraction, and review restore targets before moving recovered files into active locations.
+
+Risk: The scripts invoke @didcid/keymaster through npx at runtime.
+
+Mitigation: Pin or vendor @didcid/keymaster before using the skill with production identities or backups.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/macterra/skills/archon-vault)
+- [Publisher Profile](https://clawhub.ai/user/macterra)
+- [Archon Technology](https://archon.technology)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands depend on Archon identity environment variables and local backup/vault state.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

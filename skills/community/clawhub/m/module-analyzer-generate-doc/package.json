@@ -1,6 +1,6 @@
 {
   "name": "module-analyzer-generate-doc",
-  "version": "1.0.1",
+  "version": "1.0.6",
   "description": "Java/Maven single-module deep documentation generator. Generates L3(file-level) to L2(module-level) business logic docs for specified module. Supports multi-subagent parallel processing, context compression, checkpoint resume, and auto-retry.",
   "author": "aclory",
   "license": "MIT",
@@ -26,14 +26,11 @@
   },
   "homepage": "https://clawhub.com/skills/module-analyzer-generate-doc",
   "engines": {
-    "openclaw": ">=1.0.0",
     "node": ">=16.0.0",
     "powershell": ">=5.1"
   },
   "dependencies": {},
-  "peerDependencies": {
-    "openclaw": ">=1.0.0"
-  },
+  "peerDependencies": {},
   "config": {
     "defaultChunkSize": 12,
     "maxParallelSubagents": 5,

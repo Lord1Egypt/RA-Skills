@@ -1,45 +1,65 @@
-## Description: <br>
-Helps agents search birthday-trip flights and related travel options with the flyai CLI, then present comparison tables with booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book birthday trip flights, surprise travel and celebration flight deals with birthday getaway booking, with related travel support powered by Fliggy.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to collect trip parameters, run flyai CLI searches for birthday getaways, and present birthday-friendly flight options with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and rely on an external global flyai CLI package for networked travel searches. <br>
-Mitigation: Review the CLI provider and package before installation, and require approval before global npm installs or CLI execution. <br>
-Risk: The runbook allows local `.flyai-execution-log.json` logging of travel-search activity. <br>
-Mitigation: Disable, redact, or clear local execution logs when queries may contain personal travel details. <br>
-Risk: Travel results and booking links depend on external flyai CLI output. <br>
-Mitigation: Use only returned `detailUrl` booking links, disclose CLI failures, and avoid substituting unsourced travel claims. <br>
+## Use Case:
 
+External travelers and travel-booking agents use this skill to search birthday-trip flight options, compare results, and present booking links with birthday-oriented travel tips.
 
-## Reference(s): <br>
-- [Templates - birthday-trip](references/templates.md) <br>
-- [Playbooks - birthday-trip](references/playbooks.md) <br>
-- [Fallbacks - Flight Category (Birthday Trip)](references/fallbacks.md) <br>
-- [Runbook - Execution Log Schema (Universal)](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output as the source of travel data and includes booking detail URLs when results are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill asks agents to install and run a third-party flyai CLI globally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI package before installation, require explicit install consent, and prefer a release that pins the package version.
+
+Risk: Travel searches and booking-link selection depend on a third-party provider.
+
+Mitigation: Tell users that live travel data and booking links come from the provider, and avoid using the skill unless that data sharing is acceptable.
+
+Risk: Raw travel query details may be written to a hidden local execution log.
+
+Mitigation: Disable, redact, or periodically remove local logs that contain user travel details.
+
+Risk: Under-scoped shell-command authority can increase execution risk.
+
+Mitigation: Validate parameters before command execution and avoid shell interpolation when constructing CLI calls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/birthday-trip)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, birthday tips, and inline shell commands when recovery guidance is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flight results to come from flyai CLI output and include booking links when results are shown.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

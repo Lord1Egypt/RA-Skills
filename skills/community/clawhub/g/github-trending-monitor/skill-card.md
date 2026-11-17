@@ -1,48 +1,67 @@
-## Description: <br>
-Monitors GitHub trending repositories by language and time range, then sends daily or on-demand notifications through Telegram, Discord, or email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors GitHub trending repositories by language and time range and sends daily alerts through Telegram, Discord, or email.
 
-## Publisher: <br>
-[zhdryanchang](https://clawhub.ai/user/zhdryanchang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhdryanchang](https://clawhub.ai/user/zhdryanchang)
 
-## Use Case: <br>
-Developers, open source contributors, and technical teams use this skill to track trending GitHub repositories, filter results by language and time range, and receive automated digests through configured notification channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes an embedded SkillPay API key. <br>
-Mitigation: Remove the key before use, rotate it with the provider, and require deployment-specific secret injection through environment variables or a secret manager. <br>
-Risk: Subscription and payment controls are exposed without adequate access protection. <br>
-Mitigation: Deploy only behind authentication or a private gateway, and authorize each subscription, notification, and payment operation for the requesting user. <br>
-Risk: Payment callbacks may be accepted without signed provider verification. <br>
-Mitigation: Require signed SkillPay callback verification before changing subscription state or logging paid usage. <br>
-Risk: Notification and repository data may be sent to external services. <br>
-Mitigation: Validate notification recipients, restrict CORS, and disclose data flows to Telegram, Discord, email, GitHub, and SkillPay before deployment. <br>
+## Use Case:
 
+Developers, open source contributors, and technical teams use this skill to track trending GitHub repositories, filter results by language and time range, and receive scheduled or on-demand notifications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhdryanchang/github-trending-monitor) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [GitHub Trending](https://github.com/trending) <br>
-- [GitHub Repository Search API](https://api.github.com/search/repositories) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [REST API JSON responses, notification messages, and Markdown setup examples with shell commands and environment variables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access to GitHub, SkillPay, and any configured notification providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, skill.json) <br>
+Risk: A live-looking SkillPay API key is included in release materials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace and rotate the key before use, remove committed secrets, and load payment credentials from a protected runtime secret store.
+
+Risk: Subscription and payment-related routes can expose or modify user payment and notification data when deployed with unsafe defaults.
+
+Mitigation: Add authentication, object-level authorization, and rate limits to subscription, unsubscribe, subscription status, notification, and payment routes before production use.
+
+Risk: Payment callbacks may be accepted without provider verification.
+
+Mitigation: Verify callback signatures or provider-issued tokens and reject callbacks that cannot be cryptographically tied to SkillPay.
+
+Risk: Notification delivery shares user-supplied channel details and repository content with third-party services.
+
+Mitigation: Disclose third-party data sharing and sanitize or escape email and notification content before sending.
+
+Risk: Dependency resolution may drift without a reviewed lockfile.
+
+Mitigation: Commit and review a package lockfile and rescan dependencies before publishing or deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhdryanchang/skills/github-trending-monitor)
+- [README](README.md)
+- [Skill documentation](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell and JSON examples; runtime responses are JSON and notification messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports language and time-range filters, scheduled reports, and Telegram, Discord, or email notification channels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

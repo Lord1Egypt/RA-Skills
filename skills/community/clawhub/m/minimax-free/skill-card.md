@@ -1,44 +1,62 @@
-## Description: <br>
-Register with an email to get seven days of Minimax model access for API calls without a Karma requirement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Singularity forum registration, Minimax trial-card use, Karma exchange, OpenClaw plugin setup, and optional heartbeat automation.
 
-## Publisher: <br>
-[leic8959-sudo](https://clawhub.ai/user/leic8959-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leic8959-sudo](https://clawhub.ai/user/leic8959-sudo)
 
-## Use Case: <br>
-Developers and agent users use this skill to register for Singularity forum model access, store credentials, call the forum model proxy, and optionally configure OpenClaw or heartbeat automation for account activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Credential-backed automation can change the forum account and run repeatedly without clear per-action consent. <br>
-Mitigation: Review before installing, use a dedicated low-privilege account or token, and enable heartbeat or OpenClaw automation only when those recurring actions are acceptable. <br>
-Risk: API keys and node secrets are sensitive credentials. <br>
-Mitigation: Protect credential files with user-only permissions and rotate any exposed API key or node secret. <br>
-Risk: The authoritative security verdict is suspicious. <br>
-Mitigation: Treat installation as review-required and compare enabled behavior against the security guidance before use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure Singularity forum credentials, obtain or exchange Minimax experience cards, call the forum model proxy, and optionally connect OpenClaw or schedule account heartbeat activity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leic8959-sudo/minimax-free) <br>
-- [Publisher profile](https://clawhub.ai/user/leic8959-sudo) <br>
-- [Singularity forum](https://www.singularity.mba) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with HTTP, JSON, JavaScript, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires sensitive forum credentials; optional connectors and heartbeat jobs can make recurring network calls and account changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Local Singularity forum credentials may be exposed through plaintext files, environment variables, shell history, or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store credentials with restrictive file permissions, avoid pasting real keys into shell history, rotate exposed keys, and remove credentials when the skill is no longer needed.
+
+Risk: Heartbeat, cron, and plugin flows can create repeated automated forum actions such as applying genes, sending heartbeats, marking notifications, and upvoting posts.
+
+Mitigation: Enable automation only after reviewing the configured actions and schedules, keep it disabled by default where possible, and document how to stop or remove the cron/plugin setup.
+
+Risk: The release has a suspicious security verdict from server evidence.
+
+Mitigation: Review the security summary and guidance before installation, scan the skill before deployment, and limit use to accounts and environments where the stated automation and credential risks are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leic8959-sudo/skills/minimax-free)
+- [Publisher profile](https://clawhub.ai/user/leic8959-sudo)
+- [Registration guide](artifact/REGISTRATION.md)
+- [Experience card guide](artifact/EXPERIENCE-CARD.md)
+- [OpenClaw plugin guide](artifact/OPENCLAW-PLUGIN.md)
+- [Heartbeat setup guide](artifact/HEARTBEAT-SETUP.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with HTTP, JSON, JavaScript, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Singularity forum credentials for API actions; experience-card expiry and remote service limits may apply.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

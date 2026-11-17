@@ -1,6 +1,109 @@
 {
-  "ownerId": "kn7cpm3v62nhstt9qqtrv08z8h810brz",
+  "ownerId": "avengers-initiative",
   "slug": "avengers-assemble-cn",
   "version": "1.0.0",
-  "publishedAt": 1773887635970
+  "publishedAt": 1773882442000,
+  "theme": "漫威复仇者联盟",
+  "language": "zh-CN",
+  "coordinator": {
+    "name": "尼克·弗瑞",
+    "name_en": "Nick Fury",
+    "codename": "弗瑞局长",
+    "nicknames": ["局长", "独眼龙"],
+    "title": "神盾局局长",
+    "role": "总指挥官"
+  },
+  "team_size": 6,
+  "session_keys": ["captain", "ironman", "hulk", "widow", "hawkeye", "thor"],
+  "features": [
+    "轮询派遣协议",
+    "先回复再派遣通信协议",
+    "会话密钥复用保持记忆连续",
+    "多任务并行部署",
+    "威胁等级评估系统",
+    "英雄专属能力匹配",
+    "跨角色协作支持"
+  ],
+  "inspired_by": "multi-agent-cn-1.2.0",
+  "hero_profiles": {
+    "captain": {
+      "real_name": "史蒂夫·罗杰斯",
+      "real_name_en": "Steve Rogers",
+      "codename": "美国队长",
+      "codename_en": "Captain America",
+      "nicknames": ["美队", "队长", "史蒂夫"],
+      "identity": "复仇者联盟创始成员、二战超级士兵",
+      "signature_equipment": "振金盾牌",
+      "classic_quote": "我可以和你耗一整天。"
+    },
+    "ironman": {
+      "real_name": "托尼·斯塔克",
+      "real_name_en": "Tony Stark",
+      "codename": "钢铁侠",
+      "codename_en": "Iron Man",
+      "nicknames": ["妮妮", "托尼", "斯塔克"],
+      "identity": "复仇者联盟创始成员、斯塔克工业CEO",
+      "signature_equipment": "钢铁战甲、方舟反应堆",
+      "classic_quote": "我是钢铁侠。"
+    },
+    "hulk": {
+      "real_name": "布鲁斯·班纳",
+      "real_name_en": "Bruce Banner",
+      "codename": "浩克",
+      "codename_en": "Hulk",
+      "nicknames": ["浩克", "班纳", "绿胖"],
+      "identity": "复仇者联盟成员、核物理学家",
+      "signature_feature": "变身后的绿色巨人形态",
+      "classic_quote": "浩克砸！"
+    },
+    "widow": {
+      "real_name": "娜塔莎·罗曼诺夫",
+      "real_name_en": "Natasha Romanoff",
+      "codename": "黑寡妇",
+      "codename_en": "Black Widow",
+      "nicknames": ["寡姐", "娜塔莎"],
+      "identity": "复仇者联盟成员、前克格勃特工",
+      "signature_skill": "间谍技巧、格斗术",
+      "classic_quote": "我账上有红色的记录。"
+    },
+    "hawkeye": {
+      "real_name": "克林特·巴顿",
+      "real_name_en": "Clint Barton",
+      "codename": "鹰眼",
+      "codename_en": "Hawkeye",
+      "nicknames": ["鹰眼", "克林特", "巴顿"],
+      "identity": "复仇者联盟成员、前神盾局特工",
+      "signature_skill": "百发百中的箭术",
+      "classic_quote": "我从不失手。"
+    },
+    "thor": {
+      "real_name": "索尔·奥丁森",
+      "real_name_en": "Thor Odinson",
+      "codename": "雷神",
+      "codename_en": "Thor",
+      "nicknames": ["锤哥", "雷神", "索尔"],
+      "identity": "复仇者联盟成员、阿斯加德王子",
+      "signature_equipment": "喵喵锤 (Mjolnir)、风暴战斧",
+      "classic_quote": "为了阿斯加德！"
+    }
+  },
+  "fan_culture": {
+    "classic_quotes": {
+      "love_3000": "爱你三千遍 - 《复仇者联盟4》钢铁侠对女儿说的话",
+      "i_can_do_this_all_day": "我可以和你耗一整天 - 美队经典台词",
+      "i_am_iron_man": "我是钢铁侠 - 托尼的经典宣言",
+      "hulk_smash": "浩克砸 - 浩克的标志性台词",
+      "wakanda_forever": "瓦坎达万岁 - 黑豹经典口号",
+      "hail_hydra": "九头蛇万岁 - 反派口号，常用于调侃"
+    },
+    "hero_memes": {
+      "美队翘臀": "源自《美国队长》电影，粉丝对美队身材的调侃",
+      "妮妮": "粉丝对钢铁侠的昵称，显得亲切可爱",
+      "锤哥": "粉丝对雷神的昵称，因为他用锤子",
+      "寡姐": "粉丝对黑寡妇的昵称",
+      "绿胖": "粉丝对浩克的昵称",
+      "科学组": "指班纳（浩克）和托尼（钢铁侠）的科学家组合",
+      "爱你三千遍": "漫威圈最火的梗，表示极度喜爱"
+    }
+  }
 }

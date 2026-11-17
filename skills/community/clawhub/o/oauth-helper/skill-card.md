@@ -1,41 +1,57 @@
-## Description: <br>
-Automates OAuth login flows through Telegram-mediated user selection and confirmation for Google, Apple, Microsoft, GitHub, Discord, WeChat, and QQ. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate OAuth login flows with user confirmation via Telegram.
 
-## Publisher: <br>
-[helloliuyongsheng-bot](https://clawhub.ai/user/helloliuyongsheng-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[helloliuyongsheng-bot](https://clawhub.ai/user/helloliuyongsheng-bot)
 
-## Use Case: <br>
-Developers and agent operators use this skill to automate OAuth login for websites while routing provider choice and authorization confirmation through Telegram. It is intended for browser sessions where the user has already configured provider accounts and a Telegram channel. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can delegate sensitive OAuth account authorization to an agent using logged-in browser sessions. <br>
-Mitigation: Install only for intentional OAuth automation, use a dedicated browser profile, and verify the provider account, target site, and requested permissions before approval. <br>
-Risk: Telegram approval messages and QR-code or screenshot sharing can expose sensitive login context. <br>
-Mitigation: Use a private Telegram chat or channel and avoid sending QR codes or screenshots unless required for the flow. <br>
-Risk: Approval safeguards are limited to user confirmation and timeout behavior. <br>
-Mitigation: Require an explicit user confirmation for each authorization request and cancel flows when confirmation is missing or unclear. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/helloliuyongsheng-bot/oauth-helper) <br>
+## Use Case:
 
+External users and developers use this skill to help an agent navigate OAuth login and authorization flows while requesting Telegram confirmation before provider selection or consent.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with browser command examples, provider detection patterns, and provider-specific selectors] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a logged-in Clawd browser profile and a configured Telegram confirmation channel.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses live logged-in browser sessions for OAuth flows.
+
+Mitigation: Use a browser profile dedicated to OAuth testing and only run the skill on websites you trust.
+
+Risk: Authentication screenshots may be sent through Telegram.
+
+Mitigation: Use only a Telegram destination you control and send cropped or redacted screenshots instead of full authentication pages.
+
+Risk: The agent may reach an OAuth consent page for the wrong site, provider, account, or permission set.
+
+Mitigation: Confirm the exact site, provider, account, and requested permissions before allowing the agent to click through consent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/helloliuyongsheng-bot/skills/oauth-helper)
+- [Publisher profile](https://clawhub.ai/user/helloliuyongsheng-bot)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with browser command examples and step-by-step workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation via Telegram before OAuth provider selection or authorization.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

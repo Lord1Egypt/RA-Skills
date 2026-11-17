@@ -1,0 +1,137 @@
+{
+  "_说明": "Mock 预设响应库 — 仅开发调试用，完全本地，不同步到任何云端。覆盖 12 个常见场景。",
+  "scenarios": [
+    {
+      "id": "code_quick_sort",
+      "task_type": "code",
+      "keywords": ["排序", "sort", "快排", "算法", "python", "代码", "code"],
+      "priority": 10,
+      "response": {
+        "content": "以下是 Python 快速排序的实现：\n\n```python\ndef quick_sort(arr):\n    if len(arr) <= 1:\n        return arr\n    pivot = arr[len(arr) // 2]\n    left = [x for x in arr if x < pivot]\n    middle = [x for x in arr if x == pivot]\n    right = [x for x in arr if x > pivot]\n    return quick_sort(left) + middle + quick_sort(right)\n```\n\n时间复杂度：平均 O(n log n)，最坏 O(n²)。空间复杂度：O(n)。",
+        "in_tokens": 45,
+        "out_tokens": 180
+      }
+    },
+    {
+      "id": "reason_math_proof",
+      "task_type": "reason",
+      "keywords": ["证明", "推导", "定理", "数学", "reason", "推理"],
+      "priority": 10,
+      "response": {
+        "content": "勾股定理证明（欧几里得证法）：\n\n设直角三角形两直角边为 a、b，斜边为 c。\n构造边长为 (a+b) 的正方形，内部含四个全等直角三角形和一个小正方形。\n\n大正方形面积 = (a+b)² = 4×(½ab) + c²\n展开：a² + 2ab + b² = 2ab + c²\n化简：a² + b² = c²\n\n证毕。",
+        "in_tokens": 30,
+        "out_tokens": 150
+      }
+    },
+    {
+      "id": "translate_zh_en",
+      "task_type": "translate",
+      "keywords": ["翻译", "translate", "英文", "english", "中英文"],
+      "priority": 10,
+      "response": {
+        "content": "Translation: Artificial intelligence is rapidly transforming every aspect of our lives, from healthcare and education to transportation and entertainment. While the technology brings unprecedented convenience and efficiency, it also raises important questions about privacy, employment, and ethics that society must address proactively.",
+        "in_tokens": 25,
+        "out_tokens": 55
+      }
+    },
+    {
+      "id": "summarize_long",
+      "task_type": "summarize",
+      "keywords": ["总结", "概括", "摘要", "summarize", "归纳"],
+      "priority": 10,
+      "response": {
+        "content": "文档核心要点：\n\n1. 背景：大模型技术正从「对话」向「执行」演进，Agent 成为新范式\n2. 关键变更：引入函数调用、长期记忆、多步骤规划三大能力\n3. 数据：基准测试准确率从 72% 提升至 89%，推理成本下降 40%\n4. 风险：幻觉率仍达 12%，需要人工审核兜底\n5. 建议：优先在低风险场景试点，逐步向核心业务扩展",
+        "in_tokens": 200,
+        "out_tokens": 120
+      }
+    },
+    {
+      "id": "extract_info",
+      "task_type": "extract",
+      "keywords": ["提取", "抽取", "实体", "extract", "信息"],
+      "priority": 10,
+      "response": {
+        "content": "{\n  \"entities\": [\n    {\"type\": \"公司\", \"value\": \"腾讯科技\"},\n    {\"type\": \"时间\", \"value\": \"2026年7月\"},\n    {\"type\": \"金额\", \"value\": \"5.2亿元\"},\n    {\"type\": \"事件\", \"value\": \"战略融资\"}\n  ],\n  \"confidence\": 0.94\n}",
+        "in_tokens": 80,
+        "out_tokens": 95
+      }
+    },
+    {
+      "id": "chat_greeting",
+      "task_type": "chat",
+      "keywords": ["你好", "hello", "hi", "嗨", "在吗", "介绍"],
+      "priority": 5,
+      "response": {
+        "content": "你好！我是 AI 助手，可以帮你解答问题、写代码、翻译文档、分析数据等。请告诉我你需要什么帮助？",
+        "in_tokens": 10,
+        "out_tokens": 45
+      }
+    },
+    {
+      "id": "code_debug",
+      "task_type": "code",
+      "keywords": ["bug", "报错", "debug", "修复", "错误", "异常", "traceback"],
+      "priority": 9,
+      "response": {
+        "content": "根据错误信息分析：\n\n问题原因：`NoneType` 对象没有属性 `split`，说明变量在处理前未正确赋值。\n\n修复建议：\n1. 检查上游函数是否返回了 None\n2. 添加空值守卫：`if text is not None: text.split()`\n3. 或使用空合并：`text = get_value() or \"\"`\n\n建议在第 42 行前增加类型检查，确保输入非空。",
+        "in_tokens": 60,
+        "out_tokens": 130
+      }
+    },
+    {
+      "id": "long_context_analysis",
+      "task_type": "chat",
+      "keywords": ["分析", "解读", "对比", "评估", "analysis"],
+      "priority": 7,
+      "response": {
+        "content": "综合分析报告：\n\n## 优势\n- 方案 A：成本低、落地快，适合 MVP 验证\n- 方案 B：扩展性强、长期 ROI 高，适合规模化部署\n\n## 风险\n- 方案 A：技术债积累，6 个月后可能需重构\n- 方案 B：初期投入大，团队学习曲线陡峭\n\n## 建议\n- 0-3 个月：用方案 A 快速验证核心假设\n- 3-6 个月：根据数据决定是否迁移到方案 B\n- 关键指标：用户留存率、边际成本、故障率",
+        "in_tokens": 150,
+        "out_tokens": 200
+      }
+    },
+    {
+      "id": "data_analysis",
+      "task_type": "extract",
+      "keywords": ["数据", "报表", "趋势", "统计", "data", "chart"],
+      "priority": 8,
+      "response": {
+        "content": "数据分析结果：\n\n| 指标 | Q1 | Q2 | 环比 |\n|------|-----|-----|------|\n| DAU | 12.3万 | 15.8万 | +28% |\n| 留存 | 45% | 52% | +7pp |\n| 收入 | ¥320万 | ¥480万 | +50% |\n\n关键洞察：7 月新上线的个性化推荐功能显著提升了用户粘性和付费转化率。建议继续优化推荐算法，目标 Q3 留存达到 55%。",
+        "in_tokens": 100,
+        "out_tokens": 160
+      }
+    },
+    {
+      "id": "creative_writing",
+      "task_type": "chat",
+      "keywords": ["写", "创作", "故事", "文案", "文章", "creative", "write"],
+      "priority": 6,
+      "response": {
+        "content": "在那个雨水敲打着玻璃的深夜，她终于打开了一封尘封了二十年的信封。\n\n泛黄的纸张上，熟悉的字迹让她的心跳骤然加速——那是母亲的笔迹，她以为早已在火灾中化为灰烬的秘密。\n\n「如果你看到这封信，说明妈妈没能亲自告诉你……」\n\n窗外的雷声轰然炸响，而她手中的信纸，开始微微颤抖。",
+        "in_tokens": 20,
+        "out_tokens": 140
+      }
+    },
+    {
+      "id": "general_qa",
+      "task_type": "chat",
+      "keywords": ["是什么", "为什么", "怎么", "如何", "推荐", "区别"],
+      "priority": 3,
+      "response": {
+        "content": "这是一个很好的问题！让我来解答：\n\n首先，我们可以从以下几个维度来理解：\n1. 核心概念：定义和基本原理\n2. 应用场景：适合什么情况使用\n3. 注意事项：容易踩的坑\n\n如果你想深入了解某个方面，请告诉我，我可以进一步展开。",
+        "in_tokens": 15,
+        "out_tokens": 85
+      }
+    },
+    {
+      "id": "fallback",
+      "task_type": "chat",
+      "keywords": [],
+      "priority": 0,
+      "response": {
+        "content": "这是 Mock 模式返回的预设响应。在实际环境中，这里会是真实模型的回答。当前命中了通用兜底 mock，说明你的 query 没有匹配到任何特定场景。如需测试特定场景，请在 query 中加入关键词：翻译/代码/证明/总结/提取/分析 等。",
+        "in_tokens": 12,
+        "out_tokens": 70
+      }
+    }
+  ]
+}

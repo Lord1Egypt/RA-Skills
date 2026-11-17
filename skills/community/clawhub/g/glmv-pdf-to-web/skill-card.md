@@ -1,42 +1,57 @@
-## Description: <br>
-Convert a PDF, such as a research paper, technical report, or project document, into a single-page academic or project website with a structured outline JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert a PDF (research paper, technical report, or project document) into a beautiful single-page academic/project website with a structured outline JSON.
 
-## Publisher: <br>
-[zai-org](https://clawhub.ai/user/zai-org) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zai-org](https://clawhub.ai/user/zai-org)
 
-## Use Case: <br>
-Developers, researchers, and technical writers use this skill to turn a local PDF or downloaded PDF into a project-style webpage. The workflow extracts page images, plans website sections, crops relevant figures, and saves an outline JSON plus a single-page HTML site. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads the full PDF contents and converts pages into local images. <br>
-Mitigation: Use local PDFs for confidential material and review generated page images, crops, and outline data before sharing them. <br>
-Risk: When given a URL, the workflow downloads the PDF with curl. <br>
-Mitigation: Avoid untrusted, oversized, or internal-network URLs, and prefer known public PDF sources when remote download is needed. <br>
-Risk: The workflow creates output files under the workspace. <br>
-Mitigation: Run it in an appropriate workspace and inspect the generated web output directory before publishing or deploying the site. <br>
+## Use Case:
 
+Developers and researchers use this skill to turn a local or trusted remote research paper, technical report, or project document PDF into a single-page academic project website with a structured outline and local image crops.
 
-## Reference(s): <br>
-- [OpenClaw homepage](https://github.com/zai-org/GLM-V/tree/main/skills/glmv-pdf-to-web) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with JSON schemas, shell commands, Python snippets, and generated workspace files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces outline.json, cropped PNG assets, and index.html under a workspace web output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Remote PDF URLs may be downloaded before conversion, which can expose the workspace to untrusted or unexpected input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer local PDFs or trusted URLs only, and run the skill in a restricted workspace.
+
+Risk: The security review calls out under-scoped crop output handling and temporary-file handling for untrusted PDFs or shared machines.
+
+Mitigation: Patch crop filename sanitization and temporary-file handling before using the skill with untrusted PDFs or in shared environments.
+
+Risk: The skill depends on PDF and image-processing packages for local file conversion.
+
+Mitigation: Install dependencies in a virtual environment with pinned versions before use.
+
+## Reference(s):
+
+- [GLM-V PDF-to-Web homepage](https://github.com/zai-org/GLM-V/tree/main/skills/glmv-pdf-to-web)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON outline files, PNG crops, and a single-page HTML website.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates web/<pdf_stem>_<timestamp>/ containing outline.json, crops/, and index.html; HTML references crop assets by relative path.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

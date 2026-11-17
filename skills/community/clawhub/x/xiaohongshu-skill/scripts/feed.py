@@ -1,17 +1,17 @@
 """
 小红书笔记详情模块
 
-基于 xiaohongshu-mcp/feed_detail.go 翻译
+Reference: xiaohongshu-mcp/feed_detail.go (Apache-2.0). See THIRD_PARTY_NOTICES.md.
 """
 
 import json
+import random
 import sys
 import time
-import random
-from typing import Optional, Dict, Any, Tuple
+from typing import Any, Dict, Optional
 
-from .client import XiaohongshuClient, DEFAULT_COOKIE_PATH
 from ._utils import make_feed_url
+from .client import DEFAULT_COOKIE_PATH, XiaohongshuClient
 
 
 class FeedDetailAction:

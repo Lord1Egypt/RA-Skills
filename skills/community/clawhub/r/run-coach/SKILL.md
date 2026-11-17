@@ -1,184 +1,157 @@
 ---
 name: run-coach
-description: Science-based running coach with HD visual training plans and Garmin sync. For all runners — from 5K fitness to marathon.
+version: 1.1.8
+description: Science-based running coach via Telegram. Logs training, sends visual training plans as HD photo albums, and coaches with evidence-driven discipline — never nags, never asks for data it already has. Optional Garmin sync collects health metrics (HR, stress, Body Battery, VO2max) stored locally only; credentials and session tokens live in chmod-600 dotfiles — see the Data & privacy section.
+license: MIT-0
 metadata:
-  openclaw:
-    requires:
-      env:
-        - TELEGRAM_BOT_TOKEN
-        - TELEGRAM_CHAT_ID
-      anyBins:
-        - node
-    primaryEnv: TELEGRAM_BOT_TOKEN
-    emoji: 🏃
-    tags:
-      - running
-      - fitness
-      - coaching
-      - garmin
-      - telegram
-      - training
+  category: lifestyle
+  topics: ["fitness", "running", "garmin", "telegram"]
 ---
 
 # Run Coach 🏃
 
-A science-based running coach that works through Telegram. Logs your training, sends visual training plans as HD photo albums, syncs Garmin data, and coaches you with data-driven feedback.
+A science-based running coach that lives in your Telegram. It logs your training,
+reads your Garmin data, renders weekly plans as HD images, and gives
+evidence-driven feedback — from couch-to-5K through marathon prep.
 
-Works for any runner — whether you're jogging 3x a week for fitness or training for your first marathon.
+The coaching disciplines below are distilled from six months of a production
+deployment serving a real marathon trainee — each rule exists because its
+absence produced a real, documented failure mode.
 
-## What it does
+## Transparency (read this first)
 
-- **Training log** — Record every run: distance, pace, heart rate, feel score
-- **Visual plans** — Training plans rendered as HD images sent to your Telegram Photos tab
-- **Trend tracking** — Pace, heart rate, mileage trends over weeks and months
-- **Garmin sync** — Pull data automatically from Garmin Connect (optional)
-- **Injury monitoring** — Tracks knee, plantar fascia, IT band signals
-- **4-week reviews** — Automatic progress analysis every 4 weeks
-- **Race prep** — Structured build-up for 5K, 10K, half marathon, or full marathon
+- **Network endpoints this skill talks to** — exactly two:
+  `api.telegram.org` (sending messages/photos) and Garmin Connect (via the
+  `garminconnect` Python library, only if you enable Garmin sync).
+- **Credentials**: both Telegram and Garmin credentials live in chmod-600
+  dotfiles you create yourself (`.credentials` at the skill root,
+  `garmin/.credentials`). Scripts read them at runtime directly. **Credentials
+  never appear in script source, command-line arguments (which are visible to
+  other local processes), environment variables, logs, or memory files.**
+- No analytics, no telemetry, no third-party services beyond the two above.
+- **When data leaves the machine**: only when you run `training/send-plan.sh`,
+  `training/text-to-image.sh` or `training/text-to-image-canvas.mjs` yourself.
+  Each run prints the file names and "Sending N image(s)..." before the upload
+  to the `chat_id` you configured. Nothing is sent on a schedule or in the
+  background, and Garmin sync only downloads — it never uploads.
+- **Runtime scope**: `bash`, `node` (≥ 18) and, for the optional Garmin sync,
+  `python3` with the `garminconnect` package. No elevated privileges; every
+  file the skill writes stays inside its own directory.
 
 ## Setup
 
-### 1. Required environment variables
-
-Set these in your OpenClaw config or `.env`:
-
-```
-TELEGRAM_BOT_TOKEN=your_bot_token_from_botfather
-TELEGRAM_CHAT_ID=your_telegram_user_id
-```
-
-To get your `TELEGRAM_CHAT_ID`: send `/start` to your bot — it will show `Your Telegram user id: XXXXXXXXXX`.
-
-### 2. Fill in your profile
-
-Edit `MEMORY.md` with your personal data: age, running history, injuries, goal race.
-
-### 3. Optional: Garmin integration
-
-> ⚠️ **Known limitation:** Garmin periodically changes their login flow. The `garminconnect` library may stop working after a Garmin-side update until the library maintainers patch it. Check [garminconnect releases](https://github.com/cyberjunky/python-garminconnect/releases) if sync suddenly fails. The rest of the bot works fine without Garmin — you can always log runs manually.
->
-> ⚖️ **Legal note:** `garminconnect` uses Garmin's unofficial API (no official API exists). This may technically conflict with Garmin's Terms of Service. It accesses only your own data and Garmin has not acted against individual users, but use at your own discretion.
-
-Set these additional env vars for automatic Garmin Connect sync:
-
-```
-GARMIN_EMAIL=your_garmin_email
-GARMIN_PASSWORD=your_garmin_password
-```
-
-Then install the Python library:
 ```bash
-pip install garminconnect
+# Telegram (required) — skill-root dotfile, kept out of source/argv/env:
+echo '{"bot_token": "<from @BotFather>", "chat_id": "<your numeric chat id>"}' > .credentials
+chmod 600 .credentials
+# Garmin (optional):
+echo '{"email": "you@example.com", "password": "..."}' > garmin/.credentials
+chmod 600 garmin/.credentials
 ```
 
-### 4. Optional: Visual training plans (self-hosted)
+Visual plans additionally need: CJK-capable fonts (for non-latin text),
+Playwright's `chrome-headless-shell` **or** `@napi-rs/canvas` (browserless path).
 
-The image pipeline (visual training plans sent as Telegram photos) requires additional system dependencies. Install these in your container/environment:
+## Coaching disciplines (the heart of v1.1.0)
 
-```bash
-# CJK fonts + emoji
-apt-get install -y fonts-noto-cjk fonts-noto-color-emoji
-fc-cache -f
+### 1. Data first — never ask for what you already have
+Before asking the runner anything, check the training log and Garmin summary.
+"What did I run this week?" gets an answer from records, never the
+counter-question "what did you run?". Asking for logged data reads as amnesia
+and destroys trust in the coach.
 
-# Playwright Chromium (chrome-headless-shell)
-npx playwright install chromium
-```
+### 2. Injury inquiry discipline — resolved means quiet
+When an injury signal has been stable/resolved (multiple consecutive
+symptom-free sessions), move it to **passive monitoring**: stop asking about it
+in routine summaries. Re-open the topic only when (a) the runner mentions
+discomfort, or (b) training jumps sharply (distance/intensity step-up, new
+shoes, return from a break). Asking "how's the knee?" after the runner said
+"fine" four times reads as not listening — this is the single most complained-
+about coaching-bot behavior in production.
 
-Without these, the coaching features still work — plans will be sent as text instead of images.
+### 3. Goal changes take effect immediately
+When the runner abandons or changes a goal race, update memory **in the same
+reply** and remove every downstream artifact (countdowns, week numbers, pace
+targets keyed to the old race). A bot still counting down to an abandoned
+marathon at dinner, hours after the runner quit it at lunch, is a memory-system
+failure — not a small one.
 
-## How to use
+### 4. Pending-item semantics — track the runner's actions, not your questions
+A "pending" memory item is something **the runner said they would do**. Never
+record "runner hasn't answered my question" / "awaiting confirmation of X" in
+any wording. Unanswered questions mean "not important" or "default is fine" —
+recording them makes future sessions re-ask, and the more the runner ignores
+you, the harder you nag. That loop is a trust-killer.
 
-### Log a run (text)
-```
-I ran 8km today, pace 5:30/km, avg HR 135, felt good
-```
+### 5. Corrections require a real error
+Only "correct" the runner when the error verifiably exists in what they wrote —
+check the exact characters/numbers before correcting. "They made this mistake
+before" is never grounds to correct them now. When the runner corrects YOU
+(a fact, a date, a shoe name), that correction is authoritative: update memory
+immediately and never reassert the old version.
 
-### Log a run (screenshot — no Garmin needed)
-Take a screenshot of your watch, running app (Strava, Nike Run Club, Apple Watch, etc.), or any device that shows your run data, and send it directly to the bot. The bot's built-in vision capability (LLM multimodal input) extracts the numbers — no OCR code is included in this skill.
-
-```
-[send screenshot of your watch/app summary]
-Please log this run and give me feedback
-```
-Works with any device — the LLM reads the image natively, no integration required.
-
-### Request a visual training plan
-```
-Send me this week's training plan as an image
-```
-The bot calls `training/text-to-image.sh` and sends the plan as a Telegram photo album — appears in your Photos tab, full quality.
-
-### Get a weekly summary
-```
-Summarize my training this week
-```
-
-### Sync Garmin data (optional)
-```
-Sync my Garmin data and give me feedback on today's run
-```
-
-## Image pipeline
-
-Training plans are rendered using Playwright + `chrome-headless-shell` and sent via Telegram `sendMediaGroup` (photo album). This means:
-
-- ✅ Appears in Telegram Photos tab
-- ✅ No compression on text
-- ✅ CJK (Chinese/Japanese/Korean) and emoji supported
-- ✅ Weekly plans sent as 2-photo album: run days + cross-training days
-
-> **Note:** The image pipeline requires Telegram. If you use a different channel (Discord, WhatsApp), the coaching features still work — only the visual plan sending is Telegram-specific.
+### 6. Fragments are normal input
+Half sentences, a lone number ("10.2km"), a screenshot, a pasted split table —
+process them as-is. Do not ask the runner to resend a "complete" message or
+to explain their intent first. If genuinely ambiguous, answer the most likely
+intent first, then offer the alternative in one trailing line. (This is about
+input format only — the coach's safety judgement, e.g. stopping on pain that
+alters gait, is never overridden by this rule.)
 
 ## Training methodology
 
-Based on three evidence-based frameworks:
+Daniels VDOT for pace zones · MAF low-HR base building · 80/20 polarized
+distribution · FIRST 3-quality-days structure for time-crunched schedules.
+Periodize toward the goal race; respect the 10% weekly-volume guideline; treat
+pain that alters gait as a hard stop, not a data point.
 
-| Framework | Application |
-|-----------|-------------|
-| **Daniels VDOT** | Pace zones derived from test results, not guesses |
-| **MAF heart rate** | Easy runs at truly easy effort — conversational pace |
-| **FIRST structure** | Quality sessions: Interval + Tempo + Long run |
-| **80/20 polarized** | 80% easy volume, 20% quality — prevents overtraining |
+## Memory conventions
 
-Safety rule: pain >4/10 means stop. Always.
+Keep a `MEMORY.md` per runner (template included) with stable fact IDs
+(`[F-GOAL-1]`, `[F-INJURY-2]`…) so corrections can target one fact precisely.
+Date every entry with absolute dates (never "today"/"yesterday" — those rot).
+When a goal-level fact changes, edit `MEMORY.md` in the same turn and append
+"📌 memory updated" to the reply.
 
-## Files included
-
-```
-run-coach/
-├── SKILL.md              # This file — manifest + instructions
-├── MEMORY.md             # User profile template (fill in your data)
-├── training/
-│   ├── send-plan.sh      # HTML → screenshot → Telegram album
-│   ├── text-to-image.sh  # Text → HTML → screenshot → Telegram album
-│   ├── screenshot.mjs    # Playwright screenshot engine
-│   └── send-album.mjs    # Telegram sendPhoto (single) or sendMediaGroup (multi)
-└── garmin/               # Optional Garmin integration
-    ├── garmin-sync.py
-    └── garmin-query.py
-```
-
-## Agent instructions
-
-When the user asks to send content as an image, use exec to run:
+## Visual training plans
 
 ```bash
-# Option A: convert text to image
-bash training/text-to-image.sh "Title" "Content with \n line breaks"
-
-# Option B: weekly plan as 2-photo album (run days + cross-training days)
-bash training/send-plan.sh "Week X Plan" training/week-XX-run.html training/week-XX-cross.html
-
-# Option C: single HTML (today's plan, summaries — not for weekly plans)
-bash training/send-plan.sh "Title" training/week-XX.html
+training/send-plan.sh "Week 5 Plan" week-05-run.html week-05-cross.html  # browser path
+node training/text-to-image-canvas.mjs "Today's Session" "# 10K easy\n- HR under 150"  # browserless path
 ```
 
-**Do NOT** use canvas, browser, or Playwright directly. Only these two scripts.
+Both render dark-mode HD images and send via Telegram album (up to 10 photos).
 
-If a script errors, report the exact error to the user — do not silently switch to text.
+## Data & privacy (Garmin sync — read before enabling)
 
-For all numeric calculations (pace conversions, HR zones, VDOT), use exec:
+Enabling the optional Garmin sync collects and stores locally, under
+`garmin/` (or `GARMIN_DATA_DIR`):
+
+- **Per-activity details**: distance, duration, pace, splits, HR zones, cadence, calories
+- **Daily health metrics**: resting/min/max heart rate, stress level, Body Battery, steps
+- **Training metrics**: VO2max, fitness age, training status/load, race predictions
+- **Auth token cache**: `.garth/` stores Garmin session tokens (avoids re-login)
+
+Handling model:
+
+- **Storage**: everything stays in local JSON/files inside the skill directory —
+  nothing is uploaded anywhere except the plan images you explicitly send to
+  your own Telegram chat
+- **Retention**: files persist until you delete them; there is no automatic
+  expiry. Delete anytime: `rm -rf garmin/activities garmin/summary.json garmin/.garth`
+- **Permissions**: `garmin-sync.py` enforces owner-only access on every run —
+  `garmin/`, `garmin/activities/` and `garmin/.garth/` are set to 0700, and
+  every snapshot, `summary.json` and token file to 0600 (existing files are
+  tightened too). No manual `chmod` needed
+- **Opt-out**: simply don't create `garmin/.credentials` — every coaching
+  feature except wearable sync works without it
+
+## Garmin sync
+
 ```bash
-node -e "console.log(42.195 / (3*60+55))"
+python3 garmin/garmin-sync.py 14   # host-side: pull last 14 days
+python3 garmin/garmin-query.py recent 5   # anywhere: read synced JSON, no deps
 ```
-Never calculate in your head.
+
+Sync writes JSON snapshots (activities, HR zones, VO2max, race predictions);
+query reads them with zero third-party dependencies.

@@ -25,6 +25,10 @@ RETRY_BACKOFF_FACTOR = 2   # 退避因子，每次重试等待时间翻倍
 INITIAL_RETRY_DELAY = 1    # 初始等待时间（秒）
 # --------------------
 
+# 允许识别的类型白名单：仅出生医学证明
+ALLOWED_OCR_TYPES = {"BIRTH_CERTIFICATE"}
+
+
 def load_config():
     """从 .env 文件加载配置，若文件不存在则抛出友好错误"""
     if not ENV_FILE.exists():
@@ -78,18 +82,40 @@ def load_config():
     config.setdefault('SCNET_API_BASE', 'https://api.scnet.cn/api/llm/v1')
     return config
 
+
+def validate_ocr_type(ocr_type):
+    """
+    校验 ocrType 参数。
+    仅允许 BIRTH_CERTIFICATE，拒绝任何其他类型，防止技能被用作通用 OCR 代理。
+    """
+    if ocr_type not in ALLOWED_OCR_TYPES:
+        error_msg = (
+            "\n===============================================\n"
+            "不支持的识别类型\n"
+            "===============================================\n"
+            f"传入的 ocrType 为: {ocr_type}\n"
+            f"本技能仅支持: {', '.join(sorted(ALLOWED_OCR_TYPES))}\n\n"
+            "说明：本技能严格限定为出生医学证明识别，禁止作为通用 OCR 使用。\n"
+            "如需其他证件识别，请使用对应的专用技能。"
+        )
+        sys.stderr.write(error_msg + "\n")
+        sys.exit(1)
+
+
 def recognize_with_retry(ocr_type, file_path, config, retry_count=0):
     """
     带重试机制的 OCR 识别函数。
     当遇到 429 (Too Many Requests) 时，自动等待后重试。
-    调用 Scnet OCR API 进行识别"""
+    调用 Scnet OCR API 进行识别
+    """
     api_base = config['SCNET_API_BASE']
     api_key = config['SCNET_API_KEY']
     url = f"{api_base}/ocr/recognize"
 
     # 检查文件是否存在
     if not os.path.isfile(file_path):
-        sys.exit(f"错误: 文件不存在 - {file_path}")
+        sys.stderr.write(f"错误: 文件不存在 - {file_path}\n")
+        sys.exit(1)
 
     # 自动检测 MIME 类型
     mime_type, _ = mimetypes.guess_type(file_path)
@@ -111,11 +137,16 @@ def recognize_with_retry(ocr_type, file_path, config, retry_count=0):
             }
             response = requests.post(url, headers=headers, data=data, files=files, timeout=60)
     except Exception as e:
-        sys.exit(f"网络请求失败: {str(e)}")
+        sys.stderr.write(f"网络请求失败: {str(e)}\n")
+        sys.exit(1)
+
     # --- 新增：处理 429 速率限制 ---
     if response.status_code == 429:
         if retry_count >= MAX_RETRIES:
-            sys.exit(f"错误: 请求被限流 (429)，已达到最大重试次数 {MAX_RETRIES}。请稍后再试。")
+            sys.stderr.write(
+                f"错误: 请求被限流 (429)，已达到最大重试次数 {MAX_RETRIES}。请稍后再试。\n"
+            )
+            sys.exit(1)
 
         # 尝试从响应中获取重试等待时间（如果有）
         retry_after = INITIAL_RETRY_DELAY * (RETRY_BACKOFF_FACTOR ** retry_count)
@@ -124,17 +155,19 @@ def recognize_with_retry(ocr_type, file_path, config, retry_count=0):
             # 某些 API 会在响应中返回 retry_after 字段
             if 'retry_after' in error_data:
                 retry_after = int(error_data['retry_after'])
-        except:
+        except Exception:
             pass
 
         # 输出友好提示到 stderr（不影响 JSON 输出）
         sys.stderr.write(
-            f"⚠️ 请求过于频繁，等待 {retry_after} 秒后重试... (第 {retry_count + 1}/{MAX_RETRIES} 次重试)\n")
+            f"⚠️ 请求过于频繁，等待 {retry_after} 秒后重试... (第 {retry_count + 1}/{MAX_RETRIES} 次重试)\n"
+        )
         time.sleep(retry_after)
 
         # 递归重试
         return recognize_with_retry(ocr_type, file_path, config, retry_count + 1)
     # ---------------------------------
+
     if response.status_code != 200:
         # 针对 401/403 给出明确提示
         if response.status_code in (401, 403):
@@ -152,22 +185,24 @@ def recognize_with_retry(ocr_type, file_path, config, retry_count=0):
                 f"   chmod 600 {ENV_FILE}\n"
                 "\n更新后重新运行。"
             )
-            sys.exit(error_msg)
+            sys.stderr.write(error_msg + "\n")
+            sys.exit(1)
         else:
-            sys.exit(f"HTTP 错误 {response.status_code}: {response.text}")
+            sys.stderr.write(f"HTTP 错误 {response.status_code}: {response.text}\n")
+            sys.exit(1)
 
     try:
         result = response.json()
     except Exception:
-        sys.exit(f"响应不是有效的 JSON: {response.text}")
+        sys.stderr.write(f"响应不是有效的 JSON: {response.text}\n")
+        sys.exit(1)
 
     # 检查业务状态码
     if result.get('code') != '0':
-        sys.exit(f"API 错误 {result.get('code')}: {result.get('msg')}")
+        sys.stderr.write(f"API 错误 {result.get('code')}: {result.get('msg')}\n")
+        sys.exit(1)
 
     # 输出 data 部分（识别结果）
-    #print(json.dumps(result.get('data', []), ensure_ascii=False, indent=2))
-    # 获取 data 部分
     data = result.get('data', [])
 
     # 移除每个识别项中的 confidence 字段（优化点）
@@ -179,18 +214,23 @@ def recognize_with_retry(ocr_type, file_path, config, retry_count=0):
     # 输出处理后的数据
     print(json.dumps(data, ensure_ascii=False, indent=2))
 
+
 def main():
     if len(sys.argv) != 3:
-        print("用法: python main.py <ocrType> <filePath>")
-        print("ocrType 可选值: BIRTH_CERTIFICATE")
+        sys.stderr.write("用法: python main.py <ocrType> <filePath>\n")
+        sys.stderr.write("ocrType 仅允许: BIRTH_CERTIFICATE\n")
         sys.exit(1)
 
     ocr_type = sys.argv[1]
     file_path = sys.argv[2]
 
+    # 严格校验识别类型，防止被用作通用 OCR
+    validate_ocr_type(ocr_type)
+
     config = load_config()
     # 调用带重试的识别函数
     recognize_with_retry(ocr_type, file_path, config)
+
 
 if __name__ == '__main__':
     main()

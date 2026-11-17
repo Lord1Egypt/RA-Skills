@@ -1,38 +1,49 @@
-## Description: <br>
-AI Agent 設定同優化助手 - Prompt Engineering、Task Decomposition、Agent Loop設計 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Agent Helper Moss helps configure and optimize AI agents through prompt engineering, task decomposition, agent-loop design, and tool-selection guidance.
 
-## Publisher: <br>
-[MemoryF](https://clawhub.ai/user/MemoryF) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[memoryf](https://clawhub.ai/user/memoryf)
 
-## Use Case: <br>
-Developers and agent builders use this skill to draft and improve AI-agent prompts, decompose tasks, design agent loops, select tools, and define structured output patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package identity metadata does not fully match the registry and frontmatter context. <br>
-Mitigation: Before installing, confirm the publisher handle, slug, and version match the intended ClawHub release. <br>
+## Use Case:
 
+Developers and agent builders use this skill to draft and refine prompts, decompose complex tasks, design agent loops, choose tools, and improve structured agent responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MemoryF/ai-agent-helper-moss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with prompt examples and structured guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prompt templates, task breakdowns, agent-loop patterns, tool-selection advice, JSON output guidance, and token-optimization recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Broad agent or prompt optimization requests may route to this helper even when a user expects a narrower skill or another response language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated prompt and agent-design guidance before use, and ask for the preferred response language when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/memoryf/skills/ai-agent-helper-moss)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with prompt templates, structured guidance, and inline code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credential access, persistence, or hidden behavior is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

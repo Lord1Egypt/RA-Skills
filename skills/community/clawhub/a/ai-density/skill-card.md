@@ -1,42 +1,50 @@
-## Description: <br>
-AI Density analyzes text and returns an objective 0-10 estimate of AI-generated content proportion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Density analyzes text for heuristic AI-generation signals and returns a 0-10 AI content grade with scores, confidence, and dimension details.
 
-## Publisher: <br>
-[kaiyuelv](https://clawhub.ai/user/kaiyuelv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuelv](https://clawhub.ai/user/kaiyuelv)
 
-## Use Case: <br>
-Developers and content reviewers use this skill to run local heuristic analysis of Chinese or English text and receive a 0-10 AI-likeness level with supporting dimension scores. The result is advisory and intended to support review, not to prove authorship. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Heuristic AI-authorship estimates can be inaccurate or overconfident. <br>
-Mitigation: Treat scores as advisory and do not use them as the sole basis for academic, employment, moderation, or compliance decisions. <br>
-Risk: Out-of-range or very short text may produce weak signals. <br>
-Mitigation: Follow the documented 10-10000 character input range and review dimension scores before relying on the level. <br>
+## Use Case:
 
+Developers and content reviewers use this skill to run local, heuristic checks of whether text appears AI-generated and to inspect the dimensions behind the score. Results should be treated as rough screening signals, not proof of authorship.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaiyuelv/ai-density) <br>
-- [Artifact README](README.md) <br>
-- [Artifact-declared project homepage](https://github.com/openclaw/ai-density) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Python DetectionResult object with level, score, confidence, dimension scores, description, warning, and processing time.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local standard-library heuristic for text inputs; README states a 10-10000 character input range.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Heuristic AI-authorship scores can be mistaken for proof or precise human-vs-AI contribution levels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present results as rough screening signals, include confidence and warning text, and require independent review before moderation, academic, hiring, compliance, or other consequential use.
+
+## Reference(s):
+
+- [AI Density ClawHub Listing](https://clawhub.ai/kaiyuelv/skills/ai-density)
+- [AI Density Project Homepage](https://github.com/openclaw/ai-density)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, guidance]
+
+**Output Format:** [Markdown text or Python DetectionResult data with level, score, confidence, dimension scores, warning, and processing time.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Input text length is documented as 10-10000 characters; outputs are heuristic and for reference only.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

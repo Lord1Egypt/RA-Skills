@@ -1,44 +1,59 @@
-## Description: <br>
-三國志略 / Histrategy - AI-powered historical strategy game. Supports Three Kingdoms and Rome Triumvirate scenarios. Command armies through natural language. Multiplayer via IM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw packages Histrategy, an AI-powered historical strategy game with Three Kingdoms and Rome Triumvirate scenarios, natural-language commands, and multiplayer IM support.
 
-## Publisher: <br>
-[emergencescience](https://clawhub.ai/user/emergencescience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emergencescience](https://clawhub.ai/user/emergencescience)
 
-## Use Case: <br>
-External users and game hosts use this skill to run turn-based historical strategy campaigns through natural-language commands in single-player or shared chat sessions. It supports Three Kingdoms and Rome Triumvirate scenarios with English and Chinese gameplay. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Campaign history is saved locally and may include player decisions or chat context. <br>
-Mitigation: Use the skill only where local saved game history is acceptable, and review or delete saved rooms when campaign data should not persist. <br>
-Risk: When an LLM provider is configured, turn text may be sent to that provider for narrative generation. <br>
-Mitigation: Configure only approved LLM providers and API keys for the expected chat content, or use the offline rule-based mode when external transmission is unsuitable. <br>
-Risk: In shared chats, the visible delete command may remove a shared saved campaign without a confirmation step. <br>
-Mitigation: Enable shared play only in trusted chats and make deletion expectations clear before use. <br>
+## Use Case:
 
+External players and community operators use this skill to run historical strategy game sessions through an OpenClaw agent, including single-player or IM-based multiplayer campaigns with natural-language turns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/emergencescience/histrategy-agent) <br>
-- [histrategy-sdk on PyPI](https://pypi.org/project/histrategy-sdk/) <br>
-- [Histrategy website](https://emergence.science/en/games/histrategy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON] <br>
-**Output Format:** [JSON response containing Markdown-formatted game text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include bilingual game narratives, state summaries, help text, and command results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Mutable external histrategy packages can change behavior after installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated environment and pin and verify the histrategy packages before use.
+
+Risk: Broad chat triggers and delete commands can unintentionally affect an active campaign.
+
+Mitigation: Deploy only in intended chats, restrict trigger exposure where possible, and make destructive commands clear to operators.
+
+Risk: The skill may use local saves and configured LLM API keys during gameplay.
+
+Mitigation: Run with a dedicated account or environment and expose only the API keys and files required for the game.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/emergencescience/skills/histrategy-agent)
+- [Histrategy SDK on PyPI](https://pypi.org/project/histrategy-sdk/)
+- [Histrategy project website](https://emergence.science/en/games/histrategy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [JSON response objects containing Markdown-formatted text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Game state is stored locally under ~/.histrategy/rooms; V1 narrative play may use configured external LLM API keys.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

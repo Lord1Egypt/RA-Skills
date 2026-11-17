@@ -1,41 +1,51 @@
-## Description: <br>
-Gradio-based chat interface for Ollama that creates a web chat UI with model selection, streaming responses, and multi-session management through ChatManager. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Gradio-based web chat interface for Ollama models with model discovery, multi-session management, model selection, and streaming responses.
 
-## Publisher: <br>
-[wangyendt](https://clawhub.ai/user/wangyendt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangyendt](https://clawhub.ai/user/wangyendt)
 
-## Use Case: <br>
-Developers and engineers use this skill to work with pywayne.llm.chat_ollama_gradio when launching a local Gradio chat UI for Ollama models with session switching, model discovery, and streaming conversation history. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The Gradio server may be network-accessible if launched with a broad host binding. <br>
-Mitigation: Bind the server to localhost, such as 127.0.0.1, unless LAN access is intentional. <br>
-Risk: The workflow depends on local pywayne, gradio, and Ollama components. <br>
-Mitigation: Install and run the required components only from sources you trust. <br>
-Risk: Chat content and session history may remain in memory while the app is running. <br>
-Mitigation: Avoid entering sensitive content unless temporary in-memory retention is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangyendt/chat-ollama-gradio) <br>
+## Use Case:
+
+Developers and engineers use this skill to create and configure a local Gradio chat UI for Ollama-backed language models, including model selection, streaming responses, and in-memory multi-session chat management.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The documented default server_name of 0.0.0.0 can expose an unauthenticated Gradio chat server on the network.
+
+Mitigation: Bind the server to 127.0.0.1 or localhost for normal local use, avoid exposing port 7870 publicly, and add authentication or a trusted reverse proxy before remote access.
+
+Risk: Chat session history is kept in memory and is not persistent.
+
+Mitigation: Treat chat history as temporary state and add a reviewed persistence layer if durable records are required.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python code blocks and configuration tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local Ollama endpoint, Gradio launch settings, model selection, and in-memory session history guidance.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with Python code snippets and configuration tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance assumes a local Ollama service is available and that session history is kept in memory.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+path,dsize,is_dir,analysis_kind,attention_level,review_reason,evidence,dependency_check_confidence,selection_source,group_key,configured_dominant_percent
+examples/sample-data/downloads/pack.bin.part,901120,False,signature heuristics,review first,incomplete download pattern surfaced by the dominant-space walk,matched partial-download suffix,high,dominant_leaf,,0.8
+examples/sample-data/backup/models/model.gguf,102400,False,probable duplicates,review carefully,large asset appears structurally duplicated across different directories,same basename and same size across 2 directories,medium,duplicate_cluster,duplicate:model.gguf:102400,0.8
+examples/sample-data/models/model.gguf,102400,False,probable duplicates,review carefully,large asset appears structurally duplicated across different directories,same basename and same size across 2 directories,medium,duplicate_cluster,duplicate:model.gguf:102400,0.8

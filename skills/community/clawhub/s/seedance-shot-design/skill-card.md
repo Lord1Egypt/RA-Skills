@@ -1,48 +1,64 @@
-## Description: <br>
-Transforms vague video ideas into structured, cinematic Seedance 2.0 prompts with shot design, bilingual output, storyboard segmentation, style references, lighting anchors, and validation checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Seedance 2.0 Shot Design helps agents turn vague video ideas into structured cinematic prompts for Seedance 2.0, with bilingual output, storyboard segmentation, cinematography references, lighting guidance, and validation checks.
 
-## Publisher: <br>
-[woodfantasy](https://clawhub.ai/user/woodfantasy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[woodfantasy](https://clawhub.ai/user/woodfantasy)
 
-## Use Case: <br>
-External creators, developers, and agent users use this skill to turn rough video concepts into copy-ready Seedance 2.0 prompts with cinematic camera movement, timing, lighting, sound, and validation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional CLI guidance may lead users to install or run local tools. <br>
-Mitigation: Install only from a trusted source or pinned revision, verify installers before running them, and run the Python validator only when local code execution is intended. <br>
-Risk: Video, voice, likeness, or copyrighted reference materials may be uploaded to external generation services without sufficient rights or consent. <br>
-Mitigation: Use only materials the user has rights to process, obtain consent for private likeness or voice references, and apply the skill's copyright-safe fallback guidance for sensitive IP. <br>
-Risk: Generated prompts may still contain misleading, policy-sensitive, or unsuitable creative direction for a target platform. <br>
-Mitigation: Review the generated prompt and the skill's validation checklist before submitting it to Seedance or any connected video-generation workflow. <br>
+## Use Case:
 
+Creators, developers, and video-production teams use this skill to convert short creative briefs into Seedance-ready video prompts with shot timing, camera motion, lighting, sound, and negative-prompt structure.
 
-## Reference(s): <br>
-- [Seedance 2.0 Official Platform Specs](references/seedance-specs.md) <br>
-- [Camera Movement and Lens Dictionary](references/cinematography.md) <br>
-- [Director Style Parameter Mapping Library](references/director-styles.md) <br>
-- [Quality Anchors and Post-Processing Vocabulary](references/quality-anchors.md) <br>
-- [Vertical Scenario Prompt Templates](references/scenarios.md) <br>
-- [Audio and Sound Effect Tag Guide](references/audio-tags.md) <br>
-- [Agent Skills Specification](https://agentskills.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with copy-ready prompt code blocks and optional CLI command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs follow the user's language, include a director note and complete Seedance prompt, and may segment videos longer than 15 seconds into separate prompt blocks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.1 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: The security review flags an unsafe remote CLI installer in the documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run the documented CLI installer as written; use a verified, versioned installer or an official package channel.
+
+Risk: The security review notes broad auto-activation for video-prompt requests.
+
+Mitigation: Install only when a Seedance-focused prompt-writing skill is desired, and review generated prompts before use.
+
+Risk: The security review notes platform-bypass wording and moderation-related guidance.
+
+Mitigation: Use only original, licensed, or clearly permitted content, and do not use the skill to evade platform or legal restrictions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/woodfantasy/skills/seedance-shot-design)
+- [Agent Skills Specification](https://agentskills.io)
+- [Seedance Specs](references/seedance-specs.md)
+- [Cinematography](references/cinematography.md)
+- [Director Styles](references/director-styles.md)
+- [Quality Anchors](references/quality-anchors.md)
+- [Scenarios](references/scenarios.md)
+- [Audio Tags](references/audio-tags.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown with structured prompt code blocks and optional CLI command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese/English prompt output; prompt-generation guidance is instruction-only and the packaged scripts are documented as standalone developer tools.]
+
+## Skill Version(s):
+
+1.9.1 (source: evidence.release.version, SKILL.md frontmatter, README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

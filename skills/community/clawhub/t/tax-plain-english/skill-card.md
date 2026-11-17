@@ -1,47 +1,57 @@
-## Description: <br>
-Answers US federal tax questions in plain English, selecting practical formats for concepts, procedures, calculations, complex situations, and IRS problem scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Answers U.S. federal tax questions in plain English, selecting structured response formats for concepts, procedures, rough estimates, complex situations, and IRS notice problems.
 
-## Publisher: <br>
-[hgereat](https://clawhub.ai/user/hgereat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgereat](https://clawhub.ai/user/hgereat)
 
-## Use Case: <br>
-External users and agents use this skill to organize and explain common US federal tax questions for individuals, freelancers, and small business owners, including deductions, credits, estimated taxes, IRS notices, and state notes where rules commonly differ. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad tax guidance may be mistaken for filing-ready advice. <br>
-Mitigation: Use the skill for general tax organization or preliminary research, and have a CPA, enrolled agent, or tax attorney review material filing positions or complex deductions. <br>
-Risk: Answers may understate jurisdiction limits or apply US federal rules to a different jurisdiction. <br>
-Mitigation: Confirm the user's jurisdiction before relying on an answer and redirect non-US tax questions to local tax authorities or a local advisor. <br>
-Risk: The skill uses 2024 tax-year reference numbers that can become stale. <br>
-Mitigation: Verify current rates, thresholds, forms, and deadlines against IRS.gov or a licensed tax professional before filing. <br>
+## Use Case:
 
+External users use this skill to understand common U.S. federal tax questions, including deductions, filing status, credits, self-employment income, retirement accounts, crypto, IRS notices, and state-rule divergences. It is educational guidance and does not prepare returns or replace professional tax advice for complex or filing-critical matters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hgereat/tax-plain-english) <br>
-- [2024 Tax Year - Key Numbers](references/2024-numbers.md) <br>
-- [IRS Publications & Official Sources](references/irs-publications.md) <br>
-- [State Tax Quirks - Common Divergences from Federal Rules](references/state-quirks.md) <br>
-- [Escalation Guide - When and How to Flag Professional Help](references/escalation-guide.md) <br>
-- [IRS tax year 2024 inflation adjustments](https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2024) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Markdown with structured sections, lists, worked estimates, and action steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include jurisdiction notes, complexity flags, documentation checklists, and professional-help recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, frontmatter, and changelog, released 2026-03-31 in changelog) <br>
+Risk: The skill can present 2024 tax figures as current guidance in a high-stakes tax context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for educational U.S. tax explanations, verify numbers, limits, and deadlines against current IRS and state sources, and seek professional review before filing or taking complex tax positions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hgereat/skills/tax-plain-english)
+- [2024 Tax Year Key Numbers](artifact/references/2024-numbers.md)
+- [IRS Publications and Official Sources](artifact/references/irs-publications.md)
+- [State Tax Quirks](artifact/references/state-quirks.md)
+- [Escalation Guide](artifact/references/escalation-guide.md)
+- [IRS tax year 2024 inflation adjustments](https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2024)
+- [IRS Publication 17](https://www.irs.gov/pub/irs-pdf/p17.pdf)
+- [IRS Publication 334](https://www.irs.gov/pub/irs-pdf/p334.pdf)
+- [IRS Publication 505](https://www.irs.gov/pub/irs-pdf/p505.pdf)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Analysis]
+
+**Output Format:** [Structured Markdown responses with direct answers, action steps, rough calculations, documentation lists, and risk flags.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include rough tax estimates and green/yellow/red escalation flags; not a tax return preparation output.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

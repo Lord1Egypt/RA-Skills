@@ -1,40 +1,54 @@
-## Description: <br>
-Alpha — Technical Documentation helps produce developer-facing documentation such as READMEs, API references, setup guides, architecture decision records, and changelogs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Technical documentation specialist for READMEs, API references, setup guides, architecture decision records, and changelogs, with structured writing for developer audiences.
 
-## Publisher: <br>
-[renoblabs](https://clawhub.ai/user/renoblabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renoblabs](https://clawhub.ai/user/renoblabs)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to generate structured technical documentation for projects, APIs, deployments, and architecture decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes an external hire and payment workflow. <br>
-Mitigation: Before using the hire command or paying ETH, verify the mltl tool, agent ID, and payment destination through trusted channels; never provide wallet private keys or unrelated credentials. <br>
-Risk: Generated documentation may include commands, examples, or API details that affect developer workflows. <br>
-Mitigation: Review generated documents and test code examples or shell commands before publishing or using them operationally. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to request professional technical documentation, including READMEs, API references, setup guides, architecture decision records, and changelogs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/renoblabs/alpha-tech-docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown documents with code examples, command snippets, and structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include README sections, API examples, setup steps, troubleshooting notes, ADR entries, and changelog text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Documentation requests may be sent to an external paid agent whose provider, retention policy, and cost require review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the provider, payment terms, data retention policy, and task scope before use.
+
+Risk: Sensitive implementation details, API schemas, customer data, or unreleased architecture information could be exposed through documentation prompts.
+
+Mitigation: Remove secrets and confidential details from inputs unless the provider and data handling terms have been approved.
+
+## Reference(s):
+
+- [Alpha — Technical Documentation skill page](https://clawhub.ai/renoblabs/skills/alpha-tech-docs)
+- [renoblabs publisher profile](https://clawhub.ai/user/renoblabs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text with optional code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are documentation artifacts or documentation guidance for developer audiences.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

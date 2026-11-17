@@ -1,41 +1,53 @@
-## Description: <br>
-谷歌开源 AI 编程工作流 - 从需求到代码的快速转化。包含20个专项技能、规范开发流程、7大实战案例。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+谷歌开源 AI 编程工作流 - 从需求到代码的快速转化。包含20个专项技能、规范开发流程、7大实战案例。
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Developers and teams use this skill as a Chinese-language AI programming workflow guide for turning structured requirements into code through planning, testing, modular implementation, review, and documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may suggest commands, API integrations, credential handling, testing, or deployment steps that affect a user's project or environment. <br>
-Mitigation: Review generated commands, API integrations, credential use, and deployment steps before running them. <br>
-Risk: The skill uses broad activation wording and is written in Chinese, which may be a mismatch for users expecting narrow triggers or English guidance. <br>
-Mitigation: Use it as a workflow reference and confirm that its language and activation behavior match the target agent configuration. <br>
+## Use Case:
 
+Developers and AI-assisted coding practitioners use this Chinese-language skill to structure requirements, planning, testing, implementation, bug fixing, review, and documentation workflows for faster conversion from ideas to working code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smseow001/vibe-coding-guide) <br>
-- [Publisher profile](https://clawhub.ai/user/smseow001) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with templates, checklists, workflow steps, and example prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill may be selected for broad AI coding workflow questions and can influence development decisions beyond a narrow implementation task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as structured guidance, then review generated plans, code, tests, and documentation against the project's own requirements before adopting them.
+
+Risk: The skill recommends or describes external developer tools, APIs, and services without installing, configuring, or validating them.
+
+Mitigation: Verify each external tool, API, or service separately for licensing, security, data handling, and operational suitability before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smseow001/skills/vibe-coding-guide)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with workflow steps, checklists, templates, tables, and code or command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language workflow guidance; the artifact contains no executable code, install hooks, credential access, persistence, or hidden data handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

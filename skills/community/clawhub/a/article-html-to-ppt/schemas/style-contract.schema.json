@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skillmelody.dev/schemas/style-contract.schema.json",
+  "title": "Article HTML to PPT Style Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "style_id",
+    "display_name",
+    "colors",
+    "typography",
+    "grid",
+    "spacing",
+    "shape_tokens",
+    "shadow_tokens",
+    "card_tokens",
+    "table_tokens",
+    "chart_tokens",
+    "diagram_tokens",
+    "image_tokens",
+    "icon_tokens",
+    "footer_tokens",
+    "density_limits",
+    "allowed_effects",
+    "forbidden_drift",
+    "compatibility_aliases"
+  ],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "style_id": {"type": "string", "minLength": 1},
+    "display_name": {"type": "string", "minLength": 1},
+    "description": {"type": "string"},
+    "audience": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "formality": {"enum": ["draft", "internal", "professional", "executive", "client", "public"]},
+    "presentation_context": {"type": "array", "minItems": 1, "items": {"enum": ["live", "review", "self_reading", "publication", "training"]}},
+    "aspect_ratios": {"type": "array", "minItems": 1, "items": {"enum": ["16:9", "4:3", "9:16"]}},
+    "colors": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primary",
+        "accent",
+        "background",
+        "surface_1",
+        "surface_2",
+        "text_primary",
+        "text_secondary",
+        "border",
+        "positive",
+        "warning",
+        "negative",
+        "data_series",
+        "allowed_opacity"
+      ],
+      "properties": {
+        "primary": {"$ref": "#/$defs/hexColor"},
+        "accent": {"$ref": "#/$defs/hexColor"},
+        "background": {"$ref": "#/$defs/hexColor"},
+        "surface_1": {"$ref": "#/$defs/hexColor"},
+        "surface_2": {"$ref": "#/$defs/hexColor"},
+        "surface_3": {"$ref": "#/$defs/hexColor"},
+        "text_primary": {"$ref": "#/$defs/hexColor"},
+        "text_secondary": {"$ref": "#/$defs/hexColor"},
+        "text_muted": {"$ref": "#/$defs/hexColor"},
+        "border": {"$ref": "#/$defs/hexColor"},
+        "positive": {"$ref": "#/$defs/hexColor"},
+        "warning": {"$ref": "#/$defs/hexColor"},
+        "negative": {"$ref": "#/$defs/hexColor"},
+        "data_series": {"type": "array", "minItems": 3, "items": {"$ref": "#/$defs/hexColor"}},
+        "allowed_opacity": {"type": "array", "minItems": 1, "items": {"type": "number", "minimum": 0, "maximum": 1}}
+      }
+    },
+    "typography": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "font_primary",
+        "font_editorial",
+        "font_mono",
+        "title_sizes_pt",
+        "body_sizes_pt",
+        "metric_sizes_pt",
+        "minimum_body_size_pt",
+        "minimum_footnote_size_pt",
+        "line_height",
+        "paragraph_spacing_pt",
+        "letter_spacing_pt",
+        "weights"
+      ],
+      "properties": {
+        "font_primary": {"$ref": "#/$defs/fontStack"},
+        "font_editorial": {"$ref": "#/$defs/fontStack"},
+        "font_mono": {"$ref": "#/$defs/fontStack"},
+        "title_sizes_pt": {"type": "object", "additionalProperties": {"type": "number", "minimum": 8}},
+        "body_sizes_pt": {"type": "object", "additionalProperties": {"type": "number", "minimum": 5}},
+        "metric_sizes_pt": {"type": "object", "additionalProperties": {"type": "number", "minimum": 8}},
+        "minimum_body_size_pt": {"type": "number", "minimum": 8},
+        "minimum_footnote_size_pt": {"type": "number", "minimum": 6},
+        "line_height": {"type": "object", "additionalProperties": {"type": "number", "minimum": 1}},
+        "paragraph_spacing_pt": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0}},
+        "letter_spacing_pt": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0}},
+        "weights": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 100}}
+      }
+    },
+    "grid": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "columns",
+        "rows",
+        "margin_left_in",
+        "margin_right_in",
+        "margin_top_in",
+        "margin_bottom_in",
+        "gutter_horizontal_in",
+        "gutter_vertical_in",
+        "title_zone_height_in",
+        "footer_zone_height_in",
+        "safe_zone_in"
+      ],
+      "properties": {
+        "columns": {"type": "integer", "minimum": 4, "maximum": 24},
+        "rows": {"type": "integer", "minimum": 4, "maximum": 16},
+        "margin_left_in": {"type": "number", "minimum": 0.2, "maximum": 1.5},
+        "margin_right_in": {"type": "number", "minimum": 0.2, "maximum": 1.5},
+        "margin_top_in": {"type": "number", "minimum": 0.2, "maximum": 1.5},
+        "margin_bottom_in": {"type": "number", "minimum": 0.2, "maximum": 1.5},
+        "gutter_horizontal_in": {"type": "number", "minimum": 0.05, "maximum": 0.5},
+        "gutter_vertical_in": {"type": "number", "minimum": 0.05, "maximum": 0.5},
+        "title_zone_height_in": {"type": "number", "minimum": 0.45, "maximum": 1.4},
+        "footer_zone_height_in": {"type": "number", "minimum": 0, "maximum": 0.5},
+        "safe_zone_in": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["left", "right", "top", "bottom"],
+          "properties": {
+            "left": {"type": "number", "minimum": 0},
+            "right": {"type": "number", "minimum": 0},
+            "top": {"type": "number", "minimum": 0},
+            "bottom": {"type": "number", "minimum": 0}
+          }
+        }
+      }
+    },
+    "spacing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["unit", "scale", "rules"],
+      "properties": {
+        "unit": {"const": "in"},
+        "scale": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0}},
+        "rules": {"type": "object", "additionalProperties": {"type": "string", "minLength": 1}}
+      }
+    },
+    "shape_tokens": {"type": "object"},
+    "shadow_tokens": {"type": "object"},
+    "card_tokens": {"type": "object"},
+    "table_tokens": {"type": "object"},
+    "chart_tokens": {"type": "object"},
+    "diagram_tokens": {"type": "object"},
+    "image_tokens": {"type": "object"},
+    "icon_tokens": {"type": "object"},
+    "footer_tokens": {"type": "object"},
+    "density_limits": {"type": "object"},
+    "component_variants": {"type": "object"},
+    "allowed_effects": {"type": "array", "items": {"type": "string"}},
+    "forbidden_drift": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "compatibility_aliases": {"type": "array", "items": {"type": "object"}},
+    "extensions": {"type": "object"}
+  },
+  "$defs": {
+    "hexColor": {"type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"},
+    "fontStack": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+  }
+}

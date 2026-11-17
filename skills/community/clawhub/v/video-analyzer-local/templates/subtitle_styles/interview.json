@@ -1,0 +1,27 @@
+{
+  "id": "interview",
+  "name": "访谈",
+  "description": "白字+细黑描边+底部居中，稳重克制，适合访谈/对话/播客出镜",
+  "ass": {
+    "font": "Microsoft YaHei",
+    "size": 46,
+    "primary": "&H00FFFFFF",
+    "secondary": "&H000000FF",
+    "outline": "&H00000000",
+    "back": "&H80000000",
+    "bold": 0,
+    "italic": 0,
+    "border_style": 1,
+    "outline_width": 2,
+    "shadow": 1,
+    "alignment": 2,
+    "margin_l": 100,
+    "margin_r": 100,
+    "margin_v": 55,
+    "encoding": 1
+  },
+  "bilingual": {
+    "orig": {"primary": "&H00B0B0B0", "size": 36, "margin_v": 135, "alignment": 2, "outline_width": 2},
+    "trans": {"primary": "&H00FFFFFF", "size": 46, "margin_v": 50, "alignment": 2, "outline_width": 2}
+  }
+}

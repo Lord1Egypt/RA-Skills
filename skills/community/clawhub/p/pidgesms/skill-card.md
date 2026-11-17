@@ -1,45 +1,64 @@
-## Description: <br>
-Send and read SMS text messages via an Android phone using pidge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and read SMS text messages via an Android phone using pidge.
 
-## Publisher: <br>
-[typhonius](https://clawhub.ai/user/typhonius) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[typhonius](https://clawhub.ai/user/typhonius)
 
-## Use Case: <br>
-External users and developers use this skill to send SMS, read an SMS inbox, check delivery status, and manage processed message state through pidge on an Android phone. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send SMS through an Android phone, so mistaken recipients or message content could result in real outbound texts. <br>
-Mitigation: Personally confirm the recipient and message content before any text is sent, and do not send bulk or repeated messages. <br>
-Risk: The skill can read SMS inbox content, which may expose private or sensitive messages. <br>
-Mitigation: Protect ~/.config/pidge/config.toml and avoid revealing full private SMS content unless directly requested in an appropriate private context. <br>
-Risk: The skill depends on the upstream pidge CLI and the Android SMS Gateway configuration. <br>
-Mitigation: Review the upstream pidge CLI before installing and verify the gateway configuration before enabling the skill. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to send SMS messages, read SMS inboxes, check delivery status, mark messages processed or unprocessed, and run gateway health checks through the pidge CLI.
 
-## Reference(s): <br>
-- [ClawHub pidgesms page](https://clawhub.ai/typhonius/pidgesms) <br>
-- [pidge](https://github.com/typhonius/pidge) <br>
-- [Android SMS Gateway](https://github.com/capcom6/android-sms-gateway) <br>
-- [OpenClaw](https://openclaw.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference SMS recipients, delivery state, inbox entries, and pidge configuration details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can send SMS messages to real phone numbers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the recipient and message content before sending, require explicit owner approval for unknown numbers, and do not send bulk or repeated messages.
+
+Risk: SMS inbox reads can expose private message content and phone numbers.
+
+Mitigation: Summarize private SMS content in shared contexts and reveal full message content only when directly requested in a private context.
+
+Risk: SMS is not appropriate for secrets or sensitive credentials.
+
+Mitigation: Do not send passwords, API keys, tokens, or similar sensitive information through SMS.
+
+Risk: The documented install command uses the latest pidge release.
+
+Mitigation: Install only from a trusted pidge project release and consider pinning pidge to a reviewed version.
+
+## Reference(s):
+
+- [ClawHub pidgesms skill page](https://clawhub.ai/typhonius/skills/pidgesms)
+- [pidge](https://github.com/typhonius/pidge)
+- [Android SMS Gateway](https://github.com/capcom6/android-sms-gateway)
+- [OpenClaw](https://openclaw.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the local pidge CLI and its configuration at ~/.config/pidge/config.toml.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

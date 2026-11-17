@@ -1,6 +1,7 @@
 {
   "ownerId": "kn75f6rrmkz9de69019rw1762d821z1t",
   "slug": "encrypted-file-writer",
-  "version": "1.1.0",
-  "publishedAt": 1773039578051
+  "version": "1.2.0",
+  "publishedAt": 1773039578051,
+  "changelog": "修复 SkillSpector 报告的问题：\n1. 修复描述与行为不一致 - 移除误导性'加密'描述\n2. 修复 --encoding 参数不生效问题\n3. 收紧激活条件，避免误触发\n4. 移除有漏洞的 openclaw 依赖"
 }

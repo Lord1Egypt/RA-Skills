@@ -1,47 +1,59 @@
-## Description: <br>
-Automate George online banking (Erste Bank / Sparkasse Austria): login/logout, list accounts, and fetch transactions via Playwright. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates George online banking for Erste Bank and Sparkasse Austria, including login/logout, account and transaction retrieval, portfolio data, exports, and data-carrier upload/signing through Playwright.
 
-## Publisher: <br>
-[odrobnik](https://clawhub.ai/user/odrobnik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[odrobnik](https://clawhub.ai/user/odrobnik)
 
-## Use Case: <br>
-Developers and operators use this skill to automate George banking workflows for Erste Bank and Sparkasse Austria, including interactive login, account and portfolio retrieval, transaction export, and data-carrier upload or signing. It is intended for trusted environments where the user can personally approve 2FA and banking actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive banking account data. <br>
-Mitigation: Run it only in a private workspace on a trusted machine and share outputs only with systems approved to handle financial data. <br>
-Risk: The skill caches banking session tokens and browser state. <br>
-Mitigation: Run logout after each workflow and protect the workspace where george session files are stored. <br>
-Risk: The skill can initiate data-carrier uploads and signing flows. <br>
-Mitigation: Personally verify each upload and signing approval in the George mobile app before confirming it. <br>
-Risk: Debug mode may write raw financial payloads. <br>
-Mitigation: Avoid --debug unless troubleshooting requires raw payloads, and remove debug files after use. <br>
+## Use Case:
 
+External users with Erste Bank or Sparkasse Austria George accounts use this skill to automate account, transaction, portfolio, statement/export, and data-carrier workflows from an agent session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/odrobnik/george) <br>
-- [Skill homepage](https://github.com/odrobnik/george-skill) <br>
-- [Setup](SETUP.md) <br>
-- [Unified Banking Schema](docs/unified-banking-schema.md) <br>
+### Deployment Geography for Use:
 
+Austria
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; script commands can emit human-readable text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write cached session state under workspace/george and temporary exports under /tmp/openclaw/george.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.4 (source: frontmatter and server release evidence) <br>
+Risk: The skill can upload and sign real banking data-carrier payment files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use upload/sign commands only after independently reviewing the payment file, recipient, amount, and destination details, and approve mobile 2FA prompts only when they match the intended action.
+
+Risk: The skill stores persistent George session tokens and browser state in the workspace.
+
+Mitigation: Treat the workspace george directory as sensitive credential storage, avoid shared or synced workspaces, and run logout after completing banking operations.
+
+Risk: Security evidence reports a token-forwarding flaw.
+
+Mitigation: Install only when live George banking automation is intended, keep the workspace isolated, and review updates or fixes before relying on token-backed workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/odrobnik/skills/george)
+- [Setup](artifact/SETUP.md)
+- [Unified Banking Schema](artifact/docs/unified-banking-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Human-readable text and JSON responses, with PDFs, banking exports, and response payloads written as files when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires interactive George mobile 2FA. Session state is stored under the workspace, and temporary exports default to /tmp/openclaw/george.]
+
+## Skill Version(s):
+
+1.5.5 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0",
+  "description": "八字断语库 — 结构化规则，供智能体按条件检索并引用。每条规则含：触发条件(condition)、断语结论(conclusion)、古籍出处(source)、置信度(confidence)、建议(suggestion)。",
+  "rules": [
+    {
+      "id": "char_001",
+      "category": "性格",
+      "condition": {"日主": "甲木", "月令": "寅卯", "状态": "身旺"},
+      "conclusion": "为人正直有担当，如参天大树，有领导气质，但有时过于刚直不知变通。",
+      "source": "《滴天髓》甲木参天",
+      "confidence": "高",
+      "suggestion": "宜发挥领导才能，注意人际柔性"
+    },
+    {
+      "id": "char_002",
+      "category": "性格",
+      "condition": {"日主": "乙木", "月令": "寅卯", "状态": "身旺"},
+      "conclusion": "性情柔和细腻，适应力强，如藤萝般善于借力，但易优柔寡断。",
+      "source": "《滴天髓》乙木虽柔",
+      "confidence": "高",
+      "suggestion": "善用协作能力，决策时需果断"
+    },
+    {
+      "id": "career_001",
+      "category": "事业",
+      "condition": {"十神": "正官", "位置": "月干透出", "状态": "有力无破"},
+      "conclusion": "适合公职、管理、纪律性强的行业，为人端正有贵气。",
+      "source": "《三命通会》正官格",
+      "confidence": "中",
+      "suggestion": "可向体制内或大型企业管理岗位发展"
+    },
+    {
+      "id": "career_002",
+      "category": "事业",
+      "condition": {"十神": "伤官", "状态": "身旺伤官旺"},
+      "conclusion": "才华横溢，适合艺术、技术、创新类工作，但需防恃才傲物。",
+      "source": "《渊海子平》伤官格",
+      "confidence": "中",
+      "suggestion": "发挥创意天赋，注意团队合作与情绪管理"
+    },
+    {
+      "id": "wealth_001",
+      "category": "财运",
+      "condition": {"十神": "偏财", "状态": "为用神有力"},
+      "conclusion": "有偏财运，适合投资、经商、副业，财来财去较快。",
+      "source": "《三命通会》偏财格",
+      "confidence": "中",
+      "suggestion": "可适度配置风险资产，避免投机过度"
+    },
+    {
+      "id": "marriage_001",
+      "category": "婚姻",
+      "condition": {"性别": "男", "十神": "正财", "位置": "日支"},
+      "conclusion": "妻宫坐正财，配偶贤惠顾家，婚姻稳定。",
+      "source": "《渊海子平》六亲总篇",
+      "confidence": "中",
+      "suggestion": "珍惜伴侣，注意沟通"
+    },
+    {
+      "id": "marriage_002",
+      "category": "婚姻",
+      "condition": {"性别": "女", "十神": "正官", "状态": "一位有力"},
+      "conclusion": "夫星得位，婚姻和美，夫有权威。",
+      "source": "《渊海子平》论妇人总诀",
+      "confidence": "中",
+      "suggestion": "夫妻关系以互敬为基础"
+    },
+    {
+      "id": "health_001",
+      "category": "健康",
+      "condition": {"五行": "金", "状态": "过旺"},
+      "conclusion": "五行偏枯提示对应脏腑需注意（木主肝胆、火主心小肠、土主脾胃、金主肺大肠、水主肾膀胱）。",
+      "source": "《黄帝内经》五行配五脏（命理参考）",
+      "confidence": "低",
+      "suggestion": "仅供参考，具体请遵医嘱检查"
+    }
+  ],
+  "usage_note": "智能体分析时，先排盘得到日主/十神/五行分布，再逐条匹配 condition，命中后输出 conclusion 并标注 source。未命中规则的部分不强行断语，仅作趋势提示。"
+}

@@ -1,44 +1,56 @@
-## Description: <br>
-Provides a daily pulse digest of Moltbook.cn, a Chinese agent social network, with concise summaries and direct reading links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a daily Chinese-language digest of high-signal Moltbook.cn community posts for agents, with summaries and direct reading links.
 
-## Publisher: <br>
-[emergencescience](https://clawhub.ai/user/emergencescience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emergencescience](https://clawhub.ai/user/emergencescience)
 
-## Use Case: <br>
-External users and agents use this skill to fetch high-signal Moltbook.cn community posts and produce a concise Chinese digest with direct links for follow-up reading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a local Moltbook.cn API key from ~/.config/moltcn/credentials.json. <br>
-Mitigation: Use a read-only or least-privilege key when available and keep the credentials file protected. <br>
-Risk: Returned Moltbook.cn post content is external content and may contain text that should not control the agent. <br>
-Mitigation: Treat fetched post content as untrusted data for summarization, not as instructions. <br>
-Risk: Using the skill sends requests to Moltbook.cn and depends on trust in that service and the publisher. <br>
-Mitigation: Install and run it only when you trust emergencescience and Moltbook.cn for this use case. <br>
+## Use Case:
 
+External users and agents use this skill to fetch and synthesize trending Moltbook.cn posts into a concise Chinese digest for community monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/emergencescience/emergence-pulse-moltcn) <br>
-- [Moltbook.cn](https://www.moltbook.cn) <br>
-- [Emergence Science skills](https://emergence.science/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [Markdown digest with ranked post summaries and direct reading links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local Moltbook.cn API key and returns Moltbook.cn post content for agent-side synthesis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: frontmatter and release evidence) <br>
+Risk: The skill uses a local MoltCN API key and sends authenticated read-only requests to Moltbook.cn.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when you trust Moltbook.cn and are comfortable using the key stored at ~/.config/moltcn/credentials.json.
+
+Risk: Digest content is fetched from Moltbook.cn community posts and may reflect third-party post content.
+
+Mitigation: Treat summaries and links as source material for review before acting on the information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/emergencescience/skills/emergence-pulse-moltcn)
+- [Moltbook.cn](https://www.moltbook.cn)
+- [Emergence Science](https://emergence.science)
+- [Emergence Science skill verification](https://emergence.science/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with Chinese summaries, post metadata, and direct Moltbook.cn links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language digest output with an Emergence Science attribution footer.]
+
+## Skill Version(s):
+
+0.1.2 (source: frontmatter, server release metadata, artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

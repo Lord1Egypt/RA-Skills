@@ -1,40 +1,53 @@
-## Description: <br>
-Helps construction teams turn field questions into drawing- and specification-referenced draft RFIs with proposed interpretations, impact statements, response dates, distribution roles, and follow-up text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a general contractor, project engineer, superintendent, or subcontractor needs to turn a field question into a properly formatted construction Request for Information (RFI).
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-General contractors, project engineers, superintendents, and subcontractors use this skill to collect RFI intake one question at a time and draft a project-manager-reviewable construction RFI before transmittal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft RFIs may include incomplete project references or unverified cost and schedule impacts. <br>
-Mitigation: Review all references, estimates, schedule effects, and legal or engineering implications with the project manager or qualified design professional before sending. <br>
-Risk: A contractor's proposed interpretation could be mistaken for accepted design direction. <br>
-Mitigation: Keep proposed interpretations clearly labeled as proposed and subject to design-team confirmation. <br>
+## Use Case:
 
+General contractors, project engineers, superintendents, and subcontractors use this skill to turn field questions into draft RFIs with references, proposed interpretations, schedule and cost impact statements, distribution lists, and follow-up language.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/construction-rfi-drafter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown draft RFI with checklist, unresolved-item list, and follow-up note] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft output requires project manager approval before transmittal.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: RFIs can include confidential project details, costs, schedules, and field conditions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use normal project confidentiality practices when sharing prompts and generated drafts.
+
+Risk: A draft RFI may be sent before contractor review and approval.
+
+Mitigation: Have the project manager review and approve the draft before transmittal, as the skill requires.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/archlab-space/skills/construction-rfi-drafter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown draft RFI with checklist and follow-up note]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces draft content only; it does not transmit, log, approve, or notify external parties.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

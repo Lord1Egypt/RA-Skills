@@ -1,44 +1,62 @@
-## Description: <br>
-Audits and rewrites LinkedIn profile sections including photo, banner, headline, About, Featured, Experience, Skills, custom URL, and recommendations for client, job-seeking, or authority goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits and rewrites LinkedIn profile sections including the photo, banner, headline, About, Featured, Experience, Skills, custom URL, and recommendations.
 
-## Publisher: <br>
-[sergebulaev](https://clawhub.ai/user/sergebulaev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sergebulaev](https://clawhub.ai/user/sergebulaev)
 
-## Use Case: <br>
-External users use this skill to audit a LinkedIn profile and generate section-by-section rewrite guidance for stronger positioning, search visibility, and profile conversion. It is suited for profile owners, career advisors, founders, consultants, and content operators working from profile text, screenshots, goals, and draft copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Profile text, screenshots, and career goals may contain personal or sensitive career information. <br>
-Mitigation: Share only the profile content needed for the audit and redact sensitive employer, client, or performance details from screenshots before use. <br>
-Risk: Providing LinkedIn passwords, cookies, or private account access would expose account credentials. <br>
-Mitigation: Do not provide passwords, cookies, session tokens, or private account access; use pasted public profile text or redacted screenshots instead. <br>
+## Use Case:
 
+External users and agents use this skill to review LinkedIn profile URLs, screenshots, or draft profile content and produce a prioritized profile audit with section rewrites for job seeking, client acquisition, or authority building.
 
-## Reference(s): <br>
-- [About Section Templates](references/about-section-templates.md) <br>
-- [Banner & Photo Specs](references/banner-photo-specs.md) <br>
-- [Experience, Skills, Custom URL, Recommendations](references/experience-skills-rules.md) <br>
-- [Featured Section Playbook](references/featured-section-playbook.md) <br>
-- [Profile Headline Formulas](references/profile-headline-formulas.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown structured audit with a scorecard, priority fixes, before/after rewrites, and expected uplift notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or account control; output depends on user-provided profile content, screenshots, goals, and drafts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Generated LinkedIn profile copy could overstate a user's credentials, results, or positioning if accepted without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all generated public-facing profile text before posting and verify that claims, metrics, and recommendations match the user's evidence.
+
+Risk: Benchmark and uplift claims may be marketing guidance rather than independently verified performance guarantees.
+
+Mitigation: Present expected-uplift language as directional context and avoid treating it as a guaranteed outcome.
+
+Risk: Broad trigger wording could invoke the skill for profile-related requests that are not explicit audits or rewrites.
+
+Mitigation: Use the skill when the user clearly asks for a LinkedIn profile audit, rewrite, or section optimization, and ask for the profile goal when unclear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sergebulaev/skills/linkedin-profile-optimizer)
+- [Profile Headline Formulas](references/profile-headline-formulas.md)
+- [About Section Templates](references/about-section-templates.md)
+- [Featured Section Playbook](references/featured-section-playbook.md)
+- [Banner & Photo Specs](references/banner-photo-specs.md)
+- [Experience, Skills, Custom URL, Recommendations](references/experience-skills-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown audit with a scorecard, ranked fixes, before/after rewrites, and expected-uplift notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided profile URL, screenshots, or draft profile content; generated public profile text should be reviewed before posting.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

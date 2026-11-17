@@ -1,42 +1,59 @@
-## Description: <br>
-Helps agents search interpreter availability, price options, and book professional Tolk2Go interpreters for phone, video, or on-site appointments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book professional interpreters in the Netherlands, Belgium, Germany, Luxembourg, and France for phone, video, or on-site assignments through the Tolk2Go public API.
 
-## Publisher: <br>
-[tolk2go](https://clawhub.ai/user/tolk2go) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tolk2go](https://clawhub.ai/user/tolk2go)
 
-## Use Case: <br>
-External users and agents use this skill to find language pairs, interpreter situations, availability, pricing, and booking options through the Tolk2Go public API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Netherlands, Belgium, Germany, Luxembourg, and France. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send sensitive account, appointment, medical, legal, address, or free-text details to Tolk2Go. <br>
-Mitigation: Collect only the minimum details needed for the booking and avoid unnecessary sensitive context in descriptions or free-text fields. <br>
-Risk: The skill can create, cancel, or confirm bookings without an explicit user confirmation step. <br>
-Mitigation: Show the exact login, registration, booking, cancellation, or confirmation request and require user approval before sending it. <br>
+## Use Case:
 
+External users and agents use this skill to search interpreter availability, review pricing, create booking requests, poll interpreter responses, and confirm interpreters through Tolk2Go.
 
-## Reference(s): <br>
-- [Tolk2Go OpenAPI specification](https://api.tolk2go.com/api/v1/spec) <br>
-- [Tolk2Go website](https://www.tolk2go.com) <br>
-- [ClawHub skill page](https://clawhub.ai/tolk2go/tolk2go) <br>
+### Deployment Geography for Use:
 
+Netherlands, Belgium, Germany, Luxembourg, and France
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, shell commands] <br>
-**Output Format:** [Markdown with endpoint summaries, request steps, and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include concrete API request payloads for login, registration, availability searches, booking creation, cancellation, and confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Booking, registration, or login can send email, password, appointment details, address data, and medical or legal context to Tolk2Go.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm user intent before sending personal or sensitive details, and keep free-text context limited to what is needed for the booking.
+
+Risk: On-site bookings require precise location details.
+
+Mitigation: Ask the user to confirm the address and coordinates before creating an on-site booking.
+
+Risk: Bearer tokens expire after five minutes.
+
+Mitigation: Re-authenticate when a booking request receives an authorization failure instead of reusing an expired token.
+
+## Reference(s):
+
+- [Tolk2Go OpenAPI Specification](https://api.tolk2go.com/api/v1/spec)
+- [Tolk2Go Website](https://www.tolk2go.com)
+- [ClawHub Skill Page](https://clawhub.ai/tolk2go/skills/tolk2go)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration]
+
+**Output Format:** [Markdown with API request examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes booking-flow sequencing, UTC time handling, authentication notes, pricing presentation guidance, and endpoint-specific requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

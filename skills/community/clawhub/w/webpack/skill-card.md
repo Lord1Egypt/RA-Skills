@@ -1,42 +1,54 @@
-## Description: <br>
-Webpack reference tool. Use when working with webpack in frontend contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Webpack reference tool. Use when working with webpack in frontend contexts.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick webpack-oriented reference for frontend work, including setup, patterns, debugging, performance, security, migration, and cheat-sheet prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is flagged as suspicious because it advertises webpack help while mostly providing generic placeholder guidance. <br>
-Mitigation: Treat the output as a starting checklist only and verify webpack-specific advice against authoritative project documentation before relying on it. <br>
-Risk: Generic troubleshooting or security recommendations may be inaccurate for a particular webpack project. <br>
-Mitigation: Review generated guidance against the target project configuration, dependency versions, and existing engineering standards before applying changes. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick-reference command set for webpack-related frontend tasks, including introductory guidance, troubleshooting, performance, security, migration, and cheatsheet topics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/webpack) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/bytesagain3) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown emitted by a Bash command dispatcher] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference content; no API keys, MCP tools, or external calls were detected in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill is marketed as webpack reference material but may return generic operations guidance that is not specific to webpack.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated guidance against authoritative webpack documentation before applying it to build, migration, performance, or security work.
+
+Risk: The release is low-functionality and may not meet expectations for practical webpack troubleshooting.
+
+Mitigation: Use it only as a lightweight reference stub unless a human reviewer confirms the content is relevant for the intended task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/webpack)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown-style reference text emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Topic selected by command name, including intro, quickstart, patterns, debugging, performance, security, migration, cheatsheet, help, and version.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

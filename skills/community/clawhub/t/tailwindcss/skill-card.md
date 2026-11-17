@@ -1,37 +1,62 @@
-## Description: <br>
-Write Tailwind utility classes with proper responsive design, dark mode, and configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes and debugs Tailwind CSS utility classes, theme configuration, dark mode, variants, plugins, framework setup, migration, and build issues.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill for Tailwind CSS implementation guidance, including content scanning, responsive utilities, dark mode, state variants, configuration, and common production pitfalls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Future versions could add commands, scripts, or package execution beyond the documentation-only artifact reviewed here. <br>
-Mitigation: Review and scan future releases before deployment, especially if they add executable files or package-running behavior. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure, migrate, and debug Tailwind CSS in web projects, including class generation, theming, accessibility, framework integration, and build performance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/tailwindcss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown guidance with inline code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable behavior found in the submitted artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Package setup or migration snippets that use npm or npx can resolve changing dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer exact package versions or locally installed lockfile-resolved tools before running setup or migration commands.
+
+Risk: Tailwind migration commands can rewrite project files and produce visual changes that still compile successfully.
+
+Mitigation: Run migration commands on a clean branch, review every diff, and compare rendered output before merging.
+
+Risk: The skill can read and update disclosed Tailwind preference files when a user states preferences.
+
+Mitigation: Review changes under ~/Clawic/data/tailwindcss/ and store only preferences the user actually declares.
+
+## Reference(s):
+
+- [Tailwind CSS skill page](https://clawhub.ai/ivangdavila/skills/tailwindcss)
+- [Clawic Tailwind CSS homepage](https://clawic.com/skills/tailwindcss)
+- [Installation guide](artifact/installation.md)
+- [Tailwind v4 migration guide](artifact/v4-migration.md)
+- [Debugging guide](artifact/debugging.md)
+- [Accessibility guide](artifact/accessibility.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose project file edits and may update disclosed Tailwind preference files under ~/Clawic/data/tailwindcss/ when the user states preferences.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

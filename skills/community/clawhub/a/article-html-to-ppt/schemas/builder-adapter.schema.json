@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skillmelody.dev/schemas/builder-adapter.schema.json",
+  "title": "Article HTML to PPT Builder Adapter Metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["adapter_id", "display_name", "version", "runtime", "supported_routes", "component_support", "limitations", "required_commands", "required_packages"],
+  "properties": {
+    "adapter_id": {"type": "string", "pattern": "^[a-z0-9_-]+$"},
+    "display_name": {"type": "string", "minLength": 1},
+    "version": {"type": "string", "minLength": 1},
+    "runtime": {"enum": ["python", "node", "office", "browser", "custom"]},
+    "supported_routes": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/deliveryRoute"},
+      "uniqueItems": true
+    },
+    "component_support": {
+      "type": "object",
+      "additionalProperties": {"$ref": "#/$defs/supportLevel"}
+    },
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "required_commands": {"type": "array", "items": {"type": "string"}},
+    "required_packages": {"type": "array", "items": {"type": "string"}},
+    "smoke_test": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "required": {"type": "boolean"},
+        "description": {"type": "string"}
+      }
+    }
+  },
+  "$defs": {
+    "supportLevel": {"enum": ["full", "partial", "visual_only", "unsupported", "unknown"]},
+    "deliveryRoute": {
+      "enum": ["native_ppt", "native_chart", "native_table", "native_diagram", "svg_component", "raster_component", "generated_image", "background_image", "hybrid_overlay", "unsupported"]
+    }
+  }
+}

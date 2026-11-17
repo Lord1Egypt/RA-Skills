@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "scope": "phase15.2-pdf-renderer",
+  "components": [
+    {
+      "type": "python-package",
+      "name": "pypdfium2",
+      "version": "5.13.0",
+      "license_expression": "Apache-2.0 OR BSD-3-Clause",
+      "artifact_manifest": "pdfium-renderer-artifacts.json"
+    },
+    {
+      "type": "native-library",
+      "name": "PDFium",
+      "version": "153.0.7999.0",
+      "build": 7999,
+      "origin": "pdfium-binaries",
+      "bundled_by": "pypdfium2@5.13.0",
+      "features": {
+        "V8": false,
+        "XFA": false
+      },
+      "license_bundle": "../../../third_party/pypdfium2-5.13.0"
+    }
+  ],
+  "relationships": [
+    {
+      "from": "pypdfium2@5.13.0",
+      "type": "bundles",
+      "to": "PDFium@153.0.7999.0+build.7999"
+    }
+  ]
+}

@@ -1,39 +1,56 @@
-## Description: <br>
-Create, manage, and remove periodic hydration reminders via OpenClaw cron jobs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, manage, and remove periodic hydration reminders via OpenClaw cron jobs.
 
-## Publisher: <br>
-[YIKAILucas](https://clawhub.ai/user/YIKAILucas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yikailucas](https://clawhub.ai/user/yikailucas)
 
-## Use Case: <br>
-Users and agents use this skill to set, inspect, and remove recurring hydration reminders in OpenClaw. It is suited for personal productivity workflows that need periodic announcements to the current session. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill creates a persistent recurring cron reminder until it is removed. <br>
-Mitigation: Use the remove workflow when reminders are no longer needed and review existing reminders before adding a new interval. <br>
-Risk: Very short intervals can produce frequent announcements. <br>
-Mitigation: Choose an interval that matches the user's tolerance for reminders and avoid very short intervals unless frequent prompts are intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/YIKAILucas/drink-water-reminder-yikailucas) <br>
+## Use Case:
 
+External OpenClaw users can ask an agent to create, list, or remove recurring hydration reminders delivered to the current session.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with shell command examples and concise status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates, lists, or removes an OpenClaw cron reminder named drink-water-reminder.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The reminder cron job persists until it is removed.
+
+Mitigation: Use the remove script or OpenClaw cron management to disable the reminder when it is no longer wanted.
+
+Risk: Adding a reminder may replace an existing OpenClaw cron job named drink-water-reminder.
+
+Mitigation: List current reminders before adding a new one when preserving an existing hydration reminder matters.
+
+Risk: Removing reminders deletes all OpenClaw cron jobs with the exact drink-water-reminder name.
+
+Mitigation: Reserve that job name for this hydration reminder and list matching jobs before removal.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yikailucas/skills/drink-water-reminder-yikailucas)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Text with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, replace, list, or remove a persistent OpenClaw cron job named drink-water-reminder.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

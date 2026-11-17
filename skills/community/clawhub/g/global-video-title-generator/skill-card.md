@@ -1,45 +1,55 @@
-## Description: <br>
-Global Video Title Generator - AI-powered title generation for YouTube and TikTok international. Optimized for SEO, click-through rates, and viral potential. Supports multiple languages and trending topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Global Video Title Generator helps creators generate SEO-oriented YouTube and TikTok titles in multiple languages.
 
-## Publisher: <br>
-[shi-lipai](https://clawhub.ai/user/shi-lipai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shi-lipai](https://clawhub.ai/user/shi-lipai)
 
-## Use Case: <br>
-External creators, marketers, and developer agents use this skill to generate YouTube and TikTok titles, descriptions, tags, hashtags, and engagement prompts for international video content workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes workflows that go beyond title generation into broader video content generation. <br>
-Mitigation: Review generated descriptions, tags, and engagement prompts before use in creator or customer-facing workflows. <br>
-Risk: Paid/API examples may request API keys or unpublished creator plans. <br>
-Mitigation: Verify the provider and privacy terms before entering real secrets or sensitive unpublished content into any paid or API workflow. <br>
-Risk: Setup and publishing helper scripts may create or overwrite local project files. <br>
-Mitigation: Inspect and run setup.py or publish.py only in a controlled workspace when file creation or overwrites are intended. <br>
+## Use Case:
 
+External creators, marketers, and developer agents use this skill to draft YouTube and TikTok video titles for a selected platform, category, language, keyword set, and count.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shi-lipai/global-video-title-generator) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/shi-lipai) <br>
-- [Video Title Generator API documentation](https://docs.videotitlegen.com) <br>
-- [Video Content Generator API documentation](https://docs.videocontentgen.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text and JSON-like generation results, with optional Markdown examples, shell commands, and configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates platform-specific titles and related video content metadata such as descriptions, tags, hashtags, scores, and usage summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Prototype-quality materials may overstate quotas, payments, multilingual support, trend analysis, or compliance claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify those claims independently before using the skill in production or customer-facing workflows.
+
+Risk: setup.py and publish.py can create or rewrite local project metadata files.
+
+Mitigation: Review those scripts first and run them only in a controlled workspace when metadata changes are intended.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shi-lipai/skills/global-video-title-generator)
+- [Publisher Profile](https://clawhub.ai/user/shi-lipai)
+- [VideoTitleGen API Documentation](https://docs.videotitlegen.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with generated title examples and optional JSON-like result metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform, category, language, keywords, count, SEO or viral scores, hashtags, and usage-tier notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

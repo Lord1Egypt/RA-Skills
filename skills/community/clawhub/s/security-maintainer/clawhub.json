@@ -1,0 +1,63 @@
+{
+  "name": "security-maintainer",
+  "version": "1.2.5",
+  "description": "Deterministic OpenClaw security skill responding strictly to 'security-maintainer:' command triggers to audit and remediate host software across Windows, macOS, and Linux/WSL environments using SHA-256 cryptographic approval.",
+  "main": "SKILL.md",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "OpenClaw Community",
+    "email": "community@openclaw.dev",
+    "url": "https://openclaw.dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexar69-pixel/security-maintainer.git"
+  },
+  "homepage": "https://github.com/alexar69-pixel/security-maintainer#readme",
+  "keywords": [
+    "security",
+    "openclaw-skill",
+    "ai-defense",
+    "llm-security",
+    "prompt-injection",
+    "mcp-security",
+    "vulnerability-scanner",
+    "cve",
+    "cisa-kev",
+    "vulncheck-kev",
+    "epss",
+    "nvd",
+    "msrc",
+    "ubuntu-usn",
+    "osv",
+    "windows",
+    "wsl",
+    "macos",
+    "homebrew",
+    "linux",
+    "winget",
+    "apt",
+    "patch-management"
+  ],
+  "engines": {
+    "openclaw": ">=2026.10.0"
+  },
+  "openclaw": {
+    "skill": "SKILL.md",
+    "defaultMode": "ask",
+    "environments": [
+      "wsl",
+      "windows-host",
+      "macos",
+      "linux"
+    ],
+    "triggers": [
+      "security-maintainer: audit system software and vulnerabilities",
+      "security-maintainer: search for pending security updates",
+      "security-maintainer: audit ai agent security and local llm services",
+      "security-maintainer: generate security remediation plan",
+      "security-maintainer: apply approved security plan",
+      "security-maintainer: verify status of security patches"
+    ]
+  }
+}

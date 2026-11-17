@@ -1,0 +1,727 @@
+{
+  "schema_version": "1.0",
+  "kind": "ppj-category",
+  "category": "semiconductor",
+  "display": "半导体 / 集成电路",
+  "verdict_prefix": "PP",
+  "source_version": "1.3",
+  "normative_source": "references/pin-to-pin-judgment.md",
+  "source_section_map": {
+    "verdicts": "§2",
+    "mechanical": "§3.1 / §3.1.1",
+    "positional": "§3.2 / §3.2.1 / §3.2.2 / §3.3 / §3.4",
+    "impact": "§4（沿用引擎通用四栏）",
+    "derating": "§5",
+    "secondary": "§5b",
+    "synthesis": "§6.1 / §6.2 / §6.4",
+    "legal_exit": "§2.2 / §7 附则 / §6.1"
+  },
+  "stages": {
+    "prerequisite": null,
+    "mechanical": {
+      "title": "机械测试项（封装类）",
+      "decides": "封装可互换性",
+      "boundary_rule": "机械能装 → 只能是 PP-A 或 PP-B；机械装不上 → PP-C 或改板方案。",
+      "tolerance_priority": [
+        "① 双方 datasheet 标注的明确公差值（如 1.27 BSC、3.90 ±0.20）→ 直接采用",
+        "② datasheet 只给标称值未给公差 → 按 JEDEC 通用公差表（§3.1.1）",
+        "③ datasheet 标注为 BSC（Basic）→ BSC 本身即『标称值 + 由通用公差表约束』"
+      ],
+      "tests": [
+        {
+          "id": "T1",
+          "item": "封装族",
+          "threshold": "同族（SOIC_N / SOP-8 / MSOP / TSOT23 视为不同族）",
+          "tolerance_source": "—"
+        },
+        {
+          "id": "T2",
+          "item": "本体宽 E1",
+          "threshold": "双方公差区间重叠即过",
+          "tolerance_source": "①datasheet → ②JEDEC"
+        },
+        {
+          "id": "T3",
+          "item": "封装长 D",
+          "threshold": "双方公差区间重叠即过",
+          "tolerance_source": "同 T2"
+        },
+        {
+          "id": "T4",
+          "item": "引脚总跨 E",
+          "threshold": "双方公差区间重叠即过",
+          "tolerance_source": "同 T2"
+        },
+        {
+          "id": "T5",
+          "item": "引脚间距 e",
+          "threshold": "标称值相同即过（不要求公差区间重叠）",
+          "tolerance_source": "—"
+        },
+        {
+          "id": "T6",
+          "item": "本体总高 A",
+          "threshold": "候选件 max ≤ 原件 max",
+          "tolerance_source": "—"
+        },
+        {
+          "id": "T7",
+          "item": "脚数",
+          "threshold": "必须相同",
+          "tolerance_source": "—"
+        }
+      ],
+      "test_notes": {
+        "T2_T4": "不同厂商标称体系不同（3.80/3.90/4.00 三点值 / 3.80–4.00 两点值 / 3.9 ±0.2 单点值），三者落在同一物理区间内即判过。数值全等不作为通过条件。",
+        "T5": "判标称值是否相同。BSC 与具体数值视为同一标称体系（1.27 BSC 与 1.27 ±0.05 标称值都是 1.27，判过）；标称数值不同（1.27 vs 0.65）→ 判不过。公差不作重叠要求。",
+        "T6": "判最坏情况下的高度干涉：候选件 A(max) ≤ 原件 A(max) → 过；候选件 A(max) > 原件 A(max) → 不过。"
+      },
+      "jedec_ms012": {
+        "applies_to": "3.9 mm 宽窄体 SOIC（8 / 14 / 16 脚）",
+        "not_applies_to": [
+          "MSOP（MO-047）",
+          "TSOT23（MO-229）",
+          "宽体 SOIC（MS-013，7.5 mm 体宽）",
+          "EIAJ / JEITA SOP（5.3 mm 体宽）"
+        ],
+        "out_of_scope_action": "标『公差依据缺口』，不许自行假定",
+        "dimensions": [
+          {
+            "symbol": "A",
+            "item": "总高",
+            "min": "1.35",
+            "nom": "—",
+            "max": "1.75"
+          },
+          {
+            "symbol": "A1",
+            "item": "支架台阶",
+            "min": "0.10",
+            "nom": "—",
+            "max": "0.20 / 0.25"
+          },
+          {
+            "symbol": "A2",
+            "item": "本体厚",
+            "min": "1.25",
+            "nom": "—",
+            "max": "1.65"
+          },
+          {
+            "symbol": "B",
+            "item": "引脚宽",
+            "min": "0.33 / 0.35",
+            "nom": "—",
+            "max": "0.51"
+          },
+          {
+            "symbol": "c",
+            "item": "引脚厚",
+            "min": "0.17 / 0.19",
+            "nom": "—",
+            "max": "0.25"
+          },
+          {
+            "symbol": "D",
+            "item": "封装长",
+            "min": "4.80",
+            "nom": "4.90",
+            "max": "5.00"
+          },
+          {
+            "symbol": "E1",
+            "item": "本体宽",
+            "min": "3.80",
+            "nom": "3.90",
+            "max": "4.00"
+          },
+          {
+            "symbol": "E",
+            "item": "引脚总跨（部分厂商标 H）",
+            "min": "5.80",
+            "nom": "6.00",
+            "max": "6.20"
+          },
+          {
+            "symbol": "e",
+            "item": "引脚间距",
+            "min": "—",
+            "nom": "1.27 BSC",
+            "max": "—"
+          },
+          {
+            "symbol": "L",
+            "item": "脚长",
+            "min": "0.40 / 0.50",
+            "nom": "—",
+            "max": "0.93 / 1.27"
+          },
+          {
+            "symbol": "h",
+            "item": "倒角",
+            "min": "0.25",
+            "nom": "—",
+            "max": "0.50"
+          },
+          {
+            "symbol": "S",
+            "item": "站立平面",
+            "min": "0.44",
+            "nom": "—",
+            "max": "0.64"
+          }
+        ],
+        "default_intervals": {
+          "T2_E1": "3.80–4.00",
+          "T3_D": "4.80–5.00",
+          "T4_E": "5.80–6.20",
+          "T6_A_max": "1.75"
+        },
+        "notes": [
+          "引脚总跨在部分厂商标 H、另一些标 E，数值区间相同（5.80–6.20）；判定依据是数值区间，不是符号写法。",
+          "BSC = 基本尺寸（Basic），偏差由 JEDEC 通用公差表约束（典型 ±0.05 mm），不在图中另标 min/max。"
+        ]
+      }
+    },
+    "positional": {
+      "title": "引脚类：功能等价判定（T8）",
+      "input_basis": "两份原厂 datasheet 的引脚功能描述",
+      "steps": [
+        "Step 1  对每个脚号，查两份原厂 datasheet，把该脚归入【功能类别 FCT】中的一类；归类依据 = datasheet 的引脚功能描述原文，不是符号名",
+        "Step 2  类别不同 → 该脚计【不对应】，计入差异",
+        "Step 3  类别相同 → 查电气角色是否相容：相容 → 该脚计【等价】，不计入差异；不相容 → 该脚计【不对应】，计入差异",
+        "Step 4  统计：n = 等价脚数；k = 不对应脚数",
+        "Step 5  输出：n/N（等价格）+ k/N（不对应），N = 实际脚数"
+      ],
+      "equivalence": "类别相同 ∧ 电气角色相容。两者缺一即不对应。",
+      "mnemonic_role": "Mnemonic 的唯一作用是确定该脚属于哪个功能类别（依据 datasheet 功能描述文字）与提高报告可读性；符号是否相同，不参与等价判定。",
+      "fct": [
+        {
+          "code": "PWR+",
+          "label": "电源正端",
+          "basis": "positive supply voltage",
+          "common_symbols": "VDD / V+ / VCC"
+        },
+        {
+          "code": "PWR−",
+          "label": "电源负端",
+          "basis": "most negative supply potential",
+          "common_symbols": "VSS / V− / VEE"
+        },
+        {
+          "code": "GND",
+          "label": "地 / 0V 参考",
+          "basis": "ground (0 V) reference",
+          "common_symbols": "GND"
+        },
+        {
+          "code": "LOG-PWR",
+          "label": "逻辑电源",
+          "basis": "logic power supply",
+          "common_symbols": "VL / VLOGIC / VCCL"
+        },
+        {
+          "code": "LOG-IN",
+          "label": "逻辑控制输入",
+          "basis": "logic control input / digital control input",
+          "common_symbols": "IN / EN / A0"
+        },
+        {
+          "code": "SW-COM",
+          "label": "开关端子 — 公共端",
+          "basis": "common / drain terminal",
+          "common_symbols": "COM / D"
+        },
+        {
+          "code": "SW-NC",
+          "label": "开关端子 — 常闭",
+          "basis": "normally closed / source 1",
+          "common_symbols": "NC / S1"
+        },
+        {
+          "code": "SW-NO",
+          "label": "开关端子 — 常开",
+          "basis": "normally open / source 2",
+          "common_symbols": "NO / S2"
+        },
+        {
+          "code": "AIO",
+          "label": "模拟输入 / 输出",
+          "basis": "analog input or output",
+          "common_symbols": "A / AIO"
+        },
+        {
+          "code": "NC",
+          "label": "无功能（内部无连接）",
+          "basis": "no internal connection",
+          "common_symbols": "NC / NIC / DNC / N.C."
+        }
+      ],
+      "fct_notes": [
+        "代码列是机器判定键；常见符号列仅参考，不作判定。",
+        "NC（无功能）自成一类，且只与 NC 等价。LOG-PWR vs NC 类别不同 → 不对应（计入 k）。"
+      ],
+      "role_compatibility": [
+        {
+          "code": "PWR+ / PWR−",
+          "criterion": "绝对最大额定电压是否覆盖工作点",
+          "incompatible": "候选件耐压低于原件"
+        },
+        {
+          "code": "GND",
+          "criterion": "是否为同一 0V 参考",
+          "incompatible": "单电源下 V− 兼作 GND"
+        },
+        {
+          "code": "LOG-PWR",
+          "criterion": "电压窗口是否覆盖系统逻辑电平",
+          "incompatible": "候选件逻辑电源窗口不覆盖系统实际电平"
+        },
+        {
+          "code": "LOG-IN",
+          "criterion": "判决门限区间与参考点",
+          "incompatible": "参考点不同（对 GND vs 对 VL）、门限不相容"
+        },
+        {
+          "code": "SW-COM / SW-NC / SW-NO",
+          "criterion": "模拟信号范围、Ron、连续电流",
+          "incompatible": "信号范围不足、电流受限"
+        },
+        {
+          "code": "AIO",
+          "criterion": "信号范围、方向",
+          "incompatible": "—"
+        },
+        {
+          "code": "NC",
+          "criterion": "必须双方都是 NC",
+          "incompatible": "任一方有功能 → 已在 Step 2 判为类别不对应"
+        }
+      ],
+      "role_notes": [
+        "本表『不相容情形』只列『类别相同但电气角色不相容』的情况。",
+        "『类别不同』的情形（如候选件该脚为 NC、原件为 LOG-PWR）已在 Step 2 判为不对应，不列入本表。",
+        "LOG-IN 判定：门限数值不同但参考点相同 → 属差异类型②，不计入 k；参考点不同 → 属类型④，计入 k（即使门限数值相同）。"
+      ],
+      "output_format": [
+        "【T8 结果】n/N 等价，k/N 不对应（N = 实际脚数，非固定 8）",
+        "【不对应项明细】逐脚列出：脚号 / 被替代件功能类别 / 候选件功能类别 / 差异性质",
+        "【命名差异项】单列，不计入 k（如有）"
+      ],
+      "diff_property_values": [
+        {
+          "value": "功能缺失",
+          "maps_to_type": 3
+        },
+        {
+          "value": "电气角色不相容",
+          "maps_to_type": 4
+        }
+      ],
+      "output_note": "命名差异（类型①）与电气参数差异（类型②）不出现在【不对应项明细】中——它们不进 k，分别归入【命名差异项】与参数对比表。"
+    },
+    "derating": {
+      "title": "降额闸",
+      "formula": "占用率 = 工作点电压 / 绝对最大额定电压",
+      "threshold": 0.8,
+      "threshold_display": "≤ 80%",
+      "data_source": "两份原厂 datasheet 的绝对最大额定栏",
+      "missing_handling": "缺项 → ⚠️ 数据缺失",
+      "allowed_states": [
+        "pass",
+        "fail",
+        "missing"
+      ],
+      "forbidden_states": [
+        "untested"
+      ],
+      "notes": [
+        "降额闸结论与判定并列给出，不合并、不互相抵消。PP-A 但降额不过 → 输出『需评估 —— 降额超线，需豁免』。",
+        "降额只管『电压/电流余量』，不管『性能』。",
+        "⚠️ 数据缺失 只能输出「需评估」，禁止「有条件通过」。",
+        "abs max 为原厂规格数据，客户无法实测获得 → 须在报告中写明索取 abs max 的具体途径（原厂联系渠道 / 文档版本号）；无原厂数据时按 JEDEC 标准推断并标注为推断值。"
+      ]
+    },
+    "secondary": {
+      "title": "性能闸",
+      "allowed_states": [
+        "pass",
+        "fail",
+        "untested"
+      ],
+      "params": [
+        {
+          "id": "P1",
+          "param": "导通电阻 Ron",
+          "direction": "候选件 ≤ 原件（同条件）",
+          "gap": "任一方未给 → ⚠️ 待实测"
+        },
+        {
+          "id": "P2",
+          "param": "Ron 平坦度 / flatness",
+          "direction": "候选件 ≤ 原件",
+          "gap": "任一方未给 → ⚠️ 待实测"
+        },
+        {
+          "id": "P3",
+          "param": "漏电流",
+          "direction": "候选件 ≤ 原件",
+          "gap": "任一方未给 → ⚠️ 待实测"
+        },
+        {
+          "id": "P4",
+          "param": "电荷注入",
+          "direction": "候选件 ≤ 原件",
+          "gap": "任一方未给 → ⚠️ 待实测"
+        },
+        {
+          "id": "P5",
+          "param": "开关时间 tON / tOFF / tTRANSITION",
+          "direction": "候选件 ≤ 原件，或系统预算容得下",
+          "gap": "任一方未给 → ⚠️ 待实测"
+        },
+        {
+          "id": "P6",
+          "param": "先开后合 BBM 时间 tD",
+          "direction": "候选件 tD(min) > 系统要求死区",
+          "gap": "任一方未给 → ⚠️ 待实测"
+        },
+        {
+          "id": "P7",
+          "param": "带宽 / 关断隔离 / 串扰",
+          "direction": "按应用频率与通道数判",
+          "gap": "任一方未给 → ⚠️ 待实测"
+        },
+        {
+          "id": "P8",
+          "param": "全温参数漂移",
+          "direction": "候选件全温指标 ≤ 原件全温指标",
+          "gap": "只给 25°C 值 → ⚠️ 待实测"
+        },
+        {
+          "id": "P9",
+          "param": "通道间 Ron 匹配（ΔRON）",
+          "direction": "候选件 ΔRON ≤ 原件 ΔRON",
+          "gap": "任一方未给 → ⚠️ 待实测"
+        }
+      ],
+      "priority_note": "增益切换场景下 P2 > P1 —— 平坦度不可标定补偿，Ron 绝对值可补偿。",
+      "comparison_discipline": [
+        "每个数进比对表必须带三标签：① 供电条件 ② 温度条件 ③ 信号 / 负载条件",
+        "三标签不一致的两个数不许比大小，只能并列写『条件 A 下 X，条件 B 下 Y』",
+        "typ 只跟 typ 比，max 只跟 max 比，温区必须一致",
+        "同一颗料有多张参数表（双电源 / 单电源 / 不同 VL）→ 必须写明取自哪一张",
+        "对方没给的条件 = 缺口，不许用相邻条件的值代填"
+      ],
+      "application_weights": [
+        {
+          "scenario": "增益切换（串在信号通路）",
+          "primary": "Ron 平坦度 → 非线性 / THD",
+          "secondary_gate": "电荷注入、开关时间",
+          "commonly_mistaken": "Ron 绝对值"
+        },
+        {
+          "scenario": "增益切换（接虚地端）",
+          "primary": "Ron 绝对值 + 漏电流",
+          "secondary_gate": "平坦度权重下调",
+          "commonly_mistaken": "平坦度"
+        },
+        {
+          "scenario": "采样保持",
+          "primary": "电荷注入 + 漏电流",
+          "secondary_gate": "开关时间、Ron",
+          "commonly_mistaken": "Ron"
+        },
+        {
+          "scenario": "数据采集前端 / 单路 MUX",
+          "primary": "平坦度 + 漏电 + 建立时间",
+          "secondary_gate": "Ron 绝对值",
+          "commonly_mistaken": "Ron"
+        },
+        {
+          "scenario": "多路 MUX 切换",
+          "primary": "关断隔离 + 串扰 + 平坦度",
+          "secondary_gate": "漏电、建立时间",
+          "commonly_mistaken": "Ron 绝对值"
+        }
+      ],
+      "mux_supplement": [
+        "关断通道的漏电会直接串到导通通道 → 漏电与关断隔离须同时满足，不可只比 Ron",
+        "串扰随通道数累加 —— N 路 MUX 的总串扰预算须按最坏路径叠加校验",
+        "每路 Ron 的差异会表现为通道间增益不一致 → 须核 P2 与 P9"
+      ],
+      "extras": [
+        "电流校核：开关电流 ≈ 最大信号幅度 ÷ 反馈电阻；算得结果与器件的连续电流额定比较，低于额定则电流限制不构成障碍。"
+      ],
+      "conclusion": [
+        {
+          "case": "P1–P9 全部满足",
+          "gate": "pass"
+        },
+        {
+          "case": "任一项已核实不满足",
+          "gate": "fail",
+          "action": "输出「需评估 —— 性能不满足（列明 P#）」"
+        },
+        {
+          "case": "任一项双方均未给",
+          "gate": "untested",
+          "note": "闸不得记『过』也不得记『不过』"
+        },
+        {
+          "case": "任一项一方未给",
+          "gate": "untested",
+          "note": "不得默认对方更好或更差"
+        }
+      ]
+    },
+    "legal_exit": {
+      "title": "改板方案",
+      "is_pp_verdict": false,
+      "entry_conditions": [
+        "① 机械可装（T1–T7 全过）+ 存在不对应 + 经改板 / 飞线可达成对应",
+        "② 机械不可装（PP-C）+ 经改板可使用"
+      ],
+      "mutex": "与 PP-B 互斥，不存在中间态。能经改板达成对应的，就不是 PP-B。",
+      "output": "需改什么 → 改板可行性 + 成本量级",
+      "note": "半导体几乎没有合法的重映射出口（改飞线属违规操作）。"
+    }
+  },
+  "impact_analysis": {
+    "title": "差异影响四栏（本栏名源自半导体 PPJ 标准 §4.0）",
+    "trigger": "k > 0（PP-B）",
+    "columns": [
+      {
+        "id": "functional",
+        "label": "差异引脚的功能影响",
+        "source": "两份原厂 datasheet 的引脚描述 + 绝对最大额定",
+        "missing": "→ 差异影响未判定",
+        "note": "该脚在新电路中接什么、接错会导致什么具体后果"
+      },
+      {
+        "id": "peripheral",
+        "label": "外围电路兼容性",
+        "source": "原理图 + PCB 文件（须查图，不许推测）",
+        "missing": "→ 差异影响未判定",
+        "note": "上拉 / 下拉、去耦、保护电路、负载是否仍成立；原外围元件换料后是否还需要"
+      },
+      {
+        "id": "logic",
+        "label": "逻辑电平与时序兼容",
+        "source": "两份 datasheet 规格表",
+        "missing": "→ 差异影响未判定",
+        "note": "控制电平阈值与参考点、开关时间、先开后合（BBM）时间是否匹配"
+      },
+      {
+        "id": "stress",
+        "label": "电气应力与可靠性",
+        "source": "两份 datasheet 绝对最大额定",
+        "missing": "→ 差异影响未判定",
+        "note": "差异脚及受影响脚的电压 / 电流是否超新器件额定；ESD / 闩锁 / 温度余量"
+      }
+    ],
+    "notes": [
+      "本四栏与通用层 engine.json 的 impact_analysis.contract 配套：栏名与来源以本文件为准，通用层不得内设默认栏名。",
+      "本栏名与标准原文 references/pin-to-pin-judgment.md §4.0 的四栏表逐条对应，属换载体投影、不改动判据。"
+    ]
+  },
+  "synthesis_table": {
+    "dimensions": [
+      "verdict",
+      "derating_gate",
+      "secondary_gate",
+      "customer_verification"
+    ],
+    "rows": [
+      {
+        "verdict": "PP-A",
+        "derating_gate": "过",
+        "secondary_gate": "过",
+        "customer_verification": "已过",
+        "wording": "可直接替"
+      },
+      {
+        "verdict": "PP-A",
+        "derating_gate": "过",
+        "secondary_gate": "过",
+        "customer_verification": "未过",
+        "wording": "需评估（差客户验证）"
+      },
+      {
+        "verdict": "PP-A",
+        "derating_gate": "过",
+        "secondary_gate": "⚠️ 待实测",
+        "customer_verification": "任意",
+        "wording": "有条件通过 —— 封装与降额均通过，但 [列明待实测的 P#] 未查到公开数据，须送样实测后判定",
+        "must_attach": "§6.3 实测方案"
+      },
+      {
+        "verdict": "PP-A",
+        "derating_gate": "过",
+        "secondary_gate": "❌ 不过",
+        "customer_verification": "任意",
+        "wording": "需评估 —— 封装与降额均通过，但性能不满足（列明 P#）"
+      },
+      {
+        "verdict": "PP-A",
+        "derating_gate": "❌ 不过",
+        "secondary_gate": "任意",
+        "customer_verification": "任意",
+        "wording": "需评估 —— 封装可直接换，但降额 XX% 超 80% 线，需豁免"
+      },
+      {
+        "verdict": "PP-A",
+        "derating_gate": "⚠️ 数据缺失",
+        "secondary_gate": "任意",
+        "customer_verification": "任意",
+        "wording": "需评估 —— 降额数据缺失（原厂未标绝对最大额定），须在报告中写明索取 abs max 的具体途径后重跑；无原厂数据时按 JEDEC 标准推断并标注为推断值"
+      },
+      {
+        "verdict": "PP-B",
+        "derating_gate": "任意",
+        "secondary_gate": "任意",
+        "customer_verification": "任意",
+        "wording": "需评估 —— 封装兼容，存在 k 处不对应（已定位到脚），差异影响未判定，须实测验证",
+        "must_attach": "§4 四栏"
+      },
+      {
+        "verdict": "改板方案",
+        "derating_gate": "—",
+        "secondary_gate": "—",
+        "customer_verification": "—",
+        "wording": "非 PP 判定。入口：① 机械可装但存在不对应，且可经改板 / 飞线达成对应；② 机械不可装，但可经改板使用。输出：需改什么 → 改板可行性 + 成本量级",
+        "is_pp_verdict": false
+      },
+      {
+        "verdict": "PP-C",
+        "derating_gate": "任意",
+        "secondary_gate": "任意",
+        "customer_verification": "任意",
+        "wording": "不可直换；若经评估可改板 → 改列「改板方案」"
+      },
+      {
+        "verdict": "⚠️ 未判定",
+        "derating_gate": "—",
+        "secondary_gate": "—",
+        "customer_verification": "—",
+        "wording": "需评估 —— 未取得 [原厂引脚定义表 / 封装图 / 位定义表]，[机械闸 / 逐脚闸] 未判定，不得输出 PP-A / PP-B / PP-C；须索取缺失输入后重跑",
+        "must_attach": "缺失输入清单"
+      },
+      {
+        "verdict": "任一",
+        "derating_gate": "—",
+        "secondary_gate": "—",
+        "customer_verification": "未过",
+        "wording": "不得出现「可直接替」"
+      }
+    ]
+  },
+  "output_contract_extra": [
+    {
+      "id": 1,
+      "required": "n/N 与 k/N（N 为实际脚数）",
+      "note": "禁止写 4/8 不说明 N 来源"
+    },
+    {
+      "id": 2,
+      "required": "不对应项逐脚明细",
+      "note": "脚号 + 两边功能类别 + 差异性质"
+    },
+    {
+      "id": 3,
+      "required": "命名差异项单列",
+      "note": "注明不计入 k"
+    },
+    {
+      "id": 4,
+      "required": "各闸四态状态与依据",
+      "note": "逐闸标注：✅ 过 / ❌ 不过 / ⚠️ 数据缺失（降额闸）/ ⚠️ 待实测（性能闸）/ ⚠️ 未判定（输入整份缺失，§6.0）"
+    },
+    {
+      "id": 5,
+      "required": "缺口清单",
+      "note": "逐项标注所属闸"
+    },
+    {
+      "id": 6,
+      "required": "数据获取方案",
+      "note": "性能闸 ⚠️ 待实测项须给实测方案；降额闸 ⚠️ 数据缺失须写明索取 abs max 的具体途径（原厂渠道 / 文档版本号）"
+    },
+    {
+      "id": 7,
+      "required": "实测前的动作约束",
+      "note": "「有条件通过」时必须写明不得批量下单"
+    }
+  ],
+  "input_version_invalidation": {
+    "source_document": "原厂引脚定义 / 功能说明（datasheet 及其修订版）",
+    "rules": [
+      "逐脚判定必须重跑：旧版 n/N、k/N 作废，须基于新版文档重算",
+      "四栏结论自动失效：须全部基于新版重新填写，不得沿用旧版结论",
+      "功能类别表与电气角色检查须复核：换版可能改变某脚的功能类别或电气角色",
+      "变更记录须写明：新旧文档版本号 + 差异脚（哪几脚、原定义 → 新定义）",
+      "降额闸与性能闸须核对取值来源：同一参数在两版中数值不同时须确认用哪一版并在输出中注明"
+    ],
+    "partial_change": {
+      "rerun_only_affected": "仅部分脚定义调整（脚号未重排、引脚表无增删）→ 可只重跑受影响的脚，未受影响的脚旧结论可沿用，但须逐脚注明『基于原厂文档 vX.Y 的脚 N 结论，未经 vZ 重跑』",
+      "full_rerun": "脚号重排或引脚表有增删 → 必须全表重跑，逐脚判定与四栏全部作废重填",
+      "fallback": "无法确定受影响脚的完整集合 → 一律全表重跑"
+    },
+    "affected_positions_definition": {
+      "classes": [
+        "① 变更脚本身",
+        "② 与变更脚构成同一电气功能的脚（如 PWR 脚变更 → 并接的同一电源网络各脚、构成回流路径的 GND 脚；差分对成员成对重跑）",
+        "③ 电气角色相容性检查所涉网络的所有脚（该脚新旧定义所连、可能因角色判定翻转而受影响的所有脚）"
+      ],
+      "note": "三类须同时覆盖，缺一不得算『已确定受影响集合』；宁可多跑，不可漏判（② ③ 最易被漏）"
+    },
+    "forbidden": "原厂文档换版后只更新一处、其余沿用旧版；凭『应该没影响』跳过重跑"
+  },
+  "sample_size_requirements": {
+    "required_column": "样品数量",
+    "note": "样品数量为实测方案必填列，缺即方案不完整",
+    "minima": [
+      {
+        "class": "常规电参数类",
+        "covers": [
+          "P1",
+          "P3",
+          "P4",
+          "P5",
+          "P6",
+          "P9"
+        ],
+        "min": "≥ 3 颗"
+      },
+      {
+        "class": "特性 / 频率类",
+        "covers": [
+          "P2",
+          "P7"
+        ],
+        "min": "≥ 3 颗"
+      },
+      {
+        "class": "全温类",
+        "covers": [
+          "P8"
+        ],
+        "min": "≥ 5 颗（须覆盖上下限温点）"
+      },
+      {
+        "class": "封装 / 机械类（机械闸项）",
+        "covers": [
+          "键合拉力",
+          "截面 / X-ray",
+          "焊接性"
+        ],
+        "min": "≥ 3 颗，且破坏性项须独立备样"
+      }
+    ],
+    "sampling_rule": "样品须为同一型号的不同片号（不同 lot / date code）——全取同一片号时『多颗』不反映批次差异，等于没测",
+    "destructive_rule": "破坏性项独立备样，测完不得用于其他项；非破坏项同一颗可依次测多项，但须确保前一项不改变后一项的测量条件",
+    "reporting_rule": "报数须分组登记（独立备样组 / 非破坏复用组），不得把同一颗计成多颗",
+    "override": "可按品类文件细化，但不得低于缺省值，也不得以『样品不足』为由免测"
+  },
+  "verdict_criterion_note": "PP-A 的『类别』与『电气角色』无先后之分，两者是 AND 关系：任一项不过即 k > 0 → PP-B；禁止以『类别已对齐』为由先放行、把电气角色留待事后补判"
+}

@@ -1,47 +1,61 @@
-## Description: <br>
-MoltMail gives agents a wallet-backed email account for setup, login, mailbox reading, sending, replies, aliases, referral codes, and EMC balance checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MoltMail-powered Web3 email skill that lets agents create or access a wallet-backed inbox to send, receive, read, and manage mail.
 
-## Publisher: <br>
-[tempepeot](https://clawhub.ai/user/tempepeot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tempepeot](https://clawhub.ai/user/tempepeot)
 
-## Use Case: <br>
-External users and developers use this skill to give an agent a MoltMail/EtherMail inbox, manage wallet-backed setup, read and search messages, send or reply to email, manage aliases, and check referral or EMC reward information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles wallet setup, private keys, passphrases, and local auth state. <br>
-Mitigation: Use a dedicated wallet for MoltMail, keep the passphrase private, and protect the ./state directory that stores encrypted wallet configuration and tokens. <br>
-Risk: Sending or replying to email can communicate externally and may involve payment-related or interactive message flows. <br>
-Mitigation: Confirm recipient, sender alias, subject, body, and any payment or interactive context with the user before sending or acting. <br>
-Risk: Fetching full email content marks messages as read. <br>
-Mitigation: Confirm before reading messages that should remain unread, and tell the user when a read action will change message state. <br>
-Risk: All mailbox operations use the MoltMail/EtherMail remote service. <br>
-Mitigation: Install and use the skill only when the user intends to trust that service for a wallet-backed inbox. <br>
+## Use Case:
 
+External users and developers use this skill to give an agent a MoltMail/EtherMail inbox for disposable email, mailbox management, sending replies, account confirmations, and wallet-backed email workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tempepeot/moltmailermp) <br>
-- [MoltMail homepage](https://moltmail.io) <br>
-- [EtherMail homepage](https://ethermail.io) <br>
-- [OpenClaw homepage](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown or text responses with npm command invocations and JSON results from local scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and npm, local state files for encrypted wallet configuration and auth tokens, optional ETHERMAIL_PASSPHRASE, and calls to the MoltMail/EtherMail remote service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles wallet and mailbox credentials and persists encrypted wallet configuration and auth tokens locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with MoltMail/EtherMail accounts you trust, avoid importing a valuable wallet private key, and protect the local state directory.
+
+Risk: The passphrase can be supplied through an environment variable on shared systems.
+
+Mitigation: Prefer interactive passphrase entry when other users or processes may inspect the environment.
+
+Risk: The security summary reports dependency versions flagged for security issues.
+
+Mitigation: Update dependencies and rerun security checks before using the skill for sensitive mail or account workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tempepeot/skills/moltmailermp)
+- [MoltMail homepage](https://moltmail.io)
+- [EtherMail homepage](https://ethermail.io)
+- [OpenClaw homepage](https://openclaw.ai)
+- [Declared source repository](https://github.com/EtherMailOrg/moltmail-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with npm shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces mailbox, message, alias, referral, reward, setup, login, send, and reply guidance through local npm scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

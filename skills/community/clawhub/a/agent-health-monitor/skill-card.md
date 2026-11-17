@@ -1,41 +1,57 @@
-## Description: <br>
-Monitors agent health status and detects failures for fault-tolerant agent systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors agent health status and detects failures for fault-tolerant agent systems.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect OpenClaw agent and session health, identify failed or inactive agents, and monitor local CPU and memory pressure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads OpenClaw session metadata and local system resource information. <br>
-Mitigation: Run it only in environments where local session metadata and host resource status are appropriate for monitoring. <br>
-Risk: The security review reports a suspicious hard-coded status check for another installed skill. <br>
-Mitigation: Review the wrapper status behavior before installing and remove or disable that check if the referenced local skill is not trusted. <br>
+## Use Case:
 
+Developers and operators use this skill to check OpenClaw agent and session health, identify inactive agents, and summarize local CPU and memory pressure for reliability monitoring.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jpengcheng523-netizen/agent-health-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON health reports and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports timestamped health status, session counts, failed agents, wrapper status, and local resource usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The skill executes shell commands while checking sessions, system resources, and a hard-coded wrapper lifecycle script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in a trusted local environment where OpenClaw state and the referenced wrapper skill are expected to be inspected.
+
+Risk: The skill reads local OpenClaw agent and session files and Linux system resource files.
+
+Mitigation: Review the local paths and monitoring scope before use, and avoid running it where agent/session metadata should remain isolated.
+
+Risk: The public description under-discloses the shell command and wrapper lifecycle checks noted by security review.
+
+Mitigation: Tell users that health checks include shell execution and wrapper status inspection before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/agent-health-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, guidance]
+
+**Output Format:** [JSON health reports and concise text status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include session counts, failed agents, wrapper status, CPU load, memory usage, and issue counts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

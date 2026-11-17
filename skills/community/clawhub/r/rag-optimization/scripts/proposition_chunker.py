@@ -42,6 +42,24 @@ class Proposition:
     entities: List[str] = field(default_factory=list)  # 涉及的实体
     confidence: float = 1.0           # 提取置信度
 
+    def to_document_unit(self) -> "DocumentUnit":
+        """转换为统一 DocumentUnit 格式（Phase 1 数据协议集成）"""
+        from document_unit import DocumentUnit
+        return DocumentUnit(
+            id=self.id,
+            content=self.content,
+            parent_paragraph=self.parent_paragraph,
+            metadata={
+                "is_atomic": self.is_atomic,
+                "is_self_contained": self.is_self_contained,
+                "entities": self.entities,
+                "confidence": self.confidence,
+                "original_text": self.original_text,
+            },
+        )
+
+
+
 
 class PropositionExtractor:
     """命题提取器"""
@@ -150,24 +168,33 @@ RAG能降低幻觉
             
             if sub_propositions:
                 for sub in sub_propositions:
-                    if len(sub) >= self.min_length:
-                        propositions.append(Proposition(
-                            id=f"prop_{len(propositions)}",
-                            content=sub,
-                            original_text=sentence,
-                            parent_paragraph=text,
-                            is_atomic=True,
-                            is_self_contained=self._check_self_containment(sub)
-                        ))
-            elif len(sentence) >= self.min_length:
-                propositions.append(Proposition(
-                    id=f"prop_{len(propositions)}",
-                    content=sentence,
-                    original_text=sentence,
-                    parent_paragraph=text,
-                    is_atomic=self._check_atomicity(sentence),
-                    is_self_contained=self._check_self_containment(sentence)
-                ))
+                    propositions.append(Proposition(
+                        id=f"prop_{len(propositions)}",
+                        content=sub,
+                        original_text=sentence,
+                        parent_paragraph=text,
+                        is_atomic=True,
+                        is_self_contained=self._check_self_containment(sub)
+                    ))
+            else:
+                # H16 配套环节②：走到这里有两种情况 ——
+                #   ① 非复合句，本就该整句成命题；
+                #   ② 复合句，但子句全部未通过 _validate_proposition。
+                # ② 若不放行，整句内容会静默丢失（原代码用 elif 接在
+                # `if sub_propositions:` 后面，拆开了却一个不剩 → 什么都不追加）。
+                # 现统一回退为整句，保证内容不丢。
+                #
+                # 注：回退沿用整句命题的既有判据（只查 min_length，不查 max_length），
+                # 与非复合句的既有行为保持一致，不在本次修复中擅自收紧。
+                if len(sentence) >= self.min_length:
+                    propositions.append(Proposition(
+                        id=f"prop_{len(propositions)}",
+                        content=sentence,
+                        original_text=sentence,
+                        parent_paragraph=text,
+                        is_atomic=self._check_atomicity(sentence),
+                        is_self_contained=self._check_self_containment(sentence)
+                    ))
         
         return propositions
     
@@ -185,18 +212,48 @@ RAG能降低幻觉
         return sentences
     
     def _try_split_compound(self, sentence: str) -> List[str]:
-        """尝试拆分复合句"""
+        """
+        尝试拆分复合句，返回通过校验的子命题列表。
+
+        H16（Bug 17）：拆分出的子句必须逐一走 _validate_proposition。
+        此前只做了 `len(p) >= self.min_length` 这一半检查——漏掉了 max_length，
+        于是超长子句照常入库；被丢弃的子句也没有任何日志记录，静默消失。
+
+        Returns:
+            通过校验的子命题列表。无连接词、或子句全部未通过校验时返回 []，
+            由调用方回退为整句（见 _rule_based_extract）。
+        """
         # 常见的复合句连接词
-        connectors = ['，并且', '，而且', '，同时', '，另外', '，此外', 
+        connectors = ['，并且', '，而且', '，同时', '，另外', '，此外',
                       ', and ', ', but ', ', while ']
-        
+
         for conn in connectors:
             if conn in sentence:
                 parts = sentence.split(conn)
                 if len(parts) > 1:
-                    # 确保每部分都是完整命题
-                    return [p.strip() for p in parts if len(p.strip()) >= self.min_length]
-        
+                    kept, dropped = [], []
+                    for p in parts:
+                        p = p.strip()
+                        if not p:
+                            continue
+                        # H16：与整句命题走同一套校验，而不是只查最小长度
+                        if self._validate_proposition(p):
+                            kept.append(p)
+                        else:
+                            dropped.append(p)
+
+                    # H16 配套环节①：被过滤掉的子句要有记录，不得静默丢弃
+                    if dropped:
+                        logger.info(
+                            f"_try_split_compound：{len(dropped)}/{len(parts)} 个子命题未通过校验 "
+                            f"（min_length={self.min_length}, max_length={self.max_length}）；"
+                            f"示例: {dropped[0][:40]}"
+                        )
+
+                    # H16 配套环节②：全部被丢弃时返回 []（而非返回空内容），
+                    # 让调用方回退为整句，避免「拆开了却一个都不留」的内容丢失。
+                    return kept
+
         return []
     
     def _validate_proposition(self, text: str) -> bool:
@@ -204,11 +261,9 @@ RAG能降低幻觉
         # 长度检查
         if len(text) < self.min_length or len(text) > self.max_length:
             return False
-        
-        # 必须以句号等结束
-        if not text.endswith(('。', '！', '？', '.', '!', '?')):
-            return False
-        
+
+        # 必须以句号等结束——LLM 输出的命题可能不带句号，
+        # 不再据此拒绝，由 _ensure_punctuation 兜底补全
         return True
     
     def _check_atomicity(self, text: str) -> bool:
@@ -477,6 +532,12 @@ class PropositionChunker:
 
 # 使用示例
 if __name__ == '__main__':
+    # Windows 控制台默认 GBK 编码无法打印 ✓/✗，强制 UTF-8 输出
+    import sys
+    if hasattr(sys.stdout, 'reconfigure'):
+        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+        sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+
     # 示例配置
     config = {
         'min_proposition_length': 15,

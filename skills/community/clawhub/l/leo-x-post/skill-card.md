@@ -1,38 +1,54 @@
-## Description: <br>
-Helps Leo post to X/Twitter through the X API, including text posts, optional attachments, replies, and scheduled posts when the user provides API credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Leo X Post helps agents publish X (Twitter) posts for Leo, including text posts, attachments, replies, and scheduled posts, using user-provided API credentials.
 
-## Publisher: <br>
-[lebevolae](https://clawhub.ai/user/lebevolae) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lebevolae](https://clawhub.ai/user/lebevolae)
 
-## Use Case: <br>
-Agents use this skill when a user asks Leo to publish a post, reply, attach media, or schedule content on X/Twitter. It is intended for users who can provide their own X API credentials and review content before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent can publish or schedule content through a user's X/Twitter account. <br>
-Mitigation: Use limited, revocable API credentials and require final review of the exact text, media, reply target, and schedule before publishing. <br>
+## Use Case:
 
+External users or developers managing Leo's X presence use this skill to publish X posts, including posts with optional media, replies, or scheduled publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lebevolae/leo-x-post) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include text, media path, reply target, and schedule details for an X/Twitter post.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can publish public X posts with a loosely scoped trigger or posting flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only after an explicit posting request, require the agent to show the exact post content, and obtain confirmation before publishing.
+
+Risk: The skill requires API credentials for X posting.
+
+Mitigation: Provide only the credentials required for the requested posting action and avoid sharing unnecessary secrets.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lebevolae/skills/leo-x-post)
+- [Publisher Profile](https://clawhub.ai/user/lebevolae)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and posting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include X post text, optional media paths, reply or scheduling instructions, and credential setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

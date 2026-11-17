@@ -1,41 +1,58 @@
-## Description: <br>
-Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube).
 
-## Publisher: <br>
-[yinwuzhe](https://clawhub.ai/user/yinwuzhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinwuzhe](https://clawhub.ai/user/yinwuzhe)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to ask an agent to summarize web pages, local files, PDFs, images, audio, and YouTube links through the summarize CLI. It also helps configure model provider keys, output length, JSON output, extraction-only mode, and optional extraction fallbacks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected files, URLs, or YouTube-derived content may be processed by the configured model provider or extraction provider. <br>
-Mitigation: Use only organization-approved providers and avoid secrets, confidential documents, regulated data, and private URLs unless those services are approved for that data. <br>
-Risk: Optional Firecrawl and Apify fallbacks can involve additional external processing. <br>
-Mitigation: Disable optional fallbacks when they are not approved, such as using Firecrawl off and omitting Apify configuration. <br>
+## Use Case:
 
+Developers and external users use this skill to summarize URLs, local files, PDFs, images, audio, and YouTube links through the summarize CLI. It helps an agent provide setup guidance, shell commands, and configuration examples for the CLI and its supported provider keys.
 
-## Reference(s): <br>
-- [Summarize homepage](https://summarize.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/yinwuzhe/skill-0331-02) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and optional JSON output from the summarize CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summary length, maximum output tokens, extraction-only mode, JSON mode, Firecrawl fallback, YouTube fallback, and model provider configuration are exposed through CLI flags or config.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The skill may send private documents, internal URLs, regulated data, secrets, or other user-provided content to the selected summarization provider or optional extraction services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved provider keys and avoid submitting sensitive material unless the provider and data handling path are approved.
+
+Risk: Installation depends on an unpinned third-party Homebrew tap and upstream CLI update process.
+
+Mitigation: Install only if the publisher and Homebrew tap are trusted, and review the installed CLI version before use.
+
+Risk: Provider and optional service API keys may be exposed if unrelated environment variables are shared with the CLI process.
+
+Mitigation: Expose only the environment variables required for the selected provider or optional service.
+
+## Reference(s):
+
+- [Summarize homepage](https://summarize.sh)
+- [ClawHub skill page](https://clawhub.ai/yinwuzhe/skills/skill-0331-02)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can describe CLI flags, provider API key setup, optional service tokens, and machine-readable JSON output mode.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

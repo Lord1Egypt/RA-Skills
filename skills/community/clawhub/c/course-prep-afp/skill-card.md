@@ -1,42 +1,55 @@
-## Description: <br>
-工程化备课系统（Course-Prep-Auto-Flow v1.0）将课程主题、受众画像和参考素材转化为七步备课流程，覆盖信息采集、骨架设计、素材提炼、内容填充、结构审查、配图规划和终局产出。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+工程化备课系统（Course-Prep-Auto-Flow v1.0）将课程主题、受众画像和参考素材转化为分步确认的课程骨架、备课内容、配图规划和飞书文档输出。
 
-## Publisher: <br>
-[yipng05-max](https://clawhub.ai/user/yipng05-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yipng05-max](https://clawhub.ai/user/yipng05-max)
 
-## Use Case: <br>
-课程设计者、培训讲师和内容创作者使用该技能，将课程主题、受众画像和参考素材逐步整理为公开课、直播课或工作坊的备课稿、复盘文档和配图规划。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Course prompts, reference materials, generated images, and final drafts may be sent to the configured image provider and Feishu workspace. <br>
-Mitigation: Use only approved services for the data involved, avoid confidential or regulated course material unless approved, and review generated drafts before sharing. <br>
-Risk: The workflow references a custom image API endpoint, an image-generation helper skill, and a Google API key. <br>
-Mitigation: Verify the endpoint and helper skill before use, store credentials securely, and use limited-scope credentials where possible. <br>
+## Use Case:
 
+Educators, course designers, trainers, and content teams use this skill to prepare public classes, livestream courses, and workshops through a seven-step workflow from intake to final course documents.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yipng05-max/course-prep-afp) <br>
-- [详细说明文档](https://www.feishu.cn/docx/GmQUdwj4sosWxvxQp84cIf8NnQb) <br>
-- [Configured image API endpoint](https://work.poloapi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with tables and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces staged course-preparation drafts, image prompts, document URLs, and review checkpoints that require user confirmation between phases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Image-generation prompts and a Google API key may be sent to a configured third-party image endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use restricted or disposable credentials, avoid sensitive teaching materials unless the data flow is approved, and require explicit confirmation before image generation or API sharing.
+
+Risk: The workflow can create or share Feishu documents as final outputs.
+
+Mitigation: Confirm document creation and sharing targets before execution, and review the generated course-prep and retrospective documents before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yipng05-max/skills/course-prep-afp)
+- [Publisher profile](https://clawhub.ai/user/yipng05-max)
+- [Detailed Feishu documentation](https://www.feishu.cn/docx/GmQUdwj4sosWxvxQp84cIf8NnQb)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with tables, staged prompts, inline shell commands, image prompts, and document URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces step-gated course-preparation artifacts; image generation and Feishu document creation require explicit user confirmation and configured credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

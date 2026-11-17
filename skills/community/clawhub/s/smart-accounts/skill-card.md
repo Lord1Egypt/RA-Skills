@@ -1,39 +1,53 @@
-## Description: <br>
-Deploy and manage multi-signature smart accounts on supported EVM chains, including smart wallet creation, owner changes, signing-threshold changes, and wallet overview checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy and manage multi-signature smart accounts on supported EVM chains.
 
-## Publisher: <br>
-[rachidjarray-hk-qa-fdt](https://clawhub.ai/user/rachidjarray-hk-qa-fdt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rachidjarray-hk-qa-fdt](https://clawhub.ai/user/rachidjarray-hk-qa-fdt)
 
-## Use Case: <br>
-Developers and wallet operators use this skill to deploy EVM smart accounts, inspect wallet details, and manage multi-signature account ownership and thresholds through approved fdx commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated smart-wallet commands can change account control or access. <br>
-Mitigation: Before approving execution, verify the chain, smart account address, owner addresses, requested action, and signing threshold with the human operator. <br>
-Risk: Removing too many owners or setting a threshold above the available owner count can lock the account. <br>
-Mitigation: Confirm the resulting owner set and ensure the threshold remains valid before running ownership-management commands. <br>
+## Use Case:
 
+Developers and wallet operators use this skill to deploy multi-signature smart accounts, manage owners, change signing thresholds, and inspect smart account details through fdx commands.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires human confirmation before authenticated smart-wallet operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Ownership or threshold changes can lock or alter control of funds if the address, chain, action, or threshold is wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm every address, chain, action, and threshold with the human before allowing the fdx command to run.
+
+Risk: The skill is scoped to EVM smart accounts through fdx and may fail or mislead if used for unsupported chains.
+
+Mitigation: Verify fdx authentication and supported EVM chain selection before deployment or ownership-management commands.
+
+## Reference(s):
+
+- [Smart Accounts ClawHub Page](https://clawhub.ai/rachidjarray-hk-qa-fdt/skills/smart-accounts)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an authenticated fdx wallet and a supported EVM chain.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

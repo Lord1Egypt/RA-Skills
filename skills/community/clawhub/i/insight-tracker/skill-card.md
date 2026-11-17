@@ -1,38 +1,55 @@
-## Description: <br>
-Track, categorize, search, and analyze insights, patterns, and observations discovered during OpenClaw sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track, categorize, search, and analyze insights, patterns, and observations discovered during OpenClaw sessions.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to record, retrieve, and analyze session insights, research findings, decisions, risks, and user preferences. The skill is best suited for local insight notebooks where saved content is intentionally reviewed and kept free of secrets or sensitive personal data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Insight Tag Taxonomy](references/tag-taxonomy.md) <br>
-- [Insight Output Examples](references/output-examples.md) <br>
+Developers and agents use this skill to record session observations as sourced, tagged Markdown insight records, retrieve them by tag or priority, and summarize patterns over time.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown insight records, tagged summaries, cross-reference reports, search results, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local dated records and tag, priority, status, source, and evidence-grade metadata for organization.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence and SKILL.md frontmatter) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Persistent local insight records may contain secrets or sensitive personal details if saved.
+
+Mitigation: Review content before saving, avoid sensitive data unless intended, and remove or archive records when they should no longer be retained.
+
+Risk: Insights can become stale or be contradicted by later evidence.
+
+Mitigation: Use evidence grades and status values to keep claims reviewable, and validate important insights before relying on them for future behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/insight-tracker)
+- [Tag taxonomy](references/tag-taxonomy.md)
+- [Output examples](references/output-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown insight records, summaries, search results, and concise shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local records persist until manually removed or archived; scripts may use INSIGHT_DATA_DIR to choose the data directory.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

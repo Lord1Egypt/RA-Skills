@@ -1,40 +1,54 @@
-## Description: <br>
-Guides developers through creating ClawTip paid skills, including local order creation, SM4 encryption, required order fields, and local testing steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through creating ClawTip paid skills with local order creation, SM4 encryption, and local payment testing.
 
-## Publisher: <br>
-[liulian822](https://clawhub.ai/user/liulian822) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liulian822](https://clawhub.ai/user/liulian822)
 
-## Use Case: <br>
-Developers building OpenClaw or Hermes ClawTip paid skills use this guide to configure payment metadata, create encrypted local orders, run payment processing, and generate paid-service outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real-payment testing can affect actual payments if the merchant, amount, order number, or skill version is wrong. <br>
-Mitigation: Before running payment commands, verify the merchant/payTo value, amount, order number, skill version, and official platform payment status. <br>
-Risk: A local payCredential field or payment error message alone may not prove that payment succeeded. <br>
-Mitigation: Confirm payment status through the official platform or payment process instead of relying only on local order-file fields or error text. <br>
+## Use Case:
 
+Developers and skill authors use this guide to structure ClawTip paid skills, create encrypted local order files, and test payment-driven service generation.
 
-## Reference(s): <br>
-- [ClawTip official developer guide](https://clawtip.jd.com/guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides implementation guidance; users should verify payment settings and payment status before running real-payment commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Payment verification guidance could lead users to accept invalid or mismatched payments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify payment credentials through the trusted ClawTip component before generating paid services, fail closed on merchant or recipient errors, and use test or sandbox accounts where possible.
+
+Risk: Local order files can expose payment workflow data if handled carelessly.
+
+Mitigation: Protect local order files and review the generated paid-skill workflow before installing or following it.
+
+## Reference(s):
+
+- [ClawTip Official Developer Guide](https://clawtip.jd.com/guide)
+- [ClawHub Skill Page](https://clawhub.ai/liulian822/skills/clawtip-paid-skill-guide)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, Python, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes payment workflow guidance and local order-file handling instructions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

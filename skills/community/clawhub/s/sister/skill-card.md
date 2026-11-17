@@ -1,41 +1,59 @@
-## Description: <br>
-Sister.skill helps an agent build local profiles from a user's descriptions and memories, then generate personality-style responses or group chat simulations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Distill your sisters - real sisters, besties, and female content creators - by capturing how they talk, their emotional intelligence, humor, supportive energy, and user-provided memories.
 
-## Publisher: <br>
-[realteamprinz](https://clawhub.ai/user/realteamprinz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realteamprinz](https://clawhub.ai/user/realteamprinz)
 
-## Use Case: <br>
-External users use this skill to organize their own memories and descriptions of sisters, best friends, and creators into local profiles. They can ask an agent to respond in a captured communication style or simulate a group chat while keeping the files local. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plain-text local profiles and logs about real people may retain sensitive personal details. <br>
-Mitigation: Use explicit consent where possible, prefer pseudonyms, avoid sensitive categories, and regularly review or delete ~/.sister-skill/sisters/. <br>
-Risk: Generated responses may be mistaken for the real person's actual views. <br>
-Mitigation: Present outputs as simulations based on the user's memories and do not claim they are the profiled person's real statements. <br>
+## Use Case:
 
+External users and agent operators use this skill to build local profiles from their own memories and descriptions, then generate personality-style responses or group-chat simulations based on those profiles.
 
-## Reference(s): <br>
-- [Sister Archetypes Reference Guide](references/sister-archetypes.md) <br>
-- [ClawHub skill page](https://clawhub.ai/realteamprinz/sister) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown profiles, JSONL interaction logs, and plain text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill stores profile and log files locally under ~/.sister-skill/sisters/ when the agent follows the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can persistently build detailed plaintext profiles and interaction logs about real people.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local plaintext storage is acceptable, review stored profiles regularly, and delete unwanted profile folders under ~/.sister-skill/sisters/.
+
+Risk: Broad memory prompts may encourage entry of sensitive personal information about the user or third parties.
+
+Mitigation: Avoid entering sensitive details such as health, finances, trauma, private conflicts, secrets, or third-party information given without consent.
+
+Risk: Generated personality-style responses may be mistaken for, or used to impersonate, real people.
+
+Mitigation: Use generated responses as user-controlled simulations and keep responsibility with the operator; do not present outputs as statements from the real person.
+
+## Reference(s):
+
+- [Sister Archetypes Reference Guide](references/sister-archetypes.md)
+- [Sister.skill on ClawHub](https://clawhub.ai/realteamprinz/skills/sister)
+- [Publisher profile](https://clawhub.ai/user/realteamprinz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Natural-language responses, Markdown profile files, and JSONL interaction log entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local plaintext profiles and logs under ~/.sister-skill/sisters/.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

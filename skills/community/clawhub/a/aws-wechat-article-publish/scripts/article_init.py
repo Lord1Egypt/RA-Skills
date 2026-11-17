@@ -57,6 +57,10 @@ def _load_yaml_example() -> str:
         "cover_image: \"\"\n"
         "content_source: \"article.html\"\n"
         "image_source: \"generated\"\n"
+        # 本篇信息位配图的媒介（白板 / 便签 / 终端等宽 等），由 images skill 的
+        # image-method 第四步选定并写回。下一篇据此避开最近几篇用过的，
+        # 否则整个号会只剩一种长相。
+        "image_medium: \"\"\n"
         "user_images_dir: \"imgs/\"\n"
         "img_analysis_file: \"img_analysis.md\"\n"
         "need_open_comment: 1\n"
@@ -109,6 +113,7 @@ PRESET_FIELDS = [
     "default_closing_block",
     "default_title_style",
     "default_format_preset",
+    "default_format_scheme",
     "default_cover_image_style",
     "default_article_image_style",
     "default_sticker_style",

@@ -1,42 +1,54 @@
-## Description: <br>
-Get minute-level precipitation forecast for the next 2 hours via the Caiyun Weather API, including 1-minute precipitation intensity and 30-minute probability data for locations with supported coverage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gets minute-level precipitation forecasts for the next 2 hours via the Caiyun Weather API, including precipitation intensity samples and 30-minute probability data for supported locations, primarily major Chinese cities.
 
-## Publisher: <br>
-[shuowang-ai](https://clawhub.ai/user/shuowang-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuowang-ai](https://clawhub.ai/user/shuowang-ai)
 
-## Use Case: <br>
-External users and agents use this skill to answer near-term rain questions, such as whether to bring an umbrella or when precipitation may start or stop, by querying minute-level Caiyun Weather API data for longitude and latitude coordinates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; forecast data is mainly available for China and works best for major Chinese cities. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Caiyun Weather API token and sends requested longitude and latitude coordinates to Caiyun. <br>
-Mitigation: Use a token scoped to this service, protect it through CAIYUN_TOKEN or the documented local token file, and only query coordinates you are comfortable sending to Caiyun. <br>
-Risk: Minute-level precipitation data may be unavailable or limited for unsupported locations. <br>
-Mitigation: When the API has no minutely data, tell the user that coverage is mainly available for China and avoid overstating forecast precision. <br>
+## Use Case:
 
+External users and agents use this skill to answer imminent rain, precipitation, and umbrella-planning questions for supported China locations when longitude and latitude are available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shuowang-ai/knowair-minutely) <br>
-- [Publisher profile](https://clawhub.ai/user/shuowang-ai) <br>
-- [Caiyun Weather API endpoint](https://api.caiyunapp.com/v2.6) <br>
+### Deployment Geography for Use:
 
+Global; forecast coverage is mainly for supported locations in China.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON from the helper script plus concise natural-language precipitation guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, internet access, CAIYUN_TOKEN, and longitude/latitude coordinates; supports English or Chinese output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires a Caiyun Weather API token and sends queried longitude/latitude coordinates to Caiyun.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the CAIYUN_TOKEN environment variable, avoid sensitive locations when inappropriate, and invoke the skill only for supported weather lookups.
+
+Risk: Minutely precipitation data may be unavailable or less useful outside supported China coverage areas.
+
+Mitigation: Tell users when data is unavailable and avoid presenting unsupported forecasts as definitive.
+
+## Reference(s):
+
+- [KnowAir Minutely ClawHub release](https://clawhub.ai/shuowang-ai/skills/knowair-minutely)
+- [Caiyun Weather API endpoint](https://api.caiyunapp.com/v2.6)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Caiyun's natural-language description, five-minute precipitation intensity samples, datasource, and 30-minute probability periods.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

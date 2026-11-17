@@ -1,0 +1,5 @@
+# Windows requires tzdata for IANA timezone support in zoneinfo.
+# macOS and Linux use the system timezone database — not needed there.
+#
+# Install: pip install -r requirements.txt
+tzdata; sys_platform == "win32"

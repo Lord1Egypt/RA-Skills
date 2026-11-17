@@ -1,0 +1,28 @@
+name: video-overloaded-shot-split-cn
+slug: video-overloaded-shot-split-cn
+display_name: 复杂镜头拆分计划
+description: 将用户提供的镜头描述、情节必留点与总时长预算，拆成可拍摄或可生成的镜头表和衔接要求。适用于单章、单场景或短文的动作过载镜头；仅拆解已有材料，不改写成新脚本。资料不足时明确列出缺项，超出单次范围时要求分批提交。
+version: 1.0.2
+icon: icon-512.png
+repository: https://github.com/xxjrq/video-overloaded-shot-split-cn
+license: MIT-0
+tags:
+  - video-production
+  - storyboard
+  - shot-planning
+  - chinese
+trigger_words:
+  - 复杂镜头拆分
+  - 动作过载镜头
+  - 镜头衔接
+triggers:
+  - 把这个镜头拆成可拍的分镜
+  - 在时长预算内拆解动作镜头
+  - 输出镜头表和衔接要求
+interface:
+  display_name: 复杂镜头拆分计划
+  short_description: 把动作过载的既有镜头拆成可执行镜头表与连续衔接要求
+  default_prompt: 请提供已有镜头描述、情节必留点和总时长预算，我会仅拆分动作过载镜头并给出可拍镜头表与衔接要求。
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+self_test: bash scripts/self-test.sh

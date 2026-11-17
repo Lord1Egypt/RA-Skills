@@ -3,6 +3,7 @@
 import os
 import json
 import re
+import socket
 import urllib.request
 from typing import Optional
 
@@ -202,6 +203,8 @@ def _scf_call(proxy_key: str, req_type: str, params: dict) -> dict:
         with urllib.request.urlopen(req, timeout=PROXY_TIMEOUT) as resp:
             data = json.loads(resp.read().decode("utf-8"))
             return data if data else {}
+    except (socket.timeout, TimeoutError):
+        return {"ok": False, "error": "timeout"}
     except Exception as e:
         return {"ok": False, "error": str(e)}
 

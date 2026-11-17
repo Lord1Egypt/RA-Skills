@@ -1,49 +1,65 @@
-## Description: <br>
-Tetrac Perp Trader gives agents a multi-exchange perpetuals trading CLI for market data, account checks, order placement, position management, TWAP and DCA ladders, scanner signals, trailing stops, and trading loops through TTC Box. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-exchange perpetuals trading CLI for 15+ venues via the TTC Box API, supporting market data, order placement, position management, TWAP/DCA workflows, technical signal scans, and trailing-stop loops through bundled darwin-arm64 and linux-x64 binaries.
 
-## Publisher: <br>
-[tetrac-official](https://clawhub.ai/user/tetrac-official) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tetrac-official](https://clawhub.ai/user/tetrac-official)
 
-## Use Case: <br>
-External users and agent developers use this skill to let an OpenClaw agent inspect perpetuals markets, check account and position state, and prepare or execute exchange actions with explicit pre-order and retry safeguards. It is intended for users who understand the risk of giving an agent access to live crypto trading credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can interact with real-money crypto trading accounts and requires sensitive TTC Box and exchange credentials. <br>
-Mitigation: Install only for intended live trading use, provide least-privilege exchange API keys with withdrawals disabled, keep credentials in environment files rather than config, and require dry-runs plus explicit confirmations before write actions. <br>
-Risk: The security evidence says the package needs review because claimed bundled executables may be missing or need verification. <br>
-Mitigation: Before running, verify the actual release package contents, launcher, platform binary availability, and file hashes or source package against the expected release. <br>
-Risk: The security evidence flags unsafe credential-handling patterns in the API documentation. <br>
-Mitigation: Avoid URL-based credential flows, use only trusted TTC Box endpoints over secure transport, rotate exposed credentials, and do not grant broader trading permissions than the task requires. <br>
-Risk: Automated loops such as TWAP, market-maker, or trailing-stop watchers can amplify losses or duplicate actions if they continue after ambiguous failures. <br>
-Mitigation: Constrain loops by symbol, size, duration, and stop conditions; stop on in-flight write failures; verify balance, positions, and open orders before any retry or resume. <br>
+## Use Case:
 
+External developers and agent operators use this skill to let an OpenClaw agent inspect perpetuals markets, manage exchange account state, and prepare or execute trading workflows with explicit checks before mutating orders or positions.
 
-## Reference(s): <br>
-- [ClawHub Tetrac Perp Trader skill page](https://clawhub.ai/tetrac-official/tetrac-perp-trader) <br>
-- [Project homepage](https://github.com/tetrac-official/tetrac-perp-trader) <br>
-- [README](README.md) <br>
-- [TTC Box REST API reference](references/api-reference.md) <br>
-- [Supported exchanges](references/exchanges.md) <br>
-- [Troubleshooting guide](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The underlying CLI can return table, JSON, CSV, or quiet output depending on command flags and TTC_OUTPUT.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can perform high-impact financial actions including order placement, position closure, and leverage changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run previews, require explicit user confirmation for real orders, and verify balance, positions, and open orders before any trading action.
+
+Risk: Reusable TTC Box and exchange credentials are required, and over-permissioned exchange keys can increase account impact.
+
+Mitigation: Use trade-only exchange API keys with withdrawals disabled, store secrets only in the environment, and avoid exposing .env contents during troubleshooting.
+
+Risk: Failed or ambiguous write operations can create duplicate exposure if retried blindly.
+
+Mitigation: After any in-flight write failure, re-check positions, open orders, and balances before deciding whether a single retry is appropriate.
+
+Risk: The release evidence classifies the skill as a high-impact financial integration with a suspicious security verdict.
+
+Mitigation: Install only after reviewing the security guidance and trusting TTC Box with the required credentials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tetrac-official/skills/tetrac-perp-trader)
+- [Project Homepage](https://github.com/tetrac-official/tetrac-perp-trader)
+- [TTC Box REST API](references/api-reference.md)
+- [Supported Exchanges](references/exchanges.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured CLI output references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI output may be table, JSON, CSV, or quiet mode depending on skill configuration.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

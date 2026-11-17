@@ -1,43 +1,55 @@
-## Description: <br>
-Windows PC health-check skill that inspects CPU, memory, disk, network, processes, drivers, devices, startup entries, listening ports, security updates, and recent system events, then generates a structured Markdown or JSON report with risk levels and suggested actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PC Health Check helps an agent run Windows health diagnostics for CPU, memory, disk, network, processes, devices, system events, startup items, listening ports, and security updates, then summarize the results with risk levels and recommendations.
 
-## Publisher: <br>
-[coolfzb](https://clawhub.ai/user/coolfzb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolfzb](https://clawhub.ai/user/coolfzb)
 
-## Use Case: <br>
-External users and support engineers use this skill to run quick or full Windows PC diagnostics and receive a structured health report with warnings, errors, and practical remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs broad local diagnostics that may reveal process lists, network ports, startup entries, drivers, devices, update posture, and recent system events. <br>
-Mitigation: Use explicit diagnostic commands, review generated reports before sharing them, and keep saved reports in private storage. <br>
-Risk: Saved health reports may persist sensitive system details beyond the interactive session. <br>
-Mitigation: Save reports only to intended paths, restrict access to the saved files, and delete reports when they are no longer needed. <br>
+## Use Case:
 
+External users and support engineers use this skill to inspect the health of a Windows PC and receive a structured diagnostic report with issue severity and remediation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/coolfzb/pc-health-check) <br>
-- [Publisher profile](https://clawhub.ai/user/coolfzb) <br>
-- [README](artifact/README.md) <br>
-- [CHANGELOG](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Guidance, Files] <br>
-**Output Format:** [Structured JSON or Markdown health report with risk levels, summary tables, and suggested actions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports can be generated in quick or full mode and may be saved to a local file when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and changelog report 1.0.1) <br>
+Risk: Generated reports can contain host-specific system, process, startup, event log, listening port, and update details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact reports before sharing them outside the trusted support or operations context.
+
+Risk: Some diagnostic checks may require broader Windows access to retrieve driver, event, update, or network details.
+
+Mitigation: Run the skill only in trusted local environments and review requested access before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/coolfzb/skills/pc-health-check)
+- [README](artifact/README.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown health reports and JSON diagnostic results, with optional shell commands for running the local Node.js script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include host-specific system, process, startup, event log, listening port, and update details.]
+
+## Skill Version(s):
+
+1.0.1 (source: artifact/SKILL.md frontmatter and artifact/CHANGELOG.md; release metadata reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

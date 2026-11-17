@@ -1,42 +1,59 @@
-## Description: <br>
-Use when diagnosing, repairing, or maintaining an OpenClaw Gateway on the same machine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when diagnosing, repairing, or maintaining an OpenClaw Gateway on the same machine.
 
-## Publisher: <br>
-[dinstein](https://clawhub.ai/user/dinstein) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dinstein](https://clawhub.ai/user/dinstein)
 
-## Use Case: <br>
-Developers and operators use this skill with a trusted rescue agent to diagnose, repair, update, back up, and health-check an OpenClaw Gateway on Linux or macOS. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide a trusted agent to access OpenClaw configuration, session data, environment files, tokens, and backups. <br>
-Mitigation: Install it only on a trusted rescue or operations agent, avoid printing secrets, and protect backup directories because they may contain credentials. <br>
-Risk: Maintenance guidance can include service restarts, package updates, transcript cleanup, and Tailscale Serve resets. <br>
-Mitigation: Review commands before approval, require explicit confirmation for destructive operations, create backups before modifying configuration, and verify service health after changes. <br>
+## Use Case:
 
+Developers, operators, and rescue agents use this skill to diagnose a down OpenClaw Gateway, repair configuration or dependency issues, restart the service safely, and perform routine health checks.
 
-## Reference(s): <br>
-- [ClawHub OpenClaw Ops listing](https://clawhub.ai/dinstein/openclaw-ops) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Claude Code Remote Control](https://code.claude.com/docs/en/remote-control) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires same-machine shell access and review before privileged or destructive operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: frontmatter and server-resolved release) <br>
+Risk: The skill gives an agent broad repair authority over OpenClaw Gateway configuration, service state, sessions, and workspace data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only on a trusted rescue agent account that is intended to administer the OpenClaw Gateway.
+
+Risk: Backup procedures can copy OpenClaw tokens, sessions, and workspace data into plaintext backups.
+
+Mitigation: Restrict backup permissions, avoid copying token files unless necessary, and clean up or encrypt backups.
+
+Risk: Upgrade procedures that use registry-selected global updates can introduce unreviewed package changes.
+
+Mitigation: Prefer pinned, verified OpenClaw package versions before running global update or rollback procedures.
+
+## Reference(s):
+
+- [OpenClaw Ops on ClawHub](https://clawhub.ai/dinstein/skills/openclaw-ops)
+- [OpenClaw](https://openclaw.ai)
+- [Claude Code Remote Control](https://code.claude.com/docs/en/remote-control)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces step-by-step operational guidance; destructive actions require user confirmation.]
+
+## Skill Version(s):
+
+1.2.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

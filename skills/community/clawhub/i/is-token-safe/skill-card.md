@@ -1,41 +1,58 @@
-## Description: <br>
-Evaluates a crypto token contract for scam-risk signals and returns a safety indication with supporting reasons for trading and agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates a crypto token contract for scam risks and returns a safety level with supporting reasons for trading and agent decision workflows.
 
-## Publisher: <br>
-[dokbawi80](https://clawhub.ai/user/dokbawi80) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dokbawi80](https://clawhub.ai/user/dokbawi80)
 
-## Use Case: <br>
-Developers and operators use this skill to screen token addresses before routing them into automated trading bots, prediction-market agents, or token discovery pipelines. It is intended to provide a quick risk signal, not a substitute for independent contract review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The main entry point does not perform the promised token-safety check. <br>
-Mitigation: Validate the entry point in a sandbox and fix it before using the skill for trading or automated decisions. <br>
-Risk: Token addresses checked by the standalone scanner may be sent to public Base RPC and honeypot.is services. <br>
-Mitigation: Avoid submitting sensitive token addresses to public services unless that data sharing is acceptable for the deployment. <br>
-Risk: The standalone scanner needs dependency pinning and validation before its results are relied on. <br>
-Mitigation: Pin runtime dependencies, review scanner behavior, and test known safe and unsafe token cases before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dokbawi80/is-token-safe) <br>
+## Use Case:
 
+Developers and agent builders use this skill to screen token addresses for common scam indicators before using them in trading bots, prediction-market agents, or token discovery pipelines. Its result should be treated as an advisory risk signal rather than a sole safety decision.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [JSON object or concise text risk summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected output includes a token risk level and supporting reasons.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may understate token risk or fail open, creating a false sense of safety.
+
+Mitigation: Treat results as advisory, require independent review or additional scanners, and test failure paths before relying on the output.
+
+Risk: Automated trading flows could act on an unreliable safety signal.
+
+Mitigation: Do not allow the skill output alone to authorize trades or token approvals; add policy gates and human or multi-signal confirmation.
+
+Risk: External RPC and honeypot API calls can fail, time out, or return incomplete data.
+
+Mitigation: Handle null results conservatively, monitor provider errors, and verify the intended chain and token address before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dokbawi80/skills/is-token-safe)
+- [Publisher profile](https://clawhub.ai/user/dokbawi80)
+- [Honeypot API](https://api.honeypot.is/v2/IsHoneypot)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON risk report with risk level and reason summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Risk level is summarized as low, medium, or high; unavailable checks may return null values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

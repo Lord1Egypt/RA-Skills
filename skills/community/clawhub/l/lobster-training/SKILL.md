@@ -1,328 +1,108 @@
 ---
-name: Agent Browser
-description: A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands.
-read_when:
-  - Automating web interactions
-  - Extracting structured data from pages
-  - Filling forms programmatically
-  - Testing web UIs
-metadata: {"clawdbot":{"emoji":"🌐","requires":{"bins":["node","npm"]}}}
-allowed-tools: Bash(agent-browser:*)
+name: image-gen
+description: AI图像生成与编辑。支持文生图、图+文生图、风格转换。当用户要求画图、生成图片、编辑图片、图片风格转换时使用此 skill。支持多种比例（1:1、3:2、16:9、21:9 等）和分辨率（标准、2K、4K）。
 ---
 
-# Browser Automation with agent-browser
+# AI 图像生成
 
-## Installation
+通过执行脚本调用 Gemini Flash Image API 生成图片。
 
-### npm recommended
+## 环境变量
 
-```bash
-npm install -g agent-browser
-agent-browser install
-agent-browser install --with-deps
-```
+脚本通过以下环境变量获取 API 配置：
 
-### From Source
+- `IMAGE_GEN_API_KEY` — API 密钥
+- `IMAGE_GEN_BASE_URL` — API 基础地址（默认：https://code.newcli.com/gemini）
 
-```bash
-git clone https://github.com/vercel-labs/agent-browser
-cd agent-browser
-pnpm install
-pnpm build
-agent-browser install
-```
+## 使用方法
 
-## Quick start
+### 生成图片
+
+执行脚本生成图片：
 
 ```bash
-agent-browser open <url>        # Navigate to page
-agent-browser snapshot -i       # Get interactive elements with refs
-agent-browser click @e1         # Click element by ref
-agent-browser fill @e2 "text"   # Fill input by ref
-agent-browser close             # Close browser
+export IMAGE_GEN_API_KEY="your-api-key"
+export IMAGE_GEN_BASE_URL="https://code.newcli.com/gemini"
+
+python3 scripts/generate_image.py "你的提示词" --model gemini-3.1-flash-image-2k-16x9 --output output.png
 ```
 
-## Core workflow
+### 参数说明
 
-1. Navigate: `agent-browser open <url>`
-2. Snapshot: `agent-browser snapshot -i` (returns elements with refs like `@e1`, `@e2`)
-3. Interact using refs from the snapshot
-4. Re-snapshot after navigation or significant DOM changes
+- `prompt`（必填）：图片描述提示词
+- `--model, -m`：模型名称，默认 `gemini-3.1-flash-image-2k-16x9`
+- `--output, -o`：输出文件路径，默认当前目录 `generated_image.png`
 
-## Commands
+## 可用模型
 
-### Navigation
+默认模型：`gemini-3.1-flash-image-2k-16x9`（2K 分辨率，16:9 横屏）
+
+### 基础模型（标准分辨率）
+
+| 模型 ID | 比例 | 适用场景 |
+|---------|------|----------|
+| gemini-3.1-flash-image | 1:1 | 社交媒体头像 |
+| gemini-3.1-flash-image-3x2 | 3:2 | 横版照片 |
+| gemini-3.1-flash-image-2x3 | 2:3 | 竖版海报 |
+| gemini-3.1-flash-image-3x4 | 3:4 | 竖版海报 |
+| gemini-3.1-flash-image-4x3 | 4:3 | 传统比例 |
+| gemini-3.1-flash-image-4x5 | 4:5 | Instagram |
+| gemini-3.1-flash-image-5x4 | 5:4 | 传统横版 |
+| gemini-3.1-flash-image-9x16 | 9:16 | 手机壁纸/短视频 |
+| gemini-3.1-flash-image-16x9 | 16:9 | 电脑壁纸/视频 |
+| gemini-3.1-flash-image-21x9 | 21:9 | 超宽屏 |
+
+### 2K 分辨率（推荐）
+
+| 模型 ID | 比例 |
+|---------|------|
+| gemini-3.1-flash-image-2k | 1:1 |
+| gemini-3.1-flash-image-2k-3x2 | 3:2 |
+| gemini-3.1-flash-image-2k-2x3 | 2:3 |
+| gemini-3.1-flash-image-2k-3x4 | 3:4 |
+| gemini-3.1-flash-image-2k-4x3 | 4:3 |
+| gemini-3.1-flash-image-2k-4x5 | 4:5 |
+| gemini-3.1-flash-image-2k-5x4 | 5:4 |
+| gemini-3.1-flash-image-2k-9x16 | 9:16 |
+| gemini-3.1-flash-image-2k-16x9 | 16:9 |
+| gemini-3.1-flash-image-2k-21x9 | 21:9 |
+
+### 4K 分辨率
+
+| 模型 ID | 比例 |
+|---------|------|
+| gemini-3.1-flash-image-4k | 1:1 |
+| gemini-3.1-flash-image-4k-3x2 | 3:2 |
+| gemini-3.1-flash-image-4k-2x3 | 2:3 |
+| gemini-3.1-flash-image-4k-3x4 | 3:4 |
+| gemini-3.1-flash-image-4k-4x3 | 4:3 |
+| gemini-3.1-flash-image-4k-4x5 | 4:5 |
+| gemini-3.1-flash-image-4k-5x4 | 5:4 |
+| gemini-3.1-flash-image-4k-9x16 | 9:16 |
+| gemini-3.1-flash-image-4k-16x9 | 16:9 |
+
+## 工作流程
+
+1. **理解需求**：分析用户的图片需求，确定比例和分辨率
+2. **选择模型**：根据用途选择合适的模型（默认 2K-16x9）
+3. **优化提示词**：将用户描述扩展为详细的图片提示词
+4. **执行脚本**：调用 `scripts/generate_image.py` 生成图片
+5. **展示结果**：读取生成的图片展示给用户
+
+## 提示词技巧
+
+- **具体描述**：主体、场景、光线、风格、色调
+- **风格参考**：水彩、油画、赛博朋克、吉卜力、写实摄影、中国工笔等
+- **构图说明**：视角（俯视/仰视）、景深、焦点
+- **色彩指定**：主色调、配色方案
+
+## 示例
+
+生成中国风后羿射日图：
 
 ```bash
-agent-browser open <url>      # Navigate to URL
-agent-browser back            # Go back
-agent-browser forward         # Go forward
-agent-browser reload          # Reload page
-agent-browser close           # Close browser
+python3 scripts/generate_image.py \
+  "一位英勇的古代射手后羿站在险峻的高山之巅，身披金色战甲，肌肉紧绷，拉开巨大的神弓，一支燃烧着神圣光芒的箭矢对准天空中炽热的太阳。天空中有多个太阳同时燃烧，火焰倾泻而下。背景是翻滚的云海和龟裂的大地，远山在热浪中扭曲。中国传统工笔重彩风格，水墨与金箔点缀，色彩以深红、金色、墨黑、靛蓝为主，画面气势磅礴，具有敦煌壁画的厚重感。16:9 宽幅构图。" \
+  --model gemini-3.1-flash-image-2k-16x9 \
+  --output houyi.png
 ```
-
-### Snapshot (page analysis)
-
-```bash
-agent-browser snapshot            # Full accessibility tree
-agent-browser snapshot -i         # Interactive elements only (recommended)
-agent-browser snapshot -c         # Compact output
-agent-browser snapshot -d 3       # Limit depth to 3
-agent-browser snapshot -s "#main" # Scope to CSS selector
-```
-
-### Interactions (use @refs from snapshot)
-
-```bash
-agent-browser click @e1           # Click
-agent-browser dblclick @e1        # Double-click
-agent-browser focus @e1           # Focus element
-agent-browser fill @e2 "text"     # Clear and type
-agent-browser type @e2 "text"     # Type without clearing
-agent-browser press Enter         # Press key
-agent-browser press Control+a     # Key combination
-agent-browser keydown Shift       # Hold key down
-agent-browser keyup Shift         # Release key
-agent-browser hover @e1           # Hover
-agent-browser check @e1           # Check checkbox
-agent-browser uncheck @e1         # Uncheck checkbox
-agent-browser select @e1 "value"  # Select dropdown
-agent-browser scroll down 500     # Scroll page
-agent-browser scrollintoview @e1  # Scroll element into view
-agent-browser drag @e1 @e2        # Drag and drop
-agent-browser upload @e1 file.pdf # Upload files
-```
-
-### Get information
-
-```bash
-agent-browser get text @e1        # Get element text
-agent-browser get html @e1        # Get innerHTML
-agent-browser get value @e1       # Get input value
-agent-browser get attr @e1 href   # Get attribute
-agent-browser get title           # Get page title
-agent-browser get url             # Get current URL
-agent-browser get count ".item"   # Count matching elements
-agent-browser get box @e1         # Get bounding box
-```
-
-### Check state
-
-```bash
-agent-browser is visible @e1      # Check if visible
-agent-browser is enabled @e1      # Check if enabled
-agent-browser is checked @e1      # Check if checked
-```
-
-### Screenshots & PDF
-
-```bash
-agent-browser screenshot          # Screenshot to stdout
-agent-browser screenshot path.png # Save to file
-agent-browser screenshot --full   # Full page
-agent-browser pdf output.pdf      # Save as PDF
-```
-
-### Video recording
-
-```bash
-agent-browser record start ./demo.webm    # Start recording (uses current URL + state)
-agent-browser click @e1                   # Perform actions
-agent-browser record stop                 # Stop and save video
-agent-browser record restart ./take2.webm # Stop current + start new recording
-```
-
-Recording creates a fresh context but preserves cookies/storage from your session. If no URL is provided, it automatically returns to your current page. For smooth demos, explore first, then start recording.
-
-### Wait
-
-```bash
-agent-browser wait @e1                     # Wait for element
-agent-browser wait 2000                    # Wait milliseconds
-agent-browser wait --text "Success"        # Wait for text
-agent-browser wait --url "/dashboard"    # Wait for URL pattern
-agent-browser wait --load networkidle      # Wait for network idle
-agent-browser wait --fn "window.ready"     # Wait for JS condition
-```
-
-### Mouse control
-
-```bash
-agent-browser mouse move 100 200      # Move mouse
-agent-browser mouse down left         # Press button
-agent-browser mouse up left           # Release button
-agent-browser mouse wheel 100         # Scroll wheel
-```
-
-### Semantic locators (alternative to refs)
-
-```bash
-agent-browser find role button click --name "Submit"
-agent-browser find text "Sign In" click
-agent-browser find label "Email" fill "user@test.com"
-agent-browser find first ".item" click
-agent-browser find nth 2 "a" text
-```
-
-### Browser settings
-
-```bash
-agent-browser set viewport 1920 1080      # Set viewport size
-agent-browser set device "iPhone 14"      # Emulate device
-agent-browser set geo 37.7749 -122.4194   # Set geolocation
-agent-browser set offline on              # Toggle offline mode
-agent-browser set headers '{"X-Key":"v"}' # Extra HTTP headers
-agent-browser set credentials user pass   # HTTP basic auth
-agent-browser set media dark              # Emulate color scheme
-```
-
-### Cookies & Storage
-
-```bash
-agent-browser cookies                     # Get all cookies
-agent-browser cookies set name value      # Set cookie
-agent-browser cookies clear               # Clear cookies
-agent-browser storage local               # Get all localStorage
-agent-browser storage local key           # Get specific key
-agent-browser storage local set k v       # Set value
-agent-browser storage local clear         # Clear all
-```
-
-### Network
-
-```bash
-agent-browser network route <url>              # Intercept requests
-agent-browser network route <url> --abort      # Block requests
-agent-browser network route <url> --body '{}'  # Mock response
-agent-browser network unroute [url]            # Remove routes
-agent-browser network requests                 # View tracked requests
-agent-browser network requests --filter api    # Filter requests
-```
-
-### Tabs & Windows
-
-```bash
-agent-browser tab                 # List tabs
-agent-browser tab new [url]       # New tab
-agent-browser tab 2               # Switch to tab
-agent-browser tab close           # Close tab
-agent-browser window new          # New window
-```
-
-### Frames
-
-```bash
-agent-browser frame "#iframe"     # Switch to iframe
-agent-browser frame main          # Back to main frame
-```
-
-### Dialogs
-
-```bash
-agent-browser dialog accept [text]  # Accept dialog
-agent-browser dialog dismiss        # Dismiss dialog
-```
-
-### JavaScript
-
-```bash
-agent-browser eval "document.title"   # Run JavaScript
-```
-
-### State management
-
-```bash
-agent-browser state save auth.json    # Save session state
-agent-browser state load auth.json    # Load saved state
-```
-
-## Example: Form submission
-
-```bash
-agent-browser open https://example.com/form
-agent-browser snapshot -i
-# Output shows: textbox "Email" [ref=e1], textbox "Password" [ref=e2], button "Submit" [ref=e3]
-
-agent-browser fill @e1 "user@example.com"
-agent-browser fill @e2 "password123"
-agent-browser click @e3
-agent-browser wait --load networkidle
-agent-browser snapshot -i  # Check result
-```
-
-## Example: Authentication with saved state
-
-```bash
-# Login once
-agent-browser open https://app.example.com/login
-agent-browser snapshot -i
-agent-browser fill @e1 "username"
-agent-browser fill @e2 "password"
-agent-browser click @e3
-agent-browser wait --url "/dashboard"
-agent-browser state save auth.json
-
-# Later sessions: load saved state
-agent-browser state load auth.json
-agent-browser open https://app.example.com/dashboard
-```
-
-## Sessions (parallel browsers)
-
-```bash
-agent-browser --session test1 open site-a.com
-agent-browser --session test2 open site-b.com
-agent-browser session list
-```
-
-## JSON output (for parsing)
-
-Add `--json` for machine-readable output:
-
-```bash
-agent-browser snapshot -i --json
-agent-browser get text @e1 --json
-```
-
-## Debugging
-
-```bash
-agent-browser open example.com --headed              # Show browser window
-agent-browser console                                # View console messages
-agent-browser console --clear                        # Clear console
-agent-browser errors                                 # View page errors
-agent-browser errors --clear                         # Clear errors
-agent-browser highlight @e1                          # Highlight element
-agent-browser trace start                            # Start recording trace
-agent-browser trace stop trace.zip                   # Stop and save trace
-agent-browser record start ./debug.webm              # Record from current page
-agent-browser record stop                            # Save recording
-agent-browser --cdp 9222 snapshot                    # Connect via CDP
-```
-
-## Troubleshooting
-
-- If the command is not found on Linux ARM64, use the full path in the bin folder.
-- If an element is not found, use snapshot to find the correct ref.
-- If the page is not loaded, add a wait command after navigation.
-- Use --headed to see the browser window for debugging.
-
-## Options
-
-- --session <name> uses an isolated session.
-- --json provides JSON output.
-- --full takes a full page screenshot.
-- --headed shows the browser window.
-- --timeout sets the command timeout in milliseconds.
-- --cdp <port> connects via Chrome DevTools Protocol.
-
-## Notes
-
-- Refs are stable per page load but change on navigation.
-- Always snapshot after navigation to get new refs.
-- Use fill instead of type for input fields to ensure existing text is cleared.
-
-## Reporting Issues
-
-- Skill issues: Open an issue at https://github.com/TheSethRose/Agent-Browser-CLI
-- agent-browser CLI issues: Open an issue at https://github.com/vercel-labs/agent-browser

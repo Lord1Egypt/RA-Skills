@@ -1,46 +1,57 @@
-## Description: <br>
-Manage Google Workspace through the gws CLI across Drive, Gmail, Calendar, Sheets, Docs, Chat, Admin, Tasks, Meet, Slides, Forms, Contacts, and other Workspace APIs, returning structured JSON suitable for agent pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Google Workspace through the gws CLI for Drive, Gmail, Calendar, Sheets, Docs, Chat, Admin, Tasks, Meet, Slides, Forms, Contacts, and other Workspace APIs, returning structured JSON for agent workflows.
 
-## Publisher: <br>
-[eladrave](https://clawhub.ai/user/eladrave) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eladrave](https://clawhub.ai/user/eladrave)
 
-## Use Case: <br>
-Developers, operators, and AI agents use this skill to inspect and operate Google Workspace resources through the gws CLI, including file, email, calendar, spreadsheet, document, chat, task, and admin workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable an agent to operate a Google Workspace account, including sending email, sharing files, deleting data, and performing admin actions. <br>
-Mitigation: Use the narrowest OAuth scopes possible and require explicit user approval before high-impact Workspace operations. <br>
-Risk: The authentication flow may expose sensitive OAuth secrets, credential files, or callback URLs through chat or workspace files. <br>
-Mitigation: Avoid pasting secrets or callback URLs into chat, keep credentials outside shared workspaces with restrictive permissions, and prefer service accounts or pre-authorized tokens where appropriate. <br>
-Risk: MCP exposure can make Workspace operations available to compatible agents or IDEs. <br>
-Mitigation: Enable MCP only in trusted environments and review tool access before allowing automated actions. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent inspect, create, update, share, send, and administer Google Workspace resources through the gws CLI. It is intended for Workspace automation tasks that need structured JSON responses and shell-command workflows.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/eladrave/google-workspace-rave) <br>
-- [Google Workspace CLI](https://github.com/googleworkspace/cli) <br>
-- [Google Workspace CLI recipe library](https://github.com/googleworkspace/cli/tree/main/skills) <br>
-- [Google Discovery Service](https://developers.google.com/discovery) <br>
-- [Advanced Usage](references/advanced.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON command parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [gws command responses are structured JSON; --page-all can stream paginated responses as NDJSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can expose or persist OAuth client secrets, callback URLs, tokens, and Workspace credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Google scopes, avoid pasting OAuth secrets or callback URLs into chat, keep credentials in a secret manager or protected file outside the workspace, and restrict credential file permissions.
+
+Risk: Workspace operations can send email, share files, administer users, or delete data if executed without review.
+
+Mitigation: Require explicit confirmation and dry-run previews before send, share, admin, delete, or other mutating actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eladrave/skills/google-workspace-rave)
+- [Google Workspace CLI repository](https://github.com/googleworkspace/cli)
+- [Google Workspace CLI skill recipes](https://github.com/googleworkspace/cli/tree/main/skills)
+- [Google API Discovery Service](https://developers.google.com/discovery)
+- [Advanced Usage](artifact/references/advanced.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with bash command examples and structured JSON CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports dry-run previews, paginated NDJSON streams, selected response fields, and table output for human review.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

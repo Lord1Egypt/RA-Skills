@@ -1,39 +1,52 @@
-## Description: <br>
-Upwork Hunting helps agents systematically find and evaluate Upwork automation jobs, prioritize bid opportunities, and plan proposal strategy around n8n template coverage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematically find and evaluate Upwork automation jobs, then plan bids around an n8n workflow template library to improve win rate and delivery speed.
 
-## Publisher: <br>
-[staybased](https://clawhub.ai/user/staybased) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[staybased](https://clawhub.ai/user/staybased)
 
-## Use Case: <br>
-Freelancers and automation consultants use this skill to scan Upwork opportunities, evaluate whether a job is worth bidding on, and frame proposals for n8n, automation, and AI-agent work. It is intended as a decision aid that keeps human review in control before spending connects or making client-facing claims. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence Upwork account activity, including connect spending, bid selection, and client-facing proposal claims. <br>
-Mitigation: Use it as a decision aid and require explicit human review before spending connects, submitting proposals, or making claims to clients. <br>
-Risk: The playbook assumes access to claimed n8n templates, local demo setup, and service credentials. <br>
-Mitigation: Confirm the relevant templates, local n8n demo environment, and credentials are actually available before relying on delivery estimates or proposal positioning. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/staybased/upwork-hunting) <br>
+## Use Case:
 
+Freelancers and automation builders use this skill to scan Upwork, score n8n, automation, and AI agent job opportunities, decide connect spend, and plan bid strategy. It is intended for job targeting and evaluation rather than building the automation itself.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown playbook with search queries, scorecards, bid thresholds, and proposal framing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include connect-spend recommendations and template-fit assessments; requires human review before bidding, spending connects, or submitting proposals.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Upwork proposal and connect-spend decisions may affect real customer interactions or freelancer spend.
+
+Mitigation: Review any proposal, bid decision, or connect-spend recommendation before submitting it.
+
+Risk: The workflow assumes access to local n8n templates, localhost services, or Twilio context when those resources are relevant.
+
+Mitigation: Only allow access to those local services or account contexts when that access is intended for the task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/staybased/skills/upwork-hunting)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with search queries, scorecards, and bid strategy notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Skill outputs are directed to workspace/artifacts/ by the artifact documentation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

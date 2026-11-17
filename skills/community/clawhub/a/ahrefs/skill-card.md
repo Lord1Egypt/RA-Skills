@@ -1,51 +1,66 @@
-## Description: <br>
-Complete Ahrefs API integration for SEO analysis across Site Explorer, Keywords Explorer, Rank Tracker, Site Audit, SERP Overview, Batch Analysis, and Brand Radar. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ahrefs Complete SEO Suite helps agents query Ahrefs API data for SEO analysis across site exploration, keyword research, rank tracking, technical audits, SERP review, batch analysis, and brand monitoring.
 
-## Publisher: <br>
-[geozhu](https://clawhub.ai/user/geozhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[geozhu](https://clawhub.ai/user/geozhu)
 
-## Use Case: <br>
-SEO practitioners, marketers, and developers use this skill to query Ahrefs API data for keyword research, backlink analysis, competitor intelligence, technical audits, rank tracking, batch analysis, and brand monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Ahrefs API token exposure through environment files, command output, chats, or tickets. <br>
-Mitigation: Store a rotatable token in the workspace .env file with restrictive permissions, avoid commands that print the token, and do not paste token output into shared channels. <br>
-Risk: Broad or batch analyses can consume Ahrefs API quota. <br>
-Mitigation: Review large requests before running them, limit returned rows, select only needed columns, cache repeated results, and monitor Ahrefs usage limits. <br>
-Risk: Requested features may be unavailable on the user's Ahrefs plan or may require pre-configured Ahrefs projects. <br>
-Mitigation: Set AHREFS_API_PLAN to the actual subscription tier and confirm Rank Tracker or Site Audit projects exist before using those workflows. <br>
+## Use Case:
 
+Developers, SEO analysts, and marketing teams use this skill to prepare Ahrefs API requests, interpret SEO metrics, compare competitors, audit sites, research keywords, and monitor rankings or brand mentions.
 
-## Reference(s): <br>
-- [Ahrefs API](https://ahrefs.com/api) <br>
-- [Ahrefs API Documentation](https://ahrefs.com/api/documentation) <br>
-- [Ahrefs API Usage Limits](https://app.ahrefs.com/account/limits-and-usage/web) <br>
-- [Ahrefs API Endpoints Reference](references/api-endpoints.md) <br>
-- [Ahrefs API Quick Reference](references/quick-reference.md) <br>
-- [Keywords Explorer API Reference](references/keywords-explorer.md) <br>
-- [Rank Tracker API Reference](references/rank-tracker.md) <br>
-- [Site Audit API Reference](references/site-audit.md) <br>
-- [Batch Analysis API Reference](references/batch-analysis.md) <br>
-- [Brand Radar API Reference](references/brand-radar.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls, JSON] <br>
-**Output Format:** [Markdown with Bash and PowerShell examples plus JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an Ahrefs subscription with API access; broad or batch analyses can consume Ahrefs API quota.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: SKILL.md frontmatter, skill.json, CHANGELOG, server release evidence) <br>
+Risk: The setup and verification examples may expose an Ahrefs API token by printing .env contents or encouraging token use directly in shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Ahrefs API token with minimum needed permissions, avoid pasting real tokens into commands, and skip examples that print credential files.
+
+Risk: Relative JavaScript fetch examples could send the Ahrefs token or request data to an unintended host if reused without adjustment.
+
+Mitigation: Replace relative fetch targets with explicit https://api.ahrefs.com/v3 URLs and review outbound requests before execution.
+
+Risk: Submitted domains, URLs, and keywords are shared with Ahrefs, and batch mode can disclose many targets at once.
+
+Mitigation: Review inputs for sensitivity before querying Ahrefs, especially for bulk analysis, and limit batches to data appropriate for the user's Ahrefs account and data-sharing expectations.
+
+## Reference(s):
+
+- [Ahrefs API Documentation](https://ahrefs.com/api/documentation)
+- [Ahrefs API Account Settings](https://ahrefs.com/api)
+- [ClawHub Skill Page](https://clawhub.ai/geozhu/skills/ahrefs)
+- [Ahrefs API Endpoints Reference](references/api-endpoints.md)
+- [Ahrefs API Quick Reference](references/quick-reference.md)
+- [Keywords Explorer API Reference](references/keywords-explorer.md)
+- [Rank Tracker API Reference](references/rank-tracker.md)
+- [Site Audit API Reference](references/site-audit.md)
+- [Batch Analysis API Reference](references/batch-analysis.md)
+- [Brand Radar API Reference](references/brand-radar.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON examples, shell commands, API request guidance, and SEO analysis prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Ahrefs API endpoint suggestions, response interpretation, credential setup steps, plan-specific caveats, and cost or rate-limit guidance.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter, skill.json, CHANGELOG, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

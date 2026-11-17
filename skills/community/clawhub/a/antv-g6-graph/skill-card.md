@@ -1,52 +1,66 @@
-## Description: <br>
-Generates AntV G6 v5 graph visualization code for network, tree, flow, and related graph types with guidance for initialization, layouts, interactions, plugins, and common v5 API pitfalls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AntV G6 v5 graph visualization code for network graphs, trees, flow charts, layouts, interactions, plugins, and common API-correct patterns.
 
-## Publisher: <br>
-[lxfu1](https://clawhub.ai/user/lxfu1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lxfu1](https://clawhub.ai/user/lxfu1)
 
-## Use Case: <br>
-Developers use this skill to generate and review AntV G6 v5 graph visualization snippets for application UIs, including data structures, layouts, behaviors, plugins, nodes, edges, and common graph patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated examples may load remote images, demo data, or other external resources. <br>
-Mitigation: Review generated code before deployment and allowlist, proxy, or replace external image and data sources when privacy or network control matters. <br>
-Risk: Generated tooltip or HTML-node examples may render untrusted graph data. <br>
-Mitigation: Escape or sanitize user-provided values before rendering HTML, tooltip content, or rich node labels. <br>
-Risk: The release includes unrelated crypto and purchase capability tags that can mislead reviewers about the skill's behavior. <br>
-Mitigation: Treat the skill as a documentation and code-generation helper unless later evidence changes, and remove or correct those tags before publication. <br>
+## Use Case:
 
+Developers use this skill to generate and review AntV G6 v5 graph visualization code, including correct initialization, data structures, layouts, behaviors, plugins, and examples for common graph patterns.
 
-## Reference(s): <br>
-- [G6 Graph Basic Usage](references/g6-graph-basic-usage.md) <br>
-- [G6 MDS Layout Cluster Graph](references/g6-mds-layout-cluster-graph.md) <br>
-- [G6 Graph Initialization](references/core/g6-core-graph-init.md) <br>
-- [G6 Data Structure](references/core/g6-core-data-structure.md) <br>
-- [G6 Graph API](references/core/g6-core-graph-api.md) <br>
-- [G6 Custom Elements](references/core/g6-core-custom-element.md) <br>
-- [G6 Force Layout](references/layouts/g6-layout-force.md) <br>
-- [G6 Dagre Layout](references/layouts/g6-layout-dagre.md) <br>
-- [G6 Tooltip Plugin](references/plugins/g6-plugin-tooltip.md) <br>
-- [G6 Drag Canvas Behavior](https://g6.antv.antgroup.com/manual/behavior/drag-canvas) <br>
-- [G6 Click Select Behavior](https://g6.antv.antgroup.com/manual/behavior/click-select) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript or TypeScript code examples and AntV G6 configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated graph configuration, implementation notes, and review guidance for using AntV G6 v5 APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Generated graph UI code may interpolate API, upload, database, or user data into innerHTML or tooltip HTML, creating script injection risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated UI code before use, construct DOM with textContent where possible, or sanitize any rich HTML before rendering.
+
+Risk: Examples may include external demo URLs or remote assets that are not appropriate for production environments.
+
+Mitigation: Review external URLs and replace demo resources with approved application data sources or pinned internal assets.
+
+Risk: Generated delete interactions may remove graph data without confirmation or recovery in real applications.
+
+Mitigation: Add explicit confirmation, undo, or audit behavior before enabling destructive graph editing actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lxfu1/skills/antv-g6-graph)
+- [G6 v5 graph visualization skill source](artifact/SKILL.md)
+- [G6 graph basic usage](artifact/references/g6-graph-basic-usage.md)
+- [G6 MDS layout cluster graph](artifact/references/g6-mds-layout-cluster-graph.md)
+- [G6 graph initialization reference](artifact/references/core/g6-core-graph-init.md)
+- [G6 data structure reference](artifact/references/core/g6-core-data-structure.md)
+- [G6 Graph API reference](artifact/references/core/g6-core-graph-api.md)
+- [G6 official graph documentation](https://g6.antv.antgroup.com/manual/graph/graph)
+- [G6 official data documentation](https://g6.antv.antgroup.com/manual/data)
+- [G6 official tooltip documentation](https://g6.antv.antgroup.com/manual/plugin/tooltip)
+
+## Skill Output:
+
+**Output Type(s):** [code, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and TypeScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on AntV G6 v5 API usage, graph data conventions, layouts, behaviors, plugins, and common error corrections.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

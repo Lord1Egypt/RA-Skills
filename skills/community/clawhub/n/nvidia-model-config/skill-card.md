@@ -1,43 +1,58 @@
-## Description: <br>
-Adds NVIDIA model provider configuration to OpenClaw with SecretRef-based API key handling and bundled model entries for Mixtral, Kimi, Nemotron, and MiniMax. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add the NVIDIA provider to OpenClaw with SecretRef apiKey (no plaintext in openclaw.json). Documents shell vs systemd gateway env so the key actually resolves. Includes Mixtral, Kimi, Nemotron Super, Nemotron Ultra, and MiniMax M2.5 model entries.
 
-## Publisher: <br>
-[0xli](https://clawhub.ai/user/0xli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xli](https://clawhub.ai/user/0xli)
 
-## Use Case: <br>
-Developers and operators use this skill to add NVIDIA provider and model entries to OpenClaw configs and set up the NVIDIA_API_KEY where the OpenClaw gateway can read it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper can modify OpenClaw configuration and optional user environment or systemd files. <br>
-Mitigation: Run with --dry-run first, use --backup before writing, and review generated config or service override changes before enabling them. <br>
-Risk: API keys can be exposed if passed on the command line or written inline into shared configuration. <br>
-Mitigation: Prefer NVIDIA_API_KEY or a protected gateway environment file, keep env files mode 600, and avoid --inline-key except for short-lived local testing. <br>
-Risk: Bundled model entries may not match the user's NVIDIA account entitlements. <br>
-Mitigation: Select models that are available to the account and remove or replace entries that return entitlement errors. <br>
+## Use Case:
 
+Developers and operators use this skill to add the NVIDIA provider and bundled model entries to OpenClaw configuration while keeping the API key in an environment-backed SecretRef.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xli/nvidia-model-config) <br>
-- [NVIDIA API endpoint](https://integrate.api.nvidia.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and a Python configuration script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update openclaw.json, write an optional protected environment file, create a systemd user override, and create backup files when the script is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server evidence release.version and artifact _meta.json) <br>
+Risk: The skill can update OpenClaw configuration and optional gateway environment files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --dry-run to inspect changes first and --backup before writing to an existing openclaw.json.
+
+Risk: An NVIDIA API key may be exposed if passed on the command line or written inline to configuration.
+
+Mitigation: Prefer NVIDIA_API_KEY from a protected shell environment or user-owned gateway.env file, and avoid --inline-key except for short-lived local testing.
+
+Risk: The OpenClaw gateway may not resolve the key if it runs under systemd without the expected environment file.
+
+Mitigation: Configure a private gateway.env path and systemd user override when the gateway is managed by systemd.
+
+## Reference(s):
+
+- [NVIDIA API endpoint used by the skill](https://integrate.api.nvidia.com/v1)
+- [ClawHub skill page](https://clawhub.ai/0xli/skills/nvidia-model-config)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown guidance with bash commands and JSON configuration changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write OpenClaw configuration, a backup file, a gateway environment file, or a systemd user override when the user runs the bundled script with those options.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

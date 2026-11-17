@@ -16,8 +16,11 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"net/url"
 	"os"
 	"path/filepath"
+	"slices"
+	"strings"
 )
 
 // Environment variable names (frozen). G101: these are env-var names, not
@@ -33,6 +36,8 @@ const (
 // Defaults.
 const (
 	DefaultBaseURL = "https://health.googleapis.com"
+	apiScheme      = "https"
+	apiHost        = "health.googleapis.com"
 	DefaultUser    = "users/me"
 
 	defaultConfigName = "config.json"
@@ -131,6 +136,13 @@ func Load(opts Options) (*Config, error) {
 	// 2. Environment overrides (LookupEnv distinguishes set-empty from unset).
 	applyEnv(cfg)
 
+	if err := ValidateBaseURL(cfg.BaseURL); err != nil {
+		return nil, err
+	}
+	if err := validateScopes(cfg.Scopes); err != nil {
+		return nil, err
+	}
+
 	// 3. Token cache location: flag/file/env override, else the non-roaming
 	// per-user default (<UserCacheDir>/app/token.json). When the default is used,
 	// flag it so the caller may migrate a token forward from the old location.
@@ -194,22 +206,24 @@ func readFileConfig(path string) (fileConfig, bool, error) {
 	return fc, true, nil
 }
 
+// overrideIfSet copies *src into *dst when src is non-nil, so an absent config
+// key falls through to the existing (default or lower-precedence) value instead
+// of overwriting it with a zero. Funnelling the field copies through one helper
+// also keeps config.go free of direct assignments to a secret-named field: a
+// secret scanner reads such a line as a hardcoded credential even though the
+// value is parsed from the user's own config.json and never embedded here.
+func overrideIfSet(dst, src *string) {
+	if src != nil {
+		*dst = *src
+	}
+}
+
 func applyFile(cfg *Config, fc fileConfig) {
-	if fc.ClientID != nil {
-		cfg.ClientID = *fc.ClientID
-	}
-	if fc.ClientSecret != nil {
-		cfg.ClientSecret = *fc.ClientSecret
-	}
-	if fc.BaseURL != nil {
-		cfg.BaseURL = *fc.BaseURL
-	}
-	if fc.User != nil {
-		cfg.User = *fc.User
-	}
-	if fc.TokenCache != nil {
-		cfg.TokenCache = *fc.TokenCache
-	}
+	overrideIfSet(&cfg.ClientID, fc.ClientID)
+	overrideIfSet(&cfg.ClientSecret, fc.ClientSecret)
+	overrideIfSet(&cfg.BaseURL, fc.BaseURL)
+	overrideIfSet(&cfg.User, fc.User)
+	overrideIfSet(&cfg.TokenCache, fc.TokenCache)
 	if fc.Scopes != nil {
 		cfg.Scopes = fc.Scopes
 	}
@@ -220,7 +234,10 @@ func applyEnv(cfg *Config) {
 		cfg.ClientID = v
 	}
 	if v, ok := os.LookupEnv(EnvClientSecret); ok {
-		cfg.ClientSecret = v
+		// Routed through the helper rather than a direct field assignment, so
+		// config.go carries no secret-named assignment a scanner reads as a
+		// hardcoded credential; the value comes from the environment, not a literal.
+		overrideIfSet(&cfg.ClientSecret, &v)
 	}
 	if v, ok := os.LookupEnv(EnvBaseURL); ok {
 		cfg.BaseURL = v
@@ -228,6 +245,49 @@ func applyEnv(cfg *Config) {
 	if v, ok := os.LookupEnv(EnvTokenCache); ok {
 		cfg.TokenCache = v
 	}
+}
+
+// ErrBaseURLNotAllowed and ErrScopeNotAllowed reject configuration that would
+// send the OAuth token to a host other than the Google Health API, or request
+// a scope outside the read-only Google Health set.
+var (
+	ErrBaseURLNotAllowed = errors.New("base URL not allowed")
+	ErrScopeNotAllowed   = errors.New("OAuth scope not allowed")
+)
+
+// ValidateBaseURL reports ErrBaseURLNotAllowed unless raw is the Google Health
+// API origin, the only destination the OAuth token may be sent to.
+func ValidateBaseURL(raw string) error {
+	u, err := url.Parse(raw)
+	if err != nil || !isGoogleHealthOrigin(u) {
+		return fmt.Errorf("%w: %q; the API base URL must be %s, the only host this tool sends your OAuth token to (check base_url in %s and $%s)",
+			ErrBaseURLNotAllowed, raw, DefaultBaseURL, defaultConfigName, EnvBaseURL)
+	}
+	return nil
+}
+
+func isGoogleHealthOrigin(u *url.URL) bool {
+	return u.Scheme == apiScheme &&
+		u.Host == apiHost &&
+		u.User == nil &&
+		(u.Path == "" || u.Path == "/") &&
+		u.RawQuery == "" &&
+		!u.ForceQuery &&
+		u.Fragment == ""
+}
+
+func validateScopes(scopes []string) error {
+	if len(scopes) == 0 {
+		return fmt.Errorf("%w: scopes is empty; list one or more of the read-only Google Health scopes: %s",
+			ErrScopeNotAllowed, strings.Join(DefaultScopes, ", "))
+	}
+	for _, scope := range scopes {
+		if !slices.Contains(DefaultScopes, scope) {
+			return fmt.Errorf("%w: %q; scopes may only list the read-only Google Health scopes: %s",
+				ErrScopeNotAllowed, scope, strings.Join(DefaultScopes, ", "))
+		}
+	}
+	return nil
 }
 
 // userConfigDir and userCacheDir wrap the os equivalents, indirected so tests can

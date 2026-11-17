@@ -1,46 +1,60 @@
-## Description: <br>
-使用百度 AI 搜索 API 进行 Web 搜索，优先使用 API 模式，配额不足时自动切换到浏览器模式，并支持中文搜索和新闻搜索。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用百度 AI 搜索 API 进行 Web 搜索。优先使用 API 模式，配额不足时自动切换到浏览器模式。支持中文搜索、新闻搜索等功能。
 
-## Publisher: <br>
-[yhongm](https://clawhub.ai/user/yhongm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yhongm](https://clawhub.ai/user/yhongm)
 
-## Use Case: <br>
-Developers and agent users use this skill to run Baidu-powered web searches, especially Chinese-language and news searches, through a Baidu Qianfan API key with a browser-search fallback when API access fails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to Baidu and may include sensitive or regulated information. <br>
-Mitigation: Do not submit secrets, tokens, private customer data, or regulated personal information as search queries. <br>
-Risk: Use of a Baidu Qianfan API key can consume quota or incur billing. <br>
-Mitigation: Use a scoped API key where possible and monitor Qianfan quota and billing before broad deployment. <br>
-Risk: The script disables proxy environment handling for its HTTP session. <br>
-Mitigation: Review this behavior before use in environments that rely on proxy routing, inspection, or monitoring. <br>
+## Use Case:
 
+External users and developers use this skill to run Baidu/Qianfan web searches from an agent workflow, with browser fallback when API mode is unavailable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yhongm/baidu-search-openclaw) <br>
-- [Baidu Qianfan API key console](https://console.bce.baidu.com/qianfan/ais/console/apiKey) <br>
-- [Baidu Qianfan AI Search endpoint](https://qianfan.baidubce.com/v2/ai_search/web_search) <br>
-- [Baidu web search fallback](https://www.baidu.com/s?wd=关键词) <br>
-- [Baidu news search fallback](https://www.baidu.com/s?wd=关键词&tn=news) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON search-result data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results omit snippet fields to reduce output size; API mode requires BAIDU_API_KEY and may consume Baidu Qianfan quota.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Search terms are sent to Baidu/Qianfan and may expose sensitive personal, company, or secret data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets or sensitive data in search queries, and install only where Baidu/Qianfan data sharing is acceptable.
+
+Risk: The skill relies on a Baidu API key stored in the execution environment.
+
+Mitigation: Store BAIDU_API_KEY using the agent platform's secret-management mechanism and limit access to trusted execution contexts.
+
+Risk: The script prints the parsed request body, which can reveal queries in logs.
+
+Mitigation: Remove or suppress request-body debug output in logged or shared environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yhongm/skills/baidu-search-openclaw)
+- [Baidu Qianfan API key console](https://console.bce.baidu.com/qianfan/ais/console/apiKey)
+- [Baidu Qianfan AI Search endpoint](https://qianfan.baidubce.com/v2/ai_search/web_search)
+- [Baidu web search URL format](https://www.baidu.com/s?wd=关键词)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, API calls]
+
+**Output Format:** [JSON search results or Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BAIDU_API_KEY and PYTHONIOENCODING; search terms are sent to Baidu/Qianfan.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

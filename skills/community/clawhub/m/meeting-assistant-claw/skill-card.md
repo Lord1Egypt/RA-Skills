@@ -1,43 +1,60 @@
-## Description: <br>
-全流程会议助理虾 transcribes meeting recordings, creates meeting notes, extracts action items, and distributes confirmed tasks through Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+全流程会议助理虾 helps users turn meeting audio into transcripts, meeting notes, action items, and confirmed Feishu task notifications.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-Employees and teams use this skill to process meeting audio into local transcripts, concise meeting summaries, and actionable task lists. With user confirmation, it can distribute identified tasks to responsible people through Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting recordings and full transcripts may contain sensitive business or personal information. <br>
-Mitigation: Process recordings locally, store transcript outputs in a controlled ./transcripts/ location, and avoid using the skill for meetings that should not be shared through Feishu. <br>
-Risk: The Feishu app credentials can access contacts and send bot messages. <br>
-Mitigation: Use a dedicated least-privilege Feishu app, protect FEISHU_APP_SECRET, and keep only the permissions needed for contact lookup and message delivery. <br>
-Risk: Incorrectly extracted tasks or recipients could send misleading action items to the wrong person. <br>
-Mitigation: Preview recipients and message bodies, require explicit user confirmation before sending, and skip unresolved recipients while reporting them back to the user. <br>
+## Use Case:
 
+Employees and team operators use this skill to process Chinese meeting recordings into transcripts, summaries, and action-item lists. It can prepare Feishu task notifications for identified owners, with user confirmation required before sending.
 
-## Reference(s): <br>
-- [Feishu Message API quick reference](references/feishu-message-api.md) <br>
-- [ClawHub release page](https://clawhub.ai/tujinsama/meeting-assistant-claw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code blocks, local transcript files, and Feishu message payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before sending Feishu messages; saves full transcripts under ./transcripts/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A crafted audio file path could cause unsafe command execution in the transcription command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted audio file paths and rewrite the transcription step to pass paths as arguments to a fixed script before using it with untrusted files.
+
+Risk: Meeting transcripts and Feishu messages may contain sensitive business or personal information.
+
+Mitigation: Review generated summaries, recipient matches, and message contents before sending any Feishu notifications.
+
+Risk: Direct curl use requires manual token and payload handling for Feishu messages.
+
+Mitigation: Prefer the openclaw-lark tool path when available, and use the direct Feishu Message API path only after checking credentials, recipients, and JSON payloads.
+
+## Reference(s):
+
+- [Feishu Message API Quick Reference](references/feishu-message-api.md)
+- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu user lookup API](https://open.feishu.cn/open-apis/contact/v3/users/find_by_department?department_id=0&page_size=50&user_id_type=open_id)
+- [Feishu message send API](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files, API calls]
+
+**Output Format:** [Markdown guidance with bash, Python, and JSON examples; transcript text files; Feishu message payloads.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local SenseVoice/FunASR dependencies and Feishu credentials; asks for user confirmation before distributing tasks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

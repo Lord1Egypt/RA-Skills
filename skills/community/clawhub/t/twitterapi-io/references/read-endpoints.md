@@ -1,4 +1,4 @@
-# READ Endpoints (GET, API key only)
+# READ Endpoints (33 GET endpoints, mostly API key only)
 
 ## Tweet Endpoints
 
@@ -64,6 +64,16 @@ Cost: 100 credits. Returns long-form article content from a tweet.
 
 ## User Endpoints
 
+**Get User Subscriptions** `GET /twitter/user/subscriptions`
+```bash
+curl -s "https://api.twitterapi.io/twitter/user/subscriptions?userId=USER_ID" \
+  -H "X-API-Key: $TWITTERAPI_IO_KEY"
+```
+Params: `userId` (required, numeric user ID; usernames are not accepted), `cursor` (optional).
+Returns: `{ users[], has_next_page, next_cursor, status, msg }` -- up to 20 creators the user pays to support, not the user's subscribers.
+Get the numeric ID from `GET /twitter/user/info` first. Empty subscriptions are normal; protected accounts expose only public results.
+Cost: 15 credits per creator, minimum 15 credits per request (including empty results and user-not-found responses). HTTP 502 is not charged; retry later.
+
 **Get User Info** `GET /twitter/user/info`
 ```bash
 curl -s "https://api.twitterapi.io/twitter/user/info?userName=elonmusk" \
@@ -83,7 +93,7 @@ Returns detailed bio with entities (links, mentions in bio).
 curl -s "https://api.twitterapi.io/twitter/user/batch_info_by_ids?userIds=ID1,ID2,ID3" \
   -H "X-API-Key: $TWITTERAPI_IO_KEY"
 ```
-Returns: `{ users[], status, msg }`. Bulk 100+ users: 10 credits each (vs 18 single).
+Returns: `{ users[], status, msg }`. Pricing is based on users returned per request: 100+ users cost 1 credit each; 1-99 users cost 18 credits each.
 
 **Get User Last Tweets** `GET /twitter/user/last_tweets`
 ```bash
@@ -105,14 +115,14 @@ Params: `userId` (optional), `includeReplies` (boolean, optional, default false)
 curl -s "https://api.twitterapi.io/twitter/user/followers?userName=USERNAME" \
   -H "X-API-Key: $TWITTERAPI_IO_KEY"
 ```
-Params: `userName` (required), `cursor`, `pageSize` (integer, optional, default 200) -- newest first
+Params: `userName` (required), `cursor`, `pageSize` (integer, optional, default 200) -- newest first. Cost: tiered -- 1 credit/follower at pageSize 200, 2 credits (100-199), 3 credits (20-99); minimum 60 credits/call.
 
 **Get User Followings** `GET /twitter/user/followings`
 ```bash
 curl -s "https://api.twitterapi.io/twitter/user/followings?userName=USERNAME" \
   -H "X-API-Key: $TWITTERAPI_IO_KEY"
 ```
-Params: `userName` (required), `cursor`, `pageSize` (integer, optional, default 200) -- newest first
+Params: `userName` (required), `cursor`, `pageSize` (integer, optional, default 200) -- newest first. Cost: tiered -- 1 credit/following at pageSize 200, 2 credits (100-199), 3 credits (20-99); minimum 60 credits/call.
 
 **Get User Verified Followers** `GET /twitter/user/verifiedFollowers`
 ```bash
@@ -120,6 +130,15 @@ curl -s "https://api.twitterapi.io/twitter/user/verifiedFollowers?user_id=USERID
   -H "X-API-Key: $TWITTERAPI_IO_KEY"
 ```
 Params: `user_id` (required, numeric), `cursor` -- 20/page. Cost: $0.30/1K.
+
+
+**Get User Follower IDs** `GET /twitter/user/followers_ids`
+```bash
+curl -s "https://api.twitterapi.io/twitter/user/followers_ids?userName=USERNAME&count=5000" \
+  -H "X-API-Key: $TWITTERAPI_IO_KEY"
+```
+Params: `userName` (optional), `userId` (optional, alternative to userName — provide at least one), `count` (integer, optional, min 50, max 5000, default 5000), `cursor`
+Returns follower IDs only (no profile metadata) for large-scale graph collection. Up to 5,000 IDs per call. Cost: tiered -- 0.45 credits/ID (4000-5000 returned), 1 credit (200-3999), 2 credits (50-199); minimum 100 credits/call.
 
 **Get User Mentions** `GET /twitter/user/mentions`
 ```bash

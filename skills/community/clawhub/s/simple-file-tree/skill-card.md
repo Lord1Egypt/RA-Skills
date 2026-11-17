@@ -1,39 +1,50 @@
-## Description: <br>
-Shows a folder's files and subdirectories as an indented directory tree. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shows a folder's files and subdirectories as an indented tree so an agent can inspect directory structure.
 
-## Publisher: <br>
-[jinwangmok](https://clawhub.ai/user/jinwangmok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinwangmok](https://clawhub.ai/user/jinwangmok)
 
-## Use Case: <br>
-Developers and other users use this skill to inspect a local folder's visible file and subdirectory structure before navigating or discussing project contents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Directory listings can reveal file and folder names that the user may not want shared in chat. <br>
-Mitigation: Run the skill only on folders whose visible names are acceptable to disclose. <br>
-Risk: Large directory trees can produce noisy or excessive output. <br>
-Mitigation: Use a small depth value for large directories. <br>
+## Use Case:
 
+Developers, operators, and coding agents use this skill to inspect a project or workspace directory and share a compact tree view with configurable path and depth.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands] <br>
-**Output Format:** [Plain text directory tree with optional Markdown code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local find, sort, and sed; accepts optional directory and depth arguments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: Security evidence reports a suspicious verdict because the helper script can treat a crafted folder name as a destructive find action.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or patch the helper before use; normalize the directory to an absolute path, use cd -- or reject leading-hyphen paths, and make find explicitly read-only with -print.
+
+## Reference(s):
+
+- [Simple File Tree on ClawHub](https://clawhub.ai/jinwangmok/skills/simple-file-tree)
+- [Artifact manual](artifact/MANUAL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text directory tree, often reported in Markdown or a code block by the agent.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts optional directory and depth arguments; requires find, sort, and sed.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

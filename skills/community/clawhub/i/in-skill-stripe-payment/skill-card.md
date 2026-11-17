@@ -1,43 +1,58 @@
-## Description: <br>
-Guides an agent through gating premium skill behavior behind a Stripe one-time checkout, checking local receipts, showing a payment link, and verifying completed Checkout Sessions by email. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Demonstrates how an agent can gate placeholder premium skill behavior behind a one-time Stripe checkout, verify payment by email through Stripe, and cache a local receipt.
 
-## Publisher: <br>
-[divyn](https://clawhub.ai/user/divyn) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[divyn](https://clawhub.ai/user/divyn)
 
-## Use Case: <br>
-Developers and skill publishers use this skill as a reference for adding a Stripe payment gate before premium behavior runs. It is suitable for demonstrating the payment flow and for adapting the placeholder premium section into a real paid skill after hardening. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stripe secret keys are required for payment verification. <br>
-Mitigation: Install only where STRIPE_SECRET_KEY can be protected, and never ask end users to provide the secret key. <br>
-Risk: The demo receipt cache is local agent state and is not a production entitlement system. <br>
-Mitigation: For real paid skills, replace the local receipt cache with server-side or signed entitlement storage bound to a stable user identity. <br>
-Risk: Payment amount checks can unlock access at the wrong price if not configured. <br>
-Mitigation: Confirm MIN_AMOUNT_CENTS matches the Stripe Payment Link price before launch. <br>
+## Use Case:
 
+Developers and skill publishers use this demo to prototype a paid-skill flow that checks for an existing receipt, shows a Stripe Payment Link when needed, verifies checkout by email, and only then allows premium placeholder behavior.
 
-## Reference(s): <br>
-- [Stripe Payment Links documentation](https://stripe.com/docs/payment-links) <br>
-- [ClawHub skill release page](https://clawhub.ai/divyn/in-skill-stripe-payment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python and bash snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Stripe environment configuration and may write local receipt state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Payment entitlement can be forged, reused, or granted from unrelated Stripe sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this as a demo only; before production, validate entitlement server-side or with signed, user-bound, product-bound receipts and exact Stripe product or session checks.
+
+Risk: The local receipt cache can persist access beyond the intended user, machine, product, or revocation state.
+
+Mitigation: Protect local storage, bind receipts to a stable user and product, and add expiry and revocation handling.
+
+Risk: Runtime payment verification depends on host secrets and outbound Stripe API access.
+
+Mitigation: Provide Stripe secrets only through the deployment environment, avoid exposing them to end users, and handle temporary Stripe or network failures without unlocking premium behavior.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/divyn/skills/in-skill-stripe-payment)
+- [Stripe Payment Links documentation](https://stripe.com/docs/payment-links)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires host-provided Stripe environment variables and may read or write a local receipt cache.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

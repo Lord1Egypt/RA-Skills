@@ -1,42 +1,52 @@
-## Description: <br>
-Exhaustive Google Places search using grid-based scanning to find places beyond the standard surfaced results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exhaustive Google Places search using grid-based scanning. Finds ALL places, not just what Google surfaces.
 
-## Publisher: <br>
-[foeken](https://clawhub.ai/user/foeken) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[foeken](https://clawhub.ai/user/foeken)
 
-## Use Case: <br>
-External users and developers use spots to run dense Google Places searches over named areas or coordinates, filter results, fetch reviews, and export results as JSON, CSV, or map files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Google API key for Places and Geocoding access. <br>
-Mitigation: Use a Google API key restricted to the required APIs, set quotas or billing alerts, and keep the key out of shared logs or artifacts. <br>
-Risk: Installing the CLI with an unpinned latest version can change behavior between runs. <br>
-Mitigation: Verify the source repository before installing and pin a known version for repeatable or production workflows. <br>
-Risk: Exact secret-manager paths can disclose sensitive operational details. <br>
-Mitigation: Avoid publishing exact secret-manager item paths and expose credentials only through intentional local CLI setup. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/foeken/spots) <br>
-- [Publisher-provided source link](https://github.com/foeken/spots) <br>
+## Use Case:
 
+Developers and agents use this skill to run or guide exhaustive Google Places searches for venues in a named area or around coordinates, filter results by rating, review count, and open status, retrieve reviews, and export results as JSON, CSV, or a map.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides use of a CLI that can produce JSON, CSV, or map files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata, released 2026-01-24) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can direct users to install or use a mutable external spots executable.
+
+Mitigation: Use a pinned, reviewed version of the spots binary before installation or execution.
+
+Risk: The skill references a Google API key and an exact 1Password secret location.
+
+Mitigation: Restrict the Google API key to the needed APIs and quotas, and keep the secret out of agent transcripts, logs, and scripts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/foeken/skills/spots)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide use of the external spots binary and Google Places API credentials; supported result exports include JSON, CSV, and map output.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

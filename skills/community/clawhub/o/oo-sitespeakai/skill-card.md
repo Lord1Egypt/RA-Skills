@@ -1,45 +1,52 @@
-## Description: <br>
-SiteSpeakAI helps an agent operate SiteSpeakAI through the OOMOL oo CLI for reading, creating, updating, querying, and deleting SiteSpeakAI data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use SiteSpeakAI through an OOMOL-connected account to read chatbot data, query chatbots, and create, update, or delete supported answer entries.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to run SiteSpeakAI account, chatbot, conversation, lead, source, suggested-message, and updated-answer actions through an OOMOL-connected SiteSpeakAI account. It can also query a chatbot and manage updated-answer entries when the user confirms write or destructive actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected SiteSpeakAI account and server-side managed credentials, so actions may access account, chatbot, conversation, lead, source, and answer data. <br>
-Mitigation: Install only after reviewing the skill text and publisher, and use the connected account scopes appropriate for the intended SiteSpeakAI tasks. <br>
-Risk: Write and destructive actions can create, update, or delete SiteSpeakAI updated-answer entries. <br>
-Mitigation: Confirm the exact payload, target chatbot, and expected effect with the user before running write actions, and obtain explicit approval before destructive deletion. <br>
-Risk: The security scan is a low-confidence clean pass because scanner evidence says artifact contents were not available for direct review. <br>
-Mitigation: Review the installed skill text and metadata before use, especially commands involving credentials, network access, file access, or account-changing actions. <br>
+## Use Case:
 
+Developers and SiteSpeakAI account operators use the skill to inspect chatbot settings, conversations, leads, sources, and configured messages, query chatbots, and manage updated answers.
 
-## Reference(s): <br>
-- [SiteSpeakAI skill page](https://clawhub.ai/oomol/oo-sitespeakai) <br>
-- [SiteSpeakAI homepage](https://sitespeak.ai) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with oo CLI commands and JSON payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses server-side managed credentials through OOMOL; write and destructive actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and skill metadata) <br>
+Risk: Setup can run unverified downloaded code and introduce broader persistent changes without clear user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately using a verified release, review automatic skill synchronization (disable it with OO_SKILLS_SYNC_DISABLED if appropriate), and retain confirmation requirements for updates and deletions.
+
+## Reference(s):
+
+- [SiteSpeakAI](https://sitespeak.ai)
+- [SiteSpeakAI API Reference](https://sitespeak.ai/docs/api-reference/introduction)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-sitespeakai)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Text]
+
+**Output Format:** [JSON responses containing SiteSpeakAI data, or chatbot answer text with source URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions use the connected SiteSpeakAI account; writes and deletions change configured answer records.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

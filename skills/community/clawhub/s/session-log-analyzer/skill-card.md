@@ -1,40 +1,49 @@
-## Description: <br>
-Analyze agent session logs and generate PDF reports with Notion sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze agent session logs and generate PDF reports with optional Notion sync.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and operators use this skill to summarize agent session logs into PDF reports and optionally sync report excerpts to a Notion database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Session logs and generated reports can contain sensitive operational details or errors. <br>
-Mitigation: Review and redact reports before sharing or syncing them outside the local environment. <br>
-Risk: Optional Notion sync sends report excerpts to a configured Notion database using sensitive credentials. <br>
-Mitigation: Use a least-privilege Notion integration scoped to the target reports database and protect the Notion API key. <br>
+## Use Case:
 
+Developers and operators use this skill to summarize agent session activity, skill usage, failures, and duration from JSONL logs. It can produce a local PDF report and, when configured with scoped Notion credentials, sync a truncated report excerpt to a Notion database.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/session-log-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Files, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [PDF report, terminal status text, and optional Notion page] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Analyzes JSONL session logs and, when configured, syncs the first 2000 characters of extracted report text to Notion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-99.1.0 (source: server release evidence) <br>
+Risk: Generated reports can contain session IDs, errors, and other log-derived details that may be sent to Notion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated PDF before syncing and use a Notion integration token scoped only to the intended database.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/session-log-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands; generated PDF report; optional Notion page URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [PDF output is saved to pdfs/session_analysis_report.pdf; Notion sync uploads the first 2000 characters of extracted report text when credentials are configured.]
+
+## Skill Version(s):
+
+99.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

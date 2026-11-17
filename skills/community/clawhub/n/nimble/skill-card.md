@@ -1,40 +1,53 @@
-## Description: <br>
-Nimble helps agents interact with Nimble electric scooters for device connection, diagnostics, status checks, configuration, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nimble is a Chinese-language electric scooter helper skill for interacting with Nimble devices, including diagnostics, status checks, configuration, and troubleshooting.
 
-## Publisher: <br>
-[aNinebot](https://clawhub.ai/user/aNinebot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aninebot](https://clawhub.ai/user/aninebot)
 
-## Use Case: <br>
-External users and authorized device owners use this skill to connect to Nimble electric scooters, inspect battery, mileage, firmware, and error status, adjust supported settings, and receive troubleshooting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Factory reset, speed limit, lighting, and firmware actions can affect scooter safety, compliance, or user settings. <br>
-Mitigation: Require explicit confirmation, keep the scooter stationary, review local rules and safety effects, and back up settings before making changes. <br>
-Risk: Using device-control guidance on a scooter the user does not own or manage could be unauthorized. <br>
-Mitigation: Install and use the skill only for Nimble scooters the user owns or is authorized to manage. <br>
+## Use Case:
 
+External users and support-oriented agents use Nimble to guide scooter connection, diagnostics, battery, mileage, and firmware status checks, parameter configuration, and troubleshooting for Nimble electric scooters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aNinebot/nimble) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline command examples and concise guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include safety confirmations before reset, firmware, or configuration changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: Scooter configuration and reset guidance could change device behavior or erase settings if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended device action with the user, ensure the scooter is stationary where required, and back up current configuration before firmware or reset workflows.
+
+Risk: The skill is written for Chinese-language use, which can increase misunderstanding for non-Chinese readers.
+
+Mitigation: Use a qualified translation or Chinese-language review before applying device actions in another language context.
+
+## Reference(s):
+
+- [Nimble on ClawHub](https://clawhub.ai/aninebot/skills/nimble)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance for device status, diagnostics, configuration, and reset workflows.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

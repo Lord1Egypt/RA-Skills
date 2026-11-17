@@ -1,142 +1,153 @@
 ---
 name: bic-qa
-description: 当用户询问数据库或操作系统相关知识、需要基于 BIC-QA 知识库检索专业资料时使用。调用官方 API 需要有效凭据，详见正文 Setup
-homepage: https://www.bic-qa.com
-version: 1.0.2
+description: BIC-QA 数据库与操作系统知识库问答（支持多轮上下文）。当用户提出数据库（Oracle/MySQL/PostgreSQL/达梦/金仓/GaussDB/Redis/MongoDB 等）或操作系统相关的原理、运维、故障排查、性能优化问题，或需要基于 BIC-QA 知识库检索权威资料时使用。同一话题的连续追问必须复用会话。
+metadata:
+  openclaw:
+    requires:
+      anyBins:
+        - python3
+        - python
+        - py
+      config:
+        - ~/.bic/config/api_key
+        - ~/.bic/openapi/api_key
+    primaryEnv: BIC_API_KEY
+    envVars:
+      - name: BIC_API_KEY
+        required: false
+        description: BIC-QA API Key。不设置时，脚本从 ~/.bic/config/api_key 读取（推荐，避免 Key 进入环境）。
+      - name: BICQA_API_KEY
+        required: false
+        description: BIC_API_KEY 的兼容别名。
+      - name: BIC_QA_API_KEY
+        required: false
+        description: BIC_API_KEY 的兼容别名。
+      - name: BICQA_KEY_FILE
+        required: false
+        description: 自定义 API Key 文件路径。
+      - name: BICQA_BASE_URL
+        required: false
+        description: 测试或受控代理使用的自定义 API 地址；必须同时显式启用 BICQA_ALLOW_CUSTOM_BASE_URL。
+      - name: BICQA_ALLOW_CUSTOM_BASE_URL
+        required: false
+        description: 设为 1 才允许把 API Key 发往非官方地址；远程地址必须使用 HTTPS。
+      - name: BICQA_STATE_FILE
+        required: false
+        description: 自定义会话状态文件路径。
+      - name: BICQA_STATE_DIR
+        required: false
+        description: 覆盖会话状态目录，默认 ~/.bic/openapi/。
+      - name: BICQA_TTL_ACTIVE
+        required: false
+        description: 会话空闲超时秒数，默认 7200。
+      - name: BICQA_TTL_HARD
+        required: false
+        description: 会话硬过期秒数，默认 86400。
+      - name: BICQA_MAX_TURNS
+        required: false
+        description: 单个会话最大轮数，默认 20。
+    emoji: "🐘"
+    homepage: https://www.bic-qa.com
 ---
 
-## 概述
+# BIC-QA 知识问答（Open API）
 
-通过 **BIC-Skills 知识问答 API**（HTTPS）查询 **BIC-QA 知识库**。在具备网络与有效 API Key 的前提下，向服务端发送 HTTP 请求即可。
+基于 BIC-QA 官方 Open API 的**有状态**多轮问答。服务端保存上下文：先创建会话拿到 `conversationId`，之后同一话题的每一轮都复用这个 id。
 
-**Base URL（问答）**：`https://api.bic-qa.com/skills/qa`
+需要 Python 3.8+（仅标准库）和有效的 BIC-QA API Key。默认只向 `https://api.bic-qa.com` 发送请求。
 
-## Setup
+## 会话协议（强制，不可绕过）
 
-> **Security note：** 本技能仅向 **BIC-QA 官方 API**（`api.bic-qa.com`）发送凭据，与官网账户体系一致。API Key 仅以 `Authorization: Bearer …` 形式出现在请求头中，不会写入其它域名、本地日志或随技能文件分发。
+所有提问必须走 `scripts/bicqa.py`。脚本负责建会话、判定复用/重建、状态落盘。
 
-### 1. 注册并获取 API Key
+**禁止**自己构造或猜测 `conversationId`、**禁止**直接 curl、**禁止**把会话 id 暴露给用户（只在结尾用短号标注）。
 
-按顺序完成（界面以官网实际为准）：
-
-1. 打开 **BIC-QA 官网**：https://www.bic-qa.com  
-2. **注册**账号（按页面提示填写邮箱/手机等并完成验证，若已有账号则直接登录）。  
-3. 登录后进入 **用户中心 / 控制台 / API 管理** 等页面（具体名称以官网为准），找到 **API Key** 或 **访问令牌** 入口。  
-4. **创建或查看** API Key，复制并妥善保存（仅自己可见，勿提交到公开仓库）。
-
-官网提供免费 API Key；若页面有「重置 / 轮换」功能，更新后需同步修改本地或环境变量中的配置。
-
-### 2. 存储 API Key（二选一）
-
-集成层或 Agent 在发请求前需能读到 Key，并组装为 **`Authorization: Bearer <你的_API_Key>`**。
-
-**方式 A — 配置文件（推荐）：**
+Unix、macOS 与 WSL 优先使用 `python3`；Windows 使用 `py -3`。若命令不可用，从 frontmatter 的 `requires.anyBins` 中选择本机存在的解释器。
 
 ```bash
-mkdir -p ~/.bic/config
-chmod 700 ~/.bic/config
-echo "your_api_key_here" > ~/.bic/config/api_key
-chmod 600 ~/.bic/config/api_key
+# <SKILL_DIR> = 本 SKILL.md 所在目录
+python3 <SKILL_DIR>/scripts/bicqa.py ask -q "用户的问题原文"
+python3 <SKILL_DIR>/scripts/bicqa.py ask -n -q "..." -t "索引失效排查"
+python3 <SKILL_DIR>/scripts/bicqa.py list                 # 列出本地会话
+python3 <SKILL_DIR>/scripts/bicqa.py resume 3f1a          # 切回某个旧会话
+python3 <SKILL_DIR>/scripts/bicqa.py check                # 排障自检，不消耗 token
 ```
 
-**方式 B — 环境变量：**
+`ask` 参数：`-q/--question` 问题（必填）、`-n/--new` 强制新会话、`-t/--title` 新建会话时的标题、`--timeout` 流式问答总时限秒数（默认 600）。
+`new` 参数：`-t/--title`。简写与全写等价。
+找不到脚本时用 `--help` 自检，或按常见安装位置查找：`~/.agents/skills/bic-qa/`、`~/.workbuddy/skills/bic-qa/`、`~/.claude/skills/bic-qa/`、`~/.codex/skills/bic-qa/`。
+
+运行 `ask` 的外层命令执行器也应允许至少 `--timeout` 加 30 秒；若工具支持 yield/poll，应等待原进程完成，不要因暂时没有 stdout 就重复发起同一问题。
+
+### 必须加 `--new`（简写 `-n`）的四种情况
+
+1. 用户明确说「新会话 / 换个话题 / 重新开始 / new session」。
+2. **换了数据库种类、版本或实例**——即使问题类型相同（例如从 PG 15 切到 Oracle 19c）。这条最容易漏，也最容易串味。
+3. 你判断新问题与当前会话主题无关（例如从「索引失效」跳到「备份恢复」）。
+4. 脚本输出 `[bic-qa] 服务端会话失效` 后仍未恢复。
+
+空闲超时（默认 2 小时）与轮数上限（默认 20）由脚本自动判定，你不需要操心。
+
+### 不要新建的情况（高频误判，务必遵守）
+
+追问、「详细说说」、换个说法复述、纠正上一轮答案、对同一张表/同一个现象换指标继续问——这些**全部复用**当前会话。上下文断了，答案质量会明显下降。
+
+## 凭证
+
+优先级：环境变量 `BIC_API_KEY` / `BICQA_API_KEY` / `BIC_QA_API_KEY` → `$BICQA_KEY_FILE` → `~/.bic/config/api_key` → `~/.bic/openapi/api_key`。
+
+未配置时脚本报错退出。**此时不要用模型自身知识顶替**——按提示让用户去 https://www.bic-qa.com 获取 Key。
+
+**不要把 Key 写进 SKILL.md、脚本、命令历史或回复里。** 配置方式（bash / WSL / macOS）：
 
 ```bash
-export BIC_API_KEY="your_api_key_here"
+mkdir -p ~/.bic/config && chmod 700 ~/.bic/config
+printf '%s' '<你的Key>' > ~/.bic/config/api_key && chmod 600 ~/.bic/config/api_key
 ```
 
-Agent 会按优先级依次尝试：环境变量 → 配置文件。
+Windows PowerShell：
 
-## 凭证预检
+```powershell
+New-Item -ItemType Directory -Force -Path "$HOME\.bic\config" | Out-Null
+Set-Content -NoNewline -Path "$HOME\.bic\config\api_key" -Value "<你的Key>"
+```
 
-每次调用 API 前，先确认 API Key 可用。若为空，停止调用并提示用户按 **Setup** 完成注册与配置。
+## 状态存放位置（跨平台，不绑定任何 Agent 厂商）
+
+默认 `~/.bic/openapi/sessions.json`（权限 600）。可用环境变量覆盖：
+
+- `BICQA_STATE_FILE=/path/to/sessions.json`——直接指定文件
+- `BICQA_STATE_DIR=.bicqa`——按项目隔离会话（建议在仓库里把这个目录加进 .gitignore）
+
+## 排障
+
+调用失败时**第一步**跑 `check`（纯本地，不联网不消耗 token），它会告诉你凭证、状态文件、当前会话三件事分别是否正常，按输出处理即可：
 
 ```bash
-# Load user-provisioned BIC-QA API key (used ONLY for api.bic-qa.com authentication)
-BIC_QA_KEY="${BIC_API_KEY:-$(cat ~/.bic/config/api_key 2>/dev/null)}"
-if [ -z "$BIC_QA_KEY" ]; then
-  echo "缺少 BIC-QA API Key，请先在 https://www.bic-qa.com 注册获取，并按 Setup 配置 BIC_API_KEY 或 ~/.bic/config/api_key"
-  exit 1
-fi
+python3 <SKILL_DIR>/scripts/bicqa.py check            # 本地环节
+python3 <SKILL_DIR>/scripts/bicqa.py check --online   # 额外建一个测试会话验证 Key（会产生一个空会话）
 ```
 
-## API 调用模板
+`selftest` 是开发期用的完整离线自测（SSE 解析、过期判定、脱敏），**排障时不需要跑**，只在改动脚本或怀疑版本不匹配时用。
 
-问答接口为 **HTTP POST + JSON Body**，仅发往 **`https://api.bic-qa.com/skills/qa`**。
+## 错误与限流
 
-```bash
-# All requests go ONLY to the official BIC-QA API (api.bic-qa.com)
-# 将 QUESTION、DBTYPE 替换为实际值；question 中含引号时需自行转义或使用 jq/python 构造 JSON body
-curl -s -X POST "https://api.bic-qa.com/skills/qa" \
-  -H "Authorization: Bearer ${BIC_QA_KEY}" \
-  -H "Content-Type: application/json" \
-  -d '{"question":"QUESTION","dbtype":"DBTYPE"}'
-```
+- **401 `OPEN_API_KEY_MISSING` / `OPEN_API_KEY_INVALID`**：提示用户更换或重新配置 Key，不要高频重试。
+- **400 `OPEN_API_SESSION_NOT_FOUND`**：脚本会自动重建会话并重试一次；再次失败才上报。
+- **429 `OPEN_API_RATE_LIMITED`**：创建会话 60 秒 60 次、流式聊天 60 秒 20 次（用户维度）。按提示的秒数退避，**不要连发**。
+- **`OPEN_API_TIMEOUT` / `OPEN_API_STREAM_TIMEOUT`**：连接、响应头或流式问答超过时限。会话会保留；如需重试，先向用户说明可能已经产生部分处理或计费，不要自动重发。
+- **`OPEN_API_STREAM_INTERRUPTED` / `OPEN_API_STREAM_INCOMPLETE`**：流传输中断或未收到最终 `done`。脚本会丢弃残缺正文并保留会话，不要把残缺内容当作答案。
+- **503 / 500**：如实告知调用失败，可建议稍后重试。
+- 任何时候都**不要**用训练数据冒充知识库答案。
 
-含特殊字符时建议用 `jq -n --arg q "..." --arg t "..." '{question:$q,dbtype:$t}'` 生成 body，再传给 `curl -d @-`。
+## 输出要求
 
-| 字段       | 必填 | 说明 |
-| ---------- | ---- | ---- |
-| `question` | 是   | 用户的问题文本 |
-| `dbtype`   | 是   | 数据库或主题类型（见下表） |
+1. 严格基于脚本返回的正文组织回答，不自行补充技术细节。
+2. 结尾用一行小字标注会话短号，例如：`（会话 3f1a2b）`。
+3. 返回为空或报错时如实说明，并提示可稍后重试或换 `--new` 开新会话。
+4. 回答较长时用小标题分块；涉及命令、参数、版本号的，原样保留。
+5. 正文里的 `【本次回答基于知识库内容生成】` / `【本次回答未匹配到知识库】` 是服务端标记，不要照抄给用户。出现「未匹配到知识库」时，说明该问题知识库未覆盖，如实告知并用模型自身知识补充时须明确标注来源不是知识库。
 
-**成功响应**：JSON，通常含 `result` 字段。**请仅基于 `result` 与用户问题组织回答**，并遵守其中关于版本、措辞与结构的说明。
+## 流式事件速查
 
-## 支持的数据库类型（`dbtype`）
-
-`dbtype` 须为服务端支持的标识之一：
-
-### 关系型数据库
-- **Oracle** - Oracle 数据库
-- **MySQL** - MySQL 数据库
-- **GreatSQL** - GreatSQL 数据库
-- **PostgreSQL** - PostgreSQL 数据库, 简写: pg
-- **SQL Server** - Microsoft SQL Server
-- **DB2** - IBM DB2 数据库
-- **DM（达梦）** - 达梦数据库
-- **KingBase（人大金仓）** - 人大金仓数据库, 简写: kb, kbase
-- **OceanBase** - OceanBase 数据库
-- **GoldenDB** - GoldenDB 数据库
-- **GaussDB** - 华为 GaussDB 数据库
-- **openGauss** - openGauss 数据库
-- **TDSQL** - 腾讯 TDSQL 数据库
-- **TiDB** - PingCAP TiDB 数据库
-- **GBase** - 南大通用 GBase 数据库
-- **GBase 8a** - 南大通用 GBase 8a 数据库
-- **GBase Distributed** - 南大通用分布式数据库
-- **Oscar** - 神舟通用 Oscar 数据库
-- **YashanDB** - 崖山数据库
-- **PanWeiDB** - 盘古数据库
-- **XuGu** - 虚谷数据库
-- **HashData** - HashData 数据库
-
-### NoSQL 数据库
-
-- **Redis** - Redis 缓存数据库
-- **Redis Cluster** - Redis 集群
-- **MongoDB** - MongoDB 文档数据库
-
-### 操作系统
-
-- **OS** - 操作系统相关问题（Linux、Windows 等）
-
-若无法从用户问题判断类型，先请用户补充后再调用。
-
-## 错误与未授权时的行为
-
-- **401** 或缺少/无效 `Authorization`：不要用模型自身知识编造技术细节；用与用户一致的语言说明需前往 https://www.bic-qa.com 获取或更新 API Key，并在请求头使用 `Bearer` 方式携带。  
-- **400**（如不支持的 `dbtype`）：根据服务端错误信息提示用户修正类型或补充信息。  
-- **5xx** 或其它错误：如实说明调用失败，可建议稍后重试，**不要**用训练数据顶替知识库答案。
-
-## 工作流程建议
-
-1. 理解用户问题并确定 `dbtype`（不确定则先追问）。  
-2. 使用已配置的 API Key 调用 `POST https://api.bic-qa.com/skills/qa`。  
-3. 解析响应中的 `result`，严格基于知识库内容作答。
-
-## 相关资源
-
-- 官网：https://www.bic-qa.com  
-- 技术支持：support@dbaiops.com  
-- Gitee：https://gitee.com/BIC-QA/BIC-QA  
-- GitHub：https://github.com/BIC-QA/BIC-QA  
+需要深入理解返回结构时读 `references/api.md`（SSE 五种事件：`meta` / `delta` / `file` / `error` / `done`）。

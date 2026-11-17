@@ -1,41 +1,52 @@
-## Description: <br>
-Provides a public-information-based Wang Xiaochuan-inspired role-play perspective for technical strategy, startup direction, product planning, AI business planning, and long-term decision discussions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A persona skill that simulates a Wang Xiaochuan-inspired perspective for technology strategy, entrepreneurship, product planning, AI business layout, and long-term investment decisions.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can use this skill to explore strategic questions through a simulated Wang Xiaochuan-style analytical lens. It is suited to brainstorming and decision support around technical strategy, startup direction, product planning, AI business planning, and long-term investment decisions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can present answers in the first person as if they came from a real person.
+
+Mitigation: Require responses to disclose that they are AI-generated roleplay based on public information and not statements from Wang Xiaochuan.
+
+Risk: The skill limits transparency after activation by allowing the disclaimer only once.
+
+Mitigation: Use a visible disclaimer in every response or whenever the persona framing could be misunderstood.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users can use the skill to ask an agent for a Wang Xiaochuan-inspired strategic lens on technical strategy, startup direction, product planning, AI business planning, and long-term decision framing. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Role-play responses could be mistaken for authentic statements from Wang Xiaochuan or for professional investment, business, or technical advice. <br>
-Mitigation: Treat outputs as a public-information-based simulation, keep the disclaimer visible for users, and independently review any strategic, investment, business, or technical decisions. <br>
-Risk: The persona mode may activate unintentionally or continue beyond the intended task. <br>
-Mitigation: Use the skill's explicit exit phrases, such as "退出", "切回正常", or "不用扮演了", to leave role-play mode. <br>
+**Output Format:** [Markdown or plain text responses]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/wang-xiaochuan-perspective-v2) <br>
-- [Publisher profile](https://clawhub.ai/user/xiejianjun000) <br>
+**Other Properties Related to Output:** [Persona-style analysis should remain clearly framed as AI-generated roleplay, not as statements from Wang Xiaochuan.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only persona guidance; no code execution, networking, credential access, or persistence is disclosed in the security evidence.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

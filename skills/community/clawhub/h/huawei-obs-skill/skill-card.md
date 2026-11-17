@@ -1,44 +1,65 @@
-## Description: <br>
-Guides agents through Huawei Cloud OBS Python SDK setup and common object storage tasks, including client initialization, uploads, downloads, bucket management, object management, and security practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huawei Cloud OBS SDK helps agents provide practical guidance, Python examples, and command snippets for using Huawei Cloud OBS object storage.
 
-## Publisher: <br>
-[IdiosyncraticDragon](https://clawhub.ai/user/IdiosyncraticDragon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[idiosyncraticdragon](https://clawhub.ai/user/idiosyncraticdragon)
 
-## Use Case: <br>
-Developers and engineers use this skill to install and configure the Huawei Cloud OBS Python SDK and draft code for object storage workflows such as upload, download, listing, bucket permissions, lifecycle rules, and encryption. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud storage examples can expose or delete data if used with broad credentials or without review. <br>
-Mitigation: Use least-privilege OBS credentials, review examples before execution, and add explicit confirmation plus list-before-delete checks before deletion. <br>
-Risk: Public-read ACL examples can make bucket contents accessible to unintended users. <br>
-Mitigation: Use public-read settings only for buckets intentionally designed to be public, and prefer private access with scoped temporary access mechanisms. <br>
-Risk: Lifecycle rules can transition or delete stored objects in ways that conflict with retention or backup requirements. <br>
-Mitigation: Validate lifecycle policies against retention, compliance, and backup requirements before applying them. <br>
+## Use Case:
 
+Developers and engineers use this skill when they need agent assistance for Huawei Cloud OBS setup, bucket management, object upload and download, presigned URLs, lifecycle rules, CORS, versioning, and encryption examples.
 
-## Reference(s): <br>
-- [Bucket Operations Guide](references/bucket_operations.md) <br>
-- [Object Operations Guide](references/object_operations.md) <br>
-- [Advanced Features Guide](references/advanced_features.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes examples for cloud storage actions that may mutate or expose data when copied into automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog) <br>
+Risk: Examples can expose or overwrite OBS data when copied directly into production workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands and code before use, apply least-privilege OBS credentials, and test against non-production buckets before handling sensitive data.
+
+Risk: Delete, lifecycle, and public-access examples may cause irreversible data loss or unintended public exposure.
+
+Mitigation: Add explicit confirmations and policy review for destructive operations, lifecycle changes, and any public ACL or CORS configuration.
+
+Risk: The folder download sample may write outside the intended download directory when object keys are not normalized and validated.
+
+Mitigation: Do not use the folder download pattern with untrusted buckets until normalized paths are checked to remain inside the selected destination directory.
+
+Risk: Unpinned dependency ranges can change behavior over time.
+
+Mitigation: Pin reviewed versions of huaweicloud-sdk-python-obs and python-dotenv for production environments.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/idiosyncraticdragon/skills/huawei-obs-skill)
+- [Bucket Operations Guide](references/bucket_operations.md)
+- [Object Operations Guide](references/object_operations.md)
+- [Advanced Features Guide](references/advanced_features.md)
+- [Publisher profile](https://clawhub.ai/user/idiosyncraticdragon)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Huawei Cloud OBS SDK examples that require user-supplied credentials, bucket names, object keys, regions, and local paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

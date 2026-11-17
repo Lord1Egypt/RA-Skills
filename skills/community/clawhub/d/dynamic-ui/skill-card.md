@@ -1,41 +1,59 @@
-## Description: <br>
-Render tables, charts, stats, cards, and dashboards as images using HTML templates and wkhtmltoimage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render tables, charts, stats, cards, and dashboards as images using HTML templates and wkhtmltoimage.
 
-## Publisher: <br>
-[theashbhat](https://clawhub.ai/user/theashbhat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theashbhat](https://clawhub.ai/user/theashbhat)
 
-## Use Case: <br>
-Developers and agents use this skill to turn structured JSON data into shareable PNG visuals such as tables, bar charts, KPI summaries, information cards, and dashboards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Rendering user-provided data and optional remote image URLs can expose sensitive content or fetch external resources. <br>
-Mitigation: Avoid rendering secrets unless needed, review image URLs before use, choose output paths deliberately, and delete generated files when they are no longer needed. <br>
-Risk: The renderer enables JavaScript while converting HTML to PNG. <br>
-Mitigation: Disable JavaScript or run rendering in an isolated environment when stricter execution controls are required. <br>
+## Use Case:
 
+Developers and agents use Dynamic UI to turn structured JSON data into shareable PNG visualizations such as tables, KPI summaries, bar charts, cards, and dashboards.
 
-## Reference(s): <br>
-- [Dynamic UI ClawHub page](https://clawhub.ai/theashbhat/dynamic-ui) <br>
-- [OpenClaw](https://openclaw.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration] <br>
-**Output Format:** [PNG image files or base64-encoded PNG output from shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses JSON input, selectable templates, selectable themes, optional output path, and configurable image width.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Rendering card images may cause network requests from wkhtmltoimage when user-provided image URLs are included.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an environment where wkhtmltoimage cannot reach sensitive internal services, and avoid rendering untrusted image URLs.
+
+Risk: Rendered images can persist user-provided data on disk, including under ~/.openclaw/media or caller-selected output paths.
+
+Mitigation: Avoid including secrets in rendered data and periodically clean media and output directories.
+
+Risk: The security verdict is suspicious because the renderer has under-documented network and persistence behavior.
+
+Mitigation: Review the skill before installing and scan it before deployment.
+
+## Reference(s):
+
+- [Dynamic UI ClawHub release](https://clawhub.ai/theashbhat/skills/dynamic-ui)
+- [Publisher profile](https://clawhub.ai/user/theashbhat)
+- [OpenClaw](https://openclaw.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands; rendered skill output is PNG image files or base64 PNG text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports table, chart-bar, stats, card, and dashboard templates with modern, dark, and minimal themes.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

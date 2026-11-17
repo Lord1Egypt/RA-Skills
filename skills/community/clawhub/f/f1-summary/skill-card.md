@@ -1,41 +1,52 @@
-## Description: <br>
-Summarize Formula 1 sessions (FP1, Qualifying, Race) using web search and fetch. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize Formula 1 sessions (FP1, Qualifying, Race) using web search and fetch.
 
-## Publisher: <br>
-[jakah2551](https://clawhub.ai/user/jakah2551) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jakah2551](https://clawhub.ai/user/jakah2551)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to request concise summaries of recent Formula 1 practice, qualifying, sprint, and race sessions. The agent searches public sources, fetches relevant coverage, and summarizes finishers, incidents, team performance, and context in the user's language.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may answer in Italian by default for a user named Ale.
+
+Mitigation: Review and adjust the language preference before deployment when a broader audience should receive responses in a different default language.
+
+Risk: Summaries of recent sessions depend on the freshness and accuracy of public web sources.
+
+Mitigation: Prefer authoritative Formula 1 and motorsport sources, and note uncertainty when results are live, disputed, or still developing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and Formula 1 fans use this skill to get concise, source-backed summaries of recent Grand Prix practice, qualifying, sprint, and race sessions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Formula 1 session results are time-sensitive and may be incomplete or stale soon after a session. <br>
-Mitigation: Verify dates and source quality when searching public results, especially for same-day sessions. <br>
-Risk: The artifact defaults summaries to Italian for the original intended user, which may be unexpected for other users. <br>
-Mitigation: Follow the requesting user's language when it is clear, and change the default language before broader deployment if needed. <br>
+**Output Format:** [Concise natural-language summary, usually formatted as Markdown text.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jakah2551/f1-summary) <br>
-- [Formula 1 official site](https://www.formula1.com/) <br>
+**Other Properties Related to Output:** [May default to Italian for a user named Ale; otherwise follows the user's requested language when available.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Concise natural-language summary, typically plain text or Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries should reflect the user's requested language and cite or rely on current public Formula 1 sources.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

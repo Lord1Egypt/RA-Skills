@@ -1,0 +1,4 @@
+interface:
+  display_name: "Set up AIScope"
+  short_description: "Install AIScope and verify a first project scan"
+  default_prompt: "Use $aiscope-setup to install AIScope for this project and verify it."

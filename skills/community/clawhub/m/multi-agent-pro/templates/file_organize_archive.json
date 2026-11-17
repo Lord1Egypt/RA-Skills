@@ -1,0 +1,113 @@
+{
+  "name": "文件整理归档",
+  "description": "自动整理散落文件：按类型/日期/项目分类 → 重命名规范化 → 归档到目录结构 → 生成索引。适用于桌面/下载文件夹整理、项目文件归档。",
+  "category": "office",
+  "version": "1.0",
+  "tags": ["文件", "整理", "归档", "自动化"],
+  "three_elements": {
+    "time_estimate": "5-15 分钟（取决于文件数量）",
+    "api_key_required": "不需要",
+    "output_files": ["file_index.md", "organize_log.txt", "file_organize_state.json"]
+  },
+  "dependencies": [],
+  "pipeline": {
+    "pipeline_name": "文件整理归档",
+    "version": "1.0",
+    "description": "自动文件分类、重命名、归档与索引生成",
+    "agents": [
+      {
+        "id": "scanner",
+        "name": "文件扫描Agent",
+        "role": "扫描目标目录，获取所有文件的元数据（类型/大小/修改时间/路径）",
+        "type": "task",
+        "inputs": ["target_dir"],
+        "outputs": ["file_list"],
+        "depends_on": [],
+        "retry": 2,
+        "timeout": 30,
+        "fallback": "default",
+        "default_value": {"file_list": []}
+      },
+      {
+        "id": "classifier",
+        "name": "文件分类Agent",
+        "role": "按文件类型（文档/图片/视频/代码/压缩包）和日期自动分类",
+        "type": "task",
+        "inputs": ["file_list"],
+        "outputs": ["classified_files"],
+        "depends_on": ["scanner"],
+        "retry": 2,
+        "timeout": 60,
+        "fallback": "default",
+        "default_value": {"classified_files": {}}
+      },
+      {
+        "id": "duplicate_finder",
+        "name": "重复检测Agent",
+        "role": "检测重复文件（MD5 哈希比对），标记可删除的副本",
+        "type": "task",
+        "inputs": ["classified_files"],
+        "outputs": ["duplicates"],
+        "depends_on": ["classifier"],
+        "retry": 2,
+        "timeout": 90,
+        "fallback": "default",
+        "default_value": {"duplicates": []}
+      },
+      {
+        "id": "renamer",
+        "name": "重命名规范化Agent",
+        "role": "按规则重命名文件：统一日期格式、去除特殊字符、添加前缀",
+        "type": "task",
+        "inputs": ["classified_files"],
+        "outputs": ["rename_plan"],
+        "depends_on": ["classifier"],
+        "retry": 2,
+        "timeout": 60,
+        "fallback": "skip"
+      },
+      {
+        "id": "approver",
+        "name": "整理确认",
+        "role": "用户确认整理方案（重命名/删除重复/归档路径），防止误操作",
+        "type": "approval",
+        "inputs": ["rename_plan", "duplicates"],
+        "outputs": ["confirmed_plan"],
+        "depends_on": ["renamer", "duplicate_finder"],
+        "retry": 0,
+        "timeout": 0,
+        "fallback": "abort",
+        "timeout_seconds": 300,
+        "timeout_action": "reject"
+      },
+      {
+        "id": "archiver",
+        "name": "归档执行Agent",
+        "role": "按确认方案执行：创建目录结构、移动文件、重命名、删除重复",
+        "type": "task",
+        "inputs": ["confirmed_plan"],
+        "outputs": ["archive_result"],
+        "depends_on": ["approver"],
+        "retry": 3,
+        "timeout": 180,
+        "fallback": "abort"
+      },
+      {
+        "id": "reporter",
+        "name": "索引生成Agent",
+        "role": "生成归档后的文件索引（Markdown），含目录树、文件清单、统计信息",
+        "type": "task",
+        "inputs": ["archive_result"],
+        "outputs": ["file_index"],
+        "depends_on": ["archiver"],
+        "retry": 1,
+        "timeout": 60,
+        "fallback": "abort"
+      }
+    ],
+    "state_store": {
+      "type": "json",
+      "path": "./file_organize_state.json"
+    }
+  }
+}

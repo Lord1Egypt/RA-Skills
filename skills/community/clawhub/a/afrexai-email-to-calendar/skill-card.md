@@ -1,45 +1,60 @@
-## Description: <br>
-Extracts calendar events, deadlines, action items, and follow-ups from emails for review and calendar creation across common calendar providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract calendar events, deadlines, action items, and follow-ups from emails for review and confirmed calendar creation across common calendar providers.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-External users and employees use this skill to have an agent parse forwarded, pasted, or inbox emails for calendar events, deadlines, action items, travel logistics, and reminders, then present entries for confirmation before creation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent may read sensitive email content while extracting events and logistics. <br>
-Mitigation: Limit scans to selected messages or narrow inbox windows and avoid broad mailbox access unless necessary. <br>
-Risk: Extracted dates, timezones, titles, reminders, or recurrence rules may be incorrect or incomplete. <br>
-Mitigation: Review each proposed calendar entry, especially medium- and low-confidence items, before allowing creation. <br>
-Risk: Calendar creation through raw shell commands can be harder to audit than structured integrations. <br>
-Mitigation: Prefer structured calendar APIs or ICS export when available, and inspect command parameters before execution. <br>
-Risk: Email-calendar memory files can retain sensitive subjects, travel details, or event identifiers. <br>
-Mitigation: Periodically clear local email-calendar preference and tracking files that contain sensitive details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-email-to-calendar) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to identify events, deadlines, travel logistics, reminders, and action items in email or inbox text, then review structured results before calendar creation or export.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with structured event fields, calendar command examples, configuration snippets, and ICS snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Calendar items are presented for user confirmation before creation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks agents to read email or inbox content, which can expose sensitive message data.
+
+Mitigation: Use the skill only with explicit mailbox permissions and limit processing to emails or searches the user has approved.
+
+Risk: Calendar create, update, or delete actions can change a user's schedule if automated incorrectly.
+
+Mitigation: Require per-event user confirmation for every calendar change and avoid auto-create patterns.
+
+Risk: Local commands such as shell or AppleScript examples may be less controlled than structured integrations.
+
+Mitigation: Prefer structured calendar APIs or ICS output over raw shell or AppleScript commands when available.
+
+Risk: Tracking logs may retain email subjects, message IDs, or calendar event IDs.
+
+Mitigation: Disable or minimize persistent logs that store email and calendar identifiers unless the user explicitly accepts that retention.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-email-to-calendar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured YAML, JSON, shell command, and ICS examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Presents extracted calendar items for user confirmation; may output provider-specific creation commands, API guidance, or ICS content.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

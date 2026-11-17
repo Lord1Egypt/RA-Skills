@@ -1,43 +1,54 @@
-## Description: <br>
-Pay a Human lets agents prepare Talentir API requests for creator payouts, payout lookup, team information, and payout webhook management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pay a Human helps OpenClaw agents send Talentir payouts to creators by email or social media handle, retrieve payout and team information, and manage payout webhooks.
 
-## Publisher: <br>
-[johanneskares](https://clawhub.ai/user/johanneskares) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[johanneskares](https://clawhub.ai/user/johanneskares)
 
-## Use Case: <br>
-External users and developers can use this skill to prepare Talentir API calls that send payments to creators, track payout records, inspect team information, and administer payout webhooks from an agent session. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can prepare requests that initiate real payouts when a Talentir API key is available. <br>
-Mitigation: Use limited-scope credentials, require explicit approval before every payout, and keep Talentir daily spend limits in place. <br>
-Risk: Webhook creation or deletion can expose payout events or disrupt existing payout integrations. <br>
-Mitigation: Review the target URL, event type, and environment before webhook changes, and require approval before creating or deleting webhooks. <br>
-Risk: Team metadata and payout records may expose sensitive business or recipient information. <br>
-Mitigation: Limit API key permissions and share command outputs only with users authorized to see payment and account data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/johanneskares/payahuman) <br>
-- [Talentir API](https://www.talentir.com/api/v1) <br>
-- [Talentir business signup](https://www.talentir.com/start/business) <br>
+## Use Case:
 
+External developers and agent operators use this skill to initiate and track Talentir creator payouts, inspect team details, and administer payout webhooks from an agent shell environment.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl and jq command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and TALENTIR_API_KEY.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can initiate high-impact payment actions and webhook changes through Talentir.
+
+Mitigation: Require human confirmation for every recipient, amount, currency, and webhook target URL before executing commands.
+
+Risk: The Talentir API key and returned webhook signing secrets are sensitive credentials.
+
+Mitigation: Use a least-privilege API key, avoid unnecessary payout approval or webhook administration permissions, and store returned signing secrets securely.
+
+## Reference(s):
+
+- [Pay a Human on ClawHub](https://clawhub.ai/johanneskares/skills/payahuman)
+- [Talentir API](https://www.talentir.com/api/v1)
+- [Talentir Business Signup](https://www.talentir.com/start/business)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and TALENTIR_API_KEY; payout requests may create financial transactions and webhook changes through Talentir.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

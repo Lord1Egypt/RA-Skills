@@ -1,44 +1,64 @@
-## Description: <br>
-Scout, monitor, and bid on auctions on House (houseproto.fun), a crypto auction platform on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scout, monitor, and bid on auctions on House (houseproto.fun), a crypto auction platform on Base, while proactively watching for items the user cares about.
 
-## Publisher: <br>
-[im-still-thinking](https://clawhub.ai/user/im-still-thinking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[im-still-thinking](https://clawhub.ai/user/im-still-thinking)
 
-## Use Case: <br>
-External users and developers use this skill to connect an MCP-compatible agent to House so it can browse auctions, monitor user interests, create auctions, check wallet balances, and place bids with a funded bot wallet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: An agent can use a funded House bot wallet to place live bids or create auctions. <br>
-Mitigation: Keep wallet balances low and require manual confirmation for valuable bids or auction creation. <br>
-Risk: Broad standing auto-bid rules can spend more than the user intended. <br>
-Mitigation: Use explicit token, auction, max-spend, and time limits for any auto-bid rule. <br>
-Risk: An alternate AUCTION_HOUSE_URL can redirect activity to an endpoint the user did not intend to trust. <br>
-Mitigation: Leave AUCTION_HOUSE_URL unset unless the alternate endpoint has been deliberately reviewed and trusted. <br>
+## Use Case:
 
+External users and MCP-compatible agent clients use this skill to scout House auctions, monitor active bids, and create or place bids through a configured House bot wallet.
 
-## Reference(s): <br>
-- [House platform](https://www.houseproto.fun) <br>
-- [House bot API key settings](https://www.houseproto.fun/settings) <br>
-- [ClawHub skill page](https://clawhub.ai/im-still-thinking/auction-house) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON configuration snippets, and MCP tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AUCTION_HOUSE_API_KEY; AUCTION_HOUSE_URL is optional for selecting an alternate House API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; package.json reports 0.1.0) <br>
+Risk: The skill can create auctions and place real crypto bids using a House bot API key tied to a funded wallet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance bot wallet, verify wallet balances before bidding, and require explicit user confirmation unless a narrow standing rule exists.
+
+Risk: Broad autonomous auto-bid rules could spend more than intended.
+
+Mitigation: Set explicit token, auction, and maximum-bid limits; avoid broad matching rules; and review active bids regularly.
+
+Risk: AUCTION_HOUSE_URL can redirect API calls away from the default House endpoint.
+
+Mitigation: Leave AUCTION_HOUSE_URL unset or verify that it points only to the intended House API before use.
+
+Risk: Unversioned npx or global package installation can change behavior when the package updates.
+
+Mitigation: Prefer a pinned, reviewed package version for deployment.
+
+## Reference(s):
+
+- [House platform](https://www.houseproto.fun)
+- [House API key settings](https://www.houseproto.fun/settings)
+- [ClawHub skill page](https://clawhub.ai/im-still-thinking/skills/auction-house)
+- [ClawHub publisher profile](https://clawhub.ai/user/im-still-thinking)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown guidance with MCP tool text responses and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AUCTION_HOUSE_API_KEY and a funded House bot wallet; optional AUCTION_HOUSE_URL should point only to the intended House API.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; package.json reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

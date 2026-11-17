@@ -1,40 +1,59 @@
-## Description: <br>
-Use this skill when an ERISA plan sponsor, retirement committee member, plan administrator, or benefits counsel needs to draft a fiduciary prudent-process review memo for a 401(k), 403(b), defined-benefit, or health-and-welfare plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when an ERISA plan sponsor, retirement committee member, plan administrator, or benefits counsel needs to draft a fiduciary prudent-process review memo for a 401(k), 403(b), defined-benefit, or health-and-welfare plan.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-External plan sponsors, retirement committee members, plan administrators, and benefits counsel use this skill to draft review-ready ERISA fiduciary process memos and related tables for counsel verification before committee adoption. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outputs may be mistaken for legal advice or final fiduciary determinations. <br>
-Mitigation: Treat outputs as non-legal draft work product and require qualified ERISA counsel to review any memo, citations, deficiencies, and recommended actions before use. <br>
-Risk: Plan intake could include participant-level personal data. <br>
-Mitigation: Avoid entering SSNs, account numbers, birth dates, medical data, or other participant-level personal data. <br>
+## Use Case:
 
+ERISA plan sponsors, retirement committee members, plan administrators, and benefits counsel use this skill to draft a review-ready fiduciary prudent-process memo documenting investment monitoring, fee reasonableness, service-provider review, compliance flags, cybersecurity review, and committee action items.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/erisa-plan-fiduciary-review-memo) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Single markdown document with drafting notes, review memo sections, tables, open action items, and an unsigned attorney review block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are marked DRAFT, avoid participant-level personal data, and require qualified ERISA counsel review before adoption or filing use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata and changelog, released 2026-05-29) <br>
+Risk: A generated fiduciary memo could be treated as legal advice or adopted before qualified review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output only as a draft and have qualified ERISA counsel review it before committee adoption, execution, or filing use.
+
+Risk: Plan or participant personal data could be included unnecessarily in prompts or memo output.
+
+Mitigation: Avoid providing participant SSNs, account numbers, birth dates, medical data, or unnecessary personal information, and remove any such data before use.
+
+Risk: Critical compliance, fee, fiduciary, or cybersecurity findings may require legal judgment or authorized corrective action.
+
+Mitigation: Route critical deficiencies and compliance failures to ERISA counsel and do not use the skill to file, transmit, or submit documents on behalf of the plan.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/erisa-plan-fiduciary-review-memo)
+- [README](artifact/README.md)
+- [CHANGELOG](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Analysis, Guidance]
+
+**Output Format:** [Single markdown draft memo with tables, drafting notes, open action items, and an unsigned attorney review block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Drafting aid only; generated memo requires review by qualified ERISA counsel before adoption or filing use.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and CHANGELOG, released 2026-05-29)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

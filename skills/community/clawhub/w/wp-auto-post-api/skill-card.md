@@ -1,45 +1,65 @@
-## Description: <br>
-Publish SEO-optimized articles to WordPress via REST API with RankMath meta fields. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish SEO-optimized articles to WordPress via REST API with RankMath meta fields.
 
-## Publisher: <br>
-[l1angjy](https://clawhub.ai/user/l1angjy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[l1angjy](https://clawhub.ai/user/l1angjy)
 
-## Use Case: <br>
-Developers and site operators use this skill to let an agent create WordPress drafts or posts from structured article data, including RankMath SEO title, description, focus keyword, tags, slug, and category settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The WordPress Application Password grants REST API access to create or edit posts as the configured user. <br>
-Mitigation: Use a dedicated least-privilege WordPress account, keep the .env file out of version control and shared logs, and rotate or revoke the application password when access is no longer needed. <br>
-Risk: The skill can publish content publicly if publish status is selected. <br>
-Mitigation: Test with draft status first, review article content before approval, and require explicit user confirmation before each publication. <br>
-Risk: The WordPress PHP snippet exposes selected RankMath meta fields through the REST API. <br>
-Mitigation: Keep the snippet limited to the three required meta keys, rely on edit_posts authorization, and remove the snippet if the skill is no longer in use. <br>
+## Use Case:
 
+Developers and content operators use this skill to publish approved SEO article JSON to WordPress as drafts or posts while setting RankMath title, description, and focus keyword metadata.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/l1angjy/wp-auto-post-api) <br>
-- [RankMath](https://rankmath.com/) <br>
-- [Code Snippets WordPress plugin](https://wordpress.org/plugins/code-snippets/) <br>
-- [WordPress setup snippet](docs/wordpress-setup.php) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [Console text and structured JSON result from the publishing script, with Markdown setup guidance in the skill documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates WordPress drafts by default unless the caller explicitly requests publish status and the user approves publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release evidence) <br>
+Risk: The skill handles a WordPress Application Password and can create or update web content through the WordPress REST API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a trusted workspace, keep the .env file private, and use a dedicated WordPress account with the minimum post-editing permissions.
+
+Risk: Publishing to a live WordPress site can expose incomplete or incorrect SEO content.
+
+Mitigation: Test with draft status first and rely on the approval step before publishing each article.
+
+Risk: REST API credential use over an insecure site can expose credentials.
+
+Mitigation: Verify WP_SITE_URL starts with https:// before using the skill.
+
+Risk: The WordPress setup snippet exposes selected RankMath meta fields through the REST API.
+
+Mitigation: Remove the snippet and revoke the application password if the skill is no longer used.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/l1angjy/skills/wp-auto-post-api)
+- [Rank Math SEO](https://rankmath.com/)
+- [Code Snippets WordPress Plugin](https://wordpress.org/plugins/code-snippets/)
+- [Artifact README](artifact/README.md)
+- [WordPress REST Meta Setup Snippet](artifact/docs/wordpress-setup.php)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, code]
+
+**Output Format:** [Plain text and Markdown guidance with shell commands and structured JSON result output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WordPress REST API credentials and article JSON; defaults posts to draft unless publish is specified.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

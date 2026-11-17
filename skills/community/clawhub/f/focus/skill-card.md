@@ -1,37 +1,54 @@
-## Description: <br>
-Focus is a fast local productivity tool for logging notes, plans, tracking entries, reviews, reminders, priorities, timelines, reports, and activity history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Focus — a fast productivity tool. Log anything, find it later, export when needed.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Employees, external users, and developers can use Focus as a local command-line productivity log for capturing tasks, plans, time-management notes, reviews, reminders, priorities, and reports, then searching or exporting that data when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-entered productivity entries are stored as local plaintext logs. <br>
-Mitigation: Avoid storing passwords, API keys, regulated client data, or other secrets, and manage export or deletion of ~/.local/share/focus according to retention needs. <br>
+## Use Case:
 
+Developers and external users can use Focus to record plans, time-management notes, activity history, and reviews from a local command-line workflow, then search or export entries when needed.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text output and local export files in JSON, CSV, or plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores user-entered productivity entries as local plaintext logs under ~/.local/share/focus.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Productivity entries and exports may contain sensitive information because Focus stores local plaintext history under ~/.local/share/focus/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid saving passwords, tokens, or highly sensitive notes; treat exported JSON, CSV, and text files as sensitive and review them before sharing or backup.
+
+Risk: Export formatting may need review before downstream use.
+
+Mitigation: Inspect exported JSON, CSV, or text before importing it into other tools or sharing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/focus)
+- [BytesAgain feedback](https://bytesagain.com/feedback/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, CSV, Shell commands]
+
+**Output Format:** [Command-line text plus JSON, CSV, or plain text export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores entries locally under ~/.local/share/focus/ and can export saved history.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

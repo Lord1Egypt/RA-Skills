@@ -1,42 +1,58 @@
-## Description: <br>
-Lanhu To Code helps agents convert Lanhu design drafts, specs, screenshots, exported assets, annotations, or design links into frontend code while following the target project's conventions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Lanhu design drafts, specs, screenshots, exported assets, annotations, or design links into frontend code for HTML, CSS, React, Vue, Tailwind, or existing frontend projects.
 
-## Publisher: <br>
-[sucriss](https://clawhub.ai/user/sucriss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sucriss](https://clawhub.ai/user/sucriss)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement frontend screens or components from Lanhu design material, including HTML, CSS, React, Vue, and Tailwind outputs. It is most useful when a coding agent needs to inspect a target codebase, extract design-system details, implement the UI, and verify visual fidelity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Design inputs may contain private product or interface information. <br>
-Mitigation: Provide only Lanhu links, screenshots, specs, or exported assets that are appropriate for the coding task and review generated files before use. <br>
-Risk: Incomplete Lanhu data can lead to visual or implementation assumptions. <br>
-Mitigation: Compare the generated UI against available design material and document missing assets, inaccessible links, and intentional deviations. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert Lanhu design materials into production-ready frontend screens or components while preserving the target project's framework, styling system, component patterns, and accessibility behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sucriss/skills/lanhu-to-code) <br>
-- [Server-resolved source repository](https://github.com/SuCriss/lanhu-to-code) <br>
-- [Source commit](https://github.com/SuCriss/lanhu-to-code/tree/8d75c5f498f1326fdbed469cd67032e38405565d) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code, file-change summaries, verification commands, and screenshot or browser-check notes when applicable.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should preserve project conventions, document assumptions or missing Lanhu assets, and avoid hotlinking private Lanhu material.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 <br>
+Risk: The skill may lead an agent to modify a target frontend project based on incomplete or inaccessible Lanhu design data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review changed files, verification commands, and stated assumptions or deviations before accepting generated code.
+
+Risk: Lanhu links or assets may be private, unavailable, or require login.
+
+Mitigation: Use user-provided screenshots or exported specs when access is unavailable, and avoid hotlinking private Lanhu assets.
+
+Risk: Generated UI can diverge from the source design when measurements, assets, or responsive behavior are incomplete.
+
+Mitigation: Capture screenshots at the design's native viewport and relevant breakpoints, then compare layout, typography, colors, image cropping, and interaction states against the supplied design material.
+
+## Reference(s):
+
+- [Source repository](https://github.com/SuCriss/lanhu-to-code)
+- [ClawHub skill page](https://clawhub.ai/sucriss/skills/lanhu-to-code)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown responses with frontend code, shell commands, changed-file summaries, verification notes, and implementation assumptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated or modified project files, local dev server instructions, screenshot or browser-check evidence, and notes about missing Lanhu assets or inaccessible design data.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

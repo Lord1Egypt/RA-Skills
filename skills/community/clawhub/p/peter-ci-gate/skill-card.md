@@ -1,40 +1,48 @@
-## Description: <br>
-Checks remote pull request CI status, diagnoses failures, applies a one-time rerun policy for likely flaky runs, and reports whether the PR can be merged. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Peter CI Gate helps an agent inspect remote PR checks, diagnose CI failures, apply a one-time rerun policy for likely flaky failures, and report whether a PR can merge.
 
-## Publisher: <br>
-[chinasilva](https://clawhub.ai/user/chinasilva) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chinasilva](https://clawhub.ai/user/chinasilva)
 
-## Use Case: <br>
-Developers and maintainers use this skill to gate pull request merges by checking required CI status, diagnosing failed jobs from logs, and deciding whether to fix code or perform one confirmed rerun for likely transient failures. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses the local GitHub CLI login to inspect pull request checks and failed workflow logs. <br>
-Mitigation: Confirm the GitHub CLI account and repository scope are appropriate before use, and review any accessed CI evidence before acting on it. <br>
-Risk: Rerunning a workflow changes remote CI state and can hide flaky behavior if treated as a fix. <br>
-Mitigation: Require confirmation before rerunning, limit reruns to one clearly transient failure, and do not treat a successful rerun as root-cause remediation. <br>
-Risk: Incorrect CI diagnosis could lead to merging with unresolved required-check failures. <br>
-Mitigation: Require job or log evidence for each failed item and default to not skipping required checks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineers use this skill when a pull request is near merge and needs a clear remote CI gate decision. It helps inspect checks, diagnose failed jobs from GitHub Actions evidence, distinguish code failures from likely flaky failures, and return a merge or blocked conclusion.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with GitHub CLI command examples and CI gate conclusions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs merge readiness conclusions such as can merge or cannot merge, with evidence from jobs or logs when failures exist.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent to rerun GitHub Actions workflows, which may consume CI resources or obscure flaky failures if done without explicit evidence.
+
+Mitigation: Require the agent to show flaky-failure evidence and ask before any `gh run rerun` command; keep reruns to one attempt and do not treat a passing rerun as root-cause resolution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chinasilva/skills/peter-ci-gate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with GitHub CLI commands, CI evidence summaries, and a merge-gate conclusion]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose a single GitHub Actions rerun for likely flaky failures; conclusions should cite job or log evidence.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,59 @@
-## Description: <br>
-This skill helps Chinese creators choose Xiaohongshu title formulas, map content to trigger families, and return traceable title options with rationale and testing recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiaohongshu title strategy skill for Chinese creators that helps agents match topics, drafts, or existing titles to trigger families and formula IDs, then produce traceable title options with rationale and testing recommendations.
 
-## Publisher: <br>
-[cellinlab](https://clawhub.ai/user/cellinlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellinlab](https://clawhub.ai/user/cellinlab)
 
-## Use Case: <br>
-External creators and marketing teams use this skill to turn a topic, draft, or existing title into structured Xiaohongshu title candidates. It selects trigger families and formula IDs, explains fit, and identifies the best titles to test. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated titles may overpromise, misrepresent the content, or imply claims the draft cannot support. <br>
-Mitigation: Review recommended titles against the source content before publishing and reject options that the body cannot substantiate. <br>
-Risk: Generated titles may still need review for platform, brand, or audience compliance. <br>
-Mitigation: Check final titles for Xiaohongshu policy fit, brand tone, and accuracy before use. <br>
-Risk: Drafts or campaign details shared with an agent may contain sensitive or unpublished content. <br>
-Mitigation: Avoid sharing sensitive draft content unless the user is comfortable providing it to the agent. <br>
+## Use Case:
 
+External creators, marketers, and content strategists use this skill to turn Chinese Xiaohongshu topics, drafts, or existing titles into formula-attributed title packs. It helps an agent identify audience intent, select suitable trigger families, generate concise Chinese title options, and recommend the strongest candidates to test.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cellinlab/cell-xhs-title-selector) <br>
-- [Metadata homepage](https://github.com/cellinlab/cell-skills/tree/main/skills/xhs-title-selector) <br>
-- [标题公式目录](references/formula-catalog.md) <br>
-- [标题质量规则](references/quality-bar.md) <br>
-- [12 类标题触发器速查](references/trigger-families.md) <br>
-- [小红书标题策略 Workflow](references/workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown title strategy pack with formula IDs, rationale, and ranked recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese Xiaohongshu-oriented titles with matched trigger families and Top 3 testing recommendations] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill defaults to Chinese Xiaohongshu-specific title strategy, which may be unsuitable for other platforms, languages, or bilingual deliverables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State the desired platform, language, and format explicitly when using the skill outside its default Xiaohongshu Chinese context.
+
+Risk: Formula-driven titles can overpromise if the underlying content does not support the selected hook or outcome.
+
+Mitigation: Check the topic promise and body support before finalizing titles, and reject or revise options whose claims cannot be paid off by the content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cellinlab/skills/cell-xhs-title-selector)
+- [Metadata homepage](https://github.com/cellinlab/cell-skills/tree/main/skills/xhs-title-selector)
+- [Title formula catalog](artifact/references/formula-catalog.md)
+- [Trigger families reference](artifact/references/trigger-families.md)
+- [Workflow reference](artifact/references/workflow.md)
+- [Quality bar](artifact/references/quality-bar.md)
+- [Title pack template](artifact/assets/title-pack-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown title strategy pack with formula IDs, rationale, ranked recommendations, and next-step advice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese Xiaohongshu-oriented titles and requires formula attribution for generated options.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

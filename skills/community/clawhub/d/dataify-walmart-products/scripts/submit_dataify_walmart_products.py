@@ -8,6 +8,11 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
+TASK_RUNTIME_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "dataify-task-operations", "scripts"))
+if TASK_RUNTIME_DIR not in sys.path:
+    sys.path.insert(0, TASK_RUNTIME_DIR)
+from task_runtime import complete_task
+
 
 BUILDER_URL = "https://scraperapi.dataify.com/builder?platform=1"
 DASHBOARD_URL = "https://dashboard.dataify.com?utm_source=skill"
@@ -96,14 +101,14 @@ def normalize_file_name(value):
 
 def normalize_url_group(group):
     return {
-        "url": normalize_walmart_url(group.get("url", DEFAULT_URL), "url"),
+        "url": normalize_walmart_url(group.get("url"), "url"),
         "all_variations": normalize_boolean(group.get("all_variations", DEFAULT_ALL_VARIATIONS), "all_variations"),
     }
 
 
 def normalize_category_url_group(group):
     return {
-        "category_url": normalize_walmart_url(group.get("category_url", DEFAULT_CATEGORY_URL), "category_url"),
+        "category_url": normalize_walmart_url(group.get("category_url"), "category_url"),
         "all_variations": normalize_boolean(group.get("all_variations", DEFAULT_ALL_VARIATIONS), "all_variations"),
         "page_turning": normalize_non_negative_integer(group.get("page_turning", DEFAULT_CATEGORY_PAGE_TURNING), "page_turning"),
     }
@@ -111,14 +116,14 @@ def normalize_category_url_group(group):
 
 def normalize_sku_group(group):
     return {
-        "sku": normalize_text(group.get("sku", DEFAULT_SKU), "sku"),
+        "sku": normalize_text(group.get("sku"), "sku"),
         "all_variations": normalize_boolean(group.get("all_variations", DEFAULT_ALL_VARIATIONS), "all_variations"),
     }
 
 
 def normalize_keywords_group(group):
     return {
-        "keyword": normalize_text(group.get("keyword", DEFAULT_KEYWORD), "keyword"),
+        "keyword": normalize_text(group.get("keyword"), "keyword"),
         "domain": normalize_walmart_url(group.get("domain", DEFAULT_DOMAIN), "domain"),
         "all_variations": normalize_boolean(group.get("all_variations", DEFAULT_ALL_VARIATIONS), "all_variations"),
         "page_turning": normalize_non_negative_integer(group.get("page_turning", DEFAULT_KEYWORD_PAGE_TURNING), "page_turning"),
@@ -154,10 +159,10 @@ def build_groups(args, mode):
     if args.params_json:
         return load_groups_from_json(args.params_json, mode)
     if mode == MODE_URL:
-        urls = args.url or [DEFAULT_URL]
+        urls = args.url or []
         return [normalize_group({"url": url, "all_variations": args.all_variations}, mode) for url in urls]
     if mode == MODE_CATEGORY_URL:
-        category_urls = args.category_url or [DEFAULT_CATEGORY_URL]
+        category_urls = args.category_url or []
         return [
             normalize_group(
                 {
@@ -170,9 +175,9 @@ def build_groups(args, mode):
             for category_url in category_urls
         ]
     if mode == MODE_SKU:
-        skus = args.sku or [DEFAULT_SKU]
+        skus = args.sku or []
         return [normalize_group({"sku": sku, "all_variations": args.all_variations}, mode) for sku in skus]
-    keywords = args.keyword or [DEFAULT_KEYWORD]
+    keywords = args.keyword or []
     return [
         normalize_group(
             {
@@ -246,12 +251,14 @@ def main():
     parser.add_argument("--page-turning", default=None, help="Category or keyword mode only. Integer greater than or equal to 0.")
     parser.add_argument("--file-name", default=DEFAULT_FILE_NAME, help="Builder file_name field. Default: {{TasksID}}.")
     parser.add_argument("--params-json", help="JSON array of parameter objects for the selected mode.")
-    parser.add_argument("--api-token", default=os.environ.get("DATAIFY_API_TOKEN"), help="Dataify token. Defaults to DATAIFY_API_TOKEN.")
+    parser.add_argument("--no-wait", action="store_true", help="Return after submission without waiting for the final result.")
+    parser.add_argument("--wait-timeout", type=float, default=600, help="Maximum final-result wait in seconds.")
     args = parser.parse_args()
+    api_token = os.environ.get("DATAIFY_API_TOKEN", "").strip()
 
-    if not args.api_token:
+    if not api_token:
         print(
-            "Missing Dataify API TOKEN. Enter your Dataify API TOKEN to continue. If you want to reuse it later, save it as DATAIFY_API_TOKEN. If you do not have one, log in at {} to get one.".format(LOGIN_URL),
+            "Missing Dataify API TOKEN. Enter your Dataify API TOKEN to continue. If you want to reuse it later, save it as DATAIFY_API_TOKEN. If you do not have one, log in at {} to get one. New accounts get 50 free credits, enough for about 6,000 trial results, valid for 7 days, and only successful requests are billed.".format(LOGIN_URL),
             file=sys.stderr,
         )
         return 2
@@ -261,13 +268,15 @@ def main():
         if args.page_turning is None:
             args.page_turning = DEFAULT_CATEGORY_PAGE_TURNING if mode == MODE_CATEGORY_URL else DEFAULT_KEYWORD_PAGE_TURNING
         groups = build_groups(args, mode)
+        if not groups:
+            raise ValueError("At least one business target is required.")
         file_name = normalize_file_name(args.file_name)
     except ValueError as exc:
         print(str(exc), file=sys.stderr)
         return 2
 
     try:
-        spider_id, task_id, status = submit_builder(args.api_token, mode, groups, file_name)
+        spider_id, task_id, status = submit_builder(api_token, mode, groups, file_name)
     except RuntimeError as exc:
         print(str(exc), file=sys.stderr)
         return 1
@@ -280,14 +289,33 @@ def main():
             "status": status,
             "parameters": groups,
             "file_name": file_name,
-            "dashboard_url": DASHBOARD_URL,
-            "message": "Task submitted. Visit {} to view results.".format(DASHBOARD_URL),
+            "message": "Task submitted. Continue monitoring the returned task_id.",
         },
         ensure_ascii=False,
         indent=2,
     ))
+    if not args.no_wait:
+        try:
+            final_result = complete_task(task_id, api_token, args.wait_timeout)
+        except RuntimeError as exc:
+            print(str(exc), file=sys.stderr)
+            return 1
+        print(json.dumps(final_result, ensure_ascii=False, indent=2))
+
     return 0
 
 
+
+
+def _configure_utf8_output():
+    import sys
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            try:
+                stream.reconfigure(encoding="utf-8", errors="replace")
+            except (AttributeError, ValueError):
+                pass
+
 if __name__ == "__main__":
+    _configure_utf8_output()
     sys.exit(main())

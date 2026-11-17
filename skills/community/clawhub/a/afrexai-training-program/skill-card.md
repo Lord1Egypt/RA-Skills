@@ -1,44 +1,54 @@
-## Description: <br>
-Builds structured employee training programs with curricula, schedules, assessments, completion tracking, and ROI metrics for onboarding, compliance, upskilling, leadership development, and certification preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build structured employee training programs with modules, assessments, schedules, and tracking for onboarding, compliance, upskilling, and leadership development.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-People operations, enablement, compliance, and team leads use this skill to turn a role, objective, timeline, and delivery format into a structured employee training program. It is suited for drafting onboarding paths, compliance training plans, upskilling rollouts, leadership programs, and certification prep materials. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated training plans may include sensitive employee, organizational, or compliance details. <br>
-Mitigation: Avoid providing sensitive data unless that fits the organization's data-handling policies, and review generated plans before sharing or storing them. <br>
-Risk: External resource links resolve to separate websites outside the skill artifact. <br>
-Mitigation: Review linked resources independently before relying on them for business, compliance, or purchasing decisions. <br>
-Risk: Compliance-oriented training details may require jurisdiction-specific validation. <br>
-Mitigation: Have qualified reviewers confirm regulatory citations, recertification frequency, record retention periods, and audit trail requirements before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-training-program) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Agent setup wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+HR teams, managers, compliance leads, and learning program owners use this skill to draft training curricula, schedules, assessments, completion trackers, compliance training plans, and training ROI metrics.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured sections, bullet lists, rubrics, and tracking tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include curricula, module outlines, time estimates, activities, assessment criteria, competency rubrics, completion tracking tables, compliance schedule details, and ROI metrics.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Draft compliance training plans may include legal or regulatory citations that are incomplete or incorrect.
+
+Mitigation: Have an appropriate compliance, legal, or policy owner verify citations, recertification requirements, retention periods, and audit-trail expectations before use.
+
+Risk: Completion trackers can collect unnecessary private employee data.
+
+Mitigation: Limit tracker fields to the minimum needed for training administration and avoid entering sensitive employee information unless required and approved.
+
+## Reference(s):
+
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured sections, tables, rubrics, schedules, and metric lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces draft training-program artifacts for review before organizational, legal, compliance, or HR use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

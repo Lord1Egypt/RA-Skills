@@ -1,0 +1,789 @@
+{
+ "schema": "yuanlin-suanliang/plant-library/v2",
+ "region": "华南",
+ "city": "海口",
+ "zone": "08-区",
+ "zone_climate": "VIII热带季风气候区",
+ "cities": [
+  "海口",
+  "三亚",
+  "深圳",
+  "南宁"
+ ],
+ "scope": "climate-zone-pool",
+ "source": "plant_library_分区苗木选型.json#08-区（按源库 01–08 区章节序列切分；区级候选池，非单城实测分布）",
+ "confidence": "medium",
+ "plants": [
+  {
+   "name": "第伦桃",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "罗望子（酸豆）",
+   "aliases": [
+    "酸豆"
+   ],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "印度橡胶榕",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "菩提树",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "木波罗（波罗蜜）",
+   "aliases": [
+    "波罗蜜"
+   ],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "荔枝",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "华南珊瑚树",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "盆架子",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "福树",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "火焰木",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "吊瓜树",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大王椰子（王棕）",
+   "aliases": [
+    "王棕"
+   ],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "椰子",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "加那（拿）利海枣",
+   "aliases": [
+    "拿"
+   ],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "海枣",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "棍棒椰子",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "酒瓶椰子",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "三角椰子",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "槟榔",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "海南五针松",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红花（色）木莲",
+   "aliases": [
+    "色"
+   ],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "腰果",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "血桐",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "观光木",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "阳桃",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "青皮（树/刺）",
+   "aliases": [
+    "树",
+    "刺"
+   ],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "乌墨（海南蒲桃）",
+   "aliases": [
+    "海南蒲桃"
+   ],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "马占相思",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "桂木",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "秋枫",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "海南菜豆花（树）",
+   "aliases": [
+    "树"
+   ],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "柚木",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红花羊蹄甲",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金凤花",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黄葛榕（黄葛树）",
+   "aliases": [
+    "黄葛树"
+   ],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "枫香（树）",
+   "aliases": [
+    "树"
+   ],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "爪哇木棉",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "鱼木",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "美丽异木棉",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "海红豆",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "阔荚合欢",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "非洲楝",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "岭南酸枣",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "夜合花（夜香木兰）",
+   "aliases": [
+    "夜香木兰"
+   ],
+   "region": "华南",
+   "city": "海口",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "肖黄栌（紫锦木）",
+   "aliases": [
+    "紫锦木"
+   ],
+   "region": "华南",
+   "city": "海口",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金花茶",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "茉莉（花）",
+   "aliases": [
+    "花"
+   ],
+   "region": "华南",
+   "city": "海口",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "二色茉莉（鸳鸯茉莉）",
+   "aliases": [
+    "鸳鸯茉莉"
+   ],
+   "region": "华南",
+   "city": "海口",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "五色梅（马缨丹）",
+   "aliases": [
+    "马缨丹"
+   ],
+   "region": "华南",
+   "city": "海口",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "比利时杜鹃",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "小花黄蝉",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金脉爵床",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红苞花",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黄钟花",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "袖珍椰子",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "观音竹",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金栗兰",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "野牡丹",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金英",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "棱果蒲桃（红果仔）",
+   "aliases": [
+    "红果仔"
+   ],
+   "region": "华南",
+   "city": "海口",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红叶金花",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "龙血树",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "双荚决明",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "龙吐珠",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "小琴丝竹",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "吊丝竹",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "撑篙竹",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "叶子花",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "鸡蛋果",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "白花油麻藤",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "异叶爬墙虎",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蓝花藤",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "马鞍藤",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "万年青",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "彩叶草",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫鸭趾草",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大花美人蕉",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蟛蜞菊",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蜘蛛兰",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "文殊兰",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "仙矛",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "土麦冬",
+   "aliases": [],
+   "region": "华南",
+   "city": "海口",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#08-区",
+   "confidence": "medium"
+  }
+ ]
+}

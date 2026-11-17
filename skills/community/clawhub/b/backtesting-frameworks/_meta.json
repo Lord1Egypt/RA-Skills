@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7dxr58ktjh28y80xrgmypzg582wtg5",
-  "slug": "backtesting-frameworks",
+  "name": "backtesting-frameworks",
+  "displayName": "量化回测框架",
   "version": "1.0.0",
-  "publishedAt": 1775207126771
+  "slug": "backtesting-frameworks-pro",
+  "description": "构建稳健的交易策略回测系统，处理前视偏差、幸存者偏差、交易成本",
+  "author": "@bingze00000",
+  "license": "MIT",
+  "tags": ["backtesting", "trading", "quant", "strategy", "finance", "algorithm"],
+  "pricing": {
+    "type": "paid",
+    "amount": 39,
+    "currency": "CNY"
+  },
+  "requirements": ["pandas", "numpy", "backtrader"],
+  "category": "finance"
 }

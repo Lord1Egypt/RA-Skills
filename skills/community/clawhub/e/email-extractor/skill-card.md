@@ -1,40 +1,56 @@
-## Description: <br>
-Extract and deduplicate up to 20 email addresses from webpage URLs or plain text content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract and deduplicate up to 20 email addresses from any webpage URL or plain text content.
 
-## Publisher: <br>
-[loverun321](https://clawhub.ai/user/loverun321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[loverun321](https://clawhub.ai/user/loverun321)
 
-## Use Case: <br>
-Developers and agents can use this skill to extract email addresses from authorized webpage URLs or supplied text, deduplicate them, and return a capped result set. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Unscoped URL fetching can process pages the user is not authorized to fetch or inspect. <br>
-Mitigation: Use the skill only with authorized public pages or text supplied for extraction, and avoid private or internal URLs. <br>
-Risk: The release evidence flags an unrelated apparent API key/payment signal and says not to rely on the payment_status output. <br>
-Mitigation: Remove or rotate the exposed key, clarify payment handling before release, and verify billing or payment state outside this skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loverun321/email-extractor) <br>
-- [Publisher profile](https://clawhub.ai/user/loverun321) <br>
+## Use Case:
 
+Agents and users use this skill to extract email addresses from public webpage URLs or supplied text, deduplicate the results, and return up to 20 matches.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON] <br>
-**Output Format:** [JSON object containing extracted emails, a count, and status or error fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deduplicates extracted addresses and caps results at 20 unique emails.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill fetches arbitrary URLs, which can expose private networks, metadata services, redirected restricted hosts, or oversized responses if URL access is not constrained.
+
+Mitigation: Use only public URLs unless URL fetching is constrained with validation that blocks localhost, private networks, metadata services, unsafe redirects, and oversized responses.
+
+Risk: The artifact exposes a credential-looking API key.
+
+Mitigation: Remove the exposed key from the artifact and rotate it before installing or operating the skill.
+
+Risk: The skill returns an undocumented paid status and advertises a per-extraction price.
+
+Mitigation: Review billing and payment-status behavior before use, and document expected charging and response semantics for users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loverun321/skills/email-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [JSON object containing extracted email addresses and a count.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deduplicates results and limits output to 20 email addresses per extraction.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

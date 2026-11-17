@@ -1,37 +1,53 @@
-## Description: <br>
-Automatically analyze and enhance content-short SKILL.md files by analyzing skill directory structure, adding usage examples, script documentation, common use cases, and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically analyze and enhance content-short SKILL.md files by analyzing skill directory structure, adding usage examples, script documentation, common use cases, and best practices.
 
-## Publisher: <br>
-[834948655](https://clawhub.ai/user/834948655) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[834948655](https://clawhub.ai/user/834948655)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to inspect under-documented SKILL.md files, identify missing examples or script documentation, and generate documentation enhancements while preserving the existing structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The enhancement script can make unintended changes to a target SKILL.md file. <br>
-Mitigation: Use --dry-run first, review the generated text, and keep a backup or version-control diff before applying changes. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to inspect short or incomplete SKILL.md files, generate documentation recommendations, and optionally append examples, script references, best practices, and common use cases.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, optional JSON analysis reports, and generated SKILL.md documentation text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update a target SKILL.md only when the enhancement script is explicitly run without --dry-run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The enhancement script can overwrite a target SKILL.md file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run with --dry-run first, review the proposed content, and apply changes only to skills you control under version control.
+
+Risk: Generated documentation may contain generic placeholders or inaccurate examples.
+
+Mitigation: Review generated sections before committing and test any commands or examples that are added.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/834948655/skills/skill-doc-enhancer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and JSON reports, with optional SKILL.md file edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can run in dry-run mode to preview documentation changes before writing files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

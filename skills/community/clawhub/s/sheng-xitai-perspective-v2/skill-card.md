@@ -1,39 +1,52 @@
-## Description: <br>
-Provides a Chinese-language Sheng Xitai-inspired investment perspective for evaluating early-stage technology projects, hard-tech opportunities, industrial funds, startup parks, policy tailwinds, and resource integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a simulated Sheng Xitai-style investment perspective for early technology project assessment, hard-tech investment analysis, industrial fund design, startup park operations, policy-opportunity analysis, and resource integration.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and external users can use this skill to have an assistant answer investment, industrial-strategy, fund-design, startup-park, and policy-opportunity questions through a named investor-style lens. Outputs should be treated as a simulated thinking framework, not professional financial advice or proof of affiliation with Sheng Xitai or Hongtai Fund.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may mistake persona-style responses for real affiliation with Sheng Xitai or Hongtai Fund.
+
+Mitigation: Present outputs as a simulated perspective and avoid implying representation, endorsement, or direct access to the named person or fund.
+
+Risk: Investment and industrial-strategy responses may be interpreted as professional financial advice.
+
+Mitigation: Treat outputs as a thinking framework and require independent professional review before making investment or fund-design decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Investors, founders, analysts, and strategy teams use this skill to structure Chinese-language investment analysis around early-stage technology, industrial ecosystems, hard-tech cycles, fund design, startup park operations, and policy-driven opportunities. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global, with content focused on China market and policy contexts <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat opinionated investment-perspective outputs as current financial advice. <br>
-Mitigation: Treat outputs as a perspective for analysis only, and independently verify current policies, market facts, and investment decisions. <br>
+**Output Format:** [Markdown or plain text advisory responses]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/sheng-xitai-perspective-v2) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/xiejianjun000) <br>
+**Other Properties Related to Output:** [No code execution, persistence, or data access; outputs are persona-style investment and strategy guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with structured investment-perspective analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language named-persona analysis; no executable code or external-system access] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence; skill body labels the perspective content as v2.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

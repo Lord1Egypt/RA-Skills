@@ -1,43 +1,53 @@
-## Description: <br>
-Detects shared stack membership and iterates a command across all PRs in base-to-tip order. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects shared stack membership and iterates a command across all PRs in base-to-tip order.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and agent-command authors use this skill to make commands operate across a stack of dependent pull requests, resolving stack membership, iterating each PR in base-to-tip order, and producing a consolidated root summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger terms may cause the skill to be used during an ordinary single-PR review conversation. <br>
-Mitigation: Use explicit --stack intent for multi-PR iteration and fall back to the normal single-PR workflow when stack mode is not intended. <br>
-Risk: The workflow reads pull request metadata and can post a consolidated stack summary through the GitHub CLI. <br>
-Mitigation: Confirm the target repository, GitHub CLI authorization, and generated summary before allowing the comment to be posted. <br>
-Risk: A failed PR in the middle of a stack can leave downstream PR context stale. <br>
-Mitigation: Halt iteration at the failed PR and leave downstream PRs untouched until the failure is resolved. <br>
+## Use Case:
 
+Developers use this skill in pull request review or fix workflows to resolve a stack of dependent PRs, run the workflow from base to tip, and prepare a consolidated root-PR summary.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/athola/skills/nm-sanctum-stack-mode) <br>
-- [Configured homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides callers to resolve PR stacks, iterate workflows, and post one consolidated root summary comment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata) <br>
+Risk: The security assessment reports that unauthenticated PR comments can steer workflow targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review PR-comment input and verify the selected PR targets before workflows act on or comment on them.
+
+Risk: The security assessment reports that the promised base-to-tip PR ordering is not enforced.
+
+Mitigation: Check the resolved PR list and dependency order before starting iteration.
+
+## Reference(s):
+
+- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown]
+
+**Output Format:** [Markdown guidance with shell command examples and PR summary tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides workflow guidance and a consolidated stack summary format.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

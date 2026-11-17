@@ -1,44 +1,65 @@
-## Description: <br>
-ReadGZH lets AI agents retrieve WeChat Official Account articles through a cloud API and return clean Markdown, cached article data, search results, or structured summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ReadGZH lets agents retrieve public WeChat Official Account articles from supplied links as readable text or Markdown for summarization, translation, comparison, or follow-up reading through the website, remote MCP, or REST API.
 
-## Publisher: <br>
-[sweesama](https://clawhub.ai/user/sweesama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sweesama](https://clawhub.ai/user/sweesama)
 
-## Use Case: <br>
-Developers and external agent users use this skill to let an AI assistant read, summarize, search, and reuse public WeChat Official Account article content without manually copying article HTML. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted WeChat article links, request metadata, and any ReadGZH API key are sent to ReadGZH's cloud service. <br>
-Mitigation: Use only non-sensitive links and personal API keys; do not submit private, tokenized, internal, regulated, or sensitive URLs. <br>
-Risk: Converted article content may be permanently cached and visible to other users. <br>
-Mitigation: Treat submitted content as public and cacheable, and avoid content whose shared cached visibility would be unacceptable. <br>
+## Use Case:
 
+External users and developers use this skill when an agent needs to read, summarize, translate, or compare public WeChat Official Account articles from user-provided links without running a local scraper.
 
-## Reference(s): <br>
-- [ReadGZH ClawHub listing](https://clawhub.ai/sweesama/readgzh) <br>
-- [ReadGZH API documentation](https://readgzh.site/docs) <br>
-- [ReadGZH dashboard and API key](https://readgzh.site/dashboard) <br>
-- [ReadGZH support site](https://readgzh.site) <br>
-- [Artifact OpenAPI specification](artifact/openapi.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, and configuration snippets with optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include paginated article chunks, cached article metadata, search results, summaries, and credit or rate-limit errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: server release evidence) <br>
+Risk: Public WeChat article URLs and request data are sent to the ReadGZH cloud service, and converted content may enter a shared cache.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public articles that the user is authorized to submit, and avoid private, internal, sensitive, deleted, or access-restricted content.
+
+Risk: API keys can be exposed if placed in prompts, article URLs, public files, or generated responses.
+
+Mitigation: Keep API keys in the client's secure credential mechanism and never include them in URLs or user-visible output.
+
+Risk: Cached search covers only articles already processed by ReadGZH and may be mistaken for full WeChat search or complete account history.
+
+Mitigation: Treat cache search and account listings as limited cached results, and clearly report incomplete or failed article retrieval.
+
+Risk: Repeated fresh reads can consume credits or trigger rate limits.
+
+Mitigation: Prefer returned cached slugs for repeat access, stop repeated retries after failures, and surface insufficient-credit or rate-limit responses plainly.
+
+## Reference(s):
+
+- [ReadGZH ClawHub Skill Page](https://clawhub.ai/sweesama/skills/readgzh)
+- [ReadGZH Website](https://readgzh.site)
+- [ReadGZH Developer Docs](https://readgzh.site/docs)
+- [ReadGZH OpenAPI Specification](https://readgzh.site/.well-known/openapi.yaml)
+- [ReadGZH Pricing](https://readgzh.site/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or plain text article content, optional JSON summaries, and concise configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fresh reads may consume service credits; cached reads are free, and long articles may be paginated.]
+
+## Skill Version(s):
+
+1.6.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

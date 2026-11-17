@@ -1,37 +1,50 @@
-## Description: <br>
-Analyzes AI agent platform requirements documents to extract test requirements, feature areas, interaction scenarios, boundary conditions, and unresolved questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes AI agent platform requirements documents to extract test requirements, functional areas, interaction scenarios, boundary conditions, and open questions.
 
-## Publisher: <br>
-[luiciferyi](https://clawhub.ai/user/luiciferyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luiciferyi](https://clawhub.ai/user/luiciferyi)
 
-## Use Case: <br>
-QA engineers, product reviewers, and developers use this skill to turn AI agent PRDs or user stories into structured requirements analysis covering lifecycle modules, test focus areas, edge cases, and open questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or update Feishu documents in a fixed workspace without clear user confirmation safeguards. <br>
-Mitigation: Confirm the Feishu destination and account permissions, preview the report in chat, and explicitly approve any document creation or update before using it on real PRDs. <br>
+## Use Case:
 
+QA engineers, product reviewers, and agent platform teams use this skill to turn PRDs or user stories into a structured requirements analysis report with functional modules, test focus areas, interaction scenarios, boundary conditions, and items needing confirmation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown requirements analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a Feishu document when the agent has access to the declared Feishu tools and workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release evidence) <br>
+Risk: The skill can write PRD-derived requirements analysis to a fixed external Feishu destination without clear user confirmation or destination control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the Feishu destination is trusted; for confidential PRDs, require preview and approval before writing or remove Feishu write and update permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luiciferyi/skills/agent-requirement-analyzer)
+- [Publisher profile](https://clawhub.ai/user/luiciferyi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown requirements analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include tables, Mermaid diagrams, and a list of unclear, missing, or conflicting requirements needing confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

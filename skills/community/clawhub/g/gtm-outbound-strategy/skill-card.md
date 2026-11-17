@@ -1,41 +1,54 @@
-## Description: <br>
-Design outbound GTM campaigns and write ready-to-send sequences for cold email, LinkedIn outreach, multi-touch campaigns, and low-performing outreach rewrites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design outbound GTM campaigns and write ready-to-send cold email and LinkedIn sequences for new outbound motions, multi-touch campaigns, and outreach rewrites.
 
-## Publisher: <br>
-[davidslavich](https://clawhub.ai/user/davidslavich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidslavich](https://clawhub.ai/user/davidslavich)
 
-## Use Case: <br>
-Revenue, GTM, and sales teams use this skill to structure outbound campaigns and produce ready-to-send sequence copy grounded in recipient or company signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated outreach may contain inaccurate recipient or company claims, weak personalization, or brand-inappropriate messaging. <br>
-Mitigation: Review every generated touch for factual accuracy, brand fit, and recipient relevance before sending. <br>
-Risk: Outbound messages can violate email, privacy, or platform rules if sent without checking consent and applicable requirements. <br>
-Mitigation: Confirm the campaign complies with email regulations, privacy obligations, and LinkedIn or email platform policies before use. <br>
+## Use Case:
 
+Sales, marketing, and go-to-market teams use this skill to structure outbound campaign briefs and draft ready-to-send multi-touch outreach grounded in timely recipient or company signals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davidslavich/gtm-outbound-strategy) <br>
-- [Publisher website](https://icustomer.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown campaign brief with sequence summaries and ready-to-send outreach copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires reviewer validation for recipient facts, consent, brand fit, and email or platform compliance before sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Generated outreach may create privacy, anti-spam, email, LinkedIn, or campaign compliance obligations before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all generated messages and campaign details against applicable outreach, privacy, platform, and anti-spam requirements before sending.
+
+Risk: Outbound copy may rely on company, persona, product, campaign, or recipient details supplied by the user.
+
+Mitigation: Provide only information appropriate for the agent environment and verify that recipient-specific claims are accurate before use.
+
+## Reference(s):
+
+- [Skill release page](https://clawhub.ai/davidslavich/skills/gtm-outbound-strategy)
+- [iCustomer](https://icustomer.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown campaign brief with sequence summaries and ready-to-send copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

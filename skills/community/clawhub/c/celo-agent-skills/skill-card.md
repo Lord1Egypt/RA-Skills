@@ -1,55 +1,65 @@
-## Description: <br>
-Celo Agent Skills is an end-to-end Celo development playbook covering viem-first transaction code, thirdweb wallet and React dApp patterns, Foundry smart contract workflows, MiniPay, stablecoins, fee abstraction, ERC-8004 trust, and x402 payments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Celo Agent Skills is an end-to-end Celo development playbook for building dApps, smart contracts, stablecoin fee flows, MiniPay Mini Apps, and agent payment and trust integrations.
 
-## Publisher: <br>
-[viral-sangani](https://clawhub.ai/user/viral-sangani) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[viral-sangani](https://clawhub.ai/user/viral-sangani)
 
-## Use Case: <br>
-Developers and engineers use this skill to build Celo dApps, smart contracts, MiniPay experiences, stablecoin payment flows, and AI-agent payment or trust integrations. It helps agents choose appropriate Celo tooling, generate code, configure networks, and provide testing, deployment, and verification steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples and generated workflows may deploy contracts, transfer or approve assets, bridge funds, make x402 payments, or broadcast raw transactions. <br>
-Mitigation: Use testnets first and require explicit human confirmation before any deploy, transfer, approval, bridge, x402 payment, or raw transaction broadcast. <br>
-Risk: Wallet data, private keys, mnemonics, and API keys can be exposed through generated code, logs, or source control. <br>
-Mitigation: Keep secrets out of source control and logs, use environment-based secret handling, and review generated code before running it. <br>
-Risk: MiniPay and local testing guidance may expose local services through ngrok. <br>
-Mitigation: Expose local services only for intentional testing, scope tunnels to the needed service, and shut them down after testing. <br>
-Risk: Generated production code or command sequences may contain incorrect or incomplete blockchain assumptions. <br>
-Mitigation: Review and scan generated changes before deployment, verify network IDs and contract addresses, and run tests against the intended Celo network. <br>
+## Use Case:
 
+Developers and engineers use this skill to implement Celo applications and smart contracts with viem-first transaction handling, fee abstraction, MiniPay support, stablecoin integrations, contract verification, and agent payment and trust patterns.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/viral-sangani/celo-agent-skills) <br>
-- [Root Celo Development Skill](artifact/skill.md) <br>
-- [Celo Fee Currency Guide](https://docs.celo.org/developer/fee-currency) <br>
-- [Celo MiniPay Documentation](https://docs.celo.org/build-with-celo/minipay) <br>
-- [Celo Token Contracts](https://docs.celo.org/tooling/contracts/token-contracts) <br>
-- [Celo Core Contracts](https://docs.celo.org/tooling/contracts/core-contracts) <br>
-- [viem Celo Chain Documentation](https://viem.sh/docs/chains/celo) <br>
-- [thirdweb x402 Documentation](https://portal.thirdweb.com/x402) <br>
-- [ERC-8004 EIP Specification](https://eips.ethereum.org/EIPS/eip-8004) <br>
-- [Fee Currency Reference](artifact/skills/fee-abstraction/references/fee-currencies.md) <br>
-- [MiniPay Testing Guide](artifact/skills/minipay-integration/references/testing-guide.md) <br>
-- [Contract Verification Configuration](artifact/skills/contract-verification/references/verification-config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Celo network, fee currency, wallet compatibility, testing, deployment, and verification guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installer examples can encourage executing remote scripts or unpinned tool versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install commands before use, prefer pinned and verified tool versions, and avoid curl-to-bash patterns in sensitive projects.
+
+Risk: Wallet-key handling examples can normalize storing or passing private keys in unsafe places.
+
+Mitigation: Use test wallets or low-value keys during development, keep production or highly funded wallet keys out of .env files and command-line arguments, and use managed secret storage where available.
+
+Risk: Mainnet, DeFi, bridging, and x402 payment actions can move funds or call external endpoints.
+
+Mitigation: Require explicit user confirmation and validate network, endpoint, recipient, token, and amount before proposing or running fund-moving actions.
+
+## Reference(s):
+
+- [Celo Fee Currency](https://docs.celo.org/developer/fee-currency)
+- [Celo Token Contracts](https://docs.celo.org/tooling/contracts/token-contracts)
+- [Celo Core Contracts](https://docs.celo.org/tooling/contracts/core-contracts)
+- [MiniPay](https://docs.celo.org/build-with-celo/minipay)
+- [viem Celo Chain Documentation](https://viem.sh/docs/chains/celo)
+- [thirdweb x402 Documentation](https://portal.thirdweb.com/x402)
+- [ERC-8004 Specification](https://eips.ethereum.org/EIPS/eip-8004)
+- [x402 Whitepaper](https://www.x402.org/x402-whitepaper.pdf)
+- [Celo Agent Skills on ClawHub](https://clawhub.ai/viral-sangani/skills/celo-agent-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include network-specific addresses, wallet compatibility notes, install/build/test/deploy commands, and implementation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

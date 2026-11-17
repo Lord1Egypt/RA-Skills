@@ -1,46 +1,58 @@
-## Description: <br>
-Design a customer referral program with incentive structures, sharing mechanics, fraud prevention rules, and tracking setup that turns existing buyers into a scalable acquisition channel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design a customer referral program with incentive structures, sharing mechanics, fraud prevention rules, and tracking setup that turns existing buyers into a scalable acquisition channel.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External operators, marketers, and ecommerce teams use this skill to design referral program economics, incentives, sharing mechanics, launch plans, fraud controls, and tracking for customer acquisition. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Referral reward recommendations can affect margins and acquisition cost if copied without validating store economics. <br>
-Mitigation: Review reward amounts against average order value, gross margin, current paid CAC, and target referral CAC before launch. <br>
-Risk: Fraud controls such as IP/device tracking and manual review workflows can create privacy, policy, or customer-support obligations. <br>
-Mitigation: Validate tracking, payout delays, account review, and fraud signals against customer privacy obligations and platform policies before implementation. <br>
-Risk: The skill provides business-planning guidance rather than an automated commerce integration. <br>
-Mitigation: Treat generated plans as proposals for human review and test referral mechanics end-to-end before issuing rewards. <br>
+## Use Case:
 
+External ecommerce operators and growth marketers use this skill to design referral program economics, customer sharing flows, fraud controls, launch plans, and measurement checklists.
 
-## Reference(s): <br>
-- [Referral Engine on ClawHub](https://clawhub.ai/leooooooow/referral-engine) <br>
-- [Referral Program Design Brief](artifact/output-template.md) <br>
-- [Referral Incentive Calculator](artifact/incentive-calculator.md) <br>
-- [Referral Fraud Prevention Rules](artifact/fraud-prevention-rules.md) <br>
-- [Referral Engine Quality Checklist](artifact/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with tables, checklists, and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces business-planning guidance for referral rewards, fraud controls, launch sequencing, and measurement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Referral tracking, device fingerprinting, SMS or ID verification, reward holds, and account flags can create privacy, disclosure, or customer fairness concerns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose customer tracking and verification practices where required, align them with privacy law and store policy, and use human review for edge cases before denying rewards.
+
+Risk: Fraud-prevention automation can incorrectly flag legitimate customers or households.
+
+Mitigation: Use reward holds and manual review queues before cancellation, document review decisions, and whitelist legitimate cases after investigation.
+
+## Reference(s):
+
+- [Referral Engine Skill Source](artifact/SKILL.md)
+- [Referral Program Design Brief](artifact/output-template.md)
+- [Referral Incentive Calculator](artifact/incentive-calculator.md)
+- [Referral Fraud Prevention Rules](artifact/fraud-prevention-rules.md)
+- [Referral Engine Quality Checklist](artifact/quality-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/referral-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance, worksheets, checklists, and implementation planning text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only planning skill; no executable code or external tool calls are included in the release artifact.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence, created 2026-06-05)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

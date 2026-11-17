@@ -1,41 +1,51 @@
-## Description: <br>
-A private art-learning tutor that recommends resources from a local art knowledge base, builds staged learning paths, and answers technique questions based on the user's goals, level, and preferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish Art Tutor helps learners choose art-study resources from a configured local knowledge base, plan staged learning paths, and get technique guidance.
 
-## Publisher: <br>
-[qingxiahotmail](https://clawhub.ai/user/qingxiahotmail) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qingxiahotmail](https://clawhub.ai/user/qingxiahotmail)
 
-## Use Case: <br>
-External users use this skill as an art study coach for watercolor, sketching, art history, digital art, illustration, photography, and related topics. It helps diagnose learning needs, scan a configured local art-library folder, recommend specific resources, and turn those resources into practical study plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can list filenames and sizes inside the configured local art-library folder. <br>
-Mitigation: Set knowledge_base_path to a dedicated art-books directory rather than a broad personal or system folder, and review scan output before sharing it. <br>
-Risk: Recommendations may be inaccurate if the configured folder does not match the documented art knowledge-base structure. <br>
-Mitigation: Verify the configured path and the returned file paths before relying on the study plan or resource recommendations. <br>
+## Use Case:
 
+External learners and art coaches use this skill to match goals, skill level, and available study time to local art books, exercises, and staged learning plans.
 
-## Reference(s): <br>
-- [Art Knowledge Base Collection List](references/corpus.md) <br>
-- [Art Learning Paths Recommendation Guide](references/learning_paths.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with resource paths, staged study plans, practice suggestions, and optional PowerShell file-scanning commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a user-configured knowledge_base_path and may list filenames and file sizes from that directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server evidence release.version and SKILL.md frontmatter) <br>
+Risk: The skill may ask the agent to scan files under a configurable local knowledge_base_path, and broad or untrusted paths can expose unrelated local file names or metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure knowledge_base_path to a narrow, trusted art-resource folder and review PowerShell scan commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qingxiahotmail/skills/art-tutor)
+- [Art knowledge-base catalog](artifact/references/corpus.md)
+- [Art learning paths guide](artifact/references/learning_paths.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown with resource paths, study plans, practice recommendations, and optional PowerShell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations depend on the configured local knowledge_base_path and the available files in that folder.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,62 @@
-## Description: <br>
-Provides Tinker SDK, CLI, checkpoint, Hugging Face export, and tinker-cookbook training workflow guidance for agents assisting with model fine-tuning and training operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Tinker CLI, SDK, and cookbook workflows for training runs, checkpoints, fine-tuning recipes, and troubleshooting.
 
-## Publisher: <br>
-[zjrwtx](https://clawhub.ai/user/zjrwtx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zjrwtx](https://clawhub.ai/user/zjrwtx)
 
-## Use Case: <br>
-Developers and ML engineers use this skill to operate Tinker training runs, inspect and manage checkpoints, export adapters, configure cookbook recipes, and troubleshoot Tinker SDK or CLI issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Checkpoint deletion and TTL commands can permanently remove or expire training assets. <br>
-Mitigation: Verify the exact Tinker path, run ID, filters, workspace ownership, and backup requirements before running delete or TTL commands. <br>
-Risk: Publishing checkpoints or pushing adapters to Hugging Face can expose proprietary weights, training data traces, or sensitive metadata. <br>
-Mitigation: Confirm repository visibility, license, organization ownership, file include/exclude patterns, and model card contents before any publish, public, or push-hf operation. <br>
-Risk: Authentication and experiment logging workflows require API keys or third-party tokens. <br>
-Mitigation: Use scoped credentials, avoid pasting secrets into shared transcripts, and confirm W&B or Hugging Face account targets before logging in or uploading outputs. <br>
+## Use Case:
 
+Developers and ML engineers use this skill to manage Tinker training runs and checkpoints, run SFT and RL cookbook recipes, and troubleshoot Tinker CLI or SDK workflows.
 
-## Reference(s): <br>
-- [Tinker CLI - Full Command Reference](references/cli-reference.md) <br>
-- [Tinker Cookbook - Recipe Deep-Dives](references/cookbook-recipes.md) <br>
-- [Tinker Troubleshooting Guide](references/troubleshooting.md) <br>
-- [Tinker SDK Repository](https://github.com/thinking-machines-lab/tinker) <br>
-- [Tinker Cookbook Repository](https://github.com/thinking-machines-lab/tinker-cookbook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash, Python, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose commands that modify checkpoint visibility, retention, deletion, external publishing, or experiment logging; users should review targets and credentials before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The security summary flags mutable package upgrades and broad activation behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin package versions or run setup in an isolated environment, and review proposed install or upgrade commands before execution.
+
+Risk: The security guidance notes possible API key exposure through diagnostics.
+
+Mitigation: Avoid printing API keys and prefer ephemeral credentials or restrictive permissions on ~/.tinker/config.json.
+
+Risk: The security summary flags public or destructive checkpoint operations.
+
+Mitigation: Require explicit confirmation before deleting checkpoints, publishing checkpoints, or pushing artifacts to public repositories.
+
+## Reference(s):
+
+- [Tinker CLI Reference](references/cli-reference.md)
+- [Tinker Cookbook Recipe Deep-Dives](references/cookbook-recipes.md)
+- [Tinker Troubleshooting Guide](references/troubleshooting.md)
+- [Tinker SDK](https://github.com/thinking-machines-lab/tinker)
+- [Tinker Cookbook](https://github.com/thinking-machines-lab/tinker-cookbook)
+- [Skill Source Repository](https://github.com/zjrwtx/max_skills)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose package installation, credential configuration, checkpoint management, and Hugging Face publishing steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

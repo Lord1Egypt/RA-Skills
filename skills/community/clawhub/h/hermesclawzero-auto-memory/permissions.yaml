@@ -1,0 +1,45 @@
+# permissions.yaml
+# Declared permissions for hermesclawzero-auto-memory skill.
+# These are the MINIMUM required permissions — no unnecessary access.
+
+version: 1
+
+permissions:
+  # Network access to the local HermesClawZero Sidecar API
+  - id: sidecar-http
+    description: "HTTP access to the local Sidecar API (default http://localhost:8010)"
+    type: network
+    allowed_hosts:
+      - "localhost"
+      - "127.0.0.1"
+    allowed_ports:
+      - 8010
+    protocols:
+      - http
+    justification: "Required to capture/search/autosave memories via Sidecar API"
+
+  # Filesystem access to .env config
+  - id: env-read
+    description: "Read .env files for API_KEY and MEM_PUBLIC_URL configuration"
+    type: filesystem
+    access: read
+    paths:
+      - ".env"
+    justification: "Required to load API credentials from project or script directory"
+
+  # Background cron jobs (user must explicitly opt in)
+  - id: cron-gardener
+    description: "Nightly memory tagging job (user-enabled only)"
+    type: cron
+    enabled_by_default: false
+    schedule: "0 3 * * *"
+    command: "python C:\\dev\\HermesClawZero-ConfigSidecar\\gardener.py"
+    justification: "Optional DB maintenance — tags unlabeled memories"
+
+  - id: cron-reminder
+    description: "Daily memory highlight push (user-enabled only)"
+    type: cron
+    enabled_by_default: false
+    schedule: "0 9 * * *"
+    command: "python C:\\dev\\HermesClawZero-ConfigSidecar\\daily_reminder.py"
+    justification: "Optional daily summary — pushes reminders via Telegram"

@@ -1,47 +1,65 @@
-## Description: <br>
-Interact with Confluence Cloud via REST API. Use for space management, page operations (list, view, create, update, delete), content search (CQL queries), page tree navigation (parent/child), attachments, comments, and labels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Confluence Cloud via REST API for space management, page operations, CQL search, page tree navigation, attachments, comments, and labels.
 
-## Publisher: <br>
-[snowsand-enterprises](https://clawhub.ai/user/snowsand-enterprises) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snowsand-enterprises](https://clawhub.ai/user/snowsand-enterprises)
 
-## Use Case: <br>
-Developers, documentation maintainers, and agents use this skill to inspect and manage Confluence Cloud spaces, pages, attachments, comments, labels, and CQL search workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a Confluence API token to read and manage live Confluence content. <br>
-Mitigation: Use a least-privileged Confluence API token scoped to the intended spaces and rotate it according to your credential policy. <br>
-Risk: Update, upload, delete, purge, label, and comment operations can change production documentation. <br>
-Mitigation: Require manual confirmation before write or destructive operations, especially in production spaces. <br>
-Risk: A misconfigured Confluence base URL can direct requests to the wrong tenant. <br>
-Mitigation: Verify CONFLUENCE_BASE_URL before use and keep separate environment configurations for production and non-production tenants. <br>
+## Use Case:
 
+Developers, documentation owners, and operations teams use this skill to manage Confluence Cloud spaces, pages, attachments, comments, labels, searches, and page trees from an agent-assisted CLI workflow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/snowsand-enterprises/snowsand-confluence) <br>
-- [Confluence Storage Format Reference](references/storage-format.md) <br>
-- [Confluence Query Language Reference](references/cql.md) <br>
-- [Atlassian Confluence REST API v2](https://developer.atlassian.com/cloud/confluence/rest/v2/intro/) <br>
-- [Atlassian Confluence REST API v1](https://developer.atlassian.com/cloud/confluence/rest/v1/intro/) <br>
-- [Atlassian API tokens](https://id.atlassian.com/manage-profile/security/api-tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration notes, and JSON API responses from the helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper script reads Confluence connection settings from environment variables and prints JSON for API operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can exercise broad live Confluence workspace authority through an Atlassian API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped API token and verify CONFLUENCE_BASE_URL is exactly the intended HTTPS Confluence tenant before running commands.
+
+Risk: Delete and purge operations can remove pages or attachments, including permanent deletion when purge flags are used.
+
+Mitigation: Require explicit human confirmation for delete-page, delete-attachment, delete-comment, remove-label, and any purge command before execution.
+
+Risk: Attachment downloads can write files to local paths chosen by command arguments or attachment titles.
+
+Mitigation: Use an explicit safe output path for downloads and inspect downloaded files before opening or reusing them.
+
+Risk: Raw curl workflows can bypass the script's narrower command interface.
+
+Mitigation: Prefer the provided confluence.py operations and use raw curl only when the requested API action is not otherwise available.
+
+## Reference(s):
+
+- [Confluence Storage Format Reference](references/storage-format.md)
+- [Confluence Query Language (CQL) Reference](references/cql.md)
+- [Atlassian Confluence Cloud REST API v2](https://developer.atlassian.com/cloud/confluence/rest/v2/intro/)
+- [Atlassian Confluence Cloud REST API v1](https://developer.atlassian.com/cloud/confluence/rest/v1/intro/)
+- [Snowsand Confluence on ClawHub](https://clawhub.ai/snowsand-enterprises/skills/snowsand-confluence)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration notes, and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Confluence Cloud URL, user email, and API token environment variables before live API operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

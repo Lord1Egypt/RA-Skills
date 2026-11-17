@@ -1,42 +1,59 @@
-## Description: <br>
-Parse resumes and CVs into structured JSON for contact information, work history, education, skills, total years of experience, confidence review flags, and optional PII redaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse resumes and CVs into structured JSON - contact info, work history, education, skills, and total years of experience, with support for PDF, Word-exported PDF, and scanned resumes in varied layouts.
 
-## Publisher: <br>
-[uday390](https://clawhub.ai/user/uday390) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uday390](https://clawhub.ai/user/uday390)
 
-## Use Case: <br>
-Recruiting teams, ATS developers, job boards, and sourcing workflows use this skill to convert resume documents into structured candidate data and route ambiguous fields for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume documents can contain sensitive personal data and are submitted to a third-party API. <br>
-Mitigation: Use the skill only with documents approved for DeepRead processing, follow the service's data handling requirements, and use PII redaction when blind screening is needed. <br>
-Risk: The skill requires a DeepRead API key. <br>
-Mitigation: Store DEEPREAD_API_KEY in the agent's secret store or environment and avoid pasting credentials into prompts, logs, or shared files. <br>
+## Use Case:
 
+External developers, recruiting teams, ATS builders, and talent operations teams use this skill to convert candidate resumes into structured data for ingestion, sourcing, skills matching, and review workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/uday390/deepread-resume-parser) <br>
-- [DeepRead Homepage](https://www.deepread.tech) <br>
-- [DeepRead Dashboard](https://www.deepread.tech/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON schemas, API examples, Python code, and cURL commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DEEPREAD_API_KEY and sends resume documents to the DeepRead API for processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Resume contents can include personal contact details and work-history data that are sent to DeepRead's API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review DeepRead's privacy and retention terms before processing real candidate data, and avoid sending resumes unless that external processing is acceptable.
+
+Risk: The skill requires a DeepRead API key and may use BYOK-related account configuration.
+
+Mitigation: Confirm API-key handling and BYOK routing in DeepRead's dashboard before production use.
+
+Risk: Optional related DeepRead skills may add separate behavior beyond this parser.
+
+Mitigation: Inspect and scan optional related skills before installing or using them.
+
+## Reference(s):
+
+- [DeepRead homepage](https://www.deepread.tech)
+- [ClawHub skill page](https://clawhub.ai/uday390/skills/deepread-resume-parser)
+- [DeepRead support issues](https://github.com/deepread-tech/deep-read-service/issues)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON responses with Markdown, Python, and cURL examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DEEPREAD_API_KEY and sends selected resume files to DeepRead's API for processing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

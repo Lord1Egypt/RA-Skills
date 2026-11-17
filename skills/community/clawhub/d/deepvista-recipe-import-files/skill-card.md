@@ -1,41 +1,59 @@
-## Description: <br>
-Imports files from a selected local directory into DeepVista as file-type context cards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Imports selected local files recursively as DeepVista context cards so they can be searched as project knowledge.
 
-## Publisher: <br>
-[jingconan](https://clawhub.ai/user/jingconan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jingconan](https://clawhub.ai/user/jingconan)
 
-## Use Case: <br>
-Developers and knowledge-base users use this recipe to bulk import project files into DeepVista so they can search and reuse them as context cards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload many local file contents into an external DeepVista knowledge base. <br>
-Mitigation: Confirm a narrow directory or extension filter before running, and exclude credentials, customer data, confidential files, dependency folders, and generated files. <br>
-Risk: Bulk import can unintentionally duplicate cards or include irrelevant generated content. <br>
-Mitigation: Warn before importing more than 50 files and skip common noise directories, lock files, minified files, and source maps by default. <br>
+## Use Case:
 
+Developers and other DeepVista users use this skill to bulk-import scoped project files into DeepVista as searchable file cards. It is intended for cases such as indexing a folder, adding codebase context, or uploading local files as knowledge cards.
 
-## Reference(s): <br>
-- [DeepVista CLI homepage](https://cli.deepvista.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/jingconan/deepvista-recipe-import-files) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides the agent to create one DeepVista file card per selected text file and report import results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0-alpha.21 (source: server release evidence) <br>
+Risk: Recursive imports can upload exact local file contents, including secrets, tokens, keys, databases, or private configuration, to DeepVista.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrow directory or extension allow-list, exclude hidden credential paths and secret-bearing files, and review the matched file list before upload.
+
+Risk: Running the recipe on a large directory can create many cards, and re-running it can create duplicates.
+
+Mitigation: Confirm scope with the user, warn before processing more than 50 matched files, skip common generated directories, and use project-specific tags to make imports easier to review.
+
+Risk: Binary, very large, or unreadable files may fail to import or create unsuitable cards.
+
+Mitigation: Skip non-UTF-8 binary files, continue past individual file errors, and report skipped files and failures in the final summary.
+
+## Reference(s):
+
+- [DeepVista CLI](https://cli.deepvista.ai)
+- [ClawHub Skill Page](https://clawhub.ai/jingconan/skills/deepvista-recipe-import-files)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/jingconan)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Text]
+
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides an agent through scoped file discovery, DeepVista card creation, progress reporting, and import summary output.]
+
+## Skill Version(s):
+
+0.1.0-alpha.21 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

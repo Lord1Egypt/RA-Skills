@@ -1,44 +1,57 @@
-## Description: <br>
-CinePrompt helps agents create AI video prompts and storyboard scripts using a five-dimension ideation framework, seven video-language elements, single-shot and segmented output modes, role cards, style cards, and keyframe anchors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CinePrompt helps agents generate structured AI video prompts and storyboard scripts using a five-dimension ideation framework and a seven-element video-language toolkit.
 
-## Publisher: <br>
-[slfcys](https://clawhub.ai/user/slfcys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[slfcys](https://clawhub.ai/user/slfcys)
 
-## Use Case: <br>
-External creators, marketers, video teams, and developers use this skill to turn ideas into structured AI video generation prompts, storyboard sequences, and continuity plans for single or multi-segment videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad prompt-writing or storyboard terms. <br>
-Mitigation: Use narrower trigger phrases when installing or routing the skill so it is selected mainly for AI video prompt and storyboard drafting tasks. <br>
-Risk: Generated video prompts may include timing, style, or continuity assumptions that do not match the target video model's limits. <br>
-Mitigation: Review the generated prompt against the target model's duration, aspect-ratio, and continuity constraints before production use. <br>
+## Use Case:
 
+External creators and video prompt writers use this skill to turn a video idea into structured AI video prompts, storyboards, and segmented shot plans with role cards, style cards, keyframe anchors, and audio timing notes.
 
-## Reference(s): <br>
-- [Five-Dimension Thinking Framework](artifact/references/five-dimensions.md) <br>
-- [Video Spectrum: Seven Elements](artifact/references/video-spectrum.md) <br>
-- [Segmented Generation Rules](artifact/references/segmented-rules.md) <br>
-- [Prompt Examples](artifact/references/examples.md) <br>
-- [CinePrompt on ClawHub](https://clawhub.ai/slfcys/five-seven-videoprompt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prompt and storyboard structures with role cards, style cards, shot sequences, transitions, optional audio timing notes, and continuity tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports single-prompt and segmented-video outputs; segmented outputs repeat role and style cards and include keyframe anchors for continuity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate for broad prompt-writing or storyboard requests outside video prompting, or when another language is needed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the task is video-prompt creation and the requested output language before using the skill.
+
+Risk: Generated prompts may include visual, audio, timing, and post-production guidance that exceeds the target video model's limits.
+
+Mitigation: Review segment length, model constraints, and content safety before submitting prompts to a video generator.
+
+## Reference(s):
+
+- [CinePrompt ClawHub page](https://clawhub.ai/slfcys/skills/five-seven-videoprompt)
+- [Five Dimensions Framework](artifact/references/five-dimensions.md)
+- [Video Spectrum - Seven Elements](artifact/references/video-spectrum.md)
+- [Segmented Generation Rules](artifact/references/segmented-rules.md)
+- [Examples](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown video prompt, storyboard, role and style cards, keyframe anchors, and audio timing notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output; supports single-segment and segmented video prompt structures.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

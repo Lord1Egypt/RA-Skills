@@ -1,39 +1,54 @@
-## Description: <br>
-Provides ASC 606 / IFRS 15 revenue recognition guidance for SaaS, services, and multi-element arrangements, including performance obligation analysis, transaction price allocation, deferred revenue schedules, journal entries, and disclosure checklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Revenue Recognition Agent provides ASC 606/IFRS 15 revenue recognition guidance for SaaS, services, and multi-element arrangements, including performance obligations, transaction price allocation, deferred revenue schedules, journal entries, and disclosure checklists.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Finance teams, accountants, and operators use this skill to analyze customer contracts under ASC 606 / IFRS 15, decide recognition timing, prepare deferred revenue schedules, draft journal entries, and build disclosure checklists for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Accounting policy choices, calculations, cutoff decisions, journal entries, or disclosures may be incorrect for a specific contract or reporting context. <br>
-Mitigation: Use the skill as an accounting analysis aid and have a qualified finance professional or auditor verify outputs before relying on them in financial statements or compliance materials. <br>
+## Use Case:
 
+Finance, accounting, and audit-facing users use this skill to analyze customer contracts under ASC 606/IFRS 15, prepare revenue schedules and journal entries, and assemble disclosure checklists for SaaS, services, and multi-element arrangements.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/samledger67-dotcom/revenue-recognition-agent) <br>
-- [Skill source](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with tables, checklists, journal entry examples, deferred revenue schedules, and occasional Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs require qualified accounting review before use in financial statements or compliance materials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Accounting guidance produced by the skill may affect revenue schedules, journal entries, disclosures, and financial statements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have qualified accounting professionals review outputs before using them for books, audit support, disclosures, or external reporting.
+
+Risk: The skill excludes several areas that require different or highly fact-specific accounting treatment.
+
+Mitigation: Route tax revenue recognition, leases, insurance contracts, financial instruments, government or collaborative arrangements, and crypto/token revenue to appropriate specialist guidance.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/samledger67-dotcom/skills/revenue-recognition-agent)
+- [Source Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with tables, checklists, journal-entry examples, revenue schedules, and occasional Python code blocks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No hidden execution, data access, persistence, or install-time behavior was identified in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn760j8hvg3eze215091p55bx982drwk",
+  "ownerId": "gyh",
   "slug": "minimax-text",
   "version": "1.0.0",
-  "publishedAt": 1775964487782
+  "publishedAt": 1744394400000,
+  "name": "minimax-text",
+  "description": "MiniMax 文本生成（LLM）技能，支持 M2.7/M2.5/M2.1/M2 系列模型。"
 }

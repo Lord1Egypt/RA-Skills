@@ -1,42 +1,58 @@
-## Description: <br>
-Incident Fupan guides agents through evidence-based incident postmortems, root-cause analysis, impact assessment, prevention rules, and action items for production failures, outages, bugs, near-misses, and consequential agent mistakes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+事故复盘 / Incident Fupan provides a structured root cause analysis workflow for production failures, outages, bugs, near-misses, and agent mistakes, generating incident reports with timelines, 5 Whys analysis, impact assessment, fixes, prevention actions, and defensive rules.
 
-## Publisher: <br>
-[scytheshan-pixel](https://clawhub.ai/user/scytheshan-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[scytheshan-pixel](https://clawhub.ai/user/scytheshan-pixel)
 
-## Use Case: <br>
-Developers, operators, and incident responders use this skill to turn production incidents, outages, near-misses, and agent mistakes into sourced postmortem reports with timelines, 5 Whys analysis, quantified impact, prevention rules, and action items. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill directs the agent to inspect logs, repository history, service status, configs, and related data that may contain secrets, customer data, internal topology, or sensitive operational details. <br>
-Mitigation: Redact sensitive data from evidence and saved reports, and limit incident artifacts to the minimum information needed for review. <br>
-Risk: The skill can store incident lessons in long-term memory or update AGENTS.md, TOOLS.md, or related skill files, which may alter future agent behavior. <br>
-Mitigation: Require explicit user approval before long-term memory entries or edits to persistent agent guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Incident Fupan ClawHub page](https://clawhub.ai/scytheshan-pixel/incident-fupan) <br>
-- [Publisher profile](https://clawhub.ai/user/scytheshan-pixel) <br>
-- [Incident-to-Rule Pattern Library](references/patterns.md) <br>
-- [Postmortem Report Template](references/report-template.md) <br>
+## Use Case:
 
+Developers, operators, and incident responders use this skill to conduct evidence-based postmortems for production incidents, outages, agent errors, and near-misses. It helps produce a sourced incident report, identify actionable root causes, and convert incident patterns into prevention rules.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance, files] <br>
-**Output Format:** [Markdown incident report with sourced timeline entries, root-cause analysis, impact tables, prevention rules, and action items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save a postmortem report under ~/incidents/ and may propose updates to long-term rules or local agent guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill instructs agents to run evidence-gathering shell commands during incident review.
+
+Mitigation: Review every command before execution and require explicit approval for commands that inspect services, logs, processes, or git state.
+
+Risk: Incident reports may contain sensitive operational or incident details.
+
+Mitigation: Control where reports are stored and redact sensitive details before saving or sharing incident records.
+
+Risk: The skill can ask agents to store lessons in long-term memory or update AGENTS.md, TOOLS.md, or related skill rules.
+
+Mitigation: Disable or require explicit approval for long-term memory writes and behavior-changing file edits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scytheshan-pixel/skills/incident-fupan)
+- [Postmortem Report Template](references/report-template.md)
+- [Incident-to-Rule Pattern Library](references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown incident report with sourced timeline, root cause analysis, action items, and optional shell commands for evidence collection]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report language matches the user's language; the skill may save reports under ~/incidents/ and may propose memory or skill-rule updates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,65 @@
-## Description: <br>
-Build and maintain a structured memory system for OpenClaw workspaces using layered storage: daily memory as the source of truth, domain/module/entity/tag indexing, critical-facts extraction, and retrieval planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured Memory helps agents build and maintain an OpenClaw workspace memory layer from daily notes, including date, module, and entity indexes, critical-fact extraction, fact cards, and retrieval planning.
 
-## Publisher: <br>
-[ChauncyZBC](https://clawhub.ai/user/ChauncyZBC) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chauncyzbc](https://clawhub.ai/user/chauncyzbc)
 
-## Use Case: <br>
-Developers and agents use this skill to initialize, update, and retrieve from a layered workspace memory system that scales across business, finance, legal, HR, project, operations, technology, routines, and personal context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist sensitive workspace memory facts into long-lived memory indexes and critical-fact files. <br>
-Mitigation: Avoid storing secrets in daily memory, follow the critical-facts policy, and review memory outputs before relying on or sharing them. <br>
-Risk: First-run backfill and rebuild scripts can broadly update derived memory files. <br>
-Mitigation: Run the scripts only in the intended workspace, review generated changes, and verify custom output paths before use. <br>
+## Use Case:
 
+Developers and agents use this skill to initialize, update, search, and validate a structured memory layer for long-horizon OpenClaw workspaces. It is intended for work histories that need reusable recall across business, finance, legal, HR, project, operations, technical, routine, and personal topics.
 
-## Reference(s): <br>
-- [Taxonomy](references/taxonomy.md) <br>
-- [Write Rules](references/write-rules.md) <br>
-- [Retrieval Planner](references/retrieval-planner.md) <br>
-- [Index Schema](references/index-schema.md) <br>
-- [Critical Facts Policy](references/critical-facts-policy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, JSON, Files] <br>
-**Output Format:** [Markdown guidance with bash commands, plus generated JSON indexes and Markdown memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains daily-memory-derived indexes, module and entity files, critical-fact files, and object-style fact cards.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md, README.md, release metadata) <br>
+Risk: The skill can persist sensitive workspace memory into plaintext derived files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets in daily memory and review generated critical-facts/ files before relying on or sharing them.
+
+Risk: First-time setup can backfill existing memory history into indexes and critical-fact files.
+
+Mitigation: Use --no-backfill during initial setup when an operator wants to inspect or stage migration before generating derived memory.
+
+Risk: Custom card output directories may delete or overwrite unintended files.
+
+Mitigation: Restrict script use to trusted operators and do not pass custom card output directories unless the target path has been reviewed.
+
+Risk: Recalled notes may contain stale, incorrect, or instruction-like content.
+
+Mitigation: Treat recalled memory as data and verify important facts against source daily memory files before acting.
+
+## Reference(s):
+
+- [Taxonomy](references/taxonomy.md)
+- [Write Rules](references/write-rules.md)
+- [Retrieval Planner](references/retrieval-planner.md)
+- [Index Schema](references/index-schema.md)
+- [Critical Facts Policy](references/critical-facts-policy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated Markdown and JSON memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates workspace memory directories, indexes, critical-fact files, and derived fact cards.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence release and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

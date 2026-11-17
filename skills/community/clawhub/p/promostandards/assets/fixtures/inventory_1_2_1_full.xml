@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <ns:Reply xmlns:ns="http://www.promostandards.org/WSDL/InventoryService/1.0.0/">
+      <ns:productID>PC61</ns:productID>
+      <ns:ProductVariationInventoryArray>
+        <ns:ProductVariationInventory>
+          <ns:partID>PC61-BLK-S</ns:partID>
+          <ns:partDescription>Essential Tee - Black - Small</ns:partDescription>
+          <ns:quantityAvailable>1543</ns:quantityAvailable>
+          <ns:attributeColor>Black</ns:attributeColor>
+          <ns:attributeSize>S</ns:attributeSize>
+          <ns:validTimestamp>2026-08-11T22:04:00Z</ns:validTimestamp>
+        </ns:ProductVariationInventory>
+        <ns:ProductVariationInventory>
+          <ns:partID>PC61-RED-M</ns:partID>
+          <ns:quantityAvailable>0</ns:quantityAvailable>
+          <ns:attributeColor>Red</ns:attributeColor>
+          <ns:attributeSize>M</ns:attributeSize>
+        </ns:ProductVariationInventory>
+      </ns:ProductVariationInventoryArray>
+    </ns:Reply>
+  </soapenv:Body>
+</soapenv:Envelope>

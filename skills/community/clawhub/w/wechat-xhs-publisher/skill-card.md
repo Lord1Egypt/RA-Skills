@@ -1,43 +1,59 @@
-## Description: <br>
-Rewrites trending news into WeChat Official Account articles, generates article images, checks publishing IP, and guides publishing to WeChat and Xiaohongshu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wechat Xhs Publisher helps an agent rewrite trending news into WeChat Official Account articles, generate supporting images, check the publishing IP, and publish to WeChat and Xiaohongshu.
 
-## Publisher: <br>
-[achievejia](https://clawhub.ai/user/achievejia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[achievejia](https://clawhub.ai/user/achievejia)
 
-## Use Case: <br>
-Social media operators and content creators use this skill to turn trending news material into article drafts with images and publish them to WeChat Official Accounts and Xiaohongshu after account, IP, and originality checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can publish content to public WeChat and Xiaohongshu accounts. <br>
-Mitigation: Require a preview and explicit user confirmation before any upload or post, and verify the active publishing accounts. <br>
-Risk: Rewritten news may be marked as original without enough copyright or authorship confirmation. <br>
-Mitigation: Confirm source rights, authorship, and platform originality requirements before setting originality flags. <br>
-Risk: Publishing from an unapproved public IP can interrupt or misroute the WeChat publishing flow. <br>
-Mitigation: Run the documented IP check before WeChat publishing and stop for user review if the IP differs from the configured allowlist. <br>
+## Use Case:
 
+External content operators and social media publishers use this skill to turn news material into platform-ready WeChat and Xiaohongshu posts. The workflow covers article drafting, image planning, IP checking, and final posting steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/achievejia/wechat-xhs-publisher) <br>
-- [IP38 public IP lookup](https://www.ip38.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown articles with frontmatter, image-generation prompts, publishing commands, configuration checks, and completion reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local article and image files and may invoke external publishing tools when the user authorizes them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The workflow can give an agent authority to publish public WeChat and Xiaohongshu content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human review and approval before any post is published or saved as a platform draft.
+
+Risk: The publishing command template uses unpinned tooling through npx -y.
+
+Mitigation: Pin or preinstall the required Bun and publishing tools before use.
+
+Risk: Drafts, images, account details, and platform credentials may be exposed to external publishing or image services.
+
+Mitigation: Run the skill only with the specific account and content needed for the post, and avoid unnecessary sensitive drafts or credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/achievejia/skills/wechat-xhs-publisher)
+- [Publisher profile](https://clawhub.ai/user/achievejia)
+- [IP38 IP lookup](https://www.ip38.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and publishing parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create article markdown, image files, publishing reports, and platform API call instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

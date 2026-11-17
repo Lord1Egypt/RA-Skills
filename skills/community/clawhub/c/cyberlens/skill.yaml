@@ -1,6 +1,6 @@
 name: cyberlens
 display_name: "CyberLens Security Scanner"
-version: "1.2.1"
+version: "1.2.2"
 description: "Scan websites, GitHub repositories, and Claw Hub skills for practical security issues before you ship, install, or trust them."
 author: shadoprizm
 license: Apache-2.0
@@ -41,5 +41,5 @@ config:
     description: "Maximum redirects to follow"
   user_agent:
     type: string
-    default: "CyberLens-Skill/1.1.1"
+    default: "CyberLens-Skill/1.2.2"
     description: "User agent string for requests"

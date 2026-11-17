@@ -1,7 +1,7 @@
 ---
 name: authentication-patterns
 description: Provides auth patterns for API keys, OAuth, and token management
-version: 1.9.8
+version: 1.10.3
 triggers:
   - authentication
   - api-keys
@@ -14,24 +14,7 @@ source: claude-night-market
 source_plugin: leyline
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Overview](#overview)
-- [When to Use](#when-to-use)
-- [Authentication Methods](#authentication-methods)
-- [Quick Start](#quick-start)
-- [Verify Authentication](#verify-authentication)
-- [Smoke Test](#smoke-test)
-- [Standard Flow](#standard-flow)
-- [Step 1: Check Environment](#step-1:-check-environment)
-- [Step 2: Verify with Service](#step-2:-verify-with-service)
-- [Step 3: Handle Failures](#step-3:-handle-failures)
-- [Integration Pattern](#integration-pattern)
-- [Detailed Resources](#detailed-resources)
-- [Exit Criteria](#exit-criteria)
+> **Night Market Skill**: ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Authentication Patterns
@@ -65,13 +48,12 @@ Common authentication patterns for integrating with external services. Provides 
 
 ### Verify Authentication
 ```python
-from leyline.auth import verify_auth, AuthMethod
+# Sketch: implement verify_auth and AuthMethod in your plugin.
+# leyline ships no auth module.
 
 # API Key verification
 status = verify_auth(
-    service="gemini",
-    method=AuthMethod.API_KEY,
-    env_var="GEMINI_API_KEY"
+    service="gemini", method=AuthMethod.API_KEY, env_var="GEMINI_API_KEY"
 )
 
 if not status.authenticated:
@@ -105,13 +87,9 @@ def check_credentials(service: str, env_var: str) -> bool:
 ### Step 2: Verify with Service
 ```python
 def verify_with_service(service: str) -> AuthStatus:
-    result = subprocess.run(
-        [service, "auth", "status"],
-        capture_output=True
-    )
+    result = subprocess.run([service, "auth", "status"], capture_output=True)
     return AuthStatus(
-        authenticated=(result.returncode == 0),
-        message=result.stdout.decode()
+        authenticated=(result.returncode == 0), message=result.stdout.decode()
     )
 ```
 **Verification:** Run the command with `--help` flag to verify availability.
@@ -122,7 +100,7 @@ def handle_auth_failure(service: str, method: AuthMethod) -> str:
     actions = {
         AuthMethod.API_KEY: f"Set {service.upper()}_API_KEY environment variable",
         AuthMethod.OAUTH: f"Run '{service} auth login' for browser auth",
-        AuthMethod.TOKEN: f"Refresh token with '{service} token refresh'"
+        AuthMethod.TOKEN: f"Refresh token with '{service} token refresh'",
     }
     return actions[method]
 ```
@@ -172,6 +150,6 @@ See `modules/interactive-auth.md` for complete documentation.
 
 ## Exit Criteria
 
-- Credentials verified or clear failure message
-- Suggested action for auth failures
-- Smoke test confirms working auth
+- [ ] Credentials verified or clear failure message
+- [ ] Suggested action for auth failures
+- [ ] Smoke test confirms working auth

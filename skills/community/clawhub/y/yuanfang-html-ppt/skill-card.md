@@ -1,41 +1,57 @@
-## Description: <br>
-Yuanfang HTML PPT helps an agent turn text or URL content into professional, editable PPTX decks and companion HTML previews using YAML-driven slide data and HTML templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional multi-page PPTX presentations from text or URLs using YAML content and customizable HTML templates.
 
-## Publisher: <br>
-[iyuanfang](https://clawhub.ai/user/iyuanfang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iyuanfang](https://clawhub.ai/user/iyuanfang)
 
-## Use Case: <br>
-Developers, analysts, and business users use this skill when they want an agent to create or revise local presentation decks from text, URLs, or structured slide content. It is intended for workflows that need editable PowerPoint output, reusable HTML previews, configurable themes, and human confirmation of content, branding, layout, and media choices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rendering can replace existing local deck.html or deck.pptx files at the chosen output path. <br>
-Mitigation: Review and confirm output paths before running render commands, and write to a new directory when preserving prior decks matters. <br>
-Risk: The skill may fetch user-provided URLs and reuse discovered branding assets in a presentation. <br>
-Mitigation: Provide only URLs whose content and branding assets are appropriate to fetch and include, and review extracted logos, colors, and fonts before rendering. <br>
+## Use Case:
 
+External users, developers, and presentation authors use this skill to turn text, URLs, or structured YAML/JSON into editable PPTX decks and companion HTML for proposals, reports, pitch decks, and product presentations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iyuanfang/yuanfang-html-ppt) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with YAML or JSON slide content, Node.js shell commands, and generated PPTX and HTML files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can generate or revise local deck.pptx and deck.html outputs from a content file and selected theme, brand, layout, and media options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Untrusted slide YAML, JSON, or web-derived content may execute inside Chromium during presentation conversion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Render only trusted inputs until text escaping, content validation, and browser execution controls are reviewed.
+
+Risk: Image, logo, or URL inputs may trigger unintended browser network requests during conversion.
+
+Mitigation: Prefer reviewed local files or data URLs and block browser network access for conversion runs where feasible.
+
+Risk: The authoritative scan verdict is suspicious because the renderer needs stronger handling for untrusted content.
+
+Mitigation: Treat the skill as requiring security review before deployment in workflows that accept external or user-supplied deck content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iyuanfang/skills/yuanfang-html-ppt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [YAML or JSON content, Markdown guidance, shell commands, editable PPTX files, and companion HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports user-selected themes, brand color overrides, logo choices, and iterative deck revisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,55 @@
-## Description: <br>
-Write clean, maintainable pytest tests using Fake-based testing, contract testing, and dependency injection patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write clean, maintainable pytest tests using Fake-based testing, contract testing, and dependency injection patterns.
 
-## Publisher: <br>
-[marcoracer](https://clawhub.ai/user/marcoracer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[marcoracer](https://clawhub.ai/user/marcoracer)
 
-## Use Case: <br>
-Developers and engineers use this skill to design maintainable pytest suites for Python and MCP projects, including Fake-based tests, dependency-injected fixtures, contract tests, parametrized scenarios, and guarded integration tests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or adapted tests may encode incorrect assumptions about the project under test. <br>
-Mitigation: Review tests before committing them and verify that assertions cover observable behavior rather than implementation details. <br>
-Risk: Integration-test examples may depend on real environment credentials. <br>
-Mitigation: Gate integration tests on required environment variables and keep credentials out of committed test code. <br>
+## Use Case:
 
+Developers and engineers use this skill to create maintainable pytest suites for Python and MCP projects, especially when applying fakes, fixtures, dependency injection, contract tests, and parametrized scenarios.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/numinstante/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces testing patterns and example snippets; does not install or run tools by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+Risk: Generated tests or examples may include credential-dependent integration-test gates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated tests before running them and keep integration tests gated on the required environment variables.
+
+Risk: Testing guidance may be inappropriate for a project's actual architecture or external dependencies.
+
+Mitigation: Review generated tests against the project design and run the relevant pytest suite before accepting changes.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/numinstante/skills)
+- [ClawHub skill page](https://clawhub.ai/marcoracer/skills/clean-pytest)
+- [Publisher profile](https://clawhub.ai/user/marcoracer)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with Python and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on pytest test structure, fake dependencies, fixtures, contract testing, integration-test gates, and test-running commands.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

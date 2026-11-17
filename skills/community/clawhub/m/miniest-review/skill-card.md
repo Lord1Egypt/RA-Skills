@@ -1,41 +1,49 @@
-## Description: <br>
-Reviews business decisions, plans, or strategies through a minimalist entrepreneur framework and helps users simplify options using eight principles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews business decisions, plans, or strategies using a Chinese-language minimalist entrepreneurship framework.
 
-## Publisher: <br>
-[ethan-china](https://clawhub.ai/user/ethan-china) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ethan-china](https://clawhub.ai/user/ethan-china)
 
-## Use Case: <br>
-External users and business builders use this skill to review important business decisions, simplify plans, identify major risks, and choose a concrete validation step for the week. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may activate the skill in unrelated conversations. <br>
-Mitigation: Confirm the user is asking about a business decision before relying on the review. <br>
-Risk: Business decision coaching may be misleading if sensitive context is incomplete or inappropriate to share. <br>
-Mitigation: Avoid sharing sensitive business details unless appropriate for the conversation, and treat recommendations as decision-support guidance rather than a substitute for professional advice. <br>
+## Use Case:
 
+Developers, founders, and operators use this skill to evaluate business choices against minimalist entrepreneurship principles, simplify plans, identify risks, and choose a validation step.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ethan-china/miniest-review) <br>
-- [Publisher profile](https://clawhub.ai/user/ethan-china) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides a recommendation, a simplified version of the plan, key risk, and one validation action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Broad Chinese trigger phrases may activate the skill when a user only asks for a general evaluation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit invocation or narrower trigger guidance when installing or configuring the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ethan-china/skills/miniest-review)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Analysis]
+
+**Output Format:** [Markdown text with recommendations, simplified-plan guidance, risks, and validation steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language business decision review; no code, file access, network use, credentials, or persistence according to security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

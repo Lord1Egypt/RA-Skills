@@ -1,45 +1,53 @@
-## Description: <br>
-Fetch and parse news highlights from CCTV News Broadcast (Xinwen Lianbo) for a given date. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and parse news highlights from CCTV News Broadcast (Xinwen Lianbo) for a given date.
 
-## Publisher: <br>
-[litiao1224](https://clawhub.ai/user/litiao1224) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litiao1224](https://clawhub.ai/user/litiao1224)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve dated CCTV News Broadcast highlights and have an agent summarize the returned titles and article content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The crawler makes outbound requests to CCTV/CNTV pages and fetched article links. <br>
-Mitigation: Install only when this network behavior is expected, and enforce a CCTV/CNTV domain allowlist for fetched article links. <br>
-Risk: Date handling may accept malformed values if an agent passes unchecked input to the script. <br>
-Mitigation: Validate requested dates strictly as YYYYMMDD before execution. <br>
-Risk: The crawler sends a fixed cookie header when requesting article pages. <br>
-Mitigation: Review and document the fixed cookie header before deployment. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve CCTV News Broadcast highlights for a requested date and summarize the fetched titles and article content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/litiao1224/cctv-news-fetcher-conflict) <br>
-- [Publisher profile](https://clawhub.ai/user/litiao1224) <br>
-- [CCTV Xinwen Lianbo archive](https://cctv.cntv.cn/lm/xinwenlianbo/) <br>
-- [CCTV recent Xinwen Lianbo archive](https://tv.cctv.com/lm/xwlb/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Markdown, Guidance] <br>
-**Output Format:** [JSON fetched by script and summarized as Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a YYYYMMDD date input; defaults to the current date when no date is provided by the script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The crawler follows links found in remote pages and may request destinations outside CCTV if those pages are manipulated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Allowlist CCTV HTTPS domains and validate redirects before fetching detail pages.
+
+Risk: The crawler sends a built-in cookie and performs outbound web requests without stated caps or timeouts.
+
+Mitigation: Remove the hard-coded cookie, cap fetched links and response sizes, add request timeouts, and pin dependencies exactly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/litiao1224/skills/cctv-news-fetcher-conflict)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [JSON from the crawler plus a Markdown summary for the user]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a date in YYYYMMDD format; relative dates such as today or yesterday are resolved before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

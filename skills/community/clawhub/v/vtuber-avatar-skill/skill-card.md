@@ -1,41 +1,58 @@
-## Description: <br>
-Generate vtuber avatar creator ai images with AI via the Neta AI image generation API (free trial at neta.art/open). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate VTuber avatar creator images via the Neta AI image generation API.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-External users and developers use this skill to generate VTuber avatar images from text prompts, with optional size selection and reference-image style inheritance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference image UUIDs, and the Neta/TalesofAI API token are sent to api.talesofai.com. <br>
-Mitigation: Use a token scoped to this service, avoid sensitive prompt content, and review whether the external API is acceptable for the intended use. <br>
-Risk: Passing API tokens directly in command lines can expose them in shared terminals or shell history. <br>
-Mitigation: Prefer safer secret handling and avoid pasting long-lived tokens into shared command lines. <br>
+## Use Case:
 
+External users and developers use this skill to generate VTuber avatar image URLs from text prompts through the Neta AI image generation API, with optional size and reference-image controls.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/blammectrappora/vtuber-avatar-skill) <br>
-- [Neta AI API Token Page](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text URL printed to stdout, with Markdown documentation and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a direct generated image URL after polling the remote image API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: package.json and server release metadata) <br>
+Risk: Prompts, reference image IDs, and the Neta API token are sent to api.talesofai.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited-scope token and avoid submitting sensitive prompts, personal data, or private reference images.
+
+Risk: Passing real tokens directly on the command line can expose credentials through shell history or process inspection.
+
+Mitigation: Prefer a secret manager or environment-based wrapper when operating the skill, and rotate tokens that may have been exposed.
+
+Risk: The generated image URL and completion behavior depend on an external image-generation service.
+
+Mitigation: Review generated outputs before use and handle service errors, moderation delays, or timeouts in downstream workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blammectrappora/skills/vtuber-avatar-skill)
+- [Neta AI API token page](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text URL with optional Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token and may use size and reference-image options.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

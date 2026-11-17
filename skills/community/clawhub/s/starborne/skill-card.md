@@ -1,39 +1,54 @@
-## Description: <br>
-Starborne runs a sci-fi equipment looter game with rolls, ten-rolls, cargo inventory, sacrifice, energy, and item art generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Starborne is a text-based space scavenging game for collecting, selling, dismantling, and upgrading randomized equipment.
 
-## Publisher: <br>
-[skb2026](https://clawhub.ai/user/skb2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skb2026](https://clawhub.ai/user/skb2026)
 
-## Use Case: <br>
-Players and entertainment-focused agent users use Starborne to run a persistent sci-fi loot-roll game with equipment collection, upgrades, inventory management, and optional generated item art. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create local image files and a JSON file for saved game state. <br>
-Mitigation: Use it in a workspace where those artifacts are acceptable, and delete the saved Starborne files to reset or remove retained gameplay state. <br>
+## Use Case:
 
+Players use Starborne to play a text-based loot-collection game, manage a local equipment inventory, and earn or spend in-game Credits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/skb2026/starborne) <br>
-- [Starborne README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown chat responses with optional generated image files and JSON game state] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save warehouse state and generated item images under ~/.openclaw/workspace/starborne/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: Selling, dismantling, deleting, or clearing inventory can remove game items from the local save.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up the save file before destructive inventory commands.
+
+Risk: Some documented gameplay rules differ from the bundled scripts.
+
+Mitigation: Check the behavior of a command in the bundled game files before relying on a documented rule.
+
+## Reference(s):
+
+- [Starborne on ClawHub](https://clawhub.ai/skb2026/skills/starborne)
+- [Publisher profile: skb2026](https://clawhub.ai/user/skb2026)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands]
+
+**Output Format:** [Text and Markdown game responses, with commands for local play]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Game state is saved locally.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

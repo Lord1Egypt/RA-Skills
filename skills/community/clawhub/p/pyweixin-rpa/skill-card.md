@@ -1,44 +1,58 @@
-## Description: <br>
-Automates Windows PC WeChat via pywinauto UI automation for messages, files, Moments, contacts, and related workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Windows PC WeChat through pywinauto UI automation for messages, files, Moments, contacts, and related account workflows.
 
-## Publisher: <br>
-[hello-mr-crab](https://clawhub.ai/user/hello-mr-crab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hello-mr-crab](https://clawhub.ai/user/hello-mr-crab)
 
-## Use Case: <br>
-Developers and automation users use this skill to generate and run Python/pywinauto scripts that automate a logged-in Windows PC WeChat client for messaging, files, contacts, Moments, and settings workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes broad control over a logged-in Windows WeChat client, including account-changing and data-access actions. <br>
-Mitigation: Restrict agents to explicit user-requested actions and require confirmation before sending, posting, accepting contacts, joining groups, clearing history, changing settings, or scheduling tasks. <br>
-Risk: Exported chats, contacts, QR codes, local WeChat paths, files, and media may contain private data. <br>
-Mitigation: Treat these outputs as sensitive, minimize retention, and avoid sharing or logging them unless the user explicitly requests it. <br>
-Risk: Frequent automated actions may disrupt the WeChat session or violate WeChat usage expectations. <br>
-Mitigation: Use conservative delays, stop on automation errors instead of retrying automatically, and operate only within the user's intended and permitted activity. <br>
+## Use Case:
 
+Developers and automation-focused users use this skill to generate and run Python scripts that operate a logged-in Windows WeChat desktop session for messaging, file handling, contact workflows, Moments actions, and monitoring. Use should stay limited to explicitly authorized account actions where the WeChat UI is visible and platform rules are respected.
 
-## Reference(s): <br>
-- [Pyweixin RPA on ClawHub](https://clawhub.ai/hello-mr-crab/pyweixin-rpa) <br>
-- [pyweixin RPA API Reference](references/api_reference.md) <br>
-- [Weixin 4.1+ UI Automation Notes](references/Weixin4.0.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Windows-only automation for a local logged-in WeChat client; outputs may trigger UI actions when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and metadata.openclaw.yaml) <br>
+Risk: The skill can export private WeChat data and perform account-changing actions from a logged-in Windows WeChat session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before sending, posting, clearing history, accepting friends or groups, exporting chats or files, or claiming red packets.
+
+Risk: Automated WeChat actions can be misused for bulk outreach, surveillance, or platform-rule evasion.
+
+Mitigation: Use only for authorized workflows, avoid bulk or surveillance use cases, and follow WeChat rules and policies.
+
+Risk: Dependency and UI automation behavior can vary across Windows, Python, and WeChat versions.
+
+Mitigation: Use a dedicated virtual environment with pinned dependencies and run the provided requirement and visibility checks before automation.
+
+## Reference(s):
+
+- [pyweixin RPA API Reference](references/api_reference.md)
+- [WeChat 4.1+ UI Automation Notes](references/Weixin4.0.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are constrained by Windows WeChat UI state, dependency availability, and user-provided automation targets.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata and metadata.openclaw.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

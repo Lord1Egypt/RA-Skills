@@ -1,42 +1,54 @@
-## Description: <br>
-Scan an OpenClaw SKILL.md file for security threats before installing it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan an OpenClaw SKILL.md file for security threats before installing it and return a safety score, detected threat patterns, and a SAFE, CAUTION, or DANGEROUS verdict.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and engineers use Skillscan to run a local safety check on SKILL.md files before installing them. It reports a safety score, detected threat pattern names, a SAFE/CAUTION/DANGEROUS verdict, and the scanned skill name. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the skill starts a local Python web service. <br>
-Mitigation: Keep the service bound to local use and stop it when scanning is complete. <br>
-Risk: Submitted SKILL.md files may contain secrets or sensitive content. <br>
-Mitigation: Avoid scanning files that contain secrets, credentials, or private operational details. <br>
-Risk: The scanner's verdicts are heuristic and may miss threats or flag benign patterns. <br>
-Mitigation: Use the verdict as review support and perform manual review before installing a skill. <br>
+## Use Case:
 
+Developers and agent operators use Skillscan to check SKILL.md content before installation with a local API that reports a score, matched threat categories, verdict, and parsed skill name.
 
-## Reference(s): <br>
-- [Skillscan ClawHub listing](https://clawhub.ai/mirni/gh-skillscan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, guidance, shell commands] <br>
-**Output Format:** [JSON scan response with Markdown usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns safety_score, findings, verdict, and skill_name; verdicts are heuristic support for manual review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The scanner may be treated as a reliable approval gate even though the security evidence describes it as a limited pattern checker.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the verdict as advisory triage only and manually review skills before installation.
+
+Risk: Submitted SKILL.md content may contain secrets or private operational details.
+
+Mitigation: Remove secrets and private details before scanning, and submit content only to a trusted local service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/gh-skillscan)
+- [Publisher profile](https://clawhub.ai/user/mirni)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Analysis, Guidance]
+
+**Output Format:** [JSON response from a local FastAPI endpoint]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes safety_score, findings, verdict, and skill_name.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

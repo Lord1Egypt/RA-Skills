@@ -1,43 +1,55 @@
-## Description: <br>
-Operates Formbricks through an OOMOL-connected account to read, create, update, and delete contacts and contact attribute keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Formbricks through a connected account, including creating contacts and managing contact attribute keys.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and operators use this skill to manage Formbricks contacts and contact attribute keys through the OOMOL connector from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires account-connected Formbricks access through OOMOL and may expose account data if used in the wrong workspace. <br>
-Mitigation: Confirm the active OOMOL/Formbricks connection and workspace context before running actions that access or change data. <br>
-Risk: Write and destructive actions can create, update, or delete Formbricks contact records or attribute keys. <br>
-Mitigation: Inspect the live connector schema, confirm the exact payload and target with the user, and require explicit approval before destructive actions. <br>
+## Use Case:
 
+Developers and teams use this skill to work with Formbricks contacts and contact attribute keys through their connected account. It supports reading data and preparing changes, with confirmation required before write or destructive actions.
 
-## Reference(s): <br>
-- [ClawHub Formbricks Skill](https://clawhub.ai/oomol/oo-formbricks) <br>
-- [Formbricks Homepage](https://formbricks.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and JSON connector payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the oo CLI, an authenticated OOMOL account, and a connected Formbricks account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Setup executes downloaded installation code, and the CLI may automatically synchronize other agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install the CLI separately, and disable automatic skill synchronization if you want changes limited to this integration.
+
+Risk: The connected Formbricks account can be changed or data can be deleted through write and destructive actions.
+
+Mitigation: Connect only the intended account and confirm every change or deletion.
+
+## Reference(s):
+
+- [Formbricks](https://formbricks.com)
+- [Formbricks REST API documentation](https://formbricks.com/docs/api-reference/rest-api)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [oo CLI commands with JSON payloads and JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes and destructive actions require confirmation before execution.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

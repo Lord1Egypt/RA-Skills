@@ -1,38 +1,53 @@
-## Description: <br>
-李善友（混沌学园创办人）的思维框架与表达方式，用于以公开资料蒸馏出的视角分析商业创新、非连续性跨越和认知升级问题。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+李善友（混沌学园创办人）的思维框架与表达方式，用于以公开资料蒸馏的角色视角分析商业创新、非连续性跨越和认知升级问题。
 
-## Publisher: <br>
-[kenyanggit](https://clawhub.ai/user/kenyanggit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kenyanggit](https://clawhub.ai/user/kenyanggit)
 
-## Use Case: <br>
-Employees, external users, and business operators use this skill to request a simulated Li Shanyou-style perspective on innovation strategy, second-curve transitions, and cognitive upgrades. It is a role-play/persona skill based on public material, not the person's own advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persona-style business guidance can be mistaken for the real person's advice or used without validating important decisions. <br>
-Mitigation: Treat responses as a simulated perspective based on public material, exit the persona when needed, and independently verify important business advice before acting. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to request a simulated Li Shanyou-style perspective on business innovation, second-curve transitions, first-principles reasoning, and cognitive upgrades.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kenyanggit/li-shanyou-perspective) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-style responses should include the first-use disclaimer described by the skill and should be independently checked before acting on important business advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may mistake the simulated persona output for statements from Li Shanyou.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as a simulated perspective based on public material, not as personal statements, and ask the agent to exit roleplay when normal answers or clearer attribution are needed.
+
+Risk: Business analysis may rely on dated or incomplete public information.
+
+Mitigation: Use the output for ideation and framing, then verify current facts, strategy assumptions, and business decisions against authoritative sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kenyanggit/skills/li-shanyou-perspective)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose in a roleplay-style business analysis voice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a first-activation disclaimer and can exit roleplay when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

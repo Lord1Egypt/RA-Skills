@@ -1,37 +1,53 @@
-## Description: <br>
-Check and correct grammar errors in text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check and correct grammar errors in text.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and content authors use this skill to check and correct grammar in supplied text, with results written to an output file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/jpengcheng523-netizen/jpeng-ai-grammar-checker) <br>
+Developers and external users use this skill to check text for grammar issues and receive corrected output.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON] <br>
-**Output Format:** [JSON results produced by a command-line Python invocation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GRAMMAR_API_KEY. Release security evidence says to confirm the referenced Python script and API provider before use.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Input text may be sent to an external grammar service.
+
+Mitigation: Confirm the service provider before use and avoid sending secrets, proprietary documents, regulated data, or private text unless that provider is approved.
+
+Risk: The skill documentation is broad about when it should run.
+
+Mitigation: Use it only for grammar and proofreading tasks unless the release documentation is narrowed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-ai-grammar-checker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [JSON result containing a success status and grammar correction data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GRAMMAR_API_KEY and an approved external grammar service.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

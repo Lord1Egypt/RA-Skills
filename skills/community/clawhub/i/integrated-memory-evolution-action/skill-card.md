@@ -1,43 +1,61 @@
-## Description: <br>
-Integrates a three-layer memory system, a self-evolution workflow, and proactive action mode so agents can use persistent memory, learning records, and task state to guide future work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates a three-layer memory system, self-evolution workflow, and proactive action mode so agents can retain context, record lessons, and act from memory.
 
-## Publisher: <br>
-[chungvic](https://clawhub.ai/user/chungvic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chungvic](https://clawhub.ai/user/chungvic)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add persistent memory, learning logs, task state tracking, and proactive workflow checks to an agent workspace. It is intended for agents that should remember prior context, record lessons and errors, and update operating files as part of recurring work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages broad persistent memory writes that may capture sensitive user context or credentials. <br>
-Mitigation: Require explicit approval before memory writes and exclude secrets, API keys, and sensitive personal data from memory files. <br>
-Risk: The skill describes scheduled or recurring self-evolution behavior that can change agent behavior over time. <br>
-Mitigation: Disable scheduled actions by default and require a human-reviewed diff before enabling or applying recurring changes. <br>
-Risk: The skill directs agents to update files that can control future behavior, including AGENTS.md, TOOLS.md, HEARTBEAT.md, and session state files. <br>
-Mitigation: Require reviewed diffs and approval before modifying files that affect future agent instructions or tool usage. <br>
+## Use Case:
 
+Developers and agent operators use this skill to guide agents through persistent memory checks, write-ahead logging, learning records, and proactive follow-up across tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chungvic/integrated-memory-evolution-action) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/chungvic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with checklists, file path conventions, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents to read and write persistent memory, learning logs, task state files, and workflow-control files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Broad persistent memory can capture and reuse user history beyond the current task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where persistent memory is intentional, users consent to storage, and retention practices are reviewed before installation.
+
+Risk: Shared memory paths can expose sensitive context across agents or workspaces.
+
+Mitigation: Restrict shared memory access to trusted agents and enforce workspace-appropriate access controls.
+
+Risk: Scheduled or autonomous follow-up behavior can run without clear user approval.
+
+Mitigation: Disable scheduled jobs by default or require explicit approval before enabling them.
+
+Risk: Changes to agent-control files such as AGENTS.md or TOOLS.md can alter future agent behavior.
+
+Mitigation: Require trusted human review before accepting changes to agent-control files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chungvic/skills/integrated-memory-evolution-action)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with file templates and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write or update persistent memory, learning, session-state, and agent-control files when enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

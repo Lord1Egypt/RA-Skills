@@ -1,47 +1,56 @@
-## Description: <br>
-Dlazy Videoretalk helps an agent use Tongyi VideoRetalk to regenerate a talking-person video so the speaker's mouth movement matches a provided audio track, with an optional reference face image for multi-person videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Tongyi VideoRetalk to synchronize a speaker’s mouth movements in a video to a supplied audio track, with an optional reference face image for selecting among multiple people.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Developers and agent users use this skill to invoke dLazy's hosted VideoRetalk service for lip-syncing a person video to new speech. It is intended for workflows that can send the selected media and parameters to dLazy's hosted API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected video, audio, optional face image, prompts, and parameters are sent to dLazy's hosted service. <br>
-Mitigation: Use the skill only for media that can be shared with dLazy's API, and avoid sensitive or non-consensual media. <br>
-Risk: A dLazy API key is required and may be stored in the local CLI configuration or supplied by environment variable. <br>
-Mitigation: Keep the key scoped to the intended organization, restrict local config access, and rotate or revoke the key if it is exposed. <br>
-Risk: The skill depends on the third-party @dlazy/cli package. <br>
-Mitigation: Prefer on-demand npx execution or review the package/source before global installation. <br>
-Risk: The security summary notes documentation mistakes in examples. <br>
-Mitigation: Check current command options with dlazy videoretalk -h and use dry-run behavior where appropriate before paid or sensitive generation. <br>
+## Use Case:
 
+Developers and creators can use the skill to adapt a talking-person video to a new voice track, optionally selecting a face when multiple people appear. The documented workflow requires a dLazy API key and sends media to the hosted service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-videoretalk) <br>
-- [dLazy CLI source](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy homepage](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The invoked CLI may return hosted media URLs or an asynchronous generateId for later polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The security review found that the inspected content appears to initiate CLI login rather than demonstrate the advertised lip-sync workflow, and the CLI authentication behavior was not fully assessed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the installed CLI’s actual behavior and authentication flow before providing media or credentials.
+
+Risk: The documented workflow sends prompts to dLazy’s hosted API and uploads local media to its storage service.
+
+Mitigation: Use media you have permission to process, avoid sensitive material, and review the service terms before uploading.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-videoretalk)
+- [dLazy CLI project (metadata link; provenance unavailable)](https://github.com/dlazy-ai/cli)
+- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON]
+
+**Output Format:** [Generated media asset returned by the CLI as a JSON response with a URL, or saved to a local file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Video, audio, and optional reference-face inputs; generation may run asynchronously.]
+
+## Skill Version(s):
+
+1.3.41 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

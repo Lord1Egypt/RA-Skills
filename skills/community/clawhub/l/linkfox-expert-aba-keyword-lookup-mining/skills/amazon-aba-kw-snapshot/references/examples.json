@@ -1,0 +1,14 @@
+{
+  "shell": "B",
+  "example": {
+    "region": "US",
+    "keyword": "yoga mat",
+    "week": "latest",
+    "top_k_asin": 3
+  },
+  "presets": [
+    "关键词ABA速查",
+    "精确词最新周快照",
+    "Top3导出(精确)"
+  ]
+}

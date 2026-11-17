@@ -1,0 +1,38 @@
+{
+  "schema_version": "2.0",
+  "action_id": "act_supplier_8000_001",
+  "idempotency_key": "idem_supplier_8000_001",
+  "tenant_id": "tenant_demo",
+  "subject_id": "user_001",
+  "agent_id": "agent_payments_001",
+  "scenario": "supplier_payment",
+  "action_type": "cross_border_payment",
+  "requested_action": "execute_payment",
+  "target": {
+    "type": "beneficiary",
+    "reference": "supplier_4821",
+    "account_fingerprint": "sha256:acct_7f42d9c1",
+    "country": "SG"
+  },
+  "amount": {
+    "value_minor": 800000,
+    "currency": "USD"
+  },
+  "authorization_context": {
+    "requested_by": "user_001",
+    "agent_scope": [
+      "prepare_payment",
+      "execute_payment"
+    ],
+    "session_id": "session_001"
+  },
+  "evidence_references": [
+    "invoice:INV-2048",
+    "contract:PO-812"
+  ],
+  "attributes": {
+    "new_beneficiary": true,
+    "high_risk_country": false
+  },
+  "created_at": "2026-07-17T07:55:00Z"
+}

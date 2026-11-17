@@ -1,46 +1,62 @@
-## Description: <br>
-Set up OpenViking context database for OpenClaw agents with filesystem-based memory management, tiered context loading, and persistent agent memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up OpenViking context database for OpenClaw agents with filesystem-based memory management, tiered context loading, and self-evolving memory.
 
-## Publisher: <br>
-[engsathiago](https://clawhub.ai/user/engsathiago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[engsathiago](https://clawhub.ai/user/engsathiago)
 
-## Use Case: <br>
-Developers and engineers use this skill to install and configure OpenViking as a context database for OpenClaw agents, including workspace setup, provider configuration, tiered memory settings, and health checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow can run a remote shell installer for the OpenViking CLI. <br>
-Mitigation: Review the installer before execution and prefer a pinned or verified OpenViking release when possible. <br>
-Risk: OpenViking configuration examples store provider API keys in a local config file. <br>
-Mitigation: Restrict permissions on local configuration files and avoid storing raw API keys in plaintext when a secret manager or environment-based configuration is available. <br>
-Risk: The health check can write a test entry into the configured memory store. <br>
-Mitigation: Run health checks against a non-production workspace unless adding a test memory entry is acceptable. <br>
+## Use Case:
 
+Developers and engineers use this skill to install and configure OpenViking as persistent, tiered memory for OpenClaw agents, then validate setup with provided health-check guidance.
 
-## Reference(s): <br>
-- [OpenViking Examples](references/examples.md) <br>
-- [OpenViking GitHub Repository](https://github.com/volcengine/OpenViking) <br>
-- [OpenViking Documentation](https://github.com/volcengine/OpenViking/tree/main/docs) <br>
-- [OpenViking OpenClaw Plugin](https://github.com/volcengine/OpenViking/tree/main/plugins/openclaw) <br>
-- [OpenViking Examples](https://github.com/volcengine/OpenViking/tree/main/examples) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash, JSON, YAML, and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May provide local setup commands, configuration examples, and health-check guidance for OpenViking and OpenClaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: High-impact installation steps can modify the local Python environment or execute a remote shell installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup steps first, use a virtual environment, pin package versions, and inspect and pin the remote installer before running it.
+
+Risk: Provider API keys are required for embedding and VLM configuration.
+
+Mitigation: Store credentials with restrictive permissions or a secret manager, and avoid committing generated configuration files that contain keys.
+
+Risk: OpenViking memory is durable local data and may retain sensitive project context.
+
+Mitigation: Treat the workspace as sensitive data, review retention practices, and confirm which model providers receive content for embeddings or VLM processing.
+
+## Reference(s):
+
+- [OpenViking Examples](references/examples.md)
+- [OpenViking GitHub](https://github.com/volcengine/OpenViking)
+- [OpenViking Documentation](https://github.com/volcengine/OpenViking/tree/main/docs)
+- [OpenViking OpenClaw Plugin](https://github.com/volcengine/OpenViking/tree/main/plugins/openclaw)
+- [OpenViking Examples Repository](https://github.com/volcengine/OpenViking/tree/main/examples)
+- [ClawHub Skill Page](https://clawhub.ai/engsathiago/skills/openviking-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, YAML, and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup instructions, configuration examples, helper scripts, and health-check guidance for local OpenViking use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

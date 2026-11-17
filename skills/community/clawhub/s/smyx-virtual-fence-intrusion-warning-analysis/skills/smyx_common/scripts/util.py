@@ -401,10 +401,14 @@ class OpenIdUtil(BaseUtil):
 
     @classmethod
     def get_workspace_data_dir(cls):
-        workspace = os.environ.get('OPENCLAW_WORKSPACE')
-        if not workspace:
-            workspace = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-        return os.path.join(workspace, "data")
+        """获取当前 Agent 的 data 目录。
+
+        直接复用 AgentContextUtil.get_agent_data_dir()，
+        采用“路径中第一个 /skills/ 之前就是 workspace 根”的统一算法，
+        避免 dirname 层数硬编码。OPENCLAW_WORKSPACE 已在
+        detect_current_agent_workspace 里优先生效，此处无需再处理。
+        """
+        return AgentContextUtil.get_agent_data_dir()
 
     @classmethod
     def get_api_key_file_open_id(cls):

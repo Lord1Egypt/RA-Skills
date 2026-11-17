@@ -1,47 +1,66 @@
-## Description: <br>
-Tencent Drive(Weiyun) MCP helps agents use Weiyun MCP tools for cloud file listing, category search, downloads, uploads, sharing, renaming, folder creation, moves, deletes, and upload hash preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tencent Drive(Weiyun) MCP guides agents through Weiyun cloud-drive file management over MCP, including listing, upload, download, delete, sharing, rename, create, move, and upload hash calculation.
 
-## Publisher: <br>
-[yun-percy](https://clawhub.ai/user/yun-percy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yun-percy](https://clawhub.ai/user/yun-percy)
 
-## Use Case: <br>
-Developers and agent users use this skill to manage files in Tencent Weiyun through MCP, including browsing, upload preparation, upload execution, downloads, sharing, renames, moves, and deletion workflows. It is most useful when an agent needs precise Weiyun tool arguments or local SHA1 block metadata for FTN upload. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent delegated access to manage Weiyun cloud files, including uploads, downloads, moves, renames, deletes, permanent deletes, and share-link creation. <br>
-Mitigation: Require explicit user confirmation before any file-changing action, local download, permanent deletion, or share-link creation. <br>
-Risk: The skill handles MCP tokens, Weiyun cookies, download cookies, and share links that can expose account access or private files. <br>
-Mitigation: Treat tokens, cookies, and share links as secrets; avoid logging them and keep the MCP URL on the official Weiyun endpoint. <br>
-Risk: The artifact includes helper scripts for local upload workflows. <br>
-Mitigation: Inspect setup or helper scripts before running them and only execute commands needed for the specific user-approved task. <br>
+## Use Case:
 
+Developers and external users use this skill to operate Tencent Weiyun cloud storage through MCP, including browsing files, uploading and downloading content, creating share links, and moving or deleting files.
 
-## Reference(s): <br>
-- [Weiyun authentication reference](references/auth.md) <br>
-- [Weiyun MCP API reference](references/mcp_api.md) <br>
-- [Weiyun upload protocol reference](references/upload_protocol.md) <br>
-- [Weiyun MCP server endpoint](https://www.weiyun.com/api/v3/mcpserver) <br>
-- [Weiyun OpenClaw authorization page](https://www.weiyun.com/act/openclaw) <br>
-- [ClawHub skill page](https://clawhub.ai/yun-percy/tencent-drive-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, API Calls, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands, MCP call arguments, Python script usage, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing instructions and local upload metadata; can guide actions that affect cloud files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: frontmatter and server release evidence) <br>
+Risk: Cloud-file management tools can upload, delete, move, rename, and share files in the user's Weiyun account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation of the exact files, directories, destinations, sharing settings, and deletion mode before taking action.
+
+Risk: MCP tokens, cookies, download URLs, and share links can grant access to cloud files.
+
+Mitigation: Treat these values as sensitive, prefer configured secrets or environment variables over command-line tokens, and avoid exposing them in prompts, logs, or shell history.
+
+Risk: Update and setup guidance can lead the agent to execute scripts or follow remote update instructions.
+
+Mitigation: Verify script paths and review returned update instructions before execution; do not follow remote update instructions automatically.
+
+Risk: Uploads and downloads operate on local file paths and remote cloud locations selected by the agent.
+
+Mitigation: Confirm the source file, target directory, and download destination with the user before transferring data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yun-percy/skills/tencent-drive-mcp)
+- [Weiyun MCP API Reference](references/mcp_api.md)
+- [Weiyun Authentication Reference](references/auth.md)
+- [Weiyun Upload Protocol Reference](references/upload_protocol.md)
+- [Weiyun MCP Server Endpoint](https://www.weiyun.com/api/v3/mcpserver)
+- [Weiyun OpenClaw Authorization](https://www.weiyun.com/act/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and Python helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes MCP tool call guidance, token configuration steps, and local SHA1 block calculation/upload scripts.]
+
+## Skill Version(s):
+
+1.0.5 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

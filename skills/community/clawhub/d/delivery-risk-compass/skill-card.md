@@ -1,41 +1,54 @@
-## Description: <br>
-Assesses enterprise project delivery risk from industry, phase, project shape, and risk signals, then returns health scoring, warnings, phase guidance, communication strategy, and recovery actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delivery Risk Compass helps project teams assess enterprise delivery health by industry, phase, project type, and risk signals, then produce risk focus areas, bottleneck warnings, communication strategies, and recovery actions.
 
-## Publisher: <br>
-[william202404](https://clawhub.ai/user/william202404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[william202404](https://clawhub.ai/user/william202404)
 
-## Use Case: <br>
-Project managers, delivery leads, and technical implementation teams use this skill to triage enterprise delivery risk before kickoff, during implementation, before launch, or when acceptance and delay issues need recovery actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Delivery recommendations may be incomplete or mismatched for a specific contract, client, or regulated operating environment. <br>
-Mitigation: Treat the output as advisory triage and review recommended actions against the project contract, acceptance criteria, and stakeholder decisions before acting. <br>
-Risk: Project names, client details, or contract terms entered as command-line arguments may be retained in terminal history or logs. <br>
-Mitigation: Use project aliases and avoid sensitive client, commercial, or contract details in CLI arguments when history or shared logs are a concern. <br>
+## Use Case:
 
+Project managers, delivery leads, and technical leads use this skill to assess enterprise project delivery risk before kickoff, during requirements and implementation, before go-live, and when acceptance or delay issues need recovery actions.
 
-## Reference(s): <br>
-- [Delivery Risk Compass ClawHub page](https://clawhub.ai/william202404/delivery-risk-compass) <br>
-- [william202404 publisher profile](https://clawhub.ai/user/william202404) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, shell commands] <br>
-**Output Format:** [Console text with structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local CLI output; advisory only; accepts project context and comma-separated risk signals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and release evidence; package.json is 1.0.0) <br>
+Risk: Users may enter confidential project names, customer names, vendor names, or sensitive commercial details while requesting a delivery risk assessment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use project aliases and generalized context, and omit real customer, vendor, personal, and commercially sensitive details.
+
+Risk: Delivery risk scores and recovery actions may be incomplete or misleading for a specific contract, industry regulation, or customer governance process.
+
+Mitigation: Have the responsible project, commercial, legal, or governance owner review recommendations before using them for customer commitments or escalation decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/william202404/skills/delivery-risk-compass)
+- [Server-resolved GitHub provenance](https://github.com/william202404/tob-skills/tree/main/delivery-risk-compass)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style risk assessment with scores, warnings, checklists, communication guidance, and recovery actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language project delivery guidance; users should avoid entering confidential project, customer, vendor, or sensitive commercial details.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence; artifact frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,45 @@
+{
+  "name": "@yottameta/yotta-vetter",
+  "version": "0.2.9",
+  "description": "Yuanshen (元审) — the security review protocol before installing any skill: a four-phase checklist (source → code → permissions → risk) + a lightweight checker, with deep-scan handoff to yotta-security-audit. Triggers before installing/evaluating any skill or reviewing unknown code. Boundaries: initial review & report only; human confirmation required.",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-vetter",
+    "skill-vetting",
+    "security",
+    "supply-chain",
+    "yottaskills"
+  ],
+  "files": [
+    "SKILL.md",
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "CHANGELOG.md",
+    "install.sh",
+    "references",
+    "scripts",
+    "assets",
+    "bin",
+    "README.zh-CN.md",
+    "!scripts/testdata",
+    "!scripts/testdata/**",
+    "!**/__pycache__",
+    "!**/*.pyc",
+    "!scripts/test_*.py"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-vetter.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-vetter": "bin/install.js"
+  },
+  "scripts": {
+    "test": "python scripts/test_yotta_vetter.py"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "dia-ask",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Prompt your locally-running Dia browser from the command line and get the assistant's answer back as an exact text file. Focus-safe. macOS.",
   "license": "MIT",
   "author": "German Kovacevic <gk@agneo.app>",

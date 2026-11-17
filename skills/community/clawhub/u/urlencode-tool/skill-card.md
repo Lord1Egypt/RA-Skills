@@ -1,41 +1,50 @@
-## Description: <br>
-URL-encode or decode text for safe transmission in URLs and query strings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+URL-encode or decode text for safe transmission in URLs and query strings, with support for form data, partial encoding, and batch file processing.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and agents use this skill for quick local percent-encoding and decoding of URL text while preparing links, query values, and shell-oriented workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The README advertises command flags and modes that are not present in the bundled script. <br>
-Mitigation: Check the bundled script's help output before automation and use supported flags such as --encode, --decode, --component, and --plus. <br>
-Risk: Using the wrong URL encoding mode can change how spaces and reserved characters are represented. <br>
-Mitigation: Confirm whether percent encoding or plus-for-spaces form encoding is required before using the output in a URL or request body. <br>
+## Use Case:
 
+Developers and agents use this skill to generate URL encoding and decoding guidance or shell commands for single strings in URLs, query values, and related automation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/urlencode-tool) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/dinghaibin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and plain-text encoded or decoded strings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script emits one encoded or decoded string to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The documentation claims batch, JSON, charset, query, and path-safe options that the included script does not support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the implemented single-string encode and decode flags, or update the package before relying on the unsupported documented options.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/urlencode-tool)
+- [Publisher profile](https://clawhub.ai/user/dinghaibin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included helper script prints encoded or decoded strings to standard output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

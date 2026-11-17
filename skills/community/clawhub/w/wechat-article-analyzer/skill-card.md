@@ -1,42 +1,53 @@
-## Description: <br>
-Fetches user-provided WeChat public-account articles and generates structured analysis of the title, body text, timeline, stakeholders, facts, themes, quotes, and reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes WeChat public-account articles by fetching article content, extracting titles, timelines, stakeholders, facts, themes, and quotes, and generating reports in Markdown, OpenCLI YAML, or JSON.
 
-## Publisher: <br>
-[teenyboy](https://clawhub.ai/user/teenyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teenyboy](https://clawhub.ai/user/teenyboy)
 
-## Use Case: <br>
-Developers and agents use this skill to analyze a WeChat article URL and convert article content into timelines, stakeholder lists, extracted facts, themes, quotes, and shareable reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches WeChat article URLs supplied by the user, and broad triggers could fetch a link the user did not intend to analyze. <br>
-Mitigation: Run it on explicit WeChat article URLs and review automatic trigger behavior before enabling unattended use. <br>
-Risk: Dependency hygiene issues in the Python runtime can affect network fetching or YAML handling. <br>
-Mitigation: Use a controlled Python environment with pinned, current versions of requests and PyYAML. <br>
-Risk: Generated Markdown, YAML, or JSON files may be written to paths selected at runtime. <br>
-Mitigation: Review output paths and generated files before consuming reports or registering adapters. <br>
+## Use Case:
 
+Developers and analysts use this skill to analyze WeChat public-account article URLs and produce structured summaries covering timelines, stakeholders, facts, themes, and notable quotes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/teenyboy/wechat-article-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Configuration] <br>
-**Output Format:** [Markdown reports, OpenCLI YAML adapter files, and JSON data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write reports or adapter files to user-selected output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can fetch user-supplied URLs, creating avoidable network-access risk if arbitrary, redirected, internal, shortened, or private-network URLs are provided.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only where outbound web requests are acceptable, prefer clearly valid https://mp.weixin.qq.com article URLs, and add URL allowlisting plus redirect validation before treating the skill as low-risk.
+
+Risk: Dependencies are version-ranged rather than pinned.
+
+Mitigation: Pin and review dependency versions before production deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/teenyboy/skills/wechat-article-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, configuration]
+
+**Output Format:** [Markdown report, OpenCLI YAML adapter, or JSON data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can print results to the console or write report files when an output path is provided.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

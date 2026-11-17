@@ -1,39 +1,55 @@
-## Description: <br>
-Provides current weather conditions and a three-day forecast for a city, coordinate, pinyin input, or IP-based location lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides weather forecasts by city name, pinyin, coordinates, or IP-based auto-location, including current conditions, a three-day forecast, and condition icons.
 
-## Publisher: <br>
-[greenteawater](https://clawhub.ai/user/greenteawater) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[greenteawater](https://clawhub.ai/user/greenteawater)
 
-## Use Case: <br>
-External users and agents use this skill to answer weather requests with current conditions, humidity, wind details, condition icons, and a short forecast. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather queries are sent to wttr.in, and omitting a location may allow the service to infer location from the request IP. <br>
-Mitigation: Provide an explicit city or coordinates when requesting weather and avoid submitting sensitive location details. <br>
+## Use Case:
 
+External users and agent developers use this skill to answer natural-language weather requests and return current conditions plus a simple three-day forecast with icons.
 
-## Reference(s): <br>
-- [wttr.in weather service](https://wttr.in) <br>
-- [ClawHub skill listing](https://clawhub.ai/greenteawater/weather-forecasts222) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [Markdown text with inline weather icon image links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes current conditions and up to three daily forecast entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5555 (source: server release metadata) <br>
+Risk: Weather requests are sent to wttr.in, and empty-location requests may allow approximate location inference from network or IP information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an explicit city or location when location inference is not desired, and disclose the external weather-service dependency before deployment.
+
+Risk: Forecast content depends on wttr.in availability and accuracy.
+
+Mitigation: Treat returned forecasts as informational, keep request failures visible to the user, and avoid using the output as a sole source for safety-critical decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/greenteawater/skills/weather-forecasts222)
+- [ClawHub publisher profile](https://clawhub.ai/user/greenteawater)
+- [wttr.in weather service](https://wttr.in/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Markdown-formatted weather report with current conditions, icon image links, and a three-day forecast.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and curl; no API key is required; queries wttr.in and can use IP-based location when no city is supplied.]
+
+## Skill Version(s):
+
+1.0.5555 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

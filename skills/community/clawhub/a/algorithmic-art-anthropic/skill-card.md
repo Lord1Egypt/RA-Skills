@@ -1,41 +1,55 @@
-## Description: <br>
-Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates algorithmic art philosophies and p5.js interactive generative-art artifacts with seeded randomness and parameter controls.
 
-## Publisher: <br>
-[pupuking723](https://clawhub.ai/user/pupuking723) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[pupuking723](https://clawhub.ai/user/pupuking723)
 
-## Use Case: <br>
-External creators, developers, and agents use this skill to turn creative prompts into an algorithmic art philosophy and a self-contained p5.js HTML artifact with seeded parameter exploration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML can load p5.js and fonts from third-party CDNs. <br>
-Mitigation: Review generated HTML before publishing or sharing it, and pin or self-host dependencies where the deployment requires tighter supply-chain control. <br>
-Risk: Generated pages intentionally use Anthropic-like styling. <br>
-Mitigation: Confirm branding is appropriate for the target use, or replace the branding before public release. <br>
+## Use Case:
 
+Developers and creators use this skill to turn a prompt into a computational art philosophy and a browser-ready p5.js artwork with seed navigation, tunable parameters, and download controls.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/pupuking723/algorithmic-art-anthropic) <br>
-- [p5.js CDN dependency](https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown plus self-contained HTML and JavaScript] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated HTML uses seeded p5.js sketches, browser controls, and external CDNs when the provided template is followed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated HTML may contact cdnjs and Google Fonts when opened.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated HTML before sharing or deploying, and bundle p5.js and fonts locally or add subresource integrity where appropriate.
+
+Risk: Shared artifacts may appear Anthropic-styled because the template requires Anthropic branding.
+
+Mitigation: Remove or neutralize Anthropic branding before general release unless that presentation is intentional and permitted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pupuking723/skills/algorithmic-art-anthropic)
+- [p5.js 1.7.0 CDN](https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js)
+- [Google Fonts API](https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Lora:wght@400;500&display=swap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown philosophy plus single-file HTML and p5.js code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses seeded randomness for reproducible variations; generated HTML may load p5.js from cdnjs and fonts from Google Fonts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

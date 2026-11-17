@@ -1,0 +1,11 @@
+interface:
+  display_name: "Urgent Event Backfill"
+  short_description: "Handle urgent event staffing shortfalls"
+  default_prompt: "Use $urgent-event-backfill to triage this staffing emergency and prepare a buyer-operated rush form handoff after I confirm; do not submit it for me."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "tempguru-event-staffing"
+      description: "Live TempGuru rush planning, policy, and quote tools"
+      transport: "streamable_http"
+      url: "https://mcp.tempguru.co/mcp?source=openai-codex"

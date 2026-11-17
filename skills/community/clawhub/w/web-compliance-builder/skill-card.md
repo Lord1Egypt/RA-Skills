@@ -1,47 +1,65 @@
-## Description: <br>
-Classifies web businesses and produces fact-driven compliance page drafts, gap reports, checklists, and launch gates for websites, stores, SaaS apps, marketplaces, and app landing pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Classify a web business, then identify, draft, and checklist the compliance pages, notices, disclosures, user flows, and launch gates it needs.
 
-## Publisher: <br>
-[clarezoe](https://clawhub.ai/user/clarezoe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clarezoe](https://clawhub.ai/user/clarezoe)
 
-## Use Case: <br>
-Developers, founders, and web operators use this skill to classify a web business, draft triggered compliance pages and notices, audit existing pages, and produce evidence-bound launch or remediation checklists. It is drafting and issue-spotting support, not legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with built-in reference coverage for EU/EEA, UK, U.S./California, Canada, and Australia. <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-rely on generated compliance drafts or audit findings as legal advice. <br>
-Mitigation: Use the output for drafting and issue spotting only, and have qualified counsel review high-risk, regulated, sensitive-data, cross-border, children, finance, health, AI, marketplace, or subscription launches before relying on it. <br>
-Risk: Incomplete or inaccurate intake facts can cause missing, mismatched, or misleading compliance pages and launch gates. <br>
-Mitigation: Provide accurate facts about regions, data collection, tracking, transactions, subscriptions, apps, existing policies, and operational practice before using the generated outputs. <br>
+## Use Case:
 
+Developers, operators, and website owners use this skill to classify a site or app, generate fact-bound compliance pages and checklists, and audit existing policies for missing, inadequate, or mismatched requirements. It supports ecommerce, SaaS, subscriptions, marketplaces, apps, AI product sites, newsletters, affiliate or lead-generation pages, and cross-border stores.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/clarezoe/web-compliance-builder) <br>
-- [Audit Workflow](references/audit-workflow.md) <br>
-- [Business Types](references/business-types.md) <br>
-- [Checklist Framework](references/checklist-framework.md) <br>
-- [Jurisdictions](references/jurisdictions.md) <br>
-- [Page Requirements](references/page-requirements.md) <br>
-- [Policy Templates](references/policy-templates.md) <br>
-- [Source Register](references/source-register.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown reports and draft policy text, with optional structured JSON from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a non-legal-advice disclaimer and evidence-bound pass/fail fields for launch gates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and skill metadata) <br>
+Risk: The skill may produce incorrect, incomplete, or stale legal-compliance guidance for a specific jurisdiction, platform, or business model.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as drafting and issue-spotting support only, keep the required disclaimer, and have qualified counsel review high-risk, regulated, sensitive-data, children-focused, cross-border, marketplace, subscription, or AI use cases.
+
+Risk: A generic policy or checklist could be misleading if it is not tied to the site's actual data, tracking, transactions, regions, and platform dependencies.
+
+Mitigation: Run the structured intake first, classify the business before drafting, omit unsupported clauses, and require evidence for checklist and launch-gate items.
+
+Risk: Existing policy pages can contradict operational practice, such as tracking before consent or undisclosed cross-border fulfillment.
+
+Mitigation: Use audit mode to inventory existing pages, mark mismatches and missing legal requirements as blocking, and remediate the highest-severity gaps before launch.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/clarezoe/skills/web-compliance-builder)
+- [Audit Workflow](references/audit-workflow.md)
+- [Business Types](references/business-types.md)
+- [Checklist Framework](references/checklist-framework.md)
+- [Jurisdictions](references/jurisdictions.md)
+- [Page Requirements](references/page-requirements.md)
+- [Policy Templates](references/policy-templates.md)
+- [Source Register](references/source-register.md)
+- [Deep Research Report](research/deep-research-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown drafts and tables, JSON intake/checklist data, and shell commands for local helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include requirement labels, evidence fields, uncertainty labels, legal-review flags, and launch-gate pass/fail status.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -75,14 +75,13 @@ Selected-company unlock:
 - failure or not-executed rows appear only when they exist, as script-rendered concise rows; the model does not invent fixed failure sections
 - user-facing detail artifact: `details_markdown_path` uses the full detail-block Markdown template for all successful companies and concise failure rows when present; no normal JSON export recommendation. `--markdown-file` wins, then `--artifact-dir`, then `OKKIGO_ARTIFACT_DIR`, then current working directory `okki-go-artifacts/`, then internal temporary storage.
 - artifact preflight: before paid unlock calls, the wrapper verifies a writable details Markdown path. If an explicit or default artifact path is not writable, it falls back to the internal temporary path and emits a warning without asking for permission. If no details Markdown path is writable, it exits before paid API calls with `error_code: "DETAILS_MARKDOWN_PRECHECK_FAILED"`, `paid_api_called: false`, `unlock_executed: false`, `next_action: "authorize_artifact_dir"`, and `recovery_suggestion`.
-- Do not present paid `contacts/search` as the normal next step after selected-company unlock; unlocked company `profileEmails` data is already fetched without a separate contact-search confirmation
+- Do not present paid `contacts/search` as a next step; the route is retired and unlocked company `profileEmails` data is the supported contact source
 - local state failure: warning only
 
-Contact search:
+Retired contact search:
 
-- normal compact: script-provided contact rows, role/company/country/email availability, and charge type summary; balance is not included
-- debug metadata: raw path, batch ID, output budget
-- raw file only: raw contact IDs and payloads
+- normal compact: `contact_search_retired`, `replacement`, `next_action`, and `charged: false`
+- no API call, no raw contact IDs, and no credit charge
 
 Email send:
 

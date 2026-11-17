@@ -1,43 +1,56 @@
-## Description: <br>
-Provides lookup guidance for treasury-system business scenarios, returning process steps, interface combinations, and ASCII flow diagrams for 10 treasury workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Treasury Scenarios provides Chinese-language lookup for Postal Savings Bank treasury system business scenarios, returning process steps, interface combinations, and ASCII flow diagrams.
 
-## Publisher: <br>
-[lbj-bnu](https://clawhub.ai/user/lbj-bnu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lbj-bnu](https://clawhub.ai/user/lbj-bnu)
 
-## Use Case: <br>
-Treasury-system developers and analysts use this skill to map business questions about account monitoring, payroll, supplier payments, internal transfers, budget planning, SSO, receipts, balances, and monthly operations to documented scenario flows and interface sequences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Treasury workflow descriptions include sensitive banking operations and could be mistaken for approval to perform live financial actions. <br>
-Mitigation: Use the skill as a reference aid only; require separate authorization, confirmations, and normal business controls before any real banking operation. <br>
-Risk: Scenario and interface guidance may be incomplete or stale for a specific treasury deployment. <br>
-Mitigation: Confirm process steps, interface codes, and required fields against the current authoritative treasury-system documentation before implementation. <br>
+## Use Case:
 
+Treasury operations, finance, and integration teams use this skill to answer scenario-based questions about treasury workflows and the interface sequences used for funds management, payroll, supplier payments, budgeting, SSO, receipts, and account balance inquiries.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lbj-bnu/treasury-scenarios) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Scenario data](artifact/scenarios.json) <br>
-- [Interface data](artifact/interfaces.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with numbered process steps, interface sequences, and ASCII flow diagrams] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference-only output; it does not access accounts, credentials, files, or networks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact package.json) <br>
+Risk: The skill documents payment, payroll, transfer, account, and login-token workflows that may be sensitive in treasury environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only where users are authorized to view treasury interface and workflow details.
+
+Risk: Readers could mistake static workflow documentation for authorization to perform real banking actions.
+
+Mitigation: Use separate role checks, approval flows, explicit confirmations, and audit controls for any real banking integration.
+
+## Reference(s):
+
+- [Treasury Scenarios on ClawHub](https://clawhub.ai/lbj-bnu/skills/treasury-scenarios)
+- [Skill Instructions](artifact/SKILL.md)
+- [Scenario Data](artifact/scenarios.json)
+- [Interface Data](artifact/interfaces.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with scenario names, ordered workflow steps, interface combinations, and ASCII flow diagrams]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns static reference material from bundled scenario and interface data; it does not execute transactions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, scenarios.json, SKILL.md version section)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

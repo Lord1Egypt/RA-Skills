@@ -1,42 +1,53 @@
-## Description: <br>
-Helps agents create, send, and update Feishu Card JSON 2.0 interactive cards for forms, choices, confirmations, and structured data views. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents send and update Feishu interactive cards using Card JSON 2.0 for forms, choices, confirmations, quick actions, and structured data.
 
-## Publisher: <br>
-[afk101](https://clawhub.ai/user/afk101) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afk101](https://clawhub.ai/user/afk101)
 
-## Use Case: <br>
-Developers and OpenClaw agent users use this skill when an agent should send Feishu interactive cards instead of plain text, including forms, selections, confirmation prompts, and structured data displays. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cards may be sent to the wrong Feishu chat or user. <br>
-Mitigation: Verify chat_id, open_id, union_id, or email recipients before sending or updating cards. <br>
-Risk: Card fields and callback payloads can expose secrets, regulated personal data, or sensitive business details. <br>
-Mitigation: Avoid including secrets or unnecessary sensitive data in card content, form fields, and actionValue payloads. <br>
-Risk: Overly broad Feishu app credentials increase blast radius if misused. <br>
-Mitigation: Use least-privilege Feishu app permissions and the intended configured accountId. <br>
+## Use Case:
 
+Developers and agents use this skill when a Feishu conversation needs an interactive card instead of plain text, such as collecting form input, presenting choices, confirming higher-risk actions, or displaying structured data. It requires configured Feishu card tools to send forms, raw card JSON, and card updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/afk101/feishu-card-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Feishu Card JSON 2.0 objects and tool-call results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured Feishu account credentials and the built-in Feishu callback handling plugin.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence) <br>
+Risk: The skill can post or update Feishu messages and collect form responses through configured bot credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where Feishu bot credentials are tightly scoped and recipients or account usage are limited by configuration and review.
+
+Risk: Callers can choose a configured Feishu account without a clear authorization boundary.
+
+Mitigation: Review or patch accountId handling before using the plugin with multiple Feishu accounts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/afk101/skills/feishu-card-v2)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, API Calls, Guidance]
+
+**Output Format:** [Feishu Card JSON 2.0 objects and tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May post or update Feishu messages through configured Feishu accounts.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

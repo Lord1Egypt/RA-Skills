@@ -1,0 +1,114 @@
+{
+  "mode": "pr-delta",
+  "theme": "showcase",
+  "title": "PR Delta Review Surface",
+  "summary": "Base and head architecture specs produce a compact review artifact for changed components, routes, and proof receipts.",
+  "nodes": [
+    {
+      "id": "base",
+      "label": "Base Spec",
+      "subtitle": "Current architecture",
+      "kind": "memory",
+      "x": 120,
+      "y": 160
+    },
+    {
+      "id": "head",
+      "label": "Head Spec",
+      "subtitle": "Proposed change",
+      "kind": "memory",
+      "x": 120,
+      "y": 320
+    },
+    {
+      "id": "compare",
+      "label": "Compare",
+      "subtitle": "Added and removed facts",
+      "kind": "agent",
+      "x": 360,
+      "y": 240
+    },
+    {
+      "id": "routes",
+      "label": "Route Delta",
+      "subtitle": "Trust-boundary changes",
+      "kind": "service",
+      "x": 600,
+      "y": 160
+    },
+    {
+      "id": "risk",
+      "label": "Review Notes",
+      "subtitle": "Questions for the PR",
+      "kind": "llm",
+      "x": 600,
+      "y": 320
+    },
+    {
+      "id": "receipt",
+      "label": "Delta Receipt",
+      "subtitle": "PR-ready JSON",
+      "kind": "memory",
+      "x": 840,
+      "y": 240
+    }
+  ],
+  "edges": [
+    {
+      "from": "base",
+      "to": "compare",
+      "kind": "control",
+      "label": "before"
+    },
+    {
+      "from": "head",
+      "to": "compare",
+      "kind": "control",
+      "label": "after"
+    },
+    {
+      "from": "compare",
+      "to": "routes",
+      "kind": "primary-data",
+      "label": "new routes",
+      "target_side": "left"
+    },
+    {
+      "from": "compare",
+      "to": "risk",
+      "kind": "primary-data",
+      "label": "review",
+      "target_side": "left"
+    },
+    {
+      "from": "routes",
+      "to": "receipt",
+      "kind": "memory-write",
+      "label": "facts",
+      "source_side": "right",
+      "target_side": "top"
+    },
+    {
+      "from": "risk",
+      "to": "receipt",
+      "kind": "memory-write",
+      "label": "notes",
+      "source_side": "right",
+      "target_side": "bottom"
+    }
+  ],
+  "story": [
+    {
+      "title": "Author",
+      "text": "A compact JSON spec declares the artifact claim."
+    },
+    {
+      "title": "Validate",
+      "text": "Local checks verify structure, route hazards, evidence, and quality."
+    },
+    {
+      "title": "Deliver",
+      "text": "The tool writes SVG, HTML, share card, and receipt as one reviewable unit."
+    }
+  ]
+}

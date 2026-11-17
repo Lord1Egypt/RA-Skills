@@ -1,48 +1,63 @@
-## Description: <br>
-Use APIDot for Kling O3 Image API workflows, including text-to-image API, image editing API, reference-guided image generation, element control, 1K, 2K, or 4K output planning, async task submission, task_id handling, polling, task status, webhook integration, and APIDot docs routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use APIDot for Kling O3 Image API workflows, including text-to-image API, image editing API, reference-guided image generation, element control, 1K, 2K, or 4K output planning, async task submission, task_id handling, polling, task status, webhook integration, and APIDot docs routing.
 
-## Publisher: <br>
-[jiehao71727](https://clawhub.ai/user/jiehao71727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiehao71727](https://clawhub.ai/user/jiehao71727)
 
-## Use Case: <br>
-Developers and external builders use this skill to plan APIDot Kling O3 Image integrations, route requests to the right APIDot documentation, and reason about async image generation, editing, polling, and webhook workflows without embedding credentials or runnable clients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: APIDot API keys or private image workflow data could be exposed if copied into frontend code, logs, screenshots, public repositories, or chat output. <br>
-Mitigation: Keep APIDOT_API_KEY server-side in environment variables or a secret manager, avoid logging private prompts and URLs, and disclose only non-sensitive implementation guidance. <br>
-Risk: Model-specific request fields, limits, availability, or commercial terms may change outside this documentation-only skill. <br>
-Mitigation: Use the live APIDot docs and model page as the source of truth before implementing or sharing copyable request payloads. <br>
-Risk: Async image jobs can be mishandled if task identifiers, terminal states, retries, or webhook callbacks are not tracked consistently. <br>
-Mitigation: Persist task_id with request metadata and final URLs, retry only transient failures with backoff, and make webhook handlers idempotent. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan APIDot Kling O3 Image integrations, route to the right APIDot documentation, and handle async image generation, editing, polling, and webhook workflows.
 
-## Reference(s): <br>
-- [APIDot Kling O3 Image Reference](references/api.md) <br>
-- [APIDot Docs](https://apidot.ai/docs) <br>
-- [APIDot Kling O3 Image Model Page](https://apidot.ai/models/kling-o3-image) <br>
-- [APIDot Kling O3 Image Docs](https://apidot.ai/docs/kling-o3-image) <br>
-- [APIDot Quickstart](https://apidot.ai/docs/quickstart) <br>
-- [APIDot Webhooks](https://apidot.ai/docs/webhooks) <br>
-- [APIDot Examples](https://github.com/APIDotAI/apidot-examples) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with links and non-executable integration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable code, install automation, bundled API client, stored credentials, or automatic network calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: API keys or private generation inputs could be exposed if copied into browser code, logs, public repositories, screenshots, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep APIDOT_API_KEY and private prompts or image URLs server-side in environment variables or a secret manager, and avoid logging sensitive request data.
+
+Risk: Model fields, limits, pricing, or availability may change outside this documentation-only release.
+
+Mitigation: Review the current APIDot docs and model page before making live API calls or committing request shapes.
+
+Risk: Async image workflows can lose state or duplicate visible results if task IDs and webhook events are not handled carefully.
+
+Mitigation: Persist task_id, request status, selected model, media references, and final image URLs together, and make webhook handlers idempotent.
+
+## Reference(s):
+
+- [APIDot docs](https://apidot.ai/docs)
+- [Kling O3 Image model page](https://apidot.ai/models/kling-o3-image)
+- [Kling O3 Image API docs](https://apidot.ai/docs/kling-o3-image)
+- [APIDot quickstart](https://apidot.ai/docs/quickstart)
+- [APIDot webhooks](https://apidot.ai/docs/webhooks)
+- [APIDot examples](https://github.com/APIDotAI/apidot-examples)
+- [APIDot Kling O3 Image Reference](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with links, request-planning notes, and implementation recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no executable code, install automation, credential storage, or automatic network calls.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

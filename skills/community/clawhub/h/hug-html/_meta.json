@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn75zfd51df61ajdyqtgvrs1hx84s4q6",
-  "slug": "hug-html",
-  "version": "3.3.0",
-  "publishedAt": 1782797918986
+  "name": "hug-html",
+  "version": "3.3.1",
+  "description": "8种原子组件自由组合 + 3级约束, cell merging, two-level module system (base + composite), 7+ built-in templates, grid-aware visual editor, style presets, post-generation audit, user template save-as, Chinese error handling",
+  "author": "Ldxs",
+  "tags": [
+    "html",
+    "grid",
+    "template",
+    "visual-editor",
+    "module-library",
+    "style-presets",
+    "layout",
+    "chinese-error-handling"
+  ],
+  "data_dir": "skills/.standardization/hug-html/data/",
+  "triggers": []
 }

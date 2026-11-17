@@ -1,41 +1,62 @@
-## Description: <br>
-Run Codex as a background local job with an immediate receipt, saved logs and patch artifacts, optional Telegram notifications, and explicit workdir support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run Codex as a background local job with an immediate receipt, saved logs and patch artifacts, optional Telegram notifications, and explicit workdir support.
 
-## Publisher: <br>
-[fzhlian](https://clawhub.ai/user/fzhlian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fzhlian](https://clawhub.ai/user/fzhlian)
 
-## Use Case: <br>
-Developers use this skill to dispatch local Codex development tasks in the background, receive an immediate job receipt, and inspect saved logs and patch artifacts afterward. It is suited for workflows that need explicit workdir control and optional Telegram completion messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is intended for background code-changing jobs, but the security evidence says the package omits the main runtime scripts and includes under-scoped local setup guidance. <br>
-Mitigation: Install only after obtaining and reviewing the missing dispatcher, worker, and Telegram helper from a trusted source. <br>
-Risk: Background jobs and Telegram approval flows can modify files in a local workspace. <br>
-Mitigation: Use explicit --workdir paths for write jobs, replace the example Telegram approver ID and default workdir with local values, limit bot token access, and review saved logs and patches before trusting changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to dispatch Codex development tasks in the background, receive an immediate job receipt, and inspect saved logs, summaries, and patch artifacts later.
 
-## Reference(s): <br>
-- [Local setup](references/local-setup.md) <br>
-- [ClawHub skill page](https://clawhub.ai/fzhlian/codex-dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce job receipts, status summaries, saved logs, and patch artifacts for later review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.11 (source: server release evidence) <br>
+Risk: The package is incomplete if the claimed dispatcher, worker, or helper scripts are absent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the installed package contains the required executable scripts before relying on local wrappers or async job dispatch.
+
+Risk: Copying the Telegram approval example as written can grant command-approval authority to a hardcoded Telegram account or an overly broad agent.
+
+Mitigation: Replace approver IDs, restrict approvals to a dedicated trusted agent, and keep approval prompts in private chats unless the channel is trusted.
+
+Risk: Telegram bot tokens and OpenClaw configuration values are sensitive local secrets.
+
+Mitigation: Store tokens in local secret-aware configuration, avoid committing them, and rotate them if exposed.
+
+Risk: The installer creates or overwrites command wrappers in the selected bin directory.
+
+Mitigation: Install only into a bin directory where the wrapper names are expected and acceptable to replace.
+
+## Reference(s):
+
+- [Local setup](references/local-setup.md)
+- [ClawHub skill page](https://clawhub.ai/fzhlian/skills/codex-dev)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local job receipts, logs, summaries, and patch artifacts under the configured jobs directory.]
+
+## Skill Version(s):
+
+0.1.11 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,493 +1,273 @@
 #!/usr/bin/env node
-/**
- * Vibbit OpenAPI CLI client.
- *
- * Wraps POST /openapi/v1/tasks + GET /openapi/v1/tasks/{taskId} with task-specific
- * subcommands. All wire JSON is snake_case. Sync tasks return the result directly
- * from submit; async tasks are polled until COMPLETED / FAILED.
- *
- * Env vars:
- *   VIBBIT_BASE_URL  e.g. https://app.vibbit.ai  (no trailing slash)
- *   VIBBIT_API_KEY   bearer token
- *
- * Usage:
- *   vibbit.js gen_image --prompt "a cute cat" [--ref-url URL]
- *   vibbit.js parse_url --url https://v.douyin.com/xxxxx
- *   vibbit.js breakdown --video-url URL --sub-tasks asr,hot [--prompt P] [--zone Z]
- *   vibbit.js list_digital_humans
- *   vibbit.js oral_broadcast --message "..." --digital-human-id 123 \
- *       [--material-url URL ...]
- *
- * Output: a JSON object on stdout with {"result": ...} (and "task_id" for async).
- * Exit code 0 on success, non-zero on failure.
- *
- * Pure Node stdlib — no npm install needed. Requires Node 18+ for global fetch.
- */
+'use strict'
 
-'use strict';
+const fs = require('node:fs/promises')
+const { commands, models } = require('./lib/registry')
+const { validate } = require('./lib/schemas')
+const { createClient, redact, redactValue, VibbitError } = require('./lib/client')
+const tasks = require('./lib/tasks')
+const { probeLocal } = require('./lib/media')
+const { parseJson, stringifyJson } = require('./lib/json')
+const { displayBody } = require('./lib/translation')
+const { previewUrl } = require('./lib/preview')
+const { uploadLocalFile } = require('./lib/upload')
+const { resolveAccount, resolveCredential, saveSelection, clearCredential } = require('./lib/auth-store')
+const { startSetup, openBrowser } = require('./lib/auth-setup')
+const { accountLinks, recoveryAction } = require('./lib/account-actions')
 
-const POLL_INTERVAL_MS = 3000;
-const POLL_TIMEOUT_MS = 10 * 60 * 1000; // 10 minutes
-const ALLOWED_SUB_TASKS = ['asr', 'transition', 'hot', 'bgm', 'decorate', 'cut_script'];
-const DEFAULT_BASE_URL = 'https://openapi.vibbit.cn';
-const FILE_INFO_API = 'https://tools.vibbit.ai/api/file-info';
-
-const path = require('path');
-
-const MIME = {
-    jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', gif: 'image/gif',
-    webp: 'image/webp', bmp: 'image/bmp', svg: 'image/svg+xml', heic: 'image/heic',
-    mp4: 'video/mp4', mov: 'video/quicktime', webm: 'video/webm',
-    mkv: 'video/x-matroska', avi: 'video/x-msvideo', m4v: 'video/x-m4v',
-    mp3: 'audio/mpeg', wav: 'audio/wav', aac: 'audio/aac', m4a: 'audio/mp4',
-    flac: 'audio/flac', ogg: 'audio/ogg',
-};
-
-const IMAGE_EXTS = new Set(['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp']);
-const MP4_EXTS = new Set(['mp4', 'mov', 'm4v']);
-
-function parseImageSize(buf) {
-    // PNG: 8-byte sig, IHDR chunk at offset 16 (4B width, 4B height)
-    if (buf.length >= 24 && buf[0] === 0x89 && buf[1] === 0x50) {
-        return { width: buf.readUInt32BE(16), height: buf.readUInt32BE(20) };
-    }
-    // GIF: 'GIF8', width/height at offset 6 as LE 16-bit
-    if (buf.length >= 10 && buf[0] === 0x47 && buf[1] === 0x49 && buf[2] === 0x46) {
-        return { width: buf.readUInt16LE(6), height: buf.readUInt16LE(8) };
-    }
-    // BMP: 'BM', width/height at offset 18 as LE 32-bit
-    if (buf.length >= 26 && buf[0] === 0x42 && buf[1] === 0x4D) {
-        return { width: buf.readInt32LE(18), height: Math.abs(buf.readInt32LE(22)) };
-    }
-    // WebP: 'RIFF....WEBP', VP8 /VP8L/VP8X
-    if (buf.length >= 30 && buf.slice(0, 4).toString() === 'RIFF' && buf.slice(8, 12).toString() === 'WEBP') {
-        const chunk = buf.slice(12, 16).toString();
-        if (chunk === 'VP8 ' && buf.length >= 30) {
-            return { width: buf.readUInt16LE(26) & 0x3FFF, height: buf.readUInt16LE(28) & 0x3FFF };
-        }
-        if (chunk === 'VP8L' && buf.length >= 25) {
-            const bits = buf.readUInt32LE(21);
-            return { width: (bits & 0x3FFF) + 1, height: ((bits >> 14) & 0x3FFF) + 1 };
-        }
-        if (chunk === 'VP8X' && buf.length >= 30) {
-            const w = (buf[24] | (buf[25] << 8) | (buf[26] << 16)) + 1;
-            const h = (buf[27] | (buf[28] << 8) | (buf[29] << 16)) + 1;
-            return { width: w, height: h };
-        }
-    }
-    // JPEG: scan for SOF0/SOF2 markers
-    if (buf.length >= 2 && buf[0] === 0xFF && buf[1] === 0xD8) {
-        let off = 2;
-        while (off + 9 < buf.length) {
-            if (buf[off] !== 0xFF) break;
-            const marker = buf[off + 1];
-            if (marker === 0xC0 || marker === 0xC2) {
-                return { width: buf.readUInt16BE(off + 7), height: buf.readUInt16BE(off + 5) };
-            }
-            const segLen = buf.readUInt16BE(off + 2);
-            off += 2 + segLen;
-        }
-    }
-    return null;
-}
-
-/**
- * Parse MP4/MOV box structure to extract duration and dimensions.
- * Walks top-level boxes → finds 'moov' → scans children for 'mvhd' (duration)
- * and 'trak' → 'tkhd' (width/height of the first video track).
- */
-function parseMp4Info(buf) {
-    const result = { duration: null, width: null, height: null };
-    const moov = findBox(buf, 0, buf.length, 'moov');
-    if (!moov) return result;
-
-    // mvhd: version(1) + flags(3) + created(4/8) + modified(4/8) + timescale(4) + duration(4/8)
-    const mvhd = findBox(buf, moov.dataStart, moov.end, 'mvhd');
-    if (mvhd) {
-        const ver = buf[mvhd.dataStart];
-        if (ver === 0) {
-            const timescale = buf.readUInt32BE(mvhd.dataStart + 12);
-            const dur = buf.readUInt32BE(mvhd.dataStart + 16);
-            if (timescale > 0) result.duration = dur / timescale;
-        } else {
-            // version 1: 8-byte fields
-            const timescale = buf.readUInt32BE(mvhd.dataStart + 20);
-            // duration is 8 bytes at offset 24; read high+low as Number (safe for < 2^53)
-            const durHi = buf.readUInt32BE(mvhd.dataStart + 24);
-            const durLo = buf.readUInt32BE(mvhd.dataStart + 28);
-            const dur = durHi * 0x100000000 + durLo;
-            if (timescale > 0) result.duration = dur / timescale;
-        }
-    }
-
-    // Find first trak with tkhd that has non-zero width/height
-    let off = moov.dataStart;
-    while (off < moov.end) {
-        const trak = findBox(buf, off, moov.end, 'trak');
-        if (!trak) break;
-        const tkhd = findBox(buf, trak.dataStart, trak.end, 'tkhd');
-        if (tkhd) {
-            const ver = buf[tkhd.dataStart];
-            // width/height are fixed-point 16.16, last 8 bytes of tkhd
-            const whOff = ver === 0 ? tkhd.dataStart + 76 : tkhd.dataStart + 88;
-            if (whOff + 8 <= tkhd.end) {
-                const w = buf.readUInt32BE(whOff) >> 16;
-                const h = buf.readUInt32BE(whOff + 4) >> 16;
-                if (w > 0 && h > 0) {
-                    result.width = w;
-                    result.height = h;
-                    break;
-                }
-            }
-        }
-        off = trak.end;
-    }
-    return result;
-}
-
-/** Find a box by type within [start, end). Returns { dataStart, end } or null. */
-function findBox(buf, start, end, type) {
-    let off = start;
-    while (off + 8 <= end) {
-        let size = buf.readUInt32BE(off);
-        const boxType = buf.slice(off + 4, off + 8).toString('latin1');
-        let headerSize = 8;
-        if (size === 1 && off + 16 <= end) {
-            // 64-bit extended size
-            const hi = buf.readUInt32BE(off + 8);
-            const lo = buf.readUInt32BE(off + 12);
-            size = hi * 0x100000000 + lo;
-            headerSize = 16;
-        }
-        if (size < 8) break; // invalid
-        const boxEnd = off + size;
-        if (boxType === type) {
-            return { dataStart: off + headerSize, end: Math.min(boxEnd, end) };
-        }
-        off = boxEnd;
-    }
-    return null;
-}
-
-async function buildFileInfoViaDownload(url, fileName) {
-    const resp = await fetch(url, { redirect: 'follow' });
-    if (!resp.ok) throw new Error(`Download failed: HTTP ${resp.status}`);
-    const buf = Buffer.from(await resp.arrayBuffer());
-    const clean = url.split('?')[0].split('#')[0];
-    const ext = (path.extname(clean).slice(1) || '').toLowerCase() || null;
-    const ct = (resp.headers.get('content-type') || '').split(';')[0].trim();
-
-    let width = null, height = null, duration = null;
-    if (ext && IMAGE_EXTS.has(ext)) {
-        const dims = parseImageSize(buf);
-        if (dims) { width = dims.width; height = dims.height; }
-    } else if (ext && MP4_EXTS.has(ext)) {
-        const info = parseMp4Info(buf);
-        width = info.width;
-        height = info.height;
-        duration = info.duration;
-    }
-
-    return {
-        url,
-        file_name: fileName || path.basename(clean),
-        file_size: buf.length,
-        file_type: ext,
-        mime_type: (ext && MIME[ext]) || ct || null,
-        upload_time: String(Date.now()),
-        duration,
-        width,
-        height,
-    };
-}
-
-async function buildFileInfoViaApi(url, fileName) {
-    const body = { url };
-    if (fileName) body.file_name = fileName;
-    const resp = await fetch(FILE_INFO_API, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-    });
-    const text = await resp.text();
-    if (!resp.ok) throw new Error(`HTTP ${resp.status}: ${text.slice(0, 500)}`);
-    const envelope = JSON.parse(text);
-    if (envelope.code !== 200 || !envelope.data) {
-        throw new Error(envelope.message || text.slice(0, 500));
-    }
-    return envelope.data;
-}
-
-function buildFileInfoStub(url, fileName) {
-    const clean = url.split('?')[0].split('#')[0];
-    const ext = (path.extname(clean).slice(1) || '').toLowerCase() || null;
-    return {
-        url,
-        file_name: fileName || path.basename(clean),
-        file_size: 0,
-        file_type: ext,
-        mime_type: (ext && MIME[ext]) || null,
-        upload_time: String(Date.now()),
-        duration: null,
-        width: null,
-        height: null,
-    };
-}
-
-async function buildFileInfo(url, fileName) {
-    try {
-        return await buildFileInfoViaApi(url, fileName);
-    } catch (e) {
-        process.stderr.write(`[vibbit] file-info API failed (${e.message}), falling back to download...\n`);
-        try {
-            return await buildFileInfoViaDownload(url, fileName);
-        } catch (e2) {
-            process.stderr.write(`[vibbit] download failed (${e2.message}), using stub...\n`);
-            return buildFileInfoStub(url, fileName);
-        }
-    }
-}
-
-function die(msg) {
-    process.stdout.write(JSON.stringify({ error: msg }) + '\n');
-    process.exit(1);
-}
-
-function getBaseUrl() {
-    const v = process.env.VIBBIT_BASE_URL;
-    return (v && v.trim() ? v : DEFAULT_BASE_URL).replace(/\/+$/, '');
-}
-
-function getApiKey() {
-    const v = process.env.VIBBIT_API_KEY;
-    if (!v) die('Missing environment variable VIBBIT_API_KEY. Export it before running.');
-    return v;
-}
-
-async function http(method, path, body) {
-    const base = getBaseUrl();
-    const key = getApiKey();
-    const url = `${base}${path}`;
-    let resp;
-    try {
-        resp = await fetch(url, {
-            method,
-            headers: {
-                'Authorization': `Bearer ${key}`,
-                'Content-Type': 'application/json',
-            },
-            body: body === undefined || body === null ? undefined : JSON.stringify(body),
-        });
-    } catch (e) {
-        die(`Network error calling ${url}: ${e.message}`);
-    }
-    const text = await resp.text();
-    if (!resp.ok) {
-        die(`HTTP ${resp.status} ${resp.statusText}: ${text.slice(0, 500)}`);
-    }
-    let envelope;
-    try {
-        envelope = JSON.parse(text);
-    } catch {
-        die(`Non-JSON response from ${url}: ${text.slice(0, 500)}`);
-    }
-    const code = envelope.code;
-    if (code !== 0 && code !== 200 && envelope.data == null) {
-        die(`API error: ${envelope.message} (code=${code})`);
-    }
-    return envelope.data || {};
-}
-
-/** task_result.result is a JSON-encoded string; decode it if possible. */
-function parseResult(taskResult) {
-    if (!taskResult) return null;
-    const raw = taskResult.result;
-    if (raw == null) return null;
-    if (typeof raw !== 'string') return raw;
-    try {
-        return JSON.parse(raw);
-    } catch {
-        return raw; // plain string (e.g. chat URL)
-    }
-}
-
-async function submit(taskType, inputObj) {
-    return http('POST', '/openapi/v1/tasks', {
-        task_type: taskType,
-        input_info: {
-            input: JSON.stringify(inputObj || {}),
-        },
-    });
-}
-
-async function getTask(taskId) {
-    return http('GET', `/openapi/v1/tasks/${encodeURIComponent(taskId)}`, null);
-}
-
-async function runSync(taskType, inputObj) {
-    const data = await submit(taskType, inputObj);
-    const result = parseResult(data.task_result);
-    process.stdout.write(JSON.stringify({ result }, null, 2) + '\n');
-}
-
-async function runAsync(taskType, inputObj) {
-    const data = await submit(taskType, inputObj);
-    const taskId = data.task_id;
-    if (!taskId) die(`Submit succeeded but no task_id returned: ${JSON.stringify(data)}`);
-    const deadline = Date.now() + POLL_TIMEOUT_MS;
-    let lastStatus = null;
-    while (Date.now() < deadline) {
-        const got = await getTask(taskId);
-        const status = got.status;
-        if (status !== lastStatus) {
-            process.stderr.write(`[vibbit] task_id=${taskId} status=${status}\n`);
-            lastStatus = status;
-        }
-        if (status === 'COMPLETED') {
-            const result = parseResult(got.task_result);
-            process.stdout.write(JSON.stringify({ task_id: taskId, result }, null, 2) + '\n');
-            return;
-        }
-        if (status === 'FAILED') {
-            die(`Task ${taskId} failed: ${JSON.stringify(got)}`);
-        }
-        await new Promise(r => setTimeout(r, POLL_INTERVAL_MS));
-    }
-    die(`Task ${taskId} did not complete within ${POLL_TIMEOUT_MS / 1000}s (last status=${lastStatus})`);
-}
-
-// ---------- minimal arg parser ----------
+const booleanFlags = new Set(['dry-run', 'wait', 'all', 'all-items', 'allow-legacy', 'allow-known-issue', 'help', 'open', 'check'])
+const valueFlags = new Set(['input', 'state', 'submission-id', 'task-id', 'command', 'timeout-seconds', 'poll-seconds', 'file',
+  'prompt', 'model', 'size', 'ref-url', 'url', 'video-url', 'sub-tasks', 'region', 'site', 'lang'])
 
 function parseArgs(argv) {
-    // argv = subcommand + flags. Supports --flag value and repeatable --flag.
-    const [cmd, ...rest] = argv;
-    const args = { _: cmd };
-    for (let i = 0; i < rest.length; i++) {
-        const token = rest[i];
-        if (!token.startsWith('--')) die(`Unexpected positional arg: ${token}`);
-        const key = token.slice(2);
-        const next = rest[i + 1];
-        if (next === undefined || next.startsWith('--')) {
-            args[key] = true; // boolean flag (none currently used)
-        } else {
-            if (args[key] === undefined) {
-                args[key] = next;
-            } else if (Array.isArray(args[key])) {
-                args[key].push(next);
-            } else {
-                args[key] = [args[key], next];
-            }
-            i++;
-        }
+  const [command = 'help', ...tokens] = argv
+  const flags = {}
+  for (let i = 0; i < tokens.length; i++) {
+    const name = tokens[i].replace(/^--/, '')
+    if (!tokens[i].startsWith('--') || (!booleanFlags.has(name) && !valueFlags.has(name))) throw new VibbitError('input', `Unknown option: ${tokens[i]}`)
+    if (Object.hasOwn(flags, name)) throw new VibbitError('input', `Duplicate option: --${name}`)
+    if (booleanFlags.has(name)) flags[name] = true
+    else {
+      if (tokens[i + 1] === undefined || tokens[i + 1] === '' || tokens[i + 1].startsWith('--')) throw new VibbitError('input', `--${name} needs a nonempty value`)
+      flags[name] = tokens[++i]
     }
-    return args;
+  }
+  return { command, flags }
 }
 
-function requireArg(args, key) {
-    const v = args[key];
-    if (v === undefined || v === true) die(`--${key} is required`);
-    return v;
-}
-
-function toArray(v) {
-    if (v === undefined) return [];
-    return Array.isArray(v) ? v : [v];
-}
-
-// ---------- subcommands ----------
-
-const COMMANDS = {
-    async gen_image(args) {
-        const body = { prompt: requireArg(args, 'prompt') };
-        if (args['ref-url']) body.reference_image_url = args['ref-url'];
-        await runAsync('AIGC_IMAGE_GENERATION', body);
-    },
-
-    async parse_url(args) {
-        await runAsync('PARSE_CONTENT_URL', { url: requireArg(args, 'url') });
-    },
-
-    async breakdown(args) {
-        const videoUrl = requireArg(args, 'video-url');
-        const subTasksRaw = requireArg(args, 'sub-tasks');
-        const subTypes = String(subTasksRaw).split(',').map(s => s.trim()).filter(Boolean);
-        const bad = subTypes.filter(s => !ALLOWED_SUB_TASKS.includes(s));
-        if (bad.length) die(`Invalid sub-task type(s): ${bad}. Allowed: ${ALLOWED_SUB_TASKS.join(',')}`);
-        const body = {
-            video_url: videoUrl,
-            sub_tasks: subTypes.map(t => ({ task_type: t })),
-        };
-        if (args.prompt) body.prompt = args.prompt;
-        if (args.zone) body.zone = args.zone;
-        await runAsync('VIDEO_BREAKDOWN', body);
-    },
-
-    async list_digital_humans(_args) {
-        await runSync('QUERY_DIGITAL_HUMAN_LIST', null);
-    },
-
-    async oral_broadcast(args) {
-        const body = {
-            message: requireArg(args, 'message'),
-            digital_human_id: requireArg(args, 'digital-human-id'),
-        };
-        if (args.title) body.title = args.title;
-        const materials = toArray(args['material-url']);
-        const materialNames = toArray(args['material-name']);
-        if (materialNames.length && materialNames.length !== materials.length) {
-            die(`--material-name count (${materialNames.length}) must match --material-url count (${materials.length}), in corresponding order`);
-        }
-        if (materials.length) {
-            process.stderr.write(`[vibbit] probing ${materials.length} material file(s) via mediainfo...\n`);
-            const fileInfos = [];
-            for (let i = 0; i < materials.length; i++) {
-                const url = materials[i];
-                const fileName = materialNames[i] || undefined;
-                try {
-                    const info = await buildFileInfo(url, fileName);
-                    fileInfos.push(info);
-                } catch (e) {
-                    die(`Failed to probe material ${url}: ${e && e.message ? e.message : String(e)}`);
-                }
-            }
-            body.material_list = fileInfos;
-        }
-        await runSync('DIGITAL_HUMAN_ORAL_BROADCAST', body);
-    },
-};
-
-function usage() {
-    process.stderr.write(`Usage: vibbit.js <subcommand> [--flags]
-
-Subcommands:
-  gen_image            --prompt "..." [--ref-url URL]
-  parse_url            --url URL
-  breakdown            --video-url URL --sub-tasks asr,hot [--prompt P] [--zone Z]
-  list_digital_humans
-  oral_broadcast       --message "..." --digital-human-id N [--material-url URL ...]
-
-Env: VIBBIT_BASE_URL, VIBBIT_API_KEY
-`);
-}
-
-async function main() {
-    const argv = process.argv.slice(2);
-    if (argv.length === 0 || argv[0] === '-h' || argv[0] === '--help') {
-        usage();
-        process.exit(argv.length === 0 ? 1 : 0);
+async function readInput(file) {
+  let raw
+  if (file === '-') {
+    const chunks = []
+    let length = 0
+    for await (const chunk of process.stdin) {
+      length += chunk.length
+      if (length > 1024 * 1024) throw new VibbitError('input', 'Input JSON exceeds 1 MB')
+      chunks.push(chunk)
     }
-    const args = parseArgs(argv);
-    const cmd = args._;
-    const handler = COMMANDS[cmd];
-    if (!handler) {
-        usage();
-        die(`Unknown subcommand: ${cmd}`);
+    raw = Buffer.concat(chunks).toString('utf8')
+  } else {
+    const stat = await fs.stat(file)
+    if (!stat.isFile() || stat.size > 1024 * 1024) throw new VibbitError('input', 'Input must be a regular JSON file of at most 1 MB')
+    raw = await fs.readFile(file, 'utf8')
+  }
+  try { return parseJson(raw) } catch { throw new VibbitError('input', 'Input is not valid JSON') }
+}
+
+function inlineInput(command, flags) {
+  const result = {}
+  const map = {
+    gen_image: { prompt: 'prompt', model: 'model', size: 'size', 'ref-url': 'reference_image_urls' },
+    parse_url: { url: 'url' },
+    transcribe_audio: { url: 'url' },
+    breakdown: { 'video-url': 'video_url', 'sub-tasks': 'sub_tasks' },
+    remove_subtitles: { 'video-url': 'video_url' },
+  }[command] || {}
+  const inlineNames = ['prompt', 'model', 'size', 'ref-url', 'url', 'video-url', 'sub-tasks']
+  for (const key of inlineNames) {
+    if (flags[key] === undefined) continue
+    if (!map[key]) throw new VibbitError('input', `--${key} does not apply to ${command}; use --input with the documented fields`)
+    result[map[key]] = key === 'sub-tasks'
+      ? flags[key].split(',').map(x => x.trim()).filter(Boolean)
+      : key === 'ref-url' ? [flags[key]] : flags[key]
+  }
+  return result
+}
+
+function seconds(value, fallback, minimum, maximum) {
+  if (value === undefined) return fallback * 1000
+  const number = Number(value)
+  if (!Number.isFinite(number) || number < minimum || number > maximum) throw new VibbitError('input', `Time option must be ${minimum}..${maximum} seconds`)
+  return number * 1000
+}
+
+const help = {
+  usage: 'node scripts/vibbit.js COMMAND --input payload.json [--dry-run | --wait] [--state journal.json | --submission-id STABLE_LOCAL_ID]; upload_info --file LOCAL_PATH [--input payload.json]',
+  commands: Object.keys(commands),
+  utilities: {
+    capabilities: '[--all] (offline registry; no account-level discovery)',
+    describe: '--command NAME (input fields, examples and execution requirements)',
+    health: 'authenticated GET /health',
+    auth_status: '[--check] (credential source and region; --check performs one authenticated health request)',
+    auth_setup: '[--open] [--region cn|global | --site OFFICIAL_WEB_URL] [--lang en|zh-CN] [--timeout-seconds 600] (local browser form; verifies the selected site before saving; no key argument)',
+    account_select: '--region cn|global (verifies the saved key for that site, then remembers it as the active account)',
+    auth_clear: '[--region cn|global] (removes only the selected site private credential file; does not revoke the server key or change environment variables)',
+    account_links: '(offline key, avatar creation/list, pricing/credit packs, and billing management links for the selected regional API)',
+    status: '--task-id ID', wait: '--task-id ID [--timeout-seconds 50] [--poll-seconds 5]',
+    resume: '(--state FILE | --submission-id ID) [--timeout-seconds 50] (local journal lookup, then GET only; never resubmits)',
+    probe: '--file LOCAL_PATH (optional ffprobe dependency; no upload)',
+    preview_url: '--url IMAGE_URL (offline preview address mapping; preserves the original URL)',
+    upload_info: '--file LOCAL_PATH [--input request.json] (gets MATERIAL_UPLOAD credentials and uploads the file)',
+  },
+  env: ['VIBBIT_API_KEY (or VIBBIT_OPENAPI_KEY), takes precedence over the selected site private credential file', 'VIBBIT_REGION (cn or global; independent of conversation language)', 'VIBBIT_BASE_URL (explicit host API override; must match an explicit region)', 'VIBBIT_CONFIG_DIR (optional absolute private credential directory; outside the project and Skill)', 'VIBBIT_STATE_DIR (default .vibbit/tasks in current working directory)'],
+  account_selection: 'Explicit --region / VIBBIT_REGION or host base, then saved site (including one legacy regional key), then --site website hint, then global. Both sites have independent accounts, keys, credits, products and assets. Never retry a key at another site.',
+  compatibility: 'gen_image defaults to gpt-image-2.5-sunburst. --allow-known-issue applies only to commands marked known_issue. Dry-run does not submit a task.',
+  submission_recovery: 'Keep one submission-id per operation and the same VIBBIT_STATE_DIR. Repeating it reuses the local journal and only queries an existing task ID. It is not sent as a server idempotency key; a lost response without a recorded task ID still needs acceptance verification.',
+  exit_codes: { 0: 'success or accepted task', 1: 'API, task, transport or protocol error', 2: 'input or configuration error', 3: 'wait deadline reached; task may continue', 4: 'submission uncertainty / cannot resume without ID', 5: 'partial result failure' },
+}
+
+// Export only the fields needed to form requests and interpret the command.
+function describeCommand(spec) {
+  const keys = ['task_type', 'documentation_url', 'operation', 'method', 'suffix', 'mode', 'wire', 'status',
+    'fields', 'required', 'example', 'result_kind', 'min_poll_ms', 'defaults', 'models', 'requires_opt_in', 'note']
+  return Object.fromEntries(keys.filter(key => Object.hasOwn(spec, key)).map(key => [key, spec[key]]))
+}
+
+async function execute(argv, context) {
+  const { command, flags } = parseArgs(argv)
+  if (['help', '-h', '--help'].includes(command) || flags.help) return help
+  const utilityFlags = {
+    capabilities: ['all'], describe: ['command'], probe: ['file'], preview_url: ['url'], health: [],
+    status: ['task-id'], wait: ['task-id', 'timeout-seconds', 'poll-seconds'],
+    resume: ['state', 'submission-id', 'timeout-seconds', 'poll-seconds'],
+    auth_status: ['check'], auth_setup: ['open', 'timeout-seconds', 'lang'], auth_clear: [], account_links: [], account_select: [],
+  }[command]
+  if (utilityFlags) for (const key of Object.keys(flags)) {
+    if (!utilityFlags.includes(key) && !['region', 'site'].includes(key)) throw new VibbitError('input', `--${key} does not apply to ${command}`)
+  }
+  if (command === 'capabilities') return {
+    account_verified: false,
+    commands: Object.entries(commands).filter(([, s]) => flags.all || s.status === 'documented' || (s.status === 'legacy' && s.requires_opt_in === false)).map(([name, s]) => ({ name, task_type: s.task_type, ...(s.operation ? { operation: s.operation } : {}), status: s.status, mode: s.mode, requires_opt_in: s.status === 'known_issue' || (s.status === 'legacy' && s.requires_opt_in !== false) })),
+  }
+  if (command === 'describe') {
+    if (!commands[flags.command]) throw new VibbitError('input', 'describe requires --command with a registered command name')
+    return { command: flags.command, ...describeCommand(commands[flags.command]), ...(flags.command === 'seedance' ? { models } : {}) }
+  }
+  if (command === 'probe') {
+    if (!flags.file) throw new VibbitError('input', 'probe requires --file')
+    return probeLocal(flags.file)
+  }
+  if (command === 'preview_url') {
+    let url
+    try { url = new URL(flags.url) } catch { throw new VibbitError('input', 'preview_url requires --url with an HTTP(S) image URL') }
+    if (!['http:', 'https:'].includes(url.protocol) || url.username || url.password) throw new VibbitError('input', 'preview_url requires an HTTP(S) URL without embedded credentials')
+    const preview = previewUrl(flags.url)
+    return { ok: true, url: flags.url, preview_url: preview, converted: preview !== flags.url }
+  }
+  if (flags.file && command !== 'upload_info') throw new VibbitError('input', '--file applies only to upload_info or probe')
+  if (flags.lang && command !== 'auth_setup') throw new VibbitError('input', '--lang applies only to auth_setup')
+  const account = await resolveAccount({ region: flags.region, site: flags.site })
+  const base = account.base
+  context.base = base
+  const credential = async () => {
+    const resolved = await resolveCredential({ account })
+    context.key = resolved.key
+    return resolved
+  }
+  const clientFor = async () => {
+    const resolved = await credential()
+    if (!resolved.key) throw new VibbitError('authentication_required', 'No credential is available in this execution environment. Use host credential settings, or auth_setup --open on an accessible local computer.')
+    return createClient(resolved)
+  }
+  if (command === 'account_links') return { ok: true, base, selection_source: account.selection_source, ...accountLinks(base) }
+  if (command === 'auth_clear') return clearCredential({ account })
+  if (command === 'account_select') {
+    if (!flags.region) throw new VibbitError('input', 'account_select requires --region cn or --region global')
+    if (process.env.VIBBIT_REGION && process.env.VIBBIT_REGION !== account.region) throw new VibbitError('configuration', 'Update the host VIBBIT_REGION before saving a different active site')
+    await (await clientFor()).request('GET', '/health')
+    await saveSelection(account.region)
+    return { ok: true, verified: true, base, ...accountLinks(base), selected: true }
+  }
+  if (command === 'auth_status') {
+    const resolved = await credential()
+    const output = { ok: true, configured: !!resolved.key, source: resolved.source, selection_source: account.selection_source, base, ...accountLinks(base), verified: false, local_setup_supported: process.platform !== 'win32' && !accountLinks(base).account_environment_check_required }
+    if (!resolved.key) output.account_action = recoveryAction({ kind: 'authentication_required' }, base)
+    if (flags.check && resolved.key) {
+      await createClient(resolved).request('GET', '/health')
+      output.verified = true
     }
+    return output
+  }
+  if (command === 'auth_setup') {
+    const setup = await startSetup({ account, lang: flags.lang, timeoutMs: seconds(flags['timeout-seconds'], 600, 30, 1800) })
+    const stop = () => setup.close()
+    process.once('SIGINT', stop); process.once('SIGTERM', stop)
     try {
-        await handler(args);
-    } catch (e) {
-        die(`Unhandled error: ${e && e.stack ? e.stack : String(e)}`);
+      process.stderr.write(JSON.stringify({ phase: 'AWAITING_USER_KEY', setup_url: setup.url, local_browser_required: true, region: accountLinks(base).region }) + '\n')
+      if (flags.open) process.stderr.write(JSON.stringify({ browser_opened: await openBrowser(setup.url) }) + '\n')
+      return await setup.done
+    } finally { process.removeListener('SIGINT', stop); process.removeListener('SIGTERM', stop) }
+  }
+  if (flags.open || flags.check) throw new VibbitError('input', '--open applies to auth_setup; --check applies to auth_status')
+  const onProgress = info => process.stderr.write(JSON.stringify(info) + '\n')
+  const waitOptions = {
+    timeoutMs: seconds(flags['timeout-seconds'], 50, 1, 3600),
+    intervalMs: seconds(flags['poll-seconds'], 5, 5, 3600), onProgress,
+  }
+  if (command === 'health') return { ok: true, result: await (await clientFor()).request('GET', '/health') }
+  if (command === 'status') return tasks.status(await clientFor(), flags['task-id'])
+  if (command === 'wait') return tasks.wait(await clientFor(), flags['task-id'], waitOptions)
+  if (command === 'resume') {
+    if (!!flags.state === !!flags['submission-id']) throw new VibbitError('input', 'resume requires either --state or --submission-id')
+    const file = flags.state || tasks.submissionFile(flags['submission-id'])
+    return tasks.resume(await clientFor(), file, waitOptions)
+  }
+  if (!commands[command]) throw new VibbitError('input', 'Unknown command; run help or capabilities --all')
+  if (flags['all-items'] && command !== 'confirm_translation') throw new VibbitError('input', '--all-items applies only to confirm_translation')
+  if (flags['task-id'] && !commands[command].operation) throw new VibbitError('input', '--task-id applies to actions or task queries, not new submissions')
+  const inline = inlineInput(command, flags)
+  if (flags.input && Object.keys(inline).length) throw new VibbitError('input', 'Use either --input or inline fields; mixing could override user input')
+  let input = flags.input
+    ? await readInput(flags.input)
+    : command === 'upload_info' && flags.file ? { is_temporary: false } : inline
+  let checked
+  try { checked = validate(command, input) } catch (error) { throw new VibbitError('input', error.message) }
+  const { spec, warnings } = checked
+  input = checked.input
+  if (command === 'confirm_translation') {
+    if (input.sub_task_id === undefined && !flags['all-items']) throw new VibbitError('input', 'Choose a sub_task_id or explicitly use --all-items to confirm the entire batch')
+    if (input.sub_task_id !== undefined && flags['all-items']) throw new VibbitError('input', 'Use a sub_task_id or --all-items, never both')
+  }
+  const request = tasks.requestSpec(spec, input, flags['task-id'])
+  if (flags.state && flags['submission-id']) throw new VibbitError('input', 'Choose --state or --submission-id, not both')
+  if (flags['submission-id']) tasks.submissionFile(flags['submission-id'])
+  if (flags['dry-run']) return { ok: true, dry_run: true, command, status: spec.status, method: request.method, endpoint: `${base}${request.route}`, body: displayBody(request.body), ...(flags['submission-id'] ? { submission_id: flags['submission-id'] } : {}), ...(spec.result_kind === 'translation' ? { body_json: stringifyJson(request.body) } : {}), warnings }
+  if (spec.status === 'legacy' && spec.requires_opt_in !== false && !flags['allow-legacy']) throw new VibbitError('configuration', 'Legacy contract is disabled by default. Read the capability reference and use --allow-legacy only for an account known to support it.')
+  if (spec.status === 'known_issue' && !flags['allow-known-issue']) throw new VibbitError('configuration', 'This API has a recorded support issue. Read the resource reference before using --allow-known-issue for a deliberate verification.')
+  const client = await clientFor()
+  const submitted = await tasks.submit(client, command, input, { stateFile: flags.state, submissionId: flags['submission-id'], taskId: flags['task-id'], onProgress })
+  if (command === 'upload_info' && flags.file) {
+    if (!submitted.result || typeof submitted.result !== 'object' || Array.isArray(submitted.result)) {
+      throw new VibbitError('protocol', 'MATERIAL_UPLOAD did not return upload instructions')
     }
+    const uploaded = await uploadLocalFile(flags.file, submitted.result)
+    return { ...uploaded, command, submission_id: submitted.submission_id, state_file: submitted.state_file, request_id: submitted.request_id, warnings: [...(submitted.warnings || []), ...warnings] }
+  }
+  if (flags.wait && !submitted.review_context_required && !['COMPLETED', 'FAILED', 'INSUFFICIENT_POINTS'].includes(submitted.status)) {
+    const waited = await tasks.wait(client, submitted.task_id, { ...waitOptions, stateFile: submitted.state_file, spec })
+    return { ...waited, warnings: [...(waited.warnings || []), ...warnings] }
+  }
+  return { ...submitted, warnings: [...(submitted.warnings || []), ...warnings] }
 }
 
-main();
+async function main(argv) {
+  const context = {}
+  try {
+    const output = await execute(argv, context)
+    const action = recoveryAction(output, context.base)
+    return redactValue({ ...output, ...(action ? { account_action: action } : {}) }, context.key)
+  } catch (error) {
+    error.message = redact(error.message, context.key)
+    error.account_action = recoveryAction(error, context.base)
+    throw error
+  }
+}
+
+async function run() {
+  const key = process.env.VIBBIT_API_KEY || process.env.VIBBIT_OPENAPI_KEY || ''
+  try {
+    const output = await main(process.argv.slice(2))
+    process.stdout.write(redact(JSON.stringify(output, null, 2), key) + '\n')
+    process.exitCode = output.wait_timed_out ? 3 : output.partial_failure ? 5 : output.ok === false ? 1 : 0
+  } catch (error) {
+    const kind = error.kind || (['ENOENT', 'EEXIST', 'EACCES'].includes(error.code) ? 'configuration' : 'input')
+    const output = { ok: false, error: { kind, message: error.message,
+      ...Object.fromEntries(['code', 'http_status', 'submission_id', 'request_id', 'task_id', 'status', 'state_file', 'phase', 'ambiguous', 'account_action'].filter(k => error[k] !== undefined).map(k => [k, error[k]])),
+    } }
+    process.stdout.write(redact(JSON.stringify(output, null, 2), key) + '\n')
+    process.exitCode = error.ambiguous || kind === 'cannot_resume' ? 4 : ['input', 'configuration', 'authentication_required'].includes(kind) ? 2 : 1
+  }
+}
+
+if (require.main === module) run()
+module.exports = { main, parseArgs }

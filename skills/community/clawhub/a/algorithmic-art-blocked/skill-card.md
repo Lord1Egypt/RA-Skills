@@ -1,41 +1,60 @@
-## Description: <br>
-Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates original algorithmic art workflows using p5.js with seeded randomness, interactive parameters, and reproducible generative sketches.
 
-## Publisher: <br>
-[xunhe730](https://clawhub.ai/user/xunhe730) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[xunhe730](https://clawhub.ai/user/xunhe730)
 
-## Use Case: <br>
-External creators and developers use this skill to turn a creative prompt into an algorithmic philosophy and express it as reproducible p5.js generative art with interactive parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated viewers may reuse Anthropic-styled UI elements. <br>
-Mitigation: Review template, brand, and dependency licensing before publishing generated viewers, especially for private or commercial use. <br>
-Risk: Generated viewers may load p5.js or fonts from third-party CDNs. <br>
-Mitigation: Verify dependency licensing and availability, or vendor approved local copies before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to turn creative prompts into an algorithmic philosophy and a self-contained p5.js generative art viewer with reproducible seed controls and adjustable parameters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xunhe730/algorithmic-art-blocked) <br>
-- [p5.js CDN dependency](https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown philosophy plus self-contained HTML and p5.js code.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated artifacts use seeded randomness, interactive parameter controls, and may load p5.js and fonts from third-party CDNs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill includes a named-user restriction that is not necessary for its generative art purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and remove or rewrite the named-user restriction before using the skill as a general ClawHub release.
+
+Risk: The skill pushes generated viewers toward Anthropic-branded structure and styling.
+
+Mitigation: Replace the viewer branding with neutral or organization-approved UI before distribution when brand alignment matters.
+
+Risk: Generated HTML viewers may load p5.js and fonts from external CDNs and support browser-side PNG export.
+
+Mitigation: Approve the external dependencies and export behavior, or pin and mirror assets for environments that restrict third-party network loads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xunhe730/skills/algorithmic-art-blocked)
+- [p5.js 1.7.0 CDN dependency](https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js)
+- [viewer.html template](templates/viewer.html)
+- [generator_template.js reference](templates/generator_template.js)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Files, Guidance]
+
+**Output Format:** [Markdown plus self-contained HTML/JavaScript using p5.js]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses seeded randomness and interactive browser controls; generated HTML may load p5.js and fonts from CDNs and can export PNG files in the browser.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,5 +1,7 @@
 # 人生岔路模拟报告模板
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
 判词：{{一句强判断，给用户的遗憾命名。要短、狠、有人味。}}
 
 看清：{{这份报告帮用户看清什么。只写一句，不解释工具能力。}}

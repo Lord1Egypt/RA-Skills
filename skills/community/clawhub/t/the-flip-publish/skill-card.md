@@ -1,44 +1,59 @@
-## Description: <br>
-$1 USDC entry. 14 coin flips. Get all 14 right, take the entire jackpot. Live on Solana devnet - continuous game, enter anytime. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+$1 USDC entry. 14 coin flips. Get all 14 right, take the entire jackpot. Live on Solana devnet - continuous game, enter anytime.
 
-## Publisher: <br>
-[maurodelazeri](https://clawhub.ai/user/maurodelazeri) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maurodelazeri](https://clawhub.ai/user/maurodelazeri)
 
-## Use Case: <br>
-External users and developers use this skill to interact with a Solana devnet coin-flip jackpot game, including checking game status, entering predictions, reviewing tickets, advancing flips, and claiming winnings. Operators can also initialize the game and withdraw operator fees. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read local wallet keypairs and sign fund-moving Solana transactions. <br>
-Mitigation: Use a dedicated devnet-only wallet, keep valuable wallets separate, and inspect each transaction before running enter, claim, withdraw-fees, or close-game-v1. <br>
-Risk: Setup documentation includes a curl-piped installer for Solana tooling. <br>
-Mitigation: Avoid the curl-piped installer unless the upstream source is independently trusted and verified. <br>
-Risk: Admin operations such as withdraw-fees and close-game-v1 have limited safeguards. <br>
-Mitigation: Restrict operator commands to authorized wallets and review command intent before signing. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to enter, operate, inspect, and claim outcomes in a continuous Solana devnet coin-flip game. It provides command-line workflows and API reference material for game status, ticket checks, flips, entries, and claims.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maurodelazeri/the-flip-publish) <br>
-- [ClawHub metadata homepage](https://github.com/maurodelazeri/the-flip-publish) <br>
-- [Game dashboard](https://the-flip.vercel.app) <br>
-- [Solana devnet program](https://explorer.solana.com/address/7rSMKhD3ve2NcR4qdYK5xcbMHfGtEjTgoKCS5Mgx9ECX?cluster=devnet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and a Solana devnet wallet for transaction-signing commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release evidence) <br>
+Risk: The skill handles wallet signing and token movement for a devnet blockchain game.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated devnet-only wallet with no mainnet funds, avoid passing sensitive keypair paths, and review every transaction before signing.
+
+Risk: The evidence security summary says game fairness and operator controls are under-disclosed.
+
+Mitigation: Treat odds, randomness, anti-rug, and solvency claims as unverified until the program and dependencies have been independently reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maurodelazeri/skills/the-flip-publish)
+- [Project homepage](https://github.com/maurodelazeri/the-flip-publish)
+- [Dashboard](https://the-flip.vercel.app)
+- [Game state API](https://the-flip.vercel.app/api/game)
+- [Solana devnet program](https://explorer.solana.com/address/7rSMKhD3ve2NcR4qdYK5xcbMHfGtEjTgoKCS5Mgx9ECX?cluster=devnet)
+- [README.md](README.md)
+- [IDL](idl/the_flip.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May prompt agents to run Node.js commands that read a local Solana keypair and submit devnet transactions.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

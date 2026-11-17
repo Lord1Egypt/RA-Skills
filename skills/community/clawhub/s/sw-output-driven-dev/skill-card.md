@@ -1,38 +1,49 @@
-## Description: <br>
-Guides agents to define success criteria and verification before coding, then prove completion with reproducible evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to define success criteria and verification before coding so completed work is backed by measurable, reproducible evidence.
 
-## Publisher: <br>
-[amdf01-debug](https://clawhub.ai/user/amdf01-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amdf01-debug](https://clawhub.ai/user/amdf01-debug)
 
-## Use Case: <br>
-Developers and agents use this workflow aid to turn coding tasks into explicit acceptance criteria, verification plans, build logs, and reproducible verification results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Verification commands may affect important files, production systems, or accounts if run without review. <br>
-Mitigation: Review proposed commands and run them in the appropriate environment before relying on the results. <br>
+## Use Case:
 
+Developers and coding agents use this skill to turn development requests into explicit acceptance criteria, verification plans, build logs, and verification results before declaring work complete.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amdf01-debug/sw-output-driven-dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown checklists, verification plans, build logs, and verification results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Verification evidence should be reproducible and shown before the task is called done.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generic trigger phrases may activate the skill in more development conversations than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply the checklist when explicit success criteria and reproducible verification are useful, and keep verification proportional to the task risk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amdf01-debug/skills/sw-output-driven-dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with checklist and verification-result templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts agents to define outputs, verification steps, build logs, and pass/fail evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

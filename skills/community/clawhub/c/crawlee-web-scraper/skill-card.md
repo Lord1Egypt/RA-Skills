@@ -1,42 +1,57 @@
-## Description: <br>
-Crawlee Web Scraper helps agents scrape single URLs or bulk URL lists with Crawlee-based fallback behavior when standard requests are blocked by rate limits or bot detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crawlee Web Scraper helps agents fetch single or bulk URLs with Crawlee-backed retries and fallback handling when ordinary HTTP requests are blocked by rate limits or bot detection.
 
-## Publisher: <br>
-[BryanTegomoh](https://clawhub.ai/user/BryanTegomoh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bryantegomoh](https://clawhub.ai/user/bryantegomoh)
 
-## Use Case: <br>
-Developers and engineers use this skill for authorized scraping of public web pages when standard fetching is blocked or when many URLs need to be processed into structured JSON results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed for web scraping with bot-detection evasion and can be misused against sites that do not permit automated access. <br>
-Mitigation: Use only for legitimate, authorized scraping targets, restrict runs to approved domains, and do not use it to bypass sites that prohibit automation. <br>
-Risk: The artifact does not define explicit authorization checks or target limits for bulk scraping. <br>
-Mitigation: Run it in an isolated environment with reviewed URL lists, enforce local rate and volume limits, and stop jobs that trigger blocking or abuse signals. <br>
-Risk: Fetching arbitrary URLs or passing sensitive request context can expose internal locations or confidential data. <br>
-Mitigation: Avoid internal URLs and sensitive headers, pin dependencies, and review outputs before sharing or storing scraped content. <br>
+## Use Case:
 
+Developers and agents use this skill to scrape authorized web pages when ordinary HTTP fetching is blocked, including single URL lookups and bulk URL collection workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/BryanTegomoh/crawlee-web-scraper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell and Python examples; scraper scripts return JSON arrays] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Per-URL JSON includes URL, status, fetch timestamp, content length, and either extracted text or an HTML preview.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill is designed for bot-detection evasion and bulk fetching, which can be misused against sites where scraping is not authorized.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for sites you are authorized to access, and review site terms, robots guidance, and applicable rate limits before running bulk jobs.
+
+Risk: Untrusted URL lists can cause requests to internal services or cloud metadata endpoints from a privileged environment.
+
+Mitigation: Run the scraper in an isolated, least-privileged environment with outbound network restrictions and reject untrusted URL lists.
+
+Risk: Runtime dependency changes can alter crawling behavior or security posture.
+
+Mitigation: Pin the Crawlee and requests dependencies and review updates before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bryantegomoh/skills/crawlee-web-scraper)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with Python and shell examples; scraper output is JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text extraction is capped at 10000 characters per URL and HTML preview output is capped at 2000 characters per URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

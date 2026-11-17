@@ -1,45 +1,59 @@
-## Description: <br>
-Interact with Cozi Family Organizer shopping lists, todo lists, item management, and calendar entries through an unofficial API client for family organization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Cozi Family Organizer (shopping lists, todo lists, item management). Unofficial API client for family organization.
 
-## Publisher: <br>
-[angusthefuzz](https://clawhub.ai/user/angusthefuzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[angusthefuzz](https://clawhub.ai/user/angusthefuzz)
 
-## Use Case: <br>
-External users and agents use this skill to view and update Cozi family organizer lists and calendar entries from the command line using a Cozi account. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify Cozi family organizer data, including deleting lists and removing appointments. <br>
-Mitigation: Ask the agent to confirm before running delete-list, remove, or remove-appt commands. <br>
-Risk: The skill uses Cozi credentials and stores credentials or session tokens locally. <br>
-Mitigation: Protect the .env and .session.json files and avoid shared machines for this setup. <br>
-Risk: The skill uses an unofficial Cozi API that may change without notice. <br>
-Mitigation: Review command results after API changes or authentication failures before relying on updates. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cozi skill page](https://clawhub.ai/angusthefuzz/cozi) <br>
-- [Publisher profile](https://clawhub.ai/user/angusthefuzz) <br>
-- [Cozi API endpoint](https://rest.cozi.com/api/ext/2207) <br>
-- [cozi-api-client](https://github.com/BrandCast-Signage/cozi-api-client) <br>
-- [py-cozi](https://github.com/Wetzel402/py-cozi) <br>
+## Use Case:
 
+External users and family organizers can use this skill to have an agent run Cozi list and calendar commands for viewing, creating, updating, and deleting household items and appointments.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API Calls, Guidance, Text] <br>
-**Output Format:** [Command-line text output and Markdown usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and COZI_EMAIL/COZI_PASSWORD environment variables; caches a local Cozi session token.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles raw Cozi credentials and caches bearer tokens in a local session file.
+
+Mitigation: Use a dedicated Cozi account when possible, inject credentials through the environment, restrict permissions on .env and .session.json files, and remove cached sessions when they are no longer needed.
+
+Risk: Commands can delete Cozi lists or remove calendar appointments without documented confirmation or undo behavior.
+
+Mitigation: Review the exact command and identifiers before execution, and prefer read-only commands when the requested task does not require mutation.
+
+Risk: The skill uses an unofficial reverse-engineered Cozi API that may change without notice.
+
+Mitigation: Validate behavior in a low-impact account before relying on it for important household lists or appointments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/angusthefuzz/skills/cozi)
+- [Cozi REST API base URL](https://rest.cozi.com/api/ext/2207)
+- [cozi-api-client reference](https://github.com/BrandCast-Signage/cozi-api-client)
+- [py-cozi reference](https://github.com/Wetzel402/py-cozi)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text CLI output and Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and Cozi credentials; some commands mutate Cozi lists and calendar entries.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

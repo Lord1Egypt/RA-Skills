@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T12 - 懒加载图片</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, sans-serif; background: #fafafa; padding: 40px; }
+    h1 { text-align: center; margin-bottom: 30px; color: #333; }
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 900px; margin: 0 auto; }
+    .image-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .image-card img { width: 100%; height: 180px; object-fit: cover; display: block; background: #eee; }
+    .image-card .placeholder { width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #f0f2f5, #e8eaed); color: #999; font-size: 14px; }
+    .image-card .caption { padding: 12px; font-size: 13px; color: #666; text-align: center; }
+  </style>
+</head>
+<body>
+  <h1>🖼️ T12 - 懒加载图片测试</h1>
+  <p style="text-align:center; margin-bottom:30px; color:#999; font-size:14px;">图片使用 loading="lazy"，测试截图工具是否能触发懒加载</p>
+
+  <div class="gallery">
+    <div class="image-card">
+      <img src="https://picsum.photos/300/180?random=10" loading="lazy" alt="Image 1">
+      <div class="caption">懒加载图片 1</div>
+    </div>
+    <div class="image-card">
+      <img src="https://picsum.photos/300/180?random=11" loading="lazy" alt="Image 2">
+      <div class="caption">懒加载图片 2</div>
+    </div>
+    <div class="image-card">
+      <img src="https://picsum.photos/300/180?random=12" loading="lazy" alt="Image 3">
+      <div class="caption">懒加载图片 3</div>
+    </div>
+    <div class="image-card">
+      <img src="https://picsum.photos/300/180?random=13" loading="lazy" alt="Image 4">
+      <div class="caption">懒加载图片 4</div>
+    </div>
+    <div class="image-card">
+      <img src="https://picsum.photos/300/180?random=14" loading="lazy" alt="Image 5">
+      <div class="caption">懒加载图片 5</div>
+    </div>
+    <div class="image-card">
+      <img src="https://picsum.photos/300/180?random=15" loading="lazy" alt="Image 6">
+      <div class="caption">懒加载图片 6</div>
+    </div>
+    <div class="image-card">
+      <img src="https://picsum.photos/300/180?random=16" loading="lazy" alt="Image 7">
+      <div class="caption">懒加载图片 7</div>
+    </div>
+    <div class="image-card">
+      <img src="https://picsum.photos/300/180?random=17" loading="lazy" alt="Image 8">
+      <div class="caption">懒加载图片 8</div>
+    </div>
+    <div class="image-card">
+      <img src="https://picsum.photos/300/180?random=18" loading="lazy" alt="Image 9">
+      <div class="caption">懒加载图片 9</div>
+    </div>
+  </div>
+
+  <p style="text-align:center; margin-top:30px; color:#999; font-size:14px;">⚠️ 如果图片显示为灰色占位框，说明懒加载未被触发。正确行为：所有图片应正常显示。</p>
+</body>
+</html>

@@ -1,39 +1,49 @@
-## Description: <br>
-Expert infrastructure security engineer specializing in DevSecOps, cloud security, and compliance frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert infrastructure security engineer specializing in DevSecOps, cloud security, and compliance frameworks. Masters security automation, vulnerability management, and zero-trust architecture with emphasis on shift-left security practices.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers, security engineers, and platform teams use this skill to assess infrastructure security posture, plan DevSecOps controls, guide cloud and Kubernetes hardening, and support compliance, vulnerability management, incident response, and zero-trust architecture work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can advise on broad infrastructure, IAM, secrets, cloud, CI/CD, Kubernetes, production, penetration-testing, and compliance changes. <br>
-Mitigation: Use narrowly scoped, temporary access and require explicit approval, authorized targets, evidence review, and rollback plans before acting on those recommendations. <br>
-Risk: Security recommendations may be advisory and can be incorrect or incomplete for a specific environment. <br>
-Mitigation: Validate recommendations with qualified reviewers, current policy, and environment-specific evidence before deployment or compliance enforcement. <br>
+## Use Case:
 
+Developers, infrastructure teams, and security engineers use this skill for DevSecOps, cloud security, vulnerability management, compliance automation, incident response, and zero-trust architecture guidance.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with security recommendations, implementation plans, code or configuration examples, and command snippets when appropriate] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Security-sensitive recommendations should be reviewed against authorized scope, least privilege, and rollback requirements before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may propose cloud, IAM, secrets, scanning, or incident-response changes that affect sensitive infrastructure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed changes against organizational security policy before allowing them to run in a live environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-security-engineer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with possible code, shell command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No bundled code or hidden execution behavior was found in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

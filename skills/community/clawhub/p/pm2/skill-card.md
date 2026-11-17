@@ -1,41 +1,55 @@
-## Description: <br>
-Manage Node.js applications with PM2 process manager. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Node.js applications with PM2 for production deployment, monitoring, auto-restart, boot auto-start, log review, and multi-process control.
 
-## Publisher: <br>
-[asteinberger](https://clawhub.ai/user/asteinberger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[asteinberger](https://clawhub.ai/user/asteinberger)
 
-## Use Case: <br>
-Developers and engineers use this skill to deploy, monitor, restart, and configure Node.js applications managed by PM2 in production-style environments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: PM2 stop, delete, kill, and delete-all commands can interrupt or remove running application processes. <br>
-Mitigation: Confirm the target app and environment before running destructive or interrupting process-control commands. <br>
-Risk: PM2 startup commands can configure applications to persist across reboot and may require sudo. <br>
-Mitigation: Run startup persistence commands only when reboot persistence is intended and the generated command has been reviewed. <br>
-Risk: Global PM2 installation changes the local Node.js tool environment. <br>
-Mitigation: Install only in environments where PM2 should manage Node.js applications. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/asteinberger/pm2) <br>
+## Use Case:
+
+Developers and engineers use this skill to operate Node.js services with PM2, including startup, monitoring, logging, restarts, production builds, ecosystem configuration, and cleanup.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Boot-startup commands can alter host service startup behavior and may require elevated privileges.
+
+Mitigation: Review the exact pm2 startup command before using sudo and avoid elevated shells unless required.
+
+Risk: Cleanup and save commands can affect running services or persist an unintended process list.
+
+Mitigation: Verify the PM2 process list before running pm2 save, pm2 delete all, pm2 kill, or pm2 unstartup on a production host.
+
+Risk: Global npm installation can install unexpected packages if the registry or package source is not what the user expects.
+
+Mitigation: Install PM2 only from the expected npm registry.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes PM2 process control commands, startup persistence guidance, and an example ecosystem.config.js configuration.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with bash and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operational commands that can affect running PM2 processes and boot-startup configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

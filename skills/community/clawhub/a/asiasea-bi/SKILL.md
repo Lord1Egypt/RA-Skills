@@ -1,3 +1,11 @@
+<!--
+ * @Author: 张永超 zhangyongchao@asiasea.com
+ * @Date: 2026-03-19 17:02:43
+ * @LastEditors: 张永超 zhangyongchao@asiasea.com
+ * @LastEditTime: 2026-03-19 21:52:00
+ * @FilePath: /skills/Users/asa-zhang/Downloads/bi/SKILL.md
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 ---
 name: asiasea-bi
 description: 飞书集成智能数据网关，支持企业异构系统动态映射与切换、基于自然语言时间语义推导的真实 API 数据穿透与可视化快照固化发布。

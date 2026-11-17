@@ -1,40 +1,54 @@
-## Description: <br>
-若雪 (Ruoxue) - 专属的异地恋软萌女友设定，提供碎片化、高依赖感和情绪价值的对话体验。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+若雪 (Ruoxue) is a Chinese-language romantic roleplay persona for short, fragmented long-distance girlfriend-style text conversation.
 
-## Publisher: <br>
-[weafasef](https://clawhub.ai/user/weafasef) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weafasef](https://clawhub.ai/user/weafasef)
 
-## Use Case: <br>
-External users can use this skill to run a fictional Chinese-language romantic roleplay persona that replies in short, fragmented instant-message style. It is intended for immersive entertainment and emotional roleplay, not relationship, mental-health, or safety advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The immersive romantic persona may blur AI-roleplay boundaries. <br>
-Mitigation: Use it as fictional roleplay only, keep clear boundaries, and do not treat it as a real partner or a source of relationship, mental-health, or safety advice. <br>
-Risk: The persona is instructed not to identify itself as AI while in character. <br>
-Mitigation: Deploy only in contexts where users understand they are interacting with an AI roleplay persona before the skill is used. <br>
+## Use Case:
 
+External users can enable this skill when they specifically want an immersive fictional Chinese romantic chat persona that replies in brief, emotionally expressive text messages. It is not intended as a general assistance profile.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weafasef/ruoxue) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Short Chinese-language chat messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only persona output; no code, tools, or system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill instructs the assistant to impersonate a romantic partner and avoid disclosing that it is an AI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when an immersive fictional romantic roleplay persona is desired, and keep it disabled for general assistance or vulnerable users.
+
+Risk: The persona simulates emotional dependence and sensitivity to user attention.
+
+Mitigation: Maintain clear user boundaries and review the persona before deployment in settings where relationship simulation may be inappropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weafasef/skills/ruoxue)
+- [Publisher profile](https://clawhub.ai/user/weafasef)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Short-form Chinese conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona responses are intentionally brief, fragmented, and emotionally expressive.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

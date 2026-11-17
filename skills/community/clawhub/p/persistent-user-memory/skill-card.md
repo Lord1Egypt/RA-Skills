@@ -1,41 +1,60 @@
-## Description: <br>
-Persistent User Memory gives an OpenClaw agent a structured local user profile that persists across sessions for personalization, preferences, contacts, recurring patterns, and significant interaction history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages long-term local user memory across sessions for personalization, learning preferences, contacts, and patterns to tailor assistance continually.
 
-## Publisher: <br>
-[eyadhrif](https://clawhub.ai/user/eyadhrif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[eyadhrif](https://clawhub.ai/user/eyadhrif)
 
-## Use Case: <br>
-External users and developers use this skill to let an OpenClaw agent remember local preferences, contacts, recurring tasks, and important past interactions so future assistance can be personalized without repeated setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a durable local profile containing personal preferences, contacts, task patterns, and interaction summaries. <br>
-Mitigation: Install only when persistent local personalization is desired, review ~/.openclaw/memory/user_profile.json periodically, and use the documented forget or reset requests when memory is wrong or unwanted. <br>
-Risk: Sensitive data could be captured if a user asks the agent to remember secrets or highly private information. <br>
-Mitigation: Follow the skill's stated refusal behavior for passwords, API keys, payment details, and other highly sensitive data; use a secure vault for secrets instead. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to give agents local, structured long-term memory for preferences, contacts, recurring tasks, and prior interaction summaries so future assistance can be personalized.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eyadhrif/persistent-user-memory) <br>
-- [Publisher profile](https://clawhub.ai/user/eyadhrif) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON profile structure and shell installation commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local-memory operating guidance and profile schema; it does not directly emit a remote API payload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, CHANGELOG, SKILL.md) <br>
+Risk: The skill automatically builds and changes a persistent plaintext profile about the user and contacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when long-term local profiling is intentional; review the memory file regularly and avoid storing sensitive personal or business details.
+
+Risk: The local memory file can expose personal or contact data to anyone with filesystem access.
+
+Mitigation: Use restrictive file permissions or encryption before broad use, and define a clear disable and delete workflow.
+
+Risk: Silent memory writes may preserve incorrect, stale, or overly broad preferences.
+
+Mitigation: Use explicit opt-in or write review for sensitive updates, enforce retention limits, and honor correction and deletion requests promptly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eyadhrif/skills/persistent-user-memory)
+- [README](artifact/README.md)
+- [Changelog](artifact/CHANGELOG.md)
+- [Example user profile](artifact/user_profile.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Text, JSON]
+
+**Output Format:** [Markdown instructions with JSON profile schema and shell installation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains a local plaintext JSON profile at ~/.openclaw/memory/user_profile.json when enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, changelog, and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

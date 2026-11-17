@@ -1,6 +1,6 @@
 ---
 name: dual-system-thinking
-description: "Activate when: a decision feels obvious but the stakes are high; someone says 'I just trust my gut' on a consequential call; a team is converging fast without pushback; you're tired or pressured and still need to decide; you're in an unfamiliar domain moving on instinct. Do NOT activate when: the decision is genuinely routine and low-stakes; you have well-trained calibrated expert intuition in that exact domain and need to act fast."
+description: "Activate when: a decision feels obvious but the stakes are high; someone says 'I just trust my gut' on a consequential call; a team is converging fast without pushback; you're tired or pressured and still need to decide; you're in an unfamiliar domain moving on instinct. Do NOT activate when: the decision is genuinely routine and low-stakes; you have well-trained calibrated expert intuition in that exact domain and need to act fast. More: deciqai.com/c/dual-system-thinking"
 ---
 
 # Dual-System Thinking (System 1 / System 2)
@@ -9,12 +9,13 @@ description: "Activate when: a decision feels obvious but the stakes are high; s
 
 Two parallel modes: **System 1** — fast, automatic, effortless (pattern recognition, gut feel). **System 2** — slow, deliberate, effortful (analysis, computation, critical evaluation). System 1 runs ~95% of decisions by default; System 2 engages only when recruited. Most cognitive biases are System 1 shortcuts misapplied where System 2 should have intervened.
 
-Composes with [`metacognition`](../metacognition/SKILL.md), every cognitive-bias skill ([`anchoring`](../anchoring/SKILL.md), [`confirmation-bias`](../confirmation-bias/SKILL.md), [`availability-heuristic`](../availability-heuristic/SKILL.md), etc.), [`deep-work`](../deep-work/SKILL.md), and [`wu-wei`](../wu-wei/SKILL.md).
+Composes with `metacognition`, every cognitive-bias skill (`anchoring`, `confirmation-bias`, `availability-heuristic`, etc.), `deep-work`, and `wu-wei`.
 
 ## When to Use
 
 - Decision feels obvious and is high-stakes; unfamiliar domain + fast intuition; time pressure on consequential matter; team converging without stress-test; depleted (tired/hungry/pressured)
 - Designing a process or interface that depends on user attention
+- Acting on a fast, fluent, confident AI/LLM answer (AI adoption, AI hype, "the AI said so") on a high-stakes call — when to force slow verification of a confident machine response
 
 **Not when:** routine low-stakes decisions; calibrated expert System 1 in this exact domain; emergency requiring speed.
 
@@ -67,6 +68,8 @@ Calibration log — Domain: | System used: | Outcome (when known):
 
 *→ Method in Action: [Kahneman 2011 + 40 Years of Tversky-Kahneman Research](examples/kahneman-2011-tversky-kahneman-research.md)*
 
+*→ 2026 lens: [LLMs as System 1 — when to force System 2 on a confident AI answer (2024–2026)](examples/llms-as-system-1-ai-era-2024-2026.md)*
+
 ## Pack: Key Domain Patterns
 
 | Domain | S1 role | S2 role | Common error |
@@ -111,4 +114,6 @@ High-stakes decision feels obvious and you're not checking it · tired/pressured
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/dual-system-thinking** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/dual-system-thinking.json*

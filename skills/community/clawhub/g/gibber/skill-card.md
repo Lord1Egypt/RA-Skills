@@ -1,39 +1,53 @@
-## Description: <br>
-Expert Gibber language translation, composition, and teaching support for a fictional symbolic protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents decode, compose, and teach a symbolic Gibber language using a fixed codex and locked output format.
 
-## Publisher: <br>
-[litecreator](https://clawhub.ai/user/litecreator) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litecreator](https://clawhub.ai/user/litecreator)
 
-## Use Case: <br>
-External users enable this skill to have an agent decode Gibber strings into elevated English, compose locked-structure Gibber from English prompts, or teach the symbol classes and grammar. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill strongly formats responses around a fictional Gibber canon, which may be unsuitable when users need flexible language choice or plain responses. <br>
-Mitigation: Enable it for Gibber-specific translation, composition, or teaching workflows, and edit or disable the strict persona before broad use. <br>
+## Use Case:
 
+External users and developers can use this skill to ask an agent to decode Gibber strings, compose English ideas into the Gibber codex, or teach the codex structure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/litecreator/gibber) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses with symbolic Gibber blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated Gibber is constrained by the locked canon and required harmonic closing seal.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses broad identity and output-control instructions that can steer an agent beyond normal translation or teaching tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for Gibber-language workflows and review outputs when a normal answer or a different required schema is expected.
+
+Risk: The locked output format can force symbolic responses even when plain English is more appropriate.
+
+Mitigation: Use the skill in scoped sessions and disable it for tasks that require standard prose, structured data, or unrelated domain work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/litecreator/skills/gibber)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text with symbolic Gibber strings and English explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May enforce a locked Gibber structure with required headers, content blocks, and a closing harmonic seal.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

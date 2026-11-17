@@ -1,47 +1,61 @@
-## Description: <br>
-Business card scanner and Google Contacts manager that auto-detects business card images, extracts contact details with OCR, confirms the result with the user, and saves contacts with configurable name formatting and a card photo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Business card scanner and Google Contacts manager that detects card images, extracts contact fields with OCR, asks for user confirmation, and saves contacts with configurable name formatting and card photos.
 
-## Publisher: <br>
-[project820](https://clawhub.ai/user/project820) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-CC BY-NC 4.0 <br>
+## Publisher:
 
+[project820](https://clawhub.ai/user/project820)
 
-## Use Case: <br>
-External users and operators use Bizcard to turn business card photos, especially Korean business cards, into reviewed Google Contacts entries with normalized names, phone numbers, organization fields, and an optional card image. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Business card images and extracted contact details may be sent through configured AI and API providers. <br>
-Mitigation: Install only if that data flow is acceptable for the intended contacts, and review extracted fields before saving. <br>
-Risk: The skill can modify Google Contacts after the user approves saving or updating a contact. <br>
-Mitigation: Use the confirmation flow, review duplicate matches, and consider a dedicated Google Contacts and Telegram setup for business-card intake. <br>
-Risk: API keys and relationship history are sensitive operational data. <br>
-Mitigation: Keep MATON_API_KEY and NANO_BANANA_API_KEY private, and periodically clear or protect any local bizcard logs. <br>
+## Use Case:
 
+External users and operators use this skill to process business-card images in OpenClaw, review extracted contact details, and create or update Google Contacts with optional Korean name conventions and card photos.
 
-## Reference(s): <br>
-- [Bizcard ClawHub page](https://clawhub.ai/project820/bizcard) <br>
-- [Google People API field reference](references/people-api-fields.md) <br>
-- [Google People API: Person resource](https://developers.google.com/people/api/rest/v1/people) <br>
-- [OpenClaw install documentation](https://docs.openclaw.ai/install) <br>
-- [Maton settings](https://maton.ai/settings) <br>
-- [Google AI Studio API keys](https://aistudio.google.com/app/apikey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with JSON contact fields and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reviewed contact data, configuration guidance, and execution steps for OCR, image processing, duplicate checks, and Google Contacts updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server-resolved release evidence) <br>
+Risk: Business-card images and extracted personal contact details are sent to external OCR/image services and the Maton Google Contacts gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where that data flow is acceptable, use the documented dedicated bot or workspace pattern, and review extracted contact details before saving.
+
+Risk: The skill can write or update Google Contacts after confirmation, including contact photos.
+
+Mitigation: Keep user confirmation in the workflow, maintain the Google Contacts OAuth connection intentionally, and disable card photos or name-format options when they do not match the deployment workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/project820/skills/bizcard)
+- [People API fields reference](artifact/references/people-api-fields.md)
+- [Google People API](https://developers.google.com/people/api/rest)
+- [Google People API: createContact](https://developers.google.com/people/api/rest/v1/people/createContact)
+- [Google People API: updateContactPhoto](https://developers.google.com/people/api/rest/v1/people/updateContactPhoto)
+- [Google People API: searchContacts](https://developers.google.com/people/api/rest/v1/people/searchContacts)
+- [OpenClaw installation](https://docs.openclaw.ai/install)
+- [Maton settings](https://maton.ai/settings)
+- [Google AI Studio API keys](https://aistudio.google.com/app/apikey)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with JSON structures and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May make external OCR, image-generation, Maton gateway, and Google Contacts calls after user confirmation.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,55 @@
-## Description: <br>
-Trades structural mispricings in crypto price-threshold markets by reconstructing the implied probability distribution curve across multiple strike levels and detecting mathematical violations such as monotonicity breaks and range-sum inconsistencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades structural mispricings in crypto price-threshold markets by reconstructing the implied probability distribution curve across multiple strike levels and detecting mathematical violations such as monotonicity breaks and range-sum inconsistencies.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and trading automation developers use this skill to scan Polymarket crypto price-threshold markets for internally inconsistent probability curves and place paper or explicitly live trades through Simmer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real-money Polymarket trades when run with --live. <br>
-Mitigation: Test in paper mode first and use --live only after deliberately accepting live trading risk. <br>
-Risk: SIMMER_API_KEY grants trading authority and is a sensitive credential. <br>
-Mitigation: Protect and scope the credential before deployment. <br>
-Risk: The skill depends on simmer-sdk for market access and trade execution. <br>
-Mitigation: Review or pin simmer-sdk before live use. <br>
-Risk: The documented minimum-volume control appears declared but not implemented in the script. <br>
-Mitigation: Review the volume filter behavior before relying on it as a live trading safeguard. <br>
+## Use Case:
 
+External developers and trading operators use this skill to scan Polymarket crypto price-threshold markets for implied-CDF inconsistencies and optionally execute paper or live trades through Simmer. It is intended for advanced users who can review trading risk, configure limits, and monitor execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-48h-price-curve-arb-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk source repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text with trading decisions, skip reasons, and order status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY and simmer-sdk; defaults to paper trading unless run with --live.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: Live mode can place real Polymarket trades and should be treated as capable of under-hedged or repeated positions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Test in paper mode first, require deliberate review before using --live, and use a limited API key for accounts with live trading enabled.
+
+Risk: Documented volume and concurrent-position limits may not be sufficient as hard protections.
+
+Mitigation: Configure conservative tunables, monitor order placement, and apply independent account-level or operational limits before live use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-48h-price-curve-arb-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Code, Configuration]
+
+**Output Format:** [Python script execution with console logs, configurable environment variables, and Simmer trade requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to paper trading unless the --live flag is used; requires SIMMER_API_KEY.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,52 +1,57 @@
-## Description: <br>
-Yumfu is a chat-native multiplayer text RPG that lets agents run persistent adventures across multiple worlds with natural-language turns, generated scene art, voice narration, and storybook exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A text RPG skill for natural-language play across multiple fantasy and myth-inspired worlds, with persistent saves and multiplayer features in OpenClaw.
 
-## Publisher: <br>
-[yumyumtum](https://clawhub.ai/user/yumyumtum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-GPL-3.0-or-later <br>
+## Publisher:
 
+[yumyumtum](https://clawhub.ai/user/yumyumtum)
 
-## Use Case: <br>
-External users and chat communities use Yumfu to run solo or multiplayer role-playing sessions in group chat, with persistent saves, natural-language actions, generated media, and optional storybook exports. Agents use the skill to manage gameplay turns, character creation, save/load flows, and content delivery for ongoing campaigns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+GPL-3.0-or-later
 
-## Known Risks and Mitigations: <br>
-Risk: Broad chat triggers can continue gameplay in group chats when a participant sends natural-language game actions. <br>
-Mitigation: Use an explicit /yumfu session boundary in group chats and make clear when Yumfu is active. <br>
-Risk: Persistent saves, generated media, and default-on storybook logs may retain gameplay conversation content locally. <br>
-Mitigation: Warn participants before group play, disable storybook tracking when privacy matters, or set YUMFU_NO_LOGGING=1. <br>
-Risk: Optional daily evolution can send scheduled background updates after setup. <br>
-Mitigation: Enable daily evolution only for users who want scheduled updates and review the target chat before enabling it. <br>
-Risk: Generated art and voice narration may expose private or unwanted story content in shared chat surfaces. <br>
-Mitigation: Confirm group expectations for images and TTS, and turn those features off per save when the session should remain text-only. <br>
+## Use Case:
 
+Players use YumFu to play persistent, bilingual text adventures in shared fantasy, wuxia, and myth-inspired worlds. OpenClaw users can play cooperatively or competitively in supported group chats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yumyumtum/yumfu) <br>
-- [Publisher profile](https://clawhub.ai/user/yumyumtum) <br>
-- [GitHub repository](https://github.com/yumyumtum/yumfu) <br>
-- [README](README.md) <br>
-- [Security Policy](SECURITY.md) <br>
-- [Storybook System](STORYBOOK_SYSTEM.md) <br>
-- [Release Notes v1.7.11](RELEASE_NOTES_v1.7.11.md) <br>
-- [Canon Reference File Guide](worlds/canon/README.md) <br>
-- [Storybook demos](https://yumyumtum.github.io/yumfu/storybooks/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and chat text, with optional JSON helper results, shell command snippets, generated media paths, and HTML storybook files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local saves, session logs, generated media, and storybook exports; optional daily evolution can produce scheduled background messages when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.11 (source: package.json, release evidence) <br>
+Risk: Storybook delivery may send player content to a fixed recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the destination and intended audience before enabling automatic delivery; avoid exporting sensitive session content until the recipient is verified.
+
+Risk: The scan reports additional skill-install commands and external media processing whose behavior or data handling may be unexpected.
+
+Mitigation: Review install commands before running them, confirm which media services process content, and disable image or voice features when those services are not acceptable.
+
+Risk: The security scan is partial, with one component partially inspected and unresolved references or parser limits leaving behavior uncertain.
+
+Mitigation: Review the partially inspected component and resolve referenced behavior before enabling the skill for sensitive use.
+
+## Reference(s):
+
+- [YumFu on ClawHub](https://clawhub.ai/yumyumtum/skills/yumfu)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Images, Audio, HTML, PDF]
+
+**Output Format:** [Interactive narrative text with scene images and voice narration; HTML storybook exports, with optional PDF export.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese and English gameplay; persistent game state and multiplayer features in supported OpenClaw chats.]
+
+## Skill Version(s):
+
+1.7.12 (source: package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

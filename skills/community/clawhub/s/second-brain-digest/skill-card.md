@@ -1,44 +1,60 @@
-## Description: <br>
-A Chinese-language workflow that turns fragmented inputs such as articles, notes, screenshot text, conversation records, and ideas into standardized atomic knowledge cards with relationship discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+second-brain-digest is a Chinese-language workflow that turns fragmented articles, notes, conversations, and ideas into structured atomic knowledge cards and identifies links to an existing personal knowledge base.
 
-## Publisher: <br>
-[boboy-j](https://clawhub.ai/user/boboy-j) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boboy-j](https://clawhub.ai/user/boboy-j)
 
-## Use Case: <br>
-External users and knowledge workers use this skill to digest articles, notes, meeting records, data snippets, and personal ideas into reusable personal-knowledge-management cards. It helps structure each card with a claim, rationale, source, tags, confidence strength, related concepts, optional action cues, and storage suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private meetings, notes, conversations, or personal ideas may contain sensitive information that should not be saved without review. <br>
-Mitigation: Review generated cards before storing or sharing them, especially when the input includes private or personal content. <br>
-Risk: The skill uses broad trigger language and may produce knowledge-card formatting when the user only wants a plain summary. <br>
-Mitigation: Ask for plain summary output when card formatting, relationship discovery, or storage suggestions are not desired. <br>
+## Use Case:
 
+Chinese-speaking personal knowledge management users and note-taking agents use this skill to digest articles, notes, screenshots, conversations, meeting records, research data, and idea fragments into reusable atomic cards. It also suggests relationships, follow-up questions, action cues, and storage formats for second-brain workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/boboy-j/second-brain-digest) <br>
-- [Publisher profile](https://clawhub.ai/user/boboy-j) <br>
-- [Card templates and format reference](artifact/references/card-templates.md) <br>
-- [Example article digest](artifact/examples/example-article-digest.md) <br>
-- [Test cases](artifact/tests/test-cases.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text knowledge cards] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce standard card format, Obsidian Markdown with frontmatter, or Notion database field guidance when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Broad activation wording may cause the workflow to process pasted content when the user only wanted a simple summary or storage suggestion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended note-taking outcome before converting ambiguous user input into knowledge cards.
+
+Risk: Generated cards can misstate or over-strengthen claims from the source content.
+
+Mitigation: Review card titles, evidence, strength labels, and source attribution against the original material before saving them to a knowledge base.
+
+Risk: The README includes an unpinned npx install command.
+
+Mitigation: Use a trusted or pinned installer path when installing the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/boboy-j/skills/second-brain-digest)
+- [Card templates and format reference](artifact/references/card-templates.md)
+- [Example article digest](artifact/examples/example-article-digest.md)
+- [Test cases](artifact/tests/test-cases.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown knowledge cards with optional Obsidian Markdown or Notion-ready fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include card titles, core content, source, tags, strength labels, related-knowledge links, follow-up questions, optional action cues, and storage suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

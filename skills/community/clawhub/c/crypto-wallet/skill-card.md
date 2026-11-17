@@ -1,38 +1,57 @@
-## Description: <br>
-Multi-chain cryptocurrency wallet management. Check balances, send tokens, view transaction history across Ethereum, Solana, Bitcoin and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-chain cryptocurrency wallet management. Check balances, send tokens, view transaction history across Ethereum, Solana, Bitcoin and more.
 
-## Publisher: <br>
-[nvmmonkey](https://clawhub.ai/user/nvmmonkey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nvmmonkey](https://clawhub.ai/user/nvmmonkey)
 
-## Use Case: <br>
-External users use this skill to ask an agent for cryptocurrency wallet balance checks, transaction history, portfolio summaries, token price lookups, and transfer preparation across supported chains. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to handle irreversible cryptocurrency transfers without enough detail about wallet access and transaction safeguards. <br>
-Mitigation: Review before installing and require the user to approve each transaction outside the agent after seeing the exact chain, token, amount, recipient, fees, and contract action. <br>
-Risk: Exposure of seed phrases or raw private keys could compromise wallet funds. <br>
-Mitigation: Do not provide seed phrases or raw private keys to the agent or skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and developers use this skill to manage cryptocurrency wallets across supported chains, including balance checks, transaction history review, token price lookup, portfolio summaries, and confirmed token sends.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text responses with wallet-management guidance and command-oriented steps when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq according to ClawHub metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Incorrect recipient addresses, chains, amounts, or fees could cause irreversible financial loss.
+
+Mitigation: Require explicit confirmation before any send action and independently verify the recipient address, chain, token, amount, and fee details.
+
+Risk: Exposure of seed phrases, private keys, or untrusted wallet and RPC/API endpoints could compromise funds.
+
+Mitigation: Never provide seed phrases or private keys, and use only wallets and RPC/API endpoints the user independently trusts.
+
+Risk: Balance, transaction, price, or portfolio information from external endpoints may be stale, incomplete, or misleading.
+
+Mitigation: Cross-check material financial decisions with trusted wallet software, block explorers, or exchange data before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nvmmonkey/skills/crypto-wallet)
+- [ClawHub publisher profile](https://clawhub.ai/user/nvmmonkey)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on curl and jq when command-line API calls are needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

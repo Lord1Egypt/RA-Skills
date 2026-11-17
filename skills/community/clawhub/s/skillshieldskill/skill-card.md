@@ -1,44 +1,64 @@
-## Description: <br>
-AI Agent Skill Security Scanner - Detect malicious skills, verify signatures, analyze permissions, and provide trust ratings for the agent ecosystem. Protects against credential stealers, data exfiltration, and unauthorized access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Agent Skill Security Scanner - Detect malicious skills, verify signatures, analyze permissions, and provide trust ratings for the agent ecosystem.
 
-## Publisher: <br>
-[uexo](https://clawhub.ai/user/uexo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uexo](https://clawhub.ai/user/uexo)
 
-## Use Case: <br>
-Developers and agent operators use this skill to scan agent skills for suspicious patterns, permission needs, and trust-rating signals before installation or deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes Moltbook posting code and a bundled token that should be treated as exposed. <br>
-Mitigation: Do not run upload_to_moltbook.py unless intentional posting is required; rotate or revoke any exposed token before use. <br>
-Risk: The advertised signature verification feature is not implemented. <br>
-Mitigation: Do not rely on signature verification results for trust decisions until real cryptographic verification is added and reviewed. <br>
-Risk: The scanner reports security findings but can produce false positives or miss behaviors outside its static rules. <br>
-Mitigation: Review scan findings manually and combine them with source review before installing or deploying scanned skills. <br>
+## Use Case:
 
+Developers and operators use this skill to scan agent skills for suspicious behaviors, permissions, credential-access patterns, networking, and signature status before installation or release.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/uexo/skillshieldskill) <br>
-- [Publisher Profile](https://clawhub.ai/user/uexo) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON scan reports, with Markdown documentation and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes trust ratings, warnings, permission summaries, recommendations, and file hash summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The package includes a Moltbook publishing script with a hardcoded bearer token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the embedded token, rotate any exposed credential, and require an explicitly scoped credential supplied by the operator.
+
+Risk: The skill presents A-F trust ratings that may be mistaken for proof that another skill is safe.
+
+Mitigation: Treat scanner output as advisory and require human review of source, permissions, and provenance before installation or release.
+
+Risk: Installation instructions include an unpinned package path.
+
+Mitigation: Pin the intended version or source and compare server-provided hashes before running or distributing the skill.
+
+Risk: Moltbook integration can make authenticated external API requests.
+
+Mitigation: Run the integration only in an environment with approved network access and least-privilege credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uexo/skills/skillshieldskill)
+- [Publisher profile](https://clawhub.ai/user/uexo)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON security report with command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include trust ratings, warnings, permissions, hashes, summaries, and recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Helps creative agencies, design studios, and content teams manage briefs, reviews, client updates, calendars, assets, copy, freelancers, and budgets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creative helps creative agencies, design studios, and content teams manage projects, client communication, creative briefs, review workflows, content calendars, asset management, copywriting, freelancer coordination, and budget tracking.
 
-## Publisher: <br>
-[rithythul](https://clawhub.ai/user/rithythul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rithythul](https://clawhub.ai/user/rithythul)
 
-## Use Case: <br>
-Creative agency operators, design studios, and content teams use this skill to structure project intake, creative briefs, approvals, status updates, content calendars, asset organization, copywriting workflows, freelancer coordination, and budget monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft client communications or content may be inaccurate, off-brand, or unsuitable to send directly. <br>
-Mitigation: Review and approve all client-facing messages, creative recommendations, and publication-ready content before sending or posting. <br>
-Risk: Creative workflows can expose confidential client, billing, campaign, or budget details. <br>
-Mitigation: Share only the client and project data needed for the task, and redact sensitive information that is not required. <br>
-Risk: The release is tagged with purchase and crypto-related capabilities even though the artifact is instruction-only. <br>
-Mitigation: Do not grant payment, posting, wallet, or broad automation access unless that access is explicitly intended and supervised outside this skill. <br>
+## Use Case:
 
+Employees and external creative operations teams use this skill to standardize agency workflows, including project tracking, client updates, creative briefs, approvals, content planning, copywriting, asset delivery, freelancer coordination, and budget checks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rithythul/creative) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured templates, checklists, status summaries, and draft client communications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable code or hidden behavior found in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence; artifact frontmatter lists 0.1.0) <br>
+Risk: Client-facing messages, social posts, budget decisions, or freelancer payment actions could affect real business relationships or spending if used without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require user approval before any generated email, social publishing action, billing decision, payment step, or external-system change is sent or applied.
+
+Risk: Creative workflow guidance may not match a specific client contract, brand standard, approval policy, or revision limit.
+
+Mitigation: Check generated briefs, review notes, delivery checklists, and budget alerts against the current client agreement and brand reference before relying on them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rithythul/skills/creative)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown playbooks, checklists, templates, and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; outputs may include client-facing drafts, schedules, briefs, review prompts, budget alerts, and process checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

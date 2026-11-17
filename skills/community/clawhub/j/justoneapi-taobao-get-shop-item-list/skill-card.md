@@ -1,44 +1,51 @@
-## Description: <br>
-Call 3 get-shop-item-list versions for Taobao and Tmall Shop Product List through JustOneAPI with shopId and userId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call 3 get-shop-item-list versions for Taobao and Tmall Shop Product List through JustOneAPI with shopId and userId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-External developers and marketplace operators use this skill to call JustOneAPI endpoints that retrieve Taobao and Tmall shop product lists for seller research and catalog tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is sent in the request URL query string. <br>
-Mitigation: Use a scoped token when available, avoid sharing command lines or logs that may contain the token, and rotate the token if exposure is suspected. <br>
-Risk: The skill requires sensitive credentials and shop or user identifiers for a third-party API provider. <br>
-Mitigation: Install only when the publisher and JustOneAPI are trusted for the token and identifiers provided. <br>
+## Use Case:
 
+Developers and agents use this skill to call JustOneAPI's Taobao and Tmall shop product list endpoints for seller research and catalog tracking. It supports versioned GET operations that require a userId, and v2 or v3 also require a shopId.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/justoneapi/justoneapi-taobao-get-shop-item-list) <br>
-- [JustOneAPI API Homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_taobao_get_shop_item_list&utm_content=project_link) <br>
-- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_taobao_get_shop_item_list&utm_content=project_link) <br>
-- [Generated Operations Reference](artifact/generated/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and Taobao/Tmall shop identifiers; responses should include the operation ID and endpoint path used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: API tokens may be exposed through command-line arguments and query-string request URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped, revocable JustOneAPI tokens; avoid shared shells or logged CI jobs; confirm logs and surrounding infrastructure redact token values before use.
+
+## Reference(s):
+
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_taobao_get_shop_item_list&utm_content=project_link)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_taobao_get_shop_item_list&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, json]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a JustOneAPI token plus endpoint parameters; returns API response JSON after endpoint-specific guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

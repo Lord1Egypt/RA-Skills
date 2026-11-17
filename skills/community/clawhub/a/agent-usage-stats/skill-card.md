@@ -1,43 +1,60 @@
-## Description: <br>
-Token Stats helps users view local token consumption for Hermes, Claude Code, CodeX, OpenClaw, Reasonix, and DeepSeek TUI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Token Stats helps users inspect local token consumption for supported AI assistants, including Hermes, Claude Code, CodeX, OpenClaw, Reasonix, and DeepSeek TUI.
 
-## Publisher: <br>
-[zhouhaoyong](https://clawhub.ai/user/zhouhaoyong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhouhaoyong](https://clawhub.ai/user/zhouhaoyong)
 
-## Use Case: <br>
-Developers and power users with local AI assistant usage records use this skill to inspect token usage, monitor live deltas, compare time periods, and export local usage summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Maintenance commands can persistently change PATH and remove token-stats or agent-usage-stats directories. <br>
-Mitigation: Review setup, update, and uninstall behavior before installing; run these commands only if PATH changes and directory removal are acceptable. <br>
-Risk: Stats features read local assistant usage files that may reveal local usage patterns. <br>
-Mitigation: Use the skill only on machines where reading local assistant records is acceptable, and review exported files before sharing them. <br>
+## Use Case:
 
+Developers and AI assistant users use this skill to review local token usage by agent, model, and time period; monitor live usage deltas; compare periods; and export usage summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouhaoyong/agent-usage-stats) <br>
-- [Publisher profile](https://clawhub.ai/user/zhouhaoyong) <br>
-- [README](README.md) <br>
-- [CHANGELOG](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Terminal text output with optional CSV, JSON, and XLSX exports; Markdown setup and usage guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local assistant usage files and reports statistics for the selected agent, time range, or export mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.7.13 (source: SKILL.md frontmatter, CHANGELOG.md, server release metadata) <br>
+Risk: Setup, update, and uninstall commands can change shell PATH entries, create persistent wrappers, update installed files, or remove directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run maintenance commands only from the expected installation context, avoid custom uninstall directories unless reviewed, and confirm any directory the tool says it will remove.
+
+Risk: The tool reads local agent usage and history data from SQLite, JSONL, and JSON files on the current device.
+
+Mitigation: Use it only on devices and accounts where access to local agent usage records is acceptable, and handle exported summaries as potentially sensitive.
+
+Risk: CSV exports can carry spreadsheet-specific risks when opened in office software.
+
+Mitigation: Treat exported CSV files as untrusted and review them before opening or sharing in spreadsheet applications.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhouhaoyong/skills/agent-usage-stats)
+- [README.md](README.md)
+- [README.zh.md](README.zh.md)
+- [CHANGELOG.md](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Terminal text with optional CSV, XLSX, and JSON export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local agent usage and history files on the current device; exported spreadsheet files should be treated as untrusted.]
+
+## Skill Version(s):
+
+2.7.13 (source: SKILL.md frontmatter, CHANGELOG.md, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

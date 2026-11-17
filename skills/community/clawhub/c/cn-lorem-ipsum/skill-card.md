@@ -1,40 +1,49 @@
-## Description: <br>
-Generates Chinese or English placeholder text with a pure Python standard-library tool and no API key requirement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese and English placeholder text, including words, sentences, paragraphs, names, phone numbers, and email addresses, using local Python scripts.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and content teams use this skill to generate local placeholder text, names, phone numbers, and email-like sample values for mockups, tests, documentation, and layout drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence marks the release as suspicious and notes unrestricted local access risk in review-helper behavior. <br>
-Mitigation: Install only if the publisher is trusted and avoid unrestricted local access unless it is explicitly needed. <br>
-Risk: The release is tagged as requiring sensitive credentials. <br>
-Mitigation: Provide credentials only when a specific workflow requires them and verify the local target before running generated commands. <br>
+## Use Case:
 
+Developers, designers, and content testers use this skill to create local placeholder copy and fake contact-style test data for layouts, prototypes, and development fixtures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-lorem-ipsum) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text output with Markdown guidance and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce Chinese or English placeholder paragraphs and optional sample names, phone numbers, and email-like values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.5 (source: server release evidence) <br>
+Risk: Generated phone numbers and email addresses could be mistaken for real contact details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use them only as fake test data and avoid placing them in production, outreach, or identity-sensitive workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-lorem-ipsum)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated Chinese or English placeholder text, names, phone numbers, and email addresses; generated contact details are fake test data.]
+
+## Skill Version(s):
+
+1.2.5 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

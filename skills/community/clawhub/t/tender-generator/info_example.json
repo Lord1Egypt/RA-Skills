@@ -1,0 +1,20 @@
+{
+  "project_name": "智慧社区建设项目",
+  "tender_number": "ZB-2024-001",
+  "tenderer": "XX市政府采购中心",
+  "deadline": "2024-12-31",
+  "valid_period": "90天",
+  "delivery_time": "合同签订后30日内",
+  "warranty_period": "3年",
+  "company_name": "XX科技有限公司",
+  "credit_code": "91110000XXXXXXXXXX",
+  "company_address": "北京市朝阳区XX路XX号",
+  "legal_rep": "张三",
+  "authorized_rep": "李四",
+  "authorized_rep_phone": "13800138000",
+  "total_price": "¥1,234,567.89",
+  "price_breakdown": "硬件:50万, 软件:30万, 集成:20万, 运维:5万",
+  "bank_name": "中国工商银行北京朝阳支行",
+  "bank_account": "6222021234567890",
+  "bank_code": "102100099996"
+}

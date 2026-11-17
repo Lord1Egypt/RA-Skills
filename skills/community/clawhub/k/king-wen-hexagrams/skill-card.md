@@ -1,46 +1,66 @@
-## Description: <br>
-以文王六十四卦为根本，依用户所问定卦、排卦、解卦，并以庄重克制的口吻给出趋势判断、风险提醒与行止建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Chinese-language King Wen hexagram workflows for profile setup, question clarification, hexagram lookup, structured readings, daily fortune prompts, and follow-up guidance.
 
-## Publisher: <br>
-[wjp-cn](https://clawhub.ai/user/wjp-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wjp-cn](https://clawhub.ai/user/wjp-cn)
 
-## Use Case: <br>
-External users use this skill to run a King Wen hexagram workflow for first-run profile setup, question framing, hexagram lookup, divination-style interpretation, daily fortune prompts, and follow-up guidance. It is intended as reflective guidance and does not replace professional advice for high-risk medical, legal, financial, or safety decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save optional profile details such as lunar birthday, gender, birth hour, and daily fortune timing to local state. <br>
-Mitigation: Install only if local storage of those details is acceptable; use the provided state script to inspect or clear saved data. <br>
-Risk: Suggested scheduled reminders can include profile details in the scheduled task message. <br>
-Mitigation: Review generated cron commands before adding them and remove profile details from the message when they are not needed. <br>
-Risk: Hexagram readings may be mistaken for deterministic advice in high-risk decisions. <br>
-Mitigation: Treat outputs as reflective guidance and rely on qualified professional advice for medical, legal, financial, or safety-critical matters. <br>
+## Use Case:
 
+External users and agent builders use this skill to conduct or support King Wen hexagram readings: clarifying the question, normalizing coin or numeric inputs, looking up hexagram meanings, producing structured interpretations, and setting up optional daily fortune prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wjp-cn/king-wen-hexagrams) <br>
-- [README](artifact/README.md) <br>
-- [Usage guide](artifact/guide.md) <br>
-- [Daily fortune and scheduled task guidance](artifact/daily-fortune.md) <br>
-- [Onboarding guidance](artifact/onboarding.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured reading sections, clarification prompts, profile setup prompts, and scheduled task examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: evidence.release.version, artifact/package.json, artifact/skill.json, artifact/README.md, artifact/CHANGELOG.md) <br>
+Risk: The skill can collect or store lunar birthday, gender, optional birth hour, question context, and daily schedule data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only where that local personal data exposure is acceptable, and clear stored state when the profile is no longer needed.
+
+Risk: Install or scheduled-task flows may expose personal profile details in command output or logged environments.
+
+Mitigation: Avoid CI, shared machines, and highly logged environments until output redaction is reviewed.
+
+Risk: Generated cron commands may need manual review before execution.
+
+Mitigation: Review any scheduled-task command and shell quoting before running it.
+
+Risk: Hexagram readings may be mistaken for decisive advice on medical, legal, financial, or other high-impact decisions.
+
+Mitigation: Use readings as reflective guidance only and rely on qualified professional advice for high-impact decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wjp-cn/skills/king-wen-hexagrams)
+- [README](artifact/README.md)
+- [User guide](artifact/guide.md)
+- [Daily fortune and scheduled task guide](artifact/daily-fortune.md)
+- [Onboarding guide](artifact/onboarding.md)
+- [Hexagram catalog](artifact/hexagrams/catalog.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text responses with optional shell commands for initialization and scheduling.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python for local helper scripts; optional profile and schedule data may be stored locally.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata, package.json, skill.json, README, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,55 @@
-## Description: <br>
-Cleans expired cache files, auto-flush files, and old logs to free disk space. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cleans expired cache files, auto-flush files, and old logs to free disk space.
 
-## Publisher: <br>
-[xaiohuangningde](https://clawhub.ai/user/xaiohuangningde) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xaiohuangningde](https://clawhub.ai/user/xaiohuangningde)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to remove stale local cache, temporary files, sandbox, browser, canvas, and log files, either manually or on a recurring cron schedule. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The cleanup script deletes old local OpenClaw cache, logs, browser, canvas, sandbox, cron temporary files, OpenClaw-named /tmp files, and project .cache directories. <br>
-Mitigation: Install only when those locations are safe to clean, review the hard-coded /root/.openclaw path, and add dry-run behavior or exclusions for files that must be retained. <br>
-Risk: The bundled cron schedule can run cleanup automatically before each affected location has been reviewed. <br>
-Mitigation: Disable or adjust the cron schedule until retention requirements and target paths are confirmed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xaiohuangningde/cache-cleanup) <br>
-- [Publisher profile](https://clawhub.ai/user/xaiohuangningde) <br>
+## Use Case:
+
+Developers and operators use this skill to scan configured OpenClaw cache, temporary, browser, sandbox, canvas, and log directories, remove expired files, and produce a cleanup log. It can be run manually or scheduled as a recurring cron task.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can schedule automatic permanent deletion every three days.
+
+Mitigation: Review and narrow cleanup paths, add a dry-run or confirmation mode, and enable the cron schedule only after validating expected deletions.
+
+Risk: Running the cleanup script as root can increase the impact of unintended deletions.
+
+Mitigation: Run the script with the least-privileged account that owns the intended cache and log directories.
+
+Risk: The cleanup log is written under /tmp, which is world-writable on many systems.
+
+Mitigation: Move logging to a controlled application log directory with appropriate permissions before scheduled use.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Files] <br>
-**Output Format:** [Shell script execution with a plain-text cleanup log] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a dated log under /tmp and deletes matching expired files from configured local paths.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release version and artifact/skill.json) <br>
+**Output Type(s):** [text, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Plain text cleanup log with shell command and cron configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Performs permanent file deletion based on configured directory and age rules.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

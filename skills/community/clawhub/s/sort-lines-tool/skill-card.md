@@ -1,38 +1,48 @@
-## Description: <br>
-Sort lines of text alphabetically or numerically. Use for data organization, list management, and text file preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sort lines of text alphabetically or numerically for data organization, list management, and text file preparation.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and other agent users use this skill to sort line-based text content for data organization, list management, and text file preparation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The included script appears more minimal than the documented CLI options.
+
+Mitigation: Review and test expected sorting flags before relying on numeric, reverse, unique, or case-insensitive behavior.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, analysts, and other external users can use this skill to organize short lists or line-oriented text before further review or processing. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation claims numeric, reverse, unique, and case-insensitive sorting, but the included script only sorts text from standard input alphabetically. <br>
-Mitigation: Validate the required sorting mode before relying on this skill, or update the script before using the documented options in an automated workflow. <br>
+**Output Format:** [Plain text sorted output with Markdown guidance and inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/sort-lines-tool) <br>
+**Other Properties Related to Output:** [Sorting behavior is line based; documented flags include numeric, reverse, unique, and case-insensitive sorting.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sorts standard-input text alphabetically; documented numeric, reverse, unique, and case-insensitive options are not implemented in the included script.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Queries merchant fee and rate information through a merchant API when the user provides agent, API key, merchant, and terminal identifiers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+API Merchant Fee helps agents query merchant fee and rate information by collecting merchant, terminal, agent, and API-key parameters and calling the bundled merchant-fee API script.
 
-## Publisher: <br>
-[sgfa005](https://clawhub.ai/user/sgfa005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sgfa005](https://clawhub.ai/user/sgfa005)
 
-## Use Case: <br>
-Merchant operators, support staff, and agents use this skill to retrieve merchant card, scan payment, terminal, and management fee details from an API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Merchant API credentials are saved locally in plaintext for reuse. <br>
-Mitigation: Prefer per-session credentials or a secure secret store; if local reuse is required, restrict file permissions and rotate or delete the API key on shared or synced machines. <br>
-Risk: The skill depends on a configured merchant API endpoint before sending encrypted merchant lookup requests. <br>
-Mitigation: Confirm the endpoint and network path before installation and use only an approved merchant API environment. <br>
-Risk: Merchant fee lookups can expose sensitive business information if prompts or outputs are shared broadly. <br>
-Mitigation: Limit use to authorized merchant-support workflows and redact credentials or merchant identifiers from shared transcripts. <br>
+## Use Case:
 
+External agents and payment operations users use this skill to look up merchant fee, debit card, credit card, scan payment, terminal, and merchant management fee details from merchant and terminal identifiers.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sgfa005/api-merchant-fee) <br>
-- [Publisher profile](https://clawhub.ai/user/sgfa005) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown text with merchant fee details, validation prompts, or error summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May store agentNo and API key locally in scripts/.auth.json for reuse.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: API credentials may be passed on the command line, saved in a local plaintext file, and reused automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in environments where that credential handling is acceptable, or replace it with a managed secret store and explicit credential reuse.
+
+Risk: The artifact ships a possible hardcoded API key and an HTTP endpoint.
+
+Mitigation: Treat the bundled key as exposed, avoid production credentials, require HTTPS, and validate the official API host before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sgfa005/skills/api-merchant-fee)
+- [Publisher profile](https://clawhub.ai/user/sgfa005)
+- [Configured merchant fee API endpoint](http://47.111.144.23:8094/agent/getMerchantFeeInfo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration guidance]
+
+**Output Format:** [Markdown fee summaries, error messages, and parameter prompts with shell command usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should not expose API keys.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

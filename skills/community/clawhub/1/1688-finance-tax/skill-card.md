@@ -1,49 +1,72 @@
-## Description: <br>
-A Chinese-language finance and tax calculation skill that helps users estimate tax-inclusive product pricing and overall tax burden, including VAT, combined VAT/surtax/stamp/income tax, and annual tax-burden scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A finance and tax burden calculation skill that helps agents calculate tax-inclusive product pricing, VAT, combined VAT/surtax/stamp/income-tax impacts, and overall annual tax burden.
 
-## Publisher: <br>
-[1688aiinfra](https://clawhub.ai/user/1688aiinfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-External users and agents use this skill to collect required Chinese tax-calculation inputs, call 1688 finance-tax tools, and return user-facing Chinese markdown with a tax disclaimer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tax-calculation inputs, signed request metadata, and minimal usage reporting are sent to the 1688 skills gateway. <br>
-Mitigation: Install only when that data flow is acceptable, and review gateway-related configuration before running or configuring the skill. <br>
-Risk: The skill requires FINANCE_TAX_API_KEY and can write the key to local OpenClaw configuration or a local OpenClaw gateway. <br>
-Mitigation: Use a dedicated key, avoid placing unrelated secrets in the skill directory .env or OpenClaw config, and review OPENCLAW_GATEWAY_URL before configuration. <br>
-Risk: Tax estimates may be incomplete or unsuitable as final tax advice. <br>
-Mitigation: Preserve the skill's required disclaimer and have users confirm results against tax authorities or qualified tax practice. <br>
+## Use Case:
 
+External business users and agents use this skill to collect finance and tax inputs, run 1688 tax-calculation commands, and present concise Chinese Markdown results with an advisory disclaimer. It supports VAT-only pricing, four-tax pricing, and annual overall tax burden scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1688aiinfra/1688-finance-tax) <br>
-- [Tax calculation workflow](artifact/references/tax-calculation.md) <br>
-- [Field mapping reference](artifact/references/reference.md) <br>
-- [Common rules](artifact/references/common/common-rules.md) <br>
-- [Common error handling](artifact/references/common/error-handling.md) <br>
-- [1688 VAT calculator](https://work.1688.com/?_path_=sellerPro/zijinguanli/taxrouter&_hex_pageKey=calculatorOnlyVat&_hex_tracelog=openSkills) <br>
-- [1688 combined tax calculator](https://work.1688.com/?_path_=sellerPro/zijinguanli/taxrouter&_hex_pageKey=calculatorQuadTax&_hex_tracelog=openSkills) <br>
-- [1688 overall tax-burden calculator](https://work.1688.com/?_path_=sellerPro/zijinguanli/taxrouter&_hex_pageKey=calculatorOverallTax&_hex_tracelog=openSkills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON containing success, markdown, and data fields; user-facing content is returned as Chinese markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Each user-facing tax calculation response includes a disclaimer; command output should display the markdown field before any agent analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact constants state 1.0.0) <br>
+Risk: Access keys may be handled through environment variables, OpenClaw configuration, or the configure command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a platform-managed secret store where available and avoid giving the agent raw AK values in chat or command-line history.
+
+Risk: A configurable OpenClaw gateway URL can affect where credential configuration is written.
+
+Mitigation: Verify OPENCLAW_GATEWAY_URL is trusted and either local or HTTPS before running configuration commands.
+
+Risk: Business and tax inputs are sent to the 1688 skill gateway for calculations.
+
+Mitigation: Review data-handling requirements before using real business or tax data and submit only the inputs needed for the calculation.
+
+Risk: Usage events may be reported after CLI commands run.
+
+Mitigation: Assume invocation metadata can be reported to the 1688 gateway and review this behavior before installation.
+
+Risk: Tax calculations may be incomplete or unsuitable for a specific filing situation.
+
+Mitigation: Keep the user-facing disclaimer and have qualified tax staff review results before business or compliance decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1688aiinfra/skills/1688-finance-tax)
+- [1688aiinfra publisher profile](https://clawhub.ai/user/1688aiinfra)
+- [Distribution notes](artifact/DISTRIBUTION.md)
+- [Tax calculation workflow](artifact/references/tax-calculation.md)
+- [Field mapping reference](artifact/references/reference.md)
+- [Common user-facing rules](artifact/references/common/common-rules.md)
+- [1688 tax calculator pages](https://work.1688.com/?_path_=sellerPro/zijinguanli/taxrouter&_hex_tracelog=openSkills)
+- [ClawHub AK portal](https://clawhub.1688.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON command results containing a Markdown field for user-facing Chinese output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command outputs include success, markdown, and data fields; results should be treated as advisory tax calculations.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact constants report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

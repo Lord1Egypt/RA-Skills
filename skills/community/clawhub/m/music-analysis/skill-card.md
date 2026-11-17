@@ -1,40 +1,57 @@
-## Description: <br>
-Analyze music and audio files locally without external APIs, producing tempo, groove, structure, harmony, timbre, temporal mood-energy, instrument, and lyric-aware emotional analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes local music and audio files to produce tempo, groove, structure, harmony, timbre, instrument, temporal mood, and lyric-aware emotional notes without external APIs.
 
-## Publisher: <br>
-[Adam-Researchh](https://clawhub.ai/user/Adam-Researchh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adam-researchh](https://clawhub.ai/user/adam-researchh)
 
-## Use Case: <br>
-Developers, producers, and reviewers use this skill to inspect local audio files, compare mixes, understand musical structure, and generate producer-facing notes without sending audio to external APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local media processing depends on ffmpeg, ffprobe, Python packages, and optional Whisper binaries or models, which can add supply-chain and file-handling risk. <br>
-Mitigation: Use trusted, maintained installations, process only user-selected audio, and keep downloaded media, temporary files, and generated reports in a dedicated workspace. <br>
-Risk: Tempo, swing, structure, instrument, lyric, and emotion reads are approximate analyses and may be misleading for ambiguous audio or transcription errors. <br>
-Mitigation: Treat reports as decision support, review the source audio and generated notes, and validate important conclusions with human listening. <br>
+## Use Case:
 
+Developers, producers, and audio reviewers use this skill to inspect tracks from local audio files, compare mixes, understand musical structure, and generate producer-facing notes. It is useful when an agent is asked to listen to music, audit a recording, or summarize groove, harmony, timbre, instrumentation, mood, and lyric alignment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Adam-Researchh/music-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, optional JSON reports, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally on user-provided audio files and may write report files when an output path is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: server release metadata) <br>
+Risk: Private audio or transcribed lyrics may appear in generated reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on audio approved for local analysis, and review reports before sharing them outside the workspace.
+
+Risk: Reports can be written to a user-provided output path.
+
+Mitigation: Choose an explicit output location and avoid overwriting unrelated project files.
+
+Risk: Unpinned Python dependencies may produce non-reproducible installs or behavior.
+
+Mitigation: Pin and review Python dependencies before deploying the skill in a shared or production environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/adam-researchh/skills/music-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or JSON music-analysis reports, with optional files written via --out.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are generated from local audio files and may include measured audio features, inferred musical structure, instrument palette notes, timeline highlights, and lyric excerpts when local Whisper transcription is available.]
+
+## Skill Version(s):
+
+3.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

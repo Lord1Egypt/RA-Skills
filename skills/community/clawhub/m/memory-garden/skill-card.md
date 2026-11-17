@@ -1,51 +1,65 @@
-## Description: <br>
-N-count validated knowledge for AI agents. Patterns that prove themselves through repeated use. Local-first, community-ready. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Garden provides N-count validated, local-first knowledge for AI agents by surfacing patterns that have proven useful through repeated use.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-Developers and AI agent users use Memory Garden to search, reuse, extract, and validate recurring knowledge patterns across conversations while keeping storage local by default. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The local daemon can reuse stored patterns in future prompts. <br>
-Mitigation: Periodically review saved data under ~/.memory-garden and disable search or remove patterns that should not influence future responses. <br>
-Risk: Pattern extraction may store conversation-derived knowledge when enabled. <br>
-Mitigation: Leave MG_EXTRACTION_ENABLED=false unless storage is intentional, and keep MG_EXTRACTION_CONFIRM=true so extracted patterns require review. <br>
-Risk: Sync can share patterns outside the local machine when enabled. <br>
-Mitigation: Leave MG_SYNC_ENABLED=false unless P2P sharing is intended and the configured peers are trusted. <br>
-Risk: The skill depends on a downloaded mg-daemon binary. <br>
-Mitigation: Verify the daemon source or expected SHA-256 hash before use. <br>
+## Use Case:
 
+Developers and external agent users use this skill to search, validate, and optionally extract reusable knowledge patterns for AI conversations. It can add relevant stored or community patterns into prompts while keeping local storage as the default.
 
-## Reference(s): <br>
-- [Memory Garden ClawHub listing](https://clawhub.ai/leegitw/memory-garden) <br>
-- [Memory Garden repository](https://github.com/live-neon/memory-garden) <br>
-- [OpenClaw Quick Start](https://github.com/live-neon/memory-garden/blob/main/docs/guides/openclaw-quickstart.md) <br>
-- [P2P Sync Setup](https://github.com/live-neon/memory-garden/blob/main/docs/guides/p2p-sync-setup.md) <br>
-- [Safe Defaults](https://github.com/live-neon/memory-garden/blob/main/docs/standards/safe-defaults.md) <br>
-- [Daemon Lifecycle Architecture](https://github.com/live-neon/memory-garden/blob/main/docs/architecture/daemon-lifecycle.md) <br>
-- [Memory Garden daemon release for macOS arm64](https://github.com/live-neon/memory-garden/releases/download/v1.0.0/mg-daemon-darwin-arm64) <br>
-- [Memory Garden daemon release for Linux amd64](https://github.com/live-neon/memory-garden/releases/download/v1.0.0/mg-daemon-linux-amd64) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown and JSON tool responses with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can augment prompts with retrieved patterns, return pattern search results, queue extracted patterns when enabled, and report validation outcomes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release metadata) <br>
+Risk: The skill starts a local background daemon and stores memory under ~/.memory-garden.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the daemon behavior before installation, monitor the local data directory, and remove stored memory when it is no longer needed.
+
+Risk: Stored or community knowledge can be added to model prompts by default.
+
+Mitigation: Treat injected patterns as untrusted context, review augmented prompts for sensitive work, and disable search with MG_SEARCH_ENABLED=false when prompt augmentation is not appropriate.
+
+Risk: Conversation harvesting and sharing can expose information when extraction or sync are enabled.
+
+Mitigation: Keep MG_EXTRACTION_ENABLED and MG_SYNC_ENABLED disabled unless intentional, and keep confirmation required for any extracted patterns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leegitw/skills/memory-garden)
+- [Memory Garden repository](https://github.com/live-neon/memory-garden)
+- [OpenClaw quick start](https://github.com/live-neon/memory-garden/blob/main/docs/guides/openclaw-quickstart.md)
+- [P2P sync setup](https://github.com/live-neon/memory-garden/blob/main/docs/guides/p2p-sync-setup.md)
+- [Safe defaults](https://github.com/live-neon/memory-garden/blob/main/docs/standards/safe-defaults.md)
+- [Daemon lifecycle architecture](https://github.com/live-neon/memory-garden/blob/main/docs/architecture/daemon-lifecycle.md)
+- [Continuous improver integration](https://github.com/live-neon/memory-garden/blob/main/docs/guides/continuous-improver-integration.md)
+- [Memory Garden daemon download for macOS arm64](https://github.com/live-neon/memory-garden/releases/download/v1.0.0/mg-daemon-darwin-arm64)
+- [Memory Garden daemon download for Linux amd64](https://github.com/live-neon/memory-garden/releases/download/v1.0.0/mg-daemon-linux-amd64)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Text and JSON tool results, with Markdown installation and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search is enabled by default; extraction and sync are opt-in; outputs depend on the local mg-daemon and stored or community patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

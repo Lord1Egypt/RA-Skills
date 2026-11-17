@@ -1,49 +1,65 @@
-## Description: <br>
-Aggregates and summarizes the latest AI news from multiple sources including AI news websites and web search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates and summarizes the latest AI news from multiple sources including AI news websites and web search, using Tavily API when available or Brave Search as a fallback.
 
-## Publisher: <br>
-[litiao1224](https://clawhub.ai/user/litiao1224) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litiao1224](https://clawhub.ai/user/litiao1224)
 
-## Use Case: <br>
-External users and developers use this skill to gather recent AI news, filter and categorize stories, and produce a concise briefing with links to original sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search API use can consume Tavily quota or fail when TAVILY_API_KEY is missing or invalid. <br>
-Mitigation: Use a key with acceptable quota limits and rely on the documented web-search fallback when Tavily is unavailable. <br>
-Risk: Current-news summaries may include outdated, duplicated, or inaccurate claims from fetched articles or search snippets. <br>
-Mitigation: Review the linked original sources for important stories before acting on the briefing. <br>
-Risk: The workflow references an external Tavily helper skill that is not included in this artifact. <br>
-Mitigation: Verify that helper before relying on Tavily-based collection, or use direct website fetching and web-search fallback. <br>
+## Use Case:
 
+External users and developers use this skill to gather recent AI news, filter duplicate or stale items, organize stories by category, and produce concise daily briefings with source links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/litiao1224/daily-ai-news-skill-litiao) <br>
-- [AI News Sources Database](references/news_sources.md) <br>
-- [Output Format Templates](references/output_templates.md) <br>
-- [Search Query Templates](references/search_queries.md) <br>
-- [VentureBeat AI](https://venturebeat.com/category/ai/) <br>
-- [TechCrunch AI](https://techcrunch.com/category/artificial-intelligence/) <br>
-- [The Verge AI](https://www.theverge.com/ai-artificial-intelligence) <br>
-- [MIT Technology Review AI](https://www.technologyreview.com/topic/artificial-intelligence/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown briefing with categorized summaries, source links, and optional shell commands for search helpers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require TAVILY_API_KEY for preferred search workflow; falls back to web search when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill sends AI-news queries and article URLs to external search or web-reading services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in environments where outbound browsing and the configured search provider are acceptable.
+
+Risk: The preferred Tavily workflow uses an API key.
+
+Mitigation: Provide TAVILY_API_KEY only through approved secret management and avoid exposing it in prompts, logs, or shared outputs.
+
+Risk: Current-news summaries can be incomplete, duplicated, stale, or based on inaccessible article excerpts.
+
+Mitigation: Prefer full article retrieval when available, keep source links in the briefing, and review high-impact claims before acting on them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/litiao1224/skills/daily-ai-news-skill-litiao)
+- [AI News Sources Database](artifact/references/news_sources.md)
+- [Search Query Templates](artifact/references/search_queries.md)
+- [Output Format Templates](artifact/references/output_templates.md)
+- [VentureBeat AI](https://venturebeat.com/category/ai/)
+- [TechCrunch AI](https://techcrunch.com/category/artificial-intelligence/)
+- [MIT Technology Review AI](https://www.technologyreview.com/topic/artificial-intelligence/)
+- [OpenAI Blog](https://openai.com/blog)
+- [Anthropic News](https://www.anthropic.com/news)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown briefings with categorized summaries, key points, source dates, and links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce brief, standard, or deep AI news formats over configurable time ranges and focus areas.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

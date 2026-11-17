@@ -1,43 +1,57 @@
-## Description: <br>
-Search for side hustle opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search for side hustle opportunities.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-External users and agents use this skill to initiate browser-based searches for side hustle or part-time income opportunities when prompted by broad English or Chinese phrases. Review the external browser-search dependency before using the skill in sensitive environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may open a browser and search the web when broad money-related phrases are used. <br>
-Mitigation: Install only where this behavior is expected, and review or narrow triggers before use in sensitive environments. <br>
-Risk: The packaged skill delegates behavior to an external browser-search function that is not included in the artifact. <br>
-Mitigation: Review or obtain the referenced capabilities_clawhub.py and capability_executor.py implementations before deployment. <br>
-Risk: The skill documentation contains unrelated learned content that may confuse users about intended behavior. <br>
-Mitigation: Use a cleaned version of the skill documentation and remove unrelated learned content before production use. <br>
+## Use Case:
 
+External users and developers can use this skill to trigger a browser or web search for side-hustle and part-time opportunity ideas in English or Chinese trigger terms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/side-hustle) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/534422530) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text response summarizing search results and next actions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May open a browser and search the web; packaged behavior delegates to an external function not included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Execution depends on local capability components outside the packaged artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where the local capability executor and registered side-hustle capability are trusted and reviewed.
+
+Risk: The skill may initiate browser or web-search activity that exposes query or session context.
+
+Mitigation: Use it outside privacy-sensitive sessions, or require review of the search query before execution.
+
+Risk: Broad trigger terms and inconsistent learned content may cause activation in unrelated conversations.
+
+Mitigation: Narrow the trigger list to explicit side-hustle requests before enabling it in shared or production environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/side-hustle)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Markdown or plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate browser or web-search activity through the local agent environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

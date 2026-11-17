@@ -1,40 +1,54 @@
-## Description: <br>
-Manage Apple Reminders via remindctl CLI (list, add, edit, complete, delete). Supports lists, date filters, and JSON/plain output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Apple Reminders via remindctl CLI (list, add, edit, complete, delete). Supports lists, date filters, and JSON/plain output.
 
-## Publisher: <br>
-[mohdalhashemi98-hue](https://clawhub.ai/user/mohdalhashemi98-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mohdalhashemi98-hue](https://clawhub.ai/user/mohdalhashemi98-hue)
 
-## Use Case: <br>
-External users and agents use this skill on macOS to manage Apple Reminders through the remindctl CLI, including listing, creating, completing, deleting, and filtering reminders. It is appropriate when the user wants tasks to appear in Apple Reminders and sync to iPhone or iPad. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to complete, delete, or delete lists in Apple Reminders, and those changes may persist and sync across devices. <br>
-Mitigation: Use explicit user confirmation before delete, complete, or list-deletion actions. <br>
-Risk: The skill depends on a local Homebrew-installed CLI that needs Reminders access. <br>
-Mitigation: Install only if the Homebrew package is trusted, then grant Reminders permission intentionally. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [remindctl GitHub repository](https://github.com/steipete/remindctl) <br>
-- [ClawHub skill page](https://clawhub.ai/mohdalhashemi98-hue/mh-apple-reminders) <br>
+## Use Case:
 
+External users and agents use this skill on macOS to list, create, edit, complete, and delete Apple Reminders through the remindctl command-line tool. It is intended for personal reminder and list workflows that should sync through Apple Reminders.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference JSON, TSV/plain, or count-only output produced by remindctl.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read, write, complete, and delete Apple Reminders through a third-party CLI after Reminders permission is granted.
+
+Mitigation: Install only when comfortable granting that access, and review the target list or reminder before write, complete, or delete actions.
+
+Risk: Delete operations can permanently remove the wrong reminder or list, especially when forced by ID.
+
+Mitigation: Ask the agent to show the target reminder or list first and confirm the exact item before using delete or --force.
+
+## Reference(s):
+
+- [remindctl project](https://github.com/steipete/remindctl)
+- [ClawHub skill page](https://clawhub.ai/mohdalhashemi98-hue/skills/mh-apple-reminders)
+- [Publisher profile](https://clawhub.ai/user/mohdalhashemi98-hue)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, JSON, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and optional JSON or plain-text CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS and the remindctl binary; Apple Reminders permission is requested by the CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

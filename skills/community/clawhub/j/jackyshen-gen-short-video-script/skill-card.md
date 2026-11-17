@@ -1,39 +1,53 @@
-## Description: <br>
-Generate engaging short video scripts for social media platforms including WeChat Channels, Douyin, Xiaohongshu, TikTok, and Reels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates engaging short video scripts for social media platforms such as WeChat Channels, Douyin, Xiaohongshu, TikTok, and Reels.
 
-## Publisher: <br>
-[mebusw](https://clawhub.ai/user/mebusw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mebusw](https://clawhub.ai/user/mebusw)
 
-## Use Case: <br>
-External creators, marketers, and content teams use this skill to draft platform-optimized short video scripts, hooks, CTAs, production notes, and engagement guidance for social media posts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts may be inaccurate, off-brand, or unsuitable for a platform's rules. <br>
-Mitigation: Review each script for factual accuracy, brand fit, platform policy compliance, and appropriate persuasion tactics before publishing. <br>
-Risk: Broad writing requests may accidentally trigger short-video guidance when that format is not intended. <br>
-Mitigation: Use explicit video and platform wording when invoking the skill, and disregard or revise outputs that do not match the requested format. <br>
+## Use Case:
 
+External creators, marketers, and content teams use this skill to draft platform-optimized short-form video scripts with hooks, timed segments, calls to action, and production notes.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown script drafts with timestamps, production notes, optimization guidance, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform-specific hooks, CTAs, hashtags, production notes, retention guidance, and validation checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill may default to structured short-form video templates or English-language phrasing when the user's platform, language, duration, or tone is ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the user to specify the target platform, language, duration, topic, and tone before drafting the final script.
+
+Risk: Generated publishing guidance may need human review for factual claims, brand fit, and platform-specific requirements before use.
+
+Mitigation: Review the script and production notes before publication, especially claims, calls to action, hashtags, and trend references.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mebusw/skills/jackyshen-gen-short-video-script)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted short video scripts with timestamps, tables, and production notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform-specific hooks, calls to action, optimization tips, and production guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

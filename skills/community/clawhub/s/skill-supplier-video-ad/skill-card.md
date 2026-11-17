@@ -1,39 +1,51 @@
-## Description: <br>
-Transforms supplier or CJ source videos into 1080x1920 TikTok and Instagram Reels ads with clean zone detection, Pillow text overlays, a CTA card, and audio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build polished 1080x1920 TikTok/Instagram Reels product ads from supplier or CJ Dropshipping source videos using clean-zone detection, slow-motion cuts, Pillow-rendered text overlays, branded CTA end cards, and audio.
 
-## Publisher: <br>
-[Zero2Ai-hub](https://clawhub.ai/user/Zero2Ai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub)
 
-## Use Case: <br>
-Developers, marketers, and ecommerce operators use this skill to turn raw supplier or CJ Dropshipping footage into ready-to-post short-form product ads. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: An unvalidated configuration value can write or delete files outside the intended output folder. <br>
-Mitigation: Use only trusted configs, keep output_name to a simple filename, reject absolute paths or ../ segments, and run from a scratch directory. <br>
-Risk: Supplier footage, logos, or music may not be licensed for commercial advertising. <br>
-Mitigation: Verify usage rights for all source media, logos, fonts, and audio before publishing generated ads. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zero2Ai-hub/skill-supplier-video-ad) <br>
+## Use Case:
 
+Developers and ecommerce operators use this skill to turn raw supplier or CJ Dropshipping footage into short-form product ads for TikTok and Instagram Reels. It helps identify text-free clips, define a JSON product configuration, and assemble a portrait MP4 with overlays, music, and a branded CTA card.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, code, files, guidance] <br>
-**Output Format:** [Markdown instructions with bash commands, JSON configuration, Python scripts, extracted frame files, and MP4 video output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces 1080x1920 H.264/AAC MP4 ads and helper frame extracts when run with ffmpeg, ffprobe, Pillow, source videos, fonts, audio, and brand assets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A product configuration can influence the temporary output path that the pipeline later deletes during cleanup.
+
+Mitigation: Run only trusted configs, keep output_name to a plain filename with no slashes or .. segments, and use a dedicated working directory or container until cleanup handling is hardened.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zero2ai-hub/skills/skill-supplier-video-ad)
+- [ClawHub publisher profile](https://clawhub.ai/user/zero2ai-hub)
+- [SKILL.md](artifact/SKILL.md)
+- [Example product config](artifact/example/product-config.json)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with bash commands and JSON configuration examples; pipeline output is an MP4 file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces 1080x1920, 30 FPS H.264/AAC portrait video when required local media assets, ffmpeg, ffprobe, Pillow, and a TTF font are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

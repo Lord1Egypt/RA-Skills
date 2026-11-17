@@ -1,42 +1,59 @@
-## Description: <br>
-General open-data APIs for PubChem compound and substance lookup and the REST Countries full catalog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+General open-data APIs that did not fit a narrower category, including PubChem compounds/substances and the REST Countries full catalog.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and agents use this skill to query Pilot Protocol data service agents for broad open-data lookups, including PubChem compounds and substances and country catalog data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries are sent to overlay service agents, and summaries may involve Gemini, so sensitive inputs could leave the local context. <br>
-Mitigation: Do not include passwords, API keys, private files, or sensitive personal data in requests; install only when the Pilot Protocol setup and pilotctl binary are trusted. <br>
-Risk: The available data agents and their filter schemas can change over time. <br>
-Mitigation: Use a fresh list-agents query and send /help to the target agent before relying on a filter contract. <br>
+## Use Case:
 
+Developers and agents use this skill to discover and query Pilot Protocol service agents for broad public dataset lookups, including PubChem compound/substance data and REST Countries catalog data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-service-agents-data) <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [Pilot Skills Index](https://teoslayer.github.io/pilot-skills/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON, Text] <br>
-**Output Format:** [Markdown with bash commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl on PATH, a running Pilot Protocol daemon joined to network 9, and reachable overlay service agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata version 1.0) <br>
+Risk: Queries and summary prompts are sent through the Pilot Protocol network, and summaries are described as Gemini-generated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not send private, confidential, regulated, or otherwise sensitive data in filters or free-text prompts.
+
+Risk: The available service-agent catalog and each agent's filter contract can change over time.
+
+Mitigation: Run a fresh list-agents query and send /help to the selected agent before relying on a query shape.
+
+Risk: Public dataset responses may be incomplete, truncated, or dependent on upstream public data services.
+
+Mitigation: Check the count, total, truncated flag, next cursor, and upstream_url fields before using returned data in decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-service-agents-data)
+- [Pilot Protocol](https://pilotprotocol.network)
+- [Pilot Skills Catalog](https://teoslayer.github.io/pilot-skills/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API calls, Guidance, Text, JSON]
+
+**Output Format:** [Markdown guidance with bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Pilot Protocol command patterns and expected response shapes; actual dataset responses are returned by external service agents.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/execution-plan.schema.json",
+  "schemaVersion": "1.0.0",
+  "projectId": "proj_demo",
+  "runId": "run_demo",
+  "timelineId": "timeline_demo",
+  "timelineRevision": "rev_demo",
+  "planHash": "sha256:f6850dade638dfed44228323b690207bb2d1b5b770537e4890d44f3849948866",
+  "operations": [
+    {
+      "operationId": "operation_001",
+      "sceneId": "scene_001",
+      "idempotencyKey": "sha256:7ecff3ac35cb6cde2f414a9ce168157297d5c82d2c07c07c0f7f5f561a67fd4a",
+      "logicalId": "logical_state_001",
+      "action": "upsert",
+      "desiredHash": "sha256:6fd9acfa44a89506c99dbd6435097350a7ec9a8e15e3ac62b7eccbe6c5de890a",
+      "desiredState": {
+        "kind": "state",
+        "value": "A"
+      }
+    },
+    {
+      "operationId": "operation_002",
+      "sceneId": "scene_001",
+      "idempotencyKey": "sha256:be38b447c53fa0cba37579b07a112d0ee07f0dc9234f1b59cb0995373d1830c7",
+      "logicalId": "logical_state_002",
+      "action": "upsert",
+      "desiredHash": "sha256:d44135982bda31d629248ef2a167a8f88afedd5d28eb2f1fa7c0f8404da7e6ec",
+      "desiredState": {
+        "kind": "state",
+        "value": "B"
+      }
+    }
+  ]
+}

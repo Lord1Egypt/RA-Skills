@@ -1,38 +1,53 @@
-## Description: <br>
-A structured critical-thinking framework for evaluating claims through source credibility, plausibility, evidence quality, cognitive bias, logical validity, and multiple perspectives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language six-step critical thinking framework, based on Zimbardo's method, for evaluating claims, evidence quality, cognitive bias, logical validity, and alternative perspectives.
 
-## Publisher: <br>
-[ljt1469](https://clawhub.ai/user/ljt1469) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ljt1469](https://clawhub.ai/user/ljt1469)
 
-## Use Case: <br>
-External users and developers use this skill to assess news reports, scientific claims, policy proposals, and everyday decisions with a repeatable six-step reasoning process. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce structured analysis that may be mistaken for authoritative fact-checking. <br>
-Mitigation: Treat outputs as reasoning support and verify high-impact claims with qualified sources, especially for medical, legal, financial, safety-critical, or regulated decisions. <br>
+## Use Case:
 
+External users and developers use this skill to structure critical review of news reports, scientific claims, policy proposals, and everyday decisions before accepting, rejecting, or suspending judgment on a claim.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ljt1469/critical-thinking-framework) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, JSON] <br>
-**Output Format:** [JSON object with analysis summary and detailed assessment fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces trustworthiness, risk, recommended-action, source, claim, evidence, bias, logic, and perspective assessments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Users may treat the structured assessment as final authority for medical, legal, financial, or policy decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output as a thinking aid and require review by appropriately qualified people before acting in high-stakes domains.
+
+Risk: The skill is documented in Chinese and may not fit non-Chinese workflows without clarification.
+
+Mitigation: Confirm language expectations with the publisher or add explicit locale support before using it in non-Chinese workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ljt1469/skills/critical-thinking-framework)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Structured JSON assessment with explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces source, claim, evidence, bias, logic, and perspective assessments plus a recommended action.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

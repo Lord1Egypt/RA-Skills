@@ -1,44 +1,54 @@
-## Description: <br>
-Use when writing or revising a Chinese-language job description for any company, product, industry, or seniority level. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports writing and revising Chinese-language job descriptions that are candidate-facing, searchable, and aligned with screening and interview criteria.
 
-## Publisher: <br>
-[soulzhong](https://clawhub.ai/user/soulzhong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soulzhong](https://clawhub.ai/user/soulzhong)
 
-## Use Case: <br>
-Recruiters, hiring managers, and operators use this skill to draft or revise Chinese job descriptions that candidates can understand and that align with resume screening and interview evaluation criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated job descriptions may include unverified company, compensation, candidate-screening, or hiring-strategy details. <br>
-Mitigation: Review those details before sharing externally, and confirm reusable guidance changes before updating the skill. <br>
-Risk: Job requirements can become misleading if internal jargon, narrow business assumptions, or unverifiable hiring standards are presented as facts. <br>
-Mitigation: Use official business positioning when available and keep requirements tied to observable resume or interview signals. <br>
+## Use Case:
 
+Recruiters, hiring managers, and recruiting operations teams use this skill to draft or improve Chinese job descriptions for different companies, products, industries, seniority levels, and role types. It helps convert internal role language into candidate-facing titles, responsibilities, requirements, bonus qualifications, and optional interview focus notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/soulzhong/jd-writing) <br>
-- [Title conversion guidance](title-conversion.md) <br>
-- [Verifiable requirements guidance](verifiable-requirements.md) <br>
-- [Role type playbooks](role-type-playbooks.md) <br>
-- [Positioning templates](positioning-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese-language Markdown job description guidance and drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no API keys, shell commands, or external tools detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill can ask an agent to persistently update skill files after reusable user feedback, which may change future behavior beyond the current JD task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run installed skills read-only by default, and require an explicit diff plus maintainer approval before allowing updates to SKILL.md, EVOLUTION.md, or related skill guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/soulzhong/skills/jd-writing)
+- [Title conversion guidance](artifact/title-conversion.md)
+- [Verifiable requirements guidance](artifact/verifiable-requirements.md)
+- [Role type playbooks](artifact/role-type-playbooks.md)
+- [Positioning templates](artifact/positioning-templates.md)
+- [Evolution log](artifact/EVOLUTION.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown job descriptions and concise review guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include optional reverse-screening language and internal interview focus notes when appropriate.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

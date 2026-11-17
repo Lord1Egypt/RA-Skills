@@ -1,44 +1,62 @@
-## Description: <br>
-Searches Gequhai for songs, rankings, and download links, then can send direct music downloads to a configured Synology NAS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gequhai Music helps agents search Gequhai for songs, retrieve standard or high-quality download links, show music rankings, and download selected tracks to a Synology NAS.
 
-## Publisher: <br>
-[anlinxi](https://clawhub.ai/user/anlinxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anlinxi](https://clawhub.ai/user/anlinxi)
 
-## Use Case: <br>
-External users and personal media-library operators use this skill to search Gequhai, review song rankings, retrieve direct or netdisk download links, and queue supported downloads to a Synology NAS. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports embedded Synology NAS credentials. <br>
-Mitigation: Rotate or remove the embedded credentials before use and provide NAS access through user-controlled secrets or environment configuration. <br>
-Risk: The security scan reports unauthenticated NAS workflows that can download, rename, or move files. <br>
-Mitigation: Add authentication, restrict operations to an app-owned music folder, and require explicit confirmation before downloads or NAS file changes. <br>
-Risk: The artifact includes background rename and move automation for downloaded files. <br>
-Mitigation: Disable background automation unless it is explicitly needed and review pending rename or move queues before processing them. <br>
+## Use Case:
 
+External users and agents use this skill to search songs by title or artist, review rankings, retrieve download links, and send selected tracks to a configured Synology NAS.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anlinxi/gequhai-music) <br>
-- [Publisher profile](https://clawhub.ai/user/anlinxi) <br>
-- [Gequhai website](https://www.gequhai.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON responses with optional shell command examples and service API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include song metadata, rankings, direct download URLs, netdisk links, NAS task status, and rename queue status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Embedded NAS credentials could expose real storage access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove embedded credentials, rotate the exposed NAS password, and load credentials from a protected secret store before use.
+
+Risk: Unauthenticated service controls can trigger downloads and file changes on a Synology NAS.
+
+Mitigation: Require authentication, bind the service to localhost or a protected interface, and use HTTPS for NAS access.
+
+Risk: Download, rename, move, or overwrite operations can change files without sufficient confirmation.
+
+Mitigation: Require explicit user confirmation before any download, rename, move, or overwrite operation.
+
+Risk: Wildcard CORS can increase exposure of the service to unauthorized browser-based requests.
+
+Mitigation: Disable wildcard CORS and restrict allowed origins to trusted clients.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anlinxi/skills/gequhai-music)
+- [Gequhai website](https://www.gequhai.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or JSON responses with optional shell and Python command examples, download links, rankings, and download status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include external music links, ranking entries, Synology NAS destination details, and file-operation status.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

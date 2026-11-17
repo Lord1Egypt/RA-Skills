@@ -1,45 +1,58 @@
-## Description: <br>
-Add Foresea forecasting tools to OpenClaw agents through Foresea's public remote MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add Foresea forecasting tools to OpenClaw agents through Foresea's public remote MCP server.
 
-## Publisher: <br>
-[pareelamre](https://clawhub.ai/user/pareelamre) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pareelamre](https://clawhub.ai/user/pareelamre)
 
-## Use Case: <br>
-External users and developers use this skill to route forecasting and prediction-market questions to Foresea's remote MCP tools for probability estimates, market analysis, market scans, edge boards, and track-record checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Forecasting or prediction-market prompts and any user-provided context are sent to Foresea's external service. <br>
-Mitigation: Use the skill only when external forecasting is appropriate, and avoid sending sensitive or unnecessary context. <br>
-Risk: Forecasts and market edge analysis may be mistaken for financial advice or guaranteed outcomes. <br>
-Mitigation: Present forecasts as decision support, preserve evidence links, and state that live market performance is still accumulating. <br>
+## Use Case:
 
+Developers and external users use this skill to connect OpenClaw agents to Foresea for probability forecasts, prediction-market analysis, market scans, edge rankings, and calibration evidence.
 
-## Reference(s): <br>
-- [Foresea ClawHub listing](https://clawhub.ai/pareelamre/foresea) <br>
-- [Foresea homepage](https://foresea.ink) <br>
-- [Foresea agent guide](https://foresea.ink/agents) <br>
-- [Foresea MCP endpoint](https://foresea.ink/mcp/) <br>
-- [Foresea agent manifest](https://foresea.ink/.well-known/agent.json) <br>
-- [Foresea OpenAPI](https://foresea.ink/openapi.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Forecast outputs should preserve evidence links and frame results as decision support, not financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Forecasting questions may be sent to Foresea's remote MCP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private or sensitive scenarios unless sharing those query details with Foresea is acceptable.
+
+Risk: Forecasts and prediction-market analysis can be mistaken for financial advice.
+
+Mitigation: Present forecasts as decision support and preserve evidence links and caveats in final answers.
+
+## Reference(s):
+
+- [Foresea homepage](https://foresea.ink)
+- [Foresea agent guide](https://foresea.ink/agents)
+- [Foresea MCP endpoint](https://foresea.ink/mcp/)
+- [Foresea agent manifest](https://foresea.ink/.well-known/agent.json)
+- [Foresea OpenAPI](https://foresea.ink/openapi.json)
+- [ClawHub skill page](https://clawhub.ai/pareelamre/skills/foresea)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include evidence links, forecast rationale, market analysis, ranked disagreements, and decision-support caveats.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

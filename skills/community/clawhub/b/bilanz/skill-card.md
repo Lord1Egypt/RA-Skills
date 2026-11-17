@@ -1,41 +1,54 @@
-## Description: <br>
-Austrian-style Bilanz (annual accounts) generator. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Austrian-style Bilanz (annual accounts) generator
 
-## Publisher: <br>
-[kleberbaum](https://clawhub.ai/user/kleberbaum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kleberbaum](https://clawhub.ai/user/kleberbaum)
 
-## Use Case: <br>
-Developers and external users can use this skill to print static Austrian-style annual accounts sections for Aktiva, Passiva, and status information. It is a template helper and not validated accounting, tax, or legal compliance software. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the static balance-sheet template for validated accounting, tax, or legal compliance software. <br>
-Mitigation: Treat the output as a template helper only and review all accounting, tax, and legal conclusions with qualified professionals before use. <br>
-Risk: The skill executes a local shell script. <br>
-Mitigation: Review the script before installation or execution and run it in an environment appropriate for local command execution. <br>
+## Use Case:
 
+Developers and accounting-focused agents use this skill to produce Austrian-style annual accounts section templates for Aktiva and Passiva and to display release metadata. The current release is a static status and template helper, not a complete UGB compliance validator or financial calculation engine.
 
-## Reference(s): <br>
-- [Netsnek e.U.](https://netsnek.com) <br>
-- [ClawHub bilanz listing](https://clawhub.ai/kleberbaum/bilanz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text emitted by a local shell script, with Markdown usage guidance in documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static German/Austrian balance-sheet template text; no external API calls or dynamic financial validation are described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter, claw.json, server release metadata) <br>
+Risk: The skill outputs static Austrian accounting section templates and should not be treated as validated financial statements or a complete UGB compliance determination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have qualified accounting or legal reviewers validate figures, structure, and regulatory suitability before business, audit, or filing use.
+
+Risk: The skill requires executing a shell helper script.
+
+Mitigation: Review the included shell script before deployment and run only the documented flags in a controlled environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kleberbaum/skills/bilanz)
+- [Netsnek website](https://netsnek.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and plain-text report output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Executes a small shell helper with documented flags: --status, --aktiva, and --passiva.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter, claw.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

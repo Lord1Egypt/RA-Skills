@@ -1,48 +1,67 @@
-## Description: <br>
-Deep research using Parallect.ai that queries multiple AI research providers in parallel and synthesizes results into a unified report with cross-referenced citations and conflict resolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep research using Parallect.ai that queries Perplexity, Gemini, OpenAI, Grok, and Anthropic in parallel, then synthesizes findings into a unified cited report with conflict resolution.
 
-## Publisher: <br>
-[primeobsession](https://clawhub.ai/user/primeobsession) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[primeobsession](https://clawhub.ai/user/primeobsession)
 
-## Use Case: <br>
-External users and developers use this skill to have an OpenClaw agent run paid, multi-provider research workflows, manage budget confirmation, poll asynchronous jobs, and return cited synthesis reports with follow-up options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confirmed research jobs can spend user credits. <br>
-Mitigation: Check balance, explain the selected budget tier and maximum cost, and get explicit user confirmation before starting research. <br>
-Risk: Research prompts and context are sent to Parallect and its provider network. <br>
-Mitigation: Avoid submitting secrets or sensitive business, personal, or regulated data unless that sharing is acceptable to the user. <br>
-Risk: Asynchronous research jobs can be mishandled if results are requested before completion or polled too frequently. <br>
-Mitigation: Poll job status with exponential backoff, wait for completed status before retrieving results, and handle rate limits or stalled jobs with user-visible recovery options. <br>
+## Use Case:
 
+External users and developers use this skill to run paid, multi-provider research through Parallect.ai, receive cited Markdown synthesis, track costs, and continue research with follow-up questions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/primeobsession/parallect-ai-deep-research) <br>
-- [Parallect.ai](https://parallect.ai) <br>
-- [Parallect MCP Docs](https://parallect.ai/docs/mcp/overview) <br>
-- [Parallect API Reference](https://parallect.ai/docs) <br>
-- [Parallect Budget Tiers Reference](references/budget-tiers.md) <br>
-- [Parallect API Error Reference](references/api-errors.md) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown synthesis reports with citations, plus setup/configuration guidance and inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PARALLECT_API_KEY; research jobs are asynchronous and may spend credits after user budget confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Research prompts and related thread context are sent to Parallect.ai and downstream AI providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets or confidential material unless that external data sharing is approved.
+
+Risk: The skill can spend the user's paid Parallect.ai credits when research is submitted.
+
+Mitigation: Check balance, discuss budget tier, and obtain confirmation before starting research; report cost after each job.
+
+Risk: Research results are asynchronous, and requesting results before completion causes job-state errors.
+
+Mitigation: Poll research_status with backoff and call get_results only after the job is completed.
+
+Risk: Polling too frequently can trigger rate limits.
+
+Mitigation: Use exponential backoff, wait at least 30 seconds between status checks, and slow down after rate-limit responses.
+
+## Reference(s):
+
+- [Parallect Budget Tiers Reference](references/budget-tiers.md)
+- [Parallect API Error Reference](references/api-errors.md)
+- [Parallect.ai](https://parallect.ai)
+- [Parallect MCP Documentation](https://parallect.ai/docs/mcp/overview)
+- [Parallect API Reference](https://parallect.ai/docs)
+- [OpenClaw](https://openclaw.ai)
+- [ClawHub Skill Page](https://clawhub.ai/primeobsession/skills/parallect-ai-deep-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown synthesis with citations, brief summaries, cost reports, follow-on suggestions, and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Research jobs are asynchronous and require polling before completed results are retrieved.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

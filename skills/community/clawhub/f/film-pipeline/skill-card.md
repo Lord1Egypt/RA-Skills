@@ -1,40 +1,54 @@
-## Description: <br>
-Film Pipeline is a Chinese-language film creation controller that analyzes scripts, character ideas, action concepts, and visual style requests, routes work to named sub-skills, and integrates their outputs for consistent characters, scenes, and style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language film creation coordinator that analyzes scripts, character descriptions, action ideas, and visual style requests, then routes work to character, storyboard, action, and trailer sub-skills while preserving visual consistency.
 
-## Publisher: <br>
-[chang9852](https://clawhub.ai/user/chang9852) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chang9852](https://clawhub.ai/user/chang9852)
 
-## Use Case: <br>
-Creative writers, filmmakers, and prompt designers use this skill to turn scripts, character ideas, action scenes, or visual style requests into routed film-development outputs while preserving character, scene, and style consistency across modules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad film or character-design phrases may activate the workflow and pass creative context to named sub-skills when those sub-skills are available. <br>
-Mitigation: Review the routing plan before execution and install only the sub-skills needed for the intended film workflow. <br>
-Risk: The skill is best suited for Chinese-language film prompt workflows, so outputs may not match a user's preferred language by default. <br>
-Mitigation: Ask for the desired output language explicitly when working outside Chinese-language workflows. <br>
+## Use Case:
 
+External creators and film-production teams use this skill to turn film concepts, scripts, character briefs, action scenes, or style requests into a coordinated creative workflow. It chooses the needed sub-skills, passes shared visual context between them, and returns an integrated package with module outputs, consistency checks, and next-step suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chang9852/film-pipeline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with structured sections, routing decisions, consistency checks, and prompt guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May pass creative context to named sub-skills when they are available; users can explicitly request a preferred output language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill depends on related sub-skills for character sheets, storyboards, action direction, and trailer prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the required sub-skills are installed and available before relying on a full multi-step workflow.
+
+Risk: Broad film-creation requests may activate the orchestration workflow and produce creative guidance intended for downstream use.
+
+Mitigation: Review generated story, visual, and prompt outputs before using them in a production pipeline.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chang9852/skills/film-pipeline)
+- [ClawHub publisher profile](https://clawhub.ai/user/chang9852)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured sections and prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coordinates dependent sub-skills when available; otherwise asks for missing inputs before continuing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

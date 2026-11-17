@@ -1,41 +1,64 @@
-## Description: <br>
-ClamAV open-source antivirus reference. clamscan, freshclam database updates, clamd daemon configuration, custom signatures, quarantine workflows, automated scanning, and performance tuning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClamAV open-source antivirus reference. clamscan, freshclam database updates, clamd daemon configuration, custom signatures, quarantine workflows, automated scanning, and performance tuning.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers, system administrators, and security engineers use this skill as a ClamAV administration reference for scanning, database updates, daemon configuration, custom signatures, quarantine workflows, automation, and performance tuning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples include higher-impact ClamAV administration commands, including service enablement, whole-filesystem scanning, socket permission changes, quarantine moves, and permanent file deletion. <br>
-Mitigation: Review each example before running it, apply commands only to intended paths and services, and prefer move or copy quarantine workflows before destructive removal. <br>
+## Use Case:
 
+Developers, system administrators, and security engineers use this skill as a ClamAV reference for scanning, database updates, daemon configuration, custom signatures, quarantine workflows, automation, and performance tuning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/clamav) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
-- [ClamAV production download referenced by skill](https://www.clamav.net/downloads/production/clamav-1.3.0.tar.gz) <br>
-- [EICAR test file referenced by skill](https://secure.eicar.org/eicar.com.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are reference examples for Linux ClamAV administration; commands should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The artifact includes permissive clamd socket guidance such as LocalSocketMode 666.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege socket permissions and group-based access, and avoid world-writable local sockets unless a host-specific review approves them.
+
+Risk: The artifact includes package installation, service enablement, cron, and full-system scan examples that can alter host behavior or affect production workloads.
+
+Mitigation: Review commands for the target host, test in an isolated environment, and scope scans and schedules to approved paths and maintenance windows.
+
+Risk: The artifact includes quarantine cleanup and removal examples that can permanently delete files.
+
+Mitigation: Prefer copy or move quarantine workflows first, preserve logs and evidence, and delete only after explicit verification and retention review.
+
+Risk: The artifact references cvdupdate for local mirror workflows.
+
+Mitigation: Pin, isolate, and review cvdupdate before use, and run mirror components with restricted permissions.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [ClamAV 1.3.0 source archive](https://www.clamav.net/downloads/production/clamav-1.3.0.tar.gz)
+- [EICAR test file](https://secure.eicar.org/eicar.com.txt)
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/clamav)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reference text with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some commands can affect system services, socket permissions, scan scope, quarantine behavior, or file deletion and should be reviewed before operational use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

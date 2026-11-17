@@ -1,0 +1,12 @@
+# Add this block to your Hermes Agent config, adjusting the runtime path.
+# Then restart Hermes or run /reload-mcp.
+
+mcp_servers:
+  amber_voice:
+    command: "node"
+    args:
+      - "/absolute/path/to/amber-openclaw-voice-agent/runtime/dist/mcp-server.js"
+    env:
+      AMBER_BRIDGE_URL: "http://localhost:8000"
+      # Optional: set if your Amber bridge requires an API token.
+      BRIDGE_API_TOKEN: ""

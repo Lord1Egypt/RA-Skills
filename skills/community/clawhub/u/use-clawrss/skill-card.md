@@ -1,42 +1,57 @@
-## Description: <br>
-Use the ClawRSS OpenClaw plugin to manage RSS feeds, persist web results, pull saved items, work with digest articles, and send Apple push notifications after the plugin is installed and enabled. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the ClawRSS OpenClaw plugin to manage RSS feeds, persist web results, pull saved items, work with digest articles, and send Apple push notifications after the plugin is installed and enabled.
 
-## Publisher: <br>
-[ipocket-app](https://clawhub.ai/user/ipocket-app) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ipocket-app](https://clawhub.ai/user/ipocket-app)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to operate ClawRSS in a workspace: manage RSS feeds, save search and article results, pull and mark stored items, work with digest records, and send configured push notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ClawRSS operations can delete feeds, mark saved items consumed, or save digest content in the active workspace. <br>
-Mitigation: Confirm the workspace ID and user intent before write or destructive actions, then report the tools called and verification results. <br>
-Risk: Push notification text may appear on connected Apple devices. <br>
-Mitigation: Check push configuration when uncertain and keep notifications brief, factual, and user-approved. <br>
-Risk: A normal webpage can be mistaken for a subscribable RSS or Atom feed. <br>
-Mitigation: Subscribe only confirmed feed URLs and verify feed changes by listing feeds after an upsert or delete. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to operate ClawRSS feeds, saved web or article records, digest records, and push notifications within a workspace. It is intended for workflows that need consistent workspace scoping and verification after RSS, digest, or notification actions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ipocket-app/use-clawrss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, tool calls, markdown] <br>
-**Output Format:** [Markdown responses with structured status summaries and ClawRSS tool-call arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the active workspace as the ClawRSS namespace and reports tools called, saved or changed records, verification results, and missing inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.3.29 (source: release evidence) <br>
+Risk: Using the wrong workspace ID can save items, mark cursors, change feeds, or send notifications in the wrong ClawRSS workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm or infer the correct workspace ID before write actions, and reuse it consistently as the namespace and consumer where required.
+
+Risk: A normal website URL may be mistaken for an RSS or Atom feed URL.
+
+Mitigation: Confirm the real RSS or Atom feed URL before subscribing, and report that the site was not subscribed when no feed URL is verified.
+
+Risk: Push notification delivery may be assumed before push is configured.
+
+Mitigation: Check push status when configuration is uncertain and report success only when the relevant ClawRSS push operation confirms it.
+
+## Reference(s):
+
+- [Use ClawRSS ClawHub page](https://clawhub.ai/ipocket-app/skills/use-clawrss)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, API calls]
+
+**Output Format:** [Markdown response summarizing tool calls, saved or updated items, verification status, and any missing user input]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the ClawRSS plugin to be installed and enabled, and uses the current workspace ID as the namespace for ClawRSS operations.]
+
+## Skill Version(s):
+
+2026.3.29 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

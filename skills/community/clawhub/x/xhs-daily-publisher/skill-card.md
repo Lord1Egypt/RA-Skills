@@ -1,44 +1,60 @@
-## Description: <br>
-Xhs Auto Publisher helps an agent configure, generate, render, and stage daily Xiaohongshu image posts while leaving the final publish action to the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates daily Xiaohongshu content planning, 9-image post generation, slide rendering, browser-assisted publishing, and scheduled follow-up while leaving final publish confirmation to the user.
 
-## Publisher: <br>
-[gd269438407](https://clawhub.ai/user/gd269438407) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gd269438407](https://clawhub.ai/user/gd269438407)
 
-## Use Case: <br>
-Content creators, social media operators, and developers use this skill to create a repeatable Xiaohongshu daily posting workflow, including topic selection, 9-image post copy, slide rendering, browser staging, and scheduling guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow stores Xiaohongshu login cookies and a persistent browser profile locally. <br>
-Mitigation: Keep the .auth directory private, exclude it from git and synced folders, and delete saved cookies or profile data when access is no longer needed. <br>
-Risk: The publishing helper opens an authenticated browser and uses automation settings that may affect account or platform policy risk. <br>
-Mitigation: Review the browser automation before use, keep the manual final publish step, and remove clipboard permissions or anti-detection settings if they are not acceptable for the environment. <br>
-Risk: Scheduled recurring runs can prepare posts repeatedly using current account context. <br>
-Mitigation: Review every prepared post before publishing and disable or adjust the schedule when the account, topic, or compliance requirements change. <br>
+## Use Case:
 
+External creators and operators use this skill to build and run a daily Xiaohongshu content workflow. It helps generate topic digests, post copy, HTML slide pages, rendered image assets, and prefilled browser publishing sessions for user review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gd269438407/xhs-daily-publisher) <br>
-- [Xiaohongshu Creator Center](https://creator.xiaohongshu.com) <br>
-- [Xiaohongshu](https://www.xiaohongshu.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated project files, HTML slide templates, JPEG image outputs, and Node.js/Puppeteer command steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stages content in a local authenticated browser session and expects the user to review and manually publish.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Persistent Xiaohongshu sessions and cookies may expose the user's account if the .auth directory is synced, committed, or shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat .auth as secret material, keep it out of version control and cloud sync, use a dedicated low-privilege workspace/profile, and prefer owner-only permissions or avoiding raw cookie persistence.
+
+Risk: Browser automation includes anti-detection flags, no-sandbox settings, and broad clipboard/notification permissions that increase installation and account-risk review needs.
+
+Mitigation: Review the automation before installing and remove anti-detection flags, unnecessary clipboard permissions, and no-sandbox settings unless explicitly accepted for the environment.
+
+Risk: Scheduled publishing workflows can repeatedly prepare content under the user's account without fresh context review.
+
+Mitigation: Keep the final publish click manual and review generated text, images, timing, and platform-policy fit before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gd269438407/skills/xhs-daily-publisher)
+- [ClawHub publisher profile](https://clawhub.ai/user/gd269438407)
+- [Xiaohongshu Creator Center](https://creator.xiaohongshu.com)
+- [Xiaohongshu](https://www.xiaohongshu.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated project files, HTML templates, JPG image outputs, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the user's Xiaohongshu account and local browser profile; the final publish action remains manual.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

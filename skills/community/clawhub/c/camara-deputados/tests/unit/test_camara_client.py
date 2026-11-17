@@ -1,15 +1,17 @@
 """Testes unitários para camara_client."""
-import pytest
-from unittest.mock import AsyncMock, Mock, patch, PropertyMock
+
 from datetime import date
+from unittest.mock import AsyncMock, Mock, PropertyMock, patch
+
+import pytest
 
 from camara_client import (
     CamaraClient,
-    get_camara_client,
-    CamaraAPIError,
-    CamaraTimeoutError,
-    CamaraNotFoundError,
     CamaraConnectionError,
+    CamaraNotFoundError,
+    CamaraTimeoutError,
+    CamaraValidationError,
+    get_camara_client,
 )
 
 
@@ -51,13 +53,14 @@ class TestCamaraClient:
     async def test_get_singleton(self):
         """Testa padrão singleton."""
         import camara_client as mod
+
         mod._client = None
         client1 = get_camara_client()
         client2 = get_camara_client()
         assert client1 is client2
         mod._client = None
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_lista_deputados_success(self, mock_httpx, mock_camara_response):
         """Testa listagem de deputados com sucesso."""
         mock_client = _make_mock_client(_make_response(mock_camara_response))
@@ -68,9 +71,9 @@ class TestCamaraClient:
 
         assert isinstance(result, list)
         assert len(result) == 1
-        assert result[0]['nome'] == "Marcos Pontes"
+        assert result[0]["nome"] == "Marcos Pontes"
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_lista_deputados_sem_legislatura(self, mock_httpx, mock_camara_response):
         """Testa listagem sem especificar legislatura."""
         mock_client = _make_mock_client(_make_response(mock_camara_response))
@@ -80,10 +83,10 @@ class TestCamaraClient:
         await client.lista_deputados()
 
         call_kwargs = mock_client.get.call_args
-        params = call_kwargs.kwargs.get('params', call_kwargs[1].get('params', {}))
-        assert 'idLegislatura' not in params
+        params = call_kwargs.kwargs.get("params", call_kwargs[1].get("params", {}))
+        assert "idLegislatura" not in params
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_buscar_deputado_por_nome(self, mock_httpx, mock_camara_response):
         """Testa busca de deputado por nome."""
         mock_client = _make_mock_client(_make_response(mock_camara_response))
@@ -93,9 +96,9 @@ class TestCamaraClient:
         result = await client.buscar_deputado_por_nome("Marcos")
 
         assert len(result) == 1
-        assert "marcos" in result[0]['nome'].lower()
+        assert "marcos" in result[0]["nome"].lower()
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_pesquisar_proposicoes_success(self, mock_httpx, mock_proposicao_response):
         """Testa pesquisa de proposições."""
         mock_client = _make_mock_client(_make_response(mock_proposicao_response))
@@ -105,17 +108,20 @@ class TestCamaraClient:
         result = await client.pesquisar_proposicoes(sigla_tipo="PL", ano=2026)
 
         assert isinstance(result, list)
-        assert result[0]['siglaTipo'] == "PL"
+        assert result[0]["siglaTipo"] == "PL"
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_get_with_timeout_and_retry(self, mock_httpx):
         """Testa retry após timeout."""
         import httpx
+
         success_resp = _make_response({"dados": {"id": 1}})
-        mock_client = _make_mock_client([
-            httpx.TimeoutException("Timeout"),
-            success_resp,
-        ])
+        mock_client = _make_mock_client(
+            [
+                httpx.TimeoutException("Timeout"),
+                success_resp,
+            ]
+        )
         mock_httpx.return_value = mock_client
 
         client = CamaraClient()
@@ -123,10 +129,11 @@ class TestCamaraClient:
         assert result == {"id": 1}
         assert mock_client.get.call_count == 2
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_get_timeout_exhausts_retries(self, mock_httpx):
         """Testa que timeout esgota tentativas."""
         import httpx
+
         mock_client = AsyncMock()
         type(mock_client).is_closed = PropertyMock(return_value=False)
         mock_client.get.side_effect = httpx.TimeoutException("Timeout")
@@ -137,17 +144,16 @@ class TestCamaraClient:
             await client._get("/test", retries=2)
         assert mock_client.get.call_count == 2
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_get_with_404_error(self, mock_httpx):
         """Testa tratamento de 404 (sem retry)."""
         import httpx
+
         mock_response = Mock()
         mock_response.status_code = 404
         mock_client = AsyncMock()
         type(mock_client).is_closed = PropertyMock(return_value=False)
-        mock_client.get.side_effect = httpx.HTTPStatusError(
-            "Not found", request=Mock(), response=mock_response
-        )
+        mock_client.get.side_effect = httpx.HTTPStatusError("Not found", request=Mock(), response=mock_response)
         mock_httpx.return_value = mock_client
 
         client = CamaraClient()
@@ -155,10 +161,11 @@ class TestCamaraClient:
             await client._get("/test")
         assert mock_client.get.call_count == 1
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_get_with_connection_error_and_retry(self, mock_httpx):
         """Testa retry após erro de conexão."""
         import httpx
+
         mock_client = AsyncMock()
         type(mock_client).is_closed = PropertyMock(return_value=False)
         mock_client.get.side_effect = httpx.ConnectError("Connection failed")
@@ -169,10 +176,15 @@ class TestCamaraClient:
             await client._get("/test", retries=2)
         assert mock_client.get.call_count == 2
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_get_list_pagination(self, mock_httpx):
         """Testa paginação automática em _get_list."""
-        page1 = _make_response({"dados": [{"id": i} for i in range(100)]})
+        page1 = _make_response(
+            {
+                "dados": [{"id": i} for i in range(100)],
+                "links": [{"rel": "next", "href": "https://example.test/test?pagina=2"}],
+            }
+        )
         page2 = _make_response({"dados": [{"id": 100}]})
         mock_client = _make_mock_client([page1, page2])
         mock_httpx.return_value = mock_client
@@ -183,15 +195,18 @@ class TestCamaraClient:
         assert len(result) == 101
         assert mock_client.get.call_count == 2
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_get_list_uses_retry(self, mock_httpx):
         """Testa que _get_list tem retry via _get_raw."""
         import httpx
+
         success_resp = _make_response({"dados": [{"id": 1}]})
-        mock_client = _make_mock_client([
-            httpx.TimeoutException("Timeout"),
-            success_resp,
-        ])
+        mock_client = _make_mock_client(
+            [
+                httpx.TimeoutException("Timeout"),
+                success_resp,
+            ]
+        )
         mock_httpx.return_value = mock_client
 
         client = CamaraClient()
@@ -199,7 +214,7 @@ class TestCamaraClient:
 
         assert len(result) == 1
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_get_eventos_dia(self, mock_httpx):
         """Testa busca de eventos do dia."""
         mock_client = _make_mock_client(_make_response({"dados": []}))
@@ -211,7 +226,7 @@ class TestCamaraClient:
         assert isinstance(result, list)
         assert len(result) == 0
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_get_orientacoes_votacao(self, mock_httpx):
         """Testa novo endpoint: orientações de votação."""
         orientacoes = {"dados": [{"siglaPartido": "PT", "orientacao": "Sim"}]}
@@ -222,9 +237,9 @@ class TestCamaraClient:
         result = await client.get_orientacoes_votacao("12345")
 
         assert isinstance(result, list)
-        assert result[0]['siglaPartido'] == "PT"
+        assert result[0]["siglaPartido"] == "PT"
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_get_membros_orgao(self, mock_httpx):
         """Testa novo endpoint: membros de órgão."""
         membros = {"dados": [{"nome": "Deputado A"}]}
@@ -236,7 +251,7 @@ class TestCamaraClient:
 
         assert len(result) == 1
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_get_deputado_orgaos(self, mock_httpx):
         """Testa novo endpoint: órgãos do deputado."""
         orgaos = {"dados": [{"sigla": "CCJC", "nome": "Comissão de Constituição e Justiça"}]}
@@ -247,9 +262,9 @@ class TestCamaraClient:
         result = await client.get_deputado_orgaos(204554)
 
         assert len(result) == 1
-        assert result[0]['sigla'] == "CCJC"
+        assert result[0]["sigla"] == "CCJC"
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_get_proposicoes_recentes_uses_date_filter(self, mock_httpx):
         """Testa que get_proposicoes_recentes passa filtro de data."""
         mock_client = _make_mock_client(_make_response({"dados": []}))
@@ -259,9 +274,9 @@ class TestCamaraClient:
         await client.get_proposicoes_recentes(dias=7)
 
         call_kwargs = mock_client.get.call_args
-        params = call_kwargs.kwargs.get('params', call_kwargs[1].get('params', {}))
-        assert 'dataApresentacaoInicio' in params
-        assert 'dataApresentacaoFim' in params
+        params = call_kwargs.kwargs.get("params", call_kwargs[1].get("params", {}))
+        assert "dataApresentacaoInicio" in params
+        assert "dataApresentacaoFim" in params
 
     async def test_close_client(self):
         """Testa fechamento do cliente."""
@@ -282,7 +297,7 @@ class TestCamaraClient:
         await client.close()
         client.client.aclose.assert_not_called()
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_get_deputado_ocupacoes(self, mock_httpx):
         """Testa endpoint: ocupações de deputado."""
         ocupacoes = {"dados": [{"titulo": "Engenheiro", "entidade": "NASA"}]}
@@ -293,9 +308,9 @@ class TestCamaraClient:
         result = await client.get_deputado_ocupacoes(204554)
 
         assert isinstance(result, list)
-        assert result[0]['titulo'] == "Engenheiro"
+        assert result[0]["titulo"] == "Engenheiro"
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_get_proposicao_relacionadas(self, mock_httpx):
         """Testa endpoint: proposições relacionadas."""
         relacionadas = {"dados": [{"id": 111, "siglaTipo": "PL", "numero": 99}]}
@@ -306,22 +321,52 @@ class TestCamaraClient:
         result = await client.get_proposicao_relacionadas(2366661)
 
         assert len(result) == 1
-        assert result[0]['siglaTipo'] == "PL"
+        assert result[0]["siglaTipo"] == "PL"
 
-    @patch('camara_client.httpx.AsyncClient')
-    async def test_pesquisar_proposicoes_com_tema(self, mock_httpx, mock_proposicao_response):
-        """Testa pesquisa de proposições com parâmetro tema."""
+    @patch("camara_client.httpx.AsyncClient")
+    async def test_pesquisar_proposicoes_com_cod_tema(self, mock_httpx, mock_proposicao_response):
+        """Testa pesquisa de proposições com o parâmetro oficial codTema."""
         mock_client = _make_mock_client(_make_response(mock_proposicao_response))
         mock_httpx.return_value = mock_client
 
         client = CamaraClient()
-        await client.pesquisar_proposicoes(tema=62)
+        await client.pesquisar_proposicoes(cod_tema=62)
 
         call_kwargs = mock_client.get.call_args
-        params = call_kwargs.kwargs.get('params', call_kwargs[1].get('params', {}))
-        assert params.get('tema') == '62'
+        params = call_kwargs.kwargs.get("params", call_kwargs[1].get("params", {}))
+        assert params.get("codTema") == "62"
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
+    async def test_pesquisar_proposicoes_rejeita_atalho_tramitando(self, mock_httpx):
+        """Evita mapear toda tramitação para uma única situação."""
+        client = CamaraClient()
+
+        with pytest.raises(CamaraValidationError):
+            await client.pesquisar_proposicoes(tramitando=True)
+
+        mock_httpx.assert_not_called()
+
+    @patch("camara_client.httpx.AsyncClient")
+    async def test_discursos_usam_data_inicio(self, mock_httpx):
+        """Usa o nome documentado do filtro inicial de discursos."""
+        mock_client = _make_mock_client(_make_response({"dados": []}))
+        mock_httpx.return_value = mock_client
+
+        client = CamaraClient()
+        await client.get_discursos_deputado(1, date(2026, 1, 1), date(2026, 1, 31))
+
+        params = mock_client.get.call_args.kwargs["params"]
+        assert params["dataInicio"] == "2026-01-01"
+        assert "dataIni" not in params
+
+    async def test_presenca_produz_erro_explicito(self):
+        """Não consulta um endpoint inexistente de presença."""
+        client = CamaraClient()
+
+        with pytest.raises(CamaraValidationError):
+            await client.get_presenca_deputado(1, date(2026, 1, 1), date(2026, 1, 31))
+
+    @patch("camara_client.httpx.AsyncClient")
     async def test_pesquisar_proposicoes_tramitacao_senado(self, mock_httpx, mock_proposicao_response):
         """Testa pesquisa de proposições com tramitacaoSenado."""
         mock_client = _make_mock_client(_make_response(mock_proposicao_response))
@@ -331,10 +376,10 @@ class TestCamaraClient:
         await client.pesquisar_proposicoes(tramitacao_senado=True)
 
         call_kwargs = mock_client.get.call_args
-        params = call_kwargs.kwargs.get('params', call_kwargs[1].get('params', {}))
-        assert params.get('tramitacaoSenado') == 'true'
+        params = call_kwargs.kwargs.get("params", call_kwargs[1].get("params", {}))
+        assert params.get("tramitacaoSenado") == "true"
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_get_evento_deputados(self, mock_httpx):
         """Testa endpoint: deputados em evento."""
         deps = {"dados": [{"id": 204554, "nome": "Marcos Pontes"}]}
@@ -345,9 +390,9 @@ class TestCamaraClient:
         result = await client.get_evento_deputados(12345)
 
         assert len(result) == 1
-        assert result[0]['nome'] == "Marcos Pontes"
+        assert result[0]["nome"] == "Marcos Pontes"
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_get_evento_votacoes(self, mock_httpx):
         """Testa endpoint: votações de evento."""
         vots = {"dados": [{"id": "v1", "descricao": "Votação teste"}]}
@@ -358,9 +403,9 @@ class TestCamaraClient:
         result = await client.get_evento_votacoes(12345)
 
         assert len(result) == 1
-        assert result[0]['id'] == "v1"
+        assert result[0]["id"] == "v1"
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_get_votacoes_orgao(self, mock_httpx):
         """Testa endpoint: votações de órgão."""
         vots = {"dados": [{"id": "v2", "descricao": "Votação comissão"}]}
@@ -372,7 +417,7 @@ class TestCamaraClient:
 
         assert len(result) == 1
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_lista_blocos(self, mock_httpx):
         """Testa endpoint: lista de blocos parlamentares."""
         blocos = {"dados": [{"id": 1, "nome": "Bloco X"}]}
@@ -383,9 +428,9 @@ class TestCamaraClient:
         result = await client.lista_blocos()
 
         assert len(result) == 1
-        assert result[0]['nome'] == "Bloco X"
+        assert result[0]["nome"] == "Bloco X"
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_get_bloco_detalhe(self, mock_httpx):
         """Testa endpoint: detalhe de bloco parlamentar."""
         bloco = {"dados": {"id": 1, "nome": "Bloco X", "idLegislatura": 57}}
@@ -395,9 +440,9 @@ class TestCamaraClient:
         client = CamaraClient()
         result = await client.get_bloco_detalhe(1)
 
-        assert result['nome'] == "Bloco X"
+        assert result["nome"] == "Bloco X"
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_lista_frentes(self, mock_httpx):
         """Testa endpoint: lista de frentes parlamentares."""
         frentes = {"dados": [{"id": 100, "titulo": "Frente da Educação"}]}
@@ -408,9 +453,9 @@ class TestCamaraClient:
         result = await client.lista_frentes(id_legislatura=57)
 
         assert len(result) == 1
-        assert result[0]['titulo'] == "Frente da Educação"
+        assert result[0]["titulo"] == "Frente da Educação"
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_get_frente_membros(self, mock_httpx):
         """Testa endpoint: membros de frente parlamentar."""
         membros = {"dados": [{"nome": "Deputado A", "titulo": "Coordenador"}]}
@@ -421,9 +466,9 @@ class TestCamaraClient:
         result = await client.get_frente_membros(100)
 
         assert len(result) == 1
-        assert result[0]['titulo'] == "Coordenador"
+        assert result[0]["titulo"] == "Coordenador"
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_get_partido_detalhe(self, mock_httpx):
         """Testa endpoint: detalhe de partido."""
         partido = {"dados": {"id": 36899, "sigla": "PL", "nome": "Partido Liberal"}}
@@ -433,9 +478,9 @@ class TestCamaraClient:
         client = CamaraClient()
         result = await client.get_partido_detalhe(36899)
 
-        assert result['sigla'] == "PL"
+        assert result["sigla"] == "PL"
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_get_partido_membros(self, mock_httpx):
         """Testa endpoint: membros de partido."""
         membros = {"dados": [{"id": 1, "nome": "Deputado X", "siglaUf": "SP"}]}
@@ -446,9 +491,9 @@ class TestCamaraClient:
         result = await client.get_partido_membros(36899)
 
         assert len(result) == 1
-        assert result[0]['siglaUf'] == "SP"
+        assert result[0]["siglaUf"] == "SP"
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_get_legislatura_mesa(self, mock_httpx):
         """Testa endpoint: mesa diretora da legislatura."""
         mesa = {"dados": [{"nome": "Arthur Lira", "titulo": "Presidente"}]}
@@ -459,9 +504,9 @@ class TestCamaraClient:
         result = await client.get_legislatura_mesa(57)
 
         assert len(result) == 1
-        assert result[0]['titulo'] == "Presidente"
+        assert result[0]["titulo"] == "Presidente"
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
     async def test_get_referencias_temas(self, mock_httpx):
         """Testa endpoint: referências de temas."""
         temas = {"dados": [{"cod": 62, "nome": "Educação"}]}
@@ -472,9 +517,33 @@ class TestCamaraClient:
         result = await client.get_referencias_temas()
 
         assert len(result) == 1
-        assert result[0]['nome'] == "Educação"
+        assert result[0]["nome"] == "Educação"
+        assert mock_client.get.call_args.args[0] == "/referencias/proposicoes/codTema"
 
-    @patch('camara_client.httpx.AsyncClient')
+    @patch("camara_client.httpx.AsyncClient")
+    async def test_get_referencias_situacao_proposicao(self, mock_httpx):
+        """Usa a rota REST atual de situações de proposição."""
+        mock_client = _make_mock_client(_make_response({"dados": []}))
+        mock_httpx.return_value = mock_client
+
+        client = CamaraClient()
+        await client.get_referencias_situacao_proposicao()
+
+        assert mock_client.get.call_args.args[0] == "/referencias/proposicoes/codSituacao"
+
+    @patch("camara_client.httpx.AsyncClient")
+    async def test_lista_grupos(self, mock_httpx):
+        """Usa /grupos em vez da rota antiga gruposTrabalho."""
+        mock_client = _make_mock_client(_make_response({"dados": [{"id": 1}]}))
+        mock_httpx.return_value = mock_client
+
+        client = CamaraClient()
+        result = await client.lista_grupos()
+
+        assert result == [{"id": 1}]
+        assert mock_client.get.call_args.args[0] == "/grupos"
+
+    @patch("camara_client.httpx.AsyncClient")
     async def test_get_referencias_uf(self, mock_httpx):
         """Testa endpoint: referências de UFs."""
         ufs = {"dados": [{"sigla": "SP", "nome": "São Paulo"}]}
@@ -485,4 +554,4 @@ class TestCamaraClient:
         result = await client.get_referencias_uf()
 
         assert len(result) == 1
-        assert result[0]['sigla'] == "SP"
+        assert result[0]["sigla"] == "SP"

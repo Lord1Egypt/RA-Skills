@@ -1,43 +1,55 @@
-## Description: <br>
-OpenClaw Ops Guardrails standardizes operational health checks, troubleshooting, remote-execution stability, approval and pairing diagnostics, and pre-publication sanitization for OpenClaw gateway and Mac node workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Ops Guardrails standardizes operational checks, remote-execution troubleshooting, approval and pairing diagnostics, CLI-only node setup, and pre-publication sanitization for OpenClaw gateway and Mac node workflows.
 
-## Publisher: <br>
-[xyezir](https://clawhub.ai/user/xyezir) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xyezir](https://clawhub.ai/user/xyezir)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to diagnose OpenClaw gateway and node failures, run read-only health checks, stabilize remote command execution, and prepare sanitized operational notes before external sharing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Troubleshooting guidance may weaken approval controls by recommending full-access or ask-off settings. <br>
-Mitigation: Use any full-access or approval-disabled mode only temporarily, under supervision, and restore the intended approval policy after diagnosis. <br>
-Risk: Gateway credentials may be exposed when tokens are passed through shell commands or copied into logs. <br>
-Mitigation: Use environment variables, secure prompts, or a credential store for secrets, and redact tokens before sharing command output or notes. <br>
-Risk: Operational notes can leak server IPs, domains, API endpoints, callbacks, identifiers, usernames, or local paths. <br>
-Mitigation: Apply the bundled sanitization checklist and replace sensitive values with placeholders before publishing or sharing externally. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xyezir/openclaw-ops-guardrails) <br>
-- [Failure Playbook](references/failure-playbook.md) <br>
-- [Publish Sanitization Checklist](references/publish-sanitization-checklist.md) <br>
+## Use Case:
 
+Developers and operators use this skill to run OpenClaw health checks, diagnose approval, pairing, system.run, and gateway failures, and prepare sanitized troubleshooting notes before external release.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown troubleshooting guidance with shell command examples and prioritized operational summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces availability summaries, successful checks, failed checks with root causes, residual risks, next steps, and sanitized release notes; commands should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Temporary approval bypass with full execution access can expose real OpenClaw nodes to unintended commands.
+
+Mitigation: Keep approval checks enabled by default; require explicit operator approval for any temporary exception, scope it to the exact node and command, and restore the previous approval policy immediately after testing.
+
+Risk: Troubleshooting output can leak credentials, endpoint details, identifiers, or local paths when shared externally.
+
+Mitigation: Run the publish sanitization checklist before external release and replace sensitive values with placeholders such as <gateway-token>, <api-endpoint>, <local-path>, and <node-name>.
+
+## Reference(s):
+
+- [OpenClaw Ops Guardrails ClawHub Page](https://clawhub.ai/xyezir/skills/openclaw-ops-guardrails)
+- [xyezir Publisher Profile](https://clawhub.ai/user/xyezir)
+- [Failure Playbook](references/failure-playbook.md)
+- [Publish Sanitization Checklist](references/publish-sanitization-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and operational checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes status summaries, successful checks, failed checks with root causes, residual risks, prioritized next steps, sanitized documents, and release notes.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

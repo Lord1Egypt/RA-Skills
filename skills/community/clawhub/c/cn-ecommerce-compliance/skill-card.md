@@ -1,41 +1,54 @@
-## Description: <br>
-Helps Chinese cross-border ecommerce sellers perform target-market compliance self-checks across product certification, tax, data protection, intellectual property, and marketplace rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CN Ecommerce Compliance helps China-based cross-border ecommerce sellers perform structured self-checks for target-market product certification, tax, data protection, intellectual property, and platform-rule compliance.
 
-## Publisher: <br>
-[kuanghs](https://clawhub.ai/user/kuanghs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kuanghs](https://clawhub.ai/user/kuanghs)
 
-## Use Case: <br>
-External sellers and compliance reviewers use this skill to structure pre-market checks for cross-border ecommerce products, stores, and target regions. It produces a compliance review report that flags certification, tax, privacy, intellectual property, and platform-rule gaps before listing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compliance, legal, tax, certification, and platform requirements can change or vary by jurisdiction and product category. <br>
-Mitigation: Treat the skill output as a starting checklist and verify current requirements with official sources or qualified legal, tax, or certification professionals before acting. <br>
-Risk: The skill can produce incomplete or outdated readiness conclusions for specific products, marketplaces, or target countries. <br>
-Mitigation: Review each flagged requirement against the actual product, sales channel, logistics model, and target market before listing or shipping goods. <br>
+## Use Case:
 
+External sellers, ecommerce operators, and compliance reviewers use this skill to draft cross-border ecommerce compliance review reports before entering or expanding in overseas markets. It guides checks across product certifications, VAT/GST and customs duties, privacy obligations, intellectual property risks, and marketplace policies.
 
-## Reference(s): <br>
-- [Product Certification Guide](references/product-certification-guide.md) <br>
-- [Cross-Border Tax Guide](references/cross-border-tax-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown compliance review report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Checklist-style findings with pass, remediation-needed, or non-compliant status by compliance dimension.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Users may treat checklist output as final legal, tax, certification, privacy, or marketplace compliance advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Position the skill output as drafting and self-check guidance, and require verification against official sources or qualified advisors before business action.
+
+Risk: Regulatory thresholds, certification requirements, tax rates, and platform rules may become outdated.
+
+Mitigation: Check current target-market laws, tax authority guidance, certification body requirements, and marketplace policies before relying on the report.
+
+## Reference(s):
+
+- [Cross-Border Tax Obligations Guide](artifact/references/cross-border-tax-guide.md)
+- [Product Certification Guide by Market](artifact/references/product-certification-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, analysis]
+
+**Output Format:** [Markdown compliance review report with checklist findings and remediation priorities]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory self-check content and does not execute code, persist data, handle credentials, or move data according to security evidence.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

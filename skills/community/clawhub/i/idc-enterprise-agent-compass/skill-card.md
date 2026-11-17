@@ -1,49 +1,63 @@
-## Description: <br>
-Based on the IDC COMPASS model, this skill diagnoses enterprise business process efficiency constraints, identifies suitable Agent entry points, and maps supplier directions using the IDC MarketGlance taxonomy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses enterprise business-process efficiency constraints with the IDC COMPASS framework, identifies priority Agent entry points, and maps supplier directions using IDC MarketGlance categories.
 
-## Publisher: <br>
-[seanlandtop](https://clawhub.ai/user/seanlandtop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 distribution; CC-BY-SA-4.0 for IDC COMPASS methodology, MarketGlance taxonomy mappings, and vendor directory data <br>
+## Publisher:
 
+[seanlandtop](https://clawhub.ai/user/seanlandtop)
 
-## Use Case: <br>
-Business and IT leaders use this skill to diagnose enterprise workflow bottlenecks, choose Agent pilot scenarios, and map supplier directions without ranking individual vendors. It is intended for enterprise Agent planning across process analysis, system readiness, supplier category selection, and human-agent boundary design. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0 distribution; IDC methodology, MarketGlance mappings, and vendor data licensed under CC-BY-SA-4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Vendor lists and vendor claims may be incomplete or outdated. <br>
-Mitigation: Treat vendor lists as informational, verify current vendor claims independently, and consult IDC MarketGlance vendor product evaluation reports and vendor official websites before selection. <br>
-Risk: Redistribution or derivative use may miss attribution or share-alike requirements for IDC methodology and data. <br>
-Mitigation: Check the IDC attribution and CC-BY-SA-4.0 terms before redistributing derived materials. <br>
-Risk: Recommendations may be misleading if the user skips diagnosis or lacks baseline metrics. <br>
-Mitigation: Complete the diagnostic steps, preserve human review for critical decisions, and collect baseline processing time, accuracy, and manual effort before estimating ROI. <br>
-Risk: The skill is Markdown-only guidance and is not an approved production integration. <br>
-Mitigation: Do not provide secrets or production system access unless a separate implementation is built and approved with human approval, audit, and permission controls. <br>
+## Use Case:
 
+Business, strategy, and transformation teams use this skill to diagnose where enterprise Agent initiatives should start, prioritize COMPASS dimensions, assess system readiness, and choose supplier direction categories before implementation planning.
 
-## Reference(s): <br>
-- [COMPASS Dimensions Reference](artifact/IDCcopyright.md) <br>
-- [Supplier Direction Mapping Reference](artifact/vendor-platform.md) <br>
-- [System Readiness Framework](artifact/vendor-enterprise.md) <br>
-- [Human-Agent Boundary Checklist](artifact/vendor-industry.md) <br>
-- [IDC MarketGlance: China AI Agent Industry Applications and Development Platform Market Overview](https://my.idc.com/getdoc.jsp?containerId=CHC54462426&pageType=PRINTFRIENDLY) <br>
-- [IDC MarketGlance: China Enterprise AI Agent Applications Market Overview](https://my.idc.com/getdoc.jsp?containerId=CHC54371726&pageType=PRINTFRIENDLY) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured diagnosis and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include vendor candidate lists only after the user asks; does not rank vendors or estimate ROI without baseline data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter and changelog show 1.0.0) <br>
+Risk: Reference names and packaged filenames do not fully align, which can lead an agent to look for guidance in the wrong file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package structure before deployment and verify that each referenced diagnostic, supplier, readiness, and boundary file is available at the expected path.
+
+Risk: Supplier and licensing claims affect procurement and reuse decisions.
+
+Mitigation: Verify vendor information against IDC MarketGlance materials or vendor official websites, and confirm licensing obligations before relying on the content commercially.
+
+Risk: Agent planning recommendations may overreach if business baselines or human approval gates are missing.
+
+Mitigation: Require baseline data for ROI claims and keep human approval for exceptions, critical decisions, and vendor evaluation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seanlandtop/skills/idc-enterprise-agent-compass)
+- [COMPASS workflow and rules](artifact/human-agent-boundary.md)
+- [System readiness framework](artifact/vendor-enterprise.md)
+- [Supplier direction mapping](artifact/vendor-platform.md)
+- [Human-Agent boundary checklist](artifact/vendor-industry.md)
+- [China AI Agent industry application and development platform market overview](https://my.idc.com/getdoc.jsp?containerId=CHC54462426&pageType=PRINTFRIENDLY)
+- [China enterprise AI Agent application market overview](https://my.idc.com/getdoc.jsp?containerId=CHC54371726&pageType=PRINTFRIENDLY)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with structured diagnostic sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese and English business-strategy guidance; no executable code or hidden runtime behavior identified in security evidence.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

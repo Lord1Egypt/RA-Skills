@@ -1,45 +1,58 @@
-## Description: <br>
-Helps agents assess whether a market pioneer's lead is structurally durable or where a later entrant can exploit first-mover disadvantages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assesses whether entering a market early creates durable advantages by examining technological leadership, scarce assets, switching costs, and late-mover opportunities.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-External users and business strategy teams use this skill to decide whether to enter a market now or wait, assess how defensible a market leader's position is, and map viable follower strategies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business strategy guidance may be misleading if the market facts used in the assessment are outdated or incomplete. <br>
-Mitigation: Verify current market facts separately and use the assessment as decision support rather than the sole basis for market-entry decisions. <br>
-Risk: Users may include confidential business details while working through market-entry scenarios. <br>
-Mitigation: Avoid adding confidential business details to persistent notes unless storage is intentional and approved. <br>
+## Use Case:
 
+Founders, product leaders, and strategy teams use this skill to decide whether to enter a market now or wait, assess a pioneer's defensibility, and identify differentiated openings for followers.
 
-## Reference(s): <br>
-- [Sources - first-mover-advantage](references/sources.md) <br>
-- [Lieberman and Montgomery (1988), First-Mover Advantages](https://www.jstor.org/stable/2486351) <br>
-- [Lieberman and Montgomery (1998), First-Mover (Dis)advantages](https://doi.org/10.1002/(SICI)1097-0266(1998120)19:12<1111::AID-SMJ21>3.0.CO;2-W) <br>
-- [Amazon Annual Reports](https://ir.aboutamazon.com/annual-reports-proxies-and-shareholder-letters/annual-reports/) <br>
-- [EU Digital Markets Act, Regulation (EU) 2022/1925](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32022R1925) <br>
-- [Schmalensee (1982), Product Differentiation Advantages of Pioneering Brands](https://www.jstor.org/stable/1831769) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown assessment with tables and concise recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an FMA/SMA Assessment covering advantage sources, disadvantage analysis, follower entry thesis, timing assessment, and verdict.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Market examples and competitive assessments can become outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current market claims before relying on the examples or making a decision.
+
+Risk: Recorded failure patterns could expose confidential details.
+
+Mitigation: Avoid including confidential details in any failure patterns added from real use.
+
+## Reference(s):
+
+- [Skill source reference list](references/sources.md)
+- [ClawHub skill page](https://clawhub.ai/deciqai/skills/first-mover-advantage)
+- [Lieberman and Montgomery (1988), First-Mover Advantages](https://www.jstor.org/stable/2486351)
+- [Lieberman and Montgomery (1998), First-Mover (Dis)advantages](https://doi.org/10.1002/(SICI)1097-0266(1998120)19:12<1111::AID-SMJ21>3.0.CO;2-W)
+- [EU Digital Markets Act](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32022R1925)
+- [EU AI Act](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown assessment with tables, qualitative ratings, timing estimates, and a recommendation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Market-specific assessment; includes advantage durability, follower opportunities, and re-evaluation triggers. Verify time-sensitive market claims.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

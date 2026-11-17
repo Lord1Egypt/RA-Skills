@@ -1,48 +1,61 @@
-## Description: <br>
-Integration patterns for using Mapbox MCP DevKit Server in AI coding assistants, covering setup, style management, token management, validation workflows, and documentation access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integration patterns for using Mapbox MCP DevKit Server in AI coding assistants, including setup, style management, token management, validation workflows, and documentation access through MCP.
 
-## Publisher: <br>
-[mapbox](https://clawhub.ai/user/mapbox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mapbox](https://clawhub.ai/user/mapbox)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure Mapbox MCP DevKit access, manage Mapbox styles and tokens through an MCP-enabled assistant, and validate map assets before release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mapbox tokens can grant account access if exposed or over-scoped. <br>
-Mitigation: Use hosted OAuth when possible, keep real tokens out of repositories and chat transcripts, and create least-privilege, domain-restricted tokens for each environment. <br>
-Risk: Assistant-driven style, token, upload, update, or delete operations can affect production Mapbox assets. <br>
-Mitigation: Require explicit confirmation before production changes and run style, expression, accessibility, and comparison checks before release. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure and use Mapbox MCP DevKit Server with AI coding assistants. It supports development-time workflows for Mapbox style iteration, scoped token creation, GeoJSON and expression validation, and Mapbox documentation lookup.
 
-## Reference(s): <br>
-- [Mapbox MCP DevKit Server](https://github.com/mapbox/mcp-devkit-server) <br>
-- [Model Context Protocol](https://modelcontextprotocol.io) <br>
-- [Mapbox Style Specification](https://docs.mapbox.com/style-spec/) <br>
-- [Mapbox API Documentation](https://docs.mapbox.com/api/) <br>
-- [Token Scopes Reference](https://docs.mapbox.com/api/accounts/tokens/) <br>
-- [Setup & Installation](references/setup.md) <br>
-- [Core Workflows](references/workflows.md) <br>
-- [Design Patterns](references/design-patterns.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include tool-name recommendations and pre-production validation checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill gives an AI assistant development-time access to Mapbox account operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that access is acceptable; prefer the hosted OAuth setup and create narrowly scoped tokens for each environment.
+
+Risk: Token handling and broad account permissions can expose credentials or grant more access than needed.
+
+Mitigation: Pin any npx bridge package, avoid committing MCP configs that contain secrets, never paste real tokens into shared config files, add URL restrictions, and rotate tokens regularly.
+
+## Reference(s):
+
+- [Setup & Installation](references/setup.md)
+- [Core Workflows](references/workflows.md)
+- [Design Patterns](references/design-patterns.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Mapbox MCP DevKit Server](https://github.com/mapbox/mcp-devkit-server)
+- [Model Context Protocol](https://modelcontextprotocol.io)
+- [Mapbox Style Specification](https://docs.mapbox.com/style-spec/)
+- [Mapbox API Documentation](https://docs.mapbox.com/api/)
+- [Mapbox Token Scopes Reference](https://docs.mapbox.com/api/accounts/tokens/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend Mapbox MCP DevKit tool calls for development-time account operations such as style, token, validation, and documentation workflows.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

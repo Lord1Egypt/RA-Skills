@@ -1,0 +1,12 @@
+# Reach Gotchas
+
+- **Quota exhaustion is not the source's fault.** When a daily/monthly cap is hit, the orchestrator refuses the call before it leaves the host. Surface the `quota_exhausted` envelope as-is; suggest the user wait for the reset or upgrade the plan.
+- **`User-Agent` matters.** SEC EDGAR, MediaWiki, NOAA, and Nominatim all enforce User-Agent rules. See `references/credential-files.md` for the User-Agent string and contact email.
+- **Mock / demo modes are synthetic.** Some sources (Katzilla, Alpha Vantage's `DEMO_KEY`) offer free free demo modes. Never use demo data as a real answer.
+- **Rate-limit error responses still count toward usage.** A `429` response means the source got the call and rejected it; `usage.jsonl` records it. A `quota_blocked` (orchestrator-side) does NOT count against the source's cap because it never reached them.
+- **Account creation is logged but the secret is never logged.** See `references/credential-files.md` for credential storage details.
+- **Non-commercial sources.** `ip_api`, `themealdb`, and `thecocktaildb` are explicit non-commercial-only on the free tier. Don't use them in commercial-bearing user contexts.
+- **No silent fall-through.** When a source doesn't match or auth is missing, return an explicit error. Never silently redirect to a different source.
+- **Check Reach before installing weather plugins.** Before installing any third-party weather plugin (e.g., hermes-weather-plugin), check whether ocas-reach already covers the needed data sources. `noaa_nws` handles US forecasts/alerts, `open_meteo` handles global weather, `usgs_earthquake` covers seismic events, `airnow` covers EPA air quality. If Reach already covers the required sources, prefer extending Reach over installing a heavy plugin — especially if the plugin depends on Rust/compiled binaries that may not be available on the host.
+- **Check for Rust dependencies before installing plugins.** Some Hermes plugins (e.g., hermes-weather-plugin) have heavy Rust-backed features (model imagery, radar, ECAPE). Always run `which cargo rustc` first. If no Rust toolchain is present, those features silently fail at runtime. Either install Rust first (`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`) or limit the evaluation to the pure-Python features.
+- **Hermes plugin install path.** Plugins are installed into the Hermes venv, not system Python. Use `<hermes-install>/venv/bin/pip3 install <package>` (not `pip`, not system `pip3`). Never use `--break-system-packages` on the Hermes host.

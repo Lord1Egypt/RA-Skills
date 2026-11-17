@@ -7,6 +7,43 @@
 | Developer Token (JWT) | `APPLE_MUSIC_DEV_TOKEN` | Up to 6 months | Regenerate manually |
 | Music User Token | `APPLE_MUSIC_USER_TOKEN` | ~6 months | No programmatic refresh — re-authorize in browser |
 
+## Fast path
+
+Do Steps 1–3 below once in the Apple Developer portal (account, MusicKit identifier, `.p8` key),
+then let the setup script do the rest:
+
+```bash
+pip install PyJWT cryptography
+python3 scripts/setup_auth.py --key-id YOUR_KEY_ID --team-id YOUR_TEAM_ID --key-path ~/AuthKey_XXXXXX.p8
+```
+
+It signs the developer token (Step 4), opens a page on `127.0.0.1` where you click **Connect
+Apple Music** and sign in (Step 5), and prints both `export` lines. Options:
+
+| Option | Does |
+|---|---|
+| `--env-file ~/.apple-music-dj-tokens.env` | Write the exports to an owner-only file instead of printing them; `source` it from your shell profile |
+| `--no-browser` | Print the sign-in link instead of opening a browser |
+| `--new-dev-token` | Sign a fresh developer token even if `APPLE_MUSIC_DEV_TOKEN` is still valid |
+| `status` | Show how long each token has left |
+
+The key details can also come from `APPLE_KEY_ID`, `APPLE_TEAM_ID` and `APPLE_PRIVATE_KEY_PATH`,
+or the script asks for them. Run it in your own terminal, not through an agent, so your tokens
+don't end up in a chat transcript.
+
+**For OpenClaw**, put the tokens in your shell profile, or in `~/.openclaw/openclaw.json`:
+
+```json
+{ "skills": { "entries": { "apple-music-dj": { "env": {
+  "APPLE_MUSIC_DEV_TOKEN": "eyJ…", "APPLE_MUSIC_USER_TOKEN": "…" } } } } }
+```
+
+(Sandboxed agents need them in the sandbox's env settings instead; see the OpenClaw skills docs.)
+
+Just want to look around first? `python3 scripts/demo.py tour` needs no tokens at all.
+
+The manual steps follow, for reference or if you'd rather do it by hand.
+
 ## Step 1: Apple Developer Account
 
 You need an active Apple Developer Program membership ($99/year).
@@ -43,7 +80,8 @@ export APPLE_MUSIC_DEV_TOKEN="eyJ..."
 
 ## Step 5: Obtain the Music User Token
 
-The user must sign in to Apple Music in a browser. Create this HTML file and open it:
+`scripts/setup_auth.py` does this step for you. By hand: the user must sign in to Apple Music
+in a browser. Create this HTML file and open it:
 
 ```html
 <!DOCTYPE html>
@@ -93,17 +131,21 @@ scripts/apple_music_api.sh verify
 
 ## Token Expiry
 
-**Developer Token**: Set a calendar reminder to regenerate before expiry.
+**Developer Token**: the profiler and `verify_setup.sh` warn 14 days before it expires.
+Regenerate with `python3 scripts/setup_auth.py --new-dev-token`.
 
 **Music User Token**: No refresh mechanism exists. When it expires (~6 months), you'll
-get 403 errors on `/me/` endpoints. Re-run Step 5. Password changes also invalidate it.
+get 403 errors on `/me/` endpoints. Run `python3 scripts/setup_auth.py` again (or Step 5).
+Password changes also invalidate it. The token itself carries no expiry, so the skill remembers
+when it first saw it (by a short fingerprint, not the token) and warns as it nears 6 months.
 
 ## Troubleshooting
 
 | Symptom | Fix |
 |---|---|
-| 401 on all endpoints | Developer token expired → regenerate JWT |
-| 403 on `/me/` endpoints | User token expired → re-authorize in browser |
+| 401 on all endpoints | Developer token expired → `setup_auth.py --new-dev-token` |
+| 403 on `/me/` endpoints | User token expired → `setup_auth.py` (browser sign-in) |
+| Sign-in page says MusicKit didn't accept the token | Dev token wrong or expired → `--new-dev-token`; check Key ID / Team ID |
 | 403 after password change | Token invalidated → re-authorize |
 | Catalog works, library doesn't | Missing `Music-User-Token` header |
 | "MusicKit not configured" | Dev token not set in HTML configure() call |

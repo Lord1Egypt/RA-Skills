@@ -1,43 +1,70 @@
-## Description: <br>
-Standardize provenance, attribution, and licensing metadata at creation time so content travels cleanly across platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a creator, manager, or label is finalizing an asset and wants a clean, standards-mapped record of its origin, authorship context, licensing scope, attribution requirements, and integrity signals, or wants to track license durations, territories, expirations, source-material permissions, and rights transfers across a catalog.
 
-## Publisher: <br>
-[OtherPowers](https://clawhub.ai/user/OtherPowers) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[otherpowers](https://clawhub.ai/user/otherpowers)
 
-## Use Case: <br>
-External creators and rights operations teams use this skill to organize provenance, attribution, licensing scope, and asset lifecycle metadata before publication or distribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake organized rights metadata for legal advice, ownership validation, or platform outcome prediction. <br>
-Mitigation: Use the skill as an organizational helper only, keep the first-turn disclaimer visible, and verify legal, license, ownership, and attribution questions with qualified review. <br>
-Risk: Incorrect provenance, license, attribution, or source-reference inputs could create misleading records that travel with an asset. <br>
-Mitigation: Require creators to verify the accuracy and completeness of supplied information before relying on generated metadata. <br>
-Risk: Asset metadata collection may include unnecessary personal or sensitive information. <br>
-Mitigation: Redact personal information during ingestion and record only the metadata needed for provenance, attribution, licensing, and internal tracking. <br>
+## Use Case:
 
+Creators, managers, labels, and their supporting agents use this skill before publication to create or maintain an Asset Origin Record for a creative work. The record captures origin, attribution, licensing scope, source-material permissions, integrity signals, and lifecycle notes without adjudicating ownership or providing legal advice.
 
-## Reference(s): <br>
-- [Creator Rights Assistant on ClawHub](https://clawhub.ai/OtherPowers/creator-rights-assistant) <br>
-- [OtherPowers publisher profile](https://clawhub.ai/user/OtherPowers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown and structured metadata guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes disclaimers, metadata field suggestions, attribution guidance, and rights lifecycle reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Asset Origin Records may contain sensitive rights, collaborator, licensing, and dispute context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep sidecar files under the creator's control and use minimal exports unless there is a clear reason to share more.
+
+Risk: Rights questions can carry legal weight, and the skill does not validate licenses, ownership, infringement, or legal outcomes.
+
+Mitigation: Use the skill for documentation and seek qualified legal counsel for rights questions with legal weight.
+
+Risk: Embedded metadata can expose names, identity details, and collaborator information beyond the creator's intended audience.
+
+Mitigation: Respect consent limits, keep identity-sensitive details out of embedded copies by default, and avoid naming collaborators without consent.
+
+## Reference(s):
+
+- [Creator Rights Assistant on ClawHub](https://clawhub.ai/otherpowers/skills/creator-rights-assistant)
+- [C2PA explainer, specification 2.4](https://spec.c2pa.org/specifications/specifications/2.4/explainer/Explainer.html)
+- [C2PA FAQ](https://c2pa.org/faqs/)
+- [Local Contexts labels](https://localcontexts.org/labels/about-the-labels/)
+- [Local Contexts Traditional Knowledge Labels](https://localcontexts.org/labels/traditional-knowledge-labels/)
+- [Content Credentials](https://en.wikipedia.org/wiki/Content_Credentials)
+- [IPTC metadata](https://en.wikipedia.org/wiki/IPTC_Information_Interchange_Model)
+- [XMP](https://en.wikipedia.org/wiki/Extensible_Metadata_Platform)
+- [Creative Commons](https://en.wikipedia.org/wiki/Creative_Commons)
+- [SPDX](https://en.wikipedia.org/wiki/Software_Package_Data_Exchange)
+- [Local Contexts](https://localcontexts.org/)
+- [ISRC](https://en.wikipedia.org/wiki/International_Standard_Recording_Code)
+- [ISWC](https://en.wikipedia.org/wiki/International_Standard_Musical_Work_Code)
+- [IPI](https://en.wikipedia.org/wiki/Interested_Parties_Information)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance and plain-text or JSON sidecar records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces creator-controlled Asset Origin Records, commonly as asset.abc.json, with fields marked when information is not yet recorded.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Supports clinical case analysis, differential diagnosis, and common primary-care diagnostic reasoning through task-specific prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes clinical case questions, supports differential diagnosis and primary-care diagnosis scenarios, and switches reasoning modes with --task.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Clinical workflow integrators and developers use this skill to submit de-identified case questions to a configured medical LLM for case analysis, differential diagnosis, and diagnostic reasoning support. It is assistive output and not a substitute for formal clinical judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Clinical prompts, responses, or saved output files may contain sensitive patient information. <br>
-Mitigation: Use only de-identified clinical text unless the organization has approved the configured API endpoint and retention practices; treat saved outputs as sensitive clinical records. <br>
-Risk: Generated diagnostic reasoning can be incomplete, incorrect, or inappropriate for a specific patient. <br>
-Mitigation: Use the output as assistive information only and require review by qualified clinical personnel before any care decision. <br>
+## Use Case:
 
+Developers and clinical workflow integrators can pass de-identified medical questions to an internal medical LLM to obtain structured diagnostic reasoning or differential diagnosis support. Outputs are model-assisted information and should not be treated as formal clinical decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-med-clinical-diagnosis) <br>
-- [Configured medical model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [JSON by default, with optional plain text answer output and NDJSON for batches] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save full JSON or NDJSON to a user-specified output path; requires an app key unless dry-run is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Sensitive clinical questions may be sent to the configured API endpoint and echoed in output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only de-identified questions, avoid passing PHI on the command line, and keep outputs out of logs and shared artifacts.
+
+Risk: Overriding --api-url can send bearer credentials and clinical content to an unintended endpoint.
+
+Mitigation: Use only trusted HTTPS-protected endpoints with keys intended for that destination.
+
+Risk: Medical model output can be incomplete, uncertain, or unsuitable for direct patient-care decisions.
+
+Mitigation: Require qualified clinical review and follow institutional processes before using outputs in real workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-med-clinical-diagnosis)
+- [Unisound-LLM publisher profile](https://clawhub.ai/user/unisound-llm)
+- [Default model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON object by default; optional plain text answer with --text-only; optional NDJSON for batches.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write UTF-8 output files; dry-run mode returns parsed input without calling the model.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

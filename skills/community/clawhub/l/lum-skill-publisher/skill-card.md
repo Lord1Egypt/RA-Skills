@@ -1,44 +1,58 @@
-## Description: <br>
-Researches, structures, and publishes ClawHub skills by analyzing listing patterns, generating gap reports, patching README/SKILL files, and preparing clawhub publish commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research, structure, and publish skills to ClawHub by analyzing top listings, generating gap reports, patching README/SKILL files, and guiding clawhub publish.
 
-## Publisher: <br>
-[ragesaq](https://clawhub.ai/user/ragesaq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ragesaq](https://clawhub.ai/user/ragesaq)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to research ClawHub marketplace patterns, evaluate drafts, patch skill files, and prepare publication commands for ClawHub releases. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Draft edits could introduce incorrect or misleading claims into skill files. <br>
-Mitigation: Review all diffs before accepting patches and scan the skill before publishing. <br>
-Risk: Marketplace skills installed for research may be untrusted reference material. <br>
-Mitigation: Treat downloaded skills as reference material only and review any copied content or patterns before reuse. <br>
-Risk: Publishing runs under the active ClawHub account and could release the wrong slug, version, changelog, or visibility. <br>
-Mitigation: Confirm clawhub whoami and approve the final publish command only after checking slug, version, changelog, and intended visibility. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Publisher listing](https://clawhub.ai/ragesaq/lum-skill-publisher) <br>
-- [ClawHub](https://clawhub.ai) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Gap Analysis Examples](examples/gap-analysis.md) <br>
+## Use Case:
 
+Developers and skill authors use this agent skill to research ClawHub marketplace patterns, assess draft skills against publishing expectations, improve README/SKILL files, and prepare a publish command.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and file patch guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose README.md and SKILL.md edits and final publish commands for user review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Suggested patches could introduce incorrect or misleading guidance into skill files.
+
+Mitigation: Review generated patches before accepting them and scan the skill before deployment.
+
+Risk: The guided publish workflow could publish with the wrong slug, version, changelog, or account.
+
+Mitigation: Approve the final clawhub publish command only after confirming the slug, version, changelog, and account.
+
+Risk: Research installs can pull marketplace skills into the local environment.
+
+Mitigation: Keep research installs in a temporary directory.
+
+## Reference(s):
+
+- [ClawHub Skill Publisher Listing](https://clawhub.ai/ragesaq/skills/lum-skill-publisher)
+- [ClawHub](https://clawhub.ai)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command blocks and suggested file edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose README/SKILL.md changes and a final clawhub publish command; requires the clawhub CLI.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,48 @@
-## Description: <br>
-Calculate aspect ratios from dimensions and find missing width or height. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate aspect ratios from dimensions and find missing width or height.
 
-## Publisher: <br>
-[ohernandez-dev-blossom](https://clawhub.ai/user/ohernandez-dev-blossom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ohernandez-dev-blossom](https://clawhub.ai/user/ohernandez-dev-blossom)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, designers, video editors, and other users can use this skill to simplify pixel dimensions into aspect ratios or calculate a missing width or height while preserving a known ratio.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Rounded missing dimensions may be unsuitable when exact pixel dimensions matter.
+
+Mitigation: Independently confirm rounding choices before using calculated dimensions in precision-sensitive design or production workflows.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Designers, developers, and content creators use this skill to simplify image or video dimensions into standard aspect ratios and calculate a missing width or height while preserving a ratio. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [analysis, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Important layout or production decisions could be affected by ordinary calculation errors or misread dimensions. <br>
-Mitigation: Check important numeric results before relying on them, especially when resizing production images or video. <br>
-Risk: Invalid dimensions or malformed ratios can produce nonsensical results. <br>
-Mitigation: Use positive integer width and height values and provide ratios in W:H format, such as 16:9. <br>
+**Output Format:** [Markdown text with calculated ratio values and brief arithmetic explanations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Aspect Calc on ClawHub](https://clawhub.ai/ohernandez-dev-blossom/aspect-calc) <br>
-- [Publisher profile: ohernandez-dev-blossom](https://clawhub.ai/user/ohernandez-dev-blossom) <br>
+**Other Properties Related to Output:** [Reports simplified ratios, decimal and percentage equivalents, known standard-ratio labels, and rounded missing dimensions when requested.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with calculated ratios, dimensions, decimal values, percentages, and validation messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Calculations use positive integer dimensions, W:H ratio parsing, GCD simplification, and rounded missing dimensions.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

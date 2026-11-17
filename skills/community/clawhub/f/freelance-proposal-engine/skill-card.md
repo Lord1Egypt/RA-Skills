@@ -1,38 +1,52 @@
-## Description: <br>
-Generate tailored freelance proposals for Upwork, Fiverr, Freelancer, and PeoplePerHour job listings. Use when writing proposals, bidding on gigs, or responding to client job posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate tailored freelance proposals for Upwork, Fiverr, Freelancer, and PeoplePerHour job listings.
 
-## Publisher: <br>
-[seanwyngaard](https://clawhub.ai/user/seanwyngaard) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[seanwyngaard](https://clawhub.ai/user/seanwyngaard)
 
-## Use Case: <br>
-External freelancers and proposal writers use this skill to analyze client job posts and draft tailored proposals, pricing recommendations, clarifying questions, platform-specific tips, and follow-up messages. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requests Bash, Write, Grep, and Glob permissions that are broader than needed for drafting freelance proposals. <br>
-Mitigation: Review before installing and allow only the inputs and tools needed for the task, such as pasted job text, reading an intentionally provided file, fetching a specified listing URL, and optional web search when explicitly requested. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/seanwyngaard/freelance-proposal-engine) <br>
-- [Publisher profile](https://clawhub.ai/user/seanwyngaard) <br>
+## Use Case:
 
+External users and freelancers use this skill to analyze client job posts, choose a proposal strategy, and draft concise, platform-tailored freelance proposals with pricing guidance and follow-up material.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown proposal package with analysis notes, pricing recommendation, clarifying questions, and follow-up template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Copy-paste-ready proposal text with concise platform-specific guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requests shell, write, and broad file-discovery tools that exceed its proposal-writing workflow.
+
+Mitigation: Install only if comfortable with the requested local authority, or use a safer version that removes Bash, Write, Grep, and Glob and limits web/file access to the supplied listing URL or file path.
+
+Risk: Generated proposal and pricing guidance may be inaccurate, overstated, or poorly matched to the client listing.
+
+Mitigation: Review the draft for factual accuracy, truthful experience claims, platform policy fit, and appropriate pricing before sending it to a client.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seanwyngaard/skills/freelance-proposal-engine)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a copy-paste-ready proposal, platform-specific tips, clarifying questions, a pricing recommendation, and a follow-up message template.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

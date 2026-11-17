@@ -1,0 +1,11 @@
+name: geo-cover-design
+slug: geo-cover-design
+version: 0.1.9
+display_name: GEO Cover Design
+description: 根据已核验内容、授权素材和目标尺寸设计可复核的文章封面；不捏造 Logo、文字或平台规格。
+license: MIT-0
+self_test: python3 scripts/self-test.py
+platforms:
+  - github
+  - gitee
+  - skillhub

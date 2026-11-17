@@ -1,43 +1,56 @@
-## Description: <br>
-Analyze Twitter workflows with JustOneAPI, including user Profile and user Published Posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Twitter workflows with JustOneAPI, including user Profile and user Published Posts.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve API-backed Twitter user profile details and published posts through JustOneAPI when they have the required user identifiers and token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token and queried Twitter identifiers are sent to a third-party API provider. <br>
-Mitigation: Use a dedicated or limited-scope token where possible and install only when JustOneAPI is trusted for the queried data. <br>
-Risk: Request URLs or error traces may expose tokens or Twitter identifiers. <br>
-Mitigation: Avoid sharing logs or traces that contain full request URLs, and rotate the token if exposure is suspected. <br>
+## Use Case:
 
+Developers and external agents use this skill to retrieve Twitter/X user profile metadata and published posts through JustOneAPI when they have a user Rest ID and a valid API token.
 
-## Reference(s): <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_twitter&utm_content=project_link) <br>
-- [Twitter operations](generated/operations.md) <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-twitter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses should summarize the most relevant fields before including raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Risk: Twitter/X lookup parameters and the JustOneAPI token are sent to api.justoneapi.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data flow is acceptable for the user's use case, and avoid sending unnecessary identifiers or filters.
+
+Risk: The API token could be exposed through chat messages, screenshots, shell history, process monitoring, or URL logs.
+
+Mitigation: Keep JUST_ONE_API_TOKEN private, avoid logging commands that include it, and rotate the token if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-twitter)
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_twitter&utm_content=project_link)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_twitter&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and Twitter/X request parameters such as restId and optional cursor.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

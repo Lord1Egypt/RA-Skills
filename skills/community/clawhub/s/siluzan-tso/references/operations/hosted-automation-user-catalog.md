@@ -1,38 +1,93 @@
-# 自动化场景
+﻿# 宿主编排能力目录
 
-这是skill的一些结合Agent客户端可完成的自动化功能，你可以给用户介绍下面的这些内容
+> **何时 Read**：用户明确问自动化 / 巡检 / 熔断 / 自控 / 异常监控 / 自动优化时。其他任务**跳过**本文件。
+> **怎么读**：下表每行只 Read **一个**「SOP」列路径。Google 金额口径见 `references/google-ads/google-ads.md` § Gotchas + `references/accounts/currency.md`。
+> 宿主侧告警优先级写作 **告警P1**（勿与 Playbook **P1** 账户诊断混淆）。
 
-## 预算 & ROI 控制引擎
+`guard` 与自动暂停/改价**只支持 Google**。Bing / Yandex / TikTok / Facebook 只能拉数告警，步骤见各自 SOP。
 
-三条均为 **Google 宿主编排 + siluzan-tso** 路径；IF/定时/通知在宿主，命令与 JSON 以详规为准。
+---
 
-| 提醒名称            | 系统在后台默默帮你做什么？(自动动作)                                                                                                                                  | 文档（references）                                                                                                                                                                                                                                                                                                                                                                                                           |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1. 单日预算熔断     | 当日系列 **花费**相对**日预算**达到设定比例（如 ≥110%，可配 110%–120% 抗延迟）时，**暂停 Campaign**；恢复需人工加预算后再启用。                                       | [场景 1 · 单日预算熔断](references/operations/hosted-automation-self-control.md) · [`references/google-ads/google-ads.md`](references/google-ads/google-ads.md)（`ad campaigns`、`ad campaign-status`、预算口径） · [`references/core/tips.md`](references/core/tips.md)（`--json-out`）                                                                                                                                                                                            |
-| 2. CPA 飙升自动降价 | 滑动时间窗内 **转化数**达置信阈值且 **实际 CPA** 高于 **目标 CPA×飙升比例** 时，在 **Campaign / Ad Group** 上**下调** tCPA 或 eCPC 等**出价上限**（具体策略依账户）。 | [场景 2 · CPA 飙升自动降价](references/operations/hosted-automation-self-control.md) · [`references/operations/hosted-automation-optimize-weak-downbid.md`](references/operations/hosted-automation-optimize-weak-downbid.md)（组/创意侧降价关停，可与宿主组合） · [`references/google-ads/google-ads.md`](references/google-ads/google-ads.md)（`campaign-edit`、`adgroup-edit`） · [`references/analytics/account-analytics.md`](references/analytics/account-analytics.md)（窗口粒度不足时的报表拉数） |
-| 3. 连续空耗自动暂停 | **当日**累计 **花费 ≥ 目标 CPA×N** 且 **转化为 0** 时，**暂停**广告组或创意；宿主发 **P1** 且文案含 **「空耗熔断」**。                                                | [场景 3 · 连续空耗自动暂停](references/operations/hosted-automation-self-control.md) · [`references/google-ads/google-ads.md`](references/google-ads/google-ads.md)（`ad groups`、`ad list`、`adgroup-status`、`ad-status`） · [`references/operations/hosted-automation-monitoring-json.md`](references/operations/hosted-automation-monitoring-json.md)（JSON 键名勿套用 Google Ads API 官方名）                                                                                  |
+## Google：预算与 ROI 自控
 
-**总索引**：[`references/operations/hosted-automation-scenarios.md`](references/operations/hosted-automation-scenarios.md) · **自控全文**：[`references/operations/hosted-automation-self-control.md`](references/operations/hosted-automation-self-control.md) · **金额硬规范**（展示用 `*Display` 等）：[`SKILL.md`](../SKILL.md)「金额与货币单位硬约束」。
+| 场景             | 自动动作（摘要）                                                                                         | 首选 CLI / SOP（只读一份）                                                                                               |
+| ---------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| 单日预算熔断     | 当日花费相对日预算达阈值 → **列出命中**；暂停须逐账户 `ad campaign-status`                               | **首选** `references/operations/guard.md`（`guard budget-circuit`）；细节/单户排障见 `hosted-automation-self-control.md` |
+| CPA 飙升自动降价 | 窗内 CPA 超目标 → 下调出价上限                                                                           | `references/operations/hosted-automation-optimize-weak-downbid.md`                                                       |
+| 连续空耗自动暂停 | 当日花费达阈值且 0 转化 → **列出命中**；暂停须逐账户 `adgroup-status`/`ad-status`；宿主发 **告警P1**「空耗熔断」 | **首选** `references/operations/guard.md`（`guard zero-conv`）；细节见 `hosted-automation-self-control.md`               |
 
-## 异常监控与报警系统
+> **消耗 ≠ 日消耗**：`spend` 为 `--start`～`--end` 合计。`guard` 命令已强制 `--date` 单日；手写 `ad campaigns` 时须 `start=end=当日`。续航日均用 `balance-scan.dailySpend`。
 
-编排（定时、HTTP 探活、通知）在宿主；**读哪些 JSON 字段、用什么命令** 以 **[`references/operations/hosted-automation-monitoring-json.md`](references/operations/hosted-automation-monitoring-json.md)** 为准（键名以当次 `--json-out` 落盘 JSON 为准，勿套用 Google Ads API 官方字段名解析本 CLI 输出）。
+## Google：异常监控
 
-| 功能名称          | 监控层级 / 说明                                                                                    | CLI 检查入口（`--json-out`）                                                                                                                                                         |
-| ----------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 1. 账户被封禁     | 账户级；与 Google `CustomerStatus` 及 `list-accounts` 的字段映射**暂不写进本 skill**，由宿主约定。 | `list-accounts`、`balance` 等见 [`references/accounts/accounts.md`](references/accounts/accounts.md)                                                                                                       |
-| 2. 落地页死链强停 | URL 不可用或跳错页时暂停关联创意，避免无效消耗。                                                   | **`google-analysis --sections final-urls`**；或 **`ad list`** / **`google-analysis --sections ads`** 取落地页字段后由宿主 HTTP 校验                                                  |
-| 3. 广告素材拒审   | 创意政策状态异常时告警或配合工单。                                                                 | **`ad list`** / **`google-analysis --sections ads`**：`policyApprovalStatusV2`、`approvalStatusDetails` 等（见 **[`references/google-ads/google-ads.md`](references/google-ads/google-ads.md)**）          |
-| 4. 花费异动监控   | 系列或账户维度花费相对历史异常波动。                                                               | **`google-analysis --sections campaign-hour`**：按 `campaignId` + `date` + `hour` 看 **`spend`**                                                                                     |
-| 5. 余额枯竭预警   | 余额过低或按日均推算续航不足。                                                                     | **`balance-scan`**（`balance`、`remainingDays`、`hitReason`、`meta`）或 **`balance`** / **`google-analysis --sections overview`**（`remainingAccountBudget`、`averageDailyCost` 等） |
+字段键名以当次 `--json-out` 为准，细则只读：`references/operations/hosted-automation-monitoring-json.md`。
 
-## 自动优化
+| 场景       | CLI 入口（摘要）                                                         |
+| ---------- | ------------------------------------------------------------------------ |
+| 账户封禁   | `list-accounts` / `balance`（见 `references/accounts/accounts.md` 索引） |
+| 落地页死链 | `google-analysis --sections final-urls` 或 `ad list`                     |
+| 素材拒审   | `ad list` / `google-analysis --sections ads`                             |
+| 花费异动   | `google-analysis --sections campaign-hour`                               |
+| 余额枯竭   | `balance-scan`（P2）                                                     |
 
-编排与阈值在宿主；**命令、JSON 键名、聚合与写后复核** 见 **[`references/operations/hosted-automation-optimize-index.md`](references/operations/hosted-automation-optimize-index.md)**（及链出的三份 SOP）。
+## Google：自动优化
 
-| 功能名称                | 说明                                                                                                                                               | SOP                                                                                                              |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| 1. 表现差广告降价/关停  | 组/创意：CTR、CPA、转化等触达后 **下调 `targetCpa` 或 `Paused`**。                                                                                 | [`references/operations/hosted-automation-optimize-weak-downbid.md`](references/operations/hosted-automation-optimize-weak-downbid.md) |
-| 2. 高转化广告提价扩量   | 系列/组：ROAS 代理、预算丢失份额等触达后 **提预算 / 上调目标 CPA**。                                                                               | [`references/operations/hosted-automation-optimize-scale.md`](references/operations/hosted-automation-optimize-scale.md)               |
-| 3. A/B 测试自动决出胜者 | 同组多创意：聚合后比 **CVPI / all conv** 等，**停输家**。                                                                                          | [`references/operations/hosted-automation-optimize-ab-winner.md`](references/operations/hosted-automation-optimize-ab-winner.md)       |
-| 4. 异动根因自动排查建议 | 诊断报告与归因：用 `account-analytics`、报告模板等，见 [`references/analytics/account-analytics.md`](references/analytics/account-analytics.md) 与 `report-templates/`。 | （未单独拆 SOP，沿用分析文档）                                                                                   |
+索引（可选）：`references/operations/hosted-automation-optimize-index.md`。执行时直接读 SOP：
+
+| 场景            | SOP                                                                        |
+| --------------- | -------------------------------------------------------------------------- |
+| 差广告降价/关停 | `references/operations/hosted-automation-optimize-weak-downbid.md`         |
+| 高转化提价扩量  | `references/operations/hosted-automation-optimize-scale.md`                |
+| A/B 决出胜者    | `references/operations/hosted-automation-optimize-ab-winner.md`            |
+| 异动根因排查    | `references/analytics/account-analytics.md` + 对应 `report-templates/*.md` |
+
+---
+
+## Bing（BingV2）：只读巡检
+
+全部步骤只读一份：`references/operations/hosted-automation-bing.md`。**不能**自动暂停/改价/改预算。
+
+| 场景           | 做什么                                                                 | SOP                                              |
+| -------------- | ---------------------------------------------------------------------- | ------------------------------------------------ |
+| 余额 / IO 续航 | `balance-scan -m BingV2`；有 IO 再 `insertion-orders` + `monthly-spend` | `references/operations/hosted-automation-bing.md` |
+| 账户封禁       | `bing-analysis account-status`；非 Active 告警                         | 同上                                             |
+| 素材拒审       | `bing-analysis bulk-ads --editorial-status Disapproved`                | 同上                                             |
+| 落地页死链     | `bulk-ads` 拉 URL，宿主 HTTP 探活                                      | 同上                                             |
+| 当日超预算     | `campaign-entities` 日预算 + `run --aggregation Daily` 当日花费；只告警 | 同上                                             |
+| CPA / 空耗     | `run --aggregation Daily\|Hourly`；只告警，不降价、不暂停              | 同上                                             |
+
+## TikTok：只读巡检
+
+全部步骤只读一份：`references/operations/hosted-automation-tiktok.md`。**不能**自动暂停/改价/改预算。
+
+| 场景         | 做什么                                                                                          | SOP                                                 |
+| ------------ | ----------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| 余额 / 封禁  | `tiktok-analysis account-status`；非 `STATUS_ENABLE` 告警                                       | `references/operations/hosted-automation-tiktok.md` |
+| 素材拒审     | `ad-entities --secondary-status AD_STATUS_AUDIT_DENY`                                           | 同上                                                |
+| 落地页死链   | `ad-entities` 拉 URL，宿主 HTTP 探活                                                            | 同上                                                |
+| 当日超预算   | `campaign-entities` + `official-report` 系列当日 `spend`；只告警                                | 同上                                                |
+| CPA / 空耗   | `official-report` 组小时/日报 + `adgroup-entities`；只告警，不降价、不暂停                      | 同上                                                |
+
+## Yandex：只读巡检
+
+全部步骤只读一份：`references/operations/hosted-automation-yandex.md`。**不能**自动暂停/改价/改预算。无小时维度。
+
+| 场景         | 做什么                                                                 | SOP                                                |
+| ------------ | ---------------------------------------------------------------------- | -------------------------------------------------- |
+| 余额 / 归档  | `yandex-analysis account-status`；`archived=true` 告警                 | `references/operations/hosted-automation-yandex.md` |
+| 素材拒审     | `ad-entities --status REJECTED`                                        | 同上                                               |
+| 落地页死链   | `ad-entities` 拉 `landingUrls`，宿主 HTTP 探活                         | 同上                                               |
+| 当日超预算   | `campaign-entities --time-increment 1 --network ALL`；只告警           | 同上                                               |
+| CPA / 空耗   | `adgroup-entities` 近 3 日 + 当日 `--time-increment 1`；只告警         | 同上                                               |
+
+## Facebook / MetaAd：只读巡检
+
+全部步骤只读一份：`references/operations/hosted-automation-facebook.md`。**不能**自动暂停/改价/改预算。
+
+| 场景         | 做什么                                                                                          | SOP                                                    |
+| ------------ | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| 余额 / 封禁  | `facebook-analysis account-status`；`account_status != 1` 告警                                  | `references/operations/hosted-automation-facebook.md` |
+| 素材拒审     | `ad-entities --effective-status DISAPPROVED`                                                    | 同上                                                   |
+| 落地页死链   | `ad-entities` 拉 `landing_urls`，宿主 HTTP 探活                                                 | 同上                                                   |
+| 当日超预算   | `campaign-entities` + `insights --level campaigns --time-increment 1`；只告警                   | 同上                                                   |
+| CPA / 空耗   | `insights --level adsets` hourly/日报 + `adset-entities`；只告警，不降价、不暂停                | 同上                                                   |

@@ -1,37 +1,59 @@
-## Description: <br>
-Guides .NET teams through designing a reusable backend WebApi service framework with SqlSugar, Swagger, JWT authentication, Serilog logging, multi-database support, ELK logging, and API versioning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers in designing reusable .NET Web API services with layered architecture, data access, authentication, API documentation, logging, and supporting libraries.
 
-## Publisher: <br>
-[weslon1987](https://clawhub.ai/user/weslon1987) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weslon1987](https://clawhub.ai/user/weslon1987)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to shape reusable .NET 6+ WebApi service frameworks, including layered architecture, authentication, logging, database access, API documentation, and coding standards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated authentication, logging, or framework code may be incomplete or unsuitable for a production environment. <br>
-Mitigation: Review and test generated designs and code against project security, compliance, and operational requirements before production use. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and scaffold .NET Web API applications, including clean architecture, SqlSugar data access, JWT authorization, versioned API documentation, and Serilog logging.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Structured Markdown or text with architecture design, technical implementation, and coding standards sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts for project requirements before tailoring recommendations; generated authentication, logging, and framework code should be reviewed before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Copied JWT examples may grant overly broad permissions or omit resource-owner checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated authorization code; load permission claims from the authorization store and verify resource ownership and policy names before use.
+
+Risk: Logging examples may expose sensitive request data or tokens.
+
+Mitigation: Review request-logging configuration and redact sensitive fields; do not log full request bodies or tokens in production.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/weslon1987/skills/net-full-stack-architect)
+- [Project structure and scaffolding](references/project-structure.md)
+- [SqlSugar ORM integration](references/orm-sqlsugar.md)
+- [JWT authentication and authorization](references/auth-jwt.md)
+- [API documentation and versioning](references/api-docs-versioning.md)
+- [Serilog logging](references/logging-serilog.md)
+- [Third-party library selection](references/third-party-libraries.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration, Shell commands, Markdown]
+
+**Output Format:** [Markdown with architecture notes, code and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a scaffold and a sample CRUD implementation.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release; skill frontmatter lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

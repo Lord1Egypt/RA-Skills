@@ -1,45 +1,55 @@
-## Description: <br>
-Solanaprox provides pay-per-request AI model access via Solana/USDC using a Phantom wallet address for wallet-native authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call AI models through the SolanaProx HTTP API (solanaprox.com), paid per call from a prepaid USDC balance on Solana. Anthropic (/v1/messages) and OpenAI (/v1/chat/completions) formats, tool calling, streaming. Auth is a signed-in solx_ token. Use it when the user wants a model answer billed through SolanaProx with direct HTTP requests and agrees to pay.
 
-## Publisher: <br>
-[unixlamadev-spec](https://clawhub.ai/user/unixlamadev-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[unixlamadev-spec](https://clawhub.ai/user/unixlamadev-spec)
 
-## Use Case: <br>
-Developers and agents use Solanaprox to make paid AI model calls through a Solana wallet address, check balances, and route requests to Claude or GPT models without managing provider API keys. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, responses, and the public wallet address are sent through the Solanaprox third-party proxy and upstream model providers. <br>
-Mitigation: Use the skill only when that routing is acceptable for the data being sent, and avoid submitting sensitive prompts. <br>
-Risk: Paid model calls can spend the wallet balance. <br>
-Mitigation: Keep only a limited funded balance, check balance before calls, warn when funds are low, and do not make requests that would exceed the remaining balance. <br>
-Risk: The optional npm MCP package and AIProx registration workflow are separate components from the skill text. <br>
-Mitigation: Review those components before running the optional commands or registering an agent. <br>
+## Use Case:
 
+Developers and agents use this skill to request model responses through SolanaProx with prepaid USDC, using Anthropic or OpenAI-compatible endpoints. It also describes checking model prices and account balances, managing tokens, and depositing funds.
 
-## Reference(s): <br>
-- [Solanaprox MCP server](https://github.com/solanaprox/mcp-server) <br>
-- [Solanaprox service](https://solanaprox.com/) <br>
-- [Solanaprox MCP npm package](https://npmjs.com/package/solanaprox-mcp) <br>
-- [AIProx registry](https://aiprox.dev) <br>
-- [Autonomous agent demo](https://github.com/unixlamadev-spec/autonomous-agent-demo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and clean text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses SOLANA_WALLET as the wallet address input and instructs agents to return clean text output rather than raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Account, token, and deposit actions can affect account access or funds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Get explicit user confirmation before side-effecting account or payment actions, and confirm the current deposit address and amount before a transfer.
+
+Risk: Prompts and conversation content are sent through SolanaProx to the selected model provider, and the bearer token grants access to the account.
+
+Mitigation: Do not include secrets or personal data in prompts; never print or log the token, and use a short-lived token with a low daily spend cap.
+
+## Reference(s):
+
+- [SolanaProx documentation](https://solanaprox.com/docs)
+- [SolanaProx service](https://solanaprox.com)
+- [SolanaProx ClawHub release](https://clawhub.ai/unixlamadev-spec/skills/solanaprox)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [Model response text or JSON-compatible tool-call data, optionally streamed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Anthropic and OpenAI-compatible response formats; billed per successful model request]
+
+## Skill Version(s):
+
+4.0.3 (source: SKILL.md frontmatter, CHANGELOG, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

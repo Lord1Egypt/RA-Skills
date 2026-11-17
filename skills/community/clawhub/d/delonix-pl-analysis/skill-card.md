@@ -1,46 +1,61 @@
-## Description: <br>
-Provides hotel P&L analysis for income statements, investment returns, multi-property benchmarking, cost anomaly diagnosis, breakeven analysis, sensitivity testing, variance calibration, and competitor SWOT review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供酒店项目P&L分析，包括损益表、投资回报、多店对标、成本异常诊断和偏差校准。
 
-## Publisher: <br>
-[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu)
 
-## Use Case: <br>
-Hotel operators, project teams, and finance reviewers use this skill to analyze store-level P&L performance, benchmark properties, diagnose cost or revenue variances, and estimate investment returns from structured operating and financial inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive hotel financial, staffing, revenue, benchmark, and operating data. <br>
-Mitigation: Use only data that the user is authorized to process, avoid unnecessary live business data, and keep store-level inputs confidential. <br>
-Risk: Publisher trust and claimed Delonix affiliation are not independently established by server-resolved provenance. <br>
-Mitigation: Install only after verifying the publisher relationship and intended use with the relevant business owner. <br>
-Risk: Financial analysis output can be misleading if inputs, assumptions, or benchmark data are incomplete or stale. <br>
-Mitigation: Review assumptions, validate key formulas and benchmarks against current finance policy, and treat recommendations as decision support rather than final approval. <br>
+## Use Case:
 
+Hotel operators, finance teams, and investment reviewers use this skill to collect hotel operating inputs, calculate P&L and return metrics, compare stores, identify cost anomalies, and generate management recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chaoliuzhu/delonix-pl-analysis) <br>
-- [酒店P&L数据分析模板](artifact/references/data_template.md) <br>
-- [德胧集团经营模型分析报告](artifact/references/delonix_model.md) <br>
-- [德胧集团开元名庭经营模型（真实数据）](artifact/references/delonix_real_model.md) <br>
-- [酒店P&L分析术语表](artifact/references/glossary.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown analysis with tables, financial metrics, diagnostic recommendations, and optional Python-generated reports or chart configuration data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use structured hotel P&L, staffing, revenue, cost, benchmark, and forecast data supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: Hotel operating and financial inputs may be commercially sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with data you are comfortable processing locally.
+
+Risk: Provenance is unavailable, so claims such as official group data require confirmation before business reliance.
+
+Mitigation: Verify the ClawHub publisher profile and release provenance before relying on publisher or data-source claims.
+
+Risk: Optional chart generation depends on Python packages that may be installed by the user.
+
+Mitigation: Install optional dependencies in an isolated environment with pinned versions when charts are needed.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/chaoliuzhu/skills/delonix-pl-analysis)
+- [酒店P&L数据分析模板](artifact/references/data_template.md)
+- [德胧集团经营模型分析报告](artifact/references/delonix_model.md)
+- [德胧集团开元名庭经营模型（真实数据）](artifact/references/delonix_real_model.md)
+- [酒店P&L分析术语表](artifact/references/glossary.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with tables, formulas, optional Python-generated JSON chart configurations, and shell command snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional chart generation uses Python dependencies; calculation outputs should be reviewed against source financial data before business decisions.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

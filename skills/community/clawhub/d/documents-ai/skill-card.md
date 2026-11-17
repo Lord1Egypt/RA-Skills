@@ -1,42 +1,60 @@
-## Description: <br>
-Veryfi Documents AI helps agents use Veryfi's OCR and document extraction APIs for receipts, invoices, bank statements, checks, tax forms, document classification, fraud signals, and raw OCR text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time OCR and data extraction API by Veryfi (https://veryfi.com). Extract structured data from receipts, invoices, bank statements, W-9s, purchase orders, bills of lading, and any other document. Use when you need to OCR documents, extract fields, parse receipts/invoices, bank statements, classify documents, detect fraud, or get raw OCR text from any document.
 
-## Publisher: <br>
-[dbirulia](https://clawhub.ai/user/dbirulia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dbirulia](https://clawhub.ai/user/dbirulia)
 
-## Use Case: <br>
-External developers and AI-agent builders use this skill to send authorized documents to Veryfi for OCR, structured data extraction, document classification, fraud indicators, and raw OCR text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+UNLICENSED
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded documents leave the user's environment and may contain sensitive personal, financial, medical, tax, or identity data. <br>
-Mitigation: Process only documents approved for third-party handling, test with sample documents first, and review Veryfi privacy, retention, and compliance terms before sending sensitive files. <br>
-Risk: Veryfi API credentials are required and could be exposed if stored directly in local configuration or committed files. <br>
-Mitigation: Use environment variables or a secret store, avoid committing credentials, restrict local config permissions, and rotate keys when needed. <br>
+## Use Case:
 
+Developers and AI-agent users use this skill to send authorized documents to Veryfi for OCR, structured field extraction, document classification, fraud signals, and raw text extraction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dbirulia/documents-ai) <br>
-- [Veryfi API documentation](https://docs.veryfi.com/) <br>
-- [Veryfi API credentials](https://app.veryfi.com/api/settings/keys/) <br>
-- [Veryfi website](https://veryfi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON, text, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown guidance with curl commands and Veryfi JSON API responses, including plain-text ocr_text fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VERYFI_CLIENT_ID, VERYFI_USERNAME, and VERYFI_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Documents are sent to Veryfi for processing, which creates privacy risk for sensitive or regulated files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process only documents you are authorized to send, test with non-sensitive samples first, and review Veryfi retention and compliance requirements before production use.
+
+Risk: Veryfi credentials can be exposed if placed in code, logs, or shared configuration files.
+
+Mitigation: Use environment variables or a secret store, avoid committing credentials, restrict local config permissions, rotate keys, and monitor usage.
+
+Risk: Private URLs, presigned URLs, passports, tax forms, checks, bank statements, and medical-related documents may contain highly sensitive data.
+
+Mitigation: Do not process those inputs unless authorization, retention expectations, and compliance obligations have been reviewed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dbirulia/skills/documents-ai)
+- [Veryfi API Documentation](https://docs.veryfi.com/)
+- [Veryfi](https://veryfi.com)
+- [Veryfi API Credentials](https://app.veryfi.com/api/settings/keys/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with curl examples, configuration snippets, and JSON response schemas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Veryfi credentials; API responses can include structured document data, fraud signals, confidence details, bounding boxes, URLs, and raw OCR text.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

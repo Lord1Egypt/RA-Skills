@@ -1,41 +1,53 @@
-## Description: <br>
-This skill rewrites academic text to make the language more natural, rigorous, and human-scholarly while preserving the source text's core claims, data, and conclusions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrites Chinese academic manuscript text to reduce formulaic AI-style phrasing and make prose more natural, rigorous, cautious, and graduate-level.
 
-## Publisher: <br>
-[793943403](https://clawhub.ai/user/793943403) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[793943403](https://clawhub.ai/user/793943403)
 
-## Use Case: <br>
-External users use this skill to polish academic manuscript passages, especially Chinese academic prose, for more natural scholarly style, clearer logic, hedging, and smoother transitions. It is intended for transparent language polishing, not for changing the underlying research claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to make AI-written academic text appear more like human scholarly writing, creating academic integrity and authorship-disclosure risk. <br>
-Mitigation: Use only for transparent language polishing and follow institutional disclosure rules for AI assistance. <br>
-Risk: Rewriting may add unsupported evidence, mechanisms, citations, conclusions, or authorial stance. <br>
-Mitigation: Manually verify every substantive claim, citation, data point, and conclusion against the source material before use. <br>
+## Use Case:
 
+External users, researchers, and academic writers use this skill to aggressively rewrite Chinese academic prose for a more natural scholarly style while preserving stated core claims, data, and conclusions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/793943403/academic-rewriter-description) <br>
-- [Publisher profile](https://clawhub.ai/user/793943403) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text academic rewriting output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves core claims, data, and conclusions; users should manually verify that no unsupported evidence, citations, or authorial stance was added.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can add unverified academic or medical analysis while presenting the result as language optimization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check any added evidence language, mechanisms, clinical implications, theoretical insights, and authorial stance against the original sources before using the output in a manuscript.
+
+Risk: The skill is tuned for aggressive Chinese academic rewriting rather than conservative copyediting.
+
+Mitigation: Use it when substantive style transformation is desired, and compare the rewritten text against the source text to confirm the core claims, data, and conclusions remain intact.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/793943403/skills/academic-rewriter-description)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Rewritten academic prose with optional explanatory guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily Chinese academic rewriting; outputs should be checked for unsupported evidence, mechanisms, clinical implications, theoretical claims, or authorial stance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Parses recent OpenClaw session logs for LLM API errors and returns a structured health report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses recent OpenClaw session logs for LLM API errors and returns a structured health report.
 
-## Publisher: <br>
-[toller892](https://clawhub.ai/user/toller892) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[toller892](https://clawhub.ai/user/toller892)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to troubleshoot LLM API health by scanning recent local OpenClaw session logs for server errors, token failures, cooldowns, rate limits, and service-busy signals.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill reads recent local OpenClaw session logs, which may contain sensitive prompts or operational details.
+
+Mitigation: Run it deliberately for troubleshooting, avoid always-on monitoring, and review whether local logs are appropriate to inspect in the target environment.
+
+Risk: The artifact does not add explicit file size or symlink checks before reading matching session files.
+
+Mitigation: Use it in trusted local environments and consider adding size and symlink checks before shared or untrusted deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect recent OpenClaw session logs for LLM API failures, rate limits, token problems, and service-busy signals. It returns a compact health report with detected error categories and a suggested next action. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [JSON, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Recent OpenClaw session logs may contain private prompts, API tokens, account details, or other sensitive operational data. <br>
-Mitigation: Review matched log snippets before sharing reports publicly, and install the skill only in environments where local session-log access is acceptable. <br>
+**Output Format:** [JSON object with health status, grouped errors, and a recommendation string]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [API Health Monitor on ClawHub](https://clawhub.ai/toller892/api-health-monitor) <br>
-- [toller892 ClawHub publisher profile](https://clawhub.ai/user/toller892) <br>
+**Other Properties Related to Output:** [Reads recent local OpenClaw session log files and summarizes matched API error patterns.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON object with a health boolean, error summaries, and a recommendation string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local OpenClaw session logs from the recent lookback window; default lookback is one day.] <br>
+1.0.1 (source: server release metadata; package.json reports 1.0.0)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

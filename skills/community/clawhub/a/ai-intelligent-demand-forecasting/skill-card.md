@@ -1,39 +1,55 @@
-## Description: <br>
-Provides demand forecasting, sales forecasting, and replenishment planning guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AI-assisted demand forecasting, sales forecasting, and replenishment planning for inventory and supply-chain workflows.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-External retail, supply-chain, sales, and inventory teams use this skill to forecast demand, estimate sales, account for seasonality and promotions, and draft replenishment plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Forecasts or replenishment recommendations could lead to incorrect purchasing or inventory decisions if used without review. <br>
-Mitigation: Treat forecasts and replenishment output as advisory and require human approval before purchasing decisions. <br>
-Risk: The artifact describes installation from an external repository that was not included in the reviewed files. <br>
-Mitigation: Inspect the external repository, requirements, and application code before installation, and run any evaluation in an isolated environment. <br>
+## Use Case:
 
+Sales, inventory, supply-chain, and retail teams use this skill to plan demand forecasts, estimate sales trends, adjust for seasonal or promotional effects, and produce replenishment plans.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with optional shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Forecasting and replenishment outputs are advisory and should be reviewed before purchasing decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Installation instructions fetch and run unpinned remote code that was not included in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the repository and dependency list first, use a pinned commit or signed release when available, verify checksums, and run in an isolated environment without sensitive credentials.
+
+Risk: Documentation includes Chinese-language pricing, purpose, and setup details that may be missed by non-Chinese-speaking reviewers.
+
+Mitigation: Translate the documentation before installation or deployment so reviewers understand commercial terms, intended use, and setup behavior.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/yang1002378395-cmyk/skills/ai-intelligent-demand-forecasting)
+- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk)
+- [Referenced repository from artifact installation notes](https://github.com/openclaw-skills/ai-intelligent-demand-forecasting)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with optional code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include forecasting plans, implementation guidance, setup commands, or configuration notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

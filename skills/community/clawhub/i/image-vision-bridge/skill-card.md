@@ -1,46 +1,62 @@
-## Description: <br>
-Image Vision uses local Ollama vision models to turn image files or screenshots into text descriptions that text-only coding assistants can reason over. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image Vision is a local image-understanding bridge that uses an Ollama vision model to turn image files into text descriptions for text-only reasoning agents.
 
-## Publisher: <br>
-[duchenyu](https://clawhub.ai/user/duchenyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duchenyu](https://clawhub.ai/user/duchenyu)
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze screenshots, UI mockups, document scans, charts, and code images inside text-only assistant workflows. It is intended for local image understanding through Ollama when users explicitly request image analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The README includes an Ollama install command that pipes a remote script into the shell. <br>
-Mitigation: Use an official installer or trusted package manager, or inspect the downloaded install script before executing it. <br>
-Risk: Images analyzed by the skill are read from disk and sent to a local Ollama service. <br>
-Mitigation: Run the skill only against images appropriate for local processing and confirm the Ollama endpoint is the intended local service. <br>
-Risk: The optional clipboard helper can save clipboard screenshots locally and copy saved paths to the clipboard. <br>
-Mitigation: Review or delete saved screenshots when they contain sensitive content, and use the no-clipboard option when path copying is not desired. <br>
+## Use Case:
 
+Developers and external agent users use this skill when a text-only reasoning agent needs to understand screenshots, UI mockups, scanned text, code screenshots, charts, or other local images. The skill reads an image file, sends it to a local Ollama vision model, and returns a text description that the agent can reason over.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/duchenyu/skills/image-vision-bridge) <br>
-- [Ollama](https://ollama.com) <br>
-- [qwen3.5 model library](https://ollama.com/library/qwen3.5) <br>
-- [Python](https://python.org) <br>
-- [DeepSeek](https://deepseek.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text image descriptions with optional Markdown and shell-command guidance from the assistant.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads an image path and optional model or prompt arguments; output quality depends on the selected local vision model.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The setup documentation includes a command that pipes a remote Ollama installer directly into a shell.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation steps before use and prefer an official package manager or signed Ollama download.
+
+Risk: Images are read from disk and sent to a local Ollama service for analysis.
+
+Mitigation: Only analyze images that are appropriate to send to the local service configured on the machine.
+
+Risk: The optional clipboard helper can save clipboard images locally under the user's home directory.
+
+Mitigation: Use the helper only for intended clipboard images, consider disabling clipboard copy with the provided option, and delete saved captures when no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duchenyu/skills/image-vision-bridge)
+- [Publisher profile](https://clawhub.ai/user/duchenyu)
+- [Ollama](https://ollama.com)
+- [Qwen3.5 Ollama model](https://ollama.com/library/qwen3.5)
+- [Python](https://python.org)
+- [DeepSeek](https://deepseek.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands]
+
+**Output Format:** [Plain text image descriptions, with Markdown and inline shell commands for setup or troubleshooting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local Ollama service and a local vision model such as qwen3.5:4b; optional clipboard capture can save images under the user's home directory.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,62 @@
-## Description: <br>
-Meeting Efficiency Pro analyzes calendar events and meeting notes to score meeting efficiency, suggest optimizations, extract action items, and generate follow-up and reporting outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered meeting optimization tool that analyzes calendar events, provides efficiency scores, extracts action items, and automates follow-ups.
 
-## Publisher: <br>
-[JacealLLC](https://clawhub.ai/user/JacealLLC) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jacealllc](https://clawhub.ai/user/jacealllc)
 
-## Use Case: <br>
-Employees, managers, and productivity-focused teams use this skill to review meeting schedules and notes, identify inefficient meetings, extract action items, and generate briefings or weekly reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says secrets may be stored and printed in plaintext configuration. <br>
-Mitigation: Move AI, task-manager, calendar, and email credentials out of plaintext config and redact configuration output before using real credentials. <br>
-Risk: The security evidence says mock calendar and reporting results may be presented as real integrations. <br>
-Mitigation: Treat outputs as demo-quality until integrations are verified against live providers and mock-data behavior is clearly documented. <br>
-Risk: Meeting notes can contain confidential business or personal information. <br>
-Mitigation: Avoid processing confidential notes until privacy handling, export storage, and retention behavior are reviewed and documented. <br>
+## Use Case:
 
+Employees, external professionals, and developers use this skill to analyze meetings, produce efficiency scores, extract action items from notes, and generate briefing or report output for meeting follow-up.
 
-## Reference(s): <br>
-- [Meeting Efficiency Pro API Documentation](references/api-docs.md) <br>
-- [Meeting Efficiency Pro ClawHub Listing](https://clawhub.ai/JacealLLC/meeting-efficiency-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text, Markdown-style reports, JSON or CSV exports, and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js. Calendar, task-manager, email, and AI-provider features depend on user-supplied configuration and credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and package.json) <br>
+Risk: The skill can store API keys and task-manager tokens in local configuration and can print the full configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use real secrets until secure secret storage and output redaction are added; review configuration output before sharing logs.
+
+Risk: The notes processor can read meeting notes from arbitrary local file paths supplied by the user.
+
+Mitigation: Process only files from explicitly trusted paths and avoid using the command on sensitive or untrusted note files.
+
+Risk: Setup runs mutable dependency installation with npm install.
+
+Mitigation: Review package dependencies and install in an isolated environment before using the skill with real data.
+
+Risk: The artifact advertises calendar and task integrations that are partly mock or incomplete.
+
+Mitigation: Validate integration behavior with non-sensitive sample data before relying on calendar, task, or automation results.
+
+## Reference(s):
+
+- [Meeting Efficiency Pro API Documentation](references/api-docs.md)
+- [ClawHub skill listing](https://clawhub.ai/jacealllc/skills/meeting-efficiency-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and console text with inline command and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces meeting briefings, note summaries, action items, efficiency scores, recommendations, and weekly reports.]
+
+## Skill Version(s):
+
+1.0.1 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

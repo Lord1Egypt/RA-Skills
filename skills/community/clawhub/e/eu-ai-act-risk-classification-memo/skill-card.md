@@ -1,42 +1,57 @@
-## Description: <br>
-Use this skill when an AI-governance lead, in-house counsel, DPO, or product owner needs to draft a risk-classification memo for an AI system under the EU AI Act. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when an AI-governance lead, in-house counsel, DPO, or product owner needs to draft a risk-classification memo for an AI system under the EU AI Act, including Article 5 prohibited-practice screening, Article 6 high-risk mapping, Article 50 transparency obligations, GPAI tiering, and a dated action checklist.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-AI-governance leads, in-house counsel, DPOs, and product owners use this skill to collect system facts, walk EU AI Act classification gates, and draft a counsel-reviewed risk-classification memo with action deadlines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The drafted classification memo could be mistaken for legal advice or an authoritative regulatory conclusion. <br>
-Mitigation: Treat outputs as drafting support only and require qualified counsel to review and sign off on conclusions before use. <br>
-Risk: Users may include confidential trade secrets, model weights, training-data PII, or regulatory-submission identifiers while describing an AI system. <br>
-Mitigation: Describe systems at memo-appropriate detail and avoid entering sensitive or confidential material. <br>
-Risk: EU AI Act guidance, implementing acts, delegated acts, and enforcement deadlines may evolve after a memo is drafted. <br>
-Mitigation: Record the drafting date, cite controlling provisions, and re-check current regulatory materials before relying on the memo. <br>
+## Use Case:
 
+AI-governance leads, in-house counsel, DPOs, and product owners use this skill to collect facts about one AI system and draft a counsel-reviewable EU AI Act risk-classification memo. The memo covers prohibited-practice screening, high-risk classification paths, transparency triggers, GPAI obligations, and dated compliance actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/eu-ai-act-risk-classification-memo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text or Markdown memo] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces one counsel-facing memo for one AI system, including classification reasoning, action checklist, re-classification triggers, and limitations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: Users may treat a generated classification memo as legal advice or a final regulatory determination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require supervising counsel or an AI-governance lead to review and sign the memo before relying on it.
+
+Risk: Prompts may include sensitive technical, personal, regulatory, or trade-secret details about an AI system.
+
+Mitigation: Share only the level of detail necessary for classification and review sensitive inputs with counsel before use.
+
+Risk: EU AI Act implementing acts, delegated acts, guidance, and staged enforcement dates may change after drafting.
+
+Mitigation: Record the drafting date and refresh the memo against current official materials before launch, registration, or regulator submission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/eu-ai-act-risk-classification-memo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown memo with structured legal-analysis sections and dated action checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a drafting aid for counsel review; it does not provide legal advice, perform conformity assessment, register the system, or submit information to regulators.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

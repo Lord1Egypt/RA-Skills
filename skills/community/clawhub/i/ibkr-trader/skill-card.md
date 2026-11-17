@@ -1,46 +1,58 @@
-## Description: <br>
-Interactive Brokers (IBKR) trading automation via the Client Portal API for account access, session authentication, portfolio and position checks, trading bot workflows, and IBeam login with IBKR Key 2FA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Interactive Brokers (IBKR) account authentication, portfolio checks, market data access, and order workflows through the Client Portal API.
 
-## Publisher: <br>
-[FlokieW](https://clawhub.ai/user/FlokieW) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[flokiew](https://clawhub.ai/user/flokiew)
 
-## Use Case: <br>
-Developers, engineers, and trading-system operators use this skill to configure IBKR Client Portal access, authenticate sessions with IBeam and IBKR Key, inspect account data, and build trading automation against the IBKR API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give automation high-impact trading authority without enough safety controls. <br>
-Mitigation: Use an IBKR paper account first, and add explicit human approval, account limits, symbol allowlists, and maximum order-size controls before connecting to a live brokerage account. <br>
-Risk: Credential material may be stored in a plaintext .env file. <br>
-Mitigation: Protect or avoid the plaintext .env credential file and restrict access to the trading environment. <br>
-Risk: Cron keepalive and automatic re-authentication can extend trading-session availability. <br>
-Mitigation: Disable cron keepalive unless it is required, and require phone approval and operational monitoring for re-authentication. <br>
-Risk: The setup downloads the IBKR gateway and installs Python dependencies before use. <br>
-Mitigation: Verify the IBKR gateway download and Python dependencies before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [IBKR Client Portal API Reference](artifact/references/api-endpoints.md) <br>
-- [IBKR Client Portal Gateway Download](https://download2.interactivebrokers.com/portal/clientportal.gw.zip) <br>
-- [ClawHub Skill Page](https://clawhub.ai/FlokieW/ibkr-trader) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/FlokieW) <br>
+## Use Case:
 
+Developers, engineers, and trading operators use this skill to set up IBKR Client Portal access, maintain authenticated sessions, inspect accounts and positions, and build IBKR trading automation. It is most appropriate in a dedicated trusted environment with paper trading and human order review before any live brokerage use.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash, curl, Python code, and JSON examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup steps, API usage examples, session-management guidance, and starter automation scripts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Live brokerage automation can place or confirm real orders.
+
+Mitigation: Use a paper IBKR account first, require explicit human approval for each order confirmation, and enforce account, symbol, quantity, and notional limits before any live trading.
+
+Risk: Credential handling relies on a plaintext .env flow.
+
+Mitigation: Use a dedicated trusted host, protect local credential files, avoid committing secrets, and replace the plaintext flow with a secrets manager or equivalent protected store where possible.
+
+Risk: Gateway trust and dependency integrity are important because the skill downloads software and communicates with a local brokerage gateway.
+
+Mitigation: Restrict the gateway to a verified local endpoint, limit network exposure, and pin or verify downloaded dependencies before use.
+
+## Reference(s):
+
+- [IBKR Client Portal API Reference](references/api-endpoints.md)
+- [IBKR Client Portal Gateway Download](https://download2.interactivebrokers.com/portal/clientportal.gw.zip)
+- [ClawHub Skill Page](https://clawhub.ai/flokiew/skills/ibkr-trader)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash, curl, Python, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include executable setup scripts and IBKR API request payloads; outputs depend on local Client Portal Gateway authentication state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Deploys a four-agent supply chain orchestration pipeline for inventory, routing, procurement, and compliance workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy a supply chain orchestration pipeline with four coordinated agents for inventory, logistics routing, procurement, and compliance workflows.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operations teams use this skill to configure coordinated inventory, logistics routing, procurement, and compliance agents for supply-chain automation. It guides role selection, skill installation, manifest setup, and peer handshakes for a four-agent Pilot Protocol deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Peer handshakes can establish trust between agents that exchange supply-chain data or actions. <br>
-Mitigation: Verify each peer out of band before handshaking, use allowlisted identities or fingerprints where available, and connect only known supply-chain agents. <br>
-Risk: Example workflows include purchase orders, shipping manifests, compliance clearances, and reorder messages that may resemble real operational approvals. <br>
-Mitigation: Test with non-production data first and avoid routing real orders, manifests, or compliance approvals through unverified peers. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to set up a four-agent Pilot Protocol supply-chain workflow that coordinates stock monitoring, reorder requests, delivery routing, purchase orders, and compliance clearance.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-supply-chain-orchestrator-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes role-specific manifests, installation commands, hostname setup, handshake guidance, and example Pilot Protocol publish commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill asks an agent to install dependent skills and coordinate persistent supply-chain manifests without explicit version pinning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify every dependent skill before installation, and inspect or back up any existing ~/.pilot setup file before writing changes.
+
+Risk: Peer handshakes and hostnames affect which agents can exchange supply-chain messages.
+
+Mitigation: Confirm exact peer names and hostnames before handshakes, and run the setup under least-privilege accounts.
+
+Risk: Supplier APIs, purchase-order flows, and escrow behavior can affect real procurement operations.
+
+Mitigation: Keep supplier, purchase-order, and escrow endpoints disconnected until approval controls and endpoints are validated.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-supply-chain-orchestrator-setup)
+- [Publisher Profile](https://clawhub.ai/user/teoslayer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON manifest examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Role-specific setup guidance for Pilot Protocol hostnames, peer handshakes, and supply-chain data flows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

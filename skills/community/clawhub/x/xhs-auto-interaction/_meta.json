@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn760a19hbwkq6z8gnjjyjj11582j0wt",
-  "slug": "xhs-auto-interaction",
+  "name": "xhs-auto-interaction",
   "version": "1.0.0",
-  "publishedAt": 1775659915874
+  "description": "小红书自动互动技能 - 简化修复版（搜索、浏览、点赞、收藏）",
+  "author": "OpenClaw Assistant",
+  "created": "2026-04-04",
+  "tags": ["xiaohongshu", "automation", "interaction", "social-media"],
+  "dependencies": ["curl", "jq"]
 }

@@ -1,40 +1,53 @@
-## Description: <br>
-Enforces task completion with explicit Goal/Progress/Next state, anti-stall rules, and evidence-based completion proof. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enforce task completion with explicit Goal/Progress/Next state. Prevent mid-task stalls and ensure evidence-based completion.
 
-## Publisher: <br>
-[Dalomeve](https://clawhub.ai/user/Dalomeve) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dalomeve](https://clawhub.ai/user/dalomeve)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep multi-step tasks moving by recording goal, progress, next action, and completion evidence. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Completion evidence or task logs may include secrets, sensitive paths, or private data if copied directly from a workspace. <br>
-Mitigation: Keep evidence summaries free of secrets and use relative or workspace paths; run the privacy checklist before sharing artifacts. <br>
-Risk: A completion process can encourage action on destructive, public, account-changing, or irreversible tasks without enough review. <br>
-Mitigation: Require explicit user approval before those actions and record the approval as part of the task evidence. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Task Finish Contract on ClawHub](https://clawhub.ai/Dalomeve/task-finish-contract) <br>
-- [Privacy Checklist](artifact/references/privacy-checklist.md) <br>
+## Use Case:
 
+Developers, agent operators, and teams using multi-step agent workflows use this skill to require explicit task state, completion proof, and evidence before an agent considers work finished.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with checklist blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Emphasizes explicit task state, completion evidence, and follow-up actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The privacy checklist includes a local scan command that can print secrets or sensitive matches into logs.
+
+Mitigation: Configure scans to show only filenames or redacted matches, and avoid recording raw secret-scan output in task logs, memory files, or completion evidence.
+
+Risk: A broad process skill can influence many agent workflows and may cause agents to over-collect evidence.
+
+Mitigation: Keep completion evidence limited to relative paths, workspace artifacts, command summaries, and redacted verification results.
+
+## Reference(s):
+
+- [Privacy Checklist](references/privacy-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/dalomeve/skills/task-finish-contract)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with checklist, evidence, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill prompts agents to produce concise task-state updates, completion checklists, evidence summaries, and verification commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

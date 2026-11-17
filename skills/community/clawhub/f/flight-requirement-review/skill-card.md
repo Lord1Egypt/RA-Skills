@@ -1,43 +1,57 @@
-## Description: <br>
-机票产品需求评审 Agent，对前端、后端、运营类机票需求文档进行结构化评审打分，并支持独立的流程图治理评审。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+机票产品需求评审 Agent 对中文机票前端、后端、运营类需求文档进行结构化评审打分，并对流程图和逻辑建模给出独立评分、评语与改进建议。
 
-## Publisher: <br>
-[arisefx](https://clawhub.ai/user/arisefx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arisefx](https://clawhub.ai/user/arisefx)
 
-## Use Case: <br>
-Product managers, engineers, QA reviewers, and operations teams use this skill to review flight product requirement documents, prototypes, and process models. It classifies frontend, backend, and operations requirements, scores them against documented dimensions, and returns concrete issues and improvement suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill produces evaluative review guidance that may be incorrect or incomplete if the submitted requirement document lacks context. <br>
-Mitigation: Use the generated scores and recommendations as review input, and have product, engineering, QA, and compliance owners confirm conclusions before acting on them. <br>
-Risk: Requirement documents can include sensitive passenger, payment, itinerary, or business data. <br>
-Mitigation: Review inputs for confidential data and avoid sharing production credentials or unnecessary personal data with the reviewing agent. <br>
+## Use Case:
 
+Product managers, designers, QA reviewers, and engineering reviewers use this skill to assess Chinese-language flight PRDs, prototypes, flowcharts, and HTML or Markdown requirements for completeness, scoring, and actionable improvement guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arisefx/flight-requirement-review) <br>
-- [review-standards.md](artifact/review-standards.md) <br>
-- [tech-doc-template.md](artifact/tech-doc-template.md) <br>
-- [example-review.md](artifact/example-review.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance, configuration] <br>
-**Output Format:** [Structured Markdown review reports with scoring tables, findings, recommendations, and optional technical-document templates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts Markdown, image, and HTML requirement evidence when available to the agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is specialized for Chinese-language flight product requirement reviews and may activate on broad Chinese requirement-review phrases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it with explicit flight PRD context and confirm the reviewed document matches the skill's intended domain before relying on the output.
+
+Risk: Review reports can be incomplete or misleading when the input PRD, prototype, image, or HTML omits business, security, compliance, or dependency details.
+
+Mitigation: Have product, engineering, QA, and security or compliance reviewers validate scores and required changes before using the report for implementation decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arisefx/skills/flight-requirement-review)
+- [Skill Definition](artifact/SKILL.md)
+- [Review Standards](artifact/review-standards.md)
+- [Technical Document Template](artifact/tech-doc-template.md)
+- [Example Review](artifact/example-review.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown review report with scoring tables, findings, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can also produce an AI-friendly technical document when the user requests conversion after review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

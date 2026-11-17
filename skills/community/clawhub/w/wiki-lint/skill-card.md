@@ -1,42 +1,53 @@
-## Description: <br>
-Lint and health-check a persistent markdown knowledge wiki for contradictions, stale claims, missing cross-links, orphan pages, duplicate pages, inconsistent naming, inconsistent frontmatter, schema drift, weak source attribution, and other maintenance issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lint and health-check a persistent markdown knowledge wiki for contradictions, stale claims, missing cross-links, orphan pages, duplicate pages, inconsistent naming, inconsistent frontmatter, schema drift, weak source attribution, and other maintenance issues.
 
-## Publisher: <br>
-[teki-ai](https://clawhub.ai/user/teki-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teki-ai](https://clawhub.ai/user/teki-ai)
 
-## Use Case: <br>
-Developers, maintainers, and knowledge-base owners use this skill to review markdown or git-backed wikis for structural drift, stale or contradictory claims, missing links, duplicate pages, and weak attribution before applying targeted cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad wiki cleanup could introduce incorrect or unwanted markdown changes if edits are accepted without review. <br>
-Mitigation: Start with a report-only review for broad wikis and review proposed diffs before accepting cleanup edits. <br>
-Risk: Reviewing the wrong repository or wiki could surface irrelevant findings or modify unintended markdown files. <br>
-Mitigation: Point the skill only at the wiki or repository intended for maintenance. <br>
+## Use Case:
 
+Developers, writers, and knowledge-base maintainers use this skill to review Obsidian-friendly, plain markdown, or git-backed wikis for structural and content quality issues. It produces prioritized findings and, when asked, can help apply targeted markdown fixes.
 
-## Reference(s): <br>
-- [Wiki Lint Checklist](references/lint-checklist.md) <br>
-- [ClawHub Wiki Lint Release](https://clawhub.ai/teki-ai/wiki-lint) <br>
-- [Publisher Profile](https://clawhub.ai/user/teki-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with severity-grouped findings and concrete fix recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or apply targeted markdown edits when the user asks for cleanup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill may read across the markdown wiki it is asked to inspect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on intended wiki workspaces and avoid including sensitive notes unless review across that content is appropriate.
+
+Risk: Requested fixes can change markdown content, links, or wiki structure.
+
+Mitigation: Review proposed changes first and ask it to apply fixes only when markdown edits in that workspace are acceptable.
+
+## Reference(s):
+
+- [Wiki Lint Checklist](references/lint-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with prioritized findings and concrete fix recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or apply markdown edits when the user explicitly asks for fixes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

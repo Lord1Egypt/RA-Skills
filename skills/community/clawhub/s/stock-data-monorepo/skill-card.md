@@ -1,44 +1,64 @@
-## Description: <br>
-Stock Data Monorepo is a collection of four China A-share market data skills for volume, top gainers, stock themes, and theme-event analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Data Monorepo is a collection of four A-share stock data skills for market volume, top gainers, Tonghuashun themes, and theme-related news events.
 
-## Publisher: <br>
-[shinelp100](https://clawhub.ai/user/shinelp100) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shinelp100](https://clawhub.ai/user/shinelp100)
 
-## Use Case: <br>
-Developers and market-analysis agents use this skill to retrieve China A-share market metrics, top gainers, stock themes, and related news events for stock-daily-report workflows or standalone market research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make external market and news queries through browser automation and data libraries. <br>
-Mitigation: Run it only in environments where those outbound queries are approved, and review generated reports before acting on them. <br>
-Risk: The skill can create persistent local report and data files in Desktop or workspace locations. <br>
-Mitigation: Confirm output paths before execution and review generated files for sensitive or stale information. <br>
-Risk: The security summary notes OpenClaw CLI or subagent workflows and under-disclosed fallback data behavior. <br>
-Mitigation: Use the skill in a trusted workspace, inspect planned commands, and verify timestamps and source quality before relying on financial analysis. <br>
+## Use Case:
 
+Developers and agents use this skill collection as a data source for stock-daily-report workflows or for direct A-share market data lookups, including index and volume data, recent top gainers, themes, popularity, and theme event reports.
 
-## Reference(s): <br>
-- [Stock Data Monorepo ClawHub page](https://clawhub.ai/shinelp100/stock-data-monorepo) <br>
-- [README](README.md) <br>
-- [THS stock themes implementation reference](ths-stock-themes/references/implementation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, JSON data files, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local Desktop or workspace report files and depends on external market and news data sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.5 (source: ClawHub release metadata; artifact package.json reports 1.2.4) <br>
+Risk: The skill browses public financial sites and writes local report files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it with an intended output directory, review generated file paths, and avoid exposing secrets in the runtime environment.
+
+Risk: Some helper paths can run mutable external tools, including an npx runtime fallback.
+
+Mitigation: Pin package versions where possible and remove or disable the npx fallback before trusted deployment.
+
+Risk: Under-scoped agent calls may be spawned from user-controlled stock input.
+
+Mitigation: Validate stock codes and constrain subagent inputs before calling the analysis workflows.
+
+Risk: Documented cleanup or reset commands could affect unintended directories or repository state.
+
+Mitigation: Check the target directory and repository state before running destructive cleanup or reset commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shinelp100/skills/stock-data-monorepo)
+- [README.md](README.md)
+- [ths-stock-themes implementation reference](ths-stock-themes/references/implementation.md)
+- [Tonghuashun Wencai data source](https://www.iwencai.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, JSON data files, and command-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some workflows browse public financial websites, depend on Python packages, and may write local report files.]
+
+## Skill Version(s):
+
+1.2.5 (source: evidence.release.version and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

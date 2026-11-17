@@ -1,44 +1,58 @@
-## Description: <br>
-Write Obsidian-compatible .md notes and .canvas files for notes, knowledge bases, daily logs, project docs, and canvas diagrams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Obsidian-compatible .md notes and .canvas files for vault sync via Git.
 
-## Publisher: <br>
-[hekate2639](https://clawhub.ai/user/hekate2639) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hekate2639](https://clawhub.ai/user/hekate2639)
 
-## Use Case: <br>
-Developers, writers, and knowledge workers use this skill to create Obsidian vault notes, project documentation, daily logs, and JSON Canvas diagrams with Obsidian-specific syntax. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause an agent to write, commit, and push Obsidian vault changes without a review step. <br>
-Mitigation: Require the agent to show changed files and wait for explicit approval before any commit or push. <br>
-Risk: Private or sensitive notes may be exposed if the vault syncs to the wrong Git remote or a public repository. <br>
-Mitigation: Confirm the vault path and Git remote before use, and keep the repository private when notes contain sensitive information. <br>
+## Use Case:
 
+Developers, writers, and knowledge workers use this skill to create Obsidian vault notes, daily logs, project docs, and JSON Canvas diagrams with Obsidian-specific syntax.
 
-## Reference(s): <br>
-- [JSON Canvas Spec 1.0](references/canvas-spec.md) <br>
-- [Obsidian Supported File Formats](references/file-formats.md) <br>
-- [JSON Canvas 1.0 Specification](https://jsoncanvas.org/spec/1.0/) <br>
-- [Obsidian File Formats](https://help.obsidian.md/file-formats) <br>
-- [JSON Canvas GitHub Repository](https://github.com/obsidianmd/jsoncanvas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Obsidian Markdown files and JSON Canvas .canvas files, with optional Git shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes to a configured Obsidian vault path; canvas output should validate as JSON Canvas 1.0.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can write files into an Obsidian vault, which may alter notes or canvas diagrams.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the vault path before use and review generated Markdown and canvas JSON before relying on it.
+
+Risk: The workflow can commit and push vault changes to a Git remote.
+
+Mitigation: Confirm the Git remote and require explicit approval before any push.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hekate2639/skills/obsidian-writer)
+- [JSON Canvas Spec 1.0](https://jsoncanvas.org/spec/1.0/)
+- [JSON Canvas GitHub repository](https://github.com/obsidianmd/jsoncanvas)
+- [Obsidian supported file formats](https://help.obsidian.md/file-formats)
+- [Canvas reference](references/canvas-spec.md)
+- [File formats reference](references/file-formats.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Files, Shell commands, Configuration guidance]
+
+**Output Format:** [Obsidian Markdown notes and JSON Canvas files, with optional Git command guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs target a user-selected Obsidian vault and use UTF-8 text files with vault-relative attachment paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

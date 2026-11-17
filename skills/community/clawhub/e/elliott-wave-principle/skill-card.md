@@ -1,44 +1,57 @@
-## Description: <br>
-Provides expert guidance on applying the Elliott Wave Principle to financial market analysis, including wave counting, impulse waves, corrective patterns, Fibonacci retracements, wave guidelines, wave personality, and related concepts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for applying Elliott Wave rules, patterns, Fibonacci relationships, and terminology to financial market analysis.
 
-## Publisher: <br>
-[raeed44-creator](https://clawhub.ai/user/raeed44-creator) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[raeed44-creator](https://clawhub.ai/user/raeed44-creator)
 
-## Use Case: <br>
-External users and analysts use this skill to explain Elliott Wave concepts, identify possible wave counts, and reason about impulse, corrective, and Fibonacci-based market patterns from user-provided chart or price context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Elliott Wave analysis is speculative financial interpretation and may produce incorrect or misleading market conclusions. <br>
-Mitigation: Treat outputs as educational analysis, not investment advice, and independently verify market conclusions before acting on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/raeed44-creator/elliott-wave-principle) <br>
-- [Publisher profile](https://clawhub.ai/user/raeed44-creator) <br>
-- [Basic Principles](references/basic-principles.md) <br>
-- [Impulse Waves](references/impulse-waves.md) <br>
-- [Corrective Patterns](references/corrective-patterns.md) <br>
-- [Guidelines](references/guidelines.md) <br>
-- [Fibonacci Relationships](references/fibonacci-relationships.md) <br>
-- [Glossary](references/glossary.md) <br>
+## Use Case:
 
+External users and analysts use this skill to explain Elliott Wave concepts, identify impulse and corrective structures, and reason about possible wave counts in supplied market data. It should be presented as educational, probabilistic analysis rather than financial advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text explanations with structured reasoning] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include probabilistic wave interpretations, rule checks, and references to relevant Elliott Wave concepts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may treat probabilistic Elliott Wave analysis as financial advice or a trading signal.
+
+Mitigation: Present outputs as educational market-analysis support, explain uncertainty and alternative counts, and avoid personalized investment recommendations.
+
+Risk: Incorrect wave counts can produce misleading conclusions.
+
+Mitigation: Prioritize hard Elliott Wave rules over guidelines, state assumptions, and identify where a proposed count would be invalidated.
+
+## Reference(s):
+
+- [Basic Principles of the Elliott Wave Principle](references/basic-principles.md)
+- [Impulse Waves](references/impulse-waves.md)
+- [Corrective Patterns](references/corrective-patterns.md)
+- [Guidelines](references/guidelines.md)
+- [Fibonacci Relationships](references/fibonacci-relationships.md)
+- [Glossary of Elliott Wave Terms](references/glossary.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown explanations with structured reasoning]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include alternative interpretations, assumptions, and rule-based caveats.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,68 @@
-## Description: <br>
-YC Resource Import parses tourism resource contracts from local or cloud files, extracts hotel, transport, attraction, activity, SPA, club, restaurant, and afternoon-tea records into fixed-schema CSV rows, and can append them to production data stores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YC Resource Import helps agents parse tourism contracts from local or cloud files, normalize eight tourism resource types into fixed CSV schemas, desensitize sensitive fields, validate quality, and prepare append-only imports.
 
-## Publisher: <br>
-[errsr](https://clawhub.ai/user/errsr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[errsr](https://clawhub.ai/user/errsr)
 
-## Use Case: <br>
-Travel operations teams and developers use this skill to convert Bali tourism supplier contracts and resource files into standardized CSV records for catalog or database ingestion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change production CSV or database data, archive or delete files, and perform online enrichment without clearly bounded user control. <br>
-Mitigation: Review before installing, start with approved contract folders and non-production test CSVs, require an explicit dry run, and require confirmation before production append, archive, or delete steps. <br>
-Risk: Online enrichment may send contract-derived data outside the local environment. <br>
-Mitigation: Make network enrichment opt-in and clearly state what contract-derived data may be sent externally before execution. <br>
+## Use Case:
 
+Travel operations teams and developers use this skill to convert tourism supplier contracts into standardized CSV rows for hotels, vehicles, attractions, activities, SPA, clubs, restaurants, and afternoon tea resources. It is intended for controlled import workflows that require fixed fields, quality notes, and human review before production use.
 
-## Reference(s): <br>
-- [YC Resource Import on ClawHub](https://clawhub.ai/errsr/yc-resource-import) <br>
-- [Global Tourism Resource Feature Tags Quick Reference V4.0](artifact/references/8类特色标签快速查阅表.md) <br>
-- [Bali Zone ID Mapping Table V4.0](artifact/references/Zone映射表.md) <br>
-- [Bali Tourism Resource Standardization Documentation](artifact/references/巴厘岛旅游资源标准化文档体系.md) <br>
-- [Evaluation Cases](artifact/evals/评测用例.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [CSV files, status text, installation commands, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces fixed-schema tourism-resource records and may append rows to existing CSV or database-backed production data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill can modify production CSV data and local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a constrained workspace against copies of production CSVs, keep backups, and require human approval before replacing or importing production data.
+
+Risk: Cloud-file ingestion depends on external connector skills and shared links.
+
+Mitigation: Verify connector publishers, restrict link permissions, and prefer reviewed local copies for sensitive supplier contracts.
+
+Risk: Dependency drift can change parsing or OCR behavior.
+
+Mitigation: Pin and review dependencies such as pdfplumber, python-docx, and PyMuPDF before operational use.
+
+Risk: The package includes desensitization and compliance checks but should not be treated as a complete control.
+
+Mitigation: Perform separate privacy, compliance, and data-quality review before importing contract-derived records.
+
+Risk: Append-only import behavior can preserve incorrect or duplicate records if input review is weak.
+
+Mitigation: Validate fixed-field alignment, duplicate identifiers, contract dates, prices, and quality notes before accepting generated rows.
+
+## Reference(s):
+
+- [YC Resource Import on ClawHub](https://clawhub.ai/errsr/skills/yc-resource-import)
+- [Global Tourism Resource Tag Reference](artifact/references/8类特色标签快速查阅表.md)
+- [Bali Zone ID Mapping Table](artifact/references/Zone映射表.md)
+- [Bali Tourism Resource Standardization Documentation](artifact/references/巴厘岛旅游资源标准化文档体系.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [CSV files plus plain-text status and dependency guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses fixed field order, resource-specific encodings, quality notes, and append-only CSV import behavior.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

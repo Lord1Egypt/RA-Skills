@@ -1,43 +1,55 @@
-## Description: <br>
-Review open feed recommendation repositories with source-backed evidence, artifact-readiness checks, and cautious architecture summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review open feed recommendation repositories with source-backed evidence, artifact-readiness checks, and cautious architecture summaries.
 
-## Publisher: <br>
-[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm)
 
-## Use Case: <br>
-Developers, reviewers, and technical analysts use this skill to inspect public feed recommendation repositories or claims, record source-backed evidence, and distinguish reproducible findings from unverified production or reach claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A review could overstate whether public source matches a live feed ranking system or predicts reach. <br>
-Mitigation: Label public algorithm claims as supported, partly supported, unsupported, or not present in the public repository, and avoid promising reach, ranking, virality, revenue, or live-platform equivalence. <br>
-Risk: Repository code or local files could be inspected or run beyond the user's intended scope. <br>
-Mitigation: Use only public source or user-provided local files, and require separate approval before running repository code, modifying files, deleting files, or inspecting non-public data. <br>
-Risk: Phoenix execution could be described as verified when required artifacts or local run results are missing. <br>
-Mitigation: Treat source inspection and runnable-model proof separately, and mark Phoenix execution as blocked unless official artifacts are present and the user supplies a local run result. <br>
+## Use Case:
 
+Developers and technical reviewers use this skill to evaluate public feed recommendation repositories or claims, distinguish source-backed findings from unproven claims, and report artifact readiness or execution gaps.
 
-## Reference(s): <br>
-- [xai-org/x-algorithm](https://github.com/xai-org/x-algorithm) <br>
-- [Open Feed Recsys Reviewer release page](https://clawhub.ai/zack-dev-cm/open-feed-recsys-lab) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown review with source-backed findings, blocked items, architecture notes, risks, and next checks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public source or user-provided local files only; does not execute repository code unless separately requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Users may overstate public repository evidence as proof of live-platform behavior, reach prediction, or production equivalence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Frame findings as source-backed review only, and require needed artifacts plus user-supplied run evidence before treating execution or live behavior as verified.
+
+Risk: Phoenix execution may be reported as verified before required artifacts and local run results are available.
+
+Mitigation: State that source inspection succeeded but execution is blocked until the expected Phoenix artifacts are present and a local run result is supplied.
+
+## Reference(s):
+
+- [xai-org/x-algorithm](https://github.com/xai-org/x-algorithm)
+- [Open Feed Recsys Reviewer ClawHub Page](https://clawhub.ai/zack-dev-cm/skills/open-feed-recsys-lab)
+- [zack-dev-cm Publisher Profile](https://clawhub.ai/user/zack-dev-cm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Concise Markdown review with target, supported claims, blocked checks, architecture summary, risks, and next verification step.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public source or user-provided local files only; does not treat Phoenix execution as verified without required artifacts and user-supplied run evidence.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

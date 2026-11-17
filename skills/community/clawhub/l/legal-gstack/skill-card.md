@@ -1,41 +1,56 @@
-## Description: <br>
-Legal Gstack automates legal practice workflows across legal research, document drafting, evidence analysis, trial preparation, live content operations, client intake, conflict checks, and case management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Legal Gstack is a Chinese-language legal workflow automation suite with specialist roles for legal research, document drafting, evidence analysis, trial preparation, live operations, client intake, conflict checks, and case management.
 
-## Publisher: <br>
-[MarcoChen823](https://clawhub.ai/user/MarcoChen823) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[marcochen823](https://clawhub.ai/user/marcochen823)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External legal practitioners and legal operations users can use this skill to standardize matter intake, research, drafting, evidence review, trial preparation, conflict checks, case tracking, and content operations around local matter folders. Human legal review remains required before relying on any advice, filings, deadlines, or client-facing output.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill works with case files, client communications, conflict checks, and live-comment archives that may contain confidential legal information.
+
+Mitigation: Use approved protected local storage, limit access to matter folders, and handle generated reports and archives as confidential work product.
+
+Risk: Legal research, drafting, evidence analysis, trial preparation, deadline, and intake outputs may be incomplete or unsuitable for a specific matter.
+
+Mitigation: Require qualified human legal review before relying on outputs for advice, filings, strategy, deadlines, acceptance decisions, or client-facing communication.
+
+Risk: The artifact reads from and writes to local Documents paths for active matters, templates, legal documents, and archives.
+
+Mitigation: Verify generated paths before saving, archiving, replacing, or organizing files, especially when closing matters or updating knowledge-base materials.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Legal professionals and their agents use this skill to standardize recurring legal workflows, including research reports, legal document drafts, evidence checklists, trial preparation notes, intake assessments, conflict reports, and case tracking. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, files, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive legal files and may read or write local legal folders. <br>
-Mitigation: Keep confidential case materials in well-scoped directories and confirm archive or write destinations before allowing file changes. <br>
-Risk: Legal research, drafting, evidence analysis, and case strategy outputs may be incomplete or incorrect. <br>
-Mitigation: Review all legal outputs before use and require final confirmation by the responsible legal professional. <br>
+**Output Format:** [Markdown and generated local matter documents or reports, with command-style usage examples.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/MarcoChen823/legal-gstack) <br>
-- [Publisher profile](https://clawhub.ai/user/MarcoChen823) <br>
+**Other Properties Related to Output:** [Outputs are organized around local Documents folders for matters, legal documents, knowledge-base material, conflict checks, and live-operation archives.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown, text, and locally written legal workflow documents] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may reference or write local legal case folders described by the skill.] <br>
+1.0.0 (source: evidence.release.version and artifact/_meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

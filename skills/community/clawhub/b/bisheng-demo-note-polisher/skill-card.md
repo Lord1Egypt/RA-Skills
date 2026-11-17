@@ -1,40 +1,52 @@
-## Description: <br>
-Turns rough notes, bullet lists, chat fragments, meeting takeaways, and mixed-language drafts into polished messages, emails, status updates, announcements, summaries, or short memos without changing the underlying facts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn rough notes, bullet lists, chat fragments, meeting takeaways, and mixed-language drafts into polished writing without changing the underlying facts.
 
-## Publisher: <br>
-[jin935150450-ctrl](https://clawhub.ai/user/jin935150450-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jin935150450-ctrl](https://clawhub.ai/user/jin935150450-ctrl)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees and external users use this skill to turn rough notes, bullet lists, chat fragments, meeting takeaways, and mixed-language drafts into clearer messages, emails, status updates, announcements, summaries, or short memos.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: User notes may contain sensitive content that will be processed during rewriting.
+
+Mitigation: Avoid submitting sensitive notes unless agent processing is intended.
+
+Risk: Polished prose can accidentally imply certainty or details that were not present in rough notes.
+
+Mitigation: Preserve the source facts and mark missing or uncertain details as open questions or neutral placeholders.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees and external users use this skill to convert rough notes, mixed-language drafts, meeting takeaways, and chat fragments into concise polished writing while preserving facts, uncertainty, and intended stance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include secrets, credentials, or highly sensitive personal information in notes submitted for rewriting. <br>
-Mitigation: Avoid pasting secrets, credentials, or highly sensitive personal information into source text. <br>
-Risk: Polished wording could unintentionally change nuance, certainty, or readiness for external sharing. <br>
-Mitigation: Review polished output before sending it externally and check that facts, uncertainty, and stance remain accurate. <br>
+**Output Format:** [Markdown or plain text rewrite]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jin935150450-ctrl/bisheng-demo-note-polisher) <br>
+**Other Properties Related to Output:** [Preserves facts, names, dates, numbers, decisions, blockers, next steps, stance, and confidence level; asks at most one clarifying question when needed.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text or Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves source facts, language preference, uncertainty, and user stance; may include a shorter alternate version for extremely rough notes.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

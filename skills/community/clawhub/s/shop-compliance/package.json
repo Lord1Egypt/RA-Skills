@@ -1,0 +1,43 @@
+{
+  "name": "shop-compliance",
+  "version": "1.0.0",
+  "description": "中小商家电商合规快速筛查工具。覆盖商品上架、消费者权益、客户信息保护、营销合规四大模块，基于《电子商务法》《个人信息保护法》《广告法》。",
+  "keywords": [
+    "电商合规",
+    "中小商家",
+    "商品上架",
+    "极限词",
+    "消费者权益",
+    "客户信息保护",
+    "直播合规",
+    "营销合规"
+  ],
+  "author": "Wei Wu (wwumit)",
+  "license": "MIT",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "package.json",
+    "requirements.txt",
+    "scripts/"
+  ],
+  "scripts": {
+    "check": "python3 scripts/shop-compliance-check.py",
+    "interactive": "python3 scripts/shop-compliance-check.py --interactive"
+  },
+  "openclaw": {
+    "skill": true,
+    "category": "compliance",
+    "region": "cn",
+    "dependencies": [],
+    "compatibility": {
+      "minOpenClawVersion": "1.0.0",
+      "testedModels": []
+    },
+    "emoji": "🛒"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wwumit/shop-compliance"
+  }
+}

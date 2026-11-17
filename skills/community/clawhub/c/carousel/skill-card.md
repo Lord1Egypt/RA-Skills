@@ -1,41 +1,53 @@
-## Description: <br>
-Guides agents in designing, optimizing, and auditing carousel or slider layouts for sequential content display, including accessibility, performance, and SEO considerations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in designing, optimizing, or auditing carousel and slider layouts for sequential content display.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Designers, developers, and agents use this skill to decide when a carousel is appropriate and to produce carousel guidance that addresses keyboard navigation, user control, slide announcements, lazy loading, layout stability, and crawlable content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Carousel guidance may be applied without checking project-specific accessibility needs. <br>
-Mitigation: Review keyboard navigation, visible focus, pause controls, reduced-motion behavior, slide announcements, and touch target sizing before shipping. <br>
-Risk: Carousel content can become hard for crawlers or users to discover if content is loaded only after interaction. <br>
-Mitigation: Keep carousel content in the initial HTML and use styling or client behavior only to show, hide, or advance slides. <br>
+## Use Case:
 
+Developers and designers use this skill to decide when carousel layouts fit a page and to produce guidance for accessible, performant, and SEO-aware carousel implementations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/carousel) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/kostja94) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with tables, checklists, and implementation recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution, credentials, persistence, or data access indicated by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated carousel implementation advice may miss accessibility requirements such as keyboard navigation, visible focus, slide announcements, pause controls, or adequate touch targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated carousel work against the skill's accessibility guidance before deployment.
+
+Risk: Generated carousel implementations may create motion, layout shift, loading, or SEO problems if slides are hidden from initial HTML or loaded only after interaction.
+
+Mitigation: Confirm reduced-motion behavior, reserved slide space, lazy-loading choices, and server-rendered slide content for the target page.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/carousel)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown guidance, often with implementation notes or code-oriented recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on carousel layout choice, accessibility, performance, SEO, and related page-pattern tradeoffs.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

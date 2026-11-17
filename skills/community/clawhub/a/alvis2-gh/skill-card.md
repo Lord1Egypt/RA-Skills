@@ -1,41 +1,50 @@
-## Description: <br>
-Use the GitHub CLI (gh) to perform core GitHub operations: auth status, repo create/clone/fork, issues, pull requests, releases, and basic repo management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the GitHub CLI (gh) to perform core GitHub operations: auth status, repo create/clone/fork, issues, pull requests, releases, and basic repo management.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-Developers and engineers use this skill to have an agent prepare and run GitHub CLI workflows for repository setup, cloning, forking, issue management, pull requests, releases, and basic repository inspection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide authenticated GitHub CLI actions that create repositories, issues, pull requests, releases, comments, merges, forks, or pushes. <br>
-Mitigation: Verify the GitHub account, owner/repo, branch, PR number, visibility, and intended action before execution; require explicit user confirmation for destructive or publishing actions. <br>
-Risk: The artifact links to an external SkillBoss setup guide that is separate from this GitHub CLI helper. <br>
-Mitigation: Open or follow the SkillBoss link only when intentionally setting up SkillBoss, and assess that external setup separately from this skill. <br>
+## Use Case:
 
+Developers and engineers use this skill to have an agent propose and run common GitHub CLI workflows for repository setup, issues, pull requests, releases, and basic repository checks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alvisdunlop/alvis2-gh) <br>
-- [SkillBoss setup guide](https://SkillBoss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence) <br>
+Risk: Authenticated GitHub CLI commands can create or change repositories, issues, pull requests, comments, merges, and releases in the wrong target if account or repository context is mistaken.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the GitHub account, owner, repository, branch, visibility, and command target before running mutating gh commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alvisdunlop/skills/alvis2-gh)
+- [Complete setup guide](https://SkillBoss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include GitHub CLI commands and target URLs for user review.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

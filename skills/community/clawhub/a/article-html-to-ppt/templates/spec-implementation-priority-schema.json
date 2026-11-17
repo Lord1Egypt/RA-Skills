@@ -1,0 +1,40 @@
+{
+  "deck": {
+    "source_spec": "",
+    "implementation_goal": "",
+    "noise_budget_default": {
+      "connectors_per_slide": "3-9",
+      "decorative_marks_per_slide": "0-3",
+      "primary_nodes_per_slide": "3-8",
+      "background_grid_opacity": "0-10%"
+    }
+  },
+  "slides": [
+    {
+      "slide_id": "S01",
+      "slide_intent": "",
+      "expression_mode": "",
+      "primary_anchor": "",
+      "object_plan": [
+        {
+          "object_id": "",
+          "role": "message|proof|structure|navigation|brand|material|decoration",
+          "priority": "hero|primary|secondary|tertiary|delete",
+          "action": "keep|merge|weaken|move_to_notes|delete|render_component",
+          "reason": ""
+        }
+      ],
+      "noise_budget": {
+        "connectors": 0,
+        "icons": 0,
+        "grid_lines": "none|low|medium",
+        "tables": "none|small|primary_anchor",
+        "callout_systems": 0
+      },
+      "editable_core": [],
+      "material_layers": [],
+      "delivery_route": "native_ppt|native_chart|native_table|native_diagram|hybrid_overlay|svg_component|generated_image|background_image|unsupported",
+      "preflight_score_estimate": "unknown"
+    }
+  ]
+}

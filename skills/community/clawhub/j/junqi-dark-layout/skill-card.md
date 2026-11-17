@@ -1,40 +1,53 @@
-## Description: <br>
-Generates Chinese Junqi dark-piece layouts with an LLM, validates them against fixed rules, and renders approved layouts as image cards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese Junqi dark-piece 25-cell layouts with LLM-authored strategy, strict Python validation, and optional image-card rendering.
 
-## Publisher: <br>
-[imcaptor](https://clawhub.ai/user/imcaptor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imcaptor](https://clawhub.ai/user/imcaptor)
 
-## Use Case: <br>
-Players or agents use this skill to draft style-specific Junqi dark-piece layouts, validate them against placement and piece-count rules, and render approved layouts as shareable cards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A generated Junqi layout can violate the skill's placement rules if it is returned before validation. <br>
-Mitigation: Validate every generated layout with the bundled validator and regenerate or correct the layout before returning or rendering it. <br>
-Risk: The renderer creates parent folders and writes an image to the requested output path. <br>
-Mitigation: Use trusted JSON layout inputs and choose an output path in an intended workspace location. <br>
+## Use Case:
 
+External users and game-layout creators use this skill to ask an agent for Chinese Junqi dark-piece formations in a requested style, validate the 30-cell board against hard rules, and optionally render a visual layout card.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imcaptor/junqi-dark-layout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance, files] <br>
-**Output Format:** [Markdown or JSON layout data, with optional shell commands and rendered image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Layouts use a 30-cell array with 25 playable positions and 5 fixed forbidden positions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill enforces opinionated Junqi strategy constraints and may reject layouts that some players would consider acceptable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the validator as the rule set for this release, explain constraint failures to the user, and regenerate only within those stated rules.
+
+Risk: A generated board can be invalid if the validation step is skipped.
+
+Mitigation: Run scripts/validate_layout.py before returning a final layout or rendering an image, and retry generation when validation reports errors.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imcaptor/skills/junqi-dark-layout)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Files, Guidance]
+
+**Output Format:** [JSON layout object, concise Markdown guidance, shell commands for validation or rendering, and optional rendered image file path.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Layouts use a 30-item array with five fixed forbidden cells and 25 Junqi pieces; final layouts should pass local validation before being returned or rendered.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

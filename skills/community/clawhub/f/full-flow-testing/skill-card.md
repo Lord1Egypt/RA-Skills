@@ -1,40 +1,59 @@
-## Description: <br>
-Enterprise API testing assistant that supports developer self-tests, single API deep tests, business flow tests, security audits, defect diagnosis, and report generation with user confirmation before each step. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise API testing assistant covering developer self-tests, deep single-API tests, business flow tests, security audits, defect diagnosis, report generation, API-document understanding, global knowledge accumulation, and multi-user isolation.
 
-## Publisher: <br>
-[zhaosiming](https://clawhub.ai/user/zhaosiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaosiming](https://clawhub.ai/user/zhaosiming)
 
-## Use Case: <br>
-Developers, QA engineers, and API teams use this skill to plan and run user-confirmed API self-tests, deep tests, business-flow tests, security audits, defect diagnosis, and consolidated reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local workspaces and generated reports may contain credentials, request payloads, tokens, or customer data. <br>
-Mitigation: Use dedicated test accounts and non-production tokens, keep workspace paths controlled, and review generated reports before sharing them. <br>
-Risk: Shared knowledge-base updates may preserve sensitive or inaccurate API details if users confirm unsafe changes. <br>
-Mitigation: Avoid confirming updates that include secrets, raw tokens, customer data, or unreviewed internal payloads. <br>
+## Use Case:
 
+Developers, QA engineers, and API platform teams use this skill to plan and run API validation workflows, inspect security and defect behavior, maintain API knowledge, and produce Markdown testing reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaosiming/full-flow-testing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Files, Guidance] <br>
-**Output Format:** [Markdown reports and structured testing guidance with API request and response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local user workspaces, session state, knowledge-base notes, and test report files when the user confirms each step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may store sensitive API test data in per-user workspaces, temporary files, knowledge caches, and reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only test or low-risk API accounts unless redaction and retention controls are added; sanitize workspace user IDs and review reports before sharing.
+
+Risk: Shared global knowledge-base updates can publish incorrect or sensitive test-derived information to other users.
+
+Mitigation: Require independent review before publishing global knowledge-base updates and keep sensitive findings local unless they have been desensitized.
+
+Risk: Bearer tokens and API credentials may be exposed through test inputs, request logs, or generated reports.
+
+Mitigation: Avoid long-lived secrets, prefer scoped test credentials, and remove tokens or secrets from generated artifacts before distribution.
+
+## Reference(s):
+
+- [Skill specification](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/zhaosiming/skills/full-flow-testing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and conversational guidance, with optional code or shell-command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write per-user session state, temporary files, local knowledge cache files, and test reports when the agent environment permits file access.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

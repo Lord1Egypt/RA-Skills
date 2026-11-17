@@ -1,43 +1,60 @@
-## Description: <br>
-Helps teachers turn lesson ideas into structured lesson plans using UbD reverse design, observable three-dimensional goals, classroom timing, Bloom question chains, and optional A/B/C differentiated tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用 UbD 逆向设计把“经验型备课”变成可观测的教学设计。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Teachers use this skill to draft single-lesson or unit lesson plans, redesign existing plans with UbD structure, build Bloom-level classroom questions, and prepare differentiated tasks when class learning summaries are available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lesson plans may include incorrect, unsuitable, or overly rigid teaching guidance if accepted without teacher review. <br>
-Mitigation: Have the teacher review and adjust goals, activities, timing, questions, and tasks before classroom use. <br>
-Risk: Student privacy may be exposed if real names or detailed individual records are pasted into prompts or outputs. <br>
-Mitigation: Use anonymized class summaries, aliases, seat numbers, or aggregated weakness data, and avoid real student identifiers. <br>
-Risk: Differentiated A/B/C plans may be misleading when no learning-summary evidence is available. <br>
-Mitigation: Use the basic plan mode unless a class learning summary is provided, and clearly mark plans that lack learning-summary evidence. <br>
+## Use Case:
 
+Teachers use this skill to draft UbD lesson plans for new, review, and differentiated lessons, with observable goals, assessment evidence, lesson timing, question prompts, and tiered tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qizhitang/xiaozhi-teach-lesson-planner) <br>
-- [Lesson plan template](references/lesson-plan-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown lesson plans, question chains, task cards, checklists, and teacher guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured sections for UbD stages, three-dimensional goals, Bloom questions, classroom timing, differentiated tasks, board design, contingency plans, and reflection prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated lesson examples and exercises may contain errors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have a teacher check generated questions and examples before classroom use or storage.
+
+Risk: Student information and unreleased exam materials can be sensitive.
+
+Mitigation: Do not enter personal student information or unreleased exam questions; use only the minimum class-level information needed.
+
+Risk: A conversation may raise safety or mental-health concerns outside lesson planning.
+
+Mitigation: Stop the lesson-planning flow and follow the skill’s crisis referral protocol with an appropriate trusted adult or local service.
+
+## Reference(s):
+
+- [Lesson plan template](references/lesson-plan-template.md)
+- [Layered lesson example](references/layered-lesson-example.md)
+- [教案设计器 on ClawHub](https://clawhub.ai/qizhitang/skills/xiaozhi-teach-lesson-planner)
+- [Publisher profile: qizhitang](https://clawhub.ai/user/qizhitang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown lesson-plan drafts with structured sections, timing tables, question prompts, and tiered tasks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Drafts for teacher review; generated example questions should be checked before use.]
+
+## Skill Version(s):
+
+2.12.7 (source: frontmatter, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-Retrieves public protein structures, predicts folds with ESMFold, detects binding pockets, and performs basic RDKit ligand docking for PharmaClaw pipeline workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compliant AlphaFold Agent for protein structure retrieval, ESMFold prediction, binding site detection, and RDKit ligand docking.
 
-## Publisher: <br>
-[Cheminem](https://clawhub.ai/user/Cheminem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cheminem](https://clawhub.ai/user/cheminem)
 
-## Use Case: <br>
-Developers and drug discovery pipeline users use this skill to retrieve or generate protein structure artifacts and basic docking summaries from UniProt, FASTA, and SMILES inputs before passing results to downstream IP expansion or catalyst design workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Placeholder scientific calculations may be mistaken for validated protein structures, pockets, docking scores, or visualizations. <br>
-Mitigation: Use only for experimentation, demos, or code review until placeholder methods are replaced with validated tools and outputs are labeled with method provenance. <br>
-Risk: Unvalidated outputs could be used in research, medicinal chemistry, IP, or safety decisions. <br>
-Mitigation: Do not rely on generated structures, pockets, docking scores, or visualizations for those decisions without expert review and validated scientific tooling. <br>
+## Use Case:
 
+Developers and scientific workflow builders use this skill to retrieve public protein structures, run scaffolded fold prediction, detect binding pockets, and produce basic ligand docking outputs for PharmaClaw-style drug discovery pipelines.
 
-## Reference(s): <br>
-- [RCSB Search API](https://search.rcsb.org/rcsbsearch/v2/query) <br>
-- [AlphaFold DB Prediction API](https://alphafold.ebi.ac.uk/api/prediction/) <br>
-- [RCSB PDB Download Endpoint](https://files.rcsb.org/download/{pdb_id}.pdb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Text] <br>
-**Output Format:** [JSON report with generated PDB and PNG file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write structure and visualization files such as PDB files and docked.png in the working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security evidence says the skill presents mock scientific outputs as usable structure, pocket, and docking results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use reported structures, binding sites, or docking affinities for drug-discovery decisions unless mock paths are replaced with validated implementations and outputs carry clear provenance.
+
+Risk: The skill performs external HTTP requests and writes predictable output files in the current working directory.
+
+Mitigation: Run it only in a controlled working directory and review network behavior before installation or execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cheminem/skills/pharmaclaw-alphafold-agent)
+- [RCSB Search API endpoint](https://search.rcsb.org/rcsbsearch/v2/query)
+- [AlphaFold DB prediction API endpoint](https://alphafold.ebi.ac.uk/api/prediction/)
+- [RCSB PDB file download endpoint](https://files.rcsb.org/download/{pdb_id}.pdb)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON examples; the script prints JSON reports and writes PDB or PNG files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform external HTTP requests and write predictable local output files such as fetched PDB files, esm_fold.pdb, and docked.png.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

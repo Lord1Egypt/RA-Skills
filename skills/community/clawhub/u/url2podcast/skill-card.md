@@ -1,43 +1,58 @@
-## Description: <br>
-Converts webpage content into a two-speaker Chinese podcast by extracting source material, drafting and checking dialogue, generating a structured TTS script, and producing final audio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts webpage content into a two-speaker Chinese podcast audio file using content summarization, dialogue drafting, TTS synthesis, and audio merging.
 
-## Publisher: <br>
-[yangjinghua0127](https://clawhub.ai/user/yangjinghua0127) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangjinghua0127](https://clawhub.ai/user/yangjinghua0127)
 
-## Use Case: <br>
-External users and developers use this skill to turn a webpage into a Chinese two-person podcast package, including a source brief, dialogue draft, structured TTS script, audio chunks, and a final MP3. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Podcast text is sent to the Volcano/ByteDance TTS service using the user's VOLC credentials. <br>
-Mitigation: Use only content approved for that transfer, avoid confidential webpages unless the transfer is acceptable, and protect VOLC_APPID and VOLC_TOKEN. <br>
-Risk: The skill clears skills/podcast-maker/workspace before each run. <br>
-Mitigation: Keep important files outside that workspace and treat it as disposable output storage. <br>
-Risk: Generated summaries, dialogue, and scripts may omit or distort source material. <br>
-Mitigation: Review source_brief.json, podcast_content.md, and podcast_script.json before publishing or relying on the audio. <br>
+## Use Case:
 
+Developers and content creators use this skill to turn a source URL into a structured Chinese podcast package, including a source brief, dialogue draft, script JSON, and final MP3.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangjinghua0127/url2podcast) <br>
-- [Volcano/ByteDance TTS HTTP endpoint](https://openspeech.bytedance.com/api/v1/tts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, audio files] <br>
-**Output Format:** [Markdown guidance with JSON artifacts, shell commands, WAV chunks, and final MP3 audio.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ffmpeg, curl, python3, VOLC_APPID, and VOLC_TOKEN; writes outputs under skills/podcast-maker/workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated podcast lines and Volc TTS credentials are sent to ByteDance TTS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with content and credentials approved for that external service.
+
+Risk: Each run is instructed to clear prior files in the skill workspace.
+
+Mitigation: Run it only in the intended skill workspace and keep important files outside skills/podcast-maker/workspace.
+
+Risk: TTS request construction may be fragile for sensitive or untrusted source pages.
+
+Mitigation: Harden TTS request generation with a JSON serializer before using sensitive or untrusted input.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangjinghua0127/skills/url2podcast)
+- [ByteDance Volcano Engine TTS API endpoint](https://openspeech.bytedance.com/api/v1/tts)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Audio files]
+
+**Output Format:** [Markdown guidance with JSON artifacts, shell command snippets, WAV chunks, and an MP3 audio file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ffmpeg, curl, python3, VOLC_APPID, and VOLC_TOKEN; sends generated podcast lines to ByteDance TTS.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

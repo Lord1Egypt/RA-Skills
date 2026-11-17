@@ -1,40 +1,52 @@
-## Description: <br>
-Run programs that survive OpenClaw exec session cleanup and gateway restarts via tmux for long-running servers, tunnels, coding agents, and other persistent processes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run programs that survive OpenClaw exec session cleanup and gateway restarts via tmux.
 
-## Publisher: <br>
-[darwin7381](https://clawhub.ai/user/darwin7381) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[darwin7381](https://clawhub.ai/user/darwin7381)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and OpenClaw users use this skill to run dev servers, tunnels, workers, build tasks, or interactive programs in tmux so they can continue after exec cleanup, session timeouts, or gateway restarts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Tmux sessions can keep tunnels, servers, workers, or other commands running after the current exec session ends.
+
+Mitigation: Use this only for explicitly intended long-running tasks, review active sessions, and stop sessions with the documented tmux cleanup commands when finished.
+
+Risk: Long-running commands may inherit sensitive environment variables when the tmux session is created.
+
+Mitigation: Scope environment variables to the command that needs them, avoid unnecessary secrets, and clean up sessions that no longer need access.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to keep selected long-running commands alive across exec cleanup, session timeouts, and gateway restarts. It is most useful for dev servers, tunnels, background workers, builds, REPLs, and coding agents that should remain available after the current shell session ends. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent tmux sessions can keep user-chosen processes running after the visible exec session ends. <br>
-Mitigation: List and stop tmux sessions when work is complete, and use the dedicated socket convention to keep these sessions separate from a user's normal tmux environment. <br>
-Risk: Tunnels such as ngrok, cloudflared, or localhost.run can expose local services beyond the local machine. <br>
-Mitigation: Before starting a tunnel, confirm the service does not expose private data, admin panels, credentials, or unauthenticated write actions, and stop the session when finished. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/darwin7381/openclaw-tmux-persistent-process) <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides tmux command patterns for starting, monitoring, interacting with, and stopping persistent sessions.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

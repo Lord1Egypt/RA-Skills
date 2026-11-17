@@ -1,41 +1,54 @@
-## Description: <br>
-Provides real-time institutional options flow and momentum analysis for US equities using the OptionWhales API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time institutional options flow intelligence and momentum analysis for AI agents using OptionWhales API data.
 
-## Publisher: <br>
-[ssidharhubble](https://clawhub.ai/user/ssidharhubble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssidharhubble](https://clawhub.ai/user/ssidharhubble)
 
-## Use Case: <br>
-External users, developers, and trading-system builders use this skill to fetch options flow, momentum rankings, abnormal trades, and ticker-specific flow signals for market analysis and alerting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OptionWhales API key and sends authenticated requests to OptionWhales. <br>
-Mitigation: Use a scoped or revocable API key when available and avoid exposing the key in shell history, logs, or shared output. <br>
-Risk: Options flow output may be forwarded into automated alerts, dashboards, or trading workflows. <br>
-Mitigation: Review downstream piping, cron jobs, and alerting rules before using the data in automated financial decisions. <br>
+## Use Case:
 
+External developers, volatility traders, and quantitative trading teams use this skill to fetch OptionWhales options-flow signals for dashboards, alerts, ticker analysis, and momentum screening across major US equities.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ssidharhubble/options-flow-intelligence) <br>
-- [OptionWhales API](https://optionwhales.com/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text command output with setup guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPTIONWHALES_API_KEY and network access to OptionWhales.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses an OPTIONWHALES_API_KEY for authenticated OptionWhales API calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where that credential is intended to be available, and avoid exposing command output or shell history containing sensitive configuration.
+
+Risk: Options-flow outputs can be mistaken for trading instructions or automated execution signals.
+
+Mitigation: Treat the output as market data analysis and apply independent trading controls before using it in alerts, dashboards, models, or automation.
+
+## Reference(s):
+
+- [OptionWhales API](https://optionwhales.com/api)
+- [Options Flow Intelligence on ClawHub](https://clawhub.ai/ssidharhubble/skills/options-flow-intelligence)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text command output and Markdown setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OPTIONWHALES_API_KEY for authenticated API calls; no persistence or unrelated local access is reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

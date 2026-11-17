@@ -1,42 +1,56 @@
-## Description: <br>
-Automatically find remote jobs every day, score them against a resume, identify skill gaps, and prepare or submit applications for strong matches with JD-tailored resume support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically finds remote jobs, scores them against a resume, identifies skill gaps, generates daily reports, and can prepare or submit applications with tailored resumes and WhatsApp confirmation.
 
-## Publisher: <br>
-[RajkiranVS](https://clawhub.ai/user/RajkiranVS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rajkiranvs](https://clawhub.ai/user/rajkiranvs)
 
-## Use Case: <br>
-External users and job seekers use this skill to automate remote job discovery, compare openings with their resume, review skill gaps, generate daily summaries, and manage application workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release includes auto-apply behavior that can send resumes and application data externally. <br>
-Mitigation: Use dry-run, report-only, or no-auto-apply modes until each target job and destination is reviewed and approved. <br>
-Risk: Application workflows may use SMTP, LinkedIn, browser automation, resume uploads, and local application records. <br>
-Mitigation: Confirm account permissions, outbound data flows, and local retention expectations before enabling application submission. <br>
-Risk: Documentation is inconsistent about whether auto-apply behavior is included. <br>
-Mitigation: Treat the executable artifact behavior and security evidence as authoritative, and require clear user approval before submission actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/RajkiranVS/remote-job-hunter) <br>
-- [Publisher Profile](https://clawhub.ai/user/RajkiranVS) <br>
+## Use Case:
 
+External job seekers use this skill to automate remote job discovery, compare postings against their resume, review skill gaps, and manage application follow-up for supported technical role profiles.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, configuration, guidance] <br>
-**Output Format:** [Markdown reports, plain-text summaries, JSON application state, and local resume or application files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local reports, pending-application records, tailored resumes, and application logs based on user configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read resume/profile data, contact job sites, and submit applications externally.
+
+Mitigation: Keep auto-apply disabled or use dry runs until every job, destination domain, tailored resume, and application action is explicitly reviewed.
+
+Risk: Security evidence reports weak opt-out confirmation around applications.
+
+Mitigation: Require positive per-job approval before submission instead of relying only on a skip window or absence of a SKIP reply.
+
+Risk: Security evidence reports conflicting privacy disclosures for WhatsApp, SMTP, LinkedIn, and data-retention behavior.
+
+Mitigation: Review configured integrations and generated local files before use, store credentials outside profile files, and disable integrations that are not needed.
+
+## Reference(s):
+
+- [Remote Job Hunter ClawHub page](https://clawhub.ai/rajkiranvs/skills/remote-job-hunter)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, JSON, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown reports, plain-text status messages, JSON state files, and generated resume documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads profile JSON and .docx or .pdf resumes; may create daily reports, pending/applied job logs, tailored .docx resumes, and WhatsApp preview or applied message files.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

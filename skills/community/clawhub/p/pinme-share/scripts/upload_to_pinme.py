@@ -415,7 +415,7 @@ def print_upload_warnings(skip: bool):
 # ──────────────────────────────────────────────────────────────────
 def cmd_set_appkey(key: str):
     if not key or len(key) < 20:
-        emit_error("invalid_appkey", f"AppKey looks too short / malformed: {key[:20]}...")
+        emit_error("invalid_appkey", f"AppKey looks too short / malformed (length {len(key)}, need >=20)")
     ok, err = ensure_pinme()
     if not ok:
         emit_error("cli_missing", f"cannot install pinme CLI: {err}")
@@ -610,6 +610,26 @@ def main():
     ok, err = check_node_version()
     if not ok:
         emit_error("cli_missing", err)
+
+    # Mutual-exclusion guard: exactly one action at a time.
+    # Without this, `path` + `--list` (etc.) would silently run only the first
+    # matched branch and drop the rest — a silent-failure trap.
+    action_flags = {
+        "--set-appkey": bool(args.set_appkey),
+        "--show-appkey": args.show_appkey,
+        "--logout": args.logout,
+        "--wallet": args.wallet,
+        "--rm": bool(args.rm),
+        "--list": args.list,
+        "<path>": bool(args.path),
+    }
+    active = [name for name, on in action_flags.items() if on]
+    if len(active) > 1:
+        emit_error(
+            "conflicting_args",
+            f"only one operation allowed at a time, got multiple: {', '.join(active)}. "
+            "Please call them separately.",
+        )
 
     if args.set_appkey:
         cmd_set_appkey(args.set_appkey)

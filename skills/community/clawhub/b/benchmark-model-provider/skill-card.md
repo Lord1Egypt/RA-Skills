@@ -1,50 +1,64 @@
-## Description: <br>
-Benchmark and rank AI providers/models against a user-specific prompt suite derived from the user's purpose, domain, and usage frequency. Use when users ask which model is smarter, cheaper, deeper, faster, worth using daily, better as local vs service, or when building repeatable benchmark specs, reranking old runs, generating markdown/HTML/PDF benchmark reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Benchmark and rank AI providers/models against a user-specific prompt suite derived from the user's purpose, domain, and usage frequency.
 
-## Publisher: <br>
-[tankisstank](https://clawhub.ai/user/tankisstank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tankisstank](https://clawhub.ai/user/tankisstank)
 
-## Use Case: <br>
-Developers, engineers, and power users use this skill to build repeatable text-model benchmarks from their own workflow needs, run comparable model evaluations, rerank existing results, and generate reviewable benchmark reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Benchmark runs can send prompts and credentials to the configured provider endpoint. <br>
-Mitigation: Use a scoped API key, verify base_url before running, and send only prompts that are acceptable for the selected provider. <br>
-Risk: Benchmark reports and raw artifacts can store prompts, model outputs, metrics, and other local run details. <br>
-Mitigation: Review generated artifacts before sharing or publishing, and avoid sensitive benchmark prompts unless local storage is acceptable. <br>
-Risk: Dependency hygiene issues in PyYAML and reportlab can affect runtime safety. <br>
-Mitigation: Install the skill in an isolated environment with pinned, current PyYAML and reportlab versions. <br>
+## Use Case:
 
+Developers, analysts, and technical teams use this skill to build user-specific benchmark suites, compare models on the same prompts, score results across quality, depth, cost, and speed, and generate auditable model-selection reports.
 
-## Reference(s): <br>
-- [Initial Project Specification](artifact/references/initial-project-spec.md) <br>
-- [Benchmark Schema](artifact/references/benchmark-schema.md) <br>
-- [Scoring Rubric](artifact/references/scoring-rubric.md) <br>
-- [Pricing Sources Policy](artifact/references/pricing-sources.md) <br>
-- [Execution Modes](artifact/references/execution-modes.md) <br>
-- [Output Modes](artifact/references/output-modes.md) <br>
-- [Runtime Safety](artifact/references/runtime-safety.md) <br>
-- [Environment Variables and Dependencies](artifact/references/environment-vars.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/tankisstank/benchmark-model-provider) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown, HTML, PDF, YAML, JSON, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces versioned benchmark specs, raw per-model answer files, raw metrics JSON, score breakdown JSON, markdown summaries, HTML landing pages, PDFs when requested, and publish metadata when delivery occurs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Benchmark runs can send prompts and a configured bearer token to the HTTPS endpoint selected in the benchmark spec.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only trusted benchmark specs, use approved endpoints, and keep auth_env set to a dedicated low-privilege benchmark key such as BENCHMARK_API_KEY.
+
+Risk: Sensitive prompts, model outputs, or internal reports could be exposed if benchmark or publishing steps are run without review.
+
+Mitigation: Review benchmark specs and generated reports before execution or publication, and avoid sensitive prompts unless the endpoint and delivery target are approved.
+
+Risk: Unpinned dependencies or unfamiliar endpoints can make benchmark execution harder to control.
+
+Mitigation: Pin dependencies and run the skill in a controlled environment before using it for important model-selection decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tankisstank/skills/benchmark-model-provider)
+- [Benchmark Schema](references/benchmark-schema.md)
+- [Execution Modes](references/execution-modes.md)
+- [Scoring Rubric](references/scoring-rubric.md)
+- [Pricing Sources Policy](references/pricing-sources.md)
+- [Output Modes](references/output-modes.md)
+- [Runtime Safety](references/runtime-safety.md)
+- [Environment Variables and Dependencies](references/environment-vars.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, HTML, PDF, YAML/JSON benchmark artifacts, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves raw model outputs and metrics for audit and reranking; estimated cost metrics should be visibly marked.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

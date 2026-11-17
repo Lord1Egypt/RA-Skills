@@ -1,41 +1,57 @@
-## Description: <br>
-Enables OpenAI Codex CLI to use Chinese mainland AI model providers through protocol conversion and automatic Codex configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables OpenAI Codex CLI to use domestic Chinese AI models through protocol conversion and automated configuration across providers such as Qwen, Kimi, and GLM.
 
-## Publisher: <br>
-[luckKiven](https://clawhub.ai/user/luckKiven) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[luckkiven](https://clawhub.ai/user/luckkiven)
 
-## Use Case: <br>
-Developers use this skill to configure Codex CLI to route requests through a local protocol bridge to supported providers such as Aliyun Qwen, Kimi, and GLM. It is intended for coding and general assistant workflows where those providers are approved for the user's data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Codex prompts, conversation content, and related request data may be sent to configured third-party model providers. <br>
-Mitigation: Use only with data approved for those providers, and avoid secrets, regulated data, or proprietary code unless provider terms, retention settings, and data-handling controls are approved. <br>
-Risk: Provider API keys are required and can be exposed if copied into public files or shared environments. <br>
-Mitigation: Store keys in the documented private environment file or user environment variables, and do not publish or share files containing real keys. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure Codex CLI to route requests through a local protocol bridge for supported Chinese model providers. It helps install, start, test, stop, and troubleshoot the bridge and related Codex configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luckKiven/codex-cn-bridge) <br>
-- [Source repository](https://github.com/luckKiven/codex-cn-bridge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup, service-control, model-selection, and troubleshooting guidance for Codex CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact documentation) <br>
+Risk: Installation relies on mutable, unreviewed remote code that handles API keys, Codex configuration, and model traffic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream repository and installer before installing, and prefer a pinned commit or release with a verified digest.
+
+Risk: Prompts and code may be sent to configured third-party model providers.
+
+Mitigation: Use the bridge only with prompts and code that are appropriate to share with the selected providers.
+
+Risk: Provider API keys are sensitive credentials used by the bridge.
+
+Mitigation: Store keys in protected environment variables or local .env files, keep them out of version control, and rotate them if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/luckkiven/skills/codex-cn-bridge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include instructions that affect Codex CLI configuration, local service control, and provider API key handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

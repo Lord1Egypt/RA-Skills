@@ -1,6 +1,26 @@
 {
-  "ownerId": "kn706y7en0x848j1w5a4rvm18d84esex",
-  "slug": "ollama-skill",
+  "identifier": "ollama-skill",
+  "name": "Ollama Runtime Skill",
+  "description": "Integrate Ollama into coding agents, IDEs, and agent harnesses with minimal code changes. Supports local/on-prem/Docker deployment, Ollama Cloud, and OpenAI/Anthropic-compatible endpoints.",
   "version": "1.0.0",
-  "publishedAt": 1775617268560
+  "author": "Wai Yan Nyein Naing",
+  "category": "ai-ml",
+  "license": "MIT",
+  "tags": [
+    "ollama",
+    "llm",
+    "local-ai",
+    "inference",
+    "openai-compatible",
+    "anthropic-compatible",
+    "embeddings",
+    "streaming",
+    "tool-calling",
+    "docker"
+  ],
+  "github": {
+    "url": "https://github.com/WaiYanNyeinNaing/ollama-skill",
+    "stars": 0,
+    "forks": 0
+  }
 }

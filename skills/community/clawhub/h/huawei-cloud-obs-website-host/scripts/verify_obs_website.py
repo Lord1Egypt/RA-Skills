@@ -210,6 +210,14 @@ def main() -> int:
         default=str(Path.home() / ".obsutilconfig"),
         help="obsutil config file path for optional bucket SDK check (default: ~/.obsutilconfig)",
     )
+    parser.add_argument(
+        "--https",
+        action="store_true",
+        help=(
+            "Deprecated no-op: HTTPS verification is now always performed "
+            "(kept for backward compatibility)."
+        ),
+    )
     args = parser.parse_args()
 
     raw_domain = args.domain.strip()
@@ -233,7 +241,13 @@ def main() -> int:
         return 2
 
     path_prefix = parsed.path.rstrip("/")
-    scheme_bases = [("http", f"http://{host_port}{path_prefix}")]
+    # Always verify both HTTP and HTTPS so TLS certificate problems (e.g. a
+    # custom domain with an invalid/unbound certificate) are detected, matching
+    # the SKILL.md HTTPS/TLS verification guarantees.
+    scheme_bases = [
+        ("http", f"http://{host_port}{path_prefix}"),
+        ("https", f"https://{host_port}{path_prefix}"),
+    ]
     raw_site = scheme_bases[0][1]
 
     checks: list[dict[str, object]] = []

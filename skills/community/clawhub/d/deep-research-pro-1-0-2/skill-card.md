@@ -1,41 +1,58 @@
-## Description: <br>
-Multi-source deep research agent. Searches the web, synthesizes findings, and delivers cited reports. No API keys required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-source deep research agent. Searches the web, synthesizes findings, and delivers cited reports. No API keys required.
 
-## Publisher: <br>
-[raidan-ai](https://clawhub.ai/user/raidan-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raidan-ai](https://clawhub.ai/user/raidan-ai)
 
-## Use Case: <br>
-External users and developers use this skill to run structured web research, compare multiple sources, and produce cited summaries or full Markdown reports for a research topic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated research reports may be saved locally and retained after the task is complete. <br>
-Mitigation: Check the report destination before saving, avoid highly sensitive research unless local retention is acceptable, and delete generated reports when no longer needed. <br>
-Risk: Web research can surface incomplete, outdated, or single-source claims. <br>
-Mitigation: Cross-reference important claims, prioritize recent reputable sources, and flag gaps or unverified findings in the report. <br>
+## Use Case:
 
+External users and developers use this skill to run multi-source web research, compare sources, and produce concise or full cited research reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/raidan-ai/deep-research-pro-1-0-2) <br>
-- [Project homepage from skill metadata](https://github.com/paragshah/deep-research-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown report with inline citations, plus concise chat summaries when appropriate] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save a report.md file under ~/clawd/research/[slug]; no API keys are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The workflow can fetch arbitrary URLs while researching.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review URLs before fetching, use safer URL-fetching controls, and avoid substituting untrusted URLs into shell commands.
+
+Risk: The workflow can save research reports locally.
+
+Mitigation: Confirm the destination path before writing reports, especially in shared storage or environments with sensitive local files.
+
+Risk: The security verdict is suspicious for environments with access to private networks, cloud metadata, sensitive local files, or shared storage.
+
+Mitigation: Review before installing in those environments and restrict network and filesystem access where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/raidan-ai/skills/deep-research-pro-1-0-2)
+- [Project homepage listed in skill metadata](https://github.com/paragshah/deep-research-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports with inline citations and optional shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save longer research reports as local Markdown files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

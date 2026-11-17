@@ -1,41 +1,54 @@
-## Description: <br>
-Exact-match DeFi audit workflow for Solidity and EVM protocols. Use for DeFi audit, DeFi security review, smart contract audit, oracle manipulation checks, reentrancy review, access control review, accounting invariant triage, and bug bounty report prep. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through first-pass Solidity and EVM DeFi audit triage, including attack-surface mapping, risk prioritization, contract checklists, and report skeletons.
 
-## Publisher: <br>
-[n8gendegen](https://clawhub.ai/user/n8gendegen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[n8gendegen](https://clawhub.ai/user/n8gendegen)
 
-## Use Case: <br>
-Developers, security reviewers, and bug bounty participants use this skill to map Solidity and EVM protocol attack surface, prioritize high-risk contracts, and produce a first-pass DeFi security checklist before deeper manual review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can produce first-pass audit notes that may miss vulnerabilities or overstate candidate findings. <br>
-Mitigation: Use it as triage only; validate candidate findings with manual review and runnable proofs of concept before submission. <br>
-Risk: The skill links to external paid Atlas ZIP packs outside this artifact. <br>
-Mitigation: Evaluate any separate download or purchase independently before installing or using it. <br>
+## Use Case:
 
+External developers, protocol teams, and auditors use this skill to build a first-pass DeFi security review plan before deeper manual audit or bug bounty work.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/n8gendegen/defi-audit-workflow) <br>
-- [AtlasAgentSuite Skill Page](https://atlasagentsuite.com/skills.html?utm_source=clawhub&utm_medium=skill&utm_campaign=defi-audit-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown checklist and review plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces triage guidance, candidate finding notes, and report skeletons; no code execution or privileged access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The workflow can surface incomplete or incorrect candidate findings if treated as a full audit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for triage, then verify candidate findings independently with manual review and runnable proofs of concept before submission.
+
+Risk: The free workflow includes visible promotion for paid Atlas packs.
+
+Mitigation: Review the promotional context before deployment and make sure users understand the skill is a checklist workflow, not a paid-audit substitute.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/n8gendegen/skills/defi-audit-workflow)
+- [AtlasAgentSuite skill page](https://atlasagentsuite.com/skills.html?utm_source=clawhub&utm_medium=skill&utm_campaign=defi-audit-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown checklist and report skeleton]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces triage guidance only; candidate findings require independent verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

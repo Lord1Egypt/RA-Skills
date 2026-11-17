@@ -1,43 +1,58 @@
-## Description: <br>
-AI-assisted tool to quickly build WeChat Mini Programs with templates, generated page code, cloud function templates, and deployment guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-assisted tool for building WeChat Mini Programs with templates, generated pages and components, cloud function templates, and deployment guidance.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and small businesses use this skill to scaffold WeChat Mini Program projects, generate page code from prompts, create common cloud function templates, and follow setup and deployment steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup instructions reference a global npm installation that the security scan says should not be automatically trusted. <br>
-Mitigation: Independently verify the referenced npm package before installing it globally, or test it only in a disposable environment. <br>
-Risk: The helper script writes files and directories based on user-provided names. <br>
-Mitigation: Run it only in a disposable project directory and use simple non-path project, page, and function names. <br>
-Risk: AI page generation sends prompt content to an external OpenClaw API client. <br>
-Mitigation: Do not include secrets, customer data, internal URLs, or proprietary requirements in generation prompts. <br>
+## Use Case:
 
+Developers and small-business teams use this skill to scaffold WeChat Mini Program projects, generate page code from prompts, create common cloud function templates, and follow deployment guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/wechat-mini-program-builder) <br>
-- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated WeChat Mini Program code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write project directories, page markdown, cloud function JavaScript, and package.json files when its helper script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts may be shared with a remote AI service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not enter secrets, confidential requirements, private customer data, or unreleased business plans in prompts.
+
+Risk: The skill can write generated project, page, and cloud function files into the local workspace.
+
+Mitigation: Run it only in a dedicated workspace, avoid path-like names, and review generated files before merging or deploying them.
+
+Risk: Generated cloud function packages may use unpinned npm dependencies.
+
+Mitigation: Pin and review npm dependencies before installing or deploying generated cloud functions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/wechat-mini-program-builder)
+- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with generated WXML, WXSS, JavaScript, JSON, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write generated project files, page markdown, and cloud function templates in the working directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

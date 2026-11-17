@@ -1,43 +1,53 @@
-## Description: <br>
-AI Meeting Notes turns pasted meeting notes, transcripts, and other unstructured text into summaries, action items with owners and deadlines, saved meeting-note files, and optional to-do tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms pasted meeting notes, transcripts, email threads, or chat exports into concise summaries, action items with owners and deadlines, decisions, saved Markdown notes, and an optional to-do tracker.
 
-## Publisher: <br>
-[jeffjhunter](https://clawhub.ai/user/jeffjhunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jeffjhunter](https://clawhub.ai/user/jeffjhunter)
 
-## Use Case: <br>
-Employees, consultants, and other knowledge workers use this skill to convert pasted notes, transcripts, email threads, and chat excerpts into concise meeting summaries, numbered action items, decisions, and follow-up prompts. It also helps maintain a local Markdown to-do list from selected meeting action items. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Pasted notes, transcripts, and raw original text may persist in workspace files. <br>
-Mitigation: Use the skill in a private workspace, redact sensitive content before processing when needed, and periodically review or delete saved meeting notes. <br>
-Risk: Selected action items may be written to todo.md and remain visible in the workspace. <br>
-Mitigation: Review todo.md after updates and remove completed, sensitive, or no-longer-needed items. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jeffjhunter/ai-meeting-notes) <br>
-- [Publisher Homepage](https://jeffjhunter.com) <br>
-- [Output Example](artifact/examples/output-example.md) <br>
-- [Preferences Template](artifact/assets/PREFERENCES-template.md) <br>
-- [To-Do Template](artifact/assets/TODO-template.md) <br>
+## Use Case:
 
+Employees and external users can use this skill to turn unstructured meeting records into summaries, follow-up tasks, owner/deadline assignments, decisions, and searchable Markdown notes. It is also useful for maintaining a local to-do list derived from meeting action items.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Guidance] <br>
-**Output Format:** [Single-message meeting summary with numbered action items, plus saved Markdown files and optional JSON, table, Slack, or email variants.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default workflow saves full meeting notes under meeting-notes/ and selected action items in todo.md.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill saves complete raw meeting content by default, which can expose confidential meetings, customer data, HR or legal topics, financial details, or credentials if used in an untrusted workspace or shared downstream.
+
+Mitigation: Use it only in trusted workspaces, request no-save or summary-only handling when appropriate, and manually redact sensitive transcript content before sharing saved notes or generated summaries.
+
+Risk: Extracted owners, deadlines, and decisions may be incomplete or incorrect when source notes are messy or ambiguous.
+
+Mitigation: Review generated summaries, action items, owners, deadlines, and decisions before relying on them for follow-up or adding them to todo.md.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jeffjhunter/skills/ai-meeting-notes)
+- [Publisher homepage](https://jeffjhunter.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown notes, concise chat summaries, task lists, optional JSON/table/Slack/email variants, and workspace files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates date-prefixed meeting note files under meeting-notes/ and can update a root-level todo.md when the user chooses action items to track.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,56 @@
-## Description: <br>
-Intelligent recommendation system that generates optimal AI agent technology stacks based on project requirements, constraints, and team expertise. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent recommendation system that generates optimal AI agent technology stacks based on project requirements, constraints, and team expertise.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Developers, AI architects, technical leads, and organizations use this skill to generate AI agent stack recommendations from project requirements, operational constraints, and team expertise. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Request fields can contain sensitive project, customer, healthcare, or business details. <br>
-Mitigation: Use non-sensitive inputs unless provider privacy and compliance terms have been verified; avoid secrets and confidential details in additionalNotes, use an opaque sessionId, and omit userId when possible. <br>
+## Use Case:
 
+Developers, AI architects, and technical leads use this skill to compare AI agent frameworks, LLMs, and supporting technologies against project requirements, operating constraints, budget, latency, deployment preferences, security needs, and team expertise.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-ai-agent-stack-builder) <br>
-- [API Documentation](https://api.mkkpro.com:8162/docs) <br>
-- [Kong Route](https://api.mkkpro.com/creative/ai-agent-stack-builder) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, guidance] <br>
-**Output Format:** [JSON recommendation payload] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes prioritized frameworks, LLMs, supporting technologies, compliance notes, estimated monthly cost, and implementation timeline.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Users may include sensitive project details, compliance information, patient data, customer records, proprietary architecture details, or personal identifiers in recommendation requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive inputs in additionalNotes, do not send secrets or protected data, and prefer pseudonymous session and user identifiers.
+
+Risk: Stack recommendations and compliance notes may be mistaken for final architecture, security, or compliance approval.
+
+Mitigation: Review recommendations with responsible engineering, security, and compliance stakeholders before implementation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-ai-agent-stack-builder)
+- [API Documentation](https://api.mkkpro.com:8162/docs)
+- [API Route](https://api.mkkpro.com/creative/ai-agent-stack-builder)
+- [OpenAPI Specification](artifact/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, json]
+
+**Output Format:** [JSON recommendation responses with explanatory text fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations may include ranked frameworks, LLMs, supporting technologies, compliance notes, estimated monthly cost, and implementation timeline.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

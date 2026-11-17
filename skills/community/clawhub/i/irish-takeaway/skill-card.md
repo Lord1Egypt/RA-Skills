@@ -1,43 +1,55 @@
-## Description: <br>
-Find nearby takeaways in Ireland and browse menus via Deliveroo/Just Eat. Uses Google Places API for discovery and browser automation for menu scraping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby takeaways in Ireland and browse menus via Deliveroo/Just Eat. Uses Google Places API for discovery and browser automation for menu scraping.
 
-## Publisher: <br>
-[cotyledonlab](https://clawhub.ai/user/cotyledonlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cotyledonlab](https://clawhub.ai/user/cotyledonlab)
 
-## Use Case: <br>
-External users and agents use this skill to find Irish takeaway restaurants by location or cuisine and inspect menu information from food-delivery sites before deciding what to order. <br>
-
-### Deployment Geography for Use: <br>
-Ireland <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may send town, postcode, address, or restaurant lookup details to Google Places and food-delivery sites. <br>
-Mitigation: Use it only when sharing that location context with those external services is acceptable. <br>
-Risk: Google Places API key usage can create quota or billing exposure. <br>
-Mitigation: Use a restricted Google Places API key and monitor quota and billing. <br>
-Risk: Browser automation against delivery sites could enter login, payment, or ordering flows if a user extends the workflow beyond menu viewing. <br>
-Mitigation: Keep use to discovery and menu browsing unless a future release explicitly scopes and reviews ordering behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/cotyledonlab/irish-takeaway) <br>
-- [Deliveroo Ireland](https://deliveroo.ie/) <br>
-- [Just Eat Ireland](https://www.just-eat.ie/) <br>
+## Use Case:
 
+External users and agents use this skill to find Irish takeaway restaurants by location, cuisine, rating, or open status, then browse menu information from supported delivery platforms.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and summarized restaurant or menu results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include restaurant names, ratings, menu items, prices, allergens, and setup guidance when supported by the queried services.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Ireland
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends location text and search intent to Google Places, Deliveroo, or Just Eat.
+
+Mitigation: Use only locations and queries that are acceptable to share with those third-party services.
+
+Risk: The skill depends on a Google Places API key and the external goplaces CLI.
+
+Mitigation: Protect the API key, review or pin the goplaces install source, and confirm the dependency before deployment.
+
+## Reference(s):
+
+- [Irish Takeaway Finder ClawHub listing](https://clawhub.ai/cotyledonlab/skills/irish-takeaway)
+- [cotyledonlab publisher profile](https://clawhub.ai/user/cotyledonlab)
+- [Deliveroo Ireland](https://deliveroo.ie/)
+- [Just Eat Ireland](https://www.just-eat.ie/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured restaurant or menu summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires goplaces, GOOGLE_PLACES_API_KEY, and browser access for menu browsing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

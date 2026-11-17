@@ -1,42 +1,59 @@
-## Description: <br>
-Post and schedule content across multiple social platforms via the Blotato API with platform-specific formatting and media upload support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Posts or schedules content across Twitter/X, LinkedIn, Facebook, Instagram, TikTok, Threads, Bluesky, Pinterest, and YouTube via the Blotato API with platform-specific content length handling and media upload support.
 
-## Publisher: <br>
-[mcbaivn](https://clawhub.ai/user/mcbaivn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcbaivn](https://clawhub.ai/user/mcbaivn)
 
-## Use Case: <br>
-External users and social media operators use this skill to prepare, publish, or schedule one piece of content across connected Twitter, LinkedIn, Facebook, Instagram, TikTok, Threads, Bluesky, Pinterest, and YouTube accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Blotato API key can allow the agent to publish or schedule real posts through connected social accounts. <br>
-Mitigation: Provide the key only at runtime or through a proper secret store, and do not store it in plaintext workspace files. <br>
-Risk: Content, media, target platforms, accounts, or scheduled times may be wrong before posts are submitted. <br>
-Mitigation: Manually verify the final text, media files, selected accounts or platforms, and posting time before each run. <br>
+## Use Case:
 
+External users and content operations teams use this skill to post or schedule social content across multiple connected platforms through Blotato. It helps an agent list connected accounts, adapt content to platform limits, attach media, and submit immediate or scheduled posts.
 
-## Reference(s): <br>
-- [Blotato API Reference](references/api.md) <br>
-- [Blotato API Base URL](https://backend.blotato.com/v2) <br>
-- [Blotato Account Settings](https://my.blotato.com/settings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash commands and JSON API guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Blotato API key at runtime and can publish or schedule posts through connected social accounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: A Blotato API key can publish or schedule posts to connected social accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a throwaway or narrowly scoped API key where possible, store it in an environment variable or secret manager, and avoid saving it in TOOLS.md.
+
+Risk: Posts, schedules, and media uploads can be submitted without a required final confirmation step.
+
+Mitigation: Require explicit final user confirmation before running any command that posts, schedules, or uploads media.
+
+Risk: Local files supplied as media inputs can be uploaded to Blotato storage.
+
+Mitigation: Review media paths and destination platforms before upload, and only attach files the user explicitly approved.
+
+## Reference(s):
+
+- [Blotato API Reference](references/api.md)
+- [Blotato API settings](https://my.blotato.com/settings)
+- [ClawHub skill page](https://clawhub.ai/mcbaivn/skills/blotato-post-everywhere)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger external API calls that publish, schedule, or upload media when the user supplies a Blotato API key.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Fireflies"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["fireflies"]
   icon: "https://static.oomol.com/logo/third-party/Fireflies.svg"
 ---
@@ -37,7 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `continue_askfred_thread` — Continue a Fireflies AskFred thread with a follow-up question.
+- `continue_askfred_thread` — Continue a Fireflies AskFred thread with a follow-up question. [write]
 - `create_askfred_thread` — Create a Fireflies AskFred thread from a meeting question. [write]
 - `create_bite` — Create a Fireflies bite from a transcript time range. [write]
 - `delete_askfred_thread` — Delete a Fireflies AskFred thread by thread ID. [destructive]
@@ -89,11 +89,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Fireflies is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=fireflies
+  https://console.oomol.com/connections/fireflies
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Fireflies homepage: https://www.fireflies.ai
+- API documentation: https://docs.fireflies.ai/

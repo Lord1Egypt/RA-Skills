@@ -1,42 +1,60 @@
-## Description: <br>
-Provides Wiki.js administration through GraphQL and REST operations for pages, assets, search, tags, page trees, history, versioning, and rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wiki Js V3 helps agents administer Wiki.js through GraphQL and REST operations for pages, assets, search, tags, trees, history, versioning, and rendering.
 
-## Publisher: <br>
-[nyhx1101](https://clawhub.ai/user/nyhx1101) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nyhx1101](https://clawhub.ai/user/nyhx1101)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent or CLI administer a Wiki.js instance, including page, asset, search, tag, history, render, and version operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform destructive Wiki.js administration actions, including delete, asset-delete, tag delete, upload, move, restore, and upsert operations. <br>
-Mitigation: Use a dedicated least-privilege Wiki.js API token and manually review destructive or content-changing commands before execution. <br>
-Risk: A misconfigured WIKIJS_URL can direct administration commands at the wrong Wiki.js instance. <br>
-Mitigation: Verify WIKIJS_URL before running write, delete, upload, restore, or move operations. <br>
-Risk: Exposure of WIKIJS_TOKEN would allow Wiki.js actions within the token's permissions. <br>
-Mitigation: Provide WIKIJS_TOKEN through environment or secret management, keep it out of logs and committed files, and rotate dedicated tokens when access changes. <br>
+## Use Case:
 
+Developers and agents use this skill to manage Wiki.js content and assets from command-line style workflows, including creating, updating, moving, copying, deleting, searching, restoring, and rendering pages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nyhx1101/wiki-js-v3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Wiki.js URL and API token configuration before use] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The skill can immediately modify or delete Wiki.js pages, tags, assets, and restored versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review destructive commands before execution and use a least-privilege Wiki.js API token scoped only to the intended wiki and operations.
+
+Risk: A broad production admin token could expose or alter more content than intended.
+
+Mitigation: Avoid broad production admin tokens; rotate tokens if exposed and configure separate tokens for automation.
+
+Risk: Non-local Wiki.js traffic can expose API tokens if WIKIJS_URL is not protected by HTTPS.
+
+Mitigation: Use an HTTPS WIKIJS_URL for any non-local server and avoid sending credentials over plaintext transport.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nyhx1101/skills/wiki-js-v3)
+- [Publisher profile](https://clawhub.ai/user/nyhx1101)
+- [Wiki.js GraphQL Playground]({WIKIJS_URL}/graphql-playground)
+- [Wiki.js REST upload endpoint]({WIKIJS_URL}/u)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WIKIJS_URL and WIKIJS_TOKEN configuration for live Wiki.js API operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,59 @@
-## Description: <br>
-Use the paid LDM Inbox Check MCP server to run real inbox-placement tests before OpenClaw agents send cold email or bulk outbound. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the paid LDM Inbox Check MCP server to run real inbox-placement tests before OpenClaw agents send cold email or bulk outbound.
 
-## Publisher: <br>
-[live-direct-marketing](https://clawhub.ai/user/live-direct-marketing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[live-direct-marketing](https://clawhub.ai/user/live-direct-marketing)
 
-## Use Case: <br>
-Developers and outbound-automation operators use this skill to run paid inbox-placement checks through MCP before sending cold email or bulk outbound campaigns. It helps agents inspect quota, create seed-address tests, read placement and authentication results, and decide whether to send, revise, or pause. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive INBOX_CHECK_API_KEY for a third-party paid service. <br>
-Mitigation: Store the API key securely, avoid printing or committing it, and install the MCP package only when the LDM Inbox Check service and npm package are trusted. <br>
-Risk: Creating inbox-placement tests can consume paid quota. <br>
-Mitigation: Check quota before creating tests, reuse recent relevant results when appropriate, and reserve paid tests for final or user-approved preflight workflows. <br>
-Risk: Campaign drafts, headers, authentication results, and screenshots may be sent to an external provider. <br>
-Mitigation: Avoid submitting regulated or confidential campaign content unless vendor and privacy requirements permit that data transfer. <br>
+## Use Case:
 
+External developers and outbound automation teams use this skill to run paid inbox-placement checks before sending cold email or bulk outbound campaigns. It helps agents inspect provider-level placement, authentication results, screenshots, quota status, and pass/fail guidance before deciding whether to send, revise, or pause.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/live-direct-marketing/ldm-openclaw-inbox-mcp-skill) <br>
-- [Skill homepage](https://github.com/live-direct-marketing/ldm-openclaw-inbox-mcp-skill) <br>
-- [MCP package](https://www.npmjs.com/package/ldm-inbox-check-mcp) <br>
-- [Inbox Check service](https://check.live-direct-marketing.online) <br>
-- [Inbox Check MCP API docs](https://check.live-direct-marketing.online/docs/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text with JSON configuration examples and MCP tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an INBOX_CHECK_API_KEY and may consume paid quota when creating inbox-placement tests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill invokes an unpinned npm MCP package with access to an Inbox Check API key, so executable behavior could change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review the MCP package version in a lockfile-controlled deployment, use a narrowly scoped revocable API key, limit environment exposure, and require explicit approval for paid test creation or deletion.
+
+Risk: Inbox checks consume paid or quota-backed usage.
+
+Mitigation: Inspect quota before creating tests, reuse recent matching tests when appropriate, choose the smallest useful provider set, and ask the user before casual or repeated paid checks.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/live-direct-marketing/skills/ldm-openclaw-inbox-mcp-skill)
+- [Publisher Profile](https://clawhub.ai/user/live-direct-marketing)
+- [Skill Homepage](https://github.com/live-direct-marketing/ldm-openclaw-inbox-mcp-skill)
+- [MCP Package](https://www.npmjs.com/package/ldm-inbox-check-mcp)
+- [MCP Repository](https://github.com/live-direct-marketing/ldm-inbox-check-mcp)
+- [Inbox Check](https://check.live-direct-marketing.online)
+- [Inbox Check MCP API Docs](https://check.live-direct-marketing.online/docs/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MCP tool-use guidance, pass/fail decisions, quota notes, authentication results, provider placement summaries, screenshots availability, and recommended fixes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

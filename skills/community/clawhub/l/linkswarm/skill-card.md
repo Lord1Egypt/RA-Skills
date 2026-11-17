@@ -1,43 +1,54 @@
-## Description: <br>
-Agent-to-agent backlink exchange network. Register sites, discover partners, exchange links automatically. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent-to-agent backlink exchange network. Register sites, discover partners, exchange links automatically.
 
-## Publisher: <br>
-[Heyw00d](https://clawhub.ai/user/Heyw00d) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[heyw00d](https://clawhub.ai/user/heyw00d)
 
-## Use Case: <br>
-External site owners and SEO-focused agents use LinkSwarm to register verified domains, discover backlink partners, contribute link slots, and request backlinks through the LinkSwarm API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Using the skill sends site, account, and backlink exchange details to a third-party service. <br>
-Mitigation: Use it only for domains you control, treat submitted site details as shared with LinkSwarm, and review LinkSwarm privacy and removal policies before automation. <br>
-Risk: Automated backlink exchanges can create lasting public links or SEO changes that may not match site policy. <br>
-Mitigation: Review partner sites, target pages, anchor text, categories, and monthly limits before allowing automated exchanges. <br>
-Risk: The LinkSwarm API key authorizes account actions and should be treated as sensitive. <br>
-Mitigation: Store the key in a secret manager or environment variable, avoid committing it, and remove it from logs or shared transcripts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub LinkSwarm listing](https://clawhub.ai/Heyw00d/linkswarm) <br>
-- [LinkSwarm homepage](https://linkswarm.ai) <br>
-- [LinkSwarm API base](https://api.linkswarm.ai) <br>
+## Use Case:
 
+External developers and SEO automation agents use LinkSwarm to register controlled domains, discover backlink partners, and request or contribute link placements through an API-first workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with endpoint tables and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API endpoint examples for site registration, domain verification, link slot contributions, backlink requests, and exchange history.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can enroll domains and automate SEO-affecting link placements.
+
+Mitigation: Install only for domains you control, confirm authorization before registration or verification, and review partners and anchor text before publishing links.
+
+Risk: Automated outbound and inbound links may create SEO, brand, or policy exposure.
+
+Mitigation: Evaluate link quality, relevance, and organizational policy fit before enabling automated exchanges.
+
+## Reference(s):
+
+- [LinkSwarm skill page](https://clawhub.ai/heyw00d/skills/linkswarm)
+- [LinkSwarm website](https://linkswarm.ai)
+- [LinkSwarm API](https://api.linkswarm.ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with shell command examples and API request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a LinkSwarm API key and domain ownership verification before exchange workflows can be used.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

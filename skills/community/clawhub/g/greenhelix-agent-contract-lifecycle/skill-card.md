@@ -1,44 +1,59 @@
-## Description: <br>
-Build automated contract lifecycle management for AI agents with machine-readable SLAs, escrow-backed execution, real-time obligation tracking, automated penalty enforcement, renewal workflows, and Python examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build automated contract lifecycle management for AI agents with machine-readable SLAs, escrow-backed execution, real-time obligation tracking, automated penalty enforcement, renewal workflows, and detailed Python examples.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and agent builders use this guide to design machine-readable contract workflows for AI-agent commerce, including SLAs, escrow-backed execution, breach monitoring, penalties, renewals, termination, and audit trails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide teaches autonomous financial contract, escrow, penalty, dispute, and termination workflows. <br>
-Mitigation: Require human approvals, transaction caps, and sandbox-only testing before adapting examples to systems that can move funds. <br>
-Risk: Credential and sandbox expectations are inconsistent across the artifact and examples. <br>
-Mitigation: Separate credentials by environment, keep production keys out of examples, and verify each endpoint and authorization path before use. <br>
-Risk: Penalty, refund, release, and termination logic could move funds incorrectly if copied without validation. <br>
-Mitigation: Add independent tests and manual review for all fund-moving paths before any production deployment. <br>
+## Use Case:
 
+Developers and engineers use this guide to design agent contract lifecycle workflows with machine-readable SLAs, escrow-backed execution, monitoring, penalties, renewal, termination, and audit trails.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/greenhelix-agent-contract-lifecycle) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API endpoint](https://api.greenhelix.net/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guide with Python and JSON code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable guide; examples target GreenHelix sandbox and API endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Production-style examples can automate escrow funding, penalty deductions, reputation changes, and contract termination without enough safeguards if copied directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the guide as illustrative, require explicit approval thresholds for fund movement and termination, and test with sandbox credentials before any live use.
+
+Risk: Contract automation can fund escrow or enforce penalties before both parties have clearly accepted the same agreement state.
+
+Mitigation: Require bilateral signature verification before escrow funding and keep an auditable record of the signed contract fingerprint.
+
+Risk: Repeated breach processing or unsafe API routing could duplicate enforcement actions or expose bearer tokens.
+
+Mitigation: Add idempotency and breach deduplication, and validate API destinations before sending bearer tokens.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/mirni/skills/greenhelix-agent-contract-lifecycle)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix API endpoint](https://api.greenhelix.net/v1)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guide with Python and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executing guide; examples reference GreenHelix sandbox and API workflows.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

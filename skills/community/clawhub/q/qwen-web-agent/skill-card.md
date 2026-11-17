@@ -1,44 +1,58 @@
-## Description: <br>
-Automates the Qwen web interface at qianwen.com with Playwright to submit prompts, maintain a browser login session, and capture single-turn or multi-turn responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation for the Qwen web interface at qianwen.com that sends single-turn or multi-turn prompts, waits for responses, and captures replies through Playwright.
 
-## Publisher: <br>
-[dereksongyang](https://clawhub.ai/user/dereksongyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dereksongyang](https://clawhub.ai/user/dereksongyang)
 
-## Use Case: <br>
-Developers and agents use this skill to route prompts to Qwen's web chat and bring the resulting Markdown or text answers into automated workflows that need single-turn or multi-turn Q&A. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a reusable Qwen browser login session on disk. <br>
-Mitigation: Use it only on trusted machines and review or remove the saved session directory when access should no longer persist. <br>
-Risk: Prompts are sent to qianwen.com and chat contents are saved in plain-text Markdown files. <br>
-Mitigation: Avoid submitting secrets or private documents, and change the output paths before use in shared or sensitive environments. <br>
-Risk: The scripts can automatically delete Qwen conversations from the logged-in account. <br>
-Mitigation: Review the scripts before installation and disable deletion unless that behavior is explicitly wanted. <br>
+## Use Case:
 
+Developers and automation agents use this skill to ask Qwen questions through its web interface and capture the model's replies for downstream workflows. It supports both one-shot prompts and multi-turn sessions that preserve browser login state.
 
-## Reference(s): <br>
-- [Qwen usage instructions](references/使用说明.md) <br>
-- [Qwen web interface](https://www.qianwen.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/dereksongyang/qwen-web-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text captured from Qwen responses, with command-line status output during execution.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Single-turn runs write the latest response to last_output.md; multi-turn runs write conversation history to qwen_session_history.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill stores persistent browser login state and Qwen transcript output locally, which can expose account state, prompts, and model responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Qwen account or browser profile, restrict access to ~/.qwen_session/ and output Markdown files, and treat those files as sensitive.
+
+Risk: The scripts launch Chromium with --no-sandbox.
+
+Mitigation: Review the scripts before installation and remove --no-sandbox where the execution environment supports normal Chromium sandboxing.
+
+Risk: The skill automatically deletes Qwen conversations from the logged-in account after use.
+
+Mitigation: Review or modify the cleanup behavior before use if conversation retention or auditability is required.
+
+## Reference(s):
+
+- [Qwen Web Agent usage guide](references/使用说明.md)
+- [Qwen web interface](https://www.qianwen.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown files and terminal text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single-turn output is written to last_output.md; multi-turn output is appended to qwen_session_history.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

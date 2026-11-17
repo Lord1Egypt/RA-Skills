@@ -1,44 +1,56 @@
-## Description: <br>
-Find the cheapest way to send money between any two currencies. Compares 22+ crypto exchanges and 19 remittance providers in real-time. Free, open source, no affiliate fees. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find the cheapest way to send money between any two currencies. Compares 22+ crypto exchanges and 19 remittance providers in real-time. Free, open source, no affiliate fees.
 
-## Publisher: <br>
-[miguelvalenciav](https://clawhub.ai/user/miguelvalenciav) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miguelvalenciav](https://clawhub.ai/user/miguelvalenciav)
 
-## Use Case: <br>
-External users and developers use Money Router to compare cross-border transfer options, request ranked routes, and receive provider paths, fees, rates, and step-by-step sending instructions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Quote and rate-verification requests send transfer parameters and observed-rate details to Coinnect. <br>
-Mitigation: Submit only non-sensitive quote parameters and avoid personal, account, or transaction-identifying details. <br>
-Risk: Optional API keys and MCP or self-hosted usage can expose credentials or run third-party code. <br>
-Mitigation: Keep API keys private and review the external Coinnect package before running the optional MCP server or self-hosted code. <br>
+## Use Case:
 
+External users, developers, and agents use Money Router to compare cross-border money transfer routes by amount and currency pair. It returns ranked route guidance with costs, rates, provider paths, estimated timing, and verification-related actions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/miguelvalenciav/money-router) <br>
-- [Coinnect Homepage](https://coinnect.bot) <br>
-- [Coinnect API Documentation](https://coinnect.bot/docs) <br>
-- [Coinnect Whitepaper](https://coinnect.bot/whitepaper) <br>
-- [Coinnect Repository](https://github.com/coinnect-dev/coinnect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with API request examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include quote parameters, ranked route details, provider paths, fee and rate breakdowns, and optional MCP setup commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+Risk: Verification and quest features may send provider, currency pair, observed rate, and fee information to Coinnect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting personal account details or transaction identifiers unless the service explicitly requests them and the user is comfortable sharing them.
+
+Risk: Quoted rates, fees, provider availability, and transfer timing can change before a transfer is completed.
+
+Mitigation: Verify the final rate, fee, recipient amount, and delivery estimate directly with the selected provider before initiating a transaction.
+
+## Reference(s):
+
+- [Money Router on ClawHub](https://clawhub.ai/miguelvalenciav/skills/money-router)
+- [Coinnect homepage](https://coinnect.bot)
+- [Coinnect API docs](https://coinnect.bot/docs)
+- [Coinnect whitepaper](https://coinnect.bot/whitepaper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with API endpoint examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes ranked route details, fee and exchange-rate summaries, provider paths, estimated delivery time, and step-by-step transfer guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

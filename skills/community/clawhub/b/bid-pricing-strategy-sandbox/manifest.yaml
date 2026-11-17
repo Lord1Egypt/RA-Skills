@@ -1,0 +1,17 @@
+name: bid-pricing-strategy-sandbox
+display_name: 投标报价策略沙盘
+version: 2.0.1
+author: "一线评标专家&ChesaraM"
+description: 读取招标/采购文件中的评标办法，自动解析报价评分规则并生成单文件、零代码的交互式测算工具；覆盖政采与招投标两大体系、单/多价格维度，非代码用户可直接填表或粘贴 AI 配置即可运行，支持反复调价、实时排名与策略建议。
+tags:
+  - 招投标
+  - 政府采购
+  - 报价评分
+  - 策略测算
+  - 零代码工具
+homepage: ""
+feedback:
+  channel: GitHub Issues
+  account: 项目仓库 Issue
+  note: 使用问题、误报反馈、实务建议，欢迎通过项目仓库提交 Issue 反馈
+license: CC-BY-NC 4.0

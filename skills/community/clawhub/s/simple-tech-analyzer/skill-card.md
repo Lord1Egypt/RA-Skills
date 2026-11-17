@@ -1,42 +1,59 @@
-## Description: <br>
-Simple Tech Analyzer provides basic stock technical indicator analysis for MACD, RSI, volume changes, and buy/sell signal prompts using local Tongdaxin market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simple Tech Analyzer provides basic Chinese-language stock technical indicator analysis for MACD, KDJ, RSI, volume changes, and buy/sell signal prompts using local Tongdaxin market data.
 
-## Publisher: <br>
-[15910701838](https://clawhub.ai/user/15910701838) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[15910701838](https://clawhub.ai/user/15910701838)
 
-## Use Case: <br>
-External users and developers use this skill to request basic stock-code technical analysis backed by local Tongdaxin data. The output is intended as an informational market-analysis reference and not as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's indicator signals may be mistaken for investment advice. <br>
-Mitigation: Treat outputs as informational analysis only and require independent financial judgment before trading decisions. <br>
-Risk: Market analysis depends on local Tongdaxin data being available, fresh, and sufficient. <br>
-Mitigation: Confirm data availability and recency, and handle the skill's insufficient-data error before relying on any signal. <br>
-Risk: The supplied security evidence reports clean telemetry but notes pending VirusTotal status and limited deeper confirmation. <br>
-Mitigation: Install with normal caution and review the artifact files before deployment when higher assurance is required. <br>
+## Use Case:
 
+Developers and agent users can use this skill to request basic technical analysis for Chinese stock symbols, including MACD, RSI, and volume-based signals. The output is informational and should not be treated as financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/15910701838/simple-tech-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Structured JSON-like analysis results with indicator values, signal labels, and upgrade guidance text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Tongdaxin data access through @tdx-local; returns an error when there is insufficient market data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact/SKILL.md) <br>
+Risk: Stock analysis output could be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat signals as informational only and review decisions independently before trading.
+
+Risk: The skill depends on local Tongdaxin market data, so unavailable or stale local data can affect results.
+
+Mitigation: Confirm local data availability and freshness before relying on an analysis response.
+
+Risk: Analysis output may include disclosed promotional upgrade prompts.
+
+Mitigation: Install only when promotional content in responses is acceptable for the intended agent experience.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/15910701838/skills/simple-tech-analyzer)
+- [Publisher profile](https://clawhub.ai/user/15910701838)
+- [Jarvis stock monitor upgrade service](https://clawhub.ai/15910701838/jarvis-stock-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Text or JSON-like analysis results with Chinese-language signal labels and upgrade guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include promotional upgrade prompts; analysis depends on local Tongdaxin market data availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

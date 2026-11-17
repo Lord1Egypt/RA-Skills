@@ -8,6 +8,8 @@ Use this reference when the user asks why a capability is unavailable, whether a
 - A known historical action name is not executable until Runtime exposes reviewed support, validation, verification, and tests.
 - Non-enabled actions are not missing by default; they may be manual guidance, owner-review blocked, app-only, credential-blocked, LAN-only, or unsupported by the current Runtime surface.
 - If Runtime returns a block, keep the block. Do not work around it with internal endpoints, guessed payloads, or external tool servers.
+- A home created by lighting design import can contain design metadata before it has an effective bound gateway or installed devices. Treat future slots and imported scenes as planning/read-only evidence until Runtime proves they are executable resources.
+- `bind=true` and `online=false` are not the same boundary as `bind=false` design slots. Let Runtime's returned status decide whether control was accepted, partial, or blocked; do not reuse a sandbox failure pattern for a real IoT home.
 
 ## Block Classes
 
@@ -38,3 +40,4 @@ Use this reference when the user asks why a capability is unavailable, whether a
 - `home.member.invite`, `home.member.accept_share`, `home.member.configure`, and `gateway.configure` are reviewed Runtime intents and must not be replaced with unreviewed share, role, or gateway requests. Accept-share uses the current local account as recipient; never pass or infer another user's uid.
 - Do not use static product names, room names, or marketing names as proof of writable capability.
 - Do not treat design, commercial platform, hub internals, internal schema, panel layout, storage, or voice configuration material as user-safe execution unless Runtime exposes reviewed support.
+- Do not invent Runtime intents from domain wording. If a decodable request returns `not_supported`, switch to a catalog intent or explain the limitation instead of retrying guessed intent names.

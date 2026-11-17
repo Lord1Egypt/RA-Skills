@@ -1,46 +1,63 @@
-## Description: <br>
-基于明日DMP开放平台API，提供RTQ投放订单管理功能，支持创建、查询、修改投放订单。采用10步标准化工作流程，包含请求类型识别、凭证检查、参数引导、格式校验、参数确认、任务记录等完整流程。适用于精准广告投放、人群包投放、属性定向投放等场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于明日DMP开放平台API，提供RTQ投放订单管理功能，支持创建、查询、修改投放订单，并通过标准化流程覆盖请求类型识别、凭证检查、参数引导、格式校验、参数确认和任务记录。
 
-## Publisher: <br>
-[mingri26](https://clawhub.ai/user/mingri26) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mingri26](https://clawhub.ai/user/mingri26)
 
-## Use Case: <br>
-Advertising operators and developers use this skill to manage Mingri DMP RTQ activation orders, including creating, querying, and modifying audience-targeted delivery orders after configuring API and RTQ credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: RTQ and API credentials may appear in console output, terminal transcripts, or plaintext local credential files. <br>
-Mitigation: Run the skill only in protected environments, redact logs before sharing them, restrict credential file access, and rotate credentials if they may have been captured. <br>
-Risk: Order data and RTQ access details may be retained in local order caches. <br>
-Mitigation: Limit access to local workspace files, remove cached order data when it is no longer needed, and avoid storing unnecessary credential fields in cache records. <br>
-Risk: Authenticated API calls depend on locally discovered helper code. <br>
-Mitigation: Review the installed authentication helper before use and keep helper discovery scoped to trusted skill installation paths. <br>
-Risk: Incorrect audience IDs or order parameters can affect live advertising delivery. <br>
-Mitigation: Use the skill's confirmation step, verify audience validation results, and require explicit user approval before creating or modifying orders. <br>
+## Use Case:
 
+External advertisers and marketing operations teams use this skill to create, query, and modify Mingri DMP RTQ audience activation orders for targeted ad delivery. It guides credential setup, parameter collection, audience validation, user confirmation, and result reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mingri26/dmp-activation) <br>
-- [Mingri DMP authentication skill](https://clawhub.ai/mingri26/dmp-auth) <br>
-- [Task logger skill](https://clawhub.ai/mingri26/dmp-skill-logger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style guidance with parameter confirmation tables, inline shell commands, and JSON API results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Mingri DMP API and RTQ credentials and may create local credential and order-cache files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Live API and RTQ credentials may be exposed if pasted into chat, printed, or stored in local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped test credentials or an out-of-band secret mechanism, avoid sharing production keys in chat, and rotate any credentials that may have been exposed.
+
+Risk: Order details and RTQ keys may persist in local credential or cache files such as ~/workspace/.order_cache.
+
+Mitigation: Review local credential and order-cache contents after use, remove sensitive cache files when no longer needed, and keep file permissions restricted.
+
+Risk: The skill can execute locally discovered auth or logger helper scripts.
+
+Mitigation: Verify the exact mingdata-dmp-auth and task logger dependency paths and publishers before installation or execution.
+
+Risk: The security verdict is suspicious because of credential handling and helper-script execution behavior.
+
+Mitigation: Require review before deployment and run with least-privilege credentials in a controlled workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mingri26/skills/dmp-activation)
+- [Mingri DMP auth dependency](https://clawhub.ai/mingri26/dmp-auth)
+- [Mingri DMP task logger dependency](https://clawhub.ai/mingri26/dmp-skill-logger)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-like parameter examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute bundled Python scripts that call Mingri DMP APIs through an auth dependency and may write credential or order-cache files locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

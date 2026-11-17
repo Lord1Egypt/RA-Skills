@@ -1,46 +1,60 @@
-## Description: <br>
-Agent Skill design pattern template library that activates when users want to create new skills, optimize existing skill structures, or need skill design guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Skill design pattern template library that activates when users want to create new skills, optimize existing skill structures, or need skill design guidance, and provides five reusable patterns: Tool Wrapper, Generator, Reviewer, Inversion, and Pipeline.
 
-## Publisher: <br>
-[s906903912](https://clawhub.ai/user/s906903912) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[s906903912](https://clawhub.ai/user/s906903912)
 
-## Use Case: <br>
-Developers and agent builders use this skill to choose, combine, and apply reusable skill design patterns when creating or improving agent skills and templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may cause the skill to activate during unrelated conversations about creating or reviewing skills. <br>
-Mitigation: Invoke it with explicit skill-design intent and disable or avoid generic trigger phrases if it interferes with other workflows. <br>
-Risk: Generated skill patterns and templates may not fully match a team's local governance, security, or publishing requirements. <br>
-Mitigation: Review generated skill structures with the included creation checklist and apply local security and release review before publishing. <br>
+## Use Case:
 
+Developers and skill authors use this skill to select reusable agent skill design patterns, structure new skills, improve existing skill instructions, and check completeness before release.
 
-## Reference(s): <br>
-- [Agent Skill Design Pattern Templates](README.md) <br>
-- [Tool Wrapper Pattern](references/tool-wrapper-pattern.md) <br>
-- [Generator Pattern](references/generator-pattern.md) <br>
-- [Reviewer Pattern](references/reviewer-pattern.md) <br>
-- [Inversion Pattern](references/inversion-pattern.md) <br>
-- [Pipeline Pattern](references/pipeline-pattern.md) <br>
-- [Skill Creation Checklist](references/creation-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with examples, templates, checklists, and code or configuration snippets when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces skill design recommendations and template-oriented guidance; it does not call tools or external services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and SKILL.md metadata) <br>
+Risk: Broad activation phrases may route the skill into general conversations about skills or templates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow trigger keywords when stricter routing is required.
+
+Risk: Template guidance can lead to incomplete or misleading skill designs if generated outputs are accepted without review.
+
+Mitigation: Use the bundled creation checklist and review generated skill instructions before deployment.
+
+## Reference(s):
+
+- [Skill README](README.md)
+- [Tool Wrapper Pattern](references/tool-wrapper-pattern.md)
+- [Generator Pattern](references/generator-pattern.md)
+- [Reviewer Pattern](references/reviewer-pattern.md)
+- [Inversion Pattern](references/inversion-pattern.md)
+- [Pipeline Pattern](references/pipeline-pattern.md)
+- [Skill Creation Checklist](references/creation-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/s906903912/skills/skill-patterns)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with structured templates, checklists, and inline code or configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces pattern recommendations and template-based skill creation guidance; no hidden execution, credential use, persistence, or data transfer behavior was found in the security evidence.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

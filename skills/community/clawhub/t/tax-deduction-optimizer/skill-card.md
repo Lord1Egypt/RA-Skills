@@ -1,39 +1,52 @@
-## Description: <br>
-Provides structured tax deduction planning guidance, record-keeping templates, and deduction-versus-risk tradeoff checks for freelancers, small businesses, and salaried taxpayers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured deduction-planning guidance, record-keeping templates, and risk-aware next steps for freelancers, small businesses, and salaried taxpayers.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users, freelancers, small-business operators, and salaried taxpayers use this skill to identify possible deduction categories, organize tax records, compare deduction approaches, and prepare questions for a qualified tax professional. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tax deduction guidance may be incorrect, outdated, or mismatched to the user's tax year or jurisdiction. <br>
-Mitigation: Treat outputs as informational planning guidance, confirm the relevant tax year and jurisdiction, and consult a qualified tax professional before acting. <br>
-Risk: Users may mistake deduction checklists or China individual income-tax suggestions for filing, legal, or financial advice. <br>
-Mitigation: Use the skill for record organization and question preparation only; verify deductions, filing choices, and China-specific individual income-tax decisions with authoritative sources or a professional. <br>
+## Use Case:
 
+Individuals, freelancers, small businesses, and tax-planning assistants use this skill to identify possible deductions, organize supporting records, compare planning options, and prepare questions for professional review. It is descriptive planning support, not tax filing software or legal advice.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Configuration] <br>
-**Output Format:** [Structured JSON containing input analysis, recommendations, next steps, available templates, and a disclaimer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Descriptive and informational only; no external API calls, network requests, code execution, or financial transactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Tax deduction, filing, and timing strategies may be incorrect or inapplicable for a user's jurisdiction, tax year, or personal facts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as general planning guidance and verify deductions, filing choices, and timing strategies with the relevant tax authority guidance or a qualified tax professional before acting.
+
+## Reference(s):
+
+- [Tax Deduction Optimizer on ClawHub](https://clawhub.ai/harrylabsj/skills/tax-deduction-optimizer)
+- [Artifact SKILL.md](artifact/SKILL.md)
+- [Artifact README.md](artifact/README.md)
+- [Artifact ACCEPTANCE.md](artifact/ACCEPTANCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [json, guidance, templates, checklists]
+
+**Output Format:** [JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes input analysis, recommendations, next steps, available templates, and a professional-consultation disclaimer.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

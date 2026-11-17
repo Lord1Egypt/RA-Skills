@@ -12,10 +12,11 @@ from classifier.category_map import get_category
 
 def export_json(skills: List[Dict[str, Any]], title: str,
                 is_activated: bool = True, include_stats: bool = True,
-                output_path: str = None, pretty: bool = True) -> str:
+                output_path: str = None, pretty: bool = True,
+                usage: Dict = None, deps_edges: List[Dict[str, str]] = None) -> str:
     """
     导出 JSON 文件
-    
+
     Args:
         skills: 技能列表
         title: 标题
@@ -23,11 +24,14 @@ def export_json(skills: List[Dict[str, Any]], title: str,
         include_stats: 是否包含统计信息
         output_path: 输出路径（默认自动生成）
         pretty: 是否格式化输出
-        
+        usage: 使用统计（None 则不写入 usage 字段）
+        deps_edges: 缺失依赖边（None 则不写入 dependency_edges 字段）
+
     Returns:
         输出文件路径
     """
-    data = generate_json_data(skills, title, is_activated, include_stats)
+    data = generate_json_data(skills, title, is_activated, include_stats,
+                              usage=usage, deps_edges=deps_edges)
     
     if not output_path:
         output_path = os.path.join(OUTPUT_DIR, f"{title}.json")
@@ -40,17 +44,21 @@ def export_json(skills: List[Dict[str, Any]], title: str,
 
 
 def generate_json_data(skills: List[Dict[str, Any]], title: str,
-                       is_activated: bool = True, 
-                       include_stats: bool = True) -> Dict[str, Any]:
+                       is_activated: bool = True,
+                       include_stats: bool = True,
+                       usage: Dict = None,
+                       deps_edges: List[Dict[str, str]] = None) -> Dict[str, Any]:
     """
     生成结构化的 JSON 数据
-    
+
     Args:
         skills: 技能列表
         title: 标题
         is_activated: 是否为已激活技能
         include_stats: 是否包含统计信息
-        
+        usage: 使用统计（None 则不含 usage 字段）
+        deps_edges: 缺失依赖边（None 则不含 dependency_edges 字段）
+
     Returns:
         结构化 JSON 数据
     """
@@ -76,10 +84,14 @@ def generate_json_data(skills: List[Dict[str, Any]], title: str,
         'skills': skills,
         'categories': category_tree,
     }
-    
+
     if include_stats:
         data['stats'] = generate_stats(categories, skills)
-    
+    if usage is not None:
+        data['usage'] = usage
+    if deps_edges is not None:
+        data['dependency_edges'] = deps_edges
+
     return data
 
 

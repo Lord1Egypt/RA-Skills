@@ -1,37 +1,53 @@
-## Description: <br>
-Human-in-the-loop security layer. Intercepts high-risk commands and requires push notification approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Human-in-the-loop security layer. Intercepts high-risk commands and requires push notification approval.
 
-## Publisher: <br>
-[Lucky-2968](https://clawhub.ai/user/Lucky-2968) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lucky-2968](https://clawhub.ai/user/lucky-2968)
 
-## Use Case: <br>
-Developers and agent operators use ClawShell to route shell command execution through a human approval workflow for commands classified as risky. The release evidence reports that the package does not include an implementation sufficient to verify or enforce the claimed behavior. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [Clawshell 0.1.0 on ClawHub](https://clawhub.ai/Lucky-2968/clawshell-0-1-0) <br>
-- [Pushover application setup](https://pushover.net/apps/build) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Configuration, Guidance] <br>
-**Output Format:** [JSON command results, JSONL audit logs, and Markdown setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node and notification credentials; security evidence says not to rely on it as a shell security layer until the implementation and dependency list are provided.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter version 0.1.0) <br>
+Developers and operators use this skill to route shell command execution through a human approval and audit workflow for high-risk commands in OpenClaw environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The documented shell safety layer may create false confidence because the package evidence does not include the tools it instructs users to rely on.
+
+Mitigation: Do not rely on this as a shell safety layer unless the publisher supplies the missing implementation, tool registration, fail-closed behavior, and tests for blocked or approved commands.
+
+Risk: Copying the documented TOOLS.md instructions could break shell use if the referenced tools are unavailable.
+
+Mitigation: Review the installed package before deployment and verify that clawshell_bash, clawshell_status, and clawshell_logs are registered and executable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lucky-2968/skills/clawshell-0-1-0)
+- [Pushover Application Setup](https://pushover.net/apps/build)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe tool calls, command results, approval state, and audit log entries.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter); release 1.0.0 (source: server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

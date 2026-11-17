@@ -1,40 +1,52 @@
-## Description: <br>
-Reads current system memory, CPU usage, network throughput, and other real-time performance metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reports real-time local system performance metrics including CPU, memory, swap, network throughput, disk I/O, system load, and process count.
 
-## Publisher: <br>
-[moxin1044](https://clawhub.ai/user/moxin1044) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[moxin1044](https://clawhub.ai/user/moxin1044)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, operators, and support agents use this skill to inspect local host performance during troubleshooting or capacity checks from an agent session.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill prints local machine performance details that may be sensitive in shared logs.
+
+Mitigation: Run it only in trusted sessions and avoid storing or sharing outputs that expose host resource usage.
+
+Risk: The skill depends on psutil from the Python environment.
+
+Mitigation: Use a virtual environment and pin psutil to a reviewed version before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, operators, and support engineers use this skill to inspect local machine performance from an agent session, including CPU, memory, swap, network throughput, disk I/O when available, load averages, process count, and boot time. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and displays local machine performance metrics, including CPU, memory, disk I/O, network throughput, process count, and boot time. <br>
-Mitigation: Install and run it only in environments where exposing local performance metrics to the active agent session is acceptable. <br>
-Risk: The skill depends on psutil for cross-platform system metric collection. <br>
-Mitigation: Install psutil from a trusted package source and keep the dependency managed with the surrounding agent environment. <br>
+**Output Format:** [Plain text system metric report]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/moxin1044/system-stats) <br>
+**Other Properties Related to Output:** [Accepts an optional CPU sampling interval in seconds and requires psutil in the execution environment.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Plain text performance report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Metrics are sampled locally; CPU, network, and disk rates depend on the sampling interval and platform psutil support.] <br>
+1.0.0 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

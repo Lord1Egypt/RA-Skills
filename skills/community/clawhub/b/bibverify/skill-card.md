@@ -1,42 +1,57 @@
-## Description: <br>
-Verify, repair, explain, and generate BibTeX references with Bibverify's DOI-first CLI and MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify, repair, explain, and generate BibTeX references with Bibverify's DOI-first CLI and MCP tools.
 
-## Publisher: <br>
-[hylouis233](https://clawhub.ai/user/hylouis233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hylouis233](https://clawhub.ai/user/hylouis233)
 
-## Use Case: <br>
-Researchers, developers, and agents use Bibverify to validate and repair BibTeX references, generate BibTeX from DOI values, explain source ranking, and review field-level citation changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the external bibverify command or MCP tooling. <br>
-Mitigation: Before installing, verify that the PyPI bibverify package is the intended package and prefer a virtual environment. <br>
-Risk: Generated or updated BibTeX entries could introduce incorrect citation metadata. <br>
-Mitigation: Review generated BibTeX changes before replacing originals and do not invent missing bibliographic metadata. <br>
-Risk: Local configuration may contain sensitive values such as API keys or personal contact details. <br>
-Mitigation: Avoid sharing API keys or sensitive local config values in prompts or outputs. <br>
+## Use Case:
 
+Developers, researchers, and agents use Bibverify to verify and repair BibTeX files, generate entries from DOIs, and explain source-ranking or field-level differences for citation metadata.
 
-## Reference(s): <br>
-- [Bibverify ClawHub page](https://clawhub.ai/hylouis233/bibverify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference timestamped backup, updated, and problem-entry files produced by Bibverify.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.4 (source: release metadata) <br>
+Risk: The required bibverify CLI package may be confused with another package or installed into an unsuitable environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing, verify that bibverify is the intended package and consider installing it in a virtual environment.
+
+Risk: Citation repair workflows can modify bibliographic data or create replacement files that users may mistake for final authoritative output.
+
+Mitigation: Do not silently overwrite the source .bib file; explain generated backup, updated, and problem-entry files and call out entries that need manual review.
+
+Risk: Bibliographic lookup sources can disagree or lack complete metadata.
+
+Mitigation: Use Bibverify results as the evidence source, avoid inventing missing metadata, and explain uncertainty when sources disagree.
+
+## Reference(s):
+
+- [Bibverify ClawHub skill page](https://clawhub.ai/hylouis233/skills/bibverify)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with optional inline BibTeX, JSON configuration, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference generated backup, updated, and problem-entry files created by Bibverify; the skill should not silently overwrite source .bib files.]
+
+## Skill Version(s):
+
+0.2.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

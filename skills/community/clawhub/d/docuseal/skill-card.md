@@ -1,47 +1,67 @@
-## Description: <br>
-Manage DocuSeal e-signature workflows from the terminal with the DocuSeal CLI, including template creation, document sending, submission tracking, and submitter updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage DocuSeal e-signature workflows from the terminal via the DocuSeal CLI, including creating templates from PDF, DOCX, and HTML files, sending documents for signing, tracking submissions, and updating submitters.
 
-## Publisher: <br>
-[alexbturchyn](https://clawhub.ai/user/alexbturchyn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[docuseal](https://clawhub.ai/user/docuseal)
 
-## Use Case: <br>
-Developers and operators use this skill when they want an agent to prepare and run DocuSeal CLI commands for e-signature workflows in a shell, script, or CI/CD context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help an agent operate an authenticated DocuSeal account, including creating submissions, sending signing requests, archiving records, and updating submitters. <br>
-Mitigation: Review generated commands, template IDs, submitter IDs, recipient addresses, and action flags before execution, and use appropriately scoped credentials. <br>
-Risk: Documents, remote document URLs, HTML templates, signer contact details, metadata, and message contents may be sent to DocuSeal. <br>
-Mitigation: Use trusted document sources, avoid unnecessary sensitive data, and confirm that the selected DocuSeal server and account are appropriate before sending. <br>
-Risk: Commands can trigger external emails, SMS messages, payment fields, or signer completion state changes. <br>
-Mitigation: Confirm recipient lists, billing-relevant fields, and completion-related flags with a human reviewer before running those commands. <br>
+## Use Case:
 
+Developers and operations teams use this skill to run DocuSeal CLI workflows from shells, scripts, and CI/CD pipelines for document template management, signing requests, submission tracking, and signer updates.
 
-## Reference(s): <br>
-- [DocuSeal homepage](https://www.docuseal.com) <br>
-- [DocuSeal CLI source](https://github.com/docusealco/docuseal-cli) <br>
-- [DocuSeal API keys](https://console.docuseal.com/api) <br>
-- [Embedded PDF and DOCX field tags](https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form) <br>
-- [HTML fillable form guide](https://www.docuseal.com/guides/create-pdf-document-fillable-form-with-html-api) <br>
-- [DOCX dynamic content variables](https://www.docuseal.com/guides/use-dynamic-content-variables-in-docx-to-create-personalized-documents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON CLI output expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The referenced CLI commands return JSON and require DOCUSEAL_API_KEY, DOCUSEAL_SERVER, and the docuseal binary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill depends on installing a mutable DocuSeal CLI executable package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify the DocuSeal CLI version before production use.
+
+Risk: The skill uses DocuSeal API credentials and may operate on sensitive document files.
+
+Mitigation: Use a narrowly scoped API key where possible and run the skill with only the required files and environment variables.
+
+Risk: The skill can trigger high-impact e-signature actions such as sending notifications, archiving or replacing documents, and marking signers as completed.
+
+Mitigation: Review commands carefully before execution, especially commands that send messages, alter document state, or complete signer workflows.
+
+## Reference(s):
+
+- [DocuSeal Homepage](https://www.docuseal.com)
+- [DOCX Dynamic Content Variables](references/docx-variables.md)
+- [PDF / DOCX Field Tags](references/field-tags.md)
+- [HTML Field Tags](references/html-fields.md)
+- [Submissions](references/submissions.md)
+- [Submitters](references/submitters.md)
+- [Templates](references/templates.md)
+- [DocuSeal DOCX Variables Guide](https://www.docuseal.com/guides/use-dynamic-content-variables-in-docx-to-create-personalized-documents)
+- [DocuSeal Embedded Field Tags Guide](https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form)
+- [DocuSeal HTML Fillable Form Guide](https://www.docuseal.com/guides/create-pdf-document-fillable-form-with-html-api)
+- [DocuSeal Field Tags Example PDF](https://www.docuseal.com/examples/fieldtags.pdf)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON-oriented CLI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [DocuSeal CLI command output is described by the artifact as JSON.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

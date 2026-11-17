@@ -1,42 +1,57 @@
-## Description: <br>
-Provides a decision-grade equity valuation playbook and report standard for multiples analysis, DCF, quality assessment, scenarios, margin of safety, and structured investment risk review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a decision-grade equity valuation playbook and report standard for multiples, DCF, quality assessment, scenarios, and margin-of-safety analysis when users request valuation, stock comparison, investment thesis explanation, or structured risk review.
 
-## Publisher: <br>
-[ndtchan](https://clawhub.ai/user/ndtchan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teahann](https://clawhub.ai/user/teahann)
 
-## Use Case: <br>
-Analysts, investors, and finance-focused agents use this skill to turn already-provided financial, market, peer, macro, and news inputs into a structured equity valuation memo. It is intended for decision support with explicit assumptions, confidence levels, data gaps, scenario ranges, and risk monitoring triggers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Equity valuation outputs could be mistaken for personalized investment advice. <br>
-Mitigation: Treat outputs as research support, preserve the skill's educational disclaimer, and require a qualified human review before acting on investment conclusions. <br>
-Risk: Incomplete, stale, or inconsistent financial inputs can produce misleading fair-value ranges. <br>
-Mitigation: Run the required data quality gate, disclose missing inputs early, downgrade confidence when gaps are material, and avoid precise fair-value claims when data quality is low. <br>
-Risk: Portfolio or proprietary investment details may be sensitive when shared in an agent session. <br>
-Mitigation: Share only data that the user is comfortable using in the session and avoid unnecessary confidential portfolio details. <br>
+## Use Case:
 
+External users, analysts, and developers use this skill to turn structured equity, market, peer, macro, and news inputs into a professional valuation memo with multiples, DCF scenarios, sensitivity tables, risk register, fair-value range, and margin-of-safety framing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ndtchan/equity-valuation-framework) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with tables, scenario analysis, sensitivity discussion, risk register, confidence rating, and disclaimer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires already-provided financial and market inputs; does not fetch data directly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Users may mistake valuation output for personalized investment advice or an order to trade.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep outputs educational, avoid absolute buy or sell commands, include the skill's disclaimer, and frame conclusions as conditional valuation views.
+
+Risk: Stale, incomplete, or inconsistent financial and market inputs can produce misleading fair-value ranges.
+
+Mitigation: Require freshness, completeness, and consistency checks before valuation; disclose missing inputs and downgrade confidence when data quality is weak.
+
+Risk: DCF and multiples assumptions can create false precision when cash-flow visibility or peer comparability is limited.
+
+Mitigation: Use scenario ranges, sensitivity tables, explicit assumptions, and directional conclusions when robust triangulation is unavailable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teahann/skills/equity-valuation-framework)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown valuation report with tables, scenarios, risk register, fair-value range, and disclaimer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires current structured financial, price, peer, macro, and news inputs; does not fetch data directly.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

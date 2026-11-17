@@ -1,39 +1,53 @@
-## Description: <br>
-在代码提交前或任务完成后使用，进行代码审查 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language checklist for reviewing code quality, maintainability, correctness, tests, severity, and embedded-systems concerns.
 
-## Publisher: <br>
-[tlreal](https://clawhub.ai/user/tlreal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tlreal](https://clawhub.ai/user/tlreal)
 
-## Use Case: <br>
-Developers and engineers use this skill before submitting code or after completing implementation work to review correctness, readability, maintainability, testing, and embedded-system concerns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The available scanner summary notes that target skill files were not available for full verification. <br>
-Mitigation: Review the visible SKILL.md and any support files before installation, and only grant credentials, local file access, or mutation authority if the skill text clearly justifies them. <br>
+## Use Case:
 
+Developers and engineering reviewers use this skill to structure Chinese-language code reviews, classify findings by severity, and summarize whether changes are ready to proceed.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tlreal/code-review1) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/tlreal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown code review report with severity-grouped findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes review summary, issue lists by severity, strengths, and an overall conclusion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill may activate around code submission or task completion and produce Chinese-language review reports when another language is expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when a Chinese-language structured code review is desired, or override the response language in the agent or user instruction.
+
+Risk: The checklist can influence code acceptance decisions through severity-labeled findings and conclusions.
+
+Mitigation: Review findings against project requirements and tests before making merge or release decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tlreal/skills/code-review1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown code review report in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Severity-grouped findings with overview, strengths, and conclusion when applicable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

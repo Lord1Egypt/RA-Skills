@@ -1,45 +1,64 @@
-## Description: <br>
-Gives an agent a voice layer that can clone a principal's voice with ElevenLabs, generate MP3 speech from text, and support inbound or outbound conversational calls through Twilio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gives an agent a voice layer that uses ElevenLabs to clone a principal's voice, generate MP3 audio from text, and deploy a conversational AI agent for automated inbound and outbound calls through Twilio.
 
-## Publisher: <br>
-[georges91560](https://clawhub.ai/user/georges91560) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[georges91560](https://clawhub.ai/user/georges91560)
 
-## Use Case: <br>
-Developers and operators use this skill to add voice cloning, text-to-speech audio generation, and lead call handling to an agent workflow. It is intended for workflows that need MP3 content, prospect qualification calls, call transcripts, and Telegram status notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad access to ElevenLabs, possible browser login sessions or account credentials, voice samples, Twilio calling credentials, lead phone data, and call transcripts. <br>
-Mitigation: Use scoped API keys stored in a secret manager, require explicit approval before login, key creation, voice cloning, Twilio connection, or outbound calls, and rotate credentials on a defined schedule. <br>
-Risk: Voice cloning and automated calls can create consent, disclosure, and impersonation concerns if used without clear controls. <br>
-Mitigation: Define consent, caller disclosure, opt-out, shutdown, and approved-use procedures before deployment, and test with internal numbers before calling external contacts. <br>
-Risk: Call transcripts, lead phone data, and generated audio may contain sensitive personal or business information. <br>
-Mitigation: Set transcript retention, redaction, access-control, and deletion rules before use, and avoid storing secrets or sensitive data in shared .env files. <br>
+## Use Case:
 
+External creators, sales teams, and operators use this skill to configure ElevenLabs voice cloning, generate MP3 speech from scripts, and operate Twilio-backed inbound or outbound voice calls. It is intended for voice-enabled outreach and audio content workflows where voice cloning and calling have explicit consent and comply with applicable laws.
 
-## Reference(s): <br>
-- [Voice Agent ClawHub page](https://clawhub.ai/georges91560/voice-agent-v1) <br>
-- [ElevenLabs](https://elevenlabs.io) <br>
-- [ElevenLabs API](https://api.elevenlabs.io) <br>
-- [Twilio API](https://api.twilio.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Audio files, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [MP3 audio, JSON configuration, Markdown guidance, and shell-command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate call logs, transcripts, Telegram notifications, and service configuration for ElevenLabs and Twilio.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill gives the agent broad account, credential, voice-cloning, and calling authority with weak scoping and plaintext persistence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated ElevenLabs and Twilio accounts, scoped tokens, and a dedicated browser profile; avoid storing account passwords or broad authorization tokens in .env.
+
+Risk: Voice cloning and automated calls can create consent, impersonation, call-recording, telemarketing, and outreach-law risk.
+
+Mitigation: Require explicit consent for voice cloning and confirm compliance with call-recording, telemarketing, and outreach laws before enabling calls.
+
+Risk: Call transcripts, outcomes, and voice-generation status may be sent through Telegram notifications.
+
+Mitigation: Review notification recipients and transcript-sharing practices before use, especially when calls may contain personal or commercial lead information.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/georges91560/skills/voice-agent-v1)
+- [Publisher Profile](https://clawhub.ai/user/georges91560)
+- [ElevenLabs](https://elevenlabs.io)
+- [ElevenLabs API](https://api.elevenlabs.io)
+- [Twilio API](https://api.twilio.com)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Definition](artifact/SKILL.md)
+- [Artifact Agent Prompt](artifact/agent_prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Audio files, Call logs]
+
+**Output Format:** [Markdown guidance with shell commands, Python code, JSON configuration, generated MP3 audio, and JSON call records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ElevenLabs account/API access for voice cloning and TTS; Twilio credentials are optional for calling; generated credentials and voice/call state are persisted in workspace configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

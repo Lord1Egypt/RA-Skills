@@ -1,41 +1,55 @@
-## Description: <br>
-Responds to NSFW/R18 image requests by calling a third-party image API and returning a direct Pixiv CDN image URL that the skill describes as non-R18. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Returns a non-R18 image URL as a surprise when users search for NSFW content using configured trigger keywords.
 
-## Publisher: <br>
-[ato-z](https://clawhub.ai/user/ato-z) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ato-z](https://clawhub.ai/user/ato-z)
 
-## Use Case: <br>
-External users or agents use this skill to redirect NSFW/R18 image requests into a surprise image URL response from a third-party image API. Review before deployment because security evidence flags a mismatch between the claimed non-R18 behavior and the API request shown in the artifact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill claims to return non-R18 images, but security evidence reports that the documented API request asks for R18 content. <br>
-Mitigation: Change the API request to a non-R18 setting and validate the returned r18 field before returning any URL. <br>
-Risk: The skill contacts a third-party image API and may return adult Pixiv-derived image links despite claiming safe output. <br>
-Mitigation: Install or deploy only where third-party image API calls and image-link responses are acceptable, and review returned URLs before exposing them to users. <br>
+## Use Case:
 
+External users and agents use this skill to respond to NSFW-adjacent image prompts by calling a third-party image API and returning a direct image URL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ato-z/sages-stash) <br>
-- [Lolicon API endpoint used by the skill](https://api.lolicon.app/setu/v2?num=1&r18=1&size=original) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Shell commands] <br>
-**Output Format:** [Plain text URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a direct image URL; behavior depends on third-party API availability and rate limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill contacts a third-party image API for NSFW-adjacent prompts and may return adult or untrusted image links despite claiming non-R18 output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate that API responses set r18=false, structurally validate returned URLs, and clarify the content policy before treating the skill as low-risk.
+
+Risk: The trigger set is broad and can activate the skill for sexualized prompts in multiple languages.
+
+Mitigation: Narrow the trigger keywords and require deployment review for environments where NSFW-adjacent content is not appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ato-z/skills/sages-stash)
+- [Lolicon API endpoint used by the skill](https://api.lolicon.app/setu/v2?num=1&r18=1&size=original)
+- [Pixiv image CDN prefix used by the skill](https://i.pixiv.re)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text image URL and Markdown with an inline bash command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a direct Pixiv CDN image URL; the third-party API may have rate limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Generates WeChat article images, including covers, comparison visuals, and chart-style graphics, from local HTML templates and Python commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate beautiful images for WeChat articles, including cover images, comparison graphics, and charts, using local Python scripts and HTML templates.
 
-## Publisher: <br>
-[jingyu525](https://clawhub.ai/user/jingyu525) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jingyu525](https://clawhub.ai/user/jingyu525)
 
-## Use Case: <br>
-Creators, developers, and social media teams use this skill to generate WeChat-ready article covers, comparison images, and simple data visualizations without calling an image generation model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Local browser and file operations can expose sensitive generated content if served from the wrong directory or left running. <br>
-Mitigation: Use trusted local paths, serve only the intended output directory, and stop the local server after screenshots are complete. <br>
-Risk: Shell-based browser commands and screenshot steps can behave unexpectedly with untrusted or complex file paths. <br>
-Mitigation: Use simple trusted file paths and review generated commands before execution. <br>
+## Use Case:
 
+Developers and content creators use this skill to generate WeChat article cover images, side-by-side comparison graphics, and simple data visualizations for social media or technical articles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jingyu525/wechat-image-generator) <br>
-- [Project homepage](https://github.com/jingyu525/wechat-image-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/jingyu525) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and generated local HTML/image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local 1200x675 HTML templates for screenshot capture; requires python3 and a browser screenshot workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and package.json) <br>
+Risk: Local Python scripts and browser automation may execute commands on the user's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installation and run it only in a trusted local workspace.
+
+Risk: The screenshot helper accepts file paths and should not be used with arbitrary filenames.
+
+Mitigation: Use it only on trusted generated HTML files and expected output paths.
+
+Risk: The local server helper can expose generated files if run on an untrusted network.
+
+Mitigation: Run the server only on trusted networks or change it to bind to 127.0.0.1 and serve only the intended output directory.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jingyu525/skills/wechat-image-generator)
+- [Project Homepage](https://github.com/jingyu525/wechat-image-generator)
+- [Issue Tracker](https://github.com/jingyu525/wechat-image-generator/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated HTML or PNG file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates fixed-size 1200x675 HTML templates and provides browser screenshot commands for PNG capture.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,63 @@
-## Description: <br>
-Use when the user provides a Bilibili or YouTube URL and asks for a transcript, article, or subtitle extraction. Downloads platform subtitles via BBDown / yt-dlp and produces a clean Markdown transcript in the source language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user provides a Bilibili or YouTube URL and asks for a transcript, article, or subtitle extraction. Downloads platform subtitles via BBDown / yt-dlp and produces a clean Markdown transcript in the source language.
 
-## Publisher: <br>
-[hqwqf](https://clawhub.ai/user/hqwqf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hqwqf](https://clawhub.ai/user/hqwqf)
 
-## Use Case: <br>
-External users and developers use this skill to turn Bilibili or YouTube video subtitles into clean source-language Markdown transcripts or article-style notes. It is intended for videos with platform-provided subtitles, not download-only work or audio-only ASR. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may download and run BBDown or yt-dlp and modify the user's persistent PATH. <br>
-Mitigation: Install only when the user is comfortable with those changes, prefer official downloads, verify binaries where possible, and avoid persistent PATH changes unless desired. <br>
-Risk: Restricted videos may require browser or session cookies. <br>
-Mitigation: Use cookies only after explicit approval, never paste cookie contents into chat, prefer file paths over raw cookie values, and delete one-off cookie files after use. <br>
-Risk: Cleanup commands could remove files if pointed at the wrong folder. <br>
-Mitigation: Run cleanup only inside a newly created per-video output directory and keep final transcript files separate from intermediate artifacts. <br>
+## Use Case:
 
+External users and developers use this skill to extract available Bilibili or YouTube subtitles, normalize them, and produce clean source-language Markdown transcripts for later reading or article drafting.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/hqwqf/videolink-to-article) <br>
-- [Authentication & Cookies Guide](references/auth.md) <br>
-- [Subtitle Cleanup Guide](references/cleanup_guide.md) <br>
-- [Tool Installation Guide](references/install_tools.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Worked Example](references/worked_example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown transcript files with supporting command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces source-language transcript deliverables and may create temporary subtitle, metadata, and normalization files during processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill asks users to install persistent downloader executables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer already-installed trusted BBDown or yt-dlp binaries or package-manager installs, and avoid third-party GitHub proxy mirrors unless their trust risk is acceptable.
+
+Risk: The skill may handle browser session cookies for restricted videos.
+
+Mitigation: Use cookies only after unauthenticated subtitle access fails, treat cookies.txt and BBDown cookie strings like passwords, keep them task-local, restrict access, and delete them after use.
+
+Risk: Adding a tools directory to PATH creates a persistent system change.
+
+Mitigation: Do not add the tools directory to PATH unless a persistent command lookup change is intended.
+
+## Reference(s):
+
+- [Authentication & Cookies Guide](references/auth.md)
+- [Subtitle Cleanup Guide](references/cleanup_guide.md)
+- [Tool Installation Guide](references/install_tools.md)
+- [Troubleshooting Guide](references/troubleshooting.md)
+- [Worked Example](references/worked_example.md)
+- [BBDown Releases API](https://api.github.com/repos/nilaoda/BBDown/releases/latest)
+- [Get cookies.txt LOCALLY Chrome Extension](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown transcript files with supporting shell commands and task guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces source-language transcript deliverables and may use per-task metadata, subtitle files, and cleanup steps before final output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

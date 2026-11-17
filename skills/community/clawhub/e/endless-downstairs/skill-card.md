@@ -1,44 +1,56 @@
-## Description: <br>
-Interactive interface for the text adventure game Endless Downstairs, providing game state management and event selection handling; use when users want to play the Endless Downstairs game, start a horror adventure, or need a text adventure game experience. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive interface for the text adventure game Endless Downstairs, providing game state management and event selection handling for players who want to play a horror text adventure with an AI assistant.
 
-## Publisher: <br>
-[gsc578045031-cloud](https://clawhub.ai/user/gsc578045031-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gsc578045031-cloud](https://clawhub.ai/user/gsc578045031-cloud)
 
-## Use Case: <br>
-Players and AI assistant users use this skill to run and interact with the Endless Downstairs text-adventure game through player-driven commands, status checks, inventory review, and text input. The assistant acts as the game interface while leaving choices under the player's control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad automation requests could move the game forward without clear player intent. <br>
-Mitigation: Keep activation explicit, name Endless Downstairs when starting play, and require one clear player command per turn. <br>
-Risk: The skill saves local game progress in the skill directory. <br>
-Mitigation: Use it only where local save and checkpoint files are acceptable, and clear those files when a fresh state is required. <br>
-Risk: The skill's direct-output wording could be misunderstood as overriding normal assistant behavior. <br>
-Mitigation: Treat direct output as scoped to the intentional game session and not as overriding safety or user-control expectations. <br>
+## Use Case:
 
+External users use this skill to play Endless Downstairs through an AI assistant that translates player intent into local Python game commands and returns the game text. Developers can also inspect or run the included Python text adventure directly.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gsc578045031-cloud/endless-downstairs) <br>
-- [README.md](README.md) <br>
-- [CLAUDE.md](CLAUDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text game output with command-line results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains local game progress in save.json and checkpoints.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Player text can be routed into a shell-style Python command path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass player text as a literal argument or structured parameter, avoid shell concatenation, and review the command before execution.
+
+Risk: The assistant could continue gameplay or execute multiple game commands without a fresh player decision.
+
+Mitigation: Require one explicit player instruction per turn and execute at most one local game command for that instruction.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gsc578045031-cloud/skills/endless-downstairs)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/skill.md)
+- [Security scan source](evidence.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text game responses with local Python command invocations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One command per conversation turn; game progress is persisted in local JSON save files.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

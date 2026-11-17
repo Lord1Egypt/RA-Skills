@@ -1,42 +1,52 @@
-## Description: <br>
-DCA entry signal with gate status, regime, and F&G conditions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paid x402 endpoint: $0.007 USDC per call on Base. Returns DCA entry signal with gate status, regime, and F&G conditions.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-External agents and developers use this skill to retrieve a paid DCA trading-signal API response before deciding whether DCA gate conditions are met. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent make paid requests using a wallet private key. <br>
-Mitigation: Use a dedicated low-balance wallet and confirm expected price and call frequency before automated use. <br>
-Risk: Trading-signal output may be treated as sufficient justification for DCA orders. <br>
-Mitigation: Review signal responses and gate conditions before placing trades, especially in automated DCA workflows. <br>
+## Use Case:
 
+External users and trading agents use this paid endpoint at each DCA decision cycle to retrieve gate status and market-condition signals before considering an order.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kynto2001-ctrl/skills/dca-signal) <br>
-- [APEX Runner DCA Signal](https://apexrunner.ai/signals/dca-signal) <br>
-- [APEX Runner Pricing Lookup](https://apexrunner.ai/signals/my-pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON response with Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Paid x402-authenticated request requiring EVM_PRIVATE_KEY and an EVM wallet funded with USDC on Base mainnet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Paid requests use an EVM private key to authorize USDC payments on Base.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated wallet with limited funds and enforce a per-call spending cap.
+
+## Reference(s):
+
+- [DCA Signal endpoint](https://apexrunner.ai/signals/dca-signal)
+- [Fear and Greed signal](https://apexrunner.ai/signals/fear-greed)
+- [Portfolio Heat signal](https://apexrunner.ai/signals/portfolio-heat)
+- [APEX Runner](https://apexrunner.ai)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON]
+
+**Output Format:** [JSON signal response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One paid x402 request returns signal and gate-condition data.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

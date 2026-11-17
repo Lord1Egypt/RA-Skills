@@ -1,42 +1,55 @@
-## Description: <br>
-Local GitHub repository helper for search, clone, sync, and issue/PR inspection workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GitHub Helper helps agents search, clone, sync, and inspect local or remote GitHub repositories using a local knowledge base, GitHub CLI, and GitHub MCP fallback.
 
-## Publisher: <br>
-[dandandujie](https://clawhub.ai/user/dandandujie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dandandujie](https://clawhub.ai/user/dandandujie)
 
-## Use Case: <br>
-Developers and engineers use this skill to manage a local GitHub repository directory, maintain a searchable repository knowledge base, and inspect repositories, issues, and pull requests with local-first workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to inspect a local GitHub directory and summarize repository README files. <br>
-Mitigation: Use it only on repository directories the user intends the agent to inspect, and review sensitive local content before sharing outputs. <br>
-Risk: The skill can rewrite the local CLAUDE.md knowledge base and includes behavior for changing the configured repository path. <br>
-Mitigation: Back up any existing CLAUDE.md and require explicit user confirmation before persistent local configuration or knowledge base edits. <br>
-Risk: The skill can invoke GitHub CLI or MCP access and propose cloning or syncing repositories. <br>
-Mitigation: Confirm repository targets and authentication scope before running networked GitHub commands or cloning repositories. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dandandujie/github-helper) <br>
-- [Publisher profile](https://clawhub.ai/user/dandandujie) <br>
+## Use Case:
+
+Developers and repository maintainers use this skill to manage local GitHub repository collections, keep a searchable CLAUDE.md knowledge base, and inspect repository issues, pull requests, releases, and local code.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Repository README text can be persisted into CLAUDE.md and later used as agent context.
+
+Mitigation: Use only trusted repository directories and inspect generated CLAUDE.md content before relying on it.
+
+Risk: The skill can clone repositories and update the local repository knowledge base.
+
+Mitigation: Confirm repository URLs and target directories before cloning or running knowledge base updates.
+
+Risk: Environment-specific path changes may be written into SKILL.md.
+
+Mitigation: Review any path edits before reuse and keep local configuration changes separate from release content where possible.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local file updates, repository scans, Git clone commands, GitHub CLI queries, and knowledge base changes.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON output from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a local CLAUDE.md repository knowledge base when helper scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

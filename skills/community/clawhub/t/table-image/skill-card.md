@@ -1,42 +1,52 @@
-## Description: <br>
-Generate images from tables for better readability in messaging apps like Telegram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images from tables for better readability in messaging apps like Telegram. Use when displaying tabular data.
 
-## Publisher: <br>
-[joargp](https://clawhub.ai/user/joargp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[joargp](https://clawhub.ai/user/joargp)
 
-## Use Case: <br>
-Developers and agents use Table Image to convert Markdown tables into PNG images for messaging platforms that do not render Markdown tables well. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to install an external Go CLI from GitHub, including an @latest install path. <br>
-Mitigation: Review or pin the tablesnap version before installation in stricter environments. <br>
-Risk: Full emoji support may download additional emoji assets. <br>
-Mitigation: Enable the emoji asset download only in environments where external downloads are allowed and reviewed. <br>
-Risk: Unsupported emoji render as placeholder boxes until full emoji support is installed. <br>
-Mitigation: Install the full emoji set when emoji fidelity matters, or limit table content to the bundled supported emoji. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Table Image ClawHub release page](https://clawhub.ai/joargp/table-image) <br>
-- [tablesnap repository](https://github.com/joargp/tablesnap) <br>
+## Use Case:
 
+Developers and agent users use this skill to turn Markdown tables into PNG images for messaging platforms that do not display Markdown tables well.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and MEDIA file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces PNG table images via the tablesnap CLI, commonly written to /tmp/table.png; full emoji support may require a one-time asset download.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing tablesnap with @latest or a moving default branch can pull unreviewed dependency changes.
+
+Mitigation: Install a pinned, reviewed tablesnap release or commit before using the skill.
+
+Risk: Table content passed to the renderer may be written into image files intended for messaging platforms.
+
+Mitigation: Only pass table content that is approved for rendering and sharing, and run the tool as an unprivileged user.
+
+## Reference(s):
+
+- [tablesnap repository](https://github.com/joargp/tablesnap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with shell commands and media output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for creating PNG table images, typically written to a local file such as /tmp/table.png.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

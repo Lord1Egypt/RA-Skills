@@ -1,44 +1,59 @@
-## Description: <br>
-Orchestrates external AI planners by validating, scheduling, executing tools, enforcing budgets, and providing replayable telemetry for plans and runs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates external AI planners by validating, scheduling, executing tools, enforcing budgets, and providing replayable telemetry for plans and runs.
 
-## Publisher: <br>
-[NoNightWatch](https://clawhub.ai/user/NoNightWatch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nonightwatch](https://clawhub.ai/user/nonightwatch)
 
-## Use Case: <br>
-Developers and AI client builders use this skill to run external planner workflows through an orchestration service that validates plans, schedules tasks, controls budgets, executes tools, and exposes replayable run telemetry. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sensitive run data or mutation endpoints could be exposed in shared or network-accessible deployments. <br>
-Mitigation: Require strong run tokens, add owner checks before exposing run IDs, and restrict run, replay, report, event, cancellation, and injection endpoints to intended tenants. <br>
-Risk: Callback tools and provider gateways can send task inputs, dependency payloads, and tool payloads to outbound destinations. <br>
-Mitigation: Keep outbound allowlists strict, keep tool registration disabled unless needed, avoid OUTBOUND_ALLOW_ALL, and verify callback destinations against TOOL_CALLBACK_ALLOWLIST. <br>
-Risk: Telemetry, replay, reports, events, or streams can contain sensitive execution data. <br>
-Mitigation: Enable telemetry redaction for shared deployments and avoid sharing unredacted replay or report data outside the intended audience. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NoNightWatch/agentmanager) <br>
-- [Agent Manager README](README.md) <br>
-- [Agent Manager integration contract](skill.md) <br>
-- [Agent Manager OpenAPI specification](openapi/openapi.json) <br>
+## Use Case:
 
+Developers and external AI client operators use this skill to validate plans, schedule and execute tool-enabled multi-agent runs, enforce budgets, and retrieve telemetry or replay outputs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples, HTTP endpoint descriptions, shell commands, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include plan validation results, run identifiers, event streams, replay JSON, reports, and tool execution telemetry.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Shared deployments have serious access-control gaps according to the ClawHub security summary.
+
+Mitigation: Install only in a tightly controlled environment, avoid shared or multi-tenant use until controls are fixed, and require run tokens for access-controlled endpoints.
+
+Risk: Outbound provider and callback behavior can expose task inputs, dependency payloads, and tool payloads.
+
+Mitigation: Keep tool registration disabled for untrusted users, configure explicit outbound allowlists, and avoid callback credentials for untrusted registrants.
+
+Risk: Persisted run files and replay data may contain sensitive plaintext records.
+
+Mitigation: Treat persisted run files as sensitive data, restrict storage access, and enable telemetry redaction for shared deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nonightwatch/skills/agentmanager)
+- [README](README.md)
+- [Skill integration guide](skill.md)
+- [OpenAPI document](openapi/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, JSON, configuration]
+
+**Output Format:** [Markdown integration guidance with JSON API request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes run events, replay telemetry, budget and cost metrics, and OpenAPI-compatible endpoint descriptions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

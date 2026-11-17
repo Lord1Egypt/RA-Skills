@@ -1,44 +1,57 @@
-## Description: <br>
-Generates hardened security configurations for Check Point systems based on specified hardening options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates hardened security configurations for Check Point systems based on specified hardening options.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security teams, security architects, compliance teams, and DevSecOps engineers use this skill to request JSON hardening profiles for Check Point appliances and gateways from selected encryption, access control, logging, and compliance options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends hardening request details and identifiers to an external provider. <br>
-Mitigation: Use it only after approving the ToolWeb/api.mkkpro data flow, and avoid sending credentials, internal network details, or identifiable session values unless approved. <br>
-Risk: Generated hardening output may be incomplete or unsuitable for a specific Check Point deployment. <br>
-Mitigation: Have qualified security personnel review the generated configuration before applying it to production systems. <br>
+## Use Case:
 
+Security teams, security architects, compliance teams, and DevSecOps engineers use this skill to generate Check Point hardening configuration outputs from selected encryption, access control, logging, and compliance options.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-checkpoint-hardening) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [ToolWeb OpenClaw](https://toolweb.in/openclaw/) <br>
-- [Check Point Hardening API route](https://api.mkkpro.com/hardening/checkpoint) <br>
-- [API documentation](https://api.mkkpro.com:8143/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Configuration, JSON, Guidance] <br>
-**Output Format:** [JSON hardening profile and status response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a generated configuration identifier, hardening settings by category, applied rule count, and estimated deployment time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Submitted hardening requirements, session identifiers, timestamps, and optional user identifiers may be sensitive and are sent to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the data-sharing posture before use and avoid sending unnecessary identifiers or sensitive configuration details.
+
+Risk: Generated Check Point hardening configurations may not be appropriate for every production environment.
+
+Mitigation: Review and test generated configurations before applying them to live systems.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-checkpoint-hardening)
+- [API Docs](https://api.mkkpro.com:8143/docs)
+- [Kong Route](https://api.mkkpro.com/hardening/checkpoint)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb OpenClaw](https://toolweb.in/openclaw/)
+
+## Skill Output:
+
+**Output Type(s):** [Configuration, Guidance, JSON]
+
+**Output Format:** [JSON response with a generated hardening profile, applied rule count, and estimated deployment time]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated configuration should be reviewed and tested before applying it to live systems.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

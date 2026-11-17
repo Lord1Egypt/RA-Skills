@@ -1,42 +1,56 @@
-## Description: <br>
-Turns Google Patents search requests into confirmed Dataify Scraper API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Google Patents for patent records; do not use for Google Scholar papers or general web results.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to prepare Google Patents searches, review the resolved parameters, and run the confirmed request through Dataify. It is suited for patent search workflows that need explicit parameter review before sending queries and filters to a third-party API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Patent research queries and filters are sent to Dataify when the API call is approved. <br>
-Mitigation: Review the confirmation table before approving each request and avoid sending sensitive searches unless Dataify use is acceptable. <br>
-Risk: API tokens can be exposed if pasted into chat or echoed in command output. <br>
-Mitigation: Prefer DATAIFY_API_TOKEN from the environment and do not include Authorization in the pre-call parameter table. <br>
+## Use Case:
 
+External users and developers use this skill to convert Google Patents search requests into Dataify Scraper API calls and receive patent-search results with relevant titles, links, and patent fields.
 
-## Reference(s): <br>
-- [Dataify Google Patents API Reference](references/google_patents_api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dataify-server/dataify-google-patents) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/dataify-server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown parameter review tables, shell command examples, and raw API response text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before API calls and returns the response body without summarization or reshaping.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill sends patent-search queries, filters, and a Dataify API token to Dataify.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this data sharing is acceptable, keep the token in DATAIFY_API_TOKEN or a command argument, and do not paste API tokens into chat.
+
+Risk: Security evidence says the skill can enable Google Scholar results even though the stated scope is Google Patents.
+
+Mitigation: Keep scholar=false for patent-only searches until the publisher aligns the documented scope and implementation.
+
+## Reference(s):
+
+- [Dataify Google Patents API Reference](references/google_patents_api.md)
+- [Dataify skill page](https://clawhub.ai/dataify-server/skills/dataify-google-patents)
+- [Dataify API endpoint](https://scraperapi.dataify.com/request)
+- [Dataify dashboard login](https://dashboard.dataify.com/login?utm_source=skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, parameter tables, and API response text or JSON when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a Dataify API token and sends patent-search queries and filters to Dataify.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

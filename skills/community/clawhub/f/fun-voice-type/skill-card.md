@@ -1,43 +1,58 @@
-## Description: <br>
-fun-voice-type lets macOS users hold the Right Option key to dictate speech into the active input field and optionally translate speech with Alibaba Cloud FunASR and Qwen. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A macOS voice input skill that uses Alibaba Cloud FunASR real-time speech recognition to turn speech captured while holding Right Option into typed text, with optional translation into multiple languages.
 
-## Publisher: <br>
-[yzwu2017](https://clawhub.ai/user/yzwu2017) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yzwu2017](https://clawhub.ai/user/yzwu2017)
 
-## Use Case: <br>
-External users use this skill to run a macOS voice typing utility that records speech while Right Option is held, transcribes it to text, and can translate the result before typing it into the focused application. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The utility needs microphone, keyboard-listening, and text-injection permissions. <br>
-Mitigation: Install only if the publisher is trusted, grant permissions deliberately, verify the cursor target before speaking, and quit the tray app when voice typing is not needed. <br>
-Risk: Speech content may be processed by DashScope/Qwen cloud services. <br>
-Mitigation: Avoid dictating secrets or sensitive conversations unless cloud processing is acceptable for the intended use. <br>
-Risk: The DashScope API key is required for operation. <br>
-Mitigation: Keep the API key in the DASHSCOPE_API_KEY environment variable and avoid embedding real credentials in the script. <br>
+## Use Case:
 
+External users on macOS use this skill to dictate text into the currently focused application and optionally translate spoken input before insertion.
 
-## Reference(s): <br>
-- [DashScope Console](https://dashscope.console.aliyun.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/yzwu2017/fun-voice-type) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated typed text at runtime] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a DashScope API key plus microphone, Input Monitoring, and Accessibility permissions on macOS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and artifact version note) <br>
+Risk: Microphone audio and translated text may be sent to DashScope/Qwen cloud services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid dictating secrets or regulated information, and use the skill only where cloud processing of speech content is acceptable.
+
+Risk: The running process can type into any focused application after Accessibility and Input Monitoring permissions are granted.
+
+Mitigation: Grant macOS privacy permissions only to a trusted terminal or Python process and stop the tray app when voice typing is not needed.
+
+Risk: Runtime dependencies and macOS privacy permissions expand the local execution surface.
+
+Mitigation: Install dependencies in a virtual environment with pinned versions before granting Microphone, Accessibility, and Input Monitoring permissions.
+
+## Reference(s):
+
+- [DashScope Console](https://dashscope.console.aliyun.com/)
+- [ClawHub skill page](https://clawhub.ai/yzwu2017/skills/fun-voice-type)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands; runtime output is typed text in the focused macOS application.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a DashScope API key plus macOS Microphone, Accessibility, and Input Monitoring permissions.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and SKILL.md version note)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

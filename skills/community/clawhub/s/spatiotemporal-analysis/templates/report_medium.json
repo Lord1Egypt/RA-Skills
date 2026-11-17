@@ -1,0 +1,54 @@
+{
+  "version": "1.0",
+  "name": "中等报告（5000字）模板",
+  "适用于": "正式研究 · 团队分享 · 半天阅读时长",
+  "sections": [
+    {
+      "id": "scenario",
+      "title": "场景判断",
+      "template": "判断为【A/B/C】，解释为什么。",
+      "target_words": 200
+    },
+    {
+      "id": "introduction",
+      "title": "引言：为什么研究这个",
+      "template": "提出核心问题；说明读者画像；预告结构。",
+      "target_words": 200
+    },
+    {
+      "id": "longitudinal",
+      "title": "纵向分析",
+      "template": "【起源-诞生-演进-决策-叙事弧线】详细展开。",
+      "target_words": 1800
+    },
+    {
+      "id": "cross_sectional",
+      "title": "横向分析",
+      "template": "对比 3-5 个对象，每个独立小节，讲'活成了什么样'。",
+      "target_words": 1500
+    },
+    {
+      "id": "convergence",
+      "title": "交汇分析",
+      "template": "纵向惯性 → 横向位置 → 概率分布（3-5 场景 + confidence）→ 转折点信号。",
+      "target_words": 800
+    },
+    {
+      "id": "applications",
+      "title": "3 个具体应用场景",
+      "template": "立即可用的 3 个场景，每个含具体操作步骤。",
+      "target_words": 400
+    },
+    {
+      "id": "limitations",
+      "title": "局限性与待补充",
+      "template": "数据空白、未验证推测、未来调研方向。",
+      "target_words": 100
+    }
+  ],
+  "metadata": {
+    "methodology": "references/methodology.md",
+    "writing_style": "references/writing_baseline.md",
+    "scenarios_judged": "本次实际场景判断结果"
+  }
+}

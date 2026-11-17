@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "example": "Xiaomi Group 2025 Q2 and H1 business review, template-route result",
+  "source": {
+    "filename": "小米集团2025Q2及上半年经营复盘_36页.pptx",
+    "sha256": "80583841fbbffb9a025b2dcf4ef03f2393c5d151268d4e90f38c8005cee77dad",
+    "bytes": 21425220,
+    "provenance": "user-supplied finished template-route deck; not a newly repeated v5.3.0 generation run"
+  },
+  "slide_count": 36,
+  "aspect": "16:9",
+  "objects": {
+    "top_level_total": 1398,
+    "native_shapes_including_textboxes": 1383,
+    "nonempty_textboxes_subset": 772,
+    "native_tables": 4,
+    "table_cells": 144,
+    "pictures": 11,
+    "native_charts": 0,
+    "embedded_chart_workbooks": 0
+  },
+  "notes_body_pages": 36,
+  "render": {
+    "engine": "libreoffice",
+    "engine_version": "LibreOffice 26.2.4.2 0229ac93fcf0d7cbc6376066c6f35021cef002dc",
+    "status": "passed",
+    "slide_count_rendered": 36
+  },
+  "public_assets": [
+    {
+      "path": "assets/samples/v5.3-xiaomi-2025-q2-h1-template-36page-overview.jpg",
+      "sha256": "912c3c9ea7f88194bffed1532437c4920ace3b6e7231ce1700590c7ca01761f2",
+      "bytes": 1271964,
+      "width_px": 2600,
+      "height_px": 1662,
+      "kind": "6x6_overview",
+      "page": null,
+      "reason": "全部36页按01—36原顺序；2600px宽；浅色留白、边框和页码均在幻灯片内容之外；仅等比例缩小拼图。"
+    },
+    {
+      "path": "assets/samples/v5.3-xiaomi-template-page-02.jpg",
+      "sha256": "db825a725690e89f1b3b419e76bded0f4770886629b2c21ade4d849d4c311f12",
+      "bytes": 293088,
+      "width_px": 1600,
+      "height_px": 900,
+      "kind": "结论摘要",
+      "page": 2,
+      "reason": "深蓝底的单一核心指标圆环、三条结论与底部指标带，适合展示总览结论的信息层级。"
+    },
+    {
+      "path": "assets/samples/v5.3-xiaomi-template-page-15.jpg",
+      "sha256": "020a57445e327aeaa2db317b411867018c8c805264e1c36c6e68249a9a7b1318",
+      "bytes": 186689,
+      "width_px": 1600,
+      "height_px": 900,
+      "kind": "数据对比",
+      "page": 15,
+      "reason": "左侧费用率/增量指标卡，右侧三组双期横向条形比较；完整图检查标注清晰，展示与摘要不同的数据结构。"
+    },
+    {
+      "path": "assets/samples/v5.3-xiaomi-template-page-30.jpg",
+      "sha256": "6c5b48978e37490d5b5caa10ca481129aeac781ca93c0d403186556eb49e7f5a",
+      "bytes": 193550,
+      "width_px": 1600,
+      "height_px": 900,
+      "kind": "行动排期",
+      "page": 30,
+      "reason": "周次矩阵、工作排期条及底部G1—G4验收关口，展示从结论到执行的结构。"
+    }
+  ],
+  "validation_limits": [
+    "Only file structure, full real rendering and selected-page image inspection were checked; no financial-fact audit",
+    "Shape-drawn data graphics are not data-backed native charts; image internals are not editable",
+    "PowerPoint/WPS GUI edit-save-reopen not tested",
+    "Original local line-break and annotation-spacing imperfections remain; render passed does not mean all pages are visually perfect",
+    "Only selected JPEG previews and this concise evidence are public; source PPTX, PDF and full logs are excluded"
+  ]
+}

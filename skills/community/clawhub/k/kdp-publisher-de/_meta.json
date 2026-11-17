@@ -1,6 +1,28 @@
 {
-  "ownerId": "kn7fp0pq6mqngwfy3v510nxntx82wgvx",
-  "slug": "kdp-publisher-de",
+  "name": "kdp-publisher-de",
   "version": "1.0.0",
-  "publishedAt": 1776910533940
+  "author": "Tikitackr",
+  "description": "Baut KDP-fertige PDFs aus Markdown-Kapiteln im professionellen OpenClaw-Buchstil. Typst-basiert, Inter-Font, 6x9 inch, mit QR-Code-Integration.",
+  "language": "de",
+  "license": "MIT",
+  "tags": [
+    "kdp",
+    "pdf",
+    "amazon",
+    "buch",
+    "typst",
+    "markdown",
+    "publishing"
+  ],
+  "commands": [
+    "Bau mir ein PDF aus [Dateiname]",
+    "Kompiliere Kapitel [N]",
+    "Bau das komplette Buch als PDF",
+    "Erstelle ein PDF"
+  ],
+  "requires": {
+    "runtime": "python >= 3.9",
+    "network": true
+  },
+  "repository": "https://clawhub.ai/Tikitackr/kdp-publisher-de"
 }

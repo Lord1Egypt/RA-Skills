@@ -1,43 +1,58 @@
-## Description: <br>
-Plan agreement signing for NDAs, MSAs, SOWs, vendor contracts, and other business agreements, including signer roles, approval needs, signing order, identity checks, and execution steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan agreement signing for NDAs, MSAs, SOWs, vendor contracts, and other business agreements. Use when deciding signer roles, approval needs, signing order, identity checks, and execution steps.
 
-## Publisher: <br>
-[notasign](https://clawhub.ai/user/notasign) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[notasign](https://clawhub.ai/user/notasign)
 
-## Use Case: <br>
-Employees, business teams, and external collaborators use this skill to turn agreement-signing needs into practical workflows for approvals, signer sequencing, execution, reminders, and tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste sensitive contract text or confidential deal details while asking for signing guidance. <br>
-Mitigation: Avoid sharing sensitive contract text unless analysis is intended, and redact unnecessary confidential details before use. <br>
-Risk: Signing authority, legal approval requirements, and identity-check obligations may vary by organization, agreement, and jurisdiction. <br>
-Mitigation: Independently verify legal requirements, internal approvals, and signer authority before executing an agreement. <br>
-Risk: Product mentions could be mistaken for an automated Nota Sign integration or automatic signing authority. <br>
-Mitigation: Treat Nota Sign references as optional product context; the skill provides planning guidance only and should not claim account access or automated signing. <br>
+## Use Case:
 
+Business teams and external collaborators use this skill to plan agreement execution for NDAs, MSAs, SOWs, vendor contracts, partnership agreements, and service contracts. It helps map signer roles, approval needs, signing order, execution checkpoints, reminders, and follow-up tracking.
 
-## Reference(s): <br>
-- [Agreement Signing on ClawHub](https://clawhub.ai/notasign/agreement-signing) <br>
-- [Nota Sign homepage](https://www.notasign.com/en?ch=clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Structured Markdown plans, role and order recommendations, execution checklists, and follow-up notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only output; the skill does not automatically sign documents, access accounts, or execute agreement actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Users may mistake agreement workflow guidance for legal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs with the appropriate legal, procurement, or business approver before relying on them for binding agreement execution.
+
+Risk: Users may share sensitive contract details while requesting a signing plan.
+
+Mitigation: Share only the details needed for planning and avoid including confidential terms unless the active assistant environment is approved for that data.
+
+Risk: Users may assume the skill can sign documents or perform account actions.
+
+Mitigation: Use the skill only to plan signing workflows; complete signatures, identity checks, and account actions in approved systems.
+
+## Reference(s):
+
+- [Agreement Signing on ClawHub](https://clawhub.ai/notasign/skills/agreement-signing)
+- [Nota Sign homepage](https://www.notasign.com/en?ch=clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with signing plans, signer role maps, execution checklists, order recommendations, and tracking notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Planning assistance only; does not sign documents, access accounts, or execute agreement actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Deploy and manage a SONiC sonic-mgmt KVM virtual testbed with cEOS neighbors for running pytest-based network tests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy and manage a SONiC sonic-mgmt KVM virtual testbed with cEOS neighbors for running pytest-based network tests.
 
-## Publisher: <br>
-[yxieca](https://clawhub.ai/user/yxieca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yxieca](https://clawhub.ai/user/yxieca)
 
-## Use Case: <br>
-Developers and network test engineers use this skill to set up, repair, tear down, and operate a local SONiC KVM testbed with cEOS neighbors for pytest-based sonic-mgmt validation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes documented passwords and credential examples for a real local SONiC virtual testbed. <br>
-Mitigation: Use unique lab-only secrets, prefer SSH keys where possible, and do not reuse the documented passwords. <br>
-Risk: The skill includes privileged changes such as temporary admin accounts, sudoers entries, and broad Docker socket permissions. <br>
-Mitigation: Run only in an isolated disposable lab and remove temporary accounts, sudoers entries, and socket permission changes after testing. <br>
-Risk: The DUT and management bridge can expose the lab if connected to untrusted networks. <br>
-Mitigation: Keep the DUT and management bridge isolated from untrusted networks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Credentials Configuration](references/credentials.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [SONiC sonic-mgmt repository](https://github.com/sonic-net/sonic-mgmt.git) <br>
-- [ClawHub release page](https://clawhub.ai/yxieca/sonic-kvm-testbed) <br>
+## Use Case:
 
+Network developers and test engineers use this skill to set up, troubleshoot, redeploy, and run pytest-based SONiC tests against a local KVM sonic-vs testbed with cEOS neighbors.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance targets a disposable local SONiC KVM lab and may include privileged host or DUT commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill recommends weak default credentials for lab users and network devices.
+
+Mitigation: Replace default passwords with unique secrets before use and avoid embedding passwords in reusable commands or files.
+
+Risk: The skill includes root-equivalent Docker access patterns, including unrestricted Docker socket permissions and broad sudo rights.
+
+Mitigation: Use an isolated disposable lab host, avoid chmod 666 on /var/run/docker.sock, and restrict sudo privileges where possible.
+
+Risk: The skill relies on moving external branches and container images for SONiC, cEOS, and sonic-mgmt components.
+
+Mitigation: Pin reviewed git commits and container image digests, and limit management network reachability to the lab environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yxieca/skills/sonic-kvm-testbed)
+- [Credentials Configuration](artifact/references/credentials.md)
+- [Troubleshooting](artifact/references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash, YAML, and inventory snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance is intended for an isolated disposable lab host and includes setup, credential, deployment, teardown, and troubleshooting procedures.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

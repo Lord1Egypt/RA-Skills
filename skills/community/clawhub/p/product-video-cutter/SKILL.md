@@ -1,33 +1,47 @@
 ---
 name: product-video-cutter
-description: Cut longer product or demo videos into tighter ecommerce-ready segments for PDPs, ads, UGC edits, and review clips. Use when teams need the strongest product moments without keeping filler.
+description: 把冗长产品视频切成能直接拿去卖货的有效片段——按 PDP、广告、达人 review、社媒短视频等用途，保留最能转化的 hook、演示与证明片段，删掉废话与空镜。
 ---
 
 # Product Video Cutter
 
 把冗长产品视频，切成能直接拿去卖货的有效片段。
 
-## Problem it solves
-很多产品视频素材可用，但不适合直接发布：
-- 开头太慢，前三秒没有抓力；
-- 演示太长，核心卖点被埋住；
-- 有 setup、停顿、口误、空镜、重复动作；
-- 同一条素材需要拆成 PDP、广告、达人 review、社媒短视频等不同版本。
+## Quick Reference
 
-这个 skill 的目标是：
-**从较长的产品素材里，保留最能帮助转化的片段，切出更短、更清晰、更适合电商场景的版本。**
+| 决策点 | Strong（推荐） | Acceptable（可接受） | Weak（避免） |
+|---|---|---|---|
+| 开头处理 | 前 3 秒直接进卖点/效果/冲突 | 前 5 秒内出现产品 | 保留原片 logo、自我介绍、慢启动 |
+| 片段选择 | 按"证明力"排序：效果实拍 > 对比 > 演示 > 口播 | 演示 + 口播组合 | 按时间顺序均匀截取 |
+| 目标时长 | 按用途定：广告 15-30s / PDP 30-60s / 短视频 ≤45s | 统一 60s 以内 | "尽量剪短一点" |
+| 删减标准 | 删掉不推进"想买"的每一秒 | 删除明显停顿口误 | 只删头尾，中间全保留 |
+| 多版本策略 | 一条素材出 hook 不同的 2-3 个版本 | 单一最优版本 | 一个版本套用所有渠道 |
+| 衔接处理 | 硬切在动作/语句自然边界 | 说明衔接处需要转场 | 句子中间硬切不标注 |
+| 输出说明 | 时间码 + 保留理由 + 用途 + 遗留问题 | 时间码 + 用途 | 只给一句"剪好了" |
+
+## Solves
+
+1. **开头太慢** —— 前三秒没有抓力，观众在 hook 出现前已经划走。
+2. **核心卖点被埋住** —— 演示太长，最有说服力的 10 秒藏在第 90 秒。
+3. **废镜头拖垮完播率** —— setup、停顿、口误、空镜、重复动作占了一半时长。
+4. **一条素材打天下** —— 同一素材需要拆成 PDP、广告、达人 review、社媒短视频等不同版本，但没人系统地拆。
+5. **剪短了但没剪对** —— 时长减半，留下的却是口播寒暄而不是效果证明。
+6. **交付无法验收** —— 没有时间码和保留理由，运营不知道为什么这么剪、还缺什么。
 
 ## Use when
+
 - 需要从产品 demo、开箱、测评、UGC 中截取有效片段
 - 需要去掉废话、停顿、无效镜头和拖沓演示
 - 需要为 PDP、广告、listing 或 review 准备更短视频
 
 ## Do not use when
+
 - 需要多轨复杂剪辑、转场、字幕包装、完整创意重做
-- 主要问题是尺寸比例，不是片段长度
+- 主要问题是尺寸比例，不是片段长度（用 social-video-resizer）
 - 素材本身结构混乱到需要重新脚本化拍摄
 
 ## Inputs
+
 - Source video file
 - Goal of the cut: PDP, ad, UGC, product proof, comparison, review, etc.
 - Desired clip length or max duration
@@ -35,25 +49,77 @@ description: Cut longer product or demo videos into tighter ecommerce-ready segm
 - Optional cut priority: hook, product proof, feature demo, testimonial, CTA
 
 ## Workflow
-1. 明确成片用途和理想时长。
-2. 找出最强的 hook、演示、证明或转化片段。
-3. 删除慢开头、停顿、重复和弱信息段。
-4. 保留自然衔接，必要时说明 cut tradeoff。
-5. 输出一条或多条更适合电商用途的短片建议。
 
-## Output
-Return:
-1. Selected cut range(s)
-2. Why those sections were kept
-3. Intended ecommerce use case
-4. Any remaining issues that need further editing
-5. Optional alternate cuts for other placements
+### Step 1 — 明确用途与时长
 
-## Quality bar
-- 优先保留最能证明产品价值的片段
-- 开头尽量更快进入卖点或证据
-- 剪完不是“更短”，而是“更能转化”
-- 明确指出仍需字幕、封面或尺寸适配的情况
+先问清楚成片去哪儿：PDP 主图视频、信息流广告、达人页 review、社媒短视频。不同用途的结构和时长完全不同，见 references/cut-strategy-guide.md 的用途矩阵。
 
-## Resource
-See `references/output-template.md`.
+### Step 2 — 通片打点
+
+过一遍素材，按时间码标记四类片段：hook 候选（效果、冲突、悬念）、证明片段（实拍效果、对比、数据）、演示片段（怎么用）、信任片段（人脸口播、真实场景）。同时标记废片段：setup、停顿、口误、空镜、重复。
+
+### Step 3 — 选主线
+
+按目标用途的结构模板（hook → 证明/演示 → CTA）从打点池里选片段。选择标准是证明力优先：效果实拍 > before/after 对比 > 功能演示 > 口播描述。hook 写法参考 references/hook-patterns.md。
+
+### Step 4 — 删减到目标时长
+
+从最弱片段开始删。判断标准只有一个：这一秒有没有推进"想买"。删不动时压缩演示（跳步保留结果）而不是删证明。
+
+### Step 5 — 检查衔接
+
+硬切放在动作完成点或语句自然边界。跳切造成的突兀感如果无法避免，在输出里注明"此处建议加转场/字幕过渡"。
+
+### Step 6 — 输出多版本建议
+
+主版本之外，如素材允许，给出 1-2 个备选：不同 hook 的 A/B 版本，或适配其他渠道的长短版。
+
+### Step 7 — 自检交付
+
+对照 assets/cut-quality-checklist.md 检查后，按 references/output-template.md 输出时间码、理由和遗留问题。
+
+## Worked Example 1 — 3 分钟开箱测评 → 25 秒信息流广告
+
+**输入：** 3:12 的达人开箱视频（0:00-0:35 打招呼+品牌故事，0:35-1:10 开箱，1:10-1:55 功能演示，1:55-2:20 使用前后对比，2:20-2:50 价格讨论，2:50-3:12 总结推荐）。目标：25 秒信息流广告，重点是去污效果。
+
+**输出（核心部分）：**
+
+> **选用片段：**
+> 1. 2:01-2:07（6s）— before/after 对比特写 → 用作 hook，效果冲击力最强
+> 2. 1:22-1:31（9s）— 涂抹+擦拭动作演示 → 回答"怎么做到的"
+> 3. 2:55-3:02（7s）— 达人正脸推荐"我自己回购了三次" → 信任背书
+> 4. 建议叠加 3s 结尾卡：产品图 + 促销信息（素材中无 CTA 镜头）
+>
+> **合计 25s。删除理由：** 0:00-0:35 品牌故事对广告无转化贡献；开箱过程（0:35-1:10）在广告场景是废时长；价格讨论留给落地页。
+> **遗留问题：** 2:07→1:22 是时间倒序跳切，需加 0.3s 白闪或"How?"字幕过渡；全片需重新配字幕。
+> **备选版本：** hook 改用 1:26-1:31（动作演示起手），适合已知品类的复购人群。
+
+## Worked Example 2 — 90 秒官方 demo → PDP 45 秒版
+
+**输入：** 90s 棚拍产品 demo（0-15s logo 动画+口号，15-40s 三个功能逐一演示，40-60s 参数动画，60-75s 生活场景，75-90s slogan 收尾）。目标：PDP 主图视频 45s，用户已有购买意向。
+
+**输出（核心部分）：**
+
+> **选用片段：** 60-68s 生活场景（hook，先给"用起来的样子"）→ 15-38s 三功能演示（压缩为每个功能保留动作+结果各 2-3s，共 20s）→ 42-50s 关键参数动画（8s，PDP 用户关心规格）→ 87-90s 产品定妆镜头收尾（3s）。合计 ~44s。
+> **删除理由：** logo 动画 15s 对已在商品页的用户是纯流失点；slogan 收尾无信息量，只留最后定妆帧。
+> **遗留问题：** 参数动画里的字号在移动端偏小，建议重制或加大字重。
+> **备选版本：** 30s 精简版（砍参数段），可用于站外引流落地。
+
+## Common Mistakes
+
+1. **保留原片开场** —— logo、打招呼、品牌故事是完播率杀手，广告和 PDP 场景一律先删。
+2. **按时间顺序均匀截取** —— 好片段不是均匀分布的，要按证明力挑，不是按时间抽样。
+3. **删证明留口播** —— 口播说"效果很好"不如 2 秒实拍效果，删减时先动口播。
+4. **hook 用"介绍"不用"结果"** —— 前 3 秒放效果/冲突/悬念，不放"今天给大家介绍"。
+5. **一个版本打所有渠道** —— PDP 用户要细节，广告用户要冲击，结构必须不同。
+6. **句中硬切不标注** —— 造成成片口播断裂，交付时必须注明衔接风险。
+7. **只交付"更短"** —— 目标是"更能转化"，输出必须写每段的保留理由。
+8. **忽略无 CTA 素材** —— 素材里没有行动号召时要主动建议补结尾卡，而不是默默交付。
+9. **不留时间码** —— 没有时间码的剪辑建议无法执行，等于没交付。
+
+## Resources
+
+- `references/output-template.md` — 剪辑方案标准输出模板
+- `references/hook-patterns.md` — 前 3 秒 hook 模式库（8 种）
+- `references/cut-strategy-guide.md` — 按用途的结构模板与时长矩阵
+- `assets/cut-quality-checklist.md` — 交付前自检清单

@@ -1,0 +1,669 @@
+{
+ "version": "4.0",
+ "families": {
+  "glm-5.3": {
+   "versions": [
+    "GLM-5.3(2026-08)",
+    "GLM-5.2路由"
+   ],
+   "sampled_via": "self:GLM-5.3(agent)",
+   "patterns": [
+    {
+     "p": "真实世",
+     "w": 4,
+     "cov_model": 0.222,
+     "fpr_human": 0.0,
+     "lift": 22.22
+    },
+    {
+     "p": "活动度",
+     "w": 4,
+     "cov_model": 0.222,
+     "fpr_human": 0.0,
+     "lift": 22.22
+    },
+    {
+     "p": "和患者",
+     "w": 4,
+     "cov_model": 0.222,
+     "fpr_human": 0.0,
+     "lift": 22.22
+    },
+    {
+     "p": "实世界",
+     "w": 4,
+     "cov_model": 0.222,
+     "fpr_human": 0.0,
+     "lift": 22.22
+    },
+    {
+     "p": "二十年",
+     "w": 4,
+     "cov_model": 0.222,
+     "fpr_human": 0.002,
+     "lift": 19.01
+    },
+    {
+     "p": "没有人",
+     "w": 4,
+     "cov_model": 0.222,
+     "fpr_human": 0.014,
+     "lift": 9.45
+    },
+    {
+     "p": "的事情",
+     "w": 4,
+     "cov_model": 0.222,
+     "fpr_human": 0.015,
+     "lift": 8.82
+    },
+    {
+     "p": "患者的",
+     "w": 4,
+     "cov_model": 0.222,
+     "fpr_human": 0.015,
+     "lift": 8.82
+    },
+    {
+     "p": "在一起",
+     "w": 4,
+     "cov_model": 0.222,
+     "fpr_human": 0.02,
+     "lift": 7.34
+    }
+   ],
+   "sampled_docs": 9,
+   "mined_at": "2026-08-15"
+  },
+  "deepseek-r1": {
+   "versions": [],
+   "sampled_via": "",
+   "patterns": [
+    {
+     "p": "本研究",
+     "w": 4,
+     "cov_model": 0.15,
+     "fpr_human": 0.022,
+     "lift": 4.71
+    }
+   ],
+   "sampled_docs": 379,
+   "mined_at": "2026-08-15"
+  },
+  "deepseek-v3": {
+   "versions": [],
+   "sampled_via": "",
+   "patterns": [
+    {
+     "p": "提供了",
+     "w": 4,
+     "cov_model": 0.197,
+     "fpr_human": 0.02,
+     "lift": 6.52
+    },
+    {
+     "p": "本研究",
+     "w": 4,
+     "cov_model": 0.189,
+     "fpr_human": 0.022,
+     "lift": 5.92
+    }
+   ],
+   "sampled_docs": 370,
+   "mined_at": "2026-08-15"
+  },
+  "qwen-2.5": {
+   "versions": [],
+   "sampled_via": "",
+   "patterns": [
+    {
+     "p": "近年来",
+     "w": 4,
+     "cov_model": 0.154,
+     "fpr_human": 0.014,
+     "lift": 6.53
+    },
+    {
+     "p": "每个人",
+     "w": 4,
+     "cov_model": 0.151,
+     "fpr_human": 0.015,
+     "lift": 5.99
+    },
+    {
+     "p": "本研究",
+     "w": 4,
+     "cov_model": 0.18,
+     "fpr_human": 0.022,
+     "lift": 5.62
+    },
+    {
+     "p": "的重要",
+     "w": 4,
+     "cov_model": 0.203,
+     "fpr_human": 0.03,
+     "lift": 5.03
+    },
+    {
+     "p": "的故事",
+     "w": 4,
+     "cov_model": 0.151,
+     "fpr_human": 0.02,
+     "lift": 4.99
+    },
+    {
+     "p": "同时也",
+     "w": 4,
+     "cov_model": 0.174,
+     "fpr_human": 0.025,
+     "lift": 4.94
+    },
+    {
+     "p": "之间的",
+     "w": 4,
+     "cov_model": 0.177,
+     "fpr_human": 0.039,
+     "lift": 3.62
+    },
+    {
+     "p": "重要的",
+     "w": 4,
+     "cov_model": 0.182,
+     "fpr_human": 0.044,
+     "lift": 3.38
+    },
+    {
+     "p": "过程中",
+     "w": 4,
+     "cov_model": 0.201,
+     "fpr_human": 0.051,
+     "lift": 3.3
+    },
+    {
+     "p": "进一步",
+     "w": 3,
+     "cov_model": 0.174,
+     "fpr_human": 0.049,
+     "lift": 2.96
+    }
+   ],
+   "sampled_docs": 384,
+   "mined_at": "2026-08-15"
+  },
+  "qwen-3": {
+   "versions": [],
+   "sampled_via": "",
+   "patterns": [
+    {
+     "p": "有助于",
+     "w": 4,
+     "cov_model": 0.155,
+     "fpr_human": 0.007,
+     "lift": 9.23
+    },
+    {
+     "p": "真正的",
+     "w": 4,
+     "cov_model": 0.157,
+     "fpr_human": 0.014,
+     "lift": 6.69
+    },
+    {
+     "p": "近年来",
+     "w": 4,
+     "cov_model": 0.152,
+     "fpr_human": 0.014,
+     "lift": 6.46
+    },
+    {
+     "p": "本研究",
+     "w": 4,
+     "cov_model": 0.152,
+     "fpr_human": 0.022,
+     "lift": 4.76
+    },
+    {
+     "p": "是一种",
+     "w": 4,
+     "cov_model": 0.16,
+     "fpr_human": 0.039,
+     "lift": 3.28
+    },
+    {
+     "p": "进一步",
+     "w": 3,
+     "cov_model": 0.171,
+     "fpr_human": 0.049,
+     "lift": 2.89
+    }
+   ],
+   "sampled_docs": 375,
+   "mined_at": "2026-08-15"
+  },
+  "gpt-4o": {
+   "versions": [],
+   "sampled_via": "",
+   "patterns": [
+    {
+     "p": "未来的",
+     "w": 4,
+     "cov_model": 0.201,
+     "fpr_human": 0.005,
+     "lift": 13.31
+    },
+    {
+     "p": "不仅是",
+     "w": 4,
+     "cov_model": 0.224,
+     "fpr_human": 0.008,
+     "lift": 12.14
+    },
+    {
+     "p": "复杂的",
+     "w": 4,
+     "cov_model": 0.172,
+     "fpr_human": 0.007,
+     "lift": 10.26
+    },
+    {
+     "p": "不仅仅",
+     "w": 4,
+     "cov_model": 0.154,
+     "fpr_human": 0.005,
+     "lift": 10.2
+    },
+    {
+     "p": "有助于",
+     "w": 4,
+     "cov_model": 0.167,
+     "fpr_human": 0.007,
+     "lift": 9.95
+    },
+    {
+     "p": "提供了",
+     "w": 4,
+     "cov_model": 0.266,
+     "fpr_human": 0.02,
+     "lift": 8.78
+    },
+    {
+     "p": "生活中",
+     "w": 4,
+     "cov_model": 0.18,
+     "fpr_human": 0.014,
+     "lift": 7.64
+    },
+    {
+     "p": "的重要",
+     "w": 4,
+     "cov_model": 0.234,
+     "fpr_human": 0.03,
+     "lift": 5.8
+    },
+    {
+     "p": "尤其是",
+     "w": 4,
+     "cov_model": 0.193,
+     "fpr_human": 0.024,
+     "lift": 5.73
+    },
+    {
+     "p": "本研究",
+     "w": 4,
+     "cov_model": 0.174,
+     "fpr_human": 0.022,
+     "lift": 5.46
+    },
+    {
+     "p": "生活的",
+     "w": 4,
+     "cov_model": 0.159,
+     "fpr_human": 0.024,
+     "lift": 4.72
+    },
+    {
+     "p": "是一种",
+     "w": 4,
+     "cov_model": 0.208,
+     "fpr_human": 0.039,
+     "lift": 4.26
+    }
+   ],
+   "sampled_docs": 384,
+   "mined_at": "2026-08-15"
+  },
+  "gpt-3.5-turbo": {
+   "versions": [],
+   "sampled_via": "",
+   "patterns": [
+    {
+     "p": "研究旨",
+     "w": 4,
+     "cov_model": 0.154,
+     "fpr_human": 0.002,
+     "lift": 13.18
+    },
+    {
+     "p": "究旨在",
+     "w": 4,
+     "cov_model": 0.154,
+     "fpr_human": 0.002,
+     "lift": 13.18
+    },
+    {
+     "p": "提供了",
+     "w": 4,
+     "cov_model": 0.193,
+     "fpr_human": 0.02,
+     "lift": 6.38
+    },
+    {
+     "p": "本研究",
+     "w": 4,
+     "cov_model": 0.178,
+     "fpr_human": 0.022,
+     "lift": 5.56
+    },
+    {
+     "p": "让我们",
+     "w": 4,
+     "cov_model": 0.191,
+     "fpr_human": 0.025,
+     "lift": 5.39
+    },
+    {
+     "p": "是一种",
+     "w": 4,
+     "cov_model": 0.175,
+     "fpr_human": 0.039,
+     "lift": 3.58
+    }
+   ],
+   "sampled_docs": 383,
+   "mined_at": "2026-08-15"
+  },
+  "claude-3.5-haiku": {
+   "versions": [],
+   "sampled_via": "",
+   "patterns": [
+    {
+     "p": "不仅仅",
+     "w": 4,
+     "cov_model": 0.236,
+     "fpr_human": 0.005,
+     "lift": 15.64
+    },
+    {
+     "p": "仅仅是",
+     "w": 4,
+     "cov_model": 0.196,
+     "fpr_human": 0.008,
+     "lift": 10.64
+    },
+    {
+     "p": "提供了",
+     "w": 4,
+     "cov_model": 0.165,
+     "fpr_human": 0.02,
+     "lift": 5.45
+    },
+    {
+     "p": "本研究",
+     "w": 4,
+     "cov_model": 0.173,
+     "fpr_human": 0.022,
+     "lift": 5.41
+    },
+    {
+     "p": "的重要",
+     "w": 4,
+     "cov_model": 0.181,
+     "fpr_human": 0.03,
+     "lift": 4.47
+    },
+    {
+     "p": "重要的",
+     "w": 4,
+     "cov_model": 0.212,
+     "fpr_human": 0.044,
+     "lift": 3.93
+    },
+    {
+     "p": "是一种",
+     "w": 4,
+     "cov_model": 0.162,
+     "fpr_human": 0.039,
+     "lift": 3.32
+    }
+   ],
+   "sampled_docs": 382,
+   "mined_at": "2026-08-15"
+  },
+  "gemini-2.5-flash": {
+   "versions": [],
+   "sampled_via": "",
+   "patterns": [
+    {
+     "p": "本研究旨在",
+     "w": 4,
+     "cov_model": 0.167,
+     "fpr_human": 0.002,
+     "lift": 14.26
+    },
+    {
+     "p": "未来的",
+     "w": 4,
+     "cov_model": 0.161,
+     "fpr_human": 0.005,
+     "lift": 10.7
+    },
+    {
+     "p": "独特的",
+     "w": 4,
+     "cov_model": 0.189,
+     "fpr_human": 0.008,
+     "lift": 10.22
+    },
+    {
+     "p": "仅仅是",
+     "w": 4,
+     "cov_model": 0.153,
+     "fpr_human": 0.008,
+     "lift": 8.29
+    },
+    {
+     "p": "提供了",
+     "w": 4,
+     "cov_model": 0.186,
+     "fpr_human": 0.02,
+     "lift": 6.14
+    },
+    {
+     "p": "是一种",
+     "w": 4,
+     "cov_model": 0.194,
+     "fpr_human": 0.039,
+     "lift": 3.97
+    },
+    {
+     "p": "重要的",
+     "w": 4,
+     "cov_model": 0.172,
+     "fpr_human": 0.044,
+     "lift": 3.19
+    },
+    {
+     "p": "进一步",
+     "w": 4,
+     "cov_model": 0.186,
+     "fpr_human": 0.049,
+     "lift": 3.15
+    }
+   ],
+   "sampled_docs": 366,
+   "mined_at": "2026-08-15"
+  },
+  "doubao-1.5-pro": {
+   "versions": [],
+   "sampled_via": "",
+   "patterns": [
+    {
+     "p": "提供了",
+     "w": 4,
+     "cov_model": 0.172,
+     "fpr_human": 0.02,
+     "lift": 5.68
+    },
+    {
+     "p": "让我们",
+     "w": 4,
+     "cov_model": 0.182,
+     "fpr_human": 0.025,
+     "lift": 5.15
+    },
+    {
+     "p": "过程中",
+     "w": 3,
+     "cov_model": 0.152,
+     "fpr_human": 0.051,
+     "lift": 2.51
+    }
+   ],
+   "sampled_docs": 407,
+   "mined_at": "2026-08-15"
+  },
+  "glm": {
+   "versions": [],
+   "sampled_via": "",
+   "patterns": [
+    {
+     "p": "供了有",
+     "w": 4,
+     "cov_model": 0.177,
+     "fpr_human": 0.0,
+     "lift": 17.67
+    },
+    {
+     "p": "探讨了",
+     "w": 4,
+     "cov_model": 0.228,
+     "fpr_human": 0.003,
+     "lift": 17.08
+    },
+    {
+     "p": "本研究为",
+     "w": 4,
+     "cov_model": 0.168,
+     "fpr_human": 0.0,
+     "lift": 16.81
+    },
+    {
+     "p": "味无穷",
+     "w": 4,
+     "cov_model": 0.159,
+     "fpr_human": 0.0,
+     "lift": 15.95
+    },
+    {
+     "p": "回味无",
+     "w": 4,
+     "cov_model": 0.159,
+     "fpr_human": 0.0,
+     "lift": 15.95
+    },
+    {
+     "p": "揭示了",
+     "w": 4,
+     "cov_model": 0.185,
+     "fpr_human": 0.002,
+     "lift": 15.86
+    },
+    {
+     "p": "为我国",
+     "w": 4,
+     "cov_model": 0.155,
+     "fpr_human": 0.0,
+     "lift": 15.52
+    },
+    {
+     "p": "供了新",
+     "w": 4,
+     "cov_model": 0.151,
+     "fpr_human": 0.0,
+     "lift": 15.09
+    },
+    {
+     "p": "提的是",
+     "w": 4,
+     "cov_model": 0.185,
+     "fpr_human": 0.003,
+     "lift": 13.85
+    },
+    {
+     "p": "提供了",
+     "w": 4,
+     "cov_model": 0.418,
+     "fpr_human": 0.02,
+     "lift": 13.81
+    },
+    {
+     "p": "一提的",
+     "w": 4,
+     "cov_model": 0.181,
+     "fpr_human": 0.003,
+     "lift": 13.53
+    },
+    {
+     "p": "值得一提",
+     "w": 4,
+     "cov_model": 0.181,
+     "fpr_human": 0.003,
+     "lift": 13.53
+    }
+   ],
+   "sampled_docs": 232,
+   "mined_at": "2026-08-15"
+  },
+  "kimi-k3": {
+   "versions": [
+    "2026-09"
+   ],
+   "sampled_via": "opencode-go",
+   "patterns": [
+    {
+     "p": "实践中",
+     "w": 4,
+     "cov_model": 0.2,
+     "fpr_human": 0.0,
+     "lift": 20.0
+    },
+    {
+     "p": "体会到",
+     "w": 4,
+     "cov_model": 0.2,
+     "fpr_human": 0.0,
+     "lift": 20.0
+    }
+   ],
+   "sampled_docs": 40,
+   "mined_at": "2026-09-23"
+  },
+  "kimi-k2.7": {
+   "versions": [
+    "2026-09"
+   ],
+   "sampled_via": "opencode-go",
+   "patterns": [
+    {
+     "p": "实践中",
+     "w": 4,
+     "cov_model": 0.176,
+     "fpr_human": 0.0,
+     "lift": 17.65
+    }
+   ],
+   "sampled_docs": 34,
+   "mined_at": "2026-09-26"
+  }
+ }
+}

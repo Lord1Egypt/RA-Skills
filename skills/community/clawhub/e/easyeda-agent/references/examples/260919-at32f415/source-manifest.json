@@ -1,0 +1,417 @@
+{
+  "schemaVersion": 1,
+  "kind": "exam-source-index",
+  "id": "260919-at32f415-learning-board",
+  "purpose": "参数与来源记录；不是 easyeda apply playbook，也不是完成态 PCB 答案",
+  "status": "source-only",
+  "identityRequirements": {
+    "sourceProjectNamePattern": "<CUSTOMER_ID>-AT32F415 学习板",
+    "sourceTitleblockDrawnBy": "<REAL_NAME>",
+    "sourcePcbSilkFields": [
+      "<REAL_NAME>",
+      "<CUSTOMER_ID>",
+      "AT32F415 学习板"
+    ],
+    "demoSubstitutions": {
+      "CUSTOMER_ID": "Demo",
+      "REAL_NAME": "Demo",
+      "projectName": "Demo-AT32F415 学习板"
+    },
+    "note": "Keep the exam requirements as source facts; use only the documented Demo substitutions in the isolated ceshi reproduction."
+  },
+  "sources": [
+    {
+      "name": "PCB Layout工程师（初级）专业技术证书考试说明.pdf",
+      "pages": 9,
+      "usedPages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "name": "原理图.pdf",
+      "pages": 1,
+      "usedPages": [
+        1
+      ]
+    },
+    {
+      "name": "物料清单.xlsx",
+      "sheet": "BOM",
+      "bomRows": 27,
+      "expandedInstances": 69
+    }
+  ],
+  "derivedSourceData": [
+    {
+      "path": "example-catalog.json",
+      "status": "partial-live-verified",
+      "purpose": "SCH/PCB/LAY/RTE/FIN 共 36 个来源技术点的机器可读教学字段与现场待验证项"
+    },
+    {
+      "path": "bom-instances.json",
+      "status": "offline-verified",
+      "purpose": "27 行 BOM 展开为 69 个唯一位号，保留值、封装、商品号和功能区"
+    },
+    {
+      "path": "source-connectivity.json",
+      "status": "source-only",
+      "purpose": "原理图题图的 69 器件连接与 13 处明确 NC 转录；不是 EasyEDA 网表，真实 pin/pad 映射待回读"
+    },
+    {
+      "path": "initial-placement.json",
+      "status": "partial-live-verified",
+      "purpose": "69 件初始布局的参数样例与保存刷新后的几何回读；不含易失 primitiveId"
+    },
+    {
+      "path": "live-validation.json",
+      "status": "partial-live-verified",
+      "purpose": "原理图、机械、规则和布局代表性闭环的真实证据、恢复路径与明确未完成项"
+    }
+  ],
+  "board": {
+    "layers": 2,
+    "widthMm": 90,
+    "heightMm": 50,
+    "cornerRadiusMm": 3,
+    "outlineWidthMm": 0.254,
+    "displayOrigin": "lower-left of board outline",
+    "allComponentsLayer": "TOP"
+  },
+  "rules": {
+    "trackToTrackClearanceMil": 6,
+    "signalWidthDefaultMil": 8,
+    "signalWidthMinMil": 8,
+    "powerRuleName": "PWR",
+    "powerWidthDefaultMil": 20,
+    "powerWidthMinMil": 8,
+    "powerNetClassName": "PWR_Class",
+    "viaOuterMinMil": 24,
+    "viaHoleMinMil": 12,
+    "silkFontFamily": "Arial",
+    "silkHeightMinMil": 45
+  },
+  "fixedPlacementsMm": [
+    {
+      "ref": "SCREW1",
+      "x": 3,
+      "y": 47,
+      "rotationDeg": 0,
+      "locked": true
+    },
+    {
+      "ref": "SCREW2",
+      "x": 87,
+      "y": 47,
+      "rotationDeg": 0,
+      "locked": true
+    },
+    {
+      "ref": "SCREW3",
+      "x": 3,
+      "y": 3,
+      "rotationDeg": 0,
+      "locked": true
+    },
+    {
+      "ref": "SCREW4",
+      "x": 87,
+      "y": 3,
+      "rotationDeg": 0,
+      "locked": true
+    },
+    {
+      "ref": "U6",
+      "x": 45,
+      "y": 25,
+      "rotationDeg": 0,
+      "locked": true
+    },
+    {
+      "ref": "CARD1",
+      "x": 79.5,
+      "y": 25,
+      "rotationDeg": 90,
+      "locked": true
+    },
+    {
+      "ref": "CN1",
+      "x": null,
+      "y": 42,
+      "rotationDeg": 180,
+      "locked": null,
+      "lockSpecified": false,
+      "freeAxis": "x"
+    }
+  ],
+  "placementCoordinateSemantic": {
+    "examWording": "坐标位置",
+    "status": "live-verified",
+    "resolvedValue": "ui-footprint-anchor",
+    "candidates": [
+      "ui-footprint-anchor",
+      "bbox-center"
+    ],
+    "verification": "本例历史回读使用 footprint anchor；后续从题目坐标、参数中的 coordinateSemantic 及 typed pcb list 的 x/y、pads/bbox 交叉核对。原题未定义 anchor/bbox-center；不得仅由 bbox 中心推断，也不得通过属性面板操作补证。"
+  },
+  "decouplingOwnership": {
+    "C1": "U1.5 VCC",
+    "C2": "LED1.1 VDD",
+    "C3": "U2.3 VIN input bulk",
+    "C4": "U2.3 VIN input high-frequency",
+    "C5": "U2.2/U2.4 VOUT output bulk",
+    "C6": "U2.2/U2.4 VOUT output high-frequency",
+    "C9": "U4.8 V3",
+    "C10": "U4.5 VCC",
+    "C12": "U5.3 VCC bulk",
+    "C13": "U5.3 VCC high-frequency",
+    "C14": "U6.1 VDD",
+    "C15": "U6.5 VDDA",
+    "C16": "U6.17 VDD",
+    "C18": "CARD1.4 VDD bulk",
+    "C19": "CARD1.4 VDD high-frequency"
+  },
+  "functionalZones": [
+    {
+      "id": "type-c",
+      "title": "TYPE-C输入接口",
+      "refs": [
+        "USB1",
+        "R1",
+        "R2"
+      ],
+      "detail": "重复 D+/D- 脚、CC 下拉和外壳接地逐脚核对"
+    },
+    {
+      "id": "rgb-led",
+      "title": "RGB-LED",
+      "refs": [
+        "U1",
+        "LED1",
+        "R3",
+        "C1",
+        "C2"
+      ],
+      "detail": "LED1 显示 3.7V~5.3V 属性"
+    },
+    {
+      "id": "ldo",
+      "title": "LDO-3V3降压电路",
+      "refs": [
+        "U2",
+        "C3",
+        "C4",
+        "C5",
+        "C6"
+      ],
+      "detail": "U2 VOUT/TAB 双输出及输入输出电容"
+    },
+    {
+      "id": "lcd",
+      "title": "LCD显示屏",
+      "refs": [
+        "U3",
+        "Q1",
+        "R4",
+        "R5",
+        "R6",
+        "C7"
+      ],
+      "detail": "U3 的 NC、背光驱动和封装元件禁放区"
+    },
+    {
+      "id": "buttons",
+      "title": "功能按键",
+      "refs": [
+        "SW1",
+        "SW2",
+        "SW3",
+        "R7",
+        "R8",
+        "R9",
+        "C8"
+      ],
+      "detail": "不同按键上下拉与功能丝印"
+    },
+    {
+      "id": "usb-uart",
+      "title": "USB转串口电路",
+      "refs": [
+        "U4",
+        "C9",
+        "C10"
+      ],
+      "detail": "CH340N V3/VCC 分别去耦，RTS 标 NC"
+    },
+    {
+      "id": "photoresistor",
+      "title": "光敏电阻",
+      "refs": [
+        "R10",
+        "R11",
+        "C11"
+      ],
+      "detail": "靠板边并远离 RGB LED"
+    },
+    {
+      "id": "can",
+      "title": "CAN",
+      "refs": [
+        "U5",
+        "D1",
+        "R12",
+        "C12",
+        "C13",
+        "CN1"
+      ],
+      "detail": "CANH/CANL 跨接 120Ω，ESD 靠近端子，VREF 标 NC"
+    },
+    {
+      "id": "mcu",
+      "title": "主控电路",
+      "refs": [
+        "U6",
+        "C14",
+        "C15",
+        "C16"
+      ],
+      "detail": "逐电源脚去耦、EP 接地与固定位置"
+    },
+    {
+      "id": "boot",
+      "title": "BOOT电阻",
+      "refs": [
+        "R13",
+        "R14"
+      ],
+      "detail": "BOOT0/PB2 下拉"
+    },
+    {
+      "id": "buzzer",
+      "title": "无源蜂鸣器",
+      "refs": [
+        "D2",
+        "Q2",
+        "R15",
+        "R16",
+        "R17",
+        "C17",
+        "BUZZER1"
+      ],
+      "detail": "驱动、续流二极管与电源去耦整体放置"
+    },
+    {
+      "id": "micro-sd",
+      "title": "MICRO-SD",
+      "refs": [
+        "CARD1",
+        "C18",
+        "C19",
+        "R18",
+        "R19",
+        "R20",
+        "R21",
+        "R22",
+        "R23"
+      ],
+      "detail": "信号上拉、供电去耦和固定位置"
+    },
+    {
+      "id": "crystal",
+      "title": "晶振电路",
+      "refs": [
+        "X1",
+        "C20",
+        "C21"
+      ],
+      "detail": "四脚晶振接地脚及 OSC_IN/OSC_OUT"
+    },
+    {
+      "id": "swd",
+      "title": "SWD下载接口",
+      "refs": [
+        "H1",
+        "C22"
+      ],
+      "detail": "3V3/DIO/CLK/GND 实际针脚顺序"
+    },
+    {
+      "id": "mounting",
+      "title": "M3螺丝孔",
+      "refs": [
+        "SCREW1",
+        "SCREW2",
+        "SCREW3",
+        "SCREW4"
+      ],
+      "detail": "四角固定坐标与锁定"
+    }
+  ],
+  "orderingExamples": {
+    "fixedExamBoard": [
+      "rules-and-stackup",
+      "outline-and-origin",
+      "fixed-parts",
+      "mechanical-keepouts",
+      "critical-path-trials",
+      "core-peripherals-and-power-return",
+      "routing",
+      "silk-pour-teardrops",
+      "save-reload-readback"
+    ],
+    "adjustableTeachingVariant": [
+      "rules-and-stackup",
+      "functional-modules",
+      "edge-interfaces",
+      "critical-paths",
+      "estimate-board-size",
+      "outline",
+      "legalize-and-route"
+    ]
+  },
+  "capabilities": {
+    "currentTyped": [
+      "sch read/connectivity/check/drc/save",
+      "pcb list/modify/lock/layout-lint/check/drc/save",
+      "pcb region create/list",
+      "pcb pour-rebuild"
+    ],
+    "newlyImplementedOffline": [
+      "project create",
+      "native-arc outline with centerline width/radius/lock readback",
+      "pcb origin get/set",
+      "full drc-rules-set --from",
+      "pcb net-class list/create",
+      "silk font-family read/write",
+      "library footprint region create"
+    ],
+    "liveValidated": [
+      "native-arc outline readback",
+      "pcb origin get/set",
+      "full rule overwrite using bare config",
+      "pcb net-class list/create",
+      "pcb config clearance/track/via/bind/net-color with typed save/reload/readback and idempotent replay",
+      "bounded doc reload on the recorded exam configuration batch"
+    ],
+    "liveValidationPending": [
+      "project create",
+      "silk font-family read/write",
+      "writable footprint-copy save and instance binding"
+    ],
+    "unsupportedCapabilities": [
+      "teardrop creation",
+      "LCD footprint edit when the writable-copy binding path is unavailable"
+    ],
+    "laterEvidence": {
+      "reference": "../../pcb-config.md",
+      "date": "2026-09-20",
+      "scope": "新配置入口已在考试 PCB 实测并恢复 69 件/46 网基线；早期 live-validation.json 保留原批次。单次 typed 重载成功不能外推所有加载故障已解决；ESP32 回归仍 incomplete。"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+# 技能市场上架元数据（ClawHub / SkillHub 通用字段）
+# slug 一经发布即作为市场 URL 标识，尽量不改；其余字段每次迭代可递增 version 后更新。
+
+name: long-doc-translation
+slug: long-doc-translation
+version: 1.3.18
+
+description: >-
+  长篇外文（德/英/法/日等）学术专著、古籍、档案、译著的全文高质量中译流水线：
+  解析 → 清洗切片 → 建体例与术语表 → 并行分批翻译 → 多维质检 → 合并交付带目录的阅读版。
+  适用于 300 页以上、需要术语全书统一、脚注保留、存疑可追溯的长篇翻译任务。
+
+category: content            # productivity / research / content 等
+tags:
+  - 翻译
+  - 学术翻译
+  - 德译中
+  - 全书翻译
+  - 术语表
+  - 质检
+  - translation
+  - scholarly
+
+author: dianm
+license: MIT
+
+# 触发词：用户在对话里提到即自动加载本技能
+triggers:
+  - 全文翻译
+  - 翻译全书
+  - 翻译整本
+  - 德译中
+  - 学术翻译
+  - 长篇翻译
+  - 译著
+  - 逐段翻译
+  - translate a whole book
+  - full-text translation of a scholarly monograph
+
+# 运行依赖
+requires:
+  bins:
+    - python3
+  pypi:
+    - markdown
+    - pypinyin
+  # 阶段 1「解析」建议用 omni-reader 把 PDF/图片转成文本，属可选用前置步骤，
+  # 非本技能脚本的硬依赖；核心脚本（清洗/质检/去重/合并/生成 HTML）完全离线运行。
+  optional:
+    mcp:
+      - omni-reader

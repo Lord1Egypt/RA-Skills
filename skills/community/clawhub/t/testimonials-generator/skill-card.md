@@ -1,41 +1,49 @@
-## Description: <br>
-Helps agents add, optimize, and design customer testimonials, reviews, social proof, review schema, and case study sections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for adding, optimizing, and designing customer testimonials, reviews, social proof, and case study sections.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Marketing teams, founders, product teams, and developers use this skill to choose testimonial formats, placements, credibility signals, design checks, SEO structured data, and accessibility considerations for social proof sections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Testimonials, statistics, customer names, photos, logos, review claims, or structured review data may be inaccurate, unsupported, or unauthorized if published without review. <br>
-Mitigation: Verify permissions, factual claims, customer identities, media rights, and schema markup before using generated testimonial guidance in public materials. <br>
-Risk: The skill may use local project-context files when they exist. <br>
-Mitigation: Keep secrets out of project-context files and review context-derived recommendations before publishing. <br>
+## Use Case:
 
+Marketing teams, designers, and developers use this skill to plan testimonial sections that fit page placement, audience, credibility, SEO, accessibility, and conversion goals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/testimonials-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/kostja94) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance with recommendations, checklists, and structured content suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use optional local project-context files for customer personas and industries when present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Broad trigger wording may activate this skill on general review or case-study requests where another analysis or page-generation skill is intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify whether the desired output is testimonial guidance, review analysis, or a full case-study page before invoking the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/testimonials-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with recommendations and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; produces content, placement, design, SEO, and accessibility guidance for testimonial sections.]
+
+## Skill Version(s):
+
+1.0.1 (source: server evidence and frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

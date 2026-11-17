@@ -1,5 +1,5 @@
 ---
-name: china-company-search-wendaoyun
+name: company-search-wdy
 description: 问道云企业信息查询工具，支持通过问道云 API 查询企业基本信息、经营信息、财务信息、舆情信息、企业各类风险指标等功能，当用户需要查询企业相关信息时触发。
 ---
 
@@ -33,9 +33,11 @@ description: 问道云企业信息查询工具，支持通过问道云 API 查�
 
 ## 配置说明
 
-1. 获取 API KEY：访问 https://open.wintaocloud.com/home → 【个人中心-ApiKey】
-2. 设置环境变量：`export WENDAOYUN_API_KEY=你的API KEY`
-3. 每日调用额度：200 次
+1.  **🎁 新用户福利**：首次登录问道云账号，即可获赠 **88元体验额度**，可用于API接口购买。请先前往官网注册。
+2.  获取 API KEY：访问 https://open.wendaoyun.com/home → 【个人中心-ApiKey】
+3.  设置环境变量：`export WENDAOYUN_API_KEY=你的API KEY`
+4.  每日调用额度：200 次 (调用一个接口计算一次)
+
 
 > ⚠️ API KEY 属于敏感信息，请妥善保管。发现泄露请在问道云开放平台及时作废。
 

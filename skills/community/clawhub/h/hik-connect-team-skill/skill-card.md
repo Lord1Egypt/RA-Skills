@@ -1,50 +1,71 @@
-## Description: <br>
-Hik-Connect for Teams (HCT) Developer Skills integrate resource management, access control, device capture, video streaming, and alarm push for HCT devices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hik-Connect Team Skill helps agents guide developers through Hik-Connect for Teams device management workflows including resource discovery, access control, image capture, video streaming, and alarm push configuration.
 
-## Publisher: <br>
-[hikconnectteam](https://clawhub.ai/user/hikconnectteam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hikconnectteam](https://clawhub.ai/user/hikconnectteam)
 
-## Use Case: <br>
-Developers and security operations teams use this skill to manage Hik-Connect for Teams devices, query resources, retrieve snapshots or live-stream URLs, configure alarm webhooks, and perform access-control actions through HCTOpen scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can remotely unlock doors or set doors to normally open. <br>
-Mitigation: Require explicit user confirmation before every access-control action, especially open and normally-open operations, and use dedicated least-privilege HCT credentials. <br>
-Risk: Alarm webhook deployment can expose an externally reachable endpoint. <br>
-Mitigation: Run webhook receivers only behind HTTPS, enable HMAC signature verification, and scope the OpenClaw notification target tightly. <br>
-Risk: Cached tokens, stream URLs, capture URLs, and alarm messages are sensitive. <br>
-Mitigation: Protect the runtime environment, prefer environment variables for credentials, restrict cache file access, clear caches in high-security environments, and avoid sharing generated media URLs. <br>
-Risk: The release is third-party and the security verdict requires review. <br>
-Mitigation: Install only after reviewing the publisher and source evidence, and scan the artifact before deployment. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to manage Hik-Connect for Teams devices, retrieve device and media resources, configure alarm webhooks, and run guarded access-control workflows from an agent session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hikconnectteam/hik-connect-team-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/hikconnectteam) <br>
-- [README](artifact/README.md) <br>
-- [Main skill definition](artifact/SKILL.md) <br>
-- [Token manager documentation](artifact/lib/README_TOKEN_MANAGER.md) <br>
-- [Access control module](artifact/modules/Hik-Connect_Team_ACS/SKILL.md) <br>
-- [Alarm module](artifact/modules/Hik-Connect_Team_Alarm/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON script outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return sensitive tokens, stream URLs, capture URLs, alarm payloads, and access-control operation results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill handles Hik-Connect credentials and high-impact device access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review credential handling before installation, rotate or verify app credentials, use least-privilege HCT credentials, and avoid main account credentials.
+
+Risk: Token caching may expose access tokens if the runtime environment or cache location is not adequately protected.
+
+Mitigation: Disable token caching for high-security use or move cached tokens to a private secure store with restricted permissions.
+
+Risk: OpenAPI calls may send tokens to an unsafe or unexpected Hik-Connect area domain.
+
+Mitigation: Validate Hik-Connect area domains before sending tokens or device requests.
+
+Risk: Door-control, webhook, tunnel, and event-subscription actions can affect physical access or external connectivity.
+
+Mitigation: Require explicit operator confirmation before these actions and confirm site safety before access-control operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hikconnectteam/skills/hik-connect-team-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/hikconnectteam)
+- [README](README.md)
+- [Root skill definition](SKILL.md)
+- [Token manager documentation](lib/README_TOKEN_MANAGER.md)
+- [Alarm event codes](modules/Hik-Connect_Team_Alarm/EVENT_CODES.md)
+- [Resource management module](modules/Hik-Connect_Team_Resource/SKILL.md)
+- [Access control module](modules/Hik-Connect_Team_ACS/SKILL.md)
+- [Capture module](modules/Hik-Connect_Team_Capture/SKILL.md)
+- [Video module](modules/Hik-Connect_Team_Video/SKILL.md)
+- [Alarm module](modules/Hik-Connect_Team_Alarm/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON-formatted script outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide execution of Python and Node.js helper scripts that call Hik-Connect OpenAPI services and return tabular or JSON results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

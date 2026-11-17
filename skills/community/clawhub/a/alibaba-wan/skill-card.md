@@ -1,44 +1,60 @@
-## Description: <br>
-Generates AI videos and images with Alibaba Wan 2.6 and Wan 2.5 through Atlas Cloud, including text-to-video, image-to-video, video-to-video, text-to-image, and image editing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI videos and images with Alibaba Wan 2.6 and Wan 2.5 through Atlas Cloud, covering text-to-video, image-to-video, video-to-video, text-to-image, and image editing.
 
-## Publisher: <br>
-[xixihhhh](https://clawhub.ai/user/xixihhhh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xixihhhh](https://clawhub.ai/user/xixihhhh)
 
-## Use Case: <br>
-Developers, creators, and external users use this skill to select and run Alibaba Wan media-generation workflows through Atlas Cloud for video clips, image generation, image editing, and media transformations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes paid Atlas Cloud calls and uses an Atlas Cloud API key that the evidence says is broad in scope. <br>
-Mitigation: Confirm provider, model, resolution, duration, and account billing before execution; protect and rotate the API key if exposed. <br>
-Risk: Prompts and media can be sent to Atlas Cloud, and the image script can optionally use Google AI Studio when GEMINI_API_KEY is set. <br>
-Mitigation: Avoid sending private prompts, images, audio, or videos unless approved; leave GEMINI_API_KEY unset unless Google AI Studio is intended and verify provider selection before generation. <br>
-Risk: Upload commands can send local files to Atlas Cloud. <br>
-Mitigation: Review file contents and upload intent before running upload commands. <br>
+## Use Case:
 
+External users and developers use this skill to generate or edit visual media from prompts, images, audio URLs, or video inputs. It supports creative, marketing, social media, product demo, and prototyping workflows that need generated image or video files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xixihhhh/alibaba-wan) <br>
-- [Atlas Cloud](https://www.atlascloud.ai) <br>
-- [fal.ai Wan 2.6 text-to-video pricing reference](https://fal.ai/models/fal-ai/wan/v2.6/text-to-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated media file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call external media-generation APIs and download generated PNG or MP4 outputs to a user-selected directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The image script can automatically use a Google provider when GEMINI_API_KEY is available, which may route prompts or local images outside the declared Atlas Cloud path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit provider selection, review environments that contain GEMINI_API_KEY, and apply provider allowlists before running image generation.
+
+Risk: Prompts, image URLs, audio URLs, videos, and uploaded local media are sent to third-party generation providers.
+
+Mitigation: Avoid sensitive prompts or private media unless third-party processing has been approved for the workflow.
+
+Risk: Atlas Cloud API usage is billed to the configured account, with cost affected by model, resolution, and duration.
+
+Mitigation: Confirm cost-sensitive parameters before generation and monitor the account balance or billing controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xixihhhh/skills/alibaba-wan)
+- [Publisher profile](https://clawhub.ai/user/xixihhhh)
+- [Atlas Cloud](https://www.atlascloud.ai)
+- [fal.ai Wan pricing reference](https://fal.ai/models/fal-ai/wan/v2.6/text-to-video)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Files]
+
+**Output Format:** [Markdown guidance with shell and Python command examples; generated artifacts are downloaded image or video files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ATLASCLOUD_API_KEY for Atlas Cloud API usage; generated media may incur provider charges.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

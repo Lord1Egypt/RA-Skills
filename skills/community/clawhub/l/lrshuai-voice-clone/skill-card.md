@@ -1,41 +1,54 @@
-## Description: <br>
-Voice-cloning skill that uses a reference audio sample to generate new speech in that voice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advertises a voice-cloning workflow for Kling and Vidu audio clone models through a remote model API that requires TEAM_API_KEY.
 
-## Publisher: <br>
-[lrshu](https://clawhub.ai/user/lrshu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lrshu](https://clawhub.ai/user/lrshu)
 
-## Use Case: <br>
-Developers and agents use this skill to submit prompts and reference media to supported voice-cloning models, including Kling Audio Clone and Vidu Audio Clone, and retrieve generated results from a remote API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts and media, including potentially sensitive voice samples, to a configurable remote API. <br>
-Mitigation: Use only trusted TEAM_BASE_URL endpoints, confirm consent for any voice sample, and avoid private or sensitive media unless privacy and retention terms are understood. <br>
-Risk: The security evidence reports unclear scope and privacy boundaries for this voice-cloning workflow. <br>
-Mitigation: Review the skill before installing and document acceptable inputs, endpoint ownership, consent expectations, and data-handling controls before use. <br>
+## Use Case:
 
+External users and developers use this skill to invoke a third-party remote model endpoint for voice-clone generation from a selected model and prompt. Reviewers should confirm the runtime interface and endpoint configuration before production use.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lrshu/lrshuai-voice-clone) <br>
-- [Default Remote API Endpoint](https://dlazy.com/api/ai/tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, API calls, JSON, audio generation guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TEAM_API_KEY and may send prompts and media to the configured TEAM_BASE_URL endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill's runnable code can send prompts, credentials, and media files to a remote endpoint beyond the advertised voice-clone use case.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a trusted publisher, scoped TEAM_API_KEY, and trusted TEAM_BASE_URL; avoid sensitive prompts, local paths, or media unless the endpoint has been reviewed.
+
+Risk: The documented voice-clone example does not match the script's actual command-line interface.
+
+Mitigation: Verify supported flags and expected model inputs before installing or using the skill in production workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lrshu/skills/lrshuai-voice-clone)
+- [Publisher Profile](https://clawhub.ai/user/lrshu)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Command-line invocation guidance with JSON or text responses from the remote API]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TEAM_API_KEY; TEAM_BASE_URL can configure the remote endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

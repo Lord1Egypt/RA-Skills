@@ -1,43 +1,62 @@
-## Description: <br>
-Remove burnt-in subtitles or on-screen text from an HTTPS video via WeryAI (video-subtitle-erase). Use when the user wants subtitle or text removal, not translation or text-to-video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remove burnt-in subtitles or on-screen text from an HTTPS video via WeryAI (video-subtitle-erase). Use when the user wants subtitle or text removal, not translation or text-to-video.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-External users and developers use this skill to call WeryAI's subtitle erasure workflow for an existing public HTTPS video URL. It is scoped to removing burnt-in subtitles or on-screen text and does not perform translation, watermark removal, text-to-video generation, or local file upload. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can make paid WeryAI API calls when submit or wait is run. <br>
-Mitigation: Require explicit user confirmation of the video URL and any selected regions before paid calls, and use dry-run validation first. <br>
-Risk: The skill requires a WERYAI_API_KEY and network access to a third-party API. <br>
-Mitigation: Keep the API key only in the runtime environment, do not write it to files, and review network use before deployment. <br>
-Risk: Incorrect input scope can lead to failed jobs or unintended processing. <br>
-Mitigation: Use only public https:// video URLs and normalized rectangle coordinates; do not pass local filesystem paths or unrelated WeryAI workflows. <br>
+## Use Case:
 
+External users and developers use this skill to remove burnt-in subtitles or on-screen text from an existing public HTTPS video with WeryAI. It supports optional normalized regions for targeted removal and is not for translation, watermark-only cleanup, or text-to-video generation.
 
-## Reference(s): <br>
-- [WeryAI llms.txt](https://docs.weryai.com/llms.txt) <br>
-- [ClawHub skill page](https://clawhub.ai/zoucdr/video-tool-subtitle-erase) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can submit or poll a WeryAI task and returns task status, error details, and final video URLs when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Paid WeryAI runs can consume credits and send the public video URL plus request settings to WeryAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run first, confirm the video URL and any custom regions with the user, and run submit or wait only after explicit approval.
+
+Risk: The WERYAI_API_KEY could be exposed if stored in files or logs.
+
+Mitigation: Keep WERYAI_API_KEY only in the runtime environment and do not write it into skill files, prompts, command examples, or generated artifacts.
+
+Risk: Private or internal-only media URLs may be shared with the external provider if submitted.
+
+Mitigation: Submit only public HTTPS videos that the user intends to process with WeryAI; do not submit private or internal URLs without explicit consent.
+
+Risk: Running out-of-scope scripts from a mixed or over-broad install could invoke workflows outside subtitle erasure.
+
+Mitigation: Verify the package layout and run only artifact/scripts/video_subtitle_erase.js for this skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/video-tool-subtitle-erase)
+- [WeryAI llms.txt](https://docs.weryai.com/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON command output from the WeryAI wrapper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include task IDs, status records, error objects, and final video URLs returned by WeryAI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,23 @@
+{
+  "slug": "project-weekly-report",
+  "title": "Project Weekly Report",
+  "category": "work",
+  "summary": "Generate evidence-based project weekly reports from local repository history, tags, docs, and artifacts.",
+  "keywords": [
+    "weekly report",
+    "project status",
+    "git history",
+    "work summary"
+  ],
+  "user_needs": [
+    "summarize recent repository work",
+    "write a project weekly report from local evidence",
+    "separate committed work from uncommitted artifacts",
+    "avoid unverifiable progress claims"
+  ],
+  "source_dir": "skills/work/project-weekly-report",
+  "entry": "SKILL.md",
+  "package_strategy": "on-demand",
+  "package_format": "skill",
+  "status": "ready"
+}

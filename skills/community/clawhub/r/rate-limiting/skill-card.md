@@ -1,39 +1,50 @@
-## Description: <br>
-Deep rate limiting workflow for identifying actors and resources, choosing algorithms, planning distributed enforcement, shaping client retry behavior, and detecting abuse for APIs, gateways, and multi-tenant SaaS workloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through designing rate limiting for APIs, gateways, and multi-tenant SaaS workloads, including actors, resources, algorithms, distributed enforcement, client behavior, and abuse detection.
 
-## Publisher: <br>
-[codekungfu](https://clawhub.ai/user/codekungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to design rate-limiting policies that balance fairness, availability, tenant isolation, abuse prevention, and clear client backoff behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rate-limit policies can block legitimate tenants, batch jobs, health checks, or shared-network users when keys and exemptions are chosen poorly. <br>
-Mitigation: Review product tiers, stable identity keys, health-check behavior, and tenant isolation goals before deploying limits. <br>
-Risk: Distributed enforcement can produce inconsistent limits when counters, regions, or clocks are not coordinated. <br>
-Mitigation: Choose an enforcement layer deliberately, use atomic counter updates where needed, and monitor throttles by route and actor class. <br>
+## Use Case:
 
+Developers and engineers use this skill to structure rate-limiting design decisions for public APIs, authentication endpoints, expensive operations, and multi-tenant isolation. It helps compare algorithms, enforcement layers, client retry behavior, and observability requirements before implementation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with staged workflow notes, checklists, and policy recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no code execution, credential access, persistence, or runtime system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Rate-limiting recommendations may not fit the user's infrastructure, traffic patterns, or product tiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed policies, keys, algorithms, and enforcement layers against the target system before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/rate-limiting)
+- [Publisher profile](https://clawhub.ai/user/codekungfu)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with checklists and policy recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution or file persistence requested by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

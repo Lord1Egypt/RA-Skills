@@ -1,0 +1,13 @@
+{
+  "name": "function-verification",
+  "displayName": "功能验收执行",
+  "version": "1.0.0",
+  "description": "对照系统架构师输出的验收清单和测试用例，逐项执行功能验收，输出✅通过/⚠️有条件通过/❌不通过三级结论，附带缺陷详情和根因分析。",
+  "author": "golngod",
+  "license": "MIT",
+  "pricing": {
+    "model": "free"
+  },
+  "tags": ["testing", "verification", "acceptance", "qa", "defect-tracking"],
+  "minOpenClawVersion": "1.2.0"
+}

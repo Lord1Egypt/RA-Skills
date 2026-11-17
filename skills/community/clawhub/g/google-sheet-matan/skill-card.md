@@ -1,41 +1,54 @@
-## Description: <br>
-Interact with Google Sheets through Maton Gateway to read, write, append, clear, format, and manage spreadsheet data using authenticated curl requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Google Sheets through Maton Gateway to read, write, append, clear, format, manage sheets, insert formulas, and configure protected ranges using curl-based API requests.
 
-## Publisher: <br>
-[otman-ai](https://clawhub.ai/user/otman-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[otman-ai](https://clawhub.ai/user/otman-ai)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare Google Sheets API requests through Maton Gateway for spreadsheet reads, edits, appends, clearing, formatting, sheet management, formulas, and protected ranges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Maton API keys and OAuth authorization headers can expose access to spreadsheets if copied into logs, prompts, or shared output. <br>
-Mitigation: Keep MATON_API_KEY secret, avoid printing populated Authorization headers, and use the narrowest available permissions. <br>
-Risk: Write, clear, delete, and batchUpdate examples can make destructive or unintended spreadsheet changes. <br>
-Mitigation: Manually verify spreadsheet IDs, ranges, clear and delete commands, and batchUpdate payloads before execution. <br>
+## Use Case:
 
+Developers and operators use this skill to compose Google Sheets API requests through Maton Gateway for spreadsheet data access, updates, formatting, formulas, and sheet administration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/otman-ai/google-sheet-matan) <br>
-- [Maton Google Sheets Gateway endpoint](https://gateway.maton.ai/google-sheets/v4/spreadsheets/{SPREADSHEET_ID}/{native-api-path}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with curl command examples and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses placeholders for spreadsheet IDs, sheet names, ranges, values, sheet IDs, formulas, and Maton API authentication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill can read, change, clear, and delete spreadsheet content through Maton Gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege credentials and install only for spreadsheets where Maton Gateway is trusted and approved.
+
+Risk: Clear, delete, batch update, and formula-writing requests can cause high-impact spreadsheet changes.
+
+Mitigation: Require explicit review before running destructive, broad, or formula-writing commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/otman-ai/skills/google-sheet-matan)
+- [Maton Google Sheets Gateway Base URL](https://gateway.maton.ai/google-sheets/v4/spreadsheets/{SPREADSHEET_ID}/{native-api-path})
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with curl command examples and request JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Maton API key and spreadsheet-specific identifiers supplied by the user.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

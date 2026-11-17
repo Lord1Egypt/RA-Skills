@@ -1,0 +1,5 @@
+# OPC链式尽调增强版 - 依赖
+# 运行时依赖通过 coze_workload_identity.requests 提供，无需额外安装
+# 以下为开发/测试所需依赖
+
+requests>=2.28.0

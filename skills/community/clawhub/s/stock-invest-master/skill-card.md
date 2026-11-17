@@ -1,60 +1,68 @@
-## Description: <br>
-Stock Invest Master guides an agent through stock research for A-share, Hong Kong, and U.S. equities using layered qualitative, financial, valuation, risk, and market-cycle analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Invest Master guides agents through stock analysis for A-share, Hong Kong, and U.S. equities using a Dao-method and investing-master framework.
 
-## Publisher: <br>
-[mickshu](https://clawhub.ai/user/mickshu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mickshu](https://clawhub.ai/user/mickshu)
 
-## Use Case: <br>
-External users and analysts use this skill to structure stock research, due diligence, valuation checks, report generation, and portfolio review for A-share, Hong Kong, and U.S. equities. Outputs should be treated as educational analysis rather than investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The report server may expose private investment research from ~/.stock-invest-master. <br>
-Mitigation: Run the server only when needed, bind it to 127.0.0.1, restrict served file types, and stop it after reviewing reports. <br>
-Risk: The skill may start a background HTTP server on port 8888. <br>
-Mitigation: Prefer manual server startup, verify the listening address and port before use, and stop the service after each session. <br>
-Risk: Stock analysis outputs may be mistaken for investment advice. <br>
-Mitigation: Treat reports as educational research, independently verify data and assumptions, and make final investment decisions outside the agent. <br>
+## Use Case:
 
+External users and analysts use this skill to prepare educational stock research, valuation checks, financial-statement reviews, risk assessments, and portfolio review notes. Outputs should be treated as informational research support, not personalized financial advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mickshu/stock-invest-master) <br>
-- [Publisher Profile](https://clawhub.ai/user/mickshu) <br>
-- [README](README.md) <br>
-- [Skill Definition](SKILL.md) <br>
-- [Dao Analysis Method](references/dao-analysis-method.md) <br>
-- [Data Source Notes](references/data-source-notes.md) <br>
-- [A-Stock Data Retrieval](references/a-stock-data-retrieval.md) <br>
-- [A-Stock Browser Data Fetch](references/a-stock-data-browser-fetch.md) <br>
-- [News Judgment Framework](references/news-judgment-framework.md) <br>
-- [Buffett Framework](references/buffett-framework.md) <br>
-- [Graham Framework](references/graham-framework.md) <br>
-- [Lynch Framework](references/lynch-framework.md) <br>
-- [Fisher Framework](references/fisher-framework.md) <br>
-- [Munger Framework](references/munger-framework.md) <br>
-- [Marks Framework](references/marks-framework.md) <br>
-- [Dalio Framework](references/dalio-framework.md) <br>
-- [Soros Framework](references/soros-framework.md) <br>
-- [Simons Framework](references/simons-framework.md) <br>
-- [Duan Framework](references/duan-framework.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with supporting text, generated code or shell commands, and optional local HTML report views.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save reports under ~/.stock-invest-master and may start a local report server on port 8888.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.9.2 (source: ClawHub release evidence) <br>
+Risk: The skill can start an unauthenticated report server that may expose saved investment reports beyond the local machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; keep the report server disabled unless needed, bind it to 127.0.0.1, and avoid sensitive files or symlinks in ~/.stock-invest-master.
+
+Risk: Stock research output could be mistaken for personalized financial advice.
+
+Mitigation: Treat outputs as informational research support and require user review before making investment decisions.
+
+## Reference(s):
+
+- [Stock Invest Master ClawHub listing](https://clawhub.ai/mickshu/skills/stock-invest-master)
+- [A-share browser data retrieval](references/a-stock-data-browser-fetch.md)
+- [A-share data retrieval guide](references/a-stock-data-retrieval.md)
+- [Buffett investing framework](references/buffett-framework.md)
+- [Dalio investing framework](references/dalio-framework.md)
+- [Dao analysis method](references/dao-analysis-method.md)
+- [Data source notes](references/data-source-notes.md)
+- [Duan Yongping investing framework](references/duan-framework.md)
+- [Fisher investing framework](references/fisher-framework.md)
+- [Graham investing framework](references/graham-framework.md)
+- [Lynch investing framework](references/lynch-framework.md)
+- [Marks investing framework](references/marks-framework.md)
+- [Munger investing framework](references/munger-framework.md)
+- [News judgment framework](references/news-judgment-framework.md)
+- [Simons quantitative framework](references/simons-framework.md)
+- [Soros investing framework](references/soros-framework.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with optional HTML overview cards and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are saved under ~/.stock-invest-master when the workflow archives output.]
+
+## Skill Version(s):
+
+3.9.2 (source: server release metadata; artifact frontmatter says 3.9.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

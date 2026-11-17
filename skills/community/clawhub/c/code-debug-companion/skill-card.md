@@ -1,43 +1,57 @@
-## Description: <br>
-AI-powered code debugging assistant that diagnoses errors, researches related solutions, proposes or writes fixes, and validates them with tests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Code Debug Companion helps developers diagnose code errors, research similar solutions, generate fixes, and validate changes with tests.
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
 
-## Use Case: <br>
-Developers use this skill to triage pasted errors, screenshots, logs, or stack traces; identify likely root causes; research related solutions; and generate fixes with test coverage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may modify project files while debugging. <br>
-Mitigation: Use it in a version-controlled workspace and review diffs before accepting edits. <br>
-Risk: The skill may search externally using error text or stack traces. <br>
-Mitigation: Remove secrets and proprietary details before allowing external search. <br>
-Risk: The skill may create GitHub issues as part of its workflow. <br>
-Mitigation: Require confirmation before any issue is created or published. <br>
+## Use Case:
 
+Developers and engineers use this skill to triage pasted stack traces, screenshots, or logs, research similar issues, generate code fixes and tests, and produce a concise debugging report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/code-debug-companion) <br>
-- [Publisher profile](https://clawhub.ai/user/zlszhonglongshen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Structured Markdown report with diagnosis, related findings, fix details, test coverage, and changed files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed or applied file changes and generated unit tests when the agent is permitted to edit the workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and workflow.json) <br>
+Risk: Error messages, screenshots, logs, or stack traces may contain secrets, proprietary code, or sensitive implementation details that could be exposed during external search.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact sensitive details before using web search or creating external issue-tracking records.
+
+Risk: Generated fixes and tests may be incorrect, incomplete, or unsuitable for the target codebase.
+
+Mitigation: Manually review proposed changes and run the relevant local tests before applying or committing them.
+
+Risk: The workflow may write code or tests without clearly requiring user approval.
+
+Mitigation: Require explicit human approval before modifying files, adding tests, or opening GitHub issues.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/skills/code-debug-companion)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Structured Markdown debugging report with code and test-change summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include diagnosis, related discussions, fix details, generated tests, and changed-file lists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and workflow.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

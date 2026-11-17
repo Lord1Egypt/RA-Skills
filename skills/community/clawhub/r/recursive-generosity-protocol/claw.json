@@ -1,0 +1,23 @@
+{
+  "name": "recursive-generosity-protocol",
+  "displayName": "Recursive Generosity Protocol (Delta9-WP-003)",
+  "version": "1.1.0",
+  "description": "Ethical open protocol for recursive generosity: grace buffers, resonance metrics, KPI-visible proofs. Consent and disclosure required. Not for covert influence.",
+  "slug": "recursive-generosity-protocol",
+  "publisher": "deepseekoracle",
+  "license": "LYGO-Sovereign-v2.0",
+  "signature": "Delta9Phi963-RECURSIVE-GENEROSITY-v1.1.0",
+  "tags": ["latest", "lygo", "delta9", "ethics", "abundance", "protocol"],
+  "entry": "SKILL.md",
+  "permissions": {
+    "network": false,
+    "filesystem": false,
+    "shell": false,
+    "process_spawn": false
+  },
+  "security": {
+    "text_only": true,
+    "covert_influence": false,
+    "version": "1.1.0"
+  }
+}

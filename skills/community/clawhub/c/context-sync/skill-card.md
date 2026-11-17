@@ -1,44 +1,60 @@
-## Description: <br>
-Helps agents sync local files, notes, and workspace context into Aicoo by browsing, searching, creating, editing, uploading, and deleting notes through Aicoo APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search, read, create, update, move, copy, delete, and bulk-sync local files, notes, and context in Aicoo workspaces.
 
-## Publisher: <br>
-[xisen-w](https://clawhub.ai/user/xisen-w) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xisen-w](https://clawhub.ai/user/xisen-w)
 
-## Use Case: <br>
-Developers and Aicoo users use this skill to keep an Aicoo shared agent's knowledge current by checking existing context, searching notes, and syncing selected local project files or notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose broad remote upload, edit, and delete operations in an Aicoo workspace. <br>
-Mitigation: Ask the agent to show the exact local files, remote paths, and operation type before upload, edit, or delete, and take snapshots before major edits. <br>
-Risk: Synced files or notes may contain secrets, private data, or content intended for a different workspace. <br>
-Mitigation: Use only Aicoo workspaces and API credentials you trust, and exclude secrets or private data before syncing. <br>
-Risk: Changes to identity files or link policy notes can alter how the shared agent represents the user or handles links. <br>
-Mitigation: Avoid memory/self and links policy changes unless the user explicitly intends to update agent behavior. <br>
+## Use Case:
 
+Developers and agent users use this skill to keep an Aicoo workspace current by browsing existing notes, searching context, uploading local project files, and managing folders, notes, snapshots, shared folders, identity files, and deletes.
 
-## Reference(s): <br>
-- [Context Sync API Reference](reference/API.md) <br>
-- [Example: Sync a Project Directory](examples/sync-project.md) <br>
-- [Aicoo API Base URL](https://www.aicoo.io/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown with curl commands and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses AICOO_API_KEY for authenticated Aicoo requests and may propose remote create, edit, upload, or delete operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: An agent can use the configured Aicoo API key to create, edit, move, copy, search, and delete workspace content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit preview and user confirmation before syncs, deletes, shared-folder writes, or memory/self policy changes.
+
+Risk: Local files may contain secrets, private repositories, or other sensitive content that should not be uploaded.
+
+Mitigation: Ask for the exact file list and destination before upload, and exclude secrets and private repositories by default.
+
+Risk: Shared-folder and identity-file updates can affect other users or alter how the shared agent represents the user.
+
+Mitigation: Limit these operations to intended folders and require confirmation for shared-folder writes and memory/self changes.
+
+## Reference(s):
+
+- [Context Sync ClawHub Page](https://clawhub.ai/xisen-w/skills/context-sync)
+- [Context Sync API Reference](reference/API.md)
+- [Example: Sync a Project Directory](examples/sync-project.md)
+- [Aicoo API Base URL](https://www.aicoo.io/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl command examples and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses AICOO_API_KEY bearer authentication and can guide file sync, folder, note, snapshot, memory, shared-folder, and delete operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

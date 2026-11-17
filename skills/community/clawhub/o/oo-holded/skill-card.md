@@ -1,42 +1,56 @@
-## Description: <br>
-Holded (holded.com). Use this skill for ANY Holded request - reading, creating, and updating data. Whenever a task involves Holded, use this skill instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to read Holded contacts and products and create contacts through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate Holded through an OOMOL-connected account, including contact creation, contact lookup, product lookup, and paginated list workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read business contact and product data from an OOMOL-connected Holded account. <br>
-Mitigation: Install and use it only when the agent is intended to access that Holded account and its business data. <br>
-Risk: The create_contact action can change data in the connected Holded account. <br>
-Mitigation: Review the exact write payload and expected effect with the user before approving execution. <br>
+## Use Case:
 
+Developers and operators use this skill to read Holded contacts and products, and to create contacts through their connected account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/skills/oo-holded) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Holded Homepage](https://www.holded.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schema inspection before actions; write actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md metadata) <br>
+Risk: The required CLI may install or refresh skills across agent apps without making those effects clear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and preinstall a trusted CLI version, and set OO_SKILLS_SYNC_DISABLED=1 for every oo invocation unless cross-agent skill management is intended.
+
+Risk: Holded actions can access connected account data, and creating a contact changes account state.
+
+Mitigation: Approve each proposed write and confirm its exact payload and effect before running it.
+
+## Reference(s):
+
+- [Holded](https://www.holded.com)
+- [Holded API documentation](https://www.holded.com/developers/)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON connector responses with shell commands and concise action guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions can read contacts and products or create contacts; write actions require confirmation of the exact payload and effect.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

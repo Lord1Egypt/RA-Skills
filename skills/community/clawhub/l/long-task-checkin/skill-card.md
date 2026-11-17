@@ -1,37 +1,53 @@
-## Description: <br>
-强制进度检查点。当龙虾助手在执行任务时超过60秒没有完成，必须立即向用户发送进度反馈，说明：任务是否正常运行、当前执行到哪个步骤、预计还要多久。用于防止用户对长时间运行任务的不确定感。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Requires an agent to send a progress update when a task runs longer than 60 seconds.
 
-## Publisher: <br>
-[chrislawyeryounger-spec](https://clawhub.ai/user/chrislawyeryounger-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrislawyeryounger-spec](https://clawhub.ai/user/chrislawyeryounger-spec)
 
-## Use Case: <br>
-Agents and workflow authors use this skill to send clear progress updates during long-running searches, crawling, batch file processing, multi-step writing, external API calls, and other tasks with uncertain runtime. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may interrupt long-running work with progress messages. <br>
-Mitigation: Use it where proactive status reporting is desired, and keep its priority language subordinate to platform and user-instruction boundaries. <br>
+## Use Case:
 
+External users and developers use this skill to make an agent provide timely, quantified progress updates during long-running searches, batch file work, multi-step writing, external API calls, and other tasks with uncertain runtime.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown progress-update messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; produces human-facing status, progress, and time-estimate guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill uses rigid default wording and Chinese-language examples that may conflict with a user's preferred language or stricter output requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy it only where proactive progress updates are desired, and prefer or adapt a version that respects the user's chosen language and any higher-priority formatting requirements.
+
+Risk: Mandatory progress updates can interrupt otherwise short finalization steps once a task passes the 60-second threshold.
+
+Mitigation: Use the skill for workflows where transparency during long-running tasks is more important than minimizing intermediate messages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chrislawyeryounger-spec/skills/long-task-checkin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown progress update message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Progress updates include elapsed time, current status, quantified progress, estimated remaining time, and a continuation note.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

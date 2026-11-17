@@ -1,43 +1,65 @@
-## Description: <br>
-100% FREE local web search for OpenClaw. Secure localhost-only SearXNG deployment. Supports hidden --dev flag. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys and queries a localhost-only SearXNG web search service for OpenClaw without requiring an external search API key.
 
-## Publisher: <br>
-[pipepi](https://clawhub.ai/user/pipepi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pipepi](https://clawhub.ai/user/pipepi)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to deploy and query a local SearXNG instance for free web search without an API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search requests can be sent to a non-local SearXNG endpoint if SEARXNG_BASE_URL is set. <br>
-Mitigation: Leave SEARXNG_BASE_URL unset or set it only to a trusted loopback SearXNG URL. <br>
-Risk: The --dev installer mode disables safe_search and the limiter. <br>
-Mitigation: Avoid --dev except for deliberate local development where reduced search safety is acceptable. <br>
-Risk: Installation replaces any Docker container named searxng-local and starts a persistent container. <br>
-Mitigation: Check for an existing searxng-local container before installing and remove the container with docker rm -f searxng-local when no longer needed. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install, health-check, and query a local SearXNG service for agent web-search workflows.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/pipepi/free-local-web-search) <br>
-- [Publisher profile](https://clawhub.ai/user/pipepi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and JSON search results printed by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires docker and python3; runtime scripts also require the Python requests package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata and SKILL.md metadata) <br>
+Risk: The installer creates a persistent local Docker service named searxng-local.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, check whether an existing searxng-local container belongs to you, and remove the container when it is no longer needed.
+
+Risk: The Docker image is not pinned to a specific SearXNG version.
+
+Mitigation: Prefer an approved, pinned SearXNG image tag before operational use.
+
+Risk: SEARXNG_BASE_URL can redirect health checks and searches away from the expected local endpoint.
+
+Mitigation: Keep the default localhost endpoint unless an override has been reviewed and validated.
+
+Risk: The development flag disables safe search and the limiter.
+
+Mitigation: Use development mode only for local development and keep the default safe-search and limiter settings for normal use.
+
+Risk: Installer shell commands are sensitive to paths with spaces or shell metacharacters.
+
+Mitigation: Run the installer from a trusted path without spaces or shell metacharacters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pipepi/skills/free-local-web-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text command output with JSON-backed search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns up to 10 search results with title, URL, and content snippet; requires Docker, Python 3, and the Python requests package.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

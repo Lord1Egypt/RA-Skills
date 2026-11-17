@@ -1,43 +1,59 @@
-## Description: <br>
-Global Energy Power Grid Data helps agents query AgentPMT-hosted World Bank energy indicators, including electricity access, renewable and fossil energy mix, per-capita consumption, energy intensity, and clean cooking access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Global Energy Power Grid Data helps agents query World Bank energy indicators, including electricity access, renewable and fossil energy mix, per capita consumption, energy intensity, and clean cooking access.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-External developers and analysts use this skill to call AgentPMT's Global Energy & Power Grid Data tool for country or regional energy access, energy mix, efficiency, and SDG 7 comparisons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AgentPMT MCP or REST use can involve account credentials, payment headers, credits, or wallet-related material. <br>
-Mitigation: Review AgentPMT account, payment, and credit usage before connecting access, and keep secrets, wallet keys, mnemonics, signatures, and payment headers out of prompts and logs. <br>
-Risk: Energy data availability and recency vary by country, region, and indicator. <br>
-Mitigation: Check returned dates, null values, warnings, and live schema details before relying on results for decisions. <br>
+## Use Case:
 
+External agents and developers use this skill to retrieve country or region energy-access, energy-mix, energy-efficiency, and SDG 7 tracking data through AgentPMT-hosted remote tool calls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/global-energy-power-grid-data) <br>
-- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/energy-access-production) <br>
-- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [Action schema](artifact/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown with JSON request examples and setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides AgentPMT MCP or REST calls that return JSON energy indicator data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Unpinned remote install or reinstall guidance can change installed agent components.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the OpenClaw install path or a pinned, reviewed version of any setup skill before production use.
+
+Risk: The skill relies on AgentPMT-hosted paid remote calls for energy-data queries.
+
+Mitigation: Confirm account, payment, and data-sharing posture before enabling the remote tool for an agent.
+
+Risk: Running documented unpinned npx commands may expose sensitive local environments to changing remote packages.
+
+Mitigation: Avoid those commands in environments with sensitive files, secrets, or elevated permissions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/global-energy-power-grid-data)
+- [AgentPMT Marketplace Product](https://www.agentpmt.com/marketplace/energy-access-production)
+- [Generated Action Schema](artifact/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, JSON]
+
+**Output Format:** [Markdown instructions with JSON request and response shapes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defines one remote action, query_energy_data, with country or region, energy type, energy mix, urban-rural gap, and time-period parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

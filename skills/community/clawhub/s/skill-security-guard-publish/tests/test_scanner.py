@@ -45,7 +45,7 @@ def run_command(cmd):
     os.system(cmd)
 
 # 敏感信息
-API_KEY = "sk-xxxxxxxxxxxxxxxxxxxxxxxx"
+API_KEY = "REDACTED-SECRET"
 PASSWORD = "my_secret_password"
 '''
     

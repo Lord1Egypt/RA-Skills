@@ -1,11 +1,12 @@
 ---
 name: simmer-preflight
-version: "0.3.1"
+version: "0.3.6"
 published: true
-description: Pre-trade readiness check for autonomous agents. One call returns wallet identity, venue status, spendable balance, open exposure, and a structured ok_to_trade verdict. Run before every real-money trade to prevent cap overruns and catch config issues before they become P&L issues.
+read_only: true
+description: Pre-trade readiness check for autonomous agents. One call returns wallet identity, venue status, spendable balance, open exposure, and a structured ok_to_trade verdict. Live real-venue trades auto-run this check and refuse when ok_to_trade is False.
 metadata:
   author: "Simmer (@simmer_markets)"
-  version: "0.3.1"
+  version: "0.3.6"
   displayName: Simmer Preflight
   difficulty: beginner
   primaryEnv: SIMMER_API_KEY
@@ -17,7 +18,9 @@ metadata:
 
 # Simmer Preflight
 
-Run `client.preflight()` before every real-money trade. One call returns:
+Live real-money trades now **enforce** this check. `client.trade(..., dry_run=False)` and `client.place_combo(..., dry_run=False)` on a `live=True` client against a real venue (`polymarket` / `kalshi`) auto-run `preflight()` and refuse if `ok_to_trade` is False, surfacing the blocker codes. The auto-gate's exposure cap is opt-in (`EXPOSURE_CAP_USD` set → enforced; unset → cap disabled) and sells are exempt from cap math so an over-cap book can still reduce exposure. Wallet / venue / gas blockers still run. Paper, `venue="sim"`, and `dry_run=True` are unchanged. One-release migrate valve: `skip_preflight=True` or `SIMMER_SKIP_PREFLIGHT=1` (deprecation warning). MCP `simmer_trade` uses the same live gate; `SIMMER_MCP_ALLOW_LIVE` is still required and is not a replacement.
+
+Call `client.preflight()` yourself when you want the full result (wallet, exposure, `client_preflight_id`) before you size or submit. One call returns:
 
 - **Who you are**: agent ID, tier, venue resolved from your API key context
 - **Which wallet will sign**: execution wallet, deposit wallet, signer mode (OWS / external key / managed)
@@ -93,7 +96,7 @@ ledger.record({
 | `EXPOSURE_CAP_EXCEEDED` | `open_exposure_total + planned_amount > exposure_cap_usd` | Wait for existing positions to resolve, or raise your cap |
 | `WALLET_UNVERIFIED` | Real venue requested but `real_trading_enabled` is False, or no wallet configured | Claim agent + link wallet in dashboard |
 | `VENUE_UNSUPPORTED` | Venue string not recognised | Use "sim", "polymarket", or "kalshi" |
-| `INSUFFICIENT_GAS` | Gas signal detected in risk_alerts (proxy only in v0) | Fund wallet with POL / SOL |
+| `INSUFFICIENT_GAS` | Structured risk_alert `code` is `INSUFFICIENT_GAS` (v0 proxy; no on-chain query) | Fund wallet with POL / SOL |
 | `EXPOSURE_UNKNOWN` | Real venue + active cap, but positions fetch failed — fail-closed | Check connectivity or set `exposure_cap_usd=0` to disable cap temporarily |
 
 Blockers are additive — all blocking conditions are reported, not just the first.
@@ -114,6 +117,9 @@ print(result.deposit_wallet)     # 0xYourAgentDW... (per-agent DW if activated)
 
 - For **real venues** (polymarket, kalshi): sums non-sim positions in USDC.
 - For **sim venue**: sums sim positions in $SIM.
+- Positions with `venue: null` / missing venue count as sim (virtual), not real USDC.
+
+For Kalshi, `real_trading_enabled` is a client-side claim check (`WALLET_UNVERIFIED` if false). The server gates only Polymarket on this flag — unclaimed Kalshi agents are blocked in the SDK/MCP preflight, not by the Kalshi place path.
 
 $SIM positions are never included in a USD cap check — they use virtual currency.
 
@@ -133,16 +139,25 @@ If you see warnings, log them. Fetch failures on individual endpoints are gracef
 import os
 from simmer_sdk import SimmerClient
 
-EXPOSURE_CAP = float(os.environ.get("EXPOSURE_CAP_USD", "100"))
-
 client = SimmerClient.from_env(venue="polymarket")
 
 def safe_trade(market_id: str, side: str, amount: float):
-    pf = client.preflight(
-        venue="polymarket",
-        planned_amount=amount,
-        exposure_cap_usd=EXPOSURE_CAP,
-    )
+    # Live auto-gate: EXPOSURE_CAP_USD is opt-in (unset = no cap, no $100 default).
+    # Manual preflight() still accepts an explicit exposure_cap_usd.
+    cap_raw = os.environ.get("EXPOSURE_CAP_USD")
+    if cap_raw:
+        pf = client.preflight(
+            venue="polymarket",
+            planned_amount=amount,
+            exposure_cap_usd=float(cap_raw),
+        )
+    else:
+        # No env cap: live trade() will not enforce one. This explicit
+        # preflight() call still uses the method default (exposure_cap_usd=100).
+        pf = client.preflight(
+            venue="polymarket",
+            planned_amount=amount,
+        )
     if not pf.ok_to_trade:
         print(f"Preflight blocked ({pf.blockers}), skipping trade")
         return None
@@ -151,7 +166,7 @@ def safe_trade(market_id: str, side: str, amount: float):
 
     # Log preflight before order submission
     print(f"Preflight OK — id={pf.client_preflight_id} "
-          f"exposure={pf.open_exposure_total:.2f}+{amount:.2f}/{EXPOSURE_CAP}")
+          f"exposure={pf.open_exposure_total:.2f}+{amount:.2f}/{pf.exposure_cap_usd}")
 
     return client.trade(market_id=market_id, side=side, amount=amount)
 ```
@@ -167,9 +182,9 @@ Preflight is read-only. It never signs, trades, redeems, or mutates settings. It
 ## v0 limitations
 
 - `gas_balance` is always `None` — on-chain RPC not available in the SDK client. Use the dashboard to verify POL / SOL balance.
-- `INSUFFICIENT_GAS` is only detected if the briefing risk_alerts mention gas explicitly — not from an on-chain query.
+- `INSUFFICIENT_GAS` is only detected from a structured risk_alert `code` of `INSUFFICIENT_GAS` — not from free-text `gas` / `pol` substrings, and not from an on-chain query.
 - Server-side `preflight_id` (stable, storable) deferred to v1.
-- MCP tool exposure deferred to v1.
+- MCP `simmer_preflight` is available; live `simmer_trade` now enforces the same `ok_to_trade` gate.
 
 ## Links
 

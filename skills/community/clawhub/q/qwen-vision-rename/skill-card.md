@@ -1,41 +1,59 @@
-## Description: <br>
-Uses a Qwen-compatible vision API to describe local images and generate content-based filenames, with batch rename plans, apply mode, and rollback support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Renames local image files in batches by using a Qwen vision model to identify image type and subject, with commands for single-image description, dry-run plans, applied renames, and rollback.
 
-## Publisher: <br>
-[huiya-code](https://clawhub.ai/user/huiya-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huiya-code](https://clawhub.ai/user/huiya-code)
 
-## Use Case: <br>
-External users and developers use this skill to inspect local image folders, create content-based Chinese filename plans, apply batch renames, and roll back applied renames when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected local images may be sent to the configured DashScope or Qwen-compatible vision endpoint. <br>
-Mitigation: Use the skill only for images that are acceptable to share with that endpoint, and avoid public media URL mode unless the serving location and cleanup process are understood. <br>
-Risk: Batch rename mode can modify filenames in an explicit or auto-selected image folder. <br>
-Mitigation: Use an explicit folder, run a dry-run first, review the generated plan file, keep backups for important images, and retain the rollback file after applying changes. <br>
+## Use Case:
 
+Developers and agent users use this skill to inspect image content and generate concise content-based filenames for local image folders. It is suited to organizing image collections when the user accepts remote vision processing and local filename changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huiya-code/qwen-vision-rename) <br>
-- [DashScope OpenAI-compatible endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance plus JSON plan and rollback files from the CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write rename plan JSON files, rollback JSON files, and renamed local image files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Private images and the DashScope API key may be sent to a configured remote vision endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on image folders you explicitly choose, avoid sensitive images unless remote processing is acceptable, and keep endpoint settings limited to trusted providers.
+
+Risk: Applied rename operations can change local filenames in bulk.
+
+Mitigation: Run a dry run first, review the generated plan file, and keep the rollback file from applied runs until the results are confirmed.
+
+Risk: Public media URL mode can make local images leave the machine or remain publicly reachable.
+
+Mitigation: Do not enable custom base URLs or public media URL mode unless the endpoint and publishing location are trusted and appropriate for the image contents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huiya-code/skills/qwen-vision-rename)
+- [Publisher profile](https://clawhub.ai/user/huiya-code)
+- [DashScope OpenAI-compatible endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON plan or rollback file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local JSON plan files and rollback files when renaming images.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

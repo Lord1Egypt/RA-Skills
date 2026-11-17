@@ -1,38 +1,54 @@
-## Description: <br>
-Expert-level code review for React Native and native iOS/Android applications covering architecture, performance, security, acquisition due diligence, and React Native to native migration assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert-level code review for React Native and native iOS/Android applications, covering architecture, performance, security, acquisition due diligence, and React Native to Native migration assessment.
 
-## Publisher: <br>
-[sammy-the-bot](https://clawhub.ai/user/sammy-the-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sammy-the-bot](https://clawhub.ai/user/sammy-the-bot)
 
-## Use Case: <br>
-Developers, engineering leaders, startups, and technical due diligence teams use this skill to review React Native, iOS, and Android codebases for architecture, performance, security, code quality, migration readiness, and acquisition preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Mobile Code Review Pro on ClawHub](https://clawhub.ai/sammy-the-bot/mobile-code-review-pro) <br>
-- [Code Review Checklist](templates/code-review-checklist.md) <br>
+Developers, engineering leaders, startups, and due diligence reviewers use this skill to review React Native and native iOS/Android codebases for architecture, performance, code quality, security, migration readiness, and acquisition preparation.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, checklists, prioritized findings, remediation guidance, and optional code or shell command suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires access to the target codebase and may require build environment access for profiling. Review generated commands and diffs before execution, especially for privileged review workflows.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: A useful mobile code review may require access to private repository contents, build tooling, profiling data, and business context.
+
+Mitigation: Grant the minimum repository and build-environment access needed for the review, and avoid exposing unrelated secrets, production credentials, or unrelated codebases.
+
+Risk: Architecture and migration recommendations are advisory and may be incomplete without project-specific constraints and human review.
+
+Mitigation: Have qualified mobile engineers validate findings, estimates, and migration plans against the actual codebase, team capacity, product roadmap, and release obligations.
+
+## Reference(s):
+
+- [Mobile Code Review Checklist](templates/code-review-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/sammy-the-bot/skills/mobile-code-review-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, checklists, prioritized findings, roadmap guidance, and optional code or shell command suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce executive summaries, detailed findings, issue inventories, remediation plans, migration recommendations, and profiling or quality-gate guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,9 @@
+{
+    "is_admin":{
+        "name" : "judge_admin",
+        "type" : "logic",
+        "condition":"@{CONDITION|#tokenAcc, 's.==', 'admin'}",
+        "errorCode":"NO_RIGHT",
+        "errorInfo":"only administrator permitted"
+    }
+}

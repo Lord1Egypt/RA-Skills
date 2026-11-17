@@ -1,44 +1,58 @@
-## Description: <br>
-Provides a C reference implementation and benchmark for adaptive string search with multi-level pruning, redundancy detection, and statistical character-position selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-performance string search support with adaptive strategies, multi-level pruning, and redundancy detection for large-scale text processing.
 
-## Publisher: <br>
-[gatsby047-oss](https://clawhub.ai/user/gatsby047-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gatsby047-oss](https://clawhub.ai/user/gatsby047-oss)
 
-## Use Case: <br>
-Developers and engineers can use this skill as a local C algorithm and benchmark reference for large text search, pattern matching, log analysis, and data deduplication workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The sample benchmark can allocate large text buffers and run repeated searches, which may consume significant local CPU and memory if defaults are used without review. <br>
-Mitigation: Review the C source before compiling and run benchmarks with modest size and repetition settings appropriate for the local machine. <br>
-Risk: The reference implementation assumes lowercase alphabetic text in several frequency calculations and is not hardened for arbitrary input. <br>
-Mitigation: Add input validation and bounds checks before adapting the algorithm for untrusted or general-purpose text processing. <br>
+## Use Case:
 
+Developers and engineers use this skill to evaluate or adapt a C string-search benchmark for large text search, pattern matching, log analysis, and data deduplication workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gatsby047-oss/string-search-evomap) <br>
-- [Publisher profile](https://clawhub.ai/user/gatsby047-oss) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [code.c](artifact/code.c) <br>
-- [evomap-bundle.json](artifact/evomap-bundle.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with C code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local-only reference and benchmark material; no network access, credential use, hidden install steps, or background behavior identified by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and artifact documentation) <br>
+Risk: The shipped C implementation is unsafe for the general text-processing use cases it advertises.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate input characters, enforce bounds and allocation checks, document supported encodings, and run memory-safety tests before production use.
+
+Risk: The advertised README usage may not match the exposed C entry points.
+
+Mitigation: Confirm the public API and compile path before integrating the code into an application or agent workflow.
+
+Risk: Security evidence marks the release as suspicious even though no hidden network, credential, persistence, or privilege behavior was reported.
+
+Mitigation: Review the code before installing or reusing it in production and apply the security guidance from the ClawHub scan.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gatsby047-oss/skills/string-search-evomap)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline C and shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes C benchmark code and usage guidance; review generated or reused code before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

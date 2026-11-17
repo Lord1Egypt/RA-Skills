@@ -34,7 +34,7 @@ mkdir -p ./snap-cso
 siluzan-cso list-accounts --media-type YouTube --json-out ./snap-cso
 node -e "
 const d = require('./snap-cso/list-accounts-youtube.json');
-const rows = Array.isArray(d.items) ? d.items : [];
+const rows = Array.isArray(d.accounts) ? d.accounts : [];
 rows.forEach((a) => console.log(a.mediaCustomerId, a.mediaCustomerName));
 "
 ```
@@ -44,7 +44,7 @@ Windows PowerShell（避免管道传 JSON）：
 ```powershell
 $SNAP = ".\snap-cso"; New-Item -ItemType Directory -Force -Path $SNAP | Out-Null
 siluzan-cso list-accounts --media-type YouTube --json-out $SNAP
-node -e "const d=require('./snap-cso/list-accounts-youtube.json'); (d.items||[]).forEach(a=>console.log(a.mediaCustomerId, a.mediaCustomerName));"
+node -e "const d=require('./snap-cso/list-accounts-youtube.json'); (d.accounts||[]).forEach(a=>console.log(a.mediaCustomerId, a.mediaCustomerName));"
 ```
 
 ### 2. RAG 检索结果按 score 取 TopN
@@ -56,9 +56,9 @@ const fs = require('fs'), path = require('path');
 const man = JSON.parse(fs.readFileSync('./snap-cso/cli-manifest.json','utf8'));
 const art = man.artifacts.find(a => a.section.startsWith('rag-query')) || man.artifacts[0];
 const d = require(path.join('./snap-cso', art.file));
-const hits = d.results || d.items || [];
+const hits = d.output || [];
 hits.slice().sort((a,b)=>(b.score??0)-(a.score??0)).slice(0,8)
-  .forEach(h => console.log((h.score??0).toFixed(3), String(h.content||'').slice(0,60)));
+  .forEach(h => console.log((h.score??0).toFixed(3), String(h.fields?.content||'').slice(0,60)));
 "
 ```
 
@@ -70,21 +70,34 @@ hits.slice().sort((a,b)=>(b.score??0)-(a.score??0)).slice(0,8)
 siluzan-cso persona list --json-out ./snap-cso
 node -e "
 const d = require('./snap-cso/persona-list.json');
-const rows = d.items || d.list || [];
-rows.forEach(p => console.log(p.id, p.name, '(styleGuide', String(p.styleGuide||'').length, 'chars)'));
+const rows = d.results || [];
+rows.forEach(p => {
+  const len = p.styleGuideChars ?? String(p.styleGuide || '').length;
+  console.log(p.id, p.personaName, '(styleGuide', len, 'chars)');
+});
 "
 ```
 
-### 4. 任务列表筛失败项 / 汇总状态
+### 4. 任务列表筛异常项 / 汇总状态
 
 ```bash
-siluzan-cso task list --status -1 --json-out ./snap-cso
+siluzan-cso task list --failed-only --json-out ./snap-cso
 node -e "
 const d = require('./snap-cso/task-list.json');
 const list = d.list || [];
-const failed = list.filter(t => t.status === 2);
-console.log('共', d.total, '任务；本页中止/异常', failed.length, '个');
-failed.forEach(t => console.log(' ', t.publishId, t.taskName));
+console.log('共', d.total, '条异常任务');
+list.forEach(t => console.log(' ', t.publishId, t.taskName));
+"
+```
+
+任务级状态筛选（`0` 执行中 · `1` 已完成 · `2` 已中止）示例：
+
+```bash
+siluzan-cso task list --status 2 --json-out ./snap-cso
+node -e "
+const d = require('./snap-cso/task-list.json');
+console.log('共', d.total, '条已中止任务');
+(d.list || []).forEach(t => console.log(' ', t.publishId, t.taskName));
 "
 ```
 
@@ -94,9 +107,12 @@ failed.forEach(t => console.log(' ', t.publishId, t.taskName));
 siluzan-cso report fetch --media Douyin --days 7 --json-out ./snap-cso
 node -e "
 const fs = require('fs'), path = require('path');
-const man = JSON.parse(fs.readFileSync('./snap-cso/cli-manifest.json','utf8'));
-const d = require(path.join('./snap-cso', man.artifacts[0].file));
+const manFile = fs.readdirSync('./snap-cso').find(f => f.startsWith('cli-manifest') && f.endsWith('.json'));
+const man = JSON.parse(fs.readFileSync(path.join('./snap-cso', manFile), 'utf8'));
+const art = man.artifacts.find(a => a.section.startsWith('report-fetch')) || man.artifacts[0];
+const d = require(path.join('./snap-cso', art.file));
 console.log('keys:', Object.keys(d));
+console.log('sections:', Object.keys(d.sections || {}));
 "
 ```
 
@@ -117,7 +133,7 @@ siluzan-cso list-accounts --media-type YouTube --json-out ./snap-cso
 node -e "
 const d = require('./snap-cso/list-accounts-youtube.json');
 console.log('keys:', Object.keys(d));
-console.log('itemCount:', (d.items||[]).length, 'sample:', d.items && d.items[0] && Object.keys(d.items[0]));
+console.log('accountCount:', (d.accounts||[]).length, 'sample:', d.accounts && d.accounts[0] && Object.keys(d.accounts[0]));
 "
 ```
 

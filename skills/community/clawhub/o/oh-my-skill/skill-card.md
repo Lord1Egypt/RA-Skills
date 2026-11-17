@@ -1,41 +1,52 @@
-## Description: <br>
-Automatically generate and save a reusable skill after an AI agent successfully completes a complex task involving five or more tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically captures successful multi-step agent workflows and drafts them into reusable skill files with optional desensitization of session text.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[goog](https://clawhub.ai/user/goog)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent users use this skill after complex completed workflows to preserve a repeatable process as a new reusable skill. It is most relevant when the workflow involved multiple tool calls, planning, verification, and structured output.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks an agent to inspect recent session context, which can expose private data if used on sensitive conversations.
+
+Mitigation: Use it only on sessions suitable for persistence, run the desensitization step, and avoid sessions containing secrets or private information.
+
+Risk: Generated skills become persistent reusable agent instructions and may preserve weak scoping or incorrect guidance.
+
+Mitigation: Review the complete generated SKILL.md before leaving it in an active skills directory.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill to capture a successful multi-step workflow, desensitize the session text, draft a focused SKILL.md, and save it for reuse. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Completed conversations can contain sensitive or private session details that may be preserved in a generated skill. <br>
-Mitigation: Run the provided desensitization step, avoid using highly sensitive sessions, and review the cleaned session and generated SKILL.md before relying on it. <br>
-Risk: A generated skill may have an overly broad trigger description or misleading workflow guidance. <br>
-Mitigation: Review and narrow trigger descriptions, verify workflow steps against the successful path, and scan the skill before deployment. <br>
+**Output Format:** [Markdown instructions with shell command examples and generated skill file content]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goog/oh-my-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/goog) <br>
+**Other Properties Related to Output:** [May create persistent SKILL.md files and optional supporting script, reference, or asset files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown skill draft with inline shell commands and optional Python masking output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a reusable SKILL.md and may save supporting scripts, references, or assets when the captured workflow requires them.] <br>
+1.3.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

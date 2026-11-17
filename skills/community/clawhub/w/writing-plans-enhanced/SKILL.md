@@ -1,9 +1,11 @@
 ---
 name: writing-plans-enhanced
-description: Use when you have a spec or requirements for a multi-step task, before touching code. Enhanced version with milestone timelines, data flow diagrams, mockups, and risk tables.
+version: 1.0.0
+description: "Create enhanced implementation plans with milestone timelines, data flow diagrams, mockups, and risk tables. Use when planning complex multi-step tasks that need visual planning artifacts."
+dependencies: []
 ---
 
-# Writing Plans — Enhanced
+# Writing Plans �?Enhanced
 
 ## Overview
 
@@ -40,15 +42,15 @@ Ship in slices, each independently reviewable and each behind the flag. Nothing 
 
 New tables, migrations, and API stubs. No UI. Contract reviewed before anything else lands.
 
-- `packages/db` — new migrations
-- `packages/api` — tRPC router stubs
+- `packages/db` �?new migrations
+- `packages/api` �?tRPC router stubs
 
 ### Milestone 2: Core Component (Week 1 · Wed–Fri)
 
 Static component rendered from fixtures. Optimistic insert on submit, rollback on failure.
 
-- `apps/web` — new component
-- `apps/storybook` — fixture stories
+- `apps/web` �?new component
+- `apps/storybook` �?fixture stories
 
 ### Milestone 3: Realtime Integration (Week 2 · Mon–Wed)
 
@@ -56,7 +58,7 @@ Subscribe to changes. Track state for sidebar digest.
 
 ### Milestone 4: Notifications & Ramp (Week 2 · Thu–Fri)
 
-Mention detection → notification row, email digest fallback, ramp feature flag.
+Mention detection �?notification row, email digest fallback, ramp feature flag.
 ```
 
 ## Data Flow
@@ -67,52 +69,26 @@ Describe the data flow from client to persistence. Use ASCII diagrams with solid
 ### Data Flow: Optimistic Write Path
 
 Client                    API Server              Database
-  │                          │                       │
-  ├─► POST /tasks (optimistic)                       │
-  │  ├─► update local cache immediately              │
-  │  └─► send mutation ─────►┤                       │
-  │                           ├─► validate ─────────►┤
-  │                           │                       │
-  │                           │◄─ 200 OK ─────────────┤
-  │◄─ cache update ──────────┤                       │
-  │                          │                       │
-
+  �?                         �?                      �?  ├─�?POST /tasks (optimistic)                       �?  �? ├─�?update local cache immediately              �?  �? └─�?send mutation ─────►┤                       �?  �?                          ├─�?validate ─────────►┤
+  �?                          �?                      �?  �?                          │◄─ 200 OK ─────────────�?  │◄─ cache update ──────────�?                      �?  �?                         �?                      �?
 ### Realtime Fan-Out (dashed path)
 
-Database ─ ─ ─► WebSocket ─ ─ ─► Other clients
-  │              │                  │
-  └─► trigger ──►┤                  └─► re-render
-                 └─► push notification
+Database ─ ─ ─�?WebSocket ─ ─ ─�?Other clients
+  �?             �?                 �?  └─�?trigger ──►┤                  └─�?re-render
+                 └─�?push notification
 ```
 
 ## Mockups
 
-Not pixel-final — just enough that the reviewer and implementer agree on layout and placement.
+Not pixel-final �?just enough that the reviewer and implementer agree on layout and placement.
 
 ```markdown
 ### A · Thread Inside an Open Task Card
 
-┌──────────────────────────────────────┐
-│  Ship onboarding empty-state rewrite  │
-│  BIR-1142 · Assigned to Priya · Due  │
-├──────────────────────────────────────┤
-│  Priya: Should we add an illustration?│
-│  You: Yes, let me mock it up          │
-│                                       │
-│  ┌─────────────────────────────────┐ │
-│  │ Add a comment...          Post │ │
-│  └─────────────────────────────────┘ │
-└──────────────────────────────────────┘
-
+┌──────────────────────────────────────�?�? Ship onboarding empty-state rewrite  �?�? BIR-1142 · Assigned to Priya · Due  �?├──────────────────────────────────────�?�? Priya: Should we add an illustration?�?�? You: Yes, let me mock it up          �?�?                                      �?�? ┌─────────────────────────────────�?�?�? �?Add a comment...          Post �?�?�? └─────────────────────────────────�?�?└──────────────────────────────────────�?
 ### B · Sidebar Unread Digest
 
-┌──────────────────────────────────────┐
-│ 🔴 Jonah commented on BIR-1142       │
-│    "Should the illustration swap..."  │
-│ 🔵 Aiko mentioned you on BIR-1098    │
-│    "@priya can you confirm..."        │
-└──────────────────────────────────────┘
-```
+┌──────────────────────────────────────�?�?🔴 Jonah commented on BIR-1142       �?�?   "Should the illustration swap..."  �?�?🔵 Aiko mentioned you on BIR-1098    �?�?   "@priya can you confirm..."        �?└──────────────────────────────────────�?```
 
 ## Risk Table
 
@@ -126,11 +102,11 @@ Not pixel-final — just enough that the reviewer and implementer agree on layou
 
 **Each step is one action (2-5 minutes):**
 
-- "Write the failing test" — step
-- "Run it to make sure it fails" — step
-- "Implement the minimal code to make the test pass" — step
-- "Run the tests and make sure they pass" — step
-- "Commit" — step
+- "Write the failing test" �?step
+- "Run it to make sure it fails" �?step
+- "Implement the minimal code to make the test pass" �?step
+- "Run the tests and make sure they pass" �?step
+- "Commit" �?step
 
 ## Task Structure
 
@@ -168,7 +144,7 @@ After saving the plan, offer execution choice:
 
 **"Plan complete and saved to `docs/plans/<filename>.md`. Two execution options:**
 
-1. **Subagent-Driven (this session)** — I dispatch fresh subagent per task, review between tasks
-2. **Parallel Session (separate)** — Open new session with executing-plans, batch execution with checkpoints
+1. **Subagent-Driven (this session)** �?I dispatch fresh subagent per task, review between tasks
+2. **Parallel Session (separate)** �?Open new session with executing-plans, batch execution with checkpoints
 
 Which approach?"

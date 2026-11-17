@@ -1,41 +1,55 @@
-## Description: <br>
-Assists users with Chinese Fifteenth Five-Year Plan policy interpretation, Fourteenth-to-Fifteenth Plan comparisons, industry impact analysis, multidimensional Q&A, and structured HTML report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+十五五规划智能解读助手用于解读国家和省级十五五规划，对比十四五变化，分析行业政策影响，并生成结构化 HTML 解读报告。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users and analysts use this skill to ask policy questions, compare planning periods, explore industry implications, and generate structured Chinese-language planning reports. It is intended for policy research and information organization, with factual claims reviewed against official sources when accuracy matters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Policy claims or bundled reference notes may be outdated, incomplete, or require official-source verification. <br>
-Mitigation: Review generated answers and reports for factual accuracy, especially for current policy details, provincial planning information, and cited quantitative targets. <br>
-Risk: Generated HTML reports may include analysis or presentation choices that affect interpretation. <br>
-Mitigation: Review report content, charts, and source notes before sharing or relying on the output. <br>
+## Use Case:
 
+External users use this skill to ask Chinese-language questions about the Fifteenth Five-Year Plan, compare it with the Fourteenth Five-Year Plan, analyze industry or provincial policy implications, and generate structured policy briefing reports.
 
-## Reference(s): <br>
-- [十五五规划纲要完整结构](references/plan_summary.md) <br>
-- [人工智能在十五五规划中的布局](references/ai_in_plan.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown responses and HTML report code when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use web search to verify current or incomplete planning information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Policy facts, provincial planning materials, or secondary interpretations may be outdated or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify cited official policy sources before relying on or sharing outputs.
+
+Risk: Generated HTML reports can present analysis with more authority than the underlying evidence supports.
+
+Mitigation: Review generated reports for source attribution, date accuracy, and unsupported conclusions before distribution.
+
+## Reference(s):
+
+- [十五五规划纲要完整结构](references/plan_summary.md)
+- [人工智能在十五五规划中的布局](references/ai_in_plan.md)
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/fifteen-five-plan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown answers and generated HTML report content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cited policy references, structured comparisons, key-indicator summaries, and HTML reports when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

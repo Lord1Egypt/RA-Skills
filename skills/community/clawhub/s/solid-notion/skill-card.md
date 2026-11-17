@@ -1,40 +1,57 @@
-## Description: <br>
-Read, edit, and write Notion pages as Markdown using the solid-notion CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read, edit, and write Notion pages as Markdown using the solid-notion CLI.
 
-## Publisher: <br>
-[vincentdchan](https://clawhub.ai/user/vincentdchan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vincentdchan](https://clawhub.ai/user/vincentdchan)
 
-## Use Case: <br>
-Developers and agents use this skill to manage Notion pages through the solid-notion CLI, including pulling content, applying Markdown or JSON-patch edits, submitting changes with rollback support, restoring history, and configuring Notion API authentication. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide commands that modify live Notion pages. <br>
-Mitigation: Review target page IDs and planned diffs before write, submit, new, or restore operations, and use dry-run options where available. <br>
-Risk: Notion tokens and local page copies may expose sensitive workspace content. <br>
-Mitigation: Use a dedicated least-privilege Notion integration, prefer token stdin over command-line tokens, share only intended pages with the integration, and manage or delete SOLID_NOTION_HOME data according to content sensitivity. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [solid-notion ClawHub page](https://clawhub.ai/vincentdchan/solid-notion) <br>
-- [Notion integration setup](https://www.notion.so/profile/integrations/internal) <br>
+## Use Case:
 
+Developers and agents use this skill to manage Notion pages through the solid-notion CLI, including pulling pages as Markdown, editing content or properties, submitting changes with rollback behavior, restoring prior versions, and configuring Notion API authentication.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides CLI workflows that can read local Notion exports, write live Notion pages, and emit JSON command results when requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on installing and trusting the third-party solid-notion npm package.
+
+Mitigation: Install only from a trusted package source and review the package before using it with Notion data.
+
+Risk: Notion API tokens and integration permissions can expose or modify shared pages.
+
+Mitigation: Use stdin for token setup, avoid putting tokens in command lines or logs, and share only necessary Notion pages with the integration.
+
+Risk: Write, submit, restore, or overwrite workflows can change Notion page content.
+
+Mitigation: Review local diffs, command output, and history before publishing or restoring changes.
+
+## Reference(s):
+
+- [Notion integration setup](https://www.notion.so/profile/integrations/internal)
+- [solid-notion Skill on ClawHub](https://clawhub.ai/vincentdchan/skills/solid-notion)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to run commands that read from or write to Notion and local solid-notion state.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

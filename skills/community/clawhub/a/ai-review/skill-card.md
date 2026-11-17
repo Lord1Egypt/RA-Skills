@@ -1,42 +1,54 @@
-## Description: <br>
-Reads content from URLs or files, classifies it, and generates structured summaries and comments in a specific, analytical style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads content from URLs or files, classifies it, and generates structured summaries and comments in a specific, analytical style.
 
-## Publisher: <br>
-[blackshady1130-jpg](https://clawhub.ai/user/blackshady1130-jpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[blackshady1130-jpg](https://clawhub.ai/user/blackshady1130-jpg)
 
-## Use Case: <br>
-External users and analysts use this skill to process articles, papers, news, URLs, PDFs, and local text files into a concise Markdown review with classification, source metadata, a key takeaway, and critical commentary. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The PDF reading workflow may involve shell-based download and text extraction for user-provided URLs or paths. <br>
-Mitigation: Use safer PDF or file-reading tools when available, avoid untrusted PDF URLs and sensitive local paths, and require agents to quote and constrain shell arguments. <br>
-Risk: Generated reviews may be persuasive or critical commentary rather than neutral summaries. <br>
-Mitigation: Review the output against the source material before using it for publication, investment, research, or operational decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AI-review ClawHub release](https://clawhub.ai/blackshady1130-jpg/ai-review) <br>
-- [Style Guide: Opinion/Article](references/style_guide_article.md) <br>
-- [Style Guide: Industry News/Commentary](references/style_guide_industry.md) <br>
-- [Style Guide: Solid Paper](references/style_guide_paper.md) <br>
+## Use Case:
 
+External users and developers use this skill to turn articles, papers, news, URLs, and local files into structured Markdown reviews with a classification, key takeaway, source details, and analytical commentary.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown table with classification, date, title, source, takeaway, and comments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Comments follow one of three bundled style guides for articles, papers, or industry commentary.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The scanner reports that the PDF workflow can expose users to command-injection and file-overwrite risk when handling untrusted links or paths.
+
+Mitigation: Use structured, validated command arguments, secure temporary files, or a safer document parser before processing untrusted PDF URLs or paths.
+
+Risk: The skill may access user-provided URLs or local files while preparing reviews.
+
+Mitigation: Install and use it only when the agent is permitted to access the supplied sources, and avoid sensitive local paths unless they are needed for the review.
+
+## Reference(s):
+
+- [Style Guide: Opinion/Article](artifact/references/style_guide_article.md)
+- [Style Guide: Solid Paper](artifact/references/style_guide_paper.md)
+- [Style Guide: Industry News/Commentary](artifact/references/style_guide_industry.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single table row containing type, date, title, source, key takeaway, and comments.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

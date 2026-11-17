@@ -1,45 +1,64 @@
-## Description: <br>
-Generates structured NowCoder interview-experience reports by searching NowCoder posts for configured keywords, time windows, and tags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Nowcoder interview-experience posts and prepares structured interview-preparation reports for an agent.
 
-## Publisher: <br>
-[champagne315](https://clawhub.ai/user/champagne315) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[champagne315](https://clawhub.ai/user/champagne315)
 
-## Use Case: <br>
-External users and agent operators use this skill to gather recent NowCoder interview-experience posts and turn them into concise preparation reports. It supports keyword, time-window, tag, language, and report-style configuration for interview preparation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill disables HTTPS certificate verification during normal NowCoder searches. <br>
-Mitigation: Use an isolated Python environment and remove or fix the TLS verification bypass before relying on results for private searches or important decisions. <br>
-Risk: The skill saves preferences, prompts, and report data locally under the user's home directory. <br>
-Mitigation: Review the files it creates and avoid storing sensitive search preferences or report content in shared environments. <br>
-Risk: NowCoder search requests may expose configured search keywords and timing to an external service. <br>
-Mitigation: Avoid private or sensitive search terms unless that external disclosure is acceptable. <br>
+## Use Case:
 
+External users and developers use this skill with an agent to search Nowcoder interview-experience posts by keyword, time window, and tag, then generate Markdown interview-preparation reports in Chinese, English, or bilingual format.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/champagne315/follow-nowcoder) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/champagne315) <br>
-- [NowCoder feed detail pages](https://www.nowcoder.com/feed/main/detail) <br>
-- [NowCoder discussion pages](https://www.nowcoder.com/discuss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with JSON metadata and CLI command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save report data, user configuration, and prompt customizations to local files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill contacts Nowcoder and processes scraped interview-post content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when this external network access and local processing of Nowcoder content are acceptable for the user and environment.
+
+Risk: Security evidence reports insecure HTTPS settings and TLS weakening.
+
+Mitigation: Review network code before deployment and prefer a version that restores certificate verification and avoids weakened TLS configuration.
+
+Risk: Security evidence reports unsafe prompt and file handling while the artifact supports local configuration, prompt, and report-data writes.
+
+Mitigation: Constrain execution to a trusted workspace, validate prompt names and file paths, and review generated report data before reuse.
+
+Risk: Scraped post content can influence report generation.
+
+Mitigation: Treat Nowcoder content as untrusted source data, not as agent instructions, and review outputs before acting on recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/champagne315/skills/follow-nowcoder)
+- [Nowcoder discussion pages](https://www.nowcoder.com/discuss)
+- [Nowcoder feed detail pages](https://www.nowcoder.com/feed/main/detail)
+- [Python](https://www.python.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with JSON metadata and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include locally written JSON report data, user configuration, custom prompts, and generated report text.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

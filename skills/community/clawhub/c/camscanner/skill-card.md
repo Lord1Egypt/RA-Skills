@@ -1,41 +1,53 @@
-## Description: <br>
-Camscanner helps agents organize and summarize public CamScanner product pages, feature descriptions, plan information, templates, help documentation, and update information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Camscanner helps agents organize public CamScanner product pages, feature descriptions, pricing documentation, templates, help content, and changelog information.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to summarize publicly available CamScanner website content, including feature pages, pricing details, templates, help topics, and public product updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill could be used on private documents, logged-in account data, enterprise administration content, or other non-public information outside its intended scope. <br>
-Mitigation: Use the skill only with publicly available CamScanner pages and avoid private documents, credentials, account data, enterprise administration, and non-public company information. <br>
-Risk: CamScanner plans, feature details, templates, and storage limits may change over time. <br>
-Mitigation: Prefer official CamScanner links and include publication or access dates when summarizing time-sensitive product or pricing information. <br>
+## Use Case:
 
+External users and content teams use this skill to summarize publicly available CamScanner features, pricing, templates, help pages, and public entry points for office-collaboration documentation.
 
-## Reference(s): <br>
-- [CamScanner official website](https://www.camscanner.com/) <br>
-- [ClawHub release page](https://clawhub.ai/CodeKungfu/camscanner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries should cite public official links and avoid private, logged-in, account-management, or enterprise administration content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill could be applied to logged-in account data, private documents, enterprise administration, or automated API actions outside its stated scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for public CamScanner pages and review outputs for compliance with platform, copyright, and account-safety requirements.
+
+Risk: CamScanner feature, pricing, storage, and plan details may change after a summary is generated.
+
+Mitigation: Preserve official links and update timestamps when summarizing current product or pricing information.
+
+## Reference(s):
+
+- [CamScanner official website](https://www.camscanner.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries, comparison tables, and link lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public CamScanner sources only; no account, private document, enterprise administration, or automated API actions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

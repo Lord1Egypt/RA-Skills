@@ -229,10 +229,10 @@ python scripts/voice_clone.py --create --name "客服小王" --audio "./wang.mp3
 
 ```bash
 # Windows PowerShell
-$env:AI_ARTIST_TOKEN="sk-5c6c262755dc43d59ec5a742a7e80202"
+$env:AI_ARTIST_TOKEN="REDACTED-SECRET"
 
 # Linux/macOS
-export AI_ARTIST_TOKEN="sk-5c6c262755dc43d59ec5a742a7e80202"
+export AI_ARTIST_TOKEN="REDACTED-SECRET"
 ```
 
 ### 方式 2：永久设置（推荐）

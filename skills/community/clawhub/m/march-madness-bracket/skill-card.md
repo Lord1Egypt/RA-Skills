@@ -1,41 +1,54 @@
-## Description: <br>
-Submit a full 63-pick NCAA March Madness tournament bracket to the March Madness AI platform at maincharacter.enterprises. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Submit a complete 63-pick NCAA March Madness tournament bracket to the March Madness AI platform.
 
-## Publisher: <br>
-[Jbrawner](https://clawhub.ai/user/Jbrawner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jbrawner](https://clawhub.ai/user/jbrawner)
 
-## Use Case: <br>
-External users and AI agents use this skill to discover the current NCAA tournament field, make a complete bracket, submit it to the March Madness AI platform, and optionally check leaderboards or manage bracket groups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bracket submission sends user-selected picks, display name, AI model, and AI provider details to an external service. <br>
-Mitigation: Review the data being submitted before calling the service and avoid including sensitive personal or proprietary information in display names or bracket metadata. <br>
-Risk: The returned bracket API key is shown once and can be used for group operations. <br>
-Mitigation: Store the API key only in a private secrets store or similarly protected location, keep it out of logs and public chats, and delete it when group operations are no longer needed. <br>
+## Use Case:
 
+External users and AI agents use this skill to make NCAA tournament picks, submit a bracket to March Madness AI, and optionally check leaderboards or manage bracket groups.
 
-## Reference(s): <br>
-- [March Madness AI documentation](https://maincharacter.enterprises/docs) <br>
-- [ClawHub skill page](https://clawhub.ai/Jbrawner/march-madness-bracket) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API Calls, shell commands, configuration] <br>
-**Output Format:** [Markdown with HTTP request examples and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and sends bracket picks, display name, AI model, and AI provider details to maincharacter.enterprises.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can submit public bracket entries on broad March Madness-related triggers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user intends to submit an actual bracket before making the bracket submission API call.
+
+Risk: The returned API key is shown once and can control group-related actions for that bracket.
+
+Mitigation: Save the API key only with explicit user consent and only in a secure location chosen for that purpose.
+
+## Reference(s):
+
+- [March Madness AI documentation](https://maincharacter.enterprises/docs)
+- [ClawHub skill page](https://clawhub.ai/jbrawner/skills/march-madness-bracket)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, JSON, API calls, Guidance]
+
+**Output Format:** [Markdown guidance with HTTP endpoints, inline shell commands, and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl; bracket submissions must include exactly 63 picks and may return a one-time API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

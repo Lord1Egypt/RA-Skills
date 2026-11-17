@@ -1,36 +1,48 @@
-## Description: <br>
-A conversational creative thought partner that reveals hidden brilliance in your ideas through critical observations and paradox hunting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A conversational creative thought partner that reveals hidden brilliance in your ideas through critical observations and paradox hunting.
 
-## Publisher: <br>
-[vincentchan](https://clawhub.ai/user/vincentchan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vincentchan](https://clawhub.ai/user/vincentchan)
 
-## Use Case: <br>
-External users, employees, and creators use this skill to explore ideas through guided conversation, surface original insights, identify paradoxes, and crystallize named concepts for writing, content creation, product development, or creative work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Brainstorming sessions may be written to a local Markdown file under creative-thoughts/. <br>
-Mitigation: Avoid sharing confidential business plans, unpublished ideas, or personal reflections unless you are willing to review, redact, or delete the saved session file afterward. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and creators use this skill to explore ideas through focused conversation, uncover original insights, name emerging concepts, and prepare a narrative session summary.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational text and optional Markdown session notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save session notes to creative-thoughts/session-{timestamp}.md.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The optional session export may include the full transcript and sensitive creative material.
+
+Mitigation: Avoid confidential topics or ask the agent not to export the session when a saved local record is not appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vincentchan/skills/creative-thought-partner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, files]
+
+**Output Format:** [Conversational text with an optional Markdown session export]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save a local session transcript at creative-thoughts/session-{timestamp}.md.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

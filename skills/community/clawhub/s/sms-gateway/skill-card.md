@@ -1,45 +1,60 @@
-## Description: <br>
-Send and receive SMS using a local sms-gate.app instance running on Android or a dedicated device. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive SMS using a local sms-gate.app instance running on Android (via Termux) or a dedicated device.
 
-## Publisher: <br>
-[minstn](https://clawhub.ai/user/minstn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[minstn](https://clawhub.ai/user/minstn)
 
-## Use Case: <br>
-Developers and operators use this skill to send SMS messages, check delivery status, inspect recent message history, run gateway health checks, and manage SMS webhooks through a local Android sms-gate.app instance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real SMS messages from a connected device. <br>
-Mitigation: Require manual approval before sending messages and keep credentials limited to trusted users and agents. <br>
-Risk: Incoming SMS webhooks may expose message content or forward it beyond the local receiver. <br>
-Mitigation: Avoid public exposure unless authentication and transport controls are in place, and set OPENCLAW_WEBHOOK_URL=disabled unless forwarding is intentional. <br>
-Risk: Gateway credentials and cached tokens can grant access to SMS actions. <br>
-Mitigation: Protect .env and .token.json, rotate credentials if exposed, and keep the gateway on a trusted network. <br>
+## Use Case:
 
+Developers and operators use this skill to send SMS, check delivery status, inspect recent message history, and manage incoming SMS or delivery webhooks through a local Android sms-gate.app gateway.
 
-## Reference(s): <br>
-- [SMS Gateway API Reference](references/api.md) <br>
-- [sms-gate.app](https://sms-gate.app) <br>
-- [Android SMS Gateway v1.55.0 Release](https://github.com/capcom6/android-sms-gateway/releases/tag/v1.55.0) <br>
-- [ClawHub Skill Page](https://clawhub.ai/minstn/sms-gateway) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and text status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SMS_GATE_URL, SMS_GATE_USER, SMS_GATE_PASS, python3, an SMS-capable Android device, and a reachable sms-gate.app local server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill handles SMS content and gateway credentials, and the security evidence flags weak network and webhook safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS endpoint or protected local/VPN gateway, and restrict permissions on .env and .token.json.
+
+Risk: Public webhook exposure can reveal incoming SMS payloads or forward them to an unintended endpoint.
+
+Mitigation: Avoid public ngrok exposure unless additional authentication is in place, and disable or tightly control OPENCLAW_WEBHOOK_URL forwarding.
+
+Risk: The provided scripts can send SMS, read message data, and modify webhook configuration.
+
+Mitigation: Review requested actions before running scripts, use least-privilege gateway credentials where possible, and monitor webhook configuration changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/minstn/skills/sms-gateway)
+- [SMS Gateway API Reference](references/api.md)
+- [sms-gate.app](https://sms-gate.app)
+- [Android SMS Gateway v1.55.0 release](https://github.com/capcom6/android-sms-gateway/releases/tag/v1.55.0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger local API calls that send SMS, read message data, check gateway health, and manage webhook configuration when the agent runs the provided scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

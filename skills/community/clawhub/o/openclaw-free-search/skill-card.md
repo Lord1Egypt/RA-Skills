@@ -1,41 +1,54 @@
-## Description: <br>
-Openclaw Free Search lets OpenClaw agents run web searches through a free DuckDuckGo-based search script without requiring Brave or Perplexity API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw Free Search lets OpenClaw users run web searches without configuring Brave or Perplexity API keys.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-OpenClaw users and agent developers use this skill to run web searches when paid search provider API keys are not configured. It is suited for general information lookup where sharing the query with DuckDuckGo is acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to DuckDuckGo and may expose sensitive information in queries. <br>
-Mitigation: Do not use the skill for passwords, API keys, private project names, customer data, or other sensitive information; review queries before execution. <br>
-Risk: The search script may fall back to curl when direct fetch fails, so results depend on local outbound network and proxy behavior. <br>
-Mitigation: Use it only in environments where outbound access to DuckDuckGo and the host proxy configuration are acceptable. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to retrieve web search results when API-key-backed search providers are not configured.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/openclaw-free-search) <br>
-- [DuckDuckGo Instant Answer API endpoint](https://api.duckduckgo.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [Plain text search results by default, or JSON when the --json flag is used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns an abstract and up to 10 related results when available; exits nonzero on search or parse failure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installation instructions use a mutable npx installer, which may execute remote code that differs from the reviewed release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned and reviewed installer version, and inspect the package before running the install command.
+
+Risk: Search terms are sent to DuckDuckGo, and third-party query handling is under-disclosed.
+
+Mitigation: Do not use this skill for secrets, private identifiers, confidential prompts, regulated data, or other sensitive queries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/openclaw-free-search)
+- [DuckDuckGo Instant Answer API endpoint](https://api.duckduckgo.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON search results, with Markdown shell command examples in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results include an optional abstract and up to 10 related topics when returned by the search service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

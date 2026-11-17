@@ -1,42 +1,62 @@
-## Description: <br>
-Permissions Broker lets agents create user-approved requests to supported external providers through a Telegram approval flow when local credentials are unavailable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent guidance for using a user-approved Permissions Broker API key to make approval-gated Google, GitHub, iCloud CalDAV, and Spotify requests when local credentials are unavailable.
 
-## Publisher: <br>
-[stephancill](https://clawhub.ai/user/stephancill) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stephancill](https://clawhub.ai/user/stephancill)
 
-## Use Case: <br>
-Agents use this skill to request Google, GitHub, iCloud CalDAV, or Spotify data and actions through a user-controlled approval step. It is useful when a user wants external account access mediated by explicit Telegram approval instead of local credentials. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broker requests can read from or act on connected external accounts after approval. <br>
-Mitigation: Review each Telegram approval for URL, method, body, and consent reason before approving, especially for write, delete, Git push, playback-control, or broad data-read requests. <br>
-Risk: PB_API_KEY is a secret used to create approval-gated broker requests. <br>
-Mitigation: Store it only in a secrets store when the user explicitly consents to reuse, never place it in code, logs, or commits, and rotate it if it is lost or compromised. <br>
-Risk: Upstream responses may contain sensitive account data and broker execution is one-time. <br>
-Mitigation: Request only the data needed, avoid logging full responses, and parse or persist the needed result immediately after execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Permissions Broker Agent Reference](references/api_reference.md) <br>
-- [iCloud CalDAV Templates](references/caldav.md) <br>
+## Use Case:
 
+Developers and agents use this skill to route external data access and third-party actions through a user-approved Permissions Broker flow when local credentials are unavailable. It covers request creation, Telegram approval polling, one-time execution, provider-specific URL construction, and secret-handling guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline JSON, code, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requests require user approval in Telegram; broker executions are one-time and responses should be parsed or saved immediately.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A reusable Permissions Broker API key can expose linked provider data if it is pasted into chat, logs, code, or repository files.
+
+Mitigation: Provide the key through a protected secret such as PB_API_KEY, never commit or log it, and rotate the key if it has been pasted into a conversation.
+
+Risk: Approved broker requests can read or modify linked provider data.
+
+Mitigation: Approve only requests whose upstream URL, method, body, and consent text match the intended task.
+
+Risk: Sending the API key to an unintended broker URL could route credentials or actions through an untrusted service.
+
+Mitigation: Verify the broker URL is exactly the intended Permissions Broker service before creating or polling requests.
+
+Risk: One-time execution means a response may be unavailable after it is consumed.
+
+Mitigation: Parse and persist the needed result immediately after a successful execution.
+
+## Reference(s):
+
+- [Permissions Broker Agent Reference](artifact/references/api_reference.md)
+- [iCloud CalDAV Templates](artifact/references/caldav.md)
+- [ClawHub Skill Page](https://clawhub.ai/stephancill/skills/permissions-broker)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON, TypeScript, Python, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes approval-gated API request patterns, provider URL examples, polling behavior, and secret-handling guidance.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

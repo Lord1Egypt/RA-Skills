@@ -1,49 +1,64 @@
-## Description: <br>
-Claw Keyboard helps agents discover and control compatible USB HID keyboards, including RGB lighting, custom LEDs, macros, key mapping, profile settings, KLE layout rendering, and multi-keyboard management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls keyboard RGB backlight, custom LEDs, macros, key mapping, and profile settings via USB HID.
 
-## Publisher: <br>
-[dionren](https://clawhub.ai/user/dionren) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dionren](https://clawhub.ai/user/dionren)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent inspect and operate compatible USB HID keyboards, adjust lighting and profiles, manage macros and keymaps, and produce layout output when requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The required third-party binary can control connected keyboard hardware. <br>
-Mitigation: Install only when the binary source is trusted and verify release checksums when possible. <br>
-Risk: Reset, macro, keymap, and flash-save commands can make lasting hardware changes or erase keyboard settings. <br>
-Mitigation: Run those commands only after explicit user approval and confirm the intended change before execution. <br>
-Risk: When multiple compatible keyboards are connected, commands may affect the wrong device. <br>
-Mitigation: Run discovery first and use the device selector for the intended keyboard. <br>
+## Use Case:
 
+External users and developers use this skill to discover and control compatible USB HID keyboards, including lighting, macros, key mappings, profiles, and KLE layout rendering.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dionren/claw-keyboard) <br>
-- [Claw Keyboard GitHub Repository](https://github.com/clawdevice/claw-keyboard) <br>
-- [macOS Apple Silicon Binary](https://github.com/clawdevice/claw-keyboard/releases/latest/download/claw-keyboard-darwin-arm64) <br>
-- [macOS Intel Binary](https://github.com/clawdevice/claw-keyboard/releases/latest/download/claw-keyboard-darwin-amd64) <br>
-- [Linux x86_64 Binary](https://github.com/clawdevice/claw-keyboard/releases/latest/download/claw-keyboard-linux-amd64) <br>
-- [Linux ARM64 Binary](https://github.com/clawdevice/claw-keyboard/releases/latest/download/claw-keyboard-linux-arm64) <br>
-- [Windows x86_64 Binary](https://github.com/clawdevice/claw-keyboard/releases/latest/download/claw-keyboard-windows-amd64.exe) <br>
-- [Windows ARM64 Binary](https://github.com/clawdevice/claw-keyboard/releases/latest/download/claw-keyboard-windows-arm64.exe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration, Files] <br>
-**Output Format:** [Markdown or plain text with shell commands, command-output summaries, and optional JSON or SVG outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can use the claw-keyboard --json flag for machine-readable output and KLE rendering commands for SVG files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: Native binaries are downloaded from a mutable latest-release channel without pinned verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher and prefer a version-pinned release with digest verification enforced before execution.
+
+Risk: The suggested Linux hidraw udev rule grants broad persistent device permissions.
+
+Mitigation: Narrow the rule to the specific keyboard interface or use a dedicated group or active-session access mechanism.
+
+Risk: Some commands can change key bindings, erase macros, reset the keyboard, or persist settings to flash.
+
+Mitigation: Require explicit user confirmation before running state-changing commands, and prefer read-only commands for discovery and inspection.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dionren/skills/claw-keyboard)
+- [Project homepage](https://github.com/clawdevice/claw-keyboard)
+- [macOS Apple Silicon binary](https://github.com/clawdevice/claw-keyboard/releases/latest/download/claw-keyboard-darwin-arm64)
+- [macOS Intel binary](https://github.com/clawdevice/claw-keyboard/releases/latest/download/claw-keyboard-darwin-amd64)
+- [Linux x86_64 binary](https://github.com/clawdevice/claw-keyboard/releases/latest/download/claw-keyboard-linux-amd64)
+- [Linux ARM64 binary](https://github.com/clawdevice/claw-keyboard/releases/latest/download/claw-keyboard-linux-arm64)
+- [Windows x86_64 binary](https://github.com/clawdevice/claw-keyboard/releases/latest/download/claw-keyboard-windows-amd64.exe)
+- [Windows ARM64 binary](https://github.com/clawdevice/claw-keyboard/releases/latest/download/claw-keyboard-windows-arm64.exe)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI actions may produce text, JSON, or SVG files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Machine-readable CLI output is available with --json; commands that change hardware state require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.4 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

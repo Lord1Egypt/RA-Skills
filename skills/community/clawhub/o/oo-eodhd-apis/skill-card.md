@@ -1,42 +1,60 @@
-## Description: <br>
-EODHD APIs helps agents search and read EODHD market and economic data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and retrieve financial and economic data through the EODHD APIs connector.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to query authenticated EODHD market data, instrument metadata, macro indicators, U.S. Treasury yield rates, and account usage through OOMOL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires connection to an EODHD API account and may use sensitive account credentials managed by OOMOL. <br>
-Mitigation: Install and use the skill only when the user trusts OOMOL and intends to connect an EODHD API account. <br>
-Risk: The documented first-time setup includes a remote shell installer for the oo CLI. <br>
-Mitigation: Prefer OOMOL's install guide or inspect the installer before executing it, especially in managed or production environments. <br>
+## Use Case:
 
+Developers and analysts use the skill to search EODHD instruments and retrieve market, historical price, account, and macroeconomic data through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/oomol/oo-eodhd-apis) <br>
-- [EODHD APIs Homepage](https://eodhd.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON connector payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an installed and authenticated oo CLI plus a connected EODHD APIs account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and frontmatter) <br>
+Risk: Installing the CLI may execute unverified online code without a clear approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve installation separately, and use a fixed, verified CLI release.
+
+Risk: Automatic skill synchronization may update installed skills.
+
+Mitigation: Review the synchronization behavior and set OO_SKILLS_SYNC_DISABLED to disable it if needed.
+
+Risk: OOMOL brokers EODHD access and may charge for requests.
+
+Mitigation: Check OOMOL billing and the connected account's plan before making requests.
+
+## Reference(s):
+
+- [EODHD APIs documentation](https://eodhd.com/financial-apis/)
+- [EODHD APIs homepage](https://eodhd.com)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-eodhd-apis)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON API responses with concise action guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Response fields and available data depend on the selected action and connected EODHD account.]
+
+## Skill Version(s):
+
+1.0.5 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

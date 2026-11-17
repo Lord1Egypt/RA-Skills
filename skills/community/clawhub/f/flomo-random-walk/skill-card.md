@@ -1,41 +1,54 @@
-## Description: <br>
-Starts from a random Flomo note, displays it, recommends related notes, and lets the user continue a multi-step knowledge walk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Flomo Random Walk starts from a random Flomo note, surfaces related notes, and helps users build an exploratory knowledge-walk path.
 
-## Publisher: <br>
-[jayshna](https://clawhub.ai/user/jayshna) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jayshna](https://clawhub.ai/user/jayshna)
 
-## Use Case: <br>
-External users with Flomo notes use this skill to explore connections among their saved notes by starting from a random note and choosing related notes to continue a knowledge walk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Flomo API token is exposed in the public skill instructions. <br>
-Mitigation: Remove the embedded token, rotate the exposed credential, and require each user to provide their own Flomo credential through a protected secret or environment variable. <br>
-Risk: The skill can expose note contents, note IDs, tags, and walk history to the agent and local storage. <br>
-Mitigation: Use the skill only when users accept that visibility, and review local history storage before sharing logs or workspaces. <br>
+## Use Case:
 
+External users use this skill to explore their Flomo memo collection by starting from a random note, reviewing recommended related notes, selecting follow-up notes, and ending with a recorded walk path.
 
-## Reference(s): <br>
-- [Flomo Random Walk release page](https://clawhub.ai/jayshna/flomo-random-walk) <br>
-- [Flomo MCP endpoint](https://flomoapp.com/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown conversation responses with inline shell commands and local JSON history records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May display full note contents and stores walk history locally when the agent follows the skill instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The published instructions expose a Flomo API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install this version until the exposed token has been removed and revoked; use a user-provided secret from a protected store instead.
+
+Risk: The skill stores note-walk history locally, which may reveal personal note metadata or exploration patterns.
+
+Mitigation: Clearly explain what history is saved, where it is stored, and provide a way to disable or delete that history.
+
+## Reference(s):
+
+- [Flomo MCP endpoint](https://flomoapp.com/mcp)
+- [ClawHub skill page](https://clawhub.ai/jayshna/skills/flomo-random-walk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Flomo MCP calls and may record walk history locally when run by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Skill Market Fit Ranker ranks skill ideas by frequency, entry barrier, virality, ROI, and risk to support prioritization and roadmap planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ranks skill ideas by frequency, entry barrier, virality, ROI, and risk to produce a structured prioritization brief.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-External skill authors, agents, and portfolio maintainers use this skill to turn a list of skill ideas, target users, and release goals into a reviewable prioritization brief with scoring dimensions, ranked results, risks, and a suggested roadmap. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The ranking is decision-support output and may reflect incomplete or biased input about market demand, ROI, or release risk. <br>
-Mitigation: Review the generated ranking, fill in missing information, and validate priority decisions against real user, publishing, and risk evidence before acting on the roadmap. <br>
-Risk: Inputs may include private roadmap notes, skill ideas, or target-user details. <br>
-Mitigation: Avoid feeding sensitive private material unless necessary, and review generated Markdown before sharing it. <br>
+## Use Case:
 
+Developers, skill authors, and release planners use this skill to compare candidate skill topics, identify high-potential and low-priority ideas, and turn incomplete input into a reviewable roadmap.
 
-## Reference(s): <br>
-- [Skill Market Fit Ranker on ClawHub](https://clawhub.ai/52YuanChangXing/skill-market-fit-ranker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Structured Markdown brief; optional local Python helper can also emit JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 for the optional local helper and otherwise produces reviewable, non-destructive prioritization guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Prioritization output may be mistaken for an objective quantitative ranking engine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the result as a review draft and validate scoring assumptions, market facts, and release priorities before acting on it.
+
+Risk: Input materials may contain sensitive skill plans, customer details, or publisher strategy.
+
+Mitigation: Redact sensitive content before use and keep generated briefs within the intended review workflow.
+
+Risk: The packaged helper includes broader audit logic even though the configured workflow is non-destructive.
+
+Mitigation: Run it on trusted local inputs, review generated commands before use, and keep the workflow in draft or dry-run mode for high-risk changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/skill-market-fit-ranker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Structured Markdown brief, with optional JSON output from the local script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local input materials and highlights missing information instead of filling gaps with unsupported assumptions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

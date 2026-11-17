@@ -1,40 +1,54 @@
-## Description: <br>
-Generates customized kindergarten birthday PowerPoint decks with child details, themed decorations, photo pages, blessing text, and closing slides using python-pptx. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates customized kindergarten birthday PowerPoint decks with a child's name, birth date, photos, themed colors, cute decorations, and animated-style titles using python-pptx.
 
-## Publisher: <br>
-[kukuxnd](https://clawhub.ai/user/kukuxnd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kukuxnd](https://clawhub.ai/user/kukuxnd)
 
-## Use Case: <br>
-Parents, teachers, and caregivers use this skill to create birthday-themed PPTX presentations for kindergarten children, including growth photos, themed colors, decorative slides, and family blessing text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Photo paths may point to untrusted or unavailable files, and the evidence guidance notes that URL photos should not be assumed to work unless network fetching is documented and constrained. <br>
-Mitigation: Use trusted local image files and verify photo paths before generation. <br>
-Risk: The generated PPTX may replace an existing file at the chosen output path. <br>
-Mitigation: Choose a deliberate output path and review whether a file already exists there before running the skill. <br>
+## Use Case:
 
+Parents, teachers, and caregivers use this skill to generate birthday presentation decks for kindergarten children from a name, birth date, local photos, an output filename, and a selected theme.
 
-## Reference(s): <br>
-- [Birthday PPT Creator on ClawHub](https://clawhub.ai/kukuxnd/birthday-ppt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [Python script invocation that writes a .pptx presentation file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python-pptx and Pillow; accepts child name, birth date, photo paths, output path, and a pink, blue, purple, or yellow theme.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated decks can contain child photos and birth-date details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only intended local photo files and review the presentation before sharing.
+
+Risk: The requested output filename could replace an important existing file.
+
+Mitigation: Choose an output path that does not overwrite important content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kukuxnd/skills/birthday-ppt)
+- [ClawHub publisher profile](https://clawhub.ai/user/kukuxnd)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [PowerPoint presentation (.pptx) with supporting command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads user-selected local photo paths, writes the requested presentation file, and supports pink, blue, purple, and yellow themes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

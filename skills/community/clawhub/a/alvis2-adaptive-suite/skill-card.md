@@ -1,44 +1,60 @@
-## Description: <br>
-A continuously adaptive skill suite that empowers Clawdbot to act as a versatile coder, business analyst, project manager, web developer, data analyst, and NAS metadata scraper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adaptive Suite helps Clawdbot provide adaptive coding, business analysis, project management, web and data development, free-resource discovery, and read-only NAS metadata scraping guidance.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-Developers, analysts, and project teams use this skill for coding support, business analysis, project planning, web and data development guidance, and read-only NAS metadata inventory workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use a third-party API hub and requires a sensitive API key. <br>
-Mitigation: Use a scoped, revocable API key and avoid sharing credentials beyond the minimum needed for the task. <br>
-Risk: NAS metadata scanning can expose filenames, metadata, and directory structure. <br>
-Mitigation: Require explicit folder selection before scanning and keep collected metadata local unless the user approves sharing it. <br>
-Risk: Generated desktop app code may behave differently than expected when run locally. <br>
-Mitigation: Review and scan any generated desktop app before execution. <br>
+## Use Case:
 
+Developers and technical teams use this skill for broad coding, web and data development, business analysis, project planning, low-cost resource discovery, and read-only NAS metadata scanner guidance.
 
-## Reference(s): <br>
-- [Adaptive Suite ClawHub Page](https://clawhub.ai/alvisdunlop/alvis2-adaptive-suite) <br>
-- [Moltbot Skills Documentation](https://docs.molt.bot/tools/skills) <br>
-- [SkillBoss API Hub Pilot Endpoint](https://api.SkillBoss.co/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with inline code or shell commands when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose generated files, local desktop app code, API-assisted recommendations, and read-only metadata inventory steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill may call the third-party SkillBoss API while assisting with broad tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only after defining when external API calls are allowed and avoid sending confidential repository, business, or private file-share data.
+
+Risk: NAS metadata scanning can expose file names, directory structure, and other sensitive metadata.
+
+Mitigation: Limit scans to explicitly approved paths, keep scanning read-only, and add redaction or review before sharing collected metadata.
+
+Risk: The skill has broad assistant behavior across coding, business analysis, project management, web development, and data analysis.
+
+Mitigation: Review generated recommendations, commands, and code before use, especially where outputs affect production systems or business decisions.
+
+## Reference(s):
+
+- [Adaptive Suite on ClawHub](https://clawhub.ai/alvisdunlop/skills/alvis2-adaptive-suite)
+- [ClawHub publisher profile: alvisdunlop](https://clawhub.ai/user/alvisdunlop)
+- [Moltbot skills documentation](https://docs.molt.bot/tools/skills)
+- [SkillBoss API Hub endpoint](https://api.SkillBoss.co/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with code blocks and command or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce guidance involving third-party API use, required local tools, and read-only NAS metadata scanning workflows.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,22 +1,22 @@
 ---
 name: oo-getnote
-description: "Get 笔记 (biji.com). Use this skill for ANY Get 笔记 request — reading, creating, updating, and deleting data. Whenever a task involves Get 笔记, use this skill instead of calling the API directly."
+description: "Get Biji (biji.com). Use this skill for ANY Get Biji request — reading, creating, updating, and deleting data. Whenever a task involves Get Biji, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
-  title: "Get 笔记"
+  title: "Get Biji"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.7"
   services: ["getnote"]
   icon: "https://static.oomol.com/logo/third-party/getnote.png"
 ---
 
-# Get 笔记
+# Get Biji
 
-Operate **Get 笔记** through your OOMOL-connected account. This skill calls the `getnote` connector with the [oo CLI](https://github.com/oomol-lab/oo-cli); OOMOL injects credentials server-side, so you never handle raw tokens.
+Operate **Get Biji** through your OOMOL-connected account. This skill calls the `getnote` connector with the [oo CLI](https://github.com/oomol-lab/oo-cli); OOMOL injects credentials server-side, so you never handle raw tokens.
 
 ## Running an action
 
-Assume the user has already installed the oo CLI, signed in, and connected Get 笔记. **Do not run `oo auth login` or open the connection URL proactively — just run the action.** Fall back to [First-time setup](#first-time-setup) only when a command actually fails with an auth or connection error.
+Assume the user has already installed the oo CLI, signed in, and connected Get Biji. **Do not run `oo auth login` or open the connection URL proactively — just run the action.** Fall back to [First-time setup](#first-time-setup) only when a command actually fails with an auth or connection error.
 
 **1. Inspect the contract** to get the authoritative input/output schema before building a payload:
 
@@ -45,7 +45,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_blogger_content` — Get one Getnote blogger content detail, including original text when returned.
 - `get_live_detail` — Get one Getnote live detail, including AI summary and transcript when returned.
 - `get_note` — Get one Getnote note detail, including fields that are not present in lists.
-- `get_save_task` — Check the progress of an asynchronous Getnote link or image save task. [write]
+- `get_save_task` — Check the progress of an asynchronous Getnote link or image save task.
 - `list_blogger_contents` — List content items for a subscribed blogger in a Getnote knowledge base.
 - `list_knowledge_base_bloggers` — List bloggers subscribed in one Getnote knowledge base.
 - `list_knowledge_base_lives` — List completed live sessions in one Getnote knowledge base.
@@ -64,7 +64,7 @@ Each action is listed below with a one-line description; actions that change sta
 ## Safety
 
 - Untagged actions are reads (get / list / search) — safe to run directly.
-- **Actions tagged `[write]` change Get 笔记 state — confirm the exact payload and effect with the user before running.**
+- **Actions tagged `[write]` change Get Biji state — confirm the exact payload and effect with the user before running.**
 - **Actions tagged `[destructive]` remove or overwrite data — always confirm the target and get explicit approval first.**
 
 ## First-time setup
@@ -87,14 +87,17 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
   oo auth login
   ```
 
-- **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Get 笔记 is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
+- **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Get Biji is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=getnote
+  https://console.oomol.com/connections/getnote
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
-- Get 笔记 homepage: https://www.biji.com/
+- Get Biji homepage: https://www.biji.com/
+- API documentation: https://doc.biji.com/docs/WOxgwObNNiyMHWk1dl0cJqSxnEd/

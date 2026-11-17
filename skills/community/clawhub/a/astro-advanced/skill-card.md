@@ -1,50 +1,65 @@
-## Description: <br>
-Provides production-grade guidance for building, configuring, deploying, optimizing, and troubleshooting Astro projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive skill for building, configuring, and troubleshooting Astro projects, including rendering modes, adapters, islands, content collections, SEO, deployment, performance, and common build or hydration issues.
 
-## Publisher: <br>
-[encryptshawn](https://clawhub.ai/user/encryptshawn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[encryptshawn](https://clawhub.ai/user/encryptshawn)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and implement Astro projects, choose rendering and adapter strategies, add framework islands and content collections, and troubleshoot build, hydration, routing, deployment, SEO, and performance issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated shell commands for dependency cleanup or deployment can change local project state if run without review. <br>
-Mitigation: Review commands before execution and apply them only in the intended Astro project. <br>
-Risk: Sample environment variable values and placeholder secrets could be mistaken for real credentials. <br>
-Mitigation: Replace all sample values with untracked or platform-managed secrets and avoid committing local environment files. <br>
-Risk: Broad activation around Astro-related terms may provide framework-specific guidance before the project context is clear. <br>
-Mitigation: Confirm the project uses Astro before applying setup, routing, adapter, or hydration recommendations. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan, implement, configure, deploy, optimize, and troubleshoot Astro applications across static, server-rendered, and hybrid architectures.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/encryptshawn/astro-advanced) <br>
-- [Setup & Project Structure](references/setup-and-structure.md) <br>
-- [Rendering Modes & SSR Caching](references/rendering-modes.md) <br>
-- [SEO Best Practices for Astro](references/seo.md) <br>
-- [Islands Architecture & Vue Integration](references/islands-and-vue.md) <br>
-- [Content Collections & Data Fetching](references/content-and-data.md) <br>
-- [Deployment & Adapters](references/deployment.md) <br>
-- [Performance Optimization](references/performance.md) <br>
-- [Troubleshooting Guide](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with code blocks and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no tool calls or executable scripts are bundled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may suggest npm, npx, community template, deletion, or deployment commands that affect a local project or hosted environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands before execution and run them only in the intended project and deployment environment.
+
+Risk: Example environment-variable and deployment snippets could be copied in ways that expose secrets.
+
+Mitigation: Replace sample secrets with placeholders, store real secrets in the hosting platform or a secret manager, and avoid logging secret values.
+
+Risk: Astro troubleshooting or configuration guidance may be incomplete for a specific project version, adapter, or hosting provider.
+
+Mitigation: Check recommendations against the project's package versions, adapter documentation, and host-specific deployment requirements before applying changes.
+
+## Reference(s):
+
+- [Astro - Advanced Developer ClawHub listing](https://clawhub.ai/encryptshawn/skills/astro-advanced)
+- [Setup & Project Structure](references/setup-and-structure.md)
+- [Rendering Modes & SSR Caching](references/rendering-modes.md)
+- [SEO Best Practices for Astro](references/seo.md)
+- [Islands Architecture & Vue Integration](references/islands-and-vue.md)
+- [Content Collections & Data Fetching](references/content-and-data.md)
+- [Deployment & Adapters](references/deployment.md)
+- [Performance Optimization](references/performance.md)
+- [Troubleshooting Guide](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code blocks, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Astro, TypeScript, JavaScript, Markdown, YAML, TOML, Dockerfile, and deployment configuration examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

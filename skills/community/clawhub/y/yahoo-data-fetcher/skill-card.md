@@ -1,40 +1,52 @@
-## Description: <br>
-Fetch real-time stock quotes from Yahoo Finance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch real-time stock quotes from Yahoo Finance.
 
-## Publisher: <br>
-[noypearl](https://clawhub.ai/user/noypearl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[noypearl](https://clawhub.ai/user/noypearl)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch current market quote data for one or more stock symbols and return normalized quote fields. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Ticker symbols queried through the skill are sent to Yahoo Finance. <br>
-Mitigation: Use only symbols that are acceptable to share with Yahoo Finance and follow local data handling requirements. <br>
-Risk: The skill requires Node.js and network access to the Yahoo Finance quote endpoint. <br>
-Mitigation: Confirm Node.js and outbound network access are available before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Yahoo Finance quote endpoint](https://query1.finance.yahoo.com/v7/finance/quote) <br>
-- [ClawHub skill page](https://clawhub.ai/noypearl/yahoo-data-fetcher) <br>
+## Use Case:
 
+External users and agents use this skill to fetch current quote data for one or more stock symbols from Yahoo Finance and return normalized JSON.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns quote objects with symbol, price, change, changePercent, currency, and marketState fields; missing symbols are returned with null quote values.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Ticker symbols requested through the skill are sent to Yahoo Finance.
+
+Mitigation: Use only ticker symbols appropriate for third-party processing and restrict outbound traffic to the Yahoo quote endpoint when required.
+
+Risk: Quote fields can be null when Yahoo Finance does not return data for a requested symbol.
+
+Mitigation: Check for null price, change, currency, and market state fields before using the returned JSON in downstream decisions.
+
+## Reference(s):
+
+- [Yahoo Finance quote endpoint](https://query1.finance.yahoo.com/v7/finance/quote)
+
+## Skill Output:
+
+**Output Type(s):** [JSON]
+
+**Output Format:** [Normalized JSON array of quote objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes null fields for symbols Yahoo Finance does not return.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata; package.json lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

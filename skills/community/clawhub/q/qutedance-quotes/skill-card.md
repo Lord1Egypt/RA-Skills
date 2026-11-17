@@ -1,41 +1,58 @@
-## Description: <br>
-Qutedance Quotes helps agents look up A-share, Hong Kong stock, and futures quotes, search symbols, and summarize A-share sector movers through a configured Qutedance quote service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time quote lookup for A-shares, Hong Kong stocks, and futures, plus A-share sector leaderboards and symbol search using a configured Qutedance quote service.
 
-## Publisher: <br>
-[yoocky](https://clawhub.ai/user/yoocky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yoocky](https://clawhub.ai/user/yoocky)
 
-## Use Case: <br>
-Agents and users monitoring A-shares, Hong Kong stocks, and futures use this skill to retrieve quote tables, fuzzy symbol search results, and A-share sector leader or laggard summaries during conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ticker searches and optional API keys are sent to the configured Qutedance quote service. <br>
-Mitigation: Install only when the service is trusted, keep the service URL on HTTPS unless using a local development endpoint, and store API keys in environment variables or a secret manager instead of shared config files. <br>
-Risk: Market quote data can be delayed, incomplete, or unsuitable for financial decision-making. <br>
-Mitigation: Present outputs as informational market data and preserve the artifact's warning that the data does not constitute investment advice. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve market quotes, search tradable symbols, and summarize A-share sector movement in chat as Markdown tables and lists.
 
-## Reference(s): <br>
-- [Qutedance Quotes ClawHub release](https://clawhub.ai/yoocky/qutedance-quotes) <br>
-- [Qutedance quote service endpoint](https://quotedance.api.gapgap.cc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown tables and lists with command-line usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the configured Qutedance service and may include informational market data; the artifact states that data is not investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill calls a configured Qutedance service for market data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that external service is acceptable for the intended environment and data-handling policy.
+
+Risk: The skill encourages storing an API key in config.json.
+
+Mitigation: Use QUTEDANCE_API_KEY or another secret mechanism instead, and rotate any key that may have been saved or shared in the skill directory.
+
+Risk: Market data returned by the skill may be time-sensitive or unsuitable as financial advice.
+
+Mitigation: Treat outputs as informational quotes and verify important trading or investment decisions against authoritative financial sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yoocky/skills/qutedance-quotes)
+- [Publisher profile](https://clawhub.ai/user/yoocky)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Markdown tables and lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns market data retrieved from the configured Qutedance service; output is informational and not investment advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

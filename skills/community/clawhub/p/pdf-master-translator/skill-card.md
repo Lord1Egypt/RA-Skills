@@ -1,41 +1,58 @@
-## Description: <br>
-A highly robust, multi-agent pipeline for translating and reconstructing complex, image-heavy, or scanned PDF documents, especially engineering, scientific, or military specifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A multi-agent pipeline for translating and reconstructing complex, image-heavy, scanned, or formula-heavy PDF documents while preserving layout and source figures.
 
-## Publisher: <br>
-[lingqing](https://clawhub.ai/user/lingqing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lingqing](https://clawhub.ai/user/lingqing)
 
-## Use Case: <br>
-Developers, technical translators, and documentation teams use this skill to translate complex PDFs with scanned pages, dense tables, diagrams, and mathematical notation while preserving visual structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected PDF pages, diagrams, text context, and formulas may be sent to Gemini and math.vercel.app. <br>
-Mitigation: Use only with documents approved for those external services, and avoid classified, export-controlled, confidential, or regulated content unless the services are authorized for that data. <br>
-Risk: Very large documents can take a long time because the workflow performs multi-agent checks and rate-limit backoff. <br>
-Mitigation: Run explicit page ranges and process large documents in smaller batches or supervised background jobs. <br>
+## Use Case:
 
+External users and developers use this skill to translate complex technical PDFs into reconstructed output PDFs when page layout, diagrams, tables, and mathematical notation need to be retained.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lingqing/pdf-master-translator) <br>
-- [math.vercel.app SVG math renderer](https://math.vercel.app/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python script execution details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The referenced script writes a translated PDF for the requested page range and may include SVG-rendered formulas, translated tables, and extracted original diagrams.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: The skill sends PDF page images, text, and formulas to external Google GenAI and math.vercel.app services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with documents approved for those external services, and restrict outbound network access to approved endpoints.
+
+Risk: The skill renders untrusted model output through the PDF rendering path with broad local and network access.
+
+Mitigation: Run in a low-privilege sandbox and patch the renderer to sanitize model output and restrict WeasyPrint resource fetching before production use.
+
+Risk: The server security verdict is suspicious and requires review before deployment.
+
+Mitigation: Complete a manual security and data-flow review before installing or using the skill in a production environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lingqing/skills/pdf-master-translator)
+- [math.vercel.app formula rendering service](https://math.vercel.app/)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance and shell commands; generated PDF output file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a source PDF path, explicit start and end pages, GEMINI_API_KEY, and outbound access to Google GenAI and math.vercel.app.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

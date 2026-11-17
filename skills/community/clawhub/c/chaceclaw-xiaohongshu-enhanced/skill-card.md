@@ -1,47 +1,59 @@
-## Description: <br>
-小红书（RED/XHS）自动化助手，帮助 agents use xiaohongshu-mcp for login, publishing, search, note browsing, engagement, profile analysis, and content planning workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An XHS/RED automation skill pack that guides an agent through MCP setup, login, posting, search, browsing, interaction, profile analysis, and content planning.
 
-## Publisher: <br>
-[ling-qian](https://clawhub.ai/user/ling-qian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ling-qian](https://clawhub.ai/user/ling-qian)
 
-## Use Case: <br>
-External creators, operators, and developers use this skill to operate Xiaohongshu workflows through a configured MCP service, including content publishing, search, engagement, account checks, and content strategy support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Xiaohongshu session cookies and tokens for an active account. <br>
-Mitigation: Install only with a trusted xiaohongshu-mcp package, keep the MCP endpoint local, protect cookie and token files like passwords, and prefer a test account. <br>
-Risk: The skill can publish posts and perform account actions such as comments, likes, collections, account switching, batch operations, and data export. <br>
-Mitigation: Require explicit user confirmation before each public or account-changing action, and preview publish/comment content before execution. <br>
-Risk: Automation, scraping, and broad triggers can trigger platform rate limits, account restrictions, or unintended collection. <br>
-Mitigation: Follow the bundled rate-limit guide, avoid batch actions unless necessary, verify login and account state before operations, and stop after rate-limit or security errors. <br>
-Risk: Generated public content may violate platform, legal, brand, medical, financial, or privacy rules. <br>
-Mitigation: Use the bundled compliance checklist before publishing and review sensitive claims, external links, contact details, personal data, and media rights. <br>
+## Use Case:
 
+External creators, social media operators, and developers use this skill to coordinate Xiaohongshu account workflows through xiaohongshu-mcp, including setup, login, content publishing, search, engagement, profile review, and content planning. The skill is intended to keep public write actions behind confirmation and platform-aware rate limits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ling-qian/chaceclaw-xiaohongshu-enhanced) <br>
-- [Publisher profile](https://clawhub.ai/user/ling-qian) <br>
-- [Xiaohongshu MCP rate-limit guide](xhs-rate-limits.md) <br>
-- [Xiaohongshu content compliance checklist](xhs-compliance.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, configuration snippets, checklists, and MCP tool-call instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include public-post drafts, comments, search and analysis plans, account setup steps, and operational checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: The skill asks users to configure full account session cookies for Xiaohongshu automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only accounts prepared for automation, keep cookie files out of chat and logs, store them with restricted local permissions, and refresh or replace them when login checks fail.
+
+Risk: The setup flow references unpinned third-party package or image installation paths.
+
+Mitigation: Prefer pinned and verified xiaohongshu-mcp package or image versions before installation, and review the resolved dependency before connecting an account.
+
+Risk: Posting, commenting, liking, and collecting are public account actions that can affect reputation or trigger platform restrictions.
+
+Mitigation: Require explicit user confirmation before write actions, apply the provided rate-limit guidance, and stop or reduce activity when account or platform warnings appear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ling-qian/skills/chaceclaw-xiaohongshu-enhanced)
+- [xhs-compliance.md](xhs-compliance.md)
+- [xhs-rate-limits.md](xhs-rate-limits.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks, shell commands, MCP call patterns, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured xiaohongshu-mcp service and valid account session before platform actions can run.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

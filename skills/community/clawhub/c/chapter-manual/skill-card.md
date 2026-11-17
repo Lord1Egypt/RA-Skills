@@ -1,37 +1,53 @@
-## Description: <br>
-Chapter Manual helps an agent turn scattered Markdown materials into a structured, maintainable multi-file handbook with a table of contents, chapter files, updates, and handbook-based question answering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages chapter handbooks by organizing large sets of source files into a structured multi-file manual, supporting directory and content edits, handbook-based Q&A, and incremental updates from new material.
 
-## Publisher: <br>
-[OrionZou](https://clawhub.ai/user/OrionZou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[orionzou](https://clawhub.ai/user/orionzou)
 
-## Use Case: <br>
-Writers, maintainers, and knowledge-base users use this skill to organize selected Markdown materials into a three-level handbook, maintain its structure, answer questions from handbook content, and incorporate new source material over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/OrionZou/chapter-manual) <br>
+External users and developers use this skill to turn scattered Markdown files and links into a structured, maintainable handbook with a table of contents, chapter files, source notes, and internal links. It also supports maintaining an existing handbook through edits, reorganization, Q&A, and incremental updates.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown handbook files and concise text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-selected Markdown materials and writes or updates a structured handbook; use a narrow source directory, avoid private or secret material unless intended, and review proposed structure changes before broad edits.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill may read every Markdown file in a selected directory and incorporate source material into generated handbook files.
+
+Mitigation: Run it only on directories and URLs the user intends the assistant to read, and review generated handbook content before sharing.
+
+Risk: Source material can be summarized, reorganized, or merged into new handbook sections, which may introduce omissions or misplacements.
+
+Mitigation: Review the proposed table of contents and updated sections, and preserve or correct source notes for important claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/orionzou/skills/chapter-manual)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown handbook files with table of contents, internal links, and source notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create or update multi-file handbook directories, including README.md, TOC.md, chapter index files, section files, and assets references.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

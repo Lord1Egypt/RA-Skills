@@ -1,40 +1,53 @@
-## Description: <br>
-Task Persistence provides task continuity, session snapshots, and gateway restart recovery for agents managing long-running work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task continuity, session snapshots, and gateway restart recovery for long-running tasks, interrupted sessions, and user status or recovery requests.
 
-## Publisher: <br>
-[yangdaowan](https://clawhub.ai/user/yangdaowan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yangdaowan](https://clawhub.ai/user/yangdaowan)
 
-## Use Case: <br>
-Developers and agent operators use this skill to register long-running tasks, inspect active work after gateway restarts, and recover or complete persisted tasks in an OpenClaw workspace. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent local JSON records can include task descriptions, checkpoint data, and session snapshot content supplied by the user or agent. <br>
-Mitigation: Use only the intended workspace path, avoid snapshotting sensitive conversation data unless local storage is acceptable, and clean old snapshots when they are no longer needed. <br>
-Risk: Recovery commands may resume or report stale task state after a restart. <br>
-Mitigation: Review recovered task lists and suggestions before continuing work, then explicitly complete, pause, cancel, or re-register tasks as appropriate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page for Task Persistence](https://clawhub.ai/yangdaowan/task-persistence) <br>
-- [Publisher profile: yangdaowan](https://clawhub.ai/user/yangdaowan) <br>
+## Use Case:
 
+Developers and agent operators use this skill to register long-running tasks, inspect active work, recover interrupted tasks after gateway restarts, and restore session context from persisted snapshots.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local workspace files for task queues, completed and failed task records, session snapshots, and gateway state.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores task metadata, session snapshots, and conversation-related state as plaintext files in the workspace.
+
+Mitigation: Use it only in workspaces where plaintext persistence is acceptable, avoid recording secrets in prompts or task metadata, and restrict workspace file permissions.
+
+Risk: Unsafe task or session identifiers may allow JSON files outside intended folders to be read or overwritten.
+
+Mitigation: Do not pass user-controlled or untrusted task IDs or session IDs until strict identifier validation and path containment checks are added.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yangdaowan/skills/task-persistence)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/yangdaowan)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates plaintext task, gateway state, and session snapshot records in the configured workspace when its commands are run.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

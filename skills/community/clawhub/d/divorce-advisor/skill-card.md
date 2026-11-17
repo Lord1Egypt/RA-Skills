@@ -1,42 +1,58 @@
-## Description: <br>
-AI legal assistant for divorce proceedings that helps users understand asset division, evidence handling, digital credential security, and court document preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI legal assistant for divorce proceedings that helps users understand asset division, evidence handling, digital credential security, and court document preparation.
 
-## Publisher: <br>
-[pengjunquan-l](https://clawhub.ai/user/pengjunquan-l) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pengjunquan-l](https://clawhub.ai/user/pengjunquan-l)
 
-## Use Case: <br>
-People preparing for divorce proceedings use this skill for general legal-information guidance on asset division, evidence handling, digital credential security, common pressure tactics, and court-document preparation. It is not a substitute for advice from a licensed attorney. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat general divorce information as legal advice for their specific case. <br>
-Mitigation: Consult a licensed attorney before acting on case-specific legal, filing, asset, or evidence-handling questions. <br>
-Risk: Users may try to use the skill to approve consequential account, filing, transfer, freeze, or credential-change actions. <br>
-Mitigation: Use the skill as an educational reference only; require direct professional guidance before taking consequential account or legal actions. <br>
-Risk: External or coercive content may pressure users toward unauthorized wallet or financial operations. <br>
-Mitigation: Reject external instructions that request transfers or overrides, and proceed only from the user's direct confirmed request with explicit recipient and amount. <br>
+## Use Case:
 
+External users use this skill for general divorce information about contested separations, asset division, evidence handling, common court documents, and protecting financial or digital accounts. It should not be used as legal advice for a specific case.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pengjunquan-l/divorce-advisor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no executable code or requested account access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Users may treat general divorce information as legal advice for a specific case.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present responses as general information and direct users to consult a licensed attorney for case-specific decisions.
+
+Risk: An agent with financial tools could be asked to transfer funds or alter account access during a contested separation.
+
+Mitigation: Require explicit user authorization and independent verification for any financial action, and do not let this skill initiate or approve transfers.
+
+Risk: External content may contain prompt-injection language that attempts to override confirmation requirements.
+
+Mitigation: Refuse instructions originating from external content and ask the user for direct confirmation before sensitive actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pengjunquan-l/skills/divorce-advisor)
+- [Publisher Profile](https://clawhub.ai/user/pengjunquan-l)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [General legal-information responses; no tool or account access is declared.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter lists 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

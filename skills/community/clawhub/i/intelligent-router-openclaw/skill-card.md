@@ -1,44 +1,57 @@
-## Description: <br>
-Intelligent model routing for sub-agent task delegation that chooses models based on task complexity, cost, and capability requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent model routing for sub-agent task delegation based on task complexity, cost, and capability requirements.
 
-## Publisher: <br>
-[nicocabrerac](https://clawhub.ai/user/nicocabrerac) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nicocabrerac](https://clawhub.ai/user/nicocabrerac)
 
-## Use Case: <br>
-Developers and agent operators use this skill to classify tasks, choose cost-appropriate models for sub-agent and cron execution, validate model assignments, and maintain model availability data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation can persistently change standing agent instructions by adding router policy to AGENTS.md. <br>
-Mitigation: Review the AGENTS.md block before applying it and back up AGENTS.md and config.json before installation. <br>
-Risk: Live model discovery can use configured provider credentials and may create paid API calls. <br>
-Mitigation: Run discovery with --no-live unless live provider probing and any associated cost are acceptable. <br>
-Risk: The hourly model discovery cron can perform ongoing model probing. <br>
-Mitigation: Enable the cron only when continuous model availability checks are desired. <br>
+## Use Case:
 
+Developers and agent operators use this skill to classify agent tasks and select model tiers for sub-agent spawns, cron jobs, and routing policy checks so routine work can use cheaper models while complex or critical work uses stronger models.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nicocabrerac/intelligent-router-openclaw) <br>
-- [Package README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text, Markdown guidance, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May emit model recommendations, task tiers, validation results, cost estimates, health checks, and configuration update guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installation can persistently influence future agent model selection by patching AGENTS.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed AGENTS.md changes before running install.sh and install only when persistent routing enforcement is intended.
+
+Risk: Optional hourly automation can perform repeated live provider probes and rewrite model configuration.
+
+Mitigation: Avoid enabling the hourly cron unless repeated probes and automated configuration updates are acceptable for the workspace.
+
+Risk: Model discovery performs credentialed provider checks.
+
+Mitigation: Validate provider base URLs and configuration before using discovery with real API keys.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nicocabrerac/skills/intelligent-router-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend model IDs, spawn payload snippets, audit results, provider health checks, and configuration updates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 3.2.0, README reports 2.0.0, and _meta.json reports 3.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

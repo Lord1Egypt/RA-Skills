@@ -1,50 +1,65 @@
-## Description: <br>
-Find accommodation contact details and run AI-assisted booking calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find accommodation contact details and run AI-assisted booking calls.
 
-## Publisher: <br>
-[arein](https://clawhub.ai/user/arein) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[arein](https://clawhub.ai/user/arein)
 
-## Use Case: <br>
-Travelers, assistants, and developers use this skill to find public contact details for accommodation listings and run AI-assisted calls for booking, reservation, cancellation, or negotiation tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real AI phone calls that may disclose personal data or affect bookings, cancellations, or reservations. <br>
-Mitigation: Use test numbers first and require explicit confirmation before booking, cancelling, or sharing personal data. <br>
-Risk: The skill may expose a local webhook endpoint through ngrok and send audio, transcripts, and booking details to third-party AI and telephony providers. <br>
-Mitigation: Restrict and rotate API keys, protect the config directory and logs, review provider data handling, and avoid sensitive healthcare or financial calls. <br>
-Risk: Provider usage can incur telephony, speech, voice, tunnel, or model charges. <br>
-Mitigation: Set billing limits, monitor quotas and balances, and verify call preflight results before dialing. <br>
+## Use Case:
 
+Travelers, assistants, and agents use this skill to find accommodation contact details from listing URLs and place goal-directed booking calls through configured telephony and AI providers.
 
-## Reference(s): <br>
-- [Travel Concierge README](README.md) <br>
-- [Travel Concierge Skill](SKILL.md) <br>
-- [Voice Call Setup Guide](CALL-SETUP.md) <br>
-- [Phone Call Skill](skills/phone-call/SKILL.md) <br>
-- [Twilio Console](https://console.twilio.com) <br>
-- [Deepgram Console](https://console.deepgram.com/signup) <br>
-- [ElevenLabs Sign Up](https://elevenlabs.io/sign-up) <br>
-- [Anthropic Console](https://console.anthropic.com) <br>
-- [ngrok](https://ngrok.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide calls that use local configuration, provider API keys, a local webhook tunnel, and provider billing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata; artifact frontmatter lists 1.3.1) <br>
+Risk: The skill can place real phone calls through third-party telephony and AI providers, which may incur costs or contact unintended recipients.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the destination, call goal, user authorization, consent, disclosure obligations, and account balance before dialing.
+
+Risk: The skill requires telephony, AI, and tunnel-provider credentials for full call functionality.
+
+Mitigation: Use tightly scoped credentials, protect the local configuration file, avoid sharing logs, and rotate keys if exposure is suspected.
+
+Risk: Call audio, transcripts, contact details, and booking context may be sent to third-party services during operation.
+
+Mitigation: Limit use to intended accommodation workflows, minimize sensitive personal information, and confirm privacy and legal requirements before use.
+
+Risk: Auto-managed local infrastructure and tunneling can expose a local call server if configured carelessly.
+
+Mitigation: Prefer pinned, auditable package versions, restrict tunnel use to the active call workflow, and do not expose the local server directly.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arein/skills/concierge)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [Voice Call Setup Guide](artifact/CALL-SETUP.md)
+- [Phone Call Skill](artifact/skills/phone-call/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate real phone calls and write local run logs when configured by the user.]
+
+## Skill Version(s):
+
+1.5.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

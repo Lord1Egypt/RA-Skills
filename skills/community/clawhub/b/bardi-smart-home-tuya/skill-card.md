@@ -1,46 +1,65 @@
-## Description: <br>
-Controls Tuya and Bardi smart-home devices through the Tuya Cloud API, including lights, plugs, sensors, meters, color and brightness settings, raw DP commands, and local network discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls Bardi and other Tuya-compatible smart home devices through the Tuya Cloud API, including lights, plugs, sensors, meters, raw DP commands, batch commands, and local network device discovery.
 
-## Publisher: <br>
-[elony-7](https://clawhub.ai/user/elony-7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elony-7](https://clawhub.ai/user/elony-7)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent discover, inspect, and control Tuya-compatible Bardi smart-home devices from a configured Tuya cloud project. It is suited for device status checks, light color and brightness changes, power control, raw DP commands, batch commands, and local network discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad control over real Tuya/Bardi devices without built-in approval guardrails. <br>
-Mitigation: Require explicit user approval before power, raw DP, batch, camera, curtain, or other safety-relevant commands. <br>
-Risk: Tuya cloud credentials can expose or control linked smart-home devices if mishandled. <br>
-Mitigation: Use a dedicated least-privilege Tuya cloud project, store credentials in environment or secret management, and keep credentials out of logs. <br>
-Risk: Local network discovery sends UDP broadcast traffic and may expose device identifiers on the local network. <br>
-Mitigation: Run local scans only on trusted networks, keep scan timeouts limited, and avoid scanning networks where this traffic is not expected. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent discover Tuya-linked devices, check device status, and control Bardi or Tuya-compatible smart home devices. It is suited for smart-home automation tasks such as turning devices on or off, adjusting lighting, reading device details, scanning the local network, and sending explicit device DP commands.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/elony-7/bardi-smart-home-tuya) <br>
-- [Setup guide](SETUP.md) <br>
-- [API Reference - Bardi-Tuya Smart Home](references/api-reference.md) <br>
-- [Tuya IoT Platform](https://iot.tuya.com) <br>
-- [Tuya Smart China platform](https://tuyasmart.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TUYA_ACCESS_ID and TUYA_ACCESS_SECRET; TUYA_API_REGION is optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Broad Tuya cloud access can enumerate and control real smart-home devices linked to the configured account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege Tuya cloud project, limit linked devices to the intended scope, and review state-changing commands before execution.
+
+Risk: Raw and batch DP commands can change device state in ways that are not limited to the named light and switch workflows.
+
+Mitigation: Prefer documented commands, inspect the device model before sending raw DP codes, and require explicit confirmation for raw or batch commands.
+
+Risk: Persistent plaintext environment-variable setup can expose Tuya Access ID and Access Secret.
+
+Mitigation: Store credentials in a vault or restricted per-process environment file and avoid placing secrets in global shell startup files.
+
+Risk: Local discovery sends UDP broadcast packets that may be visible on the network or blocked by firewall policy.
+
+Mitigation: Run scans only on trusted networks where discovery traffic is expected, and keep scan timeouts narrow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/elony-7/skills/bardi-smart-home-tuya)
+- [Setup](SETUP.md)
+- [API Reference - Bardi-Tuya Smart Home](references/api-reference.md)
+- [Tuya IoT Platform](https://iot.tuya.com)
+- [Tuya Smart China](https://tuyasmart.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON terminal output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TUYA_ACCESS_ID and TUYA_ACCESS_SECRET for cloud control; TUYA_API_REGION is optional and defaults to sg.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

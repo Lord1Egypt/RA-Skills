@@ -1,40 +1,57 @@
-## Description: <br>
-Extracts text from local image files with Chinese and English OCR using Tesseract. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts text from image files with Tesseract OCR, supporting Chinese and English recognition for common formats such as JPG, PNG, and JPEG.
 
-## Publisher: <br>
-[igetmm](https://clawhub.ai/user/igetmm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[igetmm](https://clawhub.ai/user/igetmm)
 
-## Use Case: <br>
-Developers and automation agents use this skill to extract text from local image files, including mixed Chinese and English content, for downstream reading or processing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Image files may contain sensitive text that becomes visible in OCR output. <br>
-Mitigation: Process only images intended for OCR and store generated text or JSON output in trusted locations. <br>
-Risk: The skill depends on Tesseract, pytesseract, and Pillow being installed safely and correctly. <br>
-Mitigation: Install dependencies from trusted system and Python package repositories before use. <br>
+## Use Case:
 
+Developers and agents use this skill to run local OCR on user-selected images and return extracted text or structured OCR details for downstream reading, indexing, or review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/igetmm/image-ocr-reader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or JSON; optional UTF-8 text file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Detailed mode can include OCR confidence and bounding-box data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, artifact metadata, and __init__.py) <br>
+Risk: Installing OCR dependencies from untrusted sources can introduce supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install Tesseract, pytesseract, and Pillow from trusted sources in a virtual environment, and pin dependency versions where practical.
+
+Risk: The optional output path writes extracted text to disk and could overwrite or expose data if chosen carelessly.
+
+Mitigation: Use an explicit, intended output path and review where OCR results are saved.
+
+Risk: OCR results can be incomplete or inaccurate, especially for low-quality images or unsupported language packs.
+
+Mitigation: Review extracted text before using it for decisions, records, or downstream automation.
+
+## Reference(s):
+
+- [Image OCR Reader ClawHub listing](https://clawhub.ai/igetmm/skills/image-ocr-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON OCR results, with Markdown guidance and inline shell or Python examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can optionally write extracted text to a user-selected output path; detailed mode returns OCR confidence and bounding box data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,59 @@
-## Description: <br>
-Junyi Client Follow-up sends monthly child growth review questionnaires for ages 0-8, collects parent feedback, formats it for a planner, and avoids evaluation, strategy changes, report edits, and medical diagnosis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A monthly child development planning follow-up workflow that sends parent questionnaires, collects replies, formats the feedback, and forwards it to the planner without evaluating progress or changing planning reports.
 
-## Publisher: <br>
-[XuanranC](https://clawhub.ai/user/XuanranC) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuanranc](https://clawhub.ai/user/xuanranc)
 
-## Use Case: <br>
-External client-service or family-support teams use this skill to run monthly follow-up cycles: sending parent questionnaires, collecting replies, and forwarding formatted feedback to an assigned planner without making assessments or changing plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Parent replies may contain sensitive child, family, school, or medical information that is forwarded to a planner. <br>
-Mitigation: Use only where parents have explicitly agreed to planner forwarding, including urgent red-line escalations, and disclose that forwarding in the questionnaire flow. <br>
-Risk: Misconfigured planner routing could send sensitive follow-up content to the wrong recipient. <br>
-Mitigation: Configure PLANNER_CONTACT carefully and require confirmation before sending or processing replies. <br>
-Risk: Full unredacted messages may share more information than needed for monthly follow-up. <br>
-Mitigation: Prefer minimum-necessary sharing and edit templates or operating procedures to reduce unnecessary personal details. <br>
-Risk: Group-chat use could expose child information to unintended participants. <br>
-Mitigation: Avoid group-chat use and keep child-identifying information out of shared channels. <br>
+## Use Case:
 
+External Chinese-speaking parents and child development planners use this skill to run monthly check-ins for children ages 0-8, collect parent observations, and route formatted feedback to the planner. It is designed for collection and handoff, not assessment, diagnosis, strategy changes, or report editing.
 
-## Reference(s): <br>
-- [Client Questionnaire](references/client-questionnaire.md) <br>
-- [Client Rules](references/client-rules.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/XuanranC/junyi-client-followup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and plain-text message templates with structured planner handoff summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces parent questionnaires, reminder text, planner-forwarded summaries, and state-transition guidance; it does not produce assessments or plan edits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow handles sensitive child and family feedback and may forward parent replies to a planner.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a controlled parent and planner process where parents know their replies may be forwarded, and route feedback only to the intended planner contact.
+
+Risk: The planning document metadata boundary may be too broad or unclear.
+
+Mitigation: Keep plan metadata in a fixed boundary or separate state store, and require plan_id confirmation before sending questionnaires or processing replies.
+
+Risk: Parent replies can include high-risk safety, medical, emotional, or family-change information.
+
+Mitigation: Avoid public or group display, minimize or redact sensitive feedback when possible, and escalate red-line replies to the planner without adding analysis or advice.
+
+## Reference(s):
+
+- [Client Questionnaire](references/client-questionnaire.md)
+- [Client Rules](references/client-rules.md)
+- [ClawHub Skill Page](https://clawhub.ai/xuanranc/skills/junyi-client-followup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and plain-language messages with structured feedback blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes questionnaire prompts, parent confirmations, planner notifications, and state-update guidance; excludes independent assessment or diagnosis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

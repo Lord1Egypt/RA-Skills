@@ -1,40 +1,53 @@
-## Description: <br>
-Search, discover, and install skills from the open agent skills ecosystem to extend an agent for specific tasks or domains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, discover, and install skills from the open agent skills ecosystem to extend agent capabilities for specific tasks or domains.
 
-## Publisher: <br>
-[isainazar](https://clawhub.ai/user/isainazar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[isainazar](https://clawhub.ai/user/isainazar)
 
-## Use Case: <br>
-Developers and agent operators use this skill when a user needs a specialized capability and an existing skill may already cover the task. It guides the agent to search the skill ecosystem, present candidate skills, and offer installation commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can steer ordinary help requests toward third-party skill installation. <br>
-Mitigation: Use it only when the user explicitly wants skill discovery or when a skill search is clearly relevant; present options for review before installation. <br>
-Risk: The artifact recommends global, auto-confirmed installation commands. <br>
-Mitigation: Review the skill source and publisher before installing, avoid auto-confirmed global installs, and prefer scoped installs with a clear rollback path. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/isainazar/openclaw-find-skills) <br>
-- [Skills catalog](https://skills.sh/) <br>
+## Use Case:
 
+External developers and agent users use this skill to find relevant skills, present installation options, and install or update skills through the Skills CLI when extending agent capabilities.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose third-party skill installation commands for user review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unpinned or auto-confirmed global skill installs can modify the user's agent environment and future sessions.
+
+Mitigation: Prefer a pinned, trusted Skills CLI version, inspect the source skill before adding it, avoid global auto-confirm installs by default, and require explicit confirmation before install or update commands.
+
+Risk: Broad trigger guidance can cause the skill to recommend discovery or installation during loosely related tasks.
+
+Mitigation: Confirm that the user wants skill discovery before running search commands, and separate discovery from installation decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/isainazar/skills/openclaw-find-skills)
+- [Skills catalog](https://skills.sh/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands should be reviewed before execution, especially install and update commands that affect future agent sessions.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

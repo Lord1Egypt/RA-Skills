@@ -1,44 +1,58 @@
-## Description: <br>
-Hivulse蜂巢 AI helps developers generate standardized technical documents from a selected software project directory through the Hivulse cloud service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+hivulse蜂巢 AI generates standardized technical documents from a specified project directory, including requirements, design, testing, and security self-assessment reports.
 
-## Publisher: <br>
-[mojo-bo-coder](https://clawhub.ai/user/mojo-bo-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mojo-bo-coder](https://clawhub.ai/user/mojo-bo-coder)
 
-## Use Case: <br>
-Developers and engineers use this skill to upload a project directory and request generated requirements, design, testing, or security assessment documents. It supports OpenClaw and command-line workflows that require a Hivulse API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload broad project contents to Hivulse cloud. <br>
-Mitigation: Use a cleaned copy of the project and remove environment files, credentials, customer data, private keys, and proprietary files before running. <br>
-Risk: The skill stores or reads API keys from OpenClaw settings and local configuration. <br>
-Mitigation: Treat OpenClaw API-key settings and ~/.hivulseai/config.json as sensitive, and prefer an isolated environment with pinned dependencies for sensitive work. <br>
-Risk: The selected directory and document type determine what data is uploaded and what document is generated. <br>
-Mitigation: Verify the exact directory and requested document type before upload. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to upload a selected code project to the hivulseAI cloud service and generate standardized project documentation such as requirements, design, test, and security self-assessment reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mojo-bo-coder/hivulse-openclaw-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/mojo-bo-coder) <br>
-- [Hivulse website](https://www.hivulse.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or text technical documents with command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Hivulse API key plus a selected project directory, document type, and optional task name.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: ClawHub release evidence) <br>
+Risk: The skill can upload many readable files from the selected project directory to the hivulseAI cloud service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on a reviewed, sanitized copy of the project and remove secrets, private keys, customer data, regulated data, and unrelated files before execution.
+
+Risk: The API key may be stored in local plaintext configuration.
+
+Mitigation: Prefer environment or platform-managed secret storage when available, restrict local file permissions, and rotate the key if exposure is suspected.
+
+Risk: The generated documentation may be incomplete or inaccurate for the project under review.
+
+Mitigation: Have project maintainers review generated documents before sharing, relying on them for compliance, or using them as authoritative design or test records.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/mojo-bo-coder/skills/hivulse-openclaw-skill)
+- [hivulseAI cloud service](https://cloud.hivulse.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-oriented technical documentation with command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an HIVULSE_API_KEY and a readable project directory; generated content depends on the selected document type.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata; artifact package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

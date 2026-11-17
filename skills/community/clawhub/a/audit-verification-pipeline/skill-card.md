@@ -1,41 +1,57 @@
-## Description: <br>
-Guides Solidity auditors through a three-level finding verification pipeline using Foundry self-tests, GitHub CI, and auditor review before submission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Solidity auditors through a three-level verification process using Foundry tests, GitHub CI, and auditor review before submitting findings.
 
-## Publisher: <br>
-[yuzengbaao](https://clawhub.ai/user/yuzengbaao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuzengbaao](https://clawhub.ai/user/yuzengbaao)
 
-## Use Case: <br>
-Security auditors and developers assessing Solidity projects use this skill to verify vulnerability findings with a staged process: local Foundry PoC tests, GitHub CI, and independent review before submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated PoC tests or GitHub Actions workflow changes may be incorrect for a target Solidity repository. <br>
-Mitigation: Review generated tests and workflow files before committing them, then run Foundry tests locally and in CI. <br>
-Risk: Running tests against untrusted audit targets can execute untrusted code in the development environment. <br>
-Mitigation: Run tests for untrusted code in an isolated development environment. <br>
-Risk: A passing PoC can still be misleading if it does not prove the claimed attack effect. <br>
-Mitigation: Confirm the exploit impact directly, quantify severity, and require independent auditor review before submission. <br>
+## Use Case:
 
+Developers, security engineers, and Solidity auditors use this skill to verify audit findings with deterministic PoCs, CI checks, and human review before external submission.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Solidity, YAML, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes checklists, decision flows, PoC patterns, CI workflow examples, and severity assessment guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The example GitHub Actions workflow should be hardened before copying into a repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin GitHub Actions to full commit SHAs and set explicit least-privilege permissions before use.
+
+Risk: The workflow is intended for Chinese-language Solidity and Foundry audit processes.
+
+Mitigation: Install and use it only when reviewers are comfortable applying that workflow and toolchain.
+
+Risk: External finding submission can carry quality and platform-account consequences.
+
+Mitigation: Keep the external-submission step under human auditor review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuzengbaao/skills/audit-verification-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Solidity, YAML, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code is bundled; generated CI examples should be reviewed before use]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

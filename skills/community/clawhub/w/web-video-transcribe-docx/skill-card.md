@@ -1,44 +1,64 @@
-## Description: <br>
-Offline-first workflow for extracting Chinese web page video or audio, transcribing it locally with SenseVoice, and exporting TXT or DOCX deliverables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Offline-first workflow for turning Chinese web page video or audio into text and Word deliverables.
 
-## Publisher: <br>
-[c-narcissus](https://clawhub.ai/user/c-narcissus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c-narcissus](https://clawhub.ai/user/c-narcissus)
 
-## Use Case: <br>
-Developers and external users use this skill to turn authorized Chinese web page video, direct media URLs, or local media files into raw transcripts, refined text, and Word documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow downloads user-supplied or page-discovered media and model files, then writes transcripts and manifests to disk. <br>
-Mitigation: Use only public or authorized media, choose an appropriate local output directory, and review generated transcripts before sharing. <br>
-Risk: Manual header support could expose sensitive Cookie or Authorization values if a user supplies them. <br>
-Mitigation: Avoid authenticated or private pages and do not pass Cookie, Authorization, access-token, or account credential headers. <br>
-Risk: Browser-based extraction may fail for DRM, login-gated, geo-restricted, or unsupported playback flows. <br>
-Mitigation: Stop at the supported boundary, do not attempt bypasses, and continue only with a direct media URL the user is authorized to use. <br>
+## Use Case:
 
+Developers and content-processing agents use this skill to extract user-supplied or locally available Chinese web and media audio, run local ASR, preserve raw transcripts, and export TXT or DOCX deliverables.
 
-## Reference(s): <br>
-- [Workflow](references/workflow.md) <br>
-- [Cleanup Guidelines](references/cleanup-guidelines.md) <br>
-- [Publishing](references/publishing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated outputs may include TXT transcripts, DOCX documents, JSON media manifests, and downloaded media files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Keeps raw transcripts separate from refined reading copies when refinement is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata; artifact frontmatter metadata says 1.0.0) <br>
+Risk: The bootstrap workflow installs unpinned runtime packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated virtual environment and pin, review, or mirror dependencies before installation in sensitive environments.
+
+Risk: The ASR model can be downloaded and extracted from a remote release without strong integrity checks.
+
+Mitigation: Prefer a preverified local model directory, or verify the downloaded archive before allowing extraction and transcription.
+
+Risk: The media extraction workflow can preserve reusable media URLs and Referer or Origin context in media_info.json.
+
+Mitigation: Treat media_info.json as private, restrict sharing, and redact or delete it when it is no longer needed.
+
+Risk: The skill can download user-supplied or page-extracted media URLs.
+
+Mitigation: Use it only for URLs the user supplied or that the extractor captured from the target page, and do not use it to bypass DRM, login walls, geo-restrictions, cookies, or credential requirements.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/c-narcissus/skills/web-video-transcribe-docx)
+- [Workflow](references/workflow.md)
+- [Cleanup Guidelines](references/cleanup-guidelines.md)
+- [sherpa-onnx ASR model releases](https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands; generated local TXT, DOCX, JSON manifest, and downloaded media files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves raw transcript files separately from cleaned or chapterized reading copies.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter metadata reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

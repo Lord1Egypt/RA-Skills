@@ -1,50 +1,67 @@
-## Description: <br>
-Conducts enterprise-grade research with multi-source synthesis, citation tracking, source credibility scoring, and verified citation-backed report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Research.Bak guides agents through multi-source research, citation tracking, verification, and report packaging for comprehensive citation-backed research reports.
 
-## Publisher: <br>
-[emiltsoi](https://clawhub.ai/user/emiltsoi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emiltsoi](https://clawhub.ai/user/emiltsoi)
 
-## Use Case: <br>
-Developers, analysts, and other external users use this skill for complex research tasks such as comprehensive analysis, technology comparisons, state-of-the-art reviews, market analysis, and multi-perspective investigations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs autonomous web research and may verify citation URLs over the network. <br>
-Mitigation: Use it only for research topics that are appropriate for network retrieval, and avoid confidential topics unless the workflow is changed to restrict or review outbound access. <br>
-Risk: The skill writes research output and state in multiple local locations. <br>
-Mitigation: Choose or review output locations before use, and remove retained citation or continuation state when the research is sensitive. <br>
-Risk: The skill may spawn continuation agents for long reports. <br>
-Mitigation: Require user confirmation before continuation agents are launched when controlling cost, scope, or data exposure matters. <br>
-Risk: The skill auto-opens generated HTML/PDF output. <br>
-Mitigation: Disable automatic opening or inspect generated HTML before viewing when working with untrusted or sensitive research content. <br>
+## Use Case:
 
+Developers, analysts, and research users use this skill to conduct comprehensive research, compare technologies or markets, and package citation-backed Markdown, HTML, and PDF reports with validation.
 
-## Reference(s): <br>
-- [Deep Research Skill README](README.md) <br>
-- [Deep Research Methodology](reference/methodology.md) <br>
-- [Report Assembly](reference/report-assembly.md) <br>
-- [Quality Gates](reference/quality-gates.md) <br>
-- [HTML Generation](reference/html-generation.md) <br>
-- [Auto-Continuation Protocol](reference/continuation.md) <br>
-- [WeasyPrint Guidelines](reference/weasyprint_guidelines.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown research reports with citations, plus generated HTML/PDF files and JSON citation or continuation state when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are saved under ~/Documents/[Topic]_Research_[Date]/; citation and continuation state may also be retained under ~/.claude/research_output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill writes persistent local reports and state files and may auto-open generated HTML or PDF outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only research topics and output locations that are acceptable to store locally, and approve file writes or auto-open behavior before execution.
+
+Risk: Long reports can spawn continuation agents, expanding work beyond the initial response.
+
+Mitigation: Review the requested scope and continuation state before allowing additional agent runs.
+
+Risk: Optional third-party search tooling can require API keys and additional dependencies.
+
+Mitigation: Do not configure provider keys or install optional search tooling unless the dependencies are trusted and pinned.
+
+Risk: Citation and HTML handling can be unsafe with untrusted Markdown or unreviewed generated content.
+
+Mitigation: Avoid untrusted Markdown inputs and review generated citations, HTML, and PDF output before opening or sharing them.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/emiltsoi/skills/deep-research-bak)
+- [Deep Research Methodology](reference/methodology.md)
+- [Report Assembly](reference/report-assembly.md)
+- [Quality Gates and Standards](reference/quality-gates.md)
+- [HTML Generation](reference/html-generation.md)
+- [Auto-Continuation Protocol](reference/continuation.md)
+- [WeasyPrint PDF Generation Guidelines](reference/weasyprint_guidelines.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with optional HTML and PDF file exports, plus inline shell commands and validation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include persisted citation state, bibliography data, and generated report files under user-approved local paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

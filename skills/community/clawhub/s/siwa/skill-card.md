@@ -1,47 +1,59 @@
-## Description: <br>
-SIWA (Sign-In With Agent) authentication for ERC-8004 registered agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SIWA (Sign-In With Agent) authentication for ERC-8004 registered agents.
 
-## Publisher: <br>
-[buildersgarden](https://clawhub.ai/user/buildersgarden) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[buildersgarden](https://clawhub.ai/user/buildersgarden)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add ERC-8004 agent identity, SIWA sign-in, authenticated request signing, and optional x402 payment flows to agent services. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give agents wallet-signing, transaction, and x402 payment authority without consistently requiring clear approval or spend limits. <br>
-Mitigation: Use a dedicated low-value or testnet wallet, require explicit approval for each onchain transaction or x402 payment, and set amount, network, recipient, and resource limits. <br>
-Risk: Direct private-key based signing increases exposure if the agent or runtime is compromised. <br>
-Mitigation: Prefer the keyring proxy over raw private keys, and review the external SDK or container before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/buildersgarden/siwa) <br>
-- [Documentation](https://siwa.id/docs) <br>
-- [SIWA Protocol Spec](references/siwa-spec.md) <br>
-- [Security Model](references/security-model.md) <br>
-- [ERC-8004 Registration Guide](references/registration-guide.md) <br>
-- [Contract Addresses](references/contract-addresses.md) <br>
-- [SIWA vs SIWX](references/siwa-vs-siwx.md) <br>
-- [ERC-8004](https://eips.ethereum.org/EIPS/eip-8004) <br>
-- [ERC-8128](https://eips.ethereum.org/EIPS/eip-8128) <br>
+## Use Case:
 
+Developers and agent builders use this skill to add SIWA authentication, wallet signing, server-side verification, ERC-8128 request signing, x402 payment flows, and reverse CAPTCHA handling for ERC-8004 registered agents.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with TypeScript, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include wallet provider setup, server verification patterns, signing flows, registration metadata, and payment guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.4 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles wallet signing, payments, and secrets, and the security scan flagged examples with unsafe defaults or missing safeguards.
+
+Mitigation: Review and harden examples before production use; pin package and container versions, require strong secrets without fallback values, and store wallet/provider credentials in a managed secret store.
+
+Risk: State-changing authenticated requests and x402 payment flows can create replay or spending exposure if copied without additional controls.
+
+Mitigation: Require replay protection for state-changing requests, add explicit approval and spending limits for x402 payments, and verify calldata, contract addresses, chain IDs, and gas funding before submitting transactions.
+
+## Reference(s):
+
+- [SIWA Documentation](https://siwa.id/docs)
+- [ERC-8004](https://eips.ethereum.org/EIPS/eip-8004)
+- [ERC-8128](https://eips.ethereum.org/EIPS/eip-8128)
+- [SIWA Specification](references/siwa-spec.md)
+- [Security Model](references/security-model.md)
+- [ERC-8004 Registration Guide](references/registration-guide.md)
+- [ERC-8004 Contract Addresses and ABIs](references/contract-addresses.md)
+- [SIWA Sessions vs x402 SIWX](references/siwa-vs-siwx.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with TypeScript and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes wallet-specific setup paths, server verification examples, registration guidance, and security notes.]
+
+## Skill Version(s):
+
+0.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

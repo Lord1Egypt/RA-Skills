@@ -1,5 +1,7 @@
 # 人生选择沙盘
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
 ## 一句话结论
 
 {{说明这个选择真正要测试的变量。}}

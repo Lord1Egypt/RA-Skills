@@ -1,40 +1,58 @@
-## Description: <br>
-Self Intro helps job seekers draft Chinese interview self-introduction scripts tailored to their target role, interview length, interview format, and industry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps job seekers draft interview self-introductions tailored to role, interview format, target length, and industry, using only the experience details the user provides.
 
-## Publisher: <br>
-[shutongzhou1222](https://clawhub.ai/user/shutongzhou1222) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shutongzhou1222](https://clawhub.ai/user/shutongzhou1222)
 
-## Use Case: <br>
-Job seekers use this skill to turn their provided resume, experience, target role, interview format, and desired length into a natural Chinese interview self-introduction they can practice and revise. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share personal resume, education, or career details while preparing an interview script. <br>
-Mitigation: Share only details you are comfortable providing, and state the preferred language, tone, formality, and interview context. <br>
-Risk: Vague or incomplete source material could produce an introduction with unsupported claims or weak role fit. <br>
-Mitigation: Provide accurate experience details and review the generated script to remove or revise anything that is not supported by the user's own information. <br>
+## Use Case:
 
+Job seekers and career coaches use this skill to produce interview-ready Chinese self-introduction scripts for roles, formats, and durations such as 30 seconds, one minute, or three minutes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shutongzhou1222/skills/self-intro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown plain text with a word-count note] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language interview self-introduction text adjusted to the requested 30-second, 1-minute, or 3-minute target.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks users for resume-like background and target-role details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only information appropriate for interview preparation and avoid unnecessary sensitive personal details.
+
+Risk: Generated self-introductions may still contain inaccurate emphasis or wording even though the skill is instructed not to invent facts.
+
+Mitigation: Review the draft against the user's actual resume and revise any unsupported claims before using it in an interview.
+
+Risk: The artifact may suggest optional companion skills after drafting.
+
+Mitigation: Remove or ignore the companion-skill suggestion when promotional follow-up text is not wanted.
+
+## Reference(s):
+
+- [Self Intro ClawHub skill page](https://clawhub.ai/shutongzhou1222/skills/self-intro)
+- [shutongzhou1222 ClawHub publisher profile](https://clawhub.ai/user/shutongzhou1222)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese prose with a word-count note, usually returned as Markdown or plain text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Asks for target role and user experience before drafting; defaults to a one-minute single-interview style when optional details are absent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

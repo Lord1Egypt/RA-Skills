@@ -1,42 +1,60 @@
-## Description: <br>
-按出生时间与城市排八字，返回四柱、纳音、大运流年等。当用户说：1990 年 6 月生于北京八字排盘、看看大运流年，或类似八字排盘时，使用本技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Bazi (Four Pillars) chart from birth date/time and city using JisuAPI, returning pillars, Nayin, major luck cycles, and annual luck data.
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-External users and developers use this skill to produce Bazi chart data from a birth date, time, city, sex, and calendar options. It supports conversational summaries of four pillars, Na Yin, Da Yun, Liu Nian, and related chart fields for entertainment and learning reference. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Birth-chart inputs and the configured API key are sent to JisuAPI. <br>
-Mitigation: Use the skill only when sharing those details with JisuAPI is acceptable, prefer a nickname or blank display name when possible, and use a dedicated or easily rotated API key. <br>
-Risk: Bazi chart interpretations may be mistaken for decision-making advice. <br>
-Mitigation: Present outputs as entertainment and learning reference, not as a basis for financial, medical, legal, employment, or relationship decisions. <br>
+## Use Case:
 
+External users and developers use this skill to turn birth details into Bazi chart data and agent-readable summaries for entertainment and learning reference.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jisuapi/jisu-bazi) <br>
-- [JisuAPI Bazi API Documentation](https://www.jisuapi.com/api/bazi/) <br>
-- [JisuAPI Homepage](https://www.jisuapi.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Guidance, Shell commands, Configuration] <br>
-**Output Format:** [JSON result data with Markdown usage guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, requests, and JISU_API_KEY; sends entered birth-chart details to JisuAPI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill sends entered name or alias, city, sex, and birth date/time to JisuAPI with the configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an alias when possible, disclose the external API call, and avoid using the skill in conversations where these personal details should not leave the agent environment.
+
+Risk: The external API key may be exposed or abused if handled carelessly.
+
+Mitigation: Store JISU_API_KEY in the environment, restrict and rotate it where provider controls allow, and avoid logging command lines or outputs that contain credentials.
+
+Risk: Bazi interpretations can be mistaken for decision guidance.
+
+Mitigation: Present results as entertainment and learning reference only, and avoid framing outputs as a basis for financial, medical, legal, employment, or relationship decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/jisu-bazi)
+- [JisuAPI Bazi API documentation](https://www.jisuapi.com/api/bazi/)
+- [JisuAPI](https://www.jisuapi.com/)
+- [Bazi paipan API endpoint](https://api.jisuapi.com/bazi/paipan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [JSON data from the helper script, typically summarized as Markdown or plain text by the agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; sends user-provided birth details to JisuAPI.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

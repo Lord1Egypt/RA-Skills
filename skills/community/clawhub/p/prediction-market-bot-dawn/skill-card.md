@@ -1,40 +1,53 @@
-## Description: <br>
-Runs the full Dawn CLI strategy lifecycle from authentication and funding through strategy creation, launch, monitoring, and termination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs the full Dawn CLI strategy lifecycle from authentication and funding through strategy creation, launch, monitoring, and termination.
 
-## Publisher: <br>
-[njdawn](https://clawhub.ai/user/njdawn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[njdawn](https://clawhub.ai/user/njdawn)
 
-## Use Case: <br>
-Developers, operators, and prediction-market strategy authors use this skill to install or check the Dawn CLI, authenticate, create and revise strategies, launch paper or live runs, monitor positions and logs, and stop active runs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through live prediction-market trading and account operations. <br>
-Mitigation: Use paper mode by default and require explicit user approval before login, funding, rule approval, strategy upload, or any live launch. <br>
-Risk: A live run may spend real funds or continue operating without adequate oversight. <br>
-Mitigation: Confirm budget, duration, account, monitoring plan, and stop status before launch, then monitor status, positions, and logs during operation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Dawn](https://dawn.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/njdawn/prediction-market-bot-dawn) <br>
+## Use Case:
 
+External developers and operators use this skill to create, revise, launch, monitor, troubleshoot, and stop Dawn prediction-market strategies through the Dawn CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns conversationId, strategyId when launched, run mode, monitoring summary, and the exact next or last Dawn command.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.8 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide live trading and funding workflows that may cause financial loss if run without clear user approval.
+
+Mitigation: Default to paper mode, require explicit confirmation before funding or any `--live` launch, and verify budget and duration before execution.
+
+Risk: The documented global install uses an unpinned Dawn CLI package.
+
+Mitigation: Prefer a pinned or isolated Dawn CLI installation from a trusted source before use.
+
+## Reference(s):
+
+- [Dawn homepage](https://dawn.ai)
+- [ClawHub skill page](https://clawhub.ai/njdawn/skills/prediction-market-bot-dawn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and command summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected outputs include conversationId, strategyId when launched, run mode, monitoring summary, and the next or last Dawn CLI command.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

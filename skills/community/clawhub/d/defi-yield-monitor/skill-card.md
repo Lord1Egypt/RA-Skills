@@ -1,41 +1,57 @@
-## Description: <br>
-Monitor DeFi lending and savings positions across Aave v3, SparkLend, Spark Savings, and Kamino with balances, APYs, health factors, and yield tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors DeFi lending and savings positions across Aave v3, SparkLend, Spark Savings, and Kamino, including balances, APYs, health factors, and realized yield.
 
-## Publisher: <br>
-[reed1898](https://clawhub.ai/user/reed1898) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[reed1898](https://clawhub.ai/user/reed1898)
 
-## Use Case: <br>
-External users and developers use this skill to monitor wallet-linked DeFi lending and savings positions, review APYs and health factors, and produce daily or yield-summary reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The setup flow installs and runs mutable code from an external repository. <br>
-Mitigation: Install only after reviewing and trusting the external repository, and prefer a release pinned to a reviewed commit or bundled runtime code. <br>
-Risk: The skill processes wallet-linked financial data in generated reports. <br>
-Mitigation: Configure only wallet addresses intended for monitoring and review reports before sharing them. <br>
-Risk: Automated cron delivery to Telegram or Discord can send financial position data outside the local environment. <br>
-Mitigation: Enable automated delivery only after confirming exactly what data will be sent and who can access the destination channel. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/reed1898/defi-yield-monitor) <br>
+## Use Case:
 
+External users and developers use this skill to monitor DeFi lending, savings, portfolio health, APY, realized yield, and risk alerts for configured EVM and Solana wallets.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Text, Markdown-style reports, JSON output, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include wallet-linked positions, balances, APYs, health factors, realized yield summaries, and risk alerts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs and repeatedly runs mutable external code for sensitive DeFi portfolio monitoring without integrity controls.
+
+Mitigation: Use a pinned, reviewed version of the monitor and verify the repository contents before setup or repeated execution.
+
+Risk: Wallet addresses are stored locally and portfolio summaries may be sent to chat services.
+
+Mitigation: Use dedicated wallets or channels where privacy matters, minimize configured addresses, and review delivery settings before enabling reports.
+
+Risk: Automated cron reports can repeatedly execute the monitor before integrity checks and removal instructions are in place.
+
+Mitigation: Avoid automated reports until integrity checks, operational ownership, and removal steps have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/reed1898/skills/defi-yield-monitor)
+- [Source repository listed in skill artifact](https://github.com/reed1898/defi-yield-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or JSON reports with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include wallet-level positions, APY, health factor, realized yield, and risk alerts.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

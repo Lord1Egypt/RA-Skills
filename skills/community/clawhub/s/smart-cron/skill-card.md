@@ -1,42 +1,59 @@
-## Description: <br>
-Schedule and manage OpenClaw tasks from natural language with timezone-aware cron lifecycle commands, logs, and failure alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Schedule and manage OpenClaw tasks using natural language with timezone support, failure alerts, logs, and cron lifecycle commands.
 
-## Publisher: <br>
-[mariusfit](https://clawhub.ai/user/mariusfit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mariusfit](https://clawhub.ai/user/mariusfit)
 
-## Use Case: <br>
-Developers and operators use Smart Cron to schedule unattended OpenClaw tasks such as briefings, monitoring, reports, and cleanup without writing cron syntax. It provides lifecycle commands, next-run previews, local logs, and optional failure alerts for recurring jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Unattended recurring execution can repeatedly run an incorrect, stale, or overly broad OpenClaw task. <br>
-Mitigation: Review each scheduled task before enabling it, use pause or remove commands for jobs that are no longer needed, and periodically audit the job list. <br>
-Risk: Task names, prompts, logs, or alert messages may expose sensitive operational details through local storage or messaging channels. <br>
-Mitigation: Avoid putting secrets in scheduled task text, confirm alert channels are private, and review local logs and retention settings. <br>
+## Use Case:
 
+Developers and operators use Smart Cron to schedule recurring OpenClaw tasks in plain English, manage those jobs over their lifecycle, and inspect next-run times and execution logs.
 
-## Reference(s): <br>
-- [Smart Cron ClawHub page](https://clawhub.ai/mariusfit/smart-cron) <br>
-- [Smart Cron source repository](https://github.com/mariusfit/smart-cron) <br>
-- [Smart Cron issues](https://github.com/mariusfit/smart-cron/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces cron lifecycle commands, schedule descriptions, local configuration guidance, and log inspection guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release metadata and artifact/skill.json) <br>
+Risk: Persistent scheduled OpenClaw tasks may continue running unattended after creation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each schedule before enabling it, and use pause, resume, and remove commands to control active jobs.
+
+Risk: Local job logs may contain task names, outputs, or error details from sensitive work.
+
+Mitigation: Use the configured log-retention setting and avoid scheduling tasks that write sensitive content to persistent logs unless retention is acceptable.
+
+Risk: WhatsApp or Telegram failure alerts may expose task names and error details to configured channels.
+
+Mitigation: Configure alert channels carefully and avoid including sensitive information in scheduled task names or alert-visible outputs.
+
+## Reference(s):
+
+- [Smart Cron ClawHub Skill Page](https://clawhub.ai/mariusfit/skills/smart-cron)
+- [Smart Cron Source](https://github.com/mariusfit/smart-cron)
+- [Smart Cron Issues](https://github.com/mariusfit/smart-cron/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces cron lifecycle commands, schedule examples, timezone configuration, alert setup guidance, and log inspection guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

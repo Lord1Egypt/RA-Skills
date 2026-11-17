@@ -1,43 +1,64 @@
-## Description: <br>
-DataHub helps agents submit natural-language requests for multi-domain data, poll for results, add API supplies, and create data bounties through the DataHub service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DataHub for Multi-Domain Data lets agents submit natural-language requests for cross-domain data, poll asynchronous results, add API supplies, and create data bounties.
 
-## Publisher: <br>
-[xplore3](https://clawhub.ai/user/xplore3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xplore3](https://clawhub.ai/user/xplore3)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to request structured data, raw API JSON, or Markdown reports across supported domains without building separate data collection integrations. It is also used to submit new API supply requests or create data bounties when data is unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries, API keys, and configured request data are sent to DataHub or another explicitly configured base URL. <br>
-Mitigation: Use only trusted DataHub endpoints, keep the API key in an environment variable or reviewed config file, and avoid submitting secrets or private account data unless the service terms are acceptable. <br>
-Risk: Data bounty workflows may include reward or payment-related details. <br>
-Mitigation: Confirm bounty terms with the user before submission and avoid sending payment-sensitive details unless the user understands the DataHub billing and data-use terms. <br>
+## Use Case:
 
+External users and developers use this skill to request e-commerce, finance, social media, recruitment, Web3, sports, news, and other data through DataHub instead of building custom collectors. It can return curated data, raw JSON, or Markdown reports and can help submit new API supplies or bounties when data is unavailable.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/xplore3/datahub) <br>
-- [Publisher website](https://datahub.codes) <br>
-- [DataHub API specification](references/api-spec.md) <br>
-- [DataHub API documentation](https://datahub.codes/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results may be structured data, raw API JSON, or Markdown reports returned after asynchronous polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.4 (source: ClawHub release evidence; artifact frontmatter says 0.2.3) <br>
+Risk: API keys may be exposed if stored in project configuration files or sent through less controlled channels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use DATAHUB_API_KEY from the environment and avoid committing project-level DataHub config files.
+
+Risk: Changing DATAHUB_BASE_URL can redirect queries and API keys to a different endpoint.
+
+Mitigation: Keep DATAHUB_BASE_URL set to https://datahub.codes unless the alternative HTTPS endpoint is intentionally trusted.
+
+Risk: Queries send user-provided data to an external DataHub service.
+
+Mitigation: Do not send confidential or personal data unless the user accepts sharing it with DataHub.
+
+Risk: API-supply and bounty workflows may create account-visible external requests.
+
+Mitigation: Confirm API supply additions and bounty creation with the user before running those actions.
+
+## Reference(s):
+
+- [DataHub API Specification](references/api-spec.md)
+- [DataHub Website](https://datahub.codes)
+- [DataHub API Documentation](https://datahub.codes/docs)
+- [ClawHub Skill Page](https://clawhub.ai/xplore3/skills/datahub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON responses and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include process IDs, API responses, polling status, curated data summaries, raw API JSON, Markdown reports, and confirmation details for API supply or bounty actions.]
+
+## Skill Version(s):
+
+0.2.4 (source: server release evidence; artifact frontmatter lists 0.2.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

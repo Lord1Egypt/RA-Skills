@@ -1,39 +1,49 @@
-## Description: <br>
-Design and optimize paywall and upgrade flows using feature gating, usage limits, and messaging to convert free users to paid subscribers effectively. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and optimize paywall and upgrade flows using feature gating, usage limits, and messaging to convert free users to paid subscribers effectively.
 
-## Publisher: <br>
-[amdf01-debug](https://clawhub.ai/user/amdf01-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amdf01-debug](https://clawhub.ai/user/amdf01-debug)
 
-## Use Case: <br>
-Product, growth, and monetization teams use this skill to design upgrade triggers, paywall gates, pricing-page structure, conversion messaging, and A/B test recommendations for free-to-paid subscription flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paywall and upgrade recommendations may affect customer experience, pricing perception, and public conversion messaging. <br>
-Mitigation: Review generated gate design, copy, pricing structure, and A/B test plans with product, legal, and customer-support stakeholders before release. <br>
-Risk: Repository-provided skills and tooling may include powerful commands even when scan results are clean. <br>
-Mitigation: Use the skill only from a trusted checkout and review any proposed command or file-changing action before execution. <br>
+## Use Case:
 
+Product, growth, and marketing teams use this skill to design paywall triggers, upgrade messaging, pricing page structure, and A/B test recommendations for converting free users to paid subscribers.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown upgrade flow specification with messaging copy, pricing page structure, and A/B test recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated paywall recommendations may not fit the product, legal context, or ethical expectations for a live subscription flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations for legal, ethical, and product-fit considerations before implementing them in production.
+
+## Reference(s):
+
+- [Paywall Upgrade CRO on ClawHub](https://clawhub.ai/amdf01-debug/skills/sw-paywall-upgrade-cro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with upgrade flow specifications, messaging copy, pricing page structure, and A/B test recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

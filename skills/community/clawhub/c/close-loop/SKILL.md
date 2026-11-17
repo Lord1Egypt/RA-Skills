@@ -1,8 +1,10 @@
 ---
-name: "close-loop"
-description: "End-of-session workflow for shipping changes, consolidating memory, applying self-improvements, and preparing publishable outputs with safety gates."
-license: "MIT"
-metadata: {"version":"2.3.5","category":"session-memory","license":"MIT","tags":["session-memory","workflow","shipping","handoff"],"hermes":{"tags":["session-memory","workflow","shipping","handoff"]}}
+name: close-loop
+description: End-of-session workflow for shipping changes, consolidating memory, applying self-improvements, and preparing publishable outputs with safety gates.
+license: MIT
+metadata:
+  version: 2.1.1
+  category: session-memory
 ---
 
 # Close Loop

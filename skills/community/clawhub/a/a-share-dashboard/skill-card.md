@@ -1,42 +1,53 @@
-## Description: <br>
-A Streamlit dashboard for A-share stock screening, sector tracking, northbound capital flow review, and portfolio monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Share Dashboard is a Streamlit web dashboard for A-share stock screening, hotspot tagging, individual stock analysis, northbound-capital tracking, and portfolio monitoring.
 
-## Publisher: <br>
-[superhhh1992-byte](https://clawhub.ai/user/superhhh1992-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superhhh1992-byte](https://clawhub.ai/user/superhhh1992-byte)
 
-## Use Case: <br>
-Developers, analysts, and operators use this skill to run a local web dashboard for A-share market review, stock pool screening, single-stock analysis, and portfolio monitoring. Its generated scores and trading suggestions should be treated as informational analysis rather than investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The dashboard runs an unreviewed helper script from another local skill path when loading market data. <br>
-Mitigation: Inspect and trust the referenced a-share-stock-dossier helper before running the dashboard, or run the skill in a controlled environment. <br>
-Risk: Portfolio monitoring inputs can reveal sensitive position details. <br>
-Mitigation: Avoid entering sensitive portfolio details unless the dashboard and its helper script are trusted for the intended environment. <br>
-Risk: Stock scores, risk alerts, and operation suggestions may be mistaken for financial advice. <br>
-Mitigation: Treat generated analysis as informational only and verify market data and decisions independently. <br>
+## Use Case:
 
+External users and developers can run a local Streamlit dashboard to review A-share market conditions, stock fundamentals, K-line charts, portfolio positions, and risk alerts. The generated analysis is informational and should not be treated as investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/superhhh1992-byte/a-share-dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and a Streamlit Python dashboard] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May start a local Streamlit dashboard and call an external local market-data helper script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The dashboard executes a Python script from a separate local skill path that was not part of the reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only after verifying the separate a-share-stock-dossier skill and its script source.
+
+Risk: Portfolio entries and market analysis may include sensitive financial details or misleading investment signals.
+
+Mitigation: Avoid entering sensitive portfolio details unless you understand where the data is processed, and treat dashboard output as informational rather than investment advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/superhhh1992-byte/skills/a-share-dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Streamlit dashboard with Markdown reports, Plotly charts, metrics, warnings, and launch commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Refreshes cached market data every five minutes and displays informational stock analysis only.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

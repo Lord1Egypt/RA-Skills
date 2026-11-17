@@ -1,40 +1,53 @@
-## Description: <br>
-Guides founders and product teams through cold-start strategy for getting first users, choosing launch channels, and planning early traction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides cold-start strategy for AI and SaaS products by helping founders select launch channels, find early users, plan timelines, and prepare readiness checklists.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Founders, product teams, and growth-focused builders use this skill to select early acquisition channels, structure a launch timeline, and turn zero traction into first-user learning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad launch or early marketing questions and produce advice that is too generic for the user's actual audience, budget, or timeline. <br>
-Mitigation: Review recommendations against the product type, target audience, budget, timeline, and available project context before acting. <br>
-Risk: Local project-context files can contain private product details or secrets that may influence generated launch guidance. <br>
-Mitigation: Review local context files before use and avoid including confidential information in generated outreach, launch copy, or shared planning artifacts. <br>
+## Use Case:
 
+External founders, builders, and go-to-market operators use this skill to plan zero-to-one acquisition for new products with little or no traction. It helps choose early channels, structure demand-signal outreach, prepare launch assets, and avoid common pre-product-market-fit mistakes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/cold-start-strategy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with channel selection, timeline, readiness checklist, and platform-specific actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution, credential use, or automatic external actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill may be invoked for broad early-stage startup or launch questions where generic channel advice could be mismatched to the user's product, audience, budget, or timeline.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm product type, target audience, budget, and launch stage before applying recommendations, and adapt the channel plan to the user's actual constraints.
+
+Risk: The skill may read optional local project context files to tailor strategy advice.
+
+Mitigation: Review project context for sensitive or irrelevant information before relying on generated launch guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/cold-start-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance with channel recommendations, timelines, checklists, and platform-specific action steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read optional local project context files when available to tailor recommendations.]
+
+## Skill Version(s):
+
+1.3.0 (source: skill frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

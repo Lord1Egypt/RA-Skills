@@ -1,0 +1,5 @@
+jsonschema==4.25.1
+lxml==6.1.1
+# Pillow 13 fixes GHSA-5x8w-8jj5-q52h; requires Python >=3.11.
+Pillow==13.0.0
+python-pptx==1.0.2

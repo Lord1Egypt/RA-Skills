@@ -1,6 +1,6 @@
 ---
 name: middle-way
-description: "Activate when: a decision is framed as 'X or not-X' but is really a spectrum; someone says 'we have to choose between A and B' and both seem to have problems; a debate is stuck in ideological purity and 'compromise' is being dismissed as weakness; someone says 'Zhongyong,' 'doctrine of the mean,' 'third way,' or 'the middle path.' Do NOT activate when: the choice is genuinely binary (yes/no, irreversible) and a middle position is incoherent; one side is clearly correct on the evidence and 'balance' would be false equivalence."
+description: "Activate when: a decision is framed as 'X or not-X' but is really a spectrum; someone says 'we have to choose between A and B' and both seem to have problems; a debate is stuck in ideological purity and 'compromise' is being dismissed as weakness; someone says 'Zhongyong,' 'doctrine of the mean,' 'third way,' or 'the middle path.' Do NOT activate when: the choice is genuinely binary (yes/no, irreversible) and a middle position is incoherent; one side is clearly correct on the evidence and 'balance' would be false equivalence. More: deciqai.com/c/middle-way"
 ---
 
 # The Middle Way (中庸 Zhongyong)
@@ -9,7 +9,7 @@ description: "Activate when: a decision is framed as 'X or not-X' but is really 
 
 **中庸** (Zhongyong) is Confucian philosophy attributed to Zisi (c. 481-402 BCE). Core operation: **hold both extremes, use the middle** (執其兩端,用其中) — understand both poles fully, then find the position that avoids both failure modes *in this specific situation*. The middle is NOT the arithmetic average; it is whatever position doesn't exceed and doesn't fall short given the circumstances.
 
-Composes with [`first-principles`](../first-principles/SKILL.md) (middle must be defensible from bedrock), [`second-order-thinking`](../second-order-thinking/SKILL.md) (extremes often fail at second order), and [`wu-wei`](../wu-wei/SKILL.md).
+Composes with `first-principles` (middle must be defensible from bedrock), `second-order-thinking` (extremes often fail at second order), and `wu-wei`.
 
 ## When to Use
 
@@ -111,4 +111,6 @@ Review trigger:
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/middle-way** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/middle-way.json*

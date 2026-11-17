@@ -1,41 +1,54 @@
-## Description: <br>
-Async/await error handling auditor that scans JavaScript, TypeScript, Python, and Go code for unhandled async errors such as floating promises, async route handlers without error boundaries, unsafe Promise or asyncio usage, ignored goroutine errors, and missing Node.js unhandled rejection listeners. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Async/await error handling auditor that scans JavaScript, TypeScript, Python, and Go code for unhandled async errors, including floating promises, async route handlers without error handling, Promise.all calls without an error boundary, asyncio task exceptions, ignored goroutine errors, and missing Node.js unhandledRejection listeners.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to audit async error handling before production deployment or CI enforcement. It reports likely unhandled async failures and suggests concrete remediation patterns for JavaScript/TypeScript, Python asyncio and FastAPI/aiohttp, and Go goroutines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner reads source files under the directory selected for analysis. <br>
-Mitigation: Run it against a specific project or subdirectory rather than a broad home or workspace folder. <br>
-Risk: Static pattern matching can produce false positives or miss context-specific async error handling. <br>
-Mitigation: Review each finding and proposed fix before changing production code or enabling the CI fail gate. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit async error handling before production deployment or CI release gates. It reports suspected async reliability issues and suggested fixes for JavaScript, TypeScript, Python, and Go projects.
 
-## Reference(s): <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-async-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style audit report with severity-grouped findings, matched source snippets, remediation code examples, and an optional CI fail-gate command.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports AE001-AE010 findings with file paths, line numbers, severity, descriptions, matched text, fixes, and per-check counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and artifact metadata) <br>
+Risk: The skill scans local project source files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in workspaces where local static analysis is acceptable.
+
+Risk: Static analysis findings can be false positives or incomplete.
+
+Mitigation: Review each reported finding and suggested fix before applying code changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-async-audit)
+- [Canlah AI homepage](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with findings, severities, matched code snippets, suggested fixes, and optional CI command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill reports findings from a local static scan and does not modify source files.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

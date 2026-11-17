@@ -1,40 +1,52 @@
-## Description: <br>
-Build, evaluate, repair, and strengthen trust across relationships, teams, clients, brands, communities, partnerships, and decision environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, evaluate, repair, and strengthen trust across relationships, teams, clients, brands, communities, partnerships, and decision environments.
 
-## Publisher: <br>
-[AGImodel](https://clawhub.ai/user/AGImodel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[agimodel](https://clawhub.ai/user/agimodel)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, teams, and advisors use this skill to diagnose trust problems, map credibility signals, and create practical plans for building or repairing confidence in relationships, organizations, brands, partnerships, and decision processes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may apply general trust guidance to legal, HR, compliance, clinical, security, or regulated decisions.
+
+Mitigation: Use appropriate professional or domain-specific guidance for high-stakes or regulated contexts instead of relying on this skill alone.
+
+Risk: Trust assessments can be incomplete when important context, jurisdictional requirements, internal policies, or stakeholder evidence is missing.
+
+Mitigation: Adapt outputs to the user's context and validate recommendations against available evidence, policies, and professional obligations before acting.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external users, teams, and advisors use this skill to diagnose trust problems, plan credibility repairs, evaluate trust signals, and design communication or operating practices that improve confidence over time. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides practical trust and credibility analysis that could be mistaken for professional legal, HR, compliance, clinical, security, or formal risk guidance. <br>
-Mitigation: Use outputs as practical advice only, and involve a specialized expert or skill for high-stakes or regulated contexts. <br>
-Risk: Trust recommendations may need adaptation to a user's jurisdiction, internal policies, and professional obligations. <br>
-Mitigation: Review and tailor outputs before acting on them in disputes, investigations, regulated decisions, or other high-stakes settings. <br>
+**Output Format:** [Markdown-style structured guidance, plans, reviews, and diagnostic summaries]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AGImodel/trust) <br>
+**Other Properties Related to Output:** [May include trust diagnoses, trust-building plans, repair strategies, signal maps, credibility frameworks, and decision trust reviews.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include trust diagnoses, trust-building plans, repair strategies, signal maps, credibility frameworks, and decision trust reviews.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

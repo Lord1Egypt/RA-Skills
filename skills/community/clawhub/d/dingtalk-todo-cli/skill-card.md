@@ -1,43 +1,58 @@
-## Description: <br>
-Manage DingTalk tasks and todos using the official dws CLI, including task creation, tracking, DING-based escalation, AI sheet updates, calendar scheduling, and cross-platform task sync guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DingTalk Todo CLI helps agents manage DingTalk todos and task workflows with the authenticated dws CLI, including task creation, tracking, DING notifications, calendar follow-ups, and AI Sheet updates.
 
-## Publisher: <br>
-[lm203688](https://clawhub.ai/user/lm203688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lm203688](https://clawhub.ai/user/lm203688)
 
-## Use Case: <br>
-Employees, team leads, and agent operators use this skill to plan, assign, monitor, and escalate DingTalk todos through dws CLI workflows. It is intended for workplace task management patterns such as daily standups, delegation tracking, overdue escalation, sprint planning, and meeting action-item follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to operate live DingTalk workflows, including DING messages, escalations, deletes, bulk sheet updates, raw API calls, approval, drive, bot, and cross-platform sharing actions. <br>
-Mitigation: Require explicit user approval before executing live workflow commands, especially DING messages, escalations, deletes, raw API calls, approval/drive/bot actions, and Feishu or WeCom sharing. <br>
-Risk: Escalation examples may send intrusive or high-severity notifications to managers, directors, or HR. <br>
-Mitigation: Confirm recipient lists, urgency, message content, and working-hour constraints before sending DING escalations; do not run the Level 3 escalation example as written. <br>
-Risk: Cross-platform task sync can disclose workplace task information outside DingTalk. <br>
-Mitigation: Verify the business need, destination platform, recipients, and data minimization requirements before sharing to Feishu or WeCom. <br>
+## Use Case:
 
+Employees, operators, and developers use this skill to create, assign, track, and escalate DingTalk tasks through repeatable CLI workflows. It is suited for standups, task delegation, overdue follow-up, sprint planning, and meeting action-item capture.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lm203688/dingtalk-todo-cli) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/lm203688) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose live DingTalk workflow commands that require user approval before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can operate through an authenticated DingTalk CLI account with broad access to tasks, contacts, sheets, calendars, bots, drive, approvals, and raw API calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged DingTalk account, verify authentication status before workflows, and pin and verify the dws CLI version before use.
+
+Risk: Raw dws API calls could access endpoints beyond the wrapped task-management commands.
+
+Mitigation: Require explicit user approval for each raw API endpoint and method before execution.
+
+Risk: DING escalation can notify managers, directors, HR, groups, or external platforms and may conflict with the skill's own confirmation rule.
+
+Mitigation: Require confirmation before manager, director, HR, group, or external-platform DINGs, and apply the skill's rate limit and working-hours rules.
+
+## Reference(s):
+
+- [DingTalk Todo CLI on ClawHub](https://clawhub.ai/lm203688/skills/dingtalk-todo-cli)
+- [lm203688 publisher profile](https://clawhub.ai/user/lm203688)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require the authenticated dws CLI and user approval for sensitive actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

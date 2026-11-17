@@ -1,42 +1,60 @@
-## Description: <br>
-P图 provides image loading, saving, resizing, cropping, format conversion, enhancement, filters, stitching, basic background removal, and text overlay utilities for creative image editing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+P图 is a creative image-processing skill that helps agents load, save, resize, crop, convert, enhance, filter, stitch, remove backgrounds from, and add text to local images.
 
-## Publisher: <br>
-[hgta23](https://clawhub.ai/user/hgta23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgta23](https://clawhub.ai/user/hgta23)
 
-## Use Case: <br>
-Developers and agents use this skill to script common image editing workflows, including transformations, filters, image composition, background cleanup, and text placement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image files from untrusted sources may exercise vulnerabilities in the image-processing dependency. <br>
-Mitigation: Use a reviewed, pinned Pillow version, keep it updated, and process untrusted images in a constrained environment. <br>
-Risk: The dependency declaration allows newer Pillow releases through an unpinned lower bound. <br>
-Mitigation: Pin Pillow to an approved version in deployment environments and update deliberately after review. <br>
+## Use Case:
 
+Developers and agents use this skill to perform common local image-editing tasks in Python, including image resizing, enhancement, filters, compositing, simple background removal, and text overlays.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hgta23/p) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Guidance] <br>
-**Output Format:** [Python image objects and image files with Markdown or code guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Pillow for local image processing; output files depend on caller-provided paths and image formats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, SKILL.md, README.md, src/p_skill/__init__.py) <br>
+Risk: The skill reads input images and writes output images on the local filesystem.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use caller-controlled input and output paths, avoid sensitive directories, and review output locations before saving images.
+
+Risk: The package depends on Pillow for image parsing and processing.
+
+Mitigation: Install in a virtual environment and pin Pillow to a reviewed version with a lockfile or hashes in stricter environments.
+
+Risk: Installing or running image-processing code with elevated privileges can increase the impact of dependency or path mistakes.
+
+Mitigation: Avoid administrator or root installs and run the skill with least-privilege filesystem access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hgta23/skills/p)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+- [Usage example](artifact/example.py)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Guidance]
+
+**Output Format:** [Python API calls, local image files, and Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Pillow for local image processing and writes image outputs only to paths selected by the caller.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md, README.md, and src/p_skill/__init__.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

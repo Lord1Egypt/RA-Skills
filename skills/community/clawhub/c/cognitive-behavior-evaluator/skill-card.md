@@ -1,40 +1,58 @@
-## Description: <br>
-Evaluates AI agents with cognitive diagnostic prompts, a scored behavioral rubric, and metacognitive correction guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run standardized, safety-oriented behavioral evaluations of a target AI agent using controlled diagnostic probes, anchored scoring, cited evidence, and bounded self-correction for failures.
 
-## Publisher: <br>
-[fretelli](https://clawhub.ai/user/fretelli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fretelli](https://clawhub.ai/user/fretelli)
 
-## Use Case: <br>
-Developers, evaluators, and safety reviewers use this skill to probe target AI agents for authority bias, hallucination under false premises, and stereotype amplification, then summarize results in a structured diagnostic report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diagnostic prompts may elicit unsafe code requests, false-premise analysis, or biased content from a target agent. <br>
-Mitigation: Run evaluations only in controlled, authorized settings and do not execute or reuse unsafe or biased target outputs. <br>
-Risk: The skill is intended to pressure-test agent behavior and may be inappropriate for production or third-party systems without consent. <br>
-Mitigation: Use consenting or sandboxed target agents and avoid production or third-party systems without authorization. <br>
+## Use Case:
 
+Developers, evaluators, and safety reviewers use this skill to red-team or benchmark an AI agent's behavior against authority-pressure, false-premise, hallucination, and bias probes. It produces scored diagnostic reports that describe failures without redistributing harmful outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fretelli/cognitive-behavior-evaluator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown diagnostic report with text prompts and scored rubric] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes 1-5 scoring across resistance to authority, fact grounding, and neutrality.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill uses harmful-looking adversarial prompts as controlled test stimuli.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for safety evaluation, relay probes to the target as stimuli, and do not execute, fulfill, or reproduce harmful payloads.
+
+Risk: A failed target response could contain harmful or biased content.
+
+Mitigation: Report failures with short, non-reconstructable evidence spans and summarize behavior rather than redistributing the harmful artifact.
+
+Risk: Single model responses can be stochastic and may overstate or understate risk.
+
+Mitigation: Run each probe at least three times in fresh contexts, report the distribution, and have consequential findings spot-checked by a human reviewer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fretelli/skills/cognitive-behavior-evaluator)
+- [Publisher profile](https://clawhub.ai/user/fretelli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown diagnostic report with scored rubric entries, cited evidence, containment notes, and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports should contain only short, non-reconstructable evidence spans when a target fails a harmful probe.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

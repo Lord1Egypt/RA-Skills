@@ -1,42 +1,56 @@
-## Description: <br>
-Query local and private documents through AnythingLLM RAG, including document search, file or text uploads, document listing, and health checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query local documents via AnythingLLM RAG when a user asks about private or local documents, uploaded files, or their knowledge base.
 
-## Publisher: <br>
-[tianmaomao](https://clawhub.ai/user/tianmaomao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[tianmaomao](https://clawhub.ai/user/tianmaomao)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent users use this skill to query, list, and upload documents through a local AnythingLLM RAG workspace, then present answers with source citations when available.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The security evidence reports an embedded API key in the skill.
+
+Mitigation: Remove and rotate the embedded key before use, and require users to provide their own AnythingLLM API token through environment configuration.
+
+Risk: The security evidence reports a reachable shell-injection flaw in the script's curl construction.
+
+Mitigation: Review and replace eval-based command construction before installing or running the skill.
+
+Risk: The skill uploads and queries private documents through a local AnythingLLM instance.
+
+Mitigation: Use only a trusted AnythingLLM endpoint and confirm URL, transport security, and storage behavior before uploading sensitive documents.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and end users use this skill when an agent needs to query or update a local AnythingLLM knowledge base for private documents, PDFs, and uploaded files. It should route unrelated general questions to the default model. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls]
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports private document handling through an unsafe shell script with a hardcoded API key. <br>
-Mitigation: Use only with a trusted AnythingLLM instance, remove and rotate the embedded key, and configure a scoped ANYTHINGLLM_API_KEY before use. <br>
-Risk: The security scan flags the upload-text command as unsafe for sensitive documents. <br>
-Mitigation: Fix the upload-text command handling and review inputs before using it with sensitive data. <br>
-Risk: Document uploads are persistent additions to the AnythingLLM knowledge base. <br>
-Mitigation: Confirm the target workspace and treat uploads as retained knowledge-base content rather than temporary chat context. <br>
+**Output Format:** [Markdown guidance with inline shell commands and JSON API responses]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianmaomao/anythingllm-rag) <br>
+**Other Properties Related to Output:** [Query responses may include textResponse and sources from the AnythingLLM workspace.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [AnythingLLM query responses may include textResponse and sources for citation.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,61 @@
-## Description: <br>
-Bazi Full Fortune Telling generates Chinese astrology charting outputs and guided fortune-telling reports across family, health, career, wealth, relationships, education, and inner life. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Bazi (Four Pillars) charts and personalized fortune-telling interpretations across eight life domains, with optional Zi Wei Dou Shu cross-checks.
 
-## Publisher: <br>
-[laurc2004](https://clawhub.ai/user/laurc2004) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laurc2004](https://clawhub.ai/user/laurc2004)
 
-## Use Case: <br>
-External users and agents use this skill to calculate Bazi charts from solar or lunar birth data, query Chinese calendar details, reverse-search dates from four pillars, and draft calibrated Chinese astrology readings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask for private birth, family, health, relationship, and financial context during calibration. <br>
-Mitigation: Share only the minimum information needed, skip calibration questions when preferred, and keep sensitive answers high level. <br>
-Risk: Fortune-telling reports can be speculative or misleading if treated as factual advice for major life decisions. <br>
-Mitigation: Treat outputs as cultural or entertainment guidance and do not rely on them as medical, legal, financial, or safety advice. <br>
-Risk: The workflow may save a generated report as a text file. <br>
-Mitigation: Ask the agent to show the report inline or confirm the exact save path before writing files. <br>
+## Use Case:
 
+External users can ask an agent to calculate a traditional Bazi chart from birth details, check Chinese calendar dates, and prepare a personalized reading of family, health, career, finances, relationships, social life, education, and spirituality.
 
-## Reference(s): <br>
-- [Bazi Fundamentals](references/bazi-fundamentals.md) <br>
-- [Analysis Guide](references/analysis-guide.md) <br>
-- [Family Patterns](references/family-patterns.md) <br>
-- [Pitfalls](references/pitfalls.md) <br>
-- [Development Operations](references/dev-ops.md) <br>
-- [cantian-tymext package](https://www.npmjs.com/package/cantian-tymext) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and optional plain text report output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI scripts print chart, calendar, and reverse-search results to stdout; the agent workflow may draft a full reading and optionally save it as a .txt report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: ClawHub release evidence) <br>
+Risk: The reading requests precise birth details and sensitive family and life-event information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only necessary details; avoid names and third-party family information.
+
+Risk: The workflow calls for saving a sensitive reading to a TXT file without stated privacy controls.
+
+Mitigation: Do not save the report unless the user requests it and chooses a safe location.
+
+Risk: Health, legal, and financial interpretations may be mistaken for professional advice.
+
+Mitigation: Treat these outputs as cultural or entertainment analysis, not a substitute for qualified advice.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/laurc2004/skills/bazi-full-fortune)
+- [Bazi fundamentals](references/bazi-fundamentals.md)
+- [Analysis guide](references/analysis-guide.md)
+- [Interview guide](references/interview.md)
+- [cantian-tymext charting dependency](https://www.npmjs.com/package/cantian-tymext)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files]
+
+**Output Format:** [Markdown reading and UTF-8 TXT report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes chart data and an eight-domain interpretation; optional Zi Wei Dou Shu cross-check.]
+
+## Skill Version(s):
+
+1.1.5 (source: ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Reusable task templates with placeholder substitution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reusable task templates with placeholder substitution.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and teams use this skill to define reusable Pilot Protocol task templates, substitute variables, and submit standardized task descriptions with pilotctl. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated task text may be incorrect, misleading, or unintended before it is sent to an external agent. <br>
-Mitigation: Review instantiated task text before submission through pilotctl. <br>
-Risk: Saved templates or template variables may contain credentials, tokens, sensitive prompts, or other private data. <br>
-Mitigation: Keep ~/.pilot/templates under user control and avoid storing secrets or sensitive prompts in templates or variables. <br>
-Risk: The workflow depends on Pilot Protocol tooling and a running daemon. <br>
-Mitigation: Install and trust Pilot Protocol, ensure pilotctl is on PATH, and start the daemon before using the generated commands. <br>
+## Use Case:
 
+Developers and operators use this skill to define reusable, parameterized task templates and submit standardized task descriptions through Pilot Protocol tooling.
 
-## Reference(s): <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-task-template) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reusable task-template patterns and pilotctl submission commands; generated task text should be reviewed before submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unsafe placeholder substitution can produce unintended shell or task content when template variables are not trusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted template names and trusted variable values, validate placeholders strictly, and prefer a safer template engine for production use.
+
+Risk: Template contents and substituted prompts may be sent to an external Pilot agent.
+
+Mitigation: Do not include secrets or sensitive local content unless the target Pilot agent is authorized to receive that information.
+
+Risk: Path-concatenation patterns for loading templates can read unintended files when template names are untrusted.
+
+Mitigation: Restrict template names to an approved allowlist or canonicalize paths inside the expected template directory before reading files.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-task-template)
+- [ClawHub publisher profile](https://clawhub.ai/user/teoslayer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reusable task template patterns, placeholder substitution examples, and Pilot task submission commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

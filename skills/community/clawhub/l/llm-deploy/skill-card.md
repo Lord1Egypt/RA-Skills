@@ -1,45 +1,60 @@
-## Description: <br>
-Deploys vLLM-based LLM services on GPU servers with multi-server configuration, GPU and port checks, and presets for popular open-source models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys vLLM-based large language model services on GPU servers, with guidance for multi-server configuration, GPU and port checks, and common open-source model deployments.
 
-## Publisher: <br>
-[wang-junjian](https://clawhub.ai/user/wang-junjian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wang-junjian](https://clawhub.ai/user/wang-junjian)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure GPU servers, check resource and port availability, deploy vLLM model services, inspect running services, and stop deployments when no longer needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commands operate over SSH against GPU servers and can affect remote services or shared compute resources. <br>
-Mitigation: Verify the SSH host, account, model path, GPU availability, and target port before deployment, and run the documented check command first. <br>
-Risk: A vLLM service may continue running in a tmux session after deployment. <br>
-Mitigation: Monitor the service after launch, inspect running processes, and stop the service when it is no longer needed. <br>
-Risk: Untested configuration on production servers can cause resource contention or service disruption. <br>
-Mitigation: Test deployments in a non-production environment before using production GPU hosts. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure remote GPU servers and deploy or manage vLLM model services over SSH.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wang-junjian/llm-deploy) <br>
-- [vLLM Project](https://github.com/vllm-project/vllm) <br>
-- [vLLM Documentation](https://docs.vllm.ai) <br>
-- [Hugging Face Models](https://huggingface.co/models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SSH access to the target GPU server and user-supplied server, model path, and port configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow can start long-running model services on remote GPU servers over SSH.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target server, user, model path, GPU allocation, and port before running deployment commands.
+
+Risk: Example model aliases and service names may not match the underlying model being deployed.
+
+Mitigation: Confirm served model names and aliases before exposing the service to users or dependent applications.
+
+Risk: The documentation is primarily in Chinese, which may lead to misconfiguration for readers who are not comfortable with it.
+
+Mitigation: Have an operator who understands the documentation review configuration and command choices before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wang-junjian/skills/llm-deploy)
+- [vLLM Documentation](https://docs.vllm.ai)
+- [vLLM Project](https://github.com/vllm-project/vllm)
+- [Hugging Face Models](https://huggingface.co/models)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No bundled executable code; commands target remote GPU servers over SSH.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

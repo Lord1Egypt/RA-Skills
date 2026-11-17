@@ -1,41 +1,52 @@
-## Description: <br>
-Capture, store, and retrieve errors, corrections, and best practices locally to continuously improve AI agent workflows and knowledge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures, stores, searches, and summarizes local records of errors, corrections, successful patterns, and best practices so agents can reuse prior learnings.
 
-## Publisher: <br>
-[vedantsingh60](https://clawhub.ai/user/vedantsingh60) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[vedantsingh60](https://clawhub.ai/user/vedantsingh60)
 
-## Use Case: <br>
-Developers and AI-agent users use this skill to record errors, corrections, successful patterns, and best practices locally, then search or summarize them before similar tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Local memory files may persist project details, credentials, private customer data, or raw production logs if a user records them. <br>
-Mitigation: Do not record secrets or sensitive data, and periodically review the local learning files for content that should be removed. <br>
-Risk: Exported JSON may disclose recorded notes or be written to an unintended path. <br>
-Mitigation: Choose export paths deliberately and review exported JSON before sharing it. <br>
+## Use Case:
 
+Developers and agent users use this skill to record mistakes, fixes, feedback, and workflow patterns locally, then retrieve relevant learnings before similar future tasks.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/vedantsingh60/adaptive-learning-agents) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, JSON, Guidance] <br>
-**Output Format:** [Python objects, local JSON files, and human-readable text or Markdown summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores user-provided learnings and errors locally by default and can export them as JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, manifest.yaml, SKILL.md changelog) <br>
+Risk: Recorded learnings, errors, prompts, paths, API details, or exported JSON files may contain sensitive project information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the .adaptive_learning directory and exported JSON files private, avoid recording secrets, and review exports before sharing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vedantsingh60/skills/adaptive-learning-agents)
+- [Publisher Profile](https://clawhub.ai/user/vedantsingh60)
+- [Skill Documentation](artifact/SKILL.md)
+- [MIT License](artifact/LICENSE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown documentation and Python API examples with local JSON data files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores learnings and errors locally under .adaptive_learning and can export them as JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and manifest.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

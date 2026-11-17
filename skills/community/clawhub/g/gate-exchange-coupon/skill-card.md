@@ -1,46 +1,65 @@
-## Description: <br>
-Gate coupon and voucher query skill for coupon balance, rules, expiry, source, list, and detail requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Gate Exchange coupon and voucher balances, rules, expiry, status, and acquisition source through read-only coupon tools.
 
-## Publisher: <br>
-[gate-exchange](https://clawhub.ai/user/gate-exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gate-exchange](https://clawhub.ai/user/gate-exchange)
 
-## Use Case: <br>
-External Gate users use this skill to inspect coupon and voucher availability, details, usage rules, expiry, and source through a locally configured Gate MCP session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects to a Gate account through a local MCP session and depends on API credentials. <br>
-Mitigation: Use a Gate API key limited to Coupon:Read, do not grant trading, transfer, withdrawal, or redemption permissions, and do not paste API secrets into chat. <br>
-Risk: Coupon data may include account-specific balances, IDs, expiry times, and source information. <br>
-Mitigation: Keep responses scoped to the current request and avoid exposing API secrets or unrelated account data. <br>
+## Use Case:
 
+External Gate users and agents use this skill to inspect account coupons and vouchers, including available coupons, expired or used coupons, detailed rules, expiry timing, and source information. It is intended for read-only account inquiry through a configured Gate MCP session.
 
-## Reference(s): <br>
-- [Gate Exchange Coupon on ClawHub](https://clawhub.ai/gate-exchange/gate-exchange-coupon) <br>
-- [Publisher Profile](https://clawhub.ai/user/gate-exchange) <br>
-- [ClawHub Metadata Homepage](https://github.com/gate/gate-skills) <br>
-- [Coupon Detail Reference](references/coupon-detail.md) <br>
-- [Gate Runtime Rules](references/gate-runtime-rules.md) <br>
-- [List Coupons Reference](references/list-coupons.md) <br>
-- [MCP Execution Specification](references/mcp.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries and tables backed by read-only MCP coupon queries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Gate MCP configuration with GATE_API_KEY and GATE_API_SECRET scoped to Coupon:Read.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Gate API credentials may grant more account access than this skill needs if they are over-scoped.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a Gate API key scoped to Coupon:Read only, and avoid trading or transfer permissions.
+
+Risk: API secrets could be exposed if they are pasted into chat.
+
+Mitigation: Use the configured local MCP session and environment variables; do not paste API secrets into conversation text.
+
+Risk: Coupon details can include account-specific financial incentive information.
+
+Mitigation: Keep responses limited to the requested coupon inquiry and use only the documented read-only coupon tools.
+
+Risk: Incorrect coupon type mapping can misstate voucher behavior or rules.
+
+Mitigation: Map each returned coupon_type to the documented display name exactly, especially position_voucher and contract_bonus.
+
+## Reference(s):
+
+- [Gate Coupon MCP Specification](references/mcp.md)
+- [List Coupons Workflow](references/list-coupons.md)
+- [Coupon Detail Workflow](references/coupon-detail.md)
+- [Gate Coupon Runtime Rules](references/gate-runtime-rules.md)
+- [Gate Skills Homepage](https://github.com/gate/gate-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables, detail cards, and concise prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Gate coupon queries; no coupon redemption, trading, transfer, or write actions.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

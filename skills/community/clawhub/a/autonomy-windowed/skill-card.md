@@ -1,44 +1,60 @@
-## Description: <br>
-Time-windowed autonomous task queue that limits autonomous work to configured active hours, uses overnight standby for cron maintenance, and provides queue, heartbeat, checkpoint, and logging templates for predictable schedules and token budgets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Time-windowed autonomous task queue. Autonomy works only during specific time windows (e.g., 8 AM - 8 PM UTC), while cron jobs run overnight. Separates concerns by time - day = autonomy, night = maintenance. Use when you want predictable work schedule, controlled token budget, and clear temporal separation between autonomous work and scheduled maintenance.
 
-## Publisher: <br>
-[luciusrockwing](https://clawhub.ai/user/luciusrockwing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[luciusrockwing](https://clawhub.ai/user/luciusrockwing)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure an autonomous agent to pull work from a queue only during defined time windows, with overnight standby behavior, cron coordination, and progress logging. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad scheduled autonomy can let an agent select and perform queued work without enough task boundaries. <br>
-Mitigation: Define allowed task categories in the queue and require approval before destructive, external, account-affecting, or high-cost actions. <br>
-Risk: Urgent override behavior can trigger work outside the configured autonomy window. <br>
-Mitigation: Limit what qualifies as urgent and require human confirmation for off-hours urgent work unless the task is explicitly pre-approved. <br>
-Risk: Persistent checkpoint, memory, learning, and goal-writing behavior can store sensitive or unwanted project context. <br>
-Mitigation: Review writable paths, restrict memory/checkpoint contents, and remove or replace the hard-coded MONEY goal before enabling the workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luciusrockwing/autonomy-windowed) <br>
-- [Checkpoint Formats - Context Protection](references/checkpoints.md) <br>
-- [Windowed Autonomy Heartbeat Template](templates/HEARTBEAT.md) <br>
-- [Task Queue Template](templates/QUEUE.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to run autonomous queue work only during configured UTC time windows while keeping overnight heartbeats in standby. It is intended for predictable scheduling, token-budget control, urgent-task overrides, and separation between active work and maintenance jobs.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown templates and procedural guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces queue, heartbeat, checkpoint, memory, and progress-log structures for scheduled autonomous agent work.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent work logs, checkpoint memories, GOALS.md updates, and .learnings entries may capture sensitive or unrelated private context.
+
+Mitigation: Restrict writable paths and add deployment rules forbidding secrets, credentials, personal data, and unrelated private context in persistent memory or goal-tracking files.
+
+Risk: Urgent overrides allow work outside the configured autonomy window.
+
+Mitigation: Require approval or narrowly defined criteria before treating tasks as urgent, and review urgent-task labels before deployment.
+
+Risk: Autonomous queue execution can continue during active windows without enough local operational boundaries.
+
+Mitigation: Configure explicit session duration, token-budget, queue-empty, and human-active stop conditions before enabling scheduled heartbeats.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/luciusrockwing/skills/autonomy-windowed)
+- [README](README.md)
+- [Heartbeat Template](templates/HEARTBEAT.md)
+- [Queue Template](templates/QUEUE.md)
+- [Checkpoint Formats](references/checkpoints.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown templates and procedural guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defines UTC autonomy windows, heartbeat behavior, queue states, checkpoint formats, urgent overrides, and work-session logging conventions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

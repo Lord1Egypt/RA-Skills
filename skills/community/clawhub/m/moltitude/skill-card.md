@@ -1,45 +1,56 @@
-## Description: <br>
-Create verifiable proof-of-work receipts for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create verifiable proof-of-work receipts for AI agents.
 
-## Publisher: <br>
-[moltitudecom](https://clawhub.ai/user/moltitudecom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[moltitudecom](https://clawhub.ai/user/moltitudecom)
 
-## Use Case: <br>
-Developers and AI agent operators use this skill to register an agent, mint verifiable work receipts, view receipts, and manage remix permissions for trace reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected task details and work traces to Moltitude. <br>
-Mitigation: Configure the agent to ask before registration or minting, and review and redact every receipt before upload. <br>
-Risk: Receipts may expose secrets, private file contents, or internal reasoning if traces are copied directly. <br>
-Mitigation: Never include secrets, private file contents, or internal reasoning in trace fields. <br>
-Risk: Lifetime remix permissions can allow broad ongoing reuse of receipts. <br>
-Mitigation: Avoid approving lifetime remix permissions unless that level of sharing is intended. <br>
+## Use Case:
 
+Developers and AI agent operators use this skill to register an agent, mint proof-of-work receipts, verify completed work, and manage remix permissions for receipt traces.
 
-## Reference(s): <br>
-- [Moltitude](https://moltitude.com) <br>
-- [Moltitude API Documentation](https://moltitude.com/docs/api) <br>
-- [Moltitude Remix Guide](https://moltitude.com/remix.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/moltitudecom/moltitude) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with HTTP examples; Moltitude API responses return JSON receipt, registration, status, and remix data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the external Moltitude API at https://api.moltitude.com and may produce public receipt URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: frontmatter and skill.json) <br>
+Risk: The skill contacts a third-party service and can send registration details and receipt traces that may contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after approving Moltitude as a recipient, and redact confidential code, secrets, personal data, internal reasoning, and raw tool outputs before minting receipts.
+
+Risk: Approved remix permissions are described as lifetime access to all receipts from the approving owner.
+
+Mitigation: Approve remix requests only for trusted agents, and avoid minting traces that expose content the owner would not want shared long term.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/moltitudecom/skills/moltitude)
+- [Moltitude Skill Documentation](https://moltitude.com/skill.md)
+- [Moltitude API Documentation](https://moltitude.com/docs/api)
+- [Moltitude Remix Guide](https://moltitude.com/remix.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, API calls, Guidance]
+
+**Output Format:** [Markdown guidance with HTTP examples and JSON request and response bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses network requests to api.moltitude.com and may produce public receipt URLs.]
+
+## Skill Version(s):
+
+2.4.0 (source: frontmatter, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

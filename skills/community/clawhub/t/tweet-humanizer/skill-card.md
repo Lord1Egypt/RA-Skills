@@ -1,41 +1,54 @@
-## Description: <br>
-QA pass to catch and fix AI-pattern tells in tweets before publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QA pass to catch and fix AI-pattern tells in tweets before publishing.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Social media editors, developers, and agents use this skill to audit existing tweets or short-form posts for AI-pattern tells and rewrite flagged text while preserving the author's voice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Duplicate metadata and inconsistent Ollama/network declarations can confuse install-time permission expectations. <br>
-Mitigation: Confirm whether local Ollama access is required before deployment and retain one clear permission declaration. <br>
-Risk: Automated tweet rewrites can change tone, meaning, or intended emphasis before publication. <br>
-Mitigation: Review the flagged patterns and humanized text before posting or scheduling. <br>
+## Use Case:
 
+External users and social media editors use this skill to audit existing tweets for AI-pattern tells and rewrite flagged posts while preserving the core message, voice, requested hashtags, and 280-character limit.
 
-## Reference(s): <br>
-- [Tweet Humanizer on ClawHub](https://clawhub.ai/nissan/tweet-humanizer) <br>
-- [nissan publisher profile](https://clawhub.ai/user/nissan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with original tweet, detected flags, humanized rewrite, and character count.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Rewrites are constrained to tweet-length short-form posts and should preserve requested hashtags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Metadata is inconsistent about outbound network access and Ollama use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the metadata before installation and scope any Ollama or local model use to manual style checking.
+
+Risk: Tweet rewrites can unintentionally change voice, meaning, or publishing constraints.
+
+Mitigation: Review each humanized tweet before publishing and preserve user-requested hashtags, voice, and the 280-character limit.
+
+## Reference(s):
+
+- [Tweet Humanizer ClawHub skill page](https://clawhub.ai/nissan/skills/tweet-humanizer)
+- [Companion long-form humanizer skill](https://clawhub.com/skills/reddi-humanizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown sections listing the original tweet, detected flags, humanized rewrite, and character count.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Rewrites should remain within 280 characters and preserve explicitly requested hashtags.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

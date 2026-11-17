@@ -1,39 +1,58 @@
-## Description: <br>
-Core browser operations skill for SurfAgent and similar browser agents, covering tab discipline, perception-first execution, human-like driving, proof rules, and token-efficient fallback patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Core browser operations skill for SurfAgent and similar browser agents, covering tab discipline, perception-first execution, human-like driving, proof rules, and token-efficient fallback patterns.
 
-## Publisher: <br>
-[surfagentapp](https://clawhub.ai/user/surfagentapp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[surfagentapp](https://clawhub.ai/user/surfagentapp)
 
-## Use Case: <br>
-Developers and agent operators use this skill to guide real-browser automation with clean tab handling, perception-first action loops, visible proof checks, and concise progress reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser adapters, MCP servers, or platform-specific skills used alongside this skill may expose screenshots, account pages, page state, or posted content outside the user's environment. <br>
-Mitigation: Review the browser integrations used with this skill and confirm where captured page state, screenshots, and submitted content are stored or transmitted before deployment. <br>
+## Use Case:
 
+Developers and browser-agent operators use this skill to guide real-browser sessions with tab hygiene, perception-first action loops, visible verification, fallback handling, and concise progress reporting.
 
-## Reference(s): <br>
-- [SurfAgent homepage](https://surfagent.app) <br>
-- [ClawHub skill page](https://clawhub.ai/surfagentapp/surfagent-browser-operations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown instructions and operating checklist for browser-agent workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable code, install hooks, credential handling, or hidden behavior found in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Agents may operate inside already logged-in browser sessions, including email, social posting, settings, or account identity surfaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review sensitive actions before allowing them and require visible account, page, and post-action state verification before completion.
+
+Risk: State-map notes or progress reports could capture sensitive session details.
+
+Mitigation: Keep notes short and avoid storing credentials, private messages, account identifiers, or other sensitive browser-session data.
+
+Risk: Browser actions may be reported as successful before the UI confirms completion.
+
+Mitigation: Require visible post-action evidence such as confirmation states, rendered messages or posts, persisted settings, or refreshed UI state before claiming success.
+
+## Reference(s):
+
+- [SurfAgent homepage](https://surfagent.app)
+- [ClawHub skill page](https://clawhub.ai/surfagentapp/skills/surfagent-browser-operations)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown guidance and concise evidence-based status language]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No bundled code; directs browser hygiene, verification, fallback behavior, and progress reporting.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

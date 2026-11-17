@@ -1,42 +1,52 @@
-## Description: <br>
-Analyze and generate robots.txt files with AI crawler awareness. Detect which AI bots (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, etc.) are blocked or allowed on any website. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and generate robots.txt files with AI crawler awareness. Detect which AI bots (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, etc.) are blocked or allowed on any website.
 
-## Publisher: <br>
-[sharozdawa](https://clawhub.ai/user/sharozdawa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sharozdawa](https://clawhub.ai/user/sharozdawa)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, site owners, and content teams use this skill to analyze robots.txt AI crawler access, audit crawler coverage, and generate robots.txt rules with clear AI bot controls.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated robots.txt rules can change AI crawler access and search-related behavior after publication.
+
+Mitigation: Review generated directives before publishing, especially default allow rules, AI bot blocks, and sitemap entries.
+
+Risk: Analyzing robots.txt for sites the user does not control can create inappropriate or unauthorized assessment workflows.
+
+Mitigation: Use the skill only for sites the user owns, operates, or has permission to check.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, site owners, and content teams use this skill to analyze robots.txt behavior for AI crawlers, generate crawler-specific rules, and audit existing robots.txt files for gaps or unintended crawler access. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated robots.txt rules can affect search visibility and AI crawler access if deployed without review. <br>
-Mitigation: Review generated robots.txt content before deployment and confirm that each crawler rule matches the site owner's indexing and AI access policy. <br>
-Risk: Analyzing a live site may require the agent to fetch a URL supplied by the user. <br>
-Mitigation: Use the skill only with URLs the user intends the agent to access. <br>
-Risk: Crawler user-agent lists may become outdated as AI crawlers change over time. <br>
-Mitigation: Check crawler documentation periodically before relying on generated rules for production policy decisions. <br>
+**Output Format:** [Markdown with robots.txt code blocks and explanatory prose]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sharozdawa/robotstxt-ai) <br>
+**Other Properties Related to Output:** [May include suggested robots.txt directives, audit findings, crawler allow/block status, and sitemap entries.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with robots.txt code blocks and concise explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include crawler allow/block summaries, suggested robots.txt rules, sitemap directives, and improvement recommendations.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

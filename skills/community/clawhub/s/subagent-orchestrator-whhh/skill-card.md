@@ -1,45 +1,63 @@
-## Description: <br>
-Breaks complex agent tasks into planned subagent workstreams with persistent task files, workspace management, checkpoints, queued messages, progress updates, and final delivery summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates complex agent work by decomposing tasks into plans, spawning subagents, tracking progress in task files, and consolidating outputs, checkpoints, and diffs.
 
-## Publisher: <br>
-[whhh1994](https://clawhub.ai/user/whhh1994) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whhh1994](https://clawhub.ai/user/whhh1994)
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate multi-step work that benefits from subagents, persistent intermediate artifacts, and explicit progress tracking. It is intended for tasks with more than three steps, multiple sources or platforms, or context growth risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad automation powers, including spawning subagents, reading and writing files, running shell commands, scheduling work, and sending progress messages. <br>
-Mitigation: Install only when that orchestration behavior is intended, and review the proposed plan, workspace path, required tools, and command scope before allowing execution. <br>
-Risk: Persistent task workspaces, memory notes, checkpoints, and message queues may retain sensitive task details or intermediate artifacts. <br>
-Mitigation: Confirm where task files and memory entries will be written, avoid sensitive inputs unless necessary, and define cleanup expectations before using the skill for sensitive work. <br>
-Risk: The skill sends progress and completion results back to the initiating channel, which can expose outputs if the destination is misidentified. <br>
-Mitigation: Verify the notification destination and require delivery proof that points to the expected channel or thread. <br>
-Risk: Activation behavior is broad for multi-step, multi-source, or context-heavy tasks. <br>
-Mitigation: Confirm that subagent orchestration is appropriate for the request before proceeding, especially for short tasks that do not need delegation. <br>
+## Use Case:
 
+Developers and agent operators use this skill to split larger, multi-step work into managed subagent tasks with persistent plans, status files, checkpoints, and final delivery summaries. It is intended for complex research, coding, configuration, and data-gathering workflows that benefit from staged execution and recovery points.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/whhh1994/subagent-orchestrator-whhh) <br>
-- [Path Reference](artifact/references/paths.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with task plans, status updates, file paths, shell commands, and structured handoff notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local task workspaces, plan files, status files, data files, checkpoints, message queues, and delivery checklists when used by an agent with the required tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata, released 2026-05-25) <br>
+Risk: Broad orchestration authority can spawn sessions, run commands, and write task artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where this level of agent delegation is intended, and review generated plans before subagents run.
+
+Risk: Persistent task files may store sensitive task details under ~/.openclaw/workspace/tasks.
+
+Mitigation: Avoid using the skill for sensitive work unless local storage is acceptable, and clean task workspaces after review.
+
+Risk: Progress and final summaries may be sent through configured external channels.
+
+Mitigation: Confirm channel routing before use and disable or restrict message behavior where the host environment allows it.
+
+Risk: Cron-related capability may create recurring behavior when enabled with companion cleanup workflows.
+
+Mitigation: Review any scheduled tasks before enabling them and remove schedules that are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whhh1994/skills/subagent-orchestrator-whhh)
+- [whhh1994 ClawHub profile](https://clawhub.ai/user/whhh1994)
+- [Path reference](artifact/references/paths.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown task plans, status updates, file paths, command snippets, and delivery summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create persistent task artifacts and send progress or final-result messages through the originating channel.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; source skill frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

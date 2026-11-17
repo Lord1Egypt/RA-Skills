@@ -1,44 +1,57 @@
-## Description: <br>
-Trade Polymarket SOL, BTC, and ETH prediction markets using live Solana on-chain signals from public Solana RPC and Jupiter data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade Polymarket SOL and crypto prediction markets using live Solana TPS, priority fees, DEX volume, and epoch data as on-chain signals.
 
-## Publisher: <br>
-[chokle](https://clawhub.ai/user/chokle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chokle](https://clawhub.ai/user/chokle)
 
-## Use Case: <br>
-External developers and trading agents use this skill to collect Solana network activity, derive a composite bullish/neutral/bearish signal, and trade matching crypto prediction markets through Simmer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run unattended live trades on a schedule when configured with a Simmer API key. <br>
-Mitigation: Use a least-privilege Simmer key, confirm whether TRADING_VENUE targets simulation or real-money trading, reduce position and trade limits, and disable the cron or automaton unless unattended live trading is intended. <br>
-Risk: The security review reports that live trading risk is not clearly disclosed or gated. <br>
-Mitigation: Review the skill before deployment, run --signals and dry-run modes first, and require an explicit live-trading approval path before enabling --live execution. <br>
+## Use Case:
 
+Developers and trading agents use this skill to collect Solana on-chain activity signals, identify active SOL, BTC, ETH, and crypto prediction markets, and optionally execute Simmer trades based on a composite bullish, neutral, or bearish signal.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chokle/polymarket-solana-onchain) <br>
-- [Simmer docs](https://docs.simmer.markets) <br>
-- [Solana RPC docs](https://docs.solana.com/api/http) <br>
-- [Jupiter stats API](https://stats.jup.ag) <br>
-- [Helius RPC](https://helius.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; strategy runs produce console logs and optional JSON automaton status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY for trading; clawhub.json configures a managed live automaton on a 10-minute cron.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Recurring automated live trading can place real trades on a schedule using SIMMER_API_KEY with under-disclosed risk controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped and revocable SIMMER_API_KEY, set account-side spending limits, verify or disable the cron live-trading automation, and run in dry-run mode before enabling live execution.
+
+Risk: The release security guidance calls out incomplete dependency pinning, live-trade confirmation, fail-closed safeguards, and cumulative loss limits.
+
+Mitigation: Pin dependencies, require explicit confirmation for live trading where practical, prefer fail-closed behavior when signal or context checks fail, and add cumulative loss limits before relying on unattended operation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chokle/skills/polymarket-solana-onchain)
+- [Simmer docs](https://docs.simmer.markets)
+- [Solana RPC docs](https://docs.solana.com/api/http)
+- [Jupiter stats API](https://stats.jup.ag)
+- [Helius RPC](https://helius.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown instructions, Python code, command-line output, and optional JSON automaton reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can run in signal-only, dry-run, or live-trading modes; live mode may execute trades through Simmer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

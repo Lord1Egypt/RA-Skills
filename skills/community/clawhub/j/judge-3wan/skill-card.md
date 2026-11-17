@@ -1,38 +1,50 @@
-## Description: <br>
-根据参谋官审核结果判定内容是否合格，并只输出“合格”或“不合格”。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+三万裁判 makes a final pass/fail judgment from an existing reviewer conclusion and returns only 合格 or 不合格.
 
-## Publisher: <br>
-[xiaozha87](https://clawhub.ai/user/xiaozha87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaozha87](https://clawhub.ai/user/xiaozha87)
 
-## Use Case: <br>
-Reviewers and agent workflows use this skill as a final Chinese-language pass/fail judge after a prior reviewer conclusion is available. It converts a conclusion of “合格” or “不合格” into the exact final label with no additional explanation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally suppresses reasoning and context, so downstream users may not see why a result was accepted or rejected. <br>
-Mitigation: Use it only after a separate review step has produced a clear conclusion, and keep the prior reviewer output available for audit or dispute handling. <br>
+## Use Case:
 
+External users or developers can use this skill as a final decision step after a separate review has already concluded whether content is 合格 or 不合格.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaozha87/judge-3wan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns exactly one of two Chinese labels: 合格 or 不合格, without explanation or additional text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata and SKILL.md frontmatter) <br>
+Risk: The skill does not perform its own detailed review or provide explanations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only after a separate reviewer has produced a clear 合格 or 不合格 conclusion, and preserve review evidence outside the skill output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaozha87/skills/judge-3wan)
+- [Publisher profile](https://clawhub.ai/user/xiaozha87)
+
+## Skill Output:
+
+**Output Type(s):** [Text]
+
+**Output Format:** [Plain text, exactly one of 合格 or 不合格]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No explanatory text or additional content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

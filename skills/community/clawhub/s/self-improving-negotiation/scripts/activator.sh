@@ -16,7 +16,7 @@ After completing this negotiation task, check if extractable knowledge emerged:
 - Term ambiguity or unresolved redline? -> NEGOTIATION_ISSUES.md (agreement_risk)
 - Need tooling/process support? -> FEATURE_REQUESTS.md (FEAT)
 
-If pattern repeats 3+ times, promote to playbook, objection library, concession guardrail, BATNA checklist, or deal review template.
+If a pattern repeats 3+ times, propose promotion to playbook, objection library, concession guardrail, BATNA checklist, or deal review template.; apply only after explicit user approval.
 Safety: reminder-only. Never auto-accept terms, commit pricing, execute approvals, or finalize agreements.
 </negotiation-self-improvement-reminder>
 EOF

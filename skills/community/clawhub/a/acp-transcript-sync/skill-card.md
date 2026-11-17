@@ -1,39 +1,54 @@
-## Description: <br>
-ACP Transcript Sync copies completed ACP child-session transcript content into a main OpenClaw session transcript so downstream collection can capture the full sub-agent work history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ACP Transcript Sync helps agents copy completed ACP child-session transcript content into the main OpenClaw session transcript so platforms such as AIMA can collect the child-agent work record.
 
-## Publisher: <br>
-[steflerjiang](https://clawhub.ai/user/steflerjiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[steflerjiang](https://clawhub.ai/user/steflerjiang)
 
-## Use Case: <br>
-Developers and agent operators use this skill after spawning ACP sub-agents to merge child-session reasoning and replies into the main session transcript. It is intended for workflows where another platform reads the main transcript as the record of work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Child-session transcripts may contain secrets, private data, or sensitive reasoning that becomes visible in the main session log after synchronization. <br>
-Mitigation: Inspect the child transcript before write-back and use the skill only when that content is intended to be copied into systems that read the main transcript. <br>
-Risk: Automatic main-session detection can append transcript content to the wrong session in multi-session environments. <br>
-Mitigation: Prefer passing explicit main_session_id and main_agent values, then verify the main transcript after synchronization. <br>
+## Use Case:
 
+Developers and agent operators use this skill after spawning ACP child agents to merge child-session messages back into the main OpenClaw transcript for downstream collection and review.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and Python script guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes JSONL transcript entries to a local OpenClaw session file when the bundled script is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Child-agent transcripts may contain credentials, private data, sensitive prompts, or untrusted tool output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for sessions intentionally copied into the main OpenClaw transcript, and redact sensitive content before syncing.
+
+Risk: Transcript syncing has weak safeguards around sensitive data and destination paths.
+
+Mitigation: Validate paths, preview the destination transcript, and preserve imported content as untrusted provenance-marked data before deployment.
+
+## Reference(s):
+
+- [Skill documentation](artifact/SKILL.md)
+- [Transcript sync script](artifact/scripts/sync-acp-to-main.py)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides execution of a Python script that appends ACP child-session messages to a main OpenClaw transcript.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

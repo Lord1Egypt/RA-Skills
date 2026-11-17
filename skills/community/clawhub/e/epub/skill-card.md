@@ -1,40 +1,59 @@
-## Description: <br>
-Use this skill whenever the user wants to read, parse, extract content from, modify, or otherwise process an .epub file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents inspect, extract, convert, and modify EPUB files by treating them as ZIP archives and parsing their navigation, package, content, metadata, and image files.
 
-## Publisher: <br>
-[gaojizhou](https://clawhub.ai/user/gaojizhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gaojizhou](https://clawhub.ai/user/gaojizhou)
 
-## Use Case: <br>
-Developers, analysts, and ebook users use this skill to inspect EPUB structure, extract text, metadata, tables of contents, and images, and make simple EPUB modifications. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Untrusted or very large EPUB archives may create extraction or resource-use issues. <br>
-Mitigation: Use a fresh per-book extraction folder and inspect archive contents before processing large or untrusted EPUBs. <br>
-Risk: The artifact includes a package installation command that may affect the active Python environment. <br>
-Mitigation: Review the pip install command and prefer an isolated virtual environment before running it. <br>
-Risk: EPUB modification workflows can overwrite or replace user files if paths are reused. <br>
-Mitigation: Keep original EPUB files unchanged and write modified outputs to explicit new paths. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and agents use this skill to read, inspect, extract, and modify EPUB ebooks, including chapters, tables of contents, metadata, text, images, and EPUB2 or EPUB3 structure.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with bash and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce extracted EPUB folders, text files, cover images, or modified EPUB files when the agent follows the workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill recommends system-level Python package installation with --break-system-packages.
+
+Mitigation: Use a virtual environment or preinstalled packages before running the EPUB parsing workflow.
+
+Risk: The skill recommends extracting user-provided EPUB archives without explicit validation or size limits.
+
+Mitigation: Extract each EPUB into a fresh temporary directory after validating archive paths and applying size limits.
+
+Risk: The skill uses fixed output paths that could overwrite prior work.
+
+Mitigation: Choose unique output filenames or isolated output directories for each EPUB processing run.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gaojizhou/skills/epub)
+- [Open Packaging Format namespace](http://www.idpf.org/2007/opf)
+- [Dublin Core Elements namespace](http://purl.org/dc/elements/1.1/)
+- [Navigation Control file for XML namespace](http://www.daisy.org/z3986/2005/ncx/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce extracted text files, copied images, metadata summaries, or repacked EPUB files when an agent follows the workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

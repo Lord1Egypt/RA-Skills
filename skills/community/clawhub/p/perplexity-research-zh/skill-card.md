@@ -1,44 +1,59 @@
-## Description: <br>
-通过 AISA 调用 Perplexity Sonar 模型生成带引用的深度研究答案。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses AISA to call Perplexity Sonar models and produce cited deep-research answers for synthesis, comparison, and long-form research tasks.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-Developers and research users use this skill to generate citation-backed Chinese research answers through AISA-hosted Perplexity Sonar models when synthesis, comparison, or long-form cited responses are more useful than raw search links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The included client can perform broader remote search and URL extraction than the Perplexity Sonar description suggests. <br>
-Mitigation: Review the client behavior before installation and prefer a narrower Sonar-only skill if that is the intended capability. <br>
-Risk: Research prompts, URLs, and retrieved result data are sent to AISA endpoints. <br>
-Mitigation: Avoid private or internal URLs and sensitive content, and use the skill only when sending this data to AISA is acceptable. <br>
-Risk: The skill requires the sensitive AISA_API_KEY credential. <br>
-Mitigation: Provide the key only in the intended runtime environment and rotate or revoke it if exposure is suspected. <br>
+## Use Case:
 
+Developers and agent users use this skill when they need a researched answer with citations rather than a raw list of links. It is suited to broad research questions, comparative analysis, and cited summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bibaofeng/perplexity-research-zh) <br>
-- [AISA API endpoint](https://api.aisa.one/apis/v1) <br>
-- [AISA](https://aisa.one) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and terminal output with citations or inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and sends prompts, URLs, and retrieved result data to AISA endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The bundled client can perform broader search and extraction workflows than the Perplexity-only description discloses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the available commands before use and restrict use to the workflows that match the intended research task.
+
+Risk: Research queries and supplied URLs may be sent to AISA-backed services.
+
+Mitigation: Do not use the skill with local credentials, private secrets, or sensitive information unless that disclosure is acceptable.
+
+Risk: The skill requires an AISA API key.
+
+Mitigation: Provide the key through the AISA_API_KEY environment variable and manage it according to the deployment environment's secret-handling policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bibaofeng/skills/perplexity-research-zh)
+- [Publisher profile](https://clawhub.ai/user/bibaofeng)
+- [AISA service](https://aisa.one)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or terminal text with cited research answers and command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; research queries and supplied URLs may be sent to AISA-backed services.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

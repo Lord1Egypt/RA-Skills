@@ -1,41 +1,58 @@
-## Description: <br>
-Creates, edits, queries, validates, and exports novel character profiles with relationship networks, emotional arcs, and motivation tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Character Manager helps agents create, edit, query, validate, and export novel character profiles with relationship networks, emotional arcs, and motivation tracking.
 
-## Publisher: <br>
-[yuzhihui886](https://clawhub.ai/user/yuzhihui886) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuzhihui886](https://clawhub.ai/user/yuzhihui886)
 
-## Use Case: <br>
-Novel-writing agents and developers use this skill to create and maintain structured character profiles during story planning, including roles, relationships, motivations, and growth arcs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project and output path options can read, overwrite, export, or delete local novel project files when pointed at the wrong directory or file. <br>
-Mitigation: Use --project and --output only inside the intended novel workspace or a version-controlled folder, and review paths before create, update, export, or delete operations. <br>
-Risk: Dependency ranges may reduce reproducibility for installs that require exact repeatability. <br>
-Mitigation: Review or pin dependency versions in the installation environment when reproducible installs matter. <br>
+## Use Case:
 
+Developers and writing agents use this skill during novel-planning workflows to create structured YAML character profiles, manage character relationships, track character growth, and export profiles for review.
 
-## Reference(s): <br>
-- [Character Design Guide](references/character_design.md) <br>
-- [ClawHub release page](https://clawhub.ai/yuzhihui886/character-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [YAML character files, Markdown exports, and guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads and writes local project files selected by --project and --output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release evidence) <br>
+Risk: The local CLI can recursively read YAML files from any directory supplied with --project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against a dedicated novel workspace and avoid system or sensitive directories.
+
+Risk: The CLI can overwrite or delete files at paths supplied with --output, especially when --force is used.
+
+Mitigation: Review target paths before execution, avoid --force unless the file is confirmed, and keep backups for character files.
+
+Risk: Dependencies are installed from requirements.txt and are not pinned to exact versions.
+
+Mitigation: Prefer a virtual environment and review dependency versions before installation.
+
+## Reference(s):
+
+- [Character Manager on ClawHub](https://clawhub.ai/yuzhihui886/skills/character-manager)
+- [Character Design Guide](references/character_design.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files, Markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands, YAML character profiles, and optional Markdown exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses YAML character files and local filesystem paths supplied by the agent or user.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

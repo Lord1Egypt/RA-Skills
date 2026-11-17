@@ -1,42 +1,55 @@
-## Description: <br>
-Material Generator helps generate Unreal Engine material node graphs from natural language descriptions, including common nodes such as TextureSample, Multiply, Lerp, Constant, TexCoord, and MaterialOutput. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Unreal Engine material node graphs from natural language descriptions, supporting nodes such as TextureSample, Multiply, Lerp, Constant, TexCoord, and MaterialOutput.
 
-## Publisher: <br>
-[tianheihei002](https://clawhub.ai/user/tianheihei002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianheihei002](https://clawhub.ai/user/tianheihei002)
 
-## Use Case: <br>
-Unreal Engine material authors, technical artists, and developers use this skill to turn natural language material concepts into editable UE-style node graphs and example graph JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports that the skill publicly includes what appears to be a reusable MiniMax API key. <br>
-Mitigation: Remove and rotate the exposed key, then require users to provide their own secret through protected configuration. <br>
-Risk: The hosted workflow may send material prompts or project details through a publisher-controlled MiniMax integration. <br>
-Mitigation: Avoid entering sensitive project details unless the publisher and MiniMax data handling path are trusted. <br>
+## Use Case:
 
+Developers and technical artists use this skill to describe Unreal Engine material effects in natural language and obtain a material node graph structure they can inspect, modify, or adapt.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tianheihei002/material-generator) <br>
-- [Hosted Material Generator app](https://k2lucelsen19.space.minimaxi.com) <br>
-- [Example blood post-process material JSON](https://k2lucelsen19.space.minimaxi.com/BP_BloodPostProcess.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with URLs, configuration details, and example JSON references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated material graphs should be reviewed before use in Unreal Engine projects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact includes a plaintext MiniMax API key, which should be treated as compromised.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revoke and rotate the key before reuse, then move provider credentials to environment variables or a secret manager.
+
+Risk: A deployed app that calls an external model provider can expose credentials or create uncontrolled usage if secrets are kept client-side.
+
+Mitigation: Keep provider credentials server-side and add rate limits, monitoring, and user controls before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianheihei002/skills/material-generator)
+- [Deployed Material Generator app](https://k2lucelsen19.space.minimaxi.com)
+- [Example blood post-process material JSON](https://k2lucelsen19.space.minimaxi.com/BP_BloodPostProcess.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance with JSON material graph examples and linked app resources]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Material graphs may include Unreal Engine material nodes, pins, colors, and layout-oriented node metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

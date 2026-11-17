@@ -1,43 +1,58 @@
-## Description: <br>
-Formats Markdown articles into WeChat public-account-compatible inline HTML with theme previews, content-structure enhancements, code highlighting, copy-to-WeChat support, and optional draft publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Markdown articles into WeChat Official Account-compatible inline-styled HTML with theme previews, content-structure enhancements, code highlighting, copy-to-WeChat output, and optional draft publishing.
 
-## Publisher: <br>
-[love254443233](https://clawhub.ai/user/love254443233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[love254443233](https://clawhub.ai/user/love254443233)
 
-## Use Case: <br>
-Content creators, editors, and agent workflows use this skill to convert Markdown drafts into polished WeChat public-account articles, preview and choose among themes, copy the rendered HTML, or optionally publish to a WeChat draft box. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Formatted content may be copied or published before final editorial review. <br>
-Mitigation: Review the generated preview and use dry-run behavior before publishing. <br>
-Risk: WeChat credentials could authorize publishing to the wrong account if configured broadly or incorrectly. <br>
-Mitigation: Keep WeChat credentials limited to the intended account and verify the target before draft upload. <br>
-Risk: Untrusted articles may contain remote or private-network image URLs that are fetched during publishing. <br>
-Mitigation: Avoid publishing untrusted articles with remote or private-network image URLs, and inspect image references before upload. <br>
+## Use Case:
 
+Developers, content operators, and publishing assistants use this skill to format Markdown drafts for WeChat Official Account publishing, compare theme previews, generate WeChat-compatible HTML, and optionally push finished content to a WeChat draft box.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/love254443233/wechat-typeset-pro) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, generated HTML files, browser preview pages, and optional WeChat draft API actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces theme-specific WeChat-compatible inline HTML and local preview/gallery files; optional publishing requires WeChat credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and target metadata) <br>
+Risk: Broad local file discovery can expose more local files than intended when resolving article images.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow vault_root to a specific attachment folder and use only trusted local articles.
+
+Risk: Auto-opened preview files may display unsanitized local article content in a browser.
+
+Mitigation: Review generated previews before use and consider --no-open when processing unfamiliar content.
+
+Risk: Publishing can fetch arbitrary external image URLs and sends article content, images, and WeChat credential-backed requests to WeChat.
+
+Mitigation: Avoid untrusted external image URLs, keep WeChat credentials in environment-managed secrets, and publish only content approved for WeChat.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/love254443233/skills/wechat-typeset-pro)
+- [Publisher profile](https://clawhub.ai/user/love254443233)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces formatted article HTML, browser preview or gallery files, optional enhanced Markdown, and optional WeChat draft publishing actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

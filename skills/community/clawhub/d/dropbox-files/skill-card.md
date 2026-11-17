@@ -1,42 +1,60 @@
-## Description: <br>
-Browse, search, upload, download, and manage files and folders in Dropbox, powered by ClawLink. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse, search, upload, download, and manage files and folders in Dropbox, powered by ClawLink.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to connect a Dropbox account through ClawLink, then browse, search, read, upload, share, and manage Dropbox files and folders from chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dropbox OAuth access can expose sensitive account data and files to connected tools. <br>
-Mitigation: Install only if you trust ClawLink, review Dropbox permissions during OAuth, and connect only the intended account. <br>
-Risk: High-impact Dropbox operations can delete files, revoke shared links, or remove collaborators. <br>
-Mitigation: Review and confirm high-impact actions before execution; inspect target paths, shared links, and collaborator lists before changing them. <br>
+## Use Case:
 
+External users and developers use this skill to connect an OpenClaw agent to Dropbox through ClawLink so the agent can browse, search, read, upload, share, and manage Dropbox files and folders.
 
-## Reference(s): <br>
-- [ClawHub Dropbox Skill Page](https://clawhub.ai/hith3sh/dropbox-files) <br>
-- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=dropbox-files) <br>
-- [ClawLink Dropbox Connection](https://claw-link.dev/dashboard?add=dropbox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, API Calls] <br>
-**Output Format:** [Markdown with inline shell commands and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dropbox operations require a paired ClawLink account and Dropbox OAuth access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill depends on a third-party ClawLink integration that routes Dropbox credentials and actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review ClawLink's publisher, privacy terms, token storage, and revocation controls before installation.
+
+Risk: Dropbox actions can modify access, create public links, upload files, remove collaborators, delete contacts, or permanently delete files and folders.
+
+Mitigation: Require explicit user confirmation before uploads, sharing changes, member removals, contact deletion, public link creation, and delete operations.
+
+Risk: Broad Dropbox access can expose sensitive folders and files.
+
+Mitigation: Use the narrowest Dropbox permissions available and avoid highly sensitive folders unless approved by the organization.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hith3sh/skills/dropbox-files)
+- [Publisher profile](https://clawhub.ai/user/hith3sh)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=dropbox-files)
+- [ClawLink Dropbox connection](https://claw-link.dev/dashboard?add=dropbox)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls, Code]
+
+**Output Format:** [Markdown with inline shell commands and JavaScript API-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill routes Dropbox operations through ClawLink and includes safe, confirmation-required, and high-impact Dropbox actions.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

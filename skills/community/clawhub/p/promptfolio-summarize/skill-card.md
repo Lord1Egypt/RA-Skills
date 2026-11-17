@@ -1,44 +1,60 @@
-## Description: <br>
-Analyzes local AI conversation history across coding agents to find framework sentences, activity patterns, and profile material for a Promptfolio portrait. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze AI conversation history across Claude Code, Cursor, Codex, ChatGPT, Gemini CLI, Trae, OpenCode, Antigravity, Windsurf, OpenClaw and other coding agents to find framework sentences, moments where the user teaches the AI how to think, and build a portrait that reveals who this person is.
 
-## Publisher: <br>
-[billc8128](https://clawhub.ai/user/billc8128) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[billc8128](https://clawhub.ai/user/billc8128)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to analyze local AI coding-agent conversations, extract framework sentences and activity patterns, generate profile JSON, review the portrait, and sync a draft to Promptfolio after confirmation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill inspects private AI chat histories and creates a public-profile draft from behavioral and conversation-derived data.
+
+Mitigation: Review the detected sources, generated portrait, and complete payload before approving sync; remove confidential projects, company names, or unwanted sessions before upload.
+
+Risk: The skill runs an external updater and can send structured results to a configured API host.
+
+Mitigation: Verify the updater, authentication script, API URL, and upload destination before running the workflow, especially when PROMPTFOLIO_API_URL or local config changes are present.
+
+Risk: The workflow stores local profile artifacts and an API token under user-writable locations.
+
+Mitigation: Protect or delete generated _pf_parts files and promptfolio_payload.json after use, and rotate the Promptfolio token if local files may have been exposed.
+
+Risk: Broad session discovery can include conversation history beyond the user's intended sources.
+
+Mitigation: Restrict PF_SOURCES, inspect SESSION_LIST, and exclude unwanted exported files before computing statistics or generating the portrait.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and external Promptfolio users use this skill to analyze recent local AI coding-agent conversations, identify framework sentences and activity patterns, review the generated portrait, and sync structured results after confirmation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects broad private AI conversation histories and local coding-agent telemetry. <br>
-Mitigation: Run it only with informed user consent, limit sources to the intended tools, and avoid unknown-source scanning unless that scope is explicitly desired. <br>
-Risk: Generated profile artifacts can contain direct quotes, project summaries, activity data, and behavioral fingerprints. <br>
-Mitigation: Review _pf_parts files and promptfolio_payload.json before syncing, remove sensitive material, and treat the generated artifacts as private data. <br>
-Risk: Structured profile results may persist beyond the local analysis step once synced. <br>
-Mitigation: Sync only after user review and confirmation, and keep or publish the profile according to the user's privacy preference. <br>
+**Output Format:** [Markdown review text, JSON profile artifacts, and shell command workflows]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Conversation Analysis Guidelines](analysis-prompt.md) <br>
-- [Promptfolio service](https://promptfolio.club) <br>
-- [ClawHub release page](https://clawhub.ai/billc8128/promptfolio-summarize) <br>
+**Other Properties Related to Output:** [Produces local _pf_parts JSON files, a promptfolio_payload.json sync payload, and a reviewed profile draft.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON profile artifacts, shell commands, and a structured sync payload] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local _pf_parts JSON files and promptfolio_payload.json for user review before sync.] <br>
+0.1.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

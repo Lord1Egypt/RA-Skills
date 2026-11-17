@@ -1,0 +1,111 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_listener_update",
+    "description": "Update listener definition, updateFieldList declares the fields to modify.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Listener ID"
+        },
+        "updateFieldList": {
+          "type": "array",
+          "description": "List of fields to update. Available values: name, remark, eventList, isEnable, invokeType, automaticList, scriptId, scriptFunc, tableEventSetting, postEventSetting, automaticEventSetting, scheduleEventSetting, bpmnEventSetting",
+          "items": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "type": "string",
+          "description": "Listener name"
+        },
+        "remark": {
+          "type": "string",
+          "description": "Remark"
+        },
+        "eventList": {
+          "type": "array",
+          "description": "List of events to listen",
+          "items": { "type": "string" }
+        },
+        "isEnable": {
+          "type": "boolean",
+          "description": "Whether to enable"
+        },
+        "invokeType": {
+          "type": "string",
+          "description": "Invocation type: automatic / script"
+        },
+        "automaticList": {
+          "type": "array",
+          "description": "Automation ID list",
+          "items": { "type": "string" }
+        },
+        "scriptId": {
+          "type": "string",
+          "description": "Script ID"
+        },
+        "scriptFunc": {
+          "type": "string",
+          "description": "Script function name"
+        },
+        "tableEventSetting": {
+          "type": "object",
+          "description": "Data table event settings",
+          "properties": {
+            "tableList": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "tableSourceList": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "postEventSetting": {
+          "type": "object",
+          "description": "Post event settings",
+          "properties": {
+            "postEventId": { "type": "string" },
+            "postEventAppDefineId": { "type": "string" }
+          }
+        },
+        "automaticEventSetting": {
+          "type": "object",
+          "properties": {
+            "automaticList": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "scheduleEventSetting": {
+          "type": "object",
+          "properties": {
+            "scheduleList": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "bpmnEventSetting": {
+          "type": "object",
+          "properties": {
+            "workflowList": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        }
+      },
+      "required": [
+        "id",
+        "updateFieldList"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

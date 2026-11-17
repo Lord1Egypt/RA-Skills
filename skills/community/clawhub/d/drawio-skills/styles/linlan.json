@@ -1,0 +1,53 @@
+{
+  "$schema": "../schema.json",
+  "name": "linlan",
+  "version": 1,
+  "default": false,
+  "source": {
+    "type": "hand-authored",
+    "path": "linlan-skills-input/drawio-res (15 个源文件提取 + 人工复核)",
+    "extracted_at": "2026-08-26"
+  },
+  "confidence": "high",
+  "palette": {
+    "primary":   { "fillColor": "#DAE8FC", "strokeColor": "#000000" },
+    "success":   { "fillColor": "#D5E8D4", "strokeColor": "#000000" },
+    "warning":   { "fillColor": "#FFF2CC", "strokeColor": "#000000" },
+    "accent":    { "fillColor": "#FFE6CC", "strokeColor": "#000000" },
+    "danger":    { "fillColor": "#F8CECC", "strokeColor": "#000000" },
+    "neutral":   { "fillColor": "#F5F5F5", "strokeColor": "#000000" },
+    "secondary": { "fillColor": "#E1D5E7", "strokeColor": "#000000" }
+  },
+  "roles": {
+    "service":  "primary",
+    "database": "success",
+    "queue":    "warning",
+    "gateway":  "accent",
+    "error":    "danger",
+    "external": "neutral",
+    "security": "secondary"
+  },
+  "shapes": {
+    "service":   "rounded=0",
+    "database":  "shape=cylinder3",
+    "queue":     "rounded=0",
+    "decision":  "rhombus",
+    "external":  "rounded=0;dashed=1",
+    "container": "swimlane;startSize=30"
+  },
+  "font": {
+    "fontFamily": "Tahoma",
+    "fontSize": 12,
+    "titleFontSize": 14,
+    "titleBold": true
+  },
+  "edges": {
+    "style": "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1",
+    "arrow": "endArrow=classic;endFill=1",
+    "dashedFor": []
+  },
+  "extras": {
+    "sketch": false,
+    "globalStrokeWidth": 1
+  }
+}

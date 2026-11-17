@@ -1,50 +1,65 @@
-## Description: <br>
-Second-opinion consultation plus automatic skill-engineering escalation for reviews, rewrites, hardening, weak-model optimization, packaging, testing, and publish readiness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Second-opinion consultation plus automatic skill-engineering escalation for reviews, rewrites, hardening, weak-model optimization, packaging, testing, and publish readiness.
 
-## Publisher: <br>
-[ciklopentan](https://clawhub.ai/user/ciklopentan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ciklopentan](https://clawhub.ai/user/ciklopentan)
 
-## Use Case: <br>
-Developers and skill authors use this skill to add structured second-opinion review to skill and artifact work, including rewrite, hardening, weak-model optimization, packaging, validation, and publish-readiness checks. It is most useful when an agent needs explicit round structure, consultant visibility rules, patch discipline, and rollback-aware validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read local skill or runtime files and paste artifact text to external model consultants when that mode is allowed. <br>
-Mitigation: Use local-only or findings-only constraints for private code, and require exact pasted context only when disclosure is acceptable. <br>
-Risk: The workflow can apply real patches during review. <br>
-Mitigation: Review proposed changes, run validation before accepting patched state, and rely on the skill's rollback gate when validation fails. <br>
-Risk: Broad second-opinion workflows can introduce incorrect or misleading guidance into a skill if outputs are accepted without review. <br>
-Mitigation: Treat consultant findings as review inputs, keep the main agent responsible for synthesis, and scan the final skill before deployment. <br>
+## Use Case:
 
+Developers and skill authors use Dual Thinking to run structured second-opinion review rounds for agent decisions and skill artifacts, especially reviews, rewrites, hardening, weak-model optimization, packaging, testing, and publish readiness.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ciklopentan/dual-thinking) <br>
-- [Runtime contract](references/runtime-contract.md) <br>
-- [Modes](references/modes.md) <br>
-- [Weak-model guide](references/weak-model-guide.md) <br>
-- [Verification evidence](references/verification-evidence.md) <br>
-- [Reference scenarios](references/reference-scenarios.md) <br>
-- [Reference test log](references/reference-test-log.md) <br>
-- [Governance](GOVERNANCE.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured Markdown round blocks, review guidance, patch proposals, code edits, shell commands, and validation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SELF_POSITION, CONSULTANT_POSITION, SYNTHESIS, validation state, patch state, continuation state, and resume snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-8.5.24 (source: evidence.release.version and CHANGELOG.md) <br>
+Risk: Reviewed artifacts or local context can be exposed to external or persistent consultant sessions during normal use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill on secrets, customer data, private source, or sensitive local runtime instructions unless the content is redacted and the disclosure scope is explicitly approved.
+
+Risk: Packaging or validation helper scripts may have unsafe dependency assumptions for unsandboxed local execution.
+
+Mitigation: Run packaging scripts only in a sandbox or after replacing global dependency assumptions with pinned project-local dependencies.
+
+Risk: Automatic patching or self-modifying review flows can introduce incorrect changes if accepted without oversight.
+
+Mitigation: Require human diff review before any real artifact patch, release claim, or publish-readiness decision is accepted.
+
+## Reference(s):
+
+- [Dual Thinking Governance](GOVERNANCE.md)
+- [Runtime Contract](references/runtime-contract.md)
+- [Modes](references/modes.md)
+- [Round Output Contract](references/round-output-contract.md)
+- [Failure Handling](references/failure-handling.md)
+- [Validator Schema](references/validator-schema.md)
+- [Verification Evidence](references/verification-evidence.md)
+- [Reference Test Log](references/reference-test-log.md)
+- [Tests](tests/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Structured Markdown-style review blocks with optional code, shell commands, patch summaries, validation evidence, and resumable state snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the main agent to own synthesis and final decisions after self and consultant positions.]
+
+## Skill Version(s):
+
+8.5.24 (source: server release evidence, changelog, SKILL.md heading, and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

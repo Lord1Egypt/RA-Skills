@@ -1,6 +1,21 @@
 {
-  "ownerId": "kn7bcaearb90wwcjbr9gpv32s5831k39",
+  "ownerId": "publishers:axelhu",
   "slug": "vikunja-usage",
   "version": "1.0.2",
-  "publishedAt": 1779336261005
+  "publishedAt": "2026-05-21T02:28:00Z",
+  "requiredEnvVars": ["VIKUNJA_TOKEN"],
+  "requiredConfigPaths": [],
+  "primaryCredential": {
+    "fields": ["token"],
+    "description": "Bearer token via $VIKUNJA_TOKEN env or $AGENT_WORKSPACE/config/.vikunja-token file, per-agent"
+  },
+  "persistence": null,
+  "credentialSetup": {
+    "type": "env_or_file",
+    "description": "Login once per agent to get token. Store via $VIKUNJA_TOKEN env or write to $AGENT_WORKSPACE/config/.vikunja-token with chmod 600."
+  },
+  "requires": {
+    "anyBinaries": ["curl"],
+    "os": ["linux", "macos", "windows"]
+  }
 }

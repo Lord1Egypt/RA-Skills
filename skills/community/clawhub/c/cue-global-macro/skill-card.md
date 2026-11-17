@@ -1,45 +1,60 @@
-## Description: <br>
-Runs Cue deep research for global macro scenarios, cross-checking public data and returning conclusions with source links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用 Cue 运行全球宏观深度研究，基于公开官方数据追踪并比较主要经济体的通胀、GDP、就业、贸易、央行利率和汇率表现。
 
-## Publisher: <br>
-[wangxiaoxu](https://clawhub.ai/user/wangxiaoxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxiaoxu](https://clawhub.ai/user/wangxiaoxu)
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to run Cue-powered research on global macro topics such as inflation, central bank policy, GDP, trade, and cross-country comparisons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can clone or update a local Cue runner before executing research. <br>
-Mitigation: Review the clone or update command and confirm the Cue runner source is trusted before running it. <br>
-Risk: The research run consumes Cue credits and uses the local Cue API key. <br>
-Mitigation: Ask for explicit user approval before starting any credit-consuming research run. <br>
-Risk: Macro research may be incomplete or unsuitable as a substitute for due diligence, legal review, or underwriting. <br>
-Mitigation: Preserve source links, report empty results honestly, and treat findings as research support rather than a final professional determination. <br>
+## Use Case:
 
+Analysts, investors, and operators use this skill to run Cue macroeconomic research for cross-country comparison, market monitoring, cross-border allocation, site selection, and macro judgment. It supports sourced research workflows and should not replace due diligence, legal review, underwriting, or investment advice.
 
-## Reference(s): <br>
-- [Cue playbook API](https://cuecue.cn/api/playbook) <br>
-- [Cue skills runner source](https://github.com/sensedeal/cue-skills) <br>
-- [Cue skills runner mirror](https://gitee.com/sensedeal/cue-skills) <br>
-- [ClawHub skill page](https://clawhub.ai/wangxiaoxu/skills/cue-global-macro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown report with source links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user approval before spending Cue credits; reports should preserve source links and avoid fabricated content when the runner returns empty results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can ask an agent to clone or update unpinned external code under ~/.cue and run it locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the cue-skills repository before execution and run it in an environment where local code execution is acceptable.
+
+Risk: The runner can use a Cue API key from ~/.cue/config.json and consume credits.
+
+Mitigation: Use only an intended Cue account, confirm credit use before running research, and avoid shared environments with unintended credentials.
+
+Risk: The generated report is based on public macroeconomic data and may be incomplete or unsuitable for regulated decisions.
+
+Mitigation: Preserve source links and treat the output as research support rather than due diligence, legal, underwriting, or investment advice.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangxiaoxu/skills/cue-global-macro)
+- [Cue Playbook API](https://cuecue.cn/api/playbook)
+- [Cue Skills Runner Source](https://github.com/sensedeal/cue-skills)
+- [Cue API Key Page](https://cuecue.cn/hub/api-key)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with source links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May stream for several minutes; final reports should preserve source links.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

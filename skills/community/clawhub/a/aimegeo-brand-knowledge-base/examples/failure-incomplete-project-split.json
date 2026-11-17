@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "kb": {"id": "project-split-demo", "name": "跨项目事实拆分演示"},
+  "as_of": "2026-10-21",
+  "sources": [
+    {"id": "split-v2", "title": "分项目交付约定（演示）", "path": "materials/project-split-v2.md", "captured_at": "2026-10-20"}
+  ],
+  "records": [
+    {
+      "id": "a-incomplete", "entity_id": "product-a", "category": "product", "key": "delivery_formats",
+      "value": "Markdown+JSON+CSV", "text": "项目 A 交付 Markdown 正文、JSON 索引与 CSV 事实表。",
+      "status": "supported", "project_ids": ["project-a"],
+      "sources": [{"source_id": "split-v2", "locator": "正文第2段，项目 A", "quote": "项目 A 改为交付 Markdown 正文、JSON 索引与 CSV 事实表"}],
+      "supersedes": ["shared-v1"]
+    }
+  ]
+}

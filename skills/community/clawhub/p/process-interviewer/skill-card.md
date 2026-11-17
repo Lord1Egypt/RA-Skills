@@ -1,40 +1,52 @@
-## Description: <br>
-Interview users before automating, documenting, or turning workflows into reusable systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interview users before automating, documenting, or turning workflows into reusable systems.
 
-## Publisher: <br>
-[juanbastias](https://clawhub.ai/user/juanbastias) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[juanbastias](https://clawhub.ai/user/juanbastias)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, operators, and process owners use this skill to clarify workflows before creating automations, SOPs, bots, integrations, reusable skills, or implementation plans.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may disclose sensitive workflow context, including accounts, files, data sources, or credential types during the interview.
+
+Mitigation: Describe required access at a high level and avoid pasting passwords, tokens, or private secrets into the interview.
+
+Risk: A process brief can encode incorrect assumptions if the interview proceeds with vague answers or missing approval gates.
+
+Mitigation: Ask for concrete examples, identify assumptions and unresolved risks, and require explicit approval before external actions or live-system changes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, operators, and teams use this skill to clarify an underspecified workflow before automating it, documenting it, delegating it, or turning it into a reusable skill, tool, bot, SOP, integration, or process. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may disclose real passwords, tokens, or private credentials while describing tools, accounts, data sources, and credential types involved in a workflow. <br>
-Mitigation: Ask for credential types and access requirements only; tell users not to paste secret values. <br>
-Risk: A process brief can imply external actions or live-system changes before the workflow has been approved. <br>
-Mitigation: Keep the skill in discovery mode and require explicit user approval before sending messages, publishing, uploading, deleting, sharing, spending credits, installing tools, linking accounts, or changing schedulers or configuration. <br>
+**Output Format:** [Markdown process brief with focused interview questions and structured sections]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juanbastias/process-interviewer) <br>
+**Other Properties Related to Output:** [May include a skill brief add-on when the target output is a new or revised skill.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational questions followed by a concise Markdown process brief] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interview-first output; no external actions, installs, or live system changes.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

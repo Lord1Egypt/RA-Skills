@@ -1,40 +1,58 @@
-## Description: <br>
-Code Snippet is a local code snippet manager for saving, searching, tagging, listing, and copying reusable code snippets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Code Snippet helps developers save, tag, search, list, retrieve, and optionally copy reusable code snippets from a local command-line store.
 
-## Publisher: <br>
-[SxLiuYu](https://clawhub.ai/user/SxLiuYu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sxliuyu](https://clawhub.ai/user/sxliuyu)
 
-## Use Case: <br>
-Developers and coding agents use this skill to build and query a reusable local library of code snippets by title, language, and tags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Code snippets are stored locally in ~/.code_snippets.json, which can expose sensitive content if secrets or proprietary code are saved there. <br>
-Mitigation: Avoid storing passwords, API keys, credentials, or highly sensitive proprietary code unless local persistence is acceptable. <br>
-Risk: Optional clipboard copying can place snippet contents where other local applications may read them. <br>
-Mitigation: Use clipboard copying only for snippets that are safe to expose through the local clipboard. <br>
+## Use Case:
 
+Developers and engineers use this skill to maintain a personal library of reusable code snippets, including saving snippets with language and tag metadata, searching them, listing them, retrieving them, and copying snippet text when needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SxLiuYu/code-snippet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Files] <br>
-**Output Format:** [Plain text CLI output and JSON-backed local snippet records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; stores snippets in ~/.code_snippets.json and can optionally copy snippets to the clipboard with xclip.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Snippet content is stored in plaintext at ~/.code_snippets.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not store secrets, credentials, or private keys as snippets; restrict the file to the local owner account.
+
+Risk: The copy option writes snippet text to the system clipboard.
+
+Mitigation: Use clipboard copying only for non-sensitive snippets and clear the clipboard after handling sensitive work.
+
+Risk: Delete operations have no confirmation prompt or undo path.
+
+Mitigation: Review snippet IDs before deletion and keep a backup of ~/.code_snippets.json when snippets are important.
+
+## Reference(s):
+
+- [ClawHub skill page: code-snippet](https://clawhub.ai/sxliuyu/skills/code-snippet)
+- [ClawHub publisher profile: sxliuyu](https://clawhub.ai/user/sxliuyu)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and code snippet text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write snippet records to ~/.code_snippets.json and optionally copy snippet text to the system clipboard.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release evidence, and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Commerce content generator. Input a product brief, evidence, audience, and channel; output Xiaohongshu notes, Douyin scripts, ad/email/listing variants, and a claims checklist. Evidence-aware: does not invent unsupported claims and flags missing proof. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates evidence-aware commerce content from product briefs for Xiaohongshu, Douyin, live selling, social posts, marketplace listings, ads, and claim review.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Marketing, commerce, and content teams use this skill to turn product briefs and supporting evidence into platform-specific commerce drafts for Xiaohongshu, Douyin, live selling, social posts, marketplace listings, and ads. It also produces quality notes that identify unsupported claims, risky phrases, missing evidence, and useful next-iteration data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing copy can still be misleading if the input includes unsupported or regulated claims. <br>
-Mitigation: Provide only product facts suitable for marketing use, keep proof points attached to concrete claims, and review outputs before publishing. <br>
-Risk: Regulated categories such as health, finance, legal, children, food, or supplements can require stricter claim review. <br>
-Mitigation: Use the quality checklist and remove or rewrite claims that lack reliable evidence or domain review. <br>
+## Use Case:
 
+External commerce teams, marketers, sellers, and content operators use this skill to turn product facts, evidence, audience, and channel goals into platform-specific commerce drafts and quality notes.
 
-## Reference(s): <br>
-- [Platform Playbook](references/platform-playbook.md) <br>
-- [Quality Checklist](references/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or JSON content packs with platform drafts, brief fields, and quality notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated content is evidence-aware and may include assumptions, missing fields, risky claim flags, and next-iteration suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence, package.json, and clawhub.json) <br>
+Risk: Generated commerce copy can become misleading when product evidence is missing, thin, or unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide real proof points with the product brief and review the generated quality notes, missing-evidence labels, and assumptions before publishing.
+
+Risk: Regulated or sensitive product categories can require stricter claim review than a generic copywriting workflow provides.
+
+Mitigation: Apply human review before publication for health, finance, legal, children, food, supplements, and high-priced products, and remove unsupported medical, financial, legal, scarcity, or superiority claims.
+
+Risk: Platform-specific drafts may still need final channel and brand checks before use.
+
+Mitigation: Review drafts against the included platform playbook, brand voice, current platform rules, and campaign requirements before deployment.
+
+## Reference(s):
+
+- [Platform Playbook](references/platform-playbook.md)
+- [Quality Checklist](references/quality-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/content-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown or structured JSON content packs with brief, platform drafts, quality notes, and next-iteration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can flag missing evidence, risky claim categories, assumptions, and product details that need review before publication.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata, clawhub.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

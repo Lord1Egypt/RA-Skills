@@ -1,39 +1,48 @@
-## Description: <br>
-Installs and connects the WeChat channel plugin for OpenClaw so users can authorize WeChat by scanning a terminal QR code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and connect the WeChat channel plugin for OpenClaw, including plugin installation, QR code login, connection verification, gateway restart guidance, and troubleshooting.
 
-## Publisher: <br>
-[Kylinr](https://clawhub.ai/user/Kylinr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kylinr](https://clawhub.ai/user/kylinr)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to install and connect WeChat as an OpenClaw messaging channel, then verify and troubleshoot the channel login flow.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to run a mutable npm installer and link a personal WeChat account for ongoing OpenClaw channel access.
+
+Mitigation: Review before installing, use a trusted machine, verify the npm package and resolved version, consider pinning a reviewed version instead of @latest, and understand the account-linking implications before scanning the QR code.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to install the WeChat channel plugin, start the QR-code login flow, verify the channel status, and recover common connection issues. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The setup runs an unpinned external installer. <br>
-Mitigation: Run the installer only in a trusted terminal and consider pinning or verifying the npm package version before installation. <br>
-Risk: The setup links a WeChat account as an ongoing messaging channel. <br>
-Mitigation: Use only the intended WeChat account, enable per-channel context isolation when using multiple accounts, and confirm how to disconnect the channel and clear stored session data. <br>
+**Output Format:** [Markdown with inline bash code blocks and troubleshooting table]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Includes commands that install an npm package, update OpenClaw configuration, trigger QR code login, and verify channel status.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup, verification, restart, multi-account, context-isolation, and troubleshooting guidance.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

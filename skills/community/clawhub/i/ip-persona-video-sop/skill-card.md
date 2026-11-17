@@ -1,42 +1,61 @@
-## Description: <br>
-A Chinese-language SOP that guides agents through research, interview planning, scripting, shooting, editing, and publishing workflows for personal IP persona videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides a structured SOP for creating personal-IP video content, covering research, interviews, persona scriptwriting, filming, editing, publishing, and launch checks.
 
-## Publisher: <br>
-[zyh-v](https://clawhub.ai/user/zyh-v) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zyh-v](https://clawhub.ai/user/zyh-v)
 
-## Use Case: <br>
-Marketing operators, founders, consultants, and content teams use this skill to plan and execute personal-brand video production from audience research through launch. It is aimed at structured persona storytelling rather than product-only videos or short-term trend chasing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may involve collecting personal stories, customer materials, screenshots, photos, or videos during research and editing. <br>
-Mitigation: Get written consent before collection or publication, redact sensitive details, and define retention and deletion rules for the material library. <br>
-Risk: Launch guidance includes coordinated comments, likes, bullet-screen activity, and private-traffic routing that could mislead viewers or violate platform rules if undisclosed. <br>
-Mitigation: Avoid undisclosed staged engagement, follow each platform's promotion and community rules, and keep calls to action transparent. <br>
-Risk: Persona videos for sensitive domains can create privacy, accuracy, or compliance exposure when claims are exaggerated or stories are published without final approval. <br>
-Mitigation: Require subject approval before release, avoid unsupported performance claims, and review regulated topics such as medical or financial content before publication. <br>
+## Use Case:
 
+Content strategists, founders, creators, and brand teams use this skill to plan and execute personal-IP video production from research and interviews through scriptwriting, filming, editing, launch, and post-launch checks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zyh-v/ip-persona-video-sop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown SOPs, checklists, prompts, and production guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces non-executable marketing workflow guidance for research, interviews, scripts, filming, editing, publishing, and review checkpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The workflow includes coordinated praise, comments, likes, bullet-chat activity, and repost requests that may create undisclosed promotional engagement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or rewrite coordinated engagement steps, require disclosure for team or employee promotion, and verify platform rules before launch.
+
+Risk: The workflow collects personal posts, customer feedback, screenshots, photos, videos, and story material that may contain sensitive personal or client information.
+
+Mitigation: Obtain consent before collection or publication, redact sensitive details, and require the IP owner to approve the final script and video.
+
+Risk: Persona videos for regulated services such as medical, financial, or legal practices can make inaccurate or non-compliant claims.
+
+Mitigation: Review regulated-topic scripts and captions for claim accuracy, required disclaimers, and applicable professional advertising rules.
+
+Risk: Commercial positioning, product descriptions, or growth expectations may be overstated during persona storytelling.
+
+Mitigation: Verify business model and product claims against source materials, avoid promised follower or revenue outcomes, and keep stories grounded in confirmed experience.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zyh-v/skills/ip-persona-video-sop)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown SOP with checklists, prompt examples, workflow steps, and tool tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces planning artifacts such as competitor analysis notes, industry research prompts, interview outlines, persona labels, scripts, filming preparation checklists, editing guidance, and publishing checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

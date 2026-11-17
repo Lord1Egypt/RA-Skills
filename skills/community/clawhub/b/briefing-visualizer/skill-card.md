@@ -1,43 +1,54 @@
-## Description: <br>
-将结构化文字简报转化为适合手机阅读和社交分发的长图，支持自定义标题、资讯内容、数据摘要、亮点洞察和底部通栏广告图。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+简报转手机长图，将结构化文字简报转化为适合手机阅读的长图，支持自定义资讯内容、标题、出品方和底部通栏广告图。
 
-## Publisher: <br>
-[xieliuzhu888](https://clawhub.ai/user/xieliuzhu888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xieliuzhu888](https://clawhub.ai/user/xieliuzhu888)
 
-## Use Case: <br>
-Content creators, marketers, and business operators use this skill to turn structured industry, market, company, or招商 briefings into mobile-friendly long images for WeChat, Moments, Xiaohongshu, and similar channels. The agent prepares the briefing layout as HTML and can provide the shell command to render the final image with the bundled Python script. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local Python script that launches headless Chrome. <br>
-Mitigation: Install and run it only in an environment where local script execution and Chrome automation are acceptable. <br>
-Risk: Generated HTML may include external links, scripts, or third-party assets supplied through briefing content. <br>
-Mitigation: Review the generated HTML before rendering, especially when the briefing includes untrusted sources or embedded assets. <br>
-Risk: Briefing content and banner images may contain confidential, unauthorized, or rights-restricted material. <br>
-Mitigation: Use trusted content and only include material the user is permitted to process and distribute. <br>
+## Use Case:
 
+Content creators, marketers, and business operators use this skill to turn industry, market, company, or campaign briefings into 390px-wide mobile long images for sharing on WeChat, Moments, Xiaohongshu, and similar channels.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xieliuzhu888/briefing-visualizer) <br>
-- [HTML Template Reference](references/html_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTML/CSS code, shell command examples, and local image file output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a 390px-wide mobile briefing image locally; output file name and optional banner image are user-provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The local renderer opens user-supplied HTML in Chrome with the browser sandbox disabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted or sanitized HTML, consider removing --no-sandbox or running the renderer in a hardened container, and review the generated output before sharing.
+
+Risk: Briefing content and banner assets may include inaccurate, unauthorized, or third-party material.
+
+Mitigation: Verify facts, sources, brand assets, and permissions before publishing generated images publicly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xieliuzhu888/skills/briefing-visualizer)
+- [HTML template reference](references/html_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with HTML/CSS examples, shell command examples, and generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates HTML briefing layouts and long image files; uses a local Chrome/Pillow workflow when the processing script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

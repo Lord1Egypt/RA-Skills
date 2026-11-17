@@ -1,41 +1,58 @@
-## Description: <br>
-Searches Xiaohongshu, Douyin, Bilibili, and YouTube for appearance-focused creators or videos, stores local preferences and cookies, and returns personalized recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sexy-Claw helps an agent search Xiaohongshu, Douyin, Bilibili, and YouTube for appearance-focused creator or video recommendations based on saved user preferences.
 
-## Publisher: <br>
-[deanzh0912](https://clawhub.ai/user/deanzh0912) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deanzh0912](https://clawhub.ai/user/deanzh0912)
 
-## Use Case: <br>
-External users use this skill to search supported social platforms for beauty-oriented creators or videos matching stated preferences and receive ranked recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to save live social-media cookies locally, which can expose account sessions to local code that can read the skill files. <br>
-Mitigation: Use an isolated environment, avoid providing active account cookies unless the exposure is acceptable, and remove or rotate cookies after use. <br>
-Risk: The security scan reports unsafe shell execution paths in search scripts that could run unintended local commands. <br>
-Mitigation: Review and fix shell-based search scripts before normal use, and only run the skill with trusted inputs in a least-privileged environment. <br>
+## Use Case:
 
+External users can use this skill to ask an agent for personalized social-media creator or video recommendations across Xiaohongshu, Douyin, Bilibili, and YouTube. The skill records preferences locally and uses platform search scripts to return ranked results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deanzh0912/sexy-claw) <br>
-- [Publisher profile](https://clawhub.ai/user/deanzh0912) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON search-result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or update local JSON files for user preferences and platform cookies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks users to store raw social-media login cookies, which can expose account sessions if mishandled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use anonymous search or official scoped authentication where possible, and avoid placing real cookies in references/platform_cookies.json unless the package is fully trusted.
+
+Risk: Crafted search text can run local commands through shell-based command construction in the bundled search scripts.
+
+Mitigation: Review and fix shell=True command construction before installation or execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deanzh0912/skills/sexy-claw)
+- [platform_cookies.json](references/platform_cookies.json)
+- [user_preference.json](references/user_preference.json)
+- [Xiaohongshu](https://www.xiaohongshu.com)
+- [Douyin](https://www.douyin.com)
+- [Bilibili](https://www.bilibili.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce platform video links and local preference or cookie configuration updates.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

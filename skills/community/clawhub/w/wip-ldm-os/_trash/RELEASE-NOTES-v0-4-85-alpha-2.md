@@ -1,0 +1,1 @@
+Fix `ldm install <npm-package>` for Claude Code hook packages extracted from npm tarballs. The installer now uses the package-derived tool name when deploying hook runtimes, so packages extracted into a generic `package/` directory refresh `~/.ldm/extensions/<tool>/` instead of writing to `~/.ldm/extensions/package/` and leaving the real runtime stale.

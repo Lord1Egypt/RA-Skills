@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-seedream-5-0-lite
 description: Seedream 5.0 Lite image generation and editing on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `seedream-5.0-lite`, `seedream-5.0-lite-edit`, 2K/3K output, multi-reference editing, and aspect-ratio control.
-metadata: {"openclaw": {"homepage": "https://docs.poyo.ai/api-manual/image-series/seedream-5-0-lite", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
+metadata: {"openclaw": {"homepage":"https://poyo.ai/models/seedream-5-0-lite-api", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
 ---
 
 # PoYo Seedream 5.0 Lite Image Generation and Editing
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/seedream-5-0-lite-api>
+- API docs: <https://docs.poyo.ai/api-manual/image-series/seedream-5-0-lite>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Seedream 5.0 Lite jobs on PoYo. It fits efficient high-resolution generation, image editing, and flexible size control.
 

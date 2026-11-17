@@ -1,43 +1,56 @@
-## Description: <br>
-MeatLoop lets agents email a question, screenshot, or pair of images to a human reviewer and receive a structured verdict with optional public verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A real human reviews an agent's question, screenshot, or pair of images and returns a structured verdict by email for sanity checks, content verification, creative judgment, and A/B image comparison.
 
-## Publisher: <br>
-[meatloopservice](https://clawhub.ai/user/meatloopservice) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meatloopservice](https://clawhub.ai/user/meatloopservice)
 
-## Use Case: <br>
-Developers and external users can use this skill to request human judgment for binary or near-binary checks, screenshots, generated content, documents, and A/B image comparisons. It is best suited for sanity checks and content verification, not specialist legal, medical, or financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests and attachments are sent to an external Gmail inbox for human review. <br>
-Mitigation: Submit only selected non-sensitive questions or images, and do not send credentials, confidential screenshots, regulated data, or legal, medical, or financial material. <br>
-Risk: Human judgments may be subjective, delayed, or outside the service scope. <br>
-Mitigation: Use responses as sanity checks, expect best-effort turnaround with no SLA, and treat DEFER or DECLINE outcomes as signals to seek another review path. <br>
+## Use Case:
 
+Developers and agents use MeatLoop to request human review of binary or near-binary questions, screenshots, generated content, document images, or two-image comparisons when automated interpretation is uncertain. It is intended for practical human-in-the-loop verification, not specialist legal, medical, or financial judgment.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/meatloopservice/meatloop) <br>
-- [MeatLoop Homepage](https://github.com/meatloopservice/MeatLoop) <br>
-- [Public Review Log](https://docs.google.com/spreadsheets/d/e/2PACX-1vTNynmFGYxtUetqMgvGsO4VY6TE_i-ZDdotEFweE_9QsZo4njPpBhrHZ5aYbTC7Ql-8GnwgN2NHnHXi/pub) <br>
-- [Verification CSV](https://docs.google.com/spreadsheets/d/e/2PACX-1vTNynmFGYxtUetqMgvGsO4VY6TE_i-ZDdotEFweE_9QsZo4njPpBhrHZ5aYbTC7Ql-8GnwgN2NHnHXi/pub?gid=1119131304&single=true&output=csv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text email response with structured fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses may include VERDICT, BETTER IMAGE, REASON, CONFIDENCE, VERIFICATION, and REQUEST-ID fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: Selected questions, screenshots, or images are sent to an external human operator by email.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only sanitized, non-confidential material and avoid secrets, credentials, regulated data, private documents, and confidential business information.
+
+Risk: The service provides human judgment and is not suitable for specialist legal, medical, or financial decisions.
+
+Mitigation: Use responses as review signals only and route specialist or high-impact decisions to qualified domain experts.
+
+## Reference(s):
+
+- [MeatLoop homepage](https://github.com/meatloopservice/MeatLoop)
+- [ClawHub skill page](https://clawhub.ai/meatloopservice/skills/meatloop)
+- [Public review log](https://docs.google.com/spreadsheets/d/e/2PACX-1vTNynmFGYxtUetqMgvGsO4VY6TE_i-ZDdotEFweE_9QsZo4njPpBhrHZ5aYbTC7Ql-8GnwgN2NHnHXi/pub)
+- [Verification code CSV log](https://docs.google.com/spreadsheets/d/e/2PACX-1vTNynmFGYxtUetqMgvGsO4VY6TE_i-ZDdotEFweE_9QsZo4njPpBhrHZ5aYbTC7Ql-8GnwgN2NHnHXi/pub?gid=1119131304&single=true&output=csv)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain-text email request guidance and structured plain-text verdict fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Standard responses may include VERDICT, REASON, CONFIDENCE, NOTE, VERIFICATION, and REQUEST-ID; A/B responses include BETTER IMAGE.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,57 @@
-## Description: <br>
-Applies fixes from a prior review-llm-artifacts run, with safe/risky classification. Respects verify-llm-artifacts output when present to skip false positives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applies fixes from a prior review-llm-artifacts run, with safe/risky classification, and respects verify-llm-artifacts output when present to skip false positives.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to apply previously reviewed LLM-artifact fixes while preserving review IDs, stale-review checks, verification overlays, and user approval for risky changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is mostly coherent, but it can automatically run whole-repository autofix tools that may change files beyond the review findings the user approved. <br>
-Mitigation: Install only if you are comfortable with the skill modifying repository files beyond the specific review findings during formatting/autofix. Use --dry-run first, review the git diff carefully afterward, and avoid running it on important work without a clean branch or backup. <br>
+## Use Case:
 
+Developers and maintainers use this skill to apply fixes from review-llm-artifacts results while preserving a locked finding set, honoring optional verification status, and requiring confirmation for risky changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anderskev/fix-llm-artifacts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown status reports, shell commands, and repository file edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify repository files and run formatter or autofix tools after applying approved findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.5 (source: server release metadata) <br>
+Risk: The skill can broadly rewrite repository files while applying fixes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --dry-run first, require a clean working tree or backup stash, lock fixes to parsed review finding IDs, and inspect the final diff before accepting changes.
+
+Risk: The skill may run local project tooling, including unpinned package tools.
+
+Mitigation: Prefer pinned or local-only tooling and run the skill only in repositories where agent-executed local commands are acceptable.
+
+Risk: JavaScript test failures may be hidden by the documented test command behavior.
+
+Mitigation: Require real test failure reporting and treat non-zero test exits as failed verification before broad use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anderskev/skills/fix-llm-artifacts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and code-editing instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May edit repository files after required safety gates, locked finding checks, and approvals for risky fixes.]
+
+## Skill Version(s):
+
+1.1.5 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

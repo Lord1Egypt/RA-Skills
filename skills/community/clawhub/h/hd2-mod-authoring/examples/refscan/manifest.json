@@ -1,0 +1,17 @@
+{
+  "Version": 1,
+  "Guid": "5a3b7c9d-1e2f-4a6b-8c0d-9e1f2a3b4c5d",
+  "Name": "RefScan - Dominator reference census",
+  "Description": "READ-ONLY diagnostic. Dumps the ProjectileSettings table, every ProjectileWeapon projectile reference, every LDLD table header, and the raw enemy-weapon component tables to %LOCALAPPDATA%/Hd2ProjRecon/refscan_*.txt. Writes nothing to game memory. Used to find a projectile record that is provably unreferenced so the Dominator's UNSAFE round can be cloned to 380 m/s safely.",
+  "IconPath": "thumbnail.png",
+  "Options": [
+    {
+      "Name": "RefScan",
+      "Description": "Read-only reference census. Run one mission, then check Hd2ProjRecon for refscan_*.txt.",
+      "Include": [
+        "Addon"
+      ],
+      "Image": "thumbnail.png"
+    }
+  ]
+}

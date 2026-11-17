@@ -1,0 +1,24 @@
+{
+  "name": "@memoria/cli",
+  "version": "0.1.0",
+  "description": "CLI Memoria — init, doctor, import, share, forget, backup. Client du daemon.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "memoria": "./dist/bin.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@memoria/core": "*",
+    "@memoria/daemon": "*",
+    "clipanion": "^3.2.1"
+  }
+}

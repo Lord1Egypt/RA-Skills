@@ -1,44 +1,58 @@
-## Description: <br>
-Create and manage temporary disposable email inboxes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage temporary disposable email inboxes.
 
-## Publisher: <br>
-[johanski](https://clawhub.ai/user/johanski) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[johanski](https://clawhub.ai/user/johanski)
 
-## Use Case: <br>
-Developers, testers, and privacy-conscious users use this skill to create temporary inboxes, poll for incoming messages, retrieve verification content, extend inbox lifetime, and delete disposable inboxes when finished. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Temporary inboxes are unsuitable for password resets, account recovery, regulated data, private correspondence, or accounts requiring long-term control. <br>
-Mitigation: Use the skill only for low-risk temporary signups, testing, and disposable verification flows. <br>
-Risk: The inbox token controls access to messages for the inbox session. <br>
-Mitigation: Treat the token like a temporary password, reuse it only for the intended session, and avoid sharing it in public logs or transcripts. <br>
-Risk: Disposable messages may persist until the inbox expires or is deleted. <br>
-Mitigation: Delete the inbox when finished and confirm messages are no longer needed before cleanup. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/johanski/shitty-email) <br>
-- [Shitty Email service](https://shitty.email) <br>
-- [Create or check inbox API](https://shitty.email/api/inbox) <br>
-- [Retrieve email content API](https://shitty.email/api/email/{email_id}) <br>
+## Use Case:
 
+External users and developers use this skill to create disposable inbound email addresses, check temporary inboxes, retrieve email content, extract verification codes or links, extend inbox lifetime, and delete inboxes after use.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces temporary inbox details, polling instructions, email summaries, extracted verification codes or links, and cleanup guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Temporary inbox tokens grant access to the disposable inbox while they are valid.
+
+Mitigation: Treat inbox tokens like short-lived credentials and avoid sharing them.
+
+Risk: Disposable addresses can be misused on services where temporary email violates rules or bypasses anti-abuse controls.
+
+Mitigation: Use disposable addresses only where authorized and consistent with the target site's terms and anti-abuse expectations.
+
+Risk: The skill depends on an external temporary email service and sends inbox operations to that service.
+
+Mitigation: Install only if use of the shitty.email service is acceptable for the intended workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/johanski/skills/shitty-email)
+- [Shitty Email Service](https://shitty.email)
+- [Shitty Email Inbox API](https://shitty.email/api/inbox)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; uses temporary inbox tokens for subsequent inbox, email retrieval, extension, and deletion operations.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata, created 2026-02-03)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

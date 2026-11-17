@@ -1,40 +1,48 @@
-## Description: <br>
-Creates, optimizes, or audits careers and jobs pages with guidance for page structure, employer branding, open roles, and recruitment SEO. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates careers page structure, employer-brand messaging, open roles guidance, and SEO recommendations for recruitment pages.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, marketers, and recruiting teams use this skill to plan, create, optimize, or audit careers and jobs pages with role listings, culture messaging, benefits, application process details, calls to action, and SEO/schema guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may read .claude/project-context.md or .cursor/project-context.md to tailor careers-page guidance, which could expose private company context to the agent workflow.
+
+Mitigation: Review those project-context files before use and remove sensitive internal details that should not inform generated recruitment content.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Marketing teams, founders, recruiters, and web builders use this skill to create, improve, or audit careers pages that communicate employer brand, open roles, hiring process, and job-search SEO. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated careers-page content may include private company details when local project context is used. <br>
-Mitigation: Review generated content for confidential company information before publishing. <br>
-Risk: Generated hiring process, benefits, role, or SEO/schema guidance may be inaccurate or outdated for a specific employer. <br>
-Mitigation: Validate the final page content with recruiting, HR, legal, and the current source of truth for open roles before publishing. <br>
+**Output Format:** [Markdown with structured outlines, employer-brand copy guidance, SEO metadata, and schema examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/careers-page-generator) <br>
+**Other Properties Related to Output:** [May use local project context files when present to tailor employer-brand messaging.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with page outlines, messaging, SEO metadata, and JobPosting schema recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local project context files to tailor company values, culture, and differentiators when those files are present.] <br>
+1.0.1 (source: server release metadata and skill frontmatter metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and SKILL.md metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

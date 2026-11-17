@@ -4,8 +4,9 @@ description: >
   A skill for safe, coherent Airbnb operations in OpenClaw-style agent
   environments. It standardizes how agents check inbox threads, inspect
   reservations and booking state, review calendar context, draft guest replies,
-  send messages safely, and verify whether a send actually appeared in the live
-  Airbnb thread. It teaches a strict operating model: prefer Airbnb-native
+  send messages safely, verify whether a send actually appeared in the live
+  Airbnb thread, and make operator-approved, per-operation, independently-verified
+  calendar mutations (block/open dates, nightly price). It teaches a strict operating model: prefer Airbnb-native
   endpoints before generic browser automation; treat send acknowledgments as
   attempted, not automatically confirmed; verify outbound messages in the live
   thread UI before declaring success; and never auto-resend from ambiguous or
@@ -13,7 +14,7 @@ description: >
   behavior, and provide a safer foundation for Airbnb messaging, bookings, and
   calendar workflows — useful standalone today and as a companion to a more
   formal Airbnb adapter/tool layer tomorrow.
-version: 0.1.4
+version: 0.2.1
 risk: write-gated
 tags: [airbnb, vacation-rental, messaging, operations, openclaw]
 license: MIT
@@ -54,9 +55,11 @@ turn.
    the thread and SEE the outbound message before marking `confirmed`.
 4. **Never auto-resend an `unconfirmed` send.** Duplicate guest messages are
    worse than a late reply. Escalate to a human instead.
-5. **Writes gate; mutations stop.** Sending a message is approval-gated.
-   Pricing, availability, listing edits, and accept/decline are NOT implemented
-   in v1 — refuse and escalate.
+5. **Writes gate; mutations gate harder.** Sending a message is approval-gated.
+   Calendar mutations (nightly price, block/open dates) are permitted ONLY under
+   the explicit per-operation approval gate below (see "Approved calendar
+   mutations") and are ALWAYS verified after. Listing edits and accept/decline
+   are NOT implemented — refuse and escalate.
 
 If you are ever unsure, STOP and report. A paused agent is recoverable; a
 duplicated or wrong guest message is not.
@@ -137,10 +140,11 @@ Classify every operation before acting. Full table in
 |---|---|---|
 | **READ** | check inbox, read thread, lookup reservation, inspect calendar | None. Proceed. |
 | **WRITE** | send a guest reply | Approval if configured; ALWAYS verify after. |
-| **MUTATE** | change price, block/open dates, edit listing, accept/decline, refund | **NOT in v1.** Refuse + escalate. |
+| **MUTATE-CAL** | change nightly price, block/open calendar dates | Explicit operator approval per operation (see "Approved calendar mutations"). ALWAYS verify after. |
+| **MUTATE-RESTRICTED** | edit listing content, accept/decline bookings, refunds, payouts | **NOT in this version.** Refuse + escalate. |
 
 **Escalate to a human when:** a send reaches `unconfirmed` or `failed`; you're
-asked to perform any MUTATE op; the host browser identity reports unhealthy; two
+asked to perform any MUTATE-RESTRICTED op, or a MUTATE-CAL op without the approval gate satisfied; the host browser identity reports unhealthy; two
 read paths disagree on a material fact (dates, guest count, price); or you would
 need to send the same message twice for any reason.
 
@@ -186,7 +190,24 @@ Only a human, after reading the live thread, may authorize a retry.
 
 ---
 
-## Reservation & calendar (READ-only in v1)
+
+## Approved calendar mutations (v0.2)
+
+Calendar blocks/opens and nightly-price changes are permitted ONLY when ALL of the following hold:
+
+1. **The operator (host) explicitly requested this specific operation** in the current conversation — naming the exact date(s) or field and the desired end state.
+2. **The request carries the word APPROVED** (or the operator replies APPROVE to your restatement of the operation). No approval word, no mutation — ask for it.
+3. **One operation per approval.** Never batch beyond exactly what was named. Never generalize ("block June 16" does not mean "block that week").
+4. **Execute via the preferred tool order** (native endpoint first, then agent-browser / DevTools per the tool-priority reference). For calendar mutations specifically, follow `references/calendar-mutation-procedure.md` step by step — it is the verified procedure; do not improvise.
+5. **Verify after, independently**: re-read the calendar (fresh page state) and report before-state, action taken, after-state. If verification is ambiguous, report `unconfirmed` and STOP — never retry a mutation from ambiguous state.
+6. **Report reversibility**: state the exact inverse operation so the operator can undo with one instruction.
+
+Everything in MUTATE-RESTRICTED stays forbidden regardless of approval wording — escalate to the host instead.
+
+## Reservation & calendar reads
+
+These three verbs are strictly READ (tier READ, no gate). They never change the
+calendar — reporting and flagging only:
 
 - **`booking_summary`** — list reservations sorted by check-in: guest, dates,
   status, `reservation_id`, linked `thread_id`.
@@ -195,10 +216,11 @@ Only a human, after reading the live thread, may authorize a retry.
 - **`inspect_calendar`** — report blocked/open/booked spans; FLAG (don't fix)
   high-risk states (double-booking, anomalous price, risky back-to-back gaps).
 
-Calendar mutation, pricing, accept/decline, and listing edits are reserved for
-v2 and get their own gated workflows mirroring the send machine
-(read → propose → approve → do-once → verify → report). Until then: refuse +
-escalate.
+*Changing* the calendar (block/open dates, nightly price) is a separate,
+approval-gated **MUTATE-CAL** operation — see "Approved calendar mutations (v0.2)"
+above; it runs the read → propose → approve → do-once → verify → report shape and
+never happens as a side effect of a read. **Accept/decline bookings and listing
+edits** remain out of scope: refuse + escalate.
 
 ---
 
@@ -222,9 +244,12 @@ Agents speak only in these verbs; each maps to a canonical procedure. Format is
 **Status:**
 - `report_status` — emit structured status of the last operation.
 
-`send_reply` is the ONLY write, and it internally enforces
+`send_reply` is the only guest-messaging write, and it internally enforces
 read → draft → approve → send-once → verify → report. Agents must not decompose
-it into lower-level steps to skip verification.
+it into lower-level steps to skip verification. Calendar mutation (MUTATE-CAL) is
+not a command verb here — it is the separate, approval-gated procedure in
+`references/calendar-mutation-procedure.md` (see "Approved calendar mutations
+(v0.2)"), which follows the same read → approve → do-once → verify → report shape.
 
 ---
 

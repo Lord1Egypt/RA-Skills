@@ -12,7 +12,7 @@ import os
 import sys
 
 # 添加scripts目录到路径
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+sys.path.insert(0, os.path.dirname(__file__))
 from visit_scoring import VisitScoring
 from data_manager import DataManager
 from reminder_generator import ReminderGenerator

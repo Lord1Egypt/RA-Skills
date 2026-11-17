@@ -1,42 +1,54 @@
-## Description: <br>
-Daily journaling prompts for meaningful reflection, morning intention-setting, and evening review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Reflect provides morning intention-setting and evening review prompts for building a consistent journaling habit.
 
-## Publisher: <br>
-[jiajiaoy](https://clawhub.ai/user/jiajiaoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiajiaoy](https://clawhub.ai/user/jiajiaoy)
 
-## Use Case: <br>
-External users use this skill to receive morning journaling prompts and evening reflection questions, with optional reminders on supported chat channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Daily reminder scheduling can send prompts through supported chat platforms unexpectedly if channel authorization or cron handling is not configured as intended. <br>
-Mitigation: Confirm reminder scheduling, channel authorization, and OpenClaw cron marker handling before enabling reminders. <br>
-Risk: Broad journaling trigger words may activate the skill for generic journaling or writing-prompt requests. <br>
-Mitigation: Narrow trigger words when using strict agent routing or when accidental activation would be disruptive. <br>
+## Use Case:
 
+External users use this skill to generate daily journaling prompts, morning intention-setting questions, and evening reflection check-ins in Chinese or English. It can also manage recurring push schedules for supported channels when users explicitly enable them.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiajiaoy/daily-reflect) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated journaling prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional reminder scheduling for telegram, feishu, slack, and discord channels] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Recurring morning and evening push messages can be created for external channels and cross-session delivery.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user ID, channel, schedule, timezone, and disable or audit process before enabling push.
+
+Risk: Per-user push settings are stored locally with limited top-level disclosure.
+
+Mitigation: Review stored user settings and avoid enabling recurring push for users who only want one-off writing prompts.
+
+## Reference(s):
+
+- [Daily Reflect on ClawHub](https://clawhub.ai/jiajiaoy/skills/daily-reflect)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Bilingual prompt text and markdown guidance, with Node.js shell commands for push scheduling]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recurring push setup can emit scheduler add or remove directives for supported channels.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

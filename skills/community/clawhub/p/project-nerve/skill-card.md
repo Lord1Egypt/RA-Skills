@@ -1,42 +1,59 @@
-## Description: <br>
-项目中枢 — 跨平台项目管理聚合器，统一管理 Trello、GitHub Issues、Linear、Notion、Obsidian 任务，支持自学习引擎和任务关系图谱 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+项目中枢 — 跨平台项目管理聚合器，统一管理 Trello、GitHub Issues、Linear、Notion、Obsidian 任务，支持自学习引擎和任务关系图谱
 
-## Publisher: <br>
-[hanjing5024064](https://clawhub.ai/user/hanjing5024064) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanjing5024064](https://clawhub.ai/user/hanjing5024064)
 
-## Use Case: <br>
-Developers, project leads, and team operators use this skill to connect project-management sources, aggregate and search tasks, create or update work items, generate standup and sprint reports, and inspect task dependencies across supported platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured project-management credentials may allow reading or modifying tasks across connected services. <br>
-Mitigation: Use least-privilege tokens, configure only required services, and confirm the target platform before creating or updating important tasks. <br>
-Risk: Local cache, learning, or graph data may contain sensitive project information. <br>
-Mitigation: Point Obsidian at a task-specific vault or folder when possible and periodically reset local learning/cache data if it may contain sensitive information. <br>
+## Use Case:
 
+Project managers, developers, and teams use this skill to connect project-management sources, synchronize and search tasks, create or update work items, analyze sprints and blockers, and generate standup reports.
 
-## Reference(s): <br>
-- [Project Nerve on ClawHub](https://clawhub.ai/hanjing5024064/project-nerve) <br>
-- [API Guide](references/api-guide.md) <br>
-- [Unified Task Schema](references/unified-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tables, summaries, inline shell commands, JSON command payloads, and Mermaid diagrams when supported] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write local cache, configuration, learning, and task graph files while using configured project-management credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Connected-service credentials may allow the skill to create, update, and comment on tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege tokens and configure only the project-management services needed for the intended workflow.
+
+Risk: Obsidian vault scanning can expose unrelated personal notes or local task data.
+
+Mitigation: Point Obsidian only at a task-specific vault or folder and avoid mixed personal notes.
+
+Risk: Local project-nerve data can contain cached task details and sensitive project information.
+
+Mitigation: Treat the local project-nerve data directory as sensitive and restrict access to it.
+
+## Reference(s):
+
+- [Project Nerve Skill Page](https://clawhub.ai/hanjing5024064/skills/project-nerve)
+- [Platform API Guide](references/api-guide.md)
+- [Unified Task Model](references/unified-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries, JSON command results, Mermaid diagrams, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, update, cache, and analyze project-management tasks when configured with user-provided service credentials.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

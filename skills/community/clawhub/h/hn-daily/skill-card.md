@@ -1,43 +1,58 @@
-## Description: <br>
-Fetches and filters Hacker News top stories for tech news digests, HN updates, and automated Hacker News fetching with keyword filtering and caching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and filter Hacker News top stories. Use when user asks for tech news, HN updates, daily news digest, or wants to set up automated HN fetching. Supports keyword filtering (AI, programming, startups) and caching.
 
-## Publisher: <br>
-[Osgood001](https://clawhub.ai/user/Osgood001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[osgood001](https://clawhub.ai/user/osgood001)
 
-## Use Case: <br>
-Developers, technical readers, and agents use this skill to fetch public Hacker News top stories, filter them by score and technology keywords, and return a concise digest as text or JSON. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to the public Hacker News API. <br>
-Mitigation: Use it only in environments where outbound Hacker News requests are allowed, and configure approved proxy settings when required. <br>
-Risk: The skill writes a local cache under the user's home directory. <br>
-Mitigation: Review local cache policy before use, and use the documented cache bypass option when fresh results are required. <br>
-Risk: The skill may use existing proxy environment variables. <br>
-Mitigation: Check HTTP_PROXY, HTTPS_PROXY, and ALL_PROXY values before execution in sensitive environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Hacker News API Reference](references/hn_api.md) <br>
-- [Official Hacker News API](https://github.com/HackerNews/API) <br>
-- [ClawHub skill page](https://clawhub.ai/Osgood001/hn-daily) <br>
+## Use Case:
 
+External users and developers use this skill to fetch Hacker News top stories, filter for technology-related topics, and produce a daily digest or JSON story list.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [Plain text digest or JSON array] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public Hacker News data, supports CLI options for limit, minimum score, cache bypass, output format, and proxy environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Running the skill contacts the public Hacker News API.
+
+Mitigation: Use it only where outbound access to hacker-news.firebaseio.com is acceptable, and configure HTTP_PROXY or HTTPS_PROXY when network routing must be controlled.
+
+Risk: The script may write a local cache file under ~/.cache/hn-daily.
+
+Mitigation: Review local caching requirements before use and run with --no-cache when fresh output or cache avoidance is needed.
+
+Risk: Default human-readable output may include Chinese text.
+
+Mitigation: Use --format json or adjust the script output strings when downstream consumers require a specific language.
+
+## Reference(s):
+
+- [Hacker News API Reference](references/hn_api.md)
+- [Official Hacker News API](https://github.com/HackerNews/API)
+- [ClawHub Skill Page](https://clawhub.ai/osgood001/skills/hn-daily)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown-like text digest or JSON array]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May cache fetched story data locally for 4 hours under ~/.cache/hn-daily.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

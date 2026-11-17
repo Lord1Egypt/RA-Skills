@@ -1,41 +1,54 @@
-## Description: <br>
-Generate HTML landing pages from templates with SEO optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate HTML landing pages from templates with SEO optimization. Use when creating web pages.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and content teams use Landing to generate simple HTML landing pages from a title and description, request template outlines, inspect SEO metadata, and prepare pages for local review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML content may include unescaped title or description input. <br>
-Mitigation: Review and sanitize generated HTML before publishing or deploying it. <br>
-Risk: The helper creates local data under ~/.local/share/landing and may activate for broad web-page creation requests. <br>
-Mitigation: Install only in environments where a local bash helper and this activation scope are acceptable. <br>
+## Use Case:
 
+Developers and site builders use this skill to generate simple landing-page HTML, template suggestions, launch checklists, metadata extraction, SEO checks, and preview guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/landing) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text with generated HTML snippets and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local data under ~/.local/share/landing and emits generated HTML for review before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated HTML can include unescaped title or description content when input is untrusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted title and description input, review generated HTML before publishing, and add HTML escaping before using third-party or user-submitted content.
+
+Risk: The skill runs a local Bash helper that creates local state in the user's home directory.
+
+Mitigation: Install and execute it only in environments where a small local shell helper and ~/.local/share/landing state are acceptable.
+
+## Reference(s):
+
+- [Landing skill page](https://clawhub.ai/bytesagain-lab/skills/landing)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Plain text, checklist-style markdown, and HTML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local state under ~/.local/share/landing when the helper runs.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

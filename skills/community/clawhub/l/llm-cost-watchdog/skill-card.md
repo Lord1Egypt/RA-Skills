@@ -1,48 +1,61 @@
-## Description: <br>
-Monitors real-time LLM API costs, detects runaway loops, enforces budgets, audits code risk, and reports usage across multiple providers and models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors real-time LLM API costs, detects runaway loops, enforces budgets, audits code risk, and reports usage across multiple providers and models.
 
-## Publisher: <br>
-[nimaansari](https://clawhub.ai/user/nimaansari) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nimaansari](https://clawhub.ai/user/nimaansari)
 
-## Use Case: <br>
-Developers and engineers use this skill to monitor LLM API spend, estimate costs before expensive work, detect unbounded agent loops, and enforce budget ceilings during agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local usage metadata and error logs may reveal model names, token counts, spend, timestamps, and related workflow metadata. <br>
-Mitigation: Use a scoped CW_LOG_DIR with appropriate local access controls, and clear logs with the reset command when retention is not needed. <br>
-Risk: Optional session-log readers and HTTP capture can broaden the monitoring scope beyond a single SDK wrapper. <br>
-Mitigation: Enable these hooks only in processes where broad LLM response metadata capture is acceptable, and prefer SDK-specific wrappers when narrower coverage is sufficient. <br>
-Risk: Token validation and live pricing features may contact provider services. <br>
-Mitigation: Use non-sensitive validation samples, avoid sending secrets, and set offline or static-only modes when network lookups are not appropriate. <br>
+## Use Case:
 
+Developers and agent operators use this skill to estimate, monitor, and report LLM spend; enforce budgets; detect runaway loops; and audit agent code for cost-risk patterns.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nimaansari/llm-cost-watchdog) <br>
-- [Cost Watchdog Skill Definition](artifact/SKILL.md) <br>
-- [Cost Watchdog README](artifact/README.md) <br>
-- [Token Counting & Cost Calculation](artifact/references/calculators.md) <br>
-- [Cost Optimization Strategies](artifact/references/optimization.md) <br>
-- [Dangerous Cost Patterns & Safe Alternatives](artifact/references/patterns.md) <br>
-- [API Pricing Reference](artifact/references/pricing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with inline shell commands and optional JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local JSONL usage, error, and cache files under the configured cost-watchdog log directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can observe LLM traffic and persist local usage or error data that may include sensitive metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit SDK wrappers where possible, set CW_LOG_DIR to a protected location, and periodically clear local cost-watchdog logs.
+
+Risk: Global HTTP capture and tailing can broaden monitoring on shared or sensitive machines.
+
+Mitigation: Avoid enabling global httpx capture, tailing, or detect commands on shared or highly sensitive machines unless they are required.
+
+Risk: Live pricing lookup may contact external pricing sources.
+
+Mitigation: Use CW_OFFLINE or CW_STATIC_ONLY when live pricing lookups are not acceptable.
+
+## Reference(s):
+
+- [Cost Optimization Strategies](references/optimization.md)
+- [Dangerous Cost Patterns](references/patterns.md)
+- [Token Counting and Cost Calculation](references/calculators.md)
+- [Static Pricing Reference](references/pricing.md)
+- [ClawHub skill page](https://clawhub.ai/nimaansari/skills/llm-cost-watchdog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and CLI-oriented text with inline shell commands, code snippets, JSON summaries, and local report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local JSONL usage, error, cache, and report data under the configured cost-watchdog log directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

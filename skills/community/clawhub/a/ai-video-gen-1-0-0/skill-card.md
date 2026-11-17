@@ -1,49 +1,62 @@
-## Description: <br>
-End-to-end AI video generation - create videos from text prompts using image generation, video synthesis, voice-over, and editing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end AI video generation - create videos from text prompts using image generation, video synthesis, voice-over, and editing.
 
-## Publisher: <br>
-[Matttgx](https://clawhub.ai/user/Matttgx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[matttgx](https://clawhub.ai/user/matttgx)
 
-## Use Case: <br>
-Developers and creators use this skill to generate short videos from text prompts, turn image sequences into video, and add voice-over narration using configured AI providers and FFmpeg. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, narration, images, or media may be sent to configured external AI providers. <br>
-Mitigation: Avoid submitting confidential or proprietary content unless the provider terms and project policy permit it. <br>
-Risk: API keys and paid provider usage can expose credentials or create unexpected costs. <br>
-Mitigation: Keep keys in a private .env file, use project-scoped keys, and set provider spending limits. <br>
-Risk: Unpinned dependencies can change behavior or introduce vulnerable packages over time. <br>
-Mitigation: Install in a virtual environment and pin or lock dependency versions before production use. <br>
-Risk: FFmpeg commands can overwrite existing output files. <br>
-Mitigation: Review output paths before running scripts and preserve important media files separately. <br>
+## Use Case:
 
+Developers and creators use this skill to generate short AI videos from text prompts, image sequences, and optional narration through Python CLI scripts.
 
-## Reference(s): <br>
-- [OpenAI API Keys](https://platform.openai.com/api-keys) <br>
-- [OpenAI Platform](https://platform.openai.com) <br>
-- [LumaAI](https://lumalabs.ai) <br>
-- [Runway](https://runwayml.com) <br>
-- [ElevenLabs](https://elevenlabs.io) <br>
-- [Replicate](https://replicate.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated media files such as MP4, PNG, and MP3 when scripts are run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured provider API keys for provider-backed generation and FFmpeg for media processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts, generated media, and narration can be sent to third-party AI providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive prompts and media, and verify which provider will receive each request before running the scripts.
+
+Risk: Provider support is overstated; the Runway option is advertised but does not provide an independent Runway workflow in the artifact.
+
+Mitigation: Avoid the Runway option until it is fixed, and test the selected provider path before using the skill for real work.
+
+Risk: Dependency versions are ranged rather than pinned.
+
+Mitigation: Run the skill in an isolated environment and pin dependencies before production or team use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/matttgx/skills/ai-video-gen-1-0-0)
+- [OpenAI Platform](https://platform.openai.com)
+- [LumaAI](https://lumalabs.ai)
+- [Runway](https://runwayml.com)
+- [ElevenLabs](https://elevenlabs.io)
+- [Replicate](https://replicate.com)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with Python CLI commands and generated media files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create PNG, MP4, and MP3 files; uses configured third-party API keys and FFmpeg.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -20,6 +20,15 @@ This skill is for routing Hailuo 2.3 questions to the right APIDot docs, model p
 
 This release contains `SKILL.md` plus non-executable notes in `references/api.md`. It includes no executable files, install-time automation, review automation helpers, shell automation, bundled API clients, automatic network calls, or stored credentials.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Open the Hailuo 2.3 model page: https://apidot.ai/models/hailuo-2-3
+- Read Hailuo 2.3 API docs: https://apidot.ai/docs/hailuo-2-3
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Use general APIDot examples: https://github.com/APIDotAI/apidot-examples
+
 ## When To Use
 
 Use this skill when the user asks to:

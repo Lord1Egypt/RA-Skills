@@ -1,42 +1,56 @@
-## Description: <br>
-Answer Monobank balance questions by calling the Monobank API directly with a user-supplied per-request API token. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Answer Monobank balance questions by calling the Monobank API directly with a user-supplied per-request API token.
 
-## Publisher: <br>
-[swiftadviser](https://clawhub.ai/user/swiftadviser) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[swiftadviser](https://clawhub.ai/user/swiftadviser)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve Monobank account and jar balances with a per-request token, format balances safely, and answer in Ukrainian by default. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Monobank API token and balance details are sensitive financial data. <br>
-Mitigation: Ask for the token only for the current request, call the Monobank API directly, and do not log, store, summarize, forward, or expose the token. <br>
-Risk: Raw account identifiers or API errors could reveal private banking details. <br>
-Mitigation: Mask account labels, avoid raw identifiers and full IBANs, and summarize API errors without printing sensitive response content. <br>
+## Use Case:
 
+External users and agents use this skill to answer Monobank balance questions by calling Monobank's API with a user-supplied token and returning concise masked balance summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/swiftadviser/monobank) <br>
-- [Monobank client-info endpoint](https://api.monobank.ua/personal/client-info) <br>
-- [Monobank API token page](https://api.monobank.ua/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Guidance] <br>
-**Output Format:** [Concise text response, Ukrainian by default] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-supplied Monobank API token per request; should not store or expose tokens, raw account identifiers, client IDs, webhook URLs, or raw API errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: A Monobank API token can expose private balance data if reused, logged, stored, or shared outside the request that needs it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide the token only for intentional balance retrieval, avoid placing it in visible commands or logs, and do not store it in files, environment variables, summaries, or future context.
+
+Risk: Balance responses may reveal sensitive financial identifiers or account details.
+
+Mitigation: Return only masked account labels and omit raw account IDs, send IDs, full IBANs, client IDs, webhook URLs, raw API errors, and token material.
+
+## Reference(s):
+
+- [Monobank API client-info endpoint](https://api.monobank.ua/personal/client-info)
+- [Monobank API token page](https://api.monobank.ua/)
+- [Skill homepage](https://monobank-mcp.mandate.md)
+- [ClawHub skill page](https://clawhub.ai/swiftadviser/skills/monobank)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Guidance]
+
+**Output Format:** [Concise Markdown or plain text balance summary, Ukrainian by default]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Masks account labels and avoids exposing tokens, raw account IDs, full IBANs, client IDs, send IDs, or webhook URLs.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,65 @@
-## Description: <br>
-Persistent cloud memory plugin for OpenClaw. This document routes setup, troubleshooting, and uninstall flows and defines config boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent cloud memory plugin for OpenClaw. This document routes setup, troubleshooting, and uninstall flows and defines config boundaries.
 
-## Publisher: <br>
-[c4pt0r](https://clawhub.ai/user/c4pt0r) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c4pt0r](https://clawhub.ai/user/c4pt0r)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to install, reconnect, troubleshoot, or uninstall the mem9 cloud memory plugin while keeping credential handling and OpenClaw configuration within documented boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles MEM9_API_KEY, a sensitive credential for cloud-backed memory. <br>
-Mitigation: Treat MEM9_API_KEY as a secret, paste it only in trusted chat environments, and store it in a password manager or secure vault. <br>
-Risk: Using mem9 sends OpenClaw memory activity to the mem9 cloud service. <br>
-Mitigation: Review the dry-run configuration changes before approval and do not use this skill if cloud-backed memory is not intended. <br>
-Risk: Local uninstall removes local mem9 wiring but does not delete remote mem9 data or revoke the API key. <br>
-Mitigation: Use the mem9 dashboard or another reviewed account-management workflow for remote data deletion or key revocation. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install, reconnect, troubleshoot, or remove mem9 as persistent cloud memory across sessions and machines. It guides configuration changes, plugin installation, verification, and cleanup while preserving API-key and local-history boundaries.
 
-## Reference(s): <br>
-- [mem9 OpenClaw memory homepage](https://mem9.ai/openclaw-memory) <br>
-- [ClawHub skill page](https://clawhub.ai/c4pt0r/mem9-ai) <br>
-- [mem9 memory dashboard](https://mem9.ai/your-memory/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup, reconnect, troubleshooting, and uninstall guidance for OpenClaw mem9 configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.48 (source: server release metadata) <br>
+Risk: mem9 acts as persistent cloud memory and may receive conversation-derived content when conversation access is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Get explicit user consent before enabling conversation access, disclose the configured API URL, and do not upload local history or memory files during setup.
+
+Risk: The setup stores and reuses a mem9 API key, which could expose account memory if copied into logs, history, or chat transcripts.
+
+Mitigation: Keep the API key only in the documented plugin config path and user handoff, avoid local memory or history notes, and store the key in a secure vault.
+
+Risk: The documented install command installs an unpinned plugin package.
+
+Mitigation: Use a pinned, reviewed plugin version with integrity verification before deployment where release control matters.
+
+Risk: Incorrect OpenClaw config paths or setup ordering can leave the memory plugin unavailable or the gateway unhealthy.
+
+Mitigation: Restrict edits to the documented OpenClaw keys, install the plugin before switching the memory slot, read back config before restart, and use the troubleshooting flow when verification fails.
+
+## Reference(s):
+
+- [mem9 OpenClaw Memory](https://mem9.ai/openclaw-memory)
+- [mem9 Website](https://mem9.ai/)
+- [mem9 GitHub Project](https://github.com/mem9-ai/mem9)
+- [OpenClaw Plugin README](https://github.com/mem9-ai/mem9/blob/main/openclaw-plugin/README.md)
+- [mem9 Memory Dashboard](https://mem9.ai/your-memory/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown instructions with inline shell commands and configuration paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes setup, troubleshooting, uninstall, and post-setup memory-use workflows for OpenClaw.]
+
+## Skill Version(s):
+
+1.0.48 (source: server release metadata; artifact frontmatter says 1.0.49)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

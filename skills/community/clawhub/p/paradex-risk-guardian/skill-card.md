@@ -1,43 +1,58 @@
-## Description: <br>
-Risk Guardian synthesizes Paradex account, position, market, funding, and liquidity data into margin-health analysis, liquidation-distance estimates, exposure breakdowns, stress tests, and protective recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Risk Guardian analyzes Paradex account, vault, position, market, funding, and orderbook data to produce margin health, liquidation distance, exposure, funding, stress-test, and P&L risk reports.
 
-## Publisher: <br>
-[sv](https://clawhub.ai/user/sv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sv](https://clawhub.ai/user/sv)
 
-## Use Case: <br>
-External Paradex traders, vault operators, and developers use this skill to assess account margin health, liquidation proximity, portfolio concentration, funding costs, liquidity, and stress scenarios before making risk decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paradex MCP access could expose more account permissions than intended. <br>
-Mitigation: Confirm the Paradex MCP connection has only the permissions needed before using the skill. <br>
-Risk: Broad trigger phrases could activate the skill for generic safety questions in a financial-account context. <br>
-Mitigation: Tighten trigger wording or confirm the user is asking about Paradex account risk before relying on the skill output. <br>
-Risk: Liquidation and stress-test outputs are estimates and may differ from live exchange calculations. <br>
-Mitigation: Verify critical numbers in the Paradex UI before acting on risk recommendations. <br>
+## Use Case:
 
+External Paradex users and agents use this skill to check account and vault risk, understand margin utilization and liquidation buffers, evaluate portfolio concentration and funding costs, and receive protective recommendations before acting.
 
-## Reference(s): <br>
-- [Paradex Margin Model & Risk Scoring Reference](references/margin-model.md) <br>
-- [ClawHub release page](https://clawhub.ai/sv/paradex-risk-guardian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis] <br>
-**Output Format:** [Markdown risk reports with tables, status indicators, scenario analysis, and prioritized recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include approximate liquidation estimates, exposure and concentration breakdowns, funding-cost summaries, liquidity checks, stress-test results, and risk warnings when risk is elevated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can read sensitive Paradex account, vault, position, balance, market, funding, and orderbook data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and invoke it only when that data access is acceptable, and use it for explicit Paradex risk questions.
+
+Risk: Liquidation, margin, and stress-test values are approximate and can differ from the Paradex UI or live mark-price behavior.
+
+Mitigation: Verify critical liquidation and margin numbers in the Paradex UI before taking action.
+
+Risk: The security evidence notes that trigger wording is broader than clearly necessary.
+
+Mitigation: Limit use to Paradex account or vault risk analysis, margin health, liquidation, exposure, drawdown, and alert-monitoring requests.
+
+## Reference(s):
+
+- [Paradex Margin Model & Risk Scoring Reference](references/margin-model.md)
+- [ClawHub Skill Page](https://clawhub.ai/sv/skills/paradex-risk-guardian)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown risk reports with metric tables, scenario analysis, and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory risk analysis and should not be treated as financial advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,58 @@
-## Description: <br>
-Generate ai sticker pack generator images from text descriptions via the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate sticker pack images from text descriptions via the Neta AI image generation API.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-External users and developers use this skill to generate sticker-pack style images from text prompts, with optional size and reference-image parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends sticker prompts, optional reference IDs, and a Neta API token to api.talesofai.com. <br>
-Mitigation: Use a limited-purpose token where possible and avoid sensitive prompts or reusable tokens in shared terminals, logs, or shell history. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to generate sticker-style images from text prompts, optionally choosing an image size or reference image ID for style inheritance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/blammectrappora/sticker-pack-skill) <br>
-- [Neta API token setup](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Direct image URL printed as text, with CLI status messages on stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token and sends the prompt, optional reference ID, and token to api.talesofai.com.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Prompts, optional reference image IDs, and the Neta/TalesOfAI API token are sent to an external image service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive prompt content and use a low-privilege or disposable API token for this skill.
+
+Risk: The token is passed on the command line, where it may be exposed through shell history or local process inspection.
+
+Mitigation: Use short-lived tokens where possible, avoid pasting long-lived credentials into shared shells, and rotate any token that may have been exposed.
+
+Risk: Release evidence flags the install and data-flow disclosures as incomplete.
+
+Mitigation: Review the skill source and install from a pinned or otherwise verifiable release before deployment.
+
+## Reference(s):
+
+- [Sticker Pack Skill on ClawHub](https://clawhub.ai/blammectrappora/skills/sticker-pack-skill)
+- [Neta API token setup](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text image URL with progress and error messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a direct generated image URL after polling the external image service.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

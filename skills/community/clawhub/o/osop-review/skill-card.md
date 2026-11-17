@@ -1,41 +1,54 @@
-## Description: <br>
-Review .osop/.osoplog for security risks, permission gaps, and destructive commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review .osop/.osoplog for security risks, permission gaps, and destructive commands.
 
-## Publisher: <br>
-[archie0125](https://clawhub.ai/user/archie0125) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archie0125](https://clawhub.ai/user/archie0125)
 
-## Use Case: <br>
-Developers and operators use this skill to review OSOP workflow or execution-log files before execution, focusing on security risks, permission scope, destructive commands, missing approval gates, cost exposure, and operational safeguards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workflow or log files may contain real credentials or sensitive operational details. <br>
-Mitigation: Use the skill only on files the agent is allowed to read, and redact real credentials first when exact secret values are not needed. <br>
-Risk: The review is advisory and may miss context-specific execution risks. <br>
-Mitigation: Review the generated findings before acting on them and confirm approval gates, permissions, and destructive commands against the actual workflow. <br>
+## Use Case:
 
+Developers and operators use this skill to review OSOP workflow and execution log files before running or trusting them. It highlights security risks, permission gaps, destructive commands, missing safeguards, cost exposure, and a safe-to-run verdict.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/archie0125/osop-review) <br>
-- [OSOP homepage](https://osop.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown risk review table and summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a risk score, verdict, findings, permissions, secrets, cost, approval-gate status, and safety recommendation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and ClawHub release evidence) <br>
+Risk: The target OSOP workflow or log may contain secrets that the skill reads while looking for hardcoded credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on OSOP files you intend to review, and avoid pointing it at unrelated private files.
+
+Risk: Risk findings and safe-to-run verdicts are advisory and may miss context outside the reviewed file.
+
+Mitigation: Review the findings before execution and confirm approval gates, permissions, timeouts, and destructive commands against the intended environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archie0125/skills/osop-review)
+- [OSOP homepage](https://osop.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown risk review with a score, severity table, summary, and verdict]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes permissions, secrets, estimated cost, approval-gate status, and execution-log observations when available.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-E-commerce Data Analyzer analyzes uploaded CSV sales data to generate sales trend charts, product rankings, channel revenue breakdowns, margin analysis, inventory alerts, and PDF reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+E-commerce Data Analyzer helps sellers upload CSV sales data, generate sales trends, product rankings, channel revenue shares, profit analysis, inventory warnings, and downloadable PDF reports.
 
-## Publisher: <br>
-[baolige2023](https://clawhub.ai/user/baolige2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baolige2023](https://clawhub.ai/user/baolige2023)
 
-## Use Case: <br>
-External ecommerce sellers use this skill to upload CSV sales data, review sales, channel, product, margin, and inventory performance, and generate Chinese-language business reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release ships exposed SkillPay credentials. <br>
-Mitigation: Treat the key as compromised, rotate it before use, and provide payment credentials through a private runtime secret instead of bundled files. <br>
-Risk: The skill includes a payment-enabled Flask web app that may charge users during upload. <br>
-Mitigation: Confirm all SkillPay charges before uploading business data and test payment behavior in a controlled environment. <br>
-Risk: Uploaded CSVs and generated reports may contain business-sensitive sales data. <br>
-Mitigation: Avoid exposing the Flask server to a network and delete uploaded CSVs and generated reports after use. <br>
-Risk: The bundled Flask secret is not suitable for deployment. <br>
-Mitigation: Replace the Flask secret before running outside a local review environment. <br>
+## Use Case:
 
+External ecommerce sellers and operators use this skill to inspect sales CSVs, understand sales and channel performance, estimate inventory risk, and create business reports. Developers may also use it as a local Flask-based analytics utility after reviewing its payment and deployment configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baolige2023/ecommerce-data-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/baolige2023) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Files, Charts, PDF reports] <br>
-**Output Format:** [HTML analysis views, chart image files, and downloadable PDF reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CSV input with order date, product name, sales quantity, sales amount, sales channel, and inventory quantity fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.7.0 (source: ClawHub release evidence) <br>
+Risk: The release includes an embedded SkillPay key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the key from the skill, rotate it before use, and load payment credentials from a private environment or secret store.
+
+Risk: The Flask app is configured with a placeholder secret, debug mode, and a public host binding.
+
+Mitigation: Replace the Flask secret, disable debug mode, and bind the service to localhost or another controlled interface before running it.
+
+Risk: Uploaded CSVs and generated reports may contain business data and are stored locally by the app.
+
+Mitigation: Add authorization checks plus clear retention and deletion controls for uploads, charts, and PDF reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baolige2023/skills/ecommerce-data-analyzer)
+- [SkillPay billing API endpoint](https://skillpay.me/api/v1/billing)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Files]
+
+**Output Format:** [Web UI analysis with generated charts and downloadable PDF reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Consumes CSV sales data with required ecommerce columns and uses manually entered costs for profit calculations.]
+
+## Skill Version(s):
+
+2.7.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

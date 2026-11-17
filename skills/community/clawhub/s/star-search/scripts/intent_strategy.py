@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""实战 75 意图→搜索策略 (2026-06-17)
+"""v20.75 意图→搜索策略 (2026-06-17)
 - entity 类型 → 搜索语法 (强制精确匹配 + site: 限制)
-- 解决犀牛截图问题: '北京暮辰恒信咨询有限公司' 拆成'查找'问题
+- 解决<owner>截图问题: '北京暮辰恒信咨询有限公司' 拆成'查找'问题
 - 思路: 识别 entity 是公司/产品/人/学术, 选对应权威源 site:
 """
 import re
@@ -96,16 +96,14 @@ SHOPPING_SITES = [
 
 
 def detect_entity_type(entity: str, category: str = '', intent: str = '', query: str = '') -> str:
-    """实战 75+78: 识别 entity 类型
+    """v20.75+78: 识别 entity 类型
     返回: 'company' / 'person' / 'product' / 'academic' / 'news' / 'video' / 'shopping' / 'general'
 
-    实战 78 新增:
-    - 看 query 不只 entity (模式识别)
-    - 看 brain_info.intent (intent 优先)
-    - 极长 query → general
-    - 自述/复合句 → general
-    - 评测/价格 → shopping
-    - 泛化词(流程/师/指数) → general
+    v20.100: 优先级
+    1) 公司名后缀 (有限公司/有限责任公司/集团/股份) → company
+    2) query 模式硬编码 (高优先级: "X 是什么" 直接判定)
+    3) intent 优先 (LLM 已推 intent)
+    4) KB hint
     """
     if not entity:
         return 'general'
@@ -114,16 +112,78 @@ def detect_entity_type(entity: str, category: str = '', intent: str = '', query:
     q = (query or '').strip()
     q_lower = q.lower()
 
-    # 实战 91: 极短 query (1-2 字) - KB hit 走 general (避免 "AI" 推 company)
+    # v20.100: 公司名后缀 (entity 直接是公司名)
+    if re.search(r'(有限责任公司|股份有限公司|有限公司|集团|控股|事务所)', e):
+        return 'company'
+
+    # v20.100: 长 query (15+ 字) + 学术关键词 → academic (兜底)
+    if len(q) >= 15 and re.search(r'(怎么|如何|学习|入门|成为|教程|指南|备考|申请|训练|开发|工程师|公开课|选课|选股|选专业|选大学|复习|练题|做法)', q):
+        return 'academic'
+    # v20.91: 极短 query (1-2 字) - KB hit 走 general (避免 "AI" 推 company)
     # 仅对纯中文生效 (跳过含英文/数字 entity)
     if 1 <= len(e) <= 2 and re.search(r'[\u4e00-\u9fff]', e) and not re.search(r'[a-zA-Z0-9]', e):
+        # v20.100: navigation/transaction/news intent 例外 (短 entity 名仍走对应类型)
+        if intent not in ('navigation', 'transaction', 'news'):
+            return 'general'
+    # v20.100: KB 单字/双字 entity + 通用概念白名单 → general (避免推 company)
+    e_lower_safe = (e or '').lower().strip()
+    general_whitelist = {'ai', 'ml', 'dl', 'llm', 'gpt', 'rag', '5g', '6g', '4g', 'iot', 'ar', 'vr',
+                         'python', 'rust', 'java', 'sql', 'react', 'vue', 'angular', 'go',
+                         '区块链', '大数据', '云计算', '物联网', '量子计算', '元宇宙',
+                         'web3', 'nft', 'defi', 'dao'}
+    if e_lower_safe in general_whitelist:
+        # v20.100: news/transaction/navigation intent 例外 (短 entity 仍按 intent 走)
+        if intent in ('news', 'transaction', 'navigation'):
+            pass  # 不在这里 return general, 让后面 intent 优先规则处理
+        else:
+            # v20.100: 概念查询 "什么是 LLM" → academic (覆盖默认 general)
+            if re.search(r'(是什么|什么是|简介|介绍|原理|概念|定义|入门|教程|学习)', q):
+                return 'academic'
+            # v20.100: 长 query + 学术关键词 → academic (兜底)
+            if len(q) >= 15 and re.search(r'(怎么|如何|学习|入门|成为|教程|指南|备考|申请|训练|开发|工程师|公开课|选课|选股|选专业|选大学|复习|练题|做法)', q):
+                return 'academic'
+            return 'general'
+    # v20.100: BUILTIN_KB_EXTRA2 中 type=person 的 entity (中文 2-3 字) → person (兜底)
+    try:
+        import intent_strategy as _is_safe
+        for k, v in getattr(_is_safe, 'BUILTIN_KB_EXTRA2', {}).items():
+            if (k == e or k.lower() == e_lower_safe) and v.get('type') == 'person':
+                # query 在哪/哪里/联系 → person
+                if re.search(r'(在哪|哪里|联系方式|电话|邮箱|地址|籍贯|老家|背景|经历)', q):
+                    return 'person'
+    except Exception:
+        pass
+
+    # v20.78.6: 自述/复合句 (含"我是/我想/推荐") → general
+    # 但 query 含价格/股价/商品 → shopping/company 优先 (v20.100)
+    if re.search(r'(我是|我想|推荐)', q):
+        # v20.100: "我想知道 X 创始人" / "我想 X 价格" → company/shopping
+        if re.search(r'(创始人|法人|CEO|总裁|地址|联系方式|电话|邮箱|注册|股东|股价|股票|市值)', q):
+            return 'company'
+        if re.search(r'(价格|多少钱|价位|报价|优惠|折扣|购买|评测|体验)', q):
+            return 'shopping'
+        return 'general'
+    # v20.100: 自述 query + 价格/股价/购买 → shopping
+    if re.search(r'(告诉我|给我|搜索|查询|百度一下)', q):
+        # 工商/股价 query 优先 company
+        if re.search(r'(股价|股票|创始人|法人|CEO|总裁|注册|股东|地址|联系方式|网址|官网)', q):
+            return 'company'
+        # 价格/购物 → shopping
+        if re.search(r'(价格|多少钱|价位|报价|优惠|折扣|购买|下单|比价|评测|体验)', q):
+            return 'shopping'
+        # 教程 → academic
+        if re.search(r'(教程|入门|学习|教学|指南|方法|技巧)', q):
+            return 'academic'
+        # 工商信息 query (单 entity 名 + 怎么样/咋样) → company
+        if re.search(r'(怎么样|咋样|好不好|好吗|怎嘛样)', q) and 2 <= len(e) <= 12 and re.search(r'[\u4e00-\u9fff]{2,}', e):
+            return 'company'
+        # v20.100: "给我搜 X 官网" / "百度一下 X 网址" → company (默认官网)
+        if re.search(r'(官网|网址|官方)', q) and 2 <= len(e) <= 12:
+            return 'company'
+        # 默认 general
         return 'general'
 
-    # 实战 78.6: 自述/复合句 (含"我是/我想/请问/推荐") → general
-    if re.search(r'(我是|我想|请问|推荐|告诉我|给我|搜索|查询|百度一下)', q):
-        return 'general'
-
-    # 实战 78.2: query 模式硬编码 (高优先级: "X 是什么" 直接判定)
+    # v20.78.2: query 模式硬编码 (高优先级: "X 是什么" 直接判定)
     # "X 是什么" / "什么是 X" / "X 简介" / "X 介绍"
     if re.search(r'(是什么|什么是|简介|介绍|是哪个|哪个国家)', q):
         # 学术类优先 (LLM/AI/ML/算法/理论)
@@ -131,7 +191,7 @@ def detect_entity_type(entity: str, category: str = '', intent: str = '', query:
                         '机器学习', '深度学习', '神经网络', '强化学习', '数据挖掘', '自然语言处理', '图像识别', '计算机视觉'}
         if e.lower() in academic_set or e in academic_set or re.search(r'(模型|算法|框架|理论|概念|原理|技术|架构)', e):
             return 'academic'
-        # 实战 88: 中文 entity 4+ 字 + 不在 KB → 学术 (默认)
+        # v20.88: 中文 entity 4+ 字 + 不在 KB → 学术 (默认)
         if re.search(r'[\u4e00-\u9fff]{4,}', e) and e not in BUILTIN_KB_HINT:
             return 'academic'
         if re.search(r'(公司|企业|集团)', e) or e in BUILTIN_KB_HINT:
@@ -140,30 +200,59 @@ def detect_entity_type(entity: str, category: str = '', intent: str = '', query:
             return 'product'
         return 'general'
 
-    # 实战 86: 学术/教程/方法 类 query → academic
+    # v20.86: 学术/教程/方法 类 query → academic
     # 触发条件: 含"教程/怎么/如何/入门/学习/教学/指南/方法/技巧/备考/申请/步骤/流程"
     if re.search(r'(教程|入门|学习|教学|指南|方法|技巧|备考|申请|步骤|复习|练题|做法|做法|怎么用|怎么学|怎么选|怎么治|怎么写|怎么做|怎么配|怎么调|怎么用|如何用|如何学|如何选|如何治|如何写|如何做|如何配|如何调|搜索.*教程)', q):
         return 'academic'
 
-    # 实战 89: 视频/电影/动漫类 query → video
+    # v20.100: news query (新闻/进展/动态/最新) → news (BRAIN 推 info 时兜底)
+    # 仅当 entity 是中文 3+ 字 (避免 "AI" "5G" 短 entity 误推 news)
+    if re.search(r'(新闻|进展|动态|最新消息|资讯|头条)', q):
+        if 3 <= len(e) <= 20 and re.search(r'[\u4e00-\u9fff]', e):
+            return 'news'
+
+    # v20.100: 学术概念 entity (在 general_whitelist) + "什么是/简介/原理" → academic
+    e_lower_isp = (e or '').lower().strip()
+    if e_lower_isp in general_whitelist:
+        if re.search(r'(是什么|什么是|简介|介绍|原理|概念|定义|入门|教程|学习)', q):
+            return 'academic'
+
+    # v20.100: 购物/价格/评测 类 query → shopping (在任何 intent 之前)
+    # 但"X 股价/股票/创始人/法人/CEO" → company (金融/工商查询)
+    if re.search(r'(价格|多少钱|价位|报价|优惠|折扣|购买|下单|比价|评测|体验|买|入手|购入)', q):
+        if not re.search(r'(股价|股票|创始人|法人|CEO|总裁|注册|股东|地址|联系方式|网址|官网|怎么样|咋样)', q):
+            return 'shopping'
+
+    # v20.89: 视频/电影/动漫类 query → video
     if re.search(r'(视频|动漫|电视剧|综艺|电影|连续剧|剧集|番剧|动画|连载|追剧|网剧|短剧|解说|影评|影院|首映|上映|票房)', q):
         return 'video'
     if re.search(r'(直播|演唱会|晚会|演出|赛事|比赛|解说回放|录像)', q):
         return 'video'
 
-    # 实战 78.1: intent 优先 (LLM 已推 intent)
+    # v20.78.1: intent 优先 (LLM 已推 intent)
     if intent == 'news':
         return 'news'
     if intent == 'transaction':
+        # v20.100: 金融/股价关键词 → company (中文/英文 entity)
+        if re.search(r'(股价|股票|股票价|股票价格|市值|stock price|share price)', q):
+            return 'company'
         return 'shopping'
     if intent == 'navigation':
-        # 导航找官网: 4-8 字 entity (公司名) 走 company
-        # 否则 (短 entity 2-3 字) 走 product
-        if len(e) >= 3 and re.search(r'[\u4e00-\u9fff]{2,}', e):
+        # v20.100: 导航找官网 - 中文 3+ 字 entity (公司名) → company
+        if len(e) >= 3 and re.search(r'[\u4e00-\u9fff]', e):
             return 'company'
+        # 中文 2 字 entity (产品名/品牌) → product (小红书/华为 等)
+        if re.search(r'[\u4e00-\u9fff]', e):
+            return 'product'
+        # 英文 entity (产品名) → product
         return 'product'
     if intent == 'info':
-        # 实战 88: info 模式 - 优先走 KB hint (公司/产品 entity)
+        # v20.100: query 模式优先 (在 KB hint 之前判断)
+        # 2) query 含强学术关键词 + entity 是技术概念 → academic
+        if re.search(r'(原理|区别|差异|教程|入门|学习|教学|指南|方法|技巧|备考|申请|步骤|流程|算法|模型|架构|框架|协议|标准)', q) and \
+           not re.search(r'(法人|创始人|总裁|CEO|股价|股票|多少钱|价格|联系方式|电话|地址)', q):
+            return 'academic'
+        # v20.88: info 模式 - 优先走 KB hint (公司/产品 entity)
         # 先看 entity (剥后缀"公司/集团/股份/有限公司") 在 BUILTIN_KB_HINT
         e_clean = re.sub(r'(公司|集团|股份|有限公司|有限|大学|医院|学校)$', '', e).strip() if e else e
         if e_clean and e_clean in BUILTIN_KB_HINT:
@@ -171,15 +260,17 @@ def detect_entity_type(entity: str, category: str = '', intent: str = '', query:
         # 英文 entity 命中 KB
         if e_clean and e_clean.lower() in {x.lower() for x in BUILTIN_KB_HINT}:
             return 'company'
-        # 实战 89: info + 强学术关键词 → academic (放在 KB 之前, 避免 entity 在 KB 被截)
-        if re.search(r'(原理|区别|差异|教程|入门|学习|教学|指南|方法|技巧|备考|申请|步骤|流程|算法|模型|架构|框架|协议|标准)', q) and \
-           not re.search(r'(公司|集团|创始人|总裁|CEO|股价|商城|多少钱|价格|上市|融资|收购|投资)', q):
-            return 'academic'
+        # v20.100: 工商/查询类 query (法人/创始人/CEO/股价/价格/联系方式) → company
+        if re.search(r'(法人|创始人|CEO|总裁|董事长|股东|注册资本|地址|联系方式|电话|邮箱|公司信息|公司概况)', q):
+            return 'company'
+        # v20.100: 价格/股价 → company (金融 query)
+        if re.search(r'(股价|股价多少|股票价|股价多少|股票|股价多少|股价|股票价格|股价|市值)', q) and re.search(r'[\u4e00-\u9fff]{2,}', e_clean or ''):
+            return 'company'
         # 1) 人物识别 (后缀关键词 → person)
         if re.search(r'(简历|生平|简介|采访|言论|故事|经历|背景|家庭|婚姻)', q) or \
            re.search(r'(先生|女士|教授|博士|医生|律师|老师|经理|董事长|总裁|创始人|CEO|CTO)', e_clean or ''):
             return 'person'
-        # 实战 91: entity 在 BUILTIN_KB_EXTRA2 type=person → person
+        # v20.91: entity 在 BUILTIN_KB_EXTRA2 type=person → person
         try:
             import intent_strategy as _is
             for k, v in getattr(_is, 'BUILTIN_KB_EXTRA2', {}).items():
@@ -188,7 +279,7 @@ def detect_entity_type(entity: str, category: str = '', intent: str = '', query:
                         return 'person'
         except Exception:
             pass
-        # 实战 91: "X 在哪 / X 联系方式 / X 创始人" → person
+        # v20.91: "X 在哪 / X 联系方式 / X 创始人" → person
         if e_clean and re.search(r'(在哪|哪里|联系方式|电话|邮箱|地址|创始人|领导|CEO|总裁)', q):
             if 2 <= len(e_clean) <= 5 and re.search(r'[\u4e00-\u9fff]', e_clean):
                 return 'person'
@@ -203,6 +294,37 @@ def detect_entity_type(entity: str, category: str = '', intent: str = '', query:
                     return 'academic'
                 if card.get('type') == 'product':
                     return 'product'
+                # v20.100: KB 公司类 entity 但 query 是介绍/是什么/定义 → academic
+                if re.search(r'(是什么|什么是|简介|介绍|原理|概念|定义)', q):
+                    return 'academic'
+                return 'company'
+        # v20.100: 中文 4+ 字 entity 不在 KB + query "X 是什么/介绍" → product (默认)
+        if 4 <= len(e) <= 8 and re.search(r'[\u4e00-\u9fff]{4,}', e):
+            if re.search(r'(是什么|什么是|简介|介绍|评测|体验|怎么样|咋样|好吗|好不好)', q):
+                return 'product'
+            if re.search(r'(教程|怎么|如何|学习)', q):
+                return 'academic'
+        # v20.100: 中文 4+ 字 entity + 工商/股价 query → company
+        if 4 <= len(e) <= 12 and re.search(r'[\u4e00-\u9fff]{4,}', e):
+            if re.search(r'(创始人|法人|CEO|总裁|股价|股票|注册|股东|市值|融资|上市|收购|投资)', q):
+                return 'company'
+        # v20.100: 中文 3+ 字 entity + 价格/股价/购买/购物词 → shopping/company (v20.100)
+        if 3 <= len(e) <= 12 and re.search(r'[\u4e00-\u9fff]{3,}', e):
+            if re.search(r'(多少钱|价格|股价|股票|购买|买|入手|优惠|折扣)', q):
+                # 金融 query (股价/股票) → company
+                if re.search(r'(股价|股票)', q):
+                    return 'company'
+                return 'shopping'
+        # v20.100: 极长 query (30+ 字) + 学术关键词 → academic (兜底)
+        if len(q) >= 30 and re.search(r'(怎么|如何|学习|入门|成为|教程|指南|备考|申请|训练|开发|工程师)', q):
+            return 'academic'
+        # v20.100: 教程/学习方法类 query (中文 3+ 字 entity) → academic
+        if 2 <= len(e) <= 12 and re.search(r'[\u4e00-\u9fff]{2,}', e):
+            if re.search(r'(怎么|如何|学习|入门|成为|教程|指南|备考|申请|训练|开发|工程师)', q):
+                return 'academic'
+        # v20.100: query 含"怎么样/咋样/好不好/怎嘛样" + 中文 2+ 字 entity → company (默认询问公司信息)
+        if re.search(r'(怎么样|咋样|好不好|好吗|怎嘛样|咋)', q) and not re.search(r'(怎么办|咋做|咋选|咋学)', q):
+            if 2 <= len(e) <= 12 and re.search(r'[\u4e00-\u9fff]{2,}', e):
                 return 'company'
         # 3) 中文 2-8 字 + 不是"怎么/如何" 模式 → product/company
         if 2 <= len(e) <= 8 and re.search(r'[\u4e00-\u9fff]{2,}', e):
@@ -210,46 +332,71 @@ def detect_entity_type(entity: str, category: str = '', intent: str = '', query:
                 return 'product'
             if category == 'finance':
                 return 'company'
-        # 实战 78.4: 极短 query (1-2 字) 且 KB 没命中 → general
+        # v20.78.4: 极短 query (1-2 字) 且 KB 没命中 → general
         if len(e) <= 2 and not re.search(r'[a-zA-Z]', e):
             return 'general'
-        return 'general'
+        return 'general'  # info 分支 fallback
+
     if intent == 'comparison':
-        # 对比: 第一个 entity 是什么就什么
-        # entity 可能是 "X, Y" 格式, 取第一个
+        # v20.100: 对比类第一条 entity 中文 2-4 字 → 优先 company (除非 query 含"哪个好/哪家强")
         first_e = e.split(',')[0].strip() if ',' in e else e
         if first_e and re.search(r'(有限公司|集团|公司|股份)', first_e):
             return 'company'
-        # 实战 89: 第一 entity 在 KB hint → company
+        # v20.89: 第一 entity 在 KB hint → company
         if first_e in BUILTIN_KB_HINT or (first_e and first_e.lower() in {x.lower() for x in BUILTIN_KB_HINT}):
+            # v20.100: KB 命中但 query 是对比学术概念 → academic
+            if re.search(r'(区别|差异|原理|概念|对比|vs|VS)', q) and first_e.lower() in {'rag', 'python', 'rust', 'java', 'sql', 'react', 'vue', 'gpt', 'llm', 'ml', 'ai', 'transformer'}:
+                return 'academic'
             return 'company'
-        # 中文 2-4 字 entity (产品名 / 品牌) → product
+        # 中文 2-4 字 entity + 不是"哪个好/哪家强" → company (改: 之前 product 错)
         if first_e and re.search(r'[\u4e00-\u9fff]{2,4}', first_e) and not re.search(r'哪个好|哪家|哪家强|哪个强', e):
-            return 'product'
-        return 'general'  # 默认 general (对比类)
-            import entity_card as _ec
-            card = _ec.get_entity_card(first_e)
-    if intent == 'comparison':
-        # 对比: 第一个 entity 是什么就什么
-        # entity 可能是 "X, Y" 格式, 取第一个
-        first_e = e.split(',')[0].strip() if ',' in e else e
-        if first_e and re.search(r'(有限公司|集团|公司|股份)', first_e):
+            # v20.100: KB 命中 product 类 → product (腾讯/阿里 都不是 KB 产品)
+            # 否则默认 company (覆盖之前 product 误判)
             return 'company'
-        # 实战 89: 第一 entity 在 KB hint → company
-        if first_e in BUILTIN_KB_HINT or (first_e and first_e.lower() in {x.lower() for x in BUILTIN_KB_HINT}):
-            return 'company'
-        # 中文 2-4 字 entity (产品名 / 品牌) → product
-        if first_e and re.search(r'[\u4e00-\u9fff]{2,4}', first_e) and not re.search(r'哪个好|哪家|哪家强|哪个强', e):
-            return 'product'
+        # v20.100: 对比类第一条 entity 英文 + 学术概念关键词 → academic
+        if first_e:
+            e_lower_comp = first_e.lower().strip()
+            academic_kw_comp = {'rag', 'gpt', 'transformer', 'fine-tuning', 'fine_tuning',
+                                'python', 'rust', 'java', 'go', 'c++', 'sql', 'nosql',
+                                'react', 'vue', 'angular', 'llm', 'ml', 'ai', 'dl',
+                                'cnn', 'rnn', 'lstm', 'bert', 'pytorch', 'tensorflow',
+                                'mysql', 'mongodb', 'redis', 'kafka', 'spark', 'hadoop',
+                                'gemini', 'claude', 'chatgpt', 'copilot', 'cursor',
+                                'midjourney', 'stable diffusion', 'diffusion'}
+            if e_lower_comp in academic_kw_comp:
+                return 'academic'
+            # 英文含学术关键词 → academic
+            if re.search(r'(model|algorithm|framework|theory|library)', e_lower_comp):
+                return 'academic'
         return 'general'  # 默认 general (对比类)
 
-    # 实战 78.2: query 模式硬编码
+    # v20.78.2: query 模式硬编码
     # "X 官网" / "X 网址" → company/product
     if re.search(r'(官网|网址|官网是什么|官方)', q) and re.search(r'(官网|网址|官方)', e):
         # 去掉 "官网" 看看 entity
         clean_e = re.sub(r'(官网|网址|官方)$', '', e).strip()
         if clean_e:
             return detect_entity_type(clean_e, category, intent, '')
+    # v20.100: "X 是什么 / 介绍" + KB 未命中 + 中文 4+ 字 → product (默认)
+    if re.search(r'(是什么|什么是|简介|介绍)', q):
+        if 4 <= len(e) <= 12 and re.search(r'[\u4e00-\u9fff]{4,}', e):
+            # 学术类优先
+            if re.search(r'(原理|概念|定义|模型|算法|框架|理论|协议|标准)', e):
+                return 'academic'
+            # 否则 product (默认)
+            return 'product'
+        # v20.100: "X vs Y" 对比学术概念 → academic
+        if intent == 'comparison' and re.search(r'(原理|概念|区别|差异|模型|算法|框架|理论)', q):
+            return 'academic'
+        # v20.100: 对比类 KB 命中 → academic (覆盖默认 company)
+        if intent == 'comparison':
+            e_lower_c = (e or '').lower()
+            if e_lower_c in {x.lower() for x in BUILTIN_KB_HINT}:
+                return 'academic'
+            # 学术概念关键词命中 → academic
+            academic_kw_c = {'rag', 'gpt', 'transformer', 'fine-tuning', 'fine_tuning', 'python', 'rust', 'java', 'go', 'c++', 'sql', 'nosql', 'react', 'vue', 'angular', 'llm', 'ml', 'ai', 'dl', 'cnn', 'rnn'}
+            if e_lower_c in academic_kw_c:
+                return 'academic'
     # "X 是什么" / "什么是 X" / "X 简介" / "X 介绍" → company/product/academic
     if re.search(r'(是什么|什么是|简介|介绍|是哪个|哪个国家)', q):
         if re.search(r'(公司|企业|集团)', e) or e in BUILTIN_KB_HINT:
@@ -280,7 +427,7 @@ def detect_entity_type(entity: str, category: str = '', intent: str = '', query:
     if re.search(r'(多少钱|价格|价位|报价|优惠|折扣|购买|下单|比价)', q):
         return 'shopping'
 
-    # === 实战 75 原规则 (按优先级) ===
+    # === v20.75 原规则 (按优先级) ===
 
     # 1) 公司识别
     if re.search(r'(有限公司|有限责任公司|股份有限公司|集团|股份|科技公司|科技集团|贸易|实业|控股|投资|管理|咨询|事务所)', e):
@@ -288,13 +435,13 @@ def detect_entity_type(entity: str, category: str = '', intent: str = '', query:
     if category == 'finance' and not re.search(r'[a-zA-Z]', e):
         return 'company' if len(e) <= 8 else 'general'
 
-    # 2) 人物识别 (实战 78.3 收紧: 2-4 字中文 + 后缀才 person)
+    # 2) 人物识别 (v20.78.3 收紧: 2-4 字中文 + 后缀才 person)
     if re.search(r'(简历|生平|简介|采访|言论|故事|经历|背景|感情|婚姻|家庭|孩子|父亲|母亲)', e) or \
        re.search(r'(简历|生平|采访|言论|故事|经历|背景|家庭|婚姻)', q):
         return 'person'
     if re.search(r'(先生|女士|教授|博士|医生|律师|老师|经理|董事长|总裁|创始人|CEO|CTO)', e):
         return 'person'
-    # 实战 78.3: 必须含后缀才 person (2-4 字 + 简历/生平/故事 等)
+    # v20.78.3: 必须含后缀才 person (2-4 字 + 简历/生平/故事 等)
     if category in ('tech', 'social', 'general') and 2 <= len(e) <= 4 and \
        not re.search(r'[a-zA-Z]{2,}|\d', e) and \
        re.search(r'(简历|生平|采访|言论|故事|经历|背景|家庭|婚姻|感情|在哪|哪里)', q):
@@ -326,7 +473,7 @@ def detect_entity_type(entity: str, category: str = '', intent: str = '', query:
     if re.search(r'(价格|多少钱|优惠|折扣|购买|怎么买|哪里买|比价|推荐)', e):
         return 'shopping'
 
-    # 8) 泛化词 → general (实战 78.11)
+    # 8) 泛化词 → general (v20.78.11)
     if re.search(r'(流程|师|指数|查询|服务|方法|方式|途径|渠道|路径|建议|方案)', e):
         return 'general'
     if re.search(r'(流程|师|指数|查询|服务|方法|方式|途径|渠道|路径|建议|方案)', q):
@@ -335,7 +482,7 @@ def detect_entity_type(entity: str, category: str = '', intent: str = '', query:
     return 'general'
 
 
-# 实战 85: 同步 BUILTIN_KB_HINT (加 EXTRA2 90 个公司/产品/概念)
+# v20.85: 同步 BUILTIN_KB_HINT (加 EXTRA2 90 个公司/产品/概念)
 # 动态合并 EXTRA + EXTRA2
 def _build_kb_hint():
     base = {
@@ -367,7 +514,7 @@ def _build_kb_hint():
         '量子计算', 'quantum', 'GPU', 'TPU', 'CPU', 'NPU', '云计算', '大数据', '深度学习', '物联网',
         '咖啡', '茶', '苹果', '香蕉', '故宫', '长城', '上海迪士尼', '环球影城',
     }
-    # 实战 85: 动态加 EXTRA2 的人/品牌
+    # v20.85: 动态加 EXTRA2 的人/品牌
     try:
         import intent_strategy as _is
         for key in getattr(_is, 'BUILTIN_KB_EXTRA2', {}).keys():
@@ -382,7 +529,7 @@ def _build_kb_hint():
 BUILTIN_KB_HINT = _build_kb_hint()
 
 
-# 实战 85: 100+ 新 entity 加入 KB (常见公司/产品/技术/人物/电影/游戏/食物/地点/汽车/医药)
+# v20.85: 100+ 新 entity 加入 KB (常见公司/产品/技术/人物/电影/游戏/食物/地点/汽车/医药)
 BUILTIN_KB_EXTRA2 = {
     # === 人物 (15) ===
     '乔布斯': {
@@ -1211,7 +1358,7 @@ BUILTIN_KB_EXTRA2 = {
 
 
 def build_search_query(entity: str, entity_type: str = '', original_query: str = '') -> Tuple[str, List[str]]:
-    """实战 75: 根据 entity 类型构建精确搜索 query
+    """v20.75: 根据 entity 类型构建精确搜索 query
     返回: (rewrite_query, sites_used)
     """
     if not entity:
@@ -1249,7 +1396,7 @@ def build_search_query(entity: str, entity_type: str = '', original_query: str =
 
 
 def strategy_for_query(query: str, brain_info: Dict = None) -> Dict:
-    """实战 75+78: 主入口 - 根据 query + brain_info 给搜索策略
+    """v20.75+78: 主入口 - 根据 query + brain_info 给搜索策略
     返回: {
         'entity': str,
         'entity_type': 'company' / 'person' / ...,
@@ -1285,7 +1432,7 @@ def strategy_for_query(query: str, brain_info: Dict = None) -> Dict:
     }
 
 
-# 实战 78.13-78.17: query 改写 + 错别字纠正
+# v20.78.13-78.17: query 改写 + 错别字纠正
 QUERY_REWRITES = {
     # 拼音 → 中文
     'huwei': '华为', 'mate70': 'mate 70', 'jiage': '价格', 'zhendong': '震动',
@@ -1302,7 +1449,7 @@ QUERY_REWRITES = {
 
 
 def rewrite_query(query: str) -> str:
-    """实战 78.13-78.14: 拼音 + 错别字 + 方言纠正
+    """v20.78.13-78.14: 拼音 + 错别字 + 方言纠正
     """
     q = query
     for old, new in QUERY_REWRITES.items():

@@ -14,18 +14,18 @@ Evidence coverage: 12 signals across 3 source families.
 
 ## Evidence
 
-- github-issues: [🐝 Hive Advisory Report](https://github.com/kubestellar/console/issues/17528)
-- github-issues: [[Split de #3925] EP2-H5b – Modelo optimista de Sherlock (envío + verificación en background + corrección por canal)](https://github.com/intrale/platform/issues/4105)
-- hacker-news-search: [What are you looking for when reviewing LLM generated code?](https://news.ycombinator.com/item?id=48538778)
+- github-issues: [[P1][Organization] 组织成员签发普通成员邀请，并按邀请范围撤销及接受](https://github.com/alexj11324/Mikka/issues/2076)
+- github-issues: [sim/selftest.sh PVT smoke fails on PDK-equipped hosts: grid spread checks read n/a](https://github.com/2AMLogic/gf180-temp-por/issues/555)
+- hacker-news-ask-hn: [Ask HN: Who's really winning with AI-Coding?](https://news.ycombinator.com/item?id=50525329)
+- hacker-news-search: [Question: How to control unit tests in Agentic Pipelines](https://news.ycombinator.com/item?id=50437119)
+- github-issues: [Writing to a well-known folder (Pictures, Screenshots, Downloads) without a picker per file](https://github.com/expo/exact/issues/507)
+- hacker-news-ask-hn: [Ask HN: Tips for maintainability of large software projects using agents?](https://news.ycombinator.com/item?id=50508896)
 - segmentfault-search: [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
 - segmentfault-search: [javascript](https://segmentfault.com/t/javascript)
 - segmentfault-search: [typescript](https://segmentfault.com/t/typescript)
 - segmentfault-search: [ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
 - segmentfault-search: [Writing Great Unit Tests: Best and Worst Practices](https://segmentfault.com/a/1190000009709754)
 - segmentfault-search: [Android自动化测试一 UiAutomator官方介绍](https://segmentfault.com/a/1190000045114982)
-- segmentfault-search: [CSCI 2134](https://segmentfault.com/a/1190000041402955)
-- github-issues: [🐝 Hive Advisory Report](https://github.com/projectbluefin/common/issues/639)
-- hacker-news-search: [Egyptian Fractions (2006)](https://news.ycombinator.com/item?id=48608621)
 
 ## How This Skill Meets The Requirement
 

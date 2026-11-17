@@ -1,42 +1,59 @@
-## Description: <br>
-Skillnote is a self-hosted skill registry for OpenClaw that stores team-authored procedures, syncs them to disk before each task, and collects which-helped or which-failed signals so the registry improves over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skillnote helps OpenClaw agents use a self-hosted skill registry by syncing team-authored procedures before tasks and collecting signals about which skills helped or failed.
 
-## Publisher: <br>
-[latentloop07](https://clawhub.ai/user/latentloop07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[latentloop07](https://clawhub.ai/user/latentloop07)
 
-## Use Case: <br>
-Developers and teams using OpenClaw use Skillnote to connect an agent to a self-hosted skill registry, sync local skill instructions, and collect skill-use signals for improving the registry. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A configured Skillnote backend can update local agent instructions and manage synced skills over time. <br>
-Mitigation: Install only when the configured backend is trusted, and disable or remove self-update behavior when stable reviewed instructions are required. <br>
-Risk: The watcher sends skill-use metadata such as skill slug, session id, and agent name to the configured backend. <br>
-Mitigation: Review the configured host and data policy before enabling the skill, especially for shared or sensitive agent environments. <br>
-Risk: The optional curl-to-bash setup path depends on the backend and transport being trustworthy. <br>
-Mitigation: Prefer reviewed ClawHub installation or manual inspection, and avoid curl-to-bash setup unless the backend and connection are trusted. <br>
+## Use Case:
 
+Developers and teams operating OpenClaw use Skillnote to keep local agent skills synchronized from a self-hosted registry and to capture lightweight skill-usage feedback. It is intended for environments where users trust the configured SkillNote backend and want reusable procedures to improve over time.
 
-## Reference(s): <br>
-- [ClawHub Skillnote listing](https://clawhub.ai/latentloop07/skillnote) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured Skillnote host and local curl and python3 binaries on macOS or Linux.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.4 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: A configured SkillNote backend can influence future agent instructions through synchronized skills and updates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the backend is trusted, prefer HTTPS, and manually review synced skills and updates before use.
+
+Risk: The background watcher can send skill-usage telemetry with session identifiers.
+
+Mitigation: Disable or remove the watcher when telemetry is not wanted, and deploy only where this telemetry is acceptable.
+
+Risk: Installer and update paths can introduce remote content into the local skill environment.
+
+Mitigation: Avoid curl-to-shell installation and use reviewed ClawHub releases or another audited installation path.
+
+## Reference(s):
+
+- [ClawHub Skill Release](https://clawhub.ai/latentloop07/skills/skillnote)
+- [Publisher Profile](https://clawhub.ai/user/latentloop07)
+- [Security Behavior Reference](SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing setup, synchronization, and usage-logging guidance for OpenClaw.]
+
+## Skill Version(s):
+
+0.5.4 (source: frontmatter, VERSION, and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

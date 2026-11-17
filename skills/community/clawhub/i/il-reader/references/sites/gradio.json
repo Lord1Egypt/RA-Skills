@@ -1,0 +1,1119 @@
+{
+  "version": "2.4.0",
+  "source_id": "gradio",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:03:22.945Z",
+  "entry": {
+    "url": "https://www.gradio.app/",
+    "final_url": "https://gradio.app/",
+    "title": "Gradio",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:03:22.945Z",
+    "identity": {
+      "declared_name": "Gradio 官方文档",
+      "hostname": "gradio.app",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "Anastasios Nikolas Angelopoulos\n@ml_angelopoulos\n\nWe love @Gradio.\n\nIt helped us scale to our first million users. Amazing and undervalued that Gradio can do th",
+        "href": "https://twitter.com/ml_angelopoulos/status/1925288220360909286",
+        "target": ""
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Community",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Community",
+        "exact": true
+      },
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Search\nCTRL+K",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Search\nCTRL+K",
+        "exact": true
+      },
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Toggle dark mode",
+      "label": "",
+      "aria_label": "Toggle dark mode",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Toggle dark mode",
+        "exact": true
+      },
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Click Me",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Click Me",
+        "exact": true
+      },
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "input",
+      "type": "range",
+      "text": "50",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "input",
+      "type": "checkbox",
+      "text": "Accept terms",
+      "label": "Accept terms",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "label": "Accept terms"
+      },
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Click Me",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Click Me",
+        "exact": true
+      },
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "input",
+      "type": "range",
+      "text": "50",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "input",
+      "type": "checkbox",
+      "text": "Accept terms",
+      "label": "Accept terms",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "label": "Accept terms"
+      },
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "input",
+      "type": "radio",
+      "text": "Option 1",
+      "label": "Option 1",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "radio-demo",
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "label": "Option 1"
+      },
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "input",
+      "type": "radio",
+      "text": "Option 2",
+      "label": "Option 2",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "radio-demo",
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "label": "Option 2"
+      },
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "input",
+      "type": "number",
+      "text": "42",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "div",
+      "type": null,
+      "text": "⋮⋮\nItem 1",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "div",
+      "type": null,
+      "text": "⋮⋮\nItem 2",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "div",
+      "type": null,
+      "text": "⋮⋮\nItem 3",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "▶",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "▶",
+        "exact": true
+      },
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Face",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Face",
+        "exact": true
+      },
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Ear",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Ear",
+        "exact": true
+      },
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "2025-01-15",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "input",
+      "type": "radio",
+      "text": "Option 1",
+      "label": "Option 1",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "radio-demo",
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "label": "Option 1"
+      },
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "input",
+      "type": "radio",
+      "text": "Option 2",
+      "label": "Option 2",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "radio-demo",
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "label": "Option 2"
+      },
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "input",
+      "type": "number",
+      "text": "42",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "div",
+      "type": null,
+      "text": "⋮⋮\nItem 1",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "div",
+      "type": null,
+      "text": "⋮⋮\nItem 2",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "div",
+      "type": null,
+      "text": "⋮⋮\nItem 3",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "▶",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "▶",
+        "exact": true
+      },
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Face",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Face",
+        "exact": true
+      },
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Ear",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Ear",
+        "exact": true
+      },
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "2025-01-15",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://gradio.app/",
+      "observed_at": "2026-10-09T09:03:21.709Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "gradio:record-lookup",
+      "source_id": "gradio",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://gradio.app/",
+      "controls": [
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Community",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Community",
+            "exact": true
+          },
+          "observed_url": "https://gradio.app/",
+          "observed_at": "2026-10-09T09:03:21.709Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Search\nCTRL+K",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Search\nCTRL+K",
+            "exact": true
+          },
+          "observed_url": "https://gradio.app/",
+          "observed_at": "2026-10-09T09:03:21.709Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Toggle dark mode",
+          "label": "",
+          "aria_label": "Toggle dark mode",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Toggle dark mode",
+            "exact": true
+          },
+          "observed_url": "https://gradio.app/",
+          "observed_at": "2026-10-09T09:03:21.709Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Click Me",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Click Me",
+            "exact": true
+          },
+          "observed_url": "https://gradio.app/",
+          "observed_at": "2026-10-09T09:03:21.709Z"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "Accept terms",
+          "label": "Accept terms",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "label": "Accept terms"
+          },
+          "observed_url": "https://gradio.app/",
+          "observed_at": "2026-10-09T09:03:21.709Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Click Me",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Click Me",
+            "exact": true
+          },
+          "observed_url": "https://gradio.app/",
+          "observed_at": "2026-10-09T09:03:21.709Z"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "Accept terms",
+          "label": "Accept terms",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "label": "Accept terms"
+          },
+          "observed_url": "https://gradio.app/",
+          "observed_at": "2026-10-09T09:03:21.709Z"
+        },
+        {
+          "tag": "input",
+          "type": "radio",
+          "text": "Option 1",
+          "label": "Option 1",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "radio-demo",
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "label": "Option 1"
+          },
+          "observed_url": "https://gradio.app/",
+          "observed_at": "2026-10-09T09:03:21.709Z"
+        },
+        {
+          "tag": "input",
+          "type": "radio",
+          "text": "Option 2",
+          "label": "Option 2",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "radio-demo",
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "label": "Option 2"
+          },
+          "observed_url": "https://gradio.app/",
+          "observed_at": "2026-10-09T09:03:21.709Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "▶",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "▶",
+            "exact": true
+          },
+          "observed_url": "https://gradio.app/",
+          "observed_at": "2026-10-09T09:03:21.709Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Face",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Face",
+            "exact": true
+          },
+          "observed_url": "https://gradio.app/",
+          "observed_at": "2026-10-09T09:03:21.709Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Ear",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Ear",
+            "exact": true
+          },
+          "observed_url": "https://gradio.app/",
+          "observed_at": "2026-10-09T09:03:21.709Z"
+        },
+        {
+          "tag": "input",
+          "type": "radio",
+          "text": "Option 1",
+          "label": "Option 1",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "radio-demo",
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "label": "Option 1"
+          },
+          "observed_url": "https://gradio.app/",
+          "observed_at": "2026-10-09T09:03:21.709Z"
+        },
+        {
+          "tag": "input",
+          "type": "radio",
+          "text": "Option 2",
+          "label": "Option 2",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "radio-demo",
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "label": "Option 2"
+          },
+          "observed_url": "https://gradio.app/",
+          "observed_at": "2026-10-09T09:03:21.709Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "▶",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "▶",
+            "exact": true
+          },
+          "observed_url": "https://gradio.app/",
+          "observed_at": "2026-10-09T09:03:21.709Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Face",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Face",
+            "exact": true
+          },
+          "observed_url": "https://gradio.app/",
+          "observed_at": "2026-10-09T09:03:21.709Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Ear",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Ear",
+            "exact": true
+          },
+          "observed_url": "https://gradio.app/",
+          "observed_at": "2026-10-09T09:03:21.709Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "gradio",
+    "quiz_entries": [],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:03:22.945Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/gradio-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/gradio-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

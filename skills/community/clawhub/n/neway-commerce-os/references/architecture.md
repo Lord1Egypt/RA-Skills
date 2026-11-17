@@ -1,72 +1,74 @@
 # Architecture
 
+Companion to `SKILL.md`. Read this when explaining the design or extending the
+scaffold beyond what the template ships.
+
 ## Purpose
 
-Neway Commerce OS is a reusable commerce operating system for digital products, creator storefronts, and multi-product studios. It is optimized for short-prompt generation and fast deployment, not for deep backend implementation by default.
+A reusable commerce operating system for digital products, creator storefronts
+and multi-product studios. Optimised for **short-prompt generation and fast
+deployment**, with an honest line between what is scaffolded and what is a
+placeholder.
 
-## System Layers
+## Single source of truth
 
-### 1. Presentation layer
-- React + Vite + TypeScript
-- Modern landing page composition
-- Lightweight motion and hover interactions
-- Product grid, cart drawer/page, checkout view, account view, admin view
-- AI sales assistant entry point
+`SKILL.md` owns every rule. Everything else is downstream:
 
-### 2. Application layer
-- Client-side routing
-- Shared state for cart, catalog, and assistant visibility
-- Fetch wrappers for API access
-- Mock-first data flow with upgrade path to live APIs
-
-### 3. API layer
-- Hono-style edge API handlers
-- Product catalog endpoint
-- Checkout endpoint
-- AI assistant endpoint
-- Stripe webhook endpoint in node runtime
-
-### 4. Commerce layer
-- Product records
-- Cart state
-- Checkout session creation
-- Payment provider switching between mock and stripe
-- Order lifecycle hooks
-
-### 5. Deployment layer
-- EdgeOne Pages static hosting
-- Edge Functions for lightweight APIs
-- Node Functions for webhook-style handlers
-- Environment-variable-driven configuration
-
-## Recommended Project Shape
-
-```text
-src/
-  components/
-  pages/
-  lib/
-  store/
-functions/
-  api/
-  node/
+```
+SKILL.md  --> templates/base   (the compliant reference implementation)
+          --> scripts/         (scaffold + quality gate that enforce the rules)
+          --> references/      (why-it-is-like-this, read on demand)
 ```
 
-## Defaults
+If a rule and an artifact disagree, the rule wins and the artifact is a bug.
+Every gate in `SKILL.md` section 1 maps to a check in
+`scripts/validate_generated_project.py` — change both together or they drift.
 
-- Default business mode: multi-product NewayStudio matrix
-- Default assistant mode: AI sales concierge
-- Default payment mode: mock in dev, stripe in production
-- Default visual language: dark-neutral premium cards, soft gradients, light motion
+## Layers
 
-## Implementation Philosophy
+### 1. Presentation — React + Vite + TypeScript
+Seven routes, shared layout (`Navbar`, `Footer`, global `CartDrawer`, global
+`AIChatWidget`), light motion via `framer-motion`, Tailwind with a two-palette
+theme.
 
-This skill should generate:
-- a complete directory structure
-- working page scaffolds
-- named backend entrypoints
-- environment placeholders
-- deployment files
-- obvious extension points for production implementation
+### 2. Application — Zustand + react-router
+Two persisted stores (cart, wishlist). Derived values (`total`, `itemCount`) are
+computed, never stored. Navigation is always client-side.
 
-It should not pretend to include deep production logic when only placeholders exist. Generated handoff notes should be explicit about what is scaffolded and what still needs implementation.
+### 3. Utility — `src/utils/format.ts`
+`formatPrice()` and `FREE_SHIPPING_THRESHOLD`. This is the only place a currency
+symbol may appear, which is what makes the money gate (G-03) possible.
+
+### 4. API — Hono-style edge handlers + Node handler
+`functions/api/{products,checkout,assistant}.ts` (edge) and
+`functions/node/stripe-webhook.ts` (Node). All four are mock-first and carry a
+header comment describing the replacement path.
+
+### 5. Commerce — data + flows
+Product records, cart state, checkout session, payment-mode switch, order
+lifecycle hooks. See `commerce-flows.md`.
+
+### 6. Deployment — EdgeOne Pages
+Static `dist/` plus edge and Node functions, configured by environment variables.
+See `deployment.md`.
+
+## Deliberate constraints
+
+- **No `src/lib/`.** Shared code lives in `src/utils/`; the old `src/lib/api.ts`
+  is a forbidden leftover (gate F-04). One obvious place beats two competing ones.
+- **No extra dependencies.** The stack is fixed so generated projects build
+  identically everywhere and reviews stay fast.
+- **Images ship with the template.** The 16-image pool under `static/images/`
+  makes output deterministic and offline-safe; remote images are the exception,
+  not the default.
+- **The template is a working store, not a placeholder shell.** It ships a real
+  catalog, real categories and real copy in zh-CN. That makes "copy the template"
+  a *safe* strategy for an agent — which is the failure mode this skill exists to
+  remove.
+
+## What this skill does not do
+
+- It does not implement a real payment backend, authentication, inventory or
+  order persistence. It names the entry points and documents what to connect.
+- It does not pretend placeholders are production logic; handoff notes state the
+  difference explicitly.

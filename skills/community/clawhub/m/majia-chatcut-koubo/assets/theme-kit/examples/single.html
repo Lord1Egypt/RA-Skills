@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>9:16 口播主题交互预览</title>
+  <link rel="stylesheet" href="../components/portrait-talk-card.css">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: #111827; color: #E5E7EB; font-family: var(--pt-font); overflow: hidden; }
+    .app { display: grid; grid-template-columns: 330px 1fr; min-height: 100vh; }
+    .controls { padding: 24px; border-right: 1px solid #334155; background: #0F172A; overflow: auto; }
+    .controls h1 { margin: 0 0 6px; font-size: 23px; }
+    .controls p { margin: 0 0 24px; color: #94A3B8; font-size: 13px; line-height: 1.6; }
+    label { display: block; margin: 0 0 16px; font-size: 13px; color: #CBD5E1; }
+    select, input, textarea { width: 100%; margin-top: 7px; padding: 10px 11px; border: 1px solid #475569; border-radius: 9px; background: #1E293B; color: #F8FAFC; font: inherit; }
+    textarea { min-height: 82px; resize: vertical; }
+    .row { display: flex; gap: 12px; }
+    .row label { flex: 1; }
+    .check { display: flex; align-items: center; gap: 8px; }
+    .check input { width: auto; margin: 0; }
+    .stage-shell { position: relative; overflow: hidden; }
+    .stage { position: absolute; width: 1080px; height: 1920px; transform-origin: 0 0; }
+    @media (max-width: 760px) { body { overflow: auto; } .app { grid-template-columns: 1fr; } .controls { border-right: 0; } .stage-shell { min-height: 720px; } }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <aside class="controls">
+      <h1>交互预览</h1>
+      <p>更改主题、布局与文案。正式应用时，保留组件结构，替换人物区为 video 或 img。</p>
+      <label>主题<select id="theme"></select></label>
+      <label>布局<select id="layout"></select></label>
+      <label>栏目标签<input id="eyebrow" value="连锁餐饮 AI 实战"></label>
+      <label>主标题<textarea id="title">模型只是模块，
+底表才承重</textarea></label>
+      <label>引导语<input id="lead" value="真正决定结果的是"></label>
+      <label>强调词<input id="emphasis" value="数据底表"></label>
+      <label>按钮文案<input id="cta" value="底表才承重"></label>
+      <label>字幕<textarea id="subtitle">真正影响门店结果的，往往不是模型，而是底层数据。</textarea></label>
+      <div class="row"><label class="check"><input id="showSubtitle" type="checkbox">显示字幕</label><label class="check"><input id="showSafeArea" type="checkbox">显示安全区</label></div>
+    </aside>
+    <section class="stage-shell" id="stageShell"><div class="stage" id="stage"></div></section>
+  </main>
+  <script src="../components/portrait-talk-card.js"></script>
+  <script>
+    const $ = (id) => document.getElementById(id);
+    for (const t of PortraitTalkThemeKit.THEMES) $('theme').add(new Option(`${t.name} · ${t.description}`, t.id));
+    for (const l of PortraitTalkThemeKit.LAYOUTS) $('layout').add(new Option(l.name, l.id));
+    let card = PortraitTalkThemeKit.mount('#stage', { theme: 'deep-space-blue', layout: 'diagonal-tech' });
+    function syncFromTheme() {
+      const t = PortraitTalkThemeKit.THEMES.find(x => x.id === $('theme').value);
+      $('layout').value = t.layout;
+      update();
+    }
+    function update() {
+      PortraitTalkThemeKit.update(card, {
+        theme: $('theme').value,
+        layout: $('layout').value,
+        showSubtitle: $('showSubtitle').checked,
+        showSafeArea: $('showSafeArea').checked,
+        copy: { eyebrow: $('eyebrow').value, title: $('title').value, lead: $('lead').value, emphasis: $('emphasis').value, cta: $('cta').value, subtitle: $('subtitle').value }
+      });
+    }
+    for (const id of ['layout','eyebrow','title','lead','emphasis','cta','subtitle','showSubtitle','showSafeArea']) $(id).addEventListener('input', update);
+    $('theme').addEventListener('change', syncFromTheme);
+    function fit() {
+      const shell = $('stageShell');
+      const padding = 30;
+      const scale = Math.min((shell.clientWidth - padding * 2) / 1080, (shell.clientHeight - padding * 2) / 1920);
+      const w = 1080 * scale, h = 1920 * scale;
+      $('stage').style.transform = `scale(${scale})`;
+      $('stage').style.left = `${Math.max(padding, (shell.clientWidth - w) / 2)}px`;
+      $('stage').style.top = `${Math.max(padding, (shell.clientHeight - h) / 2)}px`;
+    }
+    addEventListener('resize', fit); requestAnimationFrame(fit);
+  </script>
+</body>
+</html>

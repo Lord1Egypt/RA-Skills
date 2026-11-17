@@ -1,44 +1,56 @@
-## Description: <br>
-Validate ideas, build strategy, and make decisions with proven frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate ideas, build strategy, and make decisions with proven frameworks.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Founders, operators, and business teams use this skill to validate ideas, choose strategic priorities, compare business model options, and track significant decisions with reusable frameworks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The documented memory workflow stores business decisions, metrics, and idea notes locally under ~/business. <br>
-Mitigation: Avoid storing secrets, confidential customer details, or sensitive financial records there unless that local data is intentionally managed. <br>
-Risk: Strategic recommendations can be misleading if based on unvalidated assumptions or incomplete business data. <br>
-Mitigation: Use the skill's validation steps, thresholds, and decision logs to ground advice in evidence before acting on major decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/business) <br>
-- [Skill homepage](https://clawic.com/skills/business) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Validation Frameworks](frameworks.md) <br>
-- [Metrics Reference](metrics.md) <br>
-- [Memory Setup](memory-template.md) <br>
+## Use Case:
 
+Founders, operators, and business teams use this skill to validate ideas, choose a single strategic priority, evaluate business metrics, and track significant decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with tables, decision templates, metrics thresholds, and occasional shell commands for local note setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local business notes under ~/business when the user chooses to use the memory workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is designed to retain business decisions, metrics, and idea notes under ~/business/.
+
+Mitigation: Avoid storing secrets, customer personal data, or highly confidential business plans unless the directory is appropriately protected.
+
+Risk: Business strategy guidance can be wrong or incomplete when based on unvalidated assumptions or weak input data.
+
+Mitigation: Use the skill's validation steps, decision logs, and metric thresholds as prompts for human review before making material business commitments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/business)
+- [Business Strategy homepage](https://clawic.com/skills/business)
+- [Validation Frameworks](artifact/frameworks.md)
+- [Memory Setup](artifact/memory-template.md)
+- [Metrics Reference](artifact/metrics.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with structured frameworks, tables, checklists, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May suggest local business memory files under ~/business/ for user-created notes.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

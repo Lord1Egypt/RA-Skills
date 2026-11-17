@@ -1,45 +1,60 @@
-## Description: <br>
-Avenir Web runs and improves autonomous web tasks end-to-end with mode selection, instruction validation, single or batch execution, and next-step recommendations. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Execute and improve Avenir-Web autonomous web tasks end-to-end with mode selection, instruction validation, single or batch runs, and next-step recommendations.
 
-## Publisher: <br>
-[yiliu-li](https://clawhub.ai/user/yiliu-li) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[yiliu-li](https://clawhub.ai/user/yiliu-li)
 
-## Use Case: <br>
-Developers and researchers use this skill to run, inspect, and improve Avenir-Web autonomous browser tasks on live websites. It supports single-task runs, batch experiments, atomic browser actions, page screenshot inspection, and concise outcome reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can act autonomously on arbitrary live websites. <br>
-Mitigation: Use it on low-risk or test sites by default, constrain task scope and maximum operations, and require explicit human confirmation before login, payment, account-management, healthcare, banking, or private-dashboard actions. <br>
-Risk: Page screenshots, visible content, task text, and action history may be sent to OpenRouter and saved in local logs or screenshots. <br>
-Mitigation: Avoid sensitive pages unless redaction, retention limits, access controls, and review of stored run artifacts are in place. <br>
-Risk: Browser instrumentation may conflict with website automation policies. <br>
-Mitigation: Review the browser automation behavior before deployment and remove, disable, or gate stealth-style instrumentation where compliance with site terms is required. <br>
+## Use Case:
 
+Developers and automation engineers use Avenir Web to run autonomous browser tasks, inspect task results, and iterate on instructions or configuration. The skill supports single runs, batch runs, one-step browser actions, and screenshot-based page reading.
 
-## Reference(s): <br>
-- [Avenir-Web arXiv Paper](https://arxiv.org/abs/2602.02468) <br>
-- [Avenir-Web PDF](https://arxiv.org/pdf/2602.02468.pdf) <br>
-- [Avenir-Web Demo Video](https://www.youtube.com/watch?v=X38CH0xc_sg&t=16s) <br>
-- [Avenir Web on ClawHub](https://clawhub.ai/yiliu-li/avenir-web) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured run summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Run summaries should include execution metadata, status, evidence, diagnosis, and one recommended next action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The skill can browse arbitrary URLs, including sites that may expose sensitive or internal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a contained environment with network egress controls and URL allowlisting; avoid private dashboards, localhost, internal services, and authenticated accounts unless explicitly approved.
+
+Risk: Screenshots and page-derived text may be sent to the configured LLM provider and retained in local artifacts.
+
+Mitigation: Use non-sensitive browser sessions, avoid pages containing secrets, and apply logging redaction and artifact-retention controls before broader use.
+
+Risk: Server security evidence reports verified safety weaknesses and vulnerable dependencies.
+
+Mitigation: Update vulnerable dependencies and address URL allowlisting, task_id path validation, logging redaction, and the os.system copy path before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yiliu-li/skills/avenir-web)
+- [Avenir-Web arXiv Paper](https://arxiv.org/abs/2602.02468)
+- [Avenir-Web PDF](https://arxiv.org/pdf/2602.02468.pdf)
+- [Avenir-Web Demo Video](https://www.youtube.com/watch?v=X38CH0xc_sg&t=16s)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON summaries, and generated run artifact paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs may create local artifacts such as agent logs, result JSON, resolved config snapshots, LLM records, and screenshots.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; package pyproject.toml reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

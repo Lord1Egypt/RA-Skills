@@ -1,45 +1,62 @@
-## Description: <br>
-帮助地球人做人生选择的 AI 判断技能 - 你只管 do it，判断交给滚滚 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助地球人做人生选择的 AI 判断技能 - 你只管 do it，判断交给滚滚
 
-## Publisher: <br>
-[alsoforever](https://clawhub.ai/user/alsoforever) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alsoforever](https://clawhub.ai/user/alsoforever)
 
-## Use Case: <br>
-People facing life, career, relationship, investment, or lifestyle decisions use this skill to structure their options and receive a Markdown decision recommendation with rationale, plan, risks, and follow-up prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may handle sensitive life, financial, legal, medical, or personal details. <br>
-Mitigation: Do not enter secrets, regulated details, or highly sensitive personal information; keep prompts limited to information appropriate for decision brainstorming. <br>
-Risk: The evidence security summary notes under-disclosed remote submission and local history storage. <br>
-Mitigation: Review before installing, avoid test.html unless the remote API is trusted, and clear browser LocalStorage on shared machines. <br>
-Risk: Recommendations may be overly directive for high-stakes decisions. <br>
-Mitigation: Treat outputs as brainstorming support, verify important claims independently, and consult qualified professionals for financial, legal, medical, or similarly high-impact choices. <br>
+## Use Case:
 
+External users use this agent skill to structure life decisions such as career, relationship, investment, and housing choices. The skill returns a recommendation with supporting rationale, action steps, and risk warnings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alsoforever/do-it) <br>
-- [Usage Guide](USAGE-GUIDE.md) <br>
-- [Gungun Family 2.0](GUNGUN-FAMILY-2.0.md) <br>
-- [Database Schema](references/database-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown decision analysis with recommendation, rationale, execution plan, risk assessment, and follow-up prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured option comparisons, multi-role analysis sections, checklists, and disclaimers that recommendations are for reference only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The skill may send or store sensitive personal decision data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before use with real personal information and avoid entering sensitive data into packaged test pages or untrusted deployments.
+
+Risk: The packaged API server or HTTP endpoint could expose user data on an untrusted network.
+
+Mitigation: Run only in a trusted local environment, do not expose the API server publicly, and replace hardcoded HTTP endpoints with HTTPS or same-origin APIs before deployment.
+
+Risk: Browser history or localStorage may retain decision data after testing.
+
+Mitigation: Clear browser history/localStorage after testing and add consent and retention controls before collecting user data.
+
+Risk: Career, relationship, investment, and life-choice recommendations can be high-impact and may be wrong or incomplete.
+
+Mitigation: Present outputs as advisory, preserve the user's final decision authority, and strengthen warnings before high-stakes use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alsoforever/skills/do-it)
+- [do-it decision database schema](references/database-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown decision analysis with recommendation, rationale, action plan, and risk warnings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured sections and checklist-style action items.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

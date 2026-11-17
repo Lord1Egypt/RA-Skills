@@ -13,13 +13,21 @@
     --accent: #0033FF;
     --input-bg: #F5F3ED;
     --input-border: #E0DDD6;
+    --card-bg: #FFFFFF;
     --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
   }
   html, body { height: 100%; font-family: var(--font); background: var(--bg); color: var(--text); }
   .page { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 24px; }
   .card { max-width: 420px; width: 100%; text-align: center; }
   h1 { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 8px; }
-  .sub { font-size: 16px; color: var(--text-muted); margin-bottom: 32px; }
+  .sub { font-size: 16px; color: var(--text-muted); margin-bottom: 24px; }
+  .code-display {
+    font-family: ui-monospace, "SF Mono", monospace;
+    font-size: 28px; font-weight: 600; letter-spacing: 0.3em;
+    background: var(--card-bg); border: 1px solid var(--input-border);
+    border-radius: 12px; padding: 18px;
+    margin: 0 auto 20px; display: inline-block; min-width: 240px;
+  }
   input[type="text"] {
     width: 100%; padding: 18px; font-size: 22px; font-weight: 600;
     text-align: center; letter-spacing: 0.4em;
@@ -28,9 +36,10 @@
     text-transform: uppercase; font-family: ui-monospace, "SF Mono", monospace;
   }
   input[type="text"]:focus { border-color: var(--accent); outline: none; }
-  .btn { display: block; width: 100%; padding: 18px; border: none; border-radius: 12px; font-size: 18px; font-weight: 600; font-family: var(--font); cursor: pointer; margin-top: 16px; }
+  .btn { display: block; width: 100%; padding: 18px; border: none; border-radius: 12px; font-size: 18px; font-weight: 600; font-family: var(--font); cursor: pointer; margin-top: 12px; }
   .btn:active { transform: scale(0.98); }
   .btn-primary { background: var(--accent); color: white; }
+  .btn-secondary { background: var(--card-bg); color: var(--text-muted); border: 1px solid var(--input-border); }
   .btn:disabled { opacity: 0.5; cursor: not-allowed; }
   .status { margin-top: 18px; font-size: 14px; min-height: 1.4em; color: var(--text-muted); }
   .status.error { color: #b00020; }
@@ -41,78 +50,177 @@
 <body>
 <div class="page">
   <div class="card">
-    <h1>Pair your Mac</h1>
-    <div class="sub">Type the code printed by <code>codex-daemon link</code></div>
-    <input id="codeInput" type="text" maxlength="6" autocomplete="off" autocapitalize="characters" inputmode="text" placeholder="ABC123">
-    <button id="pairBtn" class="btn btn-primary" type="button">Pair</button>
-    <div id="status" class="status"></div>
-    <div class="footer">Signed in as <span id="handle">...</span> ... <a href="#" id="signout">sign out</a></div>
+    <!-- View 1: confirm pair (when URL has a valid code + user is signed in) -->
+    <div id="confirm-view" style="display: none;">
+      <h1>Pair this laptop with Codex Remote Control?</h1>
+      <div class="sub">A device wants to drive its local Codex session from your phone.</div>
+      <div class="code-display" id="confirm-code">______</div>
+      <button id="confirmBtn" class="btn btn-primary" type="button">Confirm</button>
+      <button id="cancelBtn" class="btn btn-secondary" type="button">Cancel</button>
+      <div id="status" class="status"></div>
+      <div class="footer">Signed in as <span id="handle">...</span></div>
+    </div>
+
+    <!-- View 2: manual code entry (fallback for bare /pair) -->
+    <div id="manual-view" style="display: none;">
+      <h1>Pair your laptop</h1>
+      <div class="sub">Type the 6-character code printed by <code>codex-daemon link</code></div>
+      <input id="codeInput" type="text" maxlength="6" autocomplete="off" autocapitalize="characters" inputmode="text" placeholder="ABCDEF">
+      <button id="manualBtn" class="btn btn-primary" type="button">Pair</button>
+      <div id="manualStatus" class="status"></div>
+      <div class="footer">Signed in as <span id="manualHandle">...</span></div>
+    </div>
+
+    <!-- View 3: success -->
+    <div id="success-view" style="display: none;">
+      <h1>Paired.</h1>
+      <div id="success-sub" class="sub">Your laptop will pick this up in a few seconds.</div>
+      <div class="footer">You can close this tab.</div>
+    </div>
   </div>
 </div>
 <script>
-function getApiKey() {
-  return sessionStorage.getItem("wip_api_key");
-}
-function getHandle() {
-  return sessionStorage.getItem("wip_handle") || "(unknown)";
-}
-function setStatus(msg, kind) {
-  const el = document.getElementById("status");
+// Real daemon alphabet: A-Z minus I and O, digits 2-9. L IS included.
+// Length 6. Per CODEX_PAIR_ALPHABET in server.mjs and plan C1+C3 round 5.
+var PAIR_CODE_REGEX = /^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/;
+
+function getApiKey() { return sessionStorage.getItem('wip_api_key'); }
+function getHandle() { return sessionStorage.getItem('wip_handle') || '(unknown)'; }
+function getPairPresenceToken() { return sessionStorage.getItem('wip_codex_pair_presence_token'); }
+
+function setStatus(elId, msg, kind) {
+  var el = document.getElementById(elId);
   el.textContent = msg;
-  el.className = "status" + (kind ? " " + kind : "");
+  el.className = 'status' + (kind ? ' ' + kind : '');
 }
-function ensureSignedIn() {
-  if (!getApiKey()) {
-    location.href = "/app/login.html?next=" + encodeURIComponent("/pair");
+
+// Read the code from /pair/<CODE>. Returns null if path is bare /pair or
+// the code doesn't match the daemon alphabet. Defense-in-depth: server
+// validates authoritatively via its route regex.
+function readCodeFromPath() {
+  var m = location.pathname.match(/^\/pair\/([A-Za-z0-9]+)\/?$/);
+  if (!m) return null;
+  var raw = m[1].trim().toUpperCase();
+  return PAIR_CODE_REGEX.test(raw) ? raw : null;
+}
+
+// POST the code to /api/codex-relay/pair-complete using the api_key
+// from sessionStorage as Bearer token. Daemon key pairing also sends the
+// short-lived token minted by the passkey verify step, so a stale ck- token
+// alone cannot replace a daemon. On success, show the success view.
+async function submitPair(code, statusElId) {
+  if (!PAIR_CODE_REGEX.test(code)) {
+    setStatus(statusElId, 'That does not look like a valid code.', 'error');
     return false;
   }
-  document.getElementById("handle").textContent = getHandle();
-  return true;
+  setStatus(statusElId, 'Pairing...', '');
+  try {
+    var res = await fetch('/api/codex-relay/pair-complete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + getApiKey(),
+      },
+      body: JSON.stringify({
+        code: code,
+        codex_pair_presence_token: getPairPresenceToken(),
+      }),
+    });
+    var data = await res.json();
+    if (!res.ok) {
+      var msg = (data && data.error) || 'Pairing failed.';
+      // If the code expired or was already used, suggest rerunning the daemon.
+      if (res.status === 410 || res.status === 404) {
+        msg += ' Run codex-daemon link again on your laptop to get a fresh code.';
+      }
+      if (res.status === 403 && data && data.error === 'fresh_presence_required') {
+        msg = 'Sign in again with your passkey to relink this daemon.';
+        sessionStorage.removeItem('wip_api_key');
+        sessionStorage.removeItem('wip_codex_pair_presence_token');
+        setTimeout(function() {
+          location.replace('/login?next=' + encodeURIComponent('/pair/' + code));
+        }, 1200);
+      }
+      setStatus(statusElId, msg, 'error');
+      return false;
+    }
+    sessionStorage.removeItem('wip_codex_pair_presence_token');
+    document.getElementById('success-sub').textContent = data.replaced_daemon_key
+      ? 'Remote Control relinked this laptop. Existing browser control tabs need to reconnect.'
+      : 'Your laptop will pick this up in a few seconds.';
+    document.getElementById('confirm-view').style.display = 'none';
+    document.getElementById('manual-view').style.display = 'none';
+    document.getElementById('success-view').style.display = 'block';
+    return true;
+  } catch (err) {
+    setStatus(statusElId, (err && err.message) || String(err), 'error');
+    return false;
+  }
 }
 
-document.getElementById("signout").addEventListener("click", (ev) => {
-  ev.preventDefault();
-  sessionStorage.removeItem("wip_api_key");
-  sessionStorage.removeItem("wip_handle");
-  location.href = "/app/login.html?next=" + encodeURIComponent("/pair");
-});
+// ── Routing ──
+//
+// 1. If not signed in: redirect to /login?next=<this-path-with-code>.
+//    The existing Kaleidoscope login flow will QR + passkey + redirect
+//    back here. The server's `next` whitelist also enforces this shape.
+// 2. If signed in AND URL has a valid code: render the confirm view.
+//    User must tap Confirm before we POST pair-complete (per plan C7).
+// 3. If signed in but no code in URL (bare /pair): render the manual
+//    entry view. Fallback only.
 
-async function pair() {
-  const input = document.getElementById("codeInput");
-  const code = input.value.trim().toUpperCase();
-  if (code.length !== 6) {
-    setStatus("Enter the 6-character code shown on your Mac.", "error");
+(function init() {
+  var code = readCodeFromPath();
+  var apiKey = getApiKey();
+
+  if (!apiKey) {
+    // Not signed in. Send through /login keeping the current path as next.
+    var nextParam = encodeURIComponent(location.pathname);
+    location.replace('/login?next=' + nextParam);
     return;
   }
-  const btn = document.getElementById("pairBtn");
-  btn.disabled = true;
-  setStatus("Pairing...");
-  try {
-    const res = await fetch("/api/codex-relay/pair-complete", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + getApiKey(),
-      },
-      body: JSON.stringify({ code }),
-    });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || "Pairing failed");
-    setStatus("Paired. Your Mac will pick this up in a few seconds.", "success");
-    btn.textContent = "Done";
-  } catch (err) {
-    setStatus(err.message || String(err), "error");
-    btn.disabled = false;
-  }
-}
 
-if (ensureSignedIn()) {
-  document.getElementById("pairBtn").addEventListener("click", pair);
-  document.getElementById("codeInput").addEventListener("keydown", (ev) => {
-    if (ev.key === "Enter") pair();
+  if (code) {
+    // Signed in + URL has a valid code. Show confirm step.
+    var confirmView = document.getElementById('confirm-view');
+    document.getElementById('confirm-code').textContent = code;
+    document.getElementById('handle').textContent = getHandle();
+    confirmView.style.display = 'block';
+    document.getElementById('confirmBtn').addEventListener('click', async function() {
+      var confirmBtn = document.getElementById('confirmBtn');
+      var cancelBtn = document.getElementById('cancelBtn');
+      confirmBtn.disabled = true;
+      cancelBtn.disabled = true;
+      var ok = await submitPair(code, 'status');
+      // On failure, re-enable Confirm/Cancel so the user can retry or cancel.
+      // Server may have rejected the code as expired or already-used; the
+      // user should see the error and have the buttons back.
+      if (!ok) {
+        confirmBtn.disabled = false;
+        cancelBtn.disabled = false;
+      }
+    });
+    document.getElementById('cancelBtn').addEventListener('click', function() {
+      // Best-effort: just close the tab if we can; otherwise redirect home.
+      try { window.close(); } catch (e) {}
+      setTimeout(function() { location.replace('/'); }, 100);
+    });
+    return;
+  }
+
+  // Bare /pair, signed in. Manual code entry fallback.
+  var manualView = document.getElementById('manual-view');
+  document.getElementById('manualHandle').textContent = getHandle();
+  manualView.style.display = 'block';
+  function manualSubmit() {
+    var raw = document.getElementById('codeInput').value.trim().toUpperCase();
+    submitPair(raw, 'manualStatus');
+  }
+  document.getElementById('manualBtn').addEventListener('click', manualSubmit);
+  document.getElementById('codeInput').addEventListener('keydown', function(ev) {
+    if (ev.key === 'Enter') manualSubmit();
   });
-  document.getElementById("codeInput").focus();
-}
+  document.getElementById('codeInput').focus();
+})();
 </script>
 </body>
 </html>

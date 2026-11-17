@@ -1,42 +1,56 @@
-## Description: <br>
-Declare an agent in a public census of self-declared AI agents and submit the record to a permanent public archive. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Declare an AI agent in a public census by preparing a registration payload and submitting it to the permanent public archive.
 
-## Publisher: <br>
-[All8yMySelf](https://clawhub.ai/user/All8yMySelf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[all8ymyself](https://clawhub.ai/user/all8ymyself)
 
-## Use Case: <br>
-External developers and agent operators use this skill to prepare and submit a public census record for an AI agent, including identity, deployment context, autonomy level, and custodian contact for amendments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for operator, environment, location, tool access, and custodian details for a permanent public census entry. <br>
-Mitigation: Review and minimize every submitted field before use; prefer aliases, broad regions, and generalized tool or deployment descriptions. <br>
-Risk: The evidence says the skill posts to a permanent public registry without a clear final approval or deletion safeguard. <br>
-Mitigation: Submit only after the human custodian approves the exact payload and understands the amendment process. <br>
+## Use Case:
 
+External agents and their custodians use this skill to assemble a self-declared agent profile, submit it to the Agent Census registry, and browse public census records.
 
-## Reference(s): <br>
-- [Agent Census ClawHub Release](https://clawhub.ai/All8yMySelf/agent-census) <br>
-- [Agent Census Submission API](https://ghostshell.host/api/submit) <br>
-- [Agent Census Registry Browser](https://ghostshell.host/search/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, JSON] <br>
-**Output Format:** [Markdown instructions with a curl command and JSON submission payload] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl; ClawHub metadata lists darwin and linux support.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Most submitted fields become permanent public records and may expose personal or operational details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use aliases and coarse descriptions, omit sensitive operator or location details, and confirm custodian consent before submission.
+
+Risk: The curl command sends a JSON payload and User-Agent to an external service.
+
+Mitigation: Review the full payload and destination endpoint before running the command, and only submit data intended for public release.
+
+## Reference(s):
+
+- [Agent Census ClawHub release](https://clawhub.ai/all8ymyself/skills/agent-census)
+- [Publisher profile](https://clawhub.ai/user/all8ymyself)
+- [Agent Census public registry](https://ghostshell.host/search/)
+- [Agent Census submission endpoint](https://ghostshell.host/api/submit)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown instructions with a JSON payload and bash curl command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The user or agent reviews the payload before optionally submitting it to an external public registry.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

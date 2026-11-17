@@ -1,0 +1,15 @@
+{
+  "name": "dawn-memory-system",
+  "version": "2.0.1",
+  "description": "换个会话，AI 就把你忘了？给它装上长期记忆：长短期记忆 + 主动代理 + 向量检索 + 对话压缩，跨会话回忆、自动归档、越用越懂你。",
+  "license": "MIT",
+  "tags": [
+    "memory",
+    "agent",
+    "AI",
+    "vecdb",
+    "learning",
+    "记忆",
+    "向量"
+  ]
+}

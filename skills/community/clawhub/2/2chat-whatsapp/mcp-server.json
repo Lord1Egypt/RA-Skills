@@ -1,0 +1,12 @@
+{
+  "_comment": "Drop this entry into your OpenClaw config under mcp.servers, or use the 'openclaw mcp add' command from SKILL.md. After adding, run: openclaw mcp login 2chat",
+  "mcp": {
+    "servers": {
+      "2chat": {
+        "url": "https://mcp.2chat.io/mcp",
+        "transport": "streamable-http",
+        "auth": "oauth"
+      }
+    }
+  }
+}

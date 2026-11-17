@@ -1,0 +1,16 @@
+# Python build artifacts (regenerable — never commit)
+__pycache__/
+*.py[cod]
+
+# Test artifacts
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Quick Combat runtime output (timestamped per-run)
+combat_output/
+combat_*/
+
+# State-machine runtime checkpoints
+runs/

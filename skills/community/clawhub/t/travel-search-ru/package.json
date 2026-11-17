@@ -1,8 +1,8 @@
 {
   "name": "travel-search-ru",
-  "version": "1.2.3",
-  "description": "Search flights via Aviasales, tours via Travelata + Level.Travel, and excursions via Sputnik8 with real prices and booking links.",
-  "keywords": ["agent-skill", "travel", "flights", "tours", "excursions", "aviasales", "travelata", "leveltravel", "sputnik8", "tripster", "russia", "turkey", "egypt", "booking"],
+  "version": "2.6.0",
+  "description": "Travel search for planning trips: tours, hotels, flights, trains, activities, prices, availability, and booking links.",
+  "keywords": ["agent-skill", "travel", "travel-planning", "trip-planner", "itinerary", "flights", "trains", "rail", "tours", "hotels", "excursions", "activities", "mcp", "russia", "turkey", "egypt", "путешествия", "планирование путешествий", "туры", "авиабилеты", "поезда", "жд билеты", "отели", "экскурсии", "booking"],
   "author": "MissiaL",
   "license": "MIT",
   "repository": {
@@ -11,8 +11,9 @@
   },
   "files": [
     "SKILL.md",
-    "scripts/",
-    "references/",
-    "assets/"
+    "scripts/travel_search.py",
+    "references/usage.md",
+    "README.md",
+    "LICENSE"
   ]
 }

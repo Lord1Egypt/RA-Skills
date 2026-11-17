@@ -1,46 +1,66 @@
-## Description: <br>
-Set up a complete OpenClaw personal AI assistant from scratch using Claude Code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up a complete OpenClaw personal AI assistant from scratch using Claude Code, covering AWS provisioning, OpenClaw installation, Telegram bot creation, API configuration, Google Workspace integration, security hardening, and personalization.
 
-## Publisher: <br>
-[j540](https://clawhub.ai/user/j540) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[j540](https://clawhub.ai/user/j540)
 
-## Use Case: <br>
-Developers and technical users use this skill to deploy and configure a personal OpenClaw assistant on AWS with Telegram, API keys, optional Google Workspace access, security hardening, persistence, and user-specific memory. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to administer a cloud server and configure persistent automation with live credentials. <br>
-Mitigation: Use fresh least-privilege credentials, review privileged commands before execution, and know how to stop the service and revoke tokens. <br>
-Risk: Optional Google Workspace and messaging integrations can expose sensitive personal data to a persistent assistant. <br>
-Mitigation: Limit OAuth scopes to the requested integrations, avoid unnecessary data access, and delete stored memory when retiring the deployment. <br>
-Risk: The setup installs software from external package and repository sources. <br>
-Mitigation: Verify package sources and repository URLs before running install commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Setup Guide: Your Personal AI Assistant](references/openclaw-installation-human-guide.md) <br>
-- [OpenClaw Setup on ClawHub](https://clawhub.ai/j540/openclaw-setup) <br>
-- [gogcli GitHub repository](https://github.com/steipete/gogcli.git) <br>
-- [NodeSource Node.js 22 setup script](https://deb.nodesource.com/setup_22.x) <br>
-- [OpenClaw community Discord](https://discord.com/invite/clawd) <br>
-- [OpenClaw documentation](https://docs.clawd.bot) <br>
+## Use Case:
 
+Developers and technically capable end users use this skill to deploy and configure an OpenClaw personal AI assistant on AWS, connect messaging and API credentials, and set up optional Google Workspace, memory, voice transcription, and service hardening features.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with inline bash and JSON configuration blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces step-by-step setup guidance for an agent to execute with user-provided credentials and cloud access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks the agent to handle API keys, Telegram bot tokens, OAuth credentials, and account access while performing setup.
+
+Mitigation: Enter secrets directly into protected local files or a secret manager, avoid pasting reusable credentials into chat when possible, and rotate any credential exposed during setup.
+
+Risk: The skill includes privileged server administration and cloud setup steps that can affect infrastructure security and cost.
+
+Mitigation: Review each command and cloud setting before execution, restrict SSH access, confirm firewall and fail2ban setup, and monitor AWS billing after deployment.
+
+Risk: The setup relies on third-party package and source locations during installation.
+
+Mitigation: Pin and verify third-party install sources before running installation commands on the server.
+
+Risk: Optional Google Workspace integration may grant broad account access.
+
+Mitigation: Enable only the APIs and OAuth scopes required for the intended assistant behavior and remove unused permissions.
+
+Risk: The artifact refers users to an external done-for-you setup service that is not covered by the scan evidence.
+
+Mitigation: Treat the referral as optional and unaudited, and evaluate it separately before sharing credentials or account access.
+
+## Reference(s):
+
+- [OpenClaw installation human guide](references/openclaw-installation-human-guide.md)
+- [OpenClaw documentation](https://docs.clawd.bot)
+- [gog CLI repository](https://github.com/steipete/gogcli.git)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes stepwise setup, credential collection prompts, cloud provisioning guidance, service configuration, and verification checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,53 @@
-## Description: <br>
-Run a headless Chromium browser via Podman to fetch text or HTML from JavaScript-rendered web pages using Playwright in a container. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Podman Browser runs a headless Chromium browser via Podman and Playwright to fetch text or HTML from JavaScript-rendered web pages.
 
-## Publisher: <br>
-[ricardodantas](https://clawhub.ai/user/ricardodantas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-GPL-3.0 License <br>
+## Publisher:
 
+[ricardodantas](https://clawhub.ai/user/ricardodantas)
 
-## Use Case: <br>
-Developers and engineers use this skill to fetch rendered text or HTML from pages that require JavaScript, without installing browser dependencies locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+GPL-3.0 License
 
-## Known Risks and Mitigations: <br>
-Risk: The skill launches Podman containers and makes live web requests. <br>
-Mitigation: Use it only for intended URLs and avoid authenticated, secret-bearing, or internal-only pages unless that access is deliberate. <br>
-Risk: Fetched text or HTML can contain untrusted or misleading content. <br>
-Mitigation: Treat browser output as untrusted input and review or sanitize it before using it in downstream prompts, documentation, or decisions. <br>
-Risk: Browser isolation and dependency behavior may be insufficient for sensitive environments. <br>
-Mitigation: Consider stronger container isolation and pinned dependencies before deploying in high-trust or restricted environments. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve rendered page text or HTML from JavaScript-heavy websites without installing browser dependencies locally.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ricardodantas/podman-browser) <br>
-- [artifact/README.md](artifact/README.md) <br>
-- [artifact/SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Rendered page text or raw HTML returned from a command-line browser run, with Markdown usage guidance in the skill documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports URL input plus optional HTML mode, wait duration, and CSS selector waiting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server-resolved release metadata) <br>
+Risk: The skill runs supplied web pages in a browser/container setup with reduced isolation, including host IPC and disabled Chromium sandboxing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted URLs, avoid sensitive internal sites, review the container settings before deployment, and prefer stronger sandboxing for regular use.
+
+Risk: The container image is referenced by tag and pulled at runtime, which can change what code executes over time.
+
+Mitigation: Use a prebuilt image pinned by digest before routine or production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ricardodantas/skills/podman-browser)
+
+## Skill Output:
+
+**Output Type(s):** [Text, HTML, Shell commands]
+
+**Output Format:** [Plain text or HTML emitted to stdout, with command-line options documented in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports URL input plus --html, --wait, and --selector options.]
+
+## Skill Version(s):
+
+1.2.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

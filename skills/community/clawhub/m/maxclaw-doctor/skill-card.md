@@ -1,43 +1,60 @@
-## Description: <br>
-Helps OpenClaw users protect files by recording file-operation versions and supporting delete recovery and modification rollback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides file protection for OpenClaw workflows by indexing file operations and supporting deleted-file recovery and modification rollback.
 
-## Publisher: <br>
-[OreoAndYuumi](https://clawhub.ai/user/OreoAndYuumi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oreoandyuumi](https://clawhub.ai/user/oreoandyuumi)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to create local records before file modifications or deletions, then recover deleted files or roll back tracked edits when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retain local copies of files it records or deletes, including sensitive files if used on secrets or personal documents. <br>
-Mitigation: Limit use to intended project files, avoid secrets and personal documents, and review access to ~/.openclaw/minivcs/. <br>
-Risk: Cleanup, remove, restore, and rollback operations can delete retained records or overwrite current file contents. <br>
-Mitigation: Require explicit user confirmation, show the target path and record ID, and review current file state before running destructive or overwriting commands. <br>
-Risk: The skill can operate outside a project boundary if given broad paths. <br>
-Mitigation: Keep the project root scoped to the intended workspace and avoid running file-protection commands against system, home-directory, or unrelated paths. <br>
+## Use Case:
 
+Developers and agents use this skill to protect project files during OpenClaw-assisted edits by recording modifications, moving deletions into recoverable storage, and guiding rollback or restore workflows.
 
-## Reference(s): <br>
-- [Python downloads for macOS](https://www.python.org/downloads/macos/) <br>
-- [Python downloads for Windows](https://www.python.org/downloads/windows/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local file paths, record IDs, retention periods, and recovery or rollback commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Setup guidance includes curl-to-bash installers, sudo package installs, and shell-profile edits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation commands separately and execute them manually only when they match the user's platform and trust policy.
+
+Risk: MiniVCS can copy, move, restore, and retain files available to the user account outside a project directory.
+
+Mitigation: Use it only on an explicit project directory and avoid secrets, credentials, and sensitive files.
+
+Risk: Retained MiniVCS backups may contain file contents after the original task is complete.
+
+Mitigation: Verify cleanup of ~/.openclaw/minivcs records and backups when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/oreoandyuumi/skills/maxclaw-doctor)
+- [Python macOS downloads](https://www.python.org/downloads/macos/)
+- [Python Windows downloads](https://www.python.org/downloads/windows/)
+- [Tsinghua Homebrew mirror guide](https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and Python API snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce file-operation records, diffs, snapshots, trash backups, and cleanup notices through MiniVCS.]
+
+## Skill Version(s):
+
+1.0.0 (source: target metadata, release evidence, frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Validates historical behavior of stock ranking, factor, and portfolio-selection strategies using reproducible backtests, benchmark comparison, turnover, drawdown, and bias warnings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validates historical behavior of stock ranking, factor, and portfolio-selection strategies using reproducible backtests, benchmark comparison, turnover, drawdown, and bias warnings.
 
-## Publisher: <br>
-[ndtchan](https://clawhub.ai/user/ndtchan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teahann](https://clawhub.ai/user/teahann)
 
-## Use Case: <br>
-Investors, analysts, and agent developers use this skill to evaluate stock ranking, factor, or portfolio-selection rules against local historical signal and price CSVs before treating them as investment inputs. It helps summarize backtest setup, performance, benchmark comparison, robustness warnings, confidence, and data gaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backtest results may be mistaken for forecasts or investment advice. <br>
-Mitigation: State that outputs are historical simulations, not trading commands, and review them as one input among broader investment analysis. <br>
-Risk: Incomplete CSV data, missing benchmarks, or non-point-in-time universe data can bias results. <br>
-Mitigation: Require explicit data coverage, benchmark, fee, slippage, and point-in-time assumptions; downgrade confidence when these inputs are missing. <br>
-Risk: Benchmark comparison and bias warnings are not fully automated by the included script. <br>
-Mitigation: Manually verify benchmark comparisons and robustness warnings before relying on the report. <br>
+## Use Case:
 
+Developers, analysts, and agent users use this skill to evaluate historical behavior for equity ranking, factor, or portfolio-selection strategies from local signal and price CSV files. It helps report setup, performance, benchmark context when available, robustness warnings, confidence, and data gaps before a strategy is used elsewhere.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ndtchan/strategy-backtester) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown report with a JSON handoff bundle; local scripts can also produce JSON and CSV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local signal and price CSV inputs; no network access is required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated CSV reports may include ticker values from untrusted input and can be unsafe when opened in spreadsheet tools with formula execution enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted signal CSVs and open generated CSV outputs with spreadsheet formula execution disabled or in a plain-text viewer.
+
+Risk: Backtest results can be mistaken for forecasts or trading instructions.
+
+Mitigation: Present results as historical simulations only, keep assumptions visible, and avoid absolute buy or sell recommendations.
+
+Risk: Benchmark and bias review may require manual work beyond the bundled script.
+
+Mitigation: Manually review benchmark availability, survivorship bias, lookahead bias, data-snooping risk, liquidity assumptions, and fee or slippage sensitivity before relying on the report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teahann/skills/strategy-backtester)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown report with optional shell commands plus generated JSON and CSV backtest files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local CSV inputs; generated results are historical simulations, not forecasts or trading instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

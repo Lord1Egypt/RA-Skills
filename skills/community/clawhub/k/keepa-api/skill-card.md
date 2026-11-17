@@ -1,42 +1,55 @@
-## Description: <br>
-Keepa API client for querying Amazon product details, price history, sales rank history, search results, and best seller listings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Keepa Api helps agents query Amazon product details, price history, sales rank history, search results, and best seller data through the Keepa API.
 
-## Publisher: <br>
-[boyd4y](https://clawhub.ai/user/boyd4y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[boyd4y](https://clawhub.ai/user/boyd4y)
 
-## Use Case: <br>
-External developers and Amazon marketplace analysts use this skill to query Keepa for ASIN product data, price history, sales ranks, keyword search results, and category best seller data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Keepa API key that may be stored in local configuration and sent as a request URL parameter. <br>
-Mitigation: Prefer the KEEPA_API_KEY environment variable, keep configuration files out of shared repositories, avoid sharing command output that includes request URLs, and rotate the key if it is exposed. <br>
-Risk: Keepa API usage consumes account tokens and can hit plan or rate limits. <br>
-Mitigation: Confirm query scope before execution, batch requests only when needed, and monitor Keepa token usage for the configured account. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Keepa API reference](artifact/references/api-docs.md) <br>
-- [Keepa API Documentation](https://keepa.com/#!api) <br>
-- [Keepa Category Tree](https://keepa.com/#!category) <br>
-- [Keepa API Examples](https://github.com/keepacom/api) <br>
+## Use Case:
 
+Developers and operators use this skill to configure and run Keepa API queries for Amazon ASIN lookups, price history, sales rank history, product search, and best seller lists across supported marketplaces.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration snippets, and table or JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and a user-provided Keepa API key.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles a Keepa API key and sends product queries to Keepa, and the security evidence says key handling can expose the key.
+
+Mitigation: Prefer an environment variable, keep any CONFIG.md file out of repositories and backups, restrict config file permissions, avoid logging real keys in terminals or CI, and rotate the key if exposure is suspected.
+
+Risk: The security verdict is suspicious and recommends review before installation.
+
+Mitigation: Review the skill and its shell script before deployment, and install it only if sending the configured Keepa API key and product queries to Keepa is acceptable.
+
+## Reference(s):
+
+- [Keepa API Reference](references/api-docs.md)
+- [Keepa API Documentation](https://keepa.com/#!api)
+- [Keepa Category Reference](https://keepa.com/#!category)
+- [Keepa API Examples](https://github.com/keepacom/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands, tabular text reports, and optional formatted JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and a user-provided Keepa API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -17,7 +17,7 @@ const https = require('https');
 const http = require('http');
 
 // API配置
-const API_KEY = process.env.MINIMAX_API_KEY || 'sk-cp-k1SEMY8000Zyv758QolXpmGovm8C-HrPl75iCi41WvuD4TE0HtgE6qQ68V4kCa55EtmErJJN48Z-dRyQ5BUesXsjmkjffWmsk2TpqX4Uxh-seySOxFXfack';
+const API_KEY = process.env.MINIMAX_API_KEY || 'REDACTED-SECRET';
 const API_HOST = process.env.MINIMAX_API_HOST || 'api.minimaxi.com';
 const API_PATH = '/v1/coding_plan/vlm';
 

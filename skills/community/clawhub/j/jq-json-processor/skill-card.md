@@ -1,44 +1,54 @@
-## Description: <br>
-Process, filter, and transform JSON data using jq - the lightweight and flexible command-line JSON processor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Process, filter, and transform JSON data using jq - the lightweight and flexible command-line JSON processor.
 
-## Publisher: <br>
-[Arnarsson](https://clawhub.ai/user/Arnarsson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[arnarsson](https://clawhub.ai/user/arnarsson)
 
-## Use Case: <br>
-Developers and engineers use this skill to get concise jq examples for filtering, transforming, formatting, and extracting data from JSON in command-line workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Examples that process private JSON data may expose sensitive values if commands or outputs are shared. <br>
-Mitigation: Review inputs and outputs before sharing command transcripts, logs, or transformed JSON. <br>
-Risk: Examples that write results back to files may overwrite or replace local data. <br>
-Mitigation: Use temporary files, backups, or version control before running file-modifying jq commands. <br>
-Risk: Installing jq from an untrusted source may introduce supply-chain risk. <br>
-Mitigation: Install jq through a trusted package manager such as the package sources identified in the skill metadata. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [jq homepage](https://jqlang.github.io/jq/) <br>
-- [jq manual](https://jqlang.github.io/jq/manual/) <br>
-- [jq interactive tutorial](https://jqplay.org/) <br>
-- [ClawHub skill page](https://clawhub.ai/Arnarsson/jq-json-processor) <br>
+## Use Case:
 
+Developers and engineers use this skill to recall and apply jq commands for filtering, transforming, formatting, and debugging JSON data from files and API responses.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the jq command-line binary for examples that execute locally.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: File-modification examples can overwrite local files when run on real project data.
+
+Mitigation: Review commands before execution, test on disposable copies, and confirm redirects or moves before replacing files.
+
+Risk: curl examples can send requests to endpoints that may expose private data or secrets if copied into a sensitive context.
+
+Mitigation: Use sanitized inputs, avoid private endpoints or secrets unless the network request is intended, and confirm the destination before running commands.
+
+## Reference(s):
+
+- [jq Homepage](https://jqlang.github.io/jq/)
+- [jq Manual](https://jqlang.github.io/jq/manual/)
+- [jq Interactive Tutorial](https://jqplay.org/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, code, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the jq command-line binary; examples are intended for user review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

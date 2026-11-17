@@ -1,43 +1,59 @@
-## Description: <br>
-Search, explore, and analyze family history using the FamilySearch API and offline GEDCOM files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, explore, and analyze family history using the FamilySearch API and offline GEDCOM files.
 
-## Publisher: <br>
-[keylimesoda](https://clawhub.ai/user/keylimesoda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[keylimesoda](https://clawhub.ai/user/keylimesoda)
 
-## Use Case: <br>
-Genealogy researchers and agents assisting them use this skill to search FamilySearch, inspect ancestry and descendant relationships, parse local GEDCOM files, summarize family tree statistics, and draft family-history narratives. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: GEDCOM files and genealogy outputs can contain sensitive details about living relatives. <br>
-Mitigation: Use only GEDCOM files the user explicitly provides and avoid sharing GEDCOM files or outputs in shared terminals, logs, or chats unless the user is comfortable exposing those details. <br>
-Risk: API mode uses a FamilySearch OAuth token to query FamilySearch. <br>
-Mitigation: Use OAuth tokens only, avoid storing FamilySearch usernames or passwords, and re-authenticate when tokens expire. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [GEDCOM Format Reference](references/gedcom-format.md) <br>
-- [FamilySearch](https://www.familysearch.org) <br>
-- [FamilySearch Developers](https://www.familysearch.org/developers/) <br>
-- [FamilySearch API](https://api.familysearch.org) <br>
-- [ClawHub Skill Page](https://clawhub.ai/keylimesoda/familysearch) <br>
+## Use Case:
 
+External users and genealogy researchers use this skill to search FamilySearch, inspect ancestry and descendant relationships, parse offline GEDCOM files, and turn family tree facts into concise narratives.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands plus JSON and text outputs from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read user-provided GEDCOM files and, in API mode, query FamilySearch with a user-supplied OAuth token.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: API mode sends family-history search terms, dates, places, and person IDs to FamilySearch.
+
+Mitigation: Prefer offline GEDCOM mode for private research, and use API mode only when the user intends to query FamilySearch.
+
+Risk: FamilySearch OAuth tokens can grant access to account-linked genealogy data.
+
+Mitigation: Store OAuth tokens through environment variables or the operating system keychain, never usernames or passwords.
+
+Risk: Family history records may include sensitive details about living people.
+
+Mitigation: Avoid including sensitive details about living people unless they are necessary for the user's requested task.
+
+## Reference(s):
+
+- [GEDCOM Format Reference](references/gedcom-format.md)
+- [FamilySearch](https://www.familysearch.org)
+- [FamilySearch Developers](https://www.familysearch.org/developers/)
+- [FamilySearch API](https://api.familysearch.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API or GEDCOM query results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use live FamilySearch API data when an OAuth token is available, or local GEDCOM files for offline operation.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence, created 2026-02-26)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

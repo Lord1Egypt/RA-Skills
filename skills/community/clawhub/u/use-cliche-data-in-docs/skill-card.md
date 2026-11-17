@@ -1,40 +1,48 @@
-## Description: <br>
-Ensure documentation and examples use generic placeholder data instead of real names, emails, domains, organization details, or sensitive values. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ensure documentation and examples use only generic, cliche placeholder data.
 
-## Publisher: <br>
-[jhauga](https://clawhub.ai/user/jhauga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jhauga](https://clawhub.ai/user/jhauga)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, technical writers, and documentation maintainers use this skill when writing README files, documentation pages, changelog entries, comments, and examples so public-facing docs use generic placeholders instead of real names, domains, accounts, paths, or organization details.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generic placeholders can occasionally make examples less specific or less useful.
+
+Mitigation: Review generated documentation for accuracy and ensure placeholders still fit the platform, workflow scope, and domain context.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, technical writers, and documentation agents use this skill when creating or editing public documentation, examples, changelogs, and code comments that must avoid exposing real customer, account, organization, or environment details. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, code]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may replace intentionally real identifiers in documentation when exact names or environment values are required. <br>
-Mitigation: Review generated documentation and restore exact identifiers only where there is an explicit, approved need to publish them. <br>
-Risk: Poorly matched placeholders can make examples misleading for a platform, workflow, or domain. <br>
-Mitigation: Check that placeholder paths, accounts, domains, and identifiers match the operating system, data scope, and domain described by the surrounding example. <br>
+**Output Format:** [Markdown or code snippets with generic placeholder data]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/jhauga/use-cliche-data-in-docs) <br>
+**Other Properties Related to Output:** [No executable behavior; guidance is applied during documentation and example generation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Text and Markdown guidance with example snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Steers documentation output toward fictional placeholders and context-appropriate sample paths, names, domains, and identifiers.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

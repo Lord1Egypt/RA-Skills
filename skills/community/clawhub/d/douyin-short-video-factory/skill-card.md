@@ -1,37 +1,53 @@
-## Description: <br>
-Create Douyin short videos end-to-end with AI image generation, video prompt creation, frame extraction, hashtag optimization, and Douyin ecosystem sharing support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create Douyin short videos end-to-end with AI image generation, video prompt creation, frame extraction, and hashtag optimization.
 
-## Publisher: <br>
-[dzxiatian-crypto](https://clawhub.ai/user/dzxiatian-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dzxiatian-crypto](https://clawhub.ai/user/dzxiatian-crypto)
 
-## Use Case: <br>
-External creators, marketers, and agent users can use this skill to plan Douyin short-video content, inspect shared Douyin video metadata, produce hashtag ideas, and estimate virality signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Download-link assistance and Douyin-specific sharing workflows can be misused on content without permission or in ways that conflict with platform terms. <br>
-Mitigation: Confirm the user's intent before using download links, and respect Douyin terms, copyright, and creator permissions. <br>
+## Use Case:
 
+External creators and developers use this skill to plan Douyin short-video production, parse shared video links they are permitted to use, generate hashtags, and score basic virality signals.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Douyin parsing commands, download-link guidance, hashtag suggestions, prompt guidance, and virality scoring examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Broad Douyin-related triggers may activate the skill when the user only mentions Douyin generally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the task is specifically about Douyin video creation, link parsing, hashtag help, or virality scoring.
+
+Risk: Parsing or downloading shared video links may involve content the user is not permitted to use.
+
+Mitigation: Only parse, download, or reuse content when the user has permission to use it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dzxiatian-crypto/skills/douyin-short-video-factory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Douyin link parsing calls, hashtag suggestions, and virality scoring logic.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

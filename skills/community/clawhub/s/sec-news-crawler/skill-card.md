@@ -1,44 +1,62 @@
-## Description: <br>
-网络安全情报爬虫定期抓取安全社区 RSS、NVD、cxsecurity 和安全客的安全新闻与漏洞情报，并将按日期整理的中文笔记写入 IMA。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A cybersecurity intelligence crawler that collects security community RSS articles hourly, gathers daily CVE intelligence, translates English vulnerability descriptions into Chinese, and writes daily IMA notes.
 
-## Publisher: <br>
-[fallenqu](https://clawhub.ai/user/fallenqu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fallenqu](https://clawhub.ai/user/fallenqu)
 
-## Use Case: <br>
-Security analysts, developers, and operations teams use this skill to collect recent cybersecurity news and CVE-oriented vulnerability intelligence into daily IMA notes. It supports manual runs, scheduled crawler operation, RSS source management, URL/CVE deduplication, and Chinese translation of English vulnerability descriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses IMA note-writing credentials and may use a MiniMax key from local OpenClaw configuration. <br>
-Mitigation: Provide credentials explicitly through environment variables, remove or document the OpenClaw config fallback, avoid hardcoded credentials, and rotate exposed keys. <br>
-Risk: Recurring crawler automation can repeatedly fetch external sources and write to IMA notes. <br>
-Mitigation: Review cron entries and logs before enabling scheduled runs, test with a manual execution first, and provide clear enable, disable, and inspection controls. <br>
-Risk: Some crawler paths disable TLS verification for fallback vulnerability feeds. <br>
-Mitigation: Prefer feeds with valid TLS, enable certificate verification where possible, and treat unverified feed content as untrusted input. <br>
+## Use Case:
 
+Security analysts and developers use this skill to collect daily security news and vulnerability intelligence from configured feeds and APIs, deduplicate items, and publish Chinese daily notes in IMA.
 
-## Reference(s): <br>
-- [RSS Source Status Reference](artifact/references/rss-sources.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/fallenqu/sec-news-crawler) <br>
-- [NVD CVE API](https://services.nvd.nist.gov/rest/json/cves/2.0/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown notes and command-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes dated IMA note content and maintains local JSON deduplication state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The security review reports unsafe credential practices around IMA note-write credentials and MiniMax credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated limited-scope credentials, avoid hardcoded secrets, and remove the global openclaw.json credential fallback before deployment.
+
+Risk: The security review reports scheduled-operation risk, including system-wide cron execution.
+
+Mitigation: Run it under a controlled user-level schedule and do not use the system-wide cron command unless it has been reviewed and approved.
+
+Risk: The security review reports transport risk for feed collection.
+
+Mitigation: Require TLS verification for all feeds before relying on collected intelligence.
+
+Risk: The skill needs network access, local state files, logs, and credentials capable of writing IMA notes.
+
+Mitigation: Install only in an environment where those permissions are expected, monitored, and scoped to this crawler's notebooks.
+
+## Reference(s):
+
+- [RSS source status reference](references/rss-sources.md)
+- [ClawHub skill page](https://clawhub.ai/fallenqu/skills/sec-news-crawler)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown notes with inline source links and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes daily security-news and vulnerability-intelligence notes to IMA and maintains local state and log files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

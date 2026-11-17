@@ -1,49 +1,63 @@
-## Description: <br>
-Access OpenAI API capabilities for text generation, reasoning, embeddings, images, audio, and moderation with cost-conscious, safe, and model-appropriate guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access OpenAI API for text generation, reasoning, embeddings, images, audio, and moderation using cost-effective, safe, and model-appropriate calls.
 
-## Publisher: <br>
-[simonpierreboucher02](https://clawhub.ai/user/simonpierreboucher02) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simonpierreboucher02](https://clawhub.ai/user/simonpierreboucher02)
 
-## Use Case: <br>
-Developers and agents use this skill to decide when and how to call OpenAI API tools for generation, embeddings, images, audio, moderation, structured extraction, and RAG workflows while controlling cost and handling errors safely. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive OpenAI credentials. <br>
-Mitigation: Read the API key only from the environment or a secrets manager, never accept it as a tool argument, and never print the key or Authorization header. <br>
-Risk: Paid OpenAI calls can create avoidable cost. <br>
-Mitigation: Choose the cheapest capable model, set max_tokens or max_output_tokens on text calls, batch embeddings, cache repeat work, avoid uncontrolled loops, and report usage. <br>
-Risk: Untrusted inputs or model outputs can create safety and prompt-injection issues. <br>
-Mitigation: Moderate untrusted input before paid calls, refuse or sanitize flagged content, validate structured output, and do not execute returned code, commands, or URLs blindly. <br>
+## Use Case:
 
+Developers and agents use this skill to choose OpenAI API tools, models, parameters, and workflows for generation, embeddings, image, audio, moderation, and structured extraction tasks while controlling cost and security risk.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/simonpierreboucher02/openai-api-al) <br>
-- [OpenAI API reference](https://platform.openai.com/docs/api-reference) <br>
-- [README](artifact/README.md) <br>
-- [Model reference](artifact/reference/models.md) <br>
-- [Endpoint reference](artifact/reference/endpoints.md) <br>
-- [Parameter reference](artifact/reference/parameters.md) <br>
-- [Best practices](artifact/reference/best-practices.md) <br>
-- [Common errors](artifact/reference/common-errors.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration, shell commands] <br>
-**Output Format:** [Markdown guidance with JSON examples, checklists, and reusable prompt templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance emphasizes token caps, model selection, moderation, credential handling, caching, and usage reporting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: OpenAI API calls can incur billed usage if an agent uses chat, responses, embeddings, images, audio, uploads, fine-tuning, or vector-store operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set spend limits, require clear user intent before broad openai_request operations, cap output tokens, batch and cache embeddings, and review reported usage.
+
+Risk: Sensitive documents, secrets, or regulated personal data could be sent to an external API if used without review.
+
+Mitigation: Review sensitive documents before embedding or sending them, avoid secrets and regulated personal data unless approved, and never expose OPENAI_API_KEY or authorization headers.
+
+Risk: Model output and retrieved documents can contain untrusted instructions or unsafe content.
+
+Mitigation: Treat generated output and documents as untrusted, moderate untrusted input when appropriate, and avoid executing returned code, commands, or URLs blindly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/simonpierreboucher02/skills/openai-api-al)
+- [OpenAI API reference](https://platform.openai.com/docs/api-reference)
+- [README](README.md)
+- [Models reference](reference/models.md)
+- [Endpoints reference](reference/endpoints.md)
+- [Best practices reference](reference/best-practices.md)
+- [Failure cases](tests/failure-cases.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration, shell commands]
+
+**Output Format:** [Markdown guidance with checklists, JSON examples, and operational recipes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes cost-control, model-selection, moderation, error-handling, and secret-handling guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

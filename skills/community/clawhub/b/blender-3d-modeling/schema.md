@@ -57,6 +57,7 @@ Parameters:
 | `file_id` | `string` | no | AgentPMT file storage ID. |
 | `file_url` | `string` | no | Public URL of the 3D model file. |
 | `overhang_angle_deg` | `number` | no | Overhang angle threshold in degrees. Default: 45. |
+| `source_units` | `string` | no | Unit basis of the input file: auto (default), mm, cm, m, in, or native. auto honors an STL header declaration, otherwise STL/OBJ/PLY are millimetres and glTF/GLB/FBX/DAE/BLEND are native. Set explicitly for a metre-valued STL with a blank header. |
 | `thickness_min_mm` | `number` | no | Wall-thickness threshold in mm. Default: 0.5. |
 
 Sample parameters:
@@ -70,6 +71,7 @@ Sample parameters:
   "file_id": "example file id",
   "file_url": "https://example.com",
   "overhang_angle_deg": 10,
+  "source_units": "auto",
   "thickness_min_mm": 0.05
 }
 ```
@@ -118,6 +120,19 @@ Generated JSON parameter schema:
     "required": false,
     "type": "number"
   },
+  "source_units": {
+    "description": "Unit basis of the input file: auto (default), mm, cm, m, in, or native. auto honors an STL header declaration, otherwise STL/OBJ/PLY are millimetres and glTF/GLB/FBX/DAE/BLEND are native. Set explicitly for a metre-valued STL with a blank header.",
+    "enum": [
+      "auto",
+      "mm",
+      "cm",
+      "m",
+      "in",
+      "native"
+    ],
+    "required": false,
+    "type": "string"
+  },
   "thickness_min_mm": {
     "description": "Wall-thickness threshold in mm. Default: 0.5.",
     "maximum": 10,
@@ -144,6 +159,7 @@ Parameters:
 | `file_id` | `string` | no | AgentPMT file storage ID for the source 3D model. |
 | `file_url` | `string` | no | Public URL of the source 3D model. |
 | `output_format` | `string` | yes | Target format. |
+| `source_units` | `string` | no | Unit basis of the input file: auto (default), mm, cm, m, in, or native. auto honors an STL header declaration, otherwise STL/OBJ/PLY are millimetres and glTF/GLB/FBX/DAE/BLEND are native. Set explicitly for a metre-valued STL with a blank header. |
 
 Sample parameters:
 
@@ -152,7 +168,8 @@ Sample parameters:
   "apply_transforms": true,
   "file_id": "example file id",
   "file_url": "https://example.com",
-  "output_format": "blend"
+  "output_format": "blend",
+  "source_units": "auto"
 }
 ```
 
@@ -188,6 +205,19 @@ Generated JSON parameter schema:
     ],
     "required": true,
     "type": "string"
+  },
+  "source_units": {
+    "description": "Unit basis of the input file: auto (default), mm, cm, m, in, or native. auto honors an STL header declaration, otherwise STL/OBJ/PLY are millimetres and glTF/GLB/FBX/DAE/BLEND are native. Set explicitly for a metre-valued STL with a blank header.",
+    "enum": [
+      "auto",
+      "mm",
+      "cm",
+      "m",
+      "in",
+      "native"
+    ],
+    "required": false,
+    "type": "string"
   }
 }
 ```
@@ -212,6 +242,7 @@ Parameters:
 | `file_url` | `string` | no | Public URL of the 3D model file. |
 | `output_format` | `string` | yes | Target format for the cleaned export. |
 | `overhang_angle_deg` | `number` | no | Overhang angle threshold in degrees. Default: 45. |
+| `source_units` | `string` | no | Unit basis of the input file: auto (default), mm, cm, m, in, or native. auto honors an STL header declaration, otherwise STL/OBJ/PLY are millimetres and glTF/GLB/FBX/DAE/BLEND are native. Set explicitly for a metre-valued STL with a blank header. |
 | `thickness_min_mm` | `number` | no | Wall-thickness threshold in mm. Default: 0.5. |
 
 Sample parameters:
@@ -296,6 +327,19 @@ Generated JSON parameter schema:
     "required": false,
     "type": "number"
   },
+  "source_units": {
+    "description": "Unit basis of the input file: auto (default), mm, cm, m, in, or native. auto honors an STL header declaration, otherwise STL/OBJ/PLY are millimetres and glTF/GLB/FBX/DAE/BLEND are native. Set explicitly for a metre-valued STL with a blank header.",
+    "enum": [
+      "auto",
+      "mm",
+      "cm",
+      "m",
+      "in",
+      "native"
+    ],
+    "required": false,
+    "type": "string"
+  },
   "thickness_min_mm": {
     "description": "Wall-thickness threshold in mm. Default: 0.5.",
     "maximum": 10,
@@ -312,7 +356,7 @@ Action slug: `get-task`
 
 Price: `25` credits
 
-Check the status of a render task and retrieve download links when complete. Non-terminal responses include queue_position (0 when running, 1+ when queued), queue_eta_seconds, and queue_stats {queue_total_running, queue_total_queued, queue_total_capacity}. Caller-driven failures (GPU_RENDER_QUEUE_FULL, BLENDER_VOXEL_GRID_TOO_LARGE, BLENDER_RUN_SCRIPT_TOO_LARGE, GPU_RENDER_TASK_CANCELED, BLENDER_SLICER_PROFILE_INVALID) report at warning severity and are safe to retry with corrected inputs; subprocess / memory / timeout failures (GPU_RENDER_BLENDER_NONZERO_EXIT, GPU_RENDER_BLENDER_TIMEOUT, BLENDER_SUBPROCESS_MEMORY_LIMIT, GPU_RENDER_CONTAINER_RESTARTED, GPU_RENDER_UNEXPECTED_ERROR) report at error severity — retry once but escalate if it recurs.
+Check the status of a render task and retrieve download links when complete. Non-terminal responses include stage (what the worker is doing: queued, started, downloading_model, running_checks, slicing, rendering_preview, uploading_...) and date_updated as a heartbeat; progress is coarse and only advances at stage boundaries, so key off status and stage rather than a flat progress value. They also include queue_position (0 when running, 1+ when queued), queue_eta_seconds, and queue_stats {queue_total_running, queue_total_queued, queue_total_capacity}. Caller-driven failures (GPU_RENDER_QUEUE_FULL, BLENDER_VOXEL_GRID_TOO_LARGE, BLENDER_RUN_SCRIPT_TOO_LARGE, GPU_RENDER_TASK_CANCELED, BLENDER_SLICER_PROFILE_INVALID) report at warning severity and are safe to retry with corrected inputs; subprocess / memory / timeout failures (GPU_RENDER_BLENDER_NONZERO_EXIT, GPU_RENDER_BLENDER_TIMEOUT, BLENDER_SUBPROCESS_MEMORY_LIMIT, GPU_RENDER_CONTAINER_RESTARTED, GPU_RENDER_UNEXPECTED_ERROR) report at error severity — retry once but escalate if it recurs.
 
 Parameters:
 
@@ -398,6 +442,7 @@ Parameters:
 | `look_at` | `array` | no | Camera look-at [x, y, z] target. Default: [0, 0, 0]. |
 | `resolution` | `string` | no | Resolution preset or WxH. |
 | `samples` | `integer` | no | Render samples. |
+| `source_units` | `string` | no | Unit basis of the input file: auto (default), mm, cm, m, in, or native. auto honors an STL header declaration, otherwise STL/OBJ/PLY are millimetres and glTF/GLB/FBX/DAE/BLEND are native. Set explicitly for a metre-valued STL with a blank header. |
 
 Sample parameters:
 
@@ -489,6 +534,19 @@ Generated JSON parameter schema:
     "minimum": 1,
     "required": false,
     "type": "integer"
+  },
+  "source_units": {
+    "description": "Unit basis of the input file: auto (default), mm, cm, m, in, or native. auto honors an STL header declaration, otherwise STL/OBJ/PLY are millimetres and glTF/GLB/FBX/DAE/BLEND are native. Set explicitly for a metre-valued STL with a blank header.",
+    "enum": [
+      "auto",
+      "mm",
+      "cm",
+      "m",
+      "in",
+      "native"
+    ],
+    "required": false,
+    "type": "string"
   }
 }
 ```
@@ -518,6 +576,7 @@ Parameters:
 | `lighting_preset` | `string` | no | Lighting style. |
 | `resolution` | `string` | no | Resolution: 720p (default), 1080p, 2k, 4k, or WxH. |
 | `samples` | `integer` | no | Render samples (1-512). Default: 8. |
+| `source_units` | `string` | no | Unit basis of the input file: auto (default), mm, cm, m, in, or native. auto honors an STL header declaration, otherwise STL/OBJ/PLY are millimetres and glTF/GLB/FBX/DAE/BLEND are native. Set explicitly for a metre-valued STL with a blank header. |
 
 Sample parameters:
 
@@ -624,6 +683,19 @@ Generated JSON parameter schema:
     "minimum": 1,
     "required": false,
     "type": "integer"
+  },
+  "source_units": {
+    "description": "Unit basis of the input file: auto (default), mm, cm, m, in, or native. auto honors an STL header declaration, otherwise STL/OBJ/PLY are millimetres and glTF/GLB/FBX/DAE/BLEND are native. Set explicitly for a metre-valued STL with a blank header.",
+    "enum": [
+      "auto",
+      "mm",
+      "cm",
+      "m",
+      "in",
+      "native"
+    ],
+    "required": false,
+    "type": "string"
   }
 }
 ```
@@ -650,6 +722,7 @@ Parameters:
 | `lighting_preset` | `string` | no | Lighting style. |
 | `resolution` | `string` | no | Resolution: 720p (default), 1080p, 2k, 4k, or WxH. |
 | `samples` | `integer` | no | Render samples (1-512). Default: 8. |
+| `source_units` | `string` | no | Unit basis of the input file: auto (default), mm, cm, m, in, or native. auto honors an STL header declaration, otherwise STL/OBJ/PLY are millimetres and glTF/GLB/FBX/DAE/BLEND are native. Set explicitly for a metre-valued STL with a blank header. |
 | `views` | `array` | no | Views to render. Default: front, back, left, right, top, 3quarter. |
 
 Sample parameters:
@@ -737,6 +810,19 @@ Generated JSON parameter schema:
     "required": false,
     "type": "integer"
   },
+  "source_units": {
+    "description": "Unit basis of the input file: auto (default), mm, cm, m, in, or native. auto honors an STL header declaration, otherwise STL/OBJ/PLY are millimetres and glTF/GLB/FBX/DAE/BLEND are native. Set explicitly for a metre-valued STL with a blank header.",
+    "enum": [
+      "auto",
+      "mm",
+      "cm",
+      "m",
+      "in",
+      "native"
+    ],
+    "required": false,
+    "type": "string"
+  },
   "views": {
     "description": "Views to render. Default: front, back, left, right, top, 3quarter.",
     "items": {
@@ -774,6 +860,7 @@ Parameters:
 | `output_type` | `string` | no | Expected output class. Default: image. |
 | `script` | `string` | yes | Blender Python script (≤64 KiB). Has access to bpy, MODEL_PATH, OUTPUT_DIR. |
 | `script_timeout_seconds` | `integer` | no | Override the per-subprocess timeout in seconds. |
+| `source_units` | `string` | no | Unit basis of the input file: auto (default), mm, cm, m, in, or native. auto honors an STL header declaration, otherwise STL/OBJ/PLY are millimetres and glTF/GLB/FBX/DAE/BLEND are native. Set explicitly for a metre-valued STL with a blank header. |
 
 Sample parameters:
 
@@ -783,7 +870,8 @@ Sample parameters:
   "file_url": "https://example.com",
   "output_type": "image",
   "script": "example script",
-  "script_timeout_seconds": 600
+  "script_timeout_seconds": 600,
+  "source_units": "auto"
 }
 ```
 
@@ -823,6 +911,19 @@ Generated JSON parameter schema:
     "minimum": 600,
     "required": false,
     "type": "integer"
+  },
+  "source_units": {
+    "description": "Unit basis of the input file: auto (default), mm, cm, m, in, or native. auto honors an STL header declaration, otherwise STL/OBJ/PLY are millimetres and glTF/GLB/FBX/DAE/BLEND are native. Set explicitly for a metre-valued STL with a blank header.",
+    "enum": [
+      "auto",
+      "mm",
+      "cm",
+      "m",
+      "in",
+      "native"
+    ],
+    "required": false,
+    "type": "string"
   }
 }
 ```
@@ -844,6 +945,7 @@ Parameters:
 | `infill_density_pct` | `integer` | no | Override infill density percent (0-100). |
 | `layer_height_mm` | `number` | no | Override the slicer's layer height in mm. |
 | `printer_profile` | `string` | no | Bundled PrusaSlicer profile name. Default: prusa_mk4_pla_020. |
+| `source_units` | `string` | no | Unit basis of the input file: auto (default), mm, cm, m, in, or native. auto honors an STL header declaration, otherwise STL/OBJ/PLY are millimetres and glTF/GLB/FBX/DAE/BLEND are native. Set explicitly for a metre-valued STL with a blank header. |
 | `support_material` | `boolean` | no | Override the support-material toggle. |
 
 Sample parameters:
@@ -855,6 +957,7 @@ Sample parameters:
   "infill_density_pct": 0,
   "layer_height_mm": 0.05,
   "printer_profile": "example printer profile",
+  "source_units": "auto",
   "support_material": true
 }
 ```
@@ -893,6 +996,19 @@ Generated JSON parameter schema:
     "required": false,
     "type": "string"
   },
+  "source_units": {
+    "description": "Unit basis of the input file: auto (default), mm, cm, m, in, or native. auto honors an STL header declaration, otherwise STL/OBJ/PLY are millimetres and glTF/GLB/FBX/DAE/BLEND are native. Set explicitly for a metre-valued STL with a blank header.",
+    "enum": [
+      "auto",
+      "mm",
+      "cm",
+      "m",
+      "in",
+      "native"
+    ],
+    "required": false,
+    "type": "string"
+  },
   "support_material": {
     "description": "Override the support-material toggle.",
     "required": false,
@@ -916,7 +1032,8 @@ Parameters:
 | `file_id` | `string` | no | AgentPMT file storage ID. |
 | `file_url` | `string` | no | Public URL of the 3D model file. |
 | `output_format` | `string` | yes | Target format for the remeshed export. |
-| `voxel_size` | `number` | no | Optional explicit voxel size in the same units as your model (typically mm). Smaller = finer detail and longer compute. Omit to auto-scale to ~1.3% of the longest bounding-box dimension. |
+| `source_units` | `string` | no | Unit basis of the input file: auto (default), mm, cm, m, in, or native. auto honors an STL header declaration, otherwise STL/OBJ/PLY are millimetres and glTF/GLB/FBX/DAE/BLEND are native. Set explicitly for a metre-valued STL with a blank header. |
+| `voxel_size` | `number` | no | Explicit voxel size in millimetres (the model is normalized to real-world units first). Smaller = finer detail and longer compute. Omit to auto-scale to ~1.3% of the longest bounding-box dimension (0.5 mm floor). |
 
 Sample parameters:
 
@@ -925,6 +1042,7 @@ Sample parameters:
   "file_id": "example file id",
   "file_url": "https://example.com",
   "output_format": "stl",
+  "source_units": "auto",
   "voxel_size": 0.01
 }
 ```
@@ -954,8 +1072,21 @@ Generated JSON parameter schema:
     "required": true,
     "type": "string"
   },
+  "source_units": {
+    "description": "Unit basis of the input file: auto (default), mm, cm, m, in, or native. auto honors an STL header declaration, otherwise STL/OBJ/PLY are millimetres and glTF/GLB/FBX/DAE/BLEND are native. Set explicitly for a metre-valued STL with a blank header.",
+    "enum": [
+      "auto",
+      "mm",
+      "cm",
+      "m",
+      "in",
+      "native"
+    ],
+    "required": false,
+    "type": "string"
+  },
   "voxel_size": {
-    "description": "Optional explicit voxel size in the same units as your model (typically mm). Smaller = finer detail and longer compute. Omit to auto-scale to ~1.3% of the longest bounding-box dimension.",
+    "description": "Explicit voxel size in millimetres (the model is normalized to real-world units first). Smaller = finer detail and longer compute. Omit to auto-scale to ~1.3% of the longest bounding-box dimension (0.5 mm floor).",
     "maximum": 100,
     "minimum": 0.01,
     "required": false,

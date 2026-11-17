@@ -1,42 +1,59 @@
-## Description: <br>
-Detects AI-like patterns in Chinese writing and rewrites text for WeChat articles, Zhihu, Xiaohongshu, work reports, WeChat Moments, or general style cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spots AI patterns in Chinese writing and rewrites text for WeChat articles, Zhihu, Xiaohongshu, work reports, WeChat Moments, or general style cleanup.
 
-## Publisher: <br>
-[huangjihua007-rgb](https://clawhub.ai/user/huangjihua007-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangjihua007-rgb](https://clawhub.ai/user/huangjihua007-rgb)
 
-## Use Case: <br>
-Chinese-language writers, editors, and workplace communicators use this skill to diagnose AI-like writing patterns and adapt drafts to target platform conventions while preserving the original meaning and tone. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be used to conceal AI assistance where a school, employer, client, publication, or platform expects truthful disclosure. <br>
-Mitigation: Use it only for permitted editing, clarity, and style adaptation, and follow any applicable authorship or AI-use disclosure requirements. <br>
-Risk: Rewriting may change nuance or make unsupported details appear more persuasive. <br>
-Mitigation: Review the rewritten text against the source draft, keep the original position and tone, and add missing examples as reviewer-provided suggestions instead of invented facts. <br>
+## Use Case:
 
+External users, writers, and content reviewers use this skill to diagnose AI-like patterns in Chinese text, select a target publishing context, and rewrite the text while preserving the original meaning and tone.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/huangjihua007-rgb/qinbixiede) <br>
-- [Skill README](artifact/README.md) <br>
-- [Before and After Examples](artifact/examples/before_after.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with diagnostic findings, rewritten text, and change notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language output tailored to the selected publishing platform] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill is framed to hide AI assistance in workplace or public writing where disclosure may be required.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where authorship and disclosure rules permit, and disclose AI assistance when required by employer, platform, client, or academic policy.
+
+Risk: Examples include unsupported personal, business, citation, or metric claims that could be copied into user content.
+
+Mitigation: Replace examples, metrics, citations, and personal experiences with facts the user can support before publishing.
+
+Risk: The README recommends an unpinned npx installer path.
+
+Mitigation: Prefer a pinned or trusted installer source before installing the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangjihua007-rgb/skills/qinbixiede)
+- [Publisher profile](https://clawhub.ai/user/huangjihua007-rgb)
+- [Before and after examples](artifact/examples/before_after.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown containing diagnostic findings, rewritten Chinese text, and change notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language, platform-specific style guidance; no files or shell commands are produced.]
+
+## Skill Version(s):
+
+1.0.2 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

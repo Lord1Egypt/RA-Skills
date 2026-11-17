@@ -1,0 +1,15 @@
+# Python 编译缓存
+__pycache__/
+*.py[cod]
+*.pyo
+
+# 本地运行缓存 / 账号数据（含隐私，绝不入库）
+.kurobbs-wiki-cache/
+account.json
+*.log
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

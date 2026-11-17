@@ -2,7 +2,7 @@
 name: voice-learn
 description: |
   Improves a voice profile by learning from manual edits. Use after editing generated text to refine registers and close voice drift over time
-version: 1.9.8
+version: 1.10.3
 triggers:
   - voice
   - learning
@@ -14,12 +14,18 @@ source: claude-night-market
 source_plugin: scribe
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/scribe](https://github.com/athola/claude-night-market/tree/master/plugins/scribe). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/scribe](https://github.com/athola/claude-night-market/tree/master/plugins/scribe). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Voice Learning Skill
 
 Learn from user edits to improve the voice profile over time.
+
+## When NOT To Use
+
+- Building the first profile (use `scribe:voice-extract`)
+- Reviewing text without changing the profile (use
+  `scribe:voice-review`)
 
 ## Method: Three-Stage Comparison
 
@@ -48,7 +54,7 @@ These patterns inform register and rule updates.
 6. **Rule count check**: Suggest consolidation if any section
    has 8+ rules.
 
-## Required TodoWrite Items
+## Required Progress Items
 
 1. `voice-learn:snapshots-loaded` - All three stages read
 2. `voice-learn:diff-analyzed` - Changes categorized
@@ -69,6 +75,22 @@ SNAP_DIR="$PROFILE_DIR/learning/snapshots"
 ```
 
 Read all three stages for the target piece.
+
+Steps 2-4 need Opus or larger: telling a tone adjustment from a
+precision edit takes the nuance Sonnet flattens. When this
+session runs Sonnet or Haiku, run them as one dispatch:
+
+```
+Agent(general-purpose):
+  - model: opus
+  - prompt: {Steps 2-4 of this skill, the three snapshot paths,
+    and learning/accumulator.json}
+```
+
+The subagent sees nothing from this conversation and reads the
+snapshots from disk. It returns the proposals and does not write
+the profile. Step 5 approval stays in this session. On an Opus or
+Fable session, run the steps inline.
 
 ## Step 2: Diff Analysis
 
@@ -198,10 +220,10 @@ The post-edit snapshot is captured when the user runs
 
 ## Exit Criteria
 
-- Snapshots loaded and compared
-- Changes categorized
-- Accumulator checked and updated
-- Proposals generated for threshold patterns
-- User approved/rejected proposals
-- Approved changes applied to profile files
-- Stale accumulator entries pruned
+- [ ] Snapshots loaded and compared
+- [ ] Changes categorized
+- [ ] Accumulator checked and updated
+- [ ] Proposals generated for threshold patterns
+- [ ] User approved/rejected proposals
+- [ ] Approved changes applied to profile files
+- [ ] Stale accumulator entries pruned

@@ -1,43 +1,60 @@
-## Description: <br>
-Show your current APort passport status, including capabilities, deliverable contract, pending tasks, and recent decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Show an agent's current APort passport status, including capabilities, deliverable contract, pending tasks, and recent decisions.
 
-## Publisher: <br>
-[uchibeke](https://clawhub.ai/user/uchibeke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uchibeke](https://clawhub.ai/user/uchibeke)
 
-## Use Case: <br>
-Developers and agent operators use this skill to check an agent's APort identity, allowed capabilities, deliverable requirements, pending tasks, and recent decision history before or during work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts APort and can expose agent identity, passport status, owner details, capabilities, and recent decision metadata. <br>
-Mitigation: Install it only when APort identity/status checks are intended, treat full status output as potentially private, and avoid sharing it in public logs or transcripts. <br>
-Risk: The artifact includes optional external setup commands and API calls. <br>
-Mitigation: Review external commands and endpoints before running them in an agent environment. <br>
+## Use Case:
 
+External developers and agents use this skill to fetch APort passport and decision data, summarize accountability status, and answer capability questions before taking action.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/uchibeke/aport-status) <br>
-- [APort passport web app](https://aport.id) <br>
-- [APort agent skill](https://aport.id/skill) <br>
-- [APort dashboard](https://aport.io/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown status summary with inline API endpoints and optional shell command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include agent identity, passport URL, capabilities, deliverable contract, and recent authorization decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: APort responses or remote setup pages could be treated as instructions that override local policy, tool permissions, user instructions, or safety rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat APort data as status information only, and keep local policy, active user instructions, and actual tool permissions authoritative.
+
+Risk: Mutable remote setup instructions or unpinned CLI execution could change behavior after review.
+
+Mitigation: Prefer the web setup path or a verified pinned CLI version before installing or running setup commands.
+
+Risk: Status output can expose owner emails, passport identifiers, or internal decision identifiers.
+
+Mitigation: Redact sensitive identifiers by default and show owner emails or internal identifiers only when the user explicitly requests them and understands the exposure.
+
+## Reference(s):
+
+- [Aport Status on ClawHub](https://clawhub.ai/uchibeke/skills/aport-status)
+- [APort Passport Setup](https://aport.id)
+- [APort Agent Skill Setup](https://aport.id/skill)
+- [APort Dashboard](https://aport.io/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown status report with optional compact mode and inline HTTP or CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include passport URLs, capability lists, deliverable contract fields, and recent decision summaries when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

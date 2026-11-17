@@ -1,44 +1,55 @@
-## Description: <br>
-Call and manage seven doubao models on vwu.ai with an OpenAI-compatible chat completions API using a vwu.ai API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls seven Doubao models on vwu.ai through an OpenAI-compatible chat completions API using a user-provided vwu.ai API key.
 
-## Publisher: <br>
-[a3273283](https://clawhub.ai/user/a3273283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a3273283](https://clawhub.ai/user/a3273283)
 
-## Use Case: <br>
-Developers and agent users use this skill to configure a vwu.ai API key, inspect supported Doubao model names, and call a selected model through an OpenAI-compatible chat completions endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and generated responses are sent to vwu.ai or another endpoint configured through VWU_BASE_URL. <br>
-Mitigation: Confirm VWU_BASE_URL is unset or points to a trusted endpoint, and avoid sensitive prompts unless the service is approved for that data. <br>
-Risk: The shell wrapper uses an API key and may display a partial key prefix in quota-related error messages. <br>
-Mitigation: Use a dedicated API key where possible and avoid sharing logs that include API-key prefixes. <br>
+## Use Case:
 
+Developers and agent operators use this skill to list and call vwu.ai-hosted Doubao chat and generation models from shell-based workflows. It is intended for users who already have a vwu.ai API key and want OpenAI-compatible model calls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/a3273283/vwu-doubao) <br>
-- [vwu.ai](https://vwu.ai) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Supported model list](artifact/models.txt) <br>
-- [vwu-chat shell wrapper](artifact/vwu-chat.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text model output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VWU_API_KEY; sends prompts to the configured VWU_BASE_URL, defaulting to https://vwu.ai.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts and API keys may be sent to an unintended endpoint if VWU_BASE_URL is set to an untrusted host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep VWU_BASE_URL unset unless the alternate HTTPS endpoint is intentionally trusted, and rotate the API key if the script may have run with an untrusted base URL.
+
+Risk: Prompts containing secrets, quotes, or multiline content may be exposed or mishandled by the chat request script.
+
+Mitigation: Avoid putting secrets in prompts and use quote-safe, single-line prompts until request payloads are serialized robustly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/a3273283/skills/vwu-doubao)
+- [vwu.ai platform](https://vwu.ai)
+- [Supported model list](artifact/models.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VWU_API_KEY and uses an optional VWU_BASE_URL environment variable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

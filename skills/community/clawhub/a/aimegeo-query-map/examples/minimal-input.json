@@ -1,0 +1,141 @@
+{
+  "business": {
+    "description": "为小团队推广免费多账号内容工具；未提供功能明细和教程正文。",
+    "audience": "小型内容团队",
+    "goal": "整理首批问题和选题",
+    "inventory_status": "unprovided"
+  },
+  "articles": [],
+  "questions": [
+    {
+      "id": "M01",
+      "merge_key": "first-trial",
+      "question": "小团队第一次试用免费多账号工具，要先确认哪些限制？",
+      "audience": "小型内容团队",
+      "entity": "免费多账号内容工具",
+      "intent": "decision",
+      "theme": "试用边界",
+      "scope": "试用前的限制核对",
+      "origin": {
+        "kind": "agent_hypothesis",
+        "source": "Agent 仅依据业务介绍提出，待用户或真实提问验证"
+      },
+      "facts": [
+        {
+          "need": "账号额度、支持平台和任务限制",
+          "status": "missing",
+          "source": ""
+        }
+      ],
+      "format": "试用前核对清单",
+      "next_step": "先向产品负责人确认限制，再给出可执行的试用范围",
+      "impact": "high",
+      "impact_reason": "影响团队试用或持续使用的决策",
+      "article_links": []
+    },
+    {
+      "id": "M02",
+      "merge_key": "first-platform",
+      "question": "第一次试用时，怎样选择先接入哪个平台？",
+      "audience": "小型内容团队",
+      "entity": "免费多账号内容工具",
+      "intent": "decision",
+      "theme": "接入顺序",
+      "scope": "首个接入平台的选择",
+      "origin": {
+        "kind": "agent_hypothesis",
+        "source": "Agent 仅依据业务介绍提出，待用户或真实提问验证"
+      },
+      "facts": [
+        {
+          "need": "支持平台、授权前提和团队当前平台",
+          "status": "missing",
+          "source": ""
+        }
+      ],
+      "format": "接入选择表",
+      "next_step": "先核对团队正在使用的平台及工具支持范围，再排首个平台",
+      "impact": "high",
+      "impact_reason": "影响团队试用或持续使用的决策",
+      "article_links": []
+    },
+    {
+      "id": "M03",
+      "merge_key": "separate-accounts",
+      "question": "不同账号的稿件和任务能分清吗？",
+      "audience": "小型内容团队",
+      "entity": "免费多账号内容工具",
+      "intent": "operation",
+      "theme": "账号管理",
+      "scope": "稿件与任务的账号归属",
+      "origin": {
+        "kind": "agent_hypothesis",
+        "source": "Agent 仅依据业务介绍提出，待用户或真实提问验证"
+      },
+      "facts": [
+        {
+          "need": "账号、稿件和任务之间的归属规则",
+          "status": "missing",
+          "source": ""
+        }
+      ],
+      "format": "账号归属核对清单",
+      "next_step": "先确认归属字段与可回读的信息，再编写核对步骤",
+      "impact": "high",
+      "impact_reason": "影响团队试用或持续使用的决策",
+      "article_links": []
+    },
+    {
+      "id": "M04",
+      "merge_key": "failure-handling",
+      "question": "任务失败或结果未知时，应该先查什么？",
+      "audience": "小型内容团队",
+      "entity": "免费多账号内容工具",
+      "intent": "troubleshooting",
+      "theme": "失败恢复",
+      "scope": "失败与未知结果的处理边界",
+      "origin": {
+        "kind": "agent_hypothesis",
+        "source": "Agent 仅依据业务介绍提出，待用户或真实提问验证"
+      },
+      "facts": [
+        {
+          "need": "失败记录、回执与重试规则",
+          "status": "missing",
+          "source": ""
+        }
+      ],
+      "format": "失败分流表",
+      "next_step": "先取得实际错误与回执规则，不把结果未知当作允许重试",
+      "impact": "high",
+      "impact_reason": "影响团队试用或持续使用的决策",
+      "article_links": []
+    },
+    {
+      "id": "M05",
+      "merge_key": "manual-alternative",
+      "question": "继续手工管理还是试用多账号工具，应该比较哪些环节？",
+      "audience": "小型内容团队",
+      "entity": "免费多账号内容工具",
+      "intent": "comparison",
+      "theme": "工具选择",
+      "scope": "人工管理与工具流程对照",
+      "origin": {
+        "kind": "agent_hypothesis",
+        "source": "Agent 仅依据业务介绍提出，待用户或真实提问验证"
+      },
+      "facts": [
+        {
+          "need": "团队现有流程和工具实际可用步骤",
+          "status": "missing",
+          "source": ""
+        }
+      ],
+      "format": "流程对照表",
+      "next_step": "先记录现有工作步骤，再与已核实的工具流程逐项比较",
+      "impact": "high",
+      "impact_reason": "影响团队试用或持续使用的决策",
+      "article_links": []
+    }
+  ]
+}

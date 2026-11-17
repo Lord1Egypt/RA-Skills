@@ -1,44 +1,60 @@
-## Description: <br>
-Plan United Kingdom trips with nation-specific routing, ETA-aware entry rules, rail-road tradeoffs, and practical local logistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan United Kingdom trips with nation-specific routing, ETA-aware entry rules, rail-road tradeoffs, and practical local logistics.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Travelers and travel-planning agents use this skill to plan UK trips that account for entry requirements, nation-level routing, rail and car tradeoffs, seasonality, costs, accessibility, and local logistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store travel, family, mobility, budget, or immigration-related planning details in ~/uk/memory.md. <br>
-Mitigation: Use the narrow activation option when appropriate, avoid saving sensitive details unless needed, and review, edit, or delete ~/uk/memory.md to clear saved context. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to plan UK trips across England, Scotland, Wales, and Northern Ireland with entry checks, regional routing, transport choices, budgets, seasonality, accessibility, and on-the-ground logistics.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/uk) <br>
-- [Skill Homepage](https://clawic.com/skills/uk) <br>
-- [Official Source Map](sources.md) <br>
-- [UK ETA Guidance](https://www.gov.uk/guidance/apply-for-an-electronic-travel-authorisation-eta) <br>
-- [Check If You Need a UK Visa](https://www.gov.uk/check-uk-visa) <br>
-- [National Rail](https://www.nationalrail.co.uk/) <br>
-- [Met Office Weather Warnings and Advice](https://www.metoffice.gov.uk/weather/warnings-and-advice) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown travel-planning guidance with optional setup commands and local memory configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local trip-planning context in ~/uk/memory.md when the user chooses to keep durable UK travel preferences.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill keeps durable UK trip preferences and constraints in ~/uk/memory.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or delete ~/uk/memory.md if durable trip memory is not desired.
+
+Risk: Entry, transport, weather, and emergency guidance can change after the release evidence was checked.
+
+Mitigation: Confirm time-sensitive travel decisions against the official sources listed in artifact/sources.md before booking or traveling.
+
+## Reference(s):
+
+- [United Kingdom skill page](https://clawhub.ai/ivangdavila/skills/uk)
+- [Skill homepage](https://clawic.com/skills/uk)
+- [Official source map](artifact/sources.md)
+- [UK ETA guidance](https://www.gov.uk/guidance/apply-for-an-electronic-travel-authorisation-eta)
+- [Check if you need a UK visa](https://www.gov.uk/check-uk-visa)
+- [National Rail journey planning and service info](https://www.nationalrail.co.uk/)
+- [TfL transport accessibility](https://tfl.gov.uk/transport-accessibility/)
+- [Met Office weather warnings and advice](https://www.metoffice.gov.uk/weather/warnings-and-advice)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown travel plans, checklists, decision trees, and local memory updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May store trip preferences and planning constraints in ~/uk/memory.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

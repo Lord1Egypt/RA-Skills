@@ -1,43 +1,54 @@
-## Description: <br>
-Client acquisition methodology for agencies, covering how five n8n workflows handle prospect sourcing, cold outreach, inbound routing, client reporting, and proposal follow-up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Client acquisition methodology for agencies. Learn how 5 production-ready n8n workflows handle prospect sourcing, cold outreach, inbound routing, client reporting, and proposal follow-up — then get the full pack to deploy them.
 
-## Publisher: <br>
-[celestchief](https://clawhub.ai/user/celestchief) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[celestchief](https://clawhub.ai/user/celestchief)
 
-## Use Case: <br>
-External agency founders, freelance growth consultants, and operators use this skill to decide which client acquisition automation to implement first and understand the tools, credentials, setup effort, and success criteria for each workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid workflow pack or sample workflow files may include unexpected webhooks, scripts, or outbound destinations. <br>
-Mitigation: Review n8n JSONs before use, test with dummy data, and confirm all webhook URLs, scripts, and outbound destinations are expected. <br>
-Risk: Automation credentials could grant broader access than the workflows need. <br>
-Mitigation: Use least-privilege OAuth and API scopes for Gmail, Google Sheets, Airtable, Tally, Slack, and n8n. <br>
-Risk: Cold outreach automation can create consent, opt-out, rate-limit, privacy, and platform anti-abuse compliance risk. <br>
-Mitigation: Confirm outreach complies with applicable CAN-SPAM, GDPR, ePrivacy, platform rules, consent requirements, opt-out handling, and rate limits before deployment. <br>
+## Use Case:
 
+External agency founders and freelance growth consultants use this skill to choose and understand n8n-based workflows for prospect sourcing, cold outreach, inbound routing, client reporting, and proposal follow-up.
 
-## Reference(s): <br>
-- [Agency Growth Automations on ClawHub](https://clawhub.ai/celestchief/agency-growth-automations) <br>
-- [Agency Growth Automation Pack](https://qssys.gumroad.com/l/AgencyGrowthAutomationPack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline install commands and workflow setup recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only methodology; full importable workflow JSONs and PDF setup guides are offered separately.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence) <br>
+Risk: Email automation and lead handling can create compliance, rate-limit, opt-out, or provider-policy issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review cold email, opt-out, rate-limit, and personal-data handling practices against provider rules and applicable law before using the workflows.
+
+Risk: Workflow setup may require Gmail, Airtable, form, and n8n credentials or permissions.
+
+Mitigation: Review requested permissions, store credentials in the relevant platforms rather than shared files, and test with small data sets before broader use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/celestchief/skills/agency-growth-automations)
+- [Agency Growth Automation Pack](https://qssys.gumroad.com/l/AgencyGrowthAutomationPack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with workflow recommendations and setup requirements]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Methodology-only release; paid external workflow JSONs and PDF guides are referenced but not included.]
+
+## Skill Version(s):
+
+1.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

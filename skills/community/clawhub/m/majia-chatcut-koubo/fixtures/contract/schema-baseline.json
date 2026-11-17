@@ -1,0 +1,5 @@
+{
+  "$comment": "Temporary schema debt must be listed here with an issue and an exact reason. Baseline mode reports entries; release mode blocks every used baseline entry.",
+  "version": 1,
+  "entries": []
+}

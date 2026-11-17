@@ -1,43 +1,56 @@
-## Description: <br>
-Use when diagnosing or improving frontend performance, Core Web Vitals, bundle size, runtime rendering cost, network waterfalls, memory leaks, long tasks, Lighthouse findings, or performance budgets; Chinese triggers include 性能优化, 页面卡顿, 首屏慢, 包体积, Web Vitals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers diagnose frontend performance bottlenecks and plan evidence-based improvements to loading, rendering, network activity, bundle size, and responsiveness.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to diagnose web performance issues and produce evidence-based recommendations for Core Web Vitals, bundle size, rendering cost, network waterfalls, memory leaks, and validation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to inspect private monitoring dashboards, CI artifacts, production traces, or repository data during performance analysis. <br>
-Mitigation: Use it only where the agent is authorized to inspect that data and limit access to the routes, artifacts, and metrics needed for the review. <br>
-Risk: Performance recommendations can be misleading when made without measurements or scoped reproduction steps. <br>
-Mitigation: Require baselines and post-change validation before relying on optimization guidance. <br>
+## Use Case:
 
+Frontend developers use this skill to investigate Core Web Vitals, slow pages, large bundles, rendering costs, and memory leaks, then document measured bottlenecks and a prioritized verification plan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bovinphang/fec-performance-optimization) <br>
-- [Framework Performance Patterns](references/framework-performance-patterns.md) <br>
-- [Performance Report Template](references/report-template.md) <br>
-- [Frontend Craft homepage](https://github.com/bovinphang/frontend-craft) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown performance analysis report with validation commands and evidence-linked recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The expected report includes baseline metrics, candidate gating, bottleneck analysis, optimization recommendations, validation comparison, and remaining risks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.7.0 (source: server evidence release.version, metadata.json, package.json, README.md) <br>
+Risk: Reviewing project files and monitoring or build outputs may expose sensitive information in the resulting report.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit review to relevant files and redact sensitive details before sharing the local report.
+
+Risk: Rerunning project build, test, or performance commands may consume resources or have project-specific side effects.
+
+Mitigation: Review project commands before running them and use the appropriate project environment.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/bovinphang/skills/fec-performance-optimization)
+- [Framework performance patterns](references/framework-performance-patterns.md)
+- [Performance report template](references/report-template.md)
+- [Project homepage (packaged metadata)](https://github.com/bovinphang/frontend-craft)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown performance analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves an evidence-based report under reports/performance-review-YYYY-MM-DD-HHmmss.md.]
+
+## Skill Version(s):
+
+2.7.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

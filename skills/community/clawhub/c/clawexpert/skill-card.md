@@ -1,45 +1,59 @@
-## Description: <br>
-EverClaw turns an OpenClaw agent into a persistent domain research assistant that can build and reuse a local, citable knowledge base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EverClaw turns OpenClaw into a persistent domain expert that researches topics, builds a local indexed knowledge base, and answers future questions with citations from collected sources.
 
-## Publisher: <br>
-[edgepro001](https://clawhub.ai/user/edgepro001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edgepro001](https://clawhub.ai/user/edgepro001)
 
-## Use Case: <br>
-Developers and OpenClaw users use EverClaw to research a topic, organize web and PDF source material into an indexed local knowledge base, and answer later questions with citations from that stored knowledge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform broad autonomous web and PDF collection and retain raw source material locally. <br>
-Mitigation: Review the configured knowledge directory before use, set storage boundaries, and avoid confidential, regulated, or copyrighted material unless rights and retention limits are clear. <br>
-Risk: The skill can keep cross-session learning state and inferred research interests. <br>
-Mitigation: Use the documented master switch and proactive-mode controls, and periodically review or delete stored topics and proactive queues. <br>
-Risk: Scheduled or proactive learning can run without direct per-topic interaction when enabled. <br>
-Mitigation: Keep proactive mode and cron entries disabled unless intentionally configured, and review generated source collections before relying on them. <br>
+## Use Case:
 
+External users and developers use EverClaw to run long-running topic research, maintain a local knowledge base, and answer domain questions from stored source-backed notes instead of relying only on model memory.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/edgepro001/clawexpert) <br>
-- [Project homepage](https://github.com/EdgePro001/ClawExpert) <br>
-- [README](README.md) <br>
-- [Subagent Prompt Template](references/subagent-prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, structured knowledge-base files, and concise status reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write persistent local knowledge-base files and source extracts under the configured knowledge directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can persistently affect future answers by reading and writing a local knowledge base and session state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when persistent research memory is desired, keep proactive mode off unless topic tracking is acceptable, and periodically review or delete local knowledge and state files.
+
+Risk: Autonomous research, inherited subagents, cron or auto modes can consume time and resources.
+
+Mitigation: Avoid cron and auto modes until resource use is understood, constrain runtime with documented options, and restrict the sandbox and knowledge directory.
+
+Risk: Path-based forget and cleanup workflows can remove local files if paths resolve outside the intended knowledge base.
+
+Mitigation: Before using deletion workflows, confirm the resolved path is inside the intended knowledge base.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/edgepro001/skills/clawexpert)
+- [Metadata Homepage](https://github.com/EdgePro001/ClawExpert)
+- [Subagent Prompt Reference](references/subagent-prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, status summaries, citations, and generated knowledge-base files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces and updates local knowledge-base content, topic indexes, progress files, and source-backed answer summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -5,13 +5,24 @@
 Usage:
     python3 cli.py <command> [options]
 
-Commands（更多参数见项目根目录 SKILL.md）:
-    seller_trade_code_index            店铺交易核心指标（总盘）
-    seller_activity_registered_info    近 30 天活动参与及效果
-    seller_import_abnormal_offer       异常商品（风险定位）
-    seller_top_offer                   优秀商品榜单（多榜单）
-    seller_customer_business_province  客户地域分布
-    seller_customer_detail            头部老客户明细
+Commands（命令自动发现，更多参数见项目根目录 SKILL.md 与 references/cli-commands.md）:
+    get_bindlist                       获取多店铺绑定关系列表
+    alibaba.1688.seller.trade.code.index            店铺交易核心指标（总盘）
+    alibaba.1688.seller.import.abnormal.offer       异常商品（风险定位）
+    alibaba.1688.seller.top.offer                   优秀商品榜单（多榜单）
+    alibaba.1688.seller.activity.registered.info    近 30 天活动参与及效果
+    alibaba.1688.seller.customer.business.province  客户地域分布
+    alibaba.1688.seller.customer.detail             头部老客户明细
+    alibaba.1688.get.traffic.trend                  逐日流量趋势数据
+    alibaba.1688.get.traffic.overview               全店流量概览（PV/UV/UVCTR + 多期对比）
+    alibaba.1688.get.channel.traffic                各渠道流量及多期对比
+    alibaba.1688.get.search.channel.detail          搜索渠道深度下钻
+    alibaba.1688.get.recommend.channel.detail       推荐渠道深度下钻
+    alibaba.1688.get.ad.channel.detail              广告渠道深度下钻
+    alibaba.1688.get.core.metrics                   店铺核心指标同行对比及趋势
+    alibaba.1688.get.product.status                商品状态检查（搜索降权/下架等）
+    alibaba.1688.get.industry.benchmark             行业大盘对比
+    shop_health_check                  店铺健康检查（订单履约/合规扣分/买家评价）
     configure                          配置 AK
 
 输出 JSON：{"success": bool, "markdown": str, "data": {...}}

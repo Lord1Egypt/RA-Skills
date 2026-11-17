@@ -1,48 +1,61 @@
-## Description: <br>
-OpenClaw execution governance skill for approval gates, risk classification, confirmation policy, and action boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw execution governance skill for approval gates, risk classification, confirmation policy, and action boundaries that reduces low-risk confirmation noise while hard-stopping high-risk and critical actions.
 
-## Publisher: <br>
-[dmiyding](https://clawhub.ai/user/dmiyding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dmiyding](https://clawhub.ai/user/dmiyding)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to classify execution risk, reduce confirmation noise for routine work, and require explicit confirmation for high-risk or critical actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally changes confirmation behavior for routine and medium-risk OpenClaw work. <br>
-Mitigation: Review the MEDIUM examples before deployment and keep runtime approval policy enabled for destructive, credential, shared-routing, external-delivery, and costly actions. <br>
-Risk: Installing or storing the skill does not guarantee active governance behavior in OpenClaw. <br>
-Mitigation: Activate it through an always-injected entry point such as AGENTS.md or an equivalent standing-order policy and validate activation with the provided prompts. <br>
-Risk: Prompt-layer governance cannot provide a non-bypassable block for privileged, destructive, costly, or outbound actions by itself. <br>
-Mitigation: Use runtime and policy enforcement for actions that must always be blocked or require guaranteed approval. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to classify execution risk, reduce unnecessary confirmations for low- and medium-risk work, and require explicit approval for high-risk or critical actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dmiyding/clawgate) <br>
-- [Project homepage](https://github.com/DmiyDing/clawgate) <br>
-- [Risk Matrix](references/risk-matrix.md) <br>
-- [Confirmation Templates](references/confirmation-templates.md) <br>
-- [AGENTS Activation Snippet](references/agents-snippet.md) <br>
-- [Eval Guide](evals/README.md) <br>
-- [OpenClaw Acceptance Prompts](evals/openclaw-prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with structured risk and confirmation blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include explicit LOW, MEDIUM, HIGH, or CRITICAL risk posture and activation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata; artifact frontmatter reports 0.1.1) <br>
+Risk: The skill intentionally reduces confirmation prompts for scoped local edits, internal sends, limited API calls, and local maintenance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the LOW and MEDIUM categories before deployment and pair the skill with OpenClaw runtime policy when strict enforcement is required.
+
+Risk: Installing or storing the skill does not by itself guarantee live OpenClaw enforcement.
+
+Mitigation: Activate it through the documented AGENTS snippet, standing orders, or runtime policy and verify that OpenClaw injects the governance guidance.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/DmiyDing/clawgate)
+- [ClawHub skill page](https://clawhub.ai/dmiyding/skills/clawgate)
+- [Risk Matrix](references/risk-matrix.md)
+- [Confirmation Templates](references/confirmation-templates.md)
+- [Execution Checklist](references/checklist.md)
+- [AGENTS Activation Snippet](references/agents-snippet.md)
+- [Examples](references/examples.md)
+- [Eval Guide](evals/README.md)
+- [OpenClaw Acceptance Prompts](evals/openclaw-prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown governance blocks and concise execution guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include machine-readable governance fields such as risk_level, blocked, missing_fields, approval_mode, continue_or_cancel, and itemized_actions when requested.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

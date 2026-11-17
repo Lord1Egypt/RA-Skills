@@ -1,41 +1,51 @@
-## Description: <br>
-Talk to your Strava data — ask questions about your activities, fitness trends, PRs, and training load using AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Talk to your Strava data: ask questions about your activities, fitness trends, PRs, and training load using AI.
 
-## Publisher: <br>
-[nftechie](https://clawhub.ai/user/nftechie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nftechie](https://clawhub.ai/user/nftechie)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent query Transition endpoints for Strava-linked activity history, performance trends, workouts, athlete profile details, and AI coaching chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: TRANSITION_API_KEY exposure could allow unauthorized access to Transition-backed Strava data. <br>
-Mitigation: Store the key in a secret manager or scoped environment, avoid committing or sharing it, and rotate or revoke it if exposed. <br>
-Risk: Fitness and performance data is processed by Transition when personalized endpoints are used. <br>
-Mitigation: Install only when the user is comfortable connecting Strava through Transition and letting an agent query that service. <br>
+## Use Case:
 
+External users and agents use this skill to query Strava-linked training data through Transition, including workouts, performance metrics, athlete profile, AI coaching chat, and workout suggestions.
 
-## Reference(s): <br>
-- [Transition](https://www.transition.fun) <br>
-- [Strava Skill on ClawHub](https://clawhub.ai/nftechie/strava-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Authenticated requests require TRANSITION_API_KEY; a no-auth workout endpoint is also documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can expose Strava-linked activity data, performance metrics, profile details, prompts, and prior coach chats through Transition API access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use authenticated endpoints only with a trusted agent session, protect TRANSITION_API_KEY like a password, and revoke the key when access is no longer needed.
+
+## Reference(s):
+
+- [Strava Skill on ClawHub](https://clawhub.ai/nftechie/skills/strava-skill)
+- [Transition](https://www.transition.fun)
+- [Transition API](https://api.transition.fun)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and HTTP request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Personalized endpoints require TRANSITION_API_KEY and may return Strava-linked activity, performance, profile, prompt, and coach chat data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

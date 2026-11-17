@@ -1,11 +1,11 @@
 ---
 name: oo-flomo
-description: "flomo (flomoapp.com). Use this skill for ANY flomo request — reading, creating, and updating data. Whenever a task involves flomo, use this skill instead of calling the API directly."
+description: "flomo (flomoapp.com). Use this skill for ANY flomo request — reading, creating, updating, and deleting data. Whenever a task involves flomo, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "flomo"
   author: "OOMOL"
-  version: "1.0.2"
+  version: "1.0.7"
   services: ["flomo"]
   icon: "https://static.oomol.com/logo/third-party/flomo.png"
 ---
@@ -44,7 +44,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `memo_batch_get` — Fetch multiple flomo memos through the flomo Max MCP server in a single tool call.
 - `memo_recommended` — Find flomo memos related to a target memo through the flomo Max MCP server.
 - `memo_search` — Search flomo memos through the flomo Max MCP server by keywords, tags, time range, or semantic search options.
-- `memo_update` — Update an existing flomo memo through the flomo Max MCP server. The exact arguments are validated by flomo MCP. [write]
+- `memo_update` — Update an existing flomo memo through the flomo Max MCP server. The exact arguments are validated by flomo MCP. [destructive]
 - `memory_context` — Read the generated flomo memory context through the flomo Max MCP server.
 - `memory_user` — Read the generated flomo memory user profile through the flomo Max MCP server.
 - `tag_rename` — Rename flomo tags through the flomo Max MCP server and update associated memos. [write]
@@ -80,11 +80,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — flomo is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key, custom credential) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=flomo
+  https://console.oomol.com/connections/flomo
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - flomo homepage: https://flomoapp.com
+- API documentation: https://help.flomoapp.com/advance/api.html

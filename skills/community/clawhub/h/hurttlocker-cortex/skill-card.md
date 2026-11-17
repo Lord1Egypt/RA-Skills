@@ -1,47 +1,59 @@
-## Description: <br>
-Cortex provides local-first agent memory with file import, fact extraction, hybrid BM25 and semantic search, confidence tracking, MCP tools, and SQLite storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cortex provides local-first agent memory with Ebbinghaus decay, hybrid BM25 and semantic search, MCP tools, file import, fact extraction, and confidence tracking over time.
 
-## Publisher: <br>
-[hurttlocker](https://clawhub.ai/user/hurttlocker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hurttlocker](https://clawhub.ai/user/hurttlocker)
 
-## Use Case: <br>
-Developers and agent operators use Cortex to preserve and search persistent memory across OpenClaw sessions, especially for multi-agent setups, large knowledge bases, and workflows where context compaction loses important details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The setup script downloads and executes an external Cortex binary. <br>
-Mitigation: Use a pinned and verified Cortex release, review the upstream source or binary, and run setup only in environments where this persistent memory tool is intended. <br>
-Risk: Cortex can centralize sensitive imported files, facts, and connector data in a local database. <br>
-Mitigation: Start with a small non-sensitive folder, review provider scopes before connector sync, and avoid all-provider sync until each data source is understood. <br>
-Risk: Scheduled sync and shell startup modifications can persist beyond the initial setup session. <br>
-Mitigation: Do not enable scheduled sync until the disable path is known, and review shell startup file changes after setup. <br>
-Risk: The reimport workflow can remove the existing Cortex database. <br>
-Mitigation: Back up the Cortex database before using reimport or any full reimport workflow. <br>
+## Use Case:
 
+Developers and agent users use Cortex to add persistent local memory, searchable imported knowledge, and MCP-accessible memory tools to OpenClaw-style multi-agent workflows.
 
-## Reference(s): <br>
-- [Cortex skill page](https://clawhub.ai/hurttlocker/hurttlocker-cortex) <br>
-- [Publisher profile](https://clawhub.ai/user/hurttlocker) <br>
-- [Cortex homepage](https://github.com/hurttlocker/cortex) <br>
-- [Cortex releases](https://github.com/hurttlocker/cortex/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Wrapper commands may emit JSON from the Cortex CLI for search, stats, stale facts, and conflicts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release metadata) <br>
+Risk: Installation guidance can download and execute unverified release binaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer Homebrew or a pinned, verified release before running setup scripts.
+
+Risk: Connector sync, scheduled sync, LLM enrichment, and local HTTP/SSE serving can persist or expose broad sensitive data.
+
+Mitigation: Scope sources, review imported data, choose the SQLite database location deliberately, and enable these features only after review.
+
+Risk: The wrapper reimport command deletes the configured Cortex database before rebuilding it.
+
+Mitigation: Treat reimport as destructive and avoid setting CORTEX_DB outside the intended Cortex data directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hurttlocker/skills/hurttlocker-cortex)
+- [Cortex project homepage](https://github.com/hurttlocker/cortex)
+- [Cortex releases](https://github.com/hurttlocker/cortex/releases)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, configuration snippets, and CLI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce JSON-formatted Cortex CLI results through wrapper commands.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

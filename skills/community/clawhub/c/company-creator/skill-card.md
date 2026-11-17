@@ -1,47 +1,62 @@
-## Description: <br>
-Create agent company packages conforming to the Agent Companies specification (agentcompanies/v1) from scratch, from an existing repository, or from a skills collection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create agent company packages conforming to the Agent Companies specification (agentcompanies/v1), either from scratch or around an existing repository or skills collection.
 
-## Publisher: <br>
-[marlowne12](https://clawhub.ai/user/marlowne12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marlowne12](https://clawhub.ai/user/marlowne12)
 
-## Use Case: <br>
-Developers and agent builders use this skill to interview users, analyze repositories when provided, and scaffold Agent Companies packages with company, agent, team, project, task, skill, README, license, and Paperclip configuration files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read local paths or repositories supplied for company generation, which may expose sensitive source content to the acting agent. <br>
-Mitigation: Provide only repositories or local paths that are appropriate for the agent to inspect. <br>
-Risk: Generated AGENTS.md, SKILL.md, .paperclip.yaml, and external source references may encode incorrect roles, unsafe configuration, or unsuitable dependency references. <br>
-Mitigation: Review generated company files and external references before importing or running the company. <br>
-Risk: Generated packages may include output locations or source references that do not match the user's intent. <br>
-Mitigation: Confirm the output directory and source-reference strategy before writing or importing generated files. <br>
+## Use Case:
 
+Developers and agent builders use this skill to interview for, design, and scaffold Paperclip/Agent Companies packages. It supports new companies, teams or departments, and company packages derived from existing repositories or skill collections.
 
-## Reference(s): <br>
-- [Agent Companies Specification](https://agentcompanies.io/specification) <br>
-- [Agent Companies Protocol Site](https://agentcompanies.io/) <br>
-- [Agent Companies Specification Reference](references/companies-spec.md) <br>
-- [Example Company Package](references/example-company.md) <br>
-- [Creating a Company From an Existing Repository](references/from-repo-guide.md) <br>
-- [Paperclip](https://github.com/paperclipai/paperclip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, YAML frontmatter, shell commands, and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Agent Companies package files and asks for user confirmation before writing output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: Generated company package files or repo-derived instructions may contain incorrect or misleading guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated files before importing or deploying the company package.
+
+Risk: Referenced third-party skills or repositories may add behavior outside the generated package.
+
+Mitigation: Verify referenced skills, provenance, and licenses before use.
+
+Risk: Optional secret inputs such as GH_TOKEN can broaden access if assigned unnecessarily.
+
+Mitigation: Provide secrets only to agents that need them and use least-privilege tokens.
+
+## Reference(s):
+
+- [Agent Companies Specification](https://agentcompanies.io/specification)
+- [Agent Companies Protocol](https://agentcompanies.io/)
+- [Paperclip](https://github.com/paperclipai/paperclip)
+- [Agent Companies Specification Reference](references/companies-spec.md)
+- [Example Company Package](references/example-company.md)
+- [Creating a Company From an Existing Repository](references/from-repo-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files with YAML frontmatter, configuration files, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated company packages should be reviewed before import or deployment.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Reads PDF files, extracts text and basic document signals, and produces a structured Markdown summary for Chinese and English PDFs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads text-extractable PDF files and produces a structured summary with document basics, core sections, key data, conclusions, and suggested actions.
 
-## Publisher: <br>
-[banalit](https://clawhub.ai/user/banalit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[banalit](https://clawhub.ai/user/banalit)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to read an uploaded PDF and return a concise structured summary of its contents, key data, and suggested actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The packaged upload script contains an exposed bearer token. <br>
-Mitigation: Remove or ignore upload.sh before installation, and have the publisher revoke the exposed token and replace it with environment-based credentials. <br>
-Risk: Broad activation wording may cause the agent to process documents unexpectedly. <br>
-Mitigation: Use the skill only for explicit PDF summarization requests and confine file reads to approved attachments or a trusted workspace. <br>
-Risk: PDF parsing runs local code and is best suited to trusted inputs. <br>
-Mitigation: Use PDFs intentionally provided by the user and review the skill before installing in sensitive environments. <br>
+## Use Case:
 
+Developers and agents use this skill to read uploaded PDF documents and generate concise, structured summaries for review. It is most suitable for Chinese or English text-based PDFs where local text extraction is acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/banalit/luke-pdf-read-summarize) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown] <br>
-**Output Format:** [Markdown structured summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries include document basics, core sections, key data or conclusions, and optional action items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The package includes a publishing script with a hard-coded ClawHub token and broad upload behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove upload.sh before installation, rotate the exposed token, and confirm the package contents are limited to intended skill files.
+
+Risk: The tool processes local PDFs through a PyMuPDF subprocess.
+
+Mitigation: Use it only with PDFs the operator is comfortable processing locally, and keep the runtime dependency and file access scope reviewed.
+
+Risk: Summaries may be biased toward Chinese resume-style sections and may miss structure in unrelated document types.
+
+Mitigation: Review generated summaries against the source PDF before using them for decisions or downstream reporting.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/banalit/skills/luke-pdf-read-summarize)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown]
+
+**Output Format:** [Markdown summary with document metadata, section bullets, key data, conclusions, and suggested actions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output is generated from locally extracted PDF text and may reflect Chinese resume-style extraction heuristics.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

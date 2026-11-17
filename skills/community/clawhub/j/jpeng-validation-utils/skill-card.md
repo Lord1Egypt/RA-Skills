@@ -1,38 +1,49 @@
-## Description: <br>
-Provides data validation and type checking utilities for validating inputs and data structures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides data validation and type checking utilities for validating inputs and data structures.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and agents use this skill to validate JavaScript values, check common constraints, and apply simple object-schema validation before acting on user or application data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Validators may be too permissive for security-sensitive email, URL, IP, UUID, or schema validation. <br>
-Mitigation: Review validation strictness for the target application and add application-specific checks or tests before relying on these helpers for security decisions. <br>
+## Use Case:
 
+Developers and agents use this skill to validate JavaScript inputs, check data types and constraints, and build schema-based validation or assertion logic.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-validation-utils) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Guidance] <br>
-**Output Format:** [JavaScript module exports with boolean validation results, schema validation results, and assertion errors] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with no evident network, credential, persistence, or destructive behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release evidence) <br>
+Risk: Untrusted regular expression patterns passed to pattern-matching helpers can cause unsafe or inefficient matching behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or constrain externally supplied patterns before use, and prefer known-safe validators for untrusted input.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-validation-utils)
+
+## Skill Output:
+
+**Output Type(s):** [code, guidance]
+
+**Output Format:** [Markdown with JavaScript code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local validation helper behavior; no network, credential, or persistence behavior reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

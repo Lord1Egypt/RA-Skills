@@ -1,40 +1,59 @@
-## Description: <br>
-Provides Feishu document operations using a user access token for authentication, including reading, creating, writing, and appending Feishu documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu document operations (User Access Token version). Use user access token for authentication. When you need to read, create, write, or append Feishu documents.
 
-## Publisher: <br>
-[HackSing](https://clawhub.ai/user/HackSing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hacksing](https://clawhub.ai/user/hacksing)
 
-## Use Case: <br>
-Developers and agent operators use this skill to work with Feishu documents through Feishu Open API under a user's access token, including reading, creating, appending, updating, and deleting document content. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: User access tokens allow an agent to read and change Feishu documents under the user's identity. <br>
-Mitigation: Use the narrowest Feishu scopes that work and require explicit confirmation before document update or delete operations. <br>
-Risk: Cached token data can expose Feishu document access on shared or poorly protected machines. <br>
-Mitigation: Protect or remove ~/.config/claw-feishu-user/config.json when it is not needed and avoid shared machines for token storage. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
-- [Feishu Document API](https://open.feishu.cn/document/ukTMukTMukTM/uADOwUjLwgDMzCM4ATm) <br>
+## Use Case:
 
+Developers and agents use this skill to authenticate with Feishu as a user and read, create, append, update, or delete Feishu document content through the Feishu Open API.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples, plus Feishu API responses and document changes when the helper scripts are used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and modify Feishu documents and may write cached token data to ~/.config/claw-feishu-user/config.json.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles persistent Feishu user credentials and cached refresh tokens, which can expose documents accessible under the user's identity.
+
+Mitigation: Grant only the Feishu OAuth scopes needed for the task, avoid passing app secrets on the command line, and protect or remove the cached token file after use.
+
+Risk: Document update and delete operations can modify or remove Feishu content when a document ID or block ID is wrong.
+
+Mitigation: Manually confirm document IDs and block IDs before mutation, and test write operations on non-sensitive documents first.
+
+Risk: The security verdict is Review because document mutation is available with weak scoping and safeguards.
+
+Mitigation: Review the skill and its requested Feishu permissions before installation or deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hacksing/skills/feishu-user)
+- [ClawHub publisher profile](https://clawhub.ai/user/hacksing)
+- [Feishu Open Platform](https://open.feishu.cn)
+- [Feishu Document API](https://open.feishu.cn/document/ukTMukTMukTM/uADOwUjLwgDMzCM4ATm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Feishu document operation guidance and helper code that may call Feishu APIs when used by an agent.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,63 @@
-## Description: <br>
-Generates money-making idea suggestions by monitoring AI projects and social trend sources, scoring monetization potential, and saving ideas for follow-up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Money Idea Generator monitors public AI and startup trend sources, analyzes monetization potential, and generates actionable business ideas with implementation paths.
 
-## Publisher: <br>
-[devotion-coding](https://clawhub.ai/user/devotion-coding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[devotion-coding](https://clawhub.ai/user/devotion-coding)
 
-## Use Case: <br>
-External users, developers, and entrepreneurs use this skill to monitor AI and business trend sources, analyze project monetization potential, and generate actionable startup, service, or content ideas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may perform public web and API lookups, and can optionally use a GitHub token. <br>
-Mitigation: Use a low-privilege GitHub token or leave it unset, and review network access before running the skill. <br>
-Risk: Generated business ideas, execution notes, and revenue notes may be stored locally. <br>
-Mitigation: Avoid entering sensitive personal or financial data, and review local files before sharing or syncing them. <br>
-Risk: Twitter trend search may run a locally installed bird command when available. <br>
-Mitigation: Install that command only from a trusted source, or disable that data source if it is not needed. <br>
-Risk: Income estimates and business recommendations are speculative. <br>
-Mitigation: Treat generated ideas as brainstorming input and validate market demand, costs, and compliance before investing. <br>
+## Use Case:
 
+External users, developers, and small business operators use this skill to identify AI monetization opportunities, analyze a project's business potential, and generate concrete ideas with target users, cost estimates, income estimates, and implementation paths.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/devotion-coding/openclaw-skill-money-idea-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance, files] <br>
-**Output Format:** [Markdown-style text with generated idea lists and optional local JSON records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform public web/API lookups and store generated ideas, execution notes, and revenue notes locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The skill contacts external trend sources and may use unofficial endpoints or optional command-line integrations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configured data sources before use and disable the unofficial trending endpoint or bird CLI integration when those trust boundaries are not acceptable.
+
+Risk: Generated ideas and tracking data are stored locally under the OpenClaw memory directory.
+
+Mitigation: Review the storage location before use and avoid saving sensitive business plans, credentials, or private customer information in generated idea records.
+
+Risk: Optional GitHub authentication increases access to GitHub API data.
+
+Mitigation: Set GITHUB_TOKEN only when higher rate limits are required and use a token scoped no broader than necessary.
+
+Risk: Unpinned Python dependencies may change behavior across installations.
+
+Mitigation: Install in a virtual environment and pin dependencies before operational deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/devotion-coding/skills/openclaw-skill-money-idea-generator)
+- [README](artifact/README.md)
+- [CHANGELOG](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown-style text with structured idea records and optional JSON analysis output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save generated ideas, execution status, and revenue tracking records under the user's OpenClaw memory directory.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

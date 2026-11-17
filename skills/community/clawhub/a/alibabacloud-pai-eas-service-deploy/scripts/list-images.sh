@@ -1,8 +1,30 @@
 #!/bin/bash
 # PAI-EAS Official Image List Query Script
 # Uses ListImages and ListImageLabels APIs to fetch image information
+#
+# Dependencies (pinned minimum versions):
+#   - aliyun CLI >= 3.3.3   (Alibaba Cloud CLI)
+#   - jq        >= 1.6      (command-line JSON processor)
+#   - openssl   >= 1.1.1    (used to generate the session-id)
 
 set -e
+
+# Verify pinned dependency versions before doing anything else.
+REQUIRED_ALIYUN="3.3.3"
+REQUIRED_JQ="1.6"
+command -v aliyun >/dev/null 2>&1 || { echo "aliyun CLI (>= ${REQUIRED_ALIYUN}) is required" >&2; exit 1; }
+command -v jq     >/dev/null 2>&1 || { echo "jq (>= ${REQUIRED_JQ}) is required" >&2; exit 1; }
+command -v openssl >/dev/null 2>&1 || { echo "openssl is required" >&2; exit 1; }
+
+# Observability: unified user-agent with a per-session trace id.
+# Generate SKILL_SESSION_ID once per session (32-char lowercase hex) and reuse
+# it across every CLI/SDK/Terraform call so all requests share one trace id.
+SKILL_NAME="alibabacloud-pai-eas-service-deploy"
+if [ -z "${SKILL_SESSION_ID:-}" ]; then
+  SKILL_SESSION_ID="$(openssl rand -hex 16)"
+  export SKILL_SESSION_ID
+fi
+USER_AGENT="AlibabaCloud-Agent-Skills/${SKILL_NAME}/${SKILL_SESSION_ID}"
 
 # Default parameters
 REGION="${REGION:-cn-hangzhou}"
@@ -115,7 +137,7 @@ IMAGES=$(aliyun aiworkspace list-images \
   --verbose true \
   --labels "$LABELS" \
   --page-size 100 \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy)
+  --user-agent "$USER_AGENT")
 
 # Check if successful
 if [ -z "$IMAGES" ] || [ "$(echo "$IMAGES" | jq -r '.RequestId' 2>/dev/null)" = "null" ]; then

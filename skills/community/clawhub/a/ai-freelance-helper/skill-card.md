@@ -1,41 +1,57 @@
-## Description: <br>
-Ai Freelance Helper helps freelancers analyze project requirements, estimate pricing, draft contracts, and track projects and clients. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Freelance Helper helps freelancers analyze project requirements, estimate pricing, generate service agreements, and track projects and clients.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Freelancers, developers, and designers use this skill to evaluate incoming project opportunities, prepare price estimates and service agreements, and keep lightweight records of projects and clients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Freelance project, client, pricing, and contract details may be stored in local OpenClaw workspace files. <br>
-Mitigation: Store only necessary client and project details, avoid unnecessary personal or confidential information, and protect backups and synced folders. <br>
-Risk: Website inspection workflows may contact third-party websites. <br>
-Mitigation: Ask the skill to inspect only websites you are comfortable contacting. <br>
+## Use Case:
 
+Freelancers, developers, and designers use this skill to turn project requirements into pricing guidance, quote material, service agreement drafts, project status records, and client-management notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-freelance-helper) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and generated business text, with JSON output from the bundled command-line helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and read local OpenClaw workspace configuration, project, and client files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and artifact manifests) <br>
+Risk: The skill stores project, client, configuration, and contract-related business data locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a protected local workspace, limit unnecessary personal or confidential data, and apply normal file permission and backup controls.
+
+Risk: The documented install command uses a mutable latest package tag.
+
+Mitigation: Install only from a trusted ClawHub/npm source and pin the installer or package version where possible.
+
+Risk: Generated quotes and service agreement drafts can affect client commitments.
+
+Mitigation: Review pricing, scope, payment terms, confidentiality clauses, and legal language before sending them to a client.
+
+## Reference(s):
+
+- [Ai Freelance Helper on ClawHub](https://clawhub.ai/yang1002378395-cmyk/skills/ai-freelance-helper)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text guidance, with JSON output from command-line project analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include pricing estimates, contract draft sections, local configuration examples, project records, and client records.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata, package.json, skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,12 @@
+AI4Trade Full OpenClaw Skill
+
+This package is a fork of the AI-Trader skill published on ClawHub as
+ai-trader@1.0.0 and of the public HKUDS/AI-Trader skill files:
+https://github.com/HKUDS/AI-Trader
+
+Upstream platform and live skill documentation:
+https://ai4trade.ai
+https://ai4trade.ai/skill/ai4trade
+
+The upstream ClawHub release declares the MIT-0 license. This fork is
+published with explicit fork metadata and preserves upstream references.

@@ -1,0 +1,52 @@
+{
+  "skill": "available-light-photography",
+  "version": "0.1.0",
+  "source_book": "纽约摄影学院摄影教程 — 美国纽约摄影学院",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "在餐厅不用闪光灯怎么拍人像？",
+      "expected_behavior": "调用 available-light-photography，讲解现场光测光和参数策略",
+      "notes": "正面场景：室内不用闪光灯"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "available light photography怎么拍才有氛围感？",
+      "expected_behavior": "调用 available-light-photography，讲解现场光的氛围感策略",
+      "notes": "正面场景：氛围感追求"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "低光环境拍摄参数怎么设？",
+      "expected_behavior": "调用 available-light-photography，讲解大孔径+高ISO+三脚架策略",
+      "notes": "正面场景：低光拍摄"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "摄影室布光怎么设？",
+      "expected_behavior": "不应调用 available-light-photography，应调用 three-point-lighting",
+      "notes": "跨 skill 混淆诱饵：主动布光问题"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "推荐一款大光圈镜头",
+      "expected_behavior": "纯器材推荐，不应调用方法论 skill",
+      "notes": "诱饵：器材推荐"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "窗户光拍人像怎么拍？",
+      "expected_behavior": "边界模糊——窗户光是自然光也是现场光。可调用但也可调用 natural-light-direction",
+      "notes": "边界：窗户光归属"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case。"
+}

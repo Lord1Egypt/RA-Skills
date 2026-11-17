@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn754w8negkve53dntzhycyd0h82565k",
-  "slug": "auto-workflow-builder",
+  "schema_version": "1",
+  "name": "auto-workflow-builder",
   "version": "1.0.0",
-  "publishedAt": 1772647728779
+  "description": "Build automated workflows with no-code visual builder - connect APIs, schedule tasks, trigger actions",
+  "homepage": "",
+  "author": {"name": "Sunshine-del-ux"},
+  "keywords": ["automation", "workflow", "no-code", "scheduled-tasks", "api"],
+  "license": "MIT"
 }

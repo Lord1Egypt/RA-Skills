@@ -1,43 +1,63 @@
-## Description: <br>
-Scans ClawHub skills before installation for prompt injections, malware patterns, hardcoded secrets, data exfiltration risks, and other threats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan ClawHub skills for security vulnerabilities before installing, including prompt injections, malware payloads, hardcoded secrets, and other threats.
 
-## Publisher: <br>
-[casperzinou](https://clawhub.ai/user/casperzinou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[casperzinou](https://clawhub.ai/user/casperzinou)
 
-## Use Case: <br>
-Developers and agent users use this skill to stage a ClawHub skill, scan it before installation, and block installation when security issues are reported. It is intended as a pre-install review step for OpenClaw skill directories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer can bypass scanning when run with --skip-scan. <br>
-Mitigation: Use the default scan path and avoid --skip-scan unless the staged skill has already been inspected. <br>
-Risk: The installer can overwrite or move skill directories, especially when --force is used. <br>
-Mitigation: Run it only where modifying the OpenClaw skills directory is acceptable, and inspect target paths before using --force. <br>
-Risk: The workflow depends on live third-party code through uvx mcp-scan@latest and curl-to-shell dependency guidance. <br>
-Mitigation: Prefer pinned or verified scanner and dependency installation steps, and run scans in an environment appropriate for third-party code execution. <br>
+## Use Case:
 
+Developers and agent operators use this skill to stage ClawHub skills, scan them before installation, and block or quarantine skills when scanner output indicates security issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/casperzinou/talonforge-skill-guard) <br>
-- [mcp-scan repository](https://github.com/invariantlabs-ai/mcp-scan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text] <br>
-**Output Format:** [Markdown guidance with bash commands and terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes exit-code outcomes for clean install, dependency or network errors, and threats found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release) <br>
+Risk: The installer can delete or move unintended files if paths are not strictly contained.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate skill slugs against a strict allowlist and canonicalize every delete or move path before execution.
+
+Risk: The scanner is invoked as unpinned remote code.
+
+Mitigation: Pin mcp-scan to a reviewed version before relying on the scan result.
+
+Risk: The --skip-scan option can bypass the skill's primary security control.
+
+Mitigation: Remove or strongly gate --skip-scan and require explicit review when scanning is bypassed.
+
+Risk: Dependency setup guidance includes curl-to-shell installation.
+
+Mitigation: Use a trusted package installation path and avoid curl-to-shell setup on important workspaces.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/casperzinou/skills/talonforge-skill-guard)
+- [Publisher profile](https://clawhub.ai/user/casperzinou)
+- [mcp-scan](https://github.com/invariantlabs-ai/mcp-scan)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Text]
+
+**Output Format:** [Terminal output and Markdown instructions with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Installer exits with status codes for clean installs, errors, and quarantined threats.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact _meta.json reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

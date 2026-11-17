@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FÓRMULA 100K — [TÍTULO DEL ARTIFACT]</title>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @media print { .no-print { display: none !important; } body { background: white; } }
+    .flip-container { perspective: 1000px; }
+    .flip-inner { position: relative; transform-style: preserve-3d; transition: transform 0.55s cubic-bezier(.4,0,.2,1); width: 100%; height: 100%; }
+    .flip-inner.is-flipped { transform: rotateY(180deg); }
+    .flip-front, .flip-back { backface-visibility: hidden; -webkit-backface-visibility: hidden; width: 100%; height: 100%; }
+    .flip-back { transform: rotateY(180deg); position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState, useMemo } = React;
+
+    // ============= DATOS DEL ARTIFACT (PERSONALIZAR) =============
+    // SUB_TABS: lista de objetos {id, label} para la sub-navegación de la Guía
+    // Cada sub-tab tendrá su propia data array (PHASES, ITEMS, STEPS, etc.)
+    // CARDS: 8 flashcards con {tag, q, a}
+    // EXAM: 5 casos prácticos con {situation, opts, ok, why}
+    // TAG_STYLE: mapping de tag → clases Tailwind para colores
+
+    const SUB_TABS = [
+      { id: "tab1", icon: "🧠", label: "[Sub-tab 1]" },
+      { id: "tab2", icon: "⚙️", label: "[Sub-tab 2]" },
+      { id: "tab3", icon: "📝", label: "[Sub-tab 3]" },
+      // Agregar 3-5 según complejidad
+    ];
+
+    // Ejemplo de estructura de datos (personalizar según tema)
+    const ITEMS_TAB1 = [
+      {
+        emoji: "🔥", name: "[Concepto 1]", sub: "[Subtítulo]",
+        bg: "bg-[ACCENT]-600", light: "bg-[ACCENT]-50", textColor: "text-[ACCENT]-700",
+        border: "border-[ACCENT]-300", badge: "bg-[ACCENT]-100 text-[ACCENT]-800",
+        desc: "[Descripción larga del concepto]",
+        details: ["Detalle 1", "Detalle 2", "Detalle 3"]
+      },
+      // Agregar 2-5 más
+    ];
+
+    const CARDS = [
+      { tag: "FUNDAMENTOS", q: "[Pregunta 1]", a: "[Respuesta con\\nsaltos de línea]" },
+      { tag: "FUNDAMENTOS", q: "[Pregunta 2]", a: "[Respuesta]" },
+      { tag: "MECÁNICA", q: "[Pregunta 3]", a: "[Respuesta]" },
+      { tag: "MECÁNICA", q: "[Pregunta 4]", a: "[Respuesta]" },
+      { tag: "APLICACIÓN", q: "[Pregunta 5]", a: "[Respuesta]" },
+      { tag: "APLICACIÓN", q: "[Pregunta 6]", a: "[Respuesta]" },
+      { tag: "DECISIÓN", q: "[Pregunta 7]", a: "[Respuesta]" },
+      { tag: "DECISIÓN", q: "[Pregunta 8]", a: "[Respuesta]" },
+    ];
+
+    const EXAM = [
+      {
+        situation: "[Situación real con contexto específico y números]. ¿Qué decisión es correcta?",
+        opts: ["Opción A (distractor)", "Opción B (CORRECTA)", "Opción C (distractor)", "Opción D (distractor)"],
+        ok: 1,
+        why: "[Explicación educativa del por qué B es correcta y por qué las otras fallan. Refuerza el concepto.]"
+      },
+      // Agregar 4 más con la misma estructura
+    ];
+
+    const TAG_STYLE = {
+      "FUNDAMENTOS": "bg-[ACCENT]-100 text-[ACCENT]-700",
+      "MECÁNICA": "bg-[ACCENT2]-100 text-[ACCENT2]-700",
+      "APLICACIÓN": "bg-[ACCENT3]-100 text-[ACCENT3]-700",
+      "DECISIÓN": "bg-amber-100 text-amber-700",
+    };
+
+    function App() {
+      const [view, setView] = useState("guide");
+      const [guideTab, setGuideTab] = useState(SUB_TABS[0].id);
+      const [openItem, setOpenItem] = useState(null);
+      const [cardIdx, setCardIdx] = useState(0);
+      const [flipped, setFlipped] = useState(false);
+      const [examStep, setExamStep] = useState(0);
+      const [answers, setAnswers] = useState({});
+      const [done, setDone] = useState(false);
+      const [copied, setCopied] = useState(false);
+
+      const markdown = useMemo(() => {
+        let md = `# [TÍTULO DEL ARTIFACT] · FÓRMULA 100K\n\n`;
+        // Generar markdown completo del contenido aquí
+        // Esto permite que cualquier IA procese el artifact como contexto
+        return md;
+      }, []);
+
+      const score = useMemo(() => {
+        if (!done) return null;
+        return Math.round((EXAM.filter((q, i) => answers[i] === q.ok).length / EXAM.length) * 100);
+      }, [done, answers]);
+
+      const handleCopy = () => { navigator.clipboard.writeText(markdown).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000); }); };
+      const nextCard = () => { setCardIdx(i => (i + 1) % CARDS.length); setFlipped(false); };
+      const prevCard = () => { setCardIdx(i => (i - 1 + CARDS.length) % CARDS.length); setFlipped(false); };
+      const handleAnswer = (i) => { if (answers[examStep] !== undefined) return; setAnswers(p => ({ ...p, [examStep]: i })); };
+      const nextExam = () => { if (examStep < EXAM.length - 1) setExamStep(s => s + 1); else setDone(true); };
+      const resetExam = () => { setExamStep(0); setAnswers({}); setDone(false); };
+
+      return (
+        <div className="min-h-screen bg-gray-50">
+          {/* HEADER — personalizar gradiente con la paleta única */}
+          <header className="text-white shadow-lg no-print" style={{background:"linear-gradient(135deg,#HEX1,#HEX2,#HEX3)"}}>
+            <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
+              <div>
+                <p className="text-xs font-semibold tracking-widest opacity-70 uppercase">@TUHANDLE · FÓRMULA 100K</p>
+                <h1 className="text-xl font-black tracking-tight leading-none">[TÍTULO]</h1>
+                <p className="text-xs opacity-75 mt-0.5">[Subtítulo descriptivo]</p>
+              </div>
+              <div className="flex gap-2">
+                <button onClick={handleCopy} className="bg-white/20 hover:bg-white/30 text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition">
+                  {copied ? "✓ Copiado!" : "🤖 Copiar para IA"}
+                </button>
+                <button onClick={() => window.print()} className="bg-white/20 hover:bg-white/30 text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition">
+                  📄 PDF
+                </button>
+              </div>
+            </div>
+          </header>
+
+          {/* NAV principal */}
+          <nav className="bg-white border-b border-gray-200 sticky top-0 z-20 shadow-sm no-print">
+            <div className="max-w-4xl mx-auto px-4 flex">
+              {[{id:"guide",icon:"📋",label:"Guía"},{id:"flashcards",icon:"🃏",label:"Flashcards"},{id:"exam",icon:"🏆",label:"Examen"}].map(t => (
+                <button key={t.id} onClick={() => setView(t.id)}
+                  className={`flex items-center gap-2 px-5 py-3 text-sm font-semibold border-b-2 transition ${view===t.id?"border-[ACCENT]-600 text-[ACCENT]-700":"border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"}`}>
+                  {t.icon} {t.label}
+                </button>
+              ))}
+            </div>
+          </nav>
+
+          <main className="max-w-4xl mx-auto px-4 py-6">
+
+            {/* ========== GUÍA ========== */}
+            {view === "guide" && (
+              <div>
+                {/* Sub-navegación */}
+                <div className="flex gap-2 mb-6 flex-wrap">
+                  {SUB_TABS.map(t => (
+                    <button key={t.id} onClick={() => setGuideTab(t.id)}
+                      className={`px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold transition ${guideTab===t.id?"bg-[ACCENT]-600 text-white shadow":"bg-white border border-gray-200 text-gray-600 hover:border-[ACCENT]-300"}`}>
+                      {t.icon} {t.label}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Sub-tab 1 — usar patrones de patrones-visuales.md */}
+                {guideTab === "tab1" && (
+                  <div>
+                    {/* Caja de introducción gradient */}
+                    <div className="bg-gradient-to-r from-[ACCENT]-50 to-[ACCENT2]-50 border border-[ACCENT]-200 rounded-2xl p-5 mb-5">
+                      <h2 className="text-sm font-bold text-[ACCENT]-800 uppercase tracking-wider mb-1">[Título sub-tab]</h2>
+                      <p className="text-sm text-gray-700 leading-relaxed">[Descripción del sub-tab]</p>
+                    </div>
+                    {/* Contenido del sub-tab — usar acordeón, tabla, mockups, etc. */}
+                  </div>
+                )}
+
+                {/* Repetir para cada sub-tab */}
+              </div>
+            )}
+
+            {/* ========== FLASHCARDS ========== */}
+            {view === "flashcards" && (
+              <div style={{maxWidth:"32rem",margin:"0 auto"}}>
+                <div className="flex items-center justify-between mb-3">
+                  <h2 className="text-lg font-black text-gray-800">Flashcards — [TEMA]</h2>
+                  <span className="text-sm text-gray-400 font-medium">{cardIdx+1} / {CARDS.length}</span>
+                </div>
+                <div className="h-1.5 bg-gray-200 rounded-full mb-6 overflow-hidden">
+                  <div className="h-full rounded-full transition-all duration-300"
+                    style={{width:`${((cardIdx+1)/CARDS.length)*100}%`,background:"linear-gradient(90deg,#HEX1,#HEX2)"}} />
+                </div>
+                <div className="flip-container mb-3 cursor-pointer" style={{height:"19rem"}} onClick={() => setFlipped(f => !f)}>
+                  <div className={`flip-inner ${flipped?"is-flipped":""}`}>
+                    <div className="flip-front bg-white border-2 border-[ACCENT]-200 rounded-2xl shadow-lg p-6 flex flex-col">
+                      <div className="flex items-center justify-between mb-4">
+                        <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${TAG_STYLE[CARDS[cardIdx].tag]||"bg-gray-100 text-gray-600"}`}>{CARDS[cardIdx].tag}</span>
+                        <span className="text-xs text-gray-300">toca para revelar</span>
+                      </div>
+                      <div className="flex-1 flex items-center justify-center">
+                        <p className="text-lg font-bold text-gray-800 text-center leading-snug">{CARDS[cardIdx].q}</p>
+                      </div>
+                    </div>
+                    <div className="flip-back rounded-2xl shadow-lg p-6 flex items-center justify-center overflow-auto"
+                      style={{background:"linear-gradient(135deg,#HEX1,#HEX2,#HEX3)"}}>
+                      <p className="text-white text-sm leading-relaxed text-center" style={{whiteSpace:"pre-line"}}>{CARDS[cardIdx].a}</p>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-center text-xs text-gray-400 mb-5">Toca la tarjeta para revelar · Navega con los botones</p>
+                <div className="flex items-center gap-3">
+                  <button onClick={prevCard} className="flex-1 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-semibold transition">← Anterior</button>
+                  <button onClick={() => setFlipped(false)} className="px-4 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-500 text-sm transition">↺</button>
+                  <button onClick={nextCard} className="flex-1 py-2.5 rounded-xl text-white text-sm font-semibold transition" style={{background:"linear-gradient(135deg,#HEX1,#HEX2)"}}>Siguiente →</button>
+                </div>
+              </div>
+            )}
+
+            {/* ========== EXAMEN ========== */}
+            {view === "exam" && (
+              <div style={{maxWidth:"42rem",margin:"0 auto"}}>
+                {done ? (
+                  <div className="text-center py-12">
+                    <div className="text-5xl mb-4">{score===100?"🏆":score>=80?"⭐":score>=60?"💪":"📖"}</div>
+                    <h2 className="text-2xl font-black text-gray-800 mb-2">
+                      {score===100?"¡Maestría completa!":score>=80?"¡Excelente comprensión!":score>=60?"Buen comienzo — repasa los conceptos":"Vuelve a la Guía y revisa el material"}
+                    </h2>
+                    <div className={`text-5xl font-black my-4 ${score>=80?"text-emerald-600":score>=60?"text-orange-500":"text-red-500"}`}>{score}%</div>
+                    <p className="text-gray-500 text-sm mb-1">{EXAM.filter((q,i)=>answers[i]===q.ok).length} de {EXAM.length} casos correctos</p>
+                    <div className="flex gap-3 justify-center mt-6">
+                      <button onClick={resetExam} className="px-6 py-2.5 rounded-xl text-white font-semibold" style={{background:"#HEX_ACCENT"}}>Intentar de nuevo</button>
+                      <button onClick={() => setView("guide")} className="px-6 py-2.5 rounded-xl bg-gray-100 text-gray-700 font-semibold hover:bg-gray-200 transition">Ir a la Guía</button>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <div className="flex items-center justify-between mb-3">
+                      <h2 className="text-lg font-black text-gray-800">Examen — [TEMA]</h2>
+                      <span className="text-sm text-gray-400 font-medium">Caso {examStep+1} / {EXAM.length}</span>
+                    </div>
+                    <div className="h-1.5 bg-gray-200 rounded-full mb-6 overflow-hidden">
+                      <div className="h-full rounded-full transition-all duration-300"
+                        style={{width:`${(examStep/EXAM.length)*100}%`,background:"linear-gradient(90deg,#HEX1,#HEX2)"}} />
+                    </div>
+                    <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 mb-5">
+                      <div className="text-xs font-black text-amber-600 uppercase tracking-wider mb-2">Caso Práctico</div>
+                      <p className="text-gray-800 font-semibold leading-relaxed">{EXAM[examStep].situation}</p>
+                    </div>
+                    <div className="space-y-3 mb-5">
+                      {EXAM[examStep].opts.map((opt,i) => {
+                        const answered = answers[examStep]!==undefined;
+                        const selected = answers[examStep]===i;
+                        const correct = i===EXAM[examStep].ok;
+                        let cls = "w-full text-left p-4 rounded-xl border-2 text-sm font-medium transition flex items-start gap-3 ";
+                        if (!answered) cls += "border-gray-200 bg-white hover:border-[ACCENT]-300 hover:bg-[ACCENT]-50 text-gray-700 cursor-pointer";
+                        else if (correct) cls += "border-emerald-500 bg-emerald-50 text-emerald-800";
+                        else if (selected) cls += "border-red-400 bg-red-50 text-red-700";
+                        else cls += "border-gray-200 bg-white text-gray-400";
+                        return (
+                          <button key={i} className={cls} onClick={() => handleAnswer(i)} disabled={answered}>
+                            <span className="font-black w-5 flex-shrink-0">{["A","B","C","D"][i]}</span>
+                            <span className="flex-1">{opt}</span>
+                            {answered && correct && <span className="flex-shrink-0 text-emerald-600">✓</span>}
+                            {answered && selected && !correct && <span className="flex-shrink-0 text-red-500">✗</span>}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    {answers[examStep]!==undefined && (
+                      <>
+                        <div className={`rounded-2xl p-4 mb-5 ${answers[examStep]===EXAM[examStep].ok?"bg-emerald-50 border border-emerald-200":"bg-red-50 border border-red-200"}`}>
+                          <div className={`text-xs font-black uppercase tracking-wider mb-1.5 ${answers[examStep]===EXAM[examStep].ok?"text-emerald-700":"text-red-700"}`}>
+                            {answers[examStep]===EXAM[examStep].ok?"¡Correcto! 🎯":"Incorrecto — Por qué:"}
+                          </div>
+                          <p className={`text-sm leading-relaxed ${answers[examStep]===EXAM[examStep].ok?"text-emerald-800":"text-red-800"}`}>{EXAM[examStep].why}</p>
+                        </div>
+                        <button onClick={nextExam} className="w-full py-3 rounded-xl text-white font-bold transition" style={{background:"linear-gradient(135deg,#HEX1,#HEX2)"}}>
+                          {examStep<EXAM.length-1?"Siguiente caso →":"Ver resultado final"}
+                        </button>
+                      </>
+                    )}
+                  </>
+                )}
+              </div>
+            )}
+          </main>
+
+          <footer className="border-t border-gray-200 bg-white mt-10 py-5 text-center text-xs text-gray-400 no-print">
+            Creado por <span className="font-bold text-[ACCENT]-600">@TUHANDLE</span>{" · "}
+            Comunidad <span className="font-semibold">FÓRMULA 100K</span>{" · "}
+            <span className="opacity-60">Abre en cualquier navegador sin suscripción</span>
+          </footer>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>

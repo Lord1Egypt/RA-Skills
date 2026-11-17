@@ -1,0 +1,4 @@
+interface:
+  display_name: "Publish Skill"
+  short_description: "Publish Codex skills safely"
+  default_prompt: "Use $publish-skill to prepare and publish this skill to GitHub and ClawHub."

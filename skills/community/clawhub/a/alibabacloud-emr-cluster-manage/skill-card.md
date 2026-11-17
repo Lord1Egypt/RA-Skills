@@ -1,52 +1,71 @@
-## Description: <br>
-Manage the full lifecycle of Alibaba Cloud E-MapReduce (EMR) ECS clusters, including creation, scaling, renewal, status queries, and creation-failure diagnosis, while refusing cluster deletion or termination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage the full lifecycle of Alibaba Cloud E-MapReduce (EMR) ECS clusters, including creation, scaling, renewal, status queries, and creation-failure diagnosis, while refusing cluster deletion, release, or termination requests.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers, SREs, and cloud operators use this skill to plan and manage Alibaba Cloud EMR on ECS clusters through aliyun CLI workflows for creation, inspection, scaling, renewal, and recovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform cloud-changing Alibaba Cloud EMR operations with the active aliyun account. <br>
-Mitigation: Use a dedicated least-privilege RAM role or short-lived STS token and review every write action for cost and production impact before confirmation. <br>
-Risk: CLI installation and plugin update steps may introduce unreviewed code or tool changes. <br>
-Mitigation: Preinstall and approve the Alibaba Cloud CLI and required plugins outside the skill workflow instead of relying on curl-to-bash or automatic plugin updates. <br>
-Risk: Database credentials or other sensitive values may be exposed if placed in command lines or chat transcripts. <br>
-Mitigation: Avoid sending real passwords through chat or shell history; use secure credential handling and redact sensitive values in shared outputs. <br>
-Risk: Incorrect cluster creation, scaling, or renewal choices can affect production availability or spend. <br>
-Mitigation: Confirm the account, region, target cluster, configuration, and intended write operation before running cloud-changing commands. <br>
+## Use Case:
 
+Developers, SREs, and cloud operations teams use this skill to plan, create, inspect, scale, renew, and troubleshoot Alibaba Cloud EMR on ECS clusters through the aliyun CLI. It is intended for EMR cluster lifecycle management and explicitly routes cluster deletion or termination outside the skill.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/sdk-team/alibabacloud-emr-cluster-manage) <br>
-- [API Parameter Quick Reference](references/api-reference.md) <br>
-- [Cluster Full Lifecycle Guide](references/cluster-lifecycle.md) <br>
-- [Quick Start: Create Your First EMR Cluster](references/getting-started.md) <br>
-- [Scaling: Manual Scaling and Auto Scaling Policy](references/scaling.md) <br>
-- [Daily Operations: Inspection, Renewal, Troubleshooting](references/operations.md) <br>
-- [RAM Permission Description](references/ram-policies.md) <br>
-- [Error Recovery Detailed Guide](references/error-recovery.md) <br>
-- [User-Agent Configuration for Non-CLI Invocation Methods](references/user-agent.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline aliyun CLI commands and JSON command arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an Alibaba Cloud CLI profile and explicit confirmation before cloud-changing actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+Risk: Installation and plugin-update guidance can execute unreviewed code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace curl-to-bash and automatic plugin update steps with a verified Alibaba Cloud CLI installation and update path before use.
+
+Risk: The skill uses Alibaba Cloud credentials and may handle RDS connection details during cluster creation.
+
+Mitigation: Use configured CLI profiles or STS credentials, avoid plaintext secrets in command lines or chat, and grant only the RAM actions required for the workflow.
+
+Risk: Cluster creation, scaling, renewal, and node removal can change cloud resources and cost.
+
+Mitigation: Require explicit user confirmations, validate target resource IDs, use idempotency tokens where supported, and review node-removal safety gates before execution.
+
+Risk: Public SSH or public network exposure can increase operational risk.
+
+Mitigation: Disable public access for production clusters unless explicitly required and tightly restricted.
+
+## Reference(s):
+
+- [API Parameter Quick Reference](artifact/references/api-reference.md)
+- [Cluster Full Lifecycle: Planning, Creation, Management, Clone](artifact/references/cluster-lifecycle.md)
+- [Error Recovery Detailed Guide](artifact/references/error-recovery.md)
+- [Quick Start: Create Your First EMR Cluster from Scratch](artifact/references/getting-started.md)
+- [Daily Operations: Inspection, Renewal, Troubleshooting](artifact/references/operations.md)
+- [RAM Permission Description](artifact/references/ram-policies.md)
+- [Scaling: Manual Scaling and Auto Scaling Policy](artifact/references/scaling.md)
+- [User-Agent Configuration for Non-CLI Invocation Methods](artifact/references/user-agent.md)
+- [Alibaba Cloud EMR Console](https://emr.console.aliyun.com/)
+- [ClawHub Skill Page](https://clawhub.ai/sdk-team/skills/alibabacloud-emr-cluster-manage)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/sdk-team)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline aliyun CLI commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API call plans, confirmation prompts, safety refusals, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

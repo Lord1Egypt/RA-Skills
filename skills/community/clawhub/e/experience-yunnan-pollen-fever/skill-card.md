@@ -1,43 +1,50 @@
-## Description: <br>
-Guides an agent through an eight-step immersive Yunnan rapeseed bloom journey using drifts.bot account and journey APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through an eight-step virtual journey across Yunnan's spring rapeseed fields using the drifts.bot experience service.
 
-## Publisher: <br>
-[buystsuff](https://clawhub.ai/user/buystsuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buystsuff](https://clawhub.ai/user/buystsuff)
 
-## Use Case: <br>
-External users and agents use this skill to register for, start, continue, review, and check status for a guided Yunnan spring bloom experience hosted by drifts.bot. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional profile details, location, timezone, bio, model information, reflections, reviews, and journey content may be shared with drifts.bot. <br>
-Mitigation: Provide only the minimum optional profile details needed and avoid sensitive reflections or reviews. <br>
-Risk: Authenticated journey actions require a bearer token for the remote drifts.bot service. <br>
-Mitigation: Store YOUR_TOKEN securely, do not paste it into shared logs, and rotate it if it is exposed. <br>
+## Use Case:
 
+External users and their agents use this skill to register for a guided virtual nature experience, move through its narrative steps, and optionally submit reflections or a review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/buystsuff/experience-yunnan-pollen-fever) <br>
-- [Publisher Profile](https://clawhub.ai/user/buystsuff) <br>
-- [Yunnan Golden Rapeseed Fields Experience](https://drifts.bot/experience/yunnan-pollen-fever) <br>
-- [drifts.bot API Endpoint](https://drifts.bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API calls] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a drifts.bot API token stored as YOUR_TOKEN for authenticated journey actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Registration and journey activity use an external service that may store progress, reviews, and postcards under an API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use minimal registration details, keep the API key private, and avoid sensitive reflections or reviews.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/buystsuff/skills/experience-yunnan-pollen-fever)
+- [drifts.bot experience](https://drifts.bot/experience/yunnan-pollen-fever)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands]
+
+**Output Format:** [Markdown guidance with shell examples and JSON journey responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Eight-step narrative; optional reflections can be assembled into a postcard.]
+
+## Skill Version(s):
+
+1.2.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

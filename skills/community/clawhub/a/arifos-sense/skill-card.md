@@ -1,42 +1,55 @@
-## Description: <br>
-Constitutional governance layer for arifOS that evaluates irreversible, high-stakes, externally consequential, identity-shaping, or constitutional-boundary actions and returns SEAL, CAUTION, HOLD, or VOID guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ArifOS Sense provides a constitutional governance layer that helps an agent decide when to proceed, warn, pause for human review, or refuse consequential actions.
 
-## Publisher: <br>
-[ariffazil](https://clawhub.ai/user/ariffazil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ariffazil](https://clawhub.ai/user/ariffazil)
 
-## Use Case: <br>
-Developers and agent operators use this skill to apply arifOS governance checks before consequential actions, pause for human review when required, and format verdicts with concise reasoning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The governance layer may interrupt normal workflows by pausing high-stakes or uncertain actions. <br>
-Mitigation: Review the trigger list and HOLD/VOID behavior before installation, and require explicit human approval before resuming paused actions. <br>
-Risk: The audit ledger may retain local decision context for consequential actions. <br>
-Mitigation: Review the VAULT999 ledger path and retention expectations before use in sensitive environments. <br>
+## Use Case:
 
+External users and agent builders can use this skill to add a decision checkpoint for irreversible, high-stakes, externally consequential, or identity-affecting requests. It produces a verdict and concise reasoning so the agent can proceed, warn, pause for approval, or decline.
 
-## Reference(s): <br>
-- [The 13 Constitutional Floors](references/floors.md) <br>
-- [VAULT999 Immutable Audit Ledger Format](references/vault999-format.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ariffazil/arifos-sense) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Files] <br>
-**Output Format:** [Markdown verdict blocks and audit ledger entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May pause high-stakes actions with HOLD or VOID guidance and append local VAULT999 audit entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can broadly pause or block agent actions based on its governance rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or modify activation conditions before deployment so authority belongs to the authenticated user and use of the governance layer is explicit.
+
+Risk: The skill describes persistent cross-session decision logs with unclear user control.
+
+Mitigation: Make memory logging opt-in, scoped, redactable, and deletable before using it outside the original arifOS workflow.
+
+## Reference(s):
+
+- [The 13 Constitutional Floors](references/floors.md)
+- [VAULT999 Audit Ledger Format](references/vault999-format.md)
+- [ClawHub skill page](https://clawhub.ai/ariffazil/skills/arifos-sense)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown verdict block with concise reasoning and action guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to pause for human approval or record a consequential decision in an audit ledger.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

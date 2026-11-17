@@ -1,0 +1,10 @@
+interface:
+  display_name: Agent Cost Guard
+  short_description: Audit an agent's cost, Curator and background work, then cap it.
+  category: agents
+  tags:
+    - cost
+    - curator
+    - background-work
+    - tokens
+    - guardrail

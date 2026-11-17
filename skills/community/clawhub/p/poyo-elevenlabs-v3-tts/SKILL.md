@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-elevenlabs-v3-tts
 description: Generate speech on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `elevenlabs-v3-tts`, text-to-speech, voice selection, stability, timestamps, language code, text normalization, async task submission, callbacks, and task status retrieval.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/music-series/elevenlabs-v3-tts","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/elevenlabs-v3-tts","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo ElevenLabs V3 TTS
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/elevenlabs-v3-tts>
+- API docs: <https://docs.poyo.ai/api-manual/music-series/elevenlabs-v3-tts>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for `elevenlabs-v3-tts` jobs on PoYo. It helps agents prepare text-to-speech payloads, choose voice and delivery fields, submit async tasks, and explain result retrieval through PoYo task status.
 

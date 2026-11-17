@@ -1,0 +1,184 @@
+# Recipe — Re-engage stale contacts when a fresh signal fires
+
+Use this recipe when the user wants to systematically wake up cold contacts — old prospects, unresponsive leads, dormant opportunities — but only when a meaningful signal makes outreach worthwhile. The recipe polls cold contacts against the three highest-intent signal sources and re-engages only on a hit.
+
+**Trigger phrases:**
+
+- *"Resurrect cold leads when something changes at their company."*
+- *"Re-engage contacts in the stale segment if they moved jobs or their company raised."*
+- *"Build a recurring scan that wakes up old prospects on real signals."*
+- *"Find old contacts worth reaching out to again."*
+
+## Why this recipe exists
+
+Most stale contacts will stay stale — outreach to them is wasted credits and damages sender reputation. But ~5–10% of any stale list develops a fresh trigger in any given quarter. Those are the contacts to act on. This recipe filters mechanically so the user only sees revive-worthy rows.
+
+Three signals dominate B2B revival timing:
+
+1. **Job change** (`waterfall.detectJobChange`) — the contact moved to a new company. Their old relationship is now warm context for a new account.
+2. **Fresh funding / acquisition** (`enrichCrm.getFunding`, diffed against the stored round date) — fresh budget, new initiatives, willingness to evaluate.
+3. **New tech stack or hiring pattern** (`theirStack.searchTechnologies` / `searchJobs`) — they're solving a problem your product addresses.
+
+## Recipe
+
+### Step 1 — Define the stale segment
+
+A "stale contact" is one with no engagement for ≥ 180 days, not currently a customer, not currently in an active opportunity.
+
+```bash
+cargo-ai storage model list  # find the Contacts model UUID
+MODEL_UUID=...
+
+cargo-ai segmentation segment fetch \
+  --model-uuid "$MODEL_UUID" \
+  --filter '{"conjonction":"and","groups":[{"conjonction":"and","conditions":[
+    {"kind":"date","columnSlug":"last_activity_at","operator":"lowerThan","value":"'"$CUTOFF"'"},
+    {"kind":"string","columnSlug":"lifecycle_stage","operator":"isNot","values":["customer","opportunity"]}
+  ]}]}' > /tmp/stale.json
+```
+
+`CUTOFF` is the ISO date 180 days ago (e.g. `2026-04-19`): date conditions take an absolute `value`; there is no relative `olderThan` operator. Adjust the threshold (180 → 365 days for very large lists) and exclusions to match the workspace's CRM lifecycle conventions.
+
+### Step 2 — Check for job changes
+
+`execute-batch --wait-until-finished` prints the batch object, not rows. Rows come from `batch download`: a signed CSV of each input record's columns plus every output key as `cargo_<key>` (nested objects as dotted columns, e.g. `cargo_person.company_name`). This helper turns it into JSON for jq:
+
+```bash
+batch_rows() {
+  curl -fsSL "$(cargo-ai orchestration batch download --uuid "$1" | jq -r .url)" \
+    | python3 -c 'import csv,json,sys; json.dump(list(csv.DictReader(sys.stdin)), sys.stdout)'
+}
+```
+
+```bash
+B=$(cargo-ai orchestration action execute-batch \
+  --action '{"kind":"connector","integrationSlug":"waterfall","actionSlug":"detectJobChange"}' \
+  --records "$(jq -c '[.records[] | {
+    professional_email: .email,
+    contact_linkedin: .linkedin_url,
+    company_domain: .company_domain
+  }]' /tmp/stale.json)" \
+  --wait-until-finished | jq -r '.batch.uuid')
+batch_rows "$B" > /tmp/job-changes.json
+```
+
+Rows with `cargo_job_change_status` = `moved` (lowercase) are immediate revive candidates — the contact is at a new company, the old relationship is warm, and previous deal blockers (price, feature gap, internal politics) no longer apply.
+
+### Step 3 — Check company-level events (funding / acquisition)
+
+The catalog has no credits-based since-timestamp event feed (`explorium.fetchBusinessEvents`
+is one, on the user's own Explorium key — see [`funding-watch.md`](funding-watch.md)
+Pattern B), so a "fresh" round is the
+difference between a new pull and the round date already on the record. That
+date lives on the **Companies** model — `/tmp/stale.json` is a Contacts segment
+and does not carry it, so read it separately or the diff compares against empty
+and re-flags every account each week.
+
+```bash
+# The stored dates — a Companies column, not a Contacts one
+cargo-ai storage query execute \
+  "SELECT domain, last_funding_round_at FROM default.companies" > /tmp/known-funding.json
+
+B=$(cargo-ai orchestration action execute-batch \
+  --action '{"kind":"connector","integrationSlug":"enrichCrm","actionSlug":"getFunding"}' \
+  --records "$(jq -c '[.records[] | {domain: .company_domain}] | unique' /tmp/stale.json)" \
+  --wait-until-finished | jq -r '.batch.uuid')
+batch_rows "$B" > /tmp/funding.json
+
+# Keep rows whose latest round post-dates the stored value, then fan the company
+# signal back out to the contacts at that company — step 5 unions on email.
+# The input `domain` column comes back alongside cargo_lastFundingDate.
+jq -c --slurpfile known /tmp/known-funding.json --slurpfile stale /tmp/stale.json '
+  ($known[0].rows | map({key: .domain, value: (.last_funding_round_at // "")}) | from_entries) as $stored
+  | [ .[] | select((.cargo_lastFundingDate // "") > ($stored[.domain] // "")) ]
+    | map({key: .domain, value: .cargo_lastFundingDate}) | from_entries as $fresh
+  | [ $stale[0].records[]
+      | select($fresh[.company_domain])
+      | {email, signal: "company_event",
+         details: {domain: .company_domain, lastFundingDate: $fresh[.company_domain]}} ]
+' /tmp/funding.json > /tmp/events.json
+```
+
+### Step 4 — (Optional) Check tech-stack / hiring intent
+
+For contacts at companies where a tech signal is your strongest qualifier:
+
+```bash
+# One call per company (0.5 each): searchTechnologies returns that company's
+# technologies, each with technology.slug. `domain` rides along as a CSV column;
+# the output array lands in one `cargo` column as JSON.
+B=$(cargo-ai orchestration action execute-batch \
+  --action '{"kind":"connector","integrationSlug":"theirStack","actionSlug":"searchTechnologies"}' \
+  --records "$(jq -c '[.records[] | .company_domain] | unique | map({domain: ., fields: {company_domain: .}, limit: 100})' /tmp/stale.json)" \
+  --wait-until-finished | jq -r '.batch.uuid')
+
+# Fan the company match back out to its contacts, as step 3 does
+batch_rows "$B" | jq -c --slurpfile stale /tmp/stale.json '
+  [ .[] | {domain, slugs: (.cargo // "" | if . == "" then [] else fromjson end | map(.technology.slug))}
+        | select(.slugs | any(. == "snowflake" or . == "databricks")) ]
+  | map({key: .domain, value: .slugs}) | from_entries as $match
+  | [ $stale[0].records[] | select($match[.company_domain])
+      | {email, signal: "tech_match", details: $match[.company_domain]} ]
+' > /tmp/tech.json
+```
+
+Only run this step when the workspace's ICP has a strong tech-stack correlation. Otherwise skip — it adds credits with low marginal hit rate.
+
+### Step 5 — Union into "revive candidates"
+
+```bash
+# `inputs` is a generator, not an array — slurp it before indexing.
+jq -c -n '[inputs] as $in
+  | ([$in[0][] | select(.cargo_job_change_status == "moved")
+       | {email: .professional_email, signal: "job_change",
+          details: {company_name: .["cargo_person.company_name"], company_domain: .["cargo_person.company_domain"], title: .["cargo_person.title"]}}] +
+     [$in[1][]] +
+     [$in[2][]])
+  | group_by(.email) | map({email: .[0].email, signals: map(.signal), details: map(.details)})
+' /tmp/job-changes.json /tmp/events.json /tmp/tech.json > /tmp/revive-candidates.json
+```
+
+Contacts with **2+ signals** are highest priority — surface them first.
+
+### Step 6 — Hand off to outreach activation
+
+Pass the revive segment to [`outreach-activation.md`](outreach-activation.md) — it handles enrichment, verification, LLM personalization, and sequencer push.
+
+## Recurring scan (cron / play)
+
+For continuous revival:
+
+1. Trigger: weekly cron.
+2. Source: the saved "Stale contacts" segment.
+3. Nodes: detectJobChange + getFunding (diffed against the stored round date) + (optional) searchTechnologies → union → write to "Revive candidates" segment.
+4. Downstream: a separate play watches the "Revive candidates" segment and triggers `outreach-activation` on new members.
+
+For play setup, see [`../../cargo-orchestration/references/examples/plays.md`](../../cargo-orchestration/references/examples/plays.md).
+
+## Credit budget
+
+For a 1,000-contact stale segment, scanned weekly:
+
+| Step | Per record | 1,000 contacts |
+|---|---|---|
+| `waterfall.detectJobChange` | 3 | 3,000 |
+| `enrichCrm.getFunding` | 1 | 1,000 |
+| `theirStack.searchTechnologies` (optional, 0.5 per unique company) | ≤ 0.5 | ≤ 500 |
+| **Total weekly (without tech)** | **4** | **4,000** |
+| **Total weekly (with tech)** | **≤ 4.5** | **≤ 4,500** |
+
+Filter aggressively before the scan — only include contacts where revival is actually actionable (had real engagement once, valid email, ICP-fit company). Pre-filter a 10,000-contact list down to 1,000 before scanning, not after.
+
+## Action shape
+
+Every action follows: `{"kind":"connector","integrationSlug":"<slug>","actionSlug":"<slug>"}`. **No `connectorUuid` in `config`** — see [`../../cargo-orchestration/references/examples/actions.md`](../../cargo-orchestration/references/examples/actions.md).
+
+## Output retrieval
+
+For batch runs, use `cargo-ai orchestration batch download --uuid <batch-uuid>` (the `batch_rows` helper above): an ad-hoc `execute-batch` has no workflow, so `run download-outputs --workflow-uuid` does not apply. See [`../references/output-retrieval.md`](../references/output-retrieval.md).
+
+## Related
+
+- [`job-change-monitoring.md`](job-change-monitoring.md) — narrower: just job changes, applied to any segment (not specifically stale).
+- [`lost-deal-revival.md`](lost-deal-revival.md) — narrower: scoped specifically to Closed-Lost CRM deals, branches on `lost_reason`.
+- [`outreach-activation.md`](outreach-activation.md) — downstream: turns the revive segment into send-ready outreach.

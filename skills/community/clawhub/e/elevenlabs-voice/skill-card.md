@@ -1,41 +1,53 @@
-## Description: <br>
-Text-to-Speech and Speech-to-Text using ElevenLabs AI for converting text to speech, transcribing voice messages, and working with voice across multiple languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Text-to-Speech and Speech-to-Text using ElevenLabs AI. Use when the user wants to convert text to speech, transcribe voice messages, or work with voice in multiple languages. Supports high-quality AI voices and accurate transcription.
 
-## Publisher: <br>
-[amreahmed](https://clawhub.ai/user/amreahmed) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[amreahmed](https://clawhub.ai/user/amreahmed)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add ElevenLabs text-to-speech, speech-to-text, voice listing, and voice message workflows to assistants or messaging integrations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Text and audio selected by the user are sent to ElevenLabs for cloud processing. <br>
-Mitigation: Use the skill only for content approved for ElevenLabs processing, and avoid confidential, regulated, or highly personal voice or text content unless that use is approved. <br>
-Risk: Shared or long-lived ElevenLabs API keys can expose account access if stored carelessly. <br>
-Mitigation: Use a dedicated ElevenLabs API key and keep it out of shared .env files and public artifacts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amreahmed/elevenlabs-voice) <br>
-- [ElevenLabs pricing](https://elevenlabs.io/pricing) <br>
-- [ElevenLabs API endpoint](https://api.elevenlabs.io/v1) <br>
+## Use Case:
 
+Developers and assistants use this skill to convert text responses into spoken audio, list ElevenLabs voices, and transcribe voice messages into text. It supports command-line and Python-client workflows for voice-enabled assistant interactions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, API Calls, Guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, JSON status objects, and generated or transcribed audio/text files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ELEVENLABS_API_KEY and sends selected text or audio to ElevenLabs for processing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Text and audio selected for processing are sent to the ElevenLabs API.
+
+Mitigation: Use this skill only for content intended for external processing and avoid submitting highly sensitive recordings or confidential text.
+
+Risk: The skill depends on an ElevenLabs API key that may be loaded from the environment or a .env file.
+
+Mitigation: Use a dedicated ElevenLabs API key and avoid storing unrelated secrets in .env files used with this skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amreahmed/skills/elevenlabs-voice)
+- [ElevenLabs pricing](https://elevenlabs.io/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; runtime helpers return JSON-like dictionaries and generated audio files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ELEVENLABS_API_KEY and sends selected text or audio to the ElevenLabs API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

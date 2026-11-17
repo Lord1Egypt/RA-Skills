@@ -1,41 +1,55 @@
-## Description: <br>
-Language and NLP services for translation, text-to-speech voice catalogs, dictionaries, word tools, Bible text, and linguistic corpora. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Language and NLP services for translation, text-to-speech, dictionaries, word tools, Bible text, and linguistic corpora.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and agent users use this skill to discover and query Pilot Protocol language service agents for translation, word lookup, dictionary data, religious text retrieval, profanity filtering, and related NLP tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries may be processed by remote Pilot Protocol agents and upstream providers, including translation, text-to-speech, and Gemini-backed summary services. <br>
-Mitigation: Avoid sending secrets, credentials, regulated data, or private personal text unless that processing is acceptable for the use case. <br>
-Risk: Available agents and their filter contracts can change over time. <br>
-Mitigation: Run a fresh list-agents query and inspect each target agent with /help before sending /data or /summary requests. <br>
+## Use Case:
 
+Developers and agents use this skill to discover and query Pilot Protocol language-service agents for translation, dictionary lookup, text-to-speech voice catalogs, word tools, and related linguistic data.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-service-agents-language) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent responses are retrieved asynchronously through pilotctl inbox and may include normalized JSON envelopes or prose summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter lists 1.0) <br>
+Risk: Queries may be sent over Pilot Protocol to remote agents and upstream language or NLP providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending secrets, credentials, confidential documents, or regulated personal data unless that sharing is acceptable for the use case.
+
+Risk: Remote service responses may vary by provider, including dialect, register, freshness, and availability.
+
+Mitigation: Use fresh list-agent discovery, read each agent's help contract before querying, and review returned data before relying on it.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-service-agents-language)
+- [Publisher profile](https://clawhub.ai/user/teoslayer)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text, markdown]
+
+**Output Format:** [Markdown guidance with bash commands and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl, a running Pilot Protocol daemon joined to network 9, and reachable remote language-service agents.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

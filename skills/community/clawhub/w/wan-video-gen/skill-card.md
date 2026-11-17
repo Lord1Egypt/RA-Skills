@@ -1,47 +1,60 @@
-## Description: <br>
-Wan Video Gen helps agents submit, poll, and download videos from Alibaba Cloud DashScope Wan text-to-video APIs using prompt, model tier, resolution, duration, and task controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates videos with Alibaba Cloud Model Studio Wan text-to-video models by submitting asynchronous jobs, polling status, and downloading MP4 outputs.
 
-## Publisher: <br>
-[zhouweico](https://clawhub.ai/user/zhouweico) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouweico](https://clawhub.ai/user/zhouweico)
 
-## Use Case: <br>
-Developers and agents use this skill to generate videos with Wan text-to-video models, check existing task status, estimate cost before submission, and download completed MP4 outputs locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill can spend DashScope credits. <br>
-Mitigation: Run a dry run and review the cost estimate before submitting generation jobs, especially before increasing resolution or duration. <br>
-Risk: Generated videos are saved locally by default. <br>
-Mitigation: Choose an appropriate output directory and manage generated MP4 files according to local data handling requirements. <br>
-Risk: DashScope API keys can be exposed if stored in config files. <br>
-Mitigation: Prefer the DASHSCOPE_API_KEY environment variable; if config.json is used, keep it out of source control and restrict file access. <br>
+## Use Case:
 
+Developers and agents use this skill to create Wan text-to-video jobs from prompts, resume polling with an existing task ID, and save generated video files locally after reviewing preflight cost and model settings.
 
-## Reference(s): <br>
-- [Wan Video Generation API Notes](references/api.md) <br>
-- [Alibaba Cloud Model Studio Text-to-Video API Reference](https://help.aliyun.com/zh/model-studio/text-to-video-api-reference) <br>
-- [Alibaba Cloud Model Studio Text-to-Video Guide](https://help.aliyun.com/zh/model-studio/text-to-video-guide) <br>
-- [Alibaba Cloud Model Studio Video Generation Usage](https://help.aliyun.com/zh/model-studio/use-video-generation) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhouweico/wan-video-gen) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/zhouweico) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with CLI commands, configuration examples, task identifiers, status text, cost estimates, and downloaded MP4 files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated videos are saved locally by default; task result links are documented as expiring after 24 hours.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and package.json) <br>
+Risk: A custom base URL or untrusted config can receive the DashScope API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted config.json and environment, keep DASHSCOPE_BASE_URL unset unless a vetted DashScope endpoint is required, and review the resolved endpoint before running.
+
+Risk: Storing the API key in config.json can expose credentials through local file access or accidental sharing.
+
+Mitigation: Prefer DASHSCOPE_API_KEY in the environment and avoid committing or distributing config.json files containing secrets.
+
+Risk: Successful runs write generated MP4 files to outputs/ or the configured output directory.
+
+Mitigation: Choose an appropriate output directory and review generated media before sharing or reusing it.
+
+## Reference(s):
+
+- [Wan Video Generation API Notes](references/api.md)
+- [Alibaba Cloud Model Studio Text-to-Video API Reference](https://help.aliyun.com/zh/model-studio/text-to-video-api-reference)
+- [Alibaba Cloud Model Studio Text-to-Video Guide](https://help.aliyun.com/zh/model-studio/text-to-video-guide)
+- [Alibaba Cloud Model Studio Video Generation](https://help.aliyun.com/zh/model-studio/use-video-generation)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
+
+**Output Format:** [CLI text output, JSON request previews, and local MP4 files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Successful runs write MP4 files under outputs/ or the configured output directory; --dry-run prints the resolved request, selected model settings, and estimated China mainland cost without submitting a task.]
+
+## Skill Version(s):
+
+0.1.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

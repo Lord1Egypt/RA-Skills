@@ -1,23 +1,19 @@
 # wechat-oa
 
-**微信公众号草稿箱管理工具** · 基于官方微信 API，无需第三方依赖
+**微信公众号草稿箱管理工具** · 基于官方微信 API，面向 AI Agent 的 Skill
 
-A WeChat Official Account draft management toolkit built on the official WeChat API. No third-party dependencies required.
+A WeChat Official Account draft management toolkit built on the official WeChat API. Designed as a Skill for AI Agents.
 
 ---
 
 ## 功能 Features
 
 - 📋 查看草稿列表 / List drafts
-- ✏️ 创建新草稿（自动生成封面图 + 自动上传正文配图）/ Create new drafts (auto cover + inline images)
+- ✏️ 创建新草稿（自动生成封面图）/ Create new drafts (auto cover generation)
 - 🔄 更新已有草稿 / Update existing drafts
-- 🗑️ 删除草稿 / 批量删除 / Delete drafts
-- 🔍 按标题关键词搜索草稿 / Search drafts by keyword
+- 🗑️ 删除草稿 / Delete drafts
 - 🖼️ 独立生成封面图预览 / Generate cover image preview
-- 📊 生成正文配图（流程图/对比图/时间线/文字卡片/统计图）/ Generate infographics
 - 📦 素材库管理（上传/列表/删除/统计）/ Material library management
-- 👥 用户管理（用户列表/用户信息/用户统计）/ User management
-- ✨ 去AI味 — 去除文字中的 AI 生成痕迹 / Remove AI-generated flavor
 - 🔄 三种推送模式：直连 / 中转 / 混合 / Three push modes: direct / relay / hybrid
 
 ---
@@ -33,13 +29,11 @@ A WeChat Official Account draft management toolkit built on the official WeChat 
 
 ## 快速开始 Getting Started
 
-### 1. 安装依赖 Install Dependencies
+### 1. 安装 Install
 
 ```bash
-pip install requests Pillow
+pip install wechat-oa
 ```
-
-> 去AI味功能需要额外安装：`pip install fastapi uvicorn`
 
 ### 2. 获取 AppID 和 AppSecret Get AppID & AppSecret
 
@@ -100,8 +94,7 @@ cp config.example.json config.json
 | `PUSH_MODE` | ❌ | 推送模式：`direct`(默认) / `relay` / `hybrid` |
 | `WECHAT_OA_SERVER` | relay/hybrid 必填 | 中转服务器地址，如 `http://120.79.2.44` |
 | `WECHAT_OA_SERVER_KEY` | relay/hybrid 必填 | 中转服务器 API Key（服务端分配） |
-| `CLAUDE_API_KEY` | 去AI味必填 | Claude API Key（用于去AI味功能） |
-| `ALIPAY_AI_PAY_SKILL_ID` | 去AI味必填 | 支付宝 AI 付 Skill ID |
+| `ENV` | ❌ | 环境：`prod`（默认）/ `dev`，影响中转服务器 API 路径 |
 
 完整示例：
 
@@ -113,8 +106,7 @@ cp config.example.json config.json
   "PUSH_MODE": "hybrid",
   "WECHAT_OA_SERVER": "http://120.79.2.44",
   "WECHAT_OA_SERVER_KEY": "your-server-key-here",
-  "CLAUDE_API_KEY": "sk-ant-...",
-  "ALIPAY_AI_PAY_SKILL_ID": "your-skill-id-here"
+  "ENV": "prod"
 }
 ```
 
@@ -160,7 +152,7 @@ hybrid 模式:
 ```
 
 - 无需额外配置
-- 需要将 **本机出口 IP** 加入微信公众号白名单
+- 需要将 **本机出口 IP** 加入微信公众号的白名单
 - 速度最快，最稳定
 
 #### relay（中转模式）
@@ -196,10 +188,8 @@ hybrid 模式:
 
 使用 `relay` 或 `hybrid` 模式需要配置 `WECHAT_OA_SERVER_KEY`。
 
-请联系作者获取密钥：
-- GitHub Issues：[https://github.com/andy8663/wechat-oa](https://github.com/andy8663/wechat-oa)
-- 邮箱：`andy8663@163.com`
-- 微信公众号：技术定义未来
+请访问同协云平台订购月卡获取卡密：
+- 订购地址：[https://saas.synergyinfo.tech/products/wechat-oa](https://saas.synergyinfo.tech/products/wechat-oa)
 
 获取密钥后，在 `config.json` 中配置：
 
@@ -214,119 +204,64 @@ hybrid 模式:
 验证连通性：
 
 ```bash
-python relay_client.py info
-# 返回服务信息说明配置成功
+wechat-oa list
+# 返回草稿列表说明配置成功
 ```
 
 ---
 
 ## 使用示例 Usage
 
-### 基本操作
+### 草稿管理
 
 ```bash
 # 查看草稿列表
-python wechat_push.py list
+wechat-oa list
 
-# 创建新草稿（自动生成封面 + 自动上传正文配图）
-python wechat_push.py create article.html
+# 创建新草稿
+wechat-oa create article.md
+
+# 创建草稿 + 指定摘要
+wechat-oa create article.md --digest "文章摘要内容"
+
+# 创建草稿 + 强制生成封面图
+wechat-oa create article.md --force-cover
 
 # 更新已有草稿
-python wechat_push.py update <media_id> article.html
+wechat-oa update <media_id> article.md
 
-# 更新草稿 + 强制重新生成封面
-python wechat_push.py update <media_id> article.html --force-cover
+# 查看单篇草稿详情
+wechat-oa get <media_id>
 
 # 删除草稿
-python wechat_push.py delete <media_id>
-
-# 批量删除草稿
-python wechat_push.py batch-del <id1> <id2> <id3>
-
-# 按标题关键词搜索草稿
-python wechat_push.py find "关键词"
-
-# 生成封面图预览（不推送到微信）
-python wechat_push.py cover "文章标题"
+wechat-oa delete <media_id>
 ```
 
 ### 素材管理
 
 ```bash
 # 上传图片到永久素材库
-python wechat_push.py upload cover.png
+wechat-oa upload cover.png
 
 # 获取各类永久素材总数
-python wechat_push.py materialcount
+wechat-oa count
 
-# 获取素材列表（支持关键词过滤）
-python wechat_push.py materials image 20 0 "关键词"
+# 获取素材列表
+wechat-oa materials --type image
 
-# 交互式删除素材
-python wechat_push.py materialdel
-
-# 批量删除素材
-python wechat_push.py materialdel <media_id1> <media_id2>
+# 删除素材
+wechat-oa del-material <media_id>
 ```
 
-### 正文配图生成
+### 封面图生成
 
 ```bash
-# 流程图
-python generate_infographic.py steps output/step.png "步骤1" "步骤2" "步骤3"
+# 生成封面图预览（不推送到微信）
+wechat-oa cover "文章标题"
 
-# 对比图
-python generate_infographic.py comparison output/compare.png "传统方式:慢" "新方式:快"
-
-# 时间线
-python generate_infographic.py timeline output/timeline.png "2024:事件1" "2025:事件2"
-
-# 文字卡片
-python generate_infographic.py textcard output/quote.png "金句内容"
-
-# 数据统计图
-python generate_infographic.py stats output/stats.png "满意度:85" "便利性:90"
+# 指定输出路径
+wechat-oa cover "文章标题" --output ./my-cover.png
 ```
-
-### 中转模式操作
-
-```bash
-# 查看推送服务信息（是否收费、价格）
-python relay_client.py info
-
-# 通过中转服务器推送文章
-python relay_client.py push article.html
-
-# 通过中转服务器查看草稿列表
-python relay_client.py list
-```
-
----
-
-## 去AI味功能 Remove AI Flavor
-
-去除文字中的 AI 生成痕迹（如"综上所述"、"值得注意的是"、"此外"等），让文字更自然。
-
-### 使用方式
-
-```bash
-# 命令行调用（按次收费 1 元，通过支付宝 AI 付协议）
-python wechat_push.py quaiwei "综上所述，这款产品值得注意的是，此外还有很好的用户体验..."
-```
-
-### 工作原理
-
-1. 调用 `quaiwei_server.py` 提供的 HTTP API
-2. 服务端返回 HTTP 402 + 支付链接（标准 AI 付协议）
-3. 用户扫码支付 1 元
-4. 支付成功后，服务端调用 Claude API 进行文字改写
-5. 返回去 AI 味后的文字
-
-### 前置条件
-
-- `config.json` 中配置 `CLAUDE_API_KEY` 和 `ALIPAY_AI_PAY_SKILL_ID`
-- 安装 `fastapi` 和 `uvicorn`：`pip install fastapi uvicorn`
-- 启动去 AI 味服务：`python quaiwei_server.py`
 
 ---
 
@@ -410,7 +345,7 @@ python wechat_push.py quaiwei "综上所述，这款产品值得注意的是，�
 
 **解决**：
 1. 检查 `WECHAT_OA_SERVER` 地址是否正确
-2. 检查服务器是否运行：`curl http://your-server-ip:8000/`
+2. 检查服务器是否运行：`curl http://your-server-ip/`
 3. 检查 `WECHAT_OA_SERVER_KEY` 是否正确
 4. 检查服务器防火墙是否开放对应端口
 
@@ -426,27 +361,16 @@ python wechat_push.py quaiwei "综上所述，这款产品值得注意的是，�
 
 ## 依赖 Dependencies
 
-| 依赖 | 用途 | 必填 |
-|------|------|:----:|
-| `requests` | HTTP 请求 | ✅ |
-| `Pillow` | 封面图/配图生成 | ✅ |
-| `fastapi` | 去AI味服务 | ❌（仅去AI味功能需要） |
-| `uvicorn` | 去AI味服务 | ❌（仅去AI味功能需要） |
+通过 `pip install wechat-oa` 安装时，所有依赖会自动安装，无需手动处理。
 
-```bash
-# 基础安装
-pip install requests Pillow
-
-# 完整安装（含去AI味功能）
-pip install requests Pillow fastapi uvicorn
-```
+主要依赖：`requests`、`Pillow`、`click`、`premailer`、`bleach`。Markdown 转换优先使用 `md2wxhtml`（如未安装则回退到 `mistune`）。
 
 ---
 
 ## 问题反馈 Feedback
 
 - GitHub Issues：[https://github.com/andy8663/wechat-oa](https://github.com/andy8663/wechat-oa)
-- 邮箱：`andy8663@163.com`
+- 邮箱：`andy8663@126.com`
 - 微信公众号：技术定义未来
 
 ---

@@ -40,4 +40,4 @@
 
 ---
 
-**注**：本文件由 skill-standardization v2.24.0 自动生成（R-15 修复），实际风险等级由 `scripts/permission_checker.py` 扫描结果决定。
+**注**：本文件由 skill-standardization 自动生成（R-15 修复）。

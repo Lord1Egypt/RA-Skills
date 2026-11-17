@@ -1,42 +1,58 @@
-## Description: <br>
-Guides agents in using the ActivityClaw plugin to inspect tracked file activity, command executions, web actions, messages, and sub-agent sessions through its status command and dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ActivityClaw Plugin Usage helps agents guide users through checking ActivityClaw activity status, opening its dashboard, and reviewing tracked agent activity such as file operations, commands, web actions, messages, and sub-agent sessions.
 
-## Publisher: <br>
-[rmruss2022](https://clawhub.ai/user/rmruss2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rmruss2022](https://clawhub.ai/user/rmruss2022)
 
-## Use Case: <br>
-Developers and agent operators use this skill to check what an agent has been doing, including file operations, shell commands, web activity, messages, and sub-agent sessions. It helps them open the ActivityClaw dashboard, check service status, control the local service, and troubleshoot missing activity data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: ActivityClaw records agent file activity, shell commands, web actions, messages, and sub-agent sessions into a local SQLite database and dashboard. <br>
-Mitigation: Install and run it only when this level of local activity recording is acceptable, and stop the service when activity should not be recorded. <br>
-Risk: The plugin is published by a third party, so users have supply-chain exposure when installing the npm package. <br>
-Mitigation: Verify the package and repository before installation, and follow the security guidance from the server evidence. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ActivityClaw Plugin Usage on ClawHub](https://clawhub.ai/rmruss2022/activityclaw-usage) <br>
-- [rmruss2022 ClawHub profile](https://clawhub.ai/user/rmruss2022) <br>
-- [ActivityClaw GitHub repository](https://github.com/rmruss2022/ActivityClaw) <br>
-- [ActivityClaw npm package](https://www.npmjs.com/package/@rmruss2022/activityclaw) <br>
+## Use Case:
 
+Developers and agent users use this skill to inspect recent agent activity, troubleshoot ActivityClaw status, and open the local dashboard for file, command, web, message, and sub-agent history.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference a localhost dashboard and local SQLite activity database when guiding ActivityClaw usage.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to install an unpinned third-party ActivityClaw package.
+
+Mitigation: Review the package source and pin a known package version before installation.
+
+Risk: ActivityClaw records broad local agent activity, including files, commands, web actions, messages, and sub-agent history.
+
+Mitigation: Use it only when local activity storage is acceptable, and confirm the database location and deletion process before collecting activity.
+
+Risk: The local dashboard exposes recorded activity on a configurable local service.
+
+Mitigation: Confirm dashboard access restrictions and port configuration before running the service.
+
+## Reference(s):
+
+- [ActivityClaw Plugin Usage on ClawHub](https://clawhub.ai/rmruss2022/skills/activityclaw-usage)
+- [ActivityClaw GitHub repository](https://github.com/rmruss2022/ActivityClaw)
+- [ActivityClaw npm package](https://www.npmjs.com/package/@rmruss2022/activityclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands assume the third-party ActivityClaw plugin is installed and configured locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

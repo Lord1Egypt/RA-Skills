@@ -1,37 +1,47 @@
-## Description: <br>
-Fetches and filters official CNINFO disclosures by event type and industry to extract positive catalysts for A-share monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches and filters official CNINFO disclosures by event type and industry to identify positive catalysts for A-share monitoring.
 
-## Publisher: <br>
-[ningjingzhiyuande](https://clawhub.ai/user/ningjingzhiyuande) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ningjingzhiyuande](https://clawhub.ai/user/ningjingzhiyuande)
 
-## Use Case: <br>
-Analysts, researchers, and agents use this skill to monitor official CNINFO announcements for selected A-share catalysts and return normalized fields for alerting or review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Announcement fields such as trigger price, confidence, and invalidation condition may be mistaken for trading instructions. <br>
-Mitigation: Treat these fields as research aids only, verify the official disclosure source, and avoid automated trading decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ningjingzhiyuande/cninfo-announcement-scraper) <br>
+## Use Case:
+
+Investors, analysts, and market-monitoring agents use this skill to collect official CNINFO announcements and summarize disclosure-based catalysts for A-share watchlists or alerts. It is not a trading system and should not be used to place trades automatically.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Disclosure summaries and catalyst labels may be interpreted as financial advice or as instructions to trade.
+
+Mitigation: Use the output for monitoring and research only; review official CNINFO source links and do not connect the skill to automatic trade execution.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured rows containing ticker, company, catalyst, source URL, timestamp, confidence, trigger price, and invalidation condition.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses official disclosure links only and excludes auto-trade instructions.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Structured rows with ticker, company, catalyst, official source URL, timestamp, confidence, trigger price, and invalidation condition.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses official disclosure links and excludes automatic trade instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

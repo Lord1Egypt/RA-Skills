@@ -1,38 +1,48 @@
-## Description: <br>
-Personal plant and garden management for gardeners. Track your plants, set care schedules, and monitor growth. Use when you need to manage your garden, track watering/fertilizing schedules, or maintain plant inventories. Security: file exports are restricted to safe directories only (workspace, home, /tmp). Perfect for home gardeners, indoor plant enthusiasts, and anyone growing their own food. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and track plants and gardens with care schedules, growth monitoring, and detailed records for watering, fertilizing, pruning, harvesting, and related care.
 
-## Publisher: <br>
-[johstracke](https://clawhub.ai/user/johstracke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[johstracke](https://clawhub.ai/user/johstracke)
 
-## Use Case: <br>
-External gardeners and plant owners use this skill to maintain a local plant inventory, record watering and other care actions, search plant records, and export their collection history. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Plant locations and care notes are stored on disk and included in exports. <br>
-Mitigation: Avoid entering sensitive location details or private notes unless local storage and exported Markdown files are acceptable for the intended environment. <br>
-Risk: The export command can overwrite a selected local file. <br>
-Mitigation: Choose export filenames deliberately and review the destination path before running an export. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External gardeners, indoor plant keepers, and small garden managers use this skill to maintain plant inventories, record care actions, search plant records, and export plant data for backup or review.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files] <br>
-**Output Format:** [CLI text output, local JSON storage, and Markdown exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores plant records locally under ~/.openclaw/workspace/plants_db.json and can export user-selected Markdown files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The export command can write Markdown files across broad areas of the user's home directory and may overwrite unintended files.
+
+Mitigation: Use exports only with explicit Markdown paths in ~/.openclaw/workspace or a dedicated exports directory, and review any existing target file before running export.
+
+## Reference(s):
+
+- [Plant Tracker on ClawHub](https://clawhub.ai/johstracke/skills/plant-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and generated Markdown exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores plant records as JSON in the OpenClaw workspace and can export selected records to Markdown.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

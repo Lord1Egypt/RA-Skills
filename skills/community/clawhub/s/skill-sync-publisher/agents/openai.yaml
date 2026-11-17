@@ -1,0 +1,6 @@
+interface:
+  display_name: "Skill Sync Publisher"
+  short_description: "Sync one skill across eight publishing channels"
+  default_prompt: "Use $skill-sync-publisher to preflight and safely sync this skill across its selected registries."
+policy:
+  allow_implicit_invocation: true

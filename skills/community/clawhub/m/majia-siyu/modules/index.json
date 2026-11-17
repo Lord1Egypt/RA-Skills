@@ -1,0 +1,19 @@
+{
+  "wechat-compliance-redlines": "modules/wechat-compliance-redlines/SKILL.md",
+  "content-as-product": "modules/content-as-product/SKILL.md",
+  "reactivation-playbook": "modules/reactivation-playbook/SKILL.md",
+  "conversion-caliber": "modules/conversion-caliber/SKILL.md",
+  "ops-as-ad-funnel": "modules/ops-as-ad-funnel/SKILL.md",
+  "crisis-response-sop": "modules/crisis-response-sop/SKILL.md",
+  "trust-asset-playbook": "modules/trust-asset-playbook/SKILL.md",
+  "siyu-market-research": "modules/siyu-market-research/SKILL.md",
+  "siyu-report": "modules/siyu-report/SKILL.md",
+  "siyu-restore": "modules/siyu-restore/SKILL.md",
+  "siyu-save": "modules/siyu-save/SKILL.md",
+  "siyu-update": "modules/siyu-update/SKILL.md",
+  "siyu-wenzhen": "modules/siyu-wenzhen/SKILL.md",
+  "siyu-huashu": "modules/siyu-huashu/SKILL.md",
+  "siyu-pyq": "modules/siyu-pyq/SKILL.md",
+  "siyu-qunfa": "modules/siyu-qunfa/SKILL.md",
+  "siyu-onboard": "modules/_expert-team/siyu-onboard.md"
+}

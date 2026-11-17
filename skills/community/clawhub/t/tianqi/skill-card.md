@@ -1,43 +1,55 @@
-## Description: <br>
-Tianqi helps Chinese-speaking users get current weather and short-range forecasts for cities or regions using wttr.in and Open-Meteo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get current weather and short-range forecasts in Chinese for a city or region using wttr.in and Open-Meteo.
 
-## Publisher: <br>
-[jvy](https://clawhub.ai/user/jvy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jvy](https://clawhub.ai/user/jvy)
 
-## Use Case: <br>
-Chinese-speaking users and agents use this skill to answer weather, temperature, rain, wind, and short-range forecast questions for a specified city or region, with clarification for ambiguous locations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide exact private addresses or sensitive location descriptions when asking for weather. <br>
-Mitigation: Ask for city-, district-, or region-level locations instead of exact private addresses. <br>
-Risk: Plain HTTP or unstable location recognition can expose queries or produce the wrong forecast for ambiguous places. <br>
-Mitigation: Prefer HTTPS weather service URLs and clarify ambiguous Chinese place names before answering. <br>
+## Use Case:
 
+External users and agents use Tianqi to answer Chinese-language questions about current weather, temperature, rain, wind, and short-range forecasts. It is suited for quick travel and daily planning responses where Celsius temperatures and Chinese place names are preferred.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jvy/tianqi) <br>
-- [wttr.in help](https://wttr.in/:help) <br>
-- [Open-Meteo geocoding API](https://geocoding-api.open-meteo.com/v1/search) <br>
-- [Open-Meteo forecast API](https://api.open-meteo.com/v1/forecast?latitude=39.9042&longitude=116.4074&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum&forecast_days=3&timezone=auto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Chinese-language plain text or Markdown with optional curl examples and weather data summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Celsius by default and may identify wttr.in or Open-Meteo as the weather source when useful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: City names or coordinates may be sent to public weather services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the location detail needed for the forecast and disclose uncertainty when the location or source is unclear.
+
+Risk: Some wttr.in examples use plain HTTP-style host URLs.
+
+Mitigation: Prefer explicit HTTPS URLs for weather requests, especially on untrusted networks.
+
+## Reference(s):
+
+- [wttr.in help](https://wttr.in/:help)
+- [Open-Meteo geocoding API](https://geocoding-api.open-meteo.com/v1/search)
+- [Open-Meteo forecast API](https://api.open-meteo.com/v1/forecast)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Text]
+
+**Output Format:** [Markdown with Chinese-language weather summaries and inline bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include current conditions, temperature, feels-like temperature, daily high and low, precipitation probability or trend, wind conditions, two- to three-day forecast changes, and data-source notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

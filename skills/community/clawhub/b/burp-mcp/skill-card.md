@@ -1,43 +1,62 @@
-## Description: <br>
-Connect to a local Burp Suite MCP Server over SSE and list or call Burp tools from the workspace. Use when Burp Suite is running with the PortSwigger MCP extension enabled on http://127.0.0.1:9876/. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to a local Burp Suite MCP Server over SSE and list or call Burp tools from the workspace.
 
-## Publisher: <br>
-[nquangit](https://clawhub.ai/user/nquangit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nquangit](https://clawhub.ai/user/nquangit)
 
-## Use Case: <br>
-Developers and security testers use this skill to let an agent inspect available local Burp Suite MCP tools and call selected tools from a workspace. It is intended for environments where Burp Suite and the PortSwigger MCP extension are already running locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Burp traffic, tokens, request bodies, and scanner findings may be exposed through tool output. <br>
-Mitigation: Use the skill only in intended local testing environments, keep the SSE URL on localhost, and avoid printing or saving sensitive traffic unless it is needed. <br>
-Risk: Some Burp MCP tools can change Burp settings, editor contents, intercept state, scanner behavior, or task execution state. <br>
-Mitigation: Start with read-only history, scanner issue, and options-output tools, then require explicit human approval before any state-changing tool call. <br>
-Risk: Tool names and input schemas can vary by MCP extension version. <br>
-Mitigation: Run list-tools before tool calls and match arguments to the returned inputSchema. <br>
+## Use Case:
 
+Developers and security engineers use this skill to inspect available Burp Suite MCP tools and call them from an agent workspace when Burp Suite is already running locally with the PortSwigger MCP extension enabled.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nquangit/burp-mcp) <br>
-- [Publisher profile](https://clawhub.ai/user/nquangit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper prints raw MCP-shaped JSON; some Burp results may include text blocks that need a second parse step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can expose sensitive Burp Suite proxy history, scanner findings, and configuration data to an agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for workflows that intentionally require Burp access, treat outputs as sensitive security data, and avoid broad history queries unless needed.
+
+Risk: Some available Burp MCP tools may mutate Burp Suite state or project/user options.
+
+Mitigation: Prefer read-only tools first and require explicit human approval before invoking mutation-capable tools.
+
+Risk: Changing the SSE endpoint can connect the agent to an unintended MCP server.
+
+Mitigation: Prefer the documented loopback endpoint and require human approval before using a non-default endpoint.
+
+Risk: The release depends on the Python mcp package without a pinned version in the artifact metadata.
+
+Mitigation: Pin the mcp dependency before routine or shared-environment use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nquangit/skills/burp-mcp)
+- [Default local Burp MCP SSE endpoint](http://127.0.0.1:9876/)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Burp tool responses can include MCP content text blocks that may need a second parse step for structured use.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

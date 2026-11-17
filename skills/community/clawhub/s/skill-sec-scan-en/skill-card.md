@@ -1,46 +1,59 @@
-## Description: <br>
-Automatically detects security risks in ClawHub, GitHub, and local skills across JavaScript, TypeScript, Python, and Shell files and generates detailed reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Security Scanner scans ClawHub, GitHub, and local skill packages for security risks across JavaScript, TypeScript, Python, and shell files and reports categorized findings.
 
-## Publisher: <br>
-[torchesfrms](https://clawhub.ai/user/torchesfrms) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[torchesfrms](https://clawhub.ai/user/torchesfrms)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to scan skill packages before installation or release, triage findings, and generate security reports for local or remote skill sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unsafe command handling can expose users when untrusted target strings are passed through the Node wrapper. <br>
-Mitigation: Use only explicit local paths or trusted URLs, and avoid passing untrusted target strings through the Node wrapper. <br>
-Risk: Remote archive extraction behavior is unconfirmed for remote scans. <br>
-Mitigation: Review the skill before installing and use trusted remote sources only. <br>
-Risk: A prefilled whitelist may suppress expected findings. <br>
-Mitigation: Inspect or clear whitelist.txt before scanning. <br>
-Risk: Scanner results are advisory rather than comprehensive security approval. <br>
-Mitigation: Treat results as triage input and perform separate review before deployment. <br>
+## Use Case:
 
+Developers, security reviewers, and agent operators use this skill to triage skill packages before installation or release. It helps identify suspicious patterns, summarize affected files, and produce reports for follow-up review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/torchesfrms/skill-sec-scan-en) <br>
-- [Detection rules](references/rules.md) <br>
-- [Dangerous commands reference](references/dangerous-commands.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown security reports, JSON or JSONL scan output, and shell command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include scanned file counts, issue counts, 0-100 scoring, categorized findings, severity levels, and advisory conclusions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The scanner can run unintended shell commands and may handle remote archives unsafely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a disposable or sandboxed environment and avoid scanning untrusted remote URLs with this version.
+
+Risk: Attacker-controlled target strings may affect the Node or shell entrypoints.
+
+Mitigation: Do not pass untrusted target strings directly to the scanner; review and constrain targets before execution.
+
+Risk: The scanner may incorrectly mark unsafe skills as safe.
+
+Mitigation: Treat scores as triage signals and perform independent code and security review before installing or approving a scanned skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/torchesfrms/skills/skill-sec-scan-en)
+- [Detection rules reference](references/rules.md)
+- [Dangerous commands reference](references/dangerous-commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown security reports, optional JSON or JSONL issue records, and shell commands for scans and whitelist operations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include scanned file counts, score, risk level, category, rule, severity, affected file, and conclusion; static scan results require independent review.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

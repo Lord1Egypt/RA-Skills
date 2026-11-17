@@ -1,41 +1,52 @@
-## Description: <br>
-One-command disk cleanup for macOS and Linux: trash, caches, temp files, old kernels, snap revisions, Homebrew, Docker, and Xcode artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-command disk cleanup for macOS and Linux covering trash, caches, temp files, old kernels, snap revisions, Homebrew, Docker, and Xcode artifacts, with dry-run support and no dependencies beyond bash and awk.
 
-## Publisher: <br>
-[camopel](https://clawhub.ai/user/camopel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[camopel](https://clawhub.ai/user/camopel)
 
-## Use Case: <br>
-Developers and power users use this skill to inspect and reclaim disk space on macOS or Linux systems by running a cleanup script with dry-run and selective skip options. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The cleanup script can delete broad user and system data, including caches, trash, logs, Docker artifacts, Xcode build data, package caches, snap revisions, and old kernels. <br>
-Mitigation: Run with --dry-run first, review the listed actions, and use --yes only after confirming the cleanup targets are acceptable. <br>
-Risk: Some cleanup actions may remove data that is useful for rollback, rebuilding, debugging, or local development workflows. <br>
-Mitigation: Use skip flags such as --skip-docker, --skip-kernels, --skip-brew, and --skip-snap for areas that matter to the current workflow or recovery plan. <br>
-Risk: The release evidence notes that the skill overstates how safe and reversible the cleanup is. <br>
-Mitigation: Treat cleanup as potentially destructive, keep backups for important local work, and avoid running it on systems where cache or archive removal has not been reviewed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Storage Cleanup on ClawHub](https://clawhub.ai/camopel/storage-cleanup) <br>
+## Use Case:
 
+Developers, engineers, and operators use this skill to preview and run cross-platform disk cleanup when storage is low or accumulated caches and build artifacts need to be reclaimed.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, text, guidance] <br>
-**Output Format:** [Markdown with bash commands and terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script reports cleanup targets, dry-run actions, and disk space before and after cleanup.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The cleanup script can delete user and system resources immediately, including some operations that may use sudo.
+
+Mitigation: Run `bash scripts/cleanup.sh --dry-run` first and review the proposed cleanup before allowing changes.
+
+Risk: High-impact categories such as kernels, Docker resources, snaps, and Homebrew packages may remove resources the user still needs.
+
+Mitigation: Use skip flags such as `--skip-kernels`, `--skip-docker`, `--skip-snap`, and `--skip-brew` unless those categories are intentionally in scope.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/camopel/skills/storage-cleanup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands and cleanup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend dry-run execution before cleanup and skip flags for higher-impact categories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

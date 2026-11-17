@@ -1,46 +1,54 @@
-## Description: <br>
-Queries Alibaba Cloud Security Center (SAS) overview data, including security score, asset status, risk governance, asset risk trends, and billing information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Alibaba Cloud Security Center overview data, including security posture, asset status, risk governance, asset trends, and billing.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Cloud security operators and developers use this skill to retrieve read-only Alibaba Cloud SAS overview metrics, WAF block statistics, asset risk trends, and SAS billing or subscription status through Aliyun CLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup may make persistent changes to the local Aliyun CLI and plugin state. <br>
-Mitigation: Review the setup steps first, prefer package-manager or manually verified CLI installation, and run plugin updates only in an environment where CLI state changes are acceptable. <br>
-Risk: Remote script execution through curl | bash can run unreviewed installer code. <br>
-Mitigation: Avoid piping remote scripts directly to a shell; download from the official source, inspect or verify the installer, and execute it explicitly. <br>
-Risk: Alibaba Cloud credentials and returned security or billing data are sensitive. <br>
-Mitigation: Use least-privilege read-only RAM permissions, verify credentials only through safe CLI status checks, and avoid sharing access keys or command outputs containing sensitive account data. <br>
+## Use Case:
 
+Developers and security operators use this skill to retrieve requested Security Center posture, asset, operations, trend, or billing data from Alibaba Cloud accounts. It reports overview data and does not remediate findings or change cloud services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-sas-overview) <br>
-- [RAM Policies](references/ram-policies.md) <br>
-- [Related APIs](references/related-apis.md) <br>
-- [Verification Method](references/verification-method.md) <br>
-- [Aliyun CLI Installation & Configuration Guide](references/cli-installation-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only Alibaba Cloud queries; results may include security posture, asset, and billing data from configured Aliyun profiles.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.4 (source: server release evidence) <br>
+Risk: Setup may execute a downloaded CLI installer and update CLI plugins, including plugins unrelated to the requested query.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup before execution; use an isolated CLI environment with approved, verified dependencies; require approval for installation, persistent settings changes, and plugin updates.
+
+Risk: Cloud queries require credentials and may access security and account data.
+
+Mitigation: Use a read-only cloud identity limited to the requested services, and keep credentials out of chat.
+
+## Reference(s):
+
+- [Alibaba Cloud Security Center DescribeVersionConfig API](https://help.aliyun.com/zh/security-center/developer-reference/api-sas-2018-12-03-describeversionconfig)
+- [Alibaba Cloud CLI documentation](https://help.aliyun.com/zh/cli/)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, Markdown, JSON]
+
+**Output Format:** [Structured JSON query data with a concise Markdown or text summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scope-aware; may report partial or unavailable modules when permissions, regions, or service capabilities limit results.]
+
+## Skill Version(s):
+
+0.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-SaaS Video helps an agent submit a SaaS demo or explainer request to Pexo, upload supporting media, poll progress, and return the finished video link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Make a SaaS demo or explainer video with Pexo by relaying a software description, app URL, or screenshot to Pexo so it can write the script, generate visuals, select models, add narration and captions, and return a publish-ready video.
 
-## Publisher: <br>
-[pexo](https://clawhub.ai/user/pexo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pexo](https://clawhub.ai/user/pexo)
 
-## Use Case: <br>
-Developers, founders, marketers, and operators use this skill to turn a SaaS or software brief, app URL, or screenshot into a publish-ready demo or explainer video for landing pages, onboarding, or sales. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends product details, URLs, screenshots, or media to Pexo's hosted service. <br>
-Mitigation: Submit only material approved for external processing, and avoid confidential internal URLs, secrets, customer data, or proprietary material without approval. <br>
-Risk: The skill uses a Pexo API key stored in local configuration. <br>
-Mitigation: Store ~/.pexo/config as a secret, keep it writable only by the user, and do not point PEXO_CONFIG at untrusted files. <br>
-Risk: Creating or revising videos can consume Pexo credits or lead to credit top-up flows. <br>
-Mitigation: Confirm the user's intent before starting or retrying production, and surface credit or purchase links only when the service reports they are needed. <br>
+## Use Case:
 
+External users and developers use this skill to create SaaS demo, explainer, onboarding, landing-page, or sales videos through Pexo's hosted video agent. The agent creates projects, uploads approved assets, sends the user's request, polls status, and returns project or final asset links.
 
-## Reference(s): <br>
-- [Pexo](https://pexo.ai) <br>
-- [Setup Checklist](references/SETUP-CHECKLIST.md) <br>
-- [Troubleshooting](references/TROUBLESHOOTING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, JSON, Configuration, Guidance] <br>
-**Output Format:** [Plain text and Markdown with shell commands, JSON script results, project links, and final asset URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PEXO_API_KEY and PEXO_BASE_URL; may upload user-provided media and return signed asset URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: evidence release, target metadata, SKILL.md frontmatter) <br>
+Risk: The skill handles Pexo API keys and local configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep PEXO_BASE_URL set to https://pexo.ai, protect ~/.pexo/config with user-only permissions or a safer secret store, and run setup diagnostics before use.
+
+Risk: The skill can upload SaaS descriptions, screenshots, and local files to Pexo.
+
+Mitigation: Use it only for SaaS material approved for sharing with Pexo, and avoid uploading files or screenshots that contain secrets or sensitive data.
+
+Risk: Generated projects, asset downloads, and project state are handled by an external hosted service.
+
+Mitigation: Review Pexo output before publication, monitor long-running jobs, and avoid exposing signed asset URLs beyond the intended recipient.
+
+## Reference(s):
+
+- [Pexo](https://pexo.ai)
+- [ClawHub Skill Page](https://clawhub.ai/pexo/skills/saas-video)
+- [Setup Checklist](references/SETUP-CHECKLIST.md)
+- [Troubleshooting](references/TROUBLESHOOTING.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON script responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return project IDs, asset IDs, project links, status JSON, signed asset URLs, and local downloaded asset paths.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

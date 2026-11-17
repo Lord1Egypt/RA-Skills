@@ -1,45 +1,60 @@
-## Description: <br>
-Polymarket 预测市场工具。查询市场、下注策略、风险管理、收益计算。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polymarket 预测市场工具，提供平台介绍、市场类型说明、下注策略、风险管理和收益计算示例。
 
-## Publisher: <br>
-[shenmeng](https://clawhub.ai/user/shenmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenmeng](https://clawhub.ai/user/shenmeng)
 
-## Use Case: <br>
-External users and agents use this Chinese-language skill to explain Polymarket prediction-market basics, list common market categories, outline staking strategies, calculate example returns, and present risk-management guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prediction-market participation can cause complete loss of funds. <br>
-Mitigation: Treat outputs as educational guidance only, use funds the user can afford to lose, and require explicit human review before any real Polymarket transaction. <br>
-Risk: An agent could present strategy or return calculations as investment advice. <br>
-Mitigation: Keep responses framed as non-advisory examples and require users to make independent financial decisions. <br>
-Risk: Wallet connections and transaction prompts can expose users to unintended financial actions. <br>
-Mitigation: Review wallet connections and transaction details manually; do not let an agent place bets or confirm wallet prompts without explicit approval. <br>
+## Use Case:
 
+External users and agents can use this skill to get concise Chinese-language guidance about Polymarket concepts, example market categories, betting posture, risk controls, and a simple payoff calculation. It should be treated as general educational information rather than live market data or investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shenmeng/polymarket-cn) <br>
-- [Polymarket website](https://polymarket.com) <br>
-- [Polymarket markets](https://polymarket.com/markets) <br>
-- [Polymarket documentation](https://docs.polymarket.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and terminal text with inline bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language reference output; does not automate wallet access, betting, or transaction confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security summary flags broad shell and browsing permissions for a skill that behaves like a static educational guide.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review permissions before installation and prefer a release that removes unnecessary shell or browsing access, or requires explicit approval before those tools are used.
+
+Risk: The guidance discusses prediction-market trading and may be mistaken for current market data or investment advice.
+
+Mitigation: Treat the output as general information only, verify any market data directly with authoritative sources, and do not use it as financial advice.
+
+Risk: The README says core functionality is unfinished.
+
+Mitigation: Validate behavior in a controlled environment before relying on the skill for any user-facing workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenmeng/skills/polymarket-cn)
+- [Polymarket](https://polymarket.com)
+- [Polymarket markets](https://polymarket.com/markets)
+- [Polymarket documentation](https://docs.polymarket.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and terminal text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static educational content; no live market data or investment advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

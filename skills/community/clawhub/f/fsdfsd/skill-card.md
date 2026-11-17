@@ -1,42 +1,58 @@
-## Description: <br>
-Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs.
 
-## Publisher: <br>
-[hailinhmacduc](https://clawhub.ai/user/hailinhmacduc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hailinhmacduc](https://clawhub.ai/user/hailinhmacduc)
 
-## Use Case: <br>
-Developers and operators use this skill to set up OAuth access and run gog commands for Gmail, Calendar, Drive, Contacts, Sheets, Docs, and related Google Workspace workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide access to real Google Workspace data across Gmail, Calendar, Drive, Contacts, Sheets, and Docs. <br>
-Mitigation: Use the narrowest OAuth scopes and a low-privilege account where possible, and require explicit confirmation before sending email, changing calendar data, modifying Sheets, copying Docs, or exporting Workspace content. <br>
-Risk: The skill points to mutable external instructions that may change after publication. <br>
-Mitigation: Review external instructions manually before use instead of letting an agent treat them as trusted commands. <br>
-Risk: OAuth client secret and token files can grant access to Workspace data if exposed. <br>
-Mitigation: Protect client_secret.json and generated token files, keep them out of shared workspaces, and rotate credentials if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [gog CLI homepage](https://gogcli.sh) <br>
-- [External gog usage instructions](https://claude.ai/public/artifacts/59bf1058-3a4c-450b-af5b-c85c13cfa8ab) <br>
+## Use Case:
 
+Developers and operators use this skill to configure and run the gog CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs tasks such as search, send, export, update, append, and clear.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup, OAuth, scripting, read, write, and export command examples for the gog CLI.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad Google OAuth access can expose mailbox, calendar, Drive, contacts, Sheets, or Docs data and enable account actions.
+
+Mitigation: Authorize only the smallest needed Google services and scopes, avoid personal or production accounts unless necessary, protect client_secret.json and OAuth tokens, and revoke authorization when finished.
+
+Risk: The skill points users to external instructions and an unpinned third-party CLI install.
+
+Mitigation: Review the external instructions and gog CLI source before installing, and use a trusted, pinned installation path where possible.
+
+Risk: Commands such as send, clear, update, append, copy, and event creation can modify or transmit user data.
+
+Mitigation: Require explicit user confirmation before running data-changing or outbound commands, and inspect generated commands before execution.
+
+## Reference(s):
+
+- [gog CLI homepage](https://gogcli.sh)
+- [External setup instructions](https://claude.ai/public/artifacts/59bf1058-3a4c-450b-af5b-c85c13cfa8ab)
+- [ClawHub skill page](https://clawhub.ai/hailinhmacduc/skills/fsdfsd)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend JSON-producing gog commands for scripting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

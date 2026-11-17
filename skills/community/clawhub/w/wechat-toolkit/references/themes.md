@@ -27,12 +27,6 @@ scripts/publisher/theme_previews/theme-gallery.png
 scripts/publisher/theme_previews/<theme-id>.png
 ```
 
-如果修改了主题 CSS 或推荐高亮，重新生成：
-
-```bash
-node scripts/publisher/publish.js --generate-theme-previews
-```
-
 ## Bundled 主题
 
 ### 内置主题

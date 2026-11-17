@@ -1,41 +1,54 @@
-## Description: <br>
-Creates an Instagram carousel from a popular-picks page using Reddit quotes, Topaz 2x photo upscaling, text overlays, and Instagram publishing steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a Topaz-enhanced Instagram carousel from a popular-picks page by pairing destination photos with Reddit quotes and subreddit attribution.
 
-## Publisher: <br>
-[psyduckler](https://clawhub.ai/user/psyduckler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[psyduckler](https://clawhub.ai/user/psyduckler)
 
-## Use Case: <br>
-Content creators or social media operators use this skill to turn a destination and category page into a Topaz-enhanced Instagram carousel with Reddit quote overlays and publishing guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can use stored Topaz and Instagram credentials and publish generated carousel content without an explicit review gate. <br>
-Mitigation: Review images, captions, source rights, destination account, and generated repository changes before any publish step, and use narrowly scoped credentials where possible. <br>
-Risk: Generated images may be pushed to a repository before being used as Instagram carousel media. <br>
-Mitigation: Inspect repository changes and hosted image URLs before publishing, and remove temporary hosted files after the post is complete. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/psyduckler/reddit-quote-topaz) <br>
-- [Topaz Labs image enhance endpoint](https://api.topazlabs.com/image/v1/enhance) <br>
-- [Topaz Labs async image enhance endpoint](https://api.topazlabs.com/image/v1/enhance/async) <br>
+## Use Case:
 
+Content operators and social media agents use this skill to turn popular-picks pages into Instagram carousel posts with destination photos, Reddit quote overlays, Topaz image enhancement, and publication steps.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Code, Guidance] <br>
-**Output Format:** [Markdown instructions with JSON examples and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces carousel slide specifications, local image file paths, API calls, captions, and publishing steps for an agent workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can upload generated images to external services, push repository changes, and publish branded content to Instagram without a clear approval checkpoint.
+
+Mitigation: Require human review of every generated image, caption, destination account, repository change, public URL, and Instagram publication action before upload, push, or publish.
+
+Risk: The workflow uses Topaz, GitHub/repository, and Instagram credentials and can expose processed images through external hosting or social media.
+
+Mitigation: Install only when those credentialed actions are intended, scope credentials to the minimum needed access, and treat external image processing and hosting as public or persistent unless verified otherwise.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/psyduckler/skills/reddit-quote-topaz)
+- [Topaz Labs image enhance API](https://api.topazlabs.com/image/v1/enhance)
+- [Topaz Labs async image enhance API](https://api.topazlabs.com/image/v1/enhance/async)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, API Calls, Configuration instructions]
+
+**Output Format:** [Markdown guidance with shell commands, JSON manifest examples, image file outputs, caption text, and publication URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates temporary local image assets and a manifest, may upload images to repository hosting, and may publish a carousel to Instagram.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

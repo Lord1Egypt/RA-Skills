@@ -1,0 +1,12 @@
+{
+  "sar_version": "0.1",
+  "task_id_hash": "sha256:3c62af886635d4d40f820327761ff234dd5d3e6cf0bdded24b0819dfd0f8a269",
+  "verdict": "PASS",
+  "confidence": 1.0,
+  "reason_code": "SPEC_MATCH",
+  "ts": "2026-07-10T18:00:02.428683Z",
+  "verifier_kid": "sar-prod-ed25519-05",
+  "counterparty": "0xf23C8C0695e0Bd7c6eB979AEc128386Bf1ce3dCc",
+  "receipt_id": "sha256:0cee6b13c7641f7ef9c6dc55e3db23d3e7421db1e010b0b13ef9db1612bfbd16",
+  "sig": "base64url:CFA2_jNlr9CRu3Foj740_41Gkrn85yEC_rVtOc5MyQkEbFsrkAKnTGqrS2OUZkZd7akqDyeiUsNPHpU4aWpfBw"
+}

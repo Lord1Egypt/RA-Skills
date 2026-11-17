@@ -1,40 +1,54 @@
-## Description: <br>
-Daily Recommend helps an agent send one concise literature, quote, book, film, or documentary recommendation at scheduled or user-requested moments, using feedback to adapt future picks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Recommend sends concise Chinese-language recommendations for books, poems, quotes, films, and documentaries through scheduled or user-requested prompts.
 
-## Publisher: <br>
-[billxfan](https://clawhub.ai/user/billxfan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billxfan](https://clawhub.ai/user/billxfan)
 
-## Use Case: <br>
-Users and teams use this skill to receive lightweight daily cultural recommendations in Markdown, either from scheduled agent turns or direct prompts such as asking for a poem, book, or film. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retain likes, dislikes, ignored items, and preference weights in a local workspace preference history file. <br>
-Mitigation: Review or delete [WORKSPACE]/memory/recommend-preferences.md if that history should not be reused. <br>
+## Use Case:
 
+External and individual users use this skill to receive one thoughtful Chinese-language literature or arts recommendation at a time, either through scheduled daily delivery windows or direct requests such as asking for a poem, book, or film recommendation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/billxfan/daily-recommend) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/billxfan) <br>
-- [Submitted skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Feishu-compatible Markdown recommendation messages with title, quoted excerpt, rationale, and tags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update a workspace preference history file to tune later recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Scheduled recommendations may notify users more often than they want.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the daily Cron schedule and notification frequency before enabling scheduled delivery.
+
+Risk: Personalization records user preference signals in a local workspace memory file.
+
+Mitigation: Tell users where preference data is stored and review or clear the local memory file when preferences should not persist.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/billxfan/skills/daily-recommend)
+- [Publisher profile](https://clawhub.ai/user/billxfan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Feishu-compatible Markdown recommendation message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces one recommendation at a time and may update a local workspace preference memory file for personalization.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

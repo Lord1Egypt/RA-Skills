@@ -1,42 +1,55 @@
-## Description: <br>
-Use when low-latency realtime speech recognition is needed with Alibaba Cloud Model Studio Qwen ASR Realtime models, including streaming microphone input, live captions, or duplex voice agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when low-latency realtime speech recognition is needed with Alibaba Cloud Model Studio Qwen ASR Realtime models, including streaming microphone input, live captions, or duplex voice agents.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and engineers use this skill to prepare realtime ASR request payloads and operational guidance for Alibaba Cloud Model Studio Qwen ASR Realtime models in captioning, streaming speech-to-text, and duplex voice-agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved ASR samples, transcripts, response samples, or metadata may contain sensitive speech content. <br>
-Mitigation: Protect or delete files written under output/alicloud-ai-audio-asr-realtime/ before sharing or committing them. <br>
-Risk: Using Alibaba Cloud realtime ASR requires Alibaba Cloud credentials. <br>
-Mitigation: Use environment-based credential handling such as DASHSCOPE_API_KEY and avoid embedding credentials in generated payloads or committed files. <br>
+## Use Case:
 
+Developers and voice-agent builders use this skill to configure Alibaba Cloud Qwen ASR Realtime sessions for live captions, microphone streaming, and duplex speech-to-text workflows.
 
-## Reference(s): <br>
-- [Sources](references/sources.md) <br>
-- [Alibaba Cloud Model Studio ASR Realtime Documentation](https://help.aliyun.com/document_detail/2976098.html) <br>
-- [Alibaba Cloud Model Studio Newly Released Models](https://help.aliyun.com/zh/model-studio/newly-released-models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON request templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write JSON request payloads under output/alicloud-ai-audio-asr-realtime/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Alibaba Cloud API keys may be exposed if credentials are committed or shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep DASHSCOPE_API_KEY and Alibaba Cloud credentials in local secret storage or environment variables, and do not commit them.
+
+Risk: Saved ASR payloads, transcripts, or response samples may contain sensitive speech content.
+
+Mitigation: Redact or exclude generated output files before publishing repositories or sharing workspaces.
+
+## Reference(s):
+
+- [Artifact sources](references/sources.md)
+- [Alibaba Cloud Model Studio Qwen ASR Realtime documentation](https://help.aliyun.com/document_detail/2976098.html)
+- [Alibaba Cloud Model Studio newly released models](https://help.aliyun.com/zh/model-studio/newly-released-models)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with shell commands and JSON request payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local ASR request payloads and response samples under the configured output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

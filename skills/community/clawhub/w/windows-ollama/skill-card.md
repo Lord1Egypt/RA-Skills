@@ -1,45 +1,61 @@
-## Description: <br>
-Windows Ollama helps agents guide Windows users through running Ollama with fleet routing, load balancing, health monitoring, and dashboard access across multiple Windows PCs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Windows Ollama helps agents set up and use Ollama Herd to route local Ollama inference across multiple Windows PCs, with load balancing, health checks, dashboard monitoring, and NVIDIA RTX GPU-aware examples.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Developers and Windows AI users use this skill to set up Ollama Herd, route Ollama inference across multiple Windows machines, monitor fleet health, and configure local model-serving behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup exposes an Ollama router on TCP port 11435, which could be reachable by untrusted systems if firewall scope is too broad. <br>
-Mitigation: Run the router only on trusted Windows machines and restrict port 11435 to private networks or specific trusted source IPs. <br>
-Risk: The workflow installs and runs the third-party ollama-herd package. <br>
-Mitigation: Verify the package and project before installation, then review commands before execution. <br>
-Risk: Persistent Ollama environment settings and firewall rules can outlive the intended test or deployment window. <br>
-Mitigation: Remove the firewall rule and persistent Ollama environment settings when they are no longer needed. <br>
+## Use Case:
 
+Developers and operators use this skill to configure a Windows Ollama Herd fleet, route OpenAI- or Ollama-compatible requests across Windows PCs, and monitor router and node health.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/windows-ollama) <br>
-- [Ollama download](https://ollama.ai) <br>
-- [Ollama Herd agent setup guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md) <br>
-- [Ollama Herd API reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with PowerShell, Python, and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets Windows systems and local network Ollama endpoints; no API key requirement is declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: Opening the router port broadly can expose the local AI service outside trusted hosts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict port 11435 to trusted private networks or specific IP addresses before enabling the firewall rule.
+
+Risk: Installing and running the Python package and local services with elevated privileges can increase operational risk.
+
+Mitigation: Use a non-admin virtual environment where possible and pin or review the package version before installation.
+
+Risk: Model downloads and deletions can affect local storage, bandwidth, and service availability.
+
+Mitigation: Keep explicit user confirmation for model downloads and deletion, and do not automate model pulls without opt-in.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/twinsgeeks/skills/windows-ollama)
+- [Ollama Herd repository](https://github.com/geeks-accelerator/ollama-herd)
+- [Ollama](https://ollama.ai)
+- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md)
+- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with PowerShell, Python, curl, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Windows-specific commands, local service URLs, model recommendations, and guardrails for model downloads and deletion.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

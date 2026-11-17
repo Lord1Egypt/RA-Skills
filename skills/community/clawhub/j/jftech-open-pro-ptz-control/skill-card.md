@@ -1,46 +1,55 @@
-## Description: <br>
-A developer-focused JFTech device API skill for checking camera status and managing PTZ movement, masking, zoom/focus, presets, and tour plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent-facing guidance and shell commands for controlling JF/JieFeng PTZ camera devices, including status checks, directional movement, privacy mask, zoom and focus, presets, and tour management.
 
-## Publisher: <br>
-[jftech](https://clawhub.ai/user/jftech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jftech](https://clawhub.ai/user/jftech)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate JFTech PTZ cameras through the official API, including status checks, directional movement, privacy masking, zoom/focus, presets, and tour management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move a live PTZ camera, enable masking, delete presets, or change tour behavior. <br>
-Mitigation: Require explicit confirmation before camera movement, masking, preset deletion, or tour changes. <br>
-Risk: The skill requires JF API credentials and device identifiers. <br>
-Mitigation: Use dedicated credentials where possible, keep credentials in environment variables, and avoid command-line arguments or configuration files for secrets. <br>
-Risk: Requests are sent to the configured JFTech API endpoint. <br>
-Mitigation: Verify JF_ENDPOINT before running and use the official international or mainland China endpoint appropriate for the deployment. <br>
-Risk: PTZ start actions can continue movement until a stop action is sent or the device reaches its limit. <br>
-Mitigation: Send PTZ start and stop commands serially, confirm stop execution, and use short movement intervals for live devices. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure credentials and operate JF/JieFeng camera PTZ workflows through the Open Pro API. Typical tasks include checking device status, starting and stopping movement, managing privacy mask state, adjusting zoom or focus, and maintaining presets or patrol tours.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jftech/jftech-open-pro-ptz-control) <br>
-- [JFTech Open Platform](https://open.jftech.com/) <br>
-- [JFTech API Documentation](https://docs.jftech.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JF API credentials, a target device serial number, and network access to the configured JFTech API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: JF camera and API credentials can be sent to any endpoint configured through JF_ENDPOINT.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set JF_ENDPOINT only to the intended official JF API host and run the skill in an environment where other software cannot alter JF_* variables.
+
+Risk: Preset, tour, mask, and PTZ commands can change physical camera position, recording behavior, or device state.
+
+Mitigation: Review the target device, command, direction, and start/stop behavior before execution, especially for unattended tour or movement commands.
+
+## Reference(s):
+
+- [JF Open Platform](https://open.jftech.com/)
+- [JF API Documentation](https://docs.jftech.com/)
+- [ClawHub Skill Page](https://clawhub.ai/jftech/skills/jftech-open-pro-ptz-control)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and environment variable examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands depend on JF_* environment variables and selected JF API endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

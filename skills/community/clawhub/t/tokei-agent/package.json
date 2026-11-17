@@ -1,0 +1,40 @@
+{
+  "name": "tokei-agent",
+  "version": "0.3.8",
+  "description": "Control your Tokei (tokei.io) pre-launch and waitlist campaigns from AI agents and the command line.",
+  "type": "module",
+  "bin": {
+    "tokei-agent": "bin/tokei-agent.mjs"
+  },
+  "engines": {
+    "node": ">=22.12"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "CHANGELOG.md",
+    "README.md",
+    "SKILL.md"
+  ],
+  "keywords": [
+    "tokei",
+    "waitlist",
+    "prelaunch",
+    "agent",
+    "cli",
+    "mcp",
+    "claude",
+    "ai-agents"
+  ],
+  "homepage": "https://tokei.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gilesdawe/tokei-agent.git"
+  },
+  "mcpName": "io.github.gilesdawe/tokei-agent",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "node bin/tokei-agent.mjs --help"
+  }
+}

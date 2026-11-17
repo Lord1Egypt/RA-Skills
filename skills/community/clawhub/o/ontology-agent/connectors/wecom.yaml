@@ -1,0 +1,27 @@
+# connectors/wecom.yaml — WeCom (WeChat Work) connection placeholder (stub)
+# Ontology Agent · Tianjin Weishu Artificial Intelligence Technology Co., Ltd.
+# Bilingual note: the Chinese counterpart of this file is `wecom.zh.yaml`.
+# Status: stub (not yet implemented). To be filled in with a real implementation in Phase 6 when
+# enterprise customers appear.
+
+meta:
+  connector: wecom
+  status: stub
+  trigger: "Fill in the implementation when enterprise customers appear and real people + IM need to be connected"
+
+integration:
+  type: app_webhook           # WeCom self-built app
+  corp_id_env: WECOM_CORP_ID
+  agent_id_env: WECOM_AGENT_ID
+  secret_env: WECOM_SECRET
+  message_types: [text, markdown, template_card]
+
+bindings:
+  - role: employee
+    scope: "department/{dept}/shared"
+  - event: task_assigned
+  - event: approval_request
+
+note: >
+  WeCom's user system and enterprise address book are integrated, with employee identities mapped to
+  the employee role; same contract as dingtalk.yaml, different implementation details.

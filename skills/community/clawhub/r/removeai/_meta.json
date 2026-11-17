@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7b5gccsa3m1z41x25v5ny2kd82hj8k",
+  "ownerId": "local",
   "slug": "removeai",
-  "version": "1.0.0",
-  "publishedAt": 1774233849002
+  "version": "2.3.0",
+  "publishedAt": 1768114920544,
+  "name": "RemoveAI",
+  "description": "移除文本中人工智能生成写作的特征，让文本表达更自然、更贴近人工写作风格"
 }

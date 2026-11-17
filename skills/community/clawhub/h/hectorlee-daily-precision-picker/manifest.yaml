@@ -1,0 +1,32 @@
+name: hectorlee-daily-precision-picker
+slug: hectorlee-daily-precision-picker
+version: 2.2.1
+description: "每日精选1-3只股票的四层漏斗策略系统。从量价形态初筛池出发，依次通过量价二次过滤、基本面安全排雷、资金流向打分、板块与形态质量打分，最终输出精选/优选/关注池三层分级结果，选不出则空仓。V2.2.1 修复资金流向打分解析（westockdata 表格按列索引提取），新增 --json 结构化结果输出。"
+category: finance
+author: hectorlee
+license: MIT-0
+tags:
+  - 选股
+  - 精选
+  - 量化
+  - A股
+  - 漏斗策略
+  - 资金流向
+  - 基本面排雷
+triggers:
+  - 精选
+  - 每日优选
+  - 深度筛选
+  - 资金确认
+  - 精筛
+  - 4层漏斗
+dependencies:
+  python:
+    - requests
+    - numpy
+  optional:
+    - scikit-learn
+mcp_requirements:
+  - 通达信(tdx-connector): 量价形态初筛池数据
+  - 企查查(qcc-company): 基本面风险排查
+min_python: "3.9"

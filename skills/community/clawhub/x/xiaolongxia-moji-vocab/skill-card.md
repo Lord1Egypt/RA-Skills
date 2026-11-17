@@ -1,44 +1,59 @@
-## Description: <br>
-Manages a Moji Dictionary vocabulary list and generates daily Japanese vocabulary quizzes with oldest-first review, mixed meaning and reading questions, and deletion of mastered words. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Moji辞書生词本管理与每日测试技能。支持读取日语收藏夹、按时间排序（早期单词优先）、混合模式出题（释义+读音）、删除已掌握单词。
 
-## Publisher: <br>
-[dadaniya99](https://clawhub.ai/user/dadaniya99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dadaniya99](https://clawhub.ai/user/dadaniya99)
 
-## Use Case: <br>
-External users and language learners use this skill to review saved Japanese vocabulary from Moji Dictionary, generate short quizzes, inspect vocabulary statistics, and remove words they have mastered. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The scripts require a Moji session token and device ID, which may grant access to the user's Moji account data. <br>
-Mitigation: Store credentials locally, pass them through environment variables or command-line arguments only in trusted environments, and do not paste them into shared chats or logs. <br>
-Risk: Deletion workflows can remove saved vocabulary from the user's Moji favorites. <br>
-Mitigation: Run deletion commands with --dry-run first, review the selected word IDs or JLPT levels, and delete only after confirming the target set. <br>
-Risk: The skill makes live requests to Moji Dictionary services using the user's account credentials. <br>
-Mitigation: Install and run the skill only when the user trusts the third-party publisher and accepts the account-level API access described in the skill. <br>
+## Use Case:
 
+External learners and developers use this skill to manage Moji Dictionary Japanese vocabulary favorites, review older saved words, generate daily quiz prompts, and remove words they have mastered.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dadaniya99/xiaolongxia-moji-vocab) <br>
-- [Moji Dictionary](https://www.mojidict.com) <br>
-- [Moji Dictionary API endpoint](https://api.mojidict.com/parse/functions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with inline shell commands and quiz output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided Moji session token and device ID for live account operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The skill handles live Moji session credentials and device identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat MOJI_TOKEN and MOJI_DEVICE_ID as secrets, prefer environment variables, and avoid sharing logs or screenshots containing credential values.
+
+Risk: The skill can delete persistent Moji favorites from a user's account.
+
+Mitigation: Use dry-run mode first and perform deletion actions only after confirming the exact words or levels to remove.
+
+Risk: Security review classified the release as suspicious due to credential handling, deletion authority, and documentation accuracy concerns.
+
+Mitigation: Review the behavior and configuration before installation, and verify documented commands against the files included in the release.
+
+## Reference(s):
+
+- [Moji Vocab on ClawHub](https://clawhub.ai/dadaniya99/skills/xiaolongxia-moji-vocab)
+- [Moji Dictionary](https://www.mojidict.com)
+- [Moji Dictionary API Endpoint](https://api.mojidict.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown and terminal text with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Moji session credentials supplied by environment variables or command-line flags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

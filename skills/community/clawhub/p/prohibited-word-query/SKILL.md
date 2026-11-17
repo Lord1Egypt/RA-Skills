@@ -1,6 +1,6 @@
 ---
 name: multi-wordcheck
-description: 基于官方违禁词库，覆盖公众号、小红书、抖音三大平台审核标准，支持文案、文件、图片、链接多形式输入，快速输出违禁词标记与上下文替换建议。
+description: 基于官方违禁词库，覆盖公众号、小红书、抖音三大平台审核标准，支持文案、文件、图片、链接多形式输入，快速输出违禁词标记与上下文替换建议。当接口返回积分不足（code=3210）时，自动唤起支付宝完成充值后继续查询。
 version: 1.2.1
 tags:
 - prohibited-words
@@ -66,7 +66,7 @@ dependency:
 ### 前置条件
 
 - Python 3.8+，已安装依赖 `requests==2.31.0`、`beautifulsoup4==4.12.3`
-- 获取 `REDFOX_API_KEY`（访问 [RedFox 官网](https://redfox.hk/) 注册账号，新用户获赠免费积分）
+- 获取 `REDFOX_API_KEY`（访问 [RedFox 官网](https://redfox.hk/?source=clawhub) 注册账号，新用户获赠免费积分）
 
 ### 鉴权
 
@@ -102,6 +102,18 @@ export PROHIBITED_WORD_API_URL=https://your-gateway.example.com/sensitiveWordSea
 
 ---
 
+## 💳 积分不足充值（支付宝接管）
+
+当脚本以**退出码 3** 结束、并在 stdout 打印 `===PAYMENT_REQUIRED_JSON_START===` 区块时，表示当前 API Key 积分不足（接口 `code=3210`，兼容 `3201`）。响应体 `data` 内含结构化支付信息：`cashierUrl`（支付宝收银台链接）、`amount`（订单金额，元）、`goodsName`（商品名称）、`outTradeNo`（订单号）。
+
+脚本退出码含义：`0` 正常返回（含"未检测到违禁词"）；`1` 参数/鉴权/接口错误；`3` **积分不足，需要充值**——按 [references/alipay-recharge.md](references/alipay-recharge.md) 唤起支付宝充值，到账后自动用原始参数重跑脚本。
+
+完整的前置检查、`alipay-bot trigger-payment-signal` → `submit-payment` → `poll-payment-status` 编排步骤、钱包绑定处理、支付接管规则与失败处理，统一见 **[references/alipay-recharge.md](references/alipay-recharge.md)**（通用流程，可被其他 skill 复用）。`submit-payment` 后由 Agent 用 `poll-payment-status --out-shake-no <查询单号>` **自动监听支付回调到账**，无需用户再手动确认；到账（`outcome=success`）后自动用用户原始的查询参数重新运行 `scripts/check_sensitive_words.py` 输出结果。
+
+> 注：`scripts/extract_text.py` 仅做文本提取，不调用红狐计费接口，无退出码 3 语义。
+
+---
+
 ## 使用指南
 
 ### 基础使用
@@ -112,7 +124,7 @@ export PROHIBITED_WORD_API_URL=https://your-gateway.example.com/sensitiveWordSea
 
 > 小红书这个文案帮我查一下：这款美白神器三天见效，无效退款
 
-若未指定平台，默认按公众号规则检测。
+若未指定平台，默认按公众号规则检测。每次检测仅针对用户指定的单一平台执行，禁止同时对多个平台并发检测。
 
 **第 2 步：等待检测**
 
@@ -179,11 +191,11 @@ export PROHIBITED_WORD_API_URL=https://your-gateway.example.com/sensitiveWordSea
 
 🔗 **相关 Skill 推荐**
 
-本 Skill 覆盖三平台通用检测。如需更聚焦单一平台的专项能力，可前往 SkillHub 选用：
+本 Skill 覆盖三平台通用检测。如需更聚焦单一平台的专项能力，可前往红狐网站选用：
 
-- [小红书违禁词检测](https://skillhub.cn/skills/xhs-prohibited-word) — 面向种草笔记，强化极限词、禁宣与社区规范识别
-- [抖音违禁词检测](https://skillhub.cn/skills/dy-prohibited-word) — 面向短视频脚本与口播，兼顾节奏与平台安全表述
-- [公众号违禁词检测](https://skillhub.cn/skills/gzh-prohibited-word) — 面向推文与长图文，贴合图文审核与品牌对外口径
+- [小红书违禁词检测](https://redfox.hk/skills/no/AVZkdH2g) — 面向种草笔记，强化极限词、禁宣与社区规范识别
+- [抖音违禁词检测](https://redfox.hk/skills/no/F3jCHerW) — 面向短视频脚本与口播，兼顾节奏与平台安全表述
+- [公众号违禁词检测](https://redfox.hk/skills/no/4AdnxkH3) — 面向推文与长图文，贴合图文审核与品牌对外口径
 
 ### 输出规则
 
@@ -196,6 +208,7 @@ export PROHIBITED_WORD_API_URL=https://your-gateway.example.com/sensitiveWordSea
 7. 图片识别仅提取文字内容，禁止获取图片的任何其他信息
 8. 分批或字数超限询问时必须等待用户回复再继续，禁止跳过询问直接执行
 9. 文件上传仅支持图片与 txt 等文本文件，不支持 PDF 和 Word 文档
+10. 平台确定规则：用户未指定平台时，默认且仅使用公众号平台检测；禁止同时对多个平台并发检测，每次只调用一次 API
 
 ---
 

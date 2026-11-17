@@ -1,50 +1,64 @@
-## Description: <br>
-Conversational horse racing analysis for racecard breakdowns, runner comparisons, results checks, odds or value discussion, and punting-style decision support using The Racing API as the default live data source. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Punting Buddy provides conversational horse racing racecard analysis, runner comparisons, upcoming-race and results checks, and read-only punting decision support using The Racing API free plan.
 
-## Publisher: <br>
-[anupa-perera](https://clawhub.ai/user/anupa-perera) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anupa-perera](https://clawhub.ai/user/anupa-perera)
 
-## Use Case: <br>
-External users and developers use this skill to get conversational horse-racing race discovery, racecard analysis, runner comparisons, shortlist discussion, and results checks. It is read-only by default and guides The Racing API credential setup when live data access is requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Racing API credentials could be exposed if a user pastes them into chat. <br>
-Mitigation: Store THE_RACING_API_USERNAME and THE_RACING_API_PASSWORD as environment secrets and guide setup without asking the user to reveal credentials in conversation. <br>
-Risk: Horse-racing analysis could be mistaken for guaranteed betting advice or automated betting. <br>
-Mitigation: Keep the skill read-only by default, frame suggestions as informal analysis, avoid autonomous live betting, and state uncertainty when the evidence is thin. <br>
-Risk: Free-plan racecard data may be too limited for strong quantitative claims. <br>
-Mitigation: Use The Racing API card as the backbone, avoid fake precision or implied edge claims, and disclose when analysis is only a lightweight card read. <br>
+## Use Case:
 
+External users use this skill to get concise, conversational horse-racing racecard breakdowns, runner comparisons, shortlists, and results checks. Agent builders can also use it to guide setup for live The Racing API data while keeping betting-related output read-only by default.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/anupa-perera/punting-buddy) <br>
-- [Analysis rubric](references/analysis-rubric.md) <br>
-- [Chat output patterns](references/chat-output-patterns.md) <br>
-- [Domain model](references/domain-model.md) <br>
-- [Safety and modes](references/safety-and-modes.md) <br>
-- [Setup](references/setup.md) <br>
-- [The Racing API](references/the-racing-api.md) <br>
-- [The Racing API OpenAPI spec](https://api.theracingapi.com/openapi.json) <br>
-- [Workflow](references/workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Configuration guidance] <br>
-**Output Format:** [Conversational Markdown or plain text with concise paragraphs and optional bullets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only horse-racing analysis; live racecards and results require The Racing API credentials supplied through environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Betting-related analysis can be mistaken for guaranteed advice or automated wagering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat output as read-only decision support, avoid guaranteed claims, and require explicit user intent before discussing paper bets or approval-prep workflows.
+
+Risk: Live race data requires third-party The Racing API credentials.
+
+Mitigation: Use the skill without credentials for setup or workflow explanation, and clearly stop with setup guidance when credentials are missing for live fetches.
+
+Risk: Free-plan racecard data may not support deep historical analysis, advanced metrics, or robust probability modelling.
+
+Mitigation: Frame outputs as conversational card reads, disclose uncertainty, and avoid fake precision such as exact win percentages unless richer evidence is available.
+
+## Reference(s):
+
+- [Punting Buddy ClawHub Skill Page](https://clawhub.ai/anupa-perera/skills/punting-buddy)
+- [The Racing API OpenAPI Specification](https://api.theracingapi.com/openapi.json)
+- [The Racing API](https://api.theracingapi.com)
+- [Analysis Rubric](references/analysis-rubric.md)
+- [Chat Output Patterns](references/chat-output-patterns.md)
+- [Safety and Modes](references/safety-and-modes.md)
+- [Setup](references/setup.md)
+- [Workflow](references/workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Conversational text or Markdown with inline setup commands and configuration guidance when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Short, read-only responses by default; expands only when the user asks for deeper analysis.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-A Steve Jobs-style advisory persona that uses public-source-derived mental models, decision heuristics, and communication patterns to analyze products, decisions, and feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language role-play skill that helps users analyze products, decisions, and feedback through a simulated Steve Jobs perspective based on public sources.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External users and product builders use this skill to ask an agent for Steve Jobs-style critique, product strategy feedback, and decision framing. It is intended for roleplay and interpretation based on public sources, not for authentic statements from Steve Jobs or professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Strong first-person roleplay may be mistaken for authentic statements from Steve Jobs or authoritative professional advice. <br>
-Mitigation: Treat outputs as roleplay and interpretation based on public sources; do not rely on them as business, legal, medical, or financial advice. <br>
-Risk: The forceful persona can become unhelpful for some users or contexts. <br>
-Mitigation: Use the documented exit phrases to leave the persona or return to normal agent behavior when the style is not useful. <br>
+## Use Case:
 
+External users use this skill as a perspective-taking and critique aid for product strategy, prioritization, decision review, and communication feedback in a Steve Jobs-inspired voice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/steve-jobs-perspective-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language responses, typically Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona roleplay responses with a documented initial disclaimer and exit phrases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Users may mistake role-played first-person statements for authentic Steve Jobs quotes or advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preserve the skill's transparency caveat and treat post-2011 opinions as speculative simulation.
+
+Risk: The style may produce forceful product or strategy guidance that is inappropriate for medical, legal, financial, or other high-stakes decisions.
+
+Mitigation: Use the output only as perspective-taking input and require qualified human review for high-stakes contexts.
+
+Risk: The emulated management style may normalize overly harsh feedback or pressure if applied directly to teams.
+
+Mitigation: Adapt any critique to the user's organizational context and review for respectful, actionable delivery before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/steve-jobs-perspective-v2)
+- [ClawHub publisher profile](https://clawhub.ai/user/xiejianjun000)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text conversational responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include role-play framing, product critique, decision heuristics, and direct feedback; should not be treated as authentic Steve Jobs statements.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

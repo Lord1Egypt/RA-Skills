@@ -1,43 +1,60 @@
-## Description: <br>
-Miaoji Bid Guard Pro helps Amazon sellers plan 90-day advertising campaigns with ROI forecasts, multi-campaign coordination, seasonal bid adjustments, and keyword attack/defense guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Miaoji Bid Guard Pro helps Amazon sellers plan 90-day advertising campaigns with ROI forecasts, coordinated campaign budgeting, seasonal bid factors, and keyword attack/defense guidance.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-External Amazon sellers and advertising operators use this skill to turn product category, target ACoS, budget, campaign stage, keyword, and seasonality inputs into campaign planning guidance. It is intended as a planning aid for bids, budgets, activity coordination, and weekly execution tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ROI forecasts, ACoS projections, and bid recommendations may be inaccurate if treated as authoritative financial advice. <br>
-Mitigation: Validate assumptions and calculations against current campaign data before changing bids, budgets, or advertising strategy. <br>
-Risk: Campaign recommendations may conflict with an existing advertising agency process or automated bid-management tool. <br>
-Mitigation: Use the output as planning guidance and reconcile it with existing campaign controls before execution. <br>
+## Use Case:
 
+External Amazon marketplace sellers and advertising operators use this skill to turn category, product, ACoS, budget, keyword, and seasonal inputs into campaign planning guidance. It supports 90-day ROI planning, multi-campaign budget coordination, seasonal bid adjustments, and keyword attack, defense, or retreat decisions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wangm-a3/miaoji-bid-guard-pro) <br>
-- [Usage guide](./README.md) <br>
-- [Miaoji homepage](https://xiaping.coze.site) <br>
-- [Miaoji Bid Guard Pro source page](https://xiaping.coze.site/skills/miaoji-bid-guard-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style planning text and terminal text with tables, forecasts, checklists, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Heuristic advertising projections and recommendations; validate against current campaign data before changing budgets or bids.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: ROI curves, budget shifts, and projected gains may be inaccurate if treated as verified forecasts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs as planning prompts and review them against current account performance data before changing bids or budgets.
+
+Risk: Operators who are not comfortable with Chinese-language advertising guidance may misread recommendations.
+
+Mitigation: Install and use the skill only when reviewers can understand the Chinese-language outputs and confirm recommendations before applying them.
+
+Risk: Applying recommendations directly in an ad platform can affect spend and campaign performance.
+
+Mitigation: Keep human approval in the workflow; the evidence indicates the skill does not connect to advertising APIs or automatically change bids or budgets.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/skills/miaoji-bid-guard-pro)
+- [README](artifact/README.md)
+- [Publisher Homepage](https://xiaping.coze.site)
+- [Publisher Skill Repository](https://xiaping.coze.site/skills/miaoji-bid-guard-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown guidance with tables and command-line text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Heuristic advertising planning recommendations based on user inputs and embedded benchmarks; no automatic ad platform changes.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

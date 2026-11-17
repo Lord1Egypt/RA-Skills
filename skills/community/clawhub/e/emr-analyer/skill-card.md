@@ -1,44 +1,61 @@
-## Description: <br>
-Analyzes open-source big data services on Linux by checking service status, reading configuration, analyzing logs, and suggesting fixes or tuning guidance for common EMR components. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EMR Analyzer diagnoses open-source big-data services on Linux by checking service status, reading configuration parameters, analyzing task and log errors, and suggesting tuning or remediation steps.
 
-## Publisher: <br>
-[qinyafei123](https://clawhub.ai/user/qinyafei123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qinyafei123](https://clawhub.ai/user/qinyafei123)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to diagnose EMR and big data clusters, including YARN, Hive, HDFS, Spark, Kafka, ZooKeeper, HBase, Flink, and related services. It helps produce health reports, configuration observations, log analysis, repair suggestions, and performance tuning guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads server logs and configuration that may contain credentials, internal hostnames, usernames, IP addresses, or customer data. <br>
-Mitigation: Run it only on trusted Linux cluster hosts and redact sensitive logs or configuration values before sharing outputs. <br>
-Risk: Server security evidence flags unsafe shell command handling patterns. <br>
-Mitigation: Review or patch command handling before use on shared systems, and run with the least privilege needed. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to inspect EMR-style big-data clusters, check service health, analyze logs, retrieve key configuration values, and draft tuning or repair guidance for services such as Hadoop, Spark, Hive, Kafka, and Flink.
 
-## Reference(s): <br>
-- [Service reference](references/services.md) <br>
-- [Aliyun EMR documentation](https://help.aliyun.com/zh/emr/) <br>
-- [Aliyun EMR common file paths](https://help.aliyun.com/zh/emr/emr-on-ecs/user-guide/paths-of-frequently-used-files) <br>
-- [Apache Hadoop documentation](https://hadoop.apache.org/docs/) <br>
-- [Apache Spark documentation](https://spark.apache.org/docs/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize service health, log findings, configuration values, tuning suggestions, and remediation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill runs host-level shell commands while reading service logs and configuration files that may contain sensitive operational data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on trusted hosts with least-privilege read-only access, avoid sudo unless necessary, and redact sensitive logs or configs before analysis.
+
+Risk: The security summary identifies command-injection risk when log filenames can be attacker-controlled.
+
+Mitigation: Do not run it in log directories writable by untrusted users or services; remove shell=True and safely handle filenames before production use.
+
+Risk: The security guidance notes a broken CONFIG_PATHS reference in the package.
+
+Mitigation: Correct the CONFIG_PATHS reference before relying on all-service configuration checks in production.
+
+## Reference(s):
+
+- [Big Data Service Reference Manual](artifact/references/services.md)
+- [Alibaba Cloud EMR documentation](https://help.aliyun.com/zh/emr/)
+- [Alibaba Cloud EMR common file paths](https://help.aliyun.com/zh/emr/emr-on-ecs/user-guide/paths-of-frequently-used-files)
+- [Apache Hadoop documentation](https://hadoop.apache.org/docs/)
+- [Apache Spark documentation](https://spark.apache.org/docs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON diagnostics with Markdown-facing explanations and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include service status, log findings, configuration values, tuning suggestions, and remediation recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

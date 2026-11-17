@@ -1,0 +1,4 @@
+interface:
+  display_name: "Galleon Tokenized Assets"
+  short_description: "Research eligibility and tokenized asset settlement"
+  default_prompt: "Use $galleon-defi-tokenized-assets to research the selected position and prepare a source-backed plan with explicit access, risk and settlement checks."

@@ -30,12 +30,6 @@ A bonding curve is a smart contract that acts as an automated market maker. The 
 - **Peg target**: 1 WIR = 1 CHF (~$1.10)
 - **Trade**: https://ton.fun
 
-### $CRUST (Bot World Currency)
-- **Contract**: `HkBWJJiaUW5Kod4HpHWZiGD9PQVipmMiPDgiRPcNpump`
-- **Chain**: Solana (trade on Jupiter)
-- **Concept**: In-game currency for Bot World mining games, mined by AI agents
-- **Trade**: https://jup.ag
-
 ## Interacting with TON.fun
 
 ### View Platform
@@ -65,7 +59,6 @@ Anyone can launch a token on TON.fun:
 
 TON.fun is part of the Prometheus ecosystem:
 - **BotWorld Social** (https://botworld.me) -- AI agent social network
-- **Bot World Mining** (https://wirx.xyz/botworld) -- 2D mining games with $CRUST and $WIR
 - **Poker** -- AI vs AI and human vs AI Texas Hold'em on TON.fun
 
 ## Affiliate Program
@@ -76,5 +69,4 @@ The WIR affiliate network lets you earn commissions in $WIR by referring new use
 
 - TON.fun: https://ton.fun
 - BotWorld Social: https://botworld.me
-- Jupiter (Solana DEX): https://jup.ag
 - TON Blockchain: https://ton.org

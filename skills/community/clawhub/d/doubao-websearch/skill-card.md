@@ -1,42 +1,55 @@
-## Description: <br>
-豆包WebSearch submits search queries to Redfox's Doubao WebSearch service and polls until a structured JSON result is available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+豆包 WebSearch helps agents submit web search queries through the RedFox API, poll for Doubao search results, and return structured JSON for real-time information retrieval.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-External users and developers use this skill when an agent needs up-to-date web search results from Doubao through the Redfox API. It is suitable for retrieving current information and presenting summarized answers with source references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and the Redfox API key are sent to the Redfox/Doubao service. <br>
-Mitigation: Avoid submitting secrets, personal data, or confidential business content as search queries, and configure REDFOX_API_KEY only through the intended environment or agent configuration. <br>
-Risk: Routine local questions could be sent to an external search service if the skill is invoked too broadly. <br>
-Mitigation: Prefer explicit invocations for web search tasks so external calls are limited to cases where real-time search is needed. <br>
+## Use Case:
 
+Developers and agents use this skill when they need current web search results from Doubao via RedFox, including asynchronous submission, polling, error handling, and structured result presentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/doubao-websearch) <br>
-- [Redfox API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [Redfox Doubao WebSearch API endpoint](https://redfox.hk/story/api/doubaoSearch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and structured JSON search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses REDFOX_API_KEY for authentication, emits polling progress to stderr, and writes completed search results or error JSON to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search queries are sent to RedFox/Doubao using an API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending secrets, credentials, regulated data, or confidential business text in search queries.
+
+Risk: The skill depends on external service availability and a Python requests dependency.
+
+Mitigation: Use an isolated environment with pinned dependencies and handle API errors or timeouts before relying on results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/doubao-websearch)
+- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub)
+- [RedFox Doubao Search API endpoint](https://redfox.hk/story/api/doubaoSearch)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Shell commands, Configuration]
+
+**Output Format:** [JSON from the search script, with agent-facing Markdown summaries and citations derived from the returned content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REDFOX_API_KEY and may emit progress messages to stderr while polling for results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

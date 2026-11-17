@@ -1,41 +1,57 @@
-## Description: <br>
-Helps Field Development Engineers turn customer discovery, onsite demos, case studies, and customer feedback into product and R&D inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps Field Development Engineers turn customer discovery and feedback into onsite demo scripts, case studies, and product or R&D handoff materials.
 
-## Publisher: <br>
-[crab-xieyujin](https://clawhub.ai/user/crab-xieyujin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crab-xieyujin](https://clawhub.ai/user/crab-xieyujin)
 
-## Use Case: <br>
-Field Development Engineers and customer-facing product teams use this skill to structure discovery notes, demo scripts, case-study drafts, product feedback, engineering handoff details, and acceptance criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer discovery, demo, and feedback workflows may involve confidential customer details. <br>
-Mitigation: Only provide customer information that the agent is allowed to process, and review outputs before sharing them externally or with product and engineering teams. <br>
-Risk: Generic customer research or demo prompts could trigger this broad workflow skill when another skill was intended. <br>
-Mitigation: Confirm the selected skill before using it for customer research, demos, or requirements handoffs. <br>
+## Use Case:
 
+Field Development Engineers, solution teams, product managers, and engineers use this skill to structure customer interviews, demo narratives, case-study packaging, and customer feedback into clear product and engineering inputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/crab-xieyujin/fde-customer-product-bridge) <br>
-- [Publisher profile](https://clawhub.ai/user/crab-xieyujin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown templates, structured tables, and concise workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces customer discovery notes, demo scripts, case-study outlines, product/R&D feedback forms, acceptance criteria, and follow-up action lists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Customer discovery work may include customer names, business processes, feedback, or other sensitive context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide information the user is authorized to share and avoid including confidential customer details unless they are required and approved.
+
+Risk: External case studies may reveal customer details or imply customer authorization.
+
+Mitigation: Anonymize customer-facing examples or confirm explicit approval before using customer names, metrics, or quotes.
+
+Risk: Demo or solution narratives may overstate commitments around price, contract terms, delivery timing, or product behavior.
+
+Mitigation: Keep outputs grounded in confirmed facts, clearly separate judgments from assumptions, and review customer-facing material before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crab-xieyujin/skills/fde-customer-product-bridge)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown outlines, tables, checklists, and narrative guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Template-only workflow guidance; no executable scripts or tool calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

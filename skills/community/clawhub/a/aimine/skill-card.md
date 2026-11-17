@@ -1,41 +1,54 @@
-## Description: <br>
-Mine AIT (Proof of AI Work) on BNB Chain. Install, configure, start/stop mining entirely from OpenClaw. No terminal or manual file edits required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mine AIT (Proof of AI Work) on BNB Chain. Install, configure, start/stop mining entirely from OpenClaw. No terminal or manual file edits required.
 
-## Publisher: <br>
-[nancyuahon](https://clawhub.ai/user/nancyuahon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nancyuahon](https://clawhub.ai/user/nancyuahon)
 
-## Use Case: <br>
-External users use this skill to install, configure, start, stop, and inspect AIT Proof of AI Work mining from an OpenClaw agent session. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles wallet private keys and OpenAI API keys. <br>
-Mitigation: Use a dedicated low-value wallet, avoid pasting private keys into chat, prefer secure environment injection, and limit the OpenAI key. <br>
-Risk: The skill installs and runs live remote mining code with npm and Node.js. <br>
-Mitigation: Inspect or pin the AIMineRes/PoAIW code before allowing npm install or starting the miner. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AI Mine skill page](https://clawhub.ai/nancyuahon/aimine) <br>
-- [nancyuahon publisher profile](https://clawhub.ai/user/nancyuahon) <br>
-- [PoAIW miner repository referenced by the skill](https://github.com/AIMineRes/PoAIW.git) <br>
+## Use Case:
 
+External users and developers use this skill to install, configure, start, stop, and inspect AIT mining from an OpenClaw agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize local miner status fields such as miningActive, blocksMined, tokenBalance, bnbBalance, and hashRate.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill runs unpinned third-party code and installs npm dependencies from a referenced repository.
+
+Mitigation: Review the referenced repository and dependency chain before installing or starting the miner.
+
+Risk: The skill can handle wallet private keys and OpenAI API credentials, including credentials pasted in chat.
+
+Mitigation: Use secure environment-based secrets, avoid pasting private keys in chat, use a dedicated low-value wallet, and set strict API spending limits.
+
+## Reference(s):
+
+- [AI Mine ClawHub skill page](https://clawhub.ai/nancyuahon/skills/aimine)
+- [AI Mine publisher profile](https://clawhub.ai/user/nancyuahon)
+- [PoAIW repository used by the skill](https://github.com/AIMineRes/PoAIW.git)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown, Text]
+
+**Output Format:** [Markdown with inline shell commands and concise status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node, npm, git, PRIVATE_KEY, and either OPENAI_KEY or OPENAI_API_KEY.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-漫画创作策划 Skill。用户需要漫画脚本、漫画分镜脚本、4格/四格漫画分镜脚本、角色设计、人设卡、漫画对话、漫画台词设计、漫画排版、漫画布局、漫画创作教程，或想把一个简短创意整理成可交给画师/分镜师/生图流程使用的漫画文本时，使用此 skill。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users turn comic ideas into structured Chinese-language planning text, including scripts, storyboards, four-panel comic layouts, character profiles, dialogue, page layouts, and beginner tutorial outlines.
 
-## Publisher: <br>
-[ajieyi](https://clawhub.ai/user/ajieyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ajieyi](https://clawhub.ai/user/ajieyi)
 
-## Use Case: <br>
-External users use this Chinese-language skill to turn comic ideas into structured scripts, storyboard tables, four-panel concepts, character cards, dialogue, layout notes, or beginner tutorial content that can be handed to artists, storyboarders, editors, or downstream image workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Creative outputs may be unsuitable, insufficiently original, or conflict with platform or copyright constraints when reused publicly. <br>
-Mitigation: Review and adapt generated scripts, characters, dialogue, and layout guidance before publication or commercial use. <br>
+## Use Case:
 
+External users and creative teams use this skill to turn a short comic concept into actionable planning material for artists, storyboarders, editors, or later image-generation workflows. It asks up to three clarifying questions when key constraints such as genre, protagonist, style, length, or audience are missing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ajieyi/comic-create) <br>
-- [Publisher profile](https://clawhub.ai/user/ajieyi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with tables, outlines, and creative-writing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese by default; asks one to three clarifying questions when key creative constraints are missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Users expecting output in another language may receive Chinese by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Request the desired language explicitly when non-Chinese output is needed.
+
+Risk: The skill produces planning text and does not directly generate finished comic images.
+
+Mitigation: Use the generated prompts, scripts, or storyboards as inputs for an artist, storyboarder, or separate image-generation workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ajieyi/skills/comic-create)
+- [ClawHub publisher profile](https://clawhub.ai/user/ajieyi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured headings, bullet lists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese output and produces planning text rather than images.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

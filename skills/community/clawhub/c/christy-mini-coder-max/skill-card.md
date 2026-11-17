@@ -1,44 +1,53 @@
-## Description: <br>
-Autonomous coding agent that systematically plans, implements, reviews, and delivers high-quality code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mini Coder Max guides an agent through coding tasks by planning, researching when needed, implementing changes, reviewing quality, and delivering polished results.
 
-## Publisher: <br>
-[ericn26-star](https://clawhub.ai/user/ericn26-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericn26-star](https://clawhub.ai/user/ericn26-star)
 
-## Use Case: <br>
-Developers and engineers use Mini Coder Max to guide an agent through coding work from planning and research to implementation, review, and delivery. It is intended for code creation, fixes, refactors, architecture work, and quality-focused development tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad coding triggers and can influence code changes across many project types. <br>
-Mitigation: Invoke it intentionally for coding work and review proposed plans, diffs, and delivery notes before accepting changes in important projects. <br>
-Risk: The skill can guide web research and source selection for unfamiliar technologies. <br>
-Mitigation: Prefer official and authoritative sources, check recency for fast-moving technologies, and verify important claims before implementation. <br>
-Risk: Generated code or review advice may still contain defects, insecure assumptions, or incomplete edge-case handling. <br>
-Mitigation: Run relevant tests and security checks, inspect high-impact changes manually, and treat the skill's quality checklist as advisory rather than a substitute for project review. <br>
+## Use Case:
 
+Developers and engineers use this skill to structure coding work from requirements through implementation, review, and delivery. It is suited to software tasks that benefit from explicit planning, scoped research, quality checks, and concise handoff notes.
 
-## Reference(s): <br>
-- [Mini Coder Max on ClawHub](https://clawhub.ai/ericn26-star/christy-mini-coder-max) <br>
-- [ericn26-star ClawHub Publisher Profile](https://clawhub.ai/user/ericn26-star) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with plans, implementation notes, code snippets or file changes, shell commands, review findings, and delivery summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs vary by coding task complexity and may include assumptions, architecture notes, testing guidance, risk analysis, and source-review recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill may activate for broad coding-related words such as create or fix.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when coding help is intended, and review the requested scope before allowing changes.
+
+Risk: The skill can produce code, shell commands, configuration guidance, and dependency recommendations that may affect a project.
+
+Mitigation: Review proposed changes, verify web-researched dependency choices, and run appropriate tests before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ericn26-star/skills/christy-mini-coder-max)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose with code blocks and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include plans, assumptions, implementation notes, review findings, tests, and delivery summaries.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

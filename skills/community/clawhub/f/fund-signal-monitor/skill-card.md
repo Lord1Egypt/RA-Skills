@@ -1,41 +1,57 @@
-## Description: <br>
-Fund Signal Monitor documents passive monitoring for fund reports, manager changes, size changes, performance volatility, and style drift, with alerts that hand off to fund-analyzer-pro for deeper analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fund Signal Monitor helps agents monitor user-selected funds for report releases, manager changes, asset-size shifts, unusual performance movement, and style drift, then produce concise alerts and follow-up analysis guidance.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users and agents use this skill to configure and describe passive fund-signal monitoring for watchlisted funds, including reports, manager changes, size changes, volatility, and style drift. It is intended to produce concise alert guidance and route users to fund-analyzer-pro for deeper analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fund alerts may be stale, incomplete, or inaccurate if fund events are not checked against official disclosures. <br>
-Mitigation: Verify fund reports, manager changes, size changes, and other events against official fund-company disclosures before acting on an alert. <br>
-Risk: The operational monitor is documented as a separate fund-analyzer-pro implementation that may use credentials, push destinations, watchlists, and scheduled monitoring. <br>
-Mitigation: Review fund-analyzer-pro signal_checker.py separately, confirm credential and push-destination handling, verify watchlist storage and encryption, and confirm how scheduled monitoring can be disabled or removed. <br>
+## Use Case:
 
+External users and agents use this skill to maintain fund watchlists, receive concise monitoring alerts, and hand off selected events for deeper fund analysis. It is intended for monitoring and informational workflows, not as standalone investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lj22503/fund-signal-monitor) <br>
-- [Repository URL listed in clawhub.yaml](https://github.com/lj22503/one-person-ceo-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown alerts, YAML configuration examples, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only release; operational monitoring depends on the separately referenced fund-analyzer-pro signal_checker.py implementation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence, SKILL.md frontmatter, clawhub.yaml) <br>
+Risk: Pushed fund alerts can reveal a user's investment interests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the watchlist, notification channels, and removal path before enabling monitoring; route alerts only through channels the user accepts.
+
+Risk: Users may treat monitoring alerts or suggested follow-up actions as investment advice.
+
+Mitigation: Keep the included investment-risk disclaimer with reports and present alerts as informational signals that require independent review.
+
+Risk: Fund data sources, schedules, and notification integrations may be stale, delayed, or unavailable in a deployment environment.
+
+Mitigation: Verify official fund announcements and configured data sources before acting on an alert, and review monitoring frequency and watchlist settings during setup.
+
+## Reference(s):
+
+- [Fund Signal Monitor ClawHub page](https://clawhub.ai/lj22503/skills/fund-signal-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown alerts with optional shell command and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes signal type, affected fund, monitoring cadence, follow-up actions, and investment-risk disclaimer guidance where applicable.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

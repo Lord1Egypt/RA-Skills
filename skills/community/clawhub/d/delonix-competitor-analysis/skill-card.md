@@ -1,42 +1,53 @@
-## Description: <br>
-Generate structured competitive analysis reports with feature comparisons, pricing analysis, SWOT, and strategic recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate structured competitive analysis reports with feature comparisons, pricing analysis, SWOT, and strategic recommendations.
 
-## Publisher: <br>
-[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu)
 
-## Use Case: <br>
-Business, marketing, product, and strategy teams use this skill to research public competitor information and produce client-ready competitive intelligence reports with feature, pricing, SWOT, positioning, and recommendation sections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill researches public competitor information and may produce inaccurate or outdated market claims if source data is stale. <br>
-Mitigation: Review cited public sources, pricing, and assumptions before using the report for business decisions. <br>
-Risk: Generated reports may overwrite or add files under output/competitor-analysis/. <br>
-Mitigation: Check the output directory before rerunning when existing reports or sensitive business context matter. <br>
-Risk: The skill can propose shell commands through its allowed tool surface. <br>
-Mitigation: Review any proposed shell command before allowing execution. <br>
+## Use Case:
 
+Business, marketing, product, and strategy teams use this skill to research public competitor information and produce client-ready competitive intelligence reports with feature, pricing, SWOT, and recommendation sections.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chaoliuzhu/delonix-competitor-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Files] <br>
-**Output Format:** [Markdown, HTML, and CSV files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves a full report, styled HTML version, executive summary, and feature matrix under output/competitor-analysis/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests broad shell access for a report-generation workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing when the target agent can run shell commands; remove or tightly scope Bash access if it is not required.
+
+Risk: The skill may overwrite report artifacts in its output directory.
+
+Mitigation: Check for existing output files before writing or keep versioned output directories for each report run.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chaoliuzhu/skills/delonix-competitor-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown report, HTML report, Markdown executive summary, and CSV feature matrix]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill asks the agent to save report artifacts under output/competitor-analysis/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

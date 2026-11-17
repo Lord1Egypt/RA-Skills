@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn716ewtc7z7a76wre4bsckgas8398j1",
+  "ownerId": "local-zhumeng-openclaw",
   "slug": "zm-wechat-draft-publish-verify",
+  "displayName": "ZM 公众号草稿发布与核验",
   "version": "0.1.0",
-  "publishedAt": 1782235914455
+  "status": "local",
+  "createdAt": "2026-06-23",
+  "description": "使用 md2wechat 推送公众号草稿，并强制 draft/get 核验真实落库和排版质量。"
 }

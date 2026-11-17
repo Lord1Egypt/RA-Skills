@@ -1,43 +1,56 @@
-## Description: <br>
-Enables an agent to work inside Oasis 3D worlds by placing catalog objects, crafting procedural scenes with shaders and textures, painting ground tiles, moving avatars, taking screenshots, and driving Forge text-to-3D conjuration through the Oasis MCP tool surface. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables an agent to work inside Oasis 3D worlds by placing catalog objects, crafting procedural scenes, painting ground tiles, moving avatars, taking screenshots, and using Forge text-to-3D conjuration through the Oasis MCP tool surface.
 
-## Publisher: <br>
-[parzival-moksha](https://clawhub.ai/user/parzival-moksha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parzival-moksha](https://clawhub.ai/user/parzival-moksha)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent inspect, modify, navigate, and visually verify changes inside a connected local Oasis 3D world. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through world-editing actions such as clearing worlds, deleting assets, or removing many objects. <br>
-Mitigation: Before destructive edits, have the agent summarize the affected scope and wait for explicit user confirmation. <br>
-Risk: Optional Forge or sculptor features may use API keys or LLM calls configured separately on the Oasis host. <br>
-Mitigation: Use those optional features only when needed, and rely on Oasis host errors to identify missing keys instead of retrying blindly. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent that is already connected to Oasis so it can inspect, modify, navigate, and visually verify local 3D worlds through the Oasis MCP tool surface.
 
-## Reference(s): <br>
-- [ClawHub Oasis Skill Page](https://clawhub.ai/parzival-moksha/oasis) <br>
-- [Oasis Setup and Onboarding Docs](https://parzival-moksha.github.io/oasis/) <br>
-- [Oasis Quickstart](https://parzival-moksha.github.io/oasis/docs/getting-started/quickstart/) <br>
-- [Oasis Repository](https://github.com/Parzival-Moksha/oasis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with inline JSON and tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include MCP tool calls that mutate a connected Oasis world or request screenshots when the live browser client is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: An agent can edit local Oasis worlds, including removing objects, clearing worlds, loading other worlds, or deleting conjured assets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for explicit confirmation and use backups or snapshots before destructive world-management or asset-deletion actions when the world contains work the user cares about.
+
+Risk: The agent may misdescribe the current 3D world if browser screenshot capture is unavailable or stale.
+
+Mitigation: Use Oasis screenshot tools for visual verification when visibility matters, and tell the user when the live browser client or screenshot bridge is unavailable.
+
+## Reference(s):
+
+- [Oasis setup and onboarding docs](https://parzival-moksha.github.io/oasis/)
+- [Oasis quickstart](https://parzival-moksha.github.io/oasis/docs/getting-started/quickstart/)
+- [Oasis repository](https://github.com/Parzival-Moksha/oasis)
+- [ClawHub skill page](https://clawhub.ai/parzival-moksha/skills/oasis)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, code, API calls]
+
+**Output Format:** [Markdown guidance with JSON-style Oasis MCP tool call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Oasis MCP tool calls that inspect or mutate a user's local Oasis world; screenshot outputs depend on a live Oasis browser client.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

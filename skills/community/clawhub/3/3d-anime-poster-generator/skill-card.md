@@ -1,41 +1,59 @@
-## Description: <br>
-Create 3D anime posters with volumetric lighting, cinematic depth, dynamic compositions, and optional reference-image style inheritance through the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates 3D anime poster images from text prompts using the Neta AI image generation API, with size options and optional reference image style inheritance.
 
-## Publisher: <br>
-[omactiengartelle](https://clawhub.ai/user/omactiengartelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omactiengartelle](https://clawhub.ai/user/omactiengartelle)
 
-## Use Case: <br>
-External users and developers use this skill to generate anime-style poster image URLs from text prompts, with size selection and optional reference-image UUIDs for style inheritance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference image UUIDs, and the Neta API token are sent to the Neta/TalesOfAI service. <br>
-Mitigation: Avoid confidential prompts or sensitive reference identifiers, and use the skill only when that third-party API disclosure is acceptable. <br>
-Risk: Passing tokens on the command line can expose them on shared machines through process listings or shell history. <br>
-Mitigation: Use this skill on trusted machines and avoid command-line token usage where local process arguments or shell history may be visible to others. <br>
+## Use Case:
 
+Creators, designers, and developers use this skill to generate anime-style poster image URLs from text prompts for wallpapers, merchandise concepts, fan art, print-on-demand art, and decorative designs.
 
-## Reference(s): <br>
-- [Neta API token and trial page](https://www.neta.art/open/) <br>
-- [ClawHub skill page](https://clawhub.ai/omactiengartelle/3d-anime-poster-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Text, Guidance] <br>
-**Output Format:** [Command-line text output containing a direct image URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token; sends the prompt and optional reference image UUID to the Neta/TalesOfAI service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: Image prompts, optional reference image UUIDs, and the Neta API token are sent to api.talesofai.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with prompts and references you are comfortable sending to that third-party service.
+
+Risk: Passing a long-lived token on the command line can expose it through shell history or process inspection.
+
+Mitigation: Prefer short-lived or revokable tokens when available, avoid reusing sensitive tokens, and clear command history after use.
+
+Risk: Generated image URLs and content depend on the third-party API, its moderation, and its availability.
+
+Mitigation: Review generated outputs before reuse and plan for retry or fallback behavior when the API fails or times out.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/omactiengartelle/skills/3d-anime-poster-generator)
+- [Neta API token access](https://www.neta.art/open/)
+- [Neta image generation endpoint](https://api.talesofai.com/v3/make_image)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands]
+
+**Output Format:** [Plain text URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prints a direct generated image URL after polling the Neta API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

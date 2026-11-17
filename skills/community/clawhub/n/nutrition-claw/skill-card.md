@@ -1,43 +1,61 @@
-## Description: <br>
-Nutrition Claw is a local-first CLI skill for tracking meals, foods, nutrition goals, history, and semantic searches with YAML output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nutrition Claw is a local nutrition tracking CLI for agents and humans that logs meals and foods, manages goals, searches local history semantically, and emits YAML output.
 
-## Publisher: <br>
-[Pita](https://clawhub.ai/user/Pita) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pita](https://clawhub.ai/user/pita)
 
-## Use Case: <br>
-Developers, agents, and end users use this skill to configure nutrition goals, manage a local food library, log meals and ingredients, review daily or multi-day nutrition totals, and search nutrition history without cloud services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Malformed date inputs may cause the CLI to read or write log files outside its intended nutrition folder. <br>
-Mitigation: Use normal YYYY-MM-DD dates only and review date-handling behavior before deploying the skill in shared or automated environments. <br>
-Risk: Nutrition history is stored locally in plaintext under ~/.nutrition-claw/. <br>
-Mitigation: Avoid running the skill with elevated privileges and protect or delete the local data directory according to the user's privacy requirements. <br>
+## Use Case:
 
+Agents and users use this skill to track nutrition locally, maintain personal goals and food libraries, log meals and ingredients, and retrieve summaries or history without cloud storage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Pita/nutrition-claw) <br>
-- [GitHub Packages listing](https://github.com/Pita/nutrition-claw/pkgs/npm/nutrition-claw) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Bun](https://bun.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [YAML, Shell commands, Guidance] <br>
-**Output Format:** [YAML CLI responses with stderr errors and human-facing nutrition guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores goals, foods, meal logs, vectors, and education history locally under ~/.nutrition-claw/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: evidence.release.version, package.json, _meta.json) <br>
+Risk: Sensitive nutrition and body-goal data is stored locally in plain files under ~/.nutrition-claw.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on trusted accounts or machines, and protect the local data directory with normal user-level file permissions.
+
+Risk: The security scan reports a verified bug that can read or overwrite JSON files outside the intended log folder when dates are untrusted.
+
+Mitigation: Validate date inputs as strict YYYY-MM-DD values from trusted sources before automated use, and review date path handling before shared or unattended deployment.
+
+Risk: The release installs npm dependencies without a reviewed lockfile.
+
+Mitigation: Review and pin the dependency tree with a lockfile before installing in managed or shared environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pita/skills/nutrition-claw)
+- [Publisher profile](https://clawhub.ai/user/pita)
+- [OpenClaw](https://openclaw.ai)
+- [GitHub Packages install page](https://github.com/Pita/nutrition-claw/pkgs/npm/nutrition-claw)
+- [Bun](https://bun.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and YAML command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores nutrition goals, food data, meal logs, vector indexes, and education history locally under ~/.nutrition-claw as plain files.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

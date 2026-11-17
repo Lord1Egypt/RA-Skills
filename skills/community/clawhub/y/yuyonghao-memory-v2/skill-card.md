@@ -1,44 +1,64 @@
-## Description: <br>
-Memory V2 provides a Chinese-optimized long-term memory system with vector search, knowledge graph linking, entity extraction, and automated memory maintenance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Memory V2 provides vector memory, knowledge graph links, Chinese named entity extraction, and automatic memory maintenance for agent applications.
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-Developers integrating OpenClaw or similar agent systems use this skill to store, search, link, and maintain long-term conversational or document memories. It is especially suited for Chinese-language memory retrieval with entity extraction and graph relationships. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private or sensitive memories may be persisted in vector and graph stores. <br>
-Mitigation: Use an isolated database path, avoid storing raw transcripts by default, add redaction and retention rules, and keep backups before enabling automatic maintenance. <br>
-Risk: Optional LLM summarization can send memory content to a configured provider. <br>
-Mitigation: Disable or tightly control summarization unless the provider is trusted for the data being processed. <br>
-Risk: Automatic maintenance can transform and archive low-priority memories. <br>
-Mitigation: Define retention policies, test thresholds on representative data, and back up memory stores before scheduled maintenance. <br>
+## Use Case:
 
+Developers integrating OpenClaw use this skill to store, search, retrieve, delete, and maintain conversation or document memories with semantic search and entity relationships.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yuyonghao-123/yuyonghao-memory-v2) <br>
-- [Memory V2 skill documentation](artifact/SKILL.md) <br>
-- [Memory V2 integration guide](artifact/INTEGRATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Code, Configuration] <br>
-**Output Format:** [JavaScript module APIs returning JSON-like memory records, search results, entity links, maintenance statistics, and Markdown usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses persistent LanceDB vector storage and JSONL graph storage; first run may download embedding and NER models.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata, artifact SKILL.md, package.json) <br>
+Risk: The skill can persist sensitive conversation or document content in vector and graph stores.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set explicit retention and deletion policies before deployment, and avoid storing secrets or regulated data unless the deployment is approved for that data.
+
+Risk: Broad get, delete, clear, and maintenance APIs can expose, modify, archive, or remove stored memories.
+
+Mitigation: Restrict who can call memory APIs, validate memory IDs, and require authorization for destructive operations.
+
+Risk: Automatic maintenance can compress or archive low-priority memories, and an optional summarizer LLM can become a data egress path.
+
+Mitigation: Review maintenance behavior before enabling automation and use only approved local or data-governed LLM summarizers.
+
+Risk: The security scan guidance calls for updating flagged dependencies before use.
+
+Mitigation: Review and update dependencies during installation, then rerun security checks in the target environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yuyonghao-123/skills/yuyonghao-memory-v2)
+- [SKILL.md](artifact/SKILL.md)
+- [Integration Guide](artifact/INTEGRATION.md)
+- [Implementation Progress](artifact/PHASE5-PROGRESS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documentation with JavaScript and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides integration guidance and API usage patterns for a JavaScript memory system.]
+
+## Skill Version(s):
+
+0.1.0 (source: evidence release, artifact SKILL.md, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

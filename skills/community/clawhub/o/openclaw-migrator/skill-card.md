@@ -1,41 +1,58 @@
-## Description: <br>
-Securely migrate OpenClaw Agent configuration, memory, and skills to a new machine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Securely migrate OpenClaw Agent configuration, memory, and skills to a new machine.
 
-## Publisher: <br>
-[wenjie2024](https://clawhub.ai/user/wenjie2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wenjie2024](https://clawhub.ai/user/wenjie2024)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to export encrypted archives of agent configuration, memory, skills, and related state, then import them on another machine while normalizing local workspace paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Migration archives can contain sensitive agent state, including configuration, memory, skills, and credentials. <br>
-Mitigation: Use a strong password, keep archives private, and treat exported .oca files like sensitive backups. <br>
-Risk: Importing an untrusted archive can alter destination OpenClaw state and influence future agent behavior. <br>
-Mitigation: Import only archives you created or fully trust, and back up the destination OpenClaw state before restoring. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to package existing agent state into an encrypted portable archive and restore it on another machine.
 
-## Reference(s): <br>
-- [Artifact README](README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wenjie2024/openclaw-migrator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Configuration] <br>
-**Output Format:** [Markdown guidance with command examples; the CLI produces encrypted .oca archive files during export and restored local configuration during import.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses password-protected local migration archives for OpenClaw agent state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Restoring an archive can overwrite persistent OpenClaw agent state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restore into a clean or temporary destination first and keep backups of existing OpenClaw state before importing.
+
+Risk: Archives may contain sensitive configuration, credentials, memory, and workspace data.
+
+Mitigation: Use only archives you created and trust, store archive passwords securely, and avoid passing passwords directly on the command line.
+
+Risk: The server security verdict is suspicious because restore behavior and secret handling are not scoped enough for automatic approval.
+
+Mitigation: Review and test the tool before installation or deployment in any environment that contains sensitive agent data.
+
+## Reference(s):
+
+- [Artifact README](artifact/README.md)
+- [OpenClaw Migrator ClawHub Page](https://clawhub.ai/wenjie2024/skills/openclaw-migrator)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; encrypted .oca archive files when executed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Archives may contain sensitive OpenClaw configuration, credentials, memory, and workspace state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; package.json reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

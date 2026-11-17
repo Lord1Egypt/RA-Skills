@@ -1,41 +1,57 @@
-## Description: <br>
-Automates after-sales service with intelligent ticket assignment and customer satisfaction tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动化售后服务，智能工单分配 + 客户满意度跟踪。
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Customer service and operations teams use this skill to describe or set up automated after-sales workflows for ticket routing, satisfaction follow-up, service analytics, spare-parts alerts, and feedback collection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact references external application code and Python requirements that were not included for review. <br>
-Mitigation: Inspect the referenced repository and requirements before installation or deployment. <br>
-Risk: After-sales workflows can involve customer contact details, satisfaction responses, service history, and other customer data. <br>
-Mitigation: Confirm authorization and define privacy, consent, retention, access-control, and opt-out practices before production use. <br>
+## Use Case:
 
+External service teams and business operators can use this skill for after-sales workflows such as ticket routing, customer satisfaction follow-up, service analytics, spare-parts inventory alerts, and feedback collection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-intelligent-after-sales-service) <br>
-- [Installation repository referenced by artifact](https://github.com/openclaw-skills/ai-intelligent-after-sales-service) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with installation commands, configuration steps, feature descriptions, and pricing information.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The artifact declares no required binaries; external application code and Python requirements are referenced but not bundled in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter says 1.0.2) <br>
+Risk: Installation steps reference remote code that has not been reviewed in the provided evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the source and dependencies before installing, pin the source to a known commit, and run it in an isolated least-privilege environment.
+
+Risk: The skill may process customer contact details, service history, survey responses, and business data.
+
+Mitigation: Confirm consent, opt-out, retention, and access-control practices before deployment.
+
+Risk: Customer data handling is under-explained in the release evidence.
+
+Mitigation: Require a deployment review covering data collection, retention, access controls, and privacy obligations before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-intelligent-after-sales-service)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with setup commands and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve customer contact details, service history, survey responses, and business data.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

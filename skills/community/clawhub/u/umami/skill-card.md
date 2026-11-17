@@ -1,39 +1,60 @@
-## Description: <br>
-Deploy Umami analytics avoiding data loss, tracking failures, and integration issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy Umami analytics avoiding data loss, tracking failures, and integration issues.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and operators use this skill as an Umami deployment and integration checklist to avoid analytics data loss, missing pageviews, tracking-script failures, and self-hosting mistakes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Applying the checklist to a real Umami instance can affect analytics privacy, consent handling, stored event data, and service continuity. <br>
-Mitigation: Apply normal analytics privacy and consent review, back up the database before changes, protect deployment secrets, and test tracking behavior before relying on production data. <br>
-Risk: Changing HASH_SALT, using an unsupported database, or misconfiguring website IDs can cause data loss or silent tracking gaps. <br>
-Mitigation: Keep HASH_SALT stable, use PostgreSQL or MySQL, verify each site uses the correct tracking script, and confirm pageviews and events in browser network and console tools after deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/umami) <br>
+## Use Case:
 
+Developers and site operators use this skill for deployment, integration, and troubleshooting guidance when self-hosting or configuring Umami analytics.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration instructions, Markdown] <br>
-**Output Format:** [Markdown checklist guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable code is produced.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Operational guidance can still lead to data loss if deployment settings are changed carelessly.
+
+Mitigation: Keep HASH_SALT stable across deployments, document production configuration, and review changes before applying them.
+
+Risk: Umami analytics data, configuration, and users depend on the database.
+
+Mitigation: Use PostgreSQL or MySQL and maintain tested database backups before production use.
+
+Risk: Tracking can silently fail because of website ID mismatches, blocked scripts, or single-page app navigation.
+
+Mitigation: Verify the tracking script in browser network tools, match data-website-id exactly, self-host the script when appropriate, and add explicit route tracking for single-page apps.
+
+Risk: Production deployments can expose analytics traffic or fail HTTPS requirements without a proxy plan.
+
+Mitigation: Place Umami behind an HTTPS reverse proxy and separate development from production analytics sites.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/umami)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code is included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

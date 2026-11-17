@@ -1,39 +1,54 @@
-## Description: <br>
-Book Launch Coach helps authors plan, write, launch, market, and relaunch fiction or non-fiction books across self-publishing, traditional publishing, and hybrid paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coach authors through writing, launching, and selling fiction or non-fiction books, including publishing path selection, editing, cover and blurb planning, KDP setup, advertising, launch calendars, newsletters, audiobooks, and backlist relaunches.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-External authors and publishing teams use this skill to choose a publishing path, validate a concept, plan editing and production work, prepare cover and blurb assets, configure launch timing, and reason about ads, newsletters, audiobooks, and post-launch sales tactics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may recommend publishing expenses, ad spend, editor or designer hiring, audiobook production, or other paid services. <br>
-Mitigation: Treat cost and vendor guidance as planning advice; users should approve all purchases, contracts, and advertising budgets themselves. <br>
-Risk: The skill may suggest changes to Amazon KDP, audiobook, newsletter, advertising, or distribution settings that affect a live publishing account. <br>
-Mitigation: Review platform changes manually before applying them, especially pricing, exclusivity, ad budgets, categories, keywords, and distribution settings. <br>
+## Use Case:
 
+External authors and publishing teams use this skill to plan book development, choose a publishing path, prepare launch materials, diagnose stalled sales, and organize post-launch marketing. It is suited for self-publishing, traditional publishing evaluation, hybrid publishing decisions, and backlist relaunch planning.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with recommendations, checklists, budgets, briefs, drafts, calendars, and strategy plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include planning advice about publishing costs, ad spend, service providers, platform setup, and account changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Publishing platform terms, royalty figures, advertising products, and market conditions may change after release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify platform-specific claims against current publisher documentation before spending money or changing a publishing strategy.
+
+Risk: The skill gives planning guidance that can influence budgets, launch timing, distribution choices, and paid promotion decisions.
+
+Mitigation: Treat estimates and recommendations as planning inputs and compare them with current costs, contracts, and qualified professional advice before committing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/skills/book-launch-coach)
+- [Publisher Profile](https://clawhub.ai/user/charlie-morrison)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with lists, tables, checklists, drafts, calendars, budgets, and action plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include path recommendations, validation plans, editing budget estimates, cover briefs, blurb drafts, launch calendars, ad strategy, and 12-month sales planning.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

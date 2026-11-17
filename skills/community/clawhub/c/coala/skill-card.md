@@ -1,40 +1,53 @@
-## Description: <br>
-Guides use of the coala-client CLI for LLM chat, MCP servers, CWL toolset imports, MCP tool calls, and skill loading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coala Client helps agents explain and use the coala-client CLI for chat with OpenAI-compatible LLMs, MCP servers, CWL toolsets, and skills.
 
-## Publisher: <br>
-[hubentu](https://clawhub.ai/user/hubentu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hubentu](https://clawhub.ai/user/hubentu)
 
-## Use Case: <br>
-Developers and agent users use this skill to configure and operate coala-client for interactive or single-prompt LLM chat, MCP tool management, and skill import workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing coala-client or importing remote MCP toolsets and skills can persist files under local coala configuration paths and influence later chats. <br>
-Mitigation: Install the CLI and imports only from trusted sources, review imported ZIPs, CWL files, and skills before loading them, and remove unneeded entries from local coala configuration. <br>
-Risk: Provider API keys may be exposed if copied into shared logs, committed files, or improperly handled configuration. <br>
-Mitigation: Keep provider keys in protected environment variables or local-only config, avoid sharing `~/.config/coala/env`, and rotate keys if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Coala Client ClawHub release](https://clawhub.ai/hubentu/coala) <br>
-- [Coala Client homepage](https://github.com/coala-info/coala_client) <br>
+## Use Case:
 
+Developers and agent users use this skill to get concise operational guidance for initializing coala-client, configuring provider credentials, running chat or single-prompt sessions, and managing MCP servers, CWL toolsets, and skills.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands and configuration paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local coala configuration paths, provider environment variables, and MCP or skill import commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Remote or zip-based MCP toolsets and skills can introduce untrusted behavior into coala-client workflows.
+
+Mitigation: Import MCP toolsets and skills only from trusted sources, and review remote or zip content before loading it.
+
+Risk: Previously imported MCP servers or skills can remain active through local coala-client configuration.
+
+Mitigation: Remove unwanted entries from ~/.config/coala/ when they should no longer be available.
+
+## Reference(s):
+
+- [Coala Client skill page](https://clawhub.ai/hubentu/skills/coala)
+- [coala-client homepage](https://github.com/coala-info/coala_client)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command examples, environment variable names, config paths, and MCP or skill management guidance.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

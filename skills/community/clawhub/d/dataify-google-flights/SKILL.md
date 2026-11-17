@@ -1,37 +1,14 @@
-﻿---
+---
 name: dataify-google-flights
-description: When the user requests "calling Google Flights" or "searching for flight prices/itineraries", or explicitly mentions the flight query field, the dataify-google-flights skill is triggered.
+description: "Search Google Flights for fares and itineraries. Do not use for hotels or general travel web search."
 ---
 
 # Dataify Google Flights
 
 Use this skill to turn a user's Google Flights request into a Dataify Scraper API form POST.
-
-## Required Pre-Call Confirmation
-
-Before every real API call, follow this confirmation flow. These rules override any older workflow order in this skill.
-
-1. Parse the user's request into the API body fields and fixed `engine` value.
-2. Apply defaults only when the parameter description explicitly states a default. Do not use example YAML values, sample prompts, placeholder values, or examples such as `pizza`, `us`, `en`, dates, airport codes, or tokens as defaults.
-3. If a required parameter has no documented default and cannot be inferred from the user request, ask for that parameter before building the table.
-4. Show a Markdown table before calling the API. Do not include `Authorization`. Include the complete body field list from this skill's reference document, including `engine`, even when a field is currently blank.
-5. The table must have exactly these columns: `参数名`, `当前值`, `默认值`, `说明`.
-6. After the table, ask the user whether they want to modify any parameter. Do not call the API until the user explicitly confirms.
-7. If the user changes a parameter, regenerate the table and ask for confirmation again.
-8. If the token is missing, stop and tell the user to sign in at [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill) to obtain `DATAIFY_API_TOKEN`.
-
-Use the bundled preview helper whenever possible to generate the confirmation table from this skill's reference document:
-
-```bash
-python3 scripts/preview_params.py --params-json '{"q":"USER_QUERY"}'
-```
-
-Pass every parsed current value to `preview_params.py` using `--params-json` or matching `--field value` arguments. The helper reads defaults and descriptions from `references/*api.md`; if the helper cannot parse a default, leave the default blank rather than inventing one.
-9. After confirmation and token handling, call the bundled Python script with `python3` and return the API response body directly without summarizing, extracting, cleaning, translating, or reshaping it.
 ## Workflow
 
 1. Parse the user's request into Dataify Google Flights fields. Read `references/google_flights_api.md` for the full field list, accepted values, defaults, and conditional requirements.
-2. Before every API call, run the script in dry-run Markdown mode and show the user the complete request parameter table. Then ask whether they want to modify anything. Do not call the API until the user confirms.
    - Do not show `Authorization`.
    - Show the complete documented body field list, not only fields present in the user request.
    - Use exactly these columns: `参数名`, `当前值`, `默认值`, `说明`.
@@ -46,13 +23,10 @@ Pass every parsed current value to `preview_params.py` using `--params-json` or 
 python3 scripts/google_flights.py --params-json '{"departure_id":"JFK","arrival_id":"LAX","type":"2","outbound_date":"2026-06-01","currency":"USD","gl":"us","hl":"en"}' --dry-run --dry-run-format markdown
 ```
 
-If the user confirms and provided a token in the conversation instead of an environment variable, pass it with `--token` and never echo it back:
 
 ```bash
-python3 scripts/google_flights.py --token "USER_TOKEN" --params-json '{"departure_id":"JFK","arrival_id":"LAX","type":"2","outbound_date":"2026-06-01"}'
 ```
 
-6. Return the script output directly to the user. Do not summarize, extract, clean, translate, or reshape the API response body.
 
 ## Mapping Rules
 
@@ -79,4 +53,34 @@ Common mappings:
 - bypass cache/no cache -> `no_cache: "true"`
 - deep search -> `deep_search: "true"`
 
+## Result presentation
 
+- Return a compact, user-facing result by default: the most relevant titles, links, and vertical-specific fields, plus a count or truncation note when useful.
+- Do not expose transport details, fixed engine fields, task plumbing, or the full response envelope in the ordinary flow.
+- Return raw JSON or HTML only when the user explicitly requests raw output.
+- Preserve source links and distinguish missing fields from empty values; do not invent data.
+
+## Quick Start
+
+```bash
+python3 scripts/google_flights.py --params-json '{"departure_id":"JFK","arrival_id":"LAX","type":"2","outbound_date":"2026-06-01","currency":"USD","gl":"us","hl":"en"}' --dry-run --dry-run-format markdown
+```
+
+## Parameter interaction policy
+
+- For a clear, low-risk, read-only, and low-cost request, apply safe defaults and execute immediately. A short execution summary is optional; do not pause for confirmation.
+- Ask only for a missing required input, a material ambiguity, a high-volume or multi-page scope, a media download, a choice that materially changes credit usage, an irreversible action, or an explicit user request to review parameters.
+- When confirmation is required, show only user-facing values that affect the target, scope, output, or cost. Prefer one concise sentence; use a compact table only when three or more consequential values are easier to compare.
+- Never show fixed fields, empty optional fields, unchanged defaults, credentials, or internal implementation parameters such as engine selectors, response-format flags, offsets, spider IDs, and file-name templates.
+- Keep advanced filters hidden unless the user asks for them or they are needed to resolve ambiguity. Never substitute documentation example values for missing required user input.
+- After returning results, offer relevant refinements instead of forcing all optional decisions before the first result.
+
+## Account CTA policy
+
+- Show a prominent Dataify account CTA only when the API token is missing, rejected/invalid, or the account has insufficient credits.
+- For a missing token, offer https://dashboard.dataify.com/login?utm_source=skill and state: New accounts receive 50 free credits. Never ask the user to paste the token into chat.
+- Detect the current operating system and shell. Show only the matching session-scoped setup command first (`export` for macOS/Linux shells, `$env:` for Windows PowerShell, or `set` for Windows Command Prompt). Show other platforms or persistent setup only when detection is ambiguous or the user asks.
+- After the user says the token is configured, verify only whether `DATAIFY_API_TOKEN` is present; never print its value. If verification succeeds, continue the original task without asking the user to repeat it.
+- Explain that persistent shell changes may require a new terminal or restarting the agent application. Do not recommend a project `.env` unless the execution path explicitly loads it, and ensure `.env` is ignored by version control.
+- For an invalid token, direct the user to API-key management without implying that a new registration is required. For insufficient credits, direct the user to balance or recharge management.
+- During normal submission, processing, and successful completion, do not promote registration or the Dashboard. Never expose the token or include it in CTA attribution parameters.

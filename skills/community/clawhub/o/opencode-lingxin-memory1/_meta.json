@@ -1,6 +1,25 @@
 {
-  "ownerId": "kn7bnvhmfnp6qyr6d1j4jqgh6983pqf5",
-  "slug": "opencode-lingxin-memory1",
+  "slug": "opencode-lingxin-memory",
+  "name": "灵芯派记忆守护者",
+  "name_en": "OpenCode Lingxin Memory Guardian",
   "version": "1.0.0",
-  "publishedAt": 1777531571071
+  "description": "为OpenCode AI助手提供记忆持久化，专为灵芯派低资源环境设计，支持Gitee云端同步",
+  "description_en": "Memory persistence for OpenCode AI assistant, designed for SmartPi low-resource environment with Gitee cloud sync",
+  "author": "zmrobo",
+  "tags": ["记忆", "持久化", "灵芯派", "同步", "备份"],
+  "tags_en": ["memory", "persistence", "smartpi", "sync", "backup"],
+  "homepage": "https://gitee.com/st_gitee_1/old-version-of-lingxin-sect",
+  "license": "MIT",
+  "platform": ["smartpi", "arm64", "debian"],
+  "requirements": ["git", "bash"],
+  "min_space_mb": 100,
+  "features": [
+    "跨会话记忆持久化",
+    "Gitee云端备份同步",
+    "轻量化设计(适合2GB空间)",
+    "快速恢复上下文",
+    "Git版本控制"
+  ],
+  "install_mode": "user",
+  "install_path": "~/.opencode-memory"
 }

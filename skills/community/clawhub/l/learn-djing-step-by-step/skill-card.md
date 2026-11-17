@@ -1,39 +1,54 @@
-## Description: <br>
-Beginner-friendly DJ course guiding users step by step to build DJ skills, choose gear, prepare music, and work toward a first local gig. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides beginner DJs through step-by-step music learning, gear and software choices, local resources, playlist building, and progression toward a first paid gig.
 
-## Publisher: <br>
-[blockchain-records](https://clawhub.ai/user/blockchain-records) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blockchain-records](https://clawhub.ai/user/blockchain-records)
 
-## Use Case: <br>
-Beginner DJs and music learners use this skill for structured coaching on DJ fundamentals, software, playlist building, local gear resources, and first-gig preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask for country or city to tailor venue, shop, pricing, and gig suggestions. <br>
-Mitigation: Users should provide only the location detail they are comfortable sharing and independently verify local recommendations. <br>
+## Use Case:
 
+External users and beginner DJs use this skill as a guided DJ mentor for learning basics, selecting software and gear, building a music library, finding local resources, and preparing for a first paid gig.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blockchain-records/learn-djing-step-by-step) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/blockchain-records) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May tailor examples to the user's country, city, and local currency when the user provides location context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may use a UK-flavored casual mentor tone and tailor recommendations by inferred location, currency, and local resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should state their preferred region, language, tone, and location assumptions when they need advice tailored differently.
+
+Risk: Local venue, shop, agency, pricing, or radio suggestions may be incorrect or outdated.
+
+Mitigation: Verify local business details, prices, and booking opportunities before spending money or relying on them for gigs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blockchain-records/skills/learn-djing-step-by-step)
+- [Publisher profile](https://clawhub.ai/user/blockchain-records)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown conversational guidance with lists and local resource suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May tailor examples, currency, and local resources to the user's stated or inferred location.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

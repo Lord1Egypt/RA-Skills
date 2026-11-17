@@ -1,42 +1,63 @@
-## Description: <br>
-Deploy an ad campaign management system with four agents that automate campaign strategy, creative production, real-time bidding, and performance analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy an ad campaign management system with 4 agents that automate campaign strategy, creative production, real-time bidding, and performance analytics.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to configure a four-agent advertising workflow for campaign planning, creative production, bid management, and performance reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Campaign reporting can send audience, spend, performance, or conversion data to Slack, webhooks, or external dashboards. <br>
-Mitigation: Configure destinations deliberately, avoid raw audience or user-level data, and use test campaign data until reporting boundaries are confirmed. <br>
-Risk: The setup depends on multiple pilot-* skills, including escrow and bridge components that affect trust, reporting, and spend workflows. <br>
-Mitigation: Review the required dependencies before installation and establish handshakes only with intended peer agents. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure a four-agent advertising workflow for campaign strategy, creative production, bid optimization, and performance analysis. It supports setup of role-specific Pilot Protocol hostnames, manifests, peer handshakes, and example campaign data flows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-ad-campaign-manager-setup) <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
-- [Skill README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash commands and JSON manifest examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes role-specific setup manifests, peer handshakes, and dependency installation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The setup installs many dependent skills without pinned versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted, pinned versions of each dependent skill before installing this workflow.
+
+Risk: The deployment prefix is used to form hostnames for campaign agents.
+
+Mitigation: Validate the prefix as a simple hostname-safe value before using it in setup commands or manifests.
+
+Risk: Peer handshakes establish trust between agents handling budget, creative, bid, and reporting data.
+
+Mitigation: Manually verify peer identities before completing handshakes.
+
+Risk: The analyst role can send campaign reports through Slack or webhook integrations.
+
+Mitigation: Confirm exactly where reports will be sent before enabling the analyst role or external report flow.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-ad-campaign-manager-setup)
+- [Publisher profile](https://clawhub.ai/user/teoslayer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command and JSON manifest examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes role-specific setup instructions for strategist, creative, bidder, and analyst agents.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter version is 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

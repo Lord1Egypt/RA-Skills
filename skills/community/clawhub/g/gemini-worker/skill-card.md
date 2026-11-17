@@ -1,50 +1,62 @@
-## Description: <br>
-Run Gemini CLI as a headless worker agent for long-running or parallelizable tasks, parallel analysis, validation, deep research, code analysis, and fallback execution when Anthropic API access is overloaded or unavailable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs Gemini CLI as a headless worker agent for long-running, parallelizable, fallback, validation, deep research, and code-analysis tasks.
 
-## Publisher: <br>
-[cl0ckt0wer](https://clawhub.ai/user/cl0ckt0wer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cl0ckt0wer](https://clawhub.ai/user/cl0ckt0wer)
 
-## Use Case: <br>
-Developers and engineers use this skill to delegate self-contained file, code, review, analysis, and batch tasks to Gemini CLI in headless mode. It is best suited for parallel worker jobs, long-context analysis, CI-style runs, and fallback execution when the primary agent service is unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Headless --yolo runs can auto-approve Gemini CLI tool calls that read, write, or execute shell actions. <br>
-Mitigation: Run the skill in a low-privilege account or container, grant only narrow task-specific directories with --include-directories, and review generated file changes before using them. <br>
-Risk: Cached Gemini OAuth credentials can be reused by unattended runs. <br>
-Mitigation: Protect ~/.gemini/oauth_creds.json, avoid shared privileged accounts, and re-authenticate only in trusted environments. <br>
-Risk: Untrusted prompt content or fetched pages can steer an autonomous worker during --yolo execution. <br>
-Mitigation: Treat external content as data, keep prompts explicit about allowed actions, pre-fetch web content into files when needed, and avoid giving untrusted tasks broad directory access. <br>
-Risk: Large or long-running tasks can hang, exceed quotas, or produce truncated stdout. <br>
-Mitigation: Use timeouts, reduce parallel workers when quota errors occur, and ask Gemini to write complete results to files with only short summaries on stdout. <br>
+## Use Case:
 
+Developers and agent operators use this skill to delegate self-contained work to Gemini CLI when they need headless execution, parallel analysis, long-context review, or a fallback worker. It is best suited for file-based tasks where required inputs and writable outputs can be scoped explicitly.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cl0ckt0wer/gemini-worker) <br>
-- [ACP vs Headless Reference](references/acp-vs-headless.md) <br>
-- [Prompt Patterns Reference](references/prompt-patterns.md) <br>
-- [Troubleshooting Reference](references/troubleshooting.md) <br>
-- [Gemini Run Wrapper Script](scripts/gemini-run.sh) <br>
-- [OpenClaw](https://openclaw.dev) <br>
-- [Agent Communication Protocol](https://agentcommunicationprotocol.dev/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional generated files from Gemini CLI runs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may be printed to stdout or written to task-specific files; the wrapper can capture output and apply a timeout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and CHANGELOG, released 2026-03-27) <br>
+Risk: Auto-approved Gemini CLI tool use can read, write, or execute through broad included directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in a dedicated environment with narrowly scoped include directories and separate read-only inputs from writable output folders.
+
+Risk: Using --yolo on untrusted remote content can let external content influence autonomous file or shell actions.
+
+Mitigation: Avoid --yolo on untrusted remote content unless a human has reviewed the prompt and inputs first.
+
+Risk: Including home, root, credential, or shared temporary paths can expose sensitive files or shared state.
+
+Mitigation: Do not include home, root, credential directories, or shared /tmp paths; create task-specific directories with minimal required contents.
+
+## Reference(s):
+
+- [ACP vs Headless](references/acp-vs-headless.md)
+- [Prompt Patterns](references/prompt-patterns.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Wrapper Script](scripts/gemini-run.sh)
+- [Agent Communication Protocol](https://agentcommunicationprotocol.dev/)
+- [ClawHub Skill Page](https://clawhub.ai/cl0ckt0wer/skills/gemini-worker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and Gemini CLI file or stdout outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may be written to caller-specified files or returned as concise stdout summaries; directory access depends on explicitly included paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and CHANGELOG, released 2026-03-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

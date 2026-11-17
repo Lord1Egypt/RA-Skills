@@ -1,41 +1,55 @@
-## Description: <br>
-Daily social media routine for indie developers and founders that runs a structured 15-20 minute engagement routine across Reddit, Twitter/X, LinkedIn, and Xiaohongshu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Social runs a structured 15-20 minute social media routine for indie developers and founders across Reddit, Twitter/X, LinkedIn, and Xiaohongshu.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-External indie developers and founders use this skill to run a short daily social engagement routine, identify relevant conversations, draft action items, and log activity across social platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect logged-in social media pages and expose account-linked activity to the agent. <br>
-Mitigation: Use it only in browser sessions and accounts you are comfortable exposing to the agent, and review what the agent can see before running the routine. <br>
-Risk: Suggested comments, replies, connection accepts, or posting steps could be inaccurate, off-brand, or unwanted if executed without review. <br>
-Mitigation: Review and approve each suggested engagement action before posting, accepting connections, or saving optional database or file logs. <br>
+## Use Case:
 
+External users, indie developers, and founders use this skill to scan social media activity, identify engagement opportunities, draft daily action items, and log engagement outcomes.
 
-## Reference(s): <br>
-- [Daily Social on ClawHub](https://clawhub.ai/PHY041/daily-social) <br>
-- [Canlah AI](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown checklists, summaries, and engagement logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include suggested social replies, platform-specific action items, and optional engagement tracking records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill may access logged-in social media pages, notifications, profile metrics, and engagement context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only when that account context is acceptable to expose to the agent, and prefer scan-only behavior by default.
+
+Risk: The skill may change social account state by accepting connections, posting comments, replying, or writing tracking data.
+
+Mitigation: Require separate user confirmation before any action that posts, replies, accepts a connection, or writes tracking data.
+
+## Reference(s):
+
+- [Daily Social on ClawHub](https://clawhub.ai/phy041/skills/daily-social)
+- [Canlah AI homepage](https://canlah.ai)
+- [Publisher profile](https://clawhub.ai/user/phy041)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown checklists, engagement logs, optional JSON tracking examples, and browser automation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces scan summaries, prioritized social tasks, engagement records, and optional weekly review summaries.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

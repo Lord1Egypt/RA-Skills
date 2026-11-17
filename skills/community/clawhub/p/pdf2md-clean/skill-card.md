@@ -1,40 +1,54 @@
-## Description: <br>
-Convert PDF to Markdown using local processing. No external API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert PDF to Markdown using local processing. No external API calls.
 
-## Publisher: <br>
-[lifei68801](https://clawhub.ai/user/lifei68801) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lifei68801](https://clawhub.ai/user/lifei68801)
 
-## Use Case: <br>
-Developers and document-processing users can use this skill to convert local PDF documents into clean Markdown without sending document content to an external API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Processing PDFs with a local parser can expose users to risks from files they do not trust. <br>
-Mitigation: Install pdfplumber from a trusted source and run the converter only on PDFs you are comfortable processing locally. <br>
-Risk: Providing an output path writes extracted Markdown content to that location. <br>
-Mitigation: Choose the output path deliberately and review the generated Markdown before relying on or sharing it. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert local PDF documents into clean Markdown without external API calls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lifei68801/pdf2md-clean) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text printed to stdout or written to a .md file, with setup and usage commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and pdfplumber; reads a local PDF and optionally writes a Markdown output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill depends on the third-party Python package pdfplumber, and the release evidence notes that the dependency is unpinned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a least-privileged environment and review or pin the pdfplumber version before using the skill with sensitive PDFs.
+
+Risk: The skill reads local PDFs and can write Markdown output files.
+
+Mitigation: Grant access only to the intended input PDF and output location.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lifei68801/skills/pdf2md-clean)
+- [Publisher profile](https://clawhub.ai/user/lifei68801)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown text or a Markdown file generated from a local PDF]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local file read access to the input PDF and optional file write access for the Markdown output.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

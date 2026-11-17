@@ -1,41 +1,54 @@
-## Description: <br>
-Reference tool for devtools that provides quick lookup material for Portcheck concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Portcheck provides plain-text reference documentation for devtools workflows, including intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve concise Portcheck reference documentation, including introductory concepts, quickstart guidance, common patterns, debugging, performance, security, migration, and cheat-sheet material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The shell script reports internal version 2.0.2 while the skill metadata and release evidence identify version 2.0.3. <br>
-Mitigation: Treat the release metadata as the package version for this card and align the script VERSION value in a future publisher update. <br>
-Risk: The skill provides static reference documentation, so its output should not be treated as live port or service diagnostics. <br>
-Mitigation: Verify operational port and service state with dedicated diagnostic tools before making infrastructure changes. <br>
+## Use Case:
 
+Developers and engineers use Portcheck as a local reference helper for devtools concepts, troubleshooting patterns, security considerations, migration guidance, and quick command lookup. It is best suited for retrieving concise reference text rather than performing live port scans or environment checks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bytesagain1/portcheck) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, network access, persistence, or system-changing authority are described by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: frontmatter and release evidence) <br>
+Risk: The reference text is generic and may be mistaken for environment-specific operational guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated guidance against the target environment before applying security, migration, or performance recommendations.
+
+Risk: The shell script reports version 2.0.2 while the server release evidence and SKILL.md frontmatter report 2.0.3.
+
+Mitigation: Verify and align the script VERSION value before packaging or presenting command-line version output to users.
+
+## Reference(s):
+
+- [ClawHub Portcheck Skill](https://clawhub.ai/bytesagain1/skills/portcheck)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text with Markdown-style headings, lists, and tables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local stdout output only; server security evidence reports no credential, network, or persistent state access.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release evidence and SKILL.md frontmatter; script internal VERSION is 2.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

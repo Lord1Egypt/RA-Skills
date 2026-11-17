@@ -1,0 +1,68 @@
+{
+  "title": "CISA Known Exploited Vulnerabilities Catalog (Embedded Offline Snapshot)",
+  "catalogVersion": "2026.10.15",
+  "dateReleased": "2026-10-15T00:00:00.000Z",
+  "count": 12,
+  "vulnerabilities": [
+    {
+      "cveID": "CVE-2024-7264",
+      "vendorProject": "curl",
+      "product": "libcurl",
+      "vulnerabilityName": "curl Out-of-Bounds Read Vulnerability",
+      "dateAdded": "2024-08-01",
+      "shortDescription": "libcurl contains an out-of-bounds read vulnerability in the ASN.1 parser.",
+      "requiredAction": "Apply mitigations per vendor instructions or discontinue use.",
+      "dueDate": "2024-08-22"
+    },
+    {
+      "cveID": "CVE-2024-32002",
+      "vendorProject": "Git",
+      "product": "Git",
+      "vulnerabilityName": "Git Remote Code Execution via Submodules",
+      "dateAdded": "2024-05-20",
+      "shortDescription": "Git submodule path traversal vulnerability affecting recursive clone operations.",
+      "requiredAction": "Apply security updates immediately.",
+      "dueDate": "2024-06-10"
+    },
+    {
+      "cveID": "CVE-2024-2511",
+      "vendorProject": "OpenSSL",
+      "product": "OpenSSL",
+      "vulnerabilityName": "OpenSSL TLS Session Unconstrained Memory Growth",
+      "dateAdded": "2024-04-10",
+      "shortDescription": "Unconstrained memory allocation in TLS sessions leading to DoS.",
+      "requiredAction": "Apply vendor updates.",
+      "dueDate": "2024-05-01"
+    },
+    {
+      "cveID": "CVE-2024-6387",
+      "vendorProject": "OpenSSH",
+      "product": "OpenSSH",
+      "vulnerabilityName": "OpenSSH regreSSHion Remote Code Execution Vulnerability",
+      "dateAdded": "2024-07-01",
+      "shortDescription": "Signal handler race condition in OpenSSH server allowing unauthenticated RCE.",
+      "requiredAction": "Apply vendor patch or mitigate via LoginGraceTime 0.",
+      "dueDate": "2024-07-15"
+    },
+    {
+      "cveID": "CVE-2024-38063",
+      "vendorProject": "Microsoft",
+      "product": "Windows TCP/IP",
+      "vulnerabilityName": "Windows TCP/IP Remote Code Execution Vulnerability",
+      "dateAdded": "2024-08-13",
+      "shortDescription": "An integer underflow in the Windows TCP/IP stack allows unauthenticated RCE via IPv6 packets.",
+      "requiredAction": "Apply August 2024 security updates or disable IPv6.",
+      "dueDate": "2024-09-03"
+    },
+    {
+      "cveID": "CVE-2023-44487",
+      "vendorProject": "Multiple Vendors",
+      "product": "HTTP/2",
+      "vulnerabilityName": "HTTP/2 Rapid Reset Denial-of-Service Vulnerability",
+      "dateAdded": "2023-10-10",
+      "shortDescription": "HTTP/2 protocol allows a malicious reset stream attack causing denial of service.",
+      "requiredAction": "Apply patches provided by web servers and proxy vendors.",
+      "dueDate": "2023-10-31"
+    }
+  ]
+}

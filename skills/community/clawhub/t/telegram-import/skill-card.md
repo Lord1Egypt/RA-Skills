@@ -1,40 +1,58 @@
-## Description: <br>
-Incrementally imports Telegram messages from a local SQLite database into a LanceDB vector store using Qwen3-Embedding-4B embeddings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Incrementally imports Telegram messages from a local SQLite database into a LanceDB vector store using Qwen3-Embedding-4B embeddings served by LM Studio.
 
-## Publisher: <br>
-[lulu-owo](https://clawhub.ai/user/lulu-owo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lulu-owo](https://clawhub.ai/user/lulu-owo)
 
-## Use Case: <br>
-Developers and data engineers use this skill to index Telegram message exports for local semantic search or retrieval workflows. It is intended for environments where the operator controls the source SQLite database, LanceDB output folder, and local embedding service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The importer handles privacy-sensitive Telegram message text and sender or group metadata. <br>
-Mitigation: Run it only on intended databases and restrict filesystem access to the resulting LanceDB folder and checkpoint files. <br>
-Risk: Message text is sent to a localhost embedding API during import. <br>
-Mitigation: Use only a local embedding service that you control and trust before indexing private conversations. <br>
+## Use Case:
 
+Developers and operators use this skill to index exported Telegram message data into a local LanceDB vector store for retrieval and downstream agent workflows. It is most relevant when the user controls the source database, local embedding service, and destination storage path.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lulu-owo/telegram-import) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes a Python-based local import workflow with checkpointed batch processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Risk: The workflow handles private Telegram message content and sends message text to a local LM Studio embeddings endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in an environment where the user controls the Telegram database and LM Studio service, and confirm that message content is permitted to be indexed.
+
+Risk: The checkpoint uses pickle, which can execute unsafe data if the checkpoint file is tampered with.
+
+Mitigation: Protect the checkpoint path from untrusted writes or replace the checkpoint mechanism with a safer serialization format before routine use.
+
+Risk: Failed embedding batches can be treated as processed without being written to LanceDB.
+
+Mitigation: Review import logs and checkpoint behavior after failures, and rerun from a known-good checkpoint when batch writes fail.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lulu-owo/skills/telegram-import)
+- [Publisher Profile](https://clawhub.ai/user/lulu-owo)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with Python script execution guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for running a local Telegram-to-LanceDB import workflow; the artifact includes a Python script that writes embeddings and checkpoint files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

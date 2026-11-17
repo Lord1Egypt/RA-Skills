@@ -1,43 +1,58 @@
-## Description: <br>
-Generates static map images with markers, optional paths, labels, selectable map types, and hosted image links through AgentPMT remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Map Generator With Markers helps agents generate static map images with markers, optional paths, labels, and roadmap, satellite, hybrid, or terrain views through AgentPMT-hosted remote tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and agents use this skill to create static map visualizations for routes, reports, geographic distributions, travel plans, field service locations, and property maps. It is suited to workflows that can send coordinates, labels, and route details to AgentPMT for remote image generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Map requests may send coordinates, labels, and route details to AgentPMT for remote processing. <br>
-Mitigation: Use the skill only when the user approves external processing, and avoid private homes, sensitive sites, protected locations, or identifying labels unless they are necessary and approved. <br>
-Risk: Generated map images are exposed through signed URLs that remain available for 7 days. <br>
-Mitigation: Treat generated links as shareable artifacts, avoid including sensitive location data, and expire or replace links in downstream materials when they are no longer needed. <br>
-Risk: Requests can fail or produce unclear responses when schema, authentication, or payment requirements are not satisfied. <br>
-Mitigation: Check the live schema when parameters are unclear, keep credentials out of prompts and logs, and retry only after fixing schema, authentication, or payment issues. <br>
+## Use Case:
 
+Agents and developers use this skill to create static route maps, location marker visuals, property maps, geographic data summaries, and presentation-ready map images from latitude and longitude inputs.
 
-## Reference(s): <br>
-- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/map-generator-with-markers) <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/map-generator-with-markers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, text, markdown] <br>
-**Output Format:** [Markdown instructions with JSON request and response examples for remote map-generation calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote calls can return a signed URL, base64 PNG image data, file identifier, file size, point count, and map settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Coordinates, addresses, routes, and property locations may be sensitive because requests are sent to AgentPMT and generated images are retained for 7 days.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only the minimum location data needed for the task, avoid unnecessary sensitive locations, and account for the 7-day retention window before sharing generated links.
+
+Risk: The skill relies on AgentPMT-hosted remote tool calls, so use outside the intended map-generation workflow may send data to a third-party service.
+
+Mitigation: Use the skill only when an AgentPMT map product call is intended, and review setup and invocation routes before production use.
+
+Risk: Fresh endpoint, schema, setup, or example details may change after publication.
+
+Mitigation: For production integrations, fetch the live schema or reinstall the skill when the artifact freshness guidance indicates it is stale.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/map-generator-with-markers)
+- [AgentPMT Marketplace Page](https://www.agentpmt.com/marketplace/map-generator-with-markers)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions, Text]
+
+**Output Format:** [Markdown guidance with JSON request examples and structured response fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated map responses can include a signed URL, base64 PNG image data, a file identifier, image size, point count, and rendering settings; generated images are retained for 7 days.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

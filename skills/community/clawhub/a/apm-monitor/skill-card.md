@@ -1,44 +1,55 @@
-## Description: <br>
-Apm Monitor is advertised as an APM tool for large-scale distributed systems, but the packaged scripts provide placeholder Pinpoint commands and a generic data-processing CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+APM, (Application Performance Management) tool for large-scale distributed systems. apm-monitor, java, agent, apm, distributed-tracing, monitoring.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-External developers and operators may use this skill to inspect or run simple CLI commands presented as APM monitoring support. Review the package carefully because the security evidence says the advertised monitoring purpose does not match the included placeholder and generic data-processing scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The advertised APM monitoring purpose does not match the included placeholder and generic data-processing scripts. <br>
-Mitigation: Verify which executable would run and do not rely on this package for production monitoring without independent review. <br>
-Risk: Command arguments can be saved locally in a history file. <br>
-Mitigation: Avoid passing secrets or sensitive values as command arguments and review the APM_MONITOR_DIR location before use. <br>
-Risk: The security verdict is suspicious. <br>
-Mitigation: Review the artifact before installing or executing it, and treat the scripts as untrusted until validated. <br>
+## Use Case:
 
+Developers and operators can use this skill for basic APM monitor command guidance, status checks, and local data-tooling outputs. The shipped artifacts should be reviewed before relying on them for real distributed tracing or Pinpoint monitoring workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bytesagain1/apm-monitor) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [Pinpoint upstream project reference](https://github.com/pinpoint-apm/pinpoint) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands write status and query-style output to stdout; the generic CLI can also write local command history under APM_MONITOR_DIR.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Advertised Pinpoint/APM monitoring behavior does not match the shipped placeholder and generic data commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill and test commands in a non-sensitive environment before using it for monitoring decisions.
+
+Risk: Command arguments may be persisted in local history logs.
+
+Mitigation: Avoid passing secrets, tokens, credentials, or sensitive paths as command arguments and clear the configured data directory when needed.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/bytesagain1/skills/apm-monitor)
+- [BytesAgain homepage](https://bytesagain.com)
+- [Pinpoint upstream project](https://github.com/pinpoint-apm/pinpoint)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and plain-text CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local command history under the configured APM_MONITOR_DIR data directory.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-A browser automation skill that downloads PDF files from a named Telegram channel and organizes them into folders based on message headers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads PDF files from specified Telegram Web channels and organizes them into local folders based on message headers.
 
-## Publisher: <br>
-[koppakanagaharsha-lang](https://clawhub.ai/user/koppakanagaharsha-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[koppakanagaharsha-lang](https://clawhub.ai/user/koppakanagaharsha-lang)
 
-## Use Case: <br>
-Developers or operators with access to Telegram Web use this skill to collect PDF study materials from a specified Telegram channel and save them into locally organized folders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill retains a logged-in Telegram Web browser profile on disk. <br>
-Mitigation: Use a dedicated Telegram session when possible, and delete or log out of ./openclaw_chrome_profile when session persistence is not desired. <br>
-Risk: The skill automatically clicks and downloads files from the selected Telegram channel. <br>
-Mitigation: Run it only on trusted channels, confirm the selected chat before scanning, and inspect or scan downloaded PDFs before opening them. <br>
+## Use Case:
 
+External users and developers use this skill to automate collection of study-material PDFs from Telegram channels into a local folder structure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/koppakanagaharsha-lang/telegram-pdf-scraper) <br>
-- [Publisher profile](https://clawhub.ai/user/koppakanagaharsha-lang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, text, configuration, guidance] <br>
-**Output Format:** [Local PDF files organized into folders plus status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a local browser profile directory and writes downloaded files under the configured download directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses an authenticated Telegram Web session and persists a local browser profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Telegram session and non-sensitive browser profile, and isolate or clear the profile after use.
+
+Risk: Downloaded PDFs and channel-controlled filenames or folders may be unsafe or misleading.
+
+Mitigation: Save downloads to a dedicated non-sensitive folder, treat PDFs as untrusted, and prefer a revised version with attachment-origin, file-type, file-size, and path-traversal checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/koppakanagaharsha-lang/skills/telegram-pdf-scraper)
+- [ClawHub publisher profile](https://clawhub.ai/user/koppakanagaharsha-lang)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text]
+
+**Output Format:** [Downloaded PDF files organized in local folders with status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a Telegram Web session and a local browser profile; downloaded PDFs should be treated as untrusted.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

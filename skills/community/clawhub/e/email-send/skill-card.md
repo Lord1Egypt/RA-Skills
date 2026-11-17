@@ -1,38 +1,56 @@
-## Description: <br>
-Send a quick email via SMTP using `msmtp` without opening a full mail client. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send a quick email via SMTP using `msmtp` without opening a full mail client.
 
-## Publisher: <br>
-[Xejrax](https://clawhub.ai/user/Xejrax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xejrax](https://clawhub.ai/user/xejrax)
 
-## Use Case: <br>
-Developers and operators use this skill to draft shell commands and configuration guidance for sending quick SMTP email with `msmtp` from an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send email and attachments through the user's SMTP account. <br>
-Mitigation: Verify every recipient, message body, header, and attachment before sending. <br>
-Risk: SMTP credentials could be exposed if placed in prompts or files. <br>
-Mitigation: Use a dedicated app password or scoped SMTP credential and keep `SMTP_PASS` out of prompts and committed files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and operators use this skill to send short SMTP email messages from an agent workflow using `msmtp`, including basic headers, CC/BCC recipients, and attachment-oriented guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires `msmtp` and SMTP environment variables; may include recipient, header, CC/BCC, and attachment guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Email bodies, recipients, CC/BCC fields, and attachments may disclose information externally.
+
+Mitigation: Review message content, recipient lists, attachment paths, and data sensitivity before sending email.
+
+Risk: SMTP credentials are required in the environment.
+
+Mitigation: Use scoped SMTP credentials through an approved secret-management path and avoid exposing credential values in prompts, logs, or generated commands.
+
+Risk: Attachment behavior is not fully described by the artifact.
+
+Mitigation: Review any attachment command before execution and test with non-sensitive files before sending real attachments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xejrax/skills/email-send)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires `msmtp` and configured `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, and `SMTP_PASS` environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

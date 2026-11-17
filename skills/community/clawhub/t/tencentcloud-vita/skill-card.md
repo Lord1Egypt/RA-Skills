@@ -1,46 +1,63 @@
-## Description: <br>
-TencentCloud VITA helps agents analyze images, image sequences, and public video URLs with Tencent Cloud's VITA multimodal media understanding service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TencentCloud VITA helps an agent analyze images and publicly accessible videos through Tencent Cloud VITA, returning media descriptions, summaries, and prompt-directed visual understanding results.
 
-## Publisher: <br>
-[wayne-j151](https://clawhub.ai/user/wayne-j151) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wayne-j151](https://clawhub.ai/user/wayne-j151)
 
-## Use Case: <br>
-Developers and agents use this skill to submit images, image sequences, or public video URLs to TencentCloud VITA for media description, summarization, event analysis, highlight extraction, and prompt-driven visual understanding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Media and prompts are sent to TencentCloud VITA for processing, which can expose private or sensitive content to an external service. <br>
-Mitigation: Use this skill only when Tencent Cloud processing is acceptable, and avoid submitting private or sensitive media unless approved for the use case. <br>
-Risk: The skill requires a TencentCloud VITA API key in the environment. <br>
-Mitigation: Use a dedicated API key with appropriate scope, store it outside the artifact, and rotate it if exposure is suspected. <br>
-Risk: A saved VITA prompt can change future analysis behavior unexpectedly. <br>
-Mitigation: Review or reset the persisted prompt before relying on analysis results, especially in shared environments. <br>
-Risk: Video inputs must be public or otherwise accessible URLs, and local videos are not uploaded by the script. <br>
-Mitigation: Upload local videos with an approved separate tool and pass only URLs whose access level is appropriate for the media. <br>
+## Use Case:
 
+Developers and agents use this skill to send image inputs or public video URLs to Tencent Cloud VITA for visual content understanding, summaries, event extraction, and other prompt-guided media analysis. It can also persist a default VITA prompt for future calls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wayne-j151/tencentcloud-vita) <br>
-- [TencentCloud VITA service management](https://console.cloud.tencent.com/tiia/vita-service-management) <br>
-- [TencentCloud VITA API endpoint](https://api.vita.cloud.tencent.com/v1/video2text) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON result with usage metadata by default, or streamed text when streaming is enabled] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TENCENTCLOUD_VITA_API_KEY; local images are converted to data URLs, while local videos require separate upload to an accessible URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Risk: Selected media, media URLs, and prompts are sent to Tencent Cloud under the user's VITA account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only media and prompts appropriate for Tencent Cloud processing under that account, and avoid submitting sensitive content unless the deployment policy allows it.
+
+Risk: A persisted VITA prompt can affect future analyses without being passed explicitly on the command line.
+
+Mitigation: Review or reset the skill-local prompt file before shared or automated use.
+
+Risk: Automated calls can produce unexpectedly long outputs or higher usage if max tokens are not constrained.
+
+Mitigation: Set --max-tokens for automated workflows and monitor token usage returned by non-streaming calls.
+
+Risk: The script depends on the openai Python package and reads credentials from the process environment.
+
+Mitigation: Run in an isolated environment, pin the openai dependency, and expose only the required TENCENTCLOUD_VITA_API_KEY secret.
+
+## Reference(s):
+
+- [TencentCloud VITA Skill Page](https://clawhub.ai/wayne-j151/skills/tencentcloud-vita)
+- [TencentCloud VITA Service Management Console](https://console.cloud.tencent.com/tiia/vita-service-management)
+- [TencentCloud VITA API Endpoint](https://api.vita.cloud.tencent.com/v1/video2text)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON result with token usage for non-streaming calls, or streaming text when --stream is enabled]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on the supplied media, prompt, TencentCloud VITA API key, and optional temperature or max token settings.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

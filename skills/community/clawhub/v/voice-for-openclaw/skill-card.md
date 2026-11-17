@@ -1,45 +1,57 @@
-## Description: <br>
-MiniMax TTS Plus generates speech from text with selectable agent voices and can produce local audio files or voice-message outputs for Telegram and Feishu workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax TTS Plus generates text-to-speech audio with per-agent voice selection and supports local MP3 generation, Telegram voice messages, and Feishu OGG/Opus voice messages.
 
-## Publisher: <br>
-[vshen009](https://clawhub.ai/user/vshen009) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vshen009](https://clawhub.ai/user/vshen009)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to synthesize text into voice output, choose per-agent voices, and generate or deliver audio through local files, Telegram, or Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for synthesis is sent to MiniMax. <br>
-Mitigation: Avoid sending secrets, regulated content, or other sensitive text unless that use is intentional and approved. <br>
-Risk: Generated audio can be posted to Telegram or Feishu when delivery credentials and targets are configured. <br>
-Mitigation: Use generate-only mode for local output and configure channel credentials only for intended recipients. <br>
-Risk: API and messaging credentials are required for full operation. <br>
-Mitigation: Store credentials in a private .env file or environment variables and do not publish filled credential files. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to convert agent text into MiniMax-generated speech, choose agent-specific voices, and optionally deliver generated audio through Telegram or Feishu.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vshen009/voice-for-openclaw) <br>
-- [MiniMax Speech T2A API documentation](https://platform.minimax.io/docs/api-reference/speech-t2a-http) <br>
-- [MiniMax developer portal](https://platform.minimax.io) <br>
-- [Telegram BotFather](https://t.me/BotFather) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Configuration, Guidance] <br>
-**Output Format:** [Shell commands and JSON status messages that point to generated MP3 or OGG/Opus audio files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, ffmpeg, requests, and MINIMAX_API_KEY; Telegram delivery requires TELEGRAM_BOT_TOKEN and TELEGRAM_TARGET.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Text and generated audio may be sent to MiniMax and, in delivery modes, to Telegram or Feishu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive content unless those services are approved for the data, and use --generate-only when local audio generation is sufficient.
+
+Risk: MiniMax and Telegram credentials are required for some modes and could be exposed if stored carelessly.
+
+Mitigation: Keep MINIMAX_API_KEY and Telegram tokens out of shared folders and repositories, store them in a local .env file, and add .env to the user's own .gitignore.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vshen009/skills/voice-for-openclaw)
+- [Publisher profile](https://clawhub.ai/user/vshen009)
+- [MiniMax Speech T2A HTTP API](https://platform.minimax.io/docs/api-reference/speech-t2a-http)
+- [MiniMax platform](https://platform.minimax.io)
+- [Telegram BotFather](https://t.me/BotFather)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [MP3 audio files, OGG/Opus audio files, JSON status strings, and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MINIMAX_API_KEY; Telegram delivery uses optional Telegram credentials; Feishu voice output requires ffmpeg.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

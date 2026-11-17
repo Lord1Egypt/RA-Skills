@@ -1,42 +1,56 @@
-## Description: <br>
-Expert guidance on map design principles, color theory, visual hierarchy, typography, and cartographic best practices for creating effective and beautiful maps with Mapbox. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert guidance on map design principles, color theory, visual hierarchy, typography, and cartographic best practices for creating effective and beautiful maps with Mapbox.
 
-## Publisher: <br>
-[mapbox](https://clawhub.ai/user/mapbox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mapbox](https://clawhub.ai/user/mapbox)
 
-## Use Case: <br>
-Developers, designers, and agents use this skill to make Mapbox cartography decisions about visual hierarchy, color palettes, typography, layer ordering, zoom strategy, accessibility, and map performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated cartography guidance may be unsuitable for a specific audience, device, lighting condition, or data density. <br>
-Mitigation: Review proposed map style changes against the target use case, accessibility needs, and real map data before applying them. <br>
-Risk: Users may mistake the skill for an automated Mapbox integration. <br>
-Mitigation: Treat outputs as design advice; manually review and implement any Mapbox style changes in the appropriate project workflow. <br>
+## Use Case:
 
+Developers, designers, and mapping teams use this skill to design Mapbox map styles, choose accessible color palettes, order layers, tune zoom-level behavior, and troubleshoot cartographic visibility issues.
 
-## Reference(s): <br>
-- [Scenario guidance](references/scenarios.md) <br>
-- [Performance and testing guidance](references/performance-testing.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mapbox/mapbox-cartography) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown prose with code and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces cartographic recommendations and example style values for users to review before applying.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The broad trigger language may invoke the skill for general map-design discussions outside a Mapbox cartography task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is asking for Mapbox styling or cartographic design guidance before applying the skill's recommendations.
+
+Risk: Cartographic recommendations can reduce usability if color, label, zoom, or layer-order advice is applied without checking the target map context.
+
+Mitigation: Review recommendations against the target use case, device class, data density, accessibility checks, and performance checklist before release.
+
+## Reference(s):
+
+- [Common Mapping Scenarios](artifact/references/scenarios.md)
+- [Performance, Testing & Common Mistakes](artifact/references/performance-testing.md)
+- [Mapbox Cartography Skill](artifact/SKILL.md)
+- [ClawHub Skill Page](https://clawhub.ai/mapbox/skills/mapbox-cartography)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown prose with JSON and JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory output only; no executable actions, account changes, or persistent behavior are performed by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

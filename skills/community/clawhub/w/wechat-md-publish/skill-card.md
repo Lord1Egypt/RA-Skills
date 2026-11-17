@@ -1,43 +1,59 @@
-## Description: <br>
-Publishes Markdown articles to WeChat Official Account, with support for AI-generated cover images, HTML card rendering, draft creation, and optional publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish Markdown articles to a WeChat Official Account with AI cover generation, inline styling, HTML card rendering, draft creation, and optional publication.
 
-## Publisher: <br>
-[864446285](https://clawhub.ai/user/864446285) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[864446285](https://clawhub.ai/user/864446285)
 
-## Use Case: <br>
-Developers, content operators, and publishing agents use this skill to turn Markdown articles and local assets into WeChat Official Account drafts, with optional automatic publishing after review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires WeChat Official Account API credentials and caches access tokens on the local machine. <br>
-Mitigation: Use a dedicated environment where possible and protect ~/.wechat_publish/config.json and token_cache.json with restrictive file permissions. <br>
-Risk: Selected Markdown content and referenced local images are uploaded to WeChat, and --publish can submit content for publication. <br>
-Mitigation: Create drafts first, review the rendered article in WeChat, and use --publish only after explicit approval. <br>
+## Use Case:
 
+Developers and content publishers use this skill to prepare Markdown articles for a WeChat Official Account, generate or accept a cover image, optionally render HTML cards, create drafts, and publish after explicit review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/864446285/wechat-md-publish) <br>
-- [Publisher profile](https://clawhub.ai/user/864446285) <br>
-- [WeChat Official Accounts Platform](https://mp.weixin.qq.com/) <br>
-- [WeChat API base](https://api.weixin.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with shell commands and Python CLI/API execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates WeChat drafts by default; optional --publish submits the draft for publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can publish public content through a WeChat Official Account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Create drafts first and use automatic publishing only after explicit human review.
+
+Risk: The skill uses WeChat publishing credentials and caches access tokens on disk.
+
+Mitigation: Protect ~/.wechat_publish with owner-only permissions, avoid shared machines, and rotate credentials if exposure is suspected.
+
+Risk: The skill installs and runs Python dependencies, with optional Playwright browser automation for HTML card rendering.
+
+Mitigation: Install dependencies in a dedicated virtual environment from trusted package indexes.
+
+## Reference(s):
+
+- [WeChat Official Accounts Platform](https://mp.weixin.qq.com/)
+- [WeChat Official Account API](https://api.weixin.qq.com)
+- [ClawHub skill page](https://clawhub.ai/864446285/skills/wechat-md-publish)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, generated article assets, and script output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create WeChat drafts, upload article images and covers, render optional HTML cards to images, and publish drafts when requested.]
+
+## Skill Version(s):
+
+0.3.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

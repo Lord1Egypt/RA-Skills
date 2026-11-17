@@ -1,0 +1,5 @@
+interface:
+  display_name: Self-Hosted Funnel Launch
+  short_description: Deploy a self-hosted funnel builder, take a funnel from empty install to published - landing page, checkout, one-click upsell, thank-you - and drive it from an agent over MCP.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg

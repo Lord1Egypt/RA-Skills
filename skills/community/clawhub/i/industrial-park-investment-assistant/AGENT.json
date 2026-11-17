@@ -1,0 +1,70 @@
+{
+  "name": "招商助手",
+  "id": "industrial-park-investment-assistant",
+  "version": "3.0.0",
+  "description": "产业园招商数字副驾。四步工作流：今天客户→客户情况→客户推进→处理完成。你负责谈客户，我负责判断值不值得跟、下一步怎么推、不会漏掉任何机会。",
+  "author": "perrykono-debug",
+  "emoji": "🏭",
+  "workspace": {
+    "path": "industrial-park-investment-assistant",
+    "entrypoint": "SKILL.md"
+  },
+  "capabilities": [
+    "客户管理（新增/查询/跟进/记录）",
+    "房源查询（找房/匹配/对比）",
+    "客户接待（带看准备/记录/总结+黄金窗口）",
+    "报价方案（报价单/TCO精算/优惠测算）",
+    "选址建议（选址建议书/园区介绍/招商材料）",
+    "渠道管理（渠道维护/效果分析）"
+  ],
+  "skills": [
+    "tencent-docs",
+    "docx",
+    "pdf",
+    "xlsx",
+    "jina-reader",
+    "online-search"
+  ],
+  "setup": {
+    "steps": [
+      "配置IMA知识库（房源销控/项目介绍/竞品情报/产业政策）",
+      "录入基础数据（客户/房源/渠道）",
+      "设置每日工作台推送",
+      "验证数据接口和脚本"
+    ],
+    "required": [
+      "数据源配置（IMA知识库ID）",
+      "园区基本信息（名称/地址/房源列表）"
+    ],
+    "optional": [
+      "SQLite数据库路径",
+      "自动化任务时间配置"
+    ]
+  },
+  "commands": [
+    {
+      "example": "查一下XX科技",
+      "description": "查看客户情况（四段式）"
+    },
+    {
+      "example": "T1栋还有没有500平的",
+      "description": "查询匹配房源"
+    },
+    {
+      "example": "安排明天带看XX科技",
+      "description": "客户接待-安排带看"
+    },
+    {
+      "example": "出个报价方案",
+      "description": "生成报价方案+TCO"
+    },
+    {
+      "example": "给XX科技做选址建议书",
+      "description": "生成选址建议书（腾讯文档链接）"
+    },
+    {
+      "example": "看看渠道什么情况",
+      "description": "渠道健康度检查"
+    }
+  ]
+}

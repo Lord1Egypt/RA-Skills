@@ -1,43 +1,62 @@
-## Description: <br>
-AI食品营养管理助手 helps users record meals in natural language, look up food nutrition, and generate daily or weekly HTML nutrition reports with diet suggestions based on Chinese dietary guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI食品营养管理助手 helps users log meals in natural language, estimate calories and nutrients, query Chinese food nutrition data, and generate daily or weekly HTML reports with dietary suggestions.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Individuals and nutrition-focused assistants use this skill to record meals, estimate nutrient intake, compare foods, maintain local diary/profile data, and produce daily or weekly HTML reports. It is suited for personal nutrition tracking and general diet guidance, not professional medical diagnosis or treatment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meal history, nutrition estimates, reports, and profile data are stored locally and may contain sensitive health-adjacent personal information. <br>
-Mitigation: Use the skill only in trusted workspaces, review generated user_data and report files before sharing, and remove local records when they are no longer needed. <br>
-Risk: Optional TianAPI lookup requires an API key and may send food lookup terms to that service. <br>
-Mitigation: Treat the API key as sensitive, keep it in local configuration only, rotate it if exposed, and avoid external lookup for private meal details. <br>
-Risk: Nutrition values and dietary recommendations are estimates. <br>
-Mitigation: Use outputs as general guidance and consult a qualified professional for medical, clinical, or condition-specific nutrition decisions. <br>
+## Use Case:
 
+External users and agent operators use this skill to track diet entries, estimate nutritional intake, query food data, and generate nutrition summaries for meal planning. It is intended for wellness-oriented guidance and does not replace professional medical or nutrition advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/food-nutrition) <br>
-- [TianAPI](https://www.tianapi.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Conversational text and Markdown, with local JSON diary/configuration files and generated HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores profile data, meal diary entries, cached food lookups, and generated reports locally; optional TianAPI lookups require an API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Sensitive diet history and body-profile details may be stored locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when local storage is acceptable, collect explicit save consent, store only needed data, and provide clear deletion guidance.
+
+Risk: Generated HTML reports may expose untrusted meal text or diary/cache data.
+
+Mitigation: Use trusted inputs and HTML-escape report values before previewing or sharing generated reports.
+
+Risk: Weekly reports load Chart.js from a third-party CDN.
+
+Mitigation: Pin and review the chart dependency or bundle a vetted local copy before wider deployment.
+
+Risk: Nutrition values and dietary suggestions are estimates and may be inaccurate for complex dishes or medical needs.
+
+Mitigation: Present outputs as wellness estimates and defer clinical decisions to qualified healthcare or nutrition professionals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/food-nutrition)
+- [TianAPI](https://www.tianapi.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown responses with generated HTML report files and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local diary/profile/cache files and optional TianAPI nutrition lookup when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

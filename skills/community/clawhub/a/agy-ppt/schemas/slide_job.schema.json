@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "agy-ppt/slide_job.schema.json",
+  "title": "AGY PPT slide job",
+  "description": "A single-slide image job that AGY hands to codex_image_adapter.py. This is the adapter-facing contract; the richer upstream prompts/slide_XX.json job file (produced by prepare_slide_prompts.py) remains the source of the full prompt and input images.",
+  "type": "object",
+  "required": ["slide_id", "operation", "prompt", "output_path"],
+  "additionalProperties": true,
+  "properties": {
+    "slide_id": {
+      "type": "string",
+      "pattern": "^slide_[0-9]{2,}$"
+    },
+    "operation": {
+      "type": "string",
+      "enum": ["generate", "regenerate", "probe"]
+    },
+    "prompt": {
+      "type": "string",
+      "minLength": 1
+    },
+    "output_path": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Workspace-relative path for the final slide image, e.g. origin_image/slide_03.png."
+    },
+    "aspect_ratio": {
+      "type": "string",
+      "pattern": "^[0-9]+:[0-9]+$"
+    },
+    "workspace_root": { "type": "string" },
+    "dispatch_id": {
+      "type": "string",
+      "description": "Concrete AGY dispatch identity retained for live-worker qualification evidence."
+    },
+    "job_id": {
+      "type": "string",
+      "description": "Concrete prepared-job identity retained for live-worker qualification evidence."
+    },
+    "visual_plate_job": {
+      "type": "object",
+      "description": "Internal Phase 18 clean-plate exclusion contract. When present it is validated and propagated to the Codex worker prompt.",
+      "required": [
+        "slide_id",
+        "plate_mode",
+        "reserved_zones",
+        "locked_content_to_render",
+        "editable_content_to_omit",
+        "replaceable_assets_to_omit",
+        "background_instructions"
+      ],
+      "properties": {
+        "slide_id": { "type": "string", "pattern": "^slide_[0-9]{2,}$" },
+        "plate_mode": { "type": "string", "enum": ["CLEAN_PLATE", "PARTIAL_COMPOSITE", "FULL_COMPOSITE"] },
+        "reserved_zones": { "type": "array", "items": { "type": "object" } },
+        "locked_content_to_render": { "type": "array", "items": { "type": "string" } },
+        "editable_content_to_omit": { "type": "array", "items": { "type": "string" } },
+        "replaceable_assets_to_omit": { "type": "array", "items": { "type": "string" } },
+        "background_instructions": { "type": "string" }
+      }
+    },
+    "timeout_seconds": { "type": "number", "exclusiveMinimum": 0 }
+  }
+}

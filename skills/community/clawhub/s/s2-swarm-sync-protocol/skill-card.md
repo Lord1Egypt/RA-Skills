@@ -1,44 +1,54 @@
-## Description: <br>
-Instructs the OpenClaw Agent on how to interact securely with other agents by requiring cryptographic authentication before right-of-way yielding or sensor federation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Instructs the OpenClaw Agent to authenticate peer agents before right-of-way yielding or sensor federation in multi-agent swarm coordination.
 
-## Publisher: <br>
-[spacesq](https://clawhub.ai/user/spacesq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-External developers and agents use this skill to coordinate multi-agent physical interactions, including authenticated peer handshakes, sensor federation decisions, and right-of-way arbitration. It is intended for OpenClaw agent workflows that need to reject unauthenticated peer broadcasts before changing trajectory or incorporating shared sensor data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the skill claims PKI-backed security while the executable only checks a hard-coded signature before enabling robot coordination decisions. <br>
-Mitigation: Do not deploy in real robot, drone, vehicle, or other safety-sensitive environments until real mutual authentication, signed messages, replay protection, encrypted channels, and explicit authorization replace the placeholder signature check. <br>
-Risk: Authenticated messages can trigger right-of-way decisions such as yielding, torque braking, and sensor-data integration. <br>
-Mitigation: Require human and system safety review, bounded actuation policies, and independent fail-safe controls before allowing outputs to affect physical movement. <br>
-Risk: Federated sensor sharing may expose or incorporate peer sensor data across agents. <br>
-Mitigation: Define privacy controls, data minimization, and trust boundaries for any P2P sensor federation before operational use. <br>
+## Use Case:
 
+Developers and operators use this skill to guide multi-agent coordination where peer broadcasts may affect sensor sharing, trajectory decisions, and right-of-way arbitration. It is intended for normal ClawHub release use, but safety-critical robotic or vehicle deployments require independent engineering review and stronger authentication controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spacesq/s2-swarm-sync-protocol) <br>
-- [S2-SWM Special Protocol Whitepaper](artifact/S2_SWM_Special_Protocol_Whitepaper.md) <br>
-- [OpenClaw plugin manifest](artifact/openclaw.plugin.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, JSON, Configuration] <br>
-**Output Format:** [Markdown instructions and JSON tool-call responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires S2_SWARM_PKI_ROOT for the advertised authentication configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter, package.json, openclaw.plugin.json, server release evidence) <br>
+Risk: A forged peer broadcast could be accepted if authentication remains token-based or otherwise weak.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace the hard-coded signature check with real cryptographic verification rooted in S2_SWARM_PKI_ROOT before any deployment.
+
+Risk: Outputs may influence braking, trajectory, or sensor federation decisions in physical systems.
+
+Mitigation: Require local safety vetoes, operator visibility, authorization checks, replay protection, and privacy limits before using the skill with robots, vehicles, drones, or other safety-relevant systems.
+
+## Reference(s):
+
+- [S2-SWM Special Protocol Whitepaper](artifact/S2_SWM_Special_Protocol_Whitepaper.md)
+- [ClawHub Skill Page](https://clawhub.ai/spacesq/skills/s2-swarm-sync-protocol)
+
+## Skill Output:
+
+**Output Type(s):** [json, guidance, configuration]
+
+**Output Format:** [JSON responses with status, authentication result, federated sensor data, right-of-way decision, and action guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires S2_SWARM_PKI_ROOT configuration and an execute_swarm_sync tool entry point.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence, SKILL.md frontmatter, package.json, openclaw.plugin.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

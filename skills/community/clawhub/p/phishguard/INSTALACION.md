@@ -86,10 +86,10 @@ Agregar estas lineas:
 
 ```env
 # Requerida — API key de Anthropic para el analisis de IA
-ANTHROPIC_API_KEY=sk-ant-xxxxxxxxxxxxxxxx
+ANTHROPIC_API_KEY=REDACTED-SECRET
 
 # Opcional — Webhook de Slack para alertas
-SLACK_WEBHOOK_URL=https://hooks.slack.com/services/XXX/YYY/ZZZ
+SLACK_WEBHOOK_URL=REDACTED-SECRET
 
 # Opcional — Webhook de Teams para alertas
 TEAMS_WEBHOOK_URL=https://xxxxx.webhook.office.com/webhookb2/...

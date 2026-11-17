@@ -1,48 +1,62 @@
-## Description: <br>
-Claw Operations Manager helps OpenClaw users audit operations, manage permissions, monitor files, and create git-based snapshots with multilingual dashboard support and rollback workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Operations Manager provides a multilingual OpenClaw operations dashboard for audit logging, permission checks, file monitoring, git-based snapshots, and rollback guidance.
 
-## Publisher: <br>
-[a3273283](https://clawhub.ai/user/a3273283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a3273283](https://clawhub.ai/user/a3273283)
 
-## Use Case: <br>
-Developers, operators, and OpenClaw teams use this skill to review operation history, manage permission rules, monitor sensitive paths, and recover from mistakes through snapshot and rollback workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can exercise broad local command, filesystem, snapshot, and web-management authority. <br>
-Mitigation: Install only in environments where that authority is intended, scope monitored and snapshotted paths deliberately, and review permission rules before use. <br>
-Risk: The dashboard and management APIs may expose operational controls if reachable by other users or hosts. <br>
-Mitigation: Bind the dashboard to localhost, add authentication before shared use, and avoid exposing port 8080 beyond the local machine. <br>
-Risk: Shell aliases or wrappers for arbitrary commands can turn normal command execution into broad audited operations. <br>
-Mitigation: Avoid aliases for untrusted or arbitrary commands, and prefer reviewed integration points with explicit command scope. <br>
-Risk: Snapshots and rollback are best-effort and may not provide full recovery for all files or operational states. <br>
-Mitigation: Use dry-run restore checks, keep independent backups for important data, and treat rollback as a recovery aid rather than a guaranteed backup system. <br>
-Risk: Audit databases and snapshots under ~/.openclaw may retain sensitive operational data. <br>
-Mitigation: Set restrictive file permissions, define retention policies, and exclude sensitive paths from default monitoring or snapshots when appropriate. <br>
+## Use Case:
 
+Developers and operations teams use this skill to monitor OpenClaw activity, review local operation history, manage permissions, and prepare recovery actions through snapshots and rollback workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/a3273283/claw-ops-manager) <br>
-- [Publisher Profile](https://clawhub.ai/user/a3273283) <br>
-- [API Reference](artifact/references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and inline code or shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local dashboard/API usage guidance, audit configuration examples, snapshot and rollback commands, and integration code snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release evidence) <br>
+Risk: The skill exposes powerful local audit, snapshot, and rollback operations with weak controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on a trusted machine, avoid privileged accounts, and review operations before allowing rollback actions.
+
+Risk: The dashboard can expose operational controls if port 8080 is reachable from a network.
+
+Mitigation: Use the dashboard locally and do not expose port 8080 to a network.
+
+Risk: Snapshots may include sensitive directories such as ~/.ssh or broad home-directory paths.
+
+Mitigation: Remove ~/.ssh and whole-home snapshot paths from defaults, limit snapshot scope, and protect audit and snapshot storage.
+
+Risk: Rollback is experimental and should not be treated as a backup system.
+
+Mitigation: Use dry runs where available and keep an independent backup before relying on restore actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/a3273283/skills/claw-ops-manager)
+- [API reference](artifact/references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe local dashboard, audit, snapshot, and rollback workflows; users should review commands before execution.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

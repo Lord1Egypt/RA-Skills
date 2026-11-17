@@ -1,40 +1,55 @@
-## Description: <br>
-Provides personalized budgeting frameworks, templates, and analysis based on income, expenses, goals, and priorities without executing transactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides personalized budgeting frameworks, templates, and analysis based on income, expenses, goals, and priorities without executing transactions.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Individuals and households use this skill to create budget frameworks, categorize expenses, plan savings, prioritize debt, and generate practical next steps from their financial context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat general budgeting output as professional financial, tax, or legal advice. <br>
-Mitigation: Present recommendations as informational guidance and encourage professional review for important financial decisions. <br>
-Risk: Users may share more sensitive financial detail than needed for budgeting analysis. <br>
-Mitigation: Ask only for the minimum income, expense, debt, and goal details needed to produce useful guidance. <br>
+## Use Case:
 
+Individuals and households use this skill to turn income, expenses, debt priorities, and savings goals into budget frameworks, category allocations, checklists, and next steps. It is informational only and does not access accounts, call financial services, or make transactions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/personal-budget-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Structured Markdown or JSON with recommendations, templates, and next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational budgeting guidance only; no transactions, external API access, or bank account access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Users may share sensitive financial details while requesting budget guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask only for details needed for the budget task and avoid collecting unnecessary account, identity, or credential information.
+
+Risk: Users may treat generated budget, tax, investment, debt, or major financial recommendations as professional advice.
+
+Mitigation: Keep recommendations informational and direct users to qualified professionals for tax, investment, debt, or major financial decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/personal-budget-planner)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, json, text]
+
+**Output Format:** [Structured JSON or Markdown with budget recommendations, templates, and next-step checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational only; no account access, transactions, external API calls, or network requests.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

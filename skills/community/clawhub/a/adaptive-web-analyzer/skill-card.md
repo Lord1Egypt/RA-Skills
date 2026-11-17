@@ -1,43 +1,53 @@
-## Description: <br>
-Fetches webpage or API content, adaptively extracts key text, and uses an LLM to produce structured summaries and analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches webpage or API content, adaptively extracts key text, and prepares structured LLM summaries and analysis.
 
-## Publisher: <br>
-[maplee](https://clawhub.ai/user/maplee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maplee](https://clawhub.ai/user/maplee)
 
-## Use Case: <br>
-Developers and analysts use this skill to retrieve authorized webpage or API content, extract the main text, and generate structured summaries, key points, entity lists, sentiment, and suggested actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch or scrape authenticated and protected web content, including optional stealth behavior. <br>
-Mitigation: Use it only on sites and APIs where crawling is authorized, respect robots.txt and rate limits, and avoid stealth or anti-bot modes unless permission is explicit. <br>
-Risk: The release requests file.write and system.exec permissions that ClawScan described as unnecessary local command and file access. <br>
-Mitigation: Review before installing and remove or restrict file.write and system.exec permissions when the platform allows it. <br>
-Risk: Custom headers and authentication inputs could expose sensitive cookies, API tokens, or private system content. <br>
-Mitigation: Do not provide credentials for sensitive systems; prefer least-privilege, short-lived tokens and redact sensitive values from prompts and outputs. <br>
+## Use Case:
 
+Developers and analysts use this skill to fetch a user-specified public webpage or API endpoint, extract readable content and metadata, and prepare a structured report for LLM-assisted summarization and analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maplee/adaptive-web-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/maplee) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown or JSON analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes source URL, fetch time, content statistics, extracted metadata, summary, key points, category, sentiment, entities, suggested actions, and optional raw content preview.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can fetch arbitrary URLs, which may expose internal sites, private APIs, authenticated admin pages, cloud metadata endpoints, or secret-bearing pages if used without scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with approved public URLs unless network access, authentication handling, and LLM safeguards are explicitly constrained for the deployment.
+
+Risk: The declared local write and command-execution permissions increase the impact of misuse or compromised inputs.
+
+Mitigation: Review and scan the skill before deployment, remove permissions that are not required, and run it in a constrained environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maplee/skills/adaptive-web-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown or JSON report with source details, extraction statistics, content preview, metadata, and structured LLM analysis guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes one requested URL or API endpoint per run; extracted content is truncated to the configured maximum length.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

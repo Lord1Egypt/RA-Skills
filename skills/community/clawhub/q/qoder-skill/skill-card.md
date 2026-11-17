@@ -1,44 +1,64 @@
-## Description: <br>
-Integrates Alibaba Cloud Qoder so agents can request code generation, refactoring, documentation, test generation, code review, and SPEC-driven development through Qoder commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qoder Skill integrates Alibaba Cloud Qoder for AI-assisted code generation, refactoring, documentation generation, SPEC-driven development, testing, and codebase analysis workflows.
 
-## Publisher: <br>
-[frisky1985](https://clawhub.ai/user/frisky1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frisky1985](https://clawhub.ai/user/frisky1985)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to route coding tasks to Qoder, including generating code, refactoring files, producing documentation, creating tests, analyzing codebases, and working from specifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Qoder can access selected project files and send prompts, code, paths, or directory context to an external AI service. <br>
-Mitigation: Use it only in approved workspaces, avoid secrets or private business data unless authorized, and review the selected files and prompts before running Qoder. <br>
-Risk: The integration requires API credentials and may rely on a local ~/.qoder configuration file. <br>
-Mitigation: Use a scoped API key, protect local Qoder configuration files, and rotate credentials if exposure is suspected. <br>
-Risk: Generated or refactored code may be incorrect, insecure, or unsuitable for the target project. <br>
-Mitigation: Review, test, and scan all generated or modified files before committing or deploying them. <br>
+## Use Case:
 
+Developers and engineers use this skill to invoke Qoder for code generation, refactoring, documentation, tests, SPEC-driven development, and codebase analysis in a local workspace.
 
-## Reference(s): <br>
-- [Qoder official documentation](https://help.aliyun.com/product/qoder) <br>
-- [Qoder usage examples](references/examples.md) <br>
-- [Qoder configuration reference](references/qoder_config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write generated or refactored code, documentation, tests, reports, and configuration-dependent outputs through Qoder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The Qoder CLI can access prompts, source files, directories, and environment variables from the agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a controlled workspace after reviewing intended file access and trusting both the local qoder binary and Alibaba Cloud/Qoder service.
+
+Risk: API keys and service configuration may be exposed if stored loosely in the workspace or shell environment.
+
+Mitigation: Store Qoder credentials with restrictive permissions or in a secret manager, and avoid committing configuration files that contain secrets.
+
+Risk: Examples include email analysis and reporting, which may process sensitive communications.
+
+Mitigation: Do not use the email-analysis or reporting examples on sensitive communications unless data handling, access control, and review requirements are satisfied.
+
+Risk: Generated or refactored code may be incorrect, insecure, or broader than intended.
+
+Mitigation: Review generated changes before merging, and run normal tests, code review, and security checks for affected code.
+
+## Reference(s):
+
+- [Qoder official documentation](https://help.aliyun.com/product/qoder)
+- [Qoder configuration reference](references/qoder_config.md)
+- [Qoder usage examples](references/examples.md)
+- [ClawHub Qoder Skill page](https://clawhub.ai/frisky1985/skills/qoder-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, generated code or files, configuration snippets, and structured command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call a local Qoder CLI and external Alibaba Cloud/Qoder service using workspace files, prompts, directories, and environment variables available to the session.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

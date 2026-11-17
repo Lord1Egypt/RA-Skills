@@ -1,47 +1,70 @@
-## Description: <br>
-Unified security suite for agent workspaces that installs, configures, and orchestrates 11 OpenClaw security tools for integrity, secrets, permissions, network, audit, signing, supply chain, credentials, injection defense, compliance, and incident response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified security suite for agent workspaces. Installs, configures, and orchestrates all 11 OpenClaw security tools in one command -- integrity, secrets, permissions, network, audit trail, signing, supply chain, credentials, injection defense, compliance, and incident response.
 
-## Publisher: <br>
-[AtlasPA](https://clawhub.ai/user/AtlasPA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[atlaspa](https://clawhub.ai/user/atlaspa)
 
-## Use Case: <br>
-Developers and workspace operators use this skill to install and coordinate OpenClaw security tools, run workspace health checks and scans, and initialize security baselines, signing, audit, and policy components. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can bulk-install, update, execute, and orchestrate companion tools across a workspace. <br>
-Mitigation: Install only when the publisher and companion tools are trusted, review the tools before use, and run commands against an explicit workspace path. <br>
-Risk: The update command may move important workspaces to latest companion-tool versions. <br>
-Mitigation: Avoid unpinned latest-version updates in important workspaces unless the update has been reviewed and approved. <br>
-Risk: The protect command can trigger automated changes such as quarantine, blocking, revocation, rotation, containment, or remediation. <br>
-Mitigation: Back up the workspace first and run protect only when automated remediation is intended. <br>
+## Use Case:
 
+Developers and security engineers use this skill to install, initialize, update, scan, and monitor a workspace with the OpenClaw security tool suite from a single orchestrator.
 
-## Reference(s): <br>
-- [Openclaw Security on ClawHub](https://clawhub.ai/AtlasPA/openclaw-security) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code) <br>
-- [OpenClaw Warden](https://github.com/AtlasPA/openclaw-warden) <br>
-- [OpenClaw Sentry](https://github.com/AtlasPA/openclaw-sentry) <br>
-- [OpenClaw Sentinel](https://github.com/AtlasPA/openclaw-sentinel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and terminal text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May coordinate companion security tools against an explicit workspace path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can bulk install, update, and execute many dependent security skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the 11 dependent skills before installation or update, and run commands only in workspaces where those tools are trusted.
+
+Risk: The protect command can trigger state-changing remediation through dependent Pro tools.
+
+Mitigation: Run scan or status first, review findings, and execute protect only with explicit operator approval.
+
+Risk: Unattended update or protect runs may apply changes without sufficient review.
+
+Mitigation: Avoid unattended update and protect runs; capture command output and review each dependent tool's result.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/atlaspa/skills/openclaw-security)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
+- [openclaw-warden](https://github.com/AtlasPA/openclaw-warden)
+- [openclaw-sentry](https://github.com/AtlasPA/openclaw-sentry)
+- [openclaw-arbiter](https://github.com/AtlasPA/openclaw-arbiter)
+- [openclaw-signet](https://github.com/AtlasPA/openclaw-signet)
+- [openclaw-ledger](https://github.com/AtlasPA/openclaw-ledger)
+- [openclaw-egress](https://github.com/AtlasPA/openclaw-egress)
+- [openclaw-sentinel](https://github.com/AtlasPA/openclaw-sentinel)
+- [openclaw-vault](https://github.com/AtlasPA/openclaw-vault)
+- [openclaw-bastion](https://github.com/AtlasPA/openclaw-bastion)
+- [openclaw-marshal](https://github.com/AtlasPA/openclaw-marshal)
+- [openclaw-triage](https://github.com/AtlasPA/openclaw-triage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3. Install and update commands require the ClawHub CLI. The protect command can execute state-changing countermeasures through dependent skills.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Flirt Coach Skill provides playful, calibrated flirting guidance for openers, reply options, teasing, compliments, escalation, callbacks, voice notes, emoji style, and knowing when to stop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Flirting Coach is an AI flirting guide for people who want playful banter, better rizz, and teasing that lands without being creepy or awkward.
 
-## Publisher: <br>
-[imwyvern](https://clawhub.ai/user/imwyvern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwyvern](https://clawhub.ai/user/imwyvern)
 
-## Use Case: <br>
-External users can use this skill for romantic communication coaching, including dating-app openers, text replies, in-person flirting techniques, and consent-aware calibration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled publish.sh can commit, push, and publish to a ReplyHer ClawHub slug that differs from this release. <br>
-Mitigation: Review or remove publish.sh before reuse, and run it only when intentionally publishing to the ReplyHer listing. <br>
-Risk: Flirting advice can be misused to pressure someone who is not reciprocating. <br>
-Mitigation: Keep the skill's consent, reciprocity, and stop-after-rejection guidance intact, and redirect requests that describe harassment or persistence after rejection. <br>
+## Use Case:
 
+External users use this skill to get concise flirting advice, reply suggestions, and technique coaching that emphasizes consent, reciprocity, and calibration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imwyvern/flirting-coach) <br>
-- [Publisher profile](https://clawhub.ai/user/imwyvern) <br>
-- [ReplyHer](https://replyher.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style coaching responses with reply options, technique explanations, and concise safety guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Replies in the user's language when possible and emphasizes consent, reciprocity, and graceful disengagement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The bundled release automation can push repository changes and publish to a mismatched skill identity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run publish.sh unless you have reviewed the repository contents, confirmed the intended ClawHub slug, and accepted the git push and package-publish authority.
+
+Risk: Longer exchanges may promote replyher.com.
+
+Mitigation: Install only if that promotional behavior is acceptable for the intended users and deployment context.
+
+Risk: The skill provides interpersonal coaching that could be misused for unwanted persistence or harassment.
+
+Mitigation: Keep the documented consent, reciprocity, and stop-after-rejection guidance active when using or adapting the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/imwyvern/skills/flirting-coach)
+- [Publisher Profile](https://clawhub.ai/user/imwyvern)
+- [ReplyHer](https://replyher.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted coaching advice and reply options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in the user's language when possible.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

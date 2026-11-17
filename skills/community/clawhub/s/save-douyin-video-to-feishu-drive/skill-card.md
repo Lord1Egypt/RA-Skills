@@ -1,42 +1,59 @@
-## Description: <br>
-Parses Douyin share links or video-page URLs into downloadable video links, titles, and descriptions, with options to download locally or upload the video to Feishu Drive. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses a Douyin share link or video page URL to obtain downloadable video URLs, title, and description, with options to download the video locally or upload it to Feishu Drive.
 
-## Publisher: <br>
-[kuaner](https://clawhub.ai/user/kuaner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kuaner](https://clawhub.ai/user/kuaner)
 
-## Use Case: <br>
-Developers and operators use this skill when an agent needs to turn Douyin share links or video-page URLs into downloadable metadata and either save video locally or upload it to an authorized Feishu Drive folder. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu Drive upload authority can expose workspace data or allow unwanted uploads if credentials or folder permissions are too broad. <br>
-Mitigation: Provide app secrets and access tokens only through a secure runtime secret mechanism, grant the minimum Feishu Drive scopes and folder permissions needed for upload, and do not store secrets in TOOLS.md, chat, shell history, or source-controlled files. <br>
-Risk: Downloading and uploading Douyin content can create policy or rights issues if the user is not authorized to move that content into Feishu. <br>
-Mitigation: Confirm that the user is allowed to download the source video and upload it into the target Feishu workspace before running the workflow. <br>
+## Use Case:
 
+Developers and automation users use this skill to process Douyin URLs, extract video metadata and playable download URLs, and optionally save the resulting video to local storage or Feishu Drive.
 
-## Reference(s): <br>
-- [Server-resolved GitHub source](https://github.com/kuaner/save-douyin-video-to-feishu-drive/tree/main/skills/save-douyin-video-to-feishu-drive) <br>
-- [ClawHub skill page](https://clawhub.ai/kuaner/skills/save-douyin-video-to-feishu-drive) <br>
-- [Feishu folder permission documentation](https://open.feishu.cn/document/faq/trouble-shooting/how-to-add-permissions-to-app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe expected fields such as feishu_url, title, desc, video_urls, or download_path depending on the chosen workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Feishu app secrets, tenant tokens, or bearer credentials could be exposed if stored in TOOLS.md, source files, chat, logs, or command history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep credentials in environment variables or a secret manager, avoid persisting them in workspace files, and rotate any token that may have been exposed.
+
+Risk: The Feishu integration can access Drive resources beyond the intended folder if granted broad permissions.
+
+Mitigation: Grant only the minimum Feishu Drive permissions needed, share only the target folder with the app, and verify folder access before use.
+
+Risk: Local download mode writes video files to disk and could overwrite or place files in an unintended location.
+
+Mitigation: Confirm the destination path before downloading and prefer a controlled temporary or project-specific output directory.
+
+## Reference(s):
+
+- [Server-resolved GitHub source](https://github.com/kuaner/save-douyin-video-to-feishu-drive/tree/main/skills/save-douyin-video-to-feishu-drive)
+- [ClawHub skill page](https://clawhub.ai/kuaner/skills/save-douyin-video-to-feishu-drive)
+- [Feishu Drive app permissions documentation](https://open.feishu.cn/document/faq/trouble-shooting/how-to-add-permissions-to-app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown with bash commands and structured result fields such as title, desc, video_urls, feishu_url, and download_path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require Feishu app credentials, a Feishu Drive folder token, and a Douyin Referer header when downloading direct video URLs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

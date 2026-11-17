@@ -1,41 +1,53 @@
-## Description: <br>
-Geo Poison Detector helps agents flag potentially poisoned AI product recommendations, check product names, and analyze product-recommendation URLs for soft-ad and pseudo-technical risk signals across Chinese and global markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Geo Poison Detector helps agents flag potentially manipulated product recommendations, product names, or recommendation articles by scanning pseudo-technical claims, soft-ad patterns, source quality, and verification links for Chinese and global markets.
 
-## Publisher: <br>
-[graysonzeng](https://clawhub.ai/user/graysonzeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[graysonzeng](https://clawhub.ai/user/graysonzeng)
 
-## Use Case: <br>
-External users and agents use this skill to annotate product recommendations, quick-check product names, and generate verification links for manual authenticity review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Heuristic verdicts can be wrong or incomplete. <br>
-Mitigation: Treat results as prompts for manual verification, and confirm product claims through official retailers, registries, standards bodies, or independent reviews. <br>
-Risk: URL analysis may expose private or sensitive links to the agent or its browsing tools. <br>
-Mitigation: Avoid submitting private URLs; paste non-sensitive excerpts when a page cannot be safely fetched. <br>
+## Use Case:
 
+External users and assistants use this skill to evaluate product recommendations, product names, and recommendation articles for signs of GEO poisoning before purchase decisions. It provides advisory risk labels, supporting indicators, verification links, and next-step guidance.
 
-## Reference(s): <br>
-- [Pseudo-Tech Term Library](references/pseudo-tech-terms.md) <br>
-- [Geo Poison Detector on ClawHub](https://clawhub.ai/graysonzeng/geo-poison-detector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown risk verdicts with indicators, verification links, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Chinese and English output; no API keys required] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: The skill's green, yellow, and red labels may be mistaken for authoritative proof of product authenticity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the labels as advisory and confirm important purchases through official retailers, company records, patents, standards, and independent reviews.
+
+Risk: URL analysis can expose the host agent to untrusted web content if pages are fetched automatically.
+
+Mitigation: Configure the host to fetch URLs only after an explicit user request and ask for pasted text when fetching fails or is blocked.
+
+## Reference(s):
+
+- [Pseudo-Tech Term Library](references/pseudo-tech-terms.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown risk badge or report with indicators, verification links, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory and may include green, yellow, or red risk labels plus generated retailer, company-record, patent, standards, and review-site search links.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

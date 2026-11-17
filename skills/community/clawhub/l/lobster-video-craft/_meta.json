@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn72ch4z1jmnyde7s0p4mz9y9585swk4",
-  "slug": "lobster-video-craft",
+  "name": "video-craft-pro",
   "version": "1.0.0",
-  "publishedAt": 1778256195140
+  "author": "智美人团队",
+  "description": "融合技能",
+  "tags": ["fusion", "business", "ai"]
 }

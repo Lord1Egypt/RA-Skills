@@ -1,41 +1,54 @@
-## Description: <br>
-Create, inspect, and edit Microsoft Word documents and DOCX files with reliable styles, numbering, tracked changes, tables, sections, and compatibility checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, inspect, and edit Microsoft Word documents and DOCX files with reliable styles, numbering, tracked changes, tables, sections, and compatibility checks.
 
-## Publisher: <br>
-[cm1173710210](https://clawhub.ai/user/cm1173710210) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cm1173710210](https://clawhub.ai/user/cm1173710210)
 
-## Use Case: <br>
-Developers, writers, reviewers, and document automation agents use this skill to create, inspect, or edit Word DOCX files while preserving styles, numbering, tracked changes, comments, fields, tables, sections, and round-trip compatibility. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Important DOCX files with tracked changes, comments, fields, or complex formatting can drift or lose review fidelity during editing. <br>
-Mitigation: Keep backups, make minimal targeted edits, and verify round-trip compatibility in the target editor before delivery. <br>
-Risk: Users may install the wrong publisher or release version. <br>
-Mitigation: Confirm the publisher handle, ClawHub page, and release version before installation. <br>
+## Use Case:
 
+Developers, document editors, and agents use this skill to handle Word and DOCX files when formatting, tracked changes, comments, fields, tables, sections, or round-trip compatibility matter.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cm1173710210/word-docx-1-02) <br>
-- [Skill homepage](https://clawic.com/skills/word-docx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with optional code, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable code or credential handling is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 1.0.2) <br>
+Risk: Sensitive business, legal, or academic DOCX files may contain tracked changes, comments, deleted text, fields, or metadata that remain after careless edits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review resulting documents before sharing, especially when revisions, comments, fields, or sensitive content are present.
+
+Risk: Formatting, numbering, tables, headers, fields, and pagination can drift across Word, LibreOffice, Google Docs, and conversion tools.
+
+Mitigation: Use structure-preserving workflows and perform round-trip compatibility checks before delivery when layout fidelity matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cm1173710210/skills/word-docx-1-02)
+- [Skill homepage](https://clawic.com/skills/word-docx)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with optional code, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on structure-preserving DOCX workflows, review-safe edits, and compatibility checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata); artifact frontmatter reports 1.0.2
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

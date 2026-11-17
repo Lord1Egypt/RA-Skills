@@ -1,40 +1,57 @@
-## Description: <br>
-Automates a six-step short-video workflow that downloads Douyin or Bilibili videos or resumes from local media, extracts vocals, transcribes speech, corrects text, and restores punctuation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Short Video Content Replicator is an OpenClaw skill that orchestrates a six-step workflow for Douyin, Bilibili, or local short-video inputs, producing separated vocals, transcription text, corrected text, and punctuated final text.
 
-## Publisher: <br>
-[wangminrui2022](https://clawhub.ai/user/wangminrui2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangminrui2022](https://clawhub.ai/user/wangminrui2022)
 
-## Use Case: <br>
-Developers, creators, and agents use this skill to process short-form video links or local media into clean vocal audio and punctuated text for content reuse, transcription, batch processing, or TTS preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow creates local media and text files and depends on companion media-processing skills. <br>
-Mitigation: Use a specific output directory, confirm the companion skills are trusted and installed, and review generated files before relying on them. <br>
-Risk: Downloading or processing third-party videos can raise copyright or privacy concerns. <br>
-Mitigation: Process only content you are allowed to use and consider copyright and privacy implications before downloading or transforming videos. <br>
+## Use Case:
 
+External users and developers use this skill to process short-video URLs or local media folders into local audio and text artifacts for content adaptation, transcription, and TTS training preparation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangminrui2022/short-video-content-replicator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and local media/text file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces videos, MP3 audio, vocal WAV files, transcripts, corrected text, and punctuated final text under an output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The workflow downloads online video and writes local media and text artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only for content you are permitted to process and direct outputs to a non-sensitive directory.
+
+Risk: The workflow depends on other local skills and scripts.
+
+Mitigation: Review and install the required sibling skills before execution, and run it from the expected skills layout.
+
+Risk: The transcription flow is Chinese-first and generated text may be imperfect.
+
+Mitigation: Review transcripts and corrected text before reuse, publication, or downstream training.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangminrui2022/skills/short-video-content-replicator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with shell commands and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes video, MP3, vocals, transcript, corrected text, and final text outputs under the configured output root.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

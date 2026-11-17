@@ -55,9 +55,7 @@ password = os.environ.get("DB_PASSWORD")
 **Examples:**
 ```python
 # VULNERABLE
-private_key = """-----BEGIN RSA PRIVATE KEY-----
-MIIEpAIBAAKCAQEA...
------END RSA PRIVATE KEY-----"""
+private_key = """REDACTED-SECRET"""
 ```
 
 **Risk:** Full compromise of cryptographic identity.

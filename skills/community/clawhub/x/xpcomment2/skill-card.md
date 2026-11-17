@@ -1,39 +1,57 @@
-## Description: <br>
-Reads, writes, and removes JPEG XPComment metadata, including Windows photo Comments, by producing exiftool commands for single files, batches, and recursive folders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages JPEG XPComment metadata by generating exiftool commands to read, add, overwrite, or remove Windows photo comments.
 
-## Publisher: <br>
-[happyturbo](https://clawhub.ai/user/happyturbo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[happyturbo](https://clawhub.ai/user/happyturbo)
 
-## Use Case: <br>
-External users, developers, and content operators use this skill when they need an agent to read, add, overwrite, or remove XPComment metadata on local JPEG/image files using exiftool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Write, remove, wildcard, or recursive operations can change image files in place. <br>
-Mitigation: Confirm the exact files or directory scope before execution and keep backups when the metadata matters. <br>
-Risk: The generated commands require exiftool and can fail or behave differently if it is missing or unavailable. <br>
-Mitigation: Verify exiftool is installed before using write or read commands. <br>
+## Use Case:
 
+Developers and operators use this skill to manage XPComment metadata on local JPEG/image files with exiftool, including single-file, wildcard, and recursive folder operations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash commands and concise status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may modify image metadata in place and depend on exiftool being installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Unsafe shell execution from untrusted file paths or comment text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted local images and avoid copying untrusted paths or comment text directly into shell commands.
+
+Risk: Metadata add, remove, wildcard, or recursive operations can overwrite or delete XPComment values across one or many files.
+
+Mitigation: Make backups and require explicit confirmation before overwrite, delete, wildcard, or recursive runs.
+
+Risk: The suggested sudo install command changes the system package set.
+
+Mitigation: Run the sudo install command only when intentionally installing the exiftool system package.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/happyturbo/skills/xpcomment2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include exiftool commands and completion summaries for read, add, overwrite, remove, wildcard, and recursive XPComment operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

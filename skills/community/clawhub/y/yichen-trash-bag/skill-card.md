@@ -1,49 +1,68 @@
-## Description: <br>
-Yichen Trash Bag is an e-commerce customer-service skill that helps shoppers with trash-bag recommendations, specifications, pricing context, promotions, shipping, after-sales guidance, and wholesale inquiries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yichen Trash Bag is a Chinese e-commerce customer-service skill for answering product, price, promotion, shipping, after-sales, and wholesale questions about Yichen trash bag products.
 
-## Publisher: <br>
-[liubuq-sys](https://clawhub.ai/user/liubuq-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liubuq-sys](https://clawhub.ai/user/liubuq-sys)
 
-## Use Case: <br>
-External shoppers and store operators use this skill to answer Yichen Trash Bag product, pricing, promotion, logistics, returns, and bulk-purchase questions with guidance grounded in the bundled reference files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installers configure daily automatic updates and can overwrite an existing local skill folder. <br>
-Mitigation: Install from a reviewed, pinned release when possible, inspect files before use, back up any existing skill folder, and remove the scheduled updater if automatic changes are not desired. <br>
-Risk: Product prices, promotions, shipping terms, and store policies may change after the bundled reference files are published. <br>
-Mitigation: Treat commercial details as guidance, read the relevant reference file before answering, and tell shoppers that final prices and offers are determined by the store checkout page. <br>
-Risk: The skill can describe after-sales policies but cannot execute refunds, returns, replacements, or complaint handling. <br>
-Mitigation: Route transactional requests to the store customer-service channel or platform backend and avoid promising direct operational actions. <br>
+## Use Case:
 
+External customers and store support agents use this skill to provide warm Chinese-language storefront assistance for Yichen trash bag selection, specifications, pricing, promotions, delivery, after-sales policy, and wholesale/OEM inquiries. The skill relies on bundled reference files for product and business details.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liubuq-sys/yichen-trash-bag) <br>
-- [Brand Reference](references/brand.md) <br>
-- [Business Information Reference](references/business-info.md) <br>
-- [Services Reference](references/services.md) <br>
-- [Promotions Reference](references/promotions.md) <br>
-- [FAQ Reference](references/faq.md) <br>
-- [Shipping Reference](references/shipping.md) <br>
-- [Wholesale Reference](references/wholesale.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Answers should be grounded in the bundled reference files for product details, prices, promotions, shipping, and policies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The installer paths execute mutable remote code and configure daily auto-update behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installer scripts locally, use a pinned or verified archive, avoid one-line remote shell installation, and remove cron or scheduled-task auto-updates unless daily self-updates are explicitly desired.
+
+Risk: Running installers with elevated privileges could expand the impact of script or update behavior.
+
+Mitigation: Install as a normal user and do not run the shell or PowerShell installer with administrator or root privileges.
+
+Risk: Product prices, promotions, and shipping details may change after the bundled reference files were published.
+
+Mitigation: Read the relevant reference file before answering and state that final prices, promotions, and delivery terms are determined by the customer-facing order page or store support channel.
+
+Risk: The skill can describe after-sales policies but cannot process refunds, replacements, or complaints directly.
+
+Mitigation: Route refund, replacement, complaint, and account-specific cases to the store customer-service channel or platform self-service flow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liubuq-sys/skills/yichen-trash-bag)
+- [Brand Introduction](references/brand.md)
+- [Business Information](references/business-info.md)
+- [Product Catalog](references/services.md)
+- [Promotions](references/promotions.md)
+- [Product FAQ](references/faq.md)
+- [Shipping and Delivery](references/shipping.md)
+- [Wholesale and OEM](references/wholesale.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Natural-language Chinese customer-service replies, optionally using short lists or tables for product details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the bundled references directory to be readable when answering business-data questions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact version files list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

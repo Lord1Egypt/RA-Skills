@@ -1,44 +1,53 @@
-## Description: <br>
-让AI回复更像真人，避免过度称呼和机械化的表达，使对话更加自然流畅。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Formats Chinese AI replies to sound more natural by reducing repeated greetings and mechanical phrasing while adjusting tone, sentence endings, and optional emojis.
 
-## Publisher: <br>
-[HisongMo](https://clawhub.ai/user/HisongMo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hisongmo](https://clawhub.ai/user/hisongmo)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to automatically make outgoing Chinese AI replies sound more natural by reducing repeated greetings, replacing mechanical phrases, and tuning casualness from configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outgoing replies may be rewritten into a more casual tone in contexts where exact wording or formality matters. <br>
-Mitigation: Disable the skill or raise formal_level for legal, medical, financial, incident-response, audit, or other wording-sensitive conversations. <br>
-Risk: Local session metadata is retained in memory/reply_state.json to track greeting and topic state. <br>
-Mitigation: Periodically clear memory/reply_state.json when local topic or session metadata should not be retained. <br>
-Risk: The formatter is optimized for Chinese and uses heuristic topic and greeting detection. <br>
-Mitigation: Use it primarily for Chinese-language replies and tune or disable casual formatting when outputs become too informal or inaccurate. <br>
+## Use Case:
 
+External users and developers use this OpenClaw skill to post-process Chinese assistant replies so they read less repetitive and more conversational. It is suited for casual dialogue flows where configurable greeting frequency, formality, filler words, and emoji use are acceptable.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/HisongMo/human-like-reply) <br>
-- [HisongMo Publisher Profile](https://clawhub.ai/user/HisongMo) <br>
-- [Human-like Reply Skill - Technical Reference](references/technical_reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration, Guidance] <br>
-**Output Format:** [Rewritten natural-language replies with configurable YAML settings and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optimized for Chinese-language conversations; stores per-session formatting state locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may automatically rewrite every outgoing response, which can make formal, safety-critical, or multilingual replies less appropriate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or disable the skill for formal work, safety-critical answers, or non-Chinese conversations; tune formality and emoji settings before deployment.
+
+Risk: The skill stores limited local conversation state for session-aware greeting behavior.
+
+Mitigation: Review local state retention expectations and clear or rotate the memory file when session metadata should not persist.
+
+## Reference(s):
+
+- [Technical Reference](references/technical_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Single natural-language reply string, with YAML configuration guidance in the artifact documentation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May apply randomized tone changes, greetings, emojis, and local session-state-aware formatting based on configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

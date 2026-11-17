@@ -1,49 +1,58 @@
-## Description: <br>
-Create Simplified Chinese or Chinese-English bilingual hard-subtitled videos from YouTube links or existing video/subtitle files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create Simplified Chinese or Chinese-English bilingual hard-subtitled videos from YouTube links or existing video/subtitle files.
 
-## Publisher: <br>
-[woodenxyz](https://clawhub.ai/user/woodenxyz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[woodenxyz](https://clawhub.ai/user/woodenxyz)
 
-## Use Case: <br>
-Developers, localization teams, and content operators use this skill to produce Chinese-only or bilingual hard-subtitled YouTube videos while retaining reusable SRT/ASS files, descriptions, thumbnails, previews, and review artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads and processes YouTube media and can create transformed video outputs. <br>
-Mitigation: Use it only for videos you have rights to transform, and review the generated outputs before publication. <br>
-Risk: Subtitle mode or layout choices can produce incorrect, unreadable, or occluding subtitles. <br>
-Mitigation: Specify Chinese-only versus bilingual output up front, create a preview clip, inspect design confirmation frames, and run the subtitle quality gates before full delivery. <br>
-Risk: Reusable feedback updates can change future workflow behavior. <br>
-Mitigation: Review proposed feedback-ledger, workflow, and quality-gate changes before repackaging or redistributing the skill. <br>
-Risk: External media tools such as ffmpeg, ffprobe, and yt-dlp are required in the local environment. <br>
-Mitigation: Confirm the required binaries are installed and use the skill's ffmpeg capability check before burning subtitles. <br>
+## Use Case:
 
+Developers and video localization teams use this skill to create Simplified Chinese or optional Chinese-English hard-subtitled videos from YouTube links or local video/subtitle inputs, with reusable subtitle files, review screenshots, descriptions, and cover assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/woodenxyz/youtube-cn-subtitle-burnin) <br>
-- [Project homepage](https://github.com/woodenxyz/youtube-cn-subtitle-burnin) <br>
-- [Workflow](references/workflow.md) <br>
-- [Quality gates](references/quality-gates.md) <br>
-- [Review template](references/review-template.md) <br>
-- [Feedback ledger](references/feedback-ledger.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, subtitle files, review records, and video or thumbnail outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local media-processing artifacts such as SRT, ASS, MP4, thumbnails, screenshots, and review notes when used in a project workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and release evidence) <br>
+Risk: The skill runs ffmpeg and yt-dlp and writes media outputs locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where local YouTube media processing and file writes are acceptable, and review generated output paths before use.
+
+Risk: The feedback feature can turn reusable user feedback into future workflow instructions.
+
+Mitigation: Allow reusable feedback only from trusted users and review changes to workflow.md, quality-gates.md, and SKILL.md before re-packaging or reusing the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/woodenxyz/skills/youtube-cn-subtitle-burnin)
+- [Project homepage](https://github.com/woodenxyz/youtube-cn-subtitle-burnin)
+- [Workflow](references/workflow.md)
+- [Quality Gates](references/quality-gates.md)
+- [Review Template](references/review-template.md)
+- [Feedback Ledger](references/feedback-ledger.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON translation batches, subtitle files, review records, and generated media file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local, versioned video, subtitle, cover, description, screenshot, and review artifacts; requires python3, ffmpeg, ffprobe, and yt-dlp.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

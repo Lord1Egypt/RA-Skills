@@ -1,40 +1,57 @@
-## Description: <br>
-Quickly send local images to channel. Auto-compress large images, copy small images directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quickly sends local images to a specified channel, copying small images directly and auto-compressing large images.
 
-## Publisher: <br>
-[DeadLining](https://clawhub.ai/user/DeadLining) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deadlining](https://clawhub.ai/user/deadlining)
 
-## Use Case: <br>
-Developers and agent users use this skill to send local image files to a specified channel and target, with automatic copying for small images and compression for larger images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper sends local image files to external channels. <br>
-Mitigation: Use only with intended local files, channels, targets, and message text, and confirm the destination before sending. <br>
-Risk: Shell metacharacters in image paths, channel names, targets, or messages can cause unintended local shell command execution. <br>
-Mitigation: Avoid untrusted inputs until the helper removes shell:true and validates destination and message arguments. <br>
+## Use Case:
 
+Developers and external OpenClaw users use this skill to send local image files to a named messaging channel or recipient, with compression for files at or above 10 MB.
 
-## Reference(s): <br>
-- [Fast Image on ClawHub](https://clawhub.ai/DeadLining/fast-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Text] <br>
-**Output Format:** [Markdown with inline shell commands and script behavior guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local Node.js helper, sharp for compression of images 10MB or larger, and the openclaw CLI to send media.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Shell-interpreted input in the send helper can make channel, target, or message values unsafe to pass through execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove shell interpretation or otherwise prevent shell parsing, and validate channel and target values before use.
+
+Risk: The staging path behavior can create unsafe or unreliable media handling.
+
+Mitigation: Use a unique home-directory-based staging directory and clean generated media after successful sends.
+
+Risk: Unpinned dependencies can change behavior across installs.
+
+Mitigation: Pin runtime dependencies, including image-processing and CLI dependencies, before release.
+
+## Reference(s):
+
+- [Fast Image ClawHub listing](https://clawhub.ai/deadlining/skills/fast-image)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, text]
+
+**Output Format:** [CLI output and messaging-side media delivery]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes one local image path with channel, target, and optional message arguments.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact _meta.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

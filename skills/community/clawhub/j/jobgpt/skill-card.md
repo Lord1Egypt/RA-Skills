@@ -1,45 +1,64 @@
-## Description: <br>
-JobGPT helps agents automate job search, auto-apply workflows, tailored resume generation, application tracking, salary intelligence, and recruiter outreach through the JobGPT MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Job search automation, auto apply, resume generation, application tracking, salary intelligence, and recruiter outreach using the JobGPT MCP server.
 
-## Publisher: <br>
-[captainjackrana](https://clawhub.ai/user/captainjackrana) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[captainjackrana](https://clawhub.ai/user/captainjackrana)
 
-## Use Case: <br>
-Job seekers and career assistants use this skill to search for roles, manage job hunts, apply to selected jobs, tailor resumes, track application status, review compensation data, and draft recruiter or referrer outreach. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send resume, profile, salary, application, and outreach data to an external JobGPT service. <br>
-Mitigation: Install only if you trust JobGPT with career data, and review the account, API key, and MCP server configuration before use. <br>
-Risk: Auto-apply and outreach workflows can take real-world actions such as submitting job applications or contacting recruiters. <br>
-Mitigation: Set narrow job criteria and daily limits, review jobs and generated resume or outreach content, and require explicit approval for each application, batch, or message. <br>
-Risk: Auto-apply and resume generation workflows may consume JobGPT credits. <br>
-Mitigation: Check available credits before running credit-consuming workflows and confirm the user wants to proceed. <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to JobGPT for job search, auto-apply workflows, tailored resume generation, application tracking, salary insights, and recruiter or referrer outreach.
 
-## Reference(s): <br>
-- [JobGPT](https://6figr.com/jobgpt) <br>
-- [JobGPT platform](https://6figr.com/jobgpt-ai) <br>
-- [JobGPT MCP server](https://github.com/6figr-com/jobgpt-mcp-server) <br>
-- [jobgpt-mcp-server npm package](https://www.npmjs.com/package/jobgpt-mcp-server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration steps, and MCP tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a JobGPT account, JOBGPT_API_KEY, and the JobGPT MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can submit real job applications through auto-apply workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show the exact jobs, application materials, credit use, and job-hunt automation settings before triggering apply actions.
+
+Risk: The MCP server uses a JobGPT API key and can access resume, profile, salary, and application data.
+
+Mitigation: Install only for trusted users and environments, keep JOBGPT_API_KEY secret, and review requested actions before sharing sensitive career data.
+
+Risk: The security summary flags unpinned MCP install commands.
+
+Mitigation: Pin or otherwise verify npm package versions before installation where possible.
+
+Risk: Recruiter or referrer outreach can contact real people.
+
+Mitigation: Require explicit user confirmation after showing the complete message and recipient before calling send_outreach.
+
+## Reference(s):
+
+- [JobGPT](https://6figr.com/jobgpt)
+- [JobGPT platform](https://6figr.com/jobgpt-ai)
+- [JobGPT MCP server](https://github.com/6figr-com/jobgpt-mcp-server)
+- [jobgpt-mcp-server npm package](https://www.npmjs.com/package/jobgpt-mcp-server)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, job summaries, resume and application details, and outreach drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include links to generated resumes, imported jobs, applications, or JobGPT account resources when returned by the MCP server.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

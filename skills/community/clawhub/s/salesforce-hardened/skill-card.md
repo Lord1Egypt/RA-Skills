@@ -1,46 +1,64 @@
-## Description: <br>
-Query and manage Salesforce CRM data via the Salesforce CLI (`sf`). Run SOQL/SOSL queries, inspect object schemas, create/update/delete records, bulk import/export, execute Apex, deploy metadata, and make raw REST API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and manage Salesforce CRM data via the Salesforce CLI (`sf`), including SOQL/SOSL queries, schema inspection, record operations, bulk import/export, Apex execution, metadata deployment, and REST API calls.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers, administrators, and support teams use this skill to generate and review Salesforce CLI commands for querying CRM data, inspecting metadata, managing records, deploying metadata, executing Apex, and making authenticated API requests. It is intended for authenticated Salesforce environments where users can review commands before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Salesforce access tokens, refresh-token-bearing SFDX auth URLs, JWT key contents, and full org-display JSON can be exposed during normal CLI workflows. <br>
-Mitigation: Use a secure secret-handling and redaction process, and do not print or share those values in agent responses. <br>
-Risk: Create, update, delete, deployment, Apex, bulk, and raw REST operations can modify production data or metadata. <br>
-Mitigation: Require explicit user approval before those operations, and confirm the target org before destructive operations when multiple orgs are connected. <br>
-Risk: CRM data, customer PII, financial records, and org metadata can be exfiltrated if query or API output is piped to network-transmitting commands. <br>
-Mitigation: Do not pipe Salesforce outputs to network commands; export locally and use an approved secure transfer process outside the agent workflow. <br>
-Risk: Soft-deleted or archived records may be sensitive because they can include data removed for compliance or privacy reasons. <br>
-Mitigation: Use `--all-rows` only when the user explicitly requests deleted, soft-deleted, or archived records; otherwise query active records first. <br>
+## Use Case:
 
+Developers, administrators, and agents use this skill to inspect and manage Salesforce org data and metadata from the command line while preserving review steps for sensitive operations.
 
-## Reference(s): <br>
-- [Salesforce CLI](https://developer.salesforce.com/tools/salesforcecli) <br>
-- [Faberlens Salesforce Safety Evaluation](https://faberlens.ai/explore/salesforce) <br>
-- [ClawHub Salesforce Hardened Skill](https://clawhub.ai/snazar-faberlens/salesforce-hardened) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash, SOQL, SQL, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands assume the Salesforce CLI is installed and the target org is authenticated; structured command output should use `--json` where supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Salesforce access can expose CRM data, org metadata, and authentication material if tokens or verbose org details are printed or pasted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not print or paste Salesforce access tokens, refresh tokens, SFDX auth URLs, or verbose org-display output; use the skill only with orgs the agent is trusted to access.
+
+Risk: Create, update, delete, deploy, bulk import/delete, REST mutation, and Apex actions can change or destroy production data.
+
+Mitigation: Require an explicit target org, review the exact command, Apex, metadata, or file scope, and confirm immediately before each mutating or destructive operation.
+
+Risk: Piping Salesforce query results or API responses to network commands can transmit sensitive CRM data outside the local environment.
+
+Mitigation: Keep exports local and use approved organizational transfer processes instead of network-transmitting command pipelines.
+
+Risk: Unpinned Salesforce CLI installations can change behavior or introduce unreviewed dependencies.
+
+Mitigation: Prefer a pinned or organization-approved Salesforce CLI installation.
+
+## Reference(s):
+
+- [Salesforce CLI documentation](https://developer.salesforce.com/tools/salesforcecli)
+- [ClawHub skill listing](https://clawhub.ai/snazar-faberlens/skills/salesforce-hardened)
+- [Publisher profile](https://clawhub.ai/user/snazar-faberlens)
+- [Faberlens Salesforce safety evaluation](https://faberlens.ai/explore/salesforce)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, SQL, and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Salesforce CLI JSON output where applicable and asks for confirmation before mutating or destructive operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

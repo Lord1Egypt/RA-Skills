@@ -1,45 +1,64 @@
-## Description: <br>
-Extract recipe information from TikTok links, reconstruct a clean recipe, localize it to the user's language when needed, and import it into Mealie. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract recipe information from TikTok links, reconstruct a clean recipe, localize it to the user's language when needed, and import it into Mealie.
 
-## Publisher: <br>
-[Elyasuuuuu](https://clawhub.ai/user/Elyasuuuuu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elyasuuuuu](https://clawhub.ai/user/elyasuuuuu)
 
-## Use Case: <br>
-External users and self-hosted Mealie operators use this skill to turn TikTok cooking content into structured, localized recipes and import acceptable reconstructions into Mealie. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Mealie credentials to create recipes and upload cover images. <br>
-Mitigation: Use a dedicated or least-privilege token if available, keep the token out of shared files and logs, and ask for a preview when import should not happen immediately. <br>
-Risk: Sparse or noisy TikTok content can produce an unreliable reconstructed recipe. <br>
-Mitigation: Import only when the title, ingredients, and steps meet the documented quality threshold; otherwise stop with a short failure reason or ask one confirmation question. <br>
+## Use Case:
 
+External users and agents use this skill to turn TikTok cooking links into structured, localized recipes and import usable results into Mealie. It is best for execution-focused recipe workflows where a Mealie base URL and API token are configured.
 
-## Reference(s): <br>
-- [Configuration](references/configuration.md) <br>
-- [Failure modes](references/failure-modes.md) <br>
-- [Localization](references/localization.md) <br>
-- [Mealie API notes](references/mealie-api-notes.md) <br>
-- [Output templates](references/output-templates.md) <br>
-- [Workflow](references/workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown, API Calls, Configuration instructions] <br>
-**Output Format:** [Concise text or Markdown containing a recipe link, short failure reason, or one confirmation question.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create Mealie recipes and upload cover images when a Mealie base URL and API token are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server evidence) <br>
+Risk: The skill can write recipes to Mealie from untrusted TikTok content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited Mealie API token, validate extracted content against the documented quality threshold, and stop before import when title, ingredients, or steps are too weak.
+
+Risk: TikTok links and cover images may involve redirects or external downloads.
+
+Mitigation: Resolve and validate redirects and image downloads before import, and avoid broad agent permissions for the configured token.
+
+Risk: Incomplete social-video text can produce inaccurate recipes.
+
+Mitigation: Keep uncertainty explicit, avoid fake precision, and ask for one short confirmation when a partial reconstruction is salvageable but ambiguous.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/elyasuuuuu/skills/tiktok-to-mealie)
+- [README](README.md)
+- [Configuration](references/configuration.md)
+- [Failure modes](references/failure-modes.md)
+- [Localization](references/localization.md)
+- [Mealie API notes](references/mealie-api-notes.md)
+- [Output templates](references/output-templates.md)
+- [Workflow](references/workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Markdown, Configuration instructions, Guidance]
+
+**Output Format:** [Short Markdown response, usually a final Mealie recipe link or a brief failure reason]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a Mealie recipe and upload a cover image when configured and quality thresholds are met.]
+
+## Skill Version(s):
+
+1.2.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

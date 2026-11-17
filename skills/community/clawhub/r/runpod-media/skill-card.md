@@ -1,45 +1,59 @@
-## Description: <br>
-Generate images from text, edit images with text instructions, animate images to video, and generate video from text via RunPod public AI endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images from text, edit images with text instructions, animate images to video, and generate video from text via RunPod public AI endpoints.
 
-## Publisher: <br>
-[ItamarCoh3n](https://clawhub.ai/user/ItamarCoh3n) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[itamarcoh3n](https://clawhub.ai/user/itamarcoh3n)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to create, edit, animate, and deliver AI-generated media through RunPod endpoints from natural-language requests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can call arbitrary RunPod endpoints, including endpoints outside the known registry. <br>
-Mitigation: Prefer known registry endpoints and review any custom endpoint before use. <br>
-Risk: Prompts and local media may be sent to remote RunPod endpoints and local files may be uploaded through Cloudflare R2 presigned URLs. <br>
-Mitigation: Avoid private media or sensitive prompts unless remote processing is acceptable, and use dedicated, narrowly scoped RunPod and Cloudflare R2 credentials. <br>
-Risk: The artifact includes a direct Telegram Bot API curl fallback for media delivery. <br>
-Mitigation: Do not use the Telegram curl fallback unless the bot token, chat ID handling, and delivery path are trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Runpod Media on ClawHub](https://clawhub.ai/ItamarCoh3n/runpod-media) <br>
-- [ItamarCoh3n ClawHub Profile](https://clawhub.ai/user/ItamarCoh3n) <br>
-- [RunPod API Settings](https://www.runpod.io/console/user/settings) <br>
-- [RunPod Hub Playground](https://console.runpod.io/hub/playground/{type}/{endpoint-id}) <br>
-- [Google Nano Banana 2 Edit RunPod Playground](https://console.runpod.io/hub/playground/image/google-nano-banana-2-edit) <br>
+## Use Case:
 
+External users and developers use this skill to generate or edit images, create videos from prompts, animate source images, and list or call supported RunPod media endpoints from natural-language requests.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated media file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated image, video, or audio files may be saved locally and delivered through the active channel.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts and media may be sent to RunPod and local inputs may be temporarily uploaded to Cloudflare R2.
+
+Mitigation: Use only approved media, avoid sensitive inputs, and confirm that RunPod and R2 handling meets the deployment's data policy before use.
+
+Risk: The skill includes a Telegram delivery fallback that reads Telegram credentials.
+
+Mitigation: Review or remove the Telegram fallback before deployment unless Telegram delivery is explicitly required and credential access is scoped.
+
+Risk: The generic endpoint caller can use arbitrary endpoint IDs, which may send data to endpoints outside the vetted registry.
+
+Mitigation: Prefer the included endpoint registry and require review before using or adding custom endpoint IDs.
+
+## Reference(s):
+
+- [Runpod Media ClawHub Release](https://clawhub.ai/itamarcoh3n/skills/runpod-media)
+- [RunPod API Settings](https://www.runpod.io/console/user/settings)
+- [Google Nano Banana 2 Edit Endpoint](https://console.runpod.io/hub/playground/image/google-nano-banana-2-edit)
+- [Endpoint Registry](artifact/scripts/endpoints.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command examples, configuration notes, endpoint metadata, and generated image or video file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated media is saved as local image or video files; endpoint calls may also return JSON when no media URL is found.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

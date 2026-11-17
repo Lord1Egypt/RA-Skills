@@ -46,6 +46,15 @@ peers_self_id() {
   peers_list_self_ids | head -n 1
 }
 
+# peers_single_self_id
+#   Emits the sole self peer ID. Fails if identity is missing or ambiguous.
+peers_single_self_id() {
+  [[ -f "${PEERS_FILE:-}" ]] || return 1
+  jq -er "[to_entries[] | select($_ANTENNA_PEER_OBJ_PRED and .value.self == true) | .key] |
+    if length == 1 then .[0] else error(\"expected exactly one self peer\") end" \
+    "$PEERS_FILE" 2>/dev/null
+}
+
 # peers_self_url
 #   First self peer's url, or empty.
 peers_self_url() {
@@ -166,4 +175,53 @@ validate_peer_url() {
   fi
 
   return 0
+}
+
+# validate_peer_url_capture <url> [allow_insecure]
+#   Runs validate_peer_url while capturing its diagnostic in a private,
+#   unpredictable scratch file. Emits the diagnostic on stdout when validation
+#   fails so callers can present it without using a predictable /tmp path.
+#
+#   Returns:
+#     0  URL accepted (stdout empty)
+#     1  URL rejected (stdout contains validate_peer_url's reason)
+#     2  secure scratch-file creation or permission hardening failed
+#
+# The subshell confines the restrictive umask and guarantees cleanup through
+# its EXIT trap. Signal traps translate interruption into conventional shell
+# statuses and then flow through the same cleanup path.
+validate_peer_url_capture() (
+  local url="${1:-}" allow_insecure="${2:-false}"
+  local scratch="" rc=0
+
+  umask 077
+  if ! scratch="$(mktemp "${TMPDIR:-/tmp}/antenna-urlcheck.XXXXXX")"; then
+    echo "could not create secure URL validation scratch file"
+    return 2
+  fi
+  trap 'rm -f -- "$scratch"' EXIT
+  trap 'exit 129' HUP
+  trap 'exit 130' INT
+  trap 'exit 143' TERM
+
+  if ! chmod 600 "$scratch"; then
+    echo "could not secure URL validation scratch file"
+    return 2
+  fi
+
+  if validate_peer_url "$url" "$allow_insecure" 2>"$scratch"; then
+    return 0
+  else
+    rc=$?
+  fi
+
+  cat -- "$scratch"
+  return "$rc"
+)
+
+# Called only after accepting an explicitly configured endpoint, never on send.
+warn_http_transport() {
+  if [[ "$1" == http://* ]]; then
+    echo "Warning: HTTP provides no transport encryption. Bearer tokens and message content may be exposed unless this connection is protected by an encrypted tunnel." >&2
+  fi
 }

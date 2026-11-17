@@ -1,48 +1,64 @@
-## Description: <br>
-Viral Reels Creator helps agents create and edit vertical short-form videos for Instagram Reels, TikTok, and YouTube Shorts using ffmpeg workflows for scene detection, beat sync, captions, color grading, transitions, and multi-platform export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full-featured ffmpeg-based skill for creating and editing vertical short-form videos for Instagram Reels, TikTok, YouTube Shorts, and related platforms.
 
-## Publisher: <br>
-[yash-kavaiya](https://clawhub.ai/user/yash-kavaiya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yash-kavaiya](https://clawhub.ai/user/yash-kavaiya)
 
-## Use Case: <br>
-Creators, marketers, and developers use this skill to turn uploaded video, image, and audio assets into polished vertical short-form videos and platform-specific exports. It helps plan viral hooks, generate ffmpeg commands, run helper scripts for scene and beat detection, and prepare final reels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may change the runtime environment by installing system and Python packages. <br>
-Mitigation: Run it in an isolated workspace or container and confirm package installation before executing setup commands. <br>
-Risk: Shell-based ffmpeg examples could execute unintended commands if crafted filenames are interpolated unsafely. <br>
-Mitigation: Review generated commands, avoid untrusted filenames, and prefer subprocess argument lists or safely quoted arguments. <br>
-Risk: The skill processes local uploaded media and creates video exports. <br>
-Mitigation: Use only media the user is permitted to process and keep generated outputs in the configured workspace or output directory. <br>
+## Use Case:
 
+Creators, marketers, and developers use this skill to plan, assemble, caption, style, beat-sync, and export short-form vertical videos for major social platforms. It can guide agents through ffmpeg commands, helper scripts, and platform-specific export settings.
 
-## Reference(s): <br>
-- [Viral Hooks](references/viral-hooks.md) <br>
-- [Beat-Synced Editing](references/beat-sync.md) <br>
-- [Platform Specs](references/platform-specs.md) <br>
-- [Caption Templates](references/caption-templates.md) <br>
-- [Animations](references/animations.md) <br>
-- [Color Grading](references/color-grading.md) <br>
-- [Transitions](references/transitions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with ffmpeg, bash, and Python snippets plus generated video file paths when media is processed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce MP4 video exports and platform variants through ffmpeg and bundled helper scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated ffmpeg commands and command-building examples may be unsafe when used with untrusted or unusual filenames.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, quote paths carefully, avoid untrusted filenames, and use safe output names without slashes or traversal.
+
+Risk: The batch export flow is overwrite-prone because it uses ffmpeg overwrite behavior for generated outputs.
+
+Mitigation: Run exports in a dedicated output directory, inspect output names before execution, and keep backups of source and prior output files.
+
+Risk: The installation guidance includes broad system-level package and pip installs.
+
+Mitigation: Install and run the skill in an isolated container or virtual environment with reviewed, pinned dependencies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yash-kavaiya/skills/viral-reels-creator)
+- [Platform Specs Reference](artifact/references/platform-specs.md)
+- [Viral Hooks & Content Strategy Reference](artifact/references/viral-hooks.md)
+- [Beat-Synced Editing Reference](artifact/references/beat-sync.md)
+- [Caption Templates Reference](artifact/references/caption-templates.md)
+- [Animations Reference](artifact/references/animations.md)
+- [Color Grading & Filters Reference](artifact/references/color-grading.md)
+- [Transitions Reference](artifact/references/transitions.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, ffmpeg filter snippets, JSON analysis outputs, and generated video files when commands are executed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact targets MP4 vertical-video outputs and platform-specific export variants.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

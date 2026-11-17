@@ -1,14 +1,26 @@
 {
-  "APP_ID": "wx0000000000000000",
-  "APP_SECRET": "00000000000000000000000000000000",
-  "author": "你的名字",
-  "CLAUDE_API_KEY": "sk-ant-...",
-  "ALIPAY_AI_PAY_SKILL_ID": "your-skill-id-here",
-  // PUSH_MODE 支持三种模式：
-  //   "direct"  - 直连模式：直接调用微信官方 API，需要配置 IP 白名单
-  //   "relay"   - 中继模式：通过公网服务器中转推送，解决 IP 白名单限制
-  //   "hybrid"  - 混合模式：优先 direct，若 IP 白名单未配置则自动切换 relay
-  "PUSH_MODE": "hybrid",
-  "WECHAT_OA_SERVER": "http://120.79.2.44",
-  "WECHAT_OA_SERVER_KEY": "your-server-key-here"
+    "default_account": "main",                    // 默认公众号（未指定时使用）
+    "current_account": "main",                    // 当前选中的公众号
+    "PUSH_MODE": "relay",                         // 推送模式：direct(直连), relay(中转), hybrid(混合)
+    "WECHAT_OA_SERVER": "https://synergyinfo.tech", // 中转服务器地址
+    "WECHAT_OA_SERVER_KEY": "your-server-key",    // 中转服务器API KEY
+    "ENV": "prod",                                // 环境：prod(生产), dev(开发)
+    
+    // 公众号列表，支持配置多个公众号
+    "accounts": {
+        "main": {                                 // 账号标识（用于命令行切换）
+            "name": "主公众号",                    // 公众号显示名称
+            "author": "你的名字",                  // 该公众号的作者名（与公众号一一对应）
+            "voice_name": ["主号", "主公众号"],    // 语音识别名称（语音指令匹配用）
+            "APP_ID": "wx0000000000000000",       // 微信公众号APPID
+            "APP_SECRET": "00000000000000000000000000000000"  // 微信公众号APPSECRET
+        },
+        "second": {                               // 第二个公众号
+            "name": "备用公众号",                  // 公众号显示名称
+            "author": "备用号作者",                // 该公众号的作者名（与公众号一一对应）
+            "voice_name": ["备用", "第二个"],      // 语音识别名称（语音指令匹配用）
+            "APP_ID": "wx1111111111111111",       // 微信公众号APPID
+            "APP_SECRET": "11111111111111111111111111111111"  // 微信公众号APPSECRET
+        }
+    }
 }

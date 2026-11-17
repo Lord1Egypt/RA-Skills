@@ -1,44 +1,59 @@
-## Description: <br>
-한국투자증권(KIS) Open API를 이용한 국내 주식 트레이딩. 잔고 조회, 시세 확인, 매수/매도 주문, 매매 내역, 시장 개황 등. | Korean stock trading via KIS (Korea Investment & Securities) Open API. Balance, quotes, buy/sell orders, trade history, market overview. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+KIS Trading uses the Korea Investment & Securities Open API for Korean stock account balances, quotes, buy and sell orders, trade history, holdings, and market overview.
 
-## Publisher: <br>
-[tgparkk](https://clawhub.ai/user/tgparkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tgparkk](https://clawhub.ai/user/tgparkk)
 
-## Use Case: <br>
-External users and developers use this skill to query Korean stock account balances, holdings, quotes, order history, and market information through the KIS Open API. It can also prepare and submit KRX buy and sell orders when configured with brokerage credentials. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit live KIS brokerage buy or sell orders, and the order script does not enforce an interactive confirmation before non-dry-run execution. <br>
-Mitigation: Require explicit user approval before any non-dry-run order command, run order.py with --dry-run first, and verify symbol, side, quantity, price, and account mode before execution. <br>
-Risk: The skill uses brokerage credentials and stores access tokens under ~/.kis-trading. <br>
-Mitigation: Keep config.ini and token.json private, restrict file permissions, avoid sharing command output that exposes account details, and rotate credentials if local files are exposed. <br>
-Risk: A misconfigured BASE_URL can direct orders to live trading instead of the mock trading endpoint. <br>
-Mitigation: Start with the mock endpoint, verify BASE_URL before each trading session, and use the production endpoint only when live trading is intentional. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [KIS Open API Endpoint Reference](references/kis-api-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/tgparkk/kis-trading) <br>
-- [KIS production API endpoint](https://openapi.koreainvestment.com:9443) <br>
-- [KIS mock trading API endpoint](https://openapivts.koreainvestment.com:29443) <br>
+## Use Case:
 
+External users and developers can use this skill to connect an agent to Korea Investment & Securities Open API workflows for KRX stock account review, quotes, holdings, market summaries, trade history, and user-confirmed buy or sell orders.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown-oriented text with inline shell commands and command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires KIS API credentials and a local config file; order commands support dry-run review before live submission.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can submit live Korean stock orders through KIS APIs and may affect a real brokerage account.
+
+Mitigation: Use virtual trading first and require explicit confirmation of the account, environment, side, stock code, quantity, price, and order type before running scripts/order.py without --dry-run.
+
+Risk: The skill handles KIS app keys, app secrets, account numbers, and access tokens.
+
+Mitigation: Keep credentials in local configuration, avoid exposing logs or transcripts, protect token files, and rotate credentials if they are disclosed.
+
+Risk: An incorrect or untrusted KIS_BASE_URL could send credentials or orders to an unintended endpoint.
+
+Mitigation: Validate KIS_BASE_URL against the official KIS live or virtual trading endpoints before use.
+
+## Reference(s):
+
+- [KIS Open API endpoint reference](references/kis-api-guide.md)
+- [ClawHub skill page](https://clawhub.ai/tgparkk/skills/kis-trading)
+- [KIS live API endpoint](https://openapi.koreainvestment.com:9443)
+- [KIS virtual trading API endpoint](https://openapivts.koreainvestment.com:29443)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Console text and Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include account balances, holdings, quote data, order confirmations, trade history, market summaries, and setup checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

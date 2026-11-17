@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">
+  <defs>
+    <linearGradient id="cg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="pg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#334155;stop-opacity:1"/>
+    </linearGradient>
+    <marker id="ah" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <filter id="sh">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  <rect width="900" height="620" fill="#0f172a"/>
+  <text x="450" y="35" text-anchor="middle" fill="#e2e8f0" font-size="18" font-weight="600">Agent Skill Manager — Architecture</text>
+  <rect x="330" y="60" width="240" height="80" rx="12" fill="url(#cg)" filter="url(#sh)"/>
+  <text x="450" y="90" text-anchor="middle" fill="white" font-size="14" font-weight="600">Central Repository</text>
+  <text x="450" y="112" text-anchor="middle" fill="#bfdbfe" font-size="12" font-family="monospace">~/.agents/skills/</text>
+  <text x="450" y="130" text-anchor="middle" fill="#93c5fd" font-size="11">Single source of truth</text>
+  <text x="450" y="170" text-anchor="middle" fill="#64748b" font-size="11">symlink (macOS) / junction (Windows)</text>
+
+  <!-- Row 1 -->
+  <rect x="30" y="200" width="150" height="70" rx="10" fill="url(#pg)" filter="url(#sh)"/>
+  <text x="105" y="225" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">AutoClaw</text>
+  <text x="105" y="243" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="monospace">.openclaw/skills/</text>
+  <text x="105" y="258" text-anchor="middle" fill="#22c55e" font-size="10">junction</text>
+  <line x1="200" y1="235" x2="330" y2="120" stroke="#475569" stroke-width="1.5" marker-end="url(#ah)" stroke-dasharray="4,3"/>
+
+  <rect x="200" y="200" width="150" height="70" rx="10" fill="url(#pg)" filter="url(#sh)"/>
+  <text x="275" y="225" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">Kimi</text>
+  <text x="275" y="243" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="monospace">.config/agents/skills/</text>
+  <text x="275" y="258" text-anchor="middle" fill="#22c55e" font-size="10">junction</text>
+  <line x1="275" y1="200" x2="380" y2="140" stroke="#475569" stroke-width="1.5" marker-end="url(#ah)" stroke-dasharray="4,3"/>
+
+  <rect x="375" y="200" width="150" height="70" rx="10" fill="url(#pg)" filter="url(#sh)"/>
+  <text x="450" y="225" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">MiniMax Code</text>
+  <text x="450" y="243" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="monospace">.agents/skills/</text>
+  <text x="450" y="258" text-anchor="middle" fill="#3b82f6" font-size="10">native</text>
+  <line x1="450" y1="200" x2="450" y2="140" stroke="#475569" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="550" y="200" width="150" height="70" rx="10" fill="url(#pg)" filter="url(#sh)"/>
+  <text x="625" y="225" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">WorkBuddy</text>
+  <text x="625" y="243" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="monospace">.workbuddy/skills/</text>
+  <text x="625" y="258" text-anchor="middle" fill="#22c55e" font-size="10">junction+json</text>
+  <line x1="625" y1="200" x2="520" y2="140" stroke="#475569" stroke-width="1.5" marker-end="url(#ah)" stroke-dasharray="4,3"/>
+
+  <rect x="720" y="200" width="150" height="70" rx="10" fill="url(#pg)" filter="url(#sh)"/>
+  <text x="795" y="225" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">Trae</text>
+  <text x="795" y="243" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="monospace">.trae/skills/</text>
+  <text x="795" y="258" text-anchor="middle" fill="#22c55e" font-size="10">junction</text>
+  <line x1="720" y1="235" x2="570" y2="120" stroke="#475569" stroke-width="1.5" marker-end="url(#ah)" stroke-dasharray="4,3"/>
+
+  <!-- Row 2 -->
+  <rect x="30" y="310" width="150" height="70" rx="10" fill="url(#pg)" filter="url(#sh)"/>
+  <text x="105" y="335" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">CodeBuddy</text>
+  <text x="105" y="353" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="monospace">.codebuddy/skills/</text>
+  <text x="105" y="368" text-anchor="middle" fill="#22c55e" font-size="10">junction+json</text>
+  <line x1="105" y1="310" x2="395" y2="140" stroke="#475569" stroke-width="1.5" marker-end="url(#ah)" stroke-dasharray="4,3"/>
+
+  <rect x="200" y="310" width="150" height="70" rx="10" fill="url(#pg)" filter="url(#sh)"/>
+  <text x="275" y="335" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">Comate</text>
+  <text x="275" y="353" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="monospace">.comate/skills/</text>
+  <text x="275" y="368" text-anchor="middle" fill="#22c55e" font-size="10">junction</text>
+  <line x1="275" y1="310" x2="430" y2="140" stroke="#475569" stroke-width="1.5" marker-end="url(#ah)" stroke-dasharray="4,3"/>
+
+  <rect x="375" y="310" width="150" height="70" rx="10" fill="url(#pg)" filter="url(#sh)"/>
+  <text x="450" y="335" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">Qoder</text>
+  <text x="450" y="353" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="monospace">.qoderwork/skills/</text>
+  <text x="450" y="368" text-anchor="middle" fill="#22c55e" font-size="10">junction</text>
+  <line x1="450" y1="310" x2="450" y2="140" stroke="#475569" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="550" y="310" width="150" height="70" rx="10" fill="url(#pg)" filter="url(#sh)"/>
+  <text x="625" y="335" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">QwenWork</text>
+  <text x="625" y="353" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="monospace">.qwenworkcn/skills/</text>
+  <text x="625" y="368" text-anchor="middle" fill="#22c55e" font-size="10">junction</text>
+  <line x1="625" y1="310" x2="480" y2="140" stroke="#475569" stroke-width="1.5" marker-end="url(#ah)" stroke-dasharray="4,3"/>
+
+  <rect x="720" y="310" width="150" height="70" rx="10" fill="url(#pg)" filter="url(#sh)"/>
+  <text x="795" y="335" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">DoubaoWork</text>
+  <text x="795" y="353" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="monospace">workspace/.user_skills/</text>
+  <text x="795" y="368" text-anchor="middle" fill="#22c55e" font-size="10">junction</text>
+  <line x1="795" y1="310" x2="545" y2="140" stroke="#475569" stroke-width="1.5" marker-end="url(#ah)" stroke-dasharray="4,3"/>
+
+  <!-- Row 3: DuMate (pack) -->
+  <rect x="375" y="420" width="150" height="70" rx="10" fill="url(#pg)" filter="url(#sh)" opacity="0.7"/>
+  <text x="450" y="445" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">DuMate</text>
+  <text x="450" y="463" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="monospace">App-managed</text>
+  <text x="450" y="478" text-anchor="middle" fill="#fbbf24" font-size="10">pack .zip</text>
+  <line x1="450" y1="420" x2="450" y2="140" stroke="#475569" stroke-width="1.5" marker-end="url(#ah)" stroke-dasharray="2,4"/>
+
+  <!-- Legend -->
+  <rect x="30" y="515" width="840" height="85" rx="10" fill="#1e293b" filter="url(#sh)"/>
+  <text x="50" y="540" fill="#e2e8f0" font-size="12" font-weight="600">Legend:</text>
+  <circle cx="130" cy="535" r="5" fill="#22c55e"/>
+  <text x="142" y="540" fill="#94a3b8" font-size="11">symlink/junction — auto-synced</text>
+  <circle cx="340" cy="535" r="5" fill="#3b82f6"/>
+  <text x="352" y="540" fill="#94a3b8" font-size="11">native — no sync needed (shared path)</text>
+  <circle cx="580" cy="535" r="5" fill="#fbbf24"/>
+  <text x="592" y="540" fill="#94a3b8" font-size="11">pack — .zip for manual upload</text>
+  <text x="50" y="568" fill="#64748b" font-size="11">One skill in central repo -&gt; auto-distributed to 10 products via filesystem links + 1 via .zip upload</text>
+  <text x="50" y="585" fill="#64748b" font-size="11">Windows: mklink /J (junction, no admin) | macOS: ln -s (symlink) | Fallback: copy if link fails</text>
+</svg>

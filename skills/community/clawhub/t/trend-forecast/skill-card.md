@@ -1,46 +1,60 @@
-## Description: <br>
-Multi-signal trend forecasting for autonomous agents that combines prediction market odds, Twitter/X sentiment, news velocity, and stock market data into confidence-scored trend analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-signal trend forecasting for autonomous agents that combines prediction market odds, X/Twitter sentiment, news velocity, and stock market data into confidence-scored trend analysis using AIsa APIs.
 
-## Publisher: <br>
-[aisadocs](https://clawhub.ai/user/aisadocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-Developers and analysts use this skill to gather prediction market, social, news, and market signals through AIsa APIs and synthesize them into trend forecasts. It is suited for research, monitoring, posting, and engagement workflows around emerging trends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Forecast topics, tickers, market questions, social and news search terms, and synthesized research data are sent to AIsa services. <br>
-Mitigation: Do not use the skill with secrets, confidential strategy, regulated data, private watchlists, or sensitive personal information. <br>
-Risk: Trend forecasts and prediction market odds can be mistaken for certainty or financial advice. <br>
-Mitigation: Present outputs as informational research, frame odds as current market pricing, include risks and data gaps, and avoid investment recommendations. <br>
-Risk: The skill requires an AISA_API_KEY credential. <br>
-Mitigation: Provide the key through the environment, limit access to the credential, and avoid exposing it in prompts, reports, logs, or saved outputs. <br>
+## Use Case:
 
+Developers and external agents use this skill to gather multiple market, social, news, and financial signals for a topic and synthesize them into an informational trend forecast with confidence scoring and caveats.
 
-## Reference(s): <br>
-- [ClawHub Trend Forecast release page](https://clawhub.ai/aisadocs/trend-forecast) <br>
-- [AIsa](https://aisa.one) <br>
-- [AIsa API endpoint reference for this skill](references/api_endpoints.md) <br>
-- [AIsa API reference](https://aisa.one/docs/api-reference) <br>
-- [AIsa pricing guide](https://aisa.one/docs/guides/pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON trend forecast with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY; forecasts include direction, confidence score, signal agreement, analysis, key signals, risks, and data gaps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Forecast questions, derived search terms, gathered source data, and AISA_API_KEY-authenticated requests are sent to AIsa and relayed providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when external processing is acceptable, and avoid confidential or sensitive research topics.
+
+Risk: The skill documentation mentions Twitter/X posting or engagement workflows more broadly than the implementation supports.
+
+Mitigation: Use the skill for research and monitoring outputs only; do not rely on it for Twitter/X posting or engagement automation.
+
+Risk: Trend and market forecasts can be incorrect or misleading if signals are sparse, stale, or in conflict.
+
+Mitigation: Treat outputs as informational analysis, preserve confidence scores and data gaps, and avoid presenting prediction-market or stock signals as certainty or financial advice.
+
+## Reference(s):
+
+- [AIsa API Endpoints - Trend Forecaster](artifact/references/api_endpoints.md)
+- [AIsa API Reference](https://aisa.one/docs/api-reference)
+- [AIsa Pricing Guide](https://aisa.one/docs/guides/pricing)
+- [Trend Forecast ClawHub Page](https://clawhub.ai/aisadocs/skills/trend-forecast)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown or JSON trend forecast with direction, confidence score, time horizon, analysis, key signals, risks, and data gaps.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY for authenticated AIsa API requests; bundled scripts can save forecast reports when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

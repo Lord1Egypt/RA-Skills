@@ -1,41 +1,56 @@
-## Description: <br>
-Prevent subagent timeout using checkpoint + cron wake + resume via session spawn mechanism. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prevent subagent timeout using checkpoint + cron wake + resume via session spawn mechanism.
 
-## Publisher: <br>
-[cong91](https://clawhub.ai/user/cong91) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cong91](https://clawhub.ai/user/cong91)
 
-## Use Case: <br>
-Developers and agent operators use Smart Wake to keep long-running agent tasks resumable across timeout boundaries by checkpointing progress, scheduling cron wakeups, and resuming from the latest saved state. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agents may schedule cron wakeups or spawn resume sessions without a clear approval step. <br>
-Mitigation: Require explicit user approval before creating wakeups or spawned resume sessions. <br>
-Risk: A resumed task may continue sensitive or irreversible work after context has changed. <br>
-Mitigation: Resume only when the pending scope is clear, the checkpoint is valid, and pending wakeups can be inspected and canceled. <br>
-Risk: Repeated wakeups can continue longer than intended. <br>
-Mitigation: Use retry limits, cancel remaining cron jobs when work is done, and expose pending wakeups for review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Smart Wake on ClawHub](https://clawhub.ai/cong91/smart-wake) <br>
+## Use Case:
 
+Developers and agents use this skill to keep long-running or paused tasks moving by checkpointing progress, scheduling wake events, and resuming from the latest saved state.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with JSON checkpoint and wake-cycle objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defines checkpoint, resume packet, wake-cycle status, retry-limit, and cleanup expectations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Scheduled cross-session resumes can continue work after the original session times out without enough user visibility or control.
+
+Mitigation: Require visible pending jobs, explicit expiration, cancellation, retry limits, and clear wake reasons before enabling scheduled resumes.
+
+Risk: Persisted checkpoints may expose more task context or artifacts than needed for resumption.
+
+Mitigation: Store only minimal checkpoint fields needed to resume, and verify artifacts by checksum or timestamp before reuse.
+
+Risk: Wake loops can repeatedly spawn sessions if completion or failure states are not handled.
+
+Mitigation: Cap retry_count, mark terminal states clearly, and cancel remaining cron wakeups when the task is done or failed.
+
+## Reference(s):
+
+- [Smart Wake ClawHub listing](https://clawhub.ai/cong91/skills/smart-wake)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands, json]
+
+**Output Format:** [Markdown guidance with JSON checkpoint and resume packet examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should keep checkpoint contents minimal, auditable, and tied to retry and cancellation controls.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

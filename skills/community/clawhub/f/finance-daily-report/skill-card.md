@@ -1,56 +1,71 @@
-## Description: <br>
-Generates a modular, configurable global finance daily report with external LLM data collectors, chat delivery, scheduled setup, and module management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates modular, configurable global finance daily reports with source-linked market data, external LLM collection, chat delivery, scheduled setup, and module management.
 
-## Publisher: <br>
-[xyangryr-cyber](https://clawhub.ai/user/xyangryr-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xyangryr-cyber](https://clawhub.ai/user/xyangryr-cyber)
 
-## Use Case: <br>
-External users and agents use this skill to generate a daily global finance briefing, configure scheduled delivery, and manage report modules. It is not intended for real-time trading, individual stock analysis, or investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup may store DashScope or Doubao API keys in shell startup files. <br>
-Mitigation: Use platform secrets or temporary environment variables for API keys, and review shell profile changes after setup. <br>
-Risk: Setup can create a persistent scheduled OpenClaw cron job for daily report generation. <br>
-Mitigation: Inspect cron entries after setup and remove or adjust the finance-daily-report job if it is not wanted. <br>
-Risk: The skill performs outbound calls to finance websites and DashScope or Volcengine LLM APIs. <br>
-Mitigation: Deploy only in environments where these network calls are permitted and where generated reports are reviewed before business use. <br>
-Risk: Generated finance briefings could be mistaken for trading or investment advice. <br>
-Mitigation: Keep the report positioned as a market briefing and preserve the stated exclusion for real-time trading, individual stock picks, and investment advice. <br>
+## Use Case:
 
+External users and developers use this skill to generate a daily global finance briefing, configure scheduled delivery, and customize the report modules. It is intended for informational market reporting, not real-time trading, individual stock analysis, or investment advice.
 
-## Reference(s): <br>
-- [Workflow](references/workflow.md) <br>
-- [Report Template](references/template.md) <br>
-- [Module Schema](references/module-schema.md) <br>
-- [Module Management](references/module-mgmt.md) <br>
-- [Verification](references/verification.md) <br>
-- [Data Sources](references/sources.md) <br>
-- [Collector Prompts](references/collector-prompts.md) <br>
-- [Trading Economics Stocks](https://tradingeconomics.com/stocks) <br>
-- [Trading Economics Currencies](https://tradingeconomics.com/currencies) <br>
-- [Trading Economics Commodities](https://tradingeconomics.com/commodities) <br>
-- [Jin10](https://www.jin10.com/) <br>
-- [CLS](https://www.cls.cn/) <br>
-- [Eastmoney](https://www.eastmoney.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report text with inline links, optional shell commands, and YAML-backed configuration changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save dated report Markdown and optional evidence JSON under the OpenClaw workspace; chat output may be auto-chunked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security review reports insecure API key handling in setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a proper secret store or tightly permissioned environment file, and avoid entering API keys into the setup script as written.
+
+Risk: Scheduled delivery can run automatically through an OpenClaw cron job.
+
+Mitigation: Inspect the cron job, schedule, session, and command before enabling automatic delivery, and run it under a dedicated unprivileged account.
+
+Risk: The scheduled workflow uses shared temporary files for collected report data and logs.
+
+Mitigation: Prefer private per-run temporary directories with restrictive permissions, and clean them after report generation.
+
+Risk: Fetched public content may be sent to DashScope or Volcengine for processing.
+
+Mitigation: Assume external processing occurs, avoid sensitive inputs, and review provider data-handling requirements before use.
+
+Risk: Finance briefings can be mistaken for trading recommendations.
+
+Mitigation: Treat generated reports as informational summaries, verify cited sources, and do not use the skill for real-time trading, stock picks, or investment advice.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/xyangryr-cyber/skills/finance-daily-report)
+- [Data source list](references/sources.md)
+- [Report generation workflow](references/workflow.md)
+- [Fact verification guidance](references/verification.md)
+- [Report template](references/template.md)
+- [Module configuration schema](references/module-schema.md)
+- [Collector prompt templates](references/collector-prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report text with source links, plus shell commands and YAML configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chat output may be auto-chunked; scheduled runs can save dated Markdown reports and optional evidence mappings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

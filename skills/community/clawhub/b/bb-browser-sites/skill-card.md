@@ -1,41 +1,58 @@
-## Description: <br>
-Turn websites into CLI commands across 36 platforms and 103 commands using OpenClaw's browser directly, without an extra extension. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn any website into a CLI command across 36 platforms and 103 commands, using OpenClaw's browser directly without an extra extension.
 
-## Publisher: <br>
-[yan5xu](https://clawhub.ai/user/yan5xu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yan5xu](https://clawhub.ai/user/yan5xu)
 
-## Use Case: <br>
-Developers and automation users can use this skill to discover and run bb-browser site adapters that extract structured data from web pages through OpenClaw's browser session. It is useful for command-line access to social, developer, news, finance, video, and knowledge sites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use logged-in browser sessions across many sites, which may expose authenticated account data to adapter commands. <br>
-Mitigation: Use a separate or low-privilege browser profile where practical, and only run commands against accounts and pages intended for automation. <br>
-Risk: The skill relies on bb-browser adapters and includes update capability for community adapters. <br>
-Mitigation: Install only if you trust bb-browser and the adapter source, and review the specific site command before allowing it to access authenticated pages. <br>
+## Use Case:
 
+Developers and agents use this skill to run website-specific bb-browser commands for structured data extraction, search, recommendations, and adapter discovery through OpenClaw's browser session.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yan5xu/bb-browser-sites) <br>
-- [Publisher profile](https://clawhub.ai/user/yan5xu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may return JSON and jq-filtered structured data through bb-browser site adapters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Community adapters may change over time and run in an authenticated browser context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review adapters before installing or updating them, and update only from sources the operator trusts.
+
+Risk: Authenticated browser sessions may expose sensitive accounts or data to website automation.
+
+Mitigation: Use a separate browser profile or low-privilege accounts when running site commands.
+
+Risk: The security evidence flags unclear integrity and capability controls for downloaded adapters.
+
+Mitigation: Treat new or unknown adapters as untrusted until scanned, reviewed, and tested in a constrained environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yan5xu/skills/bb-browser-sites)
+- [ClawHub publisher profile](https://clawhub.ai/user/yan5xu)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, JSON, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands; bb-browser commands may emit text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the bb-browser binary and OpenClaw browser context; site commands are expected to use --openclaw.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

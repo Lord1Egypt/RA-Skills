@@ -1,40 +1,57 @@
-## Description: <br>
-Start a secure remote browser tunnel for manual user authentication (solving Captchas, 2FA, logins) and capture session data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser Auth starts a remote browser tunnel for manual user authentication, including Captcha, 2FA, and login flows, and captures reusable session data for agent workflows.
 
-## Publisher: <br>
-[lksrz](https://clawhub.ai/user/lksrz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lksrz](https://clawhub.ai/user/lksrz)
 
-## Use Case: <br>
-Developers and agent operators use this skill when a website requires manual login, Captcha solving, or 2FA before an agent can continue authenticated browser work. It captures reusable browser session data after the user completes authentication. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles reusable login sessions that can grant account access if exposed. <br>
-Mitigation: Keep the tokenized link private, run the browser in an isolated environment for sensitive accounts, and delete the generated session file immediately after use. <br>
-Risk: The browser-control server may be exposed more broadly than intended when AUTH_HOST is not constrained. <br>
-Mitigation: Set AUTH_HOST=127.0.0.1 unless using a trusted tunnel, and avoid direct public binding for authentication sessions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Browser Auth release](https://clawhub.ai/lksrz/browser-auth) <br>
-- [AI Commander homepage](https://aicommander.dev) <br>
+## Use Case:
 
+Developers and external users use this skill when an agent needs a human to complete login, Captcha, 2FA, or bot-detection steps without sharing account passwords. The skill captures cookies and localStorage into a reusable session file for later automated browser work.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Session JSON file plus terminal status output and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, chromium-browser, express, socket.io, and playwright-core; may use AUTH_HOST, AUTH_TOKEN, and BROWSER_PROXY environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.6.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill exposes a sensitive remote browser session that can be misused if the token URL or listening host is exposed.
+
+Mitigation: Set AUTH_HOST=127.0.0.1 explicitly, use only a trusted encrypted tunnel for remote access, and avoid sharing the printed token URL through logs or insecure channels.
+
+Risk: The generated session file contains reusable login cookies and localStorage values.
+
+Mitigation: Protect the session file as a secret and delete it immediately after the agent no longer needs it.
+
+Risk: Browser activity and optional proxy settings can expose authenticated traffic to untrusted infrastructure.
+
+Mitigation: Run the skill in an isolated VM or container and avoid untrusted proxies.
+
+## Reference(s):
+
+- [Browser Auth ClawHub listing](https://clawhub.ai/lksrz/skills/browser-auth)
+- [AI Commander homepage](https://aicommander.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown-style guidance with inline shell commands, plus a JSON session file containing cookies and localStorage.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, chromium-browser, express, socket.io, playwright-core, and careful handling of the generated session file.]
+
+## Skill Version(s):
+
+1.6.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

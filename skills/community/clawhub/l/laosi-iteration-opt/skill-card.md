@@ -1,38 +1,53 @@
-## Description: <br>
-迭代优化器 - 原创技能。自动评估和改进AI生成的代码，通过多轮迭代达到最优结果。适用于代码优化、性能调优、质量提升等场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+迭代优化器 helps an agent evaluate and improve AI-generated code through repeated review cycles for correctness, performance, readability, and maintainability.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and engineers use this skill to evaluate AI-generated code across correctness, performance, readability, and maintainability, then iterate on targeted improvements until convergence criteria are met. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ordinary code improvement requests may activate this skill and lead to proposed edits or commands that affect source code quality or behavior. <br>
-Mitigation: Review proposed edits and commands before applying them, and avoid sharing source files that contain secrets. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide iterative code optimization, including multi-round assessment, improvement suggestions, and convergence checks for generated or existing code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-iteration-opt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown optimization reports with code-oriented recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces iterative scoring, improvement suggestions, remaining issues, and convergence status; it does not execute code or install dependencies by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Broad trigger phrases may activate the workflow on generic code-improvement requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user wants an iterative optimization workflow before applying multiple review and rewrite rounds.
+
+Risk: Iterative code recommendations may introduce incorrect or unsuitable changes if applied without review.
+
+Mitigation: Review suggested edits and run relevant tests or scans before applying them to larger or sensitive codebases.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-iteration-opt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown report with scores, issues, recommendations, and convergence status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include code-oriented recommendations and review checkpoints for each iteration.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

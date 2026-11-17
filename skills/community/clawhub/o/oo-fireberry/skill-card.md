@@ -1,42 +1,56 @@
-## Description: <br>
-Fireberry lets an agent read, list, query, create, update, and delete Fireberry account and contact records through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill for any Fireberry request—including reading, creating, updating, and deleting data—instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate Fireberry account and contact records through an OOMOL-connected account, including reads, paginated lists, v3 queries, and confirmed write or destructive actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Write and destructive Fireberry actions can change or delete account and contact records. <br>
-Mitigation: Confirm the exact action, target record, payload, and expected effect with the user before running any action tagged write or destructive. <br>
-Risk: The skill depends on an external Fireberry connection and OOMOL account permissions. <br>
-Mitigation: Before installation or use, review the skill listing and confirm that requested permissions, credentials, and external services match the intended task. <br>
+## Use Case:
 
+External users and developers can use Fireberry through their connected account to read, create, update, delete, and query Fireberry account and contact records.
 
-## Reference(s): <br>
-- [ClawHub Fireberry skill listing](https://clawhub.ai/oomol/skills/oo-fireberry) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Fireberry homepage](https://www.fireberry.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector actions may return JSON data with meta.executionId when executed through the oo CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill frontmatter) <br>
+Risk: Initial setup can run an unverified remote installer script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup before use and install a verified CLI yourself instead of allowing automatic remote-script execution.
+
+Risk: The connected account gives the skill access to Fireberry data, including actions that create, update, or delete records.
+
+Mitigation: Connect only the permissions needed and approve the exact payload and target before writes or deletions.
+
+## Reference(s):
+
+- [Fireberry REST API documentation](https://developers.fireberry.com/reference/getting-started-with-rest-api)
+- [Fireberry](https://www.fireberry.com)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Text summaries, shell commands, and JSON record data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Fireberry account or contact data and proposed record changes.]
+
+## Skill Version(s):
+
+1.0.4 (source: SKILL.md frontmatter, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

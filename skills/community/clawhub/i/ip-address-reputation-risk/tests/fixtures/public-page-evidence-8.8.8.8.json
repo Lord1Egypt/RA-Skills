@@ -1,0 +1,100 @@
+{
+  "evidence": [
+    {
+      "provider": "ipinfo",
+      "target_ip": "8.8.8.8",
+      "source_url": "https://ipinfo.io/8.8.8.8",
+      "observed_at": "2026-08-12T03:40:00Z",
+      "data": {
+        "country": "Exampleland",
+        "country_code": "ZZ",
+        "region": "Example Region",
+        "city": "Example City",
+        "asn": "AS64500",
+        "organization": "Example Network",
+        "route_prefix": "8.8.8.0/24",
+        "network_type": "hosting",
+        "anycast": true,
+        "is_hosting": true
+      }
+    },
+    {
+      "provider": "scamalytics",
+      "target_ip": "8.8.8.8",
+      "source_url": "https://scamalytics.com/ip/8.8.8.8",
+      "observed_at": "2026-08-12T03:41:00Z",
+      "data": {
+        "risk_score": 0,
+        "country": "Exampleland",
+        "country_code": "ZZ",
+        "region": "Example Region",
+        "city": "Example City",
+        "asn": "AS64500",
+        "isp": "Example Network",
+        "organization": "Example Transit",
+        "is_hosting": true,
+        "is_vpn": false,
+        "is_tor": false,
+        "is_proxy": false,
+        "is_bot": false,
+        "is_residential_proxy": false
+      }
+    },
+    {
+      "provider": "ipqs",
+      "target_ip": "8.8.8.8",
+      "source_url": "https://www.ipqualityscore.com/free-ip-lookup-proxy-vpn-test/lookup/8.8.8.8",
+      "observed_at": "2026-08-12T03:42:00Z",
+      "data": {
+        "risk_score": 0,
+        "country": "Exampleland",
+        "region": "Example Region",
+        "city": "Example City",
+        "asn": "AS64500",
+        "isp": "Example Transit",
+        "is_proxy": false,
+        "is_vpn": false,
+        "is_tor": false,
+        "recent_abuse": false
+      }
+    },
+    {
+      "provider": "ipdata",
+      "target_ip": "8.8.8.8",
+      "source_url": "https://ipdata.co/8.8.8.8",
+      "observed_at": "2026-08-12T03:43:00Z",
+      "data": {
+        "trust_score": 33,
+        "country": "Exampleland",
+        "asn": "AS64500",
+        "organization": "Example Network",
+        "domain": "example.invalid",
+        "route_prefix": "8.8.8.0/24",
+        "network_type": "VPN",
+        "is_tor": true,
+        "is_vpn": true,
+        "is_hosting": true,
+        "is_proxy": true,
+        "is_relay": true,
+        "is_anonymous": true,
+        "blocklist_reports": "1"
+      }
+    },
+    {
+      "provider": "ping0",
+      "target_ip": "8.8.8.8",
+      "source_url": "https://ping0.cc/ip/8.8.8.8",
+      "observed_at": "2026-08-12T03:45:00Z",
+      "data": {
+        "risk_score": 22,
+        "asn": "AS64500",
+        "organization": "Example Network",
+        "route_prefix": "8.8.8.0/24",
+        "network_type": "Example datacenter / resolver",
+        "anycast": true,
+        "is_hosting": true,
+        "native_ip": true
+      }
+    }
+  ]
+}

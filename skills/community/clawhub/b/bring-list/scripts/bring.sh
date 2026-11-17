@@ -1,25 +1,84 @@
 #!/usr/bin/env bash
 # bring.sh — CLI for the Bring! Shopping Lists API
 # Requires: curl, jq
-# Auth: BRING_EMAIL + BRING_PASSWORD env vars, or ~/.config/bring/credentials.json
+# Auth: temporary BRING_EMAIL + BRING_PASSWORD env vars for login only; profile
+# preferences and tokens use protected local files, never a stored password.
 set -euo pipefail
+# Every credential, token, and temporary file created by this process starts
+# owner-only. Individual writes below also use atomic same-directory renames.
+umask 077
 
 ###############################################################################
 # Constants
 ###############################################################################
 API_BASE="https://api.getbring.com/rest"
-# Public Bring! app API key — NOT a secret. Every Bring client uses this same key.
-API_KEY="cof4Nc6D8saplXjE3h3HXqHH8m7VU2i1Gs0g85Sp"
+CATALOG_BASE="https://web.getbring.com/locale"
+# Public Bring! app client identifier — NOT a user secret. Bring clients use
+# this shared value to identify the application, while user auth uses tokens.
+BRING_APP_CLIENT_ID="cof4Nc6D8saplXjE3h3HXqHH8m7VU2i1Gs0g85Sp"
 TOKEN_FILE="${BRING_TOKEN_FILE:-${HOME}/.cache/bring/token.json}"
 CRED_FILE="${BRING_CREDENTIALS_FILE:-${HOME}/.config/bring/credentials.json}"
 # Country code for Bring API (affects item catalog language). Override in credentials.json.
 BRING_COUNTRY="${BRING_COUNTRY:-DE}"
+BRING_LOCALE="${BRING_LOCALE:-}"
+DRY_RUN=0
 
 ###############################################################################
 # Helpers
 ###############################################################################
 die()  { echo "ERROR: $*" >&2; exit 1; }
 info() { echo "$*" >&2; }
+
+ensure_private_dir() {
+  local dir="$1"
+  [[ ! -L "$dir" ]] || die "Refusing symlinked secret directory: $dir"
+  mkdir -p -m 700 -- "$dir"
+  [[ -d "$dir" && -O "$dir" && ! -L "$dir" ]] || die "Secret directory must be an owner-controlled directory: $dir"
+  chmod 700 -- "$dir"
+}
+
+# Read stdin into a private file in the destination directory, then atomically
+# replace the destination. Refuse special files and symlinks rather than
+# following them while handling credentials or tokens.
+atomic_secret_write() {
+  local target="$1" dir base tmp
+  dir="$(dirname "$target")"
+  base="$(basename "$target")"
+  ensure_private_dir "$dir"
+
+  if [[ -L "$target" || ( -e "$target" && ( ! -f "$target" || ! -O "$target" ) ) ]]; then
+    die "Refusing unsafe secret file: $target"
+  fi
+
+  tmp="$(mktemp "${dir}/.${base}.tmp.XXXXXX")" || die "Could not create private temporary file"
+  chmod 600 -- "$tmp"
+  if ! cat > "$tmp"; then
+    rm -f -- "$tmp"
+    die "Could not write private temporary file"
+  fi
+  mv -f -- "$tmp" "$target"
+  chmod 600 -- "$target"
+}
+
+sanitize_profile() {
+  [[ -f "$CRED_FILE" ]] || return 0
+  jq -e 'type == "object"' "$CRED_FILE" >/dev/null 2>&1 \
+    || die "Invalid profile JSON: $CRED_FILE"
+
+  if jq -e 'has("email") or has("password")' "$CRED_FILE" >/dev/null 2>&1; then
+    jq 'del(.email, .password)' "$CRED_FILE" | atomic_secret_write "$CRED_FILE"
+    info "Removed legacy email/password fields from $CRED_FILE"
+  fi
+}
+
+write_default_list() {
+  local list_name="$1"
+  if [[ -f "$CRED_FILE" ]]; then
+    jq --arg list "$list_name" '. + {default_list: $list}' "$CRED_FILE"
+  else
+    jq -n --arg list "$list_name" '{default_list: $list}'
+  fi | atomic_secret_write "$CRED_FILE"
+}
 
 require_cmd() {
   for cmd in "$@"; do
@@ -40,33 +99,32 @@ require_cmd curl jq
 ###############################################################################
 # Credentials
 ###############################################################################
-load_credentials() {
-  # Priority: env vars > credentials file
-  if [[ -n "${BRING_EMAIL:-}" && -n "${BRING_PASSWORD:-}" ]]; then
-    :
-  elif [[ -f "$CRED_FILE" ]]; then
-    BRING_EMAIL="$(jq -r '.email // empty' "$CRED_FILE" 2>/dev/null)" || true
-    BRING_PASSWORD="$(jq -r '.password // empty' "$CRED_FILE" 2>/dev/null)" || true
-    export BRING_EMAIL BRING_PASSWORD
-  fi
-
-  if [[ -z "${BRING_EMAIL:-}" || -z "${BRING_PASSWORD:-}" ]]; then
-    die "No credentials found. Set BRING_EMAIL and BRING_PASSWORD env vars, or create $CRED_FILE with {\"email\":\"...\",\"password\":\"...\"}"
-  fi
-
-  # Load default list if configured
+load_profile() {
+  # The profile is non-secret. Passwords are never loaded from disk; an
+  # interactive setup or explicitly supplied environment variables are needed
+  # only when the refresh token has expired.
+  sanitize_profile
   if [[ -z "${BRING_DEFAULT_LIST:-}" && -f "$CRED_FILE" ]]; then
     BRING_DEFAULT_LIST="$(jq -r '.default_list // empty' "$CRED_FILE" 2>/dev/null)" || true
-    export BRING_DEFAULT_LIST
   fi
 
   # Load country override if configured
   if [[ -f "$CRED_FILE" ]]; then
-    local cfg_country
+    local cfg_country cfg_locale
     cfg_country="$(jq -r '.country // empty' "$CRED_FILE" 2>/dev/null)" || true
     if [[ -n "$cfg_country" ]]; then
       BRING_COUNTRY="$cfg_country"
     fi
+    cfg_locale="$(jq -r '.locale // empty' "$CRED_FILE" 2>/dev/null)" || true
+    if [[ -z "$BRING_LOCALE" && -n "$cfg_locale" ]]; then
+      BRING_LOCALE="$cfg_locale"
+    fi
+  fi
+}
+
+load_login_credentials() {
+  if [[ -z "${BRING_EMAIL:-}" || -z "${BRING_PASSWORD:-}" ]]; then
+    die "No login credentials in this session. Run 'bring.sh setup' in your own terminal; passwords are never stored on disk."
   fi
 }
 
@@ -88,9 +146,7 @@ resolve_list_arg() {
 # Token management
 ###############################################################################
 save_token() {
-  mkdir -p "$(dirname "$TOKEN_FILE")"
-  cat > "$TOKEN_FILE"
-  chmod 600 "$TOKEN_FILE"
+  atomic_secret_write "$TOKEN_FILE"
 }
 
 load_token() {
@@ -117,41 +173,44 @@ get_header() {
   jq -r ".$field // empty" "$TOKEN_FILE" 2>/dev/null
 }
 
-auth_headers() {
-  local token_type access_token uuid public_uuid
+authenticated_curl() {
+  local method="$1" url="$2"
+  shift 2
+  local token_type access_token uuid public_uuid curl_config status
   token_type="$(get_header token_type)"
   access_token="$(get_header access_token)"
   uuid="$(get_header uuid)"
   public_uuid="$(get_header publicUuid)"
 
-  echo -H "Authorization: ${token_type} ${access_token}" \
-       -H "X-BRING-API-KEY: ${API_KEY}" \
-       -H "X-BRING-CLIENT: android" \
-       -H "X-BRING-APPLICATION: bring" \
-       -H "X-BRING-COUNTRY: ${BRING_COUNTRY}" \
-       -H "X-BRING-USER-UUID: ${uuid}" \
-       -H "X-BRING-PUBLIC-USER-UUID: ${public_uuid}"
+  [[ "$BRING_COUNTRY" =~ ^[A-Za-z]{2}$ ]] || die "Invalid country code"
+  ensure_private_dir "$(dirname "$TOKEN_FILE")"
+  curl_config="$(mktemp "$(dirname "$TOKEN_FILE")/.bring-curl.XXXXXX")" || die "Could not create private curl config"
+  chmod 600 -- "$curl_config"
+  {
+    printf 'header = "Authorization: %s %s"\n' "$token_type" "$access_token"
+    printf 'header = "X-BRING-API-KEY: %s"\n' "$BRING_APP_CLIENT_ID"
+    printf 'header = "X-BRING-CLIENT: android"\n'
+    printf 'header = "X-BRING-APPLICATION: bring"\n'
+    printf 'header = "X-BRING-COUNTRY: %s"\n' "$BRING_COUNTRY"
+    printf 'header = "X-BRING-USER-UUID: %s"\n' "$uuid"
+    printf 'header = "X-BRING-PUBLIC-USER-UUID: %s"\n' "$public_uuid"
+  } > "$curl_config"
+
+  if curl -s -w "\n%{http_code}" --config "$curl_config" -X "$method" "$url" "$@"; then
+    status=0
+  else
+    status=$?
+  fi
+  rm -f -- "$curl_config"
+  return "$status"
 }
 
 api_call() {
   local method="$1" url="$2"
   shift 2
-  local token_type access_token uuid public_uuid
-  token_type="$(get_header token_type)"
-  access_token="$(get_header access_token)"
-  uuid="$(get_header uuid)"
-  public_uuid="$(get_header publicUuid)"
 
   local response http_code
-  response=$(curl -s -w "\n%{http_code}" -X "$method" "$url" \
-    -H "Authorization: ${token_type} ${access_token}" \
-    -H "X-BRING-API-KEY: ${API_KEY}" \
-    -H "X-BRING-CLIENT: android" \
-    -H "X-BRING-APPLICATION: bring" \
-    -H "X-BRING-COUNTRY: ${BRING_COUNTRY}" \
-    -H "X-BRING-USER-UUID: ${uuid}" \
-    -H "X-BRING-PUBLIC-USER-UUID: ${public_uuid}" \
-    "$@")
+  response=$(authenticated_curl "$method" "$url" "$@")
 
   http_code=$(echo "$response" | tail -1)
   local body
@@ -169,16 +228,22 @@ api_call() {
 # Auth commands
 ###############################################################################
 do_login() {
-  load_credentials
+  local email="${1:-${BRING_EMAIL:-}}"
+  local password="${2:-${BRING_PASSWORD:-}}"
+  if [[ -z "$email" || -z "$password" ]]; then
+    load_login_credentials
+    email="$BRING_EMAIL"
+    password="$BRING_PASSWORD"
+  fi
   local enc_email enc_pass
-  enc_email="$(urlencode "$BRING_EMAIL")"
-  enc_pass="$(urlencode "$BRING_PASSWORD")"
+  enc_email="$(urlencode "$email")"
+  enc_pass="$(urlencode "$password")"
   local response http_code
-  response=$(curl -s -w "\n%{http_code}" -X POST "${API_BASE}/v2/bringauth" \
-    -H "X-BRING-API-KEY: ${API_KEY}" \
+  response=$(printf 'email=%s&password=%s' "$enc_email" "$enc_pass" | curl -s -w "\n%{http_code}" -X POST "${API_BASE}/v2/bringauth" \
+    -H "X-BRING-API-KEY: ${BRING_APP_CLIENT_ID}" \
     -H "X-BRING-CLIENT: android" \
     -H "X-BRING-APPLICATION: bring" \
-    -d "email=${enc_email}&password=${enc_pass}")
+    --data-binary @-)
 
   http_code=$(echo "$response" | tail -1)
   local body
@@ -204,19 +269,10 @@ do_login() {
 
 refresh_access_token() {
   local refresh_token="$1"
-  local token_type access_token uuid public_uuid
-  token_type="$(get_header token_type)"
-  access_token="$(get_header access_token)"
-  uuid="$(get_header uuid)"
-  public_uuid="$(get_header publicUuid)"
 
   local response http_code
-  response=$(curl -s -w "\n%{http_code}" -X POST "${API_BASE}/v2/bringauth/token" \
-    -H "Authorization: ${token_type} ${access_token}" \
-    -H "X-BRING-API-KEY: ${API_KEY}" \
-    -H "X-BRING-CLIENT: android" \
-    -H "X-BRING-APPLICATION: bring" \
-    -d "grant_type=refresh_token&refresh_token=${refresh_token}")
+  response=$(printf 'grant_type=refresh_token&refresh_token=%s' "$refresh_token" | \
+    authenticated_curl POST "${API_BASE}/v2/bringauth/token" --data-binary @-)
 
   http_code=$(echo "$response" | tail -1)
   local body
@@ -239,6 +295,7 @@ refresh_access_token() {
 }
 
 ensure_auth() {
+  load_profile
   if ! load_token; then
     info "No valid token found. Logging in..."
     do_login
@@ -315,6 +372,7 @@ do_show() {
 
   local result
   result=$(api_call GET "${API_BASE}/v2/bringlists/${list_uuid}")
+  result=$(apply_catalog_display_names "$result")
 
   local purchase_count recently_count
   purchase_count=$(echo "$result" | jq '.items.purchase | length')
@@ -325,7 +383,7 @@ do_show() {
 
   if (( purchase_count > 0 )); then
     echo "📋 TO BUY:"
-    echo "$result" | jq -r '.items.purchase[] | "  • \(.itemId)\(if .specification != "" then " (\(.specification))" else "" end)"'
+    echo "$result" | jq -r '.items.purchase[] | "  • \(.displayName)\(if .specification != "" then " (\(.specification))" else "" end)"'
   else
     echo "📋 TO BUY: (empty)"
   fi
@@ -334,7 +392,7 @@ do_show() {
 
   if (( recently_count > 0 )); then
     echo "✅ RECENTLY COMPLETED:"
-    echo "$result" | jq -r '.items.recently[] | "  ✓ \(.itemId)\(if .specification != "" then " (\(.specification))" else "" end)"'
+    echo "$result" | jq -r '.items.recently[] | "  ✓ \(.displayName)\(if .specification != "" then " (\(.specification))" else "" end)"'
   fi
 }
 
@@ -358,14 +416,125 @@ build_change() {
     '{itemId: $item, spec: $spec, uuid: (if $uuid == "" then null else $uuid end), operation: $op, accuracy: "0.0", altitude: "0.0", latitude: "0.0", longitude: "0.0"}'
 }
 
+resolve_catalog_locale() {
+  if [[ -n "$BRING_LOCALE" ]]; then
+    [[ "$BRING_LOCALE" =~ ^[a-z]{2}-[A-Z]{2}$ ]] || die "Invalid Bring catalog locale: '$BRING_LOCALE'"
+    echo "$BRING_LOCALE"
+    return 0
+  fi
+
+  case "${BRING_COUNTRY^^}" in
+    DE|AT|CH) echo "de-DE" ;;
+    FR|BE|LU) echo "fr-FR" ;;
+    IT) echo "it-IT" ;;
+    ES) echo "es-ES" ;;
+    *) echo "en-US" ;;
+  esac
+}
+
+# Return the catalog's internal itemId and display name as a tab-separated row.
+# Bring sometimes uses different values (for example, itemId Peperoni is shown
+# as Paprika in the German catalog); sending itemId is what preserves icons.
+match_catalog_item() {
+  local query="$1" locale catalog matches count suggestions
+  locale="$(resolve_catalog_locale)"
+  catalog=$(curl -fsS "${CATALOG_BASE}/catalog.${locale}.json") \
+    || die "Could not load Bring catalog for locale '$locale'"
+
+  echo "$catalog" | jq -e '.catalog.sections | type == "array"' >/dev/null 2>&1 \
+    || die "Invalid Bring catalog response for locale '$locale'"
+
+  matches=$(echo "$catalog" | jq -c --arg query "$query" '
+    [.catalog.sections[].items[]
+      | select((.itemId | ascii_downcase) == ($query | ascii_downcase)
+            or (.name | ascii_downcase) == ($query | ascii_downcase))]
+    | unique_by(.itemId)')
+  count=$(echo "$matches" | jq 'length')
+
+  if (( count == 0 )); then
+    matches=$(echo "$catalog" | jq -c --arg query "$query" '
+      [.catalog.sections[].items[]
+        | select((.itemId | ascii_downcase | contains($query | ascii_downcase))
+              or (.name | ascii_downcase | contains($query | ascii_downcase)))]
+      | unique_by(.itemId)')
+    count=$(echo "$matches" | jq 'length')
+  fi
+
+  if (( count == 0 )); then
+    die "No catalog match for '$query' in locale '$locale'. Use 'add' for a custom item."
+  fi
+  if (( count > 1 )); then
+    suggestions=$(echo "$matches" | jq -r '.[0:8] | map(.name) | join(", ")')
+    die "Catalog match for '$query' is ambiguous: $suggestions. Use a more specific name."
+  fi
+
+  echo "$matches" | jq -r '.[0] | [.itemId, .name] | @tsv'
+}
+
+apply_catalog_display_names() {
+  local list_json="$1" locale catalog
+  locale="$(resolve_catalog_locale)"
+  if ! catalog=$(curl -fsS "${CATALOG_BASE}/catalog.${locale}.json" 2>/dev/null); then
+    echo "$list_json"
+    return 0
+  fi
+
+  printf '%s\n%s\n' "$list_json" "$catalog" | jq -s '
+    (reduce (.[1].catalog.sections[].items[]) as $item
+      ({}; . + {($item.itemId): $item.name})) as $names
+    | .[0]
+    | .items.purchase |= map(. + {displayName: ($names[.itemId] // .itemId)})
+    | .items.recently |= map(. + {displayName: ($names[.itemId] // .itemId)})'
+}
+
+find_list_item() {
+  local list_json="$1" input="$2" scope="$3" filter row catalog_id
+  case "$scope" in
+    purchase) filter='.items.purchase[]' ;;
+    recently) filter='.items.recently[]' ;;
+    all) filter='(.items.purchase + .items.recently)[]' ;;
+    *) die "Invalid item lookup scope: $scope" ;;
+  esac
+
+  row=$(echo "$list_json" | jq -c --arg name "$input" "$filter | select(.itemId == \$name)" | head -1)
+  if [[ -z "$row" ]]; then
+    catalog_id=$(match_catalog_item "$input" 2>/dev/null | cut -f1) || true
+    if [[ -n "$catalog_id" ]]; then
+      row=$(echo "$list_json" | jq -c --arg name "$catalog_id" "$filter | select(.itemId == \$name)" | head -1)
+    fi
+  fi
+  echo "$row"
+}
+
+read_stdin_items() {
+  local line
+  STDIN_ITEMS=()
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    line="${line%$'\r'}"
+    [[ -n "${line//[[:space:]]/}" ]] || continue
+    STDIN_ITEMS+=("$line")
+  done
+  (( ${#STDIN_ITEMS[@]} > 0 )) || die "No items received on stdin"
+}
+
 # Add an item to a list
 do_add() {
   local list_id="$1"
   local item_name="$2"
   local spec="${3:-}"
+  local display_name="${4:-$item_name}"
   ensure_auth
   local list_uuid
   list_uuid=$(resolve_list "$list_id")
+
+  if (( DRY_RUN )); then
+    if [[ -n "$spec" ]]; then
+      echo "DRY-RUN: Would add '${display_name}' (${spec}) to list '${list_id}'."
+    else
+      echo "DRY-RUN: Would add '${display_name}' to list '${list_id}'."
+    fi
+    return 0
+  fi
 
   local item_uuid
   item_uuid=$(gen_uuid)
@@ -379,28 +548,45 @@ do_add() {
     -d "$json_data" > /dev/null
 
   if [[ -n "$spec" ]]; then
-    echo "Added '${item_name}' (${spec}) to list."
+    echo "Added '${display_name}' (${spec}) to list."
   else
-    echo "Added '${item_name}' to list."
+    echo "Added '${display_name}' to list."
   fi
+}
+
+do_smart_add() {
+  local list_id="$1" query="$2" spec="${3:-}"
+  local match item_id display_name locale
+  locale="$(resolve_catalog_locale)"
+  match="$(match_catalog_item "$query")"
+  IFS=$'\t' read -r item_id display_name <<< "$match"
+  info "Catalog match (${locale}): '${query}' -> '${display_name}' [${item_id}]"
+  do_add "$list_id" "$item_id" "$spec" "$display_name"
 }
 
 # Remove an item from a list
 do_remove() {
   local list_id="$1"
   local item_name="$2"
+  local requested_name="$item_name"
   ensure_auth
   local list_uuid
   list_uuid=$(resolve_list "$list_id")
 
   # Find the item's UUID from the list for precise removal
-  local list_data item_uuid
+  local list_data item_data item_uuid
   list_data=$(api_call GET "${API_BASE}/v2/bringlists/${list_uuid}")
-  item_uuid=$(echo "$list_data" | jq -r --arg name "$item_name" \
-    '(.items.purchase + .items.recently)[] | select(.itemId == $name) | .uuid' | head -1)
+  item_data=$(find_list_item "$list_data" "$item_name" all)
+  item_uuid=$(echo "$item_data" | jq -r '.uuid // empty')
 
   if [[ -z "$item_uuid" ]]; then
     die "Item '${item_name}' not found on the list. Use 'bring.sh show' to see current items."
+  fi
+  item_name=$(echo "$item_data" | jq -r '.itemId')
+
+  if (( DRY_RUN )); then
+    echo "DRY-RUN: Would permanently remove '${requested_name}' from list '${list_id}'."
+    return 0
   fi
 
   local json_data
@@ -411,27 +597,33 @@ do_remove() {
     -H "Content-Type: application/json" \
     -d "$json_data" > /dev/null
 
-  echo "Removed '${item_name}' from list."
+  echo "Removed '${requested_name}' from list."
 }
 
 # Complete (check off) an item
 do_complete() {
   local list_id="$1"
   local item_name="$2"
+  local requested_name="$item_name"
   ensure_auth
   local list_uuid
   list_uuid=$(resolve_list "$list_id")
 
   # Find the item's UUID for precise completion
-  local list_data item_uuid spec
+  local list_data item_data item_uuid spec
   list_data=$(api_call GET "${API_BASE}/v2/bringlists/${list_uuid}")
-  item_uuid=$(echo "$list_data" | jq -r --arg name "$item_name" \
-    '.items.purchase[] | select(.itemId == $name) | .uuid' | head -1)
-  spec=$(echo "$list_data" | jq -r --arg name "$item_name" \
-    '.items.purchase[] | select(.itemId == $name) | .specification' | head -1)
+  item_data=$(find_list_item "$list_data" "$item_name" purchase)
+  item_uuid=$(echo "$item_data" | jq -r '.uuid // empty')
+  spec=$(echo "$item_data" | jq -r '.specification // empty')
 
   if [[ -z "$item_uuid" ]]; then
     die "Item '${item_name}' not found on the purchase list. It may already be completed."
+  fi
+  item_name=$(echo "$item_data" | jq -r '.itemId')
+
+  if (( DRY_RUN )); then
+    echo "DRY-RUN: Would complete '${requested_name}' on list '${list_id}'."
+    return 0
   fi
 
   local json_data
@@ -442,27 +634,33 @@ do_complete() {
     -H "Content-Type: application/json" \
     -d "$json_data" > /dev/null
 
-  echo "Completed '${item_name}' (moved to recently)."
+  echo "Completed '${requested_name}' (moved to recently)."
 }
 
 # Uncomplete — move item from recently back to purchase list
 do_uncomplete() {
   local list_id="$1"
   local item_name="$2"
+  local requested_name="$item_name"
   ensure_auth
   local list_uuid
   list_uuid=$(resolve_list "$list_id")
 
   # Find item in recently list
-  local list_data item_uuid spec
+  local list_data item_data item_uuid spec
   list_data=$(api_call GET "${API_BASE}/v2/bringlists/${list_uuid}")
-  item_uuid=$(echo "$list_data" | jq -r --arg name "$item_name" \
-    '.items.recently[] | select(.itemId == $name) | .uuid' | head -1)
-  spec=$(echo "$list_data" | jq -r --arg name "$item_name" \
-    '.items.recently[] | select(.itemId == $name) | .specification' | head -1)
+  item_data=$(find_list_item "$list_data" "$item_name" recently)
+  item_uuid=$(echo "$item_data" | jq -r '.uuid // empty')
+  spec=$(echo "$item_data" | jq -r '.specification // empty')
 
   if [[ -z "$item_uuid" ]]; then
     die "Item '${item_name}' not found in recently completed items."
+  fi
+  item_name=$(echo "$item_data" | jq -r '.itemId')
+
+  if (( DRY_RUN )); then
+    echo "DRY-RUN: Would move '${requested_name}' back to purchase on list '${list_id}'."
+    return 0
   fi
 
   local json_data
@@ -473,7 +671,7 @@ do_uncomplete() {
     -H "Content-Type: application/json" \
     -d "$json_data" > /dev/null
 
-  echo "Moved '${item_name}' back to purchase list."
+  echo "Moved '${requested_name}' back to purchase list."
 }
 
 # Add multiple items at once
@@ -483,6 +681,20 @@ do_add_multi() {
   ensure_auth
   local list_uuid
   list_uuid=$(resolve_list "$list_id")
+
+  if (( DRY_RUN )); then
+    for item_spec in "$@"; do
+      local item_name spec
+      item_name="${item_spec%%|*}"
+      if [[ "$item_spec" == *"|"* ]]; then
+        spec="${item_spec#*|}"
+        echo "DRY-RUN: Would add '${item_name}' (${spec}) to list '${list_id}'."
+      else
+        echo "DRY-RUN: Would add '${item_name}' to list '${list_id}'."
+      fi
+    done
+    return 0
+  fi
 
   local changes="[]"
   for item_spec in "$@"; do
@@ -520,13 +732,30 @@ do_remove_multi() {
   local list_data
   list_data=$(api_call GET "${API_BASE}/v2/bringlists/${list_uuid}")
 
-  local changes="[]"
+  local changes="[]" count=0
   for item_name in "$@"; do
-    local item_uuid
-    item_uuid=$(echo "$list_data" | jq -r --arg name "$item_name" \
-      '(.items.purchase + .items.recently)[] | select(.itemId == $name) | .uuid' | head -1)
-    changes=$(echo "$changes" | jq --argjson entry "$(build_change "$item_name" "" "REMOVE" "$item_uuid")" '. + [$entry]')
+    local item_data item_uuid requested_name="$item_name"
+    item_data=$(find_list_item "$list_data" "$item_name" all)
+    item_uuid=$(echo "$item_data" | jq -r '.uuid // empty')
+    if [[ -z "$item_uuid" ]]; then
+      info "Warning: '${requested_name}' not found, skipping."
+      continue
+    fi
+    item_name=$(echo "$item_data" | jq -r '.itemId')
+    if (( DRY_RUN )); then
+      echo "DRY-RUN: Would permanently remove '${requested_name}' from list '${list_id}'."
+    else
+      changes=$(echo "$changes" | jq --argjson entry "$(build_change "$item_name" "" "REMOVE" "$item_uuid")" '. + [$entry]')
+    fi
+    (( count++ )) || true
   done
+
+  if (( DRY_RUN )); then
+    echo "DRY-RUN: ${count} item(s) would be removed."
+    return 0
+  fi
+
+  (( count > 0 )) || die "No matching items found to remove"
 
   local json_data
   json_data=$(jq -n --argjson changes "$changes" '{"changes": $changes, "sender": ""}')
@@ -535,7 +764,7 @@ do_remove_multi() {
     -H "Content-Type: application/json" \
     -d "$json_data" > /dev/null
 
-  echo "Removed $# item(s) from list."
+  echo "Removed ${count} item(s) from list."
 }
 
 # Complete multiple items at once
@@ -552,20 +781,24 @@ do_complete_multi() {
   local changes="[]"
   local count=0
   for item_name in "$@"; do
-    local item_uuid spec
-    item_uuid=$(echo "$list_data" | jq -r --arg name "$item_name" \
-      '.items.purchase[] | select(.itemId == $name) | .uuid' | head -1)
-    spec=$(echo "$list_data" | jq -r --arg name "$item_name" \
-      '.items.purchase[] | select(.itemId == $name) | .specification' | head -1)
+    local item_data item_uuid spec requested_name="$item_name"
+    item_data=$(find_list_item "$list_data" "$item_name" purchase)
+    item_uuid=$(echo "$item_data" | jq -r '.uuid // empty')
+    spec=$(echo "$item_data" | jq -r '.specification // empty')
     if [[ -n "$item_uuid" ]]; then
+      item_name=$(echo "$item_data" | jq -r '.itemId')
       changes=$(echo "$changes" | jq --argjson entry "$(build_change "$item_name" "${spec:-}" "TO_RECENTLY" "$item_uuid")" '. + [$entry]')
       (( count++ )) || true
     else
-      info "Warning: '${item_name}' not found on purchase list, skipping."
+      info "Warning: '${requested_name}' not found on purchase list, skipping."
     fi
   done
 
   if (( count > 0 )); then
+    if (( DRY_RUN )); then
+      echo "DRY-RUN: ${count} item(s) would be completed on list '${list_id}'."
+      return 0
+    fi
     local json_data
     json_data=$(jq -n --argjson changes "$changes" '{"changes": $changes, "sender": ""}')
     api_call PUT "${API_BASE}/v2/bringlists/${list_uuid}/items" \
@@ -576,86 +809,21 @@ do_complete_multi() {
   echo "Completed ${count} item(s)."
 }
 
-###############################################################################
-# Setup credentials helper
-###############################################################################
-# Available themes: grocery, home, work, school, trip, party, baby, pet, christmas, easter
-THEMES=(
-  "grocery:ch.publisheria.bring.theme.grocery"
-  "home:ch.publisheria.bring.theme.home"
-  "work:ch.publisheria.bring.theme.work"
-  "school:ch.publisheria.bring.theme.school"
-  "trip:ch.publisheria.bring.theme.trip"
-  "party:ch.publisheria.bring.theme.party"
-  "baby:ch.publisheria.bring.theme.baby"
-  "pet:ch.publisheria.bring.theme.pet"
-  "christmas:ch.publisheria.bring.theme.christmas"
-  "easter:ch.publisheria.bring.theme.easter"
-)
-
-resolve_theme() {
-  local input="${1:-grocery}"
-  input=$(echo "$input" | tr '[:upper:]' '[:lower:]')
-  for entry in "${THEMES[@]}"; do
-    local key="${entry%%:*}"
-    local val="${entry#*:}"
-    if [[ "$key" == "$input" ]]; then
-      echo "$val"
-      return 0
-    fi
-  done
-  # Default to grocery if unknown
-  echo "ch.publisheria.bring.theme.grocery"
-}
-
-do_create_list() {
-  local name="$1"
-  local theme_key="${2:-grocery}"
-  [[ -n "$name" ]] || die "Usage: bring.sh create-list <name> [theme]"
-
-  ensure_auth
-  local uuid
-  uuid="$(get_uuid)"
-  local theme
-  theme="$(resolve_theme "$theme_key")"
-
-  local body
-  body=$(api_call POST "${API_BASE}/bringusers/${uuid}/lists" \
-    -H "Content-Type: application/x-www-form-urlencoded" \
-    -d "name=$(urlencode "$name")&theme=${theme}")
-
-  local new_uuid
-  new_uuid=$(echo "$body" | jq -r '.bringListUUID // empty')
-  echo "Created list '${name}' (theme: ${theme_key}, uuid: ${new_uuid})"
-}
-
-do_delete_list() {
-  die "The Bring! API does not support deleting lists. Please delete lists in the Bring! app."
-}
-
-###############################################################################
 do_setup() {
   echo "Bring! Credentials Setup"
   echo "========================"
   echo ""
-  echo "Your credentials will be stored in: $CRED_FILE"
+  echo "Only optional list and country preferences are stored in: $CRED_FILE"
+  echo "Your password is used only for this login and is never written to disk."
   echo ""
+  sanitize_profile
   read -rp "Bring! Email: " email
   read -rsp "Bring! Password: " password
   echo ""
 
-  mkdir -p "$(dirname "$CRED_FILE")"
-  cat > "$CRED_FILE" <<EOF
-{
-  "email": "${email}",
-  "password": "${password}"
-}
-EOF
-  chmod 600 "$CRED_FILE"
-  echo "Credentials saved to $CRED_FILE"
-  echo ""
   echo "Testing login..."
-  BRING_EMAIL="$email" BRING_PASSWORD="$password" do_login
+  do_login "$email" "$password"
+  unset password
 
   # Show lists and ask for default
   echo ""
@@ -678,8 +846,7 @@ EOF
     local single_name
     single_name=$(echo "$lists_json" | jq -r '.lists[0].name')
     echo "Only one list found — setting '${single_name}' as default."
-    jq --arg list "$single_name" '. + {default_list: $list}' "$CRED_FILE" > /tmp/bring_conf.json && mv /tmp/bring_conf.json "$CRED_FILE"
-    chmod 600 "$CRED_FILE"
+    write_default_list "$single_name"
   elif (( list_count > 1 )); then
     read -rp "Which list should be the default? (name or number, Enter to skip): " choice
     if [[ -n "$choice" ]]; then
@@ -689,8 +856,7 @@ EOF
       else
         chosen_name="$choice"
       fi
-      jq --arg list "$chosen_name" '. + {default_list: $list}' "$CRED_FILE" > /tmp/bring_conf.json && mv /tmp/bring_conf.json "$CRED_FILE"
-      chmod 600 "$CRED_FILE"
+      write_default_list "$chosen_name"
       echo "Default list set to '${chosen_name}'."
     fi
   fi
@@ -715,12 +881,16 @@ COMMANDS:
   lists [--json]                       List all shopping lists
   show [list] [--json]                 Show items on a list
   add [list] <item> [spec]             Add an item (with optional description)
-  add-multi [list] <items...>          Add multiple items ("item" or "item|spec")
+  smart-add [list] <item> [spec]       Add using Bring's catalog for icon matching
+  add-multi [list] <items...|->        Add arguments or newline-separated stdin
   remove [list] <item>                 Remove an item from a list
   remove-multi [list] <items...>       Remove multiple items at once
   complete [list] <item>               Check off an item (move to recently)
   complete-multi [list] <items...>     Check off multiple items at once
   uncomplete [list] <item>             Move item back to purchase list
+
+OPTIONS:
+  --dry-run                             Validate and preview any modifying command
 
 LIST ARGUMENT:
   Can be a list UUID, a list name (partial match), or omitted if
@@ -729,11 +899,11 @@ LIST ARGUMENT:
 DEFAULT LIST:
   Add "default_list" to ~/.config/bring/credentials.json to skip
   specifying the list name every time:
-  {"email": "...", "password": "...", "default_list": "Einkaufsliste"}
+  {"default_list": "Einkaufsliste", "country": "DE", "locale": "de-DE"}
 
 AUTHENTICATION:
-  Set BRING_EMAIL and BRING_PASSWORD env vars, or run 'bring.sh setup'
-  to store credentials in ~/.config/bring/credentials.json
+  Run 'bring.sh setup' in your own terminal to log in. The password is never
+  stored; only a protected refresh token and non-secret profile are kept.
 
 EXAMPLES:
   bring.sh setup
@@ -741,8 +911,11 @@ EXAMPLES:
   bring.sh show                        # uses default list
   bring.sh show "Einkaufsliste"
   bring.sh add "Milch" "fettarm, 1L"   # uses default list
+  bring.sh smart-add "Paprika" "2 Stück"
+  bring.sh add --dry-run "Milch" "1L"
   bring.sh add "Einkaufsliste" "Milch" "fettarm, 1L"
   bring.sh add-multi "Brot" "Käse|Gouda" "Butter|irische"
+  printf '%s\n' "Milch|1L" "Brot" | bring.sh add-multi -
   bring.sh complete "Milch"
   bring.sh complete-multi "Milch" "Brot" "Käse"
   bring.sh remove-multi "Milch" "Brot"
@@ -753,15 +926,30 @@ EOF
 # Main
 ###############################################################################
 main() {
+  local filtered_args=() arg
+  for arg in "$@"; do
+    if [[ "$arg" == "--dry-run" ]]; then
+      DRY_RUN=1
+    else
+      filtered_args+=("$arg")
+    fi
+  done
+  set -- "${filtered_args[@]}"
+
   local cmd="${1:-help}"
   shift || true
+
+  case "$cmd" in
+    add|smart-add|add-multi|remove|remove-multi|complete|complete-multi|uncomplete) ;;
+    *) (( DRY_RUN == 0 )) || die "--dry-run is only valid for modifying commands" ;;
+  esac
 
   case "$cmd" in
     setup)
       do_setup
       ;;
     login)
-      load_credentials
+      load_profile
       do_login
       ;;
     lists)
@@ -775,7 +963,7 @@ main() {
       die "The Bring! API does not reliably support creating or deleting lists. Please manage lists in the Bring! app."
       ;;
     show)
-      load_credentials
+      load_profile
       local show_list
       if [[ "${1:-}" == "--json" ]]; then
         show_list="$(resolve_list_arg "")"
@@ -788,7 +976,7 @@ main() {
       fi
       ;;
     add)
-      load_credentials
+      load_profile
       [[ $# -ge 1 ]] || die "Usage: bring.sh add [list] <item> [specification]"
       local add_list add_item add_spec
       local _try_list=""
@@ -814,8 +1002,33 @@ main() {
       fi
       do_add "$add_list" "$add_item" "$add_spec"
       ;;
+    smart-add)
+      load_profile
+      [[ $# -ge 1 ]] || die "Usage: bring.sh smart-add [list] <item> [specification]"
+      local smart_list smart_item smart_spec
+      local _try_smart=""
+      if [[ $# -ge 2 ]]; then _try_smart=$(resolve_list "$1" 2>/dev/null) || true; fi
+      if [[ $# -ge 2 && -n "$_try_smart" ]]; then
+        smart_list="$1"
+        smart_item="$2"
+        smart_spec="${3:-}"
+      elif [[ $# -ge 2 && -n "${BRING_DEFAULT_LIST:-}" ]]; then
+        smart_list="$BRING_DEFAULT_LIST"
+        smart_item="$1"
+        smart_spec="${2:-}"
+      elif [[ $# -eq 1 ]]; then
+        smart_list="$(resolve_list_arg "")"
+        smart_item="$1"
+        smart_spec=""
+      else
+        smart_list="$(resolve_list_arg "$1")"
+        smart_item="$2"
+        smart_spec="${3:-}"
+      fi
+      do_smart_add "$smart_list" "$smart_item" "$smart_spec"
+      ;;
     add-multi)
-      load_credentials
+      load_profile
       [[ $# -ge 1 ]] || die "Usage: bring.sh add-multi [list] <item1> [item2|spec] ..."
       local aml _try_aml=""
       _try_aml=$(resolve_list "$1" 2>/dev/null) || true
@@ -824,10 +1037,16 @@ main() {
       else
         aml="$(resolve_list_arg "")"
       fi
-      do_add_multi "$aml" "$@"
+      if [[ $# -eq 1 && "$1" == "-" ]]; then
+        read_stdin_items
+        do_add_multi "$aml" "${STDIN_ITEMS[@]}"
+      else
+        [[ $# -ge 1 ]] || die "No items specified for add-multi"
+        do_add_multi "$aml" "$@"
+      fi
       ;;
     remove)
-      load_credentials
+      load_profile
       [[ $# -ge 1 ]] || die "Usage: bring.sh remove [list] <item>"
       local rm_list rm_item _try_rm=""
       if [[ $# -ge 2 ]]; then _try_rm=$(resolve_list "$1" 2>/dev/null) || true; fi
@@ -841,7 +1060,7 @@ main() {
       do_remove "$rm_list" "$rm_item"
       ;;
     remove-multi)
-      load_credentials
+      load_profile
       [[ $# -ge 1 ]] || die "Usage: bring.sh remove-multi [list] <item1> [item2] ..."
       local rml _try_rml=""
       _try_rml=$(resolve_list "$1" 2>/dev/null) || true
@@ -853,7 +1072,7 @@ main() {
       do_remove_multi "$rml" "$@"
       ;;
     complete)
-      load_credentials
+      load_profile
       [[ $# -ge 1 ]] || die "Usage: bring.sh complete [list] <item>"
       local comp_list comp_item _try_comp=""
       if [[ $# -ge 2 ]]; then _try_comp=$(resolve_list "$1" 2>/dev/null) || true; fi
@@ -867,7 +1086,7 @@ main() {
       do_complete "$comp_list" "$comp_item"
       ;;
     complete-multi)
-      load_credentials
+      load_profile
       [[ $# -ge 1 ]] || die "Usage: bring.sh complete-multi [list] <item1> [item2] ..."
       local cml _try_cml=""
       _try_cml=$(resolve_list "$1" 2>/dev/null) || true
@@ -879,7 +1098,7 @@ main() {
       do_complete_multi "$cml" "$@"
       ;;
     uncomplete)
-      load_credentials
+      load_profile
       [[ $# -ge 1 ]] || die "Usage: bring.sh uncomplete [list] <item>"
       local unc_list unc_item _try_unc=""
       if [[ $# -ge 2 ]]; then _try_unc=$(resolve_list "$1" 2>/dev/null) || true; fi

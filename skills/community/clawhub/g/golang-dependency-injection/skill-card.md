@@ -1,46 +1,67 @@
-## Description: <br>
-Guides agents through designing and refactoring dependency injection in Go, including manual constructor injection and comparisons of google/wire, uber-go/dig, uber-go/fx, and samber/do. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in designing and refactoring Go dependency injection using manual constructor injection and comparisons of google/wire, uber-go/dig, uber-go/fx, and samber/do.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to design Go service wiring, choose between manual constructor injection and DI libraries, and refactor tightly coupled code toward testable dependency boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated refactors, wiring changes, or Go and git commands could alter application behavior if applied without review. <br>
-Mitigation: Review proposed changes and commands before approval, then run the relevant Go tests and linting in important repositories. <br>
-Risk: Library-specific API examples can become stale as google/wire, uber-go/dig, uber-go/fx, or samber/do evolve. <br>
-Mitigation: Check the linked official documentation before relying on exact API signatures or generated wiring patterns. <br>
+## Use Case:
 
+Developers and engineers use this skill to choose, implement, test, or refactor dependency injection patterns in Go services and applications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samber/golang-dependency-injection) <br>
-- [Skill homepage](https://github.com/samber/cc-skills-golang) <br>
-- [Manual Constructor Injection](references/manual-di.md) <br>
-- [google/wire User Guide](https://github.com/google/wire/blob/main/docs/guide.md) <br>
-- [samber/do documentation](https://do.samber.dev) <br>
-- [uber-go/fx documentation](https://uber-go.github.io/fx/) <br>
-- [uber-go/dig](https://github.com/uber-go/dig) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Go code examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Go file edits, DI library choices, tests, linting, and Go or git commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Generated Go wiring or refactor edits could introduce incorrect architecture changes or regressions in an important codebase.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code changes, run Go tests and linting, and apply refactors incrementally.
+
+Risk: DI library APIs can change, especially for google/wire, uber-go/dig, uber-go/fx, and samber/do examples.
+
+Mitigation: Check the official library documentation before relying on exact API signatures or generated code.
+
+Risk: Large refactors may require broad source inspection and helper-agent analysis.
+
+Mitigation: Limit the work to the intended Go project scope and review the consolidated migration plan before applying edits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samber/skills/golang-dependency-injection)
+- [Skill homepage](https://github.com/samber/cc-skills-golang)
+- [Manual Constructor Injection](references/manual-di.md)
+- [google/wire - Compile-Time Code Generation](references/google-wire.md)
+- [samber/do - Generics-Based DI](references/samber-do.md)
+- [uber-go/dig + uber-go/fx - Reflection-Based DI](references/uber-dig-fx.md)
+- [samber/do documentation](https://do.samber.dev)
+- [samber/do GitHub repository](https://github.com/samber/do)
+- [google/wire user guide](https://github.com/google/wire/blob/main/docs/guide.md)
+- [uber-go/fx documentation](https://uber-go.github.io/fx/)
+- [uber-go/dig GitHub repository](https://github.com/uber-go/dig)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Go code examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single response stream; may include migration plans, wiring code, tests, and DI library selection guidance.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

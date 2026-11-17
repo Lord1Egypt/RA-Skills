@@ -1,48 +1,60 @@
-## Description: <br>
-Ezviz safety production inspection skill. Captures device images and sends to Ezviz AI for workplace safety analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ezviz safety production inspection skill. Captures device images and sends to Ezviz AI for workplace safety analysis.
 
-## Publisher: <br>
-[Ezviz-Open](https://clawhub.ai/user/Ezviz-Open) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ezviz-open](https://clawhub.ai/user/ezviz-open)
 
-## Use Case: <br>
-Developers and operations teams use this skill to run workplace safety inspections from configured Ezviz cameras, including checks for PPE use, falls, cleanliness, and fire or smoke hazards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Ezviz API credentials and may cache access tokens locally. <br>
-Mitigation: Use a dedicated minimal-permission Ezviz app, prefer environment variables, and set EZVIZ_TOKEN_CACHE=0 when local token persistence is not acceptable. <br>
-Risk: The skill captures camera images and sends them to Ezviz services for remote AI analysis. <br>
-Mitigation: Test on non-production devices first, confirm the configured camera scope, and run only where this image flow is permitted. <br>
-Risk: The skill may create or reuse Ezviz intelligent agents as part of the inspection workflow. <br>
-Mitigation: Review the agent list and template configuration before autonomous use, and require the safety production agent naming rule described by the skill. <br>
+## Use Case:
 
+Developers and operations teams use this skill to run workplace safety inspections from Ezviz camera snapshots, including PPE, fall, cleanliness, and fire or smoke checks. It is intended for environments where users can authorize Ezviz API access, image capture, and remote AI analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Ezviz-Open/ezviz-open-safety-production-inspection) <br>
-- [Ezviz-Open publisher profile](https://clawhub.ai/user/Ezviz-Open) <br>
-- [Ezviz Open API token endpoint](https://open.ys7.com/api/lapp/token/get) <br>
-- [Ezviz device capture endpoint](https://open.ys7.com/api/lapp/device/capture) <br>
-- [Ezviz intelligent agent list endpoint](https://open.ys7.com/api/service/open/intelligent/agent/app/list) <br>
-- [Ezviz intelligent agent template copy endpoint](https://open.ys7.com/api/service/open/intelligent/agent/template/copy) <br>
-- [Ezviz AI analysis endpoint](https://aidialoggw.ys7.com/api/service/open/intelligent/agent/engine/agent/anaylsis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text with JSON-formatted analysis results and Markdown setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Ezviz API credentials, configured device serials, network access to Ezviz API domains, and the requests Python package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and release changelog) <br>
+Risk: The skill handles camera images and sends image URLs to Ezviz AI analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review privacy requirements before use, test with non-production cameras first, and run only where Ezviz image capture and AI analysis are authorized.
+
+Risk: The skill uses Ezviz credentials and may persist access tokens in a local temporary cache.
+
+Mitigation: Use a dedicated least-privilege Ezviz app, prefer environment variables over command-line secrets, and set EZVIZ_TOKEN_CACHE=0 in shared environments.
+
+Risk: The skill may create or rename a persistent Ezviz intelligent agent.
+
+Mitigation: Confirm remote side effects before running and use credentials scoped to capture and agent APIs only.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ezviz-open/skills/ezviz-open-safety-production-inspection)
+- [Ezviz Open API Domain](https://open.ys7.com)
+- [Ezviz Token API Endpoint](https://open.ys7.com/api/lapp/token/get)
+- [Ezviz AI Analysis Endpoint](https://aidialoggw.ys7.com/api/service/open/intelligent/agent/engine/agent/anaylsis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Console text and Markdown-style guidance with API analysis results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Ezviz app credentials and device serials; may use token caching unless disabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

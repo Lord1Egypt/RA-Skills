@@ -1,0 +1,15 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/checkpoint.schema.json",
+  "schemaVersion": "majia.koubo.checkpoint.v1",
+  "checkpointId": "cp-sample-ready-001",
+  "runId": "run-demo-stable",
+  "stage": "sample_ready",
+  "projectRevision": "rev-current",
+  "planFingerprint": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "styleFingerprint": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+  "verifiedEvidence": ["logical:structure-sample", "logical:frame-sample"],
+  "completedOperations": ["logical:sample-operation-001"],
+  "nextSafeAction": "request_sample_approval",
+  "blockedReason": null,
+  "createdAt": "2026-08-10T00:12:00Z"
+}

@@ -1,0 +1,38 @@
+# Smithery configuration for MemoryGuard MCP server
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      workspace:
+        type: string
+        default: .
+        description: Workspace path for memory storage
+    description: MemoryGuard MCP server configuration
+  command: python
+  args:
+    - -m
+    - memoryguard.mcp_server
+  env:
+    PYTHONPATH: ${workspace}/src
+build:
+  dockerfile: Dockerfile
+  dockerBuildPath: .
+displayName: MemoryGuard
+description: Local-first MCP memory backend and governance console for coding agents. Auto-organize, quarantine, supersede, and rollback shared memories.
+homepage: https://github.com/irisxc4/memoryguard
+repository: https://github.com/irisxc4/memoryguard
+license: MIT
+keywords:
+  - mcp
+  - memory
+  - agent
+  - governance
+  - claude
+  - cursor
+  - codex
+  - local-first
+categories:
+  - memory
+  - developer-tools
+  - ai-agents

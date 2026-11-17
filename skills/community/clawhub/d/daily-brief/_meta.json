@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn70b5vtk5jhahjt0r4h1sytgd8315ve",
-  "slug": "daily-brief",
+  "name": "daily-brief",
   "version": "0.1.1",
-  "publishedAt": 1773707356393
+  "description": "Daily Brief - 每日简报 - 整合天气和百度热搜，一键获取每日资讯！",
+  "author": "xiaobai",
+  "homepage": "https://github.com/yourusername/daily-brief",
+  "license": "MIT",
+  "emoji": "📰",
+  "requires": {
+    "bins": ["curl"]
+  }
 }

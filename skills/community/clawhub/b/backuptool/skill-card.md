@@ -1,39 +1,54 @@
-## Description: <br>
-Reference tool for devtools - covers intro, quickstart, patterns and more, with quick lookup for Backuptool concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that provides quick lookup material for Backuptool concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve concise Backuptool reference guidance for setup, patterns, debugging, performance, security, migration, and quick-reference workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Maintenance workflows may affect real users, pull requests, or deployments. <br>
-Mitigation: Install only for ClawHub or Convex maintenance tasks and use documented confirmation, dry-run, and opt-out controls when available. <br>
+## Use Case:
 
+Developers and engineers use Backuptool as a static reference helper for devtools backup concepts, quickstarts, patterns, troubleshooting, performance, security, migration, and cheat-sheet guidance.
 
-## Reference(s): <br>
-- [Backuptool ClawHub listing](https://clawhub.ai/ckchzh/backuptool) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings and lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands emit local heredoc reference content; no API keys, credentials, or network access are described by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server release metadata; artifact frontmatter reports 2.0.3 and script reports 2.0.2) <br>
+Risk: Users may mistake the static reference helper for a real backup utility.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as generic guidance and verify any backup procedure against the user's actual tools, environment, and recovery requirements before use.
+
+Risk: The artifact reports inconsistent versions across server release evidence, SKILL.md, and the shell script.
+
+Mitigation: Use the server release version 2.0.4 for the skill card and confirm version alignment before publishing or packaging downstream.
+
+## Reference(s):
+
+- [Backuptool on ClawHub](https://clawhub.ai/ckchzh/skills/backuptool)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output; no external API calls, credentials, network access, or local user data access indicated by the evidence.]
+
+## Skill Version(s):
+
+2.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

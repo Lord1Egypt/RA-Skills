@@ -1,40 +1,54 @@
-## Description: <br>
-Advanced security audit pack covering secrets lifecycle, path canonicalization, exec plan freeze, hook routing, config includes, prototype pollution, safeBins profiles, and group policy defaults. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced security audit pack covering secrets lifecycle, path canonicalization, exec plan freeze, hook routing, config includes, prototype pollution, safeBins profiles, and group policy defaults.
 
-## Publisher: <br>
-[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web)
 
-## Use Case: <br>
-Developers and security engineers use this skill to audit OpenClaw configuration files for high-severity and critical security issues across secrets handling, path handling, execution approvals, hooks, includes, prototype pollution, safeBins profiles, and group policy defaults. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on mcp-openclaw-extensions for its actual security checks, so the effective behavior is controlled by that extension. <br>
-Mitigation: Verify the extension source, version, and permissions before running the audit commands. <br>
-Risk: Audit commands inspect OpenClaw configuration files that may contain sensitive operational details. <br>
-Mitigation: Run the checks only on configuration files you intend to inspect and avoid sharing scan inputs or results outside the authorized review context. <br>
+## Use Case:
 
+Developers and security engineers use this skill to audit OpenClaw configuration files for high-impact security issues across secrets handling, path canonicalization, execution approvals, hooks, includes, prototype pollution, safeBins profiles, and group policy defaults.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/romainsantoli-web/firm-advanced-security-pack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with inline OpenClaw audit commands and configuration file parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only security audit workflow that depends on mcp-openclaw-extensions >= 3.0.0.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Audit conclusions depend on the external OpenClaw extension that supplies the listed tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the extension provider and version before relying on audit results.
+
+Risk: Configuration audits may process sensitive configuration content if broad file paths are supplied.
+
+Mitigation: Provide only the specific configuration files intended for audit.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/romainsantoli-web/skills/firm-advanced-security-pack)
+- [ClawHub publisher profile](https://clawhub.ai/user/romainsantoli-web)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline YAML and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces audit guidance and tool invocation examples for OpenClaw configurations; requires mcp-openclaw-extensions >= 3.0.0.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

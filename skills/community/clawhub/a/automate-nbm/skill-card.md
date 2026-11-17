@@ -1,45 +1,62 @@
-## Description: <br>
-Automate Nbm routes tasks to specialized AI agent personas and orchestration workflows for software, product, marketing, testing, support, and automation work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate Nbm provides specialized agent personas and orchestration workflows for routing software, marketing, product, testing, and support tasks through single-agent, department, or multi-agent execution.
 
-## Publisher: <br>
-[ironiclawdoctor-design](https://clawhub.ai/user/ironiclawdoctor-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ironiclawdoctor-design](https://clawhub.ai/user/ironiclawdoctor-design)
 
-## Use Case: <br>
-Developers and teams use this skill to choose single agents, departments, or an orchestrator for task planning, implementation guidance, QA review, growth work, and issue-driven automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist SSH private key material when AUTOMATE_SSH_KEY is configured. <br>
-Mitigation: Review before installation, use low-privilege credentials, avoid setting AUTOMATE_SSH_KEY unless required, and rotate credentials if exposure is suspected. <br>
-Risk: GitHub issue comments or webhook notifications can receive task content. <br>
-Mitigation: Treat configured notification targets as recipients of task data and restrict webhook URLs, GitHub tokens, and repository issue access. <br>
-Risk: Issue labels can trigger task or orchestration workflows. <br>
-Mitigation: Restrict who can apply task and orchestrate labels, and review generated outputs before using them in production work. <br>
+## Use Case:
 
+Developers, project teams, and operators use Automate Nbm to route GitHub issue or CLI task descriptions to specialized agents, coordinate multi-agent delivery plans, and produce structured task results.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ironiclawdoctor-design/automate-nbm) <br>
-- [Publisher profile](https://clawhub.ai/user/ironiclawdoctor-design) <br>
-- [README](README.md) <br>
-- [Quick Start Guide](docs/QUICKSTART.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports and plans with optional code snippets, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write task result files or post notifications when installed with appropriate GitHub or webhook credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may persist an AUTOMATE_SSH_KEY value to ~/.ssh/automate_key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a short-lived deploy key or external ssh-agent handling, and avoid providing AUTOMATE_SSH_KEY on persistent or shared runners unless local key persistence is acceptable.
+
+Risk: Task descriptions and results can be written to predictable local files and sent through GitHub comments or webhook notifications.
+
+Mitigation: Avoid submitting sensitive task content, restrict notification targets, and review result files and outbound notification settings before enabling automation.
+
+Risk: Broad issue labels and keyword-triggered dispatch can route tasks automatically.
+
+Mitigation: Limit task-triggering labels and repository_dispatch senders to trusted repository users, and review automation runs before using the skill in shared environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ironiclawdoctor-design/skills/automate-nbm)
+- [Publisher profile](https://clawhub.ai/user/ironiclawdoctor-design)
+- [Quick Start Guide](docs/QUICKSTART.md)
+- [Agent Registry](AGENTS.md)
+- [Agents Orchestrator](orchestrator/SKILL.md)
+- [Agency Agents upstream project](https://github.com/msitarzewski/agency-agents)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with inline shell commands and optional JSON result metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local task result files and post task updates through configured GitHub or webhook notification targets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter; package.json reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

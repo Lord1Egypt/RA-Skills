@@ -1,0 +1,11 @@
+{
+  "master": {
+    "pageNumbers": true,
+    "footer": "golden-fixture",
+    "footerColor": "999999"
+  },
+  "design": {
+    "tier": "",
+    "formProfile": ""
+  }
+}

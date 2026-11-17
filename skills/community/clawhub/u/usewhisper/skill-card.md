@@ -1,43 +1,57 @@
-## Description: <br>
-Official Whisper Context skill for OpenClaw. Cuts context tokens via delta compression + caching, and adds long-term memory across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Official Whisper Context skill for OpenClaw. Cuts context tokens via delta compression + caching, and adds long-term memory across sessions.
 
-## Publisher: <br>
-[Alinxus](https://clawhub.ai/user/Alinxus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alinxus](https://clawhub.ai/user/alinxus)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to retrieve compressed context, persist selected conversation turns as memory, search memories, run Oracle search, and inspect cost or cache information through a Node-based helper. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected conversation content and memories are sent to the hosted Whisper Context API as the skill's core function. <br>
-Mitigation: Install only if the service is trusted with the conversations and memories sent to it, and avoid sending secrets or arbitrary local files through stdin or @path inputs. <br>
-Risk: The helper authenticates with a user-provided API key and can target a configurable API URL. <br>
-Mitigation: Use a least-privilege API key, keep it out of source control, and keep WHISPER_CONTEXT_API_URL pointed at a trusted endpoint. <br>
-Risk: The helper can auto-create a project when the configured project is not found. <br>
-Mitigation: Confirm automatic project creation is acceptable for the organization before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Alinxus/usewhisper) <br>
-- [Publisher profile](https://clawhub.ai/user/Alinxus) <br>
-- [Whisper Context API endpoint](https://context.usewhisper.dev) <br>
+## Use Case:
 
+Developers and agent operators use this skill to retrieve compressed context, persist session memory, search memories, run Oracle search, inspect cache behavior, and review cost summaries for OpenClaw agents.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require Node, WHISPER_CONTEXT_API_KEY, and WHISPER_CONTEXT_PROJECT; WHISPER_CONTEXT_API_URL is optional.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send API credentials and conversation or memory data to a configured endpoint, including an endpoint changed from the default.
+
+Mitigation: Use only the default trusted API URL or another approved endpoint, and do not pass secrets or regulated data into memory.
+
+Risk: The Whisper Context API key is a credential used for outbound API requests.
+
+Mitigation: Store the key in the runtime environment or a secrets manager, do not commit it to source control, and rotate it if exposed.
+
+Risk: Shared or poorly scoped user_id and session_id values can mix memory between users or sessions.
+
+Mitigation: Keep user_id and session_id stable but scoped to the correct user and session.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alinxus/skills/usewhisper)
+- [Whisper Context API default endpoint](https://context.usewhisper.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node and the WHISPER_CONTEXT_API_KEY and WHISPER_CONTEXT_PROJECT environment variables; WHISPER_CONTEXT_API_URL is optional.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

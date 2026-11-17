@@ -1,0 +1,7 @@
+{
+  "name": "mysteries-prep",
+  "version": "1.1.2",
+  "description": "Refined DaVinci API workflow: images are imported strictly into a Media Pool bin first. Timeline injection requires explicit user confirmation.",
+  "author": "Raphael",
+  "license": "MIT"
+}

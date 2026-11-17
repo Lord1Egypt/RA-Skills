@@ -1,0 +1,7 @@
+interface:
+  display_name: "Dataify Brand Monitoring"
+  short_description: "Monitor brand mentions and surface reputation risks"
+  default_prompt: "Use $dataify-brand-monitoring to collect current public brand mentions, identify material changes and risks, and return a sourced monitoring snapshot."
+
+policy:
+  allow_implicit_invocation: true

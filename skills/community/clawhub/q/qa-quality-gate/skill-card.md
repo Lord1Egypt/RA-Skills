@@ -1,36 +1,52 @@
-## Description: <br>
-QA lead skill for evidence review, gate enforcement, release-readiness assessment, and quality signoff recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QA lead skill for evidence review, gate enforcement, release-readiness assessment, and quality signoff recommendations.
 
-## Publisher: <br>
-[aiweline](https://clawhub.ai/user/aiweline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aiweline](https://clawhub.ai/user/aiweline)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+QA leads, technical leads, and engineering teams use this skill to review test evidence, enforce required quality gates, and decide whether returned work is ready for release.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may produce a release recommendation from incomplete, mismatched, or weak QA evidence.
+
+Mitigation: Require concrete test outputs, runtime logs, changed-surface mapping, and explicit missing-evidence notes before relying on a gate decision.
+
+Risk: The skill references Weline-specific process documents, gate names, and Chinese role responsibilities that may not exist in another environment.
+
+Mitigation: Adapt the referenced documents, validation gates, and escalation roles before using it outside the Weline workflow.
+
+## Reference(s):
 
 
-## Use Case: <br>
-QA leads, technical leads, and engineering teams use this skill to evaluate implementation and test evidence against required quality gates and decide whether work is accepted, rejected, or conditionally accepted. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+**Output Format:** [Markdown QA gate assessment with gate-by-gate decisions, release recommendation, missing evidence, failed checks, and residual risks.]
 
-## Reference(s): <br>
+**Output Parameters:** [1D]
 
+**Other Properties Related to Output:** [Requires QA strategy, implementation summary, changed surfaces, test outputs, runtime logs, and documentation evidence when relevant.]
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown QA gate report with gate decisions, residual risks, missing evidence, failed checks, and release-readiness recommendation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided QA strategy, implementation summary, test outputs, runtime logs, and documentation evidence.] <br>
+## Skill Version(s):
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+1.1.0 (source: server release and frontmatter)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

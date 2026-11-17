@@ -1,43 +1,59 @@
-## Description: <br>
-Groundapi Web Researcher helps an agent search, scrape, check trending topics, get daily briefings, and synthesize information from multiple sources into structured research reports using GroundAPI tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep web research assistant that searches, scrapes, checks trending topics, retrieves daily briefings, and synthesizes multiple sources into structured reports using GroundAPI MCP tools.
 
-## Publisher: <br>
-[qingkongzhiqian](https://clawhub.ai/user/qingkongzhiqian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qingkongzhiqian](https://clawhub.ai/user/qingkongzhiqian)
 
-## Use Case: <br>
-External users, researchers, and developers use this skill to plan web research, run GroundAPI-backed search and scraping, compare sources, and produce concise sourced reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research topics, search queries, and scraped URLs may be sent through GroundAPI. <br>
-Mitigation: Use a revocable API key and avoid sensitive private topics or internal-only URLs unless external research is intentional. <br>
-Risk: Broad research or summary requests may trigger external search and scraping. <br>
-Mitigation: Confirm the intended scope, recency, and source constraints before using the skill for sensitive or ambiguous topics. <br>
+## Use Case:
 
+Developers, analysts, and other external users use this skill to run GroundAPI-powered web research, compare topics, monitor trends, and produce cited research summaries.
 
-## Reference(s): <br>
-- [GroundAPI homepage](https://groundapi.net) <br>
-- [GroundAPI MCP endpoint](https://mcp.groundapi.net/mcp) <br>
-- [ClawHub skill listing](https://clawhub.ai/qingkongzhiqian/groundapi-web-researcher) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/qingkongzhiqian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown research reports with source lists and optional comparison tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a GroundAPI API key configured as GROUNDAPI_KEY or in the GroundAPI MCP server headers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Research topics, selected URLs, and trend queries are sent to GroundAPI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for information that is appropriate to share with GroundAPI and avoid sending sensitive or confidential topics.
+
+Risk: The skill requires a GroundAPI key.
+
+Mitigation: Keep the GroundAPI key private, scoped to the minimum needed access, and rotate it if exposure is suspected.
+
+Risk: Broad trigger wording may invoke the skill for ordinary search or summary requests.
+
+Mitigation: Review whether GroundAPI-assisted research is appropriate before using the skill for routine or sensitive requests.
+
+## Reference(s):
+
+- [GroundAPI homepage](https://groundapi.net)
+- [GroundAPI MCP endpoint](https://mcp.groundapi.net/mcp)
+- [ClawHub skill page](https://clawhub.ai/qingkongzhiqian/skills/groundapi-web-researcher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown research reports with source links, summaries, findings, conclusions, and comparison tables when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output language follows the user request; source attribution is expected for synthesized claims.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-Mirror cron/script deliveries into agent session transcripts so scheduled and isolated-cron messages persist in context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mirror cron/script deliveries into agent session transcripts so scheduled and isolated-cron messages persist in context.
 
-## Publisher: <br>
-[obuchowski](https://clawhub.ai/user/obuchowski) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[obuchowski](https://clawhub.ai/user/obuchowski)
 
-## Use Case: <br>
-Developers and operators use this skill to send scheduled OpenClaw messages while appending matching delivery-mirror rows to the owning agent's session transcript, preserving context for the agent's next turn. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The helper appends a delivery-mirror row that must continue matching OpenClaw's expected transcript shape. <br>
-Mitigation: Mirroring is best-effort, isolated to appending one row, and should be re-verified after major OpenClaw upgrades. <br>
-Risk: Concurrent writes could occur if mirroring targets a session while an agent is actively writing to the same transcript. <br>
-Mitigation: The helper uses advisory per-session locks; operators should use it for dispatcher-style schedules when the target agent is idle. <br>
-Risk: Caller-supplied message text is delivered and stored verbatim in the transcript. <br>
-Mitigation: Treat the calling cron or script as the trust source and review the command preview, account, repository, and target before approving sends or writes. <br>
-Risk: Idempotency state can grow when unbounded unique keys are used. <br>
-Mitigation: Use bounded idempotency keys and rotate or clear the state file if key volume grows without limit. <br>
+## Use Case:
 
+Developers and operators use this skill to send OpenClaw cron or script messages and mirror the delivered text into the owning agent's transcript so scheduled deliveries remain visible in later context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/obuchowski/skills/delivery-mirror) <br>
-- [Project homepage](https://github.com/obuchowski/openclaw-delivery-mirror) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and flag descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled helper can append JSONL transcript rows, write idempotency state and logs, and call the OpenClaw CLI when invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release metadata and changelog, released 2026-06-24) <br>
+Risk: Fallback session matching can write a caller-supplied message into the wrong persistent agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit --session-key where possible, avoid fallback session discovery, and require exact normalized destination matches with rejection of multiple matches before use in shared or sensitive OpenClaw environments.
+
+Risk: Caller-provided message content is stored verbatim in the target transcript.
+
+Mitigation: Invoke the helper only from trusted cron jobs or scripts with trusted message content.
+
+Risk: Mirroring into an actively running session can race with other writers.
+
+Mitigation: Use the helper for dispatcher-style schedules when the agent is idle and avoid mirroring into a topic while its agent is mid-run.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/obuchowski/openclaw-delivery-mirror)
+- [ClawHub skill page](https://clawhub.ai/obuchowski/skills/delivery-mirror)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces command-line usage guidance for a Bash helper that sends messages, appends transcript JSONL rows, and records optional idempotency state.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence release metadata and CHANGELOG, released 2026-06-24)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-Helps agents guide developers through local Alipay Open Platform RSA2 key-pair generation, certificate-mode CSR creation, key-pair verification, and the required handoff to Alipay console and SDK configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents guide developers through local generation, rotation, and verification of Alipay Open Platform RSA2 key pairs and certificate-mode CSRs with OpenSSL.
 
-## Publisher: <br>
-[zhangke091](https://clawhub.ai/user/zhangke091) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangke091](https://clawhub.ai/user/zhangke091)
 
-## Use Case: <br>
-Developers and engineers use this skill when generating or rotating Alipay Open Platform RSA2 application keys, creating certificate-mode CSRs, checking whether key files match, and aligning generated artifacts with console and SDK configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated private keys can be printed to the terminal or captured by an agent, shell history, logs, or CI output. <br>
-Mitigation: Run key generation only in a trusted local directory, prefer --no-print for agent or CI use, and never paste generated private keys into chat. <br>
-Risk: Payment credentials or generated PEM and CSR files could be committed or shared accidentally. <br>
-Mitigation: Keep *.pem, *.csr, and alipay_keys_* outputs out of version control and review the scripts before using production payment credentials. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate or rotate Alipay RSA2 application keys, create certificate-mode CSRs, align console configuration with SDK environment settings, and troubleshoot key or signature mismatches.
 
-## Reference(s): <br>
-- [Skill reference guide](reference.md) <br>
-- [ClawHub release page](https://clawhub.ai/zhangke091/alipay-open-platform-keys) <br>
-- [Alipay Open Platform](https://open.alipay.com) <br>
-- [Alipay key generation documentation](https://opendocs.alipay.com/common/02kipl) <br>
-- [Alipay RSA2 key configuration support](https://opendocs.alipay.com/support/01raut) <br>
-- [Alipay key tool documentation](https://opendocs.alipay.com/mini/02c7i5) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and file path references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local PEM and CSR files when the user runs the bundled shell scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The default key generator command can print newly generated private signing keys to the terminal, where logs or agent transcripts may capture them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the generator only on a trusted local machine, prefer --no-print, avoid shared or world-writable output directories, and rotate any private key that has appeared in logs or transcripts.
+
+Risk: Generated private keys and CSRs may be mishandled after creation.
+
+Mitigation: Keep private keys out of version control and chats, store generated files in trusted local directories, and follow the skill guidance to configure Alipay console and SDK settings from local files.
+
+## Reference(s):
+
+- [Skill reference guide](artifact/reference.md)
+- [ClawHub skill page](https://clawhub.ai/zhangke091/skills/alipay-open-platform-keys)
+- [Alipay Open Platform](https://open.alipay.com)
+- [Alipay key generation documentation](https://opendocs.alipay.com/common/02kipl)
+- [Alipay RSA2 key configuration support](https://opendocs.alipay.com/support/01raut)
+- [Alipay key tool documentation](https://opendocs.alipay.com/mini/02c7i5)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local PEM key files, public key files, and certificate signing requests when the bundled shell scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

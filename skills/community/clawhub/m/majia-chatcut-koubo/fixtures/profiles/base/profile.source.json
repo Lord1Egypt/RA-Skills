@@ -1,0 +1,72 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/profile.source.schema.json",
+  "$comment": "Anonymous historical parent used only for resolver migration tests.",
+  "schemaVersion": "1.1.0",
+  "profileId": "fixture-historical-parent",
+  "profileVersion": "1.14.0",
+  "status": "tested-starting-point",
+  "provenance": {
+    "projectId": "fixture-parent-project",
+    "validatedTimelineIds": [
+      "fixture-parent-timeline"
+    ],
+    "note": "This identity must never be inherited by a child."
+  },
+  "theme": {
+    "paletteId": "fixture-neutral",
+    "paletteVersion": "1.0.0",
+    "mode": "light",
+    "primaryColor": "#164E63",
+    "surfaceColor": "#F8FAFC",
+    "accentColor": "#F59E0B",
+    "captionColor": "#0F172A"
+  },
+  "captions": {
+    "sourceVariant": "original",
+    "font": "sans-serif",
+    "sizePx": 42,
+    "weight": 700,
+    "displayMode": "single",
+    "maxLines": 1,
+    "maxCharactersPerLine": 22,
+    "layout": {
+      "left": 180,
+      "top": 924,
+      "width": 1560,
+      "height": 48
+    },
+    "shortCardPolicy": {
+      "approvedTerms": [
+        "AI",
+        "BI"
+      ],
+      "requireCompleteSemanticUnit": true
+    },
+    "displayOverridePolicy": {
+      "scope": "same-lexical-unit-or-punctuation-only",
+      "maxReplacementCharacters": 4,
+      "requireWordLevelAudit": true
+    }
+  },
+  "presenter": {
+    "states": {
+      "A": {
+        "visibleRect": [
+          0,
+          0,
+          1920,
+          1080
+        ],
+        "opacity": 1
+      }
+    }
+  },
+  "audio": {
+    "duplicateTrackPolicy": "mute-or-disable",
+    "fallbackDecibelAdjustment": -60
+  },
+  "terminology": {
+    "fixture-term": "This inherited legacy map must be deleted by the leaf tombstone."
+  },
+  "terminologyFile": "terms/terminology.json"
+}

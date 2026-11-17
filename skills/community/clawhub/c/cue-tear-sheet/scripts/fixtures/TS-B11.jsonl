@@ -1,0 +1,11 @@
+{"id":"S1","kind":"entity_data","ref":"AN202609210000000001","claim":"美的集团全称、代码与主营","confidence":"L1","asof":"2026-09-20"}
+{"id":"S2","kind":"disclosure_cn","ref":"AN202608300000000002","claim":"2026H1累计口径财务数据","confidence":"L1","asof":"2026-08-30"}
+{"id":"S3","kind":"disclosure_cn","ref":"AN202608300000000003","claim":"2026Q2单季口径财务数据","confidence":"L1","asof":"2026-08-30"}
+{"id":"S4","kind":"disclosure_cn","ref":"AN202604300000000004","claim":"2026Q1单季口径财务数据","confidence":"L1","asof":"2026-04-30"}
+{"id":"S5","kind":"disclosure_cn","ref":"AN202603300000000005","claim":"2025A累计口径财务数据","confidence":"L1","asof":"2026-03-30"}
+{"id":"S6","kind":"disclosure_cn","ref":"AN202609010000000006","claim":"分红股权登记日","confidence":"L1","asof":"2026-09-01"}
+{"id":"S7","kind":"buyback","ref":"AN202609020000000007","claim":"回购方案明确到期日","confidence":"L1","asof":"2026-09-02"}
+{"id":"S8","kind":"regulatory_cn","ref":"AN202609030000000008","claim":"监管措施命中","confidence":"L1","asof":"2026-09-03"}
+{"id":"S10","kind":"esop","ref":"AN202609040000000010","claim":"股权激励归属日","confidence":"L1","asof":"2026-09-04"}
+{"id":"S11","kind":"disclosure_cn","ref":"AN202609050000000011","claim":"临时股东大会日期","confidence":"L1","asof":"2026-09-05"}
+{"id":"S12","kind":"statute","ref":"https://www.gov.cn/statute/periodic-report-2026","claim":"定期报告法定期限原文与可复算规则","confidence":"L1","asof":"2026-09-20"}

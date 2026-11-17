@@ -1,41 +1,54 @@
-## Description: <br>
-AI resume and cover letter generation powered by CellCog, including ATS-optimized resumes, CVs, cover letters, LinkedIn profiles, and career documents in PDF or DOCX formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI resume and cover letter generation powered by CellCog. ATS-optimized resumes, CVs, cover letters, LinkedIn profiles, career documents — PDF or DOCX. Research-first approach that analyzes target roles before writing.
 
-## Publisher: <br>
-[nitishgargiitd](https://clawhub.ai/user/nitishgargiitd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellcog](https://clawhub.ai/user/cellcog)
 
-## Use Case: <br>
-Job seekers, career coaches, and agents use this skill to create or improve resumes, CVs, cover letters, LinkedIn profile text, and portfolio documents for specific target roles. It is especially oriented toward ATS-friendly career materials that use provided work history, education, skills, metrics, and design preferences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume, employment, education, and career details may be sent to CellCog while using the skill. <br>
-Mitigation: Avoid unnecessary sensitive details such as full addresses, government IDs, confidential employer data, or compensation information. <br>
-Risk: The skill requires a CELLCOG_API_KEY, which could be exposed through prompts, logs, or shared configuration. <br>
-Mitigation: Use a dedicated CellCog API key when possible and rotate the key if it is exposed. <br>
+## Use Case:
 
+External job seekers and professionals use the skill to create or revise resumes, CVs, cover letters, LinkedIn profiles, and portfolio documents for specific roles. They provide their experience and target-role details to generate tailored career materials.
 
-## Reference(s): <br>
-- [ClawHub Resume Cog package](https://clawhub.ai/nitishgargiitd/resume-cog) <br>
-- [CellCog](https://cellcog.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python snippets and setup commands; generated career documents may be requested as PDF or DOCX.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and CELLCOG_API_KEY; supports darwin, linux, and windows according to ClawHub metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release metadata) <br>
+Risk: Career and employment details submitted for resume generation may be sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only career information you are comfortable sending to CellCog; omit unnecessary personal details and confidential employer metrics.
+
+Risk: Installing the CellCog dependency can introduce dependency or supply-chain risk.
+
+Mitigation: Verify dependency sources and prefer reviewed, pinned versions.
+
+## Reference(s):
+
+- [CellCog](https://cellcog.ai)
+- [Resume on ClawHub](https://clawhub.ai/cellcog/skills/resume-cover-letter-cellcog)
+
+## Skill Output:
+
+**Output Type(s):** [Text, PDF documents, DOCX documents]
+
+**Output Format:** [Text responses and career documents in PDF or DOCX format]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documents are tailored using the career details and target role supplied by the user.]
+
+## Skill Version(s):
+
+1.0.18 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

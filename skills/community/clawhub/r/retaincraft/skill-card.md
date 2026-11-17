@@ -1,48 +1,66 @@
-## Description: <br>
-RetainCraft helps agents run evidence-based learning sessions with FSRS-5 spaced repetition, active recall, Feynman checks, interleaved practice, causal questioning, diagnostic tests, progress tracking, burnout checks, and reminder workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RetainCraft is an AI learning tutor that combines FSRS-5 spaced repetition, active recall, Feynman checks, interleaved practice, causal questioning, learning contracts, burnout detection, and progress reporting.
 
-## Publisher: <br>
-[kaixiad](https://clawhub.ai/user/kaixiad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaixiad](https://clawhub.ai/user/kaixiad)
 
-## Use Case: <br>
-External users and developers use this skill to structure personalized study plans, generate diagnostic tests and learning paths, run module learning loops, and maintain spaced-repetition review state across topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent reminder and weekly report jobs may continue sending messages after installation or setup. <br>
-Mitigation: Verify the exact reminder channel and recipient before enabling reminders, and remove the retaincraft-reminder and retaincraft-weekly-report cron jobs when ongoing messages are not desired. <br>
-Risk: Learning history is stored locally under ~/learn and may also be summarized in platform memory or notes. <br>
-Mitigation: Install only where local study records and platform memory use are acceptable, and review or delete stored progress data according to the user's retention needs. <br>
-Risk: Generated learning content, tests, and factual judgments may depend on web search and agent interpretation. <br>
-Mitigation: Require source links for factual learning content and have users review important study materials, test answers, and recommendations before relying on them. <br>
+## Use Case:
 
+External users, learners, and developers use this skill to run structured study sessions with diagnostic testing, customized learning paths, spaced repetition review, practice testing, simulations, and progress tracking. It is intended for agent-assisted tutoring workflows where local study state and reminder behavior are acceptable.
 
-## Reference(s): <br>
-- [RetainCraft ClawHub release page](https://clawhub.ai/kaixiad/retaincraft) <br>
-- [Full workflow reference](references/full-workflow.md) <br>
-- [Academic citations and effect sizes](scripts/evidence.md) <br>
-- [Scenario library examples](scripts/scenarios.md) <br>
-- [Donoghue & Hattie 2021 meta-analysis](https://doi.org/10.3389/feduc.2021.581216) <br>
-- [Dunlosky et al. 2013 learning techniques review](https://doi.org/10.1177/1529100612453266) <br>
-- [Kestin et al. 2025 AI tutoring RCT](https://doi.org/10.1038/s41598-025-97652-6) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-backed local learning state] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; stores study progress under ~/learn and may use platform notes, web search, and scheduled reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.5 (source: server release evidence) <br>
+Risk: The skill can create persistent daily and weekly reminder behavior and may infer messaging targets from session metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review reminder setup before installation, confirm the target channel, and disable or remove reminders if persistent notifications are not acceptable.
+
+Risk: The skill stores study progress and learning state under ~/learn.
+
+Mitigation: Use the skill only where local storage of learning topics, progress, profiles, and review history is acceptable; review or delete that directory as needed.
+
+Risk: The tutoring workflow uses web search for question generation and fact-checking.
+
+Mitigation: Avoid submitting sensitive, confidential, or regulated study material to search-backed tutoring steps, or redact it before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kaixiad/skills/retaincraft)
+- [Full workflow](artifact/references/full-workflow.md)
+- [Scenario library](artifact/scripts/scenarios.md)
+- [Academic citations and effect sizes](artifact/scripts/evidence.md)
+- [Output templates](artifact/scripts/templates.md)
+- [Learning templates data](artifact/learning-templates.json)
+- [Donoghue and Hattie 2021 meta-analysis](https://doi.org/10.3389/feduc.2021.581216)
+- [Dunlosky et al. 2013 learning techniques review](https://doi.org/10.1177/1529100612453266)
+- [Kestin et al. 2025 AI tutoring RCT](https://doi.org/10.1038/s41598-025-97652-6)
+- [Su et al. 2023 spaced repetition scheduling](https://doi.org/10.1109/TKDE.2023.3251721)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-like status outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces learning plans, tests, review prompts, local progress updates, reminder instructions, and study reports.]
+
+## Skill Version(s):
+
+1.4.5 (source: server release metadata; artifact frontmatter lists 1.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

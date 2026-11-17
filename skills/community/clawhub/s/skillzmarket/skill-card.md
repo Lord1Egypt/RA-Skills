@@ -1,45 +1,59 @@
-## Description: <br>
-Search and call monetized AI skills from Skillz Market with automatic USDC payments on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and calls monetized AI skills from Skillz Market with automatic USDC payments on Base.
 
-## Publisher: <br>
-[Hiich](https://clawhub.ai/user/Hiich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hiich](https://clawhub.ai/user/hiich)
 
-## Use Case: <br>
-External users and developers use this skill to discover Skillz Market services, inspect skill metadata, and call paid x402-enabled endpoints with USDC payments from a configured wallet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend USDC from the configured wallet when paid calls are made. <br>
-Mitigation: Use a dedicated low-balance wallet and review the destination and price before running paid calls. <br>
-Risk: The direct command can call arbitrary x402-enabled endpoints. <br>
-Mitigation: Avoid direct endpoint calls unless the endpoint is trusted. <br>
-Risk: Request JSON may be sent to external paid services. <br>
-Mitigation: Do not include secrets or sensitive data in request payloads. <br>
+## Use Case:
 
+External users and developers use this skill to search Skillz Market, inspect paid AI services, and call x402-enabled endpoints from an OpenClaw agent workflow.
 
-## Reference(s): <br>
-- [SkillzMarket on ClawHub](https://clawhub.ai/Hiich/skillzmarket) <br>
-- [Skillz Market](https://skillz.market) <br>
-- [x402 Protocol](https://x402.org) <br>
-- [Skillz Market API](https://api.skillz.market) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npx and SKILLZ_PRIVATE_KEY for paid call and direct endpoint commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: ClawHub release evidence) <br>
+Risk: The skill can use a wallet private key to make automatic paid requests, including requests to arbitrary direct endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet, avoid direct endpoint calls unless the endpoint is trusted, and review the service and price before calling.
+
+Risk: Skill calls and direct calls may send user payloads to external endpoints.
+
+Mitigation: Avoid sensitive payloads and prefer verified marketplace skills or trusted endpoints.
+
+Risk: Dependencies are version-ranged and no lockfile evidence was provided.
+
+Mitigation: Review installed dependency versions before deployment and prefer a release with pinned dependencies and a lockfile.
+
+## Reference(s):
+
+- [Skillz Market](https://skillz.market)
+- [x402 Protocol](https://x402.org)
+- [ClawHub SkillzMarket release page](https://clawhub.ai/hiich/skills/skillzmarket)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal output and JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires npx for CLI execution and SKILLZ_PRIVATE_KEY for paid calls.]
+
+## Skill Version(s):
+
+1.0.5 (source: ClawHub release metadata; package.json reports 0.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

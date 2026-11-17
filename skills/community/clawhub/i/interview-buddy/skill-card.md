@@ -1,45 +1,61 @@
-## Description: <br>
-AI-powered mock interview practice with real-time feedback for job interview preparation, behavioral questions, technical prep, mock interviews, and role-specific coaching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered mock interview practice with real-time feedback. Use when preparing for job interviews, practicing behavioral questions, doing technical interview prep, conducting mock interviews, or getting interview coaching for any role or industry.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External users and developers use this skill through an OpenClaw agent to practice interviews, receive feedback on answers, and continue guided mock interview sessions for a chosen role, company, or interview type. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends interview prompts and answers to ToolWeb's hosted interview-coaching service. <br>
-Mitigation: Avoid sending confidential employer, customer, or highly personal details unless ToolWeb processing is acceptable for the use case. <br>
-Risk: The skill requires a TOOLWEB_API_KEY and successful calls may count against quota or billing. <br>
-Mitigation: Protect the API key, scope access to intended users, and monitor ToolWeb usage or billing limits. <br>
-Risk: The skill depends on a third-party API and curl availability. <br>
-Mitigation: Confirm TOOLWEB_API_KEY is configured, curl is installed, and ToolWeb service access is acceptable before relying on the skill. <br>
+## Use Case:
 
+External users and employees use this skill through an OpenClaw agent to practice interviews, receive role-specific questions, and get feedback on answers across behavioral, technical, product, case-study, situational, and leadership formats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/interview-buddy) <br>
-- [ToolWeb portal](https://portal.toolweb.in) <br>
-- [Interview Buddy API endpoint](https://portal.toolweb.in/apis/tools/interview-buddy) <br>
-- [ToolWeb platform](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with interview prompts, answer feedback, ratings, follow-up questions, configuration snippets, and curl command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TOOLWEB_API_KEY and curl; successful API calls may count against ToolWeb quota or billing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill sends email, OTP flow details, role and company details, interview answers, and other interview-prep content to ToolWeb.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with content the user is comfortable sharing with ToolWeb, and avoid confidential employer, customer, project, or proprietary information.
+
+Risk: Successful API calls may consume paid ToolWeb quota.
+
+Mitigation: Confirm user consent before starting an external session or making repeated API calls.
+
+Risk: User-provided interview text is shown in shell command examples.
+
+Mitigation: Serialize request bodies safely before execution instead of interpolating raw user text into shell commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/interview-buddy)
+- [Publisher Profile](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
+- [ToolWeb Portal](https://portal.toolweb.in)
+- [Interview Buddy API Endpoint](https://portal.toolweb.in/apis/tools/interview-buddy)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style interview prompts, answer feedback, coaching tips, ratings, and follow-up questions, with shell command examples for API use.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TOOLWEB_API_KEY and curl; API access may consume ToolWeb quota.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

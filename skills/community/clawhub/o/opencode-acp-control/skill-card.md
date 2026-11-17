@@ -1,42 +1,59 @@
-## Description: <br>
-Control OpenCode directly via the Agent Client Protocol (ACP). Start sessions, send prompts, resume conversations, and manage OpenCode updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control OpenCode directly via the Agent Client Protocol (ACP). Start sessions, send prompts, resume conversations, and manage OpenCode updates.
 
-## Publisher: <br>
-[bjesuiter](https://clawhub.ai/user/bjesuiter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bjesuiter](https://clawhub.ai/user/bjesuiter)
 
-## Use Case: <br>
-Developers and engineers use this skill to control OpenCode through ACP, including starting sessions, sending prompts, reading responses, resuming conversations, and managing OpenCode updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to control a local OpenCode CLI with project file and terminal access. <br>
-Mitigation: Install and use it only when the local OpenCode CLI is trusted and the working directory is intentionally selected. <br>
-Risk: The update workflow can stop running OpenCode processes and includes a manual installer fallback using a remote shell script. <br>
-Mitigation: Confirm exactly which OpenCode processes will be stopped, avoid unrelated sessions, and prefer a verified installer or release artifact before using remote install commands. <br>
+## Use Case:
 
+Developers and coding agents use this skill to control OpenCode through ACP, including starting sessions, sending prompts, resuming conversations, reading responses, and checking update status.
 
-## Reference(s): <br>
-- [Agent Client Protocol docs for agents](https://agentclientprotocol.com/llms.txt) <br>
-- [OpenCode ACP skill repository](https://github.com/bjesuiter/opencode-acp-skill) <br>
-- [OpenCode releases](https://github.com/anomalyco/opencode/releases/latest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON-RPC examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes polling, session tracking, resume, cancellation, and update guidance for OpenCode ACP workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill allows an agent to start and control OpenCode sessions in a project workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only when that level of agent control over OpenCode and the target project is acceptable.
+
+Risk: The update workflow can terminate running OpenCode processes.
+
+Mitigation: Require explicit confirmation before killing processes and verify which OpenCode instances are affected.
+
+Risk: The update guidance includes a remote installer command.
+
+Mitigation: Avoid curl-to-bash installation and prefer a verified package manager or signed, pinned release update path.
+
+## Reference(s):
+
+- [Agent Client Protocol Docs](https://agentclientprotocol.com/llms.txt)
+- [OpenCode ACP Skill GitHub Repository](https://github.com/bjesuiter/opencode-acp-skill)
+- [OpenCode Releases](https://github.com/anomalyco/opencode/releases/latest)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON-RPC examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes polling guidance, session identifiers to track, resume workflow steps, and update workflow guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: release metadata and skill frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

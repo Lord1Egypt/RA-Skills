@@ -1,44 +1,55 @@
-## Description: <br>
-CyberInterviewer reviews a candidate's resume and repositories, researches current role or company interview signals, and runs a code-grounded technical mock interview with project and algorithm pressure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CyberInterviewer helps candidates prepare for technical interviews by reviewing a local resume, inspecting GitHub or local repositories, researching role or company interview signals, and running evidence-grounded mock interviews.
 
-## Publisher: <br>
-[llljjjwww333](https://clawhub.ai/user/llljjjwww333) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[llljjjwww333](https://clawhub.ai/user/llljjjwww333)
 
-## Use Case: <br>
-Developers and technical job candidates use this skill to prepare for interviews by grounding resume review, project deep dives, role research, and mock interview questions in local resume and repository evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may analyze sensitive resumes, private repositories, secrets, or unrelated personal files if users point it at them. <br>
-Mitigation: Use it only with resumes and repositories intended for interview preparation, and avoid confidential employer code, secrets, private folders, and unrelated personal files. <br>
-Risk: Company or role interview signals gathered from public web sources may be anecdotal, incomplete, or time-sensitive. <br>
-Mitigation: Distinguish anecdotes from stronger evidence, include concrete dates, and state when company-specific evidence is weak. <br>
-Risk: Interview feedback can be misleading if resume extraction is weak or repository access is incomplete. <br>
-Mitigation: State missing or low-quality evidence explicitly and ground critiques in available resume text, repository files, tests, and source-dated interview signals. <br>
+## Use Case:
 
+Developers and technical candidates use this skill to pressure-test resumes, project explanations, code ownership claims, architecture tradeoffs, and algorithm readiness before interviews. It supports structured reports and interactive mock interviews grounded in user-provided resume and repository evidence.
 
-## Reference(s): <br>
-- [Workflow](references/workflow.md) <br>
-- [Rubric](references/rubric.md) <br>
-- [Output Templates](references/output-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown reports and conversational interview questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dated web-source summaries when a target company or role is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may read sensitive resume content or private repository files supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the resume and repository paths needed for interview preparation, and avoid unrelated private repositories or sensitive files.
+
+Risk: Live web searches for interview research may surface anecdotal or stale hiring information.
+
+Mitigation: Treat web findings as interview signals, include concrete dates, and distinguish anecdotal reports from stronger evidence.
+
+## Reference(s):
+
+- [Workflow](references/workflow.md)
+- [Rubric](references/rubric.md)
+- [Output Templates](references/output-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown reports and conversational interview questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source-dated interview signals, resume risk notes, repository analysis, algorithm pressure plans, question ladders, and post-interview critique.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

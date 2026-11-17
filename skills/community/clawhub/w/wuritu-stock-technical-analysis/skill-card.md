@@ -1,41 +1,58 @@
-## Description: <br>
-对A股、美股和港股进行技术分析，包括K线形态识别、技术指标计算、趋势判断和量价分析，并生成结构化分析报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+对A股/美股/港股进行全面技术分析，包括K线形态识别、技术指标计算、趋势判断、量价分析，生成可操作的技术分析报告
 
-## Publisher: <br>
-[wuritu](https://clawhub.ai/user/wuritu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuritu](https://clawhub.ai/user/wuritu)
 
-## Use Case: <br>
-Investors, analysts, and developers use this skill to ask an agent for technical analysis of A-share, US, and Hong Kong stocks. The skill fetches market data, calculates common indicators, recognizes candlestick patterns, analyzes trends and volume, and returns a report for reference rather than investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a stock-data API key and runs local Python scripts that can write output files. <br>
-Mitigation: Use a revocable, low-privilege API key, review the external stock-data adapter dependency before use, and keep generated files in temporary or project-specific paths. <br>
-Risk: Technical analysis reports can be mistaken for investment advice. <br>
-Mitigation: Treat outputs as reference material only, retain the required risk warning, and review results against independent financial information before acting. <br>
+## Use Case:
 
+External users and developers use this skill to run stock technical analysis workflows for A-share, US, and Hong Kong securities, including K-line data retrieval, indicator calculation, candlestick pattern review, trend analysis, volume-price analysis, and chart generation. Reports are for reference only and do not constitute investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuritu/wuritu-stock-technical-analysis) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Files] <br>
-**Output Format:** [Structured Markdown report with tables, narrative interpretation, command-driven analysis steps, and optional chart image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and STOCK_DATA_API_KEY; generated reports must include a warning that technical analysis is for reference only and is not investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and openclaw metadata) <br>
+Risk: The skill requires Python execution and access to a stock-data API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a constrained workspace and provide only the credentials needed for the requested data source.
+
+Risk: Command instructions and file-writing behavior are under-scoped, including tool outputs written to local paths.
+
+Mitigation: Validate ticker, period, indicator, and output path inputs, avoid direct shell interpolation, and write outputs to a dedicated safe directory.
+
+Risk: Technical analysis output can be mistaken for investment advice.
+
+Mitigation: Keep the required report warning that technical analysis is for reference only and does not constitute investment advice.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/wuritu/skills/wuritu-stock-technical-analysis)
+- [Publisher profile](https://clawhub.ai/user/wuritu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Structured Markdown report with JSON tool outputs and optional PNG chart files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and STOCK_DATA_API_KEY; generated reports must include a risk notice that technical analysis is for reference only and not investment advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and OpenClaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

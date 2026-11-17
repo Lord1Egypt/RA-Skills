@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>豆瓣高分监控</title>
+  <meta property="og:title"       content="豆瓣高分监控" />
+  <meta property="og:description" content="持续追踪豆瓣高分影视" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://douban.juryory.com/" />
+  <meta property="og:image"       content="" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL@24,400,1" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #090909;
+      --panel:        rgba(18, 18, 18, 0.82);
+      --panel-2:      rgba(26, 26, 26, 0.92);
+      --ink:          #f5efdf;
+      --muted:        rgba(245, 239, 223, 0.58);
+      --line:         rgba(255, 241, 205, 0.10);
+      --accent:       #f0bf62;
+      --accent-soft:  rgba(240, 191, 98, 0.12);
+      --accent-strong:#ffda95;
+      --shadow:       0 24px 60px rgba(0,0,0,0.45);
+      --radius:       20px;
+      --radius-sm:    12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Space Grotesk", "PingFang SC", "Helvetica Neue", sans-serif;
+      background:
+        radial-gradient(circle at 18% 0%,   rgba(171,112, 40,0.20), transparent 28%),
+        radial-gradient(circle at 96% 8%,   rgba(151, 41, 27,0.18), transparent 24%),
+        radial-gradient(circle at 50% 100%, rgba(216,173, 81,0.10), transparent 30%),
+        linear-gradient(180deg, #0d0d0f 0%, #090909 100%);
+    }
+    body::before {
+      content: ""; pointer-events: none;
+      position: fixed; inset: 0; z-index: -1;
+      background: repeating-linear-gradient(
+        180deg,
+        rgba(255,255,255,0.022) 0, rgba(255,255,255,0.022) 1px,
+        transparent 1px, transparent 4px
+      );
+      mix-blend-mode: soft-light; opacity: 0.35;
+    }
+
+    /* ── Header ── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(9,9,9,0.82);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(20px);
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .header-left { display: flex; align-items: baseline; gap: 10px; }
+    .header-eyebrow {
+      color: var(--accent); font-size: 0.66rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+    }
+    .header-title {
+      font-family: "Noto Serif SC", serif;
+      font-size: 1.25rem; font-weight: 700; line-height: 1;
+    }
+    .header-meta {
+      font-size: 0.8rem; color: var(--muted); margin-top: 2px;
+    }
+
+    .sort-select {
+      appearance: none;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      padding: 7px 14px;
+      border-radius: 999px;
+      font: inherit; font-size: 0.82rem;
+      cursor: pointer; outline: none;
+      transition: border-color 0.2s;
+    }
+    .sort-select:hover { border-color: rgba(240,191,98,0.35); }
+    .sort-select option { background: #1c1c1c; color: #f5efdf; }
+
+    .site-intro {
+      padding: 28px 28px 0;
+      max-width: 680px;
+    }
+    .site-intro-label {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--accent);
+      margin: 0 0 8px;
+    }
+    .site-intro-body {
+      font-size: 0.92rem; line-height: 1.75;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* ── Main ── */
+    main {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 24px 20px 72px;
+    }
+
+    /* ── Tabs ── */
+    .tabs {
+      display: flex; gap: 6px; flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .tab {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 8px 16px; border-radius: 999px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--muted); font: inherit; font-size: 0.84rem;
+      cursor: pointer;
+      transition: transform 160ms, border-color 160ms, background 160ms, color 160ms;
+    }
+    .tab:hover { transform: translateY(-1px); border-color: rgba(240,191,98,0.3); color: var(--ink); }
+    .tab.active {
+      background: linear-gradient(180deg, var(--accent-strong), var(--accent));
+      border-color: transparent;
+      color: #141311; font-weight: 600;
+    }
+    .tab-count {
+      padding: 2px 7px; border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      font-size: 0.7rem;
+    }
+    .tab.active .tab-count { background: rgba(20,19,17,0.16); }
+
+    /* ── Grid ── */
+    .grid {
+      position: relative;
+    }
+
+    /* ── Card ── */
+    @keyframes reveal { to { transform: translateY(0); opacity: 1; } }
+
+    .card {
+      display: flex; flex-direction: column;
+      overflow: hidden; border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      transform: translateY(12px); opacity: 0;
+      animation: reveal 480ms ease forwards;
+      transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(240,191,98,0.25);
+      box-shadow: 0 32px 64px rgba(0,0,0,0.38);
+    }
+
+    /* Poster */
+    .card-poster {
+      position: relative; aspect-ratio: 2/3; overflow: hidden;
+      background: linear-gradient(145deg, rgba(140,80,40,0.88), rgba(22,12,8,0.98));
+      flex-shrink: 0;
+    }
+    .card-poster::before {
+      content: ""; position: absolute; inset: 9px; z-index: 1;
+      border: 1px solid rgba(255,241,205,0.09); border-radius: 11px;
+      pointer-events: none;
+    }
+    .card-poster-fallback {
+      position: absolute; inset: 0; z-index: 2;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 12px; gap: 3px; color: #fff6dd;
+    }
+    .card-poster-icon { font-size: 1.8rem; opacity: 0.22; margin-bottom: 2px; }
+    .card-poster-name {
+      font-family: "Noto Serif SC", serif;
+      font-size: 1.25rem; line-height: 1.1; max-width: 9ch;
+    }
+    .card-poster img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; z-index: 1;
+    }
+    .card-badges {
+      position: absolute; top: 9px; left: 9px; right: 9px;
+      z-index: 3; display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .badge-cat {
+      padding: 3px 8px; border-radius: var(--radius-sm);
+      font-size: 0.66rem; font-weight: 700; letter-spacing: 0.04em;
+    }
+    .badge-movie { background: rgba(52,100,170,0.82); color: #cde; }
+    .badge-tv    { background: rgba(32,120, 85,0.82); color: #cec; }
+    .badge-variety { background: rgba(110,50,145,0.82); color: #dcc; }
+    .badge-rating {
+      padding: 3px 9px; border-radius: var(--radius-sm);
+      background: linear-gradient(180deg, var(--accent-strong), var(--accent));
+      color: #141311; font-size: 0.78rem; font-weight: 700;
+    }
+
+    /* Body */
+    .card-body {
+      flex: 1; display: flex; flex-direction: column;
+      gap: 7px; padding: 12px 12px 13px;
+    }
+    .card-cat-label {
+      color: var(--accent); font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+    }
+    .card-title {
+      font-family: "Noto Serif SC", serif;
+      font-size: 1.05rem; line-height: 1.2;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .card-orig {
+      color: var(--muted); font-size: 0.74rem; line-height: 1.4;
+      display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .card-overview {
+      color: rgba(245,239,223,0.68); font-size: 0.78rem; line-height: 1.55;
+    }
+    .card-genres {
+      display: flex; gap: 4px; flex-wrap: wrap;
+    }
+    .genre-pill {
+      padding: 2px 7px; border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: var(--muted); font-size: 0.68rem;
+    }
+    .card-footer {
+      margin-top: auto; padding-top: 8px;
+      border-top: 1px solid var(--line);
+      font-size: 0.74rem; color: var(--muted);
+    }
+
+    /* ── States ── */
+    .empty {
+      grid-column: 1/-1; text-align: center;
+      color: var(--muted); padding: 56px 20px;
+      border: 1px dashed rgba(255,241,205,0.1);
+      border-radius: var(--radius);
+    }
+    #loading {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; height: 60vh; gap: 14px; color: var(--muted);
+    }
+    .spinner {
+      width: 32px; height: 32px;
+      border: 2px solid rgba(240,191,98,0.15);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    #error {
+      display: none; flex-direction: column; align-items: center;
+      justify-content: center; height: 60vh;
+      gap: 10px; color: #e57373; text-align: center; padding: 20px;
+    }
+    #error pre {
+      font-size: 0.76rem; color: var(--muted);
+      background: var(--panel); border: 1px solid var(--line);
+      padding: 12px 18px; border-radius: var(--radius-sm);
+      max-width: 560px; white-space: pre-wrap; word-break: break-all;
+    }
+
+    /* ── Back to top ── */
+    .back-top {
+      position: fixed; bottom: 28px; right: 28px; z-index: 200;
+      width: 52px; height: 52px; border-radius: 50%;
+      border: none;
+      background: linear-gradient(180deg, var(--accent-strong), var(--accent));
+      color: #141311; font-size: 1.4rem; font-weight: 700;
+      cursor: pointer; display: none;
+      align-items: center; justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 6px 20px rgba(240,191,98,0.35);
+    }
+    .back-top:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(240,191,98,0.5); }
+    .back-top.show { display: flex; }
+
+    @media (max-width: 600px) {
+      header { padding: 12px 16px; }
+      main   { padding: 16px 12px 56px; }
+    }
+
+    /* ── Detail Page ── */
+    .detail-view { display: none; min-height: 100vh; }
+    .detail-view.active { display: block; }
+
+    .detail-backdrop {
+      position: relative; width: 100%; height: 56vh; min-height: 360px;
+      overflow: hidden; background: linear-gradient(145deg, rgba(140,80,40,0.4), rgba(22,12,8,0.95));
+    }
+    .detail-backdrop img {
+      width: 100%; height: 100%; object-fit: cover; opacity: 0.55;
+    }
+    .detail-backdrop::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(0deg, var(--bg) 0%, rgba(9,9,9,0.7) 40%, transparent 100%);
+    }
+
+    .detail-back-btn {
+      position: fixed; top: 20px; left: 20px; z-index: 300;
+      width: 44px; height: 44px; border-radius: 50%; border: none;
+      background: rgba(0,0,0,0.55); backdrop-filter: blur(12px);
+      color: var(--ink); font-size: 1.3rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .detail-back-btn:hover { background: rgba(0,0,0,0.75); transform: scale(1.08); }
+
+    .detail-hero {
+      position: relative; z-index: 2; max-width: 1200px; margin: -180px auto 0; padding: 0 28px;
+      display: flex; gap: 32px; align-items: flex-end;
+    }
+    .detail-poster-wrap {
+      flex-shrink: 0; width: 220px;
+      border-radius: var(--radius); overflow: hidden;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,241,205,0.1);
+      aspect-ratio: 2/3; background: rgba(140,80,40,0.5);
+    }
+    .detail-poster-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .detail-info { flex: 1; min-width: 0; padding-bottom: 8px; }
+    .detail-title {
+      font-family: "Noto Serif SC", serif; font-size: 2rem; font-weight: 700; line-height: 1.2; margin-bottom: 6px;
+    }
+    .detail-orig-title { color: var(--muted); font-size: 0.9rem; margin-bottom: 12px; }
+    .detail-meta-row {
+      display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center;
+      color: var(--muted); font-size: 0.88rem; margin-bottom: 14px;
+    }
+    .detail-meta-row .sep { opacity: 0.3; }
+    .detail-genres { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+    .detail-genres .genre-pill { font-size: 0.78rem; padding: 3px 10px; }
+
+    .detail-rating-block {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 18px;
+    }
+    .detail-rating-num {
+      font-size: 2.4rem; font-weight: 700; line-height: 1;
+      background: linear-gradient(180deg, var(--accent-strong), var(--accent));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .detail-rating-info { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+    .detail-rating-stars { color: var(--accent); letter-spacing: 1px; }
+
+    .detail-director { color: var(--muted); font-size: 0.88rem; margin-bottom: 14px; }
+    .detail-director span { color: var(--ink); }
+
+    .detail-overview {
+      color: rgba(245,239,223,0.78); font-size: 0.92rem; line-height: 1.75;
+      max-width: 720px;
+    }
+
+    /* Sections */
+    .detail-content { max-width: 1200px; margin: 0 auto; padding: 36px 28px 72px; }
+    .detail-section { margin-bottom: 36px; }
+    .detail-section-title {
+      font-family: "Noto Serif SC", serif; font-size: 1.15rem; font-weight: 700;
+      margin-bottom: 16px; padding-left: 12px;
+      border-left: 3px solid var(--accent);
+    }
+
+    .detail-scroll {
+      display: flex; gap: 16px; overflow-x: auto; padding-bottom: 8px;
+      scrollbar-width: none;
+    }
+    .detail-scroll::-webkit-scrollbar { display: none; }
+
+    /* Cast */
+    .detail-cast-item {
+      flex-shrink: 0; width: 100px; text-align: center;
+    }
+    .detail-cast-photo {
+      width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 8px;
+      overflow: hidden; background: rgba(255,255,255,0.06);
+      border: 1px solid var(--line);
+    }
+    .detail-cast-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .detail-cast-name { font-size: 0.8rem; font-weight: 600; line-height: 1.3; }
+    .detail-cast-char { font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
+
+    /* Stills */
+    .detail-still {
+      flex-shrink: 0; width: 320px; border-radius: var(--radius-sm); overflow: hidden;
+      border: 1px solid var(--line);
+    }
+    .detail-still img { width: 100%; height: auto; display: block; }
+
+    /* Reviews */
+    .detail-reviews-list { display: flex; flex-direction: column; gap: 14px; }
+    .detail-review-card {
+      background: var(--panel-2); border: 1px solid var(--line);
+      border-radius: var(--radius-sm); padding: 16px 18px;
+    }
+    .detail-review-header {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;
+    }
+    .detail-review-user { font-size: 0.82rem; font-weight: 600; }
+    .detail-review-date { font-size: 0.72rem; color: var(--muted); }
+    .detail-review-stars { color: var(--accent); font-size: 0.78rem; margin-bottom: 6px; }
+    .detail-review-text { font-size: 0.86rem; line-height: 1.65; color: rgba(245,239,223,0.82); }
+
+    /* Similar */
+    .detail-similar-card {
+      flex-shrink: 0; width: 140px; cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .detail-similar-card:hover { transform: translateY(-3px); }
+    .detail-similar-poster {
+      aspect-ratio: 2/3; border-radius: var(--radius-sm); overflow: hidden;
+      background: rgba(140,80,40,0.5); border: 1px solid var(--line); margin-bottom: 8px;
+    }
+    .detail-similar-poster img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .detail-similar-title {
+      font-size: 0.78rem; font-weight: 600; line-height: 1.3;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .detail-similar-rating { font-size: 0.72rem; color: var(--accent); margin-top: 3px; }
+
+    .detail-douban-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 22px; border-radius: 999px; margin-top: 8px;
+      background: rgba(255,255,255,0.06); border: 1px solid var(--line);
+      color: var(--ink); font-size: 0.86rem; text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .detail-douban-link:hover { border-color: rgba(240,191,98,0.35); background: rgba(255,255,255,0.1); }
+
+    @media (max-width: 700px) {
+      .detail-hero { flex-direction: column; align-items: center; text-align: center; margin-top: -120px; gap: 20px; padding: 0 16px; }
+      .detail-poster-wrap { width: 160px; }
+      .detail-info { padding-bottom: 0; }
+      .detail-title { font-size: 1.5rem; }
+      .detail-meta-row { justify-content: center; }
+      .detail-genres { justify-content: center; }
+      .detail-rating-block { justify-content: center; }
+      .detail-overview { text-align: left; }
+      .detail-content { padding: 24px 16px 56px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="header-left">
+      <span class="header-eyebrow">Douban</span>
+      <span class="header-title">高分监控</span>
+    </div>
+    <div class="header-meta" id="meta">正在加载…</div>
+  </div>
+  <select class="sort-select" id="sortSelect">
+    <option value="added_desc">最近入库</option>
+    <option value="rating_desc">评分最高</option>
+    <option value="count_desc">评价最多</option>
+    <option value="year_desc">最新优先</option>
+    <option value="title_asc">标题排序</option>
+  </select>
+</header>
+
+<section class="site-intro">
+  <p class="site-intro-label">什么是豆瓣高分监控？</p>
+  <p class="site-intro-body">每天自动抓取豆瓣热门榜单，筛选出评分 ≥ 8.0 分、且有 3000 人以上打分的电影和剧集，集中展示在这里。你不需要每天刷豆瓣，只需要来这里看看——值得一看的好片都在了。</p>
+</section>
+
+<main>
+  <div class="tabs" id="tabs"></div>
+  <div id="loading"><div class="spinner"></div><span>加载数据中…</span></div>
+  <div id="error"></div>
+  <div class="grid" id="grid" style="display:none"></div>
+</main>
+
+<div class="detail-view" id="detailView"></div>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><span class="material-symbols-rounded">keyboard_arrow_up</span></button>
+
+<script>
+  // ── Back to top ────────────────────────────────────────────────────────────
+  window.addEventListener('scroll', () => {
+    document.getElementById('backTop').classList.toggle('show', window.scrollY > 400);
+  });
+
+  // ── Masonry ────────────────────────────────────────────────────────────────
+  const GAP = 14;
+  let masonryTimer;
+
+  function masonry() {
+    const grid = document.getElementById('grid');
+    const cards = [...grid.querySelectorAll('.card')];
+    if (!cards.length) return;
+
+    const W = grid.offsetWidth;
+    if (!W) return;
+
+    // 小屏时降低最小列宽以保证至少 2 列
+    const minCol = W < 420 ? Math.floor((W - GAP) / 2) : 210;
+    const numCols = Math.max(2, Math.floor((W + GAP) / (minCol + GAP)));
+    const colW    = Math.floor((W - (numCols - 1) * GAP) / numCols);
+    const heights = new Array(numCols).fill(0);
+
+    cards.forEach(card => {
+      card.style.position = 'absolute';
+      card.style.width    = colW + 'px';
+
+      const col = heights.indexOf(Math.min(...heights));
+      card.style.left = col * (colW + GAP) + 'px';
+      card.style.top  = heights[col] + 'px';
+      heights[col] += card.offsetHeight + GAP;
+    });
+
+    grid.style.height = Math.max(...heights) - GAP + 'px';
+  }
+
+  function masonryLater() {
+    clearTimeout(masonryTimer);
+    masonryTimer = setTimeout(masonry, 80);
+  }
+
+  window.addEventListener('resize', masonryLater);
+
+  const CAT_LABEL = { movie:'电影', tv:'剧集', variety:'综艺' };
+  const CAT_ICON  = { movie:'🎬', tv:'📺', variety:'🎤' };
+  const TMDB_IMG  = 'https://image.tmdb.org/t/p/';
+
+  let allItems = [];
+  let posters  = {};
+  let metadata = {};
+  let reviews  = {};
+  let activeTab = 'all';
+
+  function esc(s) {
+    return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function fmt(n) {
+    if (n >= 100000) return Math.round(n/10000) + '万';
+    if (n >= 10000)  return (n/10000).toFixed(1) + '万';
+    return n.toString();
+  }
+
+  function dedupe(items) {
+    const m = new Map();
+    for (const it of items) {
+      const ex = m.get(it.douban_id);
+      if (!ex || (!ex.year && it.year)) m.set(it.douban_id, it);
+    }
+    return [...m.values()];
+  }
+
+  function getSorted(items) {
+    const sort = document.getElementById('sortSelect').value;
+    const a = [...items];
+    if (sort === 'added_desc')  a.sort((x,y) => {
+      const xt = x.qualified_at || x.first_discovered_at || '';
+      const yt = y.qualified_at || y.first_discovered_at || '';
+      if (xt && yt) return yt.localeCompare(xt);
+      if (xt) return -1;
+      if (yt) return 1;
+      return (y._idx||0) - (x._idx||0);
+    });
+    if (sort === 'rating_desc') a.sort((x,y) => y.rating - x.rating);
+    if (sort === 'count_desc')  a.sort((x,y) => y.rating_count - x.rating_count);
+    if (sort === 'year_desc')   a.sort((x,y) => (y.year||0) - (x.year||0));
+    if (sort === 'title_asc')   a.sort((x,y) => x.title.localeCompare(y.title));
+    return a;
+  }
+
+  function fmtDate(dateStr) {
+    if (!dateStr) return null;
+    const [y, m, d] = dateStr.split('-');
+    if (!y) return null;
+    if (m && d) return `${y}年${parseInt(m)}月${parseInt(d)}日`;
+    if (m)      return `${y}年${parseInt(m)}月`;
+    return `${y}年`;
+  }
+
+  function enrichItem(it) {
+    const m = metadata[it.douban_id] || {};
+    const backdrop = m.backdrop_path ? `${TMDB_IMG}w1280${m.backdrop_path}` : '';
+    const metaPoster = m.poster_path ? `${TMDB_IMG}w500${m.poster_path}` : '';
+    return {
+      ...it,
+      poster:         posters[it.douban_id] || metaPoster || '',
+      backdrop,
+      original_title: m.original_title || '',
+      overview:       m.overview       || '',
+      genres:         m.genres         || [],
+      release_date:   m.release_date   || '',
+    };
+  }
+
+  function buildCard(it, idx) {
+    const label  = CAT_LABEL[it.category] || it.category;
+    const icon   = CAT_ICON[it.category]  || '📽';
+    const year   = it.year || '—';
+
+    const effectivePosterCard = it.poster || it.backdrop || '';
+    const posterFallbackCard = it.backdrop
+      ? `this.onerror=null;this.src='${esc(it.backdrop)}'`
+      : `this.style.display='none'`;
+    const posterImg = effectivePosterCard
+      ? `<img src="${esc(effectivePosterCard)}" alt="${esc(it.title)}" loading="lazy"
+             onerror="${posterFallbackCard}">`
+      : '';
+
+    const fallback = effectivePosterCard ? '' : `
+      <div class="card-poster-fallback">
+        <span class="card-poster-icon">${icon}</span>
+        <span class="card-poster-name">${esc(it.title)}</span>
+      </div>`;
+
+    const origTitle = (it.original_title && it.original_title !== it.title)
+      ? `<p class="card-orig">${esc(it.original_title)}</p>` : '';
+
+    const overview = it.overview
+      ? `<p class="card-overview">${esc(it.overview)}</p>` : '';
+
+    const genres = (it.genres||[]).slice(0,3)
+      .map(g => `<span class="genre-pill">${esc(g)}</span>`).join('');
+    const genreRow = genres ? `<div class="card-genres">${genres}</div>` : '';
+
+    const delay = `animation-delay:${Math.min(idx*35, 560)}ms`;
+
+    return `
+      <div class="card" style="${delay};cursor:pointer" onclick="location.hash='#detail/${esc(it.douban_id)}'">
+        <div class="card-poster">
+          ${fallback}
+          ${posterImg}
+          <div class="card-badges">
+            <span class="badge-cat badge-${it.category}">${esc(label)}</span>
+            <span class="badge-rating">${it.rating}</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="card-cat-label">${esc(label)}</p>
+          <h3 class="card-title">${esc(it.title)}</h3>
+          ${origTitle}
+          ${overview}
+          ${genreRow}
+          <div class="card-footer">
+            <span>${fmtDate(it.release_date) || year} · ${fmt(it.rating_count)}人评</span>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function renderGrid() {
+    const items = activeTab === 'all'
+      ? allItems : allItems.filter(it => it.category === activeTab);
+    const sorted = getSorted(items);
+
+    const grid = document.getElementById('grid');
+    grid.innerHTML = sorted.length
+      ? sorted.map((it, i) => buildCard(enrichItem(it), i)).join('')
+      : '<div class="empty">暂无数据</div>';
+
+    // 初次布局，图片加载后再重算一次
+    requestAnimationFrame(masonry);
+    grid.querySelectorAll('img').forEach(img => {
+      if (!img.complete) img.addEventListener('load',  masonryLater, { once: true });
+      img.addEventListener('error', masonryLater, { once: true });
+    });
+  }
+
+  function renderTabs() {
+    const counts = { all: allItems.length };
+    for (const it of allItems) counts[it.category] = (counts[it.category]||0) + 1;
+
+    const cats = ['all', ...Object.keys(CAT_LABEL).filter(c => counts[c])];
+    const names = { all:'全部', ...CAT_LABEL };
+
+    const tabs = document.getElementById('tabs');
+    tabs.innerHTML = cats.map(c => `
+      <button class="tab${c===activeTab?' active':''}" data-cat="${c}">
+        ${names[c]} <span class="tab-count">${counts[c]||0}</span>
+      </button>`).join('');
+
+    tabs.querySelectorAll('.tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.dataset.cat;
+        tabs.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderGrid();
+      });
+    });
+  }
+
+  // ── Detail Page ──────────────────────────────────────────────────────────
+  function setMeta(prop, val) {
+    const el = document.querySelector(`meta[property="${prop}"]`);
+    if (el) el.setAttribute('content', val);
+  }
+
+  function showGrid() {
+    document.getElementById('detailView').classList.remove('active');
+    document.getElementById('detailView').innerHTML = '';
+    document.querySelector('header').style.display = '';
+    document.querySelector('main').style.display = '';
+    document.querySelector('.site-intro').style.display = '';
+    document.getElementById('backTop').style.removeProperty('display');
+    document.title = '豆瓣高分监控';
+    setMeta('og:title',       '豆瓣高分监控');
+    setMeta('og:description', '持续追踪豆瓣高分影视');
+    setMeta('og:url',         'https://douban.juryory.com/');
+    setMeta('og:image',       '');
+  }
+
+  function showDetail(doubanId) {
+    const item = allItems.find(it => it.douban_id === doubanId);
+    if (!item) return;
+
+    const enriched = enrichItem(item);
+    const meta = metadata[doubanId] || {};
+    const revs = reviews[doubanId] || [];
+
+    // Update page title + OG meta so WeChat browser share reads correct info
+    const shareYear  = (enriched.release_date || '').slice(0, 4) || String(item.year || '');
+    const catLabel   = CAT_LABEL[item.category] || '';
+    const COUNTRY_NAMES = {
+      CN:'中国',HK:'香港',TW:'台湾',JP:'日本',KR:'韩国',
+      US:'美国',GB:'英国',FR:'法国',DE:'德国',IT:'意大利',
+      ES:'西班牙',TH:'泰国',IN:'印度',AU:'澳大利亚',CA:'加拿大',RU:'俄罗斯',
+    };
+    const rawCountry = (meta.countries || [])[0] || '';
+    const country    = COUNTRY_NAMES[rawCountry] || rawCountry;
+    const genreStr   = (enriched.genres || []).slice(0, 2).join('、');
+    const shareParts = [];
+    if (shareYear) shareParts.push(shareYear + '年');
+    if (country)   shareParts.push(country);
+    if (catLabel)  shareParts.push(catLabel);
+    const shareLines = [shareParts.join('·')];
+    if (genreStr) shareLines.push(genreStr);
+    shareLines.push(`${fmt(item.rating_count)}人打出${item.rating}分`);
+    const shareDesc = shareLines.filter(Boolean).join('\n');
+    document.title = item.title;
+    setMeta('og:title',       `《${item.title}》`);
+    setMeta('og:description', shareDesc);
+    setMeta('og:url',         `https://douban.juryory.com/detail/${doubanId}.html`);
+    if (enriched.poster) setMeta('og:image', enriched.poster);
+
+    document.querySelector('header').style.display = 'none';
+    document.querySelector('main').style.display = 'none';
+    document.querySelector('.site-intro').style.display = 'none';
+    document.getElementById('backTop').style.display = 'none';
+
+    const dv = document.getElementById('detailView');
+    dv.innerHTML = buildDetailHTML(enriched, meta, revs);
+    dv.classList.add('active');
+    window.scrollTo({ top: 0 });
+  }
+
+  function ratingStars(n) {
+    if (!n) return '';
+    const full = Math.round(n / 2);
+    return '<span class="detail-rating-stars">' + '★'.repeat(full) + '☆'.repeat(5 - full) + '</span>';
+  }
+
+  function reviewStars(n) {
+    if (!n) return '';
+    return '<span class="detail-review-stars">' + '★'.repeat(n) + '☆'.repeat(5 - n) + '</span>';
+  }
+
+  function buildDetailHTML(it, meta, revs) {
+    const label = CAT_LABEL[it.category] || it.category;
+    const year = it.year || '';
+    const runtime = meta.runtime ? `${meta.runtime}分钟` : '';
+    const countries = (meta.countries || []).join(' / ');
+    const director = meta.director || '';
+    const backdropUrl = meta.backdrop_path
+      ? `${TMDB_IMG}w1280${meta.backdrop_path}` : '';
+    const posterUrl = it.poster || '';
+
+    // Meta items (year · category · runtime · countries)
+    const metaParts = [year, label, runtime, countries].filter(Boolean);
+    const metaRow = metaParts.join(' <span class="sep">·</span> ');
+
+    // Genres
+    const genres = (it.genres || [])
+      .map(g => `<span class="genre-pill">${esc(g)}</span>`).join('');
+
+    // Backdrop
+    const backdrop = backdropUrl
+      ? `<div class="detail-backdrop"><img src="${esc(backdropUrl)}" alt="" onerror="this.style.display='none'"></div>`
+      : `<div class="detail-backdrop"></div>`;
+
+    // Poster — if no poster URL, try backdrop; if poster URL fails (404), also fall back to backdrop
+    const effectivePosterUrl = posterUrl || it.backdrop || '';
+    const posterFallback = it.backdrop
+      ? `this.onerror=null;this.src='${esc(it.backdrop)}';this.style.objectPosition='top'`
+      : `this.style.display='none'`;
+    const poster = effectivePosterUrl
+      ? `<div class="detail-poster-wrap"><img src="${esc(effectivePosterUrl)}" alt="${esc(it.title)}" onerror="${posterFallback}"></div>`
+      : `<div class="detail-poster-wrap"></div>`;
+
+    // Original title
+    const origTitle = (it.original_title && it.original_title !== it.title)
+      ? `<div class="detail-orig-title">${esc(it.original_title)}</div>` : '';
+
+    // Rating block
+    const ratingBlock = it.rating ? `
+      <div class="detail-rating-block">
+        <span class="detail-rating-num">${it.rating}</span>
+        <div class="detail-rating-info">
+          ${ratingStars(it.rating)}
+          <div>豆瓣 · ${fmt(it.rating_count)}人评价</div>
+        </div>
+      </div>` : '';
+
+    // Director
+    const directorLine = director
+      ? `<div class="detail-director">导演：<span>${esc(director)}</span></div>` : '';
+
+    // Overview
+    const overview = it.overview
+      ? `<div class="detail-overview">${esc(it.overview)}</div>` : '';
+
+    // Cast section
+    const castData = meta.cast || [];
+    const castSection = castData.length ? `
+      <div class="detail-section">
+        <div class="detail-section-title">主演</div>
+        <div class="detail-scroll">
+          ${castData.map(c => {
+            const photo = c.profile_path
+              ? `<img src="${TMDB_IMG}w185${c.profile_path}" alt="${esc(c.name)}" onerror="this.style.display='none'">`
+              : `<span class="material-symbols-rounded" style="font-size:2rem;opacity:0.2;line-height:80px">person</span>`;
+            return `
+              <div class="detail-cast-item">
+                <div class="detail-cast-photo">${photo}</div>
+                <div class="detail-cast-name">${esc(c.name)}</div>
+                <div class="detail-cast-char">${esc(c.character)}</div>
+              </div>`;
+          }).join('')}
+        </div>
+      </div>` : '';
+
+    // Stills section
+    const stills = meta.stills || [];
+    const stillsSection = stills.length ? `
+      <div class="detail-section">
+        <div class="detail-section-title">剧照</div>
+        <div class="detail-scroll">
+          ${stills.map(s => `
+            <div class="detail-still">
+              <img src="${TMDB_IMG}w780${s}" alt="剧照" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>`).join('')}
+        </div>
+      </div>` : '';
+
+    // Reviews section
+    const reviewsSection = revs.length ? `
+      <div class="detail-section">
+        <div class="detail-section-title">豆瓣短评</div>
+        <div class="detail-reviews-list">
+          ${revs.map(r => `
+            <div class="detail-review-card">
+              <div class="detail-review-header">
+                <span class="detail-review-user">${esc(r.user)}</span>
+                <span class="detail-review-date">${esc(r.date)}</span>
+              </div>
+              ${reviewStars(r.rating)}
+              <div class="detail-review-text">${esc(r.comment)}</div>
+            </div>`).join('')}
+        </div>
+      </div>` : '';
+
+    // Similar section
+    const similar = meta.similar || [];
+    const similarSection = similar.length ? `
+      <div class="detail-section">
+        <div class="detail-section-title">喜欢这部的人也喜欢</div>
+        <div class="detail-scroll">
+          ${similar.map(s => {
+            const sp = s.poster_path
+              ? `<img src="${TMDB_IMG}w342${s.poster_path}" alt="${esc(s.title)}" loading="lazy" onerror="this.style.display='none'">`
+              : '';
+            const sr = s.vote_average ? `<div class="detail-similar-rating">★ ${s.vote_average.toFixed(1)}</div>` : '';
+            return `
+              <div class="detail-similar-card">
+                <div class="detail-similar-poster">${sp}</div>
+                <div class="detail-similar-title">${esc(s.title)}</div>
+                ${sr}
+              </div>`;
+          }).join('')}
+        </div>
+      </div>` : '';
+
+    const doubanLink = it.url ? `
+      <div class="detail-section">
+        <a class="detail-douban-link" href="${esc(it.url)}" target="_blank" rel="noopener">
+          在豆瓣查看 <span class="material-symbols-rounded" style="font-size:1rem">open_in_new</span>
+        </a>
+      </div>` : '';
+
+    return `
+      <button class="detail-back-btn" onclick="history.back()">
+        <span class="material-symbols-rounded">arrow_back</span>
+      </button>
+      ${backdrop}
+      <div class="detail-hero">
+        ${poster}
+        <div class="detail-info">
+          <h1 class="detail-title">${esc(it.title)}</h1>
+          ${origTitle}
+          <div class="detail-meta-row">${metaRow}</div>
+          ${genres ? `<div class="detail-genres">${genres}</div>` : ''}
+          ${ratingBlock}
+          ${directorLine}
+          ${overview}
+        </div>
+      </div>
+      <div class="detail-content">
+        ${castSection}
+        ${stillsSection}
+        ${reviewsSection}
+        ${similarSection}
+        ${doubanLink}
+      </div>`;
+  }
+
+  function handleRoute() {
+    const match = location.hash.match(/^#detail\/(\d+)$/);
+    if (match) {
+      showDetail(match[1]);
+    } else {
+      showGrid();
+    }
+  }
+
+  window.addEventListener('hashchange', handleRoute);
+
+  async function init() {
+    try {
+      const [rRes, pRes, mRes, rvRes, fRes] = await Promise.all([
+        fetch('/data/douban-monitor-result.json'),
+        fetch('/data/douban-monitor-posters.json').catch(()=>null),
+        fetch('/data/douban-monitor-metadata.json').catch(()=>null),
+        fetch('/data/douban-monitor-reviews.json').catch(()=>null),
+        fetch('/data/douban-monitor-favorites-result.json').catch(()=>null),
+      ]);
+      if (!rRes.ok) throw new Error(`HTTP ${rRes.status}`);
+
+      const result = await rRes.json();
+      if (pRes && pRes.ok) try { posters  = await pRes.json(); } catch(_){}
+      if (mRes && mRes.ok) try { metadata = await mRes.json(); } catch(_){}
+      if (rvRes && rvRes.ok) try { reviews = await rvRes.json(); } catch(_){}
+
+      let favItems = [];
+      if (fRes && fRes.ok) try { favItems = (await fRes.json()).qualified || []; } catch(_){}
+
+      const merged = [...(result.qualified || []), ...favItems];
+      allItems = dedupe(merged.map((it, i) => ({ ...it, _idx: i })));
+
+      const runAt = new Date(result.run_at);
+      const ts = runAt.toLocaleString('zh-CN', {
+        timeZone:'Asia/Shanghai', month:'short', day:'numeric',
+        hour:'2-digit', minute:'2-digit'
+      });
+      document.getElementById('meta').textContent =
+        `共 ${allItems.length} 部 · 扫描 ${result.total||'?'} 条 · 更新于 ${ts}`;
+
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('grid').removeAttribute('style');
+
+      renderTabs();
+      renderGrid();
+      handleRoute();
+
+      document.getElementById('sortSelect').addEventListener('change', renderGrid);
+
+    } catch(err) {
+      document.getElementById('loading').style.display = 'none';
+      const el = document.getElementById('error');
+      el.style.display = 'flex';
+      el.innerHTML = `
+        <div style="font-size:1.3rem">加载失败</div>
+        <pre>错误：${esc(err.message)}\n\n请用本地服务器打开：\npython -m http.server 8080</pre>`;
+    }
+  }
+
+  init();
+</script>
+</body>
+</html>

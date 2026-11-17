@@ -1,36 +1,48 @@
-## Description: <br>
-Generate an energy-optimized, time-blocked daily plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate an energy-optimized, time-blocked daily plan
 
-## Publisher: <br>
-[nicoataiza](https://clawhub.ai/user/nicoataiza) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nicoataiza](https://clawhub.ai/user/nicoataiza)
 
-## Use Case: <br>
-External users use this skill to have an agent review priorities, commitments, and energy windows, then produce an actionable daily plan with a mission, top priorities, time blocks, success criteria, and an evening check-in. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may use personal planning context such as notes, calendar details, tasks, and priorities when creating a schedule. <br>
-Mitigation: Before invoking it, limit the agent's accessible notes, calendars, and task sources to the information intended for daily planning. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users use this skill to turn daily priorities, commitments, energy windows, and constraints into an actionable time-blocked plan with top priorities and an evening check-in.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown daily plan with checklist sections and time-blocked schedule entries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The output is intended for notes or productivity apps and includes mission, priorities, time blocks, success criteria, and evening review prompts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may ask for or use personal planning context, including priorities, commitments, or daily notes.
+
+Mitigation: Provide only information you are comfortable sharing and review the generated plan before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nicoataiza/skills/plan-my-day-bak-2026-01-28t18-01-27-10-30)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown daily plan with checklists and time blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for personal planning context such as priorities, commitments, or daily notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

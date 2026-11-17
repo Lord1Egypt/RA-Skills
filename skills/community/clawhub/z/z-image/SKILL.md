@@ -1,10 +1,16 @@
 ---
 name: poyo-z-image
 description: Use PoYo AI Z-Image for straightforward prompt-based image generation through the `https://api.poyo.ai/api/generate/submit` endpoint. Use when a user wants direct text-to-image output, simple aspect-ratio control, lightweight PoYo payloads, or submissions for `z-image`.
-metadata: {"openclaw": {"homepage": "https://docs.poyo.ai/api-manual/image-series/z-image", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
+metadata: {"openclaw": {"homepage": "https://poyo.ai/models/z-image", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
 ---
 
 # PoYo Z-Image Generation
+
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/z-image>
+- API docs: <https://docs.poyo.ai/api-manual/image-series/z-image>
+- API key page: <https://poyo.ai/dashboard/api-key>
 
 Use this skill to submit and track PoYo jobs for the Z-Image family.
 
@@ -44,8 +50,3 @@ When helping with this model family, include:
 - whether reference images are involved
 - returned `task_id` if a request was actually submitted
 - next step: poll status or wait for webhook
-
-Notes:
-
-Needs POYO_API_KEY from https://poyo.ai
-PoYo.ai - Premium AI API Platform | Image, Video, Music & Chat APIs - 80% Cheaper

@@ -95,7 +95,7 @@ Quick check before `music_generate`:
 - [ ] Prompt voice line says the same language as the lyric body
 - [ ] Chorus language matches verse language unless the song is intentionally bilingual
 - [ ] Tags are in English (`[Verse]`, not `[Verso]`)
-- [ ] If the user wrote the request in Spanish, the prompt can be in English but the lyrics must be in Spanish
+- [ ] Lyrics use the language the user asked for; if they did not say, use the language of the request and confirm it. The style prompt can stay in English.
 
 ### Routing for ambiguous phrases
 
@@ -107,7 +107,7 @@ Some common phrases hide the real intent. Match the phrase to a route before ask
 | "Use these lyrics" | User-provided lyrics | "What style and voice should it have?" |
 | "Instrumental only" / "no vocals" / "background music" | Instrumental / jingle | "What duration and use case?" |
 | "Turn this image into music" / "vibe like this" | URL/image enrichment | (analyze the image first, ask only if mood/genre still unclear) |
-| "Cover this song" / "in the style of this track" with audio | Audio cover — redirect | "That needs cover / style transfer from audio. Switching to `music-craft-minimax`." |
+| "Cover this song" / "in the style of this track" with audio | Audio cover — local ACE-Step | "That needs cover / style transfer from audio. I can try it locally with ACE-Step; it is slower and experimental." |
 | "Make a song" / "something for my project" with no other info | Vague request | "Genre, mood, language, or theme you have in mind? Or want me to surprise you?" |
 
 Always enrich before asking when the input is an image or URL. Fetch the page or analyze the image, then route based on what was extracted.

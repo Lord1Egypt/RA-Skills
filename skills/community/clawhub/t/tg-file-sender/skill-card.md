@@ -1,42 +1,58 @@
-## Description: <br>
-Sends local workspace files to Telegram chats through the Telegram Bot API, supporting documents, photos, videos, audio, and other media with path, size, and token-handling guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send local files to a Telegram chat as documents, photos, video, or audio after resolving paths and checking file size.
 
-## Publisher: <br>
-[bustes01](https://clawhub.ai/user/bustes01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bustes01](https://clawhub.ai/user/bustes01)
 
-## Use Case: <br>
-Developers and agents use this skill to deliver a selected workspace file to a Telegram chat when the user explicitly requests Telegram delivery. The skill resolves and validates the file path, chooses the appropriate Telegram send method, and reports Telegram API errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A selected workspace file can be sent outside the workspace to Telegram. <br>
-Mitigation: Verify the exact file and Telegram destination before sending, and avoid sending source code, secrets, or private documents unless external sharing is intended. <br>
-Risk: The Telegram bot token can authorize file delivery if exposed. <br>
-Mitigation: Read the token only from TG_BOT_TOKEN, treat it like a password, and never log, echo, or hardcode it. <br>
-Risk: Incorrect path handling could send the wrong file or allow traversal outside the workspace. <br>
-Mitigation: Resolve paths with realpath, reject symlinks and files outside the workspace, require the file to exist, and enforce Telegram size limits before upload. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to send an explicitly selected workspace file to a Telegram chat through the Telegram Bot API. It is intended for file delivery workflows where the environment provides TG_BOT_TOKEN and curl.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bustes01/tg-file-sender) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with bash curl examples and Telegram API response handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and TG_BOT_TOKEN; uses workspace path validation and Telegram file size checks before sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can send local workspace files to Telegram, which may expose private content if the file and destination are not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for explicit file-send requests and confirm the exact resolved file path and Telegram destination before each send.
+
+Risk: The documented prefix-based workspace path check may not reliably prove path containment in every path layout.
+
+Mitigation: Use a canonical containment check and reject symlinks before uploading any file.
+
+Risk: Cleanup behavior for /tmp files could remove files the skill did not create.
+
+Mitigation: Only delete temporary files created and tracked during the same operation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bustes01/skills/tg-file-sender)
+- [ClawHub metadata homepage](https://clawhub.ai/BusTes01/tg-file-sender)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and concise status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TG_BOT_TOKEN and curl; sends files up to 50 MB when the file path and Telegram destination are confirmed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

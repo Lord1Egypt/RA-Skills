@@ -1,41 +1,53 @@
-## Description: <br>
-World-Class Sustainability & Social Responsibility Playbook for ESG strategy, carbon footprint management, ethical sourcing, supply chain due diligence, CSR, ESG reporting, double materiality, net-zero planning, climate risk, greenwashing avoidance, circular economy, human rights due diligence, governance, and related responsible business topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+World-class sustainability, ESG, and social responsibility strategy skill for Codex and compatible agent runtimes.
 
-## Publisher: <br>
-[chilu18](https://clawhub.ai/user/chilu18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chilu18](https://clawhub.ai/user/chilu18)
 
-## Use Case: <br>
-Employees, consultants, and business teams use this skill for sustainability and ESG planning, reporting, carbon management, supplier due diligence, CSR program design, and responsible business guidance. It supports framework-aligned advisory responses and practical implementation checklists rather than automated regulatory compliance decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may cause the skill to respond in general business conversations that only touch sustainability-adjacent topics. <br>
-Mitigation: Confirm that ESG or sustainability guidance is actually relevant before applying the skill's recommendations. <br>
-Risk: Regulatory, legal, and reporting-framework details may be incomplete or outdated for a user's jurisdiction or reporting period. <br>
-Mitigation: Verify legal and regulatory details against current authoritative sources and qualified counsel before relying on them. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to produce ESG strategy, carbon management, ethical sourcing, supply chain due diligence, reporting framework alignment, and responsible business guidance.
 
-## Reference(s): <br>
-- [Sustainability & Social Responsibility - Full Reference](references/full-playbook.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/chilu18/sustainability-playbook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, text] <br>
-**Output Format:** [Markdown advisory guidance with tables, checklists, roadmaps, and framework-aligned recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory sustainability and ESG content; users should verify current regulatory and legal details against authoritative sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Install and scan commands reference mutable, unpinned remote packages and include global or noninteractive execution flags.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before running, pin the installer and source to reviewed versions, avoid --yes and --global unless needed, and run scanners in an isolated environment without unnecessary secrets.
+
+Risk: ESG and regulatory guidance may become outdated or vary by jurisdiction.
+
+Mitigation: Check current official sources and qualified legal or sustainability experts before relying on regulatory guidance or public sustainability claims.
+
+## Reference(s):
+
+- [Sustainability & Social Responsibility Full Reference](references/full-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose, checklists, tables, and implementation roadmaps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ESG frameworks, KPI tables, regulatory checklists, and risk guidance; regulatory guidance should be checked against current official sources.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

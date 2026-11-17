@@ -1,45 +1,54 @@
-## Description: <br>
-Generates and decodes QR codes for URLs, vCards, WiFi credentials, and plain text, with color customization and optional logo embedding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and decodes QR codes for URLs, vCards, WiFi credentials, and plain text, with color customization and optional logo embedding.
 
-## Publisher: <br>
-[starclimber](https://clawhub.ai/user/starclimber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[starclimber](https://clawhub.ai/user/starclimber)
 
-## Use Case: <br>
-Developers and end users can use this skill to create local QR-code image files for common data formats or decode QR-code images when optional decoding dependencies are installed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: QR codes can contain sensitive information such as WiFi credentials. <br>
-Mitigation: Treat generated QR images as credentials when they encode secrets, and avoid putting real passwords directly in shell commands where possible. <br>
-Risk: Decoded QR content can include untrusted links or instructions. <br>
-Mitigation: Inspect decoded text before acting on it, and do not open decoded links blindly. <br>
-Risk: Decode mode depends on optional packages beyond the base QR generator dependencies. <br>
-Mitigation: Install and review the optional decoding dependencies, including opencv-python and pyzbar, before relying on decode mode. <br>
-Risk: Oversized logos can reduce QR-code scan reliability. <br>
-Mitigation: Keep logo coverage within the documented size guidance and test generated QR codes with the intended scanners. <br>
+## Use Case:
 
+Developers and external users use this skill to create QR code image files for URLs, WiFi networks, contact cards, and text, or to decode an existing QR image into text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/starclimber/skills/qrcodemaker) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, local PNG image outputs, and decoded text output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated QR codes are written to local output paths; decode mode prints decoded QR content when its optional dependencies are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated WiFi or vCard QR codes can disclose passwords or personal details to anyone who can scan the saved image.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the encoded content before sharing QR images and avoid placing sensitive QR files in public or broadly shared locations.
+
+Risk: The Python dependencies are installed locally, and decoder support requires optional image-processing packages.
+
+Mitigation: Install the skill in a virtual environment and review or pin dependencies before use.
+
+## Reference(s):
+
+- [Artifact README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/starclimber/skills/qrcodemaker)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Shell commands, Guidance]
+
+**Output Format:** [PNG image files, plain text decoder output, and Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generation supports foreground and background colors, optional logo embedding, and URL, WiFi, vCard, and plain-text modes.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

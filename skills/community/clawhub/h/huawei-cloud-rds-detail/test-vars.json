@@ -1,0 +1,37 @@
+{
+  "skill_name": "huawei-cloud-rds-detail",
+  "region": "cn-north-4",
+  "timeout": 30,
+  "test_cases": [
+    {
+      "name": "help",
+      "command": "python3 scripts/huawei_cloud_rds_detail.py --help",
+      "method": "GET",
+      "category": "readonly",
+      "expected": {
+        "has_field": "usage",
+        "type": "text"
+      }
+    },
+    {
+      "name": "capability-list",
+      "command": "python3 scripts/huawei_cloud_rds_detail.py capability-list",
+      "method": "GET",
+      "category": "readonly",
+      "expected": {
+        "has_field": "capabilities",
+        "type": "json"
+      }
+    },
+    {
+      "name": "list",
+      "command": "python3 scripts/huawei_cloud_rds_detail.py list",
+      "method": "GET",
+      "category": "readonly",
+      "expected": {
+        "has_field": "instances",
+        "type": "json"
+      }
+    }
+  ]
+}

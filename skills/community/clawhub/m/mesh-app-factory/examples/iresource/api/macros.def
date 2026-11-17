@@ -1,0 +1,62 @@
+{
+    "is_prj_member" : {
+        "name" : "prj_info",
+        "type" : "call",
+        "method" : "GET",
+        "tokenSign" : "APP",
+        "cache" : "#PID# @{#tokenAcc}",
+        "comment" : "确认是否为项目成员",
+        "service" : "iproject",
+        "url" : "/role?id=#PID#&account=@{#tokenAcc}",
+        "onSuccess" : {
+            "errorCode":"NO_RIGHT",
+            "errorInfo":"not a member",
+            "condition":"@{CONDITION|!role,'s.@',`#ROLES#`}"
+        }
+    },
+    
+    "judge_factory_right" : {
+        "name" : "judge_factory_right",
+        "type" : "dataexists",
+        "db":"common",
+        "expect" : true,
+        "errorCode":"NO_RIGHT",
+        "errorInfo":"not a valid member",
+        "sql":"select 1 from factoryAdm 
+            where acc='@{#tokenAcc}' and factory=#FACTORY#
+            and type in(#TYPE#)"
+    },
+
+    "check_accounts":{
+        "name":"check_accounts",
+        "comment":"检查帐号是否都存在",
+        "type" : "call",
+        "service": "user",
+        "method":"POST",
+        "url":"/user/userid",
+        "tokenSign":"APP",
+        "parameters":"{\"accounts\":#ACCLIST#}"
+    },
+
+    "is_purchase_owner":{
+        "name":"check_signer",
+        "comment":"鉴权，询问workflow当前帐号是否为这个工作流中的权签人",
+        "type" : "call",
+        "service": "workflow",
+        "method":"GET",
+        "cache":"#PURID# @{#tokenAcc}",
+        "tokenSign":"APP",
+        "url":"/isSigner?did=#PURID#&flowid=#FLOWID#&account=@{#tokenAcc}&type=O"
+    },
+    
+    "is_purchase_signer":{
+        "name":"check_signer",
+        "comment":"鉴权，询问workflow当前帐号是否为这个工作流中的权签人",
+        "type" : "call",
+        "service": "workflow",
+        "method":"GET",
+        "cache":"#PURID# @{#tokenAcc}",
+        "tokenSign":"APP",
+        "url":"/isSigner?did=#PURID#&flowid=#FLOWID#&account=@{#tokenAcc}"
+    }
+}

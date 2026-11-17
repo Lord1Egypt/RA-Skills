@@ -1,41 +1,58 @@
-## Description: <br>
-Expense tracker that logs expenses, categorizes them by type, tracks spending against budgets, and flags overspending on a monthly schedule or on demand. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expense tracker - log expenses, categorize by type, track against budget, flag overspending. Monthly cron or on-demand.
 
-## Publisher: <br>
-[ceobotson-bot](https://clawhub.ai/user/ceobotson-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ceobotson-bot](https://clawhub.ai/user/ceobotson-bot)
 
-## Use Case: <br>
-Business owners, operators, and agents use this skill to maintain expense logs, categorize spending, monitor budgets, generate monthly summaries, and prepare CSV exports for accounting or tax workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may handle sensitive business expense data, receipts, reports, and accounting exports. <br>
-Mitigation: Use read-only or manual imports where possible, limit connected accounts and shared fields, and secure receipt, report, and spreadsheet storage. <br>
-Risk: Automatic delivery to chat channels or accountants can expose financial details to unintended recipients. <br>
-Mitigation: Review configured delivery channels and exported content before enabling automatic report delivery. <br>
+## Use Case:
 
+Business owners and finance operators use this skill to log expenses, categorize spending, compare monthly totals against budgets, and generate reports for review or tax preparation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ceobotson-bot/doctorclaw-expense-tracker) <br>
-- [DoctorClaw website](https://www.doctorclaw.ceo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown reports and text confirmations, with optional CSV exports and scheduling or delivery configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference configured expense logs, budget files, receipt storage, delivery channels, and export destinations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may handle sensitive financial records, receipts, reports, and tax-related exports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use private storage, restrict access to expense logs and receipt folders, and set retention rules for reports and exports.
+
+Risk: Optional bank, card, Google Sheets, and chat delivery integrations can expose financial data through connected services.
+
+Mitigation: Review each connector's access scope before installation and use private delivery channels for alerts and reports.
+
+Risk: Automatically logged or categorized expenses may be inaccurate.
+
+Mitigation: Confirm each expense before saving and review monthly reports before using them for budget or tax decisions.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/ceobotson-bot/skills/doctorclaw-expense-tracker)
+- [DoctorClaw website](https://www.doctorclaw.ceo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and structured text with optional CSV export guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce monthly expense reports, budget alerts, categorized expense entries, and export instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

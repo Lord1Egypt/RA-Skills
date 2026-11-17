@@ -1,43 +1,58 @@
-## Description: <br>
-Use when the user wants to collect tweets, search Twitter/X, get tweet details, set up site-use, or browse cached posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents use the site-use CLI to collect, search, inspect, and cache Twitter/X posts.
 
-## Publisher: <br>
-[williampenrose](https://clawhub.ai/user/williampenrose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[williampenrose](https://clawhub.ai/user/williampenrose)
 
-## Use Case: <br>
-External users and developers use this skill to collect Twitter/X timeline, search, tweet detail, and reply data through site-use, then query cached posts for analysis or briefings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access account-scoped Twitter/X content, including private or personalized timeline and feed material. <br>
-Mitigation: Use it only when the user intentionally wants Twitter/X content collected, and require explicit confirmation before collecting private or personalized feed content. <br>
-Risk: Collected tweets are automatically retained in a local knowledge base. <br>
-Mitigation: Confirm where site-use stores collected tweets and how retained data can be deleted before using the collection commands. <br>
-Risk: Repeated Twitter/X commands can hit rate limits or extend cooldowns. <br>
-Mitigation: Stop Twitter/X commands during rate-limit cooldowns and use local cache queries until the reset time has passed. <br>
+## Use Case:
 
+Developers and agent users use this skill to set up site-use, retrieve Twitter/X timelines, search posts, inspect tweet details and replies, capture screenshots, and query cached local posts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/williampenrose/site-use-x) <br>
-- [site-use Homepage](https://github.com/WilliamPenrose/site-use) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides command selection and output-size control for site-use Twitter/X collection and local cache queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill relies on the third-party site-use npm package and an authenticated browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the site-use package is trusted and use an isolated Chrome profile for Twitter/X login.
+
+Risk: Live timeline fetches, searches, tweet lookups, and screenshots may expose account-linked activity to X and store collected posts locally.
+
+Mitigation: Use cache-only commands when live browser access is not needed, and limit returned fields to the minimum needed for the task.
+
+Risk: Twitter/X rate limits or account enforcement can interrupt collection workflows.
+
+Mitigation: Stop live Twitter/X commands during rate-limit cooldowns and rely on local cache queries until it is appropriate to retry.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/williampenrose/skills/site-use-x)
+- [site-use Homepage](https://github.com/WilliamPenrose/site-use)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON result descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses concise field selections for fetched posts and can direct agents to cached local data when live fetching is unnecessary or rate-limited.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

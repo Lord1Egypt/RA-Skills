@@ -1,43 +1,60 @@
-## Description: <br>
-Installation and setup guide for Tesla vehicle control and telemetry via the tescmd node. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installation and setup guide for Tesla vehicle control and telemetry via the tescmd node.
 
-## Publisher: <br>
-[Oceanswave](https://clawhub.ai/user/Oceanswave) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[oceanswave](https://clawhub.ai/user/oceanswave)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install and pair the tescmd node so agents can access Tesla vehicle control, telemetry, and Gateway integrations after user-led authentication and pairing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agent-connected Tesla vehicle access can expose sensitive vehicle control and telemetry capabilities to the agent environment. <br>
-Mitigation: Install only for trusted agents and gateways, review the runtime tescmd tools before allowing access, keep the node stopped when not needed, and revoke stored tokens when access should end. <br>
-Risk: Persistent Tesla and OpenClaw credentials are stored locally and may be exposed by loose file permissions or command-line token usage. <br>
-Mitigation: Protect files under ~/.config/tescmd with restrictive permissions, prefer OAuth and pairing flows over command-line tokens, and avoid sharing configuration files. <br>
-Risk: The setup flow references a remote installer pattern for Tailscale. <br>
-Mitigation: Prefer official signed install channels and review installation commands before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Oceanswave/openclaw-tescmd) <br>
-- [openclaw-tescmd plugin repository](https://github.com/oceanswave/openclaw-tescmd) <br>
-- [tescmd node repository](https://github.com/oceanswave/tescmd) <br>
+## Use Case:
 
+Developers and operators use this skill to install and configure Tesla vehicle control and telemetry integration between OpenClaw Gateway and the tescmd node.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes interactive setup checkpoints and security-sensitive credential handling guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter says 0.9.7) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing mutable external components can change behavior after review.
+
+Mitigation: Prefer package-manager or signed-install methods and pin reviewed versions where possible.
+
+Risk: Tesla, OpenClaw, and gateway credentials may be exposed through command lines or local configuration files.
+
+Mitigation: Avoid placing secrets on command lines, restrict permissions on ~/.config/tescmd files, and rotate credentials if exposure is suspected.
+
+Risk: The setup controls vehicle integration and requires interactive authentication and pairing.
+
+Mitigation: Review the setup flow carefully before installation and keep human confirmation for browser login, vehicle pairing, and gateway approval steps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oceanswave/skills/openclaw-tescmd)
+- [OpenClaw Tesla plugin repository](https://github.com/oceanswave/openclaw-tescmd)
+- [tescmd node repository](https://github.com/oceanswave/tescmd)
+- [GitHub CLI Linux install documentation](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
+- [Tailscale download](https://tailscale.com/download)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes interactive setup checkpoints that require user confirmation outside the agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

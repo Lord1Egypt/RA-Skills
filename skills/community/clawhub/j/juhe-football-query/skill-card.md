@@ -1,42 +1,55 @@
-## Description: <br>
-Queries football match schedules and league standings for supported leagues such as the Chinese Super League, English Premier League, Serie A, Bundesliga, Ligue 1, Spanish second division, and Scottish Premiership using Juhe's football API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询中超、英超、意甲、德甲、法甲、西乙、苏超等足球联赛的赛程、比赛结果和积分榜，并通过聚合数据 API 返回实时信息。
 
-## Publisher: <br>
-[juhemcp](https://clawhub.ai/user/juhemcp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juhemcp](https://clawhub.ai/user/juhemcp)
 
-## Use Case: <br>
-External users and agents use this skill to query football schedules, match results, and league tables for supported leagues, then present the returned Juhe football data clearly to the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The required Juhe API key could be exposed through command-line arguments, logs, shell history, or shared environment files. <br>
-Mitigation: Prefer the JUHE_FOOTBALL_KEY environment variable, avoid logging the key, do not share shell history or .env files containing it, and rotate the key if exposure is suspected. <br>
-Risk: Juhe API quota limits or billing policy changes can interrupt lookups or create unexpected usage pressure. <br>
-Mitigation: Monitor Juhe quota usage, handle quota errors clearly, and confirm the active Juhe plan before relying on the skill for repeated queries. <br>
-Risk: The artifact uses HTTP API endpoints, which may expose requests or API keys if used over untrusted networks. <br>
-Mitigation: Use an HTTPS endpoint if Juhe supports it, and avoid running key-bearing requests over networks that are not trusted. <br>
+## Use Case:
 
+External users and developers use this skill to answer football league schedule, result, and standings questions after configuring a Juhe football API key. Agents can present the returned schedule or ranking data as readable text, Markdown, or JSON.
 
-## Reference(s): <br>
-- [Juhe Football League API documentation](https://www.juhe.cn/docs/api/id/90) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a JUHE_FOOTBALL_KEY API key and returns formatted schedules or standings from Juhe API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends the Juhe API key to API endpoints over plaintext HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Change Juhe API calls to HTTPS before deployment and rotate any key already used with the plaintext HTTP endpoints.
+
+Risk: Documented key-handling options include passing the API key on the command line or storing it in a .env file under the skill directory.
+
+Mitigation: Prefer a runtime environment variable or secret manager, avoid command-line secrets, and keep local .env files out of shared artifacts.
+
+## Reference(s):
+
+- [Juhe Football API Documentation](https://www.juhe.cn/docs/api/id/90)
+- [Juhe Data Platform](https://www.juhe.cn)
+- [ClawHub Skill Page](https://clawhub.ai/juhemcp/skills/juhe-football-query)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or terminal text with optional JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a JUHE_FOOTBALL_KEY credential; results depend on the Juhe football API response.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

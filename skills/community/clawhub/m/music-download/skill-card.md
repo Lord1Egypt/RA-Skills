@@ -1,41 +1,57 @@
-## Description: <br>
-Guides an agent through downloading MP3 music from NetEase Cloud Music and other supported platforms using yt-dlp or you-get. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through downloading MP3 music from NetEase Cloud Music and other supported platforms using yt-dlp, with you-get as a fallback.
 
-## Publisher: <br>
-[ziyang9317](https://clawhub.ai/user/ziyang9317) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ziyang9317](https://clawhub.ai/user/ziyang9317)
 
-## Use Case: <br>
-Developers and end users can use this skill to generate practical commands for single-track, playlist, search-based, and batch MP3 downloads from supported music platforms. Users remain responsible for downloading only content they have the right to access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill recommends third-party media download tools and command-line installation. <br>
-Mitigation: Install tools only in trusted environments, prefer a virtual environment over system-wide package changes, and review commands before execution. <br>
-Risk: Music downloads may involve copyrighted or access-restricted content. <br>
-Mitigation: Download only content the user has the legal right to access and retain. <br>
+## Use Case:
 
+External users and agents use this skill to prepare safe command-line downloads for individual songs, playlists, searches, and batch music downloads where the user is authorized to save the media.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ziyang9317/music-download) <br>
-- [Publisher profile](https://clawhub.ai/user/ziyang9317) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; commands depend on external tools and platform availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The suggested yt-dlp installation method can affect system-managed Python packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install yt-dlp in an isolated tool environment such as pipx or a virtual environment.
+
+Risk: Batch downloads can place unexpected files in the target directory.
+
+Mitigation: Review the download directory before and after batch downloads and use an explicit output path.
+
+Risk: Downloading music may violate copyright or platform terms when the user lacks authorization.
+
+Mitigation: Only download content the user is authorized to save and follow applicable copyright rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ziyang9317/skills/music-download)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands depend on user-provided music page, album, playlist, artist, or search URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

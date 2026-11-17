@@ -1,40 +1,54 @@
-## Description: <br>
-Assists China Gaokao users with querying, cross-checking, and summarizing official public university, major, admissions, and subject-selection information without recommendations or probability predictions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中国高考公共信息助手。仅查询、整合、转发公开、权威、免费的官方高校与专业数据，不做志愿填报、概率预测或主观推荐。
 
-## Publisher: <br>
-[ToBeWin](https://clawhub.ai/user/ToBeWin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Students, families, and education-information agents use this skill to gather official public information about Chinese universities, majors, admissions rules, and subject requirements. It supports evidence-based summaries and objective comparisons, not personalized application decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, for China Gaokao public education information <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Admissions rules, subject-selection requirements, policies, and school data can change by year and province. <br>
-Mitigation: Verify time-sensitive details against the latest official Ministry of Education, provincial exam authority, Yangguang Gaokao, Xuexin, or university admissions pages before relying on them. <br>
-Risk: Users may ask for personalized application recommendations, rankings, or admission probability predictions beyond the skill's evidence-only scope. <br>
-Mitigation: Limit responses to official public information, objective comparisons, source attribution, and risk notices; decline subjective recommendations and probability predictions. <br>
+## Use Case:
 
+External users, students, and families use this skill to query and organize public official information about Chinese universities, majors, admissions rules, subject requirements, and objective school or major comparisons. It is designed for evidence-based information lookup and risk reminders, not application strategy or admissions prediction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ToBeWin/china-gaokao-public-data) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured text with source links and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes source attribution and annual or policy-risk notices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact metadata.json) <br>
+Risk: Admissions rules, subject requirements, and policy details can change by year and province.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the latest official notices and current-year provincial or school admissions materials as the final authority.
+
+Risk: Users may ask for personalized application strategy, admissions probability, subjective rankings, or volunteer-form decisions outside the skill's safe scope.
+
+Mitigation: Limit responses to public authoritative information, objective comparisons, source citations, and explicit refusal of decision-making or prediction requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobewin/skills/china-gaokao-public-data)
+- [Publisher profile](https://clawhub.ai/user/tobewin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown summaries with source notes and risk reminders]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses authoritative public sources when available and flags yearly, provincial, or policy-sensitive information.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

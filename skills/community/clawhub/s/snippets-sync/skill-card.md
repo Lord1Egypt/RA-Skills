@@ -1,44 +1,58 @@
-## Description: <br>
-Sync code snippets and notes between machines via file sync, organized by language and rendered in Markdown viewers such as Obsidian or VS Code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync code snippets and notes between machines via file sync. Organized by language, rendered in any Markdown viewer (Obsidian, VS Code, etc.).
 
-## Publisher: <br>
-[cdmichaelb](https://clawhub.ai/user/cdmichaelb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cdmichaelb](https://clawhub.ai/user/cdmichaelb)
 
-## Use Case: <br>
-Developers and agents use this skill to create, organize, read, and update reusable code snippets and notes as Markdown files in a dedicated synced vault. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pointing the vault path at a home directory, password store, SSH directory, or repository containing secrets could expose or modify sensitive files. <br>
-Mitigation: Use a dedicated snippets or notes folder for SNIPPETS_VAULT_PATH and restrict reads and writes to .md files inside that vault. <br>
-Risk: Markdown written to the vault can propagate to other machines through file sync, including unwanted overwrites or conflicts. <br>
-Mitigation: Use backups or versioning for the vault and review sync behavior before relying on changes across devices. <br>
-Risk: Editing Obsidian application configuration could disrupt the user's local vault setup. <br>
-Mitigation: Do not touch .obsidian or other application configuration directories; operate only on note and snippet Markdown files. <br>
+## Use Case:
 
+Developers and other technical users use this skill to store reusable code snippets and Markdown notes in a dedicated synced vault for later search and reuse across machines.
 
-## Reference(s): <br>
-- [Snippets Sync ClawHub page](https://clawhub.ai/cdmichaelb/snippets-sync) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files with YAML frontmatter, fenced code blocks, and concise chat notifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes only .md files inside the configured snippets vault; optional obsidian-cli commands may be used for search and listing when installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Synced notes or snippets may unintentionally include secrets or sensitive content and propagate to other machines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated vault that contains no secrets, avoid credential-containing repositories or password stores, and keep backups or versioning for synced notes.
+
+Risk: A mutable `npx clawhub@latest install snippets-sync` command can change behavior over time.
+
+Mitigation: Prefer a pinned or verified installer command when installing the skill in controlled environments.
+
+Risk: Writing outside the intended vault could affect local application configuration or unrelated files.
+
+Mitigation: Restrict reads and writes to `.md` files in the dedicated vault and avoid `.obsidian/` or other application configuration directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cdmichaelb/skills/snippets-sync)
+- [Publisher profile](https://clawhub.ai/user/cdmichaelb)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown notes and code snippets with optional YAML frontmatter and fenced code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for .md files in a dedicated snippets vault; optional obsidian-cli commands may be suggested when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

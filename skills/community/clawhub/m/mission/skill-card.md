@@ -1,40 +1,54 @@
-## Description: <br>
-Transforms an AI assistant into a focused goal-execution operator that breaks down, prioritizes, executes, tracks, and optimizes work toward a single mission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms an AI assistant into a focused mission executor that breaks down a user goal, prioritizes high-impact actions, tracks progress, and suggests optimizations.
 
-## Publisher: <br>
-[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg)
 
-## Use Case: <br>
-External users and developers use this skill to put an assistant into a focused mission mode that turns a goal into prioritized actions, progress tracking, and optimization suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad goal-execution instructions could lead an assistant to take actions beyond the user's intent. <br>
-Mitigation: Use explicit, bounded missions and require confirmation before spending money, changing important data, publishing content, affecting accounts, or impacting other people. <br>
-Risk: Mission text or progress notes could include sensitive information. <br>
-Mitigation: Do not include secrets in mission text, and review any locally logged progress before sharing or retaining it. <br>
+## Use Case:
 
+External users and developers use this skill to turn a broad goal into a mission breakdown, next actions, an execution plan, progress tracking, and optimization suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/theshimaw-svg/mission) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown sections for mission breakdowns, next actions, execution plans, progress tracking, and optimization suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May log local progress when supporting helper scripts are used] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill strongly pushes the agent to keep executing a user-supplied mission, which can be inappropriate for sensitive, financial, account, public-posting, or destructive tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where the host agent enforces confirmations, scoped permissions, and clear stop controls for consequential actions.
+
+Risk: Mission text and execution notes can be persisted locally in a plaintext journal log.
+
+Mitigation: Do not include secrets, private data, or sensitive mission content, and review local log handling before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshimaw-svg/skills/mission)
+- [ClawHub publisher profile](https://clawhub.ai/user/theshimaw-svg)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style structured plan with mission breakdown, next actions, execution plan, progress tracking, and optimization suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May also generate local task lists, execution status text, and journal log entries when bundled helper code is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

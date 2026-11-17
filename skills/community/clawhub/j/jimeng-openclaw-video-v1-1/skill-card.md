@@ -1,48 +1,61 @@
-## Description: <br>
-Generates short videos from text prompts using the Wanjie/Jimeng service for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate videos from text prompts using Jimeng OpenClaw with asynchronous task handling and configurable model selection.
 
-## Publisher: <br>
-[liangshenghzj888-stack](https://clawhub.ai/user/liangshenghzj888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liangshenghzj888-stack](https://clawhub.ai/user/liangshenghzj888-stack)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to submit text prompts to the Wanjie/Jimeng video generation API, poll asynchronous jobs, and retrieve generated video links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw API-key configuration and sends prompts to an external Wanjie/Jimeng endpoint. <br>
-Mitigation: Use a scoped API key, review the configured provider before running, and avoid submitting sensitive prompts. <br>
-Risk: The skill can install the requests package automatically and launch a detached Python worker. <br>
-Mitigation: Review the code before installation, run it in a controlled environment, and pin or preinstall dependencies when reproducibility is required. <br>
-Risk: Prompts, task status, and generated video links are written to plaintext local log and result files. <br>
-Mitigation: Treat generated logs and result files as sensitive artifacts and delete or protect them according to local data-handling requirements. <br>
-Risk: Returned video links may be opened automatically by the local system. <br>
-Mitigation: Disable or modify automatic URL opening if manual review of generated links is required. <br>
+## Use Case:
 
+Developers and agent builders use this skill to submit text-to-video prompts to the Jimeng/Wanjie Ark API from an OpenClaw-style agent workflow, poll for completion, and retrieve a generated video URL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liangshenghzj888-stack/jimeng-openclaw-video-v1-1) <br>
-- [Wanjie Ark](https://www.wjark.com) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Wanjie OpenClaw development guide](https://docs.wjark.com/maas/scenarios/Development/openclaw.html) <br>
-- [Wanjie model selection](https://www.wjark.com/center/model) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Code, Files, API Calls] <br>
-**Output Format:** [Markdown guidance, Python entry points, plaintext logs, and SUCCESS-prefixed video URL result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OpenClaw API key configuration, submits prompts to the Wanjie/Jimeng service, and writes local log/result files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill reads an API key from the user's OpenClaw configuration and sends prompts to an external video-generation service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Wanjiedata/Jimeng API key with limited scope or quota, avoid sensitive prompts, and review service terms before deployment.
+
+Risk: Runtime dependency installation and background subprocess execution can make installation and execution harder to control.
+
+Mitigation: Install dependencies through a reviewed, pinned environment and run the skill in an isolated workspace before allowing normal agent use.
+
+Risk: The artifact includes generated log/result files and can open generated video URLs on the host system.
+
+Mitigation: Remove shipped runtime files before release and disable or gate automatic URL opening in managed environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liangshenghzj888-stack/skills/jimeng-openclaw-video-v1-1)
+- [Wanjie Ark](https://www.wjark.com)
+- [Wanjie Ark OpenClaw development guide](https://docs.wjark.com/maas/scenarios/Development/openclaw.html)
+- [Wanjie Ark model center](https://www.wjark.com/center/model)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, files, guidance]
+
+**Output Format:** [Text status messages and a result file containing SUCCESS|<video URL>, with Markdown documentation and Python usage examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Submits one prompt at a time, writes logs and results locally, and may open the generated video URL on the host system.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact manifest lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

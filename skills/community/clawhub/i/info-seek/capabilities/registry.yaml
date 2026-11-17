@@ -1,0 +1,295 @@
+# Infoseek 外部能力注册表（声明式）
+# ───────────────────────────────────────────────────────────────
+# 设计原则（M0.2.5）：所有外部能力在此声明，代码零改动接入。
+#   - 新增能力：仅在此追加条目（无需改 pipeline / key_manager / lifecycle）
+#   - 生命周期：health_probe=engine_lifecycle 时，错误自动经
+#     engine_lifecycle.classify 分类（429→quota / 401-403→forbidden / …）
+#   - 代偿：degrade_to 声明能力间语义替代链，由 capability_compensator 消费
+#   - 合规：requires_consent=true 的能力必须显式授权才运行；enabled=false 默认 OFF
+#
+# 字段说明：
+#   name          能力名（唯一，作为生命周期 state key）
+#   kind          能力族（structured_data_api / identity_attribution / search_api / llm）
+#   enabled       默认是否启用（false=默认 OFF，需 env 或 consent 开启）
+#   requires_consent  是否需合法用途授权（针对个人的能力必为 true）
+#   auth_env      认证环境变量（无需则留空）
+#   weight        召回/排序权重（0-1）
+#   cost_model    none / credits / quota（影响保留池/预算策略）
+#   cli           命令行可执行名（subprocess 调用，隔离重依赖于主进程）
+#   health_probe  engine_lifecycle（复用既有健康/配额/自愈）
+#   degrade_to    失效时的能力间替代链（末端可放 manual_review 优雅降级）
+#   venv_hint     隔离 venv 依赖提示（可选）
+#   ── GA12（v2.0.0）网络边界声明 ──
+#   requires_hosts    能力运行所依赖的 host 列表（host 台账见 network_boundaries）
+#   network_boundary  open（开放网络即可用）| sandbox_restricted（沙箱实测受限）
+#                     | local（纯本地/零网络）。boundary_gate 据此做执行前门控。
+
+version: 1
+
+capabilities:
+  - name: QVeris
+    kind: structured_data_api
+    enabled: true
+    requires_consent: false
+    auth_env: QVERIS_API_KEY
+    weight: 0.9
+    cost_model: credits
+    health_probe: engine_lifecycle
+    degrade_to: [Exa, Tavily, manual_review]
+    network_boundary: open
+    requires_hosts: [qveris.ai, qveris.cn]
+
+  # G3（边界硬化）：Exa/Tavily 搜索替代层占位声明（消除 QVeris.degrade_to 悬空引用）
+  # 默认 OFF：未接 key，enabled=false；末端闭合到 manual_review 保证优雅降级。
+  - name: Exa
+    kind: search_api
+    enabled: false
+    requires_consent: false
+    auth_env: EXA_API_KEY
+    weight: 0.7
+    cost_model: credits
+    health_probe: engine_lifecycle
+    degrade_to: []
+    venv_hint: ""
+    network_boundary: open
+    requires_hosts: []
+
+  - name: Tavily
+    kind: search_api
+    enabled: false
+    requires_consent: false
+    auth_env: TAVILY_API_KEY
+    weight: 0.7
+    cost_model: credits
+    health_probe: engine_lifecycle
+    degrade_to: []
+    venv_hint: ""
+    network_boundary: open
+    requires_hosts: []
+
+  - name: Maigret
+    kind: identity_attribution
+    enabled: false            # 默认 OFF：合规 opt-in
+    requires_consent: true    # 针对个人的 OSINT，必须授权
+    auth_env: ""
+    weight: 0.9
+    cost_model: none
+    cli: maigret
+    health_probe: engine_lifecycle
+    degrade_to: [Sherlock, manual_review]
+    venv_hint: "pip install maigret（隔离 venv 推荐）"
+    network_boundary: open
+    requires_hosts: []
+
+  - name: Sherlock
+    kind: identity_attribution
+    enabled: false            # 默认 OFF：合规 opt-in
+    requires_consent: true
+    auth_env: ""
+    weight: 0.85
+    cost_model: none
+    cli: sherlock
+    health_probe: engine_lifecycle
+    degrade_to: [manual_review]
+    venv_hint: "pip install sherlock-project（隔离 venv 推荐）"
+    network_boundary: open
+    requires_hosts: []
+
+  # P0b 新增：账号人因验证器（L2 真人验证层）
+  # 纯规则启发式（零依赖/零网络/零成本）：区分 真人/机器人/水军/可疑
+  # 输入账号画像字段（年龄/发帖/粉丝/僵尸粉/互动率/行为规律/话题多样性），
+  # 输出 trust_score + verdict；与 Maigret/Sherlock 构成 发现→验证 闭环
+  - name: AccountTrustScorer
+    kind: identity_attribution
+    enabled: false            # 默认 OFF：涉个人数据，合规 opt-in
+    requires_consent: true
+    auth_env: ""
+    weight: 0.8
+    cost_model: none
+    health_probe: none
+    degrade_to: [manual_review]
+    venv_hint: ""
+    network_boundary: local
+    requires_hosts: []
+
+  # P1a 新增：public-apis 免费 API 目录（L0 免费优先层）
+  # 目录索引本地化（scripts/public_apis_catalog.py），1712 条/51 分类/799 条无 key
+  # 供三级路由做 0 成本长尾数据源；失效时退回 manual_review（不静默丢数据）
+  - name: PublicApisCatalog
+    kind: free_api
+    enabled: false            # 默认 OFF：目录索引按需加载（INFOSEEK_ENABLE_PUBLICAPISCATALOG=1）
+    requires_consent: false
+    auth_env: ""
+    weight: 0.5
+    cost_model: none
+    health_probe: none
+    degrade_to: [manual_review]
+    venv_hint: ""
+    network_boundary: local
+    requires_hosts: []
+
+  # P1b 新增：AgentKey 统一 MCP 网关（L1 网关付费层）
+  # 一个主密钥 → ~1800 工具（搜索/社交/金融含 Tushare/加密/电商）
+  # 默认 OFF：付费 credits + 涉社交个人数据，必须显式授权后按子集接入
+  - name: AgentKey
+    kind: gateway_api
+    enabled: false            # 默认 OFF：付费 + 合规，opt-in
+    requires_consent: true
+    auth_env: AGENTKEY_API_KEY
+    weight: 0.9
+    cost_model: credits
+    health_probe: engine_lifecycle
+    degrade_to: [QVeris, PublicApisCatalog, manual_review]
+    venv_hint: "pip install mcp（AgentKey 为 MCP 网关；需 find_tools/execute_tool 封装）"
+    network_boundary: open
+    requires_hosts: []
+
+  # v1.4.2 新增：L2 多引擎渲染器（browser_engine 能力族 · 功能层+治理层）
+  # scripts/l2_renderer.py：Camoufox 主(反指纹) + Obscura 批(30MB轻量)
+  #   + Patchright 备(playwright补丁) + Chromium 兜底(原生)
+  # 引擎缺失自动跳过（probe=False），全失败返回空串 → pipeline 降级 L1（零回归）
+  - name: L2Renderer
+    kind: browser_engine
+    enabled: false            # 默认 OFF：可选增强，未启用不影响现有 L1 静态抓取
+    requires_consent: false
+    auth_env: ""
+    weight: 0.8
+    cost_model: none
+    health_probe: engine_lifecycle
+    degrade_to: [manual_review]
+    venv_hint: "pip install camoufox patchright（Obscura 需二进制；任一缺失自动跳过）"
+    network_boundary: open
+    requires_hosts: []
+
+  # v1.6.0 融入：FakeDetect 账号深度取证（account_forensics 行为取证新族）
+  # 验证层二级（AccountTrustScorer 的深度升级，非 Maigret/Sherlock 替代）：
+  #   L1 统计 + L2 图结构 + L3 ML + 时序同步（extensions/fake_detect/ 引擎）
+  # 命门=数据充分性门控：pipeline 自动路径信号不足必须降级 AccountTrustScorer
+  #   （缺数据 ≠ 水军）；深度取证由 account_forensics MCP 工具显式投喂数据
+  # 合规红线：涉个人行为画像，INFOSEEK_ENABLE_FAKE_DETECT=1 ∩ consent 双闸
+  - name: FakeDetect
+    kind: account_forensics
+    enabled: false            # 默认 OFF：涉个人行为画像，合规 opt-in
+    requires_consent: true
+    auth_env: ""
+    env_var: INFOSEEK_ENABLE_FAKE_DETECT   # 显式语义化 env 闸（驼峰名自动推导会产生下划线歧义）
+    weight: 0.85
+    cost_model: none
+    health_probe: engine_lifecycle
+    degrade_to: [AccountTrustScorer, manual_review]
+    venv_hint: "extensions/fake_detect/requirements.txt（numpy/pandas/scipy/networkx/scikit-learn）"
+    network_boundary: local
+    requires_hosts: []
+
+  # GA12（v2.0.0）新增：3 个依赖网络的能力化声明（此前隐式散落在抓取/验证层）
+  # 均为沙箱受限 host：默认不经过门控阻断（boundary_gate 默认 OFF），
+  # 仅在 INFOSEEK_BOUNDARY_GATE=1 时对不可达 host 显式降级 + 留痕。
+  - name: WikiVerify
+    kind: knowledge_verify
+    enabled: false            # 默认 OFF：Wikidata/Wikipedia 在受限网络不可达
+    requires_consent: false
+    auth_env: ""
+    weight: 0.6
+    cost_model: none
+    health_probe: none
+    degrade_to: [manual_review]
+    venv_hint: ""
+    network_boundary: sandbox_restricted
+    requires_hosts: [www.wikidata.org, query.wikidata.org, en.wikipedia.org, zh.wikipedia.org]
+
+  - name: L4Transcribe
+    kind: multimedia_transcribe
+    enabled: false            # 默认 OFF：多媒体站点在受限网络不可达/大文件传输失败
+    requires_consent: false
+    auth_env: ""
+    weight: 0.5
+    cost_model: none
+    health_probe: none
+    degrade_to: [manual_review]
+    venv_hint: ""
+    network_boundary: sandbox_restricted
+    requires_hosts: [storage.googleapis.com, r.jina.ai]
+
+  - name: PatentLookup
+    kind: patent_lookup
+    enabled: false            # 默认 OFF：Google Patents 为需 JS 的 SPA，受限网络不可用
+    requires_consent: false
+    auth_env: ""
+    weight: 0.5
+    cost_model: none
+    health_probe: none
+    degrade_to: [manual_review]
+    venv_hint: "目标网络受限场景可改用万方（d.wanfangdata.com.cn）等可达镜像"
+    network_boundary: sandbox_restricted
+    requires_hosts: [patents.google.com, github.com]
+
+  # 末端优雅降级：无替代能力时，返回"需人工核实"标记而非静默丢数据
+  - name: manual_review
+    kind: graceful_fallback
+    enabled: true
+    requires_consent: false
+    auth_env: ""
+    weight: 0.0
+    cost_model: none
+    health_probe: none
+    degrade_to: []
+    network_boundary: local
+    requires_hosts: []
+
+# ─────────────────────────────────────────────────────────────
+# GA12 网络边界 host 台账（仅记实测证据；空证据/可达 host 可不列）
+# boundary_gate.restricted_report() / references/network-boundary-report.md 消费。
+# evidence 为历史实测摘要，目标机重跑 net_probe 可刷新形成「沙箱 vs 目标机」对照。
+network_boundaries:
+  - host: qveris.ai
+    boundary: open
+    evidence: "开放网络可达（QVeris 结构化数据 API 主端点）"
+    used_by: [QVeris]
+  - host: qveris.cn
+    boundary: open
+    evidence: "开放网络可达（QVeris CN 端点）"
+    used_by: [QVeris]
+  - host: www.wikidata.org
+    boundary: sandbox_restricted
+    evidence: "DNS 可解析但返回污染 IP（103.102.166.224）；http 301 / https SSL 握手失败（2026-09 实测）"
+    used_by: [WikiVerify]
+  - host: query.wikidata.org
+    boundary: sandbox_restricted
+    evidence: "SPARQL 端点 https 黑洞，20s 超时（2026-09 实测）"
+    used_by: [WikiVerify]
+  - host: en.wikipedia.org
+    boundary: sandbox_restricted
+    evidence: "解析到污染段（31.13.x FB 段），https 不可达（2026-09 实测）"
+    used_by: [WikiVerify]
+  - host: zh.wikipedia.org
+    boundary: sandbox_restricted
+    evidence: "同 en.wikipedia.org，污染段不可达（2026-09 实测）"
+    used_by: [WikiVerify]
+  - host: commons.wikimedia.org
+    boundary: sandbox_restricted
+    evidence: "Wikimedia 全系 https 黑洞（2026-09 实测）"
+    used_by: []
+  - host: upload.wikimedia.org
+    boundary: sandbox_restricted
+    evidence: "Wikimedia 全系 https 黑洞（2026-09 实测）"
+    used_by: []
+  - host: api.wikimedia.org
+    boundary: sandbox_restricted
+    evidence: "core/v1 REST 不可达（2026-09 实测）"
+    used_by: []
+  - host: storage.googleapis.com
+    boundary: sandbox_restricted
+    evidence: "大文件传输 ~37KB/s 或超时（2026-09 实测）"
+    used_by: [L4Transcribe]
+  - host: r.jina.ai
+    boundary: sandbox_restricted
+    evidence: "Errno 101 连接不可达（2026-09 L2 引擎实测）"
+    used_by: [L4Transcribe]
+  - host: patents.google.com
+    boundary: sandbox_restricted
+    evidence: "SPA 需 JS，静态抓取返回 'Resource does not exist.'（2026-09 实测）"
+    used_by: [PatentLookup]
+  - host: github.com
+    boundary: sandbox_restricted
+    evidence: "git clone/大文件 release 资产传输不可达（~37KB/s 或超时）；API/Contents 另见 api.github.com"
+    used_by: [PatentLookup]

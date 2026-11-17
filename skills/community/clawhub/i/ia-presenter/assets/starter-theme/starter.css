@@ -1,0 +1,134 @@
+/* Starter theme for iA Presenter 2.x
+   Rename this file together with "Css" in template.json.
+   The engine (.Engine/main.css) provides layouts, type scale, media and charts;
+   this file only overrides. Keep text/background colors in presets.json. */
+
+/* ---------- 1. Custom fonts (optional) ----------
+@font-face {
+  font-family: 'My Font';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/MyFont-Regular.woff2') format('woff2');
+}
+Then: template.json "TitleFont": "My Font" (display name)
+      presets.json  "TitleFont": "'My Font', sans-serif" (CSS family)
+*/
+
+/* ---------- 2. Code block colors (light + dark) ---------- */
+:root {
+  --code-background: #f2f2f2;
+  --code-border: rgba(0, 0, 0, 0.06);
+  --code-text: #303030;
+  --code-comment: #9ea4aa;
+  --code-type: #9f3b4f;
+  --code-include: #8c3a94;
+  --code-string: #6959a1;
+  --code-class-name: #4968a8;
+  --code-numbers: #a58a2a;
+  --code-variables: #4689cc;
+  --code-functions: #cf5da8;
+  --code-literal: #db651c;
+
+  --dark-code-background: #101010;
+  --dark-code-border: rgba(255, 255, 255, 0.08);
+  --dark-code-text: #f7f7f7;
+  --dark-code-comment: #80878d;
+  --dark-code-type: #ef98a8;
+  --dark-code-include: #c596c9;
+  --dark-code-string: #a59cc7;
+  --dark-code-class-name: #94a5cb;
+  --dark-code-numbers: #e8d670;
+  --dark-code-variables: #77b5e3;
+  --dark-code-functions: #df8dc0;
+  --dark-code-literal: #f6b99a;
+}
+
+/* ---------- 3. Chart palette ---------- */
+section {
+  --graph-data-0: #0a84ff;
+  --graph-data-1: #ff9f0a;
+  --graph-data-2: #30d158;
+  --graph-data-3: #bf5af2;
+  --graph-data-4: #ff375f;
+  --graph-data-5: #ffd60a;
+  --graph-data-6: #5ac8fa;
+  --graph-data-7: #8e8e93;
+}
+
+/* ---------- 4. Typography (engine variables scale with the viewport) ---------- */
+:root {
+  --font-weight-h1: 800;
+  --font-weight-h2: 700;
+  --font-weight-h3: 600;
+  --letter-spacing-h1: -0.02em;
+  /* --case-h1: uppercase; */
+  /* --scale-factor-h1: 1.1; */
+}
+
+/* Explicit sizes, in iA's own selector form (beats the engine's specificity) */
+section > :not([class*="layout-"]) h1,
+[class*="layout-"] > div h1 {
+  line-height: 1;
+  font-size: 2.986em;
+}
+section > :not([class*="layout-"]) h2,
+[class*="layout-"] > div h2 {
+  line-height: 1.1;
+  font-size: 2.488em;
+}
+section > :not([class*="layout-"]) h3,
+[class*="layout-"] > div h3 {
+  line-height: 1.2;
+  font-size: 1.728em;
+}
+
+/* ---------- 5. Alignment per layout ---------- */
+:root {
+  --text-horizontal-align-layout-cover: left;
+  --text-vertical-align-layout-cover: bottom;
+  --text-horizontal-align-layout-title: center;
+  --text-vertical-align-layout-title: center;
+  --text-horizontal-align-layout-section: left;
+  --text-vertical-align-layout-section: center;
+}
+
+/* ---------- 6. Backgrounds per layout (files live in this folder) ----------
+.backgrounds .cover-container {
+  background-image: url("background.jpg");
+  background-size: cover;
+  background-position: center;
+}
+Inline SVG must use rgb() colors, never hex:
+.backgrounds .section-container {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 9"><rect width="16" height="9" fill="rgb(20,20,20)"/></svg>');
+}
+*/
+
+/* ---------- 7. Header / footer ---------- */
+.cover-container .header,
+.cover-container .footer {
+  display: none;
+}
+
+/* ---------- 8. Slide classes from `Class: name` directives ---------- */
+section.quote [class*="layout-"] > div h2 {
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ---------- 9. Responsive ---------- */
+@media (max-width: 639px) {
+  section > :not([class*="layout-"]) h1,
+  [class*="layout-"] > div h1 {
+    font-size: 2.074em;
+  }
+  section > :not([class*="layout-"]) h2,
+  [class*="layout-"] > div h2 {
+    font-size: 1.728em;
+  }
+}
+
+/* ---------- Debug (remove before sharing) ----------
+.cover-container { outline: 4px solid red; }
+.layout-cover > div { outline: 4px dashed red; }
+*/

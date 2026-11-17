@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Agent 是怎么干活的 · 机制机器</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1080px; height:1920px; overflow:hidden; background:#fbfaf5; }
+  svg#board { position:absolute; inset:0; }
+  .txt { position:absolute; left:0; right:0; text-align:center; font-family:"HanziPen SC","Hannotate SC","Kaiti SC","STKaiti",serif; color:#26241f; opacity:0; }
+  #title { top:200px; font-size:74px; letter-spacing:2px; white-space:nowrap; }
+  .nm { position:absolute; left:240px; width:600px; text-align:center; font-family:"HanziPen SC","Hannotate SC","Kaiti SC","STKaiti",serif; color:#26241f; font-size:48px; opacity:0; }
+  .sb { position:absolute; left:240px; width:600px; text-align:center; font-family:"HanziPen SC","Hannotate SC","Kaiti SC","STKaiti",serif; color:#8a8676; font-size:30px; opacity:0; }
+  #answer { position:absolute; left:0; right:0; top:1440px; text-align:center; font-family:"HanziPen SC","Hannotate SC","Kaiti SC","STKaiti",serif; color:#2b6cb0; font-size:56px; opacity:0; }
+  #punch { top:1500px; font-size:74px; letter-spacing:2px; white-space:nowrap; }
+  #rules { position:absolute; left:0; right:0; top:1720px; text-align:center; opacity:0; }
+  #rules div { font-family:"HanziPen SC","Hannotate SC","Kaiti SC","STKaiti",serif; font-size:38px; color:#5f5e5a; line-height:1.9; }
+</style>
+</head>
+<body>
+<svg id="board" viewBox="0 0 1080 1920" width="1080" height="1920">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <g id="stage">
+    <rect id="frame" x="150" y="350" width="780" height="1070" rx="18" fill="none" stroke="#8a8676" stroke-width="5" stroke-dasharray="14 12" opacity="0"/>
+    <line id="a1" x1="540" y1="622" x2="540" y2="752" stroke="#2b6cb0" stroke-width="8" marker-end="url(#arrow)" opacity="0"/>
+    <line id="a2" x1="540" y1="967" x2="540" y2="1097" stroke="#2b6cb0" stroke-width="8" marker-end="url(#arrow)" opacity="0"/>
+    <line id="a3" x1="540" y1="1312" x2="540" y2="1388" stroke="#2b6cb0" stroke-width="8" marker-end="url(#arrow)" opacity="0"/>
+    <circle id="ball" cx="540" cy="310" r="22" fill="#2b6cb0" opacity="0"/>
+    <text id="n1" x="312" y="505" font-size="48" font-weight="500" fill="#26241f" text-anchor="middle" dominant-baseline="central" opacity="0">1</text>
+    <text id="n2" x="312" y="850" font-size="48" font-weight="500" fill="#26241f" text-anchor="middle" dominant-baseline="central" opacity="0">2</text>
+    <text id="n3" x="312" y="1195" font-size="48" font-weight="500" fill="#26241f" text-anchor="middle" dominant-baseline="central" opacity="0">3</text>
+  </g>
+</svg>
+
+<div class="txt" id="title"></div>
+<div class="nm" id="nm1" style="top:490px;"></div>
+<div class="sb" id="sb1" style="top:555px;"></div>
+<div class="nm" id="nm2" style="top:835px;"></div>
+<div class="sb" id="sb2" style="top:900px;"></div>
+<div class="nm" id="nm3" style="top:1180px;"></div>
+<div class="sb" id="sb3" style="top:1245px;"></div>
+<div id="answer"></div>
+<div class="txt" id="punch"></div>
+<div id="rules"></div>
+
+<script src="../templates/rough.min.js"></script>
+<script>
+  // ================= 填槽区（改这里即可） =================
+  const TITLE   = 'Agent 是怎么干活的';
+  const PUNCH   = '先想清楚，再动手';        // ≤14 字
+  const STEPS   = [
+    { name:'你的指令', sub:'你下一句命令' },
+    { name:'LLM 理解', sub:'想清楚要做什么' },
+    { name:'调用工具', sub:'查资料·写代码' },
+  ];
+  const ANSWER  = '结果';
+  const HAS_FEEDBACK = true;     // 闭环：结果不够好，回到 LLM 再想
+  const FEEDBACK_FROM = 2;       // 回流起点 = 第 3 环（调用工具）
+  const FEEDBACK_TO   = 1;       // 回流终点 = 第 2 环（LLM 理解）
+  const FEEDBACK_LABEL = '结果不够好，再想一遍';
+  const RULES   = null;          // 可选 ['法则一','法则二','法则三']
+  // =======================================================
+
+  // 填槽 → 渲染（只改上面填槽区即可，下面不用动）
+  document.getElementById('title').textContent = TITLE;
+  document.getElementById('punch').textContent = PUNCH;
+  document.getElementById('answer').textContent = ANSWER;
+  STEPS.forEach((s, i) => {
+    document.getElementById('nm' + (i + 1)).textContent = s.name;
+    document.getElementById('sb' + (i + 1)).textContent = s.sub;
+  });
+
+  const svg = document.getElementById('board');
+  const stage = document.getElementById('stage');
+  const rc = rough.svg(svg);
+  const BLACK='#26241f', BLUE='#2b6cb0', RED='#d4553f';
+  const NS = 'http://www.w3.org/2000/svg';
+  const draws = [];
+
+  function reg(g, start, dur, stagger, parent){
+    (parent || stage).appendChild(g);
+    const paths=[...g.querySelectorAll('path')];
+    paths.forEach((p,i)=>{
+      p.setAttribute('pathLength','1');
+      p.style.strokeDasharray='1';
+      p.style.strokeDashoffset='1';
+      draws.push({el:p, start:start+i*stagger, dur});
+    });
+  }
+
+  const oBox  = { roughness:1.5, bowing:1.2, stroke:BLACK, strokeWidth:6, seed:11 };
+  const oBoxB = { roughness:1.5, bowing:1.2, stroke:BLUE,  strokeWidth:6, seed:11 };
+  const oCirc = { roughness:1.0, stroke:BLACK, strokeWidth:5, seed:7 };
+  const oRed  = { roughness:2.4, bowing:1.6, stroke:RED, strokeWidth:10, seed:29 };
+  const bx = 240, bw = 600, bh = 190;
+  const ys = [430, 775, 1120];
+  const litStart = [2.2, 4.15, 5.75];
+
+  ys.forEach((y,i)=>{
+    reg(rc.rectangle(bx, y, bw, bh, oBox),  0.4 + i*0.15, 0.4, 0.1);
+    reg(rc.circle(312, y+75, 52, oCirc),    0.5 + i*0.15, 0.3);
+    reg(rc.rectangle(bx, y, bw, bh, oBoxB), litStart[i], 0.4, 0.1);
+  });
+
+  // 点破句红笔圈（挂 svg 根，不受舞台淡出影响）
+  reg(rc.ellipse(540, 1530, 660, 120, oRed), 8.7, 0.5, 0.15, svg);
+
+  // 反馈回路（闭环系统可选）
+  let fb = null, fbLabel = null;
+  if(HAS_FEEDBACK){
+    const fy = ys[FEEDBACK_FROM] + 75;
+    const ty = ys[FEEDBACK_TO] + 75;
+    fb = document.createElementNS(NS,'path');
+    fb.setAttribute('d', `M840 ${fy} C 940 ${fy}, 940 ${ty}, 840 ${ty}`);
+    fb.setAttribute('fill','none');
+    fb.setAttribute('stroke',BLUE);
+    fb.setAttribute('stroke-width','7');
+    fb.setAttribute('stroke-dasharray','10 10');
+    fb.setAttribute('marker-end','url(#arrow)');
+    fb.setAttribute('opacity','0');
+    stage.appendChild(fb);
+    fbLabel = document.createElement('div');
+    fbLabel.textContent = FEEDBACK_LABEL;
+    fbLabel.style.cssText = 'position:absolute; left:952px; top:' + Math.round((fy + ty) / 2 - FEEDBACK_LABEL.length * 19) + 'px; color:' + BLUE + '; font-size:34px; font-family:"HanziPen SC","Hannotate SC","Kaiti SC",serif; writing-mode:vertical-rl; letter-spacing:2px; opacity:0;';
+    document.body.appendChild(fbLabel);
+  }
+
+  // 尾屏 3 法则（可选）
+  if(RULES){
+    const r = document.getElementById('rules');
+    r.innerHTML = RULES.map(x=>'<div>'+x+'</div>').join('');
+  }
+
+  // 小球轨迹（连续向下：流入 → 穿过 3 环节 → 流出到答案）
+  const SEGS = [
+    {a:1.6, b:2.6, y0:310, y1:660},
+    {a:3.4, b:4.6, y0:660, y1:995},
+    {a:5.0, b:6.2, y0:995, y1:1330},
+    {a:6.8, b:7.5, y0:1330, y1:1450},
+  ];
+
+  function clamp(v,a,b){ return Math.max(a,Math.min(b,v)); }
+  function seg(t,a,b){ return clamp((t-a)/(b-a),0,1); }
+  function ease(x){ return x<0.5 ? 2*x*x : 1-Math.pow(-2*x+2,2)/2; }
+
+  function ballPos(t){
+    let y=310, on=(t>=1.6);
+    for(const s of SEGS){
+      if(t>=s.b){ y=s.y1; }
+      else if(t>=s.a){ y=s.y0+(s.y1-s.y0)*ease(seg(t,s.a,s.b)); break; }
+      else break;
+    }
+    return {y, on};
+  }
+
+  const title=document.getElementById('title');
+  const punch=document.getElementById('punch');
+  const answer=document.getElementById('answer');
+  const frame=document.getElementById('frame');
+  const ball=document.getElementById('ball');
+  const a1=document.getElementById('a1');
+  const a2=document.getElementById('a2');
+  const a3=document.getElementById('a3');
+  const n1=document.getElementById('n1');
+  const n2=document.getElementById('n2');
+  const n3=document.getElementById('n3');
+  const nm=[1,2,3].map(i=>document.getElementById('nm'+i));
+  const sb=[1,2,3].map(i=>document.getElementById('sb'+i));
+  const rules=document.getElementById('rules');
+
+  window.seek = function(t){
+    for(const d of draws){
+      d.el.style.strokeDashoffset = (1 - ease(seg(t, d.start, d.start+d.dur))).toFixed(4);
+    }
+    const stageOut = 1 - ease(seg(t, 7.9, 8.5));
+    stage.style.opacity = stageOut.toFixed(3);
+
+    frame.style.opacity = seg(t,0.2,0.5).toFixed(3);
+    const titleIn = ease(seg(t,0.15,0.6));
+    title.style.opacity = (titleIn * stageOut).toFixed(3);
+    a1.style.opacity = seg(t,0.9,1.15).toFixed(3);
+    a2.style.opacity = seg(t,1.02,1.27).toFixed(3);
+    a3.style.opacity = seg(t,1.14,1.39).toFixed(3);
+    [n1,n2,n3].forEach((el,i)=> el.style.opacity = seg(t,0.55+i*0.15,0.85+i*0.15).toFixed(3));
+
+    const bp = ballPos(t);
+    ball.setAttribute('cy', bp.y.toFixed(1));
+    ball.style.opacity = (bp.on?1:0).toFixed(3);
+
+    if(fb){ fb.setAttribute('opacity', seg(t,6.6,7.1).toFixed(3)); if(fbLabel) fbLabel.style.opacity = (seg(t,6.7,7.2) * stageOut).toFixed(3); }
+
+    const lit = [2.2, 4.15, 5.75];
+    lit.forEach((c,i)=>{
+      const o = ease(seg(t, c-0.15, c+0.35)) * stageOut;
+      nm[i].style.opacity = o.toFixed(3);
+      sb[i].style.opacity = o.toFixed(3);
+    });
+
+    answer.style.opacity = (ease(seg(t,7.35,7.8)) * stageOut).toFixed(3);
+
+    punch.style.opacity = ease(seg(t,8.4,9.0)).toFixed(3);
+    if(RULES) rules.style.opacity = ease(seg(t,8.9,9.5)).toFixed(3);
+  };
+  window.seek(0);
+</script>
+</body>
+</html>

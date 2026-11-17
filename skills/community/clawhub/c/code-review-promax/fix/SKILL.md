@@ -83,16 +83,16 @@
 - 保持现有代码风格（缩进、命名、导入方式等）
 
 #### 3.3 展示预览
-```
-🔧 修复 #N — [严重度] [位置]
-问题: [一句话概括]
-修改:
-```diff
-- 原代码
-+ 修复后代码
-```
-✅ 应用 / ⏭ 跳过 / ✏️ 调整
-```
+    ```
+    🔧 修复 #N — [严重度] [位置]
+    问题: [一句话概括]
+    修改:
+    ```diff
+    - 原代码
+    + 修复后代码
+    ```
+    ✅ 应用 / ⏭ 跳过 / ✏️ 调整
+    ```
 
 #### 3.4 用户决策
 - **✅ 应用** — 执行改动，记录到已修复列表
@@ -117,7 +117,7 @@
 ### 建议
 1. 运行测试确认修复未引入回归
 2. 如满意，提交代码: git commit -m "fix: resolve code review issues"
-3. 如不满意，撤回改动: git checkout -- <file>
+3. 如不满意，撤回改动: `git stash`（推荐，可找回）或 `git checkout -- <file>`（⚠️ 会丢弃该文件全部未提交改动，包括与本次修复无关的修改，慎用）
 ```
 
 ## 约束与限制
@@ -215,16 +215,16 @@ For each fix item:
 - Preserve existing code style (indentation, naming, imports, etc.)
 
 #### 3.3 Show Preview
-```
-🔧 Fix #N — [Severity] [Location]
-Issue: [one-line summary]
-Change:
-```diff
-- original code
-+ fixed code
-```
-✅ Apply / ⏭ Skip / ✏️ Adjust
-```
+    ```
+    🔧 Fix #N — [Severity] [Location]
+    Issue: [one-line summary]
+    Change:
+    ```diff
+    - original code
+    + fixed code
+    ```
+    ✅ Apply / ⏭ Skip / ✏️ Adjust
+    ```
 
 #### 3.4 User Decision
 - **✅ Apply** — Execute change, record to fixed list
@@ -249,7 +249,7 @@ After all fix items are processed:
 ### Recommendations
 1. Run tests to confirm fixes don't introduce regressions
 2. If satisfied, commit: git commit -m "fix: resolve code review issues"
-3. If not satisfied, revert: git checkout -- <file>
+3. If not satisfied, revert: `git stash` (recommended, recoverable) or `git checkout -- <file>` (⚠️ discards ALL unstaged changes in the file, including edits unrelated to this fix — use with care)
 ```
 
 ## Constraints

@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 """
-YouTube 视频下载 + 音频转录 + 中英对照翻译
+YouTube 视频下载 + 音频转录 + 标准工作包生成
 
 功能：
 1. 使用 yt-dlp 下载 YouTube 视频（最佳质量）
 2. 使用 OpenAI Whisper 将音频转录为文字
-3. 如果是英文，使用 AI 翻译成中文（一段英文原文 + 一段中文翻译的对照格式）
-4. 输出 Markdown 格式的文字稿
+3. 保留 Show Notes，输出不可变原文 source.md
+4. 输出标准 meta.json；翻译由 trans-doc-to-md 负责
 
 使用方式：
   python3 yt_download_transcribe.py <YouTube URL> --output-dir <输出目录>
 
 依赖：
-  pip3 install yt-dlp openai-whisper openai
+  pip3 install yt-dlp openai-whisper
   brew install ffmpeg
 """
 from __future__ import annotations
@@ -269,97 +269,9 @@ def merge_segments_to_paragraphs(segments: list, max_gap: float = 2.0,
     return paragraphs
 
 
-def translate_paragraphs(paragraphs: list, source_lang: str) -> list:
-    """
-    使用 OpenAI API 将段落翻译为中文。
-    分批翻译以避免 token 限制。
-    返回翻译后的段落列表（与输入对应）。
-    """
-    if source_lang == "zh" or source_lang == "Chinese":
-        print("   ℹ️  源语言为中文，跳过翻译")
-        return [p["text"] for p in paragraphs]
-
-    print(f"🌐 翻译段落（{source_lang} → 中文）...")
-
-    # 检查 OpenAI API Key
-    api_key = os.environ.get("OPENAI_API_KEY")
-    if not api_key:
-        print("   ⚠️  未设置 OPENAI_API_KEY，跳过翻译")
-        return [None] * len(paragraphs)
-
-    try:
-        from openai import OpenAI
-        client = OpenAI(api_key=api_key)
-    except ImportError:
-        print("   ⚠️  未安装 openai 库，跳过翻译")
-        return [None] * len(paragraphs)
-
-    translations = []
-    batch_size = 10  # 每批翻译 10 个段落
-
-    for i in range(0, len(paragraphs), batch_size):
-        batch = paragraphs[i:i + batch_size]
-        batch_texts = []
-        for j, p in enumerate(batch):
-            batch_texts.append(f"[{j + 1}] {p['text']}")
-
-        prompt = (
-            "将以下编号的段落翻译为中文。保持编号格式，每段翻译独立一行。\n"
-            "翻译要求：自然流畅的中文表达，专业术语保留英文并附中文注释。\n\n"
-            + "\n".join(batch_texts)
-        )
-
-        try:
-            response = client.chat.completions.create(
-                model="gpt-4o-mini",
-                messages=[
-                    {"role": "system", "content": "你是一个专业的翻译员，擅长将英文技术内容翻译为准确、自然的中文。"},
-                    {"role": "user", "content": prompt}
-                ],
-                temperature=0.3,
-            )
-            reply = response.choices[0].message.content.strip()
-
-            # 解析翻译结果
-            batch_translations = []
-            lines = reply.split('\n')
-            current_trans = ""
-            for line in lines:
-                # 匹配 [N] 开头的行
-                match = re.match(r'^\[(\d+)\]\s*(.+)', line.strip())
-                if match:
-                    if current_trans:
-                        batch_translations.append(current_trans.strip())
-                    current_trans = match.group(2)
-                elif line.strip():
-                    current_trans += " " + line.strip()
-            if current_trans:
-                batch_translations.append(current_trans.strip())
-
-            # 确保数量匹配
-            while len(batch_translations) < len(batch):
-                batch_translations.append(None)
-
-            translations.extend(batch_translations[:len(batch)])
-
-        except Exception as e:
-            print(f"   ⚠️  翻译批次 {i // batch_size + 1} 失败: {e}")
-            translations.extend([None] * len(batch))
-
-        # 显示进度
-        done = min(i + batch_size, len(paragraphs))
-        print(f"   翻译进度: {done}/{len(paragraphs)} 段")
-
-    return translations
-
-
 def generate_markdown(video_info: dict, paragraphs: list,
-                      translations: list | None,
                       detected_language: str) -> str:
-    """
-    生成 Markdown 格式的文字稿。
-    如果有翻译，采用一段英文原文 + 一段中文翻译的对照格式。
-    """
+    """生成保留 Show Notes 和时间戳的原文 Markdown。"""
     lines = []
 
     # 标题
@@ -379,9 +291,6 @@ def generate_markdown(video_info: dict, paragraphs: list,
     lines.append(f"**原始链接**: {video_info['webpage_url']}")
     lines.append(f"**转录语言**: {detected_language}")
     lines.append("")
-    lines.append("---")
-    lines.append("")
-
     description = (video_info.get("description") or "").strip()
     if description:
         lines.append("## 视频介绍")
@@ -391,39 +300,12 @@ def generate_markdown(video_info: dict, paragraphs: list,
             if para:
                 lines.append(para)
                 lines.append("")
-        lines.append("---")
+    lines.append("## 逐字稿")
+    lines.append("")
+    for para in paragraphs:
+        timestamp = format_timestamp(para["start"])
+        lines.append(f"**[{timestamp}]** {para['text']}")
         lines.append("")
-
-    # 正文
-    is_bilingual = translations and any(t is not None for t in translations)
-
-    if is_bilingual:
-        lines.append("## 逐字稿（中英对照）")
-        lines.append("")
-        lines.append("> 以下内容采用「英文原文 + 中文翻译」对照排列。")
-        lines.append("")
-
-        for i, para in enumerate(paragraphs):
-            timestamp = format_timestamp(para["start"])
-            # 英文原文
-            lines.append(f"**[{timestamp}]**")
-            lines.append("")
-            lines.append(para["text"])
-            lines.append("")
-            # 中文翻译
-            if i < len(translations) and translations[i]:
-                lines.append(f"🇨🇳 {translations[i]}")
-                lines.append("")
-            lines.append("---")
-            lines.append("")
-    else:
-        lines.append("## 逐字稿")
-        lines.append("")
-
-        for para in paragraphs:
-            timestamp = format_timestamp(para["start"])
-            lines.append(f"**[{timestamp}]** {para['text']}")
-            lines.append("")
 
     return "\n".join(lines)
 
@@ -433,8 +315,11 @@ def save_meta_json(video_info: dict, output_path: str,
                    video_file: str | None = None):
     """保存元信息 JSON"""
     meta = {
-        "url": video_info["webpage_url"],
         "title": video_info["title"],
+        "source_url": video_info["webpage_url"],
+        "source_title": video_info["title"],
+        "source_type": "youtube",
+        "language": detected_language,
         "channel": video_info["channel"],
         "upload_date": video_info.get("upload_date", ""),
         "duration": video_info.get("duration", 0),
@@ -442,7 +327,6 @@ def save_meta_json(video_info: dict, output_path: str,
         "thumbnail": video_info.get("thumbnail", ""),
         "view_count": video_info.get("view_count", 0),
         "like_count": video_info.get("like_count", 0),
-        "detected_language": detected_language,
         "paragraph_count": paragraph_count,
         "video_file": video_file,
         "fetched_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
@@ -454,7 +338,7 @@ def save_meta_json(video_info: dict, output_path: str,
 
 def main():
     parser = argparse.ArgumentParser(
-        description="下载 YouTube 视频 + 转录 + 翻译"
+        description="下载 YouTube 视频 + 转录 + 标准工作包"
     )
     parser.add_argument("url", help="YouTube 视频 URL")
     parser.add_argument(
@@ -472,7 +356,7 @@ def main():
     )
     parser.add_argument(
         "--skip-translate", action="store_true",
-        help="跳过翻译步骤"
+        help=argparse.SUPPRESS,
     )
     parser.add_argument(
         "--keep-audio", action="store_true",
@@ -484,6 +368,8 @@ def main():
     )
 
     args = parser.parse_args()
+    if args.skip_translate:
+        print("警告: --skip-translate 已废弃；脚本已不执行翻译，将始终只生成原文工作包。", file=sys.stderr)
 
     # 处理 cookies 参数
     cookies_browser = args.cookies_from_browser if args.cookies_from_browser else None
@@ -534,44 +420,37 @@ def main():
     print(f"📝 合并为 {len(paragraphs)} 个段落")
     print()
 
-    # Step 6: 翻译（如果不是中文）
-    translations = None
-    if not args.skip_translate and detected_language not in ("zh", "Chinese"):
-        translations = translate_paragraphs(paragraphs, detected_language)
-    print()
-
-    # Step 7: 生成 Markdown
-    md_content = generate_markdown(
-        video_info, paragraphs, translations, detected_language
-    )
-    md_path = os.path.join(args.output_dir, f"{safe_title}.md")
+    # Step 6: 生成不可变原文工作包
+    md_content = generate_markdown(video_info, paragraphs, detected_language)
+    md_path = os.path.join(args.output_dir, "source.md")
+    if os.path.exists(md_path) and Path(md_path).read_text(encoding="utf-8") != md_content:
+        raise FileExistsError(f"{md_path} 已存在且内容不同；请使用新的输出目录，避免覆盖不可变原文")
     with open(md_path, "w", encoding="utf-8") as f:
         f.write(md_content)
-    print(f"📄 文字稿已保存: {md_path}")
+    print(f"原文文字稿已保存: {md_path}")
 
-    # Step 8: 保存元信息
-    meta_path = os.path.join(args.output_dir, f"{safe_title}_meta.json")
+    # Step 7: 保存标准元信息
+    meta_path = os.path.join(args.output_dir, "meta.json")
     save_meta_json(
         video_info, meta_path, detected_language,
         len(paragraphs), video_file
     )
-    print(f"📋 元信息已保存: {meta_path}")
+    print(f"元信息已保存: {meta_path}")
 
     # 清理音频文件
     if not args.keep_audio and os.path.exists(audio_file):
         os.remove(audio_file)
-        print(f"🗑️  已清理音频文件: {os.path.basename(audio_file)}")
+        print(f"已清理音频文件: {os.path.basename(audio_file)}")
 
     print()
     print("=" * 60)
-    print(f"✅ 处理完成！")
+    print("处理完成")
     print(f"   视频文件: {video_file}")
     print(f"   文字稿:   {md_path}")
     print(f"   元信息:   {meta_path}")
     print(f"   段落数:   {len(paragraphs)}")
     print(f"   语言:     {detected_language}")
-    if translations and any(t is not None for t in translations):
-        print(f"   翻译:     ✅ 已翻译为中文（中英对照）")
+    print("   后续:     非中文 source.md 交给 trans-doc-to-md Prepared Markdown Package 模式")
     print("=" * 60)
 
     # 返回关键路径供后续脚本使用

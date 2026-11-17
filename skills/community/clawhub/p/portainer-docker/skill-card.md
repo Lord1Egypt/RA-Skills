@@ -1,44 +1,58 @@
-## Description: <br>
-Control Docker containers and stacks via the Portainer API, including listing resources, starting, stopping, restarting, viewing logs, and redeploying stacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Docker containers and stacks via Portainer API. List containers, start/stop/restart, view logs, and redeploy stacks from git.
 
-## Publisher: <br>
-[pratiknarola](https://clawhub.ai/user/pratiknarola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pratiknarola](https://clawhub.ai/user/pratiknarola)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent inspect and manage Portainer-backed Docker environments from shell commands. It is intended for container status checks, log review, stack redeploys, and controlled container lifecycle actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can stop, restart, and redeploy Docker workloads through Portainer. <br>
-Mitigation: Require explicit confirmation before stop, restart, or redeploy actions, especially for production environments. <br>
-Risk: The Portainer API token is a sensitive credential. <br>
-Mitigation: Use a least-privilege token, keep it out of repositories and logs, and restrict permissions on any environment file that stores it. <br>
-Risk: TLS certificate validation is disabled in the API helper calls. <br>
-Mitigation: Change the script to validate TLS certificates before using it with sensitive or production Portainer instances. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to inspect Portainer environments, manage Docker containers, retrieve logs, and redeploy stacks through the Portainer REST API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pratiknarola/portainer-docker) <br>
-- [Publisher profile](https://clawhub.ai/user/pratiknarola) <br>
-- [Portainer](https://portainer.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands and command output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, PORTAINER_URL, and PORTAINER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can start, stop, restart, and redeploy live Docker workloads reachable through the configured Portainer API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Portainer token, confirm actions before production changes, and limit the token to the intended environments.
+
+Risk: The skill reads Portainer credentials from environment variables or a local credential file.
+
+Mitigation: Store credentials with restrictive file permissions, avoid sharing logs or shell history that may expose tokens, and rotate the token after suspected exposure.
+
+Risk: The API helper uses curl with certificate verification disabled.
+
+Mitigation: Remove curl -k or require a trusted TLS certificate before using the skill against sensitive or production Portainer instances.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pratiknarola/skills/portainer-docker)
+- [Portainer](https://portainer.io/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and text or JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, PORTAINER_URL, and PORTAINER_API_KEY; commands call a configured Portainer API endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact changelog also lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

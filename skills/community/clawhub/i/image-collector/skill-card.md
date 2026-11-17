@@ -1,44 +1,58 @@
-## Description: <br>
-AI technology daily image collection tool that gathers news images from official sources and supports watermark detection, quality checks, and relevance validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects news images for AI technology daily articles from official or trusted sources, with watermark checks, quality checks, and relevance validation.
 
-## Publisher: <br>
-[lunadelo](https://clawhub.ai/user/lunadelo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lunadelo](https://clawhub.ai/user/lunadelo)
 
-## Use Case: <br>
-External users, editors, and developers use this skill to collect and prepare relevant images for AI technology news articles from preferred official or authoritative sources. It helps screen downloaded images for basic watermark, quality, and filename-keyword relevance signals before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound web requests and saves downloaded image files locally. <br>
-Mitigation: Use it only in environments where outbound requests and local image storage are acceptable, and restrict allowed domains for controlled deployments. <br>
-Risk: Watermark, copyright, and relevance checks are basic signals rather than strong guarantees. <br>
-Mitigation: Manually review each selected image before publication and confirm rights, source, and relevance. <br>
-Risk: Dependency behavior may change over time. <br>
-Mitigation: Pin Pillow and requests versions before production use. <br>
+## Use Case:
 
+Developers and content operators use this skill to find, download, optimize, and review article images for AI technology news posts. It is intended to reduce random image use by preferring official sources and applying basic watermark, quality, and relevance checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lunadelo/image-collector) <br>
-- [README.md](README.md) <br>
-- [Skill definition](skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Console status text, command examples, and local image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloaded images are saved locally and may be optimized or rejected based on basic validation checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill downloads images over the network and the security review warns that downloaded images should be treated as unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review downloaded files and their sources before publication, and constrain network access when running the skill.
+
+Risk: The security review says the skill overstates its whitelist, watermark, and relevance checks.
+
+Mitigation: Do not rely on the automated checks alone; manually confirm image rights, relevance, watermark status, and quality.
+
+Risk: Dependency installation and dependency versions are not pinned in the release metadata.
+
+Mitigation: Pin Pillow and requests versions in the deployment environment and review dependency provenance before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lunadelo/skills/image-collector)
+- [Publisher profile](https://clawhub.ai/user/lunadelo)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, files, guidance]
+
+**Output Format:** [Markdown guidance, shell command examples, terminal status text, and downloaded or optimized image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python >=3.8 with Pillow and requests; downloaded images should be reviewed before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

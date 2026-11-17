@@ -1,40 +1,53 @@
-## Description: <br>
-Adversarial debate between a YC Partner challenger and a Business Strategist defender to stress-test and improve a business model, using separated subagent contexts and producing a battle-tested canvas plus debate report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adversarial debate between a YC Partner challenger and a Business Strategist defender to stress-test and improve a business model, using two independent subagents with separated contexts to reduce confirmation bias and produce a battle-tested canvas and debate report.
 
-## Publisher: <br>
-[qianen6](https://clawhub.ai/user/qianen6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qianen6](https://clawhub.ai/user/qianen6)
 
-## Use Case: <br>
-Developers, founders, and product teams use this skill to run an adversarial review of a business model before investor discussions, major pivots, market entry, or other decisions where untested assumptions matter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read project files to understand business context. <br>
-Mitigation: Use it only in repositories where business and product context may be analyzed. <br>
-Risk: The skill creates or overwrites markdown reports under docs/business/. <br>
-Mitigation: Review or back up existing business documents before running it when prior reports must be preserved. <br>
+## Use Case:
 
+Founders, product teams, and developers use this skill to stress-test a product's business model with an adversarial debate between a challenger and defender. It helps identify weak assumptions, update business canvas documents, and produce a debate report before investor, product, or strategy decisions.
 
-## Reference(s): <br>
-- [Canvas Debate on ClawHub](https://clawhub.ai/qianen6/canvas-debate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Files] <br>
-**Output Format:** [Markdown reports and canvas documents written under docs/business/] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces or updates value proposition canvas, business model canvas, test cards, canvas summary, debate report, and debate index files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill reads the relevant project codebase and creates or updates business-analysis documents under docs/business.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that project access and file-writing behavior is acceptable for the workspace.
+
+Risk: Generated business conclusions may be incomplete or misleading if treated as authoritative.
+
+Mitigation: Review the generated conclusions before using them for investor, product, or strategy decisions.
+
+## Reference(s):
+
+- [Canvas Debate ClawHub release](https://clawhub.ai/qianen6/skills/canvas-debate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown documents under docs/business, including business canvases, test cards, an executive summary, a debate report, and a debate index]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated business conclusions should be reviewed before use in investor, product, or strategy decisions.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

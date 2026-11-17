@@ -1,40 +1,49 @@
-## Description: <br>
-Creates a SKILLS_INDEX.md wiki-style index by scanning local skill documentation in a specified directory or global agent skill paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates or updates a SKILLS_INDEX.md wiki page by scanning skill directories and summarizing available skills for easier navigation.
 
-## Publisher: <br>
-[hhjin](https://clawhub.ai/user/hhjin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hhjin](https://clawhub.ai/user/hhjin)
 
-## Use Case: <br>
-Developers and agent users use this skill to build or update a Markdown index of installed skills from local skill documentation. It supports focused directory scans, incremental updates, and full rebuilds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scanning broad global skill paths can expose local skill names, descriptions, and links in the generated index. <br>
-Mitigation: Prefer scanning a specific directory and review the generated index before sharing it. <br>
-Risk: Updating SKILLS_INDEX.md can replace or alter an existing index. <br>
-Mitigation: Back up or review any existing SKILLS_INDEX.md before updating it. <br>
+## Use Case:
 
+Developers and agent users use this skill to inventory installed or project skills and generate a navigable SKILLS_INDEX.md file with summaries and category navigation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hhjin/my-skills-wiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown file (SKILLS_INDEX.md)] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local skill names, descriptions, document links, category navigation, and an index generation time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The artifact includes an instruction to ignore skill-creator or similar skills, which is broader than needed for indexing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, remove or disregard that instruction, and confirm the target directory and existing SKILLS_INDEX.md before broad or global scans.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hhjin/skills/my-skills-wiki)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown file (SKILLS_INDEX.md) with tables, category navigation, and generation timestamp]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update an existing index incrementally or rebuild it from first-level skill directories.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

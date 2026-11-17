@@ -1,42 +1,62 @@
-## Description: <br>
-Weekly retrospective that analyzes memory logs to identify accomplishments, recurring patterns, friction points, and forward-looking recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weekly Retro analyzes memory logs to identify accomplishments, recurring patterns, friction points, and forward-looking recommendations for the next week.
 
-## Publisher: <br>
-[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte)
 
-## Use Case: <br>
-Developers and agent users use this skill to turn weekly memory logs into a strategic retrospective with accomplishments, recurring patterns, friction points, unfinished work, recommendations, and a week score. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local memory logs and workspace context files that may contain sensitive personal or work details. <br>
-Mitigation: Review configured memory, SOUL.md, AGENTS.md, and related input paths before running the skill. <br>
-Risk: Generated retrospectives and optional history summaries may retain sensitive summaries on disk. <br>
-Mitigation: Choose output and history locations deliberately, restrict access to those files, and review generated reports before sharing. <br>
+## Use Case:
 
+Developers and other knowledge workers use this skill to turn weekly memory logs into a strategic retrospective with wins, recurring patterns, friction points, unfinished work, recommendations, and a week score.
 
-## Reference(s): <br>
-- [Retrospective Format Reference](references/retro-format.md) <br>
-- [Weekly Retro on ClawHub](https://clawhub.ai/newageinvestments25-byte/weekly-retro) <br>
-- [Publisher Profile](https://clawhub.ai/user/newageinvestments25-byte) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown retrospective with YAML frontmatter, plus JSON analysis and optional history records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Obsidian-compatible report output; Python standard library only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads weekly memory logs and may include sensitive local work details in generated retrospectives.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or set the memory directory before running and avoid pointing it at logs that contain information you do not want summarized.
+
+Risk: Persistent vault and history outputs can retain sensitive summaries over time.
+
+Mitigation: Review the output vault path and history path, and delete or relocate generated records according to local retention expectations.
+
+Risk: Default configuration can read SOUL.md and AGENTS.md while analyzing formalized patterns.
+
+Mitigation: Review, disable, or override those paths if workspace instruction files should not be included in analysis.
+
+Risk: The cron example can run the retrospective unattended.
+
+Mitigation: Use scheduled execution only after confirming the configured input, output, and history paths are appropriate.
+
+## Reference(s):
+
+- [Retrospective Format Reference](references/retro-format.md)
+- [ClawHub skill page](https://clawhub.ai/newageinvestments25-byte/skills/weekly-retro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Obsidian-compatible Markdown with YAML frontmatter, plus intermediate structured JSON from the gather and analysis steps.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local memory, configuration, and optional history inputs to produce persistent retrospective outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-arXiv Master Search helps agents search arXiv papers, download PDFs, export metadata, run batch queries, and generate lightweight summaries for literature review workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches arXiv papers by keyword, author, date, and category, then downloads PDFs, exports metadata, and generates summaries for literature review.
 
-## Publisher: <br>
-[PeterKouss](https://clawhub.ai/user/PeterKouss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[peterkouss](https://clawhub.ai/user/peterkouss)
 
-## Use Case: <br>
-Developers, researchers, and research assistants use this skill to automate arXiv discovery workflows, including query-based search, paper retrieval, citation export, batch processing, and summary generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes remote PDFs and arXiv metadata, which can expose the runtime to malformed or unexpected external content. <br>
-Mitigation: Install and run it in an environment where remote PDF processing is acceptable, and review downloaded files before reusing them in downstream workflows. <br>
-Risk: Dependency hygiene needs attention for packages such as requests, urllib3, PyYAML, PyPDF2, and pdfminer.six. <br>
-Mitigation: Prefer pinned, regularly updated dependency versions and refresh the environment when security fixes are released. <br>
+## Use Case:
 
+External agents and developers use this skill to run literature searches, collect arXiv metadata, download papers, export citations, and summarize paper collections.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/PeterKouss/arxiv-master-search) <br>
-- [Publisher profile](https://clawhub.ai/user/PeterKouss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with command examples plus generated JSON, BibTeX, CSV, RIS, PDF, and summary files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are organized into search metadata, downloaded PDFs, exported citation data, and generated summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: Crafted JSON or JSONL inputs can cause JSON files to be written outside the chosen output directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted metadata and query files, run the skill in a scratch output directory, and review output paths before processing shared inputs.
+
+Risk: Replacing existing downloaded or generated files may be unintended.
+
+Mitigation: Keep the default skip-existing behavior and avoid --no-skip-existing unless replacement is intended.
+
+Risk: Unpinned dependencies may change behavior across environments.
+
+Mitigation: Pin dependencies in the execution environment before using the skill for repeatable workflows.
+
+## Reference(s):
+
+- [arXiv](https://arxiv.org/)
+- [ClawHub skill page](https://clawhub.ai/peterkouss/skills/arxiv-master-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with CLI commands; runtime tools produce JSON, BibTeX, CSV, RIS, PDF, and summary JSON files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes to user-selected files and directories; supports rate limiting, retries, and logging.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

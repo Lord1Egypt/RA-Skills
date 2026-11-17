@@ -1,44 +1,61 @@
-## Description: <br>
-Adjust morning weather briefing location based on travel plans captured from conversation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adjust morning weather briefing location based on travel plans captured from conversation.
 
-## Publisher: <br>
-[suidge](https://clawhub.ai/user/suidge) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suidge](https://clawhub.ai/user/suidge)
 
-## Use Case: <br>
-External users and personal-agent operators use this skill to keep a morning weather briefing aligned with saved travel plans. It captures city-level travel dates from conversation, stores them in a local travel-plan file, cleans past entries, and falls back to a default home location when no trip is active. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores home and travel cities plus dates in a local travel-plan file and may update that file from travel-related conversation. <br>
-Mitigation: Install only if this local storage is acceptable, and review or delete the travel-plan file when plans are private or captured incorrectly. <br>
-Risk: The selected city is sent to wttr.in for the weather lookup. <br>
-Mitigation: Avoid using the weather lookup when sharing city-level location with that service is not acceptable. <br>
+## Use Case:
 
+External OpenClaw users use this skill to keep morning weather briefings aligned with upcoming travel plans captured from conversation. The skill stores a default location and dated travel locations, then uses the current Asia/Shanghai date to choose the weather query location.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/suidge/travel-morning-weather) <br>
-- [Homepage](https://github.com/Suidge/travel-morning-weather) <br>
-- [Capture Triggers](references/capture-triggers.md) <br>
-- [Data Format](references/data-format.md) <br>
-- [Morning Briefing Integration](references/morning-briefing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses python3 and curl; reads and updates a local travel-plan JSON file for city-level morning weather selection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill stores home city and travel schedule information that may be sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the stored travel-plan.json contents before use and keep the file in a private agent workspace with appropriate access controls.
+
+Risk: The skill can update travel plans from conversation-derived dates and locations.
+
+Mitigation: Require user confirmation before saving new or changed travel entries, especially for inferred dates, ranges, or locations.
+
+Risk: Documented weather commands use user-derived locations in shell-style examples.
+
+Mitigation: Validate and URL-encode locations, and invoke scripts and curl with structured arguments rather than interpolated shell strings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/suidge/skills/travel-morning-weather)
+- [Project homepage](https://github.com/Suidge/travel-morning-weather)
+- [Capture triggers](references/capture-triggers.md)
+- [Travel plan data format](references/data-format.md)
+- [Morning briefing integration](references/morning-briefing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local travel-plan.json state and weather-query guidance for morning briefing location selection.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

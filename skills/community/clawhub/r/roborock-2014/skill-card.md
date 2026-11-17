@@ -1,41 +1,57 @@
-## Description: <br>
-VacuumControl teaches an OpenClaw agent how to install, authenticate, configure, and use roborock-cli to query and control Roborock vacuum cleaners. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through installing, configuring, authenticating, troubleshooting, and using roborock-cli to query and control Roborock vacuum devices.
 
-## Publisher: <br>
-[jru001](https://clawhub.ai/user/jru001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jru001](https://clawhub.ai/user/jru001)
 
-## Use Case: <br>
-External users and developers use this skill to guide an agent through Roborock CLI setup, account authentication, device discovery, cleaning controls, diagnostics, and automation scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides use of an external CLI that authenticates to a Roborock account and stores account data in a local cache. <br>
-Mitigation: Install and run the CLI only on a trusted machine, treat the authentication cache as sensitive, and remove the cache when access is no longer needed. <br>
-Risk: Several commands physically control a vacuum cleaner, including starting cleaning, docking, dust collection, mop washing, volume, and do-not-disturb changes. <br>
-Mitigation: Confirm the user's intent before control commands, check device status first, and avoid executing physical actions unless the requested action is clear. <br>
+## Use Case:
 
+External users and developers use this skill to help an agent operate Roborock vacuums with roborock-cli, including setup, authentication, device status checks, cleaning actions, dock actions, DND and volume settings, routine execution, map export, troubleshooting, and script integration.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jru001/roborock-2014) <br>
-- [Roborock CLI command reference](references/commands.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes jq-oriented JSON parsing examples; authentication requires an interactive TTY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence, released 2026-03-17) <br>
+Risk: Installation guidance includes remote uv installer commands and tool installation steps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install uv and roborock-cli through trusted, pinned, or verified package channels before use.
+
+Risk: The skill can guide commands that change physical device state, including cleaning, docking, DND, volume, dock actions, and routine execution.
+
+Mitigation: Confirm the exact device, room, routine, and requested action before allowing control commands.
+
+Risk: Roborock authentication files and exported maps can expose sensitive account and home-layout information.
+
+Mitigation: Treat auth cache files, device cache files, and saved map images as sensitive home data and avoid unnecessary sharing or persistence.
+
+## Reference(s):
+
+- [roborock-cli command specification](artifact/references/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command-output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may authenticate to and control home vacuum devices; exported maps and Roborock auth cache files should be treated as sensitive home data.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,60 @@
-## Description: <br>
-AI幻觉纠偏 / 幻觉纠偏 is a Chinese intent alias that routes hallucination-correction discovery terms to Official VeriClaw and its canonical public surfaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI幻觉纠偏 / 幻觉纠偏 routes Chinese hallucination-correction discovery intents to Official VeriClaw and its canonical install, review, and remediation resources.
 
-## Publisher: <br>
-[sheygoodbai](https://clawhub.ai/user/sheygoodbai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheygoodbai](https://clawhub.ai/user/sheygoodbai)
 
-## Use Case: <br>
-Chinese-speaking users, operators, and curators use this skill to map hallucination-correction terms such as AI幻觉纠偏, 幻觉纠偏, AI纠偏, 幻觉修复, and 工作幻觉 to VeriClaw guidance, installation, review, and feedback routes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Chinese aliases such as AI纠偏 may route generic correction requests to VeriClaw even when the user expected a different correction workflow. <br>
-Mitigation: Confirm the user wants VeriClaw or direct them to the canonical VeriClaw page before treating this alias as the functional skill. <br>
-Risk: Users may leave installation, review, or feedback signals on the alias page instead of the canonical VeriClaw surface. <br>
-Mitigation: Route public install, star, comment, and review activity to the official VeriClaw ClawHub page. <br>
+## Use Case:
 
+External users and developers use this skill to map Chinese queries such as 幻觉纠偏, AI幻觉纠偏, AI纠偏, and 幻觉修复 to the appropriate VeriClaw resources. It is an alias and routing aid, not a standalone hallucination-correction engine.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sheygoodbai/hallucination-correction-cn) <br>
-- [Official VeriClaw ClawHub page](https://clawhub.ai/sheygoodbai/vericlaw) <br>
-- [VeriClaw hallucination-correction page](https://sheygoodbai.github.io/vericlaw/hallucination-correction-cn/) <br>
-- [VeriClaw AI hallucination remediation page](https://sheygoodbai.github.io/vericlaw/ai-hallucination-remediation/) <br>
-- [VeriClaw landing page](https://sheygoodbai.github.io/vericlaw/) <br>
-- [VeriClaw plugin page](https://clawhub.ai/plugins/vericlaw) <br>
-- [VeriClaw review kit](https://sheygoodbai.github.io/vericlaw/review-kit/) <br>
-- [Search intents reference](references/search-intents.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown text with links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only alias; no code execution or private access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.7 (source: frontmatter and release evidence) <br>
+Risk: Users may mistake this alias for a standalone hallucination-correction engine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Describe it as a routing aid and review the linked VeriClaw skill before installing or recommending it.
+
+Risk: Install, review, or reputation signals may be left on the alias instead of the canonical VeriClaw page.
+
+Mitigation: Direct users who want the public install surface or feedback channel to the Official VeriClaw ClawHub page.
+
+## Reference(s):
+
+- [Search intents](references/search-intents.txt)
+- [Official VeriClaw ClawHub page](https://clawhub.ai/sheygoodbai/vericlaw)
+- [VeriClaw hallucination correction page](https://sheygoodbai.github.io/vericlaw/hallucination-correction-cn/)
+- [VeriClaw AI hallucination remediation page](https://sheygoodbai.github.io/vericlaw/ai-hallucination-remediation/)
+- [VeriClaw landing page](https://sheygoodbai.github.io/vericlaw/)
+- [VeriClaw plugin page](https://clawhub.ai/plugins/vericlaw)
+- [VeriClaw review kit](https://sheygoodbai.github.io/vericlaw/review-kit/)
+- [Released skill page](https://clawhub.ai/sheygoodbai/skills/hallucination-correction-cn)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown, shell commands]
+
+**Output Format:** [Markdown guidance with inline links and commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes users toward VeriClaw resources; does not execute code or process credentials.]
+
+## Skill Version(s):
+
+0.1.7 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

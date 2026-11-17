@@ -1,41 +1,56 @@
-## Description: <br>
-Fetches trending news and hot topics from 66 sources across 44 platforms, returning titles, URLs, and metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+newsnow helps an agent fetch trending news and hot topics from 66 sources across 44 platforms, with structured items that can include titles, URLs, publication dates, and metadata.
 
-## Publisher: <br>
-[leeguooooo](https://clawhub.ai/user/leeguooooo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leeguooooo](https://clawhub.ai/user/leeguooooo)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to list available news sources, fetch trending items from selected platforms, and request structured JSON for downstream processing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill runs the newsnow npm CLI directly or through npx. <br>
-Mitigation: Install or execute it only when the npm package source is trusted, and review commands before running them. <br>
-Risk: The Product Hunt source can require PRODUCTHUNT_API_TOKEN. <br>
-Mitigation: Set the token only when Product Hunt results are needed, and use a minimally scoped token where possible. <br>
-Risk: Some sources may fail because of Cloudflare blocking or regional network availability. <br>
-Mitigation: Treat 403 responses or empty results as source availability issues and choose an alternate source when needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leeguooooo/leeguooooo-newsnow) <br>
+## Use Case:
 
+External users and developers use newsnow to list supported sources, fetch trending topics from social, technology, finance, and news platforms, and request JSON output for downstream processing.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; CLI results may be readable text or JSON news items.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [JSON output includes item identifiers, titles, optional URLs, publication dates, and extra metadata when provided by the source.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Running an unpinned npm package at runtime can execute package code that has not been reviewed for the deployed environment.
+
+Mitigation: Review or pin the newsnow package before use and prefer a locally installed locked version over npx.
+
+Risk: PRODUCTHUNT_API_TOKEN is required for the Product Hunt source and could be exposed more broadly than needed.
+
+Mitigation: Provide PRODUCTHUNT_API_TOKEN only for the specific Product Hunt command in a minimal environment.
+
+Risk: Some sources may be inaccessible or return blocked responses, including linuxdo endpoints that may return 403 Forbidden.
+
+Mitigation: Treat source availability as best effort and choose alternate sources when a platform is blocked.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leeguooooo/skills/leeguooooo-newsnow)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require npm installation and PRODUCTHUNT_API_TOKEN for Product Hunt; some sources can fail due to access restrictions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

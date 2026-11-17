@@ -1,44 +1,54 @@
-## Description: <br>
-Give AI agents persistent semantic memory using the BlueColumn API (bluecolumn.ai) for storing, recalling, and searching memories across notes, conversations, documents, and audio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents store notes and documents in BlueColumn and retrieve persistent memory with source citations.
 
-## Publisher: <br>
-[bluecolumnconsulting-lgtm](https://clawhub.ai/user/bluecolumnconsulting-lgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bluecolumnconsulting-lgtm](https://clawhub.ai/user/bluecolumnconsulting-lgtm)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect an AI agent to BlueColumn memory endpoints so the agent can store approved session summaries, notes, documents, or audio-derived content and later retrieve relevant stored context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist conversation summaries and user-provided content to an external memory service. <br>
-Mitigation: Require explicit user consent before saving session summaries, documents, audio, personal data, credentials, confidential business details, or regulated information. <br>
-Risk: The skill requires a sensitive BlueColumn API key. <br>
-Mitigation: Store the API key only in a platform secret store, avoid logging or displaying it, and verify the provider endpoint before use. <br>
-Risk: Stored memory may have retention or deletion implications outside the agent runtime. <br>
-Mitigation: Review BlueColumn retention and deletion terms before using the skill for production or sensitive workflows. <br>
+## Use Case:
 
+Developers and agent users can save decisions, preferences, and other authorized context in BlueColumn, then ask natural-language questions across sessions.
 
-## Reference(s): <br>
-- [BlueColumn API Reference](references/api.md) <br>
-- [BlueColumn](https://bluecolumn.ai) <br>
-- [BlueColumn Memory on ClawHub](https://clawhub.ai/bluecolumnconsulting-lgtm/bluecolumn-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include endpoint selection guidance, curl commands, request fields, response-shape expectations, and API key handling instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Persistent storage of raw transcripts, documents, or sensitive personal content on an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Save only authorized, necessary content; exclude secrets, credentials, regulated data, and confidential material unless retention and deletion controls are understood.
+
+Risk: Running unreviewed packages from installation or MCP examples.
+
+Mitigation: Prefer reviewed source or pinned package versions before installation.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/bluecolumnconsulting-lgtm/skills/bluecolumn-memory)
+- [BlueColumn documentation](https://bluecolumn.ai/docs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with optional API examples and cited recall answers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recall answers may cite stored sources; writes may return summaries and action items.]
+
+## Skill Version(s):
+
+1.1.0 (source: skill frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

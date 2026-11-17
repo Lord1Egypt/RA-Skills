@@ -1,0 +1,48 @@
+{
+  "skill_name": "huawei-cloud-asm-fuzzy-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "ASM SDK importable",
+      "command": "python3 -c \"from huaweicloudsdkasm.v1 import AsmClient, ListMeshesRequest; print('SDK OK')\"",
+      "expected": "SDK OK",
+      "type": "syntax",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-02",
+      "name": "List all ASM meshes live (SDK)",
+      "command": "python3 -c \"import os; from huaweicloudsdkcore.auth.credentials import BasicCredentials; from huaweicloudsdkasm.v1 import AsmClient, ListMeshesRequest; from huaweicloudsdkasm.v1.region.asm_region import AsmRegion; c=AsmClient.new_builder().with_credentials(BasicCredentials(os.environ['HUAWEICLOUD_SDK_AK'], os.environ['HUAWEICLOUD_SDK_SK'])).with_region(AsmRegion.value_of('cn-north-4')).build(); r=c.list_meshes(ListMeshesRequest()); print('total meshes:', len(r.items or [])); [print(m.metadata.name, m.metadata.uid, m.status.phase) for m in (r.items or [])]\"",
+      "expected": "total meshes: N (N >= 0); each mesh line has name/uid/phase",
+      "type": "readonly",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-03",
+      "name": "Fuzzy match meshes by name (keyword='a')",
+      "command": "python3 -c \"import os; from huaweicloudsdkcore.auth.credentials import BasicCredentials; from huaweicloudsdkasm.v1 import AsmClient, ListMeshesRequest; from huaweicloudsdkasm.v1.region.asm_region import AsmRegion; c=AsmClient.new_builder().with_credentials(BasicCredentials(os.environ['HUAWEICLOUD_SDK_AK'], os.environ['HUAWEICLOUD_SDK_SK'])).with_region(AsmRegion.value_of('cn-north-4')).build(); r=c.list_meshes(ListMeshesRequest()); m2=[m for m in (r.items or []) if 'a' in (m.metadata.name or '').lower()]; print('matched', len(m2))\"",
+      "expected": "matched N (N = number of meshes whose name contains 'a')",
+      "type": "readonly",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-04",
+      "name": "Fuzzy match no-match keyword returns 0",
+      "command": "python3 -c \"import os; from huaweicloudsdkcore.auth.credentials import BasicCredentials; from huaweicloudsdkasm.v1 import AsmClient, ListMeshesRequest; from huaweicloudsdkasm.v1.region.asm_region import AsmRegion; c=AsmClient.new_builder().with_credentials(BasicCredentials(os.environ['HUAWEICLOUD_SDK_AK'], os.environ['HUAWEICLOUD_SDK_SK'])).with_region(AsmRegion.value_of('cn-north-4')).build(); r=c.list_meshes(ListMeshesRequest()); m2=[m for m in (r.items or []) if 'zzzz_no_match_zzzz' in (m.metadata.name or '').lower()]; print('matched', len(m2))\"",
+      "expected": "matched 0 (empty result handled cleanly)",
+      "type": "readonly",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-05",
+      "name": "Verify GET list endpoint from SDK _http_info",
+      "command": "python3 -c \"from huaweicloudsdkasm.v1.asm_client import AsmClient; import inspect; src=inspect.getsource(AsmClient._list_meshes_http_info); assert '/v1/{project_id}/meshes' in src; assert 'GET' in src; print('endpoint OK')\"",
+      "expected": "endpoint OK",
+      "type": "syntax",
+      "executor": "sdk"
+    }
+  ],
+  "env_vars_required": ["HUAWEICLOUD_SDK_AK", "HUAWEICLOUD_SDK_SK"],
+  "notes": "Read-only queries only. No create/update/delete operations. CLI not applicable (hcloud ASM unsupported)."
+}

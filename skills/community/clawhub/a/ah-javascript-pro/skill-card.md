@@ -1,41 +1,53 @@
-## Description: <br>
-Provides JavaScript expertise for modern ECMAScript, asynchronous programming, functional patterns, performance optimization, DOM events, and full-stack development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides JavaScript development guidance for modern ECMAScript, asynchronous programming, functional patterns, performance optimization, DOM events, and full-stack JavaScript.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineers use this skill to get JavaScript implementation guidance, code examples, tests, and review advice for modern browser, Node.js, asynchronous, performance-sensitive, and security-conscious work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated JavaScript guidance or code can be incorrect, insecure, or unsuitable for the target runtime. <br>
-Mitigation: Review, test, lint, and scan generated code before deployment; apply the skill's security guidance such as sanitizing inputs, avoiding eval-like constructs, and validating data on both client and server. <br>
-Risk: Installing or using the skill in a maintainer environment can expose local project context and privileged workflows. <br>
-Mitigation: Install only in a trusted ClawHub development or maintainer environment and review any proposed commands or account-impacting actions before execution. <br>
+## Use Case:
 
+Developers use this skill to get JavaScript code, review guidance, implementation patterns, testing examples, and performance or security recommendations for browser and Node.js work.
 
-## Reference(s): <br>
-- [JavaScript Pro code examples](references/examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-javascript-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSDoc comments, unit tests, and security or performance notes when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Broad JavaScript task coverage may cause the skill to be invoked for many JavaScript-adjacent requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the generated guidance matches the intended runtime, framework, and security requirements before applying it.
+
+Risk: Generated examples may include network requests, storage access, worker threads, or delete actions.
+
+Mitigation: Review code before execution and validate handling for user input, credentials, persistence, and destructive operations.
+
+## Reference(s):
+
+- [Javascript Pro Code Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with JavaScript code blocks and concise implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSDoc comments, unit tests, performance notes, and security considerations when relevant.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

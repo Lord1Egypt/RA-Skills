@@ -1,41 +1,56 @@
-## Description: <br>
-Ensures code modifications are safe, precise, and efficient by enforcing user intent, authorized scope, resource reuse, style consistency, impact analysis, and proactive quality checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ensures code modifications are safe, precise, and efficient by guiding agents to clarify intent and scope, reuse existing resources, match code style, analyze impact, and perform quality checks.
 
-## Publisher: <br>
-[dreamersetsail](https://clawhub.ai/user/dreamersetsail) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dreamersetsail](https://clawhub.ai/user/dreamersetsail)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and coding agents use this skill during bug fixes, feature additions, refactors, reviews, and other code modification tasks to keep changes minimal, authorized, style-consistent, and quality-checked.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad trigger wording may activate the skill for code-analysis requests where the user only wants discussion.
+
+Mitigation: Confirm whether the user wants analysis or file edits before modifying code.
+
+Risk: Conservative authorization rules may block or delay intended changes when scope is ambiguous.
+
+Mitigation: Ask concise clarification questions and keep out-of-scope improvements as suggestions unless explicitly authorized.
+
+Risk: As a guidance-only skill, its safeguards depend on the host agent following the instructions.
+
+Mitigation: Review proposed edits and scan the skill before deployment, consistent with the security guidance.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and coding agents use this skill during code modification tasks to keep changes scoped, authorized, consistent with the existing codebase, and checked for likely quality issues. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's activation wording is broad and may trigger during unrelated coding tasks. <br>
-Mitigation: Review when the skill activates and narrow trigger wording if it appears outside code modification workflows. <br>
-Risk: The skill can guide code changes, shell commands, and purchase-capable or cryptographic workflows when those capabilities are available to the agent. <br>
-Mitigation: Keep human review in the loop for high-impact changes and confirm scope before executing commands or modifying sensitive code. <br>
+**Output Format:** [Markdown guidance with optional code and shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dreamersetsail/code-modification-guard) <br>
-- [Publisher profile](https://clawhub.ai/user/dreamersetsail) <br>
+**Other Properties Related to Output:** [Bilingual English and Chinese guidance; no hidden execution, data collection, persistence, or credential handling found.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown guidance with optional code blocks and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Chinese and English guidance may be produced based on the user's language.] <br>
+1.0.7 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

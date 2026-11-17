@@ -1,0 +1,11 @@
+{
+  "name": "aeo-citability",
+  "tagline": "Make any static site answer-engine-citable.",
+  "description": "Adds the structured data and clean text surfaces that get pages cited by Perplexity, ChatGPT search and Google AI Overviews: Article/BlogPosting and FAQPage JSON-LD, clean .md siblings, llms.txt and sitemap.xml. Python 3 standard library only, idempotent, no network calls. Audit-first workflow with a 0-100 readiness score per page.",
+  "category": "web",
+  "tags": ["aeo", "seo", "json-ld", "structured-data", "llms-txt", "sitemap", "perplexity", "static-site"],
+  "version": "0.1.0",
+  "license": "MIT-0",
+  "homepage": "https://workloft.ai/ships",
+  "support_url": "https://workloft.ai"
+}

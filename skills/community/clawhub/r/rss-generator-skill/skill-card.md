@@ -1,48 +1,65 @@
-## Description: <br>
-Generate valid RSS 2.0 or Atom 1.0 feeds from web pages that contain post lists but lack a native feed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate valid RSS 2.0 or Atom 1.0 feeds from public post-list pages without native feeds, producing well-formed feed XML and an optional self-hostable HTML discovery wrapper.
 
-## Publisher: <br>
-[kidehen](https://clawhub.ai/user/kidehen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kidehen](https://clawhub.ai/user/kidehen)
 
-## Use Case: <br>
-Developers, publishers, and content operators use this skill to turn public blog, news, or article-list pages into synthetic RSS 2.0 or Atom 1.0 feeds when no native feed is available. It helps inspect the page, extract post metadata, validate feed structure, and provide XML or a self-hostable discovery wrapper. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches web pages and can use optional headers, so private URLs, tokenized URLs, cookies, bearer tokens, API keys, or sensitive request headers could be exposed to the selected fetch route. <br>
-Mitigation: Use the skill only with public pages unless the operator intentionally wants those values sent through the selected fetch route; do not provide credentials or sensitive headers. <br>
-Risk: Synthetic feeds can contain incomplete or estimated metadata when source pages lack dates, summaries, or stable post structures. <br>
-Mitigation: Validate generated RSS or Atom output with the included checklist, label estimated dates, and review extracted items before publishing the feed. <br>
-Risk: Full-text mode fetches each discovered post URL and can increase request volume or hit rate limits. <br>
-Mitigation: Keep the default item limit, warn before fetching more than 20 items, and respect robots.txt and site access restrictions. <br>
+## Use Case:
 
+Developers, publishers, and automation users use this skill to create synthetic RSS or Atom feeds from publicly accessible blog, news, or post-list pages that do not expose a native feed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kidehen/rss-generator-skill) <br>
-- [URIBurner WEB_FETCH OpenAPI definition](https://linkeddata.uriburner.com/chat/functions/openapi.yaml) <br>
-- [Protocol routing](references/protocol-routing.md) <br>
-- [Post extraction rules](references/extraction-rules.md) <br>
-- [Feed templates](references/feed-templates.md) <br>
-- [Validation checklist](references/validation-checklist.md) <br>
-- [HTML feed discovery wrapper template](references/html-wrapper-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown containing RSS or Atom XML code blocks, optional shell commands, and optional generated XML or HTML files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output saves a feed XML file; optional modes include raw XML, an HTML discovery wrapper, preview output, validation guidance, and full-text extraction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and skill title) <br>
+Risk: Fetching pages through broad third-party, authenticated, or shell-based routes can expose private URLs, credentials, API keys, cookies, or intranet targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public pages; do not provide private or signed URLs, cookies, Authorization headers, API keys, or intranet targets.
+
+Risk: Authenticated LLM-mediated routes and direct shell fetching may be inappropriate outside controlled environments.
+
+Mitigation: Prefer public page-fetching routes and avoid shell or authenticated LLM routes unless the execution environment is controlled and reviewed.
+
+Risk: Generated HTML can carry unsafe scraped content if it is hosted without escaping or sanitization.
+
+Mitigation: Escape or sanitize generated HTML before hosting and validate generated feeds before publication.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kidehen/skills/rss-generator-skill)
+- [URIBurner WEB_FETCH OpenAPI Definition](https://linkeddata.uriburner.com/chat/functions/openapi.yaml)
+- [Protocol Routing](references/protocol-routing.md)
+- [Post Extraction Rules](references/extraction-rules.md)
+- [Feed Templates](references/feed-templates.md)
+- [HTML Feed Discovery Wrapper Template](references/html-wrapper-template.md)
+- [Feed Validation Checklist](references/validation-checklist.md)
+- [W3C Feed Validator](https://validator.w3.org/feed/)
+- [RSS Board Validator](https://www.rssboard.org/rss-validator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with XML, HTML, and shell command code blocks; generated feed XML and optional HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output saves a feed XML file; optional modes can return raw XML, an HTML discovery wrapper, or both.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and skill heading)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

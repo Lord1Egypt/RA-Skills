@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "OwlCodaRunKitCoverageAdoptRequestV1",
+  "coverageId": "replace-with-coverage-id",
+  "sources": [
+    {
+      "gateInputPath": ".owlcoda/runkit/executions/replace-with-source-run/verification-receipts/replace-with-receipt/verification-gate-input.json",
+      "gateInputSha256": "replace-with-lowercase-sha256",
+      "commandBindings": [
+        {
+          "receiptCommandId": "replace-with-receipt-command-id",
+          "profileId": "replace-with-profile-id",
+          "commandId": "replace-with-profile-command-id"
+        }
+      ],
+      "dependencyBindings": [
+        {
+          "dependencyId": "root-lockfile",
+          "source": {
+            "kind": "lockfile",
+            "identity": "package-lock.json"
+          }
+        }
+      ]
+    }
+  ]
+}

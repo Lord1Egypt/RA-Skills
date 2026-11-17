@@ -1,0 +1,44 @@
+{
+  "name": "lygo-ollama-army",
+  "displayName": "LYGO Ollama Army",
+  "version": "0.9.0",
+  "description": "Local Ollama multi-role army. In-process threads. localhost Ollama only. No planting, social outbound, public probes, or desktop installers. FULL operator pack on SkillHub if full stack.",
+  "slug": "lygo-ollama-army",
+  "publisher": "deepseekoracle",
+  "license": "LYGO-Sovereign-v2.0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-ollama-army",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-ollama-army",
+  "skillhub_full": "https://chatagent.ca/lygoskillhub.html#full-lygo",
+  "signature": "Delta9Phi963-ARMY-SKILL-v0.9.0",
+  "tags": ["latest", "lygo", "ollama", "army", "local", "security", "skillspector", "delta9"],
+  "entry": "SKILL.md",
+  "scripts": {
+    "launch": "ollama_army_launcher.py",
+    "queue": "queue_task.py",
+    "self_check": "scripts/self_check.py"
+  },
+  "openclaw": {
+    "emoji": "🪖",
+    "requires": { "anyBins": ["python", "python3"] },
+    "os": ["windows", "macos", "linux"]
+  },
+  "permissions": {
+    "network": "localhost Ollama only",
+    "subprocess": false,
+    "shell": false,
+    "filesystem": {
+      "read": "queue tasks",
+      "write": "ollama_queue/ ollama_results/"
+    },
+    "publish": false,
+    "planting": false,
+    "social_outbound": false
+  },
+  "security": {
+    "local_first": true,
+    "no_subprocess": true,
+    "no_public_https": true,
+    "role_allowlist": true,
+    "version": "0.9.0"
+  }
+}

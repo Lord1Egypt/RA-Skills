@@ -1,0 +1,6 @@
+interface:
+  display_name: "AgentMailer CLI"
+  short_description: "Operate AgentMailer safely from the shell"
+  default_prompt: "Use $agentmailer-cli to perform this AgentMailer operation with discoverable commands, structured output, and safe retry behavior."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "OceanToken Models"
+  short_description: "Find, price and delegate to 500+ models"
+  default_prompt: "Use $oceantoken-models to find the best-value model for this task and estimate what it will cost."
+policy:
+  allow_implicit_invocation: true

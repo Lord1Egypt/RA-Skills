@@ -1,0 +1,6 @@
+interface:
+  display_name: "杰哥生图"
+  short_description: "生成、编辑并落地项目所需图片，支持生图、改图与参考图编辑"
+  default_prompt: "使用 $jiege-imgen 生成或编辑一张项目图片。"
+policy:
+  allow_implicit_invocation: false

@@ -1,39 +1,52 @@
-## Description: <br>
-Extracts experimental results from research paper PDFs, screenshots, or table images, selects appropriate chart types, generates deterministic Python plots, and exports PNG, PDF, and LaTeX outputs into a paper-named folder. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paper Viz extracts experimental results from research PDFs, screenshots, and table images, selects suitable chart types, generates deterministic Python figures, and exports PNG, PDF, and LaTeX outputs into a paper-named folder.
 
-## Publisher: <br>
-[ghxianzhi](https://clawhub.ai/user/ghxianzhi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ghxianzhi](https://clawhub.ai/user/ghxianzhi)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, researchers, and analysts use this skill to turn paper result tables, screenshots, and PDFs into reproducible chart assets with extracted data, publication-style figures, and LaTeX snippets.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Extracted values from papers, screenshots, or tables may be uncertain or unreadable.
+
+Mitigation: Review experimental_data.json, especially entries marked validation_needed, before relying on generated figures.
+
+Risk: The workflow creates folders and writes generated chart files locally.
+
+Mitigation: Provide a clear input file and output root directory, then review the final saved folder path and generated files.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, researchers, and analysts use this skill to convert readable experimental results from papers or screenshots into structured data, reproducible academic figures, and LaTeX insertion snippets. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates local output folders and generated files, which may write into an unintended or sensitive location if the output root is ambiguous. <br>
-Mitigation: Choose an explicit output directory before running and ask the agent to preview planned paths when persistent generated files are not desired. <br>
-Risk: Generated files could overwrite existing files in the selected output location. <br>
-Mitigation: Check the target folder before execution or require unique paper-named output folders for each run. <br>
+**Output Format:** [JSON data, PNG/PDF figure files, LaTeX snippets, Python plotting code, and a concise Markdown summary]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Writes outputs to a local paper-named folder when possible and marks extracted data with validation_needed when confidence is low.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown summary plus JSON, Python plotting code when needed, PNG/PDF figures, and LaTeX snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates experimental_data.json, figure exports, and latex_codes.tex in a user-selected or current writable output folder.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

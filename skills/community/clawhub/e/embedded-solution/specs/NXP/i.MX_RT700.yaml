@@ -1,0 +1,93 @@
+part: i.MX_RT700
+link_status: verified_2026-07-01 (datasheet-pdf-mirror-extracted)
+expected_family: "i.MX RT700 \u2014 Crossover MCU with M33 + HiFi 4 DSP + eIQ Neutron NPU"
+main_page: https://www.nxp.com/products/i.MX-RT700
+datasheet_path_expected: ../../datasheets/imx-rt700.pdf
+created_at: '2026-06-30T09:43:00+08:00'
+specs:
+  cores:
+    main_subsystem:
+    - Arm Cortex-M33 @ up to 325 MHz
+    - Tensilica HiFi 4 DSP @ up to 325 MHz
+    - eIQ Neutron NPU @ up to 325 MHz (Edge AI)
+    sense_subsystem:
+    - Arm Cortex-M33 @ up to 250 MHz
+    - Tensilica HiFi 1 DSP @ up to 250 MHz
+  memory:
+    sram_on_chip: 7.5 MB
+    external_memory:
+    - 3x xSPI interfaces
+    - Up to 16-bit wide external memories
+    - Up to 250 MHz DDR
+  peripherals:
+    eusb: integrated PHY
+    sd_emmc: 2 interfaces (one supports eMMC 5.0 with HS400/DDR)
+    usb_hs_host_device: on-chip PHY
+    digital_mic: up to 8 channels
+    serial:
+    - UART
+    - "I\xB2C"
+    - I3C
+    - SPI
+    - HSPI
+    - SAI
+  graphics:
+    gpu_2_5d: vector acceleration + frame buffer compression
+    ezh_v: RISC-V core with SIMD/DSP
+    openvg: 1.1
+    display_perf: 720p @ 60 FPS from on-chip SRAM
+    lcd_interface: true
+    display: MIPI DSI
+    image_codec: JPEG + PNG (integrated)
+    camera: CSI 8/10/16-bit parallel (via FlexIO)
+  security:
+    enclave: EdgeLock Secure Enclave (Core Profile)
+    features:
+    - Secure Boot
+    - Secure Debug
+    - TRNG
+    - DICE (Device Identifier Composition Engine)
+    - Unique ID (UID)
+    - PUF (Physical Unclonable Function)
+    - OTP
+    - Crypto accelerators (PKC, AES, SHA)
+    - Tamper detection
+    - Intrusion detection
+    - Device Attestation (DICE)
+    - Life cycle management
+  ecosystem:
+  - MCUXpresso IDE/tools/SDK
+  related_products:
+  - PCA9420-PCA9421 (PMIC)
+  - PCA9422 (PMIC)
+  - i.MX-RT600 (predecessor: dual-core M33 + HiFi 4 DSP)
+  - i.MX-RT500 (lower-tier AI crossover MCU)
+  - i.MX 8ULP (MPU sibling for ultra-low-power)
+  applications:
+  - AI/ML edge inference (NPU-enabled)
+  - Audio (smart speakers, hearables, voice assistants)
+  - Wearable (smart watch, health band)
+  - Smart home HMI (2.5D GPU + MIPI DSI)
+  - Industrial HMI
+unverified:
+- exact Buy/Parametrics part variants list
+- exact operating temperature range
+- exact FPU/double-precision support on M33 cores
+- exact external memory max addressable
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from nxp.com product page via Firecrawl (105,972 bytes raw)."
+- 'Family differentiator vs i.MX-RT1170: RT1170 is dual-core M7+M4 at high performance; RT700 adds DSP + NPU for AI/audio
+  at slightly lower CPU clock (325 vs 1000 MHz).'
+- 'Family differentiator vs i.MX-RT1064: RT1064 is single Cortex-M7 600 MHz with 2D accel only; RT700 has 2.5D GPU + DSI +
+  NPU.'
+- 'Use case: see `references/application-solution/fitness-tracker/` (Hearable + AI on-device), or `industrial-gateway` (HMI
+  + edge AI).'
+- 'Verified 2026-07-01 via firecrawl-html-extract against i.mx-rt700.html: 22/50 spec fields matched (44%). Source: https://www.nxp.com/products/i.MX-RT700
+  (vendor product page scraped as HTML; no separate PDF available).'
+- 'Verified 2026-07-01 via Tavily-found mirror PDF (datasheets/imx-rt700.pdf): 35/50 spec fields matched (70%). Source: https://www.farnell.com/datasheets/4651716.pdf.'
+extracted_at: '2026-06-30T09:43:00+08:00'
+extraction_method: firecrawl-extract (keyed) of nxp.com product page
+extraction_source: references/semiconductor-vendor/NXP/firecrawl-snapshots/iMX-RT700_clean.md
+extraction_source_raw: references/semiconductor-vendor/NXP/firecrawl-snapshots/iMX-RT700_raw.md
+extraction_credits_used: 1
+datasheet_source_url: https://www.farnell.com/datasheets/4651716.pdf

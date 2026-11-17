@@ -1,42 +1,55 @@
-## Description: <br>
-Smart contract escrow for agent-to-agent payments with delivery confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart contract escrow for agent-to-agent payments with delivery confirmation.
 
-## Publisher: <br>
-[EfeDurmaz16](https://clawhub.ai/user/EfeDurmaz16) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[efedurmaz16](https://clawhub.ai/user/efedurmaz16)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create, fund, monitor, and release smart contract escrow agreements for agent-to-agent work after delivery confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agent-executed escrow operations can create, fund, confirm, release, or milestone-release real asset transfers. <br>
-Mitigation: Require manual confirmation before any payment-affecting request and use sandbox or tightly scoped API keys with spending limits. <br>
-Risk: A wrong API domain, base path, or dependency package could route sensitive payment actions or credentials to the wrong service. <br>
-Mitigation: Verify the Sardis domain, API base path, and @sardis/sdk package before installation or execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Sardis Website](https://sardis.sh) <br>
-- [Sardis Escrow Documentation](https://sardis.sh/docs/escrow) <br>
-- [Sardis API Reference](https://api.sardis.sh/v2/docs) <br>
-- [ClawHub Skill Page](https://clawhub.ai/EfeDurmaz16/sardis-escrow) <br>
+## Use Case:
 
+Developers and agent operators use this skill to create, fund, monitor, and release smart contract escrow agreements for agent-to-agent services after delivery confirmation.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SARDIS_API_KEY plus curl and jq; API calls may create, fund, or release escrow payments.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Live escrow workflows can fund, release, refund, dispute, or configure auto-release for real-value payments without clear approval gates or safety limits.
+
+Mitigation: Use a tightly scoped Sardis API key, spending limits, known wallet allowlists, and explicit human approval before every fund, release, refund, dispute, milestone, or auto-release setting.
+
+Risk: The npm dependency is listed without pinning or justification in the release evidence.
+
+Mitigation: Treat the dependency as unnecessary unless the publisher pins and justifies it.
+
+## Reference(s):
+
+- [Sardis Homepage](https://sardis.sh)
+- [Sardis Escrow Documentation](https://sardis.sh/docs/escrow)
+- [Sardis API Reference](https://api.sardis.sh/v2/docs)
+- [Sardis Smart Contracts](https://github.com/sardis-sh/contracts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SARDIS_API_KEY, curl, and jq.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

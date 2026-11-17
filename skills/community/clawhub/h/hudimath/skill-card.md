@@ -1,45 +1,60 @@
-## Description: <br>
-Create new skills, modify and improve existing skills, and measure skill performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create, improve, evaluate, benchmark, package, and optimize skills through guided workflows and bundled helper scripts.
 
-## Publisher: <br>
-[hud941227](https://clawhub.ai/user/hud941227) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[hud941227](https://clawhub.ai/user/hud941227)
 
-## Use Case: <br>
-Developers and skill authors use this skill to draft, update, validate, evaluate, benchmark, package, and optimize agent skills through a repeatable workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and modify local files while drafting, evaluating, packaging, and improving skills. <br>
-Mitigation: Run it in a dedicated workspace and review generated skill files, evaluation metadata, reports, and packages before using or publishing them. <br>
-Risk: Evaluation and description optimization helpers may use the local Claude CLI session with prompts, outputs, and skill content. <br>
-Mitigation: Remove secrets, credentials, proprietary data, and sensitive examples from prompts, outputs, and skill files before running those helpers. <br>
-Risk: The local review viewer can interact with a local port and may terminate a process already listening on the requested port. <br>
-Mitigation: Check whether the viewer port is in use first, choose a different port when needed, or generate a static HTML review page. <br>
+## Use Case:
 
+Developers and skill authors use this skill to draft or update agent skills, design test prompts, run evaluation loops, compare outputs, and package release artifacts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hud941227/hudimath) <br>
-- [Workflows reference](references/workflows.md) <br>
-- [Schemas reference](references/schemas.md) <br>
-- [Output patterns reference](references/output-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated files, JSON evaluation metadata, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify local skill files, evaluation workspaces, packaged skill archives, benchmark reports, and static or local HTML review views.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Evaluation outputs may be exposed through local browser-based review reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use static or offline review when possible, avoid sensitive evaluation inputs, and avoid ports used by important local services.
+
+Risk: The skill can write evaluation workspaces and invoke local CLI subprocesses.
+
+Mitigation: Review generated commands and files before execution, and run the workflow only in trusted workspaces.
+
+Risk: Untrusted eval output may be unsafe to open in the eval viewer while the HTML injection issue remains unresolved.
+
+Mitigation: Treat eval outputs from untrusted skills as unsafe and avoid browser review for untrusted content until the issue is fixed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hud941227/skills/hudimath)
+- [Workflow Patterns](references/workflows.md)
+- [Output Patterns](references/output-patterns.md)
+- [JSON Schemas](references/schemas.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON snippets, shell commands, generated files, and local HTML review reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write skill files, evaluation workspaces, benchmark summaries, packaged skill artifacts, and browser-viewable review reports]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

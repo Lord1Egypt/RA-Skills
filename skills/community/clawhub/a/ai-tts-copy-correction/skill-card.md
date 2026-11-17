@@ -1,39 +1,50 @@
-## Description: <br>
-中文 AI 配音前的文案纠错与预处理规则，帮助减少读错、停顿异常和 AI 味。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中文 AI 配音前的文案纠错与预处理规则，帮助减少读错、停顿异常和 AI 味。
 
-## Publisher: <br>
-[zhoufei77](https://clawhub.ai/user/zhoufei77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhoufei77](https://clawhub.ai/user/zhoufei77)
 
-## Use Case: <br>
-Content creators, editors, and agent users use this skill to prepare Chinese TTS scripts by normalizing numbers, units, English terms, spacing, punctuation, and pronunciation notes before voice generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Edited copy can still contain inaccurate product claims, medical terminology, pricing, or parameter conflicts. <br>
-Mitigation: Review final wording against source material before TTS generation, especially for product claims, medical categories, prices, and technical specifications. <br>
+## Use Case:
 
+External creators, editors, and agents use this skill to revise Chinese TTS scripts before AI voiceover. It focuses on natural pronunciation, pauses, numeric readings, unit expansion, terminology handling, and factual consistency checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhoufei77/ai-tts-copy-correction) <br>
-- [AI配音文案纠错 Skill source](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text editing guidance for Chinese TTS copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; no code execution or external service access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill may rewrite brand names, technical terms, medical classifications, or product claims while optimizing wording for pronunciation and naturalness.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated copy against the original source material before recording or publishing, especially for brand, technical, medical, and product-claim language.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhoufei77/skills/ai-tts-copy-correction)
+- [Publisher profile](https://clawhub.ai/user/zhoufei77)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and revised copy recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only output; no code execution, hidden system access, API calls, or credential handling indicated by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

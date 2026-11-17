@@ -3,6 +3,25 @@
 All notable changes to agented are documented here. The format is based on [Keep a Changelog](https://keepachangelog.com), and the project follows [Semantic Versioning](https://semver.org).
 
 
+## [v0.6.0] - 2026-07-15
+
+Driven by the first external dogfood report (#agented, green-lynx-7cf5): one data-loss bug, one scripting hazard, one guessability nit — plus a compact edit-diff mode.
+
+### Fixes
+
+- **`ae open` no longer serves a stale head after the file changed outside ae** (data-loss bug). Opening an already-registered file now hash-checks disk against the workspace head and, on divergence, folds the disk state in as a new `load` edit with a warning — the same recoverable-on-the-tree semantics as the write verbs' auto-load, gated by the same `concurrency.auto_load_on_drift` knob. Previously `open` silently returned the old head, `replace --pattern` then matched nothing against it, and `save` clobbered the newer disk file.
+- **`ae save` refuses to overwrite disk content this workspace never loaded.** If the on-disk content's hash appears nowhere in the file's edit history, the file was changed outside ae and a blind save would destroy that work: save now errors with recovery instructions (`ae load` first, then re-apply or merge). Override with `--force` (CLI) / `force: true` (MCP `ae_save`).
+- **`ae replace --pattern` with 0 matches is now an error** (nonzero exit), so `replace && save` shell chains stop instead of shipping a no-op. Pass `--allow-no-match` to keep exit 0; `--dry-run` is unaffected. Pattern mode also now reconciles disk drift before matching and auto-saves after the edit — parity with the range verbs, both previously missing.
+- Integration-test harness isolates `$HOME` so a developer's global `~/.agented/config.json` (e.g. `ide.enabled=true`) can't stall every spawned `ae` on LSP autostart and trip timing-sensitive scenarios.
+
+### Features
+
+- **Compact per-edit diffs: `output.edit_diff = off | tty | always` (default `tty`).** replace/insert/delete responses can carry a token-lean unified delta of the edit (1 context line, no file header, capped at 40 rows). In the default `tty` mode the CLI renders it colored, Claude Code-style, only when stdout is a terminal — pipes, `--json`, and MCP responses are unchanged. `always` attaches a `diff` field to JSON/MCP results for agents that want in-band verification of what actually changed. Env override: `AE_OUTPUT_EDIT_DIFF`.
+- `ae replace` accepts `--text` as an alias for `--with` (insert/delete take `--text`; sed/sd muscle memory).
+
+Skill 1.4.0.
+
+
 ## [v0.5.0] - 2026-06-23
 
 ### Features

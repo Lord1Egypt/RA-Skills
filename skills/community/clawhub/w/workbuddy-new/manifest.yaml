@@ -1,0 +1,28 @@
+name: workbuddy-dream-skin
+displayName: WorkBuddy 深度换肤
+version: 1.0.0
+author: qingc
+category: 创意设计
+description: WorkBuddy 深度换肤工具：用一句话或一张参考图生成专属皮肤并注入界面。因运行时注入（CDP / V8 inspector）被硬化拦截，本技能通过对安装目录的 app.asar 做最小字节手术注入皮肤 CSS（自动备份 app.asar.bak、可一键还原），不依赖调试端口。覆盖真实语义类（.wb-home-header / .chat-container / .conversation-sidebar），支持人物、电影场景、意境、艺术风格、参考图多种意图。
+tags:
+  - 换肤
+  - 皮肤
+  - 主题
+  - 自定义外观
+  - app.asar
+  - 界面美化
+minAppVersion: 1.0.0
+license: MIT
+repository: ""
+homepage: ""
+triggers:
+  - 换肤
+  - 皮肤
+  - 主题
+  - 生成皮肤
+  - 自定义皮肤
+  - 改外观
+  - 以这张图为准
+  - skin
+  - theme
+  - customize appearance

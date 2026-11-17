@@ -1,0 +1,12 @@
+interface:
+  display_name: "Marci"
+  short_description: "Your Marci apps: to-dos, trackers, plans and games"
+  default_prompt: "Use $marci to show me what is on my lists today."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "marci"
+      description: "The Marci MCP server: the person's Marci apps, the template catalog and app views. Signs in with OAuth."
+      transport: "streamable_http"
+      url: "https://mcp.getmarci.ai/mcp"

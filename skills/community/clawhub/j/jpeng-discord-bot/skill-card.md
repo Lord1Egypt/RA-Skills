@@ -1,40 +1,58 @@
-## Description: <br>
-Send messages to Discord. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send messages to Discord.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and automation users use this skill to send messages to Discord and automate Discord communication tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Message content sent through this skill may be posted to Discord and visible in the target server or channel. <br>
-Mitigation: Avoid sending secrets, credentials, private conversation history, or sensitive personal data unless that disclosure is intended. <br>
-Risk: The skill requires a Discord API key for operation. <br>
-Mitigation: Store DISCORD_API_KEY securely and do not include it in prompts, messages, logs, or generated Discord content. <br>
+## Use Case:
 
+Developers and automation agents use this skill to send Discord messages from scripted workflows and communication tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-discord-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DISCORD_API_KEY; returns a JSON result with success status and data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The package references scripts/discord_bot.py, but that script is not included in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the intended bot implementation before installation or execution.
+
+Risk: The skill can post content to Discord using a bot token.
+
+Mitigation: Use a least-privileged Discord bot token and avoid sending sensitive or private content.
+
+Risk: The trigger guidance is broad for a message-posting skill.
+
+Mitigation: Use the skill only for explicit Discord posting tasks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-discord-bot)
+- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DISCORD_API_KEY and references a Discord bot script that is not included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

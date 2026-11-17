@@ -1,43 +1,57 @@
-## Description: <br>
-Save user-provided notes to Flomo through a configured Flomo inbox webhook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save notes to Flomo via the Flomo inbox webhook.
 
-## Publisher: <br>
-[xiaoluoboding](https://clawhub.ai/user/xiaoluoboding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xiaoluoboding](https://clawhub.ai/user/xiaoluoboding)
 
-## Use Case: <br>
-External users and developers use this skill to save selected chat notes or short text snippets into their Flomo inbox from an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The Flomo webhook URL can post to the user's inbox if exposed. <br>
-Mitigation: Keep FLOMO_WEBHOOK_URL private and configure it only through trusted environment or per-skill configuration. <br>
-Risk: Selected note text is sent to Flomo. <br>
-Mitigation: Avoid sending secrets or highly sensitive content as notes. <br>
-Risk: Documentation examples pass note text as an argument while the script reads note text from stdin. <br>
-Mitigation: Invoke the script with note text on stdin unless the documentation is corrected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Flomo](https://flomoapp.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiaoluoboding/flomo-notes) <br>
-- [Publisher Profile](https://clawhub.ai/user/xiaoluoboding) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent save user-provided note text into a configured Flomo inbox. It is suited to quick note-capture requests in English or Chinese when the user has provided a Flomo webhook.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, text] <br>
-**Output Format:** [Shell command execution with a short text confirmation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Posts note content to the configured Flomo webhook and appends an OpenClaw origin tag.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The Flomo inbox webhook can create notes for the account and should be treated as a secret.
+
+Mitigation: Install only for users who accept that access, keep the webhook in restricted configuration, and avoid exposing it in logs or shared environments.
+
+Risk: Debug mode can increase logging around the webhook request.
+
+Mitigation: Leave FLOMO_DEBUG disabled for sensitive notes and restrict gateway or service logs when debugging is necessary.
+
+Risk: Artifact documentation shows argument-based invocation, while the script reads note content from stdin.
+
+Mitigation: Verify and standardize invocation before relying on the skill for sensitive or automated note capture.
+
+## Reference(s):
+
+- [Flomo](https://flomoapp.com/)
+- [ClawHub skill page](https://clawhub.ai/xiaoluoboding/skills/flomo-notes)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Plain text note content passed to a shell command, with a plain text success or error status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FLOMO_WEBHOOK_URL and curl; posts note content to the configured Flomo inbox webhook.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

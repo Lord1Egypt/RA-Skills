@@ -1,47 +1,59 @@
-## Description: <br>
-冰璃视角让助手以《幽城幻剑录》角色冰璃的思维框架和表达方式进行文本对话、分析抉择并提供守护者式忠告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese Bingli persona mode based on character dialogue and analysis from 幽城幻剑录, including mental models, decision heuristics, and expression style for roleplay responses.
 
-## Publisher: <br>
-[anlinxi](https://clawhub.ai/user/anlinxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anlinxi](https://clawhub.ai/user/anlinxi)
 
-## Use Case: <br>
-External users can enable this roleplay persona skill to ask for Bingli-style perspective on decisions, narrative framing, or reflective analysis. For legal, medical, financial, safety-critical, or source-grounded questions, users should ask the assistant to exit character mode and answer normally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persona roleplay can make answers feel character-bound and may be unsuitable for legal, medical, financial, safety-critical, or source-grounded questions. <br>
-Mitigation: Ask the assistant to exit character mode or answer normally for those questions, and review responses before relying on them. <br>
-Risk: Fictional-character framing may blur interpretive perspective with user-specific advice. <br>
-Mitigation: Treat outputs as roleplay perspective, not authoritative source material or professional guidance. <br>
+## Use Case:
 
+External users enable this skill when they want an assistant to respond in a Chinese Bingli-inspired persona for reflective analysis, choices, and guardian-style advice. It is intended for roleplay-style conversation rather than transparent high-stakes guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anlinxi/bingli-perspective) <br>
-- [README](README.md) <br>
-- [01 - 著作与系统思考](references/research/01-writings.md) <br>
-- [02 - 长对话与即兴思考](references/research/02-conversations.md) <br>
-- [03 - 表达DNA与风格特征](references/research/03-expression-dna.md) <br>
-- [04 - 他者视角与批评](references/research/04-external-views.md) <br>
-- [05 - 决策启发式](references/research/05-decisions.md) <br>
-- [06 - 人物时间线](references/research/06-timeline.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Natural-language text or Markdown chat responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only; no code execution or external tool access is declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The assistant may continue answering in persona when a user expects normal transparent assistance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For normal, transparent, or high-stakes answers, ask the assistant to exit the persona mode first.
+
+Risk: Persona-style advice may be unsuitable for high-stakes decisions because it prioritizes roleplay voice and character framing.
+
+Mitigation: Use the skill for roleplay and reflective conversation, and seek non-persona assistance for safety-critical, legal, medical, financial, or operational decisions.
+
+## Reference(s):
+
+- [README](README.md)
+- [01 - Writings and System Thinking](references/research/01-writings.md)
+- [02 - Conversations and Improvised Thought](references/research/02-conversations.md)
+- [03 - Expression DNA and Style Traits](references/research/03-expression-dna.md)
+- [04 - External Views and Criticism](references/research/04-external-views.md)
+- [05 - Decisions and Actions](references/research/05-decisions.md)
+- [06 - Timeline](references/research/06-timeline.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese conversational text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona responses may be concise, quiet, and emotionally restrained according to the skill instructions.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

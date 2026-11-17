@@ -1,42 +1,57 @@
-## Description: <br>
-A continuously adaptive skill suite that empowers Clawdbot to act as a versatile coder, business analyst, project manager, web developer, data analyst, and NAS metadata scraper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A continuously adaptive skill suite that helps Clawdbot act as a coder, business analyst, project manager, web developer, data analyst, and read-only NAS metadata scraper while adapting to user context and prioritizing free resources.
 
-## Publisher: <br>
-[afajohn](https://clawhub.ai/user/afajohn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[afajohn](https://clawhub.ai/user/afajohn)
 
-## Use Case: <br>
-Developers, analysts, project managers, and external ClawHub users use this skill for coding assistance, business and project planning, web and data development, free resource discovery, and read-only NAS metadata cataloging. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The NAS metadata scraper can catalog file names, metadata, and directory structure from network-attached storage. <br>
-Mitigation: Require explicit user-selected directories, exclude sensitive shares, keep results local, and provide deletion controls before use. <br>
-Risk: The skill asks for vague API-key access through FREE_API_KEYS. <br>
-Mitigation: Use separate least-privilege keys for named services only, and avoid providing broad bundled credentials. <br>
-Risk: The skill covers a broad assistant surface across coding, analysis, project planning, web development, data work, and resource discovery. <br>
-Mitigation: Review generated guidance, code, commands, and configuration before applying them to a project or environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MoltBot Skills Documentation](https://docs.molt.bot/tools/skills) <br>
-- [Adaptive Suite ClawHub Listing](https://clawhub.ai/afajohn/adaptive-suite) <br>
+## Use Case:
 
+Developers, analysts, and project teams use this skill for general coding help, web and data development, business analysis, project planning, free-resource discovery, and read-only NAS metadata collection.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code snippets, shell commands, and structured guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local app files, database schemas, and read-only NAS metadata workflows for user review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks for broad API-key access through FREE_API_KEYS.
+
+Mitigation: Provide only task-specific, least-privileged credentials and remove or rotate them after use.
+
+Risk: The skill includes broad, open-ended assistant behavior across coding, business analysis, web development, data work, external searches, and NAS metadata collection.
+
+Mitigation: Use it for specific, user-approved tasks with clear scope, expected outputs, and storage boundaries.
+
+Risk: NAS metadata scanning can expose sensitive file names, structures, or metadata even when performed read-only.
+
+Mitigation: Limit scans to approved paths, prefer read-only mounts, and review where generated metadata is stored or shared.
+
+## Reference(s):
+
+- [Adaptive Suite on ClawHub](https://clawhub.ai/afajohn/skills/adaptive-suite)
+- [Molt Bot Skills Documentation](https://docs.molt.bot/tools/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with prose, code snippets, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recommendations, implementation steps, schemas, or read-only metadata collection plans depending on the user task]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

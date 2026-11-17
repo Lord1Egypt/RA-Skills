@@ -1,40 +1,52 @@
-## Description: <br>
-Analyze git repository statistics including contributor rankings, lines of code by language, commit frequency by day/hour, monthly activity trends, and file type breakdowns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze git repository statistics including contributor rankings, lines of code by language, commit frequency by day/hour, monthly activity trends, and file type breakdowns.
 
-## Publisher: <br>
-[johnnywang2001](https://clawhub.ai/user/johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to inspect local git repositories, summarize contributor activity, count lines of code, and understand commit patterns over time.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Output can disclose contributor names, email addresses, repository paths, and other internal repository details.
+
+Mitigation: Run the skill only on repositories whose history and paths may be summarized, and review text or JSON output before sharing it.
+
+Risk: Line counting can read through tracked symlinks outside the repository boundary.
+
+Mitigation: Avoid running LOC counting on untrusted repositories; use the --no-loc option when repository contents or symlink handling are not trusted.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect local Git repositories, summarize contributor activity, count tracked files and lines by extension, and generate commit activity trends. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may expose contributor emails and local repository paths. <br>
-Mitigation: Run the skill only on repositories intended for analysis and review reports before sharing them. <br>
-Risk: Line-count analysis reads tracked files in the selected repository. <br>
-Mitigation: Use the --no-loc option for sensitive or very large repositories, and run the helper only in explicitly chosen local repositories. <br>
+**Output Format:** [Plain text report or JSON output, with shell commands for running the analyzer.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/johnnywang2001/git-stats) <br>
+**Other Properties Related to Output:** [Results may include repository paths and contributor names and emails from git history.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands] <br>
-**Output Format:** [Plain text repository report or JSON output from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports can include contributor names, contributor emails, commit counts, file type counts, LOC totals, repository paths, and activity trend buckets.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

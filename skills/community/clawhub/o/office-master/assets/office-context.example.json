@@ -1,0 +1,20 @@
+{
+  "_comment": "办公上下文示例模板。复制为 assets/office-context.json 并填入真实品牌值。颜色一律用 HEX，路径用相对仓库根。详见 references/office-context-playbook.md",
+  "brand": {
+    "primary": "#1F4E79",
+    "secondary": "#2E75B6",
+    "accent": "#ED7D31",
+    "heading_font": "Microsoft YaHei",
+    "body_font": "Source Han Sans",
+    "logo": "assets/brand/logo.png"
+  },
+  "templates": {
+    "reference_doc": "assets/templates/report.docx",
+    "ppt_template": "assets/templates/deck.pptx"
+  },
+  "skeletons": {
+    "monthly_report": ["封面", "摘要", "指标", "分析", "下一步"],
+    "proposal": ["问题", "方案", "报价", "案例"]
+  },
+  "updated": "2026-08-12"
+}

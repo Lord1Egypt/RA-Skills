@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pontx Hub"
+  short_description: "Discover APIs and install focused product Skills"
+  default_prompt: "Use Pontx Hub for catalog-wide discovery, current PontxSpec inspection, safe request preview, and @pontx/<apiSlug> SDK integration; install a product Skill when provider-specific guidance is useful."

@@ -1,44 +1,63 @@
-## Description: <br>
-Orchestrate AI agents across multiple machines by dispatching tasks, monitoring progress, and coordinating teams from a central gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawOrchestrate dispatches tasks to OpenClaw agents on remote machines through a lightweight HTTP dispatcher.
 
-## Publisher: <br>
-[loop-capital](https://clawhub.ai/user/loop-capital) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loop-capital](https://clawhub.ai/user/loop-capital)
 
-## Use Case: <br>
-Developers and operators use this skill to run a lightweight HTTP dispatcher on remote machines and send tasks to OpenClaw agents from a gateway host. It is intended for coordinated multi-machine agent work over private networking such as Tailscale or SSH-accessible environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose a network-accessible dispatch surface that starts OpenClaw agents on remote machines. <br>
-Mitigation: Install only for intentional remote orchestration, bind the dispatcher to localhost or a private Tailscale interface, and avoid exposing port 9876 publicly. <br>
-Risk: Weak credential configuration can allow unauthorized dispatch requests. <br>
-Mitigation: Set a strong API key, avoid the changeme fallback, and prefer SSH tunneling or HTTPS/Tailscale-only transport. <br>
-Risk: The included service installer can make the dispatcher persistent. <br>
-Mitigation: Inspect or modify the systemd installer before enabling it as a persistent user service. <br>
+## Use Case:
 
+Developers and operators use this skill to send tasks to agents across multiple trusted machines, monitor basic health, and install a persistent dispatcher service for OpenClaw orchestration.
 
-## Reference(s): <br>
-- [ClawOrchestrate on ClawHub](https://clawhub.ai/loop-capital/claworchestrate) <br>
-- [Publisher profile: loop-capital](https://clawhub.ai/user/loop-capital) <br>
-- [ClawStudio](https://clawstudio.co) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, HTTP API examples, and service configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and uses an API key for dispatcher authentication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: A reachable dispatcher can start local OpenClaw agents under the dispatcher's user permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the dispatcher only on trusted private networks, bind it to a private or Tailscale interface, and avoid exposing port 9876 broadly.
+
+Risk: Weak or missing authentication can allow unauthorized task dispatch.
+
+Mitigation: Require a strong non-default API key, avoid the broadcast script's fallback key, and pass the key securely to any persistent service configuration.
+
+Risk: Plain HTTP transport can expose dispatch requests on networks that are not identity-aware or private.
+
+Mitigation: Prefer TLS or an identity-aware private transport, and use Tailscale or equivalent network controls for host access.
+
+Risk: Persistent service setup can keep an unsafe dispatcher running after reboot if deployment settings are incomplete.
+
+Mitigation: Fix and review the service configuration, including bind address and API key handling, before enabling persistence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loop-capital/skills/claworchestrate)
+- [Publisher profile](https://clawhub.ai/user/loop-capital)
+- [ClawStudio](https://clawstudio.co)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, JSON request examples, and script or service configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and network access between the gateway and trusted OpenClaw hosts.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

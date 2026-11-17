@@ -1,43 +1,59 @@
-## Description: <br>
-Save any web page as an Obsidian-compatible Markdown clipping using Jina Reader API for clean content extraction, with support for custom tags, subfolders, and vault paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save any web page as an Obsidian-compatible Markdown clipping using Jina Reader API for clean content extraction, with support for tags, subfolders, and vault paths.
 
-## Publisher: <br>
-[chatgptnexus](https://clawhub.ai/user/chatgptnexus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chatgptnexus](https://clawhub.ai/user/chatgptnexus)
 
-## Use Case: <br>
-Users save articles, technical documentation, news pages, and other remote web content as Markdown notes for an Obsidian vault. The skill is useful when a user wants a clean archived copy with source metadata, optional tags, and folder organization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send requested URLs and extracted page content to an external reader service. <br>
-Mitigation: Avoid using it on private, internal, authenticated, personal, or confidential pages unless the third-party data flow is acceptable. <br>
-Risk: The trigger is broad enough that a clipping request may be interpreted from casual save or clip language. <br>
-Mitigation: Review the URL before execution and confirm that the page is intended to be clipped. <br>
-Risk: The skill may use a Jina API key from the local OpenClaw environment for higher rate limits. <br>
-Mitigation: Store only the intended JINA_API_KEY value and rotate it if the local environment or saved output path is exposed. <br>
+## Use Case:
 
+External users and developers use this skill to clip public web pages into clean Markdown notes for Obsidian-style knowledge bases, including source metadata and optional tags.
 
-## Reference(s): <br>
-- [Jina Reader API](https://r.jina.ai/) <br>
-- [Jina API key](https://jina.ai/?sui=apikey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown file with YAML frontmatter and a short saved-path confirmation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes dated Markdown clippings to a configured Obsidian vault or the default OpenClaw cache folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Automatic execution from vague chat context can run local commands sooner than the user expects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and require explicit confirmation of the exact URL and destination before execution.
+
+Risk: The skill sends requested page URLs to Jina Reader and may expose URLs or page access patterns to that external service.
+
+Mitigation: Use it only for public URLs you are comfortable sending to Jina Reader.
+
+Risk: User-controlled vault, folder, or URL values can affect local file writes.
+
+Mitigation: Avoid untrusted destination values until shell-safe execution and vault path containment are added.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chatgptnexus/skills/web-clipper)
+- [Jina AI](https://jina.ai)
+- [Jina API Key](https://jina.ai/?sui=apikey)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown notes with YAML frontmatter and command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes clipped Markdown files to a configured Obsidian-style vault folder.]
+
+## Skill Version(s):
+
+1.0.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

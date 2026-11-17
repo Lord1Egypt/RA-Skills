@@ -1,46 +1,58 @@
-## Description: <br>
-Generate customized compliance checklists for GDPR and PCI-DSS standards based on company type. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate customized compliance checklists for GDPR and PCI-DSS standards based on company type.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Compliance teams, security officers, and organizations handling customer data or payment information use this skill to request a tailored GDPR and PCI-DSS checklist for their company type. The generated checklist supports risk assessment, audit preparation, and compliance program planning, but should be reviewed by qualified compliance, legal, or security staff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the provided company classification to an external ToolWeb/API provider. <br>
-Mitigation: Submit only the minimum company classification needed and avoid including confidential business details in the request. <br>
-Risk: Generated GDPR and PCI-DSS checklist items may be incomplete or unsuitable for a specific organization or jurisdiction. <br>
-Mitigation: Have qualified compliance, legal, or security staff review the checklist before using it for audit readiness or compliance decisions. <br>
+## Use Case:
 
+Compliance teams, security officers, developers, and organizations handling customer data or payment information use this skill to request tailored GDPR and PCI-DSS checklist items for audit preparation, risk assessment, and compliance program planning.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/gdpr-pci-checklist) <br>
-- [Kong Route](https://api.mkkpro.com/compliance/gdpr-pci-checklist) <br>
-- [API Docs](https://api.mkkpro.com:8015/docs) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [ToolWeb Portal](https://portal.toolweb.in) <br>
-- [ToolWeb OpenClaw](https://toolweb.in/openclaw/) <br>
-- [RapidAPI Publisher Profile](https://rapidapi.com/user/mkrishna477) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON checklist items with compliance categories, requirements, standards, and status fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a company_type request value and returns checklist content from an external ToolWeb/API provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The submitted company type is sent to the provider's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use broad company classifications and avoid entering sensitive internal details unless the provider's terms and data handling meet organizational requirements.
+
+Risk: Generated checklist items may be incomplete for a specific legal, regulatory, or audit context.
+
+Mitigation: Have qualified compliance, security, or legal reviewers validate checklist items before relying on them for audit readiness or policy decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/gdpr-pci-checklist)
+- [Publisher Profile](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
+- [OpenAPI Specification](artifact/openapi.json)
+- [API Docs](https://api.mkkpro.com:8015/docs)
+- [API Route](https://api.mkkpro.com/compliance/gdpr-pci-checklist)
+- [ToolWeb](https://toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Guidance]
+
+**Output Format:** [Markdown guidance with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [External API call sends the submitted company_type value to the provider service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-MaybeAI Sheet skill for full Excel/spreadsheet lifecycle management. Upload, read, edit, and analyze Excel files via the MaybeAI platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MaybeAI Sheet skill provides full Excel/spreadsheet lifecycle management via the MaybeAI platform, including upload, read, edit, analysis, formatting, worksheets, charts, formulas, export, and version operations.
 
-## Publisher: <br>
-[ojbkxiongdei](https://clawhub.ai/user/ojbkxiongdei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ojbkxiongdei](https://clawhub.ai/user/ojbkxiongdei)
 
-## Use Case: <br>
-Developers and spreadsheet operators use this skill to guide token-authenticated MaybeAI workflows for uploading, reading, editing, formatting, charting, exporting, and managing Excel workbooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives broad token-authorized examples for reading, uploading, editing, exporting, and deleting spreadsheet data. <br>
-Mitigation: Review commands before execution, keep the bearer token private, and run examples only against intended workbooks. <br>
-Risk: Example workflows can modify or remove workbook data through delete, clear, rename, append, update, import, and export operations. <br>
-Mitigation: Use copies or test files first, especially when adapting examples for production or sensitive spreadsheets. <br>
-Risk: Using this skill may send spreadsheet contents to MaybeAI services. <br>
-Mitigation: Use it only when that data flow is acceptable for the workbook contents and organization policy. <br>
+## Use Case:
 
+Developers and spreadsheet operators use this skill to guide agents through MaybeAI spreadsheet workflows, including upload, import, reading, editing, formatting, worksheet management, charts, formulas, export, and version-related operations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ojbkxiongdei/rolex-maybeai-sheet) <br>
-- [Publisher profile](https://clawhub.ai/user/ojbkxiongdei) <br>
-- [MaybeAI Sheet homepage](https://github.com/OmniMCP-AI/maybeai-uni) <br>
-- [MaybeAI](https://maybe.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a MaybeAI bearer token and the curl and jq command-line tools for the bundled shell examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release evidence and skill frontmatter) <br>
+Risk: Ready-to-run examples can modify, overwrite, clear, delete, export, or otherwise change remote spreadsheets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a MaybeAI token limited to intended spreadsheets, copy or back up spreadsheets first, and require explicit confirmation before destructive or write operations.
+
+Risk: Running bundled scripts against production documents can apply multiple API operations without interactive review.
+
+Mitigation: Read the full script before execution and run workflows on non-production documents until each operation is understood.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ojbkxiongdei/skills/rolex-maybeai-sheet)
+- [MaybeAI Sheet Homepage](https://github.com/OmniMCP-AI/maybeai-uni)
+- [MaybeAI Platform](https://maybe.ai)
+- [MaybeAI API Token Page](https://maybe.ai/user/my-plan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl command examples and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce spreadsheet API calls and local exported .xlsx files; requires MAYBEAI_API_TOKEN, curl, and jq.]
+
+## Skill Version(s):
+
+0.1.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,48 @@
-## Description: <br>
-Code uses a symbol that isn't imported, or imports a symbol that doesn't exist in the source module. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Code uses a symbol that isn't imported, or imports a symbol that doesn't exist in the source module.
 
-## Publisher: <br>
-[mvogt99](https://clawhub.ai/user/mvogt99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mvogt99](https://clawhub.ai/user/mvogt99)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and coding agents use this skill to diagnose missing or incorrect imports and to verify that newly referenced symbols are defined locally or exported by their source modules.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Import-fix guidance can be wrong if proposed symbols or modules are assumed instead of checked.
+
+Mitigation: Verify each symbol against local definitions or module exports, then run the project's static checker before accepting changes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and coding agents use this skill to catch missing imports, undefined symbols, and imports of names that a module does not export before code reaches runtime. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to inspect project files and run local static analysis tools while diagnosing import problems. <br>
-Mitigation: Review proposed file reads and static-checker commands before execution, especially in repositories with sensitive source code. <br>
-Risk: Incorrect import guidance can hide the real source of an undefined symbol or broken export. <br>
-Mitigation: Verify imports against the same file, the target module's exports, and the project's static checker before accepting changes. <br>
+**Output Format:** [Markdown guidance with inline code identifiers and optional shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Missing Imports on ClawHub](https://clawhub.ai/mvogt99/missing-imports) <br>
-- [mvogt99 publisher profile](https://clawhub.ai/user/mvogt99) <br>
+**Other Properties Related to Output:** [No executable behavior is bundled; any checker commands should be reviewed in the local project context.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with optional static-checker commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; no executable payload is included.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

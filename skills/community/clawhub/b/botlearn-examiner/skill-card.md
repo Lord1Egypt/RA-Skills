@@ -1,48 +1,58 @@
-## Description: <br>
-Conducts standardized OpenClaw Agent capability exams, applies rubric-based scoring across eight dimensions, and generates performance reports with radar-chart summaries and improvement recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conducts standardized OpenClaw Agent capability examinations, applies rubric-based scoring across eight dimensions, and produces reports with radar charts and improvement recommendations.
 
-## Publisher: <br>
-[calvinxhk](https://clawhub.ai/user/calvinxhk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[calvinxhk](https://clawhub.ai/user/calvinxhk)
 
-## Use Case: <br>
-Developers and agent evaluators use this skill to run full, quick, dimension-specific, or practice examinations that measure OpenClaw Agent capabilities and produce actionable score reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Exam answers and generated reports may contain secrets, proprietary material, or sensitive performance details. <br>
-Mitigation: Avoid entering sensitive material in exam answers and review saved or exported reports before sharing. <br>
-Risk: Benchmark contribution is described as anonymized but can still expose assessment behavior or results if shared without review. <br>
-Mitigation: Treat benchmark contribution as opt-in and confirm what data will be shared before publishing results. <br>
-Risk: Broad activation triggers can start an assessment workflow when a user intended a lighter evaluation request. <br>
-Mitigation: Confirm the exam scope and mode before beginning question delivery or collecting answers. <br>
+## Use Case:
 
+Developers and OpenClaw Agent users use this skill to run structured capability exams, practice specific dimensions, score responses against rubrics, and generate capability reports for improvement planning.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/calvinxhk/botlearn-examiner) <br>
-- [README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Capability Assessment Framework](artifact/knowledge/Domain.md) <br>
-- [Scoring Methodology](artifact/knowledge/Scoring.md) <br>
-- [Question Bank](artifact/knowledge/QuestionBank.md) <br>
-- [Examiner Strategy](artifact/strategies/Main.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown reports and prompts with JSON answer schemas, rubric tables, code blocks, and ASCII radar charts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or save exam answers and reports during an assessment session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: The skill may execute submitted code while scoring code-generation answers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run submitted code only in a sandbox with explicit limits, no ambient credentials, and reviewable test fixtures.
+
+Risk: The skill stores detailed exam records that may include identifiable user history and answers.
+
+Mitigation: Require user consent before persistence and provide clear retention, export, and deletion controls.
+
+Risk: Broad activation phrases may trigger an exam flow unintentionally.
+
+Mitigation: Use specific activation phrases or require confirmation before starting an examination session.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/calvinxhk/skills/botlearn-examiner)
+- [Publisher profile](https://clawhub.ai/user/calvinxhk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown reports and prompts with JSON answer schemas, code snippets, score tables, and ASCII or SVG radar chart instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May offer JSON, Markdown, SVG, and anonymized benchmark export options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

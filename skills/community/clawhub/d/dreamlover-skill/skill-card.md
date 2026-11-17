@@ -1,43 +1,62 @@
-## Description: <br>
-Creates and updates distilled agent skills for anime and game virtual characters by separating canon, persona, and style examples into a canonical source and runtime wrappers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Always run intake first before creating or updating distilled agent skills for anime and game virtual characters.
 
-## Publisher: <br>
-[tobemorelucky](https://clawhub.ai/user/tobemorelucky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobemorelucky](https://clawhub.ai/user/tobemorelucky)
 
-## Use Case: <br>
-Developers and agent users use this skill to build or update text-first character roleplay skills from user-supplied notes, summaries, quotes, or wiki-style materials while keeping factual canon separate from inferred persona and wording style. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated child skills can retain chat-derived preferences, boundaries, relationship state, summaries, and excerpts in a local workspace database. <br>
-Mitigation: Install only in workspaces where local file generation and local memory are acceptable, isolate workspaces for no-memory runs, and delete .dreamlover-data/memory.sqlite3 when a fresh memory state is required. <br>
-Risk: Character generation may blur factual canon with inferred persona or style if source handling is not reviewed. <br>
-Mitigation: Use the intake, source audit, canon, persona, and style layers separately, and review generated packages before deployment. <br>
+## Use Case:
 
+Developers and agent users use this skill to create or update text-first anime and game character skills that separate factual canon, behavioral persona, and wording examples before installing a Codex wrapper and optionally exporting an OpenClaw wrapper.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobemorelucky/dreamlover-skill) <br>
-- [Output Contract](artifact/docs/output-contract.md) <br>
-- [Safety Rules](artifact/docs/safety.md) <br>
-- [Memory Policy](artifact/references/memory_policy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown files, JSON metadata, Python-backed runtime files, and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated child skills may use conditional local memory stored outside the package under .dreamlover-data when runtime memory is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Generated child skills may persist conversation-derived memory on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review memory behavior before installation, keep runtime memory outside exported skill packages, and use the documented read/write gates so only stable, relevant user-provided information is stored.
+
+Risk: Generated commands or paths may become unsafe if user text is used without validation.
+
+Mitigation: Validate slugs and file paths before writing generated packages, and avoid shell-style command templates that interpolate untrusted user text.
+
+Risk: Character generation may mix unsupported canon, persona inference, or copied source text into generated skills.
+
+Mitigation: Keep canon, persona, and style examples in separate layers, require intake confirmation before writes, and apply the artifact safety rules for copyright and character integrity.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tobemorelucky/skills/dreamlover-skill)
+- [Product Requirements](docs/PRD.md)
+- [Input Contract](docs/input-contract.md)
+- [Output Contract](docs/output-contract.md)
+- [Safety Rules](docs/safety.md)
+- [Memory Policy](references/memory_policy.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance plus generated skill files and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated child skills use a canonical character source, platform wrapper files, and conditional local memory behavior when enabled.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

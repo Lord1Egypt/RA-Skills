@@ -1,45 +1,58 @@
-## Description: <br>
-TOKEN SOP caches successful OpenClaw browser workflows locally and can match or contribute reusable workflows through a configured cloud endpoint to reduce repeated token use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TOKEN SOP caches successful browser workflows locally and can retrieve or contribute reusable cloud workflows so agents can replay repeated tasks with lower token use.
 
-## Publisher: <br>
-[ainclaw](https://clawhub.ai/user/ainclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ainclaw](https://clawhub.ai/user/ainclaw)
 
-## Use Case: <br>
-Developers and agent operators use TOKEN SOP to intercept repeated browser automation intents, replay validated local or cloud-matched Lobster workflows, and save successful sessions for later reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Session-derived workflow data may be automatically contributed to the configured cloud service. <br>
-Mitigation: Review before installing, disable auto_contribute in sensitive environments, and avoid use on accounts or pages where traces may contain sensitive or consequential actions. <br>
-Risk: Cloud-provided workflows may be executed with weak user control. <br>
-Mitigation: Consider disabling cloud matching, restrict the cloud_endpoint to a trusted service, and review workflow behavior before using the skill on high-impact browser tasks. <br>
-Risk: Replayed clicks or form submissions could change important data. <br>
-Mitigation: Use the skill only where replayed browser actions are acceptable, and bypass cached workflow execution for account, payment, administrative, or irreversible workflows. <br>
+## Use Case:
 
+Developers and agent operators use this skill to intercept repeated OpenClaw browser intents, replay matching Lobster workflows from a local cache or cloud match, and compile successful sessions into reusable workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ainclaw/tokensop) <br>
-- [Publisher Profile](https://clawhub.ai/user/ainclaw) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Manifest](artifact/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, code] <br>
-**Output Format:** [OpenClaw hook responses, Lobster workflow execution results, local workflow files, and JSON API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May replay cached workflows, persist workflow traces locally, and send match, contribution, or failure-report payloads to the configured cloud endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.6.5 (source: server release metadata) <br>
+Risk: Automatic replay of cached workflows can act in authenticated browsers, business applications, financial systems, admin consoles, or private sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation on sensitive sites, require user approval for remote workflow execution, and restrict use where replayed browser actions could cause material changes.
+
+Risk: The skill can upload workflow context to a cloud endpoint by default when successful sessions are completed.
+
+Mitigation: Make cloud contribution opt-in, disable auto_contribute for sensitive workflows, and confirm sanitization behavior before enabling sharing.
+
+Risk: Local and cloud workflow matching may reuse workflows in the wrong context if trust and origin boundaries are too broad.
+
+Mitigation: Require trusted workflow sources, bind matches to origin and page structure, and fall back to normal agent execution when validation or context checks fail.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ainclaw/skills/tokensop)
+- [Publisher Profile](https://clawhub.ai/user/ainclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Code]
+
+**Output Format:** [Agent responses, Lobster workflow commands, local JSON workflow records, and cloud API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May replay cached browser workflows, save workflow JSON under the configured local store, and send workflow match or contribution payloads to the configured cloud endpoint.]
+
+## Skill Version(s):
+
+5.6.5 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

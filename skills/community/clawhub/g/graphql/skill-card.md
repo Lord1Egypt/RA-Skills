@@ -1,43 +1,61 @@
-## Description: <br>
-Design GraphQL schemas and resolvers with proper performance, security, and error handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs, debugs, and hardens GraphQL schemas, resolvers, and clients, including N+1 batching, nullability, cost limits, subscriptions, federation, cache behavior, schema evolution, and production security posture.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a concise GraphQL reference for schema design, resolver behavior, pagination, client cache behavior, performance pitfalls, and production security controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GraphQL guidance can be misapplied to a production API with different schema, authorization, performance, or client-cache constraints. <br>
-Mitigation: Review each recommendation against the target API design, data model, threat model, and operational limits before implementation. <br>
-Risk: Unbounded GraphQL queries, missing complexity controls, or overly detailed errors can create denial-of-service and information-disclosure exposure. <br>
-Mitigation: Use query depth and complexity limits, timeouts, rate limits based on cost, protected or disabled production introspection, and sanitized error responses. <br>
+## Use Case:
 
+Developers and engineers use this skill to design, review, debug, secure, test, and evolve GraphQL APIs across schemas, resolvers, clients, federation boundaries, subscriptions, and production deployments.
 
-## Reference(s): <br>
-- [ClawHub GraphQL Skill](https://clawhub.ai/ivangdavila/graphql) <br>
-- [Schema Design Traps](artifact/schema.md) <br>
-- [Security Traps](artifact/security.md) <br>
-- [Performance Traps](artifact/performance.md) <br>
-- [Client-Side Traps](artifact/client.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with inline GraphQL and implementation examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only reference aid; produces recommendations for human review rather than executing code or changing files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill can reuse prior GraphQL project details from local preference memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review ~/Clawic/data/graphql/ before use if prior project context should not influence new guidance.
+
+Risk: The documentation includes optional npx and CLI examples that may install or execute local tooling.
+
+Mitigation: Pin or locally install the referenced GraphQL CLI tools before running command examples.
+
+Risk: Generated API guidance may be incomplete or inappropriate for a specific production threat model.
+
+Mitigation: Review proposed schemas, resolver logic, authorization checks, cost limits, and transport controls before deployment.
+
+## Reference(s):
+
+- [ClawHub GraphQL Skill Page](https://clawhub.ai/ivangdavila/skills/graphql)
+- [Clawic GraphQL Skill Homepage](https://clawic.com/skills/graphql)
+- [Setup Guide](artifact/setup.md)
+- [Security Guide](artifact/security.md)
+- [Commands Toolkit](artifact/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with GraphQL, JSON, YAML, TypeScript, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and apply user preferences from ~/Clawic/data/graphql/ when present; otherwise uses documented defaults.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

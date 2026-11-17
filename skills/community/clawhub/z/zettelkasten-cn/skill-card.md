@@ -1,41 +1,54 @@
-## Description: <br>
-卢曼卡片学习法（Zettelkasten）全生命周期管理系统，支持九大人生领域分类、撤销操作、交互式创建流程。处理闪念笔记、文献笔记、永久笔记、项目笔记的增删改查，以及与Agent记忆系统的双向关联。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zettelkasten CN helps agents create, organize, search, link, update, delete, convert, and recover Markdown notes for a Chinese-language Zettelkasten workflow across fleeting, literature, permanent, project, and map note types.
 
-## Publisher: <br>
-[WittFan](https://clawhub.ai/user/WittFan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wittfan](https://clawhub.ai/user/wittfan)
 
-## Use Case: <br>
-External users and agents use this skill to manage a local Zettelkasten-style personal knowledge base, including creating, searching, updating, linking, converting, and undoing operations across fleeting, literature, permanent, project, and map notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill manages local files and includes undo behavior; tampered or misused operation history can move or overwrite files outside the intended notes folder. <br>
-Mitigation: Use a dedicated cards directory, keep backups, and avoid running undo after manually editing operation-history files. <br>
-Risk: Running the skill through an agent with broad filesystem access increases the impact of path or environment misuse. <br>
-Mitigation: Review the skill before installation in broad-access environments and do not expose ZETTELKASTEN_SKILL_DIR to untrusted values. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/WittFan/zettelkasten-cn) <br>
-- [卡片学习法 - 高级功能](references/advanced.md) <br>
-- [Configuration Reference](references/config.json) <br>
+## Use Case:
 
+External users and developers use this skill to maintain a local Markdown-based Zettelkasten knowledge base, including note creation, classification into nine life domains, linking, memory-date references, search, conversion, and undo support.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-backed configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and manages local Markdown note files and operation-history records in user-controlled directories.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata and references/config.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The authoritative security summary reports that forged or misused undo history can move or overwrite files outside the intended notes folder.
+
+Mitigation: Review before installing, use only in a constrained workspace, validate undo paths against the configured notes and trash directories, and avoid trusting serialized paths from operation_history.json.
+
+Risk: The undo manager exposes an internal log command that can write arbitrary operation details into the undo history.
+
+Mitigation: Restrict or remove the internal log command before broader use, or limit write access to the history file and run the skill with least-privilege filesystem permissions.
+
+## Reference(s):
+
+- [Advanced Zettelkasten Features](references/advanced.md)
+- [Zettelkasten Command Configuration](references/config.json)
+- [ClawHub Skill Page](https://clawhub.ai/wittfan/skills/zettelkasten-cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown note files, JSON command results, and terminal guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and modifies local files under the configured cards directory; default paths can be overridden with environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and references/config.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

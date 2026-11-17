@@ -1,40 +1,62 @@
-## Description: <br>
-A P2P encrypted social relationship management skill for friend discovery, relationship management, secure messaging, and social graph workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A P2P encrypted social friend-management skill for discovering peers, managing trusted relationships, sending secure messages, and maintaining a local social graph.
 
-## Publisher: <br>
-[puppetcat-fire](https://clawhub.ai/user/puppetcat-fire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[puppetcat-fire](https://clawhub.ai/user/puppetcat-fire)
 
-## Use Case: <br>
-External users and developers use this skill to discover peers, add and manage trusted friends, exchange encrypted messages, and inspect local social graph state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local peer discovery, key exchange, encrypted messaging, sync, and file sharing can expose sensitive relationship or message metadata if enabled unintentionally. <br>
-Mitigation: Require explicit user confirmation before discovery, adding friends, messaging, sync, or file sharing, and review local storage and privacy settings before use. <br>
-Risk: The release guidance notes a missing installer and a dependency on secure-p2p-messenger. <br>
-Mitigation: Review the dependency and any installer before running install commands, and install only from inspected files. <br>
+## Use Case:
 
+External users and developers use this skill to manage peer discovery, friend trust levels, encrypted messaging workflows, groups, and local social-graph views in a P2P communication environment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/puppetcat-fire/lobster-friends-protocol-real) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe local peer discovery, key exchange, SQLite metadata, encrypted messaging, sync, and file-sharing workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, release metadata) <br>
+Risk: Network discovery may scan or broadcast on local networks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted networks after reviewing what discovery scans, broadcasts, and stores.
+
+Risk: The skill describes social recommendations based on message content.
+
+Mitigation: Confirm what message content is analyzed and avoid sensitive communications unless the processing and storage behavior is acceptable.
+
+Risk: The published artifact references an installer that is not present in the release evidence.
+
+Mitigation: Confirm the package contains the expected installer and scripts before running installation commands.
+
+Risk: Encrypted messaging behavior depends on secure-p2p-messenger.
+
+Mitigation: Use a pinned, reviewed secure-p2p-messenger dependency before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/puppetcat-fire/skills/lobster-friends-protocol-real)
+- [Publisher profile](https://clawhub.ai/user/puppetcat-fire)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe local P2P discovery, encrypted messaging, SQLite-backed friend data, and secure-p2p-messenger dependency setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

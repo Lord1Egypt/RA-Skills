@@ -132,7 +132,7 @@ export function parseArgs(argv, booleanFlags = []) {
 }
 
 /**
- * 获取 Bearer：优先进程内 KLING_TOKEN；否则 credentials 中 AK/SK → JWT。
+ * 获取 Bearer：优先进程内 KLING_API_KEY；否则 credentials 中 api_key 原样作为 Bearer。
  * 若皆无（首次或仅有空凭证），自动执行设备绑定（bind）后再取 token。
  */
 export async function getTokenOrExit() {
@@ -156,10 +156,10 @@ export async function getTokenOrExit() {
       }
       lines.push('Fallback / 备选:');
       lines.push('  node skills/klingai/scripts/kling.mjs account --bind-url');
-      lines.push('  set KLING_ACCESS_KEY_ID + KLING_SECRET_ACCESS_KEY, then');
+      lines.push('  set KLING_API_KEY, then');
       lines.push('  node skills/klingai/scripts/kling.mjs account --import-env');
-      lines.push('  or pass args: --import-credentials --access_key_id <AK> --secret_access_key <SK>');
-      lines.push('  or set KLING_TOKEN for this session / 或设置 KLING_TOKEN');
+      lines.push('  or pass args: --import-credentials --api_key <API_KEY>');
+      lines.push('  or export KLING_API_KEY for this session / 或设置 KLING_API_KEY');
       throw new Error(lines.join('\n'));
     }
   }

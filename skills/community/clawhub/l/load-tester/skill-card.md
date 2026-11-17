@@ -1,39 +1,50 @@
-## Description: <br>
-Reference tool for devtools that provides quick lookup material for Load Tester concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that provides quick lookup material for Load Tester concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill as a reference helper for load-testing concepts, quickstarts, patterns, debugging, performance, security, migration, and cheat-sheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the skill's reference guidance for a real load-testing engine or validated load-test result. <br>
-Mitigation: Treat the output as general guidance and review any separate tools, commands, or test plans before running them. <br>
+## Use Case:
 
+Developers and engineers use this skill as local quick-reference material for Load Tester concepts, workflows, troubleshooting, performance, security, migration, and cheatsheet topics.
 
-## Reference(s): <br>
-- [Load Tester ClawHub page](https://clawhub.ai/xueyetianya/load-tester) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Self-contained reference output; no API keys, credentials, network access, or persistent system state are required by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release metadata and SKILL.md frontmatter; script reports 2.0.2) <br>
+Risk: Generated reference documentation may be generic or contain an inaccurate cheatsheet command name.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as quick reference material and verify load-testing commands and procedures against the relevant tool documentation before relying on them.
+
+## Reference(s):
+
+- [Load Tester skill page](https://clawhub.ai/xueyetianya/skills/load-tester)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Plain text reference documentation with Markdown-style headings and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local-only reference output; no API calls, credentials, or network access.]
+
+## Skill Version(s):
+
+2.0.3 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

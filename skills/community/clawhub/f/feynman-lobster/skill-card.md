@@ -1,42 +1,58 @@
-## Description: <br>
-feynman-lobster is a project-driven learning companion that reads user-provided code and notes, manages learning contracts, and uses Feynman-style questioning to help users learn while building. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feynman Lobster reads a user's project code and notes, then teaches relevant concepts and asks Feynman-style questions when the project context calls for it.
 
-## Publisher: <br>
-[lysandre001](https://clawhub.ai/user/lysandre001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lysandre001](https://clawhub.ai/user/lysandre001)
 
-## Use Case: <br>
-Developers and learners use this skill to turn active projects into guided learning contracts. It tracks progress, reads specified project or note paths as context, asks targeted Feynman-style questions, and can launch a local progress panel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads user-provided project and note paths and stores learning state that may contain sensitive workspace context. <br>
-Mitigation: Only add intended local paths, avoid including secrets in learning resources, and review generated contracts, profile notes, and contract memory files. <br>
-Risk: The optional local dashboard and API handle private learning data with weak browser isolation. <br>
-Mitigation: Run the panel only when needed, keep it bound to localhost, avoid untrusted contract text or URLs until dashboard escaping is fixed, and stop the local processes when finished. <br>
-Risk: Setup and panel scripts start local processes and perform local file side effects. <br>
-Mitigation: Review scripts before execution and monitor the generated files and background processes. <br>
+## Use Case:
 
+Developers and learners use this OpenClaw skill to create project-based learning contracts, connect local code or notes as context, and receive contextual explanations, progress checks, and Feynman-style questions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lysandre001/feynman-lobster) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain-text conversational guidance with optional shell commands and local panel instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local learning state files such as contracts, user profile notes, and contract memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The optional local web panel can expose stored project and profile data through an unauthenticated local API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the panel only in trusted local environments and require a per-launch token before using it with sensitive projects.
+
+Risk: Dashboard rendering may display stored data unsafely.
+
+Mitigation: Escape stored dashboard data before enabling the panel for sensitive work.
+
+Risk: The skill can summarize selected local code and notes into persistent local contract, profile, and memory files.
+
+Mitigation: Only provide paths you are comfortable having read and summarized, use an isolated workspace for sensitive projects, and confirm how to delete generated state files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lysandre001/skills/feynman-lobster)
+- [PyTorch documentation](https://docs.pytorch.org/docs/stable/index.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with occasional JSON snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local contract, profile, and project-memory files in the user's OpenClaw workspace while treating referenced project resources as read-only context.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

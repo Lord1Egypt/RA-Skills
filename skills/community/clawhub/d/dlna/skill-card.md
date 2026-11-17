@@ -1,40 +1,57 @@
-## Description: <br>
-Helps agents discover and control DLNA/UPnP media renderers such as smart TVs and speakers on a local network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for discovering and controlling DLNA/UPnP media renderers on a local network, including media playback, transport status, and default device setup.
 
-## Publisher: <br>
-[dxsdyhm](https://clawhub.ai/user/dxsdyhm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dxsdyhm](https://clawhub.ai/user/dxsdyhm)
 
-## Use Case: <br>
-Developers and operators use this skill to help an agent build or operate DLNA/UPnP workflows for finding local media renderers, sending playable media URLs, controlling playback, querying status, and selecting default devices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent can discover and control DLNA/UPnP TVs or speakers on a local network. <br>
-Mitigation: Use it only on networks and devices the operator is authorized to manage, and confirm the target device before sending playback, volume, or transport commands. <br>
-Risk: Playback actions can send media URLs to local devices and change their current playback state. <br>
-Mitigation: Verify the media URL, device identity, and expected playback effect before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to build agent workflows, CLIs, or Python utilities that discover DLNA devices on a trusted LAN and control playback, volume, seek, and status operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dxsdyhm/dlna) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python, TOML, and CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include local network device discovery guidance and DLNA playback control code using async_upnp_client.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unvalidated device or media URLs could send unintended local-network requests or playback commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit control to devices found through trusted discovery and validate media URLs before issuing DLNA actions.
+
+Risk: Playback, volume, or seek commands may target the wrong renderer on a shared network.
+
+Mitigation: Require users or calling agents to confirm the target device before playback or volume changes.
+
+Risk: Unescaped media titles or URLs in DIDL-Lite XML can produce malformed device commands.
+
+Mitigation: Escape XML metadata before adapting the sample code for a CLI or agent workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dxsdyhm/skills/dlna)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python snippets, shell commands, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs implementation guidance for local-network DLNA control; no external service calls or credentials are required by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

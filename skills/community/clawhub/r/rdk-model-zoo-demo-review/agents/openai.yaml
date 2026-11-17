@@ -1,0 +1,4 @@
+interface:
+  display_name: "RDK Model Zoo Demo Review"
+  short_description: "Review demos for standards and delivery completeness"
+  default_prompt: "Review this RDK Model Zoo demo against repository standards and the stated delivery requirements"

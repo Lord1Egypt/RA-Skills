@@ -1,0 +1,56 @@
+{
+  "skill_name": "huawei-cloud-ecs-export-sorted",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "List ECS instances via KooCLI (read-only, limit 1)",
+      "command": "hcloud ECS ListServersDetails --cli-region={region} --limit=1 --offset=0",
+      "expected": "JSON with a servers list (name/id/status/flavor/availability_zone) and count",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "Sorted JSON by created desc (script)",
+      "command": "python3 scripts/list_ecs_export_sorted.py --region {region} --format json --sort-by created --order desc",
+      "expected": "JSON array of normalized ECS records sorted by created descending",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-03",
+      "name": "Sorted table by name asc (script)",
+      "command": "python3 scripts/list_ecs_export_sorted.py --region {region} --format table --sort-by name --order asc",
+      "expected": "Aligned full-field table sorted by instance name ascending",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-04",
+      "name": "Export sorted xlsx report (script)",
+      "command": "python3 scripts/list_ecs_export_sorted.py --region {region} --sort-by vcpus --order desc --output /tmp/ecs_sorted_{region}.xlsx --summary",
+      "expected": "Prints the generated .xlsx path; workbook has header + data rows sorted by vCPU + summary row",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-05",
+      "name": "Export sorted csv report (script)",
+      "command": "python3 scripts/list_ecs_export_sorted.py --region {region} --sort-by created --order asc --output /tmp/ecs_sorted_{region}.csv --summary",
+      "expected": "Prints the generated .csv path; UTF-8-BOM CSV with header + sorted data rows + summary row",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-06",
+      "name": "Argument help (syntax)",
+      "command": "python3 scripts/list_ecs_export_sorted.py --help",
+      "expected": "argparse help printed (region / format / sort-by / order / output), exit 0",
+      "type": "syntax",
+      "executor": "script"
+    }
+  ],
+  "env_vars_required": ["HUAWEI_ACCESS_KEY", "HUAWEI_SECRET_KEY"],
+  "notes": "只读操作（ListServersDetails），无资源创建/修改/删除风险；报表仅在本机生成，绝不写回云端。CLI 主路径使用 hcloud ECS ListServersDetails，SDK 回退使用 huaweicloudsdkecs v2；排序在本地对已取回的结果集执行（ListServersDetails 无服务端排序参数）；openpyxl 缺失时运行 scripts/ensure_env.py 自动安装。"
+}

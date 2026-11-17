@@ -8,6 +8,11 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
+TASK_RUNTIME_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "dataify-task-operations", "scripts"))
+if TASK_RUNTIME_DIR not in sys.path:
+    sys.path.insert(0, TASK_RUNTIME_DIR)
+from task_runtime import complete_task
+
 
 BUILDER_URL = "https://scraperapi.dataify.com/builder?platform=1"
 DASHBOARD_URL = "https://dashboard.dataify.com?utm_source=skill"
@@ -96,20 +101,20 @@ def normalize_file_name(value):
 
 def normalize_url_group(group):
     return {
-        "url": normalize_url(group.get("url", DEFAULT_URL)),
+        "url": normalize_url(group.get("url")),
     }
 
 
 def normalize_keywords_group(group):
     return {
-        "keyword": normalize_keyword(group.get("keyword", DEFAULT_KEYWORD)),
+        "keyword": normalize_keyword(group.get("keyword")),
         "num_of_posts": normalize_non_negative_integer(group.get("num_of_posts", DEFAULT_NUM_OF_POSTS), "num_of_posts"),
     }
 
 
 def normalize_subredditurl_group(group):
     return {
-        "url": normalize_url(group.get("url", DEFAULT_SUBREDDIT_URL)),
+        "url": normalize_url(group.get("url")),
         "sort_by": normalize_choice(group.get("sort_by", DEFAULT_SORT_BY), "sort_by", SORT_BY_VALUES),
         "num_of_posts": normalize_non_negative_integer(group.get("num_of_posts", DEFAULT_NUM_OF_POSTS), "num_of_posts"),
         "sort_by_time": normalize_choice(group.get("sort_by_time", DEFAULT_SORT_BY_TIME), "sort_by_time", SORT_BY_TIME_VALUES),
@@ -143,10 +148,10 @@ def build_groups(args, mode):
     if args.params_json:
         return load_groups_from_json(args.params_json, mode)
     if mode == MODE_URL:
-        urls = args.url or [DEFAULT_URL]
+        urls = args.url or []
         return [normalize_group({"url": url}, mode) for url in urls]
     if mode == MODE_KEYWORDS:
-        keywords = args.keyword or [DEFAULT_KEYWORD]
+        keywords = args.keyword or []
         return [
             normalize_group(
                 {
@@ -157,7 +162,7 @@ def build_groups(args, mode):
             )
             for keyword in keywords
         ]
-    urls = args.url or [DEFAULT_SUBREDDIT_URL]
+    urls = args.url or []
     return [
         normalize_group(
             {
@@ -224,17 +229,19 @@ def main():
     parser.add_argument("--mode", required=True, help="Collection mode. Allowed values: url, keywords, subredditurl.")
     parser.add_argument("--url", action="append", help="URL mode or subredditurl mode. Repeat for multiple URLs.")
     parser.add_argument("--keyword", action="append", help="Keywords mode only. Repeat for multiple keywords.")
-    parser.add_argument("--num-of-posts", default=DEFAULT_NUM_OF_POSTS, help="Integer greater than or equal to 0.")
-    parser.add_argument("--sort-by", default=DEFAULT_SORT_BY, help="Subreddit URL mode only. One of: Hot, Top, New, Rising.")
-    parser.add_argument("--sort-by-time", default=DEFAULT_SORT_BY_TIME, help="Subreddit URL mode only. One of: Now, Today, This Week, This Month, This Year, All Time.")
+    parser.add_argument("--num-of-posts", help="Integer greater than or equal to 0.")
+    parser.add_argument("--sort-by", help="Subreddit URL mode only. One of: Hot, Top, New, Rising.")
+    parser.add_argument("--sort-by-time", help="Subreddit URL mode only. One of: Now, Today, This Week, This Month, This Year, All Time.")
     parser.add_argument("--file-name", default=DEFAULT_FILE_NAME, help="Builder file_name field. Default: {{TasksID}}.")
     parser.add_argument("--params-json", help="JSON array of parameter objects for the selected mode.")
-    parser.add_argument("--api-token", default=os.environ.get("DATAIFY_API_TOKEN"), help="Dataify token. Defaults to DATAIFY_API_TOKEN.")
+    parser.add_argument("--no-wait", action="store_true", help="Return after submission without waiting for the final result.")
+    parser.add_argument("--wait-timeout", type=float, default=600, help="Maximum final-result wait in seconds.")
     args = parser.parse_args()
+    api_token = os.environ.get("DATAIFY_API_TOKEN", "").strip()
 
-    if not args.api_token:
+    if not api_token:
         print(
-            "Missing Dataify API TOKEN. Enter your Dataify API TOKEN to continue. If you want to reuse it later, save it as DATAIFY_API_TOKEN. If you do not have one, log in at {} to get one.".format(LOGIN_URL),
+            "Missing Dataify API TOKEN. Enter your Dataify API TOKEN to continue. If you want to reuse it later, save it as DATAIFY_API_TOKEN. If you do not have one, log in at {} to get one. New accounts receive 50 free credits.".format(LOGIN_URL),
             file=sys.stderr,
         )
         return 2
@@ -242,13 +249,15 @@ def main():
     try:
         mode = normalize_mode(args.mode)
         groups = build_groups(args, mode)
+        if not groups:
+            raise ValueError("At least one business target is required.")
         file_name = normalize_file_name(args.file_name)
     except ValueError as exc:
         print(str(exc), file=sys.stderr)
         return 2
 
     try:
-        spider_id, task_id, status = submit_builder(args.api_token, mode, groups, file_name)
+        spider_id, task_id, status = submit_builder(api_token, mode, groups, file_name)
     except RuntimeError as exc:
         print(str(exc), file=sys.stderr)
         return 1
@@ -261,12 +270,19 @@ def main():
             "status": status,
             "parameters": groups,
             "file_name": file_name,
-            "dashboard_url": DASHBOARD_URL,
-            "message": "Task submitted. Visit {} to view results.".format(DASHBOARD_URL),
+            "message": "Task submitted. Continue monitoring the returned task_id.",
         },
         ensure_ascii=False,
         indent=2,
     ))
+    if not args.no_wait:
+        try:
+            final_result = complete_task(task_id, api_token, args.wait_timeout)
+        except RuntimeError as exc:
+            print(str(exc), file=sys.stderr)
+            return 1
+        print(json.dumps(final_result, ensure_ascii=False, indent=2))
+
     return 0
 
 

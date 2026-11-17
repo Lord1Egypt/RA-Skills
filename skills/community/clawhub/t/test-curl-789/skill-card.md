@@ -1,40 +1,53 @@
-## Description: <br>
-Provides Chinese-language parenting psychology dialogue support with structured emotional reflection, parent-child scenario matching, and safety-aware escalation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides parenting and family emotional-support guidance for parent-child conversations, including structured reflection, scenario matching, and safety reminders.
 
-## Publisher: <br>
-[yun520-1](https://clawhub.ai/user/yun520-1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yun520-1](https://clawhub.ai/user/yun520-1)
 
-## Use Case: <br>
-Parents, adult children, and helpers use this skill for educational parenting psychology support, emotional reflection, and parent-child communication guidance. It is not a substitute for therapy, diagnosis, or crisis care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat parenting psychology support as professional therapy, diagnosis, or crisis care. <br>
-Mitigation: Present the skill as educational support and direct crisis, self-harm, abuse, or diagnosis concerns to qualified professional or emergency resources. <br>
-Risk: Broad help-seeking language may activate the skill for loosely related or sensitive parenting topics. <br>
-Mitigation: Confirm the user is seeking parenting or parent-child emotional support before applying the skill's guidance. <br>
+## Use Case:
 
+External users, especially parents, caregivers, children, and family helpers, use this skill to frame parent-child conflicts, emotional distress, and caregiving decisions as supportive dialogue and practical next steps. It is not a substitute for professional crisis, legal, medical, abuse, or mental-health services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yun520-1/test-curl-789) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may rely on parenting or psychology framing for crisis, legal, medical, abuse, or mental-health situations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill positioned as supportive dialogue only and direct users to professional, emergency, legal, medical, or abuse-response services when those situations appear.
+
+Risk: Guidance may be misleading when applied outside parent-child, family, or caregiving conversations.
+
+Mitigation: Use the skill within its stated parenting and family-support scope and ask for professional review for complex or high-stakes cases.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/yun520-1/skills/test-curl-789)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable files were included in the released artifact according to server security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact frontmatter reports 2.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

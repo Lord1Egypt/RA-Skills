@@ -1,47 +1,61 @@
-## Description: <br>
-Teaches agents how to use @getalby/cli to operate a Bitcoin Lightning wallet via Nostr Wallet Connect for sending and receiving money, paying invoices, checking balances, creating invoices, converting between fiat and sats, handling 402 paid requests, discovering paid services, and paying supported on-chain cryptocurrency or stablecoin addresses through automatic swaps from a Bitcoin balance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teaches agents how to use @getalby/cli to operate a bitcoin lightning wallet via Nostr Wallet Connect (NIP-47), including sending and receiving payments, checking balances, creating invoices, converting fiat and sats, handling paid HTTP 402 requests, discovering paid API services, and paying supported on-chain crypto or stablecoin addresses by swapping from a bitcoin balance.
 
-## Publisher: <br>
-[rolznz](https://clawhub.ai/user/rolznz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rolznz](https://clawhub.ai/user/rolznz)
 
-## Use Case: <br>
-External developers and agent users use this skill to let an agent operate an Alby-compatible Nostr Wallet Connect wallet for Lightning payments, wallet balance checks, invoice creation, paid HTTP 402 requests, paid service discovery, and supported on-chain crypto or stablecoin payments. It is intended for workflows where the user explicitly wants wallet-connected payment capability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent spending-capable access to a Lightning wallet and paid service workflows. <br>
-Mitigation: Install it only when wallet-connected payment behavior is intended, use a low-balance or test wallet, and set wallet-side budgets or limits. <br>
-Risk: Nostr Wallet Connect secrets can grant wallet access or reduce wallet privacy if exposed. <br>
-Mitigation: Do not paste NWC secrets into chat or shell history, do not print them in logs, and prefer local wallet configuration or environment handling that avoids disclosure. <br>
-Risk: Payment, swap, or paid API commands may spend real funds. <br>
-Mitigation: Require explicit user confirmation before every payment, swap, or paid API request, and report the purchased service or payment amount after execution. <br>
+## Use Case:
 
+External developers and agent operators use this skill to let an agent interact with an Alby-compatible bitcoin lightning wallet for wallet setup, balance checks, invoices, payments, fiat/sats conversion, paid HTTP 402 requests, and paid service discovery.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rolznz/alby-bitcoin-payments) <br>
-- [Alby](https://getalby.com) <br>
-- [Nostr Wallet Connect](https://nwc.dev) <br>
-- [Alby CLI](https://github.com/getAlby/cli) <br>
-- [402index](https://402index.io) <br>
-- [Alby Hub](https://getalby.com/alby-hub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide use of NWC_URL, local Alby CLI wallet configuration, paid service discovery, and payment commands that can spend real funds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.8 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill gives an agent ongoing authority to operate a real bitcoin wallet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-balance or budget-limited wallet and require explicit confirmation for every payment, swap, or paid fetch.
+
+Risk: Connection secrets may be exposed if pasted into chat, logs, or command history.
+
+Mitigation: Prefer named or file-based credentials, never print or read secret contents, and revoke any secret that was exposed.
+
+Risk: The skill executes an npm-distributed CLI through npx.
+
+Mitigation: Pin and verify the CLI or install source before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rolznz/skills/alby-bitcoin-payments)
+- [Alby](https://getalby.com)
+- [Alby CLI](https://github.com/getAlby/cli)
+- [Nostr Wallet Connect](https://nwc.dev)
+- [402index](https://402index.io)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce payment, wallet, invoice, fetch, and service-discovery command guidance; user confirmation is required for payment or swap actions.]
+
+## Skill Version(s):
+
+1.3.8 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

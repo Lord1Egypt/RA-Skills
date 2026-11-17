@@ -1,46 +1,55 @@
-## Description: <br>
-Complex Mathematics Engine evaluates mathematical expressions using SymPy for symbolic math, NumPy for numerical work, and SciPy for scientific computing through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complex Mathematics Engine lets an agent evaluate mathematical expressions through AgentPMT-hosted remote tool calls using SymPy for symbolic math, NumPy for numerical work, or SciPy for scientific computing.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and agents use this skill to submit mathematical expressions for arithmetic, calculus, algebra, linear algebra, statistics, equation solving, and scientific-computing tasks. It is appropriate when the agent should route a math expression to AgentPMT and consume the returned JSON result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mathematical expression text is sent to AgentPMT for remote processing. <br>
-Mitigation: Send only the expression needed for the calculation and exclude secrets, wallet data, credentials, and unrelated private content. <br>
-Risk: Broad activation terms could cause an agent to invoke the skill on generic calculation requests. <br>
-Mitigation: Narrow local activation behavior or require an explicit user confirmation before sending content to AgentPMT. <br>
-Risk: Using the remote calculate action may spend AgentPMT credits. <br>
-Mitigation: Confirm the intended AgentPMT account, enabled tool, and credit impact before production use. <br>
+## Use Case:
 
+Developers and agents use this skill to route calculus, algebra, linear algebra, statistics, optimization, and scientific-computing expressions to the AgentPMT Complex Mathematics Engine. It is useful when an agent needs a documented remote calculate action, input schema, setup path, and response-handling guidance for math requests.
 
-## Reference(s): <br>
-- [Complex Mathematics Engine schema](artifact/schema.md) <br>
-- [Complex Mathematics Engine marketplace page](https://www.agentpmt.com/marketplace/complex-mathematics-engine) <br>
-- [Complex Mathematics Engine on ClawHub](https://clawhub.ai/agentpmt/complex-mathematics-engine) <br>
-- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [What AgentPMT is](https://clawhub.ai/agentpmt/what-is-agentpmt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, API calls, JSON] <br>
-**Output Format:** [Markdown instructions with JSON request and response shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces AgentPMT invocation guidance for a single calculate action; tool responses include the original expression, engine used, execution time, result, result string, and metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The security evidence flags broad activation terms and unpinned setup-install commands for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review activation behavior before deployment and prefer pinned or verified install sources for referenced setup skills.
+
+Risk: Math expressions are sent to AgentPMT-hosted remote tool calls and may consume credits.
+
+Mitigation: Avoid secrets or sensitive business data in expressions, confirm credit costs before use, and keep inputs limited to the minimum needed for the calculation.
+
+## Reference(s):
+
+- [Complex Mathematics Engine schema](artifact/schema.md)
+- [Complex Mathematics Engine marketplace page](https://www.agentpmt.com/marketplace/complex-mathematics-engine)
+- [Complex Mathematics Engine ClawHub page](https://clawhub.ai/agentpmt/skills/complex-mathematics-engine)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with JSON examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The remote calculate action returns JSON-serializable math results with the original expression, engine used, execution timing, result fields, and metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

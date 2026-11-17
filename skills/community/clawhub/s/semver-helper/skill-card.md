@@ -1,36 +1,47 @@
-## Description: <br>
-Semantic Versioning 2.0.0 reference guide with quick decision trees and examples for choosing MAJOR, MINOR, or PATCH version bumps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Semantic Versioning 2.0.0 reference guide. Quick decision trees and examples for choosing MAJOR, MINOR, or PATCH version bumps.
 
-## Publisher: <br>
-[avegancafe](https://clawhub.ai/user/avegancafe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[avegancafe](https://clawhub.ai/user/avegancafe)
 
-## Use Case: <br>
-Developers and release maintainers use this skill as a quick reference when deciding whether a change should result in a MAJOR, MINOR, or PATCH version bump. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may influence release-version recommendations that affect downstream users. <br>
-Mitigation: Review its Semantic Versioning guidance against the project's release policy before applying a version bump. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and release maintainers use this skill as a quick SemVer 2.0.0 reference when deciding whether a change should trigger a MAJOR, MINOR, or PATCH release.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: SemVer guidance can be misapplied when a project has release policies or compatibility guarantees beyond the general SemVer 2.0.0 rules.
+
+Mitigation: Treat the skill as general SemVer 2.0.0 guidance and apply the project's own release policy before publishing a version bump.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference-only semantic versioning decision guidance; no tool, credential, or command output.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+**Output Type(s):** [Guidance, Markdown, Text]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown reference guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference content with no executable behavior or sensitive access.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

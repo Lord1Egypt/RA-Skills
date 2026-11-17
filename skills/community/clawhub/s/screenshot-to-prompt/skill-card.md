@@ -1,42 +1,54 @@
-## Description: <br>
-Screenshot To Prompt analyzes UI screenshots, extracts page structure, components, text, states, and interactions, and produces a ready-to-use implementation prompt for a coding agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screenshot To Prompt helps agents analyze UI screenshots, extract page structure, states, text, and interactions, and produce implementation prompts for coding agents.
 
-## Publisher: <br>
-[z-zihan](https://clawhub.ai/user/z-zihan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[z-zihan](https://clawhub.ai/user/z-zihan)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn one or more UI screenshots into structured page analysis and an implementation prompt for a coding agent. It is intended for UI structure extraction and prompt generation, not direct code generation or product analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Screenshots may contain private product details, customer data, or other sensitive information. <br>
-Mitigation: Review screenshots and generated prompts before sharing them with a coding agent or external service. <br>
-Risk: Generated implementation prompts may misread unclear screenshots or overstate uncertain UI details. <br>
-Mitigation: Check the extracted structure, text, states, and interactions against the original screenshot before implementation. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn UI screenshots into structured page analysis and ready-to-send prompts for coding agents when building or recreating page layouts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/z-zihan/screenshot-to-prompt) <br>
-- [Publisher Profile](https://clawhub.ai/user/z-zihan) <br>
-- [Homepage](https://github.com/z-Zihan/awesome-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown with screenshot analysis and a copy-ready coding-agent prompt] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output follows the user's language when possible and asks for clarification when screenshots are missing, unclear, or contradictory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Screenshots may contain private UI text, internal product details, or sensitive interface data that can be reproduced in generated prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact screenshots and generated prompts before sending them onward.
+
+Risk: Low-quality or ambiguous screenshots can lead to uncertain page-structure analysis or misleading implementation guidance.
+
+Mitigation: Use clearer screenshots when possible and verify any sections the skill marks as uncertain before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/z-zihan/skills/screenshot-to-prompt)
+- [Project homepage](https://github.com/z-Zihan/awesome-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown response with structured screenshot analysis and a copyable coding-agent prompt]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Language follows the user's language; the skill guides prompt generation and does not produce code unless the user explicitly asks.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

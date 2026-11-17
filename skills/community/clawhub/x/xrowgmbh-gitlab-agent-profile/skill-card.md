@@ -1,43 +1,53 @@
-## Description: <br>
-Maintain the GitLab agent profile page and static contribution performance chart. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maintain the GitLab agent profile page and static contribution performance chart.
 
-## Publisher: <br>
-[xrowgmbh](https://clawhub.ai/user/xrowgmbh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xrowgmbh](https://clawhub.ai/user/xrowgmbh)
 
-## Use Case: <br>
-Developers and maintainers use this skill to update GitLab profile assets with monthly merge request, direct commit, and contribution score statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated GitLab reads and optional pushes can affect repositories beyond the intended profile workflow if credentials or project settings are too broad. <br>
-Mitigation: Use a GitLab token limited to the intended account and repositories, and enable recurring cron execution only when unattended updates and pushes are acceptable. <br>
-Risk: The generated proof JSON may publish merge request titles, labels, reviewers, URLs, and commit metadata. <br>
-Mitigation: Avoid running the skill on private projects unless publishing those proof records is acceptable. <br>
-Risk: Configurable output paths write local SVG, WebP, and JSON files. <br>
-Mitigation: Keep all output variables under the profile repository assets directory. <br>
+## Use Case:
 
+Developers use this skill to update a GitLab agent profile with monthly contribution charts and supporting public records, including anonymized totals for private activity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xrowgmbh/skills/xrowgmbh-gitlab-agent-profile) <br>
-- [Publisher profile](https://clawhub.ai/user/xrowgmbh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated SVG, WebP, and JSON asset files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires glab, python3, and GITLAB_TOKEN; output paths and GitLab projects are configurable through environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.62.0 (source: server release evidence) <br>
+Risk: The WebP fallback may download and execute an unpinned npm package while GitLab credentials are available.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use ImageMagick when available; otherwise verify and pin the WebP package, and avoid exposing the GitLab token during rendering when possible.
+
+Risk: The security scan reports that declared tool scope is missing despite detected capabilities, and some local references were unresolved.
+
+Mitigation: Review the full skill and its references before installation, and grant only the GitLab access needed for the profile update.
+
+## Reference(s):
+
+- [GitLab Agent Profile on ClawHub](https://clawhub.ai/xrowgmbh/skills/xrowgmbh-gitlab-agent-profile)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON]
+
+**Output Format:** [Static SVG and WebP charts with JSON contribution records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Charts and records cover the configured number of completed months (12 by default); private activity is represented by anonymized monthly totals.]
+
+## Skill Version(s):
+
+1.147.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

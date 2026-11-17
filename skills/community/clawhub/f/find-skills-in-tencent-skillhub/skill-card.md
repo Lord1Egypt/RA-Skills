@@ -1,41 +1,59 @@
-## Description: <br>
-Search, install, upgrade, and manage agent skills using skillhub CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, install, upgrade, and manage agent skills using skillhub CLI. Use when you need to discover new skills, install skills by slug, upgrade installed skills, list available skills, or self-upgrade the skillhub CLI.
 
-## Publisher: <br>
-[wuhonglei](https://clawhub.ai/user/wuhonglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuhonglei](https://clawhub.ai/user/wuhonglei)
 
-## Use Case: <br>
-Developers and agent operators use this skill to search ClawHub skill data, install skills by slug, list installed skills, and check or apply skillhub CLI and skill upgrades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently install, overwrite, bulk-upgrade, and self-upgrade agent skill tooling. <br>
-Mitigation: Review actions before execution, prefer search and check_only modes first, approve each install or upgrade explicitly, and avoid force unless overwriting is intended. <br>
-Risk: Upgrade-all and self-upgrade actions can change future agent behavior. <br>
-Mitigation: Run check_only before applying upgrades and review the reported changes before allowing the command to proceed. <br>
+## Use Case:
 
+Developers and engineers use this skill to search ClawHub-backed skill listings, install skills by slug, list local skills, and preview or apply skill and Skillhub CLI upgrades.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuhonglei/find-skills-in-tencent-skillhub) <br>
-- [Skillhub CLI installation guide](https://skillhub-1388575217.cos.ap-guangzhou.myqcloud.com/install/skillhub.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON input examples and shell command output from skillhub] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires skillhub and jq binaries; install, upgrade, upgrade-all, force, and self-upgrade actions can change local agent skill state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: release evidence and frontmatter) <br>
+Risk: Installing or upgrading skills can change future agent behavior through externally retrieved content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Skillhub CLI source and installation instructions before installation, and use check_only before upgrades.
+
+Risk: Forced installs can replace an existing skill directory.
+
+Mitigation: Avoid force unless replacement is intentional and the target skill has been reviewed.
+
+Risk: Self-upgrade and upgrade-all operations can alter the Skillhub CLI or multiple installed skills at once.
+
+Mitigation: Treat self-upgrade and upgrade-all as trust-changing operations and review the proposed changes before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuhonglei/skills/find-skills-in-tencent-skillhub)
+- [Skillhub CLI installation guide](https://skillhub-1388575217.cos.ap-guangzhou.myqcloud.com/install/skillhub.md)
+- [Publisher profile](https://clawhub.ai/user/wuhonglei)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and shell command output from the Skillhub CLI wrapper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions include search, install, upgrade, list, and self-upgrade; some actions can modify installed agent skills or the Skillhub CLI.]
+
+## Skill Version(s):
+
+1.0.4 (source: release evidence and frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -261,7 +261,7 @@ The SSM Automation runbook then needs a separate role (trusted by
 
 | Scenario | SCENARIO_SLUG | Example Stack Name |
 |---|---|---|
-| MSK broker reboot | `ssm-auto-msk-reboot` | `fis-ssm-auto-msk-reboot-my-cluster-a3x7k2` |
+| MSK broker reboot | `ssm-auto-msk-reboot` | `fis-ssm-auto-mREDACTED-SECRET` |
 
 See `references/slug-conventions.md` for the general SSM Automation slug
 pattern: `ssm-auto-<service>-<operation>`.

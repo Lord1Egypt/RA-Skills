@@ -1,0 +1,80 @@
+# 各识别类型的字段说明（elements 内容）
+
+根据 ocrType 不同，返回的 `elements` 对象包含以下字段：
+
+## MEDICAL_INPATIENT_INVOICE (医疗住院发票)
+- `title`: 标题
+- `invoiceCode`: 票据代码
+- `invoiceNo`: 票据号码
+- `payerName`: 交款人
+- `payerAccount`: 交款人统一社会信用代码
+- `checkCode`: 校验码
+- `invoiceDate`: 开票日期
+- `totalAmountUpper`: 合计金额(大写)
+- `totalAmountLower`: 合计金额(小写)
+- `payeeName`: 收款单位
+- `checker`: 复核人
+- `payee`: 收款人
+- `businessSerialNo`: 业务流水号
+- `medicalRecordNo`: 病历号
+- `inpatientNo`: 住院号
+- `inpatientDept`: 住院科别
+- `admissionTime`: 住院时间
+- `medicalOrgType`: 医疗机构类型
+- `insuranceType`: 医保类型
+- `insuranceNo`: 医保编号
+- `gender`: 性别
+- `poolFundPay`: 医保统筹基金支付
+- `personalAccountPay`: 个人账户支付
+- `personalCashPay`: 个人现金支付
+- `personalSelfPay`: 个人自付
+- `personalSelfExpense`: 个人自费
+- `itemDetails`: 项目明细-多栏 (List<Object>)
+  - `itemName`: 项目名称
+  - `itemAmt`: 金额
+
+## MEDICAL_EXPENSE_SETTLEMENT (医疗费用结算单)
+- `title`: 标题
+- `institutionCode`: 机构编码
+- `institutionName`: 机构名称
+- `hospitalLevel`: 医院等级
+- `patientName`: 姓名
+- `gender`: 性别
+- `idNumber`: 身份证号
+- `personnelCategory`: 人员类别
+- `socialSecurityCardNumber`: 社保卡号
+- `settlementTime`: 结算时间
+- `printTime`: 打印时间
+- `insuranceType`: 险种类型
+- `insuredRegion`: 参保地
+- `medicalRegion`: 就医地
+- `settlementId`: 结算ID
+- `admissionNumber`: 住院号
+- `admissionMethod`: 入院方式
+- `dischargeDepartment`: 出院科室
+- `primaryDiagnosis`: 主要诊断
+- `secondaryDiagnosis`: 次要诊断
+- `admissionDate`: 入院日期
+- `dischargeDate`: 出院日期
+- `hospitalizationDays`: 住院天数
+- `totalAmountUpper`: 合计金额(大写)
+- `totalAmountLower`: 合计金额(小写)
+- `medicalCoveredAmount`: 医保范围内金额
+- `personalSelfExpense`: 自费金额
+- `aboveLimitSelfPayAmount`: 超限价自费金额
+- `deductible`: 起付线
+- `totalFundPay`: 基金支付合计
+- `pooledFundPay`: 统筹基金支付
+- `largeMutualAidFundPay`: 大额互助资金支付
+- `retireeSupplFundPay`: 退休人员补充基金支付
+- `employerSupplFundPay`: 单位补充基金支付
+- `disabledVeteranSubsidyPay`: 残疾军人医疗补助支付
+- `criticalIllnessPay`: 大病保障支付
+- `medicalAssistancePay`: 医疗救助支付
+- `civilServantSubsidyPay`: 公务员补助支付
+- `otherFundPay`: 其他基金支付
+- `selfPayCategoryOne`: 自付一金额
+- `selfPayCategoryTwo`: 自付二金额
+- `personalCashPay`: 个人现金支付
+- `personalAccountPay`: 个人账户支付
+

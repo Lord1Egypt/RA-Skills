@@ -1,0 +1,631 @@
+{
+  "version": "1.0",
+  "updated_at": "2026-08-19T13:28:56.935329+00:00",
+  "profile_count": 16,
+  "profiles": [
+    {
+      "id": "expert-dist-arch",
+      "version": 1,
+      "title": "分布式系统架构师",
+      "domains": [
+        "architecture",
+        "distributed-systems",
+        "infrastructure",
+        "cloud"
+      ],
+      "skills": [
+        "微服务设计",
+        "一致性协议",
+        "故障隔离",
+        "负载均衡",
+        "弹性伸缩",
+        "分布式事务"
+      ],
+      "thinking_style": "systems",
+      "embedding": [],
+      "performance_vector": {
+        "proposal_depth": 0.5,
+        "critique_specificity": 0.5,
+        "revision_quality": 0.5,
+        "synthesis_novelty": 0.5,
+        "token_efficiency": 0.5,
+        "adoption_rate": 0.5
+      },
+      "meta": {
+        "created_at": "2025-01-01T00:00:00Z",
+        "updated_at": "2026-08-19T13:29:03.140498+00:00",
+        "source": "moa_run",
+        "run_count": 0,
+        "tags": [
+          "core"
+        ]
+      }
+    },
+    {
+      "id": "expert-security",
+      "version": 1,
+      "title": "安全工程师",
+      "domains": [
+        "security",
+        "authentication",
+        "infrastructure",
+        "compliance"
+      ],
+      "skills": [
+        "威胁建模",
+        "渗透测试",
+        "漏洞分析",
+        "安全架构",
+        "零信任",
+        "加密协议"
+      ],
+      "thinking_style": "critical",
+      "embedding": [],
+      "performance_vector": {
+        "proposal_depth": 0.5,
+        "critique_specificity": 0.5,
+        "revision_quality": 0.5,
+        "synthesis_novelty": 0.5,
+        "token_efficiency": 0.5,
+        "adoption_rate": 0.5
+      },
+      "meta": {
+        "created_at": "2025-01-01T00:00:00Z",
+        "updated_at": "2026-08-19T13:29:03.140498+00:00",
+        "source": "moa_run",
+        "run_count": 0,
+        "tags": [
+          "core",
+          "high-risk"
+        ]
+      }
+    },
+    {
+      "id": "expert-database",
+      "version": 1,
+      "title": "数据库专家",
+      "domains": [
+        "database",
+        "data-engineering",
+        "infrastructure",
+        "storage"
+      ],
+      "skills": [
+        "SQL优化",
+        "索引设计",
+        "分库分表",
+        "数据迁移",
+        "备份恢复",
+        "时序数据库",
+        "缓存策略"
+      ],
+      "thinking_style": "analytical",
+      "embedding": [],
+      "performance_vector": {
+        "proposal_depth": 0.5,
+        "critique_specificity": 0.5,
+        "revision_quality": 0.5,
+        "synthesis_novelty": 0.5,
+        "token_efficiency": 0.5,
+        "adoption_rate": 0.5
+      },
+      "meta": {
+        "created_at": "2025-01-01T00:00:00Z",
+        "updated_at": "2026-08-19T13:29:03.140498+00:00",
+        "source": "moa_run",
+        "run_count": 0,
+        "tags": [
+          "core"
+        ]
+      }
+    },
+    {
+      "id": "expert-frontend",
+      "version": 1,
+      "title": "前端架构师",
+      "domains": [
+        "frontend",
+        "ui",
+        "ux",
+        "web"
+      ],
+      "skills": [
+        "组件设计",
+        "性能优化",
+        "状态管理",
+        "构建工具",
+        "跨端方案",
+        "无障碍"
+      ],
+      "thinking_style": "pragmatic",
+      "embedding": [],
+      "performance_vector": {
+        "proposal_depth": 0.5,
+        "critique_specificity": 0.5,
+        "revision_quality": 0.5,
+        "synthesis_novelty": 0.5,
+        "token_efficiency": 0.5,
+        "adoption_rate": 0.5
+      },
+      "meta": {
+        "created_at": "2025-01-01T00:00:00Z",
+        "updated_at": "2026-08-19T13:29:03.140498+00:00",
+        "source": "seed",
+        "run_count": 0,
+        "tags": [
+          "core"
+        ]
+      }
+    },
+    {
+      "id": "expert-product",
+      "version": 1,
+      "title": "产品策略师",
+      "domains": [
+        "product",
+        "strategy",
+        "business",
+        "growth"
+      ],
+      "skills": [
+        "需求分析",
+        "路线图规划",
+        "用户增长",
+        "ROI分析",
+        "竞品分析",
+        "市场定位",
+        "数据驱动决策"
+      ],
+      "thinking_style": "creative",
+      "embedding": [],
+      "performance_vector": {
+        "proposal_depth": 0.5,
+        "critique_specificity": 0.5,
+        "revision_quality": 0.5,
+        "synthesis_novelty": 0.5,
+        "token_efficiency": 0.5,
+        "adoption_rate": 0.5
+      },
+      "meta": {
+        "created_at": "2025-01-01T00:00:00Z",
+        "updated_at": "2026-08-19T13:29:03.140498+00:00",
+        "source": "seed",
+        "run_count": 0,
+        "tags": [
+          "core"
+        ]
+      }
+    },
+    {
+      "id": "expert-ux",
+      "version": 1,
+      "title": "UX 设计师",
+      "domains": [
+        "ux",
+        "design",
+        "frontend",
+        "accessibility"
+      ],
+      "skills": [
+        "用户研究",
+        "信息架构",
+        "交互设计",
+        "可用性测试",
+        "设计系统",
+        "无障碍设计"
+      ],
+      "thinking_style": "creative",
+      "embedding": [],
+      "performance_vector": {
+        "proposal_depth": 0.5,
+        "critique_specificity": 0.5,
+        "revision_quality": 0.5,
+        "synthesis_novelty": 0.5,
+        "token_efficiency": 0.5,
+        "adoption_rate": 0.5
+      },
+      "meta": {
+        "created_at": "2025-01-01T00:00:00Z",
+        "updated_at": "2026-08-19T13:29:03.140498+00:00",
+        "source": "seed",
+        "run_count": 0,
+        "tags": [
+          "core"
+        ]
+      }
+    },
+    {
+      "id": "expert-data-sci",
+      "version": 1,
+      "title": "数据科学家",
+      "domains": [
+        "data-science",
+        "machine-learning",
+        "analytics",
+        "ai"
+      ],
+      "skills": [
+        "统计分析",
+        "机器学习建模",
+        "特征工程",
+        "AB测试",
+        "时序预测",
+        "因果推断",
+        "模型评估"
+      ],
+      "thinking_style": "analytical",
+      "embedding": [],
+      "performance_vector": {
+        "proposal_depth": 0.5,
+        "critique_specificity": 0.5,
+        "revision_quality": 0.5,
+        "synthesis_novelty": 0.5,
+        "token_efficiency": 0.5,
+        "adoption_rate": 0.5
+      },
+      "meta": {
+        "created_at": "2025-01-01T00:00:00Z",
+        "updated_at": "2026-08-19T13:29:03.140498+00:00",
+        "source": "seed",
+        "run_count": 0,
+        "tags": [
+          "core"
+        ]
+      }
+    },
+    {
+      "id": "expert-compliance",
+      "version": 1,
+      "title": "合规专家",
+      "domains": [
+        "compliance",
+        "legal",
+        "security",
+        "governance"
+      ],
+      "skills": [
+        "GDPR",
+        "数据合规",
+        "隐私保护",
+        "等保",
+        "PCI-DSS",
+        "审计",
+        "风险评估"
+      ],
+      "thinking_style": "critical",
+      "embedding": [],
+      "performance_vector": {
+        "proposal_depth": 0.5,
+        "critique_specificity": 0.5,
+        "revision_quality": 0.5,
+        "synthesis_novelty": 0.5,
+        "token_efficiency": 0.5,
+        "adoption_rate": 0.5
+      },
+      "meta": {
+        "created_at": "2025-01-01T00:00:00Z",
+        "updated_at": "2026-08-19T13:29:03.140498+00:00",
+        "source": "seed",
+        "run_count": 0,
+        "tags": [
+          "core",
+          "high-risk"
+        ]
+      }
+    },
+    {
+      "id": "expert-perf",
+      "version": 1,
+      "title": "性能优化专家",
+      "domains": [
+        "performance",
+        "infrastructure",
+        "backend",
+        "cloud"
+      ],
+      "skills": [
+        "性能分析",
+        "瓶颈定位",
+        "JVM调优",
+        "网络优化",
+        "缓存策略",
+        "CDN加速",
+        "数据库优化"
+      ],
+      "thinking_style": "analytical",
+      "embedding": [],
+      "performance_vector": {
+        "proposal_depth": 0.5,
+        "critique_specificity": 0.5,
+        "revision_quality": 0.5,
+        "synthesis_novelty": 0.5,
+        "token_efficiency": 0.5,
+        "adoption_rate": 0.5
+      },
+      "meta": {
+        "created_at": "2025-01-01T00:00:00Z",
+        "updated_at": "2026-08-19T13:29:03.140498+00:00",
+        "source": "seed",
+        "run_count": 0,
+        "tags": [
+          "core"
+        ]
+      }
+    },
+    {
+      "id": "expert-api",
+      "version": 1,
+      "title": "API 设计专家",
+      "domains": [
+        "api",
+        "backend",
+        "architecture",
+        "integration"
+      ],
+      "skills": [
+        "RESTful设计",
+        "GraphQL",
+        "API网关",
+        "版本管理",
+        "文档规范",
+        "RPC框架",
+        "协议设计"
+      ],
+      "thinking_style": "pragmatic",
+      "embedding": [],
+      "performance_vector": {
+        "proposal_depth": 0.5,
+        "critique_specificity": 0.5,
+        "revision_quality": 0.5,
+        "synthesis_novelty": 0.5,
+        "token_efficiency": 0.5,
+        "adoption_rate": 0.5
+      },
+      "meta": {
+        "created_at": "2025-01-01T00:00:00Z",
+        "updated_at": "2026-08-19T13:29:03.140498+00:00",
+        "source": "seed",
+        "run_count": 0,
+        "tags": [
+          "core"
+        ]
+      }
+    },
+    {
+      "id": "expert-test",
+      "version": 1,
+      "title": "测试架构师",
+      "domains": [
+        "testing",
+        "quality",
+        "devops",
+        "automation"
+      ],
+      "skills": [
+        "测试策略",
+        "自动化测试",
+        "混沌工程",
+        "性能测试",
+        "安全测试",
+        "CI/CD集成",
+        "质量度量"
+      ],
+      "thinking_style": "critical",
+      "embedding": [],
+      "performance_vector": {
+        "proposal_depth": 0.5,
+        "critique_specificity": 0.5,
+        "revision_quality": 0.5,
+        "synthesis_novelty": 0.5,
+        "token_efficiency": 0.5,
+        "adoption_rate": 0.5
+      },
+      "meta": {
+        "created_at": "2025-01-01T00:00:00Z",
+        "updated_at": "2026-08-19T13:29:03.140498+00:00",
+        "source": "seed",
+        "run_count": 0,
+        "tags": [
+          "core"
+        ]
+      }
+    },
+    {
+      "id": "expert-devops",
+      "version": 1,
+      "title": "DevOps 工程师",
+      "domains": [
+        "devops",
+        "infrastructure",
+        "cloud",
+        "automation"
+      ],
+      "skills": [
+        "容器化",
+        "K8s编排",
+        "CI/CD流水线",
+        "监控告警",
+        "日志管理",
+        "IaC",
+        "SRE实践"
+      ],
+      "thinking_style": "pragmatic",
+      "embedding": [],
+      "performance_vector": {
+        "proposal_depth": 0.5,
+        "critique_specificity": 0.5,
+        "revision_quality": 0.5,
+        "synthesis_novelty": 0.5,
+        "token_efficiency": 0.5,
+        "adoption_rate": 0.5
+      },
+      "meta": {
+        "created_at": "2025-01-01T00:00:00Z",
+        "updated_at": "2026-08-19T13:29:03.140498+00:00",
+        "source": "seed",
+        "run_count": 0,
+        "tags": [
+          "core"
+        ]
+      }
+    },
+    {
+      "id": "expert-algo",
+      "version": 1,
+      "title": "算法工程师",
+      "domains": [
+        "algorithms",
+        "machine-learning",
+        "optimization",
+        "ai"
+      ],
+      "skills": [
+        "算法设计",
+        "复杂度分析",
+        "NLP",
+        "推荐系统",
+        "搜索算法",
+        "图算法",
+        "强化学习"
+      ],
+      "thinking_style": "analytical",
+      "embedding": [],
+      "performance_vector": {
+        "proposal_depth": 0.5,
+        "critique_specificity": 0.5,
+        "revision_quality": 0.5,
+        "synthesis_novelty": 0.5,
+        "token_efficiency": 0.5,
+        "adoption_rate": 0.5
+      },
+      "meta": {
+        "created_at": "2025-01-01T00:00:00Z",
+        "updated_at": "2026-08-19T13:29:03.140498+00:00",
+        "source": "seed",
+        "run_count": 0,
+        "tags": [
+          "core"
+        ]
+      }
+    },
+    {
+      "id": "expert-biz-analyst",
+      "version": 1,
+      "title": "商业分析师",
+      "domains": [
+        "business",
+        "strategy",
+        "analytics",
+        "product"
+      ],
+      "skills": [
+        "商业模式分析",
+        "市场调研",
+        "财务建模",
+        "KPI体系",
+        "竞品分析",
+        "可行性研究",
+        "ROI测算"
+      ],
+      "thinking_style": "analytical",
+      "embedding": [],
+      "performance_vector": {
+        "proposal_depth": 0.5,
+        "critique_specificity": 0.5,
+        "revision_quality": 0.5,
+        "synthesis_novelty": 0.5,
+        "token_efficiency": 0.5,
+        "adoption_rate": 0.5
+      },
+      "meta": {
+        "created_at": "2025-01-01T00:00:00Z",
+        "updated_at": "2026-08-19T13:29:03.140498+00:00",
+        "source": "seed",
+        "run_count": 0,
+        "tags": [
+          "core"
+        ]
+      }
+    },
+    {
+      "id": "expert-privacy",
+      "version": 1,
+      "title": "隐私保护专家",
+      "domains": [
+        "privacy",
+        "security",
+        "compliance",
+        "legal"
+      ],
+      "skills": [
+        "差分隐私",
+        "联邦学习",
+        "数据脱敏",
+        "隐私影响评估",
+        "数据最小化",
+        "同意管理",
+        "跨境传输"
+      ],
+      "thinking_style": "critical",
+      "embedding": [],
+      "performance_vector": {
+        "proposal_depth": 0.5,
+        "critique_specificity": 0.5,
+        "revision_quality": 0.5,
+        "synthesis_novelty": 0.5,
+        "token_efficiency": 0.5,
+        "adoption_rate": 0.5
+      },
+      "meta": {
+        "created_at": "2025-01-01T00:00:00Z",
+        "updated_at": "2026-08-19T13:29:03.140498+00:00",
+        "source": "seed",
+        "run_count": 0,
+        "tags": [
+          "core",
+          "high-risk"
+        ]
+      }
+    },
+    {
+      "id": "expert-ai-arch",
+      "version": 1,
+      "title": "AI 架构师",
+      "domains": [
+        "ai",
+        "machine-learning",
+        "architecture",
+        "infrastructure"
+      ],
+      "skills": [
+        "模型选型",
+        "推理优化",
+        "模型部署",
+        "训练流水线",
+        "MLOps",
+        "AI Agent设计",
+        "RAG系统"
+      ],
+      "thinking_style": "systems",
+      "embedding": [],
+      "performance_vector": {
+        "proposal_depth": 0.5,
+        "critique_specificity": 0.5,
+        "revision_quality": 0.5,
+        "synthesis_novelty": 0.5,
+        "token_efficiency": 0.5,
+        "adoption_rate": 0.5
+      },
+      "meta": {
+        "created_at": "2025-01-01T00:00:00Z",
+        "updated_at": "2026-08-19T13:29:03.140498+00:00",
+        "source": "moa_run",
+        "run_count": 0,
+        "tags": [
+          "core",
+          "ai"
+        ]
+      }
+    }
+  ]
+}

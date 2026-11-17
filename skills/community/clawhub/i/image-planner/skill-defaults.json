@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "image-planner",
+  "workflow": "listing",
+  "focus": "images",
+  "outputTemplate": "ops_listing",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ]
+}

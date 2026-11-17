@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build a context pack"
+  short_description: "Collect public sources into a cited context pack"
+  default_prompt: "Use $ink-build-context to collect these public sources for my project."

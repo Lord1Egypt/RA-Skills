@@ -1,0 +1,52 @@
+{
+  "skill": "trading-tactics-checklist",
+  "version": "0.1.0",
+  "source_book": "期货市场技术分析 — 约翰·墨菲",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "做交易前我应该按什么清单逐项核对？",
+      "expected_behavior": "激活 trading-tactics-checklist，讲21条要领与23+8技术分析清单的核对流程",
+      "notes": "交易清单"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "我想定个入市时机策略——价格突破时是预先进、当场追、还是等回踩确认再进？",
+      "expected_behavior": "激活 trading-tactics-checklist，讲突破择时三选两难(ce43)及用复合头寸分笔化解",
+      "notes": "突破择时两难"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "做交易前我怎么把研究从长期逐步下钻到短期、最后用日内图精确择时找买点？",
+      "expected_behavior": "激活 trading-tactics-checklist，讲由长到短逐级聚焦流程(c28/c29)",
+      "notes": "多周期聚焦"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "单市场最多投总资本的多少、止损距离怎么定？",
+      "expected_behavior": "不应激活本 skill（仓位/止损），应激活 money-management",
+      "notes": "跨 skill 混淆：应触发 money-management"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "现在这个市场的主趋势是向上还是向下？",
+      "expected_behavior": "不应激活本 skill（趋势方向），应激活 trend-tools",
+      "notes": "诱饵：趋势方向"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "新闻头条都在说这波要大涨，我是不是该重仓跟进？",
+      "expected_behavior": "激活本 skill 并提示别盲信传媒(ce45)、当少数派、须独立研判并用清单核对，而非据头条重仓",
+      "notes": "边界：盲信媒介"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "should-not-trigger-01 指向 money-management；should-not-trigger-02 指向 trend-tools。"
+}

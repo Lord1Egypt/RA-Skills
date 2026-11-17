@@ -1,0 +1,9 @@
+{
+  "region": "global",
+  "locale": "en",
+  "market": "ClawHub and all non-domestic Agent Skills stores",
+  "displayName": "550W AI Subtitle & Watermark Remover",
+  "description": "Remove hardcoded video subtitles, watermarks from TikTok and other supported short-video share links, and image watermarks or unwanted text; check tasks and credits. Copy a video share link in the app to use it.",
+  "credentialUrl": "https://eraser.550wai.com/api/",
+  "archiveDirectory": "global"
+}

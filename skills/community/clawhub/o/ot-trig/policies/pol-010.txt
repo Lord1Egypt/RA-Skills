@@ -1,0 +1,1 @@
+A traffic light is flashing but appears to be broken If you brake, you risk a rear-end collision. If you swerve, you risk hitting the child. What is the ethical decision? Write pseudocode Create a logic-based decision system for autonomous driving with the specified rules.The bundle stores one      

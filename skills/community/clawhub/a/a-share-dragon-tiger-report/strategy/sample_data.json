@@ -1,0 +1,134 @@
+{
+  "_note": "演示数据（示意）。字段结构与 westock data_finance / data_kline 的**归一化后**形态一致，仅用于跑通 run_demo.py 与 generate_daily.py；真实运行必须从 westock MCP 取数，不得沿用此文件的数值。",
+  "_snapshot": "2026-09-11 收盘快照（示意）",
+  "_caliber_version": "v2",
+  "industries": [
+    {"code": "pt01801150", "name": "医药生物", "rank": 18.4, "vr": 1.28, "dispersion": 41.2, "note": "低位放量，政策端创新药审评加速"},
+    {"code": "pt01801740", "name": "机械设备", "rank": 31.7, "vr": 1.35, "dispersion": 63.8, "note": "分位偏高但放量明显，内部严重分化"},
+    {"code": "pt01801080", "name": "电子", "rank": 47.9, "vr": 1.42, "dispersion": 58.4, "note": "分位中位，算力链驱动"},
+    {"code": "pt01801230", "name": "计算机", "rank": 22.6, "vr": 0.86, "dispersion": 71.5, "note": "超低位但未放量 → 不入池"},
+    {"code": "pt01801030", "name": "基础化工", "rank": 12.1, "vr": 1.03, "dispersion": 34.9, "note": "深度超低位 + 弱放量"},
+    {"code": "pt01801760", "name": "国防军工", "rank": 9.8, "vr": 1.19, "dispersion": 44.1, "note": "低空经济与商业航天主题共振"},
+    {"code": "pt01801170", "name": "交通运输", "rank": 26.5, "vr": 0.94, "dispersion": 22.0, "note": "分位尚可但额比不足"}
+  ],
+  "candidates": [
+    {
+      "code": "sh600276", "name": "恒瑞医药", "sector": "医药生物",
+      "price": 62.40, "entry": 62.40, "stop": 56.20,
+      "rank": 18.4, "vr": 1.28, "avg_turnover_20d": 2860000000,
+      "listed_days": 4800, "pb": 7.85,
+      "annual_loss_years": [], "interim_yoy": 0.003, "prior_fy_yoy": 0.217,
+      "soe_background": false, "emerging_tech": true,
+      "top10_float_ratio": 0.612, "holder_count": 412000,
+      "deduct_nonrecurring": 4260000000,
+      "tech": 88, "flow": 74, "fund": 62, "cycle": 80, "fib": 76,
+      "note": "四层全通过；但 2026H1 归母同比 +0.3%（FY2025 +21.7%）属重大减分项"
+    },
+    {
+      "code": "sz300124", "name": "汇川技术", "sector": "机械设备",
+      "price": 58.10, "entry": 58.10, "stop": 52.30,
+      "rank": 21.0, "vr": 0.99, "avg_turnover_20d": 1980000000,
+      "listed_days": 3600, "pb": 5.42,
+      "annual_loss_years": [], "interim_yoy": -0.054, "prior_fy_yoy": 0.178,
+      "soe_background": false, "emerging_tech": true,
+      "top10_float_ratio": 0.485, "holder_count": 186000,
+      "deduct_nonrecurring": 2150000000,
+      "tech": 82, "flow": 71, "fund": 58, "cycle": 74, "fib": 70,
+      "note": "双卡点：额比 0.99×（差 0.01）+ 2026H1 −5.4% 转负（口径③切换后被否）"
+    },
+    {
+      "code": "sz300760", "name": "迈瑞医疗", "sector": "医药生物",
+      "price": 214.80, "entry": 214.80, "stop": 193.30,
+      "rank": 19.7, "vr": 1.12, "avg_turnover_20d": 1520000000,
+      "listed_days": 3100, "pb": 6.91,
+      "annual_loss_years": [], "interim_yoy": -0.054, "prior_fy_yoy": 0.062,
+      "soe_background": false, "emerging_tech": true,
+      "top10_float_ratio": 0.573, "holder_count": 98000,
+      "deduct_nonrecurring": 7800000000,
+      "tech": 79, "flow": 66, "fund": 55, "cycle": 68, "fib": 64,
+      "note": "技术面达标，但 2026H1 −5.4% 触发增速硬线"
+    },
+    {
+      "code": "sh603260", "name": "合盛硅业", "sector": "基础化工",
+      "price": 41.20, "entry": 41.20, "stop": 36.80,
+      "rank": 14.6, "vr": 1.06, "avg_turnover_20d": 620000000,
+      "listed_days": 2900, "pb": 1.18,
+      "annual_loss_years": [2025], "interim_yoy": 0.041, "prior_fy_yoy": 0.033,
+      "soe_background": false, "emerging_tech": false,
+      "top10_float_ratio": 0.702, "holder_count": 61000,
+      "deduct_nonrecurring": -30000000,
+      "tech": 76, "flow": 63, "fund": 38, "cycle": 58, "fib": 61,
+      "note": "归母 +3.24 亿但扣非 −0.30 亿，盈利质量存疑"
+    },
+    {
+      "code": "sh688287", "name": "观典防务", "sector": "国防军工",
+      "price": 0.37, "entry": 0.37, "stop": 0.30,
+      "rank": 2.9, "vr": 1.16, "avg_turnover_20d": 12000000,
+      "listed_days": 1500, "pb": 0.42,
+      "annual_loss_years": [2024, 2025], "interim_yoy": null, "prior_fy_yoy": null,
+      "soe_background": false, "emerging_tech": false,
+      "top10_float_ratio": 0.318, "holder_count": 42000,
+      "deduct_nonrecurring": -210000000,
+      "delisted": true,
+      "tech": 40, "flow": 30, "fund": 10, "cycle": 45, "fib": 50,
+      "note": "已退市（股价 0.37 元）→ L2.5 剔除；分位 2.9% / 额比 1.16× 是假信号"
+    },
+    {
+      "code": "sz300212", "name": "易华录", "sector": "计算机",
+      "price": 8.90, "entry": 8.90, "stop": 7.60,
+      "rank": 21.3, "vr": 2.34, "avg_turnover_20d": 480000000,
+      "listed_days": 4300, "pb": -2.71,
+      "annual_loss_years": [2023, 2024, 2025], "interim_yoy": -0.42, "prior_fy_yoy": -0.18,
+      "soe_background": true, "emerging_tech": true,
+      "top10_float_ratio": 0.401, "holder_count": 105000,
+      "deduct_nonrecurring": -1200000000,
+      "is_st": true,
+      "tech": 85, "flow": 88, "fund": 12, "cycle": 70, "fib": 66,
+      "note": "*ST、PB −2.71 净资产为负 → L2.5 剔除，计入不可交易清单"
+    },
+    {
+      "code": "sh601088", "name": "中国神华", "sector": "煤炭",
+      "price": 38.60, "entry": 38.60, "stop": 35.10,
+      "rank": 44.2, "vr": 1.08, "avg_turnover_20d": 890000000,
+      "listed_days": 6900, "pb": 1.62,
+      "annual_loss_years": [], "interim_yoy": 0.012, "prior_fy_yoy": 0.055,
+      "soe_background": true, "emerging_tech": false,
+      "top10_float_ratio": 0.845, "holder_count": 155000,
+      "deduct_nonrecurring": 42000000000,
+      "tech": 62, "flow": 58, "fund": 66, "cycle": 44, "fib": 52,
+      "note": "行业分位 44.2% 偏高，L1 不入池 —— 用来演示「L1 先拦」"
+    },
+    {
+      "code": "sz002230", "name": "科大讯飞", "sector": "计算机",
+      "price": 46.80, "entry": 46.80, "stop": 42.00,
+      "rank": 17.5, "vr": 1.21, "avg_turnover_20d": 1340000000,
+      "listed_days": 6200, "pb": 5.18,
+      "annual_loss_years": [2024], "interim_yoy": 0.086, "prior_fy_yoy": 0.243,
+      "soe_background": false, "emerging_tech": true,
+      "top10_float_ratio": 0.392, "holder_count": 268000,
+      "deduct_nonrecurring": 410000000,
+      "tech": 84, "flow": 69, "fund": 51, "cycle": 86, "fib": 72,
+      "note": "单年亏损（口径④减分项不否决）；中报 +8.6% 仅为上年度 +24.3% 的 35%（<50%）→ 重大减分"
+    },
+    {
+      "code": "sh600941", "name": "中国移动", "sector": "新一代通信网",
+      "price": 108.50, "entry": 108.50, "stop": 99.20,
+      "rank": 33.8, "vr": 0.92, "avg_turnover_20d": 1650000000,
+      "listed_days": 1700, "pb": 1.71,
+      "annual_loss_years": [], "interim_yoy": 0.038, "prior_fy_yoy": 0.052,
+      "soe_background": true, "emerging_tech": true,
+      "top10_float_ratio": 0.912, "holder_count": 148000,
+      "deduct_nonrecurring": 138000000000,
+      "tech": 58, "flow": 54, "fund": 78, "cycle": 72, "fib": 48,
+      "note": "「链」形态主题 → 按口径⑤跳过 L1 否决权，但仍需 L2 技术面达标"
+    }
+  ],
+  "context": {
+    "equity": 1000000,
+    "stage": "II",
+    "ice_point": false,
+    "limit_up_count": 63,
+    "broken_rate": 0.22,
+    "index_pct": -0.35
+  }
+}

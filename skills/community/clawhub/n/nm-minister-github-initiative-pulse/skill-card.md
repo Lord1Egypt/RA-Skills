@@ -1,45 +1,58 @@
-## Description: <br>
-Generates markdown digests and CSV exports for GitHub initiative health. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates markdown digests and CSV exports for GitHub initiative health
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers, maintainers, and project leads use this skill to turn tracker data and GitHub board metadata into initiative status digests, scorecards, blocker summaries, PR watchlists, and CSV-style exports for GitHub issues, pull requests, or Discussions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger words such as github, projects, reporting, status, and dashboards may invoke the skill unexpectedly. <br>
-Mitigation: Confirm the requested task is GitHub initiative reporting before using the generated templates or summaries. <br>
-Risk: Generated digests may summarize project, stakeholder, or issue details that should not be posted broadly. <br>
-Mitigation: Review and edit reports before pasting them into GitHub issues, pull requests, or Discussions. <br>
-Risk: Outdated tracker or GitHub Projects data can produce misleading completion, blocker, or ETA summaries. <br>
-Mitigation: Refresh tracker and GitHub data before generating stakeholder-facing status updates. <br>
+## Use Case:
 
+Project and engineering teams use this skill to summarize GitHub initiative progress, surface blockers and risks, and prepare status updates for issues, pull requests, or Discussions. It can also export initiative health metrics as CSV.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-minister-github-initiative-pulse) <br>
-- [claude-night-market minister plugin](https://github.com/athola/claude-night-market/tree/master/plugins/minister) <br>
-- [GitHub Comment Snippets](modules/github-comment-snippets.md) <br>
-- [Status Digest Blueprint](modules/status-digest.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with tables, checklists, GitHub comment snippets, and CSV export guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed before posting because they may summarize project or stakeholder information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: The `status` trigger could conflict with a built-in command in the host agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check for a command-name conflict in the target agent before enabling the skill.
+
+Risk: Tracker-derived or GitHub content may be stale or unsuitable for the intended audience when included in a published digest.
+
+Mitigation: Review the source data, linked issues and pull requests, and intended GitHub audience before publishing.
+
+Risk: The security scan was partial because a local reference could not be resolved.
+
+Mitigation: Review the skill and unresolved reference before installation or use.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-minister-github-initiative-pulse)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/minister)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, CSV, Text]
+
+**Output Format:** [Markdown digests and CSV exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Initiative status summaries, progress metrics, blockers, risks, and milestone information.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter and server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

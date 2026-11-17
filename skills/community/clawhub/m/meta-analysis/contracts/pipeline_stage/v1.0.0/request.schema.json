@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://medstatstar.skill/contracts/pipeline_stage/v1.0.0/request.schema.json",
+  "title": "Meta-Analysis Pipeline Stage Request",
+  "description": "per-stage pipeline 请求信封（Phase 0）。向后兼容旧 per-task 契约：旧字段 task/data/params/figure/query_origin/request_id/_debug/probe 仍可用且语义不变。新字段（pipeline/stage/stage_context/attachments/account_id/billing_token 等）均为 optional，旧 consumer 不带也能通过校验。",
+  "type": "object",
+  "properties": {
+    "contract_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "语义化版本（semver）。本地 adapter 强制写入；旧 consumer 可不带（向后兼容）。"
+    },
+    "schema": {
+      "type": "string",
+      "description": "信封类型标识，固定 'meta.pipeline.stage/v1'。用于区分旧 per-task 信封。"
+    },
+    "request_id": { "type": "string" },
+    "query_origin": {
+      "type": "string",
+      "pattern": "^(?:debug:)?sha256:[0-9a-f]{64}$",
+      "description": "调用发起源标识（sha256:<64hex>）。裸 POST 必带，格式 debug:sha256:<64hex>（可选 debug: 前缀）。匿名机器指纹，用于归因/限流/飞书，不含用户身份。"
+    },
+    "account_id": {
+      "type": "string",
+      "description": "（可选）付费账户标识（明文许可码/客户号）。务实版（受信/内部用户）使用；coze 端据其计量与配额。缺失 → legacy/未计量路径（向后兼容）。与 query_origin（匿名机器指纹）完全独立，不复用 sha 字段。"
+    },
+    "billing_token": {
+      "type": "string",
+      "description": "（可选）服务端签发的计费令牌（JWT/HMAC，含 account_id+quota+exp）。稳健版（真收费）使用，coze 验签后计费 + 强制配额/限流，客户端无法伪造他人账户。与 account_id 二选一；均缺失 → legacy 路径。"
+    },
+    "task": {
+      "type": "string",
+      "description": "计算层任务类型（见 coze_contract.md §3）。管线编排阶段可空或填语义 task（如 topic_selection）。"
+    },
+    "data": { "type": "object" },
+    "params": { "type": "object" },
+    "figure": { "type": "object" },
+    "probe": { "type": "boolean", "default": false },
+    "_debug": { "type": "boolean", "default": false },
+    "pipeline_id": { "type": "string" },
+    "pipeline": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "block": { "type": "string", "enum": ["A", "B", "C"] },
+        "cfg": { "type": "object" }
+      },
+      "required": ["block"]
+    },
+    "stage": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[ABC]\\d\\..+" },
+        "index": { "type": "integer", "minimum": 0 },
+        "total": { "type": "integer", "minimum": 1 },
+        "intent": {
+          "type": "string",
+          "enum": ["run", "resume", "retry", "human_callback"]
+        },
+        "prev_stage_id": { "type": ["string", "null"] }
+      },
+      "required": ["id", "index"]
+    },
+    "stage_context": {
+      "type": "object",
+      "properties": {
+        "human_decisions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "stage_id": { "type": "string" },
+              "action": { "type": "string", "enum": ["approved", "rejected", "edited"] },
+              "by": { "type": "string", "enum": ["user", "expert"] },
+              "at": { "type": "string", "format": "date-time" },
+              "note": { "type": "string" },
+              "payload": { "type": "object" }
+            },
+            "required": ["stage_id", "action"]
+          }
+        },
+        "tool_card_outputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "card_ref": { "type": "string" },
+              "need_tool": { "type": "string" },
+              "status": { "type": "string", "enum": ["ok", "error", "need_params"] },
+              "result": { "type": ["object", "string", "null"] }
+            },
+            "required": ["card_ref", "status"]
+          }
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "stage_id": { "type": "string" },
+              "type": { "type": "string" },
+              "ref": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "attachments": {
+      "type": "array",
+      "description": "上传至 coze 端的本地文件引用（如 Block A 文献全文 PDF）。每项已预先上传到 S3（经 request_upload tool_card 或本地直传），此处仅携带引用。optional —— 旧请求不带也能通过校验，与旧 per-task 契约完全兼容。",
+      "items": { "$ref": "#/$defs/AttachmentRef" }
+    }
+  },
+  "required": ["query_origin"],
+  "$defs": {
+    "AttachmentRef": {
+      "type": "object",
+      "description": "S3 托管的文件引用。上传时由本地生成（key/sha256/filename/size_bytes/mime），coze 端据 key 取；下载时 coze 端生成并附 url（预签名 GET），本地据此拉取。",
+      "properties": {
+        "storage": { "type": "string", "enum": ["s3"], "description": "存储后端，当前仅 s3。" },
+        "key": { "type": "string", "description": "S3 对象 key（coze 端命名空间内，如 pipeline/<pid>/uploads/<sha256>.pdf）。" },
+        "url": { "type": "string", "description": "预签名 URL。下载时由 coze 提供（GET）；上传后通常不需要，coze 端据 key 自取。" },
+        "filename": { "type": "string", "description": "原始文件名（含扩展名），用于本地落盘命名。" },
+        "mime": { "type": "string", "description": "MIME 类型，如 application/pdf。" },
+        "size_bytes": { "type": "integer", "minimum": 0, "description": "字节大小。" },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$", "description": "文件 SHA-256 hex，用于完整性校验与去重。" },
+        "put_url": { "type": "string", "description": "（可选）预签名 PUT URL，供本地直传；通常由 request_upload tool_card 提供。仅上传阶段临时有效。" },
+        "purpose": {
+          "type": "string",
+          "description": "（可选）文件用途/角色标识，用于一次上传多个文件时区分类别。常见值：literature_fulltext（文献全文）、extraction_template（提取模板）、roi_screenshot（ROI 截图）、manuscript_draft（初稿）、prisma_figure（PRISMA 图）、grade_table（GRADE 表）。coze 端据 purpose 路由/解析对应文件；不填则视为同类文件批量处理。optional，不影响向后兼容。"
+        }
+      },
+      "required": ["storage", "key", "filename", "mime", "size_bytes", "sha256"]
+    }
+  }
+}

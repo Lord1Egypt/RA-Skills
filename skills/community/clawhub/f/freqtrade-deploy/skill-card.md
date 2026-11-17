@@ -1,46 +1,61 @@
-## Description: <br>
-One-click deployment guidance for a Freqtrade quantitative trading bot, including dependency installation, spot-trading configuration, strategy setup, and WebUI monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一键部署Freqtrade量化交易机器人。支持现货交易策略，自动安装依赖、配置策略、设置WebUI监控。
 
-## Publisher: <br>
-[namogu](https://clawhub.ai/user/namogu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[namogu](https://clawhub.ai/user/namogu)
 
-## Use Case: <br>
-Developers and operators use this skill to install and configure a Freqtrade trading bot, connect exchange API keys, launch trading, and monitor activity through the WebUI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The trading bot deployment can expose the WebUI control interface and make live trading with real funds easy to start. <br>
-Mitigation: Review carefully before installing, start with dry-run or paper trading, set small stake limits, bind the WebUI to localhost or firewall it, and replace all WebUI/API secrets. <br>
-Risk: Exchange API keys can authorize real trades if permissions are broad or credentials are reused. <br>
-Mitigation: Use restricted exchange API keys with withdrawals disabled, enable IP allowlists where available, and keep API secrets out of shared files and logs. <br>
-Risk: Mutable remote installer commands can change behavior over time. <br>
-Mitigation: Review the installer before execution or pin the fetched code to a trusted version. <br>
+## Use Case:
 
+Developers and trading operators use this skill to deploy and configure a Freqtrade cryptocurrency trading bot with exchange API credentials, strategy selection, and WebUI monitoring.
 
-## Reference(s): <br>
-- [Freqtrade official documentation](https://www.freqtrade.io) <br>
-- [Freqtrade Chinese documentation](https://www.itrade.icu/zh/freqtrade/freqtrade) <br>
-- [Freqtrade strategy customization](https://www.freqtrade.io/en/stable/strategy-customization/) <br>
-- [Freqtrade repository](https://github.com/freqtrade/freqtrade) <br>
-- [Detailed usage guide](references/usage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes deployment steps, Freqtrade configuration snippets, WebUI access details, and operational commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Unsafe installation steps may execute remote or mutable code during deployment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, inspectable Freqtrade release in an isolated environment and review installation commands before execution.
+
+Risk: The trading bot can expose real funds if started with live exchange credentials and aggressive balance settings.
+
+Mitigation: Keep dry_run enabled until testing is complete, restrict exchange API keys to trading-only with withdrawals disabled, and avoid allocating most account balance to the bot.
+
+Risk: The WebUI/API can expose trading controls if bound beyond localhost or left with placeholder secrets.
+
+Mitigation: Bind the WebUI/API to localhost unless explicitly secured, replace all placeholder secrets, and restrict network access to trusted operators.
+
+## Reference(s):
+
+- [Freqtrade documentation](https://www.freqtrade.io)
+- [Freqtrade Chinese documentation](https://www.itrade.icu/zh/freqtrade/freqtrade)
+- [Freqtrade strategy customization](https://www.freqtrade.io/en/stable/strategy-customization/)
+- [Usage guide](references/usage.md)
+- [ClawHub skill page](https://clawhub.ai/namogu/skills/freqtrade-deploy)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Freqtrade install, API credential configuration, startup, WebUI, and operations guidance.]
+
+## Skill Version(s):
+
+1.0.4 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

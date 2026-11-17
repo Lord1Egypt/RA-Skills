@@ -1,44 +1,58 @@
-## Description: <br>
-A-Share Multi-Dimensional Quantitative Analysis MCP Server - broker research reports, AI news analysis, and stock comprehensive analysis <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A-Share Multi-Dimensional Quantitative Analysis MCP Server - broker research reports, AI news analysis, and stock comprehensive analysis
 
-## Publisher: <br>
-[Li-Evan](https://clawhub.ai/user/Li-Evan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[li-evan](https://clawhub.ai/user/li-evan)
 
-## Use Case: <br>
-External users and agents use this hosted MCP server to retrieve A-share broker research reports, AI-analyzed company news, and comprehensive stock analysis reports for China-market research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says users are asked to send a bearer token over plain HTTP. <br>
-Mitigation: Use only a verified HTTPS endpoint with clear data-handling terms before sending confidential prompts, portfolio details, or API tokens. <br>
-Risk: The security evidence reports hardcoded backend database credentials. <br>
-Mitigation: Treat the exposed credentials as a publisher security issue that should be removed and rotated before relying on the hosted service. <br>
-Risk: The skill returns financial analysis, sentiment, recommendations, and trading decisions. <br>
-Mitigation: Review outputs as decision-support information and validate them against independent financial sources before taking investment action. <br>
+## Use Case:
 
+External users and developers connect AI agents to a hosted MCP server for China A-share broker research reports, AI-analyzed news, and stock analysis reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Li-Evan/yanpan-finance) <br>
-- [Publisher profile](https://clawhub.ai/user/Li-Evan) <br>
-- [Hosted MCP endpoint](http://42.121.167.42:9800/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown-formatted text returned by MCP tools] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns research report excerpts, news summaries with sentiment and investment recommendations, and stock analysis sections based on company name, date range, limit, or stock code inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata) <br>
+Risk: Plaintext bearer-token setup guidance can expose API keys or sensitive financial queries in transit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the hosted endpoint only if you trust the operator and accept plaintext transport risk; prefer HTTPS before sending valuable credentials or sensitive queries.
+
+Risk: The submitted server code includes hardcoded default authentication and database administrator credentials.
+
+Mitigation: For self-hosting, remove hardcoded secrets, rotate exposed credentials, and use least-privilege database accounts.
+
+Risk: Broad query access and uncapped result sizes can increase data exposure or service abuse risk.
+
+Mitigation: Add scopes or rate limits, escape search input, and cap result limits before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/li-evan/skills/yanpan-finance)
+- [Publisher profile](https://clawhub.ai/user/li-evan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and text responses from MCP tools, plus JSON configuration guidance for setup]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool responses can include full-text research reports, AI news summaries, sentiment analysis, investment recommendations, and stock analysis reports.]
+
+## Skill Version(s):
+
+1.5.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

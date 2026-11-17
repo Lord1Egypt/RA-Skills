@@ -1,42 +1,61 @@
-## Description: <br>
-Helps users resolve conflicts among multiple goals and limited resources by producing task ordering, trade-off explanations, boundaries, and not-to-do lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps resolve priority conflicts across multiple goals and constrained resources by producing task ordering, trade-off rationale, boundaries, review points, and a not-to-do list.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Employees, planners, and team leads use this skill to turn competing goals, resource limits, and schedule or scope conflicts into a reviewable priority brief. It is intended for planning support, not for replacing personnel performance decisions or inventing resource commitments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local helper can read files supplied as input and write a selected output file, so sensitive personal or business data could be copied into the generated report. <br>
-Mitigation: Use only intended local input files, review the generated report before sharing it, and redact sensitive data before processing when needed. <br>
-Risk: Priority recommendations may be incomplete or misleading when the input omits goals, constraints, stakeholders, or decision authority. <br>
-Mitigation: Treat outputs as reviewable planning drafts and confirm missing information before making final trade-off decisions. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to turn goal lists, resource constraints, and conflict descriptions into a review-first priority plan for scheduling conflicts, limited resources, and scope control.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/priority-conflict-resolver) <br>
-- [README](README.md) <br>
-- [Structured specification](resources/spec.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Structured Markdown, with optional JSON output from the local helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are review-first priority and trade-off briefs based on user-provided local input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: The local script can read user-selected files or directories and can write to a user-selected output path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only intended input paths, choose output paths carefully, and use dry-run or stdout output when reviewing behavior.
+
+Risk: The skill ships dormant local audit modes that could broaden file inspection if the bundled configuration is changed.
+
+Mitigation: Review future changes to artifact/resources/spec.json before running artifact/scripts/run.py.
+
+Risk: Priority recommendations may be incomplete or misleading when inputs omit goals, constraints, or conflicts.
+
+Mitigation: Treat outputs as review drafts, confirm missing information, and keep final priority decisions under human review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/priority-conflict-resolver)
+- [README](artifact/README.md)
+- [Structured configuration](artifact/resources/spec.json)
+- [Output template](artifact/resources/template.md)
+- [Example output](artifact/examples/example-output.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown by default, with optional JSON from the local Python script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review-first output with task ordering, rationale, trade-offs, communication wording, review points, re-evaluation triggers, and missing-information prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

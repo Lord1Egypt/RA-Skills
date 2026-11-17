@@ -1,43 +1,58 @@
-## Description: <br>
-Gets global city weather forecasts using the free wttr.in API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides global city weather forecasts using the free wttr.in API.
 
-## Publisher: <br>
-[nickcen](https://clawhub.ai/user/nickcen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nickcen](https://clawhub.ai/user/nickcen)
 
-## Use Case: <br>
-Developers and agent users can request current weather forecasts for global cities, choose Celsius or Fahrenheit, and ask for concise, full, or JSON-formatted output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather lookups send entered locations to the external wttr.in service. <br>
-Mitigation: Use only locations appropriate to share with that service and avoid entering sensitive location data. <br>
-Risk: The artifact documents CLI usage but does not bundle the command implementation. <br>
-Mitigation: Confirm what provides the weather command before relying on the skill in an agent workflow. <br>
-Risk: The documented workflow depends on curl and may require jq for JSON output. <br>
-Mitigation: Install dependencies from a trusted package manager and verify they are available before use. <br>
+## Use Case:
 
+Developers and external users can use this skill to request weather forecasts for global cities by name, choose Celsius or Fahrenheit output, and optionally receive detailed or JSON-formatted results.
 
-## Reference(s): <br>
-- [wttr.in weather service](https://wttr.in) <br>
-- [ClawHub skill page](https://clawhub.ai/nickcen/weather-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; command results may be plain text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a location plus optional unit, full-detail, and JSON flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Location names are sent to wttr.in when forecasts are requested.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive private locations and review external data-sharing expectations before use.
+
+Risk: The documented setup installs curl and jq system packages.
+
+Mitigation: Install dependencies only in approved environments and review package-manager commands before execution.
+
+Risk: The artifact documentation is Chinese-only.
+
+Mitigation: Confirm command options and dependency requirements before delegating the skill to users who do not read Chinese.
+
+## Reference(s):
+
+- [ClawHub Weather Cli Skill Page](https://clawhub.ai/nickcen/skills/weather-cli)
+- [wttr.in Weather Service](https://wttr.in)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and optional plain-text or JSON weather output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for weather requests and jq for JSON mode; location queries are sent to wttr.in.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

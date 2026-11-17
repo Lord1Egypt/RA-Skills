@@ -1,43 +1,55 @@
-## Description: <br>
-A Xiaohongshu content and account management skill for publishing and editing notes, reviewing analytics, managing interactions, and updating account settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps creators and operators manage a Xiaohongshu account, including publishing and editing image or video notes, reviewing analytics, handling interactions, and updating account settings.
 
-## Publisher: <br>
-[xiaobingan](https://clawhub.ai/user/xiaobingan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaobingan](https://clawhub.ai/user/xiaobingan)
 
-## Use Case: <br>
-External creators, operators, and account managers use this skill to draft, publish, edit, analyze, and manage Xiaohongshu notes and account interactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help perform broad account-changing actions such as posting, deleting, replying, blacklisting, profile edits, and account linking. <br>
-Mitigation: Require per-action confirmation and review the affected note, comment, user, profile, or linked-account identifiers before execution. <br>
-Risk: The skill may access private messages and linked-account data while managing interactions and account settings. <br>
-Mitigation: Treat private messages, credentials, and linked-account details as sensitive and avoid exposing them outside the intended workflow. <br>
-Risk: Bulk publishing or bulk moderation can affect multiple notes, comments, or users at once. <br>
-Mitigation: Preview the full batch, keep default behavior to drafts when possible, and confirm scope before any irreversible or public action. <br>
+## Use Case:
 
+External creators, social media operators, and developers use this skill to prepare, publish, analyze, and maintain Xiaohongshu notes and account interactions. It is useful for workflows that need structured guidance or scripts for content publishing, comment handling, analytics review, and account profile updates.
 
-## Reference(s): <br>
-- [Xiaohongshu API Reference](references/API.md) <br>
-- [Xiaohongshu Content Guidelines](references/content_guidelines.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands, Python helper code, and JSON-like API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose account-changing actions that require valid Xiaohongshu credentials and user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can support actions that change public content or account state, including publishing, deleting, blocking users, private messaging, profile updates, and account binding.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before each state-changing action and verify the target account, note ID, comment ID, action scope, and publish or draft status.
+
+Risk: Account credentials, private messages, comments, and analytics may contain sensitive or private data.
+
+Mitigation: Treat credentials and account data as private, limit disclosure in agent responses, and avoid storing or sharing them unless the user explicitly requests it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaobingan/skills/openclaw-xiaohongshu)
+- [小红书 API 参考文档](references/API.md)
+- [小红书笔记内容规范](references/content_guidelines.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with API-style JSON examples and Python command-line script usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires valid Xiaohongshu account authentication; publishing, deletion, blocking, private-message, profile, and account-binding actions should be explicitly confirmed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

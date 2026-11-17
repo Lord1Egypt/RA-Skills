@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# fake pnpm — mirrors npm fixture views.
+set -u
+DATA="$(cd "$(dirname "$0")/../data" && pwd)"
+case "$*" in
+  "ls -g --depth=0") cat "$DATA/pnpm-ls.txt" ;;
+  "root -g") echo "$DATA/../prefix/pnpm-global/5/node_modules" ;;
+  *) exit 64 ;;
+esac

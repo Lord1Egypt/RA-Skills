@@ -1,0 +1,325 @@
+{
+  "page": {
+    "size": "A4",
+    "orientation": "portrait",
+    "margins_cm": {
+      "top": 2.54,
+      "bottom": 2.54,
+      "left": 2.8,
+      "right": 2.6
+    }
+  },
+  "styles": {
+    "Normal": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 12,
+      "bold": false,
+      "color_rgb": "#1A1A1A",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 0,
+      "space_after_pt": 0,
+      "first_line_indent_chars": 2,
+      "alignment": "justify"
+    },
+    "Heading 1": {
+      "font_cn": "黑体",
+      "font_en": "Arial",
+      "size_pt": 16,
+      "bold": true,
+      "color_rgb": "#000000",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 17,
+      "space_after_pt": 16,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Heading 2": {
+      "font_cn": "黑体",
+      "font_en": "Arial",
+      "size_pt": 14,
+      "bold": true,
+      "color_rgb": "#000000",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 13,
+      "space_after_pt": 13,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Heading 3": {
+      "font_cn": "黑体",
+      "font_en": "Arial",
+      "size_pt": 12,
+      "bold": true,
+      "color_rgb": "#000000",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 13,
+      "space_after_pt": 13,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Note": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 10.5,
+      "bold": false,
+      "color_rgb": "#595959",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 4,
+      "space_after_pt": 0,
+      "first_line_indent_chars": 0,
+      "alignment": "justify"
+    },
+    "Heading 4": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 12,
+      "bold": true,
+      "color_rgb": "#000000",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 8,
+      "space_after_pt": 6,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Heading 5": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 12,
+      "bold": true,
+      "color_rgb": "#333333",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 6,
+      "space_after_pt": 4,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Heading 6": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 12,
+      "bold": false,
+      "italic": true,
+      "color_rgb": "#333333",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 4,
+      "space_after_pt": 2,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    }
+  },
+  "table": {
+    "font_cn": "宋体",
+    "font_en": "Times New Roman",
+    "size_pt": 10.5,
+    "style": "three_line",
+    "header_bold": true,
+    "color_rgb": "#1A1A1A",
+    "header_color_rgb": "#000000",
+    "alignment": "center",
+    "zebra": false,
+    "fill_color": null
+  },
+  "figures": {
+    "caption_font_cn": "宋体",
+    "caption_size_pt": 9,
+    "caption_alignment": "center",
+    "width_cm": 15,
+    "max_width_cm": 17,
+    "min_width_cm": 11,
+    "alignment": "center",
+    "numbering": "per_chapter",
+    "image_spacing_before_pt": 6,
+    "image_spacing_after_pt": 12,
+    "image_border": true,
+    "image_border_color": "#C0C0C0",
+    "image_border_width_pt": 0.5,
+    "caption_spacing_before_pt": 4,
+    "caption_spacing_after_pt": 12,
+    "caption_color_rgb": "#595959"
+  },
+  "numbering_scheme": [
+    "一、",
+    "（一）",
+    "1.",
+    "（1）"
+  ],
+  "cleanup": {
+    "remove_fullwidth_spaces": true,
+    "normalize_empty_paragraphs": true
+  },
+  "design_language": {
+    "summary": "严肃、专业、简洁；仅以黑/白/灰为基调，不使用任何彩色（含深蓝、深红等均禁用），强调处一律用加粗或灰度层次区分，杜绝高饱和度与渐变。",
+    "palette": {
+      "ink": "#1A1A1A",
+      "heading": "#000000",
+      "note": "#595959"
+    },
+    "rule": "标题/正文/注释以字号与灰度层次区分；表格用三线表或全线表，表头加粗、无填色、无斑马纹、无彩色。"
+  },
+  "doc_type": "尽调报告类（法律 / 综合尽调）",
+  "standard": "锚定证监会《保荐人尽职调查工作准则》法律合规章节 + 《律师事务所从事证券法律业务管理办法》。无强制法定模板，按该权威框架重建内容骨架，视觉统一为正式报告语言。",
+  "structure": [
+    "封面 / 扉页",
+    "重要声明与免责",
+    "摘要（法律意见要点 + 重大瑕疵）",
+    "一、主体资格与历史沿革",
+    "二、股东与股权结构（附股权架构图）",
+    "三、业务与资质合规",
+    "四、重大资产与知识产权",
+    "五、重大合同与债权债务",
+    "六、劳动人事与社会保险",
+    "七、税务与财务合规",
+    "八、诉讼、仲裁与行政处罚",
+    "九、法律意见与整改建议",
+    "附件（股权架构图、资质清单、合同清单）"
+  ],
+  "common_diagrams": [
+    "股权架构图（层级图）",
+    "关联交易关系图（可选）"
+  ],
+  "manual_checks": [
+    "配色自检：全篇仅黑/白/灰，强调处用加粗或灰度层次区分，无任何彩色，无高饱和色",
+    "表格确为三线表（仅顶线/表头下细线/底线），无竖线、无填色、无斑马纹",
+    "字体层级：标题黑体加粗、正文宋体、注释灰色小字，三者区分清晰",
+    "封面：机构标识、报告名称、委托方、出具日期、密级/保密声明齐全",
+    "目录层级不超过三级，页码正确（Word 中按 F9 刷新域）",
+    "页眉含机构名称或报告简称，页脚页码格式统一",
+    "图表编号连续，图题在下、表题在上",
+    "免责声明 / 使用限制条款完整",
+    "股权架构图应完整呈现实际控制人→控股平台→目标公司→子公司控制链",
+    "主体资格、资质许可、诉讼仲裁等需列明核查依据与结论",
+    "法律意见应区分「无重大障碍」「需整改」「重大不确定性」三档"
+  ],
+  "header_footer": {
+    "header_text": "法律尽职调查报告",
+    "header_alignment": "right",
+    "header_font_cn": "宋体",
+    "header_font_en": "Times New Roman",
+    "header_size_pt": 9,
+    "header_color_rgb": "#595959",
+    "header_border": false,
+    "footer_mode": "page_of",
+    "footer_alignment": "center",
+    "footer_font_cn": "宋体",
+    "footer_font_en": "Times New Roman",
+    "footer_size_pt": 9,
+    "footer_color_rgb": "#595959",
+    "show_page_number": true,
+    "different_odd_even": false,
+    "header_client": "示例股份有限公司"
+  },
+  "cover": {
+    "title": "法律尽职调查报告",
+    "subtitle": "（2025年度）",
+    "client": "示例股份有限公司",
+    "issuer": "【尽调机构名称】",
+    "date": "【报告日期】",
+    "title_font_cn": "黑体",
+    "title_font_en": "Arial",
+    "title_size_pt": 22,
+    "subtitle_size_pt": 14,
+    "client_size_pt": 16,
+    "info_size_pt": 12,
+    "color_rgb": "#000000",
+    "client_in_title": true
+  },
+  "template_text": {
+    "disclaimer": "本法律尽职调查报告（以下简称“本报告”）仅供委托人就【交易目的】之决策参考使用，不得用于其他用途。\n\n本报告系基于目标公司提供的文件资料、公开披露信息及访谈记录，按照律师行业通行的尽职调查方法编制。我们对所引用资料的真实性、准确性、完整性不作独立核实，该等责任由资料提供方承担。\n\n本报告不构成《法律意见书》的替代，亦不构成本项目组就任何事项出具的正式法律意见。受调查范围、时间及资料所限，我们可能无法穷尽目标公司存在的全部法律风险；对于资料提供方予以保留或未予披露的部分，我们不承担相关责任。\n\n本报告因使用不当产生的责任与出具方无关。",
+    "preamble": "致：【委托方名称】\n\n【尽调机构名称】（以下简称“本项目组”）接受贵方委托，对【目标公司名称】（以下简称“公司”或“目标公司”）进行法律尽职调查，并出具本法律尽职调查报告。本次调查基于贵方拟进行【交易目的】之目的实施，调查范围为【调查期间】目标公司设立及存续、股权、治理、业务资质、资产、合同、税务、诉讼及劳动人事等法律事项。",
+    "abstractTitle": "摘要",
+    "abstract_guide": "摘要应概括目标公司法律状态与最重大的法律事项：主体资格有效性、股权清晰性、核心资产权属、重大诉讼/合规风险，以及是否构成交易的实质性障碍。",
+    "abstract_placeholder": "【示例】目标公司为依法设立并有效存续的股份有限公司，股权结构清晰，无重大权属争议；存在【X】项未决诉讼及【X】项行政处罚，预计不会对本次交易构成实质性障碍。详见正文。",
+    "body_sections": [
+      {
+        "title": "一、公司基本情况",
+        "guide": "说明主体资格、注册资本、实收资本、住所、法定代表人、经营范围。",
+        "subs": [
+          {
+            "title": "（一）主体资格与存续",
+            "guide": "核查营业执照、章程、历次年检/年报，确认有效存续。"
+          },
+          {
+            "title": "（二）历史沿革",
+            "guide": "核查设立、历次增资/股权转让、改制，关注出资瑕疵、代持、对赌。"
+          }
+        ]
+      },
+      {
+        "title": "二、股东及股权结构",
+        "guide": "说明股东构成、持股比例、实际控制人及股权权属清晰度。",
+        "table": {
+          "caption": "表2-1 股东及出资结构",
+          "headers": [
+            "股东名称",
+            "出资方式",
+            "出资额(万元)",
+            "持股比例",
+            "备注"
+          ],
+          "rows": [
+            [
+              "【股东一】",
+              "货币",
+              "【】",
+              "【】%",
+              "【】"
+            ],
+            [
+              "【股东二】",
+              "货币",
+              "【】",
+              "【】%",
+              "【】"
+            ]
+          ]
+        }
+      },
+      {
+        "title": "三、公司治理与组织机构",
+        "guide": "说明三会运作、董监高任职合规性及内部制度。"
+      },
+      {
+        "title": "四、业务与资质",
+        "guide": "说明主营业务所需特许经营/资质证照及其有效性。"
+      },
+      {
+        "title": "五、主要资产",
+        "guide": "说明土地、房产、知识产权等核心资产的权属与使用限制。"
+      },
+      {
+        "title": "六、重大合同与债权债务",
+        "guide": "梳理重大业务合同、融资/担保合同，关注违约与连带责任。"
+      },
+      {
+        "title": "七、关联交易与同业竞争",
+        "guide": "说明关联方、关联交易公允性及是否存在同业竞争。"
+      },
+      {
+        "title": "八、税务与财政补贴",
+        "guide": "说明适用税种、税收优惠合法性及财政补贴依据。"
+      },
+      {
+        "title": "九、诉讼、仲裁与行政处罚",
+        "guide": "全面核查未决及潜在争议、合规处罚及信用惩戒。"
+      },
+      {
+        "title": "十、劳动人事",
+        "guide": "说明用工合规、社保公积金缴纳、核心人员稳定性。"
+      },
+      {
+        "title": "十一、法律意见与建议",
+        "guide": "就重大法律事项提出整改建议与交易风险应对。"
+      }
+    ],
+    "closing": "（以下无正文）\n\n出具机构：【尽调机构名称】\n报告日期：【报告日期】"
+  }
+}

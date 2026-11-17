@@ -1,43 +1,58 @@
-## Description: <br>
-Detects when a human tags their AI familiar in someone else's X/Twitter thread, fetches full conversation context, infers intent, and crafts an appropriate reply. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects when a human tags their AI familiar in someone else's X/Twitter thread, fetches full conversation context, infers intent, crafts an appropriate reply, and handles X API reply-chain restrictions.
 
-## Publisher: <br>
-[m-lwatcher](https://clawhub.ai/user/m-lwatcher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[m-lwatcher](https://clawhub.ai/user/m-lwatcher)
 
-## Use Case: <br>
-Developers and agent users use this skill to inspect X/Twitter threads where the agent was tagged, infer the human's intent, draft concise replies, and optionally post through xurl after approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes background automation that can post replies, like tweets, call Gemini, run local workflows, and restart a gateway. <br>
-Mitigation: Disable or remove the background watcher and autonomous reply bot unless those actions are explicitly intended, and require human approval for every public X action and infrastructure restart. <br>
-Risk: The skill depends on xurl credentials and a Gemini API key, creating risk if credentials or routed conversation data are exposed. <br>
-Mitigation: Do not print credential files or verbose auth headers, keep credentials out of agent context, and document the Gemini data flow before enabling the automation. <br>
-Risk: The public skill description emphasizes assisted drafting while the bundled scripts add autonomous behavior. <br>
-Mitigation: Review the included scripts before installation and run any reply workflow in dry-run or manual approval mode until the operational behavior is understood. <br>
+## Use Case:
 
+External ClawHub users and their agents use this skill to inspect an X/Twitter thread where the user tagged the agent, infer the requested action, draft a concise reply, and handle posting or fallback options with user approval.
 
-## Reference(s): <br>
-- [X Tag Responder on ClawHub](https://clawhub.ai/m-lwatcher/x-tag-responder) <br>
-- [m-lwatcher publisher profile](https://clawhub.ai/user/m-lwatcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and drafted reply text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires xurl credentials for X/Twitter actions; public posting should stay behind explicit human approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Bundled scripts can perform broader background automation than the skill description suggests, including automatic likes, replies, and gateway restarts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remediate before installation; remove unrelated daemon behavior and keep posting actions in draft-only mode unless the user explicitly approves each action.
+
+Risk: Reply generation may send tweet context to Gemini before a public reply is posted.
+
+Mitigation: Disclose Gemini processing to the user and require confirmation before using generated text with any real X account.
+
+Risk: Shell-string command execution in bundled scripts can increase command execution risk.
+
+Mitigation: Replace shell-string execution with argument-array APIs and review all command inputs before enabling automation.
+
+## Reference(s):
+
+- [X Tag Responder ClawHub listing](https://clawhub.ai/m-lwatcher/skills/x-tag-responder)
+- [m-lwatcher publisher profile](https://clawhub.ai/user/m-lwatcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise draft reply text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft replies target X's short-form posting constraints and should be reviewed before public posting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

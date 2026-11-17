@@ -1,40 +1,53 @@
-## Description: <br>
-Convert text between common case styles such as camelCase, snake_case, kebab-case, PascalCase, uppercase, lowercase, Title Case, and related formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert text between different case styles, including camelCase, snake_case, kebab-case, PascalCase, uppercase, lowercase, Title Case, and related formats.
 
-## Publisher: <br>
-[ohernandez-dev-blossom](https://clawhub.ai/user/ohernandez-dev-blossom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ohernandez-dev-blossom](https://clawhub.ai/user/ohernandez-dev-blossom)
 
-## Use Case: <br>
-Developers, writers, and other agent users use this skill to reformat supplied text into a requested case style or compare all supported case transformations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive text supplied for conversion may appear in the agent conversation. <br>
-Mitigation: Avoid pasting highly sensitive text unless the user is comfortable having it processed in the conversation. <br>
-Risk: A requested case style may be ambiguous or unsupported. <br>
-Mitigation: List the supported case styles and ask the user to choose one when the target style is not recognized. <br>
+## Use Case:
 
+Developers, writers, and other users can use this skill to convert user-provided text into a requested naming or formatting style. It can return one requested style or show all supported case transformations for comparison.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ohernandez-dev-blossom/case-convert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown listing one or more converted strings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can return one requested case style or all 15 supported transformations; batch mode applies conversions line by line.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: A broad trigger phrase may activate the skill for uncommon case-format requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended target style when the requested format is ambiguous or not one of the listed styles.
+
+Risk: Case conversion can alter punctuation, separators, capitalization, or word boundaries in ways that may not fit every naming convention.
+
+Mitigation: Review converted output before using it in identifiers, filenames, commands, or published text.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ohernandez-dev-blossom/skills/case-convert)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Markdown list of converted case-style outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can output a single requested case style or all 15 supported transformations; batch mode applies transformations line by line.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

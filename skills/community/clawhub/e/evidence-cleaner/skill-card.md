@@ -1,42 +1,55 @@
-## Description: <br>
-Evidence Cleaner cleans raw search results, web snippets, OCR fragments, and similar material into standardized evidence by removing noise, duplicates, pseudo-entities, and off-topic or low-reliability sources before downstream freshness or narrative work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evidence Cleaner helps an agent clean raw search results, webpage snippets, OCR fragments, and similar source material into standardized evidence while reducing noise, duplicate content, pseudo-entities, and off-topic sources.
 
-## Publisher: <br>
-[z1one0415](https://clawhub.ai/user/z1one0415) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[z1one0415](https://clawhub.ai/user/z1one0415)
 
-## Use Case: <br>
-Researchers, analysts, and agent builders use this skill after search or document extraction to normalize noisy evidence into cleaner, auditable inputs for later analysis. It is useful when evidence volume is high, source quality is mixed, or snippets need standardized fields before downstream judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence marks the release as suspicious because a bundled review helper may run a nested reviewer with full sandbox bypass. <br>
-Mitigation: Review the skill before installing it in sensitive workspaces, trust the publisher and nested reviewer before using the helper, and prefer no-yolo execution unless full local access is explicitly intended. <br>
-Risk: The skill may drop, downrank, or flag evidence incorrectly when source quality, pseudo-entity checks, or relevance judgments are ambiguous. <br>
-Mitigation: Review removed and downranked items, keep warnings with downstream analysis, and cross-check important claims against trusted primary sources. <br>
+## Use Case:
 
+Developers, analysts, and agent builders use this skill to prepare noisy raw evidence for downstream analysis by stripping technical clutter, detecting pseudo-entities, deduplicating related snippets, downranking weak sources, and preserving audit warnings.
 
-## Reference(s): <br>
-- [Noise Pattern Reference](references/noise-patterns.md) <br>
-- [Clean, Downrank, and Drop Rules](references/clean-vs-drop-rules.md) <br>
-- [Evidence Cleaning Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [Structured JSON with cleaned evidence, removed noise, downranked items, warnings, and cleaning statistics.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves source URLs and titles while recording cleaning actions, removal reasons, downrank reasons, and warnings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Evidence may be dropped or downranked based on source-quality judgments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review removed_noise, downranked_items, and warnings before relying on the cleaned evidence.
+
+Risk: The workflow is written primarily in Chinese, which may affect operators who cannot review the rules directly.
+
+Mitigation: Use the skill only when the operator can understand or independently verify the cleaning rules and output.
+
+## Reference(s):
+
+- [Noise Pattern Recognition Guide](references/noise-patterns.md)
+- [Clean, Downrank, and Drop Rules](references/clean-vs-drop-rules.md)
+- [Evidence Cleaning Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON containing cleaned evidence, removed noise, downranked items, warnings, and cleaning statistics.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill is documentation-only and expects users to review dropped or downranked evidence before relying on the result.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

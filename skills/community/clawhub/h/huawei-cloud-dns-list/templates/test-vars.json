@@ -1,0 +1,48 @@
+{
+  "skill_name": "huawei-cloud-dns-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "ListPublicZones 操作与参数（语法）",
+      "command": "hcloud DNS ListPublicZones --cli-region={region} --help",
+      "expected": "KooCLI prints the ListPublicZones help (GET /v2/zones; query params limit/marker/id/name)",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "ListPrivateZones 操作与参数（语法）",
+      "command": "hcloud DNS ListPrivateZones --cli-region={region} --help",
+      "expected": "KooCLI prints the ListPrivateZones help (GET /v2/zones, type=private)",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "ListRecordSets 操作与参数（语法）",
+      "command": "hcloud DNS ListRecordSets --cli-region={region} --help",
+      "expected": "KooCLI prints the ListRecordSets help (GET /v2/recordsets; zone_type/type/limit/marker)",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-04",
+      "name": "脚本参数帮助（含 --output）",
+      "command": "python3 scripts/list_dns.py --help",
+      "expected": "argparse help printed including --output/-o, exit 0",
+      "type": "syntax",
+      "executor": "script"
+    },
+    {
+      "id": "TC-05",
+      "name": "离线单元测试",
+      "command": "python3 -m unittest discover -s tests",
+      "expected": "All offline unit tests pass (mocked hcloud + fake SDK): guard / commands / parsing / paging / filters / render / Markdown export / SDK fallback / main modes",
+      "type": "unit",
+      "executor": "script"
+    }
+  ],
+  "env_vars_required": ["以 HUAWEI/HW/HWC/CLOUD_SDK 开头的环境变量中匹配 AK/SK 的键值对"],
+  "notes": "只读操作（DNS ListPublicZones / ListPrivateZones / ListRecordSets，均为 GET），无创建/删除/更新域名或记录集的写风险。Markdown 导出只写本地文件（临时文件 + 原子重命名），不产生云资源。写意图守卫拦截变更操作，行为由离线单元测试覆盖。真实只读成功路径需要 IAM 授予 dns:zone:list / dns:recordset:list。"
+}

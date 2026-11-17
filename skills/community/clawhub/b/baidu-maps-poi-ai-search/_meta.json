@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn711ek2mjfvzcgjhhwcd9j2m98134hp",
-  "slug": "baidu-maps-poi-ai-search",
+  "name": "baidu-maps-poi-ai-search",
   "version": "1.0.0",
-  "publishedAt": 1774795959011
+  "description": "Baidu Maps POI AI Search - Search places, restaurants, hotels, attractions with natural language",
+  "source": "manual",
+  "installed_at": "2026-03-20",
+  "author": "custom"
 }

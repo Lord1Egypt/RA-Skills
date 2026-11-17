@@ -18,23 +18,62 @@ We chose the SKILL form because it brings these advantages:
 
 ## Quick Start
 
-### 1. Clone/Copy This Project
+### Option A — One-command install with `uv` (Recommended, no clone needed)
+
+Install the CLI as an isolated tool directly from the repository and scaffold a
+knowledge base anywhere — you never run `git clone` yourself:
+
+```bash
+# 1. Install uv once (https://docs.astral.sh/uv/)
+#    Windows:  powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+#    macOS/Linux: curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# 2. Install llm-wiki straight from GitHub (uv fetches it for you)
+uv tool install git+https://github.com/Nemo4110/llm-wiki.git
+# or run without installing:  uvx --from git+https://github.com/Nemo4110/llm-wiki.git llm-wiki --help
+
+# 3. Create a knowledge base in any directory
+llm-wiki init my-kb
+cd my-kb
+
+# 4. Drop materials into sources/ and let your agent ingest them
+llm-wiki status
+```
+
+`llm-wiki init` materializes `wiki/`, `sources/`, `AGENTS.md`, `CLAUDE.md`, and
+`config.yaml.example` from templates bundled inside the installed package — so
+there is no checkout to manage at all. It also creates or non-destructively extends
+`.gitignore` so private/local state such as `var/`, `temp/`, `.mcp.json`, and
+`config.yaml` cannot be committed accidentally.
+
+> Upgrading later is one command: `uv tool upgrade llm-wiki` (re-fetches the
+> latest commit from the default branch).
+
+### Option B — Clone and install from source
+
+For development or to hack on the SKILL itself:
 
 ```bash
 git clone https://github.com/Nemo4110/llm-wiki.git
 cd llm-wiki
 ```
 
-### 2. Install Dependencies (Optional)
+The CLI tool currently supports Python 3.12-3.13. The actively verified local development matrix is:
 
-The CLI tool requires Python 3.8+. Choose your preferred installation method:
+| Platform | Python | Status |
+|----------|--------|--------|
+| Windows | 3.13 | Verified |
+| Windows | 3.12 | Supported target |
+| Linux/macOS | 3.12-3.13 | Supported target, not the primary local verification platform |
+
+Python 3.8-3.11 are not part of the current support matrix. Choose your preferred installation method:
 
 #### Using uv (Recommended if you have uv)
 
 ```bash
-# Create virtual environment and install dependencies
+# Create virtual environment and install the package (editable)
 uv venv
-uv pip install -r src/requirements.txt --python .venv/Scripts/python.exe
+uv pip install -e .
 
 # Activate (Windows)
 .venv\Scripts\activate
@@ -46,7 +85,7 @@ source .venv/bin/activate
 
 ```bash
 # Create environment
-conda create -n llm-wiki python=3.11
+conda create -n llm-wiki python=3.13
 
 # Activate
 conda activate llm-wiki
@@ -65,13 +104,17 @@ python -m venv .venv
 source .venv/bin/activate  # Linux/macOS
 .venv\Scripts\activate     # Windows
 
-# Install dependencies
-pip install -r src/requirements.txt
+# Install the package (editable) so the llm-wiki command is available
+pip install -e .
 ```
 
 #### Verify Installation
 
 ```bash
+# Installed as a tool / package
+llm-wiki --help
+
+# Or, from a source checkout without installing
 python -c "from src.llm_wiki.core import WikiManager; print('✓ Installation successful')"
 ```
 
@@ -81,7 +124,6 @@ The project includes the following core dependencies (defined in `src/requiremen
 
 | Dependency | Version | Purpose | Notes |
 |------------|---------|---------|-------|
-| `click` | >=8.0.0 | CLI framework | - |
 | `pyyaml` | >=6.0 | YAML parsing | - |
 | `pymupdf` | >=1.25.0 | PDF processing | PyMuPDF, more friendly to CJK and complex layouts |
 | `numpy` | >=1.24.0 | Vector operations | Required for embedding retrieval |
@@ -96,7 +138,7 @@ The project includes the following core dependencies (defined in `src/requiremen
 
 **Pure Protocol Mode**: If you only want to use Claude Code's natural language commands (e.g. "please ingest this material") for plain text files, **no installation is required**. PyMuPDF is only needed when reading PDFs.
 
-### 3. Add Your First Material
+### 2. Add Your First Material
 
 ```bash
 # Copy any file into sources/
@@ -104,7 +146,7 @@ cp ~/Downloads/interesting-paper.pdf sources/
 cp ~/Notes/ideas.md sources/
 ```
 
-### 4. Let Claude Work
+### 3. Let Claude Work
 
 In Claude Code:
 
@@ -134,7 +176,7 @@ Use natural language to interact with the Agent:
 
 ### Agent Bridge (Recommended for Agents)
 
-After installing dependencies, Agents should use `scripts/agent-bridge.py` as the single tool-assisted entry point for checks, status, linking, merging, semantic query, and indexing:
+After installing dependencies, Agents should use `scripts/agent-bridge.py` as the single tool-assisted entry point for checks, status, linking, merging, atomic writes, semantic query, and indexing:
 
 ```bash
 # Verify runtime and wiki availability
@@ -151,7 +193,61 @@ python scripts/agent-bridge.py merge --source "NewPage" --target "OldPage" --str
 # Build/search embedding index when enabled in config.yaml
 python scripts/agent-bridge.py index
 python scripts/agent-bridge.py query "optimization methods" --semantic
+
+# Build a read-only Zotero metadata/tag plan from an MCP snapshot
+python scripts/agent-bridge.py zotero-plan --snapshot temp/zotero-snapshot.yaml \
+  --manifest-out temp/zotero-mutation-manifest.yaml
+
+# Refresh DOI/citation/publication state through Zotero MCP (dry-run by default)
+python scripts/agent-bridge.py zotero-refresh --collection-key A9VNJUPI \
+  --manifest-out temp/zotero-refresh.yaml
+
+# Verify a collection ingest allocation and its wiki provenance/page invariants
+python scripts/agent-bridge.py zotero-ingest-verify \
+  --snapshot temp/zotero-snapshot.yaml \
+  --allocation temp/zotero-allocation.yaml \
+  --report-out temp/zotero-ingest-report.yaml
+
+# Audit an explicitly authorized managed-tag/Related-item local write plan
+python scripts/agent-bridge.py zotero-writeback --plan temp/zotero-write-plan.yaml \
+  --action audit --report-out temp/zotero-write-audit.yaml
+
+# Plan controlled attachment relocation (root comes from config.yaml; apply needs explicit config + local authorization)
+python scripts/agent-bridge.py zotero-relocate
+
+# Apply relocation only after reviewing the dry-run report
+python scripts/agent-bridge.py zotero-relocate --apply --report-out temp/zotero-relocate.yaml
+
+# Apply multi-file writes (page + index + log) atomically; always dry-run first
+python scripts/agent-bridge.py apply-bundle temp/tx-bundle.yaml --dry-run
+python scripts/agent-bridge.py apply-bundle temp/tx-bundle.yaml
+
+# Inspect per-command capability contracts (write scope, network, dry-run)
+python scripts/agent-bridge.py capabilities
+
+# Print bounded recent-activity context (wiki/hot.md)
+python scripts/agent-bridge.py hot
 ```
+
+#### Zotero review manifests
+
+`agent-bridge.py zotero-plan` is a read-only bridge between wiki provenance and Zotero MCP. It compares an MCP-produced YAML/JSON snapshot with `sources_meta`, reports DOI/publication audits and managed-tag changes, and leaves all Zotero writes to the reviewed MCP workflow. With `--manifest-out`, it may write a deterministic `mode: review-only` YAML manifest only under `temp/`; the manifest is not directly executable, and tag-removal or relation candidates still require review before any Zotero MCP mutation.
+
+`agent-bridge.py zotero-refresh` is a one-shot enrichment worker inspired by Zotero plugin freshness workflows. It reads the collection through `54yyyu/zotero-mcp`, uses Crossref for DOI identity/publication candidates and OpenAlex for citation and open journal metrics, stores only a small ignored SQLite cache under `var/`, and defaults to dry-run. `--apply-safe` may incrementally upsert `LLM-Wiki ...` Extra keys, manage only `llm-wiki:*` status tags, and normalize an empty or conflicting `doi.org` URL; DOI candidates and preprint-to-published changes remain review-only. The first collection-wide apply can take minutes because Zotero writes remain serial and incremental; verification is batched after writes, and later runs normally become no-ops until freshness windows expire.
+
+`agent-bridge.py zotero-ingest-verify` compares a verified MCP snapshot with an explicit allocation ledger (example: `docs/examples/zotero-ingest-allocation.example.yaml`). It fails on missing/duplicate allocations, unexplained omissions, missing `sources_meta` bindings, invalid frontmatter, broken page invariants, control characters, trailing whitespace, or machine-specific private paths. Suspiciously identical three-page batch structure is advisory rather than an automatic failure.
+
+`agent-bridge.py zotero-writeback` is the temporary, explicitly authorized Zotero 10 loopback exception for additions that the current MCP cannot express. It accepts only a secret-free `mode: authorized-write` plan (example: `docs/examples/zotero-write-plan.example.yaml`), supports separate `audit`, `apply`, and `verify` phases, adds only `llm-wiki:*` tags, and ensures reviewed reciprocal Related pairs. It preserves existing tag objects, retries one version conflict from a fresh GET, and verifies every accepted PATCH. Metadata, collection membership, notes, tag removal, and Trash remain out of scope. `--memory-authorize` keeps the key in process memory only.
+
+`agent-bridge.py zotero-relocate` is the opt-in, verified attachment relocation workflow. It plans from `sources/zotero/metadata.yaml` bindings but reads the current attachment path from Zotero, never overwrites an existing target, and defaults to dry-run. Apply requires `zotero_relocation.enabled: true`, local Zotero authorization, and a path template/root that pass the capability and containment checks. It changes only the attachment's `linkMode`/`path`, preserves the original item key, updates private metadata and aliases after post-write verification, never edits notes, and leaves old sources in place unless explicitly configured for scoped cleanup. See `docs/ZOTERO_ATTACHMENT_RELOCATION.md` for the Phase 0 API gate and recovery rules.
+
+Configure the managed attachment root once in `config.yaml` under `zotero_relocation.root` rather than passing `--root` on every run; `config.yaml` is gitignored, so each machine keeps its own value. For cross-device sync, point `root` at a cloud-synced folder and use environment-variable interpolation to keep the path portable, e.g. `root: "${OneDrive}/zotero-attachments"` (Windows resolves `${OneDrive}`). When devices run different operating systems (e.g. Windows + Linux), absolute paths can never match; set `zotero_relocation.base_dir_relative: true` so Zotero stores portable `attachments:<relative>` paths, and point Zotero's **Linked Attachment Base Directory** at the synced root on each device. Note the sync caveat: a stored→linked conversion may stop Zotero File Sync from managing the file bytes, so every device must be able to reach the same synced root.
+
+#### Depth lint warnings
+
+`agent-bridge.py lint` also reports **Shallow Pages** as advisory warnings. The detector excludes `Related Pages` / `相关页面`, `Sources` / `来源`, and `Changelog` / `变更日志`, then combines normalized knowledge length, meaningful paragraph and section counts, local text-source volume, source count, and source-to-synthesis compression ratio. Findings do not change the command's exit behavior.
+
+Pages tagged `QRF` are skipped by default. A deliberately concise, already-reviewed page may set `lint_depth: skip` in frontmatter, but the exemption should be justified by a source-coverage audit. Passing the heuristic does not replace unit-level coverage review, and pages must never be padded mechanically just to cross a threshold. Thresholds and skipped tags are configurable under `lint.depth` in `config.yaml`.
 
 ### Legacy CLI Mode (Optional)
 
@@ -180,8 +276,8 @@ python -m src.llm_wiki --help
 
 ```text
 llm-wiki/
-├── CLAUDE.md           # ⭐ Core protocol: Agent behavior guidelines
-├── AGENTS.md           # Agent implementation guide and tool-selection protocol
+├── AGENTS.md           # ⭐ Canonical Agent protocol and tool-selection guide
+├── CLAUDE.md -> AGENTS.md # Relative symbolic link to the canonical protocol
 ├── README.md           # This file
 ├── docs/
 │   ├── README.cn.md    # Simplified Chinese README
@@ -206,7 +302,7 @@ llm-wiki/
 └── examples/           # Example wiki
 ```
 
-**About `sources/`**: Excluded from `.gitignore` by default to avoid repository bloat. Wiki only retains extracted knowledge; original files are managed separately (cloud storage, Zotero, etc.). See `sources/README.md` for tracking specific files.
+**About `sources/`**: Excluded from `.gitignore` by default to avoid repository bloat. Wiki only retains extracted knowledge; original files are managed separately (cloud storage, Zotero, etc.). See `sources/README.md` for tracking specific files. `sources/zotero/` is reserved for private Zotero bindings and local symlink aliases; do not commit it.
 
 ## How It Works
 
@@ -225,14 +321,16 @@ llm-wiki/
                     +----------+
 ```
 
+Ingest is adaptive rather than template-sized. Before drafting, the Agent maps the source's mechanisms, evidence, comparisons, implementation details, failure modes, and open questions; allocates each important unit; then chooses headings that fit the knowledge. A short source can produce a short page, while a long technical source should not collapse into a fixed summary card.
+
 ### Key Design
 
-1. **CLAUDE.md as Protocol**: Defines Agent behavior standards; anyone/any Agent can follow
+1. **AGENTS.md as Canonical Protocol**: Defines Agent behavior standards; `CLAUDE.md` is a relative symbolic link that keeps every Agent entry point identical
 2. **Pure Markdown**: No database, no lock-in, native git version control
 3. **Bidirectional Links**: `[[PageName]]` format, compatible with Obsidian
 4. **Cumulative Learning**: Each query can generate new wiki pages, knowledge continuously accumulates
 5. **Temporal Context**: Preserve publication, release, collection, and ingest dates so related works can be read in historical order
-6. **Zotero as Literature Layer**: Use existing Agent/Zotero skills to reach the Zotero library; llm-wiki keeps distilled Markdown knowledge
+6. **Zotero as Literature Layer**: Use the required `54yyyu/zotero-mcp` integration to reach the Zotero library; llm-wiki keeps distilled Markdown knowledge
 
 ## Query Mechanism
 
@@ -358,25 +456,11 @@ Claude: Created [[LoRA vs Full Fine-tuning]]
 2. Enjoy graph view, quick navigation, beautiful rendering
 3. Claude Code handles maintenance, Obsidian handles reading and thinking
 
-## Using Zotero Through Agent Skills
+## Using Zotero Through zotero-mcp
 
-llm-wiki does not need to become a Zotero client. When an Agent has a Zotero skill available, Zotero can remain the literature layer while llm-wiki remains the Markdown knowledge layer.
+Zotero remains the literature layer and llm-wiki remains the distilled Markdown knowledge layer. Discovery, reads, sources, metadata identity, and normal writes go through [`54yyyu/zotero-mcp`](https://github.com/54yyyu/zotero-mcp). The only supported direct exception is the temporary, explicitly authorized Zotero 10 loopback write path documented above and in the canonical protocol; alternate Zotero skills, direct database access, and direct Web API integrations remain outside the workflow.
 
-A recommended public source is the OpenAI Plugins Zotero skill: [plugins/zotero/skills/zotero](https://github.com/openai/plugins/tree/main/plugins/zotero/skills/zotero). Agents can use that skill, or an equivalent Zotero-capable skill, instead of adding a native Zotero client to llm-wiki.
-
-The current Zotero skill workflow can:
-
-- Probe or enable the local Zotero Desktop API.
-- Search local items, collections, and tags.
-- Export BibTeX/citations and insert citation keys into drafts.
-- Retrieve attachment file URLs or indexed full text when explicitly requested.
-- Import BibTeX/RIS records into Zotero after confirmation.
-
-For llm-wiki ingest, use Zotero results as source discovery and provenance: read Zotero metadata, full text, annotations, or attachment paths; synthesize wiki pages; and preserve identifiers such as `zotero_item_key`, `citation_key`, `library_id`, `zotero_uri`, DOI, and arXiv ID in frontmatter when available.
-
-This keeps `sources/` integrity intact. Zotero-managed originals can be referenced as source assets, but Agent-generated summaries must never be written into `sources/`. Arbitrary document upload/attachment management is not part of the verified llm-wiki workflow; leave document ownership to Zotero unless a Zotero-capable Agent explicitly supports that operation.
-
-See [docs/ZOTERO_MCP_INTEGRATION.md](docs/ZOTERO_MCP_INTEGRATION.md) for the earlier implementation analysis.
+See the canonical [Zotero MCP operating protocol](docs/ZOTERO_MCP_INTEGRATION.md) for setup and capability gates, read/write workflows, Zotero-backed ingest, private `sources/zotero/` bindings, provenance fields, and failure handling.
 
 ## Advanced Configuration
 
@@ -438,7 +522,7 @@ Detailed roadmap at [ROADMAP.md](ROADMAP.md).
 - [ ] Query result archiving as a guided workflow
 - [ ] Domain template packs and richer example wikis
 - [x] Agent Bridge unified entry point for other Agents
-- [x] Zotero literature workflow via external Agent/Zotero skills
+- [x] Zotero literature workflow via `54yyyu/zotero-mcp`
 - [x] Temporal metadata protocol and visible timeline anchors
 - [x] Obsidian compatibility by opening the `wiki/` directory directly
 - [x] Incremental embedding for faster retrieval

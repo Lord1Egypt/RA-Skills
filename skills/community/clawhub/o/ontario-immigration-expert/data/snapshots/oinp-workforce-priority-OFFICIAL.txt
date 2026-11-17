@@ -1,0 +1,137 @@
+Ontario Workforce Priority Stream — OFFICIAL scoring factors
+Source: https://www.ontario.ca/page/ontario-workforce-priority-stream (fetched 2026-08-21)
+KEY: broad occupational category = NOC major-group digit (0-9). TEER = second digit of 5-digit NOC.
+NOTE: official page does NOT declare a total max score; factor reference cap = 130 (not an official 'out of 130').
+NOTE: 1 official language = 5 points; 2 official languages (both CLB6+) = 10.
+
+Scoring factors
+Once you register an
+EOI
+under this stream, you will be assigned points based on the following factors.
+If you are invited to apply, you will be required to submit specific documents to support each scoring factor that you claimed and you had and received points for. Scoring factors are not the same as stream criteria. You must meet all criteria for this stream and provide the mandatory documents with your application.
+Refer to the
+document checklist
+for the Ontario Workforce Priority stream.
+Employment / labour market factors
+NOC
+TEER
+category
+This is prepopulated in the
+EOI
+if applying with a job offer or if you are applying as a self-employed physician.
+NOC
+TEER
+0 or 1 — 9 points
+NOC
+TEER
+2 or 3 — 6 points
+NOC
+TEER
+4 — 0 points
+NOC
+TEER
+5 — 0 points
+NOC
+broad occupational category
+This is prepopulated in the
+EOI
+if applying with a job offer or if you are applying as a self-employed physician.
+Occupational Category 3 — 10 points
+Occupational Category 7 — 8 points
+Occupational Category 2 — 6 points
+Occupational Category 0, 1, 4, 8, 9 — 4 points
+Occupational Category 5, 6 — 2 points
+Hourly wage
+This is prepopulated in the
+EOI
+if applying with a job offer. For self-employed physicians, the hourly wage scoring factor is not applicable.
+$40 per hour or higher — 15 points
+$35 to $39.99 per hour — 12 points
+$30 to $34.99 per hour — 10 points
+$25 to $29.99 per hour — 8 points
+$20 to $24.99 per hour — 5 points
+Less than $20 per hour — 0 points
+Ontario work experience
+Job offer applicants
+Over 24 months working full-time in job offer position — 18 points
+13 to 24 months working full-time in job offer position — 15 points
+6 to 12 months working full-time in job offer position — 12 points
+Less than 6 months working full-time in job offer position or not currently working in position — 0 points
+If the applicant has less than 6 months work experience in the job offer position, the scoring is as follows:
+Over 24 months working full-time (or part-time equivalent) in Ontario — 12 points
+13 to 24 months working full-time (or part-time equivalent) in Ontario — 9 points
+6 to 12 months working full-time (or part-time equivalent) in Ontario — 6 points
+Less than 6 months working full-time full-time (or part-time equivalent) in Ontario or not currently working in Ontario — 0 points
+Ontario work experience
+Self-employed physicians
+Over 24 months (2 years or more) cumulative medical practice in Ontario — 18 points
+13 months up to 24 months cumulative medical practice in Ontario — 15 points
+6 months up to 12 months cumulative medical practice in Ontario — 12 points
+Less than 6 months cumulative medical practice in Ontario — 0 points
+Canadian work experience: earnings history
+Based on a Notice of Assessment issued by the Canada Revenue Agency in the last 5 years.
+$70k or more earnings in a year — 8 points
+$50k to $69,999 — 6 points
+$30k to $49,999 — 4 points
+Under $30k earnings in a year — 0 points
+Legal status in Canada
+The work or study permit must confer legal status.
+With valid work permit — 10 points
+With valid study permit — 5 points
+Without valid work or study permit — 0 points
+Education
+Highest level of education
+Canadian credential or ECA required.
+Doctorate or degree in medicine, dentistry, veterinary medicine or optometry — 10 points
+Masters degree — 8 points
+University certificate or diploma above a bachelor level — 6 points
+Bachelors degree or equivalent — 6 points
+Ontario College Graduate Certificate — 5 points
+University certificate or diploma below a bachelor level — 5 points
+College, CEGEP or other non-university certificate or diploma that is not an Ontario College Graduate Certificate — 5 points
+Apprenticeship or trades certificate or diploma — 5 points
+Less than college or trade certificate — 0 points
+Number of Canadian education credentials
+Credential must be a post-secondary education credential from an
+eligible Canadian institution
+that takes at least one year to complete on a full-time basis.
+More than one Canadian credential — 10 points
+One Canadian credential — 5 points
+No Canadian credential — 0 points
+Language
+Official language ability (English or French)
+You must take an approved English or French language test, and you will receive points based on your lowest
+CLB
+level across the 4 language areas (reading, writing, listening and speaking).
+If you have taken both an English and French test, you will receive points based on the test with the higher
+CLB
+level. We do not accept Academic or One Skill Retake tests.
+CLB 9 or higher — 15 points
+CLB 8 — 12 points
+CLB 7 — 8 points
+CLB 6 — 4 points
+CLB 5 or lower — 0 points
+Knowledge of official languages
+To receive points for 2 official languages, you must have at least CLB 6 across the 4 language areas (reading, writing, listening and speaking) for both tests.
+2 official languages — 10 points
+1 official language — 5 points
+Regionalization
+Regional immigration: location of work location in job offer
+For
+EOI
+registrations with a job offer, regional immigration will be determined based on the location of the work location in the job offer entered by the employer.
+For self-employed physicians, regional immigration will be determined based on your Ontario practice address per your OHIP billing number registration.
+Northern Ontario — 15 points
+Eastern Ontario — 10 points
+Central Ontario outside GTA — 10 points
+Southwestern Ontario — 10 points
+Inside GTA (except Toronto) — 5 points
+Toronto — 0 points
+For regionalization scoring factors, the regions are defined as follows:
+Northern Ontario — includes the following Census Divisions: Muskoka, Haliburton, Nipissing, Parry Sound, Manitoulin, Sudbury, Greater Sudbury/Grand Sudbury, Timiskaming, Cochrane, Algoma, Thunder Bay, Rainy River and Kenora
+Eastern Ontario — includes the following Census Divisions: Frontenac, Hastings, Kawartha Lakes, Lanark, Leeds and Grenville, Lennox and Addington, Northumberland, Ottawa, Peterborough, Prescott and Russell, Prince Edward, Renfrew, Stormont, Dundas and Glengarry
+Central Ontario (excluding Greater Toronto Area) — includes the following Census Divisions: Dufferin, Grey, Simcoe, Waterloo and Wellington
+Southwestern Ontario — includes the following Census Divisions: Brant, Bruce, Chatham-Kent, Elgin, Essex, Haldimand-Norfolk, Hamilton, Huron, Lambton, Middlesex, Niagara, Oxford and Perth
+Inside Greater Toronto Area (except Toronto) — includes the regional municipalities of Durham, Halton, Peel and York
+Toronto — includes the City of Toronto
+Eligible Ontario and Canadian institutions

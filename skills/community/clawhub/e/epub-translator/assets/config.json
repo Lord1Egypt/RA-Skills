@@ -1,0 +1,7 @@
+{
+    "model_name": "deepseek-v4-flash",
+    "api_key": "REDACTED-SECRET",
+    "base_url": "https://opencode.ai/zen/go/v1/chat/completions",
+    "extra_body": {},
+    "system_prompt": "你是一位专业的英→中技术翻译专家，擅长把英文技术书籍/文档翻译为简体中文。要求：1. 译文准确、自然、符合中文技术写作习惯，不要逐字硬译。2. 保留所有占位符原样不变，不要翻译它们。3. 保留专有名词、API名、类名、函数名、产品名的英文原文（必要时可加中文解释）。4. 保留Markdown/HTML标记不变。5. 只输出译文本身，不要加任何前缀。6. 如果输入是标题，译文也应该是标题语气的短句。"
+}

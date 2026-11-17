@@ -1,42 +1,56 @@
-## Description: <br>
-Strips AI-generated writing patterns from user-provided text and rewrites it to sound more natural while preserving the original meaning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deslop, humanize, edit, or audit AI-sounding, robotic, generic, corporate, or ChatGPT-like copy while preserving the writer's voice.
 
-## Publisher: <br>
-[skyzer](https://clawhub.ai/user/skyzer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skyzer](https://clawhub.ai/user/skyzer)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to rewrite AI-sounding copy, pasted paragraphs, and drafted text so it reads more naturally. It is intended for editing style and tone, not for adding new facts or changing the argument. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may rewrite more aggressively than expected, changing tone, formality, or authorship cues. <br>
-Mitigation: Review edited text before use, especially in academic, legal, medical, financial, workplace, or brand-sensitive settings. <br>
-Risk: The artifact instructs the agent to allow opinions where appropriate, which could introduce unwanted voice or emphasis. <br>
-Mitigation: Compare the output against the source text and remove any opinion, emphasis, or stylistic choice that does not fit the intended context. <br>
+## Use Case:
 
+External users and developers use this skill to edit or audit AI-sounding prose while preserving the writer's meaning, factual claims, formality, and voice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/skyzer/deslop-the-copy) <br>
-- [Wikipedia: WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup) <br>
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Edited text or Markdown, with brief editing notes only when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves the user's intended meaning while changing style, tone, and phrasing] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Aggressive style rules may over-edit intentional voice, formatting, or punctuation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review rewritten text against the source for preserved meaning, factual claims, formality, and voice; use detection mode when findings are needed without rewriting.
+
+Risk: The zero-em-dash rule can alter quoted evidence in detection reports.
+
+Mitigation: Render any source em dash as [em dash] in quotations and verify the finding still reflects the original text.
+
+## Reference(s):
+
+- [Deslop evaluation](references/eval.md)
+- [ClawHub skill page](https://clawhub.ai/skyzer/skills/deslop-the-copy)
+- [Wikipedia WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup)
+- [Wikipedia Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Markdown, depending on whether the user requests an edit or a detection report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Edit mode returns only cleaned text unless commentary is requested; detection mode names patterns, quotes evidence, and gives concise fixes.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,26 @@
 {
-  "ownerId": "kn7ernykqw3sqpk3f74y7fpq8s8203w7",
-  "slug": "crypto-daily-report",
+  "name": "crypto-daily-report",
   "version": "1.0.0",
-  "publishedAt": 1772390890947
+  "description": "加密货币日报生成技能。采集快讯网站、价格、DeFi收益、Meme趋势、融资动态等数据，处理脱水后分三条消息发送到 Telegram。",
+  "author": "xiaoqi",
+  "created": "2026-03-02",
+  "triggers": ["日报", "出日报", "生成日报", "加密日报", "发日报"],
+  "scripts": {
+    "fetch_prices": "scripts/fetch_prices.py",
+    "fetch_meme_trending": "scripts/fetch_meme_trending.py",
+    "fetch_defi_yields": "scripts/fetch_defi_yields.py",
+    "fetch_news": "scripts/fetch_news.sh"
+  },
+  "dependencies": {
+    "external_skills": ["rootdata", "opennews", "opentwitter", "trading-research-1.0.0"],
+    "apis": [
+      "Binance REST API (public)",
+      "Binance Futures API (public)",
+      "GeckoTerminal API (public)",
+      "DeFiLlama Yields API (public)",
+      "6551.io OpenNews API (token required)",
+      "6551.io OpenTwitter API (token required)",
+      "RootData API (key required)"
+    ]
+  }
 }

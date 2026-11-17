@@ -1,45 +1,55 @@
-## Description: <br>
-Zustand state management for React and vanilla JavaScript. Use when creating stores, using selectors, persisting state to localStorage, integrating devtools, or managing global state without Redux complexity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zustand state management for React and vanilla JavaScript. Use when creating stores, using selectors, persisting state to localStorage, integrating devtools, or managing global state without Redux complexity.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill for concise Zustand guidance when creating stores, selecting state efficiently, using middleware, testing store behavior, and applying TypeScript patterns in React or vanilla JavaScript projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persist middleware can write sensitive application state to browser or custom storage if developers persist full state without review. <br>
-Mitigation: Use explicit persisted keys with partialize or a reviewed full-state snapshot, and exclude auth tokens, API keys, and other secrets. <br>
-Risk: Devtools middleware can expose state and action details in shipped bundles when left enabled without an environment gate. <br>
-Mitigation: Enable devtools only in development, or document and review the reason it remains enabled in production. <br>
-Risk: Generic trigger terms such as persist or devtools may activate the skill in non-Zustand JavaScript tasks. <br>
-Mitigation: Review the advice for Zustand relevance before applying code changes. <br>
+## Use Case:
 
+Developers use this skill for guidance and code examples when adding Zustand stores, selectors, middleware, persistence, testing patterns, and TypeScript typing to React or vanilla JavaScript applications.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/anderskev/skills/zustand-state) <br>
-- [Middleware](references/middleware.md) <br>
-- [Patterns & Best Practices](references/patterns.md) <br>
-- [TypeScript Patterns](references/typescript.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with TypeScript code examples and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory text and code snippets; it does not execute commands or access data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: Persisted Zustand state can expose secrets, auth tokens, or sensitive personal data if broad state snapshots are written to browser or device storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Persist only explicit non-sensitive keys with partialize or a reviewed full-state snapshot, and exclude secrets, auth tokens, and sensitive personal data.
+
+Risk: DevTools middleware in shipped bundles can expose state or action details outside a development workflow.
+
+Mitigation: Gate DevTools to development builds or document the production need during review before shipping.
+
+## Reference(s):
+
+- [Middleware](artifact/references/middleware.md)
+- [Patterns & Best Practices](artifact/references/patterns.md)
+- [TypeScript Patterns](artifact/references/typescript.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript and JavaScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; no hidden execution, data exfiltration, or agent persistence was reported by security evidence.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

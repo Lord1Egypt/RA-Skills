@@ -1,40 +1,53 @@
-## Description: <br>
-Sets up a Notion Second Brain page with Reading List and Inbox databases, creating them when missing or adopting existing ones. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-shot Notion workspace scaffolder that creates or adopts a Second Brain page and its Reading List and Inbox databases using Notion MCP tools.
 
-## Publisher: <br>
-[prakhar728](https://clawhub.ai/user/prakhar728) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[prakhar728](https://clawhub.ai/user/prakhar728)
 
-## Use Case: <br>
-Notion users and workspace admins use this skill to scaffold a minimal Second Brain workspace with a parent page, a Reading List database, and an Inbox database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move existing Notion databases named Reading List or Inbox under the Second Brain page without a separate confirmation step. <br>
-Mitigation: Before running setup, check for existing Reading List or Inbox databases and limit the Notion integration to the intended workspace area. <br>
-Risk: The skill modifies the connected Notion workspace by creating or adopting pages and databases. <br>
-Mitigation: Run it only in a workspace where these changes are intended and ensure the Notion integration has access only to appropriate pages. <br>
+## Use Case:
 
+Notion users and agent operators use this skill to set up a minimal Second Brain workspace structure. It creates or adopts the parent page and two child databases without adding methodology content or unrelated pages.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/prakhar728/notion-second-brain-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, Configuration] <br>
-**Output Format:** [Notion MCP tool calls followed by a concise Markdown status report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or adopts one Notion page and two child databases; may move existing Reading List or Inbox databases under Second Brain.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can create or move Notion workspace objects without asking the user to confirm the exact target location or existing databases first.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installation or execution, share the Notion integration only with the page where the Second Brain setup should live.
+
+Risk: Visible databases named Reading List or Inbox may be adopted or moved automatically.
+
+Mitigation: Avoid running the skill in a workspace where unrelated Reading List or Inbox databases are visible to the integration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/prakhar728/skills/notion-second-brain-setup)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Configuration, Text]
+
+**Output Format:** [Notion MCP tool calls followed by a plain-text setup report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or adopts one Notion page and two child databases; may move existing Reading List or Inbox databases under the Second Brain page.]
+
+## Skill Version(s):
+
+0.4.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,61 @@
-## Description: <br>
-A beginner-friendly OpenClaw learning pack that introduces ten core agent tools for file operations, search, shell execution, messaging, sub-agents, and Git workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A beginner-oriented OpenClaw learning pack that introduces 10 core skills for file operations, search, shell execution, user interaction, sub-agent workflows, and Git integration.
 
-## Publisher: <br>
-[tpc1009](https://clawhub.ai/user/tpc1009) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tpc1009](https://clawhub.ai/user/tpc1009)
 
-## Use Case: <br>
-External developers and agent builders use this pack to learn common OpenClaw tool patterns, including reading and writing files, searching text, running shell commands, asking users questions, sending messages, delegating work to sub-agents, and using Git-aware workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The pack exposes beginner users to powerful file, shell, messaging, and Git actions that can change a workspace or send information outside the current task. <br>
-Mitigation: Review the pack before installing it in real projects, do not paste passwords, tokens, or API keys into chat, and verify message destinations before sending information externally. <br>
-Risk: The Git-aware workflow includes automatic commit behavior that can capture unintended changes if the diff and staged files are not reviewed first. <br>
-Mitigation: Inspect the diff and explicitly decide which files should be staged before using the auto-commit helper. <br>
+## Use Case:
 
+Developers and new OpenClaw users use this pack to learn common agent tool patterns, including reading and editing files, searching workspaces, running shell commands, asking users questions, coordinating sub-agents, and using Git helpers.
 
-## Reference(s): <br>
-- [ClawHub Learning Pack](https://clawhub.ai/tpc1009/learning-pack) <br>
-- [Aider Git Integration](https://github.com/Aider-AI/aider) <br>
-- [Conventional Commits](https://www.conventionalcommits.org/) <br>
-- [Atlassian Git Workflows](https://www.atlassian.com/git/tutorials/comparing-workflows) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, YAML examples, and concise tool usage notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the selected tool skill and may include workspace file changes, command output, user prompts, or Git workflow guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/clawhub.yaml) <br>
+Risk: The pack includes broad command execution and file mutation guidance that can affect local workspaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installing and use workspace, file, and command permissions that match the task.
+
+Risk: The Git helper can stage all changes and create commits, which may include secrets or unrelated files.
+
+Mitigation: Check git status and review the diff before using auto-commit behavior, and do not push until the commit contents have been verified.
+
+Risk: Sub-agent and messaging workflows can pass along sensitive context if used carelessly.
+
+Mitigation: Do not paste access tokens, passwords, or API keys into chat, and review delegated task scope before sharing repository context.
+
+## Reference(s):
+
+- [Learning Pack on ClawHub](https://clawhub.ai/tpc1009/skills/learning-pack)
+- [QUICKSTART.md](QUICKSTART.md)
+- [Aider Git Integration](https://github.com/Aider-AI/aider)
+- [Conventional Commits](https://www.conventionalcommits.org/)
+- [Atlassian Git Workflows](https://www.atlassian.com/git/tutorials/comparing-workflows)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline YAML, shell, and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes examples for OpenClaw tool usage and a Git helper script that can create branches, inspect status, and commit staged workspace changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata and artifact clawhub.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

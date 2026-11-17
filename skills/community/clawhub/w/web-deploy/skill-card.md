@@ -1,38 +1,52 @@
-## Description: <br>
-Build, preview, and deploy websites, web apps, and APIs using Vercel, Railway, GitHub Pages, or local Canvas environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, preview, and deploy websites, web apps, and APIs using Vercel, Railway, GitHub Pages, or local Canvas environments.
 
-## Publisher: <br>
-[cmanfre7](https://clawhub.ai/user/cmanfre7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cmanfre7](https://clawhub.ai/user/cmanfre7)
 
-## Use Case: <br>
-Developers and engineers use Web Deploy to preview, deploy, configure, and roll back web projects across Vercel, Railway, GitHub Pages, and local Canvas environments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Deployment and rollback commands can change production services. <br>
-Mitigation: Verify the logged-in provider account, project, branch, and target environment, and require explicit approval before production deploys or rollbacks. <br>
-Risk: Domain, database, secret, package install, and git push commands can alter sensitive resources. <br>
-Mitigation: Confirm the exact target and values before running these commands, avoid exposing secrets, and require explicit approval for each sensitive change. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers use this skill as a compact deployment reference for previewing, configuring, deploying, rolling back, and assigning domains for web projects.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes deployment checklists, platform commands, rollback steps, and domain setup guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unpinned npm and npx command examples can resolve to changing tool versions.
+
+Mitigation: Use exact reviewed versions or project-local locked dev dependencies before running deployment commands.
+
+Risk: Production deployment, secret, rollback, and domain commands can modify live services.
+
+Mitigation: Review commands before execution and use least-privileged deployment accounts.
+
+## Reference(s):
+
+- [Web Deploy on ClawHub](https://clawhub.ai/cmanfre7/skills/web-deploy)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes deployment checklists, rollback commands, and platform-specific configuration examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

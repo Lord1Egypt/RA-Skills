@@ -1,43 +1,59 @@
-## Description: <br>
-Converts files and URLs, including documents, spreadsheets, slides, images, audio, web pages, and archives, into Markdown for agent analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts user-provided files and URLs, including documents, images, audio, web pages, and archives, into Markdown using Microsoft MarkItDown.
 
-## Publisher: <br>
-[sipingme](https://clawhub.ai/user/sipingme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sipingme](https://clawhub.ai/user/sipingme)
 
-## Use Case: <br>
-Developers and agents use this skill to convert user-provided files or URLs into Markdown so the resulting content can be read, summarized, searched, or analyzed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The converter reads local files and can fetch URLs supplied by the user, which may expose sensitive local content or internal URLs if used carelessly. <br>
-Mitigation: Run it only on user-approved file paths and URLs, and avoid internal or private URLs unless the user has confirmed that access is appropriate. <br>
-Risk: Optional plugins or OPENAI_API_KEY-backed features may send relevant content to external services. <br>
-Mitigation: Enable plugins or OpenAI-backed image description only when the plugin or external processing path is trusted and the user accepts the data handling implications. <br>
-Risk: Untrusted archives may contain unexpected files for conversion. <br>
-Mitigation: Use caution with archives from untrusted sources and review extracted Markdown before relying on it for downstream analysis. <br>
+## Use Case:
 
+Developers and agents use this skill to convert user-provided local files or URLs into Markdown for downstream LLM analysis and content processing.
 
-## Reference(s): <br>
-- [Microsoft MarkItDown](https://github.com/microsoft/markitdown) <br>
-- [All to Markdown on ClawHub](https://clawhub.ai/sipingme/all-to-markdown) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, files] <br>
-**Output Format:** [Markdown streamed to stdout or written to a file when the -o option is used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the markitdown CLI; optional plugins and OpenAI-backed image descriptions are available only when explicitly enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requires approving installation of an unpinned third-party Python package with broad optional dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review in a controlled environment, and pin or mirror dependencies where release governance requires reproducibility.
+
+Risk: Converting remote URLs or YouTube links sends network requests to user-provided destinations.
+
+Mitigation: Convert only URLs the user intentionally provides and apply local network egress controls for sensitive environments.
+
+Risk: Optional OpenAI/API or plugin features can send image or other content to external services when enabled.
+
+Mitigation: Enable API-backed and plugin features only for content approved for that processing path, and keep them disabled for local-only conversion.
+
+## Reference(s):
+
+- [All to Markdown on ClawHub](https://clawhub.ai/sipingme/skills/all-to-markdown)
+- [sipingme publisher profile](https://clawhub.ai/user/sipingme)
+- [Microsoft MarkItDown](https://github.com/microsoft/markitdown)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files]
+
+**Output Format:** [Markdown emitted to stdout or written to a Markdown file when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the markitdown CLI; remote URL conversion uses network access, and optional OpenAI/API or plugin features require explicit enablement.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter/config list 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Generate standardized git commit messages in Conventional Commits format with required type, project-module scope, subject, optional body, and breaking-change guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate standardized git commit messages following Conventional Commits format, including team conventions for type prefixes, module scopes, subject length, and breaking change documentation.
 
-## Publisher: <br>
-[0xtresser](https://clawhub.ai/user/0xtresser) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xtresser](https://clawhub.ai/user/0xtresser)
 
-## Use Case: <br>
-Developers and agents use this skill to draft consistent git commit messages or commit proposals that follow team conventions for type prefixes, real module scopes, concise subjects, optional explanatory bodies, and breaking-change footers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A generated commit message may misstate the intent, scope, or breaking-change impact of the actual diff. <br>
-Mitigation: Review the final commit message against the staged changes before accepting or using it. <br>
-Risk: When an agent proposes an actual git commit command, it may commit unintended files or use an unreviewed message. <br>
-Mitigation: Check git status and review any proposed git command before approving execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/0xtresser/git-cmt-helper) <br>
-- [Publisher profile](https://clawhub.ai/user/0xtresser) <br>
-- [Project Modules](references/modules.md) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to draft or validate git commit messages that follow Conventional Commits and project-specific module scopes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text commit message with optional git commit command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commit subjects are constrained to 72 characters including type and scope; scopes should come from the project module list.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated commit messages may be inaccurate or omit important context from the actual code change.
+
+Mitigation: Review each generated commit message before committing, as recommended by the security guidance.
+
+Risk: The static module scope list may not match every repository that installs the skill.
+
+Mitigation: Confirm the chosen scope against the project modules reference or update the scope list for the target repository.
+
+## Reference(s):
+
+- [Project Modules](references/modules.md)
+- [ClawHub skill page](https://clawhub.ai/0xtresser/skills/git-cmt-helper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with Conventional Commits examples and inline git commit guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commit subjects are constrained to 72 characters including the type and scope prefix.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

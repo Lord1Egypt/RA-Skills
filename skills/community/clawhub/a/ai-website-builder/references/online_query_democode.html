@@ -1,0 +1,287 @@
+<style>
+.oq-form-wrap{max-width:560px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;color:#333;}
+.oq-title{font-size:18px;margin:0 0 6px;font-weight:600;}
+.oq-desc{font-size:13px;color:#888;margin:0 0 12px;line-height:1.5;}
+.oq-notice{padding:10px 12px;border-radius:6px;margin-bottom:12px;font-size:13px;}
+.oq-notice-wait{background:#fff7e6;color:#d46b08;}
+.oq-notice-end,.oq-notice-close{background:#fff1f0;color:#cf1322;}
+.oq-form .oq-row{display:flex;align-items:flex-start;margin-bottom:14px;}
+.oq-link{width:30px;flex:none;line-height:36px;color:#999;font-size:13px;}
+.oq-field{flex:1;display:flex;align-items:flex-start;}
+.oq-label{width:96px;flex:none;line-height:36px;font-size:13px;color:#555;}
+.oq-input{flex:1;height:36px;padding:0 10px;border:1px solid #d9d9d9;border-radius:6px;font-size:14px;box-sizing:border-box;outline:none;}
+.oq-input:focus{border-color:#1677ff;}
+.oq-phone-wrap{flex:1;display:flex;flex-direction:column;gap:8px;}
+.oq-phone{display:flex;gap:8px;}
+.oq-phone .oq-input{flex:1;}
+.oq-smsbtn{flex:none;height:36px;padding:0 14px;border:none;border-radius:6px;background:#1677ff;color:#fff;cursor:pointer;font-size:13px;white-space:nowrap;}
+.oq-smsbtn:disabled{background:#bae0ff;cursor:not-allowed;}
+.oq-smscode{width:100%;}
+.oq-hint{margin-left:8px;line-height:36px;font-size:12px;color:#bbb;flex:none;}
+.oq-actions{margin-top:6px;padding-left:126px;}
+.oq-submit{height:40px;padding:0 30px;border:none;border-radius:6px;background:#1677ff;color:#fff;font-size:15px;cursor:pointer;}
+.oq-submit:hover{background:#0958d9;}
+.oq-result{margin-top:16px;}
+/* 图形验证码弹窗 */
+.oq-captcha-mask{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;z-index:9999;}
+.oq-captcha-box{width:300px;background:#fff;border-radius:10px;padding:20px;box-shadow:0 8px 30px rgba(0,0,0,.2);}
+.oq-captcha-title{font-size:16px;margin-bottom:14px;font-weight:600;}
+.oq-captcha-imgrow{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.oq-captcha-img{height:42px;border:1px solid #eee;border-radius:4px;cursor:pointer;}
+.oq-captcha-refresh{color:#1677ff;font-size:13px;cursor:pointer;}
+.oq-captcha-input{width:100%;height:38px;padding:0 10px;border:1px solid #d9d9d9;border-radius:6px;font-size:14px;box-sizing:border-box;margin-bottom:16px;outline:none;}
+.oq-captcha-input:focus{border-color:#1677ff;}
+.oq-captcha-btns{display:flex;gap:10px;justify-content:flex-end;}
+.oq-captcha-cancel,.oq-captcha-confirm{height:34px;padding:0 16px;border-radius:6px;font-size:14px;cursor:pointer;}
+.oq-captcha-cancel{border:1px solid #d9d9d9;background:#fff;color:#555;}
+.oq-captcha-confirm{border:none;background:#1677ff;color:#fff;}
+</style>
+{% set  record = FnGetOnlineQuery(46,'list') %}
+<div class="oq-form-wrap">
+    <div class="oq-head">
+        <h2 class="oq-title">{{ record.Name|default('') }}</h2>
+        {% if record.Desc %}
+        <p class="oq-desc">{{ record.Desc }}</p>
+        {% endif %}
+    </div>
+
+    {# ---- 状态提示 ---- #}
+    {% if record.IsCanQuery == 2 %}
+    <div class="oq-notice oq-notice-wait">查询尚未开始</div>
+    {% elseif record.IsCanQuery == 0 %}
+    <div class="oq-notice oq-notice-end">查询已截止</div>
+    {% elseif record.IsCanQuery == -1 %}
+    <div class="oq-notice oq-notice-close">查询已关闭</div>
+    {% endif %}
+
+    {% if record.IsCanQuery == 1 %}
+    <form class="oq-form" method="post" action="{{ record.FormAction|default('/index.php?c=Front/OnlineQuery&a=queryData&type=json') }}" id="OnlineQueryForm{{ record.ID }}">
+        <input type="hidden" name="QueryID" value="{{ record.ID }}"/>
+        <input type="hidden" name="Type" value="{{record.Type}}"/>
+        <input type="hidden" name="vCode" value=""/>
+
+        {% for cond in record.Condition %}
+        <div class="oq-row">
+            {% if not loop.first %}
+            <span class="oq-link">
+                {% if cond.filter == 1 %}且{% else %}或{% endif %}
+            </span>
+            {% endif %}
+
+            <div class="oq-field">
+                <label class="oq-label">{{ cond.field|default(cond.value) }}</label>
+
+                {% if cond.valitype == 1 %}
+                {# 手机号 + 短信验证码 #}
+                <div class="oq-phone-wrap">
+                    <div class="oq-phone">
+                        <input type="tel" class="oq-input" name="{{ cond.value }}"
+                               placeholder="{{ cond.tips|default('请输入手机号') }}" maxlength="11"/>
+                        <button type="button" class="oq-smsbtn" data-field="{{ cond.value }}">获取验证码</button>
+                    </div>
+                    <input type="text" class="oq-input oq-smscode" name="{{ cond.value }}_vCode"
+                           placeholder="请输入短信验证码" maxlength="6"/>
+                </div>
+                {% else %}
+                <input type="text" class="oq-input" name="{{ cond.value }}"
+                       placeholder="{{ cond.tips|default('') }}"/>
+                {% endif %}
+
+                {% if cond.matchtype == 1 %}
+                <span class="oq-hint">模糊匹配</span>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="oq-actions">
+            <button type="submit" class="oq-submit">{{ record.BtnName|default('查询') }}</button>
+        </div>
+    </form>
+    {% endif %}
+
+    {# JSON方式查询结果注入容器 #}
+    <div class="oq-result" id="oqResult"></div>
+
+	{# 非JSON方式显示查询结果 #}
+	{% if request.get.getOnlineQueryResult %}
+		{% set  list = FnGetOnlineQueryResult(46) %}
+		{% if list is iterable %}
+			{% for row in list %}
+				<div class="record">
+					{% for field, value in row %}
+						{{ field }}: {{ value }}<br>
+					{% else %}
+						无数据
+					{% endfor %}
+				</div>
+			{% endfor %}
+		{% elseif list %}
+			查询出错了：{{list}}
+		{% else %}
+			无数据
+		{% endif %}
+	{% endif %}
+
+    {# ---- 图形验证码弹窗 ---- #}
+    <div class="oq-captcha-mask" id="oqCaptchaMask">
+        <div class="oq-captcha-box">
+            <div class="oq-captcha-title">图形验证码</div>
+            <div class="oq-captcha-imgrow">
+                <img class="oq-captcha-img" id="oqCaptchaImg" src="" alt="验证码" title="点击刷新"/>
+                <span class="oq-captcha-refresh" id="oqCaptchaRefresh">换一张</span>
+            </div>
+            <input class="oq-captcha-input" id="oqCaptchaInput" placeholder="请输入图形验证码" maxlength="4" autocomplete="off"/>
+            <div class="oq-captcha-btns">
+                <button type="button" class="oq-captcha-cancel" id="oqCaptchaCancel">取消</button>
+                <button type="button" class="oq-captcha-confirm" id="oqCaptchaConfirm">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    (function () {
+        var formId = 'OnlineQueryForm{{ record.ID }}';
+        var formAction = '{{ record.FormAction|default('/index.php?c=Front/OnlineQuery&a=queryData&type=json') }}';
+        var captchaUrl = '{{ CaptchaUrl|default('/index.php?c=validatecode') }}';
+        var smsUrl = '{{ SmsUrl|default('/index.php?c=Front/OnlineQuery&a=sendsmsvcode') }}';
+        var form = document.getElementById(formId);
+        if (!form) { return; }
+
+        var mask = document.getElementById('oqCaptchaMask');
+        var img = document.getElementById('oqCaptchaImg');
+        var input = document.getElementById('oqCaptchaInput');
+        var resultEl = document.getElementById('oqResult');
+
+        function escapeHtml(s) {
+            return String(s == null ? '' : s)
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+        function isImageUrl(s) {
+            var lower = String(s).toLowerCase();
+            if (lower.indexOf('http://') !== 0 && lower.indexOf('https://') !== 0) { return false; }
+            var dot = lower.lastIndexOf('.');
+            if (dot === -1) { return false; }
+            var ext = lower.substring(dot + 1);
+            return ext === 'png' || ext === 'jpg' || ext === 'jpeg' || ext === 'gif' || ext === 'webp' || ext === 'bmp' || ext === 'svg';
+        }
+        function renderCell(val) {
+            if (val === null || val === undefined || val === '') { return '<span class="oq-cell-empty">—</span>'; }
+            var s = String(val);
+            if (isImageUrl(s)) {
+                return '<a href="' + escapeHtml(s) + '" target="_blank" rel="noopener">'
+                     + '<img class="oq-cell-img" src="' + escapeHtml(s) + '" alt=""/></a>';
+            }
+            return escapeHtml(s);
+        }
+        function buildResultTable(list) {
+            if (!list || !list.length) {
+                return '<div class="oq-result-empty">未查询到相关结果</div>';
+            }
+            var headers = [], i, k, obj;
+            for (i = 0; i < list.length; i++) {
+                obj = list[i];
+                if (!obj || typeof obj !== 'object') { continue; }
+                for (k in obj) {
+                    if (obj.hasOwnProperty(k) && headers.indexOf(k) === -1) { headers.push(k); }
+                }
+            }
+            if (!headers.length) {
+                return '<div class="oq-result-empty">未查询到相关结果</div>';
+            }
+            var html = '<table class="oq-result-table"><thead><tr>', h;
+            for (h = 0; h < headers.length; h++) { html += '<th>' + escapeHtml(headers[h]) + '</th>'; }
+            html += '</tr></thead><tbody>';
+            for (i = 0; i < list.length; i++) {
+                obj = list[i] || {};
+                html += '<tr>';
+                for (h = 0; h < headers.length; h++) { html += '<td>' + renderCell(obj[headers[h]]) + '</td>'; }
+                html += '</tr>';
+            }
+            html += '</tbody></table>';
+            return html;
+        }
+
+        function loadCaptcha() {
+            var sep = captchaUrl.indexOf('?') > -1 ? '&' : '?';
+            img.src = captchaUrl + sep + 't=' + Date.now();
+            input.value = '';
+        }
+
+        // AJAX 提交
+        function doSubmit() {
+            var fd = new FormData(form);
+            fetch(formAction, { method: 'POST', body: fd })
+                .then(function (r) { return r.json(); })
+                .then(function (d) {
+                    if (d && d.success) {
+                        resultEl.innerHTML = buildResultTable(d.list);
+                        if (resultEl.scrollIntoView) { resultEl.scrollIntoView({ behavior: 'smooth' }); }
+                    } else {
+                        alert(d && d.msg ? d.msg : '查询失败');
+                    }
+                })
+                .catch(function () { alert('请求失败，请稍后重试'); });
+        }
+
+        // 提交 -> 弹出图形验证码
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            loadCaptcha();
+            mask.style.display = 'flex';
+            input.focus();
+        });
+
+        // 刷新 / 取消
+        document.getElementById('oqCaptchaRefresh').addEventListener('click', loadCaptcha);
+        img.addEventListener('click', loadCaptcha);
+        document.getElementById('oqCaptchaCancel').addEventListener('click', function () {
+            mask.style.display = 'none';
+        });
+
+        // 确定 -> 写入 vCode 并真正提交
+        document.getElementById('oqCaptchaConfirm').addEventListener('click', function () {
+            var code = input.value.trim();
+            if (!code) { alert('请输入图形验证码'); input.focus(); return; }
+            form.querySelector('input[name="vCode"]').value = code;
+            mask.style.display = 'none';
+			if ("{{record.Type}}" === "json") {
+				doSubmit(); //查询结果方式是JSON时，采用fetch提交表单获取结果JSON并用JS渲染结果
+			} else {
+				form.submit(); //查询结果方式是非JSON时，在表单的action属性指向的页面中显示结果
+			}
+        });
+
+        // 短信验证码：获取按钮（仅 valitype==1 时出现）
+        var smsBtn = form.querySelector('.oq-smsbtn');
+        if (smsBtn) {
+            smsBtn.addEventListener('click', function () {
+                var field = smsBtn.getAttribute('data-field');
+                var phoneInput = form.querySelector('input[name="' + field + '"]');
+                var phone = phoneInput ? phoneInput.value.trim() : '';
+                if (!/^1\d{10}$/.test(phone)) {
+                    alert('请输入正确的手机号');
+                    if (phoneInput) { phoneInput.focus(); }
+                    return;
+                }
+                fetch(smsUrl + (smsUrl.indexOf('?') > -1 ? '&' : '?') + 'mobile=' + encodeURIComponent(phone))
+                    .then(function (r) { return r.json(); })
+                    .then(function (d) {
+                        if (d && d.success) { alert('验证码已发送'); startSmsCountdown(smsBtn); }
+                        else { alert((d && d.msg) ? d.msg : '发送失败'); }
+                    })
+                    .catch(function () { alert('发送失败，请稍后重试'); });
+            });
+        }
+
+        function startSmsCountdown(btn) {
+            var left = 60, txt = btn.textContent, timer = setInterval(function () {
+                left--; btn.textContent = left + 's后重试';
+                if (left <= 0) { clearInterval(timer); btn.disabled = false; btn.textContent = txt; }
+            }, 1000);
+            btn.disabled = true;
+        }
+    })();
+    </script>

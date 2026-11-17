@@ -1,0 +1,37 @@
+# medical-device-intl-business
+
+> 本文件是 AI 可读的技能索引（llms.txt 惯例）。AI 代理优先读 `SKILL.md`；人类看 `README.md`。
+
+## Purpose / 一句话定位
+
+Business-level playbook for medical device international expansion — market selection, market-access tiering, entry modes, export trade, distribution channels, international business development, compliance (anti-bribery / export control / data), and localization. Anchored on IMDRF / MDSAP / ISO 13485 / ISO 14971 and classic international-business theory.
+
+医疗器械国际业务（出海）经营军师——市场选择、准入分层、进入模式、出口贸易、渠道经销、国际商务、合规（反贿赂/出口管制/数据合规）、本地化的经营视角总入口，与注册技能 reg-hub 分工互补。
+
+## When to use / 什么时候用
+
+- 我们的器械想卖到东南亚，先打哪个国家
+- 直接出口还是找当地经销商
+- 海外市场准入要分几步走
+- 经销商压价太狠，渠道怎么重搭
+- 出海团队怎么搭，本地化要投多少
+- 海外销售给医院返点算不算商业贿赂
+
+## Key files / 关键文件
+
+- [SKILL.md](SKILL.md) — 主说明书（frontmatter + 触发条件 + 执行步骤）
+- [README.md](README.md) — 人类总览
+- [LICENSE.md](LICENSE.md) — 分层许可（代码层 MIT／理论与文本保留权利）
+
+## Boundaries / 边界
+
+- 本技能只处理上面写的场景；不覆盖同领域其它技能的职责范围。
+- 输出不含未经验证的事实性断言；需要证据时给出出处。理论根基：LGD 三律（有籍 Recorded · 有证 Evidenced · 有门禁 Gated）。
+
+## Ecosystem / 生态入口
+
+- 生态总入口 / hub: https://zhaoxinghua09-cell.github.io/lgd-hub/
+- 理论正本 / theory: https://github.com/zhaoxinghua09-cell/LGD
+- 形式化论文 / paper: https://doi.org/10.5281/zenodo.22456647
+- 协议与参考实现 / protocol: https://github.com/zhaoxinghua09-cell/uibc-core
+- 全部已发布技能 / all skills: https://github.com/zhaoxinghua09-cell/agent-skills

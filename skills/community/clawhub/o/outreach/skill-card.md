@@ -1,39 +1,58 @@
-## Description: <br>
-Plan, personalize, and track outreach campaigns for sales, PR, recruiting, partnerships, and link building with timing strategy and follow-up cadence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan, personalize, and track outreach campaigns for sales, PR, recruiting, partnerships, and link building with timing strategy and follow-up cadence.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Sales, PR, recruiting, SEO, partnership, and business development teams use this skill to draft outreach, choose channels and timing, plan follow-up cadence, and track campaign learning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/outreach) <br>
-- [Outreach by Type](by-type.md) <br>
-- [Outreach Templates](templates.md) <br>
-- [Outreach Tracking & Feedback](tracking.md) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with checklists, templates, tables, and short example messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance only. Store contact lists and response notes in approved systems, minimize personal data, honor opt-outs, and follow privacy, anti-spam, and platform policies before sending or tracking campaigns.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Employees, external teams, and go-to-market practitioners use this skill to draft, personalize, schedule, and evaluate outreach for sales, PR, recruiting, SEO, partnerships, investor relations, and business development.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Outreach content may be used without sufficient consent, privacy review, or anti-spam compliance.
+
+Mitigation: Review contact sourcing, consent, unsubscribe expectations, and applicable outreach laws before using generated copy or campaign plans.
+
+Risk: Overly generic, excessive, or poorly timed follow-ups may harm recipient trust or sender reputation.
+
+Mitigation: Use the artifact's checks for specific personalization, short cold messages, limited follow-up cadence, and clear stop conditions.
+
+Risk: PR exclusives can damage relationships if pitched to competitors before a decline or deadline.
+
+Mitigation: Track exclusive offers and wait for a decline or agreed deadline before pitching competing outlets.
+
+## Reference(s):
+
+- [Outreach by Type](artifact/by-type.md)
+- [Outreach Templates](artifact/templates.md)
+- [Outreach Tracking & Feedback](artifact/tracking.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance, checklists, templates, and campaign tracking structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, network calls, credential handling, or automated sending behavior is included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

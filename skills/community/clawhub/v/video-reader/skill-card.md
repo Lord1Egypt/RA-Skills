@@ -1,46 +1,69 @@
-## Description: <br>
-Tool-driven video question answering with frame extraction, sub-agent analysis, and audio transcription. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tool-driven video question answering with frame extraction, sub-agent analysis, and audio transcription.
 
-## Publisher: <br>
-[qiankemeng](https://clawhub.ai/user/qiankemeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiankemeng](https://clawhub.ai/user/qiankemeng)
 
-## Use Case: <br>
-Developers and end users use this skill to answer questions about local or remote videos by combining downloaded video metadata, extracted frame grids, audio transcription, and sub-agent analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can download remote videos and process media from external sources. <br>
-Mitigation: Review video sources and proxy settings before use, and run the diagnostic command before analyzing untrusted or region-restricted content. <br>
-Risk: Audio transcripts, extracted frames, logs, downloads, and memory files can remain on disk after analysis. <br>
-Mitigation: Avoid sensitive videos unless retention is acceptable, and use the cleanup tool to remove cached downloads, frame images, memory, and logs. <br>
-Risk: Configured transcription or vision services may receive media-derived data. <br>
-Mitigation: Review WHISPER_API_KEY, WHISPER_BASE_URL, VISION_* settings, and prefer local transcription where possible for sensitive content. <br>
+## Use Case:
 
+Developers and video-analysis users use this skill to answer questions about local or online videos by downloading media, extracting representative frame grids, transcribing audio, and coordinating sub-agent review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/qiankemeng/video-reader) <br>
-- [VideoARM Research Paper](https://arxiv.org/abs/2512.12360) <br>
-- [VideoARM Project Website](https://milvlg.github.io/videoarm/) <br>
-- [VideoARM Skill Repository](https://github.com/qiankemeng/VideoARM-skill) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands and JSON tool outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local downloads, frame images, transcripts, logs, and memory files during video analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.1 (source: server release metadata) <br>
+Risk: The skill can download remote media and process local videos, which may introduce untrusted content into the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted video sources, keep ffmpeg and media dependencies updated, and run the skill in a workspace where downloaded media can be reviewed and removed.
+
+Risk: Audio transcription may upload extracted audio to a configured Whisper-compatible endpoint.
+
+Mitigation: Review WHISPER_API_KEY, WHISPER_BASE_URL, and proxy settings before use; choose local transcription when audio should not leave the machine.
+
+Risk: First-run and local Whisper setup can create persistent files or an auto-start service.
+
+Mitigation: Run setup deliberately, inspect .env changes, and avoid the local Whisper auto-start path unless a persistent background service is desired.
+
+Risk: The cleanup command can delete shared temporary image files and optional downloaded video cache.
+
+Mitigation: Run videoarm-clean with --dry-run first and enable download cleanup only when cached videos are no longer needed.
+
+Risk: The skill stores working memory, temporary frames, transcripts, downloads, and logs on disk.
+
+Mitigation: Treat these artifacts as potentially sensitive, limit workspace access, and clean them after completing video analysis.
+
+## Reference(s):
+
+- [ClawHub Video Reader skill page](https://clawhub.ai/qiankemeng/skills/video-reader)
+- [VideoARM research paper](https://arxiv.org/abs/2512.12360)
+- [VideoARM-skill repository listed in artifact](https://github.com/qiankemeng/VideoARM-skill)
+- [OpenClaw project listed in artifact](https://github.com/openclaw/openclaw)
+- [FFmpeg project](https://ffmpeg.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with JSON tool outputs and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create temporary frame grids, transcripts, memory JSON, downloaded video cache, and analysis logs.]
+
+## Skill Version(s):
+
+4.1.1 (source: server release metadata; artifact pyproject.toml reports 4.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

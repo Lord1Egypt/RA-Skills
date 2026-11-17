@@ -21,5 +21,9 @@ python scripts/cli.py stats
 ## Reset Everything
 
 ```bash
-python cli.py reset --confirm
+# Soft reset: mark all transactions as unprocessed
+python scripts/cli.py reset
+
+# Hard reset: delete all transactions, stats, and prices
+python scripts/cli.py reset --hard
 ```

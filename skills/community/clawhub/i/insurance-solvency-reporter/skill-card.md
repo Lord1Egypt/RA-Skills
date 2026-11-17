@@ -1,41 +1,57 @@
-## Description: <br>
-Generates China C-ROSS Phase II solvency reports, capital adequacy calculations, stress tests, and SARM/IRR risk rating documentation for insurance finance, actuarial, and compliance teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language teaching guidance and paper templates for C-ROSS Phase II solvency reporting, capital measures, stress testing, and SARM/IRR review.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Insurance CFOs, actuaries, and compliance teams use this skill to draft quarterly and annual China C-ROSS solvency reports, calculate capital adequacy, prepare stress testing analysis, and document risk ratings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, for China insurance solvency reporting contexts. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may require confidential company financial, capital, risk, or regulatory inputs. <br>
-Mitigation: Redact unnecessary details, avoid personal data and secrets, and confirm authorization before sharing internal reporting materials. <br>
-Risk: Generated solvency reports or regulatory interpretations may become outdated or require professional review. <br>
-Mitigation: Verify outputs against current official NFRA requirements and have qualified finance, actuarial, and compliance reviewers approve materials before filing or disclosure. <br>
+## Use Case:
 
+Chinese insurance finance, actuarial, and compliance teams use it as a teaching and reference aid for solvency-report methods and reviewable paper frameworks. It is not for formal regulatory reporting or filing.
 
-## Reference(s): <br>
-- [C-ROSS Rules II Summary](references/cross_rules_ii_summary.md) <br>
-- [Solvency Capital Calculation Template](references/solvency_calculation.md) <br>
+### Deployment Geography for Use:
 
+Mainland China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown reports, tables, checklists, and calculation snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include capital adequacy calculations, stress-test scenarios, regulatory report outlines, and compliance review guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.1 (source: frontmatter and server release evidence) <br>
+Risk: Security inspection was incomplete because the manifest could not be parsed and some referenced paths were missing from the bundle.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the complete source bundle before installing if that uncertainty is material.
+
+Risk: Regulatory rules and updates in the reference material may be outdated or unverified.
+
+Mitigation: Check current official regulatory texts, dates, and requirements before using the material.
+
+Risk: Capital measures, stress assumptions, and actuarial judgments may be unsuitable without qualified review.
+
+Mitigation: Have authorized actuarial and finance staff verify assumptions, data, and conclusions.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/gechengling/skills/insurance-solvency-reporter)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown, Tables]
+
+**Output Format:** [Chinese-language Markdown guidance, structured tables, and paper report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reviewable reference frameworks; not formal filings or calculations from company data.]
+
+## Skill Version(s):
+
+4.1.4 (source: release metadata, artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

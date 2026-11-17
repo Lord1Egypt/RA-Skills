@@ -1,41 +1,53 @@
-## Description: <br>
-A craft-level creative writing skill for literary fiction authors that helps diagnose, improve, develop, and co-author fiction with attention to tension, voice, character, pacing, structure, prose, and humor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A craft-level creative writing skill for literary fiction authors that helps improve, diagnose, develop, and co-author fiction with attention to tension, voice, pacing, prose, character, structure, and humour.
 
-## Publisher: <br>
-[francisotieno-hub](https://clawhub.ai/user/francisotieno-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[francisotieno-hub](https://clawhub.ai/user/francisotieno-hub)
 
-## Use Case: <br>
-External authors and writing teams use this skill to get craft-focused feedback, structural guidance, prose revision support, and fiction co-authoring for literary manuscripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Manuscript text shared with the skill is processed by the user's agent and model environment. <br>
-Mitigation: Avoid sharing confidential or rights-sensitive manuscript material unless that environment is approved for the material. <br>
-Risk: The skill can strongly influence fiction-writing conversations with a direct literary-editor style. <br>
-Mitigation: Review suggested edits and generated passages for authorial intent, voice fit, and publication suitability before using them. <br>
+## Use Case:
 
+External authors and writing collaborators use this skill to diagnose manuscript craft issues, strengthen scenes, shape suspense, refine prose, develop character interiority, and draft literary fiction passages.
 
-## Reference(s): <br>
-- [The Storyteller's Workbench on ClawHub](https://clawhub.ai/francisotieno-hub/the-storytellers-workbench) <br>
-- [Advanced Literary Craft Reference](artifact/advanced-techniques.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or prose text with structured critique, revised passages, craft notes, and story-development guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include direct fiction drafts, line-level rewrites, and brief explanations of craft choices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may activate for a wide range of fiction-writing requests, including requests involving dark or uncomfortable literary material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the activation scope before installation and apply appropriate editorial or content-policy judgment to feedback and generated passages.
+
+Risk: Craft feedback and generated prose may be subjective or mismatched to the author's intended voice.
+
+Mitigation: Treat outputs as editorial suggestions and have the author review, revise, or reject changes before use.
+
+## Reference(s):
+
+- [Advanced Literary Craft Reference](advanced-techniques.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with structured critique sections and optional revised fiction passages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only; does not run code, access files, use credentials, or persist changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

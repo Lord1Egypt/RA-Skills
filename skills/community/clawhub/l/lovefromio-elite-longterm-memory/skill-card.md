@@ -1,47 +1,65 @@
-## Description: <br>
-Lovefromio Elite Longterm Memory helps agents preserve durable context through session-state files, markdown memory archives, vector recall guidance, Git-Notes, and optional cloud memory integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lovefromio Elite Longterm Memory helps AI agents preserve context with write-ahead logging, vector search, git-notes, file archives, and optional cloud memory integrations.
 
-## Publisher: <br>
-[lovefromio](https://clawhub.ai/user/lovefromio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lovefromio](https://clawhub.ai/user/lovefromio)
 
-## Use Case: <br>
-Developers and agent users use this skill to set up long-term agent memory patterns, including active session state, curated markdown archives, semantic recall, Git-Notes storage, and optional external memory services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Durable memory files may capture secrets, credentials, private customer data, or regulated information. <br>
-Mitigation: Set explicit agent rules forbidding storage of sensitive data, review memory files regularly, and prune anything inappropriate. <br>
-Risk: Optional OpenAI, SuperMemory, and Mem0 integrations may send selected memory or conversation content to external providers. <br>
-Mitigation: Enable those integrations only after accepting the data-sharing implications and configuring privacy boundaries for what may be stored or recalled. <br>
-Risk: API keys placed in shell startup files can be exposed or retained longer than intended. <br>
-Mitigation: Use a secret manager or scoped environment injection for credentials instead of persistent shell profile exports. <br>
-Risk: Long-lived memory stores can accumulate stale or low-quality context that misleads future agent work. <br>
-Mitigation: Run regular memory hygiene reviews, archive completed work, and delete irrelevant vector entries and daily logs. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure durable memory for coding and assistant agents, including session state files, curated memory logs, semantic recall, and optional third-party memory services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lovefromio/lovefromio-elite-longterm-memory) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
-- [npm package page](https://www.npmjs.com/package/elite-longterm-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code, files] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, JavaScript snippets, and generated markdown memory files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENAI_API_KEY for OpenAI-backed memory search; optional SuperMemory and Mem0 flows may require their own API keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.5 (source: server release metadata) <br>
+Risk: Persistent agent memory can retain sensitive user context longer than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with explicit memory expectations, review generated memory files regularly, and delete stale or sensitive entries.
+
+Risk: Silent automatic capture can store preferences, decisions, or facts without clear user consent.
+
+Mitigation: Disable silent auto-capture unless explicitly wanted and prefer opt-in memory writes for sensitive workflows.
+
+Risk: Optional Mem0 or SuperMemory integrations can send conversation content to third-party services.
+
+Mitigation: Redact sensitive content, avoid uploading full conversations without consent, and configure third-party API use according to the deployment privacy policy.
+
+Risk: Unpinned package versions can change memory behavior or dependency exposure over time.
+
+Mitigation: Pin package versions and review dependency updates before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lovefromio/skills/lovefromio-elite-longterm-memory)
+- [Publisher profile](https://clawhub.ai/user/lovefromio)
+- [Artifact skill instructions](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+- [NPM package](https://www.npmjs.com/package/elite-longterm-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and generated memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local memory files such as SESSION-STATE.md, MEMORY.md, and memory/YYYY-MM-DD.md when its CLI is used.]
+
+## Skill Version(s):
+
+1.2.5 (source: ClawHub release metadata; artifact frontmatter reports 1.2.1 and package.json reports 1.2.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -30,76 +30,76 @@ if str(SCRIPT_DIR) not in sys.path:
 
 from core.common import resolve_memory_root, session_fingerprint
 from core.signal_contract import build_session_key, resolve_trigger_defaults
-from core.signal_pipeline import main as signal_pipeline_main
+from core.signal_detect import load_context_text
+from core.signal_pipeline import run_pipeline
 
 
 def call_signal_pipeline(memory_root: Path, query: str, session_key: str, *, limit: int, min_relevance: float, min_confidence: str, apply: bool) -> dict:
-    argv = [
-        "--memory-root",
-        str(memory_root),
-        "--query",
-        query,
-        "--session-key",
-        session_key,
-        "--limit",
-        str(limit),
-        "--min-relevance",
-        str(min_relevance),
-        "--min-confidence",
-        min_confidence,
-        "--json",
-    ]
-    if apply:
-        argv.append("--apply")
-
-    from io import StringIO
-    import contextlib
-
-    capture = StringIO()
-    with contextlib.redirect_stdout(capture):
-        exit_code = signal_pipeline_main(argv)
-    output = capture.getvalue().strip()
-    payload = json.loads(output) if output else {}
-    if isinstance(payload, dict):
-        payload.pop("session_key", None)
+    # Hook results are diagnostics, not a retrieval response. Allowlist counts
+    # rather than deleting selected fields from an expanding pipeline payload.
+    try:
+        payload = run_pipeline(memory_root, query, session_key, limit=limit,
+                               min_relevance=min_relevance, min_confidence=min_confidence,
+                               apply=apply)
+        ok = bool(payload.get("ok")) and not payload.get("apply_errors")
+        pipeline = {
+            "candidateCount": len(payload.get("candidates", [])),
+            "appliedCount": len(payload.get("applied", [])),
+            "skippedCount": len(payload.get("skipped", [])),
+            "errorCount": len(payload.get("apply_errors", [])),
+        }
+        if not ok:
+            pipeline["error"] = "pipeline_failed"
+    except (OSError, ValueError, TypeError, OverflowError):
+        ok = False
+        pipeline = {"error": "pipeline_failed", "errorCount": 1}
     return {
-        "ok": exit_code == 0,
-        "exitCode": exit_code,
+        "ok": ok,
+        "exitCode": 0 if ok else 1,
         "sessionHash": session_fingerprint(session_key),
-        "pipeline": payload,
+        "pipeline": pipeline,
     }
 
 
-def main() -> int:
+def run_hook(memory_root: Path, query: str, channel: str, scope_type: str, scope_id: str, *,
+             thread_id: str | None = None, trigger_source: str = "skill_hit", dry_run: bool = False,
+             limit: int | None = None, min_relevance: float | None = None,
+             min_confidence: str | None = None) -> dict:
+    defaults = resolve_trigger_defaults(trigger_source)
+    session_key = build_session_key(channel, scope_type, scope_id, thread_id)
+    result = call_signal_pipeline(memory_root, query, session_key,
+        limit=limit if limit is not None else defaults["limit"],
+        min_relevance=min_relevance if min_relevance is not None else defaults["min_relevance"],
+        min_confidence=min_confidence if min_confidence is not None else defaults["min_confidence"],
+        apply=not dry_run)
+    result["dryRun"] = dry_run
+    result["triggerSource"] = trigger_source if trigger_source in {"skill_hit", "heuristic_fallback", "manual_probe"} else "manual_probe"
+    return result
+
+
+def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Minimal OpenClaw-facing hook stub for Hui-Yi session signals")
-    parser.add_argument("--query", required=True, help="current user query or short context summary")
+    parser.add_argument("--query", default=None, help="current query; use --stdin to keep query text out of process arguments")
+    parser.add_argument("--stdin", action="store_true", help="read private query/context from stdin")
     parser.add_argument("--channel", required=True, help="chat platform, e.g. feishu")
     parser.add_argument("--scope-type", required=True, choices=["user", "chat"], help="user for DM / chat for group")
     parser.add_argument("--scope-id", required=True, help="stable user or chat id")
     parser.add_argument("--thread-id", default=None, help="thread id when available")
     parser.add_argument("--memory-root", default=None)
-    parser.add_argument("--limit", type=int, default=3)
+    parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--min-relevance", type=float, default=None)
     parser.add_argument("--min-confidence", choices=["low", "medium", "high"], default=None)
     parser.add_argument("--trigger-source", choices=["skill_hit", "heuristic_fallback", "manual_probe"], default="skill_hit")
     parser.add_argument("--dry-run", action="store_true", help="detect only; do not apply weak activation")
-    args = parser.parse_args()
-
-    defaults = resolve_trigger_defaults(args.trigger_source)
-
-    memory_root = resolve_memory_root(args.memory_root)
-    session_key = build_session_key(args.channel, args.scope_type, args.scope_id, args.thread_id)
-    result = call_signal_pipeline(
-        memory_root,
-        args.query,
-        session_key,
-        limit=args.limit if args.limit is not None else defaults["limit"],
-        min_relevance=args.min_relevance if args.min_relevance is not None else defaults["min_relevance"],
-        min_confidence=args.min_confidence if args.min_confidence is not None else defaults["min_confidence"],
-        apply=not args.dry_run,
-    )
-    result["dryRun"] = args.dry_run
-    result["triggerSource"] = args.trigger_source
+    args = parser.parse_args(argv)
+    try:
+        query = load_context_text(args.query, None, args.stdin)
+        result = run_hook(resolve_memory_root(args.memory_root), query, args.channel, args.scope_type,
+                          args.scope_id, thread_id=args.thread_id, trigger_source=args.trigger_source,
+                          dry_run=args.dry_run, limit=args.limit, min_relevance=args.min_relevance,
+                          min_confidence=args.min_confidence)
+    except (OSError, ValueError, TypeError, OverflowError):
+        result = {"ok": False, "exitCode": 1, "error": "hook_input_failed"}
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0 if result.get("ok") else 1
 

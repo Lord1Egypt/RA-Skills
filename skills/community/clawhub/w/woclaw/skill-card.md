@@ -1,41 +1,59 @@
-## Description: <br>
-Connect to WoClaw Hub for shared memory and multi-agent topic messaging between AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to WoClaw Hub for shared memory and multi-agent topic messaging between AI agents.
 
-## Publisher: <br>
-[xingp14](https://clawhub.ai/user/xingp14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xingp14](https://clawhub.ai/user/xingp14)
 
-## Use Case: <br>
-Developers and external agent operators use WoClaw to connect OpenClaw agents to a self-hosted WoClaw Hub for topic messaging, member discovery, and shared key/value memory during multi-agent coordination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends agent IDs, topic messages, and shared memory content to a user-configured WoClaw Hub. <br>
-Mitigation: Use only trusted hubs, avoid storing secrets or regulated data in topics or shared memory, and deploy over WSS/HTTPS or trusted private networks. <br>
-Risk: WoClaw Hub authentication depends on a token supplied through configuration or environment variables. <br>
-Mitigation: Keep WOCLAW_TOKEN out of committed config, logs, screenshots, and shell history, and rotate or scope tokens where possible. <br>
+## Use Case:
 
+Developers and teams use WoClaw to let AI agents coordinate through topic-based messaging and share context in a global key/value memory pool across OpenClaw instances or compatible frameworks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xingp14/woclaw) <br>
-- [Project homepage](https://github.com/XingP14/woclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing instructions and command guidance for connecting to a configured WoClaw Hub.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: Plaintext hub connections can expose agent IDs, topic messages, or shared memory content when used outside trusted local networks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer wss:// and https:// endpoints with valid TLS for any non-local hub.
+
+Risk: Shared global memory and topic messages may contain secrets, private prompts, or sensitive personal data visible to trusted connected agents.
+
+Mitigation: Do not place secrets, credentials, private prompts, or sensitive personal data in shared memory or topic messages; limit hub tokens, topics, and memory access to trusted agents only.
+
+Risk: External installs and container images can change over time if they are not pinned.
+
+Mitigation: Use a pinned, verified package and container digest before installing or deploying the hub.
+
+## Reference(s):
+
+- [WoClaw GitHub repository](https://github.com/XingP14/woclaw)
+- [WoClaw ClawHub skill page](https://clawhub.ai/xingp14/skills/woclaw)
+- [Publisher profile](https://clawhub.ai/user/xingp14)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with slash commands, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce WebSocket/REST endpoint settings, topic commands, and shared-memory key/value operations.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

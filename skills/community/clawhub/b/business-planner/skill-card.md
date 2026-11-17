@@ -1,45 +1,54 @@
-## Description: <br>
-Auto-generates business plans, infrastructure diagrams, investor pitch decks, and revision summaries for startup funding and investor-readiness workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-generates business plans, infrastructure diagrams, investor pitch decks, and iterative revisions for startup funding and planning workflows.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Founders, startup teams, and operators use this skill to draft government funding applications, pitch decks, technical infrastructure diagrams, and follow-up revisions from local workspace references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use local workspace references that contain confidential business details. <br>
-Mitigation: Confirm which workspace files are relevant before generation and review outputs before sharing them outside the workspace. <br>
-Risk: Generated market claims, citations, financial projections, or funding guidance may be inaccurate or outdated. <br>
-Mitigation: Verify cited sources, figures, and assumptions before submitting applications or investor materials. <br>
-Risk: Saved drafts or revisions may overwrite or create files at unintended paths. <br>
-Mitigation: Check the target filename before allowing saves and review diffs for revised versions. <br>
+## Use Case:
 
+Developers, founders, and startup operators use this skill to draft government funding applications, investor pitch materials, technical infrastructure diagrams, and revision summaries from workspace reference files.
 
-## Reference(s): <br>
-- [K-Startup](https://www.k-startup.go.kr/) <br>
-- [TIPS Town](https://www.tipstown.or.kr/) <br>
-- [Y Combinator Pitch Deck Guide](https://www.ycombinator.com/library/2u-how-to-build-your-seed-round-pitch-deck) <br>
-- [McKinsey State of AI](https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown, HTML, Mermaid diagrams, ASCII tables, and concise change summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or revise local workspace files for business plans, pitch decks, diagrams, and version logs when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The skill automatically uses workspace memory and project files that may contain sensitive business, client, or proprietary information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep unrelated sensitive files outside the referenced memory and project paths before use, and review generated outputs and event logs for unintended proprietary content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mupengi-bot/skills/business-planner)
+- [Publisher profile](https://clawhub.ai/user/mupengi-bot)
+- [K-Startup](https://www.k-startup.go.kr/)
+- [TIPS Town](https://www.tipstown.or.kr/)
+- [Y Combinator seed round pitch deck guide](https://www.ycombinator.com/library/2u-how-to-build-your-seed-round-pitch-deck)
+- [McKinsey State of AI](https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, HTML, Mermaid diagrams, ASCII diagrams, JSON event records, and inline shell or browser guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update workspace files for business plans, pitch decks, infrastructure notes, versioned drafts, and event logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

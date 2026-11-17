@@ -2,22 +2,38 @@
 name: dcl-skill-auditor
 description: >
   Scan any ClawHub skill before installing it. 534 out of 3,984 ClawHub skills
-  contained critical vulnerabilities — credential theft, prompt injection, data exfiltration.
-  Snyk Research, 2026. DCL Skill Auditor
-  analyzes SKILL.md, scripts, and manifests against 30+ known attack patterns and
-  returns a structured PASS / WARN / BLOCK verdict with a cryptographic audit proof.
-  Use this skill before every new install, on skill updates, or in any agent pipeline
-  that requires a pre-execution security checkpoint. Instruction-only — no external
-  calls, no data leaves the agent. Part of the Leibniz Layer™ security suite by
-  Fronesis Labs alongside DCL Policy Enforcer, DCL Sentinel Trace, and DCL Semantic
-  Drift Guard.
+  contained critical vulnerabilities — credential theft, prompt injection, data
+  exfiltration. Snyk Research, 2026. DCL Skill Auditor analyzes SKILL.md, scripts,
+  and manifests against 30+ known attack patterns, optionally backed by a real,
+  paid baseline-safety check via the live DCL Trust Oracle MCP server (x402, USDC
+  on Base), and returns a structured PASS / WARN / BLOCK verdict with a
+  cryptographic audit proof. Use this skill before every new install, on skill
+  updates, or in any agent pipeline that requires a pre-execution security
+  checkpoint. Part of the Leibniz Layer™ security suite by Fronesis Labs alongside
+  DCL Policy Enforcer, DCL Prompt Firewall, and DCL Semantic Drift Guard.
 ---
 
-# DCL Skill Auditor
+# DCL Skill Auditor — Leibniz Layer™
 
-**Publisher:** @daririnch · Fronesis Labs  
-**Version:** 1.1.0  
+**Publisher:** @daririnch · Fronesis Labs
+**Version:** 2.0.0
 **Part of:** Leibniz Layer™ Security Suite
+**MCP endpoint:** `https://mcp.fronesislabs.com/mcp`
+
+---
+
+## ⚠️ Optional live paid check now available
+
+Starting with v2.0.0, you can optionally back the audit with a real call to Fronesis Labs'
+**DCL Trust Oracle** MCP server for a fast, on-chain-anchored baseline-safety signal — a real
+backend, not a local simulation. Paid calls are metered and settled on-chain via the **x402
+protocol in USDC on the Base network**. There is no subscription and no account: the calling
+agent (or its wallet-enabled MCP client) pays per call at the price listed below.
+
+**The full 30+ pattern instruction-only scan is still the primary method** — it is more specific
+to skill-code auditing (credential exfiltration, reverse shells, obfuscation, permission abuse)
+than any single live endpoint, and runs entirely offline. The live tool is best used as a quick
+first-pass signal or a secondary, cryptographically-anchored confirmation.
 
 ---
 
@@ -26,11 +42,8 @@ description: >
 DCL Skill Auditor performs static security analysis on any ClawHub skill before
 installation. It examines the skill's SKILL.md, scripts, and manifest against
 30+ known malicious patterns drawn from real ClawHavoc incidents, and returns a
-structured verdict with a deterministic audit proof.
-
-**This skill is 100% instruction-only.** No external network calls are made.
-No skill content leaves the agent's context. The analysis runs entirely within
-the agent using the checklist and reasoning chain below.
+structured verdict with a deterministic audit proof — optionally cross-checked
+against a live baseline-safety call.
 
 ### What it detects
 
@@ -71,10 +84,52 @@ the agent using the checklist and reasoning chain below.
 
 ---
 
-## How to run an audit
+## Live tool (paid, USDC on Base via x402) — optional
+
+| MCP tool | Price | What it runs |
+|---|---|---|
+| `dcl_evaluate_safety` | **$0.01** | Baseline safety check on the skill's SKILL.md / script text |
+
+This is a general-purpose baseline-safety pass, not a specialized code scanner — it's a useful
+quick signal (and gives you an on-chain `tx_hash` you can point to), but it does not replace the
+30+ pattern checklist below for skill-specific risks like reverse shells or credential exfil
+patterns in scripts. Use both together for a stronger signal, or the free checklist alone.
+
+### Calling the tool
+
+```python
+result = dcl_evaluate_safety(
+    response=skill_md_and_script_contents,
+    agent_id="my-agent-01",
+)
+# result["verdict"] is COMMIT / NO_COMMIT, result["tx_hash"] is the on-chain proof
+```
+
+Prices are set server-side and may change; the MCP tool description returned by the server at
+call time is the source of truth.
+
+### Connecting to the live server
+
+```json
+{
+  "mcpServers": {
+    "dcl-trust-oracle": {
+      "url": "https://mcp.fronesislabs.com/mcp"
+    }
+  }
+}
+```
+
+Payment is handled automatically for x402-capable clients; clients without native x402 support
+fall back to a guided payment flow. No API key or account signup is required — only a wallet
+capable of paying in USDC on Base.
+
+---
+
+## How to run the free instruction-only audit
 
 The user provides skill content directly — paste SKILL.md (and any scripts)
-into the conversation. This skill performs **no network requests** and does
+into the conversation. This part of the skill performs **no network requests** and does
 not fetch content from any external source.
 
 **How to get skill content for auditing:**
@@ -126,6 +181,8 @@ dcl_proof        = "DCL-AUD-" + date + "-" + skill_hash[:8] + "-" + analysis_has
 
 The `dcl_proof` string is a self-contained, reproducible audit identifier.
 Anyone with the same skill content can re-run the audit and verify the hash matches.
+If the optional live check was also run, include its `tx_hash` alongside `dcl_proof`
+in the final output for a second, independently verifiable anchor.
 
 ---
 
@@ -167,7 +224,7 @@ Work through each item. Mark CLEAR or record finding with evidence.
 - [ ] Description says "read-only" but scripts write files
 - [ ] Description says "no network" but curl/fetch present
 - [ ] New version introduces capabilities absent from previous without changelog note
-- [ ] Stated compliance claims (GDPR, HIPAA) with no supporting implementation details
+- [ ] Stated regulatory-compliance claims with no supporting implementation details
 
 ---
 
@@ -183,6 +240,7 @@ Return this exact JSON structure:
   "skill_hash": "sha256:<64-char hex>",
   "analysis_hash": "sha256:<64-char hex>",
   "dcl_proof": "DCL-AUD-2026-04-09-<skill_hash[:8]>-<analysis_hash[:8]>",
+  "live_check_tx_hash": "string | null",
   "findings": [
     {
       "pattern_id": "C1.env_exfil",
@@ -199,7 +257,8 @@ Return this exact JSON structure:
 }
 ```
 
-`findings` is an empty array `[]` when verdict is `PASS`.
+`findings` is an empty array `[]` when verdict is `PASS`. `live_check_tx_hash` is `null` if the
+optional live check was not run.
 
 ---
 
@@ -215,6 +274,7 @@ Return this exact JSON structure:
   "skill_hash": "sha256:a3f8c2e1d09b4f76aa31...",
   "analysis_hash": "sha256:7c4d9a0e2f31b85acc12...",
   "dcl_proof": "DCL-AUD-2026-04-09-a3f8c2e1-7c4d9a0e",
+  "live_check_tx_hash": null,
   "findings": [],
   "categories_checked": ["C1","C2","C3","C4","C5","C6"],
   "categories_clear": ["C1","C2","C3","C4","C5","C6"],
@@ -233,6 +293,7 @@ Return this exact JSON structure:
   "skill_hash": "sha256:f91b3d77cc20a4e1bb98...",
   "analysis_hash": "sha256:3a8e1c05b47f92d0ee34...",
   "dcl_proof": "DCL-AUD-2026-04-09-f91b3d77-3a8e1c05",
+  "live_check_tx_hash": "0x9a3e...",
   "findings": [
     {
       "pattern_id": "C1.env_exfil",
@@ -255,26 +316,6 @@ Return this exact JSON structure:
   "powered_by": "DCL Skill Auditor · Leibniz Layer™ · Fronesis Labs"
 }
 ```
-
----
-
-## Optional: commit proof to DCL chain
-
-The `dcl_proof` string is designed to be committable to the DCL Evaluator
-audit chain for permanent tamper-evident recording. To do so after the audit:
-
-```python
-# After running DCL Skill Auditor, optionally commit to DCL chain:
-dcl_commit(
-    proof=audit_result["dcl_proof"],
-    skill_hash=audit_result["skill_hash"],
-    verdict=audit_result["verdict"],
-    agent_id="your-agent-id"
-)
-```
-
-This step is optional and performed by the caller — not by this skill.
-DCL Skill Auditor itself makes no external calls.
 
 ---
 
@@ -341,18 +382,14 @@ for skill in pending_installs:
 
 ## Privacy & Data Policy
 
-This skill is operated by **Fronesis Labs** and is **100% instruction-only**.
-
-**No data leaves the agent.** All analysis runs entirely within the agent's
-context window. No network requests are made. No skill content is transmitted
-to any server — not even to Fronesis Labs infrastructure.
-
-**No retention.** Nothing is stored, logged, or transmitted. The only artifact
-produced is the structured JSON output and `dcl_proof` string, which remain
-within the agent's session unless the caller explicitly saves them.
+This skill is operated by **Fronesis Labs**. The free checklist runs **100% instruction-only** —
+no network requests, no skill content transmitted anywhere. If you opt into the live check,
+only a hash of the analyzed text (`input_hash`) and the verdict metadata are written to the
+on-chain audit trail — the raw skill content itself is never stored server-side.
 
 **How to use safely:** paste the target skill's SKILL.md directly into the
-conversation. The agent analyzes it locally against the checklist in this document.
+conversation. The agent analyzes it locally against the checklist in this document, and
+optionally calls the live tool if you choose to.
 
 Full policy: **https://fronesislabs.com/#privacy** · Questions: support@fronesislabs.com
 
@@ -361,6 +398,7 @@ Full policy: **https://fronesislabs.com/#privacy** · Questions: support@fronesi
 ## Related skills
 
 - `dcl-policy-enforcer` — Compliance and jailbreak detection for AI outputs
+- `dcl-prompt-firewall` — Input-layer injection and jailbreak detection
 - `dcl-sentinel-trace` — PII redaction and identity exposure detection
 - `dcl-semantic-drift-guard` — Hallucination and context drift detection
 

@@ -1,39 +1,50 @@
-## Description: <br>
-Apply universal object-oriented programming standards derived from battle-tested engineering practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apply universal object-oriented programming standards derived from battle-tested engineering practices for code review, code generation, class and module design, exception handling, unit tests, database schemas, and multi-layer application structure across OOP languages.
 
-## Publisher: <br>
-[dolantan548-cmd](https://clawhub.ai/user/dolantan548-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dolantan548-cmd](https://clawhub.ai/user/dolantan548-cmd)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to generate, review, or refactor object-oriented code, tests, database schemas, and layered application designs against language-agnostic production coding standards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence generated or reviewed code across many languages and project layers, including database and server configuration recommendations. <br>
-Mitigation: Confirm its conventions fit the target project's language, framework, runtime, and operational requirements before applying changes. <br>
-Risk: Some coding standards may conflict with an existing project's established style guide or framework idioms. <br>
-Mitigation: Treat the skill's output as review guidance and reconcile recommendations with repository-specific standards before merging code. <br>
+## Use Case:
 
+Developers and engineers use this skill to review, generate, refactor, and structure production OOP code using language-agnostic standards for naming, formatting, testing, exception handling, database design, dependency management, and layered architecture.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with review findings, code examples, and configuration recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only; no executable code, credential use, persistence, or hidden actions are bundled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill may recommend opinionated naming, documentation, and style conventions that conflict with a team's established standards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review its guidance against local engineering conventions before applying it broadly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dolantan548-cmd/skills/oop-dev-skill)
+- [Publisher profile](https://clawhub.ai/user/dolantan548-cmd)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown guidance with code-oriented recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Language-agnostic OOP standards; no tool execution or credential access described by security evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

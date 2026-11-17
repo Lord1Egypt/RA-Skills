@@ -1,50 +1,60 @@
-## Description: <br>
-LinkedIn Community provides managed OAuth access for creating and managing LinkedIn organization pages, posts, comments, reactions, and analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage LinkedIn organization posts, comments, reactions, and analytics through a connected Maton account.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-Developers and operators use this skill to connect an agent to LinkedIn Community Management workflows through Maton, including organization lookup, post publishing, comment and reaction management, and page or share analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish, edit, react to, comment on, or delete LinkedIn content through a connected account or organization. <br>
-Mitigation: Require explicit user confirmation before write actions, including the target resource, intended content, and LinkedIn identity. <br>
-Risk: Requests may use the wrong LinkedIn account or organization when multiple Maton connections are available. <br>
-Mitigation: List available connections, verify the intended Maton connection and organization, and send the Maton-Connection header for requests. <br>
-Risk: The skill depends on sensitive credentials and delegated OAuth permissions through Maton. <br>
-Mitigation: Install only when comfortable using Maton as the gateway, protect MATON_API_KEY, and use the least-privileged LinkedIn connection available. <br>
+## Use Case:
 
+Community managers and teams use this skill to review LinkedIn organization activity, publish or moderate posts and comments with approval, and retrieve follower, page, and post statistics.
 
-## Reference(s): <br>
-- [Maton](https://maton.ai) <br>
-- [LinkedIn Community Management Overview](https://learn.microsoft.com/en-us/linkedin/marketing/community-management/community-management-overview) <br>
-- [LinkedIn Posts API](https://learn.microsoft.com/en-us/linkedin/marketing/community-management/shares/posts-api) <br>
-- [LinkedIn Comments API](https://learn.microsoft.com/en-us/linkedin/marketing/community-management/shares/comments-api) <br>
-- [LinkedIn Reactions API](https://learn.microsoft.com/en-us/linkedin/marketing/community-management/shares/reactions-api) <br>
-- [LinkedIn Organization Lookup API](https://learn.microsoft.com/en-us/linkedin/marketing/community-management/organizations/organization-lookup-api) <br>
-- [LinkedIn Follower Statistics](https://learn.microsoft.com/en-us/linkedin/marketing/community-management/organizations/follower-statistics) <br>
-- [LinkedIn Page Statistics](https://learn.microsoft.com/en-us/linkedin/marketing/community-management/organizations/page-statistics) <br>
-- [LinkedIn Share Statistics](https://learn.microsoft.com/en-us/linkedin/marketing/community-management/organizations/share-statistics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with curl, JavaScript, Python, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access, MATON_API_KEY, a Maton LinkedIn OAuth connection, LinkedIn API headers, and the correct Maton-Connection header when multiple connections exist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release) <br>
+Risk: Connecting LinkedIn through Maton grants an intermediary access to the authorized account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm trust in Maton before connecting, grant only needed LinkedIn permissions, and remove unused connections.
+
+Risk: Posts, comments, reactions, and deletions can affect the wrong organization or publish unintended content.
+
+Mitigation: Verify the connection, organization, and exact change; obtain explicit user approval before every write.
+
+Risk: Hosted functions, triggers, and destinations can keep acting or forwarding events after setup.
+
+Mitigation: Approve each automation and destination separately, review where events go, and remove them when no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/byungkyu/skills/linkedin-community)
+- [Maton](https://maton.ai)
+- [Maton documentation](https://docs.maton.ai)
+- [LinkedIn Community Management overview](https://learn.microsoft.com/en-us/linkedin/marketing/community-management/community-management-overview)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Text or Markdown with CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Account access requires a Maton connection; changes require user approval.]
+
+## Skill Version(s):
+
+1.2.6 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

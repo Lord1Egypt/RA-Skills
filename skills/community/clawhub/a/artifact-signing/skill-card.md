@@ -1,43 +1,54 @@
-## Description: <br>
-A skill to sign artifacts using a digital certificate and private key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A skill to sign artifacts with a PEM-encoded private key and produce detached signature files.
 
-## Publisher: <br>
-[rajaryan18](https://clawhub.ai/user/rajaryan18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rajaryan18](https://clawhub.ai/user/rajaryan18)
 
-## Use Case: <br>
-Developers and engineers use this skill to sign local files, binaries, or release artifacts with a PEM-encoded private key and produce detached signature files for later verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private signing keys may be exposed or misused if an agent is given broad filesystem access or an unrestricted key. <br>
-Mitigation: Use a limited-purpose signing key, prefer encrypted or hardware-backed key storage, and confirm the key path before signing. <br>
-Risk: The skill creates detached signatures but does not provide certificate-chain identity guarantees. <br>
-Mitigation: Verify signatures with the intended public key and do not rely on this skill for certificate-backed identity unless certificate support is added. <br>
-Risk: An incorrect artifact or output path could result in signing the wrong file or writing a signature in an unintended location. <br>
-Mitigation: Verify exact input and output paths before execution. <br>
+## Use Case:
 
+Developers and release engineers use this skill to sign files, binaries, or release artifacts and generate detached signatures for later verification.
 
-## Reference(s): <br>
-- [Artifact Signing release page](https://clawhub.ai/rajaryan18/artifact-signing) <br>
-- [Usage examples](examples/usage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces detached signature files when the included signing script is executed by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Raw private-key signing can expose or misuse signing keys if plaintext keys or broadly accessible key files are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use encrypted keys or a secure key store, restrict key-file permissions, and confirm the exact artifact and output path before signing.
+
+Risk: Detached signatures alone do not establish certificate-chain trust.
+
+Mitigation: Verify signatures with the corresponding public key and use a separate certificate-chain or release-trust process when policy requires it.
+
+## Reference(s):
+
+- [Artifact Signing Skill Page](https://clawhub.ai/rajaryan18/skills/artifact-signing)
+- [Usage Examples](artifact/examples/usage.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Detached signature files with command-line output and Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a detached signature at the requested output path, defaulting to the artifact path with a .sig suffix.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

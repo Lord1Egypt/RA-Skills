@@ -1,41 +1,59 @@
-## Description: <br>
-Generates investor-focused sector funding briefings, project observations, and active investor analysis using ITjuzi MCP financing and investor data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于 IT桔子 MCP 数据生成赛道融资动态简报、投资人项目观察、活跃机构分析。连接线上 MCP 端点查询真实融资事件和投资机构数据，输出面向投资人的结构化简报。
 
-## Publisher: <br>
-[skyentq-alt](https://clawhub.ai/user/skyentq-alt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skyentq-alt](https://clawhub.ai/user/skyentq-alt)
 
-## Use Case: <br>
-External analysts, investors, and research teams use this skill to query ITjuzi MCP data and produce structured financing briefs for sectors, regions, funding rounds, and active investors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a user-provided ITjuzi API key for MCP queries. <br>
-Mitigation: Use a scoped or revocable API key and store it in the MCP or client credential store rather than shared chats. <br>
-Risk: Briefing conclusions can be misleading if MCP results are sparse, funding amounts are missing, or the query window is too narrow. <br>
-Mitigation: Keep source fields in the briefing, label missing or undisclosed amounts, and note when the sample size is small. <br>
+## Use Case:
 
+Developers, analysts, and investment researchers use this skill to query IT桔子 MCP data for sector funding events, notable projects, and active investors over a requested time range. It is intended to produce investor-facing market briefings grounded in returned MCP results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/skyentq-alt/itjuzi) <br>
-- [ITjuzi MCP Endpoint](https://mcp.itjuzi.com/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Analysis, Guidance] <br>
-**Output Format:** [Structured Markdown briefing with tables and concise bullets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided ITjuzi API keys and MCP query results; does not create chart files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill requires an IT桔子 MCP API key during use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide the key only through the MCP client or tool parameters, and avoid storing real API keys in skill files or shared prompts.
+
+Risk: Funding data may include undisclosed, incomplete, or small-sample results.
+
+Mitigation: Base conclusions only on MCP query results, explicitly note missing amounts and limited samples, and avoid unsupported predictions or investment scoring.
+
+Risk: Briefings are expected to be Chinese-language by default.
+
+Mitigation: Ask the agent to adapt the output language when an English or bilingual briefing is required.
+
+## Reference(s):
+
+- [IT桔子 MCP endpoint](https://mcp.itjuzi.com/mcp)
+- [ClawHub skill page](https://clawhub.ai/skyentq-alt/skills/itjuzi)
+- [ClawHub publisher profile](https://clawhub.ai/user/skyentq-alt)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Analysis, API Calls, Guidance]
+
+**Output Format:** [Markdown briefing with tables and structured sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided IT桔子 MCP API key; conclusions should remain tied to returned MCP data and note incomplete funding amounts or small samples.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Automates macOS browser and desktop workflows through screenshot review, browser actions, keyboard and mouse control, file operations, and shell commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A macOS desktop automation skill that helps an agent inspect the screen, operate browser and desktop interfaces, manage files, and verify each step of multi-step computer tasks.
 
-## Publisher: <br>
-[jinxulin8899-dotcom](https://clawhub.ai/user/jinxulin8899-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinxulin8899-dotcom](https://clawhub.ai/user/jinxulin8899-dotcom)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent perform supervised macOS tasks that span web pages, desktop dialogs, files, downloads, and application input. It is suited to multi-step desktop automation where the agent must observe the screen, act, and verify progress. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad control over the screen, keyboard, clipboard, browser, files, downloads, and shell commands. <br>
-Mitigation: Install only for intentional supervised desktop-control use, and review shell commands, file moves, downloads, login or form actions, and messages before allowing them. <br>
-Risk: The security evidence says built-in safety gates are not sufficient for sensitive use. <br>
-Mitigation: Avoid using it with secrets or sensitive applications unless confirmations, shell and file constraints, clipboard handling, and screenshot cleanup are added. <br>
+## Use Case:
 
+External users and developers can use this skill to guide an agent through supervised macOS desktop workflows such as browser tasks, form entry, file organization, downloads, and app interactions that require screenshots, clicks, keyboard input, shell commands, and step verification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jinxulin8899-dotcom/chuntai-desktop-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with command snippets and MCP tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce screenshots, clipboard actions, desktop input events, shell command output, and status updates during supervised execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can observe the screen and control clicks and keystrokes across the desktop.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a supervised macOS session and confirm each sensitive desktop action before allowing it to proceed.
+
+Risk: The skill can overwrite the clipboard and paste into the active application.
+
+Mitigation: Review clipboard content and active window focus before text entry, especially for credentials, messages, and forms.
+
+Risk: The skill can run arbitrary shell commands and move, copy, or download local files as the current user.
+
+Mitigation: Restrict use to trusted tasks and review shell commands and file paths before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jinxulin8899-dotcom/skills/chuntai-desktop-agent)
+- [Publisher profile](https://clawhub.ai/user/jinxulin8899-dotcom)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include browser actions, desktop automation commands, file operation commands, status checkpoints, and verification notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

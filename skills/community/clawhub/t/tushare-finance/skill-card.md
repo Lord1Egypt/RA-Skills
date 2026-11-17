@@ -1,46 +1,60 @@
-## Description: <br>
-Tushare Finance helps agents retrieve Chinese financial market data for A-shares, Hong Kong stocks, U.S. stocks, funds, futures, bonds, market prices, financial statements, and macroeconomic indicators through Tushare Pro interfaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent retrieve financial market data through Tushare Pro, covering A-shares, Hong Kong and U.S. stocks, funds, futures, bonds, financial statements, and macroeconomic indicators.
 
-## Publisher: <br>
-[stanleychanh](https://clawhub.ai/user/stanleychanh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[stanleychanh](https://clawhub.ai/user/stanleychanh)
 
-## Use Case: <br>
-Developers, analysts, and agent builders use this skill to look up Tushare Pro API methods and generate Python or shell-based workflows for market data, financial statements, macroeconomic indicators, and batch exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled documentation crawler can use account credentials and CAPTCHA-solving automation. <br>
-Mitigation: Use the normal Tushare token-based workflow for market-data queries, and run scripts/crawl_docs.py only after reviewing the script, required credentials, and Tushare terms. <br>
-Risk: Exported market, company, or financial datasets may be sensitive or regulated in some workflows. <br>
-Mitigation: Handle downloaded and exported datasets according to the user's data handling, retention, and sharing requirements. <br>
-Risk: The release has conflicting license signals across evidence and artifact files. <br>
-Mitigation: Confirm the authoritative license before public release or redistribution. <br>
+## Use Case:
 
+Developers and analysts use this skill to have an agent identify the right Tushare Pro interface, configure token-based access, and produce Python or shell examples for market data retrieval and export.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stanleychanh/tushare-finance) <br>
-- [Tushare official documentation](https://tushare.pro/document/2) <br>
-- [Tushare API test tool](https://tushare.pro/document/1) <br>
-- [Local API reference index](reference/README.md) <br>
-- [Quick reference](QUICK_REFERENCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python snippets, shell commands, configuration steps, and pandas DataFrame-oriented examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May point to local reference files and may generate export workflows for financial datasets when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: release metadata and README changelog, released 2026-06-09) <br>
+Risk: Tushare API requests require a token and send user queries to Tushare.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with an intended Tushare account, keep tokens in environment variables, and avoid exposing secrets in prompts, logs, or generated files.
+
+Risk: The bundled documentation crawler can use Tushare account credentials, CAPTCHA OCR, a headless browser, network access, and broad local writes.
+
+Mitigation: Do not run scripts/crawl_docs.py or enable the documented sync workflow unless document crawling is intended; run it in an isolated environment, prefer dry-run mode first, pin dependencies, and review write targets.
+
+Risk: The security scan flags broader-than-advertised datasets and recommends review before installation.
+
+Mitigation: Review requested data categories and installed files before deployment, especially when workflows touch non-financial or crawler-sourced datasets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stanleychanh/skills/tushare-finance)
+- [Bundled Tushare API documentation index](reference/README.md)
+- [Tushare official documentation](https://tushare.pro/document/2)
+- [Tushare API test tool](https://tushare.pro/document/1)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Tushare token for live API calls; examples commonly return pandas DataFrames or exported CSV/XLSX files.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata, artifact metadata, README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

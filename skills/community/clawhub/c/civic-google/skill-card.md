@@ -1,41 +1,56 @@
-## Description: <br>
-Use gog (Google CLI) without manual OAuth setup while Civic handles token management automatically. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use gog, the Google Workspace CLI, without manual OAuth setup while Civic handles token management automatically.
 
-## Publisher: <br>
-[civictechuser](https://clawhub.ai/user/civictechuser) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[civictechuser](https://clawhub.ai/user/civictechuser)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to run Google Workspace tasks through gog while Civic handles OAuth consent, scoped token delivery, and token refresh.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Civic brokers OAuth access to Google Workspace data and the gateway uses a CIVIC_TOKEN environment variable.
+
+Mitigation: Install only when this trust boundary is acceptable, isolate the gateway environment, and avoid exposing environment variables in logs.
+
+Risk: Agents can run gog commands within Google scopes the user approves, including write scopes after consent.
+
+Mitigation: Approve only the least Google scopes needed and review commands before execution where workspace changes could be material.
+
+Risk: The release requires external plugin and gog installations.
+
+Mitigation: Pin or verify the plugin and gog versions before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to let agents run Google Workspace commands through gog without manually creating OAuth credentials or managing refresh tokens. It is intended for workflows that need scoped access to Gmail, Calendar, Drive, Docs, Sheets, Slides, Tasks, Contacts, Chat, Forms, or Apps Script after user consent. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable powerful Google Workspace actions after OAuth consent, including write, delete, share, send, transfer, and deploy operations. <br>
-Mitigation: Authorize only the scopes needed for the task and review agent requests before commands that modify, share, send, transfer, or deploy account data. <br>
-Risk: CIVIC_TOKEN grants access to the user's Civic account and the skill depends on trusting Civic and the external openclaw-google package to broker Google OAuth access. <br>
-Mitigation: Install only when Civic and the package are trusted, protect CIVIC_TOKEN like an API key, avoid custom proxy URLs unless controlled by the user, and revoke Civic or Google access when the integration is no longer needed. <br>
+**Output Format:** [Markdown guidance with shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/civictechuser/civic-google) <br>
-- [openclaw-google Source Code](https://github.com/civicteam/openclaw-google) <br>
+**Other Properties Related to Output:** [Requires the gog binary and CIVIC_TOKEN environment variable; Google authorization may require user consent for each scope.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gog binary and CIVIC_TOKEN environment variable.] <br>
+0.1.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

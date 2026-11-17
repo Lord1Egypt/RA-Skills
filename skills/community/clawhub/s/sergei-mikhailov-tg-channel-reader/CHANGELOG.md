@@ -2,6 +2,55 @@
 
 ---
 
+## [0.11.1] - 2026-07-03
+
+**Fix: `tg-reader auth` crashed at the `code_sent` stage.** The staged onboarding flow added in 0.11.0 derived the `code_type` field from the Pyrogram `SentCode.type` object, which could resolve to a non-serializable value — so emitting the stage raised `TypeError: Object of type type is not JSON serializable` and the process exited. Because the crash happened *after* `send_code`, 0.11.0 would send the login code but then die before sign-in, making the agent-driven login impossible to complete.
+
+`code_type` is now always emitted as a string. Verified live end-to-end (send code → sign in → `authorized`).
+
+---
+
+## [0.11.0] - 2026-07-03
+
+**Agent-drivable onboarding — an AI agent can set up authentication *for* the user.** Until now the only way to log in was `tg-reader auth`, an interactive command whose phone/code prompts are invisible when driven from an agent or a piped/exec context (the prompt buffers and never shows). So a human always had to sit at the terminal. Now the login is a structured, staged flow an agent can run end-to-end.
+
+### What an agent can do
+
+With the user's consent, the agent runs the whole login and asks the user only for what Telegram itself requires — the **phone number**, the **login code** Telegram sends, and (if the account has one) the **cloud 2FA password**.
+
+- New staged `tg-reader auth --phone … --code-file … --password-file …`. One live process emits one JSON object per line with a `stage` and `next_action`:
+  `need_phone` → `code_sent` (`code_type: app`/`sms`) → `need_2fa` → `authorized` (plus `already_authorized` and `error` with a `reason`). The agent reacts to each stage and asks the user the matching thing.
+- **Self-serve fallback:** `tg-reader auth --guide` prints step-by-step instructions so a user who'd rather not involve the agent can authorize themselves.
+
+### Safety / privacy
+
+- **The session is stored locally on this machine (OpenClaw)** (`~/.tg-reader-session.session`) — it never leaves the machine and is not uploaded anywhere. The agent should reassure the user of this.
+- **The login code and 2FA password are handled securely:** read from a file (`--code-file`/`--password-file`, polled) or stdin — never passed on the command line, so they don't leak into process lists or logs.
+- Never prompts via `ainput`; emits flushed JSON (and mirrors stages to `TG_AUTH_PROGRESS` if set). An existing session is backed up first; a dead/unauthorized one is moved aside (`.dead-*`, never deleted) so the fresh login starts clean. Runs under the session lock.
+
+### Compatibility
+
+`tg-reader auth` with no flags still works: it now reports `already_authorized` for a live session, or asks for `--phone`. No re-authentication required for existing sessions.
+
+---
+
+## [0.10.1] - 2026-07-03
+
+**SOCKS5 proxy support for MTProto.** Some networks/hosts filter direct MTProto (TCP 443 to Telegram DCs), surfacing as persistent `Connection timed out` even when the internet works. The skill can now route through a local SOCKS5 proxy.
+
+### Why this was broken
+
+- The skill read only `api_id`/`api_hash`/`session` from config; a `socks_proxy` setting had no effect because the value was never passed to the client. On a host with direct MTProto filtered, every run timed out and looked like a network/Telegram outage rather than a missing route.
+
+### How it works after this update
+
+- New `socks_proxy` config key (and `TG_PROXY` env override, which takes priority). Accepted forms: `host:port` (SOCKS5 by default), `socks5://host:port`, `socks5://user:pass@host:port`.
+- The parsed proxy is passed to every client on both backends — Pyrogram (`reader.py`) and Telethon (`reader_telethon.py`), fetch/info/auth paths — and to the `tg-reader-check` online probe.
+- `tg-reader-check` now reports the resolved proxy as `credentials.proxy`.
+- Fully backward compatible: with no `socks_proxy`/`TG_PROXY` set, the client connects directly exactly as before. Telethon uses the native python-socks dict form (no PySocks dependency).
+
+---
+
 ## [0.10.0] - 2026-07-02
 
 **Session hardening — the skill can no longer destroy its own session, and can recover it when something else does.** Triggered by a real incident: after a VM restart, several agent processes raced over the same session file, overwrote it with empty copies, and reported the session as "expired" — while the session on Telegram's side was alive the whole time.

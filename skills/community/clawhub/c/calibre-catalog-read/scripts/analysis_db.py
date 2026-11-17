@@ -1,97 +1,130 @@
-#!/usr/bin/env -S uv run python
+#!/usr/bin/env python3
 from __future__ import annotations
-import argparse, json, sqlite3, sys
+import argparse
+import json
+import os
+import re
+import sqlite3
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+SCHEMA_VERSION = 3
 SCHEMA = """
-PRAGMA journal_mode=WAL;
 CREATE TABLE IF NOT EXISTS analyses (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   book_id INTEGER NOT NULL,
-  library_id TEXT,
-  title TEXT,
+  library_id TEXT NOT NULL,
+  title TEXT NOT NULL,
   format TEXT NOT NULL,
   file_hash TEXT NOT NULL,
-  lang TEXT,
-  summary TEXT,
-  highlights_json TEXT,
-  reread_json TEXT,
-  tags_json TEXT,
+  lang TEXT NOT NULL,
+  summary TEXT NOT NULL,
+  highlights_json TEXT NOT NULL,
+  reread_json TEXT NOT NULL,
+  tags_json TEXT NOT NULL,
+  coverage_json TEXT NOT NULL,
   created_at TEXT NOT NULL,
-  UNIQUE(book_id, format, file_hash)
+  UNIQUE(book_id, library_id, format, file_hash, lang)
 );
-CREATE INDEX IF NOT EXISTS idx_analyses_book_fmt ON analyses(book_id, format);
-CREATE VIRTUAL TABLE IF NOT EXISTS analyses_fts USING fts5(
-  title, summary, highlights, reread, content=''
-);
+CREATE INDEX IF NOT EXISTS idx_analyses_target ON analyses(library_id, book_id, format);
 """
 
-def connect(db):
-    Path(db).parent.mkdir(parents=True, exist_ok=True)
-    return sqlite3.connect(db)
-
-def init_db(db):
-    con = connect(db)
-    con.executescript(SCHEMA)
-    con.commit(); con.close()
-
-def upsert(db, obj):
-    now = datetime.now(timezone.utc).isoformat()
-    con = connect(db)
-    con.executescript(SCHEMA)
-    vals = (
-      int(obj['book_id']), obj.get('library_id'), obj.get('title'), obj.get('format','EPUB'), obj.get('file_hash'),
-      obj.get('lang','ja'), obj.get('summary',''), json.dumps(obj.get('highlights',[]), ensure_ascii=False),
-      json.dumps(obj.get('reread',[]), ensure_ascii=False), json.dumps(obj.get('tags',[]), ensure_ascii=False), now
+def default_db() -> str:
+    root = os.environ.get("CALIBRE_CATALOG_STATE_DIR") or os.path.join(
+        os.environ.get("XDG_STATE_HOME", os.path.expanduser("~/.local/state")), "calibre-catalog-read"
     )
-    con.execute('''INSERT OR IGNORE INTO analyses(book_id,library_id,title,format,file_hash,lang,summary,highlights_json,reread_json,tags_json,created_at)
-                   VALUES(?,?,?,?,?,?,?,?,?,?,?)''', vals)
-    row = con.execute('SELECT id,title,summary,highlights_json,reread_json FROM analyses WHERE book_id=? AND format=? AND file_hash=?',
-                      (int(obj['book_id']), obj.get('format','EPUB'), obj.get('file_hash'))).fetchone()
-    if row:
-      con.execute('INSERT INTO analyses_fts(rowid,title,summary,highlights,reread) VALUES(?,?,?,?,?)',
-                  (row[0], row[1] or '', row[2] or '', row[3] or '', row[4] or ''))
+    return os.environ.get("CALIBRE_CATALOG_DB", os.path.join(root, "calibre_analysis.sqlite"))
+
+def connect(db: str) -> sqlite3.Connection:
+    Path(db).parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+    con = sqlite3.connect(db)
+    con.execute("PRAGMA busy_timeout=5000")
+    version = con.execute("PRAGMA user_version").fetchone()[0]
+    tables = con.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall()
+    if tables and version != SCHEMA_VERSION:
+        con.close()
+        raise ValueError("legacy/incompatible cache preserved; choose a new --db, no automatic migration")
+    con.executescript(SCHEMA)
+    con.execute("PRAGMA user_version=3")
+    con.commit()
+    return con
+
+def ensure_record(obj: dict) -> dict:
+    if not isinstance(obj, dict): raise ValueError("record must be an object")
+    if "book_id" not in obj and "id" in obj: obj = {**obj, "book_id": obj["id"]}
+    required = ("book_id", "library_id", "title", "format", "file_hash", "lang", "summary", "highlights", "reread", "tags")
+    missing = [k for k in required if k not in obj]
+    if missing: raise ValueError("record missing: " + ", ".join(missing))
+    if type(obj["book_id"]) is not int: raise ValueError("book_id must be an integer")
+    book_id = obj["book_id"]
+    if book_id < 1: raise ValueError("book_id must be positive")
+    if not isinstance(obj["library_id"], str) or not obj["library_id"].strip(): raise ValueError("library_id must be non-empty")
+    if obj["lang"] not in ("ja", "en"): raise ValueError("lang must be ja or en")
+    if not isinstance(obj["file_hash"], str) or not re.fullmatch(r"sha256:[0-9a-f]{64}", obj["file_hash"]): raise ValueError("file_hash must be sha256:<hex>")
+    for key in ("highlights", "reread", "tags"):
+        if not isinstance(obj[key], list): raise ValueError(key + " must be an array")
+    return {**obj, "book_id": book_id, "format": str(obj["format"]).upper(), "library_id": obj["library_id"].strip()}
+
+def init_db(db: str) -> None:
+    con = connect(db)
     con.commit(); con.close()
 
-def status(db, book_id, fmt):
-    con=connect(db)
-    con.executescript(SCHEMA)
-    row=con.execute('SELECT book_id,format,file_hash,created_at FROM analyses WHERE book_id=? AND format=? ORDER BY id DESC LIMIT 1',
-                    (book_id, fmt)).fetchone()
-    con.close()
-    return row
+def upsert(db: str, obj: dict) -> None:
+    obj = ensure_record(obj)
+    con = connect(db)
+    con.execute("""INSERT INTO analyses(book_id,library_id,title,format,file_hash,lang,summary,highlights_json,reread_json,tags_json,coverage_json,created_at)
+      VALUES(?,?,?,?,?,?,?,?,?,?,?,?)
+      ON CONFLICT(book_id,library_id,format,file_hash,lang) DO UPDATE SET
+        title=excluded.title, lang=excluded.lang, summary=excluded.summary,
+        highlights_json=excluded.highlights_json, reread_json=excluded.reread_json,
+        tags_json=excluded.tags_json, coverage_json=excluded.coverage_json, created_at=excluded.created_at""",
+      (obj["book_id"], obj["library_id"], str(obj["title"]), obj["format"], obj["file_hash"], obj["lang"],
+       str(obj["summary"]), json.dumps(obj["highlights"], ensure_ascii=False), json.dumps(obj["reread"], ensure_ascii=False),
+       json.dumps(obj["tags"], ensure_ascii=False), json.dumps(obj.get("coverage", {}), ensure_ascii=False), datetime.now(timezone.utc).isoformat()))
+    con.commit(); con.close()
 
-def search(db, q, limit):
-    con=connect(db)
-    con.executescript(SCHEMA)
-    rows=con.execute('''SELECT a.book_id,a.title,a.format,a.file_hash,a.created_at,
-                               snippet(analyses_fts,1,'[',']',' … ',12)
-                        FROM analyses_fts JOIN analyses a ON a.id=analyses_fts.rowid
-                        WHERE analyses_fts MATCH ? ORDER BY rank LIMIT ?''', (q, limit)).fetchall()
+def status(db: str, book_id: int, library_id: str, fmt: str, lang: str = "ja"):
+    if not Path(db).exists(): return None
+    con = connect(db)
+    row = con.execute("SELECT book_id,library_id,format,file_hash,lang,coverage_json,created_at FROM analyses WHERE book_id=? AND library_id=? AND format=? AND lang=? ORDER BY created_at DESC LIMIT 1", (book_id, library_id, fmt.upper(), lang)).fetchone()
+    con.close()
+    if not row: return None
+    return {"book_id": row[0], "library_id": row[1], "format": row[2], "file_hash": row[3], "lang": row[4], "coverage": json.loads(row[5]), "created_at": row[6]}
+
+def search(db: str, query: str, limit: int):
+    if not Path(db).exists(): return []
+    con = connect(db)
+    needle = "%" + query.casefold() + "%"
+    rows = con.execute("""SELECT book_id,library_id,title,format,file_hash,created_at FROM analyses
+      WHERE lower(title) LIKE ? OR lower(summary) LIKE ? OR lower(highlights_json) LIKE ? OR lower(reread_json) LIKE ?
+      ORDER BY id DESC LIMIT ?""", (needle, needle, needle, needle, limit)).fetchall()
     con.close(); return rows
 
-def main():
-    ap=argparse.ArgumentParser()
-    ap.add_argument('cmd', choices=['init','upsert','status','search'])
-    ap.add_argument('--db', required=True)
-    ap.add_argument('--book-id', type=int)
-    ap.add_argument('--format', default='EPUB')
-    ap.add_argument('--query')
-    ap.add_argument('--limit', type=int, default=10)
-    ns=ap.parse_args()
-    if ns.cmd=='init':
-      init_db(ns.db); print(json.dumps({'ok':True,'db':ns.db}, ensure_ascii=False)); return
-    if ns.cmd=='upsert':
-      obj=json.loads(sys.stdin.read()); upsert(ns.db,obj); print(json.dumps({'ok':True,'book_id':obj.get('book_id')}, ensure_ascii=False)); return
-    if ns.cmd=='status':
-      if ns.book_id is None: raise SystemExit('--book-id required')
-      r=status(ns.db, ns.book_id, ns.format)
-      print(json.dumps({'ok':True,'status':None if not r else {'book_id':r[0],'format':r[1],'file_hash':r[2],'created_at':r[3]}}, ensure_ascii=False)); return
-    if ns.cmd=='search':
-      if not ns.query: raise SystemExit('--query required')
-      rows=search(ns.db, ns.query, ns.limit)
-      print(json.dumps({'ok':True,'items':[{'book_id':r[0],'title':r[1],'format':r[2],'file_hash':r[3],'created_at':r[4],'snippet':r[5]} for r in rows]}, ensure_ascii=False))
+def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("cmd", choices=("init", "upsert", "status", "search"))
+    ap.add_argument("--db", default=default_db())
+    ap.add_argument("--book-id", type=int)
+    ap.add_argument("--library-id")
+    ap.add_argument("--format", default="EPUB")
+    ap.add_argument("--lang", choices=("ja", "en"), default="ja")
+    ap.add_argument("--query")
+    ap.add_argument("--limit", type=int, default=10)
+    ns = ap.parse_args()
+    if ns.cmd == "init": init_db(ns.db); print(json.dumps({"ok": True, "db": ns.db}, ensure_ascii=False)); return
+    if ns.cmd == "upsert":
+        try: obj = json.load(sys.stdin)
+        except json.JSONDecodeError as exc: raise SystemExit("invalid JSON input: " + str(exc))
+        upsert(ns.db, obj); print(json.dumps({"ok": True, "book_id": obj.get("book_id", obj.get("id"))}, ensure_ascii=False)); return
+    if ns.cmd == "status":
+        if ns.book_id is None or not ns.library_id: raise SystemExit("--book-id and --library-id required")
+        print(json.dumps({"ok": True, "status": status(ns.db, ns.book_id, ns.library_id, ns.format, ns.lang)}, ensure_ascii=False)); return
+    if not ns.query or ns.limit < 1 or ns.limit > 1000: raise SystemExit("--query and bounded --limit required")
+    rows = search(ns.db, ns.query, ns.limit)
+    print(json.dumps({"ok": True, "items": [{"book_id": r[0], "library_id": r[1], "title": r[2], "format": r[3], "file_hash": r[4], "created_at": r[5]} for r in rows]}, ensure_ascii=False))
 
-if __name__=='__main__':
-    main()
+if __name__ == "__main__":
+    try: main()
+    except Exception as exc:
+        print(str(exc), file=sys.stderr); raise SystemExit(1)

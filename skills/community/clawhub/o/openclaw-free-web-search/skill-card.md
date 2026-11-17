@@ -1,41 +1,58 @@
-## Description: <br>
-OpenClaw skill for source-backed web search, page reading, and evidence-aware claim checking, with no API keys required by default and optional providers for stronger coverage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw skill for source-backed web search, page reading, and evidence-aware claim checking, with no API keys required by default and optional providers for stronger coverage.
 
-## Publisher: <br>
-[wd041216-bit](https://clawhub.ai/user/wd041216-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wd041216-bit](https://clawhub.ai/user/wd041216-bit)
 
-## Use Case: <br>
-Developers and agents use this skill to search the web, read source pages, verify concrete claims, and prepare citation-ready evidence summaries. It supports a no-key default path and optional provider configuration for broader or production-oriented coverage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional Bright Data and Web Unlocker configuration may send search queries or page URLs to a third-party provider. <br>
-Mitigation: Use the no-key default path for sensitive work, and enable Bright Data or Web Unlocker only when sharing the relevant queries and URLs with that provider is acceptable. <br>
-Risk: The skill installs and runs an external Python package. <br>
-Mitigation: Install only from a trusted package source and review the package before deploying it in sensitive environments. <br>
+## Use Case:
 
+Developers and agents use this skill to run live web searches, browse source pages, verify concrete claims, and produce citation-ready evidence summaries. It is intended for factual, recent, or source-sensitive work where results should include URLs and support or conflict signals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wd041216-bit/openclaw-free-web-search) <br>
-- [Project homepage](https://github.com/wd041216-bit/zero-api-key-web-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and command-line output, with optional JSON from verification and reporting commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns source URLs, support and conflict scores, page-aware verification status, and next-step guidance when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-23.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks users to install an unpinned external package whose executable code was not included for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an isolated virtual environment, avoid installing as root, and prefer a pinned, hash-verified package version after reviewing the package source.
+
+Risk: Optional Bright Data or other provider credentials may cause providers to receive the relevant queries and URLs.
+
+Mitigation: Enable optional providers only when approved for the use case, and provide credentials only when sharing those queries and URLs with the provider is acceptable.
+
+Risk: The documented claim verification is heuristic and may not resolve conflicting sources.
+
+Mitigation: Treat verification scores as decision support, review cited sources directly, and preserve surfaced conflicts in downstream answers.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wd041216-bit/skills/openclaw-free-web-search)
+- [Project Homepage](https://github.com/wd041216-bit/zero-api-key-web-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON-capable command output with source URLs, verification scores, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include support and conflict classifications, page-aware verification status, provider setup guidance, and citation-ready URLs.]
+
+## Skill Version(s):
+
+23.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

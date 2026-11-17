@@ -1,47 +1,62 @@
-## Description: <br>
-Query project-specific Arco Design usage patterns and generate Vue 3 admin page prototypes with mock data, scaffold files, and route snippets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries project-specific Arco Design usage patterns and generates Vue 3 admin page prototypes with mock data, scaffold files, and route snippets.
 
-## Publisher: <br>
-[arisefx](https://clawhub.ai/user/arisefx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arisefx](https://clawhub.ai/user/arisefx)
 
-## Use Case: <br>
-Developers and engineers use this skill to query project-specific Arco Design conventions and generate runnable Vue 3 admin UI prototypes with mock data, scaffold files, and route snippets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated prototypes can include mock data and placeholder API calls. <br>
-Mitigation: Review generated files and replace TODO placeholders with validated production API wiring before using the prototype beyond local review. <br>
-Risk: Scaffolding may require package installation or a local development server. <br>
-Mitigation: Run pnpm install or pnpm dev only in a trusted workspace where network downloads and a local preview server are acceptable. <br>
-Risk: Generated admin UI code may not match an application's security, data, or workflow requirements without review. <br>
-Mitigation: Review the generated Vue files, route snippets, and configuration before deployment or integration. <br>
+## Use Case:
 
+Developers use this skill to query project-specific Arco Design Vue patterns and generate runnable admin UI prototypes for list, form, detail, dashboard, modal, and empty-state pages.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/arisefx/admin-ui-prototype) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [UI conventions](artifact/knowledge/ui-conventions.md) <br>
-- [Page templates](artifact/knowledge/page-templates.md) <br>
-- [Scaffold template](artifact/knowledge/scaffold.md) <br>
-- [Component documentation index](artifact/knowledge/components/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with Vue, TypeScript, route snippets, and shell commands when scaffolding is needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local files under webui/admin-ui and use mock data placeholders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Project scaffolding may modify files under webui/admin-ui and install JavaScript dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated files and dependency changes before use; pin dependencies or use a reviewed lockfile for stricter supply-chain control.
+
+Risk: Generated delete, upload, and API examples may be unsafe if connected directly to real backends.
+
+Mitigation: Review each placeholder and mock API path, then replace it with validated backend integration, authorization checks, confirmations, and error handling.
+
+Risk: The skill is tailored to Chinese-locale Vue 3 and Arco Design admin UI conventions.
+
+Mitigation: Confirm the generated copy, naming conventions, and UI patterns match the target project before adopting them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arisefx/skills/admin-ui-prototype)
+- [Skill Definition](artifact/SKILL.md)
+- [Component Usage Index](artifact/knowledge/components/README.md)
+- [Admin UI Page Conventions](artifact/knowledge/ui-conventions.md)
+- [Page Templates](artifact/knowledge/page-templates.md)
+- [Preview Project Scaffold](artifact/knowledge/scaffold.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with Vue, TypeScript, LESS, route snippets, file lists, and shell commands when scaffolding or previewing.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update files under webui/admin-ui and may run pnpm install during scaffolding.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

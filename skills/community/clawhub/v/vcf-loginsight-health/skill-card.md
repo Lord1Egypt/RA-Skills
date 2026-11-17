@@ -1,40 +1,54 @@
-## Description: <br>
-Check the health, uptime, and node status of Aria Operations for Logs (Log Insight) in a VCF environment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check the health, uptime, and node status of Aria Operations for Logs (Log Insight) in a VCF environment.
 
-## Publisher: <br>
-[kasture-rohit](https://clawhub.ai/user/kasture-rohit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kasture-rohit](https://clawhub.ai/user/kasture-rohit)
 
-## Use Case: <br>
-Developers and platform operators use this skill to query Log Insight cluster health and node status, then summarize the results into a readable table that highlights unhealthy or disconnected nodes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Log Insight API token to query a configured service endpoint. <br>
-Mitigation: Set LOGINSIGHT_HOST only to a trusted internal endpoint and use a least-privilege or read-only API token where possible. <br>
-Risk: The provided curl commands disable TLS certificate verification. <br>
-Mitigation: Review the endpoint and certificate handling before use, and enable certificate verification when the environment supports it. <br>
+## Use Case:
 
+VCF platform operators and SREs use this skill to check Aria Operations for Logs cluster health, node status, and uptime, then summarize errors or disconnected nodes for operational follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kasture-rohit/vcf-loginsight-health) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Markdown, Guidance] <br>
-**Output Format:** [Markdown summary table with JSON-derived cluster and node status details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LOGINSIGHT_HOST, LOGINSIGHT_API_TOKEN, curl, and jq.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The health-check commands send a bearer token while disabling TLS certificate verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer removing -k, configuring a trusted CA bundle for private certificates, and using a read-only token limited to health and node-status endpoints.
+
+Risk: A misconfigured or untrusted LOGINSIGHT_HOST could receive the configured API token.
+
+Mitigation: Confirm LOGINSIGHT_HOST before execution and store LOGINSIGHT_API_TOKEN in a protected environment secret rather than in files or shell history.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kasture-rohit/skills/vcf-loginsight-health)
+- [Skill homepage](https://github.com/kasture-rohit/vcf-openclaw-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown summary table with shell commands and JSON-derived status details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LOGINSIGHT_HOST, LOGINSIGHT_API_TOKEN, curl, and jq.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,12 +1,177 @@
 MIT-0 License
 
-This skill is a Chinese-localized fork of the original
-"seedance-2-prompt-engineering-skill" by ClawHub user
-kn78900pfs4x1dyejyd8vj121s804aea.
+================================================================================
+SEEDANCER — Attribution & Sources（版本号不在此处维护，见 _meta.json）
+================================================================================
 
-Original skill licensed under MIT-0.
+This skill incorporates content from the following sources:
+
+> 注：以下「License」字段记录各上游**声明的许可**；原始许可全文**未随本仓分发**，请以各上游仓库为准。
+> 关于来源 1 的作者：ClawHub 页面署名 `dandysuper`，其内嵌 skill-card 记录 `kn78900…`；两者指向同一上游技能。
+
+1. seedance-2-prompt-engineering-skill
+   Author: ClawHub user kn78900pfs4x1dyejyd8vj121s804aea
+   License: MIT-0
+   Note: Original base skill, Chinese-localized fork
+
+2. Emily2040/seedance-2.0 (Seedance 2.0 Skill OS)
+   Author: Iamemily2050 (https://github.com/Emily2040)
+   License: MIT
+   Repository: https://github.com/Emily2040/seedance-2.0
+   Note: v6.1.0 Skill OS framework by Emily2040
+
+   Files derived from this project:
+   - references/model-mechanics.md
+   - references/anti-slop-lexicon.md
+   - references/retake-protocol.md
+   - references/reference-role-map.md
+   - references/sequence-project-state.md
+   - references/continuation-handoff.md
+
+3. ifeihong/aigc-film-studio (AIGC Film Studio v3.2.0)
+   Author: Feihong (https://github.com/ifeihong)
+   License: MIT
+   Repository: https://github.com/ifeihong/aigc-film-studio
+   Note: Complete AIGC film production pipeline with CINEDANCE 16-block system,
+   LIRA image prompt system, ACTING performance system, GEO spatial layout,
+   Style Prefix, SCALE LAW, AI Director, deliverable system, failure codes.
+
+   Files derived from this project:
+   - references/cinedance-video-prompt.md
+   - references/lira-image-prompt.md
+   - references/acting-performance.md
+   - references/geo-spatial-layout.md
+   - references/style-prefix.md
+   - references/ai-director.md
+   - references/failure-codes.md
+   - references/deliverable-system.md
+   - assets/templates/* (multiple template files)
+
+4. chaoge-assets-trial (Chaoge AI导演体验版 v1.3.0)
+   Author: taosiuman (超哥)
+   License: MIT-0
+   Note: P0-P2 pre-production pipeline — story bible, emotion curve,
+   creative baseline, character dependency graph, prop mother boards.
+
+   Files derived from this project:
+   - references/story-analysis.md
+   - references/emotion-curve.md
+   - references/creative-baseline.md
+   - references/character-assets.md
+   - references/prop-assets.md
+
+5. seedance20-video-prompts V2.3
+   Author: Elio_AIGC (B站/抖音：Elio_AIGC)
+   License: MIT (as declared by the upstream author)
+   Derived content (systems, not files):
+   - 台词容量预检系统 → references/dialogue-capacity.md
+   - 分组硬门 + 镜头密度四道门 → references/grouping-density.md
+   - 运镜设计系统 → references/camera-design.md
+   - 输出格式硬门 + 空间/人物指代硬门 + 媒介翻译表 → references/output-format.md
+
+6. shotlist-builder
+   Author: Claude Code Team
+   License: MIT
+   Derived content:
+   - 场景原型路由系统 → references/scene-prototypes.md
+   - 摄影机-情绪同步系统 → references/camera-emotion-sync.md
+   - 表演微节拍目录 → references/performance-micro-beats.md
+   - 光源规则系统 → references/lighting-rules.md
+
+7. seedance-director (skill_cn.md)
+   Author: ClawHub
+   License: MIT
+   Derived content:
+   - JSON API 输出模式 → references/json-api-mode.md
+
+8. hellgrind 地狱磨砺
+   Author: taosiuman
+   License: MIT-0
+   Derived content:
+   - ACTING 表演系统增强
+   - CINEDANCE 分镜系统增强
+   - LIRA 图像系统增强
+
+9. Seedancer (this fork)
+   Author: taosiuman (https://github.com/taosiuman)
+   License: MIT-0
+   Note: End-to-end film production OS — P0-P2 pre-production + 12-gate
+   routing + CINEDANCE 16-block + LIRA 4-D + ACTING + GEO + Style Prefix
+   + SCALE LAW + AI Director + failure diagnostics.
+
+================================================================================
+ORIGINAL LICENSES
+================================================================================
+
+--- MIT-0 License (seedance-2-prompt-engineering-skill) ---
 
 Copyright (c) 2025 original author
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+--- MIT License (Emily2040/seedance-2.0) ---
+
+MIT License
+
+Copyright (c) 2026 Emily2040 (Iamemily2050)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+--- MIT License (ifeihong/aigc-film-studio v3.2.0) ---
+
+MIT License
+
+Copyright (c) 2026 Feihong
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+--- MIT-0 License (Seedancer fork — this repository) ---
+
 Copyright (c) 2026 taosiuman (fork author)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

@@ -1,44 +1,59 @@
-## Description: <br>
-为重要会议制作结构化的会前材料（HTML网页 + 腾讯文档），用于整理背景信息、议程、待确认事项和沟通策略。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates structured meeting preparation briefs with background research, agenda context, action checklists, communication strategy, HTML output, and optional Tencent Docs synchronization.
 
-## Publisher: <br>
-[Monica8825](https://clawhub.ai/user/Monica8825) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[monica8825](https://clawhub.ai/user/monica8825)
 
-## Use Case: <br>
-Employees and external collaborators use this skill to prepare structured meeting briefs from meeting details, user-provided files, and public research. It produces background summaries, agenda and issue analysis, action checklists, communication strategy notes, and optional Tencent Docs sync for live meeting notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting briefs may include confidential, regulated, personal, or competitively sensitive information from user-provided files and meeting context. <br>
-Mitigation: Use only materials the user is authorized to share, keep sensitive content scoped to the intended meeting, and review the brief before distribution. <br>
-Risk: Optional Tencent Docs sync sends generated brief content and any attachment-derived information to an external service. <br>
-Mitigation: Enable Tencent Docs sync only when the user deliberately requests it and has confirmed the destination is appropriate for the meeting materials. <br>
-Risk: Online research and extracted document content can be stale, incomplete, or uncertain. <br>
-Mitigation: Retain source notes and uncertainty labels, cross-check important facts, and mark unresolved items as待确认 before using the brief in a meeting. <br>
+## Use Case:
 
+Employees and external meeting participants use this skill to turn meeting context, attachments, and public research into concise pre-meeting briefs for business discussions, project reviews, and collaboration planning. The skill is intended for internal preparation and review before sharing.
 
-## Reference(s): <br>
-- [HTML Template Guide](references/html-template-guide.md) <br>
-- [Meeting Prep HTML Template](assets/meeting-prep-template.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Monica8825/meeting-prep-brief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [HTML brief, optional Markdown/Tencent Docs content, and concise setup or preview instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May process user-provided meeting materials and can optionally sync generated content to Tencent Docs when the user has configured the required token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: The skill may process sensitive meeting materials, attachments, and internal planning context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only appropriate source material, avoid adding unnecessary sensitive data, and review generated briefs before sharing.
+
+Risk: Optional Tencent Docs synchronization may store generated meeting content in an external document service.
+
+Mitigation: Enable sync only for material approved for Tencent Docs storage and verify document access permissions.
+
+Risk: Generated meeting summaries, public research, or strategy suggestions may be incomplete, outdated, or incorrect.
+
+Mitigation: Review facts, preserve uncertainty labels, and confirm key items before using the brief in a meeting.
+
+## Reference(s):
+
+- [会前材料 HTML 模板设计规范](references/html-template-guide.md)
+- [Meeting Prep HTML Template](assets/meeting-prep-template.html)
+- [ClawHub Skill Page](https://clawhub.ai/monica8825/skills/meeting-prep-brief)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Structured HTML brief with optional Markdown/Tencent Docs version, checklists, tables, and source notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May process user-supplied meeting materials and optionally sync generated content to Tencent Docs when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

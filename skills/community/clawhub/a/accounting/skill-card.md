@@ -1,40 +1,52 @@
-## Description: <br>
-Support accounting understanding from basic bookkeeping to professional practice and research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Support accounting understanding from basic bookkeeping to professional practice and research.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users, students, educators, bookkeepers, small business owners, professionals, and researchers use this skill to tailor accounting explanations, bookkeeping workflows, standards discussions, and study support to their role, jurisdiction, entity type, and accounting framework. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Accounting, tax, audit, compliance, and financial reporting guidance can be jurisdiction-specific or depend on entity type and current standards. <br>
-Mitigation: Ask for jurisdiction, entity type, applicable framework, effective dates, and material facts before giving specific guidance; refer high-stakes decisions to a qualified accountant or tax professional. <br>
-Risk: Users may treat educational accounting explanations as authoritative professional advice. <br>
-Mitigation: Frame outputs as educational guidance, distinguish rules from judgment areas, and flag when professional review is needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/accounting) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+External users, students, educators, bookkeepers, small business owners, accounting professionals, and researchers use this skill to tailor accounting explanations, bookkeeping guidance, standards-oriented analysis, and research framing to the user's role and context.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown or plain text accounting guidance with examples, questions, and cautions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no code, tool calls, credentials, persistence, or system access behavior is indicated by security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Accounting, tax, and standards guidance may be wrong or incomplete if jurisdiction, entity type, framework, effective date, or material facts are missing.
+
+Mitigation: Ask for jurisdiction, entity type, applicable framework, relevant dates, and source documents before giving specific guidance; direct users to a qualified professional for filings, audits, notices, or material business decisions.
+
+Risk: Users may over-rely on generated bookkeeping or standards analysis as authoritative advice.
+
+Mitigation: Present outputs as guidance, distinguish rules from judgment areas, flag uncertainty, and recommend verification against current authoritative sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/accounting)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text accounting guidance, explanations, journal entries, checklists, and analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; accounting and tax guidance should be checked against the user's jurisdiction, entity type, current standards, and professional requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

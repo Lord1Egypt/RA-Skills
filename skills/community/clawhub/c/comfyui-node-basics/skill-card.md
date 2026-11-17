@@ -1,41 +1,51 @@
-## Description: <br>
-ComfyUI custom node fundamentals - V3 node structure, Schema, inputs/outputs, registration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ComfyUI custom node fundamentals - V3 node structure, Schema, inputs/outputs, registration.
 
-## Publisher: <br>
-[xujianjian2004](https://clawhub.ai/user/xujianjian2004) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xujianjian2004](https://clawhub.ai/user/xujianjian2004)
 
-## Use Case: <br>
-Developers and engineers use this skill to create ComfyUI custom nodes with the V3 API, including node class structure, schema definition, input/output configuration, and registration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples or adaptations of this documentation could become incorrect or misleading ComfyUI node guidance. <br>
-Mitigation: Review and scan generated or adapted node code before deployment. <br>
-Risk: Nodes created from the examples may later add file writes, API calls, output-node side effects, or hidden inputs. <br>
-Mitigation: Review those behaviors explicitly before installing or sharing the resulting ComfyUI nodes. <br>
+## Use Case:
 
+Developers and engineers use this skill to create ComfyUI custom nodes with the V3 API, including node class structure, schema definition, input and output setup, and registration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xujianjian2004/comfyui-node-basics) <br>
-- [Server-resolved GitHub source](https://github.com/xujianjian2004/comfyui-custom-node-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code] <br>
-**Output Format:** [Markdown with Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guide; does not execute code, install dependencies, use credentials, or perform network activity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Generated or adapted ComfyUI node code may perform file, network, or model operations when used beyond this documentation-only skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated node code before running it in ComfyUI, especially code that accesses files, networks, models, or external packages.
+
+## Reference(s):
+
+- [Server-resolved GitHub source](https://github.com/xujianjian2004/comfyui-custom-node-skills)
+- [ClawHub skill page](https://clawhub.ai/xujianjian2004/skills/comfyui-node-basics)
+- [Publisher profile](https://clawhub.ai/user/xujianjian2004)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown with Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only development guidance for ComfyUI custom node structure and registration.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <!--
+    UML 活动图模板
+    展示动作+决策+分支/合并+泳道+初始/终止节点
+  -->
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ARROW_COLOR}}"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="500" fill="{{BG_COLOR}}" rx="6"/>
+
+  <!-- 标题 -->
+  <text x="450" y="32" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="20" font-weight="bold" fill="{{TITLE_COLOR}}">{{TITLE}}</text>
+
+  <!-- 泳道分隔线 -->
+  <line x1="300" y1="42" x2="300" y2="500" stroke="{{BORDER_COLOR}}" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <line x1="600" y1="42" x2="600" y2="500" stroke="{{BORDER_COLOR}}" stroke-width="1.5" stroke-dasharray="8,4"/>
+
+  <!-- 泳道标签 -->
+  <text x="150" y="58" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{ACCENT_COLOR}}">{{LANE_1}}</text>
+  <text x="450" y="58" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{ACCENT2_COLOR}}">{{LANE_2}}</text>
+  <text x="750" y="58" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{ACCENT3_COLOR}}">{{LANE_3}}</text>
+
+  <!-- 初始节点（实心圆） -->
+  <circle cx="150" cy="90" r="10" fill="{{ACCENT_COLOR}}"/>
+
+  <!-- 动作1: Submit Order -->
+  <rect x="70" y="120" width="160" height="40" rx="20"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.12" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <text x="150" y="145" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">{{ACTION_1}}</text>
+
+  <!-- 初始→动作1 -->
+  <line x1="150" y1="100" x2="150" y2="118" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 动作2: Validate Order -->
+  <rect x="370" y="120" width="160" height="40" rx="20"
+        fill="{{ACCENT2_COLOR}}" fill-opacity="0.12" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"/>
+  <text x="450" y="145" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">{{ACTION_2}}</text>
+
+  <!-- 动作1→动作2 -->
+  <line x1="230" y1="140" x2="368" y2="140" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 决策节点（菱形） -->
+  <polygon points="450,200 480,230 450,260 420,230"
+           fill="{{BG_COLOR}}" stroke="{{ACCENT2_COLOR}}" stroke-width="2"/>
+  <text x="450" y="234" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{TEXT_COLOR}}">?</text>
+
+  <!-- 动作2→决策 -->
+  <line x1="450" y1="160" x2="450" y2="200" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 决策 → 动作3 [valid] -->
+  <line x1="480" y1="230" x2="670" y2="230" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="575" y="222" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{ACCENT_COLOR}}">[valid]</text>
+
+  <!-- 决策 → 动作4 [invalid] -->
+  <line x1="450" y1="260" x2="450" y2="295" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="470" y="283" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{ACCENT3_COLOR}}">[invalid]</text>
+
+  <!-- 动作3: Process Payment -->
+  <rect x="670" y="210" width="160" height="40" rx="20"
+        fill="{{ACCENT3_COLOR}}" fill-opacity="0.12" stroke="{{ACCENT3_COLOR}}" stroke-width="1.5"/>
+  <text x="750" y="235" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">{{ACTION_3}}</text>
+
+  <!-- 动作4: Notify Error -->
+  <rect x="370" y="297" width="160" height="40" rx="20"
+        fill="{{ACCENT2_COLOR}}" fill-opacity="0.12" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"/>
+  <text x="450" y="322" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">{{ACTION_4}}</text>
+
+  <!-- 动作4 → 终止1 -->
+  <line x1="370" y1="317" x2="170" y2="380" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- fork 水平粗线 -->
+  <rect x="670" y="280" width="160" height="5" rx="2" fill="{{ACCENT3_COLOR}}"/>
+
+  <!-- 动作3 → fork -->
+  <line x1="750" y1="250" x2="750" y2="278" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- fork → 动作5 -->
+  <line x1="710" y1="285" x2="710" y2="315" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- fork → 动作6 -->
+  <line x1="790" y1="285" x2="790" y2="315" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 动作5: Ship Order -->
+  <rect x="640" y="317" width="140" height="38" rx="18"
+        fill="{{ACCENT3_COLOR}}" fill-opacity="0.12" stroke="{{ACCENT3_COLOR}}" stroke-width="1.5"/>
+  <text x="710" y="340" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">{{ACTION_5}}</text>
+
+  <!-- 动作6: Send Notification -->
+  <rect x="720" y="317" width="140" height="38" rx="18"
+        fill="{{ACCENT3_COLOR}}" fill-opacity="0.12" stroke="{{ACCENT3_COLOR}}" stroke-width="1.5"/>
+  <text x="790" y="340" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">{{ACTION_6}}</text>
+
+  <!-- join 水平粗线 -->
+  <rect x="670" y="380" width="160" height="5" rx="2" fill="{{ACCENT3_COLOR}}"/>
+
+  <!-- 动作5→join, 动作6→join -->
+  <line x1="710" y1="355" x2="710" y2="378" stroke="{{ARROW_COLOR}}" stroke-width="1.5"/>
+  <line x1="790" y1="355" x2="790" y2="378" stroke="{{ARROW_COLOR}}" stroke-width="1.5"/>
+
+  <!-- 动作7: Complete -->
+  <rect x="370" y="410" width="160" height="40" rx="20"
+        fill="{{ACCENT2_COLOR}}" fill-opacity="0.12" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"/>
+  <text x="450" y="435" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">{{ACTION_7}}</text>
+
+  <!-- join → 动作7 -->
+  <line x1="750" y1="385" x2="750" y2="400" stroke="{{ARROW_COLOR}}" stroke-width="1.5"/>
+  <line x1="750" y1="400" x2="530" y2="430" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 终止节点1 -->
+  <circle cx="150" cy="390" r="10" fill="none" stroke="{{ACCENT_COLOR}}" stroke-width="2"/>
+  <circle cx="150" cy="390" r="6" fill="{{ACCENT_COLOR}}"/>
+
+  <!-- 终止节点2 -->
+  <circle cx="450" cy="480" r="10" fill="none" stroke="{{ACCENT2_COLOR}}" stroke-width="2"/>
+  <circle cx="450" cy="480" r="6" fill="{{ACCENT2_COLOR}}"/>
+
+  <!-- 动作7→终止2 -->
+  <line x1="450" y1="450" x2="450" y2="468" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 图例 -->
+  <rect x="20" y="420" width="250" height="70" rx="6"
+        fill="{{BG_COLOR}}" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="35" y="438" font-family="{{FONT_FAMILY}}"
+        font-size="10" font-weight="bold" fill="{{TITLE_COLOR}}">图例</text>
+  <circle cx="35" cy="455" r="5" fill="{{ACCENT_COLOR}}"/>
+  <text x="48" y="459" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">初始</text>
+  <circle cx="80" cy="455" r="5" fill="none" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <circle cx="80" cy="455" r="3" fill="{{ACCENT_COLOR}}"/>
+  <text x="93" y="459" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">终止</text>
+  <polygon points="135,450 145,455 135,460 125,455" fill="{{BG_COLOR}}" stroke="{{ACCENT2_COLOR}}" stroke-width="1"/>
+  <text x="155" y="459" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">决策</text>
+  <rect x="195" y="451" width="25" height="5" rx="2" fill="{{ACCENT3_COLOR}}"/>
+  <text x="228" y="459" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">Fork/Join</text>
+</svg>

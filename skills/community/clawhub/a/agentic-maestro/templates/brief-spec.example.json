@@ -1,0 +1,41 @@
+{
+  "template": "brief",
+  "root": "../wt-F12",
+  "budgetKb": 12,
+  "gatePrefix": "~/.claude/skills/agentic-maestro/scripts/gate.sh",
+  "values": {
+    "SHA": "3f2c1ab",
+    "WORKDIR": "/Users/me/src/wt-F12",
+    "BRANCH": "feat/F12-export-limits",
+    "PREREQUISITES": "pnpm install has run; packages/db migrations are at 0041",
+    "ENV_EXPORTS": "export NODE_ENV=test",
+    "FEATURE_ID": "F12",
+    "TITLE": "Export page-size limits",
+    "ACCEPTANCE": "Exports refuse page sizes over 500 with EXPORT_PAGE_TOO_LARGE.",
+    "SPEC_LINES": "spec.md §4.2 lines 118-131",
+    "RULINGS": [
+      "R1 pageSize is an integer 1..500; anything else is refused with EXPORT_PAGE_TOO_LARGE (400), never clamped.",
+      "R2 The check runs before the database query."
+    ],
+    "CONTRACTS": "exportRows(query) keeps its signature; existing error codes are unchanged.",
+    "DONE_MEANS": [
+      "- pageSize 500 succeeds; 501 and 0 return EXPORT_PAGE_TOO_LARGE.",
+      "- No query is issued for a refused request (counted with the query spy)."
+    ],
+    "FILES": "packages/export/src/limits.ts (new), packages/export/src/handler.ts, packages/export/test/limits.test.ts (new)",
+    "PATTERN": "packages/import/src/limits.ts",
+    "CODEMAP_PATH": "docs/CODEMAP.md",
+    "CODEMAP_SECTIONS": "@app/export, @app/import",
+    "GATE_COMMANDS": [
+      "pnpm --filter @app/export test",
+      "pnpm --filter @app/export typecheck",
+      "pnpm --filter @app/export lint"
+    ],
+    "REPORT_LINES": "15"
+  },
+  "excerpts": [
+    { "file": "packages/import/src/limits.ts", "regex": "export function checkLimits", "lines": 30 }
+  ],
+  "conventions": { "source": "docs/conventions", "keywords": ["error code", "refuse"] },
+  "checklist": { "areas": ["Input", "Tests"] }
+}

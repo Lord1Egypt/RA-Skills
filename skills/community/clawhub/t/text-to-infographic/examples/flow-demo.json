@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "meta": { "title": "技能冷启动四步", "subtitle": "价值锚点的信任飞轮" },
+  "layout": "flow",
+  "blocks": [
+    { "id": "s1", "title": "选对的人", "text": "强需求可反馈" },
+    { "id": "s2", "title": "可验证结果", "text": "能复现能验收" },
+    { "id": "s3", "title": "用户背书", "text": "口碑滚起来" },
+    { "id": "s4", "title": "筛选调性", "text": "门槛留认真的人" }
+  ],
+  "relations": [
+    { "from": "s1", "to": "s2" },
+    { "from": "s2", "to": "s3" },
+    { "from": "s3", "to": "s4" }
+  ]
+}

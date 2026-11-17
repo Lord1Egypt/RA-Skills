@@ -1,43 +1,60 @@
-## Description: <br>
-Manages SP501LW serial gateways over MQTT for serial passthrough and Modbus RTU data collection with custom topics and brokers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages SP501LW serial gateways over MQTT for serial pass-through and Modbus RTU data collection, with custom topics and broker settings.
 
-## Publisher: <br>
-[likong-iot](https://clawhub.ai/user/likong-iot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[likong-iot](https://clawhub.ai/user/likong-iot)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to register SP501LW gateways, send and listen for serial data, switch gateway modes, and configure Modbus RTU polling over MQTT. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send commands to real SP501LW gateways and change gateway configuration, including operations that may restart the device. <br>
-Mitigation: Install and use it only for gateways you control, review commands before execution, and wait for devices to finish restarting after configuration changes. <br>
-Risk: Default or public MQTT credentials and unencrypted broker connections can expose device-control traffic. <br>
-Mitigation: Use a private MQTT broker with unique credentials and TLS where supported, and avoid public or default credentials in production. <br>
-Risk: Saved gateway records may include broker topics, usernames, and passwords. <br>
-Mitigation: Protect the local devices.json file, exclude it from sharing and source control, and treat CLI-entered passwords as exposed unless shell history and logs are controlled. <br>
+## Use Case:
 
+Developers and engineers use this skill to register and manage SP501LW gateways, switch MQTT and Modbus modes, send or listen to serial data, and configure Modbus RTU polling tasks through MQTT.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/likong-iot/serial-server-mqtt) <br>
-- [GitHub homepage](https://github.com/likong-iot/sp501lw-mqtt-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may publish MQTT messages and write local devices.json gateway records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill can control real gateways and attached serial or Modbus equipment over MQTT.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only authorized gateways, confirm device IDs and topics before commands, and review planned commands before execution.
+
+Risk: MQTT credentials and device records may expose passwords, and TLS is not implemented.
+
+Mitigation: Avoid default public broker credentials, use trusted networks, protect devices.json and command output, and prefer secured broker and network controls where available.
+
+Risk: Configuration changes can reboot devices for 5-30 seconds.
+
+Mitigation: Schedule configuration operations, wait for reboot completion before follow-up commands, and avoid consecutive commands during restart windows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/likong-iot/skills/serial-server-mqtt)
+- [Project homepage](https://github.com/likong-iot/sp501lw-mqtt-skill)
+- [README](artifact/README.md)
+- [Architecture notes](artifact/ARCHITECTURE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MQTT topics, broker settings, device IDs, and Modbus polling parameters supplied by the user.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter declares 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

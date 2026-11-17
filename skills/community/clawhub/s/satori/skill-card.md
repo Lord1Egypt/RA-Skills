@@ -1,42 +1,61 @@
-## Description: <br>
-Satori gives agents persistent long-term memory by saving notable facts through the Satori CLI and retrieving relevant context across AI sessions and tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Satori provides persistent long-term memory for continuity across AI sessions, providers, and code generation tools.
 
-## Publisher: <br>
-[joelachance](https://clawhub.ai/user/joelachance) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[joelachance](https://clawhub.ai/user/joelachance)
 
-## Use Case: <br>
-Developers and agent users use Satori to preserve project decisions, preferences, deadlines, names, and other durable context so future AI sessions can retrieve relevant facts across tools. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can save and reuse conversation details through an external CLI without clear confirmation or deletion controls. <br>
-Mitigation: Use it only when persistent memory is intended, ask before saving sensitive facts, and establish review and deletion practices before routine use. <br>
-Risk: The artifact invokes the Satori CLI with an automatically resolved latest package version. <br>
-Mitigation: Pin or inspect the Satori CLI package before use when package drift or supply-chain review matters. <br>
-Risk: The CLI auto-provisions credentials and local configuration on first run. <br>
-Mitigation: Review where credentials are stored and define how to rotate or remove them before enabling the skill in shared or regulated environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Satori ClawHub Page](https://clawhub.ai/joelachance/satori) <br>
-- [Fact Extraction Criteria](artifact/references/fact-criteria.md) <br>
+## Use Case:
 
+Developers and AI-tool users use Satori to save notable decisions, preferences, deadlines, project context, and other durable facts, then retrieve that context in later sessions. The skill guides agents on when to call the Satori CLI to add or search memory.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores and retrieves facts through an external Satori CLI using local terminal access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Conversation details, including business or personal context, may be saved to an external memory service without visible confirmation.
+
+Mitigation: Require explicit opt-in before saving, show the exact facts to be stored, and block sensitive data by default.
+
+Risk: Retrieved memories may be incorporated silently, making it hard for users to know when prior context affected an answer.
+
+Mitigation: Disclose retrieval when remembered context materially affects a response and let users inspect the retrieved facts.
+
+Risk: The skill invokes a mutable npm package with `@latest`, so behavior can change between runs.
+
+Mitigation: Pin the Satori CLI package version and review changes before upgrading.
+
+Risk: Automatic credential provisioning may create or reuse local credentials without a clear setup step.
+
+Mitigation: Make authentication explicit, document where credentials are stored, and provide deletion or reset controls.
+
+## Reference(s):
+
+- [Satori Skill Page](https://clawhub.ai/joelachance/skills/satori)
+- [Fact Extraction Criteria](artifact/references/fact-criteria.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON response handling]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save facts or retrieve prior context through the Satori CLI when triggered by user requests or conversation context.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata, released 2026-01-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

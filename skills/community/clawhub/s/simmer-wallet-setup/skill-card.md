@@ -1,48 +1,62 @@
-## Description: <br>
-Self-custody wallet setup for Simmer agents choosing OWS, an external raw key, or an existing dashboard-registered agent for a local runtime. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-custody wallet setup for Simmer agents. Bring your own key, import a funded Polymarket wallet, or connect an existing dashboard-registered agent to your local runtime. Skip this skill if you use a managed wallet because managed setup is a one-time dashboard flow, not an agent task.
 
-## Publisher: <br>
-[simmer](https://clawhub.ai/user/simmer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simmer](https://clawhub.ai/user/simmer)
 
-## Use Case: <br>
-Developers and trading-agent operators use this skill to configure Simmer self-custody wallet access, API keys, approvals, and local signing paths for Polymarket or Kalshi agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles highly sensitive wallet credentials, including SIMMER_API_KEY and optional private keys. <br>
-Mitigation: Follow the documented secret-handling guidance, avoid clipboard-based key piping, and store wallet material only in the intended local environment or encrypted OWS vault. <br>
-Risk: Wallet approvals, activation, wrapping, and trading configuration can affect real funds. <br>
-Mitigation: Run setup only for intended Simmer self-custody wallets, verify commands and package sources before execution, and confirm approvals and balances before trading. <br>
-Risk: Using the wrong wallet path or chain can leave the agent unable to trade or showing unexpected balances. <br>
-Mitigation: Choose the documented OWS, raw-key, or existing-agent path deliberately and verify the configured wallet, venue, chain, and token requirements before use. <br>
+## Use Case:
 
+Developers and operators use this skill to configure self-custody wallet signing for Simmer agents that trade on Polymarket or Kalshi, including external keys, imported Polymarket wallets, and existing dashboard-registered agents.
 
-## Reference(s): <br>
-- [Simmer Wallet Setup on ClawHub](https://clawhub.ai/simmer/simmer-wallet-setup) <br>
-- [Simmer publisher profile](https://clawhub.ai/user/simmer) <br>
-- [Open Wallet Standard](https://openwallet.sh) <br>
-- [OWS install script](https://docs.openwallet.sh/install.sh) <br>
-- [Simmer wallet docs](https://docs.simmer.markets/wallets) <br>
-- [Simmer V2 migration guide](https://docs.simmer.markets/v2-migration) <br>
-- [Simmer dashboard](https://simmer.markets/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance for configuring API keys, wallet selection, local signing, approvals, and troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: The runtime may hold real wallet private keys or API keys for a real-money trading workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment, prefer a local key store over bare environment variables, avoid shared surfaces for keys, and keep wallet keys unset during package installation.
+
+Risk: The setup asks users to install mutable third-party code.
+
+Mitigation: Install pinned and verified SDK versions where possible and avoid curl-to-bash installers unless the source and contents have been reviewed.
+
+Risk: Some SDK calls can sign approvals or trigger configured exit trades.
+
+Mitigation: Review commands before execution, confirm the intended wallet and venue, and verify auto risk monitor settings before running the agent.
+
+## Reference(s):
+
+- [Simmer Skill Page](https://clawhub.ai/simmer/skills/simmer-wallet-setup)
+- [Simmer Dashboard](https://simmer.markets/dashboard?ref=sdk-skill&utm_campaign=sdk-skill)
+- [Polymarket Wallet Import](https://docs.simmer.markets/polymarket-import)
+- [Simmer Wallet Docs](https://docs.simmer.markets/wallets)
+- [V2 Migration Guide](https://docs.simmer.markets/v2-migration)
+- [Open Wallet Standard](https://openwallet.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes environment-variable setup guidance for SIMMER_API_KEY, optional wallet key handling, package installation, wallet linking, approvals, and verification.]
+
+## Skill Version(s):
+
+0.4.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

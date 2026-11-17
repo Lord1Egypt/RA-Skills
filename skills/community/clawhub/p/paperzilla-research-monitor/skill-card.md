@@ -1,41 +1,58 @@
-## Description: <br>
-Monitors and discusses research papers from one Paperzilla project using the pz CLI inside OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor and discuss research papers from one Paperzilla project using the `pz` CLI inside OpenClaw.
 
-## Publisher: <br>
-[pors](https://clawhub.ai/user/pors) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pors](https://clawhub.ai/user/pors)
 
-## Use Case: <br>
-Researchers, research engineers, and teams using Paperzilla use this skill to triage one project's feed, discuss selected papers, and generate recurring weekday briefs tied to their work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an already authenticated Paperzilla CLI and may deliver briefs through Telegram/OpenClaw. <br>
-Mitigation: Before installing or running it, confirm that pz is the official Paperzilla CLI, that it is authenticated to the intended account, and that Telegram/OpenClaw delivery targets the intended destination. <br>
-Risk: Recurring briefs retain paper IDs that were already included so later runs can avoid repeats. <br>
-Mitigation: For sensitive projects, ask the host or publisher how to inspect or clear the retained brief history. <br>
+## Use Case:
 
+Developers, researchers, and teams use this skill to triage recent Paperzilla project feed items, inspect selected papers, summarize markdown-backed paper content, explain relevance to current work, and produce recurring weekday research briefs.
 
-## Reference(s): <br>
-- [Paperzilla CLI documentation](https://docs.paperzilla.ai/guides/cli) <br>
-- [Paperzilla Monitor ClawHub release](https://clawhub.ai/pors/paperzilla-research-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown chat responses with Paperzilla metadata, summaries, recommendations, and inline CLI command references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include paper identifiers used for feed triage, feedback, and recurring brief history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: server release and frontmatter) <br>
+Risk: The skill uses an already-authenticated Paperzilla CLI and may access project paper feeds and markdown.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user is comfortable with authenticated Paperzilla access; the skill is limited to Paperzilla read and triage workflows and explicitly avoids unrelated files, environment variables, and credentials.
+
+Risk: Recurring briefs can be delivered through the configured chat surface.
+
+Mitigation: Send externally only for scheduled/profile-required delivery or when the user explicitly requests it, and confirm ambiguous destinations before sending.
+
+Risk: Weekday briefs keep a small per-project history of proposed paper IDs to avoid repeats.
+
+Mitigation: Persist only the exact Paperzilla IDs needed for deduplication in profile-owned state and allow revisiting papers when the user asks.
+
+## Reference(s):
+
+- [Paperzilla CLI Guide](https://docs.paperzilla.ai/guides/cli)
+- [ClawHub skill page](https://clawhub.ai/pors/skills/paperzilla-research-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and concise chat text, with inline Paperzilla CLI commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send scheduled or explicitly requested research briefs through the configured OpenClaw chat surface.]
+
+## Skill Version(s):
+
+1.1.4 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

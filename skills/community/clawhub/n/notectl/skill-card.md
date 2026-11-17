@@ -1,39 +1,52 @@
-## Description: <br>
-Manage Apple Notes via AppleScript CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Apple Notes via AppleScript CLI.
 
-## Publisher: <br>
-[rainbat](https://clawhub.ai/user/rainbat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rainbat](https://clawhub.ai/user/rainbat)
 
-## Use Case: <br>
-Developers and agent users use Notectl to list, inspect, search, create, and append Apple Notes from command-line workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Listing, showing, or searching notes can expose private note titles or contents. <br>
-Mitigation: Use the skill only when Apple Notes access is intended, and review commands before exposing note output to an agent session. <br>
-Risk: Add and append commands modify Apple Notes. <br>
-Mitigation: Confirm the target note, folder, and text before asking an agent to run note-changing commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/rainbat/notectl) <br>
+## Use Case:
 
+Developers and Apple Notes users use this skill to have an agent propose notectl commands for listing, searching, showing, creating, and appending notes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command guidance for Apple Notes operations; command output may include note titles, folder names, note contents, or mutation status.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search and show commands may expose private Apple Notes content.
+
+Mitigation: Review proposed read commands and queries before running them, and avoid broad searches when private notes may be in scope.
+
+Risk: Add and append commands persist changes in Apple Notes.
+
+Mitigation: Confirm the target note, folder, and text before executing any write command.
+
+## Reference(s):
+
+- [Notectl ClawHub skill page](https://clawhub.ai/rainbat/skills/notectl)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may read from or write to Apple Notes and should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

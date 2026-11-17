@@ -1,39 +1,58 @@
-## Description: <br>
-Interactive setup for adding Feishu bot accounts and binding them to OpenClaw agents with account-level or group-level routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures additional Feishu bot accounts for OpenClaw, binds messages to a selected Agent at the account or group-chat level, backs up configuration, and restarts the gateway.
 
-## Publisher: <br>
-[vimself](https://clawhub.ai/user/vimself) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vimself](https://clawhub.ai/user/vimself)
 
-## Use Case: <br>
-Developers and operators use this skill to register a new Feishu bot account, choose account-level or group-level routing, and bind messages to a selected OpenClaw agent. It is intended for live OpenClaw configuration workflows where the user can review credentials, bindings, and restart impact before applying changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Feishu App Secret is stored in the local OpenClaw configuration. <br>
-Mitigation: Review where OpenClaw configuration and backups are stored, restrict file access, and remove or protect backups that contain secrets. <br>
-Risk: The skill modifies live OpenClaw routing and restarts the Gateway. <br>
-Mitigation: Confirm the account ID, routing mode, agent binding, DM policy, and expected restart window before applying the configuration. <br>
+## Use Case:
 
+OpenClaw developers and workspace operators use this skill to add Feishu bot credentials, choose account-level or group-chat routing, and update local gateway configuration for an Agent.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [CLI text output with configuration changes and recovery commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update ~/.openclaw/openclaw.json, create a backup, set session.dmScope, and restart the OpenClaw Gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Feishu App Secrets are stored in plaintext OpenClaw configuration and backup files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect ~/.openclaw/openclaw.json and backup files, avoid entering real secrets where shell history can capture them, and rotate secrets if exposure is suspected.
+
+Risk: Bot access is broad by default because the skill can use an open DM policy and wildcard allowFrom setting.
+
+Mitigation: Use restrictive DM policies such as pairing or allowlist where possible, and limit enabled accounts or groups to the intended users.
+
+Risk: The skill changes OpenClaw configuration and may restart the gateway automatically.
+
+Mitigation: Run it during an acceptable maintenance window, review the generated binding choices, and use the automatic backup to restore configuration if the change is wrong.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vimself/skills/quick-agent-setup)
+- [Publisher profile](https://clawhub.ai/user/vimself)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local OpenClaw configuration, create backups, set session routing scope, and restart the gateway when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

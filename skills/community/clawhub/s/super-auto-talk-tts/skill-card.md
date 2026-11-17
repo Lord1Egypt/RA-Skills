@@ -1,42 +1,58 @@
-## Description: <br>
-Super Auto Talk Tts converts agent messages to spoken audio using edge-tts, with configurable voice, rate, pitch, volume, and manual auto-speak commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Super Auto Talk Tts converts agent messages into spoken audio using Edge TTS, with configurable voice, speed, pitch, volume, and asynchronous playback.
 
-## Publisher: <br>
-[subaru0573](https://clawhub.ai/user/subaru0573) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[subaru0573](https://clawhub.ai/user/subaru0573)
 
-## Use Case: <br>
-Developers and agent users can use this skill to have generated responses spoken aloud for accessibility or hands-free workflows. It is intended for environments where always-on text-to-speech behavior is explicitly desired and acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Always-on speech can expose generated responses through audible playback or an external TTS service. <br>
-Mitigation: Use only with explicit opt-in, avoid speaking sensitive content, and do not add persistent always-on agent rules unless that behavior is required. <br>
-Risk: The artifact describes automatic package installation and depends on node-edge-tts without a pinned exact version. <br>
-Mitigation: Review dependencies before installation, prefer pinned dependencies, and install only from trusted package sources. <br>
-Risk: The documented auto-speak executable is not included among the provided artifact files. <br>
-Mitigation: Verify the executable exists and inspect its behavior before enabling or testing the skill. <br>
+## Use Case:
 
+External users and developers can use this skill to have agent responses spoken aloud automatically for accessibility, hands-free review, or voice-oriented workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/subaru0573/skills/super-auto-talk-tts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Audio, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Spoken audio with Markdown guidance and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Asynchronous text-to-speech playback with configurable voice, rate, pitch, volume, and summary length.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, _meta.json) <br>
+Risk: The skill asks users to persistently force all future agent messages through automatic background speech generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only for workflows that intentionally require automatic speech, and remove or decline persistent SOUL.md instructions when continuous speech is not desired.
+
+Risk: The skill describes automatic or global npm package installation.
+
+Mitigation: Avoid automatic global installs; review and pin dependencies before installation in a controlled environment.
+
+Risk: The package declares an auto-speak executable, but the artifact does not include that executable file.
+
+Mitigation: Confirm that the executable is supplied from a trusted source before running commands that invoke auto-speak.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/subaru0573/skills/super-auto-talk-tts)
+- [Publisher profile](https://clawhub.ai/user/subaru0573)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, spoken audio]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated speech playback]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses configurable voice, rate, pitch, volume, and summary length settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact/_meta.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

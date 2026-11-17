@@ -1,0 +1,17 @@
+# Configure from the relevant accounting and operating evidence. No example costs are supplied.
+currency: null
+customers_now: null                 # Optional count for fixed-cost allocation; state period and scope
+margin_targets: []                   # Optional constraints selected by the business
+lines: []                            # Configure script schema: line, kind, eur_month/eur_per_customer/per_unit, driver, source
+people:
+  hourly_rate: null
+  support_hours_per_month: null
+  onboarding_hours_one_off: null
+  amortise_onboarding_months: null
+channel:
+  revenue_share: null
+  processing: null
+gaps: []                             # Explicit unknowns, impact, and how to resolve them
+driver_regression:
+  file: null
+  drivers_by_segment: {}             # Populate only from observed operating data or labelled estimates

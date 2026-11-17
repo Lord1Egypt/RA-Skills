@@ -1,44 +1,55 @@
-## Description: <br>
-File-based weekly planning system (TOML) with inbox capture, time-block scheduling, weekly review, and optional calendar publishing (Google Calendar via gogcli or .ics export). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+File-based weekly planning system (TOML) with inbox capture, time-block scheduling, weekly review, and optional calendar publishing (Google Calendar via gogcli or .ics export).
 
-## Publisher: <br>
-[tristanmanchester](https://clawhub.ai/user/tristanmanchester) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tristanmanchester](https://clawhub.ai/user/tristanmanchester)
 
-## Use Case: <br>
-External users and agent operators use this skill to capture tasks, plan and time-block a week, roll over unfinished work, complete weekly reviews, and optionally publish time blocks to a calendar. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The initializer can delete a chosen target folder when run with --force. <br>
-Mitigation: Use --force only after confirming the target is exactly the planner folder intended for replacement. <br>
-Risk: Calendar sync can update or delete managed events in the configured calendar. <br>
-Mitigation: Run dry-run first, sync only to a dedicated planner calendar, and apply changes only after reviewing the planned actions. <br>
-Risk: Planner files may contain private notes and schedule details. <br>
-Mitigation: Keep planner notes private and use .ics export when direct calendar access is not desired. <br>
+## Use Case:
 
+External users and developers use this skill to maintain a lightweight weekly planner in plain files: capture inbox tasks, create or roll over week plans, schedule time blocks, run weekly reviews, and optionally publish scheduled blocks to a calendar.
 
-## Reference(s): <br>
-- [Weekly Planner Skill Page](https://clawhub.ai/tristanmanchester/weekly-planner) <br>
-- [Weekly Planner schema](references/PLANNER_SCHEMA.md) <br>
-- [Calendar publishing](references/CALENDAR_SYNC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline TOML and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and edits plain-text planner files; optional calendar output is Google Calendar sync actions or .ics files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Initialization with --force can delete the resolved target planner directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run initialization without --force unless the target is a verified disposable planner directory.
+
+Risk: Optional Google Calendar sync depends on an unpinned third-party gogcli installation and can modify managed calendar events.
+
+Mitigation: Prefer .ics export when possible; for Google Calendar sync, use a dedicated calendar, review dry-run output, and keep calendar.write_enabled false until explicitly applying changes.
+
+## Reference(s):
+
+- [Weekly Planner Skill Page](https://clawhub.ai/tristanmanchester/skills/weekly-planner)
+- [PLANNER_SCHEMA.md](references/PLANNER_SCHEMA.md)
+- [CALENDAR_SYNC.md](references/CALENDAR_SYNC.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with TOML and bash snippets; planner artifacts as TOML, Markdown, and optional .ics files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local workspace files and Python scripts; optional Google Calendar sync requires gogcli and explicit write enablement]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter metadata.version is 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

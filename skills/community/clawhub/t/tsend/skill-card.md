@@ -1,40 +1,52 @@
-## Description: <br>
-Send files quickly via Telegram using the tsend CLI tool with optional captions, profiles, and simple token/chat ID configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send files quickly via Telegram using the tsend CLI tool with optional captions, profiles, and simple token/chat ID configuration.
 
-## Publisher: <br>
-[Shingwha](https://clawhub.ai/user/Shingwha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shingwha](https://clawhub.ai/user/shingwha)
 
-## Use Case: <br>
-Developers and operators use this skill to install and run a Telegram file-sending CLI, configure bot credentials and chat IDs, and send one or more local files or short text messages to a configured Telegram chat. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected files are uploaded from the local device to the configured Telegram chat. <br>
-Mitigation: Use --dry-run before broad globs or sensitive folders, and send only files intended to leave the device. <br>
-Risk: Bot credentials may be saved in ~/.tsend/config.json. <br>
-Mitigation: Treat the token as a secret, restrict access to the config file, or use environment variables when saved credentials are not desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Shingwha/tsend) <br>
-- [Telegram Bot API endpoint used by the skill](https://api.telegram.org/bot{token}) <br>
+## Use Case:
 
+Developers and operators use this skill to install and run the tsend CLI for sending documents, images, multiple files, or short messages to a configured Telegram chat.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI can send files or text through Telegram and prints status, dry-run previews, and error messages.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Telegram bot tokens and chat IDs can grant access to send data through the configured bot.
+
+Mitigation: Prefer TSEND_TOKEN and TSEND_CHAT_ID environment variables, and restrict ~/.tsend/config.json to the local user if a config file is used.
+
+Risk: Files and messages sent with the CLI leave the local machine and are transmitted to Telegram.
+
+Mitigation: Use dry-run previews, verify the destination chat, and avoid sending sensitive documents unless Telegram is the intended destination.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shingwha/skills/tsend)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide installation, profile configuration, dry-run previews, and Telegram file or message sending.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

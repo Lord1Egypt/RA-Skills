@@ -1,45 +1,56 @@
-## Description: <br>
-NetBox Sync Ops guides agents through safe deployment, scheduling, extension, and troubleshooting of netbox-proxmox-sync for idempotent NetBox inventory updates from Proxmox VE, UniFi, and optional iDRAC/Redfish enrichment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Infrastructure inventory automation and utility operations for netbox-proxmox-sync, an idempotent state sync that models Proxmox VE and UniFi into NetBox DCIM/IPAM.
 
-## Publisher: <br>
-[eddygk](https://clawhub.ai/user/eddygk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eddygk](https://clawhub.ai/user/eddygk)
 
-## Use Case: <br>
-Developers and infrastructure operators use this skill to configure, run, schedule, extend, and troubleshoot NetBox inventory syncs for Proxmox VE, UniFi, and optional iDRAC/Redfish enrichment while preserving idempotent behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect operational guidance or unreviewed changes could affect NetBox inventory records in a production environment. <br>
-Mitigation: Use the documented dry-run and report flow first, confirm the target and credentials, and review proposed create, update, or delete actions before applying. <br>
-Risk: The reaper lifecycle can mark or delete sync-owned VM records when a Proxmox VMID is no longer present. <br>
-Mitigation: Run with --no-reap until ownership rules and reaper thresholds are reviewed, and enable deletion only when the environment intentionally allows it. <br>
-Risk: The skill requires infrastructure credentials and is intended for users who understand its administrative scope. <br>
-Mitigation: Install and run it only in a trusted ClawHub or staff development environment, and confirm credentials and production targets before use. <br>
+## Use Case:
 
+Infrastructure operators, developers, and engineers use this skill to deploy, schedule, troubleshoot, and safely extend NetBox inventory syncs for Proxmox VE, UniFi, and optional iDRAC/Redfish enrichment. It focuses on dry-run review, idempotency checks, reaper gating, and NetBox API issue resolution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eddygk/skills/netbox-sync-ops) <br>
-- [netbox-proxmox-sync homepage](https://github.com/eddygk/netbox-proxmox-sync) <br>
-- [Extending](references/extending.md) <br>
-- [Gotchas](references/gotchas.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions, Code] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dry-run, reporting, scheduling, troubleshooting, and idempotency-check recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The skill can guide NetBox write and delete workflows through the sync reaper.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege NetBox token, run --dry-run --report first, keep --no-reap enabled until deletion thresholds are reviewed, and confirm the reaper only targets records owned by the sync.
+
+Risk: Incorrect comparisons or NetBox API modeling can cause repeated updates or HTTP 400 failures.
+
+Mitigation: Follow the bundled gotchas reference for numeric comparisons, object re-fetching, VirtualDisk ownership, interface bridge modeling, and exact interface type strings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eddygk/skills/netbox-sync-ops)
+- [netbox-proxmox-sync homepage](https://github.com/eddygk/netbox-proxmox-sync)
+- [Extending reference](references/extending.md)
+- [Gotchas reference](references/gotchas.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline shell commands and operational checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires environment-specific NetBox, Proxmox, and optional UniFi or iDRAC credentials before commands are usable.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

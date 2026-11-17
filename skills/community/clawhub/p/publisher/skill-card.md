@@ -1,42 +1,53 @@
-## Description: <br>
-Make your skills easy to understand and impossible to ignore <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Make your skills easy to understand and impossible to ignore.
 
-## Publisher: <br>
-[TunaIssaCoding](https://clawhub.ai/user/TunaIssaCoding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tunaissacoding](https://clawhub.ai/user/tunaissacoding)
 
-## Use Case: <br>
-Developers and skill authors use this skill to turn a skill directory into clearer user-facing documentation, then publish it to GitHub and ClawdHub with an assisted command-line workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The publishing workflow can expose unintended files by creating or using a git repository, creating a public GitHub repository, pushing code, and publishing to ClawdHub. <br>
-Mitigation: Inspect the skill directory before publication, remove secrets and private files, and confirm .gitignore excludes credentials, build artifacts, and other non-public content. <br>
-Risk: The workflow can modify SKILL.md and README.md as part of documentation preparation. <br>
-Mitigation: Review generated descriptions and README changes before approving publication. <br>
+## Use Case:
 
+Developers and skill publishers use Publisher to generate clearer skill descriptions and README content, then publish skill releases through GitHub and ClawdHub.
 
-## Reference(s): <br>
-- [GitHub documentation best practices](https://docs.github.com/en/contributing/writing-for-github-docs/best-practices-for-github-docs) <br>
-- [Publisher skill page](https://clawhub.ai/TunaIssaCoding/publisher) <br>
-- [Publisher profile](https://clawhub.ai/user/TunaIssaCoding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and command-line prompts with shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify SKILL.md, create or update README.md, initialize or use git, create a public GitHub repository, push code, and publish to ClawdHub after user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The skill can upload the current directory to a public GitHub repository without enough file scoping or secret-safety checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only from a reviewed skill directory after removing secrets, private code, .env files, logs, backups, and unreviewed files; add file previews, allowlists, secret scanning, and private-by-default repository creation before broader use.
+
+Risk: Generated descriptions and publishing steps can commit and distribute incorrect or unreviewed skill documentation.
+
+Mitigation: Review the generated one-liner, README content, SKILL.md frontmatter, git diff, and ClawdHub package contents before approving publication.
+
+## Reference(s):
+
+- [GitHub documentation best practices](https://docs.github.com/en/contributing/writing-for-github-docs/best-practices-for-github-docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, shell command output, and edited skill files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update SKILL.md frontmatter, create or rely on README.md, initialize git, create a public GitHub repository, push repository contents, and publish to ClawdHub after user approval.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

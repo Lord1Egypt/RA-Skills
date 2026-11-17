@@ -1,38 +1,52 @@
-## Description: <br>
-Audio Transcriber helps an agent transcribe recorded or live audio with OpenAI Whisper, translate transcripts, detect keyword-based emotion, and analyze basic audio features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes recorded or live audio with OpenAI Whisper and can return transcripts, simple emotion labels, translations, and basic audio signal analysis.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[534422530](https://clawhub.ai/user/534422530)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, operators, and external users can use this skill to ask an agent to record or transcribe audio, translate speech, label simple emotions, and report basic signal features for meetings or audio analysis.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Recording or processing microphone audio can capture meetings, bystanders, or sensitive speech without adequate consent or retention controls.
+
+Mitigation: Run recording commands only after all participants consent, use short durations, and confirm where WAV and transcript outputs are stored.
+
+Risk: The skill depends on local audio and transcription packages that may change behavior across environments.
+
+Mitigation: Install dependencies in a pinned, reviewed environment before using the skill with real audio.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to capture or process audio when they need speech-to-text transcripts, translated transcript text, emotion labels, or lightweight audio signal analysis. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Live recordings and generated audio or transcript files can contain sensitive speech. <br>
-Mitigation: Use the skill only with speaker consent, avoid confidential or regulated conversations unless the environment is appropriate, and delete generated WAV or transcript files when they are no longer needed. <br>
+**Output Format:** [Markdown with inline bash and Python code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/534422530/audio-transcriber) <br>
+**Other Properties Related to Output:** [May create WAV and transcript outputs when recording or capture commands are run, depending on the local audio implementation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce transcript text, translation text, emotion labels, audio analysis values, and WAV file paths.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

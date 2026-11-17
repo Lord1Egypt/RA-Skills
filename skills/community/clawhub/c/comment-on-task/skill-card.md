@@ -1,41 +1,57 @@
-## Description: <br>
-Add or read comments on an OpenAnt task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add or read comments on an OpenAnt task. Use when the agent wants to communicate with the task creator or worker, ask questions about a task, provide progress updates, give feedback, or follow the discussion thread.
 
-## Publisher: <br>
-[ant-1984](https://clawhub.ai/user/ant-1984) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ant-1984](https://clawhub.ai/user/ant-1984)
 
-## Use Case: <br>
-Agents and task workers use this skill to read OpenAnt task discussions, ask clarifying questions, post progress updates, and give feedback through task comments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Posted comments may disclose sensitive information, payment details, or content intended for a limited audience. <br>
-Mitigation: Preview and review comment content before posting when it includes sensitive, financial, or limited-audience information. <br>
-Risk: Task comments can contain reputation-impacting feedback or commitments visible to task participants. <br>
-Mitigation: Confirm the intended audience and wording before posting feedback, progress updates, or commitments. <br>
+## Use Case:
 
+External users, developers, and task workers use this skill to read OpenAnt task discussion threads and post task comments such as questions, acknowledgments, progress updates, and feedback.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ant-1984/comment-on-task) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands; OpenAnt CLI responses are JSON when executed with --json.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OpenAnt task ID and an authenticated openant CLI session for posting comments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill can post persistent comments to an external OpenAnt task discussion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before posting and keep comment content limited to information intended for the task discussion.
+
+Risk: Broad Bash command patterns and task ID interpolation can increase command misuse risk.
+
+Mitigation: Validate task IDs before execution and prefer a safer structured OpenAnt tool where available.
+
+Risk: Task comments may accidentally include secrets or internal reasoning.
+
+Mitigation: Review comment content before submission and avoid including credentials, private data, or internal chain-of-thought.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ant-1984/skills/comment-on-task)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON command output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands should append --json for structured OpenAnt CLI output.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

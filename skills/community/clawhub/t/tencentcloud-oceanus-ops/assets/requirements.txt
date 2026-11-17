@@ -1,0 +1,11 @@
+# Python dependencies for tencentcloud-oceanus-ops skill
+#
+# Currently this skill uses only Python standard library modules
+# (hashlib, hmac, urllib, json, argparse, etc.) and has ZERO
+# external dependencies.
+#
+# This file is reserved for future use when additional packages
+# may be needed (e.g., for advanced output formatting, async HTTP, etc.)
+#
+# To install (when dependencies are added):
+#   pip install -r requirements.txt

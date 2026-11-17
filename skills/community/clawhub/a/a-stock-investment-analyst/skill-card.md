@@ -1,45 +1,59 @@
-## Description: <br>
-A-share stock investment analysis skill for stock diagnosis, industry and sector research, portfolio optimization, risk alerts, news interpretation, capital flow analysis, technical analysis, and fundamental analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents produce structured analysis for China A-share stocks, sectors, portfolios, news impact, capital flows, technical signals, fundamentals, and risk alerts.
 
-## Publisher: <br>
-[hendyyou](https://clawhub.ai/user/hendyyou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hendyyou](https://clawhub.ai/user/hendyyou)
 
-## Use Case: <br>
-External users and analysts can use this skill to structure A-share stock, sector, portfolio, news-impact, capital-flow, technical, and fundamental analysis. It supports research workflows and requires independent verification before any investment action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investment analysis may be mistaken for personalized financial advice. <br>
-Mitigation: Use the skill as research support only, include clear disclaimers, and require users to make independent decisions based on their own risk tolerance. <br>
-Risk: Outdated or uncited market data can lead to misleading conclusions. <br>
-Mitigation: Require current cited data with timestamps and identify stale or unavailable data before making buy, hold, reduce, or avoid suggestions. <br>
-Risk: Users may expose sensitive brokerage or account details while requesting portfolio review. <br>
-Mitigation: Do not request or store brokerage credentials, account numbers, or other sensitive account details. <br>
+## Use Case:
 
+External investors, analysts, and agents use this skill to request structured A-share stock diagnosis, sector research, portfolio optimization, news interpretation, capital-flow review, technical analysis, fundamental analysis, and risk monitoring. Outputs are general analysis and should be checked against current market data and independent judgment.
 
-## Reference(s): <br>
-- [Skill Page](https://clawhub.ai/hendyyou/a-stock-investment-analyst) <br>
-- [Publisher Profile](https://clawhub.ai/user/hendyyou) <br>
-- [A-share Analysis Methods](references/analysis-methods.md) <br>
-- [A-share Output Templates](references/output-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis reports with tables, scores, risk notes, and suggested next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should cite current data sources and timestamps, and include investment-risk disclaimers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: The skill can generate concrete stock and portfolio suggestions that may be mistaken for licensed financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat buy, sell, hold, and allocation language as general analysis, verify it independently, and consult qualified professionals for investment decisions.
+
+Risk: Market, financial, technical, and news data may be stale, incomplete, or incorrect.
+
+Mitigation: Require sources and update dates in outputs, then cross-check all material facts against current market data before acting.
+
+Risk: Users may provide unnecessary sensitive financial details when requesting portfolio analysis.
+
+Mitigation: Do not share account credentials or unnecessary personal financial information; provide only the minimum holdings context needed for analysis.
+
+## Reference(s):
+
+- [A-share Analysis Methods](artifact/references/analysis-methods.md)
+- [A-share Output Templates](artifact/references/output-templates.md)
+- [ClawHub skill page](https://clawhub.ai/hendyyou/skills/a-stock-investment-analyst)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown reports and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes source and date expectations, balanced analysis, risk notices, and non-advice disclaimers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

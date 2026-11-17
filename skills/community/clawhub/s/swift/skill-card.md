@@ -1,47 +1,60 @@
-## Description: <br>
-Write safe Swift code avoiding memory leaks, optional traps, and concurrency bugs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes, debugs, and optimizes Swift code across concurrency, ARC, optionals, generics, SwiftUI state, packages, testing, performance, and cross-platform interop.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill to get Swift coding guidance for safer optionals, memory management, concurrency, Codable, SwiftUI, testing, and build behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides coding guidance that could be incomplete or incorrect for a specific Swift version, project architecture, or platform target. <br>
-Mitigation: Review generated guidance against project requirements and validate changes with the local Swift toolchain and tests. <br>
-Risk: The skill may encourage use of the local Swift toolchain when relevant. <br>
-Mitigation: Run Swift commands only in trusted workspaces and review proposed commands before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to write, review, refactor, debug, test, and optimize Swift code. It is especially useful for Swift concurrency diagnostics, ARC and memory issues, Codable failures, SwiftUI state problems, SwiftPM package issues, performance work, and macOS/Linux interop.
 
-## Reference(s): <br>
-- [Swift skill page](https://clawhub.ai/ivangdavila/swift) <br>
-- [Optionals and nil safety](optionals.md) <br>
-- [Memory leaks and retain cycles](memory.md) <br>
-- [Concurrency traps](concurrency.md) <br>
-- [Codable pitfalls](codable.md) <br>
-- [Types, collections, strings, errors, and build behavior](types.md) <br>
-- [SwiftUI and Combine pitfalls](swiftui.md) <br>
-- [Advanced Swift traps](advanced.md) <br>
-- [Testing and Swift Package Manager gotchas](testing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Swift code examples and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local Swift toolchain when the agent needs to validate or run Swift examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill can use cross-session Swift preference and memory files under ~/Clawic/data/swift/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove ~/Clawic/data/swift/config.yaml and ~/Clawic/data/swift/memory.md if cross-session personalization is not desired.
+
+Risk: Swift code, shell commands, or configuration advice may be incorrect for a user's project, toolchain, or deployment target.
+
+Mitigation: Review generated changes before applying them and validate with the relevant Swift build and test commands.
+
+## Reference(s):
+
+- [ClawHub Swift skill page](https://clawhub.ai/ivangdavila/skills/swift)
+- [Clawic Swift skill page](https://clawic.com/skills/swift)
+- [Swift skill definition](artifact/SKILL.md)
+- [Swift setup and memory behavior](artifact/setup.md)
+- [Swift memory template](artifact/memory-template.md)
+- [Swift concurrency guidance](artifact/concurrency.md)
+- [Swift debugging guidance](artifact/debugging.md)
+- [Swift packages guidance](artifact/packages.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Swift code snippets, shell commands, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local Swift preferences and memory from ~/Clawic/data/swift/ when present.]
+
+## Skill Version(s):
+
+1.0.3 (source: artifact frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

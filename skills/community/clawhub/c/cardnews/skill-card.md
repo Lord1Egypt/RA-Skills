@@ -1,39 +1,61 @@
-## Description: <br>
-Generate Instagram-ready card news image sets from a topic, including slide planning, image-generation prompts, PNG to JPG conversion, caption writing, and Instagram upload preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Instagram-ready card news (카드뉴스) image sets from a topic, including slide planning, image generation prompts, PNG-to-JPG conversion, Korean captions, and upload preparation.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Creators, marketers, and agent users can use this skill to turn a topic into a five-slide Instagram carousel workflow with Korean card-news copy, visual prompts, JPG conversion commands, and caption guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide publication to Instagram using a logged-in browser session. <br>
-Mitigation: Review every slide, caption, hashtag, and target account before approving any upload. <br>
-Risk: The conversion script may install Pillow from Python package indexes at runtime if it is missing. <br>
-Mitigation: Install and review dependencies in a controlled environment before running the conversion step. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cardnews design guide](references/design-guide.md) <br>
+## Use Case:
 
+Creators, marketers, and social media teams use this skill to turn a topic into a five-slide Korean Instagram carousel with consistent visual direction, caption text, JPG conversion, and upload preparation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with slide plans, image prompts, bash commands, captions, and generated JPG file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces five 1:1 carousel slide assets and Instagram upload preparation guidance when used end to end.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow can move from asset preparation toward live Instagram posting.
+
+Mitigation: Review every generated slide and caption, and confirm the target Instagram account before any browser upload.
+
+Risk: The artifact directs slide 5 to include penguin branding.
+
+Mitigation: Remove or explicitly approve the branding before publishing the carousel.
+
+Risk: The conversion script attempts to install Pillow automatically if it is missing.
+
+Mitigation: Install Pillow in a controlled environment and review dependency installation before running the script.
+
+Risk: Generated card-news content can contain factual or contextual mistakes.
+
+Mitigation: Verify claims, examples, and captions before publishing.
+
+## Reference(s):
+
+- [Cardnews design guide](references/design-guide.md)
+- [Cardnews ClawHub release page](https://clawhub.ai/mupengi-bot/skills/cardnews)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, image-generation prompts, JPG output files, and Korean caption text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Plans five square slides and converts PNG files to Instagram-ready JPG files at configurable size and quality.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

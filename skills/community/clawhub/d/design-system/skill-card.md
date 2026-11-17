@@ -1,38 +1,56 @@
-## Description: <br>
-Build design systems with tokens, components, and documentation that scale across teams and products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build design systems with tokens, components, and documentation that scale across teams and products.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and design-system maintainers use this skill to plan token architecture, component conventions, documentation structure, and cross-platform consistency for product UI systems. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local design-system memory may capture sensitive strategy, customer details, credentials, or internal constraints if the user asks the agent to store them. <br>
-Mitigation: Review ~/design-system/memory.md periodically and avoid storing confidential or credential-like information unless intentional. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/design-system) <br>
-- [Skill Homepage](https://clawic.com/skills/design-system) <br>
+## Use Case:
 
+Developers and design-system maintainers use this skill to create, maintain, and extend token architecture, component patterns, documentation structure, and cross-platform consistency for UI systems.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with token, component, and documentation recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain local design-system notes under ~/design-system/ when the agent follows the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can keep durable local notes about design-system context and preferences under ~/design-system/.
+
+Mitigation: Avoid storing secrets or sensitive business details there, and review or delete ~/design-system/ when the saved context is no longer wanted.
+
+Risk: Incorrect token or component guidance could create inconsistent UI conventions if accepted without review.
+
+Mitigation: Review proposed design tokens, component APIs, and documentation changes before adopting them across products.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/design-system)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+- [Skill homepage](https://clawic.com/skills/design-system)
+- [Setup guide](artifact/setup.md)
+- [Memory template](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with local memory-file templates and design-system recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May maintain durable local notes and token definitions under ~/design-system/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

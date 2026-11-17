@@ -1,48 +1,64 @@
-## Description: <br>
-GlobalWire turns answers about major world events into wire-style briefings, rolling event timelines, verification notes, and alert bullets with stable formatting, source priority, and confidence labels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn answers about major world events into wire-style briefings, rolling event timelines, verification notes, and alert bullets with stable formatting, source priority, and confidence labels.
 
-## Publisher: <br>
-[yly46967-source](https://clawhub.ai/user/yly46967-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yly46967-source](https://clawhub.ai/user/yly46967-source)
 
-## Use Case: <br>
-External users and analysts use GlobalWire to turn major world-news questions or rough answers into concise wire-style briefings, rolling timelines, alerts, and claim-reliability checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad news questions and apply its own source-priority hierarchy, which may not match a user's intended scope or preferred sources. <br>
-Mitigation: Specify the topic, region, time window, and required sources when precision matters, and review the source list before relying on the briefing. <br>
-Risk: The skill may create local Markdown archives for repeatable or archival workflows. <br>
-Mitigation: Request chat-only output or confirm the destination path before asking the agent to save briefs, alerts, timelines, or snapshots. <br>
-Risk: Credibility labels grade answer reliability and do not replace full fact-checking for high-stakes or fast-moving claims. <br>
-Mitigation: Cross-check important claims against primary materials or reputable reporting, especially when the output marks items as developing, weak, or needing cross-verification. <br>
+## Use Case:
 
+External users and developers use GlobalWire to convert major world-news answers into concise, wire-style Markdown briefings, timelines, verification notes, and alerts with fact-analysis separation and confidence labels.
 
-## Reference(s): <br>
-- [GlobalWire release page](https://clawhub.ai/yly46967-source/global-wire) <br>
-- [Output Modes](references/output-modes.md) <br>
-- [Timeline Rules](references/timeline-rules.md) <br>
-- [Credibility Rules](references/credibility-rules.md) <br>
-- [Source Priority](references/source-priority.md) <br>
-- [Formatting Rules](references/formatting-rules.md) <br>
-- [File Layout](references/file-layout.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown briefings, timelines, verification notes, and alerts; optional saved Markdown files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Separates facts from analysis, applies confidence labels, uses source-priority guidance, and localizes visible labels for Chinese requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may auto-apply to broad world-news prompts and impose its own wire-style structure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit invocation or ask for a different format when a normal answer is preferred.
+
+Risk: The skill uses an opinionated source hierarchy and confidence-label system for fast-moving news.
+
+Mitigation: Review source choices and confidence labels before relying on outputs for consequential decisions.
+
+Risk: Archival workflows may create or update Markdown files under ./global-wire.
+
+Mitigation: Ask for inline-only output or specify a save path before running archival workflows.
+
+## Reference(s):
+
+- [GlobalWire Skill Page](https://clawhub.ai/yly46967-source/skills/global-wire)
+- [Publisher Profile](https://clawhub.ai/user/yly46967-source)
+- [Output Modes](references/output-modes.md)
+- [Timeline Rules](references/timeline-rules.md)
+- [Credibility Rules](references/credibility-rules.md)
+- [Source Priority](references/source-priority.md)
+- [Formatting Rules](references/formatting-rules.md)
+- [File Layout](references/file-layout.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown briefings, timelines, verification notes, and alerts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save Markdown under ./global-wire when requested or when the workflow is archival.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

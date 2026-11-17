@@ -1,42 +1,57 @@
-## Description: <br>
-Use this skill when a clinical investigator, sponsor medical writer, or study team needs to convert an investigator concept or target-product-profile note into a DRAFT ICH E6(R3) / ICH M11-aligned protocol synopsis, including a PICOT statement, estimand table, eligibility criteria, statistical considerations, and an open-questions list for sponsor and IRB review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps clinical investigators, sponsor medical writers, and study teams convert an investigator concept or target-product-profile note into a draft ICH E6(R3) / ICH M11-aligned protocol synopsis with PICOT, estimands, eligibility criteria, statistical considerations, and sponsor and IRB review questions.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Clinical investigators, sponsor medical writers, and study teams use this skill to turn an investigator concept, sponsor target product profile, or feasibility note into a structured draft clinical-trial protocol synopsis for sponsor medical, biostatistics, regulatory, pharmacovigilance, and IRB/IEC review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft clinical or regulatory content could be incorrect, incomplete, or unsupported if treated as authoritative. <br>
-Mitigation: Use the skill only as a drafting aid, verify all medical and regulatory claims against source documents, and require qualified sponsor, biostatistics, regulatory, pharmacovigilance, and IRB/IEC review before relying on the output. <br>
-Risk: A draft synopsis could be mistaken for a final protocol or regulatory submission package. <br>
-Mitigation: Keep the draft review label in every output, do not submit or communicate with regulators or IRB/IEC bodies through the skill, and require the responsible study team to finalize the protocol. <br>
-Risk: Sponsor, patient, or biomarker information may be sensitive or confidential. <br>
-Mitigation: Provide only information the user is authorized to use, summarize confidential source documents instead of copying them verbatim, and handle sponsor and patient data as confidential. <br>
+## Use Case:
 
+External clinical investigators, sponsor medical writers, and study teams use this skill to structure an investigator concept or sponsor target product profile into a draft protocol synopsis for sponsor medical, biostatistics, regulatory, pharmacovigilance, and IRB / IEC review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/clinical-trial-protocol-synopsis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown draft protocol synopsis with tables, review flags, an evidence matrix, open questions, and reviewer sign-off checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-only clinical research content requiring sponsor medical, biostatistics, regulatory, pharmacovigilance, and IRB/IEC review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: Draft protocol synopsis output may be mistaken for a final protocol, medical decision, regulatory submission, or IRB / IEC communication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the draft sponsor-review label on outputs and require sponsor medical, biostatistics, regulatory, pharmacovigilance, and IRB / IEC review before use.
+
+Risk: Clinical facts, dose or regimen details, safety signals, or effect-size assumptions may be incomplete or unsourced.
+
+Mitigation: Require source tags, mark unsupported values as Unknown, and verify against literature, label / SmPC, sponsor TPP, investigator brochure, and biostatistics review.
+
+Risk: Sponsor, patient, or biomarker data may be confidential.
+
+Mitigation: Treat inputs as confidential, avoid external services, and summarize confidential documents by document name and version rather than copying them verbatim.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/clinical-trial-protocol-synopsis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown draft synopsis with structured sections, tables, open questions, evidence matrix, regulatory and ethics flags, and reviewer sign-off checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft-only output with source tags and sponsor / IRB review notice.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

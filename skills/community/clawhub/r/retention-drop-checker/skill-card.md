@@ -1,43 +1,58 @@
-## Description: <br>
-Diagnose why short-video retention drops and suggest practical fixes. Use when views start but audience leaves early. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose why short-video retention drops and suggest practical fixes. Use when views start but audience leaves early.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Content teams, growth marketers, and short-video creators use this skill to diagnose early, mid-video, CTA, or completion-rate drop points from scripts, retention clues, or structured retention exports. It turns the diagnosis into concrete edits, a next-script skeleton, and an optional Python analysis script when structured data is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Python analysis scripts may be unsafe or unsuitable if run without review on local retention data. <br>
-Mitigation: Review any generated Python script before execution and run it in an appropriate local environment. <br>
-Risk: Heuristic retention diagnosis can be mistaken for precise retention modeling when structured data is not provided. <br>
-Mitigation: Label qualitative findings as heuristic and reserve data-backed claims for structured retention exports or timestamped segment data. <br>
-Risk: Part of the workflow starts in Chinese, which may be unsuitable for users expecting another language. <br>
-Mitigation: Ask the agent to switch language explicitly before beginning the retention analysis. <br>
+## Use Case:
 
+External creators, growth teams, and short-video marketers use this skill to diagnose where viewers drop from a video and plan concrete improvements to hooks, pacing, proof placement, CTAs, and the next script version.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Leooooooow/retention-drop-checker) <br>
-- [Output template](artifact/references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with diagnostic tables, action lists, script skeletons, and optional Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Distinguishes heuristic diagnosis from data-backed analysis when structured retention data is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Users may provide retention exports, scripts, screenshots, or audience notes containing confidential campaign or product information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only materials approved for agent review, and redact sensitive campaign, customer, product, or account details before analysis.
+
+Risk: Qualitative retention diagnosis can be mistaken for data-backed measurement when structured retention data is unavailable.
+
+Mitigation: Label unsupported conclusions as heuristic, tie each diagnosis to a visible segment or clue, and use structured exports when precision is required.
+
+Risk: The license evidence conflicts between the server license field and the artifact License section.
+
+Mitigation: Confirm the authoritative release terms before commercial use or redistribution.
+
+## Reference(s):
+
+- [Output Template](artifact/references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/retention-drop-checker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with tables, action lists, script skeletons, and optional Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional Python analysis script when structured retention data is provided.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

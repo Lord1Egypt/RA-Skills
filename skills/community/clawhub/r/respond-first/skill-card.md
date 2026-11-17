@@ -1,38 +1,51 @@
-## Description: <br>
-Multi-agent dispatcher skill where the main agent acts as a coordinator that chats with users and delegates work to five persistent sub-agent sessions through round-robin scheduling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-agent dispatcher skill. Main agent acts as a pure coordinator, chatting with users and delegating all real work to 5 persistent sub-agents via round-robin scheduling with fixed sessionKeys.
 
-## Publisher: <br>
-[Be1Human](https://clawhub.ai/user/Be1Human) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[be1human](https://clawhub.ai/user/be1human)
 
-## Use Case: <br>
-External users and developers use this skill to route task requests through a coordinator that replies to the user first, then delegates the actual work to one of five persistent sub-agent sessions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: User requests may include secrets or unrelated private information that would be delegated to persistent sub-agent sessions. <br>
-Mitigation: Provide only task-relevant context and avoid secrets unless delegation and possible retention in those sessions are acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Be1Human/respond-first) <br>
-- [Publisher profile](https://clawhub.ai/user/Be1Human) <br>
+## Use Case:
+
+External users and developers use this skill to route task work from the main agent to a fixed pool of persistent sub-agents while keeping the main agent focused on user-facing coordination.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill broadly redirects real work into persistent sub-agent sessions, which can reduce main-agent inspection and validation of delegated work.
+
+Mitigation: Install it only when dispatcher behavior is desired, and review sub-agent outputs before using them for decisions, code changes, or external actions.
+
+Risk: Persistent sub-agent sessions may retain conversation context without documented isolation or reset controls.
+
+Mitigation: Avoid sharing sensitive data unless session persistence is acceptable, and reset or rotate sessions through platform controls when available.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, API Calls] <br>
-**Output Format:** [Plain text responses with structured sessions_spawn calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Delegates task context to one of five fixed sessionKeys with a 300-second run timeout when spawning sub-agent work.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-11.0.0 (source: SKILL.md frontmatter, skill.json, server release metadata) <br>
+**Output Type(s):** [text, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text coordination messages with delegated sub-agent tasks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Delegation uses fixed session keys and 300-second sub-agent run timeouts when available.]
+
+## Skill Version(s):
+
+11.0.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

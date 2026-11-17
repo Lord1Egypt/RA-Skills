@@ -1,43 +1,53 @@
-## Description: <br>
-Deepgram (deepgram.com). Use this skill for Deepgram search and read requests through an OOMOL-connected account instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operates Deepgram through an OOMOL-connected account to inspect available projects, models, API keys, and balances.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect Deepgram projects, models, balances, and API key listings through the oo CLI with an OOMOL-connected Deepgram account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read sensitive Deepgram account details, including project balances and API key listings. <br>
-Mitigation: Install only if the user trusts OOMOL and intends the agent to access the connected Deepgram account; avoid requesting balances or key listings unless needed. <br>
-Risk: The skill depends on an authenticated OOMOL connection and may fail when the oo CLI is missing, the user is not signed in, or the Deepgram connection is expired. <br>
-Mitigation: Run setup or reconnection steps only after a matching command failure, then retry with the live connector schema. <br>
+## Use Case:
 
+Developers and operators can use this skill to inspect the Deepgram projects, models, API keys, and balances available through their connected account.
 
-## Reference(s): <br>
-- [ClawHub Deepgram skill page](https://clawhub.ai/oomol/oo-deepgram) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Deepgram homepage](https://deepgram.com/) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses oo CLI commands and returns connector responses as JSON data with execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Setup may execute unverified software and affect installed agent skills through automatic synchronization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the oo CLI installer before using it, consider disabling automatic skill synchronization with OO_SKILLS_SYNC_DISABLED, and connect only the intended Deepgram account. The remote installers and hosted connector implementation were not verified.
+
+## Reference(s):
+
+- [Deepgram API documentation](https://developers.deepgram.com/docs)
+- [Deepgram](https://deepgram.com/)
+- [oo CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-deepgram)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON responses with Markdown setup and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses include result data and execution metadata.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

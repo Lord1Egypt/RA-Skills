@@ -2,16 +2,11 @@
 """
 Visla API CLI Wrapper
 Simple wrapper for creating videos from scripts, URLs, or documents.
+
+Uses only the Python standard library (urllib) — no third-party dependencies,
+so the skill runs out-of-the-box on macOS, Linux, and Windows with Python 3.7+
+(`python3` on macOS/Linux, `python` or `py -3` on Windows).
 """
-
-import warnings
-
-# Keep CLI output clean on macOS system Python where urllib3 may emit SSL backend warnings.
-# This needs to run before importing requests/urllib3.
-warnings.filterwarnings(
-    "ignore",
-    message=r"urllib3 v2 only supports OpenSSL .*",
-)
 
 import uuid
 import hashlib
@@ -23,9 +18,12 @@ import argparse
 import os
 import mimetypes
 import re
+import urllib.request
+import urllib.parse
+import urllib.error
 
-# ASCII symbols for cross-platform compatibility
-# (Python CLI is typically used when Bash fails, so keep output simple)
+# ASCII symbols for cross-platform compatibility (no emoji/ANSI so output is clean
+# on minimal terminals and Windows CMD).
 SYM_OK = "[OK]"
 SYM_INFO = "[INFO]"
 SYM_VIDEO = "[VIDEO]"
@@ -44,16 +42,51 @@ VISLA_TIPS = [
     "Tip: Built-in teleprompter helps with professional recordings",
 ]
 
-try:
-    import requests
-except ImportError:
-    print("VISLA_CLI_ERROR_CODE=missing_dependency")
-    print("Error: Missing Python dependency: requests")
-    print("Install: python3 -m pip install requests")
-    sys.exit(1)
-
-VERSION = "260501-1423"
+VERSION = "260811-1640"
 USER_AGENT = f"visla-skill/{VERSION}"
+
+
+class _HttpResponse:
+    """Thin wrapper that normalizes urllib responses and HTTPError into one shape.
+
+    Works for both the success object returned by opener.open() (an
+    http.client.HTTPResponse) and the HTTPError raised on 4xx/5xx — both expose
+    .status/.code, .headers, and .read(). This lets callers branch on .ok /
+    .status uniformly, mirroring requests' ergonomics.
+    """
+
+    def __init__(self, raw, error=None):
+        self._raw = raw
+        self.error = error  # set on connection-level failures (no response at all)
+        if raw is None:
+            self.status = 0
+            self._body = b""
+        else:
+            # Both HTTPResponse and HTTPError expose .status / .code / .read()
+            self.status = getattr(raw, "status", getattr(raw, "code", 0))
+            self._body = None  # lazily read
+
+    @property
+    def ok(self):
+        return self.error is None and 200 <= self.status < 300
+
+    # Alias for callers that previously used requests' .status_code naming.
+    @property
+    def status_code(self):
+        return self.status
+
+    @property
+    def text(self):
+        if self._body is None:
+            try:
+                self._body = self._raw.read()
+            except Exception:
+                self._body = b""
+        try:
+            return self._body.decode("utf-8", errors="replace")
+        except Exception:
+            return ""
+
 
 ALLOWED_TEXT_EXTENSIONS = {".txt", ".md", ".srt", ".vtt", ".csv"}
 
@@ -195,19 +228,80 @@ class VislaAPI:
         self.api_key = api_key
         self.api_secret = api_secret
 
-    def _safe_json(self, resp):
+    # ------------------------------------------------------------------
+    # HTTP layer (stdlib urllib only — no third-party dependency).
+    # ------------------------------------------------------------------
+    def _http_request(self, method, url, headers=None, params=None, body=None,
+                      timeout=60, allow_redirects=True):
+        """Perform an HTTP request with urllib and return a _HttpResponse.
+
+        - params: dict -> appended as a query string.
+        - body: raw bytes (or a file object for streaming uploads). Caller is
+          responsible for serialization + setting the right Content-Type.
+        - Non-2xx responses do NOT raise: they're returned with .ok == False so
+          callers can branch on .status just like with requests.
+        - urllib raises HTTPError on 4xx/5xx; we catch it and normalize it into
+          a _HttpResponse (HTTPError already carries .code/.headers/.read()).
+        - Redirects: urllib's default opener follows them for GET/POST but NOT
+          for HEAD/PUT. When allow_redirects=True we install a handler that
+          follows redirects for every method (mirroring requests' behavior).
+        """
+        if params:
+            qs = urllib.parse.urlencode(params)
+            url = f"{url}?{qs}" if "?" not in url else f"{url}&{qs}"
+
+        req = urllib.request.Request(url, data=body, method=method.upper())
+        for k, v in (headers or {}).items():
+            req.add_header(k, v)
+
+        if allow_redirects:
+            # requests follows redirects for all methods by default.
+            # urllib's default HTTPRedirectProcessor refuses HEAD/PUT and others,
+            # so register a lenient handler that redirects for any method.
+            class _AnyRedirectHandler(urllib.request.HTTPRedirectHandler):
+                def redirect_request(self, req, fp, code, msg, hdrs, new_url):
+                    m = req.get_method()
+                    if m not in ("GET", "HEAD"):
+                        # For non-safe methods, drop the body on redirect
+                        # (matches requests; avoids resending a file stream).
+                        new = urllib.request.Request(
+                            new_url, headers=req.headers, method=m
+                        )
+                        return new
+                    return super().redirect_request(
+                        req, fp, code, msg, hdrs, new_url
+                    )
+            opener = urllib.request.build_opener(_AnyRedirectHandler)
+        else:
+            # Truly disable redirects: the handler returns None, so urllib raises
+            # HTTPError with the 3xx status, which we normalize below.
+            class _NoRedirectHandler(urllib.request.HTTPRedirectHandler):
+                def redirect_request(self, req, fp, code, msg, hdrs, new_url):
+                    return None
+            opener = urllib.request.build_opener(_NoRedirectHandler)
+
         try:
-            return resp.json()
+            raw = opener.open(req, timeout=timeout)
+            return _HttpResponse(raw)
+        except urllib.error.HTTPError as e:
+            # 4xx/5xx: normalize into the same response shape.
+            return _HttpResponse(e)
+        except urllib.error.URLError as e:
+            return _HttpResponse(None, error=f"Network error: {e.reason}")
+        except Exception as e:  # SSL errors, socket timeouts, etc.
+            return _HttpResponse(None, error=f"Network error: {e}")
+
+    def _safe_json(self, resp):
+        """Parse an API response dict, keeping the {code,msg,data} shape callers expect."""
+        if resp.error:
+            return {"code": -1, "msg": resp.error, "data": {}}
+        text = resp.text
+        try:
+            return json.loads(text)
         except Exception:
-            # Keep callers on the same "shape" (code/msg/data) they already expect.
-            text = ""
-            try:
-                text = resp.text
-            except Exception:
-                text = "<no body>"
             return {
                 "code": -1,
-                "msg": f"Non-JSON response (HTTP {getattr(resp, 'status_code', 'unknown')}): {text[:500]}",
+                "msg": f"Non-JSON response (HTTP {resp.status}): {text[:500]}",
                 "data": {},
             }
 
@@ -232,14 +326,11 @@ class VislaAPI:
         """Make signed API request"""
         url = f"{self.base_url}{endpoint}"
         headers = self._sign(method, url)
-        try:
-            if method == "GET":
-                resp = requests.get(url, params=data, headers=headers, timeout=60)
-            else:
-                resp = requests.post(url, json=data, headers=headers, timeout=60)
-        except requests.RequestException as e:
-            return {"code": -1, "msg": f"Network error: {e}", "data": {}}
-
+        if method.upper() == "GET":
+            resp = self._http_request(method, url, headers=headers, params=data)
+        else:
+            body = json.dumps(data).encode("utf-8") if data is not None else None
+            resp = self._http_request(method, url, headers=headers, body=body)
         return self._safe_json(resp)
 
     @staticmethod
@@ -414,26 +505,32 @@ class VislaAPI:
 
     # 9. Upload file to S3
     def upload_to_s3(self, upload_url, file_path):
-        """Upload file to S3 using pre-signed URL"""
+        """Upload file to S3 using pre-signed URL.
+
+        Reads the file into memory and sets Content-Length explicitly. urllib adds
+        `Transfer-Encoding: chunked` when handed a file object, which S3 pre-signed
+        URLs reject with 501 NotImplemented. (requests auto-sized file objects and
+        set Content-Length; we replicate that.) Documents are small PDFs/PPTs, so
+        loading into memory is fine.
+        """
         content_type, _ = mimetypes.guess_type(file_path)
         if content_type is None:
             content_type = "application/octet-stream"
 
-        headers = {"Content-Type": content_type, "User-Agent": USER_AGENT}
         try:
-            # Use streaming upload to avoid loading entire file into memory
             with open(file_path, "rb") as f:
-                response = requests.put(
-                    upload_url, data=f, headers=headers, timeout=300
-                )
-            return response
-        except requests.RequestException as e:
-
-            class DummyResp:
-                status_code = 0
-                error = str(e)
-
-            return DummyResp()
+                body = f.read()
+            headers = {
+                "Content-Type": content_type,
+                "User-Agent": USER_AGENT,
+                "Content-Length": str(len(body)),
+            }
+            return self._http_request(
+                "PUT", upload_url, headers=headers, body=body, timeout=300,
+                allow_redirects=False,
+            )
+        except Exception as e:
+            return _HttpResponse(None, error=str(e))
 
     # 10. Create video from document
     def create_from_doc(self, doc_url, doc_filename,
@@ -504,6 +601,147 @@ class VislaAPI:
         """List available voices for video projects"""
         return self._request("GET", "/workspace/list-voice", {"localeName": "en-US"})
 
+    # ===== AIGC Video (AI-generated visuals) =====
+
+    def list_aigc_styles(self):
+        """List available AIGC visual styles"""
+        return self._request("GET", "/project/list-aigc-style")
+
+    def create_aigc_video(self, script, style=None, auto_generate_motion_video=True,
+                          to_clip=False, documents=None, media_resources=None,
+                          webpages=None, **opts):
+        """Create an AIGC video project with AI-generated visuals."""
+        aigc_config = {
+            "enable_ai_director": True,
+            "auto_generate_motion_video": auto_generate_motion_video,
+        }
+        if style:
+            aigc_config["style"] = style
+        payload = {
+            "script_config": {"text_content": script, "text_type": "script"},
+            "aigc_config": aigc_config,
+        }
+        if documents:
+            payload["documents"] = documents
+        if media_resources:
+            payload["media_resources"] = media_resources
+        if webpages:
+            payload["webpages"] = webpages
+        payload.update(self._build_common_payload(**opts))
+        endpoint = (
+            "/project/generate-aigc-video-to-clip" if to_clip
+            else "/project/generate-aigc-video"
+        )
+        return self._request("POST", endpoint, payload)
+
+    def get_scene_aigc_info(self, project_uuid):
+        """Per-scene AIGC status (storyboard + motion video progress)"""
+        return self._request("GET", f"/project/{project_uuid}/scene-aigc-info")
+
+    def generate_scene_storyboard_image(self, project_uuid, scenes,
+                                        force_override_video=False):
+        """Generate/regenerate storyboard images for scenes (max 20)."""
+        payload = {"scenes": scenes, "force_override_video": force_override_video}
+        return self._request(
+            "POST", f"/project/{project_uuid}/scene/generate-image", payload
+        )
+
+    def generate_scene_motion_video(self, project_uuid, scenes, force_regenerate=False):
+        """Generate/regenerate motion videos for scenes (max 20)."""
+        payload = {"scenes": scenes, "force_regenerate": force_regenerate}
+        return self._request(
+            "POST", f"/project/{project_uuid}/scene/generate-motion-video", payload
+        )
+
+    def wait_aigc_scenes(self, project_uuid, target="motion", interval=20, max_attempts=270):
+        """Poll scene-aigc-info until all scenes finish the target stage.
+
+        target: 'storyboard' or 'motion'. Returns the final info payload dict.
+        """
+        key = "motionVideo" if target == "motion" else "storyboard"
+        reported_total = -1
+        reported_done = -1
+        for i in range(max_attempts):
+            result = self.get_scene_aigc_info(project_uuid)
+            if result.get("code") != 0:
+                msg = result.get("msg", "unknown error")
+                ec = classify_error_code(msg)
+                if ec == "auth_failed":
+                    print(f"VISLA_CLI_ERROR_CODE={ec}")
+                    print(f"Error: {msg}")
+                    sys.exit(1)
+                print(f"(scene info not ready: {msg})")
+            else:
+                scenes = (result.get("data", {}) or {}).get("scenes", []) or []
+                total = len(scenes)
+                if total > 0:
+                    done = sum(
+                        1 for s in scenes
+                        if (s.get(key, {}) or {}).get("processStatus", "").lower()
+                        in ("completed", "failed")
+                    )
+                    if total != reported_total or done != reported_done:
+                        print(f"{target}: {done}/{total} scenes finished")
+                        reported_total, reported_done = total, done
+                    if done >= total:
+                        print(f"{SYM_OK} AIGC {target} stage complete ({done}/{total})")
+                        return result
+                else:
+                    print("(preparing scenes...)")
+            print(VISLA_TIPS[i % len(VISLA_TIPS)])
+            time.sleep(interval)
+        print("VISLA_CLI_ERROR_CODE=timeout")
+        print(f"Error: Timeout waiting for AIGC {target} generation")
+        return {"code": -1, "msg": "timeout"}
+
+    def print_aigc_scene_status(self, info):
+        """Pretty-print per-scene AIGC status from a scene-aigc-info payload."""
+        scenes = (info.get("data", {}) or {}).get("scenes", []) or []
+        if not scenes:
+            print("No scene info available yet.")
+            return
+        print(f"Scenes: {len(scenes)}")
+        for s in scenes:
+            sid = s.get("sceneId", "?")
+            dur_ms = s.get("duration", 0) or 0
+            try:
+                dur_s = f"{dur_ms / 1000:.1f}"
+            except Exception:
+                dur_s = str(dur_ms)
+            sb = s.get("storyboard", {}) or {}
+            mv = s.get("motionVideo", {}) or {}
+            sb_status = sb.get("processStatus", "none")
+            sb_link = sb.get("thumbnailLink") or sb.get("assetLink") or ""
+            mv_status = mv.get("processStatus", "none")
+            mv_link = mv.get("assetLink") or mv.get("thumbnailLink") or ""
+            print(f"  Scene {sid} ({dur_s}s):")
+            line = f"    Storyboard:   {sb_status}"
+            if sb_link:
+                line += f"\n      Image: {sb_link}"
+            print(line)
+            line = f"    Motion video: {mv_status}"
+            if mv_link:
+                line += f"\n      Video: {mv_link}"
+            print(line)
+
+    def print_aigc_failures(self, info):
+        """Warn about any scenes whose storyboard/motion failed."""
+        scenes = (info.get("data", {}) or {}).get("scenes", []) or []
+        sb_fail = [
+            str(s.get("sceneId")) for s in scenes
+            if (s.get("storyboard", {}) or {}).get("processStatus", "").lower() == "failed"
+        ]
+        mv_fail = [
+            str(s.get("sceneId")) for s in scenes
+            if (s.get("motionVideo", {}) or {}).get("processStatus", "").lower() == "failed"
+        ]
+        if sb_fail:
+            print(f"{SYM_WARN} Storyboard failed for scene(s): {', '.join(sb_fail)}")
+            print("  Regenerate with: aigc-image <projectUuid> --scene <sceneId>")
+        if mv_fail:
+            print(f"{SYM_WARN} Motion video failed for scene(s): {', '.join(mv_fail)}")
+            print("  Regenerate with: aigc-motion <projectUuid> --scene <sceneId>")
+
     # Convenience: Full workflow
     def create_and_download(self, script, script_text_mode="ai_rewrite", **opts):
         """Complete workflow: create -> wait -> export -> wait -> download link"""
@@ -523,23 +761,29 @@ class VislaAPI:
 
     # Validate URL exists
     def validate_url(self, url):
-        """Check if URL is accessible"""
-        try:
-            response = requests.head(url, timeout=10, allow_redirects=True)
-            if response.status_code < 400:
-                return True
-            # Some sites block HEAD requests, retry with lightweight GET
-            if response.status_code in (403, 405):
-                response = requests.get(
-                    url,
-                    headers={"Range": "bytes=0-0"},
-                    timeout=10,
-                    allow_redirects=True,
-                )
-                return response.status_code < 400
-            return False
-        except Exception:
-            return False
+        """Check if URL is accessible (follows redirects; falls back to GET on HEAD block).
+
+        Sends a browser-like User-Agent: many sites (e.g. Wikipedia) block the
+        default Python-urllib / python-requests UA strings with 403.
+        """
+        ua = (
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
+        )
+        response = self._http_request(
+            "HEAD", url, headers={"User-Agent": ua},
+            timeout=10, allow_redirects=True,
+        )
+        if response.error is None and response.status < 400:
+            return True
+        # Some sites block HEAD requests, retry with a lightweight ranged GET.
+        if response.status in (403, 405):
+            response = self._http_request(
+                "GET", url, headers={"Range": "bytes=0-0", "User-Agent": ua},
+                timeout=10, allow_redirects=True,
+            )
+            return response.error is None and response.status < 400
+        return False
 
     # URL workflow
     def url_and_download(self, url, **opts):
@@ -665,6 +909,158 @@ class VislaAPI:
             print(f"Error: {result.get('msg')}")
             return {"error": msg}
         return self._announce_and_complete(result)
+
+    # AIGC workflow (AI-generated visuals)
+    def aigc_and_complete(self, script, style=None, auto_generate_motion_video=True,
+                          to_clip=False, doc_paths=None, media_paths=None,
+                          webpages=None, **opts):
+        """Complete workflow for AIGC video creation.
+
+        Automatic mode (default): storyboard + motion videos, then export.
+        Manual mode (auto_generate_motion_video=False): storyboards only, then
+        hand off to the user for scene-level motion generation.
+        """
+        documents = []
+        media_resources = []
+
+        # Upload reference documents (PDF/PPT)
+        if doc_paths:
+            DOC_TYPES = {"pdf": "pdf", "ppt": "ppt", "pptx": "ppt"}
+            for df in doc_paths:
+                _validate_read_path(df)
+                if not os.path.exists(df):
+                    print("VISLA_CLI_ERROR_CODE=file_not_found")
+                    print(f"Error: File not found: {df}")
+                    return {"error": "file_not_found", "file": df}
+                fname = os.path.basename(df)
+                sfx = fname.rsplit(".", 1)[-1].lower() if "." in fname else ""
+                mt = DOC_TYPES.get(sfx)
+                if not mt:
+                    print("VISLA_CLI_ERROR_CODE=unsupported_format")
+                    print(f"Error: Unsupported document type: {sfx} (pdf, ppt, pptx)")
+                    return {"error": "unsupported_format", "file": df}
+                print(f"Uploading document: {fname}")
+                upload_url, err = self._upload_file(df, mt, sfx)
+                if err:
+                    return err
+                dt = "PDF" if mt == "pdf" else "PPT"
+                documents.append({
+                    "doc_asset_url": upload_url, "doc_type": dt, "doc_file_name": fname,
+                })
+
+        # Upload reference media (image/video/audio)
+        if media_paths:
+            MEDIA_TYPES = {
+                "jpg": "image", "jpeg": "image", "png": "image",
+                "gif": "image", "webp": "image",
+                "mp4": "video", "mov": "video", "avi": "video", "mkv": "video",
+                "mp3": "audio", "wav": "audio", "m4a": "audio",
+                "aac": "audio", "flac": "audio",
+            }
+            for mf in media_paths:
+                _validate_read_path(mf)
+                if not os.path.exists(mf):
+                    print("VISLA_CLI_ERROR_CODE=file_not_found")
+                    print(f"Error: File not found: {mf}")
+                    return {"error": "file_not_found", "file": mf}
+                fname = os.path.basename(mf)
+                sfx = fname.rsplit(".", 1)[-1].lower() if "." in fname else ""
+                mt = MEDIA_TYPES.get(sfx)
+                if not mt:
+                    print("VISLA_CLI_ERROR_CODE=unsupported_format")
+                    print(f"Error: Unsupported media type: {sfx}")
+                    return {"error": "unsupported_format", "file": mf}
+                print(f"Uploading media: {fname}")
+                upload_url, err = self._upload_file(mf, mt, sfx)
+                if err:
+                    return err
+                media_resources.append({"media_url": upload_url, "media_type": mt})
+
+        print("Creating AIGC video with AI-generated visuals...")
+        print()
+        print(script)
+        print()
+        result = self.create_aigc_video(
+            script, style=style,
+            auto_generate_motion_video=auto_generate_motion_video, to_clip=to_clip,
+            documents=documents or None, media_resources=media_resources or None,
+            webpages=webpages or None, **opts,
+        )
+        if result.get("code") != 0:
+            msg = result.get("msg", "Unknown error")
+            print(f"VISLA_CLI_ERROR_CODE={classify_error_code(msg)}")
+            print(f"Error: {msg}")
+            return {"error": msg}
+
+        data = result.get("data", {}) or {}
+        project_uuid = data.get("projectUuid")
+        share_link = data.get("shareLink")
+        clip_uuid = data.get("clipUuid")
+        # The -to-clip variant nests project/clip under data.project / data.clip.
+        if not project_uuid and isinstance(data.get("project"), dict):
+            project_uuid = data.get("project", {}).get("projectUuid")
+            if not share_link:
+                share_link = data.get("project", {}).get("shareLink")
+            clip_uuid = data.get("clip", {}).get("clipUuid")
+        print(f"Project created: {project_uuid}")
+        if share_link:
+            print(f"View link: {share_link}")
+        print()
+        print(f"{SYM_INFO} AIGC generation takes longer than stock-footage videos. Grab a coffee!")
+        print()
+
+        if auto_generate_motion_video:
+            info = self.wait_aigc_scenes(project_uuid, "motion")
+            if info.get("code") == -1:
+                return {"project_uuid": project_uuid, "error": info.get("msg", "timeout")}
+            self.print_aigc_failures(info)
+            if to_clip and clip_uuid:
+                clip_result = self.wait_clip(clip_uuid)
+                if clip_result.get("code") != 0:
+                    return {"project_uuid": project_uuid, "clip_uuid": clip_uuid,
+                            "error": clip_result.get("msg")}
+                clip_view = data.get("clip", {}).get("shareLink") or share_link
+                print(f"\n{SYM_OK} Video ready!")
+                if clip_view:
+                    print(f"View link: {clip_view}")
+                return {"project_uuid": project_uuid, "clip_uuid": clip_uuid,
+                        "share_link": clip_view}
+            print("Exporting video...")
+            export_result = self.export_video(project_uuid)
+            if export_result.get("code") != 0:
+                msg = export_result.get("msg", "Unknown error")
+                print(f"VISLA_CLI_ERROR_CODE={classify_error_code(msg)}")
+                print("Export failed!")
+                return {"project_uuid": project_uuid, "error": msg}
+            edata = export_result.get("data", {}) or {}
+            exp_clip = edata.get("clipUuid")
+            exp_share = edata.get("shareLink")
+            print(f"Clip UUID: {exp_clip}")
+            clip_result = self.wait_clip(exp_clip)
+            if clip_result.get("code") != 0:
+                return {"project_uuid": project_uuid, "clip_uuid": exp_clip,
+                        "error": clip_result.get("msg")}
+            print(f"\n{SYM_OK} Video ready!")
+            if exp_share:
+                print(f"View link: {exp_share}")
+            return {"project_uuid": project_uuid, "clip_uuid": exp_clip,
+                    "share_link": exp_share}
+
+        # Manual mode: storyboards only
+        info = self.wait_aigc_scenes(project_uuid, "storyboard")
+        if info.get("code") == -1:
+            return {"project_uuid": project_uuid, "error": info.get("msg", "timeout")}
+        self.print_aigc_failures(info)
+        print()
+        self.print_aigc_scene_status(info)
+        print()
+        print(f"{SYM_OK} Storyboard images are ready for review.")
+        print("Next steps:")
+        print(f"  - Regenerate a scene's image: aigc-image {project_uuid} --scene <sceneId> [--prompt \"...\"]")
+        print(f"  - Generate motion videos:     aigc-motion {project_uuid} --scene <sceneId> [--scene ...]")
+        print(f"  - Check status:               aigc-status {project_uuid}")
+        print(f"  - Project UUID: {project_uuid}")
+        return {"project_uuid": project_uuid, "manual": True}
 
     # Shared helpers
 
@@ -917,6 +1313,59 @@ def _flatten_opts_to_kwargs(video_opts):
     return kw
 
 
+def _build_ref_images(refs):
+    """Convert a list of ref values (URL or asset entity id) to OpenApiRefImageReqBody items."""
+    out = []
+    for r in refs or []:
+        r = str(r)
+        if r.startswith("http://") or r.startswith("https://"):
+            out.append({"image_url": r})
+        else:
+            out.append({"entity_uuid": r})
+    return out
+
+
+def _print_scene_task_result(result):
+    """Print a scene-level task result (from generate-image / generate-motion-video)."""
+    if result.get("code") != 0:
+        msg = result.get("msg", "Unknown error")
+        print(f"VISLA_CLI_ERROR_CODE={classify_error_code(msg)}")
+        print(f"Error: {msg}")
+        sys.exit(1)
+    data = result.get("data", {}) or {}
+    print(f"Task ID: {data.get('task_id', 'N/A')}")
+    print(f"Status: {data.get('status', 'N/A')} ({data.get('total_scenes', 0)} scene(s))")
+    for sc in data.get("scenes", []) or []:
+        extra = f" — {sc['error_message']}" if sc.get("error_message") else ""
+        print(f"  - scene {sc.get('scene_id', '?')}: {sc.get('status', '?')}{extra}")
+
+
+def _read_text_input(value, label="input"):
+    """Resolve a script/idea argument: '-' = stdin, '@file' = file, else literal."""
+    if value == "-":
+        text = sys.stdin.read()
+        if not text.strip():
+            print("VISLA_CLI_ERROR_CODE=empty_input")
+            print(f"Error: No {label} content received from stdin")
+            sys.exit(1)
+        return text
+    if value.startswith("@"):
+        path = value[1:]
+        _validate_read_path(path, allowed_extensions=ALLOWED_TEXT_EXTENSIONS)
+        if not os.path.exists(path):
+            print("VISLA_CLI_ERROR_CODE=file_not_found")
+            print(f"Error: File not found: {path}")
+            sys.exit(1)
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                return f.read()
+        except OSError as e:
+            print("VISLA_CLI_ERROR_CODE=file_read_failed")
+            print(f"Error: Failed to read file: {path} ({e})")
+            sys.exit(1)
+    return value
+
+
 def main():
     parser = argparse.ArgumentParser(description=f"Visla Skill v{VERSION}")
     parser.add_argument("--key", help="API Key (or set VISLA_API_KEY env var)")
@@ -1007,6 +1456,65 @@ def main():
         help="Speech to video function: SPEECH_TO_VIDEO_SUMMARY (highlights) or SPEECH_TO_VIDEO_FULL_LENGTH (full length)",
     )
 
+    # AIGC: list styles
+    subparsers.add_parser("aigc-styles", help="List available AIGC visual styles")
+
+    # AIGC: create video with AI-generated visuals
+    aigc_parser = subparsers.add_parser(
+        "aigc", help="Create AIGC video with AI-generated visuals"
+    )
+    aigc_parser.add_argument("script", help="Script text, @filename, or - (stdin)")
+    aigc_parser.add_argument("--config", "-c", help="Path to JSON config file with video options")
+    aigc_parser.add_argument("--avatar", help="Avatar ID (overrides config)")
+    aigc_parser.add_argument("--voice", help="Voice ID (overrides config)")
+    aigc_parser.add_argument("--style", help="Visual style (see 'aigc-styles'); omit to let AI pick")
+    aigc_parser.add_argument(
+        "--auto-motion", dest="auto_motion", action="store_true", default=True,
+        help="Auto-generate motion videos after storyboards (default)",
+    )
+    aigc_parser.add_argument(
+        "--no-auto-motion", dest="auto_motion", action="store_false",
+        help="Stop after storyboards; review then run 'aigc-motion'",
+    )
+    aigc_parser.add_argument("--to-clip", action="store_true", help="Create + auto-export to clip in one step")
+    aigc_parser.add_argument("--webpage", action="append", help="Add a webpage URL as reference (repeatable)")
+    aigc_parser.add_argument("--doc", action="append", help="Add a PDF/PPT as reference (repeatable)")
+    aigc_parser.add_argument("--media", action="append", help="Add an image/video/audio as reference (repeatable)")
+
+    # AIGC: per-scene status
+    status_parser = subparsers.add_parser("aigc-status", help="Show per-scene AIGC status")
+    status_parser.add_argument("project_uuid", help="Project UUID")
+
+    # AIGC: generate/regenerate storyboard images
+    img_parser = subparsers.add_parser(
+        "aigc-image", help="Generate/regenerate storyboard images for scenes"
+    )
+    img_parser.add_argument("project_uuid", help="Project UUID")
+    img_parser.add_argument("--scene", action="append", required=True, help="Scene ID (repeatable; from 'aigc-status')")
+    img_parser.add_argument("--prompt", help="Override the storyboard prompt for the scene(s)")
+    img_parser.add_argument("--aspect-ratio", choices=["landscape", "portrait", "square"], help="Aspect ratio")
+    img_parser.add_argument("--ref", action="append", help="Reference image: URL or asset entity ID (repeatable, up to 3)")
+    img_parser.add_argument("--force", action="store_true", help="Force regeneration on scenes that already have a motion video")
+
+    # AIGC: generate/regenerate motion videos
+    mot_parser = subparsers.add_parser(
+        "aigc-motion", help="Generate/regenerate motion videos for scenes"
+    )
+    mot_parser.add_argument("project_uuid", help="Project UUID")
+    mot_parser.add_argument("--scene", action="append", required=True, help="Scene ID (repeatable; from 'aigc-status')")
+    mot_parser.add_argument("--prompt", help="Override the motion video prompt for the scene(s)")
+    mot_parser.add_argument("--aspect-ratio", choices=["landscape", "portrait", "square"], help="Aspect ratio")
+    mot_parser.add_argument(
+        "--mode",
+        choices=["prompt_to_video", "first_frame_to_video", "first_and_last_frame_to_video", "ingredients_to_video"],
+        help="Motion video generation mode (must match the number of --ref images)",
+    )
+    mot_parser.add_argument("--audio", dest="enable_audio", action="store_true", default=None, help="Enable generated audio")
+    mot_parser.add_argument("--no-audio", dest="enable_audio", action="store_false", help="Disable generated audio")
+    mot_parser.add_argument("--model", default=None, help="Generation model (default: veo_3.1)")
+    mot_parser.add_argument("--ref", action="append", help="Reference image: URL or asset entity ID (repeatable, up to 3)")
+    mot_parser.add_argument("--force", action="store_true", help="Force regeneration of existing motion videos")
+
     args = parser.parse_args()
 
     # Priority: command line args > environment variables
@@ -1032,7 +1540,8 @@ def main():
             print('  export VISLA_API_SECRET="your_secret"')
         print("")
         print("Option 2: Pass as arguments")
-        print('  python visla_cli.py --key "your_key" --secret "your_secret" <command>')
+        print('  python3 visla_cli.py --key "your_key" --secret "your_secret" <command>')
+        print('  (on Windows use `python` or `py -3` instead of `python3`)')
         print("")
         print("Option 3: Use a credentials file (auto-detected)")
         print(f"  Default path: {DEFAULT_CREDENTIALS_PATH}")
@@ -1387,6 +1896,112 @@ def main():
                         print(f"    URL: {url}")
         print(f"\nVisla Skill v{VERSION} completed")
         sys.exit(0)
+
+    elif args.command == "aigc-styles":
+        result = api.list_aigc_styles()
+        if result.get("code") != 0:
+            msg = result.get("msg", "Unknown error")
+            print(f"VISLA_CLI_ERROR_CODE={classify_error_code(msg)}")
+            print(msg)
+            sys.exit(1)
+        styles = result.get("data", []) or []
+        if not styles:
+            print("No AIGC styles available")
+        else:
+            print(f"Available AIGC visual styles ({len(styles)}):")
+            for s in styles:
+                name = s.get("name") or "Unnamed"
+                desc = s.get("description") or ""
+                print(f"  - {name}" + (f": {desc}" if desc else ""))
+        print(f"\nVisla Skill v{VERSION} completed")
+        sys.exit(0)
+
+    elif args.command == "aigc":
+        config = load_video_config(args.config) if args.config else {}
+        video_opts = merge_config_with_args(config, args)
+        script = _read_text_input(args.script, label="script")
+        opts_kwargs = _flatten_opts_to_kwargs(video_opts)
+        result = api.aigc_and_complete(
+            script,
+            style=args.style,
+            auto_generate_motion_video=args.auto_motion,
+            to_clip=args.to_clip,
+            doc_paths=args.doc,
+            media_paths=args.media,
+            webpages=args.webpage,
+            video_title=video_opts.get("video_title"),
+            video_description=video_opts.get("video_description"),
+            aspect_ratio=video_opts.get("aspect_ratio", "16:9"),
+            video_pace=video_opts.get("video_pace", "fast"),
+            burn_subtitles=video_opts.get("burn_subtitles", False),
+            video_duration_in_seconds=video_opts.get("video_duration_in_seconds"),
+            **opts_kwargs,
+        )
+        if not result or result.get("error"):
+            sys.exit(1)
+        if not result.get("manual"):
+            print("Video ready!")
+            if result.get("share_link"):
+                print(f"View link: {result['share_link']}")
+        print(f"Visla Skill v{VERSION} completed")
+
+    elif args.command == "aigc-status":
+        result = api.get_scene_aigc_info(args.project_uuid)
+        if result.get("code") != 0:
+            msg = result.get("msg", "Unknown error")
+            print(f"VISLA_CLI_ERROR_CODE={classify_error_code(msg)}")
+            print(msg)
+            sys.exit(1)
+        print(f"Project: {args.project_uuid}")
+        api.print_aigc_scene_status(result)
+        print(f"\nVisla Skill v{VERSION} completed")
+        sys.exit(0)
+
+    elif args.command == "aigc-image":
+        refs = _build_ref_images(args.ref)
+        scenes = []
+        for sid in args.scene:
+            sc = {"scene_id": str(sid)}
+            if args.prompt:
+                sc["prompt"] = args.prompt
+            if args.aspect_ratio:
+                sc["aspect_ratio"] = args.aspect_ratio
+            if refs:
+                sc["ref_images"] = refs
+            scenes.append(sc)
+        print(f"Generating storyboard images for {len(scenes)} scene(s)...")
+        result = api.generate_scene_storyboard_image(
+            args.project_uuid, scenes, force_override_video=args.force
+        )
+        _print_scene_task_result(result)
+        print(f"\nTrack progress with: aigc-status {args.project_uuid}")
+        print(f"Visla Skill v{VERSION} completed")
+
+    elif args.command == "aigc-motion":
+        refs = _build_ref_images(args.ref)
+        scenes = []
+        for sid in args.scene:
+            sc = {"scene_id": str(sid)}
+            if args.prompt:
+                sc["prompt"] = args.prompt
+            if args.aspect_ratio:
+                sc["aspect_ratio"] = args.aspect_ratio
+            if args.mode:
+                sc["motion_video_mode"] = args.mode
+            if args.enable_audio is not None:
+                sc["enable_audio"] = args.enable_audio
+            if args.model:
+                sc["gen_model"] = args.model
+            if refs:
+                sc["ref_images"] = refs
+            scenes.append(sc)
+        print(f"Generating motion videos for {len(scenes)} scene(s)...")
+        result = api.generate_scene_motion_video(
+            args.project_uuid, scenes, force_regenerate=args.force
+        )
+        _print_scene_task_result(result)
+        print(f"\nTrack progress with: aigc-status {args.project_uuid}")
+        print(f"Visla Skill v{VERSION} completed")
 
     else:
         parser.print_help()

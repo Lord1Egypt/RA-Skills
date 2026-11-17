@@ -1,41 +1,54 @@
-## Description: <br>
-Organize and classify OpenClaw knowledge entries into local folders by content type (Research, Decision, Insight, Lesson, Pattern, Project, Reference, Tutorial). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize and classify OpenClaw knowledge entries into local folders by content type (Research, Decision, Insight, Lesson, Pattern, Project, Reference, Tutorial).
 
-## Publisher: <br>
-[ClaireAICodes](https://clawhub.ai/user/ClaireAICodes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[claireaicodes](https://clawhub.ai/user/claireaicodes)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to turn MEMORY.md and daily memory files into a structured local knowledge base with classified markdown entries and indexes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Index generation has a code-execution bug in tag parsing. <br>
-Mitigation: Review local-file behavior before installation and prefer a patched version that replaces the eval tag parser with safe parsing. <br>
-Risk: Cleanup can permanently delete local files when paths or sync state are wrong. <br>
-Mitigation: Use explicit --workspace and --output-dir arguments, run km sync --dry_run and km cleanup --dry_run first, and avoid scheduled cleanup until paths and state are verified. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to organize local memory entries into a structured markdown knowledge base, classify entries by content type and metadata, generate indexes, and manage synced knowledge files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ClaireAICodes/knowledge-management) <br>
-- [Publisher profile](https://clawhub.ai/user/ClaireAICodes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown files with YAML frontmatter, JSON classification output, index markdown, and CLI command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local memory files and writes organized local folders, sync state, logs, and index files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: package.json and server release metadata) <br>
+Risk: Index generation can execute JavaScript while parsing markdown metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run `km summarize` only on trusted workspace content or in a dedicated test workspace until metadata parsing is replaced with a non-executing parser.
+
+Risk: Cleanup can permanently delete local knowledge files identified as orphaned.
+
+Mitigation: Use dry-run cleanup first, keep recoverable backups, and avoid scheduled cleanup until deletion requires confirmation or uses archive/quarantine.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/claireaicodes/skills/knowledge-management)
+- [Publisher Profile](https://clawhub.ai/user/claireaicodes)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, JSON command output, and CLI-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes organized local knowledge files and index files under the configured workspace/output directory.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

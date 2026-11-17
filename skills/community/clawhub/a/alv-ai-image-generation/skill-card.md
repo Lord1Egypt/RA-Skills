@@ -1,41 +1,50 @@
-## Description: <br>
-Generates AI images through SkillBoss API Hub across text-to-image, image-to-image, inpainting, editing, upscaling, LoRA, and text-rendering workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI images with FLUX, Gemini, Grok, Seedream, Reve and 50+ models via SkillBoss API Hub.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for image-generation API examples and parameter guidance for artwork, product mockups, marketing visuals, illustrations, and upscaling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image URLs, and related generation inputs are sent to SkillBoss for third-party processing. <br>
-Mitigation: Avoid confidential prompts, private images, internal URLs, and sensitive visual material unless that processing is acceptable. <br>
-Risk: The skill requires a sensitive SkillBoss API key. <br>
-Mitigation: Use a scoped, revocable key stored in an environment variable or secret manager, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Developers and content creators use this skill to generate, edit, upscale, and route image-generation requests across multiple hosted image models through SkillBoss API Hub.
 
-## Reference(s): <br>
-- [SkillBoss API Hub](https://api.heybossai.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/alvisdunlop/alv-ai-image-generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, API calls, configuration] <br>
-**Output Format:** [Markdown with Python code examples and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY; API calls return image URLs or image result arrays from SkillBoss.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Risk: Image prompts, source image URLs, and generation settings are sent to SkillBoss API Hub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, private internal URLs, confidential source images, or sensitive personal data unless policy permits that provider.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alvisdunlop/skills/alv-ai-image-generation)
+- [SkillBoss API Hub](https://api.heybossai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with Python examples and API response guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and returns image URLs from the configured API provider.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

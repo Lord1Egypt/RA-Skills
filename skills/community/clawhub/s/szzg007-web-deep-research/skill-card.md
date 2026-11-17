@@ -1,42 +1,54 @@
-## Description: <br>
-Performs broad web research across 17+ social, commerce, code, and web platforms to produce market intelligence, competitor analysis, customer background, trend, and risk reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent perform broad web research across social, commercial, and web sources for market intelligence, competitor analysis, customer background research, trend monitoring, and risk analysis.
 
-## Publisher: <br>
-[szzg007](https://clawhub.ai/user/szzg007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[szzg007](https://clawhub.ai/user/szzg007)
 
-## Use Case: <br>
-Developers, ecommerce operators, and research teams use this skill to request market research, competitor analysis, trend monitoring, and scoped customer background research. It is suited for producing structured Markdown reports from broad public-source research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad customer and decision-maker background research can collect personal or sensitive information without clear consent limits. <br>
-Mitigation: Use only for legitimate, scoped business research; confirm authorization before customer background checks; avoid personal identifiers unless necessary and lawful. <br>
-Risk: Research outputs can combine many public sources into decision guidance that may be incomplete, outdated, or misleading. <br>
-Mitigation: Require human review before business decisions, restrict allowed sources for sensitive research, and preserve source lists in generated reports. <br>
-Risk: Cached research artifacts may retain sensitive topics or business intelligence. <br>
-Mitigation: Minimize retained data and clear caches that contain sensitive research topics. <br>
+## Use Case:
 
+Business users, researchers, and agents use this skill to gather and synthesize web evidence about markets, competitors, products, customers, and emerging trends into concise research reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/szzg007/szzg007-web-deep-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown research report with optional environment-variable configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output may include cited data sources, executive summaries, competitor tables, customer background notes, opportunity analysis, and risk factors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Customer and decision-maker background research can become under-scoped profiling or include sensitive personal or credit information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit use to authorized business research, avoid sensitive personal or credit information unless there is a lawful basis, and review results before acting on them.
+
+Risk: Broad multi-platform searches can exceed the user's intended scope or authorization.
+
+Mitigation: Require explicit user confirmation before broad searches and keep platform coverage, geography, and research depth constrained to the stated task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/szzg007/skills/szzg007-web-deep-research)
+- [ClawHub publisher profile](https://clawhub.ai/user/szzg007)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research reports with summaries, comparisons, source notes, opportunity analysis, and risk factors.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require search or social data API keys and user-specified market, platform, depth, and language settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

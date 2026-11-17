@@ -1,0 +1,5 @@
+﻿原文记录ID,断言ID,原话摘录,待核对说法,判定,理由,事实证据,公开答复,修改优先级,修改位置,修改动作,待补资料
+O1,C1,只能用单账号,青禾仅支持单账号。,已过时,旧版资料曾限制单账号，止于2026-09-30；2026-10-01起的当前说明支持多个账号。这里只说明教学资料中的版本变化，不能推断真实AI取材来源。,"F3 | 旧版账号说明（教学） | historical_support | 旧版青禾仅允许绑定一个账号。
+F2 | 当前账号帮助（教学） | contradicts | 青禾支持添加多个账号。",不是。根据当前账号说明，青禾支持添加多个账号。旧版说明中的单账号限制已不适用于当前版本。账号切换仍需手动选择，暂不支持自动轮换。,P1,产品页账号能力段、旧版账号帮助与账号FAQ,在当前能力段说明支持多账号及手动切换；将旧版帮助标注为历史版本并指向当前说明。,
+O1,C2,必须付费,青禾当前必须付费使用。,与当前事实不符,当前费用说明明确免费使用，未提供历史收费依据，因此归为与当前事实不符，而不是已过时。,F1 | 当前费用说明（教学） | contradicts | 青禾当前免费使用。,根据当前费用说明，青禾目前免费使用。该说明不承诺永久免费；后续是否调整应以届时生效的费用说明为准。,P1,费用说明首段与费用FAQ,明确当前免费使用，不扩写为永久或任意增值功能免费；使费用段与FAQ保持一致。,
+O2,C3,switching is manual; automatic account rotation is not supported,Qinghe requires manual switching and does not support automatic account rotation.,事实正确,英文原文的not supported是否定自动轮换，而非否定多账号。当前中文账号帮助支持这一限制，不能因描述听起来负面而删除。,F2 | 当前账号帮助（教学） | supports | 账号切换需要手动选择，暂不支持自动轮换。,"Qinghe supports multiple accounts, but switching requires manual selection. Automatic account rotation is not currently supported.",P2,英文账号帮助中的切换步骤与账号FAQ,保留手动切换与不支持自动轮换的限制，避免将多账号写成自动轮换。,

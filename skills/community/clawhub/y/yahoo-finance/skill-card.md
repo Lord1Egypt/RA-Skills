@@ -1,41 +1,55 @@
-## Description: <br>
-Get stock prices, quotes, fundamentals, earnings, options, dividends, and analyst ratings using Yahoo Finance. Uses yfinance library - no API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get stock prices, quotes, fundamentals, earnings, options, dividends, and analyst ratings using Yahoo Finance.
 
-## Publisher: <br>
-[ajanraj](https://clawhub.ai/user/ajanraj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ajanraj](https://clawhub.ai/user/ajanraj)
 
-## Use Case: <br>
-Developers, analysts, and agent operators use this skill to look up market data from Yahoo Finance, including prices, quotes, fundamentals, earnings, dividends, analyst ratings, options chains, history, comparison tables, and symbol search results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact suggests piping remote uv installer scripts directly into a shell. <br>
-Mitigation: Prefer package-manager installation for uv, such as Homebrew or pip, before using remote installer scripts. <br>
-Risk: The artifact references a yf executable script that is not included in the provided artifact files. <br>
-Mitigation: Confirm the yf script is supplied by the installed release before relying on the CLI workflow. <br>
-Risk: Yahoo Finance data requests may be rate limited or unavailable for some symbols or data categories. <br>
-Mitigation: Handle connection errors, verify symbols with search, and treat unavailable options, dividends, or other data as expected service limitations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Yahoo Finance skill page](https://clawhub.ai/ajanraj/yahoo-finance) <br>
+## Use Case:
+
+Developers, analysts, and external users can use this skill to retrieve market quotes, company fundamentals, earnings, dividends, options chains, historical prices, comparisons, and symbol search results from Yahoo Finance through a CLI workflow.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill documentation asks users to run remote installer commands for uv.
+
+Mitigation: Prefer installing uv through a trusted package manager or a verified release before using the skill.
+
+Risk: The evidence security summary reports that the actual yf CLI script is not included for review.
+
+Mitigation: Do not run global symlink or first-run dependency steps until the missing script and its exact dependencies are available for review.
+
+Risk: Yahoo Finance may rate limit requests or return no data for some symbols or security types.
+
+Mitigation: Retry later after rate limits, verify symbols with search, and treat unavailable fields as expected data-source limitations.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI-formatted financial data tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API key is required; data availability and rate limits depend on Yahoo Finance and yfinance.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with CLI commands and tabular financial data output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses yfinance and uv; no API key is described as required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

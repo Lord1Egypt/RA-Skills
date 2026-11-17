@@ -1,41 +1,55 @@
-## Description: <br>
-shouldislab helps agents evaluate Pokemon card grading decisions by looking up raw and graded prices, estimating grading costs and ROI, and returning a slab-or-skip verdict. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+shouldislab helps an agent evaluate Pokemon TCG card grading decisions by identifying the card, comparing raw and graded market values, estimating grading ROI, and returning a slab-or-skip verdict.
 
-## Publisher: <br>
-[kewang0622](https://clawhub.ai/user/kewang0622) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kewang0622](https://clawhub.ai/user/kewang0622)
 
-## Use Case: <br>
-External collectors and agents use this skill to assess whether Pokemon TCG cards are worth professional grading. It identifies the card, gathers current market pricing, compares raw and graded outcomes, and presents an ROI-based verdict. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market prices and grading fees can change, and listed prices may not match completed sales. <br>
-Mitigation: Compare multiple current sources, distinguish sold data from listings, and verify grading service rates before making a grading decision. <br>
-Risk: The README includes a curl-based install path that downloads a mutable remote file. <br>
-Mitigation: Inspect the remote file before installation or use a pinned/local copy of the skill instructions. <br>
+## Use Case:
 
+External collectors and agent users use this skill to decide whether a Pokemon TCG card is worth professional grading. It supports card identification, current market price comparison, grading-cost estimates, ROI scenarios for likely grades, and a concise SLAB IT, SKIP IT, or MAYBE recommendation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kewang0622/shouldislab) <br>
-- [Publisher profile](https://clawhub.ai/user/kewang0622) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with pricing notes, ROI tables, verdict sections, and tips] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses current web search results and disclosed assumptions for card identity, market pricing, grading costs, and grade uncertainty.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Current card prices, grading fees, turnaround times, and sold-listing availability can change, making ROI estimates stale or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use current lookups across multiple market sources, state when sold-price data is unavailable, and present ROI as an estimate rather than financial certainty.
+
+Risk: Installing from an unpinned remote main-branch command may fetch content that differs from the reviewed package.
+
+Mitigation: Install from the reviewed packaged SKILL.md or a pinned, verified release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kewang0622/skills/shouldislab)
+- [Packaged skill instructions](artifact/SKILL.md)
+- [Packaged README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with ROI tables, source notes, caveats, and a concise verdict.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs estimates based on current card-market and grading-cost lookups; results should not be treated as financial certainty.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

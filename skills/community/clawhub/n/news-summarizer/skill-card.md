@@ -1,46 +1,57 @@
-## Description: <br>
-Fetches and summarizes world news from BBC, Reuters, NPR, and related RSS feeds, with optional voice summary generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and summarize world news from BBC, Reuters, NPR RSS feeds, with optional voice summaries.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-External users and agents use this skill to fetch current public-news RSS items, summarize the most important stories, and optionally prepare a short voice briefing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional voice summaries send generated summary text to OpenAI text-to-speech and require an OpenAI API key. <br>
-Mitigation: Use voice summaries only when the user accepts that transfer, avoid private or sensitive context in voiced summaries, and protect the API key as a sensitive credential. <br>
-Risk: News summaries are generated from public RSS feeds and may omit context, updates, or alternative perspectives. <br>
-Mitigation: Cite and review the source feeds for high-impact or time-sensitive news before relying on the summary. <br>
+## Use Case:
 
+External users and employees use this skill to get concise daily or current-event briefings from major RSS news sources, grouped by region or topic. It can also create an audio version of the generated briefing when text-to-speech is appropriate.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/terrycarter1985/news-summarizer) <br>
-- [BBC World RSS Feed](https://feeds.bbci.co.uk/news/world/rss.xml) <br>
-- [BBC Top Stories RSS Feed](https://feeds.bbci.co.uk/news/rss.xml) <br>
-- [Reuters Agency World Feed](https://www.reutersagency.com/feed/?best-regions=world&post_type=best) <br>
-- [NPR News RSS Feed](https://feeds.npr.org/1001/rss.xml) <br>
-- [The Hindu National News RSS Feed](https://www.thehindu.com/news/national/feeder/default.rss) <br>
-- [OpenAI Audio Speech API](https://api.openai.com/v1/audio/speech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with optional inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional voice workflow can produce an MP3 audio briefing using OpenAI text-to-speech.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Optional voice summaries send the generated news summary to OpenAI text-to-speech.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use text-only mode for sensitive briefings or content that should not be sent to an external speech service.
+
+Risk: The documented audio command writes output to /tmp/news.mp3, which may be visible on shared systems.
+
+Mitigation: Choose a private temporary path or remove the generated audio file after use on shared machines.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/news-summarizer)
+- [BBC World RSS feed](https://feeds.bbci.co.uk/news/world/rss.xml)
+- [Reuters world news feed](https://www.reutersagency.com/feed/?best-regions=world&post_type=best)
+- [NPR News RSS feed](https://feeds.npr.org/1001/rss.xml)
+- [The Hindu national news RSS feed](https://www.thehindu.com/news/national/feeder/default.rss)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls, guidance]
+
+**Output Format:** [Markdown briefing text with optional audio generation command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional voice mode sends the generated news summary to OpenAI text-to-speech and may write audio to /tmp/news.mp3.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

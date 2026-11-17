@@ -1,40 +1,58 @@
-## Description: <br>
-Fetches current stock, ETF, index, and crypto market data from Yahoo Finance and formats prices, ranges, volume, news, and upcoming events for an agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a local Python script to fetch current stock prices and related market context for a requested ticker.
 
-## Publisher: <br>
-[youpele52](https://clawhub.ai/user/youpele52) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youpele52](https://clawhub.ai/user/youpele52)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to answer current market-price questions for stocks, ETFs, indexes, and crypto tickers. It is suited for quick price checks, recent range summaries, volume context, company-specific headlines, and upcoming event dates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Python code and installs yfinance through uv before contacting Yahoo Finance. <br>
-Mitigation: Review the artifact and pin or approve the yfinance dependency before first use when tighter supply-chain control is required. <br>
-Risk: Market data, headlines, and event dates may be unavailable, delayed, or limited by Yahoo Finance or yfinance behavior. <br>
-Mitigation: Treat outputs as market-data summaries from Yahoo Finance and verify time-sensitive financial decisions against an authoritative source. <br>
+## Use Case:
 
+External users and agents use this skill to answer ticker-specific price questions with current price, daily movement, volume, historical ranges, recent news, and upcoming events.
 
-## Reference(s): <br>
-- [Yahoo Finance](https://finance.yahoo.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown-style market summary with links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a ticker symbol; live market data, news, and events depend on Yahoo Finance availability through yfinance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: server release evidence) <br>
+Risk: The skill auto-installs yfinance at runtime, which can introduce supply-chain exposure in higher-trust environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned dependency or lockfile before deployment where dependency provenance must be controlled.
+
+Risk: The skill queries Yahoo Finance for requested tickers, so results depend on an external market-data provider and network availability.
+
+Mitigation: Treat results as informational market data and confirm critical financial decisions against authoritative sources.
+
+Risk: The skill uses a temporary lock file to serialize execution, which can delay or block concurrent runs if a previous execution stalls.
+
+Mitigation: Run with least-privilege filesystem access and investigate stale locks if execution times out.
+
+## Reference(s):
+
+- [Stock Price Checker Pro on ClawHub](https://clawhub.ai/youpele52/skills/stock-price-checker-pro)
+- [Yahoo Finance](https://finance.yahoo.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text stock summary with ticker quote, market statistics, ranges, news links, and upcoming events.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a ticker symbol and a runtime with uv; uses yfinance and Yahoo Finance data at execution time.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

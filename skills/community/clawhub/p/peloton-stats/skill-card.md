@@ -1,41 +1,55 @@
-## Description: <br>
-Fetch and report Peloton cycling workout statistics, including recent ride counts, duration, calories, output, power, resistance, cadence, and instructor data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and report Peloton cycling workout statistics, including ride counts, duration, calories, output, power, resistance, cadence, instructor data, and recent ride history.
 
-## Publisher: <br>
-[niemesrw](https://clawhub.ai/user/niemesrw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[niemesrw](https://clawhub.ai/user/niemesrw)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve a weekly Peloton cycling workout summary for a user account. It is useful when the user asks for recent Peloton ride history, training totals, or cycling performance metrics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Peloton account credentials. <br>
-Mitigation: Use the OpenClaw credential flow, protect the auth profile and environment variables, and rotate the Peloton password if the environment is later shared or untrusted. <br>
-Risk: Recent workout stats may be printed into the agent conversation. <br>
-Mitigation: Run the skill only in contexts where sharing Peloton workout history and performance metrics is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Peloton Stats ClawHub page](https://clawhub.ai/niemesrw/peloton-stats) <br>
-- [Peloton API endpoint](https://api.onepeloton.com) <br>
-- [Peloton OAuth token endpoint](https://auth.onepeloton.com/oauth/token) <br>
+## Use Case:
 
+External users and agents use this skill to retrieve a Markdown summary of recent Peloton cycling workouts and performance metrics. It is useful when a user asks for weekly cycling stats, ride history, or Peloton workout data.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown report with summary metrics and a recent rides table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Looks back 7 days, reports cycling workouts only, and requires Peloton credentials from OpenClaw auth profile or PELOTON_USERNAME and PELOTON_PASSWORD.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill needs Peloton credentials stored locally or supplied through environment variables.
+
+Mitigation: Use the OpenClaw credential manager where possible, restrict access to the credential file, and remove the stored profile if the skill is no longer used.
+
+Risk: The skill contacts Peloton's unofficial API to retrieve workout history and performance metrics.
+
+Mitigation: Install and run it only when this external API access is acceptable for the user's account and data handling expectations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/niemesrw/skills/peloton-stats)
+- [Publisher profile](https://clawhub.ai/user/niemesrw)
+- [Peloton API endpoint](https://api.onepeloton.com)
+- [Peloton OAuth token endpoint](https://auth.onepeloton.com/oauth/token)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with summary metrics and a recent rides table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Peloton credentials from OpenClaw configuration or PELOTON_USERNAME and PELOTON_PASSWORD environment variables.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

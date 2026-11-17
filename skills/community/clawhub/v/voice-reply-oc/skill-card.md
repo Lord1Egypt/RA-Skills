@@ -1,48 +1,67 @@
-## Description: <br>
-Turns assistant reply text into generated speech using Noiz AI TTS and saves the audio locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts text replies into speech with Noiz AI TTS, saves generated audio locally, and can play it automatically.
 
-## Publisher: <br>
-[richardx0319](https://clawhub.ai/user/richardx0319) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richardx0319](https://clawhub.ai/user/richardx0319)
 
-## Use Case: <br>
-External users and developers use this skill to convert chat replies or supplied text into playable speech files, with optional Noiz voice selection, reference audio, and timeline rendering workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Assistant reply text, optional reference audio, and subtitle text can be sent to Noiz. <br>
-Mitigation: Use the skill only with text and audio you are permitted to share with Noiz, or choose the local Kokoro backend where appropriate. <br>
-Risk: The skill can store a Noiz API key in the user's home directory. <br>
-Mitigation: Configure keys only on trusted machines, protect the key file, and rotate the key if the environment is shared or compromised. <br>
-Risk: The skill may install the requests dependency at runtime. <br>
-Mitigation: Install dependencies from trusted sources before use and review the environment before allowing runtime package installation. <br>
-Risk: Generated audio can be saved and played locally, and previous generated audio may be deleted. <br>
-Mitigation: Set explicit output paths for files that should be retained and review local playback and deletion behavior before enabling automatic voice replies. <br>
-Risk: Reference-audio URLs and save_voice can enable remote voice-cloning behavior. <br>
-Mitigation: Avoid remote reference-audio URLs and save_voice unless users have consent and intentionally want voice-cloning features. <br>
+## Use Case:
 
+External users and developers use Voice Reply to turn assistant replies, direct text, or subtitle text into spoken audio. It supports local playback, generated audio files, Noiz AI TTS, and optional timeline rendering workflows.
 
-## Reference(s): <br>
-- [Voice Reply on ClawHub](https://clawhub.ai/richardx0319/voice-reply-oc) <br>
-- [Noiz AI](https://noiz.ai) <br>
-- [Noiz API Keys](https://developers.noiz.ai/api-keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, audio files, subtitle files, guidance] <br>
-**Output Format:** [Command-line text plus generated audio files and optional SRT files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated audio may be saved locally and played through the host audio system.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Assistant replies or supplied text may be sent to a cloud TTS service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive conversations unless the user accepts that data flow, and keep voice reply behavior explicitly opt-in.
+
+Risk: The skill stores and uses a Noiz API key from the local environment or home directory.
+
+Mitigation: Use least-privilege API keys, protect the key file, avoid exposing keys in command histories or logs, and rotate keys if exposed.
+
+Risk: Runtime dependency installation and subprocess execution can modify the local environment.
+
+Mitigation: Install dependencies in a controlled environment before use and review shell commands before execution.
+
+Risk: Generated audio is saved and played locally, and previous generated audio may be deleted.
+
+Mitigation: Confirm the output location and retention behavior before use, especially when preserving prior generated audio matters.
+
+Risk: Reference audio may be fetched from URLs or uploaded for voice synthesis workflows.
+
+Mitigation: Use only trusted reference audio sources and confirm that uploading reference audio is appropriate for the user and use case.
+
+## Reference(s):
+
+- [Voice Reply on ClawHub](https://clawhub.ai/richardx0319/skills/voice-reply-oc)
+- [Noiz AI](https://noiz.ai)
+- [Noiz API Keys](https://developers.noiz.ai/api-keys)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, API calls]
+
+**Output Format:** [Audio files, SRT files, JSON reports, and terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated audio can be saved as MP3, WAV, Opus, or Ogg/Opus depending on the command path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

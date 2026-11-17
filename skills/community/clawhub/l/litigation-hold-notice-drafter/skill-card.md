@@ -1,44 +1,56 @@
-## Description: <br>
-Use this skill when in-house counsel, a litigation paralegal, or outside counsel must issue a litigation hold or preservation notice because litigation, investigation, or regulatory inquiry is reasonably anticipated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts a four-part litigation hold preservation packet for licensed counsel review, including a custodian notice, ESI inventory, acknowledgment form, and counsel release-criteria checklist.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[archlab-space](https://clawhub.ai/user/archlab-space)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+In-house counsel, outside litigation counsel, litigation paralegals under counsel supervision, and compliance officers working with counsel use this skill to collect matter details and draft a preservation packet for attorney review before distribution.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may treat draft legal materials as legal advice or distribute them without attorney review.
+
+Mitigation: The skill requires a supervising attorney before drafting, labels outputs as drafts for counsel review, and reserves distribution and legal decisions to licensed counsel.
+
+Risk: Sensitive client, opposing-party, employee, claim, or account identifiers may be pasted into intake.
+
+Mitigation: Use matter codenames and avoid unnecessary confidential identifiers, consistent with the security guidance.
+
+Risk: The release-criteria checklist could be mistaken for authorization to lift a hold.
+
+Mitigation: Use release criteria only for counsel review, and release or narrow a hold only after counsel authorizes criteria and timing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Legal teams use this skill to draft a counsel-reviewed litigation hold packet when litigation, investigation, or regulatory inquiry is reasonably anticipated. It supports in-house counsel, outside litigation counsel, paralegals under counsel supervision, and compliance officers working with counsel. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat draft preservation materials as final legal advice or distribute them without attorney review. <br>
-Mitigation: Require licensed counsel to review, edit, approve, and distribute any preservation packet before use. <br>
-Risk: Matter intake may include unnecessary client, employee, claim, account, or other sensitive identifiers. <br>
-Mitigation: Use a non-identifying matter codename and avoid pasting unnecessary real client, employee, claim, or account identifiers. <br>
-Risk: The skill could be asked to decide legal questions such as whether preservation duties were triggered or whether a hold can be released. <br>
-Mitigation: Reserve trigger, scope, third-party-control, cross-border, and release decisions to licensed counsel. <br>
+**Output Format:** [Markdown packet with headings, tables, checklists, and draft labels]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/litigation-hold-notice-drafter) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
+**Other Properties Related to Output:** [Produces four linked draft deliverables: custodian hold notice, ESI inventory, acknowledgment form, and counsel review and release-criteria checklist.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown packet with headings, checklists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft-only preservation materials for licensed counsel review; it does not send, distribute, narrow, lift, or approve holds.] <br>
+0.5.1 (source: server release metadata and target metadata; artifact changelog top entry is 0.1.1)
 
-## Skill Version(s): <br>
-0.5.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

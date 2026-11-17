@@ -1,45 +1,61 @@
-## Description: <br>
-Agent Chronicle generates reflective, AI-written diary entries from recent agent session context, with optional quote, curiosity, decision, relationship, and export workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates detailed, AI-written diary entries from an agent's perspective, capturing emotions, decisions, quotes, curiosities, and relationship evolution.
 
-## Publisher: <br>
-[godferylindsay](https://clawhub.ai/user/godferylindsay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[godferylindsay](https://clawhub.ai/user/godferylindsay)
 
-## Use Case: <br>
-Agents and their operators use Agent Chronicle to turn recent session logs and diary memory into reflective daily journal entries, persistent quote, curiosity, and decision notes, and optional PDF or HTML exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recent session logs, diary context, and persistent notes may be sent to SkillBoss API Hub during generation. <br>
-Mitigation: Review memory files for secrets before generation, use --emit-task or --dry-run to inspect payloads, and run with SKILLBOSS_API_KEY only when that data sharing is acceptable. <br>
-Risk: Diary entries and indexes can persist personal notes, quotes, decisions, and relationship context beyond the immediate session. <br>
-Mitigation: Use --no-persistent for sensitive days, keep private diary settings, and review memory/diary before sharing or exporting. <br>
-Risk: Broad trigger phrases may start diary generation when the user only intended a related discussion. <br>
-Mitigation: Avoid broad trigger-based use unless diary generation is explicitly desired; run the scripts manually for tighter control. <br>
+## Use Case:
 
+Agents and developers use this skill to generate reflective daily or weekly journal entries from session logs and memory notes, with optional quote, curiosity, decision, and relationship tracking. It can also export saved diary entries to HTML or PDF for review or sharing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/godferylindsay/godfery-agent-chronicle) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [config.example.json](artifact/config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown diary entries, JSON task payloads, and optional PDF or HTML exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists entries and optional quote, curiosity, decision, and relationship indexes under memory/diary; generated entries target roughly 400-600 words.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: API generation can send private session logs and stored memory notes to SkillBoss.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with non-sensitive workspaces, review the generated task payload before sending, or use local/manual modes when private content is present.
+
+Risk: Privacy settings are documented, but evidence.security states they are not currently enforced by the implementation.
+
+Mitigation: Treat all generated entries as private until manually reviewed and sanitized before export or sharing.
+
+Risk: Local diary files, persistent notes, and exports may contain sensitive journal content.
+
+Mitigation: Store outputs in protected workspace locations, keep generated exports out of source control, and review files before distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/godferylindsay/skills/godfery-agent-chronicle)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+- [Artifact README](README.md)
+- [Daily entry template](templates/daily.md)
+- [Weekly summary template](templates/weekly.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown diary entries, JSON task payloads, local files, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can save entries and persistent notes under the workspace memory directory; API generation can send session context to SkillBoss.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

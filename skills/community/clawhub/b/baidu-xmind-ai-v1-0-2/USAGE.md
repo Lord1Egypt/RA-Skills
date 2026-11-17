@@ -1,4 +1,6 @@
-# 百度智能文档分析平台 - 完整使用指南
+# 百度智能文档分析 - 完整使用指南
+
+> 官网入口：[百度AI开放平台 · 智能文档分析](https://ai.baidu.com/tech/nlp/Textanalysis)
 
 ## 🚀 首次使用配置
 
@@ -88,7 +90,7 @@ python scripts/baidu_doc_cli.py extract \
 ```bash
 # 基础用法
 python scripts/baidu_doc_cli.py extract \
-  --file /Users/shenjunyu/Desktop/测试case/文档抽取/00d56136-47d6-4f02-867c-257d989d77c2.jpg \
+  --file /path/to/invoice.jpg \
   --fields '[{"key": "合同名称"}, {"key": "合同金额"}]'
 
 # 使用所有参数
@@ -126,7 +128,7 @@ python scripts/baidu_doc_cli.py parse \
 **示例**：
 ```bash
 python scripts/baidu_doc_cli.py parse \
-  --file /Users/shenjunyu/Desktop/测试case/文档解析:文档解析VLM/rag-公式.pdf \
+  --file /path/to/document.pdf \
   --output parse_result.json
 ```
 
@@ -162,7 +164,7 @@ python scripts/baidu_doc_cli.py parse-vl \
 ```bash
 # 基础用法
 python scripts/baidu_doc_cli.py parse-vl \
-  --file /Users/shenjunyu/Desktop/测试case/文档解析:文档解析VLM/rag-公式.pdf
+  --file /path/to/document.pdf
 
 # 使用所有参数
 python scripts/baidu_doc_cli.py parse-vl \
@@ -209,8 +211,8 @@ python scripts/baidu_doc_cli.py compare \
 ```bash
 # 基础用法
 python scripts/baidu_doc_cli.py compare \
-  --base-file /Users/shenjunyu/Desktop/测试case/文档比对/合同.pdf \
-  --compare-file /Users/shenjunyu/Desktop/测试case/文档比对/合同-审核.docx
+  --base-file /path/to/base.pdf \
+  --compare-file /path/to/compare.docx
 
 # 使用所有参数
 python scripts/baidu_doc_cli.py compare \
@@ -268,7 +270,7 @@ python scripts/baidu_doc_cli.py contract-review \
 ```bash
 # 基础用法
 python scripts/baidu_doc_cli.py contract-review \
-  --file /Users/shenjunyu/Desktop/测试case/合同审查/地方市政配套工程下穿铁路技术合同书.pdf \
+  --file /path/to/contract.pdf \
   --template TechDev_PartyA_V2
 
 # 筛选风险等级
@@ -416,6 +418,7 @@ python scripts/baidu_doc_cli.py extract ... || echo "执行失败"
 
 ## 参考文档
 
+- [智能文档分析官网](https://ai.baidu.com/tech/nlp/Textanalysis)
 - [文档抽取API](https://ai.baidu.com/ai-doc/OCR/klzkwzdch)
 - [文档解析API](https://ai.baidu.com/ai-doc/OCR/llxst5nn0)
 - [文档解析VL API](https://ai.baidu.com/ai-doc/OCR/3mi73at9o)

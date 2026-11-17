@@ -1,0 +1,552 @@
+# literature-core.yaml
+# L1 文献核心数据：每篇文献 3-5 条可执行规则 + 引擎映射
+# 自动生成于 2026-06-08
+# 注意：此为补充摘要，不替代 references/literature/ 下的原始文献
+
+literature_core:
+
+  # ===== audio =====
+  "有声书/音频写作指南":
+    source: "喜马拉雅FM/Audible/播客叙事学"
+    rules:
+      - "对话占比不低于50%，纯叙述段最长不超过150字 [narration, dialogue]"
+      - "描写做听觉编码：优先动作+声音描写，避免三重形容词 [human_lang, description]"
+      - "角色声纹设计：每3页切换对话时有独特语言习惯 [character, emotion]"
+      - "章末声音钩子：未完成句/声音反转/节奏骤变 [tension_calibrator, emotion]"
+      - "每集15-25分钟最优，前3集免费第4集解锁 [factory, management]"
+    engine_map: ["narration", "dialogue", "human_lang", "description", "character", "emotion", "tension_calibrator", "factory", "management"]
+
+  # ===== awards =====
+  "茅盾文学奖叙事模式":
+    source: "第十一届茅盾奖评论汇编"
+    rules:
+      - "以小见大：通过个人/家庭命运折射时代巨变 [plot]"
+      - "现实主义主导，语言朴实有力，排斥华丽堆砌 [narration]"
+      - "鲜明的道德关怀和社会批判意识 [analysis]"
+      - "白描/留白/意象的中国叙事美学 [writer]"
+    engine_map: ["plot", "narration", "analysis", "writer"]
+
+  "雨果奖/星云奖趋势":
+    source: "雨果奖官网/星云奖数据库/Locus Magazine"
+    rules:
+      - "多元化叙事趋势：非西方世界观/LGBTQ+角色比例上升 [reader_eval]"
+      - "硬核科幻未死：科学是情节核心驱动力 [logic]"
+      - "文学性要求提升，纯点子驱动但语言粗糙不占优势 [writer]"
+      - "系列中间卷获奖可能性低，评委偏好完整叙事弧 [analysis]"
+    engine_map: ["reader_eval", "logic", "writer", "analysis"]
+
+  "类型文学奖":
+    source: "银河奖评审委员会/全球华语科幻星云奖章程"
+    rules:
+      - "银河奖偏好硬科幻：技术设想原创性和科学合理性 [world]"
+      - "星云奖(国内)注重文学性/可读性/市场影响力 [analysis]"
+      - "短篇奖3000-15000字，获奖后行业曝光度更高 [plot]"
+      - "类型融合加分：科幻+推理/奇幻+悬疑等跨界 [development]"
+    engine_map: ["world", "analysis", "plot", "development"]
+
+  # ===== business =====
+  "写作商学/亚马逊自出版":
+    source: "Amazon KDP/Kindle Unlimited/独立出版报告"
+    rules:
+      - "KU收入=总KENP占比×月收入池，前10%退出率最高需强钩子 [factory, simulation]"
+      - "首卷$0.99引流，后续$4.99，系列3-5卷/间隔≤3个月 [management, development]"
+      - "AMS广告ACoS控制在25-30%，新书首月投入预期收入15-20% [simulation, analysis]"
+      - "定价$2.99-$9.99用70%版税率，反之用35% [factory, management]"
+      - "书籍描述用Hook→Conflict→Stakes→Social Proof结构 [reader_eval, writer]"
+    engine_map: ["factory", "simulation", "management", "development", "analysis", "reader_eval", "writer"]
+
+  # ===== chinese =====
+  "网络文学创作原理":
+    source: "王祥 (2015)"
+    rules:
+      - "开篇3章检测读者期待匹配度>70% [webnovel]"
+      - "每章至少1种欲望编码被触发 [emotion]"
+      - "爽感层级分布≈10%:35%:35%:20% [reader_eval]"
+      - "世界观可能性密度检测：读者可想象参与的活动方向数量 [world]"
+    engine_map: ["webnovel", "emotion", "reader_eval", "world"]
+
+  "网文成才21天":
+    source: "起点中文网编辑团队 (2018)"
+    rules:
+      - "签约四要素：开篇张力/节奏掌控/更新稳定/题材风口 [webnovel]"
+      - "书名分析：核心关键词+悬念/反差检测 [reader_eval]"
+      - "大纲必须有因果分支，纯线性不达标 [outline]"
+      - "连续2章无爽点事件时自动插入微爽点 [webnovel]"
+    engine_map: ["webnovel", "reader_eval", "outline"]
+
+  "别说你懂写网文":
+    source: "千幻冰云 (2013)"
+    rules:
+      - "类型周期定位分析，标记过时或过早进场警告 [management]"
+      - "四率诊断：追读/收藏/订阅/月票率关联分析 [analysis]"
+      - "每章暴露信息不超过总信息池的15% [writer]"
+      - "检测不少于3种商业化元素：升级/打脸/收集/养成等 [factory]"
+    engine_map: ["management", "analysis", "writer", "factory"]
+
+  "创意写作系列（中国创意写作教学体系）":
+    source: "葛红兵 等 上海大学 (2012-2020)"
+    rules:
+      - "全书体裁一致性检查：叙事模式符合宣称题材 [literature]"
+      - "所有引擎输出修改建议须遵循肯定→问题→可操作建议三步 [human_lang]"
+      - "输出分解为对话/描写/叙事三个子技能评分 [writer]"
+      - "多视角模拟批评：正面/中立/挑剔三种视角 [reader_eval]"
+    engine_map: ["literature", "human_lang", "writer", "reader_eval"]
+
+  "故事工坊":
+    source: "许道军 (2015)"
+    rules:
+      - "故事梗概因果链检测：至少10个因果连接词 [plot]"
+      - "激励事件三重门槛：不可逆性/连锁反应/象征意义 [outline]"
+      - "每3-5章应有一个未解答的核心问题持续推进 [architecture]"
+      - "意图-效果差距分析，偏差>30%标记 [reader_eval]"
+    engine_map: ["plot", "outline", "architecture", "reader_eval"]
+
+  "爽点心理学":
+    source: "综合(多源) (2020)"
+    rules:
+      - "爽点类型检测，连续3章同类型自动建议交替 [emotion]"
+      - "爽点节奏公式：压抑期:释放期:余韵期≈2:1:0.5 [webnovel]"
+      - "关键打脸/逆袭场景检测见证者效应 [reader_eval]"
+      - "基于压抑时长+事件权重+对比强度预测爽点强度 [simulation]"
+    engine_map: ["emotion", "webnovel", "reader_eval", "simulation"]
+
+  "黄金三章研究":
+    source: "综合(起点大神+平台数据) (2021)"
+    rules:
+      - "三章功能定位：第一章钩子/第二章深化/第三章首轮爽点 [reader_eval]"
+      - "12种开场钩子识别，前三章少于2种标记钩子不足 [analysis]"
+      - "前三章设定信息占比<20% [style]"
+      - "三章内修辞密度>30%标记用力过猛 [writer]"
+    engine_map: ["reader_eval", "analysis", "style", "writer"]
+
+  "追读率提升指南":
+    source: "多平台数据交叉验证 (2022)"
+    rules:
+      - "断章位置检测：高潮前为优秀断章 [lstm_predictor]"
+      - "每章续读动机≥2种：认知型/情感型/成就型 [webnovel]"
+      - "第15-20章/50-60章检测弃书隐患 [simulation]"
+      - "自动生成5个版本的双行结尾供作者选择 [writer]"
+    engine_map: ["lstm_predictor", "webnovel", "simulation", "writer"]
+
+  "网文商业逻辑":
+    source: "多平台商业数据分析 (2022)"
+    rules:
+      - "IP潜力五维度评分：世界观独占性/角色记忆度/题材适配度/延展空间/梗密度 [factory]"
+      - "免费/付费匹配检测：平台商业化逻辑一致性 [management]"
+      - "3000铁粉可行性预测 [simulation]"
+      - "世界观独占性：核心设定与头部作品相似度>80%标记独特度不足 [development]"
+    engine_map: ["factory", "management", "simulation", "development"]
+
+  "读者心理学":
+    source: "行为心理学+平台大数据 (2022)"
+    rules:
+      - "每章结尾检测认知未完成状态（蔡格尼克效应） [psychology]"
+      - "最后3章终末体验质量评分不得低于全书平均分 [reader_eval]"
+      - "章节长度控制在6000-8000字 [webnovel]"
+      - "前5章设计≥2个强烈情感绑定事件 [emotion]"
+    engine_map: ["psychology", "reader_eval", "webnovel", "emotion"]
+
+  "描写实务":
+    source: "描写辞典体系 (2020)"
+    rules:
+      - "描写段落连续超过3句仅有视觉标记单感官 [description]"
+      - "副词+弱动词结构标记并替换为强动词 [human_lang]"
+      - "环境-情绪匹配检测：冲突场景下阳光明媚标记不匹配 [consistency]"
+      - "紧张场景平均句长超过15字标记节奏过慢 [narration]"
+    engine_map: ["description", "human_lang", "consistency", "narration"]
+
+  "对话的艺术":
+    source: "多源综合 (2021)"
+    rules:
+      - "纯信息传递对话建议改为场景展示或内心独白 [dialogue]"
+      - "潜台词层级分析，连续3段一级对话标记过直白 [dialogue]"
+      - "话轮长度标准差<20%标记节奏单调 [screenwriter]"
+      - "同场景角色对话差异度<30%标记 [character]"
+    engine_map: ["dialogue", "screenwriter", "character"]
+
+  "世界观构建指南":
+    source: "综合幻想设定 (2021)"
+    rules:
+      - "力量体系三元平衡检测：消耗/成长/多样性 [world]"
+      - "展示vs说明式设定检测 [logic]"
+      - "地理→资源→经济→政治因果链完整性检查 [consistency]"
+      - "认知差异点<3个标记世界观冲击力不足 [world]"
+    engine_map: ["world", "logic", "consistency"]
+
+  "网文开头攻防":
+    source: "多位大神+编辑采访汇编 (2022)"
+    rules:
+      - "前三段检测三秒断点（冲突/异常/悬念） [reader_eval]"
+      - "主角开篇困境具体度检测：抽象困境标记并建议具体化 [emotion]"
+      - "开篇期待阶梯完整性：是否暗示解决方案方向 [writer]"
+      - "可解释留白占比<30%标记信息过载式留白 [analysis]"
+    engine_map: ["reader_eval", "emotion", "writer", "analysis"]
+
+  "跨类型融合创作":
+    source: "多源创新方法研究 (2023)"
+    rules:
+      - "类型杂交强度：主类型40-60%，辅类型10-30% [plot]"
+      - "创新矩阵定位：题材熟悉度×手法创新度 [inspiration]"
+      - "杂交类型底层逻辑冲突检测，无矛盾标记伪融合 [logic]"
+      - "类型锚点比例>30%保留读者舒适区 [development]"
+    engine_map: ["plot", "inspiration", "logic", "development"]
+
+  # ===== fanfic =====
+  "同人写作生态":
+    source: "AO3/Fanlore Wiki/亨利·詹金斯"
+    rules:
+      - "AO3标签三原则：内容/警告/Archive必标 [analysis]"
+      - "OOC光谱检测：严格忠实→合理扩展→黑暗AU→全AU [consistency]"
+      - "同人圈元规则：不批评/不评头论足/不催更 [management]"
+      - "补完价值：回答'如果…会怎样'而非复制原作 [writer]"
+    engine_map: ["analysis", "consistency", "management", "writer"]
+
+  "跨媒体叙事":
+    source: "亨利·詹金斯《融合文化》"
+    rules:
+      - "每个媒体触点延展广度或加深深度，不重复同一故事 [world]"
+      - "跨媒体核心设定一致性：角色性格/世界规则 [consistency]"
+      - "沉浸式多入口叙事，不同媒体提供不同层面信息 [narration]"
+      - "粉丝参与空间设计：未填满的时间线/可拓展设定 [reader_eval]"
+    engine_map: ["world", "consistency", "narration", "reader_eval"]
+
+  "跨作品融合技法":
+    source: "同人写作社区/Crossover案例"
+    rules:
+      - "世界观等级平等原则：日常系≠龙傲天 [world]"
+      - "融合点选择：相似主题/互补设定/时间错位 [plot]"
+      - "跨界后角色保留核心性格和能力，解释出现原因 [character]"
+      - "读者门槛控制：引导性说明3-5句世界观摘要 [reader_eval]"
+    engine_map: ["world", "plot", "character", "reader_eval"]
+
+  # ===== genre =====
+  "恐怖写作":
+    source: "H.P.洛夫克拉夫特/史蒂芬·金"
+    rules:
+      - "未知恐惧公式：保持模糊性，每揭示一层恐惧衰减30% [tension_calibrator]"
+      - "恐惧递进三阶段：不安→焦虑→恐惧，每阶段1-3章 [emotion]"
+      - "日常入侵法则：熟悉场景的陌生化 [narration]"
+      - "不可名状之物不直接描写形态，写反应 [consistency]"
+      - "安全屋维持≥3章后被破坏 [plot]"
+    engine_map: ["tension_calibrator", "emotion", "narration", "consistency", "plot"]
+
+  "推理小说":
+    source: "范·达因二十则/诺克斯十诫/黄金时代"
+    rules:
+      - "公平游戏原则：所有线索必须在解答前呈现给读者 [logic]"
+      - "凶器/手法/动机三要素必须完整且自洽 [plot]"
+      - "红鲱鱼密度控制：每3章≤1个假线索 [foreshadow_watcher]"
+      - "解答章节字数≥推理章节平均字数的80% [tension_calibrator]"
+      - "犯罪心理画像：动机类型（激情/利益/执念/守护）标注 [analysis]"
+    engine_map: ["logic", "plot", "foreshadow_watcher", "tension_calibrator", "analysis"]
+
+  "爱情小说":
+    source: "浪漫小说公式/Happy Ever After研究"
+    rules:
+      - "相遇-障碍-发展-危机-和解五段结构 [plot]"
+      - "情感张力曲线：每2-3章一次情感转折 [tension_calibrator]"
+      - "阻碍类型多样性：外部/内部/误会至少两种 [emotion]"
+      - "HEF/HEA结局符合题材承诺 [consistency]"
+      - "CP化学检测：每次对手戏的张力评分 [character]"
+    engine_map: ["plot", "tension_calibrator", "emotion", "consistency", "character"]
+
+  "科幻设定":
+    source: "刘慈欣/阿西莫夫/克拉克"
+    rules:
+      - "核心科学假说逻辑自洽：基于已知科学做合理延伸 [logic]"
+      - "科幻设定不是背景而是情节核心驱动力 [world]"
+      - "科技对人类社会的影响需有推演过程 [consistency]"
+      - "人文层面的情感锚点，避免纯概念堆砌 [character]"
+      - "世界观规则陈述≥3处不同维度 [architecture]"
+    engine_map: ["logic", "world", "consistency", "character", "architecture"]
+
+  "奇幻魔法体系":
+    source: "桑德森魔法法则/冰与火之歌"
+    rules:
+      - "桑德森第一法则：魔法能力越强大，代价越明确 [logic]"
+      - "魔法体系规则一致性：不能为剧情临时创造新能力 [tension_calibrator]"
+      - "魔力资源的稀缺性驱动社会结构 [world]"
+      - "魔法对战斗/政治/经济的影响需系统设计 [plot]"
+      - "修炼/升级体系的阶段性和瓶颈分析 [analysis]"
+    engine_map: ["logic", "tension_calibrator", "world", "plot", "analysis"]
+
+  # ===== global =====
+  "全球网文平台地图":
+    source: "Litnet/Neobooks/Fyctia/国际数字出版"
+    rules:
+      - "俄罗斯Litnet：免费+付费解锁，言情55%奇幻25% [reader_eval]"
+      - "德国Neobooks：竞赛驱动创作，获奖有签约机会 [factory]"
+      - "法国Fyctia：短篇5-15万字受欢迎 [plot]"
+      - "非英语平台稿酬为英语平台40-70% [management]"
+    engine_map: ["reader_eval", "factory", "plot", "management"]
+
+  "翻译对网文传播的影响":
+    source: "Wuxiaworld/起点国际/Gravity Tales"
+    rules:
+      - "翻译速度日更3-5章+社区众筹为核心成功因素 [reader_eval]"
+      - "文化术语直译+脚注优于完全西化 [human_lang]"
+      - "翻译语境下章末钩子更重要（等待期悬疑放大） [tension_calibrator]"
+      - "英语读者偏好快节奏/清晰等级，弃文率高于中文读者 [reader_eval]"
+    engine_map: ["reader_eval", "human_lang", "tension_calibrator"]
+
+  "跨文化改编":
+    source: "网飞国际内容策略/跨文化改编案例"
+    rules:
+      - "保留核心DNA：最根本层面的吸引力 [consistency]"
+      - "文化符号本地化：找到目标文化对应物 [human_lang]"
+      - "叙事节奏地域适配：日本慢热/中文密集爽/韩式加情感 [tension_calibrator]"
+      - "视觉风格预期管理：风格突变导致核心受众流失 [reader_eval]"
+    engine_map: ["consistency", "human_lang", "tension_calibrator", "reader_eval"]
+
+  # ===== interactive =====
+  "游戏叙事设计":
+    source: "亨利·詹金斯/Wendy Despain"
+    rules:
+      - "分支叙事三模型：线性+分支/辐射状/网状 [plot]"
+      - "每3个场景至少有1个环境叙事线索 [narration]"
+      - "玩家每个重要选择有可感知的中期后果 [logic]"
+      - "叙事节奏四象：探索→冲突→解谜→爆发 [tension_calibrator]"
+    engine_map: ["plot", "narration", "logic", "tension_calibrator"]
+
+  "视觉小说结构":
+    source: "Key社/型月/《视觉小说写作论》"
+    rules:
+      - "共同线40%→角色线50%→结局10% [plot]"
+      - "参数≤5种，核心事件触发需≥2参数达标 [analysis]"
+      - "选择支伪装：20%明显/30%隐藏/50%氛围 [logic]"
+      - "3-5个合理分支结局，反映选择累积结果 [reader_eval]"
+    engine_map: ["plot", "analysis", "logic", "reader_eval"]
+
+  "互动小说工具":
+    source: "Twine文档/Ink文档 (inkle Studios)"
+    rules:
+      - "Twine节点200-500字最佳 [plot]"
+      - "Ink用变量+条件判断控制分支流程 [narration]"
+      - "互动变量总数控制在30个以内 [analysis]"
+      - "回溯一致性：避免时间线和变量状态矛盾 [consistency]"
+    engine_map: ["plot", "narration", "analysis", "consistency"]
+
+  # ===== japanese =====
+  "日本轻小说角色论":
+    source: "カドカワ/電撃文庫/ガガガ文庫"
+    rules:
+      - "角色属性模板：主角1-2个核心属性，配角各1个 [character, psychology]"
+      - "异世界转生三幕：现世死亡→获得能力→建立优势 [webnovel, plot]"
+      - "单卷5-7章+短篇，7-10万字，每章结尾设悬念 [writer, narration]"
+      - "角色成长三阶段：気づき→受容→行動 [development, emotion]"
+      - "对话占比可达70%，独白每次≤300字 [dialogue, human_lang]"
+    engine_map: ["character", "psychology", "webnovel", "plot", "writer", "narration", "development", "emotion", "dialogue", "human_lang"]
+
+  # ===== korean =====
+  "韩漫/网文体系":
+    source: "Naver Webtoon/KakaoPage/Munpia"
+    rules:
+      - "条漫每4-6格为一屏，每屏结尾设视觉钩子 [director, analysis]"
+      - "快节奏开场：3话定生死，第1话15秒内展示冲突 [webnovel, reader_eval]"
+      - "付费模式：3章免费+每日1章+付费包月 [factory, management]"
+      - "每章设1-2个可讨论话题+章末互动投票 [reader_eval, simulation]"
+      - "修罗场结构：每4-6章安排，至少3方势力 [emotion, tension_calibrator]"
+    engine_map: ["director", "analysis", "webnovel", "reader_eval", "factory", "management", "simulation", "emotion", "tension_calibrator"]
+
+  # ===== platform =====
+  "抖音推荐算法解析":
+    source: "字节跳动技术博客/抖音创作者学院"
+    rules:
+      - "流量池逐级推荐：完播率>30%/互动率>5%/关注率>1% [reader_eval]"
+      - "前3秒必须有视觉钩子 [analysis]"
+      - "精确选择1-2级垂直标签 [world]"
+      - "小说类黄金发布时间20:00-23:00 [management]"
+    engine_map: ["reader_eval", "analysis", "world", "management"]
+
+  "小红书爆文公式":
+    source: "小红书创作者学院/爆文拆解数据库"
+    rules:
+      - "标题五公式：数字型/反转型/痛点型/代入型/秘密型 [reader_eval]"
+      - "封面三要素：视觉冲击/文字提炼/情绪传递 [analysis]"
+      - "正文节奏三段式：开头50字+分点正文+CTA结尾 [narration]"
+      - "标签三圈层：核心/拓展/引流共8-12个 [world]"
+    engine_map: ["reader_eval", "analysis", "narration", "world"]
+
+  "知乎高赞内容模式":
+    source: "高赞回答拆解/知乎创作者中心"
+    rules:
+      - "开头三句式：身份锚定+反直觉论断+预告 [reader_eval]"
+      - "信息增量：回答信息密度≥问题2倍 [analysis]"
+      - "第一人称权威感：绑定具体案例/个人经历 [narration]"
+      - "长回答结构化：每段≤100字，每500字视觉断点 [architecture]"
+    engine_map: ["reader_eval", "analysis", "narration", "architecture"]
+
+  "公众号爆款规律":
+    source: "新榜/西瓜数据/公众号运营经验"
+    rules:
+      - "选题三要素：高关注+反常识+情绪煽动 [reader_eval]"
+      - "标题七秒法则：数字/悬念/共鸣钩子 [analysis]"
+      - "六种高转发情绪：至少覆盖2种 [emotion]"
+      - "移动端黄金排版：段间距>行间距/每段2-4句/1500-3000字 [narration]"
+    engine_map: ["reader_eval", "analysis", "emotion", "narration"]
+
+  "数据驱动的写作优化":
+    source: "网飞/字节跳动方法论/番茄小说数据"
+    rules:
+      - "标题A/B测试：2-3个版本，选CTR最高发布 [analysis]"
+      - "留存曲线分析：第2章>80%/第5章>60%/第10章>50% [reader_eval]"
+      - "情绪曲线设计：评论情感极性对比设计曲线，偏差>20%调整 [emotion]"
+      - "完读率<30%的章节分析：长段落/节奏断点/信息密度骤降 [tension_calibrator]"
+    engine_map: ["analysis", "reader_eval", "emotion", "tension_calibrator"]
+
+  # ===== russian =====
+  "俄国叙事理论":
+    source: "普罗普《故事形态学》/巴赫金《陀思妥耶夫斯基诗学问题》/什克洛夫斯基"
+    rules:
+      - "普罗普31种叙事功能：加害→追寻→对决→战胜→婚礼五功能链不可缺失 [plot, analysis]"
+      - "复调叙事：每个主要角色拥有独立的世界观和价值观体系 [character, logic]"
+      - "陌生化技术：每5000字插入一次视角转换/名物化偏离/节奏中断 [development, style]"
+      - "叙事功能倒置：有意识地调换2-3个功能相对位置 [logic, inspiration]"
+      - "双声对话：角色表面说A但读者理解B，指向性双声是质量核心 [dialogue, human_lang]"
+    engine_map: ["plot", "analysis", "character", "logic", "development", "style", "inspiration", "dialogue", "human_lang"]
+
+  # ===== short-form =====
+  "短篇结构":
+    source: "海明威/雷蒙德·卡佛/爱伦·坡"
+    rules:
+      - "一个瞬间原则：只讲关键时刻/决定性选择/转折点 [plot]"
+      - "五段式结构：引子:动荡:发展:高潮:余韵=1:2:3:2:1 [architecture]"
+      - "冰山理论：只写水面八分之一，对话潜台词>直白心理 [narration]"
+      - "结尾句让读者合上页面后久久回味 [style]"
+    engine_map: ["plot", "architecture", "narration", "style"]
+
+  "杂志投稿策略":
+    source: "Duotrope/《Writer's Market》/国内投稿规范"
+    rules:
+      - "风格匹配度决定80%过稿率 [management]"
+      - "国内不允许一稿多投，海外SFWA认证可SIMSUB [factory]"
+      - "稿费阶梯：国内80-500+元/千字，海外$0.01-0.08+/word [development]"
+      - "一次性发表权(First Serial Rights)是最常见版权条款 [consistency]"
+    engine_map: ["management", "factory", "development", "consistency"]
+
+  "短篇集编排艺术":
+    source: "博尔赫斯/卡尔维诺/雷蒙德·卡佛"
+    rules:
+      - "首篇定调：选最具代表性作品 [reader_eval]"
+      - "三幕编排：前1/3建立主题→中1/3深化→后1/3升华 [architecture]"
+      - "沉重篇章之间安排插曲篇章 [tension_calibrator]"
+      - "末篇留下回响，开放式结局或哲理升华最佳 [writer]"
+    engine_map: ["reader_eval", "architecture", "tension_calibrator", "writer"]
+
+  "中篇节奏控制":
+    source: "斯蒂芬·金《肖申克》/海明威《老人与海》"
+    rules:
+      - "黄金长度2-3万字 [plot]"
+      - "核心角色≤5人，重要配角≤3人 [character]"
+      - "单主线+单副线，副线必须服务于主线 [architecture]"
+      - "事件密度递进：前半每章1-2事件，后半2-3事件 [tension_calibrator]"
+    engine_map: ["plot", "character", "architecture", "tension_calibrator"]
+
+  "闪小说/微型小说":
+    source: "Flash Fiction Online/Sudden Fiction系列"
+    rules:
+      - "开门见山：第一句(50字内)建立场景/角色/冲突中至少两者 [narration]"
+      - "一石二鸟：每个信息点承担双重功能 [writer]"
+      - "结尾反转或顿悟：最后一句改变一切 [plot]"
+      - "严格遵循投稿字数上限 [management]"
+    engine_map: ["narration", "writer", "plot", "management"]
+
+  # ===== western =====
+  "诗学":
+    source: "亚里士多德 (约前335年)"
+    rules:
+      - "检查情节行动统一性：每个场景推动主线或副线 [plot]"
+      - "确保每章有至少一次小突转或小发现 [architecture]"
+      - "因果链验证：情节事件用'因为A所以B'检验 [logic]"
+      - "高潮场景需同时唤起怜悯+恐惧（净化理论） [emotion]"
+    engine_map: ["plot", "architecture", "logic", "emotion", "analysis"]
+
+  "小说面面观":
+    source: "E.M.福斯特 (1927)"
+    rules:
+      - "主角和关键反派至少3个矛盾特质或2个深层心理动机 [character]"
+      - "扁平人物每章出现≤2次，对话≤该章10% [character]"
+      - "核心情节节点需回答'为什么会这样' [plot]"
+      - "超长篇(>50章)每10-15章重复一个主题变体 [architecture]"
+    engine_map: ["character", "plot", "architecture"]
+
+  "写作这回事":
+    source: "斯蒂芬·金 (2000)"
+    rules:
+      - "第一稿禁用读者视角，速度优先每日2000+字 [writer]"
+      - "第二稿自动删除第一稿10%内容 [style]"
+      - "每千字副词>8次标记过度依赖 [human_lang]"
+      - "情景生成优先于情节规划 [plot]"
+    engine_map: ["writer", "style", "human_lang", "plot"]
+
+  "故事：材质、结构、风格和银幕剧作的原理":
+    source: "罗伯特·麦基 (1997)"
+    rules:
+      - "每个场景检测价值反转，无反转标记需重写 [plot]"
+      - "主角与反派意志力对比，反派不弱于主角 [character]"
+      - "冲突三层次：个人:人际:超个人≈1:2:1 [emotion]"
+      - "类型确定后锁定故事三角位置指导结构选择 [architecture]"
+    engine_map: ["plot", "character", "emotion", "architecture"]
+
+  "千面英雄":
+    source: "约瑟夫·坎贝尔 (1949)"
+    rules:
+      - "长篇小说(>30章)需完整覆盖启程→启蒙→归来 [plot]"
+      - "第4-8章出现冒险召唤，第20-40%处严峻考验 [architecture]"
+      - "8种原型作为角色创建基线模板 [character]"
+      - "灵药定义：结尾带回的具体价值 [analysis]"
+    engine_map: ["plot", "architecture", "character", "analysis"]
+
+  "作家之旅：源自神话的写作要义":
+    source: "克里斯托弗·沃格勒 (1992/2007)"
+    rules:
+      - "覆盖12阶段中≥8个，标记严重缺失阶段 [screenwriter]"
+      - "每个主要配角分配至少1个角色原型功能 [character]"
+      - "平凡与特殊世界规则差异≥5个维度 [world]"
+      - "主要角色中≥70%结尾与开头有可量化变化 [development]"
+    engine_map: ["screenwriter", "character", "world", "development"]
+
+  "经典人物原型45种":
+    source: "维多利亚·施密特 (2001)"
+    rules:
+      - "主角从45种原型中选1主+2辅助原型 [character]"
+      - "角色行为推断原型与设定原型一致性检测 [psychology]"
+      - "第1章到第20章核心动机变化≥1等级 [character]"
+      - "女性主角推荐女性英雄旅程替代标准旅程 [plot]"
+    engine_map: ["character", "psychology", "plot"]
+
+  "冲突与悬念：小说创作的要素":
+    source: "詹姆斯·斯科特·贝尔 (2011)"
+    rules:
+      - "每章结尾检测微钩子：未解答问题/迫近危险/意外转折 [tension_calibrator]"
+      - "紧张场景前检测角色共情值（<3章内评分>3/5） [emotion]"
+      - "关键冲突场景标注层级：表层/中层/深层 [plot]"
+      - "LOCK四要素完整性检查 [analysis]"
+    engine_map: ["tension_calibrator", "emotion", "plot", "analysis"]
+
+  "写好前五页：避开出版界的雷区":
+    source: "诺亚·卢克曼 (2005)"
+    rules:
+      - "前3页检测背景倾泻：连续>5句世界观/人物说明标记 [reader_eval]"
+      - "第一段紧迫感评分：3句话内创造疑问/冲突/异常 [style]"
+      - "前5页语法密度超过行业标准标记不合格 [analysis]"
+      - "前5页叙事声音独特性检测 [writer]"
+    engine_map: ["reader_eval", "style", "analysis", "writer"]
+
+  "小说的艺术":
+    source: "米兰·昆德拉 (1986)"
+    rules:
+      - "角色创建时定义3-5个存在编码关键词 [literature]"
+      - "多主线小说检查复调性：各线索独立且有高层次对话 [narration]"
+      - "时间变形≤2次/10章 [development]"
+      - "文学性作品检测存在勘探深度 [philosophy]"
+    engine_map: ["literature", "narration", "development", "philosophy"]
+
+  "写作法宝：非虚构写作指南":
+    source: "威廉·津瑟 (1976/2006)"
+    rules:
+      - "句子长度标准差：连续5句偏差<20%标记节奏单调 [style]"
+      - "被动语态检测：每千字>5次标记 [human_lang]"
+      - "全文自动计算10%删除量，标记最冗余段落 [style]"
+      - "人称/时态一致性检测 [consistency]"
+    engine_map: ["style", "human_lang", "consistency"]

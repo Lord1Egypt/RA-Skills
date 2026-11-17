@@ -1,0 +1,270 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "siluzan-tso/google-period-report.schema.json",
+  "title": "GooglePeriodReport",
+  "description": "Google Ads 周期分析报告 JSON（对齐 google-period-report.md 10 章：9 个数据维 + 优化建议；供 google-analysis render 注入 HTML）。Agent 只需撰写 narrative；kpis/charts/tables 由 --snapshot-dir 从 google-analysis 快照合并。render 校验要求合并后 kpis.cost/impressions/clicks 至少一项为有效数字，且 tables.negativeKeywords 为数组（0 条也要是 []），否则拒绝出 HTML。",
+  "type": "object",
+  "required": ["meta", "narrative"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "description": "报告元信息",
+      "required": ["accountId"],
+      "properties": {
+        "accountId": { "type": "string" },
+        "accountName": { "type": "string" },
+        "startDate": { "type": "string", "format": "date" },
+        "endDate": { "type": "string", "format": "date" },
+        "currency": { "type": "string", "default": "CNY" },
+        "generatedAt": { "type": "string" }
+      }
+    },
+    "kpis": {
+      "type": "object",
+      "description": "账户级 KPI（执行摘要 KPI 网格）；Agent 可省略，但 render 时须经 --snapshot-dir 合并出 cost/impressions/clicks",
+      "properties": {
+        "cost": { "type": "number" },
+        "impressions": { "type": "number" },
+        "clicks": { "type": "number" },
+        "conversions": { "type": "number" },
+        "ctr": { "type": "number", "description": "0~1 小数" },
+        "averageCpc": { "type": "number" },
+        "costPerConversion": { "type": "number" },
+        "activeDays": {
+          "type": "number",
+          "description": "本期消耗>0 的自然日数；来自 overview.record.activeDays，不在 currentPeriod"
+        },
+        "averageDailyCost": {
+          "type": "number",
+          "description": "本期日均消耗；来自 overview.record.averageDailyCost，不在 currentPeriod"
+        },
+        "previousPeriod": {
+          "type": "object",
+          "description": "环比上期（用于 KPI 卡片环比箭头），可省略",
+          "properties": {
+            "cost": { "type": "number" },
+            "impressions": { "type": "number" },
+            "clicks": { "type": "number" },
+            "conversions": { "type": "number" },
+            "ctr": { "type": "number" },
+            "averageCpc": { "type": "number" },
+            "costPerConversion": { "type": "number" }
+          }
+        }
+      }
+    },
+    "charts": {
+      "type": "object",
+      "description": "图表数据；可省略，由 --snapshot-dir 从 daily-metrics 合并",
+      "properties": {
+        "dailyTrend": {
+          "type": "object",
+          "description": "每日投放趋势（daily-metrics）；金额/CPA 2 位小数，转化/点击整数",
+          "properties": {
+            "dates": { "type": "array", "items": { "type": "string" } },
+            "cost": { "type": "array", "items": { "type": "number" } },
+            "conversions": { "type": "array", "items": { "type": "number" } },
+            "cpa": { "type": "array", "items": { "type": "number" } }
+          }
+        }
+      }
+    },
+    "tables": {
+      "type": "object",
+      "description": "表格数据；可省略，由 --snapshot-dir 从对应 google-analysis section 合并",
+      "properties": {
+        "dimensionSummary": {
+          "type": "object",
+          "description": "周期汇总（dimension-summary）",
+          "properties": {
+            "cost": { "type": "number" },
+            "impressions": { "type": "number" },
+            "clicks": { "type": "number" },
+            "conversions": { "type": "number" },
+            "ctr": { "type": "number" },
+            "averageCpc": { "type": "number" },
+            "costPerConversion": { "type": "number" },
+            "searchImpressionShare": { "type": "number" },
+            "searchBudgetLostImpressionShare": { "type": "number" },
+            "searchRankLostImpressionShare": { "type": "number" }
+          }
+        },
+        "campaigns": { "$ref": "#/$defs/campaignRows" },
+        "devices": { "$ref": "#/$defs/deviceRows" },
+        "geographic": { "$ref": "#/$defs/geographicRows" },
+        "audience": { "$ref": "#/$defs/audienceRows" },
+        "keywords": { "$ref": "#/$defs/keywordRows" },
+        "negativeKeywords": { "$ref": "#/$defs/negativeKeywordRows" }
+      }
+    },
+    "narrative": {
+      "type": "object",
+      "description": "Agent 必写的叙事字段（唯一由 Agent 产出的内容；render 会硬校验完整性）",
+      "required": ["executiveSummary", "sections", "recommendations"],
+      "properties": {
+        "executiveSummary": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "description": "1～3 段执行摘要，概述本期消耗/转化/CTR/CPA 走势"
+        },
+        "sections": {
+          "type": "object",
+          "description": "9 个数据维度各自的分析+建议（对应报告 §1~§9）；每维度 analysis ≥2 条、suggestions ≥1 条",
+          "required": [
+            "overview",
+            "dailyTrend",
+            "dimensionSummary",
+            "campaigns",
+            "devices",
+            "geographic",
+            "audience",
+            "keywords",
+            "negativeKeywords"
+          ],
+          "properties": {
+            "overview": { "$ref": "#/$defs/sectionNarrative" },
+            "dailyTrend": { "$ref": "#/$defs/sectionNarrative" },
+            "dimensionSummary": { "$ref": "#/$defs/sectionNarrative" },
+            "campaigns": { "$ref": "#/$defs/sectionNarrative" },
+            "devices": { "$ref": "#/$defs/sectionNarrative" },
+            "geographic": { "$ref": "#/$defs/sectionNarrative" },
+            "audience": { "$ref": "#/$defs/sectionNarrative" },
+            "keywords": { "$ref": "#/$defs/sectionNarrative" },
+            "negativeKeywords": { "$ref": "#/$defs/sectionNarrative" }
+          }
+        },
+        "recommendations": {
+          "type": "array",
+          "description": "报告 §10 优化建议；≥3 条，可跨维度综合",
+          "minItems": 3,
+          "items": {
+            "oneOf": [
+              { "type": "string" },
+              {
+                "type": "object",
+                "required": ["content"],
+                "properties": {
+                  "title": { "type": "string" },
+                  "content": { "type": "string" }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sectionNarrative": {
+      "type": "object",
+      "required": ["analysis", "suggestions"],
+      "properties": {
+        "analysis": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 2,
+          "description": "≥2 条，须写清现象 + 依据字段（如具体数字/系列名/国家名）"
+        },
+        "suggestions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "description": "≥1 条可执行建议，与 analysis 对应"
+        }
+      }
+    },
+    "campaignRow": {
+      "type": "object",
+      "properties": {
+        "campaignName": { "type": "string" },
+        "campaignStatusDisplay": { "type": "string", "description": "投放中/已暂停/已移除" },
+        "channelTypeV2": { "type": "string" },
+        "budgetAmountYuan": { "type": ["number", "null"] },
+        "spend": { "type": "number" },
+        "impressions": { "type": "number" },
+        "clicks": { "type": "number" },
+        "ctr": { "type": "number" },
+        "averageCpc": { "type": "number" },
+        "conversions": { "type": "number" },
+        "costPerConversion": { "type": "number" }
+      }
+    },
+    "campaignRows": { "type": "array", "items": { "$ref": "#/$defs/campaignRow" } },
+    "deviceRow": {
+      "type": "object",
+      "properties": {
+        "deviceType": { "type": "string" },
+        "spend": { "type": "number" },
+        "impressions": { "type": "number" },
+        "clicks": { "type": "number" },
+        "ctr": { "type": "number" },
+        "averageCpc": { "type": "number" },
+        "conversions": { "type": "number" },
+        "costPerConversion": { "type": "number" }
+      }
+    },
+    "deviceRows": { "type": "array", "items": { "$ref": "#/$defs/deviceRow" } },
+    "geographicRow": {
+      "type": "object",
+      "properties": {
+        "countryOrRegion": { "type": "string" },
+        "countryOrRegionZh": { "type": "string" },
+        "countryNameZh": { "type": "string" },
+        "spend": { "type": "number" },
+        "impressions": { "type": "number" },
+        "clicks": { "type": "number" },
+        "ctr": { "type": "number" },
+        "averageCpc": { "type": "number" },
+        "conversions": { "type": "number" },
+        "costPerConversion": { "type": "number" }
+      }
+    },
+    "geographicRows": { "type": "array", "items": { "$ref": "#/$defs/geographicRow" } },
+    "audienceRow": {
+      "type": "object",
+      "properties": {
+        "audience": { "type": "string", "description": "受众名称（audienceName 回填到此字段）" },
+        "audienceName": { "type": "string" },
+        "audienceType": { "type": "string", "description": "SystemDefined / UserDefined 等，有则保留" },
+        "campaignName": { "type": "string" },
+        "spend": { "type": "number" },
+        "impressions": { "type": "number" },
+        "clicks": { "type": "number" },
+        "ctr": { "type": "number" },
+        "averageCpc": { "type": "number" },
+        "conversions": { "type": "number" },
+        "costPerConversion": { "type": "number" }
+      }
+    },
+    "audienceRows": { "type": "array", "items": { "$ref": "#/$defs/audienceRow" } },
+    "keywordRow": {
+      "type": "object",
+      "properties": {
+        "keyword": { "type": "string" },
+        "keywordMatchType": { "type": "string" },
+        "keywordMatchTypeZh": { "type": "string" },
+        "campaignName": { "type": "string" },
+        "spend": { "type": "number" },
+        "ctr": { "type": "number" },
+        "averageCpc": { "type": "number" },
+        "conversions": { "type": "number" },
+        "costPerConversion": { "type": "number" }
+      }
+    },
+    "keywordRows": { "type": "array", "items": { "$ref": "#/$defs/keywordRow" } },
+    "negativeKeywordRow": {
+      "type": "object",
+      "description": "当前账户否词一行。0 条时数组为空，不要省略字段。",
+      "properties": {
+        "keyword": { "type": "string" },
+        "matchType": { "type": "string" },
+        "level": { "type": "string" },
+        "levelZh": { "type": "string" },
+        "campaignName": { "type": "string" },
+        "adGroupName": { "type": "string" }
+      }
+    },
+    "negativeKeywordRows": { "type": "array", "items": { "$ref": "#/$defs/negativeKeywordRow" } }
+  }
+}

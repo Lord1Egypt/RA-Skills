@@ -1,47 +1,65 @@
-## Description: <br>
-Alibaba Cloud Tablestore (OTS) Read-Only Operations Skill for querying Tablestore instances and data tables via Aliyun CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through read-only Alibaba Cloud Tablestore instance and table inspection using Aliyun CLI otsutil commands.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to inspect Alibaba Cloud Tablestore instances and table metadata through read-only Aliyun CLI commands while confirming regions, endpoints, instance names, and table names with the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Supporting docs include examples that can grant broader Alibaba Cloud permissions than read-only workflows require. <br>
-Mitigation: Use a dedicated RAM user or role with AliyunOTSReadOnlyAccess only, avoid FullAccess and CreateInstance examples, and review commands before use. <br>
-Risk: CLI setup and configuration can expose or misuse cloud credentials. <br>
-Mitigation: Configure credentials only through aliyun configure, do not echo AccessKeys or share raw Aliyun config output, and install Aliyun CLI only from trusted Alibaba Cloud sources. <br>
+## Use Case:
 
+Developers, operators, and cloud support engineers use this skill to list and describe Alibaba Cloud Tablestore instances and tables, confirm endpoint and region parameters, and verify read-only CLI results.
 
-## Reference(s): <br>
-- [Aliyun CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [Tablestore Read-Only RAM Policies](references/ram-policies.md) <br>
-- [Tablestore CLI Related APIs Reference](references/related-apis.md) <br>
-- [Tablestore Read-Only Verification Methods](references/verification-method.md) <br>
-- [Tablestore Acceptance Criteria](references/acceptance-criteria.md) <br>
-- [Aliyun CLI GitHub](https://github.com/aliyun/aliyun-cli) <br>
-- [Alibaba Cloud Tablestore Instance Operations](https://help.aliyun.com/zh/tablestore/developer-reference/instance-operations) <br>
-- [Alibaba Cloud Tablestore Data Table Operations](https://help.aliyun.com/zh/tablestore/developer-reference/widecolumn-modeled-data-table-operations-with-tablestore-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only Tablestore workflows; commands require user-confirmed region, endpoint, instance, table, and credential setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: CLI installation guidance downloads binaries and includes privileged installation commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a verified and pinned Aliyun CLI release where possible, prefer a user-local PATH, and avoid system-wide sudo installation unless explicitly required.
+
+Risk: Some RAM examples include permissions broader than the read-only workflow needs.
+
+Mitigation: Use AliyunOTSReadOnlyAccess or a custom policy limited to ots:GetInstance, ots:ListInstance, ots:ListTable, and ots:DescribeTable; do not copy examples that attach AliyunOTSFullAccess or include ots:CreateInstance.
+
+Risk: The workflow depends on Alibaba Cloud credentials and command output can reveal account metadata.
+
+Mitigation: Use temporary, role-based, or dedicated least-privilege RAM credentials and redact AccessKey-related output from logs, chats, and tickets.
+
+## Reference(s):
+
+- [CLI Installation Guide](references/cli-installation-guide.md)
+- [RAM Policies](references/ram-policies.md)
+- [Related APIs](references/related-apis.md)
+- [Verification Method](references/verification-method.md)
+- [Acceptance Criteria](references/acceptance-criteria.md)
+- [Aliyun CLI GitHub](https://github.com/aliyun/aliyun-cli)
+- [Alibaba Cloud Tablestore Instance Operations](https://help.aliyun.com/zh/tablestore/developer-reference/instance-operations)
+- [Alibaba Cloud Tablestore Data Table Operations](https://help.aliyun.com/zh/tablestore/developer-reference/widecolumn-modeled-data-table-operations-with-tablestore-cli)
+- [Tablestore Authorization Rules](https://help.aliyun.com/zh/tablestore/developer-reference/ots-api-authorization-rules/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only operational guidance; may include commands that query cloud account metadata or export table descriptions to local files.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

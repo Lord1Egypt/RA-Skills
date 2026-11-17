@@ -45,6 +45,14 @@ description: Temu 美国站商品管理（Manage Product）API，经 LinkFox 网
 - 商品列表：[apis/bg-local-goods-list-query.md](./references/apis/bg-local-goods-list-query.md)
 - 库存编辑：[apis/bg-local-goods-stock-edit.md](./references/apis/bg-local-goods-stock-edit.md)
 
+## 解决认证和积分问题
+发生以下异常情况时，采用 references/onboarding.md 引导解决问题：
+
+### 异常情况
+- **未配置API Key**：环境变量未配置 `LINKFOX_AGENT_API_KEY`，也未配置 `LINKFOXAGENT_API_KEY`。
+- **响应401或402状态码**
+- **响应提示积分或余额不足**：消息含"积分余额不足/计费不足/余额不足/quota exceeded/insufficient balance/套餐到期/需充值/请充值"，或类似含义的内容。
+
 ## 默认参数
 
 | 字段 | 默认 | 说明 |
@@ -123,3 +131,6 @@ python scripts/us_manage_stock_edit.py '{"accessToken":"TOKEN","request":{"goods
 
 授权说明：[references/access-token.md](./references/access-token.md)
 
+## 积分消耗规则
+
+不消耗积分。

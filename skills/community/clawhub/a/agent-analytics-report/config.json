@@ -1,0 +1,6 @@
+{
+  "name": "agent-analytics-report",
+  "version": "1.9.13",
+  "update_url": "https://api.skillhub.cn/api/v1/skills/agent-analytics-report",
+  "note": "skillhub upgrade 读取 update_url 拉取 manifest JSON（需含 version 字段以比对版本）。已实测：GET 该端点无需 token 即返回 200，且含 latestVersion.version（当前 1.1.2），与升级解析逻辑匹配。请勿改回带 ?namespace= 的旧值（实测返回 405 Method Not Allowed）。本地自定义模型一律写在 scripts/pricing.local.json，不进本发布包。"
+}

@@ -1,43 +1,61 @@
-## Description: <br>
-WIPO 小分子药物专利周报 searches WIPO PatentScope for newly published small-molecule drug patents, generates an HTML report, and uploads it to Google Drive. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+每周检索 WIPO PatentScope 上新发布的小分子药物相关专利，生成 HTML 周报并上传到 Google Drive。
 
-## Publisher: <br>
-[drtony1](https://clawhub.ai/user/drtony1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drtony1](https://clawhub.ai/user/drtony1)
 
-## Use Case: <br>
-Researchers and drug-discovery teams use this skill to run weekly WIPO PatentScope searches for small-molecule patent activity, generate a summary report, and share it through Google Drive. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on local scripts that are referenced but not included in the artifact. <br>
-Mitigation: Review or supply scripts/wipo_search.py and scripts/wipo_generate_report.py before installing or running the skill. <br>
-Risk: Google Drive upload uses an existing rclone gdrive remote and can publish generated reports outside the local workspace. <br>
-Mitigation: Use a dedicated low-privilege Google Drive destination and verify the rclone remote before enabling uploads. <br>
-Risk: Weekly scheduled execution can run automatically after setup. <br>
-Mitigation: Enable the cron schedule only when automatic uploads are intended, monitor initial runs, and keep an easy disable path. <br>
+## Use Case:
 
+External users and patent analysts use this skill to run a weekly WIPO PatentScope small-molecule drug patent search, create an HTML report, and upload the report to Google Drive.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/drtony1/wipo-patent-weekly) <br>
-- [Target extraction rules](references/target-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; generated report artifacts are JSON and HTML files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local files under wipo_reports/ and upload HTML output to Google Drive through rclone.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill depends on unbundled workspace scripts for WIPO scraping and report generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the referenced scripts in the target workspace before running the skill and use it only in trusted, access-controlled workspaces.
+
+Risk: Broad natural-language triggers and scheduled execution can start scraping and upload workflows when they are not intended.
+
+Mitigation: Narrow or disable triggers and cron scheduling unless automated weekly execution is explicitly desired.
+
+Risk: The upload step can send generated reports to an unintended Google Drive destination if rclone is misconfigured.
+
+Mitigation: Confirm the rclone remote, destination path, and account permissions before enabling uploads.
+
+Risk: WIPO PatentScope scraping depends on browser rendering, session setup, and page structure that may change.
+
+Mitigation: Review failure summaries, validate generated reports, and update the workspace scraper when WIPO page behavior changes.
+
+## Reference(s):
+
+- [Target extraction rules](references/target-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown with bash commands, file paths, and summary text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates local JSON and HTML report files under wipo_reports/ and uploads the HTML report when rclone is configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

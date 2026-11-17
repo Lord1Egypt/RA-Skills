@@ -1,42 +1,53 @@
-## Description: <br>
-Pathology ROI Selector guides an agent through structured whole-slide-image ROI selection workflows and includes a local Python script that emits reviewable ROI-coordinate output. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Provides a structured workflow and script interface for pathology ROI selection tasks in whole slide images.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers, pathology researchers, and educators can use this skill to structure ROI-selection workflows and generate reviewable example ROI JSON from supplied WSI paths. The included script currently returns mock coordinates, so outputs should not be used for clinical, research, or training-data decisions until real image analysis is implemented and reviewed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mock ROI results may be mistaken for real pathology analysis. <br>
-Mitigation: Treat the packaged script output as demonstration data only; replace the placeholder implementation with reviewed image analysis before using results for clinical, research, or training-data decisions. <br>
-Risk: The local script reads a user-supplied image path and can write an output JSON file. <br>
-Mitigation: Run the skill in a sandbox, validate input and output paths, and restrict generated files to the workspace. <br>
-Risk: Out-of-scope or incomplete pathology requests can introduce unsupported assumptions. <br>
-Mitigation: Confirm required inputs, ROI type, scope limits, and acceptance criteria before execution; stop and request missing inputs when they are not available. <br>
+## Use Case:
 
+Developers, researchers, and pathology data teams can use this skill to structure ROI selection workflows for whole slide images, including AI training data preparation, research sampling, and education. The packaged script currently provides bounded example ROI output rather than validated image analysis.
 
-## Reference(s): <br>
-- [Pathology ROI Selector ClawHub release](https://clawhub.ai/aipoch-ai/pathology-roi-selector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands; optional JSON ROI-coordinate output from the packaged script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The packaged script accepts an image path, ROI type, and optional output path; current ROI coordinates are mock values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The script returns fixed mock ROI detections rather than performing validated pathology image analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use outputs for medical, research, training-data, or educational ROI decisions until genuine validated image analysis is implemented and synthetic output is clearly labeled.
+
+Risk: The script can write results to any caller-supplied output path.
+
+Mitigation: Validate and restrict output paths to a dedicated workspace directory before execution.
+
+## Reference(s):
+
+- [Pathology ROI Selector on ClawHub](https://clawhub.ai/aipoch-ai/skills/pathology-roi-selector)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with optional shell commands and JSON ROI coordinate output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write ROI coordinate files when an output path is provided]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

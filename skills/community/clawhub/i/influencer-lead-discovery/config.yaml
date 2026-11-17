@@ -1,0 +1,13 @@
+name: influencer-lead-discovery
+version: 1.0.5
+description: Find influencers and creators across TikTok, Instagram, and YouTube by keyword; expand similar creators, enrich profiles, and build outreach-ready lead lists. Influencer search, creator discovery, KOL sourcing.
+category: research
+requires_api_key: false
+triggers:
+  - find influencers
+  - creator search
+  - influencer discovery
+  - find tiktok creators
+  - find instagram creators
+  - find youtube creators
+  - shortlist creators

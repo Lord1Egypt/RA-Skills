@@ -1,40 +1,58 @@
-## Description: <br>
-Backs up an OpenClaw workspace into a ZIP archive with a manifest and SHA256 checksum, with restore support for trusted backup archives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一键备份 OpenClaw 工作区，支持必选/可选内容，生成 ZIP 压缩包（含 SHA256 校验）
 
-## Publisher: <br>
-[hhse](https://clawhub.ai/user/hhse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hhse](https://clawhub.ai/user/hhse)
 
-## Use Case: <br>
-OpenClaw users and agents use this skill to create local backups of workspace memory, skills, identity files, configuration, logs, tasks, documents, and knowledge files, then restore those backups when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backups can contain sensitive workspace data and are stored as unencrypted ZIP archives. <br>
-Mitigation: Keep backup files private or encrypt them separately before storing or sharing them. <br>
-Risk: Restoring a backup can replace memory, configuration, tools, and installed skills in the OpenClaw workspace. <br>
-Mitigation: Restore only archives from trusted sources and review the backup contents with dry-run or listing options before confirming restore. <br>
+## Use Case:
 
+OpenClaw users and administrators use this skill to package workspace memory, identity, agent, tool, skill, and optional project files into a portable ZIP backup and restore that archive back into an OpenClaw workspace.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hhse/openclaw-backupgg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, files, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands; runtime output includes ZIP backup files, a manifest, and checksum text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Backups are local ZIP archives and are not encrypted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Backups are plaintext ZIP archives that may contain sensitive OpenClaw memory, identity, user, tool, and skill files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store backups privately, apply separate encryption before storage or transfer, and avoid publishing backup archives.
+
+Risk: Restoring an archive can overwrite existing workspace files and should not be done from untrusted ZIP files.
+
+Mitigation: Review the archive source and contents before restore, use dry-run listing when possible, and keep a separate current backup before overwriting a workspace.
+
+Risk: Workspace symlinks or unusual file layouts can affect what is included in a backup.
+
+Mitigation: Review the workspace for symlinks and unexpected sensitive files before creating a backup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hhse/skills/openclaw-backupgg)
+- [Publisher profile](https://clawhub.ai/user/hhse)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and Python script behavior]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces ZIP backup archives and restore guidance for an OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; SKILL.md frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

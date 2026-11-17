@@ -1,41 +1,58 @@
-## Description: <br>
-Fetch product info by payment link ID. Calls GStable API to get payment link details, returns product name, description, price, and supported payment tokens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch product info by payment link ID. Calls GStable API to get payment link details, returns product name, description, price, and supported payment tokens. Ideal for AI assistants parsing payment links and displaying product information.
 
-## Publisher: <br>
-[TanksCar](https://clawhub.ai/user/TanksCar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tankscar](https://clawhub.ai/user/tankscar)
 
-## Use Case: <br>
-External users and developers use this skill to inspect GStable payment links before payment by retrieving product details, prices, and supported payment tokens from a link ID or payment URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper sends inspected payment link IDs to GStable, or to an alternate service if GSTABLE_API_BASE_URL is changed. <br>
-Mitigation: Use the default GStable API endpoint unless the alternate endpoint is trusted, and avoid submitting link IDs that should not be shared with that service. <br>
-Risk: The skill requires installing npm dependencies before running the command-line helper. <br>
-Mitigation: Review and install the locked dependencies in a controlled skill directory before using the helper. <br>
+## Use Case:
 
+External users and developers use this skill through an AI assistant to inspect GStable payment links before payment. The skill accepts a link ID or payment URL, fetches product details, and helps the agent summarize products, prices, supported tokens, and networks.
 
-## Reference(s): <br>
-- [GStable Get Payment Link API documentation](https://docs.gstable.io/zh-Hans/docs/api/ai-payment/get-payment-link/) <br>
-- [Payment Link Reader on ClawHub](https://clawhub.ai/TanksCar/payment-link-reader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON from the command-line helper, with agent-facing summaries in text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns link ID, link name, product details, prices, attributes, and supported payment token summaries when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Payment link IDs or full payment URLs are sent to the configured GStable API host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default GStable API host or a trusted GSTABLE_API_BASE_URL value, and avoid submitting links that should not be shared with that service.
+
+Risk: The skill uses npm dependencies and has routine supply-chain exposure.
+
+Mitigation: Run npm install from the skill directory, keep dependencies updated, and review dependency changes before deployment.
+
+Risk: Direct npx shebang execution can depend on the local npm resolution environment.
+
+Mitigation: Prefer npm run get-link after installation unless the npm resolution environment is trusted.
+
+## Reference(s):
+
+- [GStable Get Payment Link API documentation](https://docs.gstable.io/zh-Hans/docs/api/ai-payment/get-payment-link/)
+- [Payment Link Reader on ClawHub](https://clawhub.ai/tankscar/skills/payment-link-reader)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, text, shell commands, guidance]
+
+**Output Format:** [JSON from the payment-link lookup command, with guidance for a concise natural-language summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and npm install; GSTABLE_API_BASE_URL can override the default GStable API host.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Social Intel Hub gathers social media search results across supported platforms, analyzes engagement and topic trends, and can generate word clouds, exports, comparison reports, and LLM-ready insight prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+社媒情报中心 - 多平台爬虫 + 数据分析 + AI洞察 + 词云 + 趋势追踪
 
-## Publisher: <br>
-[kk-kingkong](https://clawhub.ai/user/kk-kingkong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kk-kingkong](https://clawhub.ai/user/kk-kingkong)
 
-## Use Case: <br>
-Developers, analysts, and operators can use this skill to collect public social media data, compare topics or competitors, review trend signals, and prepare exports or prompts for downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to configured mcporter/TikHub services. <br>
-Mitigation: Avoid confidential keywords and only run searches that are appropriate to send to those services. <br>
-Risk: Collected posts, comments, usernames, URLs, and exports may contain personal content. <br>
-Mitigation: Review generated files before sharing them and handle exported CSV, Excel, and PNG outputs according to applicable privacy requirements. <br>
-Risk: Cached search results may remain locally under /tmp/social_intel_cache for up to 24 hours. <br>
-Mitigation: Use --no-cache for sensitive searches and clear /tmp/social_intel_cache when cached social content should not persist. <br>
+## Use Case:
 
+Developers and analysts use this skill to collect public social-media search results, compare topics, track trends, generate word clouds, export CSV/XLSX files, and prepare concise LLM analysis prompts.
 
-## Reference(s): <br>
-- [Social Intel Hub on ClawHub](https://clawhub.ai/kk-kingkong/social-intel) <br>
-- [Publisher profile: kk-kingkong](https://clawhub.ai/user/kk-kingkong) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Console text, Markdown-style reports, CSV, Excel, PNG word clouds, and LLM-ready prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May cache retrieved social content for 24 hours under /tmp/social_intel_cache and can write exports under /tmp/social_intel or a user-provided output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search terms and note IDs may be sent to configured TikHub/mcporter services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for queries you are comfortable disclosing to those services and review the configured services before execution.
+
+Risk: Scraped public content can be cached locally under /tmp/social_intel_cache.
+
+Mitigation: Clear /tmp/social_intel_cache on shared machines and use --no-cache when local caching is not appropriate.
+
+Risk: Generated CSV/XLSX exports may contain untrusted social-media fields, including spreadsheet formulas.
+
+Mitigation: Treat exported spreadsheets as untrusted and review or sanitize fields before opening them in spreadsheet software.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kk-kingkong/skills/social-intel)
+- [Publisher profile](https://clawhub.ai/user/kk-kingkong)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance]
+
+**Output Format:** [Terminal text, Markdown-like analysis reports, LLM prompt text, PNG word clouds, and CSV/XLSX export files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can cache scraped public content in /tmp/social_intel_cache for 24 hours and write generated files under /tmp/social_intel or a user-specified output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

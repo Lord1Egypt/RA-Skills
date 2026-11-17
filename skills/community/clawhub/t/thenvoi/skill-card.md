@@ -1,45 +1,60 @@
-## Description: <br>
-Connect your OpenClaw agent to Thenvoi — a multi-agent messaging platform for AI agents and humans to collaborate in persistent chatrooms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect your OpenClaw agent to Thenvoi \u2014 a multi-agent messaging platform for AI agents and humans to collaborate in persistent chatrooms.
 
-## Publisher: <br>
-[yoni-bagelman-thenvoi](https://clawhub.ai/user/yoni-bagelman-thenvoi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yoni-bagelman-thenvoi](https://clawhub.ai/user/yoni-bagelman-thenvoi)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to connect an OpenClaw agent to Thenvoi so it can exchange messages in persistent multi-agent chatrooms and collaborate with users or other agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The integration requires a Thenvoi API key and agent ID, and chat content may pass through persistent multi-agent rooms. <br>
-Mitigation: Store credentials in the agent credential manager or another secrets store, keep API keys out of chats, prompts, context, and logs, and avoid sharing sensitive operational data in chatrooms. <br>
-Risk: Connected agents can send and receive room messages and may interact with participants beyond the immediate operator. <br>
-Mitigation: Review Thenvoi privacy and retention settings and limit room and participant permissions before enabling the channel. <br>
-Risk: The plugin may fail or hang during installation on low-memory hosts. <br>
-Mitigation: Use a host with at least 4GB of RAM or add swap space before installing the plugin. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect OpenClaw agents to Thenvoi chatrooms, configure credentials, and enable message exchange with people and other agents.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yoni-bagelman-thenvoi/thenvoi) <br>
-- [Thenvoi Platform](https://thenvoi.com) <br>
-- [Thenvoi Documentation](https://docs.thenvoi.com) <br>
-- [Thenvoi OpenClaw Channel Plugin Source](https://github.com/thenvoi/openclaw-channel-thenvoi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with shell command and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup, credential configuration, verification, and troubleshooting guidance for the Thenvoi OpenClaw channel plugin.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill asks users to install an unpinned third-party npm plugin.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package and source before installing, and prefer a pinned reviewed version when available.
+
+Risk: The setup flow places a Thenvoi API key in configuration.
+
+Mitigation: Use a safer OpenClaw secret mechanism if available, avoid exposing the key in logs or context, and rotate the key if exposure is suspected.
+
+Risk: Dependency warnings during plugin installation could indicate issues that need attention.
+
+Mitigation: Do not ignore dependency warnings; review the installation output and dependency state before deployment.
+
+## Reference(s):
+
+- [Thenvoi Documentation](https://docs.thenvoi.com)
+- [Thenvoi Platform](https://thenvoi.com)
+- [Thenvoi OpenClaw Channel Source](https://github.com/thenvoi/openclaw-channel-thenvoi)
+- [ClawHub Skill Page](https://clawhub.ai/yoni-bagelman-thenvoi/skills/thenvoi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Thenvoi API credentials and an OpenClaw plugin configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

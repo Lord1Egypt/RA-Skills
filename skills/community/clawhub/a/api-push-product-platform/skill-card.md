@@ -1,42 +1,55 @@
-## Description: <br>
-Pushes backend API interface definitions to a product data platform for centralized documentation management and synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pushes backend API definition data to a product data platform for centralized API documentation management.
 
-## Publisher: <br>
-[snowzhouj](https://clawhub.ai/user/snowzhouj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snowzhouj](https://clawhub.ai/user/snowzhouj)
 
-## Use Case: <br>
-Developers and engineers use this skill to prepare, validate, and push backend API definitions associated with PRD IDs into a product data platform. It supports guided natural-language use, direct API calls, and script-based or CI/CD workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends local API-definition data to a configured plain-HTTP product-platform endpoint. <br>
-Mitigation: Install only for an approved product-platform destination, review and sanitize API definition JSON before pushing, and use an HTTPS/authenticated endpoint if available. <br>
-Risk: Automation examples can push API documentation through CI/CD or Git hooks with limited manual review. <br>
-Mitigation: Use automation only after team approval and keep a human review gate for generated or changed API definitions. <br>
+## Use Case:
 
+Developers and engineers use this skill to prepare, validate, and push Java API definitions, OpenAPI-style JSON, or controller-derived interface data to a product data platform and record push history.
 
-## Reference(s): <br>
-- [Product Platform API Docs](references/product-platform-api-docs.md) <br>
-- [API Definition Standard](references/api-definition-standard.md) <br>
-- [Push History Log](references/push-history.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May prepare or submit API definition JSON for a provided PRD ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill pushes potentially sensitive API documentation to a hardcoded external HTTP endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the destination before use, require HTTPS and a trusted authenticated endpoint, and do not send confidential, production, credential-bearing, or customer-sensitive API definitions.
+
+Risk: Optional Git workflow automation can send API data during git operations.
+
+Mitigation: Avoid installing the pre-push hook unless the team explicitly wants automatic submissions and requires approval controls before each push.
+
+## Reference(s):
+
+- [Product Platform API Docs](references/product-platform-api-docs.md)
+- [API Definition Standard](references/api-definition-standard.md)
+- [Push History](references/push-history.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute or propose HTTP API pushes when the user provides PRD and API definition inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

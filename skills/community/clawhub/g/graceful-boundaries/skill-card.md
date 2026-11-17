@@ -1,44 +1,50 @@
-## Description: <br>
-Assess API or website conformance with the Graceful Boundaries specification and provide concrete guidance or implementation changes for clearer rate-limit and error communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assess any API or website's Graceful Boundaries conformance level and provide concrete guidance for reaching the next level.
 
-## Publisher: <br>
-[snapsynapse](https://clawhub.ai/user/snapsynapse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snapsynapse](https://clawhub.ai/user/snapsynapse)
 
-## Use Case: <br>
-Developers, engineers, and agent operators use this skill to audit HTTP services for Graceful Boundaries conformance, identify gaps in structured refusals and proactive limit discovery, and implement response patterns that help agents avoid blind retries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Auditing a service can send HTTP requests to the target and may be inappropriate for systems the user does not own or have permission to test. <br>
-Mitigation: Run audits only against owned or authorized services, and avoid internal or sensitive network targets unless that is the intended scope. <br>
-Risk: Builder-mode guidance can modify application error handling, rate-limit disclosure, and response headers. <br>
-Mitigation: Review generated code changes before committing or deploying, and verify behavior against the service's actual security and operational requirements. <br>
+## Use Case:
 
+Developers and API operators use the skill to assess a service's rate limit communication and Graceful Boundaries conformance. It provides evidence-based findings and practical guidance for improving that communication.
 
-## Reference(s): <br>
-- [Graceful Boundaries ClawHub release](https://clawhub.ai/snapsynapse/graceful-boundaries) <br>
-- [Graceful Boundaries specification site](https://gracefulboundaries.dev) <br>
-- [Specification](artifact/spec.md) <br>
-- [Implementation guide](artifact/docs/implementation-guide.md) <br>
-- [curl examples](artifact/docs/curl-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON, JavaScript, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include conformance findings, gap analysis, implementation snippets, and verification commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: release evidence) <br>
+Risk: The security review is incomplete because a referenced path could not be resolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Resolve the missing reference and review its contents before relying on the audit output.
+
+## Reference(s):
+
+- [Graceful Boundaries documentation](https://gracefulboundaries.dev)
+- [ClawHub skill listing](https://clawhub.ai/snapsynapse/skills/graceful-boundaries)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, API Calls, Code, Markdown]
+
+**Output Format:** [Markdown assessment with findings, conformance gaps, implementation guidance, and code examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actionable and evidence-based.]
+
+## Skill Version(s):
+
+1.5.7 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

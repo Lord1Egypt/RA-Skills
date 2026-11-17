@@ -1,40 +1,54 @@
-## Description: <br>
-基于 Patrick Winston 方法论，审查演讲、教程和幻灯片的开场承诺、注意力结构、语言路标、幻灯片问题和结尾强度。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+为演讲、工作坊、教程视频和幻灯片提供基于 Patrick Winston 方法的结构教练，重点改进开场承诺、内容组织、注意力维持和结尾。
 
-## Publisher: <br>
-[cellinlab](https://clawhub.ai/user/cellinlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellinlab](https://clawhub.ai/user/cellinlab)
 
-## Use Case: <br>
-演讲者、培训者、教程作者和幻灯片制作者可用此技能检查演讲稿、大纲、教程视频或 slide deck 的结构，而不是只做句子润色。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Presentation drafts, unreleased slides, or transcripts may contain confidential material. <br>
-Mitigation: Remove private details or use only content approved for the agent platform before requesting review. <br>
-Risk: Structural coaching may be incomplete or unsuitable for a specific audience or venue. <br>
-Mitigation: Review suggestions against the speaker's goals, audience expectations, and organizational standards before using them. <br>
+## Use Case:
 
+External users, creators, and developers use this skill to review talk outlines, workshop plans, tutorial videos, speaker notes, and slide decks for stronger structure rather than surface polish.
 
-## Reference(s): <br>
-- [Winston Heuristics](references/winston-heuristics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown structural review with prioritized coaching suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential access, persistence, or external data handling is expected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill is tuned for Chinese-facing presentation coaching, so non-Chinese users may need language preference clarified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the desired coaching language and audience before applying the structural review.
+
+Risk: The default prompt may be applied to unrelated review requests.
+
+Mitigation: Use it only for talks, workshops, tutorial videos, speaker notes, or slide-deck structure reviews.
+
+## Reference(s):
+
+- [Winston Heuristics](references/winston-heuristics.md)
+- [Skill homepage metadata](https://github.com/cellinlab/cell-skills/tree/main/skills/speech-structure-coach)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown coaching notes with structured recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on opening promise, middle structure, audience attention, slide issues, and ending strength.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

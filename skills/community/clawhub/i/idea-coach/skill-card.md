@@ -1,41 +1,54 @@
-## Description: <br>
-AI-powered idea/problem/challenge manager with GitHub integration. Captures, categorizes, reviews, and helps ship ideas to repos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered idea/problem/challenge manager with GitHub integration. Captures, categorizes, reviews, and helps ship ideas to repos.
 
-## Publisher: <br>
-[udiedrichsen](https://clawhub.ai/user/udiedrichsen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[udiedrichsen](https://clawhub.ai/user/udiedrichsen)
 
-## Use Case: <br>
-Developers and individual users use Idea Coach to capture ideas, problems, and challenges, organize them by priority and review cadence, and move ready work into GitHub repositories or issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Idea notes may include sensitive personal, business, or planning information stored in the local ideas file. <br>
-Mitigation: Avoid storing secrets or highly confidential plans, and review the local storage path before use. <br>
-Risk: GitHub actions can create public repositories or sync idea details to issues under the authenticated GitHub account. <br>
-Mitigation: Confirm the active gh account, repository visibility, and issue contents before using shipping or sync commands. <br>
+## Use Case:
 
+External users and developers use this skill to capture ideas, problems, and challenges, review them on adaptive schedules, and move ready work into GitHub repositories or issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/udiedrichsen/idea-coach) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores idea records locally and can invoke GitHub CLI commands when the user chooses GitHub actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: frontmatter and server release metadata) <br>
+Risk: Stored idea content is local plaintext data and may contain sensitive personal or work information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets or sensitive material, and review local idea records before sharing or syncing them elsewhere.
+
+Risk: GitHub commands can act through the user's authenticated gh account and may create repositories or issues containing idea content.
+
+Mitigation: Use GitHub commands only intentionally, review content before syncing, and prefer private repositories unless public disclosure is intended.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/udiedrichsen/skills/idea-coach)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON-style command output with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write local idea records and, when explicitly invoked, use the authenticated GitHub CLI to create or update repositories and issues.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

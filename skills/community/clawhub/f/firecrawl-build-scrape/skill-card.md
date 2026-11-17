@@ -1,44 +1,60 @@
-## Description: <br>
-Integrate Firecrawl `/scrape` into product code for single-page extraction when an app already has a URL and needs markdown, HTML, links, screenshots, metadata, or structured page output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate Firecrawl `/scrape` into product code for single-page extraction from a known URL, producing markdown, HTML, links, screenshots, metadata, or structured page output.
 
-## Publisher: <br>
-[eohmig](https://clawhub.ai/user/eohmig) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eohmig](https://clawhub.ai/user/eohmig)
 
-## Use Case: <br>
-Developers and engineers use this skill to add focused Firecrawl page scraping to products that already have a target URL. It supports page-level ingestion, enrichment, monitoring, and extraction workflows without broad crawling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Firecrawl requests can send target URLs and scraped page content to Firecrawl or a configured self-hosted endpoint. <br>
-Mitigation: Use only approved pages and endpoints, avoid private or regulated content without approved data-handling terms, and keep the Firecrawl trust boundary explicit. <br>
-Risk: The skill requires a Firecrawl API key for hosted requests. <br>
-Mitigation: Store the API key in the declared FIRECRAWL_API_KEY environment variable and avoid exposing it in generated code, logs, or shared examples. <br>
+## Use Case:
 
+Developers and engineers use this skill to add page-level Firecrawl `/scrape` integrations when an application already has a target URL and needs content for retrieval, summarization, enrichment, monitoring, or downstream indexing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eohmig/firecrawl-build-scrape) <br>
-- [Firecrawl homepage](https://www.firecrawl.dev) <br>
-- [Firecrawl Node / TypeScript source of truth](https://docs.firecrawl.dev/agent-source-of-truth/node) <br>
-- [Firecrawl Python source of truth](https://docs.firecrawl.dev/agent-source-of-truth/python) <br>
-- [Firecrawl REST source of truth](https://docs.firecrawl.dev/agent-source-of-truth/curl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown guidance with API integration recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Firecrawl `/scrape` request options, response format choices, and environment variable setup notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Using Firecrawl for scraping can send target URLs and retrieved page content to the hosted service or configured deployment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not send private internal URLs, authenticated pages, secrets, regulated content, or other sensitive data through the hosted service unless the organization has approved that data handling.
+
+Risk: Some privacy or data-boundary requirements may not be appropriate for hosted scraping.
+
+Mitigation: Use a properly controlled self-hosted Firecrawl deployment when organizational privacy boundaries require it.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/eohmig/skills/firecrawl-build-scrape)
+- [Firecrawl homepage](https://www.firecrawl.dev)
+- [Firecrawl Node / TypeScript source-of-truth docs](https://docs.firecrawl.dev/agent-source-of-truth/node)
+- [Firecrawl Python source-of-truth docs](https://docs.firecrawl.dev/agent-source-of-truth/python)
+- [Firecrawl Rust source-of-truth docs](https://docs.firecrawl.dev/agent-source-of-truth/rust)
+- [Firecrawl Java source-of-truth docs](https://docs.firecrawl.dev/agent-source-of-truth/java)
+- [Firecrawl Elixir source-of-truth docs](https://docs.firecrawl.dev/agent-source-of-truth/elixir)
+- [Firecrawl cURL / REST source-of-truth docs](https://docs.firecrawl.dev/agent-source-of-truth/curl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with implementation notes, configuration details, and code or shell command examples as needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FIRECRAWL_API_KEY for hosted Firecrawl requests; FIRECRAWL_API_URL may be used for an approved self-hosted deployment.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

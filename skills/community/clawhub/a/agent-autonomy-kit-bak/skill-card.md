@@ -1,45 +1,61 @@
-## Description: <br>
-Helps agent operators turn a reactive AI agent into a proactive worker using a persistent task queue, heartbeat routine, and scheduling guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agent operators configure persistent task queues, proactive heartbeat routines, and scheduled work triggers for self-directed agent progress.
 
-## Publisher: <br>
-[lean-zhouchao](https://clawhub.ai/user/lean-zhouchao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lean-zhouchao](https://clawhub.ai/user/lean-zhouchao)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up a task queue, proactive heartbeat routine, and scheduled operating pattern so an AI agent can keep working between direct prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unattended autonomous work can make broad file changes, team posts, or scheduled progress without enough human oversight. <br>
-Mitigation: Keep the task queue limited to trusted, low-risk tasks; require human approval for public posts, account actions, destructive changes, sensitive data access, and large code changes; monitor or disable cron jobs. <br>
-Risk: Team-channel updates may expose unreviewed or sensitive content. <br>
-Mitigation: Review Discord or Slack outputs before relying on them and restrict channels to approved recipients. <br>
-Risk: The installation flow asks users to clone a repository while server-resolved GitHub provenance is unavailable. <br>
-Mitigation: Verify the source repository and release contents before cloning or installing. <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up a persistent task queue, heartbeat checklist, and scheduled routines for agents that continue meaningful work between direct human prompts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lean-zhouchao/agent-autonomy-kit-bak) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Proactive Heartbeat template](artifact/templates/HEARTBEAT.md) <br>
-- [Task Queue template](artifact/templates/QUEUE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-style configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable scripts or API calls are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Recurring unattended jobs may cause an agent to act beyond the intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable heartbeat or cron routines only after restricting session scope, tools, filesystem access, network access, messaging access, queue writers, runtime, and worker spawning.
+
+Risk: Queued tasks can become instructions that drive file-changing workflows without immediate human review.
+
+Mitigation: Review queued tasks before execution, keep human requests and blockers prioritized, and require clear Done or Blocked updates in the queue.
+
+Risk: Scheduled autonomous work can continue after it is no longer desired.
+
+Mitigation: Document a clear pause or removal path for scheduled jobs before enabling recurring triggers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lean-zhouchao/skills/agent-autonomy-kit-bak)
+- [Publisher profile](https://clawhub.ai/user/lean-zhouchao)
+- [README](artifact/README.md)
+- [Proactive heartbeat template](artifact/templates/HEARTBEAT.md)
+- [Task queue template](artifact/templates/QUEUE.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes queue and heartbeat templates for agent workflow setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

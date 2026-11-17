@@ -1,45 +1,60 @@
-## Description: <br>
-Look up real-estate listings, property details, market reports, and saved homes or searches on Redfin via MCP, using redfin-mcp with the fetchproxy extension active. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Look up real-estate listings, property details, market reports, and your saved homes/searches on Redfin via MCP.
 
-## Publisher: <br>
-[chrischall](https://clawhub.ai/user/chrischall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrischall](https://clawhub.ai/user/chrischall)
 
-## Use Case: <br>
-Developers and external users use this skill to query Redfin listings, property records, market reports, mortgage calculations, and signed-in saved Redfin homes or searches from an agent through MCP. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP acts through the user's signed-in Redfin browser tab and can access saved homes and saved searches. <br>
-Mitigation: Install only when that session access is acceptable, and keep the browser extension limited to trusted local use. <br>
-Risk: The skill relies on Redfin web behavior and private endpoints rather than a public consumer API. <br>
-Mitigation: Use it for normal read-only lookups, avoid bulk scraping or commercial extraction, and expect Redfin session or challenge behavior to affect availability. <br>
-Risk: The fetchproxy extension is required to bridge requests through Chrome. <br>
-Mitigation: Review the fetchproxy trust model and load the extension only from a source the user trusts. <br>
+## Use Case:
 
+External users and developers use this skill to query Redfin listing data, property details, market reports, mortgage estimates, and their saved Redfin homes or searches through an MCP server.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chrischall/redfin-mcp) <br>
-- [redfin-mcp npm package](https://www.npmjs.com/package/redfin-mcp) <br>
-- [redfin-mcp project link listed in artifact](https://github.com/chrischall/redfin-mcp) <br>
-- [fetchproxy extension project link listed in artifact](https://github.com/chrischall/fetchproxy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown with JSON and bash snippets for setup; MCP tool results as text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only Redfin lookups and local mortgage calculations; saved-home and saved-search tools depend on a signed-in Redfin browser session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.5 (source: server release metadata) <br>
+Risk: The setup can execute unpinned third-party code through npx and a cloned fetchproxy repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package and repository before installation, and pin the npm package and fetchproxy repository to reviewed versions or commits.
+
+Risk: Saved-home and saved-search tools operate through a signed-in Redfin browser session.
+
+Mitigation: Use a browser profile and environment where exposing Redfin saved homes, searches, and session-scoped data to the MCP server and extension path is acceptable.
+
+Risk: Redfin does not publish a public consumer API for the private endpoints used by the skill.
+
+Mitigation: Use at the user's discretion, review Redfin terms and site behavior before deployment, and expect endpoint or challenge changes to affect reliability.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chrischall/skills/redfin-mcp)
+- [redfin-mcp npm package](https://www.npmjs.com/package/redfin-mcp)
+- [redfin-mcp source repository](https://github.com/chrischall/redfin-mcp)
+- [fetchproxy source repository](https://github.com/chrischall/fetchproxy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with MCP tool results, JSON configuration snippets, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Redfin lookup and calculation results; saved-home and saved-search tools require an authenticated Redfin browser session.]
+
+## Skill Version(s):
+
+0.9.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

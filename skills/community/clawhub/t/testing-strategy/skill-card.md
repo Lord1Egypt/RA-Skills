@@ -1,37 +1,53 @@
-## Description: <br>
-Deep testing strategy workflow for risk mapping, test pyramid design, isolation levels, flakiness, test data, CI gates, and quality signals beyond coverage percentage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep testing strategy workflow for risk mapping, test pyramid design, isolation levels, flakiness management, data and environment planning, CI gates, and quality signals beyond coverage percentage.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawkk](https://clawhub.ai/user/clawkk)
 
-## Use Case: <br>
-Developers, engineering leads, and QA stakeholders use this skill to design or revise testing strategy for new services, major refactors, flaky CI, test-layer debates, and QA versus developer ownership decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Testing recommendations may lead to production canary, test data, or CI policy changes that do not fit the user's environment. <br>
-Mitigation: Review proposed canary, test data, and CI policy changes before applying them in production environments. <br>
+## Use Case:
 
+Developers, engineering leads, and QA practitioners use this skill to design or restructure a testing approach for new services, major refactors, flaky CI, and unit, integration, contract, and end-to-end test ownership decisions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with checklists, staged workflow notes, and policy recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only; produces testing strategy recommendations and review checklists without code execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Testing recommendations could be adopted without matching the project's actual user-impact risks, data governance requirements, or release process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed strategy against project risk, regulatory needs, test data policies, and CI merge gates before adopting it.
+
+Risk: Changes to CI gates, flake handling, or test ownership can slow delivery or hide quality issues if applied without team review.
+
+Mitigation: Have responsible engineering and QA owners approve CI policy changes, quarantine rules, and exception processes before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawkk/skills/testing-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance, checklists, and testing policy recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; recommendations should be reviewed against the project context before adoption.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

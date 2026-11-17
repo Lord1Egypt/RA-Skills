@@ -1,47 +1,62 @@
-## Description: <br>
-Play Colony game on Solana -- buy lands, upgrade, claim $OLO earnings, swap tokens via Jupiter, and use ROI-based strategy optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Play Colony game on Solana — buy lands, upgrade, claim $OLO earnings, swap tokens via Jupiter. Full autonomous gameplay with strategy optimization.
 
-## Publisher: <br>
-[manylov](https://clawhub.ai/user/manylov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[manylov](https://clawhub.ai/user/manylov)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent manage a dedicated Colony game wallet on Solana mainnet, including land purchases, upgrades, claims, swaps, and ROI-oriented recommendations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an autonomous agent control over a Solana hot wallet with real funds. <br>
-Mitigation: Use a new low-balance wallet dedicated to this skill and never use a primary wallet. <br>
-Risk: Swaps, land purchases, and upgrades can spend tokens without strong built-in spending limits or approval controls. <br>
-Mitigation: Require manual review for swaps, purchases, and upgrades until spending limits and protocol admin risks are clear. <br>
-Risk: The private key is required for write commands and may be exposed if copied into logs or shared files. <br>
-Mitigation: Keep the private key in a protected environment variable and out of logs, chat transcripts, and repository files. <br>
-Risk: Program and token addresses are used for mainnet transactions. <br>
-Mitigation: Verify program and token addresses independently before funding the wallet or executing write commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/manylov/colony-solana) <br>
-- [Publisher profile](https://clawhub.ai/user/manylov) <br>
-- [Colony game](https://colony.game) <br>
-- [Jupiter portal](https://portal.jup.ag) <br>
-- [Solana mainnet RPC endpoint](https://api.mainnet-beta.solana.com) <br>
+## Use Case:
 
+External users and agent operators use this skill to run an OpenClaw agent that manages a Colony game wallet on Solana, including land purchases, upgrades, claims, Jupiter swaps, and ROI-based recommendations.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, API calls] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON command outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may require SOLANA_PRIVATE_KEY, SOLANA_RPC_URL, and JUPITER_API_KEY depending on the action.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can autonomously spend real crypto through land purchases, upgrades, and token swaps.
+
+Mitigation: Install only with a dedicated low-balance Solana wallet and require an external approval process before unattended swaps or spending.
+
+Risk: Generated private-key output and the SOLANA_PRIVATE_KEY environment variable are sensitive signing material.
+
+Mitigation: Treat generated private keys as secrets, avoid sharing them, and keep funded wallets separate from other assets.
+
+Risk: Solana transactions and token burns are generally irreversible once confirmed.
+
+Mitigation: Use swap quotes, price checks, transaction status checks, and conservative funding before executing write commands.
+
+Risk: The Colony program authority model and game state can affect wallet funds and claim behavior.
+
+Mitigation: Review the Colony program authority model and current game state before funding or operating the wallet.
+
+## Reference(s):
+
+- [Colony game](https://colony.game)
+- [Jupiter Portal](https://portal.jup.ag)
+- [ClawHub skill page](https://clawhub.ai/manylov/skills/colony-solana)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with shell commands and JSON CLI outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may require a Solana private key, RPC access, and a Jupiter API key for swaps, price checks, or quotes.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

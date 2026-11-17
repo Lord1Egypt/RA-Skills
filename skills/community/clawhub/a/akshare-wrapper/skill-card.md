@@ -1,43 +1,57 @@
-## Description: <br>
-A-share analysis wrapper based on akshare data sources for natural-language queries about market quotes, stock analysis, sector rotation, and capital flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A股分析技能包装器，基于akshare数据源。支持实时行情、个股分析、板块轮动、资金流向等A股分析功能。使用自然语言查询A股市场数据。
 
-## Publisher: <br>
-[hongjiaping2010-coder](https://clawhub.ai/user/hongjiaping2010-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hongjiaping2010-coder](https://clawhub.ai/user/hongjiaping2010-coder)
 
-## Use Case: <br>
-External users and developers use this skill to ask natural-language questions about A-share market data, individual securities, sector movement, capital flows, market statistics, financial news, and simple portfolio analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The wrapper delegates execution to a separate local akshare-stock skill. <br>
-Mitigation: Install and use it only when that underlying local skill is trusted and available. <br>
-Risk: Portfolio features may process private holdings information. <br>
-Mitigation: Avoid entering private holdings unless storage and deletion behavior of the underlying skill is understood. <br>
-Risk: Market data and stock recommendations may be delayed or unsuitable for personal financial decisions. <br>
-Mitigation: Treat outputs as informational research and verify important investment decisions with authoritative sources. <br>
+## Use Case:
 
+External users and developers use this skill to query A-share market data in natural language, including index行情, individual stock analysis, sector rotation, capital flows, market statistics, news, and simple portfolio-oriented prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hongjiaping2010-coder/akshare-wrapper) <br>
-- [Publisher profile](https://clawhub.ai/user/hongjiaping2010-coder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Chat-optimized text with concise sections, highlighted key data, and timestamps when available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Delegates queries to a separately installed local akshare-stock skill and may return delayed market data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The security scan reports that the wrapper delegates queries to a separate local akshare-stock skill path that was not reviewed in this evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that dependency is trusted, reviewed, and present at the expected path; use an isolated environment with pinned dependencies.
+
+Risk: The security scan notes advertised portfolio changes without documented storage or deletion safeguards.
+
+Mitigation: Avoid entering real holdings until storage, retention, and deletion behavior are documented and reviewed.
+
+Risk: Financial market data may be delayed, unavailable, or affected by upstream source limits.
+
+Mitigation: Treat outputs as research support, verify important data against authoritative market data, and avoid high-frequency querying.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hongjiaping2010-coder/skills/akshare-wrapper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-like chat text with Chinese financial data summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include emoji, highlighted values, sections, timestamps, and upstream data-source delay notices.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

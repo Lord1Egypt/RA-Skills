@@ -1,47 +1,65 @@
-## Description: <br>
-Generates management-readable insight briefs from reports and charts, separating findings, interpretation, recommended actions, data gaps, and risk alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates management-level insight briefs from reports and charts, separating findings, explanations, recommended actions, data gaps, and risk alerts.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Business analysts, operators, and managers use this skill to turn chart conclusions, data summaries, and context into reviewable Markdown briefs for weekly updates, business analysis, and report summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated brief may contain incorrect, overstated, or decision-impacting interpretations. <br>
-Mitigation: Review generated briefs before using them for business decisions, and preserve the skill's distinction between facts, inferences, and recommended actions. <br>
-Risk: The local script reads provided files and can create or overwrite the selected output file. <br>
-Mitigation: Provide only files intended for processing and choose the output path carefully; use dry-run or stdout when reviewing behavior. <br>
-Risk: Sensitive or personal data in reports may be included in generated summaries. <br>
-Mitigation: Desensitize sensitive inputs before processing and keep generated briefs within the intended review workflow. <br>
+## Use Case:
 
+Employees, external analysts, and developers use this skill to turn chart conclusions, data summaries, and business questions into reviewable Markdown briefs for weekly updates, operating reviews, and management summaries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/52YuanChangXing/insight-brief-generator) <br>
-- [README.md](README.md) <br>
-- [resources/spec.json](resources/spec.json) <br>
-- [resources/template.md](resources/template.md) <br>
-- [examples/example-input.md](examples/example-input.md) <br>
-- [examples/example-output.md](examples/example-output.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Structured Markdown briefs; optional JSON when the local script is run with JSON output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write to stdout or a chosen output file; uses local input files and does not fetch facts from the network.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The local Python helper can read user-provided files or directories and write requested report outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Point the skill only at intended input files or constrained directories, prefer stdout or dry-run review for sensitive work, and avoid broad private repositories unless the script and spec have been reviewed.
+
+Risk: Security evidence flags under-disclosed directory, pattern, CSV, and skill-audit modes that exceed the main briefing description.
+
+Mitigation: Review the helper script and resource specification before enabling audit-style modes, and keep usage limited to the structured brief workflow unless those modes are explicitly desired.
+
+Risk: Briefs can mislead decision-makers if correlations are presented as causes or if missing context is filled in as fact.
+
+Mitigation: Require the output to label facts, inferences, data gaps, and review-needed items, and have a domain reviewer confirm conclusions before acting on recommendations.
+
+Risk: Input reports or charts may contain personal, confidential, or regulated information.
+
+Mitigation: Redact or minimize sensitive fields before use and keep generated drafts within the intended review workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/insight-brief-generator)
+- [Publisher Profile](https://clawhub.ai/user/52yuanchangxing)
+- [README](README.md)
+- [Output Template](resources/template.md)
+- [Structured Brief Specification](resources/spec.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown brief or JSON report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a requested local report file; uses local input only and does not fetch facts from the network.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,56 @@
-## Description: <br>
-Convert customer feedback, review themes, and complaint clusters into product improvement priorities with clear rationale and urgency ranking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert customer feedback, review themes, and complaint clusters into product improvement priorities with clear rationale and urgency ranking.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce operators, product managers, customer-experience teams, and analysts use this skill to turn reviews, surveys, support transcripts, returns data, and social feedback into an auditable improvement roadmap with ranked priorities, owners, rationale, and review cadence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Feedback Roadmap on ClawHub](https://clawhub.ai/leooooooow/feedback-roadmap) <br>
-- [Feedback Clustering Guide](artifact/references/feedback-clustering-guide.md) <br>
-- [Output Template](artifact/references/output-template.md) <br>
-- [Prioritization Frameworks](artifact/references/prioritization-frameworks.md) <br>
-- [Quality Checklist](artifact/assets/quality-checklist.md) <br>
+External operators, product managers, ecommerce teams, and customer-experience teams use this skill to convert reviews, surveys, support transcripts, return reasons, and social feedback into an auditable improvement roadmap.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown roadmap tables and concise written guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only workflow; security evidence reports no hidden execution, persistence, or exfiltration behavior. Users should redact or pseudonymize personal customer data before sharing feedback-derived outputs.] <br>
+Global
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Roadmap inputs may include raw customer communications, identifiers, sensitive transcript content, or verbatim quotes.
+
+Mitigation: Use only sanitized and authorized feedback; remove or hash identifiers, redact sensitive quotes, and avoid unnecessary transcript detail.
+
+Risk: Generated roadmap documents may expose customer feedback or internal priorities to unintended audiences.
+
+Mitigation: Restrict report access and define retention and deletion rules before sharing the roadmap.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [Prioritization Frameworks](references/prioritization-frameworks.md)
+- [Feedback Clustering Guide](references/feedback-clustering-guide.md)
+- [Quality Checklist](assets/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown roadmap with structured tables, priority scores, owners, rationale, and monitor items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include representative customer quotes; sanitize and redact sensitive feedback before sharing.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

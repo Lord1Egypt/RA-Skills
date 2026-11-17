@@ -1,44 +1,63 @@
-## Description: <br>
-Browse, trade, manage positions, and scan expiry arbitrage opportunities on Polymarket prediction markets via the polymarket CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse, trade, and manage positions on Polymarket prediction markets via the polymarket CLI, including market search, price checks, portfolio views, order management, and expiry arbitrage scanning.
 
-## Publisher: <br>
-[guzus](https://clawhub.ai/user/guzus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guzus](https://clawhub.ai/user/guzus)
 
-## Use Case: <br>
-External users and developers use this skill to search Polymarket markets, inspect odds and order books, manage positions, and prepare CLI-driven trading workflows. Funds-affecting actions require explicit user confirmation of the market, side, price, size, wallet, fees, and irreversible effects. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect real funds through trading, approvals, deposits, split, merge, redeem, cancel, and other wallet-backed actions. <br>
-Mitigation: Use read-only commands by default and require explicit confirmation of market, side, price, size, wallet, fees, and irreversible effects before any funds-affecting action. <br>
-Risk: The installer fetches and runs remote installation code and may build from source without a pinned, verified release. <br>
-Mitigation: Review or replace the installer with a pinned, verified release before installation. <br>
-Risk: Private keys can be exposed if pasted into chat or command lines during wallet import or setup. <br>
-Mitigation: Do not paste real private keys into chat or command lines; use secure wallet setup practices outside the agent conversation. <br>
-Risk: The TypeScript expiry arbitrage scanner constructs a shell command from query text. <br>
-Mitigation: Avoid the TypeScript scanner with untrusted query text until its shell command construction is fixed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Polymarket CLI GitHub](https://github.com/Polymarket/polymarket-cli) <br>
-- [Polymarket Docs](https://docs.polymarket.com) <br>
+## Use Case:
 
+External users and developers use this skill to inspect Polymarket markets, retrieve JSON market data, check prices and order books, manage wallet-backed trades, and run helper scans for expiry-based pricing opportunities.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; helper commands can return JSON from the polymarket CLI.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only market research is available without a wallet; trading and on-chain operations require wallet setup and user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installer scripts fetch and execute remote artifacts and may build from source without pinned verification.
+
+Mitigation: Review or replace the installer with pinned, verified Polymarket CLI artifacts before deployment.
+
+Risk: Wallet-backed commands can place trades, approve contracts, bridge funds, import wallets, or otherwise affect assets.
+
+Mitigation: Prefer read-only commands unless trading is intentional, and require explicit wallet setup and human review before asset-moving operations.
+
+Risk: Command-line private key import can expose sensitive wallet material through shell history or process metadata.
+
+Mitigation: Do not paste real private keys into command lines; use safer wallet setup procedures and secret handling.
+
+Risk: The expiry arbitrage helper interpolates user query text into a shell command.
+
+Mitigation: Avoid running scripts/expiry-arb.ts with untrusted query text until shell interpolation is fixed.
+
+## Reference(s):
+
+- [Polymarket Docs](https://docs.polymarket.com)
+- [Polymarket CLI GitHub](https://github.com/Polymarket/polymarket-cli)
+- [ClawHub Skill Page](https://clawhub.ai/guzus/skills/mgnlia-polymarket)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/guzus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing guidance emphasizes JSON output for scripted Polymarket CLI use.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter version is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

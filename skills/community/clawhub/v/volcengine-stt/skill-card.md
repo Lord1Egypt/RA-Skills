@@ -1,43 +1,53 @@
-## Description: <br>
-Transcribe audio to text using Volcano Engine (Volcengine/ARK) speech-to-text APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribe audio to text using Volcano Engine (Volcengine/ARK) speech-to-text APIs.
 
-## Publisher: <br>
-[reed1898](https://clawhub.ai/user/reed1898) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[reed1898](https://clawhub.ai/user/reed1898)
 
-## Use Case: <br>
-Developers and agent operators use this skill to transcribe local audio files, voice notes, or OpenClaw voice-message inputs through Volcengine speech-to-text APIs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release security summary says the documentation does not fully match the script's credentials, endpoints, flags, and config-file fallback. <br>
-Mitigation: Review the script before use and configure credentials using the current VOLC_* environment variables, command-line flags, or OpenClaw config fields. <br>
-Risk: Audio submitted through this skill is sent to ByteDance/Volcengine speech-to-text services. <br>
-Mitigation: Use only audio that is approved for processing by that provider under the user's data handling and account policies. <br>
-Risk: The skill depends on local credentials for Volcengine access. <br>
-Mitigation: Keep access tokens in local environment variables or machine-local configuration and do not commit secrets. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Volcengine STT skill page](https://clawhub.ai/reed1898/volcengine-stt) <br>
-- [Volcengine ARK transcription endpoint](https://ark.cn-beijing.volces.com/api/v3/audio/transcriptions) <br>
-- [ByteDance OpenSpeech AUC flash endpoint](https://openspeech.bytedance.com/api/v3/auc/bigmodel/recognize/flash) <br>
+## Use Case:
 
+Developers and agents use this skill to transcribe local audio files with Volcengine speech-to-text services, including OpenClaw voice-message workflows that need a replacement for Whisper/OpenAI STT.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [Plain text transcript or raw JSON response written to an output file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local audio file and Volcengine credentials; supports standard polling mode, flash mode, language hints, and custom output paths.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The script may upload audio to hardcoded ByteDance AUC endpoints using VOLC credentials, while the user-facing documentation describes ARK configuration.
+
+Mitigation: Review the destination endpoints, credential source, and billable usage model before installing or running the skill.
+
+Risk: Credentials can be read from machine-local OpenClaw configuration as a fallback.
+
+Mitigation: Confirm the local OpenClaw configuration only contains intended VOLC credentials for this skill and avoid committing secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/reed1898/skills/volcengine-stt)
+- [Publisher profile](https://clawhub.ai/user/reed1898)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration]
+
+**Output Format:** [Plain text transcript file by default, or raw JSON response when requested; the script prints the output file path.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Volcengine credentials and uploads audio to external speech-to-text API endpoints.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

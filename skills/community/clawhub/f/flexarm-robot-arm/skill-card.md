@@ -1,44 +1,59 @@
-## Description: <br>
-Gives AI agents a camera-guided robot arm interface for tapping, swiping, OCR, screenshots, and YAML automation on real smartphones. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FlexArm Robot Arm lets AI agents operate a real smartphone through a robot arm and camera using taps, swipes, OCR, screenshots, and YAML automation scripts.
 
-## Publisher: <br>
-[hamlet0168](https://clawhub.ai/user/hamlet0168) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hamlet0168](https://clawhub.ai/user/hamlet0168)
 
-## Use Case: <br>
-External users, developers, and automation engineers use this skill to let an agent control a real phone through a local FlexArm robot-arm service, including physical taps, swipes, OCR-based lookup, screenshots, and scripted workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated taps, swipes, and scripts operate a real phone and can take unintended actions in apps or accounts. <br>
-Mitigation: Use dedicated or low-risk devices and accounts where possible, define task boundaries before execution, and monitor or stop scripts when behavior diverges from the intended workflow. <br>
-Risk: OCR, screenshots, and saved logs may expose sensitive on-screen information. <br>
-Mitigation: Use the skill only on phones and accounts where screen capture and OCR are acceptable, and avoid displaying secrets, private messages, or regulated data during automation. <br>
-Risk: The local hardware-control service and configuration changes can affect the robot arm, camera, gesture settings, and scheduled automation. <br>
-Mitigation: Install FlexArm software only from trusted sources, verify service health before actions, and limit agent permission to run scripts or change daily, app, and gesture configuration. <br>
+## Use Case:
 
+External developers and agent operators use this skill to control real smartphones with a physical robot arm, camera feedback, OCR, template matching, and reusable YAML automation scripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hamlet0168/flexarm-robot-arm) <br>
-- [FlexArm release page](https://github.com/hamlet0168/flexarm/releases) <br>
-- [FlexArm v2.0.1 release](https://github.com/hamlet0168/flexarm/releases/tag/v2.0.1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON API payloads, and YAML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance targets a local HTTP hardware-control service on port 7826 and may include scripts or configuration for phone automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill asks users to run a powerful persistent Windows robot-control service with administrator setup and weakly documented access controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted source, independently verify downloaded binaries when possible, and run the administrator setup only on a machine where a persistent robot-control service is acceptable.
+
+Risk: Physical phone automation can interact with sensitive apps, screens, or account workflows.
+
+Mitigation: Keep the phone supervised and avoid sensitive apps or screens unless they are necessary for the task.
+
+Risk: Screenshots and YAML automation scripts may contain sensitive local data or executable workflows.
+
+Mitigation: Treat screenshots and YAML scripts as sensitive local data, review scripts before running them, and store outputs only where appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hamlet0168/skills/flexarm-robot-arm)
+- [FlexArm release downloads](https://github.com/hamlet0168/flexarm/releases/tag/v2.0.1)
+- [FlexArm releases](https://github.com/hamlet0168/flexarm/releases)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTTP API examples, shell commands, and YAML configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a locally running RobotArmServer.exe service on port 7826, calibrated robot hardware, camera visibility, and supervised access to the physical phone.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter reports 2.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

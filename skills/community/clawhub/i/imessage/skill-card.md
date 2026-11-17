@@ -1,43 +1,59 @@
-## Description: <br>
-Enables OpenClaw on macOS to send and receive iMessage messages through Messages, including text, images, recent chats, contacts, and optional remote-control commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables an OpenClaw agent on macOS to send iMessage texts and images, read recent Messages conversations and contacts, and optionally process admin-only remote-control commands.
 
-## Publisher: <br>
-[lilei0311](https://clawhub.ai/user/lilei0311) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lilei0311](https://clawhub.ai/user/lilei0311)
 
-## Use Case: <br>
-Developers and macOS automation users use this skill to let an OpenClaw agent send iMessages, inspect recent local Messages conversations, list contacts, and optionally respond to administrator commands sent over iMessage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read recent local Messages data and send iMessages from the user's Mac. <br>
-Mitigation: Install only when this Messages access is expected, keep trusted contacts narrow, require confirmation for non-trusted contacts, and review the local security log after use. <br>
-Risk: The optional remote-control channel can execute allowlisted local commands and auto-reply over iMessage without per-command local approval. <br>
-Mitigation: Keep remote control disabled unless specifically needed, limit admin_contacts to a small trusted set, retain a restrictive allowed_commands list, and review control.log regularly. <br>
+## Use Case:
 
+Developers and OpenClaw users on macOS use this skill to automate iMessage sending, inspect recent local Messages conversations and contacts, and manage trusted contacts or admin-only remote control.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lilei0311/imessage) <br>
-- [README](artifact/README.md) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Skill manifest](artifact/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and CLI-oriented text with JSON-style command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local Messages data, send iMessages, write local security and control logs, and execute a small allowlisted set of remote-control commands when explicitly enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill manifest) <br>
+Risk: The skill can access the local macOS Messages database and send iMessages or SMS messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if comfortable granting local Messages and Accessibility access; configure trusted contacts carefully, keep logging enabled, and review message-sending behavior before use.
+
+Risk: Optional remote control can process incoming iMessages from admin contacts and run allowed OpenClaw or ClawHub commands.
+
+Mitigation: Keep remote control disabled unless needed, restrict admin_contacts to specific trusted contacts, keep allowed_commands narrow, and monitor control logs.
+
+Risk: The security guidance flags weaknesses around force=true, AppleScript argument escaping, replay protection, pinned npx usage, and warnings before remote command handling.
+
+Mitigation: Prefer a release that addresses these issues before enabling remote command handling, and do not rely on force=true as a primary safety control.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lilei0311/skills/imessage)
+- [Artifact README](artifact/README.md)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [JSON command results and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS, Messages.app, iMessage sign-in, and local Accessibility or Messages permissions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-Multi-agent learning system supporting English, Math, and Chinese with isolated contexts and automatic routing by subject. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-agent tutoring skill that routes learners to isolated English and math subject agents, with Chinese routing configured as coming soon.
 
-## Publisher: <br>
-[xiaohuiing](https://clawhub.ai/user/xiaohuiing) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaohuiing](https://clawhub.ai/user/xiaohuiing)
 
-## Use Case: <br>
-Students and caregivers use this skill for subject-specific tutoring in English, Math, and Chinese. The skill routes requests to isolated subject agents, provides practice prompts and feedback, and tracks learning points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The premium activation-code flow is prompt-based and should not be treated as secure billing or access control. <br>
-Mitigation: Use an external entitlement or payment system for real access control, and keep activation codes out of prompts. <br>
-Risk: Subject routing may activate unintentionally if broad trigger phrases match a learner's message. <br>
-Mitigation: Make routing triggers explicit and confirm subject switches when accidental activation would disrupt a session. <br>
+## Use Case:
 
+Learners, educators, and skill developers use this package to test OpenClaw-style routing across subject-specific tutoring agents with isolated conversation memory. The packaged experience focuses on elementary English and math practice, while Chinese is configured as a coming-soon route.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaohuiing/educlaw-agents) <br>
-- [README](README.md) <br>
-- [Skill description](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Configuration] <br>
-**Output Format:** [Conversational tutoring responses with optional Markdown lists and YAML configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes by subject and may use subject-specific memory for learner name, grade, progress, and points.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence and SKILL.md) <br>
+Risk: Math access control uses documented test activation codes and conversation memory, which is not reliable paid access enforcement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this release for testing only, or move entitlement checks and activation validation to a trusted service before offering paid access.
+
+Risk: Chinese subject routing is configured while the corresponding subject agent is marked as coming soon.
+
+Mitigation: Keep Chinese routing disabled or present it as unavailable until the Chinese agent file and behavior are implemented.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaohuiing/skills/educlaw-agents)
+- [Artifact skill overview](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+- [Router configuration](artifact/router/config.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Conversational tutor responses with OpenClaw YAML configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The packaged subject agents declare no executable tools.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata and target metadata; artifact README has an older v0.1.0 test footer)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,64 @@
-## Description: <br>
-Helps Taiwan fashion brands plan social posts, Meta/IG/FB/TikTok ad copy, hashtag mixes, posting schedules, funnel strategy, and performance diagnostics from embedded ad-performance benchmarks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps Taiwan fashion brands plan social posts, ad copy, hashtag mixes, publishing schedules, funnel strategy, localized marketing, and Meta/Threads analytics reviews using embedded fashion advertising benchmarks.
 
-## Publisher: <br>
-[shangweilin7](https://clawhub.ai/user/shangweilin7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shangweilin7](https://clawhub.ai/user/shangweilin7)
 
-## Use Case: <br>
-External marketers, founders, and social-media operators use this skill to create localized Taiwan fashion marketing content, select platforms and hashtags, plan posting calendars, design Meta ad funnels, and diagnose campaign performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with guidance tailored to Taiwan fashion brands and audiences. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can require broad, persistent Meta and Threads credentials for account analytics. <br>
-Mitigation: Use a dedicated least-privilege Meta system user or token, avoid full-control or admin scopes unless necessary, keep credentials out of source control, restrict .env permissions, and rotate or revoke tokens after use. <br>
-Risk: The local helper script can fetch live account analytics and save reports on the user's machine. <br>
-Mitigation: Run the helper only when live analytics are intended, review the configured output path before execution, and inspect generated reports before sharing them. <br>
+## Use Case:
 
+Marketing teams, brand operators, and agents use this skill to create Taiwan-localized fashion social media plans, ad copy, hashtags, schedules, and funnel recommendations for Facebook, Instagram, TikTok, and Threads. Developers or operators can also use the included setup guidance and Python helper to fetch Meta and Threads post analytics into an Excel report for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shangweilin7/tw-fashion-social-manager) <br>
-- [README.md](README.md) <br>
-- [2026 Taiwan Fashion Brand Meta Ads Data](references/meta-ads-data.md) <br>
-- [Brand Context](references/brand-context.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown with campaign copy, tables, checklists, and optional bash commands; the helper script can write an XLSX insights report.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use Meta and Threads API credentials when the local helper script is explicitly run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release metadata) <br>
+Risk: Broad long-lived Meta and Threads credentials could expose business analytics if they are over-privileged or mishandled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the narrowest read-only permissions Meta allows, avoid administrator or full-control tokens where possible, keep .env out of version control with strict file permissions, and rotate tokens regularly.
+
+Risk: The included script reads business social analytics through external APIs and writes a local report.
+
+Mitigation: Review the fetch script before running it and execute it only in an environment where the destination report path and API credentials are acceptable.
+
+Risk: Marketing recommendations are grounded in Taiwan fashion benchmarks and may not fit other industries or markets.
+
+Mitigation: Treat the embedded benchmarks as fashion-specific guidance and adjust recommendations when the brand, audience, or market differs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shangweilin7/skills/tw-fashion-social-manager)
+- [Publisher Profile](https://clawhub.ai/user/shangweilin7)
+- [README.md](artifact/README.md)
+- [Brand Context](artifact/references/brand-context.md)
+- [Meta Ads Data](artifact/references/meta-ads-data.md)
+- [Meta Business Manager](https://business.facebook.com)
+- [Meta for Developers](https://developers.facebook.com)
+- [Graph API Explorer](https://developers.facebook.com/tools/explorer/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and Python-generated XLSX reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The fetch helper can create weekly_insights_YYYY-MM-DD.xlsx after the user supplies Meta and Threads credentials.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -22,6 +22,9 @@ from dataclasses import dataclass, field
 from typing import List, Dict, Any, Optional, Tuple
 from enum import Enum
 
+# 统一 LLM 客户端抽象层
+from llm_client import LLMClient, wrap_llm
+
 # 设置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -108,6 +111,8 @@ class QueryNormalizer:
     def __init__(self, llm_client=None, config: Dict = None):
         self.llm = llm_client
         self.config = config or {}
+        # 用统一 LLMClient 包装
+        self.llm_client = wrap_llm(llm_client)  # H23: 已是 LLMClient 则原样返回，避免重试放大
     
     def normalize(self, query: str) -> str:
         """
@@ -142,13 +147,28 @@ class QueryNormalizer:
         return normalized
     
     def _needs_grammar_fix(self, query: str) -> bool:
-        """判断是否需要语法修正"""
-        # 简单检查：如果查询太短或没有标点，可能需要修正
+        """判断是否需要语法修正
+        
+        Bug 15 修复：旧实现仅在 '?' 不在末尾时触发，几乎不触发。
+        现扩展为检测多种语法问题：缺标点、有错别字、口语化表达等。
+        """
         if len(query) < 5:
             return False
         
-        # 检查是否有明显的语法问题
+        # 1. 有 '?' 但不在末尾
         if not re.search(r'[？?？]$', query) and '?' in query:
+            return True
+        
+        # 2. 含错别字
+        if any(wrong in query for wrong in self.TYPO_CORRECTIONS):
+            return True
+        
+        # 3. 含口语化表达（在 COLLOQUIAL_MAPPINGS 中的键）
+        if any(colloq in query for colloq in self.COLLOQUIAL_MAPPINGS):
+            return True
+        
+        # 4. 长度 > 15 且无标点（可能是碎片化句子）
+        if len(query) > 15 and not re.search(r'[，。！？,.!?；;：:、]', query):
             return True
         
         return False
@@ -168,8 +188,10 @@ class QueryNormalizer:
 输出：修正后的查询（只输出查询本身，不要解释）
 """
             
-            response = self.llm.invoke(prompt) if hasattr(self.llm, 'invoke') else self.llm(prompt)
-            fixed = response.strip() if isinstance(response, str) else str(response)
+            # LLMClient.generate() 内部处理调用 + 重试
+            fixed = self.llm_client.generate(prompt)
+            if not fixed or fixed == "LLM 未配置":
+                return query
             return fixed
             
         except Exception as e:
@@ -384,19 +406,16 @@ class IntentClassifier:
 }}
 """
             
-            response = self.llm.invoke(prompt) if hasattr(self.llm, 'invoke') else self.llm(prompt)
-            response_text = response.strip() if isinstance(response, str) else str(response)
+            # LLMClient.extract_json() 内部处理 JSON 解析 + 重试
+            data = self.llm_client.extract_json(prompt)
+            if not data:
+                return QueryIntent.UNKNOWN, 0.5, []
             
-            # 解析JSON
-            json_match = re.search(r'\{[\s\S]*\}', response_text)
-            if json_match:
-                data = json.loads(json_match.group())
-                
-                primary = QueryIntent(data.get('primary_intent', 'unknown'))
-                confidence = float(data.get('confidence', 0.5))
-                secondary = [QueryIntent(s) for s in data.get('secondary_intents', [])]
-                
-                return primary, confidence, secondary
+            primary = QueryIntent(data.get('primary_intent', 'unknown'))
+            confidence = float(data.get('confidence', 0.5))
+            secondary = [QueryIntent(s) for s in data.get('secondary_intents', [])]
+            
+            return primary, confidence, secondary
             
         except Exception as e:
             logger.error(f"LLM意图分类失败: {e}")

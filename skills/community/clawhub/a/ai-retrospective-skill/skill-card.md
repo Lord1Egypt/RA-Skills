@@ -1,41 +1,55 @@
-## Description: <br>
-AI Collaboration Retrospective is a tool-agnostic post-session analysis framework that reviews AI-assisted coding conversations across eight dimensions to identify improvement opportunities and generate structured retrospective reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Collaboration Retrospective is a tool-agnostic post-session analysis framework that reviews AI-assisted development conversations across eight dimensions and generates structured retrospective reports.
 
-## Publisher: <br>
-[amoshc](https://clawhub.ai/user/amoshc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amoshc](https://clawhub.ai/user/amoshc)
 
-## Use Case: <br>
-Developers and engineers use this skill after AI-assisted coding sessions to review conversation history, identify inefficient collaboration patterns, and produce actionable retrospective reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can review the full current conversation, which may include secrets or private data. <br>
-Mitigation: Use explicit invocation only, avoid running it in sessions containing secrets or private data, and review the generated retrospective before sharing it. <br>
-Risk: The workflow may save reports or write persistent memory/config changes without a clear approval step. <br>
-Mitigation: Override the workflow to ask before saving reports or writing memory or configuration changes. <br>
+## Use Case:
 
+Developers and engineers use this skill after AI-assisted coding sessions to analyze conversation history, identify wasted turns or missed checks, and produce actionable retrospective reports for future workflow improvement.
 
-## Reference(s): <br>
-- [Analysis Dimensions](references/analysis_dimensions.md) <br>
-- [Retrospective Report Template](assets/report_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown retrospective report and in-conversation analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write session retrospective files and, when supported by the host agent, persistent memory or configuration updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can process full conversation history, which may include secrets, credentials, or confidential project material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it only intentionally, avoid sessions containing sensitive material, and review generated reports before retaining or sharing them.
+
+Risk: The skill may save retrospective reports or persist knowledge/config updates in agent environments that support those actions.
+
+Mitigation: Require user confirmation before file writes or persistence updates, and inspect generated content before accepting it.
+
+## Reference(s):
+
+- [AI Retrospective Skill README](artifact/README.md)
+- [Eight-Dimension Analysis](artifact/references/analysis_dimensions.md)
+- [Retrospective Report Template](artifact/assets/report_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, configuration, guidance]
+
+**Output Format:** [Markdown retrospective reports with event timelines, dimension findings, recommendations, and pending action lists.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write reports to a retrospectives directory and may propose or persist knowledge items when the agent environment supports it.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

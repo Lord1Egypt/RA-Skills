@@ -42,10 +42,10 @@ front**.
 | Placement | Horizontally | Vertically | Size (spec) |
 |---|---|---|---|
 | `full_front` | centered | top of print ~1/4 down the chest, below the collar/seams | 13″ adult ≈ fills the chest, ~50–55% of garment width |
-| `left_chest` / `right_chest` | over the pec, ~1/4 in from center | high on the pec, below the collar | 3–4″, pocket-sized (~¼ of a full front) |
+| `left_chest` / `right_chest` | over the pec, ~1/4 in from center — **wearer's** side: `left_chest` is on the IMAGE's RIGHT half of a front photo, `right_chest` on the image's left | high on the pec, below the collar | 3–4″, pocket-sized (~¼ of a full front) |
 | `full_back` | centered | upper-to-mid back, below the yoke seam | 13″, same size as a full front |
 | `back_yoke` / upper back | centered | high, just below the collar seam | 10–13″, nearly full-back width |
-| `sleeve` | centered on the sleeve | mid-forearm area | 3–4″, narrow, follows the sleeve |
+| `left_sleeve` / `right_sleeve` | centered on the sleeve — wearer's side again (`left_sleeve` = image right) | mid-forearm area | 3–4″, narrow, follows the sleeve |
 | `front` (generic) | centered | centered in the available panel | ~45–55% |
 | hoodie `full_front` | centered | on the chest, **above the pocket** | fills width but capped ~9″ tall to clear the pocket |
 
@@ -71,6 +71,7 @@ deciding them now instead of the user.
 |---|---|
 | Sitting too high (up on the collar/seams) | `--offset-y-pct +6` to `+10` |
 | Sitting too low | `--offset-y-pct -6` to `-10` |
+| On the wrong side (e.g. `left_chest` on the image's left) | mirror it: `--offset-x-pct` ≈ `(1 − 2·x) × 100` — or better, fix the rule |
 | Too far left | `--offset-x-pct +4` to `+8` |
 | Too far right | `--offset-x-pct -4` to `-8` |
 | Too small / weak | `--width-delta-pct +10` to `+15` |

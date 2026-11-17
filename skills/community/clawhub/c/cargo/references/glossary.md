@@ -13,13 +13,13 @@ A discrete operation that an AI agent or workflow can perform. Actions come in f
 A string identifier for a specific action on a workflow node. Present on both `kind: "native"` and `kind: "connector"` nodes.
 
 - **Native nodes** — built-in Cargo actions discovered via `cargo-ai connection native-integration get` (keys of the `actions` object): `start`, `end`, `branch`, `filter`, `variables`, `agent`, `python`, `script`, etc. These are generic platform actions, not third-party service actions.
-- **Connector nodes** — third-party service-specific actions discovered via `cargo-ai connection integration get <slug>` (e.g. `integration get hubspot`). Examples: `company_enrich`, `create_contact`, `send_message`. **Do not use `native-integration get` for these** — it will not return HubSpot, Salesforce, or other connector-specific actions.
+- **Connector nodes** — third-party service-specific actions discovered via `cargo-ai connection integration get <slug>` (e.g. `integration get hubspot`). Examples: `enrichCompany` (clearbit), `upsertRecords` (hubspot), `postMessage` (slack). **Do not use `native-integration get` for these** — it will not return HubSpot, Salesforce, or other connector-specific actions.
 
 **agent**
 An AI resource with configured instructions, a language model, and optional actions. Created and configured via `cargo-ai`. Used in workflows as a `kind: "agent"` node, or messaged directly via `cargo-orchestration`.
 
 **app (Cargo Hosting)**
-A hosted Vite single-page app served on `https://<slug>.cargo.app`, built on `@cargo-ai/app-sdk` (Vite + refine, with `getCargoEnv()` / `useCargoApi()` wired to the workspace). Scaffolded with `hosting app init`, registered as a slot with `hosting app create` (which sets the globally-unique `--slug`), shipped via a **deployment**. Managed in the **`cargo-hosting`** skill. Distinct from a **worker** (a UI-less edge HTTP handler).
+A hosted Vite single-page app served on `https://<slug>-<workspace prefix>.app.getcargo.run` (the `url` field is authoritative), built on `@cargo-ai/app-sdk` (Vite + refine, with `getCargoEnv()` / `useCargoApi()` wired to the workspace). Scaffolded with `hosting app init`, registered as a slot with `hosting app create` (which sets the `--slug`, unique per workspace), shipped via a **deployment**. Managed in the **`cargo-hosting`** skill. Distinct from a **worker** (a UI-less edge HTTP handler).
 
 **appUuid**
 The UUID of a Cargo Hosting app, returned by `hosting app create`. Passed as `--app-uuid` to deployment commands (`deployment create|list|get-promoted`), mutually exclusive with `--worker-uuid`.
@@ -48,15 +48,15 @@ A skill that documents one CLI domain (orchestration, storage, connection, AI, c
 A conversation session between a user and an agent. Created with `ai chat create --agent-uuid <uuid>`. Messages are sent to a chat via `ai message create --chat-uuid <uuid>`.
 
 **conjonction**
-The intentional French spelling used as the key name in Cargo filter JSON objects. Always `"conjonction"`, never `"conjunction"`. A typo here silently returns no records — no error is thrown.
+The intentional French spelling used as the key name in Cargo filter JSON objects. Always `"conjonction"`, never `"conjunction"`. It is a required key, so a typo is rejected with a 400 rather than ignored.
 
 **column**
 A typed field on a Cargo model. Each column has a `slug`, `type` (see **column type** below), `label`, and `kind` (see **column kind** below). Columns have no `uuid` — they are identified by `slug` within the model. Managed via `cargo-storage` (`storage column list|create|update|remove|reorder`). Column `slug` values are used in filter conditions and in `storage query execute` SQL queries.
 
 **column type**
-The data type of a model column. Stored as the `type` field on the column object. Set on `column create --type <value>` and returned as `type` in `column list` and `model list` responses.
+The data type of a model column. Stored as the `type` field on the column object. Set on `column create --type <value>` and returned as `type` on the column objects in `model get` / `model list` responses (`column list` returns only storage names).
 
-When building a filter condition, the condition's `kind` field must match the target column's `type`. A mismatch silently returns no records.
+When building a filter condition, the condition's `kind` field must match the target column's `type`. A mismatch is rejected with a 400 (`invalidFilter`).
 
 | `type`    | Use for                  | Filter condition operators (when used as `kind`)                                                            |
 | --------- | ------------------------ | ----------------------------------------------------------------------------------------------------------- |
@@ -113,7 +113,7 @@ A logical grouping of models in the Cargo workspace. Similar to a schema or fold
 Data Definition Language. In Cargo context, the result of `storage model get-ddl <uuid>` — contains the SQL table name, column definitions, and SQL dialect (`language`). Run when you need column types or the SQL dialect; `storage query execute` and `storage query download` reference tables by `<datasetSlug>.<modelSlug>` directly.
 
 **deployment (Cargo Hosting)**
-One build+upload of a local source directory to a hosting **app** or **worker**, created with `hosting deployment create --source <pkg-root>` (the backend runs `npm ci && vite build` for apps, or bundles the entrypoint for workers). A deployment is **not live until promoted** — `hosting deployment promote` points the subdomain at it, and `hosting deployment get-promoted` shows what's currently live. Managed in the **`cargo-hosting`** skill.
+One build+upload of a local source directory to a hosting **app** or **worker**, created with `hosting deployment create --source <pkg-root>` (the backend runs the app's own `build` script, or the detected framework's default such as `vite build`, for apps, or bundles the entrypoint for workers). A deployment is **not live until promoted** — `hosting deployment promote` points the subdomain at it, and `hosting deployment get-promoted` shows what's currently live. Managed in the **`cargo-hosting`** skill.
 
 **deploymentUuid**
 The UUID returned by `hosting deployment create`. Poll it with `hosting deployment get <uuid>` until the build status is terminal, then pass it to `hosting deployment promote --uuid`.
@@ -150,7 +150,7 @@ The set of activities for finding, qualifying, and engaging prospects: sourcing,
 ## H
 
 **hosting**
-The CLI domain (`cargo-ai hosting …`) for Cargo Hosting — **apps** (Vite SPAs on `*.cargo.app`), **workers** (serverless edge HTTP handlers), and the **deployments** that ship and promote them. The lifecycle is `init` (local scaffold) → `create` (slot + globally-unique slug) → `deployment create` (build+upload) → `deployment promote` (go live). Documented in the **`cargo-hosting`** skill.
+The CLI domain (`cargo-ai hosting …`) for Cargo Hosting — **apps** (Vite SPAs), **workers** (serverless edge HTTP handlers), and the **deployments** that ship and promote them. The lifecycle is `init` (local scaffold) → `create` (slot + workspace-unique slug) → `deployment create` (build+upload) → `deployment promote` (go live). Documented in the **`cargo-hosting`** skill.
 
 ---
 
@@ -163,7 +163,7 @@ The target prospect description used to filter sourcing and qualification: indus
 The degree to which a record matches the ICP. Often expressed as a 0–10 score from a scoring agent (`anthropic.instruct` or similar) over enriched record fields. See `cargo-gtm/guides/writing-outreach.md` for scoring patterns.
 
 **intent signal**
-An observable behavior suggesting a company is ready to buy: hiring for a relevant role, raising funding, adding/removing tech in their stack, posting recent LinkedIn updates, anonymous website visits, recent job changes among employees. Cargo surfaces intent signals via `cargo.enrichBusinessFunding…`, `theirStack.searchJobs`, `waterfall.detectJobChange`, `snitcher.searchSessions`, and others. Tracked as `signal/<slug>.md` files in the context repo.
+An observable behavior suggesting a company is ready to buy: hiring for a relevant role, raising funding, adding/removing tech in their stack, posting recent LinkedIn updates, anonymous website visits, recent job changes among employees. Cargo surfaces intent signals via `enrichCrm.getFunding`, `theirStack.searchJobs`, `waterfall.detectJobChange`, `snitcher.searchSessions`, and others. Tracked as `signal/<slug>.md` files in the context repo.
 
 **integration**
 The external service type — e.g. HubSpot, Clearbit, Salesforce. Defines what actions are available. A single integration can have multiple connectors (multiple authenticated accounts). Listed via `connection integration list`.
@@ -183,7 +183,7 @@ The typed graph of nodes and cross-references derived from every markdown/MDX fi
 ## L
 
 **languageModelSlug**
-The identifier for an LLM used by an agent or inline agent node. Examples: `gpt-4o`, `gpt-4o-mini`, `claude-3-5-sonnet-20241022`, `claude-3-5-haiku-20241022`. Set on `agent create` or `agent update`.
+The identifier for an LLM used by an agent or inline agent node. Examples: `gpt-6-sol`, `gpt-4o-mini`, `claude-sonnet-5`, `claude-opus-5-5`. Set on `agent create` or `agent update`; must be on the connector's live list (`connection connector get-language-models <uuid>`) or the release fails with `languageModelNotFound`.
 
 **library**
 A collection in the **content domain** (`cargo-ai content library …`) that groups files into one resource an agent can reference for RAG. `native` libraries are workspace-managed; `connector`-backed libraries sync documents from an external source through an unstructured-data extractor (`--extractor-slug`).
@@ -193,7 +193,7 @@ A collection in the **content domain** (`cargo-ai content library …`) that gro
 ## M
 
 **MCP server**
-A Model Context Protocol server that exposes additional actions to agents. Connected via `cargo-ai`. Once connected, agents can call MCP actions automatically during conversations or workflow runs.
+A Model Context Protocol server. Three distinct things wear this name in Cargo. The **platform MCP** (`https://mcp.getcargo.io/mcp`) is first-party and always there: a fixed toolset for operating a workspace (search/execute actions, inspect runs, query models), reached over HTTP with OAuth or over stdio via `cargo-ai mcp`. A **curated MCP server** (`ai mcp-server create`, served at `/v1/ai/mcpServers/<uuid>/mcp` or `cargo-ai mcp --server <uuid>`) exposes only the tools, agents, and models a workspace chose to publish. An **MCP client** (`ai mcp-client connect`) points the other way — someone else's server, attached to an agent release so the agent can call its tools during conversations or workflow runs.
 
 **memory**
 A piece of information an agent stores from a conversation for future reference. Listed via `ai memory list --agent-uuid <uuid>`. Can be cleared with `ai memory remove`. Distinct from the **context repository** (workspace-wide, structured, git-backed) and from agent files / RAG resources.
@@ -241,13 +241,13 @@ The pattern of repeatedly calling `run get`, `batch get`, or `message get` until
 A role / title shape that's part of the ICP. Example personas: "Head of RevOps at a B2B SaaS", "Founder at a seed-stage fintech". Used as filters for `salesNavigator.searchLeads`, `peopleDataLabs.searchPeople`, etc. Captured as `persona/<slug>.md` in the context repo with role, KPIs, pains, motivations, preferred channels, and common objections.
 
 **priority stack**
-The 6 default credits-based providers used as the spine of every recipe in `cargo-gtm/`: **salesNavigator** (sourcing), **cargo** native (firmographic + signal intelligence), **waterfall** (multi-source enrichment + verification + job-change signal), **FullEnrich** (premium contact lookup), **theirStack** (tech-stack + hiring intent), **peopleDataLabs** (heavyweight backfill). See `cargo-gtm/SKILL.md` for the full stack reference and per-provider playbooks.
+The 8 default credits-based providers used as the spine of every recipe in `cargo-gtm/`: **salesNavigator** (sourcing), **cargo** native (firmographic + signal intelligence), **aiArk** (LinkedIn-anchored enrich + cheapest per-record search), **waterfall** (multi-source enrichment + verification + job-change signal), **FullEnrich** (premium contact lookup), **apolloio** (1-credit niche-coverage enrich), **theirStack** (tech-stack + hiring intent), **peopleDataLabs** (heavyweight backfill). See `cargo-gtm/SKILL.md` for the full stack reference and per-provider playbooks.
 
 **proof**
 An atomic proof point — one metric, quote, case fact, or benchmark — stored as `proof/<slug>.md` in the context repo. Cross-referenced from plays, objections, and decks. Keep proof entries atomic (one fact per file) so they can be filtered in the knowledge graph.
 
 **prospect**
-A person being marketed or sold to — typically resolved to a `prospect_id` via `cargo.matchProspect`. Distinct from a "lead" (which usually implies an inbound or marketing-qualified context); cargo uses "prospect" generically.
+A person being marketed or sold to. Distinct from a "lead" (which usually implies an inbound or marketing-qualified context); cargo uses "prospect" generically.
 
 **prospecting**
 The activity of finding prospects matching an ICP, enriching them with contact details and signals, and preparing them for outreach. Cargo's prospecting recipe lives at `cargo-gtm/recipes/prospecting.md`.
@@ -288,7 +288,7 @@ A checked-out, executable copy of the **context repository** that backs every `c
 A filtered, live view of records in a model. Defined by a filter condition. Used as the trigger population for plays and as a data source for batch runs. Listed via `segmentation segment list`.
 
 **segmentUuid**
-The UUID of a segment. Used in `batch create --data '{"kind":"segment","segmentUuid":"..."}'`. Note: `segment fetch` and `segment download` require `--model-uuid`, not `--segment-uuid`.
+The UUID of a segment. Used in `batch create --data '{"kind":"segment","segmentUuid":"..."}'` — but only for a **standalone** segment from `segmentation segment list`. The `segmentUuid` returned by `play list` is the play's internally generated segment and is rejected by `batch create`; trigger a play with `{"kind":"filter","modelUuid":"<play.modelUuid>","filter":{"conjonction":"and","groups":[]}}` instead. Note: `segment fetch` and `segment download` require `--model-uuid`, not `--segment-uuid`.
 
 **slug**
 A human-readable string identifier used throughout the platform. Node slugs identify nodes within a graph (e.g. `enrich_company`). Integration slugs identify integration types (e.g. `clearbit`). Column slugs identify model columns. Slugs use only `[a-zA-Z0-9_]`. In the **context repository**, slugs are kebab-case filenames without the `.md` extension and are referenced as `domain/slug`.
@@ -297,7 +297,7 @@ A human-readable string identifier used throughout the platform. Node slugs iden
 See **intent signal**. In cargo recipes, signals are the basis for segment construction (e.g. "all companies that just raised funding AND are hiring engineers") and outbound timing. Captured as `signal/<slug>.md` files in the context repo.
 
 **sourcing**
-The activity of finding companies or people matching ICP criteria. Cheapest at-scale options: `salesNavigator.searchLeads` (0.02 cred/record), `salesNavigator.searchAccounts` (0.05). For investor / funding / complex filters: `peopleDataLabs.queryCompanies` (3). For local SMBs: `serper.searchPlaces` (1).
+The activity of finding companies or people matching ICP criteria. Cheapest at-scale options: `aiArk.searchCompanies` (0.01 cred/record) and `aiArk.searchPeople` (0.05); `salesNavigator.searchLeads` / `searchAccounts` (0.2) when you want LinkedIn-native filters. For investor / funding / complex filters: `peopleDataLabs.queryCompanies` (3). For local SMBs: `serper.searchPlaces` (1).
 
 **system of record (SoR)**
 Cargo's storage layer, backed by a customer-connected database (BigQuery, Snowflake, etc.) that Cargo queries via SQL. Queried with `cargo-ai storage query execute "<sql>"` (or `storage query download --query "<sql>"` for full exports), which references tables as `<datasetSlug>.<modelSlug>` (e.g. `default.companies`). Use `cargo-ai storage model get-ddl <model-uuid>` for column types and SQL dialect. Distinct from the **context repository** (markdown/MDX knowledge base, not relational data) and from the **orchestration query** surface (`cargo-ai orchestration query execute`, which targets the `runs`/`batches`/`spans`/`records` runtime tables).

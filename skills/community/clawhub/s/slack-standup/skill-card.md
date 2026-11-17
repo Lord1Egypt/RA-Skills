@@ -1,41 +1,58 @@
-## Description: <br>
-Automates Slack daily standups by prompting team members for updates, compiling responses, and posting summaries to a configured Slack channel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Slack daily standups by prompting updates, compiling responses, and posting summaries on a set schedule.
 
-## Publisher: <br>
-[allanwei](https://clawhub.ai/user/allanwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allanwei](https://clawhub.ai/user/allanwei)
 
-## Use Case: <br>
-Team leads, managers, and remote teams use this skill to run asynchronous daily standups in Slack, reducing the need for live status meetings while keeping updates and blockers visible. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A script includes a hardcoded Slack-like bot token, which could expose credentials or encourage unsafe token handling. <br>
-Mitigation: Create a new least-privilege Slack bot token, store it outside the skill files, rotate any copied token, and restrict the bot to approved channels. <br>
-Risk: Standup updates may contain sensitive team or project information and are posted to Slack channels. <br>
-Mitigation: Configure only intended channels, confirm who can read them, and make team members aware of where their updates will be posted. <br>
+## Use Case:
 
+Teams and developers use this skill to automate asynchronous Slack standups, send reminders, collect status updates, and post formatted summaries to a chosen Slack channel.
 
-## Reference(s): <br>
-- [Slack Bot Setup](references/SETUP.md) <br>
-- [Slack App Configuration](https://api.slack.com/apps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Slack-formatted message text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Posts prompts and summaries through the Slack API when configured with a Slack bot token and channel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The release ships risky credential handling, including a packaged hardcoded Slack bot token value.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a newly created, least-privileged Slack bot token from a secure environment variable, remove or replace the packaged token value, and rotate any token that may have been exposed.
+
+Risk: The test path can make live Slack posts.
+
+Mitigation: Treat /standup test and script test mode as live posting; test only in a dedicated channel or workspace unless the package is changed to dry-run.
+
+Risk: The setup guidance includes broad Slack scopes such as chat:write.public and channels:read.
+
+Mitigation: Avoid chat:write.public and channels:read unless the workspace use case truly requires them; start with least-privileged Slack scopes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/allanwei/skills/slack-standup)
+- [Slack Bot Setup](artifact/references/SETUP.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and Slack message payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute Slack API calls that post messages when its scripts are run.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

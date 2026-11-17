@@ -1,39 +1,53 @@
-## Description: <br>
-Verify claims and content against professional fact-checking services, selecting sources by language, region, subject matter, and credibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify claims and information using professional fact-checking services.
 
-## Publisher: <br>
-[asgraf](https://clawhub.ai/user/asgraf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[asgraf](https://clawhub.ai/user/asgraf)
 
-## Use Case: <br>
-External users and agents use this skill to check factual claims, article or video content, news authenticity, and potential misinformation against relevant fact-checking organizations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may schedule follow-up checks and store the user's original claim without clear prior consent. <br>
-Mitigation: Require explicit user permission before scheduling any follow-up, explain what claim text will be stored, how long it will be retained, and how the user can cancel or delete it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Verify Claims on ClawHub](https://clawhub.ai/asgraf/verify-claims) <br>
-- [Publisher Profile: asgraf](https://clawhub.ai/user/asgraf) <br>
-- [List of fact-checking websites](https://en.wikipedia.org/wiki/List_of_fact-checking_websites) <br>
+## Use Case:
 
+External users use this skill to verify factual claims in articles, videos, transcripts, news, social posts, and other shared content by comparing relevant professional fact-checking sources and presenting an objective synthesis.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summary with citations, claim-level findings, source links, and verification context.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include verdict labels, evidence summaries, uncertainty notes, regional source selection, and suggested follow-up timing for very recent claims.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may send user-provided claim text to external search and fact-checking sites.
+
+Mitigation: Use the skill only for claims the user is comfortable sharing externally, and redact sensitive details before searching when possible.
+
+Risk: For very recent claims, the skill may schedule follow-up checks and retain the original query, claims, and context.
+
+Mitigation: Ask for explicit user consent before scheduling follow-up checks or retaining claim text, especially for fresh or sensitive claims.
+
+## Reference(s):
+
+- [List of fact-checking websites](https://en.wikipedia.org/wiki/List_of_fact-checking_websites)
+- [ClawHub skill page](https://clawhub.ai/asgraf/skills/verify-claims)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with citations and source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include verdict summaries, uncertainty notes, relevant fact-checking links, and follow-up reminder text when scheduling is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

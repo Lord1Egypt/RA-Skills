@@ -1,50 +1,66 @@
-## Description: <br>
-Handles Alipay payment flows for cashier URLs, HTTP 402 payment requests, AI payment product information, and feedback handoffs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alipay Payment Skill handles Alipay cashier payments, HTTP 402 protocol payments, AI payment product information, and payment issue feedback for agents.
 
-## Publisher: <br>
-[alipay](https://clawhub.ai/user/alipay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alipay](https://clawhub.ai/user/alipay)
 
-## Use Case: <br>
-Developers and agents use this skill to route Alipay-related payment events, run required alipay-bot or curl steps, and return payment status, product information, or feedback guidance. Wallet authorization and wallet opening are delegated to the companion alipay-authenticate-wallet skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate Alipay payment flows, and the security summary notes broad payment authority without a clear final approval before some payment submission steps. <br>
-Mitigation: Require fresh explicit user approval immediately before submit-payment or 402-buyer-pay, and stop rather than proceed when approval is ambiguous. <br>
-Risk: Payment workflows may involve sensitive request headers or credentials. <br>
-Mitigation: Do not replay Authorization, Cookie, API key, or other secret-bearing headers unless they are verified as necessary and safe. <br>
-Risk: The skill depends on the third-party Alipay CLI package. <br>
-Mitigation: Install only when the publisher and package are trusted, and use the declared package and integrity metadata from the release evidence. <br>
+## Use Case:
 
+Developers and external-facing agents use this skill to route Alipay cashier and HTTP 402 payment flows, present AI payment product information, and collect payment issue feedback. Wallet setup, authorization, and binding are delegated to the separate alipay-authenticate-wallet skill.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alipay/alipay-payment-skill) <br>
-- [Payment skills homepage](https://github.com/alipay/payment-skills) <br>
-- [402 protocol payment flow](references/402-payment.md) <br>
-- [Cashier payment flow](references/cashier-payment.md) <br>
-- [CLI setup and verification](references/cli-setup.md) <br>
-- [Environment variable rules](references/env-vars.md) <br>
-- [Output rules](references/output-rules.md) <br>
-- [Security and design notes](references/security.md) <br>
-- [Feedback flow](references/feedback.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and CLI output with inline shell command execution results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include payment status text, payment links, resource responses, and image or media references emitted by the Alipay CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill automates sensitive payment steps and may proceed after payment intent is inferred.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear user confirmation of payee, amount, and item before any payment command is run.
+
+Risk: The skill may install and execute the Alipay CLI package from npm.
+
+Mitigation: Install only the fixed package version from the trusted publisher and verify the published integrity value before installation.
+
+Risk: The skill forwards payment request details and contextual values needed for payment handling.
+
+Mitigation: Forward only the details required for the active payment flow and avoid sending payment links through channels the user did not choose.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alipay/skills/alipay-payment-skill)
+- [Payment skills homepage](https://github.com/alipay/payment-skills)
+- [Cashier payment flow](references/cashier-payment.md)
+- [HTTP 402 payment flow](references/402-payment.md)
+- [CLI setup](references/cli-setup.md)
+- [Environment variables](references/env-vars.md)
+- [Output rules](references/output-rules.md)
+- [Image output rules](references/image-output.md)
+- [Security design](references/security.md)
+- [Feedback flow](references/feedback.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown text with CLI output, payment links, image references, and shell command execution guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include payment URLs, QR image references, wallet status handling, and payment status responses.]
+
+## Skill Version(s):
+
+0.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

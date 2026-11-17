@@ -1,39 +1,49 @@
-## Description: <br>
-Evaluates game feature ideas, UX or economy changes, roadmap choices, retention and monetization initiatives, and ambiguous design problems with the GROW model to produce structured tradeoff analysis and recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate game features, feature pitches, live-ops ideas, UX changes, economy changes, roadmap choices, retention initiatives, monetization initiatives, and ambiguous design problems using the GROW model: Goal, Reality, Options, Will.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Game designers, producers, product managers, and live-ops teams use this skill to turn loose feature, economy, UX, roadmap, retention, or monetization discussions into a structured Goal, Reality, Options, and Will decision pass. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce design recommendations that are incomplete or misleading if project facts, telemetry, constraints, or player context are missing. <br>
-Mitigation: Review recommendations against source project documents, current telemetry, production constraints, and team judgment before acting on them. <br>
-Risk: Using proprietary project documents, telemetry, spreadsheets, or roadmap details as input may expose sensitive game or business information to the active agent environment. <br>
-Mitigation: Provide only project materials you are comfortable sharing with the agent and redact unnecessary confidential details. <br>
+## Use Case:
 
+Game designers, product teams, live-ops teams, and roadmap stakeholders use this skill to structure uncertain design discussions, compare options, and turn feature or economy decisions into a concrete recommendation and next-step plan.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown decision pass] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Goal, Reality, Options, and Will sections with option scoring, recommendation, next steps, validation needs, and risks to monitor.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may ask the agent to incorporate project documents, metrics, KPI context, or economy information when relevant.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the project documents and metrics the agent is intended to use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stanestane/skills/game-design-grow-design)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown decision pass with Goal, Reality, Options, and Will sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include option scores, tradeoff analysis, recommendations, validation needs, and risks to monitor.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

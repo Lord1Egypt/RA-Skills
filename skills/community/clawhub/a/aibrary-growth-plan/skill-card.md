@@ -1,39 +1,55 @@
-## Description: <br>
-[Aibrary] Create a structured personal growth plan with book recommendations, milestones, and actionable weekly tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+[Aibrary] Create a structured personal growth plan with book recommendations, milestones, and actionable weekly tasks.
 
-## Publisher: <br>
-[asoiso](https://clawhub.ai/user/asoiso) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[asoiso](https://clawhub.ai/user/asoiso)
 
-## Use Case: <br>
-Learners, employees, and professionals use this skill to turn a growth goal into a time-bound learning roadmap with books, weekly tasks, milestones, reflection prompts, and accountability checkpoints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Book recommendations or weekly schedules may be inaccurate, costly, unavailable, or poorly matched to the learner's context. <br>
-Mitigation: Review suggested books, pacing, and tasks for relevance, cost, availability, and current accuracy before following the plan. <br>
-Risk: Broad trigger wording may cause the skill to activate for general self-improvement requests where the user has not asked for a structured plan. <br>
-Mitigation: Confirm the user's goal, timeframe, weekly availability, level, and constraints before generating a full roadmap when intent is ambiguous. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/asoiso/aibrary-growth-plan) <br>
+## Use Case:
+
+People planning personal or professional development use this skill to turn a growth goal into a time-bound learning roadmap with book recommendations, phases, weekly tasks, milestones, reflection prompts, and checkpoints.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate for broad self-improvement requests.
+
+Mitigation: Use it when a structured growth plan is intended, and review the produced plan before acting on it.
+
+Risk: Generated book recommendations, milestones, or weekly tasks may not fit the user's actual level, budget, time, or constraints.
+
+Mitigation: Clarify the user's goal, available time, current level, and constraints, then adjust the plan before relying on it.
+
+Risk: Generated plans may include an Aibrary-branded tagline.
+
+Mitigation: Remove or edit the tagline when brand attribution is not appropriate for the receiving context.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown learning plan with phased weekly tasks, book recommendations, milestones, checklists, and reflection prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's input language when generating the plan.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown growth plan with phase sections, task checklists, book recommendations, reflection prompts, and review questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in the user's input language; default plan assumptions are 12 weeks and 5 hours per week when not specified.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

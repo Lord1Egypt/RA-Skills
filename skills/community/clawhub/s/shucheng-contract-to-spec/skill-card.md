@@ -1,43 +1,57 @@
-## Description: <br>
-Converts a local project contract .docx into a formatted Word requirements specification with extracted project details and generated architecture diagrams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将合同文件转换为需求规格说明书，生成系统架构图、功能原型图说明和格式化 Word 文档。
 
-## Publisher: <br>
-[lan2898408767](https://clawhub.ai/user/lan2898408767) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lan2898408767](https://clawhub.ai/user/lan2898408767)
 
-## Use Case: <br>
-External users or document automation teams use this skill to turn Chinese project contract files into standardized requirements specification documents. It reads a desktop contract file, generates a system architecture diagram, and writes a formatted .docx output for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can select the wrong Desktop contract file when an explicit input path is not provided. <br>
-Mitigation: Run it on a copy of the intended contract, confirm the exact input file before execution, and require explicit file paths before operational use. <br>
-Risk: The generated document may contain hard-coded or incomplete contract details while appearing authoritative. <br>
-Mitigation: Manually verify contract number, parties, requirements, and generated diagrams before relying on the Word document; remove hard-coded contract data in the implementation. <br>
-Risk: Dependencies and behavior are not fully disclosed or pinned in the artifact. <br>
-Mitigation: Review and pin required dependencies, then confirm the implementation matches the stated workflow before installation. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to turn a local project contract DOCX into a standardized Chinese requirements specification document with a cover page, revision record, table of contents, structured requirements sections, and generated architecture imagery.
 
-## Reference(s): <br>
-- [需求规格说明书格式规范](references/format_spec.md) <br>
-- [ClawHub release page](https://clawhub.ai/lan2898408767/shucheng-contract-to-spec) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Word document (.docx) with generated HTML/PNG intermediates and console status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes the final document to the user's Desktop using the pattern {project name} 需求规格说明书_v6.0.docx.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security review says the main contract-to-spec output is largely hardcoded rather than actually derived from contract contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only on non-sensitive contract copies and manually verify all generated DOCX content before using it for client, procurement, or compliance deliverables.
+
+Risk: The artifact hardcodes business values such as contract number, client, and contractor while deriving the project name primarily from the filename.
+
+Mitigation: Confirm or replace all business identifiers and project details in the generated document before distribution.
+
+Risk: The skill writes local files to the desktop and invokes Playwright through npx for browser screenshots.
+
+Mitigation: Review input and output paths before execution and use a controlled local dependency setup with pinned browser tooling where possible.
+
+## Reference(s):
+
+- [需求规格说明书格式规范](references/format_spec.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Shell commands, Guidance]
+
+**Output Format:** [DOCX document with generated HTML and PNG diagram assets, plus agent guidance for running the workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes the final requirements specification to the user's desktop using the naming pattern '{project_name} 需求规格说明书_v6.0.docx'.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

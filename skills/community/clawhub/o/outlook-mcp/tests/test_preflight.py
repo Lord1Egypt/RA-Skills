@@ -9,12 +9,15 @@ future refactor can't silently weaken the release-gate.
 
 from __future__ import annotations
 
+import contextlib
 import importlib.util
+import io
 import pathlib
+from urllib.parse import urljoin
 
-_PREFLIGHT_PATH = (
-    pathlib.Path(__file__).resolve().parent.parent / "scripts" / "preflight.py"
-)
+import pytest
+
+_PREFLIGHT_PATH = pathlib.Path(__file__).resolve().parent.parent / "scripts" / "preflight.py"
 _spec = importlib.util.spec_from_file_location("preflight", _PREFLIGHT_PATH)
 preflight = importlib.util.module_from_spec(_spec)
 assert _spec.loader is not None
@@ -79,3 +82,499 @@ class TestEndpointsList:
         must continue exercising that endpoint."""
         paths = [p for p, _ in preflight.ENDPOINTS]
         assert any("inferenceClassification/overrides" in p for p in paths)
+
+    def test_inbox_rules_are_not_a_release_gate(self):
+        """Whether a personal mailbox allows inbox rules is per account: the
+        maintainer's answers even a listing with 403. A row here would turn
+        that known refusal into a FAIL that blocks every release, so the rules
+        tools name it at call time instead (RULE_LIST_DENIED). Re-investigate
+        before adding the path."""
+        for path, _label in preflight.ENDPOINTS:
+            assert "messageRules" not in path, path
+
+
+class _Resp:
+    def __init__(self, status_code, body=None):
+        self.status_code = status_code
+        self._body = body or {}
+
+    def json(self):
+        return self._body
+
+
+class TestTodoTaskFamilies:
+    """The To Do checklist/attachment endpoints live under a real task id,
+    so their probe rows are provisioned at run time (see
+    ``_todo_task_rows``). These tests lock in that the families stay
+    covered — the attachment write itself is a POST and stays out of the
+    read-only script, but the GETs see the same 403/501 refusal signal —
+    and that anything the run could NOT probe is reported rather than
+    silently counted as checked."""
+
+    def _wire(self, monkeypatch, responses):
+        def fake_get(url, headers=None, timeout=None):
+            if url not in responses:
+                raise AssertionError(f"unexpected GET {url}")
+            return responses[url]
+
+        monkeypatch.setattr(preflight.httpx, "get", fake_get)
+
+    def _lists(self, value):
+        return _Resp(200, {"value": value})
+
+    def test_provisioning_targets_the_default_list_not_the_first_row(self, monkeypatch):
+        """?$top=1 on /me/todo/lists grabs whichever list Graph happens to
+        return first — the tools resolve defaultList+isOwner (falling back
+        to the first list), and the preflight must harvest from the list a
+        tool call would actually hit."""
+        base = "https://graph.microsoft.com/v1.0/me/todo/lists"
+        self._wire(
+            monkeypatch,
+            {
+                f"{base}?$top=100": self._lists(
+                    [
+                        {"id": "SHARED", "isOwner": False, "wellknownListName": "none"},
+                        {"id": "L1", "isOwner": True, "wellknownListName": "defaultList"},
+                    ]
+                ),
+                f"{base}/L1/tasks?$top=10": self._lists([{"id": "T1"}]),
+                f"{base}/L1/tasks/T1/attachments?$top=1": self._lists([]),
+            },
+        )
+
+        rows, not_probed, failures = preflight._todo_task_rows({"Authorization": "Bearer x"})
+
+        assert failures == []
+        paths = [p for p, _ in rows]
+        assert any("L1/tasks/T1/checklistItems" in p for p in paths), paths
+        assert not any("SHARED" in p for p in paths), paths
+        # No attachment anywhere: entity GET + $value are named as NOT probed
+        # rather than quietly missing.
+        assert len(not_probed) == 1
+        assert "entity GET" in not_probed[0]
+
+    def test_first_list_is_the_fallback_when_no_default_list(self, monkeypatch):
+        base = "https://graph.microsoft.com/v1.0/me/todo/lists"
+        self._wire(
+            monkeypatch,
+            {
+                f"{base}?$top=100": self._lists(
+                    [{"id": "ONLY", "isOwner": True, "wellknownListName": "none"}]
+                ),
+                f"{base}/ONLY/tasks?$top=10": self._lists([{"id": "T1"}]),
+                f"{base}/ONLY/tasks/T1/attachments?$top=1": self._lists([]),
+            },
+        )
+
+        rows, not_probed, _ = preflight._todo_task_rows({"Authorization": "Bearer x"})
+
+        assert any("/ONLY/tasks/T1/checklistItems" in p for p, _ in rows)
+        assert not_probed  # no attachment to probe the entity GET with
+
+    def test_entity_get_is_probed_with_content_bytes_in_the_body(self, monkeypatch, capsys):
+        """The download tool reads contentBytes off the entity — a 200 whose
+        body lacks it is the response shape the tool refuses, so the probe
+        looks at the body, not just the status."""
+        base = "https://graph.microsoft.com/v1.0/me/todo/lists"
+        self._wire(
+            monkeypatch,
+            {
+                f"{base}?$top=100": self._lists(
+                    [{"id": "L1", "isOwner": True, "wellknownListName": "defaultList"}]
+                ),
+                f"{base}/L1/tasks?$top=10": self._lists([{"id": "T1"}]),
+                f"{base}/L1/tasks/T1/attachments?$top=1": self._lists([{"id": "A1"}]),
+                f"{base}/L1/tasks/T1/attachments/A1": _Resp(
+                    200, {"id": "A1", "size": 5, "contentBytes": "aGVsbG8="}
+                ),
+            },
+        )
+
+        rows, not_probed, failures = preflight._todo_task_rows({"Authorization": "Bearer x"})
+
+        assert not_probed == []
+        assert failures == []
+        # $value stays as the extra legacy row alongside the entity probe.
+        assert any("$value" in p for p, _ in rows)
+        out = capsys.readouterr().out
+        assert "To Do attachment entity" in out
+        assert "contentBytes=yes" in out
+
+    def test_entity_get_without_content_bytes_is_flagged_not_passed(self, monkeypatch, capsys):
+        base = "https://graph.microsoft.com/v1.0/me/todo/lists"
+        self._wire(
+            monkeypatch,
+            {
+                f"{base}?$top=100": self._lists(
+                    [{"id": "L1", "isOwner": True, "wellknownListName": "defaultList"}]
+                ),
+                f"{base}/L1/tasks?$top=10": self._lists([{"id": "T1"}]),
+                f"{base}/L1/tasks/T1/attachments?$top=1": self._lists([{"id": "A1"}]),
+                f"{base}/L1/tasks/T1/attachments/A1": _Resp(200, {"id": "A1", "size": 1234}),
+            },
+        )
+
+        _, not_probed, failures = preflight._todo_task_rows({"Authorization": "Bearer x"})
+
+        assert failures == []
+        out = capsys.readouterr().out
+        assert "contentBytes=NO" in out
+        assert "NOTE" in out
+
+    def test_attachment_on_a_later_task_widens_the_probe(self, monkeypatch):
+        """Tasks 1-5 are checked for an attachment, so the entity probe
+        survives an attachment-free first task."""
+        base = "https://graph.microsoft.com/v1.0/me/todo/lists"
+        self._wire(
+            monkeypatch,
+            {
+                f"{base}?$top=100": self._lists(
+                    [{"id": "L1", "isOwner": True, "wellknownListName": "defaultList"}]
+                ),
+                f"{base}/L1/tasks?$top=10": self._lists([{"id": "T1"}, {"id": "T2"}, {"id": "T3"}]),
+                f"{base}/L1/tasks/T1/attachments?$top=1": self._lists([]),
+                f"{base}/L1/tasks/T2/attachments?$top=1": self._lists([{"id": "A2"}]),
+                f"{base}/L1/tasks/T3/attachments?$top=1": self._lists([]),
+                f"{base}/L1/tasks/T2/attachments/A2": _Resp(
+                    200, {"id": "A2", "size": 1, "contentBytes": "AA=="}
+                ),
+            },
+        )
+
+        rows, not_probed, _ = preflight._todo_task_rows({"Authorization": "Bearer x"})
+
+        assert not_probed == []
+        assert any("/T2/attachments/A2/$value" in p for p, _ in rows)
+
+    def test_no_lists_reports_every_family_not_probed(self, monkeypatch):
+        base = "https://graph.microsoft.com/v1.0/me/todo/lists"
+        self._wire(monkeypatch, {f"{base}?$top=100": self._lists([])})
+
+        rows, not_probed, failures = preflight._todo_task_rows({"Authorization": "Bearer x"})
+
+        assert rows == []
+        assert failures == []
+        assert len(not_probed) == 3  # checklist, attachments listing, entity GET
+        assert all("could not provision" in n for n in not_probed)
+
+
+class TestTokenOnlyGoesToGraph:
+    """Every request the preflight makes carries the signed-in user's Graph
+    token. Most paths are fixed, but a paging link (``@odata.nextLink``) is
+    read from a response and followed as given, so without a check a link
+    naming another host would be sent the token."""
+
+    def _record(self, monkeypatch):
+        sent = []
+
+        def fake_get(url, headers=None, timeout=None):
+            sent.append(url)
+            return _Resp(200, {"value": []})
+
+        monkeypatch.setattr(preflight.httpx, "get", fake_get)
+        return sent
+
+    @pytest.mark.parametrize(
+        "url",
+        [
+            "https://attacker.example/v1.0/me",
+            "https://graph.microsoft.com.attacker.example/v1.0/me",  # lookalike host
+            "https://graph.microsoft.com@attacker.example/v1.0/me",  # host after userinfo
+            "http://graph.microsoft.com/v1.0/me",  # no TLS
+            "https://graph.microsoft.com/beta/me",  # outside v1.0
+            "//attacker.example/v1.0/me",  # scheme-relative: urljoin keeps the host
+        ],
+    )
+    def test_a_url_outside_graph_is_refused_before_sending(self, monkeypatch, url):
+        sent = self._record(monkeypatch)
+
+        with pytest.raises(ValueError, match="not Microsoft Graph"):
+            preflight._get_json(url, {"Authorization": "Bearer x"})
+
+        assert sent == []
+
+    def test_a_graph_paging_link_is_followed(self, monkeypatch):
+        sent = self._record(monkeypatch)
+        url = "https://graph.microsoft.com/v1.0/me/todo/lists?$skiptoken=abc"
+
+        status, _ = preflight._get_json(url, {"Authorization": "Bearer x"})
+
+        assert status == 200
+        assert sent == [url]
+
+    def test_a_paging_link_to_another_host_stops_provisioning(self, monkeypatch):
+        """Through ``_todo_task_rows``: the first page of lists names another
+        host as its next page. Nothing goes there, and the To Do families are
+        reported as not probed, with the reason."""
+        first = "https://graph.microsoft.com/v1.0/me/todo/lists?$top=100"
+        sent = []
+
+        def fake_get(url, headers=None, timeout=None):
+            sent.append(url)
+            return _Resp(
+                200,
+                {
+                    "value": [{"id": "SHARED", "isOwner": False, "wellknownListName": "none"}],
+                    "@odata.nextLink": "https://attacker.example/v1.0/me/todo/lists?page=2",
+                },
+            )
+
+        monkeypatch.setattr(preflight.httpx, "get", fake_get)
+
+        rows, not_probed, failures = preflight._todo_task_rows({"Authorization": "Bearer x"})
+
+        assert sent == [first]
+        assert rows == []
+        assert failures == []
+        assert len(not_probed) == 3
+        assert all("not Microsoft Graph" in n for n in not_probed)
+
+    def test_every_probe_row_is_a_graph_url(self, monkeypatch):
+        """The fixed rows and the run loop go through the same check."""
+        for path, _ in preflight.ENDPOINTS:
+            assert preflight._graph_url(path).startswith(preflight.GRAPH_BASE)
+
+
+class _Stream:
+    """A streamed response that fails the test if anything reads its body."""
+
+    def __init__(self, status_code):
+        self.status_code = status_code
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        return False
+
+    def read(self):
+        raise AssertionError("the MIME probe must not download the message")
+
+    def iter_bytes(self, *args, **kwargs):
+        raise AssertionError("the MIME probe must not download the message")
+
+
+class TestMimeExportProbe:
+    """``outlook_export_message`` reads ``me/messages/{id}/$value``, which
+    exists only under a real message id, so the probe harvests one. It sends
+    the tool's own request (``message/rfc822``, no compression, no redirects)
+    and reads the status only: the message itself is never downloaded."""
+
+    LIST = "https://graph.microsoft.com/v1.0/me/messages?$top=1&$select=id"
+
+    def _wire(self, monkeypatch, listing, stream_status):
+        calls = []
+
+        def fake_get(url, headers=None, timeout=None):
+            if url != self.LIST:
+                raise AssertionError(f"unexpected GET {url}")
+            return listing
+
+        def fake_stream(method, url, headers=None, timeout=None, follow_redirects=True):
+            calls.append(
+                {
+                    "method": method,
+                    "url": url,
+                    "headers": headers,
+                    "follow_redirects": follow_redirects,
+                }
+            )
+            return _Stream(stream_status)
+
+        monkeypatch.setattr(preflight.httpx, "get", fake_get)
+        monkeypatch.setattr(preflight.httpx, "stream", fake_stream)
+        return calls
+
+    def test_probes_value_the_way_the_tool_requests_it(self, monkeypatch, capsys):
+        calls = self._wire(monkeypatch, _Resp(200, {"value": [{"id": "AA/b+c="}]}), 200)
+
+        verdict, not_probed, failures = preflight._mime_export_probe({"Authorization": "Bearer x"})
+
+        assert (verdict, not_probed, failures) == ("OK", [], [])
+        assert len(calls) == 1
+        call = calls[0]
+        assert call["method"] == "GET"
+        assert call["url"] == "https://graph.microsoft.com/v1.0/me/messages/AA%2Fb%2Bc%3D/$value"
+        assert call["headers"]["Authorization"] == "Bearer x"
+        assert call["headers"]["Accept"] == "message/rfc822"
+        assert call["headers"]["Accept-Encoding"] == "identity"
+        assert call["follow_redirects"] is False
+        assert "Original MIME export" in capsys.readouterr().out
+
+    def test_a_refused_export_blocks_the_release(self, monkeypatch):
+        self._wire(monkeypatch, _Resp(200, {"value": [{"id": "M1"}]}), 403)
+
+        verdict, not_probed, failures = preflight._mime_export_probe({"Authorization": "Bearer x"})
+
+        assert verdict == "FAIL"
+        assert failures == ["Original MIME export"]
+        assert not_probed == []
+
+    def test_no_message_to_export_is_reported_not_probed(self, monkeypatch):
+        calls = self._wire(monkeypatch, _Resp(200, {"value": []}), 200)
+
+        verdict, not_probed, failures = preflight._mime_export_probe({"Authorization": "Bearer x"})
+
+        assert verdict is None
+        assert failures == []
+        assert len(not_probed) == 1
+        assert "Original MIME export" in not_probed[0]
+        assert calls == []
+
+
+class TestContactPhotoProbe:
+    """``outlook_set_contact_photo`` PUTs under a real contact id, so the probe
+    harvests one and reads that contact's photo. No photo is a 404 that still
+    shows the family is served; a 403 is the v1.7.0 signal."""
+
+    LIST = "https://graph.microsoft.com/v1.0/me/contacts?$top=1&$select=id"
+
+    def _wire(self, monkeypatch, listing, photo):
+        calls = []
+
+        def fake_get(url, headers=None, timeout=None):
+            calls.append(url)
+            return listing if url == self.LIST else photo
+
+        monkeypatch.setattr(preflight.httpx, "get", fake_get)
+        return calls
+
+    def test_reads_the_first_contacts_photo(self, monkeypatch, capsys):
+        calls = self._wire(monkeypatch, _Resp(200, {"value": [{"id": "AA/b+c="}]}), _Resp(200))
+
+        result = preflight._contact_photo_probe({"Authorization": "Bearer x"})
+
+        assert result == ("OK", [], [])
+        assert calls == [
+            self.LIST,
+            "https://graph.microsoft.com/v1.0/me/contacts/AA%2Fb%2Bc%3D/photo",
+        ]
+        assert "Contact photos" in capsys.readouterr().out
+
+    def test_a_contact_without_a_photo_still_counts_as_reachable(self, monkeypatch, capsys):
+        no_photo = _Resp(404, {"error": {"code": "ErrorItemNotFound"}})
+        self._wire(monkeypatch, _Resp(200, {"value": [{"id": "C1"}]}), no_photo)
+
+        assert preflight._contact_photo_probe({}) == ("OK", [], [])
+        assert "no photo yet" in capsys.readouterr().out
+
+    def test_another_404_is_not_waved_through(self, monkeypatch):
+        self._wire(monkeypatch, _Resp(200, {"value": [{"id": "C1"}]}), _Resp(404, {}))
+
+        assert preflight._contact_photo_probe({}) == ("SKIP", [], [])
+
+    def test_a_refused_photo_family_blocks_the_release(self, monkeypatch):
+        denied = _Resp(403, {"error": {"code": "ErrorAccessDenied"}})
+        self._wire(monkeypatch, _Resp(200, {"value": [{"id": "C1"}]}), denied)
+
+        assert preflight._contact_photo_probe({}) == ("FAIL", [], ["Contact photos"])
+
+    def test_no_contact_is_reported_not_probed(self, monkeypatch):
+        calls = self._wire(monkeypatch, _Resp(200, {"value": []}), _Resp(200))
+
+        verdict, not_probed, failures = preflight._contact_photo_probe({})
+
+        assert (verdict, failures) == (None, [])
+        assert len(not_probed) == 1 and "Contact photos" in not_probed[0]
+        assert calls == [self.LIST]
+
+
+class TestRunSummary:
+    """The v1.7.0 lesson applied to gaps: "All endpoints reachable. Safe to
+    tag." printed over families the run never probed is how an unsupported
+    endpoint ships. The summary now counts reachable vs not-probed."""
+
+    def _run_with(
+        self,
+        monkeypatch,
+        responses,
+        todo_result,
+        mime_result=("OK", [], []),
+        photo_result=("OK", [], []),
+    ):
+        monkeypatch.setattr(preflight, "fetch_token", lambda: "tok")
+        monkeypatch.setattr(preflight, "_mime_export_probe", lambda headers: mime_result)
+        monkeypatch.setattr(preflight, "_contact_photo_probe", lambda headers: photo_result)
+
+        def fake_get(url, headers=None, timeout=None):
+            return responses[url]
+
+        monkeypatch.setattr(preflight.httpx, "get", fake_get)
+        monkeypatch.setattr(preflight, "_todo_task_rows", lambda headers: todo_result)
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            code = preflight.run()
+        return code, buf.getvalue()
+
+    def test_all_probed_and_reachable_says_safe_to_tag(self, monkeypatch):
+        rows = [("me/todo/lists/L1/tasks/T1/checklistItems?$top=1", "To Do checklist items")]
+        code, out = self._run_with(
+            monkeypatch,
+            {
+                urljoin(preflight.GRAPH_BASE, p): _Resp(200, {})
+                for p, _ in preflight.ENDPOINTS + rows
+            },
+            (rows, [], []),
+        )
+
+        assert code == 0
+        assert "Safe to tag" in out
+        assert "NOT probed" not in out
+
+    def test_unprobed_families_are_counted_not_silent(self, monkeypatch):
+        rows = [("me/todo/lists/L1/tasks/T1/attachments?$top=1", "To Do task attachments")]
+        not_probed = ["To Do attachment entity GET + $value (no attachment)"]
+
+        code, out = self._run_with(
+            monkeypatch,
+            {
+                urljoin(preflight.GRAPH_BASE, p): _Resp(200, {})
+                for p, _ in preflight.ENDPOINTS + rows
+            },
+            (rows, not_probed, []),
+        )
+
+        assert code == 0
+        assert "Safe to tag" not in out
+        # The MIME export and contact photo probes are two more probed endpoints.
+        assert f"{len(preflight.ENDPOINTS) + len(rows) + 2} probed endpoints reachable" in out
+        assert "1 NOT probed" in out
+        assert "no attachment" in out
+
+    def test_a_refused_mime_export_fails_the_run(self, monkeypatch):
+        code, out = self._run_with(
+            monkeypatch,
+            {urljoin(preflight.GRAPH_BASE, p): _Resp(200, {}) for p, _ in preflight.ENDPOINTS},
+            ([], [], []),
+            mime_result=("FAIL", [], ["Original MIME export"]),
+        )
+
+        assert code == 1
+        assert "Original MIME export" in out
+        assert "Safe to tag" not in out
+
+    def test_an_unprovisioned_mime_export_is_not_counted_as_checked(self, monkeypatch):
+        code, out = self._run_with(
+            monkeypatch,
+            {urljoin(preflight.GRAPH_BASE, p): _Resp(200, {}) for p, _ in preflight.ENDPOINTS},
+            ([], [], []),
+            mime_result=(None, ["Original MIME export (no message)"], []),
+        )
+
+        assert code == 0
+        assert "Safe to tag" not in out
+        n = len(preflight.ENDPOINTS) + 1  # the contact photo probe ran
+        assert f"{n} of {n} probed endpoints reachable" in out
+        assert "1 NOT probed" in out
+
+    def test_a_refused_contact_photo_family_fails_the_run(self, monkeypatch):
+        code, out = self._run_with(
+            monkeypatch,
+            {urljoin(preflight.GRAPH_BASE, p): _Resp(200, {}) for p, _ in preflight.ENDPOINTS},
+            ([], [], []),
+            photo_result=("FAIL", [], ["Contact photos"]),
+        )
+
+        assert code == 1
+        assert "Contact photos" in out
+        assert "Safe to tag" not in out

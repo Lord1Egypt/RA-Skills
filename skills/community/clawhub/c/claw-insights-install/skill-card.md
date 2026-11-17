@@ -1,46 +1,60 @@
-## Description: <br>
-Claw Insights Install guides agents through installing, running, configuring, upgrading, and troubleshooting Claw Insights, a local read-only observability dashboard for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs and helps operate Claw Insights, a local read-only observability dashboard for OpenClaw agents with session replay, token and tool tracking, and shareable status snapshots.
 
-## Publisher: <br>
-[LucaL6](https://clawhub.ai/user/LucaL6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucal6](https://clawhub.ai/user/lucal6)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up and operate a local Claw Insights dashboard for OpenClaw observability, including installation, service management, authentication, configuration, upgrades, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill recommends running a remote installer, which can execute code from claw-insights.com on the user's machine. <br>
-Mitigation: Install only if the publisher and installer are trusted, inspect the installer before execution, or use the npm package path when that better fits local review controls. <br>
-Risk: The dashboard can surface local agent transcripts and tool activity. <br>
-Mitigation: Keep authentication enabled, bind the service to localhost, and review database and retention settings before use. <br>
-Risk: Disabling authentication can expose transcript and activity data to anyone who can reach the service. <br>
-Mitigation: Avoid `--no-auth` except in controlled local environments, and do not expose the service directly to the internet without authentication. <br>
+## Use Case:
 
+Developers and engineers use this skill to install, configure, verify, upgrade, and troubleshoot the Claw Insights dashboard for a local OpenClaw gateway.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/LucaL6/claw-insights-install) <br>
-- [Configuration Reference](references/configuration.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Claw Insights installer](https://claw-insights.com/install.sh) <br>
-- [Node.js](https://nodejs.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks and configuration tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local service commands, environment variable guidance, verification steps, and troubleshooting checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The install path recommends executing a remote shell script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, verifiable package or inspect the installer before running it.
+
+Risk: The dashboard reads local OpenClaw transcripts, logs, cron metadata, and stores metrics.
+
+Mitigation: Install only for trusted local use, keep authentication enabled, and restrict access to localhost or a protected tunnel.
+
+Risk: Snapshots or API responses can expose private session content.
+
+Mitigation: Review snapshots and API output before sharing them outside the local environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lucal6/skills/claw-insights-install)
+- [Configuration Reference](references/configuration.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Node.js](https://nodejs.org)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers local installation, service management, verification, upgrade, configuration, and troubleshooting commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

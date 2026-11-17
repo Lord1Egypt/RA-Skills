@@ -1,40 +1,50 @@
-## Description: <br>
-Generate CSS border-radius code. Use when the user asks to generate rounded corners, create a border radius, make a blob shape, or produce border-radius CSS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate CSS border-radius code. Use when the user asks to generate rounded corners, create a border radius, make a blob shape, or produce border-radius CSS.
 
-## Publisher: <br>
-[ohernandez-dev-blossom](https://clawhub.ai/user/ohernandez-dev-blossom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ohernandez-dev-blossom](https://clawhub.ai/user/ohernandez-dev-blossom)
 
-## Use Case: <br>
-Developers and designers use this skill to generate CSS border-radius values and matching Tailwind utility classes for uniform, per-corner, and preset rounded shapes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A future version could request unnecessary credentials, local file access, network access, or command execution. <br>
-Mitigation: Re-review and rescan any version that adds those capabilities before installation or deployment. <br>
-Risk: Generated CSS or Tailwind classes may not match the user's intended unit or corner order. <br>
-Mitigation: Review the generated CSS value and Tailwind class before applying them to production UI. <br>
+## Use Case:
 
+Developers and designers use this skill to generate standard CSS border-radius declarations and matching Tailwind utility classes for uniform, per-corner, and preset rounded shapes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ohernandez-dev-blossom/border-radius) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Guidance] <br>
-**Output Format:** [Markdown with CSS snippets and Tailwind utility classes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Caps negative border-radius values at 0, caps values above 9999, and omits Tailwind arbitrary values for non-px units.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated CSS values may not fit the user's intended design, especially when non-pixel units are requested and Tailwind arbitrary output may be omitted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated CSS in the target UI and verify non-pixel units or omitted Tailwind classes before use.
+
+## Reference(s):
+
+- [Border Radius ClawHub skill page](https://clawhub.ai/ohernandez-dev-blossom/skills/border-radius)
+- [Publisher profile](https://clawhub.ai/user/ohernandez-dev-blossom)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Text, Guidance]
+
+**Output Format:** [Markdown with CSS code blocks and inline Tailwind class names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns CSS border-radius values and Tailwind equivalents; non-pixel units may omit a Tailwind arbitrary value.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

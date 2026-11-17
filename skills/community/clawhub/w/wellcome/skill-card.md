@@ -1,38 +1,49 @@
-## Description: <br>
-Greets the user with a friendly, personalized welcome message. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Greets the user with a friendly, personalized welcome message that can vary by time of day.
 
-## Publisher: <br>
-[tran-quang-tien](https://clawhub.ai/user/tran-quang-tien) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tran-quang-tien](https://clawhub.ai/user/tran-quang-tien)
 
-## Use Case: <br>
-External users can use this skill to have an agent respond naturally to greetings, choose a time-aware salutation, and offer brief help. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Loose greeting triggers may cause the agent to respond to casual greetings or mixed messages more often than expected. <br>
-Mitigation: Review activation wording before deployment and adjust trigger handling if the skill should respond only to explicit greeting requests. <br>
+## Use Case:
 
+External users and agent operators use this skill to produce concise, friendly greetings when a user starts a session or sends a greeting phrase.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tran-quang-tien/wellcome) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Plain text greeting] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No files, shell commands, credentials, accounts, or external services are used according to the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may activate on casual greetings more often than a narrowly scoped skill would.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it where automatic greeting behavior is acceptable, and disable or narrow activation if greeting responses interrupt the desired workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tran-quang-tien/skills/wellcome)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text greeting]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the current system time to choose morning, afternoon, evening, or late-night phrasing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, created 2026-03-23)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Build and debug Groq API chat and speech workflows with low-latency routing, structured outputs, and production-safe patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and debug Groq API chat and speech workflows with low-latency routing, structured outputs, and production-safe patterns.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill to build, integrate, and troubleshoot Groq API inference for chat, tool calling, structured responses, and speech transcription. It helps shape requests, select available models, verify credentials, and apply retry, fallback, and output-validation patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts and requested audio transcription inputs are sent to Groq inference endpoints. <br>
-Mitigation: Use the skill only for intended Groq workflows, avoid sensitive or unconsented audio, and confirm what data is being sent before making API calls. <br>
-Risk: API credentials could be exposed if copied into files, logs, or shared troubleshooting output. <br>
-Mitigation: Keep GROQ_API_KEY in the environment, never store it in project files, and sanitize troubleshooting reports before sharing them. <br>
-Risk: Saved preferences or debug notes under ~/groq-api/ could retain sensitive workflow context. <br>
-Mitigation: Record routing logic instead of private payloads and periodically review local memory and logs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/groq-api) <br>
-- [Groq API Base URL](https://api.groq.com/openai/v1) <br>
-- [Groq Models Endpoint](https://api.groq.com/openai/v1/models) <br>
-- [Groq Chat Completions Endpoint](https://api.groq.com/openai/v1/chat/completions) <br>
-- [Groq Audio Transcriptions Endpoint](https://api.groq.com/openai/v1/audio/transcriptions) <br>
+## Use Case:
 
+Developers and engineers use this skill to build, route, and troubleshoot Groq API chat, tool-calling, structured-output, and speech transcription workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Groq API request payloads, model-routing notes, retry guidance, and local memory setup instructions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad activation preferences stored in global agent memory may affect later sessions beyond the local Groq workflow.
+
+Mitigation: Review the memory behavior before installing and prefer explicit invocation or local-only memory under ~/groq-api/ unless broad persistent activation is intended.
+
+Risk: Prompts and audio are sent to Groq endpoints for inference and transcription.
+
+Mitigation: Use the skill only for content the user is comfortable sending to Groq, and avoid persisting sensitive prompts in local logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/groq-api)
+- [Groq API base URL](https://api.groq.com/openai/v1)
+- [Groq models endpoint](https://api.groq.com/openai/v1/models)
+- [Groq chat completions endpoint](https://api.groq.com/openai/v1/chat/completions)
+- [Groq audio transcriptions endpoint](https://api.groq.com/openai/v1/audio/transcriptions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON request examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses GROQ_API_KEY from the environment and curl/jq examples for Groq API requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

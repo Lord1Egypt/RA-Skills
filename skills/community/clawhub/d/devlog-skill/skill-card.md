@@ -1,42 +1,54 @@
-## Description: <br>
-A standardized journaling skill for OpenClaw agents to track progress, tasks, and project status using dev-log-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A standardized journaling skill for OpenClaw agents to track progress, tasks, and project status using dev-log-cli.
 
-## Publisher: <br>
-[CrimsonDevil333333](https://clawhub.ai/user/CrimsonDevil333333) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[crimsondevil333333](https://clawhub.ai/user/crimsondevil333333)
 
-## Use Case: <br>
-Developers and agent operators use this skill to record project progress, blockers, milestones, task status, and searchable development context through dev-log-cli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The setup script may install Python tooling and dev-log-cli from PyPI. <br>
-Mitigation: Review setup.sh and install only in environments where PyPI package installation through pip or pipx is acceptable. <br>
-Risk: Developer log entries may become persistent local records and could contain sensitive information. <br>
-Mitigation: Avoid logging secrets, credentials, customer data, sensitive incident details, or confidential project information unless storage, deletion, and redaction behavior has been verified. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Devlog Skill on ClawHub](https://clawhub.ai/CrimsonDevil333333/devlog-skill) <br>
-- [dev-log-cli GitHub repository](https://github.com/CrimsonDevil333333/dev-log-cli) <br>
-- [dev-log-cli on PyPI](https://pypi.org/project/dev-log-cli/) <br>
-- [pipx installation guidance](https://github.com/pypa/pipx#install-pipx) <br>
+## Use Case:
 
+Developers and OpenClaw agents use this skill to keep structured development journals, record progress and blockers, and retrieve project context with dev-log-cli.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are intended for local dev-log-cli usage and may create persistent local journal entries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup script installs unpinned third-party software.
+
+Mitigation: Review the setup script before installing and prefer pinned, verified versions of pipx and dev-log-cli.
+
+Risk: The setup script may alter the user's shell PATH.
+
+Mitigation: Make PATH changes only with explicit user consent and avoid running setup.sh in privileged automation or sensitive environments.
+
+## Reference(s):
+
+- [Devlog Skill on ClawHub](https://clawhub.ai/crimsondevil333333/skills/devlog-skill)
+- [dev-log-cli GitHub project](https://github.com/CrimsonDevil333333/dev-log-cli)
+- [dev-log-cli on PyPI](https://pypi.org/project/dev-log-cli/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Text]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses dev-log-cli to write and query a local SQLite-backed developer log.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

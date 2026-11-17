@@ -1,46 +1,62 @@
-## Description: <br>
-Manage contacts, campaigns, automations, lists, and marketing workflows in ActiveCampaign via the ActiveCampaign API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage contacts, campaigns, automations, lists, and marketing workflows in ActiveCampaign via the ActiveCampaign API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Marketing, sales, and operations teams use this skill to manage ActiveCampaign contacts, lists, campaigns, automations, deals, webhooks, and related marketing workflows from an agent chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform chat-driven writes to marketing, sales, and customer records, including bulk imports, deletions, webhooks, and campaign or deal changes. <br>
-Mitigation: Review ClawLink previews carefully and require explicit user confirmation before any create, update, delete, bulk, webhook, or campaign action. <br>
-Risk: Using the skill requires connecting an ActiveCampaign account through ClawLink, which grants access to account marketing data according to the connected user's permissions. <br>
-Mitigation: Install only when the user is comfortable with the ClawLink OAuth connection and scope access to the intended ActiveCampaign account. <br>
+## Use Case:
 
+External users and marketing operators use this skill to manage ActiveCampaign contacts, lists, campaigns, automations, deals, webhooks, and bulk marketing workflows from an agent chat using ClawLink-hosted OAuth authentication.
 
-## Reference(s): <br>
-- [ActiveCampaign Skill Page](https://clawhub.ai/hith3sh/activecampaign-marketing) <br>
-- [ActiveCampaign API Overview](https://developers.activecampaign.com/reference/overview) <br>
-- [ActiveCampaign Contacts API](https://developers.activecampaign.com/reference/create-contact) <br>
-- [ActiveCampaign Deals API](https://developers.activecampaign.com/reference/deals) <br>
-- [ActiveCampaign Automations API](https://developers.activecampaign.com/reference/automations) <br>
-- [ClawLink Documentation](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands and JSON tool-call parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a connected ActiveCampaign account through ClawLink; write operations should be previewed and explicitly confirmed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill installs and persistently allowlists an external OAuth-backed ClawLink plugin.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting the publisher and plugin, and check the plugin version and removal path before enabling it.
+
+Risk: ActiveCampaign write operations can create, update, or delete contacts, deals, lists, campaigns, webhooks, connections, and bulk records.
+
+Mitigation: Require live tool discovery, preview the exact action, and obtain explicit user approval before every write, delete, webhook, connection, bulk import, or bulk delete call.
+
+Risk: Direct write examples may be executed without enough context if an agent skips the skill's confirmation workflow.
+
+Mitigation: Use read, list, search, get, and describe operations before writes, then execute only after the preview matches the user's stated intent.
+
+## Reference(s):
+
+- [ActiveCampaign API Overview](https://developers.activecampaign.com/reference/overview)
+- [ActiveCampaign Contact API](https://developers.activecampaign.com/reference/create-contact)
+- [ActiveCampaign Deal API](https://developers.activecampaign.com/reference/deals)
+- [ActiveCampaign Automation API](https://developers.activecampaign.com/reference/automations)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Markdown with inline bash commands and JSON tool parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live ClawLink tool discovery; write, delete, webhook, connection, bulk import, and bulk delete actions require preview and explicit user approval.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

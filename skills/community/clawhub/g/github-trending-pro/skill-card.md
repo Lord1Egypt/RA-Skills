@@ -1,42 +1,55 @@
-## Description: <br>
-Use when the user asks for GitHub Trending, GitHub hot repositories, daily/weekly/monthly trending repos, trending projects by programming language, spoken-language filtered GitHub trends, or trend analysis of popular GitHub projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches live GitHub Trending repositories and helps agents produce concise trend reports by language, date range, and spoken-language filter.
 
-## Publisher: <br>
-[liuwei1125](https://clawhub.ai/user/liuwei1125) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuwei1125](https://clawhub.ai/user/liuwei1125)
 
-## Use Case: <br>
-Developers, technical analysts, and external users use this skill to fetch public GitHub Trending repositories and turn them into concise trend reports by date range, programming language, and spoken-language filters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Python code and makes outbound requests to public GitHub pages. <br>
-Mitigation: Run it in an approved environment with expected network access, and review the script before deployment. <br>
-Risk: Results depend on GitHub page structure and network availability. <br>
-Mitigation: Check for script errors, empty results, and the reported source URL before relying on a report. <br>
-Risk: Trend explanations can overstate causes if inferred beyond the fetched repository facts. <br>
-Mitigation: Keep factual fields tied to script output and label broader trend analysis as grounded interpretation. <br>
+## Use Case:
 
+Developers and technical users use this skill to retrieve current GitHub Trending repositories and turn the results into a scannable intelligence report with grounded project facts and trend analysis.
 
-## Reference(s): <br>
-- [GitHub Trending](https://github.com/trending) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown trend reports or JSON repository data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports daily, weekly, and monthly ranges, optional programming-language and spoken-language filters, and a configurable repository limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill runs a local Python script that fetches public GitHub Trending pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in environments where outbound access to GitHub Trending is acceptable and review the script before deployment.
+
+Risk: Repository names and descriptions come from public GitHub content and may be inaccurate, promotional, or untrusted.
+
+Mitigation: Treat fetched repository metadata as untrusted input and verify important claims before relying on or republishing them.
+
+## Reference(s):
+
+- [GitHub Trending](https://github.com/trending)
+- [ClawHub Skill Page](https://clawhub.ai/liuwei1125/skills/github-trending-pro)
+- [Publisher Profile](https://clawhub.ai/user/liuwei1125)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown report or JSON from the GitHub Trending fetch script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports daily, weekly, and monthly ranges, optional programming-language filters, optional spoken-language filters, and a default limit of 10 repositories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

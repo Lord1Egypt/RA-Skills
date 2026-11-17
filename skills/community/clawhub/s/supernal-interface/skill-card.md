@@ -1,40 +1,52 @@
-## Description: <br>
-Universal AI Interface framework for making applications AI-controllable. Use when adding AI tool decorators, setting up chat adapters, creating AI-callable functions, or integrating CopilotKit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal AI Interface framework for making applications AI-controllable. Use when adding AI tool decorators, setting up chat adapters, creating AI-callable functions, or integrating CopilotKit.
 
-## Publisher: <br>
-[ianderrington](https://clawhub.ai/user/ianderrington) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ianderrington](https://clawhub.ai/user/ianderrington)
 
-## Use Case: <br>
-Developers use this skill to add AI-controllable interfaces to applications with Supernal Interface decorators, adapters, React hooks, storage patterns, and testing utilities. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Exposing broad or privileged application actions to AI can allow assistants to change important records or perform sensitive operations. <br>
-Mitigation: Expose narrowly scoped AI-callable functions and require user confirmation for actions that delete data, publish content, spend money, change accounts, or modify important records. <br>
-Risk: Installing the referenced npm package without verification can introduce supply-chain risk. <br>
-Mitigation: Verify the npm package source before installation and pin a trusted version. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ianderrington/supernal-interface) <br>
-- [Supernal Enterprise](https://supernal.ai/enterprise) <br>
+## Use Case:
 
+Developers and engineers use this skill to integrate the Supernal Interface framework, expose typed app functions to AI assistants, configure chat adapters, bind React state, and set up testing utilities.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with TypeScript and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides implementation patterns and examples; does not execute changes directly.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.13 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing an unpinned @supernal/interface package version may introduce unreviewed dependency changes.
+
+Mitigation: Pin @supernal/interface to a reviewed version and use a lockfile before deployment.
+
+Risk: Exposing app functions or readable state to AI assistants can allow mutation of data or access to sensitive user context.
+
+Mitigation: Review and limit the functions and state exposed to assistants, especially capabilities that mutate data or read sensitive context.
+
+## Reference(s):
+
+- [Supernal Interface on ClawHub](https://clawhub.ai/ianderrington/skills/supernal-interface)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with TypeScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance includes installation, decorators, adapters, React hooks, storage adapters, and testing utilities.]
+
+## Skill Version(s):
+
+1.0.13 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

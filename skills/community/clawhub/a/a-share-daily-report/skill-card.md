@@ -1,45 +1,65 @@
-## Description: <br>
-Generates A-share morning and evening market reports from multiple market data sources, with optional Feishu document publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates A-share morning and evening market reports from multiple market data sources, with Markdown report output and optional Feishu publishing.
 
-## Publisher: <br>
-[shoukuan](https://clawhub.ai/user/shoukuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shoukuan](https://clawhub.ai/user/shoukuan)
 
-## Use Case: <br>
-External users and developers use this skill to generate daily A-share pre-market and post-market market commentary, watchlist analysis, and optional Feishu notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated report contents or portfolio details may be sent externally through Feishu publishing. <br>
-Mitigation: Clear or replace the Feishu target_chat_id, avoid sensitive watchlist content unless external sharing is acceptable, and use --publish only when publishing is intended. <br>
-Risk: Credential fragments may appear in logs. <br>
-Mitigation: Remove or patch API-key prefix logging before using real credentials. <br>
-Risk: Generated trading guidance may be incomplete or not personalized. <br>
-Mitigation: Treat reports as non-personalized market commentary and review them before making decisions. <br>
+## Use Case:
 
+Investors, analysts, and agent operators use this skill to generate pre-market A-share outlooks and post-market recap reports for watchlists and broad market conditions. It supports local report generation and optional Feishu sharing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shoukuan/a-share-daily-report) <br>
-- [README](artifact/README.md) <br>
-- [Data sources](artifact/DATA_SOURCES.md) <br>
-- [Interface design](artifact/INTERFACE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with optional PNG charts, PDF files, and Feishu document links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports morning or evening report modes, optional report date, configurable output directory, and optional Feishu publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The security review flags broad workspace secret loading and token-backed data or publishing integrations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a dedicated workspace or virtual environment, use a minimal .env for this skill, and avoid sharing unrelated credentials.
+
+Risk: Optional Feishu publishing can send generated reports, document links, recipient identifiers, or token-related metadata outside the local workspace.
+
+Mitigation: Keep Feishu publishing disabled unless intended, confirm the recipient and folder configuration, and restrict or remove logs that may contain token prefixes or recipient IDs.
+
+Risk: The release depends on external market data sources and documented external tushare-skills import guidance that may be unsafe or unreliable if unreviewed.
+
+Mitigation: Prefer official HTTPS data sources, validate source behavior before use, and do not follow the external tushare-skills import guidance without separately reviewing that package.
+
+Risk: Generated market summaries may be incomplete or misleading when data sources fail or fallback data is used.
+
+Mitigation: Review the report's data-source status before acting on it and treat the output as analysis support rather than investment advice.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shoukuan/skills/a-share-daily-report)
+- [README](artifact/README.md)
+- [Skill Usage Guide](artifact/SKILL.md)
+- [Data Sources](artifact/DATA_SOURCES.md)
+- [Interface Design](artifact/INTERFACE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, optional PDF files, and Feishu document or message publishing results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Morning or evening mode, optional report date, optional config path, optional output directory, and optional Feishu publishing flag.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact _meta.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

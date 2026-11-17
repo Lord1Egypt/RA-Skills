@@ -1,40 +1,53 @@
-## Description: <br>
-Adapt abstracts to meet specific conference word limits and formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adapt abstracts to meet specific conference word limits and formats.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Researchers, clinicians, and scientific writers use this skill to adapt abstracts for ASGCT, ASCO, SfN, AACR, and ASM submission limits and section expectations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a selected abstract file and may write to a selected output path. <br>
-Mitigation: Use abstract files intended for processing, choose an output path inside the workspace, and avoid an existing filename unless overwriting is acceptable. <br>
-Risk: The adapted abstract may be shortened to fit a conference limit. <br>
-Mitigation: Review the adapted text, counts, and conference-specific requirements before submitting. <br>
+## Use Case:
 
+Researchers, authors, and agents assisting with conference submissions use this skill to adapt abstract text for conference-specific word or character limits and expected section formats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AIPOCH-AI/conference-abstract-adaptor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command-line output with optional text file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports original and adapted counts, shows whether the abstract is within the selected limit, and can write the adapted abstract to a chosen path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The script reads local abstract files and can write adapted output to a user-selected path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive input files and direct outputs to a workspace or temporary directory.
+
+Risk: The output path is not protected against overwriting important files or path traversal.
+
+Mitigation: Review the --output path before execution and avoid existing or sensitive file locations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/conference-abstract-adaptor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Guidance]
+
+**Output Format:** [Plain text abstract output with count verification and optional file output; Markdown usage guidance with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports ASGCT, ASCO, SfN, AACR, and ASM conference presets.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

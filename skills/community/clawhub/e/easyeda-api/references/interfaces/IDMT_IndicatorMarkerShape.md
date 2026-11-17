@@ -1,11 +1,11 @@
 # IDMT\_IndicatorMarkerShape interface
 
-指示标记外形
+Indicator marker shape
 
 ## Signature
 
 ```typescript
-interface IDMT_IndicatorMarkerShape 
+interface IDMT_IndicatorMarkerShape
 ```
 
 ## Properties
@@ -14,244 +14,193 @@ interface IDMT_IndicatorMarkerShape
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [angle?](./IDMT_IndicatorMarkerShape.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
 _(Optional)_ 圆弧：角度
-
 
 </td></tr>
 <tr><td>
 
 [bottom?](./IDMT_IndicatorMarkerShape.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
 _(Optional)_ 矩形：下 Y
-
 
 </td></tr>
 <tr><td>
 
 [endX?](./IDMT_IndicatorMarkerShape.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
 _(Optional)_ 线段 \| 圆弧：终止点 X
-
 
 </td></tr>
 <tr><td>
 
 [endY?](./IDMT_IndicatorMarkerShape.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
 _(Optional)_ 线段 \| 圆弧：终止点 Y
-
 
 </td></tr>
 <tr><td>
 
 [left?](./IDMT_IndicatorMarkerShape.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
 _(Optional)_ 矩形：左 X
-
 
 </td></tr>
 <tr><td>
 
 [r?](./IDMT_IndicatorMarkerShape.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
 _(Optional)_ 圆形：半径
-
 
 </td></tr>
 <tr><td>
 
 [right?](./IDMT_IndicatorMarkerShape.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
 _(Optional)_ 矩形：右 X
-
 
 </td></tr>
 <tr><td>
 
 [startX?](./IDMT_IndicatorMarkerShape.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
 _(Optional)_ 线段 \| 圆弧：起始点 X
-
 
 </td></tr>
 <tr><td>
 
 [startY?](./IDMT_IndicatorMarkerShape.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
 _(Optional)_ 线段 \| 圆弧：起始点 Y
-
 
 </td></tr>
 <tr><td>
 
 [top?](./IDMT_IndicatorMarkerShape.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
 _(Optional)_ 矩形：上 Y
-
 
 </td></tr>
 <tr><td>
 
 [type](./IDMT_IndicatorMarkerShape.md)
 
-
 </td><td>
-
 
 </td><td>
 
 [EDMT\_IndicatorMarkerType](../enums/EDMT_IndicatorMarkerType.md)
 
-
 </td><td>
 
-类型
-
+Type
 
 </td></tr>
 <tr><td>
 
 [x?](./IDMT_IndicatorMarkerShape.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
-
 
 </td><td>
 
@@ -259,27 +208,22 @@ _(Optional)_ 点：坐标 X
 
 圆形：圆心 X
 
-
 </td></tr>
 <tr><td>
 
 [y?](./IDMT_IndicatorMarkerShape.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
-
 
 </td><td>
 
 _(Optional)_ 点：坐标 Y
 
 圆形：圆心 Y
-
 
 </td></tr>
 </tbody></table>
@@ -412,7 +356,7 @@ top?: number;
 
 # IDMT\_IndicatorMarkerShape.type property
 
-类型
+Type
 
 ## Signature
 

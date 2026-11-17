@@ -1,45 +1,68 @@
-## Description: <br>
-Create, update, and delete calendar events and tasks in Lark (Feishu), with employee directory support for name-to-user_id resolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, update, and delete calendar events and tasks in Lark (Feishu), including employee directory name-to-user_id resolution.
 
-## Publisher: <br>
-[boyangwang](https://clawhub.ai/user/boyangwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[boyangwang](https://clawhub.ai/user/boyangwang)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Lark calendar events, attendees, tasks, and task members from an agent workflow. It is suited for teams that want automated scheduling and task updates while resolving known employee names to Lark user IDs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Lark app credentials and requested scopes to read or write calendar, task, contact, and potentially messaging data. <br>
-Mitigation: Use a least-privileged Lark app, review granted scopes before installation, and avoid IM/message scopes unless they are required. <br>
-Risk: Delete commands can remove Lark events or tasks when provided an event ID or task ID. <br>
-Mitigation: Confirm target event and task IDs before running delete operations. <br>
-Risk: Employee directory data may be loaded, cached, or resolved from a static fallback list. <br>
-Mitigation: Review contact access, keep the fallback directory current, and avoid exposing cached employee data beyond the intended workspace. <br>
+## Use Case:
 
+Employees and operations teams use this skill to manage Lark calendar events, task assignments, attendee lists, and due dates from agent-guided commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/boyangwang/lark-calendar) <br>
-- [Lark Calendar Events API](https://open.larksuite.com/document/server-docs/calendar-v4/calendar-event/create) <br>
-- [Lark Calendar Attendees API](https://open.larksuite.com/document/server-docs/calendar-v4/calendar-event-attendee/create) <br>
-- [Lark Tasks API](https://open.larksuite.com/document/server-docs/task-v2/task/create) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with command examples, JavaScript module usage, and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Lark app credentials from environment variables and may call Lark Calendar, Task, Contact, and messaging APIs depending on granted scopes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, frontmatter, package.json) <br>
+Risk: Broad employee-directory access may expose more employee data than the scheduling workflow needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the narrowest Lark scopes available and minimize employee fields returned, cached, or displayed.
+
+Risk: Calendar events automatically include a fixed attendee.
+
+Mitigation: Confirm that this business rule is acceptable for the tenant before enabling event creation.
+
+Risk: Delete and membership-management commands can make destructive calendar or task changes.
+
+Mitigation: Require explicit confirmation before deleting events or tasks or changing attendees and task members.
+
+Risk: Secrets are loaded from a shared relative secrets file.
+
+Mitigation: Use a dedicated Lark app and ensure the secrets file contains only credentials intended for this skill.
+
+Risk: Generic messaging helpers are present but not part of the documented calendar and task workflow.
+
+Mitigation: Remove or restrict those helpers unless messaging behavior is intentionally reviewed and enabled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/boyangwang/skills/lark-calendar)
+- [Lark Calendar Events API](https://open.larksuite.com/document/server-docs/calendar-v4/calendar-event/create)
+- [Lark Calendar Attendees API](https://open.larksuite.com/document/server-docs/calendar-v4/calendar-event-attendee/create)
+- [Lark Tasks API](https://open.larksuite.com/document/server-docs/task-v2/task/create)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Lark app credentials and tenant permissions before commands can modify events or tasks.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

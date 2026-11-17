@@ -1,40 +1,56 @@
-## Description: <br>
-Guides agents with video-derived learning notes for MATLAB toolbox workflows that build Transformer models for multivariate time series prediction, with additional DSPy agent-optimization references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent guidance for MATLAB toolbox workflows that build Transformer models for multivariate time-series prediction.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and learners use this skill as a compact reference for Transformer-based multivariate time series prediction in MATLAB and related agent-optimization learning notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The learning note mixes MATLAB Transformer forecasting with DSPy agent-optimization material. <br>
-Mitigation: Separate the MATLAB forecasting guidance from DSPy material before relying on it for task-specific work. <br>
-Risk: Broad trigger phrases may activate the skill for loosely related optimization requests. <br>
-Mitigation: Confirm the user is asking about MATLAB Transformer time series forecasting or the named learning notes before applying the skill. <br>
+## Use Case:
 
+Developers and engineers use this skill to ask an agent for concise guidance on building Transformer-based multivariate time-series forecasting workflows with MATLAB tooling.
 
-## Reference(s): <br>
-- [DSPy: Build and Optimize Agentic Apps](https://www.bilibili.com/video/BV16ATuzoE8o) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable learning note; no shell commands, credentials, or external tools are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is not malicious, but its MATLAB forecasting purpose is mixed with unrelated video-learning material and broad triggers that may activate it for unrelated MATLAB, Transformer, DSPy, or Andrew Ng requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow the trigger phrases and scope before installation; use the skill only for curated MATLAB Transformer time-series forecasting guidance.
+
+Risk: The skill is derived from video-learning notes rather than authoritative technical documentation.
+
+Mitigation: Validate any generated MATLAB modeling guidance against official MATLAB documentation, project data, and local engineering review before applying it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/transformer-optimize-e72719)
+- [Bilibili source: Optimize PI capacitor optimization simulation analysis](https://www.bilibili.com/video/BV1K34y1k73x)
+- [Bilibili source: coldrain OPTIMIZE EP trailer](https://www.bilibili.com/video/BV1eYsbzSEgy)
+- [Bilibili source: DSPy build and optimize agentic apps](https://www.bilibili.com/video/BV16ATuzoE8o)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool, credential, MCP, or shell-command requirements were detected in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

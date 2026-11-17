@@ -49,7 +49,7 @@ test('privKey -> 24-word mnemonic -> privKey round-trips', () => {
 test('full backup->recover: recovered key decrypts the original Scheme-C blob', () => {
   // original vault key (as if derived from CRITICAL_WIF)
   const original = wifToPrivateKey(privateKeyToWif(randomBytes(32)));
-  const secret = { value: 'sk-ant-TESTNET-fake-credential', meta: { service: 'anthropic-api' } };
+  const secret = { value: 'REDACTED-SECRET', meta: { service: 'anthropic-api' } };
   const { blob, salt, nonce } = encrypt(original, secret);
 
   // backup -> hold only the mnemonic, discard the key

@@ -1,51 +1,64 @@
-## Description: <br>
-Enables agents to synthesize speech, clone and design voices, and post-process audio using the MiniMax Voice API and FFmpeg. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables voice synthesis, voice cloning, voice design, and audio post-processing using MiniMax Voice API and FFmpeg.
 
-## Publisher: <br>
-[BLUE-coconut](https://clawhub.ai/user/BLUE-coconut) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[blue-coconut](https://clawhub.ai/user/blue-coconut)
 
-## Use Case: <br>
-External developers and agent users use this skill to convert text into speech, prepare multi-voice segment plans, create or manage custom voices, and run audio processing workflows with MiniMax and FFmpeg. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Text, prompts, and voice recordings may be sent to MiniMax under the user's API key. <br>
-Mitigation: Use the skill only with content and recordings the user is comfortable sending to MiniMax, and avoid including secrets in prompt or preview text. <br>
-Risk: Voice cloning can process recordings containing personal or third-party voice data. <br>
-Mitigation: Use voice cloning only with recordings the user owns or has explicit permission to process. <br>
-Risk: Cloud custom voice assets may be deleted by cleanup_unused_voices(dry_run=False). <br>
-Mitigation: Run destructive cleanup only when the user intends to delete all custom cloned or designed voices in the account. <br>
-Risk: API keys could be exposed during setup or troubleshooting. <br>
-Mitigation: Do not echo, screenshot, or include API keys in shared prompts, logs, or preview text. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/BLUE-coconut/mm-voice-maker) <br>
-- [MiniMax Voice API base URL](https://api.minimaxi.com/v1) <br>
-- [Command Line Interface Guide](reference/cli-guide.md) <br>
-- [Getting Started](reference/getting-started.md) <br>
-- [Text-to-Speech Guide](reference/tts-guide.md) <br>
-- [Voice Creation Guide](reference/voice-guide.md) <br>
-- [Audio Processing Guide](reference/audio-guide.md) <br>
-- [MiniMax Voice Catalog](reference/voice-catalog.md) <br>
-- [MiniMax Voice API Complete Reference](reference/api_documentation.md) <br>
+## Use Case:
 
+Developers and content producers use this skill to turn text or segmented scripts into speech, create or manage custom voices, and process generated audio with MiniMax Voice API and FFmpeg.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with JSON segment plans, Python examples, shell commands, and generated audio file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local segments.json, preview audio, merged audio outputs, and processed audio files when the referenced CLI or scripts are executed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles API keys, private text, and voice recordings that may be sent to MiniMax.
+
+Mitigation: Use only a MiniMax API key approved for this use, avoid sensitive text or recordings, and upload voice samples only when owned by the user or used with explicit permission.
+
+Risk: A custom MINIMAX_API_BASE value could send requests and credentials to an untrusted host.
+
+Mitigation: Keep MINIMAX_API_BASE on the trusted MiniMax endpoint unless the alternate endpoint has been reviewed and approved.
+
+Risk: Voice deletion and cleanup helpers can remove custom voices or local temporary files.
+
+Mitigation: Review the exact voice IDs and file paths before deletion, prefer dry-run or manual cleanup, and avoid broad cleanup commands until outputs are confirmed.
+
+## Reference(s):
+
+- [Getting Started](reference/getting-started.md)
+- [Command Line Interface Guide](reference/cli-guide.md)
+- [Text-to-Speech Guide](reference/tts-guide.md)
+- [Voice Creation Guide](reference/voice-guide.md)
+- [Audio Processing Guide](reference/audio-guide.md)
+- [Text Processing Principle](reference/text-processing.md)
+- [MiniMax Voice Catalog](reference/voice-catalog.md)
+- [MiniMax Voice API Complete Reference](reference/api_documentation.md)
+- [Troubleshooting](reference/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration snippets and shell commands; workflows may create segments.json and audio files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local audio outputs and temporary segment files when the generated commands are run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

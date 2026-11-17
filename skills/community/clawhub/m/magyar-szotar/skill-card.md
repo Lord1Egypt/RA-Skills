@@ -1,45 +1,58 @@
-## Description: <br>
-Magyar szavak jelentésének, szinonimáinak, szólások magyarázatának és nyelvi elemzésének gyors lekérdezését támogatja helyi referenciafájlokból vagy opcionális webes forrásokból. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides quick lookup of Hungarian word meanings, synonyms, idioms, expressions, and linguistic analysis from local references or public web sources.
 
-## Publisher: <br>
-[Izsook](https://clawhub.ai/user/Izsook) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[izsook](https://clawhub.ai/user/izsook)
 
-## Use Case: <br>
-External users, employees, and developers can use this skill to answer Hungarian dictionary questions, find synonyms, explain proverbs and idioms, and perform lightweight Hungarian language analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional web fallback can disclose queried words or phrases to public dictionary services. <br>
-Mitigation: Use local reference files for private, confidential, or sensitive text; only allow web lookup when the user accepts that queried terms may leave the environment. <br>
-Risk: Local dictionary coverage is limited and may not contain every Hungarian term or idiom. <br>
-Mitigation: State when a word is not found locally, cite the reference used when available, and avoid presenting uncertain fallback results as definitive. <br>
+## Use Case:
 
+External users and developers use this skill to answer Hungarian dictionary questions, find synonyms, explain idioms and proverbs, and support lightweight Hungarian linguistic analysis.
 
-## Reference(s): <br>
-- [Arcanum - Magyar Ertelmezo Szotar](references/arcanum-ertsz.md) <br>
-- [Magyar Kozmondasok es Szolasok](references/kozmondasok.md) <br>
-- [Magyar Szotar JSON](references/magyar-szotar.json) <br>
-- [Arcanum Magyar Ertelmezo Szotar](https://www.arcanum.com/hu/online-kiadvanyok/Lexikonok-a-magyar-nyelv-ertelmezo-szotara-1BE8B/) <br>
-- [Hungarian Wiktionary](https://hu.wiktionary.org/) <br>
-- [Sztaki Dictionary](https://dict.sztaki.hu/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text with definitions, synonyms, examples, and source notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local reference entries first and optional public dictionary lookups when local coverage is insufficient.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Public web fallback can send lookup terms or batches to external dictionary services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local reference files for confidential terms, or get user approval before external lookup.
+
+Risk: Dictionary and proverb references may be incomplete, dated, or fail to cover uncommon terms.
+
+Mitigation: Disclose uncertainty, check source freshness, and suggest alternatives when a term is not found.
+
+## Reference(s):
+
+- [Arcanum - Magyar Ertelmezo Szotar](https://www.arcanum.com/hu/online-kiadvanyok/Lexikonok-a-magyar-nyelv-ertelmezo-szotara-1BE8B/)
+- [Wiktionary Hungarian](https://hu.wiktionary.org/)
+- [Sztaki Szotar](https://dict.sztaki.hu/)
+- [references/arcanum-ertsz.md](references/arcanum-ertsz.md)
+- [references/kozmondasok.md](references/kozmondasok.md)
+- [references/magyar-szotar.json](references/magyar-szotar.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses with dictionary entries, synonym lists, idiom explanations, examples, and lookup guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local reference data first and public dictionary services as fallback when appropriate.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

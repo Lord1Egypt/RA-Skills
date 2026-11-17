@@ -1,46 +1,58 @@
-## Description: <br>
-AI写作流水线：给一个主题，出9篇风格迥异的中文散文，自动评分排名。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates nine stylistically varied Chinese prose essays from a topic and can optionally score and rank them.
 
-## Publisher: <br>
-[dthinkr](https://clawhub.ai/user/dthinkr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dthinkr](https://clawhub.ai/user/dthinkr)
 
-## Use Case: <br>
-External users and writers use this skill to submit a Chinese prose topic to Prose Kit, generate nine stylistically varied essays, optionally score them, and save the resulting Markdown files locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send a user's email address and writing topics to the third-party prose-kit.com service. <br>
-Mitigation: Use only email addresses and topics the user is comfortable sharing externally, and require explicit confirmation before registration or API submission. <br>
-Risk: The provided snippets write local Markdown files using topic-derived filenames. <br>
-Mitigation: Sanitize output filenames and safely quote topic and task values before running the snippets. <br>
-Risk: The skill includes upgrade and payment links for a third-party Pro tier. <br>
-Mitigation: Require explicit user confirmation before opening upgrade links or taking payment-related actions. <br>
+## Use Case:
 
+External users use this skill to request a batch of Chinese prose essays on a topic, save the generated essays as local Markdown files, and review a compact summary table with optional scoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dthinkr/prose-kit) <br>
-- [Prose Kit registration endpoint](https://prose-kit.com/v1/register) <br>
-- [Prose Kit generation endpoint](https://prose-kit.com/v1/generate) <br>
-- [Prose Kit usage endpoint](https://prose-kit.com/v1/usage) <br>
-- [Prose Kit upgrade page](https://prose-kit.com/buy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash and Python snippets, plus generated Markdown essay files and a summary table.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses PROSE_KIT_API_KEY and writes essay files under prose-kit-output/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill sends email addresses and writing topics to a hosted third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user consent before registration or generation requests, and disclose what information is sent to prose-kit.com.
+
+Risk: Raw shell and Python snippets handle user-controlled topic values and write local files.
+
+Mitigation: Escape command inputs, validate API responses, sanitize filenames, and confine writes to the intended prose-kit-output/ directory.
+
+Risk: The security evidence marks the release as suspicious due to account, email, command, and file-write behavior.
+
+Mitigation: Review and scan the skill before deployment, and install only when the data-sharing and local-write behavior is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dthinkr/skills/prose-kit)
+- [Publisher profile](https://clawhub.ai/user/dthinkr)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and generated Markdown essay files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves generated essays under prose-kit-output/ and prints a summary table instead of full essay text.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

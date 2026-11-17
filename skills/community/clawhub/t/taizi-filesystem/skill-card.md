@@ -1,40 +1,57 @@
-## Description: <br>
-Advanced filesystem operations - listing, searching, batch processing, and directory analysis for Clawdbot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced filesystem operations - listing, searching, batch processing, and directory analysis for Clawdbot.
 
-## Publisher: <br>
-[fresh3](https://clawhub.ai/user/fresh3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fresh3](https://clawhub.ai/user/fresh3)
 
-## Use Case: <br>
-Developers and agent users use this skill to inspect, search, copy, and analyze local filesystem content with filters, structured output, dry-run support, and safety-oriented defaults. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate across broad local filesystem paths, which can expose or affect more files than intended. <br>
-Mitigation: Start with narrow target paths, avoid broad home or system paths unless needed, and confirm path filters before running operations. <br>
-Risk: Batch copy or overwrite actions can replace files if used without review. <br>
-Mitigation: Run copy commands with --dry-run first, confirm destinations, and use --overwrite only when backups exist or replacement is intended. <br>
+## Use Case:
 
+Developers and agent operators use this skill to inspect directory contents, search files, copy matching files, render directory trees, and analyze filesystem structure from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fresh3/taizi-filesystem) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe filesystem paths, filters, search patterns, dry-run copy commands, directory trees, and analysis summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The reviewed package is missing the declared filesystem executable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a ClawHub or package release that includes the executable and verify installation artifacts before enabling the skill.
+
+Risk: The documentation points users toward unpinned external code with read-write filesystem access.
+
+Mitigation: Use pinned, signed, or checksum-verified releases and restrict the skill to intended directories before running file operations.
+
+Risk: Broad content searches can expose sensitive matched file content to the agent or logs.
+
+Mitigation: Narrow search paths and patterns, avoid system-log examples unless necessary, and review matched content handling before use.
+
+## Reference(s):
+
+- [Taizi Filesystem on ClawHub](https://clawhub.ai/fresh3/skills/taizi-filesystem)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include tabular, tree, list, or JSON-style filesystem output depending on the requested operation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

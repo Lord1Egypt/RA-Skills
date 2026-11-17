@@ -1,43 +1,54 @@
-## Description: <br>
-Helps agents draft a Superior Trade breakout strategy with reference code, configuration, tuning guidance, and explicit regime-sensitivity warnings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in writing Superior Trade swing or intraday breakout, momentum, and trend-following strategy templates while highlighting the disclosed unprofitable reference backtest and regime sensitivity.
 
-## Publisher: <br>
-[superior-ai](https://clawhub.ai/user/superior-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superior-ai](https://clawhub.ai/user/superior-ai)
 
-## Use Case: <br>
-External users and trading strategy developers use this skill to write or adapt a swing and intraday breakout strategy for Superior Trade, including backtest context, configuration, and tuning options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial strategy guidance can be mistaken for a profit guarantee or used without adequate testing. <br>
-Mitigation: Treat the output as strategy guidance, then backtest or dry-run it before connecting any real trading account. <br>
-Risk: Incorrect exchange, margin, stake, stoploss, or pair settings can create unintended financial exposure. <br>
-Mitigation: Review exchange, margin, stake, stoploss, and pair settings carefully before deployment. <br>
-Risk: The breakout template is regime sensitive and long-only breakouts may lose money in downtrends. <br>
-Mitigation: Use regime filters or multi-pair scans where appropriate, and evaluate performance against current market conditions. <br>
+## Use Case:
 
+Developers and trading-strategy authors use this skill to draft and tune a Superior Trade breakout strategy, including reference code, configuration, and cautions about market-regime dependence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/superior-ai/breakout) <br>
-- [Freqtrade trailing stop documentation](https://www.freqtrade.io/en/stable/stoploss/#trailing-stop-loss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces strategy guidance for review; does not execute trades.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Automated futures trading can lose money, and this template is intended for users who understand that risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Backtest, review, and paper-trade the strategy before any live deployment.
+
+Risk: The reference long-only breakout backtest was unprofitable and sensitive to market regime.
+
+Mitigation: Use regime filters, wider multi-pair scans, and fresh market-specific tests before relying on the strategy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/superior-ai/skills/breakout)
+- [Freqtrade trailing stop documentation](https://www.freqtrade.io/en/stable/stoploss/#trailing-stop-loss)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with Python and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes trading-strategy caveats, configuration defaults, tuning guidance, and disclosed backtest context.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter says 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

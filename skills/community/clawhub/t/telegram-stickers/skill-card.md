@@ -1,42 +1,55 @@
-## Description: <br>
-Create Telegram stickers from images as static PNG stickers or animated WebM video stickers, including background removal, resizing to Telegram specifications, animation, and upload workflow guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create Telegram stickers from images: static PNG stickers or animated WebM video stickers with background removal, resizing, animation, and Telegram upload guidance.
 
-## Publisher: <br>
-[saintsola13](https://clawhub.ai/user/saintsola13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[saintsola13](https://clawhub.ai/user/saintsola13)
 
-## Use Case: <br>
-External users, creators, and developers use this skill to convert images into Telegram-ready sticker assets and to follow the correct @Stickers bot workflow for static or video sticker packs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Animated sticker creation can upload generated WebM files to tmpfiles.org by default. <br>
-Mitigation: Use the documented --no-upload option for personal photos, private artwork, copyrighted material, or any content that should not be sent to tmpfiles.org. <br>
-Risk: The workflow depends on local image processing packages and ffmpeg. <br>
-Mitigation: Install Python packages and ffmpeg from trusted sources and review generated files before sharing or uploading them. <br>
+## Use Case:
 
+Developers and creators use this skill to turn photos or artwork into Telegram-ready sticker files and to follow the @Stickers bot workflow for static and video sticker packs.
 
-## Reference(s): <br>
-- [@Stickers Bot Step-by-Step Guide](references/stickers-bot-guide.md) <br>
-- [ClawHub release page](https://clawhub.ai/saintsola13/telegram-stickers) <br>
-- [Publisher profile](https://clawhub.ai/user/saintsola13) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated PNG or WebM sticker files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static output is a 512x512 PNG sticker; animated output is a VP9 WebM video sticker generated from PNG frames.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Animated sticker generation uploads files to tmpfiles.org by default, which may expose private images or proprietary artwork.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --no-upload for local-only output and avoid processing sensitive images unless uploads are disabled.
+
+Risk: The skill depends on local image processing packages, ffmpeg, and the rembg model download.
+
+Mitigation: Install dependencies in a non-privileged virtual environment and review generated commands before execution.
+
+## Reference(s):
+
+- [@Stickers Bot Step-by-Step Guide](references/stickers-bot-guide.md)
+- [ClawHub release page](https://clawhub.ai/saintsola13/skills/telegram-stickers)
+- [tmpfiles.org upload endpoint](https://tmpfiles.org/api/v1/upload)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [PNG and WebM files with Markdown guidance and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Animated WebM stickers may upload to tmpfiles.org by default unless --no-upload is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

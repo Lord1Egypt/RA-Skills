@@ -1,44 +1,61 @@
-## Description: <br>
-Slim Project Memory restructures or initializes project memory into a compact CLAUDE.md router, a gitignored local environment reference, a topical docs tree, and a housekeeping protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Restructures or initializes a compact project memory system with a router-style CLAUDE.md, a gitignored local environment reference, topical docs, and a housekeeping protocol.
 
-## Publisher: <br>
-[adelvillar1](https://clawhub.ai/user/adelvillar1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adelvillar1](https://clawhub.ai/user/adelvillar1)
 
-## Use Case: <br>
-Developers and agent users use this skill to reduce project-memory bloat, separate local environment references from shared documentation, and keep project context organized across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project memory migration can move or rewrite documentation in ways that lose important project context or point agents at the wrong environment. <br>
-Mitigation: Review the proposed section-to-destination map before edits and verify all CLAUDE.md docs pointers resolve after migration. <br>
-Risk: Local environment reference files may accidentally include credential values if users paste real secrets into markdown. <br>
-Mitigation: Keep CLAUDE.local.md gitignored, record only environment variable names and non-secret URLs, and store real credentials in environment managers or ignored .env files. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to reduce project-memory bloat, preserve environment context safely, and organize persistent agent documentation into a maintainable docs tree.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/adelvillar1/slim-project-memory) <br>
-- [CLAUDE Template](artifact/references/CLAUDE-template.md) <br>
-- [Local Environment Reference Template](artifact/references/CLAUDE-local-template.md) <br>
-- [Housekeeping Protocol](artifact/references/housekeeping-protocol.md) <br>
-- [Case Study: Cruise Intelligence Migration](artifact/references/cruise-intelligence-case-study.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and file-edit instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or reorganize CLAUDE.md, CLAUDE.local.md, docs files, and .gitignore entries in the target project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The security evidence warns that contradictory credential-handling instructions could cause real secrets to be persisted in a local agent memory file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep only environment variable names, non-secret service names, and non-secret URLs in CLAUDE.local.md; store secret values in environment managers or ignored .env files.
+
+Risk: The skill can guide agents through DB migrations, commits, pushes, and other high-impact project operations.
+
+Mitigation: Require explicit approval in the current turn before migrations, commits, pushes, destructive commands, or operations against non-local environments.
+
+Risk: The security guidance notes that unpinned npx commands may introduce avoidable supply-chain risk.
+
+Mitigation: Prefer pinned local project dependencies or explicitly pinned package versions when running generated shell commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adelvillar1/skills/slim-project-memory)
+- [CLAUDE template](references/CLAUDE-template.md)
+- [Local environment reference template](references/CLAUDE-local-template.md)
+- [Housekeeping protocol](references/housekeeping-protocol.md)
+- [Cruise Intelligence migration case study](references/cruise-intelligence-case-study.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or edits project documentation files and local configuration references; user review is required before commits, pushes, migrations, or secret-related changes.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

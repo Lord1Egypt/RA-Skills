@@ -1,40 +1,58 @@
-## Description: <br>
-Guides users through a JXT guest workflow to collect heat exchanger parameters, calculate values, and generate CAD drawing production links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+换热器CAD图纸生成。当用户说"换热器"、"生成换热器图纸"、"做一个换热器"、"heat-exchanger"时使用此 skill。
 
-## Publisher: <br>
-[liv09370](https://clawhub.ai/user/liv09370) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liv09370](https://clawhub.ai/user/liv09370)
 
-## Use Case: <br>
-External users, developers, and engineers use this skill to collect heat exchanger design inputs, call the JXT mechanical-parts API, review calculated parameters, and obtain a shareable CAD drawing production link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CAD parameters, manufacturing details, generated guest codes, and jixietools.com share links may expose private design information. <br>
-Mitigation: Use the guest workflow only for designs that can be sent to the JXT service and shared by link; treat generated links and guest codes as sensitive. <br>
+## Use Case:
 
+External users and mechanical engineers use this skill to collect heat-exchanger design parameters, submit them to jixietools.com, review calculated values, and create a guest CAD drawing production sheet.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liv09370/heat-exchanger) <br>
-- [JXT API base URL](https://jixietools.com/api/v1) <br>
-- [JXT guest production sheet link pattern](https://jixietools.com/s/GUEST_CODE) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown conversation with tables, JSON examples, and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Chinese-language interaction steps and shareable JXT guest workflow links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Proprietary CAD or engineering inputs may be sent to jixietools.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only inputs that are approved for sharing with that third-party service, and get clear user consent before submission.
+
+Risk: Guest links or guest codes may expose job status or generated files to anyone who receives them.
+
+Mitigation: Treat guest URLs and codes as sensitive, share them only with intended recipients, and avoid submitting confidential projects through unauthenticated guest flows.
+
+Risk: User-provided values are inserted into shell command examples for JSON API requests.
+
+Mitigation: Serialize JSON safely when adapting the workflow, and review commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liv09370/skills/heat-exchanger)
+- [jixietools.com API base URL](https://jixietools.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance]
+
+**Output Format:** [Chinese-language conversational guidance with Markdown tables, inline shell commands, and JSON-shaped API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides one parameter at a time, preserves the calculation filename across iterations, creates a guest production link, and polls job status.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

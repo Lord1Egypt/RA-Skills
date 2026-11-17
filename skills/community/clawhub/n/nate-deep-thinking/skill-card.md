@@ -1,42 +1,54 @@
-## Description: <br>
-Comprehensive deep reasoning framework that guides systematic, thorough thinking for complex tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Thinking guides agents through systematic, evidence-based reasoning for complex, ambiguous, architectural, debugging, or high-stakes tasks.
 
-## Publisher: <br>
-[joeycacciatore3](https://clawhub.ai/user/joeycacciatore3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeycacciatore3](https://clawhub.ai/user/joeycacciatore3)
 
-## Use Case: <br>
-Developers and engineers use this skill to apply deeper analysis to ambiguous, multi-step, architectural, debugging, refactoring, and high-stakes tasks. It helps the agent compare approaches, identify trade-offs, check assumptions, and verify conclusions before responding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may route the skill into many system design, refactoring, scaling, and resilience conversations. <br>
-Mitigation: Review or disable the skill when narrower routing is preferred. <br>
-Risk: Advice-oriented output can still influence code or architecture decisions even though the artifact does not execute code. <br>
-Mitigation: Review recommendations before applying them to production systems. <br>
+## Use Case:
 
+Developers, engineers, and other agent users use this skill to prompt deeper analysis, compare alternatives, and verify conclusions before acting on complex tasks.
 
-## Reference(s): <br>
-- [Deep Thinking Protocol Reference](reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/joeycacciatore3/nate-deep-thinking) <br>
-- [Publisher Profile](https://clawhub.ai/user/joeycacciatore3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance and structured reasoning prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no artifact-backed evidence of credential use, network calls, persistence, or automatic code execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release metadata) <br>
+Risk: Broad activation can add verbosity or extra token use on complex tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill where deeper reasoning is valuable and keep ordinary, single-step tasks outside its intended activation scope.
+
+Risk: Reasoning guidance may still produce incorrect or misleading recommendations if the agent does not verify claims against available evidence.
+
+Mitigation: Review outputs for evidence support, edge cases, and task-specific constraints before using recommendations for important decisions.
+
+## Reference(s):
+
+- [Deep Thinking Protocol Reference](reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/joeycacciatore3/skills/nate-deep-thinking)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown or plain text guidance, with code, shell commands, or configuration snippets when relevant to the user's task.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May increase response length or token use because the activation scope covers broad complex-task reasoning.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Framework core engineer skill for routing, events, hooks, extends, and extension-point contract design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Framework core engineer skill for routing, events, hooks, extends, and extension-point contract design.
 
-## Publisher: <br>
-[aiweline](https://clawhub.ai/user/aiweline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiweline](https://clawhub.ai/user/aiweline)
 
-## Use Case: <br>
-Developers and framework engineers use this skill to design WelineFramework routes, events, hooks, and extension-point contracts, including validation guidance for route refresh and HTTP checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may propose routing, event, hook, or extension-point changes that affect framework integration behavior. <br>
-Mitigation: Review proposed code and route configuration changes before applying them, and run route refresh or HTTP validation commands only in the intended WelineFramework project environment. <br>
+## Use Case:
 
+Developers and framework engineers use this skill when changing WelineFramework routing, event contracts, hooks, or extends-based extension points. It guides route registration, contract naming, implementation updates, documentation, and validation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aiweline/core-routing-extension) <br>
-- [Publisher profile](https://clawhub.ai/user/aiweline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code, configuration, and shell command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include validation expectations for route refresh, HTTP checks, event payloads, hooks, and extension-point naming.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and release evidence) <br>
+Risk: Using the skill outside a WelineFramework codebase can lead to irrelevant routing or extension-point changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only for WelineFramework work where the named project guidance files and framework conventions apply.
+
+Risk: Route or extension-point changes may be incomplete if framework validation commands are skipped.
+
+Mitigation: Review proposed edits and run the documented route refresh, HTTP request, or targeted extension-path checks before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiweline/skills/core-routing-extension)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with code, configuration, shell commands, and validation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include routing or extension-point implementation updates, contract documentation, hook metadata, and validation evidence.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

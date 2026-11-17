@@ -1,42 +1,57 @@
-## Description: <br>
-Protect OpenClaw installations from prompt injection, data exfiltration, malicious skills, and workspace tampering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Protect OpenClaw installations from prompt injection, data exfiltration, malicious skills, and workspace tampering.
 
-## Publisher: <br>
-[kylejfrost](https://clawhub.ai/user/kylejfrost) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kylejfrost](https://clawhub.ai/user/kylejfrost)
 
-## Use Case: <br>
-Developers and operators use this skill to scan OpenClaw skills, audit outbound data-flow patterns, monitor file integrity, harden workspace configuration, and check new skills before installation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Some commands can persistently change agent rules or modify file permissions outside the workspace. <br>
-Mitigation: Run tools without --fix first, review the exact paths reported, and manually approve any permission or rules changes. <br>
-Risk: The scanner results are advisory and may miss issues because the bundled scanner has a self-exclusion blind spot. <br>
-Mitigation: Treat clean scan results as one input to review rather than proof of safety, and inspect the skill files before installation. <br>
-Risk: Adding security rules by appending a template can create broad behavior changes for an agent. <br>
-Mitigation: Manually merge the AGENTS.md rules and confirm they match the local workspace policy before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Security Hardening ClawHub Page](https://clawhub.ai/kylejfrost/openclaw-security-hardening) <br>
-- [Security Rules Template](assets/security-rules-template.md) <br>
+## Use Case:
 
+Developers and operators use this skill to audit OpenClaw skill files, monitor installed skill integrity, check outbound data-flow patterns, and apply basic workspace hardening controls.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and local scan output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled tools may report findings, modify permissions, append configuration guidance, or create local integrity baselines when invoked with fix or init options.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The local hardening tools may be mistaken for a complete security boundary.
+
+Mitigation: Treat the outputs as advisory and keep manual review in the approval process for skills, workspace changes, and outbound access.
+
+Risk: The authoritative security scan reports bypass flaws in the install guard and URL whitelist that can make unsafe skills appear clean.
+
+Mitigation: Do not rely on install-guard.sh as the sole approval gate until those bypass issues are fixed and retested.
+
+Risk: Workspace hardening actions can modify file permissions, .gitignore entries, and local security directories.
+
+Mitigation: Review reported changes before running fix modes, and run check-only modes first in shared or sensitive workspaces.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/kylejfrost/skills/openclaw-security-hardening)
+- [Security rules template](assets/security-rules-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and local shell report output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local hash baselines, whitelist entries, permission changes, .gitignore updates, and incident-log directories when users run the provided scripts with write-oriented options.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

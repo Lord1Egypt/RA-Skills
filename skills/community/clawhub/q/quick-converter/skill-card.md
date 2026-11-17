@@ -1,41 +1,55 @@
-## Description: <br>
-Fast offline unit, time, currency, and crypto conversions for quick everyday math in agent chats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fast offline unit/time/currency/crypto conversions - ideal for quick everyday math in agent chats.
 
-## Publisher: <br>
-[nihalmehta007](https://clawhub.ai/user/nihalmehta007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nihalmehta007](https://clawhub.ai/user/nihalmehta007)
 
-## Use Case: <br>
-Agent users can use this skill to calculate unit, time, currency, and crypto conversions in chat without external APIs or dependencies. It is best suited for casual planning and everyday math, with live-source checks for financial values. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Currency and crypto conversions use static approximate rates and can be stale or inaccurate for financial decisions. <br>
-Mitigation: Verify current values with a trusted live source before banking, trading, or making financial commitments. <br>
-Risk: Time calculations can be wrong if the assumed timezone, current date, or target date differs from the user's intent. <br>
-Mitigation: Confirm the timezone and target date before relying on time-sensitive answers. <br>
+## Use Case:
 
+External users and agent developers use this skill for quick offline conversions across units, approximate fiat and crypto values, and event time deltas in everyday chat workflows.
 
-## Reference(s): <br>
-- [Quick Converter on ClawHub](https://clawhub.ai/nihalmehta007/quick-converter) <br>
-- [Prompt examples](artifact/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text with formulas, rounded results, and approximation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses static March 2026 financial assumptions and does not call external APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Static currency and crypto reference rates may be stale or unsuitable for banking, trading, purchasing, or other financial decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for casual offline estimates and verify live prices with authoritative sources before acting on financial outputs.
+
+Risk: Time calculations may be misleading when the user's timezone differs from the skill's IST/Ahmedabad default.
+
+Mitigation: Ask users to provide an explicit timezone for scheduling, deadlines, and event countdowns.
+
+## Reference(s):
+
+- [Quick Converter release page](https://clawhub.ai/nihalmehta007/skills/quick-converter)
+- [Prompt examples](artifact/examples.md)
+- [Publisher profile](https://clawhub.ai/user/nihalmehta007)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with formulas, rounded numeric estimates, and short caveats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline estimates use built-in formulas and static March 2026 currency and crypto reference rates.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

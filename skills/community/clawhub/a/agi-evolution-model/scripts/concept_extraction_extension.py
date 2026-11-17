@@ -1,3 +1,9 @@
+
+# 日志记录
+__version__ = "1.0.0"
+
+import logging
+logger = logging.getLogger(__name__)
 """
 概念提取扩展模块（增强版）
 为认知架构洞察组件新增概念提取能力
@@ -22,6 +28,7 @@ from datetime import datetime
 from typing import List, Dict, Optional, Tuple
 import hashlib
 from collections import defaultdict, OrderedDict
+from interfaces import TraceContext, create_trace_context
 
 
 class TFIDFCalculator:
@@ -759,3 +766,11 @@ def create_concept_extension(cognitive_insight) -> ConceptExtractionExtension:
         概念提取扩展实例
     """
     return ConceptExtractionExtension(cognitive_insight)
+
+
+# 错误处理
+def _handle_error(error: Exception, context: str = "") -> None:
+    """处理错误"""
+    import logging
+    logger = logging.getLogger(__name__)
+    logger.error(f"错误发生在 {context}: {str(error)}", exc_info=True)

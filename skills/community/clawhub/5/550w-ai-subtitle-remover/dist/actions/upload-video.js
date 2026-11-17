@@ -4,6 +4,7 @@ exports.uploadVideo = uploadVideo;
 const validator_1 = require("../validator");
 const error_handler_1 = require("../error-handler");
 const types_1 = require("../types");
+const i18n_1 = require("../i18n");
 async function uploadVideo(params, client) {
     const validationError = (0, validator_1.validate)("uploadVideo", params);
     if (validationError)
@@ -13,7 +14,7 @@ async function uploadVideo(params, client) {
     if (apiResponse.code === types_1.ErrorCode.SUCCESS) {
         return {
             code: types_1.ErrorCode.SUCCESS,
-            message: "上传成功",
+            message: (0, i18n_1.localize)(params.locale, "上传成功", "Upload completed"),
             videoUrl: apiResponse.videoUrl,
             coverUrl: apiResponse.coverUrl,
             width: apiResponse.width,
@@ -21,6 +22,6 @@ async function uploadVideo(params, client) {
             duration: apiResponse.duration,
         };
     }
-    return (0, error_handler_1.mapApiError)(apiResponse);
+    return (0, error_handler_1.mapApiError)(apiResponse, params.locale, params.region);
 }
 //# sourceMappingURL=upload-video.js.map

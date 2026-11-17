@@ -1,4 +1,4 @@
-# 网页视频演示
+# Web video demonstration
 
 Turn articles, scripts, lessons, and product demos into recordable 16:9 step-driven web presentations with theme tokens and recording guidance.
 
@@ -6,12 +6,12 @@ Turn articles, scripts, lessons, and product demos into recordable 16:9 step-dri
 
 - ID: `fec-web-video-presentation`
 - Category: `design-ui`
-- Version: `2.7.0`
+- Version: `2.9.0`
 - Source: `skills/fec-web-video-presentation/SKILL.md`
 
 ## Description
 
-Use when turning an article, talk script, lesson, product demo, or narrated explanation into a recordable 16:9 web presentation with step-driven scenes, optional narration alignment, theme tokens, and screen-recording guidance; Chinese triggers include 网页视频, 动态演示, 口播稿转视频, 可录屏演示, 16:9 演示.
+Use when turning an article, talk script, lesson, product demo, or narrated explanation into a recordable 16:9 web presentation with step-driven scenes, optional narration alignment, theme tokens, and screen-recording guidance; Chinese triggers include web video, dynamic demonstration, spoken script to video, screen-recordable demonstration, 16:9 demonstration.
 
 ## Usage
 

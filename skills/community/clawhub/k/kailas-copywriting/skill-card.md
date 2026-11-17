@@ -1,38 +1,49 @@
-## Description: <br>
-根据凯乐石产品信息（型号、卖点、场景、痛点）生成极具转化率的直播或短视频带货口播文案。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据用户提供的凯乐石户外产品型号、卖点、场景和痛点，生成适合直播或短视频带货的中文口播文案。
 
-## Publisher: <br>
-[yuqingyang3019-cyber](https://clawhub.ai/user/yuqingyang3019-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuqingyang3019-cyber](https://clawhub.ai/user/yuqingyang3019-cyber)
 
-## Use Case: <br>
-External creators, livestream operators, and ecommerce marketers use this skill to turn Kailas outdoor product details into concise Chinese livestream or short-video sales scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts may contain product specification, availability, sizing, urgency, or performance claims that are inaccurate or non-compliant. <br>
-Mitigation: Review generated copy against verified product data and applicable advertising standards before publishing or using it in commerce. <br>
+## Use Case:
 
+External marketers, ecommerce operators, and agents use this skill to turn Kailas outdoor product details into Chinese livestream or short-video sales scripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuqingyang3019-cyber/kailas-copywriting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese Markdown-formatted sales copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Single 200-300 character script following a four-step pain-point, product, benefit translation, and call-to-action structure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated copy may add urgent sales language or claims about scarcity, availability, livestream identity, pricing, or service promises that were not supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and correct outputs before publication, especially stock, price, service, availability, and presenter-identity claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuqingyang3019-cyber/skills/kailas-copywriting)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown or plain text sales script, usually 200-300 Chinese characters in a four-step structure.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires product model/name, main selling point, secondary selling point, use scenario, and scenario pain point.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

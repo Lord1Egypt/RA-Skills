@@ -1,41 +1,56 @@
-## Description: <br>
-Helps an agent initialize Lark meeting-room data, find available rooms, and book meetings through the local lark-cli account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助用户预约会议室, 当用户需要预约会议室时执行此技能
 
-## Publisher: <br>
-[gooodplus](https://clawhub.ai/user/gooodplus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[gooodplus](https://clawhub.ai/user/gooodplus)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees and agents use this skill to initialize Lark meeting-room configuration, check room availability, apply a room blacklist, and create calendar bookings with a selected available room.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can use a logged-in Lark account to create calendar events and reserve rooms.
+
+Mitigation: Confirm the exact start time, end time, meeting title, and room selection before executing booking commands.
+
+Risk: Debug logging may expose sensitive meeting, room, or API response details.
+
+Mitigation: Review logging settings before use and disable or reduce debug logging in environments where meeting metadata is sensitive.
+
+Risk: The skill documentation suggests a sudo ownership command when configuration files are not writable.
+
+Mitigation: Run privileged ownership changes only after verifying the target path and confirming that the permission change is necessary.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees and assistants use this skill to initialize Lark room lists, apply meeting-room blacklist rules, check room availability, and create calendar bookings. It is intended for environments where the user has already configured lark-cli with the needed Lark permissions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses local Lark credentials to inspect meeting rooms, check availability, create calendar events, and add room resources. <br>
-Mitigation: Install and run it only with a trusted lark-cli login, and confirm the exact time, timezone, title, calendar, and room before booking. <br>
-Risk: Permission repair commands that change local file ownership can affect unintended paths if copied with the wrong directory. <br>
-Mitigation: Avoid sudo ownership commands unless the path is understood and the command is needed to repair local configuration permissions. <br>
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration edits, and user-facing booking status text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gooodplus/lark-meeting) <br>
-- [Lark meeting room freebusy API](https://open.feishu.cn/open-apis/meeting_room/freebusy/batch_get) <br>
+**Other Properties Related to Output:** [May create or update local meeting-room configuration and may create Lark calendar events when run with an authenticated Lark account.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local meeting-room blacklist configuration and may create or use local meeting-room configuration files during initialization and booking.] <br>
+1.0.1 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

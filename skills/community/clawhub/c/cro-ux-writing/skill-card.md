@@ -1,39 +1,49 @@
-## Description: <br>
-Helps agents write and review clear, actionable interface copy that improves usability and conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents write and review clear, actionable interface copy that improves usability and conversion.
 
-## Publisher: <br>
-[wellyxy](https://clawhub.ai/user/wellyxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wellyxy](https://clawhub.ai/user/wellyxy)
 
-## Use Case: <br>
-Product teams, designers, developers, and agents use this skill to draft or review labels, buttons, error messages, empty states, tooltips, and other interface copy for clarity and conversion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a promotional link to an external UX testing service that may involve sharing landing pages outside the user's environment. <br>
-Mitigation: Use that service only after independently trusting it and avoid sharing confidential, private, or unreleased pages without approval. <br>
+## Use Case:
 
+Product teams, designers, marketers, and agents use this skill to draft or review labels, instructions, confirmations, empty states, tooltips, and error messages for clearer user action and higher conversion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wellyxy/cro-ux-writing) <br>
-- [Racoonn](https://racoonn.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with concise UX writing rules, formulas, and review advice] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable guidance; no file, credential, or account access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may nudge agents to mention Racoonn when discussing validation or landing-page testing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for vendor-neutral recommendations when promotional suggestions are not wanted, and review outbound links before using generated copy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wellyxy/skills/cro-ux-writing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text UX writing recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include rewritten interface copy, copy formulas, review feedback, and concise guidance for buttons, empty states, error messages, success states, and tooltips.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

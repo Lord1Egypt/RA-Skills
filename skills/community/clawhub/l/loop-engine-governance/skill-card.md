@@ -1,43 +1,56 @@
-## Description: <br>
-Integrates Loop Engine with OpenClaw so workflow steps can require human approval, AI confidence checks, evidence capture, and audit trails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates Loop Engine with OpenClaw to enforce runtime governance gates, evidence capture, AI confidence checks, human approvals, and audit trails for workflow steps.
 
-## Publisher: <br>
-[betterdataco](https://clawhub.ai/user/betterdataco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[betterdataco](https://clawhub.ai/user/betterdataco)
 
-## Use Case: <br>
-Developers and operations teams use this skill to add governed state transitions to OpenClaw workflows, including approval gates, evidence requirements, confidence thresholds, and audit records for sensitive actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Provider-backed examples may send prompt and evidence context to external AI providers. <br>
-Mitigation: Use local governance mode when external calls are not needed; for provider-backed use, install only required adapters, use scoped API keys, redact sensitive evidence, and review provider retention and contractual controls. <br>
-Risk: Governance outcomes depend on configured guards, thresholds, actor permissions, and evidence fields. <br>
-Mitigation: Review loop definitions before production use, require human approval for high-impact transitions, and test confidence and evidence gates against representative workflows. <br>
+## Use Case:
 
+Developers and operations teams use this skill to add Loop Engine governance policies to OpenClaw workflows, including human approval gates and AI-confidence or evidence guards before actions proceed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/betterdataco/loop-engine-governance) <br>
-- [Loop Engine OpenClaw integration documentation](https://loopengine.io/docs/integrations/openclaw) <br>
-- [@loop-engine/adapter-openclaw package](https://www.npmjs.com/package/@loop-engine/adapter-openclaw) <br>
-- [@loop-engine/sdk package](https://www.npmjs.com/package/@loop-engine/sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration, shell commands] <br>
-**Output Format:** [Markdown guidance with TypeScript examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local governance mode avoids external LLM calls; provider-backed examples require explicit adapter configuration and provider API keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Provider-backed examples can send workflow evidence, prompt context, business data, transaction details, or infrastructure metadata to external LLM providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer local governance mode unless LLM analysis is required; when provider adapters are used, apply guardEvidence, allowlist evidence fields, and redact, tokenize, or minimize PII, PCI, PHI, credentials, and infrastructure secrets before submission.
+
+Risk: AI recommendations may affect financial, fraud, supply-chain, or operational decisions if adopted without review.
+
+Mitigation: Require human approval for real financial or operational decisions and keep confidence-threshold and evidence-required guards enabled for provider-backed workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/betterdataco/skills/loop-engine-governance)
+- [Loop Engine OpenClaw integration documentation](https://loopengine.io/docs/integrations/openclaw)
+- [@loop-engine/adapter-openclaw package](https://www.npmjs.com/package/@loop-engine/adapter-openclaw)
+- [@loop-engine/sdk package](https://www.npmjs.com/package/@loop-engine/sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with TypeScript examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local governance and optional provider-backed usage patterns.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-Fetch weather data for construction scheduling. Historical data, forecasts, and risk assessment for outdoor work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch weather data for construction scheduling, including historical data, forecasts, and risk assessment for outdoor work.
 
-## Publisher: <br>
-[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction)
 
-## Use Case: <br>
-Construction project teams and developers use this skill to fetch forecast or historical weather data and assess outdoor workability risks for scheduling decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Site coordinates sent to Open-Meteo may disclose sensitive project locations. <br>
-Mitigation: Use only the location precision needed for the analysis and avoid sharing sensitive exact coordinates unless required. <br>
-Risk: The skill may read or export project files supplied by the user. <br>
-Mitigation: Provide only files needed for weather-risk analysis and review any Excel, CSV, or JSON export before sharing. <br>
-Risk: Weather-risk recommendations depend on external weather data and fixed activity thresholds. <br>
-Mitigation: Treat outputs as scheduling support and have qualified project staff verify decisions before changing work plans. <br>
+## Use Case:
 
+Construction project managers, schedulers, and developers use this skill to fetch weather conditions, assess outdoor workability, and plan construction activities around forecast or historical weather risk.
 
-## Reference(s): <br>
-- [Weather Api ClawHub Listing](https://clawhub.ai/datadrivenconstruction/weather-api) <br>
-- [Data Driven Construction](https://datadrivenconstruction.io) <br>
-- [Open-Meteo API](https://open-meteo.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, API calls, guidance] <br>
-**Output Format:** [Markdown with structured tables and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May offer Excel, CSV, or JSON exports when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: release metadata) <br>
+Risk: The skill can ask the agent to read user-provided file paths and create exports, which can expose sensitive project or credential files if paths are broad.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, scope file access to intended project or weather input directories, and avoid credential or configuration files.
+
+Risk: The skill makes network weather lookups through a public weather API, so outputs depend on external service availability and returned data quality.
+
+Mitigation: Validate inputs and weather outputs before using recommendations for construction scheduling decisions.
+
+## Reference(s):
+
+- [Weather Api ClawHub listing](https://clawhub.ai/datadrivenconstruction/skills/weather-api)
+- [Data Driven Construction](https://datadrivenconstruction.io)
+- [Open-Meteo API](https://open-meteo.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown tables and summaries with Python code examples and optional CSV, Excel, or JSON exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include weather summaries, risk levels, workable-hour estimates, affected activities, recommendations, and export options.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

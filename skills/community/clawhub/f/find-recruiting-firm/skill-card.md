@@ -1,43 +1,54 @@
-## Description: <br>
-Find, shortlist, vet, and enrich US recruiting and staffing firms through the ServiceGraph pro_services dataset, including executive search, RPO, contingent staffing, temp staffing, and vertical specializations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find, shortlist, vet, and enrich US recruiting and staffing firms through the ServiceGraph pro_services API, including executive search, RPO, contingent staffing, temp staffing, and vertical recruiting specialties.
 
-## Publisher: <br>
-[nostrband](https://clawhub.ai/user/nostrband) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nostrband](https://clawhub.ai/user/nostrband)
 
-## Use Case: <br>
-Recruiting, talent, procurement, and operations teams use this skill to find external US recruiting or staffing firms and decide which firms to shortlist or enrich. It is for procuring agencies and firms, not for hiring in-house recruiters, posting jobs, candidate career help, or non-US firm searches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ServiceGraph API credentials could be exposed if users paste tokens into chat or load environment files into the model context. <br>
-Mitigation: Keep SERVICEGRAPH_API_KEY in the shell or harness environment and prompt users to add the key locally instead of sharing it in conversation. <br>
-Risk: Unlocking detailed firm records can spend ServiceGraph credits. <br>
-Mitigation: Show the selected firm list and expected credit cost before approving unlock requests. <br>
-Risk: Searches can drift outside the intended recruiting-firm procurement scope. <br>
-Mitigation: Pin industry:hr_recruiting_staffing and decline candidate-side, in-house hiring, job-posting, and non-US firm requests. <br>
+## Use Case:
 
+Employees, external users, developers, and sourcing teams use this skill to procure external US recruiting or staffing firms and to enrich firm records before deciding whether to spend credits on detailed contact data. It is not intended for job-board advice, hiring in-house recruiters, candidate-side job search help, career coaching, non-US firm searches, or individual freelance recruiters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nostrband/find-recruiting-firm) <br>
-- [ServiceGraph API](https://api.servicegraph.co) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with inline shell commands, API request examples, and concise shortlist guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the pro_services dataset and requires a SERVICEGRAPH_API_KEY for authenticated ServiceGraph calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata; artifact frontmatter says 0.2.0) <br>
+Risk: The skill documents sourcing .env.local as shell code for REST authentication, which the authoritative security summary identifies as an avoidable high-impact risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the MCP/OAuth path, a trusted secret manager, or a pre-set SERVICEGRAPH_API_KEY environment variable; avoid sourcing local environment files unless the workspace contents are trusted.
+
+Risk: Detailed firm unlocks spend ServiceGraph credits.
+
+Mitigation: Confirm the number of firms, total credit cost, and whether cached 30-day access applies before running unlock operations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nostrband/skills/find-recruiting-firm)
+- [ServiceGraph API Base](https://api.servicegraph.co)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, API calls, configuration]
+
+**Output Format:** [Markdown with inline shell commands, API request examples, and concise firm shortlist guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose free search, validation, and brief-read calls; detailed firm unlocks cost credits and require user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

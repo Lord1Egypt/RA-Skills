@@ -1,41 +1,53 @@
-## Description: <br>
-Automate end-to-end code implementation and testing with persistent coding and testing subagents, iterating until tests pass and committing results locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrate small development workflows: parse requirements, spawn two persistent subagents (coding and testing, each with isolated 128k context), loop until tests pass, and produce local git commits.
 
-## Publisher: <br>
-[yufengwolf](https://clawhub.ai/user/yufengwolf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yufengwolf](https://clawhub.ai/user/yufengwolf)
 
-## Use Case: <br>
-Developers and engineers use this skill to coordinate small implementation-and-test workflows, split coding and testing work across persistent subagents, retry on failures, and keep local artifacts for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run local code, write files, create local commits, and retain reusable subagent state. <br>
-Mitigation: Use it in a clean or disposable repository, review generated diffs before accepting work, disable automatic commits where possible, and clear bundled session state before first use. <br>
-Risk: Scanner review marked the release suspicious because workflow automation has limited guardrails around code execution and persisted state. <br>
-Mitigation: Install only when this automation posture is acceptable, keep execution scoped to trusted workspaces, and review the generated results before relying on them. <br>
+## Use Case:
 
+Developers and engineers use this skill to coordinate small implementation-and-test workflows with separate coding and testing workers, iterative retry behavior, local result artifacts, and local git commits.
 
-## Reference(s): <br>
-- [Sample workflow specification](artifact/examples/sample_spec.txt) <br>
-- [ClawHub skill page](https://clawhub.ai/yufengwolf/workflow-runner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline commands, JSON status files, shell scripts, code changes, and local result artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes workflow artifacts under results/ and may create local git commits when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can write result files, maintain persistent workflow state, create local commits, and execute generated test artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in repositories where those actions are acceptable, inspect generated changes before relying on them, and prefer a disposable sandbox or container with limited filesystem and credential access.
+
+Risk: Untrusted archives or workflow IDs could affect local workflow execution.
+
+Mitigation: Do not provide untrusted archives or workflow IDs, and review workflow inputs before running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yufengwolf/skills/workflow-runner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell commands, code changes, JSON result artifacts, and local git commits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local results under results/ and may keep persistent workflow state for worker sessions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

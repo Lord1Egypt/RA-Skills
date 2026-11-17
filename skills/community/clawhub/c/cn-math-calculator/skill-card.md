@@ -1,38 +1,49 @@
-## Description: <br>
-Cn Math Calculator helps agents calculate mathematical expressions and convert common units locally with a Python standard-library command-line calculator. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cn Math Calculator helps agents safely evaluate mathematical expressions and convert common units for Chinese-language math workflows.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and agents use this skill to compute arithmetic and scientific expressions and convert common units without external API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The published capability tag indicates sensitive credentials may be required, but the security summary found no credential use in this artifact. <br>
-Mitigation: Do not provide secrets or API keys unless a future version clearly explains why they are needed. <br>
+## Use Case:
 
+Developers and agents use this skill to calculate arithmetic and scientific expressions, return optional JSON results, and perform common length, weight, temperature, and area conversions with Chinese and English unit names.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-math-calculator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Plain text result lines or JSON objects from a Python CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with the Python standard library; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: server release metadata) <br>
+Risk: Untrusted public input could submit very long expressions, very large numeric operations, or calculations that take excessive execution time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use expression length, numeric-size, and execution-time limits before exposing the calculator to public traffic.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-math-calculator)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON, often with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally with Python standard library math evaluation and unit conversion logic.]
+
+## Skill Version(s):
+
+1.3.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Automates uploading a local medical image segmentation paper to Gemini, extracting architecture analysis and diagram-generation prompts, and saving the results to a local text file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates analysis of local medical image segmentation papers through Gemini and saves extracted architecture-diagram prompts to a local text file.
 
-## Publisher: <br>
-[m1ss-cell](https://clawhub.ai/user/m1ss-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[m1ss-cell](https://clawhub.ai/user/m1ss-cell)
 
-## Use Case: <br>
-Developers, researchers, and agent users can use this skill to process locally stored medical image segmentation papers, request structured model and workflow analysis from Gemini, and collect diagram prompts for architecture figures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The selected PDF is uploaded to Gemini using the currently signed-in Gemini account. <br>
-Mitigation: Install and run only when the user is comfortable sharing the selected PDF with Gemini under that account. <br>
-Risk: The skill overwrites the target output file at /home/xie/桌面/analysis/{{paper_name}}.txt. <br>
-Mitigation: Use a simple paper_name value without path separators and back up or rename any existing analysis file before running. <br>
+## Use Case:
 
+Developers and researchers use this skill to process medical image segmentation PDFs, extract model-architecture analysis, and produce diagram-generation prompts for paper explanation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/m1ss-cell/paper-architecture-diagram) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured text prompts saved to a local text file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a paper_name parameter used to locate the input PDF and output text file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The selected local PDF is uploaded to Gemini.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with documents approved for upload to Gemini and avoid sensitive or restricted PDFs unless that transfer is permitted.
+
+Risk: The output file may overwrite an existing analysis text file with the same paper name.
+
+Mitigation: Check for an existing output file before running or keep backups of prior analysis files.
+
+Risk: Weak paper_name validation may allow unsafe path values.
+
+Mitigation: Use only trusted basename values without slashes, path traversal segments, or unexpected suffixes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/m1ss-cell/skills/paper-architecture-diagram)
+- [Publisher profile](https://clawhub.ai/user/m1ss-cell)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Markdown-like text with named diagram prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes extracted prompt text to a local analysis file using the provided paper name.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

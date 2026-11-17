@@ -1,43 +1,58 @@
-## Description: <br>
-Cross-session memory sync protocol. Ensures memory consistency across Feishu, webchat, and any other channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Session Sync helps agents keep memory and task state consistent across Feishu, webchat, and other sessions.
 
-## Publisher: <br>
-[sdt328606](https://clawhub.ai/user/sdt328606) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdt328606](https://clawhub.ai/user/sdt328606)
 
-## Use Case: <br>
-Agents use this skill to keep shared memory, daily logs, current task state, and recent decisions synchronized across Feishu, webchat, and other sessions. It is intended for users who want continuity when work moves between communication channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes conversation details, task state, decisions, channel names, and session identifiers to shared persistent memory files that can be reused by later sessions. <br>
-Mitigation: Install it only when cross-session memory sharing is intentional, avoid using it for sensitive work, and review or restrict access to the memory directory. <br>
-Risk: Cross-channel synchronization can expose prior session context without clear per-session consent or containment. <br>
-Mitigation: Prefer explicit user confirmation before syncing, consolidating, or archiving logs, and redact sensitive details before writing shared memory. <br>
-Risk: The cleanup script archives dated memory logs rather than deleting their contents. <br>
-Mitigation: Review logs before archiving and ensure archive retention and access controls match the workspace's privacy expectations. <br>
+## Use Case:
 
+Developers and agent operators use this skill to synchronize recent context, active tasks, decisions, and durable memory across multiple conversation channels.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sdt328606/session-memory-sync) <br>
-- [Publisher profile](https://clawhub.ai/user/sdt328606) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with inline shell commands and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operating guidance for shared memory files and an optional cleanup script for archiving dated logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Cross-session memory sharing can expose conversation history or task state outside the intended audience.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where all shared sessions and memory files belong to the same trusted user or team, with authorization-enforced access.
+
+Risk: Broad memory writes can persist sensitive or unnecessary conversation-derived state.
+
+Mitigation: Review, redact, and scope memory writes before using the skill for sensitive conversations.
+
+Risk: The cleanup script moves dated memory logs into an archive directory, which may change where retained conversation records are stored.
+
+Mitigation: Confirm the workspace path and retention expectations before running cleanup, and ensure valuable content has already been consolidated intentionally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sdt328606/skills/session-memory-sync)
+- [Publisher profile](https://clawhub.ai/user/sdt328606)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown instructions with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Directs agents to read and write shared memory files and optionally run a cleanup script.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Helps an agent explore prompt-logic mutations through cross-domain fusion, heuristic selection, and dynamic mutation-rate adjustment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过跨域融合与动态调整，智能筛选并创新提示词逻辑，持续驱动基因演化和系统适应性提升。
 
-## Publisher: <br>
-[tonicpopo](https://clawhub.ai/user/tonicpopo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tonicpopo](https://clawhub.ai/user/tonicpopo)
 
-## Use Case: <br>
-Agent builders and prompt engineers use this skill to generate and evaluate novel prompt-logic variants for long-running automation workflows. It is intended to improve adaptability and avoid rigid or locally optimized prompt behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or mutated prompt logic could introduce incorrect, misleading, or unsuitable behavior if adopted without review. <br>
-Mitigation: Review and approve generated prompt logic before saving it into shared memory, prompt libraries, or long-running autonomous agent workflows. <br>
+## Use Case:
 
+Developers and agent builders use this skill to brainstorm and refine prompt-logic variants for long-running automation workflows. It helps explore cross-domain ideas, screen promising prompt fragments, and adjust mutation intensity so generated prompt changes remain adaptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tonicpopo/xiaowuzi-gene-innovate) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/tonicpopo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance for prompt-logic mutation and selection] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code, install actions, credential handling, file access, or network behavior is indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill describes prompt-innovation behavior but does not include executable implementation, so outputs may overstate algorithmic certainty.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as brainstorming guidance and review generated prompt changes before applying them to important workflows.
+
+Risk: Prompt changes generated from exploratory mutation ideas could introduce incorrect or misleading task guidance.
+
+Mitigation: Review and scan proposed skill or prompt updates before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tonicpopo/skills/xiaowuzi-gene-innovate)
+- [Publisher profile](https://clawhub.ai/user/tonicpopo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and prompt-improvement suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only skill with no executable code or install hooks found in the release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

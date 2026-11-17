@@ -1,41 +1,51 @@
-## Description: <br>
-Create a strategy for selling to your first 100 customers using the minimalist entrepreneur playbook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a strategy for selling to the first 100 customers using a minimalist entrepreneur playbook focused on direct outreach, early feedback, pricing, and weekly sales goals.
 
-## Publisher: <br>
-[carollili](https://clawhub.ai/user/carollili) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carollili](https://clawhub.ai/user/carollili)
 
-## Use Case: <br>
-Founders, operators, and early-stage product teams use this skill to plan manual sales for their first paying customers. It helps produce prospect lists, personalized outreach, initial pricing guidance, weekly sales goals, and a tracking method. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill recommends direct outreach and pricing actions that may affect customer relationships, privacy obligations, or anti-spam compliance. <br>
-Mitigation: Review outreach lists, message templates, and sales practices against applicable business, privacy, and anti-spam rules before using them. <br>
-Risk: Server evidence notes crypto and purchase capability tags that do not match the text-only skill content. <br>
-Mitigation: Treat the skill as business guidance only and do not grant payment, purchase, or crypto authority based on those tags. <br>
+## Use Case:
 
+Entrepreneurs, founders, and advisors use this skill to build an early customer acquisition plan for a product or service. It helps generate warm-contact and community prospect lists, personalized cold outreach, an initial pricing strategy, and a weekly sales tracking method.
 
-## Reference(s): <br>
-- [The Minimalist Entrepreneur](https://minimalistentrepreneur.com) <br>
-- [Sahil Lavingia](https://twitter.com/shl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with lists and outreach templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prospect lists, a cold outreach template, pricing guidance, weekly sales goals, and a tracking method.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill may activate on early-sales questions and produce business advice that is not tailored to every market, customer segment, or legal context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated outreach, pricing, and sales-tracking recommendations before applying them or sending customer communications.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/carollili/skills/first-customers)
+- [The Minimalist Entrepreneur](https://minimalistentrepreneur.com)
+- [Sahil Lavingia](https://twitter.com/shl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style business guidance with lists, outreach templates, pricing recommendations, and tracking steps.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only output; no code execution, privileged access, or external tool calls are requested by the skill.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

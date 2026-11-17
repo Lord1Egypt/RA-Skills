@@ -1,41 +1,53 @@
-## Description: <br>
-Reviews construction contract terms for payment, schedule, claims, settlement, warranty, and liability risks, then returns risk ratings and negotiation suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Chinese construction contract clauses for payment, schedule, claim, settlement, warranty, and liability risks, then suggests risk ratings and negotiation strategies.
 
-## Publisher: <br>
-[13977660642](https://clawhub.ai/user/13977660642) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[13977660642](https://clawhub.ai/user/13977660642)
 
-## Use Case: <br>
-Construction company legal teams, business staff, project managers, and legal counsel use this skill before signing or negotiating contracts to identify high-risk clauses, score contract risk, and prepare negotiation positions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat advisory checklist output as a substitute for licensed legal advice. <br>
-Mitigation: Use the output as a review aid and have qualified legal counsel review material contract decisions. <br>
-Risk: Contract text may include personal data, bank details, seals, signatures, private pricing, or trade secrets. <br>
-Mitigation: Redact sensitive details before pasting or uploading a contract unless those details are necessary for review. <br>
+## Use Case:
 
+Construction company legal teams, business staff, project managers, lawyers, and legal advisers use this skill to review construction contracts before signing, identify high-risk clauses, score overall contract risk, and prepare negotiation notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/13977660642/hetong-fengxian) <br>
-- [Publisher profile](https://clawhub.ai/user/13977660642) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports, risk tables, scoring summaries, and negotiation strategy notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe Word or Excel report structures, but the agent-facing output is advisory text or markdown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Contract text may contain personal data, bank details, signatures, seals, trade secrets, or privileged legal material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive fields before use unless the operating environment is approved for confidential contract review.
+
+Risk: The skill provides contract risk review guidance and negotiation suggestions, which may not reflect jurisdiction-specific legal requirements.
+
+Mitigation: Have qualified legal reviewers validate recommendations before relying on them for contract signing or dispute strategy.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/13977660642/skills/hetong-fengxian)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown reports with risk tables, scoring summaries, and negotiation language]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May structure outputs as Word-ready reports, Excel-style risk and scoring tables, or Markdown negotiation memos.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

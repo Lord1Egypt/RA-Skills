@@ -1,41 +1,58 @@
-## Description: <br>
-Confirms or rejects review-llm-artifacts findings before deletions or risky refactors so agents can reduce false positives before applying fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Confirms or rejects findings from review-llm-artifacts before deletes or risky refactors.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and code-review agents use this skill after review-llm-artifacts to verify reported LLM artifact findings, especially deletion, dead-code, and high-risk cases, before running follow-up fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect verification results could cause a follow-up fix step to remove or refactor code that is still required. <br>
-Mitigation: Review the generated .beagle/llm-artifacts-verification.json before using any follow-up fix skill, especially for deletion, dead-code, or high-risk findings. <br>
-Risk: A stale or mismatched findings report could produce misleading verdicts. <br>
-Mitigation: Use the skill's parse, echo, id-lock, evidence-before-verdict, and output-validation gates so results map exactly to the source findings. <br>
+## Use Case:
 
+Developers and engineers use this skill after review-llm-artifacts to verify each reported LLM artifact finding against local source evidence before risky refactors, deletions, or fix-llm-artifacts runs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anderskev/skills/verify-llm-artifacts) <br>
-- [Verification checklist](references/verification-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON verification report with markdown summary and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [.beagle/llm-artifacts-verification.json records one result per locked finding id with status, confidence, checks_performed, notes, and summary counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads local project files and review findings as part of verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in projects where the agent is allowed to inspect source files and local .beagle review artifacts.
+
+Risk: A stale or incomplete review report can lead to inconclusive or misleading verification results.
+
+Mitigation: Use the required echo, id-lock, per-finding checklist, and output validation steps before acting on any result.
+
+Risk: Cleanup based on unreviewed verification output could remove code that is still required.
+
+Mitigation: Run automated fixes only for findings marked confirmed_issue and treat inconclusive findings as requiring human or product context.
+
+## Reference(s):
+
+- [Verification checklist](references/verification-checklist.md)
+- [ClawHub skill page](https://clawhub.ai/anderskev/skills/verify-llm-artifacts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and a JSON verification report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes .beagle/llm-artifacts-verification.json and summarizes verification results for the agent user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

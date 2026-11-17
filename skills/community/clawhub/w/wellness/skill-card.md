@@ -1,52 +1,60 @@
-## Description: <br>
-A personal Wellness hub for OpenClaw that helps users connect health and wellness sources, normalize data, and generate daily or weekly digests, insights, and reminders inside chat channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A personal Wellness hub for OpenClaw that helps users connect health and wellness sources, normalize daily data, and generate daily or weekly summaries, insights, and reminders inside OpenClaw.
 
-## Publisher: <br>
-[gavinchengcool](https://clawhub.ai/user/gavinchengcool) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gavinchengcool](https://clawhub.ai/user/gavinchengcool)
 
-## Use Case: <br>
-External users and developers use this skill to connect personal wellness apps, wearables, and phone health aggregators to OpenClaw, then produce unified daily or weekly wellness summaries for chat channels. It supports official personal authorization and a phone-side bridge for Apple Health or Android Health Connect data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process sensitive health and wellness data from wearables, apps, Apple Health, or Android Health Connect. <br>
-Mitigation: Use only with data the user chooses to sync, keep tokens and exported files local where possible, and avoid posting digests to shared channels unless the destination is confirmed. <br>
-Risk: The Tier 2 bridge may expose a local ingest endpoint through a public tunnel. <br>
-Mitigation: Keep the tunnel URL and bearer token private, stop the tunnel when syncing is complete, rotate the token if exposed, and review the bridge before using it with real health data. <br>
-Risk: Bridge payloads may remain stored after syncing. <br>
-Mitigation: Periodically delete stored bridge payloads that are no longer needed and restrict access to the local bridge state directory. <br>
-Risk: Generated wellness digests may omit fields, combine sparse sources, or be interpreted as medical guidance. <br>
-Mitigation: Treat summaries as personal tracking aids, review source coverage and missing fields, and do not use the skill for diagnosis, treatment, or medical decision-making. <br>
+## Use Case:
 
+External users and developers use this skill to connect personal wellness apps, wearables, and phone health aggregators, then produce unified wellness digests for OpenClaw chat channels. It supports official personal authorization and phone OS health aggregator flows rather than credential capture or scraping.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gavinchengcool/wellness) <br>
-- [Publisher profile](https://clawhub.ai/user/gavinchengcool) <br>
-- [Source catalog](artifact/references/catalog.md) <br>
-- [Wellness normalized schema](artifact/references/schema.md) <br>
-- [Wellness Bridge](artifact/references/bridge.md) <br>
-- [Tier 2 ingest protocol](artifact/references/ingest-protocol.md) <br>
-- [iOS exporter](artifact/references/exporter-ios-shortcuts.md) <br>
-- [Android exporter](artifact/references/exporter-android-automation.md) <br>
-- [Digest templates](artifact/references/digest-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON payload examples, generated digest text, and optional message-tool template JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read normalized wellness source files, store bridge payloads locally, and prepare channel-specific wellness digest messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server-resolved release metadata) <br>
+Risk: The skill handles sensitive health and wellness data through local files, public tunnel exposure, and chat-channel summaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat bridge tokens as passwords, expose the bridge only as long as needed, keep its state directory off shared or broadly synced storage, and send digests only to private channels after reviewing their contents.
+
+Risk: The hub can install and orchestrate third-party source skills for individual wellness services.
+
+Mitigation: Review and scan each source skill before installing it, especially before granting OAuth access or API tokens.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gavinchengcool/skills/wellness)
+- [Wellness source catalog](references/catalog.md)
+- [Wellness normalized schema](references/schema.md)
+- [Digest templates](references/digest-templates.md)
+- [Wellness Bridge](references/bridge.md)
+- [Tier 2 ingest protocol](references/ingest-protocol.md)
+- [iOS exporter via Shortcuts](references/exporter-ios-shortcuts.md)
+- [Android exporter via automation](references/exporter-android-automation.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain-text guidance with shell commands, plus optional JSON wellness documents and message-tool templates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include local digest files, channel-formatted summaries, and a sendable message template.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

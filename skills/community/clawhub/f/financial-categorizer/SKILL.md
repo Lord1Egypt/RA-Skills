@@ -1,7 +1,13 @@
 ---
 name: financial-categorizer
 description: "Process bank transaction CSV exports (Nordea, ICA), auto-categorize transactions using configurable rules, manage transaction links, and generate analytical database views."
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - python3
 ---
+
 
 # financial-categorizer
 
@@ -76,8 +82,10 @@ The following commands require confirmation:
 - `remove-rule <id> [--yes]`
 - `unlink <id> [--yes]`
 - `db-cleanup [--yes] [--dry-run]`
+- `cleanup-pending [--yes] [--dry-run] [--force-id <id>...]`
 - `remove-transfer-rule <id> [--yes]`
 - `auto-link [--yes] [--dry-run]`
+
 
 ## CLI Reference
 
@@ -97,27 +105,41 @@ The following commands require confirmation:
 | `remove-rule <id> [--yes]` | Remove an auto-categorization rule (requires confirmation or `-y`) |
 | `preview <pattern>` | Preview which transactions match a pattern before adding a rule |
 | `categorize [--all]` | Run auto-categorization rules |
-| `uncategorized [--group] [--non-zero]` | List all uncategorized transactions |
-| `transactions [--category <name>] [--uncategorized] [--non-zero] [--account <name>] [--limit <n>]` | Search, list, and filter transactions |
+| `uncategorized [--group] [--non-zero] [--net | --unsplit]` | List all uncategorized transactions (supports `--net` or `--unsplit`) |
+| `transactions [--category <name>] [--uncategorized] [--non-zero] [--account <name>] [--limit <n>] [--net | --unsplit]` | Search, list, and filter transactions (supports `--net` or `--unsplit`) |
 | `manual-match <txn_id> <cat_id>` | Manually assign a category override to a transaction |
 | `manual-unmatch <txn_id>` | Remove a manual categorization override |
-| `stats-summary [--period-type <type>]` | Monthly summary of income, expenses, and net |
-| `stats-category <name> [--period-type <type>]` | Category total with subcategory rollups |
-| `stats-trend <name> [--period-type <type>]` | Monthly trend for a category |
-| `stats-top [--period-type <type>]` | Top spending categories sorted by total expenses |
-| `stats-transfers [--month <YYYY-MM>] [--period-type <type>]` | Net capital transfers to external accounts |
-| `stats-cashflow [--month <YYYY-MM>] [--period-type <type>]` | Monthly cash flow summary (Operating, Transfers, Net) |
+| `stats-summary [--month <YYYY-MM>] [--period-type <type>] [--unsplit | --gross]` | Monthly summary of income, expenses, and net (supports `--unsplit` or `--gross`) |
+| `stats-category <name> [--month <YYYY-MM>] [--from <date>] [--to <date>] [--period-type <type>] [--unsplit | --gross]` | Category total with subcategory rollups (supports `--unsplit` or `--gross`) |
+| `stats-trend <name> [--from <date>] [--to <date>] [--period-type <type>] [--unsplit | --gross]` | Monthly trend for a category (supports `--unsplit` or `--gross`) |
+| `stats-top [--month <YYYY-MM>] [--limit <n>] [--period-type <type>] [--unsplit | --gross]` | Top spending categories sorted by total expenses (supports `--unsplit` or `--gross`) |
+| `stats-transfers [--month <YYYY-MM>] [--period-type <type>] [--unsplit | --gross]` | Net capital transfers to external accounts (supports `--unsplit` or `--gross`) |
+| `stats-compare [--month <YYYY-MM>] [--period-type <type>] [--unsplit | --gross]` | Month-over-month comparison (supports `--unsplit` or `--gross`) |
+| `stats-cashflow [--month <YYYY-MM>] [--period-type <type>] [--unsplit | --gross]` | Monthly cash flow summary (Operating, Transfers, Net; supports `--unsplit` or `--gross`) |
 | `link <from_id> [to_id] --type [--to-account <name_or_id>] [--ratio <val> \| --ratio-to <val> \| --amount <val>] [--dry-run]` | Link transactions (specify `--to-account` for external transfers, or ratio/amount options to customize values; `--dry-run` to preview) |
 | `unlink <id> [--yes]` | Remove a link (requires confirmation or `-y`) |
 | `links` | List all transaction links |
 | `auto-link [--dry-run] [--yes]` | Auto-detect and link internal transfers using transfer rules (requires confirmation or `-y` when not running dry-run) |
 | `recalculate` | Manually recalculate adjusted amounts for all transactions |
 | `db-cleanup [--dry-run] [--yes]` | Purge orphaned transaction links and rules (Integrity Cleanup) (requires confirmation or `-y` when not running dry-run) |
+| `cleanup-pending [--dry-run] [--yes] [--force-id <id>...]` | Delete ghost pending reservations whose settled counterpart already exists (individual, split-authorization, or inexact amount matches — e.g. merchants that authorize a buffer and settle a different final amount; inexact matches fire only when unambiguous). Unresolved pendings are kept, listed with nearby same-merchant candidates, flagged as probable cancellations when old with no counterpart, and can be deleted explicitly via `--force-id` (requires confirmation or `-y` when not running dry-run) |
 | `remove-transfer-rule <id> [--yes]` | Remove a transfer detection rule (requires confirmation or `-y`) |
 | `salary-config` | Show current salary period configuration |
 | `set-salary-mode <mode>` | Set the salary period mode (`calendar`, `fixed`, `salary`) |
 | `set-salary-day <day>` | Set the fixed boundary day of the month (1-28) |
 | `set-salary-category <name>` | Set the category name used to scan for salary paydays |
+| `recurring [--status <active|cancelled|all>]` | List recurring payments configurations |
+| `add-recurring <name> <pattern> [options] [--dry-run]` | Manually create a recurring payment config and link transactions |
+| `update-recurring <id> [options] [--dry-run]` | Update recurring config fields and re-run transaction linking |
+| `remove-recurring <id> [--hard] [--date <YYYY-MM-DD>] [--yes]` | Cancel (soft-close with end date) or hard-delete a recurring payment configuration (requires confirmation; use `--yes`/`-y` to bypass, mandatory in non-interactive mode) |
+| `discover-recurring [--dry-run] [--yes]` | Auto-discover recurring transaction patterns and auto-close dead configurations (saving, re-linking, and auto-closing require confirmation; use `--yes`/`-y` to bypass, mandatory in non-interactive mode — run `--dry-run` first to preview) |
+| `stats-recurring [query] [--month <YYYY-MM>] [--period-type <type>]` | Display subscription stats dashboard or detail reports for matching subscriptions |
+| `estimate-period [--days <int>] [--level <0|1|2>]` | Project spending and estimate total outflow remaining in current period (rollup levels: 0=none, 1=top, 2=detailed) |
+| `set-estimate-level <0|1|2>` | Set default category rollup level configuration for spending estimation |
+
+
+
+
 
 ## Configuring Salary Periods
 
@@ -164,7 +186,59 @@ python cli.py stats-category Housing --period-type salary --month 2026-06
 
 If you do not specify a `--period-type` flag, it will automatically default to the setting configured via `set-salary-mode`.
 
+## Tracking Recurring Payments & Subscriptions
+
+This tool supports advanced, automated tracking and lifecycle management of recurring payments (e.g. Netflix, Spotify, broadband, utility bills) and income (e.g. Salary).
+
+### Core Concepts
+
+1. **Recurring Payments Table (`recurring_payments`)**
+   Defines the rules, intervals, expected days, amount ranges, and lifespans for each recurring item.
+2. **Subscription Lifecycle & Runs**
+   Resumed subscriptions (after cancellation) are tracked as separate runs/rows in `recurring_payments`.
+   * **Resumption**: If a transaction matches a pattern of a cancelled subscription (after its `end_date`), it automatically spawns a new run/configuration for the resumption.
+   * **Auto-Closing**: Active configurations that are missing expected payments are automatically closed (`end_date` is set to the last matched payment date) when running `discover-recurring` or passing the `--close` flag to `import` / `categorize`.
+   * **Confirmation Gates**: `remove-recurring` and `discover-recurring` (without `--dry-run`) prompt for confirmation before making changes, like the other destructive commands. Use `--yes`/`-y` to bypass (mandatory in non-interactive mode), and `discover-recurring --dry-run` to preview first.
+3. **Flexible Date Intervals**
+   Supports strict date/day checking with a configured tolerance window:
+   * **Monthly**: Expected day of month (e.g. 25th, last day `-1`).
+   * **Weekly**: Expected weekday.
+   * **Yearly**: Expected month and day.
+   * **Days**: Custom interval (e.g. every 90 days).
+   * **Tolerance**: Tolerates shifts due to weekends/holidays (default 4 days).
+
+### Common Workflows
+
+#### 1. Auto-Discover Recurring Candidates
+Scan transaction history to auto-identify recurring items (such as monthly subscriptions or utility bills) and automatically save them:
+```bash
+# Preview candidates without writing to the database
+python cli.py discover-recurring --dry-run
+
+# Run auto-discovery and save configurations (prompts for confirmation; --yes to bypass)
+python cli.py discover-recurring --yes
+```
+
+#### 2. Manually Add/Update Configurations
+```bash
+# Add a monthly Netflix subscription
+python cli.py add-recurring Netflix "netflix.com" --amount-min -149 --amount-max -189 --interval monthly --day-of-month 6 --category Media
+
+# Dry-run update previewing matches
+python cli.py update-recurring 1 --amount-max -219 --dry-run
+```
+
+#### 3. View Outflow Dashboard & Stats
+```bash
+# Active subscriptions monthly cost summary and expected next dates
+python cli.py stats-recurring
+
+# Detailed subscription history across active/cancelled runs and transaction lists
+python cli.py stats-recurring "Disney Plus"
+```
+
 ## Common Workflows
+
 
 ### Handling Shared-Expense Reimbursements
 
@@ -217,9 +291,9 @@ If you don't link them, your gross income and gross expenses will both be overst
 
 #### Composite Transactions (e.g. Reimbursement Baked into Salary)
 Often, a reimbursement is not a standalone transaction (like a Swish payment), but is packaged/baked into a larger composite transaction, such as a salary payment.
-For example, if your employer pays you a single amount of `57,683 SEK`, which contains:
-* `52,701.77 SEK` of actual labor income
-* `4,981.23 SEK` of expense reimbursement for a credit card charge
+For example, if your employer pays you a single amount of `50,000 SEK`, which contains:
+* `45,000 SEK` of actual labor income
+* `5,000 SEK` of expense reimbursement for a credit card charge
 
 To avoid distorting both income and expenses, you must split this composite transaction. In this system, you do this using **transaction links** with fractional ratios.
 
@@ -231,18 +305,19 @@ The `link` command provides three modes to simplify this:
 
 2. **Destination Ratio (`--ratio-to <float>`)**
    Calculates the ratio relative to the destination (`to_id`) transaction.
-   * For example, to fully reimburse/zero out the `First Card` expense of `-4,981.23 SEK` from your salary, use:
+   * For example, to fully reimburse/zero out the `First Card` expense of `-5,000 SEK` from your salary, use:
      ```bash
      python cli.py link <salary_txn_id> <expense_txn_id> --type reimbursement --ratio-to 1.0
      ```
-   * This automatically calculates the exact ratio ($4981.23 / 57683 \approx 0.086357$). It reduces the salary's `adjusted_amount` to `52,701.77 SEK` (reflecting your true labor income) and increases the credit card expense's `adjusted_amount` to `0.00 SEK` (reflecting your true net expense).
+   * This automatically calculates the exact ratio ($5000 / 50000 = 0.10$). It reduces the salary's `adjusted_amount` to `45,000 SEK` (reflecting your true labor income) and increases the credit card expense's `adjusted_amount` to `0.00 SEK` (reflecting your true net expense).
 
 3. **Exact Cash (`--amount <float>`)**
    Specify the exact cash amount in SEK being reimbursed.
-   * For example, to link exactly `4,981.23 SEK`:
+   * For example, to link exactly `5,000 SEK`:
      ```bash
-     python cli.py link <salary_txn_id> <expense_txn_id> --type reimbursement --amount 4981.23
+     python cli.py link <salary_txn_id> <expense_txn_id> --type reimbursement --amount 5000
      ```
+
 
 #### Dry-run Previews
 Always run with the `--dry-run` flag first to preview the downstream `adjusted_amount` effects before committing changes to the database:
@@ -297,6 +372,7 @@ financial-categorizer/
     ├── categorizer.py          # Auto-categorization & rule engine
     ├── db_handler.py           # Database CRUD & raw schema setup
     ├── importer.py             # CSV Parser (Nordea & ICA formats)
+    ├── matching.py             # Shared matching helpers (diacritic folding, aggregate tolerance)
     └── stats.py                # SQL View registers and stats math
 ```
 
@@ -304,9 +380,9 @@ financial-categorizer/
 
 For analytical reporting (e.g. dashboards, Grafana), the following views are registered in the database:
 
-1. **`v_effective_transactions`** — Joins transactions with accounts to factor in ownership ratios and transfer link adjustments.
-2. **`v_monthly_summary`** — Calculates net income/expenses by month.
-3. **`v_category_monthly`** — Calculates monthly spending by category.
+1. **`v_effective_transactions`** — Joins transactions with accounts to factor in ownership ratios and transfer link adjustments. Includes `adjusted_amount`, `unsplit_amount`, and `raw_amount` columns.
+2. **`v_monthly_summary`** — Calculates net income/expenses by month (includes unsplit and gross aggregations).
+3. **`v_category_monthly`** — Calculates monthly spending by category (includes unsplit and gross aggregations).
 4. **`v_daily_spending`** — Daily expense aggregation.
 5. **`v_cumulative_spending_monthly`** — Running month-to-date daily cumulative spending.
 6. **`v_daily_spending_moving_average`** — 30-day moving average of daily spending.
@@ -342,13 +418,14 @@ Unmatched reimbursements (pending paybacks or refunds) are incoming transactions
 If the CLI output shows:
 ```
 Transactions (4):
-  [12] 2026-06-23   23539.00 SEK                      Personligt      [Uncategorized]     Lön
-  [15] 2026-06-18     312.50 SEK                      Personligt      [Uncategorized]     BARNBDR
-  [18] 2026-06-16     482.50 SEK                      Personligt      [Uncategorized]     Swish inbetalning ANDERSSON, THOMAS
-  [21] 2026-05-20      30.00 SEK                      Personligt      [Uncategorized]     Swish inbetalning ANDERSSON, THOMAS
+  [12] 2026-06-23   25000.00 SEK                      Personligt      [Uncategorized]     Lön
+  [15] 2026-06-18    1250.00 SEK                      Personligt      [Uncategorized]     BARNBDR
+  [18] 2026-06-16     500.00 SEK                      Personligt      [Uncategorized]     Swish inbetalning DOE, JOHN
+  [21] 2026-05-20      50.00 SEK                      Personligt      [Uncategorized]     Swish inbetalning DOE, JOHN
 ```
-* **Include**: `[18]` (+482.50) and `[21]` (+30.00) (positive Swish payments from an individual are reimbursement candidates).
+* **Include**: `[18]` (+500.00) and `[21]` (+50.00) (positive Swish payments from an individual are reimbursement candidates).
 * **Exclude**: `[12]` (Lön/Salary) and `[15]` (barnbidrag/regular benefit payment).
+
 
 ## Dependencies
 

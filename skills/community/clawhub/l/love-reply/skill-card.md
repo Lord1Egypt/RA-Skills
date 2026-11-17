@@ -1,45 +1,55 @@
-## Description: <br>
-Love Reply helps users draft warm, playful romantic replies for crush texts, dating app banter, mixed signals, and ongoing conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Love Reply helps users draft natural romantic replies for crush texts, flirty banter, mixed signals, and dating conversations.
 
-## Publisher: <br>
-[imwyvern](https://clawhub.ai/user/imwyvern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwyvern](https://clawhub.ai/user/imwyvern)
 
-## Use Case: <br>
-External users use Love Reply to interpret the tone of romantic messages and choose concise reply options in the user's language for dating apps, WeChat, or partner conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include sensitive relationship details in prompts. <br>
-Mitigation: Keep private details minimal and review generated replies before sending. <br>
-Risk: Romantic messaging guidance can become manipulative if it ignores consent or boundaries. <br>
-Mitigation: Follow the skill's safety rules: respect requests to stop, avoid guilt-tripping or love-bombing, and name unhealthy situations directly. <br>
-Risk: The artifact advertises a separate ReplyHer pro service with memory features. <br>
-Mitigation: Review the separate service's privacy and terms before relying on relationship-history memory. <br>
+## Use Case:
 
+External users use this skill to interpret the tone of romantic messages and choose concise replies for dating apps, text conversations, or ongoing relationships.
 
-## Reference(s): <br>
-- [Love Reply Skill on ClawHub](https://clawhub.ai/imwyvern/love-reply) <br>
-- [Publisher Profile](https://clawhub.ai/user/imwyvern) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [ReplyHer](https://replyher.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style response with a vibe read, five short reply options, and a recommended next move.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Replies are constrained to under 25 words each; the mysterious option is constrained to a maximum of 8 words.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: The skill includes a commercial ReplyHer link that users may follow outside ClawHub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external link and privacy practices before installation or use.
+
+Risk: Users may share sensitive relationship history while asking for reply guidance.
+
+Mitigation: Avoid sharing sensitive personal information unless the handling and privacy expectations are understood.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/imwyvern/skills/love-reply)
+- [ReplyHer](https://replyher.com)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with a vibe read, five reply options, and a best-move recommendation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Replies are intended to be concise and matched to the user's language and dating context.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

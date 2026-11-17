@@ -1,38 +1,51 @@
-## Description: <br>
-Cn Diff Checker compares two text strings or local files and shows line-, word-, or character-level differences using Python's standard difflib output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cn Diff Checker compares two text strings or files and shows line, word, or character differences using Python's standard difflib library.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers, writers, and reviewers use this skill to compare text snippets or explicitly provided local files from an agent session and inspect changes at line, word, or character granularity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool reads any local file path explicitly passed to it, and diff output may display sensitive file contents in the terminal or redirected output. <br>
-Mitigation: Avoid comparing sensitive files unless their contents are intended to be viewed or captured in the agent session output. <br>
+## Use Case:
 
+Developers and content reviewers can use this skill to compare Chinese or general text inputs and files, then inspect differences at line, word, or character level in a terminal.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-diff-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text with ANSI-colored diff output and optional file redirection guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads only text strings or file paths explicitly provided by the user; no network output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.6 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Terminal output can include ANSI coloring and may be unsafe to view directly when comparing untrusted text containing control characters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect untrusted inputs in a safe viewer, sanitize control characters, or redirect output before viewing in sensitive terminal sessions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-diff-checker)
+- [AISoBrand](https://aisobrand.com)
+- [AISoBrand free diagnosis](https://aisobrand.com/free-diagnosis.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and terminal diff output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses ANSI color in terminal output; can redirect output to a file.]
+
+## Skill Version(s):
+
+1.2.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

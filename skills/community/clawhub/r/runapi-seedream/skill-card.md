@@ -1,47 +1,62 @@
-## Description: <br>
-Generate and edit images with Seedream through RunAPI. Use when the user asks an agent to create, edit, or transform images with Seedream. Default to the RunAPI CLI for one-off generation; use SDKs only when the user is integrating RunAPI into an app or backend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and edit images with Seedream through RunAPI. Use when the user asks an agent to create, edit, or transform images with Seedream. Default to the RunAPI CLI for one-off generation; use SDKs only when the user is integrating RunAPI into an app or backend.
 
-## Publisher: <br>
-[runapi-ai](https://clawhub.ai/user/runapi-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[runapi-ai](https://clawhub.ai/user/runapi-ai)
 
-## Use Case: <br>
-Developers and agents use this skill to route Seedream image generation or editing requests through RunAPI, using the CLI for one-off work and SDKs for application integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts or image inputs may be sent to the external RunAPI Seedream service. <br>
-Mitigation: Review RunAPI terms, pricing, rate limits, and data-handling expectations before using private or sensitive content. <br>
-Risk: The skill can use RunAPI authentication through an API key or saved CLI login. <br>
-Mitigation: Protect RUNAPI_API_KEY and local CLI credentials, and review authentication handling before deployment. <br>
+## Use Case:
 
+Developers and agents use this skill to generate, edit, transform, and verify image outputs with Seedream through RunAPI. It supports one-off CLI use and SDK-based application integration while requiring contract discovery before requests are submitted.
 
-## Reference(s): <br>
-- [RunAPI Seedream model documentation](https://runapi.ai/models/seedream.md) <br>
-- [RunAPI Seedream homepage](https://runapi.ai/models/seedream) <br>
-- [ByteDance provider comparison](https://runapi.ai/providers/bytedance.md) <br>
-- [RunAPI model catalog](https://runapi.ai/models.md) <br>
-- [Seedream 4.5 text-to-image](https://runapi.ai/models/seedream/4.5-text-to-image.md) <br>
-- [Seedream 4.5 edit](https://runapi.ai/models/seedream/4.5-edit.md) <br>
-- [Seedream 5 lite text-to-image](https://runapi.ai/models/seedream/5-lite-text-to-image.md) <br>
-- [Seedream 5 lite image-to-image](https://runapi.ai/models/seedream/5-lite-image-to-image.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code guidance] <br>
-**Output Format:** [Markdown with inline shell commands and SDK package names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include RunAPI CLI commands, authentication guidance, JSON request-file guidance, and SDK package references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.4 (source: server release metadata) <br>
+Risk: Prompts and selected local media files may be sent to RunAPI/Seedream.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review request content and local file paths before submission, and send only files the user intended to process.
+
+Risk: RunAPI model calls require authentication and may be billable.
+
+Mitigation: Keep API keys in environment variables or the CLI auth flow, verify authentication before submitting, and avoid replacement paid requests without user authorization.
+
+Risk: Media deliverables may be missing, empty, or have an unexpected MIME type if response verification is skipped.
+
+Mitigation: Download every requested media deliverable and verify non-empty files with the expected image MIME family before reporting completion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/runapi-ai/skills/runapi-seedream)
+- [RunAPI Seedream homepage](https://runapi.ai/models/seedream)
+- [Seedream model overview, pricing, and rate limits](https://runapi.ai/models/seedream.md)
+- [ByteDance provider overview](https://runapi.ai/providers/bytedance.md)
+- [RunAPI model catalog](https://runapi.ai/models.md)
+- [Seedream SDK integration](https://github.com/runapi-ai/seedream-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce request and response files, downloaded image deliverables, and SDK integration code when requested.]
+
+## Skill Version(s):
+
+0.2.11 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Fetch Ostrom hourly electricity spot prices, find cheapest appliance and EV charging windows, and optionally trigger trusted smart-home actions from price thresholds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch Ostrom hourly electricity spot prices, find cheapest appliance/EV charging windows, and trigger smart-home actions from price thresholds.
 
-## Publisher: <br>
-[pmagnomuller](https://clawhub.ai/user/pmagnomuller) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pmagnomuller](https://clawhub.ai/user/pmagnomuller)
 
-## Use Case: <br>
-External users and developers use this skill to inspect Ostrom electricity prices, identify lower-cost charging or appliance windows, and connect reviewed price-threshold decisions to smart-home automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ostrom API credentials and local configuration can contain sensitive access material. <br>
-Mitigation: Provide credentials only through protected environment variables or trusted local config, and do not commit or publish files containing secrets. <br>
-Risk: Control mode can run user-provided shell commands when execution is enabled. <br>
-Mitigation: Keep control mode in dry-run until reviewed, use fixed trusted commands, and do not allow untrusted text to populate command arguments or credential files. <br>
+## Use Case:
 
+External users and developers use this skill to inspect current or upcoming Ostrom electricity spot prices, identify low-cost run windows for appliances or EV charging, and optionally control smart-home devices from verified price thresholds.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/pmagnomuller/ostrom-energy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text output and Markdown command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Ostrom API credentials; control mode remains dry-run unless execution is explicitly enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Control mode can run local shell commands when --execute is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run first and enable --execute only with command strings the user wrote and verified.
+
+Risk: Local .env and home configuration files can provide credentials and other runtime settings.
+
+Mitigation: Use only trusted local configuration files and store Ostrom credentials with the same care as other API secrets.
+
+Risk: The optional installer creates a persistent wrapper in ~/.local/bin.
+
+Mitigation: Skip the installer when a persistent local command is not desired and run the skill from its directory with bash run.sh.
+
+## Reference(s):
+
+- [Ostrom Energy ClawHub Page](https://clawhub.ai/pmagnomuller/skills/ostrom-energy)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text CLI output and Markdown usage guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Ostrom API credentials; control mode is dry-run unless --execute is passed.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

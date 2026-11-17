@@ -1,41 +1,58 @@
-## Description: <br>
-Calls Tencent Cloud's VatInvoiceOCR API to extract full-field structured data from VAT invoice images or PDFs, including invoice identifiers, dates, buyer and seller details, amounts, tax fields, line items, and related metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls Tencent Cloud VatInvoiceOCR to extract full-field VAT and electronic invoice data from invoice images or PDFs and return structured JSON.
 
-## Publisher: <br>
-[zt1314p-design](https://clawhub.ai/user/zt1314p-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zt1314p-design](https://clawhub.ai/user/zt1314p-design)
 
-## Use Case: <br>
-Developers and operations teams use this skill to send VAT invoice images, PDFs, or invoice URLs to Tencent Cloud OCR and receive structured invoice fields for extraction, validation, or downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Invoice images, PDFs, or URLs are sent to Tencent Cloud for OCR processing. <br>
-Mitigation: Use the skill only when authorized to process the target invoices through Tencent Cloud, and avoid sending documents whose tax IDs, bank details, addresses, or line items must remain local. <br>
-Risk: The skill requires Tencent Cloud credentials and may incur OCR API charges. <br>
-Mitigation: Use dedicated least-privilege Tencent Cloud keys, keep credentials out of source control, and monitor API usage and billing. <br>
+## Use Case:
 
+Developers and automation agents use this skill to submit invoice images, invoice PDFs, or invoice URLs to Tencent Cloud OCR and extract structured VAT invoice fields such as invoice numbers, buyer and seller details, amounts, taxes, and line items.
 
-## Reference(s): <br>
-- [Tencent Cloud VatInvoiceOCR API documentation](https://cloud.tencent.com/document/api/866/36210) <br>
-- [ClawHub skill page](https://clawhub.ai/zt1314p-design/tencentcloud-ocr-vatinvoice) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON] <br>
-**Output Format:** [JSON with formatted invoice fields by default, or raw Tencent Cloud OCR JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires either an image URL or Base64/file input; PDF processing requires the PDF flag and an optional page number.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Invoice images, PDFs, URLs, and extracted billing fields are sent to Tencent Cloud for OCR processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run only when that data transfer is acceptable for the invoice data involved.
+
+Risk: Tencent Cloud credentials are required to call the OCR service.
+
+Mitigation: Provide credentials through environment variables with only the permissions needed for OCR, and avoid embedding secrets in prompts, files, or command history.
+
+Risk: The skill depends on the Tencent Cloud Python SDK at runtime.
+
+Mitigation: Use a virtual environment and consider pinning the Tencent SDK version for reproducible deployments.
+
+## Reference(s):
+
+- [Tencent Cloud VatInvoiceOCR API documentation](https://cloud.tencent.com/document/api/866/36210)
+- [ClawHub skill page](https://clawhub.ai/zt1314p-design/skills/tencentcloud-ocr-vatinvoice)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API calls, JSON, Guidance]
+
+**Output Format:** [JSON printed to stdout, either formatted invoice fields by default or the raw Tencent Cloud response when --raw is used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Tencent Cloud credentials in environment variables and accepts image URL, Base64, or local file input; PDF recognition requires the PDF option.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

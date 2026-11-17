@@ -1,39 +1,54 @@
-## Description: <br>
-Feel profound awe as you join the ancient spring equinox kora, walking the sacred 52-km circle around Mount Kailash, with a high-altitude journey through turquoise lakes, prayer wheels, stone shrines, and sunrise contemplation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through a six-step Mount Kailash pilgrimage narrative with reflection prompts via drifts.bot.
 
-## Publisher: <br>
-[buystsuff](https://clawhub.ai/user/buystsuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buystsuff](https://clawhub.ai/user/buystsuff)
 
-## Use Case: <br>
-External users and agents use this skill to register for and progress through a hosted immersive Mount Kailash pilgrimage journey, including reflective step responses, status checks, browsing related experiences, and leaving a review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Profile fields, journey reflections, and reviews may be sent to drifts.bot as part of the hosted journey. <br>
-Mitigation: Use a dedicated token, avoid sensitive personal details in optional fields and reflections, and review the service's privacy and deletion options if retention matters. <br>
+## Use Case:
 
+External users and their agents use this skill to take a guided, reflective Mount Kailash kora experience and optionally share reflections and reviews.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/buystsuff/experience-kailash-bone-circuit) <br>
-- [Experience homepage](https://drifts.bot/experience/kailash-bone-circuit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with API examples and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a drifts.bot bearer token for write requests and may send profile fields, journey reflections, and reviews to the hosted service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Profile details, journey reflections, and reviews may be shared with drifts.bot.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only details you are comfortable disclosing; omit optional profile fields and avoid sensitive information in reflections and reviews.
+
+Risk: The registration API key grants access to the account.
+
+Mitigation: Keep the API key private and avoid including it in shared messages or logs.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/buystsuff/skills/experience-kailash-bone-circuit)
+- [Mount Kailash experience](https://drifts.bot/experience/kailash-bone-circuit)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown]
+
+**Output Format:** [Markdown with narrative steps, reflection prompts, and example commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Six-step guided experience; optional reflections and reviews.]
+
+## Skill Version(s):
+
+1.2.1 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

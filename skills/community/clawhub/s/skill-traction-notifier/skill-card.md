@@ -1,41 +1,59 @@
-## Description: <br>
-Monitors ClawHub for skills gaining traction by tracking downloads and stars, alerting when growth or popularity thresholds are exceeded. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors ClawHub for skills gaining traction by tracking downloads and stars, alerting when growth or popularity thresholds are exceeded.
 
-## Publisher: <br>
-[Gabriel-Kaufman](https://clawhub.ai/user/Gabriel-Kaufman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gabriel-kaufman](https://clawhub.ai/user/gabriel-kaufman)
 
-## Use Case: <br>
-Developers and agent operators use this skill to monitor ClawHub skill traction, review top movers, and surface surge alerts from CLI output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional scheduled execution can create repeated ClawHub API requests and persistent local logs. <br>
-Mitigation: Review the cron schedule before enabling automation and keep the default scheduled random delay when running from a scheduler. <br>
-Risk: Optional profile data is stored locally on disk. <br>
-Mitigation: Avoid putting sensitive details in the local profile and use the documented environment variables to control storage paths when needed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to monitor ClawHub skill traction, review top movers, and surface surge alerts for skills that may be relevant to their agent profile.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Gabriel-Kaufman/skill-traction-notifier) <br>
-- [ClawHub skills catalog](https://clawhub.ai/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text CLI output and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Node.js; fetches public ClawHub skill statistics; stores optional local state, configuration, and profile data on disk.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill fetches public ClawHub data over the network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where outbound requests to ClawHub are acceptable.
+
+Risk: The profile feature stores agent descriptions and keywords in local files.
+
+Mitigation: Do not put secrets, sensitive project details, or private user data in the profile description or keywords.
+
+Risk: The suggested cron entry creates persistent scheduled execution.
+
+Mitigation: Review the cron entry before adding it and remove it when automatic checks are no longer wanted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gabriel-kaufman/skills/skill-traction-notifier)
+- [Publisher profile](https://clawhub.ai/user/gabriel-kaufman)
+- [ClawHub skills directory](https://clawhub.ai/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local JSON state, configuration, and profile files under ~/.skill-surge-notifier when commands are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

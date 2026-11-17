@@ -1,41 +1,54 @@
-## Description: <br>
-Generate professional, cinema-grade storyboard prompts for AI image and video generation platforms, including shot-by-shot guidance for short dramas, films, promotional videos, and other cinematic content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates cinema-grade, shot-by-shot storyboard prompts for AI image and video platforms using a seven-element framework, asset anchoring, lighting logic, material consistency, spatial coherence, scene guidance, shot references, and transition wording.
 
-## Publisher: <br>
-[beermanzz](https://clawhub.ai/user/beermanzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beermanzz](https://clawhub.ai/user/beermanzz)
 
-## Use Case: <br>
-Content creators, marketers, filmmakers, and agent users use this skill to turn scene descriptions or scripts into structured cinematic storyboard prompts. It is especially suited for workflows that need consistent asset references, lighting logic, material treatment, spatial coherence, shot types, and transition language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts may include private images, sensitive filenames, or local asset paths if users provide them as references for external AI generation tools. <br>
-Mitigation: Use only approved, non-sensitive reference assets and remove private local paths before sending generated prompts to external tools. <br>
-Risk: Storyboard prompts can become misleading when visual details are invented for assets the user has not reviewed. <br>
-Mitigation: Verify referenced costume and scene images before describing them, and keep prompts limited to observed asset details. <br>
+## Use Case:
 
+External creators and production teams use this skill to convert scripts or scene descriptions into structured storyboard prompts for short dramas, films, promotional videos, and other cinematic content.
 
-## Reference(s): <br>
-- [Prompt Elements Manual](references/prompt-elements.md) <br>
-- [Ancient/Fantasy Scene Reference](references/scene-ancient.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with structured storyboard prompt clauses and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs emphasize asset anchors, specific lighting direction, material consistency, spatial coherence, shot selection, and transition language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated storyboard prompts may be used in image or video tools without checking whether they match the intended scene and assets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated prompts and their referenced visual assets before using them in image or video generation workflows.
+
+Risk: Asset-specific prompt details can become inaccurate when costume or scene references are missing or not inspected.
+
+Mitigation: Confirm relevant costume photos and scene images before accepting character, lighting, material, or spatial details.
+
+## Reference(s):
+
+- [Prompt Elements Manual](references/prompt-elements.md)
+- [Ancient/Fantasy Scene Reference](references/scene-ancient.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured storyboard prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts are expected to include day or night, subject, spatial coordinates, shot form, lighting, emotional beat, and asset references.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

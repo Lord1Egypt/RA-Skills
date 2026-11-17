@@ -1,41 +1,54 @@
-## Description: <br>
-Use the Dopost REST API to publish, schedule, and manage social media posts programmatically. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the Dopost REST API to publish, schedule, upload media for, and manage social media posts programmatically.
 
-## Publisher: <br>
-[dopost](https://clawhub.ai/user/dopost) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dopost](https://clawhub.ai/user/dopost)
 
-## Use Case: <br>
-Developers and operators use this skill to help an agent call the Dopost REST API for social account lookup, media upload, post publishing, scheduling, status checks, rescheduling, and deletion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to publish, schedule, reschedule, upload media for, or delete social posts through a Dopost API key. <br>
-Mitigation: Require explicit user confirmation before publishing immediately, scheduling, rescheduling, uploading media, or deleting any post or media item. <br>
-Risk: A Dopost API key could grant broad access to connected social accounts. <br>
-Mitigation: Use the most limited Dopost API key available and keep it out of committed files. <br>
+## Use Case:
 
+Developers, social media operators, and external automation users use this skill to work with Dopost accounts, posts, schedules, media uploads, and publishing status from an agent.
 
-## Reference(s): <br>
-- [Dopost API documentation](https://dopost.co/docs/api) <br>
-- [ClawHub skill page](https://clawhub.ai/dopost/dopost) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a DOPOST_API_KEY environment variable for authenticated Dopost API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and OpenClaw metadata) <br>
+Risk: An agent using this skill can publish, schedule, reschedule, upload media for, or delete social content through a Dopost account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation after showing the target account, post or media ID, content, platform options, and scheduled time before making write or delete requests.
+
+Risk: The skill depends on DOPOST_API_KEY for authenticated API access.
+
+Mitigation: Provide DOPOST_API_KEY through a scoped environment variable or secret manager and avoid giving the agent broad access to general .env files.
+
+## Reference(s):
+
+- [Dopost API documentation](https://dopost.co/docs/api)
+- [ClawHub skill page](https://clawhub.ai/dopost/skills/dopost)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce authenticated Dopost API request examples and workflow guidance for publishing, scheduling, media upload, status checks, and deletion.]
+
+## Skill Version(s):
+
+1.1.0 (source: openclaw metadata and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

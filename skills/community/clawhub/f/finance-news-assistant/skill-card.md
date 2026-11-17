@@ -1,50 +1,63 @@
-## Description: <br>
-Professional finance news assistant that monitors A-share and Hong Kong stock news, gathers disclosed market data, and produces concise daily morning reports with anti-hallucination safeguards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors configured A-share and Hong Kong stock news, fetches market and AI decision data, and generates daily finance reports with source and anti-hallucination rules.
 
-## Publisher: <br>
-[gushenjie](https://clawhub.ai/user/gushenjie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gushenjie](https://clawhub.ai/user/gushenjie)
 
-## Use Case: <br>
-External users and finance-focused agents use this skill to generate daily stock news reports, search recent news for tracked securities, and analyze likely market impact while separating sourced facts from analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can surface buy, sell, hold, target price, stop-loss, and position suggestions that may be mistaken for authoritative investment advice. <br>
-Mitigation: Independently verify prices, news, and recommendations before acting, and treat the output as decision support rather than financial advice. <br>
-Risk: The skill depends on a fixed stock API provider and a STOCK_API_TOKEN for market data and AI decision references. <br>
-Mitigation: Install only if the API provider is trusted and use a scoped token with appropriate rotation and access controls. <br>
-Risk: Optional Feishu delivery can send reports to unintended recipients if configured incorrectly. <br>
-Mitigation: Configure Feishu recipient IDs deliberately and verify the destination before enabling automated delivery. <br>
-Risk: Finance news summaries can be misleading if sources are stale, unsupported, or mixed across dates. <br>
-Mitigation: Use the documented source whitelist, seven-day news window, explicit source labels, and anti-hallucination checks before publishing or acting on a report. <br>
+## Use Case:
 
+External users who track the configured A-share and Hong Kong securities use this skill to generate daily market briefings, search recent stock news, and analyze likely news impact with explicit source and uncertainty handling.
 
-## Reference(s): <br>
-- [Finance News Assistant ClawHub page](https://clawhub.ai/gushenjie/finance-news-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/gushenjie) <br>
-- [Anti-hallucination rules](references/anti-hallucination.md) <br>
-- [Daily report format](references/daily-report-format.md) <br>
-- [News source whitelist](references/news-sources.md) <br>
-- [Known error log](references/error-log.md) <br>
-- [Configuration example](assets/config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Guidance, Configuration] <br>
-**Output Format:** [Markdown reports with cited news items, market data summaries, risk notes, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Daily reports are constrained to five tracked securities, seven-day news windows, source attribution, and concise per-stock sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill sends the configured STOCK_API_TOKEN, queried stock symbols, request timing, and generated report data to a fixed external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the operator of tczlld.com is trusted, use a dedicated least-privilege token, and avoid including sensitive portfolio information in requests.
+
+Risk: The skill can produce automated AI trading recommendations that may be incorrect or mistaken for professional financial advice.
+
+Mitigation: Treat recommendations as unverified decision support, require human review before trading decisions, and preserve source citations and uncertainty labels.
+
+Risk: Optional Feishu delivery may send generated reports to the configured recipient.
+
+Mitigation: Enable Feishu delivery only after confirming the recipient ID and the operator's data-sharing requirements.
+
+## Reference(s):
+
+- [Finance News Assistant ClawHub Page](https://clawhub.ai/gushenjie/skills/finance-news-assistant)
+- [Anti-Hallucination Rules](references/anti-hallucination.md)
+- [Daily Report Format](references/daily-report-format.md)
+- [News Source Allowlist](references/news-sources.md)
+- [Known Error Log](references/error-log.md)
+- [Configuration Example](assets/config.example.json)
+- [Configured Stock API Base URL](https://tczlld.com/trade/api/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown finance reports and concise text responses with sourced news, API data, and analysis sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Daily reports cover four A-share tickers and one Hong Kong ticker; each stock section is capped at 400 Chinese characters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

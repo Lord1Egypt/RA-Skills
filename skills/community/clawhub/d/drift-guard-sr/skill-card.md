@@ -1,45 +1,63 @@
-## Description: <br>
-Detect personality drift, sycophancy creep, and capability degradation in AI agents before they become problems by tracking behavior metrics over time against healthy baselines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect personality drift, sycophancy creep, and capability degradation in AI agents before they become problems. Tracks behavior metrics over time against healthy baselines.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and agent operators use Drift Guard to capture healthy response baselines, monitor new agent responses for behavioral drift, and review trend reports before deciding whether remediation is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Python configuration loading can execute code from a user-selected config file. <br>
-Mitigation: Use only trusted config files, keep the tool in a dedicated working directory, and do not pass untrusted files to --config. <br>
-Risk: The local monitoring scripts read agent response text and store derived metrics on disk. <br>
-Mitigation: Avoid feeding secrets or private conversations into the tool and protect generated baseline, history, alert, and report files. <br>
-Risk: Pattern-based drift scores do not provide semantic understanding or root-cause analysis. <br>
-Mitigation: Treat drift reports as review signals and confirm findings with human judgment and operational logs before taking corrective action. <br>
+## Use Case:
 
+Developers and agent operators use Drift Guard to capture healthy behavior baselines, monitor agent responses for measurable drift, and generate trend reports that support review and recovery decisions.
 
-## Reference(s): <br>
-- [Drift Guard on ClawHub](https://clawhub.ai/TheShadowRose/drift-guard-sr) <br>
-- [TheShadowRose publisher profile](https://clawhub.ai/user/TheShadowRose) <br>
-- [README](artifact/README.md) <br>
-- [Limitations](artifact/LIMITATIONS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python scripts, shell commands, text reports, and JSON outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local baseline, history, alert, and report files when the included scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and ClawHub release metadata) <br>
+Risk: The tool reads local agent response files and writes baseline, history, alert, and log files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a workspace where those local files are expected, and avoid pointing it at sensitive response logs unless local storage is acceptable.
+
+Risk: Using --config imports a Python configuration file as executable code.
+
+Mitigation: Use only trusted config files and review custom configuration before execution.
+
+Risk: Drift history retention is not enforced in the inspected code.
+
+Mitigation: Monitor, rotate, or prune drift_history.json during long-running use.
+
+Risk: Pattern-based drift metrics can produce false positives and do not explain root cause.
+
+Mitigation: Treat alerts as review signals, correlate them with activity logs, and keep remediation as a separate human-approved step.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/theshadowrose/skills/drift-guard-sr)
+- [README](artifact/README.md)
+- [Limitations](artifact/LIMITATIONS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; included scripts produce local JSON and text reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external dependencies; analyzes local text responses and writes local baseline, history, alert, and report files.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

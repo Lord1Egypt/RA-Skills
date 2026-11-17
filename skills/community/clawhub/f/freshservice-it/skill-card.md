@@ -1,43 +1,58 @@
-## Description: <br>
-Access Freshservice via the Freshservice API to manage tickets, requesters, agents, assets, changes, problems, and service catalog data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Freshservice tickets, requesters, agents, assets, changes, problems, and service catalog data via the Freshservice API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-IT service management teams and agents use this skill to inspect Freshservice resources and perform ticket or resource changes through a connected Freshservice account after user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects to a Freshservice account and can access sensitive IT service data using the connected account's permissions. <br>
-Mitigation: Use a Freshservice account with appropriate permissions and review the connected account scope before use. <br>
-Risk: Create, update, or delete operations can change Freshservice tickets, assets, changes, or related resources. <br>
-Mitigation: Review write or delete previews carefully and approve only actions that match the user's intent. <br>
+## Use Case:
 
+Employees, IT service teams, and developers use this skill to inspect and manage Freshservice tickets, requesters, agents, assets, locations, problems, changes, releases, and service catalog items through connected Freshservice tooling. Write and delete operations are intended to be previewed and confirmed before execution.
 
-## Reference(s): <br>
-- [Freshservice API Documentation](https://api.freshservice.com/) <br>
-- [Freshservice Ticket API](https://api.freshservice.com/v2/tickets.html) <br>
-- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the live Freshservice tool catalog exposed through ClawLink; write and destructive actions require user confirmation before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release evidence) <br>
+Risk: The skill asks users to install and allowlist an unpinned third-party plugin that handles Freshservice credentials and business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the ClawLink plugin source, publisher, version, and integrity guarantees before installing or allowing the plugin.
+
+Risk: Freshservice API actions may expose or modify tickets, assets, changes, problems, requesters, agents, and service catalog data accessible to the connected account.
+
+Mitigation: Use a Freshservice account with the least privileges needed for the task and confirm every write or delete preview before execution.
+
+## Reference(s):
+
+- [Freshservice API Documentation](https://api.freshservice.com/)
+- [Freshservice Ticket API](https://api.freshservice.com/v2/tickets.html)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+- [Freshservice Skill Page](https://clawhub.ai/hith3sh/skills/freshservice-it)
+- [Publisher Profile](https://clawhub.ai/user/hith3sh)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with inline shell commands and JSON parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the live Freshservice tool catalog as the source of truth and requires confirmation for write or delete actions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

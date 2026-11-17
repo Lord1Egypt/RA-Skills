@@ -1,42 +1,54 @@
-## Description: <br>
-Real-time Bilibili video search that retrieves top video titles for a requested keyword through a user-run local API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time Bilibili video search that retrieves top video titles as structured JSON through a local API.
 
-## Publisher: <br>
-[raise7727](https://clawhub.ai/user/raise7727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raise7727](https://clawhub.ai/user/raise7727)
 
-## Use Case: <br>
-Developers and agent users use this skill to query current Bilibili video results by keyword and receive structured titles for trend tracking, creator monitoring, or competitive research. It depends on a local FastAPI service backed by Playwright. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill calls a user-run local FastAPI and Playwright service, so installation and use depend on trusting that local service. <br>
-Mitigation: Run only the expected local service, keep it bound to localhost, and review the service before using the skill with sensitive workflows. <br>
-Risk: Search keywords may be sent through the local service to Bilibili, and headless browser activity can consume local resources. <br>
-Mitigation: Avoid sensitive search terms and monitor local browser automation resource usage during execution. <br>
+## Use Case:
 
+Developers and agent users use this skill to search Bilibili for current videos by keyword and summarize or analyze the returned titles.
 
-## Reference(s): <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [OpenAPI specification](artifact/openapi.json) <br>
-- [ClawHub release page](https://clawhub.ai/raise7727/bilibili-searchc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text] <br>
-**Output Format:** [JSON search results containing Bilibili video titles, with optional agent-authored text or Markdown summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results are driven by a keyword query and the availability of the local FastAPI and Playwright service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and OpenAPI info.version) <br>
+Risk: The skill depends on a separate local FastAPI service that controls browser automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify and run only the intended local service before enabling the skill, and keep the service bound to localhost.
+
+Risk: Search keywords are sent to the local service for Bilibili searches.
+
+Mitigation: Avoid sensitive search terms unless the local service and search workflow are acceptable for that data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/raise7727/skills/bilibili-searchc)
+- [OpenAPI Specification](artifact/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [JSON search results with Bilibili video titles, suitable for downstream text analysis or summarization.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a keyword query and a separate localhost FastAPI service.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

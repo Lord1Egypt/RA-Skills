@@ -1,48 +1,60 @@
-## Description: <br>
-Use this skill when you need to find code in a local checkout or Git source by behavior, intent, symbol, file path, related implementation, or indexed chunk context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when you need to find code in a local checkout or Git source by behavior, intent, symbol, file path, related implementation, or indexed chunk context.
 
-## Publisher: <br>
-[tristanmanchester](https://clawhub.ai/user/tristanmanchester) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tristanmanchester](https://clawhub.ai/user/tristanmanchester)
 
-## Use Case: <br>
-Developers and coding agents use this skill to search local codebases or Git sources before broad file reads, especially for implementation discovery, behavior tracing, symbol lookup, and related-code inspection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a local sifs executable, so searches may fail or return no contract if the binary is missing or not on PATH. <br>
-Mitigation: Run scripts/check-setup.sh or check command -v sifs and sifs --version before relying on the workflow. <br>
-Risk: Searches can target the wrong checkout when the agent is not running from the intended project directory. <br>
-Mitigation: Pass --source <project> for searches, file listing, chunk inspection, and related-code lookup. <br>
-Risk: MCP tools may be configured but invisible or unavailable in the active agent session. <br>
-Mitigation: Use the CLI immediately when MCP tools are missing or failing, and run the documented doctor commands when troubleshooting is needed. <br>
-Risk: Security evidence advises installation only in trusted ClawHub or Convex development environments. <br>
-Mitigation: Install and run the skill only in trusted environments, and follow local approval practices before installing missing tools. <br>
+## Use Case:
 
+Developers and code-focused agents use this skill to search local checkouts or Git source by behavior, symbols, paths, related implementation, and indexed chunk context before reading broad sets of files.
 
-## Reference(s): <br>
-- [SIFS Search skill page](https://clawhub.ai/tristanmanchester/sifs-search) <br>
-- [tristanmanchester publisher profile](https://clawhub.ai/user/tristanmanchester) <br>
-- [SIFS Command Recipes](references/commands.md) <br>
-- [SIFS MCP Rules](references/mcp.md) <br>
-- [SIFS Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the local sifs binary on PATH; MCP tools are optional and the CLI is the fallback path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata and OpenClaw metadata) <br>
+Risk: The skill depends on an external sifs CLI package that may be unpinned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install SIFS only from a trusted package source and prefer a pinned or verified SIFS release when possible.
+
+Risk: Code search or indexing could run against an unintended source tree.
+
+Mitigation: Pass an explicit --source value and run SIFS only against source trees intended for indexing or inspection.
+
+Risk: Generated agent instructions or force installs could introduce stale or incorrect guidance.
+
+Mitigation: Preview generated agent instructions, use dry-run checks where available, and review instructions before force installing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tristanmanchester/skills/sifs-search)
+- [SIFS Command Recipes](references/commands.md)
+- [SIFS MCP Rules](references/mcp.md)
+- [SIFS Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the local sifs binary on PATH; MCP use is optional when the tools are visible in the active agent session.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and OpenClaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

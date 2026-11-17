@@ -1,45 +1,55 @@
-## Description: <br>
-Guides developers through converting a static-export Next.js 16 App Router web app into a Tauri 2 desktop app with packaging, updater, i18n, and CI templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers in converting a Next.js 16 App Router static export into a Tauri 2 desktop app with native shell integration, optional updates, and GitHub Actions build and release workflows.
 
-## Publisher: <br>
-[rockbenben](https://clawhub.ai/user/rockbenben) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rockbenben](https://clawhub.ai/user/rockbenben)
 
-## Use Case: <br>
-Developers and engineers use this skill to migrate compatible client-side Next.js applications into desktop builds, adding Tauri configuration, frontend integration hooks, signing reminders, and GitHub Actions release workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A leaked Tauri updater private key could let an attacker sign malicious updates that clients trust. <br>
-Mitigation: Keep the private key out of source control, store it only as a GitHub secret for intended release repositories, and rotate it if exposure is suspected. <br>
-Risk: The build workflow grants release permissions and can publish signed artifacts. <br>
-Mitigation: Enable the workflow only in repositories where release publishing is intended and review copied permissions before use. <br>
-Risk: The optional language persistence hook stores a preferred language locally, which has a small privacy tradeoff. <br>
-Mitigation: Persist the preferred language only after the user explicitly chooses one, or omit the hook when cross-launch language memory is unnecessary. <br>
+## Use Case:
 
+Developers use this skill to adapt a static-exportable Next.js 16 app into a Tauri 2 desktop app, including frontend integration and cross-platform build and release workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rockbenben/skills/nextjs-to-tauri) <br>
-- [Frontend integration templates](artifact/frontend-integration.md) <br>
-- [Tauri file templates](artifact/tauri-files.md) <br>
-- [Desktop build workflow template](artifact/desktop-build.yml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code blocks and copy-paste configuration templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes project-specific placeholders and reminders to verify current dependency and action versions before applying.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter and server release evidence) <br>
+Risk: The release workflow includes scripts that can replace published assets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the release target and permissions, then verify the draft asset inventory before publication.
+
+Risk: The scan did not establish runtime permissions, and seven components were only partially inspected.
+
+Mitigation: Inspect the adapted workflow permissions and scripts in the target project before running release workflows.
+
+## Reference(s):
+
+- [Next.js static export support](https://nextjs.org/docs/app/guides/static-exports#supported-features)
+- [Tauri Content Security Policy](https://v2.tauri.app/security/csp/)
+- [Project homepage](https://github.com/rockbenben/aishort-skills/tree/main/skills/nextjs-to-tauri)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown instructions with code and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Project-specific templates and scripts for adaptation to the target app and release policy.]
+
+## Skill Version(s):
+
+1.1.22 (source: SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

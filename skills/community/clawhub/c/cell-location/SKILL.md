@@ -13,28 +13,15 @@ description: |
 
 该服务是基于 A2M 智能收协议（HTTP 402）的付费资源。买家（消费者 Agent）通过本 Skill 向卖家服务端发起资源请求，服务端将返回 402 Payment-Needed 响应报文，买家需将该报文传递给支付宝的 alipay-payment-skill 技能以完成付款。
 
-## 系统要求
+## 依赖安全管控
 
-### 操作系统
-
-由于该技能基于 A2M 协议，需要在支持 A2M 协议的系统上运行，支付宝支付 CLI 工具（alipay-bot）在 Windows 环境下暂不支持。
-
-macOS / Linux，版本要求如下：
-系统|版本要求
--|-
-macOS| 12 Monterey 或更高版本<br>推荐 macOS 14 Sonoma 或 macOS 15 Sequoia
-Linux| Ubuntu：>= 21.04 <br>Debian：>= 12 <br>CentOS：>= 9
-
-### 环境要求
-
-| 环境    | 版本要求 |
-| ------- | -------- |
-| Node.js | > 22     |
-| npm     | > 10     |
-
-## 必要依赖
-
-本技能依赖于支付宝AI付技能，需要从clawhub上安装这两个技能：alipay-authenticate-wallet 和 alipay-payment-skill，安装后检查是否已开启支付宝支付功能，如未开启，需要提示用户开启支付宝支付功能。
+1. 前置强制依赖
+   - `alipay-authenticate-wallet`：支付宝钱包身份鉴权技能
+   - `alipay-payment-skill`：A2M 402支付收单核心技能
+2. 依赖校验规则：技能启动时自动检测上述两个技能安装状态、开关状态；
+   - **如检测未安装**，提示：通过 npx -y @alipay/agent-payment@latest install 帮我**安装开通支付宝AI钱包的能力**,安装后帮我**开启支付宝支付功能**
+   - **未开启支付功能时**：提示用户**开启支付宝支付功能**
+3. 第三方接口依赖：聚合数据基站接口，仅允许文档指定域名 `apis.juhe.cn`，禁止转发请求至其他第三方域名。
 
 ## 触发条件
 
@@ -73,8 +60,8 @@ Linux| Ubuntu：>= 21.04 <br>Debian：>= 12 <br>CentOS：>= 9
 向用户展示待查询的参数，严格遵守请求约束，向以下 URL 发起请求：
 
 ```
-curl https://apis.juhe.cn/a2a/query
-  -d '{"resourceId":"849","data":{"mcc":"<需要查询的移动国家代码MCC>","mnc":"<需要查询的移动网络代码MNC>","lac":"<需要查询的位置区码LAC/TAC>","ci":"<需要查询的基站号CI/CID或BID>"}}'
+curl https://apis.juhe.cn/a2a/query \
+  -d '{"resourceId":"849","data":{"mcc":"<需要查询的移动国家代码MCC>","mnc":"<需要查询的移动网络代码MNC>","lac":"<需要查询的位置区码LAC/TAC>","ci":"<需要查询的基站号CI/CID或BID>"}}' \
   -H "Content-Type: application/json"
 ```
 
@@ -84,7 +71,11 @@ curl https://apis.juhe.cn/a2a/query
 
 ### 第五步：后续流程
 
-完全转移到 alipay-payment-skill 技能的工作流,提示支付待确认的信息时，需要包含用户订单号（out_trade_no）。禁止agent更改用户提交的请求参数即json字符串。
+完全转移到 alipay-payment-skill 技能的工作流,提示支付待确认的信息时，严格遵循下面的要求：
+- 1.**提示支付待确认信息**：必须包含**商品名称**、**交易金额**、**交易号**、**用户订单号(out_trade_no)**等信息。
+- 2.**展示多端支付方式**：必须同时提供**电脑端**和**移动端**两种付款渠道的指引或入口。
+- 3.**展示付款二维码**：必须生成并展示该笔订单对应的**付款二维码**，确保用户可扫码完成支付。
+- 4.**禁止篡改请求参数**：严格禁止Agent以任何形式修改用户提交的原始请求参数（即JSON字符串），必须原样透传至下游技能。
 
 ### 返回示例
 

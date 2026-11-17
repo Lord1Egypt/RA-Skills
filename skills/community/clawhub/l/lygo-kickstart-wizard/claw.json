@@ -1,0 +1,44 @@
+{
+  "name": "lygo-kickstart-wizard",
+  "displayName": "LYGO Kickstart Wizard",
+  "version": "1.0.0",
+  "description": "Plain-English onboarding for the LYGO ClawHub lattice. Map ecosystem, check lattice health, analyze text (ops detector), learn mint→verify→anchor. UX bridge skill. No auto-publish.",
+  "slug": "lygo-kickstart-wizard",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-kickstart-wizard",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-kickstart-wizard",
+  "signature": "Delta9Phi963-LYGO-KICKSTART-WIZARD-v1.0.0",
+  "tags": [
+    "latest",
+    "lygo",
+    "onboarding",
+    "ux",
+    "kickstart",
+    "wizard",
+    "lattice",
+    "security",
+    "openclaw"
+  ],
+  "entry": "SKILL.md",
+  "scripts": {
+    "start": "scripts/kickstart_cli.py start",
+    "map": "scripts/kickstart_cli.py map",
+    "lattice": "scripts/kickstart_cli.py lattice",
+    "analyze": "scripts/kickstart_cli.py analyze",
+    "mint": "scripts/kickstart_cli.py mint",
+    "next": "scripts/kickstart_cli.py next",
+    "self_check": "scripts/self_check.py"
+  },
+  "openclaw": {
+    "emoji": "🚀",
+    "requires": { "anyBins": ["python", "python3"] },
+    "os": ["windows", "macos", "linux"]
+  },
+  "security": {
+    "no_subprocess": true,
+    "no_auto_publish": true,
+    "local_first": true,
+    "https_opt_in_only": true
+  }
+}

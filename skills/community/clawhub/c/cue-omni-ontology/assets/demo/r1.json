@@ -1,0 +1,106 @@
+{
+  "schema_version": "0.1.0",
+  "scope": {
+    "title": "Northstar Demo public knowledge",
+    "as_of": "2026-09-28"
+  },
+  "entities": [
+    {
+      "id": "org:northstar-demo",
+      "type": "Organization",
+      "name": "Northstar Demo (fictional)"
+    },
+    {
+      "id": "product:alpha",
+      "type": "Product",
+      "name": "Alpha (fictional)"
+    }
+  ],
+  "definitions": [
+    {
+      "id": "metric:revenue",
+      "kind": "metric",
+      "name": "Revenue",
+      "description": "Revenue as explicitly reported; basis and exclusions remain part of the fact key.",
+      "value_type": "number",
+      "status": "candidate"
+    },
+    {
+      "id": "relation:offers",
+      "kind": "relation",
+      "name": "Offers product",
+      "description": "Explicitly disclosed organization-to-product relationship; absence is not retirement.",
+      "value_type": "entity",
+      "status": "candidate"
+    }
+  ],
+  "sources": [
+    {
+      "id": "demo-r1",
+      "url": "https://example.org/demo-r1",
+      "title": "Synthetic demo-r1",
+      "published_at": "2026-01-01",
+      "accessed_at": "2026-09-28",
+      "public_status": "synthetic",
+      "parse_origin": "synthetic",
+      "content_file": "demo-r1.txt",
+      "sha256": "3fffa4ea2f260097957fd4f91d5e34551b67e7a26f8049d37c219bc9f5ce34c5",
+      "page_spans": [
+        {
+          "page": 1,
+          "start_utf8": 0,
+          "end_utf8": 143,
+          "basis": "synthetic_page"
+        }
+      ]
+    }
+  ],
+  "assertions": [
+    {
+      "entity_id": "org:northstar-demo",
+      "concept_id": "metric:revenue",
+      "value": 100,
+      "period": "2025Q4",
+      "basis": "IFRS",
+      "unit": "CNY_million",
+      "qualifiers": {},
+      "valid_from": null,
+      "valid_to": null,
+      "claim_kind": "reported",
+      "evidence": [
+        {
+          "source_id": "demo-r1",
+          "start_utf8": 24,
+          "end_utf8": 97,
+          "span_sha256": "015f8a2432f041599cd73a2a233f7b346b9e360c1b057468939bf0e737df8017",
+          "role": "claim",
+          "page": 1,
+          "locator_basis": "synthetic_page"
+        }
+      ]
+    },
+    {
+      "entity_id": "org:northstar-demo",
+      "concept_id": "relation:offers",
+      "value": "product:alpha",
+      "period": "not_applicable",
+      "basis": "explicit_disclosure",
+      "unit": "not_applicable",
+      "qualifiers": {},
+      "valid_from": null,
+      "valid_to": null,
+      "claim_kind": "reported",
+      "evidence": [
+        {
+          "source_id": "demo-r1",
+          "start_utf8": 98,
+          "end_utf8": 142,
+          "span_sha256": "cbe85d21469fae39829b0961af59892a4835be660fe845103d789f1b3ba65fb3",
+          "role": "claim",
+          "page": 1,
+          "locator_basis": "synthetic_page"
+        }
+      ]
+    }
+  ]
+}

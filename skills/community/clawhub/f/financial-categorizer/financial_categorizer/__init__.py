@@ -4,5 +4,7 @@ from financial_categorizer.db_handler import DatabaseHandler, TransferManager
 from financial_categorizer.categorizer import Categorizer
 from financial_categorizer.importer import CSVImporter
 from financial_categorizer.stats import Stats
+from financial_categorizer.recurring import RecurringManager
 
-__all__ = ["DatabaseHandler", "Categorizer", "CSVImporter", "TransferManager", "Stats"]
+__all__ = ["DatabaseHandler", "Categorizer", "CSVImporter", "TransferManager", "Stats", "RecurringManager"]
+

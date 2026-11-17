@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>川崎病 IVIG 时机 — 素雅版</title>
+<style>
+  :root{
+    --paper:#F7F4EC; --card:#FFFFFF; --wash:#EFEADB;
+    --ink:#3D405B; --ink-2:#5E6B7A; --hair:#E2DCCB;
+    --amber:#8A6A1F; --honey:#F2CC8F;
+    --terra:#B85C44; --sage:#81B29A; --sage-deep:#4E7A64;
+    --serif:"Noto Serif SC","Source Han Serif SC","Songti SC","SimSun",serif;
+    --sans:-apple-system,"SF Pro Text","PingFang SC","Microsoft YaHei",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.8;
+       -webkit-font-smoothing:antialiased}
+  .stripe{height:6px;background:repeating-linear-gradient(90deg,var(--ink) 0 46px,var(--honey) 46px 64px,var(--terra) 64px 70px)}
+  .wrap{max-width:1120px;margin:0 auto;padding:clamp(28px,4vw,56px) clamp(20px,4vw,56px) 110px;position:relative}
+
+  .meta{display:flex;justify-content:space-between;font-size:12.5px;letter-spacing:.22em;
+        color:var(--ink-2);text-transform:uppercase;margin-bottom:clamp(48px,8vh,96px)}
+
+  .kicker{color:var(--amber);font-size:14px;letter-spacing:.34em;margin-bottom:20px}
+  h1{font-family:var(--serif);font-weight:700;font-size:clamp(42px,6vw,78px);
+     line-height:1.24;color:var(--ink)}
+  h1 .ten{color:var(--amber);position:relative;white-space:nowrap}
+  h1 .ten::after{content:"";position:absolute;left:0;right:0;bottom:.02em;height:.09em;background:var(--honey);z-index:-1}
+  .standfirst{margin-top:24px;max-width:34em;color:var(--ink-2);font-size:clamp(15.5px,1.5vw,18px)}
+
+  /* 金窗时间轴 */
+  .window{margin-top:clamp(64px,10vh,120px)}
+  .sec-h{display:flex;align-items:baseline;gap:16px;margin-bottom:8px}
+  .sec-h .no{font-family:var(--serif);font-size:15px;color:var(--amber);letter-spacing:.1em}
+  .sec-h h2{font-family:var(--serif);font-size:clamp(21px,2.1vw,27px);font-weight:700}
+  .window .sub{color:var(--ink-2);font-size:14px;margin-bottom:30px}
+  .track{position:relative;height:88px;border:1px solid var(--hair);border-radius:6px;
+         overflow:hidden;display:flex;background:var(--card)}
+  .seg{position:relative;display:flex;align-items:center;justify-content:center;
+       text-align:center;flex-direction:column;line-height:1.45}
+  .seg .d{font-size:12px;letter-spacing:.16em;opacity:.66}
+  .seg .t{font-size:15px;font-weight:600}
+  .seg.fever{width:14.3%;background:var(--wash);color:var(--ink)}
+  .seg.gold{width:21.4%;background:var(--honey);color:#6B5216}
+  .seg.gold .t{font-size:16.5px;font-weight:700;color:#6B5216}
+  .seg.risk{width:50%;color:var(--ink-2);
+            background-image:repeating-linear-gradient(135deg,transparent 0 13px,rgba(51,56,79,.045) 13px 14px)}
+  .seg.late{width:14.3%;background:#E4ECE6;color:var(--sage-deep)}
+  .scale{position:relative;height:18px;margin-top:10px;font-size:12px;color:var(--ink-2);letter-spacing:.06em}
+  .scale span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+  .scale span:first-child{transform:none}
+  .scale span:last-child{transform:none;right:0}
+  .scale b{color:var(--amber);font-weight:700}
+  .caption{display:flex;gap:30px;margin-top:16px;flex-wrap:wrap;font-size:13.5px;color:var(--ink-2)}
+  .caption i{font-style:normal;color:var(--amber)}
+
+  /* 数据对峙 + 幽灵数字 */
+  .duel{margin-top:clamp(64px,10vh,120px);position:relative}
+  .duel-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(20px,3vw,44px);align-items:end}
+  .numblock{position:relative;padding-top:8px}
+  .ghost{position:absolute;top:-54px;left:-14px;font-family:var(--serif);font-weight:700;
+         font-size:clamp(120px,15vw,210px);line-height:1;color:transparent;
+         -webkit-text-stroke:1.5px rgba(51,56,79,.10);pointer-events:none;user-select:none}
+  .numblock.r .ghost{left:auto;right:-10px}
+  .num{position:relative;font-family:var(--serif);font-weight:700;
+       font-size:clamp(58px,7.4vw,104px);line-height:1;letter-spacing:-.01em}
+  .num small{font-size:.36em}
+  .num.red{color:var(--terra)}
+  .num.amber{color:var(--amber)}
+  .numlab{position:relative;margin-top:14px;font-size:14.5px;color:var(--ink-2);max-width:21em}
+  .numlab.r{text-align:right;margin-left:auto}
+  .cond{align-self:center;border-left:1px solid var(--hair);border-right:1px solid var(--hair);
+        padding:10px clamp(14px,2vw,30px);text-align:center;color:var(--ink-2);font-size:14px;line-height:2}
+  .cond b{display:block;color:var(--ink);font-size:16.5px;letter-spacing:.12em}
+  .duel2{margin-top:30px;display:flex;gap:18px;align-items:baseline;
+         background:var(--card);border:1px solid var(--hair);border-radius:6px;padding:18px 26px}
+  .duel2 b{color:var(--sage-deep);font-family:var(--serif);font-size:24px;white-space:nowrap}
+  .duel2 span{color:var(--ink-2);font-size:14.5px}
+
+  /* 判读要点 */
+  .points{margin-top:clamp(64px,10vh,120px);max-width:52em}
+  .points ol{list-style:none;margin-top:10px}
+  .points li{display:flex;gap:22px;padding:22px 0;border-bottom:1px solid var(--hair);
+             font-size:clamp(15.5px,1.6vw,17px);align-items:baseline}
+  .points li:first-child{border-top:1px solid var(--hair)}
+  .points li i{font-style:normal;color:var(--amber);font-family:var(--serif);
+               font-size:14px;white-space:nowrap;letter-spacing:.08em}
+  .points li b{color:var(--ink);font-weight:700;border-bottom:3px solid var(--honey)}
+  .points li.mut{color:var(--ink-2)}
+
+  footer{margin-top:clamp(72px,11vh,130px);padding-top:24px;border-top:1px solid var(--hair);
+         display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+         font-size:12.5px;color:var(--ink-2);line-height:1.9}
+  footer b{color:var(--ink)}
+  .sw{display:flex;gap:6px;align-items:center}
+  .sw i{width:16px;height:16px;border-radius:4px;display:inline-block;border:1px solid rgba(51,56,79,.14)}
+  @media (max-width:760px){
+    .duel-grid{grid-template-columns:1fr}
+    .numlab.r{text-align:left;margin-left:0}.numblock.r .ghost{right:auto;left:-10px}
+    .cond{border:none;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+  }
+</style>
+</head>
+<body>
+<div class="stripe"></div>
+<div class="wrap">
+
+  <div class="meta"><span>DOCTOR Q · 教学样张</span><span>AESTHETE-AGENT 从零设计</span></div>
+
+  <header>
+    <div class="kicker">川崎病 KAWASAKI DISEASE</div>
+    <h1>IVIG 时机:<br>一条 <span class="ten">10 天</span> 分界线</h1>
+    <p class="standfirst">发热第 10 天是一条临床分界线:线前给药,冠脉病变发生率从约四分之一降到
+       二十分之一;线后给药,保护作用显著减弱。</p>
+  </header>
+
+  <section class="window">
+    <div class="sec-h"><span class="no">01</span><h2>病程 28 日 · 给药窗口</h2></div>
+    <div class="sub">横条按病程等比 —— 金色段有多窄,决策就有多急</div>
+    <div class="track">
+      <div class="seg fever"><span class="d">D1–D4</span><span class="t">发热期</span></div>
+      <div class="seg gold"><span class="d">D5–D10</span><span class="t">黄金窗 · IVIG 2g/kg</span></div>
+      <div class="seg risk"><span class="d">D11–D28</span><span class="t">冠脉瘤形成高峰 · 仍建议给药</span></div>
+      <div class="seg late"><span class="d">&gt;D28</span><span class="t">个体化评估</span></div>
+    </div>
+    <div class="scale"><span>D1 发热起</span><span style="left:14.3%">D5 ◆</span><span style="left:35.7%"><b>D10 ◆ 分界线</b></span><span>D28</span></div>
+    <div class="caption">
+      <span><i>◆</i> 发热第 5 日起即可给药,不必等超声出现冠脉改变</span>
+      <span>24–36h 无反应 → 二次给药评估</span>
+    </div>
+  </section>
+
+  <section class="duel">
+    <div class="sec-h"><span class="no">02</span><h2>治疗时机决定结局</h2></div>
+    <div class="duel-grid" style="margin-top:26px">
+      <div class="numblock">
+        <div class="ghost">25</div>
+        <div class="num red">~25<small>%</small></div>
+        <div class="numlab">未治疗(IVIG 时代前历史队列)的冠脉病变发生率</div>
+      </div>
+      <div class="cond"><b>10 日内给药</b>冠脉病变<br>约降至</div>
+      <div class="numblock r">
+        <div class="ghost">3–5</div>
+        <div class="num amber">3–5<small>%</small></div>
+        <div class="numlab r">急性期规范 IVIG 后的发生率</div>
+      </div>
+    </div>
+    <div class="duel2"><b>~11%</b><span>IVIG 无反应、二次给药后的冠脉病变水平 —— 无反应不是"治疗失败",是另一条处置路径的入口。</span></div>
+  </section>
+
+  <section class="points">
+    <div class="sec-h"><span class="no">03</span><h2>三条判读要点</h2></div>
+    <ol>
+      <li><i>01</i><span><b>不必等超声</b> —— 发热第 5 日起即可给药;等待冠脉改变再治,等于主动让出窗口。</span></li>
+      <li><i>02</i><span><b>&gt;10 天不放弃</b> —— 病程超过 10 天伴 CRP/ESR 升高者仍应治疗,伴冠脉炎者获益明确。</span></li>
+      <li class="mut"><i>03</i><span><b>无反应有定义</b> —— 36h 仍发热即评估二次给药,不是盲目加量。</span></li>
+    </ol>
+  </section>
+
+  <footer>
+    <div>来源:<b>AHA 川崎病诊治声明 2017(McCrindle et al., Circulation)</b> ·
+         Newburger et al., Circulation 1986(无反应亚组)<br>
+         历史队列 25% 为量级示意,单臂研究间存在异质性;教学样张,正式课件须逐条核对指南原文。</div>
+    <div class="sw" title="Neutral Harmony Bliss · aesthete-agent 库板(1.9万赞)">
+      <i style="background:#F4F1DE"></i><i style="background:#E07A5F"></i><i style="background:#3D405B"></i><i style="background:#81B29A"></i><i style="background:#F2CC8F"></i>
+      <span>素雅金窗 · Neutral Harmony Bliss</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,38 +1,55 @@
-## Description: <br>
-Discover, download, and organize academic papers from arXiv, HuggingFace Papers, and OpenReview, including multi-source search, deduplication, PDF download, Markdown conversion, and optional wiki sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover, download, and organize academic papers from arXiv, HuggingFace Papers, and OpenReview with multi-source search, deduplication, PDF download, Markdown conversion, and optional wiki sync.
 
-## Publisher: <br>
-[diamond2nv](https://clawhub.ai/user/diamond2nv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diamond2nv](https://clawhub.ai/user/diamond2nv)
 
-## Use Case: <br>
-Researchers and research developers use this skill to monitor new academic papers, configure topic searches, download matching PDFs, convert them to Markdown, and optionally sync paper notes into a wiki. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the full pipeline can download papers, consume disk space, and write local files including optional wiki output. <br>
-Mitigation: Install in a dedicated project or virtual environment, review config.yaml before running, and start with --dry-run or step-by-step commands. <br>
+## Use Case:
 
+Researchers and developers use this skill to monitor academic-paper sources, collect relevant papers, download PDFs, convert them to Markdown, and optionally sync results into a local wiki or agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diamond2nv/hfpclawer-paper-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may lead an agent to create local configuration, SQLite data, downloaded PDFs, converted Markdown, and optional wiki files through the hfpclawer CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Optional Zotero read/write paths, MCP server registration, local profile use, and monitor daemon behavior can broaden local data access or automation scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and enable those integrations intentionally; keep private profiles and Zotero identifiers in local gitignored files.
+
+Risk: Unpinned package launches can reduce repeatability or run a different installed tool version than expected.
+
+Mitigation: Prefer pinned package versions for repeatable installs and launches.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diamond2nv/skills/hfpclawer-paper-search)
+- [Project homepage](https://github.com/diamond2nv/hfpapers-crawler)
+- [PyPI package](https://pypi.org/project/hfpclawer/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, YAML configuration examples, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to create or update local paper stores, PDF files, Markdown files, wiki content, and optional MCP configuration.]
+
+## Skill Version(s):
+
+0.19.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

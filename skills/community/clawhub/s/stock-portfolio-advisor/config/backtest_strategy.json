@@ -1,0 +1,9 @@
+{
+  "top_k": 10,
+  "initial_cash": 1000000,
+  "equity_budget": 0.8,
+  "lot_size": 100,
+  "buy_fee_bps": 3,
+  "sell_fee_bps": 8,
+  "slippage_bps": 5
+}

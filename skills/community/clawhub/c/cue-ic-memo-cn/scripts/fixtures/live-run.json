@@ -1,0 +1,20 @@
+{
+  "asof": "2026-10-12 15:00",
+  "asof_date": "2026-10-12",
+  "bear_rows": 1,
+  "billing": "未回传",
+  "bull_rows": 1,
+  "business_rows": 0,
+  "exit_code": 0,
+  "fact_rows": 1,
+  "gap_rows": 1,
+  "material_rows": 0,
+  "memo": "memo-000001-2026-10-12.md",
+  "mixed_groups": {},
+  "routed_rows": 0,
+  "source_rows": 3,
+  "subject": "000001",
+  "subject_name": "冒烟主体",
+  "totals": {},
+  "totals_meta": {}
+}

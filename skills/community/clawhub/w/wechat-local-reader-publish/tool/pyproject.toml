@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wechat-cli"
+version = "0.2.4"
+description = "WeChat data query CLI for LLMs"
+requires-python = ">=3.10"
+dependencies = [
+    "click>=8.1,<9",
+    "pycryptodome>=3.19,<4",
+    "zstandard>=0.22,<1",
+]
+
+[project.scripts]
+wechat-cli = "wechat_cli.main:cli"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.setuptools.package-data]
+wechat_cli = ["bin/*"]

@@ -1,46 +1,61 @@
-## Description: <br>
-Map products across introduction, growth, maturity, and decline stages with stage-appropriate marketing, pricing, and inventory strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Map products across introduction, growth, maturity, and decline stages with stage-appropriate marketing, pricing, and inventory strategies.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Product, marketing, inventory, and pricing teams use this skill to classify catalog items by lifecycle stage and generate stage-aware strategy briefs, transition watch lists, and portfolio health views. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect lifecycle classification could lead to poor price changes, advertising budget shifts, inventory orders, liquidation plans, or product sunset decisions. <br>
-Mitigation: Review assumptions, confidence levels, and recommendations with accountable business owners before acting. <br>
-Risk: The analysis may require proprietary sales, revenue, margin, product, or catalog data. <br>
-Mitigation: Use approved data handling practices and avoid sharing sensitive business data unless the analysis environment is authorized for it. <br>
-Risk: Short, seasonal, stockout-affected, or promotion-distorted data can produce misleading lifecycle stages. <br>
-Mitigation: Validate data sufficiency and edge cases, flag products with insufficient history, and document any overrides before delivery. <br>
+## Use Case:
 
+Merchandising, marketing, pricing, and inventory teams use this skill to classify catalog products by lifecycle stage and turn sales trajectory data into stage-appropriate strategy briefs, transition watch lists, and portfolio lifecycle maps.
 
-## Reference(s): <br>
-- [Product Lifecycle Planner on ClawHub](https://clawhub.ai/leooooooow/product-lifecycle-planner) <br>
-- [Output template](references/output-template.md) <br>
-- [Stage classification framework](references/stage-classification.md) <br>
-- [Stage strategy playbooks](references/stage-strategies.md) <br>
-- [Quality checklist](assets/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown lifecycle analysis report with tables, stage assignments, confidence levels, strategy briefs, and transition watch lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations can include pricing, marketing, inventory, product development, financial impact, and portfolio balance guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Product sales and business performance data may be sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only data appropriate for the agent session and redact unnecessary customer, supplier, or margin details before use.
+
+Risk: Recommended pricing, inventory, or discontinuation actions could affect revenue, margin, or customer commitments.
+
+Mitigation: Have product, finance, and operations owners review recommendations and supporting data before acting.
+
+Risk: Lifecycle classifications can be misleading when sales data has gaps, stockouts, promotions, or seasonal effects.
+
+Mitigation: Use the checklist and stage framework to validate data coverage, document anomalies, and flag low-confidence classifications.
+
+## Reference(s):
+
+- [Product Lifecycle Planner skill page](https://clawhub.ai/leooooooow/skills/product-lifecycle-planner)
+- [Output template](references/output-template.md)
+- [Stage classification framework](references/stage-classification.md)
+- [Stage strategy playbooks](references/stage-strategies.md)
+- [Quality checklist](assets/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with tables, product strategy briefs, transition watch lists, and checklist items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided product sales and business performance data; pricing, inventory, and discontinuation recommendations should be reviewed before action.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

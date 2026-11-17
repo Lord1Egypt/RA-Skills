@@ -1,41 +1,58 @@
-## Description: <br>
-Extract and summarize publicly accessible WeChat Work pages, including announcements, app information, and group invitations, without internal API access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract and summarize publicly accessible WeChat Work pages, including announcements, app information, and group invitations, without internal API access.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-Employees, developers, and analysts use this skill to summarize publicly accessible WeChat Work announcements, application pages, and group invitation pages. It extracts practical fields such as title, author, update time, content excerpts, app details, links, and invitation-page terms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill could be misapplied to private enterprise chats, authenticated pages, admin consoles, or confidential company material. <br>
-Mitigation: Use it only with publicly accessible WeChat Work links and do not provide credentials, internal URLs, or confidential content. <br>
-Risk: Repeated access to dynamically rendered public pages can create unnecessary traffic or trigger platform limits. <br>
-Mitigation: Throttle visits, avoid repeated requests, and respect platform and enterprise information-security requirements. <br>
+## Use Case:
 
+People reviewing public WeChat Work share pages use this skill to extract titles, authors, update times, summaries, app details, version information, links, and invitation-page notes without accessing private enterprise data.
 
-## Reference(s): <br>
-- [WeChat Work homepage](https://work.weixin.qq.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/wechat-work) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries and structured field lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No credentials, private enterprise data, or internal API access are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and changelog) <br>
+Risk: The skill may be misapplied to private chats, tenant data, admin actions, authenticated workflows, or pages requiring internal permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for public WeChat Work share, announcement, app, or invitation pages, and do not provide credentials or private enterprise links.
+
+Risk: Dynamic public pages may be incomplete if summarized before client-side content finishes rendering.
+
+Mitigation: Wait for page rendering before extracting fields, then verify key details such as title, author, update time, and source link.
+
+Risk: Repeated access to public pages can create unnecessary traffic or conflict with platform expectations.
+
+Mitigation: Apply frequency controls and avoid repeated visits when the same public content has already been collected.
+
+## Reference(s):
+
+- [WeChat Work](https://work.weixin.qq.com/)
+- [ClawHub Skill Page](https://clawhub.ai/mike47512/skills/wechat-work)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or concise text summaries with extracted field lists and source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are limited to publicly accessible page content and do not include private tenant, chat, admin, or authenticated workflow data.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn74n2v8475xa1k801g3rawht18380tg",
-  "slug": "teamarchitect-skill",
+  "name": "teamarchitect",
   "version": "1.0.0",
-  "publishedAt": 1774004861307
+  "description": "智能团队架构师 - 通过对话了解用户需求，设计多 Agent 团队架构，推荐并安装技能",
+  "author": "Custom",
+  "platforms": ["OpenClaw", "Claude Code", "Universal"],
+  "tags": ["architecture", "multi-agent", "skill-installer", "advisor"],
+  "entryPoint": "SKILL.md",
+  "dependencies": [],
+  "permissions": {
+    "bash": true,
+    "network": true,
+    "filesystem": "skills-directory"
+  }
 }

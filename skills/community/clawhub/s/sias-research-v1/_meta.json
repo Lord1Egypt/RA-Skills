@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn7b18q8mggptky3perw4gkjvx81z4af",
-  "slug": "sias-research-v1",
-  "version": "1.0.0",
-  "publishedAt": 1775060939804
+ "name": "sias-research-v1",
+ "version": "1.0.0",
+ "description": "SIAS-spezifischer Deep Research Skill für Rheingold. Optimiert für IFG-Anfragen, NGO-Netzwerk-Analyse und Fördermittel-Recherche in Köln/NRW.",
+ "emoji": "🦅",
+ "author": "iggyswelt",
+ "created": "2026-04-01",
+ "agents": ["rheingold", "hermes"],
+ "modes": ["ifg", "ngo", "mail", "rapid"],
+ "requires": {
+  "db_tables": ["rheingold_findings", "rheingold_mails", "agent_knowledge"],
+  "tools": ["himalaya", "psql", "web_search"]
+ },
+ "homepage": "local"
 }

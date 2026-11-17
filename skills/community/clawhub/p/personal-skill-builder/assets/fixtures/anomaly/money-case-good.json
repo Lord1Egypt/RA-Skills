@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "pattern": {
+    "pack": "@patterns/cn-currency.json"
+  },
+  "source": {
+    "path": "raw-money.csv",
+    "format": "csv",
+    "columns": [
+      "物品",
+      "备注"
+    ]
+  },
+  "outputs": [
+    {
+      "id": "list",
+      "path": "money-list.csv",
+      "format": "csv"
+    },
+    {
+      "id": "reminder",
+      "path": "money-reminder.md",
+      "format": "text"
+    }
+  ],
+  "keep": [
+    {
+      "output": "list",
+      "text": "三元件"
+    },
+    {
+      "output": "list",
+      "text": "3块幕布保留"
+    },
+    {
+      "output": "reminder",
+      "text": "三元件"
+    }
+  ]
+}

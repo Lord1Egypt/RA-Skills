@@ -1,42 +1,59 @@
-## Description: <br>
-Threshold Keel provides safety guardrails for autonomous agents by classifying risky actions, requiring structured approval before irreversible operations, and supporting CLI-backed audit trails and policy checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Threshold Keel provides safety guardrails for autonomous agents by classifying actions, requiring structured approval before irreversible operations, and supporting optional CLI-backed audit trails and policy enforcement.
 
-## Publisher: <br>
-[andaltan](https://clawhub.ai/user/andaltan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andaltan](https://clawhub.ai/user/andaltan)
 
-## Use Case: <br>
-Developers and external users install Threshold Keel to add approval gates, action classification, and optional CLI or cloud audit trails before autonomous agents perform risky state-changing actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is an agent-wide approval and audit layer, so users should only enable it when they want Keel to mediate risky agent actions. <br>
-Mitigation: Install intentionally, review the approval workflow, and verify that the threshold-keel package is trusted before enabling CLI or cloud mode. <br>
-Risk: CLI mode may store action metadata locally under ~/.keel/, and cloud mode may sync action metadata when KEEL_CLOUD_API_KEY is set. <br>
-Mitigation: Keep cloud sync disabled unless the user has approved Threshold Cloud data handling, and review local audit storage expectations before use. <br>
+## Use Case:
 
+Developers and operators use this skill to add session-level safety gates for autonomous agents with access to files, messaging, email, browser, or APIs. It helps classify actions by risk tier, request structured approval, and optionally record auditable policy checks through the Keel CLI.
 
-## Reference(s): <br>
-- [Threshold Keel ClawHub listing](https://clawhub.ai/andaltan/threshold-keel) <br>
-- [Threshold Keel homepage](https://thresholdsignalworks.com/keel) <br>
-- [Threshold Cloud overview](https://thresholdsignalworks.com/cloud) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use the local keel CLI for durable policy checks and audit trails, or provide behavioral guidance only when the CLI is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.7 (source: server release metadata; artifact frontmatter lists 0.2.5) <br>
+Risk: The skill takes broad control over agent actions and may block or slow ordinary write operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when a session-wide safety gate is desired, and review expected workflows before relying on it.
+
+Risk: The external CLI can log actions and sync activity to Threshold Cloud when KEEL_CLOUD_API_KEY is configured.
+
+Mitigation: Prefer local-only use first, and set KEEL_CLOUD_API_KEY only when external storage of action logs is acceptable.
+
+Risk: The skill depends on the separately installed threshold-keel package for durable policy checks and audit logging.
+
+Mitigation: Verify the threshold-keel package source and version before installation, and treat instructions-only mode as behavioral guidance rather than a durable audit system.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andaltan/skills/threshold-keel)
+- [Threshold Keel homepage](https://thresholdsignalworks.com/keel)
+- [Threshold Cloud](https://thresholdsignalworks.com/cloud)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with command snippets, risk classifications, and structured approval prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use the threshold-keel CLI for local policy checks, audit logging, quarantine status, and optional cloud sync when configured.]
+
+## Skill Version(s):
+
+0.2.7 (source: server release metadata; artifact frontmatter reports 0.2.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

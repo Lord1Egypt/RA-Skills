@@ -1,45 +1,60 @@
-## Description: <br>
-Extracts searchable Markdown text from images and scanned content embedded in local HTML files using MinerU OCR. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HTML OCR helps agents extract text from image-embedded or scanned content in local HTML files using MinerU OCR.
 
-## Publisher: <br>
-[mzlzyca](https://clawhub.ai/user/mzlzyca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzlzyca](https://clawhub.ai/user/mzlzyca)
 
-## Use Case: <br>
-Developers, archivists, and accessibility workflows use this skill to turn image-heavy or scanned HTML pages into searchable text or Markdown using MinerU OCR. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected HTML and embedded images may be processed by MinerU, a third-party service. <br>
-Mitigation: Use this skill only for content whose data handling is acceptable; avoid confidential, regulated, or proprietary HTML unless MinerU processing is approved. <br>
-Risk: A MinerU token can authorize OCR API access if exposed. <br>
-Mitigation: Use a revocable token, keep MINERU_TOKEN out of prompts and logs, and rotate the token if exposure is suspected. <br>
-Risk: OCR results from image-heavy or mixed-content pages may be incomplete or inaccurate. <br>
-Mitigation: Review extracted Markdown before relying on it, and use VLM mode for complex pages when higher OCR quality is needed. <br>
+## Use Case:
 
+Developers and agents use this skill to OCR scanned or image-heavy HTML pages and convert embedded image text into searchable Markdown or text-oriented outputs.
 
-## Reference(s): <br>
-- [ClawHub HTML OCR release](https://clawhub.ai/mzlzyca/html-ocr) <br>
-- [MinerU](https://mineru.net) <br>
-- [MinerU token management](https://mineru.net/apiManage/token) <br>
-- [OpenDataLab MinerU repository](https://github.com/opendatalab/MinerU) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown or plain text extracted by the MinerU CLI, with shell command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mineru-open-api and MINERU_TOKEN; local HTML input is processed by MinerU.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server evidence release.version) <br>
+Risk: The skill depends on the third-party MinerU CLI and API for OCR processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install MinerU only from the documented package or repository, pin or review the version, and run it in an isolated environment when possible.
+
+Risk: MINERU_TOKEN is a credential required for OCR extraction.
+
+Mitigation: Store the token in the environment or credential manager, avoid committing it, and rotate it if exposed.
+
+Risk: HTML documents sent for OCR may contain confidential content.
+
+Mitigation: Process sensitive documents only after confirming that MinerU API handling is acceptable for the data classification.
+
+## Reference(s):
+
+- [HTML OCR on ClawHub](https://clawhub.ai/mzlzyca/skills/html-ocr)
+- [MinerU](https://mineru.net)
+- [MinerU GitHub Repository](https://github.com/opendatalab/MinerU)
+- [MinerU API Token Management](https://mineru.net/apiManage/token)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [OCR output is written to stdout by default or to a user-specified output directory when the MinerU CLI is invoked with -o.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

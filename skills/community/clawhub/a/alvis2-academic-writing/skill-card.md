@@ -1,38 +1,48 @@
-## Description: <br>
-Expert guidance in scholarly writing, literature reviews, research methods, and thesis composition following strict academic standards and citation rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert guidance in scholarly writing, literature reviews, research methods, and thesis composition following strict academic standards and citation rules.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and researchers use this skill to draft, structure, and refine scholarly writing while following academic citation and source-quality expectations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Academic citations or factual claims may be incorrect if the agent cannot verify source legitimacy.
+
+Mitigation: Verify references independently and treat the skill as a writing and citation-formatting helper, not an authority on factual correctness.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Students, researchers, educators, and academic professionals use this skill to draft and review scholarly writing, literature reviews, methodology sections, theses, and citation-structured academic responses. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated citations or factual claims may be incorrect, incomplete, or unverifiable in academic submission contexts. <br>
-Mitigation: Users should independently verify citations, source quality, and factual claims before submitting or relying on the work. <br>
+**Output Format:** [Markdown wrapped in <ama-doc> tags, with numbered academic citations when references are used]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/alvisdunlop/alvis2-academic-writing) <br>
+**Other Properties Related to Output:** [May include Markdown tables and Mermaid diagrams when they help present cited academic content]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown wrapped in <ama-doc> tags, with numbered citations and optional Markdown tables or Mermaid diagrams] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires real, verifiable academic citations; response language should match the user query.] <br>
+2.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

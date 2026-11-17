@@ -43,7 +43,7 @@ The output should feel like:
 ## Privacy And Scope Boundary
 
 Briefs can contain private business information. Before public-content lookup,
-do not paste confidential terms, internal prices, launch dates, private contact
+do not paste confidential terms, confidential prices, launch dates, private contact
 information, or unreleased product details into searches.
 
 Use safe search terms:
@@ -67,6 +67,20 @@ High-risk categories include:
 
 Do not invent proof, test results, awards, official endorsements, before/after
 effects, prices, discounts, or user reviews that are not provided.
+
+For Xiaohongshu deliverables, also run
+`xhs-platform-management-risk-baseline.md` and
+`xhs-content-compliance-risk-gate.md` before final copy. If the Brief asks for
+external links, QR codes, WeChat, private groups, comment-to-receive resources,
+or "like/follow/comment to get" mechanics, keep those as Brief requirements to
+confirm, but do not put them into the publishable Xiaohongshu version. Rewrite
+them into a safer platform-specific alternative or mark them as needing brand
+confirmation.
+
+For Brand Briefs, default to "公开价值优先、产品名后置、无导流动作". The content
+should not start as a brand slogan. Translate the product into a user problem,
+scene, checklist, comparison, story, or method first, then let the product
+appear as support.
 
 ## Input Contract
 
@@ -110,6 +124,12 @@ Extract the Brief into a structured table:
 | Creator fit | why this creator can say it credibly |
 | Missing info | what must be clarified before final delivery |
 
+When extracting mandatory CTA, separate:
+
+- Brand requested CTA
+- Xiaohongshu-safe CTA
+- Needs brand/legal confirmation
+
 If the Brief is too vague, do not block the workflow. Produce a "Brief
 clarification list" with 3-5 missing items and a draft direction based on what
 is already known.
@@ -133,7 +153,7 @@ Good diagnosis:
 
 ### 3. Public Reference Search
 
-Use `search-credit-notice.md` before paid lookup.
+Use `research-scope-guard.md` before expanding online lookup.
 
 Search should not only search the brand name. Search a mix of:
 
@@ -242,11 +262,13 @@ Before final answer, include a delivery checklist:
 
 - mandatory points included
 - forbidden claims avoided
+- public value appears before product/brand selling language
+- Xiaohongshu risk gate passed or risky CTA rewritten
 - platform disclosure/compliance reviewed
 - product placement is natural
 - title and cover still have user click reason
 - first 3 lines / first 3 seconds do not sound like a brand slogan
-- CTA matches the Brief
+- CTA matches the Brief as much as possible without站外引流、加微信、诱导评论互动
 - missing brand assets or facts to confirm
 
 If the Brief conflicts with creator trust, say so plainly:
@@ -290,14 +312,14 @@ Use when the user asks for a campaign, batch content, or multi-platform plan:
 6. multi-platform distribution plan
 7. review workflow and post-publish metrics
 
-## Credit Scope Wording
+## Research Scope Wording
 
 If public lookup is needed, use this wording:
 
-我可以先基于 Brief 做不花积分的拆解；如果你想让我看最近小红书同类产品/同类痛点都怎么讲，我会进入公开内容搜索。建议先搜 3-5 个关键词，找 3-5 条近期参考，再产出内容角度和正文。你确认后我再开始查。
+我可以先基于 Brief 做本地拆解；如果你想让我看最近小红书同类产品/同类痛点都怎么讲，我会进入公开内容搜索。建议先搜 3-5 个关键词，找 3-5 条近期参考，再产出内容角度和正文。你确认后我再开始查。
 
 If the user already asks for "找对标" or "看看最近都怎么讲", proceed after
-the normal credit notice.
+the normal scope confirmation.
 
 ## Good Style
 

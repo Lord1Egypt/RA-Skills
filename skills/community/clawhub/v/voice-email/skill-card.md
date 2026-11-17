@@ -1,44 +1,60 @@
-## Description: <br>
-Send emails via natural voice commands - designed for accessibility <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send emails via natural voice commands - designed for accessibility.
 
-## Publisher: <br>
-[Sundiver1](https://clawhub.ai/user/Sundiver1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sundiver1](https://clawhub.ai/user/sundiver1)
 
-## Use Case: <br>
-Accessibility-focused users and operators use this skill to compose and send Gmail messages from voice commands. It transcribes Telegram voice messages with Deepgram, extracts the recipient, subject, and body, then sends the email through gogcli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Voice recordings and email content are processed through Telegram, Deepgram, and Gmail. <br>
-Mitigation: Install only in environments where those service flows are acceptable, and use dedicated test accounts before routine use. <br>
-Risk: The skill depends on sensitive credentials and OAuth access for Deepgram, Telegram, optional ElevenLabs, and Gmail. <br>
-Mitigation: Store API keys and OAuth tokens in a secure environment, scope accounts and quotas where possible, and remove credentials when uninstalling. <br>
-Risk: Misheard or malformed voice commands could produce an unintended recipient or message body. <br>
-Mitigation: Confirm the workflow gives the user a chance to review recipients and message content before any email is sent. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Voice Email ClawHub Page](https://clawhub.ai/Sundiver1/voice-email) <br>
-- [gogcli](https://gogcli.ai) <br>
-- [Deepgram Console](https://console.deepgram.com) <br>
-- [Deepgram Listen API](https://api.deepgram.com/v1/listen) <br>
+## Use Case:
 
+External users and accessibility-focused operators use this skill to send Gmail messages from structured voice commands received through Telegram and transcribed with Deepgram.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured Telegram, Deepgram, Gmail/gogcli, and optional ElevenLabs access before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send Gmail messages from voice transcription without a documented pre-send confirmation step.
+
+Mitigation: Require explicit confirmation that displays the parsed recipient, subject, and body before sending any email.
+
+Risk: The skill uses Gmail OAuth and third-party provider keys that may be stored in local configuration or key storage.
+
+Mitigation: Use a dedicated Gmail account, low-quota provider keys, and protect openclaw.json and any configuration backups.
+
+Risk: Setup guidance includes global package installation and external binaries.
+
+Mitigation: Prefer a pinned or isolated install path where possible, and verify external binary sources and checksums before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sundiver1/skills/voice-email)
+- [Publisher profile](https://clawhub.ai/user/sundiver1)
+- [gogcli](https://gogcli.ai)
+- [Deepgram console](https://console.deepgram.com)
+- [Deepgram listen API endpoint](https://api.deepgram.com/v1/listen)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline command and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agent behavior for voice transcription, command parsing, Gmail sending, and setup validation.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,46 @@
+name: bilibili-video-parser
+version: "1.0.0"
+license: MIT
+author: zhouq2039-lang
+description: >
+  Bilibili video parser.
+  Converts Bilibili video links (bilibili.com/video/BVxxx or b23.tv short links)
+  into Chinese transcript text and interactive capsule-card HTML reports.
+  Prioritizes CC subtitles (skips transcription when available); falls back to
+  faster-whisper local transcription (base model, CPU, int8) when no subtitles.
+  Requires network: accesses api.bilibili.com for metadata/subtitles/audio URL,
+  downloads audio stream from Bilibili CDN, first run downloads whisper model
+  (~74MB) from HuggingFace. No API key, cookie, or login required.
+  HTML report uses system fonts (no external font CDN), all content HTML-escaped.
+  Output language follows the user's language preference.
+
+  B站视频解析。
+  把B站视频链接转成中文字幕连贯稿和交互式胶囊卡片 HTML 报告。
+  优先尝试CC字幕（有字幕直接用，跳过转写）；无字幕时用 faster-whisper 本地转写。
+  需网络：访问 api.bilibili.com 获取元数据/字幕/音频直链，从B站 CDN 下载音频流，
+  首次运行从 HuggingFace 下载 whisper 模型（约 74MB）。
+  不需要 API key、cookie 或登录。HTML 报告使用系统字体（无外部字体 CDN），
+  所有内容经 HTML 转义。输出语言跟随用户偏好。
+
+triggers:
+  - bilibili-video-parser
+  - B站视频解析
+  - B站视频转写
+
+instructions: SKILL.md
+
+dependencies:
+  pip:
+    - faster-whisper
+
+tags:
+  - video
+  - bilibili
+  - transcript
+  - analysis
+
+files:
+  - skill.yaml
+  - SKILL.md
+  - README.md
+  - scripts/transcribe.py

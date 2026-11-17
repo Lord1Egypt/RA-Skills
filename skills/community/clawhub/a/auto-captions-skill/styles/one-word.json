@@ -1,0 +1,22 @@
+{
+ "about": "One huge word at a time, keywords in yellow. Punchy hooks and short clips; tiring past 30 seconds.",
+ "font": "Anton-Regular.ttf",
+ "size": 150,
+ "uppercase": true,
+ "color": "#FFFFFF",
+ "keyword": "#FFD43B",
+ "stroke": 11,
+ "stroke_color": "#000000",
+ "shadow": {
+  "dx": 0,
+  "dy": 9,
+  "alpha": 0.5,
+  "blur": 4
+ },
+ "words": 1,
+ "chars": 14,
+ "lines": 1,
+ "pause": 0.2,
+ "position": 0.58,
+ "min_show": 0.2
+}

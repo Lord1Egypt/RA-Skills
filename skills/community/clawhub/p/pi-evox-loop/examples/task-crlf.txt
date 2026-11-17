@@ -1,0 +1,3 @@
+Run this repository's report script **directly** (`./run_report.py`) and report the `total` it prints.
+If it fails, fix the underlying problem. It must work when executed directly — working around it by invoking `python3 run_report.py` explicitly is NOT acceptable.
+Report the final total value.

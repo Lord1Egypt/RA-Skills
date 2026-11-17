@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 104" width="100%">
+  <defs>
+    <filter id="logoShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="2.5" stdDeviation="2.5" flood-color="#1C6DD0" flood-opacity="0.30"/>
+    </filter>
+  </defs>
+  <rect x="-52" y="-52" width="104" height="104" rx="20" fill="#EEEDFE" stroke="#C9DCEE" stroke-width="0.5" transform="translate(52,52)" filter="url(#logoShadow)"/>
+  <g transform="translate(7,13)">
+    <text font-family="Arial Black,Helvetica Neue,Arial,sans-serif" font-size="16" font-weight="900" font-style="italic" fill="#1C6DD0" stroke="#1C6DD0" stroke-width="0.25" paint-order="stroke" stroke-linejoin="round">Clinical</text>
+    <text y="12" font-family="Arial Black,Helvetica Neue,Arial,sans-serif" font-size="16" font-weight="900" font-style="italic" fill="#1C6DD0" stroke="#1C6DD0" stroke-width="0.25" paint-order="stroke" stroke-linejoin="round">Trial</text>
+  </g>
+  <g transform="translate(-7,0)">
+  <path d="M55.7 104.0 L54.2 102.1 L52.1 100.8 L49.7 100.4 L47.3 100.6 L44.9 101.0 L42.5 101.4 L40.1 101.9 L37.6 102.0 L35.1 101.8 L33.7 99.9 L33.3 97.4 L33.7 95.0 L32.7 92.9 L32.0 90.8 L31.9 89.1 L30.8 87.1 L31.9 85.0 L31.6 83.0 L29.3 82.1 L27.5 80.7 L28.0 78.3 L29.1 76.2 L30.4 74.2 L31.8 72.2 L33.1 70.2 L33.7 67.9 L33.0 65.6 L32.2 63.4 L32.0 60.9 L32.6 58.6 L33.3 56.4 L33.9 54.0 L34.6 51.8 L35.3 49.5 L33.9 48.3 L31.7 47.4 L30.4 45.4 L29.9 43.0 L29.5 40.6 L30.5 40.2 L31.4 38.9 L32.4 37.7 L33.0 38.9 L33.3 36.5 L34.3 36.8 L35.5 38.2 L36.1 35.9 L36.5 33.5 L37.8 33.1 L39.4 34.9 L41.7 35.5 L44.0 34.7 L46.1 33.6 L48.3 32.8 L50.6 32.2 L53.0 32.2 L55.5 32.4 L57.8 33.0 L60.3 33.2 L62.8 33.0 L65.1 32.4 L67.5 32.0 L69.9 32.2 L72.3 32.6 L74.5 33.5 L76.7 34.3 L78.8 35.5 L80.8 36.9 L82.8 38.4 L84.4 40.2 L86.0 42.1 L87.2 44.2 L88.3 46.3 L89.1 48.5 L89.8 50.8 L90.3 53.2 L90.5 55.6 L90.5 58.2 L90.3 60.7 L90.0 63.1 L89.5 65.5 L88.9 67.8 L88.1 70.0 L87.4 72.3 L86.6 74.5 L85.9 76.8 L85.2 79.1 L84.5 81.3 L83.7 83.5 L82.7 85.7 L82.0 88.0 L81.7 90.4 L82.2 92.8 L83.2 94.9 L84.8 96.3 L85.6 98.6 L87.3 100.0 L89.0 101.7 L89.7 104.0 Z" fill="#1C6DD0" stroke="#1657A8" stroke-width="1"/>
+  <g transform="translate(59.0,62.2)">
+    <!-- 四向彩色指针（方向导航，放大版，无圆形底盘与刻度） -->
+    <path d="M0 -24 L5.5 0 L-5.5 0 Z" fill="#D85A30"/>
+    <path d="M0 24 L-5.5 0 L5.5 0 Z" fill="#9FE1CB"/>
+    <path d="M-24 0 L0 -5.5 L0 5.5 Z" fill="#AFA9EC" opacity="0.95"/>
+    <path d="M24 0 L0 5.5 L0 -5.5 Z" fill="#C5DCF5" opacity="0.95"/>
+    <circle r="2.4" fill="#FFFFFF"/>
+  </g>
+  <!-- 头像右上部（后脑勺上方）医学标记：白底红十字徽 -->
+  <g transform="translate(83,43)">
+    <circle r="8" fill="#FFFFFF" stroke="#1C6DD0" stroke-width="1.2"/>
+    <rect x="-1.6" y="-5" width="3.2" height="10" rx="0.8" fill="#E2342E"/>
+    <rect x="-5" y="-1.6" width="10" height="3.2" rx="0.8" fill="#E2342E"/>
+  </g>
+  </g>
+</svg>

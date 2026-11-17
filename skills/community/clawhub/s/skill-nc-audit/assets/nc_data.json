@@ -1,0 +1,1357 @@
+{
+  "non_conformances": [
+    {
+      "id": "NC-20260629-001",
+      "title": "试产工艺总结报告记录不完整",
+      "clause": "7.5.3",
+      "category": "minor",
+      "description": "现场查看 WJL-RSQ-C40-02 电控 PCBA 试产工艺总结报告，未登记完成时间及确认人信息；试产过程发现的问题通过会议进行沟通，未留存对应的会议纪要，试产问题沟通、闭环过程无书面追溯记录。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "电子工艺",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-26"
+      },
+      "created_at": "2026-06-29T18:56:29.505142"
+    },
+    {
+      "id": "NC-20260629-002",
+      "title": "PLM变更图纸无法打开",
+      "clause": "8.5.6",
+      "category": "minor",
+      "description": "查看 PLM 系统中 WJL-RSQ-C40-02 PCB 的变更通知，关联的变更图纸无法正常打开查阅。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "电子工艺",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-26"
+      },
+      "created_at": "2026-06-29T18:56:29.505149"
+    },
+    {
+      "id": "NC-20260629-003",
+      "title": "工艺路线与作业指导书标准工时不一致",
+      "clause": "7.5.3",
+      "category": "minor",
+      "description": "查看 PLM 系统图号 102020076191 工艺路线工时数据，并对照 Q/WJL J05.3129 电子装配作业指导书核对，二者相同工序标准工时参数不统一：工艺路线中打二维码工序标准工时 5.77s、印刷工序标准工时 5.99s，而作业指导书对应上述两道工序标准工时均标注为 7s。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "电子工艺",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-26"
+      },
+      "created_at": "2026-06-29T18:56:29.505153"
+    },
+    {
+      "id": "NC-20260629-004",
+      "title": "设备维修履历表登记不完善",
+      "clause": "7.1.3",
+      "category": "observation",
+      "description": "核查电子车间的设备维修履历表，现场抽查一个设备维修记录，却未在履历表中登记。另外，维修履历表中未完善维修日期、维修确认结果、配件更换等关键信息。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "电子工艺",
+      "severity_original": "轻微",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-26"
+      },
+      "created_at": "2026-06-29T18:56:29.505155"
+    },
+    {
+      "id": "NC-20260629-005",
+      "title": "镭雕机/插件机点检与操作规程不一致",
+      "clause": "8.5.1",
+      "category": "minor",
+      "description": "查电子车间设备管理，现场抽查镭雕机及插件机的点检项目，均与操作规程要求的点检项目不一致。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "电子工艺",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-26"
+      },
+      "created_at": "2026-06-29T18:56:29.505157"
+    },
+    {
+      "id": "NC-20260629-006",
+      "title": "模具图纸PLM归档未同步最新修订版本",
+      "clause": "7.5.3",
+      "category": "minor",
+      "description": "查看 WJLBP-5.4.4-Z-01 V1.1《模具管理办法》5.5 模具图纸归档条款规定：图纸修订确认无误后，需上传至 PLM 系统完成存档。现场随机抽查 RQ16RL122-W 面盖、ZJ2B2 底盖两套模具图纸，两套图纸分别在 2025 年、2026 年均发生版本修订，但 PLM 系统内归档图纸的存档时间仅为 2024 年，未同步更新修订后最新版图纸至系统存档。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "模具车间",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-25"
+      },
+      "created_at": "2026-06-29T18:56:29.505159"
+    },
+    {
+      "id": "NC-20260629-007",
+      "title": "WMS模具使用次数与闲置保养记录缺失",
+      "clause": "7.5.3",
+      "category": "minor",
+      "description": "查看 WMS 系统 2 套冲压切边冲孔模具台账信息：模具 MZ101235004010101 系统已使用次数显示为 0，末次使用 2025-05-14，末次保养 2024-06-13；模具 MZ201220189010201 系统已使用次数显示为 0，末次使用 2024-08-08，末次保养 2024-12-07。按 Q/WJL G13.05.001《模具维护保养管理办法》，连续 1 年冲次为 0 判定为闲置模具，需年度保养并更新 MES 记录；两套模具均长期闲置，未能提供 2025 年闲置模具保养记录，且系统未登记实际使用次数。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "模具车间",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-25"
+      },
+      "created_at": "2026-06-29T18:56:29.505161"
+    },
+    {
+      "id": "NC-20260629-008",
+      "title": "WES系统保养维修记录未同步",
+      "clause": "7.5.3",
+      "category": "minor",
+      "description": "查看 WMS 系统中模具编号 MZ100004131010101（30 万-冲压模具-折弯成型模），系统显示该模具维修日期 2026-06-05、末次保养日期 2025-01-13，但现场无法提供对应的纸质/电子保养记录、维修记录。车间说明模具维修通过 MCP 流程发起，但保养、维修相关业务数据未同步至 WES 系统，WES 系统内无该模具保养、维修记录。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "模具车间",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-25"
+      },
+      "created_at": "2026-06-29T18:56:29.505165"
+    },
+    {
+      "id": "NC-20260629-009",
+      "title": "模具保养起止时间台账数据逻辑异常",
+      "clause": "7.5.3",
+      "category": "minor",
+      "description": "查看 MZ205308001010301（30 万-冲压模具-切边冲孔模），系统记录保养日期为 2026-06-15，保养开始时间为 2026-06-23 13:38:31，保养完成时间为 2026-06-23 13:38:55，存在保养日期与实际作业日期不一致，且保养起止时间仅间隔 24 秒，系统核算保养工时为 0，台账数据逻辑异常，无法真实反映模具保养实施情况。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "模具车间",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-25"
+      },
+      "created_at": "2026-06-29T18:56:29.505166"
+    },
+    {
+      "id": "NC-20260629-010",
+      "title": "闲置模具保养与标准保养项目不一致",
+      "clause": "8.5.1",
+      "category": "minor",
+      "description": "查看 MZ10720700010201（20 万-冲压模具-压铸模）、MZ100004232010201（30 万-冲压模具-切边冲孔模）的 WES 系统闲置保养记录，与 Q/WJL G13.05.001《模具维护保养管理办法》要求的标准保养项目不一致。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "模具车间",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-25"
+      },
+      "created_at": "2026-06-29T18:56:29.505170"
+    },
+    {
+      "id": "NC-20260629-011",
+      "title": "报废模具与在用模具混放",
+      "clause": "8.5.4",
+      "category": "minor",
+      "description": "车间现场核查发现，已完成报废处置的模具 MZ100087004010201（底盖上支撑板）未按规定分区隔离存放，仍放置于在用模具货架上，报废模具与在用模具混放，现场定置管理不符合要求。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "模具车间",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-25"
+      },
+      "created_at": "2026-06-29T18:56:29.505173"
+    },
+    {
+      "id": "NC-20260629-012",
+      "title": "三套模具未录入WES台账",
+      "clause": "7.5.3",
+      "category": "minor",
+      "description": "车间现场随机抽查 3 套模具：MZ201220189010201（防水盘左）、MZ10001400701010101（排烟置前板）、MZ2067010003010501（底盖），上述模具均未录入 WES 系统建立台账，且无对应的模具保养记录。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "模具车间",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-25"
+      },
+      "created_at": "2026-06-29T18:56:29.505175"
+    },
+    {
+      "id": "NC-20260629-013",
+      "title": "药箱无清单且过期药品在用",
+      "clause": "7.1.4",
+      "category": "observation",
+      "description": "查模具车间药箱，没有药品清单，没有药品领用及点检记录，现场发现一瓶红药水有效期至 2026 年 4 月 10 日，已过期却依然在现场使用。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "模具车间",
+      "severity_original": "轻微",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505177"
+    },
+    {
+      "id": "NC-20260629-014",
+      "title": "化学品MSDS缺失与二次容器使用不到位",
+      "clause": "8.1",
+      "category": "minor",
+      "description": "化学品管理：1) 核查模具车间的化学品，其中车间放置的油漆未能提供 MSDS；2) 现场部分化学品未放置在二次容器中。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "模具车间",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505180"
+    },
+    {
+      "id": "NC-20260629-015",
+      "title": "图纸管理混乱（受控状态/格式/作废未处理）",
+      "clause": "7.5.3",
+      "category": "major",
+      "description": "图纸管理混乱：1) 图纸清单缺乏图纸版本、发放时间、签收人、回收作废时间等信息，无法确认图纸的发放及作废情况；2) 现场图纸格式不统一，图号命名存在多种格式，压铸模具与五金模具的图纸格式不一致；3) 现场审核发现车间部分图纸是非受控状态或无校对、无审批，部分图纸盖的是其他印章\"模具生产用图\"；4) 现场作废的图纸依然放置在车间现场，未及时处理。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "模具车间",
+      "severity_original": "严重",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505182"
+    },
+    {
+      "id": "NC-20260629-016",
+      "title": "游标卡尺校验标签缺失",
+      "clause": "7.1.5",
+      "category": "observation",
+      "description": "计量仪器管理：现场发现一把游标卡尺校验标签缺失，无法确认其校验状态（现场手写编号：LSF-219）。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "模具车间",
+      "severity_original": "轻微",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505183"
+    },
+    {
+      "id": "NC-20260629-017",
+      "title": "灭火器未固定放置",
+      "clause": "7.1.4",
+      "category": "observation",
+      "description": "现场发现灭火器临时直接放置在地面，未进行固定放置。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "模具车间",
+      "severity_original": "轻微",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505185"
+    },
+    {
+      "id": "NC-20260629-018",
+      "title": "火花机操作规程未受控",
+      "clause": "7.5.3",
+      "category": "observation",
+      "description": "现场发现设备编号为 A0560030001 的火花机上的《数控火花机安全操作规程》未受控。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "模具车间",
+      "severity_original": "轻微",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505189"
+    },
+    {
+      "id": "NC-20260629-019",
+      "title": "模具放置区域与现场标识不一致",
+      "clause": "7.1.3",
+      "category": "minor",
+      "description": "模具放置规划不足，车间现场放置区域与现场标识不一致，钻床综合加工区里放置大量模具。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "模具车间",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505190"
+    },
+    {
+      "id": "NC-20260629-020",
+      "title": "存在机械伤害工位未张贴劳保标识",
+      "clause": "7.1.4",
+      "category": "observation",
+      "description": "存在机械伤害的工位未张贴相应的劳保用品使用标识，如钻床需要佩戴护目镜等。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "模具车间",
+      "severity_original": "轻微",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505192"
+    },
+    {
+      "id": "NC-20260629-021",
+      "title": "化学品使用现场未配置洗眼器",
+      "clause": "7.1.4",
+      "category": "observation",
+      "description": "模具车间需要使用大量化学品，但现场未配置洗眼器等急救措施。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "模具车间",
+      "severity_original": "轻微",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505194"
+    },
+    {
+      "id": "NC-20260629-022",
+      "title": "模具保养不到位现场生锈积尘",
+      "clause": "7.1.3",
+      "category": "minor",
+      "description": "现场审核发现车间多个模具生锈、积尘、积油严重，模具保养不到位。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "模具车间",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505196"
+    },
+    {
+      "id": "NC-20260629-023",
+      "title": "模具供应商考核机制未建立",
+      "clause": "8.4.1",
+      "category": "minor",
+      "description": "核查《模具检验管理办法》5.4.4 供应商绩效考核条款，模具车间需要建立供应商考核机制《供应商综合评审表》，审核时模具车间未能提供。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "模具车间",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505199"
+    },
+    {
+      "id": "NC-20260629-024",
+      "title": "检验仪器编号与状态标识缺失",
+      "clause": "7.1.5",
+      "category": "observation",
+      "description": "模具检测室内的检验仪器管理，部分仪器未填写仪器编号，仪器缺乏状态标识。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "模具车间",
+      "severity_original": "轻微",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505201"
+    },
+    {
+      "id": "NC-20260629-025",
+      "title": "电梯维修记录未按合同建立专用表单",
+      "clause": "8.4.2",
+      "category": "minor",
+      "description": "查 WJL2024GYS116《电梯维修保养合同》，合同要求电梯维修记录表至少包含生产编号或设备注册编号、故障现象、维修内容、更换零配件记录、维修者签名、甲方管理人员签名和维修时间等。实际以《送货单》作为维修记录，未按合同要求规范建立专用电梯维修记录表，与合同要求不符。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "设备管理",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-26"
+      },
+      "created_at": "2026-06-29T18:56:29.505204"
+    },
+    {
+      "id": "NC-20260629-026",
+      "title": "MES点检项目与PLM操作规程不符",
+      "clause": "8.5.1",
+      "category": "minor",
+      "description": "查《20250310011 两器车间内腔自动冲压线设备》、《20250318227 钣金车间灶具底盖自动冲压线设备》验收流程，抽查设备点检表及维护在 MES 系统上的检查项目，审核发现该设备的检查项目与 PLM 系统上的操作规程不相符。需同步留意 MES 系统上的项目是否覆盖整合设备里面每个单独设备的保养内容。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "设备管理",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-26"
+      },
+      "created_at": "2026-06-29T18:56:29.505207"
+    },
+    {
+      "id": "NC-20260629-027",
+      "title": "MES设备故障ABCD等级定义缺失",
+      "clause": "7.5.3",
+      "category": "observation",
+      "description": "查 MES 系统的设备维修模块，里面关于故障有 ABCD 等级的划分，但管理员无法提供等级的定义及对应的操作流程。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "设备管理",
+      "severity_original": "轻微",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-26"
+      },
+      "created_at": "2026-06-29T18:56:29.505209"
+    },
+    {
+      "id": "NC-20260629-028",
+      "title": "特种设备台账信息不完善",
+      "clause": "7.1.3",
+      "category": "observation",
+      "description": "查设备运维非项目类工作多维表格，关于特种设备台账的信息不够完善，缺乏设备编号、登记日期、年检日期、设备状态等关键信息。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "设备管理",
+      "severity_original": "轻微",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-26"
+      },
+      "created_at": "2026-06-29T18:56:29.505212"
+    },
+    {
+      "id": "NC-20260629-029",
+      "title": "外包维保点检无内部确认",
+      "clause": "8.4.3",
+      "category": "minor",
+      "description": "查外包维保公司的点检记录，缺失我们公司内部人员的确认记录，无法判断外部公司维保的执行符合性及有效性。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "设备管理",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-26"
+      },
+      "created_at": "2026-06-29T18:56:29.505213"
+    },
+    {
+      "id": "NC-20260629-030",
+      "title": "特种设备维保计划与执行清单缺失",
+      "clause": "8.1",
+      "category": "observation",
+      "description": "查特种设备维保，目前公司缺乏各个设备的维保计划及执行清单，无法保证每个特种设备均已经安排了定期维保。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "设备管理",
+      "severity_original": "轻微",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-26"
+      },
+      "created_at": "2026-06-29T18:56:29.505215"
+    },
+    {
+      "id": "NC-20260629-031",
+      "title": "新品工艺KPI不达标无原因分析",
+      "clause": "9.1.3",
+      "category": "minor",
+      "description": "查看新品工艺 2026 年 KPI：1 月及 3 月的送样及时率不达标，但是未能提供不达成原因分析以及整改对策。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "新品工艺",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505217"
+    },
+    {
+      "id": "NC-20260629-032",
+      "title": "NPI流程要求的PFMEA未输出",
+      "clause": "8.3.5",
+      "category": "minor",
+      "description": "新品工艺：根据 EPROS 上的《NPI 新品导入流程》，要求输出 PFMEA，但实际上未按要求执行，工程师未能提供 PFMEA 进行审核。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "新品工艺",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505219"
+    },
+    {
+      "id": "NC-20260629-033",
+      "title": "U9max圆角R3改善无验证记录",
+      "clause": "8.3.4",
+      "category": "minor",
+      "description": "查 U9max 的工艺装备清单及投入评估表，其中问题描述为\"压型边缘为尖角会拉裂\"，改善建议是\"增加圆角 R3\"，但缺少验证确认记录，无法确认该问题是否改善到位。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "新品工艺",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505221"
+    },
+    {
+      "id": "NC-20260629-034",
+      "title": "夹具验收记录缺失",
+      "clause": "8.5.1",
+      "category": "minor",
+      "description": "夹具管理：夹具验收不够严谨，未能提供夹具验收记录，无法确认验收的内容。备注：有验收流程但是无法核实验收内容，按照文件《Q/WJL G13.018 A/01 工装夹具管理规定》，需要对尺寸、结构方面进行验证。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "新品工艺",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505223"
+    },
+    {
+      "id": "NC-20260629-035",
+      "title": "生产BOM原料核算无记录",
+      "clause": "7.5.3",
+      "category": "minor",
+      "description": "BOM 表：生产 BOM 中的原料需要由工艺工程师自行核算，内审当天未能提供核算的记录，无法判断该过程是否管控到位。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "新品工艺",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505225"
+    },
+    {
+      "id": "NC-20260629-036",
+      "title": "新品工艺职责说明书缺BOM职责",
+      "clause": "5.3",
+      "category": "observation",
+      "description": "新品工艺的职责说明书中缺少 BOM 制作的相关工作职责，需完善。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "新品工艺",
+      "severity_original": "轻微",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505227"
+    },
+    {
+      "id": "NC-20260629-037",
+      "title": "JZT-J10 ULTRA试装记录与总结报告不一致",
+      "clause": "8.3.4",
+      "category": "observation",
+      "description": "查看 JZT-J10 ULTRA 的试装记录表，内容填写不完整，缺失整改措施以及责任人、完成时间等内容。且与《新产品/新零部件试装工艺总结报告》中的问题点不一致，建议表格与报告内容相匹配。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "新品工艺",
+      "severity_original": "轻微",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505230"
+    },
+    {
+      "id": "NC-20260629-038",
+      "title": "MCP工艺变更未体现变更等级",
+      "clause": "8.5.6",
+      "category": "observation",
+      "description": "查看 Epros 系统 5.4.3.5 工艺变更管理流程中对工艺变更有 ABC 等级的判定，实际查看 MCP 工艺变更申请及验证流程（编号 20260609026；编号 20260506016）未能体现变更的等级。备注：系统需要按照文件要求调整流程表格设置。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "制程工艺",
+      "severity_original": "轻微",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505233"
+    },
+    {
+      "id": "NC-20260629-039",
+      "title": "工艺变更ABC等级分级流程未明确",
+      "clause": "8.5.6",
+      "category": "observation",
+      "description": "查看 Epros 系统 5.4.3.5 工艺变更管理流程，工艺变更分为 A、B、C 三个影响等级，但未明确变更等级的变更流程，分级流程说明不清晰，建议针对不同的等级输出不同的执行内容。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "制程工艺",
+      "severity_original": "轻微",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505235"
+    },
+    {
+      "id": "NC-20260629-040",
+      "title": "工艺变更台账未建立",
+      "clause": "7.5.3",
+      "category": "observation",
+      "description": "现有工艺变更统一通过 MCP 系统中的知识门户进行归档，但未建立工艺变更台账，变更类别、变更闭环情况难以追溯。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "制程工艺",
+      "severity_original": "轻微",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505237"
+    },
+    {
+      "id": "NC-20260629-041",
+      "title": "变更后作业指导书未及时更新",
+      "clause": "8.5.6",
+      "category": "minor",
+      "description": "现场抽查 MCP 工艺变更申请及验证流程（编号 20260506016 取消尼龙扎带 100MM、编号 20260609026 开料弯管锯管镦头工序合并），变更流程已审批完毕，但截止 2026-06-22 均未对变更物料的作业指导书进行变更，审批流程中也未明确验证过程的证据（如 SOP 延后变更的预计完成时间）。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "制程工艺",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505239"
+    },
+    {
+      "id": "NC-20260629-042",
+      "title": "工艺变更通知未建立正式流程",
+      "clause": "7.4",
+      "category": "observation",
+      "description": "变更后的内容通过飞书/企业微信群进行通知，未建立完整、规范的正式变更告知流程，建议优化目前的变更后执行及通知流程，确保变更执行闭环。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "制程工艺",
+      "severity_original": "轻微",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505242"
+    },
+    {
+      "id": "NC-20260629-043",
+      "title": "工艺纪律检查未分产线记录",
+      "clause": "8.5.1",
+      "category": "minor",
+      "description": "查看 Q/WJL G13.030《工艺纪律检查管理办法》4.1 条款月度组织对车间工艺纪律进行检查，每条产线每月至少检查一次。现场查看工艺纪律检查记录表仅按车间统一登记，未分产线记录各产线实际检查实施情况。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "制程工艺",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505244"
+    },
+    {
+      "id": "NC-20260629-044",
+      "title": "工艺纪律检查整改无验证关闭记录",
+      "clause": "10.2",
+      "category": "observation",
+      "description": "查看 Q/WJL G13.030《工艺纪律检查管理办法》要求相关责任人提出改进措施和整改时间，并跟踪改进结果。实际查看飞书上的工艺检查问题点清单，仅上传整改资料，需要增加验证关闭的记录，保证问题点整改验证闭环。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "制程工艺",
+      "severity_original": "轻微",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-22"
+      },
+      "created_at": "2026-06-29T18:56:29.505246"
+    },
+    {
+      "id": "NC-20260629-045",
+      "title": "自动化设备申请流程未在EPROS列明",
+      "clause": "7.5.3",
+      "category": "observation",
+      "description": "查自动化设备申请流程，目前存在多种方式，如线下沟通、MCP 或立项，但是在 EPROS 流程中未列明。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "自动化设备研发",
+      "severity_original": "轻微",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-17"
+      },
+      "created_at": "2026-06-29T18:56:29.505248"
+    },
+    {
+      "id": "NC-20260629-046",
+      "title": "自动化清单内容不完善",
+      "clause": "7.5.3",
+      "category": "observation",
+      "description": "自动化清单内容不完善，无自制或外购，已完成的项目无完成时间，无立项来源（如立项或 MCP 等）。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "自动化设备研发",
+      "severity_original": "轻微",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-17"
+      },
+      "created_at": "2026-06-29T18:56:29.505249"
+    },
+    {
+      "id": "NC-20260629-047",
+      "title": "自动焊接线一次装配合格率无送样测试记录",
+      "clause": "8.3.4",
+      "category": "minor",
+      "description": "查燃烧器车间燃烧器自动焊接线升级改造设备（工程）项目，自动化设备全流程，未能提供送样测试记录，无法确认是否满足一次装配合格率 98.9%。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "自动化设备研发",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-17"
+      },
+      "created_at": "2026-06-29T18:56:29.505251"
+    },
+    {
+      "id": "NC-20260629-048",
+      "title": "技术标准与合同接地电阻要求不一致",
+      "clause": "8.2.3",
+      "category": "minor",
+      "description": "查燃烧器车间燃烧器自动焊接线升级改造设备（工程）项目的技术标准及工程合同，关于接地电阻的要求不一致，标准要求是 50Ω，而合同是 4Ω。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "自动化设备研发",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-17"
+      },
+      "created_at": "2026-06-29T18:56:29.505254"
+    },
+    {
+      "id": "NC-20260629-049",
+      "title": "燃烧器自动焊接线验收附件缺失",
+      "clause": "8.6",
+      "category": "minor",
+      "description": "查 20260604254 燃烧器自动焊接线升级改造设备（工程）项目验收流程，未能提供对应的附件进行验证，不符合流程要求（设备安装调试验收需提供附件：《招标文件》、《合同条例》、设备配置核对表、设备验收单、说明书、合格证、点检表、二三级保养内容、易损件清单、操作培训记录、设备台账信息、设备备件明细表等）。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "自动化设备研发",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-17"
+      },
+      "created_at": "2026-06-29T18:56:29.505256"
+    },
+    {
+      "id": "NC-20260629-050",
+      "title": "冲床自动清料装置技术要求未核实",
+      "clause": "8.4.2",
+      "category": "minor",
+      "description": "查钣金车间冲床自动清料装置设备安装调试验收记录及配置核对表，未对技术要求进行核实。",
+      "evidence": [
+        "审核现场记录",
+        "审核证据材料"
+      ],
+      "department": "自动化设备研发",
+      "severity_original": "一般",
+      "root_cause": "",
+      "corrective_action": "",
+      "verification": {
+        "status": "open",
+        "verifier": "",
+        "verified_at": "",
+        "result": ""
+      },
+      "audit_info": {
+        "audit_id": "AUDIT-2026-工艺设备部-Q2",
+        "auditor": "内审组",
+        "audit_date": "2026-06-17"
+      },
+      "created_at": "2026-06-29T18:56:29.505259"
+    }
+  ],
+  "audit_ids": [
+    "AUDIT-2026-工艺设备部-Q2"
+  ]
+}

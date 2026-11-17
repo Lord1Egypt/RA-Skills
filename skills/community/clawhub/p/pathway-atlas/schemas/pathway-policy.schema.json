@@ -1,0 +1,263 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pathway-atlas.example/schemas/pathway-policy.schema.json",
+  "title": "Evidence-backed pathway policy",
+  "$comment": "This Schema validates one policy record's JSON structure. Every record and evaluation must also pass the declared runtime semantic validators.",
+  "x-semantic-validator": {
+    "policy": "scripts.path_recommend.PathwayPolicy",
+    "evaluate": "scripts.path_recommend.evaluate_pathways",
+    "evidence_bridge": "scripts.adapters.pathway_bridge.bridge_pathway_policies",
+    "checks": [
+      "source_threshold_by_status",
+      "projection_hash_binding",
+      "province_subject_year_binding",
+      "historical_fallback_disclosure",
+      "current_year_validity",
+      "critical_constraint_completeness",
+      "profile_policy_match",
+      "promise_language_gate",
+      "source_id_claim_gate"
+    ]
+  },
+  "x-pathway-extraction": {
+    "projection": "scripts.adapters.pathway_extraction.PathwayPolicyProjection",
+    "factory": "scripts.adapters.pathway_extraction.extract_pathway_policy",
+    "evidence_bridge": "scripts.adapters.pathway_bridge.bridge_pathway_policy_evidence",
+    "replay": "scripts.adapters.pathway_extraction.replay_pathway_policy_projection",
+    "adapter_outputs": [
+      "html-table",
+      "xlsx-worksheet",
+      "xls-worksheet",
+      "pdf-text-table",
+      "pdfplumber-text",
+      "pypdf-text",
+      "host-ocr-rows"
+    ],
+    "required_fields": [
+      "institution",
+      "province",
+      "subject_mode",
+      "year",
+      "eligibility_requirements",
+      "grade_requirements",
+      "subject_requirements",
+      "award_requirements",
+      "activity_requirements",
+      "disqualifying_facts",
+      "professional_options",
+      "training_arrangements",
+      "transition_rules",
+      "outcomes",
+      "service_employment_obligations",
+      "penalty_exit_rules",
+      "fees_and_subsidies",
+      "dates_and_deadlines",
+      "application_materials",
+      "preparation_actions"
+    ],
+    "coverage_states": ["complete", "partial", "conflict", "missing"],
+    "decisive_evidence_statuses": ["official", "corroborated", "reference"]
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "policy_id",
+    "pathway_type",
+    "title",
+    "institution",
+    "province",
+    "subject_mode",
+    "valid_year",
+    "eligibility_requirements",
+    "disqualifying_facts",
+    "professional_options",
+    "training_arrangements",
+    "transition_rules",
+    "outcomes",
+    "service_employment_obligations",
+    "penalty_exit_rules",
+    "fees_and_subsidies",
+    "policy_source_ids",
+    "evidence_status",
+    "calculation_basis",
+    "target_year",
+    "data_year",
+    "fallback_distance",
+    "year_basis",
+    "timeline",
+    "preparation_actions"
+  ],
+  "properties": {
+    "policy_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "pathway_type": {
+      "type": "string",
+      "enum": [
+        "strong_foundation",
+        "comprehensive_evaluation",
+        "national_special",
+        "local_special",
+        "university_special",
+        "public_funded_teacher",
+        "excellent_teacher",
+        "directed_medical",
+        "military",
+        "police_judicial_fire",
+        "maritime_aviation",
+        "sino_foreign",
+        "arts_sports",
+        "special_program",
+        "public_funded_or_directed",
+        "hong_kong_macao",
+        "other"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^\\S(?:.*\\S)?$"
+    },
+    "institution": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^\\S(?:.*\\S)?$"
+    },
+    "province": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^\\S(?:.*\\S)?$"
+    },
+    "subject_mode": {
+      "type": "string",
+      "enum": ["3+1+2", "3+3"]
+    },
+    "valid_year": {
+      "type": ["integer", "null"],
+      "minimum": 2000,
+      "maximum": 2100
+    },
+    "eligibility_requirements": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^\\S(?:.*\\S)?$"
+      }
+    },
+    "disqualifying_facts": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^\\S(?:.*\\S)?$"
+      }
+    },
+    "professional_options": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^\\S(?:.*\\S)?$"
+      }
+    },
+    "training_arrangements": {
+      "type": ["string", "null"],
+      "minLength": 1,
+      "pattern": "^\\S(?:.*\\S)?$"
+    },
+    "transition_rules": {
+      "type": ["string", "null"],
+      "minLength": 1,
+      "pattern": "^\\S(?:.*\\S)?$"
+    },
+    "outcomes": {
+      "type": ["string", "null"],
+      "minLength": 1,
+      "pattern": "^\\S(?:.*\\S)?$"
+    },
+    "service_employment_obligations": {
+      "type": ["string", "null"],
+      "minLength": 1,
+      "pattern": "^\\S(?:.*\\S)?$"
+    },
+    "penalty_exit_rules": {
+      "type": ["string", "null"],
+      "minLength": 1,
+      "pattern": "^\\S(?:.*\\S)?$"
+    },
+    "fees_and_subsidies": {
+      "type": ["string", "null"],
+      "minLength": 1,
+      "pattern": "^\\S(?:.*\\S)?$"
+    },
+    "policy_source_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+      }
+    },
+    "evidence_status": {
+      "type": "string",
+      "enum": [
+        "official",
+        "corroborated",
+        "reference",
+        "inferred",
+        "conflict",
+        "missing",
+        "masked",
+        "partial"
+      ]
+    },
+    "calculation_basis": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^\\S(?:.*\\S)?$"
+    },
+    "target_year": {
+      "type": ["integer", "null"],
+      "minimum": 2000,
+      "maximum": 2100
+    },
+    "data_year": {
+      "type": ["integer", "null"],
+      "minimum": 2000,
+      "maximum": 2100
+    },
+    "fallback_distance": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3
+    },
+    "year_basis": {
+      "type": "string",
+      "enum": ["current_year", "historical_fallback", "unverified"]
+    },
+    "timeline": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^\\S(?:.*\\S)?$"
+      }
+    },
+    "preparation_actions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^\\S(?:.*\\S)?$"
+      }
+    }
+  }
+}

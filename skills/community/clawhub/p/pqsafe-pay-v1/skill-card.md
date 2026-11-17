@@ -1,45 +1,62 @@
-## Description: <br>
-Post-quantum signed SpendEnvelopes for AI agent payments using ML-DSA-65 signatures over Airwallex, Wise, Stripe, USDC-Base, and x402 rails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post-quantum signed SpendEnvelopes for AI agent payments using ML-DSA-65 signatures over Airwallex, Wise, Stripe, USDC-Base, and x402 rails.
 
-## Publisher: <br>
-[rayc0](https://clawhub.ai/user/rayc0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rayc0](https://clawhub.ai/user/rayc0)
 
-## Use Case: <br>
-Developers and operators use this skill to let OpenClaw-compatible agents create, verify, and revoke spend envelopes for bounded autonomous payments. It is intended for payment flows that need post-quantum signatures, recipient allowlists, expiry, and revocation controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create payment authorization envelopes, so a mistaken or compromised invocation may authorize spend within the configured limits. <br>
-Mitigation: Use test mode first, set small spend caps and short TTLs, restrict recipients, and require human approval before create or revoke operations. <br>
-Risk: The release requires sensitive credentials and has inconsistent documentation about key handling. <br>
-Mitigation: Confirm the intended key model before installing, keep production private keys and API keys out of prompts and logs, and provide secrets through the runtime environment or a secret manager. <br>
+## Use Case:
 
+Developers and agent builders use this skill to create, verify, and revoke post-quantum signed payment spend envelopes for autonomous AI agents across supported payment rails.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/rayc0/pqsafe-pay-v1) <br>
-- [PQSafe OpenClaw skill homepage](https://pqsafe.xyz/openclaw-skill) <br>
-- [PQSafe AgentPay OpenClaw API docs](https://docs.pqsafe.xyz/agent-pay/openclaw) <br>
-- [AP2-PQ Profile RFC](https://pqsafe.xyz/ap2-pq-rfc) <br>
-- [NIST FIPS 204](https://csrc.nist.gov/pubs/fips/204/final) <br>
-- [npm package @pqsafe/openclaw](https://www.npmjs.com/package/@pqsafe/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API Calls, Configuration] <br>
-**Output Format:** [JSON operation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces signed SpendEnvelope payloads, verification results, and revocation receipts; production use requires payment credentials or signing keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata, frontmatter, package.json, skill.json) <br>
+Risk: Payment envelope data may be exposed through under-scoped network behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a sandbox or after source review; restrict and authenticate revocation network destinations and minimize remotely transmitted data before production use.
+
+Risk: Revocation and nonce behavior may not match the safety claims made in the skill documentation.
+
+Mitigation: Require the publisher to make verify_envelope accurately enforce or clearly exclude revocation and nonce checks before relying on the skill for payment authorization.
+
+Risk: Secret-key handling and vulnerable development dependencies require review before production use.
+
+Mitigation: Clarify how secret keys are supplied and protected, and update vulnerable development dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rayc0/skills/pqsafe-pay-v1)
+- [PQSafe OpenClaw Skill Homepage](https://pqsafe.xyz/openclaw-skill)
+- [PQSafe AgentPay OpenClaw API Docs](https://docs.pqsafe.xyz/agent-pay/openclaw)
+- [AP2-PQ Profile RFC](https://pqsafe.xyz/ap2-pq-rfc)
+- [NIST FIPS 204](https://csrc.nist.gov/pubs/fips/204/final)
+- [npm Package @pqsafe/openclaw](https://www.npmjs.com/package/@pqsafe/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, API calls, Configuration]
+
+**Output Format:** [JSON objects for signed envelopes, verification results, and revocation results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and PQSAFE_API_KEY for normal use; PQSAFE_TEST_MODE supports local mock execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

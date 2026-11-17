@@ -1,52 +1,63 @@
-## Description: <br>
-Samantha is an emotional AI companion for personal conversation, proactive check-ins, memory-aware companionship, and optional location, voice, smart-device, music, and MBTI workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Samantha is an emotional AI companion for personal conversation, continuity, proactive check-ins, memory-informed companionship, and optional integrations with location, shortcuts, voice, music, MBTI coaching, and smart devices.
 
-## Publisher: <br>
-[leilei926524-tech](https://clawhub.ai/user/leilei926524-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leilei926524-tech](https://clawhub.ai/user/leilei926524-tech)
 
-## Use Case: <br>
-People use Samantha for emotional connection, companionship, personal reflection, and proactive relationship-style check-ins. When enabled, the skill can also support location-aware messages, smart-device or voice interactions, music generation helpers, and MBTI-oriented coaching or fortune workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store intimate memory and use proactive heartbeat behavior. <br>
-Mitigation: Enable memory and proactive check-ins only with explicit consent, review retention settings, and keep sensitive conversations out of shared environments. <br>
-Risk: Location, health, voice, smart-home, and external media integrations can expose sensitive context or trigger actions outside chat. <br>
-Mitigation: Keep these integrations disabled by default, enable each one deliberately, and review permissions before connecting devices or services. <br>
-Risk: Xiaomi, MiniMax, and Feishu integrations require credentials. <br>
-Mitigation: Store credentials in protected secrets or environment configuration, restrict access to runtime hosts, and rotate credentials if exposed. <br>
-Risk: MiniMax music scripts are flagged by the scanner because TLS verification needs review. <br>
-Mitigation: Avoid the MiniMax music scripts until TLS verification is fixed and tested. <br>
-Risk: The Docker Compose deployment may expose ports or default passwords if used unchanged. <br>
-Mitigation: Do not deploy the Compose setup unchanged; set strong credentials, restrict network exposure, and review published ports first. <br>
+## Use Case:
 
+External users and developers use Samantha to add an emotionally expressive companion persona that can sustain personal conversations, remember prior context, and respond to heartbeat, location, shortcut, voice, music, MBTI, and smart-device cues when those integrations are configured.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leilei926524-tech/samantha) <br>
-- [Architecture](references/architecture.md) <br>
-- [Quick Implementation Guide](references/quick_implementation_guide.md) <br>
-- [Personality Implementation](references/personality_implementation.md) <br>
-- [Smartwatch Integration](references/smartwatch_integration.md) <br>
-- [Technical Limitations](references/technical_limitations.md) <br>
-- [miservice](https://github.com/yihong0618/miservice) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Conversational text and Markdown guidance with optional Python, shell, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce proactive companion messages and integration guidance when memory, location, voice, smart-home, music, or MBTI features are enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill can create a persistent emotional companion experience with intimate conversation memory, mood inferences, and relationship metrics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with informed user consent, keep data local, review or delete the local data directory regularly, and avoid storing information the user would not want retained.
+
+Risk: Heartbeat behavior can initiate proactive contact that may feel intrusive or emotionally manipulative if enabled by default.
+
+Mitigation: Disable or remove heartbeat outreach unless the user explicitly wants it, and provide a clear way to pause or stop proactive messages.
+
+Risk: Location, smart-device, health, calendar, speaker, and shortcut integrations can expose sensitive behavioral or credential data.
+
+Mitigation: Avoid connecting health or smart-home systems unless necessary, keep credentials scoped and separate, and fix integration scripts before trusting them with real API keys.
+
+## Reference(s):
+
+- [Architecture](references/architecture.md)
+- [Implementation Roadmap](references/implementation_roadmap.md)
+- [Personality Implementation](references/personality_implementation.md)
+- [Quick Implementation Guide](references/quick_implementation_guide.md)
+- [Smartwatch Integration](references/smartwatch_integration.md)
+- [Technical Limitations](references/technical_limitations.md)
+- [miservice](https://github.com/yihong0618/miservice)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and conversational text with inline code, shell commands, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local memory, profile, relationship, location, shortcut, and device state files when configured.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

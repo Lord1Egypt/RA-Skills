@@ -1,43 +1,57 @@
-## Description: <br>
-Generate and save knowledge-base reviews such as literature reviews, research gaps, onboarding notes, stage summaries, and experiment suggestions based on existing KB sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and save knowledge-base reviews such as literature reviews, research gaps, onboarding notes, stage summaries, and experiment suggestions based on existing KB sources.
 
-## Publisher: <br>
-[myd2002](https://clawhub.ai/user/myd2002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[myd2002](https://clawhub.ai/user/myd2002)
 
-## Use Case: <br>
-Developers and knowledge-base users use this skill to synthesize existing personal or team Paper-KB sources into reviews, research-gap analyses, onboarding notes, stage summaries, and experiment suggestions. It is designed to ground outputs in reviewed KB material and save generated Markdown back to the knowledge base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests Gitea admin-level access and includes helpers that can mutate repositories and persistent system configuration. <br>
-Mitigation: Install only in a controlled Paper-KB/Gitea environment and prefer a least-privilege token limited to the specific KB repositories and paths. <br>
-Risk: Generated reviews and onboarding documents are saved back to knowledge-base repositories by default, including shared team KBs. <br>
-Mitigation: Require user confirmation and human review before saving generated content to shared repositories. <br>
-Risk: The artifact contains a hardcoded Gitea URL and unpinned Python dependencies. <br>
-Mitigation: Review the configured endpoint and pin dependencies before production deployment. <br>
+## Use Case:
 
+Developers, researchers, and knowledge-base maintainers use this skill to synthesize existing KB material into reviews, research-gap analyses, method comparisons, onboarding notes, stage summaries, and experiment-improvement suggestions. The skill is intended to ground answers in selected KB sources and save generated review or onboarding documents back to the configured knowledge base.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/myd2002/skills/kb-review) <br>
-- [Publisher profile](https://clawhub.ai/user/myd2002) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON helper-script responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should include a sources section and should state when the knowledge base lacks enough material.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.1 (source: server release evidence) <br>
+Risk: The skill uses Gitea access to read and persist knowledge-base content, and the security evidence flags broad persistent write capability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install with a repository-scoped token over HTTPS, avoid site-admin tokens, constrain allowed repositories and writable draft paths, and require explicit user confirmation before saving generated material.
+
+Risk: The security evidence reports unsafe default transport settings and administrator-level Gitea access expectations.
+
+Mitigation: Configure an HTTPS Gitea URL, keep credentials out of prompts and logs, and separate system-configuration/control-plane functions from review-generation use.
+
+Risk: Generated reviews or onboarding notes can become misleading if the available KB sources are incomplete or stale.
+
+Mitigation: Require source citations in generated content, disclose insufficient KB coverage, and have a human review material before publishing it to the knowledge base.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/myd2002/skills/kb-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown review or onboarding content with shell command invocations and JSON status responses from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated content must include a sources section, state when KB evidence is insufficient, and avoid adding unsupported general knowledge.]
+
+## Skill Version(s):
+
+3.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

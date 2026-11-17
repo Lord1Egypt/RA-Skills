@@ -1,0 +1,74 @@
+{
+  "plug_slug": "plug-bundle-alephnet-node",
+  "bundle_slug": "bundle-alephnet-node",
+  "bundle_name": "Security Bundle: alephnet-node",
+  "members": [
+    {
+      "slug": "alephnet-node",
+      "name": "alephnet-node",
+      "category": "Security",
+      "role": "primary"
+    },
+    {
+      "slug": "alibaba-quark-scan",
+      "name": "alibaba-quark-scan",
+      "category": "Security",
+      "role": "primary"
+    },
+    {
+      "slug": "baidu-netdisk-skills",
+      "name": "baidu-netdisk-skills",
+      "category": "Security",
+      "role": "primary"
+    },
+    {
+      "slug": "can",
+      "name": "CAN",
+      "category": "Security",
+      "role": "primary"
+    }
+  ],
+  "pain_points": [
+    "安全审计手动覆盖不足",
+    "alephnet-node: 存在门槛高问题 (复杂)",
+    "baidu-netdisk-skills: 存在易出错问题 (风险)"
+  ],
+  "value_props": {
+    "individual_prices": [
+      {
+        "slug": "alephnet-node",
+        "name": "alephnet-node",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "alibaba-quark-scan",
+        "name": "alibaba-quark-scan",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "baidu-netdisk-skills",
+        "name": "baidu-netdisk-skills",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "can",
+        "name": "CAN",
+        "price": 0.0,
+        "tier": "free"
+      }
+    ],
+    "total_individual": 0.0,
+    "bundle_price": 0.0,
+    "savings": 0.0,
+    "savings_percent": 0.0,
+    "discount_rate": 0.2,
+    "value_statement": "4个skill组合为Plug，一站式解决多场景需求，享受20%捆绑折扣"
+  },
+  "use_case": "本Plug整合4个互补skill，提供一站式解决方案：\n\n- alephnet-node (Security): 提供 read、exec、glob、grep\n- alibaba-quark-scan (Security): 提供 read、exec、write\n- baidu-netdisk-skills (Security): 提供 read、exec、glob、grep\n- CAN (Security): 提供 read、exec、write\n\n组合工具集: read, exec, glob, grep, write\n\n典型工作流:\n  1. 使用 alephnet-node 的 read、exec、glob 完成相关任务\n  2. 使用 alibaba-quark-scan 的 read、exec、write 完成相关任务\n  3. 使用 baidu-netdisk-skills 的 read、exec、glob 完成相关任务\n  4. 使用 CAN 的 read、exec、write 完成相关任务\n  5. 整合各skill输出，形成完整解决方案",
+  "overall_score": 81.5,
+  "combination_reason": "4个skill组合 | 覆盖1个分类 | 0个互补 | 整体评分81.5/100",
+  "generated_at": "2026-07-31T18:17:17.283014"
+}

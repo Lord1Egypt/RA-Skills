@@ -1,0 +1,4 @@
+lcfm_training_mode: ae
+load_fg_only: true
+batch_size_per_gpu: 16
+denoiser_run_dir: runs/denoiser

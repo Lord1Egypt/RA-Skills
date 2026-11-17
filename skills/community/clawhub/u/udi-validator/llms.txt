@@ -1,0 +1,8 @@
+# udi-validator
+
+> Validate and parse medical device UDI (Unique Device Identification) strings: GS1 element strings (AI parser + GTIN mod-10 check digit + date fields), HIBCC format detection, and ICCBBA (ISBT 128) det
+
+- 版本：1.0.0
+- 调用入口：`SKILL.md`（AI 代理请先读此文件）
+- 配套文件：README.md, SKILL.md
+- 系列归属：SynomosAI 治理技能生态（LGD/UIBC/[REDACTED]）

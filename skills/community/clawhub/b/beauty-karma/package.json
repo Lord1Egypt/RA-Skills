@@ -1,0 +1,14 @@
+{
+  "name": "beauty-karma",
+  "version": "1.0.3",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "skill:example": "node scripts/run-skill.js examples/request.json"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

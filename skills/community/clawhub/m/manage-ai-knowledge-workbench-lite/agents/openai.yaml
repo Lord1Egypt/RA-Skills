@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI 自动知识工作台 Lite"
+  short_description: "自动构建并按需增量更新 Metadata-only 本地知识驾驶舱"
+  default_prompt: "使用 $manage-ai-knowledge-workbench-lite 在一个授权工作区内自动构建或按需增量更新 Metadata-only 知识索引和离线 HTML；保持事实源只读，仅在明确门禁处暂停。"

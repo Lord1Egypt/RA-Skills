@@ -1,42 +1,54 @@
-## Description: <br>
-Use when the user wants to generate high-fidelity PROMPTS for Text-to-Image models (Flux, Ideogram, Midjourney) based on vague layout/content descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to generate high-fidelity PROMPTS for Text-to-Image models (Flux, Ideogram, Midjourney) based on vague layout/content descriptions.
 
-## Publisher: <br>
-[ChenChen913](https://clawhub.ai/user/ChenChen913) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenchen913](https://clawhub.ai/user/chenchen913)
 
-## Use Case: <br>
-External users and creative teams use this skill to turn vague image or layout ideas into polished text-to-image prompts with style selection, layout routing, and prompt templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated prompts can still produce inaccurate text, unintended brand-like visuals, or images that do not match the user's intent. <br>
-Mitigation: Review the generated prompt and any resulting image before publication or commercial use. <br>
+## Use Case:
 
+External users and creative teams use this skill to turn vague visual ideas into structured, commercial-grade text-to-image prompts for Flux, Ideogram, and Midjourney. It classifies intent, selects an aesthetic style and layout, applies visual modifiers, and returns a ready-to-use prompt.
 
-## Reference(s): <br>
-- [Aesthetic Copilot ClawHub page](https://clawhub.ai/ChenChen913/aesthetic-copilot) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Recommendation engine](artifact/engine/README.md) <br>
-- [Style library](artifact/styles/README.md) <br>
-- [Prompt templates](artifact/prompt-templates/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown in a single plaintext code block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates a filled text-to-image prompt with selected template, style DNA, layout, and concept summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated image prompts may include aesthetic, layout, or model-specific wording that is unsuitable for a particular brand, campaign, or downstream image model.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated prompts and resulting images before publication or commercial use.
+
+Risk: The skill depends on bundled markdown style and template files, so missing or modified files can degrade prompt quality or routing accuracy.
+
+Mitigation: Install the complete release artifact and verify the bundled files are present before using the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenchen913/skills/aesthetic-copilot)
+- [Publisher profile](https://clawhub.ai/user/chenchen913)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-wrapped plaintext prompt]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a single text-to-image prompt with template, style DNA, layout, concept, and filled prompt content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

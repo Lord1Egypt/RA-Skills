@@ -1,41 +1,58 @@
-## Description: <br>
-Three-layer error prevention system for AI agents. Prevents recurring mistakes through external skill guards, delivery checkpoints, and self-evolving error memory. Includes 14+ documented failure patterns with root causes and fixes. Built from real production failures, not theory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A three-layer error prevention system for AI agents that uses external skill guards, delivery checkpoints, and self-evolving error memory to reduce recurring mistakes.
 
-## Publisher: <br>
-[xiongwang11](https://clawhub.ai/user/xiongwang11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiongwang11](https://clawhub.ai/user/xiongwang11)
 
-## Use Case: <br>
-Developers and agent operators use this skill to apply repeatable delivery checks, cron validation rules, and error-memory practices that reduce recurring AI-agent workflow failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording could cause the skill to be invoked more widely than intended. <br>
-Mitigation: Invoke the skill deliberately for error-prevention or delivery-review tasks, matching the security guidance to use explicit requests. <br>
-Risk: The workflow can lead to persistent changes in agent memory, quality rules, or operating procedures. <br>
-Mitigation: Review prompts that would write memory, change workflow rules, or persist agent behavior before allowing those actions. <br>
+## Use Case:
 
+Developers and agent operators use this meta-skill to add pre-delivery checks, cron validation guidance, and error-memory practices that reduce repeated AI-agent execution mistakes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiongwang11/error-proof-system) <br>
-- [Skill source artifact](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown instructions with checklists and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing quality guard and error-prevention workflow guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can shape future agent behavior by recommending lasting rules and memory updates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before updating MEMORY.md or other persistent guidance files.
+
+Risk: Broad or unreviewed permanent rules can preserve one-off mistakes as future operating policy.
+
+Mitigation: Keep rules narrow, provenance-tagged, and subject to expiry or periodic review.
+
+Risk: Untrusted user content may be converted into durable agent instructions.
+
+Mitigation: Do not turn untrusted content or isolated failures into permanent guidance without review.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/xiongwang11/skills/error-proof-system)
+- [Publisher profile](https://clawhub.ai/user/xiongwang11)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with checklists, command examples, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes persistent-memory and guardrail recommendations; no external binaries required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

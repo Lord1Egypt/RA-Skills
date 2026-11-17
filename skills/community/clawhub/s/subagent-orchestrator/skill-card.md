@@ -1,41 +1,57 @@
-## Description: <br>
-Orchestrate OpenClaw subagents for continuous autopilot workflows, including task-line continuation, structured handoffs, memory preservation, and task-board updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates OpenClaw subagents for continuous autopilot workflows, including multi-round handoffs, task-board updates, memory preservation, and structured return rules.
 
-## Publisher: <br>
-[hackjsw](https://clawhub.ai/user/hackjsw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hackjsw](https://clawhub.ai/user/hackjsw)
 
-## Use Case: <br>
-Developers and agent operators use this skill to manage multi-round OpenClaw subagent workflows without dropping active task lines. It helps route handoffs, require compact structured returns, update task boards, and preserve durable memory records. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory records can retain sensitive or stale instructions from completed subagent sessions. <br>
-Mitigation: Review MEMORY.md and daily memory records, and keep only durable task facts, current rules, risks, and next steps. <br>
-Risk: Continuous autopilot workflows can continue beyond the intended scope if task boards do not define goals, stop conditions, and allowed scope clearly. <br>
-Mitigation: Keep AGENT_TASK_BOARD entries explicit about the objective, current node, completion condition, blocker states, and permitted follow-up roles. <br>
-Risk: Cleanup of temporary artifacts can remove proof needed to verify external deliveries. <br>
-Mitigation: Preserve screenshot or delivery proof artifacts before cleanup when a human-checkable record may be needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SUBAGENT_RECORD_PROTOCOL](references/SUBAGENT_RECORD_PROTOCOL.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep OpenClaw subagent task lines moving across rounds, handoffs, validation follow-ups, memory updates, and completion checks without repeatedly restating the workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown task records and concise structured status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses structured headers for tag, line, node, goal_status, and next_role.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json, README.md, server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can continue autopilot work across rounds with less repeated prompting.
+
+Mitigation: Use explicit task-board state, completion conditions, and blocked or need_user statuses to control when automated continuation stops.
+
+Risk: The skill may guide agents to write project memory and task-board updates.
+
+Mitigation: Confirm that durable memory records and task-board updates are acceptable for the project before enabling the workflow.
+
+Risk: The skill may guide cleanup of screenshots, logs, temporary files, or intermediate outputs.
+
+Mitigation: Preserve any evidence or artifacts needed for review before allowing cleanup.
+
+## Reference(s):
+
+- [SUBAGENT_RECORD_PROTOCOL](references/SUBAGENT_RECORD_PROTOCOL.md)
+- [ClawHub skill page](https://clawhub.ai/hackjsw/skills/subagent-orchestrator)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with structured return headers and short report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide task-board and memory-record updates during controller-managed subagent workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, README, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

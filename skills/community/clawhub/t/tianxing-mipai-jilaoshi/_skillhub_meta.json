@@ -1,0 +1,16 @@
+{
+  "name": "天星密派冀老师",
+  "installedAt": 0,
+  "source": "local",
+  "version": "1.0.4",
+  "skillId": "local_tianxing-mipai-jilaoshi",
+  "userModified": true,
+  "iconLocalPath": "/Users/marlowwang/.workbuddy/skills/tianxing-mipai-jilaoshi/_icon.svg",
+  "examples_zh": [
+    "帮我算一卦，1990年12月7日20点男，山西盂县，看事业财运",
+    "用天星密派批一下这个八字，问婚姻"
+  ],
+  "examples_en": [],
+  "description_zh": "命理测算统一输出端口（八字+天星密派主体，天星密派母本补充；天星密派由王玉川创立）",
+  "description_en": "Unified fortune reading pipeline (Bazi + Tianxing Mipai main system, supplemented by its source texts)"
+}

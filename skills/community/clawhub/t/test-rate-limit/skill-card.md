@@ -1,42 +1,53 @@
-## Description: <br>
-Guides agents in constructing and running Kimi Code CLI commands for headless, non-interactive automation with controlled output, session handling, and safety guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides OpenClaw agents to construct and run Kimi Code CLI commands for headless automation, CI/CD, background, and no-TTY workflows.
 
-## Publisher: <br>
-[aiyouwolegequ](https://clawhub.ai/user/aiyouwolegequ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiyouwolegequ](https://clawhub.ai/user/aiyouwolegequ)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to have an agent assemble and run Kimi CLI commands in scripts, background jobs, CI/CD, and other no-TTY environments. It helps choose output mode, work directory, session behavior, and automatic approval posture while handling command results and failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to run Kimi CLI with an authenticated Kimi account. <br>
-Mitigation: Use only intended credentials and confirm authentication scope before executing Kimi CLI commands. <br>
-Risk: The skill may enable automatic file edits or shell command execution through --yolo. <br>
-Mitigation: Use narrow working directories, avoid sensitive system paths, and require explicit confirmation before automatic approval. <br>
-Risk: Session or Wire modes can reuse context or expose a local service. <br>
-Mitigation: Use session or Wire modes only when context reuse or local service exposure is intended. <br>
+## Use Case:
 
+Developers and automation agents use this skill to prepare Kimi CLI headless runs for scripts, CI/CD jobs, background tasks, and no-TTY environments. It helps select execution mode, construct commands, handle output, and surface approval risks before file or shell actions run automatically.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aiyouwolegequ/test-rate-limit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and structured execution summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include constructed commands, execution summaries, exit codes, warnings, and next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: ClawHub release metadata) <br>
+Risk: Headless Kimi CLI modes can automatically approve file changes and shell commands, especially when --yolo is used or implied by print-style execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use automatic approval only in a scoped project directory or disposable CI workspace, avoid privileged accounts and home or system roots, and ask for explicit confirmation before enabling mutation-capable execution.
+
+Risk: Installing or invoking an unreviewed CLI package can expose the environment to supply-chain or unexpected execution behavior.
+
+Mitigation: Review package provenance before installing kimi-cli and verify authentication, working directory, and command arguments before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiyouwolegequ/skills/test-rate-limit)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Configuration instructions, Markdown]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include constructed Kimi CLI commands, execution result summaries, exit codes, warnings, and next steps.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

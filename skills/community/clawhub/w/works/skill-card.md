@@ -1,46 +1,60 @@
-## Description: <br>
-Personal project intelligence \u2014 keep each multi-session effort in its own folder with status, next steps, and wiki links to the people, places, and things it touches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal project intelligence for keeping multi-session efforts in per-project folders with status, next steps, progress logs, and wiki links.
 
-## Publisher: <br>
-[ilyabelikin](https://clawhub.ai/user/ilyabelikin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ilyabelikin](https://clawhub.ai/user/ilyabelikin)
 
-## Use Case: <br>
-External users and their agents use Works to maintain durable local records for multi-session projects, including status, next steps, progress logs, artifacts, and wiki links to related people, places, and notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create, update, cross-link, and move local project files. <br>
-Mitigation: Review proposed file changes, keep backups of mind/works/, and configure the agent to ask before moving or cross-linking files if tighter control is needed. <br>
-Risk: Raw install or update commands may fetch skill content from an external URL. <br>
-Mitigation: Review the source before installing or updating the skill. <br>
+## Use Case:
 
+Developers and agent users use Works to maintain private local records for ongoing projects that span sessions, including current status, dated progress, next steps, related artifacts, and links to connected personal knowledge files.
 
-## Reference(s): <br>
-- [ClawHub Works skill page](https://clawhub.ai/ilyabelikin/works) <br>
-- [Peeps companion skill](https://github.com/haah-ing/peeps-skill) <br>
-- [Digs companion skill](https://github.com/haah-ing/digs-skill) <br>
-- [Nooks companion skill](https://github.com/haah-ing/nooks-skill) <br>
-- [Pages companion skill](https://github.com/haah-ing/pages-skill) <br>
-- [Vibes companion skill](https://github.com/haah-ing/vibes-skill) <br>
-- [Haah companion skill](https://github.com/haah-ing/haah-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files and concise conversational guidance with optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local project records under mind/works/ when the agent has filesystem access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill can automatically create and modify private project records and related personal knowledge files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed file paths and content before first-time setup, new project creation, cross-link writes, or closing and moving project folders.
+
+Risk: Mutable remote install or update paths can replace the local skill file with changed upstream content.
+
+Mitigation: Use pinned, reviewed installation and update steps, and scan updates before replacing the installed skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ilyabelikin/skills/works)
+- [Skill definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Digs companion skill](https://github.com/haah-ing/digs-skill)
+- [Peeps companion skill](https://github.com/haah-ing/peeps-skill)
+- [Nooks companion skill](https://github.com/haah-ing/nooks-skill)
+- [Pages companion skill](https://github.com/haah-ing/pages-skill)
+- [Vibes companion skill](https://github.com/haah-ing/vibes-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown project records, local file updates, shell commands, and concise text confirmations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local project files under mind/works/.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

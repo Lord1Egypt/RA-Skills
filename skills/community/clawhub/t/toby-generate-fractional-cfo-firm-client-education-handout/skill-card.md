@@ -1,41 +1,55 @@
-## Description: <br>
-Create a polished explainer handout with visuals, FAQs, and clear next steps for a fractional CFO firm. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a clear, visual explainer handout with FAQs and next steps to educate clients of a fractional CFO firm on services and processes.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Fractional CFOs and finance operators use this skill to create client education handouts that explain services, processes, FAQs, visuals, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence marks the release suspicious because related artifacts may involve high-impact moderation or repository authority. <br>
-Mitigation: Use least-privilege ClawHub or GitHub tokens, prefer dry runs, and require explicit confirmation before writes. <br>
-Risk: Security evidence notes review helper behavior that may run nested agents with broad filesystem access. <br>
-Mitigation: Run review or automation helpers with sandboxing and no-yolo-style safeguards when available. <br>
+## Use Case:
 
+External finance operators and fractional CFO firms use this skill to draft client education handouts that explain services, processes, FAQs, visuals, and next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-generate-fractional-cfo-firm-client-education-handout) <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/generate-fractional-cfo-firm-client-education-handout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style client education handout with FAQs, visuals, and next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference chat and image generation capabilities; outputs should be reviewed before external publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests broad shell and local file-read access that its handout-writing workflow does not normally require.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review requested permissions before installation and prefer a release with those permissions removed or constrained.
+
+Risk: Client education handouts may contain inaccurate, incomplete, or misleading finance-related explanations.
+
+Mitigation: Have a qualified reviewer check client-facing content for accuracy, readability, and fit before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-fractional-cfo-firm-client-education-handout)
+- [SkillBoss skill page](https://www.skillboss.co/skills/generate-fractional-cfo-firm-client-education-handout)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown handout draft with FAQs, visual suggestions, and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use chat and image-generation capabilities; review outputs before external publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

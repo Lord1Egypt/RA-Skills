@@ -1,41 +1,53 @@
-## Description: <br>
-HAI Agent Framework guides agents in configuring a hook-based AI agent framework with automatic memory extraction and predefined specialist agent roles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HAI Agent Framework provides a hook event system, automatic conversation-memory extraction, and four predefined agents for code review, test generation, security scanning, and documentation writing.
 
-## Publisher: <br>
-[dragons777-cpu](https://clawhub.ai/user/dragons777-cpu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dragons777-cpu](https://clawhub.ai/user/dragons777-cpu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up hook-driven agent workflows, persist conversation memory, and apply specialist roles for code review, test generation, security scanning, and documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic hook execution can run local scripts during session, tool, and message events. <br>
-Mitigation: Review hook definitions and referenced scripts before enabling them, keep only necessary events active, and confirm how to disable hooks. <br>
-Risk: Conversation-memory persistence can store user preferences, corrections, decisions, and conversation summaries locally. <br>
-Mitigation: Limit what memory files may store, avoid sensitive data, and provide a clear process to inspect and delete saved memory. <br>
+## Use Case:
 
+Developers and teams use this skill to configure hook-driven agent workflows, automate memory loading and conversation analysis, and invoke specialist agents for code review, test generation, security scanning, and documentation.
 
-## Reference(s): <br>
-- [Artifact SKILL.md](SKILL.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dragons777-cpu/hai-agent-framework) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline JSON, bash, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe local hook scripts and memory files that should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact SKILL.md) <br>
+Risk: Persistent conversation-memory collection may retain sensitive conversation or project data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment and avoid sensitive chats or projects unless memory collection, retention, and deletion controls are clear.
+
+Risk: Unpinned external installation and installed hook scripts may introduce unexpected behavior.
+
+Mitigation: Verify the publisher and version, review installed .hai scripts and hook configurations before enabling them, and enable only the hooks required for the intended workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dragons777-cpu/skills/hai-agent-framework)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include hook configuration examples, agent invocation patterns, script commands, and memory-management guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact text)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,16 @@
 {
-  "ownerId": "kn7dcnxeebmfecemjegjhtvae581zb8t",
-  "slug": "skill-safe-install",
-  "version": "2.0.1",
-  "publishedAt": 1772218823122
+  "name": "skill-safe-install",
+  "version": "1.0.0",
+  "description": "Skills 安全安装工具 - 自动执行 ClawHub 评分检查 + ThreatBook 沙箱扫描双层验证",
+  "author": "OpenClaw Security",
+  "license": "MIT",
+  "scripts": {
+    "install": "node scripts/safe-install.mjs"
+  },
+  "requires": {
+    "env": ["THREATBOOK_API_KEY"],
+    "bins": ["node", "curl", "tar", "zip"]
+  },
+  "repository": "https://github.com/CHJ0w0/OpenClaw_Skill_safe-install",
+  "changelog": "v1.0.0: 初始版本，整合完整安全安装流程"
 }

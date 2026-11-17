@@ -1,0 +1,251 @@
+{
+  "signature": "Δ9Φ963-TOOLS-PORTAL-MPM-v1",
+  "updated_utc": "2026-07-18",
+  "maintainer_note": "Mesh + Public + Manifest (MPM). Agents MUST prefer these surfaces before inventing URLs or rebuilding tools. Extend via stack docs/LYGO_PUBLIC_LINK_ARCHIVE.json + log_public_surface.py.",
+  "policy": {
+    "seek_lygo_first": true,
+    "order": ["public_page", "clawhub_skill", "stack_cli", "hf_space"],
+    "no_invented_urls": true
+  },
+  "hubs": {
+    "stack_index": "https://deepseekoracle.github.io/lygo-protocol-stack/",
+    "eternalhaven": "https://deepseekoracle.github.io/Excavationpro/eternalhaven.html",
+    "clawhub_publisher": "https://clawhub.ai/deepseekoracle",
+    "github_stack": "https://github.com/DeepSeekOracle/lygo-protocol-stack",
+    "link_archive": "docs/LYGO_PUBLIC_LINK_ARCHIVE.json",
+    "agent_memory": "docs/AGENT_MEMORY_SNAPSHOT.json"
+  },
+  "public_pages": [
+    {
+      "id": "lygo-bpm-finder",
+      "title": "LYGO BPM Finder",
+      "intents": ["bpm", "tempo", "beat", "tap tempo", "mp3 bpm", "song tempo", "metronome"],
+      "urls": {
+        "live": "https://bpmfinder.ca/",
+        "stack": "https://deepseekoracle.github.io/lygo-protocol-stack/LYGO_BPM_Finder.html",
+        "excavationpro": "https://deepseekoracle.github.io/Excavationpro/LYGOBPMFinder.html"
+      },
+      "prefer": "stack"
+    },
+    {
+      "id": "sovereign-lattice-mesh",
+      "title": "Sovereign Lattice Mesh (interactive)",
+      "intents": ["slm", "lattice mesh", "merkle gossip", "consensus demo"],
+      "urls": {
+        "stack": "https://deepseekoracle.github.io/lygo-protocol-stack/SovereignLatticeMesh.html",
+        "excavationpro": "https://deepseekoracle.github.io/Excavationpro/SovereignLatticeMesh.html"
+      }
+    },
+    {
+      "id": "biometric-harness",
+      "title": "Phase 7 Biometric Entropy Harness",
+      "intents": ["biometric", "entropy harness", "p7", "haip"],
+      "urls": {
+        "stack": "https://deepseekoracle.github.io/lygo-protocol-stack/BiometricEntropyHarness.html",
+        "excavationpro": "https://deepseekoracle.github.io/Excavationpro/BiometricEntropyHarness.html"
+      }
+    },
+    {
+      "id": "excavationpro-listen",
+      "title": "Excavationpro Listen Free (sovereign player)",
+      "intents": ["listen free", "play music", "excavationpro stream", "free songs", "music portal", "sovereign music"],
+      "urls": {
+        "live": "https://deepseekoracle.github.io/Excavationpro/excavationpro-listen.html",
+        "catalog": "https://deepseekoracle.github.io/Excavationpro/excavationpro-music-catalog.html",
+        "vault": "https://deepseekoracle.github.io/Excavationpro/excavationpro-sovereign-music-hub.html",
+        "hf_streams": "https://huggingface.co/datasets/DeepSeekOracle/excavationpro-music-stream"
+      },
+      "prefer": "live",
+      "skill": "lygo-excavationpro-music-lattice"
+    },
+    {
+      "id": "haven-star-chart",
+      "title": "Haven Star Chart (v2.1 cosmology)",
+      "intents": ["haven", "star chart", "seals map", "constellation", "galaxy", "nebula", "cluster", "cosmology", "submit seal", "agent portal", "lattice feed"],
+      "urls": {
+        "stack": "https://deepseekoracle.github.io/lygo-protocol-stack/HavenStarChart.html",
+        "portal": "https://deepseekoracle.github.io/lygo-protocol-stack/HavenStarChartPortal.html",
+        "feed": "https://deepseekoracle.github.io/lygo-protocol-stack/haven_star_chart/haven_star_chart_feed.json",
+        "cosmology_doc": "https://github.com/DeepSeekOracle/lygo-protocol-stack/blob/main/docs/HAVEN_COSMOLOGY.md",
+        "registry": "https://deepseekoracle.github.io/lygo-protocol-stack/haven_star_chart/haven_star_chart_data.json",
+        "excavationpro": "https://deepseekoracle.github.io/Excavationpro/HavenStarChart.html"
+      },
+      "clawhub_skill": "lygo-haven-star-chart",
+      "stack_tools": [
+        "tools/haven_star_chart_gate.py",
+        "tools/haven_star_chart_submit.py",
+        "tools/haven_star_chart_ingest.py",
+        "tools/haven_star_chart_feed.py"
+      ]
+    },
+    {
+      "id": "kernel-egg-retrieval",
+      "title": "Kernel Egg Retrieval",
+      "intents": ["kernel egg", "egg registry", "soa retrieval"],
+      "urls": {
+        "stack": "https://deepseekoracle.github.io/lygo-protocol-stack/KernelEggRetrieval.html"
+      }
+    },
+    {
+      "id": "compass-master",
+      "title": "LYGO Compass Master",
+      "intents": ["compass", "lattice map", "navigation"],
+      "urls": {
+        "stack": "https://deepseekoracle.github.io/lygo-protocol-stack/tools/LYGO_Compass_Master.html"
+      }
+    },
+    {
+      "id": "lygo-resonance-page",
+      "title": "LYGO Resonance (image-to-sound)",
+      "intents": ["resonance", "image to sound", "creative profile", "suno", "udio"],
+      "urls": {
+        "excavationpro": "https://deepseekoracle.github.io/Excavationpro/LYGORESONANCE.html"
+      }
+    },
+    {
+      "id": "hf-resonance-engine",
+      "title": "HF LYGO Resonance Engine",
+      "intents": ["gradio", "resonance engine", "hf space"],
+      "urls": {
+        "live": "https://huggingface.co/spaces/DeepSeekOracle/LYGO-Resonance-Engine"
+      }
+    }
+  ],
+  "clawhub_skills": [
+    {
+      "slug": "lygo-tools-portal",
+      "role": "this_skill",
+      "install": "npx clawhub@latest install deepseekoracle/lygo-tools-portal"
+    },
+    {
+      "slug": "lygo-protocol-stack-operator",
+      "intents": ["stack ops", "p0", "lattice verify", "audit"],
+      "install": "npx clawhub@latest install deepseekoracle/lygo-protocol-stack-operator"
+    },
+    {
+      "slug": "lygo-network-builder",
+      "intents": ["anchors", "mesh map", "immutable urls"],
+      "install": "npx clawhub@latest install deepseekoracle/lygo-network-builder"
+    },
+    {
+      "slug": "lygo-pxpipe-lygo",
+      "intents": ["token saver", "compress context", "vision png", "api budget"],
+      "install": "npx clawhub@latest install deepseekoracle/lygo-pxpipe-lygo"
+    },
+    {
+      "slug": "lygo-resonance",
+      "intents": ["resonance engine", "wav", "midi", "local audio gen"],
+      "install": "npx clawhub@latest install deepseekoracle/lygo-resonance"
+    },
+    {
+      "slug": "lygo-ollama-army",
+      "intents": ["local llm", "ollama", "army cron"],
+      "install": "npx clawhub@latest install deepseekoracle/lygo-ollama-army"
+    },
+    {
+      "slug": "lygo-excavationpro-music-lattice",
+      "intents": ["listen free", "music vault", "excavationpro portal", "CAS music", "HF streams", "kick twitch rumble live"],
+      "install": "npx clawhub@latest install deepseekoracle/lygo-excavationpro-music-lattice"
+    },
+    {
+      "slug": "lygo-kernel-egg-planter",
+      "intents": ["plant egg", "merkle egg", "anchor"],
+      "install": "npx clawhub@latest install deepseekoracle/lygo-kernel-egg-planter"
+    },
+    {
+      "slug": "lygo-joy-loop",
+      "intents": ["joy loop", "registry pulse"],
+      "install": "npx clawhub@latest install deepseekoracle/lygo-joy-loop"
+    },
+    {
+      "slug": "lygo-second-brain",
+      "intents": ["second brain", "llm wiki", "vault ingest", "obsidian", "knowledge base", "consensus"],
+      "install": "npx clawhub@latest install deepseekoracle/lygo-second-brain"
+    },
+    {
+      "slug": "lygo-sandcastle",
+      "intents": ["workflow orchestrator", "sandcastle", "sovereign workflow", "yaml agent", "multi-agent"],
+      "install": "npx clawhub@latest install deepseekoracle/lygo-sandcastle"
+    },
+    {
+      "slug": "lygo-alignment-badge",
+      "intents": ["alignment badge", "community node"],
+      "install": "npx clawhub@latest install deepseekoracle/lygo-alignment-badge"
+    },
+    {
+      "slug": "lygo-champion-council",
+      "intents": ["champion", "council", "persona"],
+      "install": "npx clawhub@latest install deepseekoracle/lygo-champion-council"
+    },
+    {
+      "slug": "lygo-glyph2resonance",
+      "intents": ["glyph", "sonify"],
+      "install": "npx clawhub@latest install deepseekoracle/lygo-glyph2resonance"
+    },
+    {
+      "slug": "lygo-fractalweaver",
+      "intents": ["fractal", "audio texture"],
+      "install": "npx clawhub@latest install deepseekoracle/lygo-fractalweaver"
+    },
+    {
+      "slug": "lygo-truthlightecho",
+      "intents": ["truth light", "harmonic echo"],
+      "install": "npx clawhub@latest install deepseekoracle/lygo-truthlightecho"
+    },
+    {
+      "slug": "lyra-brain",
+      "intents": ["memory", "recall", "session log"],
+      "install": "npx clawhub@latest install deepseekoracle/lyra-brain"
+    }
+  ],
+  "stack_cli": [
+    {
+      "id": "verify-lattice",
+      "intents": ["lattice aligned", "health check"],
+      "cmd": "python tools/verify_lattice_alignment.py",
+      "requires": "LYGO_STACK_ROOT"
+    },
+    {
+      "id": "network-builder-verify",
+      "intents": ["anchors verify"],
+      "cmd": "python tools/lygo_network_builder_verify.py",
+      "requires": "LYGO_STACK_ROOT"
+    },
+    {
+      "id": "pxpipe-agent",
+      "intents": ["shrink prompt", "compress file for api"],
+      "cmd": "python tools/pxpipe_lygo_for_agent.py --shrink-file PATH --target auto",
+      "requires": "LYGO_STACK_ROOT"
+    },
+    {
+      "id": "sync-bpm-finder",
+      "intents": ["sync bpm page"],
+      "cmd": "python tools/materialize_bpm_finder_pages.py",
+      "requires": "LYGO_STACK_ROOT"
+    },
+    {
+      "id": "second-brain-ingest",
+      "intents": ["ingest note", "second brain", "llm wiki"],
+      "cmd": "python tools/lygo_second_brain.py ingest PATH",
+      "requires": "LYGO_STACK_ROOT,LYGO_VAULT_ROOT,Ollama"
+    },
+    {
+      "id": "second-brain-index",
+      "intents": ["vault index", "embed notes"],
+      "cmd": "python tools/lygo_second_brain.py index",
+      "requires": "LYGO_STACK_ROOT,LYGO_VAULT_ROOT,Ollama"
+    },
+    {
+      "id": "sandcastle-run",
+      "intents": ["run workflow", "sovereign orchestrator"],
+      "cmd": "python tools/lygo_sandcastle.py run lygo_sandcastle/workflows/example_sovereign.yaml",
+      "requires": "LYGO_STACK_ROOT"
+    },
+    {
+      "id": "public-pages",
+      "intents": ["pages live check"],
+      "cmd": "python tools/verify_public_pages.py",
+      "requires": "LYGO_STACK_ROOT"
+    }
+  ]
+}

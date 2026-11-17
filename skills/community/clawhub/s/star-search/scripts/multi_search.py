@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""实战 63 multi_search (2026-06-16) - 多路并行搜索
+"""v20.63 multi_search (2026-06-16) - 多路并行搜索
 - 调 super_brain.analyze_query 拿推荐引擎
 - 并行 (asyncio.gather) 跑 2-3 个引擎
 - 合并去重 (按 url + title jaccard)
@@ -28,7 +28,7 @@ def _get_search_module():
     return search
 
 # 引擎 → search engine 名字 映射
-# 实战 74: 引擎白名单 (HTTP 引擎优先, playwright 引擎降级)
+# v20.74: 引擎白名单 (HTTP 引擎优先, playwright 引擎降级)
 # playwright 引擎 (baidu/sogou/360/weixin) 需要 playwright 库, 没装时不可用
 # 我们优先用 HTTP 引擎 (bing_cn/csdn/cnblogs/github/eastmoney/sina_finance/toutiao/zhihu)
 HTTP_ENGINES = ['bing_cn', 'csdn', 'cnblogs', 'github', 'eastmoney', 'sina_finance', 'toutiao', 'zhihu', 'bing_www']
@@ -62,7 +62,7 @@ def _domain(url: str) -> str:
 
 
 def _dedup_by_url(results: List[Dict]) -> List[Dict]:
-    """实战 63: 按 url domain + 标题前缀去重"""
+    """v20.63: 按 url domain + 标题前缀去重"""
     seen_domains = set()
     seen_titles = set()
     out = []
@@ -86,7 +86,7 @@ def _dedup_by_url(results: List[Dict]) -> List[Dict]:
 
 
 async def _search_one(s, query: str, engine: str, num: int) -> List[Dict]:
-    """实战 63: 跑一个引擎 (超快速失败)"""
+    """v20.63: 跑一个引擎 (超快速失败)"""
     try:
         results = await asyncio.wait_for(
             s.search_async(query, engine=engine, num=num, mode='quick', force_refresh=False),
@@ -99,19 +99,19 @@ async def _search_one(s, query: str, engine: str, num: int) -> List[Dict]:
 
 async def multi_search(query: str, top: int = 10, use_brain: bool = True,
                        max_engines: int = 3, max_retries: int = 3) -> Dict:
-    """实战 63: 多路并行搜索
+    """v20.63: 多路并行搜索
     1) super_brain.analyze_query → 推荐引擎
     2) 跑原 query + brain 拼的 1-2 变体, 每个用 2-3 引擎
     3) asyncio.gather 并行
     4) 合并去重
 
-    实战 65: 智能重搜
+    v20.65: 智能重搜
     - 1 轮 < 3 条有效 → 自动触发重搜
     - 最多 3 轮
     - 重搜策略: 换引擎 / 拆词 / 放宽
     """
     t0 = time.time()
-    rounds = []  # 实战 65: 记录每轮
+    rounds = []  # v20.65: 记录每轮
     current_query = query
     current_top = top
     all_engines_used = []
@@ -141,7 +141,7 @@ async def multi_search(query: str, top: int = 10, use_brain: bool = True,
                 if brain_info is None:
                     brain_info = {'error': str(e)}
 
-        # 实战 65: 第 2 轮换不同引擎 (排除已用)
+        # v20.65: 第 2 轮换不同引擎 (排除已用)
         if round_idx == 1:
             backup_engines = ['baidu', 'sogou', 'csdn', 'cnblogs', 'github', 'toutiao', 'zhihu']
             for be in backup_engines:
@@ -158,7 +158,7 @@ async def multi_search(query: str, top: int = 10, use_brain: bool = True,
                 py_variant = current_query.replace(entity, brain_info['pinyin'].lower())
                 variants.append(py_variant)
 
-        # 实战 75: 智能搜索策略 (entity 类型 → site: 限制)
+        # v20.75: 智能搜索策略 (entity 类型 → site: 限制)
         try:
             import intent_strategy as _strat
             strat = _strat.strategy_for_query(current_query, brain_info)
@@ -167,7 +167,7 @@ async def multi_search(query: str, top: int = 10, use_brain: bool = True,
         except Exception:
             pass
 
-        # 实战 65: 第 3 轮 - 拆词重写
+        # v20.65: 第 3 轮 - 拆词重写
         if round_idx >= 2 and brain_info and brain_info.get('entity'):
             entity = brain_info['entity']
             # 拆词: entity 拆成单字 + 用 query_rewrite 加同义词
@@ -226,7 +226,7 @@ async def multi_search(query: str, top: int = 10, use_brain: bool = True,
             'elapsed_ms': int((time.time() - round_t0) * 1000),
         })
 
-        # 实战 65: 判断是否需要重搜
+        # v20.65: 判断是否需要重搜
         # 计算"有效"结果数: 有 title + url + snippet 都不空
         effective = [r for r in round_results
                      if r.get('title') and r.get('url') and (r.get('snippet') or r.get('desc') or r.get('content'))]
@@ -278,8 +278,8 @@ async def multi_search(query: str, top: int = 10, use_brain: bool = True,
         'results': final,
         'count': len(final),
         'brain_info': brain_info,
-        'rounds': rounds,  # 实战 65
-        'retries': len(rounds) - 1,  # 实战 65
+        'rounds': rounds,  # v20.65
+        'retries': len(rounds) - 1,  # v20.65
         'elapsed_ms': int((time.time() - t0) * 1000),
     }
 

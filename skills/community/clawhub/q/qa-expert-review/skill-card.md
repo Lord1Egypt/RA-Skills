@@ -1,39 +1,54 @@
-## Description: <br>
-Reviews AI-generated test cases before final release by sampling them and checking business validity, scenario completeness, and executability, then requiring correction feedback for systemic issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides a final, risk-aware review of AI-generated test cases for business validity, scenario coverage, and executability before release.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA reviewers, testers, and product teams use this skill as a final gate before AI-generated test cases go live. It produces sampled review findings, correction suggestions, learning points, and prompt optimization guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad review phrases in mixed-language environments. <br>
-Mitigation: Use explicit prompts that state the desired language, review scope, and whether this QA expert review skill should be applied. <br>
-Risk: Review findings can affect whether generated test cases are accepted for release. <br>
-Mitigation: Have a qualified reviewer confirm sampled findings, systemic issue claims, and prompt optimization suggestions before treating the report as a final gate. <br>
+## Use Case:
 
+QA engineers and reviewers use this skill to sample and assess AI-generated test cases, document defects and corrections, and feed recurring findings into future test-case generation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown review report with tables and structured correction lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes review IDs, sampled issue lists, corrections, learning points, and prompt optimization suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: Installing the suggested broader skill set could run code from an unverified source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the Kokxi/qa-test-skills source and prefer a pinned version or trusted commit before running the suggested npx command.
+
+Risk: Sampling can miss important gaps in AI-generated test cases.
+
+Mitigation: Review all highest-priority and high-risk cases, trace coverage to available requirements, and repeat review after correcting systematic gaps.
+
+## Reference(s):
+
+- [Meta-learning reference](references/meta-learning.md)
+- [ClawHub skill release](https://clawhub.ai/kokxi/skills/qa-expert-review)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown review report with scores, issue table, corrections, and improvement recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes review and test-case IDs, sampling rate, requirements traceability, and prompt-optimization suggestions.]
+
+## Skill Version(s):
+
+1.8.0 (source: skill frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

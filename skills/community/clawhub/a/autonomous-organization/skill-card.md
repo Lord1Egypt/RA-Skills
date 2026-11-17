@@ -1,38 +1,49 @@
-## Description: <br>
-Manages and schedules autonomous agents to perform research, projects, memory upkeep, cleanup, and security tasks around the clock. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages and schedules autonomous agents to perform research, projects, memory upkeep, cleanup, and security tasks around the clock.
 
-## Publisher: <br>
-[xeonai44](https://clawhub.ai/user/xeonai44) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xeonai44](https://clawhub.ai/user/xeonai44)
 
-## Use Case: <br>
-Developers and agent operators use this skill to organize continuous autonomous work across memory, research, project, cleanup, and security activities, with scheduled checkpoints for review and planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to run broad autonomous work around the clock without clear user controls. <br>
-Mitigation: Install only where approvals, scoped file access, visible logs, bounded schedules, resource limits, reviewed memory changes, and an easy stop mechanism can be enforced. <br>
+## Use Case:
 
+Developers and operators use this skill to structure continuous autonomous agent work across daily planning, research, project execution, memory upkeep, cleanup, and security checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xeonai44/autonomous-organization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with schedules, lists, and an inline bash command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance for scheduling and spawning autonomous sub-agent work; review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill encourages continuous autonomous work with broad authority to spawn sub-agents, update memory, organize files, and perform security checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use tight workspace permissions, explicit task scopes, human approval for file changes or cleanup, and clear limits on memory updates and spawned sub-agents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xeonai44/skills/autonomous-organization)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with a bash command example]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defines scheduled work periods and agent roles; spawned agents require runtime and permission controls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

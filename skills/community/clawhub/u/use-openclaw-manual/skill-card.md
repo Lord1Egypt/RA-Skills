@@ -1,45 +1,61 @@
-## Description: <br>
-Helps agents search and read local OpenClaw documentation before proposing OpenClaw configuration changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents consult locally synced OpenClaw documentation before proposing configuration changes for agents, sessions, channels, cron jobs, notifications, tools, workspaces, gateways, memory, and skills.
 
-## Publisher: <br>
-[echoflying](https://clawhub.ai/user/echoflying) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[echoflying](https://clawhub.ai/user/echoflying)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to find synchronized local documentation, read relevant sections, and produce documented configuration plans before changing agents, gateways, channels, schedules, tools, workspaces, memory, or skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Document read and list commands may access files outside the intended OpenClaw manual path when given untrusted paths. <br>
-Mitigation: Use only trusted, relative documentation paths with --read and --list, and review the skill before installing or running it. <br>
-Risk: The skill writes local logs of command arguments by default, which may capture sensitive search terms or paths. <br>
-Mitigation: Avoid searching for secrets and run with DISABLE_USAGE_LOG=true when query privacy matters. <br>
-Risk: Documentation sync can send update notifications to a configured channel. <br>
-Mitigation: Keep DOC_NOTIFY_CHANNEL unset or set to none until notification routing and logging controls are reviewed. <br>
+## Use Case:
 
+Developers and agents use this skill to search, read, and sync OpenClaw documentation before designing OpenClaw configuration changes. It supports documentation-grounded guidance with shell commands and cited local document paths.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/echoflying/use-openclaw-manual) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [Script Reference](references/scripts.md) <br>
-- [Troubleshooting Guide](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and cited document paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local OpenClaw documentation, sync documentation from GitHub, and write local usage or update logs depending on command and environment settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release metadata) <br>
+Risk: The security evidence reports an unsafe document-read path that can escape the docs folder and expose local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and avoid passing untrusted paths to --read or --list.
+
+Risk: The skill uses shell scripts that fetch OpenClaw docs from GitHub and write under ~/.openclaw.
+
+Mitigation: Use it only if that local write behavior and GitHub access are acceptable for the deployment environment.
+
+Risk: Usage logs and sync notifications can disclose command or sync metadata.
+
+Mitigation: Set DISABLE_USAGE_LOG=true to disable usage logging and keep DOC_NOTIFY_CHANNEL=none unless notification sharing is acceptable.
+
+## Reference(s):
+
+- [Skill README](artifact/SKILL.md)
+- [Script Reference](artifact/references/scripts.md)
+- [Troubleshooting Guide](artifact/references/troubleshooting.md)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [ClawHub Skill Page](https://clawhub.ai/echoflying/skills/use-openclaw-manual)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local documentation references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include search results, document excerpts, sync status, usage statistics, and configuration steps.]
+
+## Skill Version(s):
+
+2.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

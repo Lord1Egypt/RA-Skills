@@ -1,43 +1,60 @@
-## Description: <br>
-Real-time Solana data monitoring with token prices, alerts via Telegram/email, whale transfers, liquidity pools, and new token discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors Solana ecosystem data including token prices, Telegram and email alerts, large-transfer tracking, liquidity pool changes, and new token discovery.
 
-## Publisher: <br>
-[chungvic](https://clawhub.ai/user/chungvic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chungvic](https://clawhub.ai/user/chungvic)
 
-## Use Case: <br>
-External developers, DeFi/NFT traders, and project teams use this skill to monitor Solana market and on-chain activity, configure price alerts, and generate guidance or commands for running the included monitors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Telegram bot tokens, chat IDs, SMTP credentials, or email app passwords may be exposed if stored carelessly. <br>
-Mitigation: Use dedicated notification credentials, keep .env and config files out of source control, and restrict local file permissions. <br>
-Risk: Unpinned Python dependencies may change behavior over time. <br>
-Mitigation: Pin and review dependency versions before deployment. <br>
-Risk: Alerts and monitoring requests pass through third-party APIs and notification services. <br>
-Mitigation: Use deployment-approved service accounts and endpoints, and avoid including sensitive information in alert messages. <br>
+## Use Case:
 
+External users, DeFi and NFT traders, and project teams use this skill to monitor Solana token prices, whale activity, liquidity changes, and notification alerts for market operations. It helps configure and run Python-based monitoring workflows that read public market and chain data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chungvic/solana-monitor-vic) <br>
-- [Publisher profile](https://clawhub.ai/user/chungvic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; runtime scripts emit console text and Telegram/email alert messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call public price, Solana RPC, Telegram, and SMTP services when configured and executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill asks users to configure Telegram bot tokens and email-sending credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated low-privilege bot and email accounts, keep secrets out of source control, restrict config file permissions, and rotate exposed credentials.
+
+Risk: Security evidence reports weak disclosure and unsafe error logging around notification credentials.
+
+Mitigation: Avoid logging raw request exceptions or credential-bearing values, and review notification setup before deployment.
+
+Risk: The skill depends on live third-party APIs and public Solana RPC endpoints for price and transaction data.
+
+Mitigation: Review dependency versions, handle API failures and rate limits, and validate monitoring results before acting on alerts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chungvic/skills/solana-monitor-vic)
+- [Publisher profile](https://clawhub.ai/user/chungvic)
+- [Project repository](https://github.com/vic-ai-company/solana-monitor)
+- [Project issues](https://github.com/vic-ai-company/solana-monitor/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce configuration guidance for Telegram bot tokens, SMTP credentials, price alerts, and polling intervals.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

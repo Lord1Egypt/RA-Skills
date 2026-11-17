@@ -1,0 +1,48 @@
+{
+  "version": "2.9.0",
+  "source_id": "rdfybk",
+  "status": "partial",
+  "checked_at": "2026-10-16T12:24:47.986Z",
+  "entry": {
+    "url": "https://www.rdfybk.com/eval/rank/",
+    "title": "人大复印报刊资料 · 学术评价与转载排名",
+    "status": "partially-accessible",
+    "note": "年度转载指数排名页公开可读；转载查询与全文库提示“非机构用户无权限访问”。"
+  },
+  "controls": [],
+  "recipes": [
+    {
+      "id": "rdfybk:statistics-ranking",
+      "source_id": "rdfybk",
+      "title": "某期刊某年度的转载量",
+      "task_kind": "statistics-ranking",
+      "status": "query_verified",
+      "parameters": [
+        "year",
+        "source_id"
+      ],
+      "steps": [
+        "打开 https://www.rdfybk.com/eval/rank/<year>/html/<source_id>.html，例如图情档学科为 020617。",
+        "在“转载量排名”表中按期刊名定位，读取“转载数”。",
+        "同页另有“转载率排名”表，可核对转载数、发文数与转载率是否自洽（转载数 ≈ 发文数 × 转载率）。"
+      ],
+      "notes": [
+        "实测（2026-10-16）：2013 年图情档学科页公开可读，《图书情报工作》转载数 31、名次 1；该学科转载全文总量 341 篇。",
+        "逐年核对过偏移，避免年份错位：同刊转载数 2011=36、2012=30、2013=31、2014=32。",
+        "页面为 UTF-8；用 GBK 解码会得到乱码，注意声明编码。",
+        "转载查询（/ReprintQuery）与全文库（/qw）对非机构用户返回“非机构用户无权限访问”，不要反复尝试。"
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "institutional-access",
+      "detail": "转载查询与全文库需机构权限；排名页公开",
+      "first_seen": "2026-10-16T12:24:47.986Z"
+    }
+  ],
+  "provenance": {
+    "observed_at": "2026-10-16T12:24:47.986Z",
+    "evidence": "实测排名页读到《图书情报工作》转载数 31；实测 /ReprintQuery 返回“非机构用户无权限访问”。"
+  }
+}

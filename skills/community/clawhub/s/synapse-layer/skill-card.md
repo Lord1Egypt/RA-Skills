@@ -1,46 +1,65 @@
-## Description: <br>
-Synapse Layer helps agents configure and use persistent encrypted memory through a Python client or MCP endpoint, including memory storage, recall, cross-agent search, text processing, and trust-score review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Synapse Layer provides persistent memory infrastructure for AI agents with a 4-layer Cognitive Security Pipeline covering PII redaction, AES-256-GCM encryption, intent validation, and differential privacy.
 
-## Publisher: <br>
-[rafacpti23](https://clawhub.ai/user/rafacpti23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rafacpti23](https://clawhub.ai/user/rafacpti23)
 
-## Use Case: <br>
-Developers and engineers use this skill to add persistent memory to AI agents, test SynapseLayer connectivity, and integrate memory operations with OpenClaw or external MCP clients. It is also useful for reviewing Trust Quotient scores and configuring framework integrations such as LangChain, CrewAI, AutoGen, LlamaIndex, and Semantic Kernel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent memories can be transmitted to and persisted by an external SynapseLayer service while retention, deletion, encryption, and cross-agent isolation controls are under-specified. <br>
-Mitigation: Install only when the service is trusted, avoid storing secrets or regulated data until controls are verified, and separate agent IDs by project or trust boundary. <br>
-Risk: The skill requires sensitive API credentials for live service access. <br>
-Mitigation: Use scoped disposable API keys for testing and rotate or revoke keys if they are exposed. <br>
-Risk: The test script prints a truncated API key and writes test memories to the external service. <br>
-Mitigation: Avoid running the test script in shared logs and use non-sensitive test content with a disposable key. <br>
+## Use Case:
 
+Developers and AI-agent operators use this skill to configure SynapseLayer memory integration, store and retrieve agent memories, share memory across agents, and troubleshoot connectivity and trust scoring.
 
-## Reference(s): <br>
-- [API Reference](references/api.md) <br>
-- [Security Details](references/security.md) <br>
-- [Framework Integrations](references/integrations.md) <br>
-- [Python Client](scripts/synapse_client.py) <br>
-- [SynapseLayer MCP endpoint](https://forge.synapselayer.org/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with Python, JSON, and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce HTTP JSON-RPC requests to the SynapseLayer MCP endpoint when the provided client or test script is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill stores or processes agent memory through a remote SynapseLayer service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when remote memory processing is intended, and avoid sending secrets or regulated personal data.
+
+Risk: Published privacy and zero-knowledge claims are not proven by the included client implementation.
+
+Mitigation: Do not rely on those claims unless the publisher provides implementation evidence and security review.
+
+Risk: Cross-agent search can expose memories outside the intended agent scope.
+
+Mitigation: Restrict cross-agent search to authorized scopes and use consistent, least-privilege agent identifiers.
+
+Risk: The test script exercises live memory operations and may run with real credentials.
+
+Mitigation: Run tests only with non-production credentials and non-sensitive test memories.
+
+## Reference(s):
+
+- [API Reference](references/api.md)
+- [Security Details](references/security.md)
+- [Framework Integrations](references/integrations.md)
+- [SynapseLayer MCP endpoint](https://forge.synapselayer.org/mcp)
+- [ClawHub skill page](https://clawhub.ai/rafacpti23/skills/synapse-layer)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline Python, JSON, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API-call guidance for a remote memory service and configuration snippets for MCP or Python SDK integration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

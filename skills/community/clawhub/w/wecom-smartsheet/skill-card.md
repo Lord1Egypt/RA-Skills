@@ -1,49 +1,65 @@
-## Description: <br>
-Automates WeCom Smart Sheet workflows by helping agents write records, send group notifications, maintain a local deadline tracker, and prepare reminders for expense, task, and video-production workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates WeCom Smart Sheet workflows by turning natural-language requests into sheet writes, group notifications, local deadline tracking, and scheduled reminders for expense approvals, work tasks, and video production.
 
-## Publisher: <br>
-[jason918262](https://clawhub.ai/user/jason918262) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jason918262](https://clawhub.ai/user/jason918262)
 
-## Use Case: <br>
-Employees and operations teams use this skill to turn natural-language requests into WeCom Smart Sheet record creation, matching group notifications, local deadline tracking, and reminders for expenses, tasks, and video production workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write business records to WeCom Smart Sheets and send WeCom group notifications. <br>
-Mitigation: Use least-privilege webhook and bot keys, and confirm each live write and notification destination before execution. <br>
-Risk: The local deadline tracker may store business, personnel, financial, or schedule details. <br>
-Mitigation: Avoid storing unnecessary sensitive details, restrict access to the tracker file, and periodically review or delete old records. <br>
-Risk: Scheduled reminders and daily checks can continue sending notifications after business context changes. <br>
-Mitigation: Review active reminders and tracker records regularly, and remove obsolete schedules or records. <br>
-Risk: Incorrect user IDs, field formats, or table-to-group mapping can cause failed writes or messages sent to the wrong group. <br>
-Mitigation: Validate WeCom user IDs and field formats before posting, and keep each table mapped only to its corresponding group bot. <br>
+## Use Case:
 
+Employees and operations teams use this skill to create and track WeCom Smart Sheet records for expense requests, task assignments, and video-production steps, with matching WeCom group notifications and deadline reminders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jason918262/wecom-smartsheet) <br>
-- [Publisher profile](https://clawhub.ai/user/jason918262) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [wecom_smartsheet.py](artifact/references/wecom_smartsheet.py) <br>
-- [wecom_daily_check.py](artifact/references/wecom_daily_check.py) <br>
-- [wecom_deadline_tracker.json](artifact/wecom_deadline_tracker.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payloads, shell commands, and Python helper references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce WeCom webhook payloads, group-message content, local tracker entries, and reminder setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can send sensitive business information through WeCom Smart Sheet and group robot webhooks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a controlled WeCom workspace and require a human confirmation step before sending records or notifications.
+
+Risk: Webhook keys could grant write or notification access if stored in source files or shared prompts.
+
+Mitigation: Keep webhook keys out of source files and provide them through a controlled secret or runtime configuration process.
+
+Risk: Scheduled command-based reminders can send future notifications without another review at send time.
+
+Mitigation: Require confirmation before creating reminders and restrict reminder prompts to the intended WeCom group and record summary.
+
+Risk: The local tracker can store full business records, increasing exposure if the workspace files are shared.
+
+Mitigation: Store only minimal reminder fields such as table, record ID, name, deadline, responsible user, and notification status.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/jason918262/skills/wecom-smartsheet)
+- [Skill instructions](artifact/SKILL.md)
+- [WeCom Smart Sheet automation helper](artifact/references/wecom_smartsheet.py)
+- [WeCom daily deadline check helper](artifact/references/wecom_daily_check.py)
+- [Deadline tracker example configuration](artifact/wecom_deadline_tracker.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payloads, Python helper usage, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include WeCom Smart Sheet webhook payloads, group notification content, local tracker updates, and reminder setup instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

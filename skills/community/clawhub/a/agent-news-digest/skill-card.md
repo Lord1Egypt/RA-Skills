@@ -1,42 +1,63 @@
-## Description: <br>
-키워드 기반 뉴스 수집 및 3줄 요약 에이전트 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects topic-based news and produces Korean three-line article summaries plus a Markdown briefing.
 
-## Publisher: <br>
-[jinu4you](https://clawhub.ai/user/jinu4you) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[jinu4you](https://clawhub.ai/user/jinu4you)
 
-## Use Case: <br>
-Developers and external users use this skill to collect recent news for a topic, summarize articles in Korean, score their importance, and return a concise briefing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: Startup behavior can automatically spend API-key quota on a hard-coded Bitcoin news job without an explicit user request. <br>
-Mitigation: Remove or disable the automatic mock job and run searches only after an explicit agent job is received. <br>
-Risk: Topics and retrieved article snippets are sent to Tavily and the selected LLM provider. <br>
-Mitigation: Use limited, revocable API keys and avoid submitting sensitive topics or content unless the provider data handling is acceptable. <br>
+## Use Case:
 
+External users and developers use this agent to gather recent news for a topic, summarize returned articles in Korean, rank them by importance, and generate a concise Markdown briefing.
 
-## Reference(s): <br>
-- [Agent News Digest on ClawHub](https://clawhub.ai/jinu4you/agent-news-digest) <br>
-- [Tavily Search API endpoint](https://api.tavily.com/search) <br>
-- [Groq OpenAI-compatible API endpoint](https://api.groq.com/openai/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown] <br>
-**Output Format:** [JSON job result containing article metadata, summaries, importance scores, and a Korean markdown briefing] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns up to 10 requested items after sorting by importance score.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release metadata) <br>
+Risk: Search topics, returned article excerpts, and generated summaries are shared with Tavily and the configured LLM provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use limited-scope API keys, avoid sensitive topics, and disclose third-party data sharing to users.
+
+Risk: News content and generated summaries may be incomplete, misleading, or affected by prompt-injection-prone source material.
+
+Mitigation: Treat summaries, rankings, and links as untrusted until independently checked, and validate that model output preserves source URLs and expected score ranges.
+
+Risk: The artifact includes a startup mock job that can run a sample Bitcoin digest automatically.
+
+Mitigation: Remove or gate the mock job before production deployment.
+
+Risk: External API credentials are required for normal operation.
+
+Mitigation: Store keys in environment variables, rotate them regularly, and update dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jinu4you/skills/agent-news-digest)
+- [Tavily search API endpoint](https://api.tavily.com/search)
+- [Groq OpenAI-compatible API endpoint](https://api.groq.com/openai/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON]
+
+**Output Format:** [Structured JSON job result containing article records and a Korean Markdown briefing.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns the topic, period, total article count, article summaries, source URLs, published dates when available, importance scores, and a brief.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

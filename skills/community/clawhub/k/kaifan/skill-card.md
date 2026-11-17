@@ -1,42 +1,62 @@
-## Description: <br>
-开饭 helps an agent search dining options, recommend meals, draft food orders, manage confirmation, and check delivery status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+开饭 helps an agent search and recommend dining options, prepare food-order drafts, request explicit payment approval, and check order fulfillment status.
 
-## Publisher: <br>
-[kaifan](https://clawhub.ai/user/kaifan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaifan](https://clawhub.ai/user/kaifan)
 
-## Use Case: <br>
-Users ask the agent for restaurant discovery, meal recommendations, group ordering, order drafts, payment confirmation support, and delivery status updates through the Kaifan service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dynamic setup with npx can execute publisher package code while handling a user binding secret. <br>
-Mitigation: Install only if you trust the publisher and the kaifan-ai package; prefer an explicit account-linking flow when available. <br>
-Risk: Binding phrases and fallback OpenAPI parameters are sensitive credentials. <br>
-Mitigation: Treat these values as secrets, provide them only in a trusted session, avoid logging them, and rotate or revoke them if exposed. <br>
-Risk: Ordering actions can lead to real payment or delivery changes if confirmation is mishandled. <br>
-Mitigation: Keep orders as drafts, show the restaurant, items, total price, and warnings, and require explicit user approval before confirmation. <br>
+## Use Case:
 
+External users and agents use this skill as a private dining assistant for restaurant discovery, meal recommendations, draft-first ordering, explicit payment confirmation, and delivery status checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaifan/kaifan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Natural language guidance with order summaries and inline shell commands when setup is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Order confirmation should remain draft-first and require explicit user approval before payment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill asks the agent to execute an unpinned npm connector.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted Kaifan publisher path, and prefer a reviewed, pinned, preinstalled connector.
+
+Risk: The binding flow may pass a user secret to a connector command.
+
+Mitigation: Use explicit user approval for binding and keep the binding secret out of logs, summaries, and reusable prompts.
+
+Risk: Network restrictions may lead the agent toward direct OpenAPI parameters.
+
+Mitigation: Use direct parameters only after user approval and only through a reviewed, secret-safe binding flow.
+
+Risk: Food ordering and payment actions can create real-world charges or fulfillment commitments.
+
+Mitigation: Keep orders as drafts until the user sees the store, items, total price, and warnings, then gives explicit payment confirmation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaifan/skills/kaifan)
+- [Source skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Natural-language guidance with order details, warnings, confirmation prompts, status summaries, and occasional inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user approval before payment confirmation; connector binding may require a user-provided secret.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence, released 2026-05-26)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

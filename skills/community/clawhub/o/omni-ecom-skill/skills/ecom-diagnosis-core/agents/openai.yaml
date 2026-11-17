@@ -1,0 +1,4 @@
+interface:
+  display_name: "电商经营诊断核心"
+  short_description: "校验原始报表口径，复算核心指标，执行数据质量闸门并完成经营归因"
+  default_prompt: "Use $ecom-diagnosis-core to verify the uploaded e-commerce reports before diagnosing performance."

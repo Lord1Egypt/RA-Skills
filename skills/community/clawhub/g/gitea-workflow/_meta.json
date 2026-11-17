@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn7bcaearb90wwcjbr9gpv32s5831k39",
+  "ownerId": "axelhu",
   "slug": "gitea-workflow",
   "version": "1.0.0",
-  "publishedAt": 1781744890018
+  "publishedAt": "2026-06-18T08:32:00Z",
+  "requiredEnvVars": [],
+  "requiredConfigPaths": [],
+  "primaryCredential": null,
+  "persistence": null,
+  "credentialSetup": {
+    "type": "none",
+    "description": "No credentials required. Gitea token is read at runtime by each agent from their own configuration file (e.g. ~/.config/gitea/{agent}.json, mode 600). Each agent is responsible for managing their own Gitea personal access token."
+  },
+  "requires": {
+    "anyBinaries": [],
+    "os": ["linux"]
+  }
 }

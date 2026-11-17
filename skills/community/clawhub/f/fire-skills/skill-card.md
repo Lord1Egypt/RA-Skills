@@ -1,44 +1,66 @@
-## Description: <br>
-Practical fire building, management, and safety skills for campfires, fireplaces, grilling, home fire planning, and fire emergency response guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Practical fire building, management, and safety guidance for campfires, fireplaces, grilling, extinguisher selection, kitchen fire response, and home fire escape planning.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users use this skill to get practical fire safety guidance, including how to build and extinguish campfires, operate fireplaces, grill safely, choose and use fire extinguishers, respond to kitchen fires, and create home fire escape plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Localized fire rules, burn bans, emergency numbers, and fire danger ratings can vary by region. <br>
-Mitigation: Share only the country, state, or region needed for localization, and verify current rules with local fire authorities before starting or managing a fire. <br>
-Risk: Reminder-style state may capture details about a user's home safety setup if the agent persists skill state. <br>
-Mitigation: Review and limit any saved checklist, reminder, or home safety details according to the user's privacy expectations and agent storage settings. <br>
+## Use Case:
 
+External users use this skill to get practical guidance for safe recreational and household fire handling, including campfires, fireplaces, grilling, extinguishers, kitchen fires, and home escape planning.
 
-## Reference(s): <br>
-- [ClawHub Fire Skills page](https://clawhub.ai/howtousehumans/fire-skills) <br>
-- [National Fire Protection Association](https://www.nfpa.org/) <br>
-- [US Forest Service campfire safety](https://www.fs.usda.gov/visit/know-before-you-go/campfire-safety) <br>
-- [American Red Cross fire safety resources](https://www.redcross.org/get-help/how-to-prepare-for-emergencies/types-of-emergencies/fire.html) <br>
-- [NFPA fire extinguisher guidance](https://www.nfpa.org/education-and-research/home/fire-extinguishers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, step-by-step instructions, and YAML-style state or reminder examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for coarse location to adapt fire rules and emergency numbers; no executable code is included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may rely on agent guidance during an active fire, burn, or other emergency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local emergency services and professional safety guidance for real fires or burns rather than relying only on the skill.
+
+Risk: Reminder or stored-state behavior may persist home-safety details across sessions.
+
+Mitigation: Review and approve any reminder or stored-state behavior before enabling it.
+
+Risk: Install-time supply-chain exposure may exist if the installer or skill version is not integrity verified.
+
+Mitigation: Prefer a pinned or otherwise integrity-verified ClawHub installer and skill version when available.
+
+Risk: Fire regulations, burn bans, danger ratings, and emergency numbers vary by jurisdiction.
+
+Mitigation: Adapt guidance to the user's location and verify local fire authority rules before starting or managing fires.
+
+## Reference(s):
+
+- [Fire Skills ClawHub Release](https://clawhub.ai/howtousehumans/skills/fire-skills)
+- [National Fire Protection Association](https://www.nfpa.org/)
+- [US Forest Service Campfire Safety](https://www.fs.usda.gov/visit/know-before-you-go/campfire-safety)
+- [American Red Cross Fire Safety](https://www.redcross.org/get-help/how-to-prepare-for-emergencies/types-of-emergencies/fire.html)
+- [NFPA Fire Extinguisher Classifications](https://www.nfpa.org/education-and-research/home/fire-extinguishers)
+- [Anthropic Labor Market Impacts of AI](https://www.anthropic.com/research/labor-market-impacts)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown guidance, checklists, and step-by-step instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May adapt fire regulations, emergency numbers, and safety references to the user's region; may suggest reminders if the agent supports approved stored state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Optimizes complex prompts through explicit, iterative prompt refinement using ACON-style signal preservation and APE-style candidate scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Iterative prompt optimizer for complex tasks that implements ACON's two-stage iterative optimization and APE automatic prompt engineering, activates only on explicit request, collects feedback after optimization, and supports multi-round iteration until the user is satisfied.
 
-## Publisher: <br>
-[ucsdzehualiu](https://clawhub.ai/user/ucsdzehualiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ucsdzehualiu](https://clawhub.ai/user/ucsdzehualiu)
 
-## Use Case: <br>
-Developers, writers, and other external users use this skill when they explicitly request prompt optimization for complex tasks. It rewrites prompts while preserving role, task, constraints, format, variables, examples, tool rules, and success criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts submitted for optimization may contain secrets or sensitive private data. <br>
-Mitigation: Remove secrets and sensitive private data before asking the skill to optimize a prompt. <br>
-Risk: A rewritten prompt may omit, weaken, or alter important task constraints. <br>
-Mitigation: Review the final rewritten prompt for accuracy and constraint preservation before using it for important work. <br>
+## Use Case:
 
+Developers, prompt authors, and agent users use this skill to turn complex prompts into clearer, more complete, and more concise instructions while preserving intent, constraints, output format, examples, tool rules, and success criteria. It is intended for explicit prompt-optimization requests and supports follow-up refinement based on user feedback.
 
-## Reference(s): <br>
-- [ACON paper](https://arxiv.org/abs/2510.00615) <br>
-- [APE paper](https://arxiv.org/abs/2211.01910) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with a fenced optimized prompt and a brief feedback request] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no files, shell commands, or configuration are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Optimized prompts could change sensitive or high-impact instructions if accepted without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review optimized prompts before use and verify that critical constraints, formats, tool rules, and safety boundaries are preserved.
+
+Risk: The skill is designed to rewrite prompts only when explicitly requested; using it outside that context could produce unwanted prompt changes.
+
+Mitigation: Activate it only for explicit requests such as optimize prompt, improve prompt, or refine instruction.
+
+## Reference(s):
+
+- [ACON paper (arXiv:2510.00615)](https://arxiv.org/abs/2510.00615)
+- [APE paper (arXiv:2211.01910)](https://arxiv.org/abs/2211.01910)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown response with the optimized prompt in a fenced code block and a follow-up feedback question]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single response per optimization round; may iterate when the user provides feedback.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

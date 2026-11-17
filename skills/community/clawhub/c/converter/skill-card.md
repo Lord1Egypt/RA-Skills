@@ -1,43 +1,58 @@
-## Description: <br>
-Converter identifies safe local routes for document, image, audio, video, archive, and data conversions, prioritizing fidelity, privacy, and host-provided toolchains over cloud uploads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A local-first conversion router and format strategist that identifies safe local paths for document, image, audio, video, archive, and data transformations while prioritizing fidelity and privacy.
 
-## Publisher: <br>
-[AGIsearch](https://clawhub.ai/user/AGIsearch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agisearch](https://clawhub.ai/user/agisearch)
 
-## Use Case: <br>
-Developers, engineers, and file-heavy users use this skill to choose and run local conversion routes while understanding fidelity, compatibility, privacy, and tool availability tradeoffs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local conversion commands and batch operations can affect files, paths, wildcards, and output locations. <br>
-Mitigation: Review proposed commands, paths, wildcards, and destinations before execution, and keep backups for important files. <br>
-Risk: Some conversion routes are lossy, partially reliable, or structurally reconstruct content rather than preserving it exactly. <br>
-Mitigation: Use the route analysis and fidelity notes to confirm acceptable quality loss before converting. <br>
-Risk: External services may expose file contents if used for unsupported conversions. <br>
-Mitigation: Use local toolchains by default and approve external services only when file sharing is acceptable. <br>
+## Use Case:
 
+Developers and other external users use this skill to plan and run local file conversions across documents, images, audio, video, archives, office files, and data formats. It helps choose an available local toolchain, explain fidelity tradeoffs, and provide commands or fallback guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/AGIsearch/converter) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/AGIsearch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown route analysis with fidelity notes and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute or propose local commands only when required host binaries are available; otherwise returns a fallback plan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Local conversion commands may process or overwrite files selected by the user, especially during batch workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm matched files and run batch commands in the intended folder or on copies when source files matter.
+
+Risk: Conversion quality can be lossy, partially reconstructed, unsupported, or dependent on missing local binaries.
+
+Mitigation: Review the route analysis, fidelity notes, and execution status before running commands; use fallback guidance when required tools are unavailable.
+
+Risk: Some conversion requests may require external services or involve protected files.
+
+Mitigation: Keep conversions local by default, require explicit consent before any external route, and do not bypass DRM, crack passwords, or decrypt protected files without authorization.
+
+## Reference(s):
+
+- [Converter ClawHub skill page](https://clawhub.ai/agisearch/skills/converter)
+- [AGIsearch publisher profile](https://clawhub.ai/user/agisearch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown route analysis with inline shell commands and fallback guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on host-available local binaries such as ffmpeg, pandoc, magick, soffice, and 7z.]
+
+## Skill Version(s):
+
+2.0.0 (source: skill frontmatter, skill.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

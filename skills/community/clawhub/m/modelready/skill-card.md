@@ -1,39 +1,56 @@
-## Description: <br>
-Start using a local or Hugging Face model instantly, directly from chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Start using a local or Hugging Face model instantly, directly from chat.
 
-## Publisher: <br>
-[Carol-gutianle](https://clawhub.ai/user/Carol-gutianle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[carol-gutianle](https://clawhub.ai/user/carol-gutianle)
 
-## Use Case: <br>
-Developers and engineers use ModelReady to launch a local or Hugging Face model as a vLLM OpenAI-compatible endpoint, chat with the running model, and manage the server from an agent conversation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose a vLLM HTTP API server on the network by default and keep it running in the background. <br>
-Mitigation: Review before installing, prefer host=127.0.0.1 instead of the default all-interface bind, ensure firewall settings are appropriate, and stop the server when finished. <br>
-Risk: The extra parameter can pass additional vLLM flags through to the server command. <br>
-Mitigation: Avoid extra= unless you understand the vLLM flags being passed and have reviewed their operational impact. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ModelReady on ClawHub](https://clawhub.ai/Carol-gutianle/modelready) <br>
+## Use Case:
 
+Developers and engineers use ModelReady to launch local or Hugging Face models as vLLM-backed OpenAI-compatible endpoints and chat with running models from an agent conversation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with command examples and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local server status, endpoint URLs, chat responses, and host or port configuration guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The default server setting may expose an unauthenticated model API on all network interfaces.
+
+Mitigation: Bind the server to 127.0.0.1 unless network access is explicitly required and separately protected.
+
+Risk: Prompts sent to remote or untrusted hosts may expose sensitive information.
+
+Mitigation: Avoid sending sensitive prompts to remote or untrusted endpoints.
+
+Risk: The skill can start a long-running vLLM server.
+
+Mitigation: Check server status and stop the server when finished.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/carol-gutianle/skills/modelready)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Text and Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Starts, stops, checks status for, and chats with a vLLM-backed OpenAI-compatible endpoint; chat responses are returned as text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,60 @@
+{
+  "name": "评审记录 (Review)",
+  "description": "/qa-prd 指令的输出结果存储模型",
+  "version": "1.0",
+  "fields": {
+    "id": { "type": "string", "format": "review-YYYYMMDD-NNN", "required": true },
+    "created_at": { "type": "string", "format": "ISO 8601", "required": true },
+    "module": { "type": "string", "description": "产品/模块名称", "required": true },
+    "source": { "type": "string", "description": "来源 session_id", "required": true },
+    "tags": { "type": "array", "items": "string", "description": "自定义标签", "default": [] },
+    "data": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "business_layer": { "type": "string", "enum": ["核心层", "体验层", "增值层"] },
+        "total_issues": { "type": "integer" },
+        "severity_distribution": {
+          "type": "object",
+          "properties": {
+            "high": { "type": "integer" },
+            "medium": { "type": "integer" },
+            "low": { "type": "integer" }
+          }
+        },
+        "issues": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "dimension": { "type": "string", "description": "评审维度" },
+              "severity": { "type": "string", "enum": ["高", "中", "低"] },
+              "description": { "type": "string" },
+              "suggestion": { "type": "string" }
+            }
+          }
+        },
+        "clarification_questions": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  },
+  "example": {
+    "id": "review-20260630-001",
+    "created_at": "2026-06-30T10:00:00Z",
+    "module": "支付模块",
+    "source": "session-20260630-001",
+    "tags": ["支付", "回归"],
+    "data": {
+      "business_layer": "核心层",
+      "total_issues": 8,
+      "severity_distribution": { "high": 3, "medium": 3, "low": 2 },
+      "issues": [
+        { "dimension": "完整性", "severity": "高", "description": "未覆盖支付超时场景", "suggestion": "补充超时重试机制" }
+      ],
+      "clarification_questions": ["支付超时时间阈值是多少？"]
+    }
+  }
+}

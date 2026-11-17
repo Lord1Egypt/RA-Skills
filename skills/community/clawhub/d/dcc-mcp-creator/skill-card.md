@@ -1,47 +1,66 @@
-## Description: <br>
-Guides developers and agents through creating or modernizing DCC-MCP adapters for Nuke, Blender, 3ds Max, Unreal, ZBrush, Houdini, Maya, and custom studio tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build or modernize DCC-MCP adapters and standalone studio MCP services.
 
-## Publisher: <br>
-[loonghao](https://clawhub.ai/user/loonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loonghao](https://clawhub.ai/user/loonghao)
 
-## Use Case: <br>
-Developers and engineers use this skill to build or modernize DCC-MCP adapter infrastructure, including server composition, host-thread dispatch, sidecar and gateway wiring, readiness, packaging, diagnostics, and cross-DCC verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or modified adapter code may affect host integrations, gateways, relay or mDNS discovery, or durable memory in production or privacy-sensitive environments. <br>
-Mitigation: Review generated adapter code before running it, keep auth and TLS policy explicit for discovery or relay paths, and disable durable memory where privacy requirements demand it. <br>
-Risk: Incorrect host-thread dispatch can run DCC APIs from unsafe worker threads or block host UI behavior. <br>
-Mitigation: Use the documented dispatcher patterns, route host API calls through HostExecutionBridge, and add smoke tests that prove main-affinity calls run through the host dispatcher. <br>
+## Use Case:
 
+Developers and studio engineers use this skill to implement or modernize adapters for digital content creation applications and standalone studio MCP services.
 
-## Reference(s): <br>
-- [DCC-MCP Creator source](https://github.com/dcc-mcp/dcc-mcp-core/blob/main/skills/dcc-mcp-creator/SKILL.md) <br>
-- [Adapter Workflow](references/ADAPTER_WORKFLOW.md) <br>
-- [Host Pattern Matrix](references/HOST_PATTERN_MATRIX.md) <br>
-- [Core Escalation Checklist](references/CORE_ESCALATION_CHECKLIST.md) <br>
-- [Testing And Release](references/TESTING_AND_RELEASE.md) <br>
-- [RFC: add adapter skill-load transform hooks](https://github.com/dcc-mcp/dcc-mcp-core/issues/1204) <br>
-- [RFC: expose public DccServerBase resource registration surface](https://github.com/dcc-mcp/dcc-mcp-core/issues/1205) <br>
-- [RFC: add reusable adapter readiness binder](https://github.com/dcc-mcp/dcc-mcp-core/issues/1206) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline code blocks, command examples, and configuration recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces adapter design, implementation, testing, packaging, and release guidance for DCC-MCP infrastructure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.19.2 (source: SKILL.md metadata and server release evidence) <br>
+Risk: Exposing a standalone studio service can create unauthorized access risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review network exposure plans and use operator-managed TLS, authentication, firewall rules, audit controls, and secret storage where applicable.
+
+Risk: Source-level checks may not reveal behavior in a live DCC application.
+
+Mitigation: Keep source or mock validation separate from real-host acceptance and validate requested behavior in the intended host.
+
+## Reference(s):
+
+- [DCC-MCP Creator skill source](https://github.com/dcc-mcp/dcc-mcp-agent-plugins/blob/main/plugins/dcc-mcp/skills/dcc-mcp-creator/SKILL.md)
+- [Adapter and service workflow](references/ADAPTER_WORKFLOW.md)
+- [Host pattern matrix](references/HOST_PATTERN_MATRIX.md)
+- [Internal service workflow](references/INTERNAL_SERVICE_WORKFLOW.md)
+- [Runtime integration](references/RUNTIME_INTEGRATION.md)
+- [Python runtime selection](references/PYTHON_RUNTIME_SELECTION.md)
+- [Native extension workflow](references/NATIVE_EXTENSION_WORKFLOW.md)
+- [Async recovery](references/ASYNC_RECOVERY.md)
+- [Core escalation checklist](references/CORE_ESCALATION_CHECKLIST.md)
+- [Failure routing](references/FAILURE_ROUTING.md)
+- [Integration examples](references/INTEGRATION_EXAMPLES.md)
+- [Testing and release](references/TESTING_AND_RELEASE.md)
+- [DCC-MCP core protocol ownership decision](https://github.com/dcc-mcp/dcc-mcp-core/blob/main/docs/adr/027-protocol-type-ownership.md)
+- [MCP Inspector](https://github.com/modelcontextprotocol/inspector)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Configuration instructions, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with code examples and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tailored to the requested DCC host or standalone studio service.]
+
+## Skill Version(s):
+
+0.19.117 (source: frontmatter and server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

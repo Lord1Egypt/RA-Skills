@@ -1,43 +1,65 @@
-## Description: <br>
-Enables agents to manage decentralized identities, create pairwise DIDs, sign B2B mandates, and generate selective disclosure proofs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to manage decentralized identities, generate pairwise DIDs, sign B2B mandates, and create selective disclosure proofs for privacy-preserving interactions.
 
-## Publisher: <br>
-[TamTunnel](https://clawhub.ai/user/TamTunnel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[tamtunnel](https://clawhub.ai/user/tamtunnel)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add local self-sovereign identity workflows for B2B mandate signing, B2C pairwise identifiers, and selective disclosure of claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent authority to maintain a persistent local signing identity and create signed business mandates. <br>
-Mitigation: Require explicit user approval for each mandate, especially financial or legal actions, and inspect the mandate payload before signing. <br>
-Risk: Signing credentials depend on CLAW_PASSWORD and the local .env.agent identity file. <br>
-Mitigation: Treat CLAW_PASSWORD and .env.agent as signing credentials, keep them out of prompts and logs, and avoid sharing them with other agents or services. <br>
-Risk: The security review warns that DID verification is not a complete trust-chain validation. <br>
-Mitigation: Do not rely on verify_did.ts as full DID, credential, or counterparty trust validation; add independent policy checks before accepting proofs. <br>
+## Use Case:
 
+Developers and agent builders use this skill to give agents local DID-based identity workflows, signed mandates for B2B interactions, and selective disclosure proofs for B2C or access scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TamTunnel/sovereign-id) <br>
-- [Publisher profile](https://clawhub.ai/user/TamTunnel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript and shell command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local identity files, signed mandate JSON, public JWK material, selective disclosure JWT examples, and verification status output when scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release metadata) <br>
+Risk: Identity keys and signed mandates are high-value security material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in an isolated environment with a strong CLAW_PASSWORD and avoid sharing generated key material or password values.
+
+Risk: Generated mandates may be mistaken for authoritative authorization.
+
+Mitigation: Independently validate the issuer, key, expiration, and replay protections before relying on a mandate.
+
+Risk: Selective disclosure examples can expose personal claims if populated with real user data.
+
+Mitigation: Avoid using real personal claims with the selective disclosure script unless the disclosure set and verifier behavior have been reviewed.
+
+Risk: Dependency installation and npx execution can introduce supply-chain exposure.
+
+Mitigation: Pin and review dependencies before running npm or npx commands.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/tamtunnel/skills/sovereign-id)
+- [Publisher profile](https://clawhub.ai/user/tamtunnel)
+- [README.md](artifact/README.md)
+- [AGENT.md](artifact/AGENT.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, TypeScript script invocations, JSON identity artifacts, JWS signatures, and SD-JWT presentations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local execution with CLAW_PASSWORD for encrypted identity key handling.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

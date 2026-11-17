@@ -1,43 +1,54 @@
-## Description: <br>
-Local OPUS/Ogg voice-reply pipeline for Feishu/Discord with structured voice customization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local voice-reply pipeline that turns text into Opus/Ogg audio for Feishu or Discord using the Juno default voice or registered custom voices.
 
-## Publisher: <br>
-[tenured-master-chef-607](https://clawhub.ai/user/tenured-master-chef-607) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tenured-master-chef-607](https://clawhub.ai/user/tenured-master-chef-607)
 
-## Use Case: <br>
-Developers and operators use this skill to run a local text-to-speech voice reply workflow that generates Ogg/Opus audio and prepares voice responses for Feishu or Discord. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs an unauthenticated local text-to-speech API. <br>
-Mitigation: Keep the server bound to 127.0.0.1 and do not expose the port on shared or public networks. <br>
-Risk: Uploaded voice samples and generated audio are stored on disk. <br>
-Mitigation: Upload only voices you have permission to use, choose a narrow output directory, and periodically delete old voice, cache, and output files. <br>
-Risk: Generated audio can be sent to Feishu or Discord destinations. <br>
-Mitigation: Verify the intended destination before sending generated audio. <br>
+## Use Case:
 
+Developers and agent operators use this skill to generate local cloned or custom-voice audio replies from text and deliver them to Feishu or Discord. It is intended for trusted local voice workflows that can manage ffmpeg, Python TTS dependencies, voice samples, caches, and generated media files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tenured-master-chef-607/local-voice-reply) <br>
-- [Voice Server v3 documentation](server/VOICE_SERVER_V3.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, API call parameters, and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides generation of local Ogg/Opus voice reply files and delivery through Feishu or Discord.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.3 (source: server release evidence) <br>
+Risk: The local TTS API is unauthenticated and resource-heavy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the server bound to 127.0.0.1, do not expose it through a proxy or LAN interface, and add authentication, input limits, and pinned dependencies before production or shared-machine use.
+
+Risk: Voice samples, text-derived audio, sidecar metadata, and phrase caches can persist on disk.
+
+Mitigation: Avoid sensitive text or private voice samples unless local retention is acceptable, and manually manage or clear the voice, output, sidecar, and phrase-cache directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tenured-master-chef-607/skills/local-voice-reply)
+- [VOICE_SERVER_V3.md](artifact/server/VOICE_SERVER_V3.md)
+
+## Skill Output:
+
+**Output Type(s):** [Audio files, JSON metadata, Shell commands, Configuration guidance]
+
+**Output Format:** [Opus audio in an Ogg container with optional JSON sidecar metadata and Markdown command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated media is written to a local output directory; voice samples, registries, embeddings, phrase caches, and sidecar metadata may persist locally until manually cleaned.]
+
+## Skill Version(s):
+
+3.3.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

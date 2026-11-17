@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io"
 	"sort"
 	"strconv"
 	"time"
@@ -19,9 +20,10 @@ import (
 // {date, exercise_type, duration_min, avg_hr, calories, platform}.
 //
 // `sessions` is a convenience over `data list exercise` — it parses the verbose
-// exercise payload into the fields most callers want. It applies NO filtering;
-// every exercise type the watch logged is returned, and the consuming agent
-// keeps whatever it cares about.
+// exercise payload into the fields most callers want. Every exercise type is
+// returned; a point with no parseable start time can't be dated, so it is left
+// out and counted on stderr (reportUnparsedSessions), and `sessions --raw`
+// returns every point.
 type sessionRow struct {
 	Date         string `json:"date"`
 	ExerciseType string `json:"exercise_type"`
@@ -77,7 +79,8 @@ func (a *App) runSessions(cmd *cobra.Command, date string, days int, raw, asJSON
 		return writeJSON(out, rawPoints)
 	}
 
-	rows := buildSessionRows(points)
+	rows, unparsed := buildSessionRows(points)
+	reportUnparsedSessions(cmd.ErrOrStderr(), unparsed)
 
 	if asJSON {
 		return writeJSON(out, rows)
@@ -120,13 +123,18 @@ func (a *App) listExercise(ctx context.Context, target time.Time, days int) ([]a
 	return points, nil
 }
 
-// buildSessionRows parses, drops rows without a start, sorts by start ascending,
-// and maps to the frozen row shape.
-func buildSessionRows(points []api.DataPoint) []sessionRow {
+func reportUnparsedSessions(stderr io.Writer, unparsed int) {
+	if unparsed > 0 {
+		fprintf(stderr, "warning: %d exercise point(s) had no parseable start time and are not in this output; run `sessions --raw` to see every point\n", unparsed)
+	}
+}
+
+func buildSessionRows(points []api.DataPoint) (rows []sessionRow, unparsed int) {
 	parsed := make([]health.Session, 0, len(points))
 	for _, p := range points {
 		s := health.ParseSession(p)
 		if s.Start == nil {
+			unparsed++
 			continue
 		}
 		parsed = append(parsed, s)
@@ -135,7 +143,7 @@ func buildSessionRows(points []api.DataPoint) []sessionRow {
 		return parsed[i].Start.Before(*parsed[j].Start)
 	})
 
-	rows := make([]sessionRow, 0, len(parsed))
+	rows = make([]sessionRow, 0, len(parsed))
 	for _, s := range parsed {
 		rows = append(rows, sessionRow{
 			Date:         s.Start.Format("2006-01-02"),
@@ -146,5 +154,5 @@ func buildSessionRows(points []api.DataPoint) []sessionRow {
 			Platform:     s.Platform,
 		})
 	}
-	return rows
+	return rows, unparsed
 }

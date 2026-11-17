@@ -1,42 +1,59 @@
-## Description: <br>
-PowPow Financing Plan OpenClaw presents an interactive investor challenge for the PowPow angel or Pre-A financing plan, with personalized Q&A and investor-profile generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PowPow Financing Plan OpenClaw runs an interactive investor challenge for PowPow's angel/Pre-A financing plan, using Q&A to explain the project, build an investment style profile, and optionally prepare a previewed investor email.
 
-## Publisher: <br>
-[durenzidu](https://clawhub.ai/user/durenzidu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[durenzidu](https://clawhub.ai/user/durenzidu)
 
-## Use Case: <br>
-External users and prospective investors use this skill to explore the PowPow project, answer challenge questions, receive personalized project information, and decide whether to contact the publisher about investment interest. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use prior conversation memory to personalize an investment pitch. <br>
-Mitigation: Prefer a no-memory interaction and avoid sharing confidential personal, financial, or investment information unless intentional. <br>
-Risk: The skill asks for investor contact details and presents fundraising claims. <br>
-Mitigation: Share contact details only if you intend to contact the publisher, and independently verify investment claims before acting on them. <br>
+## Use Case:
 
+External investors and PowPow prospects use this skill to learn about the PowPow project, answer a 13-question investor challenge, and receive a qualitative investment style profile. The skill can also prepare an optional outreach email for the founder after preview and explicit confirmation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/durenzidu/powpow-financing-plan-openclaw) <br>
-- [PowPow official site](https://www.powpow.online/) <br>
-- [PowPow product experience](https://global.powpow.online/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational Markdown text with structured prompts, project summaries, Q&A responses, and contact guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May personalize responses from prior conversation memory and may ask for investor contact details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence and bundled manifest) <br>
+Risk: Investor answers and optional contact details may be placed into an email to the PowPow founder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Show the full email preview before sending, allow profile removal and redacted-copy handling, keep contact fields optional, and send only after explicit user confirmation.
+
+Risk: Memory personalization may surface prior conversation context during the investor flow.
+
+Mitigation: Ask for consent before accessing memory; if the user declines or does not respond, skip memory access for the session and do not include memory content in email.
+
+Risk: Industry or market answers may depend on web lookup and can be incomplete or time-sensitive.
+
+Mitigation: Prefer official PowPow sources for project claims, use web lookup only for relevant industry questions, and state when official materials do not cover an answer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/durenzidu/skills/powpow-financing-plan-openclaw)
+- [PowPow homepage](https://www.powpow.online/)
+- [PowPow landing page](https://global.powpow.online/landing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational Markdown with structured Q&A, investment style profile summaries, optional email drafts, and link references.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Memory personalization is consent-gated; optional email content requires full preview, optional redaction/removal of profile content, and explicit send confirmation.]
+
+## Skill Version(s):
+
+1.2.2 (source: SKILL.md frontmatter, artifact/skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Helps pharmacovigilance teams draft ICH E2D / GVP Module VI-aligned Individual Case Safety Report narrative packets, including case-validity checks, reportability clock calculations, and draft-only review labels before submission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts an ICH E2D and EU GVP Module VI-aligned ICSR narrative packet for a single adverse-event case, including valid-case checks, reportability clocks, MedDRA prompts, follow-up questions, and required safety-physician or QPPV review before submission.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Drug-safety processors, pharmacovigilance scientists, QPPVs, MAH safety teams, and PV vendors use this skill to turn a single adverse-event case into a structured draft ICSR narrative packet for qualified medical and regulatory review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow handles sensitive pharmacovigilance case information. <br>
-Mitigation: Enter only information needed for drafting, avoid unnecessary patient identifiers, and keep source case files under normal privacy controls. <br>
-Risk: Draft narratives, reportability clocks, coding proposals, causality, expectedness, or seriousness flags could be mistaken for final regulatory determinations. <br>
-Mitigation: Treat all outputs as draft material and require safety-physician, QPPV, and medical-coder review before any regulatory action. <br>
-Risk: Source-document wording could expose private information or be copied too directly into the narrative. <br>
-Mitigation: Summarize source material, preserve only permitted de-identified case facts, and refuse full patient names, full dates of birth, addresses, national IDs, medical record numbers, insurance IDs, phone numbers, and email addresses. <br>
+## Use Case:
 
+Drug-safety processors, pharmacovigilance scientists, medical reviewers, QPPV staff, safety officers, and PV vendors use this skill to convert one adverse-event case into a de-identified draft ICSR narrative packet. The packet supports review of case validity, reportability timing, seriousness, expectedness, causality, follow-up needs, and unresolved gaps before any regulatory transmission.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/pharmacovigilance-icsr-narrative) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown narrative packet with tables, follow-up questions, reportability status, and review blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-only output; de-identification and qualified safety-physician or QPPV review are required before regulatory action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: evidence.release.version and CHANGELOG.md, released 2026-05-28) <br>
+Risk: Draft ICSR content could affect regulated pharmacovigilance decisions if used without qualified review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require safety-physician or QPPV review for every draft before any submission, as stated in the security guidance and artifact behavior.
+
+Risk: Regional reporting rules, clocks, or routing expectations may differ or change.
+
+Mitigation: Users should verify current regional reporting rules in approved safety systems before relying on any reportability clock or route.
+
+Risk: Source case materials can contain protected health information.
+
+Mitigation: Keep source PHI in approved safety systems and use the skill's de-identification boundaries that refuse full patient identifiers in the narrative.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/pharmacovigilance-icsr-narrative)
+- [README](artifact/README.md)
+- [CHANGELOG](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown narrative packet with structured tables, draft labels, follow-up questions, and review checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft-only output requiring safety-physician or QPPV review before transmission.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release and artifact changelog, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-Monitor cron jobs and background tasks with PulseMon. Check monitor status, create/update/delete monitors, view incidents, and manage alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor cron jobs and background tasks with PulseMon. Check monitor status, create/update/delete monitors, view incidents, and manage alerts.
 
-## Publisher: <br>
-[ramongalego](https://clawhub.ai/user/ramongalego) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ramongalego](https://clawhub.ai/user/ramongalego)
 
-## Use Case: <br>
-Developers, operators, and SREs use this skill to manage PulseMon monitors for cron jobs and background tasks, inspect pings and incidents, and send monitor pings from an agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The PulseMon API key lets an agent change monitor configuration. <br>
-Mitigation: Install only if you are comfortable granting that access, and review update, pause, resume, and delete requests before approving them. <br>
-Risk: Ping bodies may be included in PulseMon alert notifications. <br>
-Mitigation: Do not put secrets, tokens, or sensitive job output in ping bodies. <br>
+## Use Case:
 
+Developers and operators use this skill to manage PulseMon monitors for cron jobs and background tasks, inspect incidents and pings, and send job status updates through an OpenClaw agent.
 
-## Reference(s): <br>
-- [PulseMon ClawHub release](https://clawhub.ai/ramongalego/pulsemon) <br>
-- [PulseMon](https://pulsemon.dev) <br>
-- [PulseMon API key settings](https://pulsemon.dev/dashboard/settings) <br>
-- [PulseMon API base endpoint](https://pulsemon.dev/api/v1) <br>
-- [PulseMon ping endpoint pattern](https://pulsemon.dev/api/ping/{slug}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with API request details and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Authenticated monitor management requires PULSEMON_API_KEY; ping calls use the public monitor slug endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can delete, pause, resume, create, and update PulseMon monitors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm destructive delete requests and review monitor changes before execution.
+
+Risk: Ping body text is sent to PulseMon and can appear in alerts.
+
+Mitigation: Do not include secrets, credentials, or sensitive personal data in ping body text.
+
+Risk: Authenticated monitor management requires a PulseMon API key.
+
+Mitigation: Install only when the agent should manage PulseMon monitors, and provide PULSEMON_API_KEY through the environment.
+
+## Reference(s):
+
+- [PulseMon](https://pulsemon.dev)
+- [PulseMon API settings](https://pulsemon.dev/dashboard/settings)
+- [PulseMon API base URL](https://pulsemon.dev/api/v1)
+- [PulseMon ping endpoint](https://pulsemon.dev/api/ping/{slug})
+- [ClawHub PulseMon skill page](https://clawhub.ai/ramongalego/skills/pulsemon)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Configuration]
+
+**Output Format:** [Markdown responses with JSON API request and response details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PULSEMON_API_KEY for authenticated monitor management; ping endpoints can be sent without an API key.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

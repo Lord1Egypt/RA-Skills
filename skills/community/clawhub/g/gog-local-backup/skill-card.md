@@ -1,43 +1,54 @@
-## Description: <br>
-Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs.
 
-## Publisher: <br>
-[12357851](https://clawhub.ai/user/12357851) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[12357851](https://clawhub.ai/user/12357851)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to install and run the gog CLI for Google Workspace tasks such as Gmail search, calendar lookup, Drive search, Sheets operations, and Docs export after OAuth setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The CLI can access selected Google Workspace services through OAuth tokens. <br>
-Mitigation: Authorize only the services needed for the task, and keep OAuth client JSON files and cached tokens private. <br>
-Risk: Some commands can send email or modify Google data. <br>
-Mitigation: Require explicit confirmation before sending email, creating events, or updating or clearing Sheets data. <br>
-Risk: Installation depends on a local gog binary from a Homebrew formula. <br>
-Mitigation: Verify the Homebrew package source and installed binary before granting account access. <br>
+## Use Case:
 
+Developers and operators use this skill to get concise setup notes and command examples for using the gog CLI with Gmail, Calendar, Drive, Contacts, Sheets, and Docs.
 
-## Reference(s): <br>
-- [gog homepage](https://gogcli.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/12357851/gog-local-backup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes OAuth setup guidance and command examples, including JSON-oriented flags for scripting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The gog CLI can request broad Google Workspace OAuth access across Gmail, Calendar, Drive, Contacts, Sheets, and Docs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the external gog CLI is trusted, authorize only the services needed, and review OAuth scopes before granting access.
+
+Risk: Some example commands can send email, change calendar data, or edit Sheets content.
+
+Mitigation: Confirm mutating commands before execution and use scripted JSON output with noninteractive flags only after reviewing the command intent.
+
+## Reference(s):
+
+- [gog CLI homepage](https://gogcli.sh)
+- [ClawHub skill page](https://clawhub.ai/12357851/skills/gog-local-backup)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands include read and write examples for Google Workspace services and should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

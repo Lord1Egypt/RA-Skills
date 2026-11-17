@@ -1,41 +1,58 @@
-## Description: <br>
-Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs.
 
-## Publisher: <br>
-[saisake](https://clawhub.ai/user/saisake) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[saisake](https://clawhub.ai/user/saisake)
 
-## Use Case: <br>
-External users and developers use this skill to operate Gmail, Calendar, Drive, Contacts, Sheets, and Docs from an agent-guided command-line workflow after configuring Google OAuth. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can act on live Google Workspace data, including email, calendar, spreadsheet, and document content. <br>
-Mitigation: Use the narrowest Google OAuth services possible and test on non-critical data before broad use. <br>
-Risk: Send, create, update, append, delete, or clear operations can modify external accounts or user data. <br>
-Mitigation: Require explicit confirmation before any write operation. <br>
+## Use Case:
 
+Developers and workspace operators use this skill to invoke gog commands for Gmail, Calendar, Drive, Contacts, Sheets, and Docs workflows after OAuth setup.
 
-## Reference(s): <br>
-- [Gog CLI homepage](https://gogcli.sh) <br>
-- [ClawHub skill release](https://clawhub.ai/saisake/gog-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON-oriented command suggestions when scripting with gog.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad OAuth-backed Google Workspace access can expose or modify mail, calendar, drive, contacts, sheets, and docs data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted sources, use the minimum OAuth services needed, and verify the active account before running commands.
+
+Risk: Mail sends, calendar changes, and Sheets clear or update operations can make irreversible workspace changes.
+
+Mitigation: Require confirmation for write actions and verify Gmail message IDs, calendar targets, Sheet IDs, and ranges before execution.
+
+Risk: The Homebrew install source is third-party and not pinned in the release evidence.
+
+Mitigation: Review the Homebrew tap and installed gog binary before using the skill in trusted environments.
+
+## Reference(s):
+
+- [gog homepage](https://gogcli.sh)
+- [ClawHub skill page](https://clawhub.ai/saisake/skills/gog-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Markdown, JSON]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gog CLI, Google Workspace OAuth credentials, and account-specific confirmation for sensitive write actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

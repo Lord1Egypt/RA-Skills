@@ -24,13 +24,17 @@ AI systems in HR must comply with both the EU AI Act and GDPR. This document exp
 
 ## Article 22: Automated Individual Decision-Making
 
-### The Legal Framework
+### ⚠️ EU vs UK Divergence (Updated July 2026)
+
+The EU and UK now have **different frameworks** for automated decision-making. For UK/Ireland cross-border work, assess under both.
+
+#### EU GDPR Article 22 (Ireland)
 
 GDPR Article 22 provides specific protections against automated decision-making:
 
 > "The data subject shall have the right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning him or her or similarly significantly affects him or her."
 
-### When Article 22 Applies
+**Model:** Restrictive — solely automated decisions with legal/significant effects are generally prohibited unless an exception applies.
 
 Article 22 applies when:
 
@@ -38,33 +42,34 @@ Article 22 applies when:
 2. **Decision produces legal effects** — Hiring, firing, promotion
 3. **Decision similarly significantly affects** — Rejecting job applications
 
-### HR Scenarios Where Article 22 Applies
-
-| Scenario | Article 22 Applies? | Reason |
-|----------|---------------------|--------|
-| CV screening with automatic rejection | **Yes** | Solely automated, significant effect |
-| AI scoring with human final decision | **Partial** | Human involvement reduces risk |
-| Interview scheduling by AI | **No** | Not significant effect |
-| Performance scoring by AI | **Yes** | Could affect career progression |
-| Workforce planning predictions | **Partial** | Depends on how used |
-
-### Rights Under Article 22
-
-Data subjects have the right to:
-
+Rights under Article 22:
 1. **Obtain human intervention** — Request human review
 2. **Express their point of view** — Contest the decision
 3. **Contest the decision** — Challenge the outcome
 
-### Lawful Basis for Automated Decisions
-
-Automated decision-making is permitted if:
-
+Lawful basis for automated decisions (EU):
 1. **Necessary for contract performance** — Limited to contract preparation
 2. **Authorised by EU/Member State law** — Limited scope
 3. **Based on explicit consent** — Must be freely given
 
 **Important**: Rights under Article 22(1) cannot be waived by consent for decisions based solely on automated processing.
+
+#### UK Articles 22A–22D (DUAA 2025, effective 5 February 2026)
+
+The UK replaced GDPR Article 22 with a new framework under the Data (Use and Access) Act 2025:
+
+**Model:** Permissive + safeguards — automated decisions are **allowed** provided appropriate safeguards are in place.
+
+| Aspect | EU GDPR Art. 22 | UK DUAA 22A–22D |
+|--------|-----------------|-------------------|
+| **Approach** | Restrictive (prohibition model) | Permissive (regulated activity model) |
+| **Lawful basis** | Explicit consent, contract, law | Consent OR legitimate interests (broader) |
+| **Safeguards** | Human intervention, express view, contest | Notice, ability to object, human review |
+| **Effective** | Since 2018 | 5 February 2026 |
+
+**Key implication for Irish employers:** If you process data of UK data subjects or operate in the UK, you may be able to use automated decisions under the UK framework that would not be permitted under EU GDPR. However, for operations in Ireland, EU GDPR Article 22 applies.
+
+**For cross-border HR AI:** Document which framework applies to which data subjects. Do not assume one size fits both.
 
 ---
 
@@ -201,7 +206,8 @@ A DPIA for AI must cover:
 |---------|-------|--------------|
 | 5(1) | Principles | Fairness, transparency, accuracy requirements |
 | 13-14 | Information provision | Transparency about AI processing |
-| 22 | Automated decision-making | Rights for AI-affected individuals |
+| 22 (EU) | Automated decision-making | Rights for AI-affected individuals (restrictive model) |
+| 22A–22D (UK) | Automated decision-making (DUAA 2025) | Permissive + safeguards model (effective 5 Feb 2026) |
 | 35 | DPIA | Assessment for high-risk processing |
 | 37 | DPO designation | Requirement to consult DPO |
 | 30 | Records of processing | Documentation of AI processing |
@@ -230,6 +236,6 @@ A DPIA for AI must cover:
 
 ---
 
-*Last updated: April 2026*  
+*Last updated: July 2026 | Updated for UK DUAA 2025 (Articles 22A–22D) and Digital Omnibus package*  
 *Author: Enda Rochford*  
 *For informational purposes only — not legal advice*

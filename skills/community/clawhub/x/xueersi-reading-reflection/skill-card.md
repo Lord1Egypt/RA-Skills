@@ -1,40 +1,54 @@
-## Description: <br>
-Xueersi Reading Reflection Guide provides step-by-step prompts and structured frameworks to help K-9 students write thoughtful book reports and movie or show reflections in Chinese. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Step-by-step prompts and structured frameworks help K-9 students write thoughtful Chinese-language book reports and movie or show reflections without producing the finished essay for them.
 
-## Publisher: <br>
-[zhouzhi-tal](https://clawhub.ai/user/zhouzhi-tal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouzhi-tal](https://clawhub.ai/user/zhouzhi-tal)
 
-## Use Case: <br>
-Students, parents, and educators use this skill to guide K-9 Chinese reading reflections, book reports, and movie or show responses without producing a finished essay for the student. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Students may share unnecessary personal details while connecting a story to their own experience. <br>
-Mitigation: Ask only for details needed for the reflection and avoid collecting sensitive student information. <br>
-Risk: The skill could be misused to bypass learning by generating a completed essay. <br>
-Mitigation: Use the skill as a writing coach that asks questions, builds outlines, and leaves final wording to the student. <br>
+## Use Case:
 
+External students, parents, and educators use this skill to guide K-9 learners through reflective writing about books, movies, and shows in Chinese. It provides Socratic questions, level-appropriate structure, and outline templates while keeping the student's own thinking and wording central.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouzhi-tal/xueersi-reading-reflection) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with structured prompts and writing frameworks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Designed to guide student thinking rather than produce a finished essay.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Students may ask for a complete finished reflection instead of doing their own writing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep responses focused on guided questions, outlines, and fill-in frameworks, and avoid producing a final essay.
+
+Risk: The skill is specialized for Chinese-language K-9 reading and viewing reflections and may be less suitable outside that educational context.
+
+Mitigation: Use it for the intended student reflection workflow and review guidance for age, language, and classroom expectations before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouzhi-tal/skills/xueersi-reading-reflection)
+- [Publisher profile](https://clawhub.ai/user/zhouzhi-tal)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown with prompts, outlines, and fill-in writing frameworks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language educational writing guidance; no code execution or external tool use found in the reviewed artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

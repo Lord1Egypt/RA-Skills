@@ -1,40 +1,52 @@
-## Description: <br>
-Organize notes as a personal knowledge base with tagging and full-text search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Notelane helps agents organize local notes as a personal knowledge base with tagging, full-text search, productivity logs, and export workflows.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use Notelane to capture, organize, search, review, and export local productivity notes from a Bash command-line workflow.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Local note logs and exports are stored in plaintext and may contain sensitive personal or work material.
+
+Mitigation: Avoid storing passwords, tokens, regulated data, or highly sensitive material, and restrict permissions on ~/.local/share/notelane on shared machines.
+
+Risk: CSV exports may carry privacy or spreadsheet-opening risks if note content is copied directly into spreadsheet software.
+
+Mitigation: Review and sanitize exported CSV content before opening it in spreadsheet tools or sharing it outside the local environment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external users, and developers use Notelane to capture local notes, planning entries, reminders, progress updates, tags, timelines, weekly reviews, and searchable personal knowledge-base records from the command line. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Notes, search results, and export files can contain sensitive plaintext data. <br>
-Mitigation: Avoid storing passwords, API keys, confidential client data, or other secrets; treat terminal output and exported files as sensitive. <br>
-Risk: Local plaintext storage under ~/.local/share/notelane may be readable by other local processes or users depending on host permissions. <br>
-Mitigation: Use host file permissions and local access controls appropriate for the sensitivity of stored notes. <br>
+**Output Format:** [Markdown with inline shell commands and concise CLI output descriptions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Notelane ClawHub release page](https://clawhub.ai/bytesagain3/notelane) <br>
+**Other Properties Related to Output:** [May create local plain-text log files and JSON, CSV, or text exports under ~/.local/share/notelane when commands are run.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, configuration, guidance] <br>
-**Output Format:** [Plain text CLI output and local plaintext, JSON, CSV, or TXT files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores notes and exports under ~/.local/share/notelane.] <br>
+2.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

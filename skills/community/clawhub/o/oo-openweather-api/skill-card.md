@@ -1,42 +1,55 @@
-## Description: <br>
-OpenWeather lets an agent retrieve weather, forecast, geocoding, air pollution, UV index, weather map, and weather-station data through an OOMOL-connected OpenWeather account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenWeather (openweathermap.org). Use this skill for ANY OpenWeather request — reading, creating, updating, and deleting data. Whenever a task involves OpenWeather, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users can use this skill to let an agent answer OpenWeather requests, inspect live action schemas, run connector actions, and manage account weather-station data when authorized. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an OOMOL-connected OpenWeather account and may depend on credentialed access. <br>
-Mitigation: Install or sign in to the oo CLI and connect OpenWeather only when the user trusts OOMOL and needs the connector configured. <br>
-Risk: Write and destructive actions can create, update, delete, or submit measurements for OpenWeather weather-station data. <br>
-Mitigation: Confirm the exact action, target identifier, payload, and expected effect before running any write or destructive action. <br>
+## Use Case:
 
+People using an OOMOL-connected OpenWeather account can retrieve current conditions, forecasts, air-pollution and UV data, resolve locations, and manage weather stations. The skill guides them to inspect each action's input schema before sending a request.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/oo-openweather-api) <br>
-- [OpenWeather Homepage](https://openweathermap.org) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OpenWeather data, account weather-station records, or Base64 PNG map tile bytes depending on the selected action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Setup may execute unverified third-party software without asking the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installer behavior, install the CLI yourself from a verified release, and avoid automatically executing installer commands.
+
+Risk: Weather-station actions can create, update, submit, or delete account data.
+
+Mitigation: Confirm the exact payload and effect before write actions, and get explicit approval before deletion.
+
+## Reference(s):
+
+- [OpenWeather](https://openweathermap.org)
+- [OpenWeather API documentation](https://openweathermap.org/api)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Base64 PNG data]
+
+**Output Format:** [Structured OpenWeather API results and text summaries; weather-map tiles as Base64-encoded PNG data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Available result fields depend on the selected OpenWeather action.]
+
+## Skill Version(s):
+
+1.0.5 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

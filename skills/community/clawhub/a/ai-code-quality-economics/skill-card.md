@@ -1,41 +1,50 @@
-## Description: <br>
-Analyze and improve AI-generated code quality by leveraging economic incentives such as token efficiency, maintainability, and competitive market forces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and improve AI-generated code quality by leveraging economic incentives such as token efficiency, maintainability, and competitive market forces.
 
-## Publisher: <br>
-[robinyves](https://clawhub.ai/user/robinyves) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robinyves](https://clawhub.ai/user/robinyves)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to reason about the economic incentives behind maintainable AI-generated code and to apply lightweight quality metrics, prompt patterns, and repository checks to AI-assisted development. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example code may be copied into a real repository analysis workflow and run against an unintended path. <br>
-Mitigation: Choose repository paths deliberately and review the example implementation before running it. <br>
-Risk: Example LLM integration may expose private code or credentials if connected directly to production services. <br>
-Mitigation: Only connect real LLM credentials or private code to an implementation that has been reviewed and trusted. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to reason about economic incentives behind maintainable AI-generated code and to apply lightweight examples for prompt design, code quality scoring, and pull request size monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/robinyves/ai-code-quality-economics) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/robinyves) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown guidance with Python examples and inline command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational content; example code should be reviewed and adapted before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Illustrative code examples may be copied into a live repository without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt examples, especially repository-monitoring snippets, before running them on production or sensitive repositories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/robinyves/skills/ai-code-quality-economics)
+- [Publisher profile](https://clawhub.ai/user/robinyves)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with illustrative Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational examples may need review and adaptation before use against a real repository.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

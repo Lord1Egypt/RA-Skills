@@ -24,7 +24,7 @@ YouMind OpenAPI 是面向第三方开发者的 API 接口，允许通过 API Key
   - [Skill (Skill Management)](#9-skill-skill-management)
   - [Search (Semantic Search)](#10-search-semantic-search)
   - [Web Search (Internet Search)](#11-web-search-internet-search)
-  - [Scheduled Task (Scheduled Task Management)](#12-scheduled-task-scheduled-task-management)
+  - [Scheduled Task (Scheduled Task Management)](#12-scheduled-taREDACTED-SECRET)
   - [Relay (LLM API Relay)](#13-relay-llm-api-relay)
 - [Error Handling](#error-handling)
 - [Rate Limiting](#rate-limiting)
@@ -40,7 +40,7 @@ YouMind OpenAPI 是面向第三方开发者的 API 接口，允许通过 API Key
 通过 YouMind 客户端的 Settings 页面创建 API Key，创建后会返回完整的 Key（仅展示一次），格式为：
 
 ```
-sk-ym-xxxxxxxxxxxxxxxxxxxx
+REDACTED-SECRET
 ```
 
 ### 使用方式

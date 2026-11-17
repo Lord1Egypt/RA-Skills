@@ -1,37 +1,48 @@
-## Description: <br>
-Curated guide to the most credible institutional research report channels and financial data platforms for investment professionals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Curated guide to the most credible institutional research report channels and financial data platforms for investment professionals.
 
-## Publisher: <br>
-[shangfangbao](https://clawhub.ai/user/shangfangbao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[shangfangbao](https://clawhub.ai/user/shangfangbao)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and investment professionals use this skill to compare credible financial research report channels, market data platforms, and selection scenarios across institutional and retail-accessible options.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Pricing, market share, product coverage, and platform comparisons may become outdated or vary by contract and region.
+
+Mitigation: Verify current terms, availability, and suitability with official vendor sources before purchasing tools or changing investment workflows.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Investment professionals, research analysts, and retail investors use this skill to compare financial data platforms and choose credible research channels for different investment research scenarios. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, text]
 
-## Known Risks and Mitigations: <br>
-Risk: Rankings, pricing, and platform descriptions may become outdated. <br>
-Mitigation: Verify current vendor details before making procurement or investment decisions. <br>
+**Output Format:** [Markdown guidance with tiered lists and comparison tables]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Static advisory content; users should verify current pricing, coverage, and vendor availability before purchase or investment workflow decisions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown guide with tiered platform summaries and selection tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides informational research-channel guidance; no code, shell commands, API calls, account access, or data modification.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,72 @@
-## Description: <br>
-Generates real-time China A-share sector research briefs by combining public market data, sector news, US-market linkage, event reminders, and concise markdown reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A股板块实时研报。全球新闻→A股映射、板块趋势研判、美股关联、利好利空、大事件提醒。零配置可用，输出兼容飞书/扣子/Markdown平台。
 
-## Publisher: <br>
-[xujianbo0426](https://clawhub.ai/user/xujianbo0426) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xujianbo0426](https://clawhub.ai/user/xujianbo0426)
 
-## Use Case: <br>
-External users and analysts use this skill to ask for China A-share sector briefs, AI-market news summaries, and market-movement alerts. It returns markdown summaries grounded in public market and news data, with investment-advice disclaimers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Node.js scripts that contact external financial and news services. <br>
-Mitigation: Review the scripts and network destinations before deployment, and run the skill in an environment approved for market/news lookups. <br>
-Risk: Optional Tavily integration requires an API key. <br>
-Mitigation: Use a dedicated or rotatable Tavily key and avoid sharing the environment with unrelated workloads. <br>
-Risk: Generated stock commentary can be mistaken for investment advice. <br>
-Mitigation: Preserve the skill's informational-use disclaimers and require human review before using outputs for financial decisions. <br>
-Risk: Generated report data is saved in the artifact's local output directory. <br>
-Mitigation: Treat local outputs as public report data and clear or isolate the directory according to workspace retention requirements. <br>
+## Use Case:
 
+External users and developers use this skill to generate China A-share sector research, AI market briefings, and unusual-movement alerts from public market and news sources. Outputs are informational and are not investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xujianbo0426/stockselectionmodel-bak) <br>
-- [Publisher profile](https://clawhub.ai/user/xujianbo0426) <br>
-- [Data source list](references/source_list.md) <br>
-- [Stock mapping reference](references/stock_mapping.md) <br>
-- [Sector analysis prompt](references/sector_prompt.md) <br>
-- [AI news analysis prompt](references/analysis_prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports and JSON script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pretty mode prints markdown directly; JSON mode includes generated markdown plus supporting market, news, and stock data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence; artifact frontmatter says 3.0.0) <br>
+Risk: Generated stock content may be incorrect, stale, or interpreted as financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat reports as informational only, retain the provided disclaimer, and require human review before making investment decisions.
+
+Risk: Reports directly render links from external news sources.
+
+Mitigation: Review rendered links before sharing reports and avoid opening links from untrusted sources in privileged environments.
+
+Risk: The skill performs outbound requests to market/news providers and may use an optional Tavily API key.
+
+Mitigation: Install only where outbound stock/news queries are acceptable, scope the Tavily key appropriately, and avoid passing secrets in prompts or report text.
+
+Risk: Generated reports include hardcoded Content Science branding.
+
+Mitigation: Confirm that the branding is acceptable for the deployment context before publishing outputs to end users.
+
+Risk: Report generation leaves local JSON data snapshots under .local.
+
+Mitigation: Periodically remove local snapshots and avoid running the skill in directories where cached market/news data should not persist.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xujianbo0426/skills/stockselectionmodel-bak)
+- [Data Source Priority](references/source_list.md)
+- [Sector Trend Prompt](references/sector_prompt.md)
+- [AI Stock Brief Prompt](references/analysis_prompt.md)
+- [A-share Stock Mapping](references/stock_mapping.md)
+- [Tavily Search API](https://api.tavily.com/search)
+- [Eastmoney Sector Search Endpoint](https://search-api-web.eastmoney.com/search/jsonp?cb=&param=)
+- [Eastmoney Market Data Endpoint](https://push2.eastmoney.com/api/qt/clist/get)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown reports and alerts, with JSON available from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses optional TAVILY_API_KEY for enhanced news search; writes fetched data snapshots under .local during report generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

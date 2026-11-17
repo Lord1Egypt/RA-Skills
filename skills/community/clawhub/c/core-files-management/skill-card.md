@@ -1,40 +1,54 @@
-## Description: <br>
-Core Files Management helps OpenClaw workspace agents manage and update core Markdown files, check organization, avoid duplication, and apply language rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Core Files Management guides OpenClaw agents in organizing, updating, and backing up core workspace Markdown files such as identity.md, agents.md, user.md, memory.md, tools.md, and bootstrap.md.
 
-## Publisher: <br>
-[kofna3369](https://clawhub.ai/user/kofna3369) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kofna3369](https://clawhub.ai/user/kofna3369)
 
-## Use Case: <br>
-Developers and OpenClaw workspace agents use this skill to organize identity.md, soul.md, agents.md, user.md, memory.md, tools.md, and bootstrap.md while avoiding duplication and preserving language rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide edits to local OpenClaw workspace Markdown files, so incorrect approvals could overwrite useful workspace context. <br>
-Mitigation: Review proposed changes before approving writes and confirm backups were created before modifying core files. <br>
-Risk: Core workspace files may contain sensitive user or environment details if users store them there. <br>
-Mitigation: Avoid storing passwords, tokens, private keys, or sensitive account details in these Markdown files. <br>
+## Use Case:
 
+Developers and OpenClaw workspace agents use this skill to keep core workspace files organized, avoid duplicated content, apply language rules, and create backups before edits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kofna3369/core-files-management) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with file-path tables and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local workspace file edits and backups for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill body version table) <br>
+Risk: The skill can read and modify sensitive core workspace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm each sensitive file access or modification before allowing the agent to proceed.
+
+Risk: Backup files may persist as plaintext .bak or .backup copies.
+
+Mitigation: Avoid storing secrets in core files and clean up or protect backup copies after edits.
+
+## Reference(s):
+
+- [Core Files Management on ClawHub](https://clawhub.ai/kofna3369/skills/core-files-management)
+- [Kofna3369 ClawHub profile](https://clawhub.ai/user/kofna3369)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose reading, writing, editing, and backing up OpenClaw workspace Markdown files.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact body)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

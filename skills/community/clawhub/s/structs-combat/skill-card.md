@@ -1,47 +1,61 @@
-## Description: <br>
-Executes combat operations in Structs, including attacks, raids, defense setup, stealth positioning, fleet movement for raids, and preparation for incoming attacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Combat and raiding in Structs: raids to steal ore, direct struct attacks, and defense planning around shield vulnerability.
 
-## Publisher: <br>
-[abstrct](https://clawhub.ai/user/abstrct) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abstrct](https://clawhub.ai/user/abstrct)
 
-## Use Case: <br>
-External Structs players and operators use this skill to plan and execute combat workflows, including target scouting, attacks, raids, defensive assignments, stealth activation, and post-action verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill helps with real Structs transactions, including combat actions and raids. <br>
-Mitigation: Use it only when you want agent assistance with those actions, and review proposed commands before execution. <br>
-Risk: Incorrect target IDs, guild boundaries, signing keys, or gas settings can cause unintended transactions. <br>
-Mitigation: Verify the structsd binary, signing key, target IDs, guild boundaries, and gas settings before allowing actions. <br>
-Risk: Raid compute can use -y and continue as a long-running operation that auto-submits completion. <br>
-Mitigation: Approve any -y use explicitly and monitor long-running raid compute until it completes. <br>
+## Use Case:
 
+External Structs players and agent operators use this skill to evaluate raids, plan attacks, prepare defenses, and choose command-line actions for combat situations in the Structs game.
 
-## Reference(s): <br>
-- [Structs asynchronous operations](https://structs.ai/awareness/async-operations#reconnecting-to-a-long-job) <br>
-- [structsd install skill](https://structs.ai/skills/structsd-install/SKILL) <br>
-- [Structs combat mechanics](https://structs.ai/knowledge/mechanics/combat) <br>
-- [Structs fleet mechanics](https://structs.ai/knowledge/mechanics/fleet) <br>
-- [Structs resources mechanics](https://structs.ai/knowledge/mechanics/resources) <br>
-- [ClawHub skill page](https://clawhub.ai/abstrct/structs-combat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires structsd on PATH and a configured signing key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: server release evidence) <br>
+Risk: The skill guides high-impact in-game transactions, including raids, attacks, fleet movement, and an auto-submit raid action.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before allowing commands, confirm the signing key, target IDs, fleet movement, and any -y auto-submit raid action.
+
+Risk: Mistaken combat commands can cause irreversible in-game attacks, exposed defenses, or ore loss.
+
+Mitigation: Use the skill for Structs combat only, review proposed actions before execution, and verify defensive exposure before moving a fleet away from home.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abstrct/skills/structs-combat)
+- [Structs conventions](https://structs.ai/skills/conventions)
+- [Structs combat mechanics](https://structs.ai/knowledge/mechanics/combat)
+- [Structs fleet mechanics](https://structs.ai/knowledge/mechanics/fleet)
+- [Structs under-attack playbook](https://structs.ai/playbooks/situations/under-attack)
+- [Structs guild-war playbook](https://structs.ai/playbooks/situations/guild-war)
+- [Structs counter-strategies playbook](https://structs.ai/playbooks/meta/counter-strategies)
+- [Structs production skill](https://structs.ai/skills/structs-production/SKILL)
+- [Structs database schema](https://structs.ai/knowledge/infrastructure/database-schema)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires structsd on PATH and a signing key before command execution.]
+
+## Skill Version(s):
+
+1.25.0 (source: evidence release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

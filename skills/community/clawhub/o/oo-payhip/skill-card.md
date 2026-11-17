@@ -1,47 +1,55 @@
-## Description: <br>
-Operates Payhip through the OOMOL payhip connector to read, create, update, and delete Payhip data using the oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Payhip coupons and license keys through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Payhip coupons and license keys from an agent session through OOMOL-connected tooling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables OOMOL-backed tooling to access a user's Payhip account. <br>
-Mitigation: Install only when Payhip account access through OOMOL is intended, and keep Payhip connected only for approved workflows. <br>
-Risk: Coupon and license actions can change Payhip state. <br>
-Mitigation: Review the live action schema and confirm the exact JSON payload and expected effect before running write actions. <br>
-Risk: Destructive actions can delete Payhip data. <br>
-Mitigation: Require explicit user approval for the target resource before running destructive actions such as coupon deletion. <br>
-Risk: Setup commands install or invoke external CLI tooling. <br>
-Mitigation: Verify the oo CLI installer source before running setup commands. <br>
+## Use Case:
 
+External users and developers use this skill to inspect Payhip coupons and verify licenses, or to create and update coupons and manage license status or uses through their connected account.
 
-## Reference(s): <br>
-- [Payhip homepage](https://payhip.com/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-payhip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector command output is JSON when run with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md metadata) <br>
+Risk: The required oo CLI may automatically install or change agent skills, and this skill does not explain that behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI's automatic skill installation; consider setting OO_SKILLS_SYNC_DISABLED=1 for CLI calls and reviewing the installer separately.
+
+Risk: Coupon and license actions can change Payhip data.
+
+Mitigation: Keep the skill's approval step for write and destructive actions, confirming the exact target and effect before execution.
+
+## Reference(s):
+
+- [Payhip API documentation](https://payhip.com/api-reference)
+- [Payhip](https://payhip.com/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read actions retrieve Payhip data; write and destructive actions require user approval.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

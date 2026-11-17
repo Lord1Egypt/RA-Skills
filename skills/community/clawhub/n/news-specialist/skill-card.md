@@ -1,37 +1,48 @@
-## Description: <br>
-A news analysis specialist that explains, interprets, and comments on trending news and current events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A news analysis specialist that explains, interprets, and comments on trending news and current events.
 
-## Publisher: <br>
-[MrNquyen](https://clawhub.ai/user/MrNquyen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mrnquyen](https://clawhub.ai/user/mrnquyen)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to understand, summarize, and discuss current news stories or trending topics based on retrieved, verified news sources.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Current-events or trending-topic prompts may lead to commentary on fast-changing or incomplete stories.
+
+Mitigation: Ask for sources, rely on retrieved and verified news, and clearly state uncertainty when information is incomplete.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to summarize, explain, and comment on current news stories or trending topics while staying grounded in retrieved, reliable sources. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Breaking or high-stakes news responses may be outdated or incomplete if based only on memory or prior conversation. <br>
-Mitigation: Retrieve and cite current reliable sources before summarizing or analyzing those events. <br>
+**Output Format:** [Markdown prose with news summaries, context, commentary, and source-aware caveats]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [The skill may retrieve current news when session context is insufficient and should avoid unsupported speculation on developing stories.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text news explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Grounded in retrieved information and verified news sources; no executable output.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,57 @@
-## Description: <br>
-Use when recreating, rewriting, or remixing a TikTok reference video into a new product-fit version. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when recreating, rewriting, or remixing a TikTok reference video into a new product-fit version.
 
-## Publisher: <br>
-[newt0n](https://clawhub.ai/user/newt0n) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newt0n](https://clawhub.ai/user/newt0n)
 
-## Use Case: <br>
-Creators, sellers, and their agents use this skill to analyze a TikTok reference video and draft a differentiated product-fit version, such as a concept, script, storyboard, visual direction, or shot list. It helps adapt reference structure and style without making a one-to-one copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: TikTok reference URLs and derived analysis artifacts may contain sensitive or private creative or product context. <br>
-Mitigation: Use only reference material the user is comfortable sending to CreatOK, avoid unnecessary private product details, and review or delete generated .artifacts directories after use. <br>
-Risk: Local artifact retention and weak path containment can leave detailed analysis files on disk longer than expected. <br>
-Mitigation: Use controlled run identifiers, keep artifacts in the intended skill workspace, and document cleanup or retention behavior before broad deployment. <br>
-Risk: The skill requires a CreatOK API key and network access to the CreatOK Open Skills API. <br>
-Mitigation: Use a revocable CreatOK API key, store it in the CREATOK_API_KEY environment variable, and rotate or revoke it if exposed. <br>
-Risk: Recreating a TikTok too closely can create similarity or copyright concerns. <br>
-Mitigation: Apply the skill's required structure rewrite, expression rewrite, and style differentiation before producing a final creative draft. <br>
+## Use Case:
 
+Creators, sellers, and their agents use this skill to analyze a TikTok reference video and draft a differentiated, product-fit remake or remix. It helps carry the result toward a script, storyboard, shot list, visual direction, and optional handoff to video generation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/newt0n/creatok-recreate-video) <br>
-- [Common Rules](references/common-rules.md) <br>
-- [CreatOK API Key Setup](https://www.creatok.ai/app/workspace/api-keys) <br>
-- [CreatOK Service](https://www.creatok.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Conversation-ready creative direction plus JSON source artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes recreate source artifacts under recreate-video/.artifacts/<run_id>/ and prepares a handoff for video generation when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: ClawHub release evidence) <br>
+Risk: Unsafe run ID handling can allow saved analysis artifacts to be written outside the intended .artifacts directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain or sanitize run IDs before execution and review file paths before installing in workspaces with sensitive files.
+
+Risk: The skill sends TikTok URLs to CreatOK and stores returned analysis locally.
+
+Mitigation: Use only references appropriate to share with CreatOK and handle generated artifact files according to workspace data policies.
+
+## Reference(s):
+
+- [CreatOK Recreate Video Skill Page](https://clawhub.ai/newt0n/skills/creatok-recreate-video)
+- [Publisher Profile: newt0n](https://clawhub.ai/user/newt0n)
+- [Common Rules](references/common-rules.md)
+- [CreatOK API Keys](https://www.creatok.ai/app/workspace/api-keys)
+- [CreatOK](https://www.creatok.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with optional shell commands and JSON artifact files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses CREATOK_API_KEY and writes analysis and recreation artifacts under the skill artifact directory.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

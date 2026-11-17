@@ -1,44 +1,56 @@
-## Description: <br>
-Adapt to writing voice, improve clarity, and remember style preferences across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts, edits, and rewrites prose in the user's own voice across emails, posts, essays, memos, proposals, social copy, and related formats.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and writing-focused agents use this skill to draft, edit, clarify, and adapt text to a user's remembered voice and format preferences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can remember writing-style preferences locally, which may include sensitive voice, format, or project context. <br>
-Mitigation: Use on-request activation if proactive writing help is not desired, review local writing memory periodically, and ask the assistant to forget or clear stored preferences when they are no longer needed. <br>
-Risk: Broad activation wording could cause writing help to start in contexts where the user did not intend style memory to be applied. <br>
-Mitigation: Choose an explicit activation preference during setup, such as on-request or specific-context activation. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to draft, edit, tighten, shorten, proofread, restructure, and adapt prose while preserving the writer's voice and format constraints.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/writing) <br>
-- [Skill homepage](https://clawic.com/skills/writing) <br>
-- [Setup guide](artifact/setup.md) <br>
-- [Memory template](artifact/memory-template.md) <br>
-- [Writing dimensions](artifact/dimensions.md) <br>
-- [Writing preference criteria](artifact/criteria.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown and plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local writing-memory setup and style preference updates with user consent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill automatically stores long-term writing, contact, deadline, and project notes locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation; pause recording or require explicit confirmation before writes to ~/Clawic/data/ for sensitive drafts or client work.
+
+Risk: Shared contacts and project files can accumulate personal or client context.
+
+Mitigation: Limit saved content to necessary preferences and pointers, and review announced writes or deletions to shared files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/writing)
+- [Clawic skill page](https://clawic.com/skills/writing)
+- [SKILL.md](artifact/SKILL.md)
+- [memory-template.md](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or plain text drafts, rewrites, edits, outlines, style guidance, and local configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local Clawic writing, contacts, and project notes under configured paths when durable preferences or artifacts are produced.]
+
+## Skill Version(s):
+
+1.1.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

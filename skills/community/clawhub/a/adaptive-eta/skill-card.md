@@ -1,42 +1,54 @@
-## Description: <br>
-Adaptive Eta prompts an assistant to estimate duration before longer tasks, provide progress updates, and use a local timer helper to track elapsed time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give the user an honest time estimate before long-running work, re-estimate when it runs over, and ask before blowing far past it.
 
-## Publisher: <br>
-[yanghe1941](https://clawhub.ai/user/yanghe1941) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yanghe1941](https://clawhub.ai/user/yanghe1941)
 
-## Use Case: <br>
-Developers and agent users use this skill to make long-running assistant tasks more transparent by requiring upfront ETAs and follow-up progress updates when work exceeds expectations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can add frequent ETA and progress-update behavior to longer tasks. <br>
-Mitigation: Install it only when that communication pattern is desired for the target agent workflow. <br>
-Risk: The timer helper writes a temporary local state file while tracking elapsed time. <br>
-Mitigation: Run it in an environment where creating and deleting the local timer state file is acceptable, and stop the timer after task completion. <br>
-Risk: The documentation mentions cron-based reminders, but server security guidance says the artifacts only show manual timer commands. <br>
-Mitigation: Treat the skill as a manual start/check/stop timer workflow unless separate cron evidence is reviewed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep long-running agent work time-boxed and communicative. It guides an agent to estimate multi-step work, run a local timer, revise ETAs at step boundaries, and ask before continuing after major overruns.
 
-## Reference(s): <br>
-- [Adaptive Eta ClawHub page](https://clawhub.ai/yanghe1941/adaptive-eta) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text progress updates with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and remove a local .timer_state.json file while tracking task elapsed time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.5 (source: server release evidence; artifact _meta.json lists 0.2.3) <br>
+Risk: Timer labels and history are written locally and could expose sensitive task details if users put secrets or confidential context in labels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets and sensitive details in timer labels; relocate or clear history with ADAPTIVE_ETA_HOME or by deleting ~/.adaptive-eta/.
+
+Risk: The helper persists state and history on disk, which may be undesirable in ephemeral, shared, or tightly controlled environments.
+
+Mitigation: Use ADAPTIVE_ETA_HOME to point state at an approved location, or remove the directory when timing history is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yanghe1941/skills/adaptive-eta)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text guidance with shell commands for the local timer helper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write timer state and history under ~/.adaptive-eta/ unless ADAPTIVE_ETA_HOME is set.]
+
+## Skill Version(s):
+
+0.3.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Help identify and evaluate communities to build a minimalist business around. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help identify and evaluate communities to build a minimalist business around. Use when someone is looking for a business idea, trying to find their community, or wondering where to start as an entrepreneur.
 
-## Publisher: <br>
-[carollili](https://clawhub.ai/user/carollili) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carollili](https://clawhub.ai/user/carollili)
 
-## Use Case: <br>
-Entrepreneurs, founders, and business advisors use this skill to identify communities they already understand, evaluate recurring problems in those communities, and narrow down 1-3 communities that could support a minimalist business. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may provide go/no-go business or niche-selection recommendations that are incomplete or misleading if treated as definitive market research. <br>
-Mitigation: Treat recommendations as advisory and validate them with independent market research, customer interviews, and financial review before making business commitments. <br>
-Risk: The skill may activate for broad startup or target-customer questions where the user did not intend a full community-selection framework. <br>
-Mitigation: Confirm the user's goal and scope before applying the framework, then tailor the output to the requested level of detail. <br>
+## Use Case:
 
+External entrepreneurs, founders, and business advisors use this skill to identify communities they already belong to, evaluate recurring problems in those communities, and narrow business opportunities to one to three realistic communities to serve.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/carollili/find-community) <br>
-- [The Minimalist Entrepreneur](https://minimalistentrepreneur.com) <br>
-- [Sahil Lavingia](https://twitter.com/shl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Markdown text with structured community recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory business-market guidance; no tool execution or credential use is evidenced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Broad activation wording may cause the skill to be invoked for general entrepreneurship conversations where community discovery is not the user's intended task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill when the user is explicitly exploring communities, online gathering places, or community-based business pain points.
+
+Risk: Advisory business guidance may be incomplete without real community research or direct customer validation.
+
+Mitigation: Treat generated community and pain-point lists as planning inputs, then validate them through direct conversations and market research before making business decisions.
+
+## Reference(s):
+
+- [Find Community on ClawHub](https://clawhub.ai/carollili/skills/find-community)
+- [The Minimalist Entrepreneur](https://minimalistentrepreneur.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with questions, evaluation criteria, and a short community opportunity list]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory business planning text; no code execution, tool calls, or hidden data access were found in the security evidence.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

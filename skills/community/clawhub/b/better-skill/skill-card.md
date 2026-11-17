@@ -1,36 +1,48 @@
-## Description: <br>
-A better test skill with more content <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A better test skill with more content.
 
-## Publisher: <br>
-[jazzqi](https://clawhub.ai/user/jazzqi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jazzqi](https://clawhub.ai/user/jazzqi)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and external users can use this skill as a minimal test skill that provides simple guidance and example shell usage for validating skill packaging or workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may expect substantial functionality beyond the minimal documented test example.
+
+Mitigation: Use this skill for basic test or packaging workflows and review suitability before relying on it for broader tasks.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and external ClawHub users can use this lightweight test skill as a simple example skill with placeholder feature documentation and a shell command example. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+**Output Format:** [Markdown with inline shell command examples]
 
-## Reference(s): <br>
+**Output Parameters:** [1D]
 
+**Other Properties Related to Output:** [No security-sensitive behavior is identified in the artifact; functionality is minimal.]
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external tools, API keys, or MCP servers are described by the artifact.] <br>
+## Skill Version(s):
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+0.0.1 (source: release evidence and frontmatter)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

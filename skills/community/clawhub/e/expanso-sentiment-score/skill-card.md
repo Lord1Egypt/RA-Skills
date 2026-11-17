@@ -1,46 +1,57 @@
-## Description: <br>
-Analyze text and return a sentiment score from -1 (negative) to +1 (positive) using Expanso Edge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze text and return a sentiment score from -1 for negative sentiment to +1 for positive sentiment using Expanso Edge.
 
-## Publisher: <br>
-[aronchick](https://clawhub.ai/user/aronchick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aronchick](https://clawhub.ai/user/aronchick)
 
-## Use Case: <br>
-Developers and agents use this skill to classify submitted text as positive, negative, or neutral and receive a numeric sentiment score and confidence value. It supports local CLI scoring and an HTTP server mode for service-style use. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Submitted text may be sent to OpenAI when the OpenAI-backed scoring path is used. <br>
-Mitigation: Avoid submitting secrets, proprietary text, personal data, or regulated content, and install only if this data flow is acceptable. <br>
-Risk: Server mode can expose the scoring endpoint to reachable network clients without visible access controls. <br>
-Mitigation: Prefer CLI mode for local user-directed scoring; when running server mode, bind it to a trusted interface or place it behind authentication and rate limits. <br>
-Risk: Remote scoring can create OpenAI usage and cost exposure. <br>
-Mitigation: Monitor OpenAI usage and apply operational controls appropriate for the deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aronchick/expanso-sentiment-score) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [skill.yaml](skill.yaml) <br>
-- [pipeline-cli.yaml](pipeline-cli.yaml) <br>
-- [pipeline-mcp.yaml](pipeline-mcp.yaml) <br>
+## Use Case:
 
+Developers and agents use this skill to score the sentiment of supplied text and return a structured score, label, and confidence value. It supports CLI execution and an HTTP/MCP-style server pipeline through Expanso Edge.
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration] <br>
-**Output Format:** [JSON object with score, label, confidence, and metadata fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Score ranges from -1 to +1; label is positive, negative, or neutral.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.yaml) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The server mode listens on all network interfaces without authentication.
+
+Mitigation: Run the server only on trusted local networks or add authentication, ingress restrictions, and request limits before exposing it.
+
+Risk: Remote sentiment analysis can send analyzed text to OpenAI or another configured backend and consume the operator's quota.
+
+Mitigation: Avoid sending sensitive text to remote backends unless approved, and configure budget controls or use the local Ollama backend where appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aronchick/skills/expanso-sentiment-score)
+- [Artifact README](artifact/README.md)
+- [Artifact SKILL.md](artifact/SKILL.md)
+- [Skill metadata](artifact/skill.yaml)
+- [CLI pipeline](artifact/pipeline-cli.yaml)
+- [MCP pipeline](artifact/pipeline-mcp.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [JSON object containing score, label, confidence, and metadata fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scores range from -1 to +1; labels are positive, negative, or neutral.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

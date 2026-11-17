@@ -1,43 +1,54 @@
-## Description: <br>
-Query ad platform data (Meta, Google, LinkedIn, Reddit) using the Hopkin CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query ad platform data (Meta, Google, LinkedIn, Reddit) using the Hopkin CLI.
 
-## Publisher: <br>
-[nemo](https://clawhub.ai/user/nemo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nemo](https://clawhub.ai/user/nemo)
 
-## Use Case: <br>
-External users and developers use this skill to query read-only advertising account, campaign, ad set, ad, and performance data across supported paid media platforms through Hopkin. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the external Hopkin CLI and npm package @hopkin/cli. <br>
-Mitigation: Install the CLI only when Hopkin and the package source are trusted, and review the package before using it with sensitive ad-account data. <br>
-Risk: Hopkin API keys may expose access to advertising account data if mishandled. <br>
-Mitigation: Use limited-scope keys when available, avoid sharing keys in chat or logs, and rotate any key that may have been exposed. <br>
-Risk: Advertising account and campaign queries can return sensitive business performance data. <br>
-Mitigation: Review Hopkin's local credential storage and caching behavior before querying sensitive data. <br>
+## Use Case:
 
+External users and advertising operators use this skill to query ad accounts, campaigns, ads, and performance data across supported paid advertising platforms. It is intended for read-only reporting, inspection, and cross-platform comparison.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nemo/hopkin-paid-ads) <br>
-- [Hopkin API key settings](https://app.hopkin.ai/settings/api-keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides read-only Hopkin CLI queries and recommends JSON, CSV, or TSV output formats where appropriate.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill requires a Hopkin API key and advertising account access, which can expose sensitive advertising credentials if pasted into normal chat or shell history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped Hopkin API key, avoid pasting secrets into chat or shell commands, and rotate any key that may have been logged.
+
+Risk: The skill instructs agents to install or update a global CLI from npm, including latest-version updates.
+
+Mitigation: Prefer a pinned or locally reviewed Hopkin CLI install before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nemo/skills/hopkin-paid-ads)
+- [Hopkin API Keys](https://app.hopkin.ai/settings/api-keys)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured CLI output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides read-only Hopkin CLI queries and recommends JSON, CSV, or TSV output formats.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

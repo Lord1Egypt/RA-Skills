@@ -1,50 +1,64 @@
-## Description: <br>
-Use when an agent needs to wire the local agent-exporter MCP bridge, publish a local archive shell, save retrieval reports, or read governance evidence and policy packs from a repo checkout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wires a local agent-exporter stdio MCP bridge so an agent can publish local archive shells, save retrieval reports, and read governance evidence and policy packs from a repository checkout.
 
-## Publisher: <br>
-[xiaojiou176](https://clawhub.ai/user/xiaojiou176) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaojiou176](https://clawhub.ai/user/xiaojiou176)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect a local agent-exporter stdio bridge, validate the bridge with a low-risk governance read, publish local archive shells, save retrieval reports, and inspect governance evidence from a repository checkout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scanner signals are clean, but evidence.security notes that the submitted artifact files were not available for the scanner's full content review. <br>
-Mitigation: Read the skill packet before installing and confirm that its local bridge setup and requested actions match the intended use. <br>
-Risk: The skill guides agents to run a local stdio bridge against repo checkouts and workspace paths. <br>
-Mitigation: Start with the low-risk integration_evidence_policy_list check, use explicit local paths, and run archive or retrieval actions only on intended workspaces. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect a local agent-exporter checkout to a host, prove the bridge with a low-risk governance read, publish archive shells, run semantic or hybrid retrieval, and inspect governance evidence without treating the workflow as a hosted service.
 
-## Reference(s): <br>
-- [Install](references/INSTALL.md) <br>
-- [Capabilities](references/CAPABILITIES.md) <br>
-- [Demo](references/DEMO.md) <br>
-- [Troubleshooting](references/TROUBLESHOOTING.md) <br>
-- [OpenHands MCP config](references/OPENHANDS_MCP_CONFIG.json) <br>
-- [OpenClaw MCP config](references/OPENCLAW_MCP_CONFIG.json) <br>
-- [ClawHub skill page](https://clawhub.ai/xiaojiou176/agent-exporter-archive-governance-workbench) <br>
-- [agent-exporter landing page](https://xiaojiou176-open.github.io/agent-exporter/) <br>
-- [Archive shell proof](https://xiaojiou176-open.github.io/agent-exporter/archive-shell-proof.html) <br>
-- [Repo map](https://xiaojiou176-open.github.io/agent-exporter/repo-map/) <br>
-- [agent-exporter releases](https://github.com/xiaojiou176-open/agent-exporter/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, markdown, code] <br>
-**Output Format:** [Markdown guidance with JSON MCP configuration snippets and local file path outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include local archive shell paths, retrieval report paths, governance policy lists, evidence diffs, and remediation guidance from a local repo checkout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and manifest.yaml) <br>
+Risk: The skill asks the host to run an external, unpinned MCP bridge from a local checkout that is not included in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact agent-exporter checkout before installing, prefer an official immutable release or commit, and only wire the MCP config to a bridge path you trust.
+
+Risk: The bridge may receive workspace and host access through the local MCP configuration.
+
+Mitigation: Run the bridge with the narrowest workspace and host permissions available, and start with the low-risk integration_evidence_policy_list check before archive or retrieval work.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiaojiou176/skills/agent-exporter-archive-governance-workbench)
+- [Publisher Profile](https://clawhub.ai/user/xiaojiou176)
+- [agent-exporter Landing](https://xiaojiou176-open.github.io/agent-exporter/)
+- [Archive Shell Proof](https://xiaojiou176-open.github.io/agent-exporter/archive-shell-proof.html)
+- [Repo Map](https://xiaojiou176-open.github.io/agent-exporter/repo-map/)
+- [agent-exporter Releases](https://github.com/xiaojiou176-open/agent-exporter/releases)
+- [Install](references/INSTALL.md)
+- [Capabilities](references/CAPABILITIES.md)
+- [Demo](references/DEMO.md)
+- [Troubleshooting](references/TROUBLESHOOTING.md)
+- [OpenHands MCP Config](references/OPENHANDS_MCP_CONFIG.json)
+- [OpenClaw MCP Config](references/OPENCLAW_MCP_CONFIG.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline tool names, file paths, shell commands, and JSON MCP configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local file paths, MCP wiring steps, retrieval report guidance, and governance evidence summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact manifest.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

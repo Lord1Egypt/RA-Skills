@@ -1,39 +1,54 @@
-## Description: <br>
-Analyze data evolution patterns in construction organizations and assess digital maturity and data strategy for construction companies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze data evolution patterns in construction organizations and assess digital maturity and data strategy for construction companies.
 
-## Publisher: <br>
-[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction)
 
-## Use Case: <br>
-Construction analytics practitioners and agents use this skill to gather organization data, assess digital maturity and data flow patterns, and produce structured findings, recommendations, and improvement roadmaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Construction system inventories, survey responses, and maturity reports may include sensitive business data. <br>
-Mitigation: Keep sensitive inputs and generated outputs local unless the agent environment is approved for that data, and review company data before use. <br>
+## Use Case:
 
+Developers, analysts, and construction data teams use this skill to assess an organization's digital maturity, data flows, and improvement roadmap from user-provided construction system inventories and survey responses.
 
-## Reference(s): <br>
-- [Data-Driven Construction](https://datadrivenconstruction.io) <br>
-- [ClawHub skill page](https://clawhub.ai/datadrivenconstruction/data-evolution-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Structured Markdown reports, tables, Python code examples, and optional CSV, Excel, or JSON export guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local files when the user requests export; accepts user-provided CSV, Excel, JSON, file paths, or direct input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: The skill may process internal construction systems, process maturity, and data-quality details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only intended local inputs and avoid including sensitive organizational details unless they are meant to be analyzed.
+
+Risk: Generated reports or exports may contain internal assessment details.
+
+Mitigation: Store Markdown, CSV, Excel, or JSON outputs in an appropriate location with access controls suitable for the organization.
+
+## Reference(s):
+
+- [Data-Driven Construction homepage](https://datadrivenconstruction.io)
+- [ClawHub skill page](https://clawhub.ai/datadrivenconstruction/skills/data-evolution-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown reports, structured tables, Python code templates, and optional CSV, Excel, or JSON export guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are based on user-provided project data, file paths, survey responses, system inventories, or direct input.]
+
+## Skill Version(s):
+
+2.1.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

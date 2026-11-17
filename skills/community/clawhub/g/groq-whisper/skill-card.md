@@ -1,42 +1,51 @@
-## Description: <br>
-Transcribe audio files using Groq's Whisper API (whisper-large-v3). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes audio files using Groq's Whisper API with the whisper-large-v3 model.
 
-## Publisher: <br>
-[directorvector](https://clawhub.ai/user/directorvector) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[directorvector](https://clawhub.ai/user/directorvector)
 
-## Use Case: <br>
-External users, employees, developers, and agents use this skill to transcribe local audio or voice-message files through Groq's Whisper API when a text transcript is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audio recordings are sent to Groq for cloud transcription. <br>
-Mitigation: Use the skill only when cloud processing is acceptable, and avoid confidential, regulated, or third-party recordings unless approved. <br>
-Risk: A Groq API key is required and may be stored on disk. <br>
-Mitigation: Store credentials with restrictive file permissions or provide the key through the GROQ_API_KEY environment variable. <br>
+## Use Case:
 
+Agents and developers use this skill to transcribe user-provided voice messages or audio files through Groq's cloud Whisper API when cloud transcription is appropriate.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/directorvector/groq-whisper) <br>
-- [Publisher profile](https://clawhub.ai/user/directorvector) <br>
-- [Groq audio transcriptions endpoint](https://api.groq.com/openai/v1/audio/transcriptions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration guidance] <br>
-**Output Format:** [Plain text transcription emitted to stdout, with setup and usage guidance in Markdown and shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts an audio file path and optional language code; requires curl, jq, and a Groq API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Audio files may be uploaded to Groq's cloud API without clear user confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill only after an explicit user request or approval, and avoid sending sensitive recordings unless the user has approved cloud processing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/directorvector/skills/groq-whisper)
+- [Skill source manifest](artifact/SKILL.md)
+- [Transcription script](artifact/scripts/transcribe.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text transcription output with Markdown setup and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and a Groq API key provided by GROQ_API_KEY or ~/.config/groq/credentials.json.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

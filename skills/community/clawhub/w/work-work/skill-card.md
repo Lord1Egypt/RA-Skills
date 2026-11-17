@@ -1,44 +1,59 @@
-## Description: <br>
-Academic review writer and formatting assistant for Chinese academic papers, including literature review formatting, reference checks, citation consistency checks, and Word document generation. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Work Work helps users format, check, and refine Chinese academic literature reviews, reference lists, and Word documents according to Chinese academic standards.
 
-## Publisher: <br>
-[xf280230439-netizen](https://clawhub.ai/user/xf280230439-netizen) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xf280230439-netizen](https://clawhub.ai/user/xf280230439-netizen)
 
-## Use Case: <br>
-Researchers, students, and academic writers use this skill to check Chinese academic literature reviews, validate references and citations, generate review reports, and produce formatted Word documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Word generator auto-opens files through a shell command built from a user-controlled path, creating a local command-execution risk. <br>
-Mitigation: Review the scripts before running them, avoid unusual or untrusted filenames, and disable or remove auto-open behavior where possible. <br>
-Risk: Some repair workflows can directly modify manuscript source files. <br>
-Mitigation: Run the skill only on copies of manuscripts and keep a backup before using repair or renumbering scripts. <br>
-Risk: Deep reference checking can send reference metadata to Crossref. <br>
-Mitigation: Use --deep-check only when sharing reference metadata with Crossref is acceptable. <br>
+## Use Case:
 
+External researchers, students, and academic writers use this skill to check literature reviews, validate citation and reference consistency, configure formatting rules, and generate Chinese academic Word documents.
 
-## Reference(s): <br>
-- [Workflow Guide](references/workflow_guide.md) <br>
-- [Features Checklist](references/features_checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/xf280230439-netizen/work-work) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown reports, shell command guidance, YAML configuration, and generated DOCX files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some scripts write report files or DOCX files next to the input document; selected repair scripts can modify source files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.0 (source: server release metadata and changelog) <br>
+Risk: Auto-opening generated Word documents can launch shell behavior with user-influenced filenames.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid untrusted or unusual filenames and disable or remove auto-open behavior before running the Word-generation path.
+
+Risk: Deep reference verification can share reference metadata with Crossref.
+
+Mitigation: Use --deep-check only when external metadata lookup is acceptable for the document being checked.
+
+Risk: Filtering or renumbering references can change academic source lists and citation mappings.
+
+Mitigation: Back up source files and manually review filtered or renumbered references before relying on the results.
+
+## Reference(s):
+
+- [Workwork Features Checklist](references/features_checklist.md)
+- [Workwork Workflow Guide](references/workflow_guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/xf280230439-netizen/skills/work-work)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown reports, inline shell commands, YAML configuration, and generated Word documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some scripts write report files or Word documents; reference filtering and renumbering workflows can modify source files.]
+
+## Skill Version(s):
+
+3.3.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

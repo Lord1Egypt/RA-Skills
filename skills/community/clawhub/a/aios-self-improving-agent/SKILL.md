@@ -7,11 +7,15 @@ description: 在 AIOS/OpenClaw 运行环境中记录当前 agent 的错误、纠
 
 本技能用于把当前 agent 在任务中遇到的错误、纠正和可复用经验沉淀到当前 workspace 的 `.learnings/`。它面向 AIOS 的 per-agent 逻辑隔离模型：共享 skill 可以全局预装，但学习记录必须默认留在当前 agent 的 workspace 内。
 
+workspace 内的会话文件还必须按当前通道的 `senderId` 做二级隔离。`senderId` 是生成、下载、上传文件的唯一目录隔离标识；`.learnings/` 可以记录脱敏经验，但不得读取、查询、引用或汇总其他 `senderId` 目录中的文件证据。
+
 ## 边界规则
 
 - 只在当前工作目录或当前 agent workspace 内读写 `.learnings/`。
 - 不要使用 `~/.openclaw/workspace` 作为默认路径；AIOS 中 workspace 位于 `/var/aios/.openclaw/workspaces/<agentId>` 或等价运行路径。
 - 不要读取、写入或汇总其他 agent 的 workspace，除非用户明确指定且当前运行环境允许。
+- 不要读取、写入、查询、索引或汇总其他 `senderId` 的 `upload`、`download`、`generated` 目录。
+- 记录与文件相关的错误或经验时，只引用当前 `senderId` 目录内的相对路径，并脱敏文件名中可能包含的私人信息。
 - 不要把学习记录自动写入全局 `AGENTS.md`、`SOUL.md`、`TOOLS.md`、workspace template、`.openclaw/skills`、`openclaw.json` 或任何管理面配置。
 - 不要调用 `openclaw agents add/delete`、`openclaw skills install/uninstall` 等拓扑或全局 skill 管理命令；这些变更必须走 `aios-management-web` 或人工管理流程。
 - 不要记录密钥、token、私钥、完整环境变量、完整配置文件、完整源码文件或未经脱敏的命令输出。
@@ -77,6 +81,8 @@ else
   rg -n "Area|Tags|Pattern-Key|ERR-|LRN-|FEAT-" .learnings 2>/dev/null || grep -R "Area\\|Tags\\|Pattern-Key\\|ERR-\\|LRN-\\|FEAT-" .learnings 2>/dev/null || true
 fi
 ```
+
+回顾 `.learnings/` 时，如果条目提到 workspace 会话文件，只能继续检查当前 `senderId` 目录内仍然可见的文件。不得为了复现历史问题而访问其他 `senderId` 的 `upload`、`download`、`generated`。
 
 ## 记录格式
 
@@ -253,6 +259,7 @@ fi
 写入任何 `.learnings/` 文件前，检查：
 
 - 内容是否只属于当前 agent workspace。
+- 内容是否只引用当前 `senderId` 可访问的会话文件。
 - 是否包含密钥、token、cookie、连接串、账号密码、私钥、完整环境变量或完整配置。
 - 是否泄露其他 agent、其他用户或管理面的上下文。
 - 是否把长日志压缩成了最小可用错误片段。

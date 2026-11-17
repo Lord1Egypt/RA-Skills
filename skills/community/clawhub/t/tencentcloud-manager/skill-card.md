@@ -1,47 +1,63 @@
-## Description: <br>
-TencentCloud Manager helps agents manage Tencent Cloud CVM, Lighthouse, and COS resources, including provisioning, operations, storage lifecycle tasks, and cost-oriented guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TencentCloud Manager helps agents manage Tencent Cloud CVM, Lighthouse, and COS resources, including setup, provisioning, operations, and cost review.
 
-## Publisher: <br>
-[ugpoor](https://clawhub.ai/user/ugpoor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ugpoor](https://clawhub.ai/user/ugpoor)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to configure Tencent Cloud credentials, inspect promotions and resource status, create CVM, Lighthouse, and COS resources, and manage routine start, stop, restart, upload, lifecycle, and cost-estimation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for broad Tencent Cloud credentials and can create, stop, restart, and alter resources. <br>
-Mitigation: Use a dedicated Tencent Cloud sub-user, avoid master-account keys, restrict permissions to required services and regions, and require explicit human approval before resource-changing operations. <br>
-Risk: COS permissions and examples include object deletion, lifecycle changes, and uploads that can affect stored data. <br>
-Mitigation: Remove COS DeleteObject unless required, scope bucket permissions narrowly, and review lifecycle and upload operations before running them. <br>
-Risk: Credential exposure or misuse could affect cloud resources and costs. <br>
-Mitigation: Keep .env files out of version control with restricted permissions, rotate keys regularly, enable audit logging, and set budget alerts. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to configure and manage Tencent Cloud CVM, Lighthouse, and COS resources, including provisioning, status checks, instance lifecycle operations, storage lifecycle setup, and cost-oriented resource review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ugpoor/tencentcloud-manager) <br>
-- [Tencent Cloud CVM API Documentation](https://cloud.tencent.com/document/api/213) <br>
-- [Tencent Cloud Lighthouse API Documentation](https://cloud.tencent.com/document/api/1170) <br>
-- [Tencent Cloud COS API Documentation](https://cloud.tencent.com/document/api/436) <br>
-- [Tencent Cloud CAM User Management](https://cloud.tencent.com/document/product/598) <br>
-- [Tencent Cloud Sub-User Permission Configuration](https://cloud.tencent.com/document/product/598/10603) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, JSON policy snippets, and configuration steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may describe Tencent Cloud API actions that create, stop, restart, upload, or alter cloud resources and should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server-resolved release evidence) <br>
+Risk: Broad Tencent Cloud permissions can allow resource creation, instance lifecycle changes, and object storage writes or deletes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow the CAM policy before use; use a dedicated sub-user and scope permissions to specific resources or buckets wherever possible.
+
+Risk: Long-lived Tencent Cloud credentials are configured through environment variables and .env files.
+
+Mitigation: Keep credentials out of Git, avoid printing or sharing .env contents, and rotate keys regularly.
+
+Risk: The setup examples install Python dependencies with --break-system-packages.
+
+Mitigation: Prefer a virtual environment with pinned dependencies for installation and execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ugpoor/skills/tencentcloud-manager)
+- [Tencent Cloud CVM API documentation](https://cloud.tencent.com/document/api/213)
+- [Tencent Cloud Lighthouse API documentation](https://cloud.tencent.com/document/api/1170)
+- [Tencent Cloud COS API documentation](https://cloud.tencent.com/document/api/436)
+- [Tencent Cloud CAM permission configuration](https://cloud.tencent.com/document/product/598/10603)
+- [Permission policy guide](docs/permission-policy.md)
+- [Quick reference](docs/quick-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Tencent Cloud API actions that create, modify, start, stop, restart, or upload resources.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,61 @@
-## Description: <br>
-Track mobile app metrics with Firebase, App Store Connect, Play Console, retention, funnels, and cohort analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track mobile app metrics with Firebase, App Store Connect, Play Console, retention, funnels, and cohort analysis.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, product teams, and app operators use this skill to analyze mobile app performance across Firebase, App Store Connect, and Google Play Console. It helps compare cohorts, inspect funnels, monitor retention and revenue metrics, and document app-specific analytics context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Analytics credentials or app identifiers could expose sensitive business data if broad account access is used. <br>
-Mitigation: Use read-only or reporting-scoped credentials where available, rely on standard platform credential methods, and avoid storing secrets in local notes. <br>
-Risk: Local notes may contain proprietary KPIs, funnels, goals, or product strategy. <br>
-Mitigation: Review files saved under ~/mobile-app-analytics/ and avoid retaining sensitive details beyond what is needed for the analysis task. <br>
-Risk: Custom analytics events can accidentally include personal data or conflict with consent requirements. <br>
-Mitigation: Keep PII out of custom events and user properties, and apply ATT, GDPR, and platform consent requirements before querying or storing analytics context. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Mobile App Analytics on ClawHub](https://clawhub.ai/ivangdavila/mobile-app-analytics) <br>
-- [Skill Homepage](https://clawic.com/skills/mobile-app-analytics) <br>
-- [Firebase Analytics guide](firebase.md) <br>
-- [App Store Connect Analytics guide](app-store.md) <br>
-- [Google Play Console Analytics guide](play-console.md) <br>
-- [Core Metrics guide](metrics.md) <br>
-- [Memory Template](memory-template.md) <br>
-- [App Store Connect API endpoint](https://api.appstoreconnect.apple.com/v1/apps/{app_id}/analyticsReportRequests) <br>
-- [Google Android Publisher API endpoint](https://androidpublisher.googleapis.com/androidpublisher/v3/applications/{package}/reviews) <br>
+## Use Case:
 
+Developers, product teams, and external app operators use this skill to analyze mobile app acquisition, retention, engagement, revenue, and quality metrics across Firebase, App Store Connect, and Play Console.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with metric tables, SQL snippets, API examples, shell commands, and local configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and update local notes under ~/mobile-app-analytics/ when the user opts into analytics memory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local analytics context under ~/mobile-app-analytics/ could contain sensitive app strategy, user-level exports, or credentials if the user adds them.
+
+Mitigation: Store only scoped app context and goals; do not put API keys, JWT private keys, access tokens, PII, or sensitive user-level exports in those files.
+
+Risk: Platform API use can expose app IDs, date ranges, and credentials to Firebase, Apple, or Google services.
+
+Mitigation: Use standard platform credential methods, least-privilege scopes, and restrict BigQuery or analytics API access appropriately.
+
+Risk: Mobile analytics conclusions can be misleading when based on stale platform reports or unsegmented aggregate metrics.
+
+Mitigation: Account for known platform data delays and segment analysis by install cohort, acquisition source, user tier, and platform.
+
+## Reference(s):
+
+- [Mobile App Analytics ClawHub Page](https://clawhub.ai/ivangdavila/skills/mobile-app-analytics)
+- [Mobile App Analytics Homepage](https://clawic.com/skills/mobile-app-analytics)
+- [Firebase Analytics Guide](artifact/firebase.md)
+- [App Store Connect Analytics Guide](artifact/app-store.md)
+- [Google Play Console Analytics Guide](artifact/play-console.md)
+- [Core Metrics Reference](artifact/metrics.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Analysis, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline SQL, bash, Kotlin, and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local app analytics notes and platform API queries when credentials are provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

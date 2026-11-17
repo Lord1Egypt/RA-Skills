@@ -1,0 +1,29 @@
+{
+  "name": "douyin-creator-profile",
+  "version": "1.0.0",
+  "description": "用于抖音达人数据、抖音达人信息、账号资料查询。关键词：抖音、抖音达人、抖音博主、竞品分析。",
+  "keywords": [
+    "douyin",
+    "search",
+    "hot",
+    "keyword",
+    "content-analysis",
+    "competitor-analysis"
+  ],
+  "author": "um-why",
+  "license": "MIT",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=16.14.0"
+  },
+  "scripts": {
+    "search": "node src/douyin/search-cli.js",
+    "post": "node src/douyin/post-cli.js",
+    "comment": "node src/douyin/comment-cli.js",
+    "hot": "node src/douyin/hot-cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/douyin-search-openclaw.git"
+  }
+}

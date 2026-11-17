@@ -1,40 +1,54 @@
-## Description: <br>
-Write session summaries to daily memory files and search session history so OpenClaw can recall and cite past conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write session summaries to daily memory files and search session history so OpenClaw can recall and cite past conversations.
 
-## Publisher: <br>
-[breezezephyr](https://clawhub.ai/user/breezezephyr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[breezezephyr](https://clawhub.ai/user/breezezephyr)
 
-## Use Case: <br>
-OpenClaw users and agents use this skill to turn local session logs for a date into workspace memory and to search prior conversations by keyword or date range. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose or retain sensitive content from local OpenClaw session logs by writing excerpts into workspace memory files. <br>
-Mitigation: Run it only for intended dates or queries, avoid sessions containing secrets or confidential data, and review or delete generated memory files when they should not be retained. <br>
-Risk: Search results and generated memory summaries may include partial conversation snippets without full context. <br>
-Mitigation: Review the source session snippets before relying on them for important decisions or future memory recall. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/breezezephyr/session-memory-workspace) <br>
-- [Publisher profile](https://clawhub.ai/user/breezezephyr) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to summarize dated chat sessions into workspace memory and search past session transcripts by keyword or date range.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; scripts produce JSON search results and Markdown memory files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js; reads local OpenClaw session JSONL files and can create or append memory/YYYY-MM-DD.md.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, SKILL.md frontmatter, README.md, _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads private OpenClaw session logs and may persist sensitive or near-verbatim chat content into long-term workspace memory.
+
+Mitigation: Use it only on sessions that are appropriate for persistent memory, then review, edit, or delete generated memory/YYYY-MM-DD.md files that contain secrets, personal data, or misleading instructions.
+
+Risk: Generated session summaries can carry incorrect, outdated, or unwanted conversational context into future memory-backed replies.
+
+Mitigation: Review the generated daily memory file before relying on it, and remove stale or inaccurate excerpts from the Session summary section.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/breezezephyr/skills/session-memory-workspace)
+- [Artifact README](artifact/README.md)
+- [Artifact skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown memory files, JSON search results, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and local OpenClaw session logs; summaries are written to memory/YYYY-MM-DD.md and search results are emitted as JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, README.md, and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

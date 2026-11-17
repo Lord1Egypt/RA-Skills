@@ -1,43 +1,61 @@
-## Description: <br>
-Converts articles, blog posts, or other text into podcast scripts and optional TTS audio, with solo or dialogue episode formats and SkillPay billing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert articles, blog posts, or any text into professional podcast scripts and TTS audio.
 
-## Publisher: <br>
-[elevo11](https://clawhub.ai/user/elevo11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[elevo11](https://clawhub.ai/user/elevo11)
 
-## Use Case: <br>
-External users, content creators, and developers use this skill to turn source text into podcast scripts, generate audio files when TTS tooling is available, and track generation statistics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate paid SkillPay charges. <br>
-Mitigation: Require explicit user confirmation before each charge and review real-credential use before installing. <br>
-Risk: User text may be processed through external billing or TTS tooling. <br>
-Mitigation: Avoid sensitive or proprietary text unless users accept the external data flow. <br>
-Risk: Generated files and local statistics can expose episode titles or overwrite chosen output paths. <br>
-Mitigation: Use non-sensitive output paths, review filenames before running, and clear the local stats file when episode titles are private. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Podcast Generator ClawHub page](https://clawhub.ai/elevo11/podcast-generator) <br>
-- [Script Templates](references/script-templates.md) <br>
-- [SkillPay API endpoint](https://skillpay.me/api/v1) <br>
+## Use Case:
 
+External users and developers use this skill to turn source text into solo or dialogue podcast scripts, generate TTS audio, and review usage statistics. The skill includes SkillPay billing support for paid generation workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Audio files, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown podcast scripts, MP3 audio files when edge-tts is installed, and JSON or status text for billing and statistics.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLPAY_API_KEY for billing; edge-tts and ffmpeg improve audio generation; local statistics retain recent generation metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can make real SkillPay billing calls.
+
+Mitigation: Run billing commands only where charges are explicitly approved and the SkillPay API key is intended for that environment.
+
+Risk: Generated podcast scripts and audio files may be written to uncontrolled paths.
+
+Mitigation: Use reviewed input and output paths, and execute the skill in an isolated workspace away from sensitive files.
+
+Risk: Podcast text may be sent to external TTS processing.
+
+Mitigation: Avoid using confidential or sensitive source text unless the external TTS handling is approved.
+
+Risk: Dependency behavior can change if edge-tts or related tools are installed without pinning.
+
+Mitigation: Prefer a pinned dependency setup before using the skill in production or shared environments.
+
+## Reference(s):
+
+- [Podcast Script Templates](artifact/references/script-templates.md)
+- [SkillPay API Endpoint](https://skillpay.me/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown scripts, MP3 audio files, JSON billing or statistics responses, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports solo and dialogue script formats, optional audio synthesis through edge-tts, and local usage statistics tracking.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

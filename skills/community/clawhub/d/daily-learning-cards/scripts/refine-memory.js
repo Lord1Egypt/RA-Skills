@@ -1,297 +1,321 @@
 #!/usr/bin/env node
 /**
- * refine-memory.js V2
- * 每日记忆提炼脚本 - 使用阿里百炼 API (qwen-max)
- * 
- * 改进点：
- * - API Key 从环境变量读取
- * - 纯异步 httpPost + Promise
- * - 生成 ${date}.refined.md，不覆盖原文件
- * - 6层容错 JSON 提取
- * - 3次重试机制
+ * 每日记忆 AI 整理器
+ * 读取原始记忆文件 → AI 分析提炼 → 生成结构化记忆（保留原始备份）
  */
 
-const https = require('https');
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
-// ==================== 配置 ====================
-const CONFIG = {
-  API_KEY: process.env.DASHSCOPE_API_KEY,
-  API_HOST: 'dashscope.aliyuncs.com',
-  API_PATH: '/api/v1/services/aigc/text-generation/generation',
-  MAX_RETRIES: 3,
-  RETRY_DELAY_MS: 1000,
+// 渠道配置
+const CHANNEL_CONFIG = {
+  feishu: { dir: 'feishu', label: '飞书' },
+  webui: { dir: 'webui', label: 'WebUI' },
+  dingtalk: { dir: 'dingtalk', label: '钉钉' },
+  weixin: { dir: 'weixin', label: '微信' },
+  qqbot: { dir: 'qqbot', label: 'QQ' }
 };
 
-// ==================== 工具函数 ====================
+// 配置
+const CONFIG = {
+  workspaceDir: process.env.WORKSPACE_DIR || '/home/admin/.openclaw/workspace',
+  memoryDir: process.env.WORKSPACE_DIR 
+    ? path.join(process.env.WORKSPACE_DIR, 'memory')
+    : '/home/admin/.openclaw/workspace/memory',
+  backupDir: process.env.WORKSPACE_DIR 
+    ? path.join(process.env.WORKSPACE_DIR, 'memory', 'raw-backup')
+    : '/home/admin/.openclaw/workspace/memory/raw-backup'
+};
 
-/**
- * 带重试的 HTTP POST 请求
- */
-function httpPostWithRetry(options, data, retryCount = 0) {
-  return new Promise((resolve, reject) => {
-    const req = https.request(options, (res) => {
-      let responseData = '';
-      res.on('data', (chunk) => {
-        responseData += chunk;
-      });
-      res.on('end', () => {
-        try {
-          const parsed = JSON.parse(responseData);
-          resolve(parsed);
-        } catch (e) {
-          reject(new Error(`JSON解析失败: ${e.message}, 原始响应: ${responseData.slice(0, 200)}`));
-        }
-      });
-    });
-
-    req.on('error', (error) => {
-      if (retryCount < CONFIG.MAX_RETRIES) {
-        console.log(`[重试 ${retryCount + 1}/${CONFIG.MAX_RETRIES}] 请求失败: ${error.message}`);
-        setTimeout(() => {
-          httpPostWithRetry(options, data, retryCount + 1)
-            .then(resolve)
-            .catch(reject);
-        }, CONFIG.RETRY_DELAY_MS * (retryCount + 1));
-      } else {
-        reject(error);
-      }
-    });
-
-    req.write(data);
-    req.end();
-  });
+function getTodayStr() {
+  const now = new Date();
+  return now.toISOString().split('T')[0];
 }
 
-/**
- * 6层容错 JSON 提取策略
- */
-function extractJson(content) {
-  // 策略1: 直接 JSON.parse
+function getYesterdayStr() {
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  return yesterday.toISOString().split('T')[0];
+}
+
+function ensureDir(dir) {
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+}
+
+function safeRead(filePath) {
   try {
-    const parsed = JSON.parse(content.trim());
-    console.log('[JSON提取] 策略1成功: 直接解析');
-    return parsed;
+    return fs.readFileSync(filePath, 'utf-8');
   } catch (e) {
-    console.log('[JSON提取] 策略1失败: 不是纯JSON格式');
+    return null;
   }
-
-  // 策略2: 提取 ```json 代码块
-  const jsonBlockMatch = content.match(/```json\s*([\s\S]*?)```/);
-  if (jsonBlockMatch) {
-    try {
-      const parsed = JSON.parse(jsonBlockMatch[1].trim());
-      console.log('[JSON提取] 策略2成功: ```json代码块');
-      return parsed;
-    } catch (e) {
-      console.log('[JSON提取] 策略2失败');
-    }
-  }
-
-  // 策略3: 提取任意 ``` 代码块
-  const codeBlockMatch = content.match(/```\s*([\s\S]*?)```/);
-  if (codeBlockMatch) {
-    try {
-      const parsed = JSON.parse(codeBlockMatch[1].trim());
-      console.log('[JSON提取] 策略3成功: 通用代码块');
-      return parsed;
-    } catch (e) {
-      console.log('[JSON提取] 策略3失败');
-    }
-  }
-
-  // 策略4: 提取 { ... } 或 [ ... ]
-  const objectMatch = content.match(/\{[\s\S]*\}/);
-  if (objectMatch) {
-    try {
-      const parsed = JSON.parse(objectMatch[0]);
-      console.log('[JSON提取] 策略4成功: 提取{...}结构');
-      return parsed;
-    } catch (e) {
-      console.log('[JSON提取] 策略4失败');
-    }
-  }
-
-  // 策略5: 提取数组
-  const arrayMatch = content.match(/\[[\s\S]*\]/);
-  if (arrayMatch) {
-    try {
-      const parsed = JSON.parse(arrayMatch[0]);
-      console.log('[JSON提取] 策略5成功: 提取[...]数组');
-      return parsed;
-    } catch (e) {
-      console.log('[JSON提取] 策略5失败');
-    }
-  }
-
-  // 策略6: 查找第一个有效的 JSON 开始位置
-  const startIndex = content.indexOf('{');
-  if (startIndex !== -1) {
-    try {
-      // 尝试找到匹配的结束括号
-      let depth = 0;
-      let endIndex = startIndex;
-      for (let i = startIndex; i < content.length; i++) {
-        if (content[i] === '{') depth++;
-        if (content[i] === '}') depth--;
-        if (depth === 0) {
-          endIndex = i + 1;
-          break;
-        }
-      }
-      const jsonStr = content.slice(startIndex, endIndex);
-      const parsed = JSON.parse(jsonStr);
-      console.log('[JSON提取] 策略6成功: 括号匹配提取');
-      return parsed;
-    } catch (e) {
-      console.log('[JSON提取] 策略6失败');
-    }
-  }
-
-  throw new Error('所有JSON提取策略均失败');
 }
 
 /**
- * 提炼单条记忆
+ * 调用 AI 分析对话，生成结构化记忆
  */
-async function refineMemory(memoryText) {
-  if (!CONFIG.API_KEY) {
-    throw new Error('DASHSCOPE_API_KEY 环境变量未设置');
-  }
+async function refineMemory(rawContent, channel, date) {
+  const truncatedContent = rawContent.substring(0, 12000);
+  
+  const prompt = `你是学习秘书，负责整理${channel}渠道的每日学习记录。
 
-  const prompt = `请将以下对话记忆提炼为结构化信息。提炼要求：
-1. 保留关键决策、数据、踩坑记录、新概念、金句
-2. 去除闲聊、重复、无信息量的内容
-3. 使用简洁的要点形式
-4. 保持原始时间戳
+【原始对话记录】
+${truncatedContent}
 
-原始内容：
-${memoryText}
+【任务】
+分析以上对话，提取结构化内容：
+1. **主题**（1-5 个）- 今天主要聊了哪些话题，每个主题的核心内容。注意：晨间启动检查等系统行为不是对话主题，应合并或跳过。
+2. **决策**（0-5 个）- 做了什么重要选择，选项对比，最终决策及理由。⚠️ 保留原始对话中的完整考虑因素，不要过度压缩。
+3. **踩坑**（0-5 个）- 遇到了什么问题，怎么解决的，教训是什么
+4. **新概念**（0-5 个）- 学到了什么新术语/新方法。⚠️ 提取所有技术术语，不限于用户明确定义的。
+5. **金句/洞见**（0-5 条）- ⚠️ 必须是有方法论价值的洞见，不是对话引用。例如"配置写在脚本里，自包含更易维护"这种有方法论价值的算金句；"你问得对：这个改动其实不难"这种对话引用不算。
 
-请返回 JSON 格式：
+【输出格式】只返回 JSON，不要其他文字：
 {
-  "themes": [
+  "topics": [
     {
-      "topic": "主题名称",
-      "highlights": [
-        { "time": "时间戳", "type": "决策|数据|踩坑|概念|金句", "content": "提炼内容" }
+      "title": "主题名称",
+      "description": "一句话说明",
+      "keyPoints": ["要点 1", "要点 2"],
+      "tasks": {"P0": [], "P1": [], "P2": []}
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "决策点",
+      "options": [
+        {"option": "选项 A", "factors": "考虑因素", "result": "选/不选"}
       ]
     }
-  ]
-}`;
-
-  const requestBody = JSON.stringify({
-    model: 'qwen-max',
-    input: {
-      messages: [{ role: 'user', content: prompt }]
-    },
-    parameters: {
-      result_format: 'message',
-      max_tokens: 4096,
-      temperature: 0.3
+  ],
+  "pitfalls": [
+    {
+      "problem": "问题描述",
+      "solution": "解决方案",
+      "lesson": "教训"
     }
-  });
-
-  const options = {
-    hostname: CONFIG.API_HOST,
-    port: 443,
-    path: CONFIG.API_PATH,
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${CONFIG.API_KEY}`,
-      'Content-Length': Buffer.byteLength(requestBody)
+  ],
+  "concepts": [
+    {
+      "term": "术语",
+      "definition": "定义",
+      "scenario": "应用场景"
     }
-  };
+  ],
+  "insights": ["金句 1", "金句 2"]
+}
+`;
 
-  const response = await httpPostWithRetry(options, requestBody);
-
-  if (response.output?.choices?.[0]?.message?.content) {
-    const content = response.output.choices[0].message.content;
-    return extractJson(content);
+  try {
+    // 方式 4：直接调用 dashscope API（cron 环境可用）
+    const apiKey = 'REDACTED-SECRET';
+    const apiUrl = 'https://coding.dashscope.aliyuncs.com/v1/chat/completions';
+    
+    const requestBody = {
+      model: 'kimi-k2.5',
+      messages: [
+        { role: 'system', content: '你是一个学习秘书，负责整理每日学习记录。只返回 JSON 格式，不要其他文字。' },
+        { role: 'user', content: prompt }
+      ],
+      temperature: 0.7,
+      max_tokens: 8192
+    };
+    
+    const curlCmd = `curl -s -X POST '${apiUrl}' \
+      -H 'Authorization: Bearer ${apiKey}' \
+      -H 'Content-Type: application/json' \
+      -d '${JSON.stringify(requestBody).replace(/'/g, "'\\''")}'`;
+    
+    const result = execSync(curlCmd, {
+      encoding: 'utf-8',
+      timeout: 120000,
+      maxBuffer: 100 * 1024 * 1024
+    });
+    
+    const response = JSON.parse(result);
+    const content = response.choices?.[0]?.message?.content || '';
+    
+    // 提取 JSON
+    const jsonMatch = content.match(/\{[\s\S]*\}/);
+    if (jsonMatch) {
+      return JSON.parse(jsonMatch[0]);
+    }
+    
+    console.error('⚠️ 未找到 JSON，返回空结构');
+    return { topics: [], decisions: [], pitfalls: [], concepts: [], insights: [] };
+  } catch (e) {
+    console.error('❌ AI 分析失败:', e.message);
+    return { topics: [], decisions: [], pitfalls: [], concepts: [], insights: [] };
   }
-
-  throw new Error('API 响应格式异常');
 }
 
 /**
- * 生成提炼后的 Markdown
+ * 生成结构化记忆文件
  */
-function generateRefinedMarkdown(date, themes) {
-  let output = `# Memory - ${date} (Refined)\n\n`;
-  output += `> 本文件由 AI 自动提炼生成\n`;
-  output += `> 原文件: ${date}.md\n`;
-  output += `> 生成时间: ${new Date().toISOString()}\n\n`;
+function generateStructuredMemory(channel, date, analysis, rawContent) {
+  const channelName = CHANNEL_CONFIG[channel]?.label || channel;
+  
+  let content = `# 记忆档案 - ${date}
 
-  for (const theme of themes) {
-    output += `## ${theme.topic}\n\n`;
-    for (const highlight of theme.highlights) {
-      output += `- **[${highlight.time}]** \`${highlight.type}\` ${highlight.content}\n`;
-    }
-    output += '\n';
-  }
+**渠道：** ${channelName}  
+**日期：** ${date}  
+**整理时间：** ${new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })}  
+**原始记录：** ${date}.raw.md
 
-  return output;
+---
+
+## 📊 今日概览
+
+| 类型 | 数量 |
+|------|------|
+| 主题 | ${analysis.topics.length} 个 |
+| 决策 | ${analysis.decisions.length} 个 |
+| 踩坑 | ${analysis.pitfalls.length} 个 |
+| 新概念 | ${analysis.concepts.length} 个 |
+| 金句 | ${analysis.insights.length} 条 |
+
+---
+
+## 📚 核心主题
+
+${analysis.topics.length > 0 ? analysis.topics.map((topic, i) => `### ${i + 1}. ${topic.title}
+
+**说明：** ${topic.description}
+
+**要点：**
+${topic.keyPoints && topic.keyPoints.length > 0 ? topic.keyPoints.map(kp => `- ${kp}`).join('\n') : '- 暂无详细记录'}
+
+---
+`).join('\n') : '*今日无明确主题记录*'}
+
+## 📋 重要决策
+
+${analysis.decisions.length > 0 ? analysis.decisions.map((d, i) => `### ${i + 1}. ${d.decision}
+
+| 选项 | 考虑因素 | 结果 |
+|------|---------|------|
+${d.options.map(o => `| ${o.option} | ${o.factors} | ${o.result} |`).join('\n')}
+
+---
+`).join('\n') : '*今日无重要决策*'}
+
+## ⚠️ 踩坑记录
+
+${analysis.pitfalls.length > 0 ? analysis.pitfalls.map((p, i) => `### ${i + 1}. ${p.problem}
+
+**解决方案：** ${p.solution || '暂无'}
+
+**教训：** ${p.lesson || '暂无'}
+
+---
+`).join('\n') : '*今日无踩坑记录*'}
+
+## 🧠 新概念
+
+${analysis.concepts.length > 0 ? analysis.concepts.map((c, i) => `### ${i + 1}. ${c.term}
+
+**定义：** ${c.definition || '暂无'}
+
+**应用场景：** ${c.scenario || '暂无'}
+
+---
+`).join('\n') : '*今日无新概念*'}
+
+## 💬 金句 / 洞见
+
+${analysis.insights.length > 0 ? analysis.insights.map(insight => `> "${insight}"`).join('\n\n') : '*今日无金句*'}
+
+---
+
+## 📎 原始对话记录
+
+<details>
+<summary>点击查看原始对话（未整理）</summary>
+
+\`\`\`
+${rawContent.substring(0, 5000)}
+${rawContent.length > 5000 ? '\n... (省略后续内容)' : ''}
+\`\`\`
+
+</details>
+
+---
+
+*💃 金银 Planet · 自我提升部*
+`;
+
+  return content;
 }
 
-// ==================== 主函数 ====================
+/**
+ * 处理单个渠道的记忆整理
+ */
+async function processChannel(channel, memoryDir, date) {
+  const rawFile = path.join(memoryDir, `${date}.md`);
+  const rawContent = safeRead(rawFile);
+  
+  if (!rawContent) {
+    console.error(`[${channel}] 未找到记忆文件：${rawFile}`);
+    return false;
+  }
+  
+  console.error(`[${channel}] 找到记忆文件，共 ${rawContent.length} 字符`);
+  
+  // 备份原始记录
+  ensureDir(CONFIG.backupDir);
+  const backupFile = path.join(CONFIG.backupDir, `${date}-${channel}.raw.md`);
+  fs.writeFileSync(backupFile, rawContent, 'utf-8');
+  console.error(`[${channel}] 原始记录已备份：${backupFile}`);
+  
+  // AI 分析提炼
+  console.error(`[${channel}] 正在调用 AI 分析...`);
+  const analysis = await refineMemory(rawContent, channel, date);
+  console.error(`[${channel}] AI 分析完成：${analysis.topics.length} 个主题，${analysis.decisions.length} 个决策`);
+  
+  // 生成结构化记忆
+  const structuredContent = generateStructuredMemory(channel, date, analysis, rawContent);
+  fs.writeFileSync(rawFile, structuredContent, 'utf-8');
+  console.error(`[${channel}] ✅ 结构化记忆已生成：${rawFile}`);
+  
+  return true;
+}
 
+/**
+ * 主函数
+ */
 async function main() {
-  try {
-    // 获取昨天日期
-    const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
-    const dateStr = yesterday.toISOString().split('T')[0];
-
-    console.log(`[${new Date().toISOString()}] 开始提炼记忆: ${dateStr}`);
-
-    // 读取原始记忆文件
-    const inputPath = path.join(__dirname, '..', 'memory', 'feishu', `${dateStr}.md`);
-    console.log(`[文件路径] ${inputPath}`);
-
-    if (!fs.existsSync(inputPath)) {
-      console.log(`[跳过] 原文件不存在: ${inputPath}`);
-      return;
+  const date = getTodayStr(); // 处理当天的记忆（cron 23:59 执行，当天已近结束）
+  console.error('=== 每日记忆 AI 整理 ===');
+  console.error(`处理日期：${date}`);
+  console.error('');
+  
+  let hasContent = false;
+  
+  for (const [chKey, chConfig] of Object.entries(CHANNEL_CONFIG)) {
+    const fullDir = path.join(CONFIG.memoryDir, chConfig.dir);
+    console.error(`【${chConfig.label} 渠道】`);
+    if (await processChannel(chKey, fullDir, date)) {
+      hasContent = true;
     }
-
-    const rawContent = fs.readFileSync(inputPath, 'utf-8');
-    console.log(`[文件大小] ${rawContent.length} 字符`);
-
-    if (rawContent.trim().length === 0) {
-      console.log(`[跳过] 原文件为空`);
-      return;
-    }
-
-    // 检查是否已提炼过
-    const outputPath = path.join(__dirname, '..', 'memory', 'feishu', `${dateStr}.refined.md`);
-    if (fs.existsSync(outputPath)) {
-      console.log(`[跳过] 提炼文件已存在: ${outputPath}`);
-      return;
-    }
-
-    // 调用 API 提炼
-    console.log('[API调用] 开始提炼...');
-    const result = await refineMemory(rawContent);
-
-    if (!result.themes || result.themes.length === 0) {
-      console.log('[跳过] API 返回空结果');
-      return;
-    }
-
-    // 生成提炼后的 Markdown
-    const refinedMarkdown = generateRefinedMarkdown(dateStr, result.themes);
-
-    // 写入新文件（不覆盖原文件！）
-    fs.writeFileSync(outputPath, refinedMarkdown, 'utf-8');
-    console.log(`[成功] 提炼完成: ${outputPath}`);
-    console.log(`[统计] 提炼了 ${result.themes.length} 个主题`);
-
-  } catch (error) {
-    console.error(`[错误] ${error.message}`);
-    console.error(error.stack);
-    process.exit(1);
+    console.error('');
   }
+  
+  if (!hasContent) {
+    console.error('昨天没有记忆记录，跳过整理');
+    process.exit(0);
+  }
+  
+  console.error('✅ 每日记忆整理完成');
 }
 
-main();
+// 执行
+if (require.main === module) {
+  main().catch(e => {
+    console.error('❌ 错误:', e);
+    process.exit(1);
+  });
+}
+
+module.exports = { refineMemory, generateStructuredMemory, processChannel };

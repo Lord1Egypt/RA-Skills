@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn76qr7vw01kqwnxcb2t2sas6s82jcz9",
-  "slug": "microsoft-playwright-cli",
+  "slug": "playwright-cli",
   "version": "0.1.9",
-  "publishedAt": 1777541550949
+  "name": "playwright-cli",
+  "description": "Automate browser interactions, test web pages and work with Playwright tests.",
+  "createdAt": "2026-04-30T06:45:00Z",
+  "lastModified": "2026-04-30T06:45:00Z",
+  "author": "Microsoft (Playwright CLI Team)",
+  "license": "MIT",
+  "dependencies": {
+    "@playwright/cli": "^1.51.0",
+    "playwright-core": "^1.51.0"
+  },
+  "workspacePath": "/Users/zhouxiaoming/.openclaw/workspace/skills/playwright-cli"
 }

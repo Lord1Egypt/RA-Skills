@@ -1,48 +1,59 @@
-## Description: <br>
-PayRam MCP Integration helps agents connect to PayRam's MCP server to create crypto payment links, generate payout and webhook code, scaffold payment apps, and follow headless setup guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PayRam MCP Integration helps agents connect to PayRam's MCP server to accept cryptocurrency payments, create payment links, generate payment, payout, and webhook code, and scaffold payment-enabled applications.
 
-## Publisher: <br>
-[BuddhaSource](https://clawhub.ai/user/BuddhaSource) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[buddhasource](https://clawhub.ai/user/buddhasource)
 
-## Use Case: <br>
-Developers, engineers, and agent builders use this skill to integrate PayRam crypto payment flows, payment links, payouts, referrals, webhooks, and headless setup steps into applications or autonomous agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Unreviewed setup scripts can modify payment infrastructure or expose wallet-bearing hosts. <br>
-Mitigation: Pin and inspect scripts before use, avoid curl-to-bash on production or wallet-bearing machines, and begin with testnet or empty wallets. <br>
-Risk: Automated payouts, wallet deployments, contract deployments, or production payment actions can move funds or change infrastructure. <br>
-Mitigation: Require explicit human approval for every payout, wallet deployment, contract deployment, or production payment action. <br>
-Risk: Local PayRam token or wallet secret files may expose payment infrastructure if handled loosely. <br>
-Mitigation: Protect .payraminfo secrets with strong local permissions or a secret manager and keep token or mnemonic files out of version control. <br>
+## Use Case:
 
+External developers and agents use this skill to connect to PayRam's MCP server, generate crypto payment and payout integrations, prepare webhooks, and scaffold payment-enabled applications for PayRam workflows.
 
-## Reference(s): <br>
-- [PayRam MCP Integration Skill Page](https://clawhub.ai/BuddhaSource/payram-mcp-integration) <br>
-- [PayRam MCP Documentation](https://docs.payram.com/mcp-integration) <br>
-- [PayRam Homepage](https://payram.com) <br>
-- [PayRam Helper MCP Server Repository](https://github.com/PayRam/payram-helper-mcp-server) <br>
-- [PayRam Headless Agent Guide](https://github.com/PayRam/payram-scripts/blob/main/docs/PAYRAM_HEADLESS_AGENT.md) <br>
-- [PayRam Architecture & Security Model](references/architecture.md) <br>
-- [PayRam Headless Setup](references/headless-setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets, shell commands, configuration steps, and app scaffolding instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose payment, payout, webhook, wallet, contract, or deployment actions that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill directs agents to run external PayRam scripts and self-host setup commands without server-resolved provenance for this release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external PayRam scripts at a pinned version before execution and avoid production or wallet-bearing environments until that review is complete.
+
+Risk: Headless setup can involve PayRam passwords, wallet mnemonics, destination addresses, chain selection, wallet creation, and contract deployment.
+
+Mitigation: Use testnet funds first, keep passwords and mnemonics out of shell history and project files where possible, manually confirm destination addresses and chain choices, and treat any exposed mnemonic as compromised.
+
+## Reference(s):
+
+- [PayRam Architecture & Security Model](references/architecture.md)
+- [PayRam Headless Agent Skill](references/headless-setup.md)
+- [PayRam Website](https://payram.com)
+- [PayRam MCP Integration Documentation](https://docs.payram.com/mcp-integration)
+- [PayRam MCP Server GitHub Repository](https://github.com/PayRam/payram-helper-mcp-server)
+- [PayRam Headless Agent Guide](https://github.com/PayRam/payram-scripts/blob/main/docs/PAYRAM_HEADLESS_AGENT.md)
+- [PayRam MCP Server](https://mcp.payram.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include payment integration snippets, app scaffolding instructions, setup checklists, and operational guidance for PayRam MCP workflows.]
+
+## Skill Version(s):
+
+1.4.2 (source: server evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

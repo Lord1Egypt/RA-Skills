@@ -1,44 +1,62 @@
-## Description: <br>
-Full AI image creation workflow: intent classification, prompt enhancement, multi-direction generation via fal.ai, and error recovery for image creation requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full AI image creation workflow for intent classification, prompt enhancement, multi-direction generation via fal.ai, and error recovery.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and creators use this skill to plan, enhance, and run AI image generation or image-editing workflows through fal.ai, including prompt refinement, model selection, batch directions, result presentation, and error recovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts and reference images may be processed by fal.ai. <br>
-Mitigation: Use a dedicated FAL_API_KEY and avoid submitting confidential prompts or private images unless third-party processing is acceptable. <br>
-Risk: Generated images may be saved locally under ~/Pictures/ai-image. <br>
-Mitigation: Review local output paths and remove generated files that should not be retained. <br>
-Risk: Referenced prompt-library files are not included in this package. <br>
-Mitigation: Expect inspiration and template lookup features to require those files to exist separately, or fall back to direct prompt guidance. <br>
+## Use Case:
 
+External users and developers use this skill to plan, enhance, generate, edit, and present AI-generated images through fal.ai-backed workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-ai-image) <br>
-- [Publisher profile](https://clawhub.ai/user/PHY041) <br>
-- [Skill homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with prompt text, tables, Python code blocks, generated image URLs, and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call fal.ai with FAL_API_KEY and save generated images locally under ~/Pictures/ai-image.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Prompts and reference images may be uploaded to fal.ai, including private, client, biometric, or otherwise sensitive images.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review provider handling and user consent requirements before use, and avoid submitting sensitive images unless that transfer is approved.
+
+Risk: Generated outputs may be saved locally and could persist in user-accessible folders.
+
+Mitigation: Confirm the destination path before saving and apply local retention, access control, and cleanup practices appropriate for the content.
+
+Risk: Safety-blocked prompts may be automatically rewritten for another attempt.
+
+Mitigation: Require explicit user review and approval before retrying with a cleaned or rephrased prompt.
+
+Risk: The workflow requires a fal.ai API key through FAL_API_KEY.
+
+Mitigation: Store the key in an environment variable or secret manager and avoid embedding it in generated code, files, or chat output.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/phy041/skills/phy-ai-image)
+- [Canlah AI](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets, image URLs, and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call fal.ai using FAL_API_KEY, upload reference images, generate up to four batch directions, and save generated images locally.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

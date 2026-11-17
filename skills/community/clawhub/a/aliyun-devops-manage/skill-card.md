@@ -1,50 +1,62 @@
-## Description: <br>
-Use when managing Alibaba Cloud DevOps (Yunxiao 2020) via OpenAPI/SDK, including project/repository/pipeline resource discovery, read-only inspection, and safe change planning before mutating operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when managing Alibaba Cloud DevOps (Yunxiao 2020) via OpenAPI/SDK, including project/repository/pipeline resource discovery, read-only inspection, and safe change planning before mutating operations.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to inspect Alibaba Cloud DevOps projects, repositories, pipelines, work items, tests, releases, and API metadata. It supports read-only inventory, evidence collection, and safe planning before approved mutating operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Alibaba Cloud credentials and can access DevOps resources. <br>
-Mitigation: Use least-privilege or read-only credentials where possible, prefer environment variables, and keep generated outputs private and out of source control. <br>
-Risk: Create, update, run, or stop operations can change Alibaba Cloud DevOps resources. <br>
-Mitigation: Require explicit owner approval, confirm target scope and change window, run read-only discovery first, and prepare a rollback plan before mutating operations. <br>
-Risk: Network calls to Alibaba Cloud OpenAPI and metadata endpoints may expose request context or retrieve live service data. <br>
-Mitigation: Install and run the SDK only when working with intended Alibaba Cloud DevOps resources, and record key parameters needed for reproducible evidence. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to inspect Alibaba Cloud DevOps projects, repositories, pipelines, work items, and related API metadata before planning or executing DevOps changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cinience/aliyun-devops-manage) <br>
-- [DevOps product page in API Explorer](https://api.aliyun.com/product/devops) <br>
-- [DevOps OpenAPI metadata](https://api.aliyun.com/meta/v1/products/devops/versions/2021-06-25/api-docs.json) <br>
-- [DevOps product metadata](https://api.aliyun.com/meta/v1/products) <br>
-- [Alibaba Cloud API Explorer](https://api.aliyun.com/) <br>
-- [Alibaba Cloud DevOps documentation](https://www.alibabacloud.com/help/en/yunxiao) <br>
-- [API quick map](references/api_quick_map.md) <br>
-- [Operation templates](references/templates.md) <br>
-- [Source list](references/sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, markdown] <br>
-**Output Format:** [Markdown with inline shell commands and generated local evidence files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate API metadata, command output, and response summaries under output/aliyun-devops-manage/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Cloud credentials may grant broad access to Alibaba Cloud DevOps resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Alibaba Cloud identity, preferably read-only for inventory tasks.
+
+Risk: Mutating DevOps APIs can change projects, repositories, pipelines, work items, or test resources.
+
+Mitigation: Require explicit owner approval, a confirmed change window, read-only baseline checks, and a rollback plan before mutation.
+
+Risk: Unpinned SDK dependencies can introduce supply-chain drift.
+
+Mitigation: Pin SDK versions or use a controlled package mirror when supply-chain assurance is required.
+
+## Reference(s):
+
+- [DevOps API Quick Map](references/api_quick_map.md)
+- [DevOps Operation Templates](references/templates.md)
+- [DevOps Official Sources](references/sources.md)
+- [Alibaba Cloud DevOps API Explorer](https://api.aliyun.com/product/devops)
+- [Alibaba Cloud DevOps OpenAPI Metadata](https://api.aliyun.com/meta/v1/products/devops/versions/2021-06-25/api-docs.json)
+- [Alibaba Cloud DevOps Documentation](https://www.alibabacloud.com/help/en/yunxiao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, Python script guidance, and optional JSON or text output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated outputs and API response summaries are intended to be saved under output/aliyun-devops-manage/ with key parameters for reproducibility.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

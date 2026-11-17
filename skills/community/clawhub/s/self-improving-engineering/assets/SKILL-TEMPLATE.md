@@ -9,7 +9,7 @@ Template for creating skills extracted from engineering learnings. Copy and cust
 ```markdown
 ---
 name: skill-name-here
-description: "Concise description of the engineering problem this skill solves and when to use it. Include trigger conditions."
+description: "Concise description of the engineering problem this skill solves and when to use it. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name
@@ -74,12 +74,17 @@ For simple engineering skills that don't need all sections:
 ```markdown
 ---
 name: skill-name-here
-description: "What engineering problem this skill solves and when to use it."
+description: "What engineering problem this skill solves and when to use it. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name
 
 [Engineering problem statement in one sentence]
+
+## Triggers
+- Include when: [narrow, testable conditions]
+- Exclude when: [out-of-scope cases; never empty or catch-all matchers]
+
 
 ## Solution
 
@@ -94,17 +99,24 @@ description: "What engineering problem this skill solves and when to use it."
 
 ## Template with Scripts
 
+If the skill includes scripts, document narrowly scoped, testable conditions for when each script may run, plus exclusions. Do not imply always-on automation.
+
 For skills that include build/test/deploy helpers:
 
 ```markdown
 ---
 name: skill-name-here
-description: "What engineering problem this skill solves and when to use it."
+description: "What engineering problem this skill solves and when to use it. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name
 
 [Introduction]
+
+## Triggers
+- Include when: [narrow, testable conditions]
+- Exclude when: [out-of-scope cases; never empty or catch-all matchers]
+
 
 ## Quick Reference
 

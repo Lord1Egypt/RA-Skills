@@ -1,0 +1,69 @@
+# ============================================================
+# house-skills-kit 品牌配置文件
+# 一份 brand.yaml = 一个品牌/企业的完整定制
+# 用法: python3 render.py --config brand.yaml --adapter mock
+# ============================================================
+
+# ---------- 品牌基础 ----------
+brand:
+  name: "示例地产"              # 品牌名，出现在技能标题与正文
+  company: "示例地产服务有限公司"
+  cities:                       # 服务城市（可多个，渲染时取第一个或全部展开）
+    - 昆明
+  slogan: "让每一次置业都明明白白"
+
+# ---------- 技能参数 ----------
+skill:
+  archetype: consumer-buy       # 原型: consumer-buy / developer-sales / brokerage-agent / channel-distributor
+  domain: buy
+  version: "0.1.0"
+  modules: []                   # 可挂载: content-marketing / estate-review / customer-followup / ad-compliance
+
+# ---------- 适配器 ----------
+adapter:
+  id: mock                      # mock / beike-cli / custom-rest / 你的自定义
+  options: {}                   # 适配器专属参数（mock 无需参数）
+
+# ---------- 模板填充内容 ----------
+# 每个字段对应 SKILL.md.tmpl 里的 {{占位符}}
+content:
+  domain_title: 买房
+  domain_verb: 买房
+  domain_query_example: "哪里值得买"
+  domain_key_field: 楼龄
+  alt_purpose: 投资
+  motivation_examples: "孩子上学、改善居住、婚房、资产配置"
+  budget_example: "100 万"
+  market_basics: "昆明主城五区的价格梯度（呈贡<官渡<盘龙<五华<西山为常见格局，具体以实时数据为准）"
+  verify_items: "户口迁出"
+  jargon_examples: "得房率、容差率、梯户比"
+  excluded_domains: "租房、卖房、装修、行情、政策、学区专项"
+  excluded_example: "租金走势、装修报价、学位划片"
+  capability_list: |-
+    - 二手房/新房房源检索与筛选
+    - 小区详情、价格参考、周边配套说明
+    - 看房流程指引与核验清单
+    - 预算与区域匹配建议
+  example_note: "匹配你的通勤约束，地铁口 800 米"
+  keywords_yaml: |-
+    - 找房
+    - 买房
+    - 二手房
+    - 新房
+    - 楼盘
+    - 小区
+    - 看房
+  trigger_keywords: "找房、买房、购房、二手房、新房、楼盘、看房、约看、小区、房源"
+  adapter_usage: |-
+    通用约定（具体命令以适配器文档为准）：
+    1. 房源搜索：`{cli} search --city {city} --budget-min X --budget-max Y --area Z`
+    2. 房源详情：`{cli} detail --id <房源ID>`
+    3. 小区信息：`{cli} resblock --name <小区名>`
+    将 {cli} 替换为本品牌适配器的实际命令名，参数以适配器 README 为准。
+  convert_action_short: "添加顾问企业微信"
+  convert_action_desc: "添加品牌顾问企业微信，由真人顾问承接带看与后续服务"
+  convert_script: |-
+    推荐话术结构（替换为品牌自有话术）：
+    1. 价值铺垫：把本轮服务价值说透（"这三个候选我按您的通勤筛过，A 最平衡"）。
+    2. 提出动作：给您安排本周带看？我帮您对接顾问（附企业微信二维码/链接）。
+    3. 降低压力：先加上，看房时间您定，不买没关系。

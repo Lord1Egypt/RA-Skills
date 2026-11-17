@@ -1,39 +1,52 @@
-## Description: <br>
-美逛社交电商导购返利工具，聚合多平台优惠券和返利，提供商品推广素材和社群运营支持。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+美逛社交电商导购返利工具，聚合多平台优惠券和返利，提供商品推广素材和社群运营支持。
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External social-commerce promoters use this skill to find coupon and rebate information across major commerce platforms and prepare product-promotion content for community channels.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Coupon, price, commission, and estimated rebate details may be stale, platform-specific, or unavailable.
+
+Mitigation: Verify current offers and rebate terms against the relevant commerce platform before sharing or acting on them.
+
+Risk: Future timed posting, automatic link conversion, or platform-integration features could require account access, posting rights, or scheduling controls.
+
+Mitigation: Review requested account permissions, posting scopes, and scheduling controls before enabling those integrations.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External shopping promoters and assistants use this skill to prepare coupon, rebate, commission, and promotional-material summaries for products across supported e-commerce platforms. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad brand-name triggers may activate the skill when the user only mentions 美逛 generally. <br>
-Mitigation: Confirm the user wants coupon, rebate, or promotion guidance before producing a shopping-oriented response. <br>
-Risk: Future social posting, scheduled messaging, or automatic link rewriting features could affect group messages or shopping links. <br>
-Mitigation: Review future versions before granting social posting, scheduling, account access, or link-rewriting permissions. <br>
+**Output Format:** [Markdown-formatted coupon and rebate summaries]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Outputs may include product name, commerce platform, sale price, coupon description, rebate percentage, and estimated rebate when available.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style text summary with product, platform, price, coupon, rebate rate, and estimated rebate fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+0.1.0 (source: release metadata and SKILL.md frontmatter)
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

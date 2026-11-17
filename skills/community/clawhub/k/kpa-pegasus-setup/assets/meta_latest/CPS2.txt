@@ -1,0 +1,223 @@
+collection: CPS2
+sort-by: 10
+shortname: cps2
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/fbalpha2012_cps2_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: 1944
+file: 1944.zip
+assets.box_front: Imgs/1944.png
+description: 《1944》，由 Eighting / Raizing (Capcom license) 出品，2000 年发行，CPS2 街机 平台。
+publisher: Eighting / Raizing (Capcom license)
+release: 2000
+game: 19xx
+file: 19xx.zip
+assets.box_front: Imgs/19xx.png
+description: 《19xx》，由 Capcom 出品，1996 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1996
+game: armwar
+file: armwar.zip
+assets.box_front: Imgs/armwar.png
+description: 《armwar》，由 Capcom 出品，1994 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1994
+game: avsp
+file: avsp.zip
+assets.box_front: Imgs/avsp.png
+description: 《avsp》，由 Capcom 出品，1994 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1994
+game: batcir
+file: batcir.zip
+assets.box_front: Imgs/batcir.png
+description: 《batcir》，由 Capcom 出品，1997 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1997
+game: csclub
+file: csclub.zip
+assets.box_front: Imgs/csclub.png
+description: 《csclub》，由 Capcom 出品，1997 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1997
+game: cybots
+file: cybots.zip
+assets.box_front: Imgs/cybots.png
+description: 《cybots》，由 Capcom 出品，1995 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1995
+game: ddsom
+file: ddsom.zip
+assets.box_front: Imgs/ddsom.png
+description: 《ddsom》，由 Capcom 出品，1996 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1996
+game: ddtod
+file: ddtod.zip
+assets.box_front: Imgs/ddtod.png
+description: 《ddtod》，由 Capcom 出品，1993 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1993
+game: dimahoo
+file: dimahoo.zip
+assets.box_front: Imgs/dimahoo.png
+description: 《dimahoo》，由 Eighting / Raizing (Capcom license) 出品，2000 年发行，CPS2 街机 平台。
+publisher: Eighting / Raizing (Capcom license)
+release: 2000
+game: dstlk
+file: dstlk.zip
+assets.box_front: Imgs/dstlk.png
+description: 《dstlk》，由 Capcom 出品，1994 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1994
+game: ecofghtr
+file: ecofghtr.zip
+assets.box_front: Imgs/ecofghtr.png
+description: 《ecofghtr》，由 Capcom 出品，1993 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1993
+game: gigawing
+file: gigawing.zip
+assets.box_front: Imgs/gigawing.png
+description: 《gigawing》，由 Takumi (Capcom license) 出品，1999 年发行，CPS2 街机 平台。
+publisher: Takumi (Capcom license)
+release: 1999
+game: hsf2
+file: hsf2.zip
+assets.box_front: Imgs/hsf2.png
+description: 《hsf2》，由 Capcom 出品，2004 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 2004
+game: jyangoku
+file: jyangoku.zip
+assets.box_front: Imgs/jyangoku.png
+description: 《jyangoku》，由 Capcom 出品，1999 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1999
+game: megaman2
+file: megaman2.zip
+assets.box_front: Imgs/megaman2.png
+description: 《megaman2》，由 Capcom 出品，1996 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1996
+game: mmatrix
+file: mmatrix.zip
+assets.box_front: Imgs/mmatrix.png
+description: 《mmatrix》，由 Takumi (Capcom license) 出品，2000 年发行，CPS2 街机 平台。
+publisher: Takumi (Capcom license)
+release: 2000
+game: mpang
+file: mpang.zip
+assets.box_front: Imgs/mpang.png
+description: 《mpang》，由 Mitchell (Capcom license) 出品，2000 年发行，CPS2 街机 平台。
+publisher: Mitchell (Capcom license)
+release: 2000
+game: msh
+file: msh.zip
+assets.box_front: Imgs/msh.png
+description: 《msh》，由 Honafa 出品，1998 年发行，动作类游戏，CPS2 街机 平台。
+publisher: Honafa
+developer: Honafa
+release: 1998
+genre: Action
+game: mshvsf
+file: mshvsf.zip
+assets.box_front: Imgs/mshvsf.png
+description: 《mshvsf》，由 Capcom 出品，1997 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1997
+game: mvsc
+file: mvsc.zip
+assets.box_front: Imgs/mvsc.png
+description: 《mvsc》，由 Capcom 出品，1998 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1998
+game: nwarr
+file: nwarr.zip
+assets.box_front: Imgs/nwarr.png
+description: 《nwarr》，由 Capcom 出品，1995 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1995
+game: progear
+file: progear.zip
+assets.box_front: Imgs/progear.png
+description: 《progear》，由 Cave (Capcom license) 出品，2001 年发行，CPS2 街机 平台。
+publisher: Cave (Capcom license)
+release: 2001
+game: pzloop2
+file: pzloop2.zip
+assets.box_front: Imgs/pzloop2.png
+description: 《pzloop2》，由 Mitchell (Capcom license) 出品，2001 年发行，CPS2 街机 平台。
+publisher: Mitchell (Capcom license)
+release: 2001
+game: ringdest
+file: ringdest.zip
+assets.box_front: Imgs/ringdest.png
+description: 《ringdest》，由 Capcom 出品，1994 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1994
+game: sfa
+file: sfa.zip
+assets.box_front: Imgs/sfa.png
+description: 《sfa》，由 Capcom 出品，1995 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1995
+game: sfa2
+file: sfa2.zip
+assets.box_front: Imgs/sfa2.png
+description: 《sfa2》，由 Capcom 出品，1996 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1996
+game: sfa3
+file: sfa3.zip
+assets.box_front: Imgs/sfa3.png
+description: 《sfa3》，由 Capcom 出品，1998 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1998
+game: sfz2al
+file: sfz2al.zip
+assets.box_front: Imgs/sfz2al.png
+description: 《sfz2al》，由 Capcom 出品，1996 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1996
+game: sgemf
+file: sgemf.zip
+assets.box_front: Imgs/sgemf.png
+description: 《sgemf》，由 Capcom 出品，1997 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1997
+game: ssf2t
+file: ssf2t.zip
+assets.box_front: Imgs/ssf2t.png
+description: 《ssf2t》，由 Capcom 出品，1994 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1994
+game: vhunt2
+file: vhunt2.zip
+assets.box_front: Imgs/vhunt2.png
+description: 《vhunt2》，由 Capcom 出品，1997 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1997
+game: vsav
+file: vsav.zip
+assets.box_front: Imgs/vsav.png
+description: 《vsav》，由 Capcom 出品，1997 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1997
+game: vsav2
+file: vsav2.zip
+assets.box_front: Imgs/vsav2.png
+description: 《vsav2》，由 Capcom 出品，1997 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1997
+game: xmcota
+file: xmcota.zip
+assets.box_front: Imgs/xmcota.png
+description: 《xmcota》，由 Capcom 出品，1994 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1994
+game: xmvsf
+file: xmvsf.zip
+assets.box_front: Imgs/xmvsf.png
+description: 《xmvsf》，由 Capcom 出品，1996 年发行，CPS2 街机 平台。
+publisher: Capcom
+release: 1996

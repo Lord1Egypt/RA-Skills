@@ -1,6 +1,47 @@
 {
-  "ownerId": "kn73rjsd61kjdxp8s6k7ryn8x184h9xs",
-  "slug": "stanley-druckenmiller-investing",
+  "name": "stanley-druckenmiller",
   "version": "1.0.0",
-  "publishedAt": 1776261778309
+  "description": "Stanley Druckenmiller's macro investing philosophy and decision-making framework \u2014 the legendary investor who managed $12bn with ~30% annualized returns for 30 years",
+  "author": "Leo Li",
+  "tags": [
+    "investing",
+    "stanley-druckenmiller",
+    "macro-investing",
+    "global-macro",
+    "duquesne-capital",
+    "george-soros",
+    "quantum-fund",
+    "currency-trading",
+    "risk-management",
+    "leverage"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Talentedleo/celebrity_skills",
+  "issues": "https://github.com/Talentedleo/celebrity_skills/issues",
+  "minimumOpenClawVersion": "1.0.0",
+  "skillSpecVersion": "1.0.0",
+  "triggers": [
+    "Stanley Druckenmiller",
+    "Druckenmiller",
+    "macro investing",
+    "global macro",
+    "Duquesne Capital",
+    "Quantum Fund",
+    "Soros",
+    "currency trading",
+    "macro trading",
+    "Druckenmiller philosophy"
+  ],
+  "sources": [
+    {
+      "name": "Morgan Stanley - Hard Lessons",
+      "url": "https://www.morganstanley.com/insights/videos/hard-lessons/duquesne-stan-druckenmiller-iliana-bouzali"
+    },
+    {
+      "name": "Duquesne Capital Management",
+      "url": "https://en.wikipedia.org/wiki/Duquesne_Capital_Management"
+    }
+  ],
+  "lastUpdated": "2026-04-15",
+  "language": "en"
 }

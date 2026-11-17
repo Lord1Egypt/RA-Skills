@@ -1,38 +1,53 @@
-## Description: <br>
-Encryption and decryption toolkit for string and byte data that supports Fernet symmetric encryption, fallback XOR encryption, custom password protection, code obfuscation, and batch processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pywayne Crypto helps agents provide guidance and code examples for encrypting and decrypting strings, bytes, configuration files, batches of values, and basic Python code obfuscation.
 
-## Publisher: <br>
-[wangyendt](https://clawhub.ai/user/wangyendt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangyendt](https://clawhub.ai/user/wangyendt)
 
-## Use Case: <br>
-Developers use this skill for guidance and examples when encrypting or decrypting strings and bytes, protecting configuration data, and obfuscating Python code with pywayne.crypto. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Default-key or fallback XOR encryption may be inappropriate for important secrets. <br>
-Mitigation: Verify the pywayne.crypto package source and version, and use a strong password or key for real secrets. <br>
-Risk: Encrypted configuration files can be saved, overwritten, or exposed in unintended locations. <br>
-Mitigation: Choose configuration file paths carefully and avoid printing secrets or writing them to logs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers use this skill when they need agent guidance for encrypting or decrypting strings and bytes, password-protecting JSON configuration data, batch processing encrypted values, or applying basic Python code obfuscation.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown with Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill describes weak encryption patterns for sensitive data, including a default key and XOR fallback.
+
+Mitigation: Review before installing or using for real secrets; require strong user-provided keys and authenticated encryption from a verified implementation for passwords, tokens, database credentials, and confidential data.
+
+Risk: Users may rely on code obfuscation or fallback encryption as if it provided strong confidentiality.
+
+Mitigation: Use obfuscation only as a limited deterrent and direct high-security applications to professional cryptography libraries and reviewed key-management practices.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangyendt/skills/crypto-2)
+- [Publisher profile](https://clawhub.ai/user/wangyendt)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration instructions]
+
+**Output Format:** [Markdown with Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include encryption, decryption, batch processing, configuration-file handling, and code-obfuscation examples.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

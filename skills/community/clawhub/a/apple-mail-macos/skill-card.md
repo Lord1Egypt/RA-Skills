@@ -1,46 +1,61 @@
-## Description: <br>
-Use local CLI to manage Gmail, Outlook, iCloud, Yahoo, Fastmail, and other mail accounts synced in Apple Mail on macOS, without APIs or OAuth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use local CLI to manage Gmail, Outlook, iCloud, Yahoo, Fastmail, and other mail accounts synced in Apple Mail on macOS, without APIs or OAuth.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent search, triage, draft, send, move, archive, and delete messages in accounts already connected to Apple Mail on macOS. It is intended for local Mail.app automation with dry-run previews and confirmation gates for write actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate real Apple Mail accounts on the local Mac, including write actions such as sending, deleting, forwarding, reply-all, and bulk mailbox changes. <br>
-Mitigation: Keep dry-run previews and explicit confirmation gates enabled for all high-risk write actions, with second confirmation for recipient changes, reply-all expansion, forwarding, and bulk operations. <br>
-Risk: Retained local mailbox context and operation logs in ~/apple-mail-macos/ may become broader than intended over time. <br>
-Mitigation: Review local memory, safety, and operation logs periodically and keep stored context limited to the accounts, mailbox scopes, and preferences needed for current workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/apple-mail-macos) <br>
-- [Skill Homepage](https://clawic.com/skills/apple-mail-macos) <br>
-- [Setup Guide](setup.md) <br>
-- [Command Paths](command-paths.md) <br>
-- [Provider Coverage](provider-coverage.md) <br>
-- [Safety Checklist](safety-checklist.md) <br>
-- [Operation Patterns](operation-patterns.md) <br>
-- [Troubleshooting](troubleshooting.md) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent search, triage, draft, send, move, archive, and delete messages in Apple Mail on macOS while keeping provider sync inside Mail.app.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and confirmation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include dry-run previews, operation IDs, local configuration notes, and read-back verification summaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send email or change mailbox state through Apple Mail.
+
+Mitigation: Keep dry-run previews and explicit confirmation gates enabled before send, delete, move, archive, forwarding, reply-all, or bulk workflows.
+
+Risk: Wrong-recipient or duplicate-send mistakes can occur if message identity or recipient lists are ambiguous.
+
+Mitigation: Resolve messages with at least two identity fields, review recipients before sending, require second confirmation when recipients change, and check operation history for duplicate send context.
+
+Risk: Bulk archive or delete actions can cause unintended mailbox changes.
+
+Mitigation: Show filters, impacted counts, and sample rows before execution, require a second confirmation, prefer archive over permanent delete unless explicitly requested, and verify mailbox state afterward.
+
+Risk: Local operation logs may contain mail metadata and high-risk action history.
+
+Mitigation: Store only the operational context needed for safety and review local logs when deciding whether the skill fits the deployment environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/apple-mail-macos)
+- [Skill Homepage](https://clawic.com/skills/apple-mail-macos)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run previews, confirmation prompts, operation IDs, and read-back verification for write workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

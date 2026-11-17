@@ -1,48 +1,56 @@
-## Description: <br>
-Ardi Skill helps an agent solve multilingual riddles, submit Base mainnet commit-reveal transactions, and mint or manage Ardinal NFTs for the Ardi WorkNet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ardi Skill guides agents through Ardi WorkNet setup and Base mainnet commit-reveal workflows for solving multilingual riddles and inscribing Ardinal NFTs.
 
-## Publisher: <br>
-[yangyangxing](https://clawhub.ai/user/yangyangxing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yangyangxing](https://clawhub.ai/user/yangyangxing)
 
-## Use Case: <br>
-External agents and operators use this skill to run the Ardi WorkNet flow: check wallet and stake readiness, reason over riddle epochs, commit and reveal answers, mint winning Ardinal NFTs, and manage related rewards or transfers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can authorize wallet-backed transactions, purchases, staking, marketplace operations, reward claims, and NFT transfers on Base mainnet. <br>
-Mitigation: Use a dedicated low-balance wallet, review quoted costs before execution, and require explicit operator confirmation before spend, claim, list, buy, stake, or transfer commands. <br>
-Risk: Autonomous mining can create recurring LLM usage, gas spending, and unattended commit, reveal, or inscribe attempts. <br>
-Mitigation: Enable auto-mine only when the operator accepts unattended operation; monitor status output and stop the timer or loop when spending limits or operational goals are reached. <br>
-Risk: Installer scripts fetch executable releases and can change what is installed over time. <br>
-Mitigation: Inspect installers and release artifacts before running them, or pin a reviewed release instead of installing the latest version blindly. <br>
-Risk: Deleting or losing the local state file between commit and reveal can make the answer nonce unavailable and forfeit the commit bond. <br>
-Mitigation: Preserve and back up the per-address state file before migration or cleanup, and avoid deleting Ardi state while commits are pending. <br>
-Risk: The wallet integration does not use a session-token model and may leave approvals or spending authority active after use. <br>
-Mitigation: Keep wallet funds limited, review token and NFT approvals after operation, and revoke unnecessary approvals. <br>
+## Use Case:
 
+External developers and agent operators use this skill to configure ardi-agent, check wallet and staking readiness, solve Ardi riddles, and run the commit, reveal, inscribe, transfer, claim, repair, market, or auto-mine workflows on Base mainnet.
 
-## Reference(s): <br>
-- [ClawHub Ardi Skill release](https://clawhub.ai/yangyangxing/ardi-skill) <br>
-- [Ardi Skill homepage](https://github.com/awp-worknet/ardi-skill) <br>
-- [AWP Wallet dependency](https://github.com/awp-core/awp-wallet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires terminal access, awp-wallet, Base mainnet funds, and preservation of local Ardi state between commit and reveal.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Installation and autonomous mining can run mutable remote code or a user-level recurring agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned release with verified checksums, avoid pipe-to-shell bootstrap, and enable auto-mine only after reviewing the recurring-agent behavior.
+
+Risk: Wallet-signing operations can submit on-chain transactions through awp-wallet and may rely on coordinator-supplied contract addresses despite an advertised allowlist.
+
+Mitigation: Confirm the contract addresses used for each signing operation, isolate valuable assets from the operating wallet, and review transactions before approval.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yangyangxing/skills/ardi-skill)
+- [Ardi Skill Homepage](https://github.com/awp-worknet/ardi-skill)
+- [awp-wallet Required Skill](https://github.com/awp-core/awp-wallet)
+- [Ardi Coordinator API](https://api.ardinals.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline CLI commands and JSON command-output interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to run ardi-agent and awp-wallet commands that submit Base mainnet transactions after operator confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact SKILL.md and Cargo.toml report ardi-agent 0.5.19)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,62 @@
-## Description: <br>
-景点智能推荐 provides zero-configuration travel lookup tools for attractions, hotels, transport, restaurants, train tickets, and flights, including images, prices, ratings, routes, and booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+6项工具覆盖景点、酒店、交通、美食、火车票、机票，含图片和预订链接，途牛+高德数据直连，零配置即装即用。
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-External users and agents use this skill to plan China-focused trips by searching attractions, nearby hotels and restaurants, local transport options, and rail or flight options from one travel workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trip searches and location details are sent to the skill author's external travel and map proxy services. <br>
-Mitigation: Avoid entering unusually sensitive itinerary details unless the user trusts the provider's handling of travel and location data. <br>
-Risk: Prices, ticket availability, restaurant ratings, and route estimates may be stale or approximate. <br>
-Mitigation: Verify current details on the booking page or map service before purchasing tickets, booking lodging, or starting travel. <br>
+## Use Case:
 
+Travel users and agents use this skill to search domestic China attractions, nearby hotels and restaurants, local transport options, and train or flight options while planning an itinerary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/smart-poi) <br>
-- [Publisher profile](https://clawhub.ai/user/travel-skills) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted text with images, links, prices, ratings, route summaries, and availability notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on external travel and map proxy services; prices, availability, ratings, and route estimates can change and should be verified on booking or map pages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and artifact metadata; artifact version file says 1.0.0) <br>
+Risk: Travel searches, locations, origin and destination details, and travel dates are sent through cloud proxy services to travel and map providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for travel planning data that users are comfortable sharing with those external services, and avoid entering sensitive personal details.
+
+Risk: Recommendation, price, ticket, route, rating, and availability results can be incomplete or stale because they depend on live third-party provider data.
+
+Mitigation: Confirm prices, availability, routes, and booking terms on the linked provider page before making travel decisions or purchases.
+
+Risk: The skill provides booking links but does not complete purchases or reservations itself.
+
+Mitigation: Treat booking links as handoff points and review all order details on the destination platform before checkout.
+
+Risk: The skill is documented as covering domestic China attractions, with possible gaps in smaller-city transport and restaurant data.
+
+Mitigation: Use another map or travel source for unsupported destinations, overseas points of interest, or city coverage that appears incomplete.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/travel-skills/skills/smart-poi)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/travel-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown text with travel search results, images, prices, route summaries, and booking links when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are returned from external travel and map providers through cloud proxy services; prices, availability, travel time, ratings, and coverage may change.]
+
+## Skill Version(s):
+
+2.0.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

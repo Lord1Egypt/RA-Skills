@@ -1,42 +1,60 @@
-## Description: <br>
-Scans your Google Calendar for upcoming flights and writes a personalized circadian adjustment plan back to your calendar. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans your Google Calendar for upcoming flights and writes a personalized circadian adjustment plan back to your calendar.
 
-## Publisher: <br>
-[chadholdorf](https://clawhub.ai/user/chadholdorf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chadholdorf](https://clawhub.ai/user/chadholdorf)
 
-## Use Case: <br>
-External users can run this OpenClaw skill to detect upcoming flight events in Google Calendar and generate a calendar-based jet lag adjustment plan. It is intended for personal travel planning where the user accepts Google Calendar read/write access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires durable Google Calendar read/write access and stores an OAuth token locally. <br>
-Mitigation: Install only if that access is acceptable, protect the .env and .oauth-token.json files, and revoke the OAuth grant when the skill is no longer needed. <br>
-Risk: Setup guidance includes unsafe credential-sharing advice. <br>
-Mitigation: Create dedicated Google OAuth credentials instead of asking another bot or service to reveal a client secret. <br>
-Risk: The skill may automatically add many calendar events. <br>
-Mitigation: Review the calendar after each run and remove or correct unexpected entries. <br>
+## Use Case:
 
+External users and OpenClaw users use Jetlag Planner to detect upcoming flights in their primary Google Calendar and create circadian adjustment reminders for sleep timing, light exposure, melatonin timing, and arrival-day planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chadholdorf/openclaw-jetlag) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Plain text summary with shell commands and Google Calendar events] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports detected flights, skipped flights, created event counts, or setup and authorization errors; writes circadian adjustment events to Google Calendar when authorized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill requests broad Google Calendar access and can read the primary calendar.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use fresh Google OAuth credentials created specifically for this skill and revoke the authorization when the skill is no longer needed.
+
+Risk: The skill can automatically add many calendar events.
+
+Mitigation: Run it manually first, review the events it creates, and remove or adjust unwanted entries before relying on recurring use.
+
+Risk: Credential setup and saved OAuth tokens can expose sensitive access if mishandled.
+
+Mitigation: Do not ask another bot to print secrets, keep .env and .oauth-token.json private, and restrict token file permissions.
+
+## Reference(s):
+
+- [Jetlag Planner on ClawHub](https://clawhub.ai/chadholdorf/skills/openclaw-jetlag)
+- [Node.js](https://nodejs.org)
+- [Google Cloud Console](https://console.cloud.google.com)
+- [Google Calendar OAuth Scope](https://www.googleapis.com/auth/calendar)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text summary with setup guidance or execution results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create multiple Google Calendar events after OAuth authorization.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

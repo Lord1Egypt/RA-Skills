@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reconcile oracle resolution, payout and wallet balance evidence"
+  short_description: "Reconcile prediction payouts and terminal balances"
+  default_prompt: "Use $galleon-prediction-market-resolution to reconcile oracle resolution, payout and wallet balance evidence."

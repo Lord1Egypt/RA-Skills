@@ -1,0 +1,63 @@
+<section data-name="入场卡片" data-background="#f7f3ea">
+  <svg width="390" height="220" data-name="点击入场">
+    <g
+      data-type="animationGroup"
+      data-mode="appear"
+      data-trigger="pointerUp"
+      data-order="up"
+      data-name="卡片入场"
+    >
+      <rect x="24" y="40" width="342" height="80" fill="#F7F7F7" rx="12">
+        <animate
+          data-preset="上浮渐现"
+          data-trigger="pointerUp"
+          data-delay="0"
+          data-duration="0.55"
+        />
+      </rect>
+      <text x="40" y="62" width="310" height="36" fill="#333333" font-size="20">
+        点我依次出现
+        <animate
+          data-preset="渐现"
+          data-trigger="pointerUp"
+          data-delay="0.48"
+          data-duration="0.4"
+        />
+      </text>
+      <text
+        x="40"
+        y="160"
+        width="310"
+        height="28"
+        fill="#595959"
+        font-size="14"
+        opacity="0"
+        data-editor-visible="true"
+      >
+        自动出现的旁注
+        <animate data-preset="渐现" data-trigger="load" data-duration="0.5" />
+      </text>
+    </g>
+  </svg>
+  <svg width="390" height="80" data-name="自动入场">
+    <g data-type="animationGroup" data-mode="autoplay" data-name="标题入场">
+      <text
+        x="24"
+        y="22"
+        width="342"
+        height="36"
+        fill="#333333"
+        font-size="20"
+        opacity="0"
+        data-editor-visible="true"
+      >
+        标题自动上浮
+        <animate
+          data-preset="上浮渐现"
+          data-trigger="load"
+          data-duration="0.6"
+        />
+      </text>
+    </g>
+  </svg>
+</section>

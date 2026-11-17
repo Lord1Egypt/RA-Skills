@@ -1,42 +1,57 @@
-## Description: <br>
-Provides privacy-preserving web search through a local SearXNG instance, with Docker port discovery, result aggregation, local caching, and stock-query report formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+web-searxng lets agents query a configured SearXNG instance for privacy-oriented web search, aggregate results, and format either general search results or stock-style analysis reports.
 
-## Publisher: <br>
-[xumanzi](https://clawhub.ai/user/xumanzi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xumanzi](https://clawhub.ai/user/xumanzi)
 
-## Use Case: <br>
-Agents and users use this skill to query a trusted SearXNG instance for privacy-oriented web search results. Finance-related queries are formatted as stock-analysis reports when the skill detects a stock search pattern. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill discovers local Docker containers and localhost ports to find a SearXNG service. <br>
-Mitigation: Set SEARXNG_URL to the exact trusted SearXNG instance for best control over where queries are sent. <br>
-Risk: Search queries and results may be cached locally by the skill. <br>
-Mitigation: Avoid highly sensitive queries unless you control both the SearXNG instance and the local cache location. <br>
-Risk: Stock-analysis output is generated from search results and simple derived estimates. <br>
-Mitigation: Treat finance reports as informational guidance and verify against authoritative market data before making decisions. <br>
+## Use Case:
 
+Developers and agent users use this skill to route web-search tasks through SearXNG, including general result aggregation and finance-related searches that are formatted as stock analysis reports. It is useful when a workflow needs a configurable search endpoint and concise Markdown summaries.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xumanzi/web-searxng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown search results or stock-analysis reports, with plain-text status and fallback messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Caches SearXNG results locally for one hour and can return a fallback DuckDuckGo link when SearXNG is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; changelog source: user) <br>
+Risk: Private search terms may be sent to an untrusted or unintended SearXNG endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set SEARXNG_URL explicitly to a trusted instance before use and verify endpoint routing before submitting sensitive queries.
+
+Risk: Search queries and results may be stored in the local scripts/.cache directory.
+
+Mitigation: Avoid sensitive queries when local caching is unacceptable and clear scripts/.cache after use when needed.
+
+Risk: Stock-mode output can look like financial analysis or recommendations.
+
+Mitigation: Treat stock reports as generic generated analysis, verify market data against authoritative sources, and do not use the output as financial advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xumanzi/skills/web-searxng)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown search summaries, Markdown stock-style reports, or a fallback search link when SearXNG is unavailable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may be live or served from a local one-hour cache; general search output includes up to 20 processed results.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

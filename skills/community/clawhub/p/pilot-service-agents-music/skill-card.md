@@ -1,44 +1,58 @@
-## Description: <br>
-Music metadata and lyrics - iTunes search and Lyrics.ovh. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides music metadata and lyrics lookup workflows for iTunes search and Lyrics.ovh through Pilot Protocol service agents.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and agents use this skill to discover Pilot Protocol music service agents, search iTunes metadata, and request lyrics by artist and title through Lyrics.ovh. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, lyrics requests, and summary prompts are sent through Pilot Protocol agents and may involve external network services. <br>
-Mitigation: Use only non-sensitive queries and avoid sending private text through the overlay or Gemini summary path. <br>
-Risk: Lyrics availability and rights are upstream-dependent and not guaranteed by the skill. <br>
-Mitigation: Treat lyrics results as best-effort lookup data and verify usage rights before redistribution or commercial use. <br>
-Risk: The skill depends on a local pilotctl setup and network 9 service-agent availability. <br>
-Mitigation: Install only in trusted Pilot Protocol environments and verify the daemon, network join, and discovered agent contracts before use. <br>
+## Use Case:
 
+External developers and agent users use this skill to discover music service agents, search iTunes metadata, fetch lyrics, and request summaries through Pilot Protocol.
 
-## Reference(s): <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-service-agents-music) <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, json, text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, Pilot Protocol core skills, a running daemon joined to network 9, and reachable service agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Free-form queries and summary requests may send private or sensitive text through Pilot Protocol service agents and external services, including Gemini summaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private or sensitive text in music queries, lyric requests, and summary prompts; review outgoing requests before sending them.
+
+Risk: Lyrics and metadata are best-effort lookups, and the artifact does not guarantee lyric licensing rights.
+
+Mitigation: Verify licensing and usage rights separately before reusing lyrics or metadata in commercial materials.
+
+Risk: The skill depends on pilotctl, a running Pilot Protocol daemon, network 9 membership, and reachable service agents.
+
+Mitigation: Confirm dependencies and run fresh list-agents and /help queries before relying on a specific agent contract.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-service-agents-music)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The service agents return ACK envelopes first; actual lookup results are read from the pilotctl inbox as JSON data or prose summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

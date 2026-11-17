@@ -1,40 +1,52 @@
-## Description: <br>
-WLS runtime engineer skill for worker lifecycle, reload versus restart decisions, process cleanup, and runtime stability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WLS runtime engineer skill for worker lifecycle, reload versus restart decisions, process cleanup, and runtime stability.
 
-## Publisher: <br>
-[aiweline](https://clawhub.ai/user/aiweline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aiweline](https://clawhub.ai/user/aiweline)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to diagnose WLS lifecycle issues, choose reload or restart behavior, preserve worker stability, and validate runtime process changes with dedicated local test instances.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill directs agents to start local WLS test instances, which can leave processes running or conflict with the default WLS port if handled carelessly.
+
+Mitigation: Use a unique dedicated test instance on port 9502 or higher, avoid default port 9501 for AI testing, and confirm the test instance is stopped after validation.
+
+Risk: Runtime-sensitive worker changes can reduce responsiveness if blocking calls or blind process cleanup are introduced.
+
+Mitigation: Keep cleanup lifecycle-aware, avoid sleep, die, and exit in runtime-sensitive code, and validate worker behavior after reload or restart.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to diagnose WLS worker lifecycle issues, dispatcher behavior, reload-versus-restart decisions, process cleanup, and runtime-sensitive stability problems. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [analysis, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Process start, reload, restart, and stop commands can affect running WLS instances or the wrong port. <br>
-Mitigation: Review process-control commands before running them, use a dedicated test instance on port 9502 or higher, avoid port 9501, use a unique instance name, and stop the instance after validation. <br>
-Risk: Blocking calls or abrupt termination in runtime-sensitive code can destabilize workers. <br>
-Mitigation: Avoid sleep, die, and exit inside WLS runtime-sensitive code, and validate worker behavior, cleanup, and stability after changes. <br>
+**Output Format:** [Markdown with inline code and command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aiweline/wls-process-stability) <br>
+**Other Properties Related to Output:** [Runtime stability guidance should include lifecycle impact, validation steps, and cleanup confirmation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown guidance with code or shell command examples when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes lifecycle impact, validation steps, and cleanup confirmation.] <br>
+1.1.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

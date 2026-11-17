@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 市场进入对照简报"
+  short_description: "用商品页与评论证据整理进入前的对照问题"
+  default_prompt: "使用 $amazon-market-entry-brief 根据主 ASIN 与竞品商品页和评论证据整理市场进入前对照简报。"

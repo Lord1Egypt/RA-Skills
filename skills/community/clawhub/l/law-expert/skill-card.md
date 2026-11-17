@@ -1,49 +1,60 @@
-## Description: <br>
-法眼 is a Chinese-law assistant skill for legal issue triage, contract review, litigation drafting, compliance checks, rights guidance, and legal document generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+法眼 is a PRC-law assistant skill for contract review, dispute diagnosis, legal drafting, compliance checks, IP review, digital compliance, and litigation workflow guidance.
 
-## Publisher: <br>
-[hoho-x](https://clawhub.ai/user/hoho-x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangxxuan](https://clawhub.ai/user/huangxxuan)
 
-## Use Case: <br>
-External users and teams use this skill to understand Chinese-law situations, compare action paths, review contracts, draft legal documents, and prepare practical next steps before seeking professional legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles high-stakes legal drafting and may produce incorrect, outdated, or misleading legal guidance. <br>
-Mitigation: Use it as a drafting and education aid, then verify laws, filing rules, deadlines, and enforceability with official sources or a licensed lawyer before acting. <br>
-Risk: Legal workflows can involve sensitive identity data and third-party personal information. <br>
-Mitigation: Redact or replace full ID numbers, addresses, phone numbers, identity-document scans, and third-party personal data unless the information is truly necessary. <br>
-Risk: The artifact describes legal research and timeliness validation workflows that still require current external verification. <br>
-Mitigation: Treat generated citations, status checks, and litigation steps as prompts for independent verification against authoritative sources. <br>
+## Use Case:
 
+External users use this skill for preliminary PRC-law triage, contract risk review, dispute path comparison, legal document drafting, compliance self-checks, and step-by-step filing or rights-protection guidance before escalating to a licensed lawyer when needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hoho-x/law-expert) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Usage guide](artifact/ç¨æ³æå.md) <br>
-- [Contract review SOP](artifact/references/sops/sop-01-contract-review.md) <br>
-- [Litigation drafting SOP](artifact/references/sops/sop-12-litigation-drafting.md) <br>
-- [Legal Q&A SOP](artifact/references/sops/sop-08-legal-qna.md) <br>
-- [Regulation search tool](artifact/scripts/regulation_search.py) <br>
-- [Regulation validator tool](artifact/scripts/regulation_validator.py) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown-style legal analysis, checklists, comparisons, drafts, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include professional and plain-language versions, risk labels, action steps, legal document drafts, and verification prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter reports 4.0.0) <br>
+Risk: Legal guidance, statutes, cases, deadlines, or filing requirements may be outdated or incorrect for a user's specific matter.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current law and procedural requirements with authoritative sources or a licensed lawyer before relying on the output.
+
+Risk: Legal workflows and draft documents may involve personal identifiers, addresses, phone numbers, and third-party details.
+
+Mitigation: Use placeholders or redactions for sensitive details until they are necessary and appropriate to include.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangxxuan/skills/law-expert)
+- [Publisher profile](https://clawhub.ai/user/huangxxuan)
+- [Usage guide](artifact/ç¨æ³æå.md)
+- [Contract review SOP](artifact/references/sops/sop-01-contract-review.md)
+- [Litigation drafting SOP](artifact/references/sops/sop-12-litigation-drafting.md)
+- [Risk assessment matrix](artifact/references/tools/risk-assessment-matrix.md)
+- [PRC law references](artifact/references/laws/)
+- [Legal document templates](artifact/references/templates/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown with legal analysis, tables, checklists, draft documents, action steps, and optional command-line helper usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be treated as preliminary PRC-law guidance and reviewed against authoritative current sources or by a licensed lawyer.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

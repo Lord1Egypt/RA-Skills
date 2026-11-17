@@ -1,44 +1,53 @@
-## Description: <br>
-Token savings and API cost optimization. Provides token calculator, three-tier optimization strategies (prompt compression / cache reuse / model downgrade), specific configuration guides, and quantified effect analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps estimate and reduce API token costs with a calculator, prompt compression, cache reuse, model routing, configuration guidance, and quantified savings examples.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill to estimate token costs, compare optimization tiers, and plan prompt compression, caching, and model routing changes for API workloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reference document caching can expose sensitive user documents, code, or contracts if implemented without controls. <br>
-Mitigation: Get user or organizational approval before indexing documents, avoid secrets and sensitive content unless necessary, and define encryption, access controls, retention, and deletion procedures. <br>
-Risk: Over-compression, overly low token limits, or broad model downgrades can reduce answer quality or cause incomplete responses. <br>
-Mitigation: Retain core behavioral constraints, use a response-size buffer, validate each optimization phase against a baseline, and add an upgrade fallback for routed tasks. <br>
-Risk: Caches without expiration can return outdated answers. <br>
-Mitigation: Set TTLs for FAQ and summary caches and review token consumption and cache behavior periodically. <br>
+## Use Case:
 
+Developers and engineers use this skill to estimate model API costs and plan phased token-reduction work across prompt compression, caching, and model routing.
 
-## Reference(s): <br>
-- [Three-Tier Optimization Strategies Explained](references/tier-strategies.md) <br>
-- [Token Cost Optimization on ClawHub](https://clawhub.ai/openlark/token-cost-optimization) <br>
-- [OpenLark Publisher Profile](https://clawhub.ai/user/openlark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Python cost-calculation output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interactive calculator prompts for model choice, conversation volume, token averages, and optimization level.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Caching user documents, source code, contracts, or customer data can expose private or regulated information if implemented without safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit consent, minimize or redact stored content, apply access controls, define retention limits, and provide a deletion path before enabling document or vector-database caching.
+
+Risk: Over-compression, overly low token limits, or one-size-fits-all model downgrades can reduce answer quality or cause incomplete outputs.
+
+Mitigation: Measure a baseline, validate each optimization phase, keep task-appropriate token buffers, and use fallback routing when cheaper models do not meet quality requirements.
+
+## Reference(s):
+
+- [Three-Tier Optimization Strategies Explained](references/tier-strategies.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python snippets; the calculator prints terminal cost estimates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes estimated monthly before/after costs and savings percentages based on user-entered usage assumptions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

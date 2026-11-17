@@ -1,42 +1,56 @@
-## Description: <br>
-Universal adapter for multiple LLM providers with a unified interface for OpenAI, Anthropic, Google Gemini, Ollama, and LiteLLM-backed providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Python and CLI adapter for OpenAI, Anthropic, and Ollama chat, streaming, response comparison, and priority fallback.
 
-## Publisher: <br>
-[michealxie001](https://clawhub.ai/user/michealxie001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[michealxie001](https://clawhub.ai/user/michealxie001)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to configure and call supported LLM providers through one interface, compare model responses, stream replies, and fall back by provider priority.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Prompts, responses, API keys, and tool definitions may be sent to configurable provider endpoints.
+
+Mitigation: Use trusted provider configuration, avoid custom base URLs unless you control the endpoint, and do not include secrets or private data in prompts.
+
+Risk: The artifact documentation advertises Gemini, LiteLLM, load balancing, and cost tracking features that are not supported by the included code.
+
+Mitigation: Rely only on implemented OpenAI, Anthropic, Ollama, streaming, comparison, and priority fallback behavior until matching code and documentation are added.
+
+Risk: Dependencies are specified as version ranges and no lock file is included.
+
+Mitigation: Pin and review dependencies in the deployment environment before installation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent builders use this skill to call, compare, and fail over across configured LLM providers through one Python and CLI interface. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, system messages, tool definitions, and provider API keys may be sensitive when sent to configured LLM providers. <br>
-Mitigation: Use dedicated provider API keys, avoid secrets in prompts and tool schemas, and route sensitive work only to approved providers. <br>
-Risk: Automatic fallback, load balancing, and compare modes can send the same content to more than one provider. <br>
-Mitigation: Disable auto or compare modes for sensitive data and select the intended provider explicitly. <br>
-Risk: Dependencies are declared with open lower bounds, which can change runtime behavior over time. <br>
-Mitigation: Pin and scan dependencies before production or regulated use. <br>
+**Output Format:** [Markdown or plain text with CLI commands, Python snippets, configuration examples, and optional JSON comparison output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/michealxie001/oc-multi-llm) <br>
+**Other Properties Related to Output:** [May route prompts, responses, API keys, and tool definitions to configured provider endpoints.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or JSON responses, with Markdown-oriented command and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports streaming responses, provider comparison output, and optional provider/model usage metadata.] <br>
+1.0.0 (source: server release metadata and artifact version)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact version text) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,53 @@
+{
+  "name": "reinhards-european-expansion",
+  "displayName": "征服世界：欧洲扩张全球史知识库",
+  "description": "沃尔夫冈·赖因哈德《征服世界：一部欧洲扩张的全球史，1415～2015》结构化知识库技能。包含24章深度摘要、12个核心分析框架、48个专业术语、15个分析模式及决策速查表。",
+  "version": "1.0.0",
+  "author": "lutongsuo",
+  "license": "study-only",
+  "language": "zh-CN",
+  "tags": [
+    "history",
+    "global-history",
+    "colonialism",
+    "imperialism",
+    "decolonization",
+    "european-expansion",
+    "knowledge-base",
+    "academic-research",
+    "world-history",
+    "east-india-company"
+  ],
+  "category": "knowledge-base",
+  "sourceBook": {
+    "title": "征服世界：一部欧洲扩张的全球史，1415～2015",
+    "originalTitle": "Die Unterwerfung der Welt. Globalgeschichte der europäischen Expansion 1415-2015",
+    "author": "Wolfgang Reinhard",
+    "publisher": "Verlag C.H.Beck",
+    "year": 2016,
+    "volumes": 3,
+    "isbn_note": "中译本全三册"
+  },
+  "skillSpecs": {
+    "chapters": 24,
+    "frameworks": 12,
+    "terms": 48,
+    "patterns": 15,
+    "coreTokens": 4000,
+    "format": "agent-skills-v1",
+    "compatiblePlatforms": [
+      "qoderwork",
+      "claude-code",
+      "github-copilot-cli",
+      "amp"
+    ]
+  },
+  "files": {
+    "skill": "SKILL.md",
+    "readme": "README.md",
+    "chapters": "chapters/",
+    "glossary": "glossary.md",
+    "patterns": "patterns.md",
+    "cheatsheet": "cheatsheet.md"
+  }
+}

@@ -1,45 +1,53 @@
-## Description: <br>
-Analyzes AI compute sales scenarios by comparing current and proposed GPU configurations, calculating ROI, TCO, payback period, cost optimization suggestions, and competitor comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language AI compute ROI analyzer that compares current and proposed GPU infrastructure costs and throughput to estimate ROI, TCO, payback period, cost optimization options, and competitor comparisons.
 
-## Publisher: <br>
-[dashiming](https://clawhub.ai/user/dashiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dashiming](https://clawhub.ai/user/dashiming)
 
-## Use Case: <br>
-Sales engineers, solution architects, and finance stakeholders use this skill to compare AI compute options and estimate ROI, TCO, payback period, monthly savings, and revenue impact from GPU configuration changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial estimates may be misleading if formulas or input assumptions do not match the user's pricing, utilization, or revenue model. <br>
-Mitigation: Review the formulas and validate inputs before relying on ROI, TCO, payback, or revenue outputs for business decisions. <br>
-Risk: The CSV export writes to a path supplied by the user. <br>
-Mitigation: Use an intended export path and avoid overwriting important local files. <br>
-Risk: Broad trigger words can activate the skill during ordinary finance discussions. <br>
-Mitigation: Confirm that ROI/TCO analysis is desired before using the skill in ambiguous finance conversations. <br>
-Risk: Pricing and business metric inputs may include sensitive commercial information. <br>
-Mitigation: Avoid providing unnecessary confidential pricing, margin, customer, or contract data. <br>
+## Use Case:
 
+Developers, sales engineers, and infrastructure teams use this skill to compare AI compute or GPU deployment options using cost, throughput, and revenue assumptions. It produces ROI, TCO, payback, and cost comparison outputs for AI infrastructure sales and planning scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dashiming/pans-roi-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/dashiming) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Text, JSON, Files] <br>
-**Output Format:** [Plain text report, JSON, or CSV export] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CSV export writes to the user-provided output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad ROI trigger phrases may activate the skill for general finance questions outside the intended AI compute comparison scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep prompts and inputs scoped to AI infrastructure, GPU sales, cost, throughput, revenue, and deployment comparison scenarios.
+
+Risk: ROI, TCO, and payback outputs depend on user-supplied assumptions and may be misleading if costs, throughput, revenue, or period values are inaccurate.
+
+Mitigation: Validate input assumptions against current business and infrastructure data before using the report for purchasing or sales decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dashiming/skills/pans-roi-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, CSV files, Shell commands, Guidance]
+
+**Output Format:** [Plain text ROI report, JSON, or CSV export]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output; calculations are based on user-supplied costs, throughput, revenue, and analysis period.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

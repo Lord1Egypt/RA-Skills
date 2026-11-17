@@ -1,43 +1,58 @@
-## Description: <br>
-Turns a banker-memo analysis.md and data-provenance.md into a structured slide outline and rendered investment-banker-style PowerPoint deck with tables, charts, risk heatmaps, and scenario grids. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns banker-memo analysis.md and data-provenance.md into structured slide outlines and investment-banker-style PowerPoint decks with tables, charts, risk heatmaps, scenario grids, and callout views.
 
-## Publisher: <br>
-[jackdark425](https://clawhub.ai/user/jackdark425) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackdark425](https://clawhub.ai/user/jackdark425)
 
-## Use Case: <br>
-Developers, analysts, and agent operators use this skill after a banker memo is complete to create a structured slides-outline.md and render a .pptx deck with banker-style visual primitives instead of prose-only slides. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The renderer can expand into local package installation and code execution during deck rendering. <br>
-Mitigation: Review the renderer before use, run it only in a sandbox or disposable project directory, and prefer preinstalling pinned dependencies with npm scripts disabled. <br>
-Risk: Generated slide outlines can carry incorrect or unsupported data into the rendered deck. <br>
-Mitigation: Inspect slides-outline.md before rendering and keep the documented provenance validation gates in the workflow. <br>
-Risk: Confidential analysis may be placed into the active agent or model workflow. <br>
-Mitigation: Avoid using confidential analysis unless the operator is comfortable exposing that content to the active workflow. <br>
+## Use Case:
 
+Developers and analysts use this skill after a banker memo has been prepared to turn analysis.md and data-provenance.md into a structured slides-outline.md and a rendered .pptx deck. It is suited for investment-banking-style research decks that need real tables, charts, scenario views, risk heatmaps, and traceable numeric inputs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jackdark425/banker-slides-pptx) <br>
-- [Banker Slides PPTX prompt template](references/banker_slides_prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, structured slides-outline.md, shell commands, Python rendering scripts, and a rendered .pptx deck.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires existing analysis.md and data-provenance.md inputs; renderer expects structured slide blocks and numeric chart data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.7 (source: server release metadata) <br>
+Risk: Generated JavaScript execution and mutable dependency installation can create local code-execution risk during deck rendering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, run rendering in a constrained workspace, pin dependencies with a reviewed lockfile, and avoid automatic npm install during normal use.
+
+Risk: Untrusted ticker or company-name inputs may affect generated prompts, rendered content, or local command behavior.
+
+Mitigation: Use only trusted ticker and name inputs, validate ts_code before rendering, and serialize generated JavaScript values safely.
+
+Risk: Rendering in a broad workspace may expose credentials or unrelated files to the workflow.
+
+Mitigation: Run the skill only in a narrow deliverable directory and avoid exposing credentials or unrelated files while rendering.
+
+## Reference(s):
+
+- [Banker Slides Prompt Template](references/banker_slides_prompt.md)
+- [ClawHub Skill Page](https://clawhub.ai/jackdark425/skills/banker-slides-pptx)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown slide outline, shell command guidance, and rendered PowerPoint file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires existing analysis.md and data-provenance.md inputs; slide numbers are expected to trace back to provenance before rendering.]
+
+## Skill Version(s):
+
+0.9.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

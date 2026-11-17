@@ -1,43 +1,53 @@
-## Description: <br>
-Build per-chapter H2 writing briefs so a survey draft has coherent chapter leads and cross-subsection logic without adding prose or inventing citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds per-chapter H2 writing briefs so survey chapters have stronger lead plans and cross-H3 coherence without expanding the table of contents.
 
-## Publisher: <br>
-[WILLOSCAR](https://clawhub.ai/user/WILLOSCAR) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[willoscar](https://clawhub.ai/user/willoscar)
 
-## Use Case: <br>
-Developers, researchers, and writing agents use this skill inside a survey-writing workspace to convert an existing outline and subsection briefs into chapter-level planning records. It is intended to guide coherent chapter leads and synthesis while keeping the output intent-only and citation-safe. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is advertised as a narrow chapter-brief helper, but the security summary says the installed package also includes broader research-pipeline files and workflow-control tooling. <br>
-Mitigation: Install it only when that broader toolkit is acceptable; otherwise run only the documented scripts/run.py entrypoint in a controlled workspace and avoid routing the bundled pipeline files until reviewed. <br>
-Risk: The generated chapter briefs are bootstrap planning artifacts and may contain generic throughlines or repeated comparison framing if source briefs are thin. <br>
-Mitigation: Review outline/chapter_briefs.jsonl before drafting and create outline/chapter_briefs.refined.ok only after the records are chapter-specific and free of placeholders. <br>
-Risk: The skill depends on existing outline and subsection brief files; missing or unstable inputs can produce failures or poor planning records. <br>
-Mitigation: Run it after outline/outline.yml and outline/subsection_briefs.jsonl are present and stable, and rerun or refine only after outline changes are complete. <br>
+## Use Case:
 
+Developers and writing agents use this skill after an outline and subsection briefs exist to create chapter-level JSONL planning records for survey-style writing. The records help plan chapter leads, comparison axes, synthesis mode, key contrasts, and stable bridge terms without generating reader-facing prose or inventing citations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/WILLOSCAR/chapter-briefs) <br>
-- [Publisher profile](https://clawhub.ai/user/WILLOSCAR) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [JSONL file written as outline/chapter_briefs.jsonl plus command-line guidance in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [One JSON object per H2 chapter with subsections; records include throughline, key contrasts, synthesis mode, lead paragraph plan, bridge terms, and generated timestamp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 0.1.0) <br>
+Risk: Custom input or output paths may read or write files outside the intended chapter brief workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented default paths or enforce an allowlist limited to outline/outline.yml, outline/subsection_briefs.jsonl, GOAL.md, and outline/chapter_briefs.jsonl.
+
+Risk: The package includes broad pipeline tooling beyond the chapter-brief helper.
+
+Mitigation: Review the bundled files before installation and run the helper in a contained workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/willoscar/skills/chapter-briefs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions plus JSONL records in outline/chapter_briefs.jsonl]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 or python; default inputs are outline/outline.yml, outline/subsection_briefs.jsonl, and optional GOAL.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

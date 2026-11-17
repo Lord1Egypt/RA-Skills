@@ -1,43 +1,58 @@
-## Description: <br>
-Search magnet links for movies and TV shows, rank results by subtitle availability and resolution, and send the selected magnet link to qBittorrent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches magnet links for movies and TV shows, ranks results by subtitle availability and resolution, and downloads the selected result through qBittorrent.
 
-## Publisher: <br>
-[d19310](https://clawhub.ai/user/d19310) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[d19310](https://clawhub.ai/user/d19310)
 
-## Use Case: <br>
-External users and developers use this skill to search torrent indexes for movie or TV magnet links, rank candidates by subtitles and resolution, and add the selected result to a configured qBittorrent Web UI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically add a torrent to qBittorrent after ranking search results. <br>
-Mitigation: Require the agent to show the selected title, source, size, and magnet link, then obtain explicit user approval before starting a download. <br>
-Risk: The qBittorrent Web UI defaults in the artifact use common local credentials. <br>
-Mitigation: Change the default qBittorrent credentials before use and keep the Web UI bound to a trusted local address. <br>
-Risk: Torrent search and download activity may expose users to unwanted or unauthorized content. <br>
-Mitigation: Install only when torrent search and qBittorrent control are intentional, and review each selected result before download. <br>
+## Use Case:
 
+External users and developers use this skill to search torrent indexes for movie or TV magnet links, rank candidates by subtitle and resolution preferences, and send a selected magnet link to qBittorrent for download.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/d19310/torrent-downloader) <br>
-- [SolidTorrents search API](https://solidtorrents.to/api/v1/search?q={query}&sort=seeders) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output includes query, total count, ranked results, magnet links, titles, scores, sizes, seeders, leechers, and source; download output reports qBittorrent add status or recent torrent status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can automatically start downloads through qBittorrent after ranking torrent search results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before adding any magnet link and review the selected title, size, seeders, and source.
+
+Risk: Default qBittorrent credentials and credentialed Web UI access can expose downloader control if left unchanged or reachable on an untrusted network.
+
+Mitigation: Use dedicated non-default qBittorrent credentials and keep QBT_URL on loopback or HTTPS.
+
+Risk: Torrent search results may point to unsafe, misleading, or unauthorized content.
+
+Mitigation: Use the skill only where torrent downloading is permitted and inspect selected results before download.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/d19310/skills/torrent-downloader)
+- [SolidTorrents search API endpoint](https://solidtorrents.to/api/v1/search?q={query}&sort=seeders)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [JSON search results plus plain-text download status and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses qBittorrent connection settings from environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

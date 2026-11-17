@@ -1,45 +1,59 @@
-## Description: <br>
-Privacy Guard scans local OpenClaw logs for sensitive information leaks and helps users review, confirm, and whitelist detected items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Privacy Guard scans OpenClaw logs locally for sensitive data patterns, classifies findings by risk level, and supports review, reporting, and whitelist updates.
 
-## Publisher: <br>
-[cq2000419](https://clawhub.ai/user/cq2000419) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cq2000419](https://clawhub.ai/user/cq2000419)
 
-## Use Case: <br>
-Developers and operators use Privacy Guard to scan local OpenClaw logs for API keys, passwords, identity numbers, account data, financial data, and other sensitive content, then review suspicious detections and tune whitelist rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The released package includes an unredacted alert log with credentials and private conversation content. <br>
-Mitigation: Remove alert_log.md before installation or redistribution and rotate any exposed credentials before using the skill. <br>
-Risk: Generated reports and suspicious-item state may include previews of sensitive log lines. <br>
-Mitigation: Run the tool locally, store reports in a restricted location, and redact or hash sensitive previews before sharing outputs. <br>
-Risk: Notification webhooks can disclose detection metadata if configured broadly. <br>
-Mitigation: Leave webhook fields empty unless explicitly needed and restrict any configured webhook destination to approved recipients. <br>
+## Use Case:
 
+Developers and operators use this skill to scan OpenClaw log files for possible API keys, passwords, personal identifiers, financial data, and other sensitive data before sharing or retaining logs. It also lets users triage suspicious findings and maintain local whitelist state.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cq2000419/privacy-guard-dami) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [scan_report.md](artifact/scan_report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, local JSON configuration, and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally against OpenClaw log files and persists review state in local JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata and artifact changelog, released 2026-04-11) <br>
+Risk: The published package bundles private runtime logs containing a token-like secret.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install the package as-is; remove bundled logs, rotate the exposed token-like secret, and republish a clean release.
+
+Risk: Generated reports and JSON state can retain unredacted sensitive log snippets.
+
+Mitigation: Store outputs locally with restricted access, review them before sharing, and redact secrets before writing reports or state files.
+
+Risk: Alerting integrations can move detection metadata outside the local machine when configured.
+
+Mitigation: Keep outbound notification webhooks disabled unless approved and verify that outgoing alerts exclude sensitive log content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cq2000419/skills/privacy-guard-dami)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, console text, JSON state files, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local scan reports and suspicious or whitelist state; report snippets may contain sensitive log content unless redacted upstream.]
+
+## Skill Version(s):
+
+0.3.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

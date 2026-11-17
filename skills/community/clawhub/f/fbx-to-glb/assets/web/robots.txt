@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://zzh448.github.io/fbx-to-glb/sitemap.xml

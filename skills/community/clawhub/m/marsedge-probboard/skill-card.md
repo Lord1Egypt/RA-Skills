@@ -1,44 +1,59 @@
-## Description: <br>
-Query and summarize the MarsEdge probability board for BTC, ETH, SOL, and XRP 5-minute up/down signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and summarize the MarsEdge probability board for BTC, ETH, SOL, and XRP 5-minute up/down signals.
 
-## Publisher: <br>
-[akgod](https://clawhub.ai/user/akgod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akgod](https://clawhub.ai/user/akgod)
 
-## Use Case: <br>
-External users and agents use this skill to fetch the live MarsEdge probability board and summarize short-horizon BTC, ETH, SOL, and XRP up/down signals with model-vs-market caveats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat probability-board summaries as financial advice. <br>
-Mitigation: Present the output as market commentary, keep caveats visible, and avoid claims of certainty or trade recommendations. <br>
-Risk: The skill fetches live public data from marsedge.vip, so answers can be stale or unavailable if the API is delayed or unreachable. <br>
-Mitigation: Check freshness fields such as updatedAt, ts, ttl, and rem_secs before interpreting the board, and stop rather than guessing when data is unavailable. <br>
-Risk: The skill may be invoked for generic crypto analysis when the user did not request MarsEdge data. <br>
-Mitigation: Use it only for MarsEdge probability-board questions or when the user explicitly asks for MarsEdge data. <br>
+## Use Case:
 
+External users and agents use this skill to fetch the live MarsEdge probability board and produce short, trading-style summaries of symbol strength, model probabilities, market bid/ask context, and stale-data caveats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/akgod/marsedge-probboard) <br>
-- [MarsEdge live board](https://marsedge.vip) <br>
-- [Edge Rules](references/edge-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Concise Markdown bullets with optional shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Live board summaries are based on public MarsEdge API data and should include freshness or availability caveats when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The fetch script can be pointed at arbitrary base URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default MarsEdge endpoint and review any custom base URL before execution.
+
+Risk: Trading-style probability summaries may be mistaken for financial advice.
+
+Mitigation: Treat summaries as informational only and avoid presenting model-market gaps as certainty or recommendations.
+
+Risk: Live board data can be stale or unavailable.
+
+Mitigation: Check updatedAt, ts, ttl, and rem_secs before interpreting the board, and say plainly when data is stale or missing.
+
+## Reference(s):
+
+- [Edge Rules](references/edge-rules.md)
+- [MarsEdge](https://marsedge.vip)
+- [MarsEdge ProbBoard on ClawHub](https://clawhub.ai/akgod/skills/marsedge-probboard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Concise Markdown bullets with numeric probability, bid/ask, edge, freshness, and caveat details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include compact JSON from the fetch script; summaries are informational and should identify stale or missing live data.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

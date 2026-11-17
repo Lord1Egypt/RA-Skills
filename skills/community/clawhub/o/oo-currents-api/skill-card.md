@@ -1,43 +1,55 @@
-## Description: <br>
-Currents API lets agents search and read Currents API news data through the OOMOL-connected `currents_api` connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Currents API (currentsapi.services). Use this skill for ANY Currents API request — searching and reading data. Whenever a task involves Currents API, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to query Currents API news data through the OOMOL `currents_api` connector, including latest news, article search, supported categories, languages, and regions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security summary marks the release suspicious and reports high-impact moderation commands plus a review helper that can run nested Codex with full access by default. <br>
-Mitigation: Install only in trusted maintainer or development environments, disable YOLO autoreview unless full local access is intentional, and check the exact target, reason, credentials, and audit expectations before moderation commands run. <br>
-Risk: The skill requires sensitive credentials through the connected Currents API account. <br>
-Mitigation: Use the OOMOL-managed connector path rather than handling raw API tokens, and reconnect credentials only when an auth or connection error requires it. <br>
+## Use Case:
 
+Agents use this skill to retrieve the latest Currents news, browse available categories, languages, and regions, and search articles through a connected Currents API account.
 
-## Reference(s): <br>
-- [Currents API homepage](https://currentsapi.services) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-currents-api) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides the agent to inspect live connector schemas before running read-only Currents API actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Automatic setup can execute downloaded code without a clear approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately before enabling automatic setup. Prefer a verified, version-pinned release and check its bundled-skill installation behavior across your agents.
+
+Risk: Using OOMOL requires trusting it with connected service credentials and applicable charges.
+
+Mitigation: Review the connected account's permissions and billing implications before use.
+
+## Reference(s):
+
+- [Currents API](https://currentsapi.services)
+- [Currents API authentication documentation](https://currentsapi.services/en/docs/authentication)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [JSON API results with shell commands and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [News retrieval and lookup results depend on the connected Currents API account.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

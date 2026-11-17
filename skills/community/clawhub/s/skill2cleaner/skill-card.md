@@ -1,40 +1,56 @@
-## Description: <br>
-Scans installed OpenClaw skills to detect missing authorization, configuration, or environment variables, and can disable or uninstall invalid skills on request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans workspace skills to check whether authorization, configuration, and environment variables are complete, and can disable or uninstall invalid skills when requested.
 
-## Publisher: <br>
-[edde-101](https://clawhub.ai/user/edde-101) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[edde-101](https://clawhub.ai/user/edde-101)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and OpenClaw users use this skill to inspect installed skills for missing API keys, disabled configuration, or missing skill files, then produce a health report or clean invalid skills after review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can disable or forcibly uninstall installed skills without its own validity check or confirmation gate.
+
+Mitigation: Use report-only mode by default, verify exact skill names before cleanup, and require explicit confirmation before running disable or uninstall actions.
+
+Risk: Cleanup actions may affect valid skills if an unverified name is supplied.
+
+Mitigation: Validate requested skill names exactly and reject valid skills during cleanup.
+
+Risk: The dependency declaration allows broad PyYAML versions.
+
+Mitigation: Pin PyYAML before broad deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to audit installed skills, identify missing configuration or credentials, and clean up unusable skills after explicit confirmation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The clean action can disable or forcibly uninstall installed skills. <br>
-Mitigation: Run the report action first, verify every target skill name, and prefer disable before uninstall. <br>
-Risk: Cleanup has weak built-in safeguards if an unintended skill name is supplied. <br>
-Mitigation: Only run clean after explicitly choosing the exact skills to change. <br>
+**Output Format:** [Plain text diagnostic reports and command output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/edde-101/skill2cleaner) <br>
+**Other Properties Related to Output:** [Report mode lists valid and invalid skills with reasons; clean mode can disable or uninstall named skills.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text diagnostic reports and cleanup logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report-only mode lists skill status before any cleanup action.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

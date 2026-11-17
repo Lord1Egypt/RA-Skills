@@ -1,43 +1,61 @@
-## Description: <br>
-Video Ai Process helps an agent plan and run a video-processing workflow that transcribes video, analyzes rough and fine cuts, segments and composes clips, records results in Feishu Bitable, and supports customer-ranked custom edits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides a video workflow that transcribes source media, drafts coarse and highlight edit plans, segments and assembles clips with FFmpeg, and records clip metadata and review scores in Feishu Bitable.
 
-## Publisher: <br>
-[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design)
 
-## Use Case: <br>
-Developers, video editors, and operations teams use this skill to coordinate an AI-assisted workflow for Chinese-language video transcription, cut analysis, clip generation, Feishu review, customer scoring, and final version selection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can send video-derived data and generated file paths to Feishu automatically. <br>
-Mitigation: Require explicit confirmation before remote writes, use only approved Feishu workspaces, and avoid confidential videos unless Feishu handling is approved. <br>
-Risk: Security evidence reports an unsafe shell command path in the video-processing workflow. <br>
-Mitigation: Use only trusted local video paths, review generated shell commands before execution, and avoid passing untrusted file names or paths into FFmpeg commands. <br>
-Risk: Feishu app tokens and table IDs can be exposed through configuration or logs. <br>
-Mitigation: Provide Feishu values through environment variables, mask them in logs, and avoid committing credentials or printing full token values. <br>
-Risk: Heartbeat polling and generated media persistence can create unintended remote activity or retained video artifacts. <br>
-Mitigation: Require user approval before heartbeat polling or media persistence, and define retention and cleanup rules for generated clips and final videos. <br>
+## Use Case:
 
+Developers and video operations teams use this skill to turn source videos into transcribed, AI-analyzed coarse and fine cuts, then create Feishu-scored custom final editions for review.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with Python, Bash, YAML, and JSON examples plus a Python pipeline script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local transcripts, subtitle files, segmented MP4 clips, composed final videos, and Feishu Bitable record payloads when its workflow is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The security summary identifies unsafe execution concerns in the bundled workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and harden the Python implementation before use, and run it only on trusted local video paths.
+
+Risk: The security summary identifies secret-logging concerns around Feishu configuration.
+
+Mitigation: Keep Feishu tokens in environment variables, avoid printing them in logs, and rotate credentials if they were exposed.
+
+Risk: The security guidance warns that video content, summaries, and local paths may be written to Feishu.
+
+Mitigation: Confirm exactly what media-derived content and file paths will be uploaded before using the workflow with customer or sensitive videos.
+
+Risk: The security summary identifies under-scoped automation concerns.
+
+Mitigation: Manually review generated edit plans, clip selections, and final versions before publishing or sharing outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuchenggong19851114-design/skills/video-ai-process)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell examples; workflow artifacts include transcript text, SRT subtitles, MP4 clips, final MP4 edits, and Feishu Bitable records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local video path and video name, plus FFmpeg, faster-whisper, MiniMax integration, and Feishu Bitable tokens.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

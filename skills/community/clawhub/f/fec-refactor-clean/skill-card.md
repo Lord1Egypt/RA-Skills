@@ -1,38 +1,51 @@
-## Description: <br>
-Use when safely removing dead frontend code, unused exports, stale components, obsolete routes, unused dependencies, or cleanup targets found by tools such as knip, depcheck, ts-prune, TypeScript, ESLint, or manual review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers identify and remove proven-unused frontend code, styles, routes, and dependencies without changing user-visible behavior.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and perform verified frontend cleanup in small batches, preserving behavior while removing dead code, unused exports, stale routes, obsolete components, and unused dependencies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bovinphang/fec-refactor-clean) <br>
-- [Refactor cleanup report template](references/report-template.md) <br>
+Frontend developers use this skill to identify and remove demonstrably unused code in small, verified batches, while leaving uncertain or behavior-changing changes for manual review.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with evidence tables, command summaries, and cleanup recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a cleanup report to reports/refactor-clean-YYYY-MM-DD-HHmmss.md and reports verification status or blockers.] <br>
+Global
 
-## Skill Version(s): <br>
-2.6.0 (source: server release evidence and package.json) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Deleting code that is reached through dynamic references, routes, configuration, shared components, styles, or public APIs can break behavior.
+
+Mitigation: Require evidence of non-use, review proposed deletions, leave uncertain items for manual confirmation, and run affected lint, type-check, test, and build checks before accepting changes.
+
+## Reference(s):
+
+- [Refactor Clean release](https://clawhub.ai/bovinphang/skills/fec-refactor-clean)
+- [Cleanup report template](artifact/references/report-template.md)
+- [Project homepage (package metadata)](https://github.com/bovinphang/frontend-craft)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Code changes and Markdown cleanup reports with verification results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports identify cleanup evidence, skipped items, verification steps, and residual risks.]
+
+## Skill Version(s):
+
+2.9.0 (source: release metadata, package.json, metadata.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

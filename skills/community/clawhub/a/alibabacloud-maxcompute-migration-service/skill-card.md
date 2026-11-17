@@ -1,5 +1,5 @@
 ## Description: <br>
-Alibaba Cloud MaxCompute Migration Service (MMS) helps agents guide migrations from Hive, BigQuery, Databricks, Snowflake, Redshift, and MaxCompute into MaxCompute. <br>
+Guides agents through MaxCompute Migration Service planning, source and metadata lookup, target mapping, job and timer creation, monitoring, and managed migration mode with confirmation gates. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,41 +11,45 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers, data engineers, and cloud operators use this skill to plan, run, monitor, and troubleshoot MaxCompute MMS migrations while confirming parameters and protecting credentials. <br>
+Developers, data engineers, and cloud administrators use this skill to plan and operate migrations from supported external data sources into Alibaba Cloud MaxCompute. It helps resolve MMS source identifiers, inspect metadata, configure target mappings, draft and run Aliyun CLI commands, monitor jobs and tasks, and verify migration results. <br>
 
 ### Deployment Geography for Use: <br>
-Global, subject to MaxCompute MMS availability in documented Alibaba Cloud regions. <br>
+Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can affect real MaxCompute migration jobs and data access when used with live Alibaba Cloud credentials. <br>
-Mitigation: Use a dedicated least-privilege RAM profile, confirm every region, source, job, and task identifier before action, and avoid broad administrative grants unless temporarily approved. <br>
-Risk: MMS data source details and cloud profiles may expose sensitive credentials. <br>
-Mitigation: Configure credentials outside the agent session, never paste or print secrets, and sanitize API responses before displaying them or writing files. <br>
-Risk: Create, stop, retry, resume, or delete operations can alter migration state. <br>
-Mitigation: Confirm user intent, resolve names to IDs, check current resource state, and present ambiguous matches for user selection before executing state-changing commands. <br>
+Risk: First-run setup may ask users to run a remote Aliyun CLI installer and enable automatic plugin installation in a high-impact cloud administration context. <br>
+Mitigation: Install only in a controlled admin environment; prefer package-manager or internally approved Aliyun CLI and plugin versions, and review or disable automatic plugin installation where appropriate. <br>
+Risk: Migration operations can create, start, stop, retry, or schedule cloud data movement jobs with broad operational impact. <br>
+Mitigation: Use least-privilege, preferably short-lived credentials scoped to the migration; require explicit user confirmation before create/start/stop/delete actions; and verify mappings, source IDs, and job names before execution. <br>
+Risk: Incorrect source ID resolution, target mapping, or metadata assumptions could migrate the wrong scope or report misleading progress. <br>
+Mitigation: Apply bounded source_id discovery, strict equality checks for LIKE-based name matches, current mapping inspection before updates, and table/partition status checks before job creation. <br>
 
 
 ## Reference(s): <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
+- [ClawHub skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-maxcompute-migration-service) <br>
+- [MMS Overview](https://help.aliyun.com/zh/maxcompute/user-guide/migration-service-mms) <br>
+- [MMS Preparation](https://help.aliyun.com/zh/maxcompute/user-guide/mms-preparation) <br>
+- [Manage Data Sources](https://help.aliyun.com/zh/maxcompute/user-guide/manage-data-sources) <br>
+- [Create and Execute Migration Jobs](https://help.aliyun.com/zh/maxcompute/user-guide/create-and-execute-a-migration-job) <br>
+- [Migration Monitoring](https://help.aliyun.com/zh/maxcompute/user-guide/migration-observation) <br>
 - [CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [RAM Policies for MaxCompute Migration Service](references/ram-policies.md) <br>
-- [MMS OpenAPI and CLI Commands](references/related-commands.md) <br>
-- [Verification Method for MaxCompute Migration Service](references/verification-method.md) <br>
-- [Alibaba Cloud MaxCompute Migration Service documentation](https://help.aliyun.com/zh/maxcompute/user-guide/migration-service-mms) <br>
-- [MMS preparation documentation](https://help.aliyun.com/zh/maxcompute/user-guide/mms-preparation) <br>
-- [Manage MMS data sources](https://help.aliyun.com/zh/maxcompute/user-guide/manage-data-sources) <br>
-- [Create and execute a migration job](https://help.aliyun.com/zh/maxcompute/user-guide/create-and-execute-a-migration-job) <br>
-- [Migration observation documentation](https://help.aliyun.com/zh/maxcompute/user-guide/migration-observation) <br>
+- [MMS Commands - Data Source and Metadata](references/commands-datasource-and-metadata.md) <br>
+- [MMS Commands - Mapping and Planning](references/commands-mapping-and-planning.md) <br>
+- [MMS Commands - Job, Timer, Task and Async](references/commands-job-timer-task.md) <br>
+- [MMS Source ID Resolution Rules](references/mms-source-id-and-resolution.md) <br>
+- [RAM Policies for MMS](references/ram-policies.md) <br>
+- [Verification Method](references/verification-method.md) <br>
+- [OpenAPI Checklist](references/openapi-checklist.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash, JSON, and SQL examples] <br>
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Analysis] <br>
+**Output Format:** [Markdown responses with Aliyun CLI command blocks, confirmation tables, status reports, and verification steps] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes CLI commands that require user-confirmed parameters and credential sanitization before display or file writes.] <br>
+**Other Properties Related to Output:** [Commands should include the required MMS user-agent, use bounded lookup rules, avoid plaintext credential handling, and require explicit confirmation before create/start/stop/delete actions.] <br>
 
 ## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+0.0.2 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

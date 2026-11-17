@@ -1,41 +1,52 @@
-## Description: <br>
-Guides agents in producing GitHub SEO, GEO, README optimization, GitHub Pages, gist, and curated Awesome-list guidance for public GitHub content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in producing GitHub-focused SEO, GEO, README optimization, repository metadata, GitHub Pages, gist, and curated Awesome-list guidance.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and marketing-focused developers use this skill to plan and draft GitHub repository, README, Pages, gist, and Awesome-list content for search visibility and AI citation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate on broad GitHub mentions and provide GitHub SEO-oriented guidance when a narrower GitHub task was intended.
+
+Mitigation: Confirm the requested task is about GitHub SEO, GEO, README optimization, repository metadata, Pages, gists, or curated lists before applying the guidance.
+
+Risk: SEO-oriented recommendations may not fit every organization's publishing, platform, or content policy.
+
+Mitigation: Review generated recommendations against the organization's publishing standards and platform policies before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, marketers, and developers use this skill to plan GitHub repository metadata, README structure, GitHub Pages, gists, and curated lists for SEO, GEO, and open source marketing workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes parasite-SEO guidance that could be misused for misleading repositories, thin curated lists, or backlink spam. <br>
-Mitigation: Use the guidance only for accurate, useful public GitHub content, and review recommendations before publishing. <br>
-Risk: SEO and discoverability recommendations may become outdated or overstate ranking and citation effects. <br>
-Mitigation: Validate recommendations against current platform behavior and keep published repositories and documentation actively maintained. <br>
+**Output Format:** [Markdown guidance with tables, checklists, examples, and ready-to-use copy or structures]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kostja94/github-platforms) <br>
-- [Publisher Profile](https://clawhub.ai/user/kostja94) <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown with structured recommendations and ready-to-use copy or outlines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, account access, tool calls, or credential handling are described by the skill.] <br>
+1.2.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

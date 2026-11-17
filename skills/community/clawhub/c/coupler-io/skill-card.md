@@ -1,43 +1,54 @@
-## Description: <br>
-Access Coupler.io data flows configured with an OpenClaw destination to list flows, inspect schemas, and query data through an OAuth-secured read-only API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Coupler.io data flows configured with an OpenClaw destination to list flows, inspect schemas, and query data through an OAuth-secured read-only MCP API.
 
-## Publisher: <br>
-[nika-is-nika](https://clawhub.ai/user/nika-is-nika) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nika-is-nika](https://clawhub.ai/user/nika-is-nika)
 
-## Use Case: <br>
-Developers and analysts use this skill to connect an agent to approved Coupler.io dataflows, inspect available schema details, and run read-only SQL queries against flow execution data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores OAuth tokens locally so the agent can query approved Coupler.io flows. <br>
-Mitigation: Authenticate only with a Coupler.io account whose OpenClaw-destination dataflows are appropriate for agent access, and clear or reset tokens when access should be revoked. <br>
-Risk: A user could authenticate against an unexpected OAuth prompt or endpoint. <br>
-Mitigation: Verify the Coupler.io OAuth prompt and the auth.coupler.io and mcp.coupler.io endpoints before installation or re-authentication. <br>
-Risk: Queries can expose data from all visible OpenClaw-destination flows for the authenticated account. <br>
-Mitigation: Sample schemas and rows first, limit queries, and use an account scoped to dataflows the agent is allowed to inspect. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Coupler.io Skill Page](https://clawhub.ai/nika-is-nika/coupler-io) <br>
-- [Coupler.io Homepage](https://coupler.io) <br>
-- [mcporter CLI](https://github.com/openclaw/mcporter) <br>
+## Use Case:
 
+Developers and agents use this skill to connect to Coupler.io's MCP server, authenticate with OAuth, discover available OpenClaw-destination dataflows, inspect schemas, and run read-only SQL queries over flow data.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only MCP data access; responses depend on the user's authenticated Coupler.io account and configured OpenClaw-destination dataflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The connected Coupler.io account may expose dataflows through the OpenClaw destination.
+
+Mitigation: Install only when that account access is intended, and review which Coupler dataflows are exposed before use.
+
+Risk: Persisted mcporter OAuth configuration represents sensitive account access material.
+
+Mitigation: Store the mcporter configuration securely and reset or re-authenticate credentials when access should be refreshed.
+
+## Reference(s):
+
+- [Coupler.io](https://coupler.io)
+- [mcporter CLI](https://github.com/openclaw/mcporter)
+- [ClawHub Skill Page](https://clawhub.ai/nika-is-nika/skills/coupler-io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only MCP usage guidance for OAuth setup, dataflow discovery, schema inspection, and SQL query calls.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

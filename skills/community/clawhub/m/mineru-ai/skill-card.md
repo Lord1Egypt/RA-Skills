@@ -1,47 +1,61 @@
-## Description: <br>
-MinerU Doc Parser helps agents convert PDFs, scanned documents, images, Office files, and web pages into structured Markdown or other document formats using the MinerU CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MinerU Doc Parser helps agents choose and run the MinerU CLI to parse PDFs, scanned documents, images, Office files, and web pages into Markdown, HTML, LaTeX, DOCX, or JSON.
 
-## Publisher: <br>
-[mineru-extract](https://clawhub.ai/user/mineru-extract) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mineru-extract](https://clawhub.ai/user/mineru-extract)
 
-## Use Case: <br>
-Developers, researchers, data scientists, and document-processing teams use this skill to run MinerU document extraction, OCR, table and formula recognition, batch conversion, and web-page crawling from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may send local documents, images, or URLs to MinerU/OpenDataLab services for parsing. <br>
-Mitigation: Use it only with documents and URLs approved for that external data flow, and avoid confidential or regulated files unless the service path has been reviewed. <br>
-Risk: Broad document-parsing activation triggers can make remote extraction feel routine before the data-sharing implication is obvious. <br>
-Mitigation: Confirm the source file or URL and the selected extraction mode before running mineru-open-api, especially for private documents or intranet URLs. <br>
-Risk: Generated output directories may contain extracted text, images, or converted documents with sensitive content. <br>
-Mitigation: Review, protect, or clean generated output directories after use according to the sensitivity of the source material. <br>
+## Use Case:
 
+Developers, researchers, and data teams use this skill to extract structured content from documents and web pages with MinerU. It guides agents between quick tokenless parsing and authenticated extraction for tables, formulas, OCR, batch jobs, and multiple output formats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mineru-extract/mineru-ai) <br>
-- [Publisher profile](https://clawhub.ai/user/mineru-extract) <br>
-- [MinerU homepage](https://mineru.net) <br>
-- [OpenClaw source metadata](https://github.com/MinerU-Extract/mineru-ai) <br>
-- [MinerU Ecosystem CLI reference](https://github.com/opendatalab/MinerU-Ecosystem/tree/main/cli) <br>
-- [Skill overview](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and CLI output paths; executed commands may produce Markdown, HTML, LaTeX, DOCX, JSON, and extracted image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the mineru-open-api binary; flash extraction is limited to 10 MB and 20 pages, while precision extraction and crawling require a MinerU token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata) <br>
+Risk: Selected documents or URLs may be sent to MinerU/OpenDataLab for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for documents approved for external processing, and avoid confidential or regulated content unless the user has explicit approval.
+
+Risk: The skill installs a mutable global CLI package.
+
+Mitigation: Prefer a pinned CLI version in an isolated environment and review package updates before use.
+
+Risk: MinerU API tokens can be exposed through shared terminals, scripts, logs, or screenshots.
+
+Mitigation: Treat tokens as secrets, configure them through approved secret handling, and avoid pasting them into shared or recorded contexts.
+
+## Reference(s):
+
+- [MinerU Homepage](https://mineru.net)
+- [MinerU Source Metadata Link](https://github.com/MinerU-Extract/mineru-ai)
+- [MinerU CLI Issue Reference](https://github.com/opendatalab/MinerU-Ecosystem/tree/main/cli)
+- [MinerU Token Management](https://mineru.net/apiManage/token)
+- [ClawHub Skill Page](https://clawhub.ai/mineru-extract/skills/mineru-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and file output paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct MinerU to produce Markdown, HTML, LaTeX, DOCX, JSON, or extracted image files depending on command flags.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

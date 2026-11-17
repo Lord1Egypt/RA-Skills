@@ -1,37 +1,57 @@
-## Description: <br>
-Skills and agent workflows for 3D game development with Godot Engine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skills and agent workflows for 3D game development with Godot Engine.
 
-## Publisher: <br>
-[tippyentertainment](https://clawhub.ai/user/tippyentertainment) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tippyentertainment](https://clawhub.ai/user/tippyentertainment)
 
-## Use Case: <br>
-Developers and game teams use this skill to plan Godot 3D work, manage project tasks, trigger builds and tests, triage bugs, coordinate asset and level workflows, summarize playtest feedback, and prepare release communications. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to create or update project records, trigger builds and tests, post release notes, and store project memories. <br>
-Mitigation: Install only where the agent has least-privilege Tasking.tech, Git, worker, and channel permissions, and avoid storing secrets or sensitive internal details in memory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Tasking.tech](https://tasking.tech) <br>
+## Use Case:
 
+Developers and game teams use this skill to plan, build, test, publish, and maintain 3D Godot projects through Tasking.tech-oriented agent workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown text with structured task, build, test, asset, documentation, and release guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Godot file paths, project records, build and test identifiers, issue summaries, release notes, and memory entries for human or platform review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can trigger or describe build publishing and announcement workflows.
+
+Mitigation: Verify publishing channels and announcement recipients before release actions are executed.
+
+Risk: The skill depends on the connected Tasking.tech backend for project-specific actions.
+
+Mitigation: Confirm the backend is configured for the intended project before creating tasks, builds, tests, or distribution jobs.
+
+Risk: The skill includes long-term memory actions for project decisions and constraints.
+
+Mitigation: Review saved memory entries before committing durable project context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tippyentertainment/skills/godot-engine-3d-developer)
+- [Tasking.tech](https://tasking.tech)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON-style parameters, file paths, and command examples when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference project IDs, build IDs, task IDs, repository paths, and asset file extensions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

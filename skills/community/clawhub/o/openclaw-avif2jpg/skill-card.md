@@ -1,39 +1,57 @@
-## Description: <br>
-Convert `.avif` images to `.jpg` using a CLI workflow for one or more input paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts `.avif` images to `.jpg` using a CLI workflow for one or more file or folder paths.
 
-## Publisher: <br>
-[guoway](https://clawhub.ai/user/guoway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guoway](https://clawhub.ai/user/guoway)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to convert individual AVIF files, folders of AVIF files, or mixed file and folder inputs into local JPEG outputs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The converter writes JPEG files locally and can replace existing outputs when overwrite is enabled. <br>
-Mitigation: Run it only on intended image paths, use `--recursive` only when subfolders should be scanned, and use `--overwrite` only when replacing existing JPEG files is acceptable. <br>
-Risk: The workflow depends on the Pillow and pillow-avif-plugin Python packages. <br>
-Mitigation: Install the dependencies only in an environment where adding those packages is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guoway/openclaw-avif2jpg) <br>
+## Use Case:
 
+Developers and operators use this skill to convert AVIF images into JPEG files from individual paths or batches of files and folders. It is useful when image assets need broader JPG compatibility while keeping outputs beside the source location.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, code, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and local file path guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local JPEG files next to source files or in sibling folder output directories; reports converted files, skipped files, and failures.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill writes JPG files next to source AVIF files or in a sibling output directory, which may create files in user-selected filesystem locations.
+
+Mitigation: Review input paths before running the command and confirm that the expected adjacent or sibling output location is acceptable.
+
+Risk: Using `--overwrite` can replace existing JPG outputs.
+
+Mitigation: Use `--overwrite` only when replacing prior JPG outputs is intended.
+
+Risk: The documented dependency installation command does not pin package versions.
+
+Mitigation: Install dependencies in a virtual environment or another isolated environment before running the converter.
+
+## Reference(s):
+
+- [OpenClaw AVIF to JPG on ClawHub](https://clawhub.ai/guoway/skills/openclaw-avif2jpg)
+- [Publisher profile: guoway](https://clawhub.ai/user/guoway)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and CLI status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates JPG files next to individual AVIF inputs or under a sibling '<folder>_jpg' directory for folder inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,61 @@
-## Description: <br>
-XiaChat CLI supports SOUL profile management, personality matching, AI avatar pre-chat, and Soul Square persona chat from the terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+XiaChat CLI helps agents guide command-line use of XiaChat for SOUL profile management, personality matching, AI avatar pre-chat, Soul Square persona chat, JSON output, and scriptable workflows.
 
-## Publisher: <br>
-[lizhijun](https://clawhub.ai/user/lizhijun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lizhijun](https://clawhub.ai/user/lizhijun)
 
-## Use Case: <br>
-External users and developers use this skill to operate XiaChat personality workflows from a command line, including creating SOUL profiles, finding matches, starting avatar pre-chat sessions, and chatting with Soul Square personas. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: SOUL profiles, chat exports, match data, and pre-chat content may contain sensitive personal information sent to an external service. <br>
-Mitigation: Install only if the XiaChat service is trusted, review chat logs before import, and avoid sending content that should not leave the user's environment. <br>
-Risk: The CLI requires an API key that could be exposed through shell history, shared files, or commits. <br>
-Mitigation: Use a revocable API key, store it in an environment variable or secret manager, and avoid committing or sharing it. <br>
-Risk: Export commands may overwrite local SOUL profile files or write sensitive data to unintended paths. <br>
-Mitigation: Review output paths before export and keep generated profile files in appropriate protected locations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [XiaChat](https://xiachat.com) <br>
-- [XiaChat API Settings](https://xiachat.com/settings/api) <br>
-- [Soul Square](https://xiachat.com/square) <br>
-- [SOUL Profiles](https://xiachat.com/soul) <br>
-- [XiaChat Matching](https://xiachat.com/match) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lizhijun/xiachat-cli) <br>
-- [Publisher Profile](https://clawhub.ai/user/lizhijun) <br>
+## Use Case:
 
+External users and developers use this skill when they want an agent to provide XiaChat CLI setup guidance, command examples, and workflow steps for personality profiles, matching, avatar pre-chat, persona chat, and credit checks.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, markdown] <br>
-**Output Format:** [Markdown with inline shell commands and CLI usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance includes JSON-oriented CLI workflows and API key configuration notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup guidance installs an unpinned global npm CLI.
+
+Mitigation: Install in a least-privileged or isolated environment and pin or verify the npm package before global installation.
+
+Risk: Using the CLI can send selected SOUL profiles, imported chat transcripts, match interactions, and API-authenticated requests to XiaChat services.
+
+Mitigation: Avoid importing conversations without consent, limit sensitive data, and confirm that the user is comfortable sending the selected data to XiaChat.
+
+Risk: The workflow requires a XiaChat API key.
+
+Mitigation: Store the API key securely, avoid exposing it in shared shell history or logs, and rotate it if disclosure is suspected.
+
+## Reference(s):
+
+- [ClawHub XiaChat CLI skill page](https://clawhub.ai/lizhijun/skills/xiachat-cli)
+- [XiaChat home](https://xiachat.com)
+- [XiaChat Soul Square](https://xiachat.com/square)
+- [XiaChat SOUL profiles](https://xiachat.com/soul)
+- [XiaChat match center](https://xiachat.com/match)
+- [XiaChat API settings](https://xiachat.com/settings/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance commonly includes API key setup, npm installation commands, XiaChat CLI command examples, and jq-compatible JSON workflow snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

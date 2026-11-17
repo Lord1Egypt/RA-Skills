@@ -1,39 +1,53 @@
-## Description: <br>
-OpenClaw 文档知识库 - 搜索与同步 / OpenClaw Documentation Knowledge Base - Search & Sync <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw 文档知识库 - 搜索与同步 / OpenClaw Documentation Knowledge Base - Search & Sync
 
-## Publisher: <br>
-[sushengbuyu](https://clawhub.ai/user/sushengbuyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sushengbuyu](https://clawhub.ai/user/sushengbuyu)
 
-## Use Case: <br>
-Developers and agents use this skill to search the bundled OpenClaw documentation index, browse documentation categories, and optionally sync updated OpenClaw docs from the official documentation site. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The sync command fetches remote documentation and can write documentation content outside the intended docs folder according to the security evidence. <br>
-Mitigation: Prefer the bundled search index, and run sync only after path validation is fixed or in a constrained workspace where unintended writes can be reviewed. <br>
+## Use Case:
 
+Developers and agents use this skill to search a bundled OpenClaw documentation index, browse documentation categories, and optionally refresh the local documentation cache from the OpenClaw docs site.
 
-## Reference(s): <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sushengbuyu/openclaw-knowledge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; search commands return text or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes category filters, result limits, search scores, summaries, and matched documentation paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata; package.json reports 1.0.0) <br>
+Risk: The optional sync command contacts docs.openclaw.ai and updates generated documentation files in the skill directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run sync only when refreshing the bundled documentation index, and review generated file changes before relying on updated results.
+
+Risk: Search results depend on the bundled documentation index and may lag behind the live OpenClaw documentation.
+
+Mitigation: Use the sync command before workflows that require current documentation, or cross-check important answers against the OpenClaw documentation site.
+
+## Reference(s):
+
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain text search results or JSON result objects, with Markdown and bash examples in the skill instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search output can be filtered by category, limited by result count, or returned as JSON for agent consumption.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata; package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,64 @@
-## Description: <br>
-Manage files on Qiniu Cloud Storage (Kodo) with qshell for uploads, downloads, listing, deletion, copy or move operations, CDN refresh and prefetch, private URLs, and bucket management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Qiniu Cloud Storage (Kodo) files, buckets, CDN operations, private download links, and batch transfers through the qshell CLI.
 
-## Publisher: <br>
-[lijianfei](https://clawhub.ai/user/lijianfei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lijianfei](https://clawhub.ai/user/lijianfei)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Qiniu Kodo buckets and objects through the qshell CLI from natural-language requests. It helps choose the appropriate qshell command, check installation and authentication, format batch-download configuration, and guide recovery from common qshell errors. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Qiniu access keys can grant storage access if exposed or over-scoped. <br>
-Mitigation: Use least-privilege Qiniu keys when possible and avoid pasting secrets into chat. <br>
-Risk: Storage commands can overwrite, move, delete, refresh CDN content, or create buckets. <br>
-Mitigation: Review bucket names, object keys, overwrite flags, move and delete operations, CDN refreshes, and bucket-creation commands before approving them. <br>
-Risk: A qshell binary from an unofficial source could create credential or execution risk. <br>
-Mitigation: Verify qshell from an official source before using it with a Qiniu account. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Batch Download Configuration](references/batch-download.md) <br>
-- [qshell Installation Guide](references/install-guide.md) <br>
-- [Qiniu Key Management](https://portal.qiniu.com/user/key) <br>
-- [qshell GitHub Releases](https://github.com/qiniu/qshell/releases) <br>
+## Use Case:
 
+External users, developers, and storage operators use this skill to turn natural-language Qiniu Kodo requests into qshell prerequisite checks, command guidance, and recovery steps for file, bucket, CDN, and download-link workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include qshell command sequences, pre-flight checks, result summaries, and confirmation prompts for destructive operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Qiniu access keys and secret keys may be exposed through shell history, terminal logs, or broad credential handling.
+
+Mitigation: Use least-privilege Qiniu keys, treat account setup commands as sensitive, and avoid storing or sharing AccessKey and SecretKey values in logs.
+
+Risk: Manual qshell installation can introduce executable supply-chain risk.
+
+Mitigation: Prefer Homebrew when available or verify qshell from the official release source before manual installation.
+
+Risk: Broad cloud-storage prompts may trigger the wrong provider workflow.
+
+Mitigation: Proceed only when Qiniu, qshell, Kodo, or the configured Qiniu provider context is clear.
+
+Risk: Delete operations can cause unrecoverable Kodo data loss when versioning or backups are absent.
+
+Mitigation: Run qshell stat first, show file details, and require explicit confirmation before executing qshell delete.
+
+## Reference(s):
+
+- [qshell Installation Guide](references/install-guide.md)
+- [Batch Download Configuration](references/batch-download.md)
+- [qshell GitHub Releases](https://github.com/qiniu/qshell/releases)
+- [Qiniu Key Management](https://portal.qiniu.com/user/key)
+- [ClawHub Skill Page](https://clawhub.ai/lijianfei/skills/qshell-copilot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include qshell command proposals, prerequisite checks, confirmation prompts for deletion, and concise recovery guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

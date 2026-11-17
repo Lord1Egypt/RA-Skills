@@ -1,41 +1,50 @@
-## Description: <br>
-Csharp Developer helps agents create C#/.NET project scaffolds, generate code, design architecture, review code, and debug implementation issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Csharp Developer helps agents provide C#/.NET project templates, code generation, architecture design, and code review, with this release kept as a compatibility layer for a unified code entry.
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jirboy](https://clawhub.ai/user/jirboy)
 
-## Use Case: <br>
-Developers and engineering agents use this skill for C#/.NET project setup, WPF, WinForms, ASP.NET Core, class library work, code generation, architecture planning, code review, and debugging support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project creation can run local shell commands from insufficiently constrained project options, .NET version values, or output paths. <br>
-Mitigation: Use controlled project type and .NET version values, avoid untrusted output paths, and run without elevated privileges. <br>
-Risk: Generated serial-port or hardware control code may be unsafe if used directly with real equipment. <br>
-Mitigation: Review and test generated hardware-control code in a controlled environment before connecting it to real devices. <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold C#/.NET projects, generate C# code patterns, review code, and outline application architecture for desktop, web API, class library, and industrial-control-style workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jirboy/csharp-developer-jirboy) <br>
-- [.NET SDK download](https://dotnet.microsoft.com/download) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with code snippets, command examples, configuration details, and structured result objects.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local .NET project files when the create-project task is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and package.json) <br>
+Risk: The project creation path can turn user-controlled .NET version or output directory values into local shell execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use the project-creation feature only with trusted arguments, and avoid untrusted .NET version or output directory values until command execution is changed to safe argument-based execution with input validation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jirboy/skills/csharp-developer-jirboy)
+- [.NET download](https://dotnet.microsoft.com/download)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown or text responses with C# code blocks, shell commands, configuration snippets, and generated project files when project creation is run.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Normal responses are agent-readable development guidance; project creation requires local .NET SDK availability and may write files to the requested output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

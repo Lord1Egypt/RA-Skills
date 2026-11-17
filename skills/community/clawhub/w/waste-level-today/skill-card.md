@@ -1,40 +1,49 @@
-## Description: <br>
-Rates a user's self-mocking sentence about their day with a Lv1-Lv10 waste level and playful roast, matching Chinese or English input. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rates a user's self-mocking description of their day from Lv1 to Lv10 and responds with playful roast humor in Chinese or English.
 
-## Publisher: <br>
-[SwiftUIs](https://clawhub.ai/user/SwiftUIs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[swiftuis](https://clawhub.ai/user/swiftuis)
 
-## Use Case: <br>
-People use this skill for light entertainment and social sharing by entering a short self-deprecating note about their day and receiving a humorous rating, roast, and optional easter egg. It is intended for playful stress relief, not serious emotional support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Roast-style humor may feel dismissive or harmful when a user is seriously distressed. <br>
-Mitigation: Use this skill for light entertainment only; avoid relying on it for burnout, depression, self-harm-adjacent, or other serious emotional disclosures. <br>
-Risk: Broad self-deprecating prompts can trigger teasing when a gentler response would be more appropriate. <br>
-Mitigation: Honor requests for a softer tone and shift away from roasting when the user signals discomfort or distress. <br>
+## Use Case:
 
+External users invoke this skill for light entertainment and stress relief by entering a short self-deprecating sentence about their day. The skill returns a humorous waste-level rating, brief roast commentary, and optional easter eggs while matching the user's Chinese or English input language.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SwiftUIs/waste-level-today) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with a level label, short commentary, and optional achievement-style easter egg.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output tone follows the user's requested language and can be adjusted toward more sarcastic or more gentle responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and skill frontmatter) <br>
+Risk: The roast style may be inappropriate for serious mental-health, distress, or support conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for playful self-roast humor, avoid invoking it in serious support contexts, and ask for a gentler tone when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/swiftuis/skills/waste-level-today)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with a level rating, short commentary, and optional easter egg]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Matches Chinese or English input language; tone can be adjusted more sarcastic or gentler on request]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

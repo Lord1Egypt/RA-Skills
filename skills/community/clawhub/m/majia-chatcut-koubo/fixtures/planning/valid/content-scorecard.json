@@ -1,0 +1,134 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/content-scorecard.schema.json",
+  "schemaVersion": "1.0.0",
+  "scorecardId": "content_scorecard_001",
+  "projectId": "proj_demo",
+  "transcriptId": "transcript_demo",
+  "transcriptRevision": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "editPlanId": "edit_demo",
+  "method": "deterministic-structural-v1",
+  "signals": [
+    {
+      "signalId": "signal_total_words",
+      "kind": "total-words",
+      "value": 2,
+      "unit": "count",
+      "basisRefs": [
+        "word_001",
+        "word_002"
+      ]
+    },
+    {
+      "signalId": "signal_kept_words",
+      "kind": "kept-words",
+      "value": 2,
+      "unit": "count",
+      "basisRefs": [
+        "word_001",
+        "word_002"
+      ]
+    },
+    {
+      "signalId": "signal_opening_words",
+      "kind": "opening-words",
+      "value": 2,
+      "unit": "count",
+      "basisRefs": [
+        "word_001",
+        "word_002"
+      ]
+    },
+    {
+      "signalId": "signal_opening_density",
+      "kind": "opening-density",
+      "value": 1,
+      "unit": "words-per-second",
+      "basisRefs": [
+        "word_001",
+        "word_002"
+      ]
+    },
+    {
+      "signalId": "signal_low_confidence",
+      "kind": "low-confidence-words",
+      "value": 0,
+      "unit": "count",
+      "basisRefs": []
+    },
+    {
+      "signalId": "signal_content_risk",
+      "kind": "risk-flagged-words",
+      "value": 0,
+      "unit": "count",
+      "basisRefs": []
+    },
+    {
+      "signalId": "signal_evidence_coverage",
+      "kind": "evidence-coverage",
+      "value": 1,
+      "unit": "ratio",
+      "basisRefs": [
+        "word_001",
+        "word_002"
+      ]
+    },
+    {
+      "signalId": "signal_removed_segments",
+      "kind": "removed-segments",
+      "value": 0,
+      "unit": "count",
+      "basisRefs": []
+    },
+    {
+      "signalId": "signal_reordered_segments",
+      "kind": "reordered-segments",
+      "value": 0,
+      "unit": "count",
+      "basisRefs": []
+    }
+  ],
+  "narrativeCandidates": [
+    {
+      "candidateId": "narrative_candidate_001",
+      "role": "hook",
+      "sourceSegmentId": "segment_001",
+      "sourceWordIds": [
+        "word_001",
+        "word_002"
+      ],
+      "currentOrder": 1,
+      "suggestedOrder": 1,
+      "rationaleCodes": [
+        "POSITIONAL_CANDIDATE_ONLY",
+        "SOURCE_CONTENT_REUSED",
+        "HUMAN_SEMANTIC_REVIEW_REQUIRED"
+      ],
+      "inventedContent": false,
+      "approval": {
+        "required": true,
+        "status": "pending"
+      }
+    }
+  ],
+  "decisionQueue": [
+    {
+      "decisionId": "decision_narrative_001",
+      "kind": "narrative-role",
+      "subjectRef": "segment_001",
+      "reasonCodes": [
+        "HUMAN_SEMANTIC_REVIEW_REQUIRED"
+      ],
+      "evidenceRefs": [
+        "evidence_transcript"
+      ],
+      "approval": {
+        "required": true,
+        "status": "pending"
+      }
+    }
+  ],
+  "predictionPolicy": {
+    "viralityProbability": "not-produced",
+    "generatedText": false
+  }
+}

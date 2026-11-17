@@ -1,0 +1,23 @@
+# 数字资源入库元数据模板
+# 参照 digital-resource-management-guide 标准
+
+# 必填字段
+name: "resource-slug-here"           # 资源唯一标识（slug 格式）
+description: "资源描述（10-200字）"    # 核心内容概述
+author: "作者名称或团队"
+created: "YYYY-MM-DD"                # 创建日期
+version: "1.0.0"                     # SemVer 版本号
+tags:                                 # 3-8 个分类标签
+  - "tag-1"
+  - "tag-2"
+
+# 可选字段
+source: ""                           # 来源链接
+license: "MIT"                       # 许可证
+dependencies: []                     # 依赖资源
+related: []                          # 关联资源
+lastReviewed: ""                     # 最后审核日期
+
+# 入库命名规范
+# 格式: {分类}-{主题}-{版本}
+# 示例: guide-digital-resource-management-v1.0.0

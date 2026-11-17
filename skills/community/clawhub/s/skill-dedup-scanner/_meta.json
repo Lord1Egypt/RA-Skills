@@ -1,6 +1,25 @@
 {
-  "ownerId": "kn7bxq7jev2839d50z62zszg4982zxme",
-  "slug": "skill-dedup-scanner",
+  "name": "skill-dedup-scanner",
   "version": "1.0.0",
-  "publishedAt": 1773839933470
+  "description": "Scans installed skills for duplicates and naming conflicts. Detects similar skills that may cause model confusion.",
+  "tags": ["dedup", "duplicate-detector", "skill-scanner", "skill-tools", "multi-language"],
+  "author": "shyjsarah",
+  "license": "MIT",
+  "homepage": "https://github.com/shyjsarah/skills/tree/main/skill-dedup-scanner",
+  "repository": "https://github.com/shyjsarah/skills",
+  "keywords": [
+    "skill-dedup-scanner",
+    "duplicate-detector",
+    "skill-scanner",
+    "skill-auditor",
+    "openclaw",
+    "agent-skills"
+  ],
+  "engines": {
+    "python": ">=3.6"
+  },
+  "entry": {
+    "type": "python",
+    "main": "scripts/main.py"
+  }
 }

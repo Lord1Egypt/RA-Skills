@@ -1,54 +1,69 @@
-## Description: <br>
-Market Analyst helps agents analyze global assets, including Vietnam and US stocks, forex, gold, oil, crypto, ETFs, DCA plans, and portfolios, using technical indicators, valuation metrics, and bundled market-scanning scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides global market analysis for VN and US stocks, forex, gold, oil, crypto, ETFs, DCA planning, portfolio allocation, and return estimation using technical, valuation, macro, and risk frameworks.
 
-## Publisher: <br>
-[eddieluong](https://clawhub.ai/user/eddieluong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eddieluong](https://clawhub.ai/user/eddieluong)
 
-## Use Case: <br>
-External users and developers use this skill to research market conditions, screen assets, compare asset classes, estimate returns, and draft portfolio or DCA guidance. It is intended for educational investment analysis and should not be treated as personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled Python scripts can send requested tickers or portfolio symbols to external market-data services. <br>
-Mitigation: Run the scripts only when the user accepts external data lookups, and avoid sending sensitive portfolio details when privacy is a concern. <br>
-Risk: Market recommendations and macro assumptions can become stale or misleading. <br>
-Mitigation: Verify current prices, data sources, macro context, and assumptions before acting on any output. <br>
-Risk: Users may over-rely on educational analysis as personalized financial advice. <br>
-Mitigation: Present results as research, preserve investment-advice disclaimers, and encourage independent review or qualified professional advice for personal decisions. <br>
+## Use Case:
 
+External users and agents use this skill to analyze market opportunities, compare asset classes, estimate returns, calculate DCA accumulation, and review portfolio allocation or rebalancing scenarios. It is intended for educational market-analysis assistance, not personalized financial advice or authorization to trade.
 
-## Reference(s): <br>
-- [Advanced Technical Analysis](references/advanced-ta.md) <br>
-- [Crypto & BNB Analysis Framework](references/crypto-analysis.md) <br>
-- [Financial Analysis Knowledge Base](references/financial-analysis-knowledge.md) <br>
-- [Forex Guide](references/forex-guide.md) <br>
-- [Global ETF Guide](references/global-etf.md) <br>
-- [Gold / XAUUSD Analysis Framework](references/gold-analysis.md) <br>
-- [Macro Update - March 2026](references/macro-update-2026-03.md) <br>
-- [Return Estimation](references/return-estimation.md) <br>
-- [Sector Fundamentals - Vietnam Stock Market](references/sector-fundamentals.md) <br>
-- [Sector Fundamentals Update - Q1 2026](references/sector-update-2026.md) <br>
-- [VN Stock Swing Trading & Scalping](references/swing-trading-vn.md) <br>
-- [US Equities Analysis Guide](references/us-equities.md) <br>
-- [ClawHub skill page](https://clawhub.ai/eddieluong/market-analyst) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown analysis with tables, bullet points, and inline shell or Python commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ticker-specific analysis, portfolio allocations, DCA plans, and scenario estimates; outputs are educational research and require user verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata) <br>
+Risk: The skill may produce confident-looking buy, sell, allocation, stop-loss, or leveraged-trading suggestions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational analysis only; verify current data, consider risk tolerance and jurisdiction, and do not treat results as personalized financial advice or authorization to trade.
+
+Risk: The skill can make external public market-data requests.
+
+Mitigation: Install and run it only when external market-data access is acceptable for the agent environment.
+
+Risk: Market context and asset recommendations may become stale as prices, macro conditions, and regulations change.
+
+Mitigation: Refresh market data and validate assumptions before using the analysis for any financial decision.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/eddieluong/skills/market-analyst)
+- [Advanced Technical Analysis](references/advanced-ta.md)
+- [Crypto & BNB Analysis Framework](references/crypto-analysis.md)
+- [Financial Analysis Knowledge Base](references/financial-analysis-knowledge.md)
+- [Forex Guide](references/forex-guide.md)
+- [Global ETF Guide](references/global-etf.md)
+- [Gold / XAUUSD Analysis Framework](references/gold-analysis.md)
+- [Macro Update - March 2026](references/macro-update-2026-03.md)
+- [Return Estimation](references/return-estimation.md)
+- [Sector Fundamentals - Vietnam Stock Market](references/sector-fundamentals.md)
+- [Sector Fundamentals Update - Q1 2026](references/sector-update-2026.md)
+- [VN Stock Swing Trading & Scalping](references/swing-trading-vn.md)
+- [US Equities Analysis Guide](references/us-equities.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and tabular console output from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May make public market-data requests; does not execute trades.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

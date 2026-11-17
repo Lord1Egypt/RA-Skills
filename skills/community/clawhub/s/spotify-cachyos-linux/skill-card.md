@@ -1,39 +1,57 @@
-## Description: <br>
-Control the Spotify Linux desktop client via MPRIS DBus for playback, launching, volume, track information, and opening Spotify URIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Spotify on Linux via MPRIS DBus for launching Spotify, controlling playback, searching songs, and switching playback to a specific track.
 
-## Publisher: <br>
-[lxp731](https://clawhub.ai/user/lxp731) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lxp731](https://clawhub.ai/user/lxp731)
 
-## Use Case: <br>
-Linux desktop users and agents use this skill to launch and control the Spotify desktop client through DBus, including playback, volume, track metadata, and Spotify URI playback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can start Spotify playback immediately, change playback state, and adjust volume on the user's Linux desktop. <br>
-Mitigation: Use it only on a desktop session where Spotify control is intended, confirm Spotify URIs and volume changes before execution, and pause playback when the task is complete. <br>
-Risk: Spotify may remain running after the agent task ends because the launch workflow detaches the Spotify process. <br>
-Mitigation: Close Spotify manually or stop the Spotify process after use when persistent playback or a background app is not desired. <br>
+## Use Case:
 
+External users and developers use this skill to control the real Spotify desktop client in a local Linux desktop session through MPRIS DBus commands and the bundled launcher.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands target the local Linux desktop session and Spotify MPRIS DBus interface.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Playback commands affect the user's real Spotify client immediately.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the requested track, album, playlist, or control action before issuing commands that start playback or change state.
+
+Risk: The user-level Spotify process may continue after the agent task finishes.
+
+Mitigation: Use the documented --stop command when playback is no longer wanted.
+
+Risk: --check output can include proxy URLs that may contain credentials.
+
+Mitigation: Avoid sharing raw diagnostic logs, or redact proxy URLs before sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lxp731/skills/spotify-cachyos-linux)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may start or stop a user-level Spotify process and can change live playback immediately.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

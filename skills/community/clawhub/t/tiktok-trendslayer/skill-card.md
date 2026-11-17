@@ -1,47 +1,64 @@
-## Description: <br>
-TikTok Shop influencer analytics, product selection, and content strategy toolkit that fetches creator data via EchoTik API, optionally fetches product trending data via TikTok Shop Partner API, then generates multi-region analysis reports, influencer collaboration plans, prioritized product selection lists, and video hook strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TikTok Shop influencer analytics, product selection, and content strategy toolkit. Fetches creator data via EchoTik API, optionally fetches product trending data via TikTok Shop Partner API, then generates multi-region analysis reports, influencer collaboration plans, prioritized product selection lists, and video hook strategies.
 
-## Publisher: <br>
-[skovely](https://clawhub.ai/user/skovely) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skovely](https://clawhub.ai/user/skovely)
 
-## Use Case: <br>
-External sellers, operators, and commerce analysts use this skill to gather TikTok Shop creator and product market signals, compare regions, plan influencer collaborations, prioritize products, and draft video hook strategies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses user-provided EchoTik credentials and may use a TikTok Shop access token. <br>
-Mitigation: Use limited-scope credentials where possible, rotate credentials regularly, and avoid exposing tokens in shared prompts, logs, or generated reports. <br>
-Risk: Selected categories and regions are sent to EchoTik and, when product mode is enabled, TikTok Shop APIs. <br>
-Mitigation: Confirm that the selected market data can be shared with those services before running the skill. <br>
-Risk: Generated reports may include commercial strategy, creator data, product selections, or forecasts. <br>
-Mitigation: Write reports to a dedicated output directory, review them before sharing or acting on them, and apply appropriate access controls. <br>
-Risk: External API availability, permissions, rate limits, or token expiry can affect report completeness. <br>
-Mitigation: Verify credentials, endpoint access, and API responses before relying on generated recommendations. <br>
+## Use Case:
 
+External sellers, operators, and analysts use this skill to fetch TikTok Shop creator and product data, compare markets, plan influencer collaborations, prioritize product selections, and draft video hook strategies.
 
-## Reference(s): <br>
-- [ClawHub Release](https://clawhub.ai/skovely/tiktok-trendslayer) <br>
-- [API Reference](references/api_docs.md) <br>
-- [Advanced Workflow Guides](references/workflows.md) <br>
-- [Output Format Examples](references/output_example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON or Markdown reports; workflow guidance may support PDF or Excel deliverables with additional tools.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ECHOTIK_AUTH_HEADER for EchoTik data; TIKTOK_SHOP_API_KEY enables product data; writes generated reports to a local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: server release metadata) <br>
+Risk: The skill uses user-provided EchoTik credentials and optional TikTok Shop credentials to call external APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when those credentials are appropriate for the intended TikTok Shop analytics task, scope credentials to the minimum needed, and rotate or revoke them if no longer needed.
+
+Risk: Generated reports may save business-relevant creator, product, sales, and market data locally.
+
+Mitigation: Review output files before sharing, store them in approved locations, and avoid including confidential data in generic recommendation workflows.
+
+Risk: Analytics and recommendations depend on external API responses and may be incomplete, stale, or unavailable by region or permission level.
+
+Mitigation: Review generated reports before business use and validate important decisions against current marketplace data and platform policy.
+
+## Reference(s):
+
+- [Workflow Guides](references/workflows.md)
+- [API Reference](references/api_docs.md)
+- [Output Format Examples](references/output_example.md)
+- [EchoTik](https://www.echotik.com/)
+- [EchoTik Influencer API Endpoint](https://open.echotik.live/api/v3/echotik/influencer/list)
+- [TikTok Shop Product Search Endpoint](https://api.tiktokshop.com/v2/products/search)
+- [TikTok Shop OAuth Endpoint](https://auth.tiktokshop.com/api/v2/oauth/token)
+- [TikTok Shop Seller Center](https://seller.tiktokglobalshop.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, API calls, Analysis, Markdown, JSON, Code]
+
+**Output Format:** [Markdown guidance with shell commands, plus generated JSON or Markdown report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include local reports for influencer data, product data, regional comparisons, collaboration plans, product selection lists, and video hook strategies.]
+
+## Skill Version(s):
+
+1.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

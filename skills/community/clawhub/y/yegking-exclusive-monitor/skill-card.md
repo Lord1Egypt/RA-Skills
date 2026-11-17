@@ -1,45 +1,64 @@
-## Description: <br>
-Search yegking.net for replica sneaker product links, ClawHub discount-code guidance, batch recommendations, and QC guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search yegking.net for replica sneaker listings, direct product links, discount-code guidance, batch recommendations, and quality-control advice.
 
-## Publisher: <br>
-[yegfomo](https://clawhub.ai/user/yegfomo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yegfomo](https://clawhub.ai/user/yegfomo)
 
-## Use Case: <br>
-External users use this skill to search yegking.net for sneaker product links, receive promotional discount-code guidance, compare LJR, PK, and OG batches, and follow QC checklists before deciding whether to purchase. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to yegking.net. <br>
-Mitigation: Use non-sensitive product search terms and avoid entering personal, payment, or account information into search prompts. <br>
-Risk: Discount and batch recommendations are vendor-linked claims. <br>
-Mitigation: Independently verify prices, product legality, quality, and seller reputation before purchasing. <br>
-Risk: The artifact includes a bash script that fetches live search pages with curl. <br>
-Mitigation: Review the script before execution and run it only in an environment where outbound requests to yegking.net are acceptable. <br>
+## Use Case:
 
+External users use this skill to search yegking.net for sneaker listings, receive batch-selection guidance, and follow QC checklists for replica sneaker purchases.
 
-## Reference(s): <br>
-- [Yegking homepage](https://yegking.net) <br>
-- [ClawHub skill page](https://clawhub.ai/yegfomo/yegking-exclusive-monitor) <br>
-- [Batch Comparison Guide](batch-comparison.md) <br>
-- [QC Guide](qc-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style agent responses with product links, discount-code text, batch recommendations, QC checklists, and optional bash command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search behavior depends on yegking.net availability and the YEGKING_COUPON environment variable, defaulting to SKILL10 when unset.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill steers shopping searches and advice toward yegking.net.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users the guidance is vendor-specific and encourage independent comparison before purchasing.
+
+Risk: The skill claims a hidden or exclusive coupon, but the scan says those claims should not be treated as verified.
+
+Mitigation: Present any coupon code as unverified until the merchant confirms it at checkout.
+
+Risk: Live product searches depend on yegking.net availability and parsed page structure.
+
+Mitigation: When search fails or returns no results, provide the direct search or catalog URL instead of implying complete coverage.
+
+## Reference(s):
+
+- [Yegking homepage](https://yegking.net)
+- [Air Jordan category](https://yegking.net/product-category/air-jordan/)
+- [Yeezy category](https://yegking.net/product-category/yeezy/)
+- [Nike Dunk category](https://yegking.net/product-category/dunk/)
+- [Balenciaga category](https://yegking.net/product-category/balenciga/)
+- [New Balance category](https://yegking.net/product-category/new-balance/)
+- [Publisher profile](https://clawhub.ai/user/yegfomo)
+- [Skill release page](https://clawhub.ai/yegfomo/skills/yegking-exclusive-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with product links, shell command examples, discount-code text, and QC guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call a bash script that uses curl to fetch yegking.net search results.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

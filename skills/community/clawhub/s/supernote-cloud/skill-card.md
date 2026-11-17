@@ -1,43 +1,55 @@
-## Description: <br>
-Access a self-hosted Supernote Private Cloud instance to browse files and folders, upload PDF, EPUB, and note files, convert web articles to EPUB or PDF, check storage capacity, and navigate the directory tree. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access a self-hosted Supernote Private Cloud instance to browse files and folders, upload documents (PDF, EPUB) and notes, convert web articles to EPUB/PDF and send them to the device, check storage capacity, and navigate the directory tree.
 
-## Publisher: <br>
-[nickian](https://clawhub.ai/user/nickian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nickian](https://clawhub.ai/user/nickian)
 
-## Use Case: <br>
-Developers and Supernote users use this skill to manage documents on a self-hosted Supernote Private Cloud instance, including browsing folders, uploading files, and sending converted web articles to an e-reader. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Supernote account credentials and account-level file access. <br>
-Mitigation: Install only if the Supernote server and account context are trusted, and use it only for files intended to be uploaded or managed through that account. <br>
-Risk: The security evidence reports token caching in a shared temporary path. <br>
-Mitigation: Remove /tmp/.supernote_token after use, especially on shared systems. <br>
-Risk: The security evidence reports unsafe command-script input handling. <br>
-Mitigation: Use caution with filenames, directory names, URLs, and passwords containing quotes or other special characters until the script is hardened. <br>
-Risk: The skill connects to a self-hosted Supernote service and may use non-public, reverse-engineered API behavior. <br>
-Mitigation: Prefer HTTPS or a trusted local network and expect endpoints to require review if Supernote firmware or server behavior changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nickian/supernote-cloud) <br>
+## Use Case:
+
+External users and developers use this skill to manage files on a self-hosted Supernote Private Cloud instance, upload documents or notes, and convert web articles into e-reader-friendly EPUB or PDF files.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill handles Supernote account credentials and caches an access token while interacting with a self-hosted cloud endpoint.
+
+Mitigation: Use a trusted HTTPS endpoint, avoid elevated privileges, and review token handling before uploading sensitive content.
+
+Risk: Article conversion fetches user-provided web URLs from the agent host and may process third-party page content and images.
+
+Mitigation: Treat article conversion as network access, avoid private or sensitive URLs until the security issues are addressed, and review generated files before upload.
+
+Risk: The Supernote API is described as reverse-engineered and unofficial, so endpoint behavior may change without notice.
+
+Mitigation: Validate commands against the target Supernote Private Cloud instance before routine use and review failures before retrying uploads.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or upload EPUB, PDF, HTML, and document files through the Supernote command scripts.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline shell commands and file-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local EPUB, PDF, or HTML files before upload when converting web articles.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

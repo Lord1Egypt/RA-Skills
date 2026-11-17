@@ -1,40 +1,53 @@
-## Description: <br>
-Helps evaluate settlement options using exposure, evidence strength, litigation cost, non-monetary terms, timing, and uncertainty. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured checklists and templates to evaluate legal settlement options considering exposure, evidence, costs, timing, and non-monetary terms.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Legal professionals and adjacent business stakeholders use this skill to structure settlement evaluation matrices, risk-adjusted comparisons, client recommendation outlines, and open-issues lists. It supports informational workflow planning and requires qualified legal review before decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat informational settlement examples or compensation ranges as legal advice. <br>
-Mitigation: Use outputs as planning aids only and verify jurisdiction-specific decisions with qualified counsel. <br>
-Risk: Settlement analysis may omit matter-specific facts, deadlines, ethics duties, privilege, or confidentiality constraints. <br>
-Mitigation: Collect relevant facts and deadlines, flag uncertainty, and require qualified attorney review before acting. <br>
+## Use Case:
 
+Legal professionals, claims teams, and business stakeholders use this skill to structure settlement evaluations, compare litigation and resolution options, and draft matrices, open-issue lists, and recommendation outlines for qualified attorney review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/legal-settlement-evaluation-framework) <br>
+### Deployment Geography for Use:
 
+Global, subject to jurisdiction-specific legal review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown checklists, matrices, templates, and planning prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational workflow support only; not legal advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release metadata) <br>
+Risk: Users may rely on concrete settlement amounts, insurance recommendations, or strategic suggestions as legal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require review by qualified local counsel before using outputs for settlement decisions, insurance claims, or jurisdiction-specific legal strategy.
+
+Risk: The skill can surface legal workflow issues without validating facts, deadlines, authorities, confidentiality duties, or professional-responsibility obligations.
+
+Mitigation: Verify facts, deadlines, legal authorities, privilege, confidentiality, and ethics obligations against the matter record and applicable local rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/legal-settlement-evaluation-framework)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown checklists, matrices, templates, and planning outlines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational legal workflow support only; not legal advice.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

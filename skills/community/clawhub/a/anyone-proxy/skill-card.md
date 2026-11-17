@@ -1,40 +1,53 @@
-## Description: <br>
-This skill helps agents route traffic through the Anyone Network using a local SOCKS5 proxy for IP masking and hidden-service access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill enables IP address masking and accessing hidden services on the Anyone Network by routing requests through the Anyone Protocol VPN network using a local SOCKS5 proxy.
 
-## Publisher: <br>
-[rA3ka](https://clawhub.ai/user/rA3ka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ra3ka](https://clawhub.ai/user/ra3ka)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install and run the Anyone Protocol client, start a local SOCKS5 proxy, and route requests through the Anyone Network when IP masking or hidden-service access is intended. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Traffic is intentionally routed through the Anyone Network, which may be inappropriate for secrets, regulated data, or internal requests. <br>
-Mitigation: Use the proxy only when this routing is intended and allowed by policy; avoid secrets, regulated data, and internal traffic unless explicitly approved. <br>
-Risk: The setup uses a globally installed NPM package and starts a local SOCKS5 proxy that persists across requests. <br>
-Mitigation: Verify the @anyone-protocol/anyone-client package and publisher before installation, use trusted package sources, and stop the proxy when finished. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Anyone Protocol homepage](https://anyone.io) <br>
-- [Anyone Network IP check endpoint](https://check.en.anyone.tech/api/ip) <br>
+## Use Case:
 
+Developers and agents use this skill to install and run an Anyone Network SOCKS5 proxy, then route HTTP requests through it for IP masking or access to hidden services.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with bash and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires installing @anyone-protocol/anyone-client and starting a local SOCKS5 proxy on port 9050.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs users to install and run a mutable third-party npm package with authority over network traffic.
+
+Mitigation: Use a pinned, reviewed package version where possible, avoid global installation, and run the proxy with least privilege.
+
+Risk: Traffic routed through the proxy may include secrets or regulated data.
+
+Mitigation: Do not route sensitive data through the proxy unless the provider, environment, and compliance posture have been approved.
+
+## Reference(s):
+
+- [Anyone Network](https://anyone.io)
+- [Anyone IP Check API](https://check.en.anyone.tech/api/ip)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell commands and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the third-party @anyone-protocol/anyone-client npm package and a local SOCKS5 proxy process.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

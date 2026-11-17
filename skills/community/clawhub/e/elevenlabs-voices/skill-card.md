@@ -1,46 +1,63 @@
-## Description: <br>
-High-quality voice synthesis with 18 personas, 32 languages, sound effects, batch processing, and voice design using ElevenLabs API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-quality voice synthesis with 18 personas, 32 languages, sound effects, batch processing, and voice design using ElevenLabs API.
 
-## Publisher: <br>
-[robbyczgw-cla](https://clawhub.ai/user/robbyczgw-cla) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[robbyczgw-cla](https://clawhub.ai/user/robbyczgw-cla)
 
-## Use Case: <br>
-Developers, creators, and agent users use this skill to generate speech, sound effects, batch audio, and voice previews through the ElevenLabs API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Selected text, sound prompts, and the ElevenLabs API key may be sent to ElevenLabs. <br>
-Mitigation: Use a dedicated quota-limited API key, prefer environment variables over plaintext config files, and avoid sensitive content. <br>
-Risk: Batch inputs or output paths can write files outside the intended output folder. <br>
-Mitigation: Review batch files and output paths before running scripts, and run the skill from a dedicated working directory. <br>
-Risk: Credential guidance is inconsistent across setup and runtime documentation. <br>
-Mitigation: Use ELEVEN_API_KEY or ELEVENLABS_API_KEY environment variables as the preferred configuration path. <br>
+## Use Case:
 
+Developers and content creators use this skill to generate speech, sound effects, and voice-design previews through ElevenLabs, including multilingual and batch audio workflows.
 
-## Reference(s): <br>
-- [ElevenLabs Voice Guide](references/voice-guide.md) <br>
-- [ElevenLabs API Documentation](https://docs.elevenlabs.io) <br>
-- [ElevenLabs Voice Library](https://elevenlabs.io/voice-library) <br>
-- [ElevenLabs Sound Effects API](https://elevenlabs.io/docs/api-reference/sound-generation) <br>
-- [ElevenLabs Voice Design API](https://elevenlabs.io/docs/api-reference/voice-generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated audio files when scripts are run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and an ElevenLabs API key; scripts may write MP3 files and local usage/configuration files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.6 (source: frontmatter, CHANGELOG, package.json, release metadata) <br>
+Risk: The security review says API-key storage claims need review and generated requests send prompts, text, voice-design descriptions, preview text, and the API key to ElevenLabs over HTTPS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer environment variables or a secure secret manager, avoid running the setup wizard when local config storage is not acceptable, and rotate any key that may have been saved or shared.
+
+Risk: The security review says batch file-output handling needs review before installation.
+
+Mitigation: Process only trusted batch JSON and inspect output paths before execution until output-path validation is fixed.
+
+Risk: The skill loads without an API key because OpenClaw cannot express that one of two environment variables is required.
+
+Mitigation: Set ELEVEN_API_KEY or ELEVENLABS_API_KEY before use and expect the scripts to fail on first API call if neither variable is present.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/robbyczgw-cla/skills/elevenlabs-voices)
+- [ElevenLabs](https://elevenlabs.io)
+- [ElevenLabs API Documentation](https://docs.elevenlabs.io)
+- [ElevenLabs Voice Library](https://elevenlabs.io/voice-library)
+- [ElevenLabs Sound Effects API](https://elevenlabs.io/docs/api-reference/sound-generation)
+- [ElevenLabs Voice Design API](https://elevenlabs.io/docs/api-reference/voice-generation)
+- [Voice Guide](references/voice-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated audio files from the skill scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The scripts can write MP3 audio outputs, local usage statistics, optional config.json, and optional .env-based configuration.]
+
+## Skill Version(s):
+
+2.2.0 (source: frontmatter and changelog, released 2026-08-31)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

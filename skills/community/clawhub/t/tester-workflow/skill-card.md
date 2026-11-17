@@ -1,48 +1,60 @@
-## Description: <br>
-Complete testing workflow from requirements analysis to test case generation and review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tester Workflow guides a complete software testing workflow from requirements analysis through test case generation and review.
 
-## Publisher: <br>
-[garkinchu](https://clawhub.ai/user/garkinchu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[garkinchu](https://clawhub.ai/user/garkinchu)
 
-## Use Case: <br>
-QA engineers, test engineers, and developers use this skill to run a structured testing workflow across requirements analysis, design review, test case generation, and test case review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is tagged as requiring OAuth-token access, but the artifact documentation does not explain why that access is needed. <br>
-Mitigation: Confirm the OAuth-token requirement before installation and grant only the minimum permissions needed. <br>
-Risk: The test case generation workflow can create or overwrite CSV files. <br>
-Mitigation: Keep outputs in a chosen workspace folder and confirm the target file path before allowing CSV creation or overwrite. <br>
+## Use Case:
 
+Developers, QA engineers, and testing teams use this skill to run a structured testing workflow over requirements and design materials, producing analysis reports, design questions, test cases, and review feedback.
 
-## Reference(s): <br>
-- [Tester Workflow README](README.md) <br>
-- [Workflow Guide](reference/workflow-guide.md) <br>
-- [Full Workflow Example](examples/full-workflow.md) <br>
-- [Requirement Analysis Checklist](included-skills/analyze-requirements/reference/checklist.md) <br>
-- [Design Understanding Checklist](included-skills/understand-design/reference/8-dimensions-checklist.md) <br>
-- [Test Case Generation Process](included-skills/generate-test-cases/reference/generation-process.md) <br>
-- [Test Case Format Specification](included-skills/generate-test-cases/reference/format-spec.md) <br>
-- [Test Case Review Checklist](included-skills/review-test-cases/reference/review-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/garkinchu/tester-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown reports, prioritized issue lists, and CSV test case files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated CSV test case files use UTF-8 BOM encoding and a double-pipe delimiter when the test case generation sub-skill is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The workflow may push users toward a full testing process even when they ask for quick examples or partial review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the requested scope and timebox before running the full workflow, and use the bundled sub-skills independently for narrower tasks.
+
+Risk: Test case generation can require local CSV file output.
+
+Mitigation: Confirm the output path and overwrite behavior before writing or replacing any file.
+
+Risk: The workflow may require complete requirements, design documents, and 30-50 test cases, which can be more extensive than a lightweight review.
+
+Mitigation: Set expectations about required source documents and expected artifact size before starting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/garkinchu/skills/tester-workflow)
+- [README](README.md)
+- [Workflow guide](reference/workflow-guide.md)
+- [Full workflow example](examples/full-workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown reports and CSV test case files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local UTF-8 BOM CSV files with || delimiters during test case generation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

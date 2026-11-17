@@ -1,45 +1,65 @@
-## Description: <br>
-Dieser Skill ermöglicht die Abfrage von Statusinformationen und die Steuerung einer AVM FRITZ!Box über die TR-064 Schnittstelle. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dieser Skill ermöglicht die Abfrage von Statusinformationen und die Steuerung einer AVM FRITZ!Box über die TR-064 Schnittstelle.
 
-## Publisher: <br>
-[wolf128058](https://clawhub.ai/user/wolf128058) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wolf128058](https://clawhub.ai/user/wolf128058)
 
-## Use Case: <br>
-Developers and network administrators use this skill to inspect FRITZ!Box router status, traffic, connected devices, WLAN state, and call history, and to run router control actions such as reconnect, reboot, and WLAN toggles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive FRITZ!Box credentials and private router, connected-device, WLAN, and call-history data. <br>
-Mitigation: Protect the .env file, limit access to trusted agents and users, and avoid exposing command output where network or call details should remain private. <br>
-Risk: Reconnect, reboot, and WLAN on/off actions can disrupt internet, WLAN, and telephony service for all users on the network. <br>
-Mitigation: Require explicit confirmation naming the exact action before running reconnect, reboot, or WLAN toggles. <br>
-Risk: Unpinned dependencies can change behavior over time. <br>
-Mitigation: Pin and review Python dependencies before deployment when reproducibility or change control is required. <br>
+## Use Case:
 
+Developers, network administrators, and FRITZ!Box owners use this skill to inspect router status, traffic, connected hosts, WLAN state, and call lists, and to run router control commands when explicitly approved.
 
-## Reference(s): <br>
-- [Fritz Connection ClawHub release](https://clawhub.ai/wolf128058/fritz-connection) <br>
-- [fritzconnection documentation](https://fritzconnection.readthedocs.io/) <br>
-- [fritzconnection GitHub repository](https://github.com/kbr/fritzconnection) <br>
-- [AVM TR-064 interfaces](https://avm.de/service/schnittstellen/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include router status, device lists, traffic summaries, WLAN state, call history, and safety prompts for disruptive actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Router control commands can reboot the FRITZ!Box, force a reconnect, or disable WLAN for all users on the network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before running reboot, reconnect, wlan off, or other router-changing commands.
+
+Risk: Router credentials and target host configuration are read from environment files with weak scoping.
+
+Mitigation: Use a dedicated low-privilege FRITZ!Box account where possible, restrict permissions on the skill-specific environment file, and verify FRITZBOX_HOST points only to the intended router.
+
+Risk: Host lists and call logs can expose network device details and communication metadata.
+
+Mitigation: Run calls and verbose host-list commands only when needed and avoid sharing their output beyond trusted users.
+
+Risk: Unpinned Python dependencies can change behavior across installs.
+
+Mitigation: Pin dependencies or install the skill in an isolated virtual environment before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wolf128058/skills/fritz-connection)
+- [fritzconnection library](https://github.com/kbr/fritzconnection)
+- [fritzconnection documentation](https://fritzconnection.readthedocs.io/)
+- [AVM TR-064 interfaces](https://avm.de/service/schnittstellen/)
+- [AVM TR-064 service description](https://fritz.box:49000/tr64desc.xml)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Router commands depend on local FRITZ!Box TR-064 access and configured credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

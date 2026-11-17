@@ -1,44 +1,62 @@
-## Description: <br>
-学术研究全流程助手。提供论文写作指导、文献检索方法、学术工具推荐、期刊投稿指南、学术会议信息、科研项目管理等。适用于大学生、研究生和科研人员的学术工作辅助。支持家用（知识库）和商用（API扩展）双模式。触发器：用户提出论文/文献/期刊/投稿/学术/科研相关问题时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+学术研究全流程助手，提供论文写作指导、文献检索方法、学术工具推荐、期刊投稿指南、学术会议信息和科研项目管理辅助。
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-Students, graduate researchers, and academic staff use this skill to plan literature searches, structure papers, format citations, prepare journal or conference submissions, and choose common academic tools. It can work from its bundled reference material by default, with optional academic API configuration for live retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional academic API configuration may send confidential manuscripts, participant data, unpublished research, or API keys to an external provider. <br>
-Mitigation: Use the default local mode for ordinary guidance; configure only trusted API providers and avoid sending confidential or unpublished material unless the provider's data handling is understood. <br>
+## Use Case:
 
+Students, graduate researchers, and academic staff use this skill for Chinese-language support across paper planning, literature search, citation formatting, journal submission, conference preparation, and research project organization.
 
-## Reference(s): <br>
-- [学术研究助手 Skill Source](artifact/SKILL.md) <br>
-- [论文写作指导参考](artifact/references/paper-writing.md) <br>
-- [文献检索指南参考](artifact/references/literature-search.md) <br>
-- [期刊投稿指南参考](artifact/references/journal-submission.md) <br>
-- [学术工具推荐参考](artifact/references/academic-tools.md) <br>
-- [学术会议信息参考](artifact/references/conferences.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yezhaowang888-stack/academic-research-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with optional code, shell command, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use bundled reference material by default and optional academic API settings when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Journal metrics, rankings, conference deadlines, and venue policies can become outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify time-sensitive academic information against official journal, conference, database, or institution sources before acting on it.
+
+Risk: The documented commercial API mode may require separate implementation or integration before it can retrieve live academic data.
+
+Mitigation: Confirm available endpoints, credentials, and failure handling before relying on API-backed behavior.
+
+Risk: Academic writing and citation assistance can lead to improper reuse, missing AI-use disclosure, or inaccurate references if accepted without review.
+
+Mitigation: Require author review, source verification, proper citation practices, and venue-specific AI disclosure before submission.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yezhaowang888-stack/skills/academic-research-assistant)
+- [Paper Writing Guidance](references/paper-writing.md)
+- [Literature Search Guide](references/literature-search.md)
+- [Journal Submission Guide](references/journal-submission.md)
+- [Academic Tools Guide](references/academic-tools.md)
+- [Academic Conferences Guide](references/conferences.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional Python citation-formatting output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language academic research guidance; optional API configuration is described for commercial mode]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金句海报</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+    --bg-color: #F5F0E8;
+    --text-main: #2A2018;
+    --text-muted: #7A6A50;
+    --accent: #8B1A1A;
+    --ink: #1A1008;
+    --border: rgba(42,32,24,0.15);
+    --wash: rgba(139,26,26,0.06);
+}
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: "Noto Serif SC", "Songti SC", "Source Han Serif CN", "STSong", Georgia, serif;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"),
+        radial-gradient(ellipse at 15% 30%, rgba(160,130,80,0.12) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 20%, rgba(140,110,60,0.09) 0%, transparent 45%),
+        radial-gradient(ellipse at 50% 85%, rgba(180,150,100,0.08) 0%, transparent 50%);
+}
+/* 金句海报：固定 600×800，居中排版 */
+.container {
+    width: 600px;
+    height: 800px;
+    padding: 64px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+/* 顶部朱印 */
+.poster-seal {
+    font-family: "ZCOOL QingKe HuangYou", serif;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    font-size: 0.9em;
+    padding: 6px 18px;
+    letter-spacing: 0.22em;
+    margin-bottom: 56px;
+    box-shadow: inset 0 0 0 1px rgba(139,26,26,0.15);
+}
+/* 引号装饰 */
+.poster-quote-mark {
+    font-family: Georgia, serif;
+    font-size: 5em;
+    color: var(--accent);
+    opacity: 0.25;
+    line-height: 0.6;
+    margin-bottom: 8px;
+}
+/* 核心金句 */
+.poster-quote {
+    font-size: 2.5em;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1.75;
+    letter-spacing: 0.08em;
+    word-break: keep-all;
+    margin-bottom: 48px;
+}
+.poster-quote em {
+    font-style: normal;
+    color: var(--accent);
+    position: relative;
+}
+/* 毛笔横扫分割线 */
+.poster-rule {
+    width: 120px;
+    height: 2px;
+    border: none;
+    background: linear-gradient(to right,
+        transparent 0%, rgba(139,26,26,0.15) 20%,
+        rgba(139,26,26,0.5) 50%,
+        rgba(139,26,26,0.15) 80%, transparent 100%);
+    margin-bottom: 28px;
+}
+/* 出处 */
+.poster-source {
+    font-size: 0.95em;
+    color: var(--text-muted);
+    letter-spacing: 0.2em;
+    font-style: italic;
+}
+.poster-footer {
+    position: absolute;
+    bottom: 36px;
+    left: 0; right: 0;
+    text-align: center;
+    font-size: 0.72em;
+    color: var(--text-muted);
+    letter-spacing: 0.14em;
+    opacity: 0.6;
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="poster-seal">墨 · 言</div>
+        <div class="poster-quote-mark">&ldquo;</div>
+        <div class="poster-quote">读书之法，<br>在循序而<em>渐进</em>，<br>熟读而精思。</div>
+        <hr class="poster-rule">
+        <div class="poster-source">—— 朱熹《读书之要》</div>
+        <div class="poster-footer">金句海报 · 3:4 固定版式 · 水墨卷轴风</div>
+    </div>
+</body>
+</html>

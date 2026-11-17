@@ -1,0 +1,90 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "快手博主作品 - results",
+    "description": "作品成功时的 results。含 post（作品列表）和 user（博主信息）。limit 为 0 时通常只有 user，post 可能为空数组。作品上的互动数是字符串，博主互动数是数字。空字符串和数字 0 可能不返回。整份 stdout 见 output_envelope.schema.json。",
+    "properties": {
+        "post": {
+            "type": "array",
+            "description": "作品列表",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": { "type": "string", "description": "视频 ID" },
+                    "caption": { "type": "string", "description": "视频标题" },
+                    "timestamp": { "type": "string", "description": "发布时间戳。这里是字符串，和搜索结果里的数字时间戳不同" },
+                    "time": { "type": "string", "description": "发布时间" },
+                    "url": { "type": "string", "description": "视频 URL" },
+                    "cover_thumbnail": { "type": "string", "description": "视频封面 URL" },
+                    "main_mv": { "type": "string", "description": "视频 URL" },
+                    "duration": { "type": "string", "description": "视频时长。这里是字符串" },
+                    "audio": { "type": "string", "description": "音频 URL" },
+                    "music": {
+                        "type": "object",
+                        "description": "音乐信息",
+                        "properties": {
+                            "id": { "type": "string", "description": "音乐 ID" },
+                            "name": { "type": "string", "description": "音乐标题" },
+                            "image": { "type": "string", "description": "音乐封面 URL" },
+                            "duration": { "type": "string", "description": "音乐时长" },
+                            "lrc": { "type": "string", "description": "音乐歌词" },
+                            "url": { "type": "string", "description": "音乐播放 URL" }
+                        }
+                    },
+                    "areaName": { "type": "string", "description": "区域名称" },
+                    "poi": {
+                        "type": "object",
+                        "description": "位置信息",
+                        "properties": {
+                            "address": { "type": "string", "description": "位置地址" },
+                            "title": { "type": "string", "description": "位置标题" }
+                        }
+                    },
+                    "commentGuessSearch": { "type": "string", "description": "小蓝词" },
+                    "disclaimerMsg": { "type": "string", "description": "文档未说明" },
+                    "share_info": { "type": "string", "description": "分享信息" },
+                    "comment_count": { "type": "string", "description": "评论数" },
+                    "forward_count": { "type": "string", "description": "转发数" },
+                    "recToFriendCount": { "type": "string", "description": "推荐数" },
+                    "forwardCount": { "type": "string", "description": "文档未说明。与 forward_count 是两个字段" },
+                    "rewardCount": { "type": "string", "description": "文档未说明" },
+                    "screenshotCount": { "type": "string", "description": "文档未说明" },
+                    "downloadCount": { "type": "string", "description": "下载数" },
+                    "collect_count": { "type": "string", "description": "收藏数" },
+                    "share_count": { "type": "string", "description": "分享数" },
+                    "view_count": { "type": "string", "description": "播放数" },
+                    "like_count": { "type": "string", "description": "点赞数" }
+                }
+            }
+        },
+        "user": {
+            "type": "object",
+            "description": "博主信息",
+            "properties": {
+                "user_name": { "type": "string", "description": "博主昵称" },
+                "headurl": { "type": "string", "description": "博主头像 URL" },
+                "user_sex": { "type": "string", "description": "博主性别。文档未给枚举" },
+                "user_id": { "type": "number", "description": "博主 UID" },
+                "user_text": { "type": "string", "description": "博主签名" },
+                "kwaiId": { "type": "string", "description": "博主快手号。不是 user_id" },
+                "ipLocation": { "type": "string", "description": "博主 IP 位置" },
+                "cityName": { "type": "string", "description": "博主城市" },
+                "constellation": { "type": "string", "description": "博主星座" },
+                "hometown": { "type": "string", "description": "博主家乡" },
+                "like": { "type": "number", "description": "点赞数" },
+                "photo": { "type": "number", "description": "文档未说明" },
+                "recommend": { "type": "number", "description": "推荐数" },
+                "follow": { "type": "number", "description": "关注数" },
+                "moment": { "type": "number", "description": "文档未说明" },
+                "fan": { "type": "number", "description": "粉丝数" },
+                "magicFace": { "type": "number", "description": "文档未说明" },
+                "novelDrama": { "type": "number", "description": "文档未说明" },
+                "total_photo_like": { "type": "number", "description": "文档未说明" },
+                "photo_public": { "type": "number", "description": "文档未说明" },
+                "photo_private": { "type": "number", "description": "文档未说明" },
+                "collect": { "type": "number", "description": "文档未说明" },
+                "creation": { "type": "number", "description": "文档未说明" }
+            }
+        }
+    }
+}

@@ -1,0 +1,216 @@
+{
+  "description": "独立留出评测集 v2：36 条，每条经真实网络逐条核验后入集（build_holdout.py 半自动管线：草案真网核验→逐条人工拍板→冻结；两阶段分离防草案直通）。v1（16 条，2026-11-06 校准）+v2 扩容 20 条（2026-11-15 真网逐条校准）：clean 扩至 21 条覆盖医学/生物/化学/物理/计算机/心理/气候/生态多域真实文献；planted 扩至 15 条新增 7 形态（真 arXiv 配错题名/真实撤稿论文/真 PMID 配编造 DOI/真 URL+编造 DOI 多标识符矛盾/真题名配编造 DOI/真题名配假 arXiv/编造 DOI 解析 URL）。预埋位置公开（设计性夹具，docs/benchmark.md 边界 4）——本集测判定方向正确性与零误伤，非真实世界伪造率。批内 DOI 唯一（M5 教训：CLI 批内缓存按 DOI 复用判定，同 DOI 多条掩蔽腐蚀——集合须对 run_eval 逐条隔离与 CLI 批内两种通路都诚实）。online 口径数字随注册库漂移（边界 2），offline 口径可复现。闸门：run_tests.sh --held-out（F59）。",
+  "refs": [
+    {
+      "title": "Comparative Efficacy of Bronchiolitis Interventions in Acute Care: A Network Meta-analysis",
+      "doi": "10.1542/peds.2020-040816",
+      "pmid": "33893229",
+      "year": 2021
+    },
+    {
+      "title": "Bronchiolitis: assessment and evidence-based management",
+      "doi": "10.5694/j.1326-5377.2004.tb05993.x",
+      "pmid": "15089730",
+      "year": 2004
+    },
+    {
+      "title": "Australasian bronchiolitis guideline",
+      "doi": "10.1111/jpc.14104",
+      "pmid": "30009459",
+      "year": 2019
+    },
+    {
+      "title": "Diagnosis and management of bronchiolitis",
+      "doi": "10.1542/peds.2006-2223",
+      "pmid": "17015575",
+      "year": 2006
+    },
+    {
+      "title": "Nebulised hypertonic saline solution for acute bronchiolitis in infants",
+      "doi": "10.1002/14651858.CD006458.pub4",
+      "year": 2017
+    },
+    {
+      "title": "Clinical practice guideline: the diagnosis, management, and prevention of bronchiolitis",
+      "doi": "10.1542/peds.2014-2742",
+      "year": 2014
+    },
+    {
+      "title": "Equipping agents for the real world with Agent Skills",
+      "url": "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills"
+    },
+    {
+      "title": "Hallucinated citations are polluting the scientific literature",
+      "url": "https://www.nature.com/articles/d41586-026-00969-z"
+    },
+    {
+      "title": "A longitudinal study of gut microbiome dynamics in neurodegeneration",
+      "doi": "10.1038/s41586-026-99998-y",
+      "year": 2026
+    },
+    {
+      "title": "Agent Skills adoption survey: 60k skills analyzed",
+      "url": "https://www.anthropic.com/engineering/agent-skills-adoption-survey-2026"
+    },
+    {
+      "title": "Meta-analysis of retrieval grounding in LLM research agents"
+    },
+    {
+      "title": "Quantum-enhanced citation verification for medical databases"
+    },
+    {
+      "title": "Comparative efficacy of bronchiolitis interventions in acute care: a network meta-analysis",
+      "doi": "10.1038/s41586-026-77777-a",
+      "year": 2021
+    },
+    {
+      "title": "Deep residual learning for image recognition",
+      "doi": "10.1109/CVPR.2016.90",
+      "pmid": "33893229",
+      "year": 2016
+    },
+    {
+      "title": "A survey of arxiv preprint quality control methods",
+      "arxiv": "2601.99999"
+    },
+    {
+      "title": "Multi-agent orchestration frameworks for deep research",
+      "arxiv": "2603.88888"
+    },
+    {
+      "title": "A programmable dual-RNA-guided DNA endonuclease in adaptive bacterial immunity",
+      "doi": "10.1126/science.1225829",
+      "pmid": "22745249",
+      "year": 2012
+    },
+    {
+      "title": "Organometal halide perovskites as visible-light sensitizers for photovoltaic cells",
+      "doi": "10.1021/ja809598r",
+      "year": 2009
+    },
+    {
+      "title": "Observation of gravitational waves from a binary black hole merger",
+      "doi": "10.1103/PhysRevLett.116.061102",
+      "year": 2016
+    },
+    {
+      "title": "Judgment under uncertainty: heuristics and biases",
+      "doi": "10.1126/science.185.4157.1124",
+      "pmid": "17835457",
+      "year": 1974
+    },
+    {
+      "title": "Attention is all you need",
+      "arxiv": "1706.03762",
+      "year": 2017
+    },
+    {
+      "title": "Effects of an angiotensin-converting-enzyme inhibitor, ramipril, on cardiovascular events in high-risk patients",
+      "doi": "10.1056/NEJM200001203420301",
+      "pmid": "10617554",
+      "year": 2000
+    },
+    {
+      "title": "Initial sequencing and analysis of the human genome",
+      "doi": "10.1038/35057062",
+      "pmid": "11237011",
+      "year": 2001
+    },
+    {
+      "title": "Estimating the reproducibility of psychological science",
+      "doi": "10.1126/science.aac4716",
+      "pmid": "26315443",
+      "year": 2015
+    },
+    {
+      "title": "Quantifying the consensus on anthropogenic global warming in the scientific literature",
+      "doi": "10.1088/1748-9326/8/2/024024",
+      "year": 2013
+    },
+    {
+      "title": "Risks and benefits of estrogen plus progestin in healthy postmenopausal women: principal results from the Women's Health Initiative randomized controlled trial",
+      "doi": "10.1001/jama.288.3.321",
+      "year": 2002
+    },
+    {
+      "title": "Navigation-related structural change in the hippocampi of taxi drivers",
+      "doi": "10.1073/pnas.070039597",
+      "pmid": "10716738",
+      "year": 2000
+    },
+    {
+      "title": "Diversity and productivity in a long-term grassland experiment",
+      "doi": "10.1126/science.1060391",
+      "pmid": "11557901",
+      "year": 2001
+    },
+    {
+      "title": "Molecular structure of nucleic acids: a structure for deoxyribose nucleic acid",
+      "doi": "10.1038/171737a0",
+      "year": 1953
+    },
+    {
+      "title": "Bilateral filtering for edge preservation in medical imaging",
+      "arxiv": "1406.2661",
+      "year": 2014
+    },
+    {
+      "title": "Ileal-lymphoid-nodular hyperplasia, non-specific colitis, and pervasive developmental disorder in children",
+      "doi": "10.1016/S0140-6736(97)11096-0",
+      "year": 1998
+    },
+    {
+      "title": "Comparative Efficacy of Bronchiolitis Interventions in Acute Care: A Network Meta-analysis",
+      "pmid": "33893229",
+      "doi": "10.9999/wrong.2026",
+      "year": 2021
+    },
+    {
+      "title": "Equipping agents for the real world with Agent Skills",
+      "url": "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills",
+      "doi": "10.5432/nonexistent.2026"
+    },
+    {
+      "title": "Diversity and productivity in a long-term grassland experiment",
+      "doi": "10.1053/j.acknet.2026.0101",
+      "year": 2001
+    },
+    {
+      "title": "Estimating the reproducibility of psychological science",
+      "arxiv": "2412.00000",
+      "year": 2015
+    },
+    {
+      "title": "Hallucinated citations are polluting the scientific literature",
+      "url": "https://doi.org/10.8765/fakejournal.2026/link"
+    }
+  ],
+  "expected": {
+    "1": "clean", "2": "clean", "3": "clean", "4": "clean",
+    "5": "clean", "6": "clean", "7": "clean", "8": "clean",
+    "9": "planted", "10": "planted", "11": "planted", "12": "planted",
+    "13": "planted", "14": "planted", "15": "planted", "16": "planted",
+    "17": "clean", "18": "clean", "19": "clean", "20": "clean",
+    "21": "clean", "22": "clean", "23": "clean", "24": "clean",
+    "25": "clean", "26": "clean", "27": "clean", "28": "clean",
+    "29": "clean", "30": "planted", "31": "planted", "32": "planted",
+    "33": "planted", "34": "planted", "35": "planted", "36": "planted"
+  },
+  "planted_notes": {
+    "9": "良构假 DOI（10.1038 前缀+不存在尾号）",
+    "10": "编造 URL（着陆页不存在，同 demo #7 形态）",
+    "11": "裸条目（无任何标识符与 URL，同 demo #8 形态）",
+    "12": "无出处泛题名（无从核验的泛化标题）",
+    "13": "真题名配假 DOI（错引/张冠李戴形态：#1 真题名+编造 Springer 尾号）",
+    "14": "真 DOI 配错 PMID（拼接形态：ResNet 真 DOI+他人 PMID——v2 换用文件内未复用的真 DOI，消除批内 DOI 复用掩蔽；真网 2026-11-15 实锤 invalid）",
+    "15": "假 arXiv ID（2601.99999 不存在）",
+    "16": "假 arXiv ID（2603.88888 不存在）",
+    "30": "真 arXiv ID 配错题名（arXiv 元数据实为《Generative Adversarial Networks》，声称题名相似度 0.24——错引形态）",
+    "31": "真实撤稿论文（Wakefield 1998，Retraction Watch 2010-02-06 撤稿通告 10.1016/s0140-6736(10)60175-4）——撤稿检测判 partial+撤稿标注，非 verified 即 captured",
+    "32": "真 PMID（#1 的）配编造 DOI（拼接镜像形态：v1 #14 是真 DOI 配错 PMID，本条反向）",
+    "33": "真 URL（#7 的）+编造 DOI（多标识符互相矛盾：URL 指向真实论文，DOI 不存在）",
+    "34": "真题名（#28 的）+编造 DOI（另一出版社前缀假尾号，同 #13 良构假 DOI 家族）",
+    "35": "真题名（#24 的）+假 arXiv ID（2412.00000 不存在）",
+    "36": "编造 DOI 解析 URL（doi.org 直链 404——着陆页不可达形态，unreachable 非 verified 即 captured）"
+  }
+}

@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn77pp702b8rmqjbn0jjatvfv5825jw4",
-  "slug": "channel-activity-yanyue",
-  "version": "3.0.0",
-  "publishedAt": 1772977752259
+  "name": "channel-activity",
+  "version": "1.0.0",
+  "author": "炎月"
 }

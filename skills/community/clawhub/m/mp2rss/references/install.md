@@ -52,11 +52,27 @@ mp2rss --version
 ## 升级
 
 ```bash
-mp2rss update              # 检查并升级到最新
-mp2rss update --check      # 只检查不升级
+mp2rss update                   # 检查并升级到最新
+mp2rss update --check           # 只检查不升级
+mp2rss update --skip-skills     # 升级但本次不同步本地 Agent Skills
 ```
 
 `update` 会从 GitHub Releases 拉最新版二进制就地替换。注意：通过 npm 安装的二进制由 npm 管理，建议改用 `pnpm up -g @mp2rss/cli`。
+
+## Agent Skills 同步（CLI ≥ 1.2.0）
+
+CLI 自更新只替换二进制，本地已安装的 Agent Skills 不会自动跟着升级。CLI ≥ 1.2.0 内置同步命令（旧版本无此命令，继续用 `npx -y skills add areyoubugcoder/mp2rss-cli -y`）：
+
+```bash
+mp2rss skills sync              # 同步到当前项目 ./.agents/skills
+mp2rss skills sync --global     # 同步到全局 ~/.claude/skills
+mp2rss skills status [-o json]  # 本地 skills 版本 vs CLI 版本，是否漂移
+mp2rss skills list [-o json]    # 列出仓库提供的 skills
+```
+
+- 通过 `skills sync` 装过之后，`mp2rss update` 升级二进制时会**顺带同步** skills 到新版本（`--skip-skills` 跳过）；从未 sync 过则只提示不执行。
+- 同步状态记录在 `~/.mp2rss/skills-state.json`（0600）。
+- 底层执行 `npx -y skills add areyoubugcoder/mp2rss-cli -y`，需要 Node.js（npx）。
 
 ## 配置文件位置
 

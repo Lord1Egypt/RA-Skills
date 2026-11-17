@@ -1,42 +1,55 @@
-## Description: <br>
-Get instant, accurate Islamic prayer times for any UK location. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gets daily Islamic prayer times for UK locations using location lookup and the Aladhan prayer-times API.
 
-## Publisher: <br>
-[clinicode](https://clawhub.ai/user/clinicode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[clinicode](https://clawhub.ai/user/clinicode)
 
-## Use Case: <br>
-External users use this skill to check daily Islamic prayer times for UK cities, towns, boroughs, or auto-detected locations. <br>
-
-### Deployment Geography for Use: <br>
-United Kingdom <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Location-related requests may be processed by external services. <br>
-Mitigation: Provide a city manually instead of using auto-detect mode when reducing location privacy exposure is important. <br>
-Risk: Prayer times depend on external API availability and returned location data. <br>
-Mitigation: Review the displayed location and date before relying on the returned prayer times. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clinicode/uk-prayer-times) <br>
-- [Aladhan prayer timings API](https://api.aladhan.com/v1/timings) <br>
-- [ipapi location API](https://ipapi.co/json/) <br>
-- [OpenStreetMap Nominatim search API](https://nominatim.openstreetmap.org/search) <br>
+## Use Case:
 
+External users and agents use this skill to look up Fajr, Sunrise, Dhuhr, Asr, Maghrib, and Isha times for UK cities, towns, boroughs, and neighborhoods. It supports auto-detected location or a manually supplied UK location.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text prayer-time results with command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Shows location, date, and Fajr, Sunrise, Dhuhr, Asr, Maghrib, and Isha times in 12-hour format.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.4.4 (source: server release metadata) <br>
+United Kingdom
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Auto-detecting location contacts an IP geolocation service and may reveal IP-derived location information.
+
+Mitigation: Use a manually supplied broad UK city or area when avoiding IP-derived location sharing is preferred.
+
+Risk: Manual location lookup contacts an external geocoder before prayer times are fetched.
+
+Mitigation: Avoid entering precise addresses; use city, town, borough, or neighborhood names.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/clinicode/skills/uk-prayer-times)
+- [Aladhan Timings API](https://api.aladhan.com/v1/timings)
+- [ipapi IP Geolocation API](https://ipapi.co/json/)
+- [OpenStreetMap Nominatim Search](https://nominatim.openstreetmap.org/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text prayer-time table with optional command-line examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Shows six daily prayer-related times in 12-hour AM/PM format and includes the resolved location and date.]
+
+## Skill Version(s):
+
+1.4.4 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

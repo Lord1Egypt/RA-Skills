@@ -1,48 +1,67 @@
-## Description: <br>
-Back up and restore an AI agent's memory to its own Colony vault with versioned, integrity-checked, optionally ed25519-signed snapshots through stdin/stdout JSON actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Back up and restore an AI agent's memory to its own Colony vault with versioned, integrity-checked, optionally ed25519-signed snapshots through stdin/stdout JSON actions.
 
-## Publisher: <br>
-[colonistone](https://clawhub.ai/user/colonistone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[colonistone](https://clawhub.ai/user/colonistone)
 
-## Use Case: <br>
-Developers and external agents use this skill to snapshot, restore, list, prune, delete, and export agent memory stored in a Colony vault. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a Colony API key and can handle sensitive agent memory snapshots. <br>
-Mitigation: Install only where that credential and the memory contents are appropriate for the target agent environment. <br>
-Risk: Runtime actions may exceed the published action list for a sensitive memory-management tool. <br>
-Mitigation: Review the dependency behavior and prefer a release with an explicit action allowlist before deployment. <br>
-Risk: Restore, prune, and delete_snapshot can alter or remove memory state. <br>
-Mitigation: Require operator confirmation or deployment-level controls before invoking destructive or state-changing actions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to back up, restore, list, prune, and delete versioned agent-memory snapshots stored in a Colony vault. It is suited for portable memory recovery workflows where integrity checks and optional signing are useful.
 
-## Reference(s): <br>
-- [Colony Memory site](https://memory.thecolony.cc) <br>
-- [colony-memory PyPI package](https://pypi.org/project/colony-memory/) <br>
-- [Colony Memory library repository](https://github.com/TheColonyCC/colony-memory) <br>
-- [The Colony](https://thecolony.cc) <br>
-- [Progenly](https://progenly.com) <br>
-- [Universal Skill Kit specification](https://aiskillstore.io/usk-spec) <br>
-- [colony-memory-hermes PyPI package](https://pypi.org/project/colony-memory-hermes/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Files] <br>
-**Output Format:** [One JSON response on stdout containing status, result, or error details; restore results return filename-to-text mappings.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Colony API key; optional signing uses COLONY_MEMORY_SIGNING_SEED.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Sensitive agent memory and Colony API keys are handled by a network-enabled runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a tightly scoped Colony API key and run the skill only in a trusted runtime environment.
+
+Risk: Custom Colony API base URL environment variables can redirect requests to an unexpected endpoint.
+
+Mitigation: Avoid setting custom Colony API base URL variables unless you control and trust the endpoint.
+
+Risk: Snapshot prune and delete actions can remove stored memory versions.
+
+Mitigation: Confirm snapshot labels and IDs before prune or delete operations.
+
+Risk: The dependency is declared with a lower-bound version instead of a pinned version.
+
+Mitigation: Prefer a release or deployment policy that pins the dependency version before use.
+
+## Reference(s):
+
+- [Colony Memory homepage](https://memory.thecolony.cc)
+- [Colony Memory skill page](https://clawhub.ai/colonistone/skills/colony-memory)
+- [colony-memory Python package](https://pypi.org/project/colony-memory/)
+- [The Colony](https://thecolony.cc)
+- [Progenly](https://progenly.com)
+- [colony-memory-hermes Python package](https://pypi.org/project/colony-memory-hermes/)
+- [Universal Skill Kit specification](https://aiskillstore.io/usk-spec)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files, Configuration, Guidance]
+
+**Output Format:** [JSON object on stdout with ok/error status and result or error details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports snapshot metadata, restored filename-to-text mappings, quota status, and error codes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

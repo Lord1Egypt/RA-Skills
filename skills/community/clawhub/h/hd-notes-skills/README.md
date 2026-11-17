@@ -1,147 +1,142 @@
 # 话袋笔记 Skill
 
----
+话袋笔记 Skill 是话袋面向通用 Agent 的笔记能力扩展，支持通过自然语言新建、更新和搜索个人笔记。它采用 `SKILL.md` + `references/` + `scripts/` 的标准 Skill 结构，可发布到 ClawHub、SkillHub 等 Skill 市场，也可被支持 Skill 目录的 Agent 环境安装使用。
 
-## ✨ 核心能力（MVP）
+## 核心能力
 
 | 能力 | 说明 |
 |------|------|
-| **✏️ 新建笔记** | 用一句话快速记录你的想法、会议内容或灵感 |
-| **🔍 更新笔记** | 对已有笔记进行补充或修改，让内容始终保持最新 |
-| **📄 搜索笔记** | 输入关键词，快速找到你记录过的内容 |
-
----
-💡 使用场景
-✏️ 随手记录（想到就记）
-不需要整理格式，直接说就可以。
-💬 记录一个想法
-
-👤 记一下：以后可以试试每天早起30分钟看书，提高专注力
-🤖 好的，已经帮你记下来了。
-
-
-💬 会议快速记录
-
-👤 帮我记一下今天的结论：
-1）本周先完成首页改版的基础功能
-2）登录问题优先修复，明天前给出方案
-3）下周一安排联调，涉及前后端一起参与
-🤖 已帮你记录好了，后面可以随时查看或补充。
-
-
-🔍 要用时找（随时召回）
-不用翻记录，直接问。
-💬 查找历史笔记
-
-👤 帮我找一下之前记的“早起看书”的想法
-🤖 找到了几条相关内容，已经按时间帮你整理好了。
-
-
-🚀 快速上手
-你只需要记住两件事：
-
-
-📝 想记录 → 直接说“记一下…”
-
-
-🔎 想查找 → 直接说“帮我找…”
-
-
-剩下的交给我来处理。
-
-✅ 当前支持能力（MVP）
-
-- 新建笔记
-- 更新笔记
-- 关键词搜索笔记
-
-
-🌱 小提示
-
-不需要结构化输入，像聊天一样说就行
-
-内容越具体，后面越容易找回来
-
-可以把它当作你的「第二大脑」
-
----
+| 新建笔记 | 用一句话快速记录想法、会议结论、灵感和待整理内容 |
+| 搜索笔记 | 用关键词找回之前记录的内容 |
+| 更新笔记 | 基于搜索结果确认 `unique_id` 后，补充或修改已有笔记 |
 
 ## 安装
 
+### 让 AI 助手安装（推荐）
 
-### 方式一：通过 ClawHub/SkillHub（腾讯）/SkillHub（中国）  安装（推荐）
+在 AI 助手中输入以下指令即可安装：
 
-```bash
-clawhub install huadai-notes-skills
-SkillHub install huadai-notes-skills
-SkillHub install huadai-notes-skills
+**直接安装ClawHub地址：**
+```text
+请安装话袋笔记 Skill，地址：https://clawhub.ai/monkeydb/hd-notes-skills
 ```
 
-### 方式二：让 AI 助手安装
-
-> 帮我安装话袋笔记 Skill，地址是 https://github.com/HuadaiNotes/hd_notes_skills/blob/main/SKILL.md
-
-### 方式三：手动安装
-
-```bash
-mkdir -p ~/.openclaw/workspace/skills/huadai-notes-skill
-cd ~/.openclaw/workspace/skills/huadai-notes-skill
-curl -sL https://github.com/HuadaiNotes/hd_notes_skills/blob/main/SKILL.md -o SKILL.md
-curl -sL https://github.com/HuadaiNotes/hd_notes_skills/blob/main/SKILL.md -o package.json
+**Claude Code / Cursor / Codex / OpenClaw / 其他通用 Agent：**
+```text
+请安装话袋笔记 Skill，地址：https://github.com/monkeyDB/hd-notes-skills
 ```
 
+如果 ClawHub 不可用，也可以直接从 GitHub 安装：
+```text
+请安装话袋笔记 Skill，地址：https://raw.githubusercontent.com/monkeyDB/hd-notes-skills/main/SKILL.md
+```
 
-## 配置（重要）
+### 手动安装
 
-### 自动配置（默认）
+将本仓库作为一个 Skill 目录放到你的 Agent 支持的 Skill 目录中。常见形式如下，实际路径以对应 Agent 文档为准：
 
-安装后首次使用时，若检测到缺少配置，AI 会自动触发 OAuth Device Flow（详见 [OAuth 授权配置（话袋笔记）](references/oauth.md)）：
+```bash
+git clone https://github.com/monkeyDB/hd-notes-skills.git
+```
 
-1. 你发起任意笔记相关操作（保存/搜索/打开）
-2. AI 检测到未配置 `HUADAI_API_KEY` / `HUADAI_USER_UUID`
-3. AI 生成授权链接（verification_uri）并提示你完成授权
-4. 授权成功后自动写入 `HUADAI_API_KEY` 与 `HUADAI_USER_UUID`，继续执行你的请求
+安装后，确保 Agent 能读取仓库根目录的 `SKILL.md`、`references/api.md` 和 `scripts/` 目录。
 
-### 手动配置（可选）
+## 配置
 
-在 `~/.openclaw/openclaw.json` 中注入（示例见 [配置（必须先完成）](references/config.md)、[OAuth 授权配置](references/oauth.md)）：
+1. 打开 [话袋开放平台](https://ihuadai.cn/desktop/openai)
+2. 创建 API Key
+3. 在 Agent 运行环境中配置环境变量：
 
-- `HUADAI_BASE_URL`: `https://openapi.ihuadai.cn/open/api/v1`
-- `HUADAI_API_KEY`: OAuth 换取的 `api_key`
-- `HUADAI_USER_UUID`: OAuth 返回的用户 `unique_id`（对应请求头 `USER-UUID`）
-- `HUADAI_CLIENT_ID`: 可选覆盖；默认使用服务端预注册 `client_id`
+```bash
+export HUADAI_API_KEY=<你的API Key>
+```
 
-此 Skill 需要在运行环境中提供以下环境变量（不要在聊天中粘贴任何密钥）：
+**Claude Code 用户** 也可以在 `~/.bashrc` 或 `~/.zshrc` 中设置：
 
-- `HUADAI_BASE_URL`（必填）：话袋 OpenAPI 根地址（例如 `https://openapi.ihuadai.cn/open/api/v1`）
-- `HUADAI_CLIENT_ID`（可选覆盖，仅 OAuth）：OAuth Device Flow 的应用标识（申请设备码/换取 API Key；流程见 [OAuth 授权配置](references/oauth.md)）
-- `HUADAI_API_KEY`（必填）：业务 API 调用鉴权（请求头 `Authorization`）
-- `HUADAI_USER_UUID`（强烈建议，群聊/多人场景必配）：用户唯一标识
+```bash
+echo 'export HUADAI_API_KEY=<你的API Key>' >> ~/.zshrc
+source ~/.zshrc
+```
 
-## Base URL 与接口路径
+调用 OpenAPI 时，Skill 会通过请求头传递：
 
-- Base URL：`https://openapi.ihuadai.cn/open/api/v1`
-- API 路径：以本仓库 **references** 为准（统一 `/open/api/v1/...`）；接口分册：[新建笔记（Upload）](references/upload.md)、[更新笔记（Update）](references/update.md)、[搜索笔记（Search）](references/search.md)、[API 详细参考](references/api-details.md)
+```http
+Authorization: <HUADAI_API_KEY>
+```
 
-## 安全说明
+> ⚠️ 不要在聊天中粘贴、展示或保存 API Key。
 
-- 不在对话中索取、输出或回显任何 `HUADAI_API_KEY`
-- 所有读写都必须通过 API 获取结果，禁止编造“已保存/已找到”
-- 开启 `HUADAI_USER_UUID` 时，非 user 的请求必须拒绝并提示原因
+## 使用示例
 
----
+### 记录想法
 
-## 📜 相关链接
+```text
+记一下：以后可以试试每天早起 30 分钟看书，提高专注力。
+```
 
-- [话袋官网](https://ihuadai.cn/)
-- [ClawHub](https://clawhub.ai/----/ihuadai.cn)
-- [SkillHub腾讯](https://skillhub.tencent.com/-----/ihuadai.cn)
-- [SkillHub中国](https://www.skill-cn.com//-----/ihuadai.cn)
+### 记录会议结论
 
----
+```text
+帮我记一下今天的结论：
+1. 本周先完成首页改版的基础功能
+2. 登录问题优先修复，明天前给出方案
+3. 下周一安排前后端联调
+```
+
+### 查找历史笔记
+
+```text
+帮我找一下之前记的「早起看书」相关内容。
+```
+
+### 更新笔记
+
+```text
+把刚才找到的早起看书那条补充一句：先从每周三天开始，不追求每天都做。
+```
+
+## API
+
+Base URL：
+
+```text
+https://openapi.ihuadai.cn/open/api/v1
+```
+
+| 方法 | 路径 | 说明 |
+|------|------|------|
+| GET | `/search` | 搜索笔记 |
+| GET | `/block/:unique_id` | 获取笔记详情 |
+| POST | `/block/upload-block` | 新建笔记 |
+| POST | `/block/update-block` | 更新笔记 |
+
+请求体、curl 示例和错误码见 [references/api.md](references/api.md)。
+
+## 兼容平台
+
+| 平台 | 状态 | 说明 |
+|------|------|------|
+| Claude Code | ✅ | 支持 SKILL.md 目录格式 |
+| Cursor | ✅ | 支持 Skill 安装 |
+| Codex (OpenAI) | ✅ | 通过 OpenClaw 兼容 |
+| OpenClaw | ✅ | 原生支持，含 metadata.openclaw 配置 |
+| 任意 Skill 目录 Agent | ✅ | 标准 SKILL.md + references/ + scripts/ 格式 |
+
+## 安全边界
+
+- API Key 只用于请求头 `Authorization`。
+- 未配置 API Key 时，Skill 只引导用户到话袋开放平台创建并配置 API Key。
+- 写操作必须以 API 返回 `code=200` 为准。
+- 搜索为空时必须明确说明未找到，禁止编造结果。
+- 更新笔记时，`unique_id` 必须来自搜索结果或用户明确提供。
+
+## 相关链接
+
+- [GitHub地址](https://github.com/monkeyDB/hd-notes-skills)
+- [ClawHub商店地址](https://clawhub.ai/monkeydb/hd-notes-skills)
+- [话袋开放平台](https://ihuadai.cn/desktop/openai)
+- [话袋官网](https://ihuadai.cn)
 
 ## License
 
-见 `LICENSE`。
-
-
+MIT-0

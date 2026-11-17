@@ -1,38 +1,50 @@
-## Description: <br>
-Provides random or daily useless facts with sources and links for trivia enthusiasts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides random or daily useless facts with sources and links for trivia enthusiasts.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-Trivia enthusiasts and agents use this skill to retrieve either a random useless fact or the shared fact of the day, including source information and links for attribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/b-gutman/pipeworx-uselessfacts) <br>
-- [Useless Facts MCP endpoint](https://gateway.pipeworx.io/uselessfacts/mcp) <br>
+Agents serving trivia users use this skill to fetch random or daily useless facts and return the fact text with source links.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, links, configuration] <br>
-**Output Format:** [Text facts with source, source URL, permalink, and optional MCP configuration JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill exposes random_fact and today_fact tools; today_fact returns the same fact for all users on a given day.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The agent may contact gateway.pipeworx.io when a user asks for facts.
+
+Mitigation: Avoid sending private information as tool arguments and use the skill only for trivia requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/b-gutman/skills/pipeworx-uselessfacts)
+- [Pipeworx useless facts MCP endpoint](https://gateway.pipeworx.io/uselessfacts/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Text containing a fact, source, source URL, and permalink]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill exposes random_fact for changing results and today_fact for a daily shared result.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

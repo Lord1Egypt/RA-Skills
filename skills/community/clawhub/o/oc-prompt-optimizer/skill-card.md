@@ -1,41 +1,49 @@
-## Description: <br>
-Turn vague maintainer intent into an execution-ready prompt with scope, variables, missing facts, tests, and acceptance criteria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn vague maintainer intent into an execution-ready prompt with scope, variables, missing facts, tests, and acceptance criteria.
 
-## Publisher: <br>
-[jiepu110](https://clawhub.ai/user/jiepu110) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiepu110](https://clawhub.ai/user/jiepu110)
 
-## Use Case: <br>
-Developers and maintainers use this skill to convert ambiguous agent requests into scoped prompts with explicit variables, missing information, acceptance criteria, validation commands, and risk notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An optimized prompt could carry forward incorrect assumptions from an ambiguous request. <br>
-Mitigation: Review the variables, assumptions, missing information, and acceptance criteria before using the prompt for agent execution. <br>
-Risk: A prompt may involve credentials, non-public data, or destructive actions when the original task explicitly requires them. <br>
-Mitigation: Keep sensitive data requests explicit, avoid unnecessary credentials, and require opt-in wording for destructive actions. <br>
+## Use Case:
 
+Developers, maintainers, and operators use this skill to turn vague or high-risk requests into execution-ready prompts with constraints, missing facts, acceptance criteria, validation commands, and risk notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiepu110/oc-prompt-optimizer) <br>
-- [Support repository mentioned by skill](https://github.com/Star-Ring-Protocol/openclaw-gateway-guardian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown sections with prompt text, variables, acceptance criteria, validation commands, and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not execute generated prompts unless the user separately asks for execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated prompts may mention credentials, destructive actions, or validation commands that are unsafe to reuse without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review optimized prompts before sensitive work, avoid unnecessary secrets, and keep destructive actions opt-in and clearly named.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiepu110/skills/oc-prompt-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes the original request, optimized prompt, variables, missing information, acceptance criteria, validation commands, and risk notes.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence, released 2026-06-13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

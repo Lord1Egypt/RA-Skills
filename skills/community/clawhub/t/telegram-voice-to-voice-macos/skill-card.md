@@ -1,42 +1,50 @@
-## Description: <br>
-Telegram voice-to-voice for macOS Apple Silicon: transcribe inbound .ogg voice notes with yap (Speech.framework) and reply with Telegram voice notes via say+ffmpeg. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Telegram voice-to-voice for macOS Apple Silicon: transcribe inbound .ogg voice notes with yap (Speech.framework) and reply with Telegram voice notes via say+ffmpeg.
 
-## Publisher: <br>
-[Fiberian1981](https://clawhub.ai/user/Fiberian1981) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fiberian1981](https://clawhub.ai/user/fiberian1981)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to handle Telegram voice-note conversations on macOS Apple Silicon by transcribing inbound OGG audio locally and replying with either text or generated Telegram voice notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on macOS-specific tools and will fail on unsupported operating systems. <br>
-Mitigation: Install and run it only on macOS with trusted yap and ffmpeg binaries available in PATH. <br>
-Risk: The newest-file fallback for inbound OGG audio could select the wrong Telegram voice note. <br>
-Mitigation: Prefer passing the exact Telegram attachment path when available. <br>
-Risk: Per-user reply-mode preferences are stored locally. <br>
-Mitigation: Delete voice_state/telegram.json to clear stored Telegram reply-mode preferences. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Fiberian1981/telegram-voice-to-voice-macos) <br>
-- [yap Speech.framework transcriber](https://github.com/finnvoor/yap) <br>
+## Use Case:
 
+External users and developers use this skill to handle Telegram voice-note conversations on macOS Apple Silicon by transcribing incoming OGG/Opus audio locally, generating a reply, and returning either a Telegram voice note or a text response.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command usage and generated text or OGG voice-note file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Telegram reply guidance and may produce local OGG/Opus voice-note files through helper scripts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The pathless transcription fallback may transcribe the newest stored Telegram voice file rather than audio tied to the current chat, which could expose another user's audio.
+
+Mitigation: Prefer an attachment path from the current Telegram message and avoid the fallback in shared or multi-user environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fiberian1981/skills/telegram-voice-to-voice-macos)
+- [Publisher profile](https://clawhub.ai/user/fiberian1981)
+- [yap Speech.framework transcription CLI](https://github.com/finnvoor/yap)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command invocations and generated OGG voice-note file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS on Apple Silicon with yap, ffmpeg, say, and defaults available locally.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

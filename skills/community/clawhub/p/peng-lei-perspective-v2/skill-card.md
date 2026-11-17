@@ -1,40 +1,53 @@
-## Description: <br>
-Provides a Chinese-language business and leadership perspective based on Peng Lei's public experience, covering organizational culture, talent development, user insight, women's leadership, inclusive finance, venture support, work-life integration, and social responsibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language, Peng Lei-inspired leadership and business perspective for organization culture, talent development, user insight, women's leadership, inclusive finance, startup investment, and corporate responsibility topics.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-Chinese-speaking founders, operators, managers, and advisors use this skill to frame culture, talent, product, fintech, leadership, investing, work-life, and social-responsibility questions through a Peng Lei-inspired perspective. It produces structured guidance, decision heuristics, and example responses for business and leadership scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad management topics and apply the Peng Lei persona when the user did not intend that framing. <br>
-Mitigation: Use explicit phrasing when invoking or excluding the Peng Lei perspective, and review outputs for fit before relying on them. <br>
-Risk: Persona-style responses may sound first-person or authoritative even when based on summarized public material rather than live verification. <br>
-Mitigation: Treat outputs as perspective-taking guidance and verify factual claims, quotes, and business advice against primary sources before publication or high-impact decisions. <br>
+## Use Case:
 
+External users and agents use this skill to generate Chinese-language business and leadership guidance through a Peng Lei-inspired viewpoint, especially for organization culture, talent systems, user empathy, inclusive finance, investment support, work-life integration, and social responsibility decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/peng-lei-perspective-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown or plain text responses in Chinese, with structured bullets and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only persona and advisory responses; no code execution, file access, or external service calls are described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate on broad business topics when users did not intend to switch into a persona-style viewpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit trigger wording or narrower activation rules when deploying in environments that require deliberate persona switching.
+
+Risk: Persona-style business guidance can sound authoritative even when it is advisory rather than verified professional advice.
+
+Mitigation: Frame responses as perspective-inspired guidance and require human review for high-impact business, financial, employment, or legal decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/peng-lei-perspective-v2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Markdown or plain text responses in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable outputs; guidance may activate on broad business and leadership prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

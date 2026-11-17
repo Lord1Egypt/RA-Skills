@@ -1,42 +1,60 @@
-## Description: <br>
-Queries Baidu Qianfan Coding Plan usage and quotas, with optional browser-assisted login and saved session reuse. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Baidu Qianfan Coding Plan usage and quota, with optional browser-assisted login when saved cookies are missing or expired.
 
-## Publisher: <br>
-[wsjwoods](https://clawhub.ai/user/wsjwoods) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wsjwoods](https://clawhub.ai/user/wsjwoods)
 
-## Use Case: <br>
-Developers using Baidu Qianfan Coding Plan use this skill to check short-term, weekly, and monthly quota consumption from the command line and to refresh login state when cookies expire. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reusable Baidu session cookies are stored on the local machine. <br>
-Mitigation: Treat ~/.baidu-qianfan-auth.json like a password, avoid shared systems, and delete it when finished. <br>
-Risk: Runtime command wiring may reference the removed qianfan-usage.sh script. <br>
-Mitigation: Review command mapping before relying on the /qianfan-usage command in an agent environment. <br>
+## Use Case:
 
+Developers and engineers who use Baidu Qianfan Coding Plan can use this skill to check short-term, weekly, and monthly quota consumption from an authenticated local session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wsjwoods/qianfan-usage) <br>
-- [Baidu Qianfan quota API endpoint](https://console.bce.baidu.com/api/qianfan/charge/codingPlan/quota) <br>
-- [agent-browser dependency](https://github.com/nicepkg/agent-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text with quota values, reset times, status messages, and command-line setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May store and reuse Baidu session cookies in ~/.baidu-qianfan-auth.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Reusable Baidu login cookies are saved locally in ~/.baidu-qianfan-auth.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on a trusted single-user machine, restrict access to the cookie file, and delete it when quota checks are no longer needed.
+
+Risk: Selected Baidu cookies are sent to the Qianfan quota endpoint during quota checks.
+
+Mitigation: Use the skill only for the intended Baidu Qianfan account and review the endpoint and request behavior before installation.
+
+Risk: Automatic login depends on agent-browser interacting with the Baidu login flow.
+
+Mitigation: Review the agent-browser dependency and prefer manual review of login steps before relying on automatic browser actions.
+
+## Reference(s):
+
+- [Qianfan Usage ClawHub page](https://clawhub.ai/wsjwoods/skills/qianfan-usage)
+- [Qianfan Usage README](artifact/README.md)
+- [agent-browser dependency](https://github.com/nicepkg/agent-browser)
+- [Baidu Qianfan quota endpoint](https://console.bce.baidu.com/api/qianfan/charge/codingPlan/quota)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text output with quota totals, reset times, status messages, and setup commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Baidu session cookies saved locally after login and sends selected Baidu cookies to the Qianfan quota endpoint.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

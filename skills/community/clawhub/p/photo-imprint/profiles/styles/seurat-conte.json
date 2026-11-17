@@ -1,0 +1,81 @@
+{
+  "profile_type": "style",
+  "id": "seurat-conte",
+  "version": "1.0.0",
+  "reference_status": "approved-bundled",
+  "references": [
+    {
+      "id": "madame-seurat-mother-1882",
+      "image": "assets/style-packs/seurat-conte/reference.webp",
+      "source_metadata": "assets/style-packs/seurat-conte/source.json",
+      "technique_roles": [
+        "Conté crayon velvety hatching",
+        "chiaroscuro shaping without hard outline",
+        "paper-texture highlight and mid-tone control",
+        "soft edge dissolution"
+      ],
+      "subject_exclusions": [
+        "portrait subject",
+        "figure",
+        "interior",
+        "reference composition"
+      ]
+    }
+  ],
+  "positive_prompt": "Conté crayon velvety hatching, chiaroscuro shaping without hard outline, paper-texture highlights and controlled mid-tones, soft edge dissolution; translate only the photographed subject through the reference's crayon handling.",
+  "negative_prompt": "Do not copy portrait, figure, interior, or composition. No hard ink outline, no invented background, no Starbucks logo, no text, no hand.",
+  "line": {
+    "weight": "none",
+    "character": "no hard line, hatching builds form",
+    "color": "charcoal brown-black"
+  },
+  "color": {
+    "saturation": "low",
+    "transparency": "medium",
+    "temperature": "warm-neutral"
+  },
+  "edges": {
+    "subject": "soft dissolved edge via hatching, no contour",
+    "crop_marks": false
+  },
+  "finishing_notes": [
+    "use reference only for Conté hatching and tonal shaping",
+    "preserve paper grain and highlight",
+    "keep edges soft, no outline"
+  ],
+  "sample_style_contract_defaults": {
+    "mark_edge_quality": [
+      "velvety Conté hatching, no hard line",
+      "chiaroscuro volume via tone, not outline"
+    ],
+    "negative_space_rules": [
+      "preserve paper grain and highlight around subject",
+      "no fill pattern"
+    ],
+    "fill_tonal_rules": [
+      "build volume with layered hatching from mid-tone to dark",
+      "keep highlights as paper"
+    ],
+    "background_cleanliness": [
+      "empty areas match shared paper master with subtle grain",
+      "no speckle field or backing patch"
+    ],
+    "frame_border_policy": "forbid generated frames, borders, crop edges, and plate seams",
+    "abstraction_level": "Conté tonal simplification that preserves source identity and imports no portrait",
+    "generated_page_is_style_reference": false
+  },
+  "plate_normalization": {
+    "mode": "paper-key-soft",
+    "enabled": true,
+    "corner_sample_ratio": 0.04,
+    "background_distance_threshold": 10,
+    "alpha_feather_distance": 30,
+    "preserve_luminance_below": 225,
+    "preserve_saturation_above": 24,
+    "minimum_component_area_px": 3,
+    "border_clear_px": 2,
+    "frame_policy": "forbid",
+    "max_empty_area_noise_ratio": 0.004,
+    "max_corner_alpha_mean": 10
+  }
+}

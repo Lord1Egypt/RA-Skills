@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "description": "infoseek 引擎路由配置（策略② · 可用性探测 + 白名单路由）。whitelist 为空数组 = 全部引擎放行；探测默认关闭（INFOSEEK_ENGINE_PROBE=1 或此处 enabled=true 开启）。",
+  "whitelist": [],
+  "probe": {
+    "enabled": false,
+    "timeout": 5,
+    "ttl": 600,
+    "urls": {
+      "DuckDuckGo-HTML": "https://duckduckgo.com/html/?q=test",
+      "Bing-RSS": "https://www.bing.com/search?q=test&format=rss",
+      "Jina-AI": "https://r.jina.ai/http://example.com",
+      "Wikipedia": "https://zh.wikipedia.org/wiki/Special:Search?search=test"
+    }
+  }
+}

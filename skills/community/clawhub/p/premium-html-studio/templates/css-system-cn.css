@@ -1,0 +1,161 @@
+/* ================================================================
+   PREMIUM HTML STUDIO — CHINESE TECHNICAL SPEC STYLE (中文技术规格)
+   Design system distilled from the "Multi-ES Precise 模式流程详解"
+   reference document. Optimized for Chinese technical deep-dives,
+   pipeline/flow explanations, and spec docs (流程详解 / 技术方案 / 链路图).
+
+   When to use: 中文技术文档、流程/链路详解、节点拆解、参数表、
+   LLM/算法 pipeline 说明。Copy into <style> of a new doc, then
+   customize --brand accents if you want a different hue.
+   ================================================================ */
+
+/* Fonts — Chinese-first: Noto Sans SC (body) + Noto Serif SC (headings) + JetBrains Mono (code) */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Text scale (4 levels of emphasis) */
+  --text:#1a1a2e; --text2:#3d3d56; --text3:#64648c; --text4:#8e8ea9;
+  --border:#e2e6ef; --blt:#ebebf0;
+  --bg:#fff; --bgsub:#f8f9fc;
+
+  /* Accent families: each = base + dark + light tint */
+  --blue:#2563eb; --bluedk:#1d4ed8; --blt2:#dbeafe;
+  --purple:#7c3aed; --plt:#ede9fe;
+  --teal:#0891b2; --tlt:#cffafe;
+  --green:#059669; --glt:#d1fae5;
+  --amber:#d97706; --alt:#fef3c7;
+  --red:#dc2626; --rlt:#fee2e2;
+
+  /* Shadows */
+  --shadow-sm:0 1px 3px rgba(0,0,0,.04),0 1px 2px rgba(0,0,0,.03);
+  --shadow-md:0 4px 16px rgba(0,0,0,.06),0 2px 6px rgba(0,0,0,.03);
+  --shadow-lg:0 8px 40px rgba(0,0,0,.08),0 4px 12px rgba(0,0,0,.04);
+
+  --radius:8px; --radius-lg:12px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'Noto Sans SC',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+  background:linear-gradient(180deg,#eef1f7 0%,#e8ecf4 100%);
+  color:var(--text);
+  line-height:1.9;
+  font-size:15px;
+  -webkit-font-smoothing:antialiased;
+  letter-spacing:.01em;
+}
+
+/* ============ DOCUMENT FRAME ============ */
+.doc{max-width:1200px;margin-left:auto;margin-right:auto;background:#fff;box-shadow:var(--shadow-lg);border:1px solid rgba(0,0,0,.03);border-radius:2px}
+
+/* ============ COVER HERO ============ */
+.cover{padding:100px 96px 72px;background:linear-gradient(155deg,#1a0a2e 0%,#2d1440 40%,#4a0d5e 80%,#5b0e7d 100%);color:#fff;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:-140px;right:-100px;width:560px;height:560px;background:radial-gradient(circle,rgba(124,58,237,.25) 0%,transparent 65%);border-radius:50%}
+.cover::after{content:'';position:absolute;bottom:-120px;left:20px;width:400px;height:400px;background:radial-gradient(circle,rgba(8,145,178,.15) 0%,transparent 65%);border-radius:50%}
+.cover .tag{display:inline-block;padding:5px 20px;font-size:10px;font-weight:700;letter-spacing:5px;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6);margin-bottom:36px;text-transform:uppercase;position:relative;z-index:1;backdrop-filter:blur(4px);background:rgba(255,255,255,.03);border-radius:2px}
+.cover h1{font-family:'Noto Serif SC',serif;font-size:38px;font-weight:700;line-height:1.3;margin-bottom:20px;position:relative;z-index:1;letter-spacing:.02em}
+.cover .sub{font-size:16px;color:rgba(255,255,255,.62);line-height:1.75;max-width:660px;margin-bottom:44px;position:relative;z-index:1;letter-spacing:.02em}
+.cover .meta{font-size:13px;color:rgba(255,255,255,.4);line-height:2.4;position:relative;z-index:1;letter-spacing:.03em}
+.cover .meta b{color:rgba(255,255,255,.6)}
+.cover .kpis{display:flex;gap:36px;margin-top:40px;position:relative;z-index:1;flex-wrap:wrap}
+.cover .kpi .v{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:700;color:#fff}
+.cover .kpi .l{font-size:11px;color:rgba(255,255,255,.45);letter-spacing:.5px;margin-top:2px}
+
+/* ============ BODY ============ */
+.body{padding:0 96px 72px}
+
+/* ============ EXECUTIVE SUMMARY ============ */
+.exec{margin:48px 0;padding:32px 36px;background:linear-gradient(135deg,#faf8ff 0%,#f3eefe 100%);border:1px solid #ddd3f2;border-left:5px solid var(--purple);border-radius:var(--radius);box-shadow:var(--shadow-sm)}
+.exec h2{font-family:'Noto Serif SC',serif;font-size:16px;color:#6d28d9;margin-bottom:14px;font-weight:700;letter-spacing:.03em}
+.exec p{font-size:14px;color:var(--text2);line-height:2;margin-bottom:8px}
+
+/* ============ PART DIVIDERS ============ */
+.part{margin:64px 0 28px;padding:20px 0 14px;border-top:3px solid var(--text);border-bottom:1px solid var(--border)}
+.part .num{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--text4);font-weight:700;display:block;margin-bottom:8px}
+.part .title{font-family:'Noto Serif SC',serif;font-size:22px;font-weight:700;letter-spacing:.02em}
+
+/* ============ HEADINGS ============ */
+h2.sec{font-family:'Noto Serif SC',serif;font-size:17.5px;font-weight:700;padding-bottom:14px;border-bottom:1px solid var(--border);margin:44px 0 22px;position:relative}
+h2.sec::after{content:'';position:absolute;bottom:-1px;left:0;width:48px;height:3px;background:var(--purple);border-radius:2px}
+h3.sub{font-size:14.5px;font-weight:700;color:var(--text2);margin:26px 0 10px}
+p.lead{color:var(--text3);font-size:14px;margin-bottom:16px}
+
+/* ============ CALLOUTS (tinted, 4 semantics) ============ */
+.callout{border-radius:var(--radius);padding:14px 18px;margin:16px 0;font-size:13.5px;line-height:1.9;border:1px solid}
+.callout.info{background:var(--tlt);border-color:#a5f3fc;color:#155e75}
+.callout.warn{background:var(--alt);border-color:#fde68a;color:#92400e}
+.callout.err{background:var(--rlt);border-color:#fecaca;color:#991b1b}
+.callout.ok{background:var(--glt);border-color:#a7f3d0;color:#065f46}
+.callout b{font-weight:700}
+
+/* ============ TABLES ============ */
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px}
+th{background:var(--bgsub);color:var(--text2);font-weight:700;text-align:left;padding:10px 14px;border:1px solid var(--border);white-space:nowrap}
+td{padding:9px 14px;border:1px solid var(--border);color:var(--text2);vertical-align:top}
+tr:nth-child(even) td{background:#fcfcff}
+
+/* ============ CODE ============ */
+code,.mono{font-family:'JetBrains Mono',Consolas,monospace;font-size:12px}
+code{background:var(--bgsub);border:1px solid var(--blt);border-radius:4px;padding:1px 6px;color:#7c3aed}
+pre{background:#0f1220;color:#d5d9e8;border-radius:var(--radius);padding:16px 18px;overflow-x:auto;font-size:12px;line-height:1.8;margin:14px 0}
+pre .c{color:#5b6080}pre .k{color:#c792ea}pre .s{color:#a5d6a7}pre .n{color:#82aaff}
+
+/* ============ VERTICAL FLOW (pipeline / step chains) ============ */
+.flow{display:flex;flex-direction:column;gap:0;margin:20px 0}
+.fnode{display:flex;gap:14px;align-items:stretch}
+.fbar{width:5px;border-radius:3px;flex-shrink:0}
+.fcard{flex:1;background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:12px 18px;box-shadow:var(--shadow-sm);margin:3px 0}
+.fcard .fn{font-size:11px;color:var(--text4);font-weight:700;letter-spacing:1px}
+.fcard .ft{font-size:14px;font-weight:700;margin:2px 0 4px}
+.fcard .fd{font-size:12.5px;color:var(--text3);line-height:1.8}
+.fcard .fb{display:inline-block;margin-top:6px;font-size:11px;padding:1px 9px;border-radius:20px;background:var(--bgsub);border:1px solid var(--blt);color:var(--text3)}
+.fcard .fb b{color:var(--bluedk)}
+.arrow{text-align:center;color:var(--text4);font-size:13px;padding:2px 0;position:relative}
+.arrow .badge{display:inline-block;background:var(--purple);color:#fff;font-size:10px;font-weight:700;padding:0 8px;border-radius:10px;margin-left:6px;vertical-align:1px}
+
+/* ============ STAGE TAGS ============ */
+.stage-tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:3px;margin:18px 0 6px;letter-spacing:1px}
+.st1{background:var(--blt2);color:var(--bluedk)}
+.st2{background:var(--plt);color:#6d28d9}
+.st3{background:var(--glt);color:#065f46}
+
+/* ============ LEGEND ============ */
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:12px;color:var(--text3);margin:12px 0 4px}
+.legend .lg{display:flex;align-items:center;gap:6px}
+.legend .sw{width:12px;height:12px;border-radius:3px;display:inline-block}
+
+/* ============ TOC GRID ============ */
+.toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin:28px 0 8px}
+.toc a{text-decoration:none;color:var(--text2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;font-size:13px;display:flex;gap:10px;align-items:center;transition:.15s}
+.toc a:hover{border-color:var(--purple);color:#6d28d9;box-shadow:var(--shadow-sm)}
+.toc .n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text4);font-weight:700}
+
+/* ============ FUNNEL (data-flow bars) ============ */
+.funnel{display:flex;flex-direction:column;align-items:center;gap:0;margin:24px 0}
+.frow{display:flex;align-items:center;gap:10px;width:100%}
+.fstep{flex:0 0 190px;text-align:right;font-size:12px;color:var(--text3);font-weight:600}
+.fbar2{height:30px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;min-width:44px}
+.fnote{flex:0 0 150px;font-size:11.5px;color:var(--text4);padding-left:10px}
+
+/* ============ BADGES ============ */
+.badge-purple{background:var(--purple);color:#fff;border-radius:3px;padding:1px 8px;font-size:11px;font-weight:700}
+.badge-blue{background:var(--blue);color:#fff;border-radius:3px;padding:1px 8px;font-size:11px;font-weight:700}
+.badge-teal{background:var(--teal);color:#fff;border-radius:3px;padding:1px 8px;font-size:11px;font-weight:700}
+
+/* ============ FEATURE GRID ============ */
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0}
+.feature{border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;background:#fff;box-shadow:var(--shadow-sm)}
+.feature .ic{font-size:20px}
+.feature .t{font-weight:700;font-size:14px;margin:6px 0 4px;color:var(--text)}
+.feature .d{font-size:12.5px;color:var(--text3);line-height:1.8}
+
+/* ============ MISC ============ */
+.kbd{font-family:'JetBrains Mono',monospace;background:var(--bgsub);border:1px solid var(--blt);border-bottom-width:2px;border-radius:4px;padding:0 6px;font-size:11px;color:var(--text2)}
+details{margin:14px 0;border:1px solid var(--border);border-radius:8px;padding:12px 16px;background:#fcfcff}
+details summary{cursor:pointer;font-weight:700;font-size:13.5px;color:var(--text2)}
+.footer{text-align:center;font-size:11.5px;color:var(--text4);padding:36px 0 8px;border-top:1px solid var(--border);margin-top:56px;line-height:2}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:900px){.body,.cover{padding-left:28px;padding-right:28px}}

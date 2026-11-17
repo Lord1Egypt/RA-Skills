@@ -1,42 +1,53 @@
-## Description: <br>
-A Chinese-language critical illness insurance advisor that runs an interactive risk questionnaire and produces a personalized planning report using the 2020 China critical illness incidence table as a reference. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese critical illness insurance planning questionnaire that collects lifestyle, health, family-history, work, and financial risk factors to produce an informational critical illness insurance configuration report.
 
-## Publisher: <br>
-[wwbwin](https://clawhub.ai/user/wwbwin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwbwin](https://clawhub.ai/user/wwbwin)
 
-## Use Case: <br>
-External users considering critical illness insurance use this skill to answer a structured questionnaire about health, lifestyle, work, family history, income, and debt, then receive a risk-informed coverage planning report. The skill frames its output as general guidance and directs users to consult licensed insurance professionals for product decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for sensitive health, family medical history, income, and debt information. <br>
-Mitigation: Avoid sharing names, IDs, phone numbers, or other identifying details, and provide only the minimum information needed for general guidance. <br>
-Risk: Users may mistake the generated insurance report for licensed medical, financial, or insurance advice. <br>
-Mitigation: Treat outputs as general educational guidance and consult licensed medical, financial, or insurance professionals before making purchase decisions. <br>
-Risk: Risk scoring relies on a 2020 incidence table and heuristic multipliers embedded in the skill. <br>
-Mitigation: Review assumptions against current official data, insurer terms, and individual underwriting requirements before acting on the report. <br>
+## Use Case:
 
+External users use this skill to answer a Chinese-language questionnaire and receive an informational critical illness insurance planning report. The skill frames outputs as configuration guidance and directs users to consult licensed insurance professionals for actual purchase decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wwbwin/buy-critical-illness-insurance-zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with questionnaire prompts, risk scoring summary, and insurance planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code execution or installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The questionnaire asks for sensitive health, family-history, income, and debt details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask users to share only information they are comfortable providing and avoid storing or exposing personal details.
+
+Risk: The generated report could be mistaken for licensed insurance or medical advice.
+
+Mitigation: Keep the report informational, include a clear disclaimer, and direct users to licensed insurance or medical professionals for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wwbwin/skills/buy-critical-illness-insurance-zh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with questionnaire prompts, risk scoring summaries, tables, and advisory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should remain informational and include the skill's disclaimer that results are not licensed insurance, purchasing, or medical advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact frontmatter version wuwenbin-beijing-st-1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

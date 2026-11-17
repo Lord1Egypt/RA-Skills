@@ -1,41 +1,58 @@
-## Description: <br>
-A bilingual decision-coaching skill that uses Socratic questioning, decision frameworks, optional visual analysis, history tracking, and user preference profiles to help users make clearer personal and professional choices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-first decision coaching agent that uses Socratic questioning and structured decision frameworks to help users clarify options, values, risks, and next steps.
 
-## Publisher: <br>
-[stella-ji-shuting](https://clawhub.ai/user/stella-ji-shuting) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stella-ji-shuting](https://clawhub.ai/user/stella-ji-shuting)
 
-## Use Case: <br>
-External users and agents use this skill to guide structured decision coaching for career, relationship, relocation, and other life choices. The skill helps clarify values, compare options, stress-test assumptions, and produce a decision report without presenting the framework score as the final answer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive decision details may be stored in local history and profile files. <br>
-Mitigation: Ask for explicit consent before saving, decline persistence for private topics, and review or delete local decision data when it is no longer needed. <br>
-Risk: Generated decision reports may expose personal information if deployed to a public URL. <br>
-Mitigation: Review the exact report content and intentionally approve sharing before any public deployment. <br>
+## Use Case:
 
+External users use this skill for structured life decisions such as career, relationship, relocation, and multi-option choices. It guides users through background collection, values clarification, structured analysis, stress testing, and a decision report.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/stella-ji-shuting/help-you-choose) <br>
-- [Decision framework reference](references/frameworks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational guidance, Markdown decision reports, optional HTML visualization files, and local script commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist decision history and profile data locally when the user consents; may generate interactive decision reports for review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server evidence) <br>
+Risk: Sensitive decision history and profile information may be stored locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for explicit consent before saving records, and avoid storing sensitive details unless they are needed for the user's decision workflow.
+
+Risk: Generated decision reports may expose personal decision details if published or shared publicly.
+
+Mitigation: Review and redact report content before publishing, and share public links only when the user explicitly wants the report to be public.
+
+Risk: Generated HTML may be unsafe when labels or titles come from untrusted text.
+
+Mitigation: Treat generated HTML as untrusted, inspect or sanitize untrusted inputs, and avoid opening or sharing reports that contain unreviewed user-provided labels.
+
+## Reference(s):
+
+- [Decision frameworks reference](artifact/references/frameworks.md)
+- [ClawHub skill page](https://clawhub.ai/stella-ji-shuting/skills/help-you-choose)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Conversational guidance and Markdown decision reports, with optional HTML visualization files and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first interaction; optional local decision history, profile records, and HTML visualizations when the user consents and provides the needed inputs.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

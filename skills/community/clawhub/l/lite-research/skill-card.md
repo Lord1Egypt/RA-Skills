@@ -1,39 +1,53 @@
-## Description: <br>
-Lite Research performs quick web research for user-requested topics by generating up to five strategic search queries, fetching top results, and summarizing findings with sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform lite research using web search and web fetch tools for user requests to research a topic, excluding deep research requests.
 
-## Publisher: <br>
-[chand1012](https://clawhub.ai/user/chand1012) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chand1012](https://clawhub.ai/user/chand1012)
 
-## Use Case: <br>
-External users, employees, and developers use this skill when they need a fast, source-linked overview of a topic without invoking a deep research workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research prompts may contain private secrets or sensitive personal details. <br>
-Mitigation: Avoid entering secrets or sensitive personal information into research prompts. <br>
-Risk: Quick research summaries can miss context or repeat inaccurate source claims. <br>
-Mitigation: Verify important claims against the cited sources before relying on the results. <br>
+## Use Case:
 
+External users and agent operators use this skill to get a fast, sourced overview of a topic when they ask for lite research rather than exhaustive deep research.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summary with citations and source URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses up to five strategic search queries and fetches top results for each query.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Research topics and generated search queries may be sent to web search and fetch tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill for confidential or sensitive topics unless the tool environment and data handling are approved.
+
+Risk: The skill is designed for quick overviews and is not exhaustive or rigorous fact-checking.
+
+Mitigation: Use additional review, primary sources, or a deeper research workflow before relying on results for high-impact decisions.
+
+## Reference(s):
+
+- [Lite Research ClawHub Skill Page](https://clawhub.ai/chand1012/skills/lite-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summary with source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries cover key concepts, current developments, perspectives, applications, and notable challenges or controversies.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

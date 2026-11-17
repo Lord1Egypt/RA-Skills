@@ -1,0 +1,174 @@
+{
+  "_comment": "free-media-gen 媒体模型注册表。api_key_ref 指向 models.json 中对应平台的任一 chat 条目 id，复用其 apiKey，避免重复明文存储。status: verified|unverified|paid|dead。本文件不含任何硬编码绝对路径。",
+  "media_models": [
+    {
+      "id": "agnes-image-2.1-flash",
+      "provider": "agnes",
+      "modality": "image",
+      "endpoint": "https://api.agnes-ai.cn/v1/images/generations",
+      "api_key_ref": "models.json:agnes-2.5-flash",
+      "free": true,
+      "needs_vpn": false,
+      "watermark_removable": true,
+      "default_size": "1024x1024",
+      "features": "文生图/图生图；官方定价页 Current price = $0（免费）；2026-09-04 复检 HTTP 200 可用",
+      "status": "verified"
+    },
+    {
+      "id": "agnes-video-v2.0",
+      "provider": "agnes",
+      "modality": "video",
+      "endpoint": "https://api.agnes-ai.cn/v1/videos",
+      "api_key_ref": "models.json:agnes-2.5-flash",
+      "free": true,
+      "needs_vpn": false,
+      "watermark_removable": true,
+      "default_size": "1152x768",
+      "async_fetch": true,
+      "fetch_steps": [
+        "GET /v1/videos/<task_id> -> 取 video_id 字段（注意 != task_id）",
+        "GET /agnesapi?video_id=<video_id>&model_name=agnes-video-v2.0 -> metadata.url 即 MP4 直链（必须带 model_name）"
+      ],
+      "features": "文生视频/图生视频/关键帧动画；异步（旧版 /video/generations 端点）；推荐 1152x768/24fps；官方「currently free」；2026-09-04 提交探测 HTTP 200 已接受",
+      "status": "verified"
+    },
+    {
+      "id": "agnes-video-2.5-flash",
+      "provider": "agnes",
+      "modality": "video",
+      "endpoint": "https://api.agnes-ai.cn/v1/videos",
+      "api_key_ref": "models.json:agnes-2.5-flash",
+      "free": true,
+      "needs_vpn": false,
+      "watermark_removable": true,
+      "default_size": "1280x720",
+      "async_fetch": true,
+      "submit": {
+        "endpoint": "https://api.agnes-ai.cn/v1/videos",
+        "required": [
+          "model",
+          "prompt",
+          "mode",
+          "size",
+          "seconds",
+          "aspect_ratio"
+        ],
+        "mode_values": [
+          "text",
+          "keyframe",
+          "reference"
+        ],
+        "size_fixed": "720P",
+        "note": "新版接口，与 v2.0 的 /video/generations 不兼容；seconds 为字符串 4-12"
+      },
+      "fetch_steps": [
+        "POST /v1/videos {model,prompt,mode,seconds,size:'720P',aspect_ratio} -> video_id",
+        "GET /agnesapi?video_id=<video_id>&model_name=agnes-video-2.5-flash -> 轮询 status=completed",
+        "同上响应 metadata.url 即 MP4 直链（必须带 model_name）"
+      ],
+      "features": "限时免费（官方定价页列 720P $0.025/秒 为 list price，实测仍走免费额度）；仅 720P、<=5 张参考图、不支持参考视频。⚠ 2026-09-04 复检：提交返回 HTTP 429（free users 限流），属限流非失效，退避重试即可",
+      "status": "verified"
+    },
+    {
+      "id": "sensenova-u1.5-lite",
+      "provider": "sensenova",
+      "modality": "image",
+      "endpoint": "https://token.sensenova.cn/v1/images/generations",
+      "api_key_ref": "models.json:sensenova-6.8-flash-lite",
+      "free": true,
+      "needs_vpn": false,
+      "watermark_removable": true,
+      "default_size": "1024x1024",
+      "features": "OpenAI /v1/images/generations 兼容；可 watermark=false 去水印；支持 1024x1024；返回 b64_json；商汤公测免费（每5h 1500次）；平台目录 pricing.image=0 确认免费；2026-09-04 复检 HTTP 200 可用",
+      "status": "verified"
+    },
+    {
+      "id": "sensenova-u1-fast",
+      "provider": "sensenova",
+      "modality": "image",
+      "endpoint": "https://token.sensenova.cn/v1/images/generations",
+      "api_key_ref": "models.json:sensenova-6.8-flash-lite",
+      "free": true,
+      "needs_vpn": false,
+      "watermark_removable": true,
+      "default_size": "2048x2048",
+      "allowed_sizes": [
+        "1664x2496",
+        "2496x1664",
+        "1760x2368",
+        "2368x1760",
+        "1824x2272",
+        "2272x1824",
+        "2048x2048",
+        "2752x1536",
+        "1536x2752",
+        "3072x1376",
+        "1344x3136",
+        "2560x720",
+        "3072x864"
+      ],
+      "features": "轻量快速版；商汤公测免费；返回图片 URL；平台目录 pricing.image=0 确认免费。注意：size 有严格白名单，1024x1024 会报 400，默认用 2048x2048；2026-09-04 复检 HTTP 200 可用",
+      "status": "verified"
+    },
+    {
+      "id": "Kwai-Kolors/Kolors",
+      "provider": "siliconflow",
+      "modality": "image",
+      "endpoint": "https://api.siliconflow.cn/v1/images/generations",
+      "api_key_ref": "models.json:Qwen/Qwen3-8B",
+      "free": true,
+      "needs_vpn": false,
+      "watermark_removable": false,
+      "default_size": "1024x1024",
+      "features": "快手 Kolors 文生图；硅基流动官方定价「免费」；返回图片 URL。⚠ 2026-09-04 复检：调用返回 HTTP 402 account balance is insufficient（账户余额不足），属账户级问题非模型失效，充值或额度恢复后可用",
+      "status": "verified"
+    },
+    {
+      "id": "agnes-image-2.5-flash",
+      "provider": "agnes",
+      "modality": "image",
+      "endpoint": "https://api.agnes-ai.cn/v1/images/generations",
+      "api_key_ref": "models.json:agnes-2.5-flash",
+      "free": true,
+      "needs_vpn": false,
+      "watermark_removable": true,
+      "default_size": "1024x1024",
+      "features": "Agnes 图像 2.5（较 2.1 更新）；官方定价页 Current price = $0（各分辨率档位均免费）；2026-09-04 活体实测 HTTP 200 出图成功",
+      "status": "verified"
+    }
+  ],
+  "excluded_models": [
+    {
+      "id": "agnes-image-2.0-flash",
+      "reason": "平台 /v1/models 目录中不存在该模型（实测持续 503）。Agnes 当前仅有 agnes-image-2.1-flash 一个图像模型"
+    },
+    {
+      "id": "agnes-video-2.5",
+      "reason": "付费模型，官方定价 ¥0.15–0.35/秒"
+    },
+    {
+      "id": "Qwen/Qwen-Image",
+      "reason": "硅基流动付费，¥0.3/张"
+    },
+    {
+      "id": "Qwen/Qwen-Image-Edit",
+      "reason": "图像编辑类且付费，非纯文生图"
+    },
+    {
+      "id": "Qwen/Qwen-Image-Edit-2509",
+      "reason": "图像编辑类且付费，非纯文生图"
+    },
+    {
+      "id": "Tongyi-MAI/Z-Image-Turbo",
+      "reason": "付费模型（硅基流动官方定价 ¥0.10/张）。核实来源：siliconflow.cn/pricing；2026-09-04 审计剔除"
+    },
+    {
+      "id": "Tongyi-MAI/Z-Image",
+      "reason": "付费模型（硅基流动官方定价 ¥0.30/张）。核实来源：siliconflow.cn/pricing；2026-09-04 审计剔除"
+    },
+    {
+      "id": "baidu/ERNIE-Image-Turbo",
+      "reason": "付费模型（硅基流动官方定价 ¥0.11/张（约 $0.015/张））。核实来源：siliconflow.cn/pricing；2026-09-04 审计剔除"
+    }
+  ]
+}

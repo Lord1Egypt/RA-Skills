@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "name": "短报告（3000字）模板",
+  "适用于": "快速研究 · 内部决策 · 1-2小时阅读时长",
+  "sections": [
+    {
+      "id": "scenario",
+      "title": "场景判断",
+      "template": "判断为【A/B/C】（一句话结论）。",
+      "target_words": 100
+    },
+    {
+      "id": "longitudinal",
+      "title": "纵向分析",
+      "template": "【起源-诞生-演进-决策】叙事弧线，按时间展开关键节点。",
+      "target_words": 1200
+    },
+    {
+      "id": "cross_sectional",
+      "title": "横向分析",
+      "template": "对比 3-5 个对象/替代方案，讲每个'活成了什么样'。",
+      "target_words": 1000
+    },
+    {
+      "id": "convergence",
+      "title": "交汇分析",
+      "template": "纵向惯性 × 横向位置 → 未来概率分布（3-5 个场景）+ 关键转折点信号。",
+      "target_words": 600
+    },
+    {
+      "id": "limitations",
+      "title": "局限性与待补充",
+      "template": "数据空白、未验证的推测、需要更多调研的方向。",
+      "target_words": 100
+    }
+  ],
+  "metadata": {
+    "methodology": "references/methodology.md",
+    "writing_style": "references/writing_baseline.md"
+  }
+}

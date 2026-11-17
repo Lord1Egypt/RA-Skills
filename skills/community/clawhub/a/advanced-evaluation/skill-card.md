@@ -1,45 +1,57 @@
-## Description: <br>
-This skill should be used when the user asks to "implement LLM-as-judge", "compare model outputs", "create evaluation rubrics", "mitigate evaluation bias", or mentions direct scoring, pairwise comparison, position bias, evaluation pipelines, or automated quality assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents design LLM-as-judge evaluations, compare model outputs, create rubrics, mitigate evaluation bias, and build automated quality assessment pipelines.
 
-## Publisher: <br>
-[karmaent](https://clawhub.ai/user/karmaent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[karmaent](https://clawhub.ai/user/karmaent)
 
-## Use Case: <br>
-Developers and evaluation engineers use this skill to design LLM-as-judge systems, compare model outputs, create rubrics, choose metrics, and mitigate common evaluator biases in automated quality assessment workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Evaluation prompts may ask judges for hidden chain-of-thought or more reasoning detail than the use case needs. <br>
-Mitigation: Ask for concise evidence, rubric-grounded rationale, scores, and confidence; do not ask models to reveal hidden chain-of-thought. <br>
-Risk: Evaluation data may include sensitive prompts, responses, or user context. <br>
-Mitigation: Run sensitive evaluations only through approved model providers and pipelines. <br>
+## Use Case:
 
+Developers and evaluation engineers use this skill to build LLM evaluation systems with direct scoring, pairwise comparison, rubric design, bias mitigation, and confidence calibration.
 
-## Reference(s): <br>
-- [Evaluating the Effectiveness of LLM-Evaluators](https://eugeneyan.com/writing/llm-evaluators/) <br>
-- [Judging LLM-as-a-Judge (Zheng et al., 2023)](https://arxiv.org/abs/2306.05685) <br>
-- [G-Eval: NLG Evaluation using GPT-4 (Liu et al., 2023)](https://arxiv.org/abs/2303.16634) <br>
-- [Large Language Models are not Fair Evaluators (Wang et al., 2023)](https://arxiv.org/abs/2305.17926) <br>
-- [ClawHub skill page](https://clawhub.ai/karmaent/advanced-evaluation) <br>
-- [Publisher profile](https://clawhub.ai/user/karmaent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with prompt templates, structured JSON examples, rubric patterns, and implementation recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no code execution, tool calls, credential access, or hidden data access were identified by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad activation wording could apply the skill outside LLM evaluation tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation to LLM-as-judge, rubric design, model-output comparison, bias mitigation, and evaluation pipeline work.
+
+Risk: Detailed evaluator rationales can expose unnecessary chain-of-thought-style reasoning.
+
+Mitigation: Adapt scoring prompts to request brief evidence-backed rationales with structured scores.
+
+## Reference(s):
+
+- [Evaluating the Effectiveness of LLM-Evaluators](https://eugeneyan.com/writing/llm-evaluators/)
+- [Judging LLM-as-a-Judge](https://arxiv.org/abs/2306.05685)
+- [G-Eval: NLG Evaluation using GPT-4](https://arxiv.org/abs/2303.16634)
+- [Large Language Models are not Fair Evaluators](https://arxiv.org/abs/2305.17926)
+- [ClawHub Skill Page](https://clawhub.ai/karmaent/skills/advanced-evaluation)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with prompt templates, protocols, and structured JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no tool calls or credential handling detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

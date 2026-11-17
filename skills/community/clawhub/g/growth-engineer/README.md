@@ -89,12 +89,15 @@ The setup wizard also asks how the user wants the tool to operate and whether to
 - Reads analytics by default and can add RevenueCat, Sentry-compatible crash monitoring, AnalyticsCLI feedback summaries, store/release connectors, Slack, and generic webhooks.
 - For iOS/macOS apps, setup should ask whether to connect the `asc` CLI and App Store Connect skill for all available read-only App Store Connect signals: units/downloads, redownloads, conversion, source page views, app usage, purchases, subscriptions, reviews/ratings, builds/releases, and crash totals.
 - Runs a daily production health pass when scheduled: non-zero production crash totals should notify the OpenClaw user through configured chat/social delivery, then create a GitHub issue or implementation PR automatically when GitHub API write access is configured.
-- Sends short growth-run summaries through configured social/chat channels. OpenClaw cron defaults to the instance's connected channel route (`channel=last`), and Discord is only one possible command/webhook channel when explicitly configured.
+- Sends state-aware growth and connector summaries with status, impact, affected app/source, next action, and automation boundary. OpenClaw cron defaults to the instance's connected route (`channel=last`), so the same compact fallback works across Discord, Slack, Telegram, WhatsApp, Matrix, Teams, and other supported native routes. Direct Discord delivery uses embeds and direct Slack delivery uses Block Kit.
+- Tracks each notification target independently: successful channels are not reposted when another target needs a retry, the Discord bridge independently receipts its OpenClaw and Hermes targets, recovery is reported once, and unchanged findings stay quiet after successful delivery.
+- Treats clean healthcheck/daily runs as `HEARTBEAT_OK`, prevents native OpenClaw/Hermes cron from echoing a notification already sent by the runner, and delivers redacted runner failures through the same receipt-aware channel system.
 - Uses API-key ASC batch reports only and does not require browser or web-session login for setup or health checks.
 - Uses `analyticscli feedback summary --format json` as the built-in feedback source instead of a separate duplicate feedback definition.
 - Correlates product signals with repo context; connect GitHub with readable code access whenever possible because it makes analytics findings much more actionable.
 - Generates local issue drafts by default.
 - Writes an OpenClaw chat outbox by default, and creates GitHub issues or draft pull requests only when GitHub artifact creation is explicitly enabled in config.
+- Keeps connector health, source collection, growth summaries, and runner failures in separate local outbox files while retaining the legacy proposal handoff shape for existing consumers.
 - Leaves all conversational analysis and implementation work to the host agent.
 
 ## What The Wizard Writes

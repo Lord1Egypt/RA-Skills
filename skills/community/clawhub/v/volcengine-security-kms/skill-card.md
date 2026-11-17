@@ -1,41 +1,52 @@
-## Description: <br>
-Key lifecycle management with Volcengine KMS. Use when users need key creation, rotation policies, encryption/decryption workflows, or key permission troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Key lifecycle management with Volcengine KMS. Use when users need key creation, rotation policies, encryption/decryption workflows, or key permission troubleshooting.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and security engineers use this skill to plan and execute Volcengine KMS key lifecycle, cryptographic operation, rotation, and permission troubleshooting workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: KMS operations can create, rotate, decrypt with, sign with, or change access to sensitive keys. <br>
-Mitigation: Use least-privilege IAM credentials limited to intended projects and keys, and require explicit confirmation before creating keys, decrypting data, signing, rotating keys, or changing key policies. <br>
-Risk: Plaintext secrets or cryptographic material could be exposed in logs or responses during key workflows. <br>
-Mitigation: Do not expose plaintext secrets in logs, and return only the minimum operation result, key metadata, and audit hints needed for the task. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [sources.md](references/sources.md) <br>
-- [ClawHub skill page](https://clawhub.ai/cinience/volcengine-security-kms) <br>
-- [Publisher profile](https://clawhub.ai/user/cinience) <br>
+## Use Case:
 
+Developers, security engineers, and cloud operators use this skill to manage Volcengine KMS key lifecycle tasks, encryption and decryption workflows, signing operations, and key permission troubleshooting with least-privilege checks.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include key metadata, operation results, audit hints, and least-privilege permission checks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: KMS actions can affect encryption keys and access to protected data.
+
+Mitigation: Confirm the target account, key, operation, permissions, and logging expectations before allowing key creation, rotation, encryption, decryption, or signing actions.
+
+Risk: Plaintext secrets could be exposed during key-management workflows.
+
+Mitigation: Do not expose plaintext secrets in logs or responses, and return only needed key metadata, operation results, and audit hints.
+
+## Reference(s):
+
+- [Sources](references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with operational checklists and audit hints]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, persistence, or hidden data handling is present in the release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

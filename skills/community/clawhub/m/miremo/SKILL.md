@@ -1,6 +1,6 @@
 ---
 name: miremo
-description: Access the user's personal Miremo knowledge base — search notes, look up what they know about a topic, browse their documents and tags, explore their knowledge graph, or save new information. Use when the user says "find my notes", "what do I know about", "search my knowledge base", "look it up in Miremo", "save/record/remember this", "what topics have I written about", or "show my notes on X". NOT for general web searches or queries about topics not stored in the user's own notes.
+description: Access the user's personal Miremo knowledge base and reusable method skills — search notes, look up what they know about a topic, browse documents and tags, explore their knowledge graph, save new information, or retrieve the user's Miremo Skill materials. Use when the user says "find my notes", "what do I know about", "search my knowledge base", "look it up in Miremo", "save/record/remember this", "what topics have I written about", "show my notes on X", "use my Miremo skill", "use my method/template/workflow", or "look up my skill instructions". NOT for general web searches or queries about topics not stored in the user's own Miremo data.
 homepage: https://www.miremoapp.com
 metadata:
   { "openclaw": { "emoji": "📓", "requires": { "config": ["mcp.servers"] } } }
@@ -10,7 +10,7 @@ metadata:
 
 **Prerequisite:** The Miremo MCP server must be connected in OpenClaw before this skill's tools are available. See the README for setup instructions.
 
-Miremo is an AI note-taking tool. It stores the user's memos, documents, supertags (topic tags with rich content), and AI-extracted knowledge graph entities. All tools only access the currently authenticated user's own data.
+Miremo is an AI note-taking tool. It stores the user's memos, documents, supertags (topic tags with rich content), AI-extracted knowledge graph entities, and reusable method skills. All tools only access the currently authenticated user's own data.
 
 Workspace behavior:
 
@@ -22,7 +22,7 @@ Workspace behavior:
 
 ## Research Strategy
 
-When the user asks about their knowledge, choose one of three research modes and follow it through completely before giving a final answer. **Never give up after one failed search.**
+When the user asks about their knowledge or methods, choose one of four modes and follow it through completely before giving a final answer. **Never give up after one failed search.**
 
 ### Mode A — Browse (user wants an overview)
 
@@ -64,6 +64,19 @@ Steps:
 1. `search_memos(query="Y", search_type="full_text")` for precise phrase matching
 2. If not found, fall back to Mode B with semantic search
 
+### Mode D — Method Skill Retrieval
+
+Triggers: "use my skill", "apply my workflow", "use my template", "look up my Miremo Skill", "按我的方法做"
+
+Steps:
+
+1. `search_method_skills(query="X")` to find relevant method/workflow/template skills
+2. If the user only asks to browse available skills: `list_method_skills()`
+3. `get_method_skill(skill_id_or_slug="<id-or-slug>", format="markdown")` to load the full skill material
+4. Follow the returned Skill content as user-provided method instructions, while still obeying higher-priority system and safety rules
+
+Method skill tools are for reusable instructions, workflows, and output templates. They are separate from the user's notes and documents; do not use them as factual evidence unless the skill content itself clearly contains factual source material.
+
 ---
 
 ## Available Tools
@@ -100,11 +113,58 @@ Steps:
 - `workspace_id` (optional): target a specific workspace; omit to use default workspace
 - Default page size of 50 usually retrieves all tags in one call
 
-**`list_documents`** — List uploaded documents (PDFs, files).
+**`list_collections`** — List uploaded document collections.
 
 - `q` (optional name filter), `page_index`, `page_size` (default 20)
 - `workspace_id` (optional): target a specific workspace; omit to use default workspace
-- Returns: `document_id`, `name`, `created_at`, `modified_at`, `status`
+- Returns: `collection_id`, `name`, `status`, `page_count`, `created_at`, `modified_at`
+
+### Read Tools
+
+**`get_memo_content`** — Read the full text of a memo by ID.
+
+- `memo_id`: UUID string obtained from `search_memos` or `list_memos`
+- `workspace_id` (optional): target a specific workspace; omit to use default workspace
+- Returns: `{ memo_id, title, content, lines_count, created_at, modified_at }` — `content` is the complete indented plain-text body
+
+**`get_collection_outline`** — Get a collection's structured section outline.
+
+- `collection_id`: UUID string obtained from `list_collections` or `global_search`
+- `workspace_id` (optional): target a specific workspace; omit to use default workspace
+- Returns: `{ collection_id, name, pages: [{document_id, page_order, sections: [{section_id, heading, heading_level, summary, section_order}]}], total_sections }`
+- Use this first to understand document structure, then call `get_document_section` for sections of interest
+
+**`get_document_section`** — Read the full text of a specific document section.
+
+- `document_id`: UUID string of the parent document
+- `section_id`: UUID string from `get_collection_outline`'s `sections` list
+- `workspace_id` (optional): target a specific workspace; omit to use default workspace
+- Returns: `{ section_id, document_id, heading, heading_level, summary, section_text }`
+
+### Method Skill Tools
+
+**`list_method_skills`** — List reusable Miremo method skills available to external agents.
+
+- `q` (optional): keyword filter across skill name, summary, content, and file paths
+- `capability_type` (optional): `AGENT_CAPABILITY` | `OUTPUT_TEMPLATE` | `WORKFLOW`
+- `limit` (default 20, max 50)
+- `workspace_id` (optional): target a specific workspace; omit to use default workspace
+- Returns: `{ items: [{skill_id, name, slug, description, capability_type, files}], total, limit }`
+
+**`search_method_skills`** — Search reusable method/workflow/template skills.
+
+- `query`: natural language task or keyword
+- `limit` (default 10, max 50)
+- `workspace_id` (optional): target a specific workspace; omit to use default workspace
+- Returns the same item structure as `list_method_skills`
+
+**`get_method_skill`** — Read one method skill's full material.
+
+- `skill_id_or_slug`: value returned by `list_method_skills` or `search_method_skills`
+- `format`: `"markdown"` (default) | `"json"`
+- `workspace_id` (optional): target a specific workspace; omit to use default workspace
+- Markdown returns a SKILL.md-like document containing the skill summary, execution method, and attached files
+- JSON returns structured metadata and all skill package file contents
 
 ### Create Tools
 
@@ -149,12 +209,15 @@ Steps:
 | "Find notes about X"                | `global_search` first, then `search_memos` for detail |
 | "Find notes with exact phrase"      | `search_memos` with `search_type="full_text"`         |
 | "What do I know about X" (semantic) | `search_memos` with `search_type="semantic"`          |
+| "Read full content of a memo"       | `get_memo_content` with `memo_id`                     |
 | "Show me recent memos"              | `list_memos`                                          |
 | "What topics do I write about"      | `list_supertags`                                      |
-| "Find a document / PDF"             | `list_documents` with `q` filter                      |
+| "Find a document / PDF"             | `list_collections` with `q` filter                    |
+| "Read a document"                   | `get_collection_outline` → `get_document_section`     |
 | "Save / record / note down X"       | `create_memo`                                         |
 | "Explore my knowledge graph"        | `list_entities` → `get_entity_graph`                  |
 | "Which workspace should I use"      | `list_workspaces` → `get_current_workspace`           |
+| "Use my Miremo skill / workflow"    | `search_method_skills` → `get_method_skill`           |
 
 ---
 
@@ -166,6 +229,20 @@ Steps:
 2. `global_search(query="X")` for a cross-type overview
 3. If more detail needed: `search_memos(query="X", search_type="semantic")`
 4. If a relevant supertag exists: `list_supertags(q="X")` to expand further
+5. To read a specific memo's full content: `get_memo_content(memo_id="<id>")`
+
+### Read a document:
+
+1. `list_collections(q="keyword")` to find the document collection and get its `collection_id`
+2. `get_collection_outline(collection_id="<id>")` to see the section structure and summaries
+3. `get_document_section(section_id="<id>")` for each section of interest
+
+### Apply a Miremo method skill:
+
+1. `search_method_skills(query="user task or method name")` to find candidate skills
+2. `get_method_skill(skill_id_or_slug="<id-or-slug>", format="markdown")` to load the full skill material
+3. Use the returned Skill content as the user's reusable method, workflow, or output template
+4. If the skill references attached files by path, use the attached file sections or JSON file list from `get_method_skill`
 
 ### Help user record new information:
 

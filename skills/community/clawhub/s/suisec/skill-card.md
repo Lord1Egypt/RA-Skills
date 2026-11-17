@@ -1,40 +1,53 @@
-## Description: <br>
-Sui Sec pre-simulates Sui client transactions with dry-run output and compares the results with user intent before allowing execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sui Sec helps agents dry-run Sui CLI transaction commands and compare simulation results against user intent before signing or execution.
 
-## Publisher: <br>
-[k66inthesky](https://clawhub.ai/user/k66inthesky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[k66inthesky](https://clawhub.ai/user/k66inthesky)
 
-## Use Case: <br>
-Developers and Sui users use this skill to gate Sui CLI transaction signing by dry-running PTB or call commands and comparing simulation results with the declared transaction intent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can report SAFE TO SIGN after incomplete transaction checks. <br>
-Mitigation: Treat it as a helper only and manually verify the active Sui wallet, exact command, recipients, asset amounts, object changes, call target, gas, and dry-run output before signing. <br>
-Risk: The workflow may proceed from dry-run review to real Sui transaction execution. <br>
-Mitigation: Block on dry-run failures or mismatches, and require explicit human review before any override. <br>
+## Use Case:
 
+Developers and external users working with Sui transactions use this skill to collect transaction intent, run Sui dry-runs, and review whether simulated effects match the requested action. Security evidence indicates it should be treated as a limited dry-run helper, not an authoritative transaction approval gate.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/k66inthesky/suisec) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and tabular audit output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run Sui CLI dry-run commands and a Python audit helper; requires sui and python3.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence; artifact/package.json reports 1.0.0) <br>
+Risk: Unsafe transactions could be labeled safe because security evidence says the broad protection claims are backed by only a narrow spending check.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only as a dry-run helper and independently review recipients, asset movements, object ownership changes, call targets, and simulation output before signing.
+
+Risk: Automated support is limited, and some Sui command paths require manual comparison against user intent.
+
+Mitigation: For unsupported or manual paths, perform item-by-item intent comparison and avoid automatic execution based solely on the skill output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/k66inthesky/skills/suisec)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and review tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the local sui CLI and python3; automated findings should be reviewed before signing or executing transactions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact/package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

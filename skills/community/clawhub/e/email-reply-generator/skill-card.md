@@ -1,41 +1,52 @@
-## Description: <br>
-Generate professional and contextually appropriate email replies based on the original email content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional, contextually appropriate email replies from original email content with support for tone and length preferences.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees and external users use this skill to draft email replies for meetings, requests, follow-ups, gratitude, information requests, and deadline or term negotiations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Email prompts can contain sensitive personal, credential, or business information.
+
+Mitigation: Share only the minimum email context needed and redact credentials, private identifiers, confidential business details, signatures, and irrelevant personal information before use.
+
+Risk: Generated replies may misstate intent, tone, or commitments.
+
+Mitigation: Review and edit each draft before sending, especially for client, legal, financial, or employment-sensitive correspondence.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Professionals and teams use this skill to draft email replies from provided message context, intended response goals, preferred tone, and desired length. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Email prompts may contain confidential business information, personal data, passwords, account numbers, private links, or other sensitive details. <br>
-Mitigation: Redact sensitive and unnecessary details before using the skill; provide only the minimum context needed to draft the reply. <br>
-Risk: Generated replies may not fully match the sender relationship, intended commitment, deadline, budget, availability, or negotiation constraints. <br>
-Mitigation: Review and edit the generated draft before sending, especially for legal, financial, contractual, or high-impact communications. <br>
+**Output Format:** [Markdown or plain text email draft with concise user-facing guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huajianjiu000/email-reply-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/huajianjiu000) <br>
+**Other Properties Related to Output:** [Tone and length can be adjusted from user-provided email context and intent.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain-text email reply draft] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tone, intent, and response length can be customized from user-provided email context.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

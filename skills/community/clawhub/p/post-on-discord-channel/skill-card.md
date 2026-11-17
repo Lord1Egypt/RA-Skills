@@ -1,45 +1,59 @@
-## Description: <br>
-Post On Discord Channel sends messages to Discord channels through AgentPMT-hosted remote tool calls using webhooks, markdown, embeds, file attachments, and mention controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post On Discord Channel sends messages to Discord channels via webhooks with markdown, embeds, file attachments, and mention controls through AgentPMT-hosted remote tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and external automation teams use this skill to let an agent post Discord notifications, formatted reports, support updates, event notices, and files to channels via webhook URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Discord webhook URLs are sensitive credentials that can allow posting to a channel if exposed. <br>
-Mitigation: Keep webhook URLs out of prompts and logs, and rotate the webhook if it is exposed. <br>
-Risk: Messages, embeds, and attached files are sent to external Discord channels and can expose private or unintended content. <br>
-Mitigation: Review each destination webhook and keep tool inputs scoped to the minimum content needed before sending. <br>
-Risk: Mention controls can notify broad audiences such as everyone, roles, or individual users. <br>
-Mitigation: Restrict allowed_mentions unless broad pings are intentional. <br>
+## Use Case:
 
+Developers and automation builders use this skill to post Discord notifications, reports, embeds, and attachments from agent workflows through an AgentPMT-hosted Discord webhook tool.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/post-on-discord-channel) <br>
-- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/post-on-discord-channel) <br>
-- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [What AgentPMT is](https://clawhub.ai/agentpmt/what-is-agentpmt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, JSON, API calls] <br>
-**Output Format:** [Markdown instructions with JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defines one send action with webhook_url plus optional content, embeds, files, username, avatar_url, tts, and allowed_mentions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Discord webhook URLs and message or attachment contents are sent through AgentPMT and Discord.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat webhook URLs as secrets, keep inputs minimal, and avoid sending sensitive or regulated data.
+
+Risk: The skill relies on mutable remote live instructions for schema and examples.
+
+Mitigation: Review live instructions before production use and keep local safety rules authoritative.
+
+Risk: Mention controls and text-to-speech can notify or disrupt broad Discord audiences.
+
+Mitigation: Restrict allowed mentions, avoid broad pings unless intended, and leave text-to-speech disabled unless required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/post-on-discord-channel)
+- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/post-on-discord-channel)
+- [Generated action schema](artifact/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Markdown, Files, Guidance]
+
+**Output Format:** [JSON tool-call payloads and Discord markdown message content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include rich embeds, mention controls, text-to-speech, and up to 10 base64-encoded file attachments per message.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

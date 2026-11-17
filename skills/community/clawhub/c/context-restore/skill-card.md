@@ -1,46 +1,60 @@
-## Description: <br>
-Context Restore restores saved OpenClaw conversation context by reading compressed context files and generating structured status reports with projects, tasks, operations, and timelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill that restores conversation context when users want to continue where they left off by reading compressed context files, extracting recent operations, projects, and tasks, and producing structured work-state summaries.
 
-## Publisher: <br>
-[alexunitario-sketch](https://clawhub.ai/user/alexunitario-sketch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alexunitario-sketch](https://clawhub.ai/user/alexunitario-sketch)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to resume work after a new or interrupted session by restoring recent project state, pending tasks, operations, and timeline summaries from saved context files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads saved conversation context and local project status files, which may include sensitive work history or project details. <br>
-Mitigation: Install only where those local files are intended to be read, and review configured paths before running the skill. <br>
-Risk: Optional auto mode and cron monitoring can repeatedly inspect context files in the background. <br>
-Mitigation: Enable background monitoring only after reviewing the exact cron command, interval, log destination, and files being monitored. <br>
-Risk: Notification examples and integrations may send restored context through Telegram, email, or another outbound channel. <br>
-Mitigation: Treat outbound notifications as separate integrations that require explicit consent, destination review, and careful secret handling. <br>
+## Use Case:
 
+Developers and agent users use this skill to resume interrupted or newly started sessions by restoring project status, pending tasks, recent operations, and timeline context from compressed session files.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alexunitario-sketch/context-restore) <br>
-- [README](artifact/README.md) <br>
-- [Usage Guide](artifact/docs/USAGE.md) <br>
-- [API Reference](artifact/docs/API.md) <br>
-- [Design Decisions](artifact/references/design.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text reports, optional JSON summaries, and CLI guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports minimal, normal, and detailed report levels; optional timeline, filtering, diff, confirmation, Telegram chunking, and auto-monitoring modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Background cron monitoring and auto-restore behavior can create persistence and execution risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and disable cron and auto-restore paths unless background monitoring is explicitly required.
+
+Risk: Restored conversation context may contain sensitive project or task information.
+
+Mitigation: Treat restored context as sensitive and limit use of notification or forwarding hooks to audited destinations under the user's control.
+
+Risk: The documented crontab pipeline can overwrite existing scheduled jobs if used carelessly.
+
+Mitigation: Preserve and review existing crontab entries before installing any generated monitoring schedule.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alexunitario-sketch/skills/context-restore)
+- [Usage Guide](docs/USAGE.md)
+- [API Reference](docs/API.md)
+- [Design Decisions](references/design.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain-text reports, optional JSON summaries, Python API results, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports minimal, normal, and detailed report levels; optional timeline, filtering, diff, auto-monitoring, confirmation, file output, and Telegram chunking modes.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

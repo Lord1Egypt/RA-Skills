@@ -59,7 +59,7 @@
 
 ### 命令脱敏
 ```
-输入: curl -H "Authorization: Bearer sk-abcdefghijk1234567890"
+输入: curl -H "Authorization: Bearer REDACTED-SECRET"
 返回: { sanitized: "curl -H Authorization: Bearer sk-***REDACTED***" }
 ```
 

@@ -24,7 +24,7 @@ A finding counts as a discovery only if it passes at least one of these tests.
 Ask:
 
 1. Would the user know or do something different after this?
-2. Is this different from what is already in `~/discover/watchlist.md` or `~/discover/findings/`?
+2. Is this different from what is already in `~/Clawic/data/discover/watchlist.md` or `~/Clawic/data/discover/findings/`?
 3. Does this add novelty, not just volume?
 
 If the answer is not clearly yes, do not log it.

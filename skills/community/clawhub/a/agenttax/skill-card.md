@@ -1,44 +1,59 @@
-## Description: <br>
-Tax compliance for AI agent transactions - sales tax, capital gains, nexus monitoring, 1099 tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tax compliance for AI agent transactions, including sales tax, capital gains, nexus monitoring, and 1099 tracking.
 
-## Publisher: <br>
-[agenttax](https://clawhub.ai/user/agenttax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agenttax](https://clawhub.ai/user/agenttax)
 
-## Use Case: <br>
-External users and developers use this skill to make AgentTax API calls for sales or use tax calculations, trade logging for capital gains, tax rate lookup, nexus configuration, and 1099-DA export workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send sensitive transaction amounts, counterparty identifiers, buyer location, tax residency, and trading records to a third-party API. <br>
-Mitigation: Show each POST payload before sending it, omit unnecessary optional fields such as ZIP or detailed counterparty identifiers when possible, and review the provider's privacy, retention, deletion, and correction policies. <br>
-Risk: The skill can create or change remote tax records without enough consent, privacy, or reversal guidance. <br>
-Mitigation: Require explicit user approval before POST requests that log trades or configure nexus, and keep an audit trail of submitted payloads and responses. <br>
-Risk: The skill depends on an API key that could be exposed through prompts, logs, or command output. <br>
-Mitigation: Store AGENTTAX_API_KEY in the environment, do not paste it into shared logs or transcripts, and rotate the key if it is exposed. <br>
+## Use Case:
 
+External developers and AI agent operators use this skill to call AgentTax APIs for sales and use tax calculation, trade logging for capital gains, nexus setup, tax-rate lookup, and 1099-DA export workflows.
 
-## Reference(s): <br>
-- [AgentTax ClawHub page](https://clawhub.ai/agenttax/agenttax) <br>
-- [AgentTax homepage](https://agenttax.io) <br>
-- [AgentTax API guide](https://agenttax.io/api/v1/agents) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and the AGENTTAX_API_KEY environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Real financial, tax, transaction, nexus, and counterparty data may be sent to agenttax.io.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm data-sharing approval before using the skill with real financial, tax, customer, or counterparty data.
+
+Risk: API credentials and signup passwords can be exposed when copied directly into shell commands.
+
+Mitigation: Use a dedicated AgentTax API key, avoid reusing passwords, and avoid putting real passwords directly in shell commands.
+
+Risk: Placeholder replacement inside curl JSON strings can produce malformed requests or accidental disclosure in production workflows.
+
+Mitigation: Prefer a safer client or JSON serializer for production use instead of manually replacing placeholders in shell snippets.
+
+## Reference(s):
+
+- [AgentTax homepage](https://agenttax.io)
+- [AgentTax agent API docs](https://agenttax.io/api/v1/agents)
+- [ClawHub skill page](https://clawhub.ai/agenttax/skills/agenttax)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl command examples and JSON request and response fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and AGENTTAX_API_KEY for authenticated API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

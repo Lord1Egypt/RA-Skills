@@ -1,40 +1,58 @@
-## Description: <br>
-Access Xona's paid x402 APIs for design research, image and video generation, X news extraction, and PumpFun token intelligence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Xona's x402 creative resource APIs on api.xona-agent.com for design research, image generation, video generation, X news extraction, and PumpFun token intelligence.
 
-## Publisher: <br>
-[xona-labs](https://clawhub.ai/user/xona-labs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xona-labs](https://clawhub.ai/user/xona-labs)
 
-## Use Case: <br>
-External users and agents use this skill to call Xona's paid creative and market-intelligence APIs for design research, media generation, X news drafts, and PumpFun token trend summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Wallet-backed paid API calls can spend funds with weak endpoint and consent controls. <br>
-Mitigation: Use a dedicated low-balance wallet, verify endpoints before use, and require explicit approval for each paid call. <br>
-Risk: Broad or repeated requests can increase spend and exposure before endpoint controls are reviewed. <br>
-Mitigation: Avoid broad or repeated requests until an api.xona-agent.com allowlist and per-call payment confirmation are enforced. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xona-labs/x402-creative-resources) <br>
-- [Xona x402 resource discovery](https://api.xona-agent.com/x402-resources) <br>
+## Use Case:
 
+Developers and creative agents use this skill to call paid Xona x402 APIs for creative direction, image and video generation, X account news extraction, and PumpFun token trend analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include generated media URLs, news summaries, tweet drafts, token intelligence, and payment-backed API call results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The wallet-enabled fetch script can make automatic paid API calls without built-in per-call or session spending limits.
+
+Mitigation: Use a dedicated low-balance Solana wallet and enforce per-call and session spending limits before use.
+
+Risk: The helper script can be directed to arbitrary URLs, which may send wallet-enabled paid requests outside approved Xona API paths.
+
+Mitigation: Restrict calls to approved api.xona-agent.com endpoints and validate payment recipients and amounts.
+
+Risk: The x402 wallet dependency is version-ranged rather than pinned.
+
+Mitigation: Pin and review the wallet dependency before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xona-labs/skills/x402-creative-resources)
+- [Xona API Base](https://api.xona-agent.com)
+- [Xona x402 Resource Discovery](https://api.xona-agent.com/x402-resources)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, JSON]
+
+**Output Format:** [Markdown guidance with bash examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return paid API results such as image_url, video_url, banner_url, tweet_draft, design direction, and token intelligence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

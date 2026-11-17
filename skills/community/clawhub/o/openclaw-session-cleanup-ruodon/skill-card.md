@@ -1,41 +1,54 @@
-## Description: <br>
-Cleans up accumulated OpenClaw subagent and cron-run child sessions to reduce slow subagent startup caused by an oversized sessions index. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clean up accumulated subagent and cron:run child sessions in OpenClaw to improve slow subagent startup caused by large sessions.json files.
 
-## Publisher: <br>
-[lrddrl](https://clawhub.ai/user/lrddrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lrddrl](https://clawhub.ai/user/lrddrl)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill when subagents start slowly or sessions.json has accumulated many child session records. It guides them through stopping the gateway, running a cleanup PowerShell script, and restarting the gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The referenced cleanup script can change OpenClaw session state. <br>
-Mitigation: Run it only from a trusted OpenClaw directory after inspecting the actual cleanup.ps1 script, and use -DryRun first. <br>
-Risk: Using -CleanJsonl can delete conversation history. <br>
-Mitigation: Back up sessions.json and any .jsonl history that should be retained, and use -CleanJsonl only when history deletion is intentional. <br>
+## Use Case:
 
+OpenClaw users and operators use this skill to stop the gateway, run a cleanup workflow for accumulated child-session records, and restart the gateway when subagent startup slows down.
 
-## Reference(s): <br>
-- [OpenClaw Session Cleanup skill instructions](artifact/SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lrddrl/openclaw-session-cleanup-ruodon) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with PowerShell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance includes a dry-run option and a separate option for deleting .jsonl history files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow runs a relative PowerShell cleanup script that is not bundled in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the script from a trusted path before execution and use the dry-run option before making changes.
+
+Risk: Cleanup options can modify sessions.json and may delete .jsonl conversation-history files.
+
+Mitigation: Back up sessions.json and conversation history before cleanup, and avoid delete options unless history loss is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lrddrl/skills/openclaw-session-cleanup-ruodon)
+- [Publisher profile](https://clawhub.ai/user/lrddrl)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with PowerShell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a dry-run mode and options that preserve or delete .jsonl conversation-history files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

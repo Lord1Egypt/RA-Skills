@@ -1,45 +1,62 @@
-## Description: <br>
-Generates OpenClaw-ready AI assistant profiles, behavior guidelines, and configuration files from enterprise job descriptions for management, technical, business, and functional roles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HTS全岗位通用AI助理生成器，支持管理、技术、业务、职能等各类岗位，自动生成负责人画像、助理规范及OpenClaw完整配置文件，实现一岗一AI助手。
 
-## Publisher: <br>
-[jiangdong-3](https://clawhub.ai/user/jiangdong-3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangdong-3](https://clawhub.ai/user/jiangdong-3)
 
-## Use Case: <br>
-Enterprise employees and managers use this skill to turn role descriptions into tailored AI assistant profiles, operating boundaries, communication norms, and reusable OpenClaw configuration files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Job descriptions can contain names, contact details, compensation, staffing plans, reporting lines, proprietary project details, or regulated HR information. <br>
-Mitigation: Review and redact job descriptions before use, keeping only details needed to draft the assistant profile and configuration. <br>
-Risk: Generated assistant files may not fully match internal policy or the intended operating boundaries for a role. <br>
-Mitigation: Treat generated files as drafts and review the assistant identity, behavior boundaries, and reuse constraints before deployment. <br>
+## Use Case:
 
+Employees and managers use this skill to turn a complete HTS job description into a role-specific AI assistant profile, operating rules, and OpenClaw configuration files for internal workplace workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiangdong-3/hts-job-assistant-generator) <br>
-- [README.md](README.md) <br>
-- [IDENTITY.md](references/IDENTITY.md) <br>
-- [SOUL.md](references/SOUL.md) <br>
-- [AGENTS.md](references/AGENTS.md) <br>
-- [USER.md](references/USER.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown documents and OpenClaw configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a role owner profile, assistant job description, behavior specification, and IDENTITY.md, SOUL.md, AGENTS.md, and USER.md drafts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Job descriptions may contain personal data, compensation details, confidential strategy, credentials, or other sensitive internal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove sensitive and unnecessary details before pasting job descriptions into the assistant.
+
+Risk: Generated OpenClaw configuration may encode incorrect role boundaries, communication norms, or operational assumptions.
+
+Mitigation: Review the generated configuration and assistant behavior rules before using them in an internal workflow.
+
+Risk: Pasted job descriptions can act as untrusted input that influences generated assistant behavior.
+
+Mitigation: Treat source job descriptions as untrusted and inspect the resulting assistant profile and files before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jiangdong-3/skills/hts-job-assistant-generator)
+- [README.md](README.md)
+- [IDENTITY.md](references/IDENTITY.md)
+- [SOUL.md](references/SOUL.md)
+- [AGENTS.md](references/AGENTS.md)
+- [USER.md](references/USER.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown documents and OpenClaw configuration content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates a responsible-person profile, assistant job description, assistant identity and behavior rules, and IDENTITY.md, SOUL.md, AGENTS.md, and USER.md content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,61 @@
-## Description: <br>
-Trigger and manage OpenClaw outbound phone receipts via ElevenLabs+Twilio for task completion/failure notifications. Use when user asks to call them after finishing/failing a task, asks to enable/disable fixed command toggles ("phone-receipt=on/off"), asks to test call quality, or asks to persist phone receipt behavior across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trigger and manage OpenClaw outbound phone receipts via ElevenLabs and Twilio for task completion or failure notifications, including user-requested test calls and persistent receipt policy toggles.
 
-## Publisher: <br>
-[tuofangzhe](https://clawhub.ai/user/tuofangzhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tuofangzhe](https://clawhub.ai/user/tuofangzhe)
 
-## Use Case: <br>
-OpenClaw users and automation developers use this skill to persist phone receipt preferences, trigger outbound completion or failure calls, and configure ElevenLabs plus Twilio callback notifications. It is intended for tasks where the user explicitly wants a phone receipt, urgent notification, failure notification, or call-quality test. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist notification automation and initiate outbound phone-call behavior. <br>
-Mitigation: Confirm the recipient, task scope, and enabled policy before use, and use phone-receipt=off when notifications should stop. <br>
-Risk: Telegram task summaries may disclose task details without enough setup, consent, or scoping detail. <br>
-Mitigation: Review who receives Telegram summaries and what information may be included before enabling the skill. <br>
-Risk: The ElevenLabs and Twilio setup depends on sensitive environment variables and a target phone number. <br>
-Mitigation: Protect the .env.elevenlabs-call file, replace the sample phone number, and verify API key scope and Twilio caller requirements before triggering calls. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Phone Receipt on ClawHub](https://clawhub.ai/tuofangzhe/openclaw-phone-receipt) <br>
-- [OpenClaw Phone Receipt Setup](references/setup.md) <br>
-- [Sample ElevenLabs Call Environment](references/env-example.txt) <br>
-- [ClawHub Upload Checklist](references/publish-clawhub.md) <br>
-- [ElevenLabs Twilio Outbound Call API Endpoint](https://api.elevenlabs.io/v1/convai/twilio/outbound-call) <br>
+## Use Case:
 
+External users and operators use this skill to have an agent manage phone receipt preferences and place outbound callback receipts after failures or urgent tasks. It also supports test calls, setup guidance, and fallback text summaries when phone calls are not required by policy.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands, environment configuration, and JSON state updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write memory/phone-receipt-state.json and initiate outbound calls through ElevenLabs when enabled by policy.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can place outbound phone calls through ElevenLabs and Twilio and may send receipt summaries through Telegram.
+
+Mitigation: Require explicit user confirmation before any call or persistent receipt policy is enabled, and verify the destination number before use.
+
+Risk: The skill relies on API credentials and a target phone number configured through environment variables.
+
+Mitigation: Protect the environment file, scope the ElevenLabs API key to the minimum required access, and avoid committing credentials or personal phone numbers.
+
+Risk: The call script sources an env file, which the security summary flags as an unsafe loading pattern.
+
+Mitigation: Review and harden env-file sourcing before use, and source only trusted files controlled by the user.
+
+Risk: Receipt behavior can persist across sessions through a state file.
+
+Mitigation: Inspect the persisted phone receipt state and use `phone-receipt=off` when callback behavior should be disabled.
+
+## Reference(s):
+
+- [OpenClaw Phone Receipt Setup](references/setup.md)
+- [Environment Example](references/env-example.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON state configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate outbound calls through ElevenLabs and Twilio, send Telegram text summaries, and persist receipt policy state when configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

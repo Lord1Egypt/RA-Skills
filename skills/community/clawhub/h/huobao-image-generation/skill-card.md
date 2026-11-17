@@ -1,42 +1,53 @@
-## Description: <br>
-Generates images from text prompts or transforms URL-hosted input images using configurable model, size, count, watermark, and API key settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI 火宝 generates images from text prompts or transforms existing image URLs using configurable AI image models, size, count, watermark, and API key settings.
 
-## Publisher: <br>
-[kongweigen](https://clawhub.ai/user/kongweigen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kongweigen](https://clawhub.ai/user/kongweigen)
 
-## Use Case: <br>
-Developers and AI content creators use this skill to request text-to-image generation or image-to-image transformation from an agent workflow. It is suited for workflows that can send prompts, URL-hosted source images, and API credentials to the configured image-generation endpoint. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image URLs, generated-image requests, and API keys are sent to api.chatfire.site, which the security summary says is not clearly disclosed in the skill documentation. <br>
-Mitigation: Install only if you trust that endpoint, use a dedicated revocable API key, and do not submit confidential or regulated data. <br>
-Risk: API keys can be supplied on the command line. <br>
-Mitigation: Prefer HUOBAO_API_KEY or a secret manager, avoid command-line secrets, and rotate keys if they may have appeared in shell history, process listings, or logs. <br>
-Risk: The code does not enforce the documented generation-count limit. <br>
-Mitigation: Keep count values within the documented 1-4 range and review automated calls before using the skill in unattended workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kongweigen/huobao-image-generation) <br>
-- [Publisher profile](https://clawhub.ai/user/kongweigen) <br>
+## Use Case:
 
+Developers and end users use this skill to run text-to-image and image-to-image generation workflows from an agent environment. The skill returns structured JSON containing generated image URLs, request settings, and usage data.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [JSON responses containing success state, prompt details, model, size, generated image URLs, and usage data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an API key through HUOBAO_API_KEY or --api-key; image-to-image input must be an HTTP or HTTPS image URL.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, image URLs, and API credentials are sent to an undisclosed chatfire.site endpoint despite Volcengine branding.
+
+Mitigation: Review the endpoint before installation, use a narrowly scoped disposable API key, and avoid sensitive prompts or private image URLs.
+
+Risk: Passing API keys on the command line or enabling debug mode can expose credentials or prompt content in shared terminals, CI logs, or shell history.
+
+Mitigation: Prefer the HUOBAO_API_KEY environment variable and keep debug mode disabled in logged or shared environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kongweigen/skills/huobao-image-generation)
+- [ClawHub publisher profile](https://clawhub.ai/user/kongweigen)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Image URLs, Shell commands]
+
+**Output Format:** [JSON printed to standard output, with command-line usage examples in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Successful responses include generated image URLs and usage data; failures are reported as JSON or stderr errors.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

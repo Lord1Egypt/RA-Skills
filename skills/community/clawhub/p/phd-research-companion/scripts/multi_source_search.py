@@ -1,313 +1,447 @@
 #!/usr/bin/env python3
 """
-Multi-Source Academic Paper Search
-Downloads papers from arXiv, Semantic Scholar, DBLP with progress tracking for background execution.
+Multi-Source Academic Paper Search (real network calls, no fabricated entries)
+
+Sources:
+    arxiv          - export.arxiv.org Atom API
+    dblp           - dblp.org publication search API (JSON)
+    openalex       - api.openalex.org works endpoint
+    semanticscholar- api.semanticscholar.org graph search
+
+Design rule: if a source cannot be reached, the run FAILS LOUDLY for that
+source. It never fabricates entries. Unverified entries are never written to
+the BibTeX output.
 
 Usage:
-    python multi_source_search.py -q "machine learning" -l 20 [--background]
+    python multi_source_search.py -q "mirror descent diagonal GD" -s arxiv dblp -l 20 -o ./lit
 """
+
+from __future__ import annotations
 
 import argparse
 import json
-import os
+import re
 import sys
+import time
+import urllib.error
+import urllib.parse
+import urllib.request
 from datetime import datetime
 from pathlib import Path
 
+USER_AGENT = "phd-research-companion/2.0 (mailto:researcher@example.org)"
+TIMEOUT = 25
+RETRIES = 2
+RETRY_BACKOFF = 1.5
+
+SOURCES = ("arxiv", "dblp", "openalex", "semanticscholar")
+
+
+class SourceError(RuntimeError):
+    """Raised when a source cannot be reached or returns unusable data."""
+
 
 class ProgressTracker:
-    """Handle progress file creation and updates for background task monitoring."""
-    
-    def __init__(self, output_dir: Path, task_id: str = "literature_search"):
+    """Writes a JSON status file so long runs can be monitored."""
+
+    def __init__(self, output_dir: Path, task_id: str = "search"):
         self.task_id = task_id
-        self.progress_file = output_dir.parent / f"search-progress-{task_id}.json"
-        self.start_time = datetime.now()
-        
-    def update(self, stage: str, progress_percent: int) -> None:
-        """Write progress status to file for monitoring."""
-        elapsed = (datetime.now() - self.start_time).total_seconds()
-        
-        status = {
+        self.progress_file = Path(output_dir) / f"search-progress-{task_id}.json"
+        self.start = datetime.now()
+
+    def update(self, stage: str, pct: int) -> None:
+        elapsed = (datetime.now() - self.start).total_seconds()
+        self.progress_file.parent.mkdir(parents=True, exist_ok=True)
+        self._write({
             "task_id": self.task_id,
             "stage": stage,
-            "progress_percent": progress_percent,
+            "progress_percent": pct,
             "elapsed_seconds": round(elapsed, 2),
             "timestamp": datetime.now().isoformat(),
-            "status": "running" if progress_percent < 100 else "completed",
-        }
-        
-        self.progress_file.parent.mkdir(parents=True, exist_ok=True)
-        
-        with open(self.progress_file, 'w', encoding='utf-8') as f:
-            json.dump(status, f, indent=2)
-            
-        print(f"[{progress_percent}%] {stage} ({elapsed:.1f}s)")
-        
-    def complete(self, summary_dict: dict) -> None:
-        """Mark task as completed with final statistics."""
-        status = {
+            "status": "running" if pct < 100 else "completed",
+        })
+        print(f"[{pct}%] {stage} ({elapsed:.1f}s)")
+
+    def complete(self, summary: dict) -> None:
+        self._write({
             "task_id": self.task_id,
             "stage": "completed",
             "progress_percent": 100,
             "completed_at": datetime.now().isoformat(),
-            "status": "completed successfully",
-            "summary": summary_dict
-        }
-        
-        with open(self.progress_file, 'w', encoding='utf-8') as f:
-            json.dump(status, f, indent=2)
+            "status": "completed",
+            "summary": summary,
+        })
+        print(f"Completed: {summary.get('total_papers_found', 0)} papers")
 
-        print(f"✅ COMPLETED: {summary_dict.get('total_papers_found', 0)} papers found")
-
-
-def search_arxiv(query: str, year_from: int = None, limit: int = 10) -> list:
-    """Search arXiv API (mock implementation - replace with actual requests)."""
-    
-    progress_tracker.update(f"Querying arXiv for '{query[:30]}...'", 15)
-    
-    # TODO: Implement actual arXiv API request
-    mock_results = [
-        {
-            "title": f"Paper title from arXiv - search query: {query}",
-            "authors": ["Author1", "Author2"],
-            "year": 2023,
-            "doi": "arxiv:2301.xxxxxx",
-            "abstract": "This paper addresses the research problem..."
-        }
-        for _ in range(min(5, limit))
-    ]
-    
-    return mock_results
+    def _write(self, payload: dict) -> None:
+        self.progress_file.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
 
-def search_semantic_scholar(query: str, year_from: int = None, limit: int = 10) -> list:
-    """Search Semantic Scholar API (mock implementation)."""
-    
-    progress_tracker.update(f"Querying Semantic Scholar...", 30)
-    
-    # TODO: Implement semantic scholar Open Review / API v2
-    mock_results = [
-        {
-            "title": f"Semantic Scholar paper on {query[:40]}...",
-            "authors": ["Researcher A", "Researcher B"], 
-            "year": 2022,
-            "venue": "NeurIPS 2022",
-            "citations": 45,
-            "abstract": "Abstract text for semantic scholar result..."
-        } 
-        for _ in range(min(4, limit))
-    ]
-    
-    return mock_results
+def _fetch(url: str, expect: str = "json") -> str:
+    """Fetch `url`, verifying the payload really is the format we asked for.
+
+    Anti-bot gateways answer 200 with an HTML challenge page; accepting that
+    as data is how a tool starts reporting nonsense, so it is rejected here.
+    """
+    host = urllib.parse.urlsplit(url).netloc
+    accept = {"json": "application/json", "xml": "application/atom+xml",
+              "text": "*/*"}[expect]
+    last = None
+    for attempt in range(RETRIES + 1):
+        try:
+            req = urllib.request.Request(url, headers={
+                "User-Agent": USER_AGENT, "Accept": accept})
+            with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
+                ctype = (resp.headers.get("Content-Type") or "").lower()
+                body = resp.read().decode("utf-8", errors="replace")
+            if expect == "json" and "json" not in ctype:
+                raise SourceError(
+                    f"{host}: expected JSON, got Content-Type '{ctype or 'none'}' "
+                    f"({len(body)} bytes) - anti-bot challenge or outage; "
+                    f"no data taken from this source")
+            if expect == "xml" and not any(t in ctype for t in ("xml", "atom", "text")):
+                raise SourceError(f"{host}: expected XML/Atom, got '{ctype or 'none'}'")
+            return body
+        except SourceError:
+            raise
+        except urllib.error.HTTPError as e:
+            last = e
+            # 429 / 503: back off harder, and say so plainly.
+            if e.code in (429, 503):
+                time.sleep(3 * (attempt + 1))
+            elif attempt < RETRIES:
+                time.sleep(RETRY_BACKOFF ** attempt)
+        except Exception as e:  # noqa: BLE001
+            last = e
+            if attempt < RETRIES:
+                time.sleep(RETRY_BACKOFF ** attempt)
+    code = getattr(last, "code", None)
+    if code:
+        raise SourceError(f"{host}: HTTP {code}"
+                          + (" (rate limited; retry later or use an API key)"
+                             if code in (429, 503) else ""))
+    raise SourceError(f"{host}: {type(last).__name__}: {last}")
 
 
-def process_and_deduplicate(results_list: list) -> dict:
-    """Organize search results by source and remove duplicates."""
-    
-    progress_tracker.update("Deduplicating results...", 70)
-    
-    organized = {
-        "arxiv": [],
-        "semantic_scholar": [],
-        "total_unique": 0
-    }
-    
-    seen_titles = set()
-    
-    for result in results_list:  
-        title_key = result["title"].lower().strip()
-        
-        if title_key not in seen_titles:
-            seen_titles.add(title_key)
-            
-            if "arxiv" in str(result.get("doi", "")).lower():
-                organized["arxiv"].append(result)  
-            else: 
-                organized["semantic_scholar"].append(result)
-
-    organized["total_unique"] = len(seen_titles)
-    
-    return organized
+def _norm(title: str) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", (title or "").lower()).strip()
 
 
-def save_results(results_dict: dict, output_dir: Path, args):
-    """Save search results to multiple formats for downstream processing."""
-    
-    progress_tracker.update(f"Saving results to {output_dir.name}...", 85)
-    
-    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
-    bibtex_file = output_dir / f"search-results-{timestamp}.bibtex"
-    
-    bibtex_content = generate_bibtex_from_results(results_dict, args)  
-    
-    with open(bibtex_file, 'w', encoding='utf-8') as f:
-        f.write(bibtex_content)
-
-    summary_file = output_dir / f"search-summary-{timestamp}.md"
-    
-    markdown_content = generate_markdown_summary(results_dict, args)
-    
-    with open(summary_file, 'w', encoding='utf-8') as f:
-        f.write(markdown_content)
-
-    return str(bibtex_file), str(summary_file)
+# ------------------------------------------------------------------ sources
 
 
-def generate_bibtex_from_results(results: dict, args) -> str:
-    """Generate BibTeX entries for all papers."""
-    
-    bibtex_entries = []
-    all_papers = results["arxiv"] + results["semantic_scholar"]
-    
-    for idx, paper in enumerate(all_papers, 1): 
-        citation_key = f"{paper['year']}{paper['authors'][0].lower().replace(' ', '')}_" \
-                      f"{''.join(paper['title'].split()[:2]).replace(' ', '_')}"
-        
-        bibtex_entry = f'@article{{--{citation_key}--}}'  # Simplified format to avoid f-string issues
-```python
-# Improved paper metadata extraction with proper error handling
-def extract_paper_info(paper_entry):
-    """Extract paper info from arXiv entry element"""
+def search_arxiv(query: str, limit: int, year_from: int | None, year_to: int | None) -> list[dict]:
+    import xml.etree.ElementTree as ET
+
+    terms = [f'all:"{t}"' if " " in t else f"all:{t}" for t in query.split() if t]
+    q = "+AND+".join(urllib.parse.quote(t) for t in terms) or urllib.parse.quote(query)
+    url = (f"https://export.arxiv.org/api/query?search_query={q}"
+           f"&start=0&max_results={max(1, limit)}"
+           "&sortBy=relevance&sortOrder=descending")
+    raw = _fetch(url, expect="xml")
     try:
-        title = ''
-        for elem in paper_entry.findall('atom:title', namespaces):
-            text = ''.join(elem.itertext()) if elem.text else str(paper_entry.findtext('atom/title'))
-            titles = text.split(',')
-            title = ', '.join(titles[:3])  # Avoid overly long titles with comma
-        return {
-            'title': title.strip(),
-            'id': paper_entry.get('http://arxiv.org/schemas/atom') or paper_entry.findtext('atom/id'),
-            'summary': ''.join([elem.text for elem in paper_entry.findall('atom:summary')]) or ''
-        }
-    except Exception as e:
-        print(f"⚠️ Warning: Could not parse entry {paper_entry.get('http://arxiv.org/schemas/atom')} - error: {e}")
-        return {}
-```
-  title = {{{paper.get('title', 'Untitled')}},
-  author = {{{', '.join([a if isinstance(a, str) else str(a) for a in paper.get('authors', ['Author'])])}}},  
-  year = {{}}{{{{paper['year']}},
-  journal = {paper.get('venue', 'arXiv preprint')}},
-  doi = {{{paper.get('doi', 'N/A')}}}
-}}"""
+        root = ET.fromstring(raw)
+    except ET.ParseError as e:
+        raise SourceError(f"arxiv: malformed Atom response ({e})")
 
-        bibtex_entries.append(bibtex_entry)
-    
-    header = f"""% PhD Research Companion - Multi-Source Search Results  
-% Generated: {datetime.now().isoformat()}
-% Query: "{args.query}"  
-% Sources used: {','.join(args.sources)}
-% Total unique papers found: {results['total_unique']}
-
-"""
-
-    return header + "\\n\\n".join(bibtex_entries)
+    ns = {"a": "http://www.w3.org/2005/Atom"}
+    out = []
+    for entry in root.findall("a:entry", ns):
+        title = " ".join((entry.findtext("a:title", "", ns) or "").split())
+        if not title:
+            continue
+        published = entry.findtext("a:published", "", ns)[:10]
+        year = int(published[:4]) if published[:4].isdigit() else None
+        if year_from and year and year < year_from:
+            continue
+        if year_to and year and year > year_to:
+            continue
+        arxiv_id = entry.findtext("a:id", "", ns)
+        out.append({
+            "title": title,
+            "authors": [a.findtext("a:name", "", ns) for a in entry.findall("a:author", ns)],
+            "year": year,
+            "venue": "arXiv preprint",
+            "doi": arxiv_id,
+            "abstract": " ".join((entry.findtext("a:summary", "", ns) or "").split()),
+            "source": "arxiv",
+            "url": arxiv_id,
+        })
+    if not out:
+        raise SourceError("arxiv: query returned zero usable entries")
+    return out
 
 
-def generate_markdown_summary(results: dict, args) -> str:  
-    """Create human-readable markdown summary for reviewer/advisor."""
-    
-    total = results['total_unique']
-    arxiv_count = len(results["arxiv"])
-    ss_count = len(results["semantic_scholar"]) 
-    
-    md_content = f"""# Literature Search Results Summary
+def search_dblp(query: str, limit: int, year_from: int | None, year_to: int | None) -> list[dict]:
+    url = ("https://dblp.org/search/publ/api?q="
+           + urllib.parse.quote(query)
+           + f"&format=json&h={max(1, limit)}")
+    raw = _fetch(url, expect="json")
+    try:
+        data = json.loads(raw)
+    except json.JSONDecodeError as e:
+        raise SourceError(f"dblp: malformed JSON ({e})")
 
-Search Date: {datetime.now().strftime("%Y-%m-%d %H:%M")}  
-Query: "{args.query}"  
-Total Unique Papers Found: {total}  
+    hits = (data.get("result", {}).get("hits", {}) or {}).get("hit", []) or []
+    out = []
+    for h in hits:
+        info = h.get("info", {}) or {}
+        title = " ".join((info.get("title") or "").split())
+        if not title:
+            continue
+        year = info.get("year")
+        year = int(year) if str(year).isdigit() else None
+        if year_from and year and year < year_from:
+            continue
+        if year_to and year and year > year_to:
+            continue
+        authors = info.get("authors", {}).get("author", [])
+        if isinstance(authors, dict):
+            authors = [authors]
+        out.append({
+            "title": title.rstrip("."),
+            "authors": [a.get("text", "") if isinstance(a, dict) else str(a) for a in authors],
+            "year": year,
+            "venue": info.get("venue") or "DBLP",
+            "doi": info.get("doi") or info.get("ee") or "",
+            "abstract": "",
+            "source": "dblp",
+            "url": info.get("ee") or info.get("url") or "",
+        })
+    if not out:
+        raise SourceError("dblp: query returned zero usable entries")
+    return out
 
-## Source Breakdown:
-- arXiv preprints: {arxiv_count} papers  
-- Semantic Scholar indexed: {ss_count} papers
 
-## Top Results (first 5):
+def search_openalex(query: str, limit: int, year_from: int | None, year_to: int | None) -> list[dict]:
+    filters = []
+    if year_from:
+        filters.append(f"from_publication_date:{year_from}-01-01")
+    if year_to:
+        filters.append(f"to_publication_date:{year_to}-12-31")
+    url = ("https://api.openalex.org/works?search=" + urllib.parse.quote(query)
+           + f"&per-page={max(1, min(limit, 200))}"
+           + ("&filter=" + ",".join(filters) if filters else ""))
+    raw = _fetch(url, expect="json")
+    try:
+        data = json.loads(raw)
+    except json.JSONDecodeError as e:
+        raise SourceError(f"openalex: malformed JSON ({e})")
 
-"""
-    
-    all_results = results["arxiv"] + results["semantic_scholar"][:min(5, total)]
-    
-    for i, paper in enumerate(all_results[:10], 1): 
-        md_content += f"""### {i}. {paper.get('title', 'Untitled')}  
+    out = []
+    for w in data.get("results", []) or []:
+        title = " ".join((w.get("title") or w.get("display_name") or "").split())
+        if not title:
+            continue
+        authors = [a.get("author", {}).get("display_name", "")
+                   for a in (w.get("authorships") or [])]
+        out.append({
+            "title": title,
+            "authors": [a for a in authors if a],
+            "year": w.get("publication_year"),
+            "venue": ((w.get("primary_location") or {}).get("source") or {}).get("display_name") or "",
+            "doi": (w.get("doi") or "").replace("https://doi.org/", ""),
+            "abstract": (w.get("abstract_inverted_index") and "") or "",
+            "source": "openalex",
+            "url": w.get("doi") or (w.get("primary_location") or {}).get("landing_page_url") or "",
+        })
+    if not out:
+        raise SourceError("openalex: query returned zero usable entries")
+    return out
 
-Authors: {', '.join([str(a) for a in paper.get('authors', ['Unknown'])])}  
-Year/Venue: {paper.get('year', 'N/A')} | {paper.get('venue', '')}  
-DOI: {paper.get('doi', 'Not provided')}
-"""
-        
-    md_content += """---
-Generated by PhD Research Companion - Literature Search Module"""
 
-    return md_content
+def search_semanticscholar(query: str, limit: int, year_from: int | None, year_to: int | None) -> list[dict]:
+    fields = "title,authors,year,venue,externalIds,abstract,url"
+    url = ("https://api.semanticscholar.org/graph/v1/paper/search?query="
+           + urllib.parse.quote(query)
+           + f"&limit={max(1, min(limit, 100))}&fields={fields}")
+    if year_from or year_to:
+        url += f"&year={year_from or ''}-{year_to or ''}"
+    raw = _fetch(url, expect="json")
+    try:
+        data = json.loads(raw)
+    except json.JSONDecodeError as e:
+        raise SourceError(f"semanticscholar: malformed JSON ({e})")
+
+    out = []
+    for p in data.get("data", []) or []:
+        title = " ".join((p.get("title") or "").split())
+        if not title:
+            continue
+        ids = p.get("externalIds") or {}
+        out.append({
+            "title": title,
+            "authors": [a.get("name", "") for a in (p.get("authors") or [])],
+            "year": p.get("year"),
+            "venue": p.get("venue") or "",
+            "doi": ids.get("DOI") or ids.get("ArXiv") or "",
+            "abstract": p.get("abstract") or "",
+            "source": "semanticscholar",
+            "url": p.get("url") or "",
+        })
+    if not out:
+        raise SourceError("semanticscholar: query returned zero usable entries")
+    return out
 
 
-progress_tracker = None
+DISPATCH = {
+    "arxiv": search_arxiv,
+    "dblp": search_dblp,
+    "openalex": search_openalex,
+    "semanticscholar": search_semanticscholar,
+}
 
 
-def main():
-    global progress_tracker
-    
-    parser = argparse.ArgumentParser(description="Multi-source academic paper search with background execution support")
-    
-    parser.add_argument("--query", "-q", required=True, help="Search query keywords for literature discovery")
-    parser.add_argument("--sources", "-s", nargs='+', default=["arxiv"], choices=["arxiv", "semanticscholar", "dblp", "ieee"], help="Which sources to search (default: arxiv)")
-    parser.add_argument("--year-from", type=int, default=None, help="Minimum publication year filter") 
-    parser.add_argument("--limit", "-l", type=int, default=15, help="Maximum papers to retrieve per source")
-    parser.add_argument("--output-dir", "-o", type=str, required=True, help="Output directory for search results")
-    parser.add_argument("--background", "-b", action='store_true', help="Run with progress tracking for background execution monitoring")
-    
-    args = parser.parse_args()
-    
-    output_dir = Path(args.output_dir).expanduser().resolve()  
-    output_dir.mkdir(parents=True, exist_ok=True)
-    
-    print(f"Starting PhD Research Companion - Literature Search")
-    print(f"   Query: {args.query}")
-    print(f"   Sources: {', '.join(args.sources)}")
-    print(f"   Output: {output_dir}")
-    
-    progress_tracker = ProgressTracker(output_dir, task_id="search") if args.background else None
-    
-    if progress_tracker: 
-        progress_tracker.update("Starting literature search", 10)
+# ------------------------------------------------------------------ bibtex
+
+
+def _bibkey(paper: dict, idx: int) -> str:
+    first = (paper.get("authors") or ["unknown"])[0] or "unknown"
+    surname = re.sub(r"[^A-Za-z]", "", first.split()[-1] if first.split() else "unknown").lower()
+    word = re.sub(r"[^A-Za-z]", "", (paper.get("title") or "untitled").split()[0]).lower()
+    year = paper.get("year") or "nodate"
+    return f"{surname}{year}{word}{idx}"
+
+
+def _escape(s: str) -> str:
+    return (str(s).replace("&", r"\&").replace("%", r"\%")
+            .replace("_", r"\_").replace("#", r"\#"))
+
+
+def to_bibtex(paper: dict, idx: int) -> str | None:
+    """Emit a BibTeX entry only if the record is complete enough to be verified."""
+    if not paper.get("title"):
+        return None
+    lines = [f"@article{{{_bibkey(paper, idx)},",
+             f"  title   = {{{_escape(paper['title'])}}},",
+             f"  author  = {{{_escape(' and '.join(paper.get('authors') or ['Unknown']))}}},",
+             f"  year    = {{{paper.get('year') or 'nodate'}}},",
+             f"  journal = {{{_escape(paper.get('venue') or 'Unknown venue')}}},"]
+    if paper.get("doi"):
+        lines.append(f"  doi     = {{{_escape(paper['doi'])}}},")
+    if paper.get("url"):
+        lines.append(f"  url     = {{{paper['url']}}},")
+    lines.append(f"  note    = {{verified via {paper.get('source')} on "
+                 f"{datetime.now().strftime('%Y-%m-%d')}}},")
+    lines.append("}")
+    entry = "\n".join(lines)
+    if entry.count("{") != entry.count("}"):
+        return None
+    return entry
+
+
+def dedupe(records: list[dict]) -> list[dict]:
+    seen, out = set(), []
+    for r in records:
+        k = _norm(r.get("title"))
+        if not k or k in seen:
+            continue
+        seen.add(k)
+        out.append(r)
+    return out
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(
+        description="Multi-source academic paper search (real APIs, no fabricated entries)")
+    ap.add_argument("--query", "-q", required=True)
+    ap.add_argument("--sources", "-s", nargs="+", default=["arxiv"], choices=list(SOURCES))
+    ap.add_argument("--limit", "-l", type=int, default=15)
+    ap.add_argument("--year-from", type=int, default=None)
+    ap.add_argument("--year-to", type=int, default=None)
+    ap.add_argument("--output-dir", "-o", default=".")
+    ap.add_argument("--background", "-b", action="store_true",
+                    help="write a progress JSON for monitoring")
+    args = ap.parse_args()
+
+    out_dir = Path(args.output_dir).expanduser().resolve()
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    tracker = ProgressTracker(out_dir) if args.background else None
+    if tracker:
+        tracker.update("starting search", 5)
     else:
-        print("[10%] Starting literature search.\\n")
+        print(f"Query: {args.query}\nSources: {', '.join(args.sources)}")
 
-    all_results = [] 
-    
-    for source_num, source in enumerate(args.sources, 1):
-        if "arxiv" in source.lower():
-            progress_tracker.update(f"Querying arXiv ({source_num}/{len(args.sources)})", 50)
-            results_arxiv = search_arxiv(args.query, args.year_from, args.limit)
-            all_results.extend(results_arxiv)
-            
-        elif "semantic" in source.lower() or "scholar" in source.lower():
-            progress_tracker.update(f"Querying Semantic Scholar ({source_num}/{len(args.sources)})", 65)
-            results_ss = search_semantic_scholar(args.query, args.year_from, args.limit)
-            all_results.extend(results_ss)
+    collected, failures = [], []
+    n = len(args.sources)
+    for i, src in enumerate(args.sources, 1):
+        stage = f"querying {src} ({i}/{n})"
+        if tracker:
+            tracker.update(stage, 10 + int(70 * (i - 1) / n))
+        else:
+            print(f"[..] {stage}")
+        try:
+            got = DISPATCH[src](args.query, args.limit, args.year_from, args.year_to)
+            collected.extend(got)
+            print(f"     {src}: {len(got)} records")
+        except SourceError as e:
+            failures.append(str(e))
+            print(f"     {src}: FAILED - {e}", file=sys.stderr)
 
-    results_dict = process_and_deduplicate(all_results)
-    
-    if progress_tracker:
-        progress_tracker.update("Deduplicating and saving results.", 80)
-        
-    bibtex_path, summary_path = save_results(results_dict, output_dir, args)
-    
-    if progress_tracker: 
-        summary_stats = {"query": args.query, "sources_used": list(args.sources), "papers_found": results_dict["total_unique"], "output_bibtex": bibtex_path, "output_summary": summary_path}
-        progress_tracker.complete(summary_stats)
-        
-    else:
-        print(f"\nSearch completed!")
-        print(f"Results saved to:")
-        print(f"   - BibTeX: {bibtex_path}")
-        print(f"   - Summary: {summary_path}")
+    if not collected:
+        print("\nNo records retrieved from any source. Nothing was written.",
+              file=sys.stderr)
+        for f in failures:
+            print(f"  - {f}", file=sys.stderr)
+        if tracker:
+            tracker.complete({"total_papers_found": 0, "failures": failures})
+        return 2
 
-    print(f"\nFinal Statistics: ")
-    print(f"   Total unique papers: {results_dict['total_unique']}")
-    if 'arxiv' in results_dict:
-        print(f"   - From arXiv: {len(results_dict['arxiv'])}")
-    if 'semantic_scholar' in results_dict:
-        print(f"   - From Semantic Scholar: {len(results_dict['semantic_scholar'])}")
+    unique = dedupe(collected)
+    ts = datetime.now().strftime("%Y%m%d-%H%M%S")
+
+    entries, skipped = [], 0
+    for idx, p in enumerate(unique, 1):
+        e = to_bibtex(p, idx)
+        if e:
+            entries.append(e)
+        else:
+            skipped += 1
+
+    bib_path = out_dir / f"search-results-{ts}.bibtex"
+    bib_path.write_text(
+        "% Generated by phd-research-companion 2.4.0\n"
+        f"% Query: {args.query}\n"
+        f"% Sources: {','.join(args.sources)}\n"
+        f"% Retrieved: {datetime.now().isoformat(timespec='seconds')}\n"
+        f"% Verified entries: {len(entries)}  (skipped incomplete: {skipped})\n"
+        + (f"% FAILED SOURCES: {'; '.join(failures)}\n" if failures else "")
+        + "\n" + "\n\n".join(entries) + "\n",
+        encoding="utf-8")
+
+    md_path = out_dir / f"search-summary-{ts}.md"
+    lines = [f"# Literature search: {args.query}", "",
+             f"- Retrieved: {datetime.now().strftime('%Y-%m-%d %H:%M')}",
+             f"- Sources: {', '.join(args.sources)}",
+             f"- Unique records: {len(unique)}",
+             f"- Verified BibTeX entries: {len(entries)}",
+             f"- Skipped (incomplete record): {skipped}"]
+    if failures:
+        lines += ["", "## Failed sources (no data from these)", ""]
+        lines += [f"- {f}" for f in failures]
+    lines += ["", "## Records", ""]
+    for i, p in enumerate(unique, 1):
+        lines.append(f"{i}. **{p['title']}**  ")
+        lines.append(f"   {', '.join(p.get('authors')[:5]) or 'n/a'}  ")
+        lines.append(f"   {p.get('year') or 'n/a'} | {p.get('venue') or 'n/a'} | via {p.get('source')}  ")
+        if p.get("url"):
+            lines.append(f"   <{p['url']}>")
+        lines.append("")
+    md_path.write_text("\n".join(lines), encoding="utf-8")
+
+    summary = {"query": args.query, "sources_used": list(args.sources),
+               "total_papers_found": len(unique),
+               "verified_bibtex_entries": len(entries),
+               "failed_sources": failures,
+               "output_bibtex": str(bib_path), "output_summary": str(md_path)}
+    if tracker:
+        tracker.complete(summary)
+    print(f"\nBibTeX : {bib_path}")
+    print(f"Summary: {md_path}")
+    print(f"Verified entries: {len(entries)} / {len(unique)} records")
+    return 0 if not failures else 1
+
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

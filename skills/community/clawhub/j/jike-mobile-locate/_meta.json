@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72cqttfa4en7epyybjca4m2x85ppvj",
+  "owner": "jikeapi",
   "slug": "jike-mobile-locate",
   "version": "1.0.1",
-  "publishedAt": 1777371945274
+  "title": "手机号码归属地查询 - 即刻数据",
+  "description": "输入中国大陆 11 位手机号，实时查询归属地省份/城市、运营商、运营商类型、区号、邮编和行政区划编码。",
+  "env": "JIKE_MOBILE_KEY",
+  "api_url": "https://api.jikeapi.cn/v1/mobile/query",
+  "homepage": "https://www.jikeapi.cn/"
 }

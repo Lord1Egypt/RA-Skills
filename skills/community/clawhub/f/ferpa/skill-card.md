@@ -1,39 +1,54 @@
-## Description: <br>
-FERPA compliance reference for student records privacy, educational rights, consent requirements, and institutional obligations under the Family Educational Rights and Privacy Act. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FERPA compliance reference for student records privacy, educational rights, consent requirements, and institutional obligations under the Family Educational Rights and Privacy Act.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Education compliance staff, school administrators, developers, and edtech vendors use this skill as a quick reference when handling student records, designing education software, evaluating disclosures, or preparing FERPA compliance checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Static FERPA guidance may be incomplete or unsuitable for a specific institution, jurisdiction, or policy decision. <br>
-Mitigation: Treat the skill as a reference aid, not legal advice, and verify current requirements with qualified counsel or institutional compliance staff before relying on it. <br>
+## Use Case:
 
+Developers, education software teams, institutions, and compliance reviewers use this skill as a quick reference when handling student data, designing education systems, or reviewing FERPA disclosure and consent scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/ferpa) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text emitted by shell commands, with Markdown command examples in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference content; security evidence reports no data access or system changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Users may treat the FERPA reference output as legal advice or rely on it without confirming legal accuracy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as general reference material and review the publisher, source, and applicable legal requirements before relying on it for compliance decisions.
+
+Risk: The documented FERPA_DIR configuration setting is not actually used by the inspected script.
+
+Mitigation: Do not rely on FERPA_DIR for storage or behavior control unless the script is updated and re-reviewed.
+
+## Reference(s):
+
+- [ClawHub Ferpa skill page](https://clawhub.ai/bytesagain-lab/skills/ferpa)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text command output with Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference content; no network access, hidden data access, persistence, or destructive behavior was identified by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

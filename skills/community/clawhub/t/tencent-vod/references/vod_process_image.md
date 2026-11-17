@@ -73,21 +73,21 @@
 
 ```bash
 # 默认 2 倍高级超分（自动等待完成）
-python scripts/vod_process_image.py super-resolution \
+python3 scripts/vod_process_image.py super-resolution \
     --file-id <file-id> --sub-app-id <sub-app-id>
 
 # 固定分辨率超分到 1920x1080，JPEG 输出
-python scripts/vod_process_image.py super-resolution \
+python3 scripts/vod_process_image.py super-resolution \
     --file-id <file-id> --sub-app-id <sub-app-id> \
     --mode fixed --width 1920 --height 1080 --output-format JPEG
 
 # 3 倍通用超分，PNG 输出，指定图片质量
-python scripts/vod_process_image.py super-resolution \
+python3 scripts/vod_process_image.py super-resolution \
     --file-id <file-id> --sub-app-id <sub-app-id> \
     --percent 3.0 --sr-type standard --output-format PNG --quality 90
 
 # 不等待，立即返回任务 ID
-python scripts/vod_process_image.py super-resolution \
+python3 scripts/vod_process_image.py super-resolution \
     --file-id <file-id> --sub-app-id <sub-app-id> \
     --json
 ```
@@ -96,21 +96,21 @@ python scripts/vod_process_image.py super-resolution \
 
 ```bash
 # 图片理解（默认提示词）
-python scripts/vod_process_image.py understand \
+python3 scripts/vod_process_image.py understand \
     --file-id <file-id> --sub-app-id 1500046154
 
 # 自定义提示词图片理解
-python scripts/vod_process_image.py understand \
+python3 scripts/vod_process_image.py understand \
     --file-id <file-id> --sub-app-id 1500046154 \
     --prompt "描述图片中的人物表情和动作"
 
 # 通过 URL 输入 + 指定模型
-python scripts/vod_process_image.py understand \
+python3 scripts/vod_process_image.py understand \
     --url "https://example.com/image.jpg" --sub-app-id 1500046154 \
     --model gemini-2.5-pro --prompt "分析构图和色彩"
 
 # 不等待（立即返回任务 ID）
-python scripts/vod_process_image.py understand \
+python3 scripts/vod_process_image.py understand \
     --file-id <file-id> --sub-app-id 1500046154 \
     --json
 ```

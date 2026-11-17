@@ -1,47 +1,68 @@
-## Description: <br>
-x402 Agent Payments helps AI agents accept fiat and crypto payments, manage wallets and transfers, and run batch payment or payroll workflows across Stripe, Coinbase Commerce, Coinbase CDP, and Spraay x402. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified payment skill for AI agents across Stripe for fiat and card payments, Coinbase Commerce for crypto checkout, Coinbase CDP for wallets and transfers, and the Spraay x402 gateway for batch payments, payroll, invoices, and token price lookups.
 
-## Publisher: <br>
-[plagtech](https://clawhub.ai/user/plagtech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[plagtech](https://clawhub.ai/user/plagtech)
 
-## Use Case: <br>
-Developers and operators use this skill to let agents prepare payment, invoicing, wallet, transfer, payroll, and batch payment workflows while requiring user confirmation before any real-money action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help an agent initiate workflows involving real funds, including charges, refunds, wallet transfers, payroll batches, and invoices. <br>
-Mitigation: Require explicit user confirmation of the exact amount, currency, recipient, provider, and action before any payment-related request is executed. <br>
-Risk: Provider credentials can authorize sensitive payment or transfer operations. <br>
-Mitigation: Use test mode and least-privilege API keys where possible, and avoid granting production transfer authority unless it is required. <br>
-Risk: Crypto transfers may be irreversible after confirmation. <br>
-Mitigation: Verify destination addresses, network, asset, and amount with the user before sending transfer or batch payment requests. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent prepare payment, invoice, checkout, wallet, transfer, payroll, and batch payout workflows across supported payment rails. It is intended for real payment operations that require explicit user review before funds move.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/plagtech/agent-payments) <br>
-- [Spraay Docs](https://docs.spraay.app) <br>
-- [Spraay x402 Gateway](https://gateway.spraay.app) <br>
-- [Stripe Docs](https://docs.stripe.com) <br>
-- [Coinbase Commerce Docs](https://docs.cdp.coinbase.com/commerce) <br>
-- [Coinbase CDP Docs](https://docs.cdp.coinbase.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash command examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires provider environment variables for enabled payment rails; payment actions should be confirmed with exact amount, currency, recipient, provider, and action before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can help an agent initiate real payment operations, including charges, refunds, subscriptions, wallets, transfers, payroll, and batch payouts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation of recipient, amount, currency, fee, cadence, and refund details before execution.
+
+Risk: Crypto transfers may be irreversible and may expose high-value wallets if overly broad credentials or balances are used.
+
+Mitigation: Use least-privilege API keys, keep agent-managed wallets low-balance, and verify crypto recipient addresses before signing or sending.
+
+Risk: A misconfigured Spraay gateway could route payment requests or x402 proofs to an unintended endpoint.
+
+Mitigation: Use the official HTTPS Spraay gateway by default and require explicit user confirmation before using a controlled alternative gateway.
+
+Risk: Unsigned transaction data returned by a gateway could differ from the user-approved payment request.
+
+Mitigation: Decode and verify transaction calldata locally against the confirmed recipients, amounts, token, chain, contract, and allowance bounds before requesting any signature.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/plagtech/skills/agent-payments)
+- [Spraay](https://spraay.app)
+- [Spraay gateway catalog](https://gateway.spraay.app/.well-known/x402.json)
+- [Spraay docs](https://docs.spraay.app)
+- [BPA 1.0 spec](https://docs.spraay.app/bpa/1.0/)
+- [Stripe docs](https://docs.stripe.com)
+- [Coinbase Commerce docs](https://docs.cdp.coinbase.com/commerce)
+- [Coinbase CDP docs](https://docs.cdp.coinbase.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline bash and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces provider-specific command examples and verification guidance; payment execution requires user confirmation and configured provider credentials.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

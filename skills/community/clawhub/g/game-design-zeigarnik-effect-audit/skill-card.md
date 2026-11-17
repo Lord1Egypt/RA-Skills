@@ -1,42 +1,50 @@
-## Description: <br>
-Audit a game, feature, task system, quest flow, event track, puzzle chain, progression layer, or return loop through the lens of the Zeigarnik effect: the tension created by incomplete, interrupted, or unresolved tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit a game, feature, task system, quest flow, event track, puzzle chain, progression layer, or return loop through the lens of the Zeigarnik effect: the tension created by incomplete, interrupted, or unresolved tasks.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Game designers, product leads, narrative designers, and agent users use this skill to critique unfinished tasks, return loops, quest flows, event tracks, progression dashboards, and other open-loop systems for healthy return motivation versus clutter, guilt, or coercive pressure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be used with proprietary design documents, playtest notes, or unreleased product plans. <br>
-Mitigation: Use it only in trusted environments and avoid sharing confidential material with agents or services that are not approved for that data. <br>
-Risk: Recommendations are design critique and may overfit incomplete input about a game's audience, telemetry, or production constraints. <br>
-Mitigation: Treat outputs as review guidance, then validate important changes with player research, telemetry, and design review. <br>
+## Use Case:
 
+Game designers, product teams, and developers use this skill to audit quests, task systems, event tracks, progression loops, puzzle chains, and return-player flows for healthy open-loop motivation versus anxiety, clutter, guilt, or coercive pressure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stanestane/game-design-zeigarnik-effect-audit) <br>
-- [Family Conventions](references/family-conventions.md) <br>
-- [Output Patterns](references/output-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with structured recommendations and a minimal fix] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an open-loop profile, return-tension diagnosis, clarity and resume-path diagnosis, clutter and coercion risks, audience sensitivity notes, recommendations, and a minimal fix.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can influence an agent's game-design audit recommendations and response style.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated design recommendations before using them for production roadmap, retention, or monetization decisions.
+
+## Reference(s):
+
+- [Family Conventions](references/family-conventions.md)
+- [Output Patterns](references/output-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured audit sections and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include an open-loop profile, return-tension diagnosis, clutter and coercion risks, audience sensitivity notes, recommendations, and a minimal fix.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Searches M-Flow memory for a user query, formats relevant results as wiki entries, and saves them for later knowledge compilation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Executes Karpathy-style knowledge queries by searching M-Flow memory, formatting results as wiki entries, and saving them for later compilation.
 
-## Publisher: <br>
-[sora-mury](https://clawhub.ai/user/sora-mury) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sora-mury](https://clawhub.ai/user/sora-mury)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to turn M-Flow memory search results into Markdown wiki entries that can be reused in later knowledge compilation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Memory search results and query-derived content may be persisted into local wiki files. <br>
-Mitigation: Use the skill only when persistent storage is acceptable, avoid sensitive queries, and periodically review generated knowledge/wiki/ files. <br>
-Risk: The skill depends on the m-flow-memory dependency for search behavior and stored memory access. <br>
-Mitigation: Install and trust m-flow-memory in the target environment before use, and review its behavior for the data being queried. <br>
+## Use Case:
 
+Developers and agent builders use this skill to turn M-Flow memory search results into reusable Markdown wiki entries for later knowledge compilation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sora-mury/karpathy-query-feedback) <br>
-- [Publisher profile](https://clawhub.ai/user/sora-mury) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown wiki tables, JSON result summaries, Python API objects, and command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes query results to local wiki files under knowledge/wiki/ when entries are found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill persists memory-derived content into a wiki that may be reused downstream.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review saved wiki entries before using them for later compilation or publication.
+
+Risk: Write behavior is under-scoped and may save output outside the intended wiki area if configured carelessly.
+
+Mitigation: Run the skill with workspace write permissions limited to the intended wiki directory.
+
+Risk: Confidential memory content could be copied into persistent Markdown files.
+
+Mitigation: Avoid use with confidential memory until filename containment and Markdown/content sanitization are in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sora-mury/skills/karpathy-query-feedback)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON]
+
+**Output Format:** [Markdown wiki table entries, JSON result objects, and plain-text status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes retrieved memory content to a persistent wiki file when query results are found.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; target metadata matches)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

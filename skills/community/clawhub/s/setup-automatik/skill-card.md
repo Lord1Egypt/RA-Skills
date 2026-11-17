@@ -1,46 +1,69 @@
-## Description: <br>
-Facilitate the installation and management of VPS solutions using the Setup Automatik engine (powered by Orion Design). Use when the user wants to install, configure, or manage tools like Traefik, Portainer, Chatwoot, N8N, and other open-source applications on a Linux VPS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Facilitate the installation and management of VPS solutions using the Setup Automatik engine (powered by Orion Design). Use when the user wants to install, configure, or manage tools like Traefik, Portainer, Chatwoot, N8N, and other open-source applications on a Linux VPS.
 
-## Publisher: <br>
-[alltomatos](https://clawhub.ai/user/alltomatos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alltomatos](https://clawhub.ai/user/alltomatos)
 
-## Use Case: <br>
-Developers and operators use this skill to install, configure, and manage self-hosted open-source applications on Linux VPS infrastructure. It helps collect deployment inputs, run SetupOrion-based installation steps, and verify services such as Docker, Traefik, Portainer, and application stacks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can require administrative VPS access and make broad server changes. <br>
-Mitigation: Use scoped, temporary access where possible, take a server snapshot first, and review the exact SetupOrion commands before execution. <br>
-Risk: SSH, Portainer, SMTP, and application credentials may be exposed or retained during deployment workflows. <br>
-Mitigation: Prefer OpenClaw node pairing over sharing root passwords or private keys in chat, and rotate credentials after use. <br>
-Risk: The bundled installer includes telemetry to Orion that is under-disclosed in the skill documentation. <br>
-Mitigation: Review the telemetry behavior before running the installer and remove or disable it if it is not acceptable for the deployment. <br>
+## Use Case:
 
+Developers and operators use this skill to prepare a Linux VPS, collect deployment details, run the SetupOrion installer for common open-source application stacks, and verify the resulting services.
 
-## Reference(s): <br>
-- [Setup Automatik on ClawHub](https://clawhub.ai/alltomatos/setup-automatik) <br>
-- [tools.md](references/tools.md) <br>
-- [SetupOrion.sh](assets/SetupOrion.sh) <br>
-- [Mundo Automatik](https://mundoautomatik.com/) <br>
-- [Orion Design setup page](https://oriondesign.art.br/setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and deployment steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or run commands that install Docker services and modify VPS configuration when the agent has approved server access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can require root-equivalent control of a VPS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with trusted publishers and on systems where you are comfortable granting full administrative control.
+
+Risk: The installer workflow may involve unsafe install practices such as pipe-to-shell commands.
+
+Mitigation: Review downloaded scripts before execution and avoid pipe-to-shell installation where possible.
+
+Risk: The installer may create or handle service credentials and Portainer access tokens.
+
+Mitigation: Rotate generated credentials and tokens after installation and store replacement secrets in an approved secret manager.
+
+Risk: Improper TLS configuration can expose management interfaces.
+
+Mitigation: Require valid TLS before using Portainer or other exposed administrative services.
+
+Risk: Undisclosed telemetry may be present in the installer workflow.
+
+Mitigation: Disable or remove telemetry before production use.
+
+## Reference(s):
+
+- [Setup Automatik skill page](https://clawhub.ai/alltomatos/skills/setup-automatik)
+- [Orion Design VPS Solutions](references/tools.md)
+- [SetupOrion installer script](assets/SetupOrion.sh)
+- [Mundo Automatik](https://mundoautomatik.com/)
+- [Orion Design setup](https://oriondesign.art.br/setup)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute or adapt bundled shell and Python scripts when the agent has VPS access.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

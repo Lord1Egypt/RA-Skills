@@ -1,41 +1,57 @@
-## Description: <br>
-Extract content from specific URLs using Tavily's extraction API. Returns clean markdown/text from web pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract content from specific URLs using Tavily's extraction API. Returns clean markdown/text from web pages.
 
-## Publisher: <br>
-[matthew77](https://clawhub.ai/user/matthew77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[matthew77](https://clawhub.ai/user/matthew77)
 
-## Use Case: <br>
-Developers and agent users use this skill to extract clean markdown, text, or raw JSON from known URLs through Tavily's extraction API, including focused extraction with queries and advanced handling for dynamic pages. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends submitted URLs, queries, and fetched page content to Tavily's external service. <br>
-Mitigation: Use it only for data flows approved by the organization, and avoid private URLs, internal pages, secrets, personal data, or regulated content unless that sharing is authorized. <br>
-Risk: The Tavily API key is required for execution and could be exposed if embedded in files or shared logs. <br>
-Mitigation: Store the API key in an environment variable or approved secret manager, and do not commit or paste real keys into configuration examples. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Tavily](https://tavily.com) <br>
-- [Tavily Extract API endpoint](https://api.tavily.com/extract) <br>
-- [ClawHub release page](https://clawhub.ai/matthew77/liang-tavily-extract) <br>
+## Use Case:
 
+Developers and agents use this skill to extract clean page content from known URLs, optionally focusing extraction with a query and returning markdown, text, or raw JSON.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown, plain text, or JSON printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and TAVILY_API_KEY; accepts up to 20 comma-separated URLs per request.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Target URLs and optional query terms are sent to Tavily for extraction.
+
+Mitigation: Avoid internal, private, signed, personal, regulated, or confidential URLs unless the organization has approved Tavily for that data.
+
+Risk: The skill requires a Tavily API key.
+
+Mitigation: Provide the key through approved secret or environment configuration and avoid committing it in skill configuration.
+
+Risk: Some URLs may fail or return incomplete content.
+
+Mitigation: Review failed results and compare basic versus advanced extraction when output quality matters.
+
+## Reference(s):
+
+- [Tavily](https://tavily.com)
+- [ClawHub Skill Page](https://clawhub.ai/matthew77/skills/liang-tavily-extract)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON]
+
+**Output Format:** [Markdown, plain text, or raw JSON from Tavily extraction results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports up to 20 URLs per request, optional query-focused chunks, basic or advanced extraction depth, and timeout settings up to 60 seconds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

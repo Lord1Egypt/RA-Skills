@@ -35,7 +35,6 @@
     "BudgetId": 0,
     "BudgetBudgetDeliveryMethodV2": "STANDARD",
     "TargetSpend_BidCeilingAmount": 2,
-    "ManualCpc_EnhancedCpcEnabled": false,
     "TargetGoogleSearch": true,
     "TargetSearchNetwork": false,
     "TargetContentNetwork": false,
@@ -49,7 +48,6 @@
     "targetedLocations": [{ "id": "2840", "bidModifier": 0, "bidModifierSpecified": false }],
     "excludedLocations": [],
     "excludedIpAddresses": [],
-    "targetedLanguages": [{ "id": 1000 }],
     "targetedPlatforms": [
       { "id": 30001, "bidModifier": 0 },
       { "id": 30002, "bidModifier": 0 },

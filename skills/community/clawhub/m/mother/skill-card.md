@@ -1,41 +1,55 @@
-## Description: <br>
-Mother.skill helps users preserve their own memories of a mother's stories, recipes, sayings, values, and voice for grounded remembrance and advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mother.skill helps users preserve local memories of their mother, including stories, advice, recipes, sayings, values, voice, and grief-aware memorial context.
 
-## Publisher: <br>
-[realteamprinz](https://clawhub.ai/user/realteamprinz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realteamprinz](https://clawhub.ai/user/realteamprinz)
 
-## Use Case: <br>
-External users and families use this skill to preserve user-provided memories of a mother, organize recipes and sayings, and receive responses grounded in documented memories and values. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive family memories may be stored in local human-readable files. <br>
-Mitigation: Install only if comfortable storing this information locally, avoid recording private information about others without consent, and delete ~/.mother-skill/ to remove the archive. <br>
-Risk: Advice in a mother's voice may be mistaken for a complete or factual record. <br>
-Mitigation: Use responses as reflective prompts grounded in recorded memories, and keep the no-fabrication behavior when a memory has not been provided. <br>
+## Use Case:
 
+External users use this skill to organize personal memories of their mother into a local archive and to receive responses grounded in documented memories, values, recipes, and voice patterns. It is intended for both living and memorial contexts, with explicit grief-aware behavior.
 
-## Reference(s): <br>
-- [Memory Preservation Guide](references/preservation-guide.md) <br>
-- [Mother.skill ClawHub Page](https://clawhub.ai/realteamprinz/mother) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSONL, Guidance, Configuration] <br>
-**Output Format:** [Markdown and JSONL files with conversational text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores user-provided memory archives locally under ~/.mother-skill/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores sensitive personal memories about a mother and family members on the local device.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when local storage of those memories is acceptable, avoid adding details without appropriate family consent, and delete ~/.mother-skill/ to remove the archive.
+
+Risk: Memorial or grief-related prompts may involve emotionally sensitive situations.
+
+Mitigation: Keep responses grounded in documented memories and avoid filling gaps or fabricating details when the archive lacks a relevant memory.
+
+## Reference(s):
+
+- [Memory Preservation Guide](references/preservation-guide.md)
+- [Mother Profile Template](templates/MOTHER-PROFILE.md)
+- [ClawHub Skill Page](https://clawhub.ai/realteamprinz/skills/mother)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and JSONL-oriented guidance for local memory archive entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local user-provided memory content under ~/.mother-skill/; no external transmission is described in the evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

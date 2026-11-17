@@ -1,7 +1,7 @@
 ---
 name: document-ocr-agent
 description: "Document OCR Agent: OCR and document intelligence tool. Send any PDF, image, or scanned document and receive extracted text, structured entities (dates, amounts, names, addresses, line items), and per-page metadata. Use when an agent needs document ocr agent, google document ai ocr, receipt ocr and text extraction, invoice parsing and field extraction, pdf document text extraction, scanned image ocr, process document, document type through AgentPMT-hosted remote tool calls."
-version: 1.0.0
+version: 1.0.1
 homepage: https://www.agentpmt.com/marketplace/google-document-ai-ocr
 compatibility: "Agent instructions for AgentPMT-hosted remote tool calls. Follow this skill body for supported account, wallet, and setup routes. No local command runtime is declared."
 metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/marketplace/google-document-ai-ocr"}}
@@ -9,7 +9,7 @@ metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/
 # Document OCR Agent
 
 ## Freshness
-Last updated: `2026-06-24`.
+Last updated: `2026-07-27`.
 
 If the current date is more than 7 days after the last updated date, reinstall this skill from skills.sh or ClawHub before relying on endpoints, schemas, setup steps, or examples.
 
@@ -180,8 +180,6 @@ Extract text and structured data from a document.
 
 ## Related Product Skills
 - File Management: ../file-management (ClawHub: `file-management`, page: https://clawhub.ai/agentpmt/file-management; skills.sh: `npx skills add AgentPMT/agent-skills --skill file-management`)
-- File Storage - Over 10MB: ../file-storage-over-10mb (ClawHub: `file-storage-over-10mb`, page: https://clawhub.ai/agentpmt/file-storage-over-10mb; skills.sh: `npx skills add AgentPMT/agent-skills --skill file-storage-over-10mb`)
-- File Storage - 10MB or less: ../file-storage-10mb-or-less (ClawHub: `file-storage-10mb-or-less`, page: https://clawhub.ai/agentpmt/file-storage-10mb-or-less; skills.sh: `npx skills add AgentPMT/agent-skills --skill file-storage-10mb-or-less`)
 
 ## Categories And Industries
 No categories or industry tags are published for this tool.

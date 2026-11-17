@@ -1,42 +1,59 @@
-## Description: <br>
-Install the 5-package multi-chip software stack (vLLM, FlagTree, FlagGems, FlagCX, vllm-plugin-FL) inside a GPU container, with network mirror detection, dependency ordering, wheel selection, and per-package validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs the 5-package multi-chip software stack (vLLM, FlagTree, FlagGems, FlagCX, and vllm-plugin-FL) inside a running GPU container with network mirror detection, dependency ordering, wheel selection, and package validation.
 
-## Publisher: <br>
-[wbavon](https://clawhub.ai/user/wbavon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wbavon](https://clawhub.ai/user/wbavon)
 
-## Use Case: <br>
-Developers and engineers use this skill after GPU container setup to install and validate a multi-chip inference software stack in a running container. It helps select environment-specific package sources and produce a structured installation report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill materially changes the target GPU container by installing packages, replacing triton, building remote code, and persisting environment settings. <br>
-Mitigation: Run it only in a disposable or dedicated GPU container and keep a container snapshot or rebuild path available. <br>
-Risk: The install flow clones repositories, uses package mirrors, and installs editable packages, which can introduce supply-chain integrity concerns. <br>
-Mitigation: Review package sources and configured mirrors before execution when supply-chain integrity matters. <br>
+## Use Case:
 
+Developers and engineers use this skill after GPU container setup to install and validate a multi-chip inference software stack in dependency order. It is intended for running containers with PyTorch and GPU access where the agent can resolve the container name, GPU vendor, network path, and package compatibility.
 
-## Reference(s): <br>
-- [Network & Mirror Configuration](references/network-mirrors.md) <br>
-- [Vendor Mappings for FlagCX](references/vendor-mappings.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wbavon/install-stack-flagos) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and a final structured JSON report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports package status, selected network mirrors, container environment details, gate result, and errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill uses broad Docker shell commands inside a running GPU container.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a disposable or snapshotted container, confirm the exact container name before execution, and avoid accepting container names from untrusted input.
+
+Risk: The installation flow uses mutable external package sources and source repositories.
+
+Mitigation: Prefer direct verified sources, pin commits and package hashes where possible, and review package source choices before installation.
+
+Risk: The skill may append FLAGCX_PATH to ~/.bashrc inside the target container.
+
+Mitigation: Review the shell profile change before allowing it and keep the change scoped to the intended disposable container.
+
+## Reference(s):
+
+- [Network and Mirror Configuration](references/network-mirrors.md)
+- [Vendor Mappings for FlagCX](references/vendor-mappings.md)
+- [ClawHub skill page](https://clawhub.ai/wbavon/skills/install-stack-flagos)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and a structured JSON final report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes package-level install status, versions, gate status, network mirror status, environment details, and errors.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

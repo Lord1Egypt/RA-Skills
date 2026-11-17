@@ -1,43 +1,51 @@
-## Description: <br>
-Builds a final arXiv collection report by having the model draft a report template and then injecting each paper's Brief Conclusion and arXiv abstract URL from per-paper summary files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates batch arXiv collection reports by combining a model-authored template with brief conclusions and abs URLs extracted from per-paper summary.md files.
 
-## Publisher: <br>
-[xukp20](https://clawhub.ai/user/xukp20) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xukp20](https://clawhub.ai/user/xukp20)
 
-## Use Case: <br>
-Researchers and developers use this skill after per-paper arXiv summaries exist to assemble a collection-level Markdown report with a hierarchy, brief per-paper conclusions, and arXiv abstract links. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Untrusted paper summaries may contain prompt-injection or misleading content that influences the model-written collection report. <br>
-Mitigation: Review generated summaries_bundle.md and the final collection report before relying on them, especially when papers, metadata, or summaries came from untrusted sources. <br>
-Risk: Custom paths can cause the report workflow to read or write files outside the intended run directory. <br>
-Mitigation: Keep custom base, template, and output paths inside the intended report directory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Arxiv Batch Reporter on ClawHub](https://clawhub.ai/xukp20/arxiv-batch-reporter) <br>
-- [Collection Report Template Format](references/report-format.md) <br>
-- [Lean 4 Report Example](references/report-example-lean4-en.md) <br>
-- [LLM Math Report Example](references/report-example-llm-math-en.md) <br>
-- [Multimodal Report Example](references/report-example-multimodal-en.md) <br>
+## Use Case:
 
+Developers and research analysts use this skill after per-paper arXiv summaries exist to assemble a final collection report with consistent paper entries and direct summary-derived conclusions.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown files with command-line workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes summaries_bundle.md, collection_report_template.md, and collection_report.md under the selected base directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Report input, template, or output paths can escape the intended run directory if arguments are misused or influenced.
+
+Mitigation: Use only trusted local arXiv workflow inputs, avoid untrusted template or file path values, and run in a workspace where accidental reads or overwrites outside the run directory would not expose secrets or damage important files.
+
+## Reference(s):
+
+- [Collection Report Template Format](references/report-format.md)
+- [ArXiv Collection Report Template Example, Lean 4](references/report-example-lean4-en.md)
+- [ArXiv Collection Report Template Example, LLM for Math](references/report-example-llm-math-en.md)
+- [ArXiv Collection Report Template Example, Multimodal LLM Research](references/report-example-multimodal-en.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown files with inline shell commands and arXiv placeholder syntax]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces summaries_bundle.md, a model-authored collection_report_template.md, and a rendered collection_report.md under the selected base directory.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

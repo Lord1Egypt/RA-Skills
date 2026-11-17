@@ -1,44 +1,53 @@
-## Description: <br>
-Daily Report Pro helps workplace users turn brief task notes into structured daily reports with completed work, plans, risks, support requests, and time totals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Report Pro turns workplace notes into concise, structured daily reports with completed work, next-day plans, risks, support requests, and work-hour summaries.
 
-## Publisher: <br>
-[miromiraclemiro-ux](https://clawhub.ai/user/miromiraclemiro-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miromiraclemiro-ux](https://clawhub.ai/user/miromiraclemiro-ux)
 
-## Use Case: <br>
-Employees and external ClawHub users use this skill to convert daily work notes into concise, manager-ready daily reports. It is intended for product, operations, development, design, and other professionals who need structured status updates with value framing, risks, support needs, and time summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Daily reports may contain confidential customer data, unreleased business plans, or sensitive internal project details. <br>
-Mitigation: Use sanitized or approved workplace details, and avoid sharing sensitive information unless workplace policy permits it. <br>
-Risk: The skill can read and write files for notes and report drafts. <br>
-Mitigation: Grant file access only to specific note files and report destinations that are intended for this workflow. <br>
-Risk: The skill may remember user role, project names, terminology, and preferred report style. <br>
-Mitigation: Do not provide personal or sensitive workplace details that should not be retained for later personalization. <br>
+## Use Case:
 
+Employees and professionals use this skill to convert brief daily work notes into polished daily reports for workplace status updates. It is aimed at product, operations, development, and other roles that need concise upward reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/miromiraclemiro-ux/daily-report-pro) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown daily-report templates and concise workplace writing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read user-provided notes and write report drafts when the user permits file access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Daily reports may contain confidential project names, customer details, internal incidents, financial metrics, or personnel information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review inputs before use and avoid sharing sensitive workplace information unless the deployment environment and publisher policies are acceptable for that data.
+
+Risk: The skill asks the agent to remember workplace context without clear consent, retention limits, or deletion controls.
+
+Mitigation: Use only information suitable for personalization and prefer deployments that provide explicit opt-in memory, retention limits, and deletion controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/miromiraclemiro-ux/skills/daily-report-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Guidance]
+
+**Output Format:** [Markdown daily report templates and concise prose guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured sections for completed work, next-day plans, risks, support requests, work-hour totals, and optional remarks.]
+
+## Skill Version(s):
+
+2.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

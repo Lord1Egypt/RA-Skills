@@ -6,8 +6,6 @@ import (
 	"fmt"
 	"io"
 	"log/slog"
-	"os"
-	"strings"
 
 	"github.com/spf13/cobra"
 
@@ -119,34 +117,16 @@ func (a *App) resolveConfig() (*config.Config, error) {
 }
 
 // newLogger returns a slog text logger writing to w (stderr). Default level is
-// Warn; --verbose drops to Debug; LOG_LEVEL overrides either (GOAL.md §13).
+// Warn; --verbose drops to Debug. Verbosity is flag-only by design: the binary
+// reads no environment variables beyond the advertised GOOGLE_HEALTH_* keys
+// (guarded by TestShippedSourceReadsOnlyDeclaredEnvVars).
 func newLogger(w io.Writer, verbose bool) *slog.Logger {
 	level := slog.LevelWarn
 	if verbose {
 		level = slog.LevelDebug
 	}
-	if v, ok := os.LookupEnv("LOG_LEVEL"); ok {
-		if parsed, ok := parseLevel(v); ok {
-			level = parsed
-		}
-	}
 	h := slog.NewTextHandler(w, &slog.HandlerOptions{Level: level})
 	return slog.New(h)
-}
-
-func parseLevel(s string) (slog.Level, bool) {
-	switch strings.ToLower(strings.TrimSpace(s)) {
-	case "debug":
-		return slog.LevelDebug, true
-	case "info":
-		return slog.LevelInfo, true
-	case "warn", "warning":
-		return slog.LevelWarn, true
-	case "error":
-		return slog.LevelError, true
-	default:
-		return slog.LevelWarn, false
-	}
 }
 
 // fprintln writes a human line to the given writer, ignoring write errors (a

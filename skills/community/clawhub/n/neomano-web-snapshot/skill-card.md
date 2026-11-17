@@ -1,43 +1,53 @@
-## Description: <br>
-Take a screenshot (PNG) of any website in a headless way (no GUI) to verify it's rendering/working. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Take a screenshot (PNG) of any website in a headless way (no GUI) to verify it's rendering/working.
 
-## Publisher: <br>
-[elandivar](https://clawhub.ai/user/elandivar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elandivar](https://clawhub.ai/user/elandivar)
 
-## Use Case: <br>
-Developers and engineers use this skill to run a headless browser screenshot check for a website, uptime visual check, or page-rendering verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup downloads Playwright and Chromium locally. <br>
-Mitigation: Run the bootstrap step only in an approved environment where local dependency and browser downloads are acceptable. <br>
-Risk: The tool visits requested URLs from the user's machine. <br>
-Mitigation: Avoid capturing sensitive internal sites unless that access and screenshot capture are intended. <br>
-Risk: Screenshot files can contain sensitive page content. <br>
-Mitigation: Write outputs only to local, non-sensitive paths and handle generated PNG files according to the page content sensitivity. <br>
+## Use Case:
 
+Developers and operators use this skill to capture headless PNG screenshots for visual page checks, uptime verification, and confirming that a website renders correctly.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/elandivar/neomano-web-snapshot) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/elandivar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions] <br>
-**Output Format:** [PNG screenshot file plus terminal path output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports output path, full-page capture, wait time, and timeout options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Bootstrap downloads Playwright and Chromium dependencies before screenshots can run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run installation only in an approved environment that allows those package and browser downloads.
+
+Risk: Screenshots can capture private or sensitive page content and write it to disk.
+
+Mitigation: Avoid private authenticated pages unless the output path and resulting PNG are handled as sensitive data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/elandivar/skills/neomano-web-snapshot)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; runtime produces PNG screenshot files and prints the output path.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports --out, --full-page, --wait-ms, and --timeout-ms options; default viewport is 1365x768.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

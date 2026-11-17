@@ -1,39 +1,49 @@
-## Description: <br>
-Digital Nomad provides Chinese-language reference guidance about the digital nomad lifestyle, remote work practices, common tools, destinations, visa and tax considerations, communities, and getting started. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language informational skill that explains the digital nomad lifestyle, remote-work skills, tools, destinations, visa and tax considerations, costs, communities, and practical starting advice.
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
 
-## Use Case: <br>
-External users and agents use this skill to answer Chinese-language questions about becoming or operating as a digital nomad, including destination selection, remote-work skills, tools, communities, travel preparation, and general visa, tax, and cost-of-living considerations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Visa, tax, cost-of-living, and tool recommendations may become outdated or vary by jurisdiction. <br>
-Mitigation: Verify official government, tax, and provider sources before making travel, immigration, or financial decisions. <br>
-Risk: Destination and lifestyle guidance may be incomplete for an individual user's health, safety, legal, or financial circumstances. <br>
-Mitigation: Use the skill as general reference material and seek qualified local advice for high-impact decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Digital Nomad on ClawHub](https://clawhub.ai/LeoCryptoFlow/digital-nomad) <br>
+## Use Case:
 
+External users and agent operators use this skill to answer general questions about digital nomad work, lifestyle planning, destination comparison, tools, communities, and starter considerations. Visa, tax, cost, and destination details should be checked against official or current sources before decisions are made.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, automation, or system access is requested by the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Visa, tax, cost, and destination details can change over time.
+
+Mitigation: Verify those details against official or current sources before making travel, immigration, or financial decisions.
+
+## Reference(s):
+
+- [Digital Nomad skill page](https://clawhub.ai/leocryptoflow/skills/digital-nomad)
+- [Artifact SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose, bullet lists, and comparison tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language informational responses; no executable code or tool calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

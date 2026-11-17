@@ -1,43 +1,60 @@
-## Description: <br>
-Converts unstructured Chinese clinical notes into structured JSON aligned with HL7 FHIR R4 and Chinese electronic medical record standards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert unstructured Chinese clinical narratives into structured JSON aligned with HL7 FHIR R4 and Chinese EMR standards for record parsing, entity extraction, and FHIR-oriented output.
 
-## Publisher: <br>
-[boboy-j](https://clawhub.ai/user/boboy-j) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boboy-j](https://clawhub.ai/user/boboy-j)
 
-## Use Case: <br>
-Healthcare developers and clinical data teams use this skill to turn Chinese admission notes, progress notes, discharge summaries, outpatient records, and lab text into structured FHIR-style JSON for downstream review and integration. It is for data extraction and normalization, not diagnosis or treatment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical records may contain sensitive patient data, and generated JSON or Markdown previews may preserve that data. <br>
-Mitigation: Process records locally, keep generated files in secured locations, avoid pasting real patient data into shared terminals or logs, and use the skill's PII masking behavior for previews. <br>
-Risk: Extraction results can be incomplete, low-confidence, or unsuitable for clinical use if relied on without review. <br>
-Mitigation: Review outputs manually, use low-confidence flags and source-span audit trails, and treat the skill as a data structuring tool rather than clinical advice. <br>
+## Use Case:
 
+Developers, data engineers, and healthcare operations teams can use this skill to structure Chinese admission notes, progress notes, discharge summaries, outpatient records, and lab text into machine-readable clinical data. It is intended for data extraction and normalization workflows, not clinical diagnosis or treatment advice.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/boboy-j/medical-record-structuring) <br>
-- [Project homepage](https://github.com/openclaw-skills/medical-record-structuring) <br>
-- [HL7 FHIR R4](https://hl7.org/fhir/R4/) <br>
-- [LOINC](https://loinc.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [FHIR-style JSON with an optional Markdown preview and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are produced locally; generated JSON and previews may contain patient data and should be stored securely.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, release evidence, changelog released 2026-05-26) <br>
+Risk: The security review says the skill's privacy and standards-compliance claims are stronger than what the bundled code actually provides.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated FHIR, WS 445, ICD, and LOINC outputs as lightweight extraction artifacts that require validation by qualified reviewers before production or regulated use.
+
+Risk: The skill can process real patient records, and stdout or generated output files may contain protected health information.
+
+Mitigation: Use only approved local workspaces for real patient data and avoid writing outputs to shared folders, logs, or source control unless PHI controls have been reviewed.
+
+Risk: The bundled extractor is local and rule-based in the artifact, so missed entities, incorrect mappings, and low-confidence fields are possible.
+
+Mitigation: Review extraction reports, warnings, and low-confidence fields before downstream use, and add site-specific dictionaries or validation checks for production workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/boboy-j/skills/medical-record-structuring)
+- [Project Homepage](https://github.com/openclaw-skills/medical-record-structuring)
+- [HL7 FHIR R4](https://hl7.org/fhir/R4/)
+- [LOINC](https://loinc.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON extraction payloads, FHIR Bundle JSON, Markdown previews, and command-oriented workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may contain protected health information; previews mask patient identifiers where supported, but generated files and stdout should be handled as sensitive data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

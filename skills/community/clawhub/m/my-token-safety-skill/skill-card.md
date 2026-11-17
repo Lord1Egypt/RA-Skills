@@ -1,43 +1,57 @@
-## Description: <br>
-Analyzes Binance Smart Chain token contracts for risks such as honeypots, mintable supply, high taxes, ownership concentration, holder count, and open-source status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Binance Smart Chain token contracts for rug-pull indicators such as honeypot behavior, mintability, tax settings, holder distribution, and open-source status.
 
-## Publisher: <br>
-[cmx20150407-dotcom](https://clawhub.ai/user/cmx20150407-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cmx20150407-dotcom](https://clawhub.ai/user/cmx20150407-dotcom)
 
-## Use Case: <br>
-External users and developers use this skill to quickly screen BSC token contract addresses for common token-risk signals. It supports triage and due diligence workflows but should not be treated as financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queried BSC contract addresses are sent to GoPlus Labs. <br>
-Mitigation: Only submit token contract addresses that are acceptable to disclose to the external API provider. <br>
-Risk: The generated score may be incomplete or unsuitable as investment advice. <br>
-Mitigation: Use the result as one due-diligence signal and verify token risk independently before making financial decisions. <br>
-Risk: The skill supports only Binance Smart Chain tokens. <br>
-Mitigation: Use it only with BSC contract addresses and route other chains to chain-specific tooling. <br>
+## Use Case:
 
+Developers and crypto analysts use this skill to check a BSC token address and receive a quick risk level, score, and metric breakdown for further due diligence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cmx20150407-dotcom/my-token-safety-skill) <br>
-- [GoPlus Labs token security API endpoint](https://api.gopluslabs.io/api/v1/token_security/56) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style text response with a risk level, numeric score, and token-risk metrics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a BSC token contract address and only supports Binance Smart Chain chainId 56.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and package.json) <br>
+Risk: Token addresses checked with the skill are sent to GoPlus Labs, which may reveal which contracts are being investigated and when.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive watchlists or investigation targets unless sharing those addresses with GoPlus Labs is acceptable.
+
+Risk: The skill only supports Binance Smart Chain token checks.
+
+Mitigation: Use it only for BSC contract addresses and rely on another chain-specific tool for other networks.
+
+Risk: Runtime replies include Chinese messages, which may be unclear for some operators.
+
+Mitigation: Review the output language before deployment and localize messages if the target users need another language.
+
+## Reference(s):
+
+- [GoPlus Labs Token Security API](https://api.gopluslabs.io/api/v1/token_security/56)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-like text with a risk level, numeric score, and token-security metric breakdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a BSC token contract address and sends that address to GoPlus Labs for analysis.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -45,7 +45,11 @@ description: >
 
 ## 3. Language
 
-| File | Language |
+These are **ClawHub discoverability conventions, not hard requirements**. Recommend them
+and flag deviations in the audit report, but respect the user's intended primary language
+and never delete or reject valid content solely on language grounds.
+
+| File | Recommended language |
 |------|----------|
 | `SKILL.md` | English body + optional Chinese intro paragraph at end |
 | `README.md` | English |
@@ -82,10 +86,11 @@ clawhub publish <clean-dir> --slug <slug> --version <semver> --changelog "<one-l
 - If overriding `latest` tag, version number must be higher than current latest
 
 ### GitHub
-Use GitHub API with PAT for file operations. 
-- Get file SHA → PUT with base64 content + SHA
-- New files: PUT without SHA
-- Delete: DELETE with SHA
+Authenticate with a PAT from your environment: set `GITHUB_TOKEN` (or `GITHUB_PAT`) before syncing. Never hardcode a token or a token-file path inside the skill.
+
+- **Create the repo manually first** (github.com/new, or `POST /user/repos` with your own token outside this skill).
+- **Sync files with the bundled helper** `scripts/sync_skill_to_github.js` — it only creates or updates files via the Contents API (upsert-only). It has **no delete capability**; removing a file from the repo is a manual action in the GitHub web UI.
+- Prefer a small Node.js `https.request` script over `curl` in Git Bash (avoids pipe/TLS quirks).
 
 ### Optimal strategy
 1. Create clean temp directory (copy whitelisted files only)

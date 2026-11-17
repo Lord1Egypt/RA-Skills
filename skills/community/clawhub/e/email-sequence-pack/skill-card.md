@@ -1,41 +1,57 @@
-## Description: <br>
-Helps an agent draft email marketing sequences, subject lines, calls to action, and timing schedules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email Sequence Pack helps an agent draft email marketing sequences, subject lines, calls to action, timing schedules, and A/B variants for welcome, promotional, abandoned-cart, and re-engagement campaigns.
 
-## Publisher: <br>
-[cofi295](https://clawhub.ai/user/cofi295) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cofi295](https://clawhub.ai/user/cofi295)
 
-## Use Case: <br>
-External marketers, e-commerce operators, SaaS teams, and agencies can use this skill to ask an agent for common email campaign drafts and reusable marketing copy elements. The reviewed package provides prompting guidance; paid templates and scripts advertised by the artifact were not included in the package evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package materially overstates what is included and advertises paid external templates, scripts, and automation that were not present in the reviewed package. <br>
-Mitigation: Review the installed package contents before relying on advertised assets, and treat any externally delivered files as separate unreviewed material. <br>
-Risk: The artifact directs users to external paid delivery channels, including PayPal, Telegram, and a crypto address. <br>
-Mitigation: Avoid sending payment or sharing sensitive information through external channels unless the publisher and delivered materials have been independently reviewed. <br>
+## Use Case:
 
+External e-commerce, SaaS, agency, and email marketing users can ask an agent to draft lifecycle campaign copy and timing plans. Human review is needed before sending campaigns, especially for recipient consent, claims, offers, and deliverability.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/cofi295/email-sequence-pack) <br>
-- [Publisher profile](https://clawhub.ai/user/cofi295) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text email copy, subject lines, calls to action, and timing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The reviewed package contains only SKILL.md; advertised paid templates and scripts were not included in the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release evidence) <br>
+Risk: The reviewed package advertises off-platform paid templates, scripts, and automation that are not present in the inspected artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat only the reviewed artifact as covered by this card, and require a separate security review before using files delivered through Telegram, PayPal, crypto payment, or any other external channel.
+
+Risk: Bulk or automated email sending can create consent, compliance, reputation, and deliverability issues.
+
+Mitigation: Use the skill for drafting only unless recipients have explicitly consented, campaign settings are reviewed by a human, and applicable email-marketing rules are satisfied.
+
+Risk: Generated marketing copy can include inaccurate offers, claims, discounts, or brand statements.
+
+Mitigation: Review and edit every campaign before publication to confirm factual accuracy, approved claims, unsubscribe handling, and brand requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cofi295/skills/email-sequence-pack)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown campaign drafts with subject lines, body copy, calls to action, timing recommendations, and variant suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not include the advertised off-platform templates or scripts in the reviewed package.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

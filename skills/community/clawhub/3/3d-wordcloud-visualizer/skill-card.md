@@ -1,43 +1,56 @@
-## Description: <br>
-Creates a local browser-based 3D globe word-cloud visualizer from JSON, Markdown, or text files, including Chinese word segmentation and word-frequency analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a local browser-based 3D globe word-cloud visualizer from JSON, Markdown, or TXT text files with Chinese segmentation and top-word frequency analysis.
 
-## Publisher: <br>
-[0xf4vul](https://clawhub.ai/user/0xf4vul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xf4vul](https://clawhub.ai/user/0xf4vul)
 
-## Use Case: <br>
-Developers, analysts, and content creators use this skill to generate a standalone HTML viewer that turns local text or conversation exports into an interactive 3D word cloud for keyword exploration and presentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML for private conversation exports or sensitive documents may load third-party JavaScript from public CDNs when opened. <br>
-Mitigation: Review the generated HTML before use and vendor or cache JavaScript dependencies for offline handling of sensitive data. <br>
-Risk: Large input files or very large word counts can make the browser slow or unresponsive. <br>
-Mitigation: Keep input files near the documented 10 MB guidance and limit the number of displayed keywords for routine use. <br>
+## Use Case:
 
+Developers, analysts, and agent users use this skill to create a self-contained HTML visualizer for exploring conversation exports or other text files as an interactive 3D word cloud.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xf4vul/3d-wordcloud-visualizer) <br>
-- [Three.js 0.160.0 CDN dependency](https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js) <br>
-- [OrbitControls 0.160.0 CDN dependency](https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/controls/OrbitControls.js) <br>
-- [segmentit 2.0.3 CDN dependency](https://cdn.jsdelivr.net/npm/segmentit@2.0.3/dist/umd/segmentit.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Guidance] <br>
-**Output Format:** [Markdown response with standalone HTML/CSS/JavaScript file content and usage notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated HTML runs locally in a modern WebGL browser and may fetch JavaScript libraries from public CDNs unless dependencies are vendored.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and target metadata) <br>
+Risk: The generated browser page relies on public CDN scripts for Three.js, OrbitControls, and segmentit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For sensitive conversation exports or controlled environments, bundle local copies of the JavaScript dependencies or verify cached dependencies before offline use.
+
+Risk: Large uploaded text files may slow or freeze the browser during segmentation, word-frequency analysis, or 3D rendering.
+
+Mitigation: Keep input files within the documented size guidance or reduce the number of rendered keywords before processing large datasets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xf4vul/skills/3d-wordcloud-visualizer)
+- [Three.js CDN dependency](https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js)
+- [OrbitControls CDN dependency](https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/controls/OrbitControls.js)
+- [segmentit CDN dependency](https://cdn.jsdelivr.net/npm/segmentit@2.0.3/dist/umd/segmentit.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Guidance]
+
+**Output Format:** [HTML/CSS/JavaScript file with concise usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated browser page processes uploaded text locally and uses public CDN JavaScript dependencies unless bundled locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,49 @@
-## Description: <br>
-OrgX design execution contract for OpenClaw. Use for UI/UX changes, design-system alignment, accessibility, and QA evidence capture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OrgX design execution contract for OpenClaw. Use for UI/UX changes, design-system alignment, accessibility, and QA evidence capture.
 
-## Publisher: <br>
-[hopeatina](https://clawhub.ai/user/hopeatina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hopeatina](https://clawhub.ai/user/hopeatina)
 
-## Use Case: <br>
-Developers and design-focused agents use this skill to align OpenClaw UI and UX changes with OrgX design-system expectations, accessibility standards, and QA evidence capture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide UI changes and QA commands when the surrounding OpenClaw environment provides those tools. <br>
-Mitigation: Review any proposed changeset before applying it and verify claims with actual QA commands. <br>
+## Use Case:
 
+Designers, developers, and agents use this skill in OpenClaw to guide UI/UX changes, align with the existing design system, maintain accessibility expectations, and capture QA evidence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hopeatina/orgx-design-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/hopeatina) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guidance with command references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow; no hidden code, credential use, persistence, or unrelated behavior according to security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Guided UI changes can still introduce inconsistent layouts, weak accessibility, or unverified responsive states.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review changes against the existing design system and verify touched states with available QA tooling, including 375px mobile layout, before claiming verification.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hopeatina/skills/orgx-design-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown guidance with concise status reports, code-oriented recommendations, and command evidence when verification runs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include desktop and mobile QA evidence for touched UI states.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-查询唯品会促销活动，汇总活动状态、类型、时间、品牌、链接和活动图片，供用户了解当前或近期优惠专场。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询唯品会（vip.com）当前或近期促销活动，并返回活动名称、时间、参与品牌、活动链接和活动图片等结构化信息。
 
-## Publisher: <br>
-[viphgta](https://clawhub.ai/user/viphgta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[viphgta](https://clawhub.ai/user/viphgta)
 
-## Use Case: <br>
-External users and shopping assistants use this skill to retrieve and summarize Vipshop promotion activity, including active and upcoming campaigns, participating brands, activity links, and banner images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can start a Vipshop login flow and use a stored account session token. <br>
-Mitigation: Require explicit user confirmation before login, dependency installation, or any query that uses the user's account token. <br>
-Risk: The skill may install or run the separate vipshop-user-login dependency. <br>
-Mitigation: Review the dependency before installation and restrict use to Vipshop promotion requests. <br>
+## Use Case:
 
+External users and shopping assistants use this skill to check Vipshop promotion campaigns, group current and upcoming activities, and summarize brands, time windows, links, and images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/viphgta/vipshop-promotion-search) <br>
-- [Vipshop promotion API endpoint](https://api.union.vip.com/vsp/common/getActListForAI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON] <br>
-**Output Format:** [Markdown summary with JSON data from the promotion query script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes grouped activity counts, active and upcoming activity lists, activity links, and banner image URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server evidence) <br>
+Risk: The skill can trigger login behavior and use local Vipshop account tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before login, token use, or any account-linked request.
+
+Risk: The skill may install or run a separate login skill.
+
+Mitigation: Pin and verify the login dependency before installation or execution.
+
+Risk: The skill covers broad shopping promotion intents that mention other platforms.
+
+Mitigation: Limit activation to explicit Vipshop requests or clearly disclose when results are only for Vipshop promotions.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/viphgta/skills/vipshop-promotion-search)
+- [Vipshop promotion activity API](https://api.union.vip.com/vsp/common/getActListForAI)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown summary with JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Vipshop login state; results depend on current activity data returned by Vipshop.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

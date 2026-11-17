@@ -113,7 +113,7 @@ Configure at least one notification channel so the agent operator gets alerted.
 ```yaml
 alerts:
   webhook_urls:
-    - "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+    - "REDACTED-SECRET"
 ```
 
 Supported templates: `pagerduty`, `slack`, `teams`, `discord`, `telegram`, `generic`.
@@ -140,7 +140,7 @@ params:
 
 ```yaml
 params:
-  url: "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+  url: "REDACTED-SECRET"
   template: "slack"
 ```
 

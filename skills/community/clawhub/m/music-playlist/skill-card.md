@@ -1,41 +1,56 @@
-## Description: <br>
-Music Playlist helps agents provide music playlist guidance, including mood-based genre suggestions, playlist structure, music discovery sources, lyrics discussion, and music analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Music Playlist helps agents provide mood and scene-based playlist recommendations, music analysis, lyric interpretation, and playlist planning guidance.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to ask an agent for playlist ideas, mood or scene-based music suggestions, lyric interpretation, and lightweight playlist structure guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Local playlist entries and command history may remain under the skill data directory.
+
+Mitigation: Avoid saving sensitive information and manually inspect or delete the local data directory when cleanup is required.
+
+Risk: The helper scripts and documentation may not behave exactly as described.
+
+Mitigation: Review command output before relying on it and test expected commands in a controlled environment before broader use.
+
+Risk: The remove command may report success without erasing saved data.
+
+Mitigation: Do not rely on the remove command for data deletion until the implementation is fixed; delete stored data manually when needed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to generate playlist recommendations, choose music genres for moods or scenes, outline playlist pacing, and identify music discovery sources. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The generic utility script can create and update local files under MUSIC_PLAYLIST_DIR, XDG_DATA_HOME, or the user's home data directory. <br>
-Mitigation: Run the skill in a controlled workspace and set MUSIC_PLAYLIST_DIR to an expected directory before using commands that add, list, search, export, or log data. <br>
-Risk: Music recommendations, playlist structure, and lyrics discussion can be subjective or incomplete. <br>
-Mitigation: Review generated guidance before sharing it as curated or authoritative music advice. <br>
+**Output Format:** [Plain text and Markdown guidance, with optional shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/music-playlist) <br>
-- [Publisher profile](https://clawhub.ai/user/bytesagain3) <br>
+**Other Properties Related to Output:** [Helper scripts may write playlist entries and command history under a local music-playlist data directory.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown-style guidance printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May also write simple local data and history files when using the generic utility commands.] <br>
+2.0.0 (source: server release evidence and SKILL.md frontmatter)
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

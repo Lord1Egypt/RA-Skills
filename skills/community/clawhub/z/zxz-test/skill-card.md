@@ -1,41 +1,47 @@
-## Description: <br>
-Reviews recent code changes, checks for bugs and security issues, and provides actionable feedback for staged or unstaged git diffs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews recent code changes for bugs, security risks, and improvement opportunities, then gives actionable feedback for staged or unstaged git diffs.
 
-## Publisher: <br>
-[jagger-zxz](https://clawhub.ai/user/jagger-zxz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jagger-zxz](https://clawhub.ai/user/jagger-zxz)
 
-## Use Case: <br>
-Developers and engineers use this skill to review local git changes before committing, with findings grouped by file and focused on bugs, security, performance, and code quality. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Security evidence flags the release as suspicious because unrestricted nested review execution may be enabled by default. <br>
-Mitigation: Install only in a trusted maintainer environment and prefer running autoreview with --no-yolo or AUTOREVIEW_YOLO=0 unless unrestricted nested review is explicitly required. <br>
-Risk: Security evidence notes staff moderation commands that could affect unintended targets if misused. <br>
-Mitigation: Use moderation commands only with the intended staff account, explicit targets, and documented reasons. <br>
-Risk: Diff review workflows may expose secrets or sensitive code to fallback external reviewers. <br>
-Mitigation: Check diffs for secrets before allowing fallback external reviewers. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jagger-zxz/zxz-test) <br>
+## Use Case:
+
+Developers and engineers use this skill to review staged or unstaged git changes for concrete bugs, security issues, performance problems, and code quality regressions before committing.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Local git diffs may include sensitive source code, credentials, or secrets if those are present in the user's changes.
+
+Mitigation: Review the diff contents before use and avoid sharing generated review output outside approved channels when confidential material is present.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown review findings grouped by file, with inline shell commands when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings should cite exact diff line numbers and end with a one-sentence summary.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown grouped by file, with concise issue bullets and a one-sentence review summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reviews staged git diffs first, then unstaged diffs if no staged changes are present.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,55 @@
-## Description: <br>
-Manage Exa AI via CLI - search, contents, answer, context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Exa AI from the command line for search, page contents, AI answers, and web context retrieval.
 
-## Publisher: <br>
-[Melvynx](https://clawhub.ai/user/Melvynx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[melvynx](https://clawhub.ai/user/melvynx)
 
-## Use Case: <br>
-Developers and agents use this skill to install and authenticate exa-cli, then run Exa web search, content retrieval, answer, and context commands from the command line. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow runs third-party CLI installer and build commands. <br>
-Mitigation: Review the disclosed commands before execution and install only in environments where running the third-party Exa CLI is acceptable. <br>
-Risk: The skill uses an Exa API token and sends searches, URLs, and content requests to Exa. <br>
-Mitigation: Use a revocable Exa API token, keep tokens out of shared logs, and avoid submitting sensitive proprietary data unless it is appropriate to share with Exa. <br>
+## Use Case:
 
+Developers and agents use this skill to install, authenticate, and call the Exa CLI for web search, content retrieval, answer generation, and context gathering workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Melvynx/exa-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands generally use the --json flag for programmatic use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Setup commands may execute unpinned third-party installers or packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and verified Exa CLI installation path before running setup commands.
+
+Risk: Setup can modify the command environment, including PATH.
+
+Mitigation: Require explicit approval for environment changes and review resulting PATH updates before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/melvynx/skills/exa-cli)
+- [Publisher profile](https://clawhub.ai/user/melvynx)
+- [Bun installer referenced by setup](https://bun.sh/install)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands should use the --json flag when called programmatically.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

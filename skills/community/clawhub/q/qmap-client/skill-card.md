@@ -1,43 +1,59 @@
-## Description: <br>
-CLI tool for the QuantMap distributed computing protocol. Manages node setup, task execution, and result submission on devnet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI tool for the QuantMap distributed computing protocol. Manages node setup, task execution, and result submission on devnet.
 
-## Publisher: <br>
-[ChatRichAi](https://clawhub.ai/user/ChatRichAi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chatrichai](https://clawhub.ai/user/chatrichai)
 
-## Use Case: <br>
-Developers and node operators use this skill to install and run the QuantMap devnet CLI for wallet setup, node registration, task execution, validation, coordination, and status checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and relies on the external @alphify/qmap-client npm package. <br>
-Mitigation: Install only after reviewing and trusting the npm package and its release metadata. <br>
-Risk: The CLI creates a local signing identity and stores files under ~/.qmap. <br>
-Mitigation: Use a separate devnet identity and protect local ~/.qmap files from disclosure or unintended sharing. <br>
-Risk: Worker, validator, and coordinator commands perform signed devnet network actions and may consume devnet compute. <br>
-Mitigation: Run these commands only in an environment where devnet task execution and signed network actions are acceptable. <br>
+## Use Case:
 
+Developers and node operators use this skill to install and operate the QMAP CLI for QuantMap devnet wallet setup, worker task execution, validation, coordination, and status checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ChatRichAi/qmap-client) <br>
-- [Skill homepage](https://clawhub.com/skills/qmap-client) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands target the QuantMap devnet profile and may create local identity files under ~/.qmap.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: release evidence) <br>
+Risk: The skill asks users to install mutable global npm code and run automatic network tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package before installation, pin the package version where possible, and run the CLI in an isolated environment.
+
+Risk: The CLI creates and uses a local devnet wallet identity under ~/.qmap.
+
+Mitigation: Use a disposable devnet identity and keep ~/.qmap out of synced or shared directories.
+
+Risk: Worker task execution may run from an account that can access unrelated files or secrets.
+
+Mitigation: Run worker tasks from a restricted account or sandbox without access to unrelated secrets or important files.
+
+## Reference(s):
+
+- [QMAP Client ClawHub Skill Page](https://clawhub.ai/chatrichai/skills/qmap-client)
+- [QMAP Client Homepage](https://clawhub.com/skills/qmap-client)
+- [chatrichai Publisher Profile](https://clawhub.ai/user/chatrichai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance focuses on devnet CLI setup, local identity management, task execution, validation, coordination, and status commands.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence and skill documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

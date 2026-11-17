@@ -1,20 +1,21 @@
 # Electron files (copy-paste templates)
 
-All paths relative to the Next.js project root. The web source (`src/`, `messages/`, `next.config.*`) is **not** edited. Comments are English here; adapt names (`TextDiff`, `app://local`, the `LOCALES` list, `appId`) to your app.
+All paths relative to the Next.js project root. Preserve web behavior; adjust source or Next config when static export or a requested desktop feature requires it. The template's comments are written in English; rename or translate them if you prefer — they are yours to change. Adapt names (`TextDiff`, `app://local`, the `LOCALES` list, `appId`) to your app.
 
 ## Layout
 
 ```
 electron/
+  package.json       CommonJS scope for the shell and tests
   constants.js        SCHEME + LOCALES         (pure — no require("electron"))
   resolvePath.js      static-asset resolver    (pure)  + resolvePath.test.js
   store.js            JSON store in userData   (pure)  + store.test.js
   locale.js           startUrl/parseLocale/trackLocale (pure)  + locale.test.js
-  window-state.js     window bounds keeper     (pure)
+  window-state.js     window bounds keeper     (pure)  + window-state.test.js
   protocol.js         app:// scheme            (electron)
   tray.js             tray + close-to-tray     (electron)
   main.js             entry — wires everything (electron)
-scripts/electron-dev.js
+scripts/electron-dev.cjs
 electron-builder.yml
 build/icon.png        (≥256×256 square; reuse public/logo.png)
 .github/workflows/electron.yml
@@ -27,14 +28,26 @@ build/icon.png        (≥256×256 square; reuse public/logo.png)
   "main": "electron/main.js",
   "scripts": {
     "electron": "electron .",
-    "electron:dev": "node scripts/electron-dev.js",
+    "electron:dev": "node scripts/electron-dev.cjs",
     "electron:build": "next build && electron-builder --win dir",
     "test:electron": "node --test electron/resolvePath.test.js electron/store.test.js electron/locale.test.js electron/window-state.test.js"
   }
   // devDependencies: electron, electron-builder  (yarn add -D electron electron-builder)
 }
 ```
-**List the test files explicitly** — the tempting `node --test electron/*.test.js` is a trap that fails in CI: PowerShell (GitHub's default Windows shell) does **not** expand the `*` glob, and `node --test`'s own glob support only exists on Node ≥ 21, so the literal `electron/*.test.js` is passed through and matches nothing. (CI now uses `node-version: lts/*`, currently ≥ 21, so Node itself could expand it — but an explicit list stays correct on every shell and Node version, so prefer it.) `node --test electron` / `node --test electron/` are also wrong — Node tries to load `electron` as a module/entry, not search the dir. An explicit list works on every Node version and shell; add new test files to it as you create them.
+**Runtime installation:** Electron versions without a postinstall download fetch the binary on first use. For offline CI or predictable build stages, invoke the installed package's installer explicitly after dependency installation; follow the selected version's package layout.
+
+The sample test script lists files explicitly for shell portability. A project may use another discovery command if its Node version and CI shell support it; confirm that tests actually run.
+
+### electron/package.json
+
+```json
+{
+  "type": "commonjs"
+}
+```
+
+This package scope makes the shell's `.js` files and tests use CommonJS even when the root package declares `"type": "module"`. Include it in the packaged `electron/**` files. The development launcher uses `.cjs` because it lives outside this scope.
 
 ## Pure modules (no `require("electron")` → unit-testable with `node --test`)
 
@@ -53,7 +66,16 @@ const path = require("path");
 // Pure: map a request pathname to a file path inside outDir.
 // `exists` is injected so this is testable without touching the real FS.
 function resolveAssetPath(outDir, pathname, exists) {
-  let rel = decodeURIComponent(pathname).replace(/^\/+/, "");
+  // decodeURIComponent throws on a malformed escape ("/%", "/a%zz"), and Chromium leaves a
+  // lone % in a standard-scheme path uncanonicalised, so this IS reachable. The throw is
+  // synchronous, so protocol.js's .catch on net.fetch never sees it — it would surface as
+  // an unhandled protocol error and a blank window. Treat undecodable as not-found.
+  let rel;
+  try {
+    rel = decodeURIComponent(pathname).replace(/^\/+/, "");
+  } catch {
+    return path.join(outDir, "404.html");
+  }
   if (rel === "") rel = "index.html";
 
   // Normalize, then enforce containment: bail to 404 if the path escapes outDir.
@@ -140,7 +162,16 @@ function createStore(dir, filename = "app-state.json") {
       return data[key] !== undefined ? data[key] : fallback;
     },
     set(key, value) {
-      if (data[key] === value) return; // skip redundant writes (same locale re-set on every in-page nav)
+      // Compare by value, not reference: windowState is a fresh object literal on every
+      // save, so `===` never matches it. Value comparison also avoids writing unchanged
+      // bounds when the close handler flushes a completed resize.
+      // Wrapped because JSON.stringify throws on a circular value: skipping a redundant
+      // write must never be the thing that takes down the main process.
+      try {
+        if (JSON.stringify(data[key]) === JSON.stringify(value)) return;
+      } catch {
+        // not comparable — fall through and write
+      }
       data[key] = value;
       try {
         fs.mkdirSync(dir, { recursive: true });
@@ -242,21 +273,28 @@ function createWindowStateKeeper(store) {
   const saved = store.get("windowState", { width: 1200, height: 800 });
 
   function track(win) {
-    const save = () => {
+    let pending = saved;
+    let timer;
+    const capture = () => {
       if (win.isMaximized()) {
-        // Keep last NORMAL bounds. Fall back to `saved` (always has width/height),
-        // not {} — else maximizing before any move/resize persists no size and the
-        // next launch restores to a default-sized, unplaced window.
-        const prev = store.get("windowState", saved);
-        store.set("windowState", { ...saved, ...prev, maximized: true });
+        pending = { ...pending, maximized: true };
       } else if (!win.isMinimized()) {
-        const b = win.getBounds();
-        store.set("windowState", { ...b, maximized: false });
+        pending = { ...win.getBounds(), maximized: false };
       }
     };
-    win.on("resize", save);
-    win.on("move", save);
-    win.on("close", save);
+    const flush = () => store.set("windowState", pending);
+    const schedule = () => {
+      capture(); // Keep the last normal bounds even if maximized before the timer fires.
+      clearTimeout(timer);
+      timer = setTimeout(flush, 150);
+    };
+    win.on("resize", schedule);
+    win.on("move", schedule);
+    win.on("close", () => {
+      capture();
+      clearTimeout(timer);
+      flush();
+    });
     if (saved.maximized) win.maximize();
   }
 
@@ -298,14 +336,14 @@ test("normal resize persists bounds with maximized:false", () => {
   const store = memStore();
   const win = fakeWin({ bounds: { x: 10, y: 20, width: 900, height: 700 } });
   createWindowStateKeeper(store).track(win);
-  win._fire("resize");
+  win._fire("close");
   assert.deepStrictEqual(store.raw().windowState, { x: 10, y: 20, width: 900, height: 700, maximized: false });
 });
 test("first-run maximize (before any move) still persists a size", () => {
   const store = memStore(); // empty
   const win = fakeWin({ maximized: true });
   createWindowStateKeeper(store).track(win);
-  win._fire("resize");
+  win._fire("close");
   const s = store.raw().windowState;
   assert.strictEqual(s.maximized, true);
   assert.strictEqual(s.width, 1200);  // NOT undefined — the bug the `saved` fallback prevents
@@ -315,10 +353,10 @@ test("un-maximize clears the maximized flag", () => {
   const store = memStore({ windowState: { x: 5, y: 6, width: 800, height: 600, maximized: false } });
   const win = fakeWin({ maximized: true, bounds: { x: 5, y: 6, width: 800, height: 600 } });
   createWindowStateKeeper(store).track(win);
-  win._fire("resize");                       // maximized save
+  win._fire("close");                       // maximized save
   assert.strictEqual(store.raw().windowState.maximized, true);
   win._setMaximized(false);
-  win._fire("resize");                       // restore
+  win._fire("close");                       // restore
   assert.strictEqual(store.raw().windowState.maximized, false);
 });
 test("saved.maximized triggers win.maximize() on track", () => {
@@ -476,7 +514,7 @@ if (!gotLock) {
 }
 ```
 
-### scripts/electron-dev.js
+### scripts/electron-dev.cjs
 ```js
 // Launch electron with ELECTRON_DEV=1, pointed at `next dev` (localhost:3000).
 // A node launcher sets the env var without a cross-env dependency.
@@ -507,35 +545,52 @@ win:
   target: dir               # unpacked folder: runs TextDiff.exe directly, fast startup
   icon: build/icon.png
 ```
-`target: dir` → `dist-electron/win-unpacked/` (distribute the folder; zip for transport). Swap to `target: portable` only if you must have a single file — it re-extracts to %TEMP% every launch (slower). Add `!build/icon.png` to `.gitignore` if a stray `/build` rule (CRA leftover) would ignore the committed icon.
+`target: dir` → `dist-electron/win-unpacked/` (distribute the folder; zip for transport). Swap to `target: portable` only if you must have a single file — it re-extracts to %TEMP% every launch (slower). If a stray `/build` rule (a CRA leftover) would ignore the committed icon, note that `!build/icon.png` **cannot** rescue it — git will not re-include a file whose parent directory is excluded. Exclude the directory's *contents* instead: `/build/*` followed by `!/build/icon.png`.
 
 ### .gitignore additions
 ```
 dist-electron/
 out/
-!build/icon.png
+```
+Only add the `build/` pair below if some existing rule already ignores that directory —
+and note the ordering, because `!build/icon.png` under a plain `/build` rule does nothing:
+```
+/build/*
+!/build/icon.png
 ```
 
 ## CI
 
-### .github/workflows/electron.yml (full — host on `main`; add `ref:` to checkout if the code is on a side branch, see below)
+### .github/workflows/electron.yml (full — build the tagged commit; source-map variant below)
 ```yaml
 name: Build Electron (Windows unpacked)
 on:
   push:
     tags: ["v*"]
   workflow_dispatch:
+concurrency:
+  group: desktop-release-promotion
+  cancel-in-progress: false
+  queue: max
 jobs:
   build:
     runs-on: windows-latest
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@v7
+        with: { ref: '${{ github.sha }}' }
+      # Pin the Node major; desktop-app-standard's audit checks nodejs/Release (verify Electron's floor with `npm view electron engines`).
+      - uses: actions/setup-node@v7
         with:
-          node-version: lts/* # track current LTS; electron@42+ needs node >= 22.12
+          node-version: 26
           cache: yarn
+      - name: Set the release version from the tag
+        if: startsWith(github.ref, 'refs/tags/v')
+        shell: bash
+        run: |
+          [[ "$GITHUB_REF_NAME" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-[0-9A-Za-z.-]+)?$ ]] || exit 1
+          npm pkg set version="${GITHUB_REF_NAME#v}"
       - run: yarn install --frozen-lockfile
       - run: yarn test:electron
       - run: yarn electron:build
@@ -548,47 +603,99 @@ jobs:
       - name: Zip unpacked for release
         if: startsWith(github.ref, 'refs/tags/v')
         shell: pwsh
-        run: Compress-Archive -Path dist-electron/win-unpacked/* -DestinationPath dist-electron/TextDiff-${{ github.ref_name }}-win.zip
-      - name: Publish release on tag
+        run: Compress-Archive -Path dist-electron/win-unpacked/* -DestinationPath "dist-electron/TextDiff-$env:GITHUB_REF_NAME-win.zip"
+      - name: Verify the draft assets and publish on tag
         if: startsWith(github.ref, 'refs/tags/v')
-        uses: softprops/action-gh-release@v2
-        with:
-          files: dist-electron/*.zip
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const crypto = require('node:crypto');
+          const { execFileSync } = require('node:child_process');
+          const { REPO, GITHUB_REF_NAME: tag } = process.env;
+          const commit = execFileSync('git', ['rev-parse', 'HEAD'], {encoding: 'utf8'}).trim();
+          const gh = args => execFileSync('gh', args, {encoding: 'utf8'}).trim();
+          const api = endpoint => JSON.parse(gh(['api', endpoint]));
+          const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+          if (tag !== 'v' + pkg.version) throw new Error('version mismatch');
+          const releases = JSON.parse(gh(['api', '--paginate', '--slurp', `repos/${REPO}/releases?per_page=100`])).flat();
+          const matches = releases.filter(release => release.tag_name === tag);
+          if (matches.length > 1 || matches.some(release => !release.draft)) throw new Error('Release must be a unique draft');
+          if (!matches.length) gh(['release', 'create', tag, '-R', REPO, '--draft', '--verify-tag', '--generate-notes']);
+          const drafts = JSON.parse(gh(['api', '--paginate', '--slurp', `repos/${REPO}/releases?per_page=100`])).flat().filter(release => release.tag_name === tag);
+          if (drafts.length !== 1 || !drafts[0].draft) throw new Error('Release must remain a unique draft');
+          const draft = drafts[0];
+          const name = `TextDiff-${tag}-win.zip`;
+          const digest = file => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+          const zip = 'dist-electron/' + name;
+          const sums = 'dist-electron/SHA256SUMS';
+          fs.writeFileSync(sums, `${digest(zip)}  ${name}\n`);
+          gh(['release', 'upload', tag, '-R', REPO, zip, sums, '--clobber']);
+          const assets = JSON.parse(gh(['api', '--paginate', '--slurp', `repos/${REPO}/releases/${draft.id}/assets?per_page=100`])).flat();
+          const expected = new Map([[name, digest(zip)], ['SHA256SUMS', digest(sums)]]);
+          if (assets.length !== expected.size || assets.some(asset => asset.digest !== 'sha256:' + expected.get(asset.name))) {
+            throw new Error('Draft asset set or digest differs from this build');
+          }
+          if (api(`repos/${REPO}/commits/${tag}`).sha !== commit) throw new Error('Tag moved after checkout');
+          const newer = releases.some(release => !release.draft && !release.prerelease && /^v\d+\.\d+\.\d+$/.test(release.tag_name) && release.tag_name.localeCompare(tag, 'en', {numeric: true}) > 0);
+          gh(['api', '-X', 'PATCH', `repos/${REPO}/releases/${draft.id}`, '-F', 'draft=false', '-F', `prerelease=${tag.includes('-')}`, '-f', `make_latest=${!tag.includes('-') && !newer}`]);
+          if (!tag.includes('-') && !newer && api(`repos/${REPO}/releases/latest`).tag_name !== tag) throw new Error('Latest release mismatch');
+          NODE
 ```
 
-### Hosting the workflow when the code lives on a side branch
-The "Run workflow" button only renders for workflows on the **default branch**, and a tag push only runs workflows present in the *tagged commit's tree*. So when the app code lives on a side branch, host the workflow **on `main`** and pin its checkout to that branch with `ref:` — one file then serves both the manual button and tag releases, and you keep **no** copy on the side branch (it would never run for a tag and would only drift). Keep it as a SEPARATE file alongside any existing desktop/Tauri workflow — don't overwrite that.
-```yaml
-name: Build Electron (Windows unpacked)
-on:
-  workflow_dispatch:        # manual "Run workflow" button (renders on the default branch)
-  push:
-    tags: ["v*"]            # also build on tag (add the release steps from the full template above); pinned ref below builds the side branch
-jobs:
-  build:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          ref: feat/electron-desktop   # <-- pin to the branch that has electron/. Update if it merges/renames.
-      - uses: actions/setup-node@v6
-        with: { node-version: lts/*, cache: yarn } # electron@42+ needs node >= 22.12
-      - run: yarn install --frozen-lockfile
-      - run: yarn test:electron
-      - run: yarn electron:build
-      - uses: actions/upload-artifact@v7
-        with:
-          name: TextDiff-unpacked
-          path: dist-electron/win-unpacked
-          if-no-files-found: error
-```
+The single-app template publishes automatically after draft verification. Interrupted uploads
+can retry while the release is a draft. A published version is repaired with a new tag.
+
+### Building code maintained on a side branch
+
+Tag the exact commit containing the Electron code and workflow. Keep the workflow in that
+commit, and let checkout use the triggering tag for releases. For a manual run, select that
+same tag in GitHub's workflow UI. Record the resolved commit SHA in the run summary.
 
 ### Variant: two desktop apps in one repo, released by one tag
-Only needed when the **same repo also ships another desktop app** (e.g. Tauri on its own branch) and you want **one tag to release both**. Don't reach for this for a single app — the single-branch model above is simpler.
 
-Key constraint: on a tag push, GitHub runs only the workflows present in the *tagged commit's tree*. A workflow living on a side branch will **not** run for a tag on `main`. So make `main` the release hub:
+Keep the workflows on the release branch. Commit a source map, such as
+`.github/desktop-sources.json`, in the commit receiving the release tag. Record each
+desktop branch's full commit SHA in the `electron` and `tauri` fields before tagging.
+This supports separate source branches and makes a rerun select the same source.
 
-- Keep both workflows **only on `main`**, each pinning checkout to its own feature branch (`ref: feat/electron-desktop`, `ref: feat/tauri-desktop`). Do **not** leave workflow copies on the feature branches — they never run for a tag (only the tagged `main` commit's tree does), they silently drift, and they mislead. Both the tag trigger *and* the manual "Run workflow" button work from `main`, and the pinned `ref` builds the branch code either way, so the side-branch copy buys nothing.
-- Let the Tauri workflow be the one that **creates the (draft) Release**; the Electron one triggers on `workflow_dispatch + push: tags`, builds, then **polls until that Release exists** (`gh release view "$TAG"` in a retry loop — Tauri compiles Rust and is much slower) and uploads the `win-unpacked` zip with `gh release upload "$TAG" … --clobber`.
-- **Make the git tag the single source of truth for the version** — on tag push, inject it before build in *both* workflows (`npm pkg set version="${GITHUB_REF_NAME#v}"`, guarded `if: github.event_name == 'push'`; the Tauri side then runs `update-version` to propagate it into `tauri.conf.json`). This makes the Tauri Release name (derived from the app version), the installer/zip names, and the tag all agree automatically. Without it, Electron uploads to `github.ref_name` while Tauri may name the Release from a stale `package.json` — so Electron polls a Release that never appears and times out, leaving an empty release.
-- Tag **only on `main`, on a commit whose tree already contains the corrected workflows** — a tag-triggered run uses the workflow from the *tagged commit*, not `main`'s tip, so fix-then-tag or the old definition runs (a stale tag can even skip the Electron build entirely if its `electron.yml` predates the `push: tags` trigger). The build uses each feature branch's current HEAD, so push the feature branches first. To rescue a broken/empty release, re-tag: `gh release delete vX --yes; git push origin :refs/tags/vX; git tag vX <fixed-commit>; git push origin vX`.
+For each workflow, checkout the tagged release commit to read the map, then checkout
+the recorded source commit. The Electron workflow uses the following steps. The Tauri
+workflow uses the `tauri` field.
+
+```yaml
+      - uses: actions/checkout@v7
+      - name: Read the Electron source commit from the tagged source map
+        id: source
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require("node:fs");
+          const { electron } = JSON.parse(fs.readFileSync(".github/desktop-sources.json", "utf8"));
+          if (!/^[0-9a-f]{40}$/i.test(electron)) throw new Error("electron must be a full commit SHA");
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `commit=${electron}\n`);
+          NODE
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ steps.source.outputs.commit }}
+      - name: Set the release version from the tag
+        if: startsWith(github.ref, 'refs/tags/v')
+        shell: bash
+        run: npm pkg set version="${GITHUB_REF_NAME#v}"
+```
+
+Continue with dependency installation, tests and packaging after these steps. In the
+Tauri workflow, propagate the injected version into `tauri.conf.json` before building.
+
+Use one coordinator workflow to create the draft, collect both build jobs' file lists
+and digests, verify their combined asset set, and publish once. Remove the standalone
+publication steps and apply the repository promotion concurrency group to the coordinator's
+publish job; build jobs must not hold that group while waiting for each other. The
+single-app verifier intentionally rejects another application's unrecorded assets.
+The coordinator must compare the tag's current SHA to the tagged source-map commit,
+and each build's SHA to its own entry in that map, rather than comparing both to one SHA.
+For manual rebuilds, select the release tag so the source map also comes from that tag.
+Keep a workflow copy in every commit that may itself receive a triggering tag.

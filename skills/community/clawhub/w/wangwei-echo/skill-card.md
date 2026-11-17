@@ -1,39 +1,52 @@
-## Description: <br>
-Echoes fixed text through simple shell scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wangwei Echo provides quick-start shell commands for running bundled scripts that print fixed echo output.
 
-## Publisher: <br>
-[wangwei0326](https://clawhub.ai/user/wangwei0326) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wangwei0326](https://clawhub.ai/user/wangwei0326)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and external users can use this skill as a small shell-script echo utility or release packaging test. The inspected scripts print fixed abc output rather than echoing arbitrary input.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill documentation suggests echoing user-provided text, but the inspected scripts print fixed abc output.
+
+Mitigation: Use the skill only when fixed abc output is acceptable, and review or update the scripts before relying on arbitrary echo behavior.
+
+Risk: The documentation is imprecise, including backup-oriented comments that do not match the script behavior.
+
+Mitigation: Review the artifact documentation before deployment and correct descriptions or comments so users understand the actual behavior.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents can use this skill to run small shell scripts that print fixed echo output during simple command demonstrations or workflow checks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Documentation suggests echo behavior, but the scripts print fixed "abc" output, which can mislead automation expecting user input to be echoed. <br>
-Mitigation: Inspect and test the shell scripts before use, and correct the documentation or script behavior before relying on this skill in automation. <br>
+**Output Format:** [Markdown with inline bash commands and fixed plain-text script output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Wangwei Echo on ClawHub](https://clawhub.ai/wangwei0326/wangwei-echo) <br>
-- [Publisher profile: wangwei0326](https://clawhub.ai/user/wangwei0326) <br>
+**Other Properties Related to Output:** [The bundled scripts ignore the sample argument and print fixed abc output.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and shell text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts currently print fixed "abc" output rather than echoing arbitrary input.] <br>
+1.0.2 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

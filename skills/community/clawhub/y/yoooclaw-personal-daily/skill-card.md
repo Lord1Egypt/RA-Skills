@@ -1,42 +1,64 @@
-## Description: <br>
-Generates a personalized daily news briefing from configured user interest topics, using bounded web searches and strict recency and source-quality filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Chinese personalized daily news digest from configured user topics, using available search tools or fixed RSS fallback and requiring source and publication-date checks before summarizing.
 
-## Publisher: <br>
-[vivalavida-say-hi](https://clawhub.ai/user/vivalavida-say-hi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vivalavida-say-hi](https://clawhub.ai/user/vivalavida-say-hi)
 
-## Use Case: <br>
-External users use this skill to turn selected topics, such as AI models, electric vehicles, startup financing, humanoid robotics, companies, or products, into a concise daily news digest with links to selected sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured interest topics may be exposed through web searches. <br>
-Mitigation: Avoid confidential or highly sensitive topics in the interests file or scheduled message. <br>
-Risk: Daily search filtering can miss relevant current news or exclude items without explicit date signals. <br>
-Mitigation: Treat the briefing as a high-density digest and follow source URLs before relying on a news item for decisions. <br>
-Risk: Accidental activation could run searches using saved interests. <br>
-Mitigation: Use explicit prompts for personalized daily reports and review configured topics before scheduled use. <br>
+## Use Case:
 
+External users and developers use this skill in Hermes or OpenClaw-compatible agents to turn configured interest topics into a current-day Chinese news briefing with linked sources and trend notes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/vivalavida-say-hi/yoooclaw-personal-daily) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-like conversational briefing text with topic sections, source URLs, summaries, and a fallback message when no current news is found.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs no files; target length is under 1500 Chinese characters with each item summarized in no more than three sentences.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Configured interest topics may be used in search queries or RSS filtering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive topic lists and avoid putting private personal, customer, or credential-like data in configured interests.
+
+Risk: The RSS helper fetches external HTTP(S) feed URLs and does not itself block private, loopback, link-local, or metadata-service addresses.
+
+Mitigation: Run the skill with network egress controls that block private, loopback, link-local, and metadata-service address ranges in sensitive environments.
+
+Risk: News summaries can be misleading if source links or same-day publication times are not verified.
+
+Mitigation: Keep the skill's evidence gate enabled: require a usable source, same-day publication time, topic relevance, and independent corroboration for major or disputed claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vivalavida-say-hi/skills/yoooclaw-personal-daily)
+- [Hermes daily generation workflow](references/generate/hermes.md)
+- [OpenClaw daily generation workflow](references/generate/openclaw.md)
+- [Search acquisition workflow](references/acquisition/search.md)
+- [RSS acquisition workflow](references/acquisition/rss.md)
+- [Domestic RSS source list](references/rss/domestic.md)
+- [International RSS source list](references/rss/international.md)
+- [Daily output template](references/output/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown daily news digest with source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maximum 6 news items, at most 2 per topic, under 1500 Chinese characters; outputs an empty digest only when retrieval succeeds and no same-day verified events pass the evidence gate.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

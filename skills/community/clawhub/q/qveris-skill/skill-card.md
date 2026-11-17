@@ -1,43 +1,58 @@
-## Description: <br>
-Search and execute dynamic tools via QVeris API for external APIs and tools such as weather, search, data retrieval, stock analysis, and market indicators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and execute dynamic tools via QVeris API. Use when needing to find and call external APIs/tools dynamically (weather, search, data retrieval, stock trading analysis, etc.). Requires QVERIS_API_KEY environment variable.
 
-## Publisher: <br>
-[yifeiwang1981](https://clawhub.ai/user/yifeiwang1981) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yifeiwang1981](https://clawhub.ai/user/yifeiwang1981)
 
-## Use Case: <br>
-Developers and agent users use this skill to discover QVeris-hosted external tools by capability and execute selected tools with JSON parameters. It is useful when an agent needs dynamic access to weather, market, search, currency, geolocation, translation, or other API-backed data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a QVeris API key and can send user-provided queries and execution parameters to external QVeris-hosted tools. <br>
-Mitigation: Configure the key only in trusted environments, review the selected tool and parameters before execution, and avoid sending secrets, personal data, regulated information, or private business data unless downstream handling has been verified. <br>
-Risk: Server security evidence flags a broad auto-invoked gateway that can search and execute external APIs without clear per-call consent or data-flow warnings. <br>
-Mitigation: Use explicit user confirmation for tool execution, inspect destinations and expected costs, and keep execution scoped to the minimum parameters needed for the task. <br>
+## Use Case:
 
+Developers and agent users use this skill to discover QVeris-hosted API tools by capability and execute selected tools for weather, market data, search, currency, and other data retrieval tasks.
 
-## Reference(s): <br>
-- [QVeris](https://qveris.ai) <br>
-- [QVeris API endpoint](https://qveris.ai/api/v1) <br>
-- [uv installation guide](https://docs.astral.sh/uv/getting-started/installation/) <br>
-- [ClawHub skill page](https://clawhub.ai/yifeiwang1981/qveris-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires QVERIS_API_KEY and can limit execution responses with a max response size option.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Tool searches and execution parameters are sent to QVeris and may be routed to third-party APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include secrets, private code, internal URLs, sensitive business data, or regulated data in search queries or execution parameters.
+
+Risk: The skill can automatically invoke broad third-party tool execution for stock, trading, analysis, market, weather, search, and data retrieval requests.
+
+Mitigation: Review selected tools, parameters, and destination services before execution, especially for financial, business, or sensitive queries.
+
+Risk: The artifact documents curl-to-shell, PowerShell iex, and unpinned npx installation commands.
+
+Mitigation: Prefer verified package-manager installation methods and review installation scripts before running them.
+
+## Reference(s):
+
+- [QVeris](https://qveris.ai)
+- [ClawHub skill page](https://clawhub.ai/yifeiwang1981/skills/qveris-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown and terminal output, with optional raw JSON from QVeris tool search and execution responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires QVERIS_API_KEY; execution responses are capped by the max response size argument, defaulting to 20480 bytes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

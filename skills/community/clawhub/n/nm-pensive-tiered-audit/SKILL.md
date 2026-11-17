@@ -2,7 +2,7 @@
 name: tiered-audit
 description: |
   Runs a three-tier codebase audit (git history, targeted scans, full review) with gating
-version: 1.9.8
+version: 1.10.3
 triggers:
   - audit
   - git-history
@@ -10,24 +10,15 @@ triggers:
   - review
   - escalation
   - auditing a codebase before release or after incidents
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.imbue:proof-of-work"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.imbue:proof-of-work", "night-market.imbue:review-core", "night-market.imbue:structured-output"]}}}
 source: claude-night-market
 source_plugin: pensive
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Tiered Audit
-
-## Table of Contents
-
-- [When to Use](#when-to-use)
-- [When NOT to Use](#when-not-to-use)
-- [Tier 1: Git History Audit](#tier-1-git-history-audit)
-- [Tier 2: Targeted Area Audit](#tier-2-targeted-area-audit)
-- [Tier 3: Full Codebase Audit](#tier-3-full-codebase-audit)
-- [Output Contract](#output-contract)
 
 ## When To Use
 
@@ -50,33 +41,27 @@ source files.
 
 ### What Tier 1 Analyzes
 
-Run these git commands for the target commit range
-(default: current branch vs main):
+Run the Tier 1 script for the target commit range (default:
+current branch against the trunk):
 
 ```bash
-# 1. Churn hotspots: files changed most often
-git log --format="" --name-only {base}..HEAD \
-  | sort | uniq -c | sort -rn | head -20
-
-# 2. Diff stats: size of changes per file
-git diff --stat {base}..HEAD
-
-# 3. Fix-on-fix patterns: commits fixing previous commits
-git log --oneline {base}..HEAD \
-  | grep -iE "(fix|revert|patch|hotfix)"
-
-# 4. New file clusters: modules with many new files
-git diff --name-status {base}..HEAD \
-  | grep "^A" | cut -f2 \
-  | sed 's|/[^/]*$||' | sort | uniq -c | sort -rn
-
-# 5. Large commits: single commits with big diffs
-git log --format="%h %s" --shortstat {base}..HEAD
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/tiered_audit.py" --base {base}
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/tiered_audit.py" --base {base} --json
 ```
 
-**Verification:** Confirm each command produces output.
-If a command returns empty, the commit range may be wrong;
-verify `{base}` resolves correctly with `git merge-base`.
+It runs four git queries (file churn, fix-on-fix commit
+subjects, per-commit diff size, newly added files), applies
+the thresholds in `pensive.skills.tiered_audit` (3+ files in
+a module with one changed more than twice, 200+ changed lines
+in one commit, 5+ new files in a module), and prints each
+flag beside the `[E{n}] Command:` that produced it, so the
+findings file can cite the evidence verbatim. `--json` adds
+`escalation_targets` and an `escalate` verdict for Tier 2.
+
+**Verification:** an empty report on a branch you know is
+busy means the range is wrong. Check that `{base}` resolves
+with `git merge-base {base} HEAD` before trusting a quiet
+result.
 
 ### Tier 1 Output Format
 
@@ -96,6 +81,10 @@ evidence_count: {N}
 ## Churn Hotspots
 
 {top 10 most-changed files with change counts}
+
+For each flagged file, include:
+- Location: path/to/file.py:line (most-changed function or block)
+- Anchor: `verbatim source text at that line`
 
 [E1] Command: git log --format="" --name-only ...
      Output: {relevant output}
@@ -133,8 +122,8 @@ Tier 2 for each area sequentially.
 ## Tier 2: Targeted Area Audit
 
 **Runs only for areas flagged by Tier 1.**
-Each flagged area is audited one at a time, not in
-parallel.
+Each flagged area is audited sequentially, one at a
+time.
 
 ### What Tier 2 Analyzes
 
@@ -160,7 +149,8 @@ Each file follows the output contract for audits
 `modules/escalation-criteria.md` for the gate protocol.
 
 Tier 3 should use dedicated sessions (one per area)
-with file-based coordination, NOT parallel subagents.
+with file-based coordination. Do not dispatch parallel
+subagents for it.
 
 ## Output Contract
 
@@ -185,3 +175,20 @@ it reads source files and should produce deeper analysis.
 findings file exists and contains at least the minimum
 evidence count (`[E1]`, `[E2]`, etc.) before proceeding
 to the next tier or reporting results.
+
+### Verify Findings Are Grounded (`tiered-audit:findings-verified`)
+
+Write findings to `.review/findings.json`, run the citation verifier
+(`Skill(imbue:review-core)` Step 5), and drop or label `UNVERIFIED` any
+the verifier rejects.
+
+## Exit Criteria
+
+- [ ] Tier 1 findings file exists at
+      `.coordination/agents/tier1-audit.findings.md` and contains
+      at least 3 evidence entries (`[E1]`–`[E3]`).
+- [ ] Tier 2 is only started for areas explicitly flagged by Tier 1
+      escalation criteria.
+- [ ] Every reported finding carries a `Location` + verbatim `Anchor`
+      confirmed by `citation_verifier.py` (exit `0`), or unverified
+      findings were dropped or labeled `UNVERIFIED`.

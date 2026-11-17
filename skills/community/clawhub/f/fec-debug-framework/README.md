@@ -1,4 +1,4 @@
-# 前端诊断框架
+# Front-end diagnostic framework
 
 Unified 5-step diagnostic methodology for frontend issues: build failures, runtime errors, UI anomalies, and API/data problems.
 
@@ -6,12 +6,12 @@ Unified 5-step diagnostic methodology for frontend issues: build failures, runti
 
 - ID: `fec-debug-framework`
 - Category: `review-quality`
-- Version: `2.6.0`
+- Version: `2.9.0`
 - Source: `skills/fec-debug-framework/SKILL.md`
 
 ## Description
 
-Use when diagnosing frontend build failures, runtime errors, UI anomalies, API/data problems, white screens, request failures, or unexplained production exceptions; Chinese triggers include 调试, debug, 排查, 定位, 报错, 异常, 白屏, 请求失败.
+Use when diagnosing frontend build failures, runtime errors, UI anomalies, API/data problems, white screens, request failures, or unexplained production exceptions; Chinese triggers include debugging, debug, troubleshooting, positioning, error reporting, exceptions, white screens, request failures.
 
 ## Usage
 

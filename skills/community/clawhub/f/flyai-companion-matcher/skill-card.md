@@ -1,57 +1,74 @@
-## Description: <br>
-This skill helps travel companions compare travel styles before a trip, identify likely conflicts, and produce a compatibility report with compromise recommendations based on FlyAI travel search results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助旅伴在出发前完成旅行风格匹配测试，识别节奏、住宿、拍照、餐饮和消费偏好差异，并基于 FlyAI 酒店、景点和交通搜索生成调和建议与预订链接。
 
-## Publisher: <br>
-[hello-ahang](https://clawhub.ai/user/hello-ahang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hello-ahang](https://clawhub.ai/user/hello-ahang)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to run an interactive travel-style questionnaire, score compatibility across itinerary pace, lodging, photography, food, and spending preferences, then generate a practical trip agreement and compromise plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read or persist personal travel preferences in Qoder Memory or ~/.flyai/user-profile.md. <br>
-Mitigation: Ask for user confirmation before saving preferences, and tell users they can review or delete ~/.flyai/user-profile.md when they do not want persistent travel-profile data. <br>
-Risk: The workflow asks the agent to install or upgrade a global FlyAI CLI package. <br>
-Mitigation: Have the user approve any global npm install manually and verify the package source before installation. <br>
-Risk: The artifact documents an unsafe TLS workaround using NODE_TLS_REJECT_UNAUTHORIZED=0. <br>
-Mitigation: Avoid disabling TLS verification during normal use; use that workaround only as an explicit, temporary troubleshooting step after user approval. <br>
-Risk: Generated booking links could be mistaken for purchase approval. <br>
-Mitigation: Present booking links as reviewable options and require the user to complete and approve any booking action themselves. <br>
+## Use Case:
 
+Travelers and travel-planning agents use this skill to compare companion travel styles before a trip, surface likely conflicts, and create a concise compatibility report with compromise recommendations. It can use FlyAI search references to include hotels, attractions, flights, trains, packages, images, and booking links when available.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hello-ahang/flyai-companion-matcher) <br>
-- [Workflow](reference/workflow.md) <br>
-- [Compromise Strategies](reference/strategies.md) <br>
-- [User Profile Storage](reference/user-profile-storage.md) <br>
-- [Examples](reference/examples.md) <br>
-- [AI Search Reference](reference/ai-search.md) <br>
-- [Keyword Search Reference](reference/keyword-search.md) <br>
-- [Hotel Search Reference](reference/search-hotel.md) <br>
-- [POI Search Reference](reference/search-poi.md) <br>
-- [Flight Search Reference](reference/search-flight.md) <br>
-- [Train Search Reference](reference/search-train.md) <br>
-- [Marriott Hotel Search Reference](reference/search-marriott-hotel.md) <br>
-- [Marriott Package Search Reference](reference/search-marriott-package.md) <br>
-- [Self-Growth Notes](reference/self-growth.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with compatibility scores, conflict warnings, compromise recommendations, optional FlyAI command snippets, images, and booking links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or save a travel preference profile when the user approves; booking links should be treated as options, not purchase approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill documents use of a TLS certificate verification bypass.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the TLS-bypass command in normal operation; resolve certificate or network trust issues before running FlyAI commands.
+
+Risk: The workflow recommends global latest-version CLI installation and may suggest sudo for permission problems.
+
+Mitigation: Install the FlyAI CLI only from trusted sources, prefer pinned or reviewed versions, and avoid sudo/global installation unless the environment owner approves it.
+
+Risk: Search outputs can include booking links that may affect purchases or travel plans.
+
+Mitigation: Verify provider, price, itinerary, cancellation terms, and destination details before acting on any booking link.
+
+Risk: Optional profile persistence may store travel preferences and family details in memory or a local plaintext file.
+
+Mitigation: Save profile data only after explicit user consent and review stored data periodically for sensitivity and accuracy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hello-ahang/skills/flyai-companion-matcher)
+- [Workflow](reference/workflow.md)
+- [Compromise strategies](reference/strategies.md)
+- [User profile storage](reference/user-profile-storage.md)
+- [AI search reference](reference/ai-search.md)
+- [Keyword search reference](reference/keyword-search.md)
+- [Hotel search reference](reference/search-hotel.md)
+- [POI search reference](reference/search-poi.md)
+- [Flight search reference](reference/search-flight.md)
+- [Train search reference](reference/search-train.md)
+- [Marriott hotel search reference](reference/search-marriott-hotel.md)
+- [Marriott package search reference](reference/search-marriott-package.md)
+- [Examples](reference/examples.md)
+- [Self-growth notes](reference/self-growth.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with optional image embeds, booking links, and inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include FlyAI search result summaries, compatibility scores, conflict warnings, travel agreements, and booking URLs when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

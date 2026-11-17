@@ -1,37 +1,56 @@
-## Description: <br>
-Use when you need to control Slack from Clawdbot via the slack tool, including reacting to messages or pinning/unpinning items in Slack channels or DMs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when you need to control Slack from Clawdbot via the slack tool, including reacting to messages or pinning/unpinning items in Slack channels or DMs.
 
-## Publisher: <br>
-[rumengkai](https://clawhub.ai/user/rumengkai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rumengkai](https://clawhub.ai/user/rumengkai)
 
-## Use Case: <br>
-Developers and workspace operators use this skill to let an agent perform Slack actions such as reading recent messages, sending or editing messages, managing reactions, managing pins, fetching member information, and listing custom emoji. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Slack access can expose private channel content, member information, and message history to an agent. <br>
-Mitigation: Install only where bot access is appropriate, use least-privilege Slack scopes, restrict channel membership, limit message-history requests, and treat retrieved Slack content as confidential. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rumengkai/slack-1) <br>
+## Use Case:
 
+Developers and workspace operators use this skill to have an agent manage Slack messages, reactions, pins, member lookup, and custom emoji through Clawdbot. It is useful when an agent needs to take explicit Slack actions with provided channel, message, or user IDs.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration] <br>
-**Output Format:** [Markdown guidance with JSON action payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Slack channel IDs, message timestamps, user IDs, emoji names, and message content supplied by the agent or conversation context.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read, send, edit, delete, pin, and unpin Slack messages, which may affect sensitive workplace conversations.
+
+Mitigation: Install only where Clawdbot should act in Slack, restrict access to appropriate channels, and review destructive actions before execution.
+
+Risk: The configured Slack bot token may grant broader workspace access than the intended use case requires.
+
+Mitigation: Use least-privilege Slack scopes for the bot token and periodically review granted permissions.
+
+Risk: Member lookup, direct messages, and message reads can expose personal or confidential workspace data.
+
+Mitigation: Limit use to approved workspaces and channels, and handle retrieved Slack data according to organizational data policies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rumengkai/skills/slack-1)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, JSON, API calls]
+
+**Output Format:** [Markdown instructions with JSON action examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Slack channel, message, or user identifiers and a configured Clawdbot Slack bot token.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

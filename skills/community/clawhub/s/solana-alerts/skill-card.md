@@ -1,39 +1,56 @@
-## Description: <br>
-Creates and manages Solana token price alerts so users can be notified when a token price rises above or falls below a target. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and manages price alerts that notify users when token prices move above or below target values.
 
-## Publisher: <br>
-[liji3597](https://clawhub.ai/user/liji3597) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[liji3597](https://clawhub.ai/user/liji3597)
 
-## Use Case: <br>
-External users and agents use this skill to create, list, delete, and manually check Solana token price alerts. It supports above/below threshold alerts, stop-loss alerts, take-profit alerts, and bilingual script output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Alert creation, deletion, listing, and global notification checks may lack visible authorization boundaries in a multi-user deployment. <br>
-Mitigation: Install only where the surrounding OpenClaw service enforces alert ownership for every user ID and restricts global price checks to a trusted scheduler or administrator. <br>
-Risk: Price alerts can create misleading trading expectations if treated as predictions or advice. <br>
-Mitigation: Use the skill only to record alert thresholds, keep confirmation prompts before creation or deletion, and preserve the guardrail against price prediction. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liji3597/solana-alerts) <br>
+## Use Case:
 
+External users use this skill to create, review, delete, and manually check Solana token price alerts, including above-threshold, below-threshold, stop-loss, and take-profit alerts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and text or JSON script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and SOLANA_NETWORK; user-facing output may be Chinese or English.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Important alert behavior depends on shared modules outside the skill artifact.
+
+Mitigation: Install only in a controlled OpenClaw deployment where the shared modules are trusted, versioned, and permissioned.
+
+Risk: Global alert checking can process alerts across users.
+
+Mitigation: Restrict manual or scheduled price checks to an authorized scheduler or system account.
+
+Risk: The skill handles user identifiers and persistent alert records.
+
+Mitigation: Apply the deployment's normal access controls, retention policy, and audit review for user alert data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liji3597/skills/solana-alerts)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text and JSON status messages from Node.js command-line scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and SOLANA_NETWORK; uses shared deployment modules for alert storage, formatting, scheduling, and notification behavior.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

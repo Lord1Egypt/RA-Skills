@@ -1,38 +1,53 @@
-## Description: <br>
-Converts AutoCAD DWG drawings to DXF format on Windows by invoking a local ODA File Converter installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts AutoCAD DWG drawing files to DXF format on Windows by invoking a local ODA File Converter through a Python script.
 
-## Publisher: <br>
-[lialia691691-alt](https://clawhub.ai/user/lialia691691-alt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lialia691691-alt](https://clawhub.ai/user/lialia691691-alt)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert DWG files or folders into DXF files before downstream CAD parsing or processing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill executes a local converter binary and writes converted files to a user-selected output directory. <br>
-Mitigation: Confirm the input and output paths before running, and verify ODAFileConverter.exe comes from a trusted ODA installation or bundled path. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert DWG drawings, or folders of DWG drawings, into DXF files before downstream parsing or CAD-processing workflows.
 
-## Reference(s): <br>
-- [ODA File Converter](https://www.opendesign.com/guestfiles/oda_file_converter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples and generated DXF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Windows and a trusted local ODAFileConverter.exe path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The converter lookup can run an unverified executable from the system PATH.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fixed trusted ODA File Converter path, verify the converter binary before installation, and remove or constrain PATH-based fallback lookup.
+
+Risk: Broad activation instructions may trigger local conversion on untrusted DWG files or ambiguous DWG-processing requests.
+
+Mitigation: Require explicit user confirmation before execution and handle DWG files only in a controlled environment.
+
+## Reference(s):
+
+- [ODA File Converter](https://www.opendesign.com/guestfiles/oda_file_converter)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Command-line invocation and generated DXF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local ODA File Converter installation; the workflow is Windows-oriented and uses a 180-second conversion timeout.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

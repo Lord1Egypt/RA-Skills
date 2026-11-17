@@ -1,44 +1,56 @@
-## Description: <br>
-Access weather, IP geolocation, SMS, email, crypto prices, QR codes, Danish CVR, Whois, phone lookup, UUID, stock data, passwords, and more via the API KISS unified gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access weather, IP geolocation, SMS, email, crypto prices, QR codes, Danish CVR, Whois, phone lookup, UUID, stock data, passwords, and more via the API KISS unified gateway (apikiss.com).
 
-## Publisher: <br>
-[theill](https://clawhub.ai/user/theill) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theill](https://clawhub.ai/user/theill)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare authenticated API KISS requests for weather, messaging, lookup, market data, QR code, password, photo, and utility endpoints. It is useful when a workflow needs concise guidance or curl-style examples for a unified third-party API gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SMS, flash SMS, and email endpoints can send real messages to external recipients. <br>
-Mitigation: Review recipients, subjects, and message bodies before allowing requests to those endpoints. <br>
-Risk: The password validation endpoint sends submitted passwords to a third-party service. <br>
-Mitigation: Avoid submitting real passwords unless the user explicitly accepts sending them to API KISS. <br>
-Risk: Requests send API keys and user-provided parameters to apikiss.com. <br>
-Mitigation: Install and use the skill only when the user trusts API KISS with the submitted data and keeps APIKISS_API_KEY in the environment. <br>
+## Use Case:
 
+Developers and agents use this skill to form authenticated API KISS requests for common utility services such as weather, IP lookup, messaging, email, crypto and stock prices, QR codes, UUIDs, password tools, and domain or phone lookups.
 
-## Reference(s): <br>
-- [API KISS homepage](https://www.apikiss.com) <br>
-- [API KISS API base URL](https://www.apikiss.com/api/v1/) <br>
-- [ClawHub skill page](https://clawhub.ai/theill/apikiss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires APIKISS_API_KEY for authenticated requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: SMS, email, and password-check data are sent to API KISS, and documented calls may place sensitive values in URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only data you are comfortable sharing with apikiss.com, avoid real or reused passwords, and avoid private SMS or email content unless the user has explicitly approved it.
+
+Risk: Messaging and email endpoints can send content to third-party recipients.
+
+Mitigation: Confirm recipient addresses or phone numbers and message content before issuing any send request.
+
+## Reference(s):
+
+- [API KISS homepage](https://www.apikiss.com)
+- [API KISS API base URL](https://www.apikiss.com/api/v1/)
+- [ClawHub skill page](https://clawhub.ai/theill/skills/apikiss)
+- [ClawHub publisher profile](https://clawhub.ai/user/theill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires APIKISS_API_KEY for authenticated API calls]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Enables OpenClaw agents to make private FHE-encrypted on-chain payments, wrap and unwrap encrypted tokens, manage escrow jobs, register agent identity, give reputation feedback, and delegate encrypted balance viewing on Ethereum Sepolia or Mainnet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables OpenClaw agents to make FHE-encrypted x402 payments, wrap or unwrap encrypted tokens, manage escrow jobs, register identity, submit feedback, and delegate balance viewing on Ethereum Sepolia or Mainnet with Zama fhEVM.
 
-## Publisher: <br>
-[billynothack](https://clawhub.ai/user/billynothack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billynothack](https://clawhub.ai/user/billynothack)
 
-## Use Case: <br>
-External developers and agent operators use this skill to let agents perform confidential token payments, paid x402 requests, escrow-based agent commerce, identity registration, reputation feedback, and delegated encrypted balance viewing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can sign real blockchain transactions and make paid x402 requests from command arguments without built-in confirmation or spend limits. <br>
-Mitigation: Start on Sepolia and verify the chain, contract addresses, recipients, amounts, and delegation targets before each run. <br>
-Risk: A raw private key wallet mode can expose funds if secrets are mishandled. <br>
-Mitigation: Prefer Ledger or DFNS for signing, and restrict USER_PRIVATE_KEY use to local testing with protected environment variables. <br>
-Risk: Demo API commands may send prompts, code, or other content to configured paid services. <br>
-Mitigation: Use demo API commands only with trusted services and avoid sending sensitive prompts or proprietary code. <br>
+## Use Case:
 
+External developers and agent operators use this skill to let agents perform confidential token payments, escrow workflows, identity registration, feedback, and delegated balance viewing on supported Ethereum networks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/billynothack/confidential-agentic-payment-stack) <br>
-- [Project homepage](https://gitlab.com/bea7892046/fhex402) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, API Calls, Blockchain transactions, Configuration] <br>
-**Output Format:** [JSON strings with ok/error status, transaction metadata, balances, payment proofs, and contract information] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may return transaction hashes, encrypted balance handles, payment receipts, Etherscan URLs, and delegation status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and skill frontmatter) <br>
+Risk: The skill can spend funds or change escrow, unwrap, feedback, and delegation state through irreversible on-chain actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use Sepolia or a low-balance wallet first, review destinations and amounts before execution, and prefer supervised Ledger approval for real funds.
+
+Risk: Configurable paid-service URLs can receive prompts, code, or other sensitive data.
+
+Mitigation: Only point DFNS and paid-service URLs at trusted HTTPS origins and avoid passing proprietary code or secrets to review-and-rate.
+
+Risk: Wallet credentials and signing configuration are sensitive operational inputs.
+
+Mitigation: Install only when the publisher is trusted, configure wallet modes tightly, and protect USER_PRIVATE_KEY, DFNS, and Ledger bridge secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/billynothack/skills/confidential-agentic-payment-stack)
+- [Project homepage from metadata](https://gitlab.com/bea7892046/fhex402)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON strings from command scripts, plus Markdown setup guidance and command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands report success or failure as JSON and may initiate irreversible on-chain payment, escrow, unwrap, feedback, or delegation actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

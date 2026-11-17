@@ -1,45 +1,56 @@
-## Description: <br>
-Yoder Skill Auditor scans OpenClaw and ClawHub skills for security issues, computes trust scores, compares releases, and generates audit reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The Yoder Skill Auditor scans OpenClaw and ClawHub skills for security issues, trust-score signals, update regressions, and benchmark results.
 
-## Publisher: <br>
-[yoder-bawt](https://clawhub.ai/user/yoder-bawt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yoder-bawt](https://clawhub.ai/user/yoder-bawt)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to audit OpenClaw or ClawHub skill directories before installation, during updates, and across skill collections. It provides scanner findings, trust scoring, comparisons, and markdown reporting to support review decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled tests contain intentionally malicious-looking fixture files. <br>
-Mitigation: Run the test harness rather than manually executing files under artifact/tests/. <br>
-Risk: Scanner findings and trust scores are advisory and may not catch every issue. <br>
-Mitigation: Review important findings manually and combine the tool output with normal security review before installation. <br>
-Risk: Allowlist entries can reduce the severity of findings for known-good credential-handling skills. <br>
-Mitigation: Review the built-in allowlist before relying on downgraded results. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to audit OpenClaw and ClawHub skills before installation, compare versions for regressions, generate trust scores, and produce scan reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yoder-bawt/yoder-skill-auditor) <br>
-- [Publisher profile](https://clawhub.ai/user/yoder-bawt) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
-- [TEST-FIXTURES-WARNING.md](artifact/TEST-FIXTURES-WARNING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Terminal text, JSON audit data, trust-score summaries, and Markdown reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exit codes indicate pass, review, fail, or input error.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server release metadata, SKILL.md frontmatter, skill.json, CHANGELOG.md released 2026-02-16) <br>
+Risk: The inspected published artifact includes runnable malicious test scripts and scanner weaknesses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install the artifact as-is; ask the publisher to exclude tests or ship only inert fixture data and to fix the scanner issues identified by clawscan.
+
+Risk: The artifact contains intentionally malicious test fixtures that are only meant for detection testing.
+
+Mitigation: Evaluate only in a sandbox without credentials, sudo access, or outbound network access, and do not execute fixture files outside the test harness.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yoder-bawt/skills/yoder-skill-auditor)
+- [Publisher Profile](https://clawhub.ai/user/yoder-bawt)
+- [CHANGELOG.md](artifact/CHANGELOG.md)
+- [TEST-FIXTURES-WARNING.md](artifact/TEST-FIXTURES-WARNING.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Terminal text, JSON scan output, Markdown reports, and command-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Audit commands return pass, review, fail, or error exit codes; trust scoring reports a 0-100 score with grade labels.]
+
+## Skill Version(s):
+
+3.1.0 (source: server release metadata, artifact/SKILL.md frontmatter, artifact/skill.json, artifact/CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

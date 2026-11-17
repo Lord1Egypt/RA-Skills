@@ -1,46 +1,60 @@
-## Description: <br>
-Query EASA Easy Access Rules locally with exact reference lookup, full-text search, and semantic search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query EASA Easy Access Rules locally with exact reference lookup, full-text search, and semantic search.
 
-## Publisher: <br>
-[dmoraine](https://clawhub.ai/user/dmoraine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dmoraine](https://clawhub.ai/user/dmoraine)
 
-## Use Case: <br>
-External users, developers, and aviation-regulatory practitioners use this skill to retrieve EASA regulation wording, AMC/GM guidance, FAQ material, and related references from a local claw-easa index. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external local claw-easa runtime and bootstrap scripts. <br>
-Mitigation: Install only after reviewing or trusting the external runtime repository and verify the CLI with status/help checks before relying on answers. <br>
-Risk: Fetch, parse, and FAQ ingestion commands download or update a local public EASA corpus. <br>
-Mitigation: Run ingestion commands only when intentionally refreshing the corpus and confirm the target source or FAQ domain first. <br>
-Risk: The documented rsync install command can delete files at the destination path. <br>
-Mitigation: Verify the OpenClaw skill destination before using rsync with --delete, or use the guarded helper script when available. <br>
+## Use Case:
 
+Aviation regulatory users, developers, and agents use this skill to retrieve EASA rule text, AMC/GM guidance, and FAQ material from a local claw-easa corpus before drafting answers to regulatory questions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dmoraine/claw-easa) <br>
-- [Runtime Setup](references/runtime-setup.md) <br>
-- [EASA Answering Notes](references/easa-answering.md) <br>
-- [Skill Usage](references/usage.md) <br>
-- [EASA Regulations FAQs](https://www.easa.europa.eu/en/the-agency/faqs/regulations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with cited regulatory excerpts and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses should distinguish regulation text from AMC, GM, and FAQ material and state when retrieval is empty or ambiguous.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Setup instructions run bootstrap scripts from a mutable GitHub checkout.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the repository and pin a trusted commit before running bootstrap, install, or runtime-check scripts.
+
+Risk: Install and ingestion commands can create or update the local EASA corpus, and faq-all crawls many EASA FAQ pages.
+
+Mitigation: Run ingestion only when corpus updates are intended; prefer targeted FAQ ingestion where possible and keep the default crawl delay unless there is a reviewed reason to change it.
+
+Risk: Answers can be incomplete or misleading if the local corpus or index is unavailable, stale, or scoped incorrectly.
+
+Mitigation: Run claw-easa status before use, use exact lookup for references, scope broad searches with --slug when appropriate, and state clearly when retrieval is empty or ambiguous.
+
+## Reference(s):
+
+- [claw-easa Skill Usage](references/usage.md)
+- [claw-easa Runtime Setup](references/runtime-setup.md)
+- [EASA Answering Notes](references/easa-answering.md)
+- [EASA FAQ Regulations](https://www.easa.europa.eu/en/the-agency/faqs/regulations)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown answers with cited excerpts and optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the local claw-easa CLI and an available local EASA corpus or index.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

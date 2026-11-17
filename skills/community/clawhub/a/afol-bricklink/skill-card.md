@@ -1,45 +1,60 @@
-## Description: <br>
-Use the self-contained BrickLink API CLI for OAuth1-signed catalog, pricing, order, inventory, feedback, coupon, shipping, notification, and member-note workflows with guarded marketplace writes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the self-contained BrickLink API CLI for OAuth1-signed catalog, pricing, order, inventory, feedback, coupon, shipping, notification, and member-note workflows with guarded marketplace writes.
 
-## Publisher: <br>
-[musketyr](https://clawhub.ai/user/musketyr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[musketyr](https://clawhub.ai/user/musketyr)
 
-## Use Case: <br>
-External developers, marketplace operators, and LEGO AFOL sellers use this skill to query BrickLink catalog, pricing, order, inventory, feedback, coupon, shipping, notification, and member-note data, and to prepare guarded marketplace write actions after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires BrickLink OAuth credentials and can access private order, buyer, inventory, feedback, coupon, shipping, notification, and member-note data. <br>
-Mitigation: Use narrowly scoped BrickLink API credentials, pass them only through BRICKLINK_API_* environment variables, and summarize only the data needed for the user's task. <br>
-Risk: Marketplace write actions can create, update, or delete live inventory, order state, feedback, coupons, or private member notes. <br>
-Mitigation: Run dry-run commands first, restate the exact endpoint, target, payload summary, and destructive impact, then wait for explicit confirmation before using --yes. <br>
-Risk: Large set price breakdowns may consume substantial BrickLink API quota and take several minutes. <br>
-Mitigation: Ask for approval before fan-out pricing workflows and begin with the approval-warning path when the pricing tool requires it. <br>
+## Use Case:
 
+AFOLs, BrickLink sellers, and agents assisting store operators use this skill to query BrickLink catalog and pricing data and to manage orders, inventory, feedback, coupons, shipping methods, notifications, and member notes through a guarded OAuth-signed CLI.
 
-## Reference(s): <br>
-- [AFOL BrickLink ClawHub Release](https://clawhub.ai/musketyr/afol-bricklink) <br>
-- [BrickLink API Reference](https://www.bricklink.com/v3/api.page) <br>
-- [BrickLink OpenAPI Reference](references/openapi/bricklink.yaml) <br>
-- [BrickLink Tool Guidance](references/prompts/bricklink-tools.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, environment-variable configuration, and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Marketplace write workflows should use dry runs first, require explicit user confirmation, and avoid exposing OAuth credentials or private account data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact frontmatter and server release metadata) <br>
+Risk: OAuth credentials and marketplace data could be sent to an arbitrary API base URL if BRICKLINK_API_BASE_URL or the CLI base-url option is changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Leave BRICKLINK_API_BASE_URL unset or set it exactly to the official BrickLink API URL, and use only a BrickLink account whose OAuth permissions are acceptable for this tool.
+
+Risk: Marketplace write operations can modify live inventory, orders, feedback, coupons, and private member notes.
+
+Mitigation: Use dry-run output first, inspect generated commands and request bodies, and execute with --yes only after explicit confirmation of the exact action.
+
+Risk: Dry-run output and terminal logs may expose private order, buyer, inventory, coupon, feedback, or member-note details.
+
+Mitigation: Treat dry-run and CLI output as private and share only minimal summaries needed for the task.
+
+## Reference(s):
+
+- [BrickLink OpenAPI Reference](references/openapi/bricklink.yaml)
+- [BrickLink Tool Guidance](references/prompts/bricklink-tools.txt)
+- [BrickLink API Documentation](https://www.bricklink.com/v3/api.page)
+- [ClawHub Skill Listing](https://clawhub.ai/musketyr/skills/afol-bricklink)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON request bodies, and JSON CLI output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Mutating marketplace commands require dry-run review and explicit confirmation before --yes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

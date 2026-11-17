@@ -1,45 +1,62 @@
-## Description: <br>
-Query Find My locations and battery status for family devices via iCloud. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Find My locations and battery status for family devices via iCloud.
 
-## Publisher: <br>
-[liamnichols](https://clawhub.ai/user/liamnichols) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[liamnichols](https://clawhub.ai/user/liamnichols)
 
-## Use Case: <br>
-External users use this skill to let an agent query iCloud Find My through the PyiCloud CLI, then summarize device location, battery level, and charging status for the user's own devices or consented Family Sharing devices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive iCloud Find My location, session, device, and Family Sharing data to an agent. <br>
-Mitigation: Install only for accounts and devices where agent access is intended, obtain consent from affected people, and avoid storing Apple IDs in shared workspace files. <br>
-Risk: The artifact includes eval()-based parsing examples for CLI location output. <br>
-Mitigation: Replace eval()-based parsing with structured output, strict regex extraction, or literal parsing with validation before operational use. <br>
-Risk: Proactive or repeated location checks can become unintended tracking. <br>
-Mitigation: Limit proactive checks to explicit user-approved workflows and make repeated monitoring behavior visible to the user. <br>
+## Use Case:
 
+External users and their agents use this skill to query iCloud Find My through the PyiCloud icloud CLI for device locations, battery levels, charging status, and proactive battery warnings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liamnichols/icloud-findmy) <br>
-- [PyiCloud project](https://github.com/picklepete/pyicloud) <br>
-- [Required CLI: icloud](artifact/SKILL.md) <br>
-- [Install PyiCloud (pipx)](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and parsed CLI results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sensitive iCloud Find My location, timestamp, device, and battery information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill can expose highly sensitive Find My location and family device data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for devices and family members who have consented, and avoid proactive tracking unless the user explicitly requests it.
+
+Risk: Apple ID details and iCloud session data may be stored locally.
+
+Mitigation: Do not store the Apple ID in ordinary workspace files, and keep local session files protected by the user's operating system account controls.
+
+Risk: The artifact includes an unsafe eval-based parsing example for location output.
+
+Mitigation: Replace eval with a safe parser such as JSON parsing or ast.literal_eval with validation before using parsed location data.
+
+Risk: Automated installation depends on the external PyiCloud package.
+
+Mitigation: Pin and review the PyiCloud version before automated installation.
+
+## Reference(s):
+
+- [PyiCloud](https://github.com/picklepete/pyicloud)
+- [ClawHub iCloud Find My Skill](https://clawhub.ai/liamnichols/skills/icloud-findmy)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and parsing examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS, the PyiCloud icloud CLI, Apple ID authentication, and user consent for device or family location access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

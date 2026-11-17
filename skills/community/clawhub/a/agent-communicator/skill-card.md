@@ -1,40 +1,50 @@
-## Description: <br>
-Agent Communicator helps agents structure inter-agent messages, handoffs, reviews, feedback, conflict resolution, and communication tracking using standardized Markdown and JSON formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Communicator helps agents create structured messages for requests, handoffs, feedback, reviews, alerts, conflict resolution, and coordination tracking.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create clear requests, responses, handoffs, review prompts, feedback, and status reports between specialized agents. It is best suited for coordinating multi-agent work where message structure and follow-up expectations matter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated coordination messages may include private project context, credentials, customer data, or internal decisions if the user provides them. <br>
-Mitigation: Review generated messages before sharing and remove sensitive information that does not need to be sent. <br>
-Risk: Message templates can make incomplete or incorrect handoff details appear authoritative. <br>
-Mitigation: Verify recipients, deadlines, file references, decisions, and expected responses before treating a generated message as final. <br>
+## Use Case:
 
+Developers and agent operators use this skill to draft standardized inter-agent messages, handoffs, review requests, feedback loops, collaborative discussions, and communication tracking summaries.
 
-## Reference(s): <br>
-- [Agent Communicator examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown templates and optional structured JSON message records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; outputs are coordination messages, templates, and review checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated messages may include secrets or sensitive private content if that content is supplied by the user or workspace context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review message content before sharing and omit secrets or sensitive private information unless the recipient and workspace context are appropriate.
+
+## Reference(s):
+
+- [Agent Communicator examples](references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/agent-communicator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown templates, structured JSON examples, and concise coordination guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; outputs are message templates and communication coordination guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Bakes, inspects, and manages scoped lnd macaroons for least-privilege agent access, including preset roles, custom permissions, signer scoping, and rotation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bake, inspect, and manage lnd macaroons for least-privilege agent access, including pay-only, invoice-only, read-only, signer-only, and custom credentials.
 
-## Publisher: <br>
-[Roasbeef](https://clawhub.ai/user/Roasbeef) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[roasbeef](https://clawhub.ai/user/roasbeef)
 
-## Use Case: <br>
-Developers and operators managing lnd nodes use this skill to create, inspect, rotate, and configure least-privilege macaroons for agents instead of sharing broad admin credentials. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Macaroon and TLS certificate paths expose bearer credentials if copied, stored, or logged insecurely. <br>
-Mitigation: Protect macaroons and TLS certificates like passwords, store generated macaroons with 0600 permissions, and avoid sharing them between agent roles. <br>
-Risk: Using admin.macaroon or broad custom permissions can grant excessive lnd control. <br>
-Mitigation: Use the narrowest preset or custom permission set, avoid admin.macaroon except during tightly controlled setup, and inspect generated macaroons before deployment. <br>
-Risk: Running lncli, jq, or Docker from an untrusted environment can affect credential generation or inspection. <br>
-Mitigation: Run the script only with trusted local tooling and trusted container contexts, then verify the target node and resulting permissions before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Roasbeef/lnd-macaroon-bakery) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers and Lightning node operators use this skill to generate and inspect scoped lnd macaroons for agents that need limited node access without using admin.macaroon.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown with bash commands and configuration snippets; script execution can produce macaroon files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated macaroons are credential files and should be protected with restrictive file permissions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Macaroon rotation guidance may leave old credentials unrevoked if the revocation steps are not correct for the target lnd version.
+
+Mitigation: Verify revocation with listmacaroonids and deletemacaroonid for the deployed lnd version before relying on the documented rotation flow.
+
+Risk: Admin macaroons or copied macaroons can expose sensitive Lightning node access, especially in shared containers or uncontrolled environments.
+
+Mitigation: Use only credentials and containers the operator controls, avoid baking or inspecting admin macaroons in shared containers, and prefer scoped role macaroons with restrictive file permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/roasbeef/skills/lnd-macaroon-bakery)
+- [ClawHub publisher profile](https://clawhub.ai/user/roasbeef)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash and YAML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include role presets, permission URIs, macaroon output paths, inspection steps, and rotation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

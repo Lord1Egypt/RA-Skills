@@ -1,40 +1,54 @@
-## Description: <br>
-Query Korean multiplex box office rankings and upcoming movie data from Lotte Cinema, CGV, and Megabox, enriched with KOBIS movie details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Korean multiplex (Lotte Cinema, CGV, Megabox) box office rankings and upcoming movie data enriched with KOBIS details.
 
-## Publisher: <br>
-[uyeong](https://clawhub.ai/user/uyeong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[uyeong](https://clawhub.ai/user/uyeong)
 
-## Use Case: <br>
-Agents use this skill to answer Korean cinema questions, including current box office rankings, upcoming releases, recommendations by genre, director, actor, or rating, and comparisons across Korean multiplex chains. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Movie queries are sent to the disclosed public GitHub Pages API, so unrelated private information in prompts could be exposed unnecessarily. <br>
-Mitigation: Limit queries to the movie, cinema chain, genre, date, rating, director, or actor details needed for the cinema task. <br>
-Risk: Some KOBIS enrichment fields can be null, and public movie data may lag real-world schedule changes. <br>
-Mitigation: Null-check movie details before using them and avoid guessing missing genres, directors, actors, or release details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [K Cinema Bridge API](https://uyeong.github.io/k-cinema-bridge/) <br>
-- [OpenAPI specification](artifact/openapi.json) <br>
+## Use Case:
 
+External users and agents use this skill to answer Korean cinema questions by fetching public box office and upcoming release data, then summarizing rankings, recommendations, age ratings, and movie details.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown responses with movie lists, comparisons, and source-backed recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include tables; results depend on the public API data and nullable KOBIS detail fields.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Movie availability and rankings come from an external public API refreshed daily and may not reflect live ticketing inventory.
+
+Mitigation: Present results as informational movie discovery data and avoid treating them as authoritative booking or availability guarantees.
+
+Risk: Enriched KOBIS movie details may be null for some records.
+
+Mitigation: Null-check detail fields and avoid guessing missing genres, credits, or release metadata.
+
+## Reference(s):
+
+- [K Cinema Bridge ClawHub listing](https://clawhub.ai/uyeong/skills/k-cinema-bridge)
+- [K Cinema Bridge API](https://uyeong.github.io/k-cinema-bridge/)
+- [OpenAPI specification](artifact/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Guidance]
+
+**Output Format:** [Natural-language responses and Markdown tables based on JSON API data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses unauthenticated public movie data refreshed daily; KOBIS detail records may be null.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

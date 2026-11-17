@@ -1,44 +1,55 @@
-## Description: <br>
-Read-only signal fetcher for TradeBot Alpha API. Subscription required for Pro tier. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read-only signal fetcher for the TradeBot Alpha API; Pro-tier signal analysis requires a subscription.
 
-## Publisher: <br>
-[zalcmann](https://clawhub.ai/user/zalcmann) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zalcmann](https://clawhub.ai/user/zalcmann)
 
-## Use Case: <br>
-External developers and trading-tool users use this skill to check TradeBot Alpha service status and request market signal analysis for a supplied symbol through the TradeBot Alpha API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The connector sends a user-provided TradeBot Alpha API key and requested trading symbol to the TradeBot Alpha HTTPS API. <br>
-Mitigation: Install only if you trust BlueFeza KG and the TradeBot Alpha service with the API key and requested symbols. <br>
-Risk: Passing an API key directly on the command line can expose it through shell history or process inspection. <br>
-Mitigation: Prefer a safer secret-handling method than typing the key directly in a shell command. <br>
-Risk: Trading signals can be incorrect, delayed, or unsuitable for a user's circumstances. <br>
-Mitigation: Treat trading signals as informational rather than a guarantee or financial advice, and keep users responsible for trading decisions. <br>
+## Use Case:
 
+Developers and trading-tool users use this connector to check TradeBot Alpha API status and fetch read-only trading signals. Pro-tier signal analysis requires an API key and a separate TradeBot Alpha subscription.
 
-## Reference(s): <br>
-- [TradeBot Alpha Skill Page](https://clawhub.ai/zalcmann/tradebot-alpha) <br>
-- [TradeBot Alpha Homepage](https://tradebot-alpha.bluefeza.com) <br>
-- [TradeBot Alpha API Documentation](https://tradebot-alpha.bluefeza.com/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Status and analysis commands send the API key and requested symbol to the TradeBot Alpha HTTPS API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.14 (source: server release metadata; artifact frontmatter and package.json report 0.1.13) <br>
+Risk: The documented command-line API key flow can expose credentials through local shell history or process listings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, prefer a safer credential channel when available, and rotate any key previously used on the command line.
+
+Risk: Returned trading signals are third-party financial data and may influence trading decisions.
+
+Mitigation: Treat all signals as external data, verify them independently, and keep responsibility for trading decisions outside the connector.
+
+## Reference(s):
+
+- [TradeBot Alpha ClawHub Skill Page](https://clawhub.ai/zalcmann/skills/tradebot-alpha)
+- [TradeBot Alpha Homepage](https://tradebot-alpha.bluefeza.com)
+- [TradeBot Alpha API Documentation](https://tradebot-alpha.bluefeza.com/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [CLI text summarizing API status or trading signals]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided API key for authenticated API calls.]
+
+## Skill Version(s):
+
+0.1.14 (source: ClawHub release metadata; artifact files list 0.1.13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

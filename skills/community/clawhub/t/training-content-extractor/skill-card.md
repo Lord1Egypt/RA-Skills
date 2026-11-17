@@ -1,40 +1,58 @@
-## Description: <br>
-Extracts structured enterprise training outlines from pasted transcript text and expands selected lessons into detailed training documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms pasted transcript text into structured internal training outlines and supports lesson-by-lesson expansion into detailed Chinese training documents.
 
-## Publisher: <br>
-[0x00pluto](https://clawhub.ai/user/0x00pluto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0x00pluto](https://clawhub.ai/user/0x00pluto)
 
-## Use Case: <br>
-Training designers, operations teams, and internal enablement staff use this skill to turn pasted meeting or course transcripts into reusable training outlines, lesson-level documents, and compiled training materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pasted transcripts may contain sensitive business material. <br>
-Mitigation: Review data handling requirements before use and avoid pasting material that should not be processed by the agent environment. <br>
-Risk: Generated outlines or lessons may contain inaccurate quoted evidence, timestamps, or missing-information markers. <br>
-Mitigation: Review generated outputs against the original transcript before using them as training material. <br>
+## Use Case:
 
+Employees and training-content authors use this skill to convert pasted training transcripts into internal course outlines, lesson-level documents, and compiled long-form training materials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0x00pluto/training-content-extractor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown training outlines, lesson documents, and compiled training documents] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs require source evidence such as timestamps or key transcript quotes and mark missing source information as needing supplementation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Training transcripts may contain confidential business details, personal data, customer information, secrets, or regulated content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive material before use unless the user is authorized to process that content.
+
+Risk: The generated training material may overstate or add facts that are not present in the source transcript.
+
+Mitigation: Require source evidence for each lesson and mark missing information as needing supplementation.
+
+Risk: The skill defaults to Chinese-language document structure, which may not match every deployment context.
+
+Mitigation: Confirm the desired language and document conventions before producing final training materials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0x00pluto/skills/training-content-extractor)
+- [Skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown training outlines, lesson documents, and compiled training documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Segmented output by default to avoid excessively long responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

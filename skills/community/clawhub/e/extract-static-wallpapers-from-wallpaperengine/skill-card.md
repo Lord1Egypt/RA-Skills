@@ -1,38 +1,49 @@
-## Description: <br>
-Extracts static PNG wallpapers and mipmap resolutions from Wallpaper Engine scene.pkg files in PKGV0023/PKGV0024 format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts static PNG wallpapers, including mipmap resolution levels, from Wallpaper Engine scene.pkg files in PKGV0023/PKGV0024 format.
 
-## Publisher: <br>
-[pandhumhp-cn](https://clawhub.ai/user/pandhumhp-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pandhumhp-cn](https://clawhub.ai/user/pandhumhp-cn)
 
-## Use Case: <br>
-Developers and advanced users use this skill to recover static wallpaper images from trusted Wallpaper Engine scene.pkg packages, including embedded PNGs in .tex textures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A crafted scene.pkg can use package-controlled paths to write outside the intended output directory. <br>
-Mitigation: Run only on trusted packages in a temporary or sandboxed directory with an explicit output path; review the extractor to reject absolute paths and '..' segments, cap entry sizes, validate offsets, and allowlist expected wallpaper file types. <br>
+## Use Case:
 
+External users and developers use this skill to extract Wallpaper Engine package contents from a supplied scene.pkg file, recover embedded PNG images from .tex textures, and identify the largest wallpaper image for delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pandhumhp-cn/extract-static-wallpapers-from-wallpaperengine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, files] <br>
-**Output Format:** [Markdown guidance with shell commands and extracted PNG files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces extracted package contents and wallpaper PNG files when run on a local scene.pkg input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: A malicious scene.pkg package may cause extracted files to be written outside the selected output directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the extractor only on trusted scene.pkg files in a disposable low-privilege working directory until entry paths are validated and writes are confined to the output directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pandhumhp-cn/skills/extract-static-wallpapers-from-wallpaperengine)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets and extracted PNG file attachments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce multiple PNG mipmap files and extracted package contents.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

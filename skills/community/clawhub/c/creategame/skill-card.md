@@ -1,42 +1,56 @@
-## Description: <br>
-Guide for uploading config.json, index.html, and preview.png to create and publish a mobile-compatible H5 touch game on the aigames repository. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through creating and uploading mobile-compatible H5 touchscreen game files to the aigames repository interface.
 
-## Publisher: <br>
-[brianclan](https://clawhub.ai/user/brianclan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brianclan](https://clawhub.ai/user/brianclan)
 
-## Use Case: <br>
-Developers and agents use this skill to create and publish mobile-compatible H5 touch games by preparing config.json, index.html, and preview.png and uploading them to the external aigames service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an agent to upload game files to a third-party service and make them available through a public URL. <br>
-Mitigation: Review config.json, index.html, preview.png, and the game folder name before upload; do not upload private or proprietary files unless publication is intended. <br>
-Risk: The upload interface does not overwrite existing files, so reused folder names or filenames can fail. <br>
-Mitigation: Choose a unique English folder name and check upload responses before sharing the published game URL. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create the required config.json, index.html, and preview.png files for a mobile H5 game and upload them to the external aigames service for publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brianclan/creategame) <br>
-- [aigames repository service](https://www.idlab.top) <br>
-- [Published game URL pattern](https://thenext.games/game/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions for creating game assets and uploading them to a third-party service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can direct agents to upload local game files to an external service and publish the resulting game without a clear final consent boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the destination URL, publication intent, and final game folder with the user before upload.
+
+Risk: The uploaded files may contain secrets, private assets, or unsafe content if they are not reviewed before submission.
+
+Mitigation: Inspect config.json, index.html, and preview.png before upload, avoid absolute or user-supplied paths, and remove secrets or private assets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brianclan/skills/creategame)
+- [Publisher profile](https://clawhub.ai/user/brianclan)
+- [aigames repository interface](https://www.idlab.top)
+- [Published game URL pattern](https://thenext.games/game/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or reference config.json, index.html, and preview.png files before upload.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

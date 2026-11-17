@@ -1,50 +1,11 @@
 # 国央企Word文档技能更新日志
 
-## [1.7.1] - 2026-05-26
+## [1.8.0] - 2026-10-27
 
-### 修复
-
-- **Bug 7：Word 样式窗格中「正文」（Normal）样式的行距不是28磅固定**
-  - 问题：`docDefaults` 中仅设置了 `<w:rPrDefault>`（字体默认值），`<w:pPrDefault/>` 为空，导致 Normal（正文）样式缺少段落的行距定义，Word 样式窗格中显示为默认单倍行距而非固定28磅。
-  - 修复：在 `createDocument` 的 `styles.default.document` 中增加 `paragraph` 键，设置 `spacing: { before: 0, after: 0, line: 560, lineRule: "exact" }`。这会填充 `<w:pPrDefault>`，使 Normal 样式自动继承28磅固定行距。
-  - 影响函数：`createDocument`
-
-## [1.7.0] - 2026-05-26
-
-### 修复
-
-- **Bug 6：正文及标题中西文字体不稳定，西文未显示 Times New Roman**
-  - 问题根因一：`createTextRunsFromSegments` 中 `useDirectFormatting = false` 时，所有 `TextRun` 只写 `text` 字段，不包含任何 `<w:rPr>`，依赖段落样式 `run` 字段的字体继承。Word 对无 rPr 的 TextRun 在中西文混排时字体应用不稳定，导致西文片段（NETCONF、BIN 等）实际使用方正仿宋而非 Times New Roman。
-  - 问题根因二：`createDocument` 的 `styles.default.document.run.font` 传入了字符串（`FZFangSong-Z02S`），导致 `docDefaults` 中 `w:ascii` 和 `w:hAnsi` 也被设置为方正仿宋，而非 Times New Roman，进一步加剧了西文字体错误。
-  - 修复一：`createTextRunsFromSegments` 改为**始终为每个 TextRun 明确写入字体**：西文片段写 `ascii/hAnsi/cs = Times New Roman`，中文片段写 `eastAsia = 对应中文字体` + `ascii/hAnsi/cs = Times New Roman`。行距、缩进等段落属性仍由段落样式控制。
-  - 修复二：`createDocument` 的 `styles.default.document.run.font` 改为对象格式：`{ eastAsia: FZFangSong, ascii: Times New Roman, hAnsi: Times New Roman, cs: Times New Roman }`，修正 `docDefaults` 中西文字体。
-  - 废弃 `useDirectFormatting` 参数（保留签名兼容性，不再区分两种模式）。
-  - 影响函数：`createTextRunsFromSegments`、`createDocument`
-
-## [1.6.0] - 2026-04-25
-
-### 变更
-- **二级标题序号格式调整**：去掉序号后的顿号
-  - 旧格式：`（一）、标题内容`
-  - 新格式：`（一）标题内容`
-  - 涉及函数：`createLevel2Heading`、`createLevel2HeadingSafe`
-
-- **三级标题序号格式调整**：序号后改用点号，去掉顿号
-  - 旧格式：`1、标题内容`
-  - 新格式：`1.标题内容`
-  - 涉及函数：`createLevel3Heading`
-
-- **表格宽度改为自动适应**：改为百分比宽度，自动适应窗口和内容
-  - 旧方式：固定 DXA 宽度（按页面内容区域计算）
-  - 新方式：`WidthType.PERCENTAGE` 100%（自动铺满可用宽度）
-  - 涉及函数：`createTable`
-
-- **双引号自动规范化为中文引号**：所有文本内容中的 ASCII 双引号 `"` 自动替换为配对的中文双引号 `""`
-  - 规则：按出现顺序奇偶配对，奇数位→左引号 `"`，偶数位→右引号 `"`
-  - 已有的正确中文引号对保持不变，全角引号 `"` `"` 也统一为 `\u201c` `\u201d`
-  - 奇数个引号时自动容错闭合为右引号
-  - 涉及函数：`normalizeQuotes`（新增）、`createTextRunsFromSegments`、`createTitleParagraph`、`createTable`、`createTableHeaderRow`
-  - 覆盖范围：正文、标题（全部层级）、表格单元格、表头行
+### 变更（为 WorkBuddy 收录做准备）
+- **前置元数据合规化**：`name` 由中文名改为 hyphen-case 的 `gov-doc-writing`，新增 `display_name_zh`/`display_name_en`、`description_en`、`agent_created: true`，使技能满足 WorkBuddy 技能规范与收录校验。
+- **脚本路径动态化**：将 SKILL.md 中硬编码的 `gov-doc-writing__skillhub/scripts/` 路径改为「本技能安装目录/scripts/create_gov_doc.js」的动态说明，避免技能被 WorkBuddy 收录（目录不再带 `__skillhub` 后缀）后路径失效。
+- **清理市场专属元数据**：导出用于收录的包中移除 `_skillhub_meta.json`、`_meta.json`、`package.json`、`package-lock.json`、`skill-card.md` 等第三方市场文件。
 
 ## [1.5.0] - 2026-04-08
 

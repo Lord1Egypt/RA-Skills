@@ -1,41 +1,54 @@
-## Description: <br>
-AI Agent 自省调试框架 helps agents capture runtime errors, analyze likely root causes, attempt automatic repairs, and generate structured introspection reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Agent 自省调试框架 helps agents capture errors, analyze likely root causes, attempt automatic fixes, and generate structured debugging reports.
 
-## Publisher: <br>
-[danihe001](https://clawhub.ai/user/danihe001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danihe001](https://clawhub.ai/user/danihe001)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add self-diagnosis, repair attempts, error history, and human escalation to JavaScript-based agent workflows. It is most useful when an agent needs structured reporting for failures such as missing files, permissions, missing modules, timeouts, rate limits, server errors, memory issues, and authentication failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic repair behavior can modify the workspace by creating files, changing permissions, or installing npm packages. <br>
-Mitigation: Install only in a disposable or tightly scoped workspace, and require explicit review before enabling automatic file creation, chmod, or npm install behavior. <br>
-Risk: Detailed error reports can be sent to an external notification hook. <br>
-Mitigation: Use notification hooks only after confirming reports are redacted and safe to share outside the workspace. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add self-diagnosis, root-cause analysis, repair suggestions or actions, reporting, and human notification flows to JavaScript-based agent workspaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danihe001/introspection-debugger) <br>
-- [Publisher profile](https://clawhub.ai/user/danihe001) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown usage guidance with JavaScript code examples; runtime output is structured report data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can emit error and report events and can call a configured notification hook.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can automatically change files, permissions, and dependencies with weak scoping and control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and run only in a disposable or tightly sandboxed workspace unless the skill is changed to ask before making local changes.
+
+Risk: Diagnostic reports may be sent through a configured webhook and could expose sensitive project information.
+
+Mitigation: Use notification webhooks only with trusted destinations and redact reports before enabling them for sensitive projects.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danihe001/skills/introspection-debugger)
+- [Project homepage](https://github.com/tvvshow/openclaw-evomap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JavaScript module behavior plus structured report objects and human-facing debugging guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify local files, change permissions, install dependencies, and send diagnostic reports when configured.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

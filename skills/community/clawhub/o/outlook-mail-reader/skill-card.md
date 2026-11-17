@@ -1,44 +1,56 @@
-## Description: <br>
-Controls a user's local Chrome browser through MCP Chrome DevTools or browser tools to query Outlook mail, jump to dates, filter or search messages, and read message bodies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Outlook Mail Reader helps an agent use a locally controlled Chrome browser to find, filter, jump to dates in, search, and read Outlook email.
 
-## Publisher: <br>
-[yuyun2000](https://clawhub.ai/user/yuyun2000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyun2000](https://clawhub.ai/user/yuyun2000)
 
-## Use Case: <br>
-People with a configured OpenClaw environment use this skill to inspect a logged-in Outlook mailbox in Chrome, answer mail queries, navigate to messages by date, search for specific email, and read message content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent access to a logged-in Outlook mailbox through the user's active Chrome session. <br>
-Mitigation: Use it only for narrow, explicit mail queries and avoid broad inbox reads. <br>
-Risk: Chrome remote debugging and MCP browser control can expose more browser-session access than a single mail task requires. <br>
-Mitigation: Enable the connection only when needed, then disable Chrome remote debugging or remove the MCP configuration when finished. <br>
-Risk: The security evidence notes limited per-task consent or scope limits for mailbox access. <br>
-Mitigation: Confirm the requested date range, sender, subject, or search term before reading mail, and report only the requested messages. <br>
+## Use Case:
 
+Developers and end users with OpenClaw browser tooling configured use this skill to inspect Outlook inboxes, navigate by date, search messages, and read selected mail in a logged-in Chrome session.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yuyun2000/outlook-mail-reader) <br>
-- [Outlook Mail](https://outlook.cloud.microsoft/mail/) <br>
-- [Outlook Inbox](https://outlook.cloud.microsoft/mail/inbox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include mailbox summaries and setup or troubleshooting steps based on the user's active Outlook session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can control a logged-in Chrome browser session that has access to Outlook mail.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a separate Chrome profile or operating-system account for Outlook, keep unrelated tabs closed, and grant access only for sessions where mailbox access is intended.
+
+Risk: The MCP setup uses a mutable chrome-devtools-mcp dependency when installed with @latest.
+
+Mitigation: Pin or vet the chrome-devtools-mcp package version before installing, and remove the MCP configuration when the skill is no longer needed.
+
+## Reference(s):
+
+- [Outlook mail](https://outlook.cloud.microsoft/mail/)
+- [Outlook inbox](https://outlook.cloud.microsoft/mail/inbox)
+- [ClawHub skill page](https://clawhub.ai/yuyun2000/skills/outlook-mail-reader)
+- [ClawHub publisher profile](https://clawhub.ai/user/yuyun2000)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include mailbox summaries, message details, date-navigation steps, search guidance, and browser-tool troubleshooting notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Complete Feishu (Lark) integration toolkit for AI agents to read and write documents, fetch chat history, send files and screenshots, manage permissions, and create scheduled reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Feishu (Lark) integration toolkit for AI agents to read and write documents, fetch chat history, send files and screenshots, manage permissions, and create scheduled reminders across Wiki, Docs, Sheets, Bitable, and IM operations.
 
-## Publisher: <br>
-[ye4wzp](https://clawhub.ai/user/ye4wzp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ye4wzp](https://clawhub.ai/user/ye4wzp)
 
-## Use Case: <br>
-Employees and developers use this skill to let an agent work with Feishu or Lark documents, chats, file uploads, screenshots, permissions, and scheduled reminders through Feishu APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad Feishu or Lark workspace access, including document writes, chat-history reads, file or screenshot sends, permission changes, and scheduled reminders. <br>
-Mitigation: Use a dedicated low-privilege Feishu app, grant only the scopes required for the intended workflow, and require explicit user approval before sensitive reads, writes, sends, permission changes, or reminder creation. <br>
-Risk: Tenant-wide or admin-capable Feishu credentials could expand the impact of mistaken or unintended agent actions. <br>
-Mitigation: Avoid tenant-wide or admin-capable credentials unless the deployment owner has reviewed and accepted the workspace impact. <br>
+## Use Case:
 
+Developers and operators use this skill to connect an AI agent to Feishu or Lark workspaces for document operations, chat review, file delivery, screenshot sharing, permission changes, and scheduled reminders.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ye4wzp/feishu-toolkit) <br>
-- [Feishu Open Platform](https://open.feishu.cn/app) <br>
-- [Feishu API Documentation](https://open.feishu.cn/document) <br>
-- [Feishu Open API Base URL](https://open.feishu.cn/open-apis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with API examples, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FEISHU_APP_ID and FEISHU_APP_SECRET for Feishu tenant access token authentication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can access or change sensitive Feishu workspace data, including chat history, documents, files, screenshots, permissions, and scheduled messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, use a dedicated Feishu app with only the required scopes, and require explicit confirmation before chat-history access, screenshot capture, file upload, permission changes, or scheduled reminders.
+
+Risk: Feishu app secrets and tenant access tokens can grant broad API access if exposed or over-scoped.
+
+Mitigation: Protect and rotate the app secret, store credentials outside shared logs or documents, and grant only the minimum permissions needed for the intended workflow.
+
+Risk: Permission-management and screenshot features can expose private content or alter collaborator access.
+
+Mitigation: Avoid enabling those features unless they are specifically needed, and confirm the target document, recipient, and permission level before taking action.
+
+## Reference(s):
+
+- [Feishu Open Platform](https://open.feishu.cn/app)
+- [Feishu API Documentation](https://open.feishu.cn/document)
+- [ClawHub Skill Page](https://clawhub.ai/ye4wzp/skills/feishu-toolkit)
+- [Publisher Profile](https://clawhub.ai/user/ye4wzp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks, API request examples, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Feishu app credentials and user confirmation for sensitive actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

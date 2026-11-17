@@ -1,45 +1,57 @@
-## Description: <br>
-Automates sending messages to WeCom contacts or groups on macOS using GUI automation, screenshot capture, OCR, and click/paste tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates sending messages to WeCom contacts or group chats on macOS through desktop GUI control, window screenshots, OCR, and click/paste actions.
 
-## Publisher: <br>
-[jacky-wzj](https://clawhub.ai/user/jacky-wzj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jacky-wzj](https://clawhub.ai/user/jacky-wzj)
 
-## Use Case: <br>
-Developers and operations users can use this skill to send trusted WeCom notifications, daily reports, or other business messages through the macOS desktop client. It is intended for environments where the user controls the recipient and message text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real business messages to WeCom contacts or groups. <br>
-Mitigation: Use only with explicit trusted recipients and reviewed message text, and test first in a harmless chat. <br>
-Risk: Security evidence reports an unsafe command execution path. <br>
-Mitigation: Do not pass untrusted or generated content until shell command construction is fixed. <br>
-Risk: The automation stores screenshots under /tmp/wecom-gui during OCR and login checks. <br>
-Mitigation: Clear /tmp/wecom-gui after use or add automatic screenshot cleanup. <br>
+## Use Case:
 
+Developers, operators, and automation users can use this skill to send WeCom desktop messages to contacts or groups for workflows such as daily reports and notifications. It is intended for macOS environments where the user has authorized desktop automation and screen capture.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jacky-wzj/wecom-gui-message) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Message sending script](artifact/scripts/send_message.py) <br>
-- [OCR helper script](artifact/scripts/ocr_screen.swift) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown instructions with bash examples and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS, the WeCom desktop client, Screen Recording and Accessibility permissions, and local GUI automation tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata) <br>
+Risk: The skill can send live WeCom messages through desktop automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation of the recipient and message content before sending.
+
+Risk: Desktop control and screen-capture permissions can expose sensitive chats or work data.
+
+Mitigation: Grant permissions only in a controlled macOS environment, prefer window-scoped capture, and clean up temporary screenshots.
+
+Risk: The security evidence flags unsafe shell command construction.
+
+Mitigation: Review or fix command construction before installation, especially when handling untrusted contact names or message text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jacky-wzj/skills/wecom-gui-message)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration, json]
+
+**Output Format:** [Markdown guidance with command examples and JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS, the WeCom desktop client, peekaboo, cliclick, swift, and Screen Recording plus Accessibility permissions.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

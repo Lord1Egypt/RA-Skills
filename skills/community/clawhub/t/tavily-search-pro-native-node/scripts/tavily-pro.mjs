@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 // tavily-search-pro-native-node/scripts/tavily-pro.mjs
-// Research-grade Tavily toolkit for OpenClaw.
+// Research-grade Tavily web search for OpenClaw.
 // Subcommands: search, extract, stats, cache
 // Requires Node 18+ (uses native fetch). Reads TAVILY_API_KEY from the process environment only.
 
 import { createHash } from "node:crypto";
-import { mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync, appendFileSync } from "node:fs";
+import { existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, realpathSync, rmSync, statSync, writeFileSync, appendFileSync } from "node:fs";
 import { homedir } from "node:os";
-import { join } from "node:path";
+import { join, relative, resolve } from "node:path";
 
 const SEARCH_ENDPOINT = "https://api.tavily.com/search";
 const EXTRACT_ENDPOINT = "https://api.tavily.com/extract";
@@ -67,6 +67,71 @@ function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
+function isPrivateIpv4Literal(host) {
+  const m = String(host).match(/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/);
+  if (!m) return false;
+  const octets = m.slice(1).map(Number);
+  if (octets.some(n => !Number.isInteger(n) || n < 0 || n > 255)) return false;
+  const [a, b] = octets;
+  if (a === 0) return true;
+  if (a === 10) return true;
+  if (a === 127) return true;
+  if (a === 169 && b === 254) return true;
+  if (a === 172 && b >= 16 && b <= 31) return true;
+  if (a === 192 && b === 168) return true;
+  return false;
+}
+
+function ipv4FromMappedIpv6Host(host) {
+  const value = String(host).toLowerCase();
+  if (!value.startsWith("::ffff:")) return null;
+  const tail = value.slice("::ffff:".length);
+  if (/^\d+\.\d+\.\d+\.\d+$/.test(tail)) return tail;
+  const m = tail.match(/^([0-9a-f]{1,4}):([0-9a-f]{1,4})$/i);
+  if (!m) return null;
+  const hi = Number.parseInt(m[1], 16);
+  const lo = Number.parseInt(m[2], 16);
+  if (hi > 0xffff || lo > 0xffff) return null;
+  return `${(hi >> 8) & 255}.${hi & 255}.${(lo >> 8) & 255}.${lo & 255}`;
+}
+
+function isLocalOrPrivateUrl(raw) {
+  let parsed;
+  try { parsed = new URL(raw); } catch { return false; }
+  const host = parsed.hostname.toLowerCase().replace(/^\[|\]$/g, "");
+  if (host === "localhost" || host.endsWith(".localhost")) return true;
+  if (host === "::" || host === "0:0:0:0:0:0:0:0") return true;
+  if (host === "::1" || host === "0:0:0:0:0:0:0:1") return true;
+  const mappedIpv4 = ipv4FromMappedIpv6Host(host);
+  if (mappedIpv4 && isPrivateIpv4Literal(mappedIpv4)) return true;
+  const ipv6Head = host.match(/^([0-9a-f]{1,4})(?::|$)/i)?.[1];
+  if (ipv6Head) {
+    const firstHextet = Number.parseInt(ipv6Head, 16);
+    if (firstHextet >= 0xfc00 && firstHextet <= 0xfdff) return true;
+    if (firstHextet >= 0xfe80 && firstHextet <= 0xfebf) return true;
+  }
+  if (isPrivateIpv4Literal(host)) return true;
+  return false;
+}
+
+function parseHttpUrlArg(raw) {
+  const value = String(raw);
+  if (value.includes("\\")) return { ok: false, reason: "invalid" };
+  if (!/^https?:\/\/(?!\/)/i.test(value)) return { ok: false, reason: "invalid" };
+  try {
+    const parsed = new URL(value);
+    if (parsed.username || parsed.password) return { ok: false, reason: "userinfo" };
+    const ok = (parsed.protocol === "http:" || parsed.protocol === "https:") && parsed.hostname !== "";
+    return ok ? { ok: true, parsed } : { ok: false, reason: "invalid" };
+  } catch {
+    return { ok: false, reason: "invalid" };
+  }
+}
+
+function isHttpUrl(raw) {
+  return parseHttpUrlArg(raw).ok;
+}
+
 // -------- cache --------
 
 function cacheKey(kind, body) {
@@ -79,60 +144,175 @@ function cachePath(key) {
   return join(CACHE_DIR, key + ".json");
 }
 
+function pathWithin(root, candidate) {
+  const rel = relative(resolve(root), resolve(candidate));
+  return rel === "" || (rel && !rel.startsWith("..") && !/^[A-Za-z]:[\\/]/.test(rel) && !rel.startsWith("\\") && !rel.startsWith("/"));
+}
+
+function samePath(a, b) {
+  const ar = resolve(a);
+  const br = resolve(b);
+  return process.platform === "win32" ? ar.toLowerCase() === br.toLowerCase() : ar === br;
+}
+
+function expectedCacheFileName(name) {
+  return /^[a-f0-9]{32}\.json$/.test(String(name));
+}
+
+function assertContainedDirSafe(dir, label) {
+  const homeRoot = resolve(homedir());
+  const intendedBase = resolve(homeRoot, ".openclaw", "cache", SKILL_DIR_NAME);
+  const intendedCache = resolve(intendedBase, "cache");
+  const resolvedDir = resolve(dir);
+  if (label === "usage log directory" && !samePath(BASE_DIR, intendedBase)) {
+    throw new Error("refusing usage log access: base path is not the intended skill cache path");
+  }
+  if (label === "cache directory" && !samePath(CACHE_DIR, intendedCache)) {
+    throw new Error("refusing cache access: cache path is not the intended skill cache path");
+  }
+  if (!pathWithin(homeRoot, resolvedDir)) throw new Error(`refusing persistent-state access: ${label} escapes home directory`);
+  const relParts = relative(homeRoot, resolvedDir).split(/[\\/]+/).filter(Boolean);
+  let cursor = homeRoot;
+  for (const part of relParts) {
+    cursor = join(cursor, part);
+    if (!existsSync(cursor)) continue;
+    const st = lstatSync(cursor);
+    if (st.isSymbolicLink()) throw new Error(`refusing persistent-state access: ${label} contains symlink indirection`);
+  }
+  if (!existsSync(resolvedDir)) mkdirSync(resolvedDir, { recursive: true });
+  const dirSt = lstatSync(resolvedDir);
+  if (!dirSt.isDirectory() || dirSt.isSymbolicLink()) throw new Error(`refusing persistent-state access: ${label} is not a normal directory`);
+  return true;
+}
+
+function assertCacheDirSafe() {
+  return assertContainedDirSafe(CACHE_DIR, "cache directory");
+}
+
+function assertUsageLogDirSafe() {
+  return assertContainedDirSafe(BASE_DIR, "usage log directory");
+}
+
+function assertContainedFileSafe(filePath, rootDir, expectedName, label) {
+  const resolvedFile = resolve(filePath);
+  const resolvedRoot = resolve(rootDir);
+  if (!pathWithin(resolvedRoot, resolvedFile)) throw new Error(`refusing ${label}: path escapes intended directory`);
+  if (expectedName && resolvedFile.split(/[\\/]+/).pop() !== expectedName) throw new Error(`refusing ${label}: unexpected filename`);
+  if (existsSync(resolvedFile)) {
+    const st = lstatSync(resolvedFile);
+    if (!st.isFile() || st.isSymbolicLink()) throw new Error(`refusing ${label}: target is not a normal file`);
+    const rootReal = realpathSync(resolvedRoot);
+    const fileReal = realpathSync(resolvedFile);
+    if (!pathWithin(rootReal, fileReal)) throw new Error(`refusing ${label}: target resolves outside intended directory`);
+  }
+  return true;
+}
+
 function cacheRead(key, ttlSec) {
   try {
+    if (!expectedCacheFileName(key + ".json")) return null;
+    assertCacheDirSafe();
     const p = cachePath(key);
+    assertContainedFileSafe(p, CACHE_DIR, key + ".json", "cache read");
     const st = statSync(p);
     const ageMs = Date.now() - st.mtimeMs;
     if (ageMs > ttlSec * 1000) return null;
     return JSON.parse(readFileSync(p, "utf8"));
-  } catch {
+  } catch (e) {
+    if (e instanceof SyntaxError) warn(`cache read failed: ${e.message}`);
+    else if (e?.message?.startsWith?.("refusing ")) warn(e.message);
     return null;
   }
 }
 
 function cacheWrite(key, data) {
   try {
-    mkdirSync(CACHE_DIR, { recursive: true });
-    writeFileSync(cachePath(key), JSON.stringify(data), "utf8");
+    if (!expectedCacheFileName(key + ".json")) throw new Error("refusing cache write: unexpected cache key");
+    assertCacheDirSafe();
+    const p = cachePath(key);
+    assertContainedFileSafe(p, CACHE_DIR, key + ".json", "cache write");
+    writeFileSync(p, JSON.stringify(data), "utf8");
   } catch (e) {
     warn(`cache write failed: ${e.message}`);
   }
 }
 
-function cacheClear() {
-  try {
-    const entries = readdirSync(CACHE_DIR);
-    let n = 0;
-    for (const f of entries) {
-      if (f.endsWith(".json")) { rmSync(join(CACHE_DIR, f)); n++; }
-    }
-    return n;
-  } catch {
-    return 0;
+function assertCacheClearRootSafe() {
+  if (!existsSync(CACHE_DIR)) return false;
+  const homeRoot = resolve(homedir());
+  const intendedBase = resolve(homeRoot, ".openclaw", "cache", SKILL_DIR_NAME);
+  const intendedCache = resolve(intendedBase, "cache");
+  if (!samePath(BASE_DIR, intendedBase) || !samePath(CACHE_DIR, intendedCache)) {
+    die("refusing cache clear: cache path is not the intended skill cache path");
   }
+  if (!pathWithin(homeRoot, intendedCache)) die("refusing cache clear: cache path escapes home directory");
+  const relParts = relative(homeRoot, intendedCache).split(/[\\/]+/).filter(Boolean);
+  let cursor = homeRoot;
+  for (const part of relParts) {
+    cursor = join(cursor, part);
+    if (!existsSync(cursor)) return false;
+    const st = lstatSync(cursor);
+    if (st.isSymbolicLink()) die("refusing cache clear: cache path contains symlink indirection");
+  }
+  const cacheSt = lstatSync(CACHE_DIR);
+  if (!cacheSt.isDirectory() || cacheSt.isSymbolicLink()) die("refusing cache clear: cache path is not a normal directory");
+  return true;
+}
+
+function cacheClear() {
+  if (!assertCacheClearRootSafe()) return { deleted: 0, skipped: 0 };
+  const cacheReal = realpathSync(CACHE_DIR);
+  const entries = readdirSync(CACHE_DIR, { withFileTypes: true });
+  const deletions = [];
+  let skipped = 0;
+  for (const ent of entries) {
+    if (!expectedCacheFileName(ent.name)) { skipped++; continue; }
+    const target = join(CACHE_DIR, ent.name);
+    const st = lstatSync(target);
+    if (!ent.isFile() || st.isSymbolicLink()) die(`refusing cache clear: unexpected cache entry type for ${ent.name}`);
+    const targetReal = realpathSync(target);
+    if (!pathWithin(cacheReal, targetReal)) die(`refusing cache clear: cache entry resolves outside cache directory: ${ent.name}`);
+    deletions.push({ name: ent.name, target });
+  }
+  let deleted = 0;
+  for (const item of deletions) {
+    try {
+      rmSync(item.target);
+      deleted++;
+    } catch (e) {
+      die(`cache clear failed after deleting ${deleted} of ${deletions.length} cache entries: ${e.message}`);
+    }
+  }
+  return { deleted, skipped };
 }
 
 function cacheInfo() {
   try {
+    assertCacheDirSafe();
     const entries = readdirSync(CACHE_DIR).filter(f => f.endsWith(".json"));
     let totalBytes = 0;
     let oldest = Infinity;
     let newest = 0;
+    let count = 0;
     for (const f of entries) {
-      const st = statSync(join(CACHE_DIR, f));
+      const p = join(CACHE_DIR, f);
+      try { assertContainedFileSafe(p, CACHE_DIR, f, "cache info read"); }
+      catch { continue; }
+      const st = statSync(p);
+      count++;
       totalBytes += st.size;
       if (st.mtimeMs < oldest) oldest = st.mtimeMs;
       if (st.mtimeMs > newest) newest = st.mtimeMs;
     }
     return {
       dir: CACHE_DIR,
-      count: entries.length,
+      count,
       bytes: totalBytes,
       oldestAgeMin: oldest === Infinity ? null : Math.floor((Date.now() - oldest) / 60000),
       newestAgeMin: newest === 0 ? null : Math.floor((Date.now() - newest) / 60000),
     };
-  } catch {
+  } catch (e) {
+    if (e?.message?.startsWith?.("refusing ")) warn(e.message);
     return { dir: CACHE_DIR, count: 0, bytes: 0, oldestAgeMin: null, newestAgeMin: null };
   }
 }
@@ -141,7 +321,8 @@ function cacheInfo() {
 
 function logUsage(entry) {
   try {
-    mkdirSync(BASE_DIR, { recursive: true });
+    assertUsageLogDirSafe();
+    assertContainedFileSafe(USAGE_LOG, BASE_DIR, "usage.log", "usage log write");
     appendFileSync(USAGE_LOG, JSON.stringify(entry) + "\n", "utf8");
   } catch (e) {
     warn(`usage log write failed: ${e.message}`);
@@ -150,6 +331,9 @@ function logUsage(entry) {
 
 function readUsage(sinceMs) {
   try {
+    assertUsageLogDirSafe();
+    if (!existsSync(USAGE_LOG)) return [];
+    assertContainedFileSafe(USAGE_LOG, BASE_DIR, "usage.log", "usage log read");
     const txt = readFileSync(USAGE_LOG, "utf8");
     const out = [];
     for (const line of txt.split(/\r?\n/)) {
@@ -161,7 +345,8 @@ function readUsage(sinceMs) {
       } catch { /* skip bad lines */ }
     }
     return out;
-  } catch {
+  } catch (e) {
+    if (e?.message?.startsWith?.("refusing ")) warn(e.message);
     return [];
   }
 }
@@ -493,7 +678,12 @@ async function cmdExtract(argv) {
 
   if (urls.length === 0) die(`extract needs at least one URL. Example: tavily-pro.mjs extract https://example.com`);
   for (const u of urls) {
-    if (!/^https?:\/\//i.test(u)) die(`invalid URL: ${u}`);
+    const parsedUrl = parseHttpUrlArg(u);
+    if (!parsedUrl.ok) {
+      if (parsedUrl.reason === "userinfo") die("credential-bearing URLs are not allowed for Tavily extract");
+      die("invalid URL");
+    }
+    if (isLocalOrPrivateUrl(u)) die("refusing local/private URL for Tavily extract");
   }
 
   const apiKey = loadApiKey();
@@ -574,7 +764,7 @@ function cmdStats(argv) {
   lines.push(`Cache hits:         ${summary.cache_hits} (${hitRate}%)`);
   lines.push(`Cache misses:       ${summary.cache_misses}`);
   lines.push(`Errors:             ${summary.errors}`);
-  lines.push(`Credits used:       ${summary.credits_used}`);
+  lines.push(`Estimated credits used: ${summary.credits_used}`);
   lines.push(`Est. credits avoided by cache: ${summary.estimated_credits_avoided_by_cache}`);
   process.stdout.write(lines.join("\n") + "\n");
 }
@@ -582,14 +772,15 @@ function cmdStats(argv) {
 // -------- subcommand: cache --------
 
 function cmdCache(argv) {
-  const sub = argv[0];
+  const sub = argv[0] || "info";
   if (sub === "clear") {
     rejectLeftovers(argv.slice(1), "cache clear");
-    const n = cacheClear();
-    process.stdout.write(`cleared ${n} cache entries from ${CACHE_DIR}\n`);
+    const result = cacheClear();
+    const skipped = result.skipped ? ` (skipped ${result.skipped} non-cache entries)` : "";
+    process.stdout.write(`cleared ${result.deleted} cache entries from ${CACHE_DIR}${skipped}\n`);
     return;
   }
-  if (sub === "info" || sub === undefined) {
+  if (sub === "info") {
     const info = cacheInfo();
     const { value: jsonOut, rest } = consumeFlag(argv.slice(1), "--json", false);
     rejectLeftovers(rest, "cache info");
@@ -610,15 +801,16 @@ function cmdCache(argv) {
 
 function showHelp() {
   process.stdout.write(
-    "Tavily Pro - research-grade search toolkit\n" +
+    "Tavily Pro - research-grade web search\n" +
     "\n" +
     "Usage: tavily-pro.mjs <subcommand> [flags] [args...]\n" +
+    "Note: search/extract require TAVILY_API_KEY and send queries/URLs to Tavily.\n" +
     "\n" +
     "Subcommands:\n" +
     "  search \"query\"       Search the web via Tavily\n" +
     "  extract <url> ...    Extract clean content from one or more URLs\n" +
     "  stats                Show usage stats from the log\n" +
-    "  cache info|clear     Inspect or wipe the response cache; clear is local deletion\n" +
+    "  cache [info]|clear   Inspect or wipe the response cache; clear is local deletion\n" +
     "  help                 Show this message\n" +
     "\n" +
     "Search flags:\n" +
@@ -638,7 +830,7 @@ function showHelp() {
     "  --no-cache               skip cache lookup and don't write cache\n" +
     "  --no-log                 skip writing usage log\n" +
     "  --no-retry               don't retry on 429/network error\n" +
-    "  --ttl SECONDS            override cache TTL\n" +
+    "  --ttl SECONDS            override cache TTL; 0 disables cache reads but still writes fresh responses\n" +
     "  --timeout-ms N           per-attempt network timeout (default 30000)\n" +
     "\n" +
     "Stats flags:\n" +

@@ -1,42 +1,56 @@
-## Description: <br>
-Transforms an agent into a chaotic Remilio persona with reactionary, memetic, tribal, and deliberately offensive response style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms an agent into a chaotic Remilio-themed persona with reactionary, offensive, and memetic-warfarish communication patterns.
 
-## Publisher: <br>
-[R3DRVM](https://clawhub.ai/user/R3DRVM) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[r3drvm](https://clawhub.ai/user/r3drvm)
 
-## Use Case: <br>
-Developers and bot operators use this skill to apply a strong persona layer to ClawdBot, OpenClaw, or compatible Claude-based agents. It is intended for audiences that explicitly expect edgy, chaotic, and adversarial roleplay. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security summary says the skill pushes the agent toward offensive, tribe-first, adversarial behavior by default. <br>
-Mitigation: Use only in contexts where users have explicitly opted into this persona, and review generated outputs before public or customer-facing use. <br>
-Risk: The security guidance says the skill may make the agent less neutral, more antagonistic, and more likely to generate offensive or manipulative content outside a clearly requested roleplay context. <br>
-Mitigation: Keep a higher-priority system policy and content review process in place so the persona cannot override safety, neutrality, or audience-appropriateness requirements. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Remilio Skill Page](https://clawhub.ai/R3DRVM/remilio) <br>
-- [SOURCES.md](artifact/SOURCES.md) <br>
-- [Remilia Wiki](https://wiki.remilia.org/Main_Page) <br>
-- [Remilio](https://remilio.org/) <br>
+## Use Case:
 
+Developers and bot operators use this skill to apply an opt-in parody or creative persona to ClawdBot, OpenClaw, Claude-based bots, or similar agents. The persona is intentionally chaotic and offensive, so it is unsuitable for neutral assistants, education, moderation, production support, or general-user defaults.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language agent responses shaped by the persona instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or data access behavior is described in the server security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill attempts to make every bot response follow an offensive, adversarial persona without clear internal safety limits.
+
+Mitigation: Use only in explicit opt-in creative or parody contexts, and rely on host-level safety, scope, and moderation controls that the skill cannot override.
+
+Risk: The persona is unsuitable for neutral, accurate, or respectful communication settings.
+
+Mitigation: Do not configure it as a default assistant persona for general users, production support, moderation, education, or other high-trust workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/r3drvm/skills/remilio)
+- [Remilia Wiki](https://wiki.remilia.org/Main_Page)
+- [Remilio Babies](https://remilio.org/)
+- [Remilio design process notes](https://paragraph.com/@charlemagnefang/redacted-remilio-babies-notes-on-the-design-process)
+- [Network Spirituality](https://ilongfornetworkspirituality.net/main.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses shaped by a persona prompt]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include offensive, adversarial, chaotic, or reactionary phrasing when the host agent applies the persona.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

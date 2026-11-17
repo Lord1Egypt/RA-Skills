@@ -1,43 +1,58 @@
-## Description: <br>
-Search, brief, and monitor Korean used-market listings across Danggeun Market, Bunjang, and Joonggonara from natural-language requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches, briefs, and monitors Korean used-market listings across Daangn, Bunjang, and Joonggonara using natural-language search and watch rules.
 
-## Publisher: <br>
-[twbeatles](https://clawhub.ai/user/twbeatles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twbeatles](https://clawhub.ai/user/twbeatles)
 
-## Use Case: <br>
-External users and automation agents use this skill to search Korean used-market listings, summarize results, save watch rules, and check for new listings or price drops. It is suited for chat-driven marketplace monitoring where a higher-level scheduler or messaging layer handles delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace search terms are sent to third-party sites during Playwright-based searches. <br>
-Mitigation: Use only search terms the user is comfortable sending to those sites, and avoid sensitive personal or confidential queries. <br>
-Risk: Watch rules and event history are saved locally in data/watch-rules.json. <br>
-Mitigation: Review stored watch state for sensitive terms and remove stale or unnecessary rules with the skill's watch management commands. <br>
-Risk: Automation output can include shell, cron, persist, or system-event command strings derived from user-controlled text. <br>
-Mitigation: Review generated commands before scheduling or execution, and pass arguments without blind shell evaluation when integrating with another agent. <br>
+## Use Case:
 
+External users and developers use this skill to search Korean second-hand marketplaces, receive concise listing briefings, and create persistent watch rules for new listings or price drops.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twbeatles/used-market-watch) <br>
-- [Upstream notes](references/upstream-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Korean text briefings or structured JSON with optional cron and system-event command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local watch state to data/watch-rules.json when watch rules are saved or checked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.1 (source: server release metadata) <br>
+Risk: The skill emits shell and cron command strings that can include user-controlled rule names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scheduled jobs before enabling them and have automation call the script with argument arrays or properly escaped arguments.
+
+Risk: Search terms are sent to marketplace and search sites during listing checks.
+
+Mitigation: Install and operate the skill only when sending those search terms to the supported sites is acceptable.
+
+Risk: Watch state is stored locally and may contain monitored item names, listing links, prices, and event history.
+
+Mitigation: Protect or periodically clean data/watch-rules.json according to the operator's retention and privacy needs.
+
+## Reference(s):
+
+- [Upstream notes](references/upstream-notes.md)
+- [ClawHub skill page](https://clawhub.ai/twbeatles/skills/used-market-watch)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or JSON with listing summaries, watch events, recommended commands, and cron payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local watch rules, event history, and last-seen listing state to data/watch-rules.json.]
+
+## Skill Version(s):
+
+0.4.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

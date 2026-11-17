@@ -1,43 +1,63 @@
-## Description: <br>
-Helps agents create OpenClaw cron tasks that send scheduled WeChat reminders, daily updates, and recurring notifications to a specific user through the openclaw-weixin channel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过 OpenClaw Cron 定时任务向微信用户主动推送消息（天气、提醒、新闻摘要等），支持一次性 at、循环 cron/every 任务，并通过 sessionKey 路由到指定微信用户。
 
-## Publisher: <br>
-[gausshj](https://clawhub.ai/user/gausshj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gausshj](https://clawhub.ai/user/gausshj)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure one-time, cron-based, or interval-based WeChat pushes through an existing openclaw-weixin setup. It is intended for reminders, weather updates, news summaries, and similar scheduled notifications routed by sessionKey. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Session keys, user identifiers, and WeChat account JSON contents can route messages to specific users and should be treated as sensitive. <br>
-Mitigation: Avoid exposing these values in logs, screenshots, shared prompts, or published examples; use placeholders in documentation and review generated commands before execution. <br>
-Risk: A wrong sessionKey or account selection can create a task that sends messages to the wrong recipient or fails silently. <br>
-Mitigation: Confirm the intended recipient and account before creating a cron task, and test routing with a low-impact message when configuring a new user. <br>
-Risk: Recurring cron jobs can continue sending WeChat messages after they are no longer needed. <br>
-Mitigation: Use delete-after-run for one-time reminders and periodically review or delete active cron jobs that are obsolete. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to create scheduled WeChat reminders, daily pushes, and recurring notifications through the openclaw-weixin channel. It helps route automated messages to a specific WeChat user or account after a sessionKey has been established.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gausshj/weixin-cron-push) <br>
-- [WeChat plugin API reference](references/weixin-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OpenClaw cron arguments, sessionKey routing guidance, and WeChat channel setup notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill can create scheduled and recurring WeChat messages to a selected sessionKey.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the recipient sessionKey, schedule, message content, account, and delete-after-run behavior before allowing task creation.
+
+Risk: The skill describes local account and session files that may contain sensitive tokens or identifiers.
+
+Mitigation: Do not expose ~/.openclaw account/session files or bearer tokens in prompts, logs, shared outputs, or screenshots.
+
+Risk: The security review flags broad recurring-message behavior with limited user-control and privacy safeguards.
+
+Mitigation: Prefer explicit user confirmation for recurring tasks and periodically audit active cron jobs with openclaw cron list.
+
+Risk: Installer and plugin commands may pull external packages.
+
+Mitigation: Use pinned or verified installer versions and review plugin provenance before enabling the WeChat channel.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/gausshj/skills/weixin-cron-push)
+- [Weixin API reference](references/weixin-api.md)
+- [WeChat plugin backend](https://ilinkai.weixin.qq.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create one-time or recurring OpenClaw cron task proposals that send messages through WeChat when executed.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

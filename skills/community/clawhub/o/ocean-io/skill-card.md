@@ -1,41 +1,54 @@
-## Description: <br>
-Ocean Io connects an agent to Ocean.io for B2B prospecting, lookalike company discovery, decision-maker identification, and enriched list export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+B2B prospecting and lookalike intelligence powered by Ocean.io, helping agents find similar companies, identify decision-makers, and export enriched prospect lists.
 
-## Publisher: <br>
-[Mokto](https://clawhub.ai/user/Mokto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mokto](https://clawhub.ai/user/mokto)
 
-## Use Case: <br>
-Sales, GTM, and revenue teams use this skill to search Ocean.io company and people data, build lookalike prospect lists, identify decision-makers, and export selected records for outreach workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use an Ocean.io API token to spend account credits through searches and exports. <br>
-Mitigation: Use a revocable or limited API token when available, and approve searches or exports only after reviewing record counts and credit costs. <br>
-Risk: Exports may include personal contact data for outreach workflows. <br>
-Mitigation: Export or use contact data only when the organization has authorization and a lawful business basis. <br>
+## Use Case:
 
+Sales, go-to-market, and business development teams use this skill to build B2B prospect lists, find lookalike accounts, identify relevant contacts, and export enriched company or people records.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Mokto/ocean-io) <br>
-- [Ocean.io MCP Endpoint](https://api.ocean.io/mcp/?api-token=${OCEAN_API_TOKEN}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, CSV export links, Guidance] <br>
-**Output Format:** [Markdown responses with tabular search results, credit estimates, field guidance, and export download URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an Ocean.io API token; searches and exports should include record counts and credit-cost confirmation before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The Ocean.io API token is configured in the MCP URL query string, which can expose credentials through logs, browser history, or copied configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited or dedicated Ocean.io API token, avoid sharing resolved MCP URLs, monitor credit usage, and rotate the token after use in environments that may log URLs.
+
+Risk: Search and export operations consume paid Ocean.io credits at 0.2 credits per returned or exported record.
+
+Mitigation: Confirm record counts and estimated credit cost with the user before running searches or exports, and keep result limits scoped to the requested workflow.
+
+## Reference(s):
+
+- [Ocean Io on ClawHub](https://clawhub.ai/mokto/skills/ocean-io)
+- [mokto publisher profile](https://clawhub.ai/user/mokto)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown tables, natural-language guidance, and download URLs for exported CSV files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search and export actions consume Ocean.io credits; the skill instructs agents to confirm estimated credit cost before searches or exports.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

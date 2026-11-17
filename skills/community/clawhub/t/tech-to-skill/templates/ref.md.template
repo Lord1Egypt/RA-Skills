@@ -1,0 +1,26 @@
+---
+# Reference example - not a rigid template.
+# The executing agent should adapt structure to the evidence.
+# Required: source location, source quote (or marked paraphrase), relation to skill.
+---
+
+# ref-{{N}}: {{Short title}}
+
+## Source location
+
+- **Position in source**: {{section/paragraph/page/URL anchor/file:line}}
+- **Source URL**: {{URL if available}}
+
+## Source quote
+
+<!-- If verbatim from source, use blockquote. If paraphrased, mark as [paraphrased]. -->
+
+> {{Original text fragment. Preserve original format: code blocks, tables, equations, etc.}}
+
+## Context
+
+{{Where does this quote sit in the source's argument? What is the author using it to demonstrate?}}
+
+## Relation to skill
+
+{{Which part of the skill does this evidence support? (What / which How step / which Why claim)}}

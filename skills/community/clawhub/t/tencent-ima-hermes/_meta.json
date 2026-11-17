@@ -1,6 +1,94 @@
 {
-  "ownerId": "kn7bxaw7ke27da90zhqnszs4bn82zzyw",
-  "slug": "tencent-ima-hermes",
-  "version": "1.0.2",
-  "publishedAt": 1780700979926
+  "ownerId": "tencent-ima-openapi",
+  "slug": "ima",
+  "version": "1.1.7",
+  "publishedAt": 1777700000000,
+  "displayName": "腾讯 IMA",
+  "description": "腾讯 IMA OpenAPI：笔记 + 知识库（搜、读、写、上传、收藏网页、新建/移动）",
+  "homepage": "https://ima.qq.com",
+  "upstream": {
+    "name": "腾讯官方 IMA OpenAPI 技能",
+    "version": "1.1.7",
+    "url": "https://app-dl.ima.qq.com/skills/ima-skills-1.1.7.zip",
+    "license": "腾讯 IMA OpenAPI 使用条款（沿用原版约束）",
+    "relationship": "基于原版改造（不是 fork；原版 OpenClaw 风格 frontmatter 已替换为 hermes 风格 + 增加 bin/ima CLI 桥接 + 探针发现 5 个未文档化端点）"
+  },
+  "roadmap": [
+    "删除/移动/重命名相关指令正在开发中（腾讯 OpenAPI 路由层确认无 delete 端点）",
+    "标签管理、知识库分享/成员管理正在评估",
+    "与腾讯桌面端/移动端的 UI 自动化集成（待评估，cookie 凭证需谨慎）"
+  ],
+  "cli": "bin/ima",
+  "apiCoverage": {
+    "documented": 16,
+    "undocumentedButExists": 5,
+    "total": 21,
+    "notes": {
+      "documented": [
+        "openapi/note/v1/list_notebook",
+        "openapi/note/v1/list_note",
+        "openapi/note/v1/search_note",
+        "openapi/note/v1/get_doc_content",
+        "openapi/note/v1/import_doc",
+        "openapi/note/v1/append_doc"
+      ],
+      "knowledge_base_documented": [
+        "openapi/wiki/v1/search_knowledge_base",
+        "openapi/wiki/v1/get_addable_knowledge_base_list",
+        "openapi/wiki/v1/get_knowledge_base",
+        "openapi/wiki/v1/get_knowledge_list",
+        "openapi/wiki/v1/search_knowledge",
+        "openapi/wiki/v1/import_urls",
+        "openapi/wiki/v1/get_media_info",
+        "openapi/wiki/v1/check_repeated_names",
+        "openapi/wiki/v1/create_media",
+        "openapi/wiki/v1/add_knowledge"
+      ],
+      "undocumented_but_exists": [
+        {
+          "endpoint": "openapi/wiki/v1/create_folder",
+          "field": "knowledge_base_id + name",
+          "probe_result": "code:0, 返回 media_id=folder_xxx",
+          "risk": "字段名可能后续调整"
+        },
+        {
+          "endpoint": "openapi/wiki/v1/create_knowledge_base",
+          "field": "type + name",
+          "probe_result": "code:0, 返回 id+name（type: KBT_MINE_KB / KBT_SHARED_KB）",
+          "risk": "字段名可能后续调整"
+        },
+        {
+          "endpoint": "openapi/wiki/v1/move_knowledge",
+          "field": "src_knowledge_base_id + media_id + dst_knowledge_base_id + dst_folder_id",
+          "probe_result": "code:0, move_results={}",
+          "risk": "字段名可能后续调整"
+        },
+        {
+          "endpoint": "openapi/note/v1/add_notebook",
+          "field": "folder_name（不是 name / title）",
+          "probe_result": "code:0, 返回 folder_id+folder_name",
+          "risk": "字段名可能后续调整"
+        },
+        {
+          "endpoint": "openapi/note/v1/rename_notebook",
+          "field": "folder_id + folder_name",
+          "probe_result": "code:310001 'SetNoteBook folder not owner'（端点对，权限不足）",
+          "risk": "需创建者权限；系统笔记本（user_list_default）不可改名"
+        }
+      ]
+    }
+  },
+  "convenienceWrappers": {
+    "upload-file": "封装 SKILL.md 写入类工作流：preflight → check_repeated_names → create_media → cos-upload → add_knowledge。内部严格按原 API 端点，不发明字段。"
+  },
+  "explicitlyNotSupported": {
+    "delete_note": "腾讯 OpenAPI 路由层硬拒绝（RAW=0），端点不存在。需在 ima 客户端手工删除。",
+    "delete_doc": "同上",
+    "delete_kb_item": "同上",
+    "delete_folder": "同上",
+    "rename_folder": "同上",
+    "move_folder": "同上",
+    "tags": "无 add_tag/remove_tag/list_tags 端点",
+    "share": "无 share_kb/invite/change_role 端点"
+  }
 }

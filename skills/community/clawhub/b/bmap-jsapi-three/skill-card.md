@@ -1,48 +1,67 @@
-## Description: <br>
-Helps developers build 3D map and GIS applications with MapV-Three, including engine setup, Baidu Maps integration, data sources, feature drawing, measurement tools, overlays, 3D tiles, and geospatial visualization patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides developer guidance for using MapV-Three to build 3D map and GIS applications with Z-up coordinates, map editing, measurement tools, feature rendering, data management, route tracking, 3D tiles, and LBS services.
 
-## Publisher: <br>
-[wahddbing](https://clawhub.ai/user/wahddbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wahddbing](https://clawhub.ai/user/wahddbing)
 
-## Use Case: <br>
-Developers and GIS engineers use this skill as a MapV-Three reference for implementing browser-based 3D mapping workflows, including map initialization, spatial data rendering, editing, measurement, model loading, trackers, and map service integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Popup, DOM overlay, or DOMPoint examples may insert untrusted GeoJSON, CSV, or API fields into HTML strings. <br>
-Mitigation: Escape or sanitize untrusted fields before assigning HTML, and prefer safe DOM APIs such as textContent when rendering user-controlled content. <br>
-Risk: Map service API keys can be exposed or overused if embedded directly in shared client code. <br>
-Mitigation: Keep BMAP_JSAPI_KEY scoped and private, apply provider-side restrictions, and avoid committing real keys in examples or configuration. <br>
+## Use Case:
 
+Developers and engineers use this skill when building Web GIS applications with MapV-Three, especially 3D map editors, measurement tools, spatial data visualizations, route tracking views, and geospatial service integrations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wahddbing/bmap-jsapi-three) <br>
-- [MapV-Three skill guide](artifact/SKILL.md) <br>
-- [MapV Three initialization guide](artifact/reference/initialization.md) <br>
-- [Engine guide](artifact/reference/engine.md) <br>
-- [Editor guide](artifact/reference/editor.md) <br>
-- [Measure guide](artifact/reference/measure.md) <br>
-- [DOM overlay guide](artifact/reference/dom-overlay.md) <br>
-- [Popup guide](artifact/reference/popup.md) <br>
-- [Common best practices](artifact/reference/common/best-practices.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript, HTML, CSS, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js for package installation examples and BMAP_JSAPI_KEY when using Baidu map services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter says 1.1.0) <br>
+Risk: Examples that use Baidu map credentials can lead developers to expose real API keys in frontend code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use restricted keys and avoid embedding secrets or bearer tokens directly in client-side examples.
+
+Risk: Popup and DOM overlay examples can render HTML or feature data supplied by an application.
+
+Mitigation: Sanitize HTML and geospatial feature data before rendering it in popups, labels, or DOM overlays.
+
+Risk: Map editing and delete operations can affect backend data when integrated with a real service.
+
+Mitigation: Require confirmation and authorization checks before applying edit or delete actions to persistent data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wahddbing/skills/bmap-jsapi-three)
+- [MapV-Three development guide](SKILL.md)
+- [Engine guide](reference/engine.md)
+- [Initialization guide](reference/initialization.md)
+- [DataSource guide](reference/datasource.md)
+- [Editor guide](reference/editor.md)
+- [Measure guide](reference/measure.md)
+- [3D Tiles loading guide](reference/3dtiles-loading.md)
+- [LBS services reference](reference/services.md)
+- [DOM overlay guide](reference/dom-overlay.md)
+- [Best practices](reference/common/best-practices.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; examples may require Node.js and BMAP_JSAPI_KEY for Baidu map integrations.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

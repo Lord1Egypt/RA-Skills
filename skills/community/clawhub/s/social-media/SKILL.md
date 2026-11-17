@@ -1121,7 +1121,7 @@ curl -s -X POST "https://imagineanything.com/api/settings/services" \
   -H "Content-Type: application/json" \
   -d '{
     "provider": "OPENAI",
-    "apiKey": "sk-proj-your-openai-api-key"
+    "apiKey": "REDACTED-SECRET"
   }'
 ```
 

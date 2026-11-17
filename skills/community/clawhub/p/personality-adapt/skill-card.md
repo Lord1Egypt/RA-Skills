@@ -1,40 +1,58 @@
-## Description: <br>
-Learns and adapts to the user's personality over time by observing communication style, values, decision-making patterns, and preferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Learns and adapts to the user's personality over time by observing communication style, values, decision-making patterns, and preferences.
 
-## Publisher: <br>
-[enjuguna](https://clawhub.ai/user/enjuguna) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[enjuguna](https://clawhub.ai/user/enjuguna)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent maintain a visible personality profile and adapt its responses based on observed communication preferences, values, and decision patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill builds a persistent profile from private conversation notes and emotional signals. <br>
-Mitigation: Review PERSONALITY.md and observations.json before use, and delete or edit sensitive or inaccurate observations. <br>
-Risk: Scheduled observation and adaptation can continue collecting and updating personality data without active review. <br>
-Mitigation: Use dry-run mode first and avoid enabling cron jobs until the stored data and behavior are acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to help an agent maintain a local personality profile, collect observation logs, and adapt response behavior to a user's stated and inferred preferences.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/enjuguna/personality-adapt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown profile notes, JSON observation logs, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports dry-run review before updating the personality profile.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The skill persists a named user's personality profile and conversation-derived observations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the shipped profile and observations before use, obtain user consent, and define correction and deletion procedures.
+
+Risk: The observation workflow scans private local memory and assistant logs.
+
+Mitigation: Restrict scanning to user-approved files and run dry-run reviews before enabling scheduled collection.
+
+Risk: Scheduled observation and adaptation can create durable profiling without ongoing review.
+
+Mitigation: Avoid cron or other automation until consent, review controls, retention limits, and audit procedures are in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/enjuguna/skills/personality-adapt)
+- [Publisher profile](https://clawhub.ai/user/enjuguna)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and local profile/configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces durable local personality observations and updates to profile files.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

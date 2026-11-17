@@ -1,41 +1,53 @@
-## Description: <br>
-Convene the Council of High Intelligence - multi-persona deliberation with historical thinkers for deeper analysis of complex problems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convene the Council of High Intelligence - multi-persona deliberation with historical thinkers for deeper analysis of complex problems.
 
-## Publisher: <br>
-[0xNyk](https://clawhub.ai/user/0xNyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[0xnyk](https://clawhub.ai/user/0xnyk)
 
-## Use Case: <br>
-Developers, operators, and other Claude Code users use this skill to route complex questions through a structured multi-persona deliberation and receive a synthesized council verdict with consensus, dissent, unresolved questions, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Installed council agents may have broad file, shell, and web capabilities when the host permits them. <br>
-Mitigation: Install only when persistent council agents are desired, and review requested Bash or web actions before approval. <br>
-Risk: Prompt content may be shared across several subagents during deliberation. <br>
-Mitigation: Avoid putting secrets or sensitive material in /council prompts. <br>
+## Use Case:
 
+External users and developers use this skill to convene multiple historical thinker personas for structured analysis of complex decisions, technical questions, strategy, ethics, product, and risk. It selects a triad, full council, or custom members, then synthesizes a Council Verdict with consensus, dissent, unresolved questions, and next steps.
 
-## Reference(s): <br>
-- [Council ClawHub Release](https://clawhub.ai/0xNyk/council-of-high-intelligence) <br>
-- [Claude Code CLI](https://claude.ai/claude-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown council verdict with structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include member-specific insights, agreement and disagreement points, minority reports, unresolved questions, and recommended next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Council personas may have broad local file, shell, and outbound web access when installed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where that access is acceptable, prefer a sandboxed workspace, and remove Bash, WebSearch, and WebFetch permissions from personas that do not need them.
+
+Risk: Council Verdicts are deliberative recommendations and may contain incorrect, incomplete, or misleading guidance.
+
+Mitigation: Treat outputs as decision support, verify important claims independently, and require human review before acting on high-impact security, legal, financial, or operational recommendations.
+
+## Reference(s):
+
+- [Council skill page](https://clawhub.ai/0xnyk/skills/council-of-high-intelligence)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Council Verdict with problem statement, council composition, consensus position, member insights, agreements, disagreements, minority report, unresolved questions, and recommended next steps.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-Douyin Local Food is a restaurant-operations Agent for Douyin Local Life that provides store diagnosis, dish promotion, group-buying design, content strategy, data analysis, and customer-service script guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Douyin Local Food is a restaurant operations helper for Douyin Local Life that supports store diagnosis, popular dish planning, group-buying package design, content operations, data analysis, and customer-service scripts.
 
-## Publisher: <br>
-[aaronnee520](https://clawhub.ai/user/aaronnee520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaronnee520](https://clawhub.ai/user/aaronnee520)
 
-## Use Case: <br>
-Restaurant operators and marketing teams use this skill to plan Douyin Local Life restaurant operations, including store diagnosis, dish promotion, group-buying packages, content calendars, metric reviews, and customer-service scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The advertised data-analysis command may return fixed sample metrics rather than analyzing the provided file. <br>
-Mitigation: Treat analysis output as sample guidance and verify business metrics against real Douyin reports before making operational decisions. <br>
-Risk: Configuration can contain account, POI, shop, and restaurant business details. <br>
-Mitigation: Avoid storing passwords or API tokens in config files and keep local configuration files out of shared repositories. <br>
-Risk: The skill installs Python dependencies and runs a local script. <br>
-Mitigation: Install dependencies in a virtual environment and review the script before execution. <br>
+## Use Case:
 
+Restaurant operators and marketing teams use this skill to draft Douyin Local Life plans for store launch diagnosis, dish promotion, group-buying offers, content calendars, performance review, and customer-service replies.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/aaronnee520/douyin-local-food) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python CLI commands and JSON report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI writes local JSON outputs for diagnosis, dish plans, group-buying plans, content calendars, analytics reports, and customer-service scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata.yaml) <br>
+Risk: The advertised data-analysis command may produce hard-coded metrics instead of analyzing the user's data file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the analysis output only as a template unless the command is updated and reviewed to parse actual business data.
+
+Risk: Generated report output paths could overwrite existing workspace files.
+
+Mitigation: Run the tool in a controlled workspace and choose output paths that do not conflict with important files.
+
+## Reference(s):
+
+- [Douyin Local Food release page](https://clawhub.ai/aaronnee520/skills/douyin-local-food)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with example shell commands and JSON report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI writes JSON output files for generated reports and plans.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

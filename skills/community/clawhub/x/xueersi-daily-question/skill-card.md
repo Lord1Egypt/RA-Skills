@@ -1,43 +1,49 @@
-## Description: <br>
-Xueersi Daily Question Generator helps an agent create one grade- and subject-specific K-9 practice question in Chinese, Math, or English, then provide an answer, explanation, key concept, and light progress summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates one K-9 practice question by grade and subject in Chinese, math, or English, then provides an answer explanation and progress summary.
 
-## Publisher: <br>
-[zhouzhi-tal](https://clawhub.ai/user/zhouzhi-tal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouzhi-tal](https://clawhub.ai/user/zhouzhi-tal)
 
-## Use Case: <br>
-Students, parents, tutors, and education agents use this skill to generate quick daily practice questions by grade and subject, then give explanations and follow-up practice based on the learner's answer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic prompts such as "give me a question" may invoke the skill when the user did not intend a Xueersi-style tutoring flow. <br>
-Mitigation: Ask for grade and subject, and confirm the tutoring context when the user's intent is ambiguous. <br>
-Risk: The skill text claims Xueersi affiliation, but server evidence does not verify that affiliation. <br>
-Mitigation: Treat the publisher as zhouzhi-tal and avoid presenting the skill as an official Xueersi release unless the affiliation is independently confirmed. <br>
-Risk: Tutoring exchanges may include student details. <br>
-Mitigation: Collect only the grade, subject, answer, and problem context needed for the practice flow; avoid unnecessary sensitive student information. <br>
+## Use Case:
 
+Students, families, and educators use this skill to generate daily K-9 practice questions for Chinese, math, or English, with follow-up answer explanations and light progress tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouzhi-tal/xueersi-daily-question) <br>
-- [Publisher profile](https://clawhub.ai/user/zhouzhi-tal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-formatted tutoring response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a practice question, optional answer choices, answer explanation, key concept, and short progress summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: Generic prompts such as "give me a question" may route to this skill when multiple education skills are installed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a specific invocation that names this skill or the desired grade and subject.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouzhi-tal/skills/xueersi-daily-question)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-like conversational text with question, answer, explanation, and key concept sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for grade and subject before generating a question; summarizes progress after five questions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

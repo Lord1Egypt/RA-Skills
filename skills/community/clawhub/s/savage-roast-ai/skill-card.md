@@ -1,44 +1,59 @@
-## Description: <br>
-Transforms user-provided text into one sharp, humorous, meme-style roast for social sharing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms user-provided text into one sharp, meme-style roast in the detected input language.
 
-## Publisher: <br>
-[tian-0818](https://clawhub.ai/user/tian-0818) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tian-0818](https://clawhub.ai/user/tian-0818)
 
-## Use Case: <br>
-External users and developers use this skill to turn posts, messages, bios, ideas, or conversations into a single roast-style text response for entertainment and social sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Provocative roast outputs can create tone, consent, harassment, or interpersonal safety risks, especially when aimed at real people. <br>
-Mitigation: Configure the skill for explicit user invocation only, use it for entertainment contexts, and avoid targeting real people without consent. <br>
-Risk: User prompts may include private, identifying, minor-related, or sensitive personal information. <br>
-Mitigation: Do not paste private, identifying, minor-related, or sensitive personal information into the skill. <br>
-Risk: Roast-style outputs may drift into abusive, discriminatory, vulgar, or sensitive-topic content. <br>
-Mitigation: Review generated outputs before sharing and preserve the artifact's stated constraints against abusive, discriminatory, vulgar, and sensitive content. <br>
+## Use Case:
 
+Users provide posts, messages, bios, ideas, or short conversations and receive one shareable roast for entertainment. Agents can use the skill when an explicit roast-style response is requested.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tian-0818/savage-roast-ai) <br>
-- [Skill description](artifact/SKILL.md) <br>
-- [Usage examples](artifact/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Single-sentence plain text roast] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Detects Chinese input and otherwise defaults to English; intended output has no labels, sections, or formatting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill is designed to produce harsh insults and may facilitate harassment or inappropriate use against real people, workplaces, minors, or vulnerable users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in consensual entertainment contexts, avoid targeting vulnerable people or protected classes, and review outputs before sharing.
+
+Risk: Broad invocation on arbitrary text can produce a roast where a user expected neutral help.
+
+Mitigation: Invoke it only for explicit roast requests and route sensitive, support, workplace, or safety-related inputs to a non-roasting assistant.
+
+Risk: The prompt asks for aggressive language while also prohibiting abusive, discriminatory, sensitive, and policy-violating content.
+
+Mitigation: Keep moderation active and reject hate, threats, explicit harassment, and sensitive-topic requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tian-0818/skills/savage-roast-ai)
+- [Skill documentation](artifact/SKILL.md)
+- [Usage examples](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text, one sentence]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Detects Chinese input and otherwise defaults to English; no user parameters.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

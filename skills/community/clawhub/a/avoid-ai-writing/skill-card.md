@@ -1,45 +1,63 @@
-## Description: <br>
-Audits drafts for AI-sounding writing patterns and rewrites them into cleaner, more natural prose. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits and rewrites prose to remove AI-writing patterns, with detect-only, edit-in-place, voice-profile, and convergence modes.
 
-## Publisher: <br>
-[conorbronsdon](https://clawhub.ai/user/conorbronsdon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[conorbronsdon](https://clawhub.ai/user/conorbronsdon)
 
-## Use Case: <br>
-Writers, editors, marketers, and developers use this skill to audit pasted text or files they explicitly provide for AI writing patterns, rewrite the content, summarize the changes, and run a second-pass check. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive or unpublished drafts may be processed by the assistant environment if the user pastes them or points the skill at them. <br>
-Mitigation: Use only text and files that are appropriate for the active assistant environment, and avoid submitting confidential drafts unless that environment is approved for them. <br>
-Risk: Rewrites can remove nuance, alter voice, or change meaning while making prose sound less AI-generated. <br>
-Mitigation: Review the rewritten version and second-pass audit before publishing or sending the edited content. <br>
-Risk: Manual installation from an unverified source can expose users to a modified skill package. <br>
-Mitigation: Use the ClawHub install path when possible, or verify the source and files before cloning or copying the skill manually. <br>
+## Use Case:
 
+Writers, editors, marketers, and developers use this skill to audit drafts for AI-like phrasing, rewrite editable passages, or make targeted file edits while preserving quoted, code, table, and attributed content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/conorbronsdon/avoid-ai-writing) <br>
-- [Wikipedia Signs of AI-generated text](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) <br>
-- [brandonwise/humanizer](https://github.com/brandonwise/humanizer) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with four sections: issues found, rewritten version, what changed, and second-pass audit.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Transforms user-provided text or files explicitly pointed to by the user; no external tools or APIs required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: AI-writing signals can produce false positives and should not be treated as proof of authorship.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a writing-quality aid, review the cited flags in context, and avoid consequential authorship judgments based only on its output.
+
+Risk: Edit-in-place mode can change user files.
+
+Mitigation: Review edits before accepting them and keep changes minimal, preserving quoted material, code blocks, tables, and attributed text.
+
+Risk: Rewrites can accidentally add facts, stance, or voice that were not present in the source.
+
+Mitigation: Limit edits to subtraction, clarification, and sharpening of source material; do not add unsourced specifics or invented author persona.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/conorbronsdon/skills/avoid-ai-writing)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [brandonwise/humanizer](https://github.com/brandonwise/humanizer)
+- [blader/humanizer](https://github.com/blader/humanizer)
+- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
+- [Pangram Labs](https://www.pangram.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown audit reports, rewritten prose, edit summaries, and targeted file edits when edit mode is requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Detect, rewrite, and edit modes; optional voice profiles; second-pass audit for rewrite convergence.]
+
+## Skill Version(s):
+
+3.22.3 (source: frontmatter, changelog, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

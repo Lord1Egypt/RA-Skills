@@ -1,45 +1,57 @@
-## Description: <br>
-Analyze and count objects in videos using Google Gemini API (object counting, pedestrian detection, vehicle tracking, and surveillance video analysis). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and count objects in videos using Google Gemini API (object counting, pedestrian detection, vehicle tracking, and surveillance video analysis).
 
-## Publisher: <br>
-[lnj22](https://clawhub.ai/user/lnj22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lnj22](https://clawhub.ai/user/lnj22)
 
-## Use Case: <br>
-Developers and analysts use this skill to prepare Gemini prompts and Python workflows for counting pedestrians, vehicles, cyclists, and other objects in video footage. It is intended for surveillance, traffic, and batch video analysis scenarios where structured count output is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected videos may be uploaded to Google Gemini for processing, which can expose surveillance footage or other sensitive content to a cloud service. <br>
-Mitigation: Use only footage you are authorized to process, avoid regulated or confidential video unless approved, and keep batch jobs scoped to a dedicated folder. <br>
-Risk: The skill relies on a Gemini API key and API usage can incur cost. <br>
-Mitigation: Store GEMINI_API_KEY in an environment variable or secrets manager, restrict access to the key, and monitor API usage and billing. <br>
-Risk: Object counts can be wrong in crowded, low-quality, occluded, or ambiguous video scenes. <br>
-Mitigation: Validate prompts on representative samples, use explicit inclusion and exclusion rules, and review results before using them for operational decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide Gemini-based video analysis workflows for counting pedestrians, vehicles, cyclists, and other visible objects. It is suited to traffic, movement, and batch video counting tasks where prompts and parsing need to produce structured counts.
 
-## Reference(s): <br>
-- [Gemini Video API Docs](https://ai.google.dev/gemini-api/docs/video-understanding) <br>
-- [Gemini Python SDK Quickstart](https://ai.google.dev/gemini-api/docs/quickstart?lang=python) <br>
-- [Google AI Studio API Key](https://aistudio.google.com/apikey) <br>
-- [Gemini API Pricing](https://ai.google.dev/pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with Python code examples and JSON output schemas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance uses GEMINI_API_KEY and may include File API upload, polling, parsing, and batch-processing patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Selected videos are sent to Google Gemini for processing and may contain sensitive or personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the data-sharing path is acceptable, and review retention and data-use policies before upload.
+
+Risk: Surveillance or workplace footage may require consent, legal basis, and organizational approval.
+
+Mitigation: Confirm approvals before processing and consider redaction or anonymization for identifiable people or sensitive scenes.
+
+## Reference(s):
+
+- [Gemini API Video Understanding Documentation](https://ai.google.dev/gemini-api/docs/video-understanding)
+- [Google AI Studio API Key](https://aistudio.google.com/apikey)
+- [Gemini API Pricing](https://ai.google.dev/pricing)
+- [Gemini API Python SDK Quickstart](https://ai.google.dev/gemini-api/docs/quickstart?lang=python)
+- [ClawHub Skill Page](https://clawhub.ai/lnj22/skills/pedestrian-traffic-counting-gemini-count-in-video)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration, JSON, Shell commands]
+
+**Output Format:** [Markdown guidance with Python code examples and JSON output schemas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance includes prompt patterns, upload handling, parsing examples, error handling, and batch processing considerations.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

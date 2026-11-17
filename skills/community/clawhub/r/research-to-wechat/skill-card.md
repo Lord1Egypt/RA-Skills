@@ -1,49 +1,60 @@
-## Description: <br>
-A native research-first pipeline that turns a topic, notes, article, URL, or transcript into a sourced article with an evidence ledger, polished Markdown, inline visuals, cover image, WeChat-ready HTML, browser/API-ready draft assets, and optional multi-platform distribution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns topics, notes, articles, URLs, or transcripts into sourced WeChat-ready articles with research notes, Markdown, HTML, visuals, and optional draft delivery or cross-platform copies.
 
-## Publisher: <br>
-[clarezoe](https://clawhub.ai/user/clarezoe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clarezoe](https://clawhub.ai/user/clarezoe)
 
-## Use Case: <br>
-Writers, operators, creators, and agents use this skill to turn topics, notes, source articles, URLs, transcripts, or PDFs into researched WeChat Official Account draft assets. It supports source capture, evidence-led writing, Markdown polishing, WeChat-compatible HTML rendering, image handling, draft saving, and optional multi-platform distribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use WeChat official-account credentials to upload assets and create or update account drafts. <br>
-Mitigation: Use dedicated or least-privilege credentials where possible, review generated article files and images before upload, and require explicit user intent before saving or updating a draft. <br>
-Risk: Ambiguous requests such as 'save it' may result in account-side draft changes. <br>
-Mitigation: Confirm the target draft action and inspect the manifest, title, digest, cover image, and HTML before invoking draft-save commands. <br>
-Risk: The bundled WeChat fetcher may violate platform scraping expectations because it impersonates a WeChat client. <br>
-Mitigation: Use the fetcher only when authorized and appropriate, respect platform terms, and prefer user-provided source text or approved source exports when possible. <br>
+## Use Case:
 
+Writers, creators, and content teams use this skill to research source material, draft WeChat articles, prepare images and HTML, and optionally save drafts or adapt copy for other platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clarezoe/research-to-wechat) <br>
-- [Skill Genie repository](https://github.com/Fei2-Labs/skill-genie) <br>
-- [Execution contract](references/execution-contract.md) <br>
-- [Capability map](references/capability-map.md) <br>
-- [WeChat compatibility reference](references/wechat-compat.md) <br>
-- [Design guide](references/design-guide.md) <br>
-- [Platform copy specs](references/platform-copy.md) <br>
-- [Author config reference](references/author-config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, HTML, JSON, Images, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Workspace files containing sourced Markdown, WeChat-ready HTML, a JSON manifest, image assets, and optional draft-delivery commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can use WECHAT_APPID and WECHAT_SECRET to upload images and save WeChat drafts; the skill is designed to save drafts, not publish live.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.6 (source: server evidence release version and artifact metadata) <br>
+Risk: Manual installation can execute a downloaded shell script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install through ClawHub instead of using the curl-to-bash command.
+
+Risk: Networked draft saves, image uploads, rewrite review, and cross-platform delivery may expose article material or use account credentials beyond the intended scope.
+
+Mitigation: Confirm the exact text, source material, images, credentials, and destination platforms before enabling these steps; review drafts before delivery.
+
+Risk: Author configuration can append promotional calls to action to drafts.
+
+Mitigation: Review or disable EXTEND.md CTA settings if promotional content is unwanted.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/clarezoe/skills/research-to-wechat)
+- [Declared project homepage](https://github.com/Fei2-Labs/skill-genie)
+- [Execution contract](references/execution-contract.md)
+- [WeChat delivery compatibility](references/wechat-compat.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, HTML, JSON, Images]
+
+**Output Format:** [Article and research files, WeChat-ready HTML, manifest JSON, and cover and inline image assets]
+
+**Output Parameters:** [One article workspace per run]
+
+**Other Properties Related to Output:** [Optional WeChat draft save and platform-specific copy; draft delivery requires account credentials and read-back verification.]
+
+## Skill Version(s):
+
+0.7.2 (source: release metadata, skill frontmatter, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

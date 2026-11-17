@@ -1,42 +1,55 @@
-## Description: <br>
-CLI for AI agents to lookup Pokemon info for their humans. Uses PokeAPI. No auth required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI for AI agents to lookup Pokemon info for their humans. Uses PokeAPI. No auth required.
 
-## Publisher: <br>
-[jeffaf](https://clawhub.ai/user/jeffaf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jeffaf](https://clawhub.ai/user/jeffaf)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent look up Pokemon names, stats, type matchups, and abilities from PokeAPI without authentication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The reviewed bundle only contains documentation, so installed wrapper and script files may not be represented in the reviewed artifact. <br>
-Mitigation: Verify the installed pokemon wrapper and scripts are included from the expected install source and scan them before use. <br>
-Risk: The skill makes network requests to PokeAPI and depends on the availability and accuracy of that external service. <br>
-Mitigation: Use the skill for lookup assistance, review important results before relying on them, and expect failures if PokeAPI is unavailable. <br>
+## Use Case:
 
+External users and agents use this skill to look up Pokemon names, stats, type matchups, and abilities through PokeAPI-backed command examples.
 
-## Reference(s): <br>
-- [ClawHub Pokemon Skill](https://clawhub.ai/jeffaf/pokemon) <br>
-- [PokeAPI](https://pokeapi.co) <br>
-- [PokeAPI v2 Documentation](https://pokeapi.co/docs/v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bash, curl, and jq; makes read-only requests to PokeAPI and requires no authentication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Installation instructions fetch executable code from a mutable external repository that was not fully reviewed in the package evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted source, pin the repository to a reviewed commit, and verify a checksum or signature before making scripts executable.
+
+Risk: The skill depends on local shell execution and required binaries.
+
+Mitigation: Run it in a controlled agent environment with bash, curl, and jq installed, and review commands before deployment.
+
+## Reference(s):
+
+- [PokeAPI](https://pokeapi.co)
+- [PokeAPI v2 Documentation](https://pokeapi.co/docs/v2)
+- [ClawHub skill page](https://clawhub.ai/jeffaf/skills/pokemon)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No authentication required; command usage requires bash, curl, and jq.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

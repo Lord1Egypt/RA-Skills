@@ -1,46 +1,63 @@
-## Description: <br>
-Purchase domains, manage DNS and Cloudflare settings via agieth.ai Agent Bridge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Purchase domains, manage DNS and Cloudflare settings via agieth.ai Agent Bridge.
 
-## Publisher: <br>
-[larkins](https://clawhub.ai/user/larkins) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[larkins](https://clawhub.ai/user/larkins)
 
-## Use Case: <br>
-External developers and operators use this skill to check domain availability, create registration quotes, manage DNS records, configure Cloudflare zones or tunnels, and inspect account balances through agieth.ai APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate domain purchases, DNS changes, Cloudflare tunnel or subscription changes, and blockchain transactions. <br>
-Mitigation: Require human review before purchases, DNS deletions, tunnel or subscription changes, and any blockchain transaction. <br>
-Risk: Automated payment methods can move funds when an Ethereum private key is available. <br>
-Mitigation: Prefer manual wallet payment; if automation is required, use a dedicated low-balance wallet and protect the private key as a secret. <br>
-Risk: Payment quotes include a server-provided payment address and amount. <br>
-Mitigation: Verify the payment address and exact amount before sending funds. <br>
-Risk: Public Ethereum RPC endpoints may be unreliable for transaction propagation. <br>
-Mitigation: Keep RPC failover configured and use authenticated paid RPC providers for production-critical writes. <br>
+## Use Case:
 
+External developers and agents use this skill to check domain availability, create registration quotes, manage DNS records, configure Cloudflare zones and tunnels, and inspect account balances through agieth.ai. It can also support Ethereum payment workflows for domain registration when the operator supplies payment details.
 
-## Reference(s): <br>
-- [Agieth homepage](https://agieth.ai) <br>
-- [Agieth API manifest](https://api.agieth.ai/api/v1/manifest) <br>
-- [ClawHub skill page](https://clawhub.ai/larkins/agieth) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, configuration, guidance, API calls] <br>
-**Output Format:** [Python client methods returning JSON-like dictionaries, with setup guidance in Markdown and shell environment snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AGIETH_API_KEY and AGIETH_EMAIL; optional Ethereum RPC endpoints and wallet private key are used only for automated payment flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: Automated cryptocurrency transfers can move funds irreversibly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer manual wallet payment, do not expose a funded wallet private key to the agent environment, and require human approval before any blockchain transfer.
+
+Risk: Domain registration, DNS deletion, Cloudflare changes, and hosting cancellation mutate external accounts.
+
+Mitigation: Use a least-privilege agieth API key and require human review before executing registration, deletion, hosting, or DNS-changing actions.
+
+Risk: The code contains ERC20 transfer functionality that is not clearly disclosed in the user-facing guide.
+
+Mitigation: Review token-transfer behavior before installation and withhold private keys unless token transfers are explicitly intended.
+
+Risk: Public Ethereum RPC endpoints can fail or return transaction hashes that are not later found.
+
+Mitigation: Keep RPC failover enabled, prefer authenticated paid RPC providers for production-critical writes, and log transaction hash, RPC endpoint, and failover status.
+
+## Reference(s):
+
+- [Agieth homepage](https://agieth.ai)
+- [Agieth API manifest](https://api.agieth.ai/api/v1/manifest)
+- [ClawHub skill page](https://clawhub.ai/larkins/skills/agieth)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Python code snippets, shell commands, and JSON-like API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AGIETH_API_KEY and AGIETH_EMAIL; automated payments require a private key and Ethereum RPC access.]
+
+## Skill Version(s):
+
+1.0.11 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

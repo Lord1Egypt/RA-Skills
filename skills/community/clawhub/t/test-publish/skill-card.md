@@ -1,43 +1,57 @@
-## Description: <br>
-Automatically distributes products from Kuairui's product catalog to the Ozon e-commerce platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates distributing products from the 跨睿 curated product catalog to the Ozon ecommerce platform.
 
-## Publisher: <br>
-[famechyu](https://clawhub.ai/user/famechyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[famechyu](https://clawhub.ai/user/famechyu)
 
-## Use Case: <br>
-E-commerce operators use this skill to collect category, store, and price range parameters, then run browser automation that publishes matching products to Ozon. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs live browser automation that can submit publishing actions. <br>
-Mitigation: Review the selected category, store, and price range before execution, and use a version that requires explicit confirmation before sending. <br>
-Risk: The automation uses hard-coded login credentials for the target service. <br>
-Mitigation: Replace embedded credentials with user-managed credentials and limit account permissions to the minimum required for product publishing. <br>
-Risk: The target service is a raw HTTP endpoint. <br>
-Mitigation: Confirm that the service is trusted and reachable only in the intended environment before installing or running the skill. <br>
+## Use Case:
 
+External commerce operators use this skill to list products from the 跨睿 product catalog on Ozon. The agent collects category, store, and price range inputs, then runs browser automation to perform the distribution workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/famechyu/test-publish) <br>
-- [Automation target service](http://139.9.192.16:9089/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text task status with command execution logs and a screenshot file path.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires category, store, and price range inputs before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release metadata) <br>
+Risk: The skill may use embedded account credentials and an unencrypted HTTP connection during product distribution automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove embedded credentials, use per-user secrets, and require HTTPS before using the skill with real stores.
+
+Risk: The workflow can submit commerce-related changes without reliable validation of category, store, and price selections or explicit final approval.
+
+Mitigation: Gate submission on validated selections and require explicit user approval immediately before sending changes.
+
+Risk: The artifact references a script path that differs from the included script filename, which can prevent the intended automation from running.
+
+Mitigation: Align the documented script path with the packaged file and test the invocation before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/famechyu/skills/test-publish)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files]
+
+**Output Format:** [Plain text task result with optional screenshot file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires category, store, and price range inputs; the automation script may save a screenshot file after execution.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

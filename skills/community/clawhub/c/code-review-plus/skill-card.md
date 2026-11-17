@@ -1,38 +1,54 @@
-## Description: <br>
-Enhanced code review with AI/ML-specific checks, multi-language support, security vulnerability patterns, and integration with automated testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhanced code review with AI/ML-specific checks, multi-language support, security vulnerability patterns, and integration with automated testing.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and engineering reviewers use this skill to produce structured code review feedback across security, performance, correctness, maintainability, testing, AI/ML, and language-specific concerns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence an agent to produce stricter checklist-style review feedback, including security and AI/ML review items. <br>
-Mitigation: Treat the output as review guidance and have project maintainers validate severity, relevance, and requested changes before acting on it. <br>
+## Use Case:
 
+Developers and engineering reviewers use this skill to conduct structured code reviews across security, performance, correctness, maintainability, testing, AI/ML safeguards, and language-specific best practices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/code-review-plus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown review guidance with checklists, severity labels, and optional code or command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable files, install scripts, persistence, or hidden data access were identified in the server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and target metadata) <br>
+Risk: The skill naturally directs an agent to read code under review, which may include sensitive project content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in authorized workspaces and limit review scope to the intended files or changes.
+
+Risk: Checklist-driven review feedback can be incomplete, overstate severity, or miss project-specific context.
+
+Mitigation: Require human reviewer judgment and act only on findings that include specific evidence, severity, rationale, and a concrete fix path.
+
+## Reference(s):
+
+- [Code Review Plus ClawHub Page](https://clawhub.ai/534422530/skills/code-review-plus)
+- [Publisher Profile](https://clawhub.ai/user/534422530)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown review comments, checklists, and suggested code or configuration changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable skill files; output depends on the code under review and reviewer instructions.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

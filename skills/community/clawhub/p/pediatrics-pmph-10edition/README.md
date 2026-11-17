@@ -156,7 +156,7 @@ Answer：
 
 ---
 
-**相关技能：** [新生儿黄疸风险评估与生理性黄疸诊断](neonatal-jaundice-risk-assessment-diagnosis/SKILL.md)
+**相关技能：** [新生儿黄疸风险评估与生理性黄疸诊断](neonatal-jaundice-riREDACTED-SECRET/SKILL.md)
 ```
 
 #### 2. **临床案例分析**
@@ -192,7 +192,7 @@ Answer：
 
 ---
 
-**相关技能：** [新生儿黄疸风险评估与生理性黄疸诊断](neonatal-jaundice-risk-assessment-diagnosis/SKILL.md) · [胆红素脑病分期与诊断](bilirubin-encephalopathy-staging-and-diagnosis/SKILL.md)
+**相关技能：** [新生儿黄疸风险评估与生理性黄疸诊断](neonatal-jaundice-riREDACTED-SECRET/SKILL.md) · [胆红素脑病分期与诊断](bilirubin-encephalopathy-staging-and-diagnosis/SKILL.md)
 ```
 
 #### 3. **考试题目**

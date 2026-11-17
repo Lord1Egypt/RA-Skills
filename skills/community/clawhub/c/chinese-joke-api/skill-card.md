@@ -1,42 +1,59 @@
-## Description: <br>
-Fetches humorous Chinese jokes using third-party APIs such as Hitokoto and JokeAPI, with timeout and error-handling guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches humorous Chinese jokes from third-party APIs such as Hitokoto and jokeapi.cn with timeout and error-handling guidance.
 
-## Publisher: <br>
-[Djttt](https://clawhub.ai/user/Djttt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djttt](https://clawhub.ai/user/djttt)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve Chinese joke text from disclosed third-party APIs and to generate example Bash or Python usage for those APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on third-party joke APIs that may be unavailable, slow, rate limited, or return unexpected responses. <br>
-Mitigation: Use the documented timeouts, error handling, and fallback API behavior before relying on the output in an agent workflow. <br>
-Risk: Using the skill makes outbound network requests to Hitokoto and jokeapi.cn. <br>
-Mitigation: Install and run the skill only in environments where outbound requests to those disclosed services are acceptable. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch and format Chinese joke or humor text from public third-party joke APIs, with examples for Bash and Python usage.
 
-## Reference(s): <br>
-- [Chinese Joke Api on ClawHub](https://clawhub.ai/Djttt/chinese-joke-api) <br>
-- [Hitokoto](https://hitokoto.cn/) <br>
-- [JokeAPI CN](https://jokeapi.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline Bash and Python examples, plus plain-text joke output from API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Network requests use disclosed third-party services and may return variable Chinese-language joke content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill makes outbound HTTPS requests to third-party joke services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where external network access to those services is allowed.
+
+Risk: Returned jokes are untrusted remote content.
+
+Mitigation: Review or filter returned text before using it in sensitive, user-facing, or policy-constrained contexts.
+
+Risk: Third-party APIs may be slow, rate-limited, or unavailable.
+
+Mitigation: Use timeouts, error handling, and fallback behavior as shown in the artifact guidance.
+
+## Reference(s):
+
+- [Chinese Joke Api on ClawHub](https://clawhub.ai/djttt/skills/chinese-joke-api)
+- [Hitokoto](https://hitokoto.cn/)
+- [jokeapi.cn](https://jokeapi.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown guidance with Bash and Python examples; runtime output is plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses outbound HTTPS requests to third-party joke services and formats returned remote content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

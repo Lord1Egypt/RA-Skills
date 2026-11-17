@@ -1,41 +1,56 @@
-## Description: <br>
-Two-stage intelligent filtering and scoring of CRM contacts using keywords and AI, adapting over time to prioritize leads that matter most to you. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Two-stage intelligent filtering and scoring of CRM contacts using keywords and AI, adapting over time to prioritize leads that matter most to the user.
 
-## Publisher: <br>
-[OdinBot33](https://clawhub.ai/user/OdinBot33) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[odinbot33](https://clawhub.ai/user/odinbot33)
 
-## Use Case: <br>
-Sales, relationship-management, and personal CRM users use this skill to filter contact lists, score leads, and prioritize outreach with rule-based checks plus optional Anthropic classification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: AI scoring can send CRM contact details and message subject context to Anthropic. <br>
-Mitigation: Use a dedicated API key, process only contacts you are permitted to send to a third-party model provider, and avoid highly sensitive records unless approved. <br>
-Risk: Rejected contacts may be persisted in learning.json and filtered out in later runs. <br>
-Mitigation: Periodically inspect, edit, or reset learning.json so contacts are not permanently excluded by mistake. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/OdinBot33/oee-crm-intelligence) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+## Use Case:
 
+Agents and CRM users use this skill to filter contact lists, score individual leads, prioritize follow-up, and preserve filtering preferences across runs.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python and bash examples; the runtime script prints text summaries and returns JSON-compatible evaluation records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses learning.json for filtering preferences and persisted rejected contacts; optional Stage 2 scoring requires ANTHROPIC_API_KEY.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Contact metadata may be sent to Anthropic during Stage 2 scoring when ANTHROPIC_API_KEY is configured.
+
+Mitigation: Use the skill only with contacts approved for external processing, run without ANTHROPIC_API_KEY for local Stage 1 filtering, or add explicit opt-in and field minimization before AI scoring.
+
+Risk: Rejected contacts can be persisted in learning.json without strong review or clearing controls.
+
+Mitigation: Review learning.json regularly, provide a process to clear rejected_contacts, and avoid storing confidential or regulated contact data there.
+
+Risk: The release evidence does not provide a license identifier.
+
+Mitigation: Confirm the license with the publisher before commercial reuse or redistribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/odinbot33/skills/oee-crm-intelligence)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash examples; JSON objects, sorted result lists, or text summaries on stdout when the tool is run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stage 2 scoring can call Anthropic when ANTHROPIC_API_KEY is configured; rejected contacts can be persisted in learning.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

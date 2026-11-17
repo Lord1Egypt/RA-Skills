@@ -1,41 +1,58 @@
-## Description: <br>
-Diagnose and fix excessive Postgres egress from application query patterns that fetch more database data than they use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through Neon Lakebase Postgres connections, schema changes, branching, performance, and semantic, full-text, and hybrid search.
 
-## Publisher: <br>
-[andrelandgraf](https://clawhub.ai/user/andrelandgraf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andrelandgraf](https://clawhub.ai/user/andrelandgraf)
 
-## Use Case: <br>
-Developers and engineers use this skill to investigate high Neon or Postgres network transfer costs, identify high-egress queries, and apply query, pagination, caching, and aggregation fixes that reduce database-to-application data transfer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running database setup or diagnostic operations against the wrong production target can affect monitoring history or operational assumptions. <br>
-Mitigation: Confirm the database target and get approval before creating extensions, resetting pg_stat_statements, or collecting production diagnostic data. <br>
-Risk: Changing selected columns, pagination, joins, caching, or aggregation can alter application response behavior. <br>
-Mitigation: Run existing tests, verify API response shapes, and measure pg_stat_statements before and after applying changes. <br>
+## Use Case:
 
+Developers and database engineers use this skill to work with existing Neon Lakebase Postgres projects, including connection setup, schema and branch workflows, performance diagnostics, egress optimization, and search.
 
-## Reference(s): <br>
-- [Neon Network Transfer Documentation](https://neon.com/docs/introduction/network-transfer.md) <br>
-- [Neon Cost Optimization Documentation](https://neon.com/docs/introduction/cost-optimization.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with SQL examples and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; users review and apply suggested database diagnostics and code changes manually.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The security assessment marked the skill suspicious due to reported undisclosed model-based processing and external data transfers; some referenced content was only partially analyzed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installation, review the reported data flows and confirm that sending database content to external cache or AI services fits your privacy requirements; inspect the partially analyzed referenced content.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/andrelandgraf/skills/neon-postgres)
+- [Neon parent skill](https://neon.com/docs/ai/skills/neon/SKILL.md)
+- [Neon connection pooling](https://neon.com/docs/connect/connection-pooling.md)
+- [Neon branching workflows](artifact/references/branching.md)
+- [Postgres egress optimization](artifact/references/egress-optimization.md)
+- [Lakebase full-text search](artifact/references/full-text-search.md)
+- [Lakebase hybrid search](artifact/references/hybrid-search.md)
+- [Lakebase Search with Drizzle](artifact/references/lakebase-search-drizzle.md)
+- [Lakebase vector search](artifact/references/vector-search.md)
+- [Get started with Lakebase Search](https://neon.com/docs/ai/lakebase-search-get-started)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, SQL, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline code and fenced examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples and recommendations are tailored to the database task and project context; no fixed output schema.]
+
+## Skill Version(s):
+
+1.0.9 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

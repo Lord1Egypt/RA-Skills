@@ -1,39 +1,51 @@
-## Description: <br>
-Pywayne Plot provides enhanced spectrogram visualization guidance for time-frequency analysis of IMU, physiological, vibration, and audio signals, including frequency unit conversion, normalization modes, and a MATLAB-style parula colormap. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhanced spectrogram visualization tools for professional time-frequency analysis.
 
-## Publisher: <br>
-[wangyendt](https://clawhub.ai/user/wangyendt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangyendt](https://clawhub.ai/user/wangyendt)
 
-## Use Case: <br>
-Developers and engineers use this skill to create Python spectrogram and time-frequency plotting workflows for sensor, physiological, vibration, and audio signal analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Python plotting snippets may consume memory or display information from user-provided data. <br>
-Mitigation: Review snippets before running them with sensitive or large datasets. <br>
-Risk: Spectrogram settings require a trade-off between time and frequency resolution. <br>
-Mitigation: Review NFFT, noverlap, and sampling-rate choices for the specific signal, and use get_specgram_params when parameter recommendations are needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page for Pywayne Plot](https://clawhub.ai/wangyendt/plot) <br>
+## Use Case:
+
+Developers and engineers use this skill to create spectrograms, spectral analysis views, and time-frequency plots for IMU, physiological, vibration, and audio signals with pywayne.plot.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Example code may be run on sensitive biomedical or business signal data with separately installed pywayne and plotting dependencies.
+
+Mitigation: Trust and vet those dependencies before running examples on sensitive data.
+
+Risk: Poor STFT parameter choices can lead to misleading time-frequency interpretation.
+
+Mitigation: Use get_specgram_params and review the documented time and frequency resolution trade-off for the signal being analyzed.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code] <br>
-**Output Format:** [Markdown with Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces plotting guidance and example snippets for matplotlib and pywayne spectrogram workflows.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [Markdown, Code, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces plotting guidance and example pywayne.plot calls; it does not install or execute dependencies.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

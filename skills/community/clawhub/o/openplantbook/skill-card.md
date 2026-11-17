@@ -1,44 +1,59 @@
-## Description: <br>
-Open Plantbook API workflows with schema-first plant search, detail, and user-plant writes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Open Plantbook API workflows with schema-first plant search, detail, and user-plant writes.
 
-## Publisher: <br>
-[slaxor505](https://clawhub.ai/user/slaxor505) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[slaxor505](https://clawhub.ai/user/slaxor505)
 
-## Use Case: <br>
-External users and developers use this skill to search Open Plantbook, retrieve plant details and care fields, and perform authenticated user-plant workflows through the official API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Credentialed Open Plantbook requests can expose or misuse API keys or OAuth secrets if credentials are printed, stored, or sent to an unexpected host. <br>
-Mitigation: Provide credentials only when needed, keep secrets out of visible output and files, and use the documented official Open Plantbook API host. <br>
-Risk: Create, update, or delete workflows can change a user's Open Plantbook plant data. <br>
-Mitigation: Use OAuth credentials for write workflows and review the target plant and payload before any create, update, or delete request. <br>
-Risk: Plant-care details from the API may be incomplete or inappropriate for safety-critical decisions such as toxicity, food safety, or medical use. <br>
-Mitigation: Treat plant-care output as informational and verify safety-critical claims with an authoritative source before acting on them. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to search Open Plantbook, retrieve plant detail and care fields, and create authenticated user plants through schema-checked API workflows.
 
-## Reference(s): <br>
-- [Open Plantbook API documentation](https://open.plantbook.io/docs/) <br>
-- [Open Plantbook OpenAPI schema](https://open.plantbook.io/api/schema/) <br>
-- [ClawHub Open Plantbook listing](https://clawhub.ai/slaxor505/skills/openplantbook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Concise Markdown guidance with optional shell commands and API result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use credentials and network access for Open Plantbook API calls; raw JSON is included only when requested for debugging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata) <br>
+Risk: The skill can use Open Plantbook credentials and make authenticated requests to open.plantbook.io.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for agents that should access Open Plantbook, keep unrelated secrets out of the optional env file, and use OAuth credentials only for write or sensor workflows.
+
+Risk: Create, update, delete, and sensor upload workflows can change data in an external Open Plantbook account.
+
+Mitigation: Review update/delete requests before approving them and require clear user intent before write actions.
+
+Risk: Plant-care, toxicity, food-safety, medical, or veterinary conclusions may be incomplete if based only on Open Plantbook data.
+
+Mitigation: Treat plant database output as informational care guidance and verify high-stakes safety claims with authoritative sources.
+
+## Reference(s):
+
+- [Open Plantbook documentation](https://open.plantbook.io/docs/)
+- [Open Plantbook OpenAPI schema](https://open.plantbook.io/api/schema/)
+- [Publish notes](references/publish-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and shell command examples when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May issue authenticated Open Plantbook API calls through the packaged helper or schema-aligned direct HTTP workflows.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata; artifact frontmatter metadata reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

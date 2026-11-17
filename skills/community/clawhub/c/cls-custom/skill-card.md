@@ -1,43 +1,58 @@
-## Description: <br>
-自动获取财联社电报自定义关键词新闻并格式化为一句话新闻。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动获取财联社电报自定义关键词新闻并格式化为一句话新闻。
 
-## Publisher: <br>
-[FrankLe1117](https://clawhub.ai/user/FrankLe1117) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frankle1117](https://clawhub.ai/user/frankle1117)
 
-## Use Case: <br>
-External users and analysts use this skill to search 财联社 telegraph news by custom keyword and receive concise, categorized one-sentence news summaries. It can also support optional scheduled news runs when the user explicitly enables the provided cron configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically install the agent-browser dependency during ordinary use. <br>
-Mitigation: Install agent-browser manually through a trusted path before using the skill, or review the install step before allowing it to run. <br>
-Risk: Broad trigger phrases may start browsing or dependency installation unexpectedly. <br>
-Mitigation: Use explicit 财联社-related prompts and review the skill triggers before deployment. <br>
-Risk: The optional cron block can create scheduled automatic runs. <br>
-Mitigation: Enable the cron configuration only when scheduled 财联社 news retrieval is intended. <br>
+## Use Case:
 
+External users and analysts use this skill to search 财联社电报 for user-specified keywords and turn matching items into concise, categorized one-sentence Chinese news briefs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/FrankLe1117/cls-custom) <br>
-- [财联社电报](https://www.cls.cn/telegraph) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown news summary with optional shell command and cron configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs concise factual summaries grouped by topic; browser access and network availability are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can automatically provision `agent-browser` before running.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install `agent-browser` manually from a trusted, pinned source before enabling the skill.
+
+Risk: Broad activation phrases such as generic search requests may trigger browser automation unintentionally.
+
+Mitigation: Narrow activation phrases or require confirmation before generic searches and scheduled runs.
+
+Risk: Browser automation against 财联社 depends on site availability and page structure.
+
+Mitigation: Review generated summaries and update the workflow when the site layout or search behavior changes.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/frankle1117/skills/cls-custom)
+- [财联社电报](https://www.cls.cn/telegraph)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Chinese news summaries, inline shell commands, and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scheduled-run configuration and grouped one-sentence news items.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

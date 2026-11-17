@@ -1,41 +1,53 @@
-## Description: <br>
-Automatically manages memory based on built-in memory-lancedb-local-storage by extracting key points, compressing conversations, writing to MEMORY.md, and updating the vector index after sessions end. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatic memory management based on built-in memory-lancedb-local-storage that auto-extracts key points, compresses conversation, writes to MEMORY.md, and updates the vector index after session ends.
 
-## Publisher: <br>
-[xuchuanyu1](https://clawhub.ai/user/xuchuanyu1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuchuanyu1](https://clawhub.ai/user/xuchuanyu1)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to automatically summarize completed conversations into durable memory entries and refresh the local vector memory index. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Completed conversations may be sent to the configured LLM and persisted into long-term memory without review. <br>
-Mitigation: Use only in workspaces where automatic summarization is acceptable, and add review or approval before memory entries are retained. <br>
-Risk: Sensitive, private, regulated, credential-bearing, or confidential content can be captured in MEMORY.md and indexed for later retrieval. <br>
-Mitigation: Avoid using the skill for sensitive work unless redaction, disable, and deletion controls are in place. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to automatically distill completed conversations into durable memory entries and refresh the local vector memory index for future retrieval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuchuanyu1/memory-auto-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/xuchuanyu1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Markdown memory entries appended to MEMORY.md with a vector index update command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs automatically on session-end and /new hooks, with a manual process-all command and daily scheduled processing when cron support is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and _meta.json) <br>
+Risk: Conversation-derived content may be automatically persisted to MEMORY.md and indexed for later retrieval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in workspaces where retained chat content is appropriate, and add review-before-save, redaction, retention, and deletion controls before use with sensitive data.
+
+Risk: Automatic session and batch triggers can process more conversation history than a user may expect.
+
+Mitigation: Constrain trigger scope and require explicit opt-in for automated processing in environments with confidential, regulated, or untrusted content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xuchuanyu1/skills/memory-auto-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown memory entries appended to MEMORY.md, log text, and OpenClaw memory index commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the current OpenClaw LLM to summarize sessions, classify entries, and update the local vector index.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

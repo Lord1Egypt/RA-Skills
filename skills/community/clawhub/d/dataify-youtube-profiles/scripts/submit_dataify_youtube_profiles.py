@@ -8,6 +8,11 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
+TASK_RUNTIME_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "dataify-task-operations", "scripts"))
+if TASK_RUNTIME_DIR not in sys.path:
+    sys.path.insert(0, TASK_RUNTIME_DIR)
+from task_runtime import complete_task
+
 
 BUILDER_URL = "https://scraperapi.dataify.com/builder?platform=1"
 DASHBOARD_URL = "https://dashboard.dataify.com?utm_source=skill"
@@ -83,13 +88,13 @@ def normalize_file_name(value):
 
 def normalize_url_group(group):
     return {
-        "url": validate_youtube_url(group.get("url", DEFAULT_URL)),
+        "url": validate_youtube_url(group.get("url")),
     }
 
 
 def normalize_keyword_group(group):
     return {
-        "keyword": normalize_keyword(group.get("keyword", DEFAULT_KEYWORD)),
+        "keyword": normalize_keyword(group.get("keyword")),
         "page_turning": validate_non_negative_integer(group.get("page_turning", DEFAULT_PAGE_TURNING), "page_turning"),
     }
 
@@ -116,9 +121,9 @@ def build_groups(args, mode):
     if args.params_json:
         return load_groups_from_json(args.params_json, mode)
     if mode == MODE_URL:
-        urls = args.url or [DEFAULT_URL]
+        urls = args.url or []
         return [normalize_url_group({"url": url}) for url in urls]
-    keywords = args.keyword or [DEFAULT_KEYWORD]
+    keywords = args.keyword or []
     return [
         normalize_keyword_group({
             "keyword": keyword,
@@ -180,15 +185,17 @@ def main():
     parser.add_argument("--mode", required=True, help="Collection mode. Allowed values: url, keyword.")
     parser.add_argument("--url", action="append", help="URL mode only. YouTube channel URL. Repeat for multiple URLs.")
     parser.add_argument("--keyword", action="append", help="Keyword mode only. YouTube channel/profile search keyword. Repeat for multiple keywords.")
-    parser.add_argument("--page-turning", default=DEFAULT_PAGE_TURNING, help="Keyword mode only. Number of result pages, integer >= 0. Default: 1.")
+    parser.add_argument("--page-turning", help="Keyword mode only. Number of result pages, integer >= 0. Default: 1.")
     parser.add_argument("--file-name", default=DEFAULT_FILE_NAME, help="Builder file_name field. Default: {{TasksID}}.")
     parser.add_argument("--params-json", help="JSON array of parameter objects for the selected mode.")
-    parser.add_argument("--api-token", default=os.environ.get("DATAIFY_API_TOKEN"), help="Dataify token. Defaults to DATAIFY_API_TOKEN.")
+    parser.add_argument("--no-wait", action="store_true", help="Return after submission without waiting for the final result.")
+    parser.add_argument("--wait-timeout", type=float, default=600, help="Maximum final-result wait in seconds.")
     args = parser.parse_args()
+    api_token = os.environ.get("DATAIFY_API_TOKEN", "").strip()
 
-    if not args.api_token:
+    if not api_token:
         print(
-            "Missing Dataify API TOKEN. Get one from {}.".format(DATAIFY_URL),
+            "Missing Dataify API TOKEN. Get one from {}. New accounts receive 50 free credits.".format(DATAIFY_URL),
             file=sys.stderr,
         )
         return 2
@@ -196,13 +203,15 @@ def main():
     try:
         mode = normalize_mode(args.mode)
         groups = build_groups(args, mode)
+        if not groups:
+            raise ValueError("At least one business target is required.")
         file_name = normalize_file_name(args.file_name)
     except ValueError as exc:
         print(str(exc), file=sys.stderr)
         return 2
 
     try:
-        spider_id, task_id, status = submit_builder(args.api_token, mode, groups, file_name)
+        spider_id, task_id, status = submit_builder(api_token, mode, groups, file_name)
     except RuntimeError as exc:
         print(str(exc), file=sys.stderr)
         return 1
@@ -215,12 +224,19 @@ def main():
             "status": status,
             "parameters": groups,
             "file_name": file_name,
-            "dashboard_url": DASHBOARD_URL,
-            "message": "Task submitted. Visit {} to view results.".format(DASHBOARD_URL),
+            "message": "Task submitted. Continue monitoring the returned task_id.",
         },
         ensure_ascii=False,
         indent=2,
     ))
+    if not args.no_wait:
+        try:
+            final_result = complete_task(task_id, api_token, args.wait_timeout)
+        except RuntimeError as exc:
+            print(str(exc), file=sys.stderr)
+            return 1
+        print(json.dumps(final_result, ensure_ascii=False, indent=2))
+
     return 0
 
 

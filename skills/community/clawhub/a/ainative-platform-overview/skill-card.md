@@ -1,43 +1,57 @@
-## Description: <br>
-Top-level discovery skill for the AINative platform that helps users understand capabilities, choose APIs or SDKs, get started, and route to specialized skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Top-level discovery skill for the entire AINative platform, helping users understand platform capabilities, choose APIs or SDKs, get started, and route to specialized skills.
 
-## Publisher: <br>
-[urbantech](https://clawhub.ai/user/urbantech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[urbantech](https://clawhub.ai/user/urbantech)
 
-## Use Case: <br>
-Developers and external users use this skill to discover AINative platform capabilities, identify the right API, SDK, MCP server, or related skill, and find setup and authentication entry points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may run listed npm, pip, npx, or curl examples without first confirming that they intend to use the AINative tools. <br>
-Mitigation: Treat commands as setup examples, verify package names, and run them only when intentionally adopting the related AINative component. <br>
-Risk: API keys or JWTs used with the documented endpoints could be exposed in logs or public code. <br>
-Mitigation: Use least-privileged credentials and keep secrets out of logs, repositories, and shared prompts. <br>
+## Use Case:
 
+Developers and engineers use this skill as a top-level guide to the AINative platform when evaluating APIs, SDKs, MCP servers, authentication options, package choices, and related skills for deeper implementation work.
 
-## Reference(s): <br>
-- [AINative API Reference](docs/api/API_REFERENCE.md) <br>
-- [AINative Quick Start](docs/guides/QUICK_START.md) <br>
-- [AINative Authentication Guide](docs/guides/AUTHENTICATION.md) <br>
-- [AINative API Base URL](https://api.ainative.studio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tables and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only routing aid; no direct execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill suggests unpinned package installation commands and global npm installs that can modify a user's development environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify publisher and package versions before installation, prefer pinned versions and project-local installs, and avoid running setup commands with administrator privileges.
+
+Risk: The `zerodb init` setup command may change local project or IDE configuration.
+
+Mitigation: Review what the command will modify before running it and execute it in a controlled project workspace.
+
+## Reference(s):
+
+- [AINative API Base URL](https://api.ainative.studio)
+- [AINative Chat Completions Endpoint](https://api.ainative.studio/v1/public/chat/completions)
+- [API Reference](docs/api/API_REFERENCE.md)
+- [Quick Start](docs/guides/QUICK_START.md)
+- [Authentication Guide](docs/guides/AUTHENTICATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with tables and inline bash, curl, and package-install commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes users to related AINative skills and summarizes package, API, authentication, and setup options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -113,7 +113,8 @@ The exchanges have your KYC data (ID, address). They will notice if you access f
 1. Create account
 2. Complete KYC (ID verification)
 3. Enable API → generate keys with correct permissions
-4. Paste keys into Freqtrade config
+4. Store the keys in an untracked `.env` file, and reference them from
+   `docker-compose.yml` with `${...}` (never paste them into a tracked file)
 5. Done
 
 ### Binance.US Setup Time: 20 minutes

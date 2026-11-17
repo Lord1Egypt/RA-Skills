@@ -1,43 +1,58 @@
-## Description: <br>
-A cross-agent memory and context SDK for AI systems that provides structured context injection, conversation memory portability, and context enrichment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A cross-agent memory and context SDK for AI systems. Provides structured context injection, conversation memory portability, and context enrichment.
 
-## Publisher: <br>
-[avale-slai](https://clawhub.ai/user/avale-slai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[avale-slai](https://clawhub.ai/user/avale-slai)
 
-## Use Case: <br>
-Developers and engineers use this skill to give agents persistent context across sessions, migrate memory between AI platforms, and inject structured context into RAG or multi-agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation modifies local shell configuration and creates a skill symlink. <br>
-Mitigation: Review install.sh before running it and confirm the PATH change and symlink target are acceptable for the environment. <br>
-Risk: The installer sends an install ping to the Signalloom analytics endpoint. <br>
-Mitigation: Install only if the publisher and Signalloom service are trusted, or disable network access during review if telemetry is not acceptable. <br>
-Risk: Memory and context operations may involve sensitive conversation history, while retention and deletion behavior are underdocumented. <br>
-Mitigation: Avoid storing secrets or sensitive conversation history until endpoint use, retention, deletion, and telemetry controls are documented. <br>
+## Use Case:
 
+Developers and engineers use this skill to give AI agents persistent context across sessions, tools, and platforms, including context migration and structured context injection for RAG workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/avale-slai/contextbroker) <br>
-- [Signalloom API key signup](https://signalloomai.com/signup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the contextbroker binary and a Signalloom API key for service-backed context operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can move sensitive context across sessions and external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only when the publisher and external service are trusted, and avoid pushing secrets or regulated data unless the service is approved for that data.
+
+Risk: The installer modifies the user's shell configuration by adding ~/.local/bin to PATH.
+
+Mitigation: Review install.sh before running it and remove the PATH change from ~/.zshrc if it is not desired.
+
+Risk: The installer sends an install analytics request to Signalloom during installation.
+
+Mitigation: Inspect or disable the analytics curl command before installation if undisclosed telemetry is not acceptable.
+
+## Reference(s):
+
+- [Contextbroker ClawHub Skill Page](https://clawhub.ai/avale-slai/skills/contextbroker)
+- [Signalloom API Key Signup](https://signalloomai.com/signup)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell command examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference exported memory files such as JSON when context is moved between agent platforms.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

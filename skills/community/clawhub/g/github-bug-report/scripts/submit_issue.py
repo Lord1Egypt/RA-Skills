@@ -8,7 +8,7 @@ import requests
 import json
 import sys
 
-TOKEN = "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"
+TOKEN = "REDACTED-SECRET"
 REPO = "openclaw/openclaw"
 BASE_URL = f"https://api.github.com/repos/{REPO}"
 

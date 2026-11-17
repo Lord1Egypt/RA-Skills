@@ -1,42 +1,59 @@
-## Description: <br>
-Analyze and optimize a skill for discoverability on ClawHub, skills.sh, and similar skill directories. Use when you need to improve naming, slug choice, SKILL.md descriptions, query coverage, examples, listing conversion, or search visibility before publication, while keeping the skill broadly compatible with OpenClaw, Claude Code, Codex, and Cursor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and optimize a skill for discoverability on ClawHub, skills.sh, and similar skill directories. Use when you need to improve naming, slug choice, SKILL.md descriptions, query coverage, examples, listing conversion, or search visibility before publication, while keeping the skill broadly compatible with OpenClaw, Claude Code, Codex, and Cursor.
 
-## Publisher: <br>
-[fwwdn](https://clawhub.ai/user/fwwdn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fwwdn](https://clawhub.ai/user/fwwdn)
 
-## Use Case: <br>
-Developers and skill publishers use this skill to audit and improve SKILL.md metadata, example prompts, listing copy, and directory search coverage before publishing or updating a skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local Python analyzer against skill folders selected by the user. <br>
-Mitigation: Run it only on skill directories intended for audit and review the report before sharing or acting on it. <br>
-Risk: Suggested slug, name, description, or listing-copy changes can affect how existing users find a published skill. <br>
-Mitigation: Review proposed edits before publishing and plan migration or communication when changing an already indexed slug or name. <br>
+## Use Case:
 
+Developers and skill publishers use this agent skill to audit and improve a skill package's listing discoverability, search recall, metadata, examples, and conversion copy before publication on ClawHub, skills.sh, or similar directories.
 
-## Reference(s): <br>
-- [Optimization Patterns](references/optimization-patterns.md) <br>
-- [Platform Signals](references/platform-signals.md) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/fwwdn/skills-seo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown report with command examples and recommended rewrites] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prioritized findings, platform-specific recommendations, compatibility notes, keyword gaps, and suggested SKILL.md metadata rewrites.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill may propose changes to listing text or metadata that overstate what the target skill actually does.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed copy changes for accuracy and preserve the target skill's real capability boundary before publishing.
+
+Risk: The analyzer is a static discoverability heuristic and can miss runtime defects or end-to-end behavior issues.
+
+Mitigation: Use separate implementation tests or a follow-up quality pass when the concern is functional correctness rather than listing discoverability.
+
+Risk: The skill can edit a target skill when asked, which may alter public-facing publication material.
+
+Mitigation: Review diffs and rerun the analyzer before release; do not publish unreviewed metadata or first-screen rewrites.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/fwwdn/skills/skills-seo)
+- [Platform Signals](references/platform-signals.md)
+- [Optimization Patterns](references/optimization-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown report with optional rewritten skill metadata, SKILL.md copy, analyzer commands, and prioritized action items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit JSON when the bundled analyzer is run with --json.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

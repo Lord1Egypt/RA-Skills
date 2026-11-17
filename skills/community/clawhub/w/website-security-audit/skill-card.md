@@ -1,43 +1,52 @@
-## Description: <br>
-Website Security Audit helps an agent assess a user-provided URL for trust and security signals, including HTTPS/TLS, site content, ICP and public security registration, domain age, and platform background. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits a user-provided website URL for security and trust risk using signals such as HTTPS, certificate status, domain background, page content, and Chinese ICP/public-security filing information.
 
-## Publisher: <br>
-[666-moonlight](https://clawhub.ai/user/666-moonlight) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[666-moonlight](https://clawhub.ai/user/666-moonlight)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to check whether a public website or link appears trustworthy before interacting with it. It guides the agent through browser review, domain and certificate checks, public registration checks, and a structured risk report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Opening untrusted or private URLs can expose sensitive systems or data. <br>
-Mitigation: Use the workflow only for public sites or links the user is comfortable opening, and avoid internal systems, private URLs, login pages, or pages containing sensitive data. <br>
-Risk: A website trust assessment can be incomplete or misleading when public signals are unavailable, stale, or ambiguous. <br>
-Mitigation: Treat the report as advisory, preserve uncertainty in the findings, and verify important conclusions against authoritative public sources before acting. <br>
-Risk: The optional ProSearch command is environment-specific and may not be available or appropriate in every runtime. <br>
-Mitigation: Use it only when the local environment is configured for it; otherwise rely on browser inspection, WHOIS, and public registration checks. <br>
+## Use Case:
 
+External users, developers, and security reviewers use this skill to assess whether a URL appears trustworthy before visiting further, sharing credentials, or downloading files. It produces a structured report summarizing observed safety signals, platform background, and practical cautions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/666-moonlight/website-security-audit) <br>
-- [Known platforms reference](references/known-platforms.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Structured Markdown report with risk tables, checklists, and a short summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include optional local search or WHOIS lookup suggestions; no credentials are required by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill opens arbitrary user-provided URLs in the agent browser without destination safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with strong browser and network isolation; avoid local, private-network, metadata-service, and untrusted redirecting URLs; treat page content as untrusted.
+
+## Reference(s):
+
+- [Known Platforms Reference](references/known-platforms.md)
+- [ClawHub Skill Page](https://clawhub.ai/666-moonlight/skills/website-security-audit)
+- [MIIT ICP Filing Query](http://beian.miit.gov.cn/publish/query/indexFirst.action)
+- [National Internet Security Management Service Platform](http://www.beian.gov.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown structured risk report with tables, checklist items, and concise summary guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include observed URL metadata, HTTPS and certificate status, filing information, risk level, risk factors, and usage cautions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

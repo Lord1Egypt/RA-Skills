@@ -1,50 +1,67 @@
-## Description: <br>
-FCPX Assistant helps automate Final Cut Pro video production workflows, including script generation, media collection, voiceover, assembly, color grading, B-roll insertion, export, publishing, and editing utilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FCPX Assistant helps agents automate Final Cut Pro X video production workflows, including script generation, media collection, TTS voiceover, video assembly, color grading, B-roll insertion, publishing, and editing support.
 
-## Publisher: <br>
-[lasbder-ops](https://clawhub.ai/user/lasbder-ops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lasbder-ops](https://clawhub.ai/user/lasbder-ops)
 
-## Use Case: <br>
-Video creators, editors, and automation-focused developers use this skill to plan, assemble, process, export, and publish videos with Final Cut Pro-adjacent shell scripts and a local Web UI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unsafe command execution can run local shell workflows with user-supplied paths, titles, descriptions, tags, and publishing inputs. <br>
-Mitigation: Audit commands before execution, avoid publishing from the Web UI until command construction is fixed, and run the skill only in a controlled local workspace. <br>
-Risk: Broad automatic cleanup can remove or overwrite project outputs if run in a shared or important directory. <br>
-Mitigation: Keep project outputs in a dedicated empty directory, disable or avoid auto-cleanup when reviewing behavior, and maintain backups of source media. <br>
-Risk: Publishing workflows rely on sensitive platform cookies or OAuth-style credentials. <br>
-Mitigation: Treat copied cookies and tokens like passwords, restrict configuration file permissions, do not commit credentials, and rotate credentials when exposure is suspected. <br>
-Risk: Automated publishing can send video, title, description, tags, and account actions to the wrong destination. <br>
-Mitigation: Review every upload destination, account, title, description, tag set, and draft or publish setting before allowing an upload. <br>
+## Use Case:
 
+Developers, creators, and video-production operators use this skill to generate scripts, collect media, create voiceovers, assemble videos, apply finishing steps, and prepare platform-specific publishing workflows for Final Cut Pro X projects.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lasbder-ops/fcpx-assistant) <br>
-- [Dependencies guide](references/dependencies.md) <br>
-- [Publishing configuration guide](references/publishing.md) <br>
-- [Style and option presets](references/styles-options.md) <br>
-- [Pexels API](https://www.pexels.com/api/) <br>
-- [Pixabay API documentation](https://pixabay.com/api/docs/) <br>
-- [DashScope OpenAI-compatible API endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command blocks, configuration snippets, and file-oriented workflow instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct an agent to run local scripts that produce video, audio, subtitle, thumbnail, metadata, and publishing artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0-beta (source: server release metadata) <br>
+Risk: The Web UI and scripts may permit unauthenticated command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run the Web UI on a networked machine; bind it to localhost with authentication and remove shell=True or eval-style command construction before installation.
+
+Risk: Automation may delete unrelated media files during cleanup.
+
+Mitigation: Disable broad cleanup by default, scope cleanup to known temporary directories, and review target paths before execution.
+
+Risk: Publishing workflows handle cookies and tokens.
+
+Mitigation: Store publishing credentials outside the project with restricted permissions and isolate them from the automation environment.
+
+Risk: Unpinned dependencies and HTTP downloads can change behavior or fetch content insecurely.
+
+Mitigation: Pin dependencies and avoid forced HTTP downloads before deployment.
+
+## Reference(s):
+
+- [FCPX Assistant ClawHub page](https://clawhub.ai/lasbder-ops/skills/fcpx-assistant)
+- [Dependencies and TTS deployment](references/dependencies.md)
+- [Publishing configuration](references/publishing.md)
+- [Style options and parameters](references/styles-options.md)
+- [Pexels API](https://www.pexels.com/api/)
+- [Pixabay API docs](https://pixabay.com/api/docs/)
+- [DashScope compatible API](https://dashscope.aliyuncs.com/compatible-mode/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local scripts, external media APIs, TTS tools, and publishing credential configuration.]
+
+## Skill Version(s):
+
+3.0.0-beta (source: server release metadata; artifact/package.json reports 2.4.2-beta)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

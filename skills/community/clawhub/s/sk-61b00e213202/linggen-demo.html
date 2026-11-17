@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>本命灵根测试 · 测灵摊</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #efe9db;
+    font-family: "Noto Serif SC", "Source Han Serif SC", "SimSun", serif;
+    color: #2b2620; min-height: 100vh;
+    display: flex; justify-content: center; padding: 24px 12px;
+  }
+  .sheet {
+    width: 100%; max-width: 460px; background: #fbf7ec;
+    border: 1px solid #d8c9a3; border-radius: 6px;
+    padding: 28px 26px; position: relative;
+  }
+  .seal { position: absolute; top: 18px; right: 20px; width: 44px; height: 44px;
+    border: 2px solid #a83a2e; border-radius: 4px; color: #a83a2e;
+    font-size: 13px; line-height: 1.15; display: flex; align-items: center;
+    justify-content: center; text-align: center; opacity: .85; padding: 3px; }
+  h1 { font-size: 21px; font-weight: 600; letter-spacing: 6px; text-align: center; }
+  .sub { text-align: center; font-size: 12px; color: #8a7f6a; margin-top: 6px; letter-spacing: 2px; }
+  .dots { display: flex; gap: 7px; justify-content: center; margin: 22px 0 18px; }
+  .dots i { width: 7px; height: 7px; border-radius: 50%; background: #ddd0b0; }
+  .dots i.on { background: #a83a2e; }
+  .opening { font-size: 15px; line-height: 2; white-space: pre-line; text-align: center; padding: 26px 4px; }
+  .qtext { font-size: 17px; line-height: 1.7; margin: 8px 0 20px; text-align: center; }
+  .opt {
+    display: block; width: 100%; text-align: left; cursor: pointer;
+    background: #fffdf7; border: 1px solid #d8c9a3; border-radius: 4px;
+    padding: 14px 16px; margin-bottom: 12px; font-size: 14.5px; line-height: 1.65;
+    font-family: inherit; color: #2b2620; transition: background .12s;
+  }
+  .opt:hover { background: #f4ecd8; border-color: #a83a2e; }
+  .opt b { color: #a83a2e; margin-right: 8px; font-weight: 600; }
+  .btn {
+    display: block; margin: 26px auto 0; padding: 11px 44px; cursor: pointer;
+    background: #a83a2e; color: #fbf7ec; border: none; border-radius: 4px;
+    font-size: 15px; letter-spacing: 4px; font-family: inherit;
+  }
+  .btn:hover { background: #8f2f25; }
+  .btn.ghost { background: transparent; color: #a83a2e; border: 1px solid #a83a2e; }
+  .card { border-top: 2px solid #a83a2e; border-bottom: 2px solid #a83a2e; padding: 18px 2px; }
+  .card .row { display: flex; font-size: 14.5px; line-height: 2.1; }
+  .card .row .k { width: 76px; color: #8a7f6a; flex-shrink: 0; }
+  .card .dao { cursor: pointer; border-bottom: 1px dashed #b3a582; }
+  .verse { font-size: 14px; line-height: 2; padding: 16px 4px; color: #3d362c; text-align: center; }
+  .post { margin-top: 18px; border: 1px dashed #c9b98e; border-radius: 4px; padding: 14px 16px; font-size: 13.5px; line-height: 2; }
+  .post .t { color: #a83a2e; font-size: 12.5px; letter-spacing: 2px; margin-bottom: 2px; }
+  .copy { text-align: center; margin-top: 14px; }
+  .note { text-align: center; font-size: 11px; color: #a09478; margin-top: 18px; line-height: 1.8; }
+  .hidden { display: none; }
+  input.daoin { font-family: inherit; font-size: 14.5px; border: none; border-bottom: 1px solid #a83a2e;
+    background: transparent; width: 120px; color: #2b2620; outline: none; }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="seal">测灵<br>之印</div>
+  <h1>本命灵根</h1>
+  <div class="sub">测灵摊 · 今日之卷 <span id="paper-tag"></span></div>
+  <div class="dots" id="dots"></div>
+  <div id="stage"></div>
+</div>
+<script id="lg-data" type="application/json">{"questions": {"version": "1.0.0", "max_weight": 3, "questions": [{"id": "q1", "text": "坊市里捡到一颗不知名的果子，四下无人", "default": "B", "options": [{"id": "A", "text": "揣进袖子就走，找个没人的地方再慢慢看", "weights": {"metal": 3, "water": 3, "earth": 1, "wood": 1}}, {"id": "B", "text": "当场咬一口。是毒是宝，试了才算数；真要是好东西，回头再种一株", "weights": {"wood": 3, "fire": 3, "water": 1}}, {"id": "C", "text": "不急。先放三天，看它有没有变化再说", "weights": {"earth": 3, "metal": 1, "fire": 1}}]}, {"id": "q2", "text": "同门抢了你先看中的法器，你已经报了价", "default": "A", "options": [{"id": "A", "text": "让他先拿走。东西认人，我耗得起", "weights": {"water": 3, "wood": 3, "earth": 1}}, {"id": "B", "text": "当众把话挑明：这东西我看上了，谁拿走我记谁一辈子", "weights": {"fire": 3, "earth": 3, "metal": 1}}, {"id": "C", "text": "找执事按市契评理。规矩就是规矩，一步不让", "weights": {"metal": 3, "water": 1, "fire": 1}}]}, {"id": "q3", "text": "长老问你要不要去趟秘境，没说报酬", "default": "B", "options": [{"id": "A", "text": "去。没报酬也去，秘境本身就是报酬", "weights": {"wood": 3, "fire": 3, "water": 1}}, {"id": "B", "text": "先把条件问清楚再点头。不明不白的活，不接", "weights": {"earth": 3, "metal": 3, "water": 1}}, {"id": "C", "text": "应下，但留个心眼，走一步看三步", "weights": {"water": 3, "wood": 1, "metal": 1}}]}, {"id": "q4", "text": "你发现带你入门的师兄在偷炼禁制功法", "default": "B", "options": [{"id": "A", "text": "当面问清楚，问完该干什么干什么", "weights": {"fire": 3, "earth": 3, "metal": 1}}, {"id": "B", "text": "装作没看见。他的路是他的，我的路是我的", "weights": {"metal": 3, "water": 3, "wood": 1}}, {"id": "C", "text": "按门规来，该报就报。拖下去，对谁都没好处", "weights": {"wood": 3, "water": 1, "fire": 1}}]}, {"id": "q5", "text": "秘境里救了个不认识的人，后来才知道是对头家的", "default": "B", "options": [{"id": "A", "text": "救都救了，但从此两清，下不为例", "weights": {"earth": 3, "metal": 3, "fire": 1}}, {"id": "B", "text": "既然救了就救到底。人跟人之间，没那么快翻篇", "weights": {"water": 3, "wood": 3, "earth": 1}}, {"id": "C", "text": "先探探他的口风，能多知道点事就多知道点", "weights": {"fire": 3, "water": 1, "wood": 1}}]}, {"id": "q6", "text": "三年苦修卡在瓶颈，有人说有条歪路能绕过去", "default": "B", "options": [{"id": "A", "text": "不试。歪路省下的时间，迟早加倍还回去", "weights": {"metal": 3, "water": 3, "wood": 1}}, {"id": "B", "text": "试。但先把退路想好，别把三年搭进去", "weights": {"wood": 3, "fire": 3, "earth": 1}}, {"id": "C", "text": "不试，也不硬熬。换个法子慢慢磨，总能过去", "weights": {"earth": 3, "water": 1, "fire": 1}}]}, {"id": "q7", "text": "你身上有件秘密法宝，同门随口问起", "default": "A", "options": [{"id": "A", "text": "轻描淡写带过去。日子长着呢，让他们慢慢看见", "weights": {"water": 3, "wood": 3, "fire": 1}}, {"id": "B", "text": "实话实说。法宝认主，藏着掖着才招祸", "weights": {"fire": 3, "earth": 3, "metal": 1}}, {"id": "C", "text": "不答。反问他一句：你从哪听来的？", "weights": {"metal": 3, "earth": 1, "water": 1}}]}, {"id": "q8", "text": "走到岔路口，一条近而险，一条远而稳", "default": "A", "options": [{"id": "A", "text": "走近的。险就险，省下的时间实打实", "weights": {"fire": 3, "earth": 3, "water": 1}}, {"id": "B", "text": "都不急。先坐下看看地形，问问走过的人", "weights": {"metal": 3, "water": 3, "earth": 1}}, {"id": "C", "text": "走远的。快不一定是快，绕过去的那段路不是白走的", "weights": {"wood": 3, "metal": 1, "fire": 1}}]}]}, "papers": {"version": "1.0.0", "seed": 20260917, "papers": [{"paper_id": "P01", "order": ["q4", "q5", "q1", "q2", "q7", "q8", "q6", "q3"], "opt_orders": {"q1": ["A", "C", "B"], "q2": ["B", "A", "C"], "q3": ["B", "A", "C"], "q4": ["A", "C", "B"], "q5": ["C", "B", "A"], "q6": ["B", "A", "C"], "q7": ["B", "C", "A"], "q8": ["C", "A", "B"]}}, {"paper_id": "P02", "order": ["q7", "q5", "q3", "q2", "q4", "q1", "q6", "q8"], "opt_orders": {"q1": ["C", "A", "B"], "q2": ["C", "B", "A"], "q3": ["C", "A", "B"], "q4": ["C", "B", "A"], "q5": ["B", "A", "C"], "q6": ["C", "B", "A"], "q7": ["A", "B", "C"], "q8": ["B", "A", "C"]}}, {"paper_id": "P03", "order": ["q4", "q2", "q5", "q3", "q6", "q7", "q1", "q8"], "opt_orders": {"q1": ["B", "C", "A"], "q2": ["A", "C", "B"], "q3": ["C", "B", "A"], "q4": ["C", "B", "A"], "q5": ["C", "A", "B"], "q6": ["B", "C", "A"], "q7": ["C", "A", "B"], "q8": ["B", "C", "A"]}}, {"paper_id": "P04", "order": ["q5", "q7", "q8", "q4", "q1", "q6", "q2", "q3"], "opt_orders": {"q1": ["B", "A", "C"], "q2": ["B", "A", "C"], "q3": ["A", "C", "B"], "q4": ["C", "A", "B"], "q5": ["A", "C", "B"], "q6": ["C", "B", "A"], "q7": ["C", "A", "B"], "q8": ["A", "B", "C"]}}, {"paper_id": "P05", "order": ["q7", "q4", "q1", "q6", "q3", "q8", "q2", "q5"], "opt_orders": {"q1": ["C", "A", "B"], "q2": ["A", "B", "C"], "q3": ["A", "C", "B"], "q4": ["B", "C", "A"], "q5": ["A", "B", "C"], "q6": ["C", "B", "A"], "q7": ["B", "A", "C"], "q8": ["A", "B", "C"]}}, {"paper_id": "P06", "order": ["q1", "q7", "q8", "q2", "q3", "q4", "q5", "q6"], "opt_orders": {"q1": ["B", "A", "C"], "q2": ["B", "A", "C"], "q3": ["B", "C", "A"], "q4": ["A", "C", "B"], "q5": ["B", "C", "A"], "q6": ["C", "B", "A"], "q7": ["C", "A", "B"], "q8": ["C", "B", "A"]}}, {"paper_id": "P07", "order": ["q2", "q6", "q1", "q3", "q7", "q5", "q8", "q4"], "opt_orders": {"q1": ["C", "A", "B"], "q2": ["C", "B", "A"], "q3": ["A", "B", "C"], "q4": ["B", "C", "A"], "q5": ["B", "C", "A"], "q6": ["A", "C", "B"], "q7": ["B", "A", "C"], "q8": ["B", "A", "C"]}}, {"paper_id": "P08", "order": ["q8", "q4", "q5", "q3", "q1", "q6", "q7", "q2"], "opt_orders": {"q1": ["A", "C", "B"], "q2": ["C", "B", "A"], "q3": ["B", "C", "A"], "q4": ["A", "C", "B"], "q5": ["A", "C", "B"], "q6": ["B", "A", "C"], "q7": ["B", "A", "C"], "q8": ["C", "A", "B"]}}, {"paper_id": "P09", "order": ["q3", "q2", "q1", "q4", "q6", "q5", "q8", "q7"], "opt_orders": {"q1": ["C", "A", "B"], "q2": ["B", "A", "C"], "q3": ["B", "C", "A"], "q4": ["B", "A", "C"], "q5": ["B", "C", "A"], "q6": ["B", "C", "A"], "q7": ["B", "A", "C"], "q8": ["C", "B", "A"]}}, {"paper_id": "P10", "order": ["q8", "q5", "q7", "q3", "q2", "q1", "q4", "q6"], "opt_orders": {"q1": ["A", "C", "B"], "q2": ["C", "A", "B"], "q3": ["C", "A", "B"], "q4": ["A", "C", "B"], "q5": ["C", "A", "B"], "q6": ["B", "C", "A"], "q7": ["A", "C", "B"], "q8": ["A", "C", "B"]}}, {"paper_id": "P11", "order": ["q6", "q2", "q7", "q5", "q3", "q4", "q1", "q8"], "opt_orders": {"q1": ["B", "A", "C"], "q2": ["C", "A", "B"], "q3": ["C", "A", "B"], "q4": ["B", "A", "C"], "q5": ["B", "A", "C"], "q6": ["B", "C", "A"], "q7": ["B", "A", "C"], "q8": ["B", "C", "A"]}}, {"paper_id": "P12", "order": ["q2", "q7", "q6", "q1", "q5", "q4", "q8", "q3"], "opt_orders": {"q1": ["C", "B", "A"], "q2": ["B", "A", "C"], "q3": ["A", "C", "B"], "q4": ["A", "B", "C"], "q5": ["C", "B", "A"], "q6": ["C", "A", "B"], "q7": ["C", "A", "B"], "q8": ["A", "B", "C"]}}, {"paper_id": "P13", "order": ["q4", "q6", "q3", "q2", "q5", "q7", "q1", "q8"], "opt_orders": {"q1": ["A", "B", "C"], "q2": ["A", "B", "C"], "q3": ["A", "C", "B"], "q4": ["B", "C", "A"], "q5": ["B", "A", "C"], "q6": ["C", "B", "A"], "q7": ["C", "B", "A"], "q8": ["A", "C", "B"]}}, {"paper_id": "P14", "order": ["q6", "q7", "q1", "q3", "q2", "q8", "q4", "q5"], "opt_orders": {"q1": ["B", "C", "A"], "q2": ["C", "A", "B"], "q3": ["B", "C", "A"], "q4": ["C", "A", "B"], "q5": ["C", "A", "B"], "q6": ["A", "C", "B"], "q7": ["C", "B", "A"], "q8": ["A", "C", "B"]}}, {"paper_id": "P15", "order": ["q6", "q4", "q3", "q5", "q1", "q7", "q8", "q2"], "opt_orders": {"q1": ["A", "B", "C"], "q2": ["B", "C", "A"], "q3": ["B", "C", "A"], "q4": ["A", "B", "C"], "q5": ["A", "B", "C"], "q6": ["B", "A", "C"], "q7": ["A", "C", "B"], "q8": ["B", "A", "C"]}}, {"paper_id": "P16", "order": ["q7", "q2", "q6", "q1", "q4", "q5", "q8", "q3"], "opt_orders": {"q1": ["A", "B", "C"], "q2": ["A", "B", "C"], "q3": ["B", "C", "A"], "q4": ["C", "A", "B"], "q5": ["A", "B", "C"], "q6": ["C", "A", "B"], "q7": ["A", "C", "B"], "q8": ["C", "B", "A"]}}, {"paper_id": "P17", "order": ["q3", "q8", "q2", "q6", "q7", "q1", "q5", "q4"], "opt_orders": {"q1": ["C", "B", "A"], "q2": ["B", "A", "C"], "q3": ["A", "C", "B"], "q4": ["B", "A", "C"], "q5": ["A", "C", "B"], "q6": ["B", "C", "A"], "q7": ["A", "B", "C"], "q8": ["B", "A", "C"]}}, {"paper_id": "P18", "order": ["q2", "q8", "q5", "q1", "q7", "q6", "q3", "q4"], "opt_orders": {"q1": ["B", "C", "A"], "q2": ["A", "C", "B"], "q3": ["A", "C", "B"], "q4": ["A", "B", "C"], "q5": ["B", "C", "A"], "q6": ["A", "C", "B"], "q7": ["C", "A", "B"], "q8": ["B", "C", "A"]}}, {"paper_id": "P19", "order": ["q7", "q1", "q8", "q5", "q4", "q3", "q2", "q6"], "opt_orders": {"q1": ["C", "B", "A"], "q2": ["C", "B", "A"], "q3": ["C", "B", "A"], "q4": ["C", "B", "A"], "q5": ["C", "B", "A"], "q6": ["C", "B", "A"], "q7": ["A", "C", "B"], "q8": ["B", "A", "C"]}}, {"paper_id": "P20", "order": ["q3", "q4", "q7", "q5", "q2", "q8", "q1", "q6"], "opt_orders": {"q1": ["C", "A", "B"], "q2": ["A", "C", "B"], "q3": ["B", "A", "C"], "q4": ["A", "B", "C"], "q5": ["B", "A", "C"], "q6": ["A", "C", "B"], "q7": ["B", "A", "C"], "q8": ["B", "A", "C"]}}]}, "meta": {"version": "1.0.0", "attr_threshold": 0.48, "mutation": {"max_gap": 0.125, "min_top": 0.7, "min_lead": 0.08}, "fallback_ratio": 0.58, "tie_break": ["metal", "wood", "water", "fire", "earth"], "tier_keys_by_n": {"1": "single", "2": "double", "3": "triple", "4": "quad", "5": "full"}, "stems": ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"], "branches": ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉"], "quality_chars": {"single": "天", "double": "双", "triple": "三", "quad": "四", "full": "全", "ice": "冰", "mist": "雾", "wind": "风", "melt": "熔", "rock": "岩"}, "quality_index": {"single": 0, "double": 1, "triple": 2, "quad": 3, "full": 4, "ice": 5, "mist": 6, "wind": 7, "melt": 8, "rock": 9}, "dao_prefix": ["云", "青", "寒", "素", "沧", "丹", "玄", "清", "白", "墨", "苍", "流"], "dao_suffix": ["间客", "散人", "居士", "道人", "山人", "行者", "闲人", "客"], "banned_words_in_questions": ["金", "木", "水", "火", "土", "灵根", "天灵根", "伪灵根", "双灵根", "三灵根", "变异", "锐金堂", "青梧谷", "沧浪门", "丹霞顶", "磐石堡", "寒玉窟", "云隐坞", "风吟崖", "熔金渊", "玄岩宗", "天赋", "资质", "根骨", "五行", "灵气", "坚持", "果断"], "opening": "坊市角落有张旧木桌，桌后坐着个不肯说师承的测灵人。\n「坐。伸手，答几道题。测什么根，测完自己看。」", "partial_note": "剩下的题，替你答了。", "disclaimer": "本测试为原创虚构作品，仅供娱乐，与任何现实作品及其权利方无关联。", "card_width": 64, "paper_count": 20, "sim_temp_range": [0.9, 4.0]}, "attrs": {"version": "1.0.0", "five_order": ["metal", "wood", "water", "fire", "earth"], "attributes": {"metal": {"name": "金", "sect": "锐金堂", "sect_line": "铸剑炼器，讲规矩，不养闲人"}, "wood": {"name": "木", "sect": "青梧谷", "sect_line": "丹药灵植，慢工出细活"}, "water": {"name": "水", "sect": "沧浪门", "sect_line": "阵法符箓，藏得深"}, "fire": {"name": "火", "sect": "丹霞顶", "sect_line": "火法炼丹，性子急"}, "earth": {"name": "土", "sect": "磐石堡", "sect_line": "防御矿脉，最能熬"}}, "sheng_wo": {"metal": "earth", "wood": "water", "water": "metal", "fire": "wood", "earth": "fire"}, "ke_wo": {"metal": "fire", "wood": "metal", "water": "earth", "fire": "water", "earth": "wood"}, "sheng_ring": [["metal", "water"], ["water", "wood"], ["wood", "fire"], ["fire", "earth"], ["earth", "metal"]], "ke_ring": [["metal", "wood"], ["wood", "earth"], ["earth", "water"], ["water", "fire"], ["fire", "metal"]], "mutations": {"ice": {"name": "冰", "pair": ["metal", "water"], "sect": "寒玉窟"}, "mist": {"name": "雾", "pair": ["water", "wood"], "sect": "云隐坞"}, "wind": {"name": "风", "pair": ["wood", "fire"], "sect": "风吟崖"}, "melt": {"name": "熔", "pair": ["fire", "earth"], "sect": "熔金渊"}, "rock": {"name": "岩", "pair": ["earth", "metal"], "sect": "玄岩宗"}}, "attr_verses": {"metal": "金是锐的。你做事不留余地，一句话能切开一件事。\n只是这世上多数事，需要的不是切开，是慢慢焐。", "wood": "木是慢的。它不争一个春天，它争一百年。\n别人半年见不到结果就换路，\n你能在同一件事上磨三年，还觉得才刚开始。", "water": "水是藏的。你从不把自己摆在明面上，\n但该你知道的事，你一件都不会漏。\n修仙界死得最快的，从来都是站在最亮处的那批人。", "fire": "火是急的。你想明白一件事的瞬间，人已经在做了。\n这性子成事快，坏事也快，\n好在你烧完就知道疼，疼过就记得住。", "earth": "土是稳的。天塌下来你先吃饭，吃完饭再想办法。\n修仙界这一行，活得久比赢一次重要，\n而你天生就懂这个。", "ice": "冰是金与水挤出来的东西。锋利，但锋利得安静。\n你伤人从来不出声，等对方觉出疼，事情已经完了。", "mist": "雾是水与木养出来的东西。不争，不躲，就是让人看不透。\n看不透的人在修仙界活得长，刀都不知道该往哪落。", "wind": "风是木与火烧出来的东西。火借风的势，风借火的命。\n你一动，周围的人跟着动。\n这辈子别停下来，停下来就散了。", "melt": "熔是火与土压出来的东西。外面是石头，里面是岩浆。\n没人看得出你在烧，你也从来不打算让人看出来。", "rock": "岩是土与金长出来的东西。又硬又沉，打不动，也拖不走。\n修仙界常说的一句话：金山银山，不如自家一座山。"}}, "tiers": {"version": "1.0.0", "tiers": {"single": {"name": "天灵根", "quality_char": "天", "index": 0, "speed": 3.0, "foundation": 1, "core": 1, "verse": {"alt": "单属性。灵气入体精纯，吸纳顺畅，\n修炼速度是常人的两三倍，这条路你走得比谁都快。\n但天赋是最靠不住的东西。它让你走得快，\n也让你在第一次真的过不去的时候，一点经验都没有。\n修仙界天资最好的那几个人，走得都不算远。", "fan": "单属性。灵气入体精纯，吸纳顺畅，\n修炼速度是常人的两三倍，这条路你走得比谁都快。\n但天赋是最靠不住的东西。它让你走得快，\n也让你在第一次真的过不去的时候，一点经验都没有。\n这本书里天资最好的那几个人，走得都不算远。"}}, "mutation": {"name": "变异灵根", "quality_char": null, "index": null, "speed": 2.5, "foundation": 1.5, "core": 2, "verse": {"alt": "两个属性同时到了顶，在你身上生出了谱外的东西。\n变异的灵根没有先例可循，典籍里翻不到一条现成的路。\n你不会撞墙，因为根本没有墙给你撞，\n但也没有人告诉你该往哪走。", "fan": "两个属性同时到了顶，在你身上生出了谱外的东西。\n变异的灵根没有先例可循，典籍里翻不到一条现成的路。\n你不会撞墙，因为根本没有墙给你撞，\n但也没有人告诉你该往哪走。"}}, "double": {"name": "双灵根", "quality_char": "双", "index": 1, "speed": 1.5, "foundation": 2, "core": 4, "verse": {"alt": "两个属性。路比单属性宽，也比单属性杂。\n修炼速度是常人的一点五倍，不算慢，也不算快。\n你这一档最容易犯的错，是两头都舍不得，\n到最后两头都只走了一半。\n但你要记得：修仙界里活得最久的，往往不是走得最快的。", "fan": "两个属性。路比单属性宽，也比单属性杂。\n修炼速度是常人的一点五倍，不算慢，也不算快。\n你这一档最容易犯的错，是两头都舍不得，\n到最后两头都只走了一半。\n但你要记得：修仙界里活得最久的，往往不是走得最快的。"}}, "triple": {"name": "三灵根", "quality_char": "三", "index": 2, "speed": 1.0, "foundation": 3, "core": 9, "verse": {"alt": "三个属性。说多不多，说少不少。\n卡在三这一档的人最多——上面够不着天资最好的那批，\n下面又不甘心就这么平庸下去。\n但换个说法：三，就是余地。\n一条路断了，你还有两条。修仙界最不缺的就是断路。", "fan": "三个属性。说多不多，说少不少。\n卡在三这一档的人最多——上面够不着天资最好的那批，\n下面又不甘心就这么平庸下去。\n但换个说法：三，就是余地。\n一条路断了，你还有两条。修仙界最不缺的就是断路。"}}, "quad": {"name": "四灵根（伪灵根）", "quality_char": "四", "index": 3, "speed": 0.6, "foundation": 5, "core": 25, "verse": {"alt": "四个属性。修仙界管这叫伪灵根，名字不好听。\n属性互相掣肘，吸纳灵气事倍功半，\n一辈子卡在炼气期的，绝大多数是你这一档。\n但你要知道，修仙界走到最高处的那些人里，\n有一个测出来的也是这四个字。\n起点不欠你的，路得你自己补。", "fan": "四个属性。修仙界管这叫伪灵根，名字不好听。\n属性互相掣肘，吸纳灵气事倍功半，\n一辈子卡在炼气期的，绝大多数是你这一档。\n但你要知道，这本书里走到最后的那个人，\n测出来的也是这四个字。\n起点不欠你的，路得你自己补。"}}, "full": {"name": "五行俱全（伪灵根）", "quality_char": "全", "index": 4, "speed": 0.5, "foundation": 6, "core": 36, "verse": {"alt": "五行俱全，一个不少。听起来周全，\n其实是五个属性在互相拖后腿，\n修炼速度垫底，筑基的门槛是天灵根的六倍。\n但五行俱全有一个谁都比不了的地方：\n别人只能走一条路，你样样都沾。\n样样都沾的人，不容易死。", "fan": "五行俱全，一个不少。听起来周全，\n其实是五个属性在互相拖后腿，\n修炼速度垫底，筑基的门槛是天灵根的六倍。\n但五行俱全有一个谁都比不了的地方：\n别人只能走一条路，你样样都沾。\n样样都沾的人，不容易死。"}}}, "target_distribution": {"triple": 0.34, "double": 0.24, "quad": 0.24, "single": 0.08, "full": 0.06, "mutation": 0.04}, "distribution_tolerance": 0.08}}</script>
+<script>/* engine.js — 灵根计分引擎（JS 版，与 linggen.py 同源，--verify 对拍） */
+(function (global) {
+  "use strict";
+  var FIVE = ["metal", "wood", "water", "fire", "earth"];
+
+  function crc32(str) {
+    var table = [];
+    for (var n = 0; n < 256; n++) {
+      var c = n;
+      for (var k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+      table[n] = c >>> 0;
+    }
+    var crc = 0xFFFFFFFF;
+    var bytes = unescape(encodeURIComponent(str));
+    for (var i = 0; i < bytes.length; i++)
+      crc = table[(crc ^ bytes.charCodeAt(i)) & 0xFF] ^ (crc >>> 8);
+    return (crc ^ 0xFFFFFFFF) >>> 0;
+  }
+
+  function rhu(x) { return Math.floor(x + 0.5); }
+
+  function isShengPair(attrs, a, b) {
+    return attrs.sheng_ring.some(function (p) {
+      return (p[0] === a && p[1] === b) || (p[0] === b && p[1] === a);
+    });
+  }
+
+  function mutKey(attrs, a, b) {
+    for (var k in attrs.mutations) {
+      var p = attrs.mutations[k].pair;
+      if ((p[0] === a && p[1] === b) || (p[0] === b && p[1] === a)) return k;
+    }
+    return null;
+  }
+
+  function grade(scores, data) {
+    var tie = data.meta.tie_break;
+    var ranked = FIVE.slice().sort(function (a, b) {
+      return (scores[b] - scores[a]) || (tie.indexOf(a) - tie.indexOf(b));
+    });
+    var s1 = scores[ranked[0]], s2 = scores[ranked[1]], s3 = scores[ranked[2]] || 0;
+    var m = data.meta.mutation;
+    if (s1 >= m.min_top && s2 >= m.min_top && s1 - s2 <= m.max_gap &&
+        s2 - s3 >= m.min_lead && isShengPair(data.attrs, ranked[0], ranked[1])) {
+      return { tier: "mutation", mutation: mutKey(data.attrs, ranked[0], ranked[1]),
+               passed: [ranked[0], ranked[1]], main: ranked[0], scores: scores };
+    }
+    var passed = FIVE.filter(function (a) { return scores[a] >= data.meta.attr_threshold; });
+    var top = scores[ranked[0]];
+    if (top > 0) {
+      FIVE.forEach(function (a) {
+        if (scores[a] >= data.meta.fallback_ratio * top && passed.indexOf(a) < 0) passed.push(a);
+      });
+    }
+    if (!passed.length) passed = [ranked[0]];
+    var n = Math.min(passed.length, 5);
+    var main = passed.slice().sort(function (a, b) {
+      return (scores[b] - scores[a]) || (tie.indexOf(a) - tie.indexOf(b));
+    })[0];
+    return { tier: data.meta.tier_keys_by_n[String(n)], mutation: null,
+             passed: passed, main: main, scores: scores };
+  }
+
+  function compute(data, letters, paperNo, configName) {
+    configName = configName || "alt";
+    var paper = data.papers.papers[paperNo - 1];
+    var qmap = {};
+    data.questions.questions.forEach(function (q) { qmap[q.id] = q; });
+    var raw = { metal: 0, wood: 0, water: 0, fire: 0, earth: 0 };
+    var answers = [];
+    for (var i = 0; i < letters.length && i < 8; i++) {
+      var qid = paper.order[i];
+      var oid = paper.opt_orders[qid]["ABC".indexOf(letters[i])];
+      answers.push({ qid: qid, oid: oid });
+    }
+    answers.forEach(function (a) {
+      var opt = qmap[a.qid].options.filter(function (o) { return o.id === a.oid; })[0];
+      for (var k in opt.weights) raw[k] += opt.weights[k];
+    });
+    var cap = 8 * data.questions.max_weight;
+    var scores = {};
+    FIVE.forEach(function (a) { scores[a] = raw[a] / cap; });
+    var g = grade(scores, data);
+    var tier = data.tiers.tiers[g.tier];
+    var attrs = data.attrs, meta = data.meta;
+    var verse, qualityChar, qIndex, qualityName, displayAttrs, sects;
+    if (g.mutation) {
+      verse = tier.verse[configName];
+      var mut = attrs.mutations[g.mutation];
+      qualityChar = meta.quality_chars[g.mutation];
+      qIndex = meta.quality_index[g.mutation];
+      qualityName = "变异灵根";
+      displayAttrs = [mut.name];
+      var sectOrder = FIVE.map(function (a) { return attrs.attributes[a].sect; });
+      sects = [mut.sect].concat(mut.pair.map(function (p) {
+        return attrs.attributes[attrs.sheng_wo[p]].sect;
+      })).sort(function (x, y) { return sectOrder.indexOf(x) - sectOrder.indexOf(y); });
+    } else {
+      verse = tier.verse[configName];
+      qualityChar = tier.quality_char;
+      qIndex = tier.index;
+      qualityName = (g.tier === "quad") ? "四灵根" : (g.tier === "full") ? "五行俱全" : tier.name;
+      displayAttrs = FIVE.filter(function (a) { return g.passed.indexOf(a) >= 0; })
+                         .map(function (a) { return attrs.attributes[a].name; });
+      var mainSect = attrs.attributes[g.main].sect;
+      sects = [mainSect,
+               attrs.attributes[attrs.sheng_wo[g.main]].sect,
+               attrs.attributes[attrs.ke_wo[g.main]].sect];
+    }
+    var slots = FIVE.map(function (a) { return rhu(scores[a] * 9); });
+    var checksum = (qIndex + slots.reduce(function (x, y) { return x + y; }, 0)) % 10;
+    var talisman = qualityChar + "·" + slots.map(function (v) { return meta.stems[v]; }).join("") + "·" + meta.branches[checksum];
+    var norm = talisman.replace(/·/g, "");
+    var dao = meta.dao_prefix[crc32(norm) % meta.dao_prefix.length] +
+              meta.dao_suffix[crc32(norm + "x") % meta.dao_suffix.length];
+    return {
+      tier_key: g.tier, mutation: g.mutation, main_attr: g.main,
+      quality_name: qualityName, display_attrs: displayAttrs,
+      attr_str: displayAttrs.join(""),
+      verse: verse, sects: sects, speed: tier.speed,
+      foundation: tier.foundation, core: tier.core,
+      talisman: talisman, dao: dao, paper_id: paper.paper_id
+    };
+  }
+
+  var api = { compute: compute, crc32: crc32, FIVE: FIVE };
+  if (typeof module !== "undefined" && module.exports) module.exports = api;
+  else global.LingGenEngine = api;
+})(typeof window !== "undefined" ? window : globalThis);
+</script>
+<script>
+(function () {
+  "use strict";
+  var DATA = JSON.parse(document.getElementById("lg-data").textContent);
+  var E = window.LingGenEngine;
+  var paperNo = 2;
+  var letters = [];
+  var step = -1;
+  var stage = document.getElementById("stage");
+  var dots = document.getElementById("dots");
+  var customDao = null;
+  document.getElementById("paper-tag").textContent = DATA.papers.papers[paperNo - 1].paper_id;
+
+  function cnNum(x) {
+    var m = {1:"与天灵根相同",1.5:"天灵根的一点五倍",2:"天灵根的二倍",3:"天灵根的三倍",
+             5:"天灵根的五倍",6:"天灵根的六倍",9:"天灵根的九倍",25:"天灵根的二十五倍",36:"天灵根的三十六倍"};
+    return m[x] || ("天灵根的" + x + "倍");
+  }
+
+  function renderDots() {
+    var h = "";
+    for (var i = 0; i < 8; i++) h += "<i class='" + (i < letters.length || step >= 8 ? "on" : "") + "'></i>";
+    dots.innerHTML = h;
+  }
+
+  function el(html) { var d = document.createElement("div"); d.innerHTML = html; return d; }
+
+  function renderOpening() {
+    renderDots();
+    stage.innerHTML = "";
+    var box = el("<div class='opening'>" + DATA.meta.opening + "</div>" +
+      "<button class='btn' id='go'>开始测灵</button>");
+    stage.appendChild(box);
+    box.querySelector("#go").onclick = function () { step = 0; render(); };
+  }
+
+  function renderQuestion() {
+    renderDots();
+    var paper = DATA.papers.papers[paperNo - 1];
+    var qid = paper.order[step];
+    var q = null;
+    DATA.questions.questions.forEach(function (x) { if (x.id === qid) q = x; });
+    var oidOrder = paper.opt_orders[qid];
+    var h = "<div class='qtext'>" + (step + 1) + " / 8　" + q.text + "</div>";
+    for (var j = 0; j < oidOrder.length; j++) {
+      var oid = oidOrder[j], opt = null;
+      q.options.forEach(function (o) { if (o.id === oid) opt = o; });
+      h += "<button class='opt' data-l='" + j + "'><b>" + "ABC"[j] + "</b>" + opt.text + "</button>";
+    }
+    stage.innerHTML = h;
+    Array.prototype.forEach.call(stage.querySelectorAll(".opt"), function (b) {
+      b.onclick = function () {
+        letters[step] = "ABC"[parseInt(b.getAttribute("data-l"), 10)];
+        step++;
+        if (step >= 8) { step = 8; renderCard(); } else { render(); }
+      };
+    });
+  }
+
+  function renderCard() {
+    renderDots();
+    var r = E.compute(DATA, letters.join(""), paperNo, "alt");
+    var dao = customDao || r.dao;
+    var rows = [
+      ["道号", "<span class='dao' id='dao-edit'>" + dao + "</span>"],
+      ["灵根", r.display_attrs.join(" · ")],
+      ["品质", r.quality_name],
+      ["修炼速度", "× " + r.speed.toFixed(1)],
+      ["筑基", cnNum(r.foundation)],
+      ["结丹", cnNum(r.core)]
+    ];
+    var h = "<div class='card'>";
+    rows.forEach(function (rw) { h += "<div class='row'><span class='k'>" + rw[0] + "</span><span>" + rw[1] + "</span></div>"; });
+    h += "<div class='row'><span class='k'>契合宗门</span><span>" + r.sects.join(" · ") + "</span></div>";
+    h += "</div><div class='verse'>" + r.verse.replace(/\n/g, "<br>") + "</div>";
+    h += "<div class='post'><div class='t'>── 道友帖 ──</div>" +
+         "道号：" + dao + "<br>灵根：" + r.attr_str + " · " + r.quality_name +
+         "<br>契合：" + r.sects.join(" · ") + "<br>帖码：" + r.talisman + "</div>";
+    h += "<div class='copy'><button class='btn ghost' id='copy'>复制转发语</button> " +
+         "<button class='btn ghost' id='retry'>换张卷再测</button></div>";
+    h += "<div class='note'>" + DATA.meta.disclaimer + "</div>";
+    stage.innerHTML = h;
+    var forward = "我的灵根是" + r.attr_str + "，" + r.quality_name + "。你的呢？（" + r.talisman + "）";
+    document.getElementById("copy").onclick = function () {
+      var done = function () { this.textContent = "已复制"; }.bind(this);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(forward).then(done, function () {});
+      } else {
+        var t = document.createElement("textarea");
+        t.value = forward; document.body.appendChild(t); t.select();
+        document.execCommand("copy"); document.body.removeChild(t); done.call(document.getElementById("copy"));
+      }
+    };
+    document.getElementById("retry").onclick = function () {
+      paperNo = paperNo % DATA.papers.papers.length + 1;
+      letters = []; step = -1; customDao = null;
+      document.getElementById("paper-tag").textContent = DATA.papers.papers[paperNo - 1].paper_id;
+      render();
+    };
+    document.getElementById("dao-edit").onclick = function () {
+      var span = this;
+      var input = document.createElement("input");
+      input.className = "daoin"; input.maxLength = 6; input.value = dao;
+      span.replaceWith(input); input.focus(); input.select();
+      function commit() {
+        customDao = input.value.trim() || r.dao;
+        renderCard();
+      }
+      input.onblur = commit;
+      input.onkeydown = function (e) { if (e.key === "Enter") input.blur(); };
+    };
+  }
+
+  function render() {
+    if (step === -1) renderOpening();
+    else if (step < 8) renderQuestion();
+  }
+  render();
+})();
+</script>
+</body>
+</html>

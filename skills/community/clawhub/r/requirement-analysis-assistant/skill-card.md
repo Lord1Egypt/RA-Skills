@@ -1,48 +1,57 @@
-## Description: <br>
-Turns rough business requests, screenshots, sketches, and existing PRDs into structured requirement artifacts such as PRD drafts, clarification questions, prototype outlines, HTML demos, visual requirement analysis, functional details, edge cases, priorities, acceptance criteria, and quality checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns rough business requests, screenshots, sketches, or existing PRDs into structured requirement artifacts such as PRD drafts, clarification questions, prototype outlines, HTML demos, acceptance criteria, and quality checks.
 
-## Publisher: <br>
-[hantao2026](https://clawhub.ai/user/hantao2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hantao2026](https://clawhub.ai/user/hantao2026)
 
-## Use Case: <br>
-Product managers, operations teams, publishing teams, designers, QA, and business stakeholders use this skill to convert vague ideas, screenshots, sketches, and existing PRDs into actionable product requirement artifacts. It is especially suited for web campaigns, recharge centers, user acquisition flows, SDK work, admin configuration, visual requirement analysis, and PRD review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated requirements may be incomplete or inaccurate for payments, rewards, privacy, compliance, SDK behavior, or other business-critical launch rules. <br>
-Mitigation: Have product owners and relevant domain reviewers confirm generated requirements before implementation or launch. <br>
-Risk: Screenshot, sketch, or visual-reference analysis can confuse visible facts with inferred behavior. <br>
-Mitigation: Keep visible facts, inferred requirements, assumptions, and questions to confirm in separate sections. <br>
-Risk: Low-fidelity HTML demos may be mistaken for final visual design or production-ready implementation. <br>
-Mitigation: Use generated demos for requirement alignment and explicitly confirm design, engineering, data, and QA details before production work. <br>
+## Use Case:
 
+Product managers, operations teams, publishing teams, growth teams, designers, QA, and business stakeholders use this skill to convert incomplete requirement inputs into reviewable PRD drafts, requirement breakdowns, prototype outlines, visual analyses, acceptance criteria, and low-fidelity HTML demos.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hantao2026/requirement-analysis-assistant) <br>
-- [README](README.md) <br>
-- [Simplified Chinese README](README.zh-CN.md) <br>
-- [PRD template](references/prd-template.md) <br>
-- [Publishing scenarios](references/publishing-scenarios.md) <br>
-- [Quality checklist](references/quality-checklist.md) <br>
-- [Visual prototype guide](references/visual-prototype.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown prose, structured PRD sections, and self-contained HTML/CSS/JavaScript when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should separate confirmed facts, visible facts, assumptions, inferred requirements, and open questions where relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Generated PRDs, demos, and analyses may be treated as final authority for product, legal, payment, privacy, reward, or compliance decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a drafting aid and require product owners or subject-matter reviewers to confirm requirements, rules, and compliance-sensitive decisions before implementation or sharing.
+
+Risk: The skill may create local PRD or HTML demo files and may incorporate private templates or examples when users provide them.
+
+Mitigation: Review generated files for sensitive or organization-specific content before distribution, publication, or implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hantao2026/skills/requirement-analysis-assistant)
+- [PRD Output Template](references/prd-template.md)
+- [Publishing Scenario Reference](references/publishing-scenarios.md)
+- [Requirement Quality Checklist](references/quality-checklist.md)
+- [Visual And Prototype Reference](references/visual-prototype.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown responses with optional self-contained HTML/CSS/JavaScript files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Separates confirmed facts, visible screenshot facts, assumptions, and open questions; generated demos are intended for requirement alignment rather than final visual design.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

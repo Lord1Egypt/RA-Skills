@@ -1,45 +1,60 @@
-## Description: <br>
-beehiiv API integration with managed OAuth for managing newsletter publications, subscriptions, posts, custom fields, segments, tiers, and automations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage beehiiv publications, subscribers, posts, segments, and automations through a connected Maton account.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-Developers and agents use this skill to access beehiiv through Maton OAuth, manage newsletter publications and subscribers, create or inspect posts, organize fields, segments, tiers, automations, and troubleshoot beehiiv API usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires MATON_API_KEY and can access the connected beehiiv account through Maton. <br>
-Mitigation: Protect MATON_API_KEY, avoid printing it in shared logs, and install the skill only when agent access to beehiiv through Maton is intended. <br>
-Risk: Requests may affect the wrong beehiiv account when multiple Maton beehiiv connections exist. <br>
-Mitigation: Confirm the intended connection and include the Maton-Connection header when more than one beehiiv connection is available. <br>
-Risk: Create, update, or delete operations can change subscribers, posts, fields, segments, tiers, automations, or OAuth connections. <br>
-Mitigation: Require explicit user confirmation before any write or delete request, including the target resource and intended effect. <br>
+## Use Case:
 
+Newsletter operators and developers use this skill to inspect beehiiv publications and subscriptions, manage subscriber data and posts, and configure approved automations.
 
-## Reference(s): <br>
-- [beehiiv Developer Documentation](https://developers.beehiiv.com/) <br>
-- [beehiiv API Reference](https://developers.beehiiv.com/api-reference) <br>
-- [ClawHub skill page](https://clawhub.ai/byungkyu/beehiiv) <br>
-- [Publisher profile](https://clawhub.ai/user/byungkyu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell, Python, JavaScript, HTTP request, and JSON examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include beehiiv API paths, request headers, environment variable setup, pagination notes, error handling guidance, and confirmation requirements for write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Connecting Maton grants access to the user's beehiiv account and newsletter data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm authorization with the user, prefer OAuth and narrow scopes, and revoke unused connections.
+
+Risk: Writes or hosted functions may alter subscriptions, posts, or other newsletter records.
+
+Mitigation: Start with read-only requests and confirm the exact target and effect before each write or function.
+
+Risk: Triggers and destinations can repeatedly send subscriber or other event data to external services.
+
+Mitigation: Get separate approval for each destination, limit event scope and shared fields, and review automated actions before enabling them.
+
+## Reference(s):
+
+- [beehiiv skill release](https://clawhub.ai/byungkyu/skills/beehiiv)
+- [beehiiv API Reference](https://developers.beehiiv.com/api-reference)
+- [Maton](https://maton.ai)
+- [Maton CLI Manual](https://cli.maton.ai/manual)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration instructions]
+
+**Output Format:** [Markdown with command, code, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Maton account, network access, and an authorized beehiiv connection.]
+
+## Skill Version(s):
+
+1.2.6 (source: ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

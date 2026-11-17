@@ -1,13 +1,11 @@
 interface:
-  display_name: "Event Staffing Compliance — W-2 vs 1099 (TempGuru)"
-  short_description: "W-2 vs 1099 event workers, joint-employer liability, COI, wage/hour rules by state"
-  icon_small: "https://mcp.tempguru.co/logo.svg"
-  default_prompt: "Can I use 1099 contractors for my festival staff in California?"
-
+  display_name: "Event Staffing Compliance"
+  short_description: "Assess W-2 staffing compliance risks"
+  default_prompt: "Use $event-staffing-compliance to assess this event staffing arrangement and flag state-specific compliance risks."
 dependencies:
   tools:
     - type: "mcp"
       value: "tempguru-event-staffing"
-      description: "TempGuru MCP server — state-level compliance data"
+      description: "Live TempGuru state compliance and staffing-policy tools"
       transport: "streamable_http"
-      url: "https://mcp.tempguru.co/mcp"
+      url: "https://mcp.tempguru.co/mcp?source=openai-codex"

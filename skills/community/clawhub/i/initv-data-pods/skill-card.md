@@ -1,42 +1,64 @@
-## Description: <br>
-Create and manage modular portable database pods using SQLite metadata and embeddings, including document ingestion and semantic search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage modular portable database pods (SQLite + metadata + embeddings). Includes document ingestion with embeddings for semantic search. Full automation - just ask.
 
-## Publisher: <br>
-[init-v](https://clawhub.ai/user/init-v) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[init-v](https://clawhub.ai/user/init-v)
 
-## Use Case: <br>
-Developers and end users can use this skill to create local portable knowledge-base pods, ingest documents, store notes, run text or semantic searches, and export pods for sharing or transfer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist, modify, and export private documents in a local knowledge base with weak guardrails. <br>
-Mitigation: Use narrow reviewed folders, avoid sensitive or confidential documents until controls are improved, and review exports before sharing. <br>
-Risk: The advertised consent layer may not enforce access for normal queries. <br>
-Mitigation: Do not rely on consent commands as the only control; verify pod contents and access paths before querying or sharing data. <br>
-Risk: Raw SQL and archive import/export features can expose or alter pod data. <br>
-Mitigation: Run raw SQL only for intentional administration and inspect ZIP, .vpod, and Markdown exports before reuse or distribution. <br>
+## Use Case:
 
+Developers and agent users use this skill to create local SQLite-backed knowledge pods, ingest documents, run text or semantic search, and export selected pod data for sharing or LLM context.
 
-## Reference(s): <br>
-- [Agent Consent Layer Technical Spec](REFERENCES/consent-layer-spec.md) <br>
-- [Data Pods Usage Reference](references/usage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and local file outputs from Python scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and modifies local SQLite pods, metadata files, embeddings, and exported ZIP or .vpod archives.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: Advertised consent protections are not enforced for all pod operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every command before execution and manually confirm that the requested pod and agent access are intended.
+
+Risk: Pod exports and LLM-ready Markdown can contain the full sensitive contents of a selected pod.
+
+Mitigation: Avoid health, personal, client, or confidential data until clearer export warnings and sharing controls are added; treat exported files as sensitive.
+
+Risk: Archive import and pod-name handling have weak safeguards.
+
+Mitigation: Import only trusted .vpod files and verify destination names and paths before running import commands.
+
+Risk: Raw SQL query controls are available.
+
+Mitigation: Prefer text and semantic search; run SQL only after reviewing the statement and limiting access to non-sensitive pods.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/init-v/skills/initv-data-pods)
+- [Data Pods GitHub repository](https://github.com/init-v/data-pods)
+- [Agent Consent Layer Technical Spec](REFERENCES/consent-layer-spec.md)
+- [Data Pods Usage Reference](references/usage.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create local SQLite pod directories, .vpod archives, zip exports, and LLM-ready Markdown exports.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

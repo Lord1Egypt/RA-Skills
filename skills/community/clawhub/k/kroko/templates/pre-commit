@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# KROKO pre-commit hook. Installed by install-hook.sh; edit that file, not this one.
+set -euo pipefail
+
+KROKO_HOME="${KROKO_HOME:-@KROKO_HOME@}"
+GATE="$KROKO_HOME/bin/kroko"
+
+if [ ! -x "$GATE" ]; then
+    echo "kroko: gate not found at $GATE" >&2
+    echo "kroko: set KROKO_HOME or reinstall with install-hook.sh" >&2
+    exit 1
+fi
+
+staged=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.py$' || true)
+if [ -z "$staged" ]; then
+    exit 0
+fi
+
+# Paths listed in .krokoignore are never policed. A fixture corpus of deliberately
+# bad code lives in most adopters' repositories, and checking it would block every
+# commit to the project that owns the gate.
+if [ -f .krokoignore ]; then
+    kept=""
+    while IFS= read -r file; do
+        skip=0
+        while IFS= read -r pattern; do
+            case "$pattern" in ''|'#'*) continue ;; esac
+            case "$file" in *"$pattern"*) skip=1 ;; esac
+        done < .krokoignore
+        if [ "$skip" -eq 0 ]; then
+            kept="$kept$file
+"
+        fi
+    done <<< "$staged"
+    staged="$kept"
+fi
+
+if [ -z "$staged" ]; then
+    exit 0
+fi
+
+echo "kroko: checking staged Python files (strict comments)"
+# shellcheck disable=SC2086
+if ! "$GATE" --strict-comments $staged; then
+    echo
+    echo "kroko: commit blocked. Fix the findings above, or run without the hook:"
+    echo "kroko:   git commit --no-verify"
+    exit 1
+fi

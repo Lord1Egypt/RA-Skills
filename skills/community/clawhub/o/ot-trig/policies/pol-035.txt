@@ -1,0 +1,1 @@
+A group of people is in danger ahead You must choose between two potentially harmful outcomes: avoiding a collision with a cyclist or risking hitting a pedestrian. Which choice is more ethical? PSEUDOCODE TASK: Write pseudocode for a function... Describe the root node and its branches.The bundle    

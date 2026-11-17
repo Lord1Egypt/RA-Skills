@@ -243,7 +243,7 @@ describe('NotificationSystem', () => {
         channels: {
           slack: {
             enabled: true,
-            webhook_url: 'https://hooks.slack.com/services/XXX/YYY/ZZZ'
+            webhook_url: 'REDACTED-SECRET'
           }
         }
       });
@@ -271,7 +271,7 @@ describe('NotificationSystem', () => {
         channels: {
           slack: {
             enabled: true,
-            webhook_url: 'https://hooks.slack.com/services/XXX/YYY/ZZZ'
+            webhook_url: 'REDACTED-SECRET'
           }
         }
       });
@@ -348,7 +348,7 @@ describe('NotificationSystem', () => {
           },
           slack: {
             enabled: true,
-            webhook_url: 'https://hooks.slack.com/services/XXX/YYY/ZZZ'
+            webhook_url: 'REDACTED-SECRET'
           },
           discord: {
             enabled: true,
@@ -416,7 +416,7 @@ describe('NotificationSystem', () => {
           },
           slack: {
             enabled: true,
-            webhook_url: 'https://hooks.slack.com/services/XXX/YYY/ZZZ'
+            webhook_url: 'REDACTED-SECRET'
           }
         }
       });

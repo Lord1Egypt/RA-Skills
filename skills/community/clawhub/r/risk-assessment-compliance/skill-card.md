@@ -1,43 +1,58 @@
-## Description: <br>
-Performs comprehensive security checks and compliance risk assessments on websites and applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs comprehensive security checks and compliance risk assessments on websites and applications.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security teams, compliance officers, DevOps engineers, penetration testers, and application security engineers use this skill to assess websites or applications for vulnerabilities, compliance status, risk level, and remediation priorities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted target URLs are sent to the external ToolWeb/MKKPro service. <br>
-Mitigation: Use the skill only for websites or applications you own or are explicitly authorized to test, and avoid submitting internal, staging, credential-bearing, or sensitive URLs unless your organization has approved that sharing. <br>
-Risk: Automated vulnerability and compliance results may be incomplete or unsuitable as sole audit evidence. <br>
-Mitigation: Have security or compliance staff review findings, validate remediation steps, and confirm results before relying on them for audit or certification decisions. <br>
+## Use Case:
 
+Security teams, compliance teams, penetration testers, application security engineers, and DevOps engineers use this skill to assess authorized websites or applications for security posture, compliance status, vulnerabilities, risk level, and remediation priorities.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/risk-assessment-compliance) <br>
-- [API Documentation](https://api.mkkpro.com:8014/docs) <br>
-- [Risk Assessment API Route](https://api.mkkpro.com/compliance/risk-assessment) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON security and compliance assessment response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a target URL and sends it to the external provider for assessment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Submitting a URL may send target information to a third-party hosted API provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for websites or applications you own or are explicitly authorized to test, and avoid private, staging, customer-specific, or confidential URLs unless organizational policy approves the data transfer.
+
+Risk: The skill performs security assessment behavior that can be misused against unauthorized targets.
+
+Mitigation: Confirm authorization for each target before running the skill and review provider acceptable-use, privacy, and retention terms for sensitive assets.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/riREDACTED-SECRET)
+- [Kong Route](https://api.mkkpro.com/compliance/risk-assessment)
+- [API Docs](https://api.mkkpro.com:8014/docs)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb OpenClaw](https://toolweb.in/openclaw/)
+- [RapidAPI Publisher Profile](https://rapidapi.com/user/mkrishna477)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, JSON, guidance]
+
+**Output Format:** [JSON risk assessment data with human-facing remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns security score, compliance status, vulnerabilities, framework assessments, risk level, and assessment timestamp for the submitted URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

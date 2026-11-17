@@ -50,11 +50,19 @@ references/headroom_api.md
 scripts
 ```
 
-## 作者
+## 关于作者
 
-**Wrapper by guipi888**（[桂皮AI实战](https://github.com/guipi888)）
-**Original project by chopratejas**（[headroom](https://github.com/chopratejas/headroom)）
+**桂皮 Guipi** — AI Agent 开发者 · 超级个体践行者
+专注 AI 效率工具与一人公司方法论，帮普通人用 AI 成为超级个体
 
+| 平台 | 账号 |
+|------|------|
+| 📱 小红书 | [桂皮AI实战](https://www.xiaohongshu.com/user/profile/5a409dda44363b313b9d7e15) |
+| 🎬 抖音 | [桂皮AI实战](https://v.douyin.com/QJRjHGAtrvA/) |
+| 📺 视频号 | 微信内搜「桂皮AI实战」|
+| 💬 公众号 | 微信搜「桂皮AI实战」|
+| 🐙 GitHub | [guipi888](https://github.com/guipi888) |
+| 💬 微信 | guipi996（注明来意）|
 
 ## License
 

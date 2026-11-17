@@ -1,44 +1,56 @@
-## Description: <br>
-Agent Designer is a toolkit for designing, generating tool schemas for, and evaluating multi-agent systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Designer is a toolkit for designing, architecting, and evaluating multi-agent systems.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-Developers and engineers use Agent Designer to plan multi-agent architectures, generate tool schemas, and evaluate execution logs before implementation or optimization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated architectures may assign agents broad tool access or unsafe permissions. <br>
-Mitigation: Review each design before implementation, narrow each agent's tools to the minimum required, and add approvals for code execution, file writes, API calls, notifications, and scheduling. <br>
-Risk: Execution logs can include confidential or sensitive operational data. <br>
-Mitigation: Avoid feeding confidential logs unless generated output files are stored, retained, and reviewed under appropriate data-handling controls. <br>
-Risk: Generated plans and evaluations can be incomplete or misleading for a specific production environment. <br>
-Mitigation: Validate generated architectures, schemas, and recommendations against real requirements, security boundaries, and operational constraints before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan multi-agent architectures, generate tool schemas, and evaluate agent system performance before deployment.
 
-## Reference(s): <br>
-- [Agent Architecture Patterns Catalog](references/agent_architecture_patterns.md) <br>
-- [Multi-Agent System Evaluation Methodology](references/evaluation_methodology.md) <br>
-- [Tool Design Best Practices for Multi-Agent Systems](references/tool_design_best_practices.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON outputs, Mermaid diagrams, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates architecture, schema, evaluation, recommendation, and roadmap files from JSON inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated agent architectures and tool schemas may include capabilities that need tighter constraints before real deployment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated designs, permissions, validation rules, and human approval points before using them in production systems.
+
+Risk: Execution logs and requirements files can contain sensitive data that may be copied into generated reports.
+
+Mitigation: Scrub secrets and personal data from inputs, and confirm output storage and retention are acceptable before analysis.
+
+## Reference(s):
+
+- [Agent Designer ClawHub Release](https://clawhub.ai/fuzzyb33s/skills/agent-designer)
+- [Agent Architecture Patterns Catalog](artifact/references/agent_architecture_patterns.md)
+- [Tool Design Best Practices for Multi-Agent Systems](artifact/references/tool_design_best_practices.md)
+- [Multi-Agent System Evaluation Methodology](artifact/references/evaluation_methodology.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, Mermaid, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces architecture plans, tool schemas, validation guidance, evaluation reports, and optimization recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

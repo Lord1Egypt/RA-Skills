@@ -1,41 +1,55 @@
-## Description: <br>
-Generate B2B leads from Google Maps using a self-hosted MCP server and export deduplicated, enriched results to CSV or XLSX. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate B2B leads from Google Maps using a self-hosted MCP server (`google-maps`) and export to CSV or XLSX.
 
-## Publisher: <br>
-[Realowg](https://clawhub.ai/user/Realowg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[realowg](https://clawhub.ai/user/realowg)
 
-## Use Case: <br>
-Sales, business development, and operations users use this skill to run repeatable Google Maps lead-generation batches by geography and industry, enrich places with contact fields, and export lead files for follow-up. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a configured Google Maps MCP server and can consume Google Maps API quota or billing. <br>
-Mitigation: Install only with a trusted MCP server, verify the server configuration, and monitor quota and expected run cost before large batches. <br>
-Risk: Generated CSV or XLSX lead files may contain business contact data and could be sent to the wrong location or recipient. <br>
-Mitigation: Store exports in a deliberate folder and verify the destination channel or recipient before sending files through chat or Telegram. <br>
-Risk: Google Maps API keys or generated lead files could be exposed if committed or shared unintentionally. <br>
-Mitigation: Keep API keys in environment configuration, do not commit credentials or lead exports, and review files before sharing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Google Maps Leadgen on ClawHub](https://clawhub.ai/Realowg/google-maps-leadgen-skill) <br>
+## Use Case:
+
+External users, developers, and sales operations teams use this skill to run repeatable Google Maps lead-generation batches by geography and industry, enrich results with contact fields, deduplicate listings, and export lead files.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: CSV or XLSX exports may contain formula-like values from untrusted Google Maps listings.
+
+Mitigation: Sanitize spreadsheet cells before opening exports, and use spreadsheet clients with external-content and legacy macro features disabled.
+
+Risk: Lead files may contain sensitive business contact data and may be sent through chat delivery channels.
+
+Mitigation: Review generated files before sharing them and ask for confirmation before sending lead exports through chat.
+
+Risk: The workflow requires a Google Maps API key and may generate paid API usage.
+
+Mitigation: Keep API keys out of commits and report an estimated run cost before batch execution.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, files, text] <br>
-**Output Format:** [Markdown guidance with shell command examples, CSV or XLSX lead exports, and JSON run summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exports include name, address, phone, website, email, rating, place_id, and Google Maps URL; optional delivery can send generated files through chat or Telegram.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Concise Markdown guidance plus CSV or XLSX lead exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exports include name, address, phone, website, email, rating, place_id, and Google Maps URL; summaries include count and contact coverage.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

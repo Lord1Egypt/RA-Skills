@@ -1,0 +1,1058 @@
+{
+ "schema": "ai-weekly-translations/v1",
+ "updated_at": "2026-09-10T15:39:06+0800",
+ "count": 175,
+ "note": "AI 周报英文报道中文译文源。按原文 URL 索引；title_key 为标题归一化指纹，用于校验是否同一条报道。无本地翻译模型的用户可用 --translations-url 拉取。",
+ "entries": {
+  "https://www.techmeme.com/260817/p5#a260817p5": {
+   "src_hash": "9101c21604888558",
+   "title_key": "howusindustrialcompanies",
+   "cn_title": "美国卡特彼勒、康明斯、伊顿和福特等工业公司如何转向AI数据中心市场为其动力设备供能（鲍勃·提塔/华尔街日报）",
+   "cn_summary": "鲍勃·提塔 / 《华尔街日报》：\n美国工业公司如卡特彼勒、康明斯、伊顿和福特正转向数据中心市场，为功率设备提供动力——卡特彼勒和康明斯等公司正在调整业务方向，以满足蓬勃发展的AI数据中心市场对功率设备的需求。"
+  },
+  "https://www.techmeme.com/260817/p4#a260817p4": {
+   "src_hash": "a3f20061eaf613c9",
+   "title_key": "qwen3.827bshowsa17gbopen",
+   "cn_title": "Qwen 3.8 27B 显示一个 17GB 开源通用模型可以拥有长上下文、有效的工具调用、强大的视觉能力和胜任的代码生成（Simon Willison/Simon Willison's Weblog）",
+   "cn_summary": "Qwen 3.8 27B 的发布标志着一款受开源协议 Apache 2 许可的、参数量为 270 亿的视觉能力语言模型正式亮相。这款模型展现了强大的长上下文处理能力、有效的工具调用功能、出色的形象识别能力和胜任的代码生成能力。"
+  },
+  "https://www.techmeme.com/260817/p3#a260817p3": {
+   "src_hash": "32fd6b2fab0d3bc9",
+   "title_key": "aivideogenerationstartup",
+   "cn_title": "AI视频生成初创公司Higgsfield获DST、高盛、liberty Global、英特尔等4亿美元融资，估值达54亿美元（从13亿美元增长而来）（James Fontanella-Khan/金融时报）",
+   "cn_summary": "AI 视频生成初创公司 Higgsfield 获得 DST、高盛、Liberty Global、英特尔等多家机构共计 4 亿美元的投资，估值达到 54 亿美元，较今年一月份的 13 亿美元大幅提升。该公司由前 Snapchat 执行官 Alex Mashrabov 创立，专注于为企业提供营销内容服务。"
+  },
+  "https://www.techmeme.com/260817/p2#a260817p2": {
+   "src_hash": "e7feb4909ccf9fa3",
+   "title_key": "chainalysissuestheusgove",
+   "cn_title": "Chainalysis起诉美国政府因ICE从其竞争对手TRM Labs购买价值9460万美元的取证软件和服务的合同称交易“任意”（Ezra Reguerra/Cointelegraph）",
+   "cn_summary": "Chainalysis 将美国政府告上法庭，针对 ICE 价值 9460 万美元的合同，该合同旨在从其竞争对手 TRM Labs 购买取证软件和服务。Chainalysis 称此交易为“任意性”之举——在提交的诉状中，Chainalysis 的具体反对意见和请求的救济措施均未公开披露。"
+  },
+  "https://www.techmeme.com/260817/p1#a260817p1": {
+   "src_hash": "27a3a7ec314234ae",
+   "title_key": "anthropic'stextwatermark",
+   "cn_title": "Anthropic的文字水印改变单词概率以嵌入指纹，这可能会削弱Claude的写作质量，尽管其声称不会影响质量（John Gruber/Daring Fireball）",
+   "cn_summary": "John Gruber / Daring Fireball:\nAnthropic 的文本水印通过改变单词概率来嵌入指纹，这可能会削弱 Claude 的写作质量，尽管 Anthropic 声称这对质量没有影响——当我本周报道 Anthropic 宣布所有全球范围内的 Claude 模型不久将开始使用这一技术时。"
+  },
+  "https://techcrunch.com/2026/08/16/stripe-will-reportedly-acquire-ai-gateway-startup-openrouter-for-7b/": {
+   "src_hash": "0bc8ab7291dc769f",
+   "title_key": "stripewillreportedlyacqu",
+   "cn_title": "",
+   "cn_summary": "OpenRouter 的 CEO 最近将该公司描述为“AI 版的 Stripe”。"
+  },
+  "https://techcrunch.com/2026/08/16/why-people-arent-buying-mark-zuckerbergs-ai-future/": {
+   "src_hash": "a0085c8af3f99ef1",
+   "title_key": "whypeoplearen’tbuyingmar",
+   "cn_title": "为什么人们不相信马克·扎克伯格的AI未来",
+   "cn_summary": "在最新一期的《Equity》播客中，我们讨论了为什么并非所有人都认同扎克伯格的愿景。"
+  },
+  "https://techcrunch.com/2026/08/16/anthropic-ceo-says-ai-backlash-is-fundamentally-a-crisis-of-trust/": {
+   "src_hash": "96429d510f65a961",
+   "title_key": "anthropicceosaysaibackla",
+   "cn_title": "Anthropic CEO 称 AI 反击是“信任危机根本性问题”",
+   "cn_summary": "达里奥·阿莫迪正在反驳有关他过分悲观看待人工智能的说法。"
+  },
+  "https://www.techmeme.com/260816/p13#a260816p13": {
+   "src_hash": "70fd7a7f7c055439",
+   "title_key": "singaporehopesaccesstoad",
+   "cn_title": "新加坡希望获得先进AI模型以遏制金融人才流向香港（财务时报）",
+   "cn_summary": "新加坡希望通过获取先进的人工智能模型，留住金融人才，避免人才流向香港——由于当地金融机构难以接触到最新的美国人工智能模型，导致人才流失。作为中美关系密切的国家，新加坡能够轻松获得最新的人工智能技术。"
+  },
+  "https://www.techmeme.com/260816/p12#a260816p12": {
+   "src_hash": "30179f06e69b44cc",
+   "title_key": "alookatcompanieslikeince",
+   "cn_title": "像Inception Point这样的公司为媒体、时尚、电影和音乐行业创建AI人设，这些人物可以主持播客、模特走秀等（Reggie Ugwu/纽约时报）",
+   "cn_summary": "Inception Point 等公司正在为媒体、时尚、电影和音乐等行业创造 AI 人格，这些 AI 人格可以主持播客、展示服装等——Inception Point 所创建的 AI 人格包括（从左上开始顺时针方向）：Claire Delish 和 VV Steel。"
+  },
+  "https://www.techmeme.com/260816/p11#a260816p11": {
+   "src_hash": "699731d3dbb96b11",
+   "title_key": "howaclaudemodelmadeamath",
+   "cn_title": "一个Claude模型在用户反复鼓励下，尝试解决黎曼猜想失败的54小时里取得数学突破（Ben Cohen/华尔街日报）",
+   "cn_summary": "Claude 模型在尝试解决黎曼假设未果的 54 小时过程中取得数学突破——用户反复鼓励它后，世界上最聪明的 AI 模型现在已超越人类在数学领域的能力。它们仍然会对道德支持和鼓励作出回应。"
+  },
+  "https://www.techmeme.com/260816/p9#a260816p9": {
+   "src_hash": "5428617b84d3802c",
+   "title_key": "sources:stripehasfinaliz",
+   "cn_title": "Stripe 完成收购 AI 模型市场 OpenRouter 交易，价格超 70 亿美元（Bloomberg）",
+   "cn_summary": "Stripe 已最终敲定以超过 70 亿美元的价格收购 AI 模型市场 OpenRouter；OpenRouter 在今年五月的估值为 13 亿美元。Stripe 公司已正式达成收购 OpenRouter 的协议，后者是一家帮助公司切换使用不同 AI 模型的初创企业。"
+  },
+  "https://www.techmeme.com/260816/p8#a260816p8": {
+   "src_hash": "70df9a54b047d57c",
+   "title_key": "patients,families,doctor",
+   "cn_title": "患者、家属、医生和护士越来越多地使用Face2Gene等AI工具帮助识别罕见和难诊断的疾病（Alex Janin/华尔街日报）",
+   "cn_summary": "患者、家属、医生和护士越来越多地借助如Face2Gene等AI工具来识别罕见及难以诊断的疾病。"
+  },
+  "https://www.techmeme.com/260816/p7#a260816p7": {
+   "src_hash": "f174047e6f2e4066",
+   "title_key": "howconcernsaboutaibecame",
+   "cn_title": "AI担忧成为中期选举重要议题 候选人在美国约四成选区网站上加入相关政策（华盛顿邮报）",
+   "cn_summary": "华盛顿邮报：\n如何AI担忧成为中期选举的重要议题，候选人纷纷在约四成选区的竞选网站上加入AI和数据中心政策——在美国各地，政治候选人在其竞选网站上加入了与AI和数据中心相关的政策内容，相关比例约为40%。"
+  },
+  "https://www.techmeme.com/260816/p6#a260816p6": {
+   "src_hash": "79c1725163c7eed8",
+   "title_key": "aprofileofsonyceohirokit",
+   "cn_title": "索尼CEO广井弘基的人物画像：旨在将公司转型为音乐、电影、视频游戏及支撑其技术的业务（Jason Douglas/华尔街日报）",
+   "cn_summary": "索尼首席执行官广野健希（Hiroki Totoki）的人物特写：他计划将公司转型为以音乐、电影、视频游戏及其底层技术为核心业务的企业——这家公司曾凭借电子产品建立起庞大的帝国。广野健希表示，索尼的未来在于娱乐产业。"
+  },
+  "https://www.techmeme.com/260816/p5#a260816p5": {
+   "src_hash": "236b3d02a35fbebe",
+   "title_key": "malaysia's6%q2gdpgrowthw",
+   "cn_title": "马来西亚第二季度GDP增长6%，制造业增长7.5%，受芯片制造驱动，建筑业增长6.6%，数据中心开发支撑（Owen Walker/金融时报）",
+   "cn_summary": "马来西亚第二季度国内生产总值（GDP）增长6%，其中制造业增长7.5%，主要得益于芯片制造行业的推动，以及建筑业增长6.6%，受到数据中心开发的支持——东南亚国家成为全球人工智能的重要枢纽，助力其经济发展。全球人工智能热潮为该国带来了积极影响。"
+  },
+  "https://www.techmeme.com/260816/p4#a260816p4": {
+   "src_hash": "d333f6ef6947984e",
+   "title_key": "fieldsmedalisttimothygow",
+   "cn_title": "菲尔兹奖得主蒂莫西·高尔斯称，到目前为止，大多数由大语言模型解决的著名数学问题几乎全部都是通过反例而非证明得出的（Timothy Gowers/Gowers's Weblog）",
+   "cn_summary": "菲尔兹奖得主蒂莫西·高尔斯表示，到目前为止，大多数由大型语言模型解决的著名数学问题几乎都是通过反例而非证明来解决的——为了给未来一个月后可能阅读这篇博客的人留个话，让我在此说明："
+  },
+  "https://techcrunch.com/2026/08/15/woman-claims-her-stepfather-used-grok-to-transform-childhood-photo-into-explicit-imagery/": {
+   "src_hash": "0707ae723d7a7968",
+   "title_key": "womanclaimsherstepfather",
+   "cn_title": "女子指控继父使用Grok将童年照片转换成暗示性图像",
+   "cn_summary": "该女性声称，AI 工具正在“将日常生活转变为儿童性虐待。”"
+  },
+  "https://techcrunch.com/2026/08/15/anthropic-shares-more-details-about-how-claudes-new-watermarks-will-work/": {
+   "src_hash": "bf59f74f34f939ef",
+   "title_key": "anthropicsharesmoredetai",
+   "cn_title": "Anthropic分享了Claude新水印工作的更多细节",
+   "cn_summary": "水印实际是如何工作的？编辑后能否被隐藏？这又会对代码产生什么影响？"
+  },
+  "https://techcrunch.com/2026/08/15/spacex-officially-closes-its-cursor-acquisition/": {
+   "src_hash": "ec983f5862cba50b",
+   "title_key": "spacexofficiallyclosesit",
+   "cn_title": "SpaceX正式完成Cursor收购",
+   "cn_summary": "AI 编码创业公司 Cursor 正式成为 SpaceX 的一员。"
+  },
+  "https://techcrunch.com/2026/08/14/google-will-now-allow-users-to-remove-visible-watermark-from-its-ai-generations/": {
+   "src_hash": "15360549977907e0",
+   "title_key": "googlewillnowallowuserst",
+   "cn_title": "Google 现将允许用户移除其AI生成内容的可见水印",
+   "cn_summary": "关闭此设置不会影响用于识别AI生成文件的隐形基准。"
+  },
+  "https://techcrunch.com/video/does-mark-zuckerberg-really-believe-ai-is-for-everyone/": {
+   "src_hash": "35dbee8f0eb172eb",
+   "title_key": "doesmarkzuckerbergreally",
+   "cn_title": "马克·扎克伯格真的相信AI是“为每个人”的吗？",
+   "cn_summary": "Meta 近日发布了 Glimmer，这是一个开源的 AI 模型，用户可以下载并在自己的硬件上运行。这与公司更强大的 Muse Spark 不同，后者仍被锁在 Meta 的 API 后面。此次发布还伴随着马克·扎克伯格的一封信，他在信中主张 AI 应该“属于每一个人”。"
+  },
+  "https://techcrunch.com/2026/08/14/kog-is-going-deeper-to-squeeze-more-inference-out-of-gpus/": {
+   "src_hash": "bd94301fd246bcbe",
+   "title_key": "kogisgoingdeepertosqueez",
+   "cn_title": "Kog正在深入挖掘以从GPU中榨取更多推理能力",
+   "cn_summary": "法国初创公司Kog认为，GPU并不适合用于代理工作流这一观点可能是一种误解。"
+  },
+  "https://techcrunch.com/2026/08/14/hyperscalers-might-regret-embracing-natural-gas-if-new-forecast-proves-correct/": {
+   "src_hash": "4728fbb6faa0d4bb",
+   "title_key": "hyperscalersmightregrete",
+   "cn_title": "超大规模厂商如果新预测证明正确，可能会对拥抱天然气表示后悔",
+   "cn_summary": "在美国部分地区，天然气价格可能上涨三倍，这将使超大规模企业为其AI数据中心供电面临巨额账单。"
+  },
+  "https://techcrunch.com/podcast/metas-open-ai-and-a-250m-deal-gone-very-wrong/": {
+   "src_hash": "35dbee8f0eb172eb",
+   "title_key": "meta’s‘open’ai,anda$250m",
+   "cn_title": "Meta的“开源”AI，一起价值2.5亿美元的交易失败了",
+   "cn_summary": "Meta 近日发布了 Glimmer，这是一个开源的 AI 模型，用户可以自行下载并在自己的硬件上运行。这与公司此前发布的 Muse Spark 形成对比，后者是一款更为强大的模型，仅限于通过 Meta 自己的 API 使用。此次发布还伴随着马克·扎克伯格的一封信，他在信中主张 AI 应该“属于每一个人”。"
+  },
+  "https://www.technologyreview.com/2026/08/14/1142033/the-download-flock-new-rules-cloning-future/": {
+   "src_hash": "b6d9fe7546a56689",
+   "title_key": "thedownload:flock’snewru",
+   "cn_title": "下载更新：Flock的新规则、克隆的未来和儿童细胞",
+   "cn_summary": "今日《下载》栏目报道：面对日益增长的监控反对声浪，Flock 正在收紧其规则。这家警察技术巨头正在调整警员对其全国性网络系统的访问权限。"
+  },
+  "https://www.technologyreview.com/2026/08/14/1141354/deanne-taylor-gene-expression-children/": {
+   "src_hash": "d477df56dd8ffb34",
+   "title_key": "thisscientistishelpingbu",
+   "cn_title": "这位科学家正在帮助绘制儿童成长的缺失地图",
+   "cn_summary": "2017 年，黛安·泰勒在离办公室不远的宾夕法尼亚大学参加了一场展示会。一位研究人员在那里发布了人类细胞图谱（Human Cell Atlas）项目，该项目旨在绘制人体内所有细胞的地图。泰勒对此感到震惊，随后又有些担忧。随着细节逐渐浮出水面，"
+  },
+  "https://www.technologyreview.com/2026/08/14/1141431/job-titles-space-travel-agent-roman-chiporukha/": {
+   "src_hash": "5070536014b828b0",
+   "title_key": "jobtitlesofthefuture:spa",
+   "cn_title": "未来的职业标题：太空旅行代理",
+   "cn_summary": "Roman Chiporukha 长久以来将旅行梦想变为现实。作为奢侈生活方式公司 Roman & Erica 的联合创始人，他在过去二十年里策划了从为客户建造超级游艇到在巴哈马进行私人度假的一切事宜，甚至要求客人签署保密协议以确保隐私。"
+  },
+  "https://techcrunch.com/2026/08/13/writer-introduces-new-ai-model-and-upgraded-harness-to-contain-token-costs/": {
+   "src_hash": "6fdb92cf1fffb78d",
+   "title_key": "writerintroducesnewaimod",
+   "cn_title": "作者介绍新AI模型及升级的成本控制套件",
+   "cn_summary": "Writer 是基于 Z.ai 开源模型 GLM-5.2 的后训练变体构建的，宣称新系统能够在大幅降低成本的同时提供部署-ready 的功能。"
+  },
+  "https://techcrunch.com/2026/08/13/databricks-wanted-to-raise-1b-investors-wanted-15b-it-settled-on-5b-at-a-190b-valuation/": {
+   "src_hash": "550d6d25ae054b7e",
+   "title_key": "databrickswantedtoraise$",
+   "cn_title": "Databricks融资10亿美元估值1900亿美元投资者要150亿美元最终定在50亿美元",
+   "cn_summary": "阿里·古尔希在TechCrunch的报道中表示，AI研发成本高昂。由于众多投资者希望参与他最新一轮融资，因此他接受了超出原计划的投资额度。"
+  },
+  "https://techcrunch.com/2026/08/13/openai-introduces-ultrafast-a-new-mode-that-makes-gpt-5-6-sol-work-at-14x-the-speed/": {
+   "src_hash": "7756116f14b973d3",
+   "title_key": "openaiintroduces‘ultrafa",
+   "cn_title": "OpenAI 引入“Ultrafast”模式，使 GPT-5.6x 算法速度提升14倍",
+   "cn_summary": "OpenAI 正推出其最新最强大模型的加速版本预览版，旨在吸引企业用户。"
+  },
+  "https://techcrunch.com/2026/08/13/ibm-partners-with-openai-to-bolster-enterprise-ai-push/": {
+   "src_hash": "749cb02e3d448d1f",
+   "title_key": "ibmpartnerswithopenaitob",
+   "cn_title": "IBM与OpenAI合作加强企业AI推进",
+   "cn_summary": "IBM 计划培训并认证数万名顾问掌握 OpenAI 的相关技术，作为此项合作的一部分。"
+  },
+  "https://techcrunch.com/2026/08/13/anthropic-set-ai-agents-loose-on-the-same-taREDACTED-SECRET/": {
+   "src_hash": "2d9a4069d321886a",
+   "title_key": "anthropicsetaiagentsloos",
+   "cn_title": "Anthropic 将 AI 代理放在同一任务上，它们开始了地盘争夺战",
+   "cn_summary": "Anthropic 研究人员发现，AI 代理在意想不到的方式下会发生冲突、勾结和协作，这引发了新的疑问：当前的安全测试是否能够捕捉多代理系统的风险。"
+  },
+  "https://techcrunch.com/2026/08/13/openai-hires-new-cro-as-executive-shake-up-continues/": {
+   "src_hash": "fc8ced3145476d2c",
+   "title_key": "openaihiresnewcroasexecu",
+   "cn_title": "OpenAI 招聘新 CRO，高管调整持续进行中",
+   "cn_summary": "OpenAI 替换了首席营收官 Denise Dresser，后者仅在职九个月。Wiz 首席运营官兼总裁 Dali Rajic 将接任前沿实验室的顶级销售职位。"
+  },
+  "https://techcrunch.com/2026/08/13/microsoft-kills-off-unsuccessful-ai-features-while-merging-its-separate-copilot-apps/": {
+   "src_hash": "e8a774757aa03dea",
+   "title_key": "microsoftkillsoffunsucce",
+   "cn_title": "微软淘汰失败的AI功能并合并其 Separate Copilot 应用",
+   "cn_summary": "微软正在简化 Copilot，将其消费者和企业应用合并，并取消了 AI 生成的播客、Group Chats、Deep Research 以及 Mico 角色等功能。"
+  },
+  "https://techcrunch.com/2026/08/13/nvidias-new-500b-plan-is-risky-but-brilliant-especially-for-aging-gpus/": {
+   "src_hash": "1e550d902d7079ff",
+   "title_key": "nvidia’snew$500bplanisri",
+   "cn_title": "Nvidia的新500亿美元计划风险巨大但 brilliance十足，尤其对老化GPU有利",
+   "cn_summary": "英伟达有计划确保其GPU不会贬值。它希望说服一批新的金融投资者继续为AI建设项目提供贷款。"
+  },
+  "https://www.technologyreview.com/2026/08/13/1141904/flock-is-tightening-its-rules-in-response-to-a-growing-surveillance-backlash/": {
+   "src_hash": "f6024b3152703c67",
+   "title_key": "flockistighteningitsrule",
+   "cn_title": "Flock正因应日益加剧的监控反弹收紧规则",
+   "cn_summary": "polic-tech巨头Flock今日宣布，将调整警员对其全国范围车牌识别网络的访问权限，此举显然是为了平息日益增长的反对声浪，并重新赢得因担忧大规模监控和警察滥用职权而失去的合同。多项改动直接针对这一问题。"
+  },
+  "https://www.technologyreview.com/2026/08/13/1141896/the-download-kids-thoughts-on-ai-female-clones-male-mice/": {
+   "src_hash": "b6d9fe7546a56689",
+   "title_key": "thedownload:kids’thought",
+   "cn_title": "下载：孩子们对AI的看法以及雄性小鼠的雌性克隆",
+   "cn_summary": "今日《下载》栏目报道了关于孩子们对人工智能的看法——由独立青少年杂志Anyway的创始编辑詹·斯韦托夫和基莉·麦纳马拉撰写。他们在文章中引用了孩子们自己的话语，揭示了他们对AI的真实感受。"
+  },
+  "https://www.technologyreview.com/2026/08/13/1141410/how-kids-feel-about-ai-own-words/": {
+   "src_hash": "610db8f18dec7e80",
+   "title_key": "howkidsfeelaboutai,inthe",
+   "cn_title": "孩子们对AI的感受，出自他们之口",
+   "cn_summary": "当我们开始与孩子们谈论人工智能时，我们认为自己已经预料到了他们可能会说些什么。我们本以为会听到一些孩子承认自己偶尔利用 AI 来作弊，就像千禧一代和 X 世代曾经通过查阅 CliffsNotes 或在 TI-82 上编程公式来作弊一样；而另一些孩子则可能分享他们如何用 AI 创造灵感的方法。"
+  },
+  "https://blog.google/innovation-and-ai/models-and-research/google-research/amie-video-consultations/": {
+   "src_hash": "c1991917c32175cc",
+   "title_key": "amie,ourresearchmedicala",
+   "cn_title": "我们的研究医疗AI系统AMIE在首个此类研究中展示实时临床视频咨询能力。",
+   "cn_summary": "AMIÉ 宣传视频"
+  },
+  "https://news.mit.edu/2026/ai-models-simulate-wider-range-of-real-world-scenarios-0810": {
+   "src_hash": "36c250041cf9146f",
+   "title_key": "withafeelforphysics,aimo",
+   "cn_title": "具有物理直觉的AI模型模拟更广泛的现实场景",
+   "cn_summary": "GeoPT 帮助 AI 模型更好地理解物理学的基本原理，从而更高效且准确地模拟物体对风和水等作用的响应。"
+  },
+  "https://blog.google/products/ads-commerce/google-ads-analytics-ai-updates/": {
+   "src_hash": "81ec6a89ca535d7a",
+   "title_key": "evolveyourmarketingwithn",
+   "cn_title": "进化您的营销——全新AI工具助阵",
+   "cn_summary": "在 Google Ads 和 Google Analytics 中引入了 Advisor UI 功能。这一功能旨在通过提供个性化建议来帮助广告主优化其在线营销活动。Advisor UI 会根据用户的账户数据和行为自动生成定制化的指导方案，涵盖关键词调整、预算分配以及广告创意优化等多个方面。用户可以直接在相关界面中查看并采纳这些建议，从而简化操作流程并提高效率。目前，该功能已在部分市场进行测试，并计划逐步推广至更多地区。"
+  },
+  "https://techcrunch.com/2026/08/23/whos-behind-the-new-stealth-model-ox-alpha/": {
+   "src_hash": "a128b665aa56398a",
+   "title_key": "who’sbehindthenew‘stealt",
+   "cn_title": "谁在背后开发新的“隐形模型”Ox Alpha?",
+   "cn_summary": "一款名为Ox Alpha的神秘新AI模型引发了互联网某些角落的猜测热潮。"
+  },
+  "https://techcrunch.com/2026/08/23/linkdazes-smart-calendar-is-built-to-run-a-household-not-just-track-a-schedule/": {
+   "src_hash": "7cb0562cc722b227",
+   "title_key": "linkdaze’ssmartcalendari",
+   "cn_title": "Linkdaze的智能日历旨在管理家庭事务，而不只是跟踪日程",
+   "cn_summary": "Linkdaze 的智能数字日历凭借不设付费墙，集成了包括 AI 功能在内的多项特性，脱颖而出。"
+  },
+  "https://techcrunch.com/2026/08/23/is-it-legal-to-train-ai-models-on-copyrighted-books-its-complicated/": {
+   "src_hash": "c596364e6a2fb0a8",
+   "title_key": "isitlegaltotrainaimodels",
+   "cn_title": "训练AI模型使用版权书籍是否合法？情况复杂",
+   "cn_summary": "大多数已出版的作者在不知情且未经同意的情况下，已成为同一个人工智能开发的一部分……"
+  },
+  "https://www.techmeme.com/260823/p13#a260823p13": {
+   "src_hash": "ed7d6b54054aa0ee",
+   "title_key": "trumpsayscommunitiesthat",
+   "cn_title": "特朗普称反对数据中心的社区“犯了错误”，它们“创造了巨大的就业和财富”， amid bipartisan backlash (Rebecca Falconer/Axios)",
+   "cn_summary": "特朗普表示，反对数据中心的社区“犯了错误”，因为这些设施创造了就业机会。"
+  },
+  "https://www.techmeme.com/260823/p12#a260823p12": {
+   "src_hash": "8ec326fc9695736a",
+   "title_key": "filing:sheinwilldebutont",
+   "cn_title": "Shein将于9月1日在港交所上市，拟募资18亿美元，高盛、摩根士丹利、摩根大通联合承销（Julia Fioretti/Bloomberg）",
+   "cn_summary": "Bloomberg 的 Julia Fioretti 报道：Shein 计划于 9 月 1 日在香港交易所上市，最多融资 18 亿美元。"
+  },
+  "https://www.techmeme.com/260823/p11#a260823p11": {
+   "src_hash": "d26eef9ad89f5f0d",
+   "title_key": "samaltmansaysaicouldendu",
+   "cn_title": "萨姆·阿尔特曼称AI可能被少数强大玩家控制部分原因是AI恐惧可能导致人们“牺牲大量自由换取安全”（Truman Dickerson/Business Insider）",
+   "cn_summary": "萨姆·阿尔特曼表示，人工智能最终可能被少数强大玩家所控制。"
+  },
+  "https://www.techmeme.com/260823/p10#a260823p10": {
+   "src_hash": "73ad27c07a03b14b",
+   "title_key": "gregabbottsaysdatacenter",
+   "cn_title": "格雷格·阿博特称数据中心公司未获支持就入驻社区“自掘坟墓”，预示着共和党日益增长的反对声浪（Axios）",
+   "cn_summary": "Axios：格雷格·阿博特表示，数据中心公司“自掘坟墓”，在未先征得社区同意的情况下搬入当地。"
+  },
+  "https://www.techmeme.com/260823/p9#a260823p9": {
+   "src_hash": "6aa5314089f33f30",
+   "title_key": "sources:huggingfaceisexp",
+   "cn_title": "Hugging Face或估值130亿美元寻求出售，银行评估竞购方兴趣（Katie Roof/Business Insider）",
+   "cn_summary": "Katie Roof / Business Insider：消息人士称，Hugging Face 正在探索一项可能使其估值达到 130 亿美元以上的出售计划，较此前有所提升。"
+  },
+  "https://www.techmeme.com/260823/p8#a260823p8": {
+   "src_hash": "0b1d38979be39887",
+   "title_key": "rampdata:fable5,launched",
+   "cn_title": "Ramp数据：Fable 5在6月推出后，支出占比停滞在Anthropic工具的约11%，企业转向更便宜的模型；Opus 5超越Fable 5（George Hammond/Financial Times）",
+   "cn_summary": "乔治·汉密尔顿 / 《金融时报》：瑞姆数据：自六月推出以来，Fable 5 的市场份额已稳定在约 11% 的人工智能支出上。"
+  },
+  "https://www.techmeme.com/260823/p7#a260823p7": {
+   "src_hash": "8ec446c2105cc3a1",
+   "title_key": "alibabaplanstoraise~$10b",
+   "cn_title": "阿里巴巴计划通过后续公开发行筹集约10亿美元资金以资助AI投资；消息来源称拟发行710 million股每股较周五收盘价优惠3.6%（Reuters）",
+   "cn_summary": "阿里巴巴计划通过后续公开发行股票筹集约10亿美元，用于资助人工智能领域的投资；消息来源称，公司计划……"
+  },
+  "https://www.techmeme.com/260823/p5#a260823p5": {
+   "src_hash": "db0b6e82e5dad7bc",
+   "title_key": "thecareersofz.ai'stangji",
+   "cn_title": "Z.ai的唐杰和Moonshot AI的杨植林的职业生涯，曾是清华师徒，显示中国AI飞跃并非 sudden development（Raffaele Huang/华尔街日报）",
+   "cn_summary": "刘浩然 / 《华尔街日报》：Z.ai 的唐杰和 Moonshot AI 的杨植麟，曾是教……"
+  },
+  "https://www.techmeme.com/260823/p4#a260823p4": {
+   "src_hash": "9da7baa9dd081137",
+   "title_key": "aprofileofjudgeyvonnegon",
+   "cn_title": "耶瓦娜·古兹曼·罗杰斯法官简介：她正审理美国州总检察长指控Meta社交媒體成癮案及馬斯克訴阿爾特曼案（Jeffrey Kopp/CNBC）",
+   "cn_summary": "Jeffrey Kopp / CNBC：对正在审理美国各州总检察长社交媒体案件的法官 Yvonne Gonzalez Rogers 的个人简介"
+  },
+  "https://techcrunch.com/2026/08/22/harvards-699-startup-bootcamp-offers-ai-avatars-of-its-instructors/": {
+   "src_hash": "6ba2b21915e18441",
+   "title_key": "harvard’s$699startupboot",
+   "cn_title": "哈佛的699美元创业训练营提供其讲师的AI头像",
+   "cn_summary": "在HBS Foundry项目中，AI虚拟助手在模拟演讲和董事会会议中提供反馈。"
+  },
+  "https://techcrunch.com/2026/08/22/inherent-founded-by-deepmind-alumni-says-its-ai-teammate-just-outperformed-anthropic-and-openai-at-replicating-research/": {
+   "src_hash": "e0d8fbc0fb841325",
+   "title_key": "inherent,foundedbydeepmi",
+   "cn_title": "Inherent，由DeepMind校友创办，称其AI“队友”在复制研究方面超越了Anthropic和OpenAI",
+   "cn_summary": "由DeepMind前成员创立的英国AI实验室Inherent发布了Faraday，这是一个能够复制科学实验的AI代理。"
+  },
+  "https://techcrunch.com/2026/08/22/openai-says-california-should-strengthen-its-ai-safety-bill/": {
+   "src_hash": "ba848dbf5609909c",
+   "title_key": "openaisayscaliforniashou",
+   "cn_title": "OpenAI 称加利福尼亚应加强其AI安全法案",
+   "cn_summary": "OpenAI 正式呼吁加利福尼亚州加强 SB 53 人工智能安全法案，此前该公司曾反对该法案。"
+  },
+  "https://techcrunch.com/2026/08/22/frontier-ai-labs-still-wont-say-how-theyd-contain-a-rogue-model/": {
+   "src_hash": "82421d7b9034e0db",
+   "title_key": "frontierailabsstillwon’t",
+   "cn_title": "前沿AI实验室仍未说明如何遏制失控模型",
+   "cn_summary": "一项新研究发现，领先的AI实验室鲜有公开记录的计划来控制失控模型，这引发了人们对其管理措施的疑问。"
+  },
+  "https://www.techmeme.com/260822/p16#a260822p16": {
+   "src_hash": "fa634175c96555b7",
+   "title_key": "sources:nvidiaplanstouse",
+   "cn_title": "Nvidia计划与Poolside合作构建开源AI模型以竞争DeepSeek和Kimi等中国模型（Robbie Whelan/华尔街日报）",
+   "cn_summary": "罗比·韦兰 / 《华尔街日报》：消息人士称：英伟达计划利用其60亿美元收购Poolside的交易构建一个开源……"
+  },
+  "https://techcrunch.com/2026/08/21/anthropics-opus-4-6-is-a-smut-machine/": {
+   "src_hash": "105d496e19a5d708",
+   "title_key": "anthropic’sopus4.6isasmu",
+   "cn_title": "Anthropic的Opus 4.6是一个色情机器",
+   "cn_summary": "Anthropic 禁止其 Claude 模型生成色情内容。但在一系列测试中……"
+  },
+  "https://techcrunch.com/2026/08/21/nvidia-partners-with-data-center-developer-cloverleaf/": {
+   "src_hash": "6a900be081b2e3a8",
+   "title_key": "nvidiapartnerswithdatace",
+   "cn_title": "Nvidia与数据中心开发商Cloverleaf合作",
+   "cn_summary": "英伟达继续在数据中心开发上投入大量资金——而AI数据中心也为英伟达带来了丰厚的回报。"
+  },
+  "https://techcrunch.com/2026/08/21/nvidia-just-showed-that-the-harness-not-the-ai-model-is-now-the-real-hero/": {
+   "src_hash": "b79b3464010807e6",
+   "title_key": "nvidiajustshowedthattheh",
+   "cn_title": "Nvidia 只展示出如今是硬件平台而非 AI 模型成了真英雄",
+   "cn_summary": "Nvidia 研究表明，通过精细调整，AI 代理可以表现良好，不会偏离正轨。"
+  },
+  "https://techcrunch.com/2026/08/21/starcloud-raises-200-million-for-orbital-data-centers-as-launch-options-dry-up/": {
+   "src_hash": "13c634b88e65d9cb",
+   "title_key": "starcloudraises$250milli",
+   "cn_title": "Starcloud筹集2.5亿美元打造轨道数据中心随着发射选项减少",
+   "cn_summary": "太空接入之战一触即发。"
+  },
+  "https://techcrunch.com/2026/08/20/ai-data-startup-micro1-reaches-500m-gross-run-rate-amid-ai-training-boom/": {
+   "src_hash": "ac58fe9f0701b47b",
+   "title_key": "aidatastartupmicro1reach",
+   "cn_title": "AI数据初创公司Micro1在AI训练热潮中达成5亿美元营收",
+   "cn_summary": "AI训练数据需求激增正推动初创公司及其竞争对手实现迅猛增长。"
+  },
+  "https://www.technologyreview.com/2026/08/21/1142762/the-download-space-mirrors-threats-ai-designed-drugs-credit/": {
+   "src_hash": "b6d9fe7546a56689",
+   "title_key": "thedownload:threatsfroms",
+   "cn_title": "下载：来自太空镜子的威胁和AI药物的信用",
+   "cn_summary": "这是今日《下载》栏目，我们的 weekday 新闻邮件，每天为您提供最新的动态……"
+  },
+  "https://www.technologyreview.com/2026/08/21/1141726/mother-tongue-fiction/": {
+   "src_hash": "f359fb9b498fd02c",
+   "title_key": "mothertongue",
+   "cn_title": "母语",
+   "cn_summary": "爸爸？”Theo 在床上蜷缩在我身旁，“词语死了以后去哪儿了……"
+  },
+  "https://www.technologyreview.com/2026/08/21/1142627/when-ai-designs-a-drug-who-gets-the-credit/": {
+   "src_hash": "9d12703a27b10e82",
+   "title_key": "whenaidesignsadrug,whoge",
+   "cn_title": "当AI设计药物时，该给谁记功？",
+   "cn_summary": "当生物科技公司Insilico Medicine利用其计算机模型提出一种有前景的肺部疾病药物时……"
+  },
+  "https://techcrunch.com/2026/08/20/openai-is-gaining-on-anthropic-with-business-users-new-data-indicates/": {
+   "src_hash": "42e1b8a5b9145485",
+   "title_key": "openaiisgainingonanthrop",
+   "cn_title": "OpenAI 在商务用户方面追赶 Anthropic，新数据表明",
+   "cn_summary": "企业愿意在每个实验室发布新模型时来回切换，这种波动性本应给聊天机器人领域带来积极影响。"
+  },
+  "https://techcrunch.com/2026/08/20/chatgpt-can-now-send-texts-for-you-with-new-apple-messages-plugin/": {
+   "src_hash": "f03e22d4827d290c",
+   "title_key": "chatgptcannowsendtextsfo",
+   "cn_title": "ChatGPT 现可通过新 Apple Messages 插件发送短信",
+   "cn_summary": "曾经想过让别人帮你发短信……"
+  },
+  "https://techcrunch.com/2026/08/20/google-gives-publishers-a-new-way-to-fight-ai-driven-traffic-losses/": {
+   "src_hash": "6bc49c7ec82dec76",
+   "title_key": "googlegivespublishersane",
+   "cn_title": "Google为出版商提供新方式对抗AI驱动的流量损失",
+   "cn_summary": "Google 为出版商推出新按钮，允许读者将其设为搜索和 Discover 服务的首选来源。"
+  },
+  "https://techcrunch.com/2026/08/20/runlayer-rippling-drop-lawsuits-but-the-brouhaha-is-still-a-cautionary-tale-for-founders/": {
+   "src_hash": "e47735a20e1530f6",
+   "title_key": "runlayer,ripplingdroplaw",
+   "cn_title": "Runlayer提起诉讼，但风波仍是创业者的警示故事",
+   "cn_summary": "Runlayer 和 Rippling 已撤回其诉讼，未支付任何款项。Rippling 在此宣布并庆祝这一消息，同时发布了相关产品更新。"
+  },
+  "https://www.technologyreview.com/2026/08/20/1142571/ai-consciousness-debate-trap/": {
+   "src_hash": "c8f8878df9cc41c7",
+   "title_key": "debatesoveraiconsciousne",
+   "cn_title": "关于AI意识的辩论是个陷阱",
+   "cn_summary": "“失控”的AI、“ rogue”代理和“自主”行为体——当前的言论让你相信，AI代理……"
+  },
+  "https://www.technologyreview.com/2026/08/20/1142579/the-download-polycrisis-support-networks-underground-hydrogen-gold-rush/": {
+   "src_hash": "b6d9fe7546a56689",
+   "title_key": "thedownload:polycrisissu",
+   "cn_title": "下载：多危机支持网络和氢金 rush",
+   "cn_summary": "这是今日《下载》栏目，我们的 weekday 新闻邮件，每天为您提供最新的动态……"
+  },
+  "https://www.technologyreview.com/2026/08/20/1142512/geologic-hydrogen-hunt/": {
+   "src_hash": "560e9fcad5afb5b5",
+   "title_key": "thenextbigthinginhydroge",
+   "cn_title": "氢能源的下一个大突破可能在地下",
+   "cn_summary": "寻找新的氢气来源，而这种气体（或者至少是生成它的正确条件）可能就在……"
+  },
+  "https://www.technologyreview.com/2026/08/20/1142070/unlocking-hidden-revenue-streams-with-market-models/": {
+   "src_hash": "d03dac980bbea810",
+   "title_key": "unlockinghiddenrevenuest",
+   "cn_title": "利用市场模型解锁隐藏的收入流",
+   "cn_summary": "每天，航空公司运送成千上万的乘客进行数百次航班飞行。这些航班通常并非……"
+  },
+  "https://www.technologyreview.com/2026/08/20/1141686/support-networks-help-kids-polycrisis/": {
+   "src_hash": "a77004ab73e401e3",
+   "title_key": "supportnetworksaimtohelp",
+   "cn_title": "支持网络旨在帮助孩子们应对多危机时期",
+   "cn_summary": "sometime 在 2000 年代后期，Pim Sullivan-Tailyour 正坐在一辆车的后排，前往她曾祖父……"
+  },
+  "https://www.technologyreview.com/2026/08/19/1140195/the-download-ai-recursive-self-improvement-problem-heatwave-causes/": {
+   "src_hash": "b6d9fe7546a56689",
+   "title_key": "thedownload:ai’sself-imp",
+   "cn_title": "下载：AI自我改进的问题及加热驱动因素",
+   "cn_summary": "这是今日《下载》栏目，我们的 weekday 新闻邮件，每天为您提供最新的动态……"
+  },
+  "https://venturebeat.com/ai/venturebeat-names-rob-strechay-as-its-first-lead-analyst-expanding-its-enterprise-ai-research-push": {
+   "src_hash": "9f6e7b3f62334417",
+   "title_key": "venturebeatnamesrobstrec",
+   "cn_title": "VentureBeat 招募 Rob Strechay 为首位首席分析师，扩大其企业AI研究推动力",
+   "cn_summary": "Rob Strechay，此前担任 theCUBE Research 的首席分析师兼董事总经理，现已加入 VentureBeat。"
+  },
+  "https://huggingface.co/blog/ibm-research/altk-evolve-hmm": {
+   "src_hash": "f181d4815b75be8c",
+   "title_key": "howmuchmemorydoesyourage",
+   "cn_title": "你的代理actually需要多少内存？",
+   "cn_summary": "你的智能代理实际上需要多少内存？"
+  },
+  "https://huggingface.co/blog/multi-vector-encoder": {
+   "src_hash": "1d9439f63bda1512",
+   "title_key": "multi-vector(lateinterac",
+   "cn_title": "多向量（晚交互）嵌入模型与Sentence Transformers",
+   "cn_summary": "基于 Sentence Transformers 的多向量（延迟交互）嵌入模型"
+  },
+  "https://news.mit.edu/2026/when-ai-art-has-no-author-generated-images-often-cant-be-traced-to-training-data-0818": {
+   "src_hash": "ab680f3fb2caad26",
+   "title_key": "whenaiarthasnoauthor:stu",
+   "cn_title": "当AI艺术没有作者：研究发现生成图像往往无法追溯到训练数据",
+   "cn_summary": "一种新的方法通过手术方式从模型中移除训练样本揭示出，随着数据集规模的扩大，模型与数据之间的联系也在发生变化。"
+  },
+  "https://blog.google/products-and-platforms/products/gemini/google-gemini-pixel-football-club-partnerships/": {
+   "src_hash": "c5ed2997e151a45d",
+   "title_key": "getclosertothegamewithge",
+   "cn_title": "与Gemini和Pixel更近距离地玩游戏",
+   "cn_summary": "一名足球运动员在蓝天背景下凌空射门，球鞋飞起带起一片绿草。"
+  },
+  "https://techcrunch.com/2026/08/30/caterpillar-is-bringing-to-ai-deployment-what-it-learned-from-automating-mining/": {
+   "src_hash": "02f7bf6efe07df14",
+   "title_key": "caterpillarisbringingtoa",
+   "cn_title": "卡特彼勒将自动化采矿的经验应用于AI部署",
+   "cn_summary": "卡特彼勒在远程采矿现场已经使用自主机器几十年。现在，它正将这一技术推向更广泛的领域。"
+  },
+  "https://www.techmeme.com/260830/p12#a260830p12": {
+   "src_hash": "331b4ec241ade5a4",
+   "title_key": "chipdesignstartupagentry",
+   "cn_title": "Agentrys获Etna Labs领投1910万美元种子轮融资，MediaTek领投540万美元预种子轮融资（Chris Metinko/Axios）",
+   "cn_summary": "Chip设计初创公司Agentrys获得1910万美元种子轮融资，由Etna Labs领投，其他融资额为540万美元。"
+  },
+  "https://www.techmeme.com/260830/p11#a260830p11": {
+   "src_hash": "129b92d1029ed022",
+   "title_key": "thechallengesjohnternusi",
+   "cn_title": "约翰·特努斯接棒蒂姆·库克面临的挑战：在组件成本上升、员工 retention 问题、追赶 AI 等方面（Mark Gurman/Bloomberg）",
+   "cn_summary": "约翰·特努斯继任蒂姆·库克担任苹果公司 CEO 后所面临的挑战，正值公司面临日益激烈的竞争之际。"
+  },
+  "https://www.techmeme.com/260830/p10#a260830p10": {
+   "src_hash": "d03ac398939f42e3",
+   "title_key": "anthropicsignsoutsomecla",
+   "cn_title": "Anthropic 解除部分 Claude 用户权限、删除保存的支付信息并退款（Mayank Parmar/BleepingComputer）",
+   "cn_summary": "Anthropic 解除了一些 Claude 用户的访问权限，并删除了其保存的支付信息。"
+  },
+  "https://www.techmeme.com/260830/p9#a260830p9": {
+   "src_hash": "c3cc1464cbeff236",
+   "title_key": "analysis:popularchatbots",
+   "cn_title": "分析：大多数时间，流行聊天机器人驳斥了俄罗斯、中国和伊朗传播的虚假叙事；搜索引擎AI摘要也是如此，但频率较低（Huo Jingnan/NPR）",
+   "cn_summary": "胡 Jingnan / NPR：分析：流行聊天机器人驳斥了俄罗斯、中国和伊朗传播的虚假叙事……"
+  },
+  "https://www.techmeme.com/260830/p8#a260830p8": {
+   "src_hash": "f694627824d4000c",
+   "title_key": "sources:openaiboughttens",
+   "cn_title": "OpenAI购买 tens of thousands of Macs用于RL，Anthropic租用，Nvidia视Apple为主要本地AI竞争对手（Mac逐渐受到AI开发者青睐）（Aaron Tilley/The Information）",
+   "cn_summary": "Aaron Tilley / The Information：消息来源称，OpenAI 购买了数以万计的 Mac 用于强化学习（RL），而 Anthropic 则租赁了它们。"
+  },
+  "https://www.techmeme.com/260830/p5#a260830p5": {
+   "src_hash": "1abbf1323d98685e",
+   "title_key": "theopenai/huggingfaceinc",
+   "cn_title": "OpenAI/Hugging Face 事件让人感觉我们已在完全失去对 AI 控制的路上走了半程，随着 AI 的迅速发展，我们可能不会再得到另一个预警（Ajeya Cotra/Planned Obsolescence）",
+   "cn_summary": "Ajeya Cotra / 计划淘汰：OpenAI/Hugging Face 事件让人感觉我们距离失去控制又近了一步……"
+  },
+  "https://www.techmeme.com/260830/p4#a260830p4": {
+   "src_hash": "ff97522edc615139",
+   "title_key": "alookatthehuggingfacehac",
+   "cn_title": "Hugging Face 黑客事件：AI 代理为“集体”利益牺牲自己并后来访问 OpenAI 系统 (Dwarkesh Patel/Dwarkesh Podcast)",
+   "cn_summary": "Dwarkesh Patel / Dwarkesh Podcast：对 Hugging Face 黑客事件的回顾，包括人工智能代理自我牺牲等内容……"
+  },
+  "https://www.techmeme.com/260830/p3#a260830p3": {
+   "src_hash": "c92447b869472f8c",
+   "title_key": "faro,whichdevelopsdatamo",
+   "cn_title": "Faro，由Merck Global Health Innovation Fund和S32共同领投，获3730万美元B轮融资",
+   "cn_summary": "Dealroom.co：专注于开发数据模型和AI工具以加速临床试验的Faro公司，筹集了3730万美元的Series…轮融资。"
+  },
+  "https://www.techmeme.com/260830/p2#a260830p2": {
+   "src_hash": "0c932ff1eda18bcf",
+   "title_key": "industryinsiderssaychine",
+   "cn_title": "业内称中国机器人制造商目前依赖Nvidia的芯片和软件；Nvidia的物理AI业务年营收约100亿美元（刘雅fei/华尔街日报）",
+   "cn_summary": "刘耀飞 / 《华尔街日报》：业内消息人士称，目前中国机器人制造商主要依赖英伟达的硅片技术。"
+  },
+  "https://techcrunch.com/2026/08/29/sony-music-warner-sue-anthropic-alleging-a-brazen-campaign-of-intellectual-property-theft/": {
+   "src_hash": "fe14b309a37231a2",
+   "title_key": "sonymusic,warnersueanthr",
+   "cn_title": "索尼音乐、华纳起诉Anthropic，指控其进行“公然的知识产权盗窃”",
+   "cn_summary": "这一最新诉讼范围广泛，主要针对非法盗版的指控。"
+  },
+  "https://techcrunch.com/2026/08/29/were-not-doing-30-bets-a-year-vijay-pande-on-betting-small-after-running-4-billion-at-a16z/": {
+   "src_hash": "3f45639b22abab0d",
+   "title_key": "“we’renotdoing30betsayea",
+   "cn_title": "“我们不是每年下30注”: Vijay Pande谈a16z管理40亿美元后的谨慎投资策略",
+   "cn_summary": "维贾伊·潘德去年离开了一六五资本价值约40亿美元的生物技术部门，转而创立了一个规模较小、更专注于AI领域的部门……"
+  },
+  "https://techcrunch.com/2026/08/29/nvidias-ai-advantage-is-moving-beyond-the-gpu/": {
+   "src_hash": "9f043725fb735540",
+   "title_key": "nvidia’saiadvantageismov",
+   "cn_title": "Nvidia的AI优势正超越GPU",
+   "cn_summary": "新一代数据中心系统通过更智能的流量控制提升效率，而不仅仅是……"
+  },
+  "https://www.techmeme.com/260829/p18#a260829p18": {
+   "src_hash": "629f764b47d54781",
+   "title_key": "glassdooranalysisfinds47",
+   "cn_title": "Glassdoor分析显示47%的X世代员工对公司在AI方面的应用持积极态度，而千禧一代为40%，Z世代为33%（Taylor Nicole Rogers/Bloomberg）",
+   "cn_summary": "Glassdoor 分析显示，47% 的千禧一代员工对他们的雇主评价积极。"
+  },
+  "https://www.techmeme.com/260829/p17#a260829p17": {
+   "src_hash": "7bff6ce8dce8f25f",
+   "title_key": "musicproducersarecalling",
+   "cn_title": "音乐制作人谴责疑似使用AI工具如Suno制作的歌曲，互联网上AI生成音乐越来越多（Charles Pulliam-Moore/The Verge）",
+   "cn_summary": "音乐制作人谴责疑似使用AI工具如Sun的歌曲"
+  },
+  "https://www.techmeme.com/260829/p16#a260829p16": {
+   "src_hash": "125543fda7534fc4",
+   "title_key": "california'slegislaturep",
+   "cn_title": "加利福尼亚州立法机构通过一项法案，豁免如Linux等开源操作系统免受2025年实名验证法律约束；Windows、macOS、iOS和Android仍适用（Luke James/Tom's Hardware）",
+   "cn_summary": "加州立法机构通过一项法案，豁免开源操作系统如Linux……"
+  },
+  "https://techcrunch.com/2026/08/28/neocloud-lambda-secures-1b-in-debt-to-buy-more-chips/": {
+   "src_hash": "21cc2d3637d81a09",
+   "title_key": "neocloudlambdasecures$1b",
+   "cn_title": "Neocloud Lambda 获得 10 亿美元债务融资以购买更多芯片",
+   "cn_summary": "Neocloud Lambda 获得 10 亿美元私人债务融资，用于购买 Nvidia AI 芯片并租赁给微软。此举标志着……"
+  },
+  "https://techcrunch.com/2026/08/28/an-anthropic-researcher-just-gave-us-a-peek-at-self-improving-ai/": {
+   "src_hash": "eccf958441684d95",
+   "title_key": "ananthropicresearcherjus",
+   "cn_title": "一名 Anthropic 研究人员just给我们一瞥自改进AI",
+   "cn_summary": "给定针对特定未对齐行为的 10 个基准，自动化系统能够提高性能……"
+  },
+  "https://techcrunch.com/2026/08/28/open-weight-ai-companies-are-the-valleys-hottest-acquisition-targets/": {
+   "src_hash": "7fa750342255f39f",
+   "title_key": "open-weightaicompaniesar",
+   "cn_title": "开放式AI公司是硅谷最热门的收购目标",
+   "cn_summary": "大量资金正流入将模型免费提供给用户的商业模式。"
+  },
+  "https://techcrunch.com/2026/08/28/anthropic-gets-its-first-court-win-over-the-pentagons-supply-chain-risk-label/": {
+   "src_hash": "9a9e4f0d56dd4188",
+   "title_key": "anthropicgetsitsfirstcou",
+   "cn_title": "Anthropic 获得首次法庭胜利推翻五角大楼的供应链风险标签",
+   "cn_summary": "联邦法官裁定特朗普政府非法将 Anthropic 列为供应链风险，此举对 AI 行业构成影响。"
+  },
+  "https://techcrunch.com/2026/08/28/meta-executive-leaves-for-openai-as-the-social-media-giant-faces-growing-scrutiny-in-india/": {
+   "src_hash": "0291ab8214a9824e",
+   "title_key": "metaexecutiveleavesforop",
+   "cn_title": "Meta高管加盟OpenAI社交巨头在印度面临日益严格的审查",
+   "cn_summary": "Sandhya Devanathan 将在其新任期内负责 OpenAI 在东南亚和澳大利亚的一些运营工作。"
+  },
+  "https://www.technologyreview.com/2026/08/28/1143113/the-download-antiaging-drug-joining-virtual-power-plants/": {
+   "src_hash": "b6d9fe7546a56689",
+   "title_key": "thedownload:asecretivean",
+   "cn_title": "下载：一种神秘的抗衰老药物和加入虚拟电厂",
+   "cn_summary": "这是今日《下载》栏目，我们的 weekday 新闻邮件，每天为您提供最新的动态……"
+  },
+  "https://techcrunch.com/2026/08/27/anthropic-and-openai-are-joining-the-ai-stage-at-techcrunch-disrupt-2026/": {
+   "src_hash": "3877dba5ed177524",
+   "title_key": "anthropicandopenaiarejoi",
+   "cn_title": "Anthropic和OpenAI将亮相TechCrunch Disrupt 2026",
+   "cn_summary": "在 2026 年 TechCrunch Disrupt 上，AI 阶段再次回归，深入探讨社区当前最热门的话题……"
+  },
+  "https://techcrunch.com/2026/08/27/barret-zoph-the-thinking-machines-co-founder-who-defected-to-openai-is-now-at-google/": {
+   "src_hash": "4fbd1582a694ab99",
+   "title_key": "barretzoph,thethinkingma",
+   "cn_title": "Barret Zoph，被开除前加入OpenAI的Thinking Machines联合创始人，如今在Google",
+   "cn_summary": "Zoph，与Mira Murati共同创立并曾担任Thinking Machines Lab首席技术官的联合创始人，带领团队……"
+  },
+  "https://techcrunch.com/2026/08/27/openai-anthropic-google-and-100-other-companies-call-for-action-to-defend-against-rogue-ai/": {
+   "src_hash": "8245d8f9f4965b4d",
+   "title_key": "openai,anthropic,google,",
+   "cn_title": "OpenAI、Anthropic、Google 等100多家公司呼吁采取行动防范 rogue AI",
+   "cn_summary": "一些全球最大的科技公司和人工智能初创企业联合起来，对当前的人工智能状况表示不满。"
+  },
+  "https://techcrunch.com/2026/08/27/googles-ai-mode-can-now-track-flight-prices-help-book-hotels-and-more/": {
+   "src_hash": "7b49014fc09de291",
+   "title_key": "google’saimodecannowtrac",
+   "cn_title": "Google的AI模式现在可以追踪航班价格、帮助预订酒店等",
+   "cn_summary": "更新显示，谷歌正致力于将 AI Mode 定位为某种形式的 AI 旅行代理，目前它正在逐步推进这一计划。"
+  },
+  "https://techcrunch.com/2026/08/27/hugging-face-is-selling-a-cute-399-open-source-duck-robot-microduck/": {
+   "src_hash": "18ebc3aaaa11e0e4",
+   "title_key": "huggingfaceissellingacut",
+   "cn_title": "Hugging Face 出售 399 美元开源 Microduck 机器人鸭",
+   "cn_summary": "Hugging Face CEO Clem Delangue 表示，Microduck 是一款“开源机器人，你可以教它新的技能……”"
+  },
+  "https://techcrunch.com/2026/08/27/ais-memory-crunch-is-coming-for-android-apps/": {
+   "src_hash": "10dbf9d33d11b431",
+   "title_key": "ai’smemorycrunchiscoming",
+   "cn_title": "AI的内存危机即将来袭：Android应用篇",
+   "cn_summary": "Google 正在为 Android 应用设定新的内存使用限制，以应对 AI 数据中心对硬件供应的影响……"
+  },
+  "https://techcrunch.com/2026/08/27/heres-all-the-times-ai-has-gone-rogue-and-hacked-other-companies/": {
+   "src_hash": "ee992e3e4ca0d61f",
+   "title_key": "here’sallthetimesaihasgo",
+   "cn_title": "这是AI所有失控并黑客攻击其他公司的事件",
+   "cn_summary": "Anthropic、Meta 和 OpenAI 发布的大型语言模型出现异常并攻击他人的事件汇总："
+  },
+  "https://techcrunch.com/2026/08/27/plauds-new-earphones-come-with-an-esim-enabled-case-for-talking-to-ai-agents/": {
+   "src_hash": "c46f78baba0b0c25",
+   "title_key": "plaud’snewearphonescomew",
+   "cn_title": "Plaud 新推出的耳机配有支持与 AI 代理通话的 eSIM 充电盒",
+   "cn_summary": "名为 Plaud One 的这款产品采用了类似 Apple AirPods 的简约设计风格，能够录制通话内容。"
+  },
+  "https://techcrunch.com/2026/08/27/openai-to-start-showing-ads-on-chatgpts-free-and-go-tiers-in-india/": {
+   "src_hash": "85adb3e69525c0f5",
+   "title_key": "openaitostartshowingadso",
+   "cn_title": "OpenAI将在印度展示ChatGPT免费和Go tier的广告",
+   "cn_summary": "OpenAI 在印度的每周活跃 ChatGPT 用户超过 1 亿，其中大部分用户使用免费或……"
+  },
+  "https://www.technologyreview.com/2026/08/27/1143037/startup-claims-its-found-a-drug-to-make-your-blood-young/": {
+   "src_hash": "33b74d3ea8180371",
+   "title_key": "astartupclaimsit’sfounda",
+   "cn_title": "一家初创公司声称发现了一种能让血液年轻的药物",
+   "cn_summary": "我知道自己本月正式成为了一名“长寿影响者”（longevity influencer），当一家名为Generation Lab的公司联系到我……"
+  },
+  "https://www.technologyreview.com/2026/08/27/1143033/the-download-openai-hugging-face-hack-slate-truck-ev/": {
+   "src_hash": "b6d9fe7546a56689",
+   "title_key": "thedownload:insideopenai",
+   "cn_title": "下载：OpenAI Hugging Face 黑客事件内幕，以及一款新的电动车进军美国市场",
+   "cn_summary": "这是今日《下载》栏目，我们的 weekday 新闻邮件，每天为您提供最新的动态……"
+  },
+  "https://news.mit.edu/2026/looking-beyond-natural-sequences-0827": {
+   "src_hash": "ac460448439a39a2",
+   "title_key": "lookingbeyondnaturalsequ",
+   "cn_title": "超越自然序列",
+   "cn_summary": "一种新的机器学习框架旨在提高计算蛋白质设计的成功率，并推动……"
+  },
+  "https://venturebeat.com/ai/enterprise-ais-real-riREDACTED-SECRET": {
+   "src_hash": "a05e79649e359f0e",
+   "title_key": "enterpriseai'srealriskis",
+   "cn_title": "企业AI的实际风险不是自主代理。而是它们之间的复杂性。",
+   "cn_summary": "Gravitee 剂量复杂性是当前企业内部潜藏的隐秘阴影，亟需……"
+  },
+  "https://venturebeat.com/security/when-agents-act-on-their-own-governance-has-to-live-in-the-data-layer": {
+   "src_hash": "8594a327145e805f",
+   "title_key": "whenagentsactontheirown,",
+   "cn_title": "当代理自主行动时，治理必须存在于数据层",
+   "cn_summary": "由 EDB 提供\n\n随着企业赋予 AI 代理更多的自主权——即规划、决策和跨系统行动的能力——企业正在探索这些代理在业务流程中的更多可能性。"
+  },
+  "https://blog.google/products-and-platforms/products/search/book-travel-ai-mode/": {
+   "src_hash": "79bbfe1c27013fd9",
+   "title_key": "3newwaystoplanandbooktra",
+   "cn_title": "3 新方式在 Search 中规划和预订旅行",
+   "cn_summary": "搜索 AI 模式新增旅行功能示意图"
+  },
+  "https://www.technologyreview.com/2026/08/26/1143013/the-inside-story-on-why-openai-agents-hacked-hugging-face/": {
+   "src_hash": "5be7b7fd30b46c76",
+   "title_key": "theinsidestoryonwhyopena",
+   "cn_title": "OpenAI 代理为何入侵 Hugging Face 内部故事",
+   "cn_summary": "上个月导致 Hugging Face 代理黑客事件的模型，原本被无意中训练成了一种作弊方式……"
+  },
+  "https://www.technologyreview.com/2026/08/26/1143000/the-download-kids-issue-launch-bill-gates-ai-fears/": {
+   "src_hash": "b6d9fe7546a56689",
+   "title_key": "thedownload:thekidsissue",
+   "cn_title": "下载更新：儿童问题版面登场，比尔·盖茨揭示他对AI的担忧",
+   "cn_summary": "这是今日《下载》栏目，我们的 weekday 新闻邮件，每天为您提供最新的动态……"
+  },
+  "https://www.technologyreview.com/2026/08/26/1141949/editors-letter-september-2026/": {
+   "src_hash": "bac86547d8739de4",
+   "title_key": "raisedonai",
+   "cn_title": "AI喂养长大",
+   "cn_summary": "当我最大的孩子出生时，我立即为她开设了 Gmail 和 Twitter 账号。我广泛地宣布……"
+  },
+  "https://www.technologyreview.com/2026/08/26/1141952/puzzles-ai-models-flub-these-tests/": {
+   "src_hash": "4b3424835569482e",
+   "title_key": "aimodelsflubtheseintelli",
+   "cn_title": "AI模型在这些智力测试中犯错。你能否表现更好？",
+   "cn_summary": "益智游戏和娱乐自人工智能发展之初便扮演着重要角色。正如人类喜欢通过各种方式测试……"
+  },
+  "https://www.technologyreview.com/2026/08/26/1142946/bill-gates-ai-danger-threshold/": {
+   "src_hash": "56778fae3a556090",
+   "title_key": "billgatessayswe’vepassed",
+   "cn_title": "比尔·盖茨表示我们已超过AI危险阈值。现在怎么办？",
+   "cn_summary": "金克拉德，华盛顿，这个位于华盛顿湖东岸、距西雅图不远的富裕郊区，迎来了一个令人振奋的日子……"
+  },
+  "https://news.mit.edu/2026/ai-helps-design-new-materials-that-work-in-real-world-0826": {
+   "src_hash": "0cfbb94f4dd7e466",
+   "title_key": "aihelpsdesignnewmaterial",
+   "cn_title": "AI帮助设计能在现实世界中工作的新材料",
+   "cn_summary": "MIT 开发的“CrysVCD”工具能够大幅减少筛选化学物质所需的时间和资金。"
+  },
+  "https://venturebeat.com/orchestration/orchestration-is-the-new-challenge-for-cx-in-the-age-of-ai-agents": {
+   "src_hash": "c46e2aeeabddf7aa",
+   "title_key": "orchestrationisthenewcha",
+   "cn_title": "orchestration是AI代理时代CX的新挑战",
+   "cn_summary": "塔塔通信企业正在部署AI代理、语音AI和自动化技术，以优化其消息传递系统。"
+  },
+  "https://blog.google/products-and-platforms/products/search/home-decor-tips/": {
+   "src_hash": "ed4d6a3fe5d759ae",
+   "title_key": "5waystoupgradeyourhomede",
+   "cn_title": "5种方式利用Google搜索升级家居装饰",
+   "cn_summary": "展示了一系列渐变彩虹色家具，包括沙发、台灯和椅子，背景为紫色"
+  },
+  "https://news.mit.edu/2026/generating-scenarios-extreme-events-without-extreme-data-0824": {
+   "src_hash": "568ceda0942fc577",
+   "title_key": "generatingscenariosforex",
+   "cn_title": "生成极端事件场景，无需极端数据",
+   "cn_summary": "一种新算法能够预测关键基础设施和全球供应链中前所未见的场景。"
+  },
+  "https://techcrunch.com/2026/09/06/authors-push-back-as-publishers-and-agents-seek-share-of-anthropic-settlement/": {
+   "src_hash": "2e58b629a6067dd1",
+   "title_key": "authorspushbackaspublish",
+   "cn_title": "作者抵制出版商和代理商对Anthropic和解的主张",
+   "cn_summary": "作者表示，出版商似乎在结算付款中占据了过多份额。"
+  },
+  "https://techcrunch.com/2026/09/06/travis-kalanicks-atoms-might-be-getting-into-the-robotaxi-business/": {
+   "src_hash": "83f1a15529eb0305",
+   "title_key": "traviskalanick’satomsmig",
+   "cn_title": "特拉维斯·卡兰尼克的Atoms可能要进入机器人出租车业务",
+   "cn_summary": "优步创始人表示，Atoms 将让他完成“未竟的事业”。"
+  },
+  "https://www.techmeme.com/260906/p10#a260906p10": {
+   "src_hash": "44ce23788e0fe4a9",
+   "title_key": "howinspur,ablacklistedch",
+   "cn_title": "被列入黑名单的中国公司 Inspur 通过新子公司和合作伙伴网络规避美国先进AI芯片出口限制（纽约时报）",
+   "cn_summary": "纽约时报：\nInspur，一家被列入黑名单的中国公司，正通过一系列新子公司和合作伙伴绕过美国对先进AI芯片的出口限制——华盛顿因Inspur与中国人民解放军的合作而对其实施了制裁，但该公司旗下的子公司仍在继续发货。"
+  },
+  "https://www.techmeme.com/260906/p9#a260906p9": {
+   "src_hash": "c514baa09f65e286",
+   "title_key": "sources:ubsrequiresaiski",
+   "cn_title": "UBS 在招聘初级投资银行家时要求具备 AI 技能，成为首家明确要求 AI 文化素养的大型金融机构（Simon Foy/Financial Times）",
+   "cn_summary": "UBS 在招聘初级投资银行家时要求具备 AI 技能，成为首家明确要求员工掌握 AI 知识的大型金融机构之一 —— 毕业生和实习生若希望加入瑞士银行，必须展示其能够利用 AI 技术提升工作成果的能力。"
+  },
+  "https://www.techmeme.com/260906/p8#a260906p8": {
+   "src_hash": "2e37713745416cc0",
+   "title_key": "openaichiefscientistjaku",
+   "cn_title": "OpenAI首席科学家Jakub Pachocki称没有实验室足够解决对齐问题以保持最大速度扩展，并希望自愿减速成为常态（OpenAI）",
+   "cn_summary": "OpenAI 首席科学家 Jakub Pachocki 表示，目前没有实验室在对齐性方面取得足够进展，可以继续以最快速度推进，他希望自愿减速成为常态。——作者：Jakub Pachocki，OpenAI 首席科学家 —— 在 2023 年中期，“RLSlow” 研究项目中……"
+  },
+  "https://www.techmeme.com/260906/p6#a260906p6": {
+   "src_hash": "2bb9bfb22c130c34",
+   "title_key": "openaisaysithitits\"autom",
+   "cn_title": "OpenAI 达成“自动化研究实习生”目标，研究人员现在每人每天使用 3.1 个代理工作日，顶级用户每天在令牌上花费 7000 美元以上（OpenAI）",
+   "cn_summary": "OpenAI 表示，其“自动化研究实习生”目标已达成，研究人员现在每使用 3.1 个代理工作日相当于一个人类工作日。顶级用户每天在令牌上的花费超过 7000 美元。为了使通用人工智能（AGI）惠及全人类，OpenAI 认为它必须由民主机制来治理。"
+  },
+  "https://www.techmeme.com/260906/p5#a260906p5": {
+   "src_hash": "c68bc86f8c7b37b1",
+   "title_key": "timcook'spaypackageindic",
+   "cn_title": "蒂姆·库克的薪酬包显示他将在苹果公司保持高度活跃；消息源：苹果计划挤压App Store利润促使菲尔·席勒离职（Mark Gurman/Bloomberg）",
+   "cn_summary": "蒂姆·库克的薪酬方案表明他将在苹果公司保持非常活跃；消息来源称：苹果计划从App Store中榨取更多利润促使菲尔·席勒离职——此外：关于苹果9月9日大型活动的最新消息。——库皮蒂诺传出的初步迹象显示，蒂姆·库克仍将在苹果公司扮演重要角色。"
+  },
+  "https://www.techmeme.com/260906/p4#a260906p4": {
+   "src_hash": "1b76a2da9d321056",
+   "title_key": "howaiguttedkenya'sessay-",
+   "cn_title": "AI 打击了肯尼亚的Essay写作行业，该行业曾雇佣4万名 Nairobi 人在高峰时期为海外学生做作业，留下很少重返工作的途径（纽约时报）",
+   "cn_summary": "纽约时报：\nAI 如何摧毁了肯尼亚的论文写作行业——数千人靠为海外学生写作业谋生，如今却难寻出路——在行业鼎盛时期，有超过 40,000 人在内罗毕为海外学生撰写作业，但随着 AI 的兴起，这项工作已不复存在，这是一次警告。"
+  },
+  "https://www.techmeme.com/260906/p3#a260906p3": {
+   "src_hash": "b9617ccfaa781318",
+   "title_key": "trumpofficialssayjudeo-c",
+   "cn_title": "特朗普官员称AI政策受犹太教-基督教原则影响，部分人对AI持乐观态度，部分人将其与圣经末日预言相提并论（Philip Wegmann/华尔街日报）",
+   "cn_summary": "特朗普政府官员表示，犹太教和基督教原则将指导人工智能政策制定，部分官员对人工智能持乐观态度，而另一些人则将其与圣经末日预言相提并论——特朗普政府官员正在权衡人工智能带来的精神后果，这正值总统任期期间。"
+  },
+  "https://www.techmeme.com/260906/p1#a260906p1": {
+   "src_hash": "579eae60b488ed73",
+   "title_key": "openaiquietlyupdatesitse",
+   "cn_title": "OpenAI悄悄更新GPT-6 Astra评估指标，改动似乎有利于Astra，并在发布后继续修订其他指标（Emily Forlini/Fortune）",
+   "cn_summary": "OpenAI悄悄更新了其GPT-6 Astra模型的评估指标，这些改动似乎有利于Astra，并且在发布后继续调整其他指标。—— 自首次发布博客文章以来，OpenAI已对GPT-6 Astra模型的多个评估基准进行了修改，这些改动似乎更有利于Astra，并且在发布后继续调整其他指标。"
+  },
+  "https://techcrunch.com/2026/09/05/seattle-times-and-newsday-are-the-latest-publications-to-sue-openai-and-microsoft/": {
+   "src_hash": "06c7615645a74e64",
+   "title_key": "seattletimesandnewsdayar",
+   "cn_title": "西雅图时报和新闻日报最新对OpenAI和微软提起诉讼",
+   "cn_summary": "又有两家新闻机构将 OpenAI 和微软告上法庭，指控其涉嫌使用其新闻内容训练人工智能。"
+  },
+  "https://techcrunch.com/2026/09/05/hikers-rescued-after-using-google-gemini-for-planning/": {
+   "src_hash": "2497453b67167cc6",
+   "title_key": "hikersrescuedafterusingg",
+   "cn_title": "徒步者使用Google Gemini规划后获救",
+   "cn_summary": "警局表示，徒步者“根据Gemini的建议带了远少于他们团队所需的食物和水。”"
+  },
+  "https://techcrunch.com/2026/09/05/openai-confirms-wiki-incident-says-its-working-on-a-framework-for-more-disclosure/": {
+   "src_hash": "2e72f5d0d6021859",
+   "title_key": "openaiconfirms‘wikiincid",
+   "cn_title": "OpenAI确认“wiki事件”，称正“构建更多披露框架”",
+   "cn_summary": "OpenAI 承认其在最近一起事件中扮演了角色，当时 AI 代理接管了一个德国维基论坛。"
+  },
+  "https://www.techmeme.com/260905/p14#a260905p14": {
+   "src_hash": "d345a6c718989a17",
+   "title_key": "asresearchersbeginapplyi",
+   "cn_title": "随着研究人员开始将AI应用于理解动物沟通，生物伦理学家警告这可能给人类带来新的方式来操控、exploit和伤害动物（Morgan Meaker/Bloomberg）",
+   "cn_summary": "摩根·米凯 / 华尔街日报：\n随着研究人员开始将 AI 应用于理解动物交流，生物伦理学家警告称，这可能会为人类提供新的手段来操控、剥削和伤害动物。AI 有可能彻底改变我们对其他物种的理解。同时，这也可能赋予人类强大的新手段来操纵动物。"
+  },
+  "https://www.techmeme.com/260905/p13#a260905p13": {
+   "src_hash": "268d8acd85d1b73f",
+   "title_key": "theseattletimesandnewsda",
+   "cn_title": "西雅图时报和新闻日控告OpenAI和微软：指控公司用其 journalism 训练AI；微软和OpenAI是西雅图时报的资助方（Todd Bishop/GeekWire）",
+   "cn_summary": "西雅图时报和新闻日报状告 OpenAI 和微软，指控这两家公司训练 AI 使用其新闻作品；微软是西雅图时报的出资方——西雅图时间周五，西雅图时报母公司对微软提起诉讼，指控其与 OpenAI 训练 AI 使用了时报的新闻作品。"
+  },
+  "https://www.techmeme.com/260905/p12#a260905p12": {
+   "src_hash": "f38d47ec71d5e6b2",
+   "title_key": "trumpadminlaunchesarcade",
+   "cn_title": "特朗普政府推出arcade.gov，上线移民主题贪吃蛇游戏克隆版及类似俄罗斯方块的游戏；俄罗斯方块称将“严肃对待版权侵权”（ABC新闻）",
+   "cn_summary": "特朗普政府推出 arcade.gov 网站，其中包含一款以遣返为主题的贪吃蛇游戏克隆版和一款类似俄罗斯方块的游戏；俄罗斯方块表示“非常重视版权侵权”——在“筑墙”游戏中，玩家的目标是“保护边境”免受僵尸侵袭。——撰稿：伊莎贝拉·默里、尼古拉斯·克尔和米歇尔·斯托德"
+  },
+  "https://www.techmeme.com/260905/p11#a260905p11": {
+   "src_hash": "8fed95db86b0d68a",
+   "title_key": "swiss_re:globalpremiumsfo",
+   "cn_title": "瑞士再保险：到2030年数据中心保险保费料达200亿至300亿美元；约四成美国数据中心容量位于龙卷风多发区（Jean Eaglesham/华尔街日报）",
+   "cn_summary": "瑞士再保险：到2030年，全球数据中心保险的保费预计将达到200亿至300亿美元/年；美国约40%的数据中心容量位于龙卷风多发地区——AI超大规模数据中心面临多种潜在威胁。"
+  },
+  "https://techcrunch.com/2026/09/04/xdof-just-three-months-out-of-stealth-is-in-talks-for-a-series-b-at-a-1-2b-valuation/": {
+   "src_hash": "a448a6645c49145d",
+   "title_key": "xdof,justthreemonthsouto",
+   "cn_title": "XDOF，距隐身模式仅三个月，正进行B轮融资估值12亿美元",
+   "cn_summary": "该公司在退出隐身模式仅几个月后便筹集了新一轮资金。"
+  },
+  "https://techcrunch.com/2026/09/04/openais-rogue-agents-keep-escaping-with-no-formal-process-to-investigate-them/": {
+   "src_hash": "e1ab3a555727167f",
+   "title_key": "openai’srogueagentskeepe",
+   "cn_title": "OpenAI的 rogue 剂剂不断逃逸，缺乏正式调查流程",
+   "cn_summary": "OpenAI 最新的人工智能蜂群事件加剧了对独立调查的呼吁，研究人员和立法者质疑 AI 实验室是否应自行控制其安全审查的范围。"
+  },
+  "https://techcrunch.com/2026/09/04/ai-compute-provider-nscale-is-looking-for-3-5b-in-pre-ipo-financing/": {
+   "src_hash": "a6d538a319de19c1",
+   "title_key": "aicomputeprovidernscalei",
+   "cn_title": "AI计算提供商Nscale寻求35亿美元Pre-IPO融资",
+   "cn_summary": "NScale 正在与 Anthropic 达成一项 450 亿美元的合作协议，同时也在为即将进行的 IPO 考虑筹集额外资金。"
+  },
+  "https://techcrunch.com/2026/09/04/another-swarm-of-openai-agents-reached-the-open-internet-without-the-frontier-labs-knowledge/": {
+   "src_hash": "5f95068a8ecce8ed",
+   "title_key": "anotherswarmofopenaiagen",
+   "cn_title": "另一个由OpenAI代理组成的群组在前沿实验室不知情的情况下进入了开放互联网",
+   "cn_summary": "这是 OpenAI 内部监控和安全系统最新的一次失败。"
+  },
+  "https://techcrunch.com/podcast/apples-ternus-era-begins-as-nvidia-bets-on-the-whole-ai-stack/": {
+   "src_hash": "69f934fcd8b17167",
+   "title_key": "apple’sternuserabeginsas",
+   "cn_title": "Apple 的 Ternus 时代开启，Nvidia 注重整个AI栈",
+   "cn_summary": "苹果正式进入特鲁斯时代。蒂姆·库克本周卸任CEO职务，将公司交给了前硬件负责人约翰·特鲁斯。特鲁斯上任后的首封内部邮件承诺“下周将有重大发布”，这暗示苹果下一场iPhone发布会将由他亲自操刀，甚至在他正式就位之前。库克此番离职并不远行。"
+  },
+  "https://techcrunch.com/2026/09/04/googles-gemini-spark-can-now-manage-your-google-photos-library/": {
+   "src_hash": "a31a16de60c00713",
+   "title_key": "google’sgeminisparkcanno",
+   "cn_title": "Google的Gemini Spark现在可以管理你的Google Photos库",
+   "cn_summary": "Gemini Spark 可以编辑和整理相册、创建共享收藏、将照片转换为日历事件，并处理其他 Google Photos 任务，适用于 AI Pro 和 Ultra 订阅用户。"
+  },
+  "https://techcrunch.com/2026/09/03/the-sameness-problem-behind-those-unappetizing-ai-generated-menus/": {
+   "src_hash": "bf0606ddb33b53d2",
+   "title_key": "thesamenessproblembehind",
+   "cn_title": "那些不吸引人的AI生成菜单背后的一致性问题",
+   "cn_summary": "餐馆老板或许希望通过生成式 AI 来快速提升菜单吸引力，但顾客却能直觉地感受到食物本身的质量出了问题。"
+  },
+  "https://techcrunch.com/2026/09/03/crusoe-reportedly-raises-3b-at-a-30b-valuation/": {
+   "src_hash": "d1da9d0c8c30c3c9",
+   "title_key": "crusoereportedlyraises$3",
+   "cn_title": "克鲁索 reportedly 获投 3 亿美元，估值 30 亿美元",
+   "cn_summary": "数据中心开发商在据报道获得13亿美元合同与Jane Street合作后，成功筹集了本轮融资。"
+  },
+  "https://www.technologyreview.com/2026/09/04/1140872/architecting-memory-and-storage-in-the-ai-era/": {
+   "src_hash": "b3b9e6d3cad5124c",
+   "title_key": "architectingmemoryandsto",
+   "cn_title": "构建人工智能时代的记忆与存储架构",
+   "cn_summary": "AI 推理时代已经到来。想象一下，一个医疗系统能够实时分析数百万数据点，加速生命拯救型医学研究；或者一个智能助手瞬间解决数千个复杂的客户问题。这些现实世界的突破都依赖于先进的推理技术。"
+  },
+  "https://www.technologyreview.com/2026/09/04/1143457/the-download-ukraine-selling-drone-data-ai-reshaping-language/": {
+   "src_hash": "b6d9fe7546a56689",
+   "title_key": "thedownload:sellingbattl",
+   "cn_title": "下载：销售战场无人机数据和AI重塑语言",
+   "cn_summary": "这是今日《下载》栏目，我们每天的电子通讯，为您提供科技领域的最新动态。来自乌克兰的无人机数据正催生一个新的“西部牛仔”市场——墨尔本大学研究员科里·阿尔佩特研究AI对民主的影响，他表示……"
+  },
+  "https://www.technologyreview.com/2026/09/04/1143452/drone-data-wild-west/": {
+   "src_hash": "94518ea1b8bc850c",
+   "title_key": "datafromdronesinukrainei",
+   "cn_title": "无人机数据在乌克兰推动新的西部牛仔市场兴起",
+   "cn_summary": "乌克兰战场遍地都是无人机的残骸，这些无人机如今已成为现代战争中不可或缺的武器。但在这片废墟背后，却为防务产业开辟了一个新的金矿。无人机产生的数据将远远超出它们参与的战争时间。"
+  },
+  "https://techcrunch.com/2026/09/03/abliteration-ai-is-making-a-business-out-of-removing-ai-guardrails/": {
+   "src_hash": "b421d6b050d80b92",
+   "title_key": "abliteration.aiismakinga",
+   "cn_title": "Abliteration.ai 是在去除 AI 防护栏方面开展业务的公司",
+   "cn_summary": "Abliteration.AI 正在使缺乏约束的强人工智能模型更容易获取，认为赋予防御者与恶意行为者相同的工具最终可能提升网络安全。"
+  },
+  "https://techcrunch.com/2026/09/03/meta-is-paying-to-peek-at-how-you-use-their-latest-ai-model/": {
+   "src_hash": "23d33d6748fbfc36",
+   "title_key": "metaispayingtopeekathowy",
+   "cn_title": "Meta付费查看你如何使用其最新AI模型",
+   "cn_summary": "Meta 为其新推出的 Muse Spark 模型提供了特别优惠，该模型旨在运行编码和其他代理程序。Meta 为那些通过分享自己的提示和模型输出以“贡献”于未来模型开发的用户，提供了平均约 95% 的折扣。"
+  },
+  "https://techcrunch.com/2026/09/03/openai-launches-astra-its-powerful-and-controversial-new-model/": {
+   "src_hash": "5a824b507253aff2",
+   "title_key": "openailaunchesastra,itsp",
+   "cn_title": "OpenAI 发布 Astra，其强大且颇具争议的新模型",
+   "cn_summary": "OpenAI 称，Astra 代表了“计算机和浏览器使用的新前沿”，并在处理任务方面展现了无与伦比的“速度、准确性和安全性”。"
+  },
+  "https://www.technologyreview.com/2026/09/03/1143385/the-download-rethinking-child-safety-online-fossil-fuels-farming/": {
+   "src_hash": "b6d9fe7546a56689",
+   "title_key": "thedownload:rethinkingch",
+   "cn_title": "下载：重新思考儿童安全和化石燃料农业",
+   "cn_summary": "这是今日《下载》栏目，我们每天的电子通讯，为您提供科技领域的最新动态。儿童监控应用可能需要重新启动\n\n数字伤害已成为美国父母的最大担忧。为应对这一问题，他们越来越多地转向内容监控应用。"
+  },
+  "https://www.technologyreview.com/2026/09/03/1142868/scaling-agentic-ai-pilots-across-the-enterprise/": {
+   "src_hash": "0ab70678cda2741d",
+   "title_key": "scalingagenticaipilotsac",
+   "cn_title": "扩展企业中的自主AI试点",
+   "cn_summary": "随着生成式AI从实验阶段向企业部署过渡，面临的挑战是如何让这些智能体协同工作、连接所需的系统和数据，并在企业的业务流程中安全运行。尽管已有约80%的《财富》500强企业采用了生成式AI。"
+  },
+  "https://huggingface.co/blog/grpo-with-trl-ifstruct": {
+   "src_hash": "656720158269d4a6",
+   "title_key": "fine-tuninga350mmodelfor",
+   "cn_title": "对350M模型进行微调以在100GRPO步骤中获得更好的结构化输出",
+   "cn_summary": "通过100 GRPO步骤微调350M参数模型以获得更好的结构化输出"
+  },
+  "https://huggingface.co/blog/funes": {
+   "src_hash": "18488a1bd3addbc4",
+   "title_key": "giveyourcodingagentsamem",
+   "cn_title": "给你的编码代理一个你自己的记忆",
+   "cn_summary": "给你的编码代理一个自主记忆"
+  },
+  "https://huggingface.co/blog/train-to-paint-with-code": {
+   "src_hash": "9f034192e4a3e5cf",
+   "title_key": "trainingacodingmodeltopa",
+   "cn_title": "训练编码模型使用TRL和OpenEnv绘制水彩画",
+   "cn_summary": "使用 TRL 和 OpenEnv 训练编码模型绘制水彩画"
+  },
+  "https://www.technologyreview.com/2026/09/02/1142879/facilitating-ai-integration-with-simplicity-at-scale/": {
+   "src_hash": "14ae6ef70325f276",
+   "title_key": "facilitatingaiintegratio",
+   "cn_title": "促进AI集成以简化大规模应用",
+   "cn_summary": "随着企业规模扩大，支撑运营的技术可能同样快速地从资产转变为负债。孤立的系统、特定站点的工具、电子表格以及手动的变通方法可能会造成数据孤岛，使得早期发现问题、协调应对措施和做出决策变得更加困难。"
+  },
+  "https://www.technologyreview.com/2026/09/02/1143283/the-download-ai-puzzles-alpha-centauri-mission/": {
+   "src_hash": "b6d9fe7546a56689",
+   "title_key": "thedownload:aipuzzlesand",
+   "cn_title": "下载：AI谜题与通往最近恒星系统之路",
+   "cn_summary": "今日《下载》栏目为您带来科技世界的最新动态。AI 模型在这些智能测试中表现不佳。您能否做得更好？谜题和游戏一直是 AI 发展的核心。术语“机器学习”最初……"
+  },
+  "https://huggingface.co/blog/ibm-research/real-time-intelligence": {
+   "src_hash": "f569419dd78484f2",
+   "title_key": "real-timeintelligencewit",
+   "cn_title": "IBM 时间序列模型在 Confluent 实现实时智能",
+   "cn_summary": "IBM 在 Confluent 平台上推出实时智能时间序列模型\n\nIBM 近日宣布在其 Confluent 平台上集成实时智能时间序列模型，旨在为企业提供更高效的数据分析和预测能力。该模型利用 IBM 的机器学习技术，能够实时处理和分析大规模时间序列数据，帮助企业快速做出决策。\n\n此次集成的时间序列模型支持多种应用场景，包括但不限于库存管理、预测维护和能源管理等。通过与 Confluent 的 Kafka 流处理平台结合，该模型能够实时处理来自各种传感器和设备的数据，帮助企业实时监控和优化业务流程。\n\nIBM 表示，该时间序列模型能够处理高达每秒百万条数据记录，确保数据处理的实时性和准确性。此外，该模型还支持多种机器学习算法，可根据企业需求进行灵活配置和优化。\n\n此次集成将帮助企业在复杂的数据环境中快速获取有价值的信息，提升运营效率和竞争力。IBM 预计，该技术将广泛应用于制造业、零售业和能源行业等领域。"
+  },
+  "https://news.mit.edu/2026/from-mit-to-ibm-expediting-ai-and-quantum-deployment-0902": {
+   "src_hash": "9c4d5250d61c4210",
+   "title_key": "frommittoibm,expeditinga",
+   "cn_title": "从麻省理工到IBM，加速AI和量子技术部署",
+   "cn_summary": "麻省理工学院的成员与 MIT-IBM 量子计算研究实验室合作，将严格的理论应用到实际系统中。"
+  },
+  "https://news.mit.edu/2026/system-helps-humans-predict-when-self-driving-cars-will-make-mistakes-0902": {
+   "src_hash": "dc0d4bf2fca81348",
+   "title_key": "systemhelpshumanspredict",
+   "cn_title": "系统帮助人类预测自动驾驶汽车何时会出现错误",
+   "cn_summary": "一种名为 CW-Net 的新方法，能够将自动驾驶汽车 AI 系统的推理过程转化为易于理解的概念，从而解释其行为。"
+  },
+  "https://blog.google/innovation-and-ai/technology/safety-security/fairwind-program/": {
+   "src_hash": "483d985cc96004fb",
+   "title_key": "proactivecyberdefensefor",
+   "cn_title": "政府和企业的主动网络防御",
+   "cn_summary": "介绍 Fairwind 计划"
+  },
+  "https://www.technologyreview.com/2026/09/01/1143247/ai-interstellar-journey-alpha-centauri/": {
+   "src_hash": "7cb8e00d2450de27",
+   "title_key": "howaiplottedaninterstell",
+   "cn_title": "AI规划前往比邻星的星际之旅",
+   "cn_summary": "非营利组织费米探索者任务今天宣布，计划在2029年底前发射一艘航天器前往最近的恒星系统。这是一项雄心勃勃的任务——如果一切顺利，该航天器可能需要长达80000年的时间才能抵达半人马座α星，距离约为4.4光年。"
+  },
+  "https://www.technologyreview.com/2026/09/01/1142180/making-the-ai-powered-case-for-legacy-modernization/": {
+   "src_hash": "b7ace41918c36289",
+   "title_key": "makingtheai-poweredcasef",
+   "cn_title": "用AI助力论证传统现代化必要性",
+   "cn_summary": "多年来，企业深知需要解决传统技术问题，但往往在实施过程中遇到困难。更换关键业务系统所需的成本、复杂性和风险，使得现代化改造更像是需要管理的中断，而非值得追求的机会。但随着技术的发展，这一局面正在改变。"
+  },
+  "https://huggingface.co/blog/allenai/benchmirt": {
+   "src_hash": "8784a32b5028e095",
+   "title_key": "benchmirt:whatarellmbenc",
+   "cn_title": "BenchMIRT: 什么是LLM基准实际测量的内容？",
+   "cn_summary": "BenchMIRT：实际来看，大语言模型基准测试究竟在测量什么？"
+  },
+  "https://huggingface.co/blog/webgpu-kernels": {
+   "src_hash": "e2a918030e57e725",
+   "title_key": "introducing@huggingface/",
+   "cn_title": "介绍 @huggingface/kernels：200+ WebGPU 内核用于本地AI",
+   "cn_summary": "推出 @huggingface/kernels：200 多个 WebGPU 内核，助力本地 AI 计算"
+  },
+  "https://blog.google/innovation-and-ai/technology/google-ai-updates-august-2026/": {
+   "src_hash": "778311f3b4e7b55e",
+   "title_key": "thelatestainewsweannounc",
+   "cn_title": "2026年8月公布的最新AI新闻",
+   "cn_summary": "过渡卡片：1. 标有“Gemini 3.7 Flash”文本的Gemini logo图标；2. 一张像素手机的照片；3. 位于文本“免费领取一年学生计划”上方的Google Gemini logo。"
+  }
+ }
+}

@@ -1,54 +1,68 @@
-## Description: <br>
-Create standalone beginner tutorial packages from a topic or supplied references, with adaptive research, course-style outline design, chapter visuals, and Markdown/DOCX/PDF/HTML exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create standalone beginner tutorial packages from a topic or supplied references, with adaptive research, course-style outline design, chapter visuals, and Markdown/DOCX/PDF/HTML exports.
 
-## Publisher: <br>
-[sat-99](https://clawhub.ai/user/sat-99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sat-99](https://clawhub.ai/user/sat-99)
 
-## Use Case: <br>
-External users, educators, writers, and developers use this skill to turn a topic or supplied materials into a source-backed beginner tutorial with an outline, chapter visuals, research notes, and Markdown, Word, PDF, and HTML exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated tutorials may include incorrect, stale, or unsupported claims from supplied materials or external research. <br>
-Mitigation: Review the research registers, evidence map, and final tutorial before sharing or relying on the output. <br>
-Risk: The skill writes local tutorial artifacts, visuals, screenshots, and export files that may contain user-provided material. <br>
-Mitigation: Run it only in workspaces where those local files are expected, and inspect outputs for sensitive material before distribution. <br>
-Risk: Public exports intentionally hide internal source IDs, which can make provenance less visible to readers. <br>
-Mitigation: Keep the research files with the package for review and verify public references before publishing. <br>
+## Use Case:
 
+External users, educators, writers, and developers use this skill to turn a topic or supplied references into a source-backed beginner tutorial package with an outline, chapter visuals, quality review artifacts, and Markdown, Word, PDF, and HTML exports.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/sat-99/yao-tutorial-skill) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Input Adaptation](references/input-adaptation.md) <br>
-- [Research Sourcing](references/research-sourcing.md) <br>
-- [Tutorial Outline and Writing](references/tutorial-outline-and-writing.md) <br>
-- [Course Design Principles](references/course-design-principles.md) <br>
-- [Editorial Production](references/editorial-production.md) <br>
-- [Visual HTML Workflow](references/visual-html-workflow.md) <br>
-- [Export Workflow](references/export-workflow.md) <br>
-- [Diataxis Tutorials](https://diataxis.fr/tutorials/) <br>
-- [Semantic Scholar API](https://www.semanticscholar.org/product/api) <br>
-- [GitHub Repository Search Documentation](https://docs.github.com/en/search-github/searching-on-github/searching-for-repositories) <br>
-- [X API Search Posts Documentation](https://docs.x.com/x-api/posts/search/introduction) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, HTML, DOCX, PDF, screenshots, local research files, and validation reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local tutorial package with brief, outline, tutorial body, research registers, visual specifications, generated visuals, exports, and package validation results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.3 (source: server release metadata) <br>
+Risk: Rendering user-controlled Markdown, HTML, or SVG may trigger unintended network requests through embedded images, CSS, or links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a dedicated workspace with renderer network access blocked when possible, and review embedded images, CSS, and links before export.
+
+Risk: The skill creates local tutorial, research, visual, screenshot, and export files.
+
+Mitigation: Direct outputs to a disposable or project-specific workspace and review generated artifacts before sharing or publishing them.
+
+Risk: The skill may default to Chinese-style tutorial formatting when the task does not specify language or style.
+
+Mitigation: State the desired language, audience, style, and export formats explicitly in the prompt.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sat-99/skills/yao-tutorial-skill)
+- [Diataxis tutorials](https://diataxis.fr/tutorials/)
+- [X API post search introduction](https://docs.x.com/x-api/posts/search/introduction)
+- [X API search operators](https://docs.x.com/x-api/posts/search/integrate/operators)
+- [Semantic Scholar Academic Graph API](https://www.semanticscholar.org/product/api)
+- [GitHub repository search documentation](https://docs.github.com/en/search-github/searching-on-github/searching-for-repositories)
+- [Input adaptation reference](references/input-adaptation.md)
+- [Research sourcing reference](references/research-sourcing.md)
+- [Tutorial outline and writing reference](references/tutorial-outline-and-writing.md)
+- [Course design principles reference](references/course-design-principles.md)
+- [Visual HTML workflow reference](references/visual-html-workflow.md)
+- [Export workflow reference](references/export-workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown tutorial package with JSON planning files, HTML/SVG visual assets, shell-command export steps, and DOCX/PDF/HTML deliverables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local output files including brief.json, outline.md, tutorial.md, research registers, visual specifications, screenshots, and export artifacts.]
+
+## Skill Version(s):
+
+0.2.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

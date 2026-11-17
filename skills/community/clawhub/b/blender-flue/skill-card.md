@@ -1,41 +1,56 @@
-## Description: <br>
-Control Blender from the shell via Flue - a Python bridge to bpy without an MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Blender from the shell via Flue - a Python bridge to bpy without an MCP server.
 
-## Publisher: <br>
-[sfkislev](https://clawhub.ai/user/sfkislev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sfkislev](https://clawhub.ai/user/sfkislev)
 
-## Use Case: <br>
-Developers and creators use this skill when they want an agent to inspect or make bounded edits inside Blender scenes through Flue and Blender's bpy runtime. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Flue can automate Blender through its scripting runtime and may change open scene content. <br>
-Mitigation: Use small, inspectable steps and review changes before saving important Blender work. <br>
-Risk: The setup flow may require installing and configuring the Flue Python package. <br>
-Mitigation: Review Flue before setup and require explicit approval before running pip install or setup commands. <br>
+## Use Case:
 
+Developers and creative technical users use this skill to let an agent inspect Blender scenes, run bounded bpy scripts, and make small user-directed edits through the local Flue bridge.
 
-## Reference(s): <br>
-- [Flue GitHub Repository](https://github.com/SFKislev/flue) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sfkislev/blender-flue) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide an agent to send Python scripts to Blender through Flue and receive structured JSON results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release uses an external Flue package and setup command that should be reviewed before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the Flue project, pin or verify the package version where practical, and require explicit user approval before running installation or setup commands.
+
+Risk: Generated scripts can modify professional desktop software state.
+
+Mitigation: Run with normal user privileges, keep edits small and inspectable, and only execute scripts that match the requested Blender task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sfkislev/skills/blender-flue)
+- [Flue project](https://github.com/SFKislev/flue)
+- [Flue on PyPI](https://pypi.org/project/flue)
+- [FLUE.md](artifact/FLUE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides user-approved Blender automation and expects JSON results from the Flue bridge when commands are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

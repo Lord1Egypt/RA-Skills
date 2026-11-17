@@ -1,41 +1,56 @@
-## Description: <br>
-Generate color palettes and get color suggestions via the Colormind.io API, including listing models and generating palettes with optional locked colors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate color palettes and get color suggestions via the Colormind.io API, including listing models and generating palettes with optional locked colors.
 
-## Publisher: <br>
-[boilerrat](https://clawhub.ai/user/boilerrat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[boilerrat](https://clawhub.ai/user/boilerrat)
 
-## Use Case: <br>
-Developers, designers, and agents use this skill to list Colormind models, generate five-color palettes, lock selected RGB colors, and derive a palette from sampled image colors. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Palette colors and image-derived RGB values are sent to colormind.io over unencrypted HTTP. <br>
-Mitigation: Use this skill only for non-sensitive palettes and avoid private photos, confidential design work, and proprietary brand colors. <br>
-Risk: Image sampling depends on ImageMagick and may process local image files. <br>
-Mitigation: Keep ImageMagick patched, process only trusted images, and use sandboxing for automated or higher-risk workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Colormind API endpoint](http://colormind.io/api/) <br>
-- [Colormind model list endpoint](http://colormind.io/list/) <br>
-- [ClawHub release page](https://clawhub.ai/boilerrat/colormind) <br>
+## Use Case:
 
+Developers, designers, and agents use this skill to generate Colormind color palettes, list available models, lock selected RGB colors, or derive a palette from an image sample.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [JSON with optional Markdown palette summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Palette output includes RGB arrays and may include hex color summaries when pretty output is requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter, changelog, server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Palette inputs and image-derived color values are sent to colormind.io over unencrypted HTTP.
+
+Mitigation: Use only non-sensitive palettes and images, and avoid confidential designs, proprietary brand colors, or private images.
+
+Risk: Processing untrusted image files with ImageMagick can expose the runtime to image parser vulnerabilities.
+
+Mitigation: Use a recent patched ImageMagick version, process only trusted files when possible, and add sandboxing and explicit approval for image workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/boilerrat/skills/colormind)
+- [Colormind API endpoint](http://colormind.io/api/)
+- [Colormind model list endpoint](http://colormind.io/list/)
+- [Artifact security notes](artifact/SECURITY.md)
+- [Artifact changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [JSON palette data with optional Markdown palette summaries and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Palette generation can use a selected model and optional locked RGB color slots; image sampling requires Node.js, Python 3, and ImageMagick convert.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

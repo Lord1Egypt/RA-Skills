@@ -1,42 +1,53 @@
-## Description: <br>
-Search X (Twitter) posts using the xAI API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search X (Twitter) posts using the xAI API with handle filters, date ranges, and optional image or video understanding.
 
-## Publisher: <br>
-[pratikbhosale7](https://clawhub.ai/user/pratikbhosale7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pratikbhosale7](https://clawhub.ai/user/pratikbhosale7)
 
-## Use Case: <br>
-External users and developers use this skill to search X/Twitter posts through the xAI API, with optional handle filters, date ranges, and image/video understanding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and filters are sent to xAI under the configured API key. <br>
-Mitigation: Avoid confidential search terms and install only when sending those queries to xAI is acceptable. <br>
-Risk: The XAI_API_KEY is required for use and could be exposed through local configuration or shell history. <br>
-Mitigation: Keep the API key private, prefer environment or configured secret storage, and rotate the key if exposure is suspected. <br>
+## Use Case:
 
+Developers and agents use this skill to search public X/Twitter posts through xAI, summarize relevant results, and return citations to original posts. It is useful for finding social media discussion about a topic, person, organization, product, or event.
 
-## Reference(s): <br>
-- [xAI X Search documentation](https://docs.x.ai/developers/tools/x-search) <br>
-- [xAI Console](https://console.x.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/pratikbhosale7/x-search-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON search results with text, citations, search count, token usage, and Markdown-ready presentation guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and XAI_API_KEY; supports handle include/exclude filters, date range filters, and image/video understanding flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Search terms, filters, and API key-authenticated requests are sent to xAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive personal or confidential searches, protect XAI_API_KEY, and use appropriately scoped credentials.
+
+## Reference(s):
+
+- [xAI X Search documentation](https://docs.x.ai/developers/tools/x-search)
+- [xAI Console](https://console.x.ai)
+- [xAI Responses API endpoint](https://api.x.ai/v1/responses)
+- [ClawHub skill page](https://clawhub.ai/pratikbhosale7/skills/x-search-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/pratikbhosale7)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [JSON search result with status, query, summary text, citations, search count, and token usage; setup and invocation guidance are Markdown with shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and XAI_API_KEY. Supports allowed or excluded handles, date ranges, and image or video understanding flags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

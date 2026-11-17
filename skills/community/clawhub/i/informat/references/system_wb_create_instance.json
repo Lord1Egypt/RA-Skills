@@ -1,0 +1,37 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_wb_create_instance",
+		"description": "Create and start a workflow process instance. ⚠️ Must first call _wb_get_process_define to get the configuration information of the specified workflow process definition, then construct the request parameters according to the returned configuration.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"appId": {
+					"type": "string",
+					"description": "The ID of the application where the workflow module is located."
+				},
+				"moduleId": {
+					"type": "string",
+					"description": "Workflow module ID."
+				},
+				"processDefineId": {
+					"type": "string",
+					"description": "Workflow process definition ID. Note this is not the procDefId field returned from instance list."
+				},
+				"formTableId": {
+					"type": "string",
+					"description": "The data table module ID bound to the workflow start node. Call _wb_get_process_define first to obtain the table structure. Required when startSetting.enableStartForm is true; use startSetting.formSetting.tableId."
+				},
+				"record": {
+					"type": "object",
+					"description": "Start-form record data. Call _wb_get_process_define first to obtain the table structure. Required when startSetting.enableStartForm is true. Keys must be field keys, not field IDs."
+				},
+				"varMap": {
+					"type": "object",
+					"description": "Input variables for the process instance in key-value format; may be empty."
+				}
+			},
+			"required": ["appId", "moduleId", "processDefineId"]
+		}
+	}
+}

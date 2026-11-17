@@ -1,45 +1,59 @@
-## Description: <br>
-Analyze options chains, compute implied volatility rank, and select optimal multi-leg strategies based on market conditions via the Finskills API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze options chains, compute implied volatility rank, and select optimal multi-leg strategies based on market conditions via the Finskills API.
 
-## Publisher: <br>
-[finskills](https://clawhub.ai/user/finskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[finskills](https://clawhub.ai/user/finskills)
 
-## Use Case: <br>
-External users and developers use this skill to analyze live options chains, compare implied and historical volatility, and generate options strategy reports with Greeks, profit/loss metrics, and risk-management guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Finskills API key for market-data lookups. <br>
-Mitigation: Store FINSKILLS_API_KEY as an environment variable or managed secret, and do not paste it into prompts or commit it to source control. <br>
-Risk: Options calculations or strategy recommendations may be incorrect, stale, or unsuitable for a user's financial situation. <br>
-Mitigation: Verify prices, Greeks, volatility metrics, and risk calculations before making any trading decision, and consult a licensed financial advisor where appropriate. <br>
-Risk: The skill depends on external Finskills market data and plan availability. <br>
-Mitigation: Use the skill only if the user is comfortable with Finskills lookups, and confirm that the configured plan provides the required options-chain data. <br>
+## Use Case:
 
+External users and developers use this skill to analyze options chains for a ticker, compare volatility conditions, select multi-leg options strategies, and produce trade metrics and risk-management guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/finskills/options-strategist) <br>
-- [Skill homepage](https://github.com/finskills/options-strategist) <br>
-- [Finskills API](https://finskills.net) <br>
-- [Finskills registration](https://finskills.net/register) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown strategy report with options-chain analysis, calculations, and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FINSKILLS_API_KEY for Finskills market-data lookups.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.2) <br>
+Risk: Ticker lookups and the Finskills API key are visible to the Finskills service provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped API key, follow the provider's key-management guidance, and avoid submitting sensitive account, broker, or personal financial information in prompts.
+
+Risk: Options strategy recommendations may be incorrect, incomplete, stale, or unsuitable for a user's financial situation.
+
+Mitigation: Independently verify market data, calculations, liquidity, fees, assignment risk, and suitability before trading; consult a qualified financial professional when appropriate.
+
+Risk: Options chain quotes, implied volatility, and Greeks may not reflect executable prices or future market conditions.
+
+Mitigation: Treat generated metrics as analytical estimates, confirm live bid/ask data with a trading platform, and size positions according to documented risk limits.
+
+## Reference(s):
+
+- [Options Strategist homepage](https://github.com/finskills/options-strategist)
+- [ClawHub skill page](https://clawhub.ai/finskills/skills/options-strategist)
+- [Finskills API](https://finskills.net)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with options strategy analysis, position metrics, Greeks, alternatives, and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a ticker, market outlook, target time horizon, risk tolerance, and Finskills API access for market data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Provides real-time or near-real-time currency exchange rate lookup and conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time or near-real-time currency exchange-rate lookup and conversion.
 
-## Publisher: <br>
-[wxsjlrwsj](https://clawhub.ai/user/wxsjlrwsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wxsjlrwsj](https://clawhub.ai/user/wxsjlrwsj)
 
-## Use Case: <br>
-External users and agents use this skill to convert amounts between supported currencies or answer exchange-rate questions using normalized currency codes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts exchangerate-api.com when used, so results depend on external network availability and API responses. <br>
-Mitigation: Use the returned success or error status, handle network/API failures clearly, and avoid presenting failed conversions as current rates. <br>
-Risk: Untrusted raw text could lead to invalid amounts or currency codes being passed to the command. <br>
-Mitigation: Parse numeric amounts and normalize supported ISO currency codes before invoking the script. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Currency Converter on ClawHub](https://clawhub.ai/wxsjlrwsj/currency-converter) <br>
-- [ExchangeRate API endpoint used by the skill](https://api.exchangerate-api.com/v4/latest/{from_currency}) <br>
+## Use Case:
 
+External users ask an agent to convert amounts between supported currencies or answer exchange-rate questions. The skill parses currency names or ISO-style codes, runs the converter, and returns a natural-language answer based on JSON conversion results.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Natural-language response based on JSON returned by a Python command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns converted amount, exchange rate, source and target currency codes, and update time when the API call succeeds.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Currency lookups contact a third-party exchange-rate service.
+
+Mitigation: Confirm that use of exchangerate-api.com is acceptable for the deployment and avoid sending sensitive context with conversion requests.
+
+Risk: The Python dependency is specified as requests>=2.25.0 rather than pinned to an exact version.
+
+Mitigation: Pin and review dependencies before use in security-sensitive or reproducible deployments.
+
+Risk: The skill depends on network availability and external API responses for current rates.
+
+Mitigation: Handle API failures clearly and verify important financial decisions against an authoritative source.
+
+## Reference(s):
+
+- [ExchangeRate API endpoint used by the skill](https://api.exchangerate-api.com/v4/latest/{from_currency})
+- [Currency Converter on ClawHub](https://clawhub.ai/wxsjlrwsj/skills/currency-converter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Natural-language response derived from JSON conversion results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on live access to the external exchange-rate API and the set of supported currencies in the converter script.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

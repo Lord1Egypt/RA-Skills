@@ -1,42 +1,52 @@
-## Description: <br>
-将 Markdown 文档转换为 Word 文档，专为中文文档设计，支持常见 Markdown 语法并统一使用仿宋字体。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将 Markdown 文档转换为 Word 文档，专为中文文档设计，支持常见 Markdown 语法并默认使用仿宋字体。
 
-## Publisher: <br>
-[AndyRong](https://clawhub.ai/user/AndyRong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[andyrong](https://clawhub.ai/user/andyrong)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to convert Chinese Markdown documents such as weekly reports, daily reports, and formal reports into Word DOCX files with consistent Chinese typography.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to install an unpinned python-docx dependency.
+
+Mitigation: Install it in an isolated Python environment and pin python-docx before use.
+
+Risk: The generated DOCX uses Chinese formatting defaults that may not suit non-Chinese documents.
+
+Mitigation: Review the output document formatting before sharing or using it in production workflows.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, office workers, and technical writers use this skill to convert Chinese Markdown reports, daily updates, weekly updates, and similar office documents into formatted Word documents. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Files, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Installing dependencies from an untrusted package source could introduce supply-chain risk. <br>
-Mitigation: Install python-docx from a trusted package index or approved internal mirror. <br>
-Risk: Using an existing output path can overwrite a Word document. <br>
-Mitigation: Choose a deliberate output path and confirm whether an existing file should be replaced before running the converter. <br>
-Risk: Processing unintended Markdown files may expose or transform content the user did not mean to handle. <br>
-Mitigation: Run the converter only on Markdown files the user intends to process. <br>
+**Output Format:** [DOCX file plus concise command-line status text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AndyRong/md2word-cn) <br>
+**Other Properties Related to Output:** [Uses Chinese formatting defaults, including FangSong font and fixed heading sizes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [DOCX file plus concise command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a UTF-8 Markdown input path and writes a Word document to the requested output path.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

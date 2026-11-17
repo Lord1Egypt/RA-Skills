@@ -23,7 +23,6 @@ mps_load_env.py — 腾讯云 MPS Skill 环境变量自动加载工具
                                   国际站设为 mps.intl.tencentcloudapi.com）
 
 用法（在其他脚本中调用）：
-from mps_auto_upgrade import check_sdk_version  # noqa: F401 (import triggers urllib3 warning filter)
     from mps_load_env import ensure_env_loaded
     ensure_env_loaded()
 
@@ -36,6 +35,17 @@ from mps_auto_upgrade import check_sdk_version  # noqa: F401 (import triggers ur
 
 import os
 import sys
+
+# 依赖自动检查/升级：必须在 dotenv 首次 import 之前调用
+# （auto_upgrade 会把 python-dotenv 一并装好，同时注册 urllib3 warning filter）
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+if _SCRIPT_DIR not in sys.path:
+    sys.path.insert(0, _SCRIPT_DIR)
+try:
+    from mps_auto_upgrade import check_sdk_version as _check_sdk_version
+    _check_sdk_version()
+except ImportError:
+    pass
 
 try:
     from dotenv import load_dotenv

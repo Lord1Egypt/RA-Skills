@@ -1,5 +1,7 @@
 # Event Shock Engine / 事件冲击引擎
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
 用途：把人生岔路里的抽象判断，转成用户能感受到的具体冲击。每次生成报告时，从 `era-event-timeline-2008-2026.md` 中筛选 4-6 个高相关事件或周期，再写成深度事件冲击卡。
 
 ## 基本流程

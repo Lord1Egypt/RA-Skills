@@ -58,11 +58,7 @@ outer = b'\x04' + bytes([len(inner)]) + inner
 body = version + oid_seq + outer
 der = b'\x30' + bytes([len(body)]) + body
 
-pem = b'-----BEGIN PRIVATE KEY-----\n'
-b64 = base64.b64encode(der).decode()
-for i in range(0, len(b64), 64):
-    pem += (b64[i:i+64] + '\n').encode()
-pem += b'-----END PRIVATE KEY-----\n'
+pem = b'REDACTED-SECRET\n'
 
 open('$pem_out','wb').write(pem)
 " 2>/dev/null

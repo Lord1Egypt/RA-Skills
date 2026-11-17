@@ -1,41 +1,60 @@
-## Description: <br>
-Helps developers format SQL, check SQL syntax, analyze query structure, interpret PostgreSQL, MySQL, and SQLite EXPLAIN output, and draft SQL from natural-language requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+sql-explain helps agents and developers format SQL, check SQL syntax, analyze query structure, parse EXPLAIN output for PostgreSQL, MySQL, and SQLite, and produce optimization guidance.
 
-## Publisher: <br>
-[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png)
 
-## Use Case: <br>
-Developers and database engineers use this skill for local SQL assistance, including formatting, syntax checks, query structure review, EXPLAIN-plan interpretation, and draft SQL generation. Generated SQL should be reviewed before use against any database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SQL may include write statements such as UPDATE or DELETE that could be unsafe if run unreviewed. <br>
-Mitigation: Review generated SQL before executing it against any database, especially statements that modify or delete data. <br>
-Risk: README installation examples include a placeholder download URL. <br>
-Mitigation: Verify any download URL before using it. <br>
+## Use Case:
 
+Developers and database practitioners use this skill to understand SQL queries, review execution plans, generate simple SQL from natural-language requests, and identify performance concerns before changing database queries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/sql-explain-kay) <br>
-- [Publisher profile](https://clawhub.ai/user/shenghoo123-png) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, plain text, JSON, and SQL snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally; generated SQL and optimization advice should be treated as drafts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The README includes a raw remote curl download path that may not match the reviewed package contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from the reviewed ClawHub package contents rather than an unverified raw download command.
+
+Risk: The README includes an optional sudo system-wide symlink for the CLI entry point.
+
+Mitigation: Avoid the system-wide symlink unless it is specifically needed, and review the target path before using sudo.
+
+Risk: The skill can generate INSERT, UPDATE, and DELETE SQL from natural-language descriptions.
+
+Mitigation: Review generated data-changing SQL before running it against a real database.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/skills/sql-explain-kay)
+- [ClawHub publisher profile](https://clawhub.ai/user/shenghoo123-png)
+- [artifact/README.md](artifact/README.md)
+- [artifact/SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, formatted SQL, JSON-style analysis objects, and command-line text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local Python/sqlparse-based behavior; generated SQL and optimization advice should be reviewed before database execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

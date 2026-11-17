@@ -1,40 +1,53 @@
-## Description: <br>
-China shopping flagship assistant for comparing JD, Taobao, Tmall, PDD, Vipshop, SHEIN, and related shopping options by visible price, seller trust, review risk, promotion caveats, and after-sales fit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+China Shopping Assistant helps users compare JD, Taobao, Tmall, PDD, Vipshop, SHEIN, and related Chinese shopping options by visible price, seller trust, review risk, promotion caveats, and after-sales fit without login, checkout, order submission, or payment.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill to compare products or product links across Chinese shopping platforms and decide whether to buy, wait, or switch platforms. The skill focuses on visible price, seller trust, review risk, promotion caveats, and after-sales fit without handling checkout or payment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Visible prices, promotions, seller terms, and after-sales conditions can change before purchase. <br>
-Mitigation: Verify the final payable price, promotion requirements, seller terms, and after-sales conditions before buying. <br>
-Risk: Commerce workflows can expose sensitive account, address, identity, or payment information, or create unintended purchases. <br>
-Mitigation: Keep the agent limited to comparison and guidance; do not allow login, account checks, address entry, order submission, checkout, or payment. <br>
+## Use Case:
 
+External users and shopping agents use this skill to compare Chinese marketplace options from a product name or link and produce buy, wait, or switch-platform advice based on visible prices, trust signals, review risks, promotion caveats, and after-sales fit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/china-shopping-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Shopping comparison guidance only; no login, checkout, order submission, or payment actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill.json) <br>
+Risk: A user may treat visible prices, discounts, or promotions as guaranteed final payable prices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present prices as decision inputs and require the user to confirm final payable price, shipping, taxes, discounts, and return terms directly on the platform before purchase.
+
+Risk: A user may ask the agent to handle credentials, identity checks, addresses, checkout confirmation, or payment details.
+
+Mitigation: Keep the skill limited to shopping research and comparison; the user must complete login, checkout, order confirmation, and payment manually outside the agent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/china-shopping-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown shopping comparison and recommendation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes visible-price caveats and excludes login, checkout, order submission, and payment handling.]
+
+## Skill Version(s):
+
+1.1.0 (source: skill.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

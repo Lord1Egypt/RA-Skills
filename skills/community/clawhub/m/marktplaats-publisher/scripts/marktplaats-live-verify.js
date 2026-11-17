@@ -83,6 +83,8 @@ function htmlToText(html) {
   return decodeHtmlEntities(html)
     .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ' ')
     .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<(?:br|\/p|\/div|\/li|\/h[1-6]|\/section|\/article)\b[^>]*>/gi, '\n')
+    .replace(/<(?:p|div|li|h[1-6]|section|article)\b[^>]*>/gi, '\n')
     .replace(/<[^>]+>/g, ' ');
 }
 
@@ -92,6 +94,85 @@ function normalizeText(value) {
     .replace(/\s+/g, ' ')
     .trim()
     .toLocaleLowerCase('nl-NL');
+}
+
+function normalizeLine(value) {
+  return decodeHtmlEntities(String(value || ''))
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLocaleLowerCase('nl-NL');
+}
+
+function findWebsiteReferences(text) {
+  const patterns = [
+    /\bhttps?:\/\/[^\s<>"')]+/giu,
+    /\bwww\.[^\s<>"')]+/giu,
+    /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/giu,
+    /\b(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+(?:com|nl|eu|org|net|de|be|io|co|uk|fr|info|biz|shop|online|me|app|dev|ai|cloud|tv|se|dk|es|it)\b/giu,
+  ];
+  const matches = [];
+  for (const pattern of patterns) {
+    for (const match of text.matchAll(pattern)) {
+      const value = match[0].replace(/[.,;:!?]+$/u, '');
+      if (value && !matches.includes(value)) matches.push(value);
+    }
+  }
+  return matches;
+}
+
+function splitSubstantialParagraphs(text) {
+  return String(text || '')
+    .replace(/\r\n/g, '\n')
+    .split(/\n\s*\n/)
+    .map((paragraph) => paragraph.trim())
+    .filter((paragraph) => normalizeText(paragraph).length >= 45);
+}
+
+function paragraphStart(paragraph) {
+  return normalizeText(paragraph).slice(0, 55);
+}
+
+function evaluateParagraphStructure(description, liveText) {
+  const localParagraphs = splitSubstantialParagraphs(description);
+  const starts = localParagraphs.map(paragraphStart).filter((start) => start.length >= 35);
+  const required = Math.min(4, starts.length);
+  const rawLines = String(liveText || '')
+    .replace(/\r\n/g, '\n')
+    .split('\n')
+    .map(normalizeLine);
+  const nonEmptyLines = rawLines.filter(Boolean);
+
+  const matchedLineIndexes = [];
+  let searchFrom = 0;
+  starts.forEach((start) => {
+    const relativeIndex = rawLines.slice(searchFrom).findIndex((line) => line.includes(start));
+    const index = relativeIndex === -1 ? -1 : searchFrom + relativeIndex;
+    if (index !== -1 && !matchedLineIndexes.includes(index)) matchedLineIndexes.push(index);
+    if (index !== -1) searchFrom = index + 1;
+  });
+
+  const separatedParagraphIndexes = [];
+  matchedLineIndexes.forEach((index, matchPosition) => {
+    if (matchPosition === 0) {
+      separatedParagraphIndexes.push(index);
+      return;
+    }
+    const previousIndex = matchedLineIndexes[matchPosition - 1];
+    const hasBlankLineBetween = rawLines.slice(previousIndex + 1, index).some((line) => line === '');
+    if (hasBlankLineBetween) separatedParagraphIndexes.push(index);
+  });
+
+  const evidence = {
+    localParagraphs: localParagraphs.length,
+    requiredParagraphBlocks: required,
+    matchedParagraphLines: matchedLineIndexes.length,
+    lineParagraphBlocks: matchedLineIndexes.length,
+    separatedParagraphBlocks: separatedParagraphIndexes.length,
+    liveNonEmptyLines: nonEmptyLines.length,
+    verified: required === 0 || separatedParagraphIndexes.length >= required || matchedLineIndexes.length >= required,
+  };
+
+  return evidence;
 }
 
 function countOccurrences(haystack, needle) {
@@ -108,6 +189,15 @@ function countOccurrences(haystack, needle) {
 
 function getLastSentence(text) {
   return text.trim().replace(/\r\n/g, '\n').match(/[^.!?\n][^.!?]*(?:[.!?])?\s*$/)?.[0]?.trim() || '';
+}
+
+function extractLiveDescriptionWindow(liveText, startMarker, lastMarker) {
+  if (!startMarker || !lastMarker) return '';
+  const startIndex = liveText.indexOf(startMarker);
+  if (startIndex === -1) return '';
+  const lastIndex = liveText.indexOf(lastMarker, startIndex);
+  if (lastIndex === -1) return '';
+  return liveText.slice(startIndex, lastIndex + lastMarker.length);
 }
 
 function hasKeywordDump(text) {
@@ -180,6 +270,8 @@ function evaluate({ ad, description, live, options }) {
   const lastMarker = normalizeText(lastSentence);
   const titleMarker = normalizeText(ad.title || '');
   const startCount = countOccurrences(liveText, startMarker);
+  const liveDescriptionWindow = extractLiveDescriptionWindow(liveText, startMarker, lastMarker);
+  const liveWebsiteReferences = liveDescriptionWindow ? findWebsiteReferences(liveDescriptionWindow) : [];
 
   if (live.status && live.status >= 400) failures.push(`live fetch returned HTTP ${live.status}`);
   if (/\/identity\/v2\/login\b/.test(String(live.url || '')) || /inloggen op uw account/i.test(live.text)) {
@@ -191,7 +283,17 @@ function evaluate({ ad, description, live, options }) {
   if (titleMarker && !liveText.includes(titleMarker)) warnings.push('live text does not contain ad title');
   if (hasKeywordDump(description)) failures.push('local description contains keyword dump');
   if (/zoektermen\s*:/i.test(live.text)) failures.push('live text contains Zoektermen: keyword footer');
+  if (liveWebsiteReferences.length) {
+    failures.push(`live description contains forbidden website/domain reference(s): ${liveWebsiteReferences.join(', ')}`);
+  }
   if (local.length < 1000) warnings.push('local description is unexpectedly short for live verification');
+  const paragraphStructure = evaluateParagraphStructure(description, live.text);
+  if (!paragraphStructure.verified) {
+    failures.push(
+      `live description paragraph spacing not preserved: ${paragraphStructure.separatedParagraphBlocks} ` +
+      `< ${paragraphStructure.requiredParagraphBlocks} paragraph starts with blank-line separation`
+    );
+  }
 
   return {
     checkedAt: new Date().toISOString(),
@@ -203,6 +305,10 @@ function evaluate({ ad, description, live, options }) {
     startCount,
     maxStartCount: options.maxStartCount,
     hasLastSentence: Boolean(lastMarker && liveText.includes(lastMarker)),
+    liveWebsiteReferences,
+    paragraphStructureVerified: paragraphStructure.verified,
+    paragraphBreakCount: paragraphStructure.separatedParagraphBlocks,
+    paragraphStructure,
     lastSentence,
     liveTextChars: live.text.length,
     failures,
@@ -222,6 +328,11 @@ function updateAdJson(adJsonPath, result) {
     url: result.url,
     startCount: result.startCount,
     hasLastSentence: result.hasLastSentence,
+    passed: result.passed,
+    liveWebsiteReferences: result.liveWebsiteReferences,
+    paragraphStructureVerified: result.paragraphStructureVerified,
+    paragraphBreakCount: result.paragraphBreakCount,
+    paragraphStructure: result.paragraphStructure,
     failures: result.failures,
     warnings: result.warnings,
   };
@@ -234,7 +345,11 @@ function printResult(result, json) {
     return;
   }
   console.log(`Live verify: ${result.passed ? 'PASS' : 'FAIL'}`);
-  console.log(`source=${result.source} startCount=${result.startCount} hasLastSentence=${result.hasLastSentence}`);
+  console.log(
+    `source=${result.source} startCount=${result.startCount} hasLastSentence=${result.hasLastSentence} ` +
+    `paragraphStructure=${result.paragraphStructureVerified ? 'PASS' : 'FAIL'}`
+  );
+  if (result.liveWebsiteReferences.length) console.log(`liveWebsiteReferences=${result.liveWebsiteReferences.join(', ')}`);
   if (result.warnings.length) console.log(`warnings:\n- ${result.warnings.join('\n- ')}`);
   if (result.failures.length) console.log(`failures:\n- ${result.failures.join('\n- ')}`);
 }
@@ -264,6 +379,27 @@ async function runSelfTest() {
   const live = await loadLiveText({ text: liveFile }, ad);
   const ok = evaluate({ ad, description, live, options: { startChars: 40, maxStartCount: 1 } });
   if (!ok.passed) throw new Error(`self-test expected PASS: ${ok.failures.join('; ')}`);
+  const brFile = path.join(dir, 'br-live.txt');
+  fs.writeFileSync(brFile, `Marktplaats Testmerk Model X buitenantenne ${description.replace(/\n\n/g, '\n')}`);
+  const brLive = await loadLiveText({ text: brFile }, ad);
+  const brOk = evaluate({ ad, description, live: brLive, options: { startChars: 40, maxStartCount: 1 } });
+  if (!brOk.passed) throw new Error(`self-test expected single-newline paragraph PASS: ${brOk.failures.join('; ')}`);
+  const flatLive = await loadLiveText({
+    text: (() => {
+      const flatFile = path.join(dir, 'flat-live.txt');
+      fs.writeFileSync(flatFile, `Marktplaats Testmerk Model X buitenantenne ${description.replace(/\s+/g, ' ')}`);
+      return flatFile;
+    })(),
+  }, ad);
+  const flat = evaluate({ ad, description, live: flatLive, options: { startChars: 40, maxStartCount: 1 } });
+  if (flat.passed) throw new Error('self-test expected flat paragraph structure FAIL');
+  fs.writeFileSync(liveFile, `Marktplaats Testmerk Model X buitenantenne ${description.replace(
+    'Stuur gerust een bericht',
+    'Meer info staat op voorbeeld.nl. Stuur gerust een bericht'
+  )}`);
+  const domainLive = await loadLiveText({ text: liveFile }, ad);
+  const domain = evaluate({ ad, description, live: domainLive, options: { startChars: 40, maxStartCount: 1 } });
+  if (domain.passed) throw new Error('self-test expected live domain FAIL');
   fs.writeFileSync(liveFile, `${liveText}\n${description}`);
   const dupLive = await loadLiveText({ text: liveFile }, ad);
   const bad = evaluate({ ad, description, live: dupLive, options: { startChars: 40, maxStartCount: 1 } });

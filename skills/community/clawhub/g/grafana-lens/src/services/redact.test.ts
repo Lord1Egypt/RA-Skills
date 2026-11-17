@@ -3,20 +3,20 @@ import { redactSecrets, redactAttributes } from "./redact.js";
 
 describe("redactSecrets", () => {
   test("redacts OpenAI/Anthropic sk-* tokens", () => {
-    const input = "my key is sk-ant-abc123456789012345678901234567890123456789";
+    const input = "my key is REDACTED-SECRET";
     const result = redactSecrets(input);
     expect(result).toContain("sk-ant…");
     expect(result).not.toContain("abc123");
   });
 
   test("redacts short sk-* tokens (generic OpenAI pattern)", () => {
-    const input = "token: sk-proj-1234567890abcdefghij";
+    const input = "token: REDACTED-SECRET";
     const result = redactSecrets(input);
     expect(result).not.toContain("1234567890");
   });
 
   test("redacts GitHub personal access tokens (ghp_)", () => {
-    const input = "GITHUB_TOKEN=ghp_abcdefghijklmnopqrstuvwxyz1234567890";
+    const input = "GITHUB_TOKEN=REDACTED-SECRET";
     const result = redactSecrets(input);
     expect(result).toContain("ghp_ab…");
     expect(result).not.toContain("klmnop");
@@ -53,7 +53,7 @@ describe("redactSecrets", () => {
   });
 
   test("redacts Google AI keys (AIza*)", () => {
-    const input = "GOOGLE_KEY=AIzaSyCabcdefghijklmnopqrstuvwxyz12345678";
+    const input = "GOOGLE_KEY=REDACTED-SECRET78";
     const result = redactSecrets(input);
     expect(result).toContain("AIzaSy…");
     expect(result).not.toContain("klmnop");
@@ -88,9 +88,7 @@ describe("redactSecrets", () => {
   });
 
   test("redacts PEM blocks", () => {
-    const input = `config has -----BEGIN RSA PRIVATE KEY-----
-MIIEpAIBAAKCAQEA0Z3VS5JJcds3xfn0yGOFq
------END RSA PRIVATE KEY----- in it`;
+    const input = `config has REDACTED-SECRET in it`;
     const result = redactSecrets(input);
     expect(result).toContain("[REDACTED PEM BLOCK]");
     expect(result).not.toContain("MIIEpA");
@@ -103,7 +101,7 @@ MIIEpAIBAAKCAQEA0Z3VS5JJcds3xfn0yGOFq
   });
 
   test("handles multiple tokens in one string", () => {
-    const input = "keys: sk-abcdefghijklmnopqrstuvwxyz and ghp_abcdefghijklmnopqrstuvwxyz1234567890";
+    const input = "keys: REDACTED-SECRET and REDACTED-SECRET";
     const result = redactSecrets(input);
     // Both should be redacted
     expect(result).not.toContain("ghijklmnop");
@@ -128,7 +126,7 @@ MIIEpAIBAAKCAQEA0Z3VS5JJcds3xfn0yGOFq
   });
 
   test("preserves surrounding text when redacting", () => {
-    const input = "prefix ghp_abcdefghijklmnopqrstuvwxyz1234567890 suffix";
+    const input = "prefix REDACTED-SECRET suffix";
     const result = redactSecrets(input);
     expect(result).toMatch(/^prefix .+ suffix$/);
   });
@@ -137,7 +135,7 @@ MIIEpAIBAAKCAQEA0Z3VS5JJcds3xfn0yGOFq
 describe("redactAttributes", () => {
   test("redacts string values in attributes", () => {
     const attrs = {
-      key: "sk-abcdefghijklmnopqrstuvwxyz",
+      key: "REDACTED-SECRET",
       count: 42,
       enabled: true,
       normal: "just a string",

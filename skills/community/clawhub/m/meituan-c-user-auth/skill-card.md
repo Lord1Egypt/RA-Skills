@@ -1,45 +1,58 @@
-## Description: <br>
-为需要美团用户身份的 Agent Skill 提供手机号验证码登录、Token 校验、账号切换和退出登录支持。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+美团C端用户Agent认证工具为需要美团用户身份的 Skill 提供手机号短信验证码登录、Token 管理和前置认证支持。
 
-## Publisher: <br>
-[meituan-zhengchang](https://clawhub.ai/user/meituan-zhengchang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meituan-zhengchang](https://clawhub.ai/user/meituan-zhengchang)
 
-## Use Case: <br>
-Agents and downstream Meituan-related skills use this skill as a prerequisite authentication module to obtain and verify a user's Meituan login token before calling account-dependent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reusable Meituan account tokens and device identifiers are stored in local shared files. <br>
-Mitigation: Treat mt_auth_tokens.json as sensitive credential storage, use an isolated workspace where possible, and clear persisted state with logout and clear-device-token when access is no longer needed. <br>
-Risk: Downstream skills may receive the user's authentication token. <br>
-Mitigation: Install and run this skill only with trusted downstream Meituan skills, and do not expose user_token or device_token in normal conversation output. <br>
-Risk: Environment overrides for SKILL_CACHE_CLI_PATH or SKILL_CACHE_PYTHON can change which local code executes. <br>
-Mitigation: Avoid untrusted environment values for those variables and review the resolved script paths before use in shared or automated environments. <br>
-Risk: The artifact includes scheduled coupon automation behavior in addition to login authentication. <br>
-Mitigation: Review cron-related commands and generated schedule configuration before enabling automated tasks. <br>
+## Use Case:
 
+Agents and skills that need a Meituan C-side user session use this skill to guide SMS login, verify user tokens, and pass an authenticated user_token to downstream Meituan workflows such as coupon or order-related skills.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/meituan-zhengchang/meituan-c-user-auth) <br>
-- [EDS Claw SMS login API configuration](references/api-config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce authentication status, masked phone numbers, redirect URLs for security verification, and local token-management command results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: ClawHub release metadata) <br>
+Risk: The skill handles Meituan account credentials and reusable session tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher, avoid shared or logged environments, and do not display user_token, device_token, phone numbers, or SMS codes except where required for authentication.
+
+Risk: Security evidence flags under-disclosed scheduled coupon automation.
+
+Mitigation: Review or remove cron coupon commands before allowing agent-driven execution, and require explicit user consent before any recurring task is enabled.
+
+Risk: Security evidence flags unsafe local cache file access around authentication data.
+
+Mitigation: Harden cache CLI path handling, keep token storage in a user-controlled workspace, and maintain restrictive local file permissions.
+
+## Reference(s):
+
+- [EDS Claw SMS Login API Configuration](references/api-config.md)
+- [ClawHub Skill Page](https://clawhub.ai/meituan-zhengchang/skills/meituan-c-user-auth)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or consume sensitive authentication values including phone numbers, SMS codes, user_token, and device_token.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata; artifact frontmatter reports 1.0.14)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

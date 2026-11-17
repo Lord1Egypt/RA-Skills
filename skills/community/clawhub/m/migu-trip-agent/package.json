@@ -1,0 +1,16 @@
+{
+  "name": "plan-multi-websocket-skill",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Cursor skill helper for calling the real H5 plan_multi WebSocket service.",
+  "scripts": {
+    "plan-multi": "node scripts/plan_multi_ws_client.mjs",
+    "create-detail": "node scripts/create_detail.mjs",
+    "roadbook": "node scripts/get_roadbook.mjs",
+    "check": "node --check scripts/plan_multi_ws_client.mjs"
+  },
+  "dependencies": {
+    "ws": "8.22.0"
+  }
+}

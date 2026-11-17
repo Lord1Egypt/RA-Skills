@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/kya/action-intent.schema.json",
+  "title": "KYA Action Intent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "action_id",
+    "idempotency_key",
+    "tenant_id",
+    "subject_id",
+    "agent_id",
+    "scenario",
+    "action_type",
+    "requested_action",
+    "target",
+    "amount",
+    "authorization_context",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": { "const": "2.0" },
+    "action_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "idempotency_key": { "type": "string", "minLength": 16, "maxLength": 128 },
+    "tenant_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "subject_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "agent_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "scenario": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "action_type": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "requested_action": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "reference"],
+      "properties": {
+        "type": { "type": "string", "minLength": 1, "maxLength": 64 },
+        "reference": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "account_fingerprint": { "type": "string", "minLength": 8, "maxLength": 256 },
+        "country": { "type": "string", "pattern": "^[A-Z]{2}$" }
+      }
+    },
+    "amount": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value_minor", "currency"],
+      "properties": {
+        "value_minor": { "type": "integer", "minimum": 0 },
+        "currency": { "type": "string", "pattern": "^[A-Z]{3}$" }
+      }
+    },
+    "authorization_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requested_by", "agent_scope"],
+      "properties": {
+        "requested_by": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "agent_scope": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 128 }
+        },
+        "session_id": { "type": "string", "minLength": 1, "maxLength": 128 }
+      }
+    },
+    "evidence_references": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1, "maxLength": 512 }
+    },
+    "attributes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": ["string", "integer", "boolean", "null"]
+      }
+    },
+    "created_at": { "type": "string", "format": "date-time" }
+  }
+}

@@ -1,44 +1,55 @@
-## Description: <br>
-A multi-agent memory management skill that maintains private and public memory spaces, generates daily summaries, and supports cross-agent knowledge retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-Agent Memory Optimizer manages private and public memory spaces for OpenClaw agents, generates daily summaries, and enables cross-agent knowledge retrieval.
 
-## Publisher: <br>
-[2720480371](https://clawhub.ai/user/2720480371) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2720480371](https://clawhub.ai/user/2720480371)
 
-## Use Case: <br>
-Developers and agent operators use this skill to organize per-agent memory, summarize daily activity into medium-term records, publish selected summaries to a shared public memory area, and search shared knowledge across agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents in the same workspace may access another agent's private memory if they choose that agent ID. <br>
-Mitigation: Use simple, controlled agent IDs, limit workspace access to trusted agents, and review private memory paths before enabling shared use. <br>
-Risk: The release has review concerns around private-memory isolation, path scoping, and upload confirmation defaults. <br>
-Mitigation: Before use, set upload.require_upload_confirm to true, keep memory.base_path scoped to the intended workspace, and manually review summaries before publishing them to public memory. <br>
-Risk: Public memory uploads can make summarized private content visible to other agents. <br>
-Mitigation: Keep upload.auto_publish disabled, require human confirmation, and inspect generated summaries for sensitive information before upload. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to organize agent memory into private, medium-term, long-term, and shared public spaces. It supports daily summary generation, optional publication of selected memory, and search across public or private memory files.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/2720480371/memory-optimizer-base) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Command-line text with Markdown memory files and JSON configuration data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and searches local memory files under configured private and public workspace paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Private memory can be published to a public shared space without the documented confirmation behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep upload.require_upload_confirm enabled, review generated summaries before upload, and use dry-run or manual approval before trusting the skill with private memory.
+
+Risk: Unsafe path and shell handling could affect files outside the intended memory workspace.
+
+Mitigation: Validate agent IDs and titles before file operations, constrain configured memory paths to the intended workspace, and replace shell-based workflow execution with direct function calls or shell-free subprocesses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/2720480371/skills/memory-optimizer-base)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown files, JSON configuration, terminal status text, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces and searches filesystem-backed memory summaries; publication to public memory should be reviewed before use.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

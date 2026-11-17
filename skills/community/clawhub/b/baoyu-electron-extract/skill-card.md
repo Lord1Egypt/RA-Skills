@@ -1,42 +1,58 @@
-## Description: <br>
-Extracts resources and JavaScript from installed Electron app .asar bundles, restoring original sources from embedded source maps when available or formatting bundled code otherwise. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baoyu Electron Extract helps agents extract resources and JavaScript from installed Electron app .asar bundles, restoring original sources from embedded source maps when available or formatting bundled JS/CSS otherwise.
 
-## Publisher: <br>
-[jimliu](https://clawhub.ai/user/jimliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimliu](https://clawhub.ai/user/jimliu)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect installed Electron desktop applications, unpack app.asar resources, and recover readable JavaScript or original source files when source maps include sourcesContent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Extracted Electron app output can include proprietary code, configuration, or secrets. <br>
-Mitigation: Treat extracted directories and reports as sensitive, review before sharing, and store them only in appropriate local work locations. <br>
-Risk: Ambiguous app discovery or forced reuse of an existing output directory can inspect or overwrite unintended files. <br>
-Mitigation: Run with --dry-run when the target is uncertain, confirm the resolved app or asar path, and use --force only when intentionally reusing an existing output folder. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect installed Electron desktop apps by unpacking app.asar, restoring readable source trees from source maps when possible, and producing formatted extracted code for review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jimliu/baoyu-electron-extract) <br>
-- [Publisher Profile](https://clawhub.ai/user/jimliu) <br>
-- [Project Homepage](https://github.com/JimLiu/baoyu-skills#baoyu-electron-extract) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and paths to extracted files, plus optional JSON script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The extraction script can create an extract-report.json file, extracted and restored source directories, and copied unpacked resources when present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.119.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill runs downloaded npm packages during use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a locally reviewed, pinned dependency setup before running extraction.
+
+Risk: Formatting untrusted extracted app code can create local code-execution exposure.
+
+Mitigation: Use --skip-format for untrusted apps and review extracted files before opening or executing them.
+
+Risk: Using --force on an important non-empty output path can overwrite existing files.
+
+Mitigation: Write outputs to a dedicated directory and avoid --force unless the target directory is disposable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jimliu/skills/baoyu-electron-extract)
+- [Project Homepage](https://github.com/JimLiu/baoyu-skills#baoyu-electron-extract)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Files, JSON]
+
+**Output Format:** [Markdown guidance with bash commands and generated filesystem outputs, including extracted/restored code files and extract-report.json]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May prompt for an app name, path, output directory, or overwrite decision; supports dry-run and JSON summary modes.]
+
+## Skill Version(s):
+
+1.119.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

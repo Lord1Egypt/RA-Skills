@@ -1,38 +1,53 @@
-## Description: <br>
-Multi-Expert Orchestrator guidance for coordinating multiple experts in parallel or sequential work and merging their results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates multiple experts for parallel or sequential work, then merges results, manages dependencies, resolves conflicts, and checkpoints progress.
 
-## Publisher: <br>
-[467718584](https://clawhub.ai/user/467718584) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[467718584](https://clawhub.ai/user/467718584)
 
-## Use Case: <br>
-Developers and agents use this skill to plan multi-expert collaboration, select parallel, sequential, or pipeline execution, merge expert outputs, and checkpoint progress. In a basic environment it guides simulated serial expert work; with a separate EO implementation it can guide real multi-agent orchestration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Use with a separate EO plugin or sessions API implementation can introduce credentials, network access, or execution authority outside this artifact. <br>
-Mitigation: Review and scan the separate EO component before connecting this skill to real multi-agent execution. <br>
+## Use Case:
 
+Developers and agent builders use this skill to coordinate multi-expert workflows, including parallel or sequential expert execution, result aggregation, dependency handling, conflict resolution, and checkpointing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/467718584/eo-ability-multi-expert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text] <br>
-**Output Format:** [Markdown with command examples and TypeScript interface snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only artifact with no executable code, install commands, credential handling, or hidden data flow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: When used with the broader EO plugin, the skill may create real multi-agent sessions and merge outputs from several experts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the EO plugin separately and review merged expert outputs before relying on them.
+
+Risk: The skill content is primarily Chinese-language, which may be misunderstood by users who cannot read it fluently.
+
+Mitigation: Review the instructions with a qualified reader or translation before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/467718584/skills/eo-ability-multi-expert)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with examples and TypeScript-style interface definitions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill with no installer, bundled code, or hidden execution behavior found in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

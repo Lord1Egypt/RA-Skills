@@ -1,0 +1,299 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-nsfc",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:06:09.856Z",
+  "entry": {
+    "url": "https://kd.nsfc.cn",
+    "final_url": "https://kd.nsfc.cn/",
+    "title": "国家自然科学基金大数据知识管理服务门户",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:06:09.856Z",
+    "identity": {
+      "declared_name": "国家自然科学基金大数据平台",
+      "hostname": "kd.nsfc.cn",
+      "domain_matches": true
+    },
+    "links": [],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "请输入项目或成果关键词",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "请输入项目或成果关键词",
+      "name": null,
+      "id": "",
+      "css": "input[placeholder=\"请输入项目或成果关键词\"]",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "input[placeholder=\"请输入项目或成果关键词\"]"
+      },
+      "observed_url": "https://kd.nsfc.cn/",
+      "observed_at": "2026-10-09T09:06:05.850Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://kd.nsfc.cn/",
+      "observed_at": "2026-10-09T09:06:05.850Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://kd.nsfc.cn/",
+      "observed_at": "2026-10-09T09:06:05.850Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "生命",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "请选择",
+      "name": null,
+      "id": "",
+      "css": "input[placeholder=\"请选择\"]",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "input[placeholder=\"请选择\"]"
+      },
+      "observed_url": "https://kd.nsfc.cn/",
+      "observed_at": "2026-10-09T09:06:05.850Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-nsfc:statistics-ranking",
+      "source_id": "quiz-nsfc",
+      "task_kind": "statistics-ranking",
+      "status": "entry_observed",
+      "parameters": [
+        "query_terms",
+        "fields",
+        "boolean_relation",
+        "match_mode",
+        "start_year",
+        "end_year",
+        "resource_type",
+        "fund",
+        "sort_field",
+        "sort_direction",
+        "rank_or_threshold"
+      ],
+      "instructions": [
+        "把本题条件逐一填入已观察字段或该库自己的专业语法；清除上题筛选；核对结果回显、资源类型、年份、匹配方式、排序及统计口径。"
+      ],
+      "transitions": {},
+      "entry_url": "https://kd.nsfc.cn/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "请输入项目或成果关键词",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "请输入项目或成果关键词",
+          "name": null,
+          "id": "",
+          "css": "input[placeholder=\"请输入项目或成果关键词\"]",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "input[placeholder=\"请输入项目或成果关键词\"]"
+          },
+          "observed_url": "https://kd.nsfc.cn/",
+          "observed_at": "2026-10-09T09:06:05.850Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "生命",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "请选择",
+          "name": null,
+          "id": "",
+          "css": "input[placeholder=\"请选择\"]",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "input[placeholder=\"请选择\"]"
+          },
+          "observed_url": "https://kd.nsfc.cn/",
+          "observed_at": "2026-10-09T09:06:05.850Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    },
+    {
+      "id": "quiz-nsfc:record-lookup",
+      "source_id": "quiz-nsfc",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://kd.nsfc.cn/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "请输入项目或成果关键词",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "请输入项目或成果关键词",
+          "name": null,
+          "id": "",
+          "css": "input[placeholder=\"请输入项目或成果关键词\"]",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "input[placeholder=\"请输入项目或成果关键词\"]"
+          },
+          "observed_url": "https://kd.nsfc.cn/",
+          "observed_at": "2026-10-09T09:06:05.850Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "生命",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "请选择",
+          "name": null,
+          "id": "",
+          "css": "input[placeholder=\"请选择\"]",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "input[placeholder=\"请选择\"]"
+          },
+          "observed_url": "https://kd.nsfc.cn/",
+          "observed_at": "2026-10-09T09:06:05.850Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-101"
+    ],
+    "example_ids": [
+      "KH-Q014",
+      "KH-Q083"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:06:09.856Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-nsfc-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-nsfc-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

@@ -1,42 +1,56 @@
-## Description: <br>
-Collects product details from 1688 product pages, including images, title, pricing, SKU data, shop information, sales data, attributes, and reviews, then saves a local JSON data package and image folder. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+1688 Scraper helps an agent collect product details, images, SKU data, shop details, sales data, attributes, and reviews from 1688 product detail pages and save them as local assets.
 
-## Publisher: <br>
-[howerlin0329](https://clawhub.ai/user/howerlin0329) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howerlin0329](https://clawhub.ai/user/howerlin0329)
 
-## Use Case: <br>
-Developers and operators use this skill to archive 1688 product detail pages as local product data packages, including product metadata and downloaded images. It is intended for product research, catalog collection, or workflow support where local review of 1688 product information is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill opens 1688 pages, downloads product images, and writes JSON plus image folders to a local Desktop or chosen output path. <br>
-Mitigation: Run it first on a single product URL, confirm the output path, and monitor disk usage for products with many images. <br>
-Risk: Saved product, shop, sales, and review data may be subject to platform rules or privacy obligations. <br>
-Mitigation: Review applicable 1688 or Alibaba platform terms and any privacy requirements before storing or reusing collected data. <br>
+## Use Case:
 
+Developers and operators use this skill to archive or analyze 1688 product listings by collecting product media and structured detail data from a specific product URL.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/howerlin0329/1688-scraper) <br>
-- [README](artifact/README.md) <br>
-- [Usage Guide](artifact/USAGE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with JavaScript and shell command examples; generated agent work product is local JSON plus downloaded image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a JSON data package and an image directory to the Desktop by default, or to a user-specified output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The security summary says URL validation is too loose and could direct the browser to non-1688 or internal hosts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and use only intended 1688 product URLs, preferably exact https://detail.1688.com/offer/<id>.html links.
+
+Risk: The security guidance notes that the skill creates a local image folder and JSON file that may consume disk space or be picked up by desktop backup or sync tools.
+
+Mitigation: Choose an appropriate save location, monitor generated file size, and avoid collecting sensitive listings into synced desktop folders.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howerlin0329/skills/1688-scraper)
+- [README.md](artifact/README.md)
+- [USAGE.md](artifact/USAGE.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, files, JSON]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command examples; generated local image files and a JSON data package.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a local image folder and JSON file for each product ID; downloaded media can consume disk space.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

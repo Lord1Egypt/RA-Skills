@@ -1,38 +1,58 @@
-## Description: <br>
-AI Workflow Master helps agents chain content creation, data analysis, reporting, competitor monitoring, and customer-service response workflows from minimal user input. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Workflow Master helps an agent plan and produce multi-step workflows for content creation, data analysis, automation, competitive monitoring, reporting, and customer support.
 
-## Publisher: <br>
-[windy-001-crypto](https://clawhub.ai/user/windy-001-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[windy-001-crypto](https://clawhub.ai/user/windy-001-crypto)
 
-## Use Case: <br>
-Content teams, analysts, operators, and support teams use this skill to turn a short prompt, file, link, or business topic into structured workflow outputs such as content packs, analysis reports, weekly reports, competitor comparisons, and reply suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad workflow suggestions may publish inaccurate content, scrape inappropriate sources, process sensitive conversations, or create business-system records without enough review. <br>
-Mitigation: Set explicit access boundaries for files, links, platforms, and business systems, and require human review before publishing, scraping, responding to customers, or creating tickets. <br>
+## Use Case:
 
+External users and teams use this skill to turn brief task requests into structured AI-assisted workflows, including content packs, analysis reports, weekly reports, competitor comparisons, and customer response drafts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/windy-001-crypto/ai-workflow-master) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports, workflow plans, content packages, comparison tables, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed before publication, scraping, customer response, or ticket creation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generic activation phrases may trigger broad workflow behavior before the user has confirmed scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation phrases and require explicit confirmation of the workflow, inputs, and intended outputs before execution.
+
+Risk: The skill may process files, URLs, customer data, external scraping targets, publishing actions, or ticket creation without detailed confirmation rules.
+
+Mitigation: Require explicit user approval before file or URL ingestion, customer-data processing, external scraping, publishing-related actions, or ticket creation.
+
+Risk: Generated content, reports, competitor analysis, or customer replies may be inaccurate or unsuitable for direct external use.
+
+Mitigation: Keep human review before publishing content, sharing reports, acting on recommendations, or sending customer-facing responses.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/windy-001-crypto/skills/ai-workflow-master)
+- [Publisher Profile](https://clawhub.ai/user/windy-001-crypto)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, structured outlines, content packs, analysis summaries, tables, and next-step recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workflow steps, alternative outputs, tags, timing suggestions, and human review prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

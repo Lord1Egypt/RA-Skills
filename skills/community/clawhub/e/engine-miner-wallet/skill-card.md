@@ -1,45 +1,58 @@
-## Description: <br>
-Secure operating guidance for the Engine miner Taproot wallet plugin on OpenClaw. Use for registration signing, safe claim handling, and refusal of unsafe wallet actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secure operating guidance for the Engine miner Taproot wallet plugin on OpenClaw, including registration signing, safe claim handling, and refusal of unsafe wallet actions.
 
-## Publisher: <br>
-[kerimatalayturkish-dotcom](https://clawhub.ai/user/kerimatalayturkish-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kerimatalayturkish-dotcom](https://clawhub.ai/user/kerimatalayturkish-dotcom)
 
-## Use Case: <br>
-External users and developers use this skill to operate the Engine miner wallet plugin safely, including wallet creation, Taproot payout-address retrieval, registration challenge signing, and claim workflow guidance. It emphasizes claim-first wallet behavior, sensitive recovery-phrase handling, and refusal of unsafe wallet actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recovery phrases can control funds or claims if exposed. <br>
-Mitigation: Show the recovery phrase only during explicit wallet creation after warning and confirmation, then direct the user to store it offline and never paste it back into chat. <br>
-Risk: Wallet passphrases entered into chat can compromise encrypted storage. <br>
-Mitigation: Tell users to set ENGINE_MINER_WALLET_PASSPHRASE locally instead of sharing the passphrase with the agent. <br>
-Risk: Generic transfer or unrecognized signing requests could move the wallet outside its claim-first purpose. <br>
-Mitigation: Refuse generic send-to-any-address actions and only sign or broadcast recognized Engine miner workflows after explicit user confirmation. <br>
-Risk: Claim settlement behavior is not fully complete in this version. <br>
-Mitigation: Describe claim commands as planned workflow commands until tool output and release notes confirm receipt verification, prepared claim validation, signing, and broadcast policy completion. <br>
+## Use Case:
 
+Developers and external OpenClaw users use this skill to operate the Engine miner wallet plugin for wallet setup, Taproot payout address retrieval, registration challenge signing, and controlled reward-claim workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kerimatalayturkish-dotcom/engine-miner-wallet) <br>
-- [Publisher profile](https://clawhub.ai/user/kerimatalayturkish-dotcom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline commands and wallet workflow mappings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes safety boundaries for recovery phrases, passphrases, signing, claim preparation, and broadcast confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: frontmatter and server release evidence) <br>
+Risk: Wallet recovery phrases may be exposed in chat during agent-created setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer manual local wallet creation; if agent-created setup is used, warn the user first, require explicit confirmation, and direct the user to store the phrase offline without pasting it back into chat.
+
+Risk: Passphrases included in chat or command-line arguments can leak wallet secrets.
+
+Mitigation: Keep passphrases local, use environment or secret-management mechanisms, and avoid passing real wallet secrets as chat text or command arguments.
+
+Risk: Claim settlement behavior is not fully complete in this release.
+
+Mitigation: Treat claim commands as planned or guarded workflows, verify tool output before relying on settlement behavior, and require explicit confirmation before any broadcast.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kerimatalayturkish-dotcom/skills/engine-miner-wallet)
+- [Publisher profile](https://clawhub.ai/user/kerimatalayturkish-dotcom)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline commands and workflow intent mapping]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Emphasizes local secret handling, explicit confirmation before wallet creation or broadcast, and refusal of generic Bitcoin transfer requests.]
+
+## Skill Version(s):
+
+0.1.2 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

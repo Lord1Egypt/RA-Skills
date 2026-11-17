@@ -1,0 +1,70 @@
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editor files
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+.venv/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Node (if scripts are added later)
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Draft/temp files
+drafts/
+temp/
+*.tmp
+*.bak
+
+# AI tool cache
+.claude/
+.copilot/
+.agents/
+.env
+.env.local
+.workbuddy
+
+# Logs
+*.log
+logs/
+
+# Dependency updates
+.pip-wheel-metadata/
+
+# Audit reports
+README_FOR_AI_Audit_Report*

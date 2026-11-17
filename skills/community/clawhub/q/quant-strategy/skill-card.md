@@ -1,41 +1,54 @@
-## Description: <br>
-Helps build and backtest quantitative trading strategies, including factor analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists with writing and backtesting quantitative trading strategies, including factor analysis.
 
-## Publisher: <br>
-[afengzi](https://clawhub.ai/user/afengzi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afengzi](https://clawhub.ai/user/afengzi)
 
-## Use Case: <br>
-Quant developers and traders use this skill to draft Python quantitative trading strategies, construct factors, preprocess market and financial data, analyze backtests, and refine risk controls. Outputs require review before real-money trading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated trading strategy code or analysis may be mistaken for financial advice. <br>
-Mitigation: Treat outputs as financial-analysis assistance only and review them with qualified judgment before any trading decision. <br>
-Risk: Backtest results can overstate live performance because of overfitting, data assumptions, transaction costs, or slippage. <br>
-Mitigation: Review data inputs, factor definitions, backtest settings, costs, slippage, and risk controls; validate in simulation before real-money use. <br>
+## Use Case:
 
+External users and developers use this skill to draft Python quantitative trading strategies, construct stock-selection factors, preprocess financial data, evaluate backtests, and identify optimization ideas.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/afengzi/quant-strategy) <br>
-- [Publisher profile](https://clawhub.ai/user/afengzi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with optional Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include strategy logic, data preprocessing steps, backtest analysis, optimization suggestions, and risk-control guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated strategy or backtest code may rely on weak assumptions, poor data quality, omitted transaction costs, or overfit parameters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review assumptions, validate input data, model transaction costs and slippage, and test out of sample before relying on results.
+
+Risk: Using generated trading guidance directly with real funds could cause financial loss.
+
+Mitigation: Do not connect generated code to real brokerage accounts or trade with real funds without independent review, simulation, and testing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/afengzi/skills/quant-strategy)
+- [ClawHub publisher profile](https://clawhub.ai/user/afengzi)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Analysis]
+
+**Output Format:** [Markdown with Python code snippets and analytical recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include factor definitions, data-preprocessing steps, backtest interpretation, and strategy optimization suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

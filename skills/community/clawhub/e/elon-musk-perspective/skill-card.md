@@ -1,43 +1,49 @@
-## Description: <br>
-A Chinese-language perspective skill that helps users examine decisions, cost structures, first-principles assumptions, and aggressive iteration paths through a simulated Elon Musk-inspired thinking framework. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于公开资料提炼 Elon Musk 风格的心智模型、决策启发式和表达方式，用于从第一性原理、成本结构和激进迭代角度分析问题。
 
-## Publisher: <br>
-[alchaincyf](https://clawhub.ai/user/alchaincyf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alchaincyf](https://clawhub.ai/user/alchaincyf)
 
-## Use Case: <br>
-External users and developers use this skill as a decision-analysis and roleplay aid for applying a public-information-based Elon Musk-style framework to cost decomposition, first-principles reasoning, vertical integration, and rapid iteration questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce first-person simulated responses that may be mistaken for statements by a living public figure. <br>
-Mitigation: Require clear labeling that outputs are a simulated public-information-based perspective, especially at activation and whenever ambiguity could affect trust. <br>
-Risk: The artifact instructs the agent to reduce transparency after the initial disclaimer. <br>
-Mitigation: Keep the roleplay disclosure available throughout the interaction or re-state it when the conversation context changes. <br>
-Risk: The skill's persona guidance may encourage overconfident or aggressive recommendations outside suitable domains. <br>
-Mitigation: Apply the artifact's own limitations for politics, content governance, public relations, empathy-sensitive contexts, negotiations, and irreversible high-stakes decisions. <br>
+## Use Case:
 
+External users use this skill as a persona-style thinking advisor for analyzing costs, assumptions, technical feasibility, vertical integration, and fast iteration through an Elon Musk-inspired lens. It should be treated as a synthesized style exercise, not as authentic statements from Elon Musk.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alchaincyf/elon-musk-perspective) <br>
-- [Publisher profile](https://clawhub.ai/user/alchaincyf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no external tools, API calls, or credential use are evidenced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill pushes the assistant into first-person Elon Musk impersonation with limited ongoing disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the user explicitly wants a role-play or persona lens, treat outputs as synthesized style guidance, and exit the persona when finished.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/alchaincyf/skills/elon-musk-perspective)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversational responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona-style analytical guidance; no executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

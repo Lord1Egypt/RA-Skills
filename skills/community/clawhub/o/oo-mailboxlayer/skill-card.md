@@ -1,47 +1,60 @@
-## Description: <br>
-Enables agents to validate email addresses with Mailboxlayer through OOMOL's oo CLI and connected-account credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Mailboxlayer through an OOMOL-connected account to validate an email address and retrieve quality signals.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Agents and developers use this skill to validate individual email addresses with Mailboxlayer via an OOMOL-connected account, returning deliverability and quality signals without exposing raw API tokens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Validated email addresses are sent through the OOMOL/Mailboxlayer connector. <br>
-Mitigation: Use the skill only when the user intends to validate those addresses with a connected Mailboxlayer account. <br>
-Risk: The skill depends on an authenticated oo CLI session and connected Mailboxlayer credentials. <br>
-Mitigation: Run first-time setup or login commands only when the oo command, authentication, or connection is actually missing. <br>
-Risk: Connector payloads can become stale if the live action contract changes. <br>
-Mitigation: Inspect the live connector schema before constructing the action payload. <br>
+## Use Case:
 
+Developers and agent users with the oo CLI signed in and Mailboxlayer connected can check an email address and review its Mailboxlayer quality signals.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/oo-mailboxlayer) <br>
-- [OOMOL Publisher Profile](https://clawhub.ai/user/oomol) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
-- [Mailboxlayer Connection Setup](https://console.oomol.com/app-connections?provider=mailboxlayer) <br>
-- [Mailboxlayer Icon](https://static.oomol.com/logo/third-party/Mailboxlayer.svg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands; connector responses are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before execution and returns an execution id under meta.executionId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and skill metadata) <br>
+Risk: The CLI setup path can execute an installer that has not been inspected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install a verified CLI release yourself before use.
+
+Risk: Automatic skill installation and synchronization can make broader changes to the agent environment.
+
+Mitigation: Review the CLI's automatic skill installation and synchronization; if only Mailboxlayer access is needed, consider the documented OO_SKILLS_SYNC_DISABLED opt-out.
+
+Risk: Email addresses submitted for validation are shared with OOMOL and Mailboxlayer.
+
+Mitigation: Submit only email addresses you intend to share with OOMOL and Mailboxlayer.
+
+## Reference(s):
+
+- [Mailboxlayer API documentation](https://mailboxlayer.com/documentation)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+- [oo CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+- [Mailboxlayer skill page](https://clawhub.ai/oomol/skills/oo-mailboxlayer)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [JSON Mailboxlayer validation result, with a concise text or Markdown summary when presented to the user.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Checks one email address per action and returns Mailboxlayer quality signals.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

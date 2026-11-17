@@ -1,39 +1,54 @@
-## Description: <br>
-Build ETL pipelines with data ingestion, cleaning, and validation steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build ETL pipelines with data ingestion, cleaning, and validation steps. Use when ingesting sources, transforming formats, validating data, or scheduling loads.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and data engineers use this skill to record ETL activities such as ingestion, transformations, validation checks, schema changes, profiling, pipeline steps, search, summaries, and local exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill records user-entered ETL activity in local plaintext files under ~/.local/share/etl, which can accidentally preserve credentials, tokens, PII, confidential SQL, or sensitive connection details. <br>
-Mitigation: Avoid entering secrets or confidential data, review generated logs and exports before sharing, and delete or protect ~/.local/share/etl when sensitive material may have been recorded. <br>
+## Use Case:
 
+Developers and data teams use this skill to record ETL pipeline activity, validation notes, schema changes, profiling results, and exports in local plaintext logs.
 
-## Reference(s): <br>
-- [ClawHub Etl Skill Page](https://clawhub.ai/bytesagain-lab/etl) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown and plain text with inline shell commands and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can produce or reference local plaintext ETL log and export files under ~/.local/share/etl.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: The skill stores user-entered ETL activity notes in local plaintext logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not log passwords, API keys, private connection strings, raw sensitive records, or confidential production SQL; review permissions on ~/.local/share/etl/ on shared or backed-up machines.
+
+Risk: The skill is an ETL activity logger, not an ETL executor.
+
+Mitigation: Use it to document pipeline steps and validation results; verify actual data movement, transformations, and loads through the systems that perform those operations.
+
+## Reference(s):
+
+- [ClawHub Etl skill page](https://clawhub.ai/bytesagain-lab/skills/etl)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create plaintext activity log and export files under ~/.local/share/etl/ when commands are run.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter and script report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,36 +1,48 @@
-## Description: <br>
-Stream recent logs from the systemd journal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stream recent logs from systemd journal.
 
-## Publisher: <br>
-[Xejrax](https://clawhub.ai/user/Xejrax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xejrax](https://clawhub.ai/user/xejrax)
 
-## Use Case: <br>
-Developers and operators use this skill to ask an agent for recent systemd journal logs by service unit, line count, and follow mode when troubleshooting local Linux systems. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Journal logs can expose system paths, usernames, application data, or secrets. <br>
-Mitigation: Keep requests scoped to the needed service and line count, and review log output before sharing it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and system operators use this skill to inspect recent systemd journal logs, optionally scoped to a service unit and followed in real time.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires journalctl on a systemd-based Linux system.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Journal logs can contain hostnames, usernames, service errors, filesystem paths, or secrets emitted by other programs.
+
+Mitigation: Review log output before sharing it externally and scope commands to the minimum service unit and line count needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xejrax/skills/log-tail)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May surface local journal log content that can include hostnames, usernames, paths, service errors, or secrets emitted by other programs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

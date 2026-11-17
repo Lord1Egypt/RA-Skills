@@ -1,44 +1,58 @@
-## Description: <br>
-Backs up and restores the ~/.openclaw agent folder as GPG-encrypted, chunked snapshots stored in a private GitHub repository. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backs up and restores the ~/.openclaw agent folder as encrypted, chunked snapshots stored in a private GitHub repository.
 
-## Publisher: <br>
-[KrishBhimani](https://clawhub.ai/user/KrishBhimani) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishbhimani](https://clawhub.ai/user/krishbhimani)
 
-## Use Case: <br>
-OpenClaw users and agent operators use this skill to preserve, migrate, list, and recover OpenClaw agent state through encrypted snapshots in a private GitHub transport repository. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Restoring a snapshot can overwrite persistent OpenClaw agent state. <br>
-Mitigation: Restore only after choosing the exact backup version, or intentionally choosing the latest backup, and restart OpenClaw after restore. <br>
-Risk: Setup can run privileged package installation for GPG. <br>
-Mitigation: Prefer installing GPG and gpg-agent through trusted system administration before running the skill setup script. <br>
-Risk: Backups contain full OpenClaw agent state and rely on GitHub credentials plus BACKUP_PASSWORD. <br>
-Mitigation: Use a dedicated private repository, a tightly scoped token, a protected and rotated BACKUP_PASSWORD, and review ~/.openclaw before backing up. <br>
+## Use Case:
 
+OpenClaw users and operators use this skill to preserve, migrate, list, and restore their .openclaw agent state through encrypted backups stored in a private GitHub transport repository.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/KrishBhimani/snapshot) <br>
-- [Publisher profile](https://clawhub.ai/user/KrishBhimani) <br>
-- [GitHub personal access token settings](https://github.com/settings/tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and environment-variable configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces backup, restore, setup, and status guidance for OpenClaw snapshot workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Credential handling and broad git staging could expose or mishandle sensitive or unrelated local data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or fix the skill before routine use, use a fine-grained GitHub token limited to one private backup repository, and verify ~/openclaw-transport and ~/openclaw-transport-temp do not contain unrelated data.
+
+Risk: Restore operations can overwrite local OpenClaw state.
+
+Mitigation: Confirm the intended backup version and current local state before running restore, and treat restore as a potentially destructive operation.
+
+Risk: Setup may install system packages through sudo from an agent-driven workflow.
+
+Mitigation: Avoid running setup.py with sudo from an agent session; install or approve system prerequisites under human supervision.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishbhimani/skills/snapshot)
+- [GitHub personal access tokens](https://github.com/settings/tokens)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate backup manifests and encrypted snapshot chunks when the bundled scripts are executed.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -120,3 +120,17 @@
 - 🔒 **企业级安全**: 通过全面安全检查
 
 **下次更新检查**: 2026年6月底前
+## [1.0.5] - 2026-07-05
+
+### 重大重构：统一化CLI接口 + 共享核心模块
+- 🔧 **全新统一化CLI接口**：与PIPL、GDPR工具体验完全一致
+- 📦 **新增compliance_core共享模块**：`cli_base.py`、`check_engine.py`、`report_core.py`、`global_check.py`、`legal_disclaimer.py`
+- 📊 **多格式报告输出**：支持JSON、Markdown、HTML、CSV四种格式
+- 🚀 **跨法域联合检查**：可与PIPL、GDPR工具配合一键运行跨法域检查
+- 🔒 **纯本地零外部依赖**：仅使用Python标准库
+- ⚖️ **统一法律声明**：增强免责条款、知识产权声明和用户责任条款
+- 👤 **作者信息更新**：Wei Wu (wwumit)
+
+### 向后兼容
+- ✅ ccpa-check.py CLI参数保持向前兼容
+- ✅ 现有工作流无需修改即可继续使用

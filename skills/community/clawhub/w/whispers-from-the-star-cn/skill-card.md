@@ -1,51 +1,60 @@
-## Description: <br>
-星之低语 - 科幻生存冒险游戏。玩家扮演 Stella Chen，一位坠落在陌生星球的宇航员，需要在盖亚星球上探索、生存、解谜，寻找回家之路。支持多场景探索、资源管理、外星生物互动。适用于科幻冒险、生存模拟、互动叙事等场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Whispers from the Star CN is a Chinese sci-fi survival roleplay skill where the agent guides an astronaut stranded on Gaia through exploration, resource management, puzzles, and alien encounters.
 
-## Publisher: <br>
-[ouwenjie03](https://clawhub.ai/user/ouwenjie03) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ouwenjie03](https://clawhub.ai/user/ouwenjie03)
 
-## Use Case: <br>
-External users and roleplay agents use this skill to run a Chinese sci-fi survival adventure starring Stella Chen on the alien planet Gaia. It supports interactive narrative scenes for exploration, resource management, first contact, crisis response, and finding a path home. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Food, wildlife, cave, weather, and alien-ecology scenes could be mistaken for real survival advice. <br>
-Mitigation: Treat all survival and exploration content as fiction and review outputs before using them outside roleplay. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Whispers from the Star CN ClawHub Page](https://clawhub.ai/ouwenjie03/whispers-from-the-star-cn) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Alien Encounter](references/alien-encounter.md) <br>
-- [Alien Flora](references/alien-flora.md) <br>
-- [Ancient Ruins](references/ancient-ruins.md) <br>
-- [Cave Exploration](references/cave-exploration.md) <br>
-- [Cooking Adventure](references/cooking-adventure.md) <br>
-- [Daily Science](references/daily-science.md) <br>
-- [Distress Signal](references/distress-signal.md) <br>
-- [Escape Plan](references/escape-plan.md) <br>
-- [Power Crisis](references/power-crisis.md) <br>
-- [Shelter Finding](references/shelter-finding.md) <br>
-- [Signal Tower](references/signal-tower.md) <br>
-- [Storm Survival](references/storm-survival.md) <br>
-- [Water Crisis](references/water-crisis.md) <br>
+## Use Case:
 
+External users and roleplay agents use this skill to run an interactive Chinese-language sci-fi survival adventure centered on Stella Chen, a stranded astronaut seeking to survive, investigate Gaia, and find a way home.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Interactive Chinese narrative prose with scene prompts and markdown reference guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Often answers in Chinese with some English terms; scenes are fictional and should not be treated as real survival guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes fictional alien food, water purification, medical, and survival scenes that could be mistaken for real-world instructions.
+
+Mitigation: Use the content only as interactive fiction and do not rely on it for real survival, medical, food-safety, or water-treatment decisions.
+
+## Reference(s):
+
+- [First Alien Encounter](artifact/references/alien-encounter.md)
+- [Studying Alien Flora](artifact/references/alien-flora.md)
+- [Exploring Ancient Ruins](artifact/references/ancient-ruins.md)
+- [Cave Exploration](artifact/references/cave-exploration.md)
+- [Space Cooking Adventure](artifact/references/cooking-adventure.md)
+- [Daily Science Routine](artifact/references/daily-science.md)
+- [Emergency Distress Signal](artifact/references/distress-signal.md)
+- [Planning the Escape](artifact/references/escape-plan.md)
+- [Power Crisis](artifact/references/power-crisis.md)
+- [Finding Shelter](artifact/references/shelter-finding.md)
+- [Repairing Signal Tower](artifact/references/signal-tower.md)
+- [Surviving the Storm](artifact/references/storm-survival.md)
+- [Water Crisis](artifact/references/water-crisis.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown roleplay prompts and narrative responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language interactive fiction; no code execution, credential access, or persistent changes indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

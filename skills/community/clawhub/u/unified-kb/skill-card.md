@@ -1,43 +1,58 @@
-## Description: <br>
-Routes #kb-tagged content into a unified knowledge base by extracting supported inputs, uploading them to IMA, archiving them locally, and recording a memory entry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures #kb-tagged content, including links, YouTube videos, text, and files, into Tencent IMA, a local workspace knowledge base, and memory records.
 
-## Publisher: <br>
-[sundmop](https://clawhub.ai/user/sundmop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sundmop](https://clawhub.ai/user/sundmop)
 
-## Use Case: <br>
-Knowledge workers and agents use this skill to capture #kb-tagged WeChat articles, web pages, YouTube transcripts, plain text, and local files into IMA and a local workspace knowledge archive. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload arbitrary #kb content, local files, and extracted transcripts to IMA and retain copies in a local workspace archive. <br>
-Mitigation: Use it only for content approved for the configured IMA knowledge base; exclude secrets, private keys, customer data, and sensitive documents unless retention and deletion expectations are confirmed. <br>
-Risk: YouTube subtitle handling relies on a browser cookie file at a fixed temporary path. <br>
-Mitigation: Use a low-risk account, restrict cookie file permissions, and delete the cookie file after processing. <br>
-Risk: The helper depends on a preconfigured IMA knowledge-base ID, credential file, and local workspace paths. <br>
-Mitigation: Confirm the target IMA knowledge-base ID, credential source, and local storage paths before running the script. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to archive #kb-tagged source material into a unified personal knowledge workflow. It supports web articles, WeChat articles, YouTube transcripts, plain text, and local files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sundmop/unified-kb) <br>
-- [Publisher profile](https://clawhub.ai/user/sundmop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and a Python helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When executed, the helper can create local KB files, append memory records, call IMA note and knowledge-base APIs, and print status text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: User content, local file contents, and fetched web content may be sent to Tencent IMA and stored in the local workspace or memory records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with content approved for Tencent IMA and local storage; do not pass secrets, private keys, browser profiles, or internal documents.
+
+Risk: The skill accepts local file paths and URLs, which can expose unintended files or unsafe network destinations.
+
+Mitigation: Restrict use to trusted paths and URLs, and run it where private, loopback, and metadata-network destinations are blocked.
+
+Risk: YouTube subtitle handling depends on a fixed cookie file path.
+
+Mitigation: Protect or relocate the YouTube cookie file before use, and avoid storing browser cookies in shared temporary locations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sundmop/skills/unified-kb)
+- [Publisher profile](https://clawhub.ai/user/sundmop)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text files plus terminal status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores approved content in Tencent IMA, workspace/kb, memory records, and a rebuilt KB index when configured.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 # MCP-Native Agents
 
 > Members of this family speak MCP `2024-11-05` natively. **All protocol details
-> (12 tools, error codes, billing) live in [`../SKILL.md`](../SKILL.md) — do not duplicate.**
+> (14 tools, error codes, billing) live in [`../SKILL.md`](../SKILL.md) — do not duplicate.**
 
 ## Verified members
 

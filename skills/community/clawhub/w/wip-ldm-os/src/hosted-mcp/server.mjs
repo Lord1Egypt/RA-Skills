@@ -1,11 +1,11 @@
 // server.mjs: Hosted MCP server for wip.computer
 // MCP Streamable HTTP transport at /mcp, health check at /health.
-// Auth: Bearer ck-... API key maps to an agent ID.
+// Auth: Bearer ck-... API key maps to an immutable tenant ID.
 // OAuth 2.0: Minimal flow for Claude iOS custom connector.
 // WebAuthn: Passkey-based signup/login (replaces agent name text form).
 
 import { randomUUID, randomBytes, createHash } from "node:crypto";
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, mkdirSync, accessSync, constants as fsConstants } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createServer } from "node:http";
@@ -23,10 +23,49 @@ import {
 import QRCode from "qrcode";
 import { WebSocketServer } from "ws";
 import { parse as parseUrlQs } from "node:querystring";
+import {
+  buildCodexBootstrapPayload,
+  codexDaemonPubkeyFingerprint,
+  createCodexDaemonPubkeyRegistry,
+  evaluateCodexDaemonReconnectPubkey,
+} from "./codex-relay-e2ee-registry.mjs";
+import {
+  codexWsFrameByteLength,
+  createCodexWsAbuseLimitConfig,
+  createCodexWsConnectionGuard,
+  formatCodexWsLimitLog,
+  isCodexWsAgentDisabled,
+} from "./codex-relay-ws-abuse-limits.mjs";
 
 // ── Settings ─────────────────────────────────────────────────────────
 
 const PORT = parseInt(process.env.MCP_PORT || "18800", 10);
+// Dev mode: opt-in to JSON-file fallbacks for the data layer and to
+// reading tokens/passkeys from local JSON files. Production must run
+// without this flag set (production fails closed when Prisma is
+// unavailable, and never reads/writes the local JSON token files).
+// Tracked by ai/product/bugs/security/2026-04-28--cc-mini--vps-hosted-mcp-audit.md (F-002, F-005a).
+const DEV_MODE = process.env.LDM_HOSTED_MCP_DEV_MODE === "1";
+// WebSocket Origin allowlist (F-003 in the VPS hosted-mcp audit).
+// Browser-borne web WS upgrades must present an Origin from this list.
+// Comma-separated env var; default is the production origin.
+// Daemon WS upgrades (CLI / agent connections) are NOT gated on Origin
+// because they do not send a browser Origin header.
+const WS_ORIGIN_ALLOWLIST = (process.env.LDM_HOSTED_MCP_WS_ORIGIN_ALLOWLIST || "https://wip.computer")
+  .split(",")
+  .map(s => s.trim())
+  .filter(Boolean);
+const CODEX_WS_ABUSE_LIMITS = createCodexWsAbuseLimitConfig(process.env);
+
+function isWsOriginAllowed(origin) {
+  if (!origin) return false;
+  return WS_ORIGIN_ALLOWLIST.includes(origin);
+}
+// F-001: WS URL-token fallback (browser sends ?token=ck-... on upgrade).
+// Default off in production. Set LDM_HOSTED_MCP_ALLOW_WS_URL_TOKEN=1 to
+// allow the legacy back-compat path. Independent of any other dev flag
+// so that this can be toggled without enabling other dev-mode behavior.
+const ALLOW_WS_URL_TOKEN = process.env.LDM_HOSTED_MCP_ALLOW_WS_URL_TOKEN === "1";
 const SESSION_TIMEOUT_MS = 30 * 60 * 1000;
 const SESSION_CLEANUP_INTERVAL_MS = 5 * 60 * 1000;
 const OAUTH_CODE_EXPIRY_MS = 10 * 60 * 1000;
@@ -44,18 +83,19 @@ const RP_ORIGIN = "https://wip.computer";
 
 // ── Data layer ──────────────────────────────────────────────────────
 //
-// Primary: Postgres via Prisma (production).
-// Fallback: JSON files (if DATABASE_URL is not set, e.g. local dev without Postgres).
+// Production: Postgres via Prisma is the canonical store. If Prisma
+// cannot connect, the server refuses to start (F-005a).
 //
-// The demo and all API endpoints use the db.* functions below.
-// They try Prisma first, fall back to JSON if Prisma isn't available.
+// Dev mode (LDM_HOSTED_MCP_DEV_MODE=1): JSON files are used as a
+// fallback for tokens and passkeys when Prisma is unavailable, and
+// are also seeded into the in-memory cache on boot. Production must
+// not set this flag.
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const TOKEN_FILE = join(__dirname, "tokens.json");
 const PASSKEY_FILE = join(__dirname, "passkeys.json");
 const WALLET_FILE_LEGACY = join(__dirname, "wallets.json");
 
-// Initialize Prisma (may fail if DATABASE_URL not set)
 let prisma = null;
 let usePrisma = false;
 try {
@@ -64,30 +104,102 @@ try {
   usePrisma = true;
   console.log("Database: Postgres via Prisma");
 } catch (err) {
-  console.log("Database: JSON files (Prisma not available: " + err.message + ")");
+  if (!DEV_MODE) {
+    console.error("FATAL: Prisma unavailable; refusing to start.");
+    console.error("Cause: " + err.message);
+    console.error("Set LDM_HOSTED_MCP_DEV_MODE=1 to allow the JSON fallback (dev only).");
+    process.exit(1);
+  }
+  console.warn("Database: JSON files (DEV MODE; Prisma not available: " + err.message + ")");
 }
 
 // ── API Keys ────────────────────────────────────────────────────────
+//
+// Hardcoded production defaults removed (F-002). Production keys live
+// in the Postgres ApiKey table and are loaded on boot. In DEV_MODE,
+// the local tokens.json file is also seeded into the in-memory cache.
 
-// Hardcoded defaults (always available, even without DB)
-const DEFAULT_API_KEYS = {
-  "ck-test-001": "test-agent",
-  "ck-e04df46877aa3672e21c4e33149bacc4": "cc-mini",
-  "ck-f1986e957e21cbb40dc100bc05dc78ec": "lesa",
-  "ck-c2849eef903407c877bc6e79bf8794aa": "parker",
-};
+const API_KEYS = {};
+const API_KEY_HANDLES = {};
+const ACCOUNT_TENANT_PREFIX = "acct:";
+const LEGACY_API_KEY_TENANT_PREFIX = "key:";
+const OAUTH_API_KEY_TENANT_PREFIX = "oauth:";
 
-// In-memory cache (populated from DB or JSON on boot)
-const API_KEYS = { ...DEFAULT_API_KEYS };
-
-// Load from JSON (fallback)
-function loadTokensFromFile() {
-  try { return JSON.parse(readFileSync(TOKEN_FILE, "utf8")); } catch { return {}; }
+function isInternalTenantId(id) {
+  return typeof id === "string"
+    && (id.startsWith(ACCOUNT_TENANT_PREFIX)
+      || id.startsWith(LEGACY_API_KEY_TENANT_PREFIX)
+      || id.startsWith(OAUTH_API_KEY_TENANT_PREFIX));
 }
-Object.assign(API_KEYS, loadTokensFromFile());
 
-async function saveApiKey(key, agentId) {
-  API_KEYS[key] = agentId;
+function accountTenantIdForUserId(userId) {
+  return ACCOUNT_TENANT_PREFIX + userId;
+}
+
+function legacyTenantIdForApiKey(key) {
+  return LEGACY_API_KEY_TENANT_PREFIX + createHash("sha256").update(key).digest("base64url").slice(0, 32);
+}
+
+function oauthTenantIdForApiKey(key) {
+  return OAUTH_API_KEY_TENANT_PREFIX + createHash("sha256").update(key).digest("base64url").slice(0, 32);
+}
+
+function rememberApiKeyInMemory(key, tenantId, handle = null) {
+  API_KEYS[key] = tenantId;
+  if (handle) API_KEY_HANDLES[key] = handle;
+  else delete API_KEY_HANDLES[key];
+}
+
+function rememberLoadedApiKey(key, storedAgentId) {
+  const tenantId = isInternalTenantId(storedAgentId) ? storedAgentId : legacyTenantIdForApiKey(key);
+  const handle = isInternalTenantId(storedAgentId) ? null : storedAgentId;
+  rememberApiKeyInMemory(key, tenantId, handle);
+}
+
+function identityForApiKey(key) {
+  const tenantId = API_KEYS[key];
+  if (!tenantId) return null;
+  return {
+    agentId: tenantId,
+    tenantId,
+    handle: API_KEY_HANDLES[key] || tenantId,
+    apiKey: key,
+  };
+}
+
+function loadTokensFromFile() {
+  let rows = {};
+  try { rows = JSON.parse(readFileSync(TOKEN_FILE, "utf8")); } catch { return; }
+  for (const [key, storedAgentId] of Object.entries(rows)) {
+    rememberLoadedApiKey(key, storedAgentId);
+  }
+}
+
+async function loadApiKeysFromDb() {
+  if (!usePrisma) return;
+  try {
+    const rows = await prisma.apiKey.findMany();
+    for (const row of rows) rememberLoadedApiKey(row.key, row.agentId);
+  } catch (err) {
+    if (!DEV_MODE) {
+      console.error("FATAL: Prisma loadApiKeys failed; refusing to start.");
+      console.error("Cause: " + err.message);
+      process.exit(1);
+    }
+    console.error("Prisma loadApiKeys error (DEV_MODE):", err.message);
+  }
+}
+
+if (DEV_MODE) {
+  loadTokensFromFile();
+}
+await loadApiKeysFromDb();
+
+async function saveApiKey(key, agentId, { handle = null } = {}) {
+  // Persist before advertising in memory: a newly issued key must not
+  // become valid in the in-memory cache if the canonical store did not
+  // accept it. Otherwise the key would work for the lifetime of the
+  // process and disappear on restart.
   if (usePrisma) {
     try {
       await prisma.apiKey.upsert({
@@ -97,10 +209,17 @@ async function saveApiKey(key, agentId) {
       });
     } catch (err) {
       console.error("Prisma saveApiKey error:", err.message);
+      if (!DEV_MODE) throw new Error("saveApiKey persistence failed: " + err.message);
     }
+  } else if (!DEV_MODE) {
+    // Production should never reach here (boot exits if Prisma is
+    // unavailable), but guard explicitly.
+    throw new Error("saveApiKey called without Prisma in production");
   }
-  // Always write JSON as backup
-  try { writeFileSync(TOKEN_FILE, JSON.stringify(API_KEYS, null, 2) + "\n"); } catch {}
+  rememberApiKeyInMemory(key, agentId, handle);
+  if (DEV_MODE) {
+    try { writeFileSync(TOKEN_FILE, JSON.stringify(API_KEYS, null, 2) + "\n"); } catch {}
+  }
 }
 
 // ── Passkeys ────────────────────────────────────────────────────────
@@ -113,33 +232,72 @@ function loadPasskeysFromFile() {
 }
 
 async function loadPasskeysFromDb() {
-  if (!usePrisma) return loadPasskeysFromFile();
+  if (!usePrisma) {
+    return DEV_MODE ? loadPasskeysFromFile() : [];
+  }
   try {
     const creds = await prisma.credential.findMany({ include: { user: true } });
-    return creds.map(c => ({
-      credentialId: c.id,
-      publicKey: Buffer.from(c.publicKey).toString("base64url"),
-      counter: c.counter,
-      userId: c.userId,
-      agentId: c.user?.name ? "passkey-" + c.user.name.slice(0, 12) : "unknown",
-      createdAt: c.createdAt.toISOString(),
-      transports: c.transports || [],
-    }));
+    const handleUserIds = new Map();
+    for (const c of creds) {
+      const handle = c.user?.name || (c.userId ? "user-" + c.userId.slice(0, 8) : "unknown");
+      if (!handleUserIds.has(handle)) handleUserIds.set(handle, new Set());
+      handleUserIds.get(handle).add(c.userId);
+    }
+    const out = [];
+    for (const c of creds) {
+      const handle = c.user?.name || (c.userId ? "user-" + c.userId.slice(0, 8) : "unknown");
+      const agentId = accountTenantIdForUserId(c.userId);
+      let apiKey = null;
+      for (const [key, tenantId] of Object.entries(API_KEYS)) {
+        if (tenantId === agentId || (handleUserIds.get(handle)?.size === 1 && API_KEY_HANDLES[key] === handle)) {
+          apiKey = key;
+          break;
+        }
+      }
+      if (apiKey) {
+        API_KEY_HANDLES[apiKey] = handle;
+        if (API_KEYS[apiKey] !== agentId) {
+          try {
+            await saveApiKey(apiKey, agentId, { handle });
+            console.log("loadPasskeysFromDb: migrated API key tenant for handle '" + handle + "' to immutable account id");
+          } catch (err) {
+            console.error("loadPasskeysFromDb: failed to migrate API key tenant for handle '" + handle + "':", err.message);
+            if (!DEV_MODE) throw err;
+          }
+        }
+      } else if (handle !== "unknown") {
+        console.warn("loadPasskeysFromDb: no ApiKey row for account tenant '" + agentId + "'; auth-verify will mint on next successful login");
+      }
+      out.push({
+        credentialId: c.id,
+        publicKey: Buffer.from(c.publicKey).toString("base64url"),
+        counter: c.counter,
+        userId: c.userId,
+        agentId,
+        handle,
+        apiKey,
+        createdAt: c.createdAt.toISOString(),
+        transports: c.transports || [],
+      });
+    }
+    return out;
   } catch (err) {
     console.error("Prisma loadPasskeys error:", err.message);
-    return loadPasskeysFromFile();
+    return DEV_MODE ? loadPasskeysFromFile() : [];
   }
 }
 
 async function savePasskey(entry) {
-  passkeys.push(entry);
+  // Persist before pushing to in-memory: a passkey must not exist in
+  // memory if it was never persisted, or it would authenticate for the
+  // lifetime of the process and disappear on restart.
   if (usePrisma) {
     try {
       // Ensure user exists
       let user = await prisma.user.findUnique({ where: { id: entry.userId } });
       if (!user) {
         user = await prisma.user.create({
-          data: { id: entry.userId, name: entry.agentId || "user" },
+          data: { id: entry.userId, name: entry.handle || "user" },
         });
       }
       await prisma.credential.create({
@@ -153,15 +311,22 @@ async function savePasskey(entry) {
       });
     } catch (err) {
       console.error("Prisma savePasskey error:", err.message);
+      if (!DEV_MODE) throw new Error("savePasskey persistence failed: " + err.message);
     }
+  } else if (!DEV_MODE) {
+    throw new Error("savePasskey called without Prisma in production");
   }
-  // Always write JSON as backup
-  try { writeFileSync(PASSKEY_FILE, JSON.stringify(passkeys, null, 2) + "\n"); } catch {}
+  passkeys.push(entry);
+  if (DEV_MODE) {
+    try { writeFileSync(PASSKEY_FILE, JSON.stringify(passkeys, null, 2) + "\n"); } catch {}
+  }
 }
 
 async function updatePasskeyCounter(credentialId, newCounter) {
-  const entry = passkeys.find(p => p.credentialId === credentialId);
-  if (entry) entry.counter = newCounter;
+  // Persist before updating in-memory. The counter is the WebAuthn
+  // replay-protection state; advancing it in memory while the DB row
+  // stays behind would let a replayed assertion validate after a
+  // restart re-loaded the stale counter.
   if (usePrisma) {
     try {
       await prisma.credential.update({
@@ -170,9 +335,16 @@ async function updatePasskeyCounter(credentialId, newCounter) {
       });
     } catch (err) {
       console.error("Prisma updateCounter error:", err.message);
+      if (!DEV_MODE) throw new Error("updatePasskeyCounter persistence failed: " + err.message);
     }
+  } else if (!DEV_MODE) {
+    throw new Error("updatePasskeyCounter called without Prisma in production");
   }
-  try { writeFileSync(PASSKEY_FILE, JSON.stringify(passkeys, null, 2) + "\n"); } catch {}
+  const entry = passkeys.find(p => p.credentialId === credentialId);
+  if (entry) entry.counter = newCounter;
+  if (DEV_MODE) {
+    try { writeFileSync(PASSKEY_FILE, JSON.stringify(passkeys, null, 2) + "\n"); } catch {}
+  }
 }
 
 // Boot: load passkeys
@@ -219,7 +391,7 @@ function authenticate(req) {
   const auth = req.headers["authorization"];
   if (!auth?.startsWith("Bearer ")) return null;
   const key = auth.slice(7).trim();
-  return API_KEYS[key] ? { agentId: API_KEYS[key], apiKey: key } : null;
+  return identityForApiKey(key);
 }
 
 function readBody(req) {
@@ -275,13 +447,92 @@ function parseUrl(reqUrl) {
   return new URL(reqUrl, "http://localhost");
 }
 
+// ── Rate limiting (F-008 in the VPS hosted-mcp audit) ───────────────
+//
+// Per-IP, per-bucket fixed-window counter. In-process Map; resets on
+// restart. nginx-side limit_req would be more durable but harder to
+// scope per route; in-process keeps the policy with the code that
+// mints/validates the auth tokens. Defaults are conservative; tune via
+// env. Stale entries are pruned periodically so memory stays bounded.
+//
+// Buckets:
+//   mint     ... endpoints that issue a credential or ticket
+//   validate ... endpoints that consume / verify a credential
+//   status   ... poll-friendly endpoints (higher limit)
+
+const RATE_LIMIT_BUCKETS = {
+  mint:     { limit: parseInt(process.env.LDM_HOSTED_MCP_RL_MINT     || "30",  10), windowMs: 60_000 },
+  validate: { limit: parseInt(process.env.LDM_HOSTED_MCP_RL_VALIDATE || "60",  10), windowMs: 60_000 },
+  status:   { limit: parseInt(process.env.LDM_HOSTED_MCP_RL_STATUS   || "120", 10), windowMs: 60_000 },
+};
+
+const rateLimitState = new Map(); // key: "<bucket>:<ip>" -> { count, windowStart }
+
+function getClientIp(req) {
+  // Prefer X-Real-IP (nginx overwrites on proxy hop, harder to spoof
+  // through the proxy). Fall back to the LAST entry in X-Forwarded-For
+  // (nginx appends $remote_addr via proxy_add_x_forwarded_for, so the
+  // last entry is the real client IP from nginx's perspective; the
+  // first entries are attacker-controlled). Last fallback: socket.
+  const xRealIp = req.headers["x-real-ip"];
+  if (typeof xRealIp === "string" && xRealIp.length > 0) return xRealIp.trim();
+  const xff = req.headers["x-forwarded-for"];
+  if (typeof xff === "string" && xff.length > 0) {
+    const parts = xff.split(",").map(s => s.trim()).filter(Boolean);
+    if (parts.length > 0) return parts[parts.length - 1];
+  }
+  return req.socket?.remoteAddress || "unknown";
+}
+
+function rateLimitCheck(req, bucket) {
+  const config = RATE_LIMIT_BUCKETS[bucket];
+  if (!config) return { ok: true };
+  const ip = getClientIp(req);
+  const key = bucket + ":" + ip;
+  const now = Date.now();
+  const entry = rateLimitState.get(key);
+  if (!entry || now - entry.windowStart > config.windowMs) {
+    rateLimitState.set(key, { count: 1, windowStart: now });
+    return { ok: true };
+  }
+  entry.count += 1;
+  if (entry.count > config.limit) {
+    const retryAfterSec = Math.max(1, Math.ceil((config.windowMs - (now - entry.windowStart)) / 1000));
+    return { ok: false, retryAfterSec };
+  }
+  return { ok: true };
+}
+
+// Returns true if the request is allowed. If limited, writes 429 and
+// returns false; the caller must `return` immediately on false.
+function applyRateLimit(req, res, bucket) {
+  const result = rateLimitCheck(req, bucket);
+  if (!result.ok) {
+    res.setHeader("Retry-After", String(result.retryAfterSec));
+    json(res, 429, { error: "rate_limit_exceeded", error_description: "Too many requests. Retry after " + result.retryAfterSec + "s." });
+    console.warn("rate-limit hit:", bucket, getClientIp(req), req.method, req.url?.split("?")[0]);
+    return false;
+  }
+  return true;
+}
+
+// Keep memory bounded: drop entries older than 2 windows.
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, entry] of rateLimitState) {
+    if (now - entry.windowStart > 2 * 60_000) {
+      rateLimitState.delete(key);
+    }
+  }
+}, 5 * 60_000).unref();
+
 function esc(s) {
   return s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
-function sanitizeUsername(raw) {
+function sanitizeDisplayLabel(raw) {
   if (!raw || typeof raw !== "string") return null;
-  const cleaned = raw.toLowerCase().replace(/[^a-z0-9-]/g, "").slice(0, 30);
+  const cleaned = raw.replace(/[\u0000-\u001f\u007f]/g, "").replace(/\s+/g, " ").trim().slice(0, 64);
   return cleaned.length > 0 ? cleaned : null;
 }
 
@@ -406,14 +657,17 @@ async function handleRegisterOptions(req, res) {
   let body;
   try { body = await readBody(req); } catch { body = {}; }
 
-  // Accept optional username from request body
-  const username = sanitizeUsername(body?.username);
+  // Accept the existing `username` field for wire compatibility, but
+  // treat it only as a display label for the passkey prompt. It is not
+  // a public username, account handle, or relay tenant boundary.
+  // Duplicate display labels are allowed.
+  const displayLabel = sanitizeDisplayLabel(body?.displayName || body?.username);
 
   const userId = randomBytes(16);
   const userIdB64 = userId.toString("base64url");
 
-  const userName = username || ("user-" + userIdB64.slice(0, 8));
-  const displayName = username || "Memory Crystal User";
+  const userName = displayLabel || ("user-" + userIdB64.slice(0, 8));
+  const displayName = displayLabel || "Memory Crystal User";
 
   let options;
   try {
@@ -442,7 +696,7 @@ async function handleRegisterOptions(req, res) {
     challenge: options.challenge,
     type: "registration",
     userId: userIdB64,
-    username: username,
+    displayLabel,
     expires: Date.now() + 120000,
   };
 
@@ -495,8 +749,16 @@ async function handleRegisterVerify(req, res) {
 
   const { credential: cred, credentialDeviceType, credentialBackedUp } = verification.registrationInfo;
 
-  // Use provided username as agentId, or fall back to passkey-<id>
-  const agentId = stored.username || ("passkey-" + stored.userId.slice(0, 12));
+  // Internal tenancy is the immutable WebAuthn user id. The user-entered
+  // display label is metadata only and never owns a relay namespace.
+  const agentId = accountTenantIdForUserId(stored.userId);
+  // credentialLabel matches the userName passed to
+  // generateRegistrationOptions in handleRegisterOptions, which is what
+  // iOS Passwords / 1Password show next to the saved passkey. The
+  // welcome view should display this, not agentId. Auth semantics are
+  // unchanged; only the user-facing label is aligned with the saved
+  // credential.
+  const credentialLabel = stored.displayLabel || ("user-" + stored.userId.slice(0, 8));
   const apiKey = generateApiKey();
 
   const entry = {
@@ -505,18 +767,32 @@ async function handleRegisterVerify(req, res) {
     counter: cred.counter,
     userId: stored.userId,
     agentId,
+    handle: credentialLabel,
     apiKey,
     deviceType: credentialDeviceType,
     backedUp: credentialBackedUp,
     transports: credential.response?.transports || [],
     createdAt: new Date().toISOString(),
   };
-  await savePasskey(entry);
-  await saveApiKey(apiKey, agentId);
+  try {
+    await savePasskey(entry);
+    await saveApiKey(apiKey, agentId, { handle: credentialLabel });
+  } catch (err) {
+    console.error("Persistence failure during passkey registration:", err.message);
+    json(res, 500, { error: "persistence_failure", error_description: "Could not persist credentials. Try again." });
+    return;
+  }
 
-  console.log("WebAuthn: registered passkey for agent '" + agentId + "' (credId: " + cred.id.slice(0, 16) + "...)");
+  console.log("WebAuthn: registered passkey for tenant '" + agentId + "' handle '" + credentialLabel + "' (credId: " + cred.id.slice(0, 16) + "...)");
 
-  json(res, 200, { success: true, agentId, apiKey });
+  json(res, 200, {
+    success: true,
+    agentId: credentialLabel,
+    tenantId: agentId,
+    apiKey,
+    credentialLabel,
+    codex_pair_presence_token: generateCodexPairPresenceToken(agentId),
+  });
 }
 
 // POST /webauthn/auth-options
@@ -602,12 +878,60 @@ async function handleAuthVerify(req, res) {
     return;
   }
 
-  entry.counter = verification.authenticationInfo.newCounter;
-  await updatePasskeyCounter(entry.credentialId, entry.counter);
+  // Persist new counter before mutating in-memory entry. updatePasskeyCounter
+  // performs the in-memory update only on success, so the in-memory counter
+  // stays consistent with the DB and replay protection holds across restarts.
+  try {
+    await updatePasskeyCounter(entry.credentialId, verification.authenticationInfo.newCounter);
+  } catch (err) {
+    console.error("Persistence failure during passkey counter update:", err.message);
+    json(res, 500, { error: "persistence_failure", error_description: "Could not persist counter. Try again." });
+    return;
+  }
 
-  console.log("WebAuthn: authenticated agent '" + entry.agentId + "'");
+  let credentialLabel = entry.handle;
+  if (!credentialLabel && entry.agentId && entry.agentId.startsWith("passkey-")) {
+    credentialLabel = (typeof entry.userId === "string" && entry.userId.length >= 8)
+      ? "user-" + entry.userId.slice(0, 8)
+      : entry.agentId;
+  } else if (!credentialLabel && !isInternalTenantId(entry.agentId)) {
+    credentialLabel = entry.agentId;
+  } else if (!credentialLabel && typeof entry.userId === "string" && entry.userId.length >= 8) {
+    credentialLabel = "user-" + entry.userId.slice(0, 8);
+  } else if (!credentialLabel) {
+    credentialLabel = "you";
+  }
 
-  json(res, 200, { success: true, agentId: entry.agentId, apiKey: entry.apiKey });
+  // Recovery path: a passkey reloaded from Postgres after a restart may
+  // have entry.apiKey = null if no ApiKey row was found for its agent
+  // at boot. Mint a fresh ck- now so the login response always carries
+  // a usable token. Without this, the browser would store
+  // sessionStorage.wip_api_key = null and Remote Control would 401 on
+  // /bootstrap and /ws-ticket.
+  if (!entry.apiKey) {
+    const newKey = generateApiKey();
+    try {
+      await saveApiKey(newKey, entry.agentId, { handle: credentialLabel });
+    } catch (err) {
+      console.error("Persistence failure minting recovery key for tenant '" + entry.agentId + "':", err.message);
+      json(res, 500, { error: "persistence_failure", error_description: "Could not mint API key. Try again." });
+      return;
+    }
+    entry.apiKey = newKey;
+    entry.handle = credentialLabel;
+    console.log("WebAuthn: minted recovery key for tenant '" + entry.agentId + "' (key: " + newKey.slice(0, 6) + "...)");
+  }
+
+  console.log("WebAuthn: authenticated tenant '" + entry.agentId + "' handle '" + credentialLabel + "'");
+
+  json(res, 200, {
+    success: true,
+    agentId: credentialLabel,
+    tenantId: entry.agentId,
+    apiKey: entry.apiKey,
+    credentialLabel,
+    codex_pair_presence_token: generateCodexPairPresenceToken(entry.agentId),
+  });
 }
 
 // ---------- Page handlers ----------
@@ -1018,19 +1342,18 @@ async function handleOAuthToken(req, res) {
     }
   }
 
-  // Check if agent already has an API key (from passkey registration)
-  const agentId = stored.agent_name || "oauth-user";
-  let apiKey;
-
-  const existingKey = Object.entries(API_KEYS).find(([k, v]) => v === agentId);
-  if (existingKey) {
-    apiKey = existingKey[0];
-  } else {
-    apiKey = generateApiKey();
-    await saveApiKey(apiKey, agentId);
+  const agentHandle = stored.agent_name || "oauth-user";
+  const apiKey = generateApiKey();
+  const agentId = oauthTenantIdForApiKey(apiKey);
+  try {
+    await saveApiKey(apiKey, agentId, { handle: agentHandle });
+  } catch (err) {
+    console.error("Persistence failure during OAuth token issuance:", err.message);
+    json(res, 500, { error: "server_error", error_description: "Could not issue token. Try again." });
+    return;
   }
 
-  console.log("OAuth: issued token for agent '" + agentId + "' (key: " + apiKey.slice(0, 10) + "...)");
+  console.log("OAuth: issued token for tenant '" + agentId + "' handle '" + agentHandle + "' (key: " + apiKey.slice(0, 10) + "...)");
 
   json(res, 200, {
     access_token: apiKey,
@@ -1383,12 +1706,58 @@ function handleAgentAuthApprove(req, res) {
 
 // ---------- QR Login (Chrome fallback) ----------
 
+// `next` whitelist for the QR login flow. Three shapes are allowed; each
+// land the user on a known phone-side surface after successful sign-in.
+// Anything else is silently dropped. `next` is NOT a general redirect
+// primitive.
+//
+// 1. PAIR_NEXT_REGEX: /pair/<CODE> using the daemon's real alphabet
+//    (CODEX_PAIR_ALPHABET, length 6, L IS included; I/O/0/1 excluded).
+//    See plan ai/product/plans-prds/codex-remote-control/
+//    2026-04-30--cc-mini--pair-via-login-qr-flow.md constraints C1,
+//    C8, and round-5. Per C8 the URL fallback for this shape is
+//    mobile-only (desktop must not become the pairing authority).
+//
+// 2. REMOTE_CONTROL_NEXT_REGEX: /codex-remote-control/<UUID> for the
+//    Kaleidoscope phone-side remote-control thread surface. Standard
+//    ?next semantics; allowed on both desktop and mobile (this is
+//    navigation continuation, not authority transfer).
+//
+// 3. DEMO_NEXT_REGEX: /demo for the homepage CTA. Standard post-login
+//    continuation; allowed on both desktop and mobile.
+const PAIR_NEXT_REGEX = /^\/pair\/[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/;
+const REMOTE_CONTROL_NEXT_REGEX = /^\/codex-remote-control\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const DEMO_NEXT_REGEX = /^\/demo$/;
+
+function sanitizeCrcPairNext(raw) {
+  if (typeof raw !== "string") return null;
+  // Single decode; reject if a second decode would still differ.
+  let decoded;
+  try { decoded = decodeURIComponent(raw); } catch { return null; }
+  // Catch double-encoded payloads.
+  if (decoded !== raw && /%/.test(decoded)) return null;
+  if (!PAIR_NEXT_REGEX.test(decoded) && !REMOTE_CONTROL_NEXT_REGEX.test(decoded) && !DEMO_NEXT_REGEX.test(decoded)) return null;
+  return decoded;
+}
+
 // POST /api/qr-login ... create a QR login session
 async function handleQrLoginStart(req, res) {
   cleanupExpiredChallenges();
   const body = await readBody(req).catch(() => ({}));
   const handle = ((body && body.handle) || "").trim().toLowerCase().replace(/[^a-z0-9-]/g, "").slice(0, 30);
   const mode = ((body && body.mode) || "register") === "signin" ? "signin" : "register";
+  // Validate `next` strictly. Invalid next is silently dropped, not
+  // 400'd, so legacy callers still work.
+  //
+  // Only /pair/<CODE> next triggers pair-mode (C6 strip on desktop
+  // status, C8 desktop-no-redirect, the "phone is the actor" model).
+  // /codex-remote-control/<UUID> and /demo are normal post-login
+  // continuations: desktop status returns the full login response
+  // (apiKey, handle, next) so the desktop poll can authenticate and
+  // redirect on its own. The phone also gets next via approve, so both
+  // ends can act.
+  const next = sanitizeCrcPairNext(body && body.next);
+  const purpose = (next && PAIR_NEXT_REGEX.test(next)) ? "pair" : null;
   const sessionId = randomUUID();
   const loginUrl = ISSUER_URL + "/login?s=" + sessionId + "&m=" + mode + (handle ? "&h=" + encodeURIComponent(handle) : "");
   const qrBuffer = await QRCode.toBuffer(loginUrl, { type: "png", width: 400, margin: 2 });
@@ -1399,8 +1768,10 @@ async function handleQrLoginStart(req, res) {
     apiKey: null,
     handle: handle || null,
     expires: Date.now() + QR_LOGIN_EXPIRY_MS,
+    purpose,           // "pair" | null
+    next: next || null, // sanitized `/pair/<CODE>`, `/codex-remote-control/<UUID>`, `/demo`, or null
   };
-  console.log("QR login: created session " + sessionId.slice(0, 8) + "...");
+  console.log("QR login: created session " + sessionId.slice(0, 8) + "..." + (purpose === "pair" ? " (pair-mode)" : ""));
   json(res, 200, { sessionId, qrUrl: "/api/qr-login/qr?s=" + sessionId });
 }
 
@@ -1418,6 +1789,12 @@ function handleQrLoginQR(req, res) {
 }
 
 // GET /api/qr-login/status?s=XXX ... poll for completion
+//
+// Response shape depends on `purpose`:
+//   - Pair-mode (purpose === "pair"): {status, agentId} only on approved.
+//     NEVER returns apiKey or next to the desktop. Phone receives next via
+//     /api/qr-login/approve. Per plan C6 round 4.
+//   - Legacy login mode: {status, agentId, apiKey} on approved (unchanged).
 function handleQrLoginStatus(req, res) {
   const url = parseUrl(req.url);
   const s = url.searchParams.get("s");
@@ -1427,7 +1804,29 @@ function handleQrLoginStatus(req, res) {
     return;
   }
   if (entry.status === "approved") {
-    json(res, 200, { status: "approved", agentId: entry.agentId, apiKey: entry.apiKey });
+    if (entry.purpose === "pair") {
+      // Pair-mode (purpose === "pair", next === /pair/<CODE>):
+      // desktop gets ONLY a display label. No apiKey. No next. Plan
+      // C6 round 4. Desktop never becomes the pairing authority.
+      json(res, 200, { status: "approved", agentId: entry.agentId });
+    } else {
+      // Legacy login mode OR standard login continuation
+      // (purpose === null). Desktop gets full identity to render the
+      // welcome view OR redirect to next on its own poll.
+      // credentialLabel matches the saved-passkey label (see
+      // register-verify / auth-verify). next is included only if a
+      // sanitized non-pair-mode next was set on the session
+      // (/codex-remote-control/<UUID> or /demo); legacy login sessions
+      // without next get next === null.
+      json(res, 200, {
+        status: "approved",
+        agentId: entry.agentId,
+        tenantId: entry.tenantId || null,
+        apiKey: entry.apiKey,
+        credentialLabel: entry.credentialLabel || null,
+        next: entry.next || null,
+      });
+    }
     delete qrLoginSessions[s]; // one-time use
   } else {
     json(res, 200, { status: "pending" });
@@ -1435,9 +1834,13 @@ function handleQrLoginStatus(req, res) {
 }
 
 // POST /api/qr-login/approve ... phone calls after passkey created
+//
+// In pair-mode, the response includes the sanitized `next` so the phone
+// can location.replace(next) into /pair/<CODE>. Legacy login mode returns
+// {ok: true} unchanged.
 function handleQrLoginApprove(req, res) {
   readBody(req).then(function(body) {
-    const { sessionId, agentId, apiKey } = body || {};
+    const { sessionId, agentId, apiKey, tenantId, credentialLabel } = body || {};
     const entry = qrLoginSessions[sessionId];
     if (!entry || Date.now() > entry.expires) {
       json(res, 404, { error: "Session not found or expired" });
@@ -1450,8 +1853,24 @@ function handleQrLoginApprove(req, res) {
     entry.status = "approved";
     entry.agentId = agentId;
     entry.apiKey = apiKey;
-    console.log("QR login: approved session " + sessionId.slice(0, 8) + "... for '" + agentId + "'");
-    json(res, 200, { ok: true });
+    const verifiedIdentity = identityForApiKey(apiKey);
+    entry.tenantId = verifiedIdentity?.tenantId || (isInternalTenantId(tenantId) ? tenantId : null);
+    // Phone-side passes the label it received from register-verify /
+    // auth-verify so the desktop can show the same string the user
+    // just saved on their phone. Optional for back-compat.
+    entry.credentialLabel = (typeof credentialLabel === "string" && credentialLabel.length <= 64) ? credentialLabel : null;
+    console.log("QR login: approved session " + sessionId.slice(0, 8) + "... for '" + agentId + "'" + (entry.purpose === "pair" ? " (pair-mode)" : (entry.next ? " (next=" + entry.next + ")" : "")));
+    // Phone receives next on approve regardless of purpose, so the
+    // phone can redirect to /pair/<CODE> (pair-mode, phone is the
+    // actor) or a standard continuation such as
+    // /codex-remote-control/<UUID> or /demo. Desktop's separate
+    // behavior (strip vs full response) is handled in
+    // handleQrLoginStatus.
+    if (entry.next) {
+      json(res, 200, { ok: true, next: entry.next });
+    } else {
+      json(res, 200, { ok: true });
+    }
   }).catch(function() {
     json(res, 400, { error: "Invalid request" });
   });
@@ -1460,32 +1879,77 @@ function handleQrLoginApprove(req, res) {
 // ---------- Demo API handlers ----------
 
 // ── Wallet tracking (per agent) ──
-const IMAGE_COST_CENTS = 1; // $0.01
-const INITIAL_BALANCE_CENTS = 500; // $5.00
+const IMAGE_COST_CENTS = 1; // $0.01, launch onboarding image-generation step
+const INITIAL_BALANCE_CENTS = 1000; // $10.00
 
 // JSON fallback for wallets
 const WALLET_FILE = join(dirname(fileURLToPath(import.meta.url)), "wallets.json");
+const DEMO_WALLET_RESET_MARKER_FILE = join(dirname(fileURLToPath(import.meta.url)), ".demo-wallet-reset-v0-4-87.json");
 function loadWalletsFromFile() { try { return JSON.parse(readFileSync(WALLET_FILE, "utf8")); } catch { return {}; } }
 function saveWalletsToFile(w) { try { writeFileSync(WALLET_FILE, JSON.stringify(w, null, 2) + "\n"); } catch {} }
 
-async function getBalance(agentId) {
+function walletUserIdForAgent(agentId) {
+  return typeof agentId === "string" && agentId.startsWith("acct:") ? agentId.slice("acct:".length) : agentId;
+}
+
+function resetAndNormalizeWalletFileEntries(wallets) {
+  const normalizedWallets = {};
+  let resetCount = 0;
+  for (const agentId of Object.keys(wallets)) {
+    normalizedWallets[walletUserIdForAgent(agentId)] = INITIAL_BALANCE_CENTS;
+    resetCount += 1;
+  }
+  return { wallets: normalizedWallets, count: resetCount };
+}
+
+async function resetExistingDemoWalletsToStarterBalanceOnce() {
+  if (existsSync(DEMO_WALLET_RESET_MARKER_FILE)) return;
+  let prismaResetCount = 0;
+  let jsonResetCount = 0;
   if (usePrisma) {
     try {
-      const wallet = await prisma.wallet.findFirst({ where: { userId: agentId } });
+      const result = await prisma.wallet.updateMany({ data: { balance: INITIAL_BALANCE_CENTS } });
+      prismaResetCount = result.count || 0;
+    } catch (err) {
+      console.error("Demo wallet reset migration error:", err.message);
+    }
+  }
+  const normalizedWalletFile = resetAndNormalizeWalletFileEntries(loadWalletsFromFile());
+  jsonResetCount = normalizedWalletFile.count;
+  saveWalletsToFile(normalizedWalletFile.wallets);
+  try {
+    writeFileSync(DEMO_WALLET_RESET_MARKER_FILE, JSON.stringify({
+      resetAt: new Date().toISOString(),
+      balance: INITIAL_BALANCE_CENTS,
+      prismaCount: prismaResetCount,
+      jsonCount: jsonResetCount,
+    }, null, 2) + "\n");
+  } catch (err) {
+    console.error("Demo wallet reset marker write error:", err.message);
+  }
+  console.log("Demo wallet reset migration: set " + (prismaResetCount + jsonResetCount) + " existing wallet balance(s) to " + formatCents(INITIAL_BALANCE_CENTS));
+}
+
+async function getBalance(agentId) {
+  const walletUserId = walletUserIdForAgent(agentId);
+  if (usePrisma) {
+    try {
+      const wallet = await prisma.wallet.findFirst({ where: { userId: walletUserId } });
       return wallet ? wallet.balance : INITIAL_BALANCE_CENTS;
     } catch {}
   }
   const w = loadWalletsFromFile();
-  return w[agentId] !== undefined ? w[agentId] : INITIAL_BALANCE_CENTS;
+  return w[walletUserId] !== undefined ? w[walletUserId] : INITIAL_BALANCE_CENTS;
 }
 
 async function deductBalance(agentId, cents) {
+  const walletUserId = walletUserIdForAgent(agentId);
   if (usePrisma) {
     try {
-      let wallet = await prisma.wallet.findFirst({ where: { userId: agentId } });
+      let wallet = await prisma.wallet.findFirst({ where: { userId: walletUserId } });
       if (!wallet) {
         wallet = await prisma.wallet.create({
-          data: { userId: agentId, balance: INITIAL_BALANCE_CENTS },
+          data: { userId: walletUserId, balance: INITIAL_BALANCE_CENTS },
         });
       }
       const newBalance = Math.max(0, wallet.balance - cents);
@@ -1497,12 +1961,514 @@ async function deductBalance(agentId, cents) {
   }
   // JSON fallback
   const w = loadWalletsFromFile();
-  if (w[agentId] === undefined) w[agentId] = INITIAL_BALANCE_CENTS;
-  w[agentId] = Math.max(0, w[agentId] - cents);
+  if (w[walletUserId] === undefined) w[walletUserId] = INITIAL_BALANCE_CENTS;
+  w[walletUserId] = Math.max(0, w[walletUserId] - cents);
   saveWalletsToFile(w);
-  return w[agentId];
+  return w[walletUserId];
 }
 function formatCents(c) { return "$" + (c / 100).toFixed(2); }
+
+await resetExistingDemoWalletsToStarterBalanceOnce();
+
+const LIVE_WALL_FILE = process.env.KALEIDOSCOPE_LIVE_WALL_FILE || join(__dirname, "kaleidoscope-live-wall.json");
+const LIVE_WALL_MEDIA_ROUTE = "/media/kaleidoscope/generated/";
+const LIVE_WALL_DEFAULT_MEDIA_DIR = DEV_MODE
+  ? join(__dirname, "media", "kaleidoscope", "generated")
+  : "/var/www/wip.computer/public_html/media/kaleidoscope/generated";
+const LIVE_WALL_MEDIA_DIR = process.env.KALEIDOSCOPE_LIVE_WALL_MEDIA_DIR || LIVE_WALL_DEFAULT_MEDIA_DIR;
+const LIVE_WALL_MAX_IMAGE_BYTES = Math.max(1, parseInt(process.env.KALEIDOSCOPE_LIVE_WALL_MAX_IMAGE_BYTES || String(10 * 1024 * 1024), 10));
+const LIVE_WALL_FETCH_TIMEOUT_MS = Math.max(1_000, parseInt(process.env.KALEIDOSCOPE_LIVE_WALL_FETCH_TIMEOUT_MS || "15000", 10));
+const LIVE_WALL_LIMIT = 240;
+const KALEIDOSCOPE_PUBLIC_STATS_BASELINE = Object.freeze({
+  timezone: "America/Los_Angeles",
+  date: "2026-05-21",
+  startsAt: "2026-05-21T07:00:00.000Z",
+  counts: Object.freeze({
+    keysCreated: 3,
+    genericKaleidoscopes: 11,
+    imageKaleidoscopes: 3,
+  }),
+});
+const LIVE_WALL_SEED_SOURCES = [
+  {
+    sourceUrl: "https://imgen.x.ai/xai-imgen/xai-tmp-imgen-bd814982-276f-438d-bc3c-2ca817982aae.jpeg",
+    createdAt: "2026-05-20T00:00:00.000Z",
+    kind: "generic",
+  },
+  {
+    sourceUrl: "https://imgen.x.ai/xai-imgen/xai-tmp-imgen-226e18a9-7721-4f6c-9ef2-3c26c0ff1293.jpeg",
+    createdAt: "2026-05-20T00:00:01.000Z",
+    kind: "generic",
+  },
+  {
+    sourceUrl: "https://imgen.x.ai/xai-imgen/xai-tmp-imgen-b1b398b5-4982-4ed8-b583-170a4ae4e811.jpeg",
+    createdAt: "2026-05-20T00:00:02.000Z",
+    kind: "generic",
+  },
+  {
+    sourceUrl: "https://imgen.x.ai/xai-imgen/xai-tmp-imgen-5505496e-c436-4047-ab81-630a22ec75ea.jpeg",
+    createdAt: "2026-05-20T00:00:03.000Z",
+    kind: "generic",
+  },
+];
+let liveWallSeedBackfillAttempted = false;
+
+function ensureLiveWallRuntimeStorage() {
+  try {
+    mkdirSync(dirname(LIVE_WALL_FILE), { recursive: true });
+    mkdirSync(LIVE_WALL_MEDIA_DIR, { recursive: true });
+    accessSync(dirname(LIVE_WALL_FILE), fsConstants.W_OK);
+    accessSync(LIVE_WALL_MEDIA_DIR, fsConstants.W_OK);
+  } catch (err) {
+    console.error("FATAL: Kaleidoscope live wall storage is not writable:", err.message);
+    process.exit(1);
+  }
+}
+
+ensureLiveWallRuntimeStorage();
+
+const LIVE_WALL_GENERIC_PROMPT = "Create an abstract kaleidoscope image with mirrored radial symmetry, analog film grain, warm color bleed, soft exposure, organic imperfections, and no text.";
+const LIVE_WALL_PHOTO_PROMPT = "Create an abstract kaleidoscope image from the colors, light, and shapes in the user's photo. Use mirrored radial symmetry, analog film grain, warm color bleed, soft exposure, organic imperfections, and no text.";
+const LIVE_WALL_IMAGE_PROMPT_PREFIX = "Create an abstract kaleidoscope image from these visual details in the user's photo: ";
+const LIVE_WALL_IMAGE_PROMPT_SUFFIX = ". Use mirrored radial symmetry, analog film grain, warm color bleed, soft exposure, organic imperfections, and no text.";
+
+function classifyLiveWallPrompt(prompt) {
+  if (prompt === LIVE_WALL_GENERIC_PROMPT) return "generic";
+  if (prompt === LIVE_WALL_PHOTO_PROMPT) return "image";
+  if (typeof prompt === "string"
+    && prompt.startsWith(LIVE_WALL_IMAGE_PROMPT_PREFIX)
+    && prompt.endsWith(LIVE_WALL_IMAGE_PROMPT_SUFFIX)) {
+    return "image";
+  }
+  return null;
+}
+
+function parseTimestampMs(value) {
+  if (typeof value !== "string" || !value.trim()) return null;
+  const ms = Date.parse(value);
+  return Number.isFinite(ms) ? ms : null;
+}
+
+function createdAtSinceBaseline(item) {
+  const baselineMs = Date.parse(KALEIDOSCOPE_PUBLIC_STATS_BASELINE.startsAt);
+  const createdAtMs = parseTimestampMs(item?.createdAt);
+  return createdAtMs !== null && createdAtMs >= baselineMs;
+}
+
+function isWipTestHandle(handle) {
+  return typeof handle === "string" && handle.trim().toLowerCase().startsWith("wiptest-");
+}
+
+function publicKeyCreatedSinceBaseline(entry) {
+  return createdAtSinceBaseline(entry) && !isWipTestHandle(entry?.handle);
+}
+
+function latestCreatedAt(items) {
+  let latestMs = null;
+  let latest = null;
+  for (const item of Array.isArray(items) ? items : []) {
+    const ms = parseTimestampMs(item?.createdAt);
+    if (ms === null) continue;
+    if (latestMs === null || ms > latestMs) {
+      latestMs = ms;
+      latest = new Date(ms).toISOString();
+    }
+  }
+  return latest;
+}
+
+function countCreatedInLast24Hours(items, now = new Date()) {
+  const nowMs = now.getTime();
+  const windowStartMs = nowMs - (24 * 60 * 60 * 1000);
+  return (Array.isArray(items) ? items : []).filter(item => {
+    const ms = parseTimestampMs(item?.createdAt);
+    return ms !== null && ms >= windowStartMs && ms <= nowMs;
+  }).length;
+}
+
+function deriveKaleidoscopePublicStats({ images, passkeyEntries, now = new Date() }) {
+  const safeImages = Array.isArray(images) ? images : [];
+  const safePasskeys = Array.isArray(passkeyEntries) ? passkeyEntries : [];
+  const postBaselineGeneric = safeImages
+    .filter(item => item && isPublicWallImageUrl(item.url) && item.kind !== "image" && createdAtSinceBaseline(item))
+    .length;
+  const postBaselineImage = safeImages
+    .filter(item => item && isPublicWallImageUrl(item.url) && item.kind === "image" && createdAtSinceBaseline(item))
+    .length;
+  const publicPasskeys = safePasskeys.filter(item => !isWipTestHandle(item?.handle));
+  const postBaselineKeys = publicPasskeys.filter(createdAtSinceBaseline).length;
+  const newestCreatedAt = latestCreatedAt([...safeImages, ...publicPasskeys]);
+
+  return {
+    genericKaleidoscopes: KALEIDOSCOPE_PUBLIC_STATS_BASELINE.counts.genericKaleidoscopes + postBaselineGeneric,
+    imageKaleidoscopes: KALEIDOSCOPE_PUBLIC_STATS_BASELINE.counts.imageKaleidoscopes + postBaselineImage,
+    keysCreated: KALEIDOSCOPE_PUBLIC_STATS_BASELINE.counts.keysCreated + postBaselineKeys,
+    publicWallImages: safeImages.filter(item => item && isPublicWallImageUrl(item.url)).length,
+    baseline: KALEIDOSCOPE_PUBLIC_STATS_BASELINE,
+    newSinceBaseline: {
+      genericKaleidoscopes: postBaselineGeneric,
+      imageKaleidoscopes: postBaselineImage,
+      keysCreated: postBaselineKeys,
+      total: postBaselineGeneric + postBaselineImage + postBaselineKeys,
+    },
+    last24Hours: {
+      wallImages: countCreatedInLast24Hours(safeImages, now),
+      keysCreated: countCreatedInLast24Hours(publicPasskeys, now),
+    },
+    lastCreated: newestCreatedAt,
+  };
+}
+
+function loadLiveWallState() {
+  try {
+    const parsed = JSON.parse(readFileSync(LIVE_WALL_FILE, "utf8"));
+    const saved = Array.isArray(parsed?.images) ? parsed.images : [];
+    return {
+      images: saved,
+    };
+  } catch {
+    return {
+      images: [],
+    };
+  }
+}
+
+function saveLiveWallState(state) {
+  try {
+    mkdirSync(dirname(LIVE_WALL_FILE), { recursive: true });
+    writeFileSync(LIVE_WALL_FILE, JSON.stringify({
+      images: Array.isArray(state?.images) ? state.images : [],
+    }, null, 2) + "\n");
+  } catch (err) {
+    console.error("Kaleidoscope live wall save error:", err.message);
+  }
+}
+
+function liveWallSourceHash(value) {
+  return createHash("sha256").update(value).digest("hex");
+}
+
+function publicLiveWallMediaUrl(filename) {
+  return ISSUER_URL + LIVE_WALL_MEDIA_ROUTE + filename;
+}
+
+function liveWallMediaFilenameFromUrl(value) {
+  try {
+    const url = new URL(value, ISSUER_URL);
+    if (url.origin !== ISSUER_URL || !url.pathname.startsWith(LIVE_WALL_MEDIA_ROUTE)) return null;
+    const filename = url.pathname.slice(LIVE_WALL_MEDIA_ROUTE.length);
+    return /^[a-f0-9]{64}\.(jpg|png|webp)$/.test(filename) ? filename : null;
+  } catch {
+    return null;
+  }
+}
+
+function liveWallMediaFileExists(value) {
+  const filename = liveWallMediaFilenameFromUrl(value);
+  return Boolean(filename && existsSync(join(LIVE_WALL_MEDIA_DIR, filename)));
+}
+
+function liveWallContentTypeForFilename(filename) {
+  if (filename.endsWith(".jpg")) return "image/jpeg";
+  if (filename.endsWith(".png")) return "image/png";
+  if (filename.endsWith(".webp")) return "image/webp";
+  return null;
+}
+
+function serveKaleidoscopeGeneratedMedia(path, res) {
+  const filename = path.slice(LIVE_WALL_MEDIA_ROUTE.length);
+  if (!/^[a-f0-9]{64}\.(jpg|png|webp)$/.test(filename)) {
+    json(res, 404, { error: "Not found" });
+    return;
+  }
+  try {
+    const content = readFileSync(join(LIVE_WALL_MEDIA_DIR, filename));
+    const contentType = liveWallContentTypeForFilename(filename) || "application/octet-stream";
+    res.writeHead(200, {
+      "Content-Type": contentType,
+      "Content-Length": content.length,
+      "Cache-Control": "public, max-age=31536000, immutable",
+    });
+    res.end(content);
+  } catch {
+    json(res, 404, { error: "Not found" });
+  }
+}
+
+function isLiveWallMediaUrl(value) {
+  if (typeof value !== "string" || value.length > 2048) return false;
+  try {
+    const url = new URL(value, ISSUER_URL);
+    return url.origin === ISSUER_URL && url.pathname.startsWith(LIVE_WALL_MEDIA_ROUTE);
+  } catch {
+    return false;
+  }
+}
+
+function isAllowedLiveWallSourceUrl(value) {
+  if (typeof value !== "string" || value.length > 2048) return false;
+  if (value.startsWith("data:")) return false;
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" && url.hostname === "imgen.x.ai" && url.pathname.startsWith("/xai-imgen/");
+  } catch {
+    return false;
+  }
+}
+
+function isPublicWallImageUrl(value) {
+  return isLiveWallMediaUrl(value) || isAllowedLiveWallSourceUrl(value);
+}
+
+function normalizeLiveWallContentType(value) {
+  const type = String(value || "").split(";")[0].trim().toLowerCase();
+  if (type === "image/jpg") return "image/jpeg";
+  return type;
+}
+
+function liveWallExtensionForContentType(contentType) {
+  if (contentType === "image/jpeg") return "jpg";
+  if (contentType === "image/png") return "png";
+  if (contentType === "image/webp") return "webp";
+  return null;
+}
+
+function liveWallBufferMatchesContentType(buffer, contentType) {
+  if (!Buffer.isBuffer(buffer) || buffer.length < 12) return false;
+  if (contentType === "image/jpeg") {
+    return buffer[0] === 0xff && buffer[1] === 0xd8 && buffer[2] === 0xff;
+  }
+  if (contentType === "image/png") {
+    return buffer[0] === 0x89 && buffer[1] === 0x50 && buffer[2] === 0x4e && buffer[3] === 0x47
+      && buffer[4] === 0x0d && buffer[5] === 0x0a && buffer[6] === 0x1a && buffer[7] === 0x0a;
+  }
+  if (contentType === "image/webp") {
+    return buffer.subarray(0, 4).toString("ascii") === "RIFF"
+      && buffer.subarray(8, 12).toString("ascii") === "WEBP";
+  }
+  return false;
+}
+
+async function readLiveWallImageResponseBody(response) {
+  if (!response.body || typeof response.body.getReader !== "function") {
+    throw new Error("source image response body is not readable");
+  }
+  const reader = response.body.getReader();
+  const chunks = [];
+  let total = 0;
+
+  try {
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      if (!value) continue;
+      total += value.byteLength;
+      if (total > LIVE_WALL_MAX_IMAGE_BYTES) {
+        throw new Error("source image exceeds max byte size");
+      }
+      chunks.push(Buffer.from(value));
+    }
+  } finally {
+    try { reader.releaseLock(); } catch {}
+  }
+
+  if (total < 1) throw new Error("source image byte size is invalid");
+  return Buffer.concat(chunks, total);
+}
+
+async function archiveKaleidoscopeGeneratedImage(sourceUrl) {
+  if (!isAllowedLiveWallSourceUrl(sourceUrl)) throw new Error("source image URL is not an allowed HTTPS image source");
+  const source = new URL(sourceUrl);
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), LIVE_WALL_FETCH_TIMEOUT_MS);
+  if (typeof timeout.unref === "function") timeout.unref();
+  let imageRes;
+  try {
+    imageRes = await fetch(source.href, { redirect: "follow", signal: controller.signal });
+    if (!imageRes.ok) throw new Error("source image fetch failed with HTTP " + imageRes.status);
+    const finalUrl = new URL(imageRes.url || source.href);
+    if (!isAllowedLiveWallSourceUrl(finalUrl.href)) throw new Error("source image redirected away from allowed image source");
+
+    const contentType = normalizeLiveWallContentType(imageRes.headers.get("content-type"));
+    const ext = liveWallExtensionForContentType(contentType);
+    if (!ext) throw new Error("source image content type is not an allowed raster image");
+
+    const contentLength = Number.parseInt(imageRes.headers.get("content-length") || "0", 10);
+    if (Number.isFinite(contentLength) && contentLength > LIVE_WALL_MAX_IMAGE_BYTES) {
+      throw new Error("source image exceeds max byte size");
+    }
+
+    const buffer = await readLiveWallImageResponseBody(imageRes);
+    if (!liveWallBufferMatchesContentType(buffer, contentType)) {
+      throw new Error("source image bytes do not match content type");
+    }
+
+    const contentHash = createHash("sha256").update(buffer).digest("hex");
+    const sourceUrlHash = liveWallSourceHash(source.href);
+    const filename = contentHash + "." + ext;
+    mkdirSync(LIVE_WALL_MEDIA_DIR, { recursive: true });
+    const filePath = join(LIVE_WALL_MEDIA_DIR, filename);
+    if (!existsSync(filePath)) writeFileSync(filePath, buffer);
+
+    return {
+      url: publicLiveWallMediaUrl(filename),
+      sourceProvider: "xai",
+      sourceUrlHash,
+      contentHash,
+      contentType,
+      byteLength: buffer.length,
+      archivedAt: new Date().toISOString(),
+    };
+  } catch (err) {
+    if (err?.name === "AbortError") throw new Error("source image fetch timed out");
+    throw err;
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+function liveWallEntryFromArchived({ archived, createdAt, kind, id }) {
+  return {
+    id: id || randomUUID(),
+    url: archived.url,
+    createdAt: createdAt || new Date().toISOString(),
+    kind: kind === "image" ? "image" : "generic",
+    sourceProvider: archived.sourceProvider,
+    sourceUrlHash: archived.sourceUrlHash,
+    contentHash: archived.contentHash,
+    contentType: archived.contentType,
+    byteLength: archived.byteLength,
+    archivedAt: archived.archivedAt,
+  };
+}
+
+function liveWallEntrySourceHash(item) {
+  if (!item || typeof item !== "object") return null;
+  if (typeof item.sourceUrlHash === "string" && item.sourceUrlHash) return item.sourceUrlHash;
+  if (isAllowedLiveWallSourceUrl(item.url)) return liveWallSourceHash(item.url);
+  return null;
+}
+
+async function ensureLiveWallSeedImages() {
+  if (liveWallSeedBackfillAttempted) return;
+  liveWallSeedBackfillAttempted = true;
+
+  const state = loadLiveWallState();
+  const images = [];
+  const existingSourceHashes = new Set();
+  const existingUrls = new Set(images.map(item => item.url).filter(Boolean));
+  let changed = false;
+
+  for (const item of state.images) {
+    if (!item || typeof item.url !== "string") {
+      changed = true;
+      continue;
+    }
+    if (isLiveWallMediaUrl(item.url) && liveWallMediaFileExists(item.url)) {
+      images.push(item);
+      if (item.sourceUrlHash) existingSourceHashes.add(item.sourceUrlHash);
+      existingUrls.add(item.url);
+      continue;
+    }
+    if (isAllowedLiveWallSourceUrl(item.url)) {
+      try {
+        const archived = await archiveKaleidoscopeGeneratedImage(item.url);
+        if (!existingUrls.has(archived.url)) {
+          images.push(liveWallEntryFromArchived({
+            archived,
+            createdAt: item.createdAt,
+            kind: item.kind,
+            id: item.id,
+          }));
+          existingUrls.add(archived.url);
+        }
+        existingSourceHashes.add(archived.sourceUrlHash);
+        changed = true;
+      } catch (err) {
+        images.push(item);
+        console.error("Kaleidoscope live wall registry image migration failed:", JSON.stringify({
+          sourceUrlHash: liveWallSourceHash(item.url),
+          message: err.message,
+        }));
+      }
+      continue;
+    }
+    changed = true;
+  }
+
+  for (const seed of LIVE_WALL_SEED_SOURCES) {
+    const sourceUrlHash = liveWallSourceHash(seed.sourceUrl);
+    if (existingSourceHashes.has(sourceUrlHash)) continue;
+    try {
+      const archived = await archiveKaleidoscopeGeneratedImage(seed.sourceUrl);
+      if (existingUrls.has(archived.url)) continue;
+      images.push(liveWallEntryFromArchived({
+        archived,
+        createdAt: seed.createdAt,
+        kind: seed.kind,
+      }));
+      existingSourceHashes.add(sourceUrlHash);
+      existingUrls.add(archived.url);
+      changed = true;
+    } catch (err) {
+      console.error("Kaleidoscope live wall seed archive failed:", JSON.stringify({
+        sourceUrlHash,
+        message: err.message,
+      }));
+    }
+  }
+
+  if (changed) saveLiveWallState({ images: images.slice(0, LIVE_WALL_LIMIT) });
+}
+
+async function registerKaleidoscopeLiveWallEvent({ kind, imageUrl }) {
+  if (kind !== "generic" && kind !== "image") return;
+  let archived;
+  try {
+    archived = await archiveKaleidoscopeGeneratedImage(imageUrl);
+  } catch (err) {
+    console.error("Kaleidoscope live wall archive failed:", JSON.stringify({
+      kind,
+      message: err.message,
+    }));
+    return;
+  }
+
+  const state = loadLiveWallState();
+  const mediaImages = state.images
+    .filter(item => item && isLiveWallMediaUrl(item.url) && liveWallMediaFileExists(item.url))
+    .filter(item => item.url !== archived.url && item.sourceUrlHash !== archived.sourceUrlHash);
+  const rawImages = state.images
+    .filter(item => item && isAllowedLiveWallSourceUrl(item.url))
+    .filter(item => liveWallEntrySourceHash(item) !== archived.sourceUrlHash);
+  const images = [
+    liveWallEntryFromArchived({
+      archived,
+      createdAt: new Date().toISOString(),
+      kind,
+    }),
+    ...mediaImages,
+    ...rawImages,
+  ];
+  saveLiveWallState({ images: images.slice(0, LIVE_WALL_LIMIT) });
+  return archived.url;
+}
+
+async function handleKaleidoscopeLiveWall(req, res) {
+  await ensureLiveWallSeedImages();
+  const state = loadLiveWallState();
+  const images = state.images
+    .filter(item => item && isLiveWallMediaUrl(item.url) && liveWallMediaFileExists(item.url))
+    .slice(0, LIVE_WALL_LIMIT);
+  const stats = deriveKaleidoscopePublicStats({ images, passkeyEntries: passkeys });
+  res.setHeader("Cache-Control", "no-store");
+  json(res, 200, {
+    count: images.length,
+    stats,
+    images: images.map(item => ({ url: item.url, createdAt: item.createdAt || null })),
+  });
+}
 
 // POST /demo/api/analyze-photo
 // Sends a base64 image to OpenAI GPT-4o vision to extract colors/mood.
@@ -1576,6 +2542,7 @@ async function handleDemoImagine(req, res) {
   try {
     const body = await readBody(req);
     const prompt = body?.prompt || "kaleidoscope";
+    const liveWallKind = classifyLiveWallPrompt(prompt);
 
     const XAI_KEY = process.env.XAI_API_KEY || "";
     if (!XAI_KEY) {
@@ -1583,34 +2550,57 @@ async function handleDemoImagine(req, res) {
       return;
     }
 
+    const imageModel = process.env.XAI_IMAGE_MODEL || "grok-imagine-image-quality";
+    const imageRequestBody = {
+      model: imageModel,
+      prompt: prompt,
+    };
     const grokRes = await fetch("https://api.x.ai/v1/images/generations", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + XAI_KEY,
       },
-      body: JSON.stringify({
-        model: "grok-imagine-image",
-        prompt: prompt,
-        n: 1,
-      }),
+      body: JSON.stringify(imageRequestBody),
     });
 
-    const grokData = await grokRes.json();
-    if (grokData.error) {
-      json(res, 502, { error: grokData.error.message || "Image generation failed" });
+    const grokText = await grokRes.text();
+    let grokData;
+    try {
+      grokData = grokText ? JSON.parse(grokText) : {};
+    } catch {
+      grokData = { error: { message: "Non-JSON image API response" } };
+    }
+
+    if (!grokRes.ok || grokData.error) {
+      const message = grokData.error?.message || grokRes.statusText || "Image generation failed";
+      console.error("Demo imagine upstream error:", JSON.stringify({
+        status: grokRes.status,
+        model: imageModel,
+        message,
+        type: grokData.error?.type || null,
+        code: grokData.error?.code || null,
+        param: grokData.error?.param || null,
+      }));
+      json(res, 502, { error: message });
       return;
     }
 
     const imageUrl = grokData.data?.[0]?.url;
     if (!imageUrl) {
+      console.error("Demo imagine upstream returned no image URL:", JSON.stringify({
+        status: grokRes.status,
+        model: imageModel,
+        responseKeys: Object.keys(grokData || {}),
+      }));
       json(res, 502, { error: "No image returned" });
       return;
     }
 
     const newBalance = await deductBalance(identity.agentId, IMAGE_COST_CENTS);
-    console.log("Demo: generated image for agent '" + identity.agentId + "' (balance: " + formatCents(newBalance) + ")");
-    json(res, 200, { url: imageUrl, prompt: prompt, cost: formatCents(IMAGE_COST_CENTS), balance: formatCents(newBalance) });
+    const archivedImageUrl = await registerKaleidoscopeLiveWallEvent({ kind: liveWallKind, imageUrl });
+    console.log("Demo: generated image for agent '" + identity.agentId + "' using " + imageModel + " (balance: " + formatCents(newBalance) + ")");
+    json(res, 200, { url: archivedImageUrl || imageUrl, prompt: prompt, cost: formatCents(IMAGE_COST_CENTS), balance: formatCents(newBalance) });
   } catch (err) {
     console.error("Demo imagine error:", err.message);
     json(res, 500, { error: "Internal error" });
@@ -1856,6 +2846,11 @@ const httpServer = createServer(async (req, res) => {
 
   // --- Shared assets (Kaleidoscope template system) ---
 
+  if (req.method === "GET" && path.startsWith(LIVE_WALL_MEDIA_ROUTE)) {
+    serveKaleidoscopeGeneratedMedia(path, res);
+    return;
+  }
+
   if (req.method === "GET" && path.startsWith("/shared/")) {
     const filePath = join(__dirname, path);
     try {
@@ -1876,13 +2871,28 @@ const httpServer = createServer(async (req, res) => {
   }
 
   if (req.method === "GET" && (path === "/login" || path === "/login/")) {
-    // Serve the new app/ login (two-path: this device or QR-from-phone).
+    // Production /login owns its own file at app/kaleidoscope-login.html.
+    //
+    // Earlier this route served demo/login.html, which made production
+    // auth depend on a file under demo/. That coupling is wrong: demo/
+    // is the demo site's domain, not production. The canonical
+    // Kaleidoscope login HTML now lives under app/, where production
+    // owns it.
+    //
+    // Fallback chain (defense in depth):
+    //   1. app/kaleidoscope-login.html  ... canonical production file.
+    //   2. demo/login.html               ... legacy fallback during the
+    //      transition; will be removed in a follow-up once the
+    //      production file is verified live.
+    //   3. handleLoginPage               ... server-rendered last resort.
+    //
+    // /login/app continues to serve the developed app/login.html flow
+    // (see the next handler).
     try {
-      const loginHtml = readFileSync(join(__dirname, "app", "login.html"), "utf8");
+      const html = readFileSync(join(__dirname, "app", "kaleidoscope-login.html"), "utf8");
       res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-      res.end(loginHtml);
+      res.end(html);
     } catch {
-      // Fallback to legacy demo login, then server-rendered.
       try {
         const legacy = readFileSync(join(__dirname, "demo", "login.html"), "utf8");
         res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
@@ -1894,7 +2904,50 @@ const httpServer = createServer(async (req, res) => {
     return;
   }
 
+  if (req.method === "GET" && (path === "/login/app" || path === "/login/app/")) {
+    // Explicit non-primary route for the app/login.html flow (the
+    // newer two-path "this device or QR-from-phone" copy). This
+    // exists so the developed flow stays reachable without hijacking
+    // /login. If app/login.html is not present, return 404 rather
+    // than silently falling back to the canonical /login page.
+    try {
+      const loginHtml = readFileSync(join(__dirname, "app", "login.html"), "utf8");
+      res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+      res.end(loginHtml);
+    } catch {
+      json(res, 404, { error: "Not found" });
+    }
+    return;
+  }
+
   // --- Legal pages ---
+
+  if (req.method === "GET" && path === "/legal/legal.css") {
+    try {
+      const css = readFileSync(join(__dirname, "legal", "legal.css"), "utf8");
+      res.writeHead(200, { "Content-Type": "text/css; charset=utf-8" });
+      res.end(css);
+    } catch { json(res, 404, { error: "Not found" }); }
+    return;
+  }
+
+  if (req.method === "GET" && path === "/legal/legal-footer.js") {
+    try {
+      const js = readFileSync(join(__dirname, "legal", "legal-footer.js"), "utf8");
+      res.writeHead(200, { "Content-Type": "text/javascript; charset=utf-8" });
+      res.end(js);
+    } catch { json(res, 404, { error: "Not found" }); }
+    return;
+  }
+
+  if (req.method === "GET" && (path === "/legal/privacy/" || path === "/legal/privacy")) {
+    try {
+      const html = readFileSync(join(__dirname, "legal", "privacy", "index.html"), "utf8");
+      res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+      res.end(html);
+    } catch { json(res, 404, { error: "Not found" }); }
+    return;
+  }
 
   if (req.method === "GET" && (path === "/legal/privacy/en-ww/" || path === "/legal/privacy/en-ww")) {
     try {
@@ -1914,24 +2967,37 @@ const httpServer = createServer(async (req, res) => {
     return;
   }
 
+  if (req.method === "GET" && (path === "/legal/internet-services/kaleidoscope/" || path === "/legal/internet-services/kaleidoscope")) {
+    try {
+      const html = readFileSync(join(__dirname, "legal", "internet-services", "kaleidoscope", "index.html"), "utf8");
+      res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+      res.end(html);
+    } catch { json(res, 404, { error: "Not found" }); }
+    return;
+  }
+
   // --- WebAuthn API ---
 
   if (req.method === "POST" && path === "/webauthn/register-options") {
+    if (!applyRateLimit(req, res, "mint")) return;
     await handleRegisterOptions(req, res);
     return;
   }
 
   if (req.method === "POST" && path === "/webauthn/register-verify") {
+    if (!applyRateLimit(req, res, "validate")) return;
     await handleRegisterVerify(req, res);
     return;
   }
 
   if (req.method === "POST" && path === "/webauthn/auth-options") {
+    if (!applyRateLimit(req, res, "mint")) return;
     await handleAuthOptions(req, res);
     return;
   }
 
   if (req.method === "POST" && path === "/webauthn/auth-verify") {
+    if (!applyRateLimit(req, res, "validate")) return;
     await handleAuthVerify(req, res);
     return;
   }
@@ -1949,6 +3015,7 @@ const httpServer = createServer(async (req, res) => {
   }
 
   if (req.method === "POST" && path === "/oauth/register") {
+    if (!applyRateLimit(req, res, "mint")) return;
     await handleOAuthRegister(req, res);
     return;
   }
@@ -1959,11 +3026,13 @@ const httpServer = createServer(async (req, res) => {
   }
 
   if (req.method === "POST" && path === "/oauth/authorize/submit") {
+    if (!applyRateLimit(req, res, "validate")) return;
     await handleOAuthAuthorizeSubmit(req, res);
     return;
   }
 
   if (req.method === "POST" && path === "/oauth/token") {
+    if (!applyRateLimit(req, res, "mint")) return;
     await handleOAuthToken(req, res);
     return;
   }
@@ -1971,21 +3040,25 @@ const httpServer = createServer(async (req, res) => {
   // --- Agent QR Auth ---
 
   if (req.method === "GET" && path === "/demo/api/agent-auth") {
+    if (!applyRateLimit(req, res, "mint")) return;
     await handleAgentAuthStart(req, res);
     return;
   }
 
   if (req.method === "GET" && path === "/demo/api/agent-auth/qr") {
+    if (!applyRateLimit(req, res, "status")) return;
     handleAgentAuthQR(req, res);
     return;
   }
 
   if (req.method === "GET" && path === "/demo/api/agent-auth/status") {
+    if (!applyRateLimit(req, res, "status")) return;
     handleAgentAuthStatus(req, res);
     return;
   }
 
   if (req.method === "POST" && path === "/demo/api/agent-auth/approve") {
+    if (!applyRateLimit(req, res, "validate")) return;
     handleAgentAuthApprove(req, res);
     return;
   }
@@ -2017,21 +3090,25 @@ const httpServer = createServer(async (req, res) => {
   // --- QR Login (Chrome fallback) ---
 
   if (req.method === "POST" && path === "/api/qr-login") {
+    if (!applyRateLimit(req, res, "mint")) return;
     await handleQrLoginStart(req, res);
     return;
   }
 
   if (req.method === "GET" && path === "/api/qr-login/qr") {
+    if (!applyRateLimit(req, res, "status")) return;
     handleQrLoginQR(req, res);
     return;
   }
 
   if (req.method === "GET" && path === "/api/qr-login/status") {
+    if (!applyRateLimit(req, res, "status")) return;
     handleQrLoginStatus(req, res);
     return;
   }
 
   if (req.method === "POST" && path === "/api/qr-login/approve") {
+    if (!applyRateLimit(req, res, "validate")) return;
     handleQrLoginApprove(req, res);
     return;
   }
@@ -2042,6 +3119,12 @@ const httpServer = createServer(async (req, res) => {
     const identity = authenticate(req);
     if (!identity) { json(res, 401, { error: "Unauthorized" }); return; }
     json(res, 200, { balance: formatCents(await getBalance(identity.agentId)), cost: formatCents(IMAGE_COST_CENTS) });
+    return;
+  }
+
+  if (req.method === "GET" && path === "/demo/api/kaleidoscope-live-wall") {
+    if (!applyRateLimit(req, res, "status")) return;
+    await handleKaleidoscopeLiveWall(req, res);
     return;
   }
 
@@ -2094,32 +3177,38 @@ const httpServer = createServer(async (req, res) => {
   // --- Codex Relay (codex-daemon ↔ phone) ---
 
   if (req.method === "POST" && path === "/api/codex-relay/pair-init") {
+    if (!applyRateLimit(req, res, "mint")) return;
     await handleCodexPairInit(req, res);
     return;
   }
 
   if (req.method === "GET" && path.startsWith("/api/codex-relay/pair-status/")) {
+    if (!applyRateLimit(req, res, "status")) return;
     handleCodexPairStatus(req, res, path.slice("/api/codex-relay/pair-status/".length));
     return;
   }
 
   if (req.method === "POST" && path === "/api/codex-relay/pair-complete") {
+    if (!applyRateLimit(req, res, "validate")) return;
     await handleCodexPairComplete(req, res);
     return;
   }
 
   if (req.method === "GET" && path === "/api/codex-relay/state") {
+    if (!applyRateLimit(req, res, "status")) return;
     handleCodexRelayState(req, res);
     return;
   }
 
   if (req.method === "GET" && path.startsWith("/api/codex-relay/bootstrap/")) {
+    if (!applyRateLimit(req, res, "mint")) return;
     const tid = decodeURIComponent(path.slice("/api/codex-relay/bootstrap/".length));
     handleCodexBootstrap(req, res, tid);
     return;
   }
 
   if (req.method === "POST" && path === "/api/codex-relay/ws-ticket") {
+    if (!applyRateLimit(req, res, "mint")) return;
     await handleCodexWsTicket(req, res);
     return;
   }
@@ -2127,6 +3216,13 @@ const httpServer = createServer(async (req, res) => {
   // --- Codex Remote Control pages (Phase 2c/2e, post-/demo) ---
 
   if (req.method === "GET" && (path === "/pair" || path === "/pair/")) {
+    serveAppFile(res, "pair.html");
+    return;
+  }
+
+  // /pair/<CODE> ... URL-first pair flow. Per plan C1 + round 5: real daemon
+  // alphabet [ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}, length 6, L IS included.
+  if (req.method === "GET" && /^\/pair\/[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(path)) {
     serveAppFile(res, "pair.html");
     return;
   }
@@ -2151,21 +3247,25 @@ const httpServer = createServer(async (req, res) => {
 // ---------- Codex Relay (codex-daemon ↔ phone) ----------
 //
 // In-memory state. Pairing codes: 6-char, 5-min TTL. Daemons indexed by
-// agentId (one daemon per agentId; new daemon kicks the old one). Web clients
-// indexed by `agentId:threadId`. Server is a transparent passthrough between
-// the daemon and the matching web client(s); thread routing is enforced
-// purely client-side via session.send/sessionId payloads.
+// immutable tenant id (one daemon per tenant; new daemon kicks the old one). Web clients
+// indexed by `tenantId:threadId`. The server is a transport relay between
+// the daemon and matching web client(s). The relay injects the route thread
+// into the E2EE handshake, and the daemon enforces that bound route after
+// decrypting session commands.
 
 const CODEX_PAIR_EXPIRY_MS = 5 * 60 * 1000;
+const CODEX_PAIR_PRESENCE_TTL_MS = 2 * 60 * 1000;
 const CODEX_PAIR_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-const codexPairings = {};       // pairing_id -> { code, status, expires, daemon_info, apiKey?, agentId?, daemon_public_key?, crypto_versions? }
+const codexPairings = {};       // pairing_id -> { code, status, expires, poll_token, poll_token_used?, daemon_info, apiKey?, agentId?, handle?, daemon_public_key?, crypto_versions? }
 const codexPairingByCode = {};  // code -> pairing_id (only while pending)
+const codexPairPresenceTokens = new Map(); // token -> { agentId, expires, used }
 const codexDaemons = new Map(); // agentId -> ws
-const codexWebClients = new Map(); // `${agentId}:${threadId}` -> ws
+const codexWebClients = new Map(); // `${agentId}:${threadId}` -> Set<ws>
+const codexE2eeSessionRoutes = new Map(); // `${agentId}:${e2eeSession}` -> { threadId, webKey, ws }
 
 // E2EE substrate (Phase 2.5).
 //
-// codexDaemonPubkeys: per agentId, the most recently paired daemon's
+// codexDaemonPubkeyRegistry: per tenant id, the most recently paired daemon's
 //   public key (P-256 SPKI base64url) + supported crypto versions +
 //   registration timestamp. This is what the browser fetches via
 //   bootstrap before opening an encrypted session.
@@ -2174,9 +3274,102 @@ const codexWebClients = new Map(); // `${agentId}:${threadId}` -> ws
 //   ?token=ck-... in the browser WebSocket URL. Bound to a specific
 //   (agentId, threadId) so a leaked ticket cannot drive a different
 //   route, even by the same authenticated user.
-const codexDaemonPubkeys = new Map();   // agentId -> { pubkey, crypto_versions, registered_at }
 const codexRelayTickets = new Map();    // ticket -> { agentId, threadId, expires, used }
 const CODEX_RELAY_TICKET_TTL_MS = 60 * 1000; // 60s; browser must connect immediately
+
+const codexDaemonPubkeyRegistry = createCodexDaemonPubkeyRegistry({
+  usePrisma,
+  prisma,
+  devMode: DEV_MODE,
+  logger: console,
+});
+
+await codexDaemonPubkeyRegistry.loadFromDb();
+
+function codexRelayKey(agentId, id) {
+  return agentId + ":" + id;
+}
+
+function isCodexE2eeEnvelope(envelope) {
+  return !!(envelope && typeof envelope.type === "string" && envelope.type.startsWith("e2ee."));
+}
+
+function registerCodexE2eeSessionRoute(agentId, e2eeSession, threadId, ws) {
+  if (typeof e2eeSession !== "string" || !e2eeSession) return;
+  if (typeof threadId !== "string" || !threadId) return;
+  const webKey = codexRelayKey(agentId, threadId);
+  codexE2eeSessionRoutes.set(codexRelayKey(agentId, e2eeSession), { threadId, webKey, ws });
+}
+
+function addCodexWebClient(webKey, ws) {
+  let clients = codexWebClients.get(webKey);
+  if (!clients) {
+    clients = new Set();
+    codexWebClients.set(webKey, clients);
+  }
+  clients.add(ws);
+  return clients.size;
+}
+
+function removeCodexWebClient(webKey, ws) {
+  const clients = codexWebClients.get(webKey);
+  if (!clients) return 0;
+  clients.delete(ws);
+  if (clients.size === 0) {
+    codexWebClients.delete(webKey);
+    return 0;
+  }
+  return clients.size;
+}
+
+function openCodexWebClientsForKey(webKey) {
+  const clients = codexWebClients.get(webKey);
+  if (!clients) return [];
+  return [...clients].filter((webWs) => webWs.readyState === webWs.OPEN);
+}
+
+function resolveCodexWebClientsForDaemonFrame(agentId, routeId) {
+  const routed = codexE2eeSessionRoutes.get(codexRelayKey(agentId, routeId));
+  if (routed && routed.ws && routed.ws.readyState === routed.ws.OPEN) return [routed.ws];
+  return openCodexWebClientsForKey(codexRelayKey(agentId, routeId));
+}
+
+function removeCodexE2eeRoutesForWeb(agentId, threadId, ws) {
+  const webKey = codexRelayKey(agentId, threadId);
+  for (const [routeKey, route] of codexE2eeSessionRoutes) {
+    if (route.webKey === webKey && (!ws || route.ws === ws)) {
+      codexE2eeSessionRoutes.delete(routeKey);
+    }
+  }
+}
+
+function invalidateCodexBrowserSessionsForAgent(agentId, reason) {
+  const prefix = agentId + ":";
+  let closed = 0;
+  for (const routeKey of [...codexE2eeSessionRoutes.keys()]) {
+    if (routeKey.startsWith(prefix)) codexE2eeSessionRoutes.delete(routeKey);
+  }
+  for (const [webKey, clients] of [...codexWebClients]) {
+    if (!webKey.startsWith(prefix)) continue;
+    for (const webWs of clients) {
+      if (webWs.readyState === webWs.OPEN) {
+        closed += 1;
+        try { webWs.close(4001, reason); } catch {}
+      }
+    }
+    codexWebClients.delete(webKey);
+  }
+  return closed;
+}
+
+function logCodexWsLimit({ agentId, threadId, connectionId, reason }) {
+  console.warn(formatCodexWsLimitLog({ agentId, threadId, connectionId, reason }));
+}
+
+function closeCodexWsForLimit(ws, { agentId, threadId, connectionId }, decision) {
+  logCodexWsLimit({ agentId, threadId, connectionId, reason: decision.reason });
+  try { ws.close(decision.code, decision.reason); } catch {}
+}
 
 function generateCodexPairingCode() {
   for (let attempt = 0; attempt < 100; attempt += 1) {
@@ -2190,16 +3383,58 @@ function generateCodexPairingCode() {
   throw new Error("Could not generate unique codex-relay pairing code");
 }
 
+function generateCodexPairPollToken() {
+  return "ppt_" + randomBytes(32).toString("base64url");
+}
+
+function cleanupCodexPairPresenceTokens() {
+  const now = Date.now();
+  for (const [token, entry] of codexPairPresenceTokens) {
+    if (!entry || entry.used || now > entry.expires) codexPairPresenceTokens.delete(token);
+  }
+}
+
+function generateCodexPairPresenceToken(agentId) {
+  cleanupCodexPairPresenceTokens();
+  if (typeof agentId !== "string" || !agentId) return null;
+  const token = "cpt_" + randomBytes(32).toString("base64url");
+  codexPairPresenceTokens.set(token, {
+    agentId,
+    expires: Date.now() + CODEX_PAIR_PRESENCE_TTL_MS,
+    used: false,
+  });
+  return token;
+}
+
+function consumeCodexPairPresenceToken(token, agentId) {
+  cleanupCodexPairPresenceTokens();
+  const entry = codexPairPresenceTokens.get(token);
+  if (!entry || entry.used || entry.agentId !== agentId || Date.now() > entry.expires) return false;
+  entry.used = true;
+  codexPairPresenceTokens.delete(token);
+  return true;
+}
+
+function getBearerToken(req) {
+  const auth = req.headers["authorization"];
+  if (typeof auth !== "string" || !auth.startsWith("Bearer ")) return null;
+  const token = auth.slice(7).trim();
+  return token || null;
+}
+
 async function handleCodexPairInit(req, res) {
   let body = {};
   try { body = (await readBody(req)) || {}; } catch {}
   const code = generateCodexPairingCode();
   const pairingId = randomUUID();
+  const pollToken = generateCodexPairPollToken();
   const expires = Date.now() + CODEX_PAIR_EXPIRY_MS;
   codexPairings[pairingId] = {
     code,
     status: "pending",
     expires,
+    poll_token: pollToken,
+    poll_token_used: false,
     daemon_info: {
       hostname: typeof body.hostname === "string" ? body.hostname.slice(0, 64) : null,
       platform: typeof body.platform === "string" ? body.platform.slice(0, 32) : null,
@@ -2216,10 +3451,14 @@ async function handleCodexPairInit(req, res) {
       : null,
   };
   codexPairingByCode[code] = pairingId;
+  // Per plan: web_url goes through /login first so the existing Kaleidoscope
+  // QR + phone-passkey ceremony handles auth. After phone passkey, phone
+  // (not desktop) redirects to /pair/<CODE> and completes pair-complete.
   json(res, 200, {
     code,
     pairing_id: pairingId,
-    web_url: ISSUER_URL + "/pair",
+    pair_poll_token: pollToken,
+    web_url: ISSUER_URL + "/login?next=" + encodeURIComponent("/pair/" + code),
     expires_at: new Date(expires).toISOString(),
   });
 }
@@ -2227,12 +3466,25 @@ async function handleCodexPairInit(req, res) {
 function handleCodexPairStatus(req, res, pairingId) {
   const p = codexPairings[pairingId];
   if (!p) { json(res, 404, { error: "pairing not found" }); return; }
-  if (p.status === "pending" && Date.now() > p.expires) {
+  if (Date.now() > p.expires) {
     p.status = "expired";
     if (codexPairingByCode[p.code] === pairingId) delete codexPairingByCode[p.code];
+    json(res, 401, { error: "pair_poll_token_expired" });
+    return;
+  }
+  const pollToken = getBearerToken(req);
+  if (!pollToken || pollToken !== p.poll_token || p.poll_token_used) {
+    json(res, 401, { error: "invalid_pair_poll_token" });
+    return;
   }
   if (p.status === "completed") {
-    json(res, 200, { status: "completed", api_key: p.apiKey, handle: p.agentId });
+    p.poll_token_used = true;
+    json(res, 200, {
+      status: "completed",
+      api_key: p.apiKey,
+      handle: p.handle || p.agentId,
+      replaced_daemon_key: !!p.replaced_daemon_key,
+    });
   } else {
     json(res, 200, { status: p.status });
   }
@@ -2245,6 +3497,14 @@ async function handleCodexPairComplete(req, res) {
   try { body = await readBody(req); } catch { json(res, 400, { error: "bad request" }); return; }
   const code = (body && typeof body.code === "string") ? body.code.trim().toUpperCase() : "";
   if (!code) { json(res, 400, { error: "missing code" }); return; }
+  // Defensive: reject codes that don't match the daemon's alphabet up front,
+  // before the map lookup, so probe attempts get one uniform reject path
+  // instead of leaking timing/shape info between "wrong-alphabet" and "valid
+  // shape but unknown code." Per plan C3 + round 5.
+  if (!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code)) {
+    json(res, 404, { error: "invalid or already-used code" });
+    return;
+  }
   const pairingId = codexPairingByCode[code];
   if (!pairingId) { json(res, 404, { error: "invalid or already-used code" }); return; }
   const p = codexPairings[pairingId];
@@ -2252,30 +3512,51 @@ async function handleCodexPairComplete(req, res) {
     json(res, 410, { error: "code expired or already used" });
     return;
   }
+  const pairPresenceToken = body && typeof body.codex_pair_presence_token === "string"
+    ? body.codex_pair_presence_token
+    : "";
+  if (p.daemon_public_key && !consumeCodexPairPresenceToken(pairPresenceToken, identity.agentId)) {
+    json(res, 403, {
+      error: "fresh_presence_required",
+      error_description: "Pairing this daemon requires a fresh passkey confirmation. Sign in again from the pair page.",
+    });
+    return;
+  }
+  // Phase 2.5: register the daemon's E2EE public key against the
+  // authenticated immutable tenant id. The display handle is returned
+  // as metadata only.
+  let daemonKeyResult = null;
+  if (p.daemon_public_key) {
+    daemonKeyResult = await codexDaemonPubkeyRegistry.register(identity.agentId, p.daemon_public_key, p.crypto_versions, "pair-complete");
+    if (daemonKeyResult?.replaced) {
+      const closed = invalidateCodexBrowserSessionsForAgent(identity.agentId, "daemon key replaced");
+      console.log(
+        "codex-relay: replaced daemon E2EE key for tenant " + identity.agentId
+        + " old=" + daemonKeyResult.old_fingerprint
+        + " new=" + daemonKeyResult.new_fingerprint
+        + " closed_browser_sessions=" + closed
+      );
+    }
+  }
   p.status = "completed";
   p.apiKey = identity.apiKey;
   p.agentId = identity.agentId;
-  // Phase 2.5: register the daemon's E2EE public key against the
-  // authenticated handle. Replaces any previous key for this handle
-  // (rotate-key implicitly happens here on a re-pair).
-  if (p.daemon_public_key) {
-    codexDaemonPubkeys.set(identity.agentId, {
-      pubkey: p.daemon_public_key,
-      crypto_versions: p.crypto_versions && p.crypto_versions.length ? p.crypto_versions : ["e2ee-v1"],
-      registered_at: new Date().toISOString(),
-    });
-    console.log("codex-relay: registered E2EE pubkey for " + identity.agentId);
-  }
+  p.handle = identity.handle;
+  p.replaced_daemon_key = !!daemonKeyResult?.replaced;
   delete codexPairingByCode[code];
-  console.log("codex-relay: paired daemon for " + identity.agentId);
-  json(res, 200, { ok: true, handle: identity.agentId });
+  console.log("codex-relay: paired daemon for tenant " + identity.agentId + " handle " + identity.handle);
+  json(res, 200, {
+    ok: true,
+    handle: identity.handle,
+    replaced_daemon_key: !!daemonKeyResult?.replaced,
+  });
 }
 
 function handleCodexRelayState(req, res) {
   const identity = authenticate(req);
   if (!identity) { json(res, 401, { error: "Unauthorized" }); return; }
   json(res, 200, {
-    handle: identity.agentId,
+    handle: identity.handle,
     daemon_online: codexDaemons.has(identity.agentId),
   });
 }
@@ -2289,16 +3570,8 @@ function handleCodexBootstrap(req, res, threadId) {
   if (!identity) { json(res, 401, { error: "Unauthorized" }); return; }
   if (!threadId) { json(res, 400, { error: "missing threadId" }); return; }
   const daemonOnline = codexDaemons.has(identity.agentId);
-  const daemonKey = codexDaemonPubkeys.get(identity.agentId) || null;
-  json(res, 200, {
-    handle: identity.agentId,
-    thread_id: threadId,
-    daemon_online: daemonOnline,
-    daemon_public_key: daemonKey ? daemonKey.pubkey : null,
-    daemon_crypto_versions: daemonKey ? daemonKey.crypto_versions : null,
-    supported_crypto_versions: ["e2ee-v1"],
-    e2ee_available: !!daemonKey,
-  });
+  const daemonKey = codexDaemonPubkeyRegistry.get(identity.agentId);
+  json(res, 200, buildCodexBootstrapPayload({ identity, threadId, daemonOnline, daemonKey }));
 }
 
 // POST /api/codex-relay/ws-ticket
@@ -2318,6 +3591,7 @@ async function handleCodexWsTicket(req, res) {
   const expires = Date.now() + CODEX_RELAY_TICKET_TTL_MS;
   codexRelayTickets.set(ticket, {
     agentId: identity.agentId,
+    handle: identity.handle,
     threadId,
     expires,
     used: false,
@@ -2342,7 +3616,7 @@ function consumeCodexRelayTicket(ticket, threadId) {
   if (Date.now() > entry.expires) { codexRelayTickets.delete(ticket); return null; }
   if (entry.threadId !== threadId) return null; // bound to specific route
   entry.used = true;
-  return { agentId: entry.agentId };
+  return { agentId: entry.agentId, handle: entry.handle || entry.agentId };
 }
 
 function serveAppFile(res, relPath) {
@@ -2368,23 +3642,64 @@ function serveAppFile(res, relPath) {
   }
 }
 
-function authenticateWs(req) {
+// authenticateWs verifies a WS upgrade request against the API_KEYS
+// map. Default behavior is HEADER ONLY: Authorization: Bearer ck-...
+// is accepted; ?token=ck-... in the URL is ignored.
+//
+// Set { allowQueryToken: true } only on the explicit web-side
+// back-compat branch that runs inside ALLOW_WS_URL_TOKEN. Daemon
+// connections never enable this; CLI clients can always set
+// Authorization, and a daemon accepting URL-token would be a needless
+// attack surface (URL leaks via referrer / log scrape are not relevant
+// for daemons, but the asymmetry of "header-only on the daemon path"
+// keeps the policy clean and auditable).
+function authenticateWs(req, { allowQueryToken = false } = {}) {
   const auth = req.headers["authorization"];
   if (auth && auth.startsWith("Bearer ")) {
     const key = auth.slice(7).trim();
-    if (API_KEYS[key]) return { agentId: API_KEYS[key], apiKey: key };
+    const identity = identityForApiKey(key);
+    if (identity) return identity;
   }
-  // Browsers can't set Authorization on WebSocket(): accept ?token= fallback.
+  if (!allowQueryToken) return null;
+
+  // Web back-compat path only. Browsers cannot set Authorization on a
+  // WebSocket() handshake, so legacy clients put ck- in the URL.
+  // parseUrl returns a WHATWG URL, which has no .query getter (only
+  // .search/.searchParams). Strip the leading "?" off .search and
+  // parse with querystring so the array/string handling below works.
   const u = parseUrl(req.url);
-  const qs = u.query ? parseUrlQs(u.query) : {};
+  const qs = u.search ? parseUrlQs(u.search.slice(1)) : {};
   const tokenParam = Array.isArray(qs.token) ? qs.token[0] : qs.token;
-  if (typeof tokenParam === "string" && API_KEYS[tokenParam]) {
-    return { agentId: API_KEYS[tokenParam], apiKey: tokenParam };
+  if (typeof tokenParam === "string") {
+    return identityForApiKey(tokenParam);
   }
   return null;
 }
 
-const codexRelayWss = new WebSocketServer({ noServer: true });
+// F-001: subprotocol-based WS auth for the codex-relay surface. The web
+// client sends Sec-WebSocket-Protocol: ldm-codex-relay.v1, ticket.<v>.
+// Server echoes only the protocol name (not the ticket-bearing entry).
+// Daemon connections do not use a subprotocol, so empty Sets pass.
+const codexRelayWss = new WebSocketServer({
+  noServer: true,
+  handleProtocols: (protocols /*, request */) => {
+    if (!protocols || protocols.size === 0) return undefined;
+    if (protocols.has("ldm-codex-relay.v1")) return "ldm-codex-relay.v1";
+    return false;
+  },
+});
+
+function getTicketFromSubprotocol(req) {
+  const header = req.headers["sec-websocket-protocol"];
+  if (!header) return null;
+  const tokens = header.split(",").map(s => s.trim()).filter(Boolean);
+  for (const t of tokens) {
+    if (t.startsWith("ticket.")) {
+      return t.slice("ticket.".length);
+    }
+  }
+  return null;
+}
 
 httpServer.on("upgrade", (req, socket, head) => {
   const u = parseUrl(req.url);
@@ -2393,21 +3708,64 @@ httpServer.on("upgrade", (req, socket, head) => {
   const isWeb = path.startsWith("/api/codex-relay/web/");
   if (!isDaemon && !isWeb) return; // let other listeners (or default) handle it
 
+  // F-003: enforce Origin allowlist for browser-borne web upgrades.
+  // Runs BEFORE ticket consumption / authenticateWs so a request from
+  // a disallowed origin cannot burn a valid one-time ticket or trigger
+  // an auth check side effect. Daemon path is exempt because CLI
+  // clients do not send a browser Origin header. Requires nginx to
+  // pass the Origin header through unchanged on the upgrade hop;
+  // verified in Lane B B2 of the audit doc.
+  if (isWeb) {
+    const origin = req.headers["origin"];
+    if (!isWsOriginAllowed(origin)) {
+      console.warn("WS upgrade rejected: bad origin (" + (origin || "<none>") + ") for " + path);
+      socket.write("HTTP/1.1 403 Forbidden\r\nConnection: close\r\n\r\n");
+      socket.destroy();
+      return;
+    }
+  }
+
   // Daemon side keeps the existing Bearer ck- token auth.
-  // Web side: prefer single-use ?ticket= bound to the route; fall back
-  // to ?token=ck- for back-compat with the pre-2.5 alpha.
+  // Web side: prefer ticket via Sec-WebSocket-Protocol (F-001), fall
+  // back to ?ticket= query string. The legacy ?token=ck- URL fallback
+  // is gated behind LDM_HOSTED_MCP_ALLOW_WS_URL_TOKEN=1; production
+  // does not accept it.
   let identity = null;
   if (isDaemon) {
-    identity = authenticateWs(req);
+    // Daemon connections must use Authorization: Bearer ck-. URL-token
+    // is never accepted on the daemon path (allowQueryToken: false).
+    identity = authenticateWs(req, { allowQueryToken: false });
   } else {
     const threadId = decodeURIComponent(path.slice("/api/codex-relay/web/".length));
-    const qs = u.query ? parseUrlQs(u.query) : {};
-    const ticketParam = Array.isArray(qs.ticket) ? qs.ticket[0] : qs.ticket;
-    if (typeof ticketParam === "string" && ticketParam) {
-      const consumed = consumeCodexRelayTicket(ticketParam, threadId);
-      if (consumed) identity = { agentId: consumed.agentId, viaTicket: true };
+
+    // Preferred path: ticket carried in Sec-WebSocket-Protocol. Avoids
+    // URL/log/referrer exposure of the ticket value.
+    const subTicket = getTicketFromSubprotocol(req);
+    if (subTicket) {
+      const consumed = consumeCodexRelayTicket(subTicket, threadId);
+      if (consumed) identity = { agentId: consumed.agentId, handle: consumed.handle, viaTicket: true };
     }
-    if (!identity) identity = authenticateWs(req);
+
+    // Back-compat: ?ticket= query string. Same single-use binding.
+    if (!identity) {
+      // parseUrl returns a WHATWG URL with .search/.searchParams, no
+      // .query. Strip the leading "?" off .search and parse with
+      // querystring so the array/string handling below still works.
+      const qs = u.search ? parseUrlQs(u.search.slice(1)) : {};
+      const ticketParam = Array.isArray(qs.ticket) ? qs.ticket[0] : qs.ticket;
+      if (typeof ticketParam === "string" && ticketParam) {
+        const consumed = consumeCodexRelayTicket(ticketParam, threadId);
+        if (consumed) identity = { agentId: consumed.agentId, handle: consumed.handle, viaTicket: true };
+      }
+    }
+
+    // Legacy ?token=ck- URL fallback: dev/back-compat only. Production
+    // refuses long-lived bearer in WS URLs (gate condition 2). The
+    // URL-token branch in authenticateWs is gated by allowQueryToken,
+    // and we only set it true here, only when ALLOW_WS_URL_TOKEN is on.
+    if (!identity && ALLOW_WS_URL_TOKEN) {
+      identity = authenticateWs(req, { allowQueryToken: true });
+    }
   }
 
   if (!identity) {
@@ -2418,18 +3776,109 @@ httpServer.on("upgrade", (req, socket, head) => {
 
   if (isDaemon) {
     codexRelayWss.handleUpgrade(req, socket, head, (ws) => {
-      const previous = codexDaemons.get(identity.agentId);
-      if (previous && previous !== ws) try { previous.close(4000, "replaced"); } catch {}
-      codexDaemons.set(identity.agentId, ws);
-      console.log("codex-relay: daemon online for " + identity.agentId);
+      let daemonIdentityAccepted = false;
+      function activateCodexDaemonWs() {
+        const previous = codexDaemons.get(identity.agentId);
+        if (previous && previous !== ws && previous.readyState === previous.OPEN) {
+          console.warn("codex-relay: rejected duplicate daemon reconnect for online tenant " + identity.agentId);
+          try { ws.close(4004, "daemon already online"); } catch {}
+          return false;
+        }
+        if (previous && previous !== ws) try { previous.close(4000, "replaced"); } catch {}
+        codexDaemons.set(identity.agentId, ws);
+        console.log("codex-relay: daemon online for " + identity.agentId);
+        return true;
+      }
+      // F-001 per-thread isolation. Daemon -> web routing must NOT
+      // fan out every frame to every same-agent web socket; that
+      // breaks isolation when one user has multiple threads open.
+      // Parse the OUTER envelope only to read the routing field
+      // (session/sessionId). The encrypted ciphertext (or any inner
+      // session.* payload) is never inspected, so gate 3a still
+      // holds: the relay sees only routing metadata on the envelope.
+      // No-session frames are an explicit allowlist (control/presence
+      // types) or are dropped with a redacted warning. We never
+      // broadcast unknown frames.
+      const BROADCAST_TYPES = new Set([
+        "presence",
+        "presence.web",
+        "presence.daemon",
+        "daemon.online",
+        "daemon.offline",
+      ]);
       ws.on("message", (data) => {
         const text = data.toString();
-        const prefix = identity.agentId + ":";
-        for (const [key, webWs] of codexWebClients) {
-          if (key.startsWith(prefix) && webWs.readyState === webWs.OPEN) {
-            webWs.send(text);
+        let envelope = null;
+        try { envelope = JSON.parse(text); } catch {}
+        if (envelope?.type === "daemon.identity") {
+          const reconnectPolicy = evaluateCodexDaemonReconnectPubkey(
+            codexDaemonPubkeyRegistry.get(identity.agentId),
+            envelope.daemon_public_key,
+          );
+          if (!reconnectPolicy.allowed) {
+            console.warn(
+              "codex-relay: rejected daemon reconnect E2EE key for tenant " + identity.agentId
+              + " reason=" + reconnectPolicy.reason
+              + " old=" + (reconnectPolicy.old_fingerprint || "<none>")
+              + " new=" + (reconnectPolicy.new_fingerprint || codexDaemonPubkeyFingerprint(envelope.daemon_public_key) || "<none>"),
+            );
+            const closeReason = reconnectPolicy.replaced
+              ? "daemon key change requires fresh pair"
+              : "invalid daemon identity";
+            try { ws.close(reconnectPolicy.replaced ? 4003 : 1008, closeReason); } catch {}
+            return;
           }
+          void codexDaemonPubkeyRegistry.register(
+            identity.agentId,
+            envelope.daemon_public_key,
+            envelope.crypto_versions,
+            "daemon-reconnect",
+          ).then((result) => {
+            if (!result?.registered) {
+              try { ws.close(1011, "daemon identity persistence failed"); } catch {}
+              return;
+            }
+            daemonIdentityAccepted = activateCodexDaemonWs();
+          }).catch(() => {
+            try { ws.close(1011, "daemon identity persistence failed"); } catch {}
+          });
+          return;
         }
+        if (!daemonIdentityAccepted) {
+          try { ws.close(1008, "daemon identity required"); } catch {}
+          return;
+        }
+        const sessionId = envelope?.session || envelope?.sessionId || envelope?.threadId;
+        if (sessionId) {
+          const targets = resolveCodexWebClientsForDaemonFrame(identity.agentId, sessionId);
+          for (const target of targets) {
+            target.send(text);
+          }
+          // No matching web client: drop silently. Daemon-emitted
+          // frames for a thread the user has not opened in any browser
+          // are not interesting to fan out elsewhere.
+          return;
+        }
+        const type = envelope?.type;
+        if (type && BROADCAST_TYPES.has(type)) {
+          // Allowlisted agent-level frame (presence, online status).
+          // Fan out within agent, never across agents.
+          const prefix = identity.agentId + ":";
+          for (const [key, webClients] of codexWebClients) {
+            if (key.startsWith(prefix)) {
+              for (const webWs of webClients) {
+                if (webWs.readyState === webWs.OPEN) webWs.send(text);
+              }
+            }
+          }
+          return;
+        }
+        // Parse failed, missing session, or unknown type: drop. Log a
+        // redacted notice so the operator can see if a daemon is
+        // emitting unrouteable frames. We never log envelope/payload
+        // bytes; only the agent and the type (or "no-type").
+        const typeMarker = type ? String(type).slice(0, 32) : "no-type";
+        console.warn("codex-relay: dropped unroutable daemon frame for " + identity.agentId + " (type=" + typeMarker + ")");
       });
       ws.on("close", () => {
         if (codexDaemons.get(identity.agentId) === ws) {
@@ -2451,22 +3900,87 @@ httpServer.on("upgrade", (req, socket, head) => {
     socket.destroy();
     return;
   }
+  const webKey = codexRelayKey(identity.agentId, threadId);
+  if (isCodexWsAgentDisabled(CODEX_WS_ABUSE_LIMITS, identity.agentId)) {
+    console.warn(formatCodexWsLimitLog({
+      agentId: identity.agentId,
+      threadId,
+      connectionId: "upgrade",
+      reason: "operator disabled",
+    }));
+    socket.write("HTTP/1.1 503 Service Unavailable\r\nConnection: close\r\n\r\n");
+    socket.destroy();
+    return;
+  }
+  const openBrowserSockets = openCodexWebClientsForKey(webKey).length;
+  if (openBrowserSockets >= CODEX_WS_ABUSE_LIMITS.maxBrowserSocketsPerThread) {
+    console.warn(formatCodexWsLimitLog({
+      agentId: identity.agentId,
+      threadId,
+      connectionId: "upgrade",
+      reason: "too many browser sockets",
+    }));
+    socket.write("HTTP/1.1 429 Too Many Requests\r\nConnection: close\r\n\r\n");
+    socket.destroy();
+    return;
+  }
   codexRelayWss.handleUpgrade(req, socket, head, (ws) => {
-    const key = identity.agentId + ":" + threadId;
-    const previous = codexWebClients.get(key);
-    if (previous && previous !== ws) try { previous.close(4000, "replaced"); } catch {}
-    codexWebClients.set(key, ws);
-    console.log("codex-relay: web online " + key);
+    const connectionId = randomUUID();
+    const guard = createCodexWsConnectionGuard({
+      config: CODEX_WS_ABUSE_LIMITS,
+      agentId: identity.agentId,
+    });
+    const guardContext = { agentId: identity.agentId, threadId, connectionId };
+    const idleIntervalMs = Math.max(1000, Math.min(60_000, Math.floor(CODEX_WS_ABUSE_LIMITS.idleTtlMs / 2)));
+    const idleTimer = setInterval(() => {
+      const decision = guard.observeIdle();
+      if (!decision.ok && ws.readyState === ws.OPEN) {
+        closeCodexWsForLimit(ws, guardContext, decision);
+      }
+    }, idleIntervalMs);
+    const clientCount = addCodexWebClient(webKey, ws);
+    console.log("codex-relay: web online " + webKey + " clients=" + clientCount + " conn=" + connectionId);
     ws.on("message", (data) => {
+      const frameDecision = guard.observeFrame(codexWsFrameByteLength(data));
+      if (!frameDecision.ok) {
+        closeCodexWsForLimit(ws, guardContext, frameDecision);
+        return;
+      }
+      let text = data.toString();
+      let envelope = null;
+      try { envelope = JSON.parse(text); } catch {}
+      if (!envelope || typeof envelope !== "object" || Array.isArray(envelope)) {
+        const malformedDecision = guard.observeMalformed();
+        if (!malformedDecision.ok) {
+          closeCodexWsForLimit(ws, guardContext, malformedDecision);
+        }
+        return;
+      }
+      if (isCodexE2eeEnvelope(envelope) && envelope.session) {
+        // The browser cannot be allowed to choose this value. The relay
+        // owns the route because it consumed the ticket for this URL
+        // thread. The daemon uses this metadata to bind the encrypted
+        // session before it decrypts any session.* command.
+        envelope.route_thread_id = threadId;
+        text = JSON.stringify(envelope);
+        registerCodexE2eeSessionRoute(identity.agentId, envelope.session, threadId, ws);
+      }
       const daemonWs = codexDaemons.get(identity.agentId);
       if (daemonWs && daemonWs.readyState === daemonWs.OPEN) {
-        daemonWs.send(data.toString());
+        const pendingDecision = guard.observePendingBytes(daemonWs.bufferedAmount || 0);
+        if (!pendingDecision.ok) {
+          closeCodexWsForLimit(ws, guardContext, pendingDecision);
+          return;
+        }
+        daemonWs.send(text);
       } else {
         try { ws.send(JSON.stringify({ type: "error", message: "daemon offline" })); } catch {}
       }
     });
     ws.on("close", () => {
-      if (codexWebClients.get(key) === ws) codexWebClients.delete(key);
+      clearInterval(idleTimer);
+      removeCodexE2eeRoutesForWeb(identity.agentId, threadId, ws);
+      removeCodexWebClient(webKey, ws);
     });
     ws.on("error", (err) => {
       console.error("codex-relay web ws error:", err.message);
@@ -2476,6 +3990,7 @@ httpServer.on("upgrade", (req, socket, head) => {
 
 httpServer.listen(PORT, SERVER_BIND, () => {
   console.log(SERVER_NAME + " v" + SERVER_VERSION + " listening on " + SERVER_BIND + ":" + PORT);
+  console.log("WS origin allowlist: " + WS_ORIGIN_ALLOWLIST.join(", "));
   console.log("Health:        http://localhost:" + PORT + "/health");
   console.log("MCP:           http://localhost:" + PORT + "/mcp");
   console.log("OAuth:         http://localhost:" + PORT + "/.well-known/oauth-authorization-server");

@@ -1,42 +1,54 @@
-## Description: <br>
-A local Bash logbook for recording, searching, and exporting Raspberry Pi operations notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A local bash command-line journal for recording Raspberry Pi-related operational notes, searching saved entries, viewing recent activity, and exporting logs.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and operators use this skill to keep a local journal of Raspberry Pi-related operational notes, search past entries, and export records for reporting. It is not evidence of live device control, monitoring, service management, webhooks, or notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is advertised as a Raspberry Pi manager with GPIO control, live monitoring, service management, sensor reading, webhooks, and notification capabilities it does not provide. <br>
-Mitigation: Treat it as a local operations journal only, and do not rely on it for live device control or infrastructure automation. <br>
-Risk: Operational logs may contain secrets, hostnames, IP addresses, or other sensitive infrastructure details entered by the user. <br>
-Mitigation: Avoid entering secrets or sensitive infrastructure details, and review local log and export files before sharing. <br>
+## Use Case:
 
+External developers and operators can use this skill as a local operations journal for Raspberry Pi fleet notes, automation records, status observations, searches, and exports. It should not be treated as a device management or monitoring interface.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/raspberry-pi-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/bytesagain-lab) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Files] <br>
-**Output Format:** [Plain text terminal output and local JSON, CSV, or TXT export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local logs and exports under ~/.local/share/raspberry-pi-manager; no external services are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter and script report 2.0.0) <br>
+Risk: The skill is advertised as Raspberry Pi management, but evidence shows it records local notes and exports logs rather than controlling GPIO, services, sensors, or devices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as an operations journal and verify any real device-management needs with separate trusted tooling.
+
+Risk: Operational entries are stored in plaintext under ~/.local/share/raspberry-pi-manager and can be searched or exported.
+
+Mitigation: Do not enter credentials, tokens, private host details, or other sensitive information into logged entries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/raspberry-pi-manager)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and local text, JSON, CSV, or TXT export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores entries in plaintext under ~/.local/share/raspberry-pi-manager.]
+
+## Skill Version(s):
+
+2.0.1 (source: ClawHub release evidence; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

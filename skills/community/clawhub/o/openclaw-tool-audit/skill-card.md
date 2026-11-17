@@ -1,39 +1,54 @@
-## Description: <br>
-Audit OpenClaw agent tool exposure versus observed use, including broad or unused tool allowances, using an already-installed trusted local CLI that can emit Markdown or JSON summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit OpenClaw agent tool exposure versus observed use, including broad or unused tool allowances and whether agent tool configs are tighter than necessary.
 
-## Publisher: <br>
-[pfrederiksen](https://clawhub.ai/user/pfrederiksen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pfrederiksen](https://clawhub.ai/user/pfrederiksen)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to audit local OpenClaw agent tool configuration against observed tool usage and identify overly broad or unused tool access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local audit report may reveal local agent configuration, session paths, tool usage, or other sensitive operational details. <br>
-Mitigation: Treat generated reports as sensitive and review them before sharing. <br>
-Risk: The skill depends on a local openclaw-tool-audit binary or source checkout. <br>
-Mitigation: Use it only with a trusted or verified local installation and avoid elevated execution unless required. <br>
+## Use Case:
 
+Developers and engineers use this skill to review OpenClaw agent tool permissions against observed tool usage, identify broad or unused allowances, and produce markdown or JSON exposure reports.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and optional JSON report output from the local audit CLI.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill relies on a trusted local openclaw-tool-audit installation and may guide users to inspect local OpenClaw config and session data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server-resolved release metadata and skill.json) <br>
+Risk: The skill depends on a local audit binary or source checkout that may inspect local OpenClaw configuration and session data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted local installation or inspected source checkout, and avoid elevated execution unless required.
+
+Risk: Audit reports may include sensitive details from local configuration or session files.
+
+Mitigation: Confirm the local files are appropriate to inspect before running the audit and review generated Markdown or JSON before sharing.
+
+## Reference(s):
+
+- [OpenClaw Tool Audit skill page](https://clawhub.ai/pfrederiksen/skills/openclaw-tool-audit)
+- [OpenClaw Tool Audit repository](https://github.com/pfrederiksen/openclaw-tool-audit)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, markdown, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands; invoked CLI can produce Markdown or JSON audit reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a trusted local openclaw-tool-audit installation and access to local OpenClaw configuration and session data.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

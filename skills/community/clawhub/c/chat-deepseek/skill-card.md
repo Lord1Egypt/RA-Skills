@@ -1,44 +1,62 @@
-## Description: <br>
-Automates a browser session with DeepSeek Chat to submit user questions and return raw response text from the rendered page. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates DeepSeek Chat in a browser by opening chat.deepseek.com, submitting user questions, and returning extracted response text.
 
-## Publisher: <br>
-[qidu](https://clawhub.ai/user/qidu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qidu](https://clawhub.ai/user/qidu)
 
-## Use Case: <br>
-External users and developers use this skill to ask DeepSeek Chat questions through an OpenClaw browser session, reuse or open a chat tab, handle login when needed, and extract the resulting answer text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad browser and command access while automating a logged-in DeepSeek session. <br>
-Mitigation: Review before installing, use a dedicated browser profile, and avoid sending secrets or sensitive personal data. <br>
-Risk: The skill describes forwarding DeepSeek login QR-code screenshots through messaging channels, which can expose account-access material. <br>
-Mitigation: Prefer scanning the QR code directly in the local browser and only forward QR screenshots to fully trusted destinations after understanding the account-access risk. <br>
-Risk: The skill returns raw page text from DeepSeek Chat without additional validation or LLM post-processing. <br>
-Mitigation: Review the returned text before acting on it, especially for security-sensitive, financial, legal, or operational decisions. <br>
+## Use Case:
 
+External users and developers use this skill to ask DeepSeek Chat questions through a browser session and receive raw response text without using API keys.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/qidu/chat-deepseek) <br>
-- [DeepSeek Chat](https://chat.deepseek.com) <br>
-- [Publisher profile](https://clawhub.ai/user/qidu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with browser automation steps, shell commands, and raw response text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns text extracted from the DeepSeek web page without additional LLM processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: Prompts are sent to DeepSeek through a logged-in browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with prompts approved for DeepSeek and review data-sharing expectations before installing.
+
+Risk: Login QR-code screenshots may be forwarded through messaging channels.
+
+Mitigation: Scan QR codes directly in the browser where possible and avoid forwarding login screenshots.
+
+Risk: The skill requests broad command and file authority.
+
+Mitigation: Review tool permissions before installation and narrow command, file, and outbound messaging access where supported.
+
+Risk: Outbound messages may be sent through enabled messaging channels.
+
+Mitigation: Require explicit destination confirmation before sending QR codes or responses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qidu/skills/chat-deepseek)
+- [DeepSeek Chat](https://chat.deepseek.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell and browser automation snippets; runtime responses are raw extracted text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a logged-in browser profile and sends prompts to DeepSeek Chat.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

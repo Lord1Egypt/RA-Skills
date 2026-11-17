@@ -1,45 +1,61 @@
-## Description: <br>
-Git Manager helps agents perform Git repository operations including cloning, pulling, merging, rebasing, committing, staging, Git LFS management, reflog recovery, worktree management, grep search, cherry-pick, revert, bisect, and batch operations across GitHub, GitLab, Gitea, Bitbucket, and Azure DevOps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Git Manager helps agents perform Git repository operations including clone, pull, merge, rebase, commit, staging, Git LFS management, reflog recovery, worktree management, grep search, cherry-pick, revert, bisect, and batch operations across GitHub, GitLab, Gitea, Bitbucket, and Azure DevOps.
 
-## Publisher: <br>
-[zyjnicemoe](https://clawhub.ai/user/zyjnicemoe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zyjnicemoe](https://clawhub.ai/user/zyjnicemoe)
 
-## Use Case: <br>
-Developers and engineers use this skill to automate single-repository and multi-repository Git workflows, including batch clone and pull, branch and history operations, Git LFS setup, and recovery-oriented commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run Git commands that make lasting repository changes, including reset, clean, rebase, push, remote changes, and batch updates. <br>
-Mitigation: Require explicit review before executing destructive or broad-scope operations, and use dry-run modes, limits, filters, backups, or temporary branches before bulk changes. <br>
-Risk: Repository platform access may require sensitive tokens or credentials. <br>
-Mitigation: Use least-privilege tokens through a credential helper or protected environment variable, and avoid placing tokens in command lines or clone URLs. <br>
-Risk: LFS migration workflows may alter repository history or content storage in ways that are difficult to undo. <br>
-Mitigation: Review LFS migration commands before execution and avoid the LFS migrate --to git path until the flagged behavior is fixed. <br>
+## Use Case:
 
+Developers and engineers use this skill to let an agent manage single-repository and multi-repository Git workflows, including synchronization, branching, history inspection, LFS setup, and batch clone or pull operations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zyjnicemoe/git-manager-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/zyjnicemoe) <br>
-- [API Reference](references/api_reference.md) <br>
-- [Usage Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands and command-line arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON output instructions for supported batch clone workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: server release metadata) <br>
+Risk: Repository access tokens may be exposed through shell history, process listings, or persistent credential storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped, read-only, revocable tokens from environment variables or a secure credential manager, and avoid passing tokens directly on the command line.
+
+Risk: Plaintext HTTP or untrusted custom GitLab and Gitea hosts can expose repository credentials or clone traffic.
+
+Mitigation: Use trusted HTTPS or SSH endpoints and verify custom host ownership before providing credentials.
+
+Risk: Git operations such as rebase, reset, clean, revert, cherry-pick, and batch pull can change repository history or working trees.
+
+Mitigation: Review generated commands before execution, prefer dry-run or status checks where available, and keep backups or remote refs for important branches.
+
+## Reference(s):
+
+- [Git Manager API Reference](references/api_reference.md)
+- [Git Manager Usage Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/zyjnicemoe/skills/git-manager-skill)
+- [Publisher Profile](https://clawhub.ai/user/zyjnicemoe)
+- [Author Homepage](https://zyjblogs.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and Python CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON output instructions when using supported script options.]
+
+## Skill Version(s):
+
+2.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

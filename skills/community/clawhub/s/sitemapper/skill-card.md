@@ -1,41 +1,50 @@
-## Description: <br>
-Sitemapper is a devtools reference skill that returns quick lookup material for concepts, quickstarts, patterns, debugging, performance, security, migration, and cheat sheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools — covers intro, quickstart, patterns and more. Quick lookup for Sitemapper concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use this skill for concise Sitemapper reference guidance while working in devtools contexts. It is intended for quick lookup rather than environment-specific implementation authority. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The reference output is generic and may not match a specific production environment. <br>
-Mitigation: Review setup, migration, performance, and security guidance against local project requirements before applying it. <br>
-Risk: The bundled shell script reports version 2.0.2 while the release metadata and SKILL.md identify version 2.0.3. <br>
-Mitigation: Use the ClawHub release metadata for publication and verify the installed command when exact version reporting matters. <br>
+## Use Case:
 
+Developers and engineers use Sitemapper as a quick local reference for devtools-oriented concepts, quickstarts, implementation patterns, debugging, performance, security, migration, and cheatsheet guidance.
 
-## Reference(s): <br>
-- [Sitemapper on ClawHub](https://clawhub.ai/bytesagain3/sitemapper) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings and lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, file access, or network access are required by the documented commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The artifact is a generic reference helper rather than a full sitemap implementation, so its guidance may be incomplete for production site mapping workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated reference guidance against project-specific requirements before applying it.
+
+## Reference(s):
+
+- [Sitemapper on ClawHub](https://clawhub.ai/bytesagain3/skills/sitemapper)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style reference documentation emitted by local shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API keys, credentials, network access, persistent settings, or external API calls are indicated by the security evidence.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

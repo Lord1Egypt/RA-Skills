@@ -1,42 +1,55 @@
-## Description: <br>
-Provides broad web search for agent conversations by searching and fetching web pages, ranking results by relevance, depth, and freshness, filtering noise, and returning useful sourced summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BO-OpenSearch helps agents run broad web searches, fetch real pages, rank results by relevance, depth, and timeliness, and return useful source-linked findings while filtering ads and noise.
 
-## Publisher: <br>
-[exochief0125](https://clawhub.ai/user/exochief0125) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[exochief0125](https://clawhub.ai/user/exochief0125)
 
-## Use Case: <br>
-External users, students, researchers, developers, and general agent users use this skill to gather current web sources for academic, news, technical, product-comparison, and how-to questions. It is intended to return ranked Markdown search results with source URLs, short summaries, and fetch status details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can auto-trigger on broad information requests and may send sensitive queries or fetched URLs to external search and fetch tools. <br>
-Mitigation: Use it only for queries appropriate for external web search, avoid credential, personal, legal, medical, or confidential business searches, and review search terms before allowing the skill to run. <br>
-Risk: The artifact describes logging original queries, fetched URLs, result scores, decisions, and timestamps. <br>
-Mitigation: Limit use to contexts where query and URL logging is acceptable, and avoid including sensitive details in searches. <br>
+## Use Case:
 
+External users, students, researchers, and developers use this skill to ask an agent for web search results that are fetched, ranked, filtered, and summarized with source URLs. It is designed for knowledge lookup, current events, technical troubleshooting, product comparison, and how-to research.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/exochief0125/bo-opensearch) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown search results with source URLs, ranked summaries, and fetch status counts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include relevance ratings, notes for login or paywall pages, promotion labels, and conflict notes across sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Broad automatic web-search activation may send unintended or sensitive user queries to search and fetch tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit invocation such as /bo-opensearch or configure the runtime to require confirmation before searches for sensitive, legal, medical, financial, personal, or proprietary topics.
+
+Risk: Raw search queries and visited-result URLs may be recorded without clear retention or opt-out controls.
+
+Mitigation: Deploy only in environments with acceptable logging controls, retention policies, and user notice for search activity.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/exochief0125/skills/bo-opensearch)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown search-results list with source URLs, relevance ratings, page summaries, and fetch status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes the original query, ranked results, conflict notes, promotional or paywall labels when identified, and crawl-status counts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

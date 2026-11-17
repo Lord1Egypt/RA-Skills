@@ -1,46 +1,61 @@
-## Description: <br>
-PinMe Deploy helps agents build and publish frontend static sites to IPFS through Pinata, returning accessible deployment URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PinMe Deploy helps agents deploy static frontend sites to IPFS through Pinata by identifying project type, building when needed, uploading the output, and returning access URLs.
 
-## Publisher: <br>
-[yz6214589-hash](https://clawhub.ai/user/yz6214589-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yz6214589-hash](https://clawhub.ai/user/yz6214589-hash)
 
-## Use Case: <br>
-Developers and agents use this skill to detect, build, and deploy static frontend projects such as HTML, React, Vue, and static asset sites to IPFS. It is intended for quick previews, sharing, and static-site hosting workflows that use Pinata credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploads to IPFS through Pinata may publish selected site output publicly and persistently. <br>
-Mitigation: Inspect the build directory before deployment and remove secrets, private source, internal assets, or unintended files. <br>
-Risk: The workflow uses sensitive Pinata API credentials. <br>
-Mitigation: Keep PINATA_API_KEY and PINATA_SECRET_KEY out of logs and shared terminals, and rotate keys if exposed. <br>
-Risk: Build commands such as npm install and npm run build execute project code. <br>
-Mitigation: Run build steps only for trusted projects or inside a sandboxed environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to publish static HTML and frontend projects to IPFS for preview, sharing, or static hosting. It supports project detection, optional build steps, Pinata upload commands, and access URL generation.
 
-## Reference(s): <br>
-- [PinMe Deploy on ClawHub](https://clawhub.ai/yz6214589-hash/pinme-deploy) <br>
-- [IPFS](https://ipfs.io/) <br>
-- [Pinata Documentation](https://docs.pinata.cloud/) <br>
-- [Web3.storage](https://web3.storage/) <br>
-- [Fleek](https://fleek.co/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash and PowerShell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployment steps and IPFS gateway URLs; requires Pinata API credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: The skill may run project build commands such as npm install or npm run build.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on trusted projects and inspect package.json scripts before allowing build commands.
+
+Risk: Uploaded files may become public and difficult to remove from IPFS gateways.
+
+Mitigation: Review build output before upload and avoid publishing secrets, private files, or unreleased content.
+
+Risk: The skill requires Pinata API credentials.
+
+Mitigation: Use scoped Pinata credentials with the minimum permissions needed for deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yz6214589-hash/skills/pinme-deploy)
+- [IPFS documentation](https://ipfs.io/)
+- [Pinata documentation](https://docs.pinata.cloud/)
+- [Web3.storage](https://web3.storage/)
+- [Fleek](https://fleek.co/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, environment variable guidance, and deployment URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PINATA_API_KEY, PINATA_SECRET_KEY, and curl; may run npm install or npm run build before uploading files to IPFS.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

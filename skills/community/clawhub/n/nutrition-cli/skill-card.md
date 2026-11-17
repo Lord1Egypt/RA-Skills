@@ -1,45 +1,60 @@
-## Description: <br>
-Nutrition CLI helps agents look up nutrition data, log meals, track calories and macros against user goals, compare foods, estimate calorie burn, and summarize trends from the command line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nutrition CLI helps agents look up nutrition data, log meals, track intake against goals, compare foods, estimate calorie burn, and view trends from the command line.
 
-## Publisher: <br>
-[javi23ruiz](https://clawhub.ai/user/javi23ruiz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[javi23ruiz](https://clawhub.ai/user/javi23ruiz)
 
-## Use Case: <br>
-External users and their agents use this skill to set up nutrition tracking, answer food and calorie questions, log confirmed meals, and review daily or weekly intake trends using the nutrition CLI and private memory notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent storage may include sensitive meals, calorie goals, allergies, preferences, meal times, and health-related notes. <br>
-Mitigation: Use the skill in private contexts, review MEMORY.md and daily memory notes after setup, and remove details that should not be retained. <br>
-Risk: Proactive reminders and heartbeat behavior can prompt the user or run nutrition logging flows over time. <br>
-Mitigation: Create reminders only after explicit user choice, review HEARTBEAT.md and cron entries, and disable any nutrition cron jobs that are no longer wanted. <br>
-Risk: The skill depends on the external nutrition-cli pip package and nutrition data returned by its sources. <br>
-Mitigation: Verify the installed package before relying on it and preserve source transparency when presenting USDA or Open Food Facts results. <br>
+## Use Case:
 
+External users and agents use this skill to answer nutrition questions, configure daily targets, log meals with confirmation, and summarize diet trends through the nutrition CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/javi23ruiz/nutrition-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/javi23ruiz) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Onboarding guide](artifact/ONBOARDING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands and structured nutrition summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update MEMORY.md, daily memory notes, HEARTBEAT.md, nutrition-cli configuration, and user-approved cron reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release evidence) <br>
+Risk: The skill stores sensitive nutrition, allergy, diet, and health-context notes in memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in private sessions, review retained memory entries, and remove or avoid the memory sections if long-term health-context retention is not desired.
+
+Risk: The heartbeat and reminder behavior can create persistent prompts after installation.
+
+Mitigation: Review or remove the heartbeat snippet before use, and enable cron reminders only for user-selected reminder types and times.
+
+Risk: The release depends on the nutrition-cli package and nutrition data sources outside the skill artifact.
+
+Mitigation: Install a pinned, reviewed nutrition-cli package and check the reported data source before relying on results.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/javi23ruiz/skills/nutrition-cli)
+- [Nutrition CLI onboarding script](artifact/ONBOARDING.md)
+- [Nutrition memory template](artifact/MEMORY_TEMPLATE.md)
+- [Nutrition heartbeat snippet](artifact/HEARTBEAT_SNIPPET.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands and occasional JSON-formatted CLI parsing instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Relies on the installed nutrition binary and may update private memory files or optional reminder jobs when the workflow calls for it.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

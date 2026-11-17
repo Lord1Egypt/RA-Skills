@@ -1,40 +1,51 @@
-## Description: <br>
-List all files uploaded by this API key. Returns URL and creation timestamp, ordered newest first. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+List all files uploaded by this API key. Returns URL and creation timestamp, ordered newest first.
 
-## Publisher: <br>
-[rishabhdugar](https://clawhub.ai/user/rishabhdugar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rishabhdugar](https://clawhub.ai/user/rishabhdugar)
 
-## Use Case: <br>
-Developers and operators use this skill to retrieve PDF API Hub upload history and file URLs for dashboards, audits, pipeline monitoring, and cleanup planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an API key and the returned file list may expose private file URLs and upload history. <br>
-Mitigation: Confirm trust in pdfapihub.com, use a least-privileged API key when available, and limit visibility of agent outputs that include file URLs. <br>
+## Use Case:
 
+Developers and agents use this skill to list uploaded PDF API Hub files for the authenticated API key, including file URLs and creation timestamps for file management, audit review, pipeline monitoring, and cleanup planning.
 
-## Reference(s): <br>
-- [PDF API Hub Documentation](https://pdfapihub.com/docs) <br>
-- [PDF API Hub](https://pdfapihub.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/rishabhdugar/list-files) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON, guidance] <br>
-**Output Format:** [JSON response with file URLs and creation timestamps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns newest files first; the optional limit query parameter can cap results from 1 to 500.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses a PDF API Hub API key and returns file URLs that may expose private document locations or upload history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the agent should access this account's uploaded file list, and treat the API key and returned URLs as sensitive.
+
+## Reference(s):
+
+- [PDF API Hub Documentation](https://pdfapihub.com/docs)
+- [PDF API Hub](https://pdfapihub.com)
+- [ClawHub Skill Page](https://clawhub.ai/rishabhdugar/skills/list-files)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Files]
+
+**Output Format:** [JSON response with file URLs, creation timestamps, success status, and count]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional limit query parameter from 1 to 500, default 100.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

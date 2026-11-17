@@ -1,39 +1,51 @@
-## Description: <br>
-Reference tool for devtools that covers Page Builder intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that provides quick lookup material for Page Builder concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve concise Page Builder reference guidance for setup, patterns, troubleshooting, performance, security, migration, and quick command lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled shell script reports version 2.0.1 while the server release and SKILL.md identify this release as 2.0.2. <br>
-Mitigation: Confirm version output during packaging so users and agents see the same release version across metadata and command output. <br>
+## Use Case:
 
+Developers and engineers use this skill to retrieve Page Builder reference guidance, including quickstart, patterns, debugging, performance, security, migration, and cheat-sheet material.
 
-## Reference(s): <br>
-- [Page Builder on ClawHub](https://clawhub.ai/bytesagain-lab/page-builder) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text and Markdown reference sections emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API calls, credentials, network access, or file writes are described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The reference text discusses credentials as a general prerequisite, which could be mistaken for a requirement to provide secrets to the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as static documentation only; do not provide credentials to it, and verify any credential-handling advice against local security policy before applying it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/page-builder)
+- [Publisher profile](https://clawhub.ai/user/bytesagain-lab)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown headings and lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static command-selected reference output; no credentials, network access, or persistent system features are used according to security evidence.]
+
+## Skill Version(s):
+
+2.0.2 (source: release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

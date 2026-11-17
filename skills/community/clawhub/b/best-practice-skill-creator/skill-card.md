@@ -1,42 +1,59 @@
-## Description: <br>
-Create OpenClaw skills from best practice videos or image sequences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create OpenClaw skills from best practice videos or image sequences.
 
-## Publisher: <br>
-[diffusefuturetech](https://clawhub.ai/user/diffusefuturetech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diffusefuturetech](https://clawhub.ai/user/diffusefuturetech)
 
-## Use Case: <br>
-Developers and automation authors use this skill to turn workflow videos, screenshot sequences, and task descriptions into OpenClaw-compatible skill directories for review, installation, or publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Videos, screenshots, and task descriptions are sent to configured external multimodal model endpoints. <br>
-Mitigation: Use only non-sensitive inputs unless the configured provider and endpoint are approved for the data being processed. <br>
-Risk: The artifact includes an embedded API key and under-disclosed external model endpoint configuration. <br>
-Mitigation: Replace the bundled API configuration with trusted provider settings and do not use the embedded key. <br>
-Risk: Generated SKILL.md output may contain inaccurate steps, unsafe commands, or unsuitable publishing metadata. <br>
-Mitigation: Manually review and scan every generated skill before installing, using, or publishing it. <br>
+## Use Case:
 
+Developers and automation authors use this skill to turn best practice videos, screenshots, and task descriptions into OpenClaw skill directories for review, installation, or publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diffusefuturetech/best-practice-skill-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Generated skill directory containing SKILL.md markdown and OpenClaw metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes video frames or screenshots with a configured multimodal model provider before writing the generated skill files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Default configuration includes a plaintext API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the bundled key, rotate it if it belongs to you, and provide secrets through environment variables or a trusted secret store.
+
+Risk: Screenshots or video frames may be sent to a nonstandard remote endpoint.
+
+Mitigation: Use a trusted provider endpoint and process only media that is safe to disclose to that provider.
+
+Risk: Generated SKILL.md output may contain incorrect or unsafe agent instructions.
+
+Mitigation: Manually inspect and scan generated skill files before installing or publishing them.
+
+## Reference(s):
+
+- [Best Practice Skill Creator on ClawHub](https://clawhub.ai/diffusefuturetech/skills/best-practice-skill-creator)
+- [Configured OpenAI-compatible endpoint](https://api.cloubic.com/v1)
+- [Configured Gemini API endpoint](https://generativelanguage.googleapis.com/v1beta)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Generated OpenClaw skill directory containing SKILL.md frontmatter and instruction content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires media input, a task description, and a configured multimodal LLM provider.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

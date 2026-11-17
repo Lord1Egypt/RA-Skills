@@ -1,45 +1,61 @@
-## Description: <br>
-Searches FOFA for internet-exposed assets by IP, domain, port, protocol, certificate, geography, time range, and other FOFA query fields. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries FOFA for internet-exposed assets across IPs, domains, ports, protocols, certificates, geography, and time ranges for authorized asset discovery and security research.
 
-## Publisher: <br>
-[Moxin1044](https://clawhub.ai/user/Moxin1044) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moxin1044](https://clawhub.ai/user/moxin1044)
 
-## Use Case: <br>
-Security practitioners, developers, and authorized asset owners use this skill to construct FOFA queries, run searches through the FOFA API, review text, table, or JSON results, and summarize findings for asset discovery or security research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: FOFA receives submitted domains, IPs, organizations, and search terms. <br>
-Mitigation: Use narrow authorized queries and avoid submitting sensitive targets that should not be disclosed to FOFA. <br>
-Risk: FOFA credentials could be exposed through environment variables, command history, logs, or shared configuration. <br>
-Mitigation: Keep FOFA_API_KEY private, prefer environment storage, rotate credentials if exposed, and avoid pasting credentials into prompts or logs. <br>
-Risk: Broad or unauthorized asset searches can create compliance and misuse concerns. <br>
-Mitigation: Use only for authorized asset discovery or security research and follow FOFA and target-site terms. <br>
+## Use Case:
 
+Security engineers, asset owners, and authorized researchers use this skill to construct FOFA queries, run the bundled Python helper, and interpret returned asset data. It supports asset discovery, exposure review, certificate analysis, and vulnerability-oriented asset location when the user is authorized to assess the targets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Moxin1044/fofa-query) <br>
-- [FOFA](https://fofa.info) <br>
-- [FOFA API](https://fofa.info/api/v1) <br>
-- [FOFA query syntax reference](references/query_syntax.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Text, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and text, table, or JSON query results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python, requests, and FOFA_API_KEY; sends user-provided searches to FOFA.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Broad FOFA queries can enable internet reconnaissance outside an authorized scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped queries tied to assets you own or are explicitly allowed to assess, and avoid generic high-volume searches.
+
+Risk: FOFA credentials may be exposed if passed directly on the command line or stored insecurely.
+
+Mitigation: Provide FOFA_API_KEY from a protected environment or secret manager and avoid the --api-key option for shared terminals, scripts, and logs.
+
+Risk: Returned asset data can be misused or overinterpreted without validation.
+
+Mitigation: Review results against the authorized assessment scope and validate findings before taking action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moxin1044/skills/fofa-query)
+- [Publisher profile](https://clawhub.ai/user/moxin1044)
+- [FOFA query syntax reference](references/query_syntax.md)
+- [FOFA](https://fofa.info)
+- [FOFA API endpoint](https://fofa.info/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and FOFA query strings; the helper can return text, JSON, or table output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python, requests==2.31.0, network access to FOFA, and FOFA_API_KEY credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,59 @@
-## Description: <br>
-问道笔录Game is a Chinese cultivation text-adventure skill that guides players from mortal life through ascension while managing reincarnation, character growth, narrative choices, and inventory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+问道笔录 - 修仙文字冒险游戏。玩家从凡人开始修炼，经历炼气、筑基、金丹、元婴、化神、渡劫、飞升七大境界，通过选择塑造道心，最终成就修仙之路。支持转世传承、角色成长、物品系统。适用于修仙题材、角色扮演、文字冒险等场景。
 
-## Publisher: <br>
-[ouwenjie03](https://clawhub.ai/user/ouwenjie03) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ouwenjie03](https://clawhub.ai/user/ouwenjie03)
 
-## Use Case: <br>
-External players use this skill to run an interactive Chinese cultivation role-playing story, create a character, make path-shaping choices, and progress through seven cultivation realms with persistent game state. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and updates local game progress, so starting a new cycle can replace prior game_state.md content. <br>
-Mitigation: Install the skill in a dedicated folder and keep a backup before starting a new cycle when previous progress matters. <br>
-Risk: Player-created character details may be written into local game state. <br>
-Mitigation: Use fictional character details if personal details should not be saved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ouwenjie03/cultivation-chronicle-cn) <br>
-- [游戏开局 - 问道笔录](references/ch00_start.md) <br>
-- [炼气期 - 修仙起步](references/ch01_qi_refining.md) <br>
-- [筑基期 - 道基筑成](references/ch02_foundation.md) <br>
-- [金丹期 - 金丹凝成](references/ch03_golden_core.md) <br>
-- [元婴期 - 元婴化神](references/ch04_nascent_soul.md) <br>
-- [化神期 - 参悟法则](references/ch05_spirit_transformation.md) <br>
-- [渡劫期 - 九劫临身](references/ch06_tribulation.md) <br>
-- [飞升 - 问道轮回](references/ch07_ascension.md) <br>
-- [角色成长系统管理](references/system_character_system.md) <br>
-- [背包系统管理](references/system_inventory_system.md) <br>
-- [生平记录系统管理](references/system_biography_system.md) <br>
+## Use Case:
 
+External players use this Chinese-language skill to run a persistent cultivation-themed text adventure in an agent chat, creating a character, making story choices, and tracking realms, inventory, biography, reincarnation, and endings.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown narrative with structured game-state updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains local game progress in game_state.md when used by an agent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Gameplay may modify or reset local save-state content, including inventory, companion inventory, and new-cycle state.
+
+Mitigation: Keep backups of game_state.md before important runs if preserving progress matters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ouwenjie03/skills/cultivation-chronicle-cn)
+- [Game Start and Initialization](references/ch00_start.md)
+- [Qi Refining Realm Journey](references/ch01_qi_refining.md)
+- [Foundation Establishment Realm](references/ch02_foundation.md)
+- [Golden Core Realm](references/ch03_golden_core.md)
+- [Nascent Soul Realm](references/ch04_nascent_soul.md)
+- [Spirit Transformation Realm](references/ch05_spirit_transformation.md)
+- [Tribulation Realm](references/ch06_tribulation.md)
+- [Ascension and Reincarnation](references/ch07_ascension.md)
+- [Managing Character System](references/system_character_system.md)
+- [Managing Inventory System](references/system_inventory_system.md)
+- [Managing Biography System](references/system_biography_system.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Chinese-language Markdown narrative with local game-state file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local game_state.md save file for persistent character, inventory, biography, and new-cycle state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

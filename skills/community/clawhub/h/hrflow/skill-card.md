@@ -1,41 +1,53 @@
-## Description: <br>
-Automate HR workflows including benefits enrollment, onboarding, and payroll integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate HR workflows including benefits enrollment, onboarding, and payroll integration.
 
-## Publisher: <br>
-[ncreighton](https://clawhub.ai/user/ncreighton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ncreighton](https://clawhub.ai/user/ncreighton)
 
-## Use Case: <br>
-HR and People Ops teams use this skill to draft and operate workflows for onboarding, benefits enrollment, payroll sync validation, employee communications, document signing, and audit reporting across HR systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests powerful HR, payroll, and messaging access without enough concrete limits for sensitive employee workflows. <br>
-Mitigation: Install only in an authorized HR or People Ops environment, start with least-privilege test credentials, and require human approval for payroll, benefits, provisioning, purchasing, and employee-record changes. <br>
-Risk: Employee data, audit logs, and integration outputs may include sensitive personal, payroll, or benefits information. <br>
-Mitigation: Verify where logs and employee data are stored before using real employee information, and keep production secrets scoped to the minimum systems needed. <br>
+## Use Case:
 
+HR, People Operations, and payroll teams use this skill to draft and operate onboarding, benefits enrollment, payroll sync, notification, document automation, and audit-reporting workflows across HR systems.
 
-## Reference(s): <br>
-- [ClawHub Hrflow Skill Page](https://clawhub.ai/ncreighton/hrflow) <br>
-- [Declared Skill Homepage](https://github.com/ncreighton/empire-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with workflow examples, reports, configuration variables, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference HRIS, payroll, messaging, email, document-signing, and compliance integrations that require separate credentials and human approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill requests broad HRIS, payroll, messaging, SendGrid, and DocuSign access without enough enforced scoping or per-action control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with test or narrowly scoped credentials, endpoint limits, read-only defaults, human approval for writes, redacted logs, and a clear audit process outside the skill.
+
+Risk: Generated HR workflow guidance could affect sensitive employee records, payroll data, benefits enrollment, or employee communications if applied without review.
+
+Mitigation: Require HR or Finance review before syncing data, sending employee-facing messages, approving compensation changes, or running offboarding-related actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ncreighton/skills/hrflow)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workflow plans, status reports, validation summaries, environment-variable setup, and operational guidance for HR integrations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

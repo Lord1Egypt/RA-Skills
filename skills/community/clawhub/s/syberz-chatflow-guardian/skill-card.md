@@ -1,47 +1,61 @@
-## Description: <br>
-Monitors conversation state, sends follow-up responses when a chat may stall, reports progress for long tasks, and supports configurable multi-platform chat integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Syberz Chatflow Guardian monitors conversation state so agents can keep chats active with timely replies, progress updates, and message completion.
 
-## Publisher: <br>
-[wwwsyber](https://clawhub.ai/user/wwwsyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwwsyber](https://clawhub.ai/user/wwwsyber)
 
-## Use Case: <br>
-Developers and operators use this skill to add local conversation monitoring, automatic follow-up, progress reporting, and configurable platform adapters to chat-oriented agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer can create persistent local service behavior. <br>
-Mitigation: Review installation steps before enabling service mode, and run the skill directly unless persistence is required. <br>
-Risk: Conversation profiling, prediction, learning, and logging can expose sensitive user behavior or chat content. <br>
-Mitigation: Disable training, learning, platform broadcasting, and unnecessary logging unless explicitly needed for the deployment. <br>
-Risk: Automatic responses may send unintended messages across configured chat platforms. <br>
-Mitigation: Start with conservative thresholds and test platform integrations in a non-production workspace before enabling live responses. <br>
+## Use Case:
 
+External users and developers use this skill to monitor supported chat sessions, prevent stalled conversations, send progress updates for long-running work, and configure multi-platform conversation handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wwwsyber/syberz-chatflow-guardian) <br>
-- [Publisher profile](https://clawhub.ai/user/wwwsyber) <br>
-- [README](README.md) <br>
-- [English README](README_EN.md) <br>
-- [Security policy](SECURITY.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JavaScript, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local monitoring behavior, progress messages, generated responses, logs, and configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, changelog, server evidence) <br>
+Risk: Install and runtime guidance may grant more persistent and sensitive local access than the skill scope clearly explains.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts before installation, avoid absolute-path /root deployment commands, do not enable the systemd service by default, and prefer a user-level or manual run.
+
+Risk: Local logs may contain private conversation content or recipient identifiers.
+
+Mitigation: Review logging configuration before connecting communication platforms, limit log access, and set retention appropriate for the deployment.
+
+Risk: Dependency provenance should be confirmed before production use.
+
+Mitigation: Regenerate dependencies from a trusted HTTPS registry and run dependency scanning during release validation.
+
+## Reference(s):
+
+- [README](README.md)
+- [English README](README_EN.md)
+- [Quickstart](QUICKSTART.md)
+- [Changelog](CHANGELOG.md)
+- [Security Policy](SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command examples plus JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Conversation monitoring behavior is configurable by interval, response thresholds, quiet hours, platform settings, predictive response options, and deep learning options.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

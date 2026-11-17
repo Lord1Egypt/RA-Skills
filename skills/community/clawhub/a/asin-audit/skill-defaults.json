@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "asin-audit",
+  "workflow": "audit",
+  "focus": "full",
+  "outputTemplate": "ops_audit",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ]
+}

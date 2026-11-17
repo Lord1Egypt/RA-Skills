@@ -1,42 +1,52 @@
-## Description: <br>
-Scans OpenClaw configuration, permissions, files, sensitive data, and logs to produce a security score, findings, and repair recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans OpenClaw configuration, workspace permissions, operation rules, logs, and potential secret exposure, then reports findings, scores risk, and can propose or apply fixes.
 
-## Publisher: <br>
-[ITHACAJASON](https://clawhub.ai/user/ITHACAJASON) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ithacajason](https://clawhub.ai/user/ithacajason)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and OpenClaw users use this skill to audit local OpenClaw configuration and workspace state for unsafe permissions, missing delete-operation rules, exposed secrets, and log anomalies before deciding whether to apply suggested fixes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Scanner output can expose sensitive values or paths, especially when JSON output is used with real secrets.
+
+Mitigation: Run scan-only first, avoid JSON output with real secrets until redaction is verified, and review reports before sharing them.
+
+Risk: Repair modes can make unattended changes to .gitignore, operation-rule files, and workspace permissions.
+
+Mitigation: Prefer scan-only or interactive repair, review each proposed change, and use --fix-all only when workspace edits are acceptable.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to run local OpenClaw security checks, understand findings, and choose interactive or targeted fixes for configuration, permission, secret-handling, and audit issues. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Repair modes can change local files such as TOOLS.md, AGENTS.md, .gitignore, or file permissions. <br>
-Mitigation: Run the default scan first, prefer interactive or targeted fixes, and review proposed changes before applying them. <br>
-Risk: Security reports may reference sensitive configuration values or local paths. <br>
-Mitigation: Keep console and JSON reports private and avoid sharing them without redaction. <br>
-Risk: Adding a secret-bearing file to .gitignore does not remediate credentials that were already exposed. <br>
-Mitigation: Rotate and remove exposed credentials separately when the scanner reports them. <br>
+**Output Format:** [Console text report or JSON, with suggested commands and optional fix results.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ITHACAJASON/jason-openclaw-security-scanner) <br>
+**Other Properties Related to Output:** [Repair modes can modify workspace files and directory permissions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown-style security report with inline shell commands and repair guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include security scores, findings, and repair recommendations; repair modes can modify local configuration files, ignore rules, or file permissions.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,62 @@
-## Description: <br>
-Manage your Dex personal CRM by searching, creating, and updating contacts; logging interaction notes; setting follow-up reminders; organizing contacts with tags and groups; and managing custom fields. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage a Dex personal CRM by helping an agent find, create, update, archive, merge, and organize contacts; log notes; manage follow-ups, tags, groups, custom fields, connected calendar events, correspondence search, and contact research.
 
-## Publisher: <br>
-[ocruzv](https://clawhub.ai/user/ocruzv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ocruzv](https://clawhub.ai/user/ocruzv)
 
-## Use Case: <br>
-External users and agents use this skill to manage Dex personal CRM records, prepare for meetings, log relationship history, schedule follow-ups, and organize professional contacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and change sensitive Dex CRM records. <br>
-Mitigation: Install only when the user trusts Dex, the Dex MCP server, and the @getdex/cli package with CRM data. <br>
-Risk: Bulk edits, deletions, merges, note creation, reminders, and contact updates can materially alter CRM data. <br>
-Mitigation: Require explicit user confirmation before destructive or bulk-changing operations. <br>
-Risk: Dex API keys grant access to personal CRM data. <br>
-Mitigation: Keep API keys private, use secure local storage or environment variables, and review which AI clients receive MCP access. <br>
+## Use Case:
 
+External users and agents use this skill to operate a Dex personal CRM: maintain professional relationships, prepare meetings, organize contacts, manage follow-ups, inspect email metadata, and manage connected calendars.
 
-## Reference(s): <br>
-- [Dex skill listing](https://clawhub.ai/ocruzv/dex-skill) <br>
-- [Dex homepage](https://getdex.com) <br>
-- [Dex MCP setup guide](https://getdex.com/docs/ai/mcp-server) <br>
-- [CLI Command Reference](references/cli-commands.md) <br>
-- [CRM Workflows](references/crm-workflows.md) <br>
-- [Dex Tools Reference](references/tools-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call Dex MCP tools or guide CLI setup; responses can include CRM summaries, proposed record changes, reminders, notes, and contact-organization guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: frontmatter and server release evidence) <br>
+Risk: Broad local integration can give Dex and configured AI clients access to CRM data, connected email metadata, and calendar operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing that access; prefer MCP browser OAuth or one explicitly selected client instead of unattended all-client setup.
+
+Risk: Persistent bearer-token files used by the CLI can expose Dex account access if mishandled.
+
+Mitigation: Treat local Dex token files as sensitive secrets, restrict file permissions, and rotate or clean them up when access is no longer needed.
+
+Risk: Installing a global npm CLI can introduce supply-chain or version-drift risk.
+
+Mitigation: Pin or review npm package versions where possible and update deliberately when the MCP server adds or changes tools.
+
+## Reference(s):
+
+- [Dex Homepage](https://getdex.com)
+- [Dex AI MCP Server Docs](https://getdex.com/docs/ai/mcp-server)
+- [Dex ClawHub Skill Page](https://clawhub.ai/ocruzv/skills/dex-skill)
+- [Dex CLI Command Reference](references/cli-commands.md)
+- [CRM Workflows & Relationship Management](references/crm-workflows.md)
+- [Dex Tools Reference](references/tools-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON tool inputs or outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose CRM, email, calendar, and research operations; write operations should be previewed, confirmed, and verified.]
+
+## Skill Version(s):
+
+2.4.2 (source: artifact frontmatter metadata.version and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

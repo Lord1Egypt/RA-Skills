@@ -1,0 +1,27 @@
+{
+  "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+  "name": "BridgeNode",
+  "description": "AI inference bridge — pay per request with Solana USDC via x402. No API keys, no registration.",
+  "services": [
+    {
+      "name": "MCP",
+      "endpoint": "https://bridgenode.cc/mcp"
+    },
+    {
+      "name": "A2A",
+      "endpoint": "https://bridgenode.cc/.well-known/agent-card.json"
+    },
+    {
+      "name": "OASF",
+      "endpoint": "https://bridgenode.cc/openapi.json",
+      "skills": [
+        "natural_language_processing/natural_language_generation/text_completion"
+      ],
+      "domains": [
+        "technology/software_engineering/software_engineering"
+      ]
+    }
+  ],
+  "active": false,
+  "x402Support": true
+}

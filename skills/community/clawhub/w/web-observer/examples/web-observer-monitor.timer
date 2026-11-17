@@ -1,0 +1,22 @@
+# The cadence for web-observer-monitor.service. Match OnUnitActiveSec to the
+# tickMinutes in your configuration: a watch is checked on the first tick at or
+# after it comes due, so a tick slower than an interval quietly becomes the real
+# interval.
+
+[Unit]
+Description=Run a Web Observer uptime round every 5 minutes
+Documentation=https://github.com/anatoli-iliev/web-observer
+
+[Timer]
+# Soon after boot, then every five minutes.
+OnBootSec=2min
+OnUnitActiveSec=5min
+# Spread the load if several timers share a minute.
+RandomizedDelaySec=20s
+# Run a missed round on resume, rather than waiting for the next slot: a laptop
+# that was asleep should still find out the site is down.
+Persistent=true
+Unit=web-observer-monitor.service
+
+[Install]
+WantedBy=timers.target

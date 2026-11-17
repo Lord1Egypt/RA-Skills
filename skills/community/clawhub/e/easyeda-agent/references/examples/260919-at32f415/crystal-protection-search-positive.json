@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "status": "offline-verified",
+  "candidateStatus": "candidate-unverified",
+  "source": "用户 2026-09-22 晶振模块要求；同日现场 pcb dump --include-copper",
+  "startState": "69 件器件；保留既有 LDO/CAN/USB；替换输入中列出的 15 段 OSC 铜；U6 不动",
+  "input": "layout-plan-crystal-guard.json",
+  "units": "mil",
+  "boardSemanticSha256": "65caea63a4c28da3262fcd30b9b17d72d3745f3b9807ea90d71cf07b846c24ec",
+  "command": "easyeda pcb layout-plan --from layout-plan-crystal-guard.json --board before.json --module crystal-guard --candidates 1 --out candidate-output",
+  "parameters": {
+    "gapMil": 20,
+    "rotationDeg": 0,
+    "offsetXMil": 96.584,
+    "offsetYMil": 0,
+    "fencePitchMil": 180,
+    "clearanceMil": 6,
+    "protectionSearch": {
+      "stepMil": 4,
+      "maxDetourMil": 120,
+      "guardOffsetsMil": [
+        0
+      ]
+    }
+  },
+  "parameterReason": "80mil 是初始样例参数，并非用户硬规则；显式改为 180mil 解决 MCU 邻脚附近无合法孔区间，所有孔位仍逐点通过真实几何净距检查。偏移相对 owner 信号焊盘中点，不是现场绝对坐标。",
+  "candidateCount": 1,
+  "rejectedCount": 0,
+  "metrics": {
+    "fenceMaxPitchMil": 179.7095,
+    "fencePitchLimitMil": 180,
+    "sensitiveKeepoutMarginMil": 10,
+    "sensitiveSignalStrokeMarginMil": 10,
+    "signalLengthMil": 534.9505,
+    "signalTurns": 4,
+    "guardPrimitiveCount": 10,
+    "groundJunctionSplits": 5
+  },
+  "signalRoutes": [
+    {
+      "id": "osc-in-main",
+      "pointCount": 3,
+      "lengthMil": 173.885532,
+      "turns": 1
+    },
+    {
+      "id": "osc-in-cap",
+      "pointCount": 2,
+      "lengthMil": 95.685,
+      "turns": 0
+    },
+    {
+      "id": "osc-out-main",
+      "pointCount": 5,
+      "lengthMil": 178.694965,
+      "turns": 3
+    },
+    {
+      "id": "osc-out-cap",
+      "pointCount": 2,
+      "lengthMil": 86.685,
+      "turns": 0
+    }
+  ],
+  "viaCount": 11,
+  "groundRouteCount": 15,
+  "readback": "当前修复后的候选仅在新鲜快照上离线重算；旧候选曾现场写入，但宿主在 5 个 GND junction 自动拆分护环 primitive，journal PID 随即过期，该轮不通过。",
+  "errorAndFix": "原合法候选转折 24 次；加入逐段净距检查的 45° visibility/string-pull，以转折数优先、长度次之选择，压缩至 4 次；不放宽净距或绕行边界。随后按现场失败证据，把 5 段长护环在 5 个 spoke/entry junction 预分为 10 个独立 primitive，每段使用确定的 apply step/capture；相同输入重算稳定。",
+  "remaining": [
+    "现场 apply dry-run 和写入",
+    "实际铺铜、GND 连通、DRC、对象差异",
+    "连续两轮独立验收及保存重载"
+  ]
+}

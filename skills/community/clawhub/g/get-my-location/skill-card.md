@@ -1,43 +1,56 @@
-## Description: <br>
-Gets current IP location info including country, province, city, and coordinates with multi-source fallback and no API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get current IP location info, including country, province, city, and coordinates, with multi-source fallback and no API key required.
 
-## Publisher: <br>
-[etmnb](https://clawhub.ai/user/etmnb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[etmnb](https://clawhub.ai/user/etmnb)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve approximate IP-based geolocation for their current network address or a specified IPv4 or IPv6 address. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: IP-based location checks contact external geolocation services and may expose the queried IP address. <br>
-Mitigation: Run the skill only when external lookups are acceptable, and avoid looking up third-party IP addresses unless there is a legitimate reason. <br>
-Risk: IP geolocation results are approximate and may not reflect a user's precise physical location. <br>
-Mitigation: Treat returned country, region, city, and coordinates as approximate network-location signals rather than verified physical-location data. <br>
+## Use Case:
 
+External users and developers use this skill when they need IP-based geolocation for the current machine or a specified IPv4 or IPv6 address.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/etmnb/get-my-location) <br>
-- [freegeoip.app lookup endpoint](https://freegeoip.app/json/) <br>
-- [api.ipbase.com lookup endpoint](https://api.ipbase.com/v1/json/) <br>
-- [ip-api.com lookup endpoint](http://ip-api.com/json/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Human-readable text or JSON from a Python command-line script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results are approximate IP geolocation data from external lookup services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: IP/location lookups are sent to outside services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in privacy-sensitive environments and add a clear privacy notice or confirmation step before lookups.
+
+Risk: The fallback chain can use an unencrypted HTTP provider.
+
+Mitigation: Restrict lookups to HTTPS providers or remove the plaintext ip-api.com fallback.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/etmnb/skills/get-my-location)
+- [freegeoip.app JSON endpoint](https://freegeoip.app/json/)
+- [api.ipbase.com JSON endpoint](https://api.ipbase.com/v1/json/)
+- [ip-api.com JSON endpoint](http://ip-api.com/json/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Human-readable location summary or JSON from a Python command-line script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include IP address, country, region, city, postal code, coordinates, time zone, and data source.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

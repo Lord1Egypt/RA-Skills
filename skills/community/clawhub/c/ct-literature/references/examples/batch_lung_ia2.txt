@@ -1,0 +1,9 @@
+# 肺癌 IA 期文献批量检索（行列表 · v1 默认格式）
+# 语法：一行一查询；"|" 之后接 key=value 追加参数；含空格的值用双引号；# 与空行忽略
+# "@技能名" 可切换其后行的技能上下文（v1 仅支持 ct-literature）
+
+stage IA2 lung adenocarcinoma prognosis
+acinar predominant adenocarcinoma | review_type=systematic year_from=2020
+adjuvant immunotherapy early-stage NSCLC | safety=true depth=deep
+osimertinib adjuvant NSCLC | review_type=systematic year_from=2018 max=30 concepts="intervention:osimertinib;outcome:disease-free survival"
+recent NSCLC biomarker | recent_months=6 with_guidelines=true

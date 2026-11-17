@@ -1,42 +1,52 @@
-## Description: <br>
-Generate personalized career roadmaps for psychology entry-level professionals based on their education, skills, interests, and goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate personalized career roadmaps for psychology entry-level professionals based on their education, skills, interests, and goals.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External learners, students, career changers, and early-career psychology professionals use this skill to request a structured career roadmap from profile details such as education, interests, experience, skills, and goals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The API request can include detailed education, skills, goals, session identifiers, timestamps, and user identifiers sent to an external provider. <br>
-Mitigation: Avoid unnecessary identifiers and highly sensitive details, and ask for explicit confirmation before submitting real user profile data. <br>
-Risk: Generated career guidance may be incomplete for jurisdiction-specific psychology licensing or credentialing requirements. <br>
-Mitigation: Treat the roadmap as planning support and verify licensure, certification, and education requirements with authoritative program or licensing sources. <br>
+## Use Case:
 
+External users, students, career changers, and early-career psychology professionals use this skill to generate structured career roadmaps with immediate, short-term, medium-term, and long-term recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-psychology) <br>
-- [Psychology roadmap API docs](https://api.mkkpro.com:8177/docs) <br>
-- [Psychology roadmap API route](https://api.mkkpro.com/career/psychology) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON roadmap response with text recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires assessment profile fields and returns immediate, short-term, medium-term, and long-term roadmap sections with education, certification, skill, resource, and tip recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: The skill sends detailed personal career and psychology-related profile data plus tracking identifiers to an external service without privacy or retention details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the API provider and privacy terms before installing, and avoid sending names, confidential clinical details, precise employers, or stable personal identifiers unless required and trusted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-psychology)
+- [API Docs](https://api.mkkpro.com:8177/docs)
+- [Kong Route](https://api.mkkpro.com/career/psychology)
+- [ToolWeb](https://toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance, Text, JSON]
+
+**Output Format:** [JSON roadmap with narrative text fields and recommendation arrays]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes overview, immediate steps, time-phased goals, education, certifications, skills, resources, tips, sessionId, and generatedAt fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

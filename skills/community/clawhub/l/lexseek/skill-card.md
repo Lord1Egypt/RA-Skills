@@ -1,47 +1,65 @@
-## Description: <br>
-法索 AI 法律助手，提供法律条文检索功能，当用户询问法律问题、查询法规条文、查找司法解释或了解法律条款内容时，帮助检索相关法律依据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+法索 AI 法律助手，提供法律条文检索功能。当用户询问法律问题、查询法规条文、查找司法解释、了解法律条款内容时自动触发。包括：查询特定法律（如劳动法、合同法、民法典）、根据案件情况检索相关法律依据、了解某个法律概念的具体规定等。
 
-## Publisher: <br>
-[daixin877889](https://clawhub.ai/user/daixin877889) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daixin877889](https://clawhub.ai/user/daixin877889)
 
-## Use Case: <br>
-External users use this skill to search legal statutes, regulations, and judicial interpretations through LexSeek after authentication. The agent analyzes legal fact patterns, extracts professional legal search terms, runs one or more searches, and summarizes retrieved provisions with source names and article numbers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Legal queries and authentication data are sent to an external LexSeek service. <br>
-Mitigation: Install only when the publisher and LexSeek are trusted, and avoid submitting sensitive legal facts unless the deployment accepts that data flow. <br>
-Risk: The skill asks for account passwords through chat or CLI. <br>
-Mitigation: Use a dedicated LexSeek account or pre-provisioned API key instead of a reusable main-account password. <br>
-Risk: The API key is stored locally in plaintext. <br>
-Mitigation: Run the skill in an isolated environment and use logout or key rotation after use. <br>
-Risk: Legal-search results may be incomplete, unavailable, or unsuitable as legal advice. <br>
-Mitigation: Treat responses as reference material and consult a qualified lawyer for specific legal decisions. <br>
+## Use Case:
 
+External users and legal-domain practitioners use this skill to search legal provisions, regulations, and judicial interpretations through the LexSeek API. The agent analyzes case facts, extracts professional legal keywords, runs authenticated searches, and presents cited results with a reminder to consult a qualified lawyer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daixin877889/lexseek) <br>
-- [LexSeek service](https://lexseek.cn) <br>
-- [登录与认证](artifact/references/auth.md) <br>
-- [法律 API 接口](artifact/references/legal-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with retrieved legal provisions and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include multi-query result consolidation, law names, article numbers, effectiveness metadata, and reminders to consult a qualified lawyer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests LexSeek phone-number and password credentials through chat or command arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer scoped tokens or browser/OAuth-style login and do not provide reusable passwords in chat or CLI arguments.
+
+Risk: The skill stores a LexSeek API key locally in the skill directory.
+
+Mitigation: Store credentials in a managed secret store or protected environment variables instead of the skill directory.
+
+Risk: The skill sends legal queries to LexSeek and depends on an external API for results.
+
+Mitigation: Install only when LexSeek data sharing is acceptable, pin the API URL to the legitimate LexSeek host, and handle API failures without adding unsupported legal answers.
+
+Risk: The release includes obfuscated network code.
+
+Mitigation: Review or replace the obfuscated script before deployment and confirm it only contacts expected LexSeek endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daixin877889/skills/lexseek)
+- [LexSeek registration and service site](https://lexseek.cn)
+- [登录与认证](artifact/references/auth.md)
+- [法律 API 接口](artifact/references/legal-api.md)
+- [LexSeek API base URL](https://api.lexseek.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text with cited legal provisions and inline shell commands for LexSeek authentication and search]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LexSeek authentication and should not supplement missing search results with model knowledge.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

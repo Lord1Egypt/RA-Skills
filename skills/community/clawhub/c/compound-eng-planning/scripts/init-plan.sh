@@ -1,27 +1,58 @@
 #!/usr/bin/env bash
-# init-plan.sh — Scaffold .plan/ directory with template files
-# Usage: bash init-plan.sh [task-name]
+# init-plan.sh: scaffold a durable task plan
+# Usage: bash init-plan.sh [task-name] [--force]
 #
-# Creates .plan/ with task_plan.md, findings.md, progress.md
-# Adds .plan/ to .gitignore if not present
+# Creates .plan/task_plan.md at the repository root of the working
+# directory (the working directory itself outside a repository)
+# Adds .plan/ to that root's .gitignore if not present
+# Refuses to overwrite a task_plan.md that still has unchecked tasks
+# unless --force is given.
 
 set -euo pipefail
 
-PLAN_DIR=".plan"
-TASK_NAME="${1:-Unnamed Task}"
+ROOT=$(git rev-parse --show-toplevel 2>/dev/null || pwd -P)
+SKILL_ROOT=$(cd "$(dirname "$0")/.." && pwd -P)
+# Check the working directory too: a skill installed inside a git checkout
+# resolves ROOT to that checkout's root, which lies outside SKILL_ROOT.
+for dir in "$(pwd -P)/" "$ROOT/"; do
+    case "$dir" in
+        "$SKILL_ROOT"/*)
+            echo "ERROR: run from the project working tree, not the skill directory ($SKILL_ROOT)." >&2
+            exit 2
+            ;;
+    esac
+done
+PLAN_DIR="$ROOT/.plan"
+GITIGNORE="$ROOT/.gitignore"
+FORCE=0
+TASK_NAME="Unnamed Task"
+for arg in "$@"; do
+    case "$arg" in
+        --force) FORCE=1 ;;
+        *) TASK_NAME="$arg" ;;
+    esac
+done
 DATE=$(date +%Y-%m-%d)
 
-# Create directory
-mkdir -p "$PLAN_DIR"
-
-# Add to .gitignore if not present
-if [ -f .gitignore ]; then
-    grep -qxF '.plan/' .gitignore 2>/dev/null || echo '.plan/' >> .gitignore
-else
-    echo '.plan/' > .gitignore
+# Guard: an existing plan with unchecked tasks is live work in progress.
+if [ "$FORCE" -ne 1 ] && [ -f "$PLAN_DIR/task_plan.md" ] && grep -q '^\s*- \[ \]' "$PLAN_DIR/task_plan.md"; then
+    echo "ERROR: $PLAN_DIR/task_plan.md has unchecked tasks." >&2
+    echo "Same work continuing: update it in place. Different work: confirm which plan wins, then re-run with --force." >&2
+    exit 1
 fi
 
-# task_plan.md
+mkdir -p "$PLAN_DIR"
+
+if ! grep -qxF '.plan/' "$GITIGNORE" 2>/dev/null; then
+    if [[ -s "$GITIGNORE" ]]; then
+        ignore_last_byte=$(tail -c 1 "$GITIGNORE")
+        if [[ -n "${ignore_last_byte}" ]]; then
+            printf '\n' >>"$GITIGNORE"
+        fi
+    fi
+    printf '%s\n' '.plan/' >>"$GITIGNORE"
+fi
+
 cat > "$PLAN_DIR/task_plan.md" << EOF
 # Plan: ${TASK_NAME}
 
@@ -36,9 +67,14 @@ cat > "$PLAN_DIR/task_plan.md" << EOF
 - **In**: [what's included]
 - **Out**: [what's explicitly excluded]
 
+## Next Step
+
+[one line: the phase and task to resume on]
+
 ## Phase 1: [Name]
 
-**Files**: [specific files, max 5-8 per phase]
+**Status**: pending
+**Files**: [specific files owned by this phase]
 
 **Tasks**:
 - [ ] [Verb-first atomic task]
@@ -48,7 +84,7 @@ cat > "$PLAN_DIR/task_plan.md" << EOF
 
 ## Open Questions
 
-- [Max 3, only truly blocking unknowns]
+- [Only genuinely blocking unknowns]
 
 ## Error Log
 
@@ -56,50 +92,6 @@ cat > "$PLAN_DIR/task_plan.md" << EOF
 |---------|-------------|-----|-------------|
 EOF
 
-# findings.md
-cat > "$PLAN_DIR/findings.md" << EOF
-# Findings: ${TASK_NAME}
-
-**Created:** ${DATE}
-
-## Architecture
-
-[Key structural observations about the codebase]
-
-## Dependencies
-
-[External dependencies, version constraints, gotchas]
-
-## Discoveries
-
-[Anything unexpected found during investigation]
-EOF
-
-# progress.md
-cat > "$PLAN_DIR/progress.md" << EOF
-# Progress: ${TASK_NAME}
-
-**Started:** ${DATE}
-
-## Session Log
-
-### ${DATE}
-
-- [Started planning]
-
-## Files Changed
-
-| File | Change |
-|------|--------|
-
-## Test Results
-
-| Phase | Command | Result |
-|-------|---------|--------|
-EOF
-
 echo "Created ${PLAN_DIR}/ with:"
 echo "  - task_plan.md"
-echo "  - findings.md"
-echo "  - progress.md"
-echo "Added .plan/ to .gitignore"
+echo "Added .plan/ to ${GITIGNORE}"

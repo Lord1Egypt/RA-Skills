@@ -1,45 +1,62 @@
-## Description: <br>
-Sends Feishu/Lark webhook messages, including plain text, rich text post messages, interactive cards, and image uploads with a tenant access token. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends Feishu/Lark webhook messages, including plain text, rich text posts, interactive cards, and optional image uploads.
 
-## Publisher: <br>
-[shaniu001](https://clawhub.ai/user/shaniu001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaniu001](https://clawhub.ai/user/shaniu001)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare and send Feishu/Lark group notifications from an agent, including text notices, formatted posts, card layouts, and images that require upload before sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Webhook URLs and FEISHU_TENANT_ACCESS_TOKEN can grant access to send messages or upload images. <br>
-Mitigation: Treat them as secrets, prefer environment variables over command-line token arguments, and use the least-privileged token available. <br>
-Risk: The skill can send selected text and images to an external Feishu/Lark destination. <br>
-Mitigation: Confirm the webhook destination and review message contents before sending sensitive internal information. <br>
+## Use Case:
 
+Developers and operations teams use this skill to let an agent compose and send Feishu/Lark group notifications, rich posts, and interactive card messages through a user-provided webhook.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/shaniu001/feishu-webhook-skill) <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
-- [Feishu image upload API](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/image/create) <br>
-- [Feishu file upload API](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/file/create) <br>
-- [Feishu user identity guide](https://open.feishu.cn/document/home/user-identity-introduction/open-id) <br>
-- [VChart documentation](https://www.visactor.io/vchart/guide/tutorial_docs/Chart_Concepts/Understanding_VChart) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Feishu/Lark webhook payload structures and image upload commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Webhook messages may be sent to an unintended Feishu/Lark destination or include unintended content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm webhook URLs and message contents before sending.
+
+Risk: Tenant access tokens can be exposed if passed directly on the command line.
+
+Mitigation: Use FEISHU_TENANT_ACCESS_TOKEN through a protected environment or secret mechanism and avoid command-line token arguments.
+
+Risk: Images uploaded through the helper become shared in Feishu/Lark according to the target workspace and message context.
+
+Mitigation: Upload only images that are intended to be shared in Feishu/Lark.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/shaniu001/skills/feishu-webhook-skill)
+- [Feishu image upload API](https://open.feishu.cn/open-apis/im/v1/images)
+- [Feishu image upload documentation](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/image/create)
+- [Feishu file upload documentation](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/file/create)
+- [Feishu user identity documentation](https://open.feishu.cn/document/home/user-identity-introduction/open-id)
+- [VChart configuration documentation](https://www.visactor.io/vchart/option/barChart)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown guidance with JSON payload examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send webhook requests or upload selected images when configured with a webhook URL and Feishu tenant access token.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

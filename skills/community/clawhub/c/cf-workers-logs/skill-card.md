@@ -1,43 +1,51 @@
-## Description: <br>
-Query Cloudflare Workers Observability logs via API for checking logs, debugging Workers, looking up errors, and investigating Worker, Durable Object, Workflow, Queue, and Cron Trigger behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Cloudflare Workers Observability logs via API for Workers, Durable Objects, Workflows, Queues, and Cron Triggers.
 
-## Publisher: <br>
-[adaHubble](https://clawhub.ai/user/adaHubble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adahubble](https://clawhub.ai/user/adahubble)
 
-## Use Case: <br>
-Developers and engineers use this skill to query and summarize Cloudflare Workers Observability logs from an agent terminal session while debugging Workers, Durable Objects, Workflows, Queues, and Cron Triggers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloudflare API token exposure or overly broad log access can expose sensitive operational data. <br>
-Mitigation: Install only where the agent is allowed to access Workers logs, use a dedicated narrowly scoped Cloudflare API token, and keep .env files out of version control. <br>
-Risk: Broad log queries may surface unnecessary sensitive log content. <br>
-Mitigation: Prefer specific worker names, short time windows, and low result limits, and avoid putting secrets in application logs. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect recent Cloudflare Workers logs, filter errors, and investigate Worker, Durable Object, Workflow, Queue, or Cron Trigger behavior from an agent session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/adaHubble/cf-workers-logs) <br>
-- [Skill homepage](https://github.com/adaHubble/cf-workers-logs) <br>
-- [Cloudflare Workers Observability query endpoint](https://api.cloudflare.com/client/v4/accounts/{accountId}/workers/observability/telemetry/query) <br>
-- [Cloudflare dashboard](https://dash.cloudflare.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, API query guidance] <br>
-**Output Format:** [Markdown with inline curl commands and formatted log timelines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Cloudflare account ID and API token environment variables; defaults to short recent log queries when arguments are omitted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill may search project .env files and print matching credential lines, which can expose Cloudflare API tokens in transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped Cloudflare token, export required variables directly when possible, avoid recursive .env searches, and rotate any token that appears in agent output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adahubble/skills/cf-workers-logs)
+- [Cloudflare Workers Observability API endpoint](https://api.cloudflare.com/client/v4/accounts/{accountId}/workers/observability/telemetry/query)
+- [Cloudflare dashboard](https://dash.cloudflare.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and formatted log timelines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Cloudflare API request payloads, curl commands, parsed JSON log events, and credential setup guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-通过自然语言修改全局 spec 文档。解析需求，展示变更计划，执行修改，并生成配图。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过自然语言修改全局 spec 文档。解析需求，展示变更计划，执行修改，并生成配图。
 
-## Publisher: <br>
-[mahingbun-dev](https://clawhub.ai/user/mahingbun-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mahingbun-dev](https://clawhub.ai/user/mahingbun-dev)
 
-## Use Case: <br>
-Developers and teams maintaining SDD workspaces use this skill to plan and apply confirmed changes across global spec documents, keep related documents consistent, and add or refresh supporting illustrations when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Proposed spec edits or image prompts could introduce incorrect guidance or expose private architecture, product, or business information if accepted without review. <br>
-Mitigation: Review the proposed file changes and image prompts before confirming execution, especially when specs contain private information. <br>
+## Use Case:
 
+Developers and project maintainers use this skill to update Chinese-language SDD global specification documents from natural-language requests. It plans document changes for confirmation, applies approved Markdown edits, checks cross-document consistency, and generates needed supporting images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mahingbun-dev/sdd-global-change) <br>
-- [Publisher profile](https://clawhub.ai/user/mahingbun-dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Chinese plain text summaries and Markdown spec file edits, with optional image-generation prompts and image references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before modifying global spec documents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can persistently edit SDD global documentation and create image files in the configured workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed change plan before confirming execution, and use the skill only in intended workspaces.
+
+Risk: The workflow is designed for Chinese-language global SDD documentation.
+
+Mitigation: Use it for projects that maintain global SDD documents in Chinese, or review and translate outputs before adoption.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mahingbun-dev/skills/sdd-global-change)
+- [Publisher profile](https://clawhub.ai/user/mahingbun-dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Chinese Markdown plans, document edits, image-generation requests, and completion summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes approved changes to scoped SDD global documentation and may create image files under the configured workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

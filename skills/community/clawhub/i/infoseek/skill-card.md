@@ -1,43 +1,62 @@
-## Description: <br>
-InfoSeek performs comprehensive web research on persons, organizations, or products across multiple search engines, deduplicates URLs, extracts clean content, and archives results with metadata in organized local folders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep web information search and archival skill for comprehensive research on persons, organizations, or products using multiple search engines, browser-based content extraction, SQLite URL deduplication, structured local storage, and configurable output formats.
 
-## Publisher: <br>
-[expeditionhub](https://clawhub.ai/user/expeditionhub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[expeditionhub](https://clawhub.ai/user/expeditionhub)
 
-## Use Case: <br>
-External users and research teams use InfoSeek for background research, due diligence, media monitoring, competitive intelligence, and building local information archives about specific subjects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search subjects, context, URLs, and page requests may be sent to external search and browser providers. <br>
-Mitigation: Use the skill only when external-provider sharing is acceptable, avoid person-focused dossiers without a lawful and appropriate basis, and review dependent search/browser skills separately. <br>
-Risk: Local archives may contain sensitive research results and metadata. <br>
-Mitigation: Keep archives in a controlled workspace, choose storage paths deliberately, and apply retention and access controls appropriate to the subject matter. <br>
-Risk: The Windows deletion helper is flagged as risky due to PowerShell path handling. <br>
-Mitigation: Avoid the Windows delete helper until its path handling is fixed; use a reviewed manual recycle-bin workflow when deletion is needed. <br>
+## Use Case:
 
+External users, developers, and analysts use InfoSeek to gather, deduplicate, extract, and archive web information about people, organizations, or products for background research, due diligence, media monitoring, competitive intelligence, or information archive building.
 
-## Reference(s): <br>
-- [ClawHub InfoSeek Skill Page](https://clawhub.ai/expeditionhub/infoseek) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/expeditionhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, plain text, CSV, XLSX, HTML, DOCX, SQLite records, and terminal task summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Archives include source URL, website, source, publish date, title, author, editor, archived timestamp, and search task metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md Version History) <br>
+Risk: The skill sends search subjects to external search and browsing providers while its artifact text under-discloses that behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review network disclosure before use, avoid sensitive search subjects unless external-provider sharing is acceptable, and document which providers will receive queries.
+
+Risk: Research and archived content may include personal data in local folders, SQLite records, and logs.
+
+Mitigation: Use people research only with a clear lawful purpose, set a retention plan, and review archive, database, and log contents before sharing or retaining them.
+
+Risk: The deletion command may target paths outside the intended archive and uses platform-specific recycle-bin or trash implementations.
+
+Mitigation: Avoid the deletion command until deletion is restricted to the InfoSeek archive and implemented through safer platform APIs; delete files through reviewed workspace controls instead.
+
+Risk: The skill depends on other search and browser skills without pinned or verified versions.
+
+Mitigation: Pin, inspect, and verify required dependency skills before installation or execution.
+
+## Reference(s):
+
+- [InfoSeek ClawHub skill page](https://clawhub.ai/expeditionhub/skills/infoseek)
+- [expeditionhub publisher profile](https://clawhub.ai/user/expeditionhub)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and locally archived files in md, json, txt, csv, xlsx, html, or docx formats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates per-subject archive folders, a local SQLite deduplication database, operation logs, and task reports.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact version history, released 2026-04-07)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

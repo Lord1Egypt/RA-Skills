@@ -1,7 +1,7 @@
 ---
 name: architecture-paradigm-event-driven
-description: Applies event-driven async messaging to decouple producers and consumers
-version: 1.9.8
+description: Event-driven async messaging
+version: 1.10.3
 triggers:
   - architecture
   - event-driven
@@ -9,13 +9,13 @@ triggers:
   - decoupling
   - scalability
   - resilience
-  - designing real-time or multi-subscriber systems needing loose coupling
+  - real-time or multi-subscriber systems need producers decoupled from consumers
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/archetypes", "emoji": "\ud83c\udfd7\ufe0f"}}
 source: claude-night-market
 source_plugin: archetypes
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # The Event-Driven Architecture Paradigm
@@ -58,13 +58,20 @@ source_plugin: archetypes
 
 ## Concrete Components
 
-These vocabulary items name the concrete tools and abstractions
-that show up when the paradigm is implemented. They are not
-required dependencies and they are not part of the skill's
-``tools:`` frontmatter (which is reserved for Claude Code tool
-restrictions). Use this list to disambiguate during architecture
-discussions.
+Vocabulary for the tools and abstractions an implementation of this
+paradigm tends to carry. Not dependencies, and not ``tools:`` frontmatter.
 
-- ``message-broker`` -- Kafka, NATS, RabbitMQ; the durable channel between producers and consumers
-- ``event-stream-processor`` -- Flink, Faust, or similar; consumes streams and emits derived events
-- ``distributed-tracing`` -- OpenTelemetry-style correlation IDs across asynchronous hops
+- ``message-broker``: Kafka, NATS, RabbitMQ; the durable channel between producers and consumers
+- ``event-stream-processor``: Flink, Faust, or similar; consumes streams and emits derived events
+- ``distributed-tracing``: OpenTelemetry-style correlation IDs across asynchronous hops
+
+## Exit Criteria
+
+- [ ] An ADR is produced documenting the event taxonomy, chosen broker technology, naming
+  conventions, versioning policy, and data retention settings.
+- [ ] A centralized schema repository or registry exists with CI validation that blocks
+  unregistered event schemas from reaching production.
+- [ ] Dead-Letter Queue (DLQ) configuration and retry policy are specified for every consumer
+  before any consumer is deployed.
+- [ ] Observability dashboards cover at minimum: consumer lag, message throughput, schema
+  validation failure rate, and DLQ depth.

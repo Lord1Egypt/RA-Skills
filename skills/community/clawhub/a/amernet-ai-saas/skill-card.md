@@ -1,42 +1,65 @@
-## Description: <br>
-Connect your AI SaaS intelligent agent to any messaging channel via OpenClaw, including WhatsApp, Telegram, Slack, Discord, iMessage, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect your AI SaaS intelligent agent to any messaging channel via OpenClaw (WhatsApp, Telegram, Slack, Discord, iMessage, and more).
 
-## Publisher: <br>
-[amernet](https://clawhub.ai/user/amernet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[amernet](https://clawhub.ai/user/amernet)
 
-## Use Case: <br>
-Developers and operators use this skill to connect an Amernet AI SaaS chatbot to OpenClaw messaging channels and route user conversations to the selected chatbot while preserving per-channel session context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Connected-channel messages and user identifiers are sent to an external AI SaaS service. <br>
-Mitigation: Limit which channels are connected, notify users where required, and avoid forwarding sensitive or regulated data unless applicable agreements allow it. <br>
-Risk: The skill requires an all-permissions API key for the AI SaaS portal. <br>
-Mitigation: Store the API key carefully in the OpenClaw environment configuration, restrict access, and rotate the key regularly. <br>
+## Use Case:
 
+Developers and administrators use this skill to connect an Amernet AI SaaS agent to OpenClaw messaging channels, forward user messages to the SaaS API, reset conversations, check agent status, and route AI Growth Engine AutoPilot requests with confirmation before action.
 
-## Reference(s): <br>
-- [Amernet AI SaaS ClawHub listing](https://clawhub.ai/amernet/amernet-ai-saas) <br>
-- [AI SaaS portal](https://saas.salesbay.ai) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Configuration, Guidance] <br>
-**Output Format:** [Text replies with JSON API request guidance and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes channel messages to an external chatbot, supports reset and status commands, and returns a fallback message when the service is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Connected-channel messages and channel identifiers are sent to the external AI SaaS service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where administrators intend all connected-channel messages to be processed by the AI SaaS service and make that data flow clear to users.
+
+Risk: The skill requests broad account permissions through the AI SaaS API key.
+
+Mitigation: Prefer a narrowly scoped, revocable API token if the service supports one and rotate or revoke credentials when access is no longer needed.
+
+Risk: A configurable base URL could send messages or credentials to an unintended service.
+
+Mitigation: Lock the base URL to the trusted HTTPS SaaS origin before enabling the skill.
+
+Risk: AutoPilot deploy or pause requests can change business campaigns.
+
+Mitigation: Require role checks and explicit confirmation before forwarding deploy or pause confirmations.
+
+## Reference(s):
+
+- [Amernet AI SaaS portal](https://saas.salesbay.ai)
+- [OpenClaw](https://openclaw.ai)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [ClawHub skill page](https://clawhub.ai/amernet/skills/amernet-ai-saas)
+- [Publisher profile](https://clawhub.ai/user/amernet)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API calls, Shell commands, Configuration]
+
+**Output Format:** [Plain text responses with JSON API requests and shell or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains per-user conversation context through channel and user identifiers; AutoPilot deploy and pause actions require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.1.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

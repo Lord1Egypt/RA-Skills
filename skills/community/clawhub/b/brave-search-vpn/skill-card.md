@@ -1,45 +1,59 @@
-## Description: <br>
-【极简版省token】使用 Brave API 执行网络搜索。针对国内代理环境做优化。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Brave Search 极简国内版 uses the Brave API to run web searches through a local proxy with CN and zh-hans defaults.
 
-## Publisher: <br>
-[jhc888007](https://clawhub.ai/user/jhc888007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhc888007](https://clawhub.ai/user/jhc888007)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to run Brave web searches through a configured local proxy/VPN and return compact JSON search results for agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Brave through the configured local proxy/VPN. <br>
-Mitigation: Avoid submitting secrets, private internal URLs, sensitive identifiers, or confidential business data as search terms. <br>
-Risk: The skill requires a Brave API key and local proxy port through environment variables. <br>
-Mitigation: Provide credentials through the agent's secret or environment configuration and do not commit real keys to repository files. <br>
-Risk: The README suggests routing future searches to this skill and disabling another web search tool. <br>
-Mitigation: Apply that routing only when Brave via the configured proxy should be the agent's intended search path. <br>
+## Use Case:
 
+Developers and agent users use this skill to fetch current web, news, and video search results from Brave Search in environments that require a local HTTP proxy.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jhc888007/brave-search-vpn) <br>
-- [Publisher profile](https://clawhub.ai/user/jhc888007) <br>
-- [Brave Search API](https://api.search.brave.com) <br>
-- [Brave Search API keys](https://api-dashboard.search.brave.com/app/keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON string from the Brave Search CLI, with Markdown documentation and shell command examples for setup.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns compact web, news, and video result objects when available; requires BRAVE_SEARCH_API_KEY and HTTP_PROXY_PORT.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server-resolved release metadata) <br>
+Risk: Search queries are sent to Brave Search through the configured localhost proxy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only when Brave Search and the configured proxy are appropriate for the query data being sent.
+
+Risk: The skill requires a Brave Search API key that may be stored in the agent environment.
+
+Mitigation: Store the API key in the agent's supported environment configuration and rotate it if exposure is suspected.
+
+Risk: Disabling built-in web search can route future searches through this skill's CN and zh-hans defaults.
+
+Mitigation: Disable built-in web search only when that routing is intended, and adjust country or language parameters for other use cases.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jhc888007/skills/brave-search-vpn)
+- [Brave Search API endpoint](https://api.search.brave.com/res/v1/web/search)
+- [Brave Search API keys](https://api-dashboard.search.brave.com/app/keys)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON string for search results; Markdown guidance for setup and usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BRAVE_SEARCH_API_KEY and HTTP_PROXY_PORT; defaults include country=CN, search_lang=zh-hans, safesearch=moderate, count limited to 20, and offset limited to 9.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

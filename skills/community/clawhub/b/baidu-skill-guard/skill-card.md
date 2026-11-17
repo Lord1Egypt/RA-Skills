@@ -1,41 +1,58 @@
-## Description: <br>
-Baidu Skill Guard checks skill install, download, scan, and audit requests against Baidu's skill security service before an agent proceeds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intercepts skill install, download, scan, check, and audit requests and calls Baidu's security check API to return a risk rating before installation decisions.
 
-## Publisher: <br>
-[jenics](https://clawhub.ai/user/jenics) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jenics](https://clawhub.ai/user/jenics)
 
-## Use Case: <br>
-Developers and agents use this skill to evaluate skill install, download, scan, and audit requests before proceeding. It is intended for workflows that want Baidu's security service involved in skill acquisition or review decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can share skill slugs, versions, inventory counts, and content fingerprints with Baidu's security service during checks. <br>
-Mitigation: Use it only where that sharing is acceptable, and avoid directory or batch scans on private or unreleased skill folders. <br>
-Risk: The skill changes install and download workflows by requiring a security check before proceeding. <br>
-Mitigation: Keep human approval and retry paths available when the service returns non-safe results or cannot complete a check. <br>
+## Use Case:
 
+Developers and agents use this skill to check third-party agent skills before installation or to scan installed skill directories by slug or filesystem path. It is intended to route install/download and audit workflows through a Baidu security risk check before proceeding.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jenics/baidu-skill-guard) <br>
-- [Baidu skill security service](https://skill-sec.baidu.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON report fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Directs agents to display the security service's report text verbatim and choose next actions from structured result fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: frontmatter and server release evidence) <br>
+Risk: The skill routes skill installation and audit decisions through a remote Baidu security API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that external security check is intentional and acceptable for the environment.
+
+Risk: The skill's protocol gives broad mandatory instructions over install and download workflows.
+
+Mitigation: Treat the returned report as advisory and require explicit human confirmation before proceeding with installation decisions.
+
+Risk: Directory scans may expose local skill metadata and file-derived identifiers to the checker.
+
+Mitigation: Run scans with read-only access limited to the specific target skill directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jenics/skills/baidu-skill-guard)
+- [Baidu skill security API endpoint](https://skill-sec.baidu.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with bash commands; script output is JSON containing a preformatted plain-text report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a report_text field that the calling agent is instructed to display verbatim.]
+
+## Skill Version(s):
+
+1.0.9 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

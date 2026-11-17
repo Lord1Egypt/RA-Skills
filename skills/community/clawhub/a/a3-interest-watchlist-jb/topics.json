@@ -1,0 +1,57 @@
+{
+  "topics": [
+    {
+      "id": "major_news",
+      "query": "major breaking United States world news Reuters Associated Press"
+    },
+    {
+      "id": "travel",
+      "query": "FAA aviation air traffic flight disruptions official news"
+    },
+    {
+      "id": "deadlock",
+      "query": "Deadlock update patch notes site:forums.playdeadlock.com OR site:playdeadlock.com",
+      "source_hosts": [
+        "forums.playdeadlock.com",
+        "playdeadlock.com",
+        "www.playdeadlock.com"
+      ]
+    },
+    {
+      "id": "valorant",
+      "query": "Valorant news patch esports site:playvalorant.com OR site:valorantesports.com",
+      "source_hosts": [
+        "playvalorant.com",
+        "www.playvalorant.com",
+        "valorantesports.com",
+        "www.valorantesports.com"
+      ]
+    },
+    {
+      "id": "gaming",
+      "query": "official game release announcement"
+    },
+    {
+      "id": "ai",
+      "query": "AI announcements site:openai.com OR site:anthropic.com OR site:blog.google"
+    },
+    {
+      "id": "companies",
+      "query": "Salesforce official announcements products company news"
+    },
+    {
+      "id": "politics",
+      "query": "United States government policy major official announcements news"
+    },
+    {
+      "id": "youtube",
+      "query": "YouTube creator updates official news site:blog.youtube"
+    }
+  ],
+  "freshness_hours": 72,
+  "max_items": 5,
+  "quiet_behavior": "omit category; never recycle old items",
+  "search_results_per_topic": 3,
+  "max_source_fetches": 5,
+  "max_priority_retries": 2
+}

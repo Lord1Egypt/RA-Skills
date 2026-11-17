@@ -1,0 +1,24 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_codestudio_create_module",
+		"description": "Create an AICodeStudio module (full Vue3 + Vite project; better than the website module for interactive/component-based/router-driven frontends). Returns the new moduleId, which all subsequent _codestudio_* calls must carry. Scaffolding (App.vue / main.js / router etc.) is seeded automatically.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string",
+					"description": "Module name, human-readable; also used as the script/API group directory name."
+				},
+				"remark": {
+					"type": "string",
+					"description": "Optional remark."
+				}
+			},
+			"required": [
+				"name"
+			],
+			"additionalProperties": false
+		}
+	}
+}

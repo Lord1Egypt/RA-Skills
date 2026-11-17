@@ -1,0 +1,13 @@
+{
+  "name": "training-checklist",
+  "displayName": "筹备检查清单",
+  "version": "1.0.0",
+  "description": "培训筹备全流程检查清单：逐项检查场地/酒店/设备/讲师/教材/物料等准备状态，输出✅完备/⚠️缺漏/❌未启动三级状态，自动生成周度进度小结。",
+  "author": "golngod",
+  "license": "MIT",
+  "pricing": {
+    "model": "free"
+  },
+  "tags": ["training", "checklist", "preparation", "project-management", "reminder"],
+  "minOpenClawVersion": "1.2.0"
+}

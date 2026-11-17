@@ -1,41 +1,55 @@
-## Description: <br>
-Funshion is an archived informational skill about the now inactive or marginalized Funshion video platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Funshion helps agents answer questions about the legacy Chinese video platform Funshion, including its history, current viewing posture, platform comparisons, and lawful content-search guidance.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-External users and agents use this skill as a brief historical reference for the Funshion video platform and to understand that the service is archived rather than active. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may expect an active video service or integration from this archived skill. <br>
-Mitigation: Present it only as a historical reference and direct users to current mainstream alternatives for active video services. <br>
-Risk: The artifact provides informational text only and does not perform retrieval, execution, or service checks. <br>
-Mitigation: Do not treat its output as a live service status check; verify current platform availability through separate sources when needed. <br>
+## Use Case:
 
+External users and agents use this skill to explain whether Funshion is still useful, compare it with major Chinese video platforms, and guide users toward lawful platform searches for older film and television content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/funshion) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zhangifonly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown or plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides archived informational guidance only; it does not run code, call APIs, or integrate with an active video service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Streaming availability and title catalogs can change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current platform availability and specific titles through official platform search before presenting availability as current.
+
+Risk: Users may ask for pirated or unofficial viewing sources.
+
+Mitigation: Keep recommendations within lawful platforms and avoid piracy guidance.
+
+## Reference(s):
+
+- [Funshion skill page](https://clawhub.ai/zhangifonly/skills/funshion)
+- [Publisher profile](https://clawhub.ai/user/zhangifonly)
+- [Source skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain-language guidance or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No credentials, privileged access, or tool execution are requested by the skill.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

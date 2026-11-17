@@ -1,44 +1,56 @@
-## Description: <br>
-Helps agents review and repair IEEE-style LaTeX and BibTeX references, including citation consistency, required fields, journal macro normalization, DOI metadata checks, Early Access handling, author-count rules, and duplicate detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents review and repair IEEE-style LaTeX and BibTeX references, including citation consistency, required fields, journal macros, DOI metadata, Early Access entries, duplicate detection, and compliance reports.
 
-## Publisher: <br>
-[ZLHad](https://clawhub.ai/user/ZLHad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlhad](https://clawhub.ai/user/zlhad)
 
-## Use Case: <br>
-Researchers, authors, and technical editors use this skill to audit IEEE paper references, repair BibTeX entries, check citation coverage across .tex and .bib files, normalize IEEE journal names, and prepare user-reviewed bibliography edits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Online DOI validation can disclose draft titles, authors, or DOI values to external services. <br>
-Mitigation: Avoid web-based DOI validation for confidential drafts unless sharing that metadata externally is acceptable. <br>
-Risk: Automated bibliography or citation edits can introduce incorrect references or formatting changes. <br>
-Mitigation: Review proposed diffs and Before/After examples before accepting edits. <br>
+## Use Case:
 
+External authors, researchers, and developers working on IEEE-style LaTeX papers use this skill to audit and repair .bib and .tex references, validate DOI metadata, standardize journal names, and generate issue reports or proposed BibTeX edits.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/ZLHad/ieee-reference-manager) <br>
-- [IEEE Reference Guide](https://journals.ieeeauthorcenter.ieee.org/wp-content/uploads/sites/7/IEEE_Reference_Guide.pdf) <br>
-- [IEEEtran BibTeX HOWTO](https://www.michaelshell.org/tex/ieeetran/bibtex/) <br>
-- [IEEE reference rules](references/ieee-reference-rules.md) <br>
-- [Utility script guidance](references/utility-scripts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tables, code blocks, and BibTeX or LaTeX snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed file edits, local analysis commands, and DOI lookup guidance for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Project-provided helper scripts such as analyze_bib.py or nameTranslate.py may execute untrusted code when run by filename.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted LaTeX/BibTeX projects, inspect the exact script contents and path before execution, approve commands explicitly, and run without credentials or unrelated files available.
+
+Risk: DOI and metadata verification can use web access and may return incomplete or mismatched results for new or Early Access papers.
+
+Mitigation: Review DOI lookup results and all proposed reference edits before applying them.
+
+## Reference(s):
+
+- [IEEE Reference Rules](references/ieee-reference-rules.md)
+- [Utility Scripts](references/utility-scripts.md)
+- [IEEE Reference Guide](https://journals.ieeeauthorcenter.ieee.org/wp-content/uploads/sites/7/IEEE_Reference_Guide.pdf)
+- [IEEEtran BibTeX HOWTO](https://www.michaelshell.org/tex/ieeetran/bibtex/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with BibTeX snippets, inline shell commands, and proposed file edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use web access for DOI checks and may propose edits to LaTeX or BibTeX files after review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

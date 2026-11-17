@@ -1,43 +1,54 @@
-## Description: <br>
-3秒读懂询盘，1分钟出报价单。智能解析多渠道询盘，自动匹配商品，生成多语种专业报价单，适合外贸SOHO和B2B贸易商。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The Market Inquiry Agent parses multilingual trade inquiries, matches products, and drafts professional quotations for foreign trade SOHO operators and B2B traders.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-External trade operators, B2B traders, and sales teams use this skill to parse multilingual market inquiries, match products, estimate quotation terms, and draft customer-ready quotations and follow-up messages for manual review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer inquiries may contain personal, financial, or confidential contract details. <br>
-Mitigation: Redact unnecessary sensitive details before pasting or uploading inquiry content. <br>
-Risk: Generated prices, certifications, delivery dates, payment terms, or bank details may be inaccurate. <br>
-Mitigation: Verify all commercial terms and compliance requirements against authoritative business records before use. <br>
-Risk: Draft quotations or follow-up messages could be sent to customers without sufficient business review. <br>
-Mitigation: Require manual review and approval before sending any customer-facing quote or follow-up. <br>
+## Use Case:
 
+External trade operators, B2B sales teams, and small import/export businesses use this skill to understand customer inquiries, organize product and certification requirements, calculate quotation options, and prepare multilingual quotation drafts for human review.
 
-## Reference(s): <br>
-- [Inquiry Templates Reference](references/inquiry-templates.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/wangm-a3/market-inquiry-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured inquiry analysis, quotation drafts, certification checks, and follow-up templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires human review before sending customer-facing quotes or follow-up messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Generated quotation drafts may contain incorrect pricing, trade terms, certification claims, payment details, or recipient information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually verify commercial terms, legal and certification statements, payment or bank details, attachments, language, and recipient information before sending externally.
+
+Risk: The skill may process customer inquiries and commercially sensitive trade details.
+
+Mitigation: Use only approved customer data handling practices and avoid sharing unnecessary sensitive information in prompts or generated drafts.
+
+## Reference(s):
+
+- [Inquiry and Quotation Templates](references/inquiry-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/skills/market-inquiry-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style inquiry analyses, product matches, quotation drafts, follow-up templates, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are draft business materials and recommendations that require manual verification before external use.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

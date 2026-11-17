@@ -1,41 +1,54 @@
-## Description: <br>
-Guides agents in building formula-driven Excel financial models with OfficeCLI, including 3-statement, DCF, LBO, SaaS unit economics, sensitivity, scenario, debt schedule, and fundraising models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through building formula-driven Excel financial models for 3-statement models, DCF valuation, LBOs, SaaS unit economics, sensitivity analysis, debt schedules, and fundraising projections using OfficeCLI.
 
-## Publisher: <br>
-[iceyliu](https://clawhub.ai/user/iceyliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iceyliu](https://clawhub.ai/user/iceyliu)
 
-## Use Case: <br>
-Developers, analysts, and finance teams use this skill to have an agent create auditable Excel financial models with separated inputs, calculations, outputs, formulas, validation gates, and OfficeCLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup instructions ask users or agents to run unverified remote installer code. <br>
-Mitigation: Verify the OfficeCLI installer source and prefer a pinned release, package-manager install, or manually downloaded binary with checksum or signature verification before execution. <br>
-Risk: Financial model formulas, cached values, or circular references can produce misleading workbook outputs if delivery gates are skipped. <br>
-Mitigation: Run the skill's balance, cache, hardcode, convergence, and visual audit gates before relying on generated workbook results. <br>
+## Use Case:
 
+Developers and analysts use this skill to create auditable Excel financial models with structured assumptions, calculation sheets, outputs, validation gates, and OfficeCLI command patterns. It is intended for complex modeling workflows such as 3-statement forecasts, DCFs, LBOs, ARR models, scenarios, and sensitivities rather than simple spreadsheets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iceyliu/skills/officecli-financial-model) <br>
-- [OfficeCLI releases](https://github.com/iOfficeAI/OfficeCLI/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Files] <br>
-**Output Format:** [Markdown guidance with bash and JSON command examples; generated workbook output is .xlsx.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on a single formula-driven workbook with model-specific validation gates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Setup instructions include mutable remote installer commands that pipe directly into a shell.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a versioned OfficeCLI release with checksum or signature verification, and review the base officecli-xlsx dependency before use.
+
+Risk: Financial models can contain stale formula caches, unresolved cross-sheet references, or unbalanced statements if generated commands are not verified.
+
+Mitigation: Run the skill's stated balance, cash reconciliation, cache, and hardcode audits before relying on any generated workbook.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iceyliu/skills/officecli-financial-model)
+- [OfficeCLI releases](https://github.com/iOfficeAI/OfficeCLI/releases)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Files]
+
+**Output Format:** [Markdown guidance with inline bash commands for producing a formula-driven .xlsx workbook]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs focus on Excel workbooks with formulas, named ranges, scenario or sensitivity structures, validation checks, and OfficeCLI verification commands.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

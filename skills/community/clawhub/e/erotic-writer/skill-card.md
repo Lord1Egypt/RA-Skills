@@ -1,38 +1,48 @@
-## Description: <br>
-Crafts tasteful adult fiction and intimate scenes in English or Chinese, including romance with mature themes and NSFW creative writing in subtle, sensual, or literary styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Craft tasteful adult fiction and intimate scenes, with triggers for erotic stories, mature romance, NSFW creative writing, and Chinese-language adult fiction prompts.
 
-## Publisher: <br>
-[gitjhb](https://clawhub.ai/user/gitjhb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gitjhb](https://clawhub.ai/user/gitjhb)
 
-## Use Case: <br>
-External users use this skill to have an agent draft mature creative fiction with consenting adult characters, chosen tone, pacing, setting, and language. It is intended for story generation rather than technical implementation work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Completed adult stories may be saved locally under ~/clawd/writing/erotic, which can expose sensitive content on shared, synced, or backed-up machines. <br>
-Mitigation: Use the skill only when local storage is acceptable, ask the agent not to save sensitive stories, or delete saved files after generation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gitjhb/erotic-writer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/gitjhb) <br>
+## Use Case:
 
+External users and agents use this skill to draft consensual adult fiction with selectable tone, scenario, language, character, and pacing preferences.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown story document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save completed stories under ~/clawd/writing/erotic when the agent follows the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive adult stories or prompts may be saved automatically to local plaintext files.
+
+Mitigation: Review before installing; safer use returns stories in chat and saves only after explicit confirmation with a chosen path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gitjhb/skills/erotic-writer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown story content with title, date, character, setting, style, and story sections.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact directs agents to save completed stories as local plaintext Markdown files under ~/clawd/writing/erotic/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

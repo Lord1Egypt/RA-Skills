@@ -1,45 +1,59 @@
-## Description: <br>
-Learn me: Lets OpenClaw proactively learn more about you through natural conversation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Learn me: Lets OpenClaw proactively learn more about you through natural conversation.
 
-## Publisher: <br>
-[YevhenDiachenko0](https://clawhub.ai/user/YevhenDiachenko0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yevhendiachenko0](https://clawhub.ai/user/yevhendiachenko0)
 
-## Use Case: <br>
-OpenClaw users use this skill to let their agent ask occasional, consent-based personal follow-up questions and remember safe future question directions. It supports manual use and optional scheduled prompts that can be rescheduled or disabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is privacy-sensitive because it asks optional personal follow-up questions and keeps local notes about future question directions. <br>
-Mitigation: Only use it when the user wants this behavior, avoid storing secrets or private information, and review or delete memory/next-questions.md as needed. <br>
-Risk: Scheduled prompts can feel intrusive if timing or topic selection is wrong. <br>
-Mitigation: Confirm any schedule before enabling it, skip during focused or stressful work, and let the user reschedule or disable prompts. <br>
-Risk: Repeated or unwanted personal questions can create discomfort. <br>
-Mitigation: Respect deflection, record sensitive topics with cooldowns or permanent avoidance, and ask at most one natural question per interaction. <br>
+## Use Case:
 
+External OpenClaw users use this skill to let the agent ask occasional personal follow-up questions and maintain non-secret question directions with the user's permission.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/YevhenDiachenko0/learn-me) <br>
-- [Publisher profile](https://clawhub.ai/user/YevhenDiachenko0) <br>
-- [Project homepage](https://github.com/YevhenDiachenko0/openclaw-learn-me-skill) <br>
-- [Example questions](artifact/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and local notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update memory/next-questions.md and propose OpenClaw cron entries after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.2 (source: frontmatter and server release metadata) <br>
+Risk: Persistent scheduled prompts may continue influencing the main OpenClaw session after installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable schedules only after user confirmation, confirm the exact cron entries created, and document how to list or delete all learn-me-* crons.
+
+Risk: The memory/next-questions.md file can contain personal follow-up notes.
+
+Mitigation: Avoid storing secrets, health details, precise location, credentials, or other highly sensitive personal information, and keep the file inspectable and deletable by the user.
+
+Risk: Personal questions can be intrusive when the user is focused, stressed, or reluctant.
+
+Mitigation: Ask at most one natural follow-up, skip during focused or difficult moments, and respect deflection cooldowns or permanent opt-outs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yevhendiachenko0/skills/learn-me)
+- [Project homepage](https://github.com/YevhenDiachenko0/openclaw-learn-me-skill)
+- [Example questions](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Natural-language guidance with Markdown notes and OpenClaw cron commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create OpenClaw cron entries and memory/next-questions.md after user confirmation.]
+
+## Skill Version(s):
+
+0.5.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

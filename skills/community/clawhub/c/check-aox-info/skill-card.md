@@ -1,39 +1,54 @@
-## Description: <br>
-Retrieves AOX bridge status and supported AO, Ethereum, BSC, and Arweave token mapping information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up AOX bridge information for AO Network, including supported tokens, supported chains, and current deposit or withdrawal availability.
 
-## Publisher: <br>
-[charles-lpd](https://clawhub.ai/user/charles-lpd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charles-lpd](https://clawhub.ai/user/charles-lpd)
 
-## Use Case: <br>
-External users and developers use this skill to check current AOX bridge availability, supported token mappings, minimum withdrawal amounts, and withdrawal fees before answering AO cross-chain status questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AOX bridge availability, withdrawal fees, and token support can affect financial decisions and may change after the lookup. <br>
-Mitigation: Verify bridge availability and fees independently before initiating financial transactions. <br>
+## Use Case:
 
+External users and agents use this skill to answer AO Network bridge questions, such as which tokens and chains are supported and whether deposits, withdrawals, or transfers are currently available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charles-lpd/check-aox-info) <br>
-- [AOX info API](https://api.aox.xyz/info) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON response containing success status, closeServer bridge-status fields, token mappings, and error text when the lookup fails.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Contacts the public AOX info API at runtime and returns current bridge/token status without requesting credentials or modifying accounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill depends on the external AOX public info API, so availability or response changes can affect answers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat responses as current public status data and retry or verify externally when the API is unavailable or returns an error.
+
+Risk: The skill may record lookup results to memory when considered important, which could retain status snapshots.
+
+Mitigation: Only allow memory recording for non-sensitive public bridge status results.
+
+## Reference(s):
+
+- [check-aox-info ClawHub skill page](https://clawhub.ai/charles-lpd/skills/check-aox-info)
+- [AOX public info API](https://api.aox.xyz/info)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON result data with agent-facing text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns closeServer availability flags and token metadata; errors are returned as JSON with success false.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

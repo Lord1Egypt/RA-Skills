@@ -1,39 +1,54 @@
-## Description: <br>
-Comprehensive iOS/SwiftUI code review with optional parallel agents <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive iOS/SwiftUI code review with optional parallel agents.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to review iOS and SwiftUI changes for correctness, architecture, concurrency, tests, security, performance, and framework-specific issues. It guides agents through scoped Swift file discovery, linter checks, technology detection, finding verification, and a consolidated Markdown review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects Swift source files and may run local lint, build, and test commands in the reviewed repository. <br>
-Mitigation: Review command output before acting on findings, especially in sensitive or large projects. <br>
-Risk: Code review findings can be incorrect or misleading if generated without enough source context. <br>
-Mitigation: Use the skill's gates requiring scoped Swift files, linter checks, protocol loading, and re-reading code around Critical or Major findings. <br>
+## Use Case:
 
+Developers and engineers use this skill to review iOS and SwiftUI code changes for correctness, Swift quality, framework usage, tests, security, performance, and maintainability.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown review report with severity-grouped findings, file and line references, good patterns, and a verdict] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local SwiftLint, build, and test commands for verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill may direct an agent to run build, lint, or test commands that execute project code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run those commands only in repositories where executing local project code is acceptable.
+
+Risk: The skill depends on companion review skills for protocol and technology-specific review coverage.
+
+Mitigation: Confirm referenced companion review skills in the local skills directory are trusted before use.
+
+## Reference(s):
+
+- [Review Ios ClawHub release](https://clawhub.ai/anderskev/skills/review-ios)
+- [anderskev ClawHub publisher profile](https://clawhub.ai/user/anderskev)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown review report with issue severity sections, file and line references, recommendations, good patterns, and verdict.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local Swift build, SwiftLint, and test commands for verification when applicable.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-A Model Context Protocol skill that lets agents query fund knowledge and search Eastmoney stock information through XiaoBenYang-backed tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一个基于Model Context Protocol (MCP)的基金知识库服务器，提供基金相关知识的查询和检索功能，支持多种部署模式和协议。
 
-## Publisher: <br>
-[cainingnk](https://clawhub.ai/user/cainingnk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cainingnk](https://clawhub.ai/user/cainingnk)
 
-## Use Case: <br>
-Developers and external users can use this skill to route fund-knowledge and stock-search questions to the configured XiaoBenYang MCP API, then present the returned raw JSON as concise user-facing results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a XiaoBenYang API key and can store it in a local plaintext .env file. <br>
-Mitigation: Use a dedicated API key, restrict access to the workspace, and rotate the key if the local .env file may have been exposed. <br>
-Risk: Fund, stock, and research queries are sent to an upstream API provider. <br>
-Mitigation: Avoid entering highly sensitive investment or research queries unless the upstream provider and its data handling are acceptable. <br>
-Risk: The skill should not fabricate fund or stock information when an API key or required parameter is missing. <br>
-Mitigation: Ask the user for the missing API key or parameter before calling tools, and report upstream failures instead of inventing results. <br>
+## Use Case:
 
+Agents use this skill to query fund knowledge and search stock information through a Xiaobenyang API-backed MCP service. It is intended for users who need fund-related lookup results summarized from the service response.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cainingnk/fund-knowledge-query) <br>
-- [XiaoBenYang API key service](https://xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Markdown/text summary of raw JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an XBY_APIKEY value and network access to the upstream XiaoBenYang API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The skill stores the user-provided XBY API key in a local plaintext .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide a key when the publisher is trusted, avoid shared directories, and rotate the key if it may have been exposed.
+
+Risk: The security evidence reports mismatched, broken tool definitions.
+
+Mitigation: Verify the tool implementation and API endpoint before relying on lookup results.
+
+Risk: The security verdict is suspicious.
+
+Mitigation: Review the skill before installation and deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cainingnk/skills/fund-knowledge-query)
+- [Publisher profile](https://clawhub.ai/user/cainingnk)
+- [Xiaobenyang](https://xiaobenyang.com)
+- [Xiaobenyang MCP API endpoint](https://mcp.xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Markdown summary of API results, with raw JSON available from tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided XBY API key before API-backed lookups can run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

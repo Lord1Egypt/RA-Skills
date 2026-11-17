@@ -1,45 +1,60 @@
-## Description: <br>
-Fiesta Agents provides a broad OpenClaw agent team with 64 specialized roles across engineering, design, marketing, product, project management, testing, operations, specialist, certification, licensing, and payroll workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+64 specialized AI agents across 11 departments -- a complete AI agency with built-in certification, licensing, and payroll for focused single-agent tasks or orchestrated multi-agent projects.
 
-## Publisher: <br>
-[ironiclawdoctor-design](https://clawhub.ai/user/ironiclawdoctor-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ironiclawdoctor-design](https://clawhub.ai/user/ironiclawdoctor-design)
 
-## Use Case: <br>
-Developers and teams use this skill to route work to focused AI agents or coordinate multi-agent pipelines for product, engineering, design, marketing, QA, operations, governance, and reporting tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary flags broad orchestration, memory or gateway, payroll, licensing, and debt-state authority without clear approval gates. <br>
-Mitigation: Review before installation and require explicit confirmations, dry-run previews, authorization checks, audit logs, and clear privacy boundaries for sensitive workflows. <br>
-Risk: The artifact describes an entropy-economy service and payroll/debt behavior that could affect agent state or downstream operations. <br>
-Mitigation: Keep entropy-economy services sandboxed or disabled unless the deployment has documented operator approvals and isolated test boundaries. <br>
+## Use Case:
 
+Developers, operators, and product teams use this skill to route work to specialized AI-agent personas for engineering, design, marketing, product, QA, operations, governance, and payroll-style workflows. The orchestrator coordinates multi-agent projects and returns structured deliverables.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ironiclawdoctor-design/fiesta-agents) <br>
-- [Publisher Profile](https://clawhub.ai/user/ironiclawdoctor-design) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Autoresearch Changelog](artifact/autoresearch-fiesta-agents/changelog.md) <br>
-- [Autoresearch Results](artifact/autoresearch-fiesta-agents/results.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured deliverable sections, code blocks, commands, configuration snippets, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent outputs are instructed to begin with an autograph line and prioritize deliverables before explanation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence; artifact frontmatter reports 2.0.0 and package.json reports 1.0.0) <br>
+Risk: The skill encourages broad autonomous behavior across deployments, external posting, tool expansion, sub-agent spawning, memory access, and financial-like Shannon mint/debt changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require host-side confirmation and policy controls before those actions, and limit tool access to the minimum needed for each task.
+
+Risk: The bundled dashboard and analytics-oriented guidance may expose sensitive data if used on a sensitive origin or without privacy review.
+
+Mitigation: Avoid serving the dashboard from sensitive origins, review data handling before use, and pin or approve any external dashboard dependencies.
+
+Risk: The security scan verdict is suspicious because the skill suppresses clarification and touches persistent or financial-like state.
+
+Mitigation: Review outputs before execution, require confirmation for state-changing operations, and enforce workspace, network, and memory boundaries outside the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ironiclawdoctor-design/skills/fiesta-agents)
+- [Publisher Profile](https://clawhub.ai/user/ironiclawdoctor-design)
+- [Autoresearch Changelog](autoresearch-fiesta-agents/changelog.md)
+- [Autoresearch Results](autoresearch-fiesta-agents/results.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with task-specific prose, code blocks, commands, plans, reports, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent responses are intended to start with an agent introduction, put deliverables first, include a quality check, and provide actionable recommendations.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

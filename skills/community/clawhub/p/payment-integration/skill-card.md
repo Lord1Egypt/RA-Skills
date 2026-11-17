@@ -1,39 +1,59 @@
-## Description: <br>
-Senior payment integration engineer that helps developers integrate 8 major payment providers (Stripe, PayPal, Alipay, WeChat Pay, Apple Pay, Google Pay, Razorpay, Square) with working code examples, security best practices, and webhook patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Senior payment integration engineer that helps developers integrate 8 major payment providers (Stripe, PayPal, Alipay, WeChat Pay, Apple Pay, Google Pay, Razorpay, Square) with working code examples, security best practices, and webhook patterns.
 
-## Publisher: <br>
-[xiaoxty](https://clawhub.ai/user/xiaoxty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoxty](https://clawhub.ai/user/xiaoxty)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and implement payment integrations across Stripe, PayPal, Alipay, WeChat Pay, Apple Pay, Google Pay, Razorpay, and Square. It provides provider-specific code examples, webhook patterns, testing guidance, and security considerations for payment flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Webhook debugging guidance may cause users to log sensitive payment or customer data. <br>
-Mitigation: Log only minimal metadata, redact headers, signatures, tokens, and customer data, use sandbox credentials first, and require review before enabling live payment flows. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and implement payment integrations across major providers, with guidance for code examples, webhook handling, testing, and security practices.
 
-## Reference(s): <br>
-- [Payment Provider Detailed Reference](providers.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiaoxty/payment-integration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with TypeScript/Node.js code blocks, shell command snippets, tables, and checklists] <br>
-**Output Parameters:** [1D; optional provider focus for Stripe, PayPal, Alipay, WeChat Pay, Apple Pay, Google Pay, Razorpay, or Square] <br>
-**Other Properties Related to Output:** [Responds in the user's language and defaults to TypeScript/Node.js examples unless another language is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Suggested webhook logging can expose headers, payloads, or payment-related secrets if copied directly into production.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive headers and payload fields, avoid raw webhook logging in production, and keep only the minimum audit data needed for debugging.
+
+Risk: Payment and webhook examples may become outdated or may not fully match a provider's current verification requirements.
+
+Mitigation: Verify each provider flow against current official documentation before handling real payments, especially webhook signature validation and body parsing requirements.
+
+Risk: Generated payment integration code may mishandle money amounts, idempotency, or asynchronous payment state.
+
+Mitigation: Review code before use, test in provider sandboxes, validate amounts server-side, and add idempotency and duplicate-event handling before deployment.
+
+## Reference(s):
+
+- [Payment Provider Detailed Reference](providers.md)
+- [ClawHub Skill Page](https://clawhub.ai/xiaoxty/skills/payment-integration)
+- [Publisher Profile](https://clawhub.ai/user/xiaoxty)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with code blocks and actionable integration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in the user's language and can focus on a selected payment provider.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

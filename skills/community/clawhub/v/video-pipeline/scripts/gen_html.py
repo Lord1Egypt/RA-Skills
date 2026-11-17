@@ -205,7 +205,7 @@ def extract_key_sentences_with_llm(text: str) -> List[str]:
         api_key = credentials.get('api_key', '')
     else:
         # 如果找不到配置文件，则尝试从环境变量获取
-        api_key = os.getenv('DASHSCOPE_API_KEY', 'sk-e129fbbf19b844edb07f3f62957250e6')
+        api_key = os.getenv('DASHSCOPE_API_KEY', 'REDACTED-SECRET')
 
     # 设置API密钥
     dashscope.api_key = api_key

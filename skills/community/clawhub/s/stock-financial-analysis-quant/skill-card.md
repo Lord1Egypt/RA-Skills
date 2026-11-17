@@ -1,43 +1,54 @@
-## Description: <br>
-Provides structured stock financial analysis covering short-term trading signals, technical patterns, company fundamentals, industry context, financial statements, and valuation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language stock analysis for short-term trading signals, chip distribution, company fundamentals, industry context, financial statements, and valuation.
 
-## Publisher: <br>
-[13008170831](https://clawhub.ai/user/13008170831) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[13008170831](https://clawhub.ai/user/13008170831)
 
-## Use Case: <br>
-External users and analysts use this skill to request stock-focused technical analysis, fundamental research, valuation context, and structured financial-analysis reports. Outputs are intended as educational analysis references, not personalized investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial analysis may be mistaken for personalized investment advice. <br>
-Mitigation: Present outputs as educational analysis only and require users to make decisions based on their own objectives, risk tolerance, and professional advice where appropriate. <br>
-Risk: Market prices, financial statements, and technical indicators can be stale, incomplete, or incorrect. <br>
-Mitigation: Verify market and financial data against current authoritative sources before relying on any conclusion. <br>
-Risk: Short-term trading signals and valuation conclusions can be misleading in volatile markets. <br>
-Mitigation: Treat signals as references, explain uncertainty, and avoid presenting analysis as a guaranteed outcome. <br>
+## Use Case:
 
+External users and analysts use this skill to request Chinese-language stock research covering short-term technical signals, chip distribution, company fundamentals, financial statements, industry context, and valuation. Outputs are analysis references only, not financial advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/13008170831/stock-financial-analysis-quant) <br>
-- [Publisher profile](https://clawhub.ai/user/13008170831) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include technical indicators, support and resistance levels, buy or sell signal references, financial metrics, valuation context, industry comparisons, and summary conclusions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Buy/sell signals or valuation conclusions could be mistaken for professional financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present conclusions as research support and require users to make independent decisions based on their own risk tolerance.
+
+Risk: Financial conclusions may be wrong if market data, financial statements, or assumptions are stale or incomplete.
+
+Mitigation: Verify market data, source documents, and valuation assumptions before relying on the analysis.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/13008170831/skills/stock-financial-analysis-quant)
+- [Publisher Profile](https://clawhub.ai/user/13008170831)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis reports with structured sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language financial research output; not professional investment advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

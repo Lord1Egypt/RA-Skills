@@ -1,0 +1,48 @@
+flowchart TD
+  vacuum_thermal_lab["Vacuum and thermal-cycle laboratory"]
+  analog_operations["Analog mission operations"]
+  closed_water_93["Water loop at 93% (early station class)"]
+  analog_operations --> closed_water_93
+  closed_water_98["Water loop at 98%"]
+  closed_water_93 --> closed_water_98
+  sabatier["Sabatier oxygen recovery"]
+  closed_water_93 --> sabatier
+  crop_lab["Ground crop laboratory"]
+  analog_operations --> crop_lab
+  simulant_biology["Regolith-simulant biology"]
+  crop_lab --> simulant_biology
+  launch_abort["Launch abort"]
+  vacuum_thermal_lab --> launch_abort
+  precision_robotics["Precision robotic landing and work"]
+  vacuum_thermal_lab --> precision_robotics
+  lunar_isru_pilot["Lunar ISRU pilot"]
+  precision_robotics --> lunar_isru_pilot
+  vacuum_thermal_lab --> lunar_isru_pilot
+  storm_shelter["Solar particle storm shelter"]
+  vacuum_thermal_lab --> storm_shelter
+  kilopower["Kilowatt-class fission power"]
+  vacuum_thermal_lab --> kilopower
+  buried_habitat["Regolith-buried habitat"]
+  precision_robotics --> buried_habitat
+  heavy_edl["Heavy Mars EDL"]
+  precision_robotics --> heavy_edl
+  moxie_scale["Scale-up of atmosphere-to-oxygen"]
+  precision_robotics --> moxie_scale
+  industrial_isru["Industrial-scale ISRU propellant"]
+  moxie_scale --> industrial_isru
+  lunar_isru_pilot --> industrial_isru
+  ntr_stage["Nuclear thermal transfer stage"]
+  vacuum_thermal_lab --> ntr_stage
+  storm_shelter --> ntr_stage
+  offworld_obstetrics["Off-world obstetrics"]
+  crop_lab --> offworld_obstetrics
+  storm_shelter --> offworld_obstetrics
+  genome_bank["Genome and germplasm archive"]
+  local_manufacturing["Local critical-parts manufacturing"]
+  precision_robotics --> local_manufacturing
+  buried_habitat --> local_manufacturing
+  reusable_super_heavy["Reusable super-heavy launch"]
+  precision_robotics --> reusable_super_heavy
+  launch_abort --> reusable_super_heavy
+  high_energy_transfer["Off-window high-energy transfer"]
+  ntr_stage --> high_energy_transfer

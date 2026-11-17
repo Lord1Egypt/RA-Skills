@@ -1,41 +1,54 @@
-## Description: <br>
-Saves 20-40% of LLM tokens by teaching the agent to write compressed responses, compressed memory logs, and compressed pre-compaction summaries, and provides manual prompt compression guidance when requested. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prompt Compressor helps OpenClaw users reduce token use by adding SOUL.md guidance for concise agent responses, memory logs, daily logs, and pre-compaction summaries, and by manually compressing prompts on request.
 
-## Publisher: <br>
-[ckpxgfnksd-max](https://clawhub.ai/user/ckpxgfnksd-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckpxgfnksd-max](https://clawhub.ai/user/ckpxgfnksd-max)
 
-## Use Case: <br>
-Developers and agent users use this skill to reduce LLM token usage and API cost by adding concise-response, memory-log, and compaction-summary instructions to OpenClaw. It can also guide one-off prompt compression while preserving exact code, URLs, paths, numbers, and quoted requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional hook can silently rewrite user messages before the model sees them. <br>
-Mitigation: Avoid enabling the hook for legal, medical, security, debugging, policy, or exact-wording tasks. <br>
-Risk: Installing the SOUL.md snippet changes persistent response, memory, log, and compaction behavior. <br>
-Mitigation: Install it only when persistent concise behavior is desired, append rather than overwrite, and back up SOUL.md first. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to reduce token consumption and API spend by installing concise-response guidance or asking the agent to compress specific prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckpxgfnksd-max/prompt-token-saver) <br>
-- [Project homepage from ClawHub metadata](https://github.com/ckpxgfnksd-max/prompt-compressor-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and compression rules] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces persistent SOUL.md guidance and optional hook-install guidance; users should review behavior before enabling prompt rewriting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Persistent concise-mode instructions can change agent behavior across future OpenClaw sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when persistent concise responses are intended; prefer a workspace-scoped SOUL.md for limited scope and keep a backup or uninstall plan.
+
+Risk: The optional hook can rewrite user messages before the model sees them.
+
+Mitigation: Avoid enabling the hook unless pre-model message rewriting is acceptable; use one-off prompt compression or SOUL.md guidance instead.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckpxgfnksd-max/skills/prompt-token-saver)
+- [Project homepage](https://github.com/ckpxgfnksd-max/prompt-compressor-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and rewritten prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May provide before/after compression examples and installation guidance for SOUL.md or optional hook-based compression.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

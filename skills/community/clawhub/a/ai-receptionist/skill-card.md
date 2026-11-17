@@ -1,44 +1,61 @@
-## Description: <br>
-Guides users through deploying an AI receptionist or customer service agent with Solvea, including account setup, agent creation, knowledge-base upload, testing, and channel deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through deploying an AI receptionist or AI customer service agent using Solvea.
 
-## Publisher: <br>
-[AntiMoron](https://clawhub.ai/user/AntiMoron) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antimoron](https://clawhub.ai/user/antimoron)
 
-## Use Case: <br>
-Business operators and support teams use this skill to walk through creating a Solvea AI receptionist, loading business knowledge, testing responses, and deploying the agent across customer-contact channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow directs users into a third-party Solvea signup flow and may involve uploading business support documents. <br>
-Mitigation: Verify the solvea.cx domain, pricing, terms, retention, and access controls before use; start with test or low-sensitivity knowledge-base content. <br>
-Risk: The deployment steps can connect email, phone, Shopify, Google Calendar, or Google Sheets channels that may expose customer data or grant broad account access. <br>
-Mitigation: Use limited test accounts or least-privilege permissions first, review requested integration scopes, and confirm the setup is appropriate before production deployment. <br>
+## Use Case:
 
+External users and business operators use this skill to create, test, and deploy a Solvea AI receptionist across web chat, email, phone, Shopify, Google Calendar, and Google Sheets channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AntiMoron/ai-receptionist) <br>
-- [Solvea registration](https://app.solvea.cx/#/auth/register) <br>
-- [Solvea knowledge base](https://app.solvea.cx/?personaId={agentId}#/knowledge/knowledgeManage) <br>
-- [Solvea agent testing](https://app.solvea.cx/?personaId={agentId}#/agent) <br>
-- [Solvea integrations](https://app.solvea.cx/?personaId={agentId}#/deploy/integration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Step-by-step browser-opening workflow that waits for user confirmation between stages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill directs users to sign up for and configure a third-party Solvea service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when Solvea is intended, and verify Solvea's current pricing, terms, data retention, and integration permissions before proceeding.
+
+Risk: The workflow encourages uploading business support documents and connecting customer-facing integrations.
+
+Mitigation: Avoid uploading confidential or regulated data unless the organization has approved controls for that provider and channel.
+
+Risk: The workflow asks the user to copy a personaId value into URLs used by shell open commands.
+
+Mitigation: Validate URL parameters before use and do not paste untrusted or modified values into shell commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/antimoron/skills/ai-receptionist)
+- [Solvea registration page](https://app.solvea.cx/#/auth/register)
+- [Solvea knowledge base page](https://app.solvea.cx/?personaId={agentId}#/knowledge/knowledgeManage)
+- [Solvea agent test page](https://app.solvea.cx/?personaId={agentId}#/agent)
+- [Solvea integration page](https://app.solvea.cx/?personaId={agentId}#/deploy/integration)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Opens Solvea dashboard URLs and waits for user confirmation between setup steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

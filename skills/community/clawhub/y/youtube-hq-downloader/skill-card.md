@@ -1,39 +1,55 @@
-## Description: <br>
-Downloads high-quality silent video and pure audio from YouTube, then merges them into a video with sound using ffmpeg. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Youtube Highest Quality Downloader - Download highest quality silent video and pure audio from YouTube, then merge into video with sound
 
-## Publisher: <br>
-[accidwar](https://clawhub.ai/user/accidwar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[accidwar](https://clawhub.ai/user/accidwar)
 
-## Use Case: <br>
-Developers and end users can use this skill to download separate high-quality YouTube video and audio streams and combine them into a local playable media file. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports local downloader scripts that run user-influenced shell commands and overwrite predictable output files. <br>
-Mitigation: Review before installation, run only with trusted URLs, filenames, and output directories, and prefer a hardened version that validates paths and avoids shell-based command execution. <br>
-Risk: The scripts can install or reuse yt-dlp and write downloaded media into user-selected folders. <br>
-Mitigation: Approve dependency installation separately, use a controlled virtual environment, and verify the selected output directory before running the downloader. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/accidwar/youtube-hq-downloader) <br>
+## Use Case:
+
+Developers and other users can use this skill to download separate high-quality video and audio streams from a YouTube URL and merge them into a single playable video file.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: User-controlled URLs, output names, or output directories may be passed into shell commands.
+
+Mitigation: Only run the scripts with trusted values until command execution is changed to argument lists without shell=True or os.system.
+
+Risk: The shell workflow can install yt-dlp without a pinned version.
+
+Mitigation: Use an explicit, pinned dependency setup that is reviewed before installation.
+
+Risk: Wildcard or unvalidated media file selection can merge or remove unintended files in the output directory.
+
+Mitigation: Use a dedicated output directory and validate generated filenames before running ffmpeg or cleanup commands.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown instructions with shell command examples; scripts produce local MP4 media files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a YouTube URL and optional output name and output directory; writes downloaded and merged media to a local folder.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and artifact _meta.json) <br>
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown instructions with command-line examples and scripts that create local media files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local video and audio intermediates and a merged MP4 file when its scripts are run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

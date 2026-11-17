@@ -1,42 +1,59 @@
-## Description: <br>
-Explore and analyze Reddit content at scale by retrieving post details, comments, nested sub-comment threads, user activity, and curated Reddit feeds through KeyAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explore and analyze Reddit content at scale, including post details, comments, sub-comment threads, user activity, and curated Reddit feeds.
 
-## Publisher: <br>
-[lycici](https://clawhub.ai/user/lycici) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lycici](https://clawhub.ai/user/lycici)
 
-## Use Case: <br>
-Developers, analysts, and researchers use this skill to collect Reddit post, comment, feed, subreddit, and user activity data, then synthesize structured content intelligence reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The KeyAPI token can call broader KeyAPI MCP platforms beyond the Reddit workflow. <br>
-Mitigation: Use a limited KEYAPI_TOKEN where possible and keep calls explicitly scoped to --platform reddit. <br>
-Risk: Cached Reddit queries and results can reveal sensitive research interests or user profiling activity. <br>
-Mitigation: Avoid storing tokens or cache data on shared machines, and delete or disable .keyapi-cache when results are sensitive. <br>
+## Use Case:
 
+Developers and analysts use this skill to retrieve Reddit posts, comments, nested replies, user activity, and feed data through the KeyAPI MCP service, then synthesize content intelligence reports.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/lycici/keyapi-reddit-content-analytics) <br>
-- [KeyAPI](https://keyapi.ai/) <br>
-- [KeyAPI Reddit MCP endpoint](https://mcp.keyapi.ai/reddit/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Files] <br>
-**Output Format:** [Markdown reports with inline shell commands and JSON API results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local cache files for fetched API responses when caching is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The bundled runner is broader than a tightly scoped Reddit-only helper and can use a custom KEYAPI_SERVER_URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default trusted KeyAPI endpoint unless a custom endpoint has been reviewed, and confirm the intended platform and tool before running commands.
+
+Risk: KEYAPI_TOKEN is required and the runner can load it from the environment or a local .env file.
+
+Mitigation: Provide the token through an environment variable or secure secret manager, avoid interactive entry on shared systems, and rotate the token if it is exposed.
+
+Risk: Cached API responses may contain Reddit user, comment, or post data.
+
+Mitigation: Review or delete .keyapi-cache before sharing the workspace and avoid caching sensitive investigations unless retention is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lycici/skills/keyapi-reddit-content-analytics)
+- [KeyAPI](https://keyapi.ai/)
+- [KeyAPI Reddit MCP Server](https://mcp.keyapi.ai/reddit/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, JSON API responses, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires KEYAPI_TOKEN and Node.js 18 or higher; API responses may be cached locally under .keyapi-cache.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

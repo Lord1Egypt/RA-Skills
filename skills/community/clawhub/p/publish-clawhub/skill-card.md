@@ -1,40 +1,54 @@
-## Description: <br>
-Publish Clawhub is a prompt-only Chinese rewriting skill that helps users rewrite or diagnose text to reduce machine-like phrasing while preserving meaning, tone, and formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish Clawhub helps agents rewrite and diagnose Chinese text to reduce formulaic AI-sounding language while preserving the user's meaning, tone, and structure.
 
-## Publisher: <br>
-[huangjihua007-rgb](https://clawhub.ai/user/huangjihua007-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangjihua007-rgb](https://clawhub.ai/user/huangjihua007-rgb)
 
-## Use Case: <br>
-External users and writing teams use this skill to rewrite Chinese copy for common channels or diagnose machine-like phrasing before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill rewrites Chinese text to sound less AI-assisted, which can be inappropriate where disclosure, academic, employment, or publication policies require transparency. <br>
-Mitigation: Use it only where AI-assisted rewriting is allowed, and review outputs before sharing or publication. <br>
-Risk: The artifact includes a canned author and product response that may not match server-resolved publisher metadata. <br>
-Mitigation: Verify authorship and ownership against the ClawHub publisher profile rather than relying on scripted self-identification in the skill. <br>
+## Use Case:
 
+External users and employees can use this skill to rewrite Chinese drafts for common publishing and workplace scenarios, or to diagnose where a draft sounds formulaic or machine-generated.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangjihua007-rgb/publish-clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with plain-text rewrite results and diagnostic tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves the user's original meaning, tone, and formatting when rewriting; diagnosis mode reports machine-like phrasing by severity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: Author or provenance questions may return a hardcoded promotional answer instead of neutral publisher metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and remove or replace the attribution block before deployment when accurate authorship or provenance responses matter.
+
+Risk: The security verdict is suspicious because of potentially misleading attribution behavior.
+
+Mitigation: Review the skill carefully before installation and rely on server-resolved publisher and provenance evidence for release metadata.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangjihua007-rgb/skills/publish-clawhub)
+- [ClawHub publisher profile](https://clawhub.ai/user/huangjihua007-rgb)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text rewrites and Markdown diagnostic reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Rewrite mode preserves the user's original meaning, tone, and formatting; diagnosis mode summarizes machine-tone issues by severity.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

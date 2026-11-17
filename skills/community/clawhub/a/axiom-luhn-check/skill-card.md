@@ -1,42 +1,55 @@
-## Description: <br>
-axiom-luhn-check is a local Python Luhn checksum helper for number strings with best-effort type detection for credit cards, SIRET/SIREN, IMEI, and ISBN-like inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validates number strings with the Luhn algorithm and detects common credit card, SIRET/SIREN, IMEI, and ISBN identifier types using the Python standard library.
 
-## Publisher: <br>
-[kofna3369](https://clawhub.ai/user/kofna3369) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kofna3369](https://clawhub.ai/user/kofna3369)
 
-## Use Case: <br>
-Developers and operators use this skill to propose local CLI or Python checks for Luhn-style identifiers and to inspect checksum status in text or JSON form. It is suitable for lightweight pre-checks, not authoritative payment-card, issuer, ISBN, or compliance validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the ISBN validation claims are inaccurate and should not be trusted for authoritative identifier checks. <br>
-Mitigation: Use the skill only as a simple local Luhn checksum helper unless the per-identifier algorithms are corrected and tested. <br>
-Risk: The artifact and security guidance state that this is not full PCI, issuer, business-identifier, or compliance validation. <br>
-Mitigation: Pair any checksum result with domain-specific validation, issuer or registry checks, and applicable compliance review before relying on it. <br>
+## Use Case:
 
+Developers and operators use this skill to validate Luhn check digits and generate CLI or JSON results for card-like numbers, SIRET/SIREN, IMEI, and ISBN identifiers. It is appropriate for checksum screening, not PCI-grade payment validation or authoritative ISBN validation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kofna3369/axiom-luhn-check) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash and Python examples; the underlying utility can emit plain text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local stdlib Python execution; no network, credential, or persistence behavior identified by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Full identifiers, including card-like numbers, can appear in command output or JSON fields.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use synthetic or test numbers, avoid real card data, and mask or omit identifiers before sharing logs or outputs.
+
+Risk: The skill performs checksum screening only and can overstate payment-card or ISBN validation.
+
+Mitigation: Treat results as a preliminary Luhn check and use domain-specific validation, BIN/IIN data, PCI-compliant tooling, or ISBN-specific checks where required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kofna3369/skills/axiom-luhn-check)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Code]
+
+**Output Format:** [Plain text or JSON validation results, with optional shell command and Python usage examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local checksum-only validation; JSON output may include the full normalized digits from the input.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

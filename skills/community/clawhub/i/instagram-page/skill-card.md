@@ -1,45 +1,59 @@
-## Description: <br>
-Instagram Page helps agents manage Instagram Business or Creator accounts by constructing Instagram Graph API calls for publishing photos, reels, stories, comments, account data, and insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Instagram Business manager: post photos, reels, stories, and get insights using Instagram Graph API calls through PowerShell or pwsh.
 
-## Publisher: <br>
-[seph1709](https://clawhub.ai/user/seph1709) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[seph1709](https://clawhub.ai/user/seph1709)
 
-## Use Case: <br>
-External users and agent operators use this skill to manage an Instagram Business or Creator account linked to a Facebook Page. It guides credential setup and produces PowerShell or pwsh Graph API calls for publishing media, moderating comments, retrieving account data, and reading insights. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can issue delete requests for Instagram comments without an explicit confirmation safeguard in the artifact instructions. <br>
-Mitigation: Require the agent to show the exact comment ID and text, get explicit confirmation before deletion, and prefer hiding or reviewing comments before permanent deletion. <br>
-Risk: The skill uses long-lived Instagram credentials stored in a local credentials file, with IG_APP_SECRET needed only during setup. <br>
-Mitigation: Restrict credentials file permissions, delete IG_APP_SECRET after setup, grant only required Meta permissions, refresh tokens before expiry, and rotate credentials immediately if the host is compromised. <br>
-Risk: The skill can publish posts, reels, stories, and carousels to the connected Instagram account. <br>
-Mitigation: Confirm the target account, media URLs, captions, and publish action before sending Graph API publish requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/seph1709/instagram-page) <br>
-- [Publisher profile](https://clawhub.ai/user/seph1709) <br>
-- [Instagram Graph API v25.0 endpoint](https://graph.facebook.com/v25.0) <br>
-- [Meta for Developers](https://developers.facebook.com/apps/) <br>
-- [Graph API Explorer](https://developers.facebook.com/tools/explorer/) <br>
+## Use Case:
 
+External users and social media operators use this skill to prepare and run Instagram Business or Creator account API calls for publishing media, managing comments, and retrieving account or media insights.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown guidance with inline PowerShell and pwsh command snippets for Instagram Graph API requests.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local credentials from ~/.config/instagram-page/credentials.json and calls graph.facebook.com only.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and artifact metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The local credentials file contains a long-lived Instagram access token and may temporarily contain a Meta app secret during setup.
+
+Mitigation: Store only IG_ACCESS_TOKEN and IG_USER_ID after setup, delete IG_APP_SECRET immediately, restrict credentials.json to the local user account, and rotate the token if the file may have been exposed.
+
+Risk: Generated publishing and comment-management calls can change public Instagram content when the token has those permissions.
+
+Mitigation: Grant only the Meta permissions needed for the intended task and review each generated API call before execution.
+
+Risk: A stale or exposed access token can cause failed requests or unauthorized account access.
+
+Mitigation: Refresh the token before its 60-day expiry window and rotate it immediately if the host or credential file may be compromised.
+
+## Reference(s):
+
+- [ClawHub Instagram Page release](https://clawhub.ai/seph1709/skills/instagram-page)
+- [Instagram Graph API v25.0 base URL](https://graph.facebook.com/v25.0)
+- [Meta for Developers Apps](https://developers.facebook.com/apps/)
+- [Graph API Explorer](https://developers.facebook.com/tools/explorer/)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline PowerShell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces inline Instagram Graph API request patterns and credential setup guidance; it does not include standalone scripts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

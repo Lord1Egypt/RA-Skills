@@ -83,4 +83,4 @@ The `enterprise-file-writer` skill is verified to work correctly for writing con
 ---
 
 **Verified:** 2026-03-09  
-**Version:** 1.2.0
+**Version:** 1.3.0

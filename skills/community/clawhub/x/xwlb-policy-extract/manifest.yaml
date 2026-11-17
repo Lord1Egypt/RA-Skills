@@ -1,0 +1,23 @@
+name: xwlb-policy-extract
+version: 1.0.0
+slug: xwlb-policy-extract
+description: >-
+  新闻联播政策摘报。自动获取每日新闻联播文字稿，提取宏观经济政策与影响金融市场走向的国家政策内容，
+  按影响力三级分级（直接影响金融市场 / 重大产业区域政策 / 一般性政策参考），
+  输出结构化摘要报告。
+category: finance
+tags:
+  - 新闻联播
+  - 宏观政策
+  - 金融政策
+  - 政策解读
+  - 财经新闻
+triggers:
+  - 新闻联播
+  - 宏观政策
+  - 金融政策
+  - 政策摘报
+  - 新闻联播摘要
+  - 国家政策
+author: user
+license: MIT

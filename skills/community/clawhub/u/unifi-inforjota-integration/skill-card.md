@@ -1,45 +1,58 @@
-## Description: <br>
-Query and monitor a UniFi network using a UniFi Integration API key and compatible read-only UniFi Network endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and monitor a UniFi network using a UniFi Integration API key plus compatible read-only UniFi Network endpoints.
 
-## Publisher: <br>
-[mrjq1987](https://clawhub.ai/user/mrjq1987) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrjq1987](https://clawhub.ai/user/mrjq1987)
 
-## Use Case: <br>
-Network administrators and technical operators use this skill to inspect read-only UniFi site, device, client, health, alarm, DPI, network, and WLAN status from a UniFi OS console or Cloud Gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose detailed UniFi network, device, client, alarm, and traffic metadata. <br>
-Mitigation: Install only where read access to this data is acceptable, avoid sharing raw endpoint dumps, and review outputs before relaying them. <br>
-Risk: Credential handling can be overly broad if local admin credentials or permissive credential files are used. <br>
-Mitigation: Use a scoped UniFi Integration API key, store it in the configured credentials file with restrictive permissions, and rotate it if exposed. <br>
-Risk: The helper scripts use disabled TLS certificate verification for local UniFi endpoints. <br>
-Mitigation: Prefer fixing local certificate trust and avoid relying on disabled TLS verification except where explicitly accepted for the environment. <br>
+## Use Case:
 
+Developers and network operators use this skill to inspect UniFi sites, devices, clients, health, alarms, WLANs, networks, and DPI availability from a Cloud Gateway or UniFi OS console.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mrjq1987/unifi-inforjota-integration) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mrjq1987) <br>
-- [UniFi read-only endpoint reference](artifact/references/unifi-readonly-endpoints.md) <br>
-- [Community UniFi Controller API reference](https://ubntwiki.com/products/software/unifi-controller/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands plus human-readable tables or JSON from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only UniFi monitoring outputs may include sensitive network, device, client, alarm, and traffic metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and artifact _meta.json) <br>
+Risk: Credential handling can expose UniFi access tokens or administrator credentials if configuration files are created or stored insecurely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated read-only UniFi API key and restrict the credential file to owner-only permissions.
+
+Risk: The skill's scripts skip TLS certificate verification, which can expose requests to interception on untrusted networks.
+
+Mitigation: Avoid use until TLS verification is fixed or configure a trusted gateway certificate or certificate authority.
+
+Risk: Monitoring output can reveal sensitive network names, IP addresses, MAC addresses, topology, alarms, and traffic metadata.
+
+Mitigation: Treat command output as sensitive and avoid sharing raw payloads unless necessary.
+
+## Reference(s):
+
+- [UniFi Local Gateway Read-Only API Calls](references/unifi-readonly-endpoints.md)
+- [Community UniFi Controller API reference](https://ubntwiki.com/products/software/unifi-controller/api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include sensitive network inventory, device identifiers, IP addresses, MAC addresses, topology, alarms, and traffic metadata.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

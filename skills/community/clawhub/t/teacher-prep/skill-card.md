@@ -1,42 +1,53 @@
-## Description: <br>
-教师备课助手，用于小学语文教学备课。支持古诗、现代文、寓言、童话等各类课文。当用户提出备课需求时，自动执行：(1)搜索课文相关资料（原文、作者、背景、生字词、段落分析等），生成markdown备课资料；(2)生成教案PPT；(3)生成Word格式课后练习题及参考答案。适用于小学各年级语文备课场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+teacher-prep helps elementary Chinese-language teachers gather lesson materials and generate Markdown preparation notes, PowerPoint lesson plans, and Word exercise sheets for common primary-school text types.
 
-## Publisher: <br>
-[870021840](https://clawhub.ai/user/870021840) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[870021840](https://clawhub.ai/user/870021840)
 
-## Use Case: <br>
-Elementary Chinese-language teachers and teaching-support agents use this skill to gather lesson material for poems, modern prose, fables, fairy tales, and other primary-school texts, then generate classroom preparation files. It supports lesson planning by producing Markdown preparation notes, PowerPoint lesson plans, and Word exercise sheets with reference answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search-backed lesson research may expose sensitive student or proprietary details if those details are included in prompts. <br>
-Mitigation: Use a scoped Tavily key and avoid including sensitive student, school, or proprietary information in prompts. <br>
-Risk: Generated classroom materials may contain inaccurate, incomplete, or unsuitable content for the target grade or lesson. <br>
-Mitigation: Review generated Markdown, PowerPoint, and Word materials before classroom use. <br>
-Risk: The skill creates local files and may overwrite or clutter working directories during repeated lesson preparation. <br>
-Mitigation: Run the skill in a dedicated folder and review generated files before sharing or deploying them. <br>
+## Use Case:
 
+Teachers and education-support agents use this skill to prepare elementary Chinese-language lessons for poems, modern prose, fables, fairy tales, and expository texts. It supports gathering reference material, structuring lesson notes, and producing classroom-ready draft files for teacher review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/870021840/teacher-prep) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, PowerPoint .pptx, and Word .docx files, with local Python script commands when document generation is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a scoped TAVILY_API_KEY for search-backed lesson research and local python-pptx/python-docx support for file generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Tavily searches may expose sensitive student, classroom, or proprietary content if such content is included in prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive or proprietary details in search prompts and review search-derived material before including it in lesson resources.
+
+Risk: Generated lesson materials and bundled document scripts can produce draft templates or incomplete lesson-specific answers.
+
+Mitigation: Have a teacher review and adapt all Markdown notes, PPT lesson plans, exercises, and answer material before classroom use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/870021840/skills/teacher-prep)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance plus generated .md, .pptx, and .docx files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Tavily search when configured with TAVILY_API_KEY and writes local files named like 备课资料_<lesson>.md, 教案_<lesson>.pptx, and 练习题_<lesson>.docx.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

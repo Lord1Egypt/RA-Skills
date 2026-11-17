@@ -1,51 +1,70 @@
-## Description: <br>
-Huashu Design helps agents produce high-fidelity HTML-based prototypes, interactive demos, slide decks, motion design exports, design variants, and expert design reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huashu Design helps agents produce high-fidelity HTML-based prototypes, interactive demos, slide decks, motion design, design variations, and expert design reviews.
 
-## Publisher: <br>
-[swang066](https://clawhub.ai/user/swang066) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[swang066](https://clawhub.ai/user/swang066)
 
-## Use Case: <br>
-Designers, developers, and agent users use this skill to turn short creative briefs into visual deliverables such as clickable product prototypes, HTML slide decks, animations, infographics, design direction explorations, and review punch lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may direct an agent to search the web and download brand, product, or media assets. <br>
-Mitigation: Review downloaded assets for source trust, licensing, and relevance before including them in deliverables. <br>
-Risk: Generated browser prototypes or demos may ask for API credentials for optional LLM or TTS integrations. <br>
-Mitigation: Use short-lived or scoped keys when possible, avoid hard-coding long-lived credentials into generated files, and remove keys before sharing outputs. <br>
-Risk: The workflow may create local project files and run Playwright or ffmpeg tooling for verification and media export. <br>
-Mitigation: Run generated commands in a project workspace, inspect produced files, and review media outputs before publication. <br>
-Risk: The optional personal asset index can expose private brand or project context to the agent workflow. <br>
-Mitigation: Keep the asset index limited to information appropriate for agent use and omit confidential material that is not needed for the task. <br>
+## Use Case:
 
+Designers, product teams, and developers use this skill to guide an agent through visual design work such as clickable app prototypes, HTML slide decks, motion demos, infographics, brand-aligned explorations, and structured design critique.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/swang066/huashu-design) <br>
-- [README](README.md) <br>
-- [Skill instructions](SKILL.md) <br>
-- [Workflow reference](references/workflow.md) <br>
-- [Design styles reference](references/design-styles.md) <br>
-- [Verification reference](references/verification.md) <br>
-- [Video export reference](references/video-export.md) <br>
-- [Voiceover pipeline reference](references/voiceover-pipeline.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTML, JSX, JavaScript, shell commands, and generated project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce browser-rendered HTML, PPTX/PDF exports, MP4/GIF media, screenshots, timelines, and review notes depending on the task.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Optional media and narration scripts may be unsafe when run on untrusted filenames, timeline JSON, or output paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review script inputs before execution and avoid running narration or export workflows on untrusted paths until the reported injection issues are fixed.
+
+Risk: Suggested agent memory asset indexes can expose sensitive personal or project data to future agent work.
+
+Mitigation: Keep sensitive data out of personal asset indexes unless reuse is intentional and approved.
+
+Risk: Animation exports may include Huashu-Design watermarking that is unsuitable for some deliverables.
+
+Mitigation: Verify final exported media for unwanted watermarking before sharing or publishing.
+
+Risk: TTS workflows rely on credentials and configurable endpoints.
+
+Mitigation: Store TTS credentials outside the skill directory where possible and use only trusted TTS endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/swang066/skills/huashu-design)
+- [README](README.md)
+- [Workflow](references/workflow.md)
+- [Content Guidelines](references/content-guidelines.md)
+- [Design Styles](references/design-styles.md)
+- [Slide Decks](references/slide-decks.md)
+- [Video Export](references/video-export.md)
+- [Voiceover Pipeline](references/voiceover-pipeline.md)
+- [Verification](references/verification.md)
+- [Critique Guide](references/critique-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with HTML/CSS/JavaScript code, shell commands, and generated design artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce HTML, MP4, GIF, PPTX, PDF, PNG, or SVG outputs when the relevant export workflows are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

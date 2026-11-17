@@ -1,39 +1,60 @@
-## Description: <br>
-Generates hyperrealistic texture and material images from text prompts using the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate satisfying texture art and hyperrealistic material images from text prompts using the Neta AI image generation API.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-Creators, designers, and developers use this skill to generate macro texture images for social content, thumbnails, product backgrounds, and visual experiments from a prompt and optional reference image. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference IDs, and the Neta API token are sent to the remote Neta image API. <br>
-Mitigation: Use a limited token where possible and avoid sending secrets, private data, or confidential concepts in prompts. <br>
+## Use Case:
 
+External creators, designers, and developers use this skill to generate macro-style texture images for visual content, product backgrounds, and social media assets from text prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blammectrappora/texture-art-generator) <br>
-- [Neta API token and trial](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text image URL on stdout, with progress messages on stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token; accepts a prompt, size option, and optional reference image UUID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill sends user prompts and the API token to api.talesofai.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only prompts and credentials that are acceptable to share with that service, and use a low-privilege, revocable Neta/TalesOfAI token.
+
+Risk: Passing the token directly with --token can expose it through shell history, process listings, or logs.
+
+Mitigation: Avoid placing long-lived secrets directly on the command line; prefer short-lived or revocable tokens and clean any local logs or shell history that capture the token.
+
+Risk: The documented npx install command is unpinned.
+
+Mitigation: Prefer a pinned or otherwise verified install source before using the skill in a production workflow.
+
+## Reference(s):
+
+- [ClawHub Texture Art Generator release page](https://clawhub.ai/blammectrappora/skills/texture-art-generator)
+- [Neta API token page](https://www.neta.art/open/)
+- [Neta image generation endpoint](https://api.talesofai.com/v3/make_image)
+- [Neta task polling endpoint](https://api.talesofai.com/v1/artifact/task/${taskUuid})
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text image URL printed to stdout with progress messages on stderr]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token; supports optional size and reference image UUID inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-Pan Pac helps agents handle Pan Pacific Travel email, calendar, and booking communications by extracting travel details and routing booking or Outlook work to the appropriate supporting skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pan Pac helps agents handle Pan Pacific Travel email, calendar, and booking workflows by extracting booking details and routing Lynx and Outlook work to the appropriate skills.
 
-## Publisher: <br>
-[fredguile](https://clawhub.ai/user/fredguile) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fredguile](https://clawhub.ai/user/fredguile)
 
-## Use Case: <br>
-Travel operations staff and their agents use this skill to interpret Pan Pacific Travel communications, extract booking details such as dates, destinations, passengers, statuses, confirmations, changes, and cancellations, and route booking or Outlook tasks to supporting skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is intended for sensitive Pan Pacific Travel email, calendar, booking, document, and attachment workflows. <br>
-Mitigation: Install it only for agents that should access those workflows, and confirm account and record access boundaries in the delegated lynx-skill and outlook-entra skills. <br>
-Risk: Delegated booking operations, uploads, and attachment handling could affect travel records or expose business data. <br>
-Mitigation: Require user confirmation before uploads, attachment handling, booking changes, or other record-modifying actions. <br>
-Risk: Cancelled bookings may be omitted by default when retrieving itineraries through the delegated Lynx workflow. <br>
-Mitigation: Use the documented cancelled-booking option when cancelled reservations are relevant to the task. <br>
+## Use Case:
 
+Travel operations staff and their agents use this skill to interpret Pan Pacific Travel communications, extract booking details, and coordinate follow-up through dedicated email/calendar and Lynx booking skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fredguile/pan-pac) <br>
-- [Publisher profile](https://clawhub.ai/user/fredguile) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text with referenced supporting-skill commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May involve sensitive email, calendar, attachment, document, and booking data through delegated skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Delegated Outlook and Lynx workflows may expose email, calendar, attachment, OAuth token, or booking-record data through downstream skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for intended Pan Pacific Travel workflows and review the outlook-entra and lynx-skill permissions before use.
+
+Risk: Extracted booking details such as dates, passengers, reservation status, modifications, and cancellations may be acted on incorrectly if not checked.
+
+Mitigation: Review extracted details and downstream booking results before customer, provider, or itinerary actions.
+
+## Reference(s):
+
+- [Pan Pac ClawHub skill page](https://clawhub.ai/fredguile/skills/pan-pac)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text]
+
+**Output Format:** [Markdown and natural-language responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May delegate email/calendar and booking operations to outlook-entra and lynx-skill when those skills are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter version 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

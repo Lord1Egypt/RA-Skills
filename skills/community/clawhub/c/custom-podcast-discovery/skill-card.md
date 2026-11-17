@@ -1,44 +1,61 @@
-## Description: <br>
-Discovers podcast topics, supports research and script generation with citations, prepares text for ElevenLabs TTS, and stores generated podcast assets locally or in S3. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discovers podcast topics from configurable sources, structures research, generates cited scripts, verifies claims, prepares ElevenLabs audio, and uploads episodes to local or S3 storage.
 
-## Publisher: <br>
-[harshilmathur](https://clawhub.ai/user/harshilmathur) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[harshilmathur](https://clawhub.ai/user/harshilmathur)
 
-## Use Case: <br>
-External users, developers, and automation workers use this skill to discover podcast topics from configured sources, generate researched scripts with citations, prepare narration text, and persist podcast outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The automatic workflow may proceed toward audio generation or storage before users have reviewed intermediate outputs. <br>
-Mitigation: Run manual mode first and inspect generated scripts and verification reports before audio generation or upload. <br>
-Risk: Podcast content may be sent to configured providers or persisted in S3/local storage. <br>
-Mitigation: Avoid sensitive unpublished content unless the configured providers are trusted, and use dedicated least-privilege AWS/S3 and ElevenLabs credentials. <br>
-Risk: Cron scheduling or public S3 configuration can create recurring production behavior or remote public persistence. <br>
-Mitigation: Do not enable cron or public S3 access unless recurring production and remote/public persistence are intended. <br>
+## Use Case:
 
+Developers and content creators use this skill to automate podcast topic discovery, research scaffolding, script generation, source checking, audio preparation, and storage publication while retaining manual review points.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/harshilmathur/custom-podcast-discovery) <br>
-- [Publisher Profile](https://clawhub.ai/user/harshilmathur) <br>
-- [ElevenLabs Voice Library](https://elevenlabs.io/voice-library) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Audio, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands; generated pipeline artifacts include JSON, text, verification reports, TTS-ready text, and MP3 audio.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may be written to local storage or uploaded to user-configured S3 storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and ClawHub release evidence) <br>
+Risk: The auto-publishing flow and safety claims are under-scoped enough that users should review the skill before installing or running it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing and controlling the workflow; prefer manual mode until the pipeline is tested.
+
+Risk: Generated podcast scripts may contain unsupported or sensitive claims even when a verification gate is present.
+
+Mitigation: Treat generated scripts as untrusted until a human verifies sources, and do not rely on the advertised verification gate to stop auto publication without supervision or modification.
+
+Risk: S3 publication can expose generated episodes or metadata if credentials or bucket permissions are broader than intended.
+
+Mitigation: Keep storage local during testing and use least-privilege AWS credentials before enabling S3 upload.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harshilmathur/skills/custom-podcast-discovery)
+- [README.md](README.md)
+- [DEPLOYMENT.md](DEPLOYMENT.md)
+- [SECURITY.md](SECURITY.md)
+- [ElevenLabs voice library](https://elevenlabs.io/voice-library)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON reports, text scripts, TTS-ready text, and generated audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Pipeline outputs can include ranked topic JSON, research JSON, cited script text, verification JSON, TTS-ready text, MP3 audio, local files, S3 URLs, and pipeline state.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

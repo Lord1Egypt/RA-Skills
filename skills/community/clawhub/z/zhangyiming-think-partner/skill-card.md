@@ -1,42 +1,53 @@
-## Description: <br>
-Provides a Chinese-language strategic reflection framework based on public Zhang Yiming thinking models for entrepreneurship, product direction, team management, and long-term decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-first decision-making frameworks and prompts for strategy, entrepreneurship, product direction, and team management, using ideas associated with Zhang Yiming.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Developers and end users can use this skill for structured brainstorming around startup decisions, strategic planning, product direction, and team-management questions. It is best suited for reflective analysis, not final decisions in regulated domains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat strategic brainstorming as qualified financial, legal, medical, or other regulated advice. <br>
-Mitigation: Use the skill for general reflection only and seek qualified advice before acting in regulated or high-stakes domains. <br>
-Risk: The skill defaults to Chinese-language guidance, which may be difficult for some users to review accurately. <br>
-Mitigation: Install it only when Chinese-language output is acceptable or request translation and review before relying on the result. <br>
-Risk: Broad strategy prompts can produce persuasive but incorrect or misleading recommendations. <br>
-Mitigation: Review outputs critically, verify claims against current sources, and treat recommendations as prompts for further analysis. <br>
+## Use Case:
 
+Entrepreneurs, product leads, and managers can use it to structure strategic, product, and team decisions with question prompts and comparison tables. Its outputs are working guidance for the user's judgment, not professional advice or formal decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/skills/zhangyiming-think-partner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style advisory text with structured headings, questions, and scenario templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese is the default language; English terms may be retained where useful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release evidence and artifact metadata) <br>
+Risk: The primarily Chinese response style may not suit every user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the preferred response language and ask for another language when needed.
+
+Risk: Framework-based suggestions may be mistaken for verified facts or professional advice.
+
+Mitigation: Check factual and time-sensitive claims against primary sources, and have qualified professionals make legal, medical, investment, and formal organizational decisions.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/gechengling/skills/zhangyiming-think-partner)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Chinese-first text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include question prompts, checklists, and comparison tables; review drafts before applying them.]
+
+## Skill Version(s):
+
+2.1.4 (source: server-resolved release metadata; artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

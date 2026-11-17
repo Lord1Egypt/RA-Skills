@@ -1,44 +1,32 @@
 # -*- coding: utf-8 -*-
 """
 国内航班查询 - ClawHub技能脚本
-数据源：飞猪旅行（SCF代理），零配置
+数据源：途牛旅行（SCF代理），零配置
 """
+import os
 import json
 import urllib.request
 import urllib.error
 
 # ============ 配置 ============
-FLIGGY_PROXY = "https://1439498936-6sysdjjt99.ap-guangzhou.tencentscf.com"
-PROXY_TOKEN = "tp_8k2mX9vQ4z"
+TUNIU_PROXY = "https://1439498936-0junm3maxj.ap-guangzhou.tencentscf.com"
+PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
 TIMEOUT = 60
 
 
 # ============ 代理调用 ============
-def _call_fliggy(rtype, params):
-    body = json.dumps({"type": rtype, "params": params}, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
-    req = urllib.request.Request(
-        FLIGGY_PROXY, data=body,
-        headers={"Content-Type": "application/json", "X-Proxy-Token": PROXY_TOKEN},
-        method="POST",
-    )
+def _call_tuniu(rtype, params):
+    """调用途牛SCF代理"""
+    url = TUNIU_PROXY
+    headers = {"Content-Type": "application/json", "X-Proxy-Token": PROXY_TOKEN}
+    body = {"type": rtype, "params": params}
+    data = json.dumps(body, ensure_ascii=False).encode("utf-8")
+    req = urllib.request.Request(url, data=data, headers=headers, method="POST")
     try:
-        with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
-            raw = json.loads(r.read().decode("utf-8"))
-            if isinstance(raw, dict) and "code" in raw:
-                if raw.get("code") == 0:
-                    return raw.get("data", raw)
-                else:
-                    return {"error": "SCF proxy error: " + str(raw.get("message", raw))}
-            return raw
-    except urllib.error.HTTPError as e:
-        err = ""
-        try: err = e.read().decode("utf-8", errors="replace")[:200]
-        except: pass
-        return {"error": "proxy error " + str(e.code) + ": " + err}
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            return json.loads(resp.read().decode("utf-8"))
     except Exception as e:
-        return {"error": "request error: " + str(e)}
-
-
+        return {"error": str(e)}
 # ============ 格式化 ============
 def _format_duration(minutes_str):
     try:
@@ -101,7 +89,7 @@ def _format_flights(data, origin_label, dest_label):
             _format_single_flight(lines, len(direct_flights) + i, item)
 
     lines.append("价格和库存实时变动，以实际下单为准")
-    lines.append("数据来源：飞猪旅行")
+    lines.append("数据来源：途牛旅行")
     return "\n".join(lines) + tips
 
 
@@ -162,46 +150,52 @@ def _format_single_flight(lines, idx, item):
 # ============ 工具函数 ============
 
 def search_flight(params):
-    """国内航班查询：查询国内航班实时价格与时刻表，返回航班号、起降时间、价格及预订链接。"""
-    origin = params.get("origin", "")
-    destination = params.get("destination", "")
-    dep_date = params.get("dep_date", "")
-
-    # 也支持自然语言query
+    """机票查询：搜索途牛平台机票，返回航班、时间、票价和购票链接。"""
     query = params.get("query", "")
-    if query and (not origin or not destination or not dep_date):
+    # 解析查询词
+    parts = query.split()
+    if len(parts) >= 3:
+        dep = parts[0]
+        arr = parts[1]
+        date = parts[2]
+    else:
         return _search_flight_ai(query)
 
-    if not origin: return "请输入出发城市，如：上海"
-    if not destination: return "请输入到达城市，如：北京"
-    if not dep_date: return "请输入出发日期，格式：YYYY-MM-DD"
+    result = _call_tuniu("tuniu_flight_search", {
+        "departureCityName": dep,
+        "arrivalCityName": arr,
+        "departureDate": date,
+    })
 
-    arguments = {
-        "origin": origin.strip(),
-        "destination": destination.strip(),
-        "depDate": dep_date.strip(),
-        "limit": 10,
-    }
-    if params.get("seat_class"): arguments["seatClassName"] = params["seat_class"]
-    if params.get("sort_type"): arguments["sortType"] = int(params["sort_type"])
-    if params.get("max_price", 0) > 0: arguments["maxPrice"] = int(params["max_price"])
-    if params.get("journey_type"): arguments["journeyType"] = int(params["journey_type"])
-    if params.get("transport_no"): arguments["transportNo"] = params["transport_no"]
+    if isinstance(result, dict) and "error" in result:
+        return _search_flight_ai(query)
 
-    data = _call_fliggy("search_flight", arguments)
-    return _format_flights(data, origin.strip(), destination.strip())
+    data = result.get("data", {})
+    if isinstance(data, dict) and data.get("error"):
+        return _search_flight_ai(query)
 
+    flight_list = data.get("data", []) if isinstance(data, dict) else data
+    if not isinstance(flight_list, list):
+        flight_list = []
+
+    lines = [f"🛫 查询到 {len(flight_list)} 个航班\n"]
+    for i, f in enumerate(flight_list[:15]):
+        fn = f.get("flightNo", f.get("flight_no", ""))
+        dep_t = f.get("departTime", f.get("depart_time", ""))
+        arr_t = f.get("arriveTime", f.get("arrive_time", ""))
+        price = f.get("price", "")
+        airline = f.get("airlineName", f.get("airline", ""))
+        lines.append(f"{i+1}. {airline} {fn}")
+        lines.append(f"   {dep_t} → {arr_t}  💰¥{price}")
+    return "\n".join(lines) + "\n\n数据来源：途牛旅行"
 
 def _search_flight_ai(query):
-    """自然语言搜索航班（回退方案）"""
-    result = _call_fliggy("fliggy_ai_search", {"query": query})
-    if isinstance(result, dict) and "error" in result:
-        return "航班查询失败: " + result["error"]
-    inner = result.get("data", result)
-    if isinstance(inner, str):
-        return inner + "\n\n数据来源：飞猪旅行"
-    if isinstance(inner, dict):
-        item_list = inner.get("itemList", [])
-        if item_list:
-            return _format_flights(result, "", "")
-    return "未找到符合条件的航班，建议调整查询条件"
+    """AI兜底搜索"""
+    result = _call_tuniu("tuniu_flight_search", {
+        "departureCityName": query.split()[0] if query.split() else query,
+        "arrivalCityName": query.split()[1] if len(query.split()) > 1 else "",
+        "departureDate": "",
+    })
+    if isinstance(result, dict) and result.get("error"):
+        return "暂无航班数据，请稍后重试"
+    return str(result) + "\n\n数据来源：途牛旅行"

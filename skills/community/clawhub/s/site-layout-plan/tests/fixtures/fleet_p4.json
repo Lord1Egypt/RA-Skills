@@ -1,0 +1,32 @@
+{
+  "project": "合成塔吊案例",
+  "baseline_version": "2026-11-09-A",
+  "cranes": [
+    {
+      "id": "P4",
+      "model": "ZSL750",
+      "jib_m": 70,
+      "capacity_source": "manufacturer",
+      "capacity_table": [
+        {
+          "radius_m": 20,
+          "capacity_t": 40
+        },
+        {
+          "radius_m": 25,
+          "capacity_t": 10
+        },
+        {
+          "radius_m": 30,
+          "capacity_t": 8
+        }
+      ],
+      "hook_weight_t": 0.3,
+      "zones": [
+        "中庭"
+      ],
+      "x_m": 0.0,
+      "y_m": 0.0
+    }
+  ]
+}

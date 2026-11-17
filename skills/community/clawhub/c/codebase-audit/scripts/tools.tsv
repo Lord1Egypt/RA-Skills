@@ -1,0 +1,26 @@
+# Project analyzers the audit runs when installed. tool, lens it feeds, path regex that makes it relevant, where it runs (root, or the package folder holding the matched file), command.
+# Commands use only what is installed locally (npx --no-install); a missing tool is reported, never installed.
+# {file} in a command is the matched file's name. ./gradlew may fetch Gradle itself on its first run.
+tool	lens	detect	runs_in	command
+tsc	types	(^|/)tsconfig\.json$	package	npx --no-install tsc --noEmit
+eslint	design	(^|/)(\.eslintrc[^/]*|eslint\.config\.[cm]?[jt]s)$	package	npx --no-install eslint .
+knip	design	(^|/)(knip\.json|\.knip\.json|knip\.config\.[jt]s)$	package	npx --no-install knip
+npm-audit	security	(^|/)package-lock\.json$	package	npm audit --omit=dev
+pyright	types	(^|/)pyrightconfig\.json$	package	pyright
+mypy	types	(^|/)\.?mypy\.ini$	package	mypy .
+ruff	design	(^|/)\.?ruff\.toml$	package	ruff check .
+vulture	design	\.py$	root	vulture . --min-confidence 80
+pip-audit	security	(^|/)requirements[^/]*\.txt$	package	pip-audit -r {file}
+swiftlint	design	(^|/)\.swiftlint\.ya?ml$	package	swiftlint lint --quiet
+detekt	design	(^|/)detekt[^/]*\.ya?ml$	package	./gradlew detekt
+android-lint	ux	(^|/)AndroidManifest\.xml$	package	./gradlew lint
+flutter-analyze	types	(^|/)pubspec\.yaml$	package	flutter analyze
+go-vet	types	(^|/)go\.mod$	package	go vet ./...
+staticcheck	design	(^|/)go\.mod$	package	staticcheck ./...
+govulncheck	security	(^|/)go\.mod$	package	govulncheck ./...
+clippy	types	(^|/)Cargo\.toml$	package	cargo clippy --all-targets
+cargo-audit	security	(^|/)Cargo\.lock$	package	cargo audit
+supabase-lint	data	(^|/)supabase/migrations/	package	supabase db lint
+osv-scanner	security	(^|/)(package-lock\.json|pnpm-lock\.yaml|yarn\.lock|Package\.resolved|Podfile\.lock|pubspec\.lock|poetry\.lock|go\.sum|Cargo\.lock|requirements[^/]*\.txt)$	root	osv-scanner scan --recursive .
+gitleaks	security	.	root	gitleaks detect --no-banner --redact
+semgrep	security	\.(ts|tsx|js|jsx|py|go|java|kt|swift|rb|php)$	root	semgrep scan --config p/default --quiet

@@ -1,6 +1,153 @@
 {
-  "ownerId": "kn791bxpmse6nv4nqy8skgg2n182b5t2",
-  "slug": "mail-mate",
+  "name": "imap-mail-pipeline",
   "version": "1.0.0",
-  "publishedAt": 1776829065164
+  "display_name": "IMAP 邮件处理流水线",
+  "description": "通用型邮件处理流水线：纯 IMAP 协议抓取邮件，内置主流邮箱服务商路由表（provider），支持 start_datetime/end_datetime 精确时间窗、极端字符串归一化匹配（全角/半角/零宽字符全清洗）、主题+正文多关键字复合检索（AND/OR）、正则结构化字段提取，可选钉钉/飞书/Telegram 推送，并附 Linux crontab 一键配置脚本。零第三方依赖。",
+  "author": "mail-mate",
+  "entry": "main.py",
+  "runtime": "python3",
+  "dependencies": [],
+  "parameters": [
+    {
+      "name": "email_account",
+      "display_name": "邮箱账号",
+      "type": "string",
+      "required": true,
+      "description": "邮箱完整账号。"
+    },
+    {
+      "name": "auth_password",
+      "display_name": "授权密码",
+      "type": "string",
+      "required": true,
+      "sensitive": true,
+      "description": "客户端授权码（非网页登录密码）。"
+    },
+    {
+      "name": "provider",
+      "display_name": "邮箱服务商（路由快捷方式）",
+      "type": "string",
+      "required": false,
+      "default": "",
+      "enum": [
+        "", "aliyun", "aliyun_mail", "qq", "exmail", "tencent",
+        "163", "126", "yeah", "sina", "sohu", "139",
+        "gmail", "outlook", "hotmail", "office365",
+        "yahoo", "icloud", "fastmail", "zoho", "protonmail"
+      ],
+      "description": "从内置路由表快速选择邮箱服务商，自动补全 host/port。优先级高于 imap_host。留空则回退 imap_host，再兜底 aliyun。"
+    },
+    {
+      "name": "imap_host",
+      "display_name": "IMAP 服务器地址（自定义）",
+      "type": "string",
+      "required": false,
+      "default": "",
+      "description": "当 provider 未命中内置表时使用。留空则兜底为阿里云企业邮箱。"
+    },
+    {
+      "name": "imap_port",
+      "display_name": "IMAP 端口",
+      "type": "integer",
+      "required": false,
+      "default": 993,
+      "description": "默认 993（SSL）。"
+    },
+    {
+      "name": "start_datetime",
+      "display_name": "开始时间",
+      "type": "string",
+      "required": false,
+      "default": "",
+      "description": "检索时间窗的开始时间，格式 'YYYY-MM-DD HH:MM:SS'（也接受 'YYYY-MM-DD' 或 ISO 8601 带时区）。不传时区则按服务器本地时区解析。留空默认 end_datetime - 24h。"
+    },
+    {
+      "name": "end_datetime",
+      "display_name": "结束时间",
+      "type": "string",
+      "required": false,
+      "default": "",
+      "description": "检索时间窗的结束时间，格式同 start_datetime。留空默认为当前时间。"
+    },
+    {
+      "name": "subject_keywords",
+      "display_name": "主题关键字组",
+      "type": "string",
+      "required": false,
+      "default": "",
+      "description": "英文逗号分隔。匹配前会对【主题】与【关键字】都做极端字符串归一化（去除所有空白与零宽字符），再做大小写不敏感的 substring 判定。"
+    },
+    {
+      "name": "body_keywords",
+      "display_name": "正文关键字组",
+      "type": "string",
+      "required": false,
+      "default": "",
+      "description": "英文逗号分隔。规则同上，对正文纯文本做归一化匹配。"
+    },
+    {
+      "name": "match_logic",
+      "display_name": "组内匹配逻辑",
+      "type": "string",
+      "required": false,
+      "default": "AND",
+      "enum": ["AND", "OR"],
+      "description": "组内关键字之间的逻辑。主题组与正文组之间固定为 AND。"
+    },
+    {
+      "name": "extract_patterns",
+      "display_name": "正则提取规则",
+      "type": "object",
+      "required": false,
+      "default": {},
+      "description": "形如 {\"字段名\": \"正则\"} 的 JSON 字典。对命中邮件的正文执行 re.search（IGNORECASE|MULTILINE），有捕获组取第 1 组，否则取整段匹配，未命中为 null。结果写入 emails[].extracted_data。"
+    },
+    {
+      "name": "preview_length",
+      "display_name": "正文预览长度",
+      "type": "integer",
+      "required": false,
+      "default": 500,
+      "description": "正文预览最大字符数。"
+    },
+    {
+      "name": "push_platform",
+      "display_name": "推送平台",
+      "type": "string",
+      "required": false,
+      "default": "",
+      "enum": ["", "dingtalk", "feishu", "tg"],
+      "description": "留空不推送。"
+    },
+    {
+      "name": "webhook_url",
+      "display_name": "Webhook 地址",
+      "type": "string",
+      "required": false,
+      "default": "",
+      "description": "推送 Webhook。Telegram 请填完整 bot sendMessage URL。"
+    },
+    {
+      "name": "push_secret",
+      "display_name": "推送密钥 / Chat ID",
+      "type": "string",
+      "required": false,
+      "default": "",
+      "sensitive": true,
+      "description": "钉钉/飞书加签密钥，或 Telegram 的 chat_id。"
+    }
+  ],
+  "output": {
+    "type": "object",
+    "description": "顶层含 success/server/window/filter/count/emails（可选 push）。emails 每项含 uid/from/timestamp/timestamp_local/subject/extracted_data/preview。"
+  },
+  "tags": ["email", "imap", "pipeline", "provider-routing", "unicode-normalize", "dingtalk", "feishu", "telegram", "cron"],
+  "files": {
+    "entry":       "main.py",
+    "reader":      "reader.py",
+    "pusher":      "pusher.py",
+    "cron_helper": "setup_cron.sh",
+    "doc":         "skill.md"
+  },
+  "notes": "已废弃参数：time_window_hours（由 start_datetime/end_datetime 精确替代）。"
 }

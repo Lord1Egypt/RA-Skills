@@ -1,43 +1,51 @@
-## Description: <br>
-Task Auditor audits auto-iterator task quality by scoring execution logs, iteration counts, report length, timestamps, and substantive content, then generates audit reports and low-score alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task Auditor independently reviews auto-iterator task quality using execution logs, iteration counts, report length, timestamps, and content signals.
 
-## Publisher: <br>
-[zenmejiang-commits](https://clawhub.ai/user/zenmejiang-commits) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zenmejiang-commits](https://clawhub.ai/user/zenmejiang-commits)
 
-## Use Case: <br>
-Developers or operators who run auto-iterator workflows can use this skill to audit task completion quality, create Markdown audit records, and flag low-quality work for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The auditor writes persistent files under the OpenClaw workspace. <br>
-Mitigation: Review the local file-writing behavior before installation and run it only in a controlled workspace where audit reports, alerts, and daily logs are expected. <br>
-Risk: The task ID is used in file paths without validation. <br>
-Mitigation: Use tightly controlled task IDs made from letters, numbers, dashes, or underscores, and add validation before accepting untrusted task IDs. <br>
-Risk: The alert threshold and trigger behavior may create alerts more broadly than expected. <br>
-Mitigation: Require opt-in for report or alert creation, narrow trigger phrases, and align the alert threshold with the documented pass criteria before autonomous use. <br>
+## Use Case:
 
+Developers and reviewers use this skill to audit completed auto-iterator tasks, score task quality, generate audit reports, and flag low-quality work for follow-up.
 
-## Reference(s): <br>
-- [Task Auditor ClawHub release page](https://clawhub.ai/zenmejiang-commits/task-auditor) <br>
-- [zenmejiang-commits ClawHub publisher profile](https://clawhub.ai/user/zenmejiang-commits) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Markdown files and plain-text status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces audit reports under tasks/audits, alert files under memory, daily audit logs, and pass/fail score output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, skill.json, skill.yaml, CHANGELOG) <br>
+Risk: A crafted task ID may cause audit output to be written outside the intended task audit folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only with trusted task IDs or add identifier validation and path confinement before deployment.
+
+## Reference(s):
+
+- [Task Auditor Skill Page](https://clawhub.ai/zenmejiang-commits/skills/task-auditor)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown audit reports, alert files, daily audit logs, and status strings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces task quality scores and writes audit or alert records for reviewed task IDs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, skill.json, skill.yaml, CHANGELOG released 2026-03-07)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

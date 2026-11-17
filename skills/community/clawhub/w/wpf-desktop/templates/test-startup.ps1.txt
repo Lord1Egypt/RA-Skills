@@ -1,0 +1,43 @@
+#Requires -Version 7.4
+# Copy to Test-ElevatedStartup.ps1, then pass the directory containing ElevatedStartup.cs.
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory)][string]$TemplateDirectory,
+    [switch]$ValidateXml,
+    [switch]$PublishSingleFile
+)
+$ErrorActionPreference = 'Stop'
+$templateRoot = (Resolve-Path -LiteralPath $TemplateDirectory).Path
+$temporaryRoot = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\', '/')
+$sandbox = Join-Path $temporaryRoot ("wpf-startup-tests-$([guid]::NewGuid())")
+try {
+    $project = Join-Path $sandbox 'tests'
+    New-Item -ItemType Directory -Path $project -Force | Out-Null
+    Copy-Item -LiteralPath (Join-Path $templateRoot 'ElevatedStartup.cs') -Destination $sandbox
+    Copy-Item -LiteralPath (Join-Path $templateRoot 'ElevatedStartup.Tests/Program.cs') -Destination $project
+    Copy-Item -LiteralPath (Join-Path $templateRoot 'ElevatedStartup.Tests/ElevatedStartup.Tests.csproj.txt') -Destination (Join-Path $project 'ElevatedStartup.Tests.csproj')
+    dotnet run --project $project -c Release
+    if ($LASTEXITCODE) { throw "Isolated startup regressions exited $LASTEXITCODE" }
+    if ($ValidateXml) {
+        dotnet run --project $project -c Release --no-build -- --validate-xml
+        if ($LASTEXITCODE) { throw "TaskDefinition XML parsing exited $LASTEXITCODE" }
+    }
+    if ($PublishSingleFile) {
+        $cpu = [Runtime.InteropServices.RuntimeInformation]::ProcessArchitecture.ToString().ToLowerInvariant()
+        if ($cpu -notin 'x64','arm64') { throw "Single-file checks require x64 or ARM64, got $cpu" }
+        foreach ($selfContained in 'false','true') {
+            $published = Join-Path $sandbox "publish-$selfContained"
+            dotnet publish $project -c Release -r "win-$cpu" --self-contained $selfContained -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o $published
+            if ($LASTEXITCODE) { throw "Single-file publish (self-contained=$selfContained) exited $LASTEXITCODE" }
+            & (Join-Path $published 'ElevatedStartup.Tests.exe')
+            if ($LASTEXITCODE) { throw "Single-file regressions (self-contained=$selfContained) exited $LASTEXITCODE" }
+        }
+    }
+} finally {
+    $resolved = [IO.Path]::GetFullPath($sandbox)
+    if ([IO.Path]::GetDirectoryName($resolved) -ne $temporaryRoot -or
+        [IO.Path]::GetFileName($resolved) -notmatch '^wpf-startup-tests-[0-9a-f-]{36}$') {
+        throw "Refusing unexpected cleanup path: $resolved"
+    }
+    if (Test-Path -LiteralPath $resolved) { Remove-Item -LiteralPath $resolved -Recurse -Force }
+}

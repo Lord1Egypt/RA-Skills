@@ -1,43 +1,49 @@
-## Description: <br>
-Searches local Apple Mail on macOS with fruitmail for fast metadata lookup, message opening, and full body reading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apple Mail search on macOS with fast metadata and full body lookup for finding messages in Mail.app by subject, sender, recipient, date, opening messages, and reading full body text.
 
-## Publisher: <br>
-[gumadeiras](https://clawhub.ai/user/gumadeiras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gumadeiras](https://clawhub.ai/user/gumadeiras)
 
-## Use Case: <br>
-Developers and agent users on macOS use this skill to find and inspect local Apple Mail messages by subject, sender, recipient, date, unread state, and body content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The fruitmail CLI and the agent can access local Apple Mail search results and full email bodies. <br>
-Mitigation: Install and run only in environments where that local email access is acceptable, and treat returned email content as private data. <br>
-Risk: Email bodies may contain untrusted or misleading text that an agent could over-trust. <br>
-Mitigation: Review important results before acting on them, especially when email content influences follow-up commands or decisions. <br>
-Risk: The skill depends on an external npm package for local mail access. <br>
-Mitigation: Review the fruitmail package before use in environments that require supply-chain assurance. <br>
+## Use Case:
 
+Developers and macOS users use this skill to search local Apple Mail messages by subject, sender, recipient, date, and unread state, then read or open matching messages. It supports read-only mail discovery workflows and does not compose or send email.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gumadeiras/apple-mail-search-safe) <br>
-- [fruitmail npm package](https://www.npmjs.com/package/fruitmail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and optional JSON output from fruitmail.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May surface private local email metadata and body text from Apple Mail; fruitmail supports --json for structured command output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.5 (source: server release evidence) <br>
+Risk: The skill relies on a globally installed, unpinned third-party npm CLI that can read local Apple Mail metadata and full message bodies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the fruitmail package and publisher before installing, pin an audited version or use an isolated install, avoid sudo, and enable it only on Macs where local email access is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gumadeiras/skills/apple-mail-search-safe)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with inline shell commands; JSON may be returned when the underlying fruitmail command uses --json.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS Mail.app data and the fruitmail CLI; the documented behavior is read-only search and message body lookup.]
+
+## Skill Version(s):
+
+5.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

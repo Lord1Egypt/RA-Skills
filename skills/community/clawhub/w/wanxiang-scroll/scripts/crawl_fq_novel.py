@@ -65,7 +65,7 @@ class FqNovelCrawler:
         """搜索小说"""
         print(f"🔍 搜索关键词: {keyword}")
 
-        search_url = f"{self.base_url}/search?keyword={keyword}&limit={limit}"
+        search_url = f"{self.base_url}/search?key={keyword}&tab_type=3"
 
         try:
             result = self._make_request(search_url)
@@ -77,22 +77,35 @@ class FqNovelCrawler:
             print("❌ 搜索失败：返回数据格式错误")
             return []
 
-        data = result.get("data", [])
-        if not data:
+        # API返回结构: data.search_tabs[].data[].book_data[]
+        data = result.get("data", {})
+        search_tabs = data.get("search_tabs", []) if isinstance(data, dict) else []
+
+        books = []
+        for tab in search_tabs:
+            tab_data = tab.get("data")
+            if not tab_data or not isinstance(tab_data, list):
+                continue
+            for item in tab_data:
+                book_data = item.get("book_data", [])
+                if isinstance(book_data, list):
+                    books.extend(book_data)
+
+        if not books:
             print("❌ 未找到匹配的小说")
             return []
 
-        print(f"\n📚 找到 {len(data)} 本小说:\n")
+        books = books[:limit]
+        print(f"\n📚 找到 {len(books)} 本小说:\n")
         print("-" * 80)
 
-        for i, book in enumerate(data[:limit], 1):
+        for i, book in enumerate(books, 1):
             title = book.get("book_name", "未知")
             author = book.get("author", "未知")
             category = book.get("category", "未知")
             word_count = book.get("word_count", 0)
-            chapter_count = book.get("chapter_count", 0)
-            score = book.get("score", "N/A")
-            status = book.get("status", "未知")
+            creation_status = book.get("creation_status", "0")
+            status = "连载中" if creation_status == "0" else "已完结"
             book_id = book.get("book_id", "")
 
             if isinstance(word_count, (int, float)):
@@ -105,11 +118,11 @@ class FqNovelCrawler:
 
             print(f"{i}. {title}")
             print(f"   作者: {author} | 分类: {category}")
-            print(f"   字数: {word_count_str} | 章节: {chapter_count} | 评分: {score} | {status}")
+            print(f"   字数: {word_count_str} | {status}")
             print(f"   书籍ID: {book_id}")
             print("-" * 80)
 
-        return data[:limit]
+        return books
 
     def download(self, book_id: str) -> Optional[str]:
         """下载整本小说

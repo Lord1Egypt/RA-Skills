@@ -1,43 +1,57 @@
-## Description: <br>
-Chains multiple PrecisionLedger pipeline scripts into sequential or parallel workflows for multi-step QuickBooks Online financial pipeline work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workflow Chain coordinates multiple PrecisionLedger pipeline scripts into sequential or parallel workflows for QBO-backed, multi-step client work, using pipeline manifests and client SOPs to choose applicable pipelines.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Finance operations users and agents use this skill to coordinate recurring multi-step close, analysis, dashboard, and tax-preparation workflows across applicable client pipelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run broad QuickBooks-connected financial-data pipeline chains and write local outputs. <br>
-Mitigation: Confirm the exact client, period, selected scripts, and output directory before execution. <br>
-Risk: Authentication recovery can initiate a QuickBooks connection refresh. <br>
-Mitigation: Require explicit user approval before any reauthentication action. <br>
-Risk: Continuing a chain after individual pipeline failures can produce incomplete close or analysis packages. <br>
-Mitigation: Report failed and skipped steps clearly, and treat hard dependency failures as requiring review before downstream results are used. <br>
+## Use Case:
 
+Developers and finance operations agents use this skill to assemble and run multi-pipeline PrecisionLedger workflows for monthly close, analysis packages, year-end tax prep, and reusable client templates.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/samledger67-dotcom/workflow-chain) <br>
-- [Publisher profile](https://clawhub.ai/user/samledger67-dotcom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command examples and workflow summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local output paths, execution status, skipped steps, and authentication actions for connected financial pipelines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can run multiple local accounting pipeline scripts and write reports using QBO-backed client data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the client slug, reporting period, output directory, and selected scripts before execution.
+
+Risk: Shell command examples use user-supplied values for client slugs, dates, and output paths.
+
+Mitigation: Validate inputs and quote shell variables before running generated commands.
+
+Risk: The workflow may require a QBO reconnect step before accessing client data.
+
+Mitigation: Run re-authentication only for the intended client and account, and verify authorization before continuing.
+
+## Reference(s):
+
+- [Workflow Chain ClawHub skill page](https://clawhub.ai/samledger67-dotcom/skills/workflow-chain)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and workflow summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include selected pipeline layers, run status, skipped steps, failures, output locations, and elapsed time.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

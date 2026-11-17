@@ -1,43 +1,61 @@
-## Description: <br>
-Create AI-narrated film and drama commentary videos through the narrator-ai-cli workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates AI-narrated film and drama commentary videos through narrator-ai-cli workflows for resource selection, script generation, dubbing, and video composition.
 
-## Publisher: <br>
-[4myhime](https://clawhub.ai/user/4myhime) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[4myhime](https://clawhub.ai/user/4myhime)
 
-## Use Case: <br>
-Content creators, developers, and agent users use this skill to guide an AI agent through selecting source media, narration style, background music, voice, and task parameters for narrated video production. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external CLI package and Narrator AI service that require an API key. <br>
-Mitigation: Install only if you trust the narrator-ai-cli package and service, use a limited API key, and keep the key out of version control. <br>
-Risk: The documented workflows can upload media, delete files, run batch jobs, consume account balance, and manage account keys. <br>
-Mitigation: Confirm uploads, deletions, batch jobs, costs, and key-management actions with the user before executing them. <br>
+## Use Case:
 
+Developers, agents, and external creators use this skill to guide end-to-end narrated film or drama commentary video creation. It helps an agent choose materials, narration templates, BGM, and dubbing voices, then generate scripts and compose video outputs through the Narrator AI CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/4myhime/test-for-wang) <br>
-- [narrator-ai-cli package archive](https://github.com/GridLtd-ProductDev/narrator-ai-cli/archive/refs/tags/v1.0.0.zip) <br>
-- [Narrator AI API endpoint](https://openapi.jieshuo.cn) <br>
-- [Narrator AI resources preview](https://ceex7z9m67.feishu.cn/wiki/WLPnwBysairenFkZDbicZOfKnbc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires narrator-ai-cli and NARRATOR_APP_KEY; uses JSON CLI output for task creation, polling, file operations, and account checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: ClawHub release metadata) <br>
+Risk: The skill installs remote executable code for narrator-ai-cli.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external CLI source and pin installation to a reviewed commit or hashed artifact before use.
+
+Risk: The skill can send media, subtitles, voice data, and generated content to the Narrator AI cloud service.
+
+Mitigation: Use a dedicated environment and scoped API key, and avoid uploading sensitive, private, or copyrighted media unless cloud processing is acceptable.
+
+Risk: The workflows include upload, URL transfer, deletion, account-key, voice clone, and budget-affecting operations.
+
+Mitigation: Require explicit user confirmation before each upload, transfer, deletion, voice clone, account-key action, and budget estimate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/4myhime/skills/test-for-wang)
+- [Narrator AI CLI repository](https://github.com/GridLtd-ProductDev/narrator-ai-cli)
+- [Pinned narrator-ai-cli source archive](https://github.com/GridLtd-ProductDev/narrator-ai-cli/archive/refs/tags/v1.0.0.zip)
+- [Narrator AI API endpoint](https://openapi.jieshuo.cn)
+- [Narration resources preview](https://ceex7z9m67.feishu.cn/wiki/WLPnwBysairenFkZDbicZOfKnbc)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Text, JSON]
+
+**Output Format:** [Markdown guidance with bash and JSON command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent workflows may return Narrator AI task IDs, file IDs, generated narration text, audio results, and video download URLs.]
+
+## Skill Version(s):
+
+0.0.2 (source: ClawHub release metadata; artifact frontmatter and plugin.json list 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

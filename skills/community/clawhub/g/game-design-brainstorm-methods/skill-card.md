@@ -1,42 +1,54 @@
-## Description: <br>
-Applies established brainstorming and ideation methods to game design problems, features, systems, UX flows, live-ops ideas, content concepts, and stuck team discussions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apply established brainstorming and ideation methodologies to game design problems, features, systems, UX flows, live-ops ideas, content concepts, and stuck team discussions.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Game designers, product teams, narrative designers, UX designers, and live-ops teams use this skill to select and run a named ideation method for a concrete game design problem. It turns fuzzy or stuck discussions into structured brainstorm outputs, idea clusters, a shortlist, and a recommended next move. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential unreleased game details could be included in prompts or brainstorm outputs. <br>
-Mitigation: Use only approved workspaces for sensitive design data and avoid sharing confidential details where that is not allowed. <br>
-Risk: Generated brainstorm ideas may be impractical, misleading, or misaligned with design constraints. <br>
-Mitigation: Treat outputs as proposals; review, shortlist, and prototype before making design decisions. <br>
+## Use Case:
 
+Game designers, product teams, and agents assisting them use this skill to select and run structured brainstorming methods for game design problems, then turn the resulting ideas into clusters, shortlists, and next actions.
 
-## Reference(s): <br>
-- [Method Output Patterns](references/method-patterns.md) <br>
-- [Method Selection Guide](references/method-selection.md) <br>
-- [ClawHub skill page](https://clawhub.ai/stanestane/game-design-brainstorm-methods) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown sections with a problem frame, method choice, method run, idea clusters, shortlist, and recommended next move] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces ideation guidance only; it does not request file, credential, network, or system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Brainstorm outputs can be mistaken for validated production decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill output as structured ideation and review shortlisted ideas before implementation or live use.
+
+Risk: Method-driven framing can miss constraints that were not provided by the user.
+
+Mitigation: Provide relevant design, audience, production, and live-ops constraints before using the shortlist for follow-up work.
+
+## Reference(s):
+
+- [Method Output Patterns](references/method-patterns.md)
+- [Method Selection Guide](references/method-selection.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured sections and lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces problem frames, method choices, method-run outputs, idea clusters, shortlists, and recommended next moves.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

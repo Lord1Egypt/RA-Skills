@@ -1,42 +1,60 @@
-## Description: <br>
-Work with Obsidian vaults using the official Obsidian CLI (v1.12+). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with Obsidian vaults using the official Obsidian CLI (v1.12+). Open, search, create, move, and manage notes from the terminal.
 
-## Publisher: <br>
-[slmoloch](https://clawhub.ai/user/slmoloch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[slmoloch](https://clawhub.ai/user/slmoloch)
 
-## Use Case: <br>
-Developers, knowledge workers, and agents use this skill to manage Obsidian vaults from the terminal, including note operations, search, tasks, properties, links, plugins, themes, sync, and developer-oriented Obsidian CLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad ability to change, delete, restore, install, sync, and run code inside an Obsidian vault. <br>
-Mitigation: Require explicit confirmation for delete, permanent delete, overwrite, move, restore, plugin or theme changes, sync changes, and any obsidian eval command. <br>
-Risk: Commands may affect important or sensitive Obsidian vault content. <br>
-Mitigation: Prefer testing on a backed-up or non-sensitive vault before using the skill on important notes. <br>
+## Use Case:
 
+Developers, knowledge workers, and agents use this skill to operate a live Obsidian vault from the terminal, including note management, search, tasks, properties, links, plugins, themes, sync, and developer utilities.
 
-## Reference(s): <br>
-- [Obsidian Official CLI Documentation](https://help.obsidian.md/cli) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/slmoloch/obsidian-official-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Obsidian CLI commands that create, modify, delete, restore, install, sync, or evaluate content in an Obsidian vault.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog, released 2026-02-10) <br>
+Risk: The skill can enable an agent to inspect and change a live Obsidian vault.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit prompts for vault-changing actions and keep backups of important vaults.
+
+Risk: Commands can permanently delete, overwrite, restore, or otherwise alter vault content and Obsidian settings.
+
+Mitigation: Require confirmation before permanent deletion, overwrites, restores, plugin or theme changes, and sync-affecting operations.
+
+Risk: Developer commands can run eval, inspect the DOM, or capture screenshots from the active Obsidian environment.
+
+Mitigation: Require confirmation before eval, screenshots, DOM inspection, CSS inspection, or other developer-tool commands.
+
+## Reference(s):
+
+- [Obsidian Official CLI Documentation](https://help.obsidian.md/cli)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [ClawHub Skill Page](https://clawhub.ai/slmoloch/skills/obsidian-official-cli)
+- [Publisher Profile](https://clawhub.ai/user/slmoloch)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose commands that inspect or modify a live Obsidian vault and its settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and CHANGELOG, released 2026-02-10)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

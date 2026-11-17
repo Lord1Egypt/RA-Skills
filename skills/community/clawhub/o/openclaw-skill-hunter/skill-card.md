@@ -1,40 +1,53 @@
-## Description: <br>
-Skill Hunter helps an agent search for reusable skills, tools, workflows, repositories, SDKs, APIs, and related resources before implementation, evaluate fit and risk, and ask for user approval before using external resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Hunter helps agents search for existing skills, tools, workflows, repositories, APIs, and templates before implementation, then recommend the best candidate with risk, effort, and an approval prompt.
 
-## Publisher: <br>
-[mturac](https://clawhub.ai/user/mturac) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mturac](https://clawhub.ai/user/mturac)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add a pre-execution discovery step for coding, automation, data processing, deployment, and content tasks where an existing tool or workflow may save effort. It is intended to produce a recommendation and approval gate before external tools are installed, run, or granted access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation and vague routing boundaries can make the skill influence many unrelated development and content tasks. <br>
-Mitigation: Enable it only when external tool discovery is desired, review its activation rules carefully, and keep explicit user approval before using external tools. <br>
-Risk: Tool recommendations could steer users toward unsafe, incompatible, or overprivileged external resources. <br>
-Mitigation: Review recommended tools for maintenance, permissions, credential scope, licensing, and security before installation or execution. <br>
+## Use Case:
 
+Developers and agent users use Skill Hunter to avoid rebuilding existing solutions by performing a discovery pass for reusable tools before coding, automation, integration, or content-generation work.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mturac/openclaw-skill-hunter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown or plain text recommendations, shortlists, risk notes, and approval prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include candidate names, tool categories, fit rationale, risks, effort estimates, and a user approval question.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill redirects many normal coding and automation requests into a discovery workflow, which may add extra steps or change the expected execution flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether discovery-first behavior matches local agent policy before installing, and use the documented skip conditions for trivial or explicitly manual work.
+
+Risk: The skill may lead an agent to search for external tools, repositories, registries, APIs, or workflows before implementation.
+
+Mitigation: Require user approval before using any discovered third-party tool and review credentials, permissions, licensing, and maintenance status before installation or execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mturac/skills/openclaw-skill-hunter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown recommendation with approval options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include candidate summaries, risk notes, effort estimates, and an approval prompt.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

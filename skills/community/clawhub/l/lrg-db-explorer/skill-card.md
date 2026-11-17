@@ -1,42 +1,58 @@
-## Description: <br>
-Connect to and explore databases (PostgreSQL, MySQL, SQLite, MongoDB, Redis), run queries, inspect schemas, export data, and debug database issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to and explore databases (PostgreSQL, MySQL, SQLite, MongoDB, Redis). Run queries, inspect schemas, export data. Use when user wants to query a database, explore schema, check data, export results, or debug database issues.
 
-## Publisher: <br>
-[lrg913427-dot](https://clawhub.ai/user/lrg913427-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lrg913427-dot](https://clawhub.ai/user/lrg913427-dot)
 
-## Use Case: <br>
-Developers and operators use this skill when they need an agent to help inspect database schemas, run diagnostic queries, export query results, or prepare backup and restore commands across common database systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Database commands can expose, modify, export, or delete sensitive data if run with broad credentials. <br>
-Mitigation: Use read-only or narrowly scoped credentials where possible, review every generated command before execution, and require explicit confirmation before any write, restore, migration, or destructive operation. <br>
-Risk: Exported CSV, JSON, SQL, or backup files may contain sensitive records. <br>
-Mitigation: Store exports only in approved locations, protect access to generated files, and delete temporary exports or backups when they are no longer needed. <br>
-Risk: Unbounded queries or large exports can overload production databases. <br>
-Mitigation: Apply result limits by default, test commands against low-risk environments first, and avoid production-scale dumps unless the user explicitly requests them. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect database schemas, run bounded queries, export selected data, and diagnose database health across PostgreSQL, MySQL, SQLite, MongoDB, and Redis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lrg913427-dot/lrg-db-explorer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline shell and SQL code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include database CLI commands, SQL snippets, export paths, and backup or restore procedures for user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated database commands may expose credentials in command arguments, shell history, or transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege credentials, prefer environment variables or interactive prompts for secrets, and redact connection strings before sharing logs.
+
+Risk: Exports, backups, imports, restores, and migrations can move sensitive or production data to unsafe locations or alter database state.
+
+Mitigation: Review each command, avoid shared temporary paths for production data, and require separate explicit confirmation before full-table exports, imports, restores, migrations, or writes.
+
+Risk: Unbounded queries can expose more data than intended or affect database performance.
+
+Mitigation: Use read-only credentials where possible and keep query limits unless the user explicitly requests a broader result set.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lrg913427-dot/skills/lrg-db-explorer)
+- [Publisher Profile](https://clawhub.ai/user/lrg913427-dot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline SQL and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Database commands should be reviewed before execution, with read-only credentials and explicit confirmation for writes, imports, restores, and full-table exports.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,62 @@
-## Description: <br>
-Control Samsung TVs via SmartThings (OAuth app + device control). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Samsung TVs via SmartThings (OAuth app + device control).
 
-## Publisher: <br>
-[regenrek](https://clawhub.ai/user/regenrek) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[regenrek](https://clawhub.ai/user/regenrek)
 
-## Use Case: <br>
-Developers and smart-home users use this skill to provision SmartThings OAuth credentials for Clawdbot, identify a Samsung TV device, and guide SmartThings CLI actions for status checks, device control, and app launch. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The default OAuth redirect uses httpbin, which can expose the authorization code outside the user's controlled environment. <br>
-Mitigation: Use a localhost or user-controlled OAuth redirect URI before completing the SmartThings login flow. <br>
-Risk: The skill requests read and execute device scopes and stores SmartThings credentials and OAuth tokens in a local .env file. <br>
-Mitigation: Use the minimum practical scopes or a dedicated SmartThings account, protect or delete the .env file when finished, and rotate credentials if they appear in logs or were used through the default redirect. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/regenrek/samsung-smartthings) <br>
-- [SmartThings Developer Documentation](https://developer.smartthings.com/docs) <br>
-- [SmartThings Personal Access Tokens](https://account.smartthings.com/tokens) <br>
+## Use Case:
 
+External developers and smart home users use this skill to configure SmartThings OAuth credentials and guide Samsung TV control through SmartThings device commands.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Plain text guidance and local environment configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update SmartThings OAuth credentials and tokens in ~/.clawdbot/.env or CLAWDBOT_STATE_DIR/.env.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad SmartThings read and execute authority can allow control of connected devices until credentials are revoked.
+
+Mitigation: Create the narrowest SmartThings PAT and OAuth permissions available, and revoke or remove credentials when they are no longer needed.
+
+Risk: The default OAuth redirect URI uses a public request-inspection service, which can expose an authorization code.
+
+Mitigation: Use a redirect URI you control before exchanging OAuth codes.
+
+Risk: Generated SmartThings credentials and OAuth tokens are stored in a local .env file.
+
+Mitigation: Treat the .env file as a secret, restrict access to it, and avoid sharing logs or files that include token values.
+
+Risk: The setup script can fall back to running the SmartThings CLI through npx.
+
+Mitigation: Use the npx fallback only when you trust the package source and version, or install a reviewed SmartThings CLI directly.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/regenrek/skills/samsung-smartthings)
+- [SmartThings Developer Documentation](https://developer.smartthings.com/docs)
+- [SmartThings Personal Access Tokens](https://account.smartthings.com/tokens)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain-text setup and device-control guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The setup flow can create or update a local .env file with SmartThings app credentials, OAuth tokens, scopes, and device identifiers.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Full-stack academic research assistant for searching papers, extracting publication-ready BibTeX from PDF headers, parsing full TEI XML document structure through GROBID, archiving to Zotero, and serving local PDFs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic Talon helps agents search academic papers, analyze PDFs with GROBID, generate BibTeX or TEI XML, archive records to Zotero, and manage local PDF access.
 
-## Publisher: <br>
-[bigdogaaa](https://clawhub.ai/user/bigdogaaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bigdogaaa](https://clawhub.ai/user/bigdogaaa)
 
-## Use Case: <br>
-Researchers, students, and academic developers use this skill to find papers, download PDFs, extract citation metadata or full-text structure, and archive results into Zotero-backed research libraries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDFs may be downloaded from arbitrary URLs and sent to the configured GROBID service for parsing. <br>
-Mitigation: Use trusted PDF sources and configure a local or trusted private GROBID endpoint, especially for sensitive documents. <br>
-Risk: The local PDF server can expose downloaded PDFs if bound to an untrusted network interface. <br>
-Mitigation: Keep the PDF server bound to localhost or a trusted private network, and do not expose it directly to the public internet. <br>
-Risk: Zotero archiving requires API credentials and can write to the configured library. <br>
-Mitigation: Use a limited Zotero API key and verify the target library and collection before enabling archiving workflows. <br>
+## Use Case:
 
+Researchers, students, and research engineers use this skill to find academic papers, extract citation-ready metadata or structured PDF text, and archive papers into Zotero-backed libraries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bigdogaaa/academic-talon) <br>
-- [GROBID documentation](https://grobid.readthedocs.io/) <br>
-- [Zotero API key settings](https://www.zotero.org/settings/keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [JSON action results, BibTeX text, TEI XML, local file paths, and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May download PDFs, cache parsed XML locally, update Zotero libraries, and return local PDF links when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: Local PDFs and document contents may be exposed if the PDF server is used on public or shared networks without protection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted machines and keep PDF serving private or behind authentication.
+
+Risk: PDF contents are sent to the configured GROBID_API_URL for processing.
+
+Mitigation: Run GROBID locally or on trusted infrastructure, and do not point GROBID_API_URL at an untrusted service.
+
+Risk: The security evidence reports weak scoping around local PDFs and document contents.
+
+Mitigation: Review before installing and treat sandbox claims as unreliable until path validation and symlink handling are verified.
+
+## Reference(s):
+
+- [Academic Talon on ClawHub](https://clawhub.ai/bigdogaaa/skills/academic-talon)
+- [GROBID documentation](https://grobid.readthedocs.io/)
+- [Zotero API key settings](https://www.zotero.org/settings/keys)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [JSON responses with search results, BibTeX, TEI XML, PDF file paths, and Zotero archive status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python, GROBID_API_URL, and Zotero credentials for archiving; optional search API keys enable additional sources.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata, released 2026-04-03)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

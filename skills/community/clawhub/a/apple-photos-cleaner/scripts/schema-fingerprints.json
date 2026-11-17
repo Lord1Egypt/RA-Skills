@@ -1,0 +1,11 @@
+{
+  "description": "Known Photos.sqlite schema fingerprints (ROADMAP T1.2). Key: SHA-256 of every Core Data table.column name, as printed by `doctor --schema-dump`. Contains no library data. Add an entry when a schema dump from a new macOS release is confirmed.",
+  "fingerprints": {
+    "b49869b4ef885fbdfd7581a3a065ff7946bcd16c0c09275b906a130a99c623ed": {
+      "macos": "macOS 26 Tahoe",
+      "model_version": 19607,
+      "observed_on": "macOS 26.7.2",
+      "added": "2026-10-13"
+    }
+  }
+}

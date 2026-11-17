@@ -1,0 +1,495 @@
+{
+  "as_of": "2026-10-19",
+  "documents": [
+    {
+      "category": "faq",
+      "entity_id": "topic-handoff",
+      "fact_ids": [
+        "fact-geo-boundary"
+      ],
+      "path": "主题/topic-handoff/faq.md"
+    },
+    {
+      "category": "howto",
+      "entity_id": "topic-handoff",
+      "fact_ids": [
+        "fact-handoff"
+      ],
+      "path": "主题/topic-handoff/howto.md"
+    },
+    {
+      "category": "faq",
+      "entity_id": "product-a",
+      "fact_ids": [
+        "fact-upload"
+      ],
+      "path": "产品/product-a/faq.md"
+    },
+    {
+      "category": "product",
+      "entity_id": "product-a",
+      "fact_ids": [
+        "fact-export-faq",
+        "fact-input"
+      ],
+      "path": "产品/product-a/product.md"
+    },
+    {
+      "category": "identity",
+      "entity_id": "org-a",
+      "fact_ids": [
+        "fact-company"
+      ],
+      "path": "公司/org-a/identity.md"
+    }
+  ],
+  "entities": [
+    {
+      "id": "org-a",
+      "kind": "company",
+      "name": "示例组织 A",
+      "project_ids": [
+        "content-demo"
+      ]
+    },
+    {
+      "id": "product-a",
+      "kind": "product",
+      "name": "资料夹 A",
+      "parent_id": "org-a",
+      "project_ids": [
+        "content-demo"
+      ]
+    },
+    {
+      "id": "topic-handoff",
+      "kind": "topic",
+      "name": "新成员接手资料",
+      "parent_id": "product-a",
+      "project_ids": [
+        "content-demo"
+      ]
+    }
+  ],
+  "facts": [
+    {
+      "category": "identity",
+      "conflicts_with": [],
+      "document_path": "公司/org-a/identity.md",
+      "entity_id": "org-a",
+      "id": "fact-company",
+      "key": "main_product",
+      "project_ids": [
+        "content-demo"
+      ],
+      "record_ids": [
+        "fact-company"
+      ],
+      "sources": [
+        {
+          "locator": "正文第2段",
+          "quote": "示例组织 A 提供资料夹 A，用于整理团队内部资料。",
+          "source_id": "intro-v1"
+        }
+      ],
+      "status": "supported",
+      "superseded_by": [],
+      "texts": [
+        "示例组织 A 提供资料夹 A，用于整理团队内部资料。"
+      ],
+      "value": "资料夹 A"
+    },
+    {
+      "category": "product",
+      "conflicts_with": [],
+      "document_path": "产品/product-a/product.md",
+      "entity_id": "product-a",
+      "id": "fact-export-faq",
+      "key": "delivery_formats",
+      "project_ids": [
+        "content-demo"
+      ],
+      "record_ids": [
+        "fact-export-faq",
+        "fact-export-intro"
+      ],
+      "sources": [
+        {
+          "locator": "整理后交付什么？",
+          "quote": "整理结果保存在本地目录，包含 Markdown 正文与 JSON 索引。",
+          "source_id": "faq-v1"
+        },
+        {
+          "locator": "正文第4段",
+          "quote": "整理结果保存在本地目录，包含 Markdown 正文与 JSON 索引。",
+          "source_id": "intro-v1"
+        }
+      ],
+      "status": "supported",
+      "superseded_by": [],
+      "texts": [
+        "整理结果保存在本地目录，包含 Markdown 正文与 JSON 索引。"
+      ],
+      "value": "Markdown+JSON"
+    },
+    {
+      "category": "faq",
+      "conflicts_with": [],
+      "document_path": "主题/topic-handoff/faq.md",
+      "entity_id": "topic-handoff",
+      "id": "fact-geo-boundary",
+      "key": "citation_boundary",
+      "project_ids": [
+        "content-demo"
+      ],
+      "question": "整理完成就等于被 AI 引用了吗？",
+      "record_ids": [
+        "fact-geo-boundary"
+      ],
+      "sources": [
+        {
+          "locator": "整理完成就等于被 AI 引用了吗？",
+          "quote": "本地知识库整理不代表 AI 平台已提及或引用该品牌，需要另行采集实际回答和原生引用。",
+          "source_id": "faq-v1"
+        }
+      ],
+      "status": "supported",
+      "superseded_by": [],
+      "texts": [
+        "整理本地资料库无法证明品牌已被 AI 平台提及或引用。应另行采集实际回答与平台原生引用。"
+      ],
+      "value": "整理不代表已提及或引用"
+    },
+    {
+      "category": "howto",
+      "conflicts_with": [],
+      "document_path": "主题/topic-handoff/howto.md",
+      "entity_id": "topic-handoff",
+      "id": "fact-handoff",
+      "key": "handoff_steps",
+      "project_ids": [
+        "content-demo"
+      ],
+      "record_ids": [
+        "fact-handoff"
+      ],
+      "sources": [
+        {
+          "locator": "正文第3段",
+          "quote": "新成员应先打开知识库目录，再按适用项目筛选事实；只有有来源支持且未发生冲突的当前事实可以进入内容初稿。",
+          "source_id": "tutorial-v1"
+        }
+      ],
+      "status": "supported",
+      "superseded_by": [],
+      "texts": [
+        "新成员接手时先打开知识库目录，按适用项目筛选资料，再选择有来源支持、未发生冲突的当前事实进入内容初稿。"
+      ],
+      "value": "目录→项目筛选→使用当前有来源事实"
+    },
+    {
+      "category": "product",
+      "conflicts_with": [],
+      "document_path": "产品/product-a/product.md",
+      "entity_id": "product-a",
+      "id": "fact-input",
+      "key": "input_formats",
+      "project_ids": [
+        "content-demo"
+      ],
+      "record_ids": [
+        "fact-input"
+      ],
+      "sources": [
+        {
+          "locator": "正文第3段",
+          "quote": "资料夹 A 接收 Markdown 和纯文本资料。",
+          "source_id": "intro-v1"
+        }
+      ],
+      "status": "supported",
+      "superseded_by": [],
+      "texts": [
+        "资料夹 A 接收 Markdown 和纯文本资料。"
+      ],
+      "value": "Markdown+TXT"
+    },
+    {
+      "category": "faq",
+      "conflicts_with": [],
+      "document_path": "产品/product-a/faq.md",
+      "entity_id": "product-a",
+      "id": "fact-upload",
+      "key": "upload_policy",
+      "project_ids": [
+        "content-demo"
+      ],
+      "question": "资料会自动上传吗？",
+      "record_ids": [
+        "fact-upload"
+      ],
+      "sources": [
+        {
+          "locator": "资料会自动上传吗？",
+          "quote": "资料不会自动上传到外部知识库；需要外部同步时，应另行确认目标账号、知识库名称和写入范围。",
+          "source_id": "faq-v1"
+        }
+      ],
+      "status": "supported",
+      "superseded_by": [],
+      "texts": [
+        "资料不会自动上传到外部知识库。需要同步时，先确认目标账号、知识库名称与写入范围。"
+      ],
+      "value": "不自动上传"
+    }
+  ],
+  "gap_results": [
+    {
+      "entity_id": "product-a",
+      "id": "gap-pricing",
+      "project_ids": [
+        "content-demo"
+      ],
+      "question": "如果要写价格相关内容，当前版本的收费规则是什么？",
+      "reason": "现有产品介绍没有价格，不可推断为免费。",
+      "resolved": false,
+      "resolved_by": []
+    },
+    {
+      "entity_id": "org-a",
+      "id": "gap-trust",
+      "project_ids": [
+        "content-demo"
+      ],
+      "question": "是否有可公开引用的客户案例或认证材料？",
+      "reason": "现有资料未提供案例和荣誉；不创建空奖项正文，不编造背书。",
+      "resolved": false,
+      "resolved_by": []
+    }
+  ],
+  "gaps": [
+    {
+      "entity_id": "product-a",
+      "id": "gap-pricing",
+      "project_ids": [
+        "content-demo"
+      ],
+      "question": "如果要写价格相关内容，当前版本的收费规则是什么？",
+      "reason": "现有产品介绍没有价格，不可推断为免费。",
+      "resolved_by": []
+    },
+    {
+      "entity_id": "org-a",
+      "id": "gap-trust",
+      "project_ids": [
+        "content-demo"
+      ],
+      "question": "是否有可公开引用的客户案例或认证材料？",
+      "reason": "现有资料未提供案例和荣誉；不创建空奖项正文，不编造背书。",
+      "resolved_by": []
+    }
+  ],
+  "kb": {
+    "id": "demo-brand-kb",
+    "name": "示例组织 A 品牌资料库"
+  },
+  "managed_files": {
+    "主题/topic-handoff/faq.md": "f4f7c0b6c254684dad6f1cebde9ba4955f9111a45b317bad26720cf15ad181e1",
+    "主题/topic-handoff/howto.md": "9066bb3942c747c0b688d274ccb18a0535972abce7f7a3e44e0d140145e0675b",
+    "产品/product-a/faq.md": "5acd720b5a43f73ad4e127240877092b8737edb6c5c62a76646d63459fa8a3a9",
+    "产品/product-a/product.md": "9beb1e5c3ba6cb201d3959fb18d4e80a7cbeb182e46be41147e2aad584f1b3e9",
+    "公司/org-a/identity.md": "3d89e2a9d9c7ad4f4bb8b2790022117013395dcb4ba1f531c8eef5a141789295",
+    "原始资料/faq-v1.md": "222948e834ba4bf650d29215479e8c9962d238f124831a05880b605611b82cdf",
+    "原始资料/intro-v1.md": "2124c16d1774ab297c4a2b3a90b5eac9c8ba3eaaafeacb85c0ae945785be205a",
+    "原始资料/tutorial-v1.md": "c9af1a3c61fe33b968a74fe36ba83401a15326026779bf1bceeba0f8f89a0b5a",
+    "知识库目录.md": "80fe8a1416ae7587eb950949c273a3d31d288ac7581cddc4479a5b92d44d9543",
+    "缺失与更新清单.md": "3b37a825d3f7028c5b55109fe7e835681230cf04d75e5e65f71701cb32c32395"
+  },
+  "projects": [
+    {
+      "id": "content-demo",
+      "name": "内容事实源演示"
+    }
+  ],
+  "records": [
+    {
+      "category": "identity",
+      "entity_id": "org-a",
+      "id": "fact-company",
+      "key": "main_product",
+      "project_ids": [
+        "content-demo"
+      ],
+      "sources": [
+        {
+          "locator": "正文第2段",
+          "quote": "示例组织 A 提供资料夹 A，用于整理团队内部资料。",
+          "source_id": "intro-v1"
+        }
+      ],
+      "status": "supported",
+      "supersedes": [],
+      "text": "示例组织 A 提供资料夹 A，用于整理团队内部资料。",
+      "value": "资料夹 A"
+    },
+    {
+      "category": "product",
+      "entity_id": "product-a",
+      "id": "fact-export-faq",
+      "key": "delivery_formats",
+      "project_ids": [
+        "content-demo"
+      ],
+      "sources": [
+        {
+          "locator": "整理后交付什么？",
+          "quote": "整理结果保存在本地目录，包含 Markdown 正文与 JSON 索引。",
+          "source_id": "faq-v1"
+        }
+      ],
+      "status": "supported",
+      "supersedes": [],
+      "text": "整理结果保存在本地目录，包含 Markdown 正文与 JSON 索引。",
+      "value": "Markdown+JSON"
+    },
+    {
+      "category": "product",
+      "entity_id": "product-a",
+      "id": "fact-export-intro",
+      "key": "delivery_formats",
+      "project_ids": [
+        "content-demo"
+      ],
+      "sources": [
+        {
+          "locator": "正文第4段",
+          "quote": "整理结果保存在本地目录，包含 Markdown 正文与 JSON 索引。",
+          "source_id": "intro-v1"
+        }
+      ],
+      "status": "supported",
+      "supersedes": [],
+      "text": "整理结果保存在本地目录，包含 Markdown 正文与 JSON 索引。",
+      "value": "Markdown+JSON"
+    },
+    {
+      "category": "faq",
+      "entity_id": "topic-handoff",
+      "id": "fact-geo-boundary",
+      "key": "citation_boundary",
+      "project_ids": [
+        "content-demo"
+      ],
+      "question": "整理完成就等于被 AI 引用了吗？",
+      "sources": [
+        {
+          "locator": "整理完成就等于被 AI 引用了吗？",
+          "quote": "本地知识库整理不代表 AI 平台已提及或引用该品牌，需要另行采集实际回答和原生引用。",
+          "source_id": "faq-v1"
+        }
+      ],
+      "status": "supported",
+      "supersedes": [],
+      "text": "整理本地资料库无法证明品牌已被 AI 平台提及或引用。应另行采集实际回答与平台原生引用。",
+      "value": "整理不代表已提及或引用"
+    },
+    {
+      "category": "howto",
+      "entity_id": "topic-handoff",
+      "id": "fact-handoff",
+      "key": "handoff_steps",
+      "project_ids": [
+        "content-demo"
+      ],
+      "sources": [
+        {
+          "locator": "正文第3段",
+          "quote": "新成员应先打开知识库目录，再按适用项目筛选事实；只有有来源支持且未发生冲突的当前事实可以进入内容初稿。",
+          "source_id": "tutorial-v1"
+        }
+      ],
+      "status": "supported",
+      "supersedes": [],
+      "text": "新成员接手时先打开知识库目录，按适用项目筛选资料，再选择有来源支持、未发生冲突的当前事实进入内容初稿。",
+      "value": "目录→项目筛选→使用当前有来源事实"
+    },
+    {
+      "category": "product",
+      "entity_id": "product-a",
+      "id": "fact-input",
+      "key": "input_formats",
+      "project_ids": [
+        "content-demo"
+      ],
+      "sources": [
+        {
+          "locator": "正文第3段",
+          "quote": "资料夹 A 接收 Markdown 和纯文本资料。",
+          "source_id": "intro-v1"
+        }
+      ],
+      "status": "supported",
+      "supersedes": [],
+      "text": "资料夹 A 接收 Markdown 和纯文本资料。",
+      "value": "Markdown+TXT"
+    },
+    {
+      "category": "faq",
+      "entity_id": "product-a",
+      "id": "fact-upload",
+      "key": "upload_policy",
+      "project_ids": [
+        "content-demo"
+      ],
+      "question": "资料会自动上传吗？",
+      "sources": [
+        {
+          "locator": "资料会自动上传吗？",
+          "quote": "资料不会自动上传到外部知识库；需要外部同步时，应另行确认目标账号、知识库名称和写入范围。",
+          "source_id": "faq-v1"
+        }
+      ],
+      "status": "supported",
+      "supersedes": [],
+      "text": "资料不会自动上传到外部知识库。需要同步时，先确认目标账号、知识库名称与写入范围。",
+      "value": "不自动上传"
+    }
+  ],
+  "schema_version": 1,
+  "sources": [
+    {
+      "captured_at": "2026-10-19",
+      "id": "faq-v1",
+      "origin": "materials/faq.md",
+      "sha256": "222948e834ba4bf650d29215479e8c9962d238f124831a05880b605611b82cdf",
+      "snapshot_path": "原始资料/faq-v1.md",
+      "title": "资料夹 A 常见问答（演示）"
+    },
+    {
+      "captured_at": "2026-10-19",
+      "id": "intro-v1",
+      "origin": "materials/product.md",
+      "sha256": "2124c16d1774ab297c4a2b3a90b5eac9c8ba3eaaafeacb85c0ae945785be205a",
+      "snapshot_path": "原始资料/intro-v1.md",
+      "title": "资料夹 A 产品介绍（演示）"
+    },
+    {
+      "captured_at": "2026-10-19",
+      "id": "tutorial-v1",
+      "origin": "materials/tutorial.md",
+      "sha256": "c9af1a3c61fe33b968a74fe36ba83401a15326026779bf1bceeba0f8f89a0b5a",
+      "snapshot_path": "原始资料/tutorial-v1.md",
+      "title": "新成员接手资料教程（演示）"
+    }
+  ],
+  "stats": {
+    "conflict_fact_count": 0,
+    "fact_count": 6,
+    "open_gap_count": 2,
+    "pending_fact_count": 0,
+    "record_count": 7,
+    "source_count": 3,
+    "superseded_fact_count": 0,
+    "usable_fact_count": 6
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "code": 200,
+  "msg": "",
+  "data": {
+    "rowCount": 2,
+    "pageCount": 1,
+    "list": [
+      {
+        "competitorName": "深圳市鹏城物业管理有限公司",
+        "coBidderCount": 9,
+        "winningCount": 3,
+        "winningAmount": 2100000,
+        "competitivenessLevel": "高级"
+      },
+      {
+        "competitorName": "深圳市安诚城市服务有限公司",
+        "coBidderCount": 5,
+        "winningCount": 1,
+        "winningAmount": 760000,
+        "competitivenessLevel": "中级"
+      }
+    ]
+  },
+  "success": true
+}

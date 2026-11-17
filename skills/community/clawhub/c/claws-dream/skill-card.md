@@ -1,49 +1,60 @@
-## Description: <br>
-Deprecated OpenClaw memory-consolidation skill that reads local memory logs, updates long-term memory files, scores memory health, and can generate a memory dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deprecated OpenClaw memory consolidation skill that reviews recent logs, updates long-term memory files, computes memory health, and can trigger scheduled nightly runs.
 
-## Publisher: <br>
-[fortunateadventurer](https://clawhub.ai/user/fortunateadventurer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fortunateadventurer](https://clawhub.ai/user/fortunateadventurer)
 
-## Use Case: <br>
-External OpenClaw users and developers use this retired skill to consolidate local interaction logs into MEMORY.md, maintain memory/index.json, archive stale entries, and produce memory health reports. OpenClaw 2026.4.5+ users should prefer the built-in /dreaming feature. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local memory logs and rewrites long-term memory files that may contain sensitive information. <br>
-Mitigation: Review the memory directory for sensitive content before enabling the skill or any daily scheduler. <br>
-Risk: The release is retired and no longer maintained. <br>
-Mitigation: Prefer the official OpenClaw /dreaming feature when using OpenClaw 2026.4.5 or later. <br>
-Risk: Scheduled runs can change MEMORY.md and related memory files without an interactive review step. <br>
-Mitigation: Run the skill manually first, inspect the generated changes, and keep backups enabled before using recurring automation. <br>
+## Use Case:
 
+Developers and OpenClaw users use this retired skill to consolidate interaction logs into structured memory files, generate memory health reports, and maintain a local memory index. The release notes and security guidance recommend preferring OpenClaw's built-in Dreaming feature for current use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fortunateadventurer/claws-dream) <br>
-- [Nightly Dream - Memory Consolidation Prompt](references/dream-prompt.md) <br>
-- [First Dream - Initial Memory Setup](references/first-dream-prompt.md) <br>
-- [Dream Consolidation Prompts](references/dream-prompts.md) <br>
-- [Scoring & Health - Memory Evaluation Algorithms](references/scoring.md) <br>
-- [Memory Taxonomy](references/memory-types.md) <br>
-- [Memory Templates](references/memory-template.md) <br>
-- [Memory Dashboard Template](references/dashboard-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON snippets, and generated local files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write MEMORY.md, memory/index.json, memory/archive.md, memory/dream-log.md, memory/dashboard.html, logs, and backups in the OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.2 (source: server release evidence and target metadata) <br>
+Risk: The retired skill can continue running on an automatic schedule and modify local OpenClaw memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not enable the scheduler unless ongoing memory modification is intended; prefer OpenClaw's built-in Dreaming feature.
+
+Risk: Memory updates, backups, and generated dashboards affect local workspace state.
+
+Mitigation: Require user-scoped scheduling, clear file permissions, uninstall instructions, backup cleanup, and HTML escaping before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fortunateadventurer/skills/claws-dream)
+- [Nightly Dream Memory Consolidation Prompt](references/dream-prompt.md)
+- [First Dream Initial Memory Setup](references/first-dream-prompt.md)
+- [Dream Consolidation Prompts](references/dream-prompts.md)
+- [Memory Templates](references/memory-template.md)
+- [Memory Taxonomy](references/memory-types.md)
+- [Scoring and Health Algorithms](references/scoring.md)
+- [Memory Dashboard Template](references/dashboard-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON snippets, and generated local memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and modify MEMORY.md and files under memory/ when run; automatic scheduling can trigger repeated background memory updates.]
+
+## Skill Version(s):
+
+2.2.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

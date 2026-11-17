@@ -1,48 +1,62 @@
-## Description: <br>
-Create a living agent from a Discord server that preserves community memory, voice, history, and culture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a living agent from your Discord server. The agent embodies your community's identity, remembers every conversation, and grows as the community evolves. Talk to your Discord as if it were a person.
 
-## Publisher: <br>
-[kgeesawor](https://clawhub.ai/user/kgeesawor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kgeesawor](https://clawhub.ai/user/kgeesawor)
 
-## Use Case: <br>
-Community operators and developers use this skill to export Discord conversations, filter unsafe content, build an OpenClaw agent workspace, and maintain searchable community memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles full-server Discord message archives that may include private or sensitive community content. <br>
-Mitigation: Use only with clear authorization, exclude sensitive channels where possible, and restrict access to exported data, SQLite databases, and generated memory files. <br>
-Risk: The workflow depends on a Discord token and recurring storage of community data. <br>
-Mitigation: Treat the Discord token like an account password, limit filesystem access to token and archive locations, and review retention practices before scheduled updates. <br>
-Risk: The security evidence warns not to rely on the advertised safety pipeline until missing scripts and safe-only filtering are fixed. <br>
-Mitigation: Review and repair the filtering workflow before ingestion, verify that only safe messages are used, and manually review third-party AI processing before enabling it. <br>
+## Use Case:
 
+Developers and community operators use Discord Soul to turn authorized Discord server exports into an OpenClaw agent workspace with persistent community memory, identity files, and update scripts. The resulting agent can answer questions about community history, culture, channels, and recurring patterns.
 
-## Reference(s): <br>
-- [ClawHub release](https://clawhub.ai/kgeesawor/discord-soul) <br>
-- [DiscordChatExporter](https://github.com/Tyrrrz/DiscordChatExporter) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw GitHub repository](https://github.com/openclaw/openclaw) <br>
-- [Security guide](references/security.md) <br>
-- [LanceDB integration](references/lancedb.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration snippets, and generated agent workspace files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces scripts and templates for exporting Discord messages, generating memory files, and configuring an OpenClaw agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill builds a persistent memory agent from Discord messages, which can preserve private or sensitive community content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review data-governance requirements before installation, restrict exports to authorized channels, and protect generated memory files as private Discord-derived data.
+
+Risk: Server security evidence says advertised safety filtering is not enforced and unsafe Discord content may reach the agent memory flow.
+
+Mitigation: Do not run cron or heartbeat updates until safety filtering is fixed, enforced, and verified against the SQLite content used for memory generation.
+
+Risk: The workflow relies on sensitive Discord token handling.
+
+Mitigation: Prefer a bot or OAuth-style token flow where possible, avoid browser user tokens, and tightly restrict access to any token file.
+
+## Reference(s):
+
+- [DiscordChatExporter](https://github.com/Tyrrrz/DiscordChatExporter)
+- [OpenClaw](https://openclaw.ai)
+- [OpenClaw Docs](https://docs.openclaw.ai)
+- [OpenClaw GitHub](https://github.com/openclaw/openclaw)
+- [LanceDB Integration](references/lancedb.md)
+- [Security Reference](references/security.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python and shell scripts, JSON configuration snippets, and generated agent workspace files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Running the scripts can produce local SQLite databases and Markdown memory files containing Discord server content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

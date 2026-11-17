@@ -1,0 +1,443 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 新围串标审查
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai_api_compatible:0.0.12@721cf03c692aad2ab58c7c138c66be7c59819bd3d2a073e1c1b3c9ff83c0c0e8
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: document-extractor
+      id: 1744715703440-source-1744715713170-target
+      selected: false
+      source: '1744715703440'
+      sourceHandle: source
+      target: '1744715713170'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: document-extractor
+        targetType: code
+      id: 1744715713170-source-1744715764874-target
+      selected: false
+      source: '1744715713170'
+      sourceHandle: source
+      target: '1744715764874'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: iteration
+      id: 1744715764874-source-1744715806678-target
+      selected: false
+      source: '1744715764874'
+      sourceHandle: source
+      target: '1744715806678'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1744715806678'
+        sourceType: iteration-start
+        targetType: llm
+      id: 1744715806678start-source-1744716844950-target
+      selected: false
+      source: 1744715806678start
+      sourceHandle: source
+      target: '1744716844950'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1744715806678'
+        sourceType: llm
+        targetType: code
+      id: 1744716844950-source-1744764648128-target
+      selected: false
+      source: '1744716844950'
+      sourceHandle: source
+      target: '1744764648128'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInLoop: false
+        sourceType: iteration
+        targetType: llm
+      id: 1744715806678-source-1744765955490-target
+      selected: false
+      source: '1744715806678'
+      sourceHandle: source
+      target: '1744765955490'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1744765955490-source-1744717299622-target
+      source: '1744765955490'
+      sourceHandle: source
+      target: '1744717299622'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - image
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          label: toubiaowenjianA
+          max_length: 48
+          options: []
+          required: true
+          type: file
+          variable: toubiaowenjianA
+      height: 90
+      id: '1744715703440'
+      position:
+        x: -362.54114374608014
+        y: 425
+      positionAbsolute:
+        x: -362.54114374608014
+        y: 425
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_array_file: false
+        selected: false
+        title: 文档提取器
+        type: document-extractor
+        variable_selector:
+        - '1744715703440'
+        - toubiaowenjianA
+      height: 92
+      id: '1744715713170'
+      position:
+        x: -31.07396262797556
+        y: 425
+      positionAbsolute:
+        x: -31.07396262797556
+        y: 425
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "def main(text: str) -> dict:\n    lines = text.splitlines()\n    p\
+          \ = \"\"\n    ps = []\n    for line in lines:\n        if len(p) <= 2000:\n\
+          \            p += line\n        else:\n            ps.append(p)\n      \
+          \      p = \"\"\n    if p:\n        ps.append(p)\n    return {\"result\"\
+          : ps}"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: array[string]
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - '1744715713170'
+          - text
+          variable: text
+      height: 54
+      id: '1744715764874'
+      position:
+        x: 277
+        y: 425
+      positionAbsolute:
+        x: 277
+        y: 425
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        error_handle_mode: terminated
+        height: 350
+        is_parallel: true
+        iterator_selector:
+        - '1744715764874'
+        - result
+        output_selector:
+        - '1744764648128'
+        - result
+        output_type: array[string]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1744715806678start
+        title: 迭代
+        type: iteration
+        width: 403
+      height: 350
+      id: '1744715806678'
+      position:
+        x: 550
+        y: 419
+      positionAbsolute:
+        x: 550
+        y: 419
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 403
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1744715806678start
+      parentId: '1744715806678'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 574
+        y: 487
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1744715806678'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: C:\Qwen\QwQ-32B
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: 2a83be8d-da62-4274-b38b-44d9ffccfbaf
+          role: system
+          text: '请扮演中文纠错专家的角色
+
+            对文本逐字句进行智能检验
+
+            从以下几个方面
+
+            [拼写异常][语法错误]分析
+
+            请不用修正直接列出问题项
+
+            这是投标文件A {{#1744715806678.item#}}'
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1744716844950'
+      parentId: '1744715806678'
+      position:
+        x: 108.52688924917948
+        y: 73.27803164309148
+      positionAbsolute:
+        x: 658.5268892491795
+        y: 492.2780316430915
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1744765955490'
+          - text
+          variable: text
+        selected: false
+        title: 结束
+        type: end
+      height: 90
+      id: '1744717299622'
+      position:
+        x: 1347.7839601324943
+        y: 419
+      positionAbsolute:
+        x: 1347.7839601324943
+        y: 419
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\ndef main(text: str) -> str:\n    think_index = text.find(\"</think>\"\
+          )\n    if think_index >= 0:\n        text = text[think_index+8:]\n    return\
+          \ {\n        \"result\": text,\n    }\n"
+        code_language: python3
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1744715806678'
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行 2
+        type: code
+        variables:
+        - value_selector:
+          - '1744716844950'
+          - text
+          variable: text
+      height: 54
+      id: '1744764648128'
+      parentId: '1744715806678'
+      position:
+        x: 143
+        y: 266.5314588248277
+      positionAbsolute:
+        x: 693
+        y: 685.5314588248277
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: C:\Qwen\QwQ-32B
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: 6b25c6b3-95a5-44f4-987b-d5ba4f565b28
+          role: system
+          text: '基于前面多位中文纠错专家给出的结果中
+
+            {{#1744715806678.output#}}
+
+            将各位专家意见无缺漏地汇总为一个表格，并去除其中单位、符号,格式，术语，参数的错误'
+        selected: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1744765955490'
+      position:
+        x: 1011.2527777536284
+        y: 419
+      positionAbsolute:
+        x: 1011.2527777536284
+        y: 419
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -247.63772206575612
+      y: 84.34855669157938
+      zoom: 0.5358867312681479

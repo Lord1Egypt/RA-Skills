@@ -1,0 +1,60 @@
+# GitHub Actions Workflow — PyPI Trusted Publisher 自动发布
+#
+# 将本文件放入仓库的 .github/workflows/pypi-publish.yml
+# git-sync 推 tag 格式：pypi/{type}/{name}/{version}
+# 此 workflow 监听 pypi/*/*/* 通配符自动触发
+#
+# 前置条件（一次性配置）：
+# 1. 在 PyPI 注册项目（https://pypi.org/manage/projects/），包名 {name}-ldxs
+# 2. 在 GitHub 仓库 Settings → Environments → 新建 PyPI 环境
+# 3. 在 PyPI 项目设置中添加 GitHub Trusted Publisher：
+#    - PyPI Project: {name}-ldxs
+#    - GitHub Repository: 你的仓库
+#    - Workflow name: pypi-publish.yml
+#    - Environment name: PyPI
+#    参考: https://docs.pypi.org/trusted-publishers/
+
+name: PyPI Publish
+
+on:
+  push:
+    tags:
+      - 'pypi/*/*/*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: PyPI
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Parse tag
+        id: parse
+        run: |
+          # tag 格式: pypi/{type}/{name}/{version}
+          TAG=${GITHUB_REF#refs/tags/pypi/}
+          IFS='/' read -r TYPE NAME VERSION <<< "$TAG"
+          echo "name=$NAME" >> $GITHUB_OUTPUT
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install build
+        run: pip install build
+
+      - name: Build
+        run: |
+          cd ${{ steps.parse.outputs.name }}
+          python -m build
+
+      - name: Publish
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: ${{ steps.parse.outputs.name }}/dist/

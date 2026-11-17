@@ -1,0 +1,12 @@
+# Client configs (contain OAuth tokens and secrets)
+clients/*.json
+!clients/_template.json
+
+# Auto-generated runtime files
+review_log.json
+pending/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo

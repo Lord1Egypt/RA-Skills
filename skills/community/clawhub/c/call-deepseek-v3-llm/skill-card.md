@@ -1,40 +1,53 @@
-## Description: <br>
-AI agent for call deepseek v3 llm tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a meeting-focused creative brainstorming role prompt, despite being advertised as a DeepSeek V3 LLM caller.
 
-## Publisher: <br>
-[urrrich](https://clawhub.ai/user/urrrich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[urrrich](https://clawhub.ai/user/urrrich)
 
-## Use Case: <br>
-External users can use this skill as a role-play prompt for creative meeting responses that follow the user's initial language and answer a Chief Creative Officer's current request from meeting-minutes context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill name and release notes imply Deepseek V3 integration, but the security evidence says the artifact is a role-play prompt and should not be expected to call Deepseek V3. <br>
-Mitigation: Use it only for creative meeting-response prompting, and verify any desired Deepseek V3 integration separately before relying on it. <br>
-Risk: The prompt treats meeting minutes as the sole source of memory and asks the agent to follow role instructions, which can make user-supplied meeting content appear authoritative. <br>
-Mitigation: Treat meeting minutes as ordinary user-provided context, review responses before use, and keep higher-priority system or developer instructions in force. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/urrrich/call-deepseek-v3-llm) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/urrrich) <br>
+## Use Case:
 
+External users can apply this skill as a prompt that steers an agent toward meeting-minute-based creative brainstorming responses and language matching. Review carefully because server security evidence says the release does not implement a normal DeepSeek V3 integration.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are constrained by the prompt to match the user's initial language and rely on provided meeting minutes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may cause an agent to prioritize an unrelated meeting-role hierarchy or untrusted meeting notes over the user's actual task.
+
+Mitigation: Review the prompt before installing and use it only in contexts where meeting-minute-based creative role-play behavior is intended.
+
+Risk: The release is advertised as a DeepSeek V3 caller, but server security evidence says the artifact is not a normal DeepSeek V3 integration.
+
+Mitigation: Verify the artifact behavior against the intended integration before relying on it for DeepSeek V3 access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/urrrich/skills/call-deepseek-v3-llm)
+- [Publisher profile](https://clawhub.ai/user/urrrich)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text response guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

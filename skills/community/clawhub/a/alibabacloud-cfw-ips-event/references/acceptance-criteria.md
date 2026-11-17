@@ -116,9 +116,9 @@ cat ~/.aliyun/config.json
 **CORRECT - All 7 API names (plugin mode, lowercase-hyphenated):**
 - `describe-risk-event-statistic`
 - `describe-risk-event-group`
-- `describe-risk-event-top-attack-asset`
-- `describe-risk-event-top-attack-type`
-- `describe-risk-event-top-attack-app`
+- `describe-riREDACTED-SECRET`
+- `describe-riREDACTED-SECRET`
+- `describe-riREDACTED-SECRET`
 - `describe-default-ipsconfig`
 - `describe-signature-lib-version`
 

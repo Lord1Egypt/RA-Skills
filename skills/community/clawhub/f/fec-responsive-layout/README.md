@@ -1,4 +1,4 @@
-# 响应式布局
+# Responsive layout
 
 Responsive frontend layout strategy for mobile-first breakpoints, container queries, fluid grids, data-dense screens, touch targets, and cross-device verification.
 
@@ -6,12 +6,12 @@ Responsive frontend layout strategy for mobile-first breakpoints, container quer
 
 - ID: `fec-responsive-layout`
 - Category: `design-ui`
-- Version: `2.5.0`
+- Version: `2.9.0`
 - Source: `skills/fec-responsive-layout/SKILL.md`
 
 ## Description
 
-Use when designing, implementing, or reviewing responsive frontend layouts, mobile-first breakpoints, container queries, fluid grids, data-dense tables, touch targets, safe areas, orientation changes, viewport overflow, or cross-device UI behavior; Chinese triggers include 响应式布局, 移动端适配, 断点, 容器查询, 横竖屏, 触摸目标.
+Use when designing, implementing, or reviewing responsive frontend layouts, mobile-first breakpoints, container queries, fluid grids, data-dense tables, touch targets, safe areas, orientation changes, viewport overflow, or cross-device UI behavior; Chinese triggers include responsive layouts, mobile-side adaptation, breakpoints, container queries, horizontal and vertical screens, touch targets.
 
 ## Usage
 

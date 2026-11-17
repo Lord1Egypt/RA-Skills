@@ -1,0 +1,26 @@
+name: arti-opportunity-radar
+version: 1.0.0
+description: >
+  ARTi 机会雷达：把分散的市场新闻整理成可验证的持仓提醒、
+  关注股动态和新机会线索，并为每只相关股票生成独立的 ARTi 深度分析入口。
+  支持 Readhub、AI HOT、Poche、Hacker News、GDELT 等多源信息聚合。
+triggers:
+  - "机会雷达"
+  - "配置我的新闻"
+  - "早报"
+  - "晚报"
+  - "今日新闻"
+  - "找机会"
+  - "扫描突发新闻"
+  - "生成市场简报"
+  - "配置机会雷达"
+  - "我的持仓提醒"
+  - "opportunity radar"
+category: finance
+tags:
+  - 投资
+  - 股票
+  - 新闻聚合
+  - 市场分析
+  - ARTi
+requires_api_keys: false

@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/captions.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "metadata", "pages"],
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/captions.schema.json"
+    },
+    "schemaVersion": {"const": "1.0.0"},
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceVariant", "timelineFps", "automaticWrapAllowed", "pagination"],
+      "$comment": "The five provenance fields are optional together for migration compatibility. validate-caption-pages.mjs warns when all are absent; --strict turns that warning into a failure.",
+      "dependentRequired": {
+        "projectId": ["timelineId", "timelineRevision", "sourceAssetId", "sourceRevision"],
+        "timelineId": ["projectId", "timelineRevision", "sourceAssetId", "sourceRevision"],
+        "timelineRevision": ["projectId", "timelineId", "sourceAssetId", "sourceRevision"],
+        "sourceAssetId": ["projectId", "timelineId", "timelineRevision", "sourceRevision"],
+        "sourceRevision": ["projectId", "timelineId", "timelineRevision", "sourceAssetId"]
+      },
+      "properties": {
+        "sourceVariant": {"const": "original"},
+        "timelineFps": {"type": "number", "exclusiveMinimum": 0},
+        "automaticWrapAllowed": {"const": true},
+        "projectId": {"type": "string", "minLength": 1, "pattern": "\\S"},
+        "timelineId": {"type": "string", "minLength": 1, "pattern": "\\S"},
+        "timelineRevision": {"type": "string", "minLength": 1, "pattern": "\\S"},
+        "sourceAssetId": {"type": "string", "minLength": 1, "pattern": "\\S"},
+        "sourceRevision": {"type": "string", "minLength": 1, "pattern": "\\S"},
+        "pagination": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["maxLines", "maxCharactersPerLine"],
+          "properties": {
+            "maxLines": {"const": 2},
+            "maxCharactersPerLine": {"type": "integer", "minimum": 1}
+          }
+        }
+      }
+    },
+    "pages": {
+      "type": "array",
+      "minItems": 1,
+      "$comment": "Cross-item invariants are enforced by validate-caption-pages.mjs: page intervals are ordered/non-overlapping; word keys are document-global unique; word intervals are page-local ordered/non-overlapping.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["index", "startFrame", "endFrame", "text", "lines", "words"],
+        "properties": {
+          "index": {"type": "integer", "minimum": 1, "maximum": 9007199254740991},
+          "startFrame": {"type": "integer", "minimum": 0, "maximum": 9007199254740991},
+          "endFrame": {"type": "integer", "minimum": 1, "maximum": 9007199254740991},
+          "text": {"type": "string", "minLength": 1, "pattern": "^[^\\r\\n]+$"},
+          "lines": {"type": "integer", "minimum": 1, "maximum": 2},
+          "declaredWordCount": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991,
+            "description": "Optional legacy audit assertion; when present it must equal the parsed words array length."
+          },
+          "shortCardEvidence": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["reviewedBy", "evidenceRefs"],
+            "properties": {
+              "reviewedBy": {"type": "string", "minLength": 1, "pattern": "\\S"},
+              "reviewedAt": {"type": "string", "format": "date-time"},
+              "evidenceRefs": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {"type": "string", "minLength": 1, "pattern": "\\S"}
+              }
+            }
+          },
+          "words": {
+            "type": "array",
+            "minItems": 1,
+            "$comment": "Every word is governed by the document metadata.timelineId and metadata.timelineRevision; words cannot override timeline provenance. Source provenance remains explicit per word through sourceAssetId, sourceRevision, and sourceWordKey.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["key", "text", "startFrame", "endFrame"],
+              "dependentRequired": {
+                "sourceAssetId": ["sourceRevision", "sourceWordKey"],
+                "sourceRevision": ["sourceAssetId", "sourceWordKey"],
+                "sourceWordKey": ["sourceAssetId", "sourceRevision"]
+              },
+              "properties": {
+                "key": {"type": "string", "minLength": 1, "pattern": "\\S"},
+                "sourceAssetId": {"type": "string", "minLength": 1, "pattern": "\\S"},
+                "sourceRevision": {"type": "string", "minLength": 1, "pattern": "\\S"},
+                "sourceWordKey": {"type": "string", "minLength": 1, "pattern": "\\S"},
+                "sourceText": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[^\\r\\n]+$",
+                  "description": "Original source/transcript word text used to derive whether display text is overridden."
+                },
+                "text": {"type": "string", "minLength": 1, "pattern": "^[^\\r\\n]+$"},
+                "startFrame": {"type": "integer", "minimum": 0, "maximum": 9007199254740991},
+                "endFrame": {"type": "integer", "minimum": 1, "maximum": 9007199254740991},
+                "edited": {
+                  "type": "boolean",
+                  "description": "Legacy consistency assertion only. Validators derive edit state from sourceText versus text."
+                },
+                "correction": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["approved", "reason", "evidenceRefs", "reviewedBy", "reviewedAt"],
+                  "properties": {
+                    "approved": {"const": true},
+                    "reason": {"type": "string", "minLength": 1, "pattern": "\\S"},
+                    "evidenceRefs": {
+                      "type": "array",
+                      "minItems": 1,
+                      "uniqueItems": true,
+                      "items": {"type": "string", "minLength": 1, "pattern": "\\S"}
+                    },
+                    "reviewedBy": {"type": "string", "minLength": 1, "pattern": "\\S"},
+                    "reviewedAt": {"type": "string", "format": "date-time"},
+                    "termId": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

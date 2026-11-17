@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工作内容分析与分布报告</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { 
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+  background: #f5f7fa; color: #2c3e50; line-height: 1.7;
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+.header {
+  background: linear-gradient(135deg, #1a5276, #2980b9);
+  color: white; padding: 40px 30px; border-radius: 12px; margin-bottom: 30px;
+  text-align: center;
+}
+.header h1 { font-size: 28px; margin-bottom: 8px; }
+.header p { opacity: 0.9; font-size: 15px; }
+.summary-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 30px; }
+.summary-card {
+  background: white; border-radius: 10px; padding: 24px; text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.summary-card .number { font-size: 36px; font-weight: 700; color: #2980b9; }
+.summary-card .label { font-size: 13px; color: #7f8c8d; margin-top: 4px; }
+.chart-section {
+  background: white; border-radius: 10px; padding: 30px; margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.chart-section h2 { font-size: 20px; margin-bottom: 20px; color: #1a5276; border-left: 4px solid #2980b9; padding-left: 12px; }
+.chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.chart-box { position: relative; height: 380px; }
+.chart-box canvas { max-height: 380px; }
+.category-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+.category-table th {
+  background: #2980b9; color: white; padding: 12px 16px; text-align: left; font-weight: 600; font-size: 14px;
+}
+.category-table td {
+  padding: 12px 16px; border-bottom: 1px solid #ecf0f1; font-size: 14px;
+}
+.category-table tr:hover { background: #f8f9fa; }
+.bar-cell { display: flex; align-items: center; gap: 8px; }
+.bar-bg { flex: 1; height: 10px; background: #ecf0f1; border-radius: 5px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 5px; transition: width 0.5s; }
+.analysis-section { 
+  background: white; border-radius: 10px; padding: 30px; margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.analysis-section h2 { font-size: 20px; margin-bottom: 16px; color: #1a5276; border-left: 4px solid #2980b9; padding-left: 12px; }
+.analysis-section h3 { font-size: 16px; color: #2c3e50; margin: 20px 0 10px; }
+.analysis-section ul { padding-left: 20px; }
+.analysis-section li { margin-bottom: 8px; font-size: 14px; color: #555; }
+.analysis-section ol { padding-left: 20px; font-size: 14px; color: #555; line-height: 2; }
+.insight-box {
+  background: linear-gradient(135deg, #eaf2f8, #d4e6f1);
+  border-radius: 8px; padding: 20px; margin-top: 16px;
+}
+.insight-box strong { color: #1a5276; }
+.footer { text-align: center; padding: 20px; font-size: 12px; color: #95a5a6; }
+.tag { display: inline-block; background: #e8f4f8; color: #2980b9; padding: 2px 10px; border-radius: 12px; font-size: 12px; margin-right: 6px; }
+.color-dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 6px; }
+@media (max-width: 768px) {
+  .summary-cards { grid-template-columns: repeat(2, 1fr); }
+  .chart-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>{{ROLE}} — 工作内容分析与分布报告</h1>
+  <p>基于有道云笔记 {{YEAR1}}年「{{PATTERN1}}」与 {{YEAR2}}年「{{PATTERN2}}」的内容分析</p>
+  <p style="margin-top:8px;font-size:13px;opacity:0.8">分析时间：{{ANALYSIS_DATE}} ｜ 数据来源：有道云笔记</p>
+</div>
+
+<div class="summary-cards">
+  <div class="summary-card">
+    <div class="number">{{CATEGORY_COUNT}}</div>
+    <div class="label">工作大类</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">{{SAMPLE1_COUNT}}+</div>
+    <div class="label">{{YEAR1}}年样本</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">{{SAMPLE2_COUNT}}+</div>
+    <div class="label">{{YEAR2}}年样本</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">{{TOTAL_NOTES}}</div>
+    <div class="label">笔记总数</div>
+  </div>
+</div>
+
+<!-- 各年度饼图 -->
+<div class="chart-section">
+  <h2>一、工作内容占比总览</h2>
+  <div class="chart-row">
+    <div>
+      <h3 style="text-align:center;margin-bottom:12px;color:#8e44ad;">{{YEAR1}}年 工作分布</h3>
+      <div class="chart-box"><canvas id="pieYear1"></canvas></div>
+    </div>
+    <div>
+      <h3 style="text-align:center;margin-bottom:12px;color:#2980b9;">{{YEAR2}}年 工作分布</h3>
+      <div class="chart-box"><canvas id="pieYear2"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- 年对比柱状图 -->
+<div class="chart-section">
+  <h2>二、{{YEAR1}} vs {{YEAR2}} 对比分析</h2>
+  <div class="chart-box" style="height:420px;"><canvas id="barCompare"></canvas></div>
+</div>
+
+<!-- 分类明细表 -->
+<div class="chart-section">
+  <h2>三、工作分类明细</h2>
+  <table class="category-table">
+    <thead>
+      <tr>
+        <th>分类</th>
+        <th>典型工作内容</th>
+        <th>{{YEAR1}}占比</th>
+        <th>{{YEAR2}}占比</th>
+        <th>变化趋势</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+</div>
+
+<!-- 深度分析 -->
+<div class="analysis-section">
+  <h2>四、深度洞察分析</h2>
+  {{INSIGHTS}}
+  <div class="insight-box">
+    {{KEY_FINDINGS}}
+  </div>
+</div>
+
+<!-- 分类详细说明 -->
+<div class="analysis-section">
+  <h2>五、分类详细说明</h2>
+  {{CATEGORY_DETAILS}}
+</div>
+
+<!-- 优化建议 -->
+<div class="analysis-section">
+  <h2>六、优化建议</h2>
+  <ol style="padding-left:20px;font-size:14px;color:#555;line-height:2;">
+    {{SUGGESTIONS}}
+  </ol>
+</div>
+
+<div class="footer">
+  <p>本报告基于有道云笔记中工作笔记系列的内容分析生成</p>
+  <p>{{ROLE}} · 工作分析报告 · {{ANALYSIS_DATE}}</p>
+</div>
+
+</div>
+
+<script>
+// ===== 数据区（由生成脚本替换） =====
+const categories = {{CATEGORIES_JSON}};
+const colors = {{COLORS_JSON}};
+const dataYear1 = {{DATA_YEAR1_JSON}};
+const dataYear2 = {{DATA_YEAR2_JSON}};
+
+// ===== 饼图 Year1 =====
+new Chart(document.getElementById('pieYear1'), {
+  type: 'doughnut',
+  data: {
+    labels: categories,
+    datasets: [{ data: dataYear1, backgroundColor: colors, borderWidth: 2, borderColor: '#fff' }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 12, usePointStyle: true } },
+      tooltip: { callbacks: { label: ctx => ctx.label + ': ' + ctx.raw + '%' } }
+    }
+  }
+});
+
+// ===== 饼图 Year2 =====
+new Chart(document.getElementById('pieYear2'), {
+  type: 'doughnut',
+  data: {
+    labels: categories,
+    datasets: [{ data: dataYear2, backgroundColor: colors, borderWidth: 2, borderColor: '#fff' }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 12, usePointStyle: true } },
+      tooltip: { callbacks: { label: ctx => ctx.label + ': ' + ctx.raw + '%' } }
+    }
+  }
+});
+
+// ===== 柱状图对比 =====
+new Chart(document.getElementById('barCompare'), {
+  type: 'bar',
+  data: {
+    labels: categories,
+    datasets: [
+      {
+        label: '{{YEAR1}}年',
+        data: dataYear1,
+        backgroundColor: 'rgba(142, 68, 173, 0.7)',
+        borderColor: '#8e44ad',
+        borderWidth: 1
+      },
+      {
+        label: '{{YEAR2}}年',
+        data: dataYear2,
+        backgroundColor: 'rgba(41, 128, 185, 0.7)',
+        borderColor: '#2980b9',
+        borderWidth: 1
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw + '%' } }
+    },
+    scales: {
+      y: { 
+        beginAtZero: true, max: {{BAR_MAX}},
+        title: { display: true, text: '占比 (%)' },
+        ticks: { callback: v => v + '%' }
+      },
+      x: { ticks: { font: { size: 11 } } }
+    }
+  }
+});
+
+// ===== 表格数据 =====
+const trends = {{TRENDS_JSON}};
+const trendColors = {{TREND_COLORS_JSON}};
+const trendLabels = {{TREND_LABELS_JSON}};
+const rowColors = colors;
+const examples = {{EXAMPLES_JSON}};
+
+let tableHtml = '';
+for (let i = 0; i < categories.length; i++) {
+  const diff = dataYear2[i] - dataYear1[i];
+  const diffText = diff > 0 ? '+' + diff + '%' : (diff < 0 ? diff + '%' : '持平');
+  tableHtml += `<tr>
+    <td><span class="color-dot" style="background:${rowColors[i]};"></span><strong>${categories[i]}</strong></td>
+    <td style="font-size:13px;">${examples[i]}</td>
+    <td>
+      <div class="bar-cell">
+        <span style="min-width:36px;">${dataYear1[i]}%</span>
+        <div class="bar-bg"><div class="bar-fill" style="width:${dataYear1[i]*4.5}%;background:${rowColors[i]};"></div></div>
+      </div>
+    </td>
+    <td>
+      <div class="bar-cell">
+        <span style="min-width:36px;">${dataYear2[i]}%</span>
+        <div class="bar-bg"><div class="bar-fill" style="width:${dataYear2[i]*4.5}%;background:${rowColors[i]};"></div></div>
+      </div>
+    </td>
+    <td>
+      <span style="color:${trendColors[i]};font-weight:600;">${trends[i]} ${diffText}</span>
+      <br><span style="font-size:12px;color:#95a5a6;">${trendLabels[i]}</span>
+    </td>
+  </tr>`;
+}
+document.getElementById('tableBody').innerHTML = tableHtml;
+</script>
+
+</body>
+</html>

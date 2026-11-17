@@ -1,0 +1,30 @@
+{
+  "name": "local_document_ingest",
+  "version": "0.5.0",
+  "description": "Process desktop-uploaded local folder files with OpenClaw document understanding plus deterministic prepare/apply helpers for file validation, context extraction, source archival, Gitea page writes, and catalog/index maintenance.",
+  "entry": "SKILL.md",
+  "runtime": {
+    "type": "python",
+    "workflow": [
+      "python3 scripts/run_task.py prepare --input <payload.json> --context-output <context.json>",
+      "python3 scripts/run_task.py validate-pages --input <payload.json> --context <context.json> --pages <pages.json>",
+      "python3 scripts/run_task.py apply --input <payload.json> --context <context.json> --pages <pages.json>"
+    ]
+  },
+  "selfContained": true,
+  "requiredEnv": [
+    "GITEA_URL",
+    "GITEA_BOT_TOKEN",
+    "GITEA_BOT_USERNAME",
+    "TEAM_KB_REPO"
+  ],
+  "optionalEnv": [
+    "GITEA_ORG",
+    "OPENCLAW_SHARED_DIR"
+  ],
+  "systemDependencies": [
+    "python3"
+  ],
+  "input": "Research KB backend local_folder task payload JSON from the payload file named in the OpenClaw message.",
+  "output": "prepare emits local-document analysis context; OpenClaw writes pages.json; validate-pages checks JSON/path/sourceItemKeys/entity coverage before any KB write; apply archives source files under source_files/local_folder, writes pages/catalog/index to Gitea, and writes a resultFile JSON envelope with a boolean success field."
+}

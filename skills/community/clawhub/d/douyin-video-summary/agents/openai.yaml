@@ -1,0 +1,7 @@
+interface:
+  display_name: "抖音视频总结"
+  short_description: "提取抖音音频、云端生成字幕并总结重点与行动项"
+  icon_small: "./assets/icon-small.png"
+  icon_large: "./assets/icon.png"
+  brand_color: "#13D8E8"
+  default_prompt: "使用 $抖音视频总结 转写最后一个抖音链接，并总结视频重点。"

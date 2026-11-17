@@ -1,37 +1,48 @@
-## Description: <br>
-Generate viral marketing content for skincare affiliate products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate viral marketing content for skincare affiliate products.
 
-## Publisher: <br>
-[underbench2-gif](https://clawhub.ai/user/underbench2-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[underbench2-gif](https://clawhub.ai/user/underbench2-gif)
 
-## Use Case: <br>
-External creators and marketers use this skill to draft TikTok hooks, Instagram captions, story ideas, and calls to action for skincare affiliate promotions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated skincare marketing copy may include unsupported efficacy, medical, or affiliate claims. <br>
-Mitigation: Review generated copy before publication, verify product claims against reliable evidence, and add required ad or affiliate disclosures. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [GlowSkin Promo on ClawHub](https://clawhub.ai/underbench2-gif/glowskin-promo) <br>
+## Use Case:
 
+External marketers and affiliate content creators use this skill to draft TikTok hooks, Instagram captions, story ideas, and calls to action for skincare product promotions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style marketing copy prompts and short-form content drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft TikTok hooks, Instagram captions, story ideas, and call-to-action variations for user review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated skincare affiliate copy may include inaccurate efficacy claims, insufficient disclosures, or platform-sensitive advertising language.
+
+Mitigation: Review all generated claims for accuracy, affiliate disclosure, platform rules, and skincare advertising requirements before publishing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/underbench2-gif/skills/glowskin-promo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text marketing copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces copywriting suggestions only; review generated claims before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

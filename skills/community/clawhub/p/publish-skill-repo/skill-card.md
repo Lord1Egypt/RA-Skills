@@ -1,43 +1,59 @@
-## Description: <br>
-Publishes a skill project to GitHub and syncs it to ClawHub, automating new repositories and guiding updates to existing repositories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers publish a local Skill project to GitHub and synchronize it to ClawHub, with automated setup for new projects and guided release steps for existing repositories.
 
-## Publisher: <br>
-[zhouchang1988](https://clawhub.ai/user/zhouchang1988) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhouchang1988](https://clawhub.ai/user/zhouchang1988)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to prepare, publish, and version skill repositories on GitHub and ClawHub. It supports release workflows where repository visibility, staged files, secrets, and tags can be reviewed before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish local skill content to GitHub and ClawHub with limited confirmation. <br>
-Mitigation: Review the target repository owner and name, repository visibility, and exact files to be committed before allowing the publishing workflow to run. <br>
-Risk: The workflow can use a local ClawHub token and copy it into a GitHub repository secret. <br>
-Mitigation: Confirm that storing the ClawHub token as a repository secret is acceptable for the target repository, and rotate the token if it may have been exposed. <br>
-Risk: The release flow can create commits, tags, and workflow files that trigger publication. <br>
-Mitigation: Review the proposed commit message, version tag, generated workflow, and staged changes before pushing or tagging a release. <br>
+## Use Case:
 
+Developers use this skill to prepare and release Skill repositories by checking prerequisites, creating or updating GitHub repository assets, configuring ClawHub publishing, and tagging releases.
 
-## Reference(s): <br>
-- [Publish Skill Repo on ClawHub](https://clawhub.ai/zhouchang1988/skills/publish-skill-repo) <br>
-- [ClawHub](https://clawhub.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated repository configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update repository files, Git commits, tags, GitHub repository settings, and ClawHub publishing configuration when executed by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: ClawHub release metadata) <br>
+Risk: The skill can create or modify GitHub repositories, commit non-ignored files, push branches, and create tags.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the target repository and origin before publishing, review staged files for secrets or unintended content, and confirm the release tag before pushing.
+
+Risk: The workflow handles a long-lived ClawHub token and stores it as a GitHub secret.
+
+Mitigation: Confirm the destination repository before setting the secret, limit token exposure, and rotate the token if it may have been added to the wrong repository.
+
+Risk: The generated workflow installs the ClawHub CLI without a pinned version.
+
+Mitigation: Pin the ClawHub CLI version in the workflow when repeatable releases or supply-chain control are required.
+
+## Reference(s):
+
+- [README](README.md)
+- [ClawHub skill page](https://clawhub.ai/zhouchang1988/skills/publish-skill-repo)
+- [ClawHub](https://clawhub.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and generated repository or workflow files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update repository files, GitHub Actions configuration, commits, branches, tags, and repository secrets.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

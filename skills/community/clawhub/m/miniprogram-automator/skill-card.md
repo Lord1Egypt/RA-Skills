@@ -1,44 +1,54 @@
-## Description: <br>
-Automate WeChat Mini Program UI operations, navigation, data validation, event listening, and screenshots inside WeChat DevTools for testing and regression. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate WeChat Mini Program UI operations, navigation, data validation, event listening, and screenshots inside DevTools for testing and regression.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to produce guidance, commands, and JavaScript examples for automating WeChat Mini Program tests in WeChat DevTools. It supports test flows involving page navigation, element selection and interaction, data injection, mocked wx methods, event listening, screenshots, login tickets, multi-account checks, and performance audit collection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The referenced SDK can drive WeChat DevTools, inject test code, take screenshots, and control Mini Program state. <br>
-Mitigation: Use it only with trusted projects and development or QA environments where automated control is intended. <br>
-Risk: Automation flows may use login tickets, test accounts, screenshots, and application data that could expose sensitive information. <br>
-Mitigation: Avoid production accounts and sensitive test data; store generated screenshots and audit reports only in approved locations. <br>
-Risk: The artifact requires enabling DevTools CLI/HTTP call functionality, which expands local automation access. <br>
-Mitigation: Enable that setting only for controlled test workstations and disable it when automation is no longer needed. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to automate WeChat Mini Program UI, E2E, and regression tests in WeChat DevTools, including navigation, element interaction, data inspection, screenshots, mocking, and audit workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/openlark/miniprogram-automator) <br>
-- [Full API Reference](references/api.md) <br>
-- [Publisher Profile](https://clawhub.ai/user/openlark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API usage examples and test automation setup notes; does not execute DevTools automation itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automation can access WeChat DevTools projects, login tickets, screenshots, and test account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with selected test projects or test accounts, treat tickets and screenshots as sensitive, and avoid logging or committing them.
+
+Risk: Runtime evaluation, exposed functions, and wx method mocking can alter or inspect Mini Program behavior during tests.
+
+Mitigation: Use evaluate, exposeFunction, and mocking APIs only in trusted test environments with reviewed snippets, and restore mocked methods after tests.
+
+## Reference(s):
+
+- [Full API Reference](artifact/references/api.md)
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/miniprogram-automator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JavaScript examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API usage examples, DevTools setup steps, and testing workflow guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

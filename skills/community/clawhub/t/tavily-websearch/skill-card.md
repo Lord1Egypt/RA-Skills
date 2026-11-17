@@ -1,42 +1,50 @@
-## Description: <br>
-Searches the web using Tavily's Search API and returns relevant results with snippets, scores, and metadata for research or source lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches the web with Tavily's Search API and returns relevant results with content snippets, scores, and metadata.
 
-## Publisher: <br>
-[evanYDL](https://clawhub.ai/user/evanYDL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evanydl](https://clawhub.ai/user/evanydl)
 
-## Use Case: <br>
-Agents and developers use this skill to issue Tavily web searches when they need current web results, source links, snippets, scores, or metadata for a user request. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search request JSON is sent to Tavily under the user's Tavily API key. <br>
-Mitigation: Use only non-sensitive queries and avoid sending secrets, credentials, proprietary data, or sensitive personal data. <br>
-Risk: API usage may consume Tavily quota or incur billing under the configured key. <br>
-Mitigation: Use an API key with appropriate quota and billing limits for the deployment. <br>
+## Use Case:
 
+Developers and agents use this skill to perform web searches through Tavily when a task needs current information, source links, or research context.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/evanYDL/tavily-websearch) <br>
-- [Tavily Documentation](https://docs.tavily.com/documentation) <br>
-- [Tavily Search API Reference](https://docs.tavily.com/documentation/api-reference/endpoint/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and TAVILY_API_KEY; sends the provided JSON body to Tavily's search endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-7.0.0 (source: server release evidence) <br>
+Risk: Search queries and selected request fields are sent to Tavily using the configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use concise search queries and domain or date filters where possible, and do not include secrets, credentials, private user data, or long prompt contents in the JSON body.
+
+## Reference(s):
+
+- [Tavily Documentation](https://docs.tavily.com/documentation)
+- [Tavily Search API Reference](https://docs.tavily.com/documentation/api-reference/endpoint/search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Links, Shell commands, Configuration guidance]
+
+**Output Format:** [JSON search results with titles, URLs, content snippets, relevance scores, and response metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and TAVILY_API_KEY; request bodies are sent to the Tavily Search API.]
+
+## Skill Version(s):
+
+7.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

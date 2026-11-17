@@ -1,40 +1,53 @@
-## Description: <br>
-Helps an agent assess a social setting and suggest natural ways to improve the atmosphere for smoother, more comfortable communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+快速感知环境氛围，通过自然干预调整气氛，提升沟通效率并创造舒适愉悦的交流体验。
 
-## Publisher: <br>
-[ulrica66666](https://clawhub.ai/user/ulrica66666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ulrica66666](https://clawhub.ai/user/ulrica66666)
 
-## Use Case: <br>
-External users and agents use this skill for lightweight interpersonal coaching, including reading room dynamics, selecting low-pressure conversation adjustments, and improving comfort in meetings, gatherings, family settings, or first meetings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The advice could be used as a mandate to manipulate social situations. <br>
-Mitigation: Treat outputs as optional social guidance and keep interventions natural, respectful, and aligned with participants' comfort. <br>
-Risk: Users may share sensitive interpersonal context while asking for coaching. <br>
-Mitigation: Share only the social context needed for the request and avoid unnecessary personal or private details. <br>
+## Use Case:
 
+Chinese-speaking users can use this skill to assess the tone of meetings, gatherings, family conversations, dates, or first meetings and choose natural interventions that make the interaction more comfortable, focused, or pleasant.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ulrica66666/fenweitest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text social guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, shell commands, credentials, persistence, or data access are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may influence conversational style and social suggestions in interpersonal contexts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review suggestions for consent, respect, and appropriateness before acting, especially in workplace, family, dating, or other sensitive situations.
+
+Risk: The skill can suggest changing conversational energy, topic direction, or environmental details.
+
+Mitigation: Keep interventions transparent and low-pressure, and avoid using the guidance to manipulate, isolate, or override another person's comfort.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ulrica66666/skills/fenweitest)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Markdown or plain text guidance in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces interpersonal atmosphere assessment and social adjustment suggestions; no code, shell commands, or configuration output is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

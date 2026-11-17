@@ -1,45 +1,56 @@
-## Description: <br>
-Helps agents monitor potential crypto airdrops, review basic eligibility information, and prepare alert commands for new opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor and track potential crypto airdrops and alert users to new airdrop opportunities.
 
-## Publisher: <br>
-[alexbrc20](https://clawhub.ai/user/alexbrc20) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alexbrc20](https://clawhub.ai/user/alexbrc20)
 
-## Use Case: <br>
-External users use this skill to discover potential crypto airdrop opportunities, check basic wallet eligibility signals, and set alert thresholds for opportunities they want to monitor. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Crypto airdrop tools can invite users to disclose sensitive wallet information or secrets. <br>
-Mitigation: Do not provide private keys, seed phrases, wallet secrets, or signing authority to this skill or to linked airdrop services. <br>
-Risk: The current artifact behaves like a local demo with simulated opportunity and eligibility data rather than a complete alerting system. <br>
-Mitigation: Treat generated opportunities, eligibility labels, and estimated values as informational and verify them against authoritative project sources before acting. <br>
-Risk: Airdrop opportunities can involve external links and financially motivated actions. <br>
-Mitigation: Review linked projects independently, avoid unsolicited signing prompts, and apply normal wallet security controls before interacting with any opportunity. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Airdrop Alert release page](https://clawhub.ai/alexbrc20/airdrop-alert) <br>
-- [ClawHub publisher profile for alexbrc20](https://clawhub.ai/user/alexbrc20) <br>
-- [Airdrops.io feed](https://airdrops.io/feed/) <br>
-- [CoinMarketCap airdrops](https://coinmarketcap.com/airdrop/) <br>
-- [AirdropAlert](https://airdropalert.com/) <br>
+## Use Case:
 
+External users and agents use this skill to surface potential crypto airdrop opportunities, check wallet eligibility, and prepare alert-driven follow-up actions. The included implementation returns static sample results, so users should verify opportunities independently before acting.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash command examples and plain text CLI-style output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include project names, chains, status labels, estimated values, deadlines, eligibility notes, and external project links.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A user may rely on static or stale airdrop opportunities, deadlines, eligibility checks, or estimated values as current financial guidance.
+
+Mitigation: Verify each opportunity, deadline, wallet eligibility result, and value estimate with authoritative project sources before taking action.
+
+Risk: The skill advertises Telegram and network setup, but the included code only returns static sample results.
+
+Mitigation: Treat the release as a prototype or sample and limit any Telegram bot token provided until live alert behavior is reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexbrc20/skills/airdrop-alert)
+- [Publisher profile](https://clawhub.ai/user/alexbrc20)
+- [Airdrops.io feed](https://airdrops.io/feed/)
+- [CoinMarketCap airdrops](https://coinmarketcap.com/airdrop/)
+- [Airdrop Alert](https://airdropalert.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with command examples and console text from the included Python script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require python3, curl, and TELEGRAM_BOT_TOKEN for advertised alert workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

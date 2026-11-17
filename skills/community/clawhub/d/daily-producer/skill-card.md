@@ -1,54 +1,71 @@
-## Description: <br>
-Daily Producer creates personalized daily news reports by collecting multi-platform sources from a user profile, filtering and scoring items, generating structured report JSON, and rendering HTML. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Producer creates personalized daily AI news reports by collecting multi-platform information from a user profile, filtering noise, generating structured summaries, and rendering HTML.
 
-## Publisher: <br>
-[ailab2026](https://clawhub.ai/user/ailab2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ailab2026](https://clawhub.ai/user/ailab2026)
 
-## Use Case: <br>
-Developers and operators use this skill to configure a reader profile, collect recent items from opencli and web sources, generate a structured daily report, validate it, render an HTML page, and optionally send a Feishu card notification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can contact many external platforms and reuse browser or login state through opencli. <br>
-Mitigation: Review configured sources before running, limit enabled platforms to those needed, and use least-privilege or separate browser sessions where possible. <br>
-Risk: The skill may read Feishu app credentials and send Feishu messages. <br>
-Mitigation: Use scoped Feishu credentials, confirm chat destinations before enabling notifications, and require review before notification configuration changes. <br>
-Risk: The bundled feedback server is described as reachable on the network by default. <br>
-Mitigation: Bind the server to localhost or add authentication before exposing feedback endpoints. <br>
-Risk: The security summary reports embedded proxy credentials and feedback-based behavioral tracking. <br>
-Mitigation: Remove embedded proxy credentials before use and disable or minimize feedback telemetry unless the user explicitly opts in. <br>
-Risk: Graphify or third-party AI export settings may move report content into external or local downstream systems. <br>
-Mitigation: Review export settings and data destinations before enabling Graphify or third-party AI integrations. <br>
+## Use Case:
 
+Developers and operators use this skill to configure and run a personalized daily AI news pipeline that collects sources, prepares candidates, has an agent generate a daily JSON briefing, renders HTML, and optionally sends a Feishu card notification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ailab2026/daily-producer) <br>
-- [Publisher profile](https://clawhub.ai/user/ailab2026) <br>
-- [Daily Producer skill definition](SKILL.md) <br>
-- [Daily production pipeline overview](reference/pipeline/00_overview.md) <br>
-- [AI report JSON generation rules](reference/pipeline/06_generate_json.md) <br>
-- [Profile configuration template](reference/profile_template.yaml) <br>
-- [opencli output formats](reference/opencli_output_formats.md) <br>
-- [Daily payload example](reference/daily_payload_example.json) <br>
-- [Feedback schema](reference/feedback_schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, HTML, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands; generated report artifacts are JSON and HTML files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces raw collection files, validated daily report JSON, rendered HTML, optional Feishu card notifications, and optional feedback data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks for broad credentials, including Feishu-related access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Feishu credential flow and grant only the permissions needed before installation.
+
+Risk: The feedback server can create network-facing write access.
+
+Mitigation: Disable the feedback server or bind it to localhost with authentication before use.
+
+Risk: Security guidance reports a hard-coded proxy credential.
+
+Mitigation: Remove the hard-coded proxy credential and require user-provided configuration.
+
+Risk: Security guidance reports shell command construction that needs review.
+
+Mitigation: Fix shell command construction and review command inputs before execution.
+
+Risk: The skill uses telemetry and background services.
+
+Mitigation: Make telemetry and background services explicit opt-in and document when they run.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ailab2026/skills/daily-producer)
+- [Pipeline overview](artifact/reference/pipeline/00_overview.md)
+- [Daily collection guide](artifact/reference/daily_collection_guide.md)
+- [JSON generation rules](artifact/reference/pipeline/06_generate_json.md)
+- [Daily payload example](artifact/reference/daily_payload_example.json)
+- [Profile template](artifact/reference/profile_template.yaml)
+- [OpenCLI output formats](artifact/reference/opencli_output_formats.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON, HTML, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated JSON/HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes profile, raw collection, daily JSON, daily HTML, archive, feedback, and server log files when run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

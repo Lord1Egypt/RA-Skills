@@ -1,39 +1,60 @@
-## Description: <br>
-Automate browser actions locally via browser-use CLI/Python: open pages, click/type, screenshot, extract HTML/links, debug sessions, and capture login QR codes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates local browser-use CLI and Python workflows for opening pages, interacting with pages, taking screenshots, extracting HTML and links, debugging sessions, and capturing login QR codes.
 
-## Publisher: <br>
-[fengjiajie](https://clawhub.ai/user/fengjiajie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fengjiajie](https://clawhub.ai/user/fengjiajie)
 
-## Use Case: <br>
-Developers and agents use this skill to automate local browser workflows with browser-use, including page inspection, screenshots, DOM or HTML extraction, QR code capture, and OpenAI-compatible LLM agent runs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local browser automation can capture sensitive page content in screenshots, HTML dumps, QR crops, and persistent sessions. <br>
-Mitigation: Use only authorized pages, scope API keys and LLM endpoints, and delete screenshots, HTML dumps, QR crops, and sessions when finished. <br>
-Risk: LLM-driven browser tasks can send page context or task details to an external OpenAI-compatible endpoint. <br>
-Mitigation: Use trusted endpoints and avoid private or logged-in pages unless that data flow is authorized. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Browser Use Local on ClawHub](https://clawhub.ai/fengjiajie/browser-use-local) <br>
+## Use Case:
 
+Developers and engineers use this skill to run local browser automation in OpenClaw containers or hosts, including screenshot and HTML inspection, persistent browser sessions, and optional browser-agent runs with an OpenAI-compatible LLM.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide local creation of screenshots, HTML dumps, QR crops, and browser session artifacts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Browser page content, screenshots, prompts, URLs, and session-derived context may be processed by the configured external LLM provider.
+
+Mitigation: Use only approved providers and avoid internal, authenticated, regulated, or credential-heavy pages unless that data sharing is approved.
+
+Risk: Persistent browser sessions can retain authenticated or sensitive browsing state.
+
+Mitigation: Clear persistent browser sessions when they are no longer needed and avoid reusing sessions across unrelated tasks.
+
+Risk: Browser automation can click, type, and extract content from live pages.
+
+Mitigation: Review target URLs, tasks, screenshots, and HTML outputs before running actions that could affect accounts, data, or external systems.
+
+Risk: QR-code and data-image extraction can capture login material from screenshots or page HTML.
+
+Mitigation: Treat generated screenshots, crops, and extracted images as sensitive files and store or delete them according to the workspace data policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fengjiajie/skills/browser-use-local)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown with inline shell and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce screenshots, cropped image files, extracted image files, and browser-agent final-result text when the described commands are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

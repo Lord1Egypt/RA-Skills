@@ -1,43 +1,59 @@
-## Description: <br>
-This skill guides Chinese-language SEO content optimization from keyword strategy and title/meta recommendations through content structure, page elements, Schema markup, and AI search adaptation for Baidu, Google, Bing, SGE, and AI Overview. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从关键词策略、TDK、内容结构、页面元素、Schema 标记到 AI 搜索适配，帮助代理诊断并优化文章或网页内容在百度、Google 和 Bing 等搜索平台上的表现。
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-Content marketers, SEO practitioners, and site editors use this skill to diagnose and improve article or webpage content for organic search visibility. It produces keyword strategy, TDK recommendations, structure improvements, Schema JSON-LD snippets, AI search guidance, prioritized actions, and competitive analysis notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SEO recommendations and estimated ranking, traffic, or CTR effects may be inaccurate or outdated because search behavior and platform guidance change over time. <br>
-Mitigation: Review generated recommendations against current search-console data, platform documentation, and business context before publishing changes. <br>
-Risk: Generated Schema JSON-LD or metadata suggestions may not match the page content exactly. <br>
-Mitigation: Validate structured data with platform testing tools and confirm that titles, descriptions, claims, and markup truthfully reflect the page. <br>
+## Use Case:
 
+Content marketers, SEO practitioners, site owners, and developers use this skill to produce Chinese-language SEO optimization reports for articles, product pages, landing pages, and blogs, including keyword strategy, TDK suggestions, content structure, page element guidance, Schema JSON-LD snippets, and AI search adaptation.
 
-## Reference(s): <br>
-- [SEO内容优化器 - 详细内容 v1.3.0](artifact/references/details.md) <br>
-- [Schema.org](https://schema.org) <br>
-- [Skill page](https://clawhub.ai/qqyougitcom/mimo-seo-content-optimizer) <br>
-- [Publisher profile](https://clawhub.ai/user/qqyougitcom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Guidance] <br>
-**Output Format:** [Chinese Markdown report with tables, prioritized action lists, and JSON-LD code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [SEO terminology may remain in English; outputs include estimated effects and should be reviewed against current search-platform guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release metadata) <br>
+Risk: Ranking, CTR, traffic, and search-engine-effect estimates may be interpreted as guaranteed outcomes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat estimates as advisory, validate recommendations against analytics and live search results, and avoid making business commitments based only on generated projections.
+
+Risk: The skill defaults to Chinese output, which may not match all target audiences or markets.
+
+Mitigation: Specify the intended content language and review terminology, localization, and platform assumptions before publication.
+
+Risk: Mechanical use of keyword-density or title suggestions could lead to keyword stuffing or lower-quality content.
+
+Mitigation: Keep keyword use natural, stay below the skill's stated stuffing threshold, and have a human reviewer check readability, factual support, and brand fit.
+
+## Reference(s):
+
+- [Detailed SEO optimization guidance](artifact/references/details.md)
+- [Schema.org](https://schema.org)
+- [ClawHub skill page](https://clawhub.ai/qqyougitcom/skills/mimo-seo-content-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Chinese Markdown report with tables, prioritized action items, estimates, and JSON-LD code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory and default to Chinese with SEO terms preserved in English.]
+
+## Skill Version(s):
+
+1.3.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

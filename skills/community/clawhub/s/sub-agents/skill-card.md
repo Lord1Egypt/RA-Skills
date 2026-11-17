@@ -1,40 +1,58 @@
-## Description: <br>
-Spawn and coordinate sub-agent sessions for parallel work, including delegated research, code, analysis, model routing, and multi-agent workflow management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spawn and coordinate sub-agent sessions for parallel work, including research, code, analysis, model routing, and multi-agent workflow management.
 
-## Publisher: <br>
-[bill492](https://clawhub.ai/user/bill492) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bill492](https://clawhub.ai/user/bill492)
 
-## Use Case: <br>
-Developers and agent operators use this skill to delegate self-contained tasks to isolated sub-agent sessions, route work to appropriate models, and coordinate parallel research, coding, and analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Delegated sub-agents only receive the task text, referenced files, and attachments, so missing context can lead to incomplete or incorrect results. <br>
-Mitigation: Provide narrow task instructions with explicit inputs, success criteria, output contracts, constraints, timeouts, and sandbox requirements for risky work. <br>
-Risk: Suppressing announce output can hide important findings from the requester. <br>
-Mitigation: Review saved sub-agent outputs when announce suppression is used and consolidate the results before relying on them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to delegate self-contained research, code, analysis, and workflow tasks to isolated sub-agent sessions with explicit handoff, routing, monitoring, and announce guidance.
 
-## Reference(s): <br>
-- [Model Reference](references/models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown guidance with structured task templates, parameter tables, and inline command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill emphasizes explicit task specifications, sandbox requirements for risky work, timeouts, and review of saved outputs when announce suppression is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Vague sub-agent handoffs can produce incomplete, incorrect, or hard-to-review results because child sessions receive only the task text, referenced files, and attachments supplied to them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit objectives, context, inputs, success criteria, output contracts, constraints, and announce instructions in every spawned task.
+
+Risk: Sub-agent orchestration can expose sensitive context if secrets or untrusted documents are attached to child sessions.
+
+Mitigation: Scope tasks narrowly, avoid attaching secrets, prefer sandboxed children for sensitive work, and attach only the files needed for the task.
+
+Risk: Unmonitored or unnecessary child sessions can add cost and operational complexity.
+
+Mitigation: Spawn only for self-contained work that benefits from delegation, set run timeouts where appropriate, and monitor, kill, or archive sessions when they are no longer needed.
+
+## Reference(s):
+
+- [Model Reference](references/models.md)
+- [ClawHub Skill Page](https://clawhub.ai/bill492/skills/sub-agents)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with structured task templates, command examples, and configuration parameter tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sub-agent outputs may be announced, suppressed with ANNOUNCE_SKIP, or written to task-specified files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

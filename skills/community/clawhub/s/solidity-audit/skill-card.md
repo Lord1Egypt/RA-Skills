@@ -1,59 +1,69 @@
-## Description: <br>
-Solidity Audit is a smart contract security audit assistant that follows the EEA EthTrust V3 specification and supports structured vulnerability scanning, manual security analysis, audit reporting, Slither/Aderyn static analysis, and Foundry testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Solidity Audit helps agents perform structured Solidity smart contract security reviews using EEA EthTrust V3 guidance, vulnerability checklists, Slither and Aderyn static analysis, Foundry testing, and audit report templates.
 
-## Publisher: <br>
-[xiaominger](https://clawhub.ai/user/xiaominger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaominger](https://clawhub.ai/user/xiaominger)
 
-## Use Case: <br>
-Developers, security engineers, and auditors use this skill to structure Solidity and EVM smart contract audits, map findings to EEA EthTrust levels, run or interpret static-analysis and testing workflows, and produce audit report drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AI-generated audit reports may miss business-logic, math-boundary, or complex-interaction issues in high-value contracts. <br>
-Mitigation: Use the skill output as structured audit assistance and require professional human review, static analysis, fuzz testing, and project-specific verification before relying on findings. <br>
-Risk: The workflow includes optional package installation and curl-to-bash setup commands for external audit tools. <br>
-Mitigation: Verify tool sources and versions before execution, and run setup commands only in a controlled development workspace. <br>
-Risk: Automated scanners can produce false positives or miss context-specific Solidity vulnerabilities. <br>
-Mitigation: Correlate scanner output with manual review, protocol-specific templates, test results, and EEA EthTrust requirement mapping. <br>
+## Use Case:
 
+Developers, auditors, and security engineers use this skill to plan and conduct smart contract reviews, map findings to EEA EthTrust security levels, interpret static-analysis and test results, and prepare audit reports.
 
-## Reference(s): <br>
-- [Audit Methodology](references/audit-methodology.md) <br>
-- [EEA EthTrust Security Levels V3 Specification Guide](references/eea-requirements.md) <br>
-- [Audit Report Template](references/report-template.md) <br>
-- [SecureUM Mind Map Knowledge Base](references/secureum-knowledge.md) <br>
-- [Solidity Testing Guide](references/testing-guide.md) <br>
-- [Audit Toolchain Configuration Guide](references/toolchain-guide.md) <br>
-- [Solidity Vulnerability Checklist](references/vulnerability-checklist.md) <br>
-- [Cross-Chain Protocol Audit Template](references/protocol-templates/cross-chain.md) <br>
-- [DEX Aggregator Protocol Audit Template](references/protocol-templates/dex-aggregator.md) <br>
-- [EEA EthTrust Security Levels V3](https://entethalliance.org/specs/ethtrust-sl/v3/) <br>
-- [Slither](https://github.com/crytic/slither) <br>
-- [Aderyn](https://github.com/Cyfrin/aderyn) <br>
-- [Foundry](https://github.com/foundry-rs/foundry) <br>
-- [Echidna](https://github.com/crytic/echidna) <br>
-- [Mythril](https://github.com/ConsenSys/mythril) <br>
-- [OpenZeppelin Contracts](https://docs.openzeppelin.com/contracts) <br>
-- [Ethereum Improvement Proposals](https://eips.ethereum.org/all) <br>
-- [Mastering Ethereum](https://masteringethereum.xyz/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples, Solidity snippets, JSON findings templates, and audit report outlines.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate an audit workspace scaffold and draft findings/report artifacts when the included initialization script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: The release security verdict is suspicious because the skill documents unsafe curl-to-bash installer commands for Foundry.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation steps before use and prefer pinned releases, checksums or signatures, locked package-manager installs, or an isolated container.
+
+Risk: The audit project helper script can write outside the chosen folder if given project names containing path traversal or separators.
+
+Mitigation: Use simple project names without slashes or dot-dot components until path validation is added, and review generated paths before running the script.
+
+Risk: AI-assisted audit guidance can miss business-logic, math-boundary, and complex-interaction vulnerabilities.
+
+Mitigation: Use this skill as support for human security review, run the recommended analysis and testing tools, and independently validate findings before relying on a report.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/xiaominger/skills/solidity-audit)
+- [EEA EthTrust Security Levels V3](https://entethalliance.org/specs/ethtrust-sl/v3/)
+- [SecureUM Mind Map](https://github.com/x676f64/secureum-mind_map)
+- [Slither](https://github.com/crytic/slither)
+- [Aderyn](https://github.com/Cyfrin/aderyn)
+- [Foundry](https://github.com/foundry-rs/foundry)
+- [Echidna](https://github.com/crytic/echidna)
+- [OpenZeppelin Contracts](https://docs.openzeppelin.com/contracts)
+- [Ethereum Improvement Proposals](https://eips.ethereum.org/all)
+- [Mastering Ethereum](https://masteringethereum.xyz/)
+- [Smart Contract Audit Methodology](artifact/references/audit-methodology.md)
+- [Audit Report Template](artifact/references/report-template.md)
+- [Solidity Vulnerability Checklist](artifact/references/vulnerability-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with Solidity, JSON, YAML, JavaScript, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can guide audit workflows and may scaffold audit project files when an agent runs the helper script.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

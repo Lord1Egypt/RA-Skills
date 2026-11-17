@@ -1,41 +1,56 @@
-## Description: <br>
-Designs and writes frontend tests: unit, component, integration, E2E; test structure, mocking, and coverage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs frontend unit, component, integration, and E2E testing strategies and examples, including test structure, mocking, assertions, and coverage guidance.
 
-## Publisher: <br>
-[wangzhiming1999](https://clawhub.ai/user/wangzhiming1999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangzhiming1999](https://clawhub.ai/user/wangzhiming1999)
 
-## Use Case: <br>
-Developers and engineers use this skill to design frontend test strategy, write unit, component, integration, and E2E tests, and handle mocks, assertions, and coverage for web applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad testing-tool mentions such as Jest, Vitest, E2E, or coverage. <br>
-Mitigation: Confirm that frontend testing help is intended before following its testing guidance. <br>
-Risk: The skill can suggest test commands or file edits. <br>
-Mitigation: Review proposed commands and edits before running or applying them in a project. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan frontend test coverage, choose suitable testing tools, and draft test plans, mocks, assertions, configuration, shell commands, and representative Jest, Vitest, Testing Library, MSW, Playwright, or Cypress examples.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangzhiming1999/frontend-testing) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with test plans, tables, code blocks, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed test commands or file edits that should be reviewed before applying.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Broad trigger wording may activate the skill for generic testing or coverage requests that are not frontend-specific.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target code, framework, and testing scope before applying frontend-specific testing guidance.
+
+Risk: Generated test code, configuration, or shell commands may not match the project's existing framework setup.
+
+Mitigation: Review proposed code and commands against the repository's package manager, test runner, mocks, and CI configuration before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangzhiming1999/skills/frontend-testing)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/wangzhiming1999)
+- [Skill README](artifact/README.md)
+- [Skill Instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with test plans, tables, inline shell commands, and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include framework-specific setup, mock strategy, assertions, coverage guidance, and one or two complete example test cases.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

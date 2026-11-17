@@ -1,0 +1,7 @@
+interface:
+  display_name: "AI电商专家｜MCP 电商内容自动化"
+  short_description: "AI电商专家：MCP 电商内容自动化，面向企业电商图片与视频内容生产"
+  brand_color: "#315EFB"
+  default_prompt: "使用 $ai-ecommerce-expert-mcp-ecommerce-automation 作为AI电商专家，根据我的商品素材完成“MCP 电商内容自动化”，并先核对素材、规格与预算。"
+policy:
+  allow_implicit_invocation: true

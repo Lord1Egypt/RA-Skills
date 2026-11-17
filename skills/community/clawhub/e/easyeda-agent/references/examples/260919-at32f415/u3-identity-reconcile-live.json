@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "example": "260919-at32f415-u3-schematic-pcb-identity-reconcile",
+  "status": "live-verified",
+  "capturedAt": "2026-09-20T16:54:31Z",
+  "project": "ceshi",
+  "schematicDocumentUuid": "f4351c9ef51e8321",
+  "pcbDocumentUuid": "2e719e9419653c72",
+  "operation": {
+    "path": "typed easyeda sch modify",
+    "primitiveId": "0893cc822008148a",
+    "patch": {
+      "uniqueId": "gge60"
+    },
+    "pcbImportChangesRun": false
+  },
+  "preconditions": {
+    "schematicPartCount": 69,
+    "schematicU3UniqueId": "gge70",
+    "pcbU3UniqueId": "gge60",
+    "schematicOwnersOfGge60": []
+  },
+  "afterSaveReload": {
+    "schematicPartCount": 69,
+    "schematicU3": {
+      "primitiveId": "0893cc822008148a",
+      "uniqueId": "gge60",
+      "supplierId": "C2890616",
+      "footprint": {
+        "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+        "name": "OLED-SMD_ST7735S",
+        "uuid": "55e868d08ac92308"
+      },
+      "pinCount": 13
+    },
+    "pcbComponentCount": 69,
+    "pcbU3": {
+      "primitiveId": "f086401280b13c2e",
+      "uniqueId": "gge60",
+      "supplierId": "C2890616",
+      "xMil": 650,
+      "yMil": 900,
+      "rotationDeg": 0
+    },
+    "schematicOwnersOfGge60": [
+      "U3"
+    ],
+    "pcbOwnersOfGge60": [
+      "U3"
+    ]
+  },
+  "checks": {
+    "onlySchematicDifferenceWasUniqueId": true,
+    "schematicPrimitiveIdUnchanged": true,
+    "deviceSymbolFootprintAndPropertiesUnchanged": true,
+    "pinNamesNetsAndCoordinatesUnchanged": true,
+    "schematicAndPcbJoinKeyMatch": true,
+    "saveSucceeded": true,
+    "typedReloadSucceeded": true
+  },
+  "conclusion": "U3 的原理图/PCB identity 已恢复为同一 gge60；禁放 region 仍是独立未完成项。"
+}

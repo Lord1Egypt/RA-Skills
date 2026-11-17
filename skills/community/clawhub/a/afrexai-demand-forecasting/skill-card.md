@@ -1,42 +1,55 @@
-## Description: <br>
-Guides agents through demand forecasting using time series analysis, causal models, expert judgment, blended forecasts, segmentation, safety stock, scenario planning, and accuracy checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build demand forecasts using time series, causal models, and expert judgment for planning, inventory, and capacity decisions with scenario analysis.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Operations leaders, supply chain managers, FP&A teams, and business planning users use this skill to create demand forecasts, align supply with expected demand, plan inventory and capacity, and evaluate bear/base/bull scenarios. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Financial ROI and benchmark figures may not match a user's actual business conditions. <br>
-Mitigation: Validate ROI estimates, MAPE targets, industry benchmarks, and savings assumptions against the user's own demand history, margins, lead times, and operational constraints before relying on them. <br>
-Risk: The artifact includes promotional links to paid AfrexAI resources. <br>
-Mitigation: Treat external paid-resource links as optional third-party resources and review them separately before purchase or adoption. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Demand Forecasting Framework on ClawHub](https://clawhub.ai/1kalin/afrexai-demand-forecasting) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+Operations leaders, supply chain managers, FP&A teams, and other planning stakeholders use this skill to structure demand forecasts, compare time-series, causal, judgmental, and blended methods, and support inventory, capacity, and budget planning.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with formulas, tables, checklists, and planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no system access, credential handling, persistence, or autonomous execution requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Forecast formulas, benchmark targets, and ROI figures are generic business guidance and may be misleading if treated as validated for a specific organization.
+
+Mitigation: Validate assumptions, data quality, seasonality, model fit, and financial impact against the user's own demand history before relying on the forecast.
+
+Risk: The artifact includes promotional external links to paid or commercial resources.
+
+Mitigation: Review link destinations and purchasing relevance before following links or buying referenced resources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-demand-forecasting)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with formulas, tables, and planning checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; users should validate calculations, benchmark targets, and assumptions against their own business data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

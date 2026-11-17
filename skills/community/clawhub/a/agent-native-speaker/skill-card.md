@@ -1,42 +1,56 @@
-## Description: <br>
-Use when user asks about Agent architecture, design, or how an Agent works. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when user asks about Agent architecture, design, or how an Agent works. Two-layer teaching: Layer 1 explains Agent concepts (agent loop, tool calling, memory, session, config), Layer 2 reads the Agent's own source code to explain specific architecture. Follows the Self-Explanation Protocol: always search code before answering architecture questions.
 
-## Publisher: <br>
-[joeyxin-del](https://clawhub.ai/user/joeyxin-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeyxin-del](https://clawhub.ai/user/joeyxin-del)
 
-## Use Case: <br>
-Developers, agent users, and learners use this skill to get plain-language explanations of agent concepts and source-backed architecture explanations for a specific agent implementation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Architecture questions may cause the agent to inspect and summarize local source code, including sensitive implementation details in private projects. <br>
-Mitigation: Install only where local source inspection is acceptable, and avoid asking it to inspect config, secrets, memories, profiles, or databases unless those details may be discussed. <br>
+## Use Case:
 
+Agent users, learners, and developers use this skill to ask architecture questions and receive either plain-language Agent concepts or source-grounded explanations with file references for a specific Agent implementation.
 
-## Reference(s): <br>
-- [Agent Native Speaker release page](https://clawhub.ai/joeyxin-del/agent-native-speaker) <br>
-- [README](README.md) <br>
-- [Harness Engineering Glossary](references/harness-engineering-glossary.md) <br>
-- [Hermes Agent Architecture Map](references/hermes-agent-architecture-map.md) <br>
-- [Trigger Domain Reference](references/trigger-domain-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown explanations with source file references and occasional code snippets or search commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Layer 2 architecture answers are expected to be grounded in local source-code inspection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Layer 2 architecture questions can cause the agent to inspect local source code and quote file paths or line references.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only in codebases where source-level disclosure to the requesting user is appropriate.
+
+Risk: If source code is unavailable, architecture answers may become generic rather than implementation-specific.
+
+Mitigation: Require the agent to state that source access is unavailable and avoid fabricated code references.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/joeyxin-del/skills/agent-native-speaker)
+- [Harness Engineering Glossary](references/harness-engineering-glossary.md)
+- [Trigger Domain Reference](references/trigger-domain-reference.md)
+- [Hermes Agent Architecture Map](references/hermes-agent-architecture-map.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown prose with source file references and occasional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Layer 2 answers should cite local source paths and line references when source code is accessible.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-自动化完成飞书开放平台企业自建应用的创建、权限配置、事件订阅、改名和版本发布，简化繁琐操作流程。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动化完成飞书开放平台企业自建应用的创建、权限配置、事件订阅、改名和版本发布，简化繁琐操作流程。
 
-## Publisher: <br>
-[evan966890](https://clawhub.ai/user/evan966890) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[evan966890](https://clawhub.ai/user/evan966890)
 
-## Use Case: <br>
-Developers and Feishu workspace administrators use this skill to guide an agent through browser-based setup of an enterprise Feishu app, including bot capability, permissions, event subscriptions, naming, publishing, and OpenClaw Gateway configuration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can use an authenticated Feishu administrator session to grant broad application permissions and publish live tenant changes. <br>
-Mitigation: Use a test tenant or a dedicated least-privilege admin account, review requested scopes before importing them, and manually confirm permission and publication steps. <br>
-Risk: App Secret values may be exposed during browser automation, logs, or chat transcripts. <br>
-Mitigation: Avoid displaying or pasting secrets into shared logs or chats, keep credentials out of version control, and rotate credentials if exposure is suspected. <br>
-Risk: Event subscription changes depend on an active OpenClaw Gateway WebSocket connection and can fail or leave the app partially configured. <br>
-Mitigation: Configure the app credentials, restart the gateway, verify the active connection, and then save the Feishu event subscription. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/evan966890/feishu-app-setup) <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
+## Use Case:
 
+Developers and Feishu enterprise administrators use this skill to automate setup of a Feishu/OpenClaw bot application, including app creation, permission import, event subscription, naming, release publication, and local OpenClaw configuration.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash, JavaScript, and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes browser automation steps, permission scope examples, event subscription guidance, and OpenClaw configuration snippets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks administrators to grant broad Feishu production permissions for messaging, contacts, application management, events, and file access.
+
+Mitigation: Review and minimize every requested permission, confirm the data range and business need with a Feishu administrator, and publish only the scopes that are required.
+
+Risk: The workflow requires handling the Feishu App Secret, which is a credential.
+
+Mitigation: Do not paste the App Secret into chat or logs; store it only in a protected secret store or secured configuration and rotate it if exposed.
+
+Risk: Browser automation can publish application changes or select the wrong control if page state, element references, or permissions differ from the documented flow.
+
+Mitigation: Run the automation in an authenticated administrator session with human review at permission import, data-range confirmation, secret display, and final publish steps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evan966890/skills/feishu-app-setup)
+- [Feishu Open Platform](https://open.feishu.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash, JavaScript, and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes procedural browser-automation steps and operational cautions for Feishu app setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

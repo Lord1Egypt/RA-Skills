@@ -4,11 +4,11 @@
 The whole 12-entry rotation table is determined by four facts (see
 orientation.json): the +90° body cycle ``up → right → down → left`` and the
 body direction at rotation 0 for each family (power=down, ground=up, port=right).
-(2026-06-29: cycle/anchors fixed for the y-DOWN build — up/down were rendering
-flipped; left/right unchanged. See orientation.json _doc.)
+(2026-06-29: cycle/anchors re-calibrated from rendered flag bodies; this visual
+rotation mapping is independent of the schematic endpoint coordinate signs.)
 ``derive`` reconstructs the table; ``load_body_rotation`` reads the canonical
 spec next to this file. The lint check and the connector's connect_pin both
-derive from these same facts, so they can never drift — tests/run.py asserts it.
+derive from these same facts, so they can never drift — scripts/skill-lint-tests/run.py (repo) asserts it.
 """
 import json
 import os
@@ -37,7 +37,9 @@ def derive(rotation_cycle, body_anchor):
 
 
 def load_spec(path=DEFAULT_SPEC):
-    with open(path) as f:
+    # utf-8 固定编码:orientation.json 含中文,Windows 中文环境默认 cp936/cp950
+    # 解码会抛 UnicodeDecodeError(仓库文件一律按 utf-8 读)。
+    with open(path, encoding='utf-8') as f:
         return json.load(f)
 
 

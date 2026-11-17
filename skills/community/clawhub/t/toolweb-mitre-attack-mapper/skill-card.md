@@ -1,46 +1,60 @@
-## Description: <br>
-Maps attacker behavior text or uploaded security report files to MITRE ATT&CK techniques, tactics, detection guidance, mitigation recommendations, ATT&CK Navigator layer data, and threat actor associations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maps threat descriptions, incident reports, or security observations to MITRE ATT&CK techniques, tactics, detection guidance, mitigations, and threat actor associations.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security analysts, incident responders, and threat intelligence teams use this skill to map incident narratives, SIEM alerts, threat reports, and related files to MITRE ATT&CK techniques and tactics. It helps generate technique IDs, confidence scores, detection guidance, mitigation recommendations, and actor associations for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security reports, logs, or incident details may be sent to an external provider. <br>
-Mitigation: Use the skill only with authorization, redact secrets, customer data, internal hostnames, and active investigation details before upload, and use a dedicated revocable API key. <br>
-Risk: Mapped techniques, confidence scores, detections, mitigations, and actor associations may be incomplete or incorrect. <br>
-Mitigation: Have a qualified security analyst review the results before using them for investigation, reporting, detection engineering, or response decisions. <br>
-Risk: API keys used with the ToolWeb endpoint could be exposed through prompts, logs, or shared command examples. <br>
-Mitigation: Keep API keys out of shared transcripts and repositories, scope them to this use case where possible, and rotate or revoke them after use. <br>
+## Use Case:
 
+Security practitioners and developers use this skill to submit attacker behavior text or security report files and receive mapped MITRE ATT&CK techniques, tactics, detection guidance, mitigation recommendations, Navigator layer output, and threat actor associations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-mitre-attack-mapper) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [ToolWeb API portal](https://portal.toolweb.in) <br>
-- [ToolWeb MCP server](https://hub.toolweb.in) <br>
-- [ToolWeb OpenClaw](https://toolweb.in/openclaw/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with curl examples and JSON response structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct the agent to send text or uploaded security files to ToolWeb's external API and return ATT&CK mappings, detections, mitigations, Navigator layer details, and actor associations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive security reports, incident details, SIEM exports, or threat intelligence files may be sent to an external ToolWeb API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only data you are authorized to share, redact secrets and unnecessary internal details, and review the provider's privacy, retention, and deletion terms before use.
+
+Risk: API credentials are required for requests to the external service.
+
+Mitigation: Use a revocable, scoped API key and rotate or revoke it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-mitre-attack-mapper)
+- [Publisher Profile](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb API Portal](https://portal.toolweb.in)
+- [ToolWeb MCP Server](https://hub.toolweb.in)
+- [ToolWeb OpenClaw](https://toolweb.in/openclaw/)
+- [ToolWeb RapidAPI Profile](https://rapidapi.com/user/mkrishna477)
+- [ToolWeb YouTube Channel](https://youtube.com/@toolweb-009)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with multipart/form-data curl examples and JSON response descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include technique IDs, tactics, confidence scores, detection guidance, mitigation recommendations, Navigator layer data, and threat actor associations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

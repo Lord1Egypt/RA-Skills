@@ -1,0 +1,9 @@
+# 运行时 / 编辑器产物（不应入库）
+node_modules/
+*.log
+.DS_Store
+.idea/
+.vscode/
+.specstory/
+coverage/
+*.tgz

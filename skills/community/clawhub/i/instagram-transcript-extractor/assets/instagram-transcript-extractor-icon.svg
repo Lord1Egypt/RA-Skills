@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-labelledby="title desc">
+  <title id="title">Instagram Transcript Extractor</title>
+  <desc id="desc">A colorful Instagram-style camera above two transcript lines.</desc>
+  <defs>
+    <linearGradient id="brand" x1="52" y1="42" x2="348" y2="358" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9B25F5"/>
+      <stop offset=".38" stop-color="#F018A7"/>
+      <stop offset=".72" stop-color="#FF514D"/>
+      <stop offset="1" stop-color="#FFC72E"/>
+    </linearGradient>
+    <linearGradient id="lens" x1="146" y1="127" x2="254" y2="235" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7D20F5"/>
+      <stop offset=".52" stop-color="#E51B9E"/>
+      <stop offset="1" stop-color="#FF9E35"/>
+    </linearGradient>
+    <linearGradient id="text" x1="112" y1="286" x2="290" y2="316" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6B9FF"/>
+      <stop offset="1" stop-color="#FFE5B2"/>
+    </linearGradient>
+    <linearGradient id="background" x1="28" y1="20" x2="372" y2="380" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#171923"/>
+      <stop offset="1" stop-color="#0D0F15"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" rx="88" fill="url(#background)"/>
+  <rect x="61" y="54" width="278" height="222" rx="58" fill="none" stroke="url(#brand)" stroke-width="31"/>
+  <circle cx="200" cy="165" r="67" fill="none" stroke="url(#brand)" stroke-width="22"/>
+  <circle cx="200" cy="165" r="45" fill="url(#lens)"/>
+  <circle cx="219" cy="148" r="12" fill="#FFD0ED" opacity=".9"/>
+  <circle cx="284" cy="111" r="16" fill="url(#brand)"/>
+  <rect x="111" y="292" width="178" height="17" rx="8.5" fill="url(#text)"/>
+  <rect x="131" y="321" width="138" height="17" rx="8.5" fill="url(#text)"/>
+</svg>

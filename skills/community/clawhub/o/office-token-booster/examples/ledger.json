@@ -1,0 +1,31 @@
+{
+  "tasks": [
+    {
+      "date": "2026-09-02",
+      "type": "会议纪要",
+      "baseline_tokens": 9000,
+      "skill_tokens": 1400,
+      "baseline_minutes": 30,
+      "skill_minutes": 7,
+      "note": "Q4 排期会"
+    },
+    {
+      "date": "2026-09-03",
+      "type": "数据分析",
+      "baseline_tokens": 15000,
+      "skill_tokens": 2400,
+      "baseline_minutes": 40,
+      "skill_minutes": 10,
+      "note": "续约数据核对"
+    },
+    {
+      "date": "2026-09-04",
+      "type": "周报生成",
+      "baseline_tokens": 12000,
+      "skill_tokens": 1800,
+      "baseline_minutes": 25,
+      "skill_minutes": 6,
+      "note": "本周周报"
+    }
+  ]
+}

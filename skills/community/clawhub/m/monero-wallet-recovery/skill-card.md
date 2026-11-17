@@ -1,43 +1,57 @@
-## Description: <br>
-Step-by-step instructions to securely restore Monero wallets from 25-word seeds, keys, and hardware devices, with troubleshooting and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides step-by-step guidance for restoring Monero wallets from seed phrases, private keys, and hardware devices while emphasizing safe handling of recovery material.
 
-## Publisher: <br>
-[liumaimiao](https://clawhub.ai/user/liumaimiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liumaimiao](https://clawhub.ai/user/liumaimiao)
 
-## Use Case: <br>
-External users and support agents use this skill as a recovery checklist for restoring access to Monero wallets from seed phrases, private keys, or hardware wallets. It also helps troubleshoot failed restores, missing balances, and multisig or hardware-wallet recovery issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet recovery secrets such as seed phrases or private keys may be exposed during use. <br>
-Mitigation: Use the skill only as a recovery checklist; never enter secrets on untrusted, shared, browser-based, or network-exposed systems. <br>
-Risk: A compromised or mishandled recovery secret can permanently endanger funds. <br>
-Mitigation: Move funds to a fresh wallet if any recovery secret may have been exposed. <br>
+## Use Case:
 
+External users and support agents use this skill to walk through Monero wallet recovery paths, including deterministic seed restore, key-based restore, hardware wallet recovery, restore-height selection, and troubleshooting failed restores.
 
-## Reference(s): <br>
-- [Monero mnemonic English word list](https://github.com/monero-project/monero/blob/master/src/mnemonics/english.txt) <br>
-- [xmrchain.net block explorer](https://xmrchain.net) <br>
-- [Monero community support](https://www.getmonero.org/community/) <br>
-- [Monero StackExchange](https://monero.stackexchange.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with numbered recovery steps and inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recovery guidance may reference sensitive wallet seeds or private keys and should be treated as a checklist, not as a custody tool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: Wallet recovery requires sensitive seed phrases or private keys that can transfer control of funds if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Never share seed phrases or private spend keys with an agent, website, chat, or third party; enter recovery material only into trusted official wallet software or directly on a hardware wallet device.
+
+Risk: Incorrect restore height, seed words, or wallet source can make recovered balances appear missing.
+
+Mitigation: Use official Monero wallet tools, verify seed words and ordering, choose a conservative restore height when uncertain, and wait for full blockchain sync before treating a balance as missing.
+
+## Reference(s):
+
+- [Monero Skill Page](https://clawhub.ai/liumaimiao/skills/monero-wallet-recovery)
+- [xmrchain.net](https://xmrchain.net)
+- [Monero English Mnemonic Word List](https://github.com/monero-project/monero/blob/master/src/mnemonics/english.txt)
+- [Monero StackExchange](https://monero.stackexchange.com/)
+- [Official Monero Community](https://www.getmonero.org/community/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with ordered steps, troubleshooting notes, and inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code is included in the artifact; guidance may reference wallet CLI commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

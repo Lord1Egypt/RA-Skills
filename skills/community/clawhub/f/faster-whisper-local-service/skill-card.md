@@ -1,43 +1,58 @@
-## Description: <br>
-Faster Whisper Local Service provisions a local OpenClaw speech-to-text backend using faster-whisper, exposed as a localhost HTTP service for voice transcription workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provisions a localhost OpenClaw speech-to-text service using faster-whisper for local voice transcription workflows.
 
-## Publisher: <br>
-[neldar](https://clawhub.ai/user/neldar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[neldar](https://clawhub.ai/user/neldar)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install and operate a local speech-to-text backend for browser, Telegram, and other voice input workflows without relying on recurring external transcription APIs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The service installs Python dependencies, downloads Whisper model weights, and runs as a persistent user service. <br>
-Mitigation: Review the documented install paths, confirm local disk and memory capacity, and use the documented systemd commands to stop, disable, or remove the service when it is no longer needed. <br>
-Risk: Audio uploads are decoded by GStreamer, which processes binary media input. <br>
-Mitigation: Keep GStreamer and Python dependencies updated from trusted package sources, and preserve the documented upload-size, audio-signature, and localhost binding controls. <br>
-Risk: The first model startup requires network access and stores model files locally. <br>
-Mitigation: Plan for the initial Hugging Face model download or pre-download models for restricted environments; after caching, the service can run locally without recurring external transcription API calls. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [faster-whisper model download documentation](https://github.com/SYSTRAN/faster-whisper#model-download) <br>
-- [ClawHub release page](https://clawhub.ai/neldar/faster-whisper-local-service) <br>
+## Use Case:
 
+Developers and engineers use this skill to install and manage a local OpenClaw speech-to-text backend for browser, Telegram, and other voice workflows without recurring external transcription API calls.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and deployable shell scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a local HTTP transcription service, a Python virtual environment, and a user-level systemd service when deployed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The deploy script creates and enables a persistent systemd user service on the local machine.
+
+Mitigation: Review environment variables before deployment and use the documented systemctl stop, disable, and daemon-reload commands to remove the service when it is no longer needed.
+
+Risk: Initial setup installs Python dependencies and downloads faster-whisper model weights from Hugging Face.
+
+Mitigation: Install only in environments where dependency installation and model download are acceptable, and plan for the documented disk and memory requirements.
+
+Risk: Audio conversion depends on GStreamer media parsers processing uploaded binary data.
+
+Mitigation: Keep GStreamer packages updated from trusted OS repositories and retain the documented upload-size, magic-byte, localhost binding, and CORS restrictions.
+
+## Reference(s):
+
+- [Faster Whisper Model Download Documentation](https://github.com/SYSTRAN/faster-whisper#model-download)
+- [Troubleshooting](references/troubleshooting.md)
+- [ClawHub Skill Page](https://clawhub.ai/neldar/skills/faster-whisper-local-service)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and generated local service files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces installation, verification, and service-management guidance for a local HTTP transcription service.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

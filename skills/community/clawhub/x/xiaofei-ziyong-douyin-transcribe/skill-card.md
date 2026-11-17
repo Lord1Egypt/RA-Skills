@@ -1,42 +1,64 @@
-## Description: <br>
-Downloads Douyin videos, extracts audio, runs local speech-to-text, and outputs a transcript. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads a Douyin video from a provided link, extracts its audio, transcribes speech locally, and can optionally prepare Feishu upload steps.
 
-## Publisher: <br>
-[mengzi53](https://clawhub.ai/user/mengzi53) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mengzi53](https://clawhub.ai/user/mengzi53)
 
-## Use Case: <br>
-Agents and developers use this skill when a user provides a Douyin link and asks to transcribe speech, extract captions, or produce video text. It automates video URL resolution, media download, audio extraction, local ASR, transcript output, and optional Feishu upload. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow builds shell commands from user-supplied Douyin links and output paths, creating local command-execution risk. <br>
-Mitigation: Use only trusted Douyin links and controlled output paths, and run the skill in a least-privileged or isolated environment. <br>
-Risk: The workflow submits the Douyin URL to hellotik.app, downloads media from resolved CDN URLs, and can optionally interact with Feishu destinations. <br>
-Mitigation: Treat it as a networked workflow; avoid sensitive media, and enable Feishu upload only after confirming the intended tenant, folder token, and knowledge base space. <br>
-Risk: Downloaded video and extracted audio remain on disk unless cleanup is requested. <br>
-Mitigation: Use a safe temporary output directory and request cleanup after transcription when local media retention is not needed. <br>
+## Use Case:
 
+Developers, creators, and content operations teams use this skill to turn Douyin video links into local text transcripts. It supports a local transcription workflow and optional Feishu organization steps for generated outputs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mengzi53/xiaofei-ziyong-douyin-transcribe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Terminal transcript text plus a local transcript.txt file, with optional Feishu upload status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local command-line tools and network access; downloaded video and audio files remain in the output directory unless cleanup is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: User-supplied Douyin links and file paths are exposed to unsafe shell execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a restricted environment with non-sensitive files, avoid crafted or untrusted Douyin links, do not use elevated privileges, and remediate shell command construction before normal use.
+
+Risk: The workflow sends links and downloaded content through third-party services.
+
+Mitigation: Use non-sensitive inputs and credentials, and review data handling for Douyin, Hellotik, and Feishu before deployment.
+
+Risk: The implementation depends on loading a runtime dependency from /tmp.
+
+Mitigation: Audit and replace the /tmp dependency load with a trusted, pinned installation path before normal use.
+
+Risk: Feishu upload behavior is not suitable to rely on without review.
+
+Mitigation: Audit and fix the Feishu upload implementation and credential handling before enabling upload workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mengzi53/skills/xiaofei-ziyong-douyin-transcribe)
+- [Publisher profile](https://clawhub.ai/user/mengzi53)
+- [Hellotik web parser used by the skill](https://www.hellotik.app/zh)
+- [Feishu Open APIs endpoint referenced by the skill](https://open.feishu.cn/open-apis)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, shell commands, configuration]
+
+**Output Format:** [Plain text transcript printed to the terminal and saved as transcript.txt, with downloaded video and audio files retained unless cleanup is requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional Feishu upload workflow; local media cleanup is controlled by the cleanup option.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

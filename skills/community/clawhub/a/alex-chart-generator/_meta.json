@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7bjqgah2pz7wkacjvkqssb3s82n42f",
-  "slug": "alex-chart-generator",
+  "name": "Chart Generator",
+  "description": "Data visualization tool producing SVG charts. Bar charts, line charts, pie charts, tables, sparklines, gauges",
   "version": "2.3.4",
-  "publishedAt": 1775866524446
+  "author": "Alex",
+  "tags": ["chart", "visualization", "svg", "data"]
 }

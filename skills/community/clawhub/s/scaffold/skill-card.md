@@ -1,47 +1,57 @@
-## Description: <br>
-Your agent. Configured to you. Remembers everything. Includes setup wizard, 30-day roadmap, 25 ready-to-use prompts, and pre-built memory files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Your agent. Configured to you. Remembers everything. Includes setup wizard, 30-day roadmap, 25 ready-to-use prompts, and pre-built memory files.
 
-## Publisher: <br>
-[scaffoldworkspace](https://clawhub.ai/user/scaffoldworkspace) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scaffoldworkspace](https://clawhub.ai/user/scaffoldworkspace)
 
-## Use Case: <br>
-External developers and OpenClaw users use Scaffold to bootstrap a personalized agent workspace with memory, identity, lifecycle hooks, onboarding prompts, and setup guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill configures a highly autonomous, file-backed agent workspace with broad ongoing authority over files, memory, commits, and possible external pushes. <br>
-Mitigation: Install only in an isolated workspace or machine and review the permission model before use. <br>
-Risk: Automatic local commits and any outbound push workflow can expose unintended file changes or repository contents. <br>
-Mitigation: Revise automatic git commit behavior as needed and require explicit approval before every git push or external publication. <br>
-Risk: Persistent memory files can accumulate credentials, sensitive personal data, or stale operating assumptions. <br>
-Mitigation: Keep credentials and sensitive personal data out of memory files, use environment variables for secrets, and periodically audit memory content. <br>
-Risk: Heartbeat or cron-style monitoring can create recurring autonomous activity before the user has configured clear boundaries. <br>
-Mitigation: Disable heartbeat and cron monitoring until intentionally configured and reviewed. <br>
+## Use Case:
 
+External users and developers use Scaffold to configure an OpenClaw agent workspace with identity, memory, lifecycle rules, onboarding prompts, and setup guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/scaffoldworkspace/scaffold) <br>
-- [Scaffold README](artifact/README.md) <br>
-- [Scaffold setup wizard](artifact/setup-wizard.sh) <br>
-- [Scaffold Full upgrade](https://getscaffold.gumroad.com/l/ixtnp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files with inline shell commands and a bash setup script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates file-backed workspace guidance for agent identity, memory, lifecycle hooks, onboarding, prompts, and task tracking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill gives an agent broad authority over workspace files, memory, background checks, commits, and possible pushes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit permission tiers before use; require confirmation for external actions, commits, pushes, and persistent memory updates.
+
+Risk: Workspace memory and profile files may collect personal preferences, goals, operational details, or sensitive context.
+
+Mitigation: Keep secrets out of workspace files, use environment variables for credentials, and run Scaffold in an isolated or dedicated workspace.
+
+Risk: Autonomous heartbeat, email, calendar, or social checks can create unexpected actions, notifications, or cost.
+
+Mitigation: Make background checks opt-in, disable unneeded heartbeat behavior, and audit memory and state files regularly.
+
+## Reference(s):
+
+- [Scaffold Skill Page](https://clawhub.ai/scaffoldworkspace/skills/scaffold)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files and shell commands for configuring an OpenClaw workspace]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workspace templates, onboarding prompts, lifecycle rules, memory files, and setup guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,76 @@
+{
+  "project_id": "demo_001",
+  "project_name": "某市级政务云运维服务项目",
+  "time_compliance": [
+    {
+      "rule_id": "T001",
+      "name": "招标文件发售期",
+      "law": "《政府采购法实施条例》第31条",
+      "result": {
+        "compliant": false,
+        "actual_workdays": 3,
+        "required_workdays": 5,
+        "message": "实际 3 个工作日，要求 ≥5 个工作日 ❌ 不足，可质疑"
+      }
+    },
+    {
+      "rule_id": "T002",
+      "name": "投标截止时限",
+      "law": "《政府采购法》第35条",
+      "result": {
+        "compliant": true,
+        "actual_days": 24,
+        "required_days": 20,
+        "message": "实际 24 日历日，要求 ≥20 日 ✅"
+      }
+    },
+    {
+      "rule_id": "T003",
+      "name": "澄清/修改发出时限",
+      "law": "《政府采购法实施条例》第31条",
+      "result": {
+        "compliant": false,
+        "actual_workdays": 9,
+        "required_workdays": 15,
+        "message": "实际 9 个工作日，要求 ≥15 个工作日 ❌ 不足，可质疑"
+      }
+    },
+    {
+      "rule_id": "T004",
+      "name": "中标公示期",
+      "law": "《政府采购法实施条例》第43条",
+      "result": {
+        "compliant": true,
+        "actual_workdays": 2,
+        "required_workdays": 1,
+        "message": "实际 2 个工作日，要求 ≥1 个工作日 ✅"
+      }
+    },
+    {
+      "rule_id": "T005",
+      "name": "合同签订时限",
+      "law": "《政府采购法》第46条",
+      "result": {
+        "compliant": null,
+        "message": "日期信息不完整，无法检查"
+      }
+    }
+  ],
+  "exclusivity_alerts": [
+    {
+      "rule_id": "E001",
+      "name": "限定特定品牌/型号",
+      "risk_level": "high",
+      "snippet": "目业绩。技术参数须与某厂商政务云方案完全一致，且须指定华为品牌服务器。本地注册企业优先。",
+      "hint": "可能排斥潜在供应商，除非有合理技术必要性并允许等效替代。"
+    },
+    {
+      "rule_id": "E002",
+      "name": "特定地域业绩/本地注册门槛",
+      "risk_level": "medium",
+      "snippet": "某厂商政务云方案完全一致，且须指定华为品牌服务器。本地注册企业优先。",
+      "hint": "以地域限制排斥外地供应商，通常违法（除法定例外情形）。"
+    }
+  ],
+  "overall_risk": "high"
+}

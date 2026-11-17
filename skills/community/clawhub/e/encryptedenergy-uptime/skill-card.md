@@ -1,45 +1,60 @@
-## Description: <br>
-Monitors an OpenClaw agent with every-minute pings, a public status page, and email alerts when pings stop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Know the second your OpenClaw agent goes silent with a hosted heartbeat monitor that posts OpenClaw health data once a minute and sends alerts when pings stop.
 
-## Publisher: <br>
-[jmarbach](https://clawhub.ai/user/jmarbach) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jmarbach](https://clawhub.ai/user/jmarbach)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to configure hosted uptime monitoring for an agent and receive alerts when recurring health pings stop. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring OpenClaw health and status telemetry is sent to encryptedenergy.com. <br>
-Mitigation: Review the payload fields before installation and use the skill only when third-party uptime monitoring is acceptable. <br>
-Risk: The setup installs persistent cron execution that runs every minute. <br>
-Mitigation: Confirm the crontab entry before installing it and document how to remove the entry when monitoring is no longer needed. <br>
-Risk: The API key may be placed inline in the crontab command. <br>
-Mitigation: Store the key outside the crontab where possible, restrict local access to the secret, and rotate the token if it may have been exposed. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor an OpenClaw agent from Encrypted Energy by installing a local cron heartbeat that reports health and status data and triggers hosted email/status-page alerts when the agent stops pinging.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jmarbach/encryptedenergy-uptime) <br>
-- [Encrypted Energy Homepage](https://encryptedenergy.com) <br>
-- [Encrypted Energy Agent Registration](https://encryptedenergy.com/agents/new) <br>
-- [Encrypted Energy Ping API](https://encryptedenergy.com/api/v1/ping) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ENCRYPTED_ENERGY_API_KEY; configured cron execution posts JSON health telemetry to encryptedenergy.com every minute.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.4 (source: ClawHub release metadata) <br>
+Risk: The skill installs a persistent cron job that runs under the user's account every minute.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the cron entry before installation, avoid duplicate entries, and document a removal command for users who uninstall or rotate monitoring setup.
+
+Risk: The heartbeat sends detailed OpenClaw operational telemetry to a hosted third-party service.
+
+Mitigation: Use only when this telemetry sharing is acceptable, prefer minimal heartbeat payloads where possible, and review exactly what health and status fields are included.
+
+Risk: The bearer token is shown in the crontab example and may be stored directly in the user's crontab.
+
+Mitigation: Store the token with restrictive permissions outside crontab or rotate it if exposed, and avoid sharing crontab contents in logs or support requests.
+
+## Reference(s):
+
+- [Encrypted Energy homepage](https://encryptedenergy.com)
+- [Encrypted Energy agent registration](https://encryptedenergy.com/agents/new)
+- [ClawHub skill listing](https://clawhub.ai/jmarbach/skills/encryptedenergy-uptime)
+- [Publisher profile](https://clawhub.ai/user/jmarbach)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown instructions with shell commands and environment variable configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ENCRYPTED_ENERGY_API_KEY, cron, bash, curl, jq, and the openclaw CLI.]
+
+## Skill Version(s):
+
+0.2.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

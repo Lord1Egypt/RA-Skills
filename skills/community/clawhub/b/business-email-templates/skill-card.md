@@ -1,38 +1,48 @@
-## Description: <br>
-Provides professional email templates for common business situations, including sales, customer service, networking, and internal communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional email templates for common business situations. Perfect for sales, customer service, networking, and internal communication.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external-facing business users, sales teams, customer service teams, and networking professionals use this skill to draft common business emails with reusable templates, tone options, subject lines, and communication best practices.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated email text may include unsuitable cold outreach, commitments, dates, or business claims if placeholders are filled inaccurately.
+
+Mitigation: Review and customize each email before sending, confirming recipient details, commitments, compliance expectations, and business claims.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Business users and teams use this skill to draft customizable emails for outreach, follow-ups, meeting requests, project updates, rescheduling, declining requests, and introductions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The security assessment marks this release as suspicious and notes high-impact maintainer, GitHub, and review workflows. <br>
-Mitigation: Install only when intentionally using this release, review the security guidance before deployment, use least-privileged tokens, and avoid full-access review helpers unless the repository is trusted. <br>
+**Output Format:** [Markdown templates and concise written guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huajianjiu000/business-email-templates) <br>
+**Other Properties Related to Output:** [Produces customizable email drafts, subject lines, and best-practice reminders; it does not send email or access external systems.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown email templates with placeholder fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes subject lines, tone options, follow-up sequences, and reusable placeholders.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

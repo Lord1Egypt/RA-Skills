@@ -1,40 +1,54 @@
-## Description: <br>
-Connects to a ROS Noetic navigation stack through rosbridge to read maps, manage waypoints, query AMCL pose, and send single- or multi-waypoint navigation goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects to ROS Noetic navigation through rosbridge to read maps, manage waypoints, send single-goal navigation commands, and run multi-waypoint cruises for AMCL-localized robots.
 
-## Publisher: <br>
-[threelevelchord](https://clawhub.ai/user/threelevelchord) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[threelevelchord](https://clawhub.ai/user/threelevelchord)
 
-## Use Case: <br>
-Developers and robotics operators use this skill to operate ROS Noetic AMCL-based navigation workflows from an agent, including map inspection, waypoint storage, current-pose lookup, and route execution through rosbridge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send navigation goals that move real robot hardware without a confirmation step. <br>
-Mitigation: Use only in a supervised, cleared area with emergency stop access, and verify localization, map frame, and waypoint coordinates before execution. <br>
-Risk: Exposed rosbridge access could allow unintended control of the robot. <br>
-Mitigation: Keep rosbridge limited to trusted local access and avoid exposing it on untrusted networks. <br>
+## Use Case:
 
+Developers and robot operators use this skill to inspect ROS maps, maintain named waypoints, query AMCL pose, and command a ROS Noetic robot to one or more saved destinations through rosbridge.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/threelevelchord/ros-noetic-nav) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command-line workflows for ROS navigation and waypoint management; some commands can send movement goals to live robot hardware.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Navigation commands can move a real ROS-connected robot without enough built-in safety controls or operator warnings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Test in simulation or a controlled empty area, verify the map and localization, keep an emergency stop available, and supervise motion.
+
+Risk: Imported or stale waypoint data can direct the robot toward unsafe or unreachable locations.
+
+Mitigation: Back up waypoints before importing replacements and validate targets against the current map and costmap before navigation.
+
+## Reference(s):
+
+- [ROS Noetic Navigation skill page](https://clawhub.ai/threelevelchord/skills/ros-noetic-nav)
+- [Publisher profile](https://clawhub.ai/user/threelevelchord)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python scripts, JSON waypoint configuration, and command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces ROS map summaries, waypoint records, robot pose readings, navigation status text, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

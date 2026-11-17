@@ -1,40 +1,50 @@
-## Description: <br>
-Research Monitor automatically collects and summarizes keyword-based news, trends, competitor updates, and technology releases, with scheduled reports and Telegram alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research Monitor collects and summarizes keyword-based news, trend, competitor, and technology updates into daily and weekly reports.
 
-## Publisher: <br>
-[ryuchanyul](https://clawhub.ai/user/ryuchanyul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryuchanyul](https://clawhub.ai/user/ryuchanyul)
 
-## Use Case: <br>
-Developers, analysts, and teams use this skill to monitor keywords, news sources, technology blogs, release notes, and competitor sites, then receive daily or weekly summaries and real-time alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled Telegram delivery could expose sensitive monitoring topics or summaries to unintended recipients. <br>
-Mitigation: Configure exact keywords, sources, schedule, and Telegram destination before enabling recurring alerts. <br>
-Risk: Recurring monitoring can continue sending outdated or unwanted alerts if the schedule is not maintained. <br>
-Mitigation: Confirm how to disable recurring alerts and review the schedule during installation and updates. <br>
+## Use Case:
 
+External users and teams use this skill to monitor industry news, technology blogs, release notes, competitor site changes, and keyword alerts, then receive concise Korean briefings and trend reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryuchanyul/research-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries, trend reports, and alert text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scheduled daily or weekly briefings and real-time keyword alerts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill describes automatic ongoing monitoring and Telegram alerts without enough user control or scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before enabling it, confirm monitored keywords and sites, alert frequency, Telegram recipient, retention expectations, and how to pause or disable scheduled and real-time alerts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryuchanyul/skills/research-monitor)
+- [ClawHub publisher profile](https://clawhub.ai/user/ryuchanyul)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Korean Markdown briefings, alerts, and trend reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scheduled daily and weekly reporting plus real-time keyword alerts.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,64 @@
-## Description: <br>
-Download Bilibili videos, extract or transcribe subtitles, and generate AI-powered detailed summaries using Gemini 2.5 Flash. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download Bilibili videos, extract or transcribe subtitles, and generate detailed AI-powered summaries with Google Gemini.
 
-## Publisher: <br>
-[lava-chen](https://clawhub.ai/user/lava-chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lava-chen](https://clawhub.ai/user/lava-chen)
 
-## Use Case: <br>
-External users and developers use this skill to inspect Bilibili video metadata, extract subtitles or transcribe audio, download media, and generate detailed summaries for Bilibili videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Video subtitles or transcripts may be sent to Gemini when AI summarization is used. <br>
-Mitigation: Use summarization only for public or non-sensitive videos, and keep GEMINI_API_KEY scoped and stored locally. <br>
-Risk: Downloaded audio, subtitle, transcript, summary, or video files may remain in the local output directory. <br>
-Mitigation: Review and delete the bili-summary output directory after use when content should not be retained. <br>
+## Use Case:
 
+Developers and external users use this skill to inspect, download, transcribe, and summarize Bilibili videos through an agent workflow. It is intended for Bilibili URLs where the user wants video metadata, subtitles, transcripts, downloaded media, or a concise summary.
 
-## Reference(s): <br>
-- [Bili Summary ClawHub Release](https://clawhub.ai/lava-chen/bili-summary) <br>
-- [Google AI Studio API Keys](https://aistudio.google.com/app/apikey) <br>
-- [Gemini 2.5 Flash API Endpoint](https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent) <br>
-- [Bilibili Subtitle API Endpoint](https://api.bilibili.com/x/player/wbi/v2?aid={aid}&cid={cid}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Files] <br>
-**Output Format:** [Command output plus JSON video metadata, plain text transcripts, Markdown-style summaries, and saved media or text files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes outputs to a local bili-summary temp directory; Gemini summaries require GEMINI_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can make network requests to user-provided video URLs and Bilibili APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private or internal URLs and run the skill in an isolated environment with reviewed dependencies.
+
+Risk: Subtitle or transcript text may be sent to Google Gemini for summarization.
+
+Mitigation: Use the skill only with content approved for external processing and confirm that Gemini use fits the user's data handling requirements.
+
+Risk: The skill depends on a Gemini API key for AI summaries.
+
+Mitigation: Use a restricted API key and provide it through a temporary environment variable or secret manager.
+
+Risk: Downloaded media, subtitles, transcripts, and summaries may remain in the output directory.
+
+Mitigation: Review and clean the output directory after each run, especially when processing non-public or sensitive content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lava-chen/skills/bili-summary)
+- [Google AI Studio API keys](https://aistudio.google.com/app/apikey)
+- [Gemini 2.5 Flash generateContent endpoint](https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent)
+- [Bilibili player subtitle API](https://api.bilibili.com/x/player/wbi/v2?aid={aid}&cid={cid})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with shell commands; generated runtime files may include JSON video metadata, transcript text, summary text, audio, and video files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries are generated from Bilibili subtitles or faster-whisper transcripts and may be capped by the Gemini request configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -111,4 +111,5 @@ siluzan-cso workflow validate -f draft.md --max 800 --json
 ## 交叉引用
 
 - 成稿创作流程 → `three-lib-content-workflow/content-writer.workflow.md`
+- **多轨成稿** → 各轨成稿各 validate 一次；见 `three-lib-content-workflow/multi-track.md`
 - 成稿落盘与呈现约定 → 同上「输出」一节

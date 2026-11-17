@@ -1,45 +1,58 @@
-## Description: <br>
-Better Tavily Search helps agents retrieve fresh web evidence through Tavily for source finding, link discovery, official documentation lookup, current-event verification, and related external retrieval tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Better Tavily Search helps agents retrieve fresh web evidence with Tavily using intent profiles, compact result sets, targeted extraction, and site mapping.
 
-## Publisher: <br>
-[soymilkwinsagain](https://clawhub.ai/user/soymilkwinsagain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soymilkwinsagain](https://clawhub.ai/user/soymilkwinsagain)
 
-## Use Case: <br>
-Developers and agents use this skill to plan and run compact Tavily searches, targeted extraction, and documentation site mapping when answers require fresh external sources or official web evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, URLs, extraction targets, and mapping targets are sent to Tavily or a Tavily-compatible endpoint. <br>
-Mitigation: Use the skill only when that disclosure is acceptable, avoid confidential terms and internal URLs, and configure a limited Tavily API key. <br>
-Risk: The skill can load credentials from the environment or ~/.openclaw/.env. <br>
-Mitigation: Keep ~/.openclaw/.env private and avoid sharing logs, prompts, or command output that could reveal TAVILY_API_KEY. <br>
+## Use Case:
 
+Developers and agents use this skill to find current web evidence, discover source links, look up official documentation, verify recent facts, and extract concise evidence from selected URLs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/soymilkwinsagain/better-tavily-search) <br>
-- [Tavily Search API Reference](https://docs.tavily.com/documentation/api-reference/endpoint/search) <br>
-- [Query Playbook](reference/query_playbook.md) <br>
-- [Escalation Rules](reference/escalation_rules.md) <br>
-- [Output Contract](reference/output_contract.md) <br>
-- [Parameter Matrix](reference/param_matrix.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Agent-oriented JSON, raw Tavily-style JSON, Markdown, or Brave-compatible result lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves query parameters, source URLs, snippets or chunks, domains, scores, usage metadata, response timing, and request identifiers when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: An API endpoint override could send the Tavily API key and user queries to an unintended server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted source, avoid setting TAVILY_API_BASE unless the endpoint is trusted, and restrict outbound network access to Tavily where possible.
+
+Risk: Broad or over-expanded web searches can return stale, incomplete, or low-quality evidence.
+
+Mitigation: Use the documented small-result workflow: inspect source metadata, rewrite weak queries, and extract only the strongest 1-3 URLs when more detail is needed.
+
+## Reference(s):
+
+- [Better Tavily Search on ClawHub](https://clawhub.ai/soymilkwinsagain/skills/better-tavily-search)
+- [Tavily Search API Reference](https://docs.tavily.com/documentation/api-reference/endpoint/search)
+- [Escalation Rules](reference/escalation_rules.md)
+- [Output Contract](reference/output_contract.md)
+- [Parameter Matrix](reference/param_matrix.md)
+- [Query Playbook](reference/query_playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON or Markdown retrieval results with concise shell command guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TAVILY_API_KEY. Defaults favor small evidence sets, source metadata, and targeted extraction over large raw-content payloads.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

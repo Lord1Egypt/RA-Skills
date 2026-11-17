@@ -1,45 +1,62 @@
-## Description: <br>
-德胧舆情情报综合工具箱 helps agents collect hotel-industry public-opinion signals, summarize web and video-platform findings, prepare Feishu card reports, and draft AI-assisted risk analysis and response plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+德胧舆情情报综合工具箱 helps agents collect hotel-industry public-opinion signals, summarize web and video monitoring results, classify risks, and draft Feishu-ready alert or daily-report content.
 
-## Publisher: <br>
-[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu)
 
-## Use Case: <br>
-Business, operations, and communications teams can use this skill to monitor hotel-brand public opinion, competitor activity, and video-platform risk signals, then turn findings into Feishu-ready summaries and mitigation plans. Agents use it as guidance for search queries, risk classification, alert thresholds, reporting formats, and automation patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation terms and recurring monitoring can collect or report information outside the intended business scope. <br>
-Mitigation: Define approved monitoring topics, brands, platforms, and alert thresholds before enabling scheduled runs. <br>
-Risk: Outbound Feishu reporting examples include a fixed recipient and could send sensitive monitoring results to the wrong channel. <br>
-Mitigation: Replace fixed recipients with approved channels and review message routing before deployment. <br>
-Risk: The skill references sensitive credentials and optional third-party packages or container images. <br>
-Mitigation: Use dedicated low-privilege credentials and verify BettaFish packages or Docker images before installation. <br>
-Risk: Automated monitoring jobs may continue running after the business need changes. <br>
-Mitigation: Document ownership, disable procedures, and review scheduled jobs regularly. <br>
+## Use Case:
 
+Employees and operators use this skill to monitor hotel and competitor public-opinion topics, analyze complaint or incident risk, and prepare Feishu-formatted reports, alerts, and response plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chaoliuzhu/delonix-intelligence-suite-v2) <br>
-- [BettaFish public-opinion analysis engine](https://github.com/666ghj/BettaFish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with command examples, structured risk-analysis text, and Feishu card JSON templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include monitoring queries, alert thresholds, risk ratings, response-plan drafts, and outbound Feishu card payloads that should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: release evidence) <br>
+Risk: Hard-coded Feishu delivery can send monitoring output to an unintended or unauthorized recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace the recipient with an approved destination before deployment and review message-routing settings for each scheduled workflow.
+
+Risk: Persistent scheduled monitoring can continue collecting and sending public-opinion results after the intended campaign or review period ends.
+
+Mitigation: Make scheduled runs explicit opt-in, document how to disable them, and set an expiry or periodic owner review.
+
+Risk: Mutable BettaFish package, Git, and container installation instructions can pull unpinned third-party code.
+
+Mitigation: Pin package versions, repository commits, and container digests before installation, then scan dependencies in the target environment.
+
+Risk: The web-search override broadens data-access behavior for monitoring tasks.
+
+Mitigation: Remove the override unless needed, or scope search permissions and review collected results before sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chaoliuzhu/skills/delonix-intelligence-suite-v2)
+- [BettaFish public-opinion analysis project](https://github.com/666ghj/BettaFish)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text with shell-command examples, Feishu card JSON examples, monitoring configuration snippets, and structured risk-analysis guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include web-search prompts, public-opinion risk levels, response-plan checklists, and Feishu-ready report content.]
+
+## Skill Version(s):
+
+2.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

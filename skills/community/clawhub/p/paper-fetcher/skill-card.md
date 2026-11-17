@@ -1,41 +1,54 @@
-## Description: <br>
-Fetch academic papers from Sci-Hub given a DOI, download PDFs, and save them with clean filenames. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch academic papers from Sci-Hub given a DOI, automatically downloads PDFs, and saves them to research/papers/ with clean filenames.
 
-## Publisher: <br>
-[biohackerrrrrr](https://clawhub.ai/user/biohackerrrrrr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[biohackerrrrrr](https://clawhub.ai/user/biohackerrrrrr)
 
-## Use Case: <br>
-Researchers, students, and developers use this skill to retrieve papers by DOI and build a local PDF collection in a workspace. It is intended for workflows where the user supplies a DOI or PubMed context and wants a saved paper file plus a confirmation path. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Sci-Hub to retrieve papers, which can raise legal, institutional-policy, and source-trust concerns. <br>
-Mitigation: Use only when permitted by applicable rules and prefer lawful publisher, library, or open-access sources when required. <br>
-Risk: Downloaded PDFs are written into the workspace and may come from a third-party source. <br>
-Mitigation: Use a dedicated output folder such as research/papers/ and open downloaded files with normal document-safety precautions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/biohackerrrrrr/paper-fetcher) <br>
-- [Sci-Hub domain used by the skill](https://www.sci-hub.su) <br>
-- [DOI resolver](https://doi.org/) <br>
+## Use Case:
 
+External users, developers, and research automation agents use this skill to retrieve academic-paper PDFs by DOI or PubMed-related requests and save them into a workspace paper library.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [Terminal text with saved PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads PDFs to a workspace output directory, commonly research/papers/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill intentionally contacts Sci-Hub with DOI queries and saves returned PDFs locally.
+
+Mitigation: Install only for workflows where this behavior is intended, and run it in a controlled workspace.
+
+Risk: The skill saves unvalidated remote PDF files and has under-scoped file-writing behavior.
+
+Mitigation: Set the output directory explicitly, avoid shared or privileged directories, and treat downloaded PDFs as untrusted files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/biohackerrrrrr/skills/paper-fetcher)
+- [Sci-Hub domain configured by skill](https://www.sci-hub.su)
+- [DOI resolver](https://doi.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, shell commands]
+
+**Output Format:** [PDF files saved locally with brief text confirmation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads are named paper_[DOI with slashes replaced].pdf; downloaded PDFs should be treated as untrusted files.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

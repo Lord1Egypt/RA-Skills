@@ -1,47 +1,63 @@
-## Description: <br>
-A free music discovery app that uses unauthenticated music APIs for search, lyrics, internet radio, artist metadata, and concert information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A free music discovery application that integrates multiple unauthenticated music APIs for music search, lyrics, internet radio, and concert information.
 
-## Publisher: <br>
-[fish1981bimmer](https://clawhub.ai/user/fish1981bimmer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fish1981bimmer](https://clawhub.ai/user/fish1981bimmer)
 
-## Use Case: <br>
-External users and developers use this local web app to search music, view lyrics, browse internet radio, and query artist events through a Next.js frontend and FastAPI backend. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Music searches, artist names, song titles, radio queries, and event lookups are sent to external music services. <br>
-Mitigation: Use the app only where those outbound requests are acceptable, review the listed services, and avoid entering sensitive information. <br>
-Risk: The backend may be exposed beyond the local machine if run or deployed on a public interface. <br>
-Mitigation: Bind the backend to localhost unless network exposure is intended, set explicit CORS origins, and place any public deployment behind appropriate network controls. <br>
-Risk: TLS configuration can be weakened if certificate checks are disabled in production settings. <br>
-Mitigation: Use valid certificates and required verification for production; do not enable TLS settings that disable certificate checks. <br>
+## Use Case:
 
+External users and developers can use this release to run a full-stack music discovery app that searches music, displays lyrics, plays internet radio, and looks up concert information through free third-party music APIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fish1981bimmer/music-discovery-app) <br>
-- [iTunes Search API documentation](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/) <br>
-- [Lyrics.ovh API documentation](https://lyricsovh.docs.apiary.io/) <br>
-- [MusicBrainz](https://musicbrainz.org/) <br>
-- [Radio Browser API](https://api.radio-browser.info/) <br>
-- [Bandsintown](https://www.bandsintown.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation with application source files, API configuration, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local web app that makes outbound requests to third-party music services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontend package.json) <br>
+Risk: The release installs many dependencies from an under-disclosed third-party npm mirror.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a disposable or development environment, review dependency sources, regenerate the npm lockfile from a trusted registry, and update vulnerable pinned packages before deployment.
+
+Risk: The local backend startup binds the development server to 0.0.0.0, which can expose it beyond the local machine.
+
+Mitigation: Change local backend startup to bind to 127.0.0.1 unless LAN access is intentionally required and protected.
+
+Risk: Music searches, lyrics requests, radio searches, and event lookups are shared with third-party music APIs.
+
+Mitigation: Avoid sensitive search terms, disclose the external API use to users, and review the third-party API terms and privacy expectations before production use.
+
+## Reference(s):
+
+- [iTunes Search API Documentation](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/)
+- [Lyrics.ovh API Documentation](https://lyricsovh.docs.apiary.io/)
+- [MusicBrainz](https://musicbrainz.org/)
+- [Radio Browser API](https://api.radio-browser.info/)
+- [Bandsintown](https://www.bandsintown.com/)
+- [Quickstart Guide](docs/QUICKSTART.md)
+- [Deployment Guide](docs/DEPLOYMENT.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with source code files and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a FastAPI backend, Next.js frontend, dependency manifests, startup script, and deployment notes; no API keys are required, but user search terms are sent to third-party music APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

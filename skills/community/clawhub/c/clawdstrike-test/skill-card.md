@@ -1,45 +1,65 @@
-## Description: <br>
-Security audit and threat model for OpenClaw gateway hosts. Use to verify OpenClaw configuration, exposure, skills/plugins, filesystem hygiene, and to produce an OK/VULNERABLE report with evidence and fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security audit and threat model for OpenClaw gateway hosts. Use to verify OpenClaw configuration, exposure, skills/plugins, filesystem hygiene, and to produce an OK/VULNERABLE report with evidence and fixes.
 
-## Publisher: <br>
-[misirov](https://clawhub.ai/user/misirov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[misirov](https://clawhub.ai/user/misirov)
 
-## Use Case: <br>
-Developers and security engineers use this skill to inspect local OpenClaw gateway hosts, collect bounded verification evidence, and produce an actionable OK/VULNERABLE audit report with redacted evidence and safe remediation guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The local verification bundle and generated audit report may contain sensitive host, path, configuration, or security posture details. <br>
-Mitigation: Review verified-bundle.json before sharing it, keep it out of public or synced folders, and delete it when it is no longer needed. <br>
-Risk: Audit collection touches local OpenClaw configuration and runtime evidence. <br>
-Mitigation: Use the bundled verified collector and its strict allowlist; apply fixes only after explicit user approval. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/misirov/clawdstrike-test) <br>
-- [Required Checks](references/required-checks.md) <br>
-- [Report Format](references/report-format.md) <br>
-- [Evidence Template](references/evidence-template.md) <br>
-- [Verified Allowlist](references/verified-allowlist.md) <br>
-- [Threat Model](references/threat-model.md) <br>
-- [Redaction Rules](references/redaction.md) <br>
+## Use Case:
 
+Developers, operators, and security engineers use this skill to audit OpenClaw gateway hosts they control, collect verified local evidence, identify exposure and configuration risks, and produce a remediation-focused security report.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration guidance, Security analysis] <br>
-**Output Format:** [Markdown security report with redacted evidence excerpts and safe remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local verified-bundle.json evidence file through the bundled collector; report evidence should remain redacted and local.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill automatically collects and saves sensitive host, configuration, approval, plugin, and command-output details.
+
+Mitigation: Run it only on OpenClaw hosts you control, choose a private output path, use restrictive file permissions, and treat verified-bundle.json as sensitive.
+
+Risk: Redaction may be imperfect, so generated evidence or reports could still expose sensitive local details.
+
+Mitigation: Review and sanitize verified-bundle.json and the final report before sharing them outside the trusted operational context.
+
+Risk: The optional deep probe expands local gateway testing beyond the default collection.
+
+Mitigation: Use the deep probe only when explicitly intended and after reviewing the collection script for the target host.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/misirov/skills/clawdstrike-test)
+- [Required checks](references/required-checks.md)
+- [Report format](references/report-format.md)
+- [Evidence template](references/evidence-template.md)
+- [Threat model template](references/threat-model.md)
+- [Verified mode allowlist](references/verified-allowlist.md)
+- [Redaction rules](references/redaction.md)
+- [Gateway exposure and auth](references/gateway.md)
+- [Network evidence checks](references/network.md)
+- [Supply chain checks](references/supply-chain.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown audit report with redacted evidence, severity labels, and safe remediation guidance; local verified evidence is saved as JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires verified-bundle.json as the report evidence source; optional deep probing is only for explicitly requested local gateway probes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

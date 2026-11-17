@@ -1,47 +1,55 @@
-## Description: <br>
-Instance A skill for TallyPrime that parses invoice and bill PDFs or images from Telegram or WhatsApp, extracts structured accounting data, and posts canonical JSON to a configured bridge service for downstream Tally entry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses invoices and bills from PDFs, images, or messages, extracts structured accounting data, validates key tax fields, and forwards canonical JSON to a configured bridge for Tally entry.
 
-## Publisher: <br>
-[meetpaladiya44](https://clawhub.ai/user/meetpaladiya44) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meetpaladiya44](https://clawhub.ai/user/meetpaladiya44)
 
-## Use Case: <br>
-Accountants, CAs, and finance operators use this skill to turn invoice or bill documents received in chat into validated voucher payloads for TallyPrime. It is intended to reduce manual data entry while prompting for clarification when extraction confidence or accounting fields are incomplete. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow handles sensitive invoice, GSTIN, ledger, and accounting data across chat messages, bridge requests, and Tally results. <br>
-Mitigation: Use only trusted Telegram or WhatsApp channels and a controlled bridge deployment; restrict access to message history, bridge logs, and Tally output. <br>
-Risk: The skill can trigger downstream Tally entries after extraction, so incorrect or low-confidence fields could affect accounting records. <br>
-Mitigation: Require user confirmation for low-confidence fields, failed validation checks, high-value documents, and ambiguous voucher types before posting. <br>
-Risk: Bridge credentials and HMAC secrets are required to authorize requests. <br>
-Mitigation: Store BRIDGE_URL, BRIDGE_BEARER, and BRIDGE_HMAC_SECRET as protected environment variables, rotate shared secrets when access changes, and avoid exposing them in chat or logs. <br>
-Risk: A misconfigured or untrusted bridge or tunnel could expose accounting operations outside the intended environment. <br>
-Mitigation: Verify ownership and reachability of the bridge endpoint before use, keep Tally access on the controlled client machine, and require authenticated, signed requests for mutating operations. <br>
+## Use Case:
 
+Accountants, CAs, and finance operators use this skill to turn invoice PDFs, images, or chat messages into validated voucher payloads for Tally workflows. It is intended to reduce manual entry while preserving checks for GSTINs, HSN codes, tax math, totals, and low-confidence fields.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/meetpaladiya44/tally-extractor) <br>
-- [Bridge HTTP Contract](artifact/reference/bridge.md) <br>
-- [Extraction Schema](artifact/reference/extraction-schema.md) <br>
-- [Telegram Reply Templates](artifact/reference/prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with canonical JSON payloads, curl examples, and accountant-facing reply text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BRIDGE_URL, BRIDGE_BEARER, and BRIDGE_HMAC_SECRET; generated voucher payloads include confidence scores, idempotency keys, and validation checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill sends invoice contents and tax identifiers to a configured bridge.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when the bridge endpoint and operators are trusted, and protect and rotate the bridge credentials.
+
+Risk: The workflow can cause Tally vouchers, and possibly ledgers, to be created through Instance B.
+
+Mitigation: Require explicit human approval before posting accounting entries, especially for low-confidence extraction results.
+
+## Reference(s):
+
+- [Extraction Schema](reference/extraction-schema.md)
+- [Bridge HTTP Contract](reference/bridge.md)
+- [Telegram Reply Templates](reference/prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON payloads and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces canonical voucher JSON for bridge submission and human-facing status or clarification messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

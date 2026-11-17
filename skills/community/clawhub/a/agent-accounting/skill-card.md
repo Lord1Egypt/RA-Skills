@@ -1,45 +1,64 @@
-## Description: <br>
-Automates bookkeeping workflows for accounting agencies, including invoice OCR, accounting entries, financial reports, tax calculations, Golden Tax Phase IV filing support, risk checks, and dashboard output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Accounting helps accounting agents process invoices, generate bookkeeping vouchers and financial reports, calculate taxes, run tax-risk checks, prepare filing payloads, and produce an HTML dashboard.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users and accounting teams use this skill to run or guide an automated bookkeeping cycle for small-business clients, from receipt capture through vouchers, reports, tax estimates, filing-package generation, and review dashboards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process sensitive invoices, company records, tax identifiers, and filing data. <br>
-Mitigation: Use trusted environments, protect generated files and credentials, and limit access to financial data handled by the workflow. <br>
-Risk: Live OCR and tax-provider integrations may transmit financial data to external services. <br>
-Mitigation: Keep default or simulated modes until provider credentials, destination URLs, and data-sharing approvals are verified. <br>
-Risk: Automated accounting, tax, and filing outputs may be incomplete or incorrect for a real taxpayer. <br>
-Mitigation: Review calculations, vouchers, reports, risk findings, and filing payloads with qualified accounting or tax personnel before submission. <br>
+## Use Case:
 
+External accounting agencies and developers use this skill to automate recurring bookkeeping workflows for small and midsize business clients, including invoice OCR, voucher creation, reporting, tax calculation, filing preparation, and review of tax-risk indicators.
 
-## Reference(s): <br>
-- [Server-resolved GitHub provenance](https://github.com/bettermen/agent-accounting) <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/agent-accounting) <br>
-- [Baidu OCR finance documentation](https://ai.baidu.com/tech/ocr/finance) <br>
-- [Baidu OCR API reference](https://ai.baidu.com/ai-doc/OCR/Zk3h7xz52) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; invoked workflows can produce text summaries, XML filing payloads, and HTML dashboards.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and optional environment variables for Baidu OCR and tax-provider integrations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: Sensitive invoice and tax data may be sent to cloud OCR or third-party filing services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use demo or simulation mode by default; only enable external services after confirming data-sharing terms, credentials, endpoint ownership, and HTTPS-only transport.
+
+Risk: Live tax submissions could be sent to an unreviewed or misconfigured destination.
+
+Mitigation: Allowlist filing destinations and confirm TAX_API_BASE_URL immediately before any production submission.
+
+Risk: Cached OCR access tokens may expose credentials or service access if the local environment is shared.
+
+Mitigation: Protect the token cache location, restrict local file permissions, or disable token caching in sensitive deployments.
+
+Risk: Generated dashboard reports may include untrusted OCR or invoice fields.
+
+Mitigation: Fix and verify HTML escaping before opening dashboards generated from untrusted source documents.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bettermen/skills/agent-accounting)
+- [Source Repository](https://github.com/bettermen/agent-accounting)
+- [Baidu Finance OCR](https://ai.baidu.com/tech/ocr/finance)
+- [Baidu OCR API Documentation](https://ai.baidu.com/ai-doc/OCR/Zk3h7xz52)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, generated JSON/XML-like tax data, and HTML dashboard files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call optional external OCR and tax filing services when credentials and endpoints are configured.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

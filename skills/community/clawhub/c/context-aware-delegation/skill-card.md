@@ -1,44 +1,59 @@
-## Description: <br>
-Give isolated sessions (cron jobs, sub-agents, event handlers) full conversation context from your main session using sessions_history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give isolated sessions such as cron jobs, sub-agents, and event handlers conversation context from a main session using sessions_history.
 
-## Publisher: <br>
-[RGBA-Research](https://clawhub.ai/user/RGBA-Research) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[rgba-research](https://clawhub.ai/user/rgba-research)
 
-## Use Case: <br>
-Developers and operators use this skill to design scheduled jobs, sub-agents, and event handlers that retrieve main-session history before producing reports, summaries, or delegated task outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Background or isolated agents may read private main-session chat history and personal data. <br>
-Mitigation: Install only when this access is intentional, reduce history limits, and pass task-specific summaries instead of raw conversation history where possible. <br>
-Risk: Scheduled examples can send sensitive summaries through Telegram or email without sufficient guardrails. <br>
-Mitigation: Restrict message, email, and calendar permissions, verify recipients, and avoid automatic external delivery of sensitive summaries. <br>
-Risk: Cron jobs or spawned sessions may continue running after the original need has passed. <br>
-Mitigation: Keep a record of enabled cron jobs and spawned sessions and review them regularly. <br>
+## Use Case:
 
+Developers and operators use this skill to configure isolated background agents that first retrieve main-session history, then produce reports, summaries, or delegated work with relevant conversation context.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/RGBA-Research/context-aware-delegation) <br>
-- [Project Homepage](https://gitlab.com/rgba_research/context-aware-delegation) <br>
-- [Publisher Website](https://rgbaresearch.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline JavaScript, JSON, and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance depends on sessions_list and sessions_history availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Delegated agents may retrieve broad private session history or memory content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit sessions_history to the smallest useful scope and redact sensitive session or memory content before using it in delegated tasks.
+
+Risk: Examples include external delivery patterns that could send private context to unintended recipients.
+
+Mitigation: Use explicit source and destination choices, replace every hard-coded account identifier, and verify all recipients and integrations before enabling scheduled delivery.
+
+Risk: Scheduled background execution can repeat risky context sharing without an interactive review step.
+
+Mitigation: Review cron payloads carefully before installation and avoid scheduled external delivery unless the destination and integration are verified.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rgba-research/skills/context-aware-delegation)
+- [Source Homepage](https://gitlab.com/rgba_research/context-aware-delegation)
+- [Publisher Website](https://rgbaresearch.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples depend on sessions_list and sessions_history tool access.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

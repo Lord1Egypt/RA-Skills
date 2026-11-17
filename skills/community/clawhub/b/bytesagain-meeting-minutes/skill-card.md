@@ -1,40 +1,54 @@
-## Description: <br>
-Record, manage, and export meeting minutes in a terminal, including action items, decisions, attendees, and formatted meeting reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Record, manage, and export meeting minutes from the terminal, including decisions, action items, attendees, and formatted reports.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-Developers, project leads, and meeting facilitators use this skill to create local meeting records, capture decisions and action items, list past meetings, and export meeting minutes as Markdown from the command line. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting notes may contain private or sensitive information stored on the local machine. <br>
-Mitigation: Use on trusted systems, avoid highly sensitive meetings on shared machines, and periodically delete old files from ~/.bytesagain-meetings and /tmp/meeting-*.md. <br>
+## Use Case:
 
+External users and teams can use this skill to run meeting records from the command line, capture decisions, assign action items, review prior outcomes, and export minutes as Markdown.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/bytesagain-meeting-minutes) <br>
-- [Publisher profile](https://clawhub.ai/user/loutai0307-prog) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Files, Guidance] <br>
-**Output Format:** [Terminal output, local JSON meeting records, and Markdown exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores meeting data under ~/.bytesagain-meetings and exports Markdown files under /tmp/meeting-*.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Meeting records may contain sensitive information stored as local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted machines and review storage permissions before recording confidential meetings.
+
+Risk: Markdown exports may write meeting content to a temporary system directory.
+
+Mitigation: Review export paths and avoid exporting confidential meetings on shared machines until storage and export behavior are hardened.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/loutai0307-prog/skills/bytesagain-meeting-minutes)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Terminal text and Markdown exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores meeting records as local files and exports selected meetings to Markdown.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

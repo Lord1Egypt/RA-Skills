@@ -1,44 +1,54 @@
-## Description: <br>
-24 AI agents for business automation - sales outreach, lead gen, content creation, SEO, ad copy, bookkeeping, proposals, market research, business plans, tech docs, data entry, web scraping, CRM ops, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+24 AI agents for business automation - sales outreach, lead gen, content creation, SEO, ad copy, bookkeeping, proposals, market research, business plans, tech docs, data entry, web scraping, CRM ops, and more.
 
-## Publisher: <br>
-[ResonanceEnergy](https://clawhub.ai/user/ResonanceEnergy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[resonanceenergy](https://clawhub.ai/user/resonanceenergy)
 
-## Use Case: <br>
-Business operators, sales teams, marketers, and support teams use this skill to run specialized remote AI agents for sales outreach, lead generation, content creation, SEO, bookkeeping, proposals, research, support replies, and related back-office workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Inputs sent through the helper scripts are submitted to an external Digital Labour API endpoint. <br>
-Mitigation: Only send data that the user is authorized to process externally, and avoid secrets, regulated personal data, financial records, resumes, or customer data unless policy allows it. <br>
-Risk: The API endpoint and optional API key are controlled through environment variables. <br>
-Mitigation: Set DIGITAL_LABOUR_API_URL and DIGITAL_LABOUR_API_KEY deliberately, and verify the endpoint before running single-agent, batch, or pipeline commands. <br>
-Risk: Batch and pipeline workflows can submit multiple business tasks sequentially. <br>
-Mitigation: Review batch files and pipeline inputs before execution so unintended or sensitive records are not submitted. <br>
+## Use Case:
 
+Business users, operators, and developers use this skill to run specialized remote AI agents for sales, marketing, operations, document processing, research, and professional-service workflows. It also supports batch jobs and predefined multi-agent pipelines with QA status returned in structured outputs.
 
-## Reference(s): <br>
-- [Digital Labour API homepage](https://bitrage-labour-api-production.up.railway.app) <br>
-- [Digital Labour ClawHub listing](https://clawhub.ai/ResonanceEnergy/digital-labour) <br>
-- [ResonanceEnergy publisher profile](https://clawhub.ai/user/ResonanceEnergy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote API responses are structured JSON and may include QA status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Submitted prompts, documents, customer records, CRM-like data, transaction text, and generated pipeline outputs are sent to the configured Digital Labour remote service and its listed LLM providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the trusted HTTPS production endpoint or an approved endpoint, avoid submitting sensitive data unless permitted, and review organizational data-handling requirements before use.
+
+Risk: Changing DIGITAL_LABOUR_API_URL can redirect requests, including optional API keys and business inputs, to another service.
+
+Mitigation: Set DIGITAL_LABOUR_API_URL only in trusted environments and avoid exposing DIGITAL_LABOUR_API_KEY where other users or scripts can alter the API URL.
+
+## Reference(s):
+
+- [Digital Labour API Homepage](https://bitrage-labour-api-production.up.railway.app)
+- [ClawHub Skill Page](https://clawhub.ai/resonanceenergy/skills/digital-labour)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON examples; helper scripts return structured JSON from the remote API.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent calls and pipeline steps may return QA status and structured result payloads from the configured remote service.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-End-to-end operator for a Gougoubi pump-style prediction market that creates proposals and conditions, supervises trading liquidity, submits deadline results, handles disputes, and settles rewards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end operator for a Gougoubi pump-style prediction market, covering proposal creation, condition setup, trading support, result submission, dispute handling, creator-fee review, and settlement.
 
-## Publisher: <br>
-[chinasong](https://clawhub.ai/user/chinasong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chinasong](https://clawhub.ai/user/chinasong)
 
-## Use Case: <br>
-External users and operators use this skill to run a Gougoubi pump prediction-market lifecycle on BNB Chain, from market creation through trading, settlement, disputes, and claims. It is intended for wallet-connected workflows where the user reviews transaction details before signing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet-signed on-chain actions can affect funds through market creation, trades, settlement, disputes, claims, approvals, or LP actions. <br>
-Mitigation: Use a dedicated low-balance wallet, avoid unlimited token approvals, verify proposal and condition IDs, and require a full transaction preview before signing. <br>
-Risk: Incorrect deadlines, result submissions, or missing evidence can create costly transactions or disputed market outcomes. <br>
-Mitigation: Confirm market parameters before write transactions, require public evidence for settlement, simulate contract calls first, and pause when estimates or state checks look abnormal. <br>
+## Use Case:
 
+Developers and market operators use this skill to run Gougoubi pump prediction markets from creation through trading support, result submission, disputes, and claimant settlement on BNB Chain.
 
-## Reference(s): <br>
-- [Gougoubi Pump Lifecycle on ClawHub](https://clawhub.ai/chinasong/ggb-pump-lifecycle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Markdown] <br>
-**Output Format:** [Markdown stage summaries with transaction previews and contract or subgraph call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before wallet-signed transactions and responds in the user's language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Irreversible on-chain wallet actions can transfer funds or change market state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a prepared wallet and environment, verify every transaction preview, confirm the signer for the stage, and simulate contract calls before signing.
+
+Risk: Creator-fee handling is inconsistent where harvestFees is mentioned, while the detailed claim flow says creator fees transfer at trade time.
+
+Mitigation: Treat harvestFees instructions as suspect unless the contract ABI independently confirms them, and reconcile creator fees from subgraph trade-fee totals against wallet balances.
+
+Risk: The installer command is unpinned and may fetch a changing package version.
+
+Mitigation: Prefer a pinned, reviewed installer version and avoid installing where wallet secrets or production credentials are exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chinasong/skills/ggb-pump-lifecycle)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with structured transaction summaries, tables, and code or query blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires current wallet, contract, subgraph, deadline, and market-state evidence before on-chain actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

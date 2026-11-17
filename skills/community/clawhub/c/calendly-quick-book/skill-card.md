@@ -1,42 +1,59 @@
-## Description: <br>
-Book Calendly meetings instantly from natural-language requests without sending a scheduling link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Calendly meetings instantly from natural-language requests such as "book", "schedule calendly", or "calendly book".
 
-## Publisher: <br>
-[Dompi123](https://clawhub.ai/user/Dompi123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dompi123](https://clawhub.ai/user/dompi123)
 
-## Use Case: <br>
-People who schedule meetings use this skill to book Calendly events from a natural-language request, including attendee details, timezone, and requested time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create real Calendly bookings through the user's Calendly account. <br>
-Mitigation: Confirm the attendee name, email, timezone, event type, and meeting time before booking. <br>
-Risk: The skill requires a Calendly API token for account access. <br>
-Mitigation: Use a revocable Calendly token and remove it from OpenClaw config when the skill is no longer used. <br>
+## Use Case:
 
+OpenClaw users use this skill to book Calendly meetings from natural-language requests that include invitee name, email, timezone, and requested time.
 
-## Reference(s): <br>
-- [Calendly API and Webhooks](https://calendly.com/integrations/api_webhooks) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Dompi123/calendly-quick-book) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with booking status messages and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CALENDLY_API_TOKEN and can create Calendly bookings through the user's account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The always-on broad trigger can create accidental booking requests or invites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation to an explicit Calendly booking command and require confirmation before creating a booking.
+
+Risk: The skill uses a Calendly API token and sends invitee names, email addresses, timezones, and requested times to Calendly.
+
+Mitigation: Install only when comfortable sharing that data with Calendly and provide only the required CALENDLY_API_TOKEN.
+
+Risk: The security guidance flags the shell-style booking template as unsafe.
+
+Mitigation: Replace the curl JSON template with safe JSON serialization or a Calendly SDK before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dompi123/skills/calendly-quick-book)
+- [OpenClaw](https://openclaw.ai)
+- [Calendly API Integrations](https://calendly.com/integrations/api_webhooks)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with inline shell command templates and booking status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CALENDLY_API_TOKEN and sends invitee details to Calendly.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

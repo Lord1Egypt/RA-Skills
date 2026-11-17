@@ -6,16 +6,26 @@
  *
  * CLI:
  *   node scripts/zhihu-ask.js --title "问题标题" [--detail "补充说明"]
+ *
+ * @module zhihu-ask
  */
 
 import { getSession, navigateTo, findElement, typeLikeHuman, humanDelay, sleep, withCrashRecovery, getSelectors } from './zhihu-browser.js';
+import { askLog } from './zhihu-logger.js';
 
 // ──────────────────────────────────────────
 // 提问
 // ──────────────────────────────────────────
 
+/**
+ * 提出新问题
+ *
+ * @param {string} title - 问题标题
+ * @param {string} [detail=''] - 补充说明
+ * @returns {Promise<{ status: string, title: string, url: string }>} 提交结果
+ */
 async function askQuestion(title, detail = '') {
-  console.log(`\n❓ 提问: ${title}`);
+  askLog.info(`提问: ${title}`);
 
   return await withCrashRecovery(async () => {
     const { page } = await getSession();
@@ -50,11 +60,9 @@ async function askQuestion(title, detail = '') {
     if (submitBtn) {
       await submitBtn.click();
       await humanDelay(2000, 4000);
-
-      // 等待页面跳转（成功后跳转到问题页）  
       await sleep(2000);
       const currentUrl = page.url();
-      console.log('✅ 问题已提交');
+      askLog.info('✅ 问题已提交');
       return { status: 'submitted', title, url: currentUrl || 'https://www.zhihu.com/question/' };
     }
 
@@ -66,6 +74,10 @@ async function askQuestion(title, detail = '') {
 // CLI
 // ──────────────────────────────────────────
 
+/**
+ * CLI 主入口
+ * @returns {Promise<void>}
+ */
 async function main() {
   const args = process.argv.slice(2);
   let title = '', detail = '';
@@ -82,7 +94,7 @@ async function main() {
   }
 
   if (!title) {
-    console.error('用法: node scripts/zhihu-ask.js --title "问题标题" [--detail "补充说明"]');
+    askLog.error('用法: node scripts/zhihu-ask.js --title "问题标题" [--detail "补充说明"]');
     process.exit(1);
   }
 
@@ -91,7 +103,7 @@ async function main() {
     console.log(JSON.stringify(result, null, 2));
     process.exit(0);
   } catch (err) {
-    console.error(`❌ 提问失败:`, err.message);
+    askLog.error('提问失败', err);
     process.exit(1);
   }
 }

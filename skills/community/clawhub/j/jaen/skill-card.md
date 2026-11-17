@@ -1,42 +1,54 @@
-## Description: <br>
-Jaen provides copyright and identity information for the Netsnek e.U. Jaen CMS framework namespace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jaen provides copyright and brand identity information for the Netsnek e.U. Jaen CMS framework namespace on ClawHub.
 
-## Publisher: <br>
-[kleberbaum](https://clawhub.ai/user/kleberbaum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kleberbaum](https://clawhub.ai/user/kleberbaum)
 
-## Use Case: <br>
-Developers and users invoke this skill to identify the Jaen namespace and retrieve Netsnek e.U. copyright, website, and brand information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests permission to execute its included Bash script. <br>
-Mitigation: Install and run it only when local command execution is acceptable for the environment. <br>
-Risk: The skill makes Jaen/Netsnek brand and attribution claims. <br>
-Mitigation: Independently trust or verify the Netsnek/Jaen attribution when brand authority matters. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve Jaen and Netsnek e.U. brand identity, copyright notice, website information, and optional JSON-formatted copyright output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kleberbaum/jaen) <br>
-- [Publisher profile](https://clawhub.ai/user/kleberbaum) <br>
-- [Netsnek](https://netsnek.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or JSON, summarized for the user in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included script supports text output by default and JSON output with --format json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter, claw.json, server release metadata) <br>
+Risk: The skill requests exec permission for a local script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the packaged script before granting exec permission and limit use to the observed copyright and website information behavior.
+
+Risk: The artifact uses broad trigger and response wording for Jaen brand questions.
+
+Mitigation: Invoke it only for Jaen or Netsnek e.U. identity and copyright requests, and treat the script output as brand information rather than general CMS guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kleberbaum/skills/jaen)
+- [Netsnek website](https://netsnek.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON, typically summarized by the agent in a concise user-facing response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires exec permission to run scripts/copyright.sh; supports --format text and --format json.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter, claw.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

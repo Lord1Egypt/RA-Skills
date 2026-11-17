@@ -1,45 +1,53 @@
-## Description: <br>
-Local SQLite bookkeeping skill for Chinese natural-language requests to record, query, categorize, update, and delete financial transactions, wallet accounts, balances, recurring transactions, and period reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal Money Tracker Pro helps an agent manage local SQLite bookkeeping from Chinese natural-language requests, including recording, querying, updating, deleting, categorizing, account balance checks, recurring transactions, and period reports.
 
-## Publisher: <br>
-[seanmwx](https://clawhub.ai/user/seanmwx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seanmwx](https://clawhub.ai/user/seanmwx)
 
-## Use Case: <br>
-External users and personal finance agents use this skill to manage local bookkeeping in Chinese, including transaction entry, wallet and category maintenance, balance checks, recurring schedules, and day/week/month/year analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can immediately modify or delete local financial records, including deleting the latest entry. <br>
-Mitigation: Keep backups of the SQLite database and review destructive commands before execution, especially vague deletion requests. <br>
-Risk: Command outputs may contain sensitive transaction details. <br>
-Mitigation: Treat outputs as private financial data and avoid sharing logs or summaries outside the intended user context. <br>
-Risk: Period reports with multiple currencies use raw stored amounts without foreign-exchange conversion. <br>
-Mitigation: State when mixed-currency totals are raw amounts and avoid presenting them as converted portfolio totals. <br>
+## Use Case:
 
+External users and personal finance agents use this skill to turn Chinese bookkeeping requests into local SQLite operations for transactions, categories, wallet accounts, balances, recurring schedules, and spending or income reports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/seanmwx/money-tracker) <br>
-- [Command reference](references/commands.md) <br>
-- [Intent mapping](references/intent_mapping.md) <br>
-- [Chat reference](references/chat_reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Concise natural-language responses with JSON-producing shell command calls and summarized bookkeeping results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local SQLite database and Python standard library; day/week/month/year reports preserve raw stored amounts without FX conversion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can permanently alter financial records through delete, delete-latest, update, and account-currency changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to preview and confirm destructive or rewriting actions before execution, and keep a backup of the SQLite database when records matter for audits or recovery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seanmwx/skills/money-tracker)
+- [Publisher profile](https://clawhub.ai/user/seanmwx)
+- [commands.md](references/commands.md)
+- [intent_mapping.md](references/intent_mapping.md)
+- [chat_reference.md](references/chat_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands; the bundled script emits JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local SQLite database; day, week, month, and year reports show raw stored amounts without FX conversion.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

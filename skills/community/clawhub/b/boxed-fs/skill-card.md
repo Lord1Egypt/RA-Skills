@@ -1,42 +1,58 @@
-## Description: <br>
-WebAssembly sandboxed file system operations for secure file read/write within explicitly declared directories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Boxed fs provides WebAssembly-sandboxed file read, write, append, copy, remove, and listing operations within explicitly declared directories.
 
-## Publisher: <br>
-[guyoung](https://clawhub.ai/user/guyoung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guyoung](https://clawhub.ai/user/guyoung)
 
-## Use Case: <br>
-Developers and engineers use this skill to read, write, append, copy, remove, create, and list files through an OpenClaw WebAssembly sandbox limited to explicitly declared directories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads and runs an unpinned remote WASM component. <br>
-Mitigation: Use only after reviewing and trusting the downloaded component source, and avoid automatic refreshes without review. <br>
-Risk: File write, overwrite, copy, and remove commands can modify or delete files in mapped directories. <br>
-Mitigation: Keep workDir and mapDirs narrow, avoid mapping sensitive folders, and review each mutating command before execution. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect and modify files through a WASM sandbox scoped to a declared workDir and optional mapped directories.
 
-## Reference(s): <br>
-- [boxed-fs Usage Reference](references/USAGE.md) <br>
-- [Boxed fs ClawHub page](https://clawhub.ai/guyoung/boxed-fs) <br>
-- [boxed-fs WASM component download](https://raw.githubusercontent.com/guyoung/wasm-sandbox-openclaw-skills/main/boxed-fs/files/boxed-fs-component.wasm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline JavaScript command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OpenClaw WebAssembly sandbox plugin and a downloaded WASM component before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill directs agents to download and run an unpinned remote WebAssembly component that can modify or delete exposed files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the remote WASM source and sandbox plugin are trusted, and map only the narrow directories needed for the task.
+
+Risk: Write, overwrite, append, copy, and remove operations can change user data within exposed directories.
+
+Mitigation: Require explicit confirmation before write, overwrite, append, copy, or remove operations.
+
+Risk: Overly broad mapped directories can expose sensitive files to file-management operations.
+
+Mitigation: Avoid mapping sensitive folders and keep workDir and mapDirs scoped to task-specific paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guyoung/skills/boxed-fs)
+- [Usage reference](references/USAGE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code/tool-call examples and plain-text file operation results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Operations are constrained to the declared workDir and explicitly mapped directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

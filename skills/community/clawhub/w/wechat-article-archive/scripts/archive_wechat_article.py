@@ -24,12 +24,17 @@ def fail(message, code=1):
     raise SystemExit(code)
 
 
-def run_extract(url: str):
+def run_extract(url: str, html_file=None):
     node = os.environ.get("NODE") or "node"
     js = f"""
+const fs = require('fs');
 const {{ extract }} = require({json.dumps(str(EXTRACTOR))});
 (async () => {{
-  const result = await extract({json.dumps(url)}, {{
+  const input = process.env.WECHAT_HTML_FILE
+    ? fs.readFileSync(process.env.WECHAT_HTML_FILE, 'utf8')
+    : {json.dumps(url)};
+  const result = await extract(input, {{
+    url: {json.dumps(url)},
     shouldReturnContent: true,
     shouldReturnRawMeta: false,
     shouldFollowTransferLink: true,
@@ -43,7 +48,16 @@ const {{ extract }} = require({json.dumps(str(EXTRACTOR))});
   process.exit(1);
 }});
 """
-    res = subprocess.run([node, "-e", js], capture_output=True, text=True, cwd=str(SKILL_DIR))
+    env = os.environ.copy()
+    if html_file:
+        env["WECHAT_HTML_FILE"] = str(html_file)
+    res = subprocess.run(
+        [node, "-e", js],
+        capture_output=True,
+        text=True,
+        cwd=str(SKILL_DIR),
+        env=env,
+    )
     if res.returncode != 0:
         fail(res.stderr.strip() or "extract failed", 4)
     try:
@@ -131,16 +145,41 @@ def image_src(node):
         node.get("data-src")
         or node.get("data-original")
         or node.get("data-croporisrc")
+        or node.get("data-backsrc")
+        or node.get("data-actualsrc")
+        or node.get("data-lazy-src")
+        or node.get("data-original-src")
         or node.get("src")
+    )
+
+
+def style_image_src(node):
+    style = node.get("style") or ""
+    if not style:
+        return None
+    match = re.search(r"""url\((['"]?)(.*?)\1\)""", style, re.I)
+    if not match:
+        return None
+    return match.group(2)
+
+
+def background_image_src(node):
+    return (
+        node.get("data-lazy-bgimg")
+        or node.get("data-bgsrc")
+        or node.get("data-background")
+        or style_image_src(node)
     )
 
 
 def append_image(lines, src, seen, image_refs):
     if not src:
         return
-    src = src.strip()
+    src = src.strip().replace("&amp;", "&")
     if not src or src.startswith("data:"):
         return
+    if src.startswith("//"):
+        src = "https:" + src
     if src in seen:
         return
     seen.add(src)
@@ -158,9 +197,17 @@ def walk_blocks(node, lines, seen, stats, image_refs, inside_list=False):
     if name in {"script", "style"}:
         return
     if name == "img":
+        before = len(image_refs)
         append_image(lines, image_src(node), seen, image_refs)
-        stats["body_img_count"] += 1
+        if len(image_refs) > before:
+            stats["body_img_count"] += 1
         return
+    bg_src = background_image_src(node)
+    if bg_src:
+        before = len(image_refs)
+        append_image(lines, bg_src, seen, image_refs)
+        if len(image_refs) > before:
+            stats["body_img_count"] += 1
     if name == "hr":
         lines += ["---", ""]
         return
@@ -272,7 +319,7 @@ def guess_ext(url, content_type):
     return guessed or ".jpg"
 
 
-def download_image(url, assets_dir, index, timeout=10):
+def download_image(url, assets_dir, index, timeout=30):
     headers = {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122 Safari/537.36",
         "Referer": "https://mp.weixin.qq.com/",
@@ -350,25 +397,42 @@ def main():
     parser.add_argument("output_dir", help="target directory for article.md and assets/")
     parser.add_argument("--filename", help="optional Markdown filename")
     parser.add_argument("--skip-images", action="store_true", help="do not download images")
-    parser.add_argument("--image-timeout", type=float, default=10, help="seconds to wait for each image download")
+    parser.add_argument(
+        "--html-file",
+        help="optional saved WeChat page source; use it instead of fetching the URL",
+    )
+    parser.add_argument(
+        "--image-timeout",
+        type=float,
+        default=30,
+        help="timeout in seconds for each image download (default: 30)",
+    )
     args = parser.parse_args()
 
     if not EXTRACTOR.exists():
         fail(f"extractor not found: {EXTRACTOR}", 3)
+
+    html_file = Path(args.html_file).expanduser().resolve() if args.html_file else None
+    if html_file and not html_file.is_file():
+        fail(f"HTML file not found: {html_file}", 2)
+    if args.image_timeout <= 0:
+        fail("image timeout must be greater than 0", 2)
 
     output_dir = Path(args.output_dir).expanduser().resolve()
     assets_dir = output_dir / "assets"
     output_dir.mkdir(parents=True, exist_ok=True)
     assets_dir.mkdir(parents=True, exist_ok=True)
 
-    data = run_extract(args.url)
+    data = run_extract(args.url, html_file)
     markdown, image_refs, body_img_count, cover_used = build_markdown(data)
 
     failures = []
     if not args.skip_images:
         for index, ref in enumerate(image_refs, start=1):
             try:
-                ref["local"] = download_image(ref["url"], assets_dir, index, args.image_timeout)
+                ref["local"] = download_image(
+                    ref["url"], assets_dir, index, timeout=args.image_timeout
+                )
             except Exception as exc:
                 failures.append({"url": ref["url"], "error": str(exc)})
 
@@ -376,6 +440,9 @@ def main():
     md_path = output_dir / filename
     markdown = rewrite_image_links(markdown, image_refs, output_dir)
     md_path.write_text(markdown, encoding="utf-8")
+    body_text = normalize_text(
+        BeautifulSoup(data.get("msg_content") or "", "html.parser").get_text("\n")
+    )
 
     result = {
         "ok": True,
@@ -386,6 +453,7 @@ def main():
         "markdown_path": str(md_path),
         "assets_dir": str(assets_dir),
         "body_img_count": body_img_count,
+        "body_text_length": len(body_text),
         "cover_used": cover_used,
         "image_count": len(image_refs),
         "downloaded_image_count": sum(1 for ref in image_refs if ref.get("local")),

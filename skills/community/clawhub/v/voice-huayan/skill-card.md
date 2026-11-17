@@ -1,45 +1,59 @@
-## Description: <br>
-Local Chinese TTS playback on Windows using Piper zh_CN-huayan-medium with automatic fallback to System.Speech. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local Chinese TTS playback on Windows using Piper zh_CN-huayan-medium with automatic fallback to System.Speech.
 
-## Publisher: <br>
-[mecyalika](https://clawhub.ai/user/mecyalika) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mecyalika](https://clawhub.ai/user/mecyalika)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to read Chinese text aloud locally on Windows in the huayan voice style. It is intended for direct speaker playback with a Piper voice preference and System.Speech fallback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports this as a suspicious local TTS/model-preparation package because the documented Windows playback runner is missing. <br>
-Mitigation: Confirm the expected Windows runner is present and reviewed before relying on the advertised playback workflow. <br>
-Risk: The included shell script can install Python packages and download model assets from remote sources. <br>
-Mitigation: Run setup only in a contained environment, verify package and model sources manually, and avoid elevated privileges. <br>
-Risk: The release under-discloses network downloads and package installation behavior. <br>
-Mitigation: Review the server security guidance and artifact scripts before installation or deployment. <br>
+## Use Case:
 
+Developers and end users use this skill when they want an agent to read Chinese responses aloud through local Windows speaker playback in the huayan voice style.
 
-## Reference(s): <br>
-- [ClawHub voice-huayan release page](https://clawhub.ai/mecyalika/voice-huayan) <br>
-- [Publisher profile](https://clawhub.ai/user/mecyalika) <br>
-- [Piper voices on Hugging Face](https://huggingface.co/rhasspy/piper-voices) <br>
-- [sherpa-onnx TTS model assets](https://github.com/k2-fsa/sherpa-onnx/releases/tag/tts-models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Guidance] <br>
-**Output Format:** [Markdown with inline PowerShell command examples and playback status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Direct speaker playback when available; successful playback is reported with PLAYBACK_OK.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Bundled setup scripts can install Python packages and download remote model assets from external services without verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts before installation, pin and verify dependencies and downloaded assets, and allow downloads only from approved sources.
+
+Risk: The release package does not include the advertised playback script.
+
+Mitigation: Confirm the expected Windows playback entry point is present and functional before deployment.
+
+Risk: The bundled download script includes branches for model assets beyond the declared zh_CN-huayan-medium voice.
+
+Mitigation: Limit execution to the declared huayan model path or remove unrelated download branches before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mecyalika/skills/voice-huayan)
+- [Piper voices model assets](https://huggingface.co/rhasspy/piper-voices)
+- [sherpa-onnx espeak-ng data release asset](https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/espeak-ng-data.tar.bz2)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline PowerShell command examples and playback status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Direct local audio playback with PLAYBACK_OK status on success]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

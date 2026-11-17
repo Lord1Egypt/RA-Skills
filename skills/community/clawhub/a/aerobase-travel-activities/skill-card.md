@@ -1,45 +1,55 @@
-## Description: <br>
-Discover near-airport and destination activities with ratings, reviews, and booking context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover near-airport and destination activities with ratings, reviews, and booking context.
 
-## Publisher: <br>
-[kurosh87](https://clawhub.ai/user/kurosh87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kurosh87](https://clawhub.ai/user/kurosh87)
 
-## Use Case: <br>
-External users and travel agents use this skill to find realistic attractions, tours, and restorative layover activities by destination context, budget, time, and traveler stamina. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an Aerobase API key and travel search details to be sent to Aerobase. <br>
-Mitigation: Install only if that data sharing is acceptable, store the key in AEROBASE_API_KEY, and redact raw API keys from all agent output. <br>
-Risk: Users could be asked for unrelated travel account credentials or sensitive authentication data. <br>
-Mitigation: Use only the documented Aerobase endpoints and never collect passwords, cookies, OTPs, loyalty credentials, or third-party travel account logins. <br>
-Risk: Quota or service errors can interrupt activity search results. <br>
-Mitigation: Handle 401, 403, 429, timeout, and 5xx responses as documented, retry at most once on transient failures, and return partial guidance with a next step when needed. <br>
+## Use Case:
 
+External travel agents and assistants use this skill to find destination attractions, tours, and restorative layover activities that fit a traveler’s budget, time, and recovery needs.
 
-## Reference(s): <br>
-- [Aerobase homepage](https://aerobase.app) <br>
-- [Aerobase OpenClaw travel agent setup](https://aerobase.app/openclaw-travel-agent) <br>
-- [ClawHub skill page](https://clawhub.ai/kurosh87/aerobase-travel-activities) <br>
-- [Publisher profile](https://clawhub.ai/user/kurosh87) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance, Text, Markdown, Configuration] <br>
-**Output Format:** [Markdown or plain text recommendations with Aerobase API request guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses AEROBASE_API_KEY; responses should redact raw API keys and keep recommendations concise.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.1 (source: server release metadata) <br>
+Risk: The skill relies on Aerobase as the activity recommendation source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when Aerobase is an acceptable source for the travel context, and review recommendations for traveler fit before presenting them as final advice.
+
+Risk: The skill requires an Aerobase API key and may surface signup or paid-plan information on authentication or quota errors.
+
+Mitigation: Store the API key in the AEROBASE_API_KEY environment variable, redact keys in outputs, and disclose quota or plan guidance plainly when it affects the response.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kurosh87/skills/aerobase-travel-activities)
+- [Aerobase homepage](https://aerobase.app)
+- [Aerobase OpenClaw travel agent](https://aerobase.app/openclaw-travel-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ranked activity options, timing and travel-friction notes, follow-up actions, and authentication or quota guidance.]
+
+## Skill Version(s):
+
+3.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

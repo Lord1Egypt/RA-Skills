@@ -1,45 +1,50 @@
-## Description: <br>
-Image search tool: queries Pixabay image API by keywords and returns image URLs and metadata for references, backgrounds, and design assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image search tool: queries Pixabay image API by keywords and returns image URLs and metadata for references, backgrounds, and design assets.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Developers, designers, and agents use this skill to run dLazy image searches and retrieve image URLs and metadata for references, backgrounds, and design assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dLazy API key and stores or accepts sensitive credentials. <br>
-Mitigation: Use a scoped dLazy organization key, prefer per-invocation environment variables when appropriate, and rotate or revoke the key from the dLazy dashboard if it may have been exposed. <br>
-Risk: The skill asks users to install and run a third-party CLI that sends search parameters through dLazy services. <br>
-Mitigation: Review the dLazy CLI and service terms before installation, pin the CLI version where possible, and avoid sending sensitive prompts or file paths through the service unless approved for the workflow. <br>
-Risk: The security review flags uncertainty about whether dLazy merely proxies Pixabay or independently processes requests. <br>
-Mitigation: Clarify the service behavior before relying on this skill for sensitive or regulated image-search workflows. <br>
+## Use Case:
 
+External users and developers can search Pixabay by keyword to find image URLs and metadata for reference images, backgrounds, and design assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-search-image) <br>
-- [Publisher profile](https://clawhub.ai/user/dlazyai) <br>
-- [dLazy](https://dlazy.com) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, json, guidance] <br>
-**Output Format:** [JSON responses from the dLazy CLI, with Markdown guidance for authentication, errors, and command usage.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include image URLs and metadata; async mode may return a task identifier for later polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The partial security scan did not inspect the external dLazy CLI or establish that its commands perform the stated Pixabay search; the documented workflow also requires dLazy authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, decide whether you trust dLazy, review the CLI behavior, configure authentication, and confirm that returned results suit the intended search.
+
+## Reference(s):
+
+- [dLazy CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy website](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Image URLs, Image metadata]
+
+**Output Format:** [JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results contain image URLs and metadata; the skill also documents optional saving of a result asset to a local path.]
+
+## Skill Version(s):
+
+1.3.42 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

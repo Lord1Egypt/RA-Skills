@@ -1,42 +1,57 @@
-## Description: <br>
-会议纪要生成工具。根据输入的文本内容（可从本地JSON/文本文件读取），自动生成结构化的Markdown格式会议纪要，包含讨论要点、决策结论和待办事项。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cn Meeting Minutes generates structured Markdown meeting minutes from local text, JSON, or standard input, extracting discussion points, decisions, and action items.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Employees, external collaborators, and developers use this skill to turn Chinese meeting text from local text, JSON, or standard input into structured Markdown meeting minutes with discussion points, decisions, and action items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads whichever local input file path the user provides, which may contain sensitive meeting content. <br>
-Mitigation: Run it only on intended local files and review whether meeting content is appropriate for the execution environment. <br>
-Risk: The selected output path can be written or overwritten. <br>
-Mitigation: Use an explicit output path and check for existing files before writing generated minutes. <br>
-Risk: Rule-based extraction may miss or misclassify discussion points, decisions, or action items. <br>
-Mitigation: Review the generated Markdown before sharing it or treating it as an official meeting record. <br>
+## Use Case:
 
+Employees, external users, and developers who work with Chinese meeting notes can use this skill to convert local plain-text, JSON, or standard-input meeting content into a structured Markdown minutes file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-meeting-minutes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown meeting-minutes document with CLI status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local .txt or .json input, or standard input, and writes a Markdown file to the selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.3 (source: server release metadata; artifact frontmatter says 1.4.1) <br>
+Risk: Untrusted meeting input can influence the generated Markdown content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated minutes before sharing, and open Markdown from untrusted inputs in a viewer that disables raw HTML and automatic remote-resource loading.
+
+Risk: Rule-based extraction can miss, truncate, or misclassify discussion points, decisions, and action items.
+
+Mitigation: Treat the generated minutes as a draft and have a human review important decisions, owners, and deadlines before relying on them.
+
+Risk: Meeting files may contain confidential business or personal information.
+
+Mitigation: Use the skill in a local environment appropriate for the data sensitivity and avoid sharing generated minutes without review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-meeting-minutes)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Files, Shell commands]
+
+**Output Format:** [Markdown meeting-minutes document with CLI status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local-only Python standard-library script; rule-based extraction; writes a Markdown file to the requested or default output path.]
+
+## Skill Version(s):
+
+1.4.3 (source: server release metadata; artifact frontmatter says 1.4.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

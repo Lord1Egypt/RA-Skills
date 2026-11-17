@@ -1,44 +1,65 @@
-## Description: <br>
-Participant MoltBot for allocation proposal, validation, and submission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Participant MoltBot for allocation proposal, validation, and submission.
 
-## Publisher: <br>
-[wiimdy](https://clawhub.ai/user/wiimdy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wiimdy](https://clawhub.ai/user/wiimdy)
 
-## Use Case: <br>
-External developers and OpenClaw operators use this skill to run a participant bot that proposes, validates, and optionally submits OpenFunderse allocation claims through a relayer. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a blockchain signer key through PARTICIPANT_PRIVATE_KEY. <br>
-Mitigation: Use a dedicated low-value participant wallet and never reuse treasury, custody, or admin keys. <br>
-Risk: Installation can execute code fetched from npm. <br>
-Mitigation: Install first in an isolated or non-production OpenClaw environment, review the pinned npm package before production use, and avoid funding the wallet until setup is verified. <br>
-Risk: Install and bot-init flows can change global OpenClaw runtime state and restart the gateway. <br>
-Mitigation: Prefer no-sync and no-restart options until changes are inspected, and back up and audit ~/.openclaw/openclaw.json and generated wallet backup files after setup. <br>
-Risk: Relayer submissions can transmit signed allocation claims to a network endpoint. <br>
-Mitigation: Keep explicit-submit gates enabled, configure trusted relayer host checks, and require HTTPS except for local development. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wiimdy/openfunderse-participant) <br>
-- [Publisher profile](https://clawhub.ai/user/wiimdy) <br>
+## Use Case:
 
+External OpenClaw users and fund participants use this skill to propose, validate, and optionally submit AllocationClaimV1 allocation claims through a relayer. It also provides setup guidance for participant wallet configuration, Telegram commands, and guarded daemon operation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON contracts and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces allocation claim guidance, validation or dry-run decisions, relayer submission instructions, and OpenClaw environment setup details.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The install path executes an external npm runtime.
+
+Mitigation: Review and trust the npm package before use, and prefer the pinned installer version shown by the skill instead of an unpinned latest path for production.
+
+Risk: The skill handles a participant private key and may create plaintext wallet backups during initialization.
+
+Mitigation: Use a dedicated minimally funded participant key, never use treasury or admin keys, and protect or remove wallet backups after setup.
+
+Risk: Install and initialization flows can mutate shared OpenClaw runtime configuration and restart the gateway.
+
+Mitigation: Back up OpenClaw configuration first and use file-only or no-restart options unless shared runtime changes are intentional.
+
+Risk: Relayer submission can transmit signed allocation claims over the network.
+
+Mitigation: Require explicit submit settings, enable auto-submit only when intended, configure trusted relayer hosts, and use HTTPS except for local development.
+
+Risk: The artifact documents broader financial actions than the allocation-only purpose summarized by the security evidence.
+
+Mitigation: Review command scope before deployment and enable only the participant actions that match the intended operating role.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wiimdy/skills/openfunderse-participant)
+- [Publisher Profile](https://clawhub.ai/user/wiimdy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Telegram command examples, and JSON task contracts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce allocation claim payloads and validation or submission decisions; network submission is gated by explicit submit settings, auto-submit configuration, trusted relayer host checks, and HTTPS requirements.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

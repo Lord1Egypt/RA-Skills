@@ -1,49 +1,66 @@
-## Description: <br>
-Helps agents rewrite text to sound more natural while also documenting SkillBoss API calls for chat, media generation, search, document processing, email, and SMS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms AI-generated text to sound more natural while also documenting access to a broad SkillBoss/HeyBossAI gateway for chat, image, video, audio, search, document, email, and SMS models.
 
-## Publisher: <br>
-[AbelTennyson](https://clawhub.ai/user/AbelTennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-Developers and external users can use this skill to make generated text sound more natural and to call SkillBoss-hosted models for chat, images, video, audio, search, scraping, document processing, email, and SMS workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The advertised text-humanizing purpose does not fully match the artifact surface, which includes broad external API, scraping, email, and SMS/OTP capabilities. <br>
-Mitigation: Install only when a broad external API broker is intended, and review the full artifact capability surface before use. <br>
-Risk: Text, files, audio, search targets, emails, or phone numbers may be sent to external providers through SkillBoss-routed model calls. <br>
-Mitigation: Confirm which provider receives each payload and avoid sensitive documents, credentials, or regulated data unless data handling is clear. <br>
-Risk: Email and SMS actions can contact third parties. <br>
-Mitigation: Require explicit user approval before sending any email, SMS, or OTP request. <br>
+## Use Case:
 
+Developers and external users can use this skill to humanize text and to draft API calls for SkillBoss/HeyBossAI models across text, media generation, search, document processing, email, and SMS workflows.
 
-## Reference(s): <br>
-- [Pub Humanizer release page](https://clawhub.ai/AbelTennyson/humanizers) <br>
-- [SkillBoss API key page](https://www.skillboss.co) <br>
-- [Chat Models](artifact/chat-models.md) <br>
-- [Image Models](artifact/image-models.md) <br>
-- [Audio Models](artifact/audio-models.md) <br>
-- [Search & Scraping Models](artifact/search-models.md) <br>
-- [Tool Models](artifact/tools-models.md) <br>
-- [Video Models](artifact/video-models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance, API calls] <br>
-**Output Format:** [Markdown with curl examples and model reference tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for live API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill is named as a humanizer but exposes a broad AI-service gateway that may send prompts, documents, audio, phone numbers, and email contents to a third party and downstream providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when that broad gateway behavior is intended, and avoid sending sensitive data unless the provider terms and downstream handling are acceptable.
+
+Risk: Email and SMS capabilities can send messages or verification codes outside the local environment.
+
+Mitigation: Require explicit confirmation before any email or SMS action and review recipient, message body, and purpose before execution.
+
+Risk: Generated download URLs may reference remote files returned by third-party services.
+
+Mitigation: Validate returned URLs, expected domains, and content types before fetching or storing generated files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/abeltennyson/skills/humanizers)
+- [Publisher Profile](https://clawhub.ai/user/abeltennyson)
+- [SkillBoss Website](https://www.skillboss.co)
+- [HeyBossAI API Base URL](https://api.heybossai.com/v1)
+- [Audio Models](artifact/audio-models.md)
+- [Chat Models](artifact/chat-models.md)
+- [Image Models](artifact/image-models.md)
+- [Search and Scraping Models](artifact/search-models.md)
+- [Tool Models](artifact/tools-models.md)
+- [Video Models](artifact/video-models.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, API examples, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated URLs or API responses from third-party services when the agent executes the documented calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-抖音无水印视频下载和文案提取工具 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads watermark-free Douyin videos and extracts video transcripts.
 
-## Publisher: <br>
-[whille](https://clawhub.ai/user/whille) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[whille](https://clawhub.ai/user/whille)
 
-## Use Case: <br>
-Developers and external users use this skill to inspect Douyin share links, download watermark-free videos, and extract transcript text from video audio. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Transcript text may be sent to MiniMax for semantic segmentation even though user documentation describes segmentation as using OpenClaw's built-in LLM. <br>
-Mitigation: Review before installing; use --no-segment or leave MINIMAX_API_KEY unset to avoid MiniMax segmentation until the remote data flow is documented. <br>
-Risk: Audio from downloaded videos is sent to SiliconFlow for transcription, which may expose private, confidential, regulated, or copyrighted content. <br>
-Mitigation: Use extraction only for videos and audio you are permitted and comfortable sending to SiliconFlow; avoid processing sensitive or regulated material. <br>
-Risk: The security guidance notes incomplete documentation for MiniMax, curl usage, exact output paths, and remote data flows. <br>
-Mitigation: Treat the skill as requiring review before deployment and document these behaviors before relying on it in a shared or production environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whille/douyin-download) <br>
-- [SiliconFlow API key portal](https://cloud.siliconflow.cn/) <br>
-- [SiliconFlow audio transcription endpoint](https://api.siliconflow.cn/v1/audio/transcriptions) <br>
-- [MiniMax API endpoint](https://api.minimaxi.com) <br>
+## Use Case:
 
+External users and developers use this skill to inspect Douyin video metadata, download Douyin videos, and generate transcript Markdown from video audio.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files] <br>
-**Output Format:** [Console text plus downloaded media files and Markdown transcript files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ffmpeg and SILI_FLOW_API_KEY for transcription; MiniMax segmentation is controlled by MINIMAX_API_KEY and can be skipped with --no-segment.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Douyin media is downloaded locally and audio is sent to SiliconFlow for transcription.
+
+Mitigation: Use only non-sensitive videos with appropriate authorization, and remove local downloaded media and transcript outputs when no longer needed.
+
+Risk: Transcript text may be sent to MiniMax when semantic segmentation is enabled.
+
+Mitigation: Use --no-segment unless MiniMax processing is intended and approved for the transcript content.
+
+Risk: URL fetching is broader than the Douyin-specific purpose requires.
+
+Mitigation: Pass only trusted Douyin share links or modal IDs, and do not pass arbitrary non-Douyin URLs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whille/skills/douyin-download)
+- [SiliconFlow API portal](https://cloud.siliconflow.cn/)
+- [SiliconFlow audio transcription endpoint](https://api.siliconflow.cn/v1/audio/transcriptions)
+- [MiniMax API endpoint](https://api.minimaxi.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, configuration]
+
+**Output Format:** [Command-line output and Markdown transcript files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ffmpeg and SILI_FLOW_API_KEY; MiniMax segmentation is optional and can be skipped with --no-segment.]
+
+## Skill Version(s):
+
+1.2.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

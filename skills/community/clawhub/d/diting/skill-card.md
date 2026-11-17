@@ -1,41 +1,53 @@
-## Description: <br>
-Diting is an HR organization-diagnosis skill that turns complex workforce, compensation, culture, performance, and change-management questions into structured diagnostic reports with prioritized recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diting is an HR organizational diagnosis skill that turns complex workforce, culture, compensation, change, performance, talent, and candidate-evaluation questions into structured diagnostic reports with prioritized recommendations and adversarial self-checks.
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
 
-## Use Case: <br>
-HR leaders, HRBPs, organizational-development teams, and people-analytics practitioners use this skill to diagnose ambiguous organizational problems, assess talent and performance systems, evaluate culture and change readiness, and produce action-oriented HR recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: HR diagnostics may involve sensitive employee, compensation, performance, restructuring, or labor-dispute information. <br>
-Mitigation: Avoid entering identifiable employee data unless necessary, de-identify personal details in prompts and outputs, and allow case-memory storage only for de-identified summaries with explicit user authorization. <br>
-Risk: The skill can provide HR or labor-related recommendations that may be mistaken for authoritative legal or compliance advice. <br>
-Mitigation: Treat outputs as advisory analysis and have qualified HR, legal, or compliance reviewers approve decisions before acting on high-impact employment matters. <br>
-Risk: Incomplete context can lead to overconfident organizational diagnoses or recommendations. <br>
-Mitigation: Use the skill's information-gathering gate for ambiguous cases and ask follow-up questions before relying on the diagnostic report. <br>
+## Use Case:
 
+HR leaders, HRBPs, people analytics teams, and organizational consultants use Diting to diagnose complex organization and people issues such as attrition, team underperformance, leadership assessment, culture diagnosis, compensation benchmarking, change readiness, talent review, performance-system design, and candidate evaluation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown diagnostic reports and advisory responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include root-cause analysis, prioritized recommendations, HRBP or SSC handoff notes, and de-identified case summaries when the user authorizes storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill handles sensitive HR and applicant data, including compensation, performance, talent assessment, layoffs, labor disputes, and compliance-sensitive matters with unclear retention and scope boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation for real employee or applicant data; use only with explicit user direction, de-identify personal information, keep confidential data session-scoped, and avoid storing restricted case summaries unless the user explicitly authorizes storage.
+
+Risk: Missing knowledge-base or reference material can reduce reliability for legal, compensation, and citation-backed HR analysis.
+
+Mitigation: Verify required knowledge-base behavior and reference availability before relying on outputs for sensitive HR decisions; when sources are unavailable, treat analysis as general guidance and require human review.
+
+## Reference(s):
+
+- [ClawHub Diting skill page](https://clawhub.ai/tuobadaidai/skills/diting)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown diagnostic reports, clarification prompts, scoring tables, and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Complex reports are described as capped around 3000 Chinese characters; sensitive HR outputs should be de-identified and kept session-scoped where required.]
+
+## Skill Version(s):
+
+9.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

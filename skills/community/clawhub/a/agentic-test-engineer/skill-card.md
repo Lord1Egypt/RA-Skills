@@ -1,41 +1,57 @@
-## Description: <br>
-Agentic Test Engineer helps QA engineers and developers generate tests, diagnose flaky failures, repair broken UI selectors, and identify coverage gaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and maintains unit, integration, and end-to-end tests, diagnoses flaky tests, suggests selector repairs, and reviews test coverage for QA engineers and developers.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-QA engineers and developers use this skill to generate unit, integration, E2E, and API tests from code or stories, diagnose flaky test failures, suggest selector repairs, and plan tests for uncovered code paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated tests or selector repairs may be incorrect, brittle, or misaligned with the intended application behavior. <br>
-Mitigation: Review generated tests and proposed self-healed selectors before committing or using them in production workflows. <br>
-Risk: The skill may need access to project code, tests, CI logs, and coverage files to provide useful guidance. <br>
-Mitigation: Install and run it only where sharing those project artifacts with the agent is acceptable. <br>
+## Use Case:
 
+QA engineers and developers use this advisory skill to draft tests, analyze flaky failures, propose selector updates, and triage coverage gaps for review in their own environment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/agentic-test-engineer) <br>
-- [Publisher profile](https://clawhub.ai/user/gechengling) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code blocks and structured recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces test code examples, selector repair options, flaky-test analysis, coverage recommendations, and reviewable workflow guidance; it does not execute tests directly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The security review is incomplete because three local references could not be resolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Resolve or inspect those references before relying on the skill; a benign scan verdict does not establish that unresolved content is risk-free.
+
+Risk: Screenshots, DOM snapshots, or test data may leave the network when an external visual-testing or self-healing service is used.
+
+Mitigation: Use synthetic test data, redact sensitive content, and review the vendor's data handling before enabling uploads.
+
+Risk: A suggested selector or generated assertion could target the wrong element or encode an incorrect expectation.
+
+Mitigation: Review generated tests and selector changes against the specification, and require human approval before merging.
+
+## Reference(s):
+
+- [Agentic Test Engineer on ClawHub](https://clawhub.ai/gechengling/skills/agentic-test-engineer)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Analysis, Guidance, Configuration]
+
+**Output Format:** [Markdown with code snippets, selector examples, and structured test and analysis tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory drafts for human review; the skill does not execute tests or modify repositories.]
+
+## Skill Version(s):
+
+1.0.4 (source: SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

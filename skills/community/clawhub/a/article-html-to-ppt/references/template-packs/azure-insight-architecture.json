@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0.0",
+  "style_id": "azure-insight-architecture",
+  "display_name_zh": "澄蓝智构",
+  "display_name_en": "Azure Insight Architecture",
+  "description_zh": "以澄澈蓝灰层级、结构化洞察和原生可编辑语义图形为核心的科技咨询视觉系统。",
+  "visual_system_type": "semantic_tokens",
+  "color_tokens": {
+    "ink_navy": "#12233F",
+    "signal_blue": "#2563EB",
+    "insight_blue": "#4C82F7",
+    "mist_blue": "#EAF2FF",
+    "paper_white": "#F8FAFC",
+    "slate_text": "#475569",
+    "hairline_grey": "#CBD5E1"
+  },
+  "semantic_colors": {
+    "warning": "#D97706",
+    "risk": "#C2415D",
+    "success": "#15856C"
+  },
+  "typography": {
+    "display_title": {
+      "weight": 600,
+      "purpose": "克制的章节与封面标题"
+    },
+    "judgment_title": {
+      "weight": 700,
+      "purpose": "明确表达单页结论"
+    },
+    "body": {
+      "weight": 400,
+      "purpose": "短句、证据与说明"
+    },
+    "source_zone": {
+      "weight": 400,
+      "purpose": "稳定呈现来源、口径与限制"
+    }
+  },
+  "line_and_annotation": {
+    "connector_style": "受控线条、绑定端点、避免装饰性线网",
+    "annotation_style": "直接标注结论、证据和差距，不使用装饰性字幕",
+    "separator_style": "hairline_grey 细线，仅用于结构分区"
+  },
+  "layout_budget": {
+    "primary_zone_ratio_key": 0.64,
+    "primary_zone_ratio_supporting": 0.56,
+    "max_primary_labels": 6,
+    "max_supporting_blocks": 2,
+    "max_card_primary_ratio": 0.3,
+    "max_consecutive_same_archetype": 2
+  },
+  "semantic_graphics": {
+    "architecture": "使用分层平面、边界、主数据流和外围支撑区",
+    "comparison": "使用焦点带、差距、桥接与明确数值锚点",
+    "sequence": "使用阶段扩张、里程碑和能力递进",
+    "relationship": "让因果、层级和依赖成为主视觉，不退化成等分卡片"
+  },
+  "forbidden_defaults": [
+    "equal_cards_as_default",
+    "decorative_3d_without_semantic_role",
+    "palette_only_professionalism",
+    "ornamental_connector_web",
+    "whole_slide_screenshot"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "slzq-trading",
+  "displayName": "三立智期",
+  "version": "1.2.5",
+  "entry": {
+    "skill": "SKILL.md",
+    "mcp": "runtime/mcp/dist/index.js",
+    "doctor": "install/doctor.sh",
+    "testConnection": "install/test_connection.sh",
+    "testMcpTools": "install/test_mcp_tools.sh"
+  },
+  "env": {
+    "domain": "SLZQ_OPENCLAW_DOMAIN",
+    "apiKey": "SLZQ_OPENCLAW_API_KEY",
+    "tradingEnv": "SLZQ_OPENCLAW_ENV"
+  },
+  "tools": {
+    "prefix": "slzq_open_v1",
+    "schemas": "references/tools/index.json"
+  },
+  "preflight": {
+    "enabled": true,
+    "rules": [
+      "validateInstrumentId",
+      "validateContract",
+      "validateOrderRef",
+      "validatePriceType",
+      "validateTradingHour",
+      "validateExchangeRules",
+      "requireOrderContext",
+      "validateCtpStatus"
+    ]
+  }
+}

@@ -1,45 +1,55 @@
-## Description: <br>
-Instinct-based continuous learning system that captures atomic learnings with confidence scoring, supports project and global scope, and evolves instincts into reusable skills, commands, or agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Instinct-based continuous learning system that captures confidence-scored, project-scoped learnings and helps agents evolve them into reusable skills, commands, and agent guidance.
 
-## Publisher: <br>
-[huamu668](https://clawhub.ai/user/huamu668) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[huamu668](https://clawhub.ai/user/huamu668)
 
-## Use Case: <br>
-Developers and agent operators use this skill to capture corrections, tool failures, and recurring workflow patterns as instincts or learning logs, then review or evolve them into reusable commands, skills, or agent guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local hooks can observe broad agent activity and persist raw tool activity or session-derived learnings. <br>
-Mitigation: Prefer project-level hook setup, avoid wildcard or global hooks for sensitive work, and review hook scripts before enabling them. <br>
-Risk: Observation logs and learning files may contain secrets, private project details, or sensitive tool inputs and outputs. <br>
-Mitigation: Keep raw observations out of synced or committed folders, and periodically delete or redact logs that may contain secrets or private data. <br>
-Risk: Promoted instincts, generated commands, or evolved skills can encode incorrect or misleading guidance. <br>
-Mitigation: Manually review and scan proposed learnings before promotion or deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Self Improving Agent on ClawHub](https://clawhub.ai/huamu668/self-improving-agent-ecc) <br>
-- [Hook Setup Guide](references/hooks-setup.md) <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Entry Examples](references/examples.md) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
+## Use Case:
 
+Developers and agent operators use this skill to capture corrections, command failures, and recurring project patterns as instincts or learning entries, then review, promote, and evolve those learnings into reusable agent guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with YAML examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or suggest local learning files, hook configuration, instincts, commands, skills, and agents.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.1.0 (source: ClawHub release metadata; skill frontmatter lists 2.1) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent observation of broad tool activity can capture sensitive project or session data.
+
+Mitigation: Prefer project-level hooks, add redaction and retention limits before enabling broad observation, and keep learning files out of version control unless intentionally sharing.
+
+Risk: Promoting session learnings into future agent instructions can preserve incorrect or misleading guidance.
+
+Mitigation: Require human review before promotion and scan generated or evolved skills before deployment.
+
+## Reference(s):
+
+- [Self Improving Agent ClawHub listing](https://clawhub.ai/huamu668/skills/self-improving-agent-ecc)
+- [Hook Setup Guide](artifact/references/hooks-setup.md)
+- [OpenClaw Integration](artifact/references/openclaw-integration.md)
+- [Examples](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML instinct examples, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update learning files, project-scoped instinct files, hook configuration, and generated skill, command, or agent drafts when applied by an agent.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

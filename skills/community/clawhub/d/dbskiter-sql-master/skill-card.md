@@ -1,40 +1,54 @@
-## Description: <br>
-SQL智能助手，支持SQL执行、重写优化、质量分析、数据分析、智能补全、Schema查询、批量执行、数据导入导出。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SQL智能助手 helps agents execute SQL, rewrite and analyze queries, inspect schemas, profile data, complete SQL, and import or export database data with dbskiter.
 
-## Publisher: <br>
-[magicczc](https://clawhub.ai/user/magicczc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[magicczc](https://clawhub.ai/user/magicczc)
 
-## Use Case: <br>
-Developers, data analysts, and database operators use this skill to run and inspect SQL through dbskiter, including execution, rewrite and quality analysis, schema exploration, completion, batch execution, and data import or export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run, import, export, and batch-execute database operations without clear safety checks. <br>
-Mitigation: Use read-only or least-privilege database aliases by default and require human confirmation before write, import, export, batch, schema-changing, or broad SELECT operations. <br>
-Risk: The skill depends on the local dbskiter binary and database configuration selected by the operator. <br>
-Mitigation: Verify the dbskiter binary and configuration before use, especially for production databases. <br>
+## Use Case:
 
+Developers, data analysts, and database operators use this skill to ask an agent for SQL execution, query optimization, quality analysis, data profiling, schema inspection, SQL completion, batch execution, and data import or export workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/magicczc/dbskiter-sql-master) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown with inline bash and SQL snippets; file outputs may be CSV, JSON, or SQL when dbskiter export/import workflows are used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured dbskiter database alias and permissions appropriate to the requested SQL operation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can guide broad SQL execution, imports, exports, and batch file execution against configured databases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privileged or read-only database credentials by default, and require explicit user confirmation before writes, imports, exports, batch files, or production database actions.
+
+Risk: User-provided SQL or file paths may be unsafe if passed directly through a shell command string.
+
+Mitigation: Avoid shell-interpolated command strings; pass SQL and paths as structured arguments where possible, validate file paths, and review generated commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/magicczc/skills/dbskiter-sql-master)
+- [Publisher profile](https://clawhub.ai/user/magicczc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, SQL snippets, result summaries, and structured recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include optimized SQL, SQL quality scores, schema descriptions, data profile summaries, and import/export command guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

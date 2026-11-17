@@ -1,41 +1,61 @@
-## Description: <br>
-Cut longer product or demo videos into tighter ecommerce-ready segments for PDPs, ads, UGC edits, and review clips. Use when teams need the strongest product moments without keeping filler. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns long product videos into sales-ready clip plans by selecting the strongest hooks, demonstrations, proof moments, and channel-specific cuts while removing low-conversion footage.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce, marketing, and product teams use this skill to identify concise, conversion-focused cuts from longer product demos, unboxings, reviews, UGC, and product proof footage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Source footage may be unreleased or commercially sensitive. <br>
-Mitigation: Only provide videos that are appropriate for the agent or model to analyze, and avoid sharing sensitive footage unless the deployment environment is approved for that content. <br>
-Risk: Cut recommendations may omit context or leave cleanup work such as captions, cover art, or aspect-ratio adaptation. <br>
-Mitigation: Review recommended ranges before publishing and complete any required editing cleanup for the target placement. <br>
+## Use Case:
 
+Ecommerce operators, marketers, and video editors use this skill to turn product demos, unboxings, UGC, and reviews into shorter conversion-focused cut plans for PDP pages, ads, reviews, and social clips.
 
-## Reference(s): <br>
-- [Product Video Cutter output template](references/output-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Leooooooow/product-video-cutter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown with selected cut ranges, rationale, ecommerce placement, tradeoffs, and remaining cleanup notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include optional alternate cuts for other placements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow may surface or emphasize product claims from source footage that are unsupported or too strong for the intended sales channel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed hooks, proof clips, captions, and CTAs against product substantiation and channel policy before publishing.
+
+Risk: The skill analyzes user-provided video content and campaign goals, which may include proprietary product information.
+
+Mitigation: Use only footage and instructions cleared for the agent environment and intended downstream editors.
+
+Risk: The source workflow is primarily Chinese-language, which can create handoff ambiguity for non-Chinese production teams.
+
+Mitigation: Ask the agent to translate or adapt the final cut plan before assigning it to editors who need another language.
+
+## Reference(s):
+
+- [Product Video Cutter on ClawHub](https://clawhub.ai/leooooooow/skills/product-video-cutter)
+- [Cut Strategy Guide](references/cut-strategy-guide.md)
+- [Hook Patterns](references/hook-patterns.md)
+- [Output Template](references/output-template.md)
+- [Cut Quality Checklist](assets/cut-quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown cut plan with timestamp tables, retention and deletion rationale, transition risks, remaining production tasks, and optional alternate versions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill does not perform video editing itself; it produces an editor-ready plan based on user-provided source video details and goals.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

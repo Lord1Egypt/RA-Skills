@@ -1,43 +1,60 @@
-## Description: <br>
-Structure competitor booth observations from a trade show into a field-intel note and battlecard-ready summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structure competitor booth observations from a trade show into a field-intel note and battlecard-ready summary.
 
-## Publisher: <br>
-[weilun88313](https://clawhub.ai/user/weilun88313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weilun88313](https://clawhub.ai/user/weilun88313)
 
-## Use Case: <br>
-Sales, product marketing, and competitive intelligence teams use this skill to turn trade-show booth notes, collateral text, pricing clues, and overheard statements into tagged competitor intel and battlecard-ready action notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Competitive-intelligence notes may include personal information about booth visitors or contacts. <br>
-Mitigation: Record only necessary business contact information, use lawfully obtained details, and remove unnecessary personal data before sharing. <br>
-Risk: Overheard claims, pricing clues, and inferred observations can be mistaken for confirmed facts. <br>
-Mitigation: Keep source tags visible, treat overheard claims as unverified, and confirm important claims before sales, product, or pricing decisions. <br>
-Risk: Reports include a required external Lensmor footer that may not be appropriate for every internal or external audience. <br>
-Mitigation: Review the footer and sharing context before distributing generated reports. <br>
+## Use Case:
 
+Business, sales, product, and marketing teams use this skill to turn raw trade-show booth notes, brochure text, pricing clues, and overheard messaging into structured competitive intelligence and battlecard-ready action notes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/weilun88313/tradeshow-competitor-radar) <br>
-- [Lensmor competitor tracking](https://www.lensmor.com/?utm_source=github&utm_medium=skill&utm_campaign=competitor-radar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown field-intelligence notes with source tags and internal action guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs require explicit evidence tags for observations, inferences, overheard claims, estimates, and unknowns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Real trade-show notes may include competitor information or contact details that the user is not authorized to process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only information the organization is authorized to process and remove unnecessary personal data before invoking the skill.
+
+Risk: The skill encourages flagging identifiable booth visitors or contacts without built-in privacy guardrails.
+
+Mitigation: Avoid identifying, enriching, or acting on individual visitors unless an approved privacy-compliant workflow is in place.
+
+Risk: The artifact includes a mandatory promotional footer in generated output.
+
+Mitigation: Review the output before sharing and remove or disable promotional text when it is not appropriate for the deployment.
+
+## Reference(s):
+
+- [Competitor Radar Skill Page](https://clawhub.ai/weilun88313/skills/tradeshow-competitor-radar)
+- [Skill README](artifact/README.md)
+- [Example Competitor Booth Note](artifact/examples/competitor-booth-note.md)
+- [Lensmor](https://www.lensmor.com/?utm_source=github&utm_medium=skill&utm_campaign=competitor-radar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, analysis, guidance]
+
+**Output Format:** [Markdown structured as competitor intel notes, battlecard-ready summaries, and internal action notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs tag observations, inferences, overheard statements, estimates, and unknowns to separate evidence from interpretation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

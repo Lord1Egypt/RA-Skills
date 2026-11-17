@@ -1,43 +1,53 @@
-## Description: <br>
-Standardizes Chinese banking bid-response Word and Markdown documents with Word Heading 1-5 and Normal styles, GB/T 9704-compatible formatting, section renumbering, review, conversion, and validation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standardizes Chinese banking bid-response DOCX documents by applying Word heading/body styles, GB/T 9704-style formatting, numbering repair, Markdown conversion, and JSON review reporting.
 
-## Publisher: <br>
-[wuyonghui0810](https://clawhub.ai/user/wuyonghui0810) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuyonghui0810](https://clawhub.ai/user/wuyonghui0810)
 
-## Use Case: <br>
-Banking proposal teams, bid writers, and developers use this skill to standardize Chinese bid-response documents, review formatting compliance, renumber sections, convert Markdown drafts to Word documents, and validate numbering patterns before submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Chinese mainland <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Formatting commands can overwrite the selected output path or produce unintended document changes. <br>
-Mitigation: Run review or dry-run first on important files and keep backups before applying formatting changes. <br>
-Risk: Bid and proposal documents may contain confidential business information. <br>
-Mitigation: Process documents in a trusted local workspace and avoid sharing or committing sensitive input files. <br>
+## Use Case:
 
+External users and developers preparing banking bid responses use this skill to normalize DOCX layout, heading hierarchy, numbering, tables, footers, and review outputs before submission.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuyonghui0810/vkey-bid-standardizer) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Standard profile configuration](artifact/vkey_bid_standardizer/profiles/standard.json) <br>
-- [Bid blank Markdown template](artifact/templates/bid_blank.md) <br>
+### Deployment Geography for Use:
 
+Mainland China
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files, JSON] <br>
-**Output Format:** [Markdown guidance with CLI commands; generated artifacts are Word documents, Markdown-derived Word documents, or JSON review reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes user-supplied local Word or Markdown files through configurable document-standardization profiles.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Install metadata creates an avoidable dependency-resolution risk for Python dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the install path before use and prefer pinned Python requirements or a lock file instead of allowing an npm installer to resolve Python packages.
+
+Risk: The skill processes sensitive bid documents and can write modified document files.
+
+Mitigation: Run it only on user-selected document copies and use --dry-run or --backup before changing files that contain sensitive bid material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuyonghui0810/skills/vkey-bid-standardizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance, CLI commands, JSON review reports, and standardized DOCX or Markdown-derived document files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports dry-run previews and backup output handling for user-selected document files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; package metadata lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

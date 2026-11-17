@@ -1,0 +1,8 @@
+# 证券之星 ESG 评级 Skill — Python 依赖
+#
+# 使用 Python 3.8+ 标准库，零外部依赖。
+# 所有功能均通过内置模块实现：
+#   - urllib.request / urllib.parse  — HTTP 请求
+#   - json                           — JSON 解析
+#   - argparse                       — CLI 参数解析
+#   - re                             — 正则表达式

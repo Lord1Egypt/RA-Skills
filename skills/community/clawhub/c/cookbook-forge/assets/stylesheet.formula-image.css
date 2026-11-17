@@ -1,0 +1,303 @@
+/* ========================================================================
+   EPUB Reader Optimizer — 公式即图片型 EPUB 专用 CSS 模板
+   适用：出版社/Sigil 流水线产出的技术书 EPUB，公式被栅格化为 GIF 图片
+   配合：assets/optimize_formula_images.py(给公式 img 加 math-inline class)
+        assets/subset_fonts.py(子集化字体并嵌入 Fonts/*.woff2)
+   ======================================================================== */
+
+/* ---------- 字体声明（嵌入 WOFF2 子集字体） ---------- */
+@font-face {
+    font-family: "LXGW WenKai";
+    font-style: normal;
+    font-weight: normal;
+    src: url("../Fonts/LXGWWenKai.woff2") format("woff2");
+}
+@font-face {
+    font-family: "LXGW WenKai Mono";
+    font-style: normal;
+    font-weight: normal;
+    src: url("../Fonts/LXGWWenKaiMono.woff2") format("woff2");
+}
+
+/* ---------- 基础排版 ---------- */
+html, body {
+    font-family: "LXGW WenKai", "KaiTi", "STKaiti", serif;
+    line-height: 1.85;
+    text-align: justify;
+    color: #222;
+    background-color: #ffffff;
+    word-wrap: break-word;
+}
+
+p {
+    text-indent: 0;
+    margin: 0.8em 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "LXGW WenKai", "KaiTi", "STKaiti", serif;
+    font-weight: bold;
+    line-height: 1.4;
+    margin: 1.2em 0 0.6em 0;
+    page-break-after: avoid;
+}
+h1 { font-size: 1.6em; border-bottom: 2px solid #4a90d9; padding-bottom: 0.3em; }
+h2 { font-size: 1.4em; border-bottom: 1px solid #b8d4eb; padding-bottom: 0.2em; }
+h3 { font-size: 1.2em; color: #2c5d8f; }
+h4 { font-size: 1.1em; color: #3a3a3a; }
+
+/* ---------- 行内代码 ---------- */
+code {
+    font-family: "LXGW WenKai Mono", "Courier New", Consolas, Menlo, monospace;
+    font-size: 0.88em;
+    background-color: #f3f4f6;
+    color: #c0392b;
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+    border: 1px solid #e5e7eb;
+    word-break: break-all;
+}
+
+/* ---------- 代码块 ---------- */
+pre, pre.code-block, pre.代码无行号 {
+    font-family: "LXGW WenKai Mono", "Courier New", Consolas, Menlo, monospace;
+    font-size: 0.82em;
+    line-height: 1.55;
+    background-color: #f8f9fb;
+    color: #2d2d2d;
+    border: 1px solid #d4d8de;
+    border-left: 4px solid #4a90d9;
+    border-radius: 6px;
+    padding: 0.9em 1em;
+    margin: 1.3em 0;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-all;
+    tab-size: 4;
+    page-break-inside: avoid;
+}
+pre code, pre.code-block code {
+    font-family: inherit;
+    font-size: inherit;
+    background: transparent;
+    color: inherit;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+}
+td pre { border: none; padding: 0; margin: 0; background: transparent; }
+
+.strong-code-line {
+    display: inline-block;
+    width: 100%;
+    font-weight: bold;
+    background-color: #d8e6f5;
+    border-radius: 2px;
+    padding: 0 2px;
+}
+
+/* ---------- 公式（核心：行内/块级双轨）----------
+   规则总览：
+   - 默认行内：公式 img 跟随文字流，高度限制为 1.3em，与中文文字基线对齐。
+   - 独立段落：父元素是 p.图 / p.sgc-11 / p.sgc-3 / p.formula-block 时才居中独占一行，
+     并解除高度限制（让大公式正常显示）。
+*/
+
+/* 默认行内 */
+span.math-inline,
+span.math-formula {
+    display: inline;
+    line-height: inherit;
+}
+span.math-inline img.formula-img,
+span.math-formula img.formula-img {
+    display: inline;
+    vertical-align: middle;
+    max-height: 1.3em;
+    width: auto;
+    height: auto;
+    margin: 0 0.1em;
+}
+
+/* 独立公式段落（centered, own line） */
+p.图, p.sgc-11, p.sgc-3, p.formula-block {
+    text-align: center;
+    margin: 0.9em 0;
+    line-height: 1.2;
+    page-break-inside: avoid;
+}
+p.图 span.math-inline,       p.图 span.math-formula,
+p.sgc-11 span.math-inline,   p.sgc-11 span.math-formula,
+p.sgc-3 span.math-inline,    p.sgc-3 span.math-formula,
+p.formula-block span.math-inline,
+p.formula-block span.math-formula {
+    display: inline-block;
+    line-height: normal;
+    max-width: 100%;
+    overflow-x: auto;
+}
+p.图 img.formula-img,        p.图 > img,
+p.sgc-11 img.formula-img,    p.sgc-11 > img,
+p.sgc-3 img.formula-img,     p.sgc-3 > img,
+p.formula-block img.formula-img, p.formula-block > img {
+    display: inline-block;
+    vertical-align: middle;
+    max-height: none;
+    max-width: 95%;
+    height: auto;
+    margin: 0;
+}
+
+/* LaTeX 文本备份（隐藏；将来 MathJax 可读取 data-latex 渲染） */
+span.math-tex { display: none; }
+
+/* ---------- 内容图（非公式）---------- */
+img.content-img {
+    display: inline;
+    vertical-align: middle;
+    max-height: 1.3em;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    margin: 0 0.1em;
+}
+p.图 img.content-img,
+p.sgc-11 img.content-img,
+p.sgc-3 img.content-img {
+    display: inline-block;
+    max-height: none;
+    max-width: 96%;
+    margin: 0.4em auto;
+}
+
+/* 兜底：任何未加类的 img 在普通段落中也按行内处理 */
+p > img:not(.content-img):not(.formula-img) {
+    display: inline;
+    vertical-align: middle;
+    max-height: 1.3em;
+    width: auto;
+    margin: 0 0.1em;
+}
+
+/* ---------- 图说 / 表题 / 代码清单标题 ---------- */
+p.图题 {
+    text-align: center;
+    font-size: 0.85em;
+    color: #555;
+    margin: 0.3em 0 1.2em 0;
+}
+p.表题 {
+    text-align: center;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #333;
+    margin: 1em 0 0.4em 0;
+}
+p.代码清单标题 {
+    text-align: right;
+    font-size: 0.85em;
+    color: #666;
+    font-style: italic;
+    margin: 0 0 0.3em 0;
+}
+
+/* ---------- 表格 ---------- */
+table {
+    margin: 1em auto 1.5em auto !important;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 0.9em;
+    page-break-inside: avoid;
+}
+th {
+    font-weight: bold;
+    text-align: center;
+    padding: 0.4em 0.6em;
+    vertical-align: middle;
+    border: 1px solid #888;
+    background-color: #e8eef5;
+    color: #1a3a5c;
+}
+td {
+    padding: 0.35em 0.6em;
+    text-align: left;
+    vertical-align: top;
+    border: 1px solid #b8b8b8;
+}
+tr:nth-of-type(even) { background-color: #f6f8fb; }
+table code { font-size: 0.85em; }
+
+/* ---------- 提示框 / 引用 ---------- */
+blockquote {
+    border-left: 4px solid #b8d4eb;
+    background-color: #f4f8fc;
+    margin: 1em 0;
+    padding: 0.4em 0.8em;
+    color: #2c5d8f;
+}
+p.超强提示, p.超强提示标签 {
+    background-color: #fdecea;
+    border-left: 5px solid #e74c3c;
+    padding: 0.5em 0.8em;
+    margin: 0.6em 0;
+    border-radius: 0 4px 4px 0;
+}
+p.强提示, p.强提示标签 {
+    background-color: #fff4e0;
+    border-left: 5px solid #f39c12;
+    padding: 0.5em 0.8em;
+    margin: 0.6em 0;
+    border-radius: 0 4px 4px 0;
+}
+p.提示, p.提示标签 {
+    background-color: #eaf4fc;
+    border-left: 5px solid #3498db;
+    padding: 0.5em 0.8em;
+    margin: 0.6em 0;
+    border-radius: 0 4px 4px 0;
+}
+
+/* ---------- 注释 / 上下标 ---------- */
+.注释编号, .注释编号下 {
+    font-size: 0.78em;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+    top: -0.5em;
+    font-weight: bold;
+    color: #c0392b;
+    text-decoration: none;
+    font-style: normal;
+}
+.注释内容 {
+    border-left: 4px solid #aaa;
+    background-color: #fafafa;
+    padding: 0.4em 0.7em;
+    margin: 0 0 1.2em 0;
+    font-size: 0.82em;
+    color: #444;
+    border-radius: 0 3px 3px 0;
+}
+
+/* ---------- 列表 ---------- */
+ul { list-style-type: disc; }
+ul ul { list-style-type: circle; }
+ul ul ul { list-style-type: square; }
+ol { list-style-type: decimal-leading-zero; }
+ol ol { list-style-type: lower-alpha; }
+ol ol ol { list-style-type: lower-roman; }
+li { margin: 0.3em 0; }
+.代码编号分隔, .列表编号分隔 { display: none; }
+
+/* ---------- 链接 / TOC ---------- */
+a { text-decoration: none; color: #2c5d8f; }
+.toc-level-1 { text-indent: 0; margin: 0.2em 0; line-height: 1.6; font-weight: bold; }
+.toc-level-2 { text-indent: 1.5em; margin: 0.1em 0; line-height: 1.5; }
+.toc-level-3 { text-indent: 3em; margin: 0.1em 0; line-height: 1.5; font-size: 0.92em; color: #555; }
+
+hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 1.2em 0;
+}

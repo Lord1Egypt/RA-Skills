@@ -1,0 +1,93 @@
+{
+  "shell": "B",
+  "name": "amazon-aba-kw-snapshot",
+  "cn": "关键词周快照",
+  "priority": 1,
+  "presets": [
+    "关键词ABA速查",
+    "精确词最新周快照",
+    "Top3导出(精确)"
+  ],
+  "inputs": [
+    {
+      "name": "region",
+      "required": false,
+      "note": "默认 US"
+    },
+    {
+      "name": "keyword",
+      "required": true,
+      "note": "单个精确关键词"
+    },
+    {
+      "name": "week",
+      "required": false,
+      "note": "latest 或周起始日"
+    },
+    {
+      "name": "top_k_asin",
+      "required": false,
+      "note": "默认 3"
+    },
+    {
+      "name": "download",
+      "required": false,
+      "note": "是否 createDownloadUrl"
+    },
+    {
+      "name": "preset",
+      "required": false,
+      "note": "preset 名"
+    }
+  ],
+  "l3": "linkfox-aba-data-explorer",
+  "boundaries": [
+    "no absolute search volume",
+    "no sales/price/BSR/launch date",
+    "contains != semantic category",
+    "weekly granularity only"
+  ],
+  "q1": {
+    "object": "单关键词单周ABA快照",
+    "site": "Amazon multi-marketplace, default US; region param",
+    "hard_rules": [
+      "SFR lower = hotter",
+      "weekly data ~3y",
+      "use analysisDescription templates from shell",
+      "dedupe default keep latest term+ASIN unless E aggregate=false"
+    ],
+    "pitfalls": [
+      "do not invent absolute volume",
+      "do not split skill by marketplace",
+      "Chinese query on non-CN sites → validate/translate hint"
+    ]
+  },
+  "q2": {
+    "expert_role": "ABA关键词速查分析师",
+    "role": "ABA关键词速查分析师",
+    "goals": [
+      "稳定产出关键词周快照结果表",
+      "边界清晰拒做并导流"
+    ],
+    "skills": [
+      "拼装 analysisDescription",
+      "调用 L3 ABA",
+      "表格呈现"
+    ],
+    "workflow": [
+      "校验必填入参",
+      "应用 preset → 模板",
+      "调用 L3",
+      "按 Output 呈现；失败读 msg"
+    ],
+    "output_format": "tables + 可选 downloadUrl；注明 SFR 越小越热",
+    "constraints": [
+      "禁止密钥入库",
+      "禁止编造字段",
+      "仅 ABA 搜索词域"
+    ],
+    "inputs_min": [
+      "keyword"
+    ]
+  }
+}

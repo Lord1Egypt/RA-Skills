@@ -1,40 +1,53 @@
-## Description: <br>
-通过收集、清洗和分析数据，运用统计和机器学习方法，帮助企业做出数据驱动的业务决策与优化。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+数据分析 explains how to collect, clean, analyze, visualize, and interpret data so organizations can make data-driven decisions.
 
-## Publisher: <br>
-[liyuying55555-gif](https://clawhub.ai/user/liyuying55555-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liyuying55555-gif](https://clawhub.ai/user/liyuying55555-gif)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill as concise guidance for learning and applying data analysis workflows, including data acquisition, cleaning, statistical analysis, visualization, and business interpretation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be applied to real datasets that contain private, regulated, or commercially sensitive information. <br>
-Mitigation: Review user-provided data sources and share data only with trusted tools and destinations authorized for the dataset. <br>
-Risk: General data analysis guidance can be misapplied if users skip validation, context review, or business interpretation. <br>
-Mitigation: Validate analysis assumptions, cleaning steps, and resulting recommendations before using outputs for operational or financial decisions. <br>
+## Use Case:
 
+Developers, analysts, and learners use this skill as a Chinese-language primer for understanding data acquisition, cleaning, statistical or machine-learning analysis, visualization, and business interpretation. It is best suited for guidance and learning support rather than direct execution of data workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page: 数据分析](https://clawhub.ai/liyuying55555-gif/datafenxi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only learning and reference material; no code, install actions, credentials, or persistent behavior are evident.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may mistake the primer for an executable data-analysis tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as informational guidance and use separate reviewed tools for any actual data access, processing, or model execution.
+
+Risk: Data-analysis work can involve sensitive files, accounts, credentials, or business data.
+
+Mitigation: Do not grant this skill access to files, accounts, credentials, or environments based on the inspected artifact; review any downstream workflow separately before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liyuying55555-gif/skills/datafenxi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational Chinese-language guidance; no code execution or installation steps in the inspected artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

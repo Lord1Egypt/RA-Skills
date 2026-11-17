@@ -1,0 +1,74 @@
+{
+  "id": "domain-quora",
+  "label": "Quora — Q&A Platform",
+  "emoji": "❓",
+  "domain": "quora.com",
+  "description": "Quora — Q&A knowledge platform. Feed of questions/answers. Login gate for full content. Used for Q&A marketing, topic research, expert positioning.",
+  "source_patterns": [
+    "Feed scroll: question cards with snippets, 1-2 visible at a time, 2-4s between pauses (reading)",
+    "Question page: full question + answers list, upvote/downvote per answer, deep vertical scroll for long-form content",
+    "Answer composition: click 'Write answer' → editor with formatting toolbar → 800-2000ms think → compose → submit",
+    "Comment threads: click comment icon → wait 1-2s for thread expand → type → submit",
+    "Search: click search bar → type query (pause 300-800ms) → wait 1-2s for results → scroll results",
+    "Login: email or Google/Facebook OAuth — post_login wait 4-6s for feed render"
+  ],
+  "active_hours": {
+    "description": "Knowledge-seeking — business hours, evening. Peaks around work breaks and after dinner.",
+    "peak": [9, 11, 14, 16, 20, 22],
+    "off_peak_min": 3
+  },
+  "typing": {
+    "wpm": { "min": 70, "max": 100 },
+    "profile": "thoughtful",
+    "think_prob": 0.03,
+    "think_ms": [800, 2500],
+    "backspace_freq": 0.04,
+    "answer_composition_wpm": { "min": 50, "max": 80 },
+    "comment_speed_wpm": { "min": 80, "max": 120 }
+  },
+  "scroll": {
+    "passes": 4,
+    "description": "Feed — moderate passes for question scanning; answer reading — deep scroll with longer pauses for long-form content. Source: general Q&A browsing patterns",
+    "speed_px_per_ms": { "min": 15, "max": 45 },
+    "pause_between_passes_ms": { "min": 1500, "max": 4000 },
+    "depth_per_pass": { "min": 0.3, "max": 0.7 },
+    "infinite_scroll_detection": "div.puppeteer_test_feed_infinite_scroll, document.body.scrollHeight changes",
+    "long_read_scroll": {
+      "description": "Slower, deliberate scroll for reading full answers",
+      "speed_px_per_ms": { "min": 8, "max": 20 },
+      "pause_between_scrolls_ms": { "min": 3000, "max": 8000 }
+    }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 2000, "max": 4000 },
+    "pre_click_pause_ms": { "min": 300, "max": 1000 },
+    "inter_action_pause_ms": { "min": 400, "max": 1500 },
+    "post_expand_pause_ms": { "min": 1000, "max": 2500 }
+  },
+  "mouse": {
+    "speed": 0.9,
+    "curvature": 0.2,
+    "jitter": 0.3,
+    "description": "Moderate — deliberate browsing and reading mode"
+  },
+  "platform_specific": {
+    "selectors_css": {
+      "feed_item": ".q-box, .puppeteer_test_feed_item",
+      "question_title": ".puppeteer_test_question_title, .q-text span",
+      "answer_card": ".puppeteer_test_answer_card",
+      "upvote_button": "[data-testid='upvote_button'], .q-unified-upvote",
+      "downvote_button": "[data-testid='downvote_button'], .q-unified-downvote",
+      "answer_composer": ".qu editor, .puppeteer_test_answer_composer",
+      "search_input": "input[placeholder*='Search'], input[name='q']",
+      "login_form": "form[action*='login'], .puppeteer_test_login_form"
+    },
+    "requires_login": true,
+    "login": {
+      "pre_login_pause_ms": 2000,
+      "field_pause_ms": { "min": 400, "max": 1000 },
+      "post_login_wait_ms": { "min": 4000, "max": 6000 },
+      "oauth_providers": ["google", "facebook"]
+    },
+    "sequence_hint": "navigate feed → scroll 3-5 passes → click interesting question → deep scroll through answers → upvote/downvote → optionally comment or write answer → search for topics → repeat"
+  }
+}

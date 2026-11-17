@@ -1,0 +1,13 @@
+{
+  "schema": "cad-contract/v1",
+  "provenance": "manual",
+  "contract_id": "manual-demo-0001",
+  "coordinate_unit": "mm",
+  "source": {
+    "file": "hand-counted.xlsx",
+    "sha256": "4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a"
+  },
+  "contract": {
+    "items": [{"name": "手工示例", "qty": 1}]
+  }
+}

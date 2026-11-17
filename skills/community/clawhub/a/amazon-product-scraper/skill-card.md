@@ -1,39 +1,52 @@
-## Description: <br>
-Scrapes Amazon product listing details from a provided ASIN or product URL and generates a structured competitor analysis report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapes Amazon product listing details such as title, price, sales signals, rankings, specifications, bullet descriptions, and variants, then generates a structured competitor analysis report.
 
-## Publisher: <br>
-[denicmic-chung](https://clawhub.ai/user/denicmic-chung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[denicmic-chung](https://clawhub.ai/user/denicmic-chung)
 
-## Use Case: <br>
-Amazon sellers, marketplace analysts, and agent users can provide an ASIN or Amazon product URL to collect product details and produce a competitor analysis report for review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may retain product details in local memory after use. <br>
-Mitigation: Delete saved reports that are no longer needed. <br>
-Risk: Repeated automated browsing of Amazon pages could violate Amazon terms or rate limits. <br>
-Mitigation: Use the skill only on product pages the user provides and avoid scraping patterns that exceed site terms or rate limits. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/denicmic-chung/amazon-product-scraper) <br>
+## Use Case:
 
+Developers, operators, and ecommerce analysts use this skill to collect product details from user-supplied Amazon ASINs or product URLs and produce a structured competitor analysis report for review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown] <br>
-**Output Format:** [Markdown competitor analysis report, also saved as a local markdown file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes extracted product fields such as ASIN, title, price, ratings, rankings, specifications, variants, and analysis notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated reports are saved locally under memory/, which can retain sensitive notes or analysis added during use.
+
+Mitigation: Avoid including sensitive internal notes unless local persistence is acceptable, and review retained report files according to the user's data-handling policy.
+
+Risk: Amazon pages may block or vary browser scraping, which can lead to missing, stale, or incomplete product details.
+
+Mitigation: Review the generated report against the live product page before relying on it for pricing, ranking, or competitive decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/denicmic-chung/skills/amazon-product-scraper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown report with tables and structured analysis sections, also saved as a local markdown file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are saved under memory/ with the ASIN in the filename.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-GuanYuan Data API tool that supports multiple authentication methods, automatic token management, card data retrieval, and CSV export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a command-line interface for GuanYuan Data APIs with token management, card data retrieval, and JSON or CSV export with metadata.
 
-## Publisher: <br>
-[jackeylee007](https://clawhub.ai/user/jackeylee007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackeylee007](https://clawhub.ai/user/jackeylee007)
 
-## Use Case: <br>
-Developers, data analysts, and operators use this skill to authenticate with GuanYuan Data, retrieve card data, and export results as JSON or CSV files with metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool stores and accepts GuanYuan account tokens and can use credentials from local configuration. <br>
-Mitigation: Install only when the publisher and tool are trusted; use a least-privileged account or short-lived token; restrict permissions on ~/.guanyuan/config.json and ~/.guanyuan/user.token. <br>
-Risk: Passing tokens as command-line arguments can expose credentials through shell history or process listings. <br>
-Mitigation: Avoid command-line token arguments when possible and prefer interactive token entry or protected configuration files. <br>
-Risk: A misconfigured API base URL could send credentials or exported business data to an unintended endpoint. <br>
-Mitigation: Verify the GuanYuan API baseUrl before login and save exported data only to private approved locations. <br>
+## Use Case:
 
+External users, developers, and data operators use this skill to configure GuanYuan API access, retrieve card data, and export results for analysis or downstream workflows.
 
-## Reference(s): <br>
-- [Skill documentation](references/README.md) <br>
-- [GuanYuan User Login API](https://api.guandata.com/apidoc/docs-site/345092/710/api-3470502) <br>
-- [GuanYuan Get Card Data API](https://api.guandata.com/apidoc/docs-site/345092/710/api-3471043) <br>
-- [ClawHub skill page](https://clawhub.ai/jackeylee007/guanyuan-data) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, JSON, CSV files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, JSON API responses, CSV exports, and metadata JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exports may include a CSV file and a companion *_meta.json file; token and configuration state are stored under ~/.guanyuan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Account passwords and API tokens can be stored under ~/.guanyuan or passed through shell commands, which may expose secrets through files, shell history, or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer interactive token entry or a dedicated secret manager, avoid placing real tokens directly in shell commands, and restrict permissions on ~/.guanyuan and its files.
+
+Risk: The configured baseUrl controls where credentials and tokens are sent.
+
+Mitigation: Verify the GuanYuan baseUrl before login, token use, or data export, and use trusted HTTPS endpoints only.
+
+Risk: CSV and metadata exports may overwrite existing files and may contain sensitive business data.
+
+Mitigation: Export to a controlled local directory, avoid shared or source-controlled folders, and check filenames before running export commands.
+
+## Reference(s):
+
+- [GuanYuan Data API Skill README](references/README.md)
+- [User Login API](https://api.guandata.com/apidoc/docs-site/345092/710/api-3470502)
+- [Get Card Data API](https://api.guandata.com/apidoc/docs-site/345092/710/api-3471043)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, API JSON responses, CSV files, and metadata JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CSV export can write an output CSV and a matching _meta.json metadata file; command output may also be printed to stdout.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

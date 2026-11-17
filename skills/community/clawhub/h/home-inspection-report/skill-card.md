@@ -1,41 +1,52 @@
-## Description: <br>
-Use this skill when a home inspector, licensed residential inspector, or buyer's agent needs to convert field notes and observations into an ASHI/InterNACHI-compliant property inspection report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a home inspector, licensed residential inspector, or buyer's agent needs to convert field notes and observations into an ASHI/InterNACHI-compliant draft property inspection report covering major residential systems, severity-rated deficiencies, and scope limitations.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[archlab-space](https://clawhub.ai/user/archlab-space)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External home inspectors, licensed residential inspectors, and buyer's agents use this skill to turn completed inspection notes into a structured draft report for professional review before client delivery.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Property and client-related inspection details may include sensitive information.
+
+Mitigation: Confirm users are comfortable providing those details to the agent and minimize unnecessary client data.
+
+Risk: A generated inspection report could be mistaken for a final client-ready deliverable.
+
+Mitigation: Keep the report labeled as DRAFT and require review, editing, approval, and signature by a qualified inspector before client delivery.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External home inspectors, licensed residential inspectors, and buyer's agents use this skill to turn field observations into a structured draft residential inspection report with system findings, severity-rated deficiencies, and scope limitations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Draft reports may contain errors, omissions, or jurisdiction-specific gaps if used without professional review. <br>
-Mitigation: Require the inspecting professional to review, edit, and sign the report before client delivery. <br>
-Risk: Inspection notes may include personal or client-identifying information. <br>
-Mitigation: Avoid entering unnecessary personal information and use minimal client identifiers where possible. <br>
-Risk: State or local inspection requirements may differ from the general ASHI/InterNACHI-aligned structure. <br>
-Mitigation: Verify jurisdiction-specific inspection requirements before using the report with a client. <br>
+**Output Format:** [Structured Markdown draft report with tables and an inspector review block]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Marked as DRAFT and intended for qualified inspector review before client delivery]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown draft report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The report is labeled DRAFT and includes an inspector review and signature block before client delivery.] <br>
+0.1.0 (source: server release metadata and CHANGELOG.md, released 2026-05-31)
 
-## Skill Version(s): <br>
-0.1.0 (source: changelog, released 2026-05-31) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

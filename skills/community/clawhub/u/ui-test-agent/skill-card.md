@@ -1,41 +1,54 @@
-## Description: <br>
-This skill helps agents perform web UI automation tests by running browser actions, capturing screenshots at each step, recording a session, and producing replayable scripts plus a standalone HTML report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents perform UI automation testing on web pages by running browser actions, capturing per-step screenshots, recording a test session, and producing replayable scripts plus a standalone HTML report.
 
-## Publisher: <br>
-[94lfj](https://clawhub.ai/user/94lfj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[94lfj](https://clawhub.ai/user/94lfj)
 
-## Use Case: <br>
-Developers, QA engineers, and agents use this skill to turn natural-language web testing requests into executed browser test steps, recorded sessions, replayable shell or JSON scripts, and screenshot-backed HTML reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save browser screenshots, typed values, URLs, selectors, commands, and errors to disk. <br>
-Mitigation: Use staging sites and test accounts when possible, keep generated sessions and reports private, and avoid recording sensitive production data. <br>
-Risk: The skill generates replayable shell and batch files from recorded browser commands. <br>
-Mitigation: Inspect generated .sh and .bat files before running them and execute them only in an appropriate test environment. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to convert natural-language web UI test goals into browser automation steps, session records, replayable shell or JSON test scripts, and screenshot-backed HTML test reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/94lfj/ui-test-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/94lfj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON session data, replay scripts, and standalone HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports may embed screenshots and recorded browser evidence; replay files may include executable shell or batch commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Recorded sessions and generated HTML reports may contain sensitive screenshots, URLs, selectors, typed values, or embedded files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only trusted test sessions in an isolated workspace and review or redact generated reports before sharing them.
+
+Risk: The skill generates replayable shell and batch scripts from recorded browser commands.
+
+Mitigation: Inspect generated .sh and .bat files before execution and avoid running them against production accounts or systems without review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/94lfj/skills/ui-test-agent)
+- [Publisher profile](https://clawhub.ai/user/94lfj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples, JSON session and test-case files, replayable shell or batch scripts, and standalone HTML reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports can embed screenshots and recorded URLs, selectors, typed values, commands, timestamps, and step status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

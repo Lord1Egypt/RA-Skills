@@ -1,45 +1,64 @@
-## Description: <br>
-AI Content Repurposer converts long-form content such as video transcripts, blog posts, and podcast transcripts into platform-specific scripts, social posts, summaries, and transcript formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically converts long-form content such as videos, blog posts, and podcasts into platform-specific short-form scripts, social posts, transcripts, summaries, and quote assets.
 
-## Publisher: <br>
-[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte)
 
-## Use Case: <br>
-Content creators, marketing teams, agencies, and podcasters use this skill to turn one long-form asset into reusable short-form video scripts, social media posts, summaries, quote cards, and formatted transcript outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User content may be sent to OpenAI for AI-powered transformations. <br>
-Mitigation: Use a dedicated OpenAI API key and avoid processing confidential or regulated content unless organizational policy approves that processing. <br>
-Risk: Batch processing can write files outside the requested output folder according to the security summary. <br>
-Mitigation: Run only trusted batch configuration files and write outputs to a dedicated directory as a normal, non-privileged user. <br>
-Risk: Generated social content, summaries, and transcripts may be inaccurate or unsuitable for publication without review. <br>
-Mitigation: Review all generated outputs before publishing and verify claims against the original source content. <br>
+## Use Case:
 
+Content creators, marketing teams, podcasters, and agencies use this skill to repurpose one source asset into channel-ready content for TikTok, YouTube Shorts, Instagram Reels, Twitter/X, LinkedIn, and podcast workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lvjunjie-byte/ai-content-repurposer) <br>
-- [README](README.md) <br>
-- [Skill Documentation](SKILL.md) <br>
-- [Quick Start Guide](QUICKSTART.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [JSON files or console text with Markdown documentation and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include platform-specific scripts, social post drafts, summaries, quotes, transcript sections, hashtags, calls to action, and demo fallback content when no OpenAI API key is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, clawhub.json) <br>
+Risk: Unrestricted blog URL fetching can expose internal services or retrieve untrusted content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted blog URLs, review the skill before installing it in environments with internal network access, and prefer a patched version that validates URLs.
+
+Risk: Batch processing can write output files to unsafe or unintended paths.
+
+Mitigation: Use only trusted batch config files, constrain output directories away from important project files, and prefer a patched version that constrains output paths.
+
+Risk: Source content may be sent to an external AI service when OPENAI_API_KEY is configured.
+
+Mitigation: Avoid confidential input unless OpenAI processing is approved for that data.
+
+Risk: Flagged dependencies may increase maintenance or security exposure.
+
+Mitigation: Review and update the flagged dependencies before production deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lvjunjie-byte/skills/ai-content-repurposer)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Documentation](artifact/SKILL.md)
+- [Artifact Quick Start](artifact/QUICKSTART.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration]
+
+**Output Format:** [JSON or console text containing platform-specific scripts, social posts, transcripts, summaries, quote cards, and batch outputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use OPENAI_API_KEY for AI-powered transformations; without an API key, artifact behavior returns demo/template output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

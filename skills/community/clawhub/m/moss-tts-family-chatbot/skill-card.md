@@ -1,46 +1,63 @@
-## Description: <br>
-Provides MOSI Studio audio workflows for speech recognition, text-to-speech, multi-speaker dialogue synthesis, voice cloning, and Feishu voice-message delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MOSI Studio audio skill for ASR, text-to-speech, instructed voice generation, multi-speaker dialogue synthesis, voice cloning, sound-effect generation scaffolding, and Feishu voice messages.
 
-## Publisher: <br>
-[mkkb473](https://clawhub.ai/user/mkkb473) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mkkb473](https://clawhub.ai/user/mkkb473)
 
-## Use Case: <br>
-Developers and agent operators use this skill to transcribe inbound audio, synthesize spoken replies, create multi-speaker dialogue or cloned voices through MOSI, and send Feishu voice bubbles when configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload sensitive audio or text to MOSI cloud services. <br>
-Mitigation: Use only with MOSI accounts you trust and avoid sending confidential recordings or text unless MOSI cloud processing is acceptable. <br>
-Risk: The voice-cloning workflow can create or use a speaker's voice without authorization. <br>
-Mitigation: Use voice cloning only when explicit rights and consent from the speaker are available. <br>
-Risk: Feishu voice-message delivery uses app credentials and can send audio to the wrong chat. <br>
-Mitigation: Configure least-privilege Feishu credentials and confirm the target chat before sending voice bubbles. <br>
-Risk: The server security verdict is suspicious because of voice cloning, cloud audio processing, and Feishu messaging behavior. <br>
-Mitigation: Review the skill before installing and validate account, credential, and data-handling controls before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to transcribe inbound audio, synthesize voice responses, generate multi-speaker audio, manage custom cloned voices, and send Feishu voice messages through MOSI Studio APIs.
 
-## Reference(s): <br>
-- [MOSI API Reference](references/api.md) <br>
-- [MOSI Studio](https://studio.mosi.cn) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mkkb473/moss-tts-family-chatbot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Audio files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; scripts produce plain text transcripts, JSON responses, and WAV or OPUS audio files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MOSI_TTS_API_KEY for MOSI calls; Feishu voice messages require FEISHU_APP_ID and FEISHU_APP_SECRET; generated media is expected under ~/.openclaw/workspace/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.4 (source: server release metadata) <br>
+Risk: Private audio or transcribed text may be uploaded to MOSI Studio or Feishu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where users understand that audio and text can be sent to those services, and avoid processing private voice messages without authorization.
+
+Risk: Voice cloning can imitate a speaker without adequate consent.
+
+Mitigation: Use voice cloning only with explicit authorization from the speaker, and do not clone third parties, celebrities, coworkers, or customers without consent.
+
+Risk: Feishu voice messages can be sent using available Feishu credentials.
+
+Mitigation: Limit Feishu credential availability to trusted workspaces and require operator review before sending audio to chats.
+
+Risk: The sound-effect feature is scaffolded while the artifact says the MOSI sound-effect REST interface was not publicly available as of 2026-03.
+
+Mitigation: Treat sound-effect generation as unavailable until the MOSI API documentation confirms a supported endpoint.
+
+## Reference(s):
+
+- [MOSI API Reference](references/api.md)
+- [MOSI Studio](https://studio.mosi.cn)
+- [Skill page](https://clawhub.ai/mkkb473/skills/moss-tts-family-chatbot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python commands, API request examples, and generated audio files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce WAV or OPUS audio files, plain-text transcriptions, JSON API responses, and Feishu audio messages.]
+
+## Skill Version(s):
+
+0.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

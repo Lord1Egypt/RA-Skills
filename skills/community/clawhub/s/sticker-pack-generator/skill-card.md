@@ -1,45 +1,55 @@
-## Description: <br>
-AI sticker pack generator - create custom WhatsApp stickers, Telegram sticker packs, emoji-style art, and kawaii character stickers from any description using the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates custom WhatsApp, Telegram, emoji-style, chibi, reaction, kawaii, and cartoon sticker images from text prompts using the Neta AI image generation API.
 
-## Publisher: <br>
-[omactiengartelle](https://clawhub.ai/user/omactiengartelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omactiengartelle](https://clawhub.ai/user/omactiengartelle)
 
-## Use Case: <br>
-External users and developers use this skill to generate sticker-style image assets from text prompts for WhatsApp, Telegram, emoji-style reactions, and kawaii or chibi character art. The skill requires a Neta API token and can optionally use a reference image UUID for style inheritance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sticker prompts, optional reference image UUIDs, and the Neta API token are sent to the external api.talesofai.com service. <br>
-Mitigation: Use the skill only with data appropriate for that external service, and avoid secrets, private personal data, regulated data, or proprietary content in prompts. <br>
-Risk: Passing a long-lived API token directly on the command line can expose it through shell history or local process inspection. <br>
-Mitigation: Use a revocable token and pass it from an environment variable rather than typing the token directly into commands. <br>
-Risk: Image generation depends on an external API and can time out or return no image URL. <br>
-Mitigation: Treat generated URLs as best-effort output and handle timeout or failed-task responses before relying on the result in a workflow. <br>
+## Use Case:
 
+External users and developers use this skill to request AI-generated sticker pack images from text descriptions, with optional size selection and reference-image style inheritance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/omactiengartelle/sticker-pack-generator) <br>
-- [Neta API token and access](https://www.neta.art/open/) <br>
-- [Neta image generation endpoint](https://api.talesofai.com/v3/make_image) <br>
-- [Neta artifact task endpoint](https://api.talesofai.com/v1/artifact/task/{taskUuid}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text image URL from CLI output, with shell command examples in documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports square, portrait, landscape, and tall image sizes; optional reference image UUID enables style inheritance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The skill sends the user's prompt, optional reference image UUID, and Neta API token to api.talesofai.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private prompts or personal data, use a limited or disposable token, and install only if this external API use is acceptable.
+
+Risk: The npx installation command can resolve mutable package or source state.
+
+Mitigation: Pin the installer or source version when repeatability matters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/omactiengartelle/skills/sticker-pack-generator)
+- [Neta API Token Page](https://www.neta.art/open/)
+- [Neta Image Generation Endpoint](https://api.talesofai.com/v3/make_image)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Image URL]
+
+**Output Format:** [Text output containing a direct generated image URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided text prompt, Neta API token, optional size, and optional reference image UUID.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

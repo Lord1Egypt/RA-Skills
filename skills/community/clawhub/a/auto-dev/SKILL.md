@@ -1,7 +1,7 @@
 ---
 name: auto-dev
 description: Use when working with Auto.dev APIs, vehicle data, VIN decoding, car listings, vehicle photos, specs, recalls, payments, interest rates, taxes, OEM build data, plate-to-VIN, CLI commands, MCP tools, or SDK methods for any automotive data task
-version: 1.1.3
+version: 1.1.5
 tags:
   - automotive
   - vehicle-data
@@ -45,7 +45,7 @@ If yes: use typed SDK methods. See code-patterns.md for all methods.
 To install: `npm install @auto.dev/sdk`
 
 **4. Direct API** — Check for `AUTODEV_API_KEY` env var.
-If not set: ask the user for it or direct them to https://auto.dev/pricing (free Starter plan).
+If not set: ask the user for it or direct them to https://auto.dev/pricing (the Free plan needs no card).
 
 ## MCP Tools
 
@@ -60,9 +60,9 @@ auto_docs vin-decode    # see VIN decode response shape
 
 | Tool | Description | Plan |
 |------|-------------|------|
-| `auto_decode` | Decode a VIN | Starter |
-| `auto_listings` | Search listings with filters | Starter |
-| `auto_photos` | Get vehicle photos | Starter |
+| `auto_decode` | Decode a VIN | Free |
+| `auto_listings` | Search listings with filters | Free |
+| `auto_photos` | Get vehicle photos | Free |
 | `auto_specs` | Vehicle specifications | Growth |
 | `auto_build` | OEM build data ($0.10/call) | Growth |
 | `auto_recalls` | Safety recalls | Growth |
@@ -125,10 +125,10 @@ Use these only when MCP and CLI are unavailable.
 
 | Endpoint | Plan | Required Params |
 |----------|------|-----------------|
-| `GET /listings?filters` | Starter | See v2-listings-api.md |
-| `GET /listings/{vin}` | Starter | — |
-| `GET /vin/{vin}` | Starter | — |
-| `GET /photos/{vin}` | Starter | — |
+| `GET /listings?filters` | Free | See v2-listings-api.md |
+| `GET /listings/{vin}` | Free | — |
+| `GET /vin/{vin}` | Free | — |
+| `GET /photos/{vin}` | Free | — |
 | `GET /specs/{vin}` | Growth | — |
 | `GET /build/{vin}` | Growth | — ($0.10/call) |
 | `GET /recalls/{vin}` | Growth | — |
@@ -166,7 +166,7 @@ See pricing.md for full per-call costs and upgrade links.
 
 | Plan | Monthly | Includes |
 |------|---------|----------|
-| Starter | Free + data fees | VIN Decode, Listings, Photos (1,000 free calls/mo) |
+| Free | $0, no card | VIN Decode, Listings, Photos (1,000 calls/mo, hard cap) |
 | Growth | $299/mo + data fees | + Specs, Recalls, TCO, Payments, APR, Build |
 | Scale | $599/mo + data fees | + Open Recalls, Plate-to-VIN, Taxes & Fees |
 
@@ -180,6 +180,9 @@ All plans charge per-call data fees on every request. Growth/Scale have no cap o
 - **Large results** (10+ listings): Ask user preference, default to CSV export
 - **Always support**: CSV, JSON export when user requests
 - **Chain APIs** when the query spans multiple endpoints — MCP tools and CLI commands can be called in parallel
+- **Sensitive inputs**: `creditScore`, `zip`, and the price / trade-in / down-payment fields on `/apr`, `/payments`, and `/taxes` are transmitted to the Auto.dev API. Ask the user for these values rather than inferring them, send only what the endpoint requires, and don't persist or echo them beyond the answer.
+- **Plate lookups** (`/plate/{state}/{plate}`) resolve a license plate to a specific vehicle and can identify its owner. Confirm the user has a legitimate purpose, and never run them in bulk against plates the user did not supply.
+- **When writing exports to disk**, confirm the destination path first and don't overwrite an existing file without asking.
 
 ## Deep Reference
 

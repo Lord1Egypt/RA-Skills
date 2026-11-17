@@ -1,43 +1,59 @@
-## Description: <br>
-Graph Aave MCP provides an MCP server for querying Aave V2, V3, and V4 market data, positions, liquidation risk, governance, rewards, exchange rates, swap quotes, and protocol history through The Graph, Aave APIs, and on-chain view contracts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aave V2/V3/V4 MCP server — 62 tools across 18 Graph subgraphs + Aave V4 API + on-chain view contracts. Reserves, positions, cross-chain liquidation risk monitoring with live HF confirmation, governance, V4 hubs/spokes, Base equity gap shock and oracle status, loan-swap analytics, exchange rates, swap quotes, rewards, protocol history, and a durable findings store that survives context compaction.
 
-## Publisher: <br>
-[paulieb14](https://clawhub.ai/user/paulieb14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paulieb14](https://clawhub.ai/user/paulieb14)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to inspect Aave markets, user positions, liquidation risk, rewards, governance activity, and V4 hub or spoke data across supported chains. It is intended for data access and analysis, not wallet custody or transaction signing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Graph API key and sends Aave-related queries, wallet addresses, and related parameters to The Graph and Aave infrastructure. <br>
-Mitigation: Use a separate or least-privilege Graph API key where possible and avoid sharing unnecessary wallet or account data. <br>
-Risk: Users may confuse Aave data analysis with wallet custody or transaction execution. <br>
-Mitigation: Do not provide wallet private keys or seed phrases; the evidence states the skill does not need them and shows no hidden wallet access or transaction behavior. <br>
+## Use Case:
 
+Developers and agents use this MCP server to query Aave V2/V3/V4 markets, positions, activity, governance, and cross-chain liquidation risk, including live health-factor checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paulieb14/graph-aave-mcp-v2) <br>
-- [Project homepage](https://github.com/PaulieB14/graph-aave-mcp) <br>
-- [npm package](https://www.npmjs.com/package/graph-aave-mcp) <br>
-- [The Graph Studio](https://thegraph.com/studio/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API data, configuration, guidance] <br>
-**Output Format:** [Markdown or structured MCP tool responses with Aave market, wallet, and protocol data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GRAPH_API_KEY; responses may include wallet addresses, health factors, risk scores, market metrics, rewards, swap quote data, and persisted findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.21 (source: frontmatter and release evidence) <br>
+Risk: The security review is incomplete because one reference could not be resolved; the benign verdict is not a guarantee that the skill is risk-free.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the unresolved reference and use the skill only if its Aave query purpose fits your needs.
+
+Risk: Unfiltered Ethereum reserve queries can return about 28k tokens.
+
+Mitigation: Narrow reserve queries with symbols, limit, or compact options.
+
+Risk: Subgraph data can lag behind the chain.
+
+Mitigation: Check the returned freshness metadata, including lagSeconds, when evaluating recency.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/PaulieB14/graph-aave-mcp)
+- [npm package](https://www.npmjs.com/package/graph-aave-mcp)
+- [The Graph Studio](https://thegraph.com/studio/)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Analysis, JSON, Guidance]
+
+**Output Format:** [Structured JSON and text tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reserve queries support symbols, limit, and compact options; freshness metadata may report subgraph lag.]
+
+## Skill Version(s):
+
+4.3.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

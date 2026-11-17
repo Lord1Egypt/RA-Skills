@@ -1,49 +1,60 @@
-## Description: <br>
-SOP for writing, loading, and evolving a project-level convention file such as CONVENTIONS.md, CLAUDE.md, .cursor/rules, .clinerules, or AGENTS.md so a coder-agent can consistently follow project style choices across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SOP for writing, loading, and evolving a project-level convention file (CONVENTIONS.md / CLAUDE.md / .cursor/rules / .clinerules / AGENTS.md) so that a coder-agent reliably respects your codebase's style choices every session.
 
-## Publisher: <br>
-[agentsope](https://clawhub.ai/user/agentsope) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentsope](https://clawhub.ai/user/agentsope)
 
-## Use Case: <br>
-Developers and engineers use this skill to decide when project-level agent conventions are worthwhile, write concise convention files, wire them into tools such as Aider, Claude Code, Cursor, Cline, and CrewAI, and verify that agents actually load and follow them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated convention files may persistently steer future coding agents in ways that are incorrect, stale, or inconsistent with the current codebase. <br>
-Mitigation: Review generated convention files before committing them, keep rules concise and concrete, and periodically remove stale or conflicting rules. <br>
-Risk: Shared convention files may accidentally include secrets, private paths, or sensitive internal details. <br>
-Mitigation: Do not place secrets or private credentials in committed convention files; use gitignored local files or secret-management tooling for sensitive context. <br>
-Risk: Convention files are guidance rather than hard enforcement, so agents may still ignore vague or conflicting rules. <br>
-Mitigation: Use hooks, lint, tests, or CI for requirements that must always hold, and verify convention loading with tool-specific introspection or an A/B task. <br>
+## Use Case:
 
+Developers and engineers use this skill to decide when to create a project conventions file, draft concise rules, wire the file into common coder-agent tools, and verify that the agent actually loaded it. It is intended for projects that will be revisited across multiple coding-agent sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentsope/agentsop-conventions-pinning) <br>
-- [Source evidence](references/R1-source-evidence.md) <br>
-- [Tool equivalents](references/R2-tool-equivalents.md) <br>
-- [Aider conventions documentation](https://aider.chat/docs/usage/conventions.html) <br>
-- [Claude Code memory documentation](https://code.claude.com/docs/en/memory) <br>
-- [Cursor rules documentation](https://cursor.com/docs/rules) <br>
-- [Cline rules documentation](https://docs.cline.bot/customization/cline-rules) <br>
-- [CrewAI agents documentation](https://docs.crewai.com/en/concepts/agents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with templates, tables, and inline shell or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or update convention files such as CONVENTIONS.md, CLAUDE.md, AGENTS.md, .cursor/rules/*.mdc, or .clinerules/*.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence; artifact frontmatter lists 0.1.0) <br>
+Risk: Convention files can influence future coding-agent sessions and may encode stale, overly broad, or sensitive project guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep rules short, repo-scoped, and secret-free; review user-global or always-loaded rules before using them.
+
+Risk: A conventions file is guidance rather than enforcement, so agents may ignore vague, conflicting, or oversized rule sets.
+
+Mitigation: Use concrete verifiable rules, verify loading with the tool's introspection path, and move must-hold requirements into lint, hooks, or CI.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/agentsope/skills/agentsop-conventions-pinning)
+- [R1 source evidence](references/R1-source-evidence.md)
+- [R2 tool equivalents](references/R2-tool-equivalents.md)
+- [Aider CONVENTIONS.md documentation](https://aider.chat/docs/usage/conventions.html)
+- [Claude Code memory documentation](https://code.claude.com/docs/en/memory)
+- [Cursor rules documentation](https://cursor.com/docs/rules)
+- [Cline rules documentation](https://docs.cline.bot/customization/cline-rules)
+- [CrewAI agents documentation](https://docs.crewai.com/en/concepts/agents)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with file templates, configuration snippets, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or revise repo-scoped convention files such as CONVENTIONS.md, CLAUDE.md, .cursor/rules/*.mdc, .clinerules/*.md, or AGENTS.md.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; artifact frontmatter reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

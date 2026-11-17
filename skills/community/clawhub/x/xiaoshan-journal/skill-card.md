@@ -1,39 +1,58 @@
-## Description: <br>
-A personal diary automation skill for OpenClaw that detects configuration, initializes local paths, writes daily journal entries from local SOUL and memory files, and generates 1080px-wide diary images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal diary automation for OpenClaw that detects configuration, initializes local paths on first run, writes a daily journal from local memory/profile material, and generates a 1080px-wide diary image.
 
-## Publisher: <br>
-[1204TMax](https://clawhub.ai/user/1204TMax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1204tmax](https://clawhub.ai/user/1204tmax)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to automate a personal daily journal workflow from local persona and memory files, then render the resulting entry as text and a shareable image. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads personal SOUL, MEMORY, daily memory, and optional news-summary files from configured local paths. <br>
-Mitigation: Review or create config.yaml before use and point it only at files appropriate for diary generation. <br>
-Risk: Generated diary text and images may contain private personal details. <br>
-Mitigation: Keep the diary output directory private and exclude config.yaml and generated diary files from version control. <br>
+## Use Case:
 
+External OpenClaw users can use this skill to turn local assistant profile, memory, and optional news summary files into a first-person daily journal entry and a shareable image. It is intended for personal journaling workflows where the user controls the local input paths and output directory.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration] <br>
-**Output Format:** [Markdown diary text, HTML render file, and PNG image] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configured local paths; image output defaults to 1080px width.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads sensitive local OpenClaw profile and memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow the configured SOUL, MEMORY, daily memory, and news summary paths before installing or running the skill.
+
+Risk: Generated Markdown, HTML, PNG, and config.yaml files may contain private diary content, names, paths, or preferences.
+
+Mitigation: Treat generated outputs as private and add or verify a .gitignore entry for config.yaml and other private generated artifacts.
+
+Risk: The browser-rendering step processes generated HTML and may run in an environment with uncontrolled active content or network access.
+
+Mitigation: Preview diary content before image rendering and run browser-based rendering only in an environment where network access and active HTML behavior are controlled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1204tmax/skills/xiaoshan-journal)
+- [Artifact README repository link](https://github.com/1204TMax/xiaoshan-journal.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, files]
+
+**Output Format:** [Markdown diary text, YAML configuration, generated HTML, and PNG image output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets the previous day using the configured timezone and generates a 1080px-wide image when rendering succeeds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

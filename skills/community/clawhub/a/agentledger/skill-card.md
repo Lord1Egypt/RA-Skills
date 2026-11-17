@@ -1,44 +1,60 @@
-## Description: <br>
-AgentLedger helps AI agents log purchases, set budgets, generate spending reports, manage multi-currency local ledgers, import Privacy.com card exports, and export CSV or JSON records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentLedger helps AI agents log purchases, manage budgets, generate spending reports, track multi-currency expenses, import Privacy.com card data, and export locally stored ledger data to CSV or JSON.
 
-## Publisher: <br>
-[c-goro](https://clawhub.ai/user/c-goro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[c-goro](https://clawhub.ai/user/c-goro)
 
-## Use Case: <br>
-Developers and AI agents use AgentLedger to maintain a local financial audit trail for agent-made purchases, budgets, accounts, reports, and exports. It is intended for tracking operational expenses such as API credits, subscriptions, infrastructure, tools, and Privacy.com card imports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Ledger files, backups, Privacy.com imports, and CSV/JSON exports can contain sensitive financial records. <br>
-Mitigation: Store them only in intended local workspace paths, restrict access as appropriate, and avoid recording card numbers, passwords, or unnecessary receipt content. <br>
-Risk: Imports and exports read from or write to user-provided file paths. <br>
-Mitigation: Check import and export paths before running commands, and review exported files before sharing or moving them outside the workspace. <br>
-Risk: The reviewed artifact layout does not match all documented src/ command paths. <br>
-Mitigation: Verify the installed package paths before relying on documented commands or script entry points. <br>
+## Use Case:
 
+Developers and AI agent operators use AgentLedger to maintain a local financial audit trail for agent purchases, API costs, subscriptions, infrastructure spend, and budget checks.
 
-## Reference(s): <br>
-- [ClawHub AgentLedger listing](https://clawhub.ai/c-goro/agentledger) <br>
-- [OpenClaw Documentation](https://openclaw.ai) <br>
-- [Privacy.com](https://privacy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON files, CSV files] <br>
-**Output Format:** [Markdown guidance with inline JavaScript and shell commands; ledger records are local JSON files with optional CSV or JSON exports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js. Stores transactions, accounts, budgets, settings, backups, imports, and exports in local workspace paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata and package.json) <br>
+Risk: The export command can write sensitive ledger data to an unrestricted caller-supplied path and overwrite local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only explicit, trusted relative export filenames, avoid absolute paths and ../ traversal, and review the destination before exporting ledger data.
+
+Risk: CSV exports may be unsafe when opened in spreadsheet software until export path constraints and CSV escaping are fixed.
+
+Mitigation: Treat CSV exports as untrusted, inspect or escape spreadsheet formulas before opening them, and prefer JSON exports when spreadsheet processing is unnecessary.
+
+Risk: Ledger fields can contain sensitive payment context if agents store card numbers, passwords, or overly detailed receipt information.
+
+Mitigation: Store account aliases and receipt links only, and do not place card numbers or passwords in ledger fields.
+
+## Reference(s):
+
+- [AgentLedger README](README.md)
+- [AgentLedger Agent Instructions](SKILL.md)
+- [OpenClaw Documentation](https://openclaw.ai)
+- [Privacy.com](https://privacy.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance, JavaScript snippets, shell commands, and local JSON or CSV files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores transactions, accounts, budgets, and settings under workspace/ledger; exports selected ledger data as CSV or JSON.]
+
+## Skill Version(s):
+
+1.1.1 (source: package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

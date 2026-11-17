@@ -1,41 +1,57 @@
-## Description: <br>
-Permission Guard monitors OpenClaw agent skill activity for unauthorized file access, suspicious outbound network calls, dangerous command patterns, and permission audit reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Permission Guard is an OpenClaw security watchdog that monitors installed skill behavior, flags unauthorized file access, suspicious outbound network calls, and dangerous command patterns, and produces permission audit reports.
 
-## Publisher: <br>
-[billyhetech](https://clawhub.ai/user/billyhetech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billyhetech](https://clawhub.ai/user/billyhetech)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect agent activity, review permission-sensitive behavior, establish first-run baselines after installing skills, and generate actionable security audit reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates persistent local audit records and baselines that may reveal sensitive operational history or metadata about credential locations. <br>
-Mitigation: Review or change baseline behavior before use, protect the ~/.openclaw audit files, and periodically delete records that are no longer needed. <br>
-Risk: Filesystem and network inspection require shell access and can surface sensitive local paths or active connection details. <br>
-Mitigation: Use the skill only where local security inspection is intended, and review generated findings before sharing or acting on them. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to review agent activity, establish first-run baselines after installing skills, and investigate suspicious file, network, or command behavior.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/billyhetech/permission-guard-v1) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown activity report with shell command recommendations and local audit log entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local ~/.openclaw audit logs and baselines when used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill may inspect broad home-directory path metadata and active network connections while performing watchdog checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only when permission monitoring is needed and review reported paths and destinations before taking action.
+
+Risk: Persistent audit logs under ~/.openclaw may expose sensitive local activity metadata.
+
+Mitigation: Review or delete logs and baselines periodically, and avoid recording commands or URLs that contain secrets.
+
+Risk: Suspicious findings can require human judgment because monitoring signals may be ambiguous.
+
+Mitigation: Treat the skill's output as an alert and recommendation layer; confirm the evidence before removing a skill or escalating remediation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/billyhetech/skills/permission-guard-v1)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown activity report with inline shell commands and actionable recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local audit logs and first-run baseline files under ~/.openclaw.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

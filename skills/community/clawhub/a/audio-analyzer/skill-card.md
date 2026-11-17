@@ -1,45 +1,68 @@
-## Description: <br>
-Smart Audio Analyzer transcribes audio, identifies speakers with persistent voice profiles, detects meeting, interview, training, or talk scenes, and generates structured notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Audio Analyzer transcribes audio, labels speakers with persistent voice profiles, detects recording scenes, and generates structured notes.
 
-## Publisher: <br>
-[JoJowillwater](https://clawhub.ai/user/JoJowillwater) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jojowillwater](https://clawhub.ai/user/jojowillwater)
 
-## Use Case: <br>
-Developers, researchers, and operations teams use this skill to turn permitted audio recordings into transcripts, speaker-labeled dialogue, scene-specific notes, action items, and optional local voiceprint matches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive recordings and can upload audio or transcripts to cloud ASR and summarization providers. <br>
-Mitigation: Use it only for recordings the user is allowed to process, disclose provider use, and prefer local Whisper for sensitive audio. <br>
-Risk: Speaker embeddings and voice profile data can identify people across sessions. <br>
-Mitigation: Enroll speakers only with consent, store generated profile files carefully, and delete voice-db.json and voice-profiles.md entries when no longer needed. <br>
-Risk: The local Whisper fallback has a command-execution risk with untrusted filenames. <br>
-Mitigation: Avoid Whisper fallback for untrusted files or unusual filenames until command construction is fixed; prefer configured cloud ASR or sanitized local paths. <br>
+## Use Case:
 
+External users and developers use this skill to analyze recordings such as meetings, interviews, talks, and rowing training sessions. It produces transcripts, speaker labels, scene-specific summaries, and follow-up notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JoJowillwater/audio-analyzer) <br>
-- [Scene templates](references/scenes/) <br>
-- [Voice profiles reference](references/voice-profiles.md) <br>
-- [WeSpeaker model releases](https://github.com/wenet-e2e/wespeaker/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries, transcript text files, optional raw JSON metadata, and command-line guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write transcripts, summaries, raw speaker metadata, voice-profiles.md updates, and local voice-db.json embeddings depending on configuration and user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata; artifact frontmatter lists 1.1.1) <br>
+Risk: Audio may be sent to AssemblyAI, Gemini, or OpenRouter when those API keys are configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local Whisper for offline transcription when cloud upload is not acceptable, and process only recordings whose privacy terms permit external ASR.
+
+Risk: The authoritative security review reports a command-injection flaw in the Whisper fallback path for untrusted or oddly named audio files.
+
+Mitigation: Avoid the Whisper fallback for untrusted filenames until the invocation is fixed; use trusted paths, sanitized filenames, or a configured cloud ASR engine.
+
+Risk: Generated transcripts, raw JSON, summaries, and voice-db.json can contain sensitive audio content, speaker metadata, or biometric voice embeddings.
+
+Mitigation: Store outputs in access-controlled locations, tighten file permissions when needed, and delete transcripts, summaries, raw JSON, or voice-db.json after use.
+
+Risk: The authoritative security review reports weak biometric-data controls around stored speaker embeddings.
+
+Mitigation: Require explicit speaker confirmation before profile updates and document retention or deletion expectations for voiceprint data.
+
+## Reference(s):
+
+- [Smart Audio Analyzer ClawHub page](https://clawhub.ai/jojowillwater/skills/audio-analyzer)
+- [Voice profiles reference](references/voice-profiles.md)
+- [General scene template](references/scenes/general.md)
+- [Meeting scene template](references/scenes/meeting.md)
+- [Interview scene template](references/scenes/interview.md)
+- [Talk scene template](references/scenes/talk.md)
+- [Rowing scene template](references/scenes/rowing.md)
+- [WeSpeaker releases](https://github.com/wenet-e2e/wespeaker/releases)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Text transcripts, JSON metadata, and Markdown summaries with setup and execution commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes transcript, raw JSON, and optional summary files beside the analyzed audio; optional voiceprint tooling can update local voice profile data.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata; artifact frontmatter says 1.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

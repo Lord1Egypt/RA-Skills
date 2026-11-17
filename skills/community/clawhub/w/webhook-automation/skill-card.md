@@ -1,40 +1,57 @@
-## Description: <br>
-Event-driven webhook workflows with HMAC verification, retry logic, and multi-provider patterns for receiving, validating, routing, and retrying webhook events from providers such as GitHub, Stripe, and Slack. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents build webhook workflows that verify signatures, route provider events, retry failed deliveries, and connect events to downstream automation.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-Developers and engineers use this skill to build webhook endpoints that parse JSON payloads, verify HMAC signatures, route provider events to handlers, and retry failed deliveries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The sample webhook server can accept unauthenticated webhook requests if no secret is configured or if requests omit signatures. <br>
-Mitigation: Require a configured secret, reject missing signatures, implement provider-specific verification for GitHub, Slack, and Stripe, and run the endpoint behind HTTPS on the intended interface. <br>
-Risk: Webhook payloads can contain sensitive event data. <br>
-Mitigation: Avoid logging or storing raw payloads unless access controls and retention rules are defined. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to receive GitHub, Slack, Stripe, or generic webhook events and turn them into routed handler code, retry logic, and agent task messages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fuzzyb33s/webhook-automation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes sample webhook server and handler patterns that require local configuration before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The included sample server can accept unauthenticated events while presenting itself as signature-verified automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not expose the server as-is; require a configured secret and reject missing or invalid signatures before routing webhook payloads.
+
+Risk: Webhook payloads are untrusted input that may be passed to handlers, agents, logs, or external integrations.
+
+Mitigation: Limit request size, avoid logging or persisting full payloads, and validate provider-specific fields before using them in downstream automation.
+
+Risk: Provider signature formats differ across GitHub, Slack, and Stripe.
+
+Mitigation: Use provider-specific verification, including Slack timestamp validation and Stripe SDK-based signature checks where appropriate.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/fuzzyb33s/skills/webhook-automation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks plus JSON-style examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes sample webhook server code, handler patterns, provider notes, testing commands, and deployment checklist items.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

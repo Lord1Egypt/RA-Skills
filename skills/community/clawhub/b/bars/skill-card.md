@@ -1,41 +1,52 @@
-## Description: <br>
-Find nearby bars when the user asks for drinks or nightlife near them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby bars. Invoke when user asks for drinks or nightlife near me.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[codekungfu](https://clawhub.ai/user/codekungfu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to find nearby bars or nightlife options from an authorized location, with optional filters such as open-now status, rating, price level, and keywords.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Precise location can reveal sensitive user whereabouts.
+
+Mitigation: Use the skill only after location permission, avoid retaining exact coordinates, and prefer coarse or short-lived cached location data when caching is needed.
+
+Risk: Ambiguous nightlife requests may not always mean bars.
+
+Mitigation: Clarify ambiguous requests before searching when the user may want a different venue category.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Users and agents use this skill to handle requests for nearby bars, drinks, or nightlife by collecting location and filter inputs and returning nearby bar or POI results. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Text, JSON]
 
-## Known Risks and Mitigations: <br>
-Risk: Location-based searches can expose precise user coordinates if location is requested, logged, or retained unnecessarily. <br>
-Mitigation: Request explicit location permission, avoid storing exact coordinates, and use coarse location handling or short-term caching only when needed. <br>
-Risk: The skill may trigger on broad nightlife planning when the user did not ask for nearby bars. <br>
-Mitigation: Invoke it only when the user asks for nearby bars, drinks, nightlife near them, or provides a location for bar recommendations. <br>
+**Output Format:** [Structured POI results using a standard response schema]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Nearby Bars on ClawHub](https://clawhub.ai/CodeKungfu/bars) <br>
-- [CodeKungfu publisher profile](https://clawhub.ai/user/CodeKungfu) <br>
+**Other Properties Related to Output:** [May include location, radius, limit, category, filters, venue details, and error codes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or structured text describing nearby bar or POI results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses location, radius, result limit, and optional filters such as open_now, minimum rating, price level, and keywords.] <br>
+0.1.0 (source: release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

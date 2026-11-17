@@ -1,0 +1,24 @@
+# trusted-numbers.conf — Whitelist of phone numbers paired treats as trusted.
+#
+# Copy to ~/.config/paired/trusted-numbers.conf and edit.
+# Used by:
+#   - paired-call-handler   — decides whether to ignore/notify/hangup an incoming call
+#   - paired-respond        — decides whether to invoke the LLM trigger
+#   - paired-sms-command-hook — decides whether to honour /phone <num> <msg> Tasker speak
+#
+# UK number normalization: any of "07XXXXXXXXX", "+44 7XXXXXXXXX", "00447XXXXXXXXX",
+# "447XXXXXXXXX" match the same entry. International numbers should be in E.164 form.
+#
+# Format:   <number> [#optional comment]
+# Comments: # at start of line, blank lines OK
+# Lookup:   paired-trusted list / paired-trusted add <num> [label] / paired-trusted remove <num>
+
+# === Examples (replace with your own) ===
+
+# 07911123456          # main mobile  ← Ofcom drama-reserved example only
+# +14155552671         # US E.164 example
+# 07911123457          # work line
+# 07911123458          # partner
+
+# === Live entries ===
+# (Add yours below this line)

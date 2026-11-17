@@ -1,0 +1,1454 @@
+collection: A2600
+sort-by: 10
+shortname: a2600
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/stella2023_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: E.T.外星人
+file: E.T.外星人.a26
+assets.box_front: Imgs/E.T.外星人.png
+description: 《E.T.外星人》，由 Atari 出品，1983 年发行，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Atari
+release: 1983
+genre: Action
+players: 1
+game: F-14 雄猫
+file: F-14 雄猫.a26
+assets.box_front: Imgs/F-14 雄猫.png
+description: 《F-14 雄猫》，Atari 2600 平台。
+game: L5作战
+file: L5作战.a26
+assets.box_front: Imgs/L5作战.png
+description: 《L5作战》，由 Data Age 出品，射击类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Data Age
+genre: Shooter
+players: 2
+game: PONG合集
+file: PONG合集.a26
+assets.box_front: Imgs/PONG合集.png
+description: 《PONG合集》，由 Sears 出品，动作类游戏，Atari 2600 平台，支持 4-4 人游玩。
+    本作为原作的合集版本。
+publisher: Sears
+genre: Action
+players: 4
+game: Q伯特
+file: Q伯特.a26
+assets.box_front: Imgs/Q伯特.png
+description: 《Q伯特》，由 Parker Brothers 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Parker Brothers
+genre: Action
+players: 1
+game: Q伯特的魔方
+file: Q伯特的魔方.a26
+assets.box_front: Imgs/Q伯特的魔方.png
+description: 《Q伯特的魔方》，由 Parker Brothers 出品，1984 年发行，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Parker Brothers
+release: 1984
+genre: Action
+players: 1
+game: X任务
+file: X任务.a26
+assets.box_front: Imgs/X任务.png
+description: 《X任务》，由 Home Vision 出品，Shoot'em Up类游戏，Atari 2600 平台，单人游玩。
+publisher: Home Vision
+genre: Shoot'em Up
+players: 1
+game: X战警
+file: X战警.a26
+assets.box_front: Imgs/X战警.png
+description: 《X战警》，由 Universal Gamex Corporation 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Universal Gamex Corporation
+genre: Action
+players: 1
+game: 万圣节
+file: 万圣节.a26
+assets.box_front: Imgs/万圣节.png
+description: 《万圣节》，由 Wizard Video Games 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Wizard Video Games
+genre: Action
+players: 1
+game: 三只小猪
+file: 三只小猪.a26
+assets.box_front: Imgs/三只小猪.png
+description: 《三只小猪》，由 Activision 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Activision
+genre: Action
+players: 2
+game: 上上下下
+file: 上上下下.a26
+assets.box_front: Imgs/上上下下.png
+description: 《上上下下》，由 SEGA 出品，竞速类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: SEGA
+genre: Racing
+players: 2
+game: 乐队逃离
+file: 乐队逃离.a26
+assets.box_front: Imgs/乐队逃离.png
+description: 《乐队逃离》，由 Data Age 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Data Age
+genre: Action
+players: 2
+game: 人间大炮
+file: 人间大炮.a26
+assets.box_front: Imgs/人间大炮.png
+description: 《人间大炮》，由 Atari 出品，策略类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Strategy
+players: 2
+game: 伏击战术
+file: 伏击战术.a26
+assets.box_front: Imgs/伏击战术.png
+description: 《伏击战术》，由 M Network 出品，射击类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: M Network
+genre: Shooter
+players: 2
+game: 伽马攻击
+file: 伽马攻击.a26
+assets.box_front: Imgs/伽马攻击.png
+description: 《伽马攻击》，由 Gammation 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Gammation
+genre: Action
+players: 2
+game: 侠盗罗宾汉
+file: 侠盗罗宾汉.a26
+assets.box_front: Imgs/侠盗罗宾汉.png
+description: 《侠盗罗宾汉》，由 Xonox 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Xonox
+genre: Action
+players: 2
+game: 先睹为快
+file: 先睹为快.a26
+assets.box_front: Imgs/先睹为快.png
+description: 《先睹为快》，由 U.S. Games 出品，益智类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: U.S. Games
+genre: Puzzle
+players: 2
+game: 光枪3D
+file: 光枪3D.a26
+assets.box_front: Imgs/光枪3D.png
+description: 《光枪3D》，由 U.S. Games Corporation / Vidtec 出品，射击类游戏，Atari 2600 平台，单人游玩。
+publisher: U.S. Games Corporation / Vidtec
+genre: Shooter
+players: 1
+game: 兔兔冒险
+file: 兔兔冒险.a26
+assets.box_front: Imgs/兔兔冒险.png
+description: 《兔兔冒险》，由 Starpath Corporation 出品，1983 年发行，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Starpath Corporation
+release: 1983
+genre: Action
+players: 2
+game: 兔八哥
+file: 兔八哥.a26
+assets.box_front: Imgs/兔八哥.png
+description: 《兔八哥》，由 Atari2600.com 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari2600.com
+genre: Action
+players: 2
+game: 兔子跳跃
+file: 兔子跳跃.a26
+assets.box_front: Imgs/兔子跳跃.png
+description: 《兔子跳跃》，由 Tigervision 出品，平台跳跃类游戏，Atari 2600 平台，单人游玩。
+publisher: Tigervision
+genre: Platform
+players: 1
+game: 兰斯洛特爵士
+file: 兰斯洛特爵士.a26
+assets.box_front: Imgs/兰斯洛特爵士.png
+description: 《兰斯洛特爵士》，由 Xonox 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Xonox
+genre: Action
+players: 1
+game: 农家乐
+file: 农家乐.a26
+assets.box_front: Imgs/农家乐.png
+description: 《农家乐》，由 Home Vision 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Home Vision
+genre: Action
+players: 1
+game: 冠军足球
+file: 冠军足球.a26
+assets.box_front: Imgs/冠军足球.png
+description: 《冠军足球》，由 Atari 出品，体育类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Sports
+players: 2
+game: 冲击
+file: 冲击.a26
+assets.box_front: Imgs/冲击.png
+description: 《冲击》，由 Telesys 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Telesys
+genre: Action
+players: 2
+game: 冲刺大师
+file: 冲刺大师.a26
+assets.box_front: Imgs/冲刺大师.png
+description: 《冲刺大师》，由 Atari 出品，竞速类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Racing
+players: 2
+game: 凤凰猎人
+file: 凤凰猎人.a26
+assets.box_front: Imgs/凤凰猎人.png
+description: 《凤凰猎人》，由 Coleco Industries, Inc. 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Coleco Industries, Inc.
+genre: Action
+players: 2
+game: 切片蛋糕
+file: 切片蛋糕.a26
+assets.box_front: Imgs/切片蛋糕.png
+description: 《切片蛋糕》，由 U.S. Games 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: U.S. Games
+genre: Action
+players: 1
+game: 刚果冒险
+file: 刚果冒险.a26
+assets.box_front: Imgs/刚果冒险.png
+description: 《刚果冒险》，由 SEGA 出品，平台跳跃类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: SEGA
+genre: Platform
+players: 2
+game: 创 历险记
+file: 创 历险记.a26
+assets.box_front: Imgs/创 历险记.png
+description: 《创 历险记》，Atari 2600 平台。
+game: 创 死亡游戏
+file: 创 死亡游戏.a26
+assets.box_front: Imgs/创 死亡游戏.png
+description: 《创 死亡游戏》，Atari 2600 平台。
+game: 创世纪3D
+file: 创世纪3D.a26
+assets.box_front: Imgs/创世纪3D.png
+description: 《创世纪3D》，由 Amiga 出品，动作类游戏，Atari 2600 平台。
+publisher: Amiga
+genre: Action
+game: 动物园游戏
+file: 动物园游戏.a26
+assets.box_front: Imgs/动物园游戏.png
+description: 《动物园游戏》，由 Home Vision 出品，平台跳跃类游戏，Atari 2600 平台，单人游玩。
+publisher: Home Vision
+genre: Platform
+players: 1
+game: 午夜狂飙
+file: 午夜狂飙.a26
+assets.box_front: Imgs/午夜狂飙.png
+description: 《午夜狂飙》，由 Atari 出品，1980 年发行，竞速类游戏，Atari 2600 平台，单人游玩。
+publisher: Atari
+release: 1980
+genre: Racing
+players: 1
+game: 午夜魔法
+file: 午夜魔法.a26
+assets.box_front: Imgs/午夜魔法.png
+description: 《午夜魔法》，由 Atari 出品，Various类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Various
+players: 2
+game: 单词游戏
+file: 单词游戏.a26
+assets.box_front: Imgs/单词游戏.png
+description: 《单词游戏》，由 U.S. Games 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: U.S. Games
+genre: Action
+players: 2
+game: 单身派对 燃烧欲望
+file: 单身派对 燃烧欲望.a26
+assets.box_front: Imgs/单身派对 燃烧欲望.png
+description: 《单身派对 燃烧欲望》，Atari 2600 平台。
+game: 单身派对
+file: 单身派对.a26
+assets.box_front: Imgs/单身派对.png
+description: 《单身派对》，由 Mystique 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Mystique
+genre: Action
+players: 2
+game: 卫星杀手
+file: 卫星杀手.a26
+assets.box_front: Imgs/卫星杀手.png
+description: 《卫星杀手》，由 Starpath Corporation 出品，1982 年发行，动作类游戏，Atari 2600 平台。
+publisher: Starpath Corporation
+release: 1982
+genre: Action
+game: 反应堆
+file: 反应堆.a26
+assets.box_front: Imgs/反应堆.png
+description: 《反应堆》，由 Parker Brothers 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Parker Brothers
+genre: Action
+players: 1
+game: 反斗星
+file: 反斗星.a26
+assets.box_front: Imgs/反斗星.png
+description: 《反斗星》，由 Fox Video Games 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Fox Video Games
+genre: Action
+players: 1
+game: 哨兵
+file: 哨兵.a26
+assets.box_front: Imgs/哨兵.png
+description: 《哨兵》，由 Atari 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Atari
+genre: Action
+players: 1
+game: 喷火战斗机
+file: 喷火战斗机.a26
+assets.box_front: Imgs/喷火战斗机.png
+description: 《喷火战斗机》，由 Milton Bradley Co. 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Milton Bradley Co.
+genre: Action
+players: 1
+game: 嘟先生
+file: 嘟先生.a26
+assets.box_front: Imgs/嘟先生.png
+description: 《嘟先生》，由 Coleco Industries, Inc. 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Coleco Industries, Inc.
+genre: Action
+players: 1
+game: 嘟先生的城堡
+file: 嘟先生的城堡.a26
+assets.box_front: Imgs/嘟先生的城堡.png
+description: 《嘟先生的城堡》，由 Parker Brothers 出品，1984 年发行，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Parker Brothers
+release: 1984
+genre: Action
+players: 1
+game: 困惑迷宫
+file: 困惑迷宫.a26
+assets.box_front: Imgs/困惑迷宫.png
+description: 《困惑迷宫》，由 Datatech 出品，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Datatech
+players: 2
+game: 图坦卡门
+file: 图坦卡门.a26
+assets.box_front: Imgs/图坦卡门.png
+description: 《图坦卡门》，由 Parker Brothers 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Parker Brothers
+genre: Action
+players: 2
+game: 地下空间
+file: 地下空间.a26
+assets.box_front: Imgs/地下空间.png
+description: 《地下空间》，由 Imagic 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Imagic
+genre: Action
+players: 2
+game: 地穴埋葬
+file: 地穴埋葬.a26
+assets.box_front: Imgs/地穴埋葬.png
+description: 《地穴埋葬》，由 U.S. Games 出品，策略类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: U.S. Games
+genre: Strategy
+players: 2
+game: 坏鸭子
+file: 坏鸭子.a26
+assets.box_front: Imgs/坏鸭子.png
+description: 《坏鸭子》，由 Fox Video Games 出品，射击类游戏，Atari 2600 平台，单人游玩。
+publisher: Fox Video Games
+genre: Shooter
+players: 1
+game: 基础数学
+file: 基础数学.a26
+assets.box_front: Imgs/基础数学.png
+description: 《基础数学》，由 Atari 出品，教育类游戏，Atari 2600 平台，单人游玩。
+publisher: Atari
+genre: Educational
+players: 1
+game: 基础编程
+file: 基础编程.a26
+assets.box_front: Imgs/基础编程.png
+description: 《基础编程》，由 Atari 出品，Various类游戏，Atari 2600 平台，单人游玩。
+publisher: Atari
+genre: Various
+players: 1
+game: 夏季运动会
+file: 夏季运动会.a26
+assets.box_front: Imgs/夏季运动会.png
+description: 《夏季运动会》，由 Epyx 出品，体育类游戏，Atari 2600 平台，支持 8-8 人游玩。
+publisher: Epyx
+genre: Sports
+players: 8
+game: 外星人
+file: 外星人.a26
+assets.box_front: Imgs/外星人.png
+description: 《外星人》，由 Fox Video Games 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Fox Video Games
+genre: Action
+players: 1
+game: 外星人迷宫
+file: 外星人迷宫.a26
+assets.box_front: Imgs/外星人迷宫.png
+description: 《外星人迷宫》，由 Skill Screen Games 出品，策略类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Skill Screen Games
+genre: Strategy
+players: 2
+game: 外星危机
+file: 外星危机.a26
+assets.box_front: Imgs/外星危机.png
+description: 《外星危机》，由 AtariAge 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: AtariAge
+genre: Action
+players: 2
+game: 大逃亡
+file: 大逃亡.a26
+assets.box_front: Imgs/大逃亡.png
+description: 《大逃亡》，由 Bomb 出品，1983 年发行，Shoot'em Up类游戏，Atari 2600 平台，单人游玩。
+publisher: Bomb
+release: 1983
+genre: Shoot'em Up
+players: 1
+game: 奥斯卡捡垃圾
+file: 奥斯卡捡垃圾.a26
+assets.box_front: Imgs/奥斯卡捡垃圾.png
+description: 《奥斯卡捡垃圾》，由 Atari 出品，竞速类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Racing
+players: 2
+game: 奥贝里克斯
+file: 奥贝里克斯.a26
+assets.box_front: Imgs/奥贝里克斯.png
+description: 《奥贝里克斯》，由 Atari 出品，1983 年发行，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Atari
+release: 1983
+genre: Action
+players: 1
+game: 安古纳冒险2600
+file: 安古纳冒险2600.bin
+assets.box_front: Imgs/安古纳冒险2600.png
+description: 《安古纳冒险2600》，由 Bite The Chili 出品，冒险类游戏，Atari 2600 平台，单人游玩。
+publisher: Bite The Chili
+genre: Adventure
+players: 1
+game: 密码破译
+file: 密码破译.a26
+assets.box_front: Imgs/密码破译.png
+description: 《密码破译》，由 Atari 出品，益智类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Puzzle
+players: 2
+game: 射击场
+file: 射击场.a26
+assets.box_front: Imgs/射击场.png
+description: 《射击场》，由 Imagic 出品，Shoot'em Up类游戏，Atari 2600 平台，单人游玩。
+publisher: Imagic
+genre: Shoot'em Up
+players: 1
+game: 尼克萨挑战
+file: 尼克萨挑战.a26
+assets.box_front: Imgs/尼克萨挑战.png
+description: 《尼克萨挑战》，由 Spectravision 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Spectravision
+genre: Action
+players: 1
+game: 山魔王
+file: 山魔王.a26
+assets.box_front: Imgs/山魔王.png
+description: 《山魔王》，由 CBS Software 出品，平台跳跃类游戏，Atari 2600 平台，单人游玩。
+publisher: CBS Software
+genre: Platform
+players: 1
+game: 峡谷轰炸
+file: 峡谷轰炸.a26
+assets.box_front: Imgs/峡谷轰炸.png
+description: 《峡谷轰炸》，由 Atari 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Action
+players: 2
+game: 巫师
+file: 巫师.a26
+assets.box_front: Imgs/巫师.png
+description: 《巫师》，由 Atari 出品，动作类游戏，Atari 2600 平台。
+publisher: Atari
+genre: Action
+game: 巫师沃尔
+file: 巫师沃尔.a26
+assets.box_front: Imgs/巫师沃尔.png
+description: 《巫师沃尔》，由 CBS Software 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: CBS Software
+genre: Action
+players: 2
+game: 幻影坦克
+file: 幻影坦克.a26
+assets.box_front: Imgs/幻影坦克.png
+description: 《幻影坦克》，由 Zimag 出品，Shoot'em Up类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Zimag
+genre: Shoot'em Up
+players: 2
+game: 庞贝古城
+file: 庞贝古城.a26
+assets.box_front: Imgs/庞贝古城.png
+description: 《庞贝古城》，由 Apollo, Inc. 出品，Atari 2600 平台。
+publisher: Apollo, Inc.
+game: 弹球撞击
+file: 弹球撞击.a26
+assets.box_front: Imgs/弹球撞击.png
+description: 《弹球撞击》，由 Spectravision 出品，1983 年发行，弹珠台类游戏，Atari 2600 平台，单人游玩。
+publisher: Spectravision
+release: 1983
+genre: Pinball
+players: 1
+game: 快枪手
+file: 快枪手.a26
+assets.box_front: Imgs/快枪手.png
+description: 《快枪手》，由 Atari 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Action
+players: 2
+game: 战争地带
+file: 战争地带.a26
+assets.box_front: Imgs/战争地带.png
+description: 《战争地带》，由 Atari 出品，射击类游戏，Atari 2600 平台，单人游玩。
+publisher: Atari
+genre: Shooter
+players: 1
+game: 战斗任务
+file: 战斗任务.a26
+assets.box_front: Imgs/战斗任务.png
+description: 《战斗任务》，由 Atari 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Action
+players: 2
+game: 战斗任务2
+file: 战斗任务2.a26
+assets.box_front: Imgs/战斗任务2.png
+description: 《战斗任务2》，由 Atari 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Action
+players: 2
+game: 战略X
+file: 战略X.a26
+assets.box_front: Imgs/战略X.png
+description: 《战略X》，由 Konami 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Konami
+genre: Action
+players: 2
+game: 扔蛋大战
+file: 扔蛋大战.a26
+assets.box_front: Imgs/扔蛋大战.png
+description: 《扔蛋大战》，由 U.S. Games 出品，动作类游戏，Atari 2600 平台，支持 4-4 人游玩。
+publisher: U.S. Games
+genre: Action
+players: 4
+game: 扫描战机
+file: 扫描战机.a26
+assets.box_front: Imgs/扫描战机.png
+description: 《扫描战机》，由 SEGA 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: SEGA
+genre: Action
+players: 1
+game: 扫过月球
+file: 扫过月球.a26
+assets.box_front: Imgs/扫过月球.png
+description: 《扫过月球》，由 Imagic 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Imagic
+genre: Action
+players: 2
+game: 拳击
+file: 拳击.a26
+assets.box_front: Imgs/拳击.png
+description: 《拳击》，由 Activision 出品，1980 年发行，体育类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Activision
+release: 1980
+genre: Sports
+players: 2
+game: 拼字游戏
+file: 拼字游戏.a26
+assets.box_front: Imgs/拼字游戏.png
+description: 《拼字游戏》，由 Atari 出品，Board类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Board
+players: 2
+game: 接礼物
+file: 接礼物.a26
+assets.box_front: Imgs/接礼物.png
+description: 《接礼物》，由 CGE Services Corporation 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: CGE Services Corporation
+genre: Action
+players: 1
+game: 摩天地狱
+file: 摩天地狱.a26
+assets.box_front: Imgs/摩天地狱.png
+description: 《摩天地狱》，由 U.S. Games 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: U.S. Games
+genre: Action
+players: 2
+game: 摩托竞技表演赛
+file: 摩托竞技表演赛.a26
+assets.box_front: Imgs/摩托竞技表演赛.png
+description: 《摩托竞技表演赛》，由 Atari 出品，1990 年发行，竞速类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+release: 1990
+genre: Racing
+players: 2
+game: 摩西分海
+file: 摩西分海.a26
+assets.box_front: Imgs/摩西分海.png
+description: 《摩西分海》，由 Steve Stack, Inc. 出品，1983 年发行，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Steve Stack, Inc.
+release: 1983
+genre: Action
+players: 1
+game: 放火者
+file: 放火者.a26
+assets.box_front: Imgs/放火者.png
+description: 《放火者》，由 Suntek 出品，动作类游戏，Atari 2600 平台。
+publisher: Suntek
+genre: Action
+game: 文字游戏
+file: 文字游戏.a26
+assets.box_front: Imgs/文字游戏.png
+description: 《文字游戏》，由 Selchow & Righter Company 出品，策略类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Selchow & Righter Company
+genre: Strategy
+players: 2
+game: 无法逃脱
+file: 无法逃脱.a26
+assets.box_front: Imgs/无法逃脱.png
+description: 《无法逃脱》，由 Imagic 出品，1983 年发行，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Imagic
+release: 1983
+genre: Action
+players: 2
+game: 无路可退
+file: 无路可退.a26
+assets.box_front: Imgs/无路可退.png
+description: 《无路可退》，由 Apollo, Inc. 出品，策略类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Apollo, Inc.
+genre: Strategy
+players: 2
+game: 星旋
+file: 星旋.a26
+assets.box_front: Imgs/星旋.png
+description: 《星旋》，由 Tigervision 出品，1983 年发行，射击类游戏，Atari 2600 平台，单人游玩。
+publisher: Tigervision
+release: 1983
+genre: Shooter
+players: 1
+game: 星枪
+file: 星枪.a26
+assets.box_front: Imgs/星枪.png
+description: 《星枪》，由 Telesys 出品，1982 年发行，Shoot'em Up类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Telesys
+release: 1982
+genre: Shoot'em Up
+players: 2
+game: 星爆
+file: 星爆.a26
+assets.box_front: Imgs/星爆.png
+description: 《星爆》，由 M Network 出品，射击类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: M Network
+genre: Shooter
+players: 2
+game: 星球外传 死星之战
+file: 星球外传 死星之战.a26
+assets.box_front: Imgs/星球外传 死星之战.png
+description: 《星球外传 死星之战》，Atari 2600 平台。
+game: 星球大战 帝国反击战
+file: 星球大战 帝国反击战.a26
+assets.box_front: Imgs/星球大战 帝国反击战.png
+description: 《星球大战 帝国反击战》，Atari 2600 平台。
+game: 星球大战 绝地竞技场
+file: 星球大战 绝地竞技场.a26
+assets.box_front: Imgs/星球大战 绝地竞技场.png
+description: 《星球大战 绝地竞技场》，Atari 2600 平台。
+game: 星球大战 街机版
+file: 星球大战 街机版.a26
+assets.box_front: Imgs/星球大战 街机版.png
+description: 《星球大战 街机版》，Atari 2600 平台。
+game: 星球巡逻队
+file: 星球巡逻队.a26
+assets.box_front: Imgs/星球巡逻队.png
+description: 《星球巡逻队》，由 Spectravision 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Spectravision
+genre: Action
+players: 2
+game: 星球打击
+file: 星球打击.a26
+assets.box_front: Imgs/星球打击.png
+description: 《星球打击》，由 Mattel Electronics 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Mattel Electronics
+genre: Action
+players: 1
+game: 星际之门
+file: 星际之门.a26
+assets.box_front: Imgs/星际之门.png
+description: 《星际之门》，由 Atari 出品，1984 年发行，射击类游戏，Atari 2600 平台，单人游玩。
+publisher: Atari
+release: 1984
+genre: Shooter
+players: 1
+game: 星际尊者
+file: 星际尊者.a26
+assets.box_front: Imgs/星际尊者.png
+description: 《星际尊者》，由 Activision 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Activision
+genre: Action
+players: 1
+game: 星际旅行者
+file: 星际旅行者.a26
+assets.box_front: Imgs/星际旅行者.png
+description: 《星际旅行者》，由 Imagic 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Imagic
+genre: Action
+players: 2
+game: 星际火狐
+file: 星际火狐.a26
+assets.box_front: Imgs/星际火狐.png
+description: 《星际火狐》，由 Mythicon, Inc. 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Mythicon, Inc.
+genre: Action
+players: 2
+game: 星际突击
+file: 星际突击.a26
+assets.box_front: Imgs/星际突击.png
+description: 《星际突击》，由 Atari 出品，策略类游戏，Atari 2600 平台，单人游玩。
+publisher: Atari
+genre: Strategy
+players: 1
+game: 星际迷航 恒星轨迹
+file: 星际迷航 恒星轨迹.a26
+assets.box_front: Imgs/星际迷航 恒星轨迹.png
+description: 《星际迷航 恒星轨迹》，Atari 2600 平台。
+game: 星际迷航 模拟战略行动
+file: 星际迷航 模拟战略行动.a26
+assets.box_front: Imgs/星际迷航 模拟战略行动.png
+description: 《星际迷航 模拟战略行动》，Atari 2600 平台。
+game: 星际飞船 外太空
+file: 星际飞船 外太空.a26
+assets.box_front: Imgs/星际飞船 外太空.png
+description: 《星际飞船 外太空》，Atari 2600 平台。
+game: 月球巡逻队
+file: 月球巡逻队.a26
+assets.box_front: Imgs/月球巡逻队.png
+description: 《月球巡逻队》，由 Atari 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Action
+players: 2
+game: 木筏骑士
+file: 木筏骑士.a26
+assets.box_front: Imgs/木筏骑士.png
+description: 《木筏骑士》，由 U.S. Games 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: U.S. Games
+genre: Action
+players: 1
+game: 末日之屋
+file: 末日之屋.a26
+assets.box_front: Imgs/末日之屋.png
+description: 《末日之屋》，由 CommaVid, Inc. 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: CommaVid, Inc.
+genre: Action
+players: 1
+game: 机器人战争
+file: 机器人战争.a26
+assets.box_front: Imgs/机器人战争.png
+description: 《机器人战争》，由 Atari 出品，射击类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Shooter
+players: 2
+game: 权力之王
+file: 权力之王.a26
+assets.box_front: Imgs/权力之王.png
+description: 《权力之王》，由 Philips Interactive Media 出品，Atari 2600 平台，单人游玩。
+publisher: Philips Interactive Media
+players: 1
+game: 森林
+file: 森林.a26
+assets.box_front: Imgs/森林.png
+description: 《森林》，由 Sancho 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Sancho
+genre: Action
+players: 1
+game: 横冲直撞
+file: 横冲直撞.a26
+assets.box_front: Imgs/横冲直撞.png
+description: 《横冲直撞》，由 Activision 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Activision
+genre: Action
+players: 2
+game: 橄榄球
+file: 橄榄球.a26
+assets.box_front: Imgs/橄榄球.png
+description: 《橄榄球》，由 Atari 出品，1978 年发行，体育类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+release: 1978
+genre: Sports
+players: 2
+game: 欧米茄赛车
+file: 欧米茄赛车.a26
+assets.box_front: Imgs/欧米茄赛车.png
+description: 《欧米茄赛车》，由 CBS Software 出品，1983 年发行，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: CBS Software
+release: 1983
+genre: Action
+players: 2
+game: 沙丘
+file: 沙丘.a26
+assets.box_front: Imgs/沙丘.png
+description: 《沙丘》，由 Atari 出品，策略类游戏，Atari 2600 平台。
+publisher: Atari
+genre: Strategy
+game: 沙漠猎鹰
+file: 沙漠猎鹰.a26
+assets.box_front: Imgs/沙漠猎鹰.png
+description: 《沙漠猎鹰》，由 Atari 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Action
+players: 2
+game: 泡泡
+file: 泡泡.a26
+assets.box_front: Imgs/泡泡.png
+description: 《泡泡》，由 First Star Software 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: First Star Software
+genre: Action
+players: 1
+game: 派对游戏组合
+file: 派对游戏组合.a26
+assets.box_front: Imgs/派对游戏组合.png
+description: 《派对游戏组合》，由 Starpath Corporation 出品，动作类游戏，Atari 2600 平台，支持 4-4 人游玩。
+publisher: Starpath Corporation
+genre: Action
+players: 4
+game: 海军战争
+file: 海军战争.a26
+assets.box_front: Imgs/海军战争.png
+description: 《海军战争》，由 Konami 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Konami
+genre: Action
+players: 2
+game: 海底冒险
+file: 海底冒险.a26
+assets.box_front: Imgs/海底冒险.png
+description: 《海底冒险》，由 Imagic 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Imagic
+genre: Action
+players: 1
+game: 海怪
+file: 海怪.a26
+assets.box_front: Imgs/海怪.png
+description: 《海怪》，由 Bit Corp. 出品，1983 年发行，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Bit Corp.
+release: 1983
+genre: Action
+players: 2
+game: 消防员
+file: 消防员.a26
+assets.box_front: Imgs/消防员.png
+description: 《消防员》，由 Imagic 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Imagic
+genre: Action
+players: 1
+game: 涡轮增压
+file: 涡轮增压.a26
+assets.box_front: Imgs/涡轮增压.png
+description: 《涡轮增压》，Atari 2600 平台。
+game: 深水炸弹
+file: 深水炸弹.a26
+assets.box_front: Imgs/深水炸弹.png
+description: 《深水炸弹》，由 Amiga 出品，Shoot'em Up类游戏，Atari 2600 平台。
+publisher: Amiga
+genre: Shoot'em Up
+game: 深海探索
+file: 深海探索.a26
+assets.box_front: Imgs/深海探索.png
+description: 《深海探索》，由 Activision 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Activision
+genre: Action
+players: 2
+game: 滑板小子
+file: 滑板小子.a26
+assets.box_front: Imgs/滑板小子.png
+description: 《滑板小子》，由 Absolute Entertainment 出品，体育类游戏，Atari 2600 平台，单人游玩。
+publisher: Absolute Entertainment
+genre: Sports
+players: 1
+game: 滑雪
+file: 滑雪.a26
+assets.box_front: Imgs/滑雪.png
+description: 《滑雪》，由 Activision 出品，体育类游戏，Atari 2600 平台，单人游玩。
+publisher: Activision
+genre: Sports
+players: 1
+game: 滑雪大亨
+file: 滑雪大亨.a26
+assets.box_front: Imgs/滑雪大亨.png
+description: 《滑雪大亨》，由 Amiga 出品，体育类游戏，Atari 2600 平台，单人游玩。
+publisher: Amiga
+genre: Sports
+players: 1
+game: 滑雪道
+file: 滑雪道.a26
+assets.box_front: Imgs/滑雪道.png
+description: 《滑雪道》，由 Suntek 出品，1983 年发行，体育类游戏，Atari 2600 平台。
+publisher: Suntek
+release: 1983
+genre: Sports
+game: 火球
+file: 火球.a26
+assets.box_front: Imgs/火球.png
+description: 《火球》，由 Starpath 出品，动作类游戏，Atari 2600 平台，支持 4-4 人游玩。
+publisher: Starpath
+genre: Action
+players: 4
+game: 炮兵对决
+file: 炮兵对决.a26
+assets.box_front: Imgs/炮兵对决.png
+description: 《炮兵对决》，由 Xonox 出品，1983 年发行，策略类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Xonox
+release: 1983
+genre: Strategy
+players: 2
+game: 炸窝
+file: 炸窝.a26
+assets.box_front: Imgs/炸窝.png
+description: 《炸窝》，由 Activision 出品，Shoot'em Up类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Activision
+genre: Shoot'em Up
+players: 2
+game: 燃烧欲望
+file: 燃烧欲望.a26
+assets.box_front: Imgs/燃烧欲望.png
+description: 《燃烧欲望》，由 Mystique 出品，Various类游戏，Atari 2600 平台，单人游玩。
+publisher: Mystique
+genre: Various
+players: 1
+game: 爱心小熊
+file: 爱心小熊.a26
+assets.box_front: Imgs/爱心小熊.png
+description: 《爱心小熊》，由 Parker Brothers 出品，动作类游戏，Atari 2600 平台。
+publisher: Parker Brothers
+genre: Action
+game: 狂奔
+file: 狂奔.a26
+assets.box_front: Imgs/狂奔.png
+description: 《狂奔》，由 Atari 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Atari
+genre: Action
+players: 1
+game: 瓦比特
+file: 瓦比特.a26
+assets.box_front: Imgs/瓦比特.png
+description: 《瓦比特》，由 Apollo, Inc. 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Apollo, Inc.
+genre: Action
+players: 2
+game: 电子生活
+file: 电子生活.a26
+assets.box_front: Imgs/电子生活.png
+description: 《电子生活》，由 CommaVid, Inc. 出品，模拟类游戏，Atari 2600 平台，单人游玩。
+publisher: CommaVid, Inc.
+genre: Simulation
+players: 1
+game: 电子魔方
+file: 电子魔方.a26
+assets.box_front: Imgs/电子魔方.png
+description: 《电子魔方》，由 Atari 出品，益智类游戏，Atari 2600 平台，单人游玩。
+publisher: Atari
+genre: Puzzle
+players: 1
+game: 电梯大战
+file: 电梯大战.a26
+assets.box_front: Imgs/电梯大战.png
+description: 《电梯大战》，由 CGE Services Corporation 出品，平台跳跃类游戏，Atari 2600 平台，单人游玩。
+publisher: CGE Services Corporation
+genre: Platform
+players: 1
+game: 电视反射锻炼
+file: 电视反射锻炼.a26
+assets.box_front: Imgs/电视反射锻炼.png
+description: 《电视反射锻炼》，由 Exus Corporation 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Exus Corporation
+genre: Action
+players: 1
+game: 电视慢跑游戏
+file: 电视慢跑游戏.a26
+assets.box_front: Imgs/电视慢跑游戏.png
+description: 《电视慢跑游戏》，由 Exus Corporation 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Exus Corporation
+genre: Action
+players: 1
+game: 疯狂攀爬
+file: 疯狂攀爬.a26
+assets.box_front: Imgs/疯狂攀爬.png
+description: 《疯狂攀爬》，由 Atari 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Atari
+genre: Action
+players: 1
+game: 白雪公主
+file: 白雪公主.a26
+assets.box_front: Imgs/白雪公主.png
+description: 《白雪公主》，由 CGE Services Corporation 出品，冒险类游戏，Atari 2600 平台，单人游玩。
+publisher: CGE Services Corporation
+genre: Adventure
+players: 1
+game: 百叶窗
+file: 百叶窗.a26
+assets.box_front: Imgs/百叶窗.png
+description: 《百叶窗》，由 Activision 出品，Demo类游戏，Atari 2600 平台。
+publisher: Activision
+genre: Demo
+game: 相互保证毁灭
+file: 相互保证毁灭.a26
+assets.box_front: Imgs/相互保证毁灭.png
+description: 《相互保证毁灭》，由 QuelleSoft 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: QuelleSoft
+genre: Action
+players: 2
+game: 相位巡查
+file: 相位巡查.a26
+assets.box_front: Imgs/相位巡查.png
+description: 《相位巡查》，由 Arcadia Corporation 出品，1982 年发行，射击类游戏，Atari 2600 平台，单人游玩。
+publisher: Arcadia Corporation
+release: 1982
+genre: Shooter
+players: 1
+game: 真实拳击
+file: 真实拳击.a26
+assets.box_front: Imgs/真实拳击.png
+description: 《真实拳击》，由 Atari 出品，体育类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Sports
+players: 2
+game: 真实排球
+file: 真实排球.a26
+assets.box_front: Imgs/真实排球.png
+description: 《真实排球》，由 Atari 出品，体育类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Sports
+players: 2
+game: 真实棒球
+file: 真实棒球.a26
+assets.box_front: Imgs/真实棒球.png
+description: 《真实棒球》，由 Atari 出品，体育类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Sports
+players: 2
+game: 真实橄榄球
+file: 真实橄榄球.a26
+assets.box_front: Imgs/真实橄榄球.png
+description: 《真实橄榄球》，由 Atari 出品，体育类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Sports
+players: 2
+game: 矿工大冒险
+file: 矿工大冒险.a26
+assets.box_front: Imgs/矿工大冒险.png
+description: 《矿工大冒险》，由 Tigervision 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Tigervision
+genre: Action
+players: 1
+game: 矿工大冒险2
+file: 矿工大冒险2.a26
+assets.box_front: Imgs/矿工大冒险2.png
+description: 《矿工大冒险2》，由 Big Five Software 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Big Five Software
+genre: Action
+players: 1
+game: 神经错乱
+file: 神经错乱.a26
+assets.box_front: Imgs/神经错乱.png
+description: 《神经错乱》，由 Amiga 出品，动作类游戏，Atari 2600 平台，支持 4-4 人游玩。
+publisher: Amiga
+genre: Action
+players: 4
+game: 秘密任务
+file: 秘密任务.a26
+assets.box_front: Imgs/秘密任务.png
+description: 《秘密任务》，由 Atari 出品，1989 年发行，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Atari
+release: 1989
+genre: Action
+players: 1
+game: 突袭危机
+file: 突袭危机.a26
+assets.box_front: Imgs/突袭危机.png
+description: 《突袭危机》，由 U.S. Games 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: U.S. Games
+genre: Action
+players: 1
+game: 篮球
+file: 篮球.a26
+assets.box_front: Imgs/篮球.png
+description: 《篮球》，由 Atari 出品，1978 年发行，体育类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+release: 1978
+genre: Sports
+players: 2
+game: 米奇之魔法师学徒
+file: 米奇之魔法师学徒.a26
+assets.box_front: Imgs/米奇之魔法师学徒.png
+description: 《米奇之魔法师学徒》，由 Atari 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Atari
+genre: Action
+players: 1
+game: 翻转棋
+file: 翻转棋.a26
+assets.box_front: Imgs/翻转棋.png
+description: 《翻转棋》，由 Atari 出品，1980 年发行，Board类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+release: 1980
+genre: Board
+players: 2
+game: 老虎机
+file: 老虎机.a26
+assets.box_front: Imgs/老虎机.png
+description: 《老虎机》，由 Atari 出品，Gambling类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Gambling
+players: 2
+game: 脑力游戏
+file: 脑力游戏.a26
+assets.box_front: Imgs/脑力游戏.png
+description: 《脑力游戏》，由 Atari 出品，1978 年发行，教育类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+release: 1978
+genre: Educational
+players: 2
+game: 舞男
+file: 舞男.a26
+assets.box_front: Imgs/舞男.png
+description: 《舞男》，由 Mystique 出品，动作类游戏，Atari 2600 平台。
+publisher: Mystique
+genre: Action
+game: 荒岛惊魂
+file: 荒岛惊魂.a26
+assets.box_front: Imgs/荒岛惊魂.png
+description: 《荒岛惊魂》，由 Starpath Corporation 出品，1983 年发行，冒险类游戏，Atari 2600 平台，单人游玩。
+publisher: Starpath Corporation
+release: 1983
+genre: Adventure
+players: 1
+game: 蓝图
+file: 蓝图.a26
+assets.box_front: Imgs/蓝图.png
+description: 《蓝图》，由 CBS Software 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: CBS Software
+genre: Action
+players: 2
+game: 蓝精灵 快乐的一天
+file: 蓝精灵 快乐的一天.a26
+assets.box_front: Imgs/蓝精灵 快乐的一天.png
+description: 《蓝精灵 快乐的一天》，Atari 2600 平台。
+game: 蓝精灵 格格巫城堡
+file: 蓝精灵 格格巫城堡.a26
+assets.box_front: Imgs/蓝精灵 格格巫城堡.png
+description: 《蓝精灵 格格巫城堡》，Atari 2600 平台。
+game: 蜗牛与松鼠
+file: 蜗牛与松鼠.a26
+assets.box_front: Imgs/蜗牛与松鼠.png
+description: 《蜗牛与松鼠》，由 Bit Corp. 出品，平台跳跃类游戏，Atari 2600 平台，单人游玩。
+publisher: Bit Corp.
+genre: Platform
+players: 1
+game: 蠕虫吃豆
+file: 蠕虫吃豆.a26
+assets.box_front: Imgs/蠕虫吃豆.png
+description: 《蠕虫吃豆》，由 Spectravision 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Spectravision
+genre: Action
+players: 2
+game: 蠕虫大战1
+file: 蠕虫大战1.a26
+assets.box_front: Imgs/蠕虫大战1.png
+description: 《蠕虫大战1》，由 Fox Video Games 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Fox Video Games
+genre: Action
+players: 2
+game: 行星据点
+file: 行星据点.a26
+assets.box_front: Imgs/行星据点.png
+description: 《行星据点》，由 CommaVid, Inc. 出品，Shoot'em Up类游戏，Atari 2600 平台，单人游玩。
+publisher: CommaVid, Inc.
+genre: Shoot'em Up
+players: 1
+game: 行星飞行
+file: 行星飞行.a26
+assets.box_front: Imgs/行星飞行.png
+description: 《行星飞行》，由 SEGA 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: SEGA
+genre: Action
+players: 1
+game: 行李丢失
+file: 行李丢失.a26
+assets.box_front: Imgs/行李丢失.png
+description: 《行李丢失》，由 Apollo, Inc. 出品，1982 年发行，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Apollo, Inc.
+release: 1982
+genre: Action
+players: 2
+game: 街头赛车
+file: 街头赛车.a26
+assets.box_front: Imgs/街头赛车.png
+description: 《街头赛车》，竞速类游戏，Atari 2600 平台。
+genre: Racing
+game: 街机射击
+file: 街机射击.a26
+assets.box_front: Imgs/街机射击.png
+description: 《街机射击》，由 Atari 出品，Lightgun Shooter类游戏，Atari 2600 平台。
+publisher: Atari
+genre: Lightgun Shooter
+game: 街机高尔夫
+file: 街机高尔夫.a26
+assets.box_front: Imgs/街机高尔夫.png
+description: 《街机高尔夫》，由 Atari 出品，体育类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Sports
+players: 2
+game: 袋鼠营救
+file: 袋鼠营救.a26
+assets.box_front: Imgs/袋鼠营救.png
+description: 《袋鼠营救》，由 Atari 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Action
+players: 2
+game: 詹姆斯邦德007
+file: 詹姆斯邦德007.a26
+assets.box_front: Imgs/詹姆斯邦德007.png
+description: 《詹姆斯邦德007》，由 Parker Brothers 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Parker Brothers
+genre: Action
+players: 1
+game: 赛车对决
+file: 赛车对决.a26
+assets.box_front: Imgs/赛车对决.png
+description: 《赛车对决》，由 Sears 出品，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Sears
+players: 2
+game: 赛马游戏
+file: 赛马游戏.a26
+assets.box_front: Imgs/赛马游戏.png
+description: 《赛马游戏》，由 Atari 出品，1980 年发行，体育类游戏，Atari 2600 平台，支持 4-4 人游玩。
+publisher: Atari
+release: 1980
+genre: Sports
+players: 4
+game: 走迷宫
+file: 走迷宫.a26
+assets.box_front: Imgs/走迷宫.png
+description: 《走迷宫》，由 Parker Brothers 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Parker Brothers
+genre: Action
+players: 1
+game: 超级力量
+file: 超级力量.a26
+assets.box_front: Imgs/超级力量.png
+description: 《超级力量》，由 Fox Video Games 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Fox Video Games
+genre: Action
+players: 1
+game: 超级打砖块
+file: 超级打砖块.a26
+assets.box_front: Imgs/超级打砖块.png
+description: 《超级打砖块》，由 Atari 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Action
+players: 2
+game: 超级挑战棒球
+file: 超级挑战棒球.a26
+assets.box_front: Imgs/超级挑战棒球.png
+description: 《超级挑战棒球》，由 Mattel Electronics 出品，体育类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Mattel Electronics
+genre: Sports
+players: 2
+game: 超级挑战橄榄球
+file: 超级挑战橄榄球.a26
+assets.box_front: Imgs/超级挑战橄榄球.png
+description: 《超级挑战橄榄球》，由 Mattel Electronics 出品，体育类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Mattel Electronics
+genre: Sports
+players: 2
+game: 超级棒球
+file: 超级棒球.a26
+assets.box_front: Imgs/超级棒球.png
+description: 《超级棒球》，由 Atari 出品，体育类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Sports
+players: 2
+game: 超级男孩
+file: 超级男孩.a26
+assets.box_front: Imgs/超级男孩.png
+description: 《超级男孩》，由 Dynacom 出品，教育类游戏，Atari 2600 平台。
+publisher: Dynacom
+genre: Educational
+game: 越野摩托
+file: 越野摩托.a26
+assets.box_front: Imgs/越野摩托.png
+description: 《越野摩托》，由 QuelleSoft 出品，竞速类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: QuelleSoft
+genre: Racing
+players: 2
+game: 越野摩托赛
+file: 越野摩托赛.a26
+assets.box_front: Imgs/越野摩托赛.png
+description: 《越野摩托赛》，由 Xonox 出品，竞速类游戏，Atari 2600 平台，单人游玩。
+publisher: Xonox
+genre: Racing
+players: 1
+game: 越野耐力赛
+file: 越野耐力赛.a26
+assets.box_front: Imgs/越野耐力赛.png
+description: 《越野耐力赛》，由 Activision 出品，竞速类游戏，Atari 2600 平台，单人游玩。
+publisher: Activision
+genre: Racing
+players: 1
+game: 运河大战
+file: 运河大战.a26
+assets.box_front: Imgs/运河大战.png
+description: 《运河大战》，由 Activision 出品，1982 年发行，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Activision
+release: 1982
+genre: Action
+players: 2
+game: 运河大战2
+file: 运河大战2.a26
+assets.box_front: Imgs/运河大战2.png
+description: 《运河大战2》，由 Activision 出品，1988 年发行，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Activision
+release: 1988
+genre: Action
+players: 2
+game: 铲除地鼠
+file: 铲除地鼠.a26
+assets.box_front: Imgs/铲除地鼠.png
+description: 《铲除地鼠》，由 U.S. Games 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: U.S. Games
+genre: Action
+players: 2
+game: 闹鬼凶宅
+file: 闹鬼凶宅.a26
+assets.box_front: Imgs/闹鬼凶宅.png
+description: 《闹鬼凶宅》，由 Atari 出品，冒险类游戏，Atari 2600 平台，单人游玩。
+publisher: Atari
+genre: Adventure
+players: 1
+game: 阿尔法光束
+file: 阿尔法光束.a26
+assets.box_front: Imgs/阿尔法光束.png
+description: 《阿尔法光束》，由 Atari 出品，教育类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Educational
+players: 2
+game: 陷阱I 丛林冒险
+file: 陷阱I 丛林冒险.a26
+assets.box_front: Imgs/陷阱I 丛林冒险.png
+description: 《陷阱I 丛林冒险》，Atari 2600 平台。
+game: 陷阱II 失落洞穴
+file: 陷阱II 失落洞穴.a26
+assets.box_front: Imgs/陷阱II 失落洞穴.png
+description: 《陷阱II 失落洞穴》，Atari 2600 平台。
+game: 青蛙抓苍蝇
+file: 青蛙抓苍蝇.a26
+assets.box_front: Imgs/青蛙抓苍蝇.png
+description: 《青蛙抓苍蝇》，由 QuelleSoft 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: QuelleSoft
+genre: Action
+players: 2
+game: 青蛙过河
+file: 青蛙过河.a26
+assets.box_front: Imgs/青蛙过河.png
+description: 《青蛙过河》，由 Parker Brothers 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Parker Brothers
+genre: Action
+players: 2
+game: 青蛙过河2
+file: 青蛙过河2.a26
+assets.box_front: Imgs/青蛙过河2.png
+description: 《青蛙过河2》，由 Parker Brothers 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Parker Brothers
+genre: Action
+players: 1
+game: 青蛙过河官方版
+file: 青蛙过河官方版.a26
+assets.box_front: Imgs/青蛙过河官方版.png
+description: 《青蛙过河官方版》，由 Starpath Corporation 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Starpath Corporation
+genre: Action
+players: 2
+game: 飞向太空
+file: 飞向太空.a26
+assets.box_front: Imgs/飞向太空.png
+description: 《飞向太空》，由 Atari 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Atari
+genre: Action
+players: 1
+game: 飞天蜈蚣
+file: 飞天蜈蚣.a26
+assets.box_front: Imgs/飞天蜈蚣.png
+description: 《飞天蜈蚣》，由 Atari 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Atari
+genre: Action
+players: 1
+game: 飞盘射击
+file: 飞盘射击.a26
+assets.box_front: Imgs/飞盘射击.png
+description: 《飞盘射击》，由 Apollo, Inc. 出品，1981 年发行，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Apollo, Inc.
+release: 1981
+genre: Action
+players: 2
+game: 飞碟
+file: 飞碟.a26
+assets.box_front: Imgs/飞碟.png
+description: 《飞碟》，由 Bomb 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Bomb
+genre: Action
+players: 2
+game: 飞碟敢死队
+file: 飞碟敢死队.a26
+assets.box_front: Imgs/飞碟敢死队.png
+description: 《飞碟敢死队》，由 Syncro 出品，Shoot'em Up类游戏，Atari 2600 平台，单人游玩。
+publisher: Syncro
+genre: Shoot'em Up
+players: 1
+game: 飞鱼导弹
+file: 飞鱼导弹.a26
+assets.box_front: Imgs/飞鱼导弹.png
+description: 《飞鱼导弹》，由 Sancho 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: Sancho
+genre: Action
+players: 1
+game: 飞鼠洛基冒险记
+file: 飞鼠洛基冒险记.a26
+assets.box_front: Imgs/飞鼠洛基冒险记.png
+description: 《飞鼠洛基冒险记》，由 M Network 出品，动作类游戏，Atari 2600 平台，单人游玩。
+publisher: M Network
+genre: Action
+players: 1
+game: 高尔夫球
+file: 高尔夫球.a26
+assets.box_front: Imgs/高尔夫球.png
+description: 《高尔夫球》，由 Atari 出品，体育类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Sports
+players: 2
+game: 魔幻历险
+file: 魔幻历险.a26
+assets.box_front: Imgs/魔幻历险.png
+description: 《魔幻历险》，由 Atari 出品，冒险类游戏，Atari 2600 平台，单人游玩。
+publisher: Atari
+genre: Adventure
+players: 1
+game: 魔方3D
+file: 魔方3D.a26
+assets.box_front: Imgs/魔方3D.png
+description: 《魔方3D》，由 Atari 出品，益智类游戏，Atari 2600 平台。
+publisher: Atari
+genre: Puzzle
+game: 魔法师
+file: 魔法师.a26
+assets.box_front: Imgs/魔法师.png
+description: 《魔法师》，由 Mythicon, Inc. 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Mythicon, Inc.
+genre: Action
+players: 2
+game: 鸟骑士
+file: 鸟骑士.a26
+assets.box_front: Imgs/鸟骑士.png
+description: 《鸟骑士》，由 Atari 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Atari
+genre: Action
+players: 2
+game: 黑帮小巷
+file: 黑帮小巷.a26
+assets.box_front: Imgs/黑帮小巷.png
+description: 《黑帮小巷》，由 Spectravision 出品，动作类游戏，Atari 2600 平台，支持 2-2 人游玩。
+publisher: Spectravision
+genre: Action
+players: 2

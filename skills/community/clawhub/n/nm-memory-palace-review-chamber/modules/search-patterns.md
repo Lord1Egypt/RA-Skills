@@ -8,7 +8,7 @@ The review chamber supports multiple search approaches, building on knowledge-lo
 
 ### 1. Semantic Search
 
-Find entries by meaning, not just keywords.
+Find entries by meaning as well as keywords.
 
 ```bash
 # Find decisions about authentication
@@ -328,6 +328,6 @@ python scripts/palace_manager.py export-reviews \
 ```python
 # Search result limits
 MAX_RESULTS = 50  # Per search
-MAX_DEPTH = 3     # For graph traversal
-TIMEOUT = 5000    # ms for search operations
+MAX_DEPTH = 3  # For graph traversal
+TIMEOUT = 5000  # ms for search operations
 ```

@@ -1,44 +1,55 @@
-## Description: <br>
-智能规划中国用户的假期旅行行程，支持法定节假日和自定义假期长度；提供目的地风土人情、景点介绍、历史故事和网红打卡地推荐；当用户需要规划旅行、了解目的地或安排假期行程时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能规划中国用户的假期旅行行程，支持法定节假日和自定义假期长度；提供目的地风土人情、景点介绍、历史故事和网红打卡地推荐；当用户需要规划旅行、了解目的地或安排假期行程时使用
 
-## Publisher: <br>
-[ludiansheng](https://clawhub.ai/user/ludiansheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ludiansheng](https://clawhub.ai/user/ludiansheng)
 
-## Use Case: <br>
-External users use this skill to plan holiday trips for Chinese travelers by collecting dates, destination, traveler count, budget, transportation, lodging, food, and accessibility preferences. The skill produces destination guidance and day-by-day itineraries with pacing, transport, meal, lodging, ticket, and booking reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel prices, tickets, schedules, opening hours, and availability may change after an itinerary is generated. <br>
-Mitigation: Independently verify live prices, tickets, schedules, and opening hours with official providers before booking or traveling. <br>
-Risk: Trip planning conversations can involve sensitive personal or payment information. <br>
-Mitigation: Avoid sharing passport numbers, ID numbers, payment details, account credentials, or other sensitive identifiers. <br>
-Risk: Generated itineraries and destination recommendations may not fully match traveler health, accessibility, budget, weather, or crowd constraints. <br>
-Mitigation: Review the plan before relying on it, adjust pacing and constraints, and confirm suitability for all travelers. <br>
+## Use Case:
 
+External Chinese-speaking travelers use this skill to plan holiday trips, compare destinations, and turn holiday length, destination, party size, budget, and travel preferences into practical itineraries. It is especially oriented toward Chinese statutory holidays and custom vacation periods.
 
-## Reference(s): <br>
-- [中国法定节假日与常见假期参考](references/chinese-holidays.md) <br>
-- [目的地类型规划要点](references/destination-types.md) <br>
-- [行程输出模板](references/trip-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown itineraries, destination guidance, tables, checklists, and follow-up questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only conversational output; no code execution, credentials, or privileged access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata) <br>
+Risk: The skill assumes Chinese public holidays and Chinese-language travel-planning conventions by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell the agent explicitly when planning for another country, calendar, or output language.
+
+Risk: Travel details such as transport schedules, ticket prices, restaurant availability, weather, and attraction opening hours can change.
+
+Mitigation: Verify time-sensitive travel details with current official or booking sources before making reservations or departing.
+
+## Reference(s):
+
+- [中国法定节假日与常见假期参考](references/chinese-holidays.md)
+- [目的地类型规划要点](references/destination-types.md)
+- [行程输出模板](references/trip-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown itinerary guidance with tables and structured lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Conversational output may include itinerary options, booking reminders, destination background, budget estimates, and adjustment prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

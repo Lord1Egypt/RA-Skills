@@ -1,40 +1,53 @@
-## Description: <br>
-Auto-discovers and maps service dependencies from code, configs, and runtime data, then generates dependency graphs, identifies critical paths and single points of failure, and assesses service blast radius. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-discover and map service dependencies from code, configs, and runtime data, then generate dependency graphs, identify critical paths, find single points of failure, and assess blast radius for each service.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to map service dependencies from code, configuration, and runtime data, then identify critical paths, single points of failure, and blast radius during architecture review or incident planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Runtime discovery can expose internal service names, endpoints, ports, and topology. <br>
-Mitigation: Use approved repositories and a least-privileged read-only Kubernetes context, confirm the target cluster before runtime discovery, and redact infrastructure details before sharing generated maps. <br>
-Risk: The artifact is tagged with unrelated purchase and crypto capability labels. <br>
-Mitigation: Do not grant purchase or crypto authority based on this skill; scope the agent to read-oriented service mapping actions only. <br>
+## Use Case:
 
+Developers, platform engineers, SREs, and incident responders use this skill to map service dependencies, visualize architecture, identify fragile paths, and estimate blast radius before or during reliability planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/service-dependency-mapper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, Python, and diagram-format examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces dependency maps, blast-radius tables, critical-path notes, architecture health guidance, and diagram formats such as Mermaid, DOT, PlantUML, and D2.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Discovery output can expose internal service names, URLs, connection strings, or deployment topology.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in the intended repository and Kubernetes context, and review generated maps before sharing them outside the approved team.
+
+Risk: Dependency and blast-radius conclusions may be incomplete when code, configuration, runtime traffic, or cluster access is partial.
+
+Mitigation: Validate proposed dependency graphs and critical paths with service owners, telemetry, and current deployment data before using them for incident or architecture decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/skills/service-dependency-mapper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands, code snippets, dependency graphs, diagram formats, tables, and analysis notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Mermaid, DOT, PlantUML, or D2 diagram text and blast-radius or architecture health tables.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

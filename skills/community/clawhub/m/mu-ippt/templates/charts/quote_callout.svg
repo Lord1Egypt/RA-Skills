@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+    <!--
+    Quote Callout 模板
+    用途: 引用/金句页——展示一句核心观点/引语，适合开场白或段落强调
+    适用场景: 演讲开场、章节过渡、领导寄语、用户证言、核心洞察强调
+    布局: 蓝色渐变背景 + 超大引号装饰 + 核心文字居中 + 署名行 + 底部色条
+    -->
+
+    <defs>
+        <!-- 蓝色品牌渐变背景 -->
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#1565C0;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#1976D2;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#2196F3;stop-opacity:1" />
+        </linearGradient>
+
+        <!-- 引号发光效果 -->
+        <filter id="quoteGlow" x="-10%" y="-10%" width="120%" height="120%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="12"/>
+            <feOffset dx="0" dy="0"/>
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="0.3"/>
+            </feComponentTransfer>
+            <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+
+        <!-- 卡片阴影 -->
+        <filter id="cardShadow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+            <feOffset dx="0" dy="3" result="offsetblur"/>
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="0.15"/>
+            </feComponentTransfer>
+            <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+
+        <!-- 底部色条渐变 -->
+        <linearGradient id="barGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#FFD100;stop-opacity:1" />
+            <stop offset="40%" style="stop-color:#FF9800;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#FF5722;stop-opacity:0.6" />
+        </linearGradient>
+    </defs>
+
+    <!-- 背景 -->
+    <rect width="1280" height="720" fill="url(#bgGrad)"/>
+
+    <!-- 背景圆形装饰 - 左上 -->
+    <circle cx="-40" cy="-20" r="280" fill="#FFFFFF" fill-opacity="0.03"/>
+    <circle cx="-40" cy="-20" r="200" fill="#FFFFFF" fill-opacity="0.03"/>
+    <!-- 背景圆形装饰 - 右下 -->
+    <circle cx="1340" cy="760" r="300" fill="#FFFFFF" fill-opacity="0.03"/>
+    <circle cx="1340" cy="760" r="200" fill="#FFFFFF" fill-opacity="0.03"/>
+
+    <!-- 超大左引号（半透明装饰，左上区域） -->
+    <text x="55" y="310" filter="url(#quoteGlow)"
+          font-family="Georgia, 'Times New Roman', serif"
+          font-size="320" font-weight="900" fill="#FFFFFF" fill-opacity="0.07">
+        <tspan>"</tspan>
+    </text>
+
+    <!-- 超大右引号（半透明装饰，右下区域） -->
+    <text x="940" y="660" filter="url(#quoteGlow)"
+          font-family="Georgia, 'Times New Roman', serif"
+          font-size="320" font-weight="900" fill="#FFFFFF" fill-opacity="0.07">
+        <tspan>"</tspan>
+    </text>
+
+    <!-- 顶部小标签 -->
+    <rect x="560" y="80" width="160" height="28" rx="14" fill="#FFFFFF" fill-opacity="0.15"/>
+    <text x="640" y="99" text-anchor="middle"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+          font-size="12" font-weight="600" fill="#FFFFFF" letter-spacing="1.5">
+        <tspan>KEY INSIGHT</tspan>
+    </text>
+
+    <!-- 核心引用文字（第1行） -->
+    <text x="640" y="255" text-anchor="middle"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="44" font-weight="700" fill="#FFFFFF" letter-spacing="-0.5">
+        <tspan>真正的竞争力，</tspan>
+    </text>
+
+    <!-- 核心引用文字（第2行） -->
+    <text x="640" y="315" text-anchor="middle"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="44" font-weight="700" fill="#FFFFFF" letter-spacing="-0.5">
+        <tspan>来自于持续创造用户价值的能力。</tspan>
+    </text>
+
+    <!-- 核心引用文字（第3行，可选） -->
+    <text x="640" y="375" text-anchor="middle"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="44" font-weight="700" fill="#FFD100" letter-spacing="-0.5">
+        <tspan>而不是短暂的市场领先地位。</tspan>
+    </text>
+
+    <!-- 分隔装饰线 -->
+    <line x1="560" y1="415" x2="720" y2="415" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.3"/>
+
+    <!-- 署名行 -->
+    <text x="640" y="455" text-anchor="middle"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="20" fill="#FFFFFF" fill-opacity="0.75" letter-spacing="0.5">
+        <tspan>— 张明远 · 首席执行官</tspan>
+    </text>
+
+    <!-- 日期或场合标注 -->
+    <text x="640" y="485" text-anchor="middle"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+          font-size="14" fill="#FFFFFF" fill-opacity="0.45" letter-spacing="0.5">
+        <tspan>2025年度战略发布会 · 2025.11</tspan>
+    </text>
+
+    <!-- 底部彩色装饰条 -->
+    <rect x="0" y="692" width="1280" height="8" fill="url(#barGrad)" rx="0"/>
+
+    <!-- 底部左侧 logo 占位 / 品牌标识区 -->
+    <rect x="60" y="656" width="3" height="22" rx="1.5" fill="#FFFFFF" fill-opacity="0.4"/>
+    <text x="74" y="672"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+          font-size="13" fill="#FFFFFF" fill-opacity="0.4" letter-spacing="0.5">
+        <tspan>COMPANY NAME</tspan>
+    </text>
+
+    <!-- 底部右侧页码区域 -->
+    <text x="1220" y="672"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+          font-size="13" fill="#FFFFFF" fill-opacity="0.35" text-anchor="end">
+        <tspan>01 / 24</tspan>
+    </text>
+</svg>

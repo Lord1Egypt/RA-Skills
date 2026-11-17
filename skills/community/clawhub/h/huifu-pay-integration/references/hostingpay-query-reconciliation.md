@@ -104,6 +104,7 @@
 | SETTLE_USER_BILL | 用户结算对账单 |
 | SETTLE_BILL_USER_MONTH | 用户月结算对账单 |
 | SETTLE_FUND_BILL | 结算资金对账单 |
+| MERGE_BILL | 合单支付对账单 |
 
 ## 嵌套参数展开
 
@@ -197,6 +198,7 @@ extendInfoMap.put("bill_type", requestDto.getBillType());
 - 如果 `file_details` 为空，优先查看 `task_details`；若 `task_stat=S` 且没有文件，代表前一日无记录。
 - 官方产品介绍 / FAQ 口径说明：常规账单下载链接通常对应压缩文件，压缩包内多为 csv；当单文件记录数超过 `400000` 时，会拆分多个 csv。
 - `SETTLE_FUND_BILL` 的官方模板文件是 `.xlsx`，不要把所有账单都按 csv 解析。
+- `download_url` 是短时预签名凭据，查询参数可能包含 `Signature`、`Expires`、`OSSAccessKeyId`。日志、错误、追踪和工单必须移除 query；下载端固定 HTTPS 和允许 host，禁用跨 host 重定向，限制响应大小、压缩后总大小、文件数量与路径穿越，只接受预期 zip/csv/xlsx 类型。
 
 ### 常见文件名规则
 

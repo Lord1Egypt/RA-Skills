@@ -1,45 +1,57 @@
-## Description: <br>
-A financial-news monitoring skill that presents sample workflows for querying finance news, setting watch alerts, and classifying news sentiment. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Provides demonstration-style financial news queries, keyword monitoring setup output, and simple sentiment labels for investors.
 
-## Publisher: <br>
-[alsoforever](https://clawhub.ai/user/alsoforever) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alsoforever](https://clawhub.ai/user/alsoforever)
 
-## Use Case: <br>
-External users and developers can use this demo skill to understand a financial-news monitoring workflow and generate sample Python calls or console-style output for news queries, watch setup, and sentiment classification. It should not be relied on for current financial news, investment alerts, sentiment analysis, or trading decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill advertises live financial-news aggregation, alerts, and sentiment analysis, but the reviewed artifact behaves as a placeholder demo. <br>
-Mitigation: Treat outputs as examples only and verify all financial news, alerts, sentiment, and investment implications with authoritative external sources. <br>
-Risk: The artifact declares an optional TUSHARE_TOKEN even though reviewed code does not implement live Tushare data access. <br>
-Mitigation: Do not provide API tokens unless a later reviewed version clearly implements live access and explains what data is sent, stored, and notified. <br>
+## Use Case:
 
+External users and developers can use this skill to explore a financial-news monitoring workflow, including sample news lookup, stock or industry keyword monitoring setup, and sentiment labeling. Its outputs should be treated as illustrative unless the publisher connects it to real news retrieval and alerting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alsoforever/financial-news) <br>
-- [Publisher profile](https://clawhub.ai/user/alsoforever) <br>
-- [Skill homepage](https://aigogoai.com) <br>
-- [Finance news sources](https://aigogoai.com/knowledge/news-sources) <br>
-- [News sentiment analysis](https://aigogoai.com/knowledge/sentiment-analysis) <br>
-- [News trading strategy](https://aigogoai.com/knowledge/news-trading) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python snippets and terminal-style text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and pip; TUSHARE_TOKEN is declared optional, but the reviewed artifact does not implement live Tushare access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Users may mistake static sample news, alerts, or sentiment labels for active financial monitoring.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as illustrative, verify market information against current primary sources, and do not rely on the skill for trading or time-sensitive decisions unless real retrieval and alerting are implemented.
+
+Risk: The security review identifies the release as suspicious because it can imply production monitoring behavior that is not present in the artifact.
+
+Mitigation: Disclose the demo-like behavior before deployment and require a publisher update that makes data sources, monitoring behavior, and alert delivery explicit before production use.
+
+## Reference(s):
+
+- [ClawHub Financial News skill page](https://clawhub.ai/alsoforever/skills/financial-news)
+- [Publisher homepage](https://aigogoai.com)
+- [Financial news sources](https://aigogoai.com/knowledge/news-sources)
+- [News sentiment analysis](https://aigogoai.com/knowledge/sentiment-analysis)
+- [News investment strategy](https://aigogoai.com/knowledge/news-trading)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [Markdown-style text with Python examples and console output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference an optional TUSHARE_TOKEN environment variable; demonstrated script output uses static sample data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

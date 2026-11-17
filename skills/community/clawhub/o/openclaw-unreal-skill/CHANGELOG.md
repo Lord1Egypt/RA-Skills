@@ -5,6 +5,41 @@ All notable changes to OpenClaw Unreal Skill will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-09-08
+
+### Added
+- Runtime confirmation gate in the gateway extension: project-changing tools
+  (`actor.create`/`delete`/`setProperty`, `transform.set*`, `component.add`/`remove`,
+  `level.open`/`save`, `asset.import`, `console.execute`, `input.simulate*`, PIE
+  control) are refused unless the gateway was started with
+  `OPENCLAW_EDITOR_ALLOW_DESTRUCTIVE=1` (or `OPENCLAW_UNREAL_ALLOW_DESTRUCTIVE=1`)
+  **and** the call passes `confirm: true`. Unknown tool names fail closed.
+- `dryRun: true` on `unreal_execute` — reports the classification and what would be
+  sent, without sending it
+- `destructiveOperations` state reported by `GET /unreal/status` and by
+  `openclaw unreal status`
+- `tests/gate.test.mjs` and `tests/dist.test.mjs` — gate behaviour, tool wiring and
+  compiled-bundle parity, runnable without an Unreal Editor
+- SKILL.md / SKILL_KO.md "Safety and permissions" section; README safety and
+  development notes
+
+### Changed
+- Read-only tools (`level.getCurrent`, `actor.find`, `transform.get*`,
+  `component.get`, `editor.getState`, `asset.list`, `blueprint.list`,
+  `debug.hierarchy`, `debug.screenshot`, `console.getLogs`, `debug.log`) are
+  unaffected — same behaviour as before
+- Security & Privacy Disclosure now describes the gate instead of guidance alone
+
+## [1.0.1] - 2026-07-08
+
+### Added
+- Frontmatter metadata (name, version, description, `disableModelInvocation: true`)
+- Security & Privacy Disclosure section — HTTP server auth limitation, destructive-operation confirmation guidance, screenshot/log data visibility, safety defaults
+- License section (Apache-2.0)
+
+### Changed
+- Description now discloses full capability surface (actor deletion, console commands, input simulation, captures) and trusted-project guidance
+
 ## [1.0.0] - 2026-02-15
 
 ### Added

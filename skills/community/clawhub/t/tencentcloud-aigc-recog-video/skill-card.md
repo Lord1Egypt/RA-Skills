@@ -1,43 +1,65 @@
-## Description: <br>
-TencentCloud Video AIGC Detection helps agents submit videos to Tencent Cloud VIDEO_AIGC moderation and report whether the service labels them as AI-generated, suspicious, or normal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TencentCloud Video AIGC Detection helps agents submit videos to Tencent Cloud video moderation APIs and retrieve AI-generated video detection results.
 
-## Publisher: <br>
-[shawn233](https://clawhub.ai/user/shawn233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shawn233](https://clawhub.ai/user/shawn233)
 
-## Use Case: <br>
-Developers, content moderation teams, and agents use this skill to create Tencent Cloud AI-generated-video detection tasks, poll asynchronous results, and present Tencent Cloud suggestions for video authenticity review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local-video workflows can upload private files through a separate COS upload step before detection. <br>
-Mitigation: Use URL input where possible, approve any COS upload explicitly, verify the upload skill before installation, and send only media appropriate for Tencent Cloud processing. <br>
-Risk: The skill requires Tencent Cloud API credentials and a BizType to call the video moderation service. <br>
-Mitigation: Use least-privilege or temporary Tencent Cloud credentials, avoid hardcoding secrets, and configure only credentials needed for the intended media review workflow. <br>
+## Use Case:
 
+Developers and agents use this skill to create Tencent Cloud VIDEO_AIGC moderation tasks for video URLs, then query asynchronous task results for synthetic-video or deepfake detection signals.
 
-## Reference(s): <br>
-- [CreateVideoModerationTask API reference](references/create_video_moderation_task_api.md) <br>
-- [DescribeTaskDetail API reference](references/describe_task_detail_api.md) <br>
-- [Tencent Cloud CreateVideoModerationTask documentation](https://cloud.tencent.com/document/product/1265/80017) <br>
-- [Tencent Cloud DescribeTaskDetail documentation](https://cloud.tencent.com/document/product/1265/80016) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates asynchronous Tencent Cloud moderation tasks and reports status, suggestion, labels, confidence scores, and request identifiers from API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Risk: The skill sends analyzed videos to Tencent Cloud services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only when sending the target videos to Tencent Cloud is acceptable for the user, organization, and use case.
+
+Risk: The skill recommends persistent plaintext Tencent Cloud credentials in shell startup files.
+
+Mitigation: Prefer short-lived least-privilege Tencent credentials, avoid storing static SecretKeys in shell startup files, and rotate any key that was stored that way.
+
+Risk: Local-file handling depends on finding and installing a separate Tencent COS upload skill.
+
+Mitigation: Use a reviewed, exact COS upload tool and confirm its configuration before submitting local files for detection.
+
+Risk: Detection output is a Tencent moderation/AIGC signal and may not be definitive proof of authenticity.
+
+Mitigation: Treat Pass, Review, and Block outputs as decision-support signals and apply human review where the result affects important decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shawn233/skills/tencentcloud-aigc-recog-video)
+- [CreateVideoModerationTask API Reference](references/create_video_moderation_task_api.md)
+- [DescribeTaskDetail API Reference](references/describe_task_detail_api.md)
+- [Tencent Cloud CreateVideoModerationTask Documentation](https://cloud.tencent.com/document/product/1265/80017)
+- [Tencent Cloud DescribeTaskDetail Documentation](https://cloud.tencent.com/document/product/1265/80016)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates asynchronous Tencent Cloud moderation tasks and returns task status, suggestions, labels, request IDs, and flagged snapshot or audio segment details when available.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

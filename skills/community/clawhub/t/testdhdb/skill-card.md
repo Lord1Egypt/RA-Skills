@@ -1,44 +1,58 @@
-## Description: <br>
-Install and configure the security-related plugins required by OpenClaw, including the `ai-assistant-security-openclaw` plugins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and configure the security-related plugins required by OpenClaw, including the `ai-assistant-security-openclaw` plugins.
 
-## Publisher: <br>
-[qinjianfenghzau-wq](https://clawhub.ai/user/qinjianfenghzau-wq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qinjianfenghzau-wq](https://clawhub.ai/user/qinjianfenghzau-wq)
 
-## Use Case: <br>
-OpenClaw users and administrators use this skill to install the AI Assistant Security plugin package, start a remote authorization flow, and update local OpenClaw plugin configuration after authorization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer depends on the ClawSentry service and an external OpenClaw plugin package. <br>
-Mitigation: Install only in environments where the ClawSentry service and @omni-shield plugin package are trusted. <br>
-Risk: Login tokens, device fingerprints, and credential-bearing responses may be stored under `.state`. <br>
-Mitigation: Protect or remove `login_state.json` and `poll_login.log` after setup, especially on shared systems. <br>
-Risk: The skill changes local OpenClaw plugin configuration and restarts the OpenClaw gateway. <br>
-Mitigation: Run it in a controlled OpenClaw environment and review configuration changes before using it with sensitive workloads. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to install ClawSentry and the `ai-assistant-security-openclaw` plugin, complete login authorization, and configure local OpenClaw plugin settings for security monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qinjianfenghzau-wq/testdhdb) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Volcengine website](https://www.volcengine.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and login URL guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces installation steps and operational guidance for an OpenClaw environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Risk: The installer stores login state and may log credential-bearing authorization responses locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use restricted file permissions, and prefer a release that redacts logs before writing authorization responses.
+
+Risk: The skill installs a remote plugin, writes service credentials into OpenClaw configuration, and restarts the OpenClaw gateway.
+
+Mitigation: Confirm the plugin package, expected configuration changes, and post-authorization gateway restart before running it on a machine.
+
+Risk: Credential values may be exposed through shell-interpolated configuration commands or local process/audit tooling.
+
+Mitigation: Prefer a version-pinned installer that avoids shell-interpolated configuration updates and clearly reports the changes it made.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qinjianfenghzau-wq/skills/testdhdb)
+- [Volcengine product site](https://www.volcengine.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and login URL text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a login URL and post-authorization verification guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

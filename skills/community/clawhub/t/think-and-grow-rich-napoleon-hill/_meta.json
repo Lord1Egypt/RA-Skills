@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn7b1bjk878xpagxd2x6yandwn889wb8",
-  "slug": "think-and-grow-rich-napoleon-hill",
+  "name": "think-and-grow-rich-napoleon-hill",
+  "title": "Think and Grow Rich",
+  "author": "Napoleon Hill",
   "version": "1.0.0",
-  "publishedAt": 1780928991322
+  "license": "MIT",
+  "tags": ["wealth", "success", "mindset", "self-improvement", "napoleon-hill"],
+  "description": "Napoleon Hill's Think and Grow Rich — an executable toolkit for harnessing the power of thought, desire, and persistence to achieve wealth and success.",
+  "homepage": "https://github.com/jaysonmeng/book-skills/tree/main/skills/think-and-grow-rich-napoleon-hill",
+  "clawhub": {
+    "slug": "think-and-grow-rich-napoleon-hill",
+    "owner": "jaysonmeng"
+  }
 }

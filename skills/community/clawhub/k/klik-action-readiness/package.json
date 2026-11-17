@@ -1,0 +1,8 @@
+{
+  "name": "klik-action-readiness-skill",
+  "version": "1.0.1",
+  "private": true,
+  "scripts": {
+    "test": "node test/validate-skill.mjs"
+  }
+}

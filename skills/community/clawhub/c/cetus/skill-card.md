@@ -1,44 +1,58 @@
-## Description: <br>
-Provides OpenClaw guidance and TypeScript examples for integrating Cetus Protocol SDK v2 modules on Sui. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance and TypeScript examples for using Cetus Protocol SDK v2 modules to build DeFi applications on Sui.
 
-## Publisher: <br>
-[k66inthesky](https://clawhub.ai/user/k66inthesky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[k66inthesky](https://clawhub.ai/user/k66inthesky)
 
-## Use Case: <br>
-Developers building Sui DeFi applications use this skill to reference Cetus SDK v2 packages, initialization patterns, and transaction-building examples across liquidity, swaps, vaults, farms, limit orders, DCA, zap, and aggregation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Transaction examples can create real financial activity on Sui if run against mainnet. <br>
-Mitigation: Use testnet first and verify the network, token amounts, pool or position IDs, slippage, recipients, and contract addresses before approving any transaction. <br>
-Risk: Wallet-signing examples may expose users to unintended approvals or private key handling. <br>
-Mitigation: Never provide a private key or approve signing unless the exact transaction and signing context are understood. <br>
-Risk: Unpinned SDK package versions can change behavior over time. <br>
-Mitigation: Pin package versions where possible when adapting examples into applications. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cetus ClawHub Skill Page](https://clawhub.ai/k66inthesky/cetus) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Cetus Repository Link from README](https://github.com/k66inthesky/cetus) <br>
+## Use Case:
 
+Developers and engineers use this skill as a reference for installing and initializing Cetus SDK v2 packages, building Sui DeFi workflows, and generating transaction payload examples for swaps, liquidity, vaults, farms, orders, and aggregation.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with TypeScript and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; transaction examples may require wallet, network, pool, token, and slippage parameters.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes live on-chain transaction examples that could submit irreversible Sui transactions when used with a real keyPair.
+
+Mitigation: Use testnet or simulation first, and review payloads, amounts, assets, slippage, and irreversibility before allowing any agent to submit a transaction.
+
+Risk: Package and marketplace source confusion could lead users to install or trust the wrong Cetus or ClawHub package.
+
+Mitigation: Verify Cetus SDK package sources and the ClawHub skill source before installing or using generated guidance.
+
+Risk: The README contains unrelated development transcript and local environment details.
+
+Mitigation: Clean the README before redistribution so public documentation contains only release-relevant user guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/k66inthesky/skills/cetus)
+- [Artifact skill guide](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with TypeScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reference-oriented output that includes SDK installation, initialization, utility, and transaction payload examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

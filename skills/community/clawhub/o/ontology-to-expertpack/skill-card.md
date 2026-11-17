@@ -1,43 +1,58 @@
-## Description: <br>
-Convert an Ontology skill knowledge graph into a structured ExpertPack for migration from an entity/relation graph to a portable ExpertPack format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert an Ontology skill knowledge graph into a structured ExpertPack with multi-layer retrieval support, Obsidian-compatible Markdown files, and portable deployment metadata.
 
-## Publisher: <br>
-[brianhearn](https://clawhub.ai/user/brianhearn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brianhearn](https://clawhub.ai/user/brianhearn)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert an OpenClaw Ontology graph.jsonl, and optionally schema.yaml, into an ExpertPack directory for review, refinement, and sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ExpertPack files may include private or sensitive information from the input ontology graph. <br>
-Mitigation: Review the generated Markdown and YAML before committing, publishing, or sharing the ExpertPack. <br>
-Risk: Writing into an existing output directory can mix generated files with prior content. <br>
-Mitigation: Choose a fresh or empty output directory for each conversion run. <br>
-Risk: Documentation claims about Obsidian compatibility and YAML frontmatter may not match the generated output. <br>
-Mitigation: Inspect the generated files and verify Obsidian/YAML behavior before relying on those features. <br>
+## Use Case:
 
+Developers and knowledge engineers use this skill to migrate an Ontology skill graph.jsonl, with optional schema.yaml, into a structured ExpertPack for review, retrieval, and publication workflows.
 
-## Reference(s): <br>
-- [ExpertPack](https://expertpack.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/brianhearn/ontology-to-expertpack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown, YAML, and shell command guidance written into a local ExpertPack directory] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates manifest.yaml, overview.md, relations.yaml, glossary.md, category indexes, and content Markdown files from the supplied graph.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The converter can transform private ontology memory into shareable ExpertPack files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it on a copy of the ontology graph and inspect the generated pack before sharing or publishing.
+
+Risk: Credential-like fields are only partially filtered and untrusted source content may be copied into Markdown.
+
+Mitigation: Review generated Markdown and YAML for secrets, sensitive details, and injected instructions before distribution.
+
+Risk: The output directory receives newly generated pack files.
+
+Mitigation: Use a fresh empty output directory to avoid mixing generated content with existing files.
+
+## Reference(s):
+
+- [ExpertPack](https://expertpack.ai)
+- [ClawHub skill page](https://clawhub.ai/brianhearn/skills/ontology-to-expertpack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance and generated ExpertPack files including YAML configuration, Markdown content, indexes, glossary, and relation graph files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a source Ontology graph.jsonl; schema.yaml is optional.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

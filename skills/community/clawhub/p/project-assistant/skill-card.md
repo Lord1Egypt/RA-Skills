@@ -1,46 +1,62 @@
-## Description: <br>
-Project Assistant helps agents initialize projects, analyze project structure, and answer project-specific questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Project Assistant helps agents initialize software projects, analyze project structure, answer implementation questions, manage reusable project Q&A, and produce documentation update suggestions.
 
-## Publisher: <br>
-[Northcipher](https://clawhub.ai/user/Northcipher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[northcipher](https://clawhub.ai/user/northcipher)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to initialize project documentation, identify project type and structure, answer implementation and impact-analysis questions, and preserve project Q&A notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill scans local repositories and may write project-local .claude documentation, indexes, and cache files. <br>
-Mitigation: Use it only on repositories you are comfortable scanning and review generated project documentation before sharing it. <br>
-Risk: Plaintext configuration can expose Feishu tokens or other sensitive values if real credentials are stored there. <br>
-Mitigation: Do not store real API keys or Feishu tokens in plaintext skill configuration; use a secret manager or short-lived credentials where possible. <br>
-Risk: Generated Feishu reports or project answers can contain incomplete or misleading analysis. <br>
-Mitigation: Review reports and answers before sending them to external systems or using them for project decisions. <br>
+## Use Case:
 
+Developers, technical leads, testers, DevOps engineers, and product stakeholders use this skill to understand an existing project, initialize project documentation, find code locations, assess change impact, and preserve project Q&A for later reuse.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/Northcipher/project-assistant) <br>
-- [Project initialization guide](references/guides/init.md) <br>
-- [Q&A documentation guide](references/guides/qa.md) <br>
-- [Configuration guide](references/guides/config.md) <br>
-- [Feishu integration guide](references/guides/feishu.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated project documentation files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update project-local .claude documentation, indexes, and cache files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can write .claude project state, generated documentation, Q&A cache files, and local configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in intended project directories and review generated or modified files before relying on them.
+
+Risk: The skill scans project configuration and environment files and may encounter secrets.
+
+Mitigation: Avoid running it on untrusted repositories or projects containing secrets until path containment, secret redaction, and opt-in secret scanning are fixed.
+
+Risk: Feishu tokens may be stored in local JSON configuration.
+
+Mitigation: Use least-privilege tokens, avoid shared machines for token-bearing configs, and rotate tokens if local configuration may have been exposed.
+
+## Reference(s):
+
+- [Project Assistant homepage](https://github.com/Northcipher/project-assistant)
+- [Configuration guide](references/guides/config.md)
+- [Project initialization guide](references/guides/init.md)
+- [Q&A documentation guide](references/guides/qa.md)
+- [Feishu documentation guide](references/guides/feishu.md)
+- [Example conversations](references/guides/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline commands, file paths, generated project documentation, and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write project documentation, Q&A cache files, and local configuration state when the user invokes the corresponding workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

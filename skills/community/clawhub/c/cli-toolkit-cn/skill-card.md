@@ -1,41 +1,57 @@
-## Description: <br>
-Command-line toolkit for common command lookups, shell script generation, terminal efficiency tips, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cli Toolkit Cn is a Chinese-language command-line helper for looking up common terminal commands, generating shell script templates, improving terminal workflows, and troubleshooting common command errors.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers, operations engineers, and terminal users use this skill as a Chinese-language CLI reference for finding commands, drafting shell scripts, improving terminal workflows, and troubleshooting common command-line errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or copied shell commands may be destructive, affect the wrong path or process, or require elevated privileges. <br>
-Mitigation: Review commands before execution, confirm paths and process IDs, avoid sudo unless necessary, and back up important data before cleanup or bulk-edit operations. <br>
-Risk: Command examples can be environment-specific and may not match the user's operating system, installed tools, or shell. <br>
-Mitigation: Treat examples as drafts and adapt package managers, flags, and paths to the target environment before running them. <br>
+## Use Case:
 
+Developers, operations engineers, and terminal users use this skill to get Chinese-language command examples, shell snippets, aliases, troubleshooting guidance, and basic script templates for common CLI tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/cli-toolkit-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with shell command and script examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language command reference and generated shell snippets intended for user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Generated or copied shell commands may include destructive file operations such as recursive deletion, bulk deletion, in-place edits, or cleanup of logs and temporary files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preview target files, take backups, and require explicit user confirmation before executing rm -rf, xargs rm, find -delete, sed -i, bulk rename, or similar destructive operations.
+
+Risk: Troubleshooting guidance may suggest privileged commands or package installation with sudo.
+
+Mitigation: Explain why elevated privileges are needed, prefer least-privilege alternatives, and require explicit confirmation before suggesting or running sudo commands.
+
+Risk: Process management examples may include force-kill commands that can stop the wrong process or interrupt services.
+
+Mitigation: Verify process identity and impact first, prefer graceful termination, and require confirmation before using kill -9, killall, or pkill patterns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/cli-toolkit-cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language command examples and shell script templates; commands should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,61 @@
-## Description: <br>
-Agent-first API for wallet, cards, inbox OTP, Mr. Freeman, eSIM, VPN, and crypto invoices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent-first API for wallet, cards, inbox OTP, Mr. Freeman, eSIM, VPN, and crypto invoices.
 
-## Publisher: <br>
-[elvismusli](https://clawhub.ai/user/elvismusli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elvismusli](https://clawhub.ai/user/elvismusli)
 
-## Use Case: <br>
-External agents and developers use Freeland to manage a user-owned account for wallet readiness, virtual cards, OTP-backed checkout, connectivity services, Mr. Freeman chat, and USDT invoice collection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent with FREELAND_API_KEY can operate wallet, card, OTP inbox, connectivity, and invoice workflows for the user's account. <br>
-Mitigation: Install only when intentional account access is desired; prefer approval-based mode, set clear spend and service boundaries, and keep API keys, card details, OTPs, and inbox contents scoped to the immediate task. <br>
-Risk: Provider readiness, transaction state, KYC gates, geography restrictions, or missing OTPs can make financial and connectivity workflows fail or become ambiguous. <br>
-Mitigation: Read current account state, balances, provider status, and transactions before purchases, top-ups, retries, or invoice actions, and treat provider failures and compliance gates as hard boundaries. <br>
+## Use Case:
 
+External agents and developers use Freeland to operate a user-owned Freeland account for wallet readiness, virtual cards, OTP-backed checkout, eSIM and VPN service setup, Mr. Freeman chat, and USDT invoice creation.
 
-## Reference(s): <br>
-- [Freeland homepage](https://freeland.land) <br>
-- [Freeland ClawHub listing](https://clawhub.ai/elvismusli/freeland) <br>
-- [Payment Safety](references/payment-safety.md) <br>
-- [Connectivity Workflows](references/connectivity.md) <br>
-- [Invoices](references/invoices.md) <br>
-- [Freeland API base URL](https://app.freeland.land/api.php) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl examples and API route references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FREELAND_API_KEY for authenticated Freeland account operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can enable broad agent access to wallet, card, OTP, purchase, VPN, and invoice actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for intended Freeland account use, prefer explicit invocation, and set clear spending, merchant, service, and action limits.
+
+Risk: Sensitive card credentials, OTPs, inbox messages, invoice details, eSIM profiles, or VPN configs may be exposed during account workflows.
+
+Mitigation: Reveal sensitive values only when needed for the active task and avoid retaining or displaying them longer than necessary.
+
+Risk: Financial or service-changing actions can move balances, issue or top up cards, buy connectivity services, activate VPN subscriptions, or create invoices.
+
+Mitigation: Require confirmation before financial or service changes unless the user has provided explicit pre-authorization with clear boundaries.
+
+## Reference(s):
+
+- [Freeland homepage](https://freeland.land)
+- [Freeland ClawHub skill page](https://clawhub.ai/elvismusli/skills/freeland)
+- [Payment Safety](references/payment-safety.md)
+- [Connectivity Workflows](references/connectivity.md)
+- [Invoices](references/invoices.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and API workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FREELAND_API_KEY for account operations; may surface sensitive account, card, OTP, inbox, invoice, eSIM, or VPN details only when needed for the active task.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

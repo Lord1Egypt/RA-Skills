@@ -1,7 +1,7 @@
 ---
 name: "psychology-analysis"
 description: "Analyzes human mental health and psychological behavior, supports identifying common psychological problem tendencies through video analysis, and provides structured mental health analysis reports and improvement suggestions. | 心理健康分析工具，针对人的心理健康和心理行为进行分析，支持通过视频分析识别常见心理问题倾向，提供结构化心理健康分析报告和改善建议"
-version: "1.0.5"
+version: "1.0.24"
 license: "MIT-0"
 ---
 

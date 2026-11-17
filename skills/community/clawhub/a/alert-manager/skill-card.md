@@ -1,43 +1,60 @@
-## Description: <br>
-Use when the user asks to "set SEO alerts"; configures ranking, traffic, technical, competitor, and notification thresholds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates SEO and GEO performance reports or configures monitoring alerts for rankings, traffic, authority, backlinks, technical health, competitor movement, and AI visibility.
 
-## Publisher: <br>
-[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu)
 
-## Use Case: <br>
-External SEO practitioners and site operators use this skill to define monitoring alerts for rankings, traffic, backlinks, technical health, competitor movement, and AI visibility changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Alert configurations can retain unnecessary monitoring details if saved without review. <br>
-Mitigation: Review proposed memory saves and keep only relevant monitoring details. <br>
-Risk: Trigger scope is broad enough that alert advice may be applied without a clear domain, metric, or threshold. <br>
-Mitigation: Use explicit requests that include the domain, monitored metric, and desired threshold. <br>
+## Use Case:
 
+Marketing, SEO, and growth teams use this skill to create source-tagged performance dashboards, executive SEO/GEO summaries, and threshold-based monitoring plans. It is intended for reporting on measured or user-provided metrics and for configuring alerts around future traffic, ranking, technical, backlink, competitor, and AI-visibility changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aaron-he-zhu/alert-manager) <br>
-- [Project homepage](https://github.com/aaron-he-zhu/seo-geo-claude-skills) <br>
-- [Alert Configuration Templates](references/alert-configuration-templates.md) <br>
-- [Alert Threshold Guide](references/alert-threshold-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown alert configuration summary and handoff notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose a memory/monitoring summary when the user asks to save results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.9.9 (source: release evidence and frontmatter) <br>
+Risk: A documented ledger command could become command injection if an agent builds a shell string from a user-supplied domain.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate domains and pass command arguments as structured values instead of constructing shell strings.
+
+Risk: The skill may connect analytics, search, SEO, crawler, notification, or memory storage integrations.
+
+Mitigation: Enable integrations only when needed and after explicit user approval.
+
+## Reference(s):
+
+- [Performance Monitor ClawHub Page](https://clawhub.ai/aaron-he-zhu/skills/performance-monitor)
+- [Publisher Profile](https://clawhub.ai/user/aaron-he-zhu)
+- [Project Homepage](https://github.com/aaron-he-zhu/aaron-marketing-skills)
+- [Alert Configuration Templates](references/alert-configuration-templates.md)
+- [Alert Threshold Guide](references/alert-threshold-guide.md)
+- [SEO/GEO KPI Definitions](references/kpi-definitions.md)
+- [Performance Report Output Templates](references/report-output-templates.md)
+- [SEO/GEO Report Templates](references/report-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report or alert configuration summary with source-tagged metrics and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report mode emits a delta-based dashboard and handoff summary; alert mode emits named triggers, thresholds, priorities, routing, and response plans.]
+
+## Skill Version(s):
+
+19.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

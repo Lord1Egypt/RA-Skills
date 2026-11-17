@@ -5,7 +5,7 @@ Configure automatic conversation self-improvement triggers for AI agents.
 ## Overview
 
 Hooks enable proactive dialogue learning capture by injecting reminders at key moments:
-- **UserPromptSubmit**: Reminder after each prompt to evaluate conversation learnings
+- **UserPromptSubmit**: Reminder after matching prompts to evaluate conversation learnings
 - **PostToolUse (Bash)**: Dialogue error detection when conversation-related commands fail
 
 ## Claude Code Setup
@@ -19,7 +19,7 @@ Create `.claude/settings.json` in your project root:
   "hooks": {
     "UserPromptSubmit": [
       {
-        "matcher": "",
+        "matcher": "dialogue|conversation|chatbot|intent|escalat|tone|hallucin",
         "hooks": [
           {
             "type": "command",
@@ -43,16 +43,16 @@ Create `.claude/settings.json` in your project root:
 }
 ```
 
-### Option 2: User-Level Configuration
+### Option 2: User-Level Configuration (discouraged)
 
-Add to `~/.claude/settings.json` for global activation:
+Do **not** install this hook globally. User-level hooks persist across all repositories and sessions. Keep hooks project-scoped. The example below is shown only so you can recognize and remove it:
 
 ```json
 {
   "hooks": {
     "UserPromptSubmit": [
       {
-        "matcher": "",
+        "matcher": "dialogue|conversation|chatbot|intent|escalat|tone|hallucin",
         "hooks": [
           {
             "type": "command",
@@ -74,7 +74,7 @@ For lower overhead, use only the UserPromptSubmit hook:
   "hooks": {
     "UserPromptSubmit": [
       {
-        "matcher": "",
+        "matcher": "dialogue|conversation|chatbot|intent|escalat|tone|hallucin",
         "hooks": [
           {
             "type": "command",
@@ -96,7 +96,7 @@ Codex uses the same hook system as Claude Code. Create `.codex/settings.json`:
   "hooks": {
     "UserPromptSubmit": [
       {
-        "matcher": "",
+        "matcher": "dialogue|conversation|chatbot|intent|escalat|tone|hallucin",
         "hooks": [
           {
             "type": "command",
@@ -134,7 +134,7 @@ For proven conversational patterns, consider skill extraction.
 
 1. Enable the hook configuration
 2. Start a new Claude Code session
-3. Send any prompt
+3. Send a prompt that matches the domain matcher
 4. Verify you see `<conversation-self-improvement-reminder>` in the context
 
 ### Test Error Detector Hook
@@ -166,12 +166,12 @@ chmod +x ./skills/self-improving-conversation/scripts/error-detector.sh
 chmod +x ./skills/self-improving-conversation/scripts/extract-skill.sh
 ```
 
-### Too Much Overhead
+### Matcher is required
 
-If the activator feels intrusive:
+Never use an empty matcher. If the activator still feels intrusive:
 
 1. **Use minimal setup**: Only UserPromptSubmit, skip PostToolUse
-2. **Add matcher filter**: Only trigger for conversation-related prompts:
+2. **Narrow the matcher further**. Current domain matcher examples: conversation-related prompts:
 
 ```json
 {

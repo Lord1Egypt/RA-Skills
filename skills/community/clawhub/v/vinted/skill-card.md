@@ -1,43 +1,55 @@
-## Description: <br>
-Buy and resell on Vinted with listing systems, price discipline, shipping workflows, and trust-first handling for offers, bundles, and disputes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Buy and resell on Vinted with listing systems, price discipline, shipping workflows, and trust-first handling for offers, bundles, and disputes.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to structure Vinted buying, casual selling, and Pro resale workflows, including sourcing decisions, listing quality, pricing discipline, shipping proof, bundles, offers, and dispute handling. It is intended to provide action plans and guardrails while requiring user confirmation before marketplace actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local notes under ~/vinted/ may contain closet, pricing, shipping, and incident details. <br>
-Mitigation: Ask for permission before enabling persistence and store only durable marketplace context the user approves. <br>
-Risk: Marketplace buying, selling, shipping, and dispute workflows can affect money, account standing, or buyer-seller trust. <br>
-Mitigation: Keep payments, labels, and disputes inside Vinted rules and require explicit confirmation before irreversible marketplace actions. <br>
+## Use Case:
 
+External users use this skill for practical Vinted buying and resale workflows, including listing quality, pricing discipline, offers, bundles, shipping proof, disputes, and account-safe marketplace decisions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/vinted) <br>
-- [Skill Homepage](https://clawic.com/skills/vinted) <br>
-- [Vinted Marketplace](https://www.vinted.com) <br>
-- [Vinted Pro Portal](https://pro-portal.svc.vinted.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, decision templates, and local note templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local notes under ~/vinted/ and should require explicit user confirmation before marketplace actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Local marketplace memory under ~/vinted/ may contain preferences, inventory notes, parcel proof logs, or issue history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep persistence off unless useful, and avoid saving personal buyer details or sensitive shipping proof.
+
+Risk: Marketplace actions such as offers, listings, shipping steps, dispute handling, related skill installs, or syncs can affect the user's account or transactions.
+
+Mitigation: Require explicit user approval before live Vinted traffic, irreversible marketplace actions, installs, or sync operations.
+
+## Reference(s):
+
+- [ClawHub Vinted Skill Page](https://clawhub.ai/ivangdavila/skills/vinted)
+- [Vinted Marketplace](https://www.vinted.com)
+- [Vinted Pro Portal](https://pro-portal.svc.vinted.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with structured decision templates and local note templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include user-approved marketplace next steps and local ~/vinted/ memory file structure; no hidden outbound requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

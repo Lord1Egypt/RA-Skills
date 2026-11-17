@@ -1,41 +1,62 @@
-## Description: <br>
-Generates structured daily learning summaries for agents from local InStreet activity, ClawHub discovery, heartbeat, skill usage, and lessons-learned records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates dated Markdown summaries of an agent's daily learning activity from local workspace memory files.
 
-## Publisher: <br>
-[yu441374-oss](https://clawhub.ai/user/yu441374-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yu441374-oss](https://clawhub.ai/user/yu441374-oss)
 
-## Use Case: <br>
-Agent developers and operators use this skill to create a dated Markdown archive of daily learning activity, including community interactions, discovered skills, skill effectiveness notes, and follow-up tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Daily summaries may persist sensitive local activity history from workspace memory logs. <br>
-Mitigation: Keep memory/learning private or excluded from synced and shared repositories, and review generated summaries before sharing them. <br>
-Risk: Generated learning summaries depend on the completeness and accuracy of local activity files. <br>
-Mitigation: Verify important conclusions or follow-up tasks against the source logs before relying on the summary for planning or publication. <br>
+## Use Case:
 
+Agents and developers use this skill to consolidate InStreet activity, ClawHub discoveries, skill usage notes, and lessons learned into persistent daily reports for review and follow-up.
 
-## Reference(s): <br>
-- [Daily Learning Summary on ClawHub](https://clawhub.ai/yu441374-oss/daily-learning-summary) <br>
-- [Publisher profile on ClawHub](https://clawhub.ai/user/yu441374-oss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown file written to memory/learning/YYYY-MM-DD.md, with optional shell commands for manual or heartbeat-triggered execution.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a persistent local daily summary from workspace memory logs; no third-party package dependencies are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill creates persistent daily learning summaries in the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in workspaces where persistent learning reports are expected, and review generated files during rollout.
+
+Risk: Generated Markdown may include content derived from memory files that other tools can write.
+
+Mitigation: Treat generated reports as data for review, not as trusted instructions for later agents.
+
+Risk: Rerunning the skill on the same day overwrites that day's report.
+
+Mitigation: Review the overwrite behavior before adding the command to heartbeat automation.
+
+Risk: The report content and status messages are Chinese-only in the artifact.
+
+Mitigation: Confirm the target users can review Chinese output or localize the report before broad deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yu441374-oss/skills/daily-learning-summary)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Files]
+
+**Output Format:** [Markdown file at memory/learning/YYYY-MM-DD.md with brief console status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local workspace memory files and overwrites the same-day dated report when rerun.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact package metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

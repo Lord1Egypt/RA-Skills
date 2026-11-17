@@ -1,43 +1,55 @@
-## Description: <br>
-Transforms text content into professional Mermaid diagrams for presentations and documentation, with syntax guidance for process flows, system architectures, comparisons, mindmaps, sequence diagrams, and state diagrams. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Transform text content into professional Mermaid diagrams for presentations and documentation.
 
-## Publisher: <br>
-[axtonliu](https://clawhub.ai/user/axtonliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axtonliu](https://clawhub.ai/user/axtonliu)
 
-## Use Case: <br>
-Developers, technical writers, and documentation authors use this skill to convert text, workflows, comparisons, and system interactions into Mermaid diagrams for Obsidian, GitHub, and other Mermaid-compatible renderers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may cause an assistant to generate diagram artifacts or diagram text when the user intent is ambiguous. <br>
-Mitigation: Use explicit requests such as 'create a Mermaid diagram' and review the generated diagram text or destination path before applying it to an important workspace. <br>
-Risk: Generated Mermaid diagrams can be syntactically valid but still omit context or misrepresent a process. <br>
-Mitigation: Render and review the diagram in the target Mermaid-compatible tool, then ask for corrections before using it in documentation or presentations. <br>
+## Use Case:
 
+Developers, technical writers, and documentation teams use this skill to turn processes, architectures, comparisons, mind maps, sequences, and state transitions into Mermaid diagrams. The skill is suited for presentation and documentation workflows where Markdown-renderable diagrams are useful.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/axtonliu/mermaid-visualizer) <br>
-- [Mermaid Syntax Rules Reference](references/syntax-rules.md) <br>
-- [Mermaid Documentation](https://mermaid.js.org/) <br>
-- [Obsidian](https://obsidian.md/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with Mermaid code fences and short explanatory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Mermaid diagrams compatible with Obsidian, GitHub, and Mermaid renderers; supports layout, detail, style, legend, numbering, and title options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Broad trigger language can cause the agent to choose Mermaid output when another visual format was intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Explicitly name the desired output format when requesting Mermaid, Excalidraw, Canvas, or another visualization type.
+
+Risk: Generated diagrams may be inaccurate or misleading if the source text is ambiguous or the model misreads relationships.
+
+Mitigation: Review generated diagrams before using them in documentation or presentations.
+
+## Reference(s):
+
+- [Mermaid Syntax Rules Reference](references/syntax-rules.md)
+- [ClawHub Skill Page](https://clawhub.ai/axtonliu/skills/mermaid-visualizer)
+- [Publisher Profile](https://clawhub.ai/user/axtonliu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with Mermaid code fences and concise explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces diagram source intended for Mermaid-compatible renderers such as Obsidian and GitHub.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

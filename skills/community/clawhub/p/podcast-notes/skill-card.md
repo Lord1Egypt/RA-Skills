@@ -1,41 +1,55 @@
-## Description: <br>
-Podcast Notes helps podcast producers draft and track show notes, episode outlines, intro hooks, guest questions, calls to action, translations, headlines, and related promotion copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Podcast Notes helps podcast producers draft outlines, show notes, intro scripts, guest questions, monetization ideas, distribution notes, and related episode content.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Podcast creators, producers, and content teams use this skill to keep timestamped local notes for episode planning, show-note drafting, social promotion, translation, title testing, and content repurposing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Podcast content entered into the tool is stored in plaintext local log files and can be included in exports. <br>
-Mitigation: Avoid entering secrets, credentials, private guest contact details, sponsor terms, embargoed material, or other sensitive content unless plaintext local storage is acceptable. <br>
-Risk: Exports may carry all locally stored podcast-note content into JSON, CSV, or text files. <br>
-Mitigation: Review exported files before sharing them or importing them into downstream systems. <br>
+## Use Case:
 
+External podcast creators and content teams use this skill to prepare, revise, organize, search, and export podcast production notes across episode planning, show notes, promotion, localization, and repurposing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/podcast-notes) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text CLI output with local log files and JSON, CSV, or text exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores user-entered content under ~/.local/share/podcast-notes and supports search, recent activity, status, and export commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Podcast content is stored in local plaintext logs and exports can include the full note history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering secrets, confidential sponsor details, or unpublished material unless plaintext local storage and full-history export are acceptable.
+
+Risk: Search and export behavior has scanner-identified flaws around out-of-scope file reads and unsafe exported data.
+
+Mitigation: Review before installing, fix grep option handling, and use proper JSON and CSV serializers before treating the skill as low risk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/podcast-notes)
+- [Publisher profile](https://clawhub.ai/user/xueyetianya)
+- [Publisher homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with command examples and local log/export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores timestamped entries in local plaintext logs and exports accumulated notes as JSON, CSV, or TXT files.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

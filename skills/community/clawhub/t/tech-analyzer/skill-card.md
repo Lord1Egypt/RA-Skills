@@ -1,40 +1,58 @@
-## Description: <br>
-Deep analysis of technology researchers or innovators and their core technical advantages, with comparative analysis of similar domestic and international teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep analysis of technology researchers/innovators and their core technical advantages, with comparative analysis of similar teams domestically and internationally.
 
-## Publisher: <br>
-[susie2015yuan-maker](https://clawhub.ai/user/susie2015yuan-maker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[susie2015yuan-maker](https://clawhub.ai/user/susie2015yuan-maker)
 
-## Use Case: <br>
-Researchers, analysts, and technical strategy teams use this skill to turn documents, URLs, or pasted source material into a structured technical analysis of a researcher or innovator and their competitive landscape. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted files, URLs, or pasted text may contain private or access-controlled information that the agent reads or fetches while preparing the report. <br>
-Mitigation: Provide only materials you are authorized to process and avoid private documents or restricted links unless you intend them to be included in the analysis workflow. <br>
-Risk: The skill creates a DOCX report from gathered sources, so inaccurate or incomplete sources can produce misleading comparative analysis. <br>
-Mitigation: Review the generated report, source list, technical claims, and peer comparisons before relying on or distributing the document. <br>
+## Use Case:
 
+External users and analysts use this skill to analyze a technology researcher or innovator, identify core technical advantages, compare domestic and international peer teams, and generate a comprehensive technical analysis report.
 
-## Reference(s): <br>
-- [Tech Analyzer Reference Guide](references/guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown report converted to DOCX, with formatted text fallback] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes person profile, core technical advantages, domestic and international team comparisons, comparative summary, and source list.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may read user-provided documents, links, and text while researching a target person or technology.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid providing confidential material unless that document and web-research workflow is acceptable.
+
+Risk: Competitive landscape research can introduce incomplete, stale, or unsupported claims into the generated report.
+
+Mitigation: Review cited sources and validate important technical claims before relying on the report.
+
+Risk: The skill creates a DOCX report in the workspace that may contain sensitive source material or analysis.
+
+Mitigation: Review report contents and workspace sharing settings before distributing the generated file.
+
+## Reference(s):
+
+- [Tech Analyzer Reference Guide](references/guide.md)
+- [Tech Analyzer ClawHub Page](https://clawhub.ai/susie2015yuan-maker/skills/tech-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands]
+
+**Output Format:** [DOCX report with Markdown fallback]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a workspace report file and may return formatted text if file delivery fails.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

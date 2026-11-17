@@ -1,40 +1,58 @@
-## Description: <br>
-Control smart home devices via Homebridge Config UI X REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control smart home devices via Homebridge Config UI X REST API. Use to list, turn on/off, adjust brightness, color, or temperature of HomeKit-compatible accessories. Supports lights, switches, thermostats, fans, and other Homebridge-managed devices.
 
-## Publisher: <br>
-[JiasenL](https://clawhub.ai/user/JiasenL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jiasenl](https://clawhub.ai/user/jiasenl)
 
-## Use Case: <br>
-External users and developers use this skill to inspect Homebridge-managed accessories and control smart-home device characteristics such as power, brightness, color, fan speed, and thermostat targets. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can change real smart-home devices exposed through a Homebridge account. <br>
-Mitigation: Confirm accessory IDs and requested values before changing state, and avoid unattended use for safety-sensitive devices such as thermostats, locks, garage doors, or appliances. <br>
-Risk: The skill relies on stored Homebridge credentials. <br>
-Mitigation: Keep the credential file private and prefer a least-privilege Homebridge user when available. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Homebridge Config UI X](https://github.com/homebridge/homebridge-config-ui-x) <br>
-- [ClawHub skill page](https://clawhub.ai/JiasenL/clawdbot-skill-homebridge) <br>
+## Use Case:
 
+External users and developers use this skill to inspect and control Homebridge-managed smart-home accessories through the Homebridge Config UI X REST API. It supports listing accessories and rooms, checking device state, and issuing changes such as power, brightness, color, fan, or thermostat settings.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline bash, Python, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API request examples and a helper script that returns JSON responses from Homebridge.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can immediately change physical smart-home device state, including switches, fans, and thermostats.
+
+Mitigation: Review commands before execution and use the skill only with a trusted Homebridge instance and account scoped to the intended devices.
+
+Risk: Stored Homebridge credentials may grant access to device control.
+
+Mitigation: Protect the credential file and prefer a least-privileged Homebridge account.
+
+Risk: The helper script accepts the configured Homebridge URL without enforcing HTTPS.
+
+Mitigation: Configure an https:// Homebridge URL before use.
+
+## Reference(s):
+
+- [Homebridge Config UI X](https://github.com/homebridge/homebridge-config-ui-x)
+- [ClawHub Skill Page](https://clawhub.ai/jiasenl/skills/clawdbot-skill-homebridge)
+- [Publisher Profile](https://clawhub.ai/user/jiasenl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and Python helper usage.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce API requests that read or change Homebridge accessory state.]
+
+## Skill Version(s):
+
+0.1.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

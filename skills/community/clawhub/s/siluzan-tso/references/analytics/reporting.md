@@ -1,10 +1,8 @@
-# TSO 优化报告与推送
+﻿# TSO 优化报告与推送
 
-> 所属 skill：`siluzan-tso`。
->
 > 本文档仅覆盖 **TSO steward 优化报告**：列表、生成、删除、邮件推送与查看链接。  
-> **账户分析拉数**（`google-analysis`、`facebook-analysis`、`report tiktok-*`、`report bing-*`、`report meta-overview`）与**周期/诊断报告纲要**见 `references/analytics/account-analytics.md`（Facebook 撰写见 `facebook-analysis-guide.md`）。  
-> **异步批量创建记录**（`ad batch`）见 `references/google-ads/google-ads.md` § ad batch。  
+> **账户分析拉数**（`google-analysis`、`facebook-analysis`、`tiktok-analysis`、`bing-analysis`、`report meta-overview`）与**周期/诊断报告纲要**见 `references/analytics/account-analytics.md`（Facebook 撰写见 `facebook-analysis-guide.md`）。  
+> **异步批量创建记录**（`ad batch`）见 `references/google-ads/google-ads-batch.md` § ad batch。  
 > **AI 广告优化**（`optimize`）见 `references/operations/optimize.md`。  
 > **广告线索**（`clue`）见 `references/operations/clue.md`。
 
@@ -188,7 +186,7 @@ siluzan-tso report push receive-emails -m Google [--json-out ./snap]
 
 ### 查看报告（引导打开网页）
 
-报告生成后，在网页查看。先用 `siluzan-tso config show` 获取 `webUrl`，再按以下规则拼接链接：
+报告生成后，在网页查看。先用 `siluzan-tso config show` 获取 `webUrl`，再按以下规则拼接链接（**禁止**凭记忆编造查看地址；`entityId` 须来自当次 `report list`）：
 
 | 媒体   | 报告类型         | URL 模板                                                    |
 | ------ | ---------------- | ----------------------------------------------------------- |

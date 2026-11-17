@@ -1,41 +1,52 @@
-## Description: <br>
-根据书名生成读书活动，生成详细介绍、每日打卡计划、问答题库等文档. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据书名生成读书活动，生成详细介绍、每日打卡计划、问答题库等文档。
 
-## Publisher: <br>
-[lay-white](https://clawhub.ai/user/lay-white) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lay-white](https://clawhub.ai/user/lay-white)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can provide a book title and use this skill to create a reading activity package with a book introduction, a seven-day reading check-in plan, and a question bank.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill creates local files and packages generated outputs into a ZIP archive.
+
+Mitigation: Confirm the configured output path and permissions before running, and inspect generated files before sharing the archive.
+
+Risk: The documented workflow uses .xls filenames while the helper reports that .xls output is unsupported.
+
+Mitigation: Use a supported spreadsheet extension or update the helper before relying on spreadsheet generation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to turn a book title into a reading activity package with a book introduction, a 7-day reading check-in plan, and a question bank. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Files, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes generated materials under a configured local output directory and creates a ZIP archive. <br>
-Mitigation: Check the destination path before running the skill and avoid using sensitive book titles or sensitive output locations. <br>
-Risk: The skill moves the generated working folder to the recycle bin after archiving. <br>
-Mitigation: Keep backups or review the generated ZIP before relying on the cleanup behavior. <br>
+**Output Format:** [Markdown documents, Excel-compatible files, and a ZIP archive]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lay-white/generate-reading-activities) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/lay-white) <br>
+**Other Properties Related to Output:** [Generated outputs are organized under a timestamped local reading-activities folder.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, configuration] <br>
-**Output Format:** [Markdown and Excel files collected into a ZIP archive] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a timestamped local output folder for the requested book, then archives the generated materials.] <br>
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn70achgzvarm4h65h3vzc0s4x83736q",
-  "slug": "agent-behavioral-constitution",
-  "version": "1.0.2",
-  "publishedAt": 1773941294250
+  "name": "agent-constitution",
+  "version": "1.0.0",
+  "description": "Agent behavioral constitution — fused Lobster Values philosophy with battle-tested lessons. Safety/Honesty/Proactive evolution.",
+  "author": "xiaobu2020",
+  "tags": ["constitution", "safety", "ethics", "agent-behavior"]
 }

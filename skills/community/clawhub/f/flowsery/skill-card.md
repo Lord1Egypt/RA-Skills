@@ -1,47 +1,55 @@
-## Description: <br>
-Flowsery helps agents query Flowsery Analytics for website traffic, visitor behavior, revenue, conversion data, and confirmed goal or payment record management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Flowsery Analytics for real-time visitors, trends, breakdowns, visitor profiles, revenue, conversions, and AI-detected session issues, and create or permanently delete goal and payment records only after explicit user confirmation.
 
-## Publisher: <br>
-[tarasshyn](https://clawhub.ai/user/tarasshyn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tarasshyn](https://clawhub.ai/user/tarasshyn)
 
-## Use Case: <br>
-External users and developers use this skill to inspect Flowsery-tracked site performance, summarize real-time and historical analytics, review revenue and conversion trends, and manage goal or payment records when explicitly requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Flowsery API key that can access analytics, revenue, visitor profile PII, and payment data. <br>
-Mitigation: Install only when the publisher is trusted, use the narrowest available token, and never expose the token in output, logs, or client-side code. <br>
-Risk: Visitor profiles and payment records can include personal data such as email, name, location, revenue, and activity history. <br>
-Mitigation: Retrieve personal data only for explicit, authorized requests and present the minimum detail needed to answer the user. <br>
-Risk: Goal and payment delete operations are irreversible and can erase historical business data. <br>
-Mitigation: Restate the website, filters, date range, and affected records when known, then require explicit user confirmation before any delete request. <br>
-Risk: Goal or payment writes can add personal or business records. <br>
-Mitigation: Send only fields needed for the task and avoid optional personal fields unless the user explicitly provides them for attribution. <br>
+## Use Case:
 
+Website owners and developers use this skill to review traffic, visitor behavior, conversions, revenue, and AI-detected site issues across Flowsery-tracked websites. It can also manage goal and payment records when explicitly confirmed.
 
-## Reference(s): <br>
-- [ClawHub Flowsery Skill Page](https://clawhub.ai/tarasshyn/flowsery) <br>
-- [Flowsery Homepage](https://flowsery.com) <br>
-- [Flowsery Analytics API Reference](references/api-reference.md) <br>
-- [Breakdown Dimensions Reference](references/breakdown-dimensions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown responses with curl command examples and summarized API results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FLOWSERY_API_KEY and may access analytics, revenue, visitor profile PII, payment data, and confirmed write or delete operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: ClawScan marks this release suspicious because it exposes issue-status and payment-record changes beyond its declared purpose; the scan is partial.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review those operations and the partially scanned content before installation, and require explicit confirmation before changing or deleting records.
+
+Risk: Visitor profiles and payment records may contain personal information.
+
+Mitigation: Retrieve individual visitor data only for a specific, authorized request and present only the details needed.
+
+## Reference(s):
+
+- [Flowsery Analytics](https://flowsery.com)
+- [Flowsery Analytics API](https://analytics.flowsery.com/analytics/api/v1)
+- [Openclaw Flowsery on ClawHub](https://clawhub.ai/tarasshyn/skills/flowsery)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, Structured API data]
+
+**Output Format:** [Text summaries and structured analytics results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results can include personal visitor details, revenue, page paths, and session issue information.]
+
+## Skill Version(s):
+
+1.3.0 (source: SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

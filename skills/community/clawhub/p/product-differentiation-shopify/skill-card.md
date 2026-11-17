@@ -1,42 +1,55 @@
-## Description: <br>
-Provides a Shopify and DTC product differentiation analysis workflow for comparing competitor positioning, review pain points, selling points, and action items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Product Differentiation Shopify helps agents produce local Shopify/DTC product differentiation reports from supplied product, competitor, and review data.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-External merchants, ecommerce operators, and developers use this skill to draft product differentiation and positioning analysis for Shopify or DTC products. Outputs should be reviewed before business use because the security evidence flags capability overstatement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The implementation may overstate Shopify analysis behavior and may not use documented store or competitor inputs. <br>
-Mitigation: Treat generated reports as draft strategy guidance, confirm the actual inputs used, and review all recommendations before making business decisions. <br>
-Risk: The CLI behavior uses demo-style sample data, which can produce misleading competitor insights if mistaken for live analysis. <br>
-Mitigation: Use validated product and review data or correct the input parsing before relying on the report for ecommerce decisions. <br>
+## Use Case:
 
+External users and developers can use this skill to draft product positioning, pain point, comparison, and action-plan reports for Shopify or DTC products using data they provide. The current artifact should be treated as a local analysis helper, not as an automated Shopify crawler or live competitor research tool.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/phheng/product-differentiation-shopify) <br>
-- [Publisher profile](https://clawhub.ai/user/phheng) <br>
-- [Nexscope AI](https://www.nexscope.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include comparison tables, pain point summaries, differentiation opportunities, positioning notes, and action items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The installation path can run unpinned third-party code globally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer a pinned skills CLI version and immutable reviewed commit or signed release, and install in a project scope rather than globally.
+
+Risk: The public description overstates the current artifact's behavior, including true Shopify crawling, automated competitor-store research, and CAC/LTV analysis.
+
+Mitigation: Treat outputs as local strategy suggestions based on supplied or sample data, and verify market, review, CAC, LTV, and competitor claims against authoritative sources before business use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phheng/skills/product-differentiation-shopify)
+- [Publisher profile](https://clawhub.ai/user/phheng)
+- [Nexscope AI](https://www.nexscope.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include comparison tables, pain point summaries, differentiation opportunities, positioning guidance, and prioritized action items.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

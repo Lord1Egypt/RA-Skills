@@ -1,41 +1,55 @@
-## Description: <br>
-Creates placeholder data, test fixtures, sample datasets, and templates for development workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create placeholder data, test fixtures, and sample datasets for dev work. Use when generating mocks, building fixtures, or scaffolding content templates.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold placeholder content, mock data, test fixtures, and simple exports during development. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release was flagged as suspicious because it advertises placeholder-data generation while mainly recording and exposing local command/input history. <br>
-Mitigation: Review the script before execution and validate that outputs match the intended fixture or dataset workflow. <br>
-Risk: Local history can capture secrets, personal data, proprietary snippets, or sensitive prompts. <br>
-Mitigation: Do not pass sensitive material to the skill, set GENERATOR_DIR to a disposable location when testing, and inspect or clear ~/.local/share/generator after use. <br>
+## Use Case:
 
+Developers and engineers use this skill to create placeholder data, test fixtures, sample datasets, and content templates during application development.
 
-## Reference(s): <br>
-- [Generator on ClawHub](https://clawhub.ai/bytesagain3/generator) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Plain text on stdout with optional JSON, CSV, or text export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local command/input history under GENERATOR_DIR, defaulting to ~/.local/share/generator/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The utility may retain entered values in local history under ~/.local/share/generator.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not enter credentials, tokens, personal data, proprietary fixture content, or other sensitive values; use a controlled data directory and review or remove retained files after use.
+
+Risk: The security review reports a mismatch between the advertised placeholder-data generator purpose and persistent input/history manager behavior.
+
+Mitigation: Review the installed script behavior before execution and proceed only if local persistence matches the intended use.
+
+## Reference(s):
+
+- [Generator on ClawHub](https://clawhub.ai/bytesagain3/skills/generator)
+- [BytesAgain homepage](https://bytesagain.com)
+- [BytesAgain publisher profile](https://clawhub.ai/user/bytesagain3)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and command output text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled utility can write local history and export files under ~/.local/share/generator.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

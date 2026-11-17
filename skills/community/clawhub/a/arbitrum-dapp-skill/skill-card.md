@@ -1,54 +1,67 @@
-## Description: <br>
-Opinionated guide for building dApps on Arbitrum using Stylus (Rust) and/or Solidity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An opinionated guide for building Arbitrum dApps with Stylus Rust, Solidity, local devnode workflows, deployment guidance, and React frontend integration with viem and wagmi.
 
-## Publisher: <br>
-[hummusonrails](https://clawhub.ai/user/hummusonrails) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hummusonrails](https://clawhub.ai/user/hummusonrails)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold, build, test, deploy, and integrate Arbitrum dApps that use Stylus Rust contracts, Solidity contracts, local Nitro devnode workflows, and React frontends with viem or wagmi. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Remote one-line installation can execute installer behavior before the user reviews it. <br>
-Mitigation: Prefer installing through ClawHub or cloning and reviewing the repository before running install.sh. <br>
-Risk: The installer sends an install-count analytics ping unless disabled. <br>
-Mitigation: Set ARBITRUM_SKILL_NO_ANALYTICS=1 before running install.sh to opt out. <br>
-Risk: Deployment examples can perform real blockchain transactions, including mainnet or --broadcast operations. <br>
-Mitigation: Use separate low-balance deployer wallets, keep private keys out of shell history where possible, and double-check the target network before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold, write, test, deploy, and integrate Arbitrum dApps using Stylus Rust contracts, Solidity contracts, Foundry, nitro-devnode, viem, and wagmi.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hummusonrails/arbitrum-dapp-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/hummusonrails) <br>
-- [Stylus Rust Contracts](references/stylus-rust-contracts.md) <br>
-- [Solidity Contracts](references/solidity-contracts.md) <br>
-- [Frontend Integration](references/frontend-integration.md) <br>
-- [Local Devnode Setup](references/local-devnode.md) <br>
-- [Deployment](references/deployment.md) <br>
-- [Testing](references/testing.md) <br>
-- [Arbitrum Stylus Quickstart](https://docs.arbitrum.io/stylus/quickstart) <br>
-- [Stylus SDK](https://github.com/OffchainLabs/stylus-sdk-rs) <br>
-- [Nitro Devnode](https://github.com/OffchainLabs/nitro-devnode) <br>
-- [viem](https://viem.sh) <br>
-- [wagmi](https://wagmi.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include blockchain deployment commands and frontend or contract code snippets for user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The quick-start installer runs a mutable remote shell script and the installer updates from the main branch.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before running it, prefer cloning a pinned tag or commit manually, and avoid automatic updates from a mutable branch.
+
+Risk: The installer sends an opt-out GoatCounter install-count request.
+
+Mitigation: Set ARBITRUM_SKILL_NO_ANALYTICS=1 before installation if install telemetry is not desired.
+
+Risk: Deployment examples can spend real funds or expose secrets if production keys are placed directly on command lines.
+
+Mitigation: Use throwaway local keys for devnodes, avoid putting real private keys directly on command lines, simulate before --broadcast, and treat Arbitrum One as real mainnet.
+
+## Reference(s):
+
+- [Stylus Rust Contracts](references/stylus-rust-contracts.md)
+- [Solidity Contracts on Arbitrum](references/solidity-contracts.md)
+- [Frontend Integration](references/frontend-integration.md)
+- [Local Devnode Setup](references/local-devnode.md)
+- [Deployment](references/deployment.md)
+- [Testing](references/testing.md)
+- [Arbitrum Stylus Quickstart](https://docs.arbitrum.io/stylus/quickstart)
+- [Stylus SDK](https://github.com/OffchainLabs/stylus-sdk-rs)
+- [Nitro Devnode](https://github.com/OffchainLabs/nitro-devnode)
+- [viem](https://viem.sh)
+- [wagmi](https://wagmi.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline code blocks, command examples, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include smart contract snippets, frontend integration snippets, deployment commands, environment variable guidance, and testing checklists.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Multi Edge Tts Cn converts Chinese text into speech with Microsoft Edge TTS voices and exports audio for Feishu, WeCom, and general file-based workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi Edge Tts Cn generates Chinese text-to-speech audio with Edge-TTS voices and converts the result to messaging-friendly formats such as OGG/Opus and AMR.
 
-## Publisher: <br>
-[itian932](https://clawhub.ai/user/itian932) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[itian932](https://clawhub.ai/user/itian932)
 
-## Use Case: <br>
-Agents, developers, and operations teams use this skill to generate Chinese voice messages or audio files from text, with configurable voices and output formats for Feishu and WeCom delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send user-provided text to external speech or model services. <br>
-Mitigation: Use it only with non-sensitive text and avoid confidential scripts, private business content, credentials, or regulated data. <br>
-Risk: The skill can write audio output to caller-specified paths and may overwrite files if directed to an unsafe location. <br>
-Mitigation: Keep output paths inside a dedicated workspace or approved media directory, and review requested paths before execution. <br>
-Risk: The release was flagged for review by ClawHub security evidence. <br>
-Mitigation: Review the skill before installation and run it in a constrained workspace with only the dependencies and network access needed for text-to-speech generation. <br>
+## Use Case:
 
+Developers and agent operators use this skill to turn Chinese text into audio files for Feishu and WeCom voice-message workflows. It supports multiple Mandarin, Cantonese, and Taiwan voices plus tuned custom presets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/itian932/multi-edge-tts-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI and Python examples; generated skill output is an audio file path.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces OGG, OPUS, AMR, MP3, WAV, FLAC, or AAC audio files; default output is an OGG file under /tmp/openclaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.1 (source: server release evidence and artifact metadata) <br>
+Risk: The security evidence reports that output path checks warn but do not enforce the documented whitelist, so a caller can write or overwrite arbitrary writable paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only explicit output paths under /tmp/openclaw or the documented OpenClaw media/workspace directories, and review generated paths before sending or storing files.
+
+Risk: The installer may install dependencies into a system or privileged Python environment and does not pin the edge-tts dependency version during installation.
+
+Mitigation: Install in a trusted, non-privileged virtual environment or user environment and pin or review dependency versions before routine use.
+
+Risk: The skill requires network access to the Edge-TTS service, so synthesis can fail or retry when connectivity, authorization, or rate limits are encountered.
+
+Mitigation: Run it only where outbound network use is acceptable, expect transient failures, and keep text inputs within the documented length and messaging-size limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/itian932/skills/multi-edge-tts-cn)
+- [Publisher profile](https://clawhub.ai/user/itian932)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Shell commands, Code, Configuration]
+
+**Output Format:** [Audio files with a returned file path; documented CLI and Python API examples use Markdown with code blocks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output is an OGG file under /tmp/openclaw; supported extensions include .ogg, .opus, .amr, .mp3, .wav, .flac, and .aac, with AMR and OGG size checks documented for messaging channels.]
+
+## Skill Version(s):
+
+2.3.1 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

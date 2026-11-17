@@ -1,41 +1,52 @@
-## Description: <br>
-Use when users need to audit local OpenClaw skills, generate trust scores, and optionally publish those scores to SafeSpace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when users need to audit local OpenClaw skills, generate trust scores, and optionally publish those scores to SafeSpace.
 
-## Publisher: <br>
-[vpn2004](https://clawhub.ai/user/vpn2004) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[vpn2004](https://clawhub.ai/user/vpn2004)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and engineers use this skill to audit local OpenClaw skills, generate security and trust scores, save concise audit reports, and optionally submit reputation ratings to SafeSpace.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The wrapper can automatically download, build, and execute a mutable external Go binary when normal commands are run.
+
+Mitigation: Use a preinstalled, trusted safespace-rater binary through SAFESPACE_RATER_BIN, or review and pin the remote module before allowing automatic installation.
+
+Risk: Audit reports, ratings, pending uploads, and optional LLM fallback data may leave the local machine.
+
+Mitigation: Run local-only audits with dry-run settings when upload is not intended, and review report contents before enabling submissions or LLM fallback.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and teams use this skill to audit local OpenClaw skills for security risk, produce trust scores and concise reports, and optionally submit reputation signals to SafeSpace. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Normal use can automatically download, build, and run an unpinned external Go tool before auditing. <br>
-Mitigation: Prefer a preinstalled, pinned, and reviewed safespace-rater binary via SAFESPACE_RATER_BIN instead of relying on auto-build or go install @latest. <br>
-Risk: Publishing ratings or enabling LLM fallback can send audit-related data to external services. <br>
-Mitigation: Use local-only dry-run mode for private skills, and enable publishing or LLM fallback only when the data is approved for external transmission. <br>
+**Output Format:** [Markdown with inline bash code blocks and CLI output descriptions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vpn2004/safespace-rater) <br>
-- [SafeSpace service endpoint](https://skillvet.cc.cd) <br>
+**Other Properties Related to Output:** [May write local Markdown audit reports and pending upload queue files under the user's SafeSpace directory.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with bash command examples, audit summaries, and local report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local audit reports under ~/.safespace/audit-reports and pending upload state under ~/.safespace/pending-uploads.json.] <br>
+1.3.4 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.3.4 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

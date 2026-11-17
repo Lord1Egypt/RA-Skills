@@ -1,40 +1,53 @@
-## Description: <br>
-Teach, solve, and explore mathematics across all levels with adaptive depth and rigor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teach, solve, and explore mathematics across all levels with adaptive depth and rigor.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-External users, students, teachers, and developers can use this skill for adaptive mathematics tutoring, problem solving, proof support, and instructional material generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mathematical outputs may be incorrect or incomplete, especially for proofs, advanced topics, graded work, or multi-step arithmetic. <br>
-Mitigation: Treat outputs as tutoring assistance and independently verify important results before relying on them. <br>
-Risk: The skill may not be able to verify difficult proofs or resolve ambiguous or unsolvable problem statements. <br>
-Mitigation: Ask for clarification when constraints are missing and use external verification for high-stakes or specialized mathematics. <br>
+## Use Case:
 
+External users, students, teachers, and developers use this skill for adaptive mathematics tutoring, problem solving, proof support, and instructional material generation across beginner through expert levels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/test-martin-math) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text with mathematical notation when appropriate] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include LaTeX notation, worked steps, problem sets, answer keys, and sanity checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Math outputs can contain mistakes, especially in multi-step calculations, proofs, advanced topics, or high-stakes use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important calculations and proofs independently before relying on the result.
+
+Risk: The skill may be unable to resolve ambiguous, underspecified, or unsolvable math problems.
+
+Mitigation: Clarify assumptions and constraints, and treat stated uncertainty as a signal to review the problem setup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/test-martin-math)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or plain text with mathematical notation and optional code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include LaTeX notation, step-by-step explanations, proofs, problem sets, answer keys, and sanity checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

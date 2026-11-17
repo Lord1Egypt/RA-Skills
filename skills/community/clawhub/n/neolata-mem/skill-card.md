@@ -1,48 +1,62 @@
-## Description: <br>
-Graph-native memory engine for AI agents with hybrid vector and keyword search, biological decay, Zettelkasten linking, trust-gated conflict resolution, explainability, episodes, compression, and consolidation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Graph-native memory engine for AI agents with hybrid vector and keyword search, biological decay, Zettelkasten linking, trust-gated conflict resolution, explainability, episodes, compression, and consolidation.
 
-## Publisher: <br>
-[Jeremiaheth](https://clawhub.ai/user/Jeremiaheth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Elastic-2.0 <br>
+## Publisher:
 
+[jeremiaheth](https://clawhub.ai/user/jeremiaheth)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add persistent, searchable, local-first memory to agents across sessions, including graph links, decay, conflict handling, and recall workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Elastic-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory can retain sensitive or regulated information if agents store it. <br>
-Mitigation: Avoid storing secrets or regulated data, scope agents carefully in shared environments, and start with local or in-memory mode during evaluation. <br>
-Risk: Optional Supabase, external embedding or LLM providers, and webhook integrations can send memory content outside the host. <br>
-Mitigation: Enable only trusted destinations and use local JSON storage with local or disabled embeddings when data should remain on the host. <br>
-Risk: Webhook write-through creates an explicit data exfiltration path. <br>
-Mitigation: Configure webhook write-through only for trusted endpoints, or leave it disabled. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add persistent, searchable, graph-linked memory to AI agents, including recall across sessions, conflict-aware updates, and optional semantic search or LLM-assisted maintenance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Jeremiaheth/neolata-mem) <br>
-- [Homepage](https://github.com/Jeremiaheth/neolata-mem) <br>
-- [Repository](https://github.com/Jeremiaheth/neolata-mem) <br>
-- [npm package](https://www.npmjs.com/package/@jeremiaheth/neolata-mem) <br>
-- [neolata-mem User Guide](references/guide.md) <br>
-- [Practical Implementation Notes](references/implementation-notes.md) <br>
-- [Runtime Helpers](references/runtime-helpers.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents in using a Node.js memory library that stores local JSON data by default and supports optional external storage, embedding, LLM, and webhook integrations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.8.5 (source: server release metadata) <br>
+Risk: CLI examples can create package-resolution risk if copied as unscoped npx commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the scoped package with pinned or local commands, such as npm install --save-exact @jeremiaheth/neolata-mem@0.8.4 followed by the local binary.
+
+Risk: Stored memories, embeddings, markdown write-through files, webhook payloads, and Supabase rows can contain sensitive agent or user context.
+
+Mitigation: Start with in-memory or local JSON storage for evaluation, restrict file and database access, use Supabase anon keys with RLS, and configure only trusted webhook endpoints.
+
+Risk: All-agent recall can expose memories across agent boundaries when cross-agent sharing is not intended.
+
+Mitigation: Scope recall to the intended agent or session, and use cross-agent context only when the deployment explicitly requires shared memory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jeremiaheth/skills/neolata-mem)
+- [Project homepage](https://github.com/Jeremiaheth/neolata-mem)
+- [npm package](https://www.npmjs.com/package/@jeremiaheth/neolata-mem)
+- [User Guide](references/guide.md)
+- [Practical Implementation Notes](references/implementation-notes.md)
+- [Runtime Helpers](references/runtime-helpers.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript examples, shell command snippets, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide local JSON storage, in-memory evaluation, optional embedding or LLM providers, Supabase storage, webhook write-through, and multi-agent recall behavior.]
+
+## Skill Version(s):
+
+0.8.5 (source: server release metadata; artifact frontmatter reports 0.8.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

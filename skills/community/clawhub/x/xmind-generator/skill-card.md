@@ -1,41 +1,52 @@
-## Description: <br>
-Generate XMind mind map files (.xmind) from Markdown outlines or plain text descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate XMind mind map files (.xmind) from Markdown outlines or plain text descriptions.
 
-## Publisher: <br>
-[Geoion](https://clawhub.ai/user/Geoion) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
+
+[geoion](https://clawhub.ai/user/geoion)
+
+### License/Terms of Use:
+
+ISC
+
+## Use Case:
+
+Developers and agents use this skill to turn Markdown outlines or structured plain text into XMind mind map files for planning, visualization, and export workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill installs an npm dependency chain before first use.
+
+Mitigation: Review dependency versions before installation and pin or update the xmind dependency chain when maintaining the package.
+
+Risk: The generator writes .xmind files to a user-selected output path.
+
+Mitigation: Review the output path before running the command so generated files are written only to intended workspace locations.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to convert Markdown outlines or structured text into local .xmind files for mind maps and planning artifacts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Files, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Input and output paths can point outside the intended workspace. <br>
-Mitigation: Keep input and output paths inside the workspace and review the resolved output path before opening or sharing the file. <br>
-Risk: Installing dependencies fetches the declared xmind package and transitive npm packages. <br>
-Mitigation: Install dependencies in the skill directory using the provided package lock and apply normal dependency review for the environment. <br>
+**Output Format:** [Markdown guidance with shell commands that generate .xmind files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Geoion/xmind-generator) <br>
-- [xmind npm package](https://registry.npmjs.org/xmind/-/xmind-2.2.33.tgz) <br>
+**Other Properties Related to Output:** [Produces a workspace .xmind file at the requested output path.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, configuration] <br>
-**Output Format:** [.xmind file plus concise terminal status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, npm install, and the xmind package; output defaults to output.xmind unless a path is provided.] <br>
+1.0.3 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

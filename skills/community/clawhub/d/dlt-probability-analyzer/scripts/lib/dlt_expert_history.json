@@ -1,0 +1,2366 @@
+[
+  {
+    "period": "26088",
+    "experts": [
+      {
+        "expert": "嘲风",
+        "front": [
+          1,
+          3,
+          8,
+          12,
+          19
+        ],
+        "back": [
+          5,
+          6
+        ],
+        "source": "text-parsed",
+        "scraped_at": "2026-07-30 11:21",
+        "type": "权威",
+        "platform": "中彩网",
+        "specialty": "定位走势"
+      },
+      {
+        "expert": "五百走势",
+        "front": [
+          2,
+          4,
+          6,
+          13,
+          14
+        ],
+        "back": [
+          1,
+          8
+        ],
+        "source": "text-parsed",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "狼哥归来",
+        "front": [
+          2,
+          6,
+          7,
+          8,
+          10
+        ],
+        "back": [
+          1,
+          6
+        ],
+        "source": "text-parsed",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "杨海珠",
+        "front": [
+          1,
+          2,
+          5,
+          6,
+          10
+        ],
+        "back": [
+          2,
+          6
+        ],
+        "source": "text-parsed",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "黑白吉他",
+        "front": [
+          5,
+          9,
+          10,
+          12,
+          14
+        ],
+        "back": [
+          4,
+          7
+        ],
+        "source": "text-parsed",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "飘零小筑",
+        "front": [
+          3,
+          4,
+          5,
+          6,
+          11
+        ],
+        "back": [
+          2,
+          9
+        ],
+        "source": "text-parsed",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组一",
+        "front": [
+          8,
+          16,
+          23,
+          27,
+          33
+        ],
+        "back": [
+          4,
+          9
+        ],
+        "source": "text-parsed",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组二",
+        "front": [
+          5,
+          13,
+          22,
+          26,
+          34
+        ],
+        "back": [
+          2,
+          11
+        ],
+        "source": "text-parsed",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组三",
+        "front": [
+          7,
+          11,
+          19,
+          25,
+          30
+        ],
+        "back": [
+          6,
+          8
+        ],
+        "source": "text-parsed",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组四",
+        "front": [
+          2,
+          14,
+          18,
+          29,
+          35
+        ],
+        "back": [
+          1,
+          10
+        ],
+        "source": "text-parsed",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组五",
+        "front": [
+          9,
+          15,
+          21,
+          24,
+          31
+        ],
+        "back": [
+          5,
+          12
+        ],
+        "source": "text-parsed",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "徐芬领",
+        "front": [
+          9,
+          10,
+          19,
+          30,
+          34
+        ],
+        "back": [
+          2,
+          6
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "重号分析"
+      },
+      {
+        "expert": "崔现东",
+        "front": [
+          9,
+          10,
+          19,
+          21,
+          25
+        ],
+        "back": [
+          1,
+          4
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "邻孤传分析"
+      },
+      {
+        "expert": "云龙",
+        "front": [
+          3,
+          8,
+          16,
+          25,
+          28
+        ],
+        "back": [
+          5,
+          6
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "012路/大复式"
+      },
+      {
+        "expert": "刘爱洋",
+        "front": [
+          3,
+          10,
+          12,
+          16,
+          21
+        ],
+        "back": [
+          5,
+          9
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "奇偶比分析"
+      },
+      {
+        "expert": "金大玄",
+        "front": [
+          1,
+          6,
+          11,
+          24,
+          26
+        ],
+        "back": [
+          4,
+          7
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "乐彩论坛",
+        "specialty": "前后区综合"
+      }
+    ],
+    "timestamp": "2026-08-05T21:04:31.416243"
+  },
+  {
+    "period": "26089",
+    "experts": [
+      {
+        "expert": "嘲风",
+        "front": [
+          1,
+          3,
+          8,
+          12,
+          19
+        ],
+        "back": [
+          5,
+          6
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21",
+        "type": "权威",
+        "platform": "中彩网",
+        "specialty": "定位走势"
+      },
+      {
+        "expert": "五百走势",
+        "front": [
+          2,
+          4,
+          6,
+          13,
+          14
+        ],
+        "back": [
+          1,
+          8
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "狼哥归来",
+        "front": [
+          2,
+          6,
+          7,
+          8,
+          10
+        ],
+        "back": [
+          1,
+          6
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "杨海珠",
+        "front": [
+          1,
+          2,
+          5,
+          6,
+          10
+        ],
+        "back": [
+          2,
+          6
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "黑白吉他",
+        "front": [
+          5,
+          9,
+          10,
+          12,
+          14
+        ],
+        "back": [
+          4,
+          7
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "飘零小筑",
+        "front": [
+          3,
+          4,
+          5,
+          6,
+          11
+        ],
+        "back": [
+          2,
+          9
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组一",
+        "front": [
+          8,
+          16,
+          23,
+          27,
+          33
+        ],
+        "back": [
+          4,
+          9
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组二",
+        "front": [
+          5,
+          13,
+          22,
+          26,
+          34
+        ],
+        "back": [
+          2,
+          11
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组三",
+        "front": [
+          7,
+          11,
+          19,
+          25,
+          30
+        ],
+        "back": [
+          6,
+          8
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组四",
+        "front": [
+          2,
+          14,
+          18,
+          29,
+          35
+        ],
+        "back": [
+          1,
+          10
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组五",
+        "front": [
+          9,
+          15,
+          21,
+          24,
+          31
+        ],
+        "back": [
+          5,
+          12
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "徐芬领",
+        "front": [
+          9,
+          10,
+          19,
+          30,
+          34
+        ],
+        "back": [
+          2,
+          6
+        ],
+        "source": "curated",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "重号分析"
+      },
+      {
+        "expert": "崔现东",
+        "front": [
+          9,
+          10,
+          19,
+          21,
+          25
+        ],
+        "back": [
+          1,
+          4
+        ],
+        "source": "curated",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "邻孤传分析"
+      },
+      {
+        "expert": "云龙",
+        "front": [
+          3,
+          8,
+          16,
+          25,
+          28
+        ],
+        "back": [
+          5,
+          6
+        ],
+        "source": "curated",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "012路/大复式"
+      },
+      {
+        "expert": "刘爱洋",
+        "front": [
+          3,
+          10,
+          12,
+          16,
+          21
+        ],
+        "back": [
+          5,
+          9
+        ],
+        "source": "curated",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "奇偶比分析"
+      },
+      {
+        "expert": "金大玄",
+        "front": [
+          1,
+          6,
+          11,
+          24,
+          26
+        ],
+        "back": [
+          4,
+          7
+        ],
+        "source": "curated",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "乐彩论坛",
+        "specialty": "前后区综合"
+      }
+    ],
+    "timestamp": "2026-08-07T15:50:52.862468"
+  },
+  {
+    "period": "26090",
+    "experts": [
+      {
+        "expert": "嘲风",
+        "front": [
+          1,
+          3,
+          8,
+          12,
+          19
+        ],
+        "back": [
+          5,
+          6
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21",
+        "type": "权威",
+        "platform": "中彩网",
+        "specialty": "定位走势"
+      },
+      {
+        "expert": "五百走势",
+        "front": [
+          2,
+          4,
+          6,
+          13,
+          14
+        ],
+        "back": [
+          1,
+          8
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "狼哥归来",
+        "front": [
+          2,
+          6,
+          7,
+          8,
+          10
+        ],
+        "back": [
+          1,
+          6
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "杨海珠",
+        "front": [
+          1,
+          2,
+          5,
+          6,
+          10
+        ],
+        "back": [
+          2,
+          6
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "黑白吉他",
+        "front": [
+          5,
+          9,
+          10,
+          12,
+          14
+        ],
+        "back": [
+          4,
+          7
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "飘零小筑",
+        "front": [
+          3,
+          4,
+          5,
+          6,
+          11
+        ],
+        "back": [
+          2,
+          9
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组一",
+        "front": [
+          8,
+          16,
+          23,
+          27,
+          33
+        ],
+        "back": [
+          4,
+          9
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组二",
+        "front": [
+          5,
+          13,
+          22,
+          26,
+          34
+        ],
+        "back": [
+          2,
+          11
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组三",
+        "front": [
+          7,
+          11,
+          19,
+          25,
+          30
+        ],
+        "back": [
+          6,
+          8
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组四",
+        "front": [
+          2,
+          14,
+          18,
+          29,
+          35
+        ],
+        "back": [
+          1,
+          10
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组五",
+        "front": [
+          9,
+          15,
+          21,
+          24,
+          31
+        ],
+        "back": [
+          5,
+          12
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "徐芬领",
+        "front": [
+          9,
+          10,
+          19,
+          30,
+          34
+        ],
+        "back": [
+          2,
+          6
+        ],
+        "source": "curated",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "重号分析"
+      },
+      {
+        "expert": "崔现东",
+        "front": [
+          9,
+          10,
+          19,
+          21,
+          25
+        ],
+        "back": [
+          1,
+          4
+        ],
+        "source": "curated",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "邻孤传分析"
+      },
+      {
+        "expert": "云龙",
+        "front": [
+          3,
+          8,
+          16,
+          25,
+          28
+        ],
+        "back": [
+          5,
+          6
+        ],
+        "source": "curated",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "012路/大复式"
+      },
+      {
+        "expert": "刘爱洋",
+        "front": [
+          3,
+          10,
+          12,
+          16,
+          21
+        ],
+        "back": [
+          5,
+          9
+        ],
+        "source": "curated",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "奇偶比分析"
+      },
+      {
+        "expert": "金大玄",
+        "front": [
+          1,
+          6,
+          11,
+          24,
+          26
+        ],
+        "back": [
+          4,
+          7
+        ],
+        "source": "curated",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "乐彩论坛",
+        "specialty": "前后区综合"
+      }
+    ],
+    "timestamp": "2026-08-08T22:20:01.583678"
+  },
+  {
+    "period": "26091",
+    "experts": [
+      {
+        "expert": "嘲风",
+        "front": [
+          1,
+          3,
+          8,
+          12,
+          19
+        ],
+        "back": [
+          5,
+          6
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21",
+        "type": "权威",
+        "platform": "中彩网",
+        "specialty": "定位走势"
+      },
+      {
+        "expert": "五百走势",
+        "front": [
+          2,
+          4,
+          6,
+          13,
+          14
+        ],
+        "back": [
+          1,
+          8
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "狼哥归来",
+        "front": [
+          2,
+          6,
+          7,
+          8,
+          10
+        ],
+        "back": [
+          1,
+          6
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "杨海珠",
+        "front": [
+          1,
+          2,
+          5,
+          6,
+          10
+        ],
+        "back": [
+          2,
+          6
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "黑白吉他",
+        "front": [
+          5,
+          9,
+          10,
+          12,
+          14
+        ],
+        "back": [
+          4,
+          7
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "飘零小筑",
+        "front": [
+          3,
+          4,
+          5,
+          6,
+          11
+        ],
+        "back": [
+          2,
+          9
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组一",
+        "front": [
+          8,
+          16,
+          23,
+          27,
+          33
+        ],
+        "back": [
+          4,
+          9
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组二",
+        "front": [
+          5,
+          13,
+          22,
+          26,
+          34
+        ],
+        "back": [
+          2,
+          11
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组三",
+        "front": [
+          7,
+          11,
+          19,
+          25,
+          30
+        ],
+        "back": [
+          6,
+          8
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组四",
+        "front": [
+          2,
+          14,
+          18,
+          29,
+          35
+        ],
+        "back": [
+          1,
+          10
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组五",
+        "front": [
+          9,
+          15,
+          21,
+          24,
+          31
+        ],
+        "back": [
+          5,
+          12
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "徐芬领",
+        "front": [
+          9,
+          10,
+          19,
+          30,
+          34
+        ],
+        "back": [
+          2,
+          6
+        ],
+        "source": "curated",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "重号分析"
+      },
+      {
+        "expert": "崔现东",
+        "front": [
+          9,
+          10,
+          19,
+          21,
+          25
+        ],
+        "back": [
+          1,
+          4
+        ],
+        "source": "curated",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "邻孤传分析"
+      },
+      {
+        "expert": "云龙",
+        "front": [
+          3,
+          8,
+          16,
+          25,
+          28
+        ],
+        "back": [
+          5,
+          6
+        ],
+        "source": "curated",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "012路/大复式"
+      },
+      {
+        "expert": "刘爱洋",
+        "front": [
+          3,
+          10,
+          12,
+          16,
+          21
+        ],
+        "back": [
+          5,
+          9
+        ],
+        "source": "curated",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "奇偶比分析"
+      },
+      {
+        "expert": "金大玄",
+        "front": [
+          1,
+          6,
+          11,
+          24,
+          26
+        ],
+        "back": [
+          4,
+          7
+        ],
+        "source": "curated",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "乐彩论坛",
+        "specialty": "前后区综合"
+      }
+    ],
+    "timestamp": "2026-08-11T19:15:54.304695"
+  },
+  {
+    "period": "26092",
+    "experts": [
+      {
+        "expert": "嘲风",
+        "front": [
+          1,
+          3,
+          8,
+          12,
+          19
+        ],
+        "back": [
+          5,
+          6
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21",
+        "type": "权威",
+        "platform": "中彩网",
+        "specialty": "定位走势"
+      },
+      {
+        "expert": "五百走势",
+        "front": [
+          2,
+          4,
+          6,
+          13,
+          14
+        ],
+        "back": [
+          1,
+          8
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "狼哥归来",
+        "front": [
+          2,
+          6,
+          7,
+          8,
+          10
+        ],
+        "back": [
+          1,
+          6
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "杨海珠",
+        "front": [
+          1,
+          2,
+          5,
+          6,
+          10
+        ],
+        "back": [
+          2,
+          6
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "黑白吉他",
+        "front": [
+          5,
+          9,
+          10,
+          12,
+          14
+        ],
+        "back": [
+          4,
+          7
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "飘零小筑",
+        "front": [
+          3,
+          4,
+          5,
+          6,
+          11
+        ],
+        "back": [
+          2,
+          9
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组一",
+        "front": [
+          8,
+          16,
+          23,
+          27,
+          33
+        ],
+        "back": [
+          4,
+          9
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组二",
+        "front": [
+          5,
+          13,
+          22,
+          26,
+          34
+        ],
+        "back": [
+          2,
+          11
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组三",
+        "front": [
+          7,
+          11,
+          19,
+          25,
+          30
+        ],
+        "back": [
+          6,
+          8
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组四",
+        "front": [
+          2,
+          14,
+          18,
+          29,
+          35
+        ],
+        "back": [
+          1,
+          10
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "头条组五",
+        "front": [
+          9,
+          15,
+          21,
+          24,
+          31
+        ],
+        "back": [
+          5,
+          12
+        ],
+        "source": "curated",
+        "scraped_at": "2026-07-30 11:21"
+      },
+      {
+        "expert": "徐芬领",
+        "front": [
+          9,
+          10,
+          19,
+          30,
+          34
+        ],
+        "back": [
+          2,
+          6
+        ],
+        "source": "curated",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "重号分析"
+      },
+      {
+        "expert": "崔现东",
+        "front": [
+          9,
+          10,
+          19,
+          21,
+          25
+        ],
+        "back": [
+          1,
+          4
+        ],
+        "source": "curated",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "邻孤传分析"
+      },
+      {
+        "expert": "云龙",
+        "front": [
+          3,
+          8,
+          16,
+          25,
+          28
+        ],
+        "back": [
+          5,
+          6
+        ],
+        "source": "curated",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "012路/大复式"
+      },
+      {
+        "expert": "刘爱洋",
+        "front": [
+          3,
+          10,
+          12,
+          16,
+          21
+        ],
+        "back": [
+          5,
+          9
+        ],
+        "source": "curated",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "奇偶比分析"
+      },
+      {
+        "expert": "金大玄",
+        "front": [
+          1,
+          6,
+          11,
+          24,
+          26
+        ],
+        "back": [
+          4,
+          7
+        ],
+        "source": "curated",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "乐彩论坛",
+        "specialty": "前后区综合"
+      }
+    ],
+    "timestamp": "2026-08-14T19:39:23.765255"
+  },
+  {
+    "period": "26094",
+    "experts": [
+      {
+        "expert": "刘星",
+        "front": [
+          1,
+          2,
+          4,
+          10,
+          32
+        ],
+        "back": [
+          5,
+          12
+        ],
+        "source": "新浪体育",
+        "platform": "sports.sina.com.cn",
+        "scraped_at": "2026-08-17",
+        "unverified": true,
+        "no_edge": true,
+        "note": "未核实观点, 无预测力(no_edge)"
+      },
+      {
+        "expert": "姚天罡",
+        "front": [
+          3,
+          20,
+          23,
+          24,
+          26
+        ],
+        "back": [
+          3,
+          5
+        ],
+        "source": "新浪彩票",
+        "platform": "lotto.sina.cn",
+        "scraped_at": "2026-08-17",
+        "unverified": true,
+        "no_edge": true,
+        "note": "未核实观点, 无预测力(no_edge)"
+      },
+      {
+        "expert": "蕉太狼",
+        "front": [
+          3,
+          4,
+          20,
+          21,
+          22
+        ],
+        "back": [
+          2,
+          11
+        ],
+        "source": "ydniu.com",
+        "platform": "ydniu.com",
+        "scraped_at": "2026-08-17",
+        "unverified": true,
+        "no_edge": true,
+        "note": "未核实观点, 无预测力(no_edge)"
+      },
+      {
+        "expert": "山哥",
+        "front": [
+          6,
+          13,
+          22,
+          26,
+          30
+        ],
+        "back": [
+          5,
+          10
+        ],
+        "source": "新浪彩票",
+        "platform": "lotto.sina.cn",
+        "scraped_at": "2026-08-17",
+        "unverified": true,
+        "no_edge": true,
+        "note": "未核实观点, 无预测力(no_edge)"
+      },
+      {
+        "expert": "董翔骐",
+        "front": [
+          6,
+          10,
+          12,
+          13,
+          22
+        ],
+        "back": [
+          6,
+          8
+        ],
+        "source": "新浪彩票",
+        "platform": "lotto.sina.cn",
+        "scraped_at": "2026-08-17",
+        "unverified": true,
+        "no_edge": true,
+        "note": "未核实观点, 无预测力(no_edge)"
+      },
+      {
+        "expert": "蒋利",
+        "front": [
+          3,
+          15,
+          24,
+          27,
+          29
+        ],
+        "back": [
+          2,
+          11
+        ],
+        "source": "新浪体育",
+        "platform": "sports.sina.com.cn",
+        "scraped_at": "2026-08-17",
+        "unverified": true,
+        "no_edge": true,
+        "note": "未核实观点, 无预测力(no_edge)"
+      },
+      {
+        "expert": "雨鱼",
+        "front": [
+          7,
+          13,
+          21,
+          23,
+          29
+        ],
+        "back": [
+          5,
+          10
+        ],
+        "source": "55128.cn",
+        "platform": "55128.cn",
+        "scraped_at": "2026-08-17",
+        "unverified": true,
+        "no_edge": true,
+        "note": "未核实观点, 无预测力(no_edge)"
+      },
+      {
+        "expert": "石浩",
+        "front": [
+          1,
+          14,
+          21,
+          32,
+          33
+        ],
+        "back": [
+          8,
+          10
+        ],
+        "source": "新浪彩票",
+        "platform": "lotto.sina.cn",
+        "scraped_at": "2026-08-17",
+        "unverified": true,
+        "no_edge": true,
+        "note": "未核实观点, 无预测力(no_edge)"
+      }
+    ],
+    "timestamp": "2026-08-19T20:14:36.152263"
+  },
+  {
+    "period": "26095",
+    "experts": [
+      {
+        "expert": "刘星",
+        "front": [
+          1,
+          2,
+          4,
+          10,
+          32
+        ],
+        "back": [
+          5,
+          12
+        ],
+        "source": "新浪体育",
+        "platform": "sports.sina.com.cn",
+        "scraped_at": "2026-08-17",
+        "unverified": true,
+        "no_edge": true,
+        "note": "未核实观点, 无预测力(no_edge)"
+      },
+      {
+        "expert": "姚天罡",
+        "front": [
+          3,
+          20,
+          23,
+          24,
+          26
+        ],
+        "back": [
+          3,
+          5
+        ],
+        "source": "新浪彩票",
+        "platform": "lotto.sina.cn",
+        "scraped_at": "2026-08-17",
+        "unverified": true,
+        "no_edge": true,
+        "note": "未核实观点, 无预测力(no_edge)"
+      },
+      {
+        "expert": "蕉太狼",
+        "front": [
+          3,
+          4,
+          20,
+          21,
+          22
+        ],
+        "back": [
+          2,
+          11
+        ],
+        "source": "ydniu.com",
+        "platform": "ydniu.com",
+        "scraped_at": "2026-08-17",
+        "unverified": true,
+        "no_edge": true,
+        "note": "未核实观点, 无预测力(no_edge)"
+      },
+      {
+        "expert": "山哥",
+        "front": [
+          6,
+          13,
+          22,
+          26,
+          30
+        ],
+        "back": [
+          5,
+          10
+        ],
+        "source": "新浪彩票",
+        "platform": "lotto.sina.cn",
+        "scraped_at": "2026-08-17",
+        "unverified": true,
+        "no_edge": true,
+        "note": "未核实观点, 无预测力(no_edge)"
+      },
+      {
+        "expert": "董翔骐",
+        "front": [
+          6,
+          10,
+          12,
+          13,
+          22
+        ],
+        "back": [
+          6,
+          8
+        ],
+        "source": "新浪彩票",
+        "platform": "lotto.sina.cn",
+        "scraped_at": "2026-08-17",
+        "unverified": true,
+        "no_edge": true,
+        "note": "未核实观点, 无预测力(no_edge)"
+      },
+      {
+        "expert": "蒋利",
+        "front": [
+          3,
+          15,
+          24,
+          27,
+          29
+        ],
+        "back": [
+          2,
+          11
+        ],
+        "source": "新浪体育",
+        "platform": "sports.sina.com.cn",
+        "scraped_at": "2026-08-17",
+        "unverified": true,
+        "no_edge": true,
+        "note": "未核实观点, 无预测力(no_edge)"
+      },
+      {
+        "expert": "雨鱼",
+        "front": [
+          7,
+          13,
+          21,
+          23,
+          29
+        ],
+        "back": [
+          5,
+          10
+        ],
+        "source": "55128.cn",
+        "platform": "55128.cn",
+        "scraped_at": "2026-08-17",
+        "unverified": true,
+        "no_edge": true,
+        "note": "未核实观点, 无预测力(no_edge)"
+      },
+      {
+        "expert": "石浩",
+        "front": [
+          1,
+          14,
+          21,
+          32,
+          33
+        ],
+        "back": [
+          8,
+          10
+        ],
+        "source": "新浪彩票",
+        "platform": "lotto.sina.cn",
+        "scraped_at": "2026-08-17",
+        "unverified": true,
+        "no_edge": true,
+        "note": "未核实观点, 无预测力(no_edge)"
+      }
+    ],
+    "timestamp": "2026-08-21T13:42:56.716019"
+  },
+  {
+    "period": "26103",
+    "experts": [
+      {
+        "expert": "林必立",
+        "front": [
+          4,
+          5,
+          6,
+          10,
+          34
+        ],
+        "back": [
+          7,
+          11
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪体育",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "刘星",
+        "front": [
+          1,
+          7,
+          17,
+          18,
+          27
+        ],
+        "back": [
+          7,
+          9
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪体育",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "山哥",
+        "front": [
+          4,
+          16,
+          17,
+          26,
+          31
+        ],
+        "back": [
+          5,
+          7
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪体育",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "高财",
+        "front": [
+          11,
+          15,
+          18,
+          21,
+          23
+        ],
+        "back": [
+          6,
+          9
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪体育",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "元宝",
+        "front": [
+          5,
+          12,
+          22,
+          28,
+          34
+        ],
+        "back": [
+          4,
+          11
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪体育",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "彩鱼",
+        "front": [
+          3,
+          6,
+          15,
+          20,
+          24
+        ],
+        "back": [
+          3,
+          4
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "人民胆王",
+        "front": [
+          7,
+          20,
+          29,
+          32,
+          34
+        ],
+        "back": [
+          1,
+          8
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "乐彩网",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "狂沙漫卷",
+        "front": [
+          8,
+          9,
+          21,
+          26,
+          29
+        ],
+        "back": [
+          3,
+          10
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "乐彩论坛",
+        "specialty": "本期分析"
+      }
+    ],
+    "timestamp": "2026-09-09T20:08:23.942990"
+  },
+  {
+    "period": "26108",
+    "experts": [
+      {
+        "expert": "林必立",
+        "front": [
+          4,
+          5,
+          6,
+          10,
+          34
+        ],
+        "back": [
+          7,
+          11
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪体育",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "刘星",
+        "front": [
+          1,
+          7,
+          17,
+          18,
+          27
+        ],
+        "back": [
+          7,
+          9
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪体育",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "山哥",
+        "front": [
+          4,
+          16,
+          17,
+          26,
+          31
+        ],
+        "back": [
+          5,
+          7
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪体育",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "高财",
+        "front": [
+          11,
+          15,
+          18,
+          21,
+          23
+        ],
+        "back": [
+          6,
+          9
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪体育",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "元宝",
+        "front": [
+          5,
+          12,
+          22,
+          28,
+          34
+        ],
+        "back": [
+          4,
+          11
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪体育",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "彩鱼",
+        "front": [
+          3,
+          6,
+          15,
+          20,
+          24
+        ],
+        "back": [
+          3,
+          4
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "人民胆王",
+        "front": [
+          7,
+          20,
+          29,
+          32,
+          34
+        ],
+        "back": [
+          1,
+          8
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "乐彩网",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "狂沙漫卷",
+        "front": [
+          8,
+          9,
+          21,
+          26,
+          29
+        ],
+        "back": [
+          3,
+          10
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "乐彩论坛",
+        "specialty": "本期分析"
+      }
+    ],
+    "timestamp": "2026-09-21T20:29:27.983651"
+  },
+  {
+    "period": "26109",
+    "experts": [
+      {
+        "expert": "林必立",
+        "front": [
+          4,
+          5,
+          6,
+          10,
+          34
+        ],
+        "back": [
+          7,
+          11
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪体育",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "刘星",
+        "front": [
+          1,
+          7,
+          17,
+          18,
+          27
+        ],
+        "back": [
+          7,
+          9
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪体育",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "山哥",
+        "front": [
+          4,
+          16,
+          17,
+          26,
+          31
+        ],
+        "back": [
+          5,
+          7
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪体育",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "高财",
+        "front": [
+          11,
+          15,
+          18,
+          21,
+          23
+        ],
+        "back": [
+          6,
+          9
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪体育",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "元宝",
+        "front": [
+          5,
+          12,
+          22,
+          28,
+          34
+        ],
+        "back": [
+          4,
+          11
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪体育",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "彩鱼",
+        "front": [
+          3,
+          6,
+          15,
+          20,
+          24
+        ],
+        "back": [
+          3,
+          4
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "人民胆王",
+        "front": [
+          7,
+          20,
+          29,
+          32,
+          34
+        ],
+        "back": [
+          1,
+          8
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "乐彩网",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "狂沙漫卷",
+        "front": [
+          8,
+          9,
+          21,
+          26,
+          29
+        ],
+        "back": [
+          3,
+          10
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "乐彩论坛",
+        "specialty": "本期分析"
+      }
+    ],
+    "timestamp": "2026-09-23T18:41:56.099610"
+  },
+  {
+    "period": "26116",
+    "experts": [
+      {
+        "expert": "林必立",
+        "front": [
+          4,
+          5,
+          6,
+          10,
+          34
+        ],
+        "back": [
+          7,
+          11
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪体育",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "刘星",
+        "front": [
+          1,
+          7,
+          17,
+          18,
+          27
+        ],
+        "back": [
+          7,
+          9
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪体育",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "山哥",
+        "front": [
+          4,
+          16,
+          17,
+          26,
+          31
+        ],
+        "back": [
+          5,
+          7
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪体育",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "高财",
+        "front": [
+          11,
+          15,
+          18,
+          21,
+          23
+        ],
+        "back": [
+          6,
+          9
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪体育",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "元宝",
+        "front": [
+          5,
+          12,
+          22,
+          28,
+          34
+        ],
+        "back": [
+          4,
+          11
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪体育",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "彩鱼",
+        "front": [
+          3,
+          6,
+          15,
+          20,
+          24
+        ],
+        "back": [
+          3,
+          4
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "新浪彩票",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "人民胆王",
+        "front": [
+          7,
+          20,
+          29,
+          32,
+          34
+        ],
+        "back": [
+          1,
+          8
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "乐彩网",
+        "specialty": "本期分析"
+      },
+      {
+        "expert": "狂沙漫卷",
+        "front": [
+          8,
+          9,
+          21,
+          26,
+          29
+        ],
+        "back": [
+          3,
+          10
+        ],
+        "source": "text-parsed",
+        "scraped_at": "",
+        "type": "权威",
+        "platform": "乐彩论坛",
+        "specialty": "本期分析"
+      }
+    ],
+    "timestamp": "2026-10-12T18:11:50.447525"
+  }
+]

@@ -1,39 +1,52 @@
-## Description: <br>
-Prompt Crafter Pro analyzes prompts across six dimensions, scores gaps, generates optimized rewrites, and produces test cases for LLM validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+6-dimension AI prompt diagnosis, rewrite, and test-case generation. Analyze, score, and optimize prompts for any LLM (GPT-4o, Claude, DeepSeek).
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, developers, and prompt engineers use this skill to diagnose prompts across role, task, context, constraints, output format, and examples, then generate stronger prompt rewrites and validation test cases.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated prompt examples or rewrites could be mistaken for domain-specific legal, policy, or professional advice.
+
+Mitigation: Treat examples as templates and adjust domain, jurisdiction, model, and constraints to match the actual task before use.
+
+Risk: Prompt optimization may introduce incorrect or misleading constraints if accepted without review.
+
+Mitigation: Review generated rewrites and test cases before deploying them in production workflows.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, prompt engineers, and AI product teams use this skill to diagnose under-specified prompts, produce enhanced or fully rewritten prompts, and create validation test cases across common LLMs. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated prompt rewrites or test cases may alter the user's intended task, constraints, or output format. <br>
-Mitigation: Review the diagnostic report and compare each rewrite against the original goal before using it in production workflows. <br>
+**Output Format:** [Markdown with scoring tables, rewritten prompts, modification notes, and test cases]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/prompt-crafter-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+**Other Properties Related to Output:** [Produces prompt diagnostics, two rewrite options, optional model-specific adaptation, and 3-5 validation test cases.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with score tables, rewritten prompts, diagnostic notes, and test cases] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes 0-5 dimension scores, V1 Enhanced and V2 Full Rewrite options, model adaptation guidance, and 3-5 validation test cases.] <br>
+1.0.0 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

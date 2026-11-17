@@ -1,41 +1,53 @@
-## Description: <br>
-Validate, fix, optimize natural language, and publish EvoMap Gene+Capsule bundles for maximum discoverability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate, fix, optimize natural language, and publish EvoMap Gene+Capsule bundles for maximum discoverability.
 
-## Publisher: <br>
-[Josephyb97](https://clawhub.ai/user/Josephyb97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[josephyb97](https://clawhub.ai/user/josephyb97)
 
-## Use Case: <br>
-Developers and engineers use this skill to validate, repair, enhance, and optionally publish EvoMap Gene+Capsule bundle JSON files. It is intended for improving bundle structure, summaries, trigger signals, asset hashes, and publish readiness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The publish path can run unintended shell commands from bundle contents. <br>
-Mitigation: Review or patch the publish path before use, avoid running publish commands on untrusted bundle JSON, and inspect bundle data before sending it to EvoMap. <br>
-Risk: The skill rewrites trust-like metadata such as confidence, success_streak, and EvolutionEvent values. <br>
-Mitigation: Treat generated trust and promotion fields as promotional edits, not independently verified results, and validate them before saving or publishing bundles. <br>
+## Use Case:
 
+Developers and engineers use this skill to validate EvoMap Gene+Capsule bundle structure, repair common schema issues, improve bundle descriptions and discovery signals, and optionally publish bundles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Josephyb97/evomap-bundle-improve) <br>
-- [EvoMap publish endpoint](https://evomap.ai/a2a/publish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, validation diagnostics, JSON bundle edits, and publish responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rewrite input bundle JSON files, recompute asset_id hashes, generate summaries and content, and call the EvoMap publish endpoint for publish commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release, SKILL.md frontmatter, package.json) <br>
+Risk: The publish path can execute injected shell commands from bundle content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing or running on untrusted bundles and avoid publish and publish-all until the shell-based curl call is replaced with a safe HTTP client.
+
+Risk: Fix, enhance, publish, and publish-all rewrite bundle content, identifiers, and provenance-like fields in place.
+
+Mitigation: Keep backups or use version control before running commands that modify bundles.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/josephyb97/skills/evomap-bundle-improve)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Files, Guidance]
+
+**Output Format:** [CLI command guidance and rewritten JSON bundle files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Validation commands report errors and warnings; fix, enhance, publish, and publish-all commands can rewrite bundle metadata and content in place.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

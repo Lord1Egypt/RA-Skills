@@ -1,39 +1,53 @@
-## Description: <br>
-Fetch URLs as clean, AI-ready Markdown with token counts and caching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch any URL as clean, AI-ready Markdown with token counts and caching. Strip ads, nav, scripts, and noise from web pages.
 
-## Publisher: <br>
-[AtlasOpenclaw](https://clawhub.ai/user/AtlasOpenclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[atlasopenclaw](https://clawhub.ai/user/atlasopenclaw)
 
-## Use Case: <br>
-Developers and agents use StripFeed to fetch public web pages, articles, or documentation as cleaner Markdown for LLM context, with optional JSON metadata, token counts, caching controls, and batch requests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Target URLs and fetched page content are sent to StripFeed's external service, and the server evidence notes a privacy disclosure gap. <br>
-Mitigation: Avoid internal systems, private documentation, authenticated pages, signed URLs, URLs containing tokens, and regulated data unless approved and the provider's retention and caching behavior is understood. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [StripFeed homepage](https://www.stripfeed.dev) <br>
-- [StripFeed fetch API](https://www.stripfeed.dev/api/v1/fetch?url=URL_HERE) <br>
-- [StripFeed batch API](https://www.stripfeed.dev/api/v1/batch) <br>
+## Use Case:
 
+Developers and agents use StripFeed to fetch public web pages, articles, and documentation as cleaner Markdown with token counts for context planning.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or JSON returned from the StripFeed API, with curl examples and request guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires STRIPFEED_API_KEY; responses can include token counts, cache status, selectors, truncation status, and batch result metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Requested URLs and retrieved page content are processed by StripFeed's external API.
+
+Mitigation: Avoid internal systems, signed links, secret-bearing query strings, authenticated private documents, and regulated data unless that disclosure is explicitly accepted.
+
+Risk: Cached responses may be stale or retained longer than expected for time-sensitive content.
+
+Mitigation: Use cache=false when freshness or retention matters.
+
+## Reference(s):
+
+- [StripFeed homepage](https://www.stripfeed.dev)
+- [ClawHub StripFeed skill page](https://clawhub.ai/atlasopenclaw/skills/stripfeed)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, text, JSON, or HTML returned by the StripFeed API, with curl command examples in the skill instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires STRIPFEED_API_KEY and curl; supports caching, token counts, optional max_tokens truncation, selectors, and batch requests depending on plan.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

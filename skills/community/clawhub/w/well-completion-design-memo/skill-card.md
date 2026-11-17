@@ -1,42 +1,53 @@
-## Description: <br>
-Drafts a structured hydraulic fracture completion design memo for an oil or gas wellbore, including staging, perforating design, fluid and proppant selection, pump schedule summary, production forecast basis, and NORM/H2S/HPHT hazard flags for licensed PE review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a petroleum engineer, completion engineer, or reservoir engineer needs to draft a well completion design memo for an oil or gas wellbore, covering target interval staging, perforating design, fluid and proppant selection, pump schedule summary, production forecast basis, and NORM/H2S hazard flags for licensed PE review before operations begin.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Petroleum engineers, completion engineers, and reservoir engineers use this skill to collect wellbore, interval, completion, forecast, and hazard-screening inputs and draft a review-ready completion design memo. The memo remains draft documentation until reviewed and authorized by a licensed PE and the relevant operational safety reviewers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft engineering memo content may be mistaken for authorization to execute field operations. <br>
-Mitigation: Keep all outputs labeled as draft documentation and require licensed PE authorization and operational safety review before field use. <br>
-Risk: Wellbore, production, or operator data may be proprietary or sensitive. <br>
-Mitigation: Use only data that the organization permits for the agent environment and avoid entering proprietary well data unless allowed by policy. <br>
-Risk: Analog or preliminary completion assumptions may be unsuitable for the specific reservoir or well conditions. <br>
-Mitigation: Label analogous data and production forecasts as estimates, preserve documentation gaps, and require engineering validation with site-specific data and appropriate specialist tools. <br>
+## Use Case:
 
+Petroleum, completion, and reservoir engineers use this skill to gather wellbore and formation inputs and draft a structured hydraulic fracture completion design memo for licensed PE review before completion operations begin.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/well-completion-design-memo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown technical memo with numbered sections, tables, warning blocks, documentation gaps, and a PE authorization block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-only engineering documentation; production estimates and analogous data are explicitly labeled as preliminary or non-site-specific.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: evidence.release.version and CHANGELOG, released 2026-05-31) <br>
+Risk: Draft completion-design content could be mistaken for authorized engineering direction in a safety-critical oil and gas workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require qualified engineering, regulatory, and safety review before field use, and keep outputs labeled as draft material until licensed PE authorization.
+
+Risk: Incomplete site-specific wellbore, formation, hazard, or equipment-rating inputs could produce misleading preliminary documentation.
+
+Mitigation: Document gaps and TBD items explicitly, treat analog data as non-site-specific, and verify design assumptions with qualified engineers and service-company materials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/well-completion-design-memo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown technical memo with tables, warning blocks, documentation gaps, and PE authorization block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs must be labeled as draft material and reviewed by a licensed PE before field use.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and changelog, released 2026-05-31)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

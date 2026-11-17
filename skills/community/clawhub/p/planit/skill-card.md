@@ -1,41 +1,52 @@
-## Description: <br>
-Planit generates AI-optimized travel itineraries from natural-language trip requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Planit generates AI-optimized travel itineraries from natural language travel requests.
 
-## Publisher: <br>
-[yoborlon-alpha](https://clawhub.ai/user/yoborlon-alpha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yoborlon-alpha](https://clawhub.ai/user/yoborlon-alpha)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+External users use Planit to turn natural-language trip requests into suggested itineraries with transportation options, hotel recommendations, attraction schedules, and cost estimates.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Travel requests, user identifiers, configuration, and optional bearer credentials may be sent to a remote backend over plaintext HTTP by default.
+
+Mitigation: Configure the endpoint to a trusted HTTPS service before use and avoid sending sensitive travel details or credentials until transport security is confirmed.
+
+Risk: Telemetry behavior may not match the privacy claims in the artifact documentation.
+
+Mitigation: Review telemetry fields and backend handling before deployment, and clarify data collection practices for users.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and travel-planning agents use Planit to turn a short trip request into an itinerary with transportation options, hotel recommendations, daily attraction schedules, and cost estimates. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Travel requests, user identifiers, context, skill configuration, and action telemetry are sent to the Planit backend. <br>
-Mitigation: Install only when the backend is trusted, avoid submitting sensitive trip details, and review whether telemetry handling meets the deployment's privacy requirements. <br>
-Risk: The release evidence reports a hard-coded plain-HTTP backend and notes that the privacy disclosures do not match the code. <br>
-Mitigation: Configure a trusted HTTPS backend before setting PLANIT_SECRET, and treat SECURITY.md telemetry claims as unverified until the implementation and disclosures are reconciled. <br>
+**Output Format:** [Structured itinerary responses and user-facing text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Planit on ClawHub](https://clawhub.ai/yoborlon-alpha/planit) <br>
-- [Security Policy](SECURITY.md) <br>
+**Other Properties Related to Output:** [May include itinerary details, clarification prompts, actions, and telemetry events handled through the configured backend service.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Structured itinerary response with human-readable travel recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return itinerary, clarification, help, or error responses depending on the request and backend result.] <br>
+2.0.8 (source: package.json and server release evidence)
 
-## Skill Version(s): <br>
-2.0.8 (source: release metadata, package.json, and SKILL.md) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

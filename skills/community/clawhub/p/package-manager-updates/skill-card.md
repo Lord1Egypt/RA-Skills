@@ -1,42 +1,52 @@
-## Description: <br>
-Checks for outdated packages across npm, pip, Homebrew, Cargo, and Go, summarizes results, and prepares update commands that run only after user confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks, summarizes, and proposes package updates across installed package managers including npm, pip, Homebrew, Cargo, and Go.
 
-## Publisher: <br>
-[guillaumemaka](https://clawhub.ai/user/guillaumemaka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[guillaumemaka](https://clawhub.ai/user/guillaumemaka)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to check outdated packages, summarize update candidates, and prepare package-manager update commands for explicit approval.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad update commands can change many installed tools and may affect OpenClaw or system-critical packages.
+
+Mitigation: Review exact package-manager output before approving updates, prefer selecting individual packages, and avoid all-update commands when protected packages may be installed.
+
+Risk: Untrusted package names could make proposed shell commands unsafe if they contain spaces, shell metacharacters, redirects, or option-like names.
+
+Mitigation: Approve only commands built from trusted package-manager output and reject package names containing unsafe characters or option-like prefixes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to review outdated local developer packages, compare current and latest versions, and apply selected package updates after explicit approval. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects installed package managers and local package state. <br>
-Mitigation: Install only where local package inventory inspection is acceptable and review the generated summary before taking action. <br>
-Risk: Broad package upgrades, especially Homebrew or global package updates, can change development environments unexpectedly. <br>
-Mitigation: Prefer specific-package updates when stability matters and require explicit user confirmation before running any upgrade command. <br>
-Risk: System-critical packages may affect machine stability if updated casually. <br>
-Mitigation: Skip system-critical packages by default unless the user explicitly asks to include them. <br>
+**Output Format:** [Markdown tables with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guillaumemaka/package-manager-updates) <br>
+**Other Properties Related to Output:** [Concise summaries; update commands are presented for explicit confirmation before execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown tables with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries stay concise and update commands are presented or executed only after user confirmation.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

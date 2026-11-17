@@ -1,28 +1,44 @@
-#!/bin/bash
-# FaviconDL - Download favicon via favicondl.com
-# Usage: favicondl.sh <domain> [size] [output_path]
+#!/usr/bin/env bash
+set -euo pipefail
 
-DOMAIN="${1:-}"
-SIZE="${2:-128}"
-OUTPUT="${3:-./favicon.png}"
+api_endpoint="https://favicondl.com/api/extract"
+domain="${1:-}"
+size="${2:-128}"
+output="${3:-}"
 
-if [ -z "$DOMAIN" ]; then
-    echo "Usage: favicondl <domain> [size] [output_path]"
-    echo "Example: favicondl github.com 128 ./logo.png"
-    exit 1
+if [[ -z "$domain" || "$#" -gt 3 ]]; then
+  printf 'Usage: %s <domain-or-url> [size] [output]\n' "$0" >&2
+  exit 2
 fi
 
-URL="https://favicondl.com/api/favicon?domain=${DOMAIN}&size=${SIZE}&format=redirect"
-
-echo "Fetching favicon for ${DOMAIN} at ${SIZE}px..."
-
-HTTP_CODE=$(curl -L -s -o "$OUTPUT" -w "%{http_code}" "$URL")
-
-if [ "$HTTP_CODE" -eq 200 ] || [ "$HTTP_CODE" -eq 302 ] || [ "$HTTP_CODE" -eq 307 ]; then
-    FILE_SIZE=$(stat -c%s "$OUTPUT" 2>/dev/null || stat -f%z "$OUTPUT" 2>/dev/null)
-    echo "Saved: $OUTPUT (${FILE_SIZE} bytes)"
-else
-    echo "Error: HTTP $HTTP_CODE"
-    rm -f "$OUTPUT"
-    exit 1
+if ! [[ "$size" =~ ^[0-9]+$ ]] || (( size < 16 || size > 512 )); then
+  printf 'Size must be an integer from 16 to 512.\n' >&2
+  exit 2
 fi
+
+host="$domain"
+host="${host#http://}"
+host="${host#https://}"
+host="${host%%/*}"
+safe_name="$(printf '%s' "$host" | sed 's/^www\.//; s/[^A-Za-z0-9_-]/_/g')"
+if [[ -z "$safe_name" ]]; then
+  printf 'Invalid domain or URL: %s\n' "$domain" >&2
+  exit 2
+fi
+
+if [[ -z "$output" ]]; then
+  output="${safe_name}_favicon.img"
+fi
+
+parent="$(dirname -- "$output")"
+if [[ "$parent" != "." ]]; then
+  mkdir -p -- "$parent"
+fi
+
+printf 'Fetching favicon for %s at %spx...\n' "$domain" "$size"
+curl --fail --location --retry 2 --connect-timeout 10 --max-time 30 \
+  --get --data-urlencode "url=$domain" --data-urlencode "size=$size" \
+  --output "$output" "$api_endpoint"
+
+bytes="$(wc -c < "$output" | tr -d ' ')"
+printf 'Saved: %s (%s bytes)\n' "$output" "$bytes"

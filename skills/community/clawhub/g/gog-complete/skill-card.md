@@ -1,44 +1,62 @@
-## Description: <br>
-Google Workspace CLI for Gmail, Calendar, Chat, Classroom, Drive, Docs, Slides, Sheets, Forms, Apps Script, Contacts, Tasks, People, Admin, Groups, and Keep. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace CLI for Gmail, Calendar, Chat, Classroom, Drive, Docs, Slides, Sheets, Forms, Apps Script, Contacts, Tasks, People, Admin, Groups, and Keep.
 
-## Publisher: <br>
-[iiroak](https://clawhub.ai/user/iiroak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iiroak](https://clawhub.ai/user/iiroak)
 
-## Use Case: <br>
-Developers and automation agents use this skill to operate the gog CLI for Google Workspace workflows, including reading, creating, updating, and deleting resources across Gmail, Calendar, Drive, Docs, Sheets, Admin, and related services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide actions against Google Workspace data, including sends, deletes, sharing changes, and admin actions. <br>
-Mitigation: Use least-privilege OAuth scopes or service accounts, prefer dry-run and command allowlists, and manually confirm sends, deletes, sharing changes, and admin actions. <br>
-Risk: OAuth tokens, service-account keys, client secrets, and access tokens may be exposed if pasted into chat logs or command history. <br>
-Mitigation: Keep credentials out of agent transcripts, use secret storage or keyring support, and rotate any credential that is exposed. <br>
-Risk: CLI flags and subcommands may change across gog versions, which can produce failed or unintended commands. <br>
-Mitigation: On command failure or uncertainty, verify syntax with gog help output or gog schema before execution. <br>
+## Use Case:
 
+Developers and workspace operators use this skill to guide agents in running gog CLI commands for Google Workspace administration, content access, messaging, calendar operations, file handling, and automation. It emphasizes command discovery, JSON output, and explicit confirmation for sensitive actions.
 
-## Reference(s): <br>
-- [GoG CLI homepage](https://gogcli.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/iiroak/gog-complete) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/iiroak) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the external gog CLI, OAuth or service account authentication, and command confirmation for sensitive actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill supports broad Google Workspace access across email, Drive, admin, credentials, webhooks, and tracking.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the gog CLI source is trusted, use the narrowest OAuth scopes, and apply command allowlists where possible.
+
+Risk: Sensitive actions such as sending mail, creating events, deleting resources, sharing files, forwarding mail, delegation, tracking, and admin changes can affect users or data.
+
+Mitigation: Require explicit approval for these operations, prefer dry runs when available, and avoid --force or --no-input for sensitive actions.
+
+Risk: The documented Homebrew installation is a third-party install path and is not pinned in the evidence.
+
+Mitigation: Review the package source and installed gog binary before granting Google Workspace credentials or service account access.
+
+Risk: Webhook and email tracking commands can send data to external destinations.
+
+Mitigation: Review hook URLs, tracking worker URLs, shared tokens, and OIDC settings before enabling watch or tracking workflows.
+
+## Reference(s):
+
+- [GoG CLI homepage](https://gogcli.sh)
+- [ClawHub release page](https://clawhub.ai/iiroak/skills/gog-complete)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON or TSV output guidance for gog command results.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

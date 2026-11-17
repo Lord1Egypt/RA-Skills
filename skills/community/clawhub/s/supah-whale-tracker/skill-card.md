@@ -1,43 +1,60 @@
-## Description: <br>
-Real-time whale activity monitoring and smart money following for Base blockchain that tracks large transactions, wallet accumulation patterns, and smart money flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time whale activity monitoring and smart money following for Base blockchain. Track large transactions, wallet accumulation patterns, and smart money flows.
 
-## Publisher: <br>
-[supah-based](https://clawhub.ai/user/supah-based) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[supah-based](https://clawhub.ai/user/supah-based)
 
-## Use Case: <br>
-External users and developers use this skill to query recent whale transfers, wallet activity, token flows, historical whale behavior, and smart-money signals on Base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic x402 USDC micropayments may be triggered by API calls with unclear pricing or action boundaries. <br>
-Mitigation: Use a wallet with a strict spend cap, require confirmation before paid or alert-style actions, and confirm pricing with the publisher before ongoing use. <br>
-Risk: The skill sends requests to a configurable SUPAH API endpoint for on-chain whale-tracking data. <br>
-Mitigation: Verify SUPAH_API_BASE before use and review returned data before making trading, financial, or alerting decisions. <br>
+## Use Case:
 
+External agents and developers use this skill to query SUPAH's Base-chain whale analytics, including recent large transfers, token or wallet tracking, historical patterns, and smart-money flows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/supah-based/supah-whale-tracker) <br>
-- [SUPAH website](https://supah.ai) <br>
-- [SUPAH API](https://api.supah.ai) <br>
-- [x402 documentation](https://www.x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, API Calls, Guidance] <br>
-**Output Format:** [Console text and JSON responses from SUPAH API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, curl, outbound access to api.supah.ai, and SUPAH_API_BASE when overriding the default endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: Automatic x402 USDC payments may be triggered by API calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an agent or wallet policy that requires confirmation or enforces a low spending cap before paid calls are made.
+
+Risk: Wallet, token, or query details may be sent to the configured API host.
+
+Mitigation: Leave SUPAH_API_BASE unset or set it only to a trusted HTTPS endpoint, and avoid submitting sensitive wallet-monitoring requests.
+
+Risk: Crypto analytics can be incomplete, stale, or unsuitable as trading advice.
+
+Mitigation: Treat outputs as informational signals and verify material decisions against independent data sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/supah-based/skills/supah-whale-tracker)
+- [SUPAH API](https://api.supah.ai)
+- [x402 protocol](https://www.x402.org)
+- [SUPAH website](https://supah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [CLI text and JSON API responses surfaced through agent conversation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, curl, outbound access to the configured SUPAH API host, and x402-compatible USDC payment handling on Base.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

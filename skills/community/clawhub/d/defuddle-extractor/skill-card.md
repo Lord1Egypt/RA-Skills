@@ -1,42 +1,53 @@
-## Description: <br>
-Extracts main webpage content with the Defuddle library and converts it to Markdown for content scraping, text processing, and automation tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts the main content from webpages with Defuddle and converts it to Markdown for scraping, text processing, and automation workflows.
 
-## Publisher: <br>
-[yeholdon](https://clawhub.ai/user/yeholdon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yeholdon](https://clawhub.ai/user/yeholdon)
 
-## Use Case: <br>
-Developers and automation users use this skill to extract readable article content from URLs or local HTML files, convert the result to Markdown or JSON, and optionally route extracted text into messaging workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional send scripts transmit extracted page text to WeChat or Telegram. <br>
-Mitigation: Use those scripts only with trusted pages and destinations, and avoid sensitive or internal URLs. <br>
-Risk: The WeChat send helper path is hardcoded to a local user path. <br>
-Mitigation: Inspect or replace the helper path before running the script. <br>
-Risk: Extraction commands invoke the npm defuddle package. <br>
-Mitigation: Verify the npm package source before use. <br>
+## Use Case:
 
+Developers and automation builders use this skill to extract readable article content from URLs or local HTML files and produce Markdown or JSON for downstream processing. It can also send extracted Markdown to WeChat or Telegram when those delivery scripts are intentionally used.
 
-## Reference(s): <br>
-- [Defuddle ClawHub page](https://clawhub.ai/yeholdon/defuddle-extractor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and JavaScript examples, plus extracted Markdown or JSON content from the Defuddle CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional scripts can print extracted content locally or send it to WeChat or Telegram.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Extracted webpage content can be sent to WeChat or Telegram by optional scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review destination settings before use and confirm the extracted page content contains no sensitive, private, or regulated information before sending.
+
+Risk: The scripts run Defuddle through an unpinned npm invocation at runtime.
+
+Mitigation: Pin or locally lock the Defuddle dependency before using the skill in controlled or repeatable environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yeholdon/skills/defuddle-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown, JSON, shell commands, and Node.js code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send extracted webpage content to configured WeChat or Telegram targets when the corresponding scripts are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

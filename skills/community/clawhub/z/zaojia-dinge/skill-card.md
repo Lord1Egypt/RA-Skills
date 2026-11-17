@@ -1,39 +1,49 @@
-## Description: <br>
-Helps construction cost professionals match bill-of-quantities items to quota entries, estimate costs, adjust materials, and prepare quotation outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps construction cost professionals match bill-of-quantities items to quota standards, calculate unit prices and costs, and prepare estimating outputs for bids, settlements, and cost reviews.
 
-## Publisher: <br>
-[13977660642](https://clawhub.ai/user/13977660642) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[13977660642](https://clawhub.ai/user/13977660642)
 
-## Use Case: <br>
-Budget estimators, construction companies, cost consultants, owner cost teams, and cost-estimation students use this skill to select construction quota entries, calculate comprehensive unit prices, handle batch item matching, and prepare quotation or settlement materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad construction-budgeting prompts may invoke the skill when the user only wants general discussion rather than quota-pricing assistance. <br>
-Mitigation: Ask the agent to clarify whether it should apply quota-matching and construction cost-estimation guidance before relying on generated pricing outputs. <br>
-Risk: Generated quota matches, prices, rates, and market comparisons may be incomplete or unsuitable for a specific project, region, or contract. <br>
-Mitigation: Review generated outputs against the applicable local quota standard, project documents, current material prices, and professional cost-estimation controls before use. <br>
+## Use Case:
 
+External construction estimators, contractors, cost consultants, owner cost teams, and construction-cost students use this skill to select quota items, calculate cost components, handle material price adjustments, and prepare quote or settlement reports.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown with tables, structured examples, and export-oriented report guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe Excel, Word, or PDF deliverables for the agent to prepare, but the artifact itself provides guidance rather than executable export code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Project lists, bid prices, cost assumptions, and exported reports may contain sensitive business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review included data before report generation and choose the export location explicitly when files are created.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/13977660642/skills/zaojia-dinge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, files]
+
+**Output Format:** [Markdown guidance with structured tables and optional Excel, Word, or PDF report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include quota recommendations, unit-price analyses, fee summaries, material adjustments, and export-ready estimating reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

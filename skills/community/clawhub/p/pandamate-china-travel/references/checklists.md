@@ -4,10 +4,16 @@
 > https://www.pandamate.wiki/blog/china-pre-flight-checklist-foreigners-2026.html
 
 > 📖 **2026新政策**：酒店拒绝外宾 + 7省在线登记 —— [China's New 2026 Hotel Rules for Foreigners](https://www.pandamate.wiki/blog/china-new-hotel-rules-foreigners-2026.html)
-
+>
+> 📖 **酒店预订防拒接**：[China Hotel Rejection: How to Book a Hotel That Accepts Foreigners in 2026](https://www.pandamate.wiki/blog/china-hotel-rejection-foreigners-booking-guide-2026.html) — 含7平台对比+12品牌分级+7步防错+拒接应急6步
+>
 > 📖 **机票隐藏费用**：机场建设费/燃油费详解 —— [China Flight Hidden Costs 2026](https://www.pandamate.wiki/blog/china-flight-hidden-costs-2026.html)
-
+>
+> 📖 **中国隐藏成本**：10大费用陷阱（景区套票/网红餐厅排队/伴手礼刺客等）—— [China Hidden Costs 2026](https://www.pandamate.wiki/blog/china-hidden-costs-2026.html)
+>
 > 📖 **必备APP清单**：[Essential Apps Every Foreign Tourist Needs in China 2026](https://www.pandamate.wiki/blog/china-essential-apps-foreign-tourists-2026.html)
+>
+> 📖 **美食发现APP三件套**：[Find the Best Food in China as a Foreigner: Xiaohongshu + Dianping + Amap](https://www.pandamate.wiki/blog/china-food-finder-apps-foreigners-2026.html)
 
 ## 🌏 出发前30天
 
@@ -109,6 +115,17 @@
 - [ ] 保留中文酒店名+地址（截图给出租车司机）
 - [ ] **如果住在民宿/短租/亲友家**，且在7个试点省份，可通过NIA在线登记（无需到派出所）
 - [ ] 民宿建议提前与房东确认接待外宾经验
+
+### 💰 预算与隐藏成本（2026更新）
+> ⚠️ **2026年外国游客最大痛点之一：预算失控** — 景区套票、网红餐厅溢价、伴手礼"刺客"频繁出现
+> 💡 出发前必读：[China Hidden Costs 2026](https://www.pandamate.wiki/blog/china-hidden-costs-2026.html)
+
+**常见隐藏成本**：
+- [ ] 景区内交通车/缆车不包含在门票（黄山/张家界等 ¥100-300）
+- [ ] 网红餐厅"网红滤镜"溢价 2-5x（大众点评看真实评价）
+- [ ] 机场/景区伴手礼"土特产刺客"（同款淘宝便宜 50-80%）
+- [ ] 入境卡/酒店登记可能产生小额费用（部分民宿）
+- [ ] 高速费/停车费（自驾需额外预算）
 
 ---
 
@@ -214,6 +231,43 @@
 ## ⚠️ 紧急情况卡
 
 随身携带或记录手机备忘录：
+
+```
+===== 紧急信息 =====
+姓名：_______________
+护照号：_______________
+出生日期：_______________
+血型：_______________
+紧急联系人：___________
+电话：_______________
+保险公司：___________
+热线：_______________
+
+中国外交部热线：+86-10-12308
+报警：110 | 急救：120 | 火警：119
+```
+
+---
+
+## 🍜 美食发现指南（2026新推荐）
+> ⚠️ **外国游客最大痛点：找不到好吃的本地餐厅** — 不是支付/翻译问题，而是美食发现
+> 💡 深度攻略：[Find the Best Food in China as a Foreigner: Xiaohongshu + Dianping + Amap](https://www.pandamate.wiki/blog/china-food-finder-apps-foreigners-2026.html)
+
+**三件套（本地人真实使用的美食发现工具）**：
+| APP | 用途 | 英文友好度 |
+|-----|------|-----------|
+| **小红书（Xiaohongshu）** | 网红餐厅/真实笔记/打卡攻略 | ⚠️ 需翻译，但最强 |
+| **大众点评（Dianping）** | 餐厅评分/团购/排队预测 | ✅ 有英文版 |
+| **高德地图（Amap）** | 导航+周边美食标记 | ⚠️ 辅助工具 |
+
+**实用工作流**：小红书看推荐 → 大众点评验证评分 → 高德导航前往
+
+**5城市必吃（暗黑马美食城市）**：
+- 贵阳：酸汤鱼/丝娃娃/肠旺面（酸辣为主）
+- 潮汕（汕头）：牛肉火锅/粿条/卤鹅（鲜为主）
+- 长沙：臭豆腐/剁椒鱼头/糖油粑粑（香辣为主）
+- 昆明：过桥米线/野生菌火锅/汽锅鸡（鲜为主）
+- 扬州：早茶/蟹粉狮子头/干丝（精致为主）
 
 ```
 ===== 紧急信息 =====

@@ -1,38 +1,53 @@
-## Description: <br>
-Social Media Manager helps manage multi-platform social posting, scheduled publishing, analytics, content calendars, and engagement workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage social media posting, scheduling, analytics, content calendars, and interactions across supported platforms.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-Social media operators, creators, and marketing teams use this skill to post, schedule, and analyze content across supported social platforms from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct public or scheduled social posts without documenting account access, approval, preview, or cancellation controls. <br>
-Mitigation: Confirm account permissions before use, require exact content and platform previews, obtain explicit approval before posting or scheduling, and provide a cancellation path for scheduled posts. <br>
+## Use Case:
 
+External users and social media operators use this skill to prepare, publish, schedule, and review social media activity across supported platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/xiaoming-social-media) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference platform names, post content, schedule times, analytics windows, and account-access assumptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence; artifact _meta.json lists 1.0.0) <br>
+Risk: The skill can publish or schedule public posts without clearly documented previews, confirmations, platform scope, or account scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a preview and explicit approval for each post, scheduled post, target platform, and account before publication.
+
+Risk: Installation or execution with an unpinned or elevated installer could increase supply-chain and local-system risk.
+
+Mitigation: Use a pinned, trusted installer version where possible and avoid running installation with elevated privileges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/skills/xiaoming-social-media)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include social post content, scheduling commands, analytics requests, and platform-specific operational guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact _meta.json says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,53 @@
-## Description: <br>
-本地知识库 supports local storage, search, deletion, statistics, and context recall for user-provided preferences, facts, tasks, and other memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+本地知识库 stores, queries, deletes, and summarizes local user preferences, facts, tasks, and other information for agent reuse.
 
-## Publisher: <br>
-[toughspider](https://clawhub.ai/user/toughspider) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[toughspider](https://clawhub.ai/user/toughspider)
 
-## Use Case: <br>
-Agents use this skill to keep user-provided memory in a local SQLite knowledge base, then retrieve, summarize, or delete entries when the user asks. It is intended for local personal knowledge management and should not be used to store passwords, tokens, recovery codes, or highly sensitive personal data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/toughspider/knowledge-spider) <br>
+Developers and agents use this skill to maintain a local knowledge base of user preferences, facts, tasks, and important notes, then retrieve relevant entries for more personalized responses.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [JSON responses with natural-language messages and optional Markdown context snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores and searches local SQLite entries; returned memories may influence later agent responses, so users should make save, search, and delete requests precise.] <br>
+Global
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and skill.json) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Local knowledge-base records can persist sensitive content in plaintext.
+
+Mitigation: Do not store passwords, tokens, keys, or private personal data; review stored records before relying on them.
+
+Risk: Deletion and automatic context reuse may occur without enough safeguards.
+
+Mitigation: Confirm deletion targets and review retrieved context before reusing it in agent responses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/toughspider/skills/knowledge-spider)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [JSON tool responses with natural-language or Markdown summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include stored content, categories, counts, metadata, and context snippets from a local persistent knowledge base.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

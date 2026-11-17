@@ -1,45 +1,57 @@
-## Description: <br>
-Self-improving AI infrastructure with persistent agents, security gates, resilience patterns, and research-oriented agent framework guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides documentation, setup commands, and Python examples for a claimed self-improving multi-agent framework with security gates, model fallback, and memory architecture.
 
-## Publisher: <br>
-[Bsouto319](https://clawhub.ai/user/Bsouto319) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Commercial License <br>
+## Publisher:
 
+[bsouto319](https://clawhub.ai/user/bsouto319)
 
-## Use Case: <br>
-Developers and teams can use this skill as guidance and examples for building or evaluating persistent multi-agent workflows, model fallback patterns, memory layers, and self-improvement review loops. Reviewers should validate claims and implementation details before operational use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Commercial License
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary reports no evident malware but flags broad always-on self-improving agent claims that are inconsistent with mostly simulated contents and weakly scoped controls. <br>
-Mitigation: Treat the release as review-required: inspect the source implementation, verify the publisher, and confirm claimed capabilities before deployment. <br>
-Risk: Persistent and auto-evolution behavior can create operational risk if enabled without clear controls. <br>
-Mitigation: Use a sandbox first, require explicit stop, audit, and rollback controls, and do not provide API keys until those controls are verified. <br>
-Risk: Installer behavior installs unpinned dependencies and continues past dependency installation failures. <br>
-Mitigation: Pin and review dependencies in a controlled environment before running installation commands. <br>
+## Use Case:
 
+Developers and teams can use this skill as guidance and examples for evaluating a persistent multi-agent council, specialist agents, memory layers, model fallback, and self-improvement workflows. Review implementation claims and installation behavior before relying on it for production workloads.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/Bsouto319/brunosouto1108) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact quickstart](artifact/QUICKSTART.md) <br>
-- [Artifact skill definition](artifact/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with Python and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes example scripts and installation guidance; security evidence recommends sandboxed review before installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The package substantially overstates implemented security gates, self-improvement, fallback, and persistent-agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require implementation code and tests from the publisher before relying on those claims.
+
+Risk: Installation and verification patterns need review, including latest-based commands and broad dependency installation.
+
+Mitigation: Review the installer first, use an isolated environment, pin dependencies, and verify the package identifier and publisher.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/bsouto319/skills/brunosouto1108)
+- [Publisher profile](https://clawhub.ai/user/bsouto319)
+- [Quickstart](artifact/QUICKSTART.md)
+- [Full Docs](https://docs.dgclabs.ai/agentic-ai)
+- [API Reference](https://docs.dgclabs.ai/agentic-ai/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes installation guidance and runnable demonstration scripts; outputs should be reviewed against the security guidance before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact files also claim v4.0-commercial and 4.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

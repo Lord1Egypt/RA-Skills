@@ -1,11 +1,18 @@
 ---
 name: release-gate
-description: Prevents bad deploys by enforcing structured sign-off before any irreversible action. Configurable checklist with named reviewers (Dev, QA, Legal, Product). Blocks execution until all required gates pass and logs every decision. Use before systemctl restarts, file deploys, database migrations, public launches, or any action that is hard to undo.
+description: "Enforces structured sign-off before irreversible actions. Use explicitly before systemctl restarts, file deploys, DB migrations, public launches, pricing changes, or emails to real users. Requires named reviewer roles (Dev, QA, Legal, Product) with explicit pass/fail per checklist item. Logs every decision. Does NOT auto-trigger on ambiguous actions — only invoke when the action is clearly irreversible."
 ---
 
 # Release Gate
 
 A lightweight, configurable deployment gate for AI agents. Enforces structured sign-off before irreversible actions — no deploy without explicit checklist completion.
+
+## Permissions Required
+This skill:
+- **Reads** nothing automatically
+- **Writes** to a log file you specify (append only)
+- Does NOT read env files, system state, or external services
+- Does NOT modify AGENTS.md or any agent config
 
 ## When to Use This Skill
 
@@ -164,7 +171,7 @@ log_gate_decision(
 2. **No "I'll fix it after the deploy."** Fix first. Gate second. Deploy third.
 3. **Log every decision** — pass and block. The log is the audit trail.
 4. **Gate applies to rollbacks too.** A rollback is still a deploy.
-5. **If you're unsure whether something needs a gate: it does.**
+5. **When in doubt, ask the user before acting** — do not self-invoke the gate on ambiguous actions.
 
 ## Anti-Patterns to Avoid
 
@@ -180,13 +187,23 @@ log_gate_decision(
 
 ```python
 # In your agent task, before any deploy command:
+# Each item requires explicit passed=True — False or missing = BLOCKED
 gate_passed = run_release_gate(
     feature="Add subscription billing",
     required_roles=["Dev", "Product"],
     checklist={
-        "Dev": ["tests pass", "no hardcoded secrets", "migration safe"],
-        "Product": ["pricing page updated", "copy accurate"],
-    }
+        "Dev": [
+            {"item": "Tests pass", "passed": True},
+            {"item": "No hardcoded secrets", "passed": True},
+            {"item": "Migration safe", "passed": True},
+        ],
+        "Product": [
+            {"item": "Pricing page updated", "passed": True},
+            {"item": "Copy accurate", "passed": True},
+        ],
+    },
+    log_file="/your/logs/deployments.log",
+    deployer="agent",
 )
 if not gate_passed:
     raise RuntimeError("Release gate not cleared. Blocking deploy.")
@@ -209,3 +226,7 @@ This is a structured convention enforced by agent instruction, not a runtime enf
 
 - OWASP Secure Deployment Checklist: https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/
 - 12-Factor App deployment: https://12factor.net/
+
+---
+
+*Custom implementations and questions: pods@agentmail.to*

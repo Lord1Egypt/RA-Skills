@@ -1,43 +1,53 @@
-## Description: <br>
-n8n工作流自动化工具包，包含上百种常用工作流模板，支持一键导入、批量管理、定时任务配置、工作流备份恢复等功能，开箱即用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+n8n工作流自动化工具包，包含上百种常用工作流模板，支持一键导入、批量管理、定时任务配置、工作流备份恢复等功能，开箱即用。
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Developers and operations teams use this skill to generate n8n CLI commands and workflow assets for importing templates, backing up workflows, configuring schedules, and monitoring workflow failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an n8n API key and can make persistent changes to workflows. <br>
-Mitigation: Use a least-privilege n8n API key, test against a non-production n8n instance, and review workflow changes before enabling imported or scheduled workflows. <br>
-Risk: Import, schedule, and backup operations can affect existing automation state or overwrite expected workflow behavior. <br>
-Mitigation: Back up workflows before import or scheduling actions and validate cron expressions and workflow names before running commands. <br>
-Risk: Monitoring alerts may send workflow error details to external webhook destinations. <br>
-Mitigation: Send alerts only to trusted webhook destinations and avoid exposing sensitive execution details in shared channels. <br>
+## Use Case:
 
+Developers and operations teams use this skill to manage n8n workflow templates for office automation, data synchronization, message delivery, backups, scheduling, and workflow monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paudyyin/n8n-workflow-cn) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/paudyyin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and Python workflow tooling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce n8n API requests, workflow JSON backups, cron expressions, and webhook alert configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can change live n8n workflows without enough safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it first in a controlled n8n instance, make backups before import or schedule operations, and require human review before applying changes to production workflows.
+
+Risk: API keys, webhook URLs, exported workflows, and alert messages may expose credentials or sensitive operational data.
+
+Mitigation: Use least-privilege API keys, prefer HTTPS, avoid putting secrets directly on shared command lines, and store backups and alerts only in approved locations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/n8n-workflow-cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and n8n workflow configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands commonly require an n8n URL, API key, and task-specific values such as template name, workflow name, cron expression, backup directory, alarm channel, or webhook.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

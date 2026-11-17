@@ -1,49 +1,58 @@
-## Description: <br>
-Routes account management and browser-assisted publishing workflows for Douyin, Xiaohongshu, WeChat Channels, Threads, and Instagram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video pusher helps agents manage publishing account groups, preserve login sessions, and prepare posts for Douyin, Xiaohongshu, WeChat Channels, Threads, and Instagram.
 
-## Publisher: <br>
-[SamCheng0717](https://clawhub.ai/user/SamCheng0717) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samcheng0717](https://clawhub.ai/user/samcheng0717)
 
-## Use Case: <br>
-Creators, operators, and social-media teams use this skill to manage reusable platform login sessions and prepare content for publication across multiple social platforms. The skill uploads media, fills captions or metadata, and leaves the final publish or share action for user review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reusable browser sessions can retain access to social-media accounts. <br>
-Mitigation: Use dedicated accounts where possible, review account groups before publishing, and remove profile/session directories when an account is retired. <br>
-Risk: Browser automation may conflict with platform account policies because the scripts try to hide automation indicators. <br>
-Mitigation: Install only when this automation posture is acceptable for the target accounts and platforms, and verify each platform action before proceeding. <br>
-Risk: Automatic removal of Chromium lock files can create profile-corruption risk. <br>
-Mitigation: Avoid concurrent browser sessions for the same profile and back up or recreate profiles if browser state becomes inconsistent. <br>
-Risk: Incorrect files, captions, platforms, or account groups could be prepared for publication. <br>
-Mitigation: Confirm the exact file path, caption, target platform, and account group before the final publish or share click. <br>
+## Use Case:
 
+External users and content operators use this skill to route social publishing requests, manage platform login profiles, and prepare multi-platform video, image, or text posts for manual final submission.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/SamCheng0717/video-pusher) <br>
-- [Douyin Creator upload](https://creator.douyin.com/creator-micro/content/upload) <br>
-- [Xiaohongshu Creator publish](https://creator.xiaohongshu.com/publish/publish) <br>
-- [WeChat Channels post creation](https://channels.weixin.qq.com/platform/post/create) <br>
-- [Threads](https://www.threads.net/) <br>
-- [Instagram](https://www.instagram.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and brief status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or reuse local Chromium profile/session directories and opens a browser for user-controlled final publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence; artifact frontmatter says 1.2.0) <br>
+Risk: The skill stores logged-in browser profiles for social accounts on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated automation profile, keep profile data out of shared repositories and archives, and avoid installing unless local session storage is acceptable.
+
+Risk: Profile cleanup and remove operations can delete stored sessions and the evidence notes weak path containment safeguards.
+
+Mitigation: Review account group names and target platforms before delete or remove actions, and keep recoverable login methods available.
+
+Risk: The security verdict is suspicious due to session storage and unsafe profile-management behavior.
+
+Mitigation: Review the skill before deployment, restrict use to trusted workspaces, and follow the security guidance in the release evidence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samcheng0717/skills/video-pusher)
+- [Publisher profile](https://clawhub.ai/user/samcheng0717)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv and Chromium browser automation; publishing scripts keep the final publish or share action under user control.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,56 @@
-## Description: <br>
-Convert PowerPoint (.pptx) presentations to HTML using MinerU while preserving slide content, text, and basic structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert PowerPoint (.pptx) presentations to HTML using MinerU.
 
-## Publisher: <br>
-[mzlzyca](https://clawhub.ai/user/mzlzyca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzlzyca](https://clawhub.ai/user/mzlzyca)
 
-## Use Case: <br>
-Developers, web publishers, and content teams use this skill to convert local or URL-hosted PowerPoint decks into web-ready HTML for display, publishing, or embedding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Slide contents may be processed by MinerU's external service. <br>
-Mitigation: Avoid confidential presentations unless the user's organization permits MinerU or OpenDataLab processing that content. <br>
-Risk: The skill relies on a token-authenticated external CLI. <br>
-Mitigation: Install mineru-open-api only from trusted sources and protect MINERU_TOKEN like any other API credential. <br>
+## Use Case:
 
+Developers, web publishers, and content teams use this skill to convert PowerPoint slide decks from local files or URLs into HTML for web display, embedding, or publishing.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/mzlzyca/pptx-to-html) <br>
-- [MinerU homepage](https://mineru.net) <br>
-- [MinerU token management](https://mineru.net/apiManage/token) <br>
-- [MinerU GitHub repository](https://github.com/opendatalab/MinerU) <br>
-- [mineru-open-api Go package source](https://github.com/opendatalab/MinerU-Ecosystem/tree/master/cli/mineru-open-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and environment variable configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the mineru-open-api command and MINERU_TOKEN for token-authenticated extraction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release metadata) <br>
+Risk: The workflow gives the MinerU CLI access to a MINERU_TOKEN and presentation content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with presentations suitable for the MinerU service and manage MINERU_TOKEN as a credential.
+
+Risk: Installing the CLI with latest-version package commands can reduce reproducibility.
+
+Mitigation: Review the MinerU CLI source or pin a specific mineru-open-api version when reproducible installs matter.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mzlzyca/skills/pptx-to-html)
+- [MinerU homepage](https://mineru.net)
+- [MinerU token management](https://mineru.net/apiManage/token)
+- [MinerU GitHub repository](https://github.com/opendatalab/MinerU)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated workflow expects the mineru-open-api command and a MINERU_TOKEN credential.]
+
+## Skill Version(s):
+
+0.4.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

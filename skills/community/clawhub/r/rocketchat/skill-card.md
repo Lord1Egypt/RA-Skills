@@ -1,42 +1,55 @@
-## Description: <br>
-Rocket.Chat team messaging - channels, messages, users, integrations via REST API <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rocket.Chat team messaging - channels, messages, users, integrations via REST API.
 
-## Publisher: <br>
-[zenjabba](https://clawhub.ai/user/zenjabba) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zenjabba](https://clawhub.ai/user/zenjabba)
 
-## Use Case: <br>
-Developers, workspace administrators, and team operations users use this skill to work with Rocket.Chat rooms, messages, users, integrations, and server statistics through REST API examples. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses user-provided Rocket.Chat credentials for expected chat, channel, user, and integration actions. <br>
-Mitigation: Install with a limited bot or service account token when possible, and avoid broad admin tokens for routine messaging. <br>
-Risk: Some examples can post, edit, delete, archive channels, manage users, or use webhooks. <br>
-Mitigation: Review each requested Rocket.Chat action before allowing the agent to run it, especially actions that change messages, users, channels, or integrations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Rocket.Chat REST API documentation](https://developer.rocket.chat/reference/api/rest-api) <br>
-- [Rocket.Chat API documentation](https://developer.rocket.chat/reference/api) <br>
-- [ClawHub skill page](https://clawhub.ai/zenjabba/rocketchat) <br>
-- [Publisher profile](https://clawhub.ai/user/zenjabba) <br>
+## Use Case:
 
+Developers and workspace operators use this skill to generate Rocket.Chat REST API commands for managing channels, messages, users, integrations, and server statistics.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided Rocket.Chat URL, token, and user ID environment variables; examples may read, post, edit, delete, archive, or manage Rocket.Chat resources depending on requested action.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A powerful Rocket.Chat token can let an agent read or change workspace data.
+
+Mitigation: Install only for a workspace the agent is intended to manage and prefer a limited-scope token when possible.
+
+Risk: Generated commands can delete messages, archive channels, create users, post messages, or invoke webhooks.
+
+Mitigation: Review commands before execution, especially destructive, administrative, posting, and webhook actions.
+
+## Reference(s):
+
+- [Rocket.Chat REST API Documentation](https://developer.rocket.chat/reference/api/rest-api)
+- [Rocket.Chat API Documentation](https://developer.rocket.chat/reference/api)
+- [ClawHub Skill Page](https://clawhub.ai/zenjabba/skills/rocketchat)
+- [Publisher Profile](https://clawhub.ai/user/zenjabba)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces REST API command guidance that depends on RC_URL, RC_TOKEN, RC_USER_ID, curl, and optionally jq.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,61 @@
-## Description: <br>
-Query Developer Experience (DX) data via the DX Data MCP server PostgreSQL database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Developer Experience (DX) data via the DX Data MCP server PostgreSQL database for productivity metrics, team performance, pull request and code review metrics, deployment frequency, incident data, AI tool adoption, survey responses, DORA metrics, and other engineering analytics.
 
-## Publisher: <br>
-[Xiao1804](https://clawhub.ai/user/Xiao1804) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xiao1804](https://clawhub.ai/user/xiao1804)
 
-## Use Case: <br>
-Developers, engineering leaders, and DX analysts use this skill to query engineering analytics across DX surveys, teams, pull requests, deployments, incidents, AI tool adoption, issue tracking, service catalog data, pipelines, and code quality. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to query sensitive employee, survey, productivity, AI adoption, and identity-linkage data. <br>
-Mitigation: Use a read-only, least-privileged DX MCP database account and require explicit approval before retrieving names, emails, protected-user flags, individual survey answers, AI adoption status, or cross-system identity joins. <br>
-Risk: Individual-level engineering metrics can be misused or overinterpreted. <br>
-Mitigation: Prefer aggregate team-level reporting and review results for privacy, authorization, and context before sharing. <br>
-Risk: Known data quality issues include duplicate DX survey scores, team-name typos, mostly null DX user AI adoption fields, and missing incident-service links. <br>
-Mitigation: Verify team names from the source tables, aggregate duplicate survey rows as documented, prefer Copilot usage tables for AI adoption analysis, and avoid claiming service-level incident attribution when supporting links are absent. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Developer Experience (DX) Core Tables](references/developer-experience.md) <br>
-- [Teams and Users](references/teams-users.md) <br>
-- [Pull Requests and Code Review](references/pull-requests.md) <br>
-- [Deployments and Incidents](references/deployments-incidents.md) <br>
-- [AI Tools and Adoption](references/ai-tools.md) <br>
-- [Issue Tracking Integration](references/jira.md) <br>
-- [Service Catalog](references/catalog.md) <br>
-- [Pipelines and Code Quality](references/pipelines-quality.md) <br>
-- [Issues](references/issues-github.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Xiao1804/dx-data-navigator) <br>
+## Use Case:
 
+Developers, engineering managers, and DX analysts use this skill to ask an agent for focused SQL guidance and analysis patterns over DX Data Cloud tables. It supports team-level productivity, survey, pull request, deployment, incident, AI adoption, issue, catalog, pipeline, and code quality analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with SQL examples and concise analysis guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose database queries through the DX Data MCP server and summarize results for engineering analytics.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can steer agents into broad queries over sensitive employee emails, identity mappings, AI adoption data, productivity metrics, and survey responses.
+
+Mitigation: Use least-privilege read-only database credentials, prefer aggregate team-level queries, and require a clear business reason before querying individual-level data.
+
+Risk: The security verdict is suspicious because privacy and scope guardrails are limited for sensitive DX analytics.
+
+Mitigation: Install only from a trusted, pinned, internally reviewed source and review the skill before deployment.
+
+## Reference(s):
+
+- [Dx Data Navigator on ClawHub](https://clawhub.ai/xiao1804/skills/dx-data-navigator)
+- [Developer Experience Core Tables](references/developer-experience.md)
+- [Teams and Users](references/teams-users.md)
+- [Pull Requests and Code Review](references/pull-requests.md)
+- [Deployments and Incidents](references/deployments-incidents.md)
+- [AI Tools and Adoption](references/ai-tools.md)
+- [Issue Tracking](references/jira.md)
+- [Service Catalog](references/catalog.md)
+- [Pipelines and Code Quality](references/pipelines-quality.md)
+- [Issues](references/issues-github.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with SQL and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce SQL query examples for the DX Data MCP server; query results can include sensitive employee, identity, survey, and productivity data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

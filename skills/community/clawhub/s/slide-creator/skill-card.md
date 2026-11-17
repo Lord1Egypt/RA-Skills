@@ -1,44 +1,60 @@
-## Description: <br>
-Gemini Gem、Claude Code、Slidevを使って日本語のプレゼン資料を作成し、AIらしさを抑えるためのデザイン品質ルールを適用するワークフローです。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AIを使った資料作成ワークフローで、Gemini Gem、Claude Code、Slidevを使ってスライド構成、デザイン指示、HTMLスライド、PDF配信までを案内します。
 
-## Publisher: <br>
-[lastone3939](https://clawhub.ai/user/lastone3939) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lastone3939](https://clawhub.ai/user/lastone3939)
 
-## Use Case: <br>
-Creators and agents use this skill to turn a slide brief, design prompt, optional character assets, and supporting context into Slidev HTML and a PDF deck. It is aimed at producing polished Japanese-language presentation materials with explicit typography, layout, and visual-quality constraints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow asks the agent to bypass normal permission checks when invoking Claude Code. <br>
-Mitigation: Remove the permission-bypass flag and require normal command approval before executing generated slide-building commands. <br>
-Risk: The workflow can upload or publicly share generated decks through hard-coded external Google Drive account and folder settings. <br>
-Mitigation: Replace hard-coded account and folder values with private configuration and upload only after explicit confirmation that the deck may be shared. <br>
-Risk: The workflow starts a temporary local HTTP server during screenshot and export steps. <br>
-Mitigation: Keep outputs local by default and stop the temporary server after screenshots or PDF export are complete. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lastone3939/slide-creator) <br>
-- [Structure Gemini Gem](https://gemini.google.com/gem/1n4WJG5tY6MlVpO2qM5PghGoNxY99z5v0) <br>
-- [Design Gemini Gem](https://gemini.google.com/gem/1iLz7X88qkvl4hhT98AD8eEfHL8ptOVAC) <br>
-- [Google Fonts family request](https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Zen+Kaku+Gothic+New:wght@700;900&display=swap) <br>
+## Use Case:
 
+External users and slide creators use this skill to turn source material, design preferences, optional character assets, and client context into a Slidev-based presentation workflow. It guides the agent through prompt preparation, slide generation, screenshot capture, PDF creation, and optional sharing steps.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Files, Guidance] <br>
-**Output Format:** [Markdown workflow guidance with bash, CSS, HTML, and Python snippets that produce Slidev HTML and PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May export files locally, send a PDF through Telegram, and optionally upload archives to Google Drive when explicitly requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: External AI and cloud-sharing steps can expose confidential slide content or client context.
+
+Mitigation: Use only with non-confidential material unless the workflow is edited to make every external AI handoff and cloud upload an explicit opt-in step.
+
+Risk: The workflow includes unrestricted local agent execution.
+
+Mitigation: Remove the dangerous permission bypass and run generation in a constrained workspace before installing or using the skill.
+
+Risk: Public Drive sharing and embedded credential details can create unauthorized access or account exposure.
+
+Mitigation: Remove hardcoded credential material and disable public sharing by default before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lastone3939/skills/slide-creator)
+- [Publisher profile](https://clawhub.ai/user/lastone3939)
+- [Structure Gemini Gem](https://gemini.google.com/gem/1n4WJG5tY6MlVpO2qM5PghGoNxY99z5v0)
+- [Design Gemini Gem](https://gemini.google.com/gem/1iLz7X88qkvl4hhT98AD8eEfHL8ptOVAC)
+- [Google Fonts CSS for Noto Sans JP and Zen Kaku Gothic New](https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Zen+Kaku+Gothic+New:wght@700;900&display=swap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow instructions for creating Slidev HTML, screenshots, PDFs, and optional sharing steps.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

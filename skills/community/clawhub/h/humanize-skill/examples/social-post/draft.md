@@ -1,0 +1,1 @@
+I am thrilled to announce that I have launched a groundbreaking open-source skill that empowers creators to reclaim their authentic voice in the AI era. It analyzes your social media history, understands your unique personality, and verifies every fact, making it the definitive solution for human-centered writing.

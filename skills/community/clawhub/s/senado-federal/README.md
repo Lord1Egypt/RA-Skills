@@ -36,22 +36,24 @@ pip install -r requirements-dev.txt
 import asyncio
 from senado_client import get_senado_client
 
+
 async def main():
     client = get_senado_client()
     try:
         # Listar todos os senadores em exercício
         senadores = await client.lista_senadores_atuais()
-        
+
         # Buscar por nome
         resultado = await client.buscar_senador_por_nome("Bolsonaro")
-        
+
         for senador in resultado:
-            nome = senador['IdentificacaoParlamentar']['NomeParlamentar']
-            partido = senador['IdentificacaoParlamentar']['SiglaPartidoParlamentar']
-            uf = senador['IdentificacaoParlamentar']['UfParlamentar']
+            nome = senador["IdentificacaoParlamentar"]["NomeParlamentar"]
+            partido = senador["IdentificacaoParlamentar"]["SiglaPartidoParlamentar"]
+            uf = senador["IdentificacaoParlamentar"]["UfParlamentar"]
             print(f"{nome} ({partido}-{uf})")
     finally:
         await client.close()
+
 
 asyncio.run(main())
 ```
@@ -60,11 +62,7 @@ asyncio.run(main())
 
 ```python
 # Buscar PLs de 2026 em tramitação
-materias = await client.pesquisar_materia(
-    sigla="PL",
-    ano=2026,
-    tramitando=True
-)
+materias = await client.pesquisar_materia(sigla="PL", ano=2026, tramitando=True)
 
 for materia in materias:
     print(f"{materia['SiglaSubtipoMateria']} {materia['NumeroMateria']}/{materia['AnoMateria']}")
@@ -107,13 +105,15 @@ for votacao in votacoes:
 ```python
 # Buscar código do senador
 senador = await client.buscar_senador_por_nome("Renan Calheiros")
-codigo = senador[0]['IdentificacaoParlamentar']['CodigoParlamentar']
+codigo = senador[0]["IdentificacaoParlamentar"]["CodigoParlamentar"]
 
-# Obter discursos
-discursos = await client.get_discursos_senador(codigo)
+# Obter discursos de um ano (intervalos anuais são mais confiáveis)
+from datetime import date
+
+discursos = await client.get_discursos_senador(codigo, date(2026, 1, 1), date(2026, 12, 31))
 
 for discurso in discursos:
-    print(f"{discurso['DataDiscurso']}: {discurso['TipoDiscurso']}")
+    print(f"{discurso['DataPronunciamento']}: {discurso['TipoUsoPalavra']}")
 ```
 
 ### Processo Legislativo Completo
@@ -122,6 +122,12 @@ for discurso in discursos:
 # Obter processo legislativo com dados detalhados
 processo = await client.get_processo("123456")
 # Inclui autuações, situações, tramitação completa
+
+# Busca confiável por autor
+processos = await client.pesquisar_processos(
+    autor="Astronauta Marcos Pontes",
+    tramitando=True,
+)
 ```
 
 ### Composição de Comissão
@@ -158,6 +164,7 @@ for lei in leis:
 
 ### Senadores
 - `lista_senadores_atuais()` - Senadores em exercício
+- `lista_senadores_legislatura(legislatura)` - Coorte histórica completa
 - `buscar_senador_por_nome(nome)` - Busca por nome
 - `get_senador_detalhe(codigo)` - Detalhes completos
 - `get_autorias_senador(codigo)` - Matérias de autoria
@@ -222,6 +229,12 @@ for lei in leis:
 
 ### Processo Legislativo
 - `get_processo(codigo)` - Processo legislativo completo
+- `pesquisar_processos(autor=..., tramitando=...)` - Busca consolidada, inclusive por autor
+
+### Transparência administrativa
+- `SenadoAdmClient.get_ceap(ano)` - CEAP; o valor monetário é `valorReembolsado`
+- O cliente também cobre servidores, supridos e contratações
+- Respostas inválidas geram erro em vez de serem convertidas silenciosamente em lista vazia
 
 ### Autores, Legislação, Discurso
 - `get_autores_atuais()` - Lista de autores atuais
@@ -234,11 +247,11 @@ O cliente possui exceções específicas:
 
 ```python
 from senado_client import (
-    SenadoAPIError,         # Erro genérico
-    SenadoTimeoutError,     # Timeout
-    SenadoNotFoundError,    # 404
+    SenadoAPIError,  # Erro genérico
+    SenadoTimeoutError,  # Timeout
+    SenadoNotFoundError,  # 404
     SenadoConnectionError,  # Erro de conexão
-    SenadoValidationError   # Validação de parâmetros
+    SenadoValidationError,  # Validação de parâmetros
 )
 
 try:
@@ -258,10 +271,7 @@ Para habilitar logs:
 ```python
 import logging
 
-logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
+logging.basicConfig(level=logging.DEBUG, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 ```
 
 ## 🔗 Recursos

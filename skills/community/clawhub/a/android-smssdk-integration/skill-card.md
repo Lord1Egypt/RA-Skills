@@ -1,47 +1,69 @@
-## Description: <br>
-Interactive guide for integrating MobTech SMSSDK into Android projects through a six-step workflow covering setup, Gradle configuration, privacy compliance, and verification code integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through integrating MobTech SMSSDK SMS verification into Android projects, including configuration, Gradle setup, privacy consent, and verification-code code paths.
 
-## Publisher: <br>
-[mobsupport](https://clawhub.ai/user/mobsupport) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mobsupport](https://clawhub.ai/user/mobsupport)
 
-## Use Case: <br>
-Developers and Android engineers use this skill to plan and apply MobTech SMSSDK integration, including project validation, configuration collection, Gradle setup, privacy authorization, and code snippets for built-in or custom verification flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad SMS-verification trigger phrases could invoke the skill when the user did not intend MobTech SMSSDK integration. <br>
-Mitigation: Confirm the user wants MobTech SMSSDK for an Android project before starting the workflow or editing files. <br>
-Risk: The workflow proposes Gradle, manifest, and source-code changes that can affect an Android app build and privacy behavior. <br>
-Mitigation: Review each proposed change with the project owner and require explicit confirmation before applying edits or running build commands. <br>
+## Use Case:
 
+Developers use this skill to add MobTech SMSSDK SMS verification to Android apps through an interactive, confirmation-based workflow. It helps with project validation, configuration collection, SDK setup, privacy authorization, built-in or custom UI integration, and troubleshooting.
 
-## Reference(s): <br>
-- [Mob Documentation Center](https://www.mob.com/wiki/list) <br>
-- [MobTech SMSSDK Product Introduction](https://mob.com/wiki/detailed?wiki=163&id=23) <br>
-- [SMSSDK Integration Guide and SDK API](https://mob.com/wiki/detailed?wiki=440&id=23) <br>
-- [SMSSDK Privacy Compliance Guide](https://mob.com/wiki/detailed?wiki=210&id=23) <br>
-- [SMSSDK Server Verification API](https://mob.com/wiki/detailed?wiki=112&id=23) <br>
-- [SMSSDK SMS Settings](https://mob.com/wiki/detailed?wiki=452&id=23) <br>
-- [SMSSDK FAQ](https://mob.com/wiki/detailed?wiki=123&id=23) <br>
-- [SMS Signature Rule Update](https://mob.com/wiki/detailed?wiki=732&id=23) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell, Gradle, Java, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate an Excel configuration template and project README when the user approves those workflow steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow collects MobTech AppKey and AppSecret values and may place them in a project-root spreadsheet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the spreadsheet out of version control, remove it when no longer needed, and avoid committing credentials or generated configuration containing secrets.
+
+Risk: The workflow edits Android project files and proposes running Gradle commands in a user-provided project path.
+
+Mitigation: Review each proposed file change before applying it and run Gradle manually from a trusted project directory.
+
+Risk: The Gradle plugin example uses an unpinned MobSDK dependency version.
+
+Mitigation: Pin the MobSDK Gradle plugin to a reviewed version before production use.
+
+Risk: SMSSDK integration requires privacy-consent handling before SDK initialization.
+
+Mitigation: Confirm the app presents a privacy policy and calls the MobSDK privacy authorization method only after user consent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mobsupport/skills/android-smssdk-integration)
+- [Mob documentation center](https://www.mob.com/wiki/list)
+- [MobTech SMSSDK product overview](https://mob.com/wiki/detailed?wiki=163&id=23)
+- [SMSSDK integration guide and API reference](https://mob.com/wiki/detailed?wiki=440&id=23)
+- [MobSDK privacy compliance guide](https://mob.com/wiki/detailed?wiki=210&id=23)
+- [SMSSDK server-side verification API](https://mob.com/wiki/detailed?wiki=112&id=23)
+- [SMSSDK SMS settings](https://mob.com/wiki/detailed?wiki=452&id=23)
+- [SMSSDK FAQ](https://mob.com/wiki/detailed?wiki=123&id=23)
+- [SMS signature rules update](https://mob.com/wiki/detailed?wiki=732&id=23)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Gradle snippets, Java code blocks, shell commands, and configuration-file instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate an Excel configuration template and project README in the target Android project when the user confirms the workflow steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

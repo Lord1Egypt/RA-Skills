@@ -1,0 +1,216 @@
+{
+  "card_id": "WQ-EXP-021",
+  "source_type": "clinical_experience",
+  "source_file": "王琦教授用玉屏风散调理气虚体质治疗多汗症验案分析_王济.pdf",
+  "title": "中医药通报",
+  "authors": [
+    "月第",
+    "卷第",
+    "Traditional",
+    "Journal",
+    "桂枝"
+  ],
+  "year": 2023,
+  "language": "zh",
+  "experience_type": "treatment_method",
+  "clinical_focus": {
+    "disease": "",
+    "syndrome": "",
+    "constitution": []
+  },
+  "diagnostic_approach": {
+    "key_points": "辨体－辨病－辨证”相结合的临床诊疗模式，注重调理体质治疗多汗症。"
+  },
+  "treatment_approach": {
+    "main_formula": "玉屏风散",
+    "related_formulas": [
+      "玉屏风散"
+    ],
+    "principle": "",
+    "herbs": [
+      "黄芪",
+      "白术",
+      "防风",
+      "甘草"
+    ]
+  },
+  "case_studies": [],
+  "clinical_insights": "体－辨病－辨证”相结合的临床诊疗模式，注重调理体质治疗多汗症。对于气虚体质表虚不固多汗，用玉屏风散调体，结合辨病辨证施治取得良效。 体质多汗症名医经验王琦多汗症是中医临床常见病，虽然对患者的身体健康没有直接严重的危害，但汗出伤津，容易加重或造成患者体质虚弱，对外界环境致病因素抵抗力降低。而且，容易给患者带来心理和社交方面的影响，从而严重影响患者的生活质量。 体质表虚不固多汗，每用玉屏风散调体，结合辨病辨证施治取得良效。现举王琦教授调理气虚体质治疗多汗症验案如下。",
+  "knowledge_points": [
+    {
+      "category": "insight",
+      "content": "汗证的常见病因病机为: ①气虚不固: 素体气虚，表虚失固， 营阴不能内守，津液外泄，则常自汗; ②营卫不和: 感受外邪，伤其卫气，卫气因而失其固护之性，不能固护营阴，致使营阴不能内守而外泄，以致汗出; ③肾阴亏虚: 肾阴不足，阴虚生内热，蕴蒸津液，迫津外泄，而见骨蒸潮热，盗汗等; ④气阴两虚: 气虚不能摄津，阴虚生内热， 迫津外泄，气阴两虚，则可见汗出涔涔而不止; ⑤脾虚湿阻、肾虚湿滞、湿热内蕴等 ［6］",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "可见，素体气虚，表虚失固是造成汗证的主要原因之一",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "method",
+      "content": "2．2 调理气虚体质在治疗多汗症中的应用气虚体质是九种中医体质类型之一，全国范围调查显示，气虚体质在中国人中所占比例为12．42% ，占到偏颇体质的第一位 ［11］",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "辨证要点：辨体－辨病－辨证”相结合的临床诊疗模式，注重调理体质治疗多汗症。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "核心方药为玉屏风散。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "常用药物包括黄芪、白术、防风、甘草。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "体－辨病－辨证”相结合的临床诊疗模式，注重调理体质治疗多汗症",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "对于气虚体质表虚不固多汗，用玉屏风散调体，结合辨病辨证施治取得良效",
+      "importance": "high",
+      "evidence_level": "C"
+    }
+  ],
+  "related_constitutions": [],
+  "related_diseases": [
+    "糖尿病"
+  ],
+  "evidence_sentences": [
+    {
+      "sentence": "汗证的常见病因病机为: ①气虚不固: 素体气虚，表虚失固， 营阴不能内守，津液外泄，则常自汗; ②营卫不和: 感受外邪，伤其卫气，卫气因而失其固护之性，不能固护营阴，致使营阴不能内守而外泄，以致汗出; ③肾阴亏虚: 肾阴不足，阴虚生内热，蕴蒸津液，迫津外泄，而见骨蒸潮热，盗汗等; ④气阴两虚: 气虚不能摄津，阴虚生内热， 迫津外泄，气阴两虚，则可见汗出涔涔而不止; ⑤脾虚湿阻、肾虚湿滞、湿热内蕴等 ［6］",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 2
+    },
+    {
+      "sentence": "可见，素体气虚，表虚失固是造成汗证的主要原因之一",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 2
+    },
+    {
+      "sentence": "2．2 调理气虚体质在治疗多汗症中的应用气虚体质是九种中医体质类型之一，全国范围调查显示，气虚体质在中国人中所占比例为12．42% ，占到偏颇体质的第一位 ［11］",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 2
+    }
+  ],
+  "research_focus": {
+    "constitution_type": [],
+    "disease": [
+      "糖尿病"
+    ],
+    "topic": []
+  },
+  "page_info": {
+    "total_pages": 3,
+    "sections": {
+      "methods": {
+        "start": 3,
+        "end": 3
+      },
+      "results": {
+        "start": 2,
+        "end": 3
+      },
+      "discussion": {
+        "start": 1,
+        "end": 1
+      }
+    }
+  },
+  "created_at": "2026-04-22T15:38:13.828096",
+  "methods": {
+    "sample_size": 64,
+    "study_design": "横断面研究"
+  },
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "doi": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 2,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.565187",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.565195"
+  }
+}

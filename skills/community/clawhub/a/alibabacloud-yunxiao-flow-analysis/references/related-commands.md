@@ -2,7 +2,7 @@
 
 This document lists all available script commands for Yunxiao Flow pipeline troubleshooting.
 
-> **Token Note**: The `--token` parameter in all scripts below can be provided via the environment variable `YUNXIAO_ACCESS_TOKEN`. If the environment variable is set, the `--token` argument can be omitted.
+> **Authentication**: All scripts read the token exclusively from the environment variable `YUNXIAO_ACCESS_TOKEN`. Ensure it is set before running any command: `export YUNXIAO_ACCESS_TOKEN="pt-xxx"`
 
 ## Python Scripts
 
@@ -18,7 +18,6 @@ python3 scripts/yunxiao_flow_get_pipeline_runs.py \
   --org-id <org-id> \
   --pipeline-id <pipeline-id> \
   --pipeline-runid <pipeline-runid> \
-  --token <token> \
   [--domain <domain>]
 ```
 
@@ -28,7 +27,6 @@ python3 scripts/yunxiao_flow_get_pipeline_runs.py \
 | --org-id | Yes | Organization ID | None |
 | --pipeline-id | Yes | Pipeline ID | None |
 | --pipeline-runid | Yes | Pipeline Run ID | None |
-| --token | No | Personal access token (can also be provided via environment variable YUNXIAO_ACCESS_TOKEN) | None |
 | --domain | No | API domain | openapi-rdc.aliyuncs.com |
 
 **Output:** JSON containing pipeline run details, including status, stages, jobs, and steps
@@ -49,7 +47,6 @@ python3 scripts/yunxiao_flow_get_job_step_log.py \
   --pipeline-runid <pipeline-runid> \
   --job-id <job-id> \
   --step-index <step-index> \
-  --token <token> \
   [--domain <domain>] \
   [--build-id <build-id>] \
   [--offset <offset>] \
@@ -65,7 +62,6 @@ python3 scripts/yunxiao_flow_get_job_step_log.py \
 | --pipeline-runid | Yes | Pipeline Run ID | None |
 | --job-id | Yes | Job ID | None |
 | --step-index | Yes | Step Index | None |
-| --token | No | Personal access token (can also be provided via environment variable YUNXIAO_ACCESS_TOKEN) | None |
 | --domain | No | API domain | openapi-rdc.aliyuncs.com |
 | --build-id | No | Build ID | None |
 | --offset | No | Log start position | 1 |
@@ -88,7 +84,6 @@ python3 scripts/yunxiao_flow_get_vm_deploy_order.py \
   --org-id <org-id> \
   --pipeline-id <pipeline-id> \
   --deploy-order-id <deploy-order-id> \
-  --token <token> \
   [--domain <domain>]
 ```
 
@@ -98,7 +93,6 @@ python3 scripts/yunxiao_flow_get_vm_deploy_order.py \
 | --org-id | Yes | Organization ID | None |
 | --pipeline-id | Yes | Pipeline ID | None |
 | --deploy-order-id | Yes | Deployment Order ID | None |
-| --token | No | Personal access token (can also be provided via environment variable YUNXIAO_ACCESS_TOKEN) | None |
 | --domain | No | API domain | openapi-rdc.aliyuncs.com |
 
 **Output:** JSON containing deployment order details and machine list, including `machineSn`
@@ -119,7 +113,6 @@ python3 scripts/yunxiao_flow_get_vm_deploy_machine_log.py \
   --pipeline-runid <pipeline-runid> \
   --deploy-order-id <deploy-order-id> \
   --machine-sn <machine-sn> \
-  --token <token> \
   [--domain <domain>]
 ```
 
@@ -131,7 +124,6 @@ python3 scripts/yunxiao_flow_get_vm_deploy_machine_log.py \
 | --pipeline-runid | Yes | Pipeline Run ID | None |
 | --deploy-order-id | Yes | Deployment Order ID | None |
 | --machine-sn | Yes | Machine Serial Number | None |
-| --token | No | Personal access token (can also be provided via environment variable YUNXIAO_ACCESS_TOKEN) | None |
 | --domain | No | API domain | openapi-rdc.aliyuncs.com |
 
 **Output:** JSON containing machine deployment logs
@@ -176,9 +168,13 @@ python3 scripts/webTerminal.py --terminalUrl "<terminalUrl>"
 
 ## Authentication
 
-All scripts use token-based authentication via the `x-yunxiao-token` HTTP header. Token can be provided in two ways:
-1. Command-line argument `--token`
-2. Environment variable `YUNXIAO_ACCESS_TOKEN` (recommended)
+All scripts use token-based authentication via the `x-yunxiao-token` HTTP header.
+
+**Security Design:**
+- Token is read **exclusively** from environment variable `YUNXIAO_ACCESS_TOKEN` — CLI arguments are not supported to prevent exposure in process listings, shell history, and `/proc/*/cmdline`
+- Token format is validated (`pt-` prefix) before any network transmission
+- All API communication uses HTTPS with TLS encryption
+- Scripts mask token values in output (showing only first 6 and last 6 characters)
 
 **Token Format:** `pt-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
 

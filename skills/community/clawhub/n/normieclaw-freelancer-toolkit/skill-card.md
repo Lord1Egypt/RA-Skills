@@ -1,46 +1,65 @@
-## Description: <br>
-Freelancer Toolkit helps agents track freelance time, manage clients and projects, analyze profitability, generate timesheets, and prepare invoice handoffs through conversation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered time tracking, client management, and project profitability for freelancers.
 
-## Publisher: <br>
-[nollio](https://clawhub.ai/user/nollio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nollio](https://clawhub.ai/user/nollio)
 
-## Use Case: <br>
-Freelancers and solo operators use this skill to log time in natural language, maintain local client and project records, generate timesheets and billing reports, monitor project profitability, and prepare invoice data for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Client contact information, project details, time entries, rates, billed amounts, and payment status are stored locally under ~/.freelancer-toolkit/. <br>
-Mitigation: Use disk encryption, restrict account access, and keep ~/.freelancer-toolkit/ permissions locked down before storing real client or billing records. <br>
-Risk: Invoice handoff can pass client and billing data to InvoiceGen Pro or to services configured by the user's agent environment. <br>
-Mitigation: Review invoice drafts before approval and confirm the security posture of InvoiceGen Pro, LLM providers, and any connected services. <br>
-Risk: Generated CSV, Markdown, and JSON exports can contain sensitive billing records. <br>
-Mitigation: Periodically audit and remove unneeded files from ~/.freelancer-toolkit/exports/ and include required records in a controlled backup process. <br>
+## Use Case:
 
+Freelancers and solo service providers use this skill to log time conversationally, manage client and project records, monitor project profitability, generate timesheets and billing reports, and prepare invoice data for approval.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nollio/normieclaw-freelancer-toolkit) <br>
-- [Publisher Profile](https://clawhub.ai/user/nollio) <br>
-- [README](artifact/README.md) <br>
-- [Security Notes](artifact/SECURITY.md) <br>
-- [Dashboard Specification](artifact/dashboard-kit/DASHBOARD-SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational guidance with Markdown reports, CSV/JSON exports, Bash commands, and local configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local JSON records under ~/.freelancer-toolkit/ and can generate timesheet, client report, and invoice handoff artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill stores client contact details, billing rates, time entries, invoices, and exports on the machine running the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted host, restrict ~/.freelancer-toolkit permissions, enable disk encryption where appropriate, and include the data directory in a secure backup plan.
+
+Risk: Generated CSV and JSON exports can contain sensitive billing and client data.
+
+Mitigation: Review exports before sharing or opening them in spreadsheet applications, and remove stale exported files when they are no longer needed.
+
+Risk: InvoiceGen Pro integration may pass client and billing data to another tool's processing pipeline.
+
+Mitigation: Review invoice drafts before approval and check InvoiceGen Pro's security documentation before using the integration.
+
+Risk: The optional setup flow can install jq through the system package manager with sudo.
+
+Mitigation: Only approve the install after confirming it uses a trusted package manager, or install jq manually before running setup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nollio/skills/normieclaw-freelancer-toolkit)
+- [Publisher profile](https://clawhub.ai/user/nollio)
+- [README](artifact/README.md)
+- [Security notes](artifact/SECURITY.md)
+- [Dashboard manifest](artifact/dashboard-kit/manifest.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Conversational guidance, Markdown reports, CSV exports, JSON invoice payloads, and Bash command/script usage.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local JSON data files and exports under ~/.freelancer-toolkit/.]
+
+## Skill Version(s):
+
+1.0.3 (source: server evidence release.version and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -130,7 +130,15 @@
 
 ### `method_expand`
 
-`method_expand` 为 JSON 字符串。官方按每个 `trade_type` 显式列出包装行，例如 `T_JSAPI`、`T_MINIAPP`、`T_APP`、`T_MICROPAY`、`A_JSAPI`、`A_NATIVE`、`A_MICROPAY`、`U_JSAPI`、`U_NATIVE`、`U_MICROPAY`；本地按渠道族归并展示，同一渠道族结构一致，可按下述方式解析。
+`method_expand` 为一个 JSON Object 字符串。官方参数表按 `trade_type` 显式列出 `T_JSAPI`、`T_MINIAPP`、`T_APP`、`T_MICROPAY`、`A_JSAPI`、`A_NATIVE`、`A_MICROPAY`、`U_JSAPI`、`U_NATIVE`、`U_MICROPAY` 等包装行；这些行是文档场景分组，不是线上返回的 key。对 `method_expand` 只解码一次，渠道字段直接位于解码后对象的根层。例如支付宝场景读取 `$.buyer_logon_id`，不得读取 `$.A_JSAPI.buyer_logon_id`，也不得对 `A_JSAPI` 再做第二次 JSON 解码。
+
+解析和路由必须遵守以下边界：
+
+- 线上字段名是 `response.data.trade_type`；若业务 DTO 使用 `pay_type` 等别名，必须保留原始 `trade_type` 并显式映射。真实报文只有 `pay_type` 时按合同漂移处理，不得直接据此路由。
+- 对 `method_expand` 做且只做一次严格 JSON Object 解码；中间件已预解码成 Object 时可直接进入同一字段读取逻辑，但必须记录原始类型。出现 `A_JSAPI` 等场景包装 key 时按合同漂移处理，不得把官网展示分组固化为 DTO 层级。
+- 非法 JSON、解码后不是 Object、超过本地大小或嵌套深度限制时必须显式报解析错误，不得回退为空对象。保留原始值和规范化视图，禁止用重新序列化结果覆盖原始审计证据。
+- 路由只对接口概览中的正式枚举做精确匹配。支付宝付款码交易的正式值是 `A_MICROPAY`；当前官网成功示例已经使用该正确值。参数说明仍把支付宝付款码重复写成 `A_NATIVE`，该行按已确认勘误解释为 `A_MICROPAY`。真实线上响应若出现其他拼写，保留原值并按合同漂移告警，不得静默改写后掩盖证据。
+- `buyer_logon_id` 属于账号信息，不得写入普通日志；其他未知键只在受控扩展 map 中原样保留，不能驱动结算、退款或渠道特有核心逻辑。
 
 #### 微信类交易
 
@@ -183,6 +191,10 @@
 | `fund_bill_list` | Array | 2048 | N | 交易支付使用的资金渠道 |
 | `hb_fq_num` | String | 10 | N | 花呗分期数 |
 | `voucher_detail_list` | Array | 2048 | N | 本交易使用的所有优惠券信息 |
+
+##### 成功样例专属兼容键（参数表未定义）
+
+锁定官网成功样例的 `response.data.method_expand` 还出现 `buyer_pay_amount`、`buyer_user_id`、`invoice_amount`、`point_amount`、`send_pay_date`，但响应参数表没有定义这五个键的类型、长度、必填性或稳定性。它们只能按“样例可见、表未定义”的兼容扩展保留：解析器可以忽略未知键或在扩展 map 中原样保存，固定 DTO、校验器和业务判断不得依赖这些键；需要正式使用时标记 `[需要官方确认]`。
 
 `fund_bill_list` 字段：
 
@@ -370,7 +382,7 @@
     "resp_code": "00000000",
     "resp_desc": "查询成功",
     "settlement_amt": "0.03",
-    "trade_type": "A_IMICROPAY",
+    "trade_type": "A_MICROPAY",
     "trans_amt": "0.03",
     "trans_stat": "S",
     "freeze_time": "20091225091010",
@@ -394,9 +406,9 @@
 
 ## 实现备注与文档勘误
 
-1. 官方成功示例中的 `trade_type` 写成了 `A_IMICROPAY`，这不是文档前文列出的正式枚举；实现时不要把它纳入合法取值，按 `A_MICROPAY` 理解更合理。
+1. 官方成功示例已把 `trade_type` 修正为 `A_MICROPAY`；参数说明仍把支付宝付款码重复写成 `A_NATIVE`。生成请求、DTO 枚举、校验器和业务路由必须使用 `A_MICROPAY`。若线上响应出现其他拼写，保留原始值并按合同漂移告警。
 2. 官方“应用场景”段出现 `U_JSAP` 拼写，结合参数表与上下文应按 `U_JSAPI` 处理。
 3. 官方时间格式在 `end_time`、`freeze_time`、`unfreeze_time` 等位置混用了 `yyyyMMddHHMMSS`；实现中建议统一按 14 位时间串 `yyyyMMddHHmmss` 解析。
-4. `method_expand`、`tx_metadata`、`payment_fee` 均为 JSON 字符串，不是嵌套对象；落库或透传前应先反序列化。
+4. `method_expand`、`tx_metadata`、`payment_fee` 均为 JSON 字符串，不是外层响应里的嵌套对象；落库或读取子字段前应先反序列化。其中 `method_expand` 解码后为单层平铺对象，文档里的渠道包装行不参与解码。
 5. 查询成功只代表“查询动作成功”，交易成败仍要看 `trans_stat`。当 `trans_stat=P` 时应按业务轮询；当 `trans_stat=I` 时建议联系汇付支持排查。
 6. `freeze_time`、`unfreeze_amt`、`unfreeze_time` 在最新官方参数表中必填列为 `Y`；即使官方返回示例未展示，生成字段清单和 DTO 时也不要降级成 `N`。

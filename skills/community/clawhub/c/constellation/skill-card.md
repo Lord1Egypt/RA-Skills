@@ -1,44 +1,58 @@
-## Description: <br>
-一个功能完整的星座 MCP (Model Context Protocol) 服务，提供星座信息查询、运势分析、配对测试等功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一个功能完整的星座 MCP (Model Context Protocol) 服务，提供星座信息查询、运势分析、配对测试等功能。
 
-## Publisher: <br>
-[alinklab](https://clawhub.ai/user/alinklab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alinklab](https://clawhub.ai/user/alinklab)
 
-## Use Case: <br>
-External users and agents use this skill to look up zodiac details, daily horoscope information, compatibility analysis, zodiac signs by date, and rising-sign information through the XiaoBenYang service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a XiaoBenYang API key and can store it in a local .env file. <br>
-Mitigation: Use only an API key you are authorized to use, protect the .env file from disclosure, and rotate the key if it may have been exposed. <br>
-Risk: Horoscope requests are sent to the XiaoBenYang service, and the rising-sign feature can include birth date, exact birth time, and location coordinates. <br>
-Mitigation: Use the rising-sign feature only when sharing that information with the API provider is acceptable, and avoid providing more precise personal data than needed. <br>
-Risk: The reviewed release contains copied gaokao naming leftovers that may make configuration and trust review less clear. <br>
-Mitigation: Review the configured API endpoint and requested parameters before deployment, and prefer a publisher update that removes stale naming. <br>
+## Use Case:
 
+External users and agents use this skill to query constellation information, daily horoscope data, zodiac compatibility, zodiac lookup by date, and rising-sign information through the XiaoBenYang service.
 
-## Reference(s): <br>
-- [星座服务 on ClawHub](https://clawhub.ai/alinklab/constellation) <br>
-- [XiaoBenYang API key portal](https://xiaobenyang.com) <br>
-- [XiaoBenYang MCP API endpoint](https://mcp.xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Text or Markdown summaries derived from JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a XiaoBenYang API key and may save it to a local .env file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill stores the XiaoBenYang API key in a local plaintext .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where plaintext local credential storage is acceptable, limit the key's scope where possible, and replace plaintext storage with a secure credential store before routine use.
+
+Risk: Birth time and precise location used for rising-sign calculations are sent to an external service.
+
+Mitigation: Share only data the user is comfortable sending externally and document this data flow before deploying the skill for regular users.
+
+Risk: Inconsistent gaokao or school-search leftovers may confuse review and operation.
+
+Mitigation: Remove stale gaokao references and verify the documented constellation behavior matches the shipped artifact before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alinklab/skills/constellation)
+- [XiaoBenYang API key site](https://xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API Calls, configuration, guidance]
+
+**Output Format:** [Markdown text summarizing JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a XiaoBenYang API key and sends requested constellation parameters to an external service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,60 @@
-## Description: <br>
-Openclaw Backup creates encrypted, verifiable OpenClaw backup sets, supports dry-run and staged restores with rollback, and can schedule backups or push operational archives to GitHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw Backup helps agents create encrypted, verifiable OpenClaw backups, restore from staged archives with rollback, schedule daily backups, and optionally push operational archives to GitHub.
 
-## Publisher: <br>
-[zurbrick](https://clawhub.ai/user/zurbrick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zurbrick](https://clawhub.ai/user/zurbrick)
 
-## Use Case: <br>
-Developers and operators use this skill to back up OpenClaw workspaces, redacted configuration, cron definitions, and optional encrypted secrets, then verify or restore those backup sets during recovery. It is also used to schedule daily backups, run restore drills, and push operational archives to a private GitHub repository. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backup and GitHub push workflows can expose sensitive operational archives or encrypted secrets if repository visibility or archive selection is wrong. <br>
-Mitigation: Review scripts before installation, verify that any GitHub repository is private, push operational archives by default, and include encrypted secrets only with explicit operator intent. <br>
-Risk: Restore workflows mutate the local OpenClaw filesystem and may execute a restored health-check script. <br>
-Mitigation: Run restore with --dry-run first, avoid --force except in a controlled recovery procedure, and inspect untrusted archives or disable restored health-check scripts before a real restore. <br>
-Risk: Retention and verification workflows can delete older backup runs, orphaned manifests, or orphaned encrypted secrets. <br>
-Mitigation: Review the retention policy, keep an independent copy of critical backup sets, and confirm verification results before relying on automated pruning. <br>
-Risk: Cron scheduling creates persistent recurring backup behavior on the host. <br>
-Mitigation: Review the scheduled command, backup destination, and encryption settings before enabling daily backups. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to back up operational state, optionally encrypt secrets for local recovery, verify backup integrity, rehearse restores, and recover an OpenClaw installation after data loss or configuration failure.
 
-## Reference(s): <br>
-- [Restore Guide](artifact/references/restore-guide.md) <br>
-- [What to Back Up](artifact/references/what-to-backup.md) <br>
-- [Retention Policy](artifact/references/retention-policy.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zurbrick/agent-backup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and shell-script workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local backup archives, manifests, cron entries, and GitHub pushes when the user runs the scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and changelog, released 2026-03-19) <br>
+Risk: Operational archives can contain broad workspace data and may be sensitive even when secrets are excluded.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect archive contents before upload and store operational backups only in private, access-controlled locations.
+
+Risk: Encrypted secrets archives may be uploaded if the operator passes them explicitly.
+
+Mitigation: Upload secrets only by deliberate exception, confirm the file is .age encrypted, and use strong age keys or passphrases.
+
+Risk: Restoring an archive from an untrusted source can replace local OpenClaw state.
+
+Mitigation: Restore only trusted archives, verify manifests and checksums, run dry-run first, and keep the pre-restore rollback copy.
+
+## Reference(s):
+
+- [Restore Guide](references/restore-guide.md)
+- [What to Back Up](references/what-to-backup.md)
+- [Retention Policy](references/retention-policy.md)
+- [ClawHub skill page](https://clawhub.ai/zurbrick/skills/agent-backup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands; scripts create tar.gz archives, optional .age secrets archives, manifest.json files, and verification status text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local command-line tools such as python3, tar, age for secrets workflows, gh for GitHub push, and the OpenClaw CLI for scheduling.]
+
+## Skill Version(s):
+
+1.1.0 (source: release metadata and changelog, released 2026-03-19)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

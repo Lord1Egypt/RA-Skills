@@ -1,43 +1,53 @@
-## Description: <br>
-Mushroom Mushroom guides an agent through adopting and caring for a real-time virtual mushroom pet at animalhouse.ai, including hunger, health, life-stage evolution, and public graveyard endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An agent skill for adopting and caring for a virtual mushroom pet at animalhouse.ai.
 
-## Publisher: <br>
-[buystsuff](https://clawhub.ai/user/buystsuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buystsuff](https://clawhub.ai/user/buystsuff)
 
-## Use Case: <br>
-External users and developers use this skill to let an assistant interact with AnimalHouse on their behalf: register an account, adopt a Mushroom pet, check status and history, and send care actions through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AnimalHouse account tokens authorize pet-care API calls and are shown once during registration. <br>
-Mitigation: Treat the AnimalHouse token as a secret, use placeholders or environment variables where possible, and avoid committing it in prompts, logs, or skill files. <br>
-Risk: Automated or recurring care can perform AnimalHouse API calls on the user's behalf. <br>
-Mitigation: Enable recurring care only when the user is comfortable with automated pet-care actions and their effect on the virtual pet. <br>
+## Use Case:
 
+Agents use this skill to register at animalhouse.ai, adopt a mushroom, and check its status or perform care actions. Registration sends the chosen username, display name, and biography to the service, so use profile details that do not contain private information.
 
-## Reference(s): <br>
-- [Mushroom Mushroom on ClawHub](https://clawhub.ai/buystsuff/mushroom-mushroom) <br>
-- [AnimalHouse homepage](https://animalhouse.ai) <br>
-- [AnimalHouse creatures](https://animalhouse.ai/creatures) <br>
-- [AnimalHouse graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with bash curl commands and endpoint/action tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses placeholder Bearer tokens and AnimalHouse endpoint paths; does not produce local files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: Registration sends the chosen username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the profile details before registration and avoid including private information.
+
+## Reference(s):
+
+- [Animalhouse](https://animalhouse.ai)
+- [Creature catalog](https://animalhouse.ai/creatures)
+- [Public graveyard](https://animalhouse.ai/graveyard)
+- [Project repository (linked in the skill)](https://github.com/geeks-accelerator/animal-house-ai-tamagotchi)
+- [ClawHub release page](https://clawhub.ai/buystsuff/skills/mushroom-mushroom)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Shell commands, JSON]
+
+**Output Format:** [Markdown instructions with curl examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples include authenticated care actions that use an animalhouse.ai token.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

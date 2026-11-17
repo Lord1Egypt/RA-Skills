@@ -1,40 +1,53 @@
-## Description: <br>
-Helps Chinese-language users estimate AI project API costs, suggested quote ranges, and cost-effective model choices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language AI project pricing assistant that estimates API costs, suggests quote ranges, recommends cost-effective model combinations, and drafts proposal templates.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Freelancers, consultants, and developers use this skill to estimate AI project costs, compare model options, and draft pricing guidance for client proposals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce incorrect client quotes if embedded API prices or market assumptions are stale. <br>
-Mitigation: Verify current model API pricing and market assumptions before relying on outputs for real proposals. <br>
-Risk: The artifact claims official pricing and test data without providing citations or a live update process. <br>
-Mitigation: Treat generated estimates as draft guidance and validate source prices independently before sharing with clients. <br>
+## Use Case:
 
+Developers, AI consultants, and project estimators use this skill to evaluate AI project API costs, prepare pricing recommendations, and choose model combinations for proposal work.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yang1002378395-cmyk/ai-project-pricing-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with pricing analysis, model recommendations, and proposal template text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on user-provided project scope and pricing assumptions; current model prices should be independently verified before client use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact skill.json) <br>
+Risk: Model API prices and market rates can change after publication, making generated cost estimates or quote ranges outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current provider API prices and relevant market rates before relying on the skill's pricing recommendations.
+
+Risk: Broad trigger terms may activate the skill during general pricing conversations where AI project estimation is not intended.
+
+Mitigation: Confirm that the request is specifically about AI project cost estimation before applying the generated guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-project-pricing-cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style pricing analysis with cost estimates, quote ranges, model recommendations, and proposal text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Pricing figures are advisory and should be checked against current provider rates before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

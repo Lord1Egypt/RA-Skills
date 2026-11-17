@@ -1,43 +1,54 @@
-## Description: <br>
-Generates AI-assisted articles, images, videos, titles, and content review support for content workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+内容生成，文章生成 + 图片生成。
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-External creators, marketing teams, and content operators use this skill to draft articles, generate image and video content, optimize titles, and review content for publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Install commands may fetch code and Python dependencies outside the submitted artifact. <br>
-Mitigation: Review the external repository and dependency files before running installation commands. <br>
-Risk: AI-generated content can be inaccurate, unsuitable, or sensitive for publication. <br>
-Mitigation: Review generated articles, media prompts, titles, and moderation results before publishing or using them with sensitive content. <br>
-Risk: Using the skill with content-generation providers may require API keys or access to private content. <br>
-Mitigation: Provide credentials only after reviewing dependencies and avoid sending sensitive content unless the deployment environment is approved. <br>
+## Use Case:
 
+External content creators, marketing teams, news writers, and social media teams use this skill to generate articles, images, video content, titles, and moderated publishing material.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-intelligent-content-generation) <br>
-- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with generated content and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce article drafts, image or video generation prompts, title options, and content review guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Installation instructions pull mutable remote code that was not included in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the referenced repository, pin an audited commit, and run it in a virtual environment or container before use.
+
+Risk: Generated or optimized content may be inaccurate, misleading, or unsuitable for publication despite automated moderation.
+
+Mitigation: Keep human editorial review and content-policy checks in the publishing workflow before release.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-intelligent-content-generation)
+- [Repository URL Listed In Install Instructions](https://github.com/openclaw-skills/ai-intelligent-content-generation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact describes generated articles, images, video content, title suggestions, and moderation-oriented content review.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

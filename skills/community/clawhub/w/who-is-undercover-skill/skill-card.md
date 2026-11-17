@@ -1,44 +1,54 @@
-## Description: <br>
-Who Is Undercover Skill lets OpenClaw users play the social deduction game with 4-10 players, AI opponents, role assignment, description rounds, voting, and win detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+谁是卧底 - 经典社交推理游戏的AI版本，支持4-10人游戏，包含智能AI对手和完整游戏机制。
 
-## Publisher: <br>
-[qq5776569](https://clawhub.ai/user/qq5776569) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qq5776569](https://clawhub.ai/user/qq5776569)
 
-## Use Case: <br>
-External users and OpenClaw operators use this skill to run an interactive AI-assisted version of the party game Who Is Undercover, including game setup, player turns, status updates, descriptions, voting, and result handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Under-disclosed remote game-service code is present despite documentation saying the skill runs locally without network requests. <br>
-Mitigation: Review before installing; document the external service and data sent, and make remote play an explicit opt-in. <br>
-Risk: The artifact includes a hardcoded InStreet API key. <br>
-Mitigation: Ask the publisher to remove and rotate the embedded key and require user-provided credentials through a documented configuration path. <br>
-Risk: Running the remote game controller can create and operate an external InStreet room. <br>
-Mitigation: Do not run instreet_game_controller.js unless remote room creation and operation are intended. <br>
+## Use Case:
 
+External users can run a Chinese social deduction party game through OpenClaw commands, playing with AI-simulated players for role assignment, descriptions, voting, and win checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qq5776569/who-is-undercover-skill) <br>
-- [Project homepage](https://github.com/long5/who-is-undercover) <br>
-- [Publisher profile](https://clawhub.ai/user/qq5776569) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text and Markdown game messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interactive turn-based game state, role, status, description, vote, and result responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Published files include an external InStreet integration with a hard-coded bearer token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation; remove or rotate the token and keep any online integration disabled unless needed.
+
+Risk: Documentation presents the normal skill as local-only while the published files also include network-enabled controller code.
+
+Mitigation: Confirm the intended operating mode and disclose network behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qq5776569/skills/who-is-undercover-skill)
+- [Project homepage from ClawHub metadata](https://github.com/long5/who-is-undercover)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [OpenClaw command responses, game status summaries, and short markdown/plain-text messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js; supports local game commands and includes an InStreet integration that should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata); artifact frontmatter and package.json report 1.0.0
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

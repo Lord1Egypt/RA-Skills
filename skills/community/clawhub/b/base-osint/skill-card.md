@@ -1,46 +1,58 @@
-## Description: <br>
-Guides agents through Base-network token research, developer identity checks, wallet forensics, and Kybera wallet actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kybera wallet control and token research assistant.
 
-## Publisher: <br>
-[Xipzer](https://clawhub.ai/user/Xipzer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xipzer](https://clawhub.ai/user/xipzer)
 
-## Use Case: <br>
-External users and developers use this skill to produce structured Base token OSINT reports, check developer and wallet provenance, and request supported Kybera wallet actions through explicit JSON action blocks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unusual hidden or bidirectional characters could alter how instructions appear when rendered. <br>
-Mitigation: Review the rendered skill text for unusual hidden or bidirectional characters before installing, especially around instructions and commands. <br>
-Risk: Token research and wallet guidance depend on live external market, identity, and wallet data. <br>
-Mitigation: Fetch current data through the documented sources or actions before making claims, and require user confirmation for high-risk wallet actions. <br>
+## Use Case:
 
+External users and agents use this skill to research Base network tokens and coordinate Kybera wallet actions, including market analysis, identity checks, wallet queries, and guided wallet operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Xipzer/base-osint) <br>
-- [Kybera application homepage](https://app.kybera.xyz) <br>
-- [Kybera remote skill source](https://app.kybera.xyz/SKILL.md) <br>
-- [Arkham Intel](https://intel.arkm.com/) <br>
-- [Get Moni](https://getmoni.io/) <br>
-- [Bubblemaps](https://app.bubblemaps.io/) <br>
-- [DEXScreener](https://dexscreener.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown reports with fenced JSON action blocks and kybera-ui blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live-data citations and wallet action requests; high-risk wallet actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill's update flow can replace cached instructions from a remote URL without signed release or hash verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid the built-in update flow unless integrity verification is added; review remote changes before enabling updated instructions.
+
+Risk: Wallet actions and paid data access can involve sensitive wallet/account data, x402 budgets, approved domains, or destructive operations.
+
+Mitigation: Install only when the publisher is trusted, review domain and budget settings carefully, and require clear confirmation before paid or destructive wallet actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xipzer/skills/base-osint)
+- [Kybera homepage](https://app.kybera.xyz)
+- [Arkham Intel](https://intel.arkm.com/)
+- [Get Moni](https://getmoni.io/)
+- [Bubblemaps](https://app.bubblemaps.io/)
+- [DEXScreener](https://dexscreener.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and JSON action blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit wallet action JSON blocks and Kybera UI blocks when supported by the host platform.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

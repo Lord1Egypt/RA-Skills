@@ -1,41 +1,61 @@
-## Description: <br>
-Cloud-based video enhancement skill that uploads a user-selected local MP4 or MOV video to Wondershare-hosted endpoints for AI enhancement, then downloads the processed result to local storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uploads a user-selected MP4 or MOV video to Wondershare-hosted Filmora cloud endpoints for AI enhancement, then downloads the enhanced result to local storage.
 
-## Publisher: <br>
-[double-ing](https://clawhub.ai/user/double-ing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[double-ing](https://clawhub.ai/user/double-ing)
 
-## Use Case: <br>
-External users and agents use this skill to enhance, upscale, or clarify a local non-sensitive MP4 or MOV video after explicit consent to third-party cloud processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow uploads the selected video, checksum, metadata, locale, and a stable hashed device identifier to Wondershare-hosted cloud services. <br>
-Mitigation: Use only after explicit user consent, and do not use it for confidential or sensitive media. <br>
-Risk: Task IDs or status URLs may appear in local logs or transcripts during processing. <br>
-Mitigation: Avoid sharing logs from processing sensitive material and keep responses focused on the saved output path and necessary warnings. <br>
+## Use Case:
 
+External users and agents use this skill to improve local MP4 or MOV video quality through Wondershare cloud processing after the user explicitly accepts uploading non-sensitive media.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/double-ing/video-enhancer) <br>
-- [Wondershare cloud API base endpoint](https://filmora-cloud-api-alisz.wondershare.cc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Enhanced video file saved to disk with concise Markdown status guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves output using the pattern <input_stem>_hd_YYYYMMDD_HHMMSS.<ext>.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Risk: The workflow uploads the selected source video to Wondershare-hosted cloud endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only after explicit user consent and avoid sensitive, private, or confidential videos.
+
+Risk: The provider receives video metadata and a stable device-level identifier during processing.
+
+Mitigation: Disclose the metadata and device identifier before execution and proceed only when the user accepts that sharing.
+
+Risk: Duration and resolution limits are important for successful processing.
+
+Mitigation: Verify the input format, duration, and resolution before running the enhancement workflow.
+
+Risk: Cloud-side deletion claims are not independently confirmed by the release evidence.
+
+Mitigation: Do not rely on deletion claims unless Wondershare's retention terms independently confirm them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/double-ing/skills/video-enhancer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown status text and a locally saved enhanced video file path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an enhanced video file using the <input_stem>_hd_YYYYMMDD_HHMMSS.<ext> naming pattern; supports MP4 and MOV inputs and requires ffprobe.]
+
+## Skill Version(s):
+
+1.0.9 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

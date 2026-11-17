@@ -1,48 +1,69 @@
-## Description: <br>
-Stock Ai Analyzer helps agents perform structured fundamental research on China A-share companies, including data collection, valuation framing, governance review, announcement checks, and optional deep-dive investigation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock AI Analyzer guides agents through China A-share fundamental research, including company growth, valuation posture, financial quality, business structure, market-theme fit, competitive position, governance checks, and optional deep research using public market data.
 
-## Publisher: <br>
-[chinfi-codex](https://clawhub.ai/user/chinfi-codex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chinfi-codex](https://clawhub.ai/user/chinfi-codex)
 
-## Use Case: <br>
-External users and agent developers use this skill to analyze China A-share stocks from public financial, market, filing, announcement, and governance data. The skill supports concise research reports as well as deeper investigations that separate source facts from model judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce financial research that may be mistaken for investment advice. <br>
-Mitigation: Treat outputs as research support, verify conclusions against current public filings and market data, and make independent investment decisions. <br>
-Risk: The skill requires a Tushare token and may fetch public data, cache results locally, and write evidence files. <br>
-Mitigation: Provide only the intended Tushare credential, review generated files before sharing them, and avoid including sensitive personal or account data in prompts or outputs. <br>
-Risk: Public filings, announcements, and extracted PDF text can be incomplete, stale, or misread by an agent. <br>
-Mitigation: Use the skill's source-fact versus model-judgment discipline, read primary announcement or report text for material claims, and lower confidence when data is missing. <br>
+## Use Case:
 
+External users and analysts use this skill to structure China A-share stock research from public data, separating evidence collection from agent-written investment analysis. Developers can also use its scripts to fetch deterministic datasets, scan thesis candidates, persist tracking fields, and render Markdown reports to HTML.
 
-## Reference(s): <br>
-- [Stock Ai Analyzer ClawHub page](https://clawhub.ai/chinfi-codex/stock-ai-analyzer) <br>
-- [qualitative_framework.md](references/qualitative_framework.md) <br>
-- [quantitative_framework.md](references/quantitative_framework.md) <br>
-- [industry_valuation_library.md](references/industry_valuation_library.md) <br>
-- [growth_success_rate.md](references/growth_success_rate.md) <br>
-- [deep_mode.md](references/deep_mode.md) <br>
-- [orchestration.md](references/orchestration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON evidence and context files, optional HTML reports, and shell command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local evidence packs, module context JSON, cached public data, downloaded filings, and self-contained HTML reports when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.5 (source: release evidence) <br>
+Risk: Database access and default PostgreSQL credentials may expose stored tracking data or allow unintended writes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in a contained environment, configure unique credentials or use SQLite, and restrict the database role to only the required tracking tables.
+
+Risk: Import paths or shared ancestor directories writable by untrusted users or skills could affect script execution.
+
+Mitigation: Keep the skill and shared directories under trusted ownership and deny write access to untrusted users or other skills.
+
+Risk: Downloaded PDFs and generated HTML reports may contain untrusted content.
+
+Mitigation: Validate downloaded content, use strict rendering checks where practical, and avoid opening generated reports in a sensitive browser context.
+
+Risk: The skill supports financial analysis workflows that can produce incorrect or misleading conclusions if evidence is stale or incomplete.
+
+Mitigation: Require current public data, disclose data gaps and uncertainty, and preserve the skill's boundary that scripts provide evidence rather than investment conclusions.
+
+## Reference(s):
+
+- [Deep Mode Research Workflow](references/deep_mode.md)
+- [Qualitative Analysis Framework](references/qualitative_framework.md)
+- [Quantitative Analysis Framework](references/quantitative_framework.md)
+- [Industry Valuation Method Library](references/industry_valuation_library.md)
+- [Growth Success Rate Framework](references/growth_success_rate.md)
+- [Living Report Structure Contract](references/living_report.md)
+- [Engineering Orchestration and Context Management](references/orchestration.md)
+- [ClawHub Skill Page](https://clawhub.ai/chinfi-codex/skills/stock-ai-analyzer)
+- [Publisher Profile](https://clawhub.ai/user/chinfi-codex)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown analysis with optional JSON evidence packs, shell commands, and self-contained HTML reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent conclusions are written from evidence; scripts are intended for deterministic data fetching, scanning, tracking, and rendering.]
+
+## Skill Version(s):
+
+2.2.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

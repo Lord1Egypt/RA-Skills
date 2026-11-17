@@ -1,40 +1,65 @@
-## Description: <br>
-Run Hive's folder-based coding-agent pipeline from OpenClaw: guided CLI setup, project init, task creation, plan/develop/review workflows, status, daemon, and guarded admin commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hive CLI helps agents operate Hive task pipelines, inspect current and historical task state, answer waiting brainstorm questions, create project-local workflows, run pre-release QA checks, and diagnose recovery state through Hive's native CLI.
 
-## Publisher: <br>
-[ivankuznetsov](https://clawhub.ai/user/ivankuznetsov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivankuznetsov](https://clawhub.ai/user/ivankuznetsov)
 
-## Use Case: <br>
-Developers and engineers use this skill to install and operate the Hive CLI from OpenClaw, initialize repositories, create tasks, move work through plan/develop/review stages, inspect status, and manage daemon or administrative workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide installation of a third-party CLI and enable a per-user background daemon. <br>
-Mitigation: Confirm that the user trusts the third-party Hive CLI source before installing, and clearly state that setup enables a per-user daemon. <br>
-Risk: Some Hive administrative commands can remove worktrees, stop automation, clear recovery markers, alter registry state, or rewrite installed software. <br>
-Mitigation: Restate the effect and obtain explicit user confirmation before uninstall, drop, prune, force, marker-clearing, foreground daemon, or similar administrative actions. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect Hive-managed work, follow bounded status and watch flows, answer task brainstorm prompts, create local workflow descriptors, run release-candidate QA checks, and diagnose recovery state.
 
-## Reference(s): <br>
-- [Hive project homepage](https://github.com/ivankuznetsov/hive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command-output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request explicit confirmation before installers, daemon foreground processes, destructive admin actions, or force/bypass commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill can route agents toward powerful local workflow tooling with broad execution permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only inspection where possible, require explicit consent for destructive or administrative actions, and review generated workflows before execution.
+
+Risk: Installation paths and external workflow installs depend on third-party publisher and package sources.
+
+Mitigation: Install only from trusted Hive publisher channels, verify the selected package source, and prefer explicit previews or narrower permissions when workflows do not need unrestricted local execution.
+
+## Reference(s):
+
+- [Hive project homepage](https://github.com/ivankuznetsov/hive)
+- [Hive 0.7.3 release notes](https://github.com/ivankuznetsov/hive/releases/tag/v0.7.3)
+- [Current format migration guide](https://github.com/ivankuznetsov/hive/blob/main/docs/guides/current-format-migration.md)
+- [Daily activity digest](references/daily-digest.md)
+- [Status and watch](references/status-and-watch.md)
+- [Brainstorm answering](references/brainstorm-answering.md)
+- [Natural-language workflow creator](references/workflow-creator.md)
+- [Owner-authored workflow schema](references/workflow-schema.md)
+- [Workflow actions](references/workflow-actions.md)
+- [Recovery](references/recovery.md)
+- [Release candidate QA](references/release-candidate-qa.md)
+- [Setup and platforms](references/setup-and-platforms.md)
+- [Safety](references/safety.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline CLI commands and JSON-oriented inspection routes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should preserve Hive's bounded action and consent boundaries and should not expose credentials.]
+
+## Skill Version(s):
+
+0.1.5 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

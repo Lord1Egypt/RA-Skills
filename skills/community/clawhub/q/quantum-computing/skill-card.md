@@ -1,50 +1,63 @@
-## Description: <br>
-Helps agents guide UnifiedQuantum workflows for circuit building, OriginIR and OpenQASM conversion, local simulation, cloud submission, variational algorithms, quantum ML, and PyTorch integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents answer UnifiedQuantum and uniqc questions covering circuit building, OriginIR and OpenQASM export, local simulation, cloud submission, variational algorithms, quantum ML, and PyTorch integration.
 
-## Publisher: <br>
-[agony5757](https://clawhub.ai/user/agony5757) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agony5757](https://clawhub.ai/user/agony5757)
 
-## Use Case: <br>
-Developers and engineers use this skill to get agent assistance with UnifiedQuantum circuit authoring, CLI workflows, simulator setup, cloud task submission, variational algorithm examples, and PyTorch integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested installation commands or environment changes can alter a user's Python environment. <br>
-Mitigation: Review commands before execution and prefer isolated environments or explicit user-selected install targets. <br>
-Risk: Real cloud submissions can consume external backend resources or rely on sensitive credentials. <br>
-Mitigation: Use dummy mode for tests when possible and confirm platform, backend, shots, and credential handling before real submissions. <br>
-Risk: OriginQ, Quafu, or IBM tokens may be exposed if copied into prompts, logs, or shared files. <br>
-Mitigation: Treat backend tokens as sensitive credentials and avoid echoing them in agent responses or generated artifacts. <br>
+## Use Case:
 
+Developers and engineers use this skill to get concise guidance, code examples, shell commands, and troubleshooting steps for UnifiedQuantum workflows. It is especially suited to building and converting circuits, running local or dummy simulations, configuring cloud backends, and adapting VQE, QAOA, UCCSD, and PyTorch examples.
 
-## Reference(s): <br>
-- [Circuit Building Reference](references/circuit-building.md) <br>
-- [CLI Guide](references/cli-guide.md) <br>
-- [Cloud Platforms Reference](references/cloud-platforms.md) <br>
-- [Simulators Reference](references/simulators.md) <br>
-- [Variational Algorithms Reference](references/variational-algorithms.md) <br>
-- [PyTorch Integration Reference](references/pytorch-integration.md) <br>
-- [H2 Molecular Simulation Reference](references/h2-molecular-simulation.md) <br>
-- [Troubleshooting Reference](references/troubleshooting.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/agony5757/quantum-computing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with inline code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include installation, configuration, simulation, and cloud-submission steps that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Cloud backend tokens and real hardware submissions can expose sensitive credentials or consume quota and budget.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enter tokens only in the intended environment, confirm the selected backend before submission, and use dummy or local simulation modes for testing when possible.
+
+Risk: Installing UnifiedQuantum extras into a shared Python environment can change dependency state for unrelated projects.
+
+Mitigation: Prefer an isolated virtual environment or tool installation, and install only the extras required for the requested workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agony5757/skills/quantum-computing)
+- [UnifiedQuantum repository](https://github.com/IAI-USTC-Quantum/UnifiedQuantum)
+- [UnifiedQuantum release notes](https://iai-ustc-quantum.github.io/UnifiedQuantum/source/releases/index.html)
+- [Circuit building reference](references/circuit-building.md)
+- [CLI usage reference](references/cli-guide.md)
+- [Simulator reference](references/simulators.md)
+- [Cloud platform reference](references/cloud-platforms.md)
+- [Variational algorithms reference](references/variational-algorithms.md)
+- [PyTorch integration reference](references/pytorch-integration.md)
+- [H2 molecular simulation reference](references/h2-molecular-simulation.md)
+- [Troubleshooting reference](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline code and command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Python examples, uniqc CLI commands, installation options, backend configuration guidance, and troubleshooting checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

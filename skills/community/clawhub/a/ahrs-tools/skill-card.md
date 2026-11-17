@@ -1,37 +1,53 @@
-## Description: <br>
-Provides quaternion decomposition into Euler angles and roll/pitch compensation utilities for AHRS orientation handling with pywayne.ahrs.tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AHRS quaternion decomposition and roll/pitch compensation utilities for agents helping with pywayne.ahrs.tools usage.
 
-## Publisher: <br>
-[wangyendt](https://clawhub.ai/user/wangyendt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangyendt](https://clawhub.ai/user/wangyendt)
 
-## Use Case: <br>
-Developers and engineers working with AHRS orientation data use this skill to call pywayne.ahrs.tools for quaternion decomposition and roll/pitch compensation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The examples require Python dependencies such as pywayne, numpy, and qmt, and installing similarly named packages from untrusted sources could introduce supply-chain risk. <br>
-Mitigation: Install dependencies only from trusted package sources and confirm each package name matches the intended dependency before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangyendt/ahrs-tools) <br>
+## Use Case:
 
+Developers and engineers use this skill to get concise guidance and Python examples for decomposing AHRS quaternions into rotation, heading, and inclination angles and compensating roll and pitch with pywayne.ahrs.tools.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown with Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes example imports and function usage for numpy and qmt-based quaternion operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Python examples depend on numpy, qmt, and pywayne being installed in the user's environment.
+
+Mitigation: Install dependencies only from trusted sources and verify package provenance before running examples.
+
+Risk: Quaternion math guidance can produce incorrect orientation results if inputs use an unexpected component order or convention.
+
+Mitigation: Confirm the input quaternion order and validate results against known AHRS test cases before relying on outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangyendt/skills/ahrs-tools)
+- [Publisher profile](https://clawhub.ai/user/wangyendt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only guidance; no hidden execution, persistence, data access, or credential handling reported by security evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

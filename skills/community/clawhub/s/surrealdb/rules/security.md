@@ -639,9 +639,7 @@ MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A...
     -- The verifier sets iss.alg = RS256 at parse time
     -- (define.rs:1697), so bare `WITH ISSUER KEY '<priv>'`
     -- correctly inherits RS256 here.
-    WITH ISSUER KEY '-----BEGIN PRIVATE KEY-----
-MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQ...
------END PRIVATE KEY-----'
+    WITH ISSUER KEY 'REDACTED-SECRET'
     DURATION FOR TOKEN 1h, FOR SESSION 12h;
 -- Without an AUTHENTICATE clause, the issued token's `id`
 -- claim (set to `rid.to_sql()` at signin.rs:323) is what
@@ -887,9 +885,7 @@ DEFINE ACCESS credential_mint ON DATABASE TYPE RECORD
         ALGORITHM RS256 KEY '-----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A...
 -----END PUBLIC KEY-----'
-    WITH ISSUER KEY '-----BEGIN PRIVATE KEY-----
-MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQ...
------END PRIVATE KEY-----'
+    WITH ISSUER KEY 'REDACTED-SECRET'
     DURATION FOR TOKEN 1h, FOR SESSION 12h;
 -- Bare `WITH ISSUER KEY '<priv>'` is correct here because the
 -- verifier ALGORITHM RS256 sets iss.alg = RS256 at define.rs:1697

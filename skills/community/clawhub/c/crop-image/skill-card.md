@@ -1,43 +1,56 @@
-## Description: <br>
-Crop Image helps an agent crop images through the deployed service using URL-based or file-upload API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when an AI agent needs to crop images through the deployed Crop Image service, including URL-based cropping and file-upload cropping.
 
-## Publisher: <br>
-[Effimail](https://clawhub.ai/user/Effimail) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[effimail](https://clawhub.ai/user/effimail)
 
-## Use Case: <br>
-External users and developers use this skill when an agent needs to crop an image by URL or uploaded file and return the cropped image URL, original size, and face-detection flag. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected image URLs or uploaded local image files are sent to ImageClaw for processing. <br>
-Mitigation: Avoid confidential, regulated, or private images unless the service's privacy and retention practices are approved for the use case. <br>
-Risk: The skill depends on an external image-processing API that can return validation, decode, service, or network errors. <br>
-Mitigation: Validate URL, width, and height before calling the service; return the original status code and detail; retry only transient 500 responses or network timeouts. <br>
+## Use Case:
 
+Developers and agents use this skill to crop images through ImageClaw's hosted API, either from reachable image URLs or from selected local image uploads, and return cropped image URLs plus metadata.
 
-## Reference(s): <br>
-- [Crop Image on ClawHub](https://clawhub.ai/Effimail/crop-image) <br>
-- [ImageClaw API documentation](https://api.imageclaw.net/docs) <br>
-- [ImageClaw homepage](https://imageclaw.net) <br>
-- [ImageClaw API base URL](https://api.imageclaw.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with curl examples and JSON response fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return cropped_url, original_size, face_detected, or HTTP status and detail on failure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Image URLs or uploaded local image files are sent to ImageClaw's hosted API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for images that can be shared with that external service, and avoid private, sensitive, internal-only, or credential-bearing image URLs unless data handling terms have been confirmed.
+
+Risk: Remote API failures or validation errors can prevent cropping from completing.
+
+Mitigation: Return the original API status code and detail to the caller, ask for corrected input on 400 or 422 responses, and retry only transient 500 responses or network timeouts.
+
+## Reference(s):
+
+- [Crop Image skill page](https://clawhub.ai/effimail/skills/crop-image)
+- [ImageClaw homepage](https://imageclaw.net)
+- [ImageClaw API documentation](https://api.imageclaw.net/docs)
+- [ImageClaw API base URL](https://api.imageclaw.net)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON response fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns cropped image URLs, original image size metadata, face-detection status, and API error details when failures occur.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-Skill Factory helps an agent plan, generate, test, score, iterate, split, and deliver new skills in manual, semi-automatic, or fully automatic modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Factory guides an agent through iterative creation, testing, refinement, and modularization of new skills across manual, semi-automatic, and fully automatic modes.
 
-## Publisher: <br>
-[mwangxiang](https://clawhub.ai/user/mwangxiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mwangxiang](https://clawhub.ai/user/mwangxiang)
 
-## Use Case: <br>
-Developers and agent builders use this skill to create new skills, improve existing skills, or split reusable workflow steps into sub-skills. It guides requirements alignment, mode selection, draft generation, optional external AI execution, quality scoring, iteration, and delivery reporting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can draft and revise other skills, so generated content may introduce incorrect guidance or weak operating rules. <br>
-Mitigation: Review generated skills before deployment and run security or quality scans as part of the release process. <br>
-Risk: Optional external AI calls may expose prompts, workspace content, or secrets if users configure endpoints or test inputs carelessly. <br>
-Mitigation: Use trusted AI endpoints, keep API keys private, and avoid sending secrets or confidential workspace content in prompts. <br>
-Risk: Fully automatic iteration can continue producing low-value changes if the objective or reference material is unclear. <br>
-Mitigation: Set a conservative iteration limit and require user review when quality gates are inconclusive. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill Factory release page](https://clawhub.ai/mwangxiang/wx-skill-factory) <br>
-- [Publisher profile](https://clawhub.ai/user/mwangxiang) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [call-guide.md](artifact/call-guide.md) <br>
-- [tech-library.md](artifact/tech-library.md) <br>
+## Use Case:
 
+Developers and agent builders use this skill to design, generate, test, compare, iterate, and deliver new agent skills from user requirements. It also supports improving existing skills and splitting stable workflow steps into reusable sub-skills.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with templates, tables, code blocks, shell command examples, and delivery reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated skill files, test reports, comparison reports, iteration records, API call templates, and sub-skill handoff guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may call third-party AI services using user-configured endpoints.
+
+Mitigation: Review and approve the exact endpoint, retention policy, and data-handling terms before sending confidential code, private documents, personal data, or embedded secrets.
+
+Risk: The technical library template discusses API key placement in package Markdown.
+
+Mitigation: Use environment variables or a secret manager for live API keys, and do not store live secrets in tech-library.md inside the skill package.
+
+Risk: Generated or iterated skills may include incorrect, misleading, or unsafe instructions.
+
+Mitigation: Review, test, and scan generated skills before deployment.
+
+## Reference(s):
+
+- [Skill Factory on ClawHub](https://clawhub.ai/mwangxiang/skills/wx-skill-factory)
+- [Call Guide Template](artifact/call-guide.md)
+- [Technical Library Template](artifact/tech-library.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured reports, tables, templates, and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce skill drafts, design documents, test reports, comparison reports, iteration records, delivery reports, and configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

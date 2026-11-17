@@ -1,43 +1,56 @@
-## Description: <br>
-加密货币投资研究 - 当用户询问加密货币价格、行情、趋势、新闻时触发 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+加密货币投资研究 - 当用户询问加密货币价格、行情、趋势、新闻时触发
 
-## Publisher: <br>
-[wgx2010](https://clawhub.ai/user/wgx2010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wgx2010](https://clawhub.ai/user/wgx2010)
 
-## Use Case: <br>
-External users and agents use this skill to research cryptocurrency prices, market rankings, short-term market movement, and related market prompts. The bundled scripts query CoinGecko for prices, 24-hour change, market capitalization, top coins, and coin search results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cryptocurrency lookup terms are sent to CoinGecko. <br>
-Mitigation: Use the skill only when sharing those lookup terms with CoinGecko is acceptable. <br>
-Risk: Market data may be mistaken for financial advice or used for trading decisions. <br>
-Mitigation: Treat outputs as informational market data only and do not use the skill for trades, wallets, private keys, or account-management tasks. <br>
+## Use Case:
 
+External users and agents use this skill to look up cryptocurrency prices, market capitalization, 24-hour movement, and coin search results through CoinGecko. It supports lightweight market-data research rather than complete investment advice or news analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wgx2010/crypto-research-wgx) <br>
-- [CoinGecko simple price endpoint](https://api.coingecko.com/api/v3/simple/price) <br>
-- [CoinGecko markets endpoint](https://api.coingecko.com/api/v3/coins/markets) <br>
-- [CoinGecko search endpoint](https://api.coingecko.com/api/v3/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown guidance with optional JSON or formatted text returned by shell/Python commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses CoinGecko market-data lookups; no API key is documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Cryptocurrency lookup queries are sent to CoinGecko.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing the queried coin or search term with CoinGecko is acceptable.
+
+Risk: Users may treat market-data lookup output as complete investment research or advice.
+
+Mitigation: Present results as price and market data, and direct users to independently verify information before making financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/wgx2010/skills/crypto-research-wgx)
+- [CoinGecko simple price endpoint](https://api.coingecko.com/api/v3/simple/price)
+- [CoinGecko coins markets endpoint](https://api.coingecko.com/api/v3/coins/markets)
+- [CoinGecko search endpoint](https://api.coingecko.com/api/v3/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with optional JSON or formatted terminal output from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Queries CoinGecko endpoints; no API key required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

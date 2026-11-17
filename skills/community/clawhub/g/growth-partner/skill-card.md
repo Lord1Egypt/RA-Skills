@@ -1,41 +1,53 @@
-## Description: <br>
-Growth Partner monitors authorized Feishu messages, group mentions, selected work groups, documents, and calendar events to assemble timelines, insights, and action recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Growth Partner monitors Feishu messages, group mentions, whitelisted chats, documents, and calendar events to surface work insights, summaries, risk signals, and action recommendations.
 
-## Publisher: <br>
-[cscguochang](https://clawhub.ai/user/cscguochang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cscguochang](https://clawhub.ai/user/cscguochang)
 
-## Use Case: <br>
-Employees and individual Feishu workspace users use this skill to track work communications, connect messages with documents and calendar events, and receive concise summaries, risk alerts, drafts, and next-action suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring monitoring can expose private Feishu chats, group messages, documents, calendars, and local logs beyond the intended scope. <br>
-Mitigation: Install only for authorized workspace data, verify user and chat IDs, narrow monitored sources and lookback windows, and define log review and deletion practices before enabling scheduled runs. <br>
-Risk: Insights or recommendations may misattribute speakers, locations, timing, or whether a discussion is final. <br>
-Mitigation: Require summaries and action recommendations to cite key sources and distinguish speaker, channel, time, and discussion status before delivery. <br>
+## Use Case:
 
+Workspace users and operators use this skill to run a recurring Feishu work assistant that summarizes active topics, reconstructs timelines, flags risks, and suggests follow-up actions from approved communications and work records.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cscguochang/growth-partner) <br>
-- [Publisher Profile](https://clawhub.ai/user/cscguochang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown summaries, action recommendations, risk alerts, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local memory logs for insights and delivery history when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill is designed to repeatedly access private messages, group chats, documents, calendars, and historical records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with explicit Feishu tenant-owner and monitored-user approval; require per-source consent and disable private-message and historical transcript searches by default.
+
+Risk: The artifact includes hard-coded user and chat identifiers and retains derived insights in memory files.
+
+Mitigation: Replace IDs with deployment-specific configuration and define review and deletion procedures for retained memory files before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cscguochang/skills/growth-partner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text summaries with timelines, source notes, risk observations, and action recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update retained insight and activity logs when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact changelog, released 2026-04-10)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

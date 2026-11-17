@@ -15,6 +15,15 @@ Only add rules that are backed by stable SDK/API documentation, repeated evaluat
 | relational-database | RDB-WEB-001~005, RDB-TOOL-001~008 | — | RDB-TOOL-001~008 | RDB-TOOL-001~008 |
 | storage | STO-001~007 | — | — | — |
 | data-model | — | — | DM-001~007 | DM-001~007 |
+| security / runtime-credentials | — | — | SEC001 | SEC001 |
+
+---
+
+## Module: security / runtime-credentials
+
+| Rule ID | Severity | Check | Applies to | Description |
+|---------|----------|-------|-----------|-------------|
+| SEC001 | error | lint + LLM | Node, CR | 禁止回显 `x-cloudbase-context`、完整 headers / `process.env`，禁止部署 httpbin 类反射镜像 |
 
 ---
 
@@ -32,7 +41,7 @@ Only add rules that are backed by stable SDK/API documentation, repeated evaluat
 | AUTH-WEB-006 | error | LLM | 必须先 queryAppAuth 确认 provider 已启用，再写登录代码 |
 | AUTH-WEB-007 | error | lint | 禁止用 auth.getUser() / getLoginState() 做路由守卫判断 |
 | AUTH-WEB-008 | error | lint | 必须用 auth.getSession() 做路由守卫（data.session === undefined 判断） |
-| AUTH-WEB-009 | warning | LLM | 匿名登录默认禁用；accessKey 自动创建匿名 session |
+| AUTH-WEB-009 | warning | LLM | 匿名登录默认禁用；accessKey ≠ 匿名会话，NoSQL 前须 signInAnonymously() |
 | AUTH-WEB-010 | error | lint | 禁止把 accessKey 设为 envId 或占位符字符串 |
 | AUTH-WEB-011 | error | lint | auth 方法返回 { data, error }，必须先检查 error |
 | AUTH-WEB-012 | error | lint | 禁止使用已废弃的 auth.getLoginState() |
@@ -60,7 +69,7 @@ Only add rules that are backed by stable SDK/API documentation, repeated evaluat
 | AUTH-TOOL-009 | error | lint | Web, MP, Node, CR | 禁止使用 lowcode/DescribeLoginStrategy/ModifyLoginStrategy |
 | AUTH-TOOL-010 | error | lint | Web | 用户名禁止路由到 email-only 辅助函数 |
 | AUTH-TOOL-011 | error | LLM | Web, MP, Node, CR | EnvId 是环境 ID，不是 publishable key |
-| AUTH-TOOL-012 | error | LLM | Web, MP, Node, CR | 环境别名必须通过 envQuery 解析为规范 EnvId |
+| AUTH-TOOL-012 | error | LLM | Web, MP, Node, CR | 环境别名必须通过 queryEnv 解析为规范 EnvId |
 | AUTH-TOOL-013 | warning | LLM | Web, MP, Node, CR | 匿名登录默认禁用 |
 | AUTH-TOOL-014 | warning | LLM | Web, MP, Node, CR | 匿名用户调用 AI 模型需显式授权 |
 
@@ -111,7 +120,7 @@ Only add rules that are backed by stable SDK/API documentation, repeated evaluat
 | NOSQL-002 | error | lint | 禁止动态 import 懒加载初始化 CloudBase |
 | NOSQL-003 | error | LLM | 安全规则是验证器，不是过滤器 |
 | NOSQL-004 | error | lint | 禁止手动传入 _openid 到 data 参数 |
-| NOSQL-005 | warning | LLM | CUSTOM 规则变更需要 2-5 分钟传播 |
+| NOSQL-005 | warning | LLM | CUSTOM 规则变更通常数秒到约 30 秒生效；勿盲等数分钟，先核对规则与客户端写入模式 |
 | NOSQL-006 | error | lint | .add() 返回值中文档 ID 在 result._id |
 | NOSQL-007 | error | lint | 写入必须检查 result.updated/result.deleted |
 | NOSQL-008 | error | LLM | CMS 角色区分必须用 CUSTOM 规则 |
@@ -122,7 +131,7 @@ Only add rules that are backed by stable SDK/API documentation, repeated evaluat
 | NOSQL-013 | warning | LLM | READONLY 允许匿名读，但新环境默认禁用匿名登录 |
 | NOSQL-014 | warning | lint | 嵌套字段更新必须用点号表示法 |
 | NOSQL-015 | error | LLM | .doc(authorId).update() 对非 _id 字段不可用 |
-| NOSQL-016 | warning | LLM | get('database.user_roles.'+auth.uid) 仅 _id=uid 时有效 |
+| NOSQL-016 | warning | LLM | get(`database.user_roles.${auth.uid}`) 仅 _id=uid 时有效 |
 
 ### MiniProgram (NOSQL-MP-)
 

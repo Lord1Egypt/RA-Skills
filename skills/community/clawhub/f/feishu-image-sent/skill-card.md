@@ -1,45 +1,60 @@
-## Description: <br>
-Feishu Image Sender helps an agent capture full-screen or selected-area screenshots, process local image files, and send those images to Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent capture full-screen or selected-region screenshots and send screenshots or local image files to a Feishu workspace.
 
-## Publisher: <br>
-[AndersonHJB](https://clawhub.ai/user/AndersonHJB) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andersonhjb](https://clawhub.ai/user/andersonhjb)
 
-## Use Case: <br>
-Developers and operators can use this skill when they need an agent to share screenshots or selected local image files into a Feishu workspace, including troubleshooting, demonstrations, tutorials, and remote support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Screenshots and selected local image files can include sensitive information before being uploaded to Feishu. <br>
-Mitigation: Confirm the destination account or chat, review or crop images before sending, and avoid full-screen captures when secrets may be visible. <br>
-Risk: Image files are copied locally during processing and may remain in workspace or temporary locations. <br>
-Mitigation: Prefer versions or configurations that use temporary files, clean them up after sending, and limit copied images to the minimum needed. <br>
-Risk: The security guidance flags a python -c path interpolation issue in the send path. <br>
-Mitigation: Use a version that fixes path interpolation before handling untrusted or sensitive file paths. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to quickly share screenshots, selected screen regions, or local image files into Feishu during debugging, remote assistance, demonstrations, and documentation work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AndersonHJB/feishu-image-sent) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
-- [Improved artifact SKILL.md](artifact/improved/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may invoke macOS screenshot commands, copy images into a workspace directory, optionally compress large images, and send one or more image versions to Feishu.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: Screenshots or selected local images may contain secrets or private information before they are sent to Feishu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use targeted region capture, review image contents before sending, and avoid full-screen capture when sensitive windows or credentials are visible.
+
+Risk: The bundled implementation may run code from crafted image filenames.
+
+Mitigation: Do not process untrusted filenames until the python -c interpolation issue is fixed; use controlled file paths and sanitize filenames before execution.
+
+Risk: Compression cleanup behavior may delete an original image file.
+
+Mitigation: Keep backups of important images and review the cleanup path logic before using the compression workflow on valuable source files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andersonhjb/skills/feishu-image-sent)
+- [README](artifact/README.md)
+- [Skill documentation](artifact/SKILL.md)
+- [Improved skill documentation](artifact/improved/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown guidance with shell and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces commands and configuration guidance for macOS screenshot capture, image compression, workspace copying, and Feishu media sending.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

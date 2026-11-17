@@ -1,41 +1,55 @@
-## Description: <br>
-Screens a China A-share candidate pool using Eastmoney public real-time main net inflow data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Filters a China A-share stock candidate pool using Eastmoney public real-time main net inflow data.
 
-## Publisher: <br>
-[luyao-inc](https://clawhub.ai/user/luyao-inc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luyao-inc](https://clawhub.ai/user/luyao-inc)
 
-## Use Case: <br>
-Developers and market-analysis agents use this skill to run a bundled Python script that returns ranked China A-share candidates filtered by market capitalization, price change, and public main net inflow data. The output is for screening and reference only, not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled Python script makes outbound requests to Eastmoney for public stock data. <br>
-Mitigation: Install and run the skill only in environments where outbound access to Eastmoney is acceptable. <br>
-Risk: The stock rankings may be incomplete, approximate, or unsuitable for investment decisions. <br>
-Mitigation: Treat outputs as screening information only and verify results against authoritative financial sources before acting. <br>
+## Use Case:
 
+Developers and market-analysis agents use this skill to run a Python stock-screening helper and inspect candidate A-share stocks ranked by public real-time main net inflow. The output is for reference and should not be treated as investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luyao-inc/china-stock-main-force) <br>
-- [Eastmoney public quote API](https://push2.eastmoney.com/api/qt/clist/get) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON emitted by a Python command, with supporting Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Rows include symbols, names, price change, main net inflow, market capitalization, turnover, PE, and PB when returned by the public data source.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Financial screening output can be incomplete, delayed, or unsuitable for a trading decision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify market data independently and do not treat the skill output as investment advice.
+
+Risk: The skill depends on an external public market-data endpoint that may change, fail, or return unavailable fields.
+
+Mitigation: Check the returned ok status, row_count, and columns before relying on the result.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luyao-inc/skills/china-stock-main-force)
+- [Publisher profile](https://clawhub.ai/user/luyao-inc)
+- [Eastmoney public quote API endpoint](https://push2.eastmoney.com/api/qt/clist/get)
+
+## Skill Output:
+
+**Output Type(s):** [json, shell commands, guidance]
+
+**Output Format:** [JSON from a Python command, usually discussed in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Rows include symbol, name, price, percent change, main net inflow, market cap, turnover, PE, and PB when available.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

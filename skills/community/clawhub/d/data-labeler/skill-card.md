@@ -1,43 +1,53 @@
-## Description: <br>
-Data Labeler is a local command-line utility for logging, searching, summarizing, and exporting data-processing activity records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data Labeler is a local command-line activity logger for data operations that stores user-provided entries under ~/.local/share/data-labeler/.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and data-pipeline operators use this skill to record local notes about ingest, transform, query, validation, and related data workflow steps, then inspect recent activity or export accumulated logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact is branded as Label Studio in some metadata, but the security evidence describes it as a lightweight local CLI log tracker rather than the Label Studio annotation product. <br>
-Mitigation: Confirm the intended product identity before installation and use it only when a local command-line activity logger is expected. <br>
-Risk: User-entered data is stored locally and can later be searched or exported. <br>
-Mitigation: Do not enter secrets, customer data, or regulated information unless local storage under ~/.local/share/data-labeler and later export are acceptable. <br>
-Risk: The installation or invocation path for the data-labeler command is not established by the artifact evidence. <br>
-Mitigation: Verify how the command is installed or invoked before relying on it in an automation workflow. <br>
+## Use Case:
 
+Developers and data practitioners can use this skill to log, search, summarize, and export local records of data pipeline activities from shell commands. It is best treated as a lightweight local activity tracker, not as Label Studio.
 
-## Reference(s): <br>
-- [Data Labeler ClawHub Release](https://clawhub.ai/xueyetianya/data-labeler) <br>
-- [Publisher Profile](https://clawhub.ai/user/xueyetianya) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Files, Configuration] <br>
-**Output Format:** [Command-line text with local log and export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores user-entered records under ~/.local/share/data-labeler and can export JSON, CSV, or plain text files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The package is presented as Label Studio but installs a local command-line logger.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill description and available commands before installation, and treat it only as a local data-operation activity logger.
+
+Risk: User-provided data is stored as plaintext under ~/.local/share/data-labeler/ and can be surfaced by search, recent-history, status, or export commands.
+
+Mitigation: Do not enter sensitive datasets, customer records, credentials, or private prompts unless local plaintext storage is acceptable for the intended environment.
+
+## Reference(s):
+
+- [ClawHub Data Labeler skill page](https://clawhub.ai/xueyetianya/skills/data-labeler)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and local text, JSON, CSV, or TXT exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external dependencies or API keys; stores local plaintext logs under ~/.local/share/data-labeler/.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

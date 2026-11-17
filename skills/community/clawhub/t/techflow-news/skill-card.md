@@ -1,41 +1,54 @@
-## Description: <br>
-techflow-news gathers same-day TechFlow articles and produces a table of dates, article titles, summaries, URLs, plus a short topic summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TechFlow News fetches same-day articles from TechFlow's Chinese site, formats them in a table with links, and summarizes the day's key topics.
 
-## Publisher: <br>
-[yejiming](https://clawhub.ai/user/yejiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yejiming](https://clawhub.ai/user/yejiming)
 
-## Use Case: <br>
-External users and agents use this skill to answer prompts such as today's news or today's article roundup by collecting same-day Chinese TechFlow posts, separating in-depth articles from 7x24h updates, and returning a concise summary with source links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is scoped to Chinese TechFlow-only news and can miss broader market or multilingual coverage. <br>
-Mitigation: Use it when TechFlow-only coverage is intended; ask the agent to add other sources or languages for broader news coverage. <br>
-Risk: Same-day filtering and article extraction may be incomplete if the source site changes layout or publishes relative links unexpectedly. <br>
-Mitigation: Check returned dates and source URLs before relying on the summary, especially for time-sensitive decisions. <br>
+## Use Case:
 
+External users and agents use this skill to answer Chinese-language requests for today's TechFlow news by gathering same-day articles, distinguishing feature posts from 7x24 updates, and producing a short digest.
 
-## Reference(s): <br>
-- [TechFlow source site](https://www.techflowpost.com/?lang=zh-CN) <br>
-- [ClawHub skill page](https://clawhub.ai/yejiming/techflow-news) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown table followed by a concise prose summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes article date, title, main-content summary, complete URL, and 3-5 core news highlights.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Generic Chinese requests about today's news may invoke this skill even when the user did not specifically ask for TechFlow coverage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the requested news source or scope when the user's request is ambiguous.
+
+Risk: The skill reads external webpage content from the disclosed TechFlow URL, so summaries may reflect incomplete, changed, or source-provided information.
+
+Mitigation: Check important claims against the linked TechFlow articles before relying on them.
+
+## Reference(s):
+
+- [TechFlow Chinese site](https://www.techflowpost.com/?lang=zh-CN)
+- [ClawHub skill page](https://clawhub.ai/yejiming/skills/techflow-news)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Markdown table and concise prose summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes publication date, article title, brief content summary, full URL, and 3-5 topical highlights.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

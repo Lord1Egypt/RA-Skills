@@ -1,43 +1,67 @@
-## Description: <br>
-Generates a printable static HTML review plan from knowledge_map.json, combining a knowledge structure map, weak-point alerts, and a study plan, then asks whether to generate practice questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a printable three-part static HTML exam review plan from knowledge_map.json, including a knowledge structure map, weak-point alerts, and a study plan.
 
-## Publisher: <br>
-[zhoucha833-lang](https://clawhub.ai/user/zhoucha833-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhoucha833-lang](https://clawhub.ai/user/zhoucha833-lang)
 
-## Use Case: <br>
-Students and exam-preparation users use this skill to turn an existing knowledge map into an HTML study dashboard with priorities, weak-point warnings, and a date-based review plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated browser-opened report embeds content from knowledge_map.json. <br>
-Mitigation: Use the skill only with trusted knowledge_map.json files and review the generated HTML before opening or sharing it. <br>
-Risk: The generated report can load ECharts from BootCDN. <br>
-Mitigation: Open reports only where third-party CDN loading is acceptable, or replace the dependency with an approved local or vetted source before deployment. <br>
-Risk: The date-based HTML output can overwrite an older report. <br>
-Mitigation: Keep copies of reports that must be preserved or run the skill in an isolated workspace. <br>
+## Use Case:
 
+Students and exam-preparation agents use this skill after an exam sprint analysis to turn a knowledge map into a static, printable review plan. It summarizes exam scope, weak areas, and phased study tasks, then asks whether to generate practice questions.
 
-## Reference(s): <br>
-- [Design Specification](references/design-spec.md) <br>
-- [Review Plan Generation Rules](references/node-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, guidance] <br>
-**Output Format:** [Static HTML file plus a short text prompt] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes an exam-mindmap-YYYYMMDD.html report and may overwrite an older report with the same date-based name.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The generated HTML loads ECharts from bootcdn.net when opened.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review network access requirements before deployment and prefer a version that bundles dependencies locally for restricted environments.
+
+Risk: Study data from knowledge_map.json is embedded into the generated HTML.
+
+Mitigation: Avoid including sensitive personal or exam-preparation data unless the output location and sharing path are controlled.
+
+Risk: Unsafe HTML generation could allow unescaped knowledge-map content to affect the report page.
+
+Mitigation: Escape or sanitize knowledge-map values before inserting them into HTML or JavaScript placeholders.
+
+Risk: The skill can overwrite an HTML report for the same date when regenerating.
+
+Mitigation: Confirm overwrite behavior is acceptable or add versioned output filenames before use.
+
+Risk: The artifact contains authority-like execution language and silent-error behavior.
+
+Mitigation: Require normal agent precedence rules, visible error reporting for blocking failures, and human review before installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhoucha833-lang/skills/exam-mindmap-generator)
+- [Design Specification](artifact/references/design-spec.md)
+- [Review Plan Generation Rules](artifact/references/node-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, guidance]
+
+**Output Format:** [Static HTML file plus a short follow-up prompt]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes an exam-mindmap-YYYYMMDD.html review plan and may overwrite the previous file for the same date.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

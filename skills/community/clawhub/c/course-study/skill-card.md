@@ -1,49 +1,50 @@
-## Description: <br>
-Turn a course's materials (slides, a topic list, or a course name) into complete-coverage, Feynman-explained, exam-ready revision notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Chinese lecture-by-lecture study companions from course PDFs, records sourced concepts in a course memory bank, and supports follow-up questions and final review.
 
-## Publisher: <br>
-[vincentjiang06](https://clawhub.ai/user/vincentjiang06) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[vincentjiang06](https://clawhub.ai/user/vincentjiang06)
 
-## Use Case: <br>
-Students and learners use this skill to convert course materials, topic lists, or a course name into exam-ready revision notes with traceable coverage, worked examples, and optional quick-reference material. It is intended for study support, not for producing answers to graded submissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create local study-note files that include course-material content. <br>
-Mitigation: Choose an appropriate output folder and review generated files before sharing them outside the study context. <br>
-Risk: Course-name-only outlines or optional web-supported supplements may not match the user's actual syllabus. <br>
-Mitigation: Provide actual course materials when possible and verify any syllabus-derived outline against the real course before relying on it for exam preparation. <br>
-Risk: The skill could be misused to produce answers for graded homework or exams. <br>
-Mitigation: Use it for revision notes and concept explanations only; do not use it to prepare submissions for graded assessments. <br>
+## Use Case:
 
+Students use this skill to turn course slides into page-linked explanations and exam-focused study notes, maintain a course memory bank, answer questions about recorded concepts, and compile end-of-term reviews.
 
-## Reference(s): <br>
-- [Course Study ClawHub listing](https://clawhub.ai/vincentjiang06/skills/course-study) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.en.md](artifact/README.en.md) <br>
-- [Phase Intake](artifact/rules/phase-intake.md) <br>
-- [Phase Cover](artifact/rules/phase-cover.md) <br>
-- [Phase Distill](artifact/rules/phase-distill.md) <br>
-- [Phase Supplement](artifact/rules/phase-supplement.md) <br>
-- [Output Templates](artifact/rules/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown study-note files with optional PDF export commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Primary output is revision-notes.md; optional outputs include quick-reference.md and a PDF export when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata and SKILL.md metadata) <br>
+Risk: A course folder containing 管理/catalog.py can cause the agent to execute untrusted local Python code after writing notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted course folders and scripts, or remove or disable the catalog.py step before using shared or downloaded materials.
+
+## Reference(s):
+
+- [course-study release](https://clawhub.ai/vincentjiang06/skills/course-study)
+- [course-study documentation](README.en.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text]
+
+**Output Format:** [Chinese Markdown study companions, memory-bank entries, and review notes; conversational text for follow-up questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Page-linked explanations with exam-evidence labels; optional PDF export on request.]
+
+## Skill Version(s):
+
+4.2.1 (source: skill frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

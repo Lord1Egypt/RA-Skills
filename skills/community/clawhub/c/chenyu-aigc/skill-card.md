@@ -1,43 +1,60 @@
-## Description: <br>
-Generate AI videos and images via Chenyu Studio AIGC API, including text-to-video, image-to-video, video extension, style transfer, and AI image generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI videos and images via the Chenyu Studio AIGC API, including text-to-video, image-to-video, video extension, style transfer, and AI image generation.
 
-## Publisher: <br>
-[dionren](https://clawhub.ai/user/dionren) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dionren](https://clawhub.ai/user/dionren)
 
-## Use Case: <br>
-Developers and creators use this skill to discover Chenyu Studio AIGC recipes, submit text, image, video, audio, and reference-based generation tasks, poll outputs, and manage task lifecycle through the API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, images, videos, and task metadata are submitted to the third-party Chenyu Studio API. <br>
-Mitigation: Install only if the publisher and service are trusted, verify CHENYU_BASE_URL before use, prefer a scoped API key if available, and avoid sending sensitive local media. <br>
-Risk: Local media may be encoded into temporary JSON payload files for upload. <br>
-Mitigation: Use a private temporary file instead of a shared /tmp/payload.json path and delete it after submission. <br>
-Risk: Task-management commands can cancel or delete generation jobs when given a task ID. <br>
-Mitigation: Confirm task IDs and task status before canceling or deleting completed tasks. <br>
+## Use Case:
 
+External users and developers use this skill to discover Chenyu AIGC recipes, submit video or image generation tasks, and poll or manage resulting outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dionren/chenyu-aigc) <br>
-- [Chenyu Studio API base URL](https://chenyu.pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with bash commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API request examples for recipe discovery, schema inspection, execution, polling, cancellation, listing, and deletion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and release evidence) <br>
+Risk: Examples can send API keys and private prompts, images, videos, or audio to a configurable endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS CHENYU_BASE_URL, preferably the documented default, and a narrowly scoped Chenyu API key; do not submit sensitive media or prompts unless the configured provider is acceptable.
+
+Risk: The local image example writes a base64 payload to a predictable temporary file.
+
+Mitigation: Use a private secure temporary file for local media payloads and remove it after upload.
+
+Risk: Completed task deletion may be irreversible.
+
+Mitigation: Confirm retention requirements before deleting generated tasks or outputs.
+
+## Reference(s):
+
+- [Execute a Recipe](execute-recipe.md)
+- [Manage Tasks](manage-tasks.md)
+- [Chenyu API Base URL](https://chenyu.pro)
+- [ClawHub Skill Page](https://clawhub.ai/dionren/skills/chenyu-aigc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces API usage guidance for recipe discovery, task submission, polling, cancellation, listing, and deletion.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-A professional startup project evaluator that conducts multi-dimensional analysis across technology, market, finance, and team factors to produce structured evaluation reports with strategic recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A professional startup project evaluator that conducts multi-dimensional analysis covering technology, market, finance, and team, delivering structured evaluation reports with strategic recommendations.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Founders, operators, analysts, and advisors use this skill to gather startup project details and produce structured feasibility, due diligence, and project assessment reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Startup evaluations may involve confidential business, team, and financial information. <br>
-Mitigation: Share only information appropriate for the chat context and avoid including sensitive details unless disclosure is acceptable. <br>
-Risk: Investment or proceed recommendations can be incomplete or misleading if inputs are limited. <br>
-Mitigation: Treat recommendations as advisory, review the evidence behind each conclusion, and use qualified professional judgment before acting. <br>
+## Use Case:
 
+External users, startup founders, analysts, and investors use this skill to gather startup project details and produce a structured due diligence-style evaluation report covering market, technical, financial, team, risk, and recommendation sections.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a structured startup evaluation template and marks insufficiently supported sections as TBD.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill asks users for potentially sensitive startup, team, and financial information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only information appropriate for the agent session and avoid including confidential details unless the environment is approved for them.
+
+Risk: The generated report may include investment or proceed recommendations that users could mistake for professional financial advice.
+
+Mitigation: Treat recommendations as analytical support and review them with qualified business, legal, or financial advisers before acting.
+
+## Reference(s):
+
+- [Startup Evaluation Report Template](artifact/references/report-template.md)
+- [Startup Project Evaluator on ClawHub](https://clawhub.ai/openlark/skills/startup-evaluator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report body following the startup evaluation template]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Collects project information in rounds; incomplete sections should be marked TBD rather than speculated.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

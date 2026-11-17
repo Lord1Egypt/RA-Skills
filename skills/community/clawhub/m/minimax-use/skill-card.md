@@ -1,44 +1,56 @@
-## Description: <br>
-MiniMax AI tools for web search, image analysis, LLM chat, and language translation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax AI tools for web search, image analysis, LLM chat, and language translation.
 
-## Publisher: <br>
-[cnlangzi](https://clawhub.ai/user/cnlangzi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cnlangzi](https://clawhub.ai/user/cnlangzi)
 
-## Use Case: <br>
-Developers and agents use this skill to call MiniMax services for web search, image understanding, chat, streaming chat, translation, and model listing from CLI commands or Python functions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries, chat history, translation text, and image contents can be sent to MiniMax or the endpoint configured in MINIMAX_API_HOST. <br>
-Mitigation: Avoid sensitive or regulated data unless approved for that endpoint, and review inputs before sending them to the service. <br>
-Risk: A custom MINIMAX_API_HOST can redirect requests and API-key-authenticated traffic to another service. <br>
-Mitigation: Use only MiniMax or a trusted endpoint you control, and prefer a dedicated API key with spending limits. <br>
+## Use Case:
 
+Developers and agents use this skill to call MiniMax services for web search, image understanding, LLM chat, streaming chat, translation, and model discovery from CLI commands or Python functions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cnlangzi/minimax-use) <br>
-- [MiniMax API reference](references/API.md) <br>
-- [Available MiniMax models](assets/models.json) <br>
-- [MiniMax platform](https://platform.minimaxi.com) <br>
-- [MiniMax API key setup](https://platform.minimaxi.com/subscribe/coding-plan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, code, configuration] <br>
-**Output Format:** [JSON responses with text results, plus Markdown guidance with CLI and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MINIMAX_API_KEY; optionally uses MINIMAX_API_HOST; streaming chat can return response chunks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Prompts, chat history, searches, translations, and selected image files may be sent to MiniMax or to the configured API host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive prompts or local files unless that transfer is intended and approved for the deployment.
+
+Risk: The optional MINIMAX_API_HOST override can expose API keys and request data to a non-official endpoint.
+
+Mitigation: Use the official MiniMax API endpoint unless the alternate host is explicitly trusted and reviewed.
+
+## Reference(s):
+
+- [MiniMax API Reference](references/API.md)
+- [Available MiniMax Models](assets/models.json)
+- [MiniMax Platform](https://platform.minimaxi.com)
+- [ClawHub Skill Page](https://clawhub.ai/cnlangzi/skills/minimax-use)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, code, configuration, guidance]
+
+**Output Format:** [JSON responses, plain text model outputs, and CLI or Python usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MINIMAX_API_KEY and can use an optional MINIMAX_API_HOST override.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

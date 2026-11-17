@@ -1,41 +1,54 @@
-## Description: <br>
-Fetches public LIGO/Virgo/KAGRA events from GWOSC, downloads detector strain data, runs signal analysis, classifies merger types, and produces plots and reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches public LIGO/Virgo/KAGRA gravitational wave events from GWOSC, downloads detector strain data, runs signal processing and merger classification, and produces analysis plots and summaries.
 
-## Publisher: <br>
-[yash-kavaiya](https://clawhub.ai/user/yash-kavaiya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yash-kavaiya](https://clawhub.ai/user/yash-kavaiya)
 
-## Use Case: <br>
-Developers, researchers, educators, and technical users use this skill to query public GWOSC catalogs, analyze detector strain for gravitational wave events, classify BBH/BNS/NSBH mergers, and generate plots, JSON summaries, and text reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads public data from GWOSC and may fail or return incomplete results if the network service is unavailable or an event/catalog input is invalid. <br>
-Mitigation: Run with network access only when needed, confirm event and catalog inputs, and review generated summaries against GWOSC metadata. <br>
-Risk: The skill writes plots, JSON summaries, and text reports to a local directory. <br>
-Mitigation: Use a fresh Python environment and a dedicated output directory, then inspect generated files before sharing or reusing them. <br>
+## Use Case:
 
+Developers, researchers, and science communicators use this skill to retrieve public GWOSC event data, run local strain-analysis workflows, and generate event summaries and plots.
 
-## Reference(s): <br>
-- [GWOSC](https://gwosc.org/) <br>
-- [ClawHub Release Page](https://clawhub.ai/yash-kavaiya/gravitational-wave-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with Python and shell commands; generated artifacts can include PNG plots, JSON summaries, and text reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes user-directed analysis outputs to a local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Output filenames may not always be safely contained within the selected output directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in a sandboxed or low-privilege environment, use a dedicated output directory, and validate event names and detector identifiers before execution.
+
+Risk: Unpinned dependency versions may change analysis behavior or introduce dependency risk over time.
+
+Mitigation: Pin or lock dependency versions before production use and review package updates before deployment.
+
+## Reference(s):
+
+- [GWOSC](https://gwosc.org/)
+- [ClawHub Skill Page](https://clawhub.ai/yash-kavaiya/skills/gravitational-wave-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, analysis files]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; generated PNG plots, JSON summaries, and text reports when the analyzer runs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public GWOSC data and writes outputs to a user-selected directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

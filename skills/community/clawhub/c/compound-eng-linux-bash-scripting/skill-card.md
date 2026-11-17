@@ -1,40 +1,51 @@
-## Description: <br>
-Provides defensive Linux Bash scripting guidance for safe foundations, argument parsing, production patterns, and ShellCheck-compliant scripts, cron jobs, and CLI tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Defensive Bash scripting for Linux: safe foundations, argument parsing, production patterns, ShellCheck compliance. Use when writing bash scripts, shell scripts, cron jobs, or CLI tools in bash.
 
-## Publisher: <br>
-[iliaal](https://clawhub.ai/user/iliaal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iliaal](https://clawhub.ai/user/iliaal)
 
-## Use Case: <br>
-Developers and engineers use this skill when writing or reviewing GNU Bash 4.4+ scripts, cron jobs, and CLI tools for Linux, with emphasis on safe defaults, robust parsing, production patterns, and ShellCheck/shfmt validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Bash scripts can delete files, write system paths, make network requests, or run through cron and other automation if applied without review. <br>
-Mitigation: Review generated scripts before running them, with extra attention to destructive commands, system paths, network calls, and scheduled execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to write defensive Bash scripts, cron jobs, and command-line tools for Linux, including argument parsing and production automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iliaal/compound-eng-linux-bash-scripting) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Skill specification](artifact/SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review generated scripts before execution, especially scripts that delete files, write system paths, make network requests, or are scheduled through automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.2 (source: server release evidence) <br>
+Risk: The security review notes that the specification mentions evaluation tooling that may not be fully described by the Bash scripting purpose, and that one safety guide was only partially inspected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the evaluation tooling described in SPEC.md and inspect the referenced safety guide in full before relying on the skill.
+
+## Reference(s):
+
+- [Input and process safety](references/input-and-process-safety.md)
+- [Production patterns](references/production-patterns.md)
+- [ClawHub skill page](https://clawhub.ai/iliaal/skills/compound-eng-linux-bash-scripting)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with Bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets GNU Bash 4.4+ on Linux.]
+
+## Skill Version(s):
+
+5.1.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

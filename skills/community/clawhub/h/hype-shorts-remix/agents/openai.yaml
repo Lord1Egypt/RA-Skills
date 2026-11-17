@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hype Shorts Remix"
+  short_description: "Remix short videos with fresh scripts, shots and captions"
+  default_prompt: "Use $hype-shorts-remix to analyze my reference, create a fresh short-video concept, and deliver an editable project and MP4."

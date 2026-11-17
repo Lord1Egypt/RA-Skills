@@ -1,0 +1,4 @@
+interface:
+  display_name: "DeFi Infrastructure"
+  short_description: "Verify RPC, wallet and Hermes tool readiness"
+  default_prompt: "Use $galleon-defi-infra to check the tools needed for my next DeFi task, report a timestamped read and identify missing access without changing permissions."

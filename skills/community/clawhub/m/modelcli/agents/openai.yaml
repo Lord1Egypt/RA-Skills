@@ -1,0 +1,4 @@
+interface:
+  display_name: "ModelCLI"
+  short_description: "在本地运行目标检测、OCR、语音识别和语音合成等任务"
+  default_prompt: "使用 $modelcli 分析输入并通过本地模型返回结构化结果。"

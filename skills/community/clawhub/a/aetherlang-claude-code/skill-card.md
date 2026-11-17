@@ -1,44 +1,56 @@
-## Description: <br>
-Execute AetherLang V3 AI workflows from Claude Code using nine specialized engines for culinary, business, research, marketing, and strategic analyses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute AetherLang V3 AI workflows from Claude Code using nine specialized engines for culinary, business, research, marketing, and strategic analyses.
 
-## Publisher: <br>
-[contrario](https://clawhub.ai/user/contrario) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[contrario](https://clawhub.ai/user/contrario)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to send selected AetherLang flow code and queries to the AetherLang V3 API for structured culinary, business, research, marketing, forecasting, and data analysis results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Selected queries and AetherLang flow code are sent to an external provider endpoint. <br>
-Mitigation: Send only the intended query and flow code, and do not include secrets, credentials, private file contents, or personal information unless that processing is intentional. <br>
-Risk: The optional Pro tier AETHER_KEY could be exposed if it is hardcoded or included in prompts or logs. <br>
-Mitigation: Keep AETHER_KEY in an environment variable and avoid committing, printing, or embedding it in flow code. <br>
-Risk: Generated analysis from external AI workflows may be incomplete, outdated, or incorrect. <br>
-Mitigation: Review the returned markdown before relying on it for business, research, culinary, or strategic decisions. <br>
+## Use Case:
 
+Developers and agent users use this skill to call AetherLang V3 workflows from Claude Code for culinary, business, research, marketing, forecasting, debate, and analysis tasks.
 
-## Reference(s): <br>
-- [AetherLang API endpoint](https://api.neurodoc.app/aetherlang/execute) <br>
-- [Publisher homepage and privacy policy](https://masterswarm.net) <br>
-- [ClawHub skill page](https://clawhub.ai/contrario/aetherlang-claude-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with bash and Python examples plus JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The primary API result is read from result.final_output and is described by the artifact as Greek markdown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and release evidence) <br>
+Risk: Submitted queries and AetherLang flow code are sent to the third-party AetherLang API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for data approved for third-party processing, and avoid secrets, private files, system prompts, conversation history, and confidential business or personal data.
+
+Risk: Optional Pro tier authentication uses an API key.
+
+Mitigation: Store AETHER_KEY in the environment and pass it through the X-Aether-Key header; do not hardcode it in flow code or scripts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/contrario/skills/aetherlang-claude-code)
+- [Publisher profile](https://clawhub.ai/user/contrario)
+- [Project homepage](https://masterswarm.net)
+- [AetherLang API endpoint](https://api.neurodoc.app/aetherlang/execute)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The API response final output is structured markdown; the skill notes responses are in Greek and typical calls take 30-60 seconds.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

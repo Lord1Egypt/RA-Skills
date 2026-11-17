@@ -60,16 +60,15 @@ def run_command(cmd, timeout=120, capture=True):
             deadline = time.time() + timeout
 
             def _read_stream(stream, out_list):
-                """读取流（行模式，外部已禁用 tqdm \r 输出）"""
                 while True:
                     remaining = deadline - time.time()
                     if remaining <= 0:
                         return False
                     line = _readline_timeout(stream, timeout=min(1.0, remaining))
                     if line is None:
-                        return True  # EOF
+                        return True  # EOF normally
                     if line == "":
-                        continue  # timeout
+                        continue  # timeout, retry
                     print(line, end="", flush=True)
                     out_list.append(line)
 
@@ -120,28 +119,6 @@ def _readline_timeout(stream, timeout=1.0):
         finally:
             event.set()
 
-    t = threading.Thread(target=_read, daemon=True)
-    t.start()
-    event.wait(timeout=timeout)
-    if event.is_set():
-        val = result[0]
-        return val if val else None
-    return ""
-
-
-def _readchar_timeout(stream, timeout=1.0):
-    """带超时的逐字符读取 — 处理 tqdm \r 输出"""
-    import threading
-    result = [None]
-    event = threading.Event()
-    def _read():
-        try:
-            ch = stream.read(1)
-            result[0] = ch
-        except Exception:
-            result[0] = ""
-        finally:
-            event.set()
     t = threading.Thread(target=_read, daemon=True)
     t.start()
     event.wait(timeout=timeout)

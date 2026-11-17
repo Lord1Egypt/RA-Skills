@@ -1,43 +1,54 @@
-## Description: <br>
-Enables agents to browse the web, read page content, click buttons, fill forms, take screenshots, and capture accessibility snapshots through the webcli headless browser. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+webcli lets agents browse websites, read page content, click buttons, fill forms, take screenshots, and inspect accessibility snapshots through a headless browser CLI.
 
-## Publisher: <br>
-[erdinccurebal](https://clawhub.ai/user/erdinccurebal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[erdinccurebal](https://clawhub.ai/user/erdinccurebal)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect websites, gather page information, automate browser interactions, fill forms, and capture screenshots or accessibility snapshots during web tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad browser automation can affect authenticated sessions, cookies, storage, uploads, and page JavaScript. <br>
-Mitigation: Use non-sensitive sessions when possible and require explicit approval before uploads, purchases, account changes, cookie or session export, storage changes, or custom JavaScript. <br>
-Risk: Saved browser session files and exported cookies may expose private account state. <br>
-Mitigation: Delete saved session files after use and avoid exporting cookies unless the user explicitly needs it. <br>
-Risk: The skill depends on an external npm package and a Playwright browser installation. <br>
-Mitigation: Review the external npm package before installing and deploy only where full browser automation is intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [webcli homepage](https://webcli.erdinc.curebal.dev/) <br>
-- [webcli repository](https://github.com/erdinccurebal/webcli) <br>
-- [ClawHub skill page](https://clawhub.ai/erdinccurebal/webcli) <br>
+## Use Case:
 
+Developers and agents use this skill to navigate web pages, inspect page content, interact with forms and controls, capture screenshots or PDFs, and manage browser state during web automation tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include browser navigation, interaction, screenshot, PDF, storage, cookie, and JavaScript execution commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill exposes browser interactions, form submission, uploads, cookie import/export, storage changes, and browser-state save/load.
+
+Mitigation: Use it in an isolated environment and require explicit approval before submissions, uploads, cookie export/import, storage changes, or browser-state save/load on sensitive sites.
+
+Risk: The security verdict is suspicious because the skill uses a mutable global install and provides limited user-control guidance for sensitive browser actions.
+
+Mitigation: Review before installing, prefer a reviewed and pinned package version, and stop the daemon when finished.
+
+## Reference(s):
+
+- [webcli homepage](https://webcli.erdinc.curebal.dev/)
+- [webcli repository](https://github.com/erdinccurebal/webcli)
+- [ClawHub skill page](https://clawhub.ai/erdinccurebal/skills/webcli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and browser automation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce paths to screenshots, PDFs, exported cookies, or saved browser-state files when those commands are used.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

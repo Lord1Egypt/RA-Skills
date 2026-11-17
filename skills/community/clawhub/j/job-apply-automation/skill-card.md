@@ -1,50 +1,68 @@
-## Description: <br>
-Automated job application assistant that searches job boards and direct URLs, drafts personalized application emails with a CV attached, sends them through Gmail SMTP, and maintains a JSON application tracker. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated job application assistant for job-email-apply skill only. Searches for jobs, composes personalised application emails with CV attached, sends via Gmail SMTP (with manual approval per email), and maintains a JSON tracker.
 
-## Publisher: <br>
-[Z-Hussein](https://clawhub.ai/user/Z-Hussein) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[z-hussein](https://clawhub.ai/user/z-hussein)
 
-## Use Case: <br>
-Job seekers use this skill to find matching roles, prepare tailored application emails, send applications from a dedicated Gmail account, and track application status across the job search workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically email employers with a CV and may reply to recruiters on the user's behalf. <br>
-Mitigation: Use a dedicated job-search mailbox and keep manual approval enabled for every outgoing email, especially before trusting auto mode. <br>
-Risk: The tracker can contain sensitive job-search history, recruiter details, interview information, and application outcomes. <br>
-Mitigation: Regularly inspect, secure, or delete Applications.json and avoid sharing it outside the intended workspace. <br>
-Risk: Email credentials and personal profile data are required for normal operation. <br>
-Mitigation: Use a Gmail app password for a dedicated account, avoid storing main-account credentials, and keep filled CONFIG.md and profile files private. <br>
-Risk: Notifications may expose application activity or personal information through WhatsApp. <br>
-Mitigation: Review notification behavior and remove or limit notification details if the channel is shared or not private. <br>
+## Use Case:
 
+Job seekers use this skill to search job listings, draft tailored application emails, send approved Gmail SMTP messages with a CV attached, and maintain a local JSON application tracker. It is intended for explicit job-email-apply commands such as searching jobs, drafting applications, sending applications, checking the tracker, updating status, or checking inbox replies.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Z-Hussein/job-apply-automation) <br>
-- [README](README.md) <br>
-- [Platform Notes](references/Platform-notes.md) <br>
-- [Tracker Commands](references/Tracker-commands.md) <br>
-- [Configuration Template](references/config.md) <br>
-- [Email Templates](references/email-templates.md) <br>
-- [Job Profile Template](references/job-profile.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries, drafted email text, JSON tracker updates, and setup commands or configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send application emails with CV attachments and update Applications.json when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill handles sensitive Gmail, CV, and application-tracker data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Gmail account and app password, keep CONFIG.md, SMTP-SECRET.txt, the CV, and Applications.json local and private, and revoke the app password if exposure is suspected.
+
+Risk: Outbound applications could send incorrect personal claims, credentials, or unintended recipient data.
+
+Mitigation: Review every drafted email before approval; the skill requires explicit confirmation, validates recipient and CV path, and checks that subject, body, and URLs do not contain credentials before sending.
+
+Risk: Job listings, company pages, and incoming recruiter emails may contain untrusted instructions or misleading content.
+
+Mitigation: Treat external content only as data for extraction, ignore embedded workflow changes, store minimal parsed excerpts, and mark ambiguous inbox replies as NEEDS_REVIEW.
+
+Risk: Automatic tracker retention may remove older entries from the active Applications.json file.
+
+Mitigation: Clarify the 180-day archive behavior before use and review applications_archive.json expectations if active-history retention matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/z-hussein/skills/job-apply-automation)
+- [README](README.md)
+- [Skill instructions](SKILL.md)
+- [Configuration template](references/config.md)
+- [Email templates](references/email-templates.md)
+- [Tracker commands](references/Tracker-commands.md)
+- [Platform notes](references/Platform-notes.md)
+- [Job profile template](references/job-profile.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, drafted email text, JSON tracker updates, and setup shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outbound emails require explicit user approval before sending; application state is stored in Applications.json.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

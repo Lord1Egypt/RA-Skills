@@ -1,47 +1,58 @@
-## Description: <br>
-Send and receive WeChat messages, list contacts, and manage a listening daemon through the weixin-mcp CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to send and receive WeChat messages, list contacts, and manage a weixin-mcp daemon through the npx weixin-mcp CLI.
 
-## Publisher: <br>
-[bkmashiro](https://clawhub.ai/user/bkmashiro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bkmashiro](https://clawhub.ai/user/bkmashiro)
 
-## Use Case: <br>
-Developers and operators use this skill to integrate an agent with a WeChat bot account for sending messages, checking inbox activity, listing contacts, and configuring polling or webhook-based receiving. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send and read WeChat messages through a bot account. <br>
-Mitigation: Use a dedicated bot account and confirm recipients, message content, and attachments before sending. <br>
-Risk: The skill runs an external CLI package whose resolved version may change when using a range. <br>
-Mitigation: Prefer an exact reviewed package version before installing or executing the CLI. <br>
-Risk: Webhook endpoints can receive message content and context tokens. <br>
-Mitigation: Keep webhooks local or otherwise trusted, and avoid exposing webhook URLs publicly. <br>
-Risk: Local account token files are sensitive credentials. <br>
-Mitigation: Protect the configured data directory and stop the daemon when real-time receiving is no longer needed. <br>
+## Use Case:
 
+Developers and operators use this skill to connect an agent to WeChat through the weixin-mcp CLI for messaging, inbox checks, contact lookup, and webhook-based bot integration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bkmashiro/weixin-mcp) <br>
-- [Publisher profile](https://clawhub.ai/user/bkmashiro) <br>
-- [weixin-mcp source](https://github.com/bkmashiro/weixin-mcp) <br>
-- [weixin-mcp npm package](https://www.npmjs.com/package/weixin-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include WeChat recipient identifiers, webhook URLs, daemon status guidance, and credential storage paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: The skill relies on a third-party CLI that can access WeChat login tokens, contacts, messages, attachments, and local credential storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing and trusting the weixin-mcp package, prefer an exact reviewed package version, and keep WEIXIN_MCP_DIR in a dedicated protected directory.
+
+Risk: Webhook delivery can expose message content and context tokens outside the local machine.
+
+Mitigation: Use localhost or trusted internal webhook URLs only, and avoid forwarding WeChat payloads to untrusted services.
+
+Risk: Broad WeChat-related prompts could cause the skill to read or send private messages in sensitive conversations.
+
+Mitigation: Require explicit user confirmation before reading inbox contents, sending messages, or acting on broad WeChat requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bkmashiro/skills/weixin-mcp)
+- [weixin-mcp npm package](https://www.npmjs.com/package/weixin-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational instructions for the weixin-mcp CLI and MCP configuration; it does not directly send messages without the agent running the referenced commands or tools.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

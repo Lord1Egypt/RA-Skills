@@ -1,41 +1,52 @@
-## Description: <br>
-Runs a local Python analysis engine for specified U.S. stock tickers, supports configurable analyst modules, and archives generated conclusions and reports to DingTalk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When explicitly invoked as a report or stock analysis engine, this skill runs a Python workflow for U.S. stock analysis, supports analyst-module selection, and archives conclusions and reports to DingTalk documents and tables.
 
-## Publisher: <br>
-[canonxu](https://clawhub.ai/user/canonxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[canonxu](https://clawhub.ai/user/canonxu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Analysts and agent users use this skill to generate U.S. stock analysis reports for selected tickers, choose analysis modules, and archive the resulting decision, summary, timestamp, and report links in DingTalk.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill automatically uploads generated report contents to a fixed DingTalk workspace and document/table destination.
+
+Mitigation: Confirm the DingTalk destination before use, and use a local-only or confirmation-gated variant when reports may contain sensitive research or proprietary notes.
+
+Risk: The skill runs local analysis commands using ticker, analyst-module, and language inputs.
+
+Mitigation: Restrict ticker, analyst, and language values to known-safe, expected options before execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and analysts use this skill to trigger U.S. stock analysis, generate decision and full-report documents, and record the resulting report metadata in a DingTalk table. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated stock reports, summaries, conclusions, and document links are written to the configured DingTalk workspace and report table. <br>
-Mitigation: Before first use, verify that the workspace ID, parent node, companion DingTalk skills, and account belong to the intended organization and are appropriate for the reports' sensitivity. <br>
-Risk: The workflow runs a local stock-analysis command and then archives its outputs. <br>
-Mitigation: Confirm the target ticker, analyst modules, language, and working directory before execution, and review generated reports before relying on or sharing them. <br>
+**Output Format:** [Markdown table with analysis status and archived report fields]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/canonxu/my-stock-report-skill) <br>
-- [DingTalk document overwriteContent endpoint](https://api.dingtalk.com/v1.0/doc/suites/documents/{docKey}/overwriteContent?operatorId={OPERATOR_ID}) <br>
+**Other Properties Related to Output:** [Final output is expected to summarize six fields: ticker, analysis time, decision, summary, conclusion document link, and full report link.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Files, API Calls, Guidance] <br>
-**Output Format:** [Markdown table plus generated report files and DingTalk document links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes ticker, analysis timestamp, conclusion, summary, conclusion document link, and full report document link.] <br>
+1.0.4 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

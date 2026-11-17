@@ -1,40 +1,53 @@
-## Description: <br>
-芬香京东系社交电商返利工具，专注京东平台商品推广和佣金返利，支持京东优惠券查找和社群推广。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+芬香京东系社交电商返利工具，专注京东平台商品推广和佣金返利，支持京东优惠券查找和社群推广。
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
 
-## Use Case: <br>
-External users and social commerce operators use this skill to query JD.com rebates, coupons, commission estimates, and promotion copy before shopping or sharing products in communities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence reports no deceptive, destructive, or purpose-mismatched behavior, but VirusTotal had not completed at scan time. <br>
-Mitigation: Review the skill instructions and any requested credentials, commands, or external links before running or publishing. <br>
-Risk: Rebate, coupon, and commission details can become inaccurate or misleading if platform terms or product offers change. <br>
-Mitigation: Verify current JD.com and affiliate-platform terms before relying on generated rebate amounts or promotional claims. <br>
+## Use Case:
 
+External shoppers and social commerce promoters use this skill to query JD rebate and coupon information and draft Fenxiang/JD group-promotion content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/fenxiang-jd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style rebate query summary with product, price, coupon, rebate, and promotion link fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include currency amounts, percentages, coupon descriptions, and promotional links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated referral or promotion links could be shared without appropriate disclosure or consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose affiliate or promotional relationships where platform rules or law require it, and avoid unsolicited mass sharing.
+
+Risk: Coupon, price, rebate, or commission details may become incorrect before a shopper or promoter acts on them.
+
+Mitigation: Verify current pricing, coupon eligibility, and commission terms in the relevant JD, Fenxiang, or JD Union workflow before purchase or promotion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/skills/fenxiang-jd)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text with rebate fields, coupon details, expected commission, and promotion links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language content for JD/Fenxiang rebate and social promotion workflows]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

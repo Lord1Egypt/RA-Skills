@@ -1,40 +1,50 @@
-## Description: <br>
-Standardized workspace directory layout for multi-agent OpenClaw deployments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standardized workspace directory layout for multi-agent OpenClaw deployments.
 
-## Publisher: <br>
-[zaixi](https://clawhub.ai/user/zaixi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zaixi](https://clawhub.ai/user/zaixi)
 
-## Use Case: <br>
-Developers and workspace maintainers use this skill to standardize where agents create, exchange, audit, and clean files in multi-agent OpenClaw workspaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional apply command can move local workspace files when run in execute mode. <br>
-Mitigation: Run the dry run first, confirm the workspace path, and review every proposed move before using execute mode. <br>
-Risk: The workspace convention treats files/tmp/ and processed inbox/outbox items as disposable. <br>
-Mitigation: Do not place secrets or important originals in disposable locations unless that handling is intended. <br>
+## Use Case:
 
+Developers and agent operators use this skill to standardize OpenClaw workspace layout, place generated files under files/ subdirectories, audit layout drift, and optionally apply workspace organization fixes.
 
-## Reference(s): <br>
-- [Directory Layout Reference](references/layout.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with inline shell commands and local Python scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes dry-run audit behavior and an optional execute mode for applying workspace layout changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: The fix script can move broad workspace content and may follow symlinks outside the intended workspace boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the audit and dry-run workflow first, inspect every proposed move, and do not run apply.py --execute on untrusted or symlink-heavy workspaces unless containment checks, explicit confirmation, exclusions, and rollback or journaling are in place.
+
+## Reference(s):
+
+- [Directory Layout Reference](references/layout.md)
+- [ClawHub skill page](https://clawhub.ai/zaixi/skills/workspace-org)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON audit output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes dry-run workspace migration guidance and compliance-audit commands.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

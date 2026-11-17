@@ -6,7 +6,7 @@ import random
 from pathlib import Path
 from typing import Any
 
-from comfyui.config import check_server, job_store_path as default_job_store_path, get_workflows_dir
+from comfyui.config import check_server, get_http_timeout, job_store_path as default_job_store_path, get_workflows_dir
 from comfyui.preflight import build_preflight_cli_payload, preflight_registered_workflow
 from comfyui.services.executor import _entry_is_string_input, merge_text_inputs, _missing_string_error
 from comfyui.services.job_store import JobStore
@@ -60,8 +60,16 @@ def submit_workflow(
     has_string_mapping = any(
         _entry_is_string_input(entry) for entry in config.node_mapping.values()
     )
-    if not has_string_mapping:
-        return {"submitted": False, "error": _err("MAPPING_NOT_FOUND", "Workflow config has no string inputs.")}
+    has_media_mapping = any(
+        entry.get("value_type") in ("image", "video", "audio")
+        for entry in config.node_mapping.values()
+    )
+    # Pure-upload workflows (liveportrait: image + video, no text) are valid.
+    if not has_string_mapping and not has_media_mapping:
+        return {"submitted": False, "error": _err(
+            "MAPPING_NOT_FOUND",
+            "Workflow config has no bindable inputs (prompt/speech_text or image/video/audio).",
+        )}
 
     texts = merge_text_inputs(config, prompt, text_inputs)
     for key, entry in config.node_mapping.items():
@@ -73,7 +81,12 @@ def submit_workflow(
     if job_store_path is None:
         job_store_path = default_job_store_path()
     job_store_path = Path(job_store_path)
-    store = JobStore(job_store_path)
+    store: JobStore | None = None
+    store_warning: dict[str, str] | None = None
+    try:
+        store = JobStore(job_store_path)
+    except Exception as e:
+        store_warning = _err("JOB_STORE_UNAVAILABLE", f"Cannot open job store at {job_store_path}: {e}")
 
     wf_dir = workflows_dir
     if wf_dir is None:
@@ -102,7 +115,8 @@ def submit_workflow(
             }
 
     try:
-        api = ComfyApiWrapper(server_url)
+        connect_t, read_t = get_http_timeout()
+        api = ComfyApiWrapper(server_url, connect_timeout=connect_t, read_timeout=read_t)
     except Exception as e:
         return {"submitted": False, "error": _err("SERVER_UNAVAILABLE", f"Cannot connect to ComfyUI: {e}")}
 
@@ -117,23 +131,30 @@ def submit_workflow(
         except Exception as e:
             return {"submitted": False, "error": _err("WORKFLOW_LOAD_FAILED", f"Failed to load workflow: {e}")}
 
+        # Upload input media (image / video / audio). input_images holds
+        # role->local-path for all upload-required roles; value_type decides
+        # the upload method + error code.
         input_images = input_images or {}
         for role, entry in config.node_mapping.items():
-            if entry.get("value_type") != "image":
+            value_type = entry.get("value_type")
+            if value_type not in ("image", "video", "audio"):
                 continue
             if role not in input_images:
                 if entry.get("required"):
-                    return {"submitted": False, "error": _err("NO_INPUT_IMAGE", f"Required image input '{role}' not provided.")}
+                    miss_code = "NO_INPUT_IMAGE" if value_type == "image" else "NO_INPUT_MEDIA"
+                    return {"submitted": False, "error": _err(miss_code, f"Required {value_type} input '{role}' not provided.")}
                 continue
-            image_path = Path(input_images[role])
-            if not image_path.exists():
-                return {"submitted": False, "error": _err("INPUT_IMAGE_NOT_FOUND", f"Image file not found: {image_path}")}
+            media_path = Path(input_images[role])
+            if not media_path.exists():
+                nf_code = "INPUT_IMAGE_NOT_FOUND" if value_type == "image" else "INPUT_MEDIA_NOT_FOUND"
+                return {"submitted": False, "error": _err(nf_code, f"{value_type.capitalize()} file not found: {media_path}")}
             try:
-                meta = api.upload_image(str(image_path))
+                meta = api.upload_image(str(media_path)) if value_type == "image" else api.upload_media(str(media_path))
             except Exception as e:
-                return {"submitted": False, "error": _err("IMAGE_UPLOAD_FAILED", f"Failed to upload image '{role}': {e}")}
-            img_param = f"{meta['subfolder']}/{meta['name']}" if meta.get("subfolder") else meta["name"]
-            wf.set_node_param(entry["node_title"], entry["param"], img_param)
+                up_code = "IMAGE_UPLOAD_FAILED" if value_type == "image" else "MEDIA_UPLOAD_FAILED"
+                return {"submitted": False, "error": _err(up_code, f"Failed to upload {value_type} '{role}': {e}")}
+            media_param = f"{meta['subfolder']}/{meta['name']}" if meta.get("subfolder") else meta["name"]
+            wf.set_node_param(entry["node_title"], entry["param"], media_param)
 
         for key, entry in config.node_mapping.items():
             if not _entry_is_string_input(entry):
@@ -173,20 +194,28 @@ def submit_workflow(
         extra_texts = {k: v for k, v in texts.items() if k != "prompt"}
         text_inputs_store = json.dumps(extra_texts, ensure_ascii=True) if extra_texts else None
 
-        store.save_job(
-            job_id=job_id,
-            workflow_id=workflow_id,
-            prompt=prompt_store,
-            text_inputs=text_inputs_store,
-            input_images=json.dumps({k: str(v) for k, v in input_images.items()}) if input_images else None,
-            width=w,
-            height=h,
-            server_url=server_url,
-            status="submitted",
-            seed=actual_seed,
-            count=count,
-        )
+        if store is not None:
+            try:
+                store.save_job(
+                    job_id=job_id,
+                    workflow_id=workflow_id,
+                    prompt=prompt_store,
+                    text_inputs=text_inputs_store,
+                    input_images=json.dumps({k: str(v) for k, v in input_images.items()}) if input_images else None,
+                    width=w,
+                    height=h,
+                    server_url=server_url,
+                    status="submitted",
+                    seed=actual_seed,
+                    count=count,
+                )
+            except Exception as e:
+                store_warning = _err("JOB_STORE_UNAVAILABLE", f"Cannot write to job store at {job_store_path}: {e}")
+                store = None
 
         job_ids.append(job_id)
 
-    return {"submitted": True, "job_ids": job_ids}
+    payload: dict[str, Any] = {"submitted": True, "job_ids": job_ids}
+    if store_warning is not None:
+        payload["warning"] = store_warning
+    return payload

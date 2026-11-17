@@ -8,63 +8,15 @@
  * - No auto-execution; hooks only contact local IPC socket
  */
 
-const net = require('net');
-const path = require('path');
-const os = require('os');
 const fs = require('fs');
-
-const GUARD_SOCKET = path.join(os.tmpdir(), 'jep-guard.sock');
-const CONFIG_DIR = path.join(os.homedir(), '.jep-guard');
-const GUARD_TIMEOUT = 5000;
-
+const path = require('path');
+const {guardCall,dir,readPrivate} = require('./transport');
 function isFullMode() {
-  try {
-    const configPath = path.join(CONFIG_DIR, 'config.json');
-    if (!fs.existsSync(configPath)) return false;
-    const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
-    return config.mode !== 'passive' && config.core?.hooks_enabled !== false;
-  } catch (e) {
-    return false;
-  }
-}
-
-function guardCall(method, skill, payload, timeout = GUARD_TIMEOUT) {
-  return new Promise((resolve, reject) => {
-    const client = net.createConnection(GUARD_SOCKET);
-    const req = JSON.stringify({ method, skill, payload });
-
-    let data = '';
-    let settled = false;
-
-    client.write(req);
-    client.on('data', chunk => data += chunk);
-    client.on('end', () => {
-      if (settled) return;
-      settled = true;
-      try { resolve(JSON.parse(data)); } catch (e) { reject(new Error(`Invalid response: ${data}`)); }
-    });
-    client.on('error', (err) => {
-      if (settled) return;
-      settled = true;
-      reject(err);
-    });
-    setTimeout(() => {
-      if (settled) return;
-      settled = true;
-      client.destroy();
-      reject(new Error('Guard timeout'));
-    }, timeout);
-  });
-}
-
-// v2.0.4: Pure Node.js daemon detection, no shell commands, no auto-start
-function ensureDaemon() {
-  if (!fs.existsSync(GUARD_SOCKET)) {
-    // Daemon not running; return false and let caller decide
-    console.warn('[JEP Guard] Daemon not running. Start with: claw run jep-guard daemon');
-    return false;
-  }
-  return true;
+  const file=path.join(dir(),'config.json');
+  if(!fs.existsSync(file)) return false;
+  const config=JSON.parse(readPrivate(file));
+  if(!['passive','full'].includes(config.mode)) throw new Error('Invalid Guard mode');
+  return config.mode==='full';
 }
 
 exports.postInstall = async function(skillManifest) {
@@ -76,9 +28,8 @@ exports.postInstall = async function(skillManifest) {
   }
 
   try {
-    if (!ensureDaemon()) return;
     await guardCall('REGISTER_SKILL', skillManifest.name, {
-      skill_id: skillManifest.name,
+      name: skillManifest.name,
       version: skillManifest.version,
       capabilities: skillManifest.capabilities || [],
       risk_level: skillManifest.risk_level || 'low',
@@ -92,16 +43,16 @@ exports.postInstall = async function(skillManifest) {
 exports.preExec = async function(command, context) {
   if (!isFullMode()) return command;
 
-  if (!fs.existsSync(GUARD_SOCKET)) return command;
+
 
   try {
     const result = await guardCall('JUDGE', context.skillId, {
       action: command.action,
-      target: command.target,
+      target: command.target || "",
       context: { args: command.args, cwd: command.cwd }
     });
 
-    if (result.action === 'block') {
+    if (result.action !== 'allow' || !result.capabilityToken || !result.event?.nonce) {
       const err = new Error(`JEP Guard blocked: ${result.reason}`);
       err.code = 'JEP_BLOCKED';
       throw err;
@@ -112,8 +63,8 @@ exports.preExec = async function(command, context) {
       _jep: { token: result.capabilityToken, eventId: result.event?.nonce, granted: true }
     };
   } catch (err) {
-    if (err.code === 'JEP_BLOCKED') throw err;
-    return command;
+    err.code = 'JEP_BLOCKED';
+    throw err;
   }
 };
 
@@ -144,9 +95,6 @@ exports.preDelegate = async function(fromSkill, toSkill, scope, payload) {
     return { success: true, note: 'passive_mode' };
   }
 
-  if (!fs.existsSync(GUARD_SOCKET)) {
-    return { success: false, error: 'Guard not available' };
-  }
   try {
     return await guardCall('DELEGATE', fromSkill, {
       target: toSkill,
@@ -166,5 +114,5 @@ exports.onError = async function(error, context) {
       reason: error.message,
       triggered_by: 'system'
     });
-  } catch (e) {}
+  } catch (e) { throw new Error("Guard error audit failed: " + e.message); }
 };

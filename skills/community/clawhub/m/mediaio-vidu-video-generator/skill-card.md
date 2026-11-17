@@ -1,42 +1,50 @@
-## Description: <br>
-Generate AI videos from text prompts or image URLs using Vidu through the Media.io OpenAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI videos using Vidu via Media.io OpenAPI, supporting text-to-video and image-to-video workflows with smooth transitions.
 
-## Publisher: <br>
-[wondershare-boop](https://clawhub.ai/user/wondershare-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wondershare-boop](https://clawhub.ai/user/wondershare-boop)
 
-## Use Case: <br>
-Developers and agents use this skill to check Media.io credits, submit Vidu text-to-video or image-to-video generation jobs, and poll for generated video task results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image URLs, and the API key are sent to Media.io, and generation requests may consume account credits. <br>
-Mitigation: Use a revocable Media.io API key, monitor credit usage, and submit only public, non-sensitive prompts and image URLs. <br>
-Risk: Image-to-video workflows require externally reachable image URLs. <br>
-Mitigation: Use public assets intended for upload to Media.io rather than private, internal, or sensitive URLs. <br>
+## Use Case:
 
+Developers and agents use this skill to call Media.io Vidu video generation APIs for text-to-video, image-to-video, credit lookup, and task result polling.
 
-## Reference(s): <br>
-- [Media.io OpenAPI Documentation](https://platform.media.io/docs/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wondershare-boop/mediaio-vidu-video-generator) <br>
-- [API definitions](artifact/scripts/c_api_doc_detail.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Code, Configuration, Guidance] <br>
-**Output Format:** [JSON API responses with Python invocation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Media.io API key and returns task IDs for generation APIs that must be polled with Task Result.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The security review reports a credible redirect-related API key exposure risk when calling Media.io APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped or low-credit Media.io API key, avoid confidential or regulated prompts and image URLs, and disable redirects before using the skill with a valuable key.
+
+## Reference(s):
+
+- [Media.io OpenAPI Documentation](https://platform.media.io/docs/)
+- [ClawHub Skill Page](https://clawhub.ai/wondershare-boop/skills/mediaio-vidu-video-generator)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Code, Guidance]
+
+**Output Format:** [JSON API responses and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Media.io API key and returns task identifiers for generation APIs that must be polled with the Task Result API.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,40 @@
+{
+  "name": "灵枢Agent设计师",
+  "id": "ling-shu-agent-designer",
+  "version": "4.2.0",
+  "description": "Agent设计师，根据客户需求设计行业业务场景的Agent方案，并交付可运行的基础版Agent。融合吴明辉（组织视角）+ 吴恩达（方法视角）+ 傅盛（落地视角）三大思想体系。",
+  "author": "perrykono-debug",
+  "emoji": "🧠",
+  "workspace": {
+    "path": "ling-shu-agent-designer",
+    "entrypoint": "SKILL.md"
+  },
+  "capabilities": [
+    "Agent方案设计",
+    "场景大纲输出（7项必填）",
+    "专用skill包创建",
+    "openclaw.json配置",
+    "多Agent协同规划",
+    "企业AI Agent体系规划"
+  ],
+  "skills": [
+    "a2a-gateway",
+    "skill-creator"
+  ],
+  "setup": {
+    "steps": [
+      "确认客户需求（行业/痛点/期望）",
+      "产出7项场景大纲并确认",
+      "创建专用skill包",
+      "配置workspace基础文件"
+    ],
+    "required": [
+      "行业定位",
+      "核心痛点"
+    ],
+    "optional": [
+      "企业介绍材料",
+      "现有系统接口"
+    ]
+  }
+}

@@ -1,0 +1,292 @@
+'''
+42实时主推函数
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+实时主推函数
+account_callback - 资金账号状态变化主推
+提示
+
+仅在实盘运行模式下生效。
+需要先在init里调用ContextInfo.set_account后生效。
+用法： account_callback(ContextInfo, accountInfo)
+
+释义： 当资金账号状态有变化时，这个函数被客户端调用
+
+参数：
+
+ContextInfo：特定对象
+accountInfo：账号对象或信用账号对象
+返回： 无
+
+示例：
+
+示例返回值
+
+#coding:gbk
+def show_data(data):
+    tdata = {}
+    for ar in dir(data):
+        if ar[:2] != 'm_':continue
+        try:
+            tdata[ar] = data.__getattribute__(ar)
+        except:
+            tdata[ar] = '<CanNotConvert>'
+    return tdata
+
+def init(ContextInfo):
+    # 设置对应的资金账号
+    # 示例需要在策略交易界面运行
+    ContextInfo.set_account(account)
+    
+def after_init(ContextInfo):
+    # 在策略交易界面运行时，account的值会被赋值为策略配置中的账号，编辑器界面运行时，需要手动赋值
+    # 编译器界面里执行的下单函数不会产生实际委托  
+    passorder(23, 1101, account, "000001.SZ", 5, 0, 100, "示例", 2, "投资备注",ContextInfo)
+    pass
+
+def account_callback(ContextInfo, accountInfo):
+    print(show_data(accountInfo)) 
+
+task_callback - 账号任务状态变化主推
+提示
+
+仅在实盘运行模式下生效。
+需要先在init里调用ContextInfo.set_account后生效。
+用法： task_callback(ContextInfo, taskInfo)
+
+释义： 当账号任务状态有变化时，这个函数被客户端调用
+
+参数：
+
+ContextInfo：特定对象
+taskInfo 任务对象
+返回： 无
+
+示例：
+
+示例返回值
+
+#coding:gbk
+def show_data(data):
+    tdata = {}
+    for ar in dir(data):
+        if ar[:2] != 'm_':continue
+        try:
+            tdata[ar] = data.__getattribute__(ar)
+        except:
+            tdata[ar] = '<CanNotConvert>'
+    return tdata
+
+def init(ContextInfo):
+    # 设置对应的资金账号
+    # 示例需要在策略交易界面运行
+    ContextInfo.set_account(account)
+    
+def after_init(ContextInfo):
+    # 在策略交易界面运行时，account的值会被赋值为策略配置中的账号，编辑器界面运行时，需要手动赋值
+    # 编译器界面里执行的下单函数不会产生实际委托  
+    passorder(23, 1101, account, "000001.SZ", 5, 0, 100, "示例", 2, "投资备注",ContextInfo)
+    pass
+
+def task_callback(ContextInfo, taskInfo):
+    print(show_data(taskInfo))
+order_callback - 账号委托状态变化主推
+提示
+
+仅在实盘运行模式下生效。
+需要先在init里调用ContextInfo.set_account后生效。
+用法： order_callback(ContextInfo, orderInfo)
+
+释义： 当账号委托状态有变化时，这个函数被客户端调用
+
+参数：
+
+ContextInfo：特定对象
+orderInfo：委托
+返回： 无
+
+示例：
+
+示例返回值
+
+#coding:gbk
+def show_data(data):
+    tdata = {}
+    for ar in dir(data):
+        if ar[:2] != 'm_':continue
+        try:
+            tdata[ar] = data.__getattribute__(ar)
+        except:
+            tdata[ar] = '<CanNotConvert>'
+    return tdata
+
+def init(ContextInfo):
+    # 设置对应的资金账号
+    # 示例需要在策略交易界面运行
+    ContextInfo.set_account(account)
+    
+def after_init(ContextInfo):
+    # 在策略交易界面运行时，account的值会被赋值为策略配置中的账号，编辑器界面运行时，需要手动赋值
+    # 编译器界面里执行的下单函数不会产生实际委托  
+    passorder(23, 1101, account, "000001.SZ", 5, 0, 100, "示例", 2, "投资备注",ContextInfo)
+    pass
+
+def order_callback(ContextInfo, orderInfo):
+    print(show_data(orderInfo))
+deal_callback - 账号成交状态变化主推
+提示
+
+仅在实盘运行模式下生效。
+需要先在init里调用ContextInfo.set_account后生效。
+用法： deal_callback(ContextInfo, dealInfo)
+
+释义： 当账号成交状态有变化时，这个函数被客户端调用
+
+参数：
+
+ContextInfo：特定对象
+dealInfo：成交
+返回： 无
+
+示例：
+
+示例返回值
+
+#coding:gbk
+def show_data(data):
+    tdata = {}
+    for ar in dir(data):
+        if ar[:2] != 'm_':continue
+        try:
+            tdata[ar] = data.__getattribute__(ar)
+        except:
+            tdata[ar] = '<CanNotConvert>'
+    return tdata
+
+def init(ContextInfo):
+    # 设置对应的资金账号
+    # 示例需要在策略交易界面运行
+    ContextInfo.set_account(account)
+    
+def after_init(ContextInfo):
+    # 在策略交易界面运行时，account的值会被赋值为策略配置中的账号，编辑器界面运行时，需要手动赋值
+    # 编译器界面里执行的下单函数不会产生实际委托  
+    passorder(23, 1101, account, "000001.SZ", 5, 0, 100, "示例", 2, "投资备注",ContextInfo)
+    pass
+
+def deal_callback(ContextInfo, dealInfo):
+    print(show_data(dealInfo))
+position_callback - 账号持仓状态变化主推
+提示
+
+仅在实盘运行模式下生效。
+需要先在init里调用ContextInfo.set_account后生效。
+用法： position_callback(ContextInfo, positonInfo)
+
+释义： 当账号持仓状态有变化时，这个函数被客户端调用
+
+参数：
+
+ContextInfo：特定对象
+positonInfo：持仓
+返回： 无
+
+示例：
+
+示例返回值
+
+#coding:gbk
+def show_data(data):
+    tdata = {}
+    for ar in dir(data):
+        if ar[:2] != 'm_':continue
+        try:
+            tdata[ar] = data.__getattribute__(ar)
+        except:
+            tdata[ar] = '<CanNotConvert>'
+    return tdata
+
+def init(ContextInfo):
+    # 设置对应的资金账号
+    # 示例需要在策略交易界面运行
+    ContextInfo.set_account(account)
+    
+def after_init(ContextInfo):
+    # 在策略交易界面运行时，account的值会被赋值为策略配置中的账号，编辑器界面运行时，需要手动赋值
+    # 编译器界面里执行的下单函数不会产生实际委托  
+    passorder(23, 1101, account, "000001.SZ", 5, 0, 100, "示例", 2, "投资备注",ContextInfo)
+    pass
+
+def position_callback(ContextInfo, positionInfo):
+    print(show_data(positionInfo))
+
+orderError_callback - 账号异常下单主推
+提示
+
+仅在实盘运行模式下生效。
+需要先在init里调用ContextInfo.set_account后生效。
+用法： orderError_callback(ContextInfo,orderArgs,errMsg)
+
+释义： 当账号下单异常时，这个函数被客户端调用
+
+参数：
+
+ContextInfo：特定对象
+orderArgs：下单参数
+errMsg：错误信息
+返回： 无
+
+示例：
+
+示例返回值
+
+#coding:gbk
+def show_data(data):
+    tdata = {}
+    for ar in dir(data):
+        if ar[:2] != 'm_':continue
+        try:
+            tdata[ar] = data.__getattribute__(ar)
+        except:
+            tdata[ar] = '<CanNotConvert>'
+    return tdata
+
+def init(ContextInfo):
+    # 设置对应的资金账号
+    # 示例需要在策略交易界面运行
+    ContextInfo.set_account(account)
+    
+def after_init(ContextInfo):
+    # 在策略交易界面运行时，account的值会被赋值为策略配置中的账号，编辑器界面运行时，需要手动赋值
+    # 编译器界面里执行的下单函数不会产生实际委托  
+    passorder(23, 1101, account, "000001.SZ", 11, 0, 100, "示例", 2, "投资备注",ContextInfo)
+    pass
+
+def orderError_callback(ContextInfo,orderArgs,errMsg):
+    print(show_data(orderArgs))
+    print(errMsg)
+
+其他主推函数
+credit_account_callback - 查询信用账户明细回调
+用法： credit_account_callback(ContextInfo,seq,result)
+
+释义： 查询信用账户明细回调
+
+参数：
+
+ContextInfo：策略模型全局对象
+seq:query_credit_account时输入查询seq
+result: 信用账户明细
+credit_opvolume_callback - 查询两融最大可下单量的回调
+用法： credit_opvolume_callback(ContextInfo,accid,seq,ret,result)
+
+释义： 查询两融最大可下单量的回调。
+
+参数：
+
+ContextInfo：策略模型全局对象
+accid:查询的账号
+seq:query_credit_opvolume时输入查询seq
+ret:查询结果状态。正常返回:1,正在查询中-1,输入账号非法:-2,输入查询参数非法:-3,超时等服务器返回报错:-4
+result:查询到的结果
+示例 见query_credit_opvolume

@@ -1,43 +1,58 @@
-## Description: <br>
-Intellectia stock/crypto screener for Bullish/Bearish Tomorrow/Week/Month presets that calls /gateway/v1/stock/screener-list with no auth and summarizes results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intellectia stock/crypto screener for Bullish/Bearish Tomorrow/Week/Month presets. Calls /gateway/v1/stock/screener-list (no auth) and summarizes results.
 
-## Publisher: <br>
-[xanxustan](https://clawhub.ai/user/xanxustan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xanxustan](https://clawhub.ai/user/xanxustan)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to fetch stock or crypto screener candidates from Intellectia presets and summarize fields such as probability, profit, price, and change ratio. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Stock or crypto screener criteria may be sent to Intellectia's API. <br>
-Mitigation: Avoid including personal financial details or private strategy notes in prompts. <br>
-Risk: Returned market data may be mistaken for investment advice. <br>
-Mitigation: Treat the screener output as informational and review independently before making financial decisions. <br>
-Risk: The external API may rate limit or fail to return data. <br>
-Mitigation: Use smaller page sizes and add retry or backoff behavior when automating requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xanxustan/ai-screener) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/xanxustan) <br>
-- [Intellectia screener API endpoint](https://api.intellectia.ai/gateway/v1/stock/screener-list) <br>
+## Use Case:
 
+External users and developers use this skill to fetch bullish or bearish stock and crypto screener candidates from Intellectia presets, then summarize or compare returned fields such as probability, profit, price, and change ratio.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries, tables, JSON snippets, cURL commands, and Python requests examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns informational market screener data from the disclosed Intellectia endpoint; no authentication is described.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Screener query choices are sent to Intellectia's API.
+
+Mitigation: Use the skill only when this external API call is acceptable for the user's workflow.
+
+Risk: Financial screener outputs can be incomplete, stale, or unsuitable as investment advice.
+
+Mitigation: Treat results as informational screening data and verify financial decisions against appropriate sources and review processes.
+
+Risk: The skill depends on Python requests in addition to curl and python3.
+
+Mitigation: Use an isolated Python environment and pin or review the requests dependency where supply-chain controls require it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xanxustan/skills/ai-screener)
+- [Intellectia API base URL](https://api.intellectia.ai)
+- [Intellectia screener-list endpoint example](https://api.intellectia.ai/gateway/v1/stock/screener-list?symbol_type=0&period_type=0&trend_type=0&profit_asc=false&market_cap=0&price=0&page=1&size=20)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline JSON, Python, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include summarized screener tables or raw API JSON depending on the user's request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

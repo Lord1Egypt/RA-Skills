@@ -1,38 +1,49 @@
-## Description: <br>
-Guides agents in using Apple's first-party testing tools for iOS and macOS projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apple Native Automation & Testing Skill.
 
-## Publisher: <br>
-[soponcd](https://clawhub.ai/user/soponcd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soponcd](https://clawhub.ai/user/soponcd)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to plan, write, and run Apple platform unit, UI, snapshot, performance, and accessibility tests with XCTest, XCUITest, Instruments, and a project-local test wrapper. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to use a repository-local test wrapper, which may behave differently in unfamiliar projects. <br>
-Mitigation: Review ./tools/run_native_tests.sh before running it and limit execution to trusted Apple development repositories. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide Apple platform test automation for iOS and macOS projects, including unit, UI, snapshot, performance, accessibility, and critical-flow testing with Apple's first-party tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/soponcd/native-automation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and XCTest/XCUITest code patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Relies on the target repository's ./tools/run_native_tests.sh modes when executing tests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: The skill directs the agent to run a project-local ./tools/run_native_tests.sh script that is not included or validated by the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust the project-local script before allowing the agent to execute it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/soponcd/skills/native-automation)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and XCTest-oriented code guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on Apple-native testing workflows using XCTest, XCUITest, Instruments, and project-local test scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

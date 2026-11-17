@@ -1,51 +1,62 @@
-## Description: <br>
-Career Planner China helps users with AI-era career planning in China by collecting background information, assessing interests and work values, evaluating AI career impact, and producing personalized career direction guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps people plan careers in the AI era by assessing their interests, values, and work context, then preparing personalized career guidance and next steps.
 
-## Publisher: <br>
-[mnetfairy](https://clawhub.ai/user/mnetfairy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mnetfairy](https://clawhub.ai/user/mnetfairy)
 
-## Use Case: <br>
-Individuals, students, and career changers in China use this skill to explore career paths, education choices, industry transitions, AI exposure, salary expectations, and practical next steps. The skill can also guide optional Markdown report generation when the host environment and user request allow it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process personal career, education, personality, location, and values information. <br>
-Mitigation: Ask users only for information needed for the requested planning task and avoid storing or forwarding personal profiles unless the user explicitly requests it. <br>
-Risk: Optional integrations could email reports, subscribe users to updates, call external APIs, or persist memory/profile files. <br>
-Mitigation: Use integrations only after explicit user authorization and after showing what information will be sent, stored, or subscribed. <br>
-Risk: Insurance-company recommendations may steer users toward specific companies. <br>
-Mitigation: Present insurance listings as a directory starting point, disclose that recommendations are for reference only, and encourage users to compare options independently. <br>
+## Use Case:
 
+People in China choosing a major, entering the workforce, or considering a career change can use this skill for structured assessments and actionable career plans that account for AI-related changes in work. An optional insurance-channel list is available only when the user explicitly asks about that field.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mnetfairy/skills/career-planner-china) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Assessment framework](artifact/references/assessment.md) <br>
-- [AI career impact reference](artifact/references/ai_career_impact.md) <br>
-- [Career anchor reference](artifact/references/career_anchor.md) <br>
-- [Job demand trends](artifact/references/job_demand.md) <br>
-- [Industry trends](artifact/references/industry_trends.md) <br>
-- [Education paths](artifact/references/education_paths.md) <br>
-- [Salary database](artifact/references/salary_database.json) <br>
-- [Insurance broker company list](artifact/references/insurance_broker_companies.json) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Conversational text and structured Markdown reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include career profiles, AI-risk ratings, salary ranges, recommended paths, action lists, and optional report-generation commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.143 (source: frontmatter and server release metadata) <br>
+Risk: Career, AI-impact, and salary guidance may not reflect a person's full circumstances or current local conditions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the plan as a starting point and check current pay, job demand, and qualification requirements before making decisions.
+
+Risk: The optional insurance-channel ordering reflects the maintainer's disclosed business preference rather than an assessment of personal fit.
+
+Mitigation: Show the list only after the user explicitly asks about insurance channels, disclose the ordering, and offer side-by-side alternatives.
+
+Risk: Security review coverage is partial because some local path references did not match bundled artifacts.
+
+Mitigation: Review the relevant bundled references and the skill's outputs before relying on them.
+
+## Reference(s):
+
+- [Career assessment and values guide](references/assessment.md)
+- [AI career impact guide](references/ai_career_impact.md)
+- [Job demand and industry trends](references/job_demand.md)
+- [Salary data and database](references/salary_data.md)
+- [Optional insurance-channel information](references/insurance_broker_companies.json)
+- [ClawHub skill page](https://clawhub.ai/mnetfairy/skills/career-planner-china)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Text, Markdown]
+
+**Output Format:** [Conversational career guidance and structured Markdown planning reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Personalized to the user's background; may include career options, AI impact ratings, salary ranges, and next steps. Report export is optional and user-triggered.]
+
+## Skill Version(s):
+
+2.3.16 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

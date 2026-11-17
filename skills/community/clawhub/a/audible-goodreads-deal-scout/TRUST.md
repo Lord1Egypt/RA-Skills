@@ -16,13 +16,15 @@ It reports deal opportunities. It does not buy, reserve, check out, redeem credi
 
 Only point configured paths at files you intend this skill to read.
 
+Relative paths in the JSON config resolve from that config file's directory. The runtime fails closed on malformed config, malformed scheduled state, and configured input files that are missing or unreadable.
+
 ## What the skill may write
 
 | Output | Location |
 | --- | --- |
 | Config, state, reports, artifacts, and cache files | The configured storage directory, normally `.audible-goodreads-deal-scout/` in the active OpenClaw workspace |
 | Optional delivery messages | A configured OpenClaw channel and target, only when delivery is enabled or requested |
-| Optional cron entries | OpenClaw cron, only when daily automation registration is requested |
+| Optional cron entries and condition script | OpenClaw cron and the config storage directory, only when daily automation registration is requested |
 
 The skill should not write mutable user state inside the installed skill folder because OpenClaw can replace that folder during updates.
 
@@ -34,7 +36,7 @@ The skill may fetch:
 - Audible authenticated product-price API responses when an Audible auth file is explicitly supplied
 - Goodreads public pages for runtime score resolution and optional rating enrichment
 
-Unauthenticated Audible HTML fetches are guarded to known HTTPS Audible hosts and daily-deal, search, or product paths before either the Python fetch path or curl fallback can request them.
+Unauthenticated Audible HTML fetches are guarded to known HTTPS Audible hosts and daily-deal, search, or product paths before either the Python fetch path or curl fallback can request them. Python redirects are validated before they are followed; the curl fallback refuses redirects. Audible and Goodreads response bodies and decompression output are bounded.
 
 It does not send data to a private server controlled by this repository.
 
@@ -48,6 +50,7 @@ If you choose to use authenticated price lookup:
 - the auth flow requests cookie-style Audible/Amazon credential types for compatibility because anonymous Audible pages often hide member cash prices
 - the auth file persists the bearer access/refresh token fields used for token refresh and product-price lookup
 - the auth file is sensitive local state and should not be committed, pasted into chat, or published
+- ready auth files must be regular, non-symlink files with owner-only permissions
 - the auth file is used only for token refresh and Audible product-price lookup
 - authenticated API calls are restricted in code to validated Audible product ids and allowlisted Audible/Amazon API domains
 - authenticated `discounted` means a member-visible cash price is below list price, not proof of a limited-time sale
@@ -72,6 +75,12 @@ Any purchase decision remains manual and outside the skill.
 `privacyMode: "normal"` allows the model-facing fit step to use configured Goodreads context and taste notes.
 
 `privacyMode: "minimal"` prevents personal artifacts from being exposed to the model-facing runtime and produces recommendations from public data only.
+
+## Scheduled execution
+
+Daily registration uses an OpenClaw condition trigger to run deterministic preparation before an agent turn. Under the default `positive_only` policy, duplicate and deterministic non-match results return `fire: false`, avoiding a model run. Agent turns that are still required use lightweight bootstrap context with low thinking, which supports current Codex models that reject disabled thinking.
+
+OpenClaw condition triggers can execute tools without supervision. `cron.triggers.enabled` should remain disabled unless the host, cron-authoring agents, local skill installation, and command approval policy are all trusted. Disabling automation through setup clears the related trigger and fallback delivery route.
 
 ## Publishing safety
 

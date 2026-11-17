@@ -1,6 +1,8 @@
 # vmware-debug CLI Reference
 
-All commands are read-only and offline (no network, no credentials).
+All commands are offline (no network, no credentials). All but `mcp` are
+read-only; `mcp` starts the MCP server, whose seven case write tools record
+into the local case ledger.
 
 ## triage — correlate a set of collected events
 
@@ -40,9 +42,9 @@ vmware-debug mcp        # start the stdio MCP server (no network at startup)
 
 In an agent, the cross-skill correlation happens at the agent layer:
 
-1. Fetch events with the data-source skills (vmware-monitor `event_list`,
-   vmware-log-insight `log_search`/`log_aggregate`, vmware-aria alerts/anomaly,
+1. Fetch events with the data-source skills (vmware-monitor `get_events`,
+   vmware-log-insight `search_logs`/`aggregate_logs`, vmware-aria alerts/anomaly,
    vmware-nsx).
 2. Normalise each into the event envelope.
-3. Call the `incident_timeline` MCP tool to correlate and rank.
+3. Call the `build_incident_timeline` MCP tool to correlate and rank.
 4. Follow `next_checks`; route any fix to vmware-aiops / vmware-pilot.

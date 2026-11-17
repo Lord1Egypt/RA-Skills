@@ -1,45 +1,56 @@
-## Description: <br>
-AI-agent-friendly Hologres CLI with safety guardrails and structured JSON output for database operations, schema inspection, SQL execution, data import/export, Dynamic Table lifecycle management, and GUC parameter management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-agent-friendly Hologres CLI with safety guardrails and structured JSON output for database operations, schema inspection, SQL execution, data import/export, Dynamic Table lifecycle management, and GUC parameter management.
 
-## Publisher: <br>
-[wenbingyu](https://clawhub.ai/user/wenbingyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wenbingyu](https://clawhub.ai/user/wenbingyu)
 
-## Use Case: <br>
-Developers and data engineers use this skill to operate Hologres databases through CLI commands, inspect schemas, run guarded SQL, manage Dynamic Tables, and handle import/export, AI, volume, and model workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill delegates database, storage, and credential-handling actions to an external pip package. <br>
-Mitigation: Verify the `hologres-cli` package source before installation and pin a reviewed version. <br>
-Risk: The CLI may use sensitive database, OSS, and model-provider credentials. <br>
-Mitigation: Use least-privilege credentials, avoid placing secrets in chat or command-line arguments, and protect or clear `~/.hologres` history and config files. <br>
-Risk: Write, destructive, import, GUC, model registration, local upload, and volume view operations can affect live systems or expose data. <br>
-Mitigation: Require explicit human approval before running write, drop, truncate, import-with-truncate, GUC set, model registration/deletion, local file upload, or `volume view` operations. <br>
+## Use Case:
 
+Developers and data platform engineers use this skill to install and operate the Hologres CLI for database inspection, SQL execution, data import/export, Dynamic Table lifecycle management, AI/volume/model commands, and safer automation workflows.
 
-## Reference(s): <br>
-- [Hologres CLI command reference](references/commands.md) <br>
-- [AI, volume, and model commands](references/ai-volume-model.md) <br>
-- [Safety features](references/safety-features.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wenbingyu/hologres-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration guidance, Markdown, JSON, CSV, JSON Lines] <br>
-**Output Format:** [Markdown guidance with CLI commands and structured CLI outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI output may be JSON, table, CSV, or JSONL depending on command options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata and VERSION; package.json lists 0.2.1) <br>
+Risk: The skill installs external CLI code and can read or change production Hologres databases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated environment, prefer a pinned and verified hologres-cli release, use least-privilege short-lived credentials, and require human review before writes, truncates, drops, GUC changes, or model registration.
+
+Risk: The skill can export data to local files, upload local files to OSS or AI services, store credentials locally, and open downloaded files with local applications.
+
+Mitigation: Keep masking enabled unless explicitly needed, review file upload/download and volume view actions before execution, and avoid profiles with broad credential scope.
+
+## Reference(s):
+
+- [Hologres CLI Command Reference](references/commands.md)
+- [Hologres CLI Safety Features](references/safety-features.md)
+- [Hologres CLI AI, Volume, and Model Commands](references/ai-volume-model.md)
+- [ClawHub skill release page](https://clawhub.ai/wenbingyu/skills/hologres-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with command examples and JSON output patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes dry-run and confirmation guidance for destructive database, model, and file operations.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata, target metadata, VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

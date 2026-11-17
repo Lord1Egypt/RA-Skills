@@ -1,41 +1,54 @@
-## Description: <br>
-Retrieve and analyze user events, active counts, retention, and profiles in Amplitude with detailed date-range and granularity options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieve and analyze Amplitude user events, active-user counts, retention metrics, user profiles, and activity timelines through the Pipeworx Amplitude MCP gateway.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and operators use this skill to connect an agent to the Pipeworx Amplitude MCP gateway for querying event counts, active users, retention metrics, user search, and user activity timelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can route sensitive Amplitude user profile and activity data through an external Pipeworx gateway without enough disclosure about access scope or data handling. <br>
-Mitigation: Install only after verifying gateway trust, Amplitude authentication, workspace scope, permission scope, logging and retention practices, and revocation procedures. <br>
-Risk: User search and activity queries may expose individual user data. <br>
-Mitigation: Use least-privilege Amplitude access and query individual users only when there is a legitimate authorization basis. <br>
+## Use Case:
 
+Developers and analytics users use this skill to connect an agent to Amplitude through Pipeworx and retrieve event counts, active-user trends, retention metrics, matching user profiles, and recent user activity for date ranges and user identifiers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-amplitude) <br>
-- [Pipeworx Amplitude MCP endpoint](https://gateway.pipeworx.io/amplitude/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, API calls] <br>
-**Output Format:** [Markdown with JSON MCP server configuration and MCP tool descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [MCP tools can return Amplitude event counts, active-user counts, retention metrics, matching user profiles, and user activity timelines for requested date ranges or users.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Amplitude analytics data and identifiable user profile or activity data may pass through an under-documented third-party MCP gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the gateway only with trusted Amplitude projects, apply least-privilege credentials, and restrict or monitor profile and activity queries involving identifiable users.
+
+Risk: Email-based user searches can expose sensitive user information when broader searches are unnecessary.
+
+Mitigation: Avoid email-based searches unless needed for the task and prefer narrower identifiers or aggregated analytics queries.
+
+## Reference(s):
+
+- [Pipeworx Amplitude skill page](https://clawhub.ai/brucegutman/skills/pipeworx-amplitude)
+- [Pipeworx Amplitude MCP endpoint](https://gateway.pipeworx.io/amplitude/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Configuration, Guidance]
+
+**Output Format:** [Markdown and JSON configuration with agent-readable analytics results from MCP tool calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include date ranges, granularity, event names, user identifiers, and user-property filters when invoking Amplitude tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

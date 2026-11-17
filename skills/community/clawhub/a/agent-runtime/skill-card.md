@@ -1,41 +1,54 @@
-## Description: <br>
-Agent Runtime provides a JavaScript agent runtime for tool registration, permission labels, hook interception, context compression, and usage tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Runtime provides an agent runtime system that combines tool registration, permission controls, hook interception, context compression, and usage tracking for agent sessions.
 
-## Publisher: <br>
-[xhmqq616](https://clawhub.ai/user/xhmqq616) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xhmqq616](https://clawhub.ai/user/xhmqq616)
 
-## Use Case: <br>
-Developers and agent builders use this skill as a lightweight JavaScript runtime pattern for registering tools, running simple agent turns, tracking token usage, and experimenting with sub-agent modes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The runtime exposes local shell execution while advertised permission and hook controls do not actually enforce limits. <br>
-Mitigation: Review before installing or using; remove or lock down the shell tool, add real permission enforcement, and require explicit approval for command execution. <br>
-Risk: Built-in local file access can expose sensitive workspace data when used without path restrictions. <br>
-Mitigation: Run only in a sandboxed workspace and restrict file tools to approved paths before use. <br>
+## Use Case:
 
+Developers and agent builders use this skill to prototype agent runtime behavior, including tool routing, session usage tracking, and context compaction. It is intended for agent workflows that need runtime scaffolding and integration guidance.
 
-## Reference(s): <br>
-- [Agent Runtime on ClawHub](https://clawhub.ai/xhmqq616/agent-runtime) <br>
-- [Publisher profile](https://clawhub.ai/user/xhmqq616) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, text, guidance, configuration] <br>
-**Output Format:** [Markdown usage guidance plus a JavaScript module and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes built-in read_file, bash, search, and todo tool examples with token usage tracking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The runtime includes local file access and shell command execution while its advertised permission and hook controls are not enforced.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in an isolated sandbox and do not rely on permission labels, hook names, or agent types as access controls.
+
+Risk: Embedding the runtime as a library can expose powerful local execution behavior before the controls are hardened.
+
+Mitigation: Avoid library use until shell access is removed or gated, file access is scoped, hooks fail closed, and the CLI entry point is separated from imports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xhmqq616/skills/agent-runtime)
+- [Publisher profile](https://clawhub.ai/user/xhmqq616)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript and shell command snippets; the runtime CLI may emit plain text and JSON-like status output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tracks estimated token use, turn count, and context compaction status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

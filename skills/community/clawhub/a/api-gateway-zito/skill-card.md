@@ -1,38 +1,52 @@
-## Description: <br>
-Gateway universal para APIs. Conecta cualquier API REST/GraphQL con configuracion simple. Gestiona autenticacion, rate limiting y caching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Api Gateway connects an agent to REST or GraphQL APIs with simple configuration for authentication, rate limiting, caching, retries, and API calls.
 
-## Publisher: <br>
-[miguelguerra200022-sudo](https://clawhub.ai/user/miguelguerra200022-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[miguelguerra200022-sudo](https://clawhub.ai/user/miguelguerra200022-sudo)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure and call REST or GraphQL APIs through a common gateway that centralizes authentication, caching, rate limits, retries, logs, and tests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send data to external APIs and use service tokens without clearly defined safety boundaries. <br>
-Mitigation: Restrict it to approved APIs and credentials, prefer read-only least-privilege tokens, and require explicit approval for POST or other write operations. <br>
-Risk: API credentials, cached responses, logs, or proactive multi-agent use could expose secrets or trigger calls without clear permission. <br>
-Mitigation: Avoid query-string secrets, enable credential redaction, define logging and cache cleanup rules, and disable proactive or multi-agent use unless authorization is clear. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and agent builders use this skill to configure named external APIs and let an agent call REST or GraphQL endpoints through centralized authentication, caching, rate limiting, retry, logging, and testing workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference external API credentials and endpoint configuration supplied by the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide broad arbitrary outbound API calls, including credentialed requests to third-party services.
+
+Mitigation: Restrict configured APIs to approved services, use least-privilege tokens, and avoid sending secrets or sensitive user content in direct requests.
+
+Risk: API credentials and sensitive payloads may appear in gateway configuration, request parameters, or logs.
+
+Mitigation: Prefer header-based authentication where supported, store secrets outside prompts and checked-in files, and require log redaction for credentials and sensitive payloads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/miguelguerra200022-sudo/skills/api-gateway-zito)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe configured outbound API calls, authentication settings, cache behavior, rate limits, retries, logs, stats, and connection tests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

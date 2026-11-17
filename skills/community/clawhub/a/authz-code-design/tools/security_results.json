@@ -1,0 +1,71 @@
+{
+  "title": "统一凭据 Broker 安全稳定性实测",
+  "method": "本地闭环 · 零真实凭据 · 可重复",
+  "overall": 5.0,
+  "dimensions": [
+    {
+      "dim": "抗暴力破解",
+      "we_measured": 5.0,
+      "enterprise_baseline": 5,
+      "industry_baseline": 3,
+      "metric": "非法请求拒绝 400/400，明文泄露 0 处",
+      "detail": "400 次伪造令牌履行请求 100% 拒绝，异常消息不含任何真实凭据。"
+    },
+    {
+      "dim": "防篡改审计",
+      "we_measured": 5.0,
+      "enterprise_baseline": 5,
+      "industry_baseline": 3,
+      "metric": "篡改 3 条，识别跳过 3 条，保留 完整",
+      "detail": "重启加载审计日志时逐条校验 HMAC 哈希链，篡改条跳过且审计不崩溃。"
+    },
+    {
+      "dim": "授权时效强制",
+      "we_measured": 5.0,
+      "enterprise_baseline": 5,
+      "industry_baseline": 3,
+      "metric": "超长TTL收敛≤900s=是，过期令牌拒绝=是",
+      "detail": "单次令牌上限 900s，超长请求自动收敛；过期令牌 100% 拒绝。"
+    },
+    {
+      "dim": "抗重放",
+      "we_measured": 5.0,
+      "enterprise_baseline": 4,
+      "industry_baseline": 2,
+      "metric": "吊销/过期/篡改重放拒绝 111/3",
+      "detail": "三类失效令牌（已吊销/过期/签名篡改）重放全部拒绝。"
+    },
+    {
+      "dim": "零知识边界",
+      "we_measured": 5.0,
+      "enterprise_baseline": 4,
+      "industry_baseline": 3,
+      "metric": "JWT/审计/Dashboard 明文泄露 000/3",
+      "detail": "授权码(JWT)、审计日志、只读面板三处均不出现任何明文凭据。"
+    },
+    {
+      "dim": "解绑完整性",
+      "we_measured": 5.0,
+      "enterprise_baseline": 5,
+      "industry_baseline": 2,
+      "metric": "按条目命中=是，无误杀=是，按设备命中=是",
+      "detail": "定向收回精准命中目标，不误杀其他条目/设备；一键解绑清场全部。"
+    },
+    {
+      "dim": "并发稳定性",
+      "we_measured": 5.0,
+      "enterprise_baseline": 5,
+      "industry_baseline": 3,
+      "metric": "16线程×200轮=9600操作，异常 0，审计一致=是，吞吐≈1079 ops/s",
+      "detail": "16 线程并发读写，审计哈希链加锁串行化，0 异常且审计记录数一致。"
+    },
+    {
+      "dim": "边界容错",
+      "we_measured": 5.0,
+      "enterprise_baseline": 4,
+      "industry_baseline": 3,
+      "metric": "5 类异常输入优雅拒绝 5/5",
+      "detail": "不存在条目/None/空串/坏签名/非法令牌均被安全拒绝，无未捕获异常。"
+    }
+  ]
+}

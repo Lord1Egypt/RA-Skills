@@ -1,7 +1,7 @@
 ---
 name: justify
 description: Audits changes for additive bias and Iron Law compliance
-version: 1.9.8
+version: 1.10.3
 triggers:
   - justification
   - proof-of-work
@@ -14,7 +14,7 @@ source: claude-night-market
 source_plugin: imbue
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/imbue](https://github.com/athola/claude-night-market/tree/master/plugins/imbue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/imbue](https://github.com/athola/claude-night-market/tree/master/plugins/imbue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 > The simplest change that fixes the problem is the
@@ -42,12 +42,18 @@ a systematic bias toward *adding* code rather than
 This skill audits changes for these patterns and
 requires explicit justification for each.
 
-## When to Use
+## When To Use
 
 - After completing implementation work
 - Before committing or creating PRs
 - When reviewing your own changes for quality
 - When scope-guard flags RED/YELLOW zone
+
+## When NOT To Use
+
+- Before writing the code, because this audits work already done (use
+  `imbue:karpathy-principles`)
+- Deciding whether a feature belongs in scope (use `imbue:scope-guard`)
 
 ## Audit Protocol
 
@@ -326,25 +332,16 @@ choice, or API contract without acknowledging
 that a design invariant is being revised.
 **Fix**: Name the invariant. Present the 3 options
 (preserve, layer, revise) to a human. Do not make
-the judgment call yourself — models default to the
+the judgment call yourself: models default to the
 "average" of training data, and wrong invariant
 decisions compound into unsalvageable codebases.
 
 ## Scrutiny Questions (from leyline:additive-bias-defense)
 
-Before justifying any change, apply these questions.
-If the answer to questions 4 and 5 is not concrete
-evidence, the change is unjustified.
-
-1. **Priority alignment**: Is this a deviation from the
-   current priority?
-2. **Criticality**: Is it critical to implement at this
-   juncture?
-3. **Simplicity**: Does a simpler or more elegant
-   solution exist?
-4. **Evidence**: What evidence proves this is needed
-   (not assumed)?
-5. **Consequence**: What breaks if we do not add this?
+Before justifying any change, apply the five scrutiny
+questions in `Skill(leyline:additive-bias-defense)`. If
+the evidence and consequence questions have no concrete
+answer, the change is unjustified.
 
 ## Burden of Proof Inversion
 
@@ -362,6 +359,18 @@ a `Burden of Proof` section:
 Changes with `unjustified` verdict MUST be removed or
 reworked before the report passes.
 
+### Record the Tradeoff (decision journal)
+
+When this step settles a decision with real alternatives, record it to
+`docs/tradeoffs.md` while the reasoning is live (draft and confirm):
+
+- If leyline is installed, invoke `Skill(leyline:decision-journal)` and append
+  a tradeoff entry (the decision, the options weighed, and what was
+  sacrificed, with `phase` set to `review`). Show the draft and append
+  on confirmation.
+- Fallback (leyline absent): append to `docs/tradeoffs.md` using the in-file
+  ENTRY TEMPLATE, and assign the next `TR-NNN` id.
+
 ## The Wise Counsel
 
 > Is what you are doing a deviation of your priority?
@@ -369,6 +378,19 @@ reworked before the report passes.
 > Rely less on AI and initial lines of thinking.
 > Challenge yourself to be better, to think of a more
 > elegant implementation or a simpler solution.
+
+## Exit Criteria
+
+- [ ] An additive bias score is computed and its zone (GREEN/YELLOW/RED/STOP)
+  is reported.
+- [ ] Iron Law compliance is marked PASS or FAIL, with justification for any
+  modified test logic.
+- [ ] Every change carries a verdict (justified, needs_evidence, or
+  unjustified), and no `unjustified` verdict survives in the final report.
+- [ ] Any detected invariant conflict is surfaced with the chosen option and a
+  human-review flag.
+- [ ] A justified non-trivial addition is recorded to `docs/tradeoffs.md` (or
+  the in-file template) before the report passes.
 
 ## Related Skills
 

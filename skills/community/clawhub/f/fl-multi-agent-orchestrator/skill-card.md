@@ -1,49 +1,64 @@
-## Description: <br>
-Production-grade multi-agent orchestration patterns for decomposing complex tasks into parallel subtasks, coordinating agent swarms, building sequential pipelines, and running review cycles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Production-grade multi-agent orchestration patterns for decomposing complex tasks into parallel subtasks, coordinating agent swarms, building sequential pipelines, and running review cycles.
 
-## Publisher: <br>
-[PhilipStark](https://clawhub.ai/user/PhilipStark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[philipstark](https://clawhub.ai/user/philipstark)
 
-## Use Case: <br>
-Developers and technical teams use this skill to plan and coordinate multi-agent work across research, coding, review, testing, documentation, and infrastructure workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Coordinated agents can make broad code changes or invoke commands if given those tools. <br>
-Mitigation: Review the execution plan first, run on a branch or sandbox, limit each agent's file scope and tools, and require approval before Bash, deployment, rollback, or broad file changes. <br>
-Risk: Parallel agents can conflict when touching the same files or shared resources. <br>
-Mitigation: Use the skill's file-scope restrictions, dependency planning, and file locking guidance before allowing multiple agents to edit the same workspace. <br>
-Risk: Agents may access secrets or credentials if the workspace and tools are not scoped. <br>
-Mitigation: Block secrets and credential files before running agent workflows and use minimal tool permissions for each role. <br>
-Risk: Budget, timeout, or retry settings can allow runaway work if left unbounded. <br>
-Mitigation: Set per-agent and total budgets, max turns, timeouts, and retry limits before execution. <br>
+## Use Case:
 
+Developers and technical teams use this skill to plan and coordinate multi-agent workflows for code changes, research, content creation, DevOps checks, and quality review. It helps an agent select fan-out, pipeline, swarm, or review-cycle patterns and produce structured task plans, prompts, configuration examples, and orchestration reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PhilipStark/fl-multi-agent-orchestrator) <br>
-- [Publisher profile](https://clawhub.ai/user/PhilipStark) <br>
-- [claude-swarm source material](https://github.com/affaan-m/claude-swarm) <br>
-- [claude_code_agent_farm source material](https://github.com/mckaywrigley/claude_code_agent_farm) <br>
-- [TubeFlow source material](https://github.com/webnestify/tubeflow) <br>
-- [Author profile referenced by package README](https://threads.net/@felipe_bmottaa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and YAML configuration examples, shell command snippets, prompts, and structured orchestration reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include execution plans, role prompts, dependency graphs, budget guidance, review criteria, and partial-success reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can guide agents to coordinate multiple workers that read or modify project files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit file scopes, file ownership, and review gates before accepting changes.
+
+Risk: The skill can guide agents to run tests or shell commands as part of orchestration.
+
+Mitigation: Require approval for Bash, test, deployment, and other environment-changing commands before execution.
+
+Risk: Parallel workers may consume excessive budget or continue beyond the intended task scope.
+
+Mitigation: Set max concurrency, per-agent budgets, total budgets, timeouts, and max-turn limits before launching workers.
+
+Risk: Workers may encounter secrets or credentials while reading project files.
+
+Mitigation: Block access to secret-bearing files such as .env, keys, PEM files, and credential stores.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/philipstark/skills/fl-multi-agent-orchestrator)
+- [claude-swarm](https://github.com/affaan-m/claude-swarm)
+- [claude_code_agent_farm](https://github.com/mckaywrigley/claude_code_agent_farm)
+- [TubeFlow](https://github.com/webnestify/tubeflow)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON, YAML, prompt, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct an agent to create .orchestrator artifacts, execution plans, task summaries, review reports, and budget or status summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

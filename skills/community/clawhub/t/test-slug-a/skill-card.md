@@ -1,39 +1,55 @@
-## Description: <br>
-A placeholder Chinese-language skill template for describing a future workflow's scenario, inputs, outputs, and core operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+我的技能 is an unfinished placeholder skill template for describing a future workflow, but it does not define concrete capabilities yet.
 
-## Publisher: <br>
-[herbliu](https://clawhub.ai/user/herbliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[herbliu](https://clawhub.ai/user/herbliu)
 
-## Use Case: <br>
-Skill authors and agents can use this as a template for drafting a ClawHub skill. It does not define a concrete workflow until the placeholder scope, inputs, outputs, and allowed actions are replaced. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a placeholder and may produce generic or undefined workflow guidance if used as-is. <br>
-Mitigation: Replace the XXX placeholders with specific scope, inputs, outputs, allowed actions, and expected results before deployment. <br>
-Risk: Low-quality placeholder content can mislead reviewers into thinking a concrete workflow has been defined. <br>
-Mitigation: Perform moderation and author review before listing or installing the skill for normal use. <br>
+## Use Case:
 
+External users and developers can inspect this release as a placeholder template for a future skill. It should not be treated as a usable workflow until the publisher replaces the placeholders with concrete purpose, trigger conditions, inputs, outputs, and supported language expectations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Placeholder content only; no code, shell commands, configuration, or executable artifacts are provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The release is an unfinished template with placeholder content and no concrete task definition.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the publisher to replace placeholders with a clear purpose, trigger conditions, inputs, outputs, and supported language expectations before installation or use.
+
+Risk: Users may overestimate the skill because it has no executable behavior or defined workflow.
+
+Mitigation: Treat it as incomplete documentation and review it before listing, installing, or deploying it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/herbliu/skills/test-slug-a)
+- [Publisher profile](https://clawhub.ai/user/herbliu)
+- [Source skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Markdown or plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No concrete output contract is defined; the artifact uses placeholders.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

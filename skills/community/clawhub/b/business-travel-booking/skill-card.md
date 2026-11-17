@@ -1,42 +1,55 @@
-## Description: <br>
-Booking.com international hotel booking assistant for hotel search, room availability, price comparison, review lookup, and reservation-management workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search Booking.com hotels, compare rooms and prices, and manage reservation workflows for international business travel.
 
-## Publisher: <br>
-[ryan-zry](https://clawhub.ai/user/ryan-zry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan-zry](https://clawhub.ai/user/ryan-zry)
 
-## Use Case: <br>
-Travelers, employees, and travel coordinators use this skill to search international hotels, compare rooms and prices, review cancellation policies, and manage Booking.com-oriented reservation flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports that the skill advertises live Booking.com booking support while returning hardcoded hotel, room, price, policy, and review data as successful results. <br>
-Mitigation: Replace mock responses with verified Booking.com API responses before relying on availability, prices, taxes, reviews, cancellation policy, or booking prompts. <br>
-Risk: Booking and cancellation workflows can affect real travel plans if acted on without clear user approval. <br>
-Mitigation: Require explicit user confirmation before any booking or cancellation action, showing verified hotel, dates, guests, room, price, taxes, and cancellation terms first. <br>
+## Use Case:
 
+Employees, travel coordinators, and agent developers use this skill to search international hotel options, compare rooms and prices, and prepare Booking.com reservation management actions. It is most appropriate when connected to verified live Booking.com API credentials and confirmation flows.
 
-## Reference(s): <br>
-- [Booking.com Distribution API getHotels](https://distribution-xml.booking.com/json/bookings.getHotels) <br>
-- [Booking.com Distribution API JSON endpoint](https://distribution-xml.booking.com/json) <br>
-- [ClawHub skill page](https://clawhub.ai/ryan-zry/business-travel-booking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Code, Guidance] <br>
-**Output Format:** [JSON responses and Markdown-formatted hotel tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; live booking use requires verified Booking.com API credentials and verified API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: target metadata, release metadata, and SKILL.md frontmatter) <br>
+Risk: Travel results may be mistaken for live Booking.com inventory, pricing, availability, reviews, taxes, or cancellation terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require verified live API calls and visible source timestamps before users rely on hotel, room, price, review, tax, or cancellation information.
+
+Risk: The artifact advertises booking management behavior that security evidence says is not implemented.
+
+Mitigation: Disable or clearly gate reservation creation, lookup, and cancellation until verified booking APIs, data-sharing notices, and explicit user confirmation flows are implemented.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryan-zry/skills/business-travel-booking)
+- [Booking.com Distribution API endpoint](https://distribution-xml.booking.com/json/bookings.getHotels)
+- [Booking.com Distribution JSON base URL](https://distribution-xml.booking.com/json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, API calls, configuration]
+
+**Output Format:** [Markdown tables and JSON-style function call results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and Booking.com API credentials for live operation; security evidence says the artifact currently contains mock travel result paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

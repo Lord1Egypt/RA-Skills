@@ -1,0 +1,25 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/orchestration-profile.schema.json",
+  "schemaVersion": "majia.koubo.profile.v1",
+  "id": "trust-longform",
+  "version": "1.0.0",
+  "label": "信任长片",
+  "supportedModes": ["stable", "pro"],
+  "selection": {
+    "priority": 80,
+    "goals": ["trust-longform"],
+    "minimumDurationSec": 300,
+    "maximumDurationSec": 1800,
+    "requiresScreenCapture": false
+  },
+  "defaults": {
+    "pacing": "natural",
+    "automationLevel": "assist",
+    "sample": {"openingSec": 60, "includeComplexWindow": true, "includePrivacyWindow": false, "includeEnding": true},
+    "treatments": {"arollCleanup": true, "smoothAudio": true, "captions": true, "restructure": false, "broll": false, "motionGraphics": false, "music": false, "generatedMedia": false, "export": false},
+    "captions": {"enabled": true, "language": "zh-CN", "semanticPaging": true, "maxLines": 2, "avoidCriticalUi": false},
+    "visualStates": ["A"],
+    "riskPolicy": {"low": "auto-with-evidence", "medium": "sample-review", "high": "explicit-approval"}
+  },
+  "contentProtections": ["do-not-invent", "protect-numbers", "protect-proper-nouns", "protect-negation", "preserve-user-baseline"]
+}

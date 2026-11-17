@@ -1,46 +1,64 @@
-## Description: <br>
-Deploy NFT collections permanently on MegaETH mainnet. Images are stored on-chain via SSTORE2, then published through WarrenContainer and WarrenLaunchedNFT. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy NFT collections permanently on MegaETH mainnet with images stored on-chain via SSTORE2 and published through WarrenContainer and WarrenLaunchedNFT.
 
-## Publisher: <br>
-[planetai87](https://clawhub.ai/user/planetai87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[planetai87](https://clawhub.ai/user/planetai87)
 
-## Use Case: <br>
-Developers and NFT collection creators use this skill to prepare and execute MegaETH mainnet NFT collection deployments with on-chain image storage and Warren launchpad registration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a wallet private key to sign irreversible MegaETH mainnet transactions. <br>
-Mitigation: Use a fresh wallet funded only with the ETH needed for deployment, prefer PRIVATE_KEY in the environment, and review all collection parameters before running commands. <br>
-Risk: The deployment flow can auto-mint a prerequisite 0xRabbit.agent key and spend mainnet gas. <br>
-Mitigation: Confirm the configured contract addresses, wallet balance, and Genesis access settings before executing the deployment script. <br>
-Risk: Collection metadata is posted to the Warren registration API by default after deployment. <br>
-Mitigation: Review the metadata before deployment and override or unset REGISTER_API when registration should not be attempted. <br>
+## Use Case:
 
+External developers and NFT creators use this skill to deploy NFT collections on MegaETH mainnet, store collection images permanently on-chain, and obtain management and mint page links for the deployed collection.
 
-## Reference(s): <br>
-- [Warren](https://thewarren.app) <br>
-- [MegaETH Mainnet RPC](https://mainnet.megaeth.com/rpc) <br>
-- [MegaETH Blockscout Explorer](https://megaeth.blockscout.com) <br>
-- [Warren Mint](https://thewarren.app/mint) <br>
-- [ClawHub Skill Page](https://clawhub.ai/planetai87/warren-nft-mainnet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployment commands and configuration guidance for running a Node.js NFT deployment script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release metadata) <br>
+Risk: The skill uses wallet signing authority on MegaETH mainnet, where transactions consume real funds and deployed content is permanent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance deployment wallet, review collection settings before execution, and confirm gas funding intentionally.
+
+Risk: A private key is required, and passing it as a command-line argument can expose it through shell or process history.
+
+Mitigation: Prefer a controlled PRIVATE_KEY environment variable or secret-injection workflow, avoid --private-key, and rotate any key that may have been exposed.
+
+Risk: The deployment flow can submit collection metadata and wallet/contract identifiers to the Warren registration API after on-chain deployment.
+
+Mitigation: Review the REGISTER_API behavior before running and proceed only if off-chain registration of that metadata is acceptable.
+
+Risk: The setup script installs npm dependencies without a pinned lockfile.
+
+Mitigation: Review and pin dependencies in a lockfile before installation in controlled or production environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/planetai87/skills/warren-nft-mainnet)
+- [Warren app](https://thewarren.app)
+- [Declared source link](https://github.com/planetai87/warren-tools)
+- [MegaETH Blockscout explorer](https://megaeth.blockscout.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Text, JSON]
+
+**Output Format:** [Markdown instructions with inline bash commands plus deployment status text and final JSON from the deployment script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, a funded MegaETH mainnet wallet, and PRIVATE_KEY for transaction signing.]
+
+## Skill Version(s):
+
+1.0.8 (source: ClawHub release metadata; artifact/package.json is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

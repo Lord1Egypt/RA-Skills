@@ -1,48 +1,59 @@
-## Description: <br>
-Helps agents search, summarize, and monitor GIS and surveying campus recruiting information, prioritizing state-owned enterprises, public institutions, and major technology companies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+测绘/GIS 专业校招信息监控技能，帮助用户搜索、筛选、整理和推送测绘类、地理信息系统（GIS）专业校园招聘信息。
 
-## Publisher: <br>
-[5758703](https://clawhub.ai/user/5758703) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[5758703](https://clawhub.ai/user/5758703)
 
-## Use Case: <br>
-Students, career advisors, and agents use this skill to find GIS and surveying campus recruitment leads, compare newly found postings with prior outputs, and prepare concise job reports for follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may overstate live monitoring because bundled scripts include sample or fixed report data. <br>
-Mitigation: Treat included job outputs as examples unless the agent performs a fresh live search and verifies links before sharing results. <br>
-Risk: Scheduled push behavior can continue sending updates after setup. <br>
-Mitigation: Enable scheduled pushes only when the operator knows how to inspect and remove the cron job. <br>
-Risk: Search and report scripts may write local files, including fixed report paths. <br>
-Mitigation: Review output paths before execution and run scripts in an appropriate workspace or temporary directory. <br>
-Risk: Network search may require a Brave Search API key. <br>
-Mitigation: Use a limited-scope API key and avoid embedding secrets in skill files or generated reports. <br>
+## Use Case:
 
+Students and job seekers in surveying, GIS, remote sensing, and related fields use this skill to find and organize campus recruiting opportunities by employer type, education requirement, deadline, location, and source link. Operators can also use it to prepare recurring job summaries after reviewing delivery settings and data freshness.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/5758703/gis-job-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/5758703) <br>
-- [GIS employer list](references/company-list.md) <br>
-- [GIS recruiting sites](references/job-sites.md) <br>
-- [Latest GIS job records](references/latest-jobs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with job listings, shell command examples, Python scripts, and optional generated report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include job title, employer, degree, major, location, deadline, publish date, and source link fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release evidence says the skill materially overstates reliable live monitoring capabilities and appears to provide mostly static examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm each job listing against current source sites before relying on the results, and describe generated reports as examples unless live retrieval is independently verified.
+
+Risk: Scheduled DingTalk delivery and file output can send information to the wrong recipient, run on the wrong cadence, or write to an unintended path if enabled without review.
+
+Mitigation: Before enabling scheduled delivery or file writes, confirm the recipient, channel, schedule, output path, retention needs, and the process for disabling or cleaning up the job.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/5758703/skills/gis-job-monitor)
+- [招聘网站汇总](references/job-sites.md)
+- [测绘/GIS 用人单位名单](references/company-list.md)
+- [最新测绘/GIS 校招信息](references/latest-jobs.md)
+- [国聘网](https://www.iguopin.com/)
+- [国聘网国企招聘专栏](https://gpxd.iguopin.com/)
+- [自然资源部](http://www.mnr.gov.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown job summaries, command examples, Python-generated Word reports, and optional saved files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Job lists emphasize employer, role, degree requirement, major, location, deadline, publication date, and source link.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

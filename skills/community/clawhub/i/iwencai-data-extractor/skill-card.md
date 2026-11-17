@@ -1,47 +1,60 @@
-## Description: <br>
-从同花顺问财(iwencai.com) AI选股页面批量抓取涨停股票数据，使用 agent-browser 通过 Chrome CDP 连接操作浏览器，将数据存入 SQLite 数据库，并可导出为 Excel 汇总报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从同花顺问财(iwencai.com) AI 选股页面批量抓取涨停股票数据，通过 agent-browser 连接 Chrome CDP 操作浏览器，将结果存入 SQLite 并导出 Excel 汇总报告。
 
-## Publisher: <br>
-[hj2916](https://clawhub.ai/user/hj2916) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hj2916](https://clawhub.ai/user/hj2916)
 
-## Use Case: <br>
-Developers and data analysts use this skill to guide browser-based extraction of iwencai limit-up stock data for selected trading dates, store the records in SQLite, and export a multi-sheet Excel summary report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hard-coded Windows paths may point to the wrong Python, agent-browser executable, database, or output directory. <br>
-Mitigation: Confirm and adjust all configured paths before running the crawl or export scripts. <br>
-Risk: Chrome CDP browser automation can expose active browser state if run against an everyday profile. <br>
-Mitigation: Use the documented separate Chrome debugging profile and connect only to the intended iwencai page. <br>
-Risk: Automated data collection may conflict with the target site's permissions or acceptable-use rules. <br>
-Mitigation: Verify that the intended scraping is allowed and use conservative request pacing. <br>
-Risk: The scripts create or update local SQLite and Excel files. <br>
-Mitigation: Review destination paths and back up existing data before execution. <br>
+## Use Case:
 
+External users and developers use this skill when they need an agent to extract iwencai limit-up stock data for selected trade dates, store it in a local SQLite database, and prepare an Excel summary for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hj2916/iwencai-data-extractor) <br>
-- [同花顺问财 AI 选股页面](https://www.iwencai.com/unifiedwh/stockpicker/) <br>
-- [crawl_reference.md](references/crawl_reference.md) <br>
-- [troubleshooting.md](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python script references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The referenced workflow can create or update a local SQLite database and Excel workbook at configured paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill controls a local Chrome debug session against iwencai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a separate Chrome debug profile and run it only against the intended iwencai session.
+
+Risk: The scripts create local SQLite and Excel files at configured paths.
+
+Mitigation: Review DB_PATH and OUT_PATH before running so generated files are written to expected locations.
+
+Risk: Scraped text in generated spreadsheets could be interpreted as formulas.
+
+Mitigation: Treat generated spreadsheets as untrusted reports and sanitize scraped text before sharing or opening in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/hj2916/skills/iwencai-data-extractor)
+- [同花顺问财 AI 选股页面](https://www.iwencai.com/unifiedwh/stockpicker/)
+- [爬取脚本完整参考](references/crawl_reference.md)
+- [常见问题排查](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides local Chrome CDP automation and local SQLite/Excel file generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

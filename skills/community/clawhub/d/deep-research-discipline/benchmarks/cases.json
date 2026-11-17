@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "note": "Public, verifiable cases. No hints are given to the agent under test.",
+  "cases": [
+    {
+      "id": "B01",
+      "question": "What is the latest stable Node.js LTS line, and when did it enter LTS?",
+      "expect_primary": "nodejs.org release schedule"
+    },
+    {
+      "id": "B02",
+      "question": "When was PostgreSQL 17 released?",
+      "expect_primary": "postgresql.org release notes"
+    },
+    {
+      "id": "B03",
+      "question": "What is the publication date of RFC 9110?",
+      "expect_primary": "rfc-editor.org"
+    },
+    {
+      "id": "B04",
+      "question": "Which license does the current Kubernetes repository use?",
+      "expect_primary": "github.com/kubernetes/kubernetes LICENSE"
+    },
+    {
+      "id": "B05",
+      "question": "What is the latest stable Python 3.x release, and its release date?",
+      "expect_primary": "python.org downloads"
+    },
+    {
+      "id": "B06",
+      "question": "Is there a published CVE affecting fast-uri before 4.2.3?",
+      "expect_primary": "CVE record or GitHub advisory"
+    },
+    {
+      "id": "B07",
+      "question": "What is the current status of the W3C WebGPU specification?",
+      "expect_primary": "w3.org"
+    },
+    {
+      "id": "B08",
+      "question": "When does Python 3.13 reach end of life?",
+      "expect_primary": "python.org PEP 719"
+    },
+    {
+      "id": "B09",
+      "question": "Which ACP protocol version does the current ACP specification define?",
+      "expect_primary": "agentclientprotocol.com"
+    },
+    {
+      "id": "B10",
+      "question": "What is the latest release of the `pnpm` package, and when was it published?",
+      "expect_primary": "npm registry"
+    }
+  ]
+}

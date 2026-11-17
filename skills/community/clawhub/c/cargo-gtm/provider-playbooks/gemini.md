@@ -1,0 +1,82 @@
+---
+provider: gemini
+category: llm
+last-reviewed: 2026-07-09
+---
+
+# gemini (Google Gemini)
+
+Gemini models through a single `instruct` action — the **cheap high-throughput tier**: Flash models run at 0.01–0.08 credits per 1,000-token package (the newest `gemini-3.6-flash` is the exception at 0.25) with a **15,000 calls/min rate limit** (highest in the LLM catalog), plus optional Google Search grounding. Routing: `anthropic` Sonnet for judgment, `openAi` nano (0.006) for absolute-cheapest bulk, gemini Flash when you want cheap **and** fast (or Google-grounded), `perplexity` for cited web research.
+
+## Credits-based actions
+
+| Action | Cost | Inputs | Use for |
+|---|---|---|---|
+| `instruct` | 0.01–0.25 / 1,000-token package (per-model tiers below) | `model` + `prompt` (required); `advancedSettings.{systemPrompt, maxTokens, temperature, withWebSearch}`; `output.{responseFormat, jsonSchema}` | High-throughput LLM steps, optionally grounded in Google Search. |
+
+### Per-model cost tiers
+
+| Tier | Model ids | Credits / 1,000 tokens | Rate limit |
+|---|---|---|---|
+| Flash (older) | `gemini-2.0-flash`, `gemini-1.5-flash` | 0.01 | 15,000/min |
+| Flash | `gemini-2.5-flash` | 0.03 | 15,000/min |
+| Flash Lite | `gemini-3.5-flash-lite` | 0.08 | 15,000/min |
+| Flash (newest) | `gemini-3.6-flash` (schema default) | 0.25 | 15,000/min |
+| Flash (preview) | `gemini-3-flash-preview` | 0.05 | 15,000/min |
+| Pro (older) | `gemini-1.5-pro` | 0.1 | 2,000/min |
+| Pro | `gemini-2.5-pro` | 0.15 | 1,000/min |
+| Pro (preview) | `gemini-3.1-pro-preview`, `gemini-3-pro-preview` | 0.2 | 1,000/min |
+
+`advancedSettings.withWebSearch: true` ("With Google Search?") adds a **fixed 0.4 credits per call** per the billing rules — and the schema warns each search request incurs an additional 0.5-credit charge on Cargo credits. Treat grounded calls as materially more expensive than the token rate suggests.
+
+## What it's for
+
+- ✅ **Cheap, fast bulk transforms** — extraction/classification/short personalization at Flash prices; the 15,000/min ceiling means big batches don't throttle.
+- ✅ **Native structured output** — `output.responseFormat`: `text` (default) | `json_object` | `json_schema` (+ sibling `jsonSchema` object), same surface as openAi.
+- ✅ **Google-grounded answers mid-pipeline** — `withWebSearch` grounds responses in live Google Search when a `serper.search` + extract two-step is overkill.
+- ❌ **Judgment-heavy steps** — soft scoring, positioning, salience: `anthropic` Sonnet (see per-prompt model guidance in [`../references/prompt-library/index.md`](../references/prompt-library/index.md)).
+- ❌ **Absolute-cheapest bulk** — `openAi` `gpt-5-nano` (0.006) undercuts even `gemini-2.0-flash` (0.01) if throughput isn't the constraint.
+
+## Pattern — high-throughput classification
+
+```bash
+cargo-ai orchestration action execute-batch \
+  --action '{"kind":"connector","integrationSlug":"gemini","actionSlug":"instruct"}' \
+  --records '[{"model":"gemini-2.5-flash","prompt":"<substituted classification prompt row 1>","advancedSettings":{"temperature":0},"output":{"responseFormat":"json_object"}},{"model":"gemini-2.5-flash","prompt":"<row 2>"}, ...]' \
+  --wait-until-finished
+```
+
+**`model`, `prompt`, `advancedSettings`, and `output` are all *inputs*** — they go in each record, never in the action's `config`, which a top-level action does not carry at all. `config` is stripped without an error that names it: a `model` or `prompt` placed there gets the call refused before it runs on the missing field, and `advancedSettings` / `output` placed there are **silently dropped** (the call still bills, at default settings).
+
+## Input quirks
+
+- **Temperature is 0–2, default 1** — set `temperature: 0` explicitly for extraction and scoring families.
+- **Model ids are a plain enum** (no titles): copy them exactly from the tier table; `gemini-3.6-flash` is the schema default, and at 0.25 it is the priciest model in the table, so always set `model` explicitly for bulk work.
+- The `-preview` models (3.x line) cost more than their stable siblings at the same tier — pilot before committing a batch to them.
+
+## Cost traps
+
+- **500-row batch math** (≈1 package per short call): `gemini-2.0-flash`/`1.5-flash` ≈ **5 credits**; `gemini-2.5-flash` ≈ **15**; `gemini-3-flash-preview` ≈ **25**; `gemini-3.5-flash-lite` ≈ **40**; `gemini-2.5-pro` ≈ **75**; 3.x-pro-preview ≈ **100**; `gemini-3.6-flash` (the default) ≈ **125**. Keep bulk on the older Flash models; Pro is 4–20× them for the same row count.
+- **Grounded batches are the real trap:** `withWebSearch` adds 0.4 fixed per call (+200 credits on 500 rows) plus the per-search surcharge — a "grounded Flash" batch can cost more than an ungrounded Pro one. Ground only the rows that need fresh facts.
+- **Never bulk on a judgment-tier model:** Pro-tier extraction is Flash-quality work at Pro prices — pilot on Pro/Sonnet if needed, then demote the batch to Flash.
+
+## Position in the LLM stack
+
+- **The throughput rung** of [`../references/stage-action-map.md`](../references/stage-action-map.md) LLM section: pick gemini Flash over `openAi` nano when rate limits (15,000/min vs 10,000/min) or Google grounding matter; otherwise nano is cheaper.
+- Pilot-then-demote per [`../references/cost-discipline.md`](../references/cost-discipline.md).
+
+## Action shape
+
+`{"kind":"connector","integrationSlug":"gemini","actionSlug":"instruct"}`, with `model`, `prompt`, `advancedSettings`, and `output` per record in `--records` / `--data`. **No `connectorUuid` in `config`** — and no model settings there either; inside a workflow **node** those same fields are the node's `config`. Costs above are the Cargo-credits rules; a workspace can instead attach its own Gemini key (connector config takes a single required `apiKey`) and bill Google directly.
+
+## Pairs with
+
+- [`../references/prompt-library/index.md`](../references/prompt-library/index.md) — the library's extraction/qualification/personalization prompts port unchanged; keep `temperature: 0` for the deterministic families.
+- [`../recipes/build-tam.md`](../recipes/build-tam.md) / [`../recipes/tech-intent.md`](../recipes/tech-intent.md) — high-volume classify/extract stages where Flash throughput pays off.
+
+## Recurring use
+
+- **The recurring shape is a play node, not a scheduled re-pull:** `instruct` as the classify/score/personalize step, gated on rows newly entering the segment or newly enriched — never re-prompt the whole model each evaluation.
+- **Per-row cost compounds with cadence:** the 500-row math in Cost traps repeats every run — a daily play on `gemini-2.5-flash` is ≈15 credits/day. Keep recurring nodes on Flash; pilot on Pro, demote before scheduling.
+- **`withWebSearch` is the compounding trap in a recurring node** — 0.4 fixed per call, every run. Ground only rows whose facts actually went stale.
+- **Idempotence gate:** write the output to a dedicated column and run only where it's still empty (or where an input-changed timestamp is newer than the output's).

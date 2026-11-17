@@ -1,37 +1,54 @@
-## Description: <br>
-Transform standard ggplot2 figures into publication-quality visualizations matching Nature, Science, and other top journal styles with proper themes, colors, fonts, and export settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform standard ggplot2 figures into publication-quality visualizations matching Nature, Science, and other top journal styles with proper themes, colors, fonts, and export settings.
 
-## Publisher: <br>
-[JackKuo666](https://clawhub.ai/user/JackKuo666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jackkuo666](https://clawhub.ai/user/jackkuo666)
 
-## Use Case: <br>
-Researchers, data scientists, and R developers use this skill to convert ggplot2 figures into publication-ready visualizations with journal-style themes, color palettes, multi-panel layouts, and export settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Example workflows may require sourcing R helper files or installing R packages that are not included in the reviewed bundle. <br>
-Mitigation: Verify the referenced files and repository before sourcing code, and review package installation commands before running them. <br>
+## Use Case:
 
+Researchers, data scientists, and developers use this skill to convert ggplot2 plots into journal-ready figures, apply publication themes and color palettes, build multi-panel layouts, and export figures with suitable dimensions, resolution, and formats.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with R code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ggplot2 theme changes, color palettes, multi-panel layout guidance, and export settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: README examples include package installation and source commands for local R helper files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review package installation commands before execution and confirm referenced helper files are present in the installed artifact.
+
+Risk: Journal formatting requirements may differ from the general examples in the skill.
+
+Mitigation: Check the target journal's current submission guidelines before final figure export.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jackkuo666/skills/generating-publication-ready-figures-in-r)
+- [Publisher profile](https://clawhub.ai/user/jackkuo666)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with R code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose ggplot2 themes, palette changes, multi-panel layout code, export settings, and package installation commands.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

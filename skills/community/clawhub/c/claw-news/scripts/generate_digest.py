@@ -8,7 +8,7 @@ from datetime import datetime
 
 def generate_digest():
     client = OpenAI(
-        api_key='sk-kimi-mU3OeWaHvOwipfEK2210ao2qcXGWZ0srvv9fMLhZgDOCd0HM8aXiEi9MxhSedm6x',
+        api_key='REDACTED-SECRET',
         base_url='https://api.moonshot.cn/v1'
     )
 

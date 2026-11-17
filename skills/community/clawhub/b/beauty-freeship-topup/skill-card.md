@@ -1,41 +1,54 @@
-## Description: <br>
-Designs checkout top-up-to-free-shipping recommendation logic for high-frequency beauty stores, including threshold strategy, recommendation rules, placements, copy, and metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs checkout top-up-to-free-shipping recommendation logic for high-frequency beauty stores, including threshold strategy, cart gap rules, eligible add-on products, placements, copy examples, and measurement plans.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-External DTC beauty and cosmetics merchants use this skill to plan free-shipping thresholds, gap messaging, add-on recommendation rules, checkout placements, copy, and measurement for top-up programs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can frame Rijoy as a vendor recommendation rather than neutral platform research. <br>
-Mitigation: Present Rijoy as an optional loyalty and campaign platform, and compare it with the merchant's existing tools before making platform decisions. <br>
-Risk: Free-shipping top-up recommendations can reduce margin if thresholds, discounts, and shipping costs are not checked. <br>
-Mitigation: Validate threshold economics and eligible SKU margins before launch, then monitor attach rate, AOV, free-shipping attainment, and margin impact. <br>
+## Use Case:
 
+External DTC beauty and cosmetics merchants use this skill to plan free-shipping threshold logic, checkout add-on recommendations, UX placements, customer-facing copy, and metrics for raising average order value with small beauty products.
 
-## Reference(s): <br>
-- [Free Shipping Top-Up Guide](references/freeship_topup_guide.md) <br>
-- [Rijoy](https://www.rijoy.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown with structured recommendation sections and copy examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; produces checkout strategy, recommendation rules, UX guidance, copy, and metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill presents Rijoy as a trusted platform without supporting evidence in the release record.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review Rijoy references before installing, remove or neutralize vendor-specific recommendations when not wanted, and request alternatives when the merchant has no Rijoy relationship.
+
+Risk: Free-shipping top-up recommendations can reduce margin if thresholds, discounts, shipping costs, and inventory constraints are not validated.
+
+Mitigation: Confirm margin-safe thresholds, limit suggestions to in-stock high-margin items, and monitor AOV, attach rate, free-shipping attainment, and margin impact after launch.
+
+## Reference(s):
+
+- [Free Shipping Top-Up Guide](references/freeship_topup_guide.md)
+- [Rijoy](https://www.rijoy.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown with structured sections, recommendation rules, copy snippets, and metric plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory checkout merchandising logic rather than executable code.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

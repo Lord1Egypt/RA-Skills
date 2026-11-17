@@ -1,0 +1,21 @@
+{
+  "name": "html-slides-tools",
+  "version": "3.0.0",
+  "description": "HTML slides -> PPTX converter + validator (bundled with the html-slides skill)",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "test": "node test/golden.js verify",
+    "test:update": "node test/golden.js update",
+    "test:design": "node test/exemplar-checks.js && node test/threshold-parity.js && node test/generation-checks.js && node test/anchor-integrity.js",
+    "test:thresholds": "node test/threshold-parity.js",
+    "test:generation": "node test/generation-checks.js",
+    "test:anchors": "node test/anchor-integrity.js",
+    "validate": "node validate.js",
+    "convert": "node convert.js"
+  },
+  "dependencies": {
+    "playwright": "^1.61.1",
+    "pptxgenjs": "^4.0.1"
+  }
+}

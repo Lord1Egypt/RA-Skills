@@ -1,38 +1,50 @@
-## Description: <br>
-Baidu Scholar Search — Search Chinese and English academic literature including journals, conferences, dissertations. Best for Chinese research context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baidu Scholar Search Pro helps agents search Chinese and English academic literature, including journals, conferences, and dissertations, with emphasis on Chinese research contexts.
 
-## Publisher: <br>
-[nancliu](https://clawhub.ai/user/nancliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nancliu](https://clawhub.ai/user/nancliu)
 
-## Use Case: <br>
-Researchers, students, and developers use this skill to search Chinese and English academic literature, especially papers, journals, dissertations, and sources relevant to Chinese research contexts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Baidu API key and sends search queries to Baidu Scholar. <br>
-Mitigation: Use a revocable or limited BAIDU_API_KEY where possible, and avoid private or sensitive research terms unless sharing them with Baidu Scholar is acceptable. <br>
+## Use Case:
 
+Researchers, students, and research-support agents use this skill to find Chinese or bilingual academic papers, dissertations, and journal sources through Baidu Scholar and related Chinese academic indexes.
 
-## Reference(s): <br>
-- [Baidu Scholar](https://xueshu.baidu.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text with academic metadata and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include title, author, source, citation count, and links returned from Baidu Scholar.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires access to a Baidu Scholar API key and sends academic search queries to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the API key is appropriate for agent use and avoid submitting sensitive or confidential research queries unless that external-service use is approved.
+
+## Reference(s):
+
+- [Baidu Scholar](https://xueshu.baidu.com/)
+- [ClawHub Skill Page](https://clawhub.ai/nancliu/skills/baidu-scholar-search-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured text or Markdown with academic result metadata and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include title, author, source, citation count, and links when returned by the external service.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

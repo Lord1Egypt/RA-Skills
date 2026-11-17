@@ -1,48 +1,66 @@
-## Description: <br>
-Generate blog cover images optimized for 16:9 headers with clean, text-friendly layouts powered by multi-model AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates 16:9 blog cover and article header images from a title, topic, or URL using the YouMind CLI and image generation service.
 
-## Publisher: <br>
-[dophinl](https://clawhub.ai/user/dophinl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dophinl](https://clawhub.ai/user/dophinl)
 
-## Use Case: <br>
-External users, content creators, and developers use this skill to turn an article title, topic, or URL into a professional 16:9 blog cover image through YouMind. It is intended for agent-assisted image generation workflows that return board links and generated image URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broader local command authority than needed, including Node.js script execution and global CLI installation. <br>
-Mitigation: Review the allowed commands before deployment and narrow or justify Node.js and install permissions in managed environments. <br>
-Risk: Remote image generation requires a YouMind API key and stores generated images on a YouMind board. <br>
-Mitigation: Configure the API key outside chat history, avoid exposing secrets, and tell users where generated images are stored. <br>
-Risk: Ambiguous image-related requests may activate the skill unexpectedly. <br>
-Mitigation: Confirm the user's article topic or intent before invoking remote generation when the request is unclear. <br>
+## Use Case:
 
+External users and developers use this skill to create text-friendly 16:9 cover images for blog posts, article headers, thumbnails, or featured images from a title, topic, or URL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dophinl/youmind-blog-cover) <br>
-- [YouMind CLI package](https://www.npmjs.com/package/@youmind-ai/cli) <br>
-- [YouMind](https://youmind.com?utm_source=youmind-blog-cover) <br>
-- [YouMind skills gallery](https://youmind.com/skills?utm_source=youmind-blog-cover) <br>
-- [Setup guide](references/setup.md) <br>
-- [Error handling](references/error-handling.md) <br>
-- [Long-running tasks](references/long-running-tasks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, status updates, board links, and generated image URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the YouMind CLI and API for remote image generation, polls long-running work, and saves generated images to the user's YouMind board.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill requests broad local command authority for YouMind CLI usage and package installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or narrow allowed commands before use and approve local shell execution only when the requested action is expected.
+
+Risk: The workflow uses a mutable global installation of the YouMind CLI.
+
+Mitigation: Prefer an audited or pinned CLI installation where possible before running the skill in managed environments.
+
+Risk: The skill depends on a YouMind API key, remote service access, and remote board storage.
+
+Mitigation: Set API keys outside chat, avoid passing secrets in command-line arguments, and review content sensitivity before sending titles, URLs, or topics to the service.
+
+Risk: The user experience can include branded YouMind links, upsell messages, and plan-limit handling.
+
+Mitigation: Disclose the third-party service workflow to users and review promotional or upgrade messaging for the deployment context.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dophinl/skills/youmind-blog-cover)
+- [YouMind CLI](https://www.npmjs.com/package/@youmind-ai/cli)
+- [YouMind Skills Gallery](https://youmind.com/skills?utm_source=youmind-blog-cover)
+- [Setup](references/setup.md)
+- [Error Handling](references/error-handling.md)
+- [Long-Running Tasks](references/long-running-tasks.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with shell commands, status updates, generated image URLs, and YouMind board links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require polling for long-running image generation and stores generated images on a YouMind board.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

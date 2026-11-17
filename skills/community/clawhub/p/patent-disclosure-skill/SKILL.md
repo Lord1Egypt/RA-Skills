@@ -1,106 +1,65 @@
 ---
 name: patent-disclosure-skill
-description: "通用中国专利挖掘发现与交底书生成全流程：扫描项目文档挖掘专利点、讨论融合、基于脱敏模版生成技术交底书、联网查新、生成后自检含逻辑闭环与公式参数一致性。| Patent mining, disclosure drafting, prior-art search, and consistency self-check."
-version: "1.8.9"
+description: "中国专利技能：挖掘专利点与编写交底书（发明/实用/外观），把已有交底改写成申请文件四件套，也可按材料交底申请一起做，按著录字段检索公布公告，通俗解读专利，对照审查口径出政策简报，辅助审查答复。| China patents skill: mine patent points and draft disclosures, rewrite an existing disclosure into application documents, or chain disclosure-then-application from inventor materials in one pass (ask when facts are missing; at most three issue-list rounds), search CNIPA bibliographic records, explain patents, brief examination-policy changes, and assist office-action responses."
+version: "4.5.0"
 user-invocable: true
-argument-hint: "[可选：项目路径或技术主题关键词]"
+argument-hint: "[可选：项目路径 / 交底书 / 申请底稿 / 交底申请一起做 / 专利检索 / 专利号或 PDF / 政策简报 / 审查答复]"
 allowed-tools: Read, Write, Edit, Grep, Glob, WebSearch, Bash
 ---
 
-# 专利挖掘与交底书生成
+# 中国专利技能
 
-本技能覆盖 **专利点挖掘** → **查新与差异化** → **交底书生成** → **自检完善** 全流程；分步指令在 **`prompts/`**，每步执行前 **`Read`** 对应文件，与步骤的对照见「Prompt 文件映射」。
+按用户意图 **`Read`** 对应入口的 `SKILL.md`，再按该流程执行。
+
+| 能力 | 做什么 | 何时进入 | 入口 |
+|------|--------|----------|------|
+| **交底** | 挖专利点 → 查新 → 成稿 → 迭代 | 专利挖掘、交底书、查新、实用新型、外观设计；`/patent-disclosure`、`/交底书` | `skills/patent-disclosure/SKILL.md` |
+| **申请文件** | 已有交底 → 权要 / 说明书 / 摘要 / 附图 | **须显式**且**指定交底目录**：申请文件、申请底稿、申报材料、`/申请底稿`、`/patent-apply`。仅缺材料则终止；内容争议写入问题清单；交付末尾须摘要清单；改已有产出则另存 | `skills/patent-application/SKILL.md` |
+| **案卷** | 按发明人/工程师给的材料一趟写出交底书和申请文件；清单缺口最多来回三轮，缺事实问人、不编 | **须显式**：交底申请一起做、从零出交底和申请、一条龙、帮写交底再出申请、按清单改、会稿、案卷、`/patent-docket`。只写交底或已有交底只出四件套 → 不要进本案。状态 `outputs/docket/` | `skills/patent-docket/SKILL.md` |
+| **检索** | 公布站高级查询（发明人/申请人/分类号/名称/摘要等）；单图或权要可先抽关键字再查 | 按著录字段查公布公告、个人公开清单、以图/权要生成检索式；`/patent-search`。普通多条件**不要**默认翻完全部分页 | `skills/patent-search/SKILL.md` |
+| **解读** | 公开号 / PDF / 全文 → 通俗笔记 + 图谱 | 读专利、公开号或 PDF 且目标为理解；`/patent-read`、`/读专利` | `skills/patent-reader/SKILL.md` |
+| **审查答复** | 审查意见问答与草稿；库薄时引导入库/蒸馏 | **须显式**：审查意见、OA、案例入库、实务书、`/oa` | `skills/patent-oa/SKILL.md` |
+| **政策简报** | 对照国知局口径，说明对交底写法/本稿的影响；改技能仅为旁路 | **须显式**：政策简报、政策雷达、`/政策简报`、`/patent-brief`、`/patent-exam-policy`。「技能进化 / `/patent-evolve`」同一入口，仍先出简报 | `skills/patent-exam-policy/SKILL.md` |
+
+## 路由
+
+- 填表、线稿、CAD、公式、Word 出图在交底包 `prompts/` 与 `tools/`；解读填表用解读包 `prompts/fill_*`；过 WAF 的 `browser.py`、Markdown 转 Word 的 `md_to_docx.py` **各包自带副本**。
+- **禁止跨包调用**其他子技能的 `tools/`。需要同一能力就用本包副本。
+- 专利号或 PDF 且意图为「读懂」→ **优先解读**，不跑交底 Step 1–8。
+- **禁止**因写交底或读专利自动进入政策简报、审查答复、申请文件或案卷。申请文件必须用户点名并给出交底目录；缺 schema / 线稿 / 交底书则停，引导先补交底。内容争议不阻塞主文件。
+- **案卷**必须用户点名（交底申请一起做 / 从零出交底和申请 / 一条龙 / 帮写交底再出申请 / 按清单改 / 会稿 / `/patent-docket`）。点名后 `Read` `skills/patent-docket/SKILL.md`；由案卷再 `Read` 交底或申请入口。调度申请视为已点名申请文件，仍须有交底目录。只写交底、或已有交底只出四件套 → 不要进案卷。
+- 交底 Step 5 查新只用交底包轻量检索（一词一页）；按发明人/申请人等做著录检索时只用检索包，两者不要混用。
+
+## 目录
+
+```
+SKILL.md                         # 本文件：子技能路由入口
+skills/patent-disclosure/        # 交底（含填表/线稿/CAD/公式/docx）
+skills/patent-application/       # 申请文件四件套（须显式；须指定交底目录）
+skills/patent-docket/            # 案卷：交底到申请一趟串起来（须显式）
+skills/patent-search/            # 著录检索
+skills/patent-reader/            # 解读
+skills/patent-oa/                # 审查答复
+skills/patent-exam-policy/        # 政策简报（技能进化为旁路）
+```
 
 ## 环境与约定
 
-- **语言**：默认与用户语种一致；专利与法律术语采用行业常用表述。
-- **图示定稿（Step 7）**：**3.2**/**3.4** 用 fenced **mermaid**；执行方式、**`mmdc`** 安装与降级规则见下表「交底书定稿交付」行及 **`tools/README.md`**。
+- **默认语言**：面向用户的检索清单、交底书、申请文件、案卷 TRACKER、解读和审查答复用简体中文；脚本机读前缀与 JSON 字段名保持稳定。
+- **脚本判读（尤其 Windows）**：stderr 有字 **不等于** 失败。以 **退出码 0** 和机读前缀为准：`EPUB_HITS_JSON:` / `EPUB_SEARCH_MD:` / `EPUB_SEARCH_JSON:` / `EPUB_CLASS_HINT:`、`PROBE:` / `BROWSER:`、`MERMAID:` / `DOCX:`、`APPLICATION_GATE:` / `APPLICATION_CLAIMS:` / `APPLICATION_NUMERALS:`、`DOCKET_DIR:` / `DOCKET_YAML:` / `DOCKET_OK:` / `DOCKET_ERROR:`。PowerShell 可能把 stderr 标成 `NativeCommandError`；**禁止**因此重跑安装或把查新降级 WebSearch。
+- **专利类型**：未显式指定时交底**默认发明**。
+- **脚本路径**：相对本技能仓库根（本文件所在目录）。整仓：`python skills/patent-disclosure/tools/…`。当前工作区不是本仓库时，把技能安装目录接到命令前面。单独拷走某一子包时，该包内用 `python tools/…`。不要写厂商环境变量。
+- **用户产出**：写在当前工作区 `outputs/`（解读 `outputs/patent_reader/`，检索 `outputs/patent-search/`，政策 `outputs/exam-policy/`，审查答复 `outputs/oa/`，申请文件 `outputs/patent-application/`，案卷 `outputs/docket/`），不要写到技能安装目录或 `tmp/`。调用脚本时 cwd 用工作区根；`-o` / `-w` 用上述相对路径。
 
----
-
-## 触发条件
-
-在用户使用以下任一方式时启用本技能：
-
-- 明确提及：专利挖掘、专利点、技术交底书、交底书、专利交底书、查新、现有技术对比等
-- 斜杠或简短指令：如 `/patent-disclosure-skill`、`/patent-disclosure`、`/交底书`
-- **迭代模式（按意图识别）**：当用户意图明显是在**已有交底书或上一轮输出**上继续工作（如改章节、补实施例、补材料、修正参数/事实、调整表述等），**无需**用户写出「迭代」等固定词，也**不必**询问是否进入迭代——Agent 应 **`Read`** **`prompts/iteration_context.md`**，再 **`Read`** `prompts/merger.md`（侧重**新材料、扩展合并**）或 `prompts/correction_handler.md`（侧重**纠错、与事实或风格不符**），**严格按该文件开头的「执行门禁」**（优先执行，不可跳过）**做完合并或纠正**，**另存为新文件**：**`{案件名}_{YYYYMMDDHHmmss}.md`** 与同名 **`.docx`**（与首次定稿同一命名规则，见 **`disclosure_builder.md` §7.3 第 5 点**），**不覆盖**旧稿（除非用户明确要求）。**禁止**在迭代意图已成立时默认回到 Step 3–4 专利点全文分析（除非用户明确要求重新挖掘专利点）。对话中**已出现**交底书路径、附件或上文刚交付的草稿时，优先按迭代处理。
-
----
-
-## 工具与数据来源
-
-按任务选用能力；具体工具名称以当前 Agent 环境为准。
-
-若扫描范围内含 **Word（.docx）** 或 **PowerPoint（.pptx）**，须在 Step 2 纳入阅读前用本仓库 **`docx_to_md.py`** / **`pptx_to_md.py`** 转为 Markdown；依赖 **`pip install -r requirements.txt`**，命令与说明见下表对应行。
-
-### 常见任务与建议方式
-
-| 任务 | 建议方式 |
-|------|----------|
-| 加载分步指令 | **`Read`** → `${CLAUDE_SKILL_DIR}/prompts/*.md`，见下表 |
-| 读代码、设计文档、PDF、图片 | 文件读取工具；大仓库先用搜索/语义检索定位再精读 |
-| Word（.docx）→ Markdown + 抽取图片（扫描前） | `Bash` → `python3 ${CLAUDE_SKILL_DIR}/tools/docx_to_md.py --input {path}.docx --output {dir}/{name}.md`；图片默认写入与 `.md` 同级的 `{name}_media/`；需 `pip install -r requirements.txt`（含 mammoth）；复杂版式可改由所内导出 PDF/MD 再扫 |
-| PowerPoint（.pptx）→ Markdown + 抽取图片（扫描前） | `Bash` → `python3 ${CLAUDE_SKILL_DIR}/tools/pptx_to_md.py --input {path}.pptx --output {dir}/{name}.md`；默认 `{name}_media/`；需 `pip install -r requirements.txt`（含 python-pptx）；**旧版 .ppt 不支持**，请先另存为 `.pptx`；图表/SmartArt 等若未以图片形状嵌入则可能仅能从备注或另行导出补全 |
-| 罗列目录、按名找文件 | 目录列举 / 按文件名搜索 |
-| 联网查新（Step 5） | 执行前 **`Read`** `prompts/prior_art_search.md`。**中国专利公布公告**：优先 **`Bash`** 运行 `cnipa_epub_search.py`；**须在生成命令前**归纳 **2～8 个相关度高的语义块**；**执行时须分多次调用**，**每次仅传一个**词块，**自行按 `pub_number` 合并**多轮 `EPUB_HITS_JSON`（勿单次工具调用堆多个 argv，见该 prompt）。一步拉取+解析、**不写 HTML 落盘**；须 **`pip install -r tools/requirements-cnipa.txt`** 且 **`python -m playwright install chromium`**。**`abstract` 规定必用**同该 prompt。需整句一次 AND 或保存 HTML 时用 `cnipa_epub_crawler.py`；异常或无果再 **WebSearch** |
-| 交底书定稿交付（**须同时** .md + .docx） | **3.2** 系统框图与 **3.4** 流程图均用 fenced ``mermaid``，**不要** ASCII 文字流程图/框图。定稿执行 **`tools/mermaid_render.py`**：mermaid 转 PNG（失败块保留围栏）后默认生成同名 **.docx**；若 Word 失败，按 stderr 提示手动运行 **`md_to_docx.py`**。详见 **`tools/README.md`** |
-| 保存交底书路径 | 写入用户指定路径；未指定时可建议 `./outputs/{案件标识}/`；**凡交付的** `.md` / `.docx` 须为 **`{案件名}_{YYYYMMDDHHmmss}`**（§7.3 第 5 点，**含首次定稿与迭代**），勿默认覆盖旧稿；`outputs/` 整目录默认由 `.gitignore` 忽略 |
-| 迭代对话留档 | 每轮 **merger / correction** 交付后，在案件目录追加 **`交底书修订对话记录.md`**（**`tools/iteration_dialog_log.py`** 或等价手工），见 **`prompts/iteration_context.md`** |
-
----
-
-## Prompt 文件映射
-
-| 步骤 | 文件 | 用途 |
-|------|------|------|
-| Step 1 | `prompts/intake.md` | 边界与输入问题 |
-| Step 2 | `prompts/project_scan.md` | 项目文档扫描；**须**对 `.docx`/`.pptx` 先转换再读（见该文件「Office 文档」节）；独立图片目录可跳过 |
-| Step 3–4 | `prompts/patent_points_analyzer.md` | 候选专利点、融合与选定 |
-| Step 5 | `prompts/prior_art_search.md` | 联网查新与分析要求 |
-| Step 6 | `prompts/disclosure_preview.md` | 全文前的摘要预览 |
-| Step 7 | `prompts/disclosure_builder.md` + `prompts/template_reference.md` | 交底书结构、脱敏、**符号与公式体例（§7.7）**与图示规范；**mermaid 与 3.4.1 符号/公式范例在 template_reference** |
-| Step 8 | `prompts/disclosure_self_check.md` | 内部自检，不写入正文 |
-| 迭代 | `prompts/iteration_context.md` | 迭代意图、落盘命名、**修订对话记录 md**（含对话/记录时间） |
-| 迭代 | `prompts/merger.md` | 新材料增量合并；**文首含门禁**；输出 `{案件名}_{时间戳}.md`/`.docx` |
-| 迭代 | `prompts/correction_handler.md` | 对话纠正；**文首含门禁**；输出 `{案件名}_{时间戳}.md`/`.docx` |
-
----
-
-## 主流程（执行顺序）
-
-1. **`Read`** `intake.md` → 执行 Step 1  
-2. **`Read`** `project_scan.md` → 执行 Step 2  
-3. **`Read`** `patent_points_analyzer.md` → 执行 Step 3–4  
-4. **`Read`** `prior_art_search.md` → 执行 Step 5  
-5. **`Read`** `disclosure_preview.md` → 执行 Step 6；用户可跳过  
-6. **`Read`** `disclosure_builder.md` 与 **`Read`** `template_reference.md` → 执行 Step 7（**首次交付**的 `.md`/`.docx` 亦须 **`{案件名}_{YYYYMMDDHHmmss}`**，§7.3 第 5 点）；交付对话中**须**按 **`disclosure_builder.md` §7.6** 补充「权利要求偏向点」建议交互（**仅对话**，不入正文）  
-7. **`Read`** `disclosure_self_check.md` → 内部执行 Step 8，修订后交付  
-
-**禁止**：交底书正文中包含「自检清单」章节；自检仅内部使用。
-
----
-
-## 迭代模式（摘要）
-
-**启用方式**：根据用户**自然语言意图**判断（见上文「触发条件」），**不要求**固定关键词，**默认不**为「是否迭代」打断用户。
-
-- **补充材料 / 扩展章节**或 **§7.6 第五章权利要求书式强化（用户已声明侧重点）**：`Read` → `iteration_context.md` → `merger.md`；合并结果**另存为**带时间戳的 `.md`/`.docx`（§7.3 第 5 点）；**追加** `交底书修订对话记录.md`（`iteration_dialog_log.py` 或手工）；完成后**必须**输出「合并摘要」留档；若本轮亦为定稿交付，**仍建议**简短附带 §7.6 类引导  
-- **指出错误 / 与事实或参数不符**：`Read` → `iteration_context.md` → `correction_handler.md`；纠正结果**另存为**带时间戳的 `.md`/`.docx`；**追加**对话记录；完成后**必须**输出「纠正摘要」留档；定稿交付时**还须**按 **`disclosure_builder.md` §7.6** 附「权利要求偏向点」引导（见 **`correction_handler.md`** 末尾）  
-
-主流程 Step 7→8 的 **`disclosure_self_check.md`** 仍在新稿定稿路径上内部执行。
-
----
-
-## Agent 自用工作流检查清单
+## 执行前核对
 
 ```
-□ 已按步骤 Read 对应 prompts；Step 2 若目录含 Office，已执行 docx_to_md / pptx_to_md 并读了产出 `.md`
-□ 识别到「在已有交底书上修改」类意图时，已 Read `iteration_context.md` 并选用 merger 或 correction_handler（而非从头跑扫描）；交付为**新** `{案件名}_{时间戳}.md`/`.docx`，未无故覆盖旧稿
-□ 执行 merger / correction_handler 后，已在对话中输出该文件要求的留档摘要（合并摘要 / 纠正摘要）；案件目录已追加 **`交底书修订对话记录.md`**（或等价日志）
-□ 查新完成且写入 1.1 与区别论述（符合 `prior_art_search.md`：**优先** `tools/cnipa_epub_search.py`，**国知局侧已分多次调用、每轮一词，并已自行合并** `EPUB_HITS_JSON`；**`abstract` 必用且已充分理解后再概括**；异常或无果再 **WebSearch**）
-□ 除用户明确跳过外，完成摘要预览
-□ 脱敏、mermaid（定稿均已渲染为 PNG）、章节引用符合 template_reference；含公式时 **3.4.1 符号表、§7.7 体例**（维度下标、无字母多义、LaTeX 分隔符统一）及 **3.5 符号列同形** 已满足；**已交付 .md 与 .docx**，且**文件名符合 §7.3 第 5 点**（**凡交付均含**时间戳后缀）；**正文无**技能/示例仓库类文末脚注
-□ 定稿类对话已含 **`disclosure_builder.md` §7.6**「权利要求偏向点」建议交互（**不入正文**、**不捏造**未在稿内出现的保护取向）；迭代再走 merger 时见 **`iteration_context.md`** 表格补充行
-□ 自检在后台完成，正文无自检清单章节；含公式时已按 **`disclosure_self_check.md` §8.2** 复核**公式正确性与公式逻辑**（有误已在 Step 8 直接改稿）
+□ 已 Read 对应 skills/*/SKILL.md，未把本文件当交底/申请底稿/案卷/检索/解读正文
+□ 交底查新未调用 patent-search
+□ 著录检索未用交底一词一页结果冒充清单
+□ 政策简报 / 审查答复 / 申请文件 / 案卷仅在显式触发时进入
+□ 申请文件已指定交底目录；门禁未过未开写
+□ 案卷未写交底/申请正文；派工只 Read 对方 SKILL.md
+□ 未跨包调用其他子技能的 tools/
+□ 未把政策简报当成改技能；无点名未改交底包以外的目录
 ```

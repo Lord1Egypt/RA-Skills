@@ -1,43 +1,58 @@
-## Description: <br>
-Creates standalone OpenClaw agents with isolated workspaces, configuration, identity, memory, and optional Feishu bot bindings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates standalone OpenClaw agents with isolated workspaces, configuration, identity, memory, and optional Feishu bot routing for multi-bot deployments.
 
-## Publisher: <br>
-[song5749](https://clawhub.ai/user/song5749) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[song5749](https://clawhub.ai/user/song5749)
 
-## Use Case: <br>
-Developers and operators use this skill to create long-running, isolated OpenClaw agents for projects, customer support, HR, internal IT, or other dedicated workflows. It can also configure Feishu routing when separate bot identities are needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change local OpenClaw configuration and create persistent agent state. <br>
-Mitigation: Review the openclaw.json diff and generated workspace before restarting OpenClaw. <br>
-Risk: The skill may copy the main agent's auth profiles or models into a new agent directory. <br>
-Mitigation: Copy shared credentials only when intentional, and remove credentials that the new agent should not use. <br>
-Risk: Feishu app secrets may be written into local configuration. <br>
-Mitigation: Prefer environment variables or a protected secret store, and restrict permissions on configuration files containing Feishu secrets. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to create persistent, isolated agents for specific projects, teams, customers, or Feishu bot deployments. It is suited for long-running dedicated agents rather than temporary sub-agent sessions.
 
-## Reference(s): <br>
-- [Standalone Agent Guide](references/standalone-agent-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/song5749/creat-anget) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with JSON examples, shell commands, and Python helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or proposes local OpenClaw agent directories, workspace files, openclaw.json changes, and optional Feishu account configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Persistent agent creation can modify openclaw.json, create workspaces, and copy main-agent auth and model files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run first, review configuration changes before restart, restrict openclaw.json permissions, and provision least-privilege per-agent credentials.
+
+Risk: Feishu app secrets can be supplied on the command line and stored in OpenClaw configuration.
+
+Mitigation: Avoid passing real secrets through shell history, rotate credentials when exposed, and limit access to configuration files containing bot secrets.
+
+Risk: Open Feishu group routing can expose an agent to unintended conversations.
+
+Mitigation: Bind only intended account IDs, keep group access closed unless explicitly needed, and test routing in a controlled environment before broader use.
+
+## Reference(s):
+
+- [Standalone Agent Guide](references/standalone-agent-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/song5749/skills/creat-anget)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and shell commands; helper scripts can emit JSON or update OpenClaw configuration files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create directories, copy agent files, and update openclaw.json when the standalone-agent script is executed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

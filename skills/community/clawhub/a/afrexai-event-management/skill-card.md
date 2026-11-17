@@ -1,40 +1,53 @@
-## Description: <br>
-Plan, execute, and analyze corporate events from concept to post-event ROI for conferences, workshops, webinars, meetups, and related event formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan, execute, and analyze corporate events from concept to post-event ROI for conferences, workshops, webinars, meetups, and more.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Event planners, marketing teams, operations teams, and founders use this skill to generate event briefs, budgets, sponsorship packages, speaker workflows, marketing sequences, run sheets, webinar plans, and post-event ROI reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sponsor-package and no-show templates may encourage sharing attendee information. <br>
-Mitigation: Use opt-in-only, aggregated, or anonymized attendee information; disclose sharing during registration; limit fields shared; and check applicable privacy and email-compliance rules. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-event-management) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Event marketers, operations teams, and business teams use this skill to create event briefs, budgets, sponsorship packages, speaker plans, run sheets, marketing sequences, webinar playbooks, and post-event ROI reports.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML templates, checklists, tables, and email drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only planning aid; no executable code or API calls are included in the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sponsor guidance may involve attendee lists or lead data that includes privacy-sensitive information.
+
+Mitigation: Share attendee or lead data only when notice and opt-in status support it, and limit sponsor access to permitted fields.
+
+Risk: Generated registration, marketing, or follow-up materials may need privacy, consent, or anti-spam review before use.
+
+Mitigation: Review public copy and email sequences against applicable event jurisdictions and organizational policy before sending.
+
+## Reference(s):
+
+- [Event Management skill page](https://clawhub.ai/1kalin/skills/afrexai-event-management)
+- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with YAML blocks, tables, checklists, scorecards, and email templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces event planning templates, decision matrices, timelines, run sheets, sponsor guidance, and ROI analysis structures.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

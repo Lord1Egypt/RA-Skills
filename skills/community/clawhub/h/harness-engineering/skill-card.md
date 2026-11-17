@@ -1,39 +1,53 @@
-## Description: <br>
-Evolve existing repositories toward Harness Engineering by improving agent legibility, moving critical knowledge into repo-local artifacts, adding predictable structure, and replacing policy-only documentation with executable checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evolve existing repositories toward Harness Engineering by making them more legible to agents, moving critical knowledge into repo-local artifacts, adding predictable structure, and replacing policy-only documentation with executable checks.
 
-## Publisher: <br>
-[doanbactam](https://clawhub.ai/user/doanbactam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[doanbactam](https://clawhub.ai/user/doanbactam)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to audit a live repository, strengthen repo-local documentation, add missing source-of-truth artifacts, and wire executable governance checks into project workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause persistent changes to project documentation, validation checks, and CI gates. <br>
-Mitigation: Use it on a branch and inspect the resulting diffs before merging. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to audit and improve existing repositories for agent legibility, repo-local source-of-truth documentation, executable governance checks, and CI enforcement without forcing broad rewrites.
 
-## Reference(s): <br>
-- [Harness Template Checklist](references/checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/doanbactam/harness-engineering) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with repository file edits, code/configuration snippets, and shell command recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update repository documentation, validation checks, and CI configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Implicit invocation may apply the skill when repository documentation or governance work overlaps with its trigger behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed changes carefully and disable implicit invocation if the skill should only run when explicitly named.
+
+Risk: The skill may edit AGENTS.md, docs, package scripts, or CI workflows, which can affect contributor workflows.
+
+Mitigation: Review those files before merge and run the repository's local validation and CI checks after changes.
+
+## Reference(s):
+
+- [Harness Template Checklist](references/checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with code, configuration, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or make repository documentation, validation script, package script, and CI workflow changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

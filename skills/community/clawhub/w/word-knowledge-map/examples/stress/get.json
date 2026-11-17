@@ -1,0 +1,179 @@
+{
+  "word": "get",
+  "pronunciation": "/ɡet/",
+  "audience": "小学高年级+初中",
+  "core_meanings": [
+    {
+      "meaning": "得到；获得",
+      "level": "P1",
+      "priority": 5
+    },
+    {
+      "meaning": "到达",
+      "level": "P1",
+      "priority": 5
+    },
+    {
+      "meaning": "变得（后接形容词）",
+      "level": "P1",
+      "priority": 5
+    },
+    {
+      "meaning": "理解（口语）",
+      "level": "P2",
+      "priority": 3
+    }
+  ],
+  "parts_of_speech": [
+    {
+      "type": "verb",
+      "meanings": [
+        "得到；到达；变得"
+      ]
+    }
+  ],
+  "collocations": [
+    {
+      "phrase": "get to",
+      "meaning": "到达",
+      "priority": 5,
+      "example": "We got to school at eight.",
+      "translation": "我们八点到了学校。"
+    },
+    {
+      "phrase": "get up",
+      "meaning": "起床",
+      "priority": 5,
+      "example": "I get up at seven.",
+      "translation": "我七点起床。"
+    },
+    {
+      "phrase": "get on / get off",
+      "meaning": "上/下（车）",
+      "priority": 5,
+      "example": "Get on the bus.",
+      "translation": "上公交车。"
+    },
+    {
+      "phrase": "get ready",
+      "meaning": "准备好",
+      "priority": 4,
+      "example": "Get ready for class.",
+      "translation": "准备好上课。"
+    },
+    {
+      "phrase": "get along with",
+      "meaning": "与……相处融洽",
+      "priority": 3,
+      "example": "She gets along with her classmates.",
+      "translation": "她和同学相处很好。"
+    }
+  ],
+  "word_forms": {
+    "third_person_singular": "gets",
+    "past": "got",
+    "past_participle": "got / gotten",
+    "present_participle": "getting"
+  },
+  "word_family": [
+    {
+      "word": "got",
+      "part_of_speech": "verb form",
+      "meaning": "get 的过去式",
+      "formation": "不规则",
+      "priority": 2
+    }
+  ],
+  "grammar_patterns": [
+    {
+      "pattern": "get + adj.",
+      "meaning": "变得……",
+      "example": "It gets dark early.",
+      "translation": "天黑得早。"
+    },
+    {
+      "pattern": "get + n.",
+      "meaning": "得到……",
+      "example": "I got a gift.",
+      "translation": "我收到一份礼物。"
+    }
+  ],
+  "examples": [
+    {
+      "english": "I got a new book.",
+      "chinese": "我得到一本新书。",
+      "target": "got"
+    },
+    {
+      "english": "We got to the park.",
+      "chinese": "我们到了公园。",
+      "target": "got to"
+    },
+    {
+      "english": "Don't get angry.",
+      "chinese": "别生气。",
+      "target": "get angry"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "topic": "get to vs arrive",
+      "explanation": "到达某地常用 get to + 地点；arrive at/in 也常用，不要说 get the school。"
+    },
+    {
+      "topic": "get + 形容词",
+      "explanation": "get tired / get cold 表示变化，不是「得到累」。"
+    }
+  ],
+  "memory_tip": "get 像万能动词：得到东西、到达地方、变得怎样，先记三条再记短语。",
+  "layout_plan": {
+    "mode": "phrasal-hub",
+    "reason": "多义多短语，无可用派生词族",
+    "cards": [
+      {
+        "slot": "T1",
+        "title": "得到",
+        "items": [
+          "core:得到",
+          "ex:I got a new book."
+        ]
+      },
+      {
+        "slot": "T2",
+        "title": "到达 / 上车",
+        "items": [
+          "get to",
+          "get on / get off"
+        ]
+      },
+      {
+        "slot": "T3",
+        "title": "变得",
+        "items": [
+          "get + adj.",
+          "get ready",
+          "Don't get angry."
+        ]
+      },
+      {
+        "slot": "T4",
+        "title": "易混",
+        "items": [
+          "get to vs arrive",
+          "不要 get the school"
+        ]
+      }
+    ],
+    "knowledge_chain": [
+      "得到",
+      "到达",
+      "变得",
+      "易混点"
+    ],
+    "omit": [
+      "word_family 仅词形",
+      "P3 get along with",
+      "口语理解义"
+    ]
+  }
+}

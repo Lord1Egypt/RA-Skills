@@ -1,0 +1,34 @@
+{
+  "version": "2.1.1",
+  "releaseDate": "2026-08-03",
+  "author": "claude-learning-project 📚",
+  "baseFramework": "Anthropic Executive Briefing",
+  "changes": [
+    "V2.0.1: 质量升级 — 补充 NOT for 边界声明 + 使用决策表 + 报告质量状态生命周期 + tier/maturity 元数据 + triggers 扩充",
+    "V2.0.0: 重大重构 — 从「报告排版工具」转型为「高管汇报内容工厂」",
+    "定位升级：输入详案→提炼为决策导向的高管报告",
+    "SKILL.md 重写：5步流水线 + BLUF格式 + So What叙事 + 500词硬上限",
+    "输出结构对齐 Anthropic Executive Briefing：Bottom Line→Findings→Implications→Actions→Risks",
+    "写入铁律6条（结论前置/500词/数字说话/Owner+Timeline/置信度/So What）",
+    "禁止6条（不发明数字/不被动语态/不术语/不过程描述/不副词/不堆砌背景）",
+    "scripts/init.py: 新增报告脚手架（一键创建目录+模板+version.json）",
+    "scripts/bump.py: 增强（+新文件生成+变更注释+VERSION.md+README.md自动更新）",
+    "scripts/validate.py: 重写（结构校验→内容质量校验：BLUF/So What/数据/行动/篇幅/置信度/语态 7项）",
+    "scripts/density.py: 新增内容密度分析（数据密度/段落/空洞检测/行动词占比/阅读时长）",
+    "templates/: 替换为4个高管模板（executive-summary/decision-memo/one-pager/board-briefing）",
+    "references/: 新增 style-guide.md（语态手册）/ narrative-methodology.md（叙事方法论）",
+    "references/: 更新 structure-validation.md（7项校验规则）/ collaboration-workflow.md（标准化输入接口）",
+    "references/: 更新 edge-cases.md（强化版 bump.py + 新增 density.py 边界场景）"
+  ],
+  "dependencies": [
+    "markdown-to-html",
+    "solution-architect (upstream)",
+    "digital-research (upstream)",
+    "plantuml-generator (upstream)"
+  ],
+  "requires": {
+    "bins": [
+      "python3"
+    ]
+  }
+}

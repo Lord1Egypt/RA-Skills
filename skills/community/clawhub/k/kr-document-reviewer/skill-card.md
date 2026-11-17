@@ -1,52 +1,69 @@
-## Description: <br>
-Reviews Korean business documents for required fields, formatting, extracted-value accuracy, and cross-document consistency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Korean business documents for format compliance, required fields, value accuracy, and cross-document consistency.
 
-## Publisher: <br>
-[Ustay-coder](https://clawhub.ai/user/Ustay-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ustay-coder](https://clawhub.ai/user/ustay-coder)
 
-## Use Case: <br>
-Employees, reviewers, and business operations teams use this skill to check Korean invoices, contracts, bank-account copies, estimates, transaction statements, business registrations, subsidy paperwork, inspection reports, transfer confirmations, and result reports. It helps extract key fields, apply document-specific checklists, compare amounts, parties, accounts, dates, and missing-document status, then produce review results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated review reports can contain sensitive business data such as account numbers, registration numbers, addresses, and transaction amounts. <br>
-Mitigation: Use the skill in a private workspace, process only documents you are authorized to review, and delete or redact JSON reports when the sensitive details no longer need to be retained. <br>
-Risk: OCR output can be inaccurate, especially when extracted values conflict across documents. <br>
-Mitigation: Confirm suspicious OCR results against the original document image before treating a discrepancy as final. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Ustay-coder/kr-document-reviewer) <br>
-- [Bank account checklist](artifact/references/bank-account.md) <br>
-- [Business registration checklist](artifact/references/business-registration.md) <br>
-- [Contract checklist](artifact/references/contract.md) <br>
-- [Estimate checklist](artifact/references/estimate.md) <br>
-- [Expense request checklist](artifact/references/expense-request.md) <br>
-- [Inspection report checklist](artifact/references/inspection-report.md) <br>
-- [Result report checklist](artifact/references/result-report.md) <br>
-- [Subsidy application checklist](artifact/references/subsidy-application.md) <br>
-- [Tax invoice checklist](artifact/references/tax-invoice.md) <br>
-- [Transaction statement checklist](artifact/references/transaction-statement.md) <br>
-- [Transfer confirmation checklist](artifact/references/transfer-confirmation.md) <br>
-- [Review result JSON schema](artifact/schema/review-result.schema.json) <br>
-- [Sample review output](artifact/schema/sample-output.json) <br>
+## Use Case:
 
+Employees, finance teams, operations teams, and reviewers use this skill to review Korean invoices, contracts, bank account copies, estimates, transaction statements, business registrations, subsidy documents, inspection reports, transfer confirmations, and result reports. It extracts key fields, checks each document against type-specific rules, and compares amounts, parties, account details, dates, and missing documents across a submission set.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Structured JSON review report with a concise Markdown or plain-text summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow may save JSON reports to reviews/REV-{YYYYMMDD}-{NNN}.json and may provide PDF-to-image conversion commands for OCR preparation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can process sensitive business, financial, tax, and account identifiers through spawned model sessions and workspace files.
+
+Mitigation: Use it only for documents approved for that processing path, prefer redacted outputs, and get explicit approval before saving reports.
+
+Risk: Review outputs may retain unredacted financial and business identifiers in the workspace.
+
+Mitigation: Delete the reviews directory and sensitive intermediate files when the review is complete, or store only redacted report versions.
+
+Risk: OCR or cross-document comparisons can misread Korean names, company names, account numbers, addresses, or amounts.
+
+Mitigation: Verify suspicious or high-impact findings against the original source document before acting on the result.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ustay-coder/skills/kr-document-reviewer)
+- [Tax invoice checklist](references/tax-invoice.md)
+- [Contract checklist](references/contract.md)
+- [Bank account copy checklist](references/bank-account.md)
+- [Estimate checklist](references/estimate.md)
+- [Transaction statement checklist](references/transaction-statement.md)
+- [Business registration checklist](references/business-registration.md)
+- [Expense request checklist](references/expense-request.md)
+- [Subsidy application checklist](references/subsidy-application.md)
+- [Inspection report checklist](references/inspection-report.md)
+- [Transfer confirmation checklist](references/transfer-confirmation.md)
+- [Result report checklist](references/result-report.md)
+- [Review result JSON schema](schema/review-result.schema.json)
+- [Sample review output](schema/sample-output.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Structured JSON review results and Markdown chat summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save JSON reports under reviews/REV-{YYYYMMDD}-{NNN}.json when approved; summaries are derived from the JSON summary section.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

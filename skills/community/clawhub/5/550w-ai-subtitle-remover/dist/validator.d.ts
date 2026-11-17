@@ -1,5 +1,5 @@
 import type { SkillResponse, EstimateCreditsResult } from "./types";
-export declare function validateCredential(userNo: string | undefined | null, apiKey: string | undefined | null): SkillResponse | null;
+export declare function validateCredential(userNo: string | undefined | null, apiKey: string | undefined | null, locale?: unknown): SkillResponse | null;
 export declare function normalizePageParams(params: {
     page?: number;
     size?: number;

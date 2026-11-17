@@ -1,45 +1,60 @@
-## Description: <br>
-Generate CN patent documents and software copyright materials from AI or big-data project code, design documents, and research papers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate CN patent documents and software copyright materials from AI or big-data project code, design documents, and research papers.
 
-## Publisher: <br>
-[jaccen](https://clawhub.ai/user/jaccen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaccen](https://clawhub.ai/user/jaccen)
 
-## Use Case: <br>
-IP practitioners, developers, and product teams use this skill to prepare China-focused CNIPA patent drafts and CPCC software copyright materials for AI and big-data projects. It helps classify technical domains, extract invention points, draft claims and specifications, prepare manuals or source-code documents, and run self-checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China (CNIPA patent and CPCC software-copyright workflows) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat drafted patent or software-copyright material as legal advice. <br>
-Mitigation: Use the skill as an IP drafting aid and have qualified counsel or an authorized reviewer validate filing strategy, claim scope, jurisdiction, and final submissions. <br>
-Risk: Inputs may contain confidential source code, invention details, credentials, internal addresses, personal information, or proprietary dataset and hardware details. <br>
-Mitigation: Review and apply the skill's desensitization guidance before sharing materials in the active agent context, and remove secrets, internal endpoints, personal data, and sensitive implementation identifiers. <br>
-Risk: Outputs may be unsuitable if the user intends a jurisdiction or filing workflow other than China CNIPA patent or CPCC software-copyright preparation. <br>
-Mitigation: Confirm the intended China/CNIPA/CPCC workflow and output language before invoking the skill, and adapt or reject the output for other jurisdictions. <br>
+## Use Case:
 
+Developers, founders, and technical teams use this skill to turn AI and big-data project materials into China-focused patent claims, specifications, abstracts, and CPCC software copyright submission materials. It supports domain diagnosis, prior-art search planning, desensitization, drafting, and self-checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jaccen/patent-software-ip) <br>
-- [AI patent claims guide](references/ai-patent-claims-guide.md) <br>
-- [AI patent special guide](references/ai-patent-special.md) <br>
-- [AI software copyright guide](references/ai-software-copyright-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown files and prose sections, including patent claims, specifications, abstracts, manuals, source-code documents, prior-art summaries, checklists, and Mermaid diagrams.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When saved, deliverables are organized under outputs/{case-id}/ with patent and software-copyright subfolders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Project analysis and online prior-art searches may expose confidential code, unpublished invention details, secrets, endpoints, personal names, or business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and sanitize search queries and source excerpts before any external search or sharing; remove keys, internal URLs, absolute paths, personal data, and sensitive business details.
+
+Risk: The drafting workflow is China-focused and may be misapplied to other patent or software-copyright regimes.
+
+Mitigation: Use the output as CNIPA and CPCC drafting support, and have qualified IP counsel adapt or review materials before filing.
+
+Risk: Automated prior-art summaries, patentability judgments, or claim language may be incomplete, incorrect, or unsupported.
+
+Mitigation: Require source-linked prior-art results, keep the skill's self-check gates, and perform human technical and legal review before submission.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jaccen/skills/patent-software-ip)
+- [AI Patent Claims Guide](references/ai-patent-claims-guide.md)
+- [AI Patent Special Guide](references/ai-patent-special.md)
+- [AI Software Copyright Guide](references/ai-software-copyright-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown documents and structured drafting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces case-organized patent and software-copyright materials, including claims, specification, abstract, manual, and source-code document drafts.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

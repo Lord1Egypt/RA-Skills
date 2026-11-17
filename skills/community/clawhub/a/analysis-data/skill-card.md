@@ -1,42 +1,60 @@
-## Description: <br>
-Uses ChartGen to create visualizations, analyze spreadsheet or text data, and generate reports or PPT slides after user confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to ask ChartGen to create charts, dashboards, diagrams, Gantt views, PPTs, reports, and data analyses from text prompts or selected spreadsheet files.
 
-## Publisher: <br>
-[chartgen-ai](https://clawhub.ai/user/chartgen-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chartgen-ai](https://clawhub.ai/user/chartgen-ai)
 
-## Use Case: <br>
-External users and developers use this skill to ask ChartGen for charts, dashboards, diagrams, spreadsheet analysis, reports, and presentation outputs. The skill is suited for confirmed data-analysis and visualization requests where sending the selected prompt and files to ChartGen is acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confirmed prompts and selected spreadsheet files are sent to ChartGen under the user's API key. <br>
-Mitigation: Review the confirmation text and file list before approving, and avoid submitting sensitive data unless ChartGen use is acceptable for the environment. <br>
-Risk: Evidence.security reports that result downloads are not restricted to chartgen.ai-hosted URLs despite the stated chartgen.ai-only network boundary. <br>
-Mitigation: Use extra caution on sensitive or locked-down networks, review downloaded artifacts before opening them, and prefer deployments that add host allowlisting and download limits. <br>
+## Use Case:
 
+Developers and end users can use this skill to route confirmed analysis and visualization requests to ChartGen, including optional CSV, TSV, XLS, and XLSX files. The skill is suited for generating visual artifacts, analysis summaries, reports, and presentations from user-approved inputs.
 
-## Reference(s): <br>
-- [ChartGen service](https://chartgen.ai) <br>
-- [ChartGen API key page](https://chartgen.ai/chat) <br>
-- [Skill upgrade procedure](references/upgrade-skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown responses with JSON tool results, local image or file paths, and ChartGen edit links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CHARTGEN_API_KEY and Node.js >= 14; sends confirmed prompts and selected files to https://chartgen.ai.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence and tool constant) <br>
+Risk: Confirmed prompts and selected CSV, TSV, XLS, or XLSX files are sent to ChartGen.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with data that is approved for submission to ChartGen, and confirm each request before it is sent.
+
+Risk: Generated artifacts may be downloaded and local HTML content may be prepared for rendering.
+
+Mitigation: Review artifact download and HTML handling before installation, especially in environments with sensitive internal network access or permissive HTML renderers.
+
+Risk: The release security verdict is suspicious because of under-scoped external download and rendering behavior.
+
+Mitigation: Treat the skill as requiring review before deployment and scan or restrict it according to the installing organization's policy.
+
+## Reference(s):
+
+- [ClawHub Analysis Data Skill](https://clawhub.ai/chartgen-ai/skills/analysis-data)
+- [ChartGen](https://chartgen.ai)
+- [ChartGen API Key Page](https://chartgen.ai/chat)
+- [Skill Upgrade Procedure](references/upgrade-skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON tool results and local artifact paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce analysis text, edit links, chart images, dashboard images, PPT previews, PPT downloads, and spreadsheet/file downloads.]
+
+## Skill Version(s):
+
+1.0.6 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

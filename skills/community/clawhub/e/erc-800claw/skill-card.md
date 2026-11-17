@@ -1,42 +1,62 @@
-## Description: <br>
-The OpenClaw entry point for ERC-8004 agent identity and reputation. Register agents on-chain, query identities, give and receive feedback ratings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The OpenClaw entry point for ERC-8004 agent identity and reputation. Register agents on-chain, query identities, give and receive feedback ratings.
 
-## Publisher: <br>
-[primer-dev](https://clawhub.ai/user/primer-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[primer-dev](https://clawhub.ai/user/primer-dev)
 
-## Use Case: <br>
-Developers and agent operators use this skill to register ERC-8004 agent identities, query on-chain identity and reputation records, and submit reputation feedback through CLI or SDK workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use an Ethereum private key for mainnet on-chain registration or feedback actions. <br>
-Mitigation: Use a low-value wallet, start on Sepolia/testnet, verify package sources before installation, and require explicit approval before any mainnet transaction. <br>
+## Use Case:
 
+Developers and agent operators use ERC-800Claw to register on-chain agent identities, query ERC-8004 identity and reputation data, and submit feedback ratings on Ethereum mainnet or Sepolia.
 
-## Reference(s): <br>
-- [ERC-8004 Protocol](https://8004.org) <br>
-- [EIP-8004](https://eips.ethereum.org/EIPS/eip-8004) <br>
-- [ERC-800Claw npm package](https://npmjs.com/package/erc-800claw) <br>
-- [ERC-800Claw PyPI package](https://pypi.org/project/erc-800claw) <br>
-- [Skill page](https://clawhub.ai/primer-dev/erc-800claw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce commands that read from or write to Ethereum networks and require wallet environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill can trigger real blockchain writes using a wallet private key for registration or feedback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet, prefer Sepolia first, and require the agent to show the network, action, gas estimate, and transaction summary before any transaction is signed.
+
+Risk: Private keys can be exposed if pasted into chat, logs, or command output.
+
+Mitigation: Use environment variables or a secure secret store, and do not display PRIVATE_KEY values in agent responses.
+
+Risk: The agent may install or invoke an unintended SDK package if dependencies are not scoped carefully.
+
+Mitigation: Verify the package name, version, and publisher before installation or execution.
+
+## Reference(s):
+
+- [ERC-800Claw on ClawHub](https://clawhub.ai/primer-dev/skills/erc-800claw)
+- [ERC-8004 Protocol](https://8004.org)
+- [EIP-8004](https://eips.ethereum.org/EIPS/eip-8004)
+- [ERC-800Claw npm package](https://npmjs.com/package/erc-800claw)
+- [ERC-800Claw PyPI package](https://pypi.org/project/erc-800claw)
+- [Primer Systems](https://primer.systems)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose commands that read from or write to Ethereum networks; wallet-backed actions require PRIVATE_KEY and gas.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

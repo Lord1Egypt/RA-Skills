@@ -1,47 +1,59 @@
-## Description: <br>
-Generates and edits images through the laozhang.ai API, including text-to-image, image editing, multi-image fusion, model selection, and aspect-ratio options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the Laozhang API to generate and edit images with text prompts, image URLs, multi-image fusion, model selection, aspect-ratio options, and optional local saving.
 
-## Publisher: <br>
-[enihsago](https://clawhub.ai/user/enihsago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[enihsago](https://clawhub.ai/user/enihsago)
 
-## Use Case: <br>
-Developers, creators, and agents use this skill to generate new images, edit existing image URLs, apply preset styles, combine multiple images, and save or return generated image assets through Python CLI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, source image URLs, and generated content are sent to laozhang.ai. <br>
-Mitigation: Use the skill only when the user accepts sharing those inputs with laozhang.ai and avoid sending sensitive images or prompts. <br>
-Risk: API tokens can be exposed if passed directly on the command line. <br>
-Mitigation: Prefer storing the token in ~/.laozhang_api_token and avoid placing tokens in prompts, shell history, shared logs, or screenshots. <br>
-Risk: Generation and editing calls may create billable API usage, especially with broad trigger phrases. <br>
-Mitigation: Confirm intent, model choice, and expected cost before running image generation or editing commands. <br>
-Risk: Scripts save image files locally by default unless --no-save is used. <br>
-Mitigation: Use --no-save for URL-only workflows or specify an explicit output path when local file placement matters. <br>
+## Use Case:
 
+Developers and agent users use this skill to generate images from prompts or edit one or more image URLs through Laozhang API models. It is suited for workflows that need command examples, model selection guidance, and generated image files or URLs.
 
-## Reference(s): <br>
-- [ClawHub Laozhangapi Image listing](https://clawhub.ai/enihsago/laozhangapi-image) <br>
-- [Usage Examples](examples/usage.md) <br>
-- [Model Details](references/models.md) <br>
-- [Laozhang API Documentation](https://docs.laozhang.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with Python CLI commands; scripts can output image URLs, base64 summaries, optional JSON responses, and saved PNG files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The scripts call a third-party API, can read an API token from ~/.laozhang_api_token or --token, and can save generated or edited images under ~/Pictures/laozhang unless --no-save is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: Prompts, image URLs, and API tokens are sent to api.laozhang.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a restricted token file with tight permissions, avoid sensitive or private images, and avoid passing tokens directly on the command line.
+
+Risk: Billing and output behavior may vary by selected model.
+
+Mitigation: Explicitly choose the model for each run and review documented pricing and return formats before use.
+
+Risk: Generated or downloaded image data may be written to local storage.
+
+Mitigation: Use --no-save when local files are not wanted, or provide an explicit output path for controlled storage.
+
+## Reference(s):
+
+- [Model Details](references/models.md)
+- [Usage Examples](examples/usage.md)
+- [Laozhang API Documentation](https://docs.laozhang.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets; the scripts can emit image URLs, JSON responses, and local PNG files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Calls a remote image API and saves the first generated image locally unless --no-save is used.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

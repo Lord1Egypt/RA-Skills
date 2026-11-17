@@ -1,41 +1,58 @@
-## Description: <br>
-Monitors YouTube videos for configured keywords, retrieves transcripts, creates Chinese summaries, and sends update reports to Telegram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动监控关键词相关 YouTube 新视频，获取字幕并生成中文摘要，然后将报告推送到 Telegram。
 
-## Publisher: <br>
-[huxiaoqiao](https://clawhub.ai/user/huxiaoqiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huxiaoqiao](https://clawhub.ai/user/huxiaoqiao)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to monitor YouTube search terms, summarize newly found videos in Chinese, and receive scheduled Telegram updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Transcript-derived reports may include private, sensitive, or copyrighted material and are saved locally before being sent through Telegram. <br>
-Mitigation: Monitor only approved content, control the Telegram recipient, and set a retention policy for files in youtube-summaries. <br>
-Risk: Incorrect Telegram or transcript API configuration can misroute reports or expose credentials. <br>
-Mitigation: Store credentials in environment variables or a secrets manager, restrict local access, and verify the Telegram user ID before scheduled runs. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor YouTube for keyword-related videos, collect transcripts, summarize them in Chinese, and receive scheduled Telegram reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huxiaoqiao/youtube-openclaw-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/huxiaoqiao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown reports, Telegram-ready text, and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create dated transcript summary files and a latest-report.md file under youtube-summaries when run with configured credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow asks users to run a script that is not included in the artifact on a schedule.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect or obtain the missing script before enabling cron or any unattended execution.
+
+Risk: The workflow installs an unpinned npm dependency.
+
+Mitigation: Pin and review npm dependencies before installation.
+
+Risk: The workflow may send transcripts, summaries, video metadata, and credentials to external services such as Telegram and transcriptapi.com.
+
+Mitigation: Confirm the exact data shared with each external service and protect API keys and Telegram identifiers before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huxiaoqiao/skills/youtube-openclaw-monitor)
+- [Publisher profile](https://clawhub.ai/user/huxiaoqiao)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and generated summary/report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces dated transcript/summary files and a latest-report markdown file when the referenced workflow is available and configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Checks Chinese web novel chapters for banned words, repetitive phrasing, chapter continuity, outline alignment, character consistency, pacing, terminology, and worldbuilding issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill reviews Chinese web-novel chapters for publishing readiness by scanning for forbidden words, repetitive phrasing, template-like sentences, continuity issues, character consistency, pacing, and worldbuilding conflicts.
 
-## Publisher: <br>
-[chn012cjus](https://clawhub.ai/user/chn012cjus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[chn012cjus](https://clawhub.ai/user/chn012cjus)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Writers, editors, and publishing assistants use this skill to review Chinese web-novel chapters before release, combining local frequency scanning with structured manuscript checks and revision guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may read unpublished chapter drafts and create a local scan report.
+
+Mitigation: Keep sensitive drafts in a limited folder and invoke the skill only for chapter files intended for review.
+
+Risk: Revision guidance could change authorial voice, meaning, or continuity if applied without review.
+
+Mitigation: Review suggested edits against the manuscript, outline, and character notes before accepting them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External authors, editors, and publishing assistants use this skill to review Chinese web novel chapters before publication. It produces structured quality findings and rewrite guidance for prohibited terms, repeated phrasing, continuity, outline fit, character consistency, pacing, terminology, and worldbuilding. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The local scanner reads manuscript files selected by the user and writes excerpts or findings to a local freq_result.txt file. <br>
-Mitigation: Run it only on intended manuscript files and delete old freq_result.txt outputs when switching projects or handling sensitive drafts. <br>
-Risk: The skill's strict quality rules may produce recommendations that do not match an author's intended style or narrative voice. <br>
-Mitigation: Treat findings as review guidance and have a human author or editor approve changes before publication. <br>
+**Output Format:** [Markdown-style quality report with line-referenced findings and replacement suggestions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chn012cjus/web-novel-publishing-readiness-and-quality-check-skill) <br>
+**Other Properties Related to Output:** [May create a local freq_result.txt scan report when the bundled frequency scanner is run.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown quality report with line-numbered findings and local text scan output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The local Python scanner reads a selected manuscript file and writes freq_result.txt in the skill directory.] <br>
+1.0.9 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

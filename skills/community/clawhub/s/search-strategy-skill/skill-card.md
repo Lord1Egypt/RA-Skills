@@ -1,41 +1,58 @@
-## Description: <br>
-Automatically selects and runs a search, crawl, or browsing tool based on a query or URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Strategy Skill helps an agent choose an appropriate search, reading, crawling, or research tool for a query or URL and fall back when a selected tool fails.
 
-## Publisher: <br>
-[sean810720](https://clawhub.ai/user/sean810720) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sean810720](https://clawhub.ai/user/sean810720)
 
-## Use Case: <br>
-Developers and agent users use this skill to route web research tasks to tools such as jina.ai, DuckDuckGo, Firecrawl, Tavily, Brave Search, or agent-reach. It is intended for reading pages, searching across sources, crawling sites, and returning concise terminal or JSON results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries, URLs, or crawled content may be sent to external search, crawling, or browsing providers. <br>
-Mitigation: Avoid confidential queries, private URLs, and account-backed searches unless the selected provider is trusted; use --engine when predictable routing is required. <br>
-Risk: Optional providers require API keys or OAuth-backed tools that may expose account or quota risk if misconfigured. <br>
-Mitigation: Keep API keys out of version control and review separately installed tools such as firecrawl, tavily-search, and agent-reach before use. <br>
+## Use Case:
 
+Developers and agents use this skill to route search tasks across web readers, search engines, crawlers, research APIs, and social search tools based on query or URL characteristics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sean810720/search-strategy-skill) <br>
-- [OpenClaw homepage](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text or JSON, with Markdown content returned by supported readers and crawlers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes requests by query, URL, engine override, crawl mode, verbosity, and maximum result count.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and release evidence) <br>
+Risk: Private URLs, internal hostnames, local file paths, or sensitive search terms may be sent to external search and scraping providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review inputs before use, avoid sensitive targets, and deploy only with approved provider and network egress policies.
+
+Risk: URL handling can be abused to read local files or reach internal services, especially when forced engines handle untrusted targets.
+
+Mitigation: Do not use --engine=multi with untrusted URLs; restrict allowed URL schemes and block access to internal networks before deployment.
+
+Risk: External data flows are under-disclosed in the artifact.
+
+Mitigation: Document enabled providers, API keys, and data-sharing behavior for users before installing or running the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sean810720/skills/search-strategy-skill)
+- [OpenClaw Homepage](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text, Markdown excerpts, and optional JSON when supported by the selected tool]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ANSI-colored status lines, external search results, fetched page excerpts, and result limits controlled by command options.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

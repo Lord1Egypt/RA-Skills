@@ -1,48 +1,54 @@
-## Description: <br>
-Guides Chinese-language conversion of business workflow descriptions into Colored Petri Net models, including structured model data, CPN Tools XML, and local HTML visualizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents turn natural-language business process descriptions into Colored Petri Net models, including structured JSON, CPN Tools XML, and an animated HTML visualization.
 
-## Publisher: <br>
-[theosunny](https://clawhub.ai/user/theosunny) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theosunny](https://clawhub.ai/user/theosunny)
 
-## Use Case: <br>
-Developers, analysts, and workflow designers use this skill to turn natural-language business processes into CPN/Petri-net models for scenarios such as approvals, e-commerce orders, restaurant ordering, engineering steps, and hospital workflows. It can also guide users who do not know CPN terminology by asking business-language questions before generating the model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad workflow-modeling prompts. <br>
-Mitigation: Use it when CPN/Petri-net workflow modeling is intended, and review generated models before relying on them. <br>
-Risk: The skill can create a local /tmp HTML visualization file containing browser JavaScript. <br>
-Mitigation: Open generated HTML only when that output is expected and clean up temporary visualization files after use. <br>
-Risk: Incorrect dependency, guard, or token modeling can produce misleading or deadlocked CPN models. <br>
-Mitigation: Review dependency rules, initial markings, resource places, and generated visualizations before importing or using the model. <br>
+## Use Case:
 
+Developers, analysts, and process designers use this skill to model workflows with concurrency, synchronization, dependencies, and resource contention. It supports guided elicitation for vague business descriptions and can produce machine-readable CPN artifacts plus browser-based visualization.
 
-## Reference(s): <br>
-- [CPN Modeling Skill ClawHub Page](https://clawhub.ai/theosunny/cpn-modeling) <br>
-- [README](README.md) <br>
-- [CPN Modeling Guide](references/modeling-guide.md) <br>
-- [CPN JSON Schema Reference](references/json-schema.md) <br>
-- [CPN Tools XML Template Reference](references/cpn-xml-template.md) <br>
-- [HTML Visualization Template Reference](references/html-viz-template.md) <br>
-- [Restaurant Workflow Example](references/example-restaurant.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown responses with JSON model data, CPN Tools XML, shell commands, and generated local HTML visualization files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a local /tmp HTML visualization file containing browser JavaScript when visualization output is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Generated HTML visualizations may execute injected script if untrusted process descriptions are embedded without safe serialization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated HTML before opening it for untrusted inputs, and ensure the CPN data is safely serialized so closing script tags and executable markup cannot be injected.
+
+## Reference(s):
+
+- [CPN Modeling Skill Page](https://clawhub.ai/theosunny/skills/cpn-modeling)
+- [CPN JSON Schema Reference](artifact/references/json-schema.md)
+- [CPN Modeling Guide](artifact/references/modeling-guide.md)
+- [CPN XML Template Reference](artifact/references/cpn-xml-template.md)
+- [HTML Visualization Template Reference](artifact/references/html-viz-template.md)
+- [Restaurant Modeling Example](artifact/references/example-restaurant.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, code, shell commands, guidance]
+
+**Output Format:** [Markdown containing JSON, CPN Tools XML, generated HTML file guidance, and shell commands for opening the visualization]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated HTML visualization is written to /tmp/<project_id>.html rather than printed into the conversation.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

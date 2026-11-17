@@ -1,40 +1,54 @@
-## Description: <br>
-Agency Role Match is a Chinese-language workflow that matches a user-described task to 2-3 suitable AI roles, waits for confirmation, and then loads the selected role's SOUL.md before producing work in that role. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Matches a user-described task to two or three suitable local agency roles, asks the user to choose, then loads the selected role profile before producing the task output.
 
-## Publisher: <br>
-[wzdongyifan-bit](https://clawhub.ai/user/wzdongyifan-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wzdongyifan-bit](https://clawhub.ai/user/wzdongyifan-bit)
 
-## Use Case: <br>
-External users and operators use this skill to choose an appropriate local agency role for a task before asking the agent to complete the work in that role's style and expertise. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may activate on common role or workflow requests when that is not the user's intent. <br>
-Mitigation: Ask the agent to stop the workflow or use a preferred language if the role-selection flow is not wanted. <br>
-Risk: Role-specific output depends on local SOUL.md role definitions loaded after user selection. <br>
-Mitigation: Review the local agency role definitions before deployment and before relying on outputs in sensitive workflows. <br>
+## Use Case:
 
+External users and agent operators use this skill to choose an appropriate specialist role for a requested task before the agent begins work. It is especially oriented toward marketing, ecommerce, advertising, content, growth, and product tasks backed by local role profiles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wzdongyifan-bit/agency-role-match) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured text role recommendations and task outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations include 2-3 roles with reasons and require user confirmation before role-specific output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Selected local SOUL.md role files can change the agent's behavior if they are unsafe, modified, or from an untrusted source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review local role files before use and only keep role definitions that are trusted, scoped to style and expertise, and appropriate for the task.
+
+Risk: The workflow depends on local role profiles under ~/.openclaw/agency-agents/, so missing or stale profiles can lead to poor or unavailable recommendations.
+
+Mitigation: Confirm the local role directory exists and contains current role profiles before relying on the skill for role matching.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wzdongyifan-bit/skills/agency-role-match)
+- [Publisher profile](https://clawhub.ai/user/wzdongyifan-bit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text with role recommendations, reasons, selection options, and selected-role task output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local role profiles under ~/.openclaw/agency-agents/ to complete the selected-role workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

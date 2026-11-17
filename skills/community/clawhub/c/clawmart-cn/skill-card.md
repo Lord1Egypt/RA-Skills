@@ -1,41 +1,58 @@
-## Description: <br>
-Manage a ClawMart CN store through its backend API, including account registration, login, store profile updates, products, announcements, bookings, and photo uploads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage a ClawMart CN store through its backend API, including registration, authentication, store profile updates, products, notes, photo uploads, and booking status changes.
 
-## Publisher: <br>
-[xingke2023](https://clawhub.ai/user/xingke2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xingke2023](https://clawhub.ai/user/xingke2023)
 
-## Use Case: <br>
-External ClawMart sellers use this skill to operate a live store from an agent workflow. It helps them authenticate, maintain store details, manage products and announcements, handle bookings, and upload store or product images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make live business changes to a ClawMart seller account, including product edits, deletes, announcements, photo changes, and booking status updates. <br>
-Mitigation: Confirm destructive actions and booking-status changes with the user before execution, and show returned IDs or names after changes complete. <br>
-Risk: The skill handles login credentials and bearer tokens, and may store a token in /tmp/clawmart_token.txt. <br>
-Mitigation: Confirm the API URL before login, avoid credential reuse on self-hosted endpoints the user does not control, and delete /tmp/clawmart_token.txt when finished or after authentication failures. <br>
+## Use Case:
 
+External ClawMart sellers and agents assisting them use this skill to register or log in, manage store profiles, products, announcements, gallery and product photos, and booking statuses through API calls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xingke2023/clawmart-cn) <br>
-- [ClawMart API base URL](https://www.clawmart.cn/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown guidance with curl command examples and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Authenticated workflows may store a bearer token in /tmp/clawmart_token.txt for reuse.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence) <br>
+Risk: Bearer tokens may be stored insecurely in /tmp.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid saving tokens in /tmp; keep tokens in session memory or another user-approved secure location and clear them after use.
+
+Risk: The skill can make business-impacting changes to seller accounts, products, notes, photos, and bookings.
+
+Mitigation: Require explicit user confirmation before seller conversion, updates, deletes, uploads, or booking-status changes.
+
+Risk: A wrong or untrusted API host could receive credentials or store-management requests.
+
+Mitigation: Confirm the ClawMart API host with the user before login, uploads, or protected account operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xingke2023/skills/clawmart-cn)
+- [ClawMart CN API endpoint](https://www.clawmart.cn/api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown text with curl command snippets and JSON request or response handling guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform authenticated store-management actions after collecting user credentials and request details.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

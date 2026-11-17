@@ -1,41 +1,57 @@
-## Description: <br>
-Manages and standardizes product requirement documents by organizing project folders, reading the latest relevant files, and keeping project overview documents updated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages project requirement documents by organizing them in a standard ProductManagement folder, reading current project context, and guiding updates to project overview files.
 
-## Publisher: <br>
-[jinqianfei](https://clawhub.ai/user/jinqianfei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinqianfei](https://clawhub.ai/user/jinqianfei)
 
-## Use Case: <br>
-Product managers, analysts, and project teams use this skill to keep requirement, design, development, testing, and release documents in a consistent ProductManagement folder structure. It helps agents find the current project context and latest versioned documents before performing review, analysis, design, development, testing, or project-management tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create, move, or update local project documentation files in user-selected folders. <br>
-Mitigation: Ask the agent to preview exact paths and proposed file changes before applying them, especially in important project or document folders. <br>
-Risk: The skill depends on versioned filenames and folder conventions to choose the latest project documents. <br>
-Mitigation: Confirm that document names, SemVer values, and ProductManagement directory structure follow the documented conventions before relying on automated document selection. <br>
+## Use Case:
 
+Product managers, developers, and project teams use this skill to keep product requirement, design, development, testing, and release documents organized. It also guides agents to read the latest relevant project files before analysis, design, development, testing, or project-management work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jinqianfei/project-doc-management) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jinqianfei) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with file paths, directory structures, configuration snippets, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, move, read, or update local project documentation files when the user authorizes those actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: A broad ProductManagement path could give an agent access to more project documents than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set PM_PATH narrowly to the intended ProductManagement folder and confirm the resolved path before use.
+
+Risk: Directory creation, file moves, or project overview updates could alter project documentation.
+
+Mitigation: Review proposed document changes and explicitly approve file moves, new directories, and project overview edits before execution.
+
+Risk: Defaulting to the latest version can skip historical documents that are relevant to a task.
+
+Mitigation: Specify exact historical versions when older project context is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jinqianfei/skills/project-doc-management)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Directs agents to use a configured PM_PATH or project-doc configuration file, select the latest document versions by default, and propose document organization changes.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

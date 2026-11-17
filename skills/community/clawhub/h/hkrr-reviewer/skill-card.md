@@ -1,38 +1,53 @@
-## Description: <br>
-使用HKRR四要素（快乐、知识、共鸣、节奏）系统审核文章质量并提供评分与具体改进建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用HKRR四要素（快乐、知识、共鸣、节奏）系统审核文章质量并提供评分与具体改进建议。
 
-## Publisher: <br>
-[MyCatNameSnow](https://clawhub.ai/user/MyCatNameSnow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mycatnamesnow](https://clawhub.ai/user/mycatnamesnow)
 
-## Use Case: <br>
-Content creators, editors, and agent users can use this skill to review articles and social posts against the HKRR framework, score each dimension, and produce concrete improvement suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may steer feedback toward the HKRR rubric and optional account-persona context. <br>
-Mitigation: Review outputs for audience fit and editorial independence before applying recommendations. <br>
+## Use Case:
 
+Content reviewers, writers, and social-media editors use this skill to assess Chinese article drafts with the HKRR framework and receive scores, strengths, weaknesses, and concrete improvement suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MyCatNameSnow/hkrr-reviewer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown review with a scoring table and recommendation sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses HKRR dimensions and 1-5 star ratings; no file or system-access output is indicated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-10.0.0 (source: server-resolved release metadata) <br>
+Risk: General article-review requests may be steered toward this HKRR framework and Chinese-language output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill when HKRR-style feedback is desired; otherwise clarify the requested review framework and output language.
+
+Risk: The star ratings are editorial judgments rather than objective quality measurements.
+
+Mitigation: Treat scores as review guidance and pair them with the specific strengths, weaknesses, and revision suggestions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mycatnamesnow/skills/hkrr-reviewer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown review with an HKRR score table, strengths, improvement areas, and numbered suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language HKRR review format with 1-5 star ratings for Happiness, Knowledge, Resonance, and Rhythm.]
+
+## Skill Version(s):
+
+10.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

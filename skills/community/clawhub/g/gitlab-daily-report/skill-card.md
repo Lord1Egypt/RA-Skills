@@ -1,43 +1,57 @@
-## Description: <br>
-Collects daily GitLab commits, merge requests, issues, and pipeline data, summarizes project activity, and can prepare confirmed Feishu report content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pulls recent activity from configured GitLab repositories, summarizes commits, merge requests, issues, and pipelines, and can prepare or send Feishu daily reports.
 
-## Publisher: <br>
-[chengxiansheng1](https://clawhub.ai/user/chengxiansheng1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chengxiansheng1](https://clawhub.ai/user/chengxiansheng1)
 
-## Use Case: <br>
-Developers, engineering leads, and project managers use this skill to gather daily GitLab activity across configured repositories, review structured summaries, and publish confirmed updates to Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles private GitLab repository activity and credentials. <br>
-Mitigation: Store config.json securely and use a least-privilege read-only GitLab token. <br>
-Risk: TLS verification is disabled in the GitLab and Feishu HTTP client behavior. <br>
-Mitigation: Fix or avoid disabled TLS verification before use, especially outside a trusted internal environment. <br>
-Risk: Running without preview mode can post reports to configured Feishu webhooks. <br>
-Mitigation: Use --preview unless posting is intentional, confirm webhook recipients, and enable cron, webhook, or CI automation only after explicit approval. <br>
+## Use Case:
 
+Developers, engineering leads, and project managers use this skill to gather daily GitLab activity for configured repositories and turn it into concise team progress reports, including blocker and pipeline status.
 
-## Reference(s): <br>
-- [GitLab Daily Report reference README](references/README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/chengxiansheng1/gitlab-daily-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style reports, JSON data summaries, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports concise, detailed, and executive report styles; preview mode avoids Feishu posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release evidence) <br>
+Risk: Private GitLab activity and webhook configuration can be exposed through local configuration, report output, or Feishu delivery.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped read-only GitLab token, keep config.json out of version control, and verify every Feishu webhook destination before sending.
+
+Risk: The bundled HTTP client disables TLS certificate verification for GitLab and Feishu requests.
+
+Mitigation: Avoid untrusted networks and restore TLS certificate verification before production use.
+
+Risk: Reports can be sent to configured Feishu webhooks when the script is run without --preview, even though the skill text describes a confirmation-first workflow.
+
+Mitigation: Run preview or raw output first, review the data, and require explicit human confirmation before invoking any non-preview send path.
+
+## Reference(s):
+
+- [GitLab 智能项目洞察助手 README](artifact/references/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-like report text, Feishu post JSON, and raw JSON data when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports concise, detailed, and executive report styles; preview mode avoids webhook sending.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

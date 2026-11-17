@@ -1,42 +1,57 @@
-## Description: <br>
-Monitors and fetches Hacker News stories through the official API, including top, new, best, Ask, Show, Jobs, user profiles, and keyword searches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors and fetches Hacker News stories through the official API, including top, new, best, Ask, Show, Jobs, item, user, and keyword search views.
 
-## Publisher: <br>
-[runawaydevil](https://clawhub.ai/user/runawaydevil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[runawaydevil](https://clawhub.ai/user/runawaydevil)
 
-## Use Case: <br>
-Developers and agent users use this skill to retrieve public Hacker News stories, item details, user profiles, and keyword search results from the Hacker News API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill makes public network requests to Hacker News when invoked. <br>
-Mitigation: Install it only when public Hacker News API access is acceptable for the agent environment. <br>
-Risk: Broad trigger phrases such as "latest" or "jobs" can activate the skill unexpectedly. <br>
-Mitigation: Narrow trigger phrases in the agent setup so generic user requests do not unintentionally route to this skill. <br>
-Risk: Dependency drift could change runtime behavior. <br>
-Mitigation: Install from the included package-lock.json when possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Hacker News Firebase API](https://hacker-news.firebaseio.com/v0/) <br>
-- [HN Reader ClawHub Release](https://clawhub.ai/runawaydevil/hn-reader) <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve and summarize current Hacker News stories, user profiles, and search results from the public Hacker News API.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style text with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public Hacker News API data and formats story, user, item, and search results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Dependency drift or vulnerable transitive packages could affect the CLI runtime.
+
+Mitigation: Update and pin dependencies before deployment, then rescan the release artifact.
+
+Risk: Text returned by Hacker News can contain untrusted user-generated content that is printed in a terminal.
+
+Mitigation: Sanitize story and profile text before display, especially when rendering HTML-derived fields.
+
+Risk: Broad activation phrases could trigger this public-network helper outside an HN-specific workflow.
+
+Mitigation: Use narrow Hacker News-specific activation phrases for agent routing.
+
+## Reference(s):
+
+- [HN Reader on ClawHub](https://clawhub.ai/runawaydevil/skills/hn-reader)
+- [Hacker News Firebase API](https://hacker-news.firebaseio.com/v0/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text CLI output and Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only public-network requests to the Hacker News API; no authentication required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

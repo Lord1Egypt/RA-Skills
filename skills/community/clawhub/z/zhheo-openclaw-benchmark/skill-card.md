@@ -1,43 +1,59 @@
-## Description: <br>
-Measures OpenClaw model performance by scoring token throughput, first-token latency, tool call speed, context efficiency, and error recovery ability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Measures OpenClaw model performance by scoring token throughput, first-token latency, tool call speed, context efficiency, and error recovery ability.
 
-## Publisher: <br>
-[zhheo](https://clawhub.ai/user/zhheo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhheo](https://clawhub.ai/user/zhheo)
 
-## Use Case: <br>
-Developers and engineers use this skill to run local OpenClaw benchmark tasks, compute a composite performance score, and generate reports comparing model speed, tool latency, context efficiency, and recovery behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The benchmark runs local shell commands and writes metrics or reports to /tmp and ~/Downloads/OpenClaw-Benchmark. <br>
-Mitigation: Review the benchmark commands before running and delete /tmp/bench_metrics.json or ~/Downloads/OpenClaw-Benchmark when local benchmark history should not be retained. <br>
-Risk: Generated reports can reflect values from metrics JSON. <br>
-Mitigation: Open only reports generated from trusted metrics JSON. <br>
-Risk: Some benchmark steps make outbound web requests. <br>
-Mitigation: Run those steps only in an environment where simple outbound benchmark requests are acceptable. <br>
+## Use Case:
 
+Developers and engineers use this skill to benchmark OpenClaw agent and model performance across generation throughput, latency, tool-call speed, context efficiency, file I/O, and error recovery. It guides benchmark runs and can generate local HTML reports and baseline comparisons from metrics JSON.
 
-## Reference(s): <br>
-- [OpenClaw Benchmark ClawHub page](https://clawhub.ai/zhheo/zhheo-openclaw-benchmark) <br>
-- [zhheo publisher profile](https://clawhub.ai/user/zhheo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Shell commands, Configuration instructions, Files] <br>
-**Output Format:** [Markdown instructions with shell commands, JSON metrics, and HTML benchmark reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local report files under ~/Downloads/OpenClaw-Benchmark/results and optional baseline JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Untrusted metrics values may be rendered as HTML in generated reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Generate reports only from trusted metrics JSON, and review or escape report inputs before sharing generated HTML.
+
+Risk: The benchmark protocol runs fixed shell commands and network tests and saves files locally.
+
+Mitigation: Review the commands and network checks before execution, and run the benchmark only where local writes to temporary and report directories are acceptable.
+
+Risk: Metrics, baselines, and reports can include model, provider, and system metadata.
+
+Mitigation: Remove sensitive model, provider, or system details before sharing baseline files or generated reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhheo/skills/zhheo-openclaw-benchmark)
+- [Publisher profile](https://clawhub.ai/user/zhheo)
+- [Developer site](https://zhheo.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown instructions with bash and JSON code blocks; generated HTML benchmark reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are saved locally under the OpenClaw Benchmark results directory, with optional baseline JSON comparisons.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

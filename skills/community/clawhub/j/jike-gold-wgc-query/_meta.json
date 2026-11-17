@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72cqttfa4en7epyybjca4m2x85ppvj",
+  "owner": "jikeapi",
   "slug": "jike-gold-wgc-query",
-  "version": "1.0.1",
-  "publishedAt": 1777532665256
+  "version": "1.0.0",
+  "title": "国际实时金价 - 即刻数据",
+  "description": "查询世界黄金协会最新金价和历史金价，支持按日期、重量单位和币种筛选。",
+  "env": "JIKE_GOLD_WGC_QUERY_KEY",
+  "api_url": "https://api.jikeapi.cn/v1/gold/wgc/latest",
+  "homepage": "https://www.jikeapi.cn/"
 }

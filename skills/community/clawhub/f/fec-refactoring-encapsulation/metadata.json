@@ -1,0 +1,61 @@
+{
+  "id": "fec-refactoring-encapsulation",
+  "name": "Encapsulation Refactorings",
+  "category": "review-quality",
+  "tags": [
+    "refactoring",
+    "encapsulation",
+    "delegation",
+    "value-object"
+  ],
+  "summary": "Record, collection, value, responsibility, delegation, and algorithm encapsulation refactorings.",
+  "version": "2.9.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "review-quality",
+    "refactoring",
+    "encapsulation",
+    "delegation",
+    "value-object"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when behavior-preserving frontend refactoring focuses on record, collection, value, responsibility, delegation, or algorithm boundaries, and the selected technique needs family-specific mechanics, risks, and JavaScript/TypeScript/React/Vue adaptation.",
+  "source": "skills/fec-refactoring-encapsulation",
+  "references": [
+    "references/encapsulation-refactorings.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-refactoring",
+      "fec-code-smells",
+      "fec-refactoring-catalog",
+      "fec-refactoring-validation",
+      "fec-state-management"
+    ],
+    "boundaryWorkflows": [
+      "Use dead-code cleanup for proven unused code, exports, styles, routes, fixtures, or dependencies.",
+      "Use TDD when adding new observable behavior or fixing a behavior-changing defect.",
+      "Use debugging first when the failure cause is unknown.",
+      "Use validation repair for understood lint, typecheck, test, or build failures that predate the refactoring step.",
+      "Use code review for merge-readiness review rather than structure-changing execution.",
+      "Use migration or architecture planning for dependency, framework, router, state-library, or platform replacements."
+    ],
+    "capabilityTags": [
+      "refactoring",
+      "encapsulation",
+      "delegation",
+      "value-object"
+    ]
+  }
+}

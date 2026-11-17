@@ -1,43 +1,57 @@
-## Description: <br>
-Deploy the SigmaFlow SvelteKit trading frontend to the Git repository by cloning or updating the repo, installing dependencies, building the app, and pushing changes to the GitLab instance at git.homelab:3000. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys the SigmaFlow SvelteKit trading frontend by cloning or updating the Git repository, installing dependencies, building the app, and pushing changes to the configured branch.
 
-## Publisher: <br>
-[sirenday](https://clawhub.ai/user/sirenday) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sirenday](https://clawhub.ai/user/sirenday)
 
-## Use Case: <br>
-Developers and engineers use this skill to build and deploy the SigmaFlow SvelteKit frontend after feature work, bug fixes, or other code changes. It automates repository setup, dependency installation, production build, commit creation, and branch push. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The deployment helper embeds a reusable Git token. <br>
-Mitigation: Rotate the exposed token, remove credentials from the skill, and use user-provided secrets through HTTPS, SSH, or a secret manager. <br>
-Risk: The deployment flow can stage, commit, and push local changes automatically. <br>
-Mitigation: Inspect the diff before staging and push through reviewed branches with branch protections instead of pushing directly to main. <br>
-Risk: The script targets a specific SigmaFlow repository and GitLab instance. <br>
-Mitigation: Run it only when you control that repository and have confirmed the target remote and branch. <br>
+## Use Case:
 
+Developers and engineers use this skill to build and deploy the SigmaFlow SvelteKit frontend after feature work, bug fixes, or other code changes. It is intended for environments where the operator controls the target GitLab instance and deployment repository.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sirenday/sigmaflow-deploy) <br>
-- [SigmaFlow Svelte Repository](http://git.homelab:3000/vitali/SigmaFlow-Svelte) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Terminal status text with shell command effects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create commits and push changes to the configured Git branch.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The deployment workflow embeds a repository token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revoke or rotate the embedded token before use and replace it with a secure runtime secret.
+
+Risk: The configured Git remote uses plaintext HTTP.
+
+Mitigation: Use HTTPS or SSH for repository access before installing or running the skill.
+
+Risk: The deployment workflow can automatically stage, commit, and push all local changes.
+
+Mitigation: Require explicit confirmation before committing or pushing, and stage only a reviewed allowlist or a clean deployment checkout.
+
+## Reference(s):
+
+- [ClawHub skill page: Sigmaflow Deploy](https://clawhub.ai/sirenday/skills/sigmaflow-deploy)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and terminal status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs a deployment shell script with optional repository directory and branch parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

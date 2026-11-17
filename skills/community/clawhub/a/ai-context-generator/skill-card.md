@@ -1,43 +1,60 @@
-## Description: <br>
-Generates a .ai-context knowledge base that helps coding agents understand a project's purpose, architecture, design decisions, and active issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a .ai-context knowledge base for coding agents when setting up or refreshing project knowledge, creating tiered documentation optimized for agent comprehension and token efficiency.
 
-## Publisher: <br>
-[sopaco](https://clawhub.ai/user/sopaco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sopaco](https://clawhub.ai/user/sopaco)
 
-## Use Case: <br>
-Developers and coding-agent users use this skill to generate a .ai-context folder that captures stable project purpose, architecture, design decisions, active issues, and maintenance guidance for future agent sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated project knowledge can be incomplete, stale, or misleading if the agent misses important project context. <br>
-Mitigation: Review the generated .ai-context files against the current codebase before relying on them for future agent sessions. <br>
-Risk: The Bun helper writes persistent documentation files under .ai-context and may affect existing project context files. <br>
-Mitigation: Run it from the intended project root, inspect any existing .ai-context contents first, and use git status or a working branch before generation. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to create or regenerate concise project knowledge for coding agents. It helps agents understand project purpose, architecture, design decisions, and active issues without repeatedly scanning the full repository.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sopaco/ai-context-generator) <br>
-- [Writing Guide for AI Context Knowledge Base](references/WRITING-GUIDE.md) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
-- [Architecture Decision Records](https://adr.github.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown files with optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates persistent .ai-context documentation that should be reviewed against the current project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated project context can become persistent agent-readable guidance that carries stale or untrusted repository text into future sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated Markdown before relying on it, especially for untrusted or externally contributed repositories.
+
+Risk: Running the helper script can create or overwrite files under an existing .ai-context directory.
+
+Mitigation: Back up or diff any existing .ai-context directory before generation or regeneration.
+
+Risk: Generated knowledge is a starting point and may contain placeholders or incomplete architecture and decision details.
+
+Mitigation: Fill in placeholders, verify claims against the actual codebase, and update the files when project structure or constraints change.
+
+## Reference(s):
+
+- [Writing Guide for AI Context Knowledge Base](references/WRITING-GUIDE.md)
+- [Agent Skills Specification](https://agentskills.io/specification)
+- [Architecture Decision Records](https://adr.github.io/)
+- [Project README Template](https://github.com/LinusBorg/project-readme-template)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown files and optional TypeScript/Bun shell workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a persistent .ai-context directory with SKILL.md, DYNAMICS.md, reference Markdown files, and maintenance guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Convert first-time store visitors with behavior-based personalization from browse path to preference segment, matched first-order incentive, and popup timing including exit intent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts first-time ecommerce visitor behavior into preference segments, matched first-order offers, and popup timing with exit intent as the primary trigger.
 
-## Publisher: <br>
-[rijoyai](https://clawhub.ai/user/rijoyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-Marketing and ecommerce operators use this skill to turn first-session browsing behavior into targeted first-order offers, popup timing, and modal copy for anonymous or new visitors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Behavior-based first-visit offers can create privacy, consent, or user-experience concerns if deployed without local compliance review. <br>
-Mitigation: Confirm cookie and consent requirements, popup UX rules, email-capture permissions, promotion stacking, and discount limits before applying recommendations to a live store. <br>
-Risk: Generated offer recommendations may conflict with margin, promotion, or new-customer eligibility rules. <br>
-Mitigation: Review proposed discounts, minimum orders, exclusions, and stack rules against the store's commercial guardrails before launch. <br>
+## Use Case:
 
+External ecommerce marketers and conversion teams use this skill to turn first-session browse paths into personalized first-order incentives, trigger timing, and modal copy. It is intended for cold-start visitor conversion, not returning-customer win-back.
 
-## Reference(s): <br>
-- [Cold-start path to offer trigger playbook](references/cold_start_playbook.md) <br>
-- [ClawHub skill page](https://clawhub.ai/rijoyai/new-visitor-cold-start) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tables and short campaign copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes path-to-segment mapping, segment-to-offer recommendations, trigger timing, and modal headline, subline, and CTA copy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Behavioral targeting and exit-intent popup tactics can raise privacy, consent, platform, UX, or consumer-protection concerns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review applicable consent, privacy, platform, and consumer-protection requirements before use; provide clear dismissal and prefer less intrusive timing where possible.
+
+Risk: Mobile back-button or navigation-intercept tactics can create a poor or noncompliant visitor experience.
+
+Mitigation: Use careful UX and legal review for mobile triggers, and favor scroll, time-on-site, or other lower-friction alternatives when appropriate.
+
+Risk: Segment-specific first-order discounts may conflict with margin limits or existing promotion stacking rules.
+
+Mitigation: Confirm margin-safe discount bands, exclusions, minimum order rules, and promotion stacking constraints before launching offers.
+
+## Reference(s):
+
+- [Cold-start path to offer to trigger playbook](artifact/references/cold_start_playbook.md)
+- [ClawHub skill page](https://clawhub.ai/rijoyai/skills/new-visitor-cold-start)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown tables with concise campaign guidance and modal copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces path-to-segment, segment-to-offer, trigger specification, and first-visit popup copy.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

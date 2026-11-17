@@ -1,44 +1,59 @@
-## Description: <br>
-Analyzes user-provided trade records and produces Markdown reports with win rate, profit/loss ratio, strategy consistency, risk indicators, and improvement suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade Analyzer reviews trading records from CSV or cleaned text, computes performance and consistency metrics, and produces a Markdown trading recap report.
 
-## Publisher: <br>
-[misso0513](https://clawhub.ai/user/misso0513) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[misso0513](https://clawhub.ai/user/misso0513)
 
-## Use Case: <br>
-External users, developers, and analysts can use this skill to parse CSV or text trade-history data and generate a structured review of trading performance, behavior patterns, and possible improvements. It is intended for local analysis of user-provided records rather than investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trade-history files may contain account, personal, or sensitive financial details. <br>
-Mitigation: Install only if comfortable providing trade-history data for local analysis, redact unnecessary identifiers, and prefer CSV or text inputs. <br>
-Risk: Parsed columns or generated statistics can be wrong when the source file uses unexpected headers or formatting. <br>
-Mitigation: Review parsed columns and computed results before relying on the report. <br>
-Risk: Excel processing is described as dependent on a separate helper rather than implemented directly in the bundled analyzer. <br>
-Mitigation: Review any separate Excel-processing helper before using .xlsx files. <br>
+## Use Case:
 
+External ClawHub users and developers use this skill to review stock trading logs, summarize basic performance statistics, and generate strategy recap guidance. Reports should be reviewed by a human and should not be treated as trusted financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/misso0513/trade-analyzer) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown report with tables, summary statistics, ASCII charts, and recommendations; Python helper code is included in the artifact.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are based on parsed user-supplied trade records; CSV and text inputs are implemented locally, while Excel support depends on a separate helper.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The security evidence says the analyzer currently cannot run due to a syntax error.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Fix and test analyzer.py before relying on generated reports.
+
+Risk: The security evidence says Excel support is overstated.
+
+Mitigation: Treat CSV and text as the supported paths unless Excel handling is separately verified.
+
+Risk: Generated Markdown reports may be mistaken for trusted financial advice or rendered unsafely from untrusted records.
+
+Mitigation: Review reports before acting on them and sanitize any rendered content from user-supplied trade records.
+
+## Reference(s):
+
+- [Trade Analyzer ClawHub page](https://clawhub.ai/misso0513/skills/trade-analyzer)
+- [Publisher profile](https://clawhub.ai/user/misso0513)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown report with tables, text analysis, and code-facing helper outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local CSV or text trade records and emits summary metrics, strategy consistency observations, and improvement suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

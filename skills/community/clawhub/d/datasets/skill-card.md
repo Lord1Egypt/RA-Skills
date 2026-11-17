@@ -1,40 +1,53 @@
-## Description: <br>
-Datasets provides a local command-line logger for dataset-related activity such as ingest, transform, query, filter, and export notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse and load ready-to-use AI/ML datasets with fast manipulation.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and data practitioners can use this skill as a local CLI activity tracker for dataset-related notes, operations, and exports. It is not evidenced as a real dataset browser or loader beyond local logging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may expect a ready-to-use dataset browser or loader, but the evidenced behavior is a local dataset-activity note tracker. <br>
-Mitigation: Install only when local activity logging is desired, and validate behavior before using it in dataset workflows. <br>
-Risk: Command inputs may be stored under ~/.local/share/datasets and later exposed through search, recent, status, or export commands. <br>
-Mitigation: Do not enter credentials, tokens, proprietary queries, or sensitive dataset details; review and remove local logs when needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to record dataset-related operations, inspect recent local entries, search activity logs, and export accumulated records for lightweight workflow tracking.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ckchzh/datasets) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [Plain text CLI output with local JSON, CSV, or TXT export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local log and export files under ~/.local/share/datasets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: User-supplied dataset-related text is stored persistently in local plaintext logs and may later be searched or exported.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not enter secrets, access tokens, personal data, proprietary samples, or sensitive file paths unless local retention and export are acceptable.
+
+Risk: The release is described as a dataset browser/loader, while the artifact primarily records activity text rather than loading datasets.
+
+Mitigation: Review the artifact as a local activity logger and confirm that this behavior matches the intended use before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/datasets)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Markdown with inline shell commands and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create persistent local log and export files under ~/.local/share/datasets.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

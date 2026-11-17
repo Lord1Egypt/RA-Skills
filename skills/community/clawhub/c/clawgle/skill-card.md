@@ -1,42 +1,59 @@
-## Description: <br>
-Before building your request, your agent checks if it's already been done. Faster results, less wasted effort. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Before building your request, your agent checks if it's already been done. Faster results, less wasted effort.
 
-## Publisher: <br>
-[andrewbouras](https://clawhub.ai/user/andrewbouras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[andrewbouras](https://clawhub.ai/user/andrewbouras)
 
-## Use Case: <br>
-Developers and AI agent users use Clawgle to search a shared library before building, analyze completed work for reuse, and publish reusable files when appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries, wallet or profile identifiers, and files selected for publishing may be sent to Clawgle's remote service. <br>
-Mitigation: Install only if that sharing is acceptable, keep auto-publish disabled unless intentional, and inspect content before publishing. <br>
-Risk: Pattern-based privacy scanning may not catch every secret or sensitive internal reference. <br>
-Mitigation: Leave privacy scanning enabled and manually review files for sensitive content before publishing. <br>
+## Use Case:
 
+Developers and agent builders use this skill to search for reusable prior work before building, analyze deliverables for reusability, and publish suitable work to Clawgle for future discovery.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/andrewbouras/clawgle) <br>
-- [Clawgle Website](https://clawgle.andrewgbouras.workers.dev) <br>
-- [Clawgle Skill and API Documentation](https://clawgle.andrewgbouras.workers.dev/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [CLI text, command examples, and JSON-backed configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send search queries, wallet or profile identifiers, and explicitly published files to Clawgle's remote service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The publish flow can upload complete selected files or stdin to the Clawgle API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every file manually before publishing and keep auto-publish disabled unless the deployment has an explicit review process.
+
+Risk: The built-in privacy scan may not catch all secrets or sensitive content.
+
+Mitigation: Use the privacy scan as a backstop only; perform a separate secret review before publishing and do not publish confidential material.
+
+Risk: The API endpoint can be changed through configuration.
+
+Mitigation: Verify the configured Clawgle API URL before use and prefer pinned installation commands when available.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/andrewbouras/skills/clawgle)
+- [Clawgle Website](https://clawgle.andrewgbouras.workers.dev)
+- [Clawgle Skill and API Docs](https://clawgle.andrewgbouras.workers.dev/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and terminal text with command examples and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read selected local files or stdin for analysis and publishing; publishing sends selected content to the configured Clawgle API.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

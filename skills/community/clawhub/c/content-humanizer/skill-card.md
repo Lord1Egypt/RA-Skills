@@ -1,44 +1,59 @@
-## Description: <br>
-Content Humanizer helps agents audit AI-sounding marketing copy, rewrite it with more natural rhythm and specificity, and adapt it to a brand voice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms AI-generated content into genuinely human-sounding text when drafts feel robotic, use AI cliches, lack personality, or read generically, and is not intended for initial content creation or SEO optimization.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Marketing and content teams use this skill to turn robotic or generic drafts into more credible human-facing copy. It supports AI-pattern audits, full rewrites, voice injection, before-and-after comparisons, and heuristic humanity scoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The humanity score is a heuristic and should not be treated as definitive authorship detection. <br>
-Mitigation: Use the score as an editing signal only, and rely on human review before making authorship, quality, or publication decisions. <br>
-Risk: Brand voice context or pasted drafts may contain sensitive marketing details. <br>
-Mitigation: Provide only the context needed for the edit and review rewritten or annotated output before sharing it outside the intended audience. <br>
-Risk: Humanizing a draft can change factual claims, tone, or useful original passages. <br>
-Mitigation: Review the final copy against source material, preserve strong original sections when flagged, and provide evidence for specific claims rather than inventing proof. <br>
+## Use Case:
 
+Marketing and content teams use this skill to audit AI-sounding drafts, rewrite them with more natural rhythm and specificity, and apply a supplied brand voice. It is intended for improving existing content rather than creating first drafts or SEO optimization.
 
-## Reference(s): <br>
-- [Content Humanizer on ClawHub](https://clawhub.ai/paudyyin/content-humanizer) <br>
-- [AI Tells Checklist](references/ai-tells-checklist.md) <br>
-- [Voice Techniques Reference](references/voice-techniques.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with rewritten copy, annotated findings, comparisons, and optional local scoring output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for brand voice context or read marketing-context.md when present; the local scorer reports a 0-100 heuristic humanity score with signal breakdowns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, and SKILL.md metadata) <br>
+Risk: The skill may transform supplied drafts and optional brand-voice context, which can include sensitive unpublished marketing content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use appropriate input handling for confidential drafts and review the rewritten output before sharing or publishing.
+
+Risk: Humanizing content can change tone, emphasis, or factual specificity in ways that misrepresent the intended message.
+
+Mitigation: Compare the output against the original brief, supplied evidence, and brand voice before publication.
+
+Risk: The skill documentation includes a fallback to Chinese when language detection fails, which may produce the wrong language for some drafts.
+
+Mitigation: Specify the target language when the source content is short, mixed-language, or ambiguous.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/paudyyin/skills/content-humanizer)
+- [AI Tells Checklist](references/ai-tells-checklist.md)
+- [Voice Techniques Reference](references/voice-techniques.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with optional plaintext reports and JSON scorer output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce an AI-pattern audit, humanized rewrite, voice-injected draft, before/after comparison, or local humanity-score report.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter and package.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,72 @@
 {
-  "ownerId": "kn73r1pgs3nvvbhbn461rddhq182pc2g",
+  "name": "巧未来·波龙股神",
+  "name_en": "qiaofuture-boston-stock-king",
   "slug": "qiaofuture-boston-stock-king",
-  "version": "3.0.0",
-  "publishedAt": 1775274347115
+  "version": "2.0.0",
+  "title": "巧未来·波龙股神",
+  "title_en": "Qiaofuture Boston Stock King",
+  "description": "巧未来·波龙股神 - 游戏化AI选股系统。"有钱就有未来"，支持选股、香火随喜、电话安慰、奶茶关怀",
+  "author": "学来学去学习社",
+  "company": "上海巧未来AI",
+  "brand": "学来学去学习社",
+  "slogan": "有钱就有未来",
+  "triggers": [
+    "波龙菠萝蜜",
+    "波龙推荐",
+    "波龙选股",
+    "今日香火",
+    "波龙请客",
+    "波龙打电话",
+    "波龙安慰我",
+    "波龙安装电话",
+    "波龙安装语音"
+  ],
+  "category": "finance",
+  "tags": [
+    "股票",
+    "选股",
+    "量化",
+    "投资",
+    "AI",
+    "波龙",
+    "巧未来AI"
+  ],
+  "permissions": [],
+  "config": {
+    "TOP_N": 10,
+    "RECOMMEND_N": 3,
+    "MIN_SCORE": 25,
+    "INCENSE_LEVELS": [
+      "香客龙",
+      "知客龙",
+      "典座龙",
+      "维那龙",
+      "主持龙",
+      "方丈龙"
+    ]
+  },
+  "data_files": {
+    "user_profiles": "data/user_profiles.json",
+    "pick_history": "data/pick_history.json",
+    "gaming_data": "data/gaming_data.json",
+    "care_records": "data/care_records.json",
+    "skill_config": "data/skill_config.json"
+  },
+  "dependencies": {
+    "python": ["pandas", "numpy", "requests", "efinance"],
+    "optional": {
+      "ai-calls-china-phone": "让波龙可以打电话安慰用户",
+      "tts": "让波龙可以语音播报"
+    }
+  },
+  "changelog": {
+    "2.0.0": "游戏化版本 - 等级系统+香火+关怀+引导安装",
+    "1.0.0": "MVP版本 - 选股报告"
+  },
+  "brand": {
+    "name_cn": "巧未来·波龙股神",
+    "name_en": "Qiaofuture Boston Stock King",
+    "company": "上海巧未来AI",
+    "slogan": "有钱就有未来"
+  }
 }

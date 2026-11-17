@@ -1,45 +1,64 @@
-## Description: <br>
-Agentic project and task management plugin for OpenClaw. Persistent SQLite-backed task board with a queue runner that auto-dispatches ready tasks as subagents, REST API, native agent tools, and a web dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agentic project and task management plugin for OpenClaw. Persistent SQLite-backed task board with a queue runner that auto-dispatches ready tasks as subagents, REST API, native agent tools, and a web dashboard.
 
-## Publisher: <br>
-[derp42](https://clawhub.ai/user/derp42) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[derp42](https://clawhub.ai/user/derp42)
 
-## Use Case: <br>
-Developers and OpenClaw operators use OrchardOS to manage agent projects, persist tasks and run history, and dispatch ready work to subagents through tools, API routes, and a web dashboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes admin-level controls and can dispatch subagents automatically. <br>
-Mitigation: Review before installing in sensitive workspaces, use scoped or non-production gateway tokens, and treat debug and watchdog controls as administrator-only. <br>
-Risk: The standalone UI proxy forwards browser bearer-token authorization to the gateway and can expose access if bound too broadly. <br>
-Mitigation: Keep the UI bound to 127.0.0.1 and do not enable unsafe LAN binding unless intentional. <br>
-Risk: Context injection and external model configuration can move project data outside the local workspace. <br>
-Mitigation: Disable context injection or remove GEMINI_API_KEY when project data must remain local. <br>
+## Use Case:
 
+Developers and OpenClaw operators use OrchardOS to manage agent work as persistent projects and tasks, then dispatch ready tasks through an automated queue runner. The skill also provides agent tools, REST API routes, and a dashboard for monitoring task state, run history, and project progress.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/derp42/openclaw-orchard) <br>
-- [README](README.md) <br>
-- [Orchard local debugging](docs/local-debugging.md) <br>
-- [OrchardOS Dashboard UX/UI Design Brief](docs/ux-brief.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline commands, configuration examples, REST API descriptions, and generated OpenClaw task-management behavior] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces persistent SQLite-backed project, task, run, comment, and dashboard state inside OpenClaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.5-rc.5 (source: server release evidence and package.json) <br>
+Risk: Gateway tokens, task content, run output, and project knowledge may be sensitive persistent data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted OpenClaw environments and protect the SQLite database, logs, task records, run records, and knowledge records as sensitive data.
+
+Risk: Context injection can send project knowledge to an external embeddings provider.
+
+Mitigation: Keep contextInjection disabled unless external embeddings are explicitly required and approved for the project data being processed.
+
+Risk: The standalone dashboard and document-fetch behavior are flagged for XSS and SSRF concerns when used with privileged tokens or confidential projects.
+
+Mitigation: Keep the standalone UI bound to loopback, avoid unsafe bind settings, and remediate the dashboard XSS and document-fetch SSRF issues before privileged or confidential use.
+
+Risk: Automatic subagent dispatch can consume resources or continue work unexpectedly when a queue is misconfigured.
+
+Mitigation: Use log-only or dry-run debugging modes, circuit breaker controls, conservative concurrency limits, and queue pause controls when evaluating or recovering the plugin.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/derp42/skills/openclaw-orchard)
+- [README](README.md)
+- [Local Debugging Guide](docs/local-debugging.md)
+- [Dashboard UX Brief](docs/ux-brief.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, API route descriptions, and structured task/project data returned through tools or REST endpoints.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may persist in SQLite-backed project, task, run, comment, and knowledge records.]
+
+## Skill Version(s):
+
+0.2.5-rc.5 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

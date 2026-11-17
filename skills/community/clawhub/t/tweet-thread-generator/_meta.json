@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn754w8negkve53dntzhycyd0h82565k",
-  "slug": "tweet-thread-generator",
+  "schema_version": "1",
+  "name": "tweet-thread-generator",
   "version": "1.0.0",
-  "publishedAt": 1772440468158
+  "description": "将技术文章转换为 Twitter/X 推文线程",
+  "author": {"name": "Sunshine-del-ux"},
+  "keywords": ["twitter", "social-media", "content", "generator"],
+  "license": "MIT"
 }

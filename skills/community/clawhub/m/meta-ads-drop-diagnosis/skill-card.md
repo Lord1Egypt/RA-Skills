@@ -1,43 +1,57 @@
-## Description: <br>
-Diagnoses sudden performance drops in Meta Ads campaigns when CTR, ROAS, or conversions decline without an obvious cause. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Didoo AI diagnoses sudden performance drops in Meta Ads campaigns when CTR, ROAS, or conversions decline without an obvious explanation.
 
-## Publisher: <br>
-[elias-didoo](https://clawhub.ai/user/elias-didoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elias-didoo](https://clawhub.ai/user/elias-didoo)
 
-## Use Case: <br>
-Marketing operators, analysts, and agents use this skill to diagnose week-over-week Meta Ads performance drops, identify likely root causes from campaign metrics, and produce a concise recovery plan for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Meta access token and ad account identifier, giving the agent read-only visibility into campaign performance data for the specified account. <br>
-Mitigation: Use the narrow ads_read scope, avoid broader Meta permissions, and install only for ad accounts the user intends the agent to inspect. <br>
-Risk: Recovery-plan language may include pause, scale-down, refresh, or budget-shift recommendations that could affect ad spend if applied directly. <br>
-Mitigation: Treat recovery-plan output as guidance for review and confirm any changes in Meta Ads Manager before execution. <br>
-Risk: The skill hands off action recommendations to a separate Meta Ads recommendation workflow, which may be confused with diagnosis-only behavior. <br>
-Mitigation: Keep this skill's output focused on data-supported diagnosis and require a separate reviewed workflow before making campaign changes. <br>
+## Use Case:
 
+External advertisers, marketers, and advertising operators use this skill to diagnose sudden Meta Ads campaign performance drops by comparing recent metrics, identifying likely root causes, and organizing next-step guidance for manual review.
 
-## Reference(s): <br>
-- [Meta Ads Drop Diagnosis on ClawHub](https://clawhub.ai/elias-didoo/meta-ads-drop-diagnosis) <br>
-- [Didoo AI Blog](https://didoo.ai/blog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown diagnosis with a performance snapshot table, root-cause analysis, and recovery-plan sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires META_ACCESS_TOKEN and META_AD_ACCOUNT_ID with read-only ads_read access to the relevant Meta ad account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence) <br>
+Risk: The skill requires a Meta token with ads_read access and Meta ad account performance data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the required token scope and account data exposure before installation.
+
+Risk: Recovery guidance may be mistaken for an approved automated action plan.
+
+Mitigation: Review any recovery plan manually in Ads Manager before changing campaigns.
+
+Risk: The skill documentation is inconsistent about whether recovery recommendations belong in this diagnosis skill or a separate recommendation skill.
+
+Mitigation: Treat the output as diagnostic guidance and route detailed action planning to the appropriate recommendation workflow.
+
+## Reference(s):
+
+- [Didoo AI Blog](https://didoo.ai/blog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown diagnostic report with a performance snapshot table, root cause analysis, and recovery plan sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes session context keys primary_root_cause and recovery_plan.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

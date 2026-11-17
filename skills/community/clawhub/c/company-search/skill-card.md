@@ -1,44 +1,54 @@
-## Description: <br>
-Multi-source company research tool that generates structured due-diligence reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-source company research tool that generates structured due-diligence reports covering company background, ownership, legal risk, funding, intellectual property, procurement, hiring, news, competitors, and industry position.
 
-## Publisher: <br>
-[fan31415](https://clawhub.ai/user/fan31415) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fan31415](https://clawhub.ai/user/fan31415)
 
-## Use Case: <br>
-External users and developers use this skill to research companies, disambiguate likely legal entities, and produce structured public-source due-diligence reports covering ownership, financing, legal risk, operating risk, intellectual property, procurement, hiring, news, and competitors. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Company research may include private company data, confidential URLs, or internal endpoints. <br>
-Mitigation: Use direct fetch for sensitive work and do not route private data or internal URLs through proxy or archive strategies. <br>
-Risk: The fallback script can be invoked from shell-capable agent environments. <br>
-Mitigation: Pass user queries and URLs as command arguments rather than interpolating them into untrusted command strings. <br>
-Risk: Public web search does not provide the same coverage as paid company databases and may include stale or single-source information. <br>
-Mitigation: Require source URLs, fetch dates, confidence labels, and cross-validation for key conclusions; mark gaps as not found or requiring paid or internal channels. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fan31415/company-search) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/fan31415) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to research companies from public web sources and produce structured due-diligence reports comparable in scope to Tianyancha or Qichacha. It adapts to available search and fetch tools, with a Python fallback for environments without built-in web access.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown structured company research report; local fallback script returns JSON for search and fetch operations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are expected to cite sources, capture fetch dates, state confidence levels, and distinguish cross-validated findings from single-source leads.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.4 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The shell-backed local fallback can fetch arbitrary URLs and may reach private networks, internal URLs, or sensitive research targets if installed in a privileged environment.
+
+Mitigation: Review before installation, prefer built-in scoped search and fetch tools, and avoid granting shell access unless the local fallback is necessary.
+
+Risk: The jina and archive fetch strategies may route target URLs and page content through third-party services.
+
+Mitigation: Use direct-only mode for public URLs and do not use jina or archive routing for confidential, internal, or sensitive targets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fan31415/skills/company-search)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown structured report with tables, source links, confidence labels, and optional JSON output from the local search/fetch helper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports should identify the selected company entity, cite public sources, include retrieval date and confidence, and clearly flag fields that were unavailable or only snippet-verified.]
+
+## Skill Version(s):
+
+2.0.4 (source: evidence.release.version; artifact/package.json lists 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

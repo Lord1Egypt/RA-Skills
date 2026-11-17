@@ -1,39 +1,53 @@
-## Description: <br>
-Automatically generate test documentation for existing skills that have scripts but lack testing guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically generate test documentation for existing skills that have scripts but lack testing guidance.
 
-## Publisher: <br>
-[834948655](https://clawhub.ai/user/834948655) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[834948655](https://clawhub.ai/user/834948655)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to inspect scripts in an existing skill and draft testing documentation, including test case tables, expected outcomes, and executable command examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated testing documentation may contain incorrect or incomplete expected behavior for a target skill. <br>
-Mitigation: Review generated TESTING.md content or SKILL.md patches before applying or publishing them. <br>
-Risk: Generated test commands may exercise untrusted or unsafe target scripts. <br>
-Mitigation: Inspect target scripts before running generated commands, especially when the target skill comes from an untrusted source. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to create testing documentation for skills that include scripts but lack a TESTING.md file or testing section. It analyzes script behavior and produces test case coverage for normal, edge, and error scenarios.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with test case tables and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce a standalone TESTING.md draft or a testing section for SKILL.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated testing documentation can be incomplete or misleading because the helper emits templates rather than fully verified tests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated TESTING.md content or SKILL.md testing sections before committing or publishing them.
+
+Risk: The skill may read scripts in the target skill and create or edit testing documentation files.
+
+Mitigation: Inspect the target skill scripts and review any file changes before accepting them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/834948655/skills/skill-test-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown documentation with test case tables and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create TESTING.md or add a Testing section to SKILL.md; generated documentation should be reviewed before committing.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

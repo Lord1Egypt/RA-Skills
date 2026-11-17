@@ -1,42 +1,55 @@
-## Description: <br>
-Operate Supabase through the OOMOL oo CLI connector for reading, creating, updating, and deleting Supabase resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Supabase through a connected account to read, create, update, or delete Supabase data and manage related projects and resources.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect and manage Supabase projects, organizations, storage buckets, Edge Functions, API keys, secrets, health, SQL queries, and TypeScript database types through a connected OOMOL account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires connecting a Supabase account to OOMOL and allowing an agent to operate that account through the oo CLI. <br>
-Mitigation: Install only when that account connection and delegated operation model are acceptable for the workspace. <br>
-Risk: Write and destructive actions can change Supabase resources, API keys, or secrets. <br>
-Mitigation: Review the exact payload and intended effect, and require explicit approval before API key, secret, project, delete, or update actions. <br>
+## Use Case:
 
+Developers use this skill to inspect Supabase organizations and projects, query data, manage storage and secrets, and perform approved project changes through a connected account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-supabase) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Supabase homepage](https://supabase.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector command responses may include JSON data and execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and skill frontmatter) <br>
+Risk: The setup fallback directs the agent to execute downloaded software without a separate approval or integrity check.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, preferably using a pinned and verified release.
+
+Risk: Connected Supabase access can expose or change project data and resources.
+
+Mitigation: Connect only the projects and permissions needed, and retain the required confirmations for writes and deletions.
+
+## Reference(s):
+
+- [Supabase API Documentation](https://supabase.com/docs/reference/api/introduction)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [oo CLI Installation Guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Shell commands with JSON payloads and structured results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action schemas vary by operation; write and destructive actions require confirmation.]
+
+## Skill Version(s):
+
+1.0.8 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

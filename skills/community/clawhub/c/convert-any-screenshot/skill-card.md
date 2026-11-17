@@ -1,44 +1,54 @@
-## Description: <br>
-Converts UI screenshot descriptions into clean React or HTML/CSS implementation prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a React or HTML/CSS implementation prompt from UI screenshot input.
 
-## Publisher: <br>
-[wangjipeng977](https://clawhub.ai/user/wangjipeng977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjipeng977](https://clawhub.ai/user/wangjipeng977)
 
-## Use Case: <br>
-Developers and designers use this skill to turn UI screenshot descriptions into implementation prompts for React or HTML/CSS. The artifact also contains generic conversion instructions, so users should review outputs for alignment with the screenshot-to-UI purpose. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The advertised screenshot-to-UI purpose conflicts with broader generic conversion instructions in the artifact. <br>
-Mitigation: Review generated output for alignment with the screenshot-to-UI task before using it in an implementation workflow. <br>
-Risk: The release claims sensitive credential needs and README configuration mentions API_KEY, but the artifact does not clearly justify credential use. <br>
-Mitigation: Do not provide credentials unless the publisher documents the exact requirement and the execution environment needs it. <br>
-Risk: README usage includes an unclear write mode. <br>
-Mitigation: Treat write-mode behavior as undocumented and review any file-changing commands before execution. <br>
+## Use Case:
 
+Developers and design engineers can use this skill to turn UI screenshot descriptions into implementation prompts for React or HTML/CSS. Review the documented scope mismatch before relying on it for production work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangjipeng977/convert-any-screenshot) <br>
-- [Publisher profile](https://clawhub.ai/user/wangjipeng977) <br>
-- [Publisher-provided source](https://github.com/MiniMax-AI/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text prompt with component and layout guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include detected UI components, layout choice, and implementation requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and CHANGELOG; SKILL.md metadata says 1.0) <br>
+Risk: The advertised screenshot-to-code purpose conflicts with the main skill instructions and supporting docs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill scope before installation and test expected screenshot-to-prompt behavior with nonsensitive examples before relying on it.
+
+Risk: The security guidance warns against sharing API keys or sensitive screenshots because the scope is unclear.
+
+Mitigation: Avoid providing credentials, API keys, or sensitive screenshots unless a reviewer accepts the risk for the intended environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangjipeng977/skills/convert-any-screenshot)
+- [Skill reference index](artifact/references/index.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown prompt text with implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include detected UI components, a layout choice, and React or HTML/CSS implementation requirements.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; changelog top entry 1.0.1 released 2026-05-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

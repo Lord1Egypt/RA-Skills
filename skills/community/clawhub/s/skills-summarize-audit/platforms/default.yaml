@@ -1,0 +1,5 @@
+platform: generic
+# ⚠️ 触发词权威来源：SKILL.md 触发词矩阵。此文件不重复定义。
+# scan_paths 唯一来源为 config.yaml，此文件仅存平台特征。
+archive_dir: "~/.agent-skills-archived/"
+project_scan_default_depth: 8

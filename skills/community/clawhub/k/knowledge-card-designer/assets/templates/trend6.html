@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, initial-scale=1.0">
+    <title>趋势六 · 物理AI</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body {
+            width: 1080px;
+            height: 1350px;
+            min-height: 1350px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
+            color: #fff;
+            overflow: hidden;
+        }
+        body {
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            background-color: #0f0f1a;
+        }
+        .card {
+            width: 1080px;
+            height: 1350px;
+            padding: 45px 50px 45px 50px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .page-num {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 120px;
+            font-weight: 800;
+            color: rgba(255,255,255,0.08);
+            line-height: 1;
+        }
+        .header { margin-bottom: 25px; margin-top: 10px; }
+        .tag {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(239,68,68,0.2);
+            border: 1px solid rgba(239,68,68,0.5);
+            border-radius: 20px;
+            font-size: 14px;
+            color: #ef4444;
+            margin-bottom: 16px;
+        }
+        .title {
+            font-size: 54px;
+            font-weight: 800;
+            color: #fbbf24;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 26px;
+            color: rgba(255,255,255,0.6);
+        }
+        .chatgpt-moment {
+            background: rgba(251,146,60,0.15);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 15px 0;
+            text-align: center;
+            border: 1px solid rgba(251,146,60,0.4);
+        }
+        .moment-title {
+            font-size: 22px;
+            color: #fb923c;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .moment-text {
+            font-size: 28px;
+            font-weight: 600;
+            color: #fff;
+        }
+        .applications {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 15px 0;
+        }
+        .app-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 22px;
+            text-align: center;
+        }
+        .app-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        .app-name {
+            font-size: 22px;
+            font-weight: 600;
+            color: #fbbf24;
+        }
+        .content-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 12px 0;
+        }
+        .section-title {
+            font-size: 20px;
+            color: #ef4444;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .section-text {
+            font-size: 22px;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.9);
+        }
+        .spacer { flex: 1; min-height: 20px; }
+        .footer {
+            padding: 22px 26px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 14px;
+            border-left: 4px solid #ef4444;
+            margin-bottom: 10px;
+        }
+        .footer-title {
+            font-size: 18px;
+            color: #ef4444;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .footer-text {
+            font-size: 22px;
+            line-height: 1.45;
+            color: rgba(255,255,255,0.9);
+        }
+        .watermark {
+            position: absolute;
+            bottom: 15px;
+            right: 25px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.25);
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="page-num">07</div>
+        
+        <div class="header">
+            <div class="tag">趋势 06</div>
+            <h1 class="title">物理AI的ChatGPT时刻</h1>
+            <p class="subtitle">从数字世界走向物理世界</p>
+        </div>
+        
+        <div class="chatgpt-moment">
+            <div class="moment-title">🚀 ChatGPT Moment</div>
+            <div class="moment-text">能理解物理规则的AI时代已经到来</div>
+        </div>
+        
+        <div class="applications">
+            <div class="app-item">
+                <div class="app-icon">🤖</div>
+                <div class="app-name">人形机器人</div>
+            </div>
+            <div class="app-item">
+                <div class="app-icon">🚗</div>
+                <div class="app-name">自动驾驶</div>
+            </div>
+            <div class="app-item">
+                <div class="app-icon">🏭</div>
+                <div class="app-name">智能工厂</div>
+            </div>
+        </div>
+        
+        <div class="content-card">
+            <div class="section-title">💼 产业影响</div>
+            <p class="section-text">NVIDIA Isaac平台让机器人拥有"大脑"，<span style="color:#ef4444">仿真到现实</span>的迁移成本大幅降低。</p>
+        </div>
+        
+        <div class="spacer"></div>
+        
+        <div class="footer">
+            <div class="footer-title">💡 普通人影响</div>
+            <p class="footer-text">5年后，园区摆渡车可能没有司机；餐厅服务员可能是机器人；独居老人将有AI陪伴机器人。</p>
+        </div>
+        
+        <div class="watermark">GTC 2026 深度解读</div>
+    </div>
+</body>
+</html>

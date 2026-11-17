@@ -1,46 +1,64 @@
-## Description: <br>
-Generates deep market research reports for a target country and product category by combining multilingual search, news monitoring, competitor analysis, ecommerce pricing, ad-channel research, customs data, tender data, medical-registration lookups, social signals, charts, Markdown, and PDF export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+reportgama2 generates deep market research reports for a selected country and product category using multilingual public-source collection across search, news, competitors, ecommerce pricing, advertising, customs, tenders, registrations, social platforms, medical organizations, and reference pricing.
 
-## Publisher: <br>
-[wangxuan1992asia-svg](https://clawhub.ai/user/wangxuan1992asia-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxuan1992asia-svg](https://clawhub.ai/user/wangxuan1992asia-svg)
 
-## Use Case: <br>
-External users and analysts use this skill to collect public market signals and produce structured country-and-category market research reports, especially for medical-device market intelligence and competitive analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad public-web collection and fallback or estimated data can produce market claims that look more authoritative than they are. <br>
-Mitigation: Independently verify official registry, pricing, hospital, customs, and market-share claims before using reports for business decisions. <br>
-Risk: The skill installs Python dependencies, performs network collection, and writes local report files. <br>
-Mitigation: Run it in an approved environment with controlled network access and an expected output directory. <br>
+## Use Case:
 
+External users, developers, and market researchers use this skill to run configurable market intelligence collection for a target country and product category and produce a structured report. It is especially oriented toward multilingual medical-device and regional-market research workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wangxuan1992asia-svg/reportgama2) <br>
-- [Publisher profile](https://clawhub.ai/user/wangxuan1992asia-svg) <br>
-- [HS codes reference](artifact/references/hs_codes.md) <br>
-- [Industry keywords reference](artifact/references/industry_keywords.md) <br>
-- [UN Comtrade](https://comtrade.un.org) <br>
-- [OEC](https://oec.world) <br>
-- [Russian Federal Customs Service](http://www.customs.ru) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown reports, PDF exports, charts, tables, shell commands, and local output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report content may include estimated or fallback market data that requires independent verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json; artifact SKILL.md reports 1.1.0) <br>
+Risk: The skill performs broad outbound public web and social-platform collection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in environments where outbound research traffic is acceptable, and confirm country, category, modules, output location, and language before a full run.
+
+Risk: The install path uses mutable Python dependencies.
+
+Mitigation: Use a virtual environment and pin or review dependency versions before operational use.
+
+Risk: Social-platform and public-source results may contain personal, regulated, or low-confidence information.
+
+Mitigation: Treat results as public-source intelligence, review source quality, and sanitize sensitive content before sharing reports.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/wangxuan1992asia-svg/skills/reportgama2)
+- [HS codes reference](artifact/references/hs_codes.md)
+- [Industry keywords reference](artifact/references/industry_keywords.md)
+- [UN Comtrade](https://comtrade.un.org)
+- [The Observatory of Economic Complexity](https://oec.world)
+- [Russian Federal Customs Service](http://www.customs.ru)
+- [Roszdravnadzor](https://roszdravnadzor.gov.ru)
+- [GRLS medicine register](https://grls.rosminzdrav.ru)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, optional PDF files, charts, and structured research data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write local report, chart, and data files based on selected modules, country, category, language, and output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release; artifact frontmatter states 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

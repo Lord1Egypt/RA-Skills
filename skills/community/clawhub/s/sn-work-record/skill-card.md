@@ -1,43 +1,59 @@
-## Description: <br>
-Helps agents operate 蜀宁 OA timesheet workflows, including login, project lookup, timesheet submission, updates, daily queries, and detail checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+蜀宁 OA 工时与报销：填报/修改/查询工时，查看报销申请状态与审批进度；删除与恢复暂禁。
 
-## Publisher: <br>
-[ithou](https://clawhub.ai/user/ithou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ithou](https://clawhub.ai/user/ithou)
 
-## Use Case: <br>
-Employees or their delegated agents use this skill to manage 蜀宁 OA work records after authenticated login. It supports submitting daily timesheets, saving drafts, updating or logically deleting records, checking record status, viewing details, and listing projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stored OA credentials, encryption keys, or printed tokens could expose account access. <br>
-Mitigation: Use encrypted credentials, protect OA_ENC_KEY and any local key cache, avoid saving printed tokens, and verify the OA base URL before login. <br>
-Risk: Submit, update, batch, or delete actions can change business timesheet records. <br>
-Mitigation: Require explicit user confirmation before record-changing actions and review the target date, project, record ID, description, and draft versus submit mode. <br>
-Risk: Project IDs, time-entry IDs, and internal configuration values may be sensitive in normal chat responses. <br>
-Mitigation: Return business-readable fields by default and reveal internal IDs only when the user explicitly asks or an operation requires them. <br>
+## Use Case:
 
+OA users and assistants use this skill to query and summarize work records and reimbursement approval progress, and to submit or update work entries when authorized. Deletion and restoration are currently disabled.
 
-## Reference(s): <br>
-- [蜀宁 OA 工时系统 API 参考](references/api.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ithou/sn-work-record) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run Python scripts that call OA APIs using local credentials; some commands can submit, update, or logically delete timesheet records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.3 (source: server release evidence) <br>
+Risk: The security assessment notes a mismatch between deletion/restoration capabilities flagged by the scan and the skill's stated disabled status.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep deletion and restoration unavailable as documented, and confirm the installed release's behavior before use involving record changes.
+
+Risk: Release guidance contains an unpinned release-tool command, and the security assessment has medium confidence with a recorded scanner exit-status error.
+
+Mitigation: Review and pin the release tool before publishing; treat the benign verdict as limited assurance and inspect the exact release security report.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/ithou/skills/sn-work-record)
+- [Query workflow](references/query-workflow.md)
+- [Write workflow](references/write-workflow.md)
+- [Reimbursement query and display](references/reimbursement-query.md)
+- [Authentication and runtime](references/authentication-runtime.md)
+- [Deletion and recovery restrictions](references/deletion-recovery.md)
+- [Security revision 1.15.1](references/security-revision-1.15.1.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Chat summaries and structured JSON query results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Credentials and internal identifiers are withheld by default; write actions require explicit authorization and verification.]
+
+## Skill Version(s):
+
+1.15.1 (source: SKILL.md frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

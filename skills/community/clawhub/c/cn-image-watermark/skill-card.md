@@ -1,41 +1,54 @@
-## Description: <br>
-Cn Image Watermark helps agents add text or logo watermarks to local image files, including single-image and batch workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cn Image Watermark adds text or logo watermarks to local images, with batch processing, nine-position placement, and opacity controls.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers, content creators, and operators use this skill to apply copyright, brand, or anti-repost watermarks to local image assets through agent-run commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Batch mode can touch many files or write outputs to an unintended folder if given a broad input directory or wrong output path. <br>
-Mitigation: Review input and output paths before running batch jobs, and test on a small folder first. <br>
-Risk: Server security evidence notes a reliability bug in batch mode that may affect automation. <br>
-Mitigation: Avoid relying on batch mode for unattended workflows until the bug is fixed or manually verified in the target environment. <br>
+## Use Case:
 
+Developers, content operators, and brand teams use this skill to add visible ownership or anti-reposting watermarks to local image files. It is suited for social images, cover art, product photos, and batches of images that need consistent text or logo marks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-image-watermark) <br>
-- [Publisher profile](https://clawhub.ai/user/freedompixels) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, JSON, files, guidance] <br>
-**Output Format:** [Agent guidance with shell commands; the watermark script emits JSON status and writes image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and Pillow; output paths should be reviewed before batch processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.7 (source: server release evidence) <br>
+Risk: Batch mode recursively scans the selected input folder and writes generated images to the selected output directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review input and output paths before batch use, and run on a small sample folder before processing a large image set.
+
+Risk: Batch mode may need a bug fix before it works as documented.
+
+Mitigation: Validate batch behavior locally before relying on it for production workflows; use single-image text or logo commands when batch output is not confirmed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-image-watermark)
+- [AISoBrand](https://aisobrand.com)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, JSON, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; CLI commands return JSON status and write watermarked image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes caller-provided local image paths and can recursively scan a chosen input folder for batch watermarking.]
+
+## Skill Version(s):
+
+1.2.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

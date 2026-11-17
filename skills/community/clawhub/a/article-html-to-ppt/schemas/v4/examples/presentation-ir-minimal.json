@@ -1,0 +1,31 @@
+{
+  "schema_version": "4.0.0",
+  "deck": {
+    "title": "2025 年度经营回顾",
+    "language": "zh-CN"
+  },
+  "sources": [
+    { "source_id": "annual-report", "type": "markdown", "title": "2025 年度经营总结", "path": "input/annual-report.md" }
+  ],
+  "slides": [
+    {
+      "id": "s1",
+      "title": "收入与增长",
+      "blocks": [
+        {
+          "role": "fact",
+          "text": "2025 年销售收入增长 36%，其中海外业务贡献最大",
+          "source_ref": { "source_id": "annual-report", "loc": "para_12" }
+        },
+        {
+          "role": "list",
+          "items": [
+            { "text": "海外业务收入 +52%", "source_ref": { "source_id": "annual-report", "loc": "para_12" } },
+            { "text": "国内业务收入 +8%", "source_ref": { "source_id": "annual-report", "loc": "para_13" } },
+            { "text": "毛利率下降 2.8 个百分点", "source_ref": { "source_id": "annual-report", "loc": "para_14" } }
+          ]
+        }
+      ]
+    }
+  ]
+}

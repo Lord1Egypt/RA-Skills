@@ -1,0 +1,23 @@
+{
+  "spec": "task-sync/1",
+  "task_id": "TS-WEBSITE-001",
+  "revision": 1,
+  "title": "官网首页改版",
+  "objective": "让首次访问者在 30 秒内理解产品价值，并能找到咨询入口。",
+  "scope": {
+    "include": ["首页信息架构", "桌面与移动端设计稿", "咨询入口可用性检查"],
+    "exclude": ["登录注册", "支付流程", "生产环境发布"]
+  },
+  "definition_of_done": ["桌面端与移动端设计稿齐全", "首屏、功能说明、咨询入口均有负责人书面确认", "在测试环境完成链接检查"],
+  "constraints": ["不使用未经授权的客户案例或图片", "不直接修改生产站点", "所有外部发布另行确认"],
+  "permissions": ["允许修改设计稿与测试环境内容", "上线、购买素材、发送客户消息均需当次确认"],
+  "deliverables": [
+    { "name": "设计稿链接", "accept": "包含桌面端与移动端首页，且标注关键交互" },
+    { "name": "验收记录", "accept": "逐条对应完成判据并记录验证人" }
+  ],
+  "next_steps": ["确认首屏核心文案", "梳理可公开的案例素材", "完成第一版线框图"],
+  "open_questions": ["是否保留旧的案例入口？", "咨询表单由谁接收并在多长时间内回复？"],
+  "references": [
+    { "label": "当前官网", "ref": "https://example.invalid/", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }
+  ]
+}

@@ -23,6 +23,6 @@
 - Use `kleinanzeigen_draft_ad` only after explicit user confirmation. It creates
   or replaces a miniclaw-shaped `ad.yaml` or `ad.yml` under configured
   `adRoots`; it does not publish. Prefer `active: false` for first drafts.
-- After drafting, run scoped `kleinanzeigen_verify` against the new directory or
-  config path. Ask the user to review the sanitized draft summary before making
-  it active or publishing it.
+- After drafting, run scoped `kleinanzeigen_verify` against the new relative ad
+  handle. Ask the user to review the sanitized draft summary before making it
+  active or publishing it.

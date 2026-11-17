@@ -1,45 +1,58 @@
-## Description: <br>
-Reviews outpatient chronic disease records for diabetes or hypertension and returns a raw JSON review result plus a natural-language decision summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews outpatient chronic disease materials for diabetes or hypertension from OCR or document inputs and produces an internal medical model assessment with a structured JSON decision and natural-language rationale.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Healthcare operations and review teams can use this skill to prepare OCR-derived medical record text, submit diabetes or hypertension review requests, and receive decision-oriented summaries for administrative review. It is an aid for document review and does not provide medical diagnosis or treatment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive OCR medical text may be sent to a remote or user-selected endpoint. <br>
-Mitigation: Use only de-identified records, verify the endpoint operator and privacy terms, and avoid overriding the service base URL unless the endpoint is trusted. <br>
-Risk: Raw PDFs and Office files can carry parsing and document-handling risk before review. <br>
-Mitigation: Prefer JSON OCR input for untrusted sources and process other file types only in a controlled environment. <br>
-Risk: The default HTTP timeout can wait indefinitely. <br>
-Mitigation: Set a finite timeout for operational use. <br>
-Risk: Generated review outputs and prepared OCR files may contain sensitive medical information. <br>
-Mitigation: Delete generated output and prepared OCR files when they are no longer needed. <br>
+## Use Case:
 
+Insurance and healthcare operations teams use this skill to review submitted chronic disease materials for diabetes or hypertension and summarize whether the provided records support the requested outpatient chronic disease review. The output is administrative review support and not a medical diagnosis or treatment recommendation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/med-chronic-disease-review) <br>
-- [Publisher profile](https://clawhub.ai/user/unisound-llm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON files and natural-language text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include raw review JSON, a human-readable decision summary, and optional prepared OCR JSON for debugging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Raw medical records and bearer tokens can be sent to a configurable model endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only authorized data, pre-redact patient identifiers before use, and keep --base pinned to a trusted HTTPS endpoint.
+
+Risk: Sensitive raw JSON, text summaries, or prepared OCR arrays can be written to disk.
+
+Mitigation: Write outputs only to a private controlled directory, avoid --save-prepared unless needed, and remove retained files according to local data-handling policy.
+
+Risk: Administrative review results could be mistaken for clinical judgment.
+
+Mitigation: Treat the output as review support only and defer clinical diagnosis or treatment decisions to qualified medical professionals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/med-chronic-disease-review)
+- [Default internal medical model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration]
+
+**Output Format:** [Structured JSON response plus natural-language text summary, with command output that reports saved file paths and a preview.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports dry-run validation; normal execution writes raw JSON and text summary files to the configured output paths.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

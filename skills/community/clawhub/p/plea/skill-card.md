@@ -1,36 +1,60 @@
-## Description: <br>
-The Autonomous Judicial Pleading & Procedural Motion System is a linguistic engine for translating agentic logic into legal motions and formal judicial requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The Autonomous Judicial Pleading & Procedural Motion System is a linguistic engine designed to translate complex agentic logic into enforceable legal motions and formal judicial requests.
 
-## Publisher: <br>
-[Duclawbot](https://clawhub.ai/user/Duclawbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[duclawbot](https://clawhub.ai/user/duclawbot)
 
-## Use Case: <br>
-External users and developers can use Plea to draft legal motions, formal judicial requests, and initial responses for human review. The skill is not a substitute for qualified legal judgment or approval. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill describes high-impact legal work, including drafting filings, selecting legal strategy, scanning private evidence, and responding to complaints. <br>
-Mitigation: Constrain use to draft-only legal assistance, limit access to private data, and require qualified human review before any strategy decision, court filing, complaint response, or submission. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users, developers, and agent operators use Plea as a legal drafting aid for pleadings, procedural motions, responses to complaints, citation-oriented arguments, and requests for relief. Any generated legal content or filing proposal requires human legal review before use.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured legal drafting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft legal content and procedural recommendations that require qualified human review before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated legal content could be incorrect, misleading, or unsuitable for the relevant jurisdiction.
+
+Mitigation: Treat outputs as drafting aids only and require qualified human legal review before use.
+
+Risk: The skill describes scanning logs, emails, transaction hashes, and other potentially privileged or sensitive material.
+
+Mitigation: Use only user-selected evidence, limit data exposure, and protect privileged or confidential information.
+
+Risk: The skill describes instant judicial submission without clear human approval controls.
+
+Mitigation: Require a complete preview, verified filing authority, and explicit human approval before any court or arbitration submission.
+
+Risk: Automated procedural choices may select an inappropriate legal strategy or miss statutory deadlines.
+
+Mitigation: Verify jurisdiction, procedural posture, deadlines, citations, and strategic choices with a qualified reviewer.
+
+## Reference(s):
+
+- [ClawHub Plea Skill Page](https://clawhub.ai/duclawbot/skills/plea)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured legal-drafting text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include draft pleadings, procedural motion language, citation-oriented arguments, prayers for relief, response drafts, and filing guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

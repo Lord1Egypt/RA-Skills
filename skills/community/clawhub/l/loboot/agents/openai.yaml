@@ -1,0 +1,4 @@
+interface:
+  display_name: "Loboot"
+  short_description: "Safely manage and diagnose Loboot native user services."
+  default_prompt: "Use $loboot to preview and safely configure this native user service."

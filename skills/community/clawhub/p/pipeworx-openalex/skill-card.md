@@ -1,40 +1,55 @@
-## Description: <br>
-OpenAlex MCP wraps the OpenAlex API for scholarly works search without requiring authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenAlex MCP wraps the OpenAlex API for scholarly works, authors, institutions, and concepts without requiring an API key.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agents use this skill to configure access to OpenAlex scholarly search tools for works, authors, institutions, and concepts through the Pipeworx MCP gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scholarly search queries are sent through the Pipeworx MCP gateway. <br>
-Mitigation: Avoid sensitive private research queries unless the gateway and runtime package source are trusted. <br>
-Risk: The connection uses an npm-based MCP bridge. <br>
-Mitigation: Review the runtime package source and pin or control package execution according to local deployment policy. <br>
+## Use Case:
 
+Developers and researchers use this skill to connect an agent to the Pipeworx OpenAlex MCP server for scholarly work, author, institution, and concept lookup.
 
-## Reference(s): <br>
-- [Pipeworx OpenAlex pack](https://pipeworx.io/packs/openalex) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with JSON configuration and inline command references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes scholarly search queries through the disclosed Pipeworx MCP gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The setup runs an unpinned npm connector through npx.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and reviewed mcp-remote version, and run the MCP process in a sandbox or container before deployment.
+
+Risk: Scholarly queries are routed through a third-party Pipeworx gateway.
+
+Mitigation: Avoid confidential or identifying research queries unless the gateway's privacy and security posture is acceptable.
+
+## Reference(s):
+
+- [Pipeworx OpenAlex Pack](https://pipeworx.io/packs/openalex)
+- [Pipeworx](https://pipeworx.io)
+- [ClawHub Skill Page](https://clawhub.ai/brucegutman/skills/pipeworx-openalex)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Markdown guidance and JSON MCP server configuration; MCP tool responses provide scholarly lookup results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API key is required by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

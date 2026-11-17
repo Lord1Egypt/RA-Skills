@@ -1,40 +1,54 @@
-## Description: <br>
-Downloads watermark-free Douyin videos on Windows and extracts spoken captions with local Whisper and optional semantic segmentation. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Windows-oriented Douyin video download and transcript extraction skill that parses share links, downloads watermark-free videos, transcribes audio with local Whisper base, and can optionally segment transcript text.
 
-## Publisher: <br>
-[openclawzhangchong](https://clawhub.ai/user/openclawzhangchong) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openclawzhangchong](https://clawhub.ai/user/openclawzhangchong)
 
-## Use Case: <br>
-Command-line users on Windows use this skill to inspect Douyin share links, download videos, and create transcript Markdown from video speech for personal learning or research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Transcript text can be sent to MiniMax for semantic segmentation when segmentation is enabled and MINIMAX_API_KEY is set. <br>
-Mitigation: Use --no-segment for local-only transcription, and only enable segmentation when sending transcript text to MiniMax is acceptable. <br>
-Risk: The skill contacts Douyin to retrieve video information and downloads media from parsed links. <br>
-Mitigation: Review before installing, use it only for links you are authorized to process, and follow the source platform's rules. <br>
+## Use Case:
 
+Developers and Windows command-line users use this skill to inspect Douyin video metadata, download videos, and extract Chinese-language transcript markdown from video audio. It is positioned for personal learning and research use, with optional semantic segmentation when users choose to provide the required MiniMax API key.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openclawzhangchong/douyindownloadwhisper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands] <br>
-**Output Format:** [Command-line output plus saved video files and transcript Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, ffmpeg, local Whisper, and optional MiniMax API credentials for segmentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Default transcript segmentation can send full transcript text to a third-party MiniMax API when MINIMAX_API_KEY is available.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --no-segment for private, business, customer, or regulated speech unless sending transcript text to MiniMax is acceptable.
+
+Risk: The workflow depends on locally installed command-line tools and Python Whisper packages.
+
+Mitigation: Install Whisper and related dependencies in an isolated, non-admin environment with pinned package versions where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openclawzhangchong/skills/douyindownloadwhisper)
+- [Publisher profile](https://clawhub.ai/user/openclawzhangchong)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Console text and Markdown transcript files produced through command-line workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May download video files, create temporary audio files, and save transcript.md under the selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

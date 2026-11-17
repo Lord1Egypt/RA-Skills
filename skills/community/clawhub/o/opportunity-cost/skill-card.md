@@ -1,43 +1,59 @@
-## Description: <br>
-Helps an agent guide opportunity-cost analysis by identifying the next-best alternative, estimating financial and non-financial tradeoffs, and comparing the chosen option against what is foregone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through comparing a choice with the value of the next-best alternative it forgoes.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Employees, external users, and decision-makers use this skill to evaluate scarce-resource choices involving money, time, attention, or staffing. It is most useful when an agent needs to surface realistic alternatives, estimate the value of the best unchosen option, and present a concise markdown opportunity-cost analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Opportunity-cost examples may contain sensitive financial, staffing, or personal decision details if users add real cases to reusable examples. <br>
-Mitigation: Keep sensitive decision details out of reusable skill examples unless retention and sharing are intentional. <br>
-Risk: The skill can produce misleading guidance if alternatives or value estimates are incomplete. <br>
-Mitigation: Require 3-5 realistic alternatives, include the do-nothing option, and label confidence before relying on the analysis. <br>
+## Use Case:
 
+External users, founders, and teams use the skill to compare competing uses of scarce money, time, attention, and headcount. It structures alternatives, estimates their value, identifies the best forgone option, and summarizes the tradeoff.
 
-## Reference(s): <br>
-- [Opportunity Cost Sources](references/sources.md) <br>
-- [Bastiat's Broken Window Example](examples/bastiats-broken-window-1850.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/deciqai/skills/opportunity-cost) <br>
-- [deciqAI](https://deciqai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown opportunity-cost analysis with tables and concise decision guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only; no code execution, tool calls, or hidden data access indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Estimated values and alternatives can be misleading when used to make consequential decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the estimates before deciding and include realistic alternatives, including holding the resource where appropriate.
+
+Risk: Reusable analysis notes could expose confidential details.
+
+Mitigation: Avoid putting confidential details into reusable documentation notes.
+
+## Reference(s):
+
+- [Sources](artifact/references/sources.md)
+- [Bastiat's Broken Window example](artifact/examples/bastiats-broken-window-1850.md)
+- [AI-era founder time and GPU capital example](artifact/examples/ai-era-founder-time-and-gpu-capital-2023-2026.md)
+- [Skill page](https://clawhub.ai/deciqai/skills/opportunity-cost)
+- [Opportunity Cost guide](https://www.deciqai.com/c/opportunity-cost)
+- [Machine-readable skill metadata](https://www.deciqai.com/s/opportunity-cost.json)
+- [Knowledge Skills repository (linked in the artifact)](https://github.com/deciqAI/knowledge-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown opportunity-cost analysis with an alternatives table, next-best alternative, net-benefit comparison, and decision rationale]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use estimated value ranges; conclusions depend on the assumptions and alternatives considered.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

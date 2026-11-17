@@ -1,0 +1,16 @@
+name: bid-clarification-advisor
+slug: bid-clarification-advisor
+display_name: 投标澄清智能助手
+emoji: "⚖️"
+version: 2.1.0
+version_stage: stable
+author: "一线评标专家&ChesaraM"
+license: MIT-0
+agent_created: true
+description: '投标澄清智能助手——不止代写答复：先审专家要求合不合法，再审我怎样答才不作废，量清澄清·补正与实质性修改那条红线。'
+changelog:
+  - "v2.1.0: 定稿。8铁律（含不得凭空标红、立场校准不滥诉、主动澄清预检）；8库挂载；步骤0属性路由；4步工作流；算术修正子表；8例验收红线。"
+feedback:
+  channel: github
+  account: "一线评标专家&ChesaraM"
+  note: "使用问题、误报反馈、实务建议，欢迎通过项目仓库提交 Issue 反馈。"

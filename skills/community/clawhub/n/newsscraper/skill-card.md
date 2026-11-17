@@ -1,47 +1,64 @@
-## Description: <br>
-This skill should be used when users need to scrape hot news topics from Chinese platforms (微博、知乎、B站、抖音、今日头条、腾讯新闻、澎湃新闻), generate summaries, and cite sources. <br>
+## Description:
 
-This skill is for research and development only. <br>
+This skill helps agents collect hot news topics from Chinese platforms, summarize the results, and cite source metadata.
 
-## Publisher: <br>
-[13923870749](https://clawhub.ai/user/13923870749) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[13923870749](https://clawhub.ai/user/13923870749)
 
-## Use Case: <br>
-Developers and analysts use this skill to collect public hot-topic items from supported Chinese news and social platforms, summarize them, and prepare cited JSON or Markdown reports. It is suited to public trend monitoring and research workflows where source attribution and rate-limited collection are required. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Direct or proxy-assisted scraping can exceed site authorization, terms, or rate limits. <br>
-Mitigation: Prefer official or aggregation APIs where available, keep collection low-volume, honor platform terms and robots guidance, and use explicit rate limits before deployment. <br>
-Risk: The abstractive summarizer can download and run remote model artifacts, which may be inappropriate for sensitive or policy-controlled text. <br>
-Mitigation: Use approved pinned or local models, avoid processing sensitive text unless policy allows it, and review model dependencies before installation. <br>
-Risk: Collected public trend data and summaries may be incomplete, stale, duplicated, or misleading. <br>
-Mitigation: Verify source links and timestamps before relying on the report, de-duplicate items, and treat generated summaries as drafts requiring review. <br>
+## Use Case:
 
+External users and developers use this skill to gather trending Chinese news items from supported platforms, generate concise summaries, and produce source-attributed JSON or Markdown reports.
 
-## Reference(s): <br>
-- [Platform scraping strategies](references/platforms.md) <br>
-- [Summarization methods](references/summarization_methods.md) <br>
-- [uapis.cn hotboard API](https://uapis.cn/api/get-misc-hotboard) <br>
-- [jieba Chinese text segmentation](https://github.com/fxsjy/jieba) <br>
-- [Hugging Face Transformers](https://github.com/huggingface/transformers) <br>
-- [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON datasets, Markdown reports, and concise command-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include news titles, source platform, rank or heat score, timestamp, summary, and original URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends user-selected topics and requests to third-party news sites and hotboard services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive search topics, review target platform terms, and run scraping with conservative limits and delays.
+
+Risk: Install and model dependency provenance are under-scoped, including optional summarization model dependencies.
+
+Mitigation: Run the reviewed local scripts in an isolated virtual environment, pin and verify Python dependencies, and pin or locally vendor optional model artifacts before abstractive summarization.
+
+Risk: Advertised summarization capability may exceed what the scripts reliably produce.
+
+Mitigation: Treat generated summaries as drafts, verify claims against original source URLs, and prefer source-attributed output for downstream reporting.
+
+Risk: User-provided output paths determine where JSON and Markdown reports are written.
+
+Mitigation: Choose output paths deliberately and avoid writing reports into sensitive or shared directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/13923870749/skills/newsscraper)
+- [Platform scraping strategies](references/platforms.md)
+- [Summarization methods](references/summarization_methods.md)
+- [Hotboard API endpoint](https://uapis.cn/api/get-misc-hotboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated artifacts may be JSON data files or Markdown reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include news titles, source platform, timestamp, original URL, ranking or heat where available, and summary text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

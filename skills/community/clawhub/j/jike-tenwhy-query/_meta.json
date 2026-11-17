@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72cqttfa4en7epyybjca4m2x85ppvj",
+  "owner": "jikeapi",
   "slug": "jike-tenwhy-query",
   "version": "1.0.0",
-  "publishedAt": 1778289743638
+  "title": "十万个为什么 - 即刻数据",
+  "description": "十万个为什么。支持按问题关键词搜索，也支持随机返回问题和答案。",
+  "env": "JIKE_TENWHY_QUERY_KEY",
+  "api_url": "https://api.jikeapi.cn/v1/tenwhy/query",
+  "homepage": "https://www.jikeapi.cn/"
 }

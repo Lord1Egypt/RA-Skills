@@ -1,6 +1,31 @@
 {
-  "ownerId": "kn7fzrpz1j6m4evc3qr6jyapkd82x2r2",
+  "name": "YouTube Learning",
   "slug": "youtube-learning",
   "version": "1.0.0",
-  "publishedAt": 1774754685686
+  "description": "Learn from YouTube videos efficiently — summarize content, extract key points, generate notes, create quizzes, and build learning paths. Perfect for students, professionals, and researchers.",
+  "author": "El Rudo Larios LLC",
+  "category": "education",
+  "tags": ["youtube", "learning", "education", "summarization", "notes", "transcript", "study"],
+  "pricing": {
+    "intro": 9.99,
+    "pro": 14.99,
+    "team": 29.99
+  },
+  "features": [
+    "Video summarization",
+    "Key points extraction",
+    "Transcript analysis",
+    "Note generation",
+    "Quiz creation",
+    "Learning path builder",
+    "Progress tracking",
+    "Collection management"
+  ],
+  "integrations": [
+    "YouTube transcript API",
+    "File system",
+    "Notion",
+    "Obsidian"
+  ],
+  "agentRequired": false
 }

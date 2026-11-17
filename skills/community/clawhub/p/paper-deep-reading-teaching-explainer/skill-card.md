@@ -1,52 +1,65 @@
-## Description: <br>
-Deep-reads research papers into evidence-grounded teaching reports, reproducibility and defense preparation, innovation-mining artifacts, staged cartoon storyboard plans, and final image-PDF assembly guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep-read research papers into authoritative, evidence-grounded teaching reports, reproducibility and defense-ready explanations, innovation-mining artifacts, staged multi-image cartoon storyboard plans with source-grounding checks, and final image-PDF assembly guidance.
 
-## Publisher: <br>
-[c-narcissus](https://clawhub.ai/user/c-narcissus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c-narcissus](https://clawhub.ai/user/c-narcissus)
 
-## Use Case: <br>
-Researchers, students, instructors, and engineers use this skill to turn one paper or a small paper set into detailed teaching reports, discussion and defense preparation, reproducibility checks, staged visual-storyboard guidance, and final PDF handoffs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated paper reports or storyboard prompts may overstate unsupported claims from a source paper. <br>
-Mitigation: Keep paper-stated facts, reasonable inference, nearby-work inference, and missing or not-reported details explicitly labeled, and check storyboard prompts against the original PDF or LaTeX and the authoritative report. <br>
-Risk: External image APIs may receive paper content or derived teaching material during storyboard generation. <br>
-Mitigation: Use external image providers only for content the user is allowed to send to that provider, and prefer approved platform image tools or local assembly for final PDFs. <br>
-Risk: Zip or bundle outputs could accidentally include unintended local files if run from a broad workspace. <br>
-Mitigation: Run helper scripts in the intended project directory, avoid broad personal directories as workspace roots, and review generated archives before uploading them to project sources. <br>
+## Use Case:
 
+Researchers, students, educators, and technical teams use this skill to turn one paper or a small paper set into rigorous teaching reports, reproducibility audits, defense preparation material, research-direction notes, staged storyboard prompts, and final PDF assembly guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/c-narcissus/paper-deep-reading-teaching-explainer) <br>
-- [README](README.md) <br>
-- [Security and privacy notes](SECURITY_PRIVACY.md) <br>
-- [Publish page information](PUBLISH_PAGE_INFO_CN.md) <br>
-- [Detailed report contract](schemas/detailed_report_contract.md) <br>
-- [Research-generative overlay](schemas/research_generative_overlay.md) <br>
-- [Teaching explanation overlay](schemas/teaching_explanation_overlay.md) <br>
-- [Reproducibility defense quality overlay](schemas/reproducibility_defense_quality_overlay.md) <br>
-- [Visual source-grounding anti-hallucination overlay](schemas/visual_source_grounding_anti_hallucination_overlay.md) <br>
-- [Final storyboard PDF assembly workflow](workflow/09_storyboard_pdf_assembly.md) <br>
-- [External best-practice sources](schemas/external_best_practices_sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, JSON metadata templates, image-generation prompts, and local PDF assembly instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Separates text report generation, image/storyboard generation, and final PDF assembly; may produce staged bundles, validation artifacts, and 16:9 storyboard PDF handoffs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-10.1.8 (source: SKILL.md frontmatter, _meta.json, server release evidence) <br>
+Risk: Packaging and validation helpers can read or include files outside the intended paper workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated project directory with no secrets or unrelated files, remove symlinks, and review manifests before running helper scripts.
+
+Risk: Attacker-supplied paper workspaces or manifests can influence generated reports, bundles, or validation behavior.
+
+Mitigation: Install and run the skill only with trusted workspace inputs, and inspect generated artifacts before sharing or publishing them.
+
+Risk: External image-generation services may receive paper-derived content during optional storyboard steps.
+
+Mitigation: Treat external image generation as opt-in and use only user-approved services and paper content approved for that processing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/c-narcissus/skills/paper-deep-reading-teaching-explainer)
+- [README](artifact/README.md)
+- [Security and privacy notes](artifact/SECURITY_PRIVACY.md)
+- [Detailed report contract](artifact/schemas/detailed_report_contract.md)
+- [Research-generative overlay](artifact/schemas/research_generative_overlay.md)
+- [Teaching explanation overlay](artifact/schemas/teaching_explanation_overlay.md)
+- [Visual source-grounding anti-hallucination overlay](artifact/schemas/visual_source_grounding_anti_hallucination_overlay.md)
+- [Reproducibility defense quality overlay](artifact/schemas/reproducibility_defense_quality_overlay.md)
+- [Storyboard PDF assembly workflow](artifact/workflow/09_storyboard_pdf_assembly.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and guidance, JSON planning artifacts, Python helper commands, and image/PDF assembly instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce staged status handoffs, teaching sidecars, storyboard prompt batches, and local PDF assembly outputs when requested.]
+
+## Skill Version(s):
+
+10.1.8 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

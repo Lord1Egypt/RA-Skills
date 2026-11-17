@@ -1,39 +1,57 @@
-## Description: <br>
-Transforms daily notes and activities into professional weekly, monthly, or executive progress reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforma notas diárias e atividades em relatórios de progresso profissionais (semanal, mensal ou executivo).
 
-## Publisher: <br>
-[andreataide86](https://clawhub.ai/user/andreataide86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andreataide86](https://clawhub.ai/user/andreataide86)
 
-## Use Case: <br>
-Employees, contractors, freelancers, managers, and project teams use this skill to turn activity notes or completed-task lists into polished progress reports for supervisors, clients, or teams. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Progress reports may include client names, internal deadlines, blockers, performance details, or other sensitive workplace information. <br>
-Mitigation: Review notes before using the skill and avoid memory-backed workflows for sensitive workplace details unless reuse in future reports is acceptable. <br>
-Risk: Generated reports can overstate progress, next steps, or blockers when the source notes are incomplete or vague. <br>
-Mitigation: Review the report before sending it and provide concrete activities, dates, blockers, and outcomes when available. <br>
+## Use Case:
 
+Employees, freelancers, managers, and client-facing professionals use this skill to turn daily notes and completed activities into polished Portuguese weekly, monthly, or executive progress reports.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-friendly progress report text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports weekly, monthly, and executive report styles, role-specific framing, tone adjustment, next-step suggestions, and optional comparison with prior reports when memory is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill may activate when a user provides a generic list of activities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants a progress report and ask for the desired weekly, monthly, or executive format when it is unclear.
+
+Risk: Progress reports can contain sensitive work details, client names, or business context.
+
+Mitigation: Ask users to remove or generalize sensitive details before generating reports that may be shared or remembered.
+
+Risk: When memory is available, prior report context or style preferences may affect future reports.
+
+Mitigation: Use memory only for report continuity or stated style preferences, and avoid relying on sensitive historical details unless the user explicitly wants that context reused.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andreataide86/skills/progress-report)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style progress reports suitable for chat or email]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports weekly, monthly, and executive report styles with role-specific tone.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

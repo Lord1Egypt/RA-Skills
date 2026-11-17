@@ -1,43 +1,58 @@
-## Description: <br>
-Drafts a DRAFT Integrated Resource Plan packet for electric utilities, cooperatives, or CCAs preparing state PUC filings, covering load forecasts, resource inventories, need assessments, scenario modeling, and portfolio selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when an electric utility, cooperative, or CCA needs to draft an Integrated Resource Plan (IRP) for a state PUC filing, covering load forecast, resource inventory, need assessment, scenario modeling, and portfolio selection to produce a DRAFT IRP packet for the regulatory team to verify and sign.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-External utility regulatory, resource-planning, finance, and counsel teams use this skill to assemble draft IRP filing packets and workpaper checklists for state PUC review while preserving human verification and sign-off. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States by default; non-US filings require confirmation of the controlling regulator, statute, rule, or order. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft IRP content may include incorrect load, contract, pricing, rate-impact, citation, or workpaper data. <br>
-Mitigation: Have regulatory, resource-planning, finance, and legal reviewers verify all figures, assumptions, citations, and commitments before anything is signed or filed. <br>
-Risk: Utility load data, contract terms, pricing, rate-impact analysis, and workpapers may be confidential or subject to a protective order. <br>
-Mitigation: Treat those materials as confidential utility work product, use authorized systems only, and prepare public-redacted placeholders instead of exposing protected figures. <br>
-Risk: A draft packet could be mistaken for a served filing or legal conclusion. <br>
-Mitigation: Keep the packet marked as DRAFT, leave the signature block unsigned, and require the filing utility's authorized signatory and counsel to complete final compliance review and service. <br>
+## Use Case:
 
+External utility regulatory teams, resource-planning staff, and outside counsel use this skill to draft unfiled Integrated Resource Plan packets for state PUC or equivalent regulator review. It structures filing scoping, load forecast, resource inventory, need assessment, scenario modeling, resource adequacy, cost and rate impact, risk, confidentiality treatment, and action-plan sections for human verification and signature.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown draft filing packet with structured tables and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-only output; utility regulatory, planning, finance, legal, and authorized signatory review is required before filing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata and CHANGELOG.md, released 2026-05-28) <br>
+Risk: Draft IRP text may contain inaccurate figures, citations, model results, or filing commitments if utility workpapers and model outputs are not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have regulatory affairs, resource-planning staff, finance, and counsel verify all numbers, citations, workpapers, and commitments before signature or service.
+
+Risk: Protected load data, customer-identifying data, contract prices, fuel-price forecasts, and rate-impact details may be confidential utility work product.
+
+Mitigation: Keep protected materials in authorized systems, apply the docket protective order, and use public-redaction placeholders instead of confidential figures in public drafts.
+
+Risk: Jurisdiction-specific PUC filing rules, resource-adequacy rules, or statutory requirements may be assumed incorrectly.
+
+Mitigation: Confirm the controlling statute, rule, order, filing-requirements document, and regional resource-adequacy treatment with regulatory counsel and planning staff.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/integrated-resource-plan-drafter)
+- [Open-Skill-Hub issue tracker](https://github.com/archlab-space/Open-Skill-Hub/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown draft filing packet with structured tables and placeholder fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are labeled as drafts for filing utility regulatory team verification and signature.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence and CHANGELOG, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

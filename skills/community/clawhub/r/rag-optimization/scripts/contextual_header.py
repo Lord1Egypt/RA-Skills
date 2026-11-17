@@ -322,13 +322,17 @@ class ContextualHeaderEnhancer:
         while start < len(text):
             end = min(start + self.chunk_size, len(text))
             
+            # Bug 19 修复：end 不能超过 start + chunk_size，防止下一 chunk 的 start 异常
+            max_end = start + self.chunk_size
+            
             # 尝试在句子边界结束
             if end < len(text):
-                # 向后找最近的句子结束符
-                while end < len(text) and text[end] not in '。！？.!?':
+                while end < min(max_end, len(text)) and text[end] not in '。！？.!?':
                     end += 1
-                if end < len(text):
-                    end += 1  # 包含结束符
+                if end < len(text) and end <= max_end:
+                    end += 1
+                # 确保不超过 chunk_size 限制
+                end = min(end, max_end)
             
             chunk = text[start:end].strip()
             if chunk:

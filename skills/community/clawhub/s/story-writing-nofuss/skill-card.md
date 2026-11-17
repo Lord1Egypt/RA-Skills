@@ -1,47 +1,59 @@
-## Description: <br>
-Complete story development and writing pipeline for creating, planning, writing, reviewing, and exporting fiction projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Story Writer manages the full fiction-writing process from initial concept through planning, drafting, reviewing, and exporting a formatted book.
 
-## Publisher: <br>
-[mahyt77](https://clawhub.ai/user/mahyt77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mahyt77](https://clawhub.ai/user/mahyt77)
 
-## Use Case: <br>
-Writers and creative teams use this skill to move a fiction project from discovery through story bible, book bible, chapter drafting, review, progress tracking, and HTML export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes and updates local story project files. <br>
-Mitigation: Run it in a dedicated project folder and keep backups of drafts before review, regeneration, or export steps. <br>
-Risk: The release carries purchase and crypto capability tags even though inspected artifacts do not need those capabilities. <br>
-Mitigation: Avoid granting purchase, crypto, credential, or network authority when installing or running this workflow. <br>
-Risk: Generated drafts, reviews, and publication-readiness assessments may be incomplete or misleading for a real publishing decision. <br>
-Mitigation: Review generated chapters, quality notes, market suggestions, and exported files before publishing or submitting work. <br>
+## Use Case:
 
+External users use this skill to guide a fiction project through discovery, story and book bible planning, chapter drafting, quality review, progress tracking, and HTML export.
 
-## Reference(s): <br>
-- [Fiction Genres Encyclopedia](references/fiction-genres-encyclopedia.md) <br>
-- [Story Structure Frameworks](references/structure-frameworks.md) <br>
-- [Revision Checklist](references/revision-checklist.md) <br>
-- [World Building Prompts](references/world-building-prompts.md) <br>
-- [Traditional Publishing Query Submission Guide](references/query-submission.md) <br>
-- [Writing Style Guide](references/style-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON project files, chapter Markdown files, review notes, and HTML export files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local project files including discovery data, story and book bibles, chapter drafts, review notes, progress status, and export output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generation commands can create or overwrite local project files, especially when drafting all chapters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a dedicated project directory and keep backups before broad generation commands.
+
+Risk: Exported HTML may include unsanitized content from discovery data or chapters.
+
+Mitigation: Review or sanitize source content before opening, sharing, or publishing exported HTML.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mahyt77/skills/story-writing-nofuss)
+- [Fiction Genres Encyclopedia](references/fiction-genres-encyclopedia.md)
+- [Story Structure Frameworks](references/structure-frameworks.md)
+- [Revision Checklist](references/revision-checklist.md)
+- [World Building Prompts](references/world-building-prompts.md)
+- [Query Submission Guide](references/query-submission.md)
+- [Writing Style Guide](references/style-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, Markdown, and HTML project files plus inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local project files such as discovery.json, story-bible.md, book-bible.md, chapters/*.md, review notes, and export/book.html.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

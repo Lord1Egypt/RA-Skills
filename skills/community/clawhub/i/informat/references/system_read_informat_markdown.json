@@ -1,0 +1,17 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_read_informat_markdown",
+    "description": "Read the content of a specified Markdown document from the Informat platform. Use list_informat_markdown to get the available file list first, then use the fileName parameter to read the specific document",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "description": "Markdown file name, e.g.: informat.app.md or script/xxx.md"
+        }
+      },
+      "required": ["fileName"]
+    }
+  }
+}

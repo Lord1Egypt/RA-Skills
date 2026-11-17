@@ -1,0 +1,4 @@
+interface:
+  display_name: "Publish Safe PRs"
+  short_description: "Sanitize and verify public GitHub contributions"
+  default_prompt: "Use $publish-safe-prs to prepare and safely publish this GitHub contribution."

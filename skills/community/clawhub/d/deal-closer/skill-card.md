@@ -1,44 +1,61 @@
-## Description: <br>
-成交加速器 is a Chinese-language CRM assistant for deal management, email signal extraction, pipeline analysis, AI follow-up drafting, self-learning sales intelligence, CRM knowledge graphs, and native IMAP/SMTP email workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+成交加速器 / Deal Closer is a Chinese-language CRM assistant for deal management, email signal extraction, pipeline analytics, follow-up drafting, sales learning, CRM relationship graphs, and IMAP/SMTP email workflows.
 
-## Publisher: <br>
-[hanjing5024064](https://clawhub.ai/user/hanjing5024064) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanjing5024064](https://clawhub.ai/user/hanjing5024064)
 
-## Use Case: <br>
-Sales teams and CRM operators use this skill to manage opportunities, track meetings, analyze sales funnels, draft follow-up emails, extract mailbox signals, and maintain relationship context for active deals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read mailbox content and uses mailbox credentials when email integrations are enabled. <br>
-Mitigation: Install only with an appropriate mailbox scope, prefer a dedicated mailbox or app password, protect credential environment variables, and avoid retaining unnecessary email snippets. <br>
-Risk: The skill can send email and change CRM data, including import, export, delete, and update actions. <br>
-Mitigation: Require manual review before outbound email, delete, import, export, or bulk CRM operations. <br>
-Risk: Local CRM, meeting, email, learning, and graph data may contain sensitive sales records. <br>
-Mitigation: Protect the configured local data directory and apply normal access controls for customer, opportunity, and mailbox-derived records. <br>
+## Use Case:
 
+Sales teams and sales operators use this skill to manage opportunities, scan mailbox signals, draft follow-up emails, log meetings, analyze pipeline health, and maintain CRM relationship context in Chinese-language workflows.
 
-## Reference(s): <br>
-- [Deal Closer Skill Page](https://clawhub.ai/hanjing5024064/deal-closer) <br>
-- [邮件服务配置指南](references/email-setup-guide.md) <br>
-- [销售管道报告模板](references/pipeline-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Chinese-language Markdown with command examples, tables, reports, email drafts, and local JSON-backed workflow guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate Mermaid chart snippets and outbound email drafts; users should review CRM changes, imports, exports, deletes, and emails before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and release changelog state 1.1.0) <br>
+Risk: The skill can read mailbox content and CRM records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where this access is acceptable, use least-privilege mailbox credentials or app passwords, and keep DC_DATA_DIR private.
+
+Risk: The skill can draft and send outbound email.
+
+Mitigation: Review every outbound email manually before sending.
+
+Risk: Broad inbox scans or raw exports can expose sensitive sales or customer data.
+
+Mitigation: Avoid broad scans and exports on sensitive accounts unless the data scope has been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hanjing5024064/skills/deal-closer)
+- [Email service setup guide](artifact/references/email-setup-guide.md)
+- [Sales pipeline report templates](artifact/references/pipeline-templates.md)
+- [Google Cloud Console](https://console.cloud.google.com/)
+- [Azure Portal](https://portal.azure.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Chinese-language Markdown and text responses with suggested Python shell commands, JSON command data, Mermaid snippets, and email draft content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local JSON/CSV CRM records and email-related data under DC_DATA_DIR when the suggested commands are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and changelog mention 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

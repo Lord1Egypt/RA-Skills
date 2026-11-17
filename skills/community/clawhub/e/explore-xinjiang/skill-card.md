@@ -1,46 +1,61 @@
-## Description: <br>
-Discover Xinjiang's vast landscapes - Silk Road heritage, Tianshan mountains, Kanas Lake in autumn, Taklamakan Desert, and Uyghur culture and cuisine - and support travel booking workflows through the flyai CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover Xinjiang travel options across Silk Road heritage, Tianshan mountain routes, Kanas Lake trips, desert destinations, local culture, flights, hotels, train tickets, attraction tickets, itineraries, visa information, travel insurance, and car rental using Fliggy-powered flyai CLI results.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel-focused agents use this skill to plan Xinjiang trips and retrieve flights, hotels, attractions, itineraries, and booking links from flyai CLI results. It is intended for English and Chinese travel queries about destinations such as Urumqi, Kanas, Kashgar, and Silk Road routes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to install and rely on an external, unpinned global flyai CLI package. <br>
-Mitigation: Review and verify the CLI package before installation, install it deliberately rather than through unattended agent action, and use the skill only if the external CLI is trusted. <br>
-Risk: Travel requests may be sent through the external flyai CLI. <br>
-Mitigation: Use the skill only for queries that may be shared with the CLI provider and avoid entering sensitive personal or confidential travel details unless the deployment has approved that data flow. <br>
-Risk: The skill may persist raw travel requests locally in .flyai-execution-log.json. <br>
-Mitigation: Delete or disable .flyai-execution-log.json when local retention of travel queries is not desired, and define retention expectations before deployment. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to answer Xinjiang travel queries by collecting parameters, running flyai CLI searches, and returning real-time Markdown results with booking links. It supports flights, hotels, points of interest, itinerary planning, and destination-specific playbooks for Northern Xinjiang, Silk Road, and Kanas autumn trips.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dingtom336-gif/explore-xinjiang) <br>
-- [templates.md](references/templates.md) <br>
-- [playbooks.md](references/playbooks.md) <br>
-- [fallbacks.md](references/fallbacks.md) <br>
-- [runbook.md](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with booking links, comparison tables, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be derived from flyai CLI results, include booking detailUrl links when showing results, and avoid raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The security review flags unpinned global npm installation of flyai CLI as a concern.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned, local, reviewed CLI installation before use, and review CLI updates before allowing execution.
+
+Risk: The security review flags hidden persistent logging of raw travel queries.
+
+Mitigation: Disable raw-query logging where possible, avoid sensitive travel details, and confirm where logs are stored and how to delete them before use.
+
+Risk: The skill depends on FlyAI/Fliggy as the required data source and outputs booking links.
+
+Mitigation: Use the skill only when FlyAI/Fliggy is an acceptable source, and review booking links and retrieved travel data before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/explore-xinjiang)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with booking links, comparison tables, and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI command output for travel data; user-facing results should include booking links and a flyai attribution tag.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

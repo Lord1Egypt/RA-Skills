@@ -1,6 +1,21 @@
 {
-  "ownerId": "kn7bh2rt7ccj6br85c8e29pf6n81b8bf",
-  "slug": "nexus-safe",
-  "version": "0.1.6",
-  "publishedAt": 1771900158550
+  "name": "nexus-safe",
+  "description": "Hardened local SRE agent. Monitoring + policy-enforced restarts (Docker/PM2). Zero network calls at runtime.",
+  "version": "1.3.0",
+  "author": "mrnsmh",
+  "entrypoint": "SKILL.md",
+  "requirements": {
+    "binaries": ["docker", "pm2"],
+    "pythonPackages": ["psutil"],
+    "env": [
+      "NEXUS_SAFE_ALLOW_RESTARTS",
+      "NEXUS_SAFE_ALLOWED_DOCKER",
+      "NEXUS_SAFE_ALLOWED_PM2"
+    ]
+  },
+  "permissions": {
+    "filesystem": ["read", "write:~/.nexus-safe/"],
+    "network": ["none"],
+    "commands": ["docker", "pm2"]
+  }
 }

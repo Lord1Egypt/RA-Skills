@@ -1,44 +1,55 @@
-## Description: <br>
-Compare research papers by retrieving full PDFs from titles, URLs, or files and synthesizing differences, strengths, weaknesses, and evidence-backed trade-offs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare research papers by retrieving full PDFs from titles, URLs, or files and synthesizing differences, strengths, weaknesses, and evidence-backed trade-offs.
 
-## Publisher: <br>
-[quqxui](https://clawhub.ai/user/quqxui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quqxui](https://clawhub.ai/user/quqxui)
 
-## Use Case: <br>
-External users and developers use this skill to compare multiple research papers from titles, URLs, or uploaded PDFs. It is designed to produce evidence-backed comparison tables and concise synthesis only after full PDF text is available for every paper. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may search the web, open paper links, and download or extract PDF text. <br>
-Mitigation: Use public academic sources and avoid private URLs or confidential PDFs unless they are intended to be processed for comparison. <br>
-Risk: Paper comparisons can be misleading when PDF text is unavailable, extraction quality is weak, or evaluation protocols differ. <br>
-Mitigation: Block comparisons without usable full PDF text, mark evidence quality, and avoid direct metric comparison when datasets, baselines, or protocols differ. <br>
+## Use Case:
 
+Researchers, developers, and analysts use this skill to compare multiple research papers from titles, URLs, or uploaded PDFs. It is intended for evidence-backed side-by-side analysis of methods, results, strengths, weaknesses, limitations, and comparability caveats.
 
-## Reference(s): <br>
-- [Input Handling](input-handling.md) <br>
-- [Comparison Schema](comparison-schema.md) <br>
-- [Output Patterns](output-patterns.md) <br>
-- [Evidence Policy](references/evidence-policy.md) <br>
-- [Memory Dimensions](references/memory-dimensions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with an acquisition summary, comparison table, analytical synthesis, and confidence notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires readable full PDF text for each paper before substantive comparison.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter says 0.1.0) <br>
+Risk: The agent may search the web, open paper links, retrieve PDFs, or read PDFs supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer trusted scholarly sources such as arXiv, OpenReview, ACL Anthology, publisher pages, or uploaded files, and avoid unknown or private-network URLs.
+
+Risk: PDF extraction issues or mismatched experimental settings can make paper comparisons misleading.
+
+Mitigation: Require usable full-text evidence, label extraction quality, and avoid direct metric comparisons when datasets, tasks, baselines, or protocols differ.
+
+## Reference(s):
+
+- [Evidence Policy](references/evidence-policy.md)
+- [Memory Dimensions](references/memory-dimensions.md)
+- [ClawHub Skill Page](https://clawhub.ai/quqxui/skills/research-paper-compare)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with comparison tables, analytical synthesis, and confidence notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires full PDF evidence for every paper before substantive comparison; reports blockers when full text is unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

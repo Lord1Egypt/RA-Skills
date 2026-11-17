@@ -1,42 +1,59 @@
-## Description: <br>
-Search the web using multiple engines (Tavily, multi-search-engine, or SearXNG). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web using multiple engines (Tavily, multi-search-engine, or SearXNG).
 
-## Publisher: <br>
-[hollisken](https://clawhub.ai/user/hollisken) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hollisken](https://clawhub.ai/user/hollisken)
 
-## Use Case: <br>
-Developers and agents use this skill to run web, news, technical, research, and Chinese-language searches through Tavily, self-hosted SearXNG, or multi-engine search providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports an embedded Tavily API key and advises avoiding sensitive searches until it is removed. <br>
-Mitigation: Remove and rotate the embedded key, then require users to provide their own TAVILY_API_KEY before using Tavily-backed searches. <br>
-Risk: The security scan reports that normal searches may run an unreviewed local Python script. <br>
-Mitigation: Verify or vendor the referenced script before deployment, or disable the code paths that execute it. <br>
-Risk: The security guidance reports that the multi-engine path does not match the documented behavior. <br>
-Mitigation: Fix and test the multi-engine implementation before relying on that engine in production. <br>
+## Use Case:
 
+Developers and agent users use this skill to retrieve web search results through Tavily, SearXNG, or multi-engine search for news, technical materials, papers, and general web queries.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hollisken/kn70-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Guidance] <br>
-**Output Format:** [JSON-like search result objects with titles, URLs, snippets, engine metadata, and status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports query, max_results, and engine selection; artifact describes a 20 calls/min rate limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.yaml) <br>
+Risk: The skill can send search queries to third-party services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review expected query sensitivity before installation and configure approved search providers for the deployment environment.
+
+Risk: The security summary reports a shared hardcoded Tavily fallback credential.
+
+Mitigation: Prefer a version that removes the embedded key and require deployment-specific credentials through TAVILY_API_KEY.
+
+Risk: The security guidance reports possible execution of an external Python script from a fixed Windows path that is not included in the reviewed package.
+
+Mitigation: Prefer reviewed in-package provider code or document and review all subprocess behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hollisken/skills/kn70-search)
+- [Publisher Profile](https://clawhub.ai/user/hollisken)
+- [Tavily Search API Endpoint](https://api.tavily.com/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, links, guidance]
+
+**Output Format:** [JSON object containing success status, selected engine, message, and search results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Result count is controlled by max_results; the plugin declares a 20 calls/minute rate limit.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, skill.yaml, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

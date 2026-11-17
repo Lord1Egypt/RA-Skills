@@ -1,0 +1,13 @@
+# lgd-fin-guard
+
+> 本文件是 AI 可读的技能索引（llms.txt 惯例）。AI 代理优先读 `SKILL.md`。
+
+## 关键文件
+
+- [SKILL.md](SKILL.md)：主说明书（frontmatter + 触发条件 + 执行步骤）
+- [AGENTS.md](AGENTS.md)：AI 代理说明书
+- [README.md](README.md)：人类总览（如存在）
+
+## 一句话定位
+
+lgd-fin-guard — 把 LGD 三律（有籍·有证·有门禁）翻译进金融 / 持牌机构 AI 应用（投顾·风控·反洗钱）的合规守门器，对 AI 系统做三律自评与门禁判定（零依赖）。

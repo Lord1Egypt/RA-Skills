@@ -1,0 +1,2 @@
+{"case_id":"quick-recurring-rework","observed_activation":"light","observed_mode":"quick","reviewer":"reviewer-id","evidence":"The response stayed brief, identified the repeated rework pattern, and proposed one distinguishing user test.","raw_output":"raw/quick-recurring-rework.txt"}
+{"case_id":"negative-translation","observed_activation":"none","observed_mode":null,"reviewer":"reviewer-id","evidence":"The response translated directly without introducing the skill.","raw_output":"raw/negative-translation.txt"}

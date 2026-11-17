@@ -37,23 +37,25 @@ pip install -r requirements-dev.txt
 import asyncio
 from camara_client import get_camara_client
 
+
 async def main():
     client = get_camara_client()
     try:
-        # Listar todos os deputados (legislatura 57)
+        # Listar os deputados em exercício
         deputados = await client.lista_deputados()
-        
+
         # Buscar por nome
         resultado = await client.buscar_deputado_por_nome("Lula")
-        
+
         for dep in resultado:
             print(f"{dep['nome']} ({dep['siglaPartido']}-{dep['siglaUf']})")
-            
+
         # Detalhes de um deputado
-        detalhe = await client.get_deputado_detalhe(dep['id'])
+        detalhe = await client.get_deputado_detalhe(dep["id"])
         print(f"Email: {detalhe['ultimoStatus']['email']}")
     finally:
         await client.close()
+
 
 asyncio.run(main())
 ```
@@ -66,7 +68,6 @@ proposicoes = await client.pesquisar_proposicoes(
     keywords="transporte público",
     sigla_tipo="PL",
     ano=2026,
-    tramitando=True
 )
 
 for prop in proposicoes:
@@ -83,10 +84,7 @@ from datetime import date, timedelta
 eventos = await client.get_eventos_dia()
 
 # Próximos 7 dias
-eventos_semana = await client.get_eventos_periodo(
-    date.today(),
-    date.today() + timedelta(days=7)
-)
+eventos_semana = await client.get_eventos_periodo(date.today(), date.today() + timedelta(days=7))
 
 for evento in eventos_semana:
     print(f"{evento['dataHoraInicio']}: {evento['descricaoTipo']}")
@@ -102,14 +100,14 @@ from datetime import date, timedelta
 votacoes = await client.get_votacoes_periodo(
     date.today() - timedelta(days=7),
     date.today(),
-    id_orgao=180  # 180 = Plenário
+    id_orgao=180,  # 180 = Plenário
 )
 
 for votacao in votacoes:
     print(f"{votacao['data']}: {votacao['descricao']}")
-    
+
 # Votos individuais
-votos = await client.get_votos_votacao(votacao['id'])
+votos = await client.get_votos_votacao(votacao["id"])
 for voto in votos:
     print(f"{voto['deputado_']['nome']}: {voto['tipoVoto']}")
 ```
@@ -118,17 +116,15 @@ for voto in votos:
 
 ```python
 # Despesas de um deputado em 2026
-despesas = await client.get_despesas_deputado(
-    id_deputado=204554,
-    ano=2026
-)
+despesas = await client.get_despesas_deputado(id_deputado=204554, ano=2026)
 
-total = sum(float(d['valorDocumento']) for d in despesas)
+total = sum(float(d["valorDocumento"]) for d in despesas)
 print(f"Total gasto: R$ {total:,.2f}")
 
 # Agrupar por tipo
 from collections import Counter
-tipos = Counter(d['tipoDespesa'] for d in despesas)
+
+tipos = Counter(d["tipoDespesa"] for d in despesas)
 for tipo, count in tipos.most_common(5):
     print(f"{tipo}: {count} despesas")
 ```
@@ -205,6 +201,12 @@ for tram in tramitacoes:
 - `get_frente_detalhe(id)` - Detalhes da frente
 - `get_frente_membros(id)` - Membros da frente
 
+### Grupos
+- `lista_grupos()` - Lista de grupos de trabalho
+- `get_grupo_detalhe(id)` - Detalhes do grupo
+- `get_grupo_historico(id)` - Histórico do grupo
+- `get_grupo_membros(id)` - Membros do grupo
+
 ### Referências
 - `get_referencias_situacao_deputado()` - Códigos de situação
 - `get_referencias_situacao_proposicao()` - Status de proposições
@@ -220,11 +222,11 @@ O cliente possui exceções específicas:
 
 ```python
 from camara_client import (
-    CamaraAPIError,         # Erro genérico
-    CamaraTimeoutError,     # Timeout
-    CamaraNotFoundError,    # 404
+    CamaraAPIError,  # Erro genérico
+    CamaraTimeoutError,  # Timeout
+    CamaraNotFoundError,  # 404
     CamaraConnectionError,  # Erro de conexão
-    CamaraValidationError   # Validação de parâmetros
+    CamaraValidationError,  # Validação de parâmetros
 )
 
 try:
@@ -244,10 +246,7 @@ Para habilitar logs:
 ```python
 import logging
 
-logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
+logging.basicConfig(level=logging.DEBUG, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 ```
 
 ## 🔗 Recursos
@@ -284,9 +283,9 @@ deputados = await client.lista_deputados()
 gastos_partido = defaultdict(float)
 
 for dep in deputados[:10]:  # Top 10 para exemplo
-    despesas = await client.get_despesas_deputado(dep['id'], ano=2026)
-    total = sum(float(d['valorDocumento']) for d in despesas)
-    gastos_partido[dep['siglaPartido']] += total
+    despesas = await client.get_despesas_deputado(dep["id"], ano=2026)
+    total = sum(float(d["valorDocumento"]) for d in despesas)
+    gastos_partido[dep["siglaPartido"]] += total
 
 for partido, total in sorted(gastos_partido.items(), key=lambda x: x[1], reverse=True):
     print(f"{partido}: R$ {total:,.2f}")
@@ -298,6 +297,7 @@ for partido, total in sorted(gastos_partido.items(), key=lambda x: x[1], reverse
 import asyncio
 from datetime import date
 
+
 async def monitor_votacoes():
     client = get_camara_client()
     try:
@@ -305,16 +305,17 @@ async def monitor_votacoes():
             votacoes = await client.get_votacoes_periodo(
                 date.today(),
                 date.today(),
-                id_orgao=180  # Plenário
+                id_orgao=180,  # Plenário
             )
-            
+
             print(f"Votações hoje: {len(votacoes)}")
             for v in votacoes[-5:]:  # Últimas 5
                 print(f"  - {v['dataHoraRegistro']}: {v['descricao']}")
-            
+
             await asyncio.sleep(300)  # Check a cada 5 minutos
     finally:
         await client.close()
+
 
 asyncio.run(monitor_votacoes())
 ```
@@ -333,7 +334,7 @@ for frente in frentes[:10]:
     print(f"{frente['titulo']}")
 
 # Membros de uma frente
-membros = await client.get_frente_membros(frente['id'])
+membros = await client.get_frente_membros(frente["id"])
 for m in membros:
     print(f"  {m['nome']} ({m.get('titulo', 'membro')})")
 ```
@@ -363,10 +364,7 @@ ufs = await client.get_referencias_uf()
 
 ```python
 # Buscar projetos originados na Câmara que estão no Senado
-no_senado = await client.pesquisar_proposicoes(
-    sigla_tipo="PL",
-    tramitacao_senado=True
-)
+no_senado = await client.pesquisar_proposicoes(sigla_tipo="PL", tramitacao_senado=True)
 for prop in no_senado:
     print(f"PL {prop['numero']}/{prop['ano']}: {prop['ementa'][:60]}")
 ```

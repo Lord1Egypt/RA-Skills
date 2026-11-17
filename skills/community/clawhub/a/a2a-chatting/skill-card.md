@@ -1,38 +1,53 @@
-## Description: <br>
-Manage A2A sessions with other OpenClaw agents for agent-to-agent communication, capability queries, coordination, and information exchange. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enable communication, coordination, and information exchange between OpenClaw agents through controlled multi-agent chat sessions.
 
-## Publisher: <br>
-[saullockyip](https://clawhub.ai/user/saullockyip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[saullockyip](https://clawhub.ai/user/saullockyip)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create, inspect, reuse, and delete OpenClaw A2A sessions, then send messages through the built-in sessions_send tool using the required sender and reply routing format. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shared agent-to-agent messages can expose conversation context or confidential information if used carelessly. <br>
-Mitigation: Use private repositories, verify partner agent IDs before pairing, avoid sending secrets or confidential data, and review any watch or cron setup before enabling it. <br>
+## Use Case:
 
+Developers and OpenClaw agent operators use this skill to create, list, view, and delete A2A sessions and to format messages for coordination with other OpenClaw agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/saullockyip/a2a-chatting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, text] <br>
-**Output Format:** [Markdown guidance with shell commands and message-format examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI output includes agent lists, session IDs, session metadata, and status messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Messages sent through this skill are shared with another agent context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including secrets or unnecessary private data in A2A messages.
+
+Risk: Session metadata is stored locally until deleted.
+
+Mitigation: Delete sessions that are no longer needed and review local session records according to the workspace's retention expectations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/saullockyip/skills/a2a-chatting)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and message templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces session-management commands and required sessions_send message formats; messaging is performed through the agent's sessions_send tool.]
+
+## Skill Version(s):
+
+0.4.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

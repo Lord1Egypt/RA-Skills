@@ -1,0 +1,4 @@
+interface:
+  display_name: "Property Tax Appeal Builder"
+  short_description: "Triage US assessment disputes and build market-value packets"
+  default_prompt: "Use $prepare-property-tax-appeal to classify my residential assessment dispute, identify the value basis and filing route, and verify the authority, form, and deadline. If market value is a material ground, research my property and comparable sales, review contrary evidence, and create a fact-checked Markdown and PDF appeal packet from my address and notice value."

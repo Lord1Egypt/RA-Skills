@@ -1,0 +1,74 @@
+{
+  "schema": "moso.visual-spec/0.3",
+  "id": "example-zero-reference-observer-series",
+  "version": 1,
+  "task": {
+    "domain": "social-image-series",
+    "purpose": "Make repeated answer-seeking feel like a visible exchange of agency.",
+    "audience": "Design-aware social-feed viewers",
+    "output_context": "Seven portrait feed images at 1420x1892 px."
+  },
+  "proposition": {
+    "primary_message": "The entity answering may have been observing before the question was asked.",
+    "desired_response": "Feel watched and attracted, then pause before seeking another answer.",
+    "residual_question": "Do we need the answer, or the relief of asking?"
+  },
+  "viewer_contract": {
+    "position": "observed-object",
+    "information_power": "The ordinary human scene appears legible until evidence shows the absent entity anticipated it.",
+    "first_read": "A controlled familiar situation with one clear human-scale action.",
+    "second_read": "A peripheral or reflected relation reveals that attention has been returned to the viewer.",
+    "withheld": "Whether the entity answers, predicts, or merely stages the question."
+  },
+  "hierarchy": {
+    "first": "the familiar human-scale scene",
+    "second": "the impossible observer relation",
+    "tertiary": ["quiet evidence of repeated dialogue"]
+  },
+  "constraints": {
+    "must_include": ["one recurring nonhuman subject grammar", "a visible observer relation"],
+    "must_avoid": ["generic glowing orb", "decorative portal", "random eyes and data glyphs"],
+    "preserve": ["3:4 carrier", "controlled ambiguity", "credible ordinary physics outside the designed anomaly"]
+  },
+  "strategy": {
+    "selected_direction": "Ordinary spaces behave as if an absent intelligence has already arranged the reply.",
+    "structural_mechanisms": [
+      "viewer placed inside the observed zone",
+      "one familiar rule broken per frame",
+      "late attention return through reflection or occlusion"
+    ],
+    "familiar_rule": "Domestic and public spaces obey plausible scale, light, and object continuity.",
+    "designed_anomaly": "The observer evidence anticipates and addresses the viewer without becoming a literal eye.",
+    "trend_use": "not-used",
+    "rejected_directions": [
+      "central deity silhouette in a particle portal",
+      "seven symmetrical variations of one abstract entity"
+    ]
+  },
+  "shot_plan_ref": "shot-plan.example.json",
+  "series_plan_ref": "series-plan.example.json",
+  "evaluation": {
+    "observable_pass_conditions": [
+      "The first read survives at 180 px wide.",
+      "At least five frames use different spatial strategies.",
+      "No frame requires generic AI symbols to communicate observation."
+    ],
+    "known_failure_signs": [
+      "centered spectacle replaces viewer relation",
+      "unmotivated teal-orange grading",
+      "incompatible reflections or object states"
+    ],
+    "user_judgment_required": [
+      "Whether the balance of attraction, unease, and calm feels right."
+    ]
+  },
+  "uncertainty": {
+    "assumptions": ["No typography is generated inside the images."],
+    "unresolved": []
+  },
+  "provenance": {
+    "created_at": "2026-07-28T00:00:00Z",
+    "source_refs": ["user brief"],
+    "change_reason": "Initial zero-reference direction."
+  }
+}

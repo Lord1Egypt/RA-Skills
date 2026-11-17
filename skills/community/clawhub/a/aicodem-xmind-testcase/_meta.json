@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7ae3jjr3vs8afdgf6sdj5mc182s4bg",
-  "slug": "aicodem-xmind-testcase",
+  "name": "aicodem-xmind-testcase",
   "version": "1.0.0",
-  "publishedAt": 1773367644555
+  "author": "aicodem",
+  "description": "XMind 测试用例生成器",
+  "created": "2026-03-13",
+  "license": "MIT"
 }

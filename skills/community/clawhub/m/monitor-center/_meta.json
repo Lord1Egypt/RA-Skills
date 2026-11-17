@@ -1,0 +1,12 @@
+{
+  "ownerId": "583963",
+  "slug": "monitor-center",
+  "version": "1.5.3",
+  "workflow": "monitor",
+  "focus": "all",
+  "outputTemplate": "monitor_overview",
+  "requiredCapabilities": [
+    "monitor"
+  ],
+  "releaseWave": 6
+}

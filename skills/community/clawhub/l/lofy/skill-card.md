@@ -1,43 +1,57 @@
-## Description: <br>
-Personal AI chief of staff - a complete life management system for OpenClaw with proactive briefings, reviews, fitness tracking, career management, project tracking, smart home control, and brain-inspired memory architecture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal AI chief of staff \u2014 a complete life management system for OpenClaw. Proactive morning briefings, evening reviews, weekly reports, fitness tracking, career management, project tracking, smart home control, and brain-inspired memory architecture. Use when setting up a personal AI assistant that manages your entire life through natural conversation across Telegram, WhatsApp, Discord, or any OpenClaw channel.
 
-## Publisher: <br>
-[harrey401](https://clawhub.ai/user/harrey401) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[harrey401](https://clawhub.ai/user/harrey401)
 
-## Use Case: <br>
-OpenClaw users use this skill to set up a personalized chief-of-staff style agent that manages goals, routines, memory, reminders, projects, fitness, career workflows, and optional home automation through natural conversation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The assistant template can receive standing access to sensitive personal files, calendar, email, messaging, memory, and workspace data. <br>
-Mitigation: Use a dedicated workspace, avoid storing secrets in memory files, keep shared-chat memory loading disabled, and limit connected service credentials to the minimum needed scope. <br>
-Risk: Scheduled heartbeat and cron workflows can create proactive monitoring or outreach that may surprise users if enabled without review. <br>
-Mitigation: Review and narrow AGENTS.md and HEARTBEAT.md before enabling schedules, confirm every cron job, and require user confirmation before external messaging or smart-home actions. <br>
-Risk: Memory files can accumulate sensitive personal facts and may be updated by the agent over time. <br>
-Mitigation: Review MEMORY.md and daily logs regularly, keep the long-term memory concise, and remove outdated or sensitive entries. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lofy ClawHub release page](https://clawhub.ai/harrey401/lofy) <br>
-- [harrey401 publisher profile](https://clawhub.ai/user/harrey401) <br>
-- [Memory System](references/memory-system.md) <br>
+## Use Case:
 
+External users and developers use Lofy to set up a personal OpenClaw assistant for proactive life management, including briefings, goals, fitness, career tracking, project tracking, smart-home notes, and persistent memory workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown instructions with template files and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes workspace templates for agent identity, behavior, user profile, memory, scheduling, tools, goals, fitness, applications, projects, and home configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is designed for broad personal-assistant access across sensitive integrations.
+
+Mitigation: Install it only in a new or backed-up workspace, review every template before copying it, and narrow what the agent may read, write, delete, or send before enabling integrations.
+
+Risk: Persistent self-updating memory and instruction files can change future assistant behavior.
+
+Mitigation: Treat changes to AGENTS.md, skills, MEMORY.md, and profile files as review-required rather than automatic.
+
+Risk: Email, calendar, group chat, smart-home, and cron access can create privacy or action risks if enabled too broadly.
+
+Mitigation: Avoid enabling those integrations until permissions, delivery channels, and action boundaries have been reviewed and restricted.
+
+## Reference(s):
+
+- [Memory System](references/memory-system.md)
+- [Lofy ClawHub Skill Page](https://clawhub.ai/harrey401/skills/lofy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Shell commands, Guidance]
+
+**Output Format:** [Markdown templates, JSON configuration files, and setup instructions with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workspace templates for a personal assistant memory, profile, scheduling, and integration setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

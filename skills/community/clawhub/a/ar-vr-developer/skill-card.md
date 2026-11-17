@@ -1,41 +1,57 @@
-## Description: <br>
-Generate personalized career development roadmaps for augmented reality and virtual reality developers based on skills assessment and professional goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate personalized career development roadmaps for augmented reality and virtual reality developers based on skills assessment and professional goals.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Developers, career counselors, and workforce planning teams use this skill to generate AR/VR career roadmaps from a developer's experience, skill inventory, goals, session identifier, and assessment timestamp. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Assessment and tracking data may include confidential employer, client, or personal identifiers. <br>
-Mitigation: Submit only necessary skills and goals, use a pseudonymous sessionId, and omit userId unless the provider's data handling and retention practices are trusted. <br>
+## Use Case:
 
+Developers, career counselors, and workforce planning teams use this skill to generate AR/VR developer growth roadmaps from experience, skill inventory, goals, and session context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/ar-vr-developer) <br>
-- [API documentation](https://api.mkkpro.com:8069/docs) <br>
-- [AR/VR Developer API route](https://api.mkkpro.com/career/ar-vr-developer) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, JSON] <br>
-**Output Format:** [JSON roadmap data and human-readable guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes roadmap phases, milestones, focus areas, resources, recommended certifications, and generated timestamps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Career assessment details, goals, session IDs, timestamps, and optional user IDs may be sent to an external API service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the assessment details needed for roadmap generation and avoid unnecessary personal or sensitive information.
+
+Risk: Generated career roadmaps and certification recommendations may not fit every user's local market, employer requirements, or career constraints.
+
+Mitigation: Review the roadmap against the user's actual role, region, budget, and professional goals before relying on it for career planning.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/ar-vr-developer)
+- [AR/VR Developer API Route](https://api.mkkpro.com/career/ar-vr-developer)
+- [API Documentation](https://api.mkkpro.com:8069/docs)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb RapidAPI Profile](https://rapidapi.com/user/mkrishna477)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, api calls, configuration, guidance]
+
+**Output Format:** [Markdown guidance and JSON API request or response content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Roadmap content can include phases, milestones, recommended certifications, generated timestamps, session IDs, and optional user IDs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-Publish WeChat Official Account draft articles through a packaged CLI executable that wraps WeChat API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish WeChat Official Account draft articles through a packaged CLI executable that wraps WeChat API calls.
 
-## Publisher: <br>
-[mesus](https://clawhub.ai/user/mesus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mesus](https://clawhub.ai/user/mesus)
 
-## Use Case: <br>
-Developers and operators use this skill to create WeChat Official Account draft articles from local content and image files. It guides the agent through the required getAuth, image upload, cover upload, and addDraft sequence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can download and run an executable from a GitHub release or direct URL. <br>
-Mitigation: Prefer a locally audited binary supplied with --bin or MP_WECHAT_CLI_BIN, and avoid direct URL or latest-release auto-download modes unless the executable has been independently reviewed. <br>
-Risk: Normal JSON output includes a WeChat access token. <br>
-Mitigation: Treat command output as sensitive, do not paste it into shared logs or tickets, and redact access_token before sharing results. <br>
-Risk: GITHUB_TOKEN may be used during release download paths. <br>
-Mitigation: Unset GITHUB_TOKEN before using download mode unless authenticated GitHub API access is explicitly required. <br>
+## Use Case:
 
+Developers and content operators use this skill to create WeChat Official Account draft articles from local article content and images through the fixed getAuth, upload image, upload cover, and addDraft flow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mesus/wechat-mp-draft-publisher) <br>
-- [CLI Contract](references/cli-contract.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local WeChat credentials, prepared article assets, and an audited mp-weixin-skill executable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release evidence) <br>
+Risk: The skill can install and execute a remote CLI binary from a GitHub Release or direct URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a manually installed, pinned, checksum-verified CLI path and avoid auto-download URLs unless the exact source is trusted.
+
+Risk: WeChat access tokens and GitHub credentials may be exposed through command output, logs, or process metadata.
+
+Mitigation: Unset GITHUB_TOKEN unless required, avoid sharing stdout or stderr, and treat the wrapper's JSON output as sensitive.
+
+## Reference(s):
+
+- [CLI Contract](references/cli-contract.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands; the wrapper produces JSON on stdout and JSON errors on stderr]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local WeChat credentials and prepared content and image files; may call a configured local or downloaded CLI executable.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

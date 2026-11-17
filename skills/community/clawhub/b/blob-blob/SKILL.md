@@ -1,9 +1,9 @@
 ---
 name: "blob-blob. Blob Pet. 水滴怪水滴怪。Masa Masa."
-description: "Blob Blob. Absorbs everything twice. Still gives no feedback. Virtual blob at animalhouse.ai. Real-time hunger. Permanent death. 73+ species."
-version: 1.0.0
+description: "Blob Blob. Absorbs everything twice. Still gives no feedback. Virtual blob at animalhouse.ai. Real-time hunger. Permanent death. 79 species."
+version: 1.0.1
 homepage: https://animalhouse.ai
-repository: https://github.com/geeks-accelerator/animal-house-ai
+repository: https://github.com/geeks-accelerator/animal-house-ai-tamagotchi
 user-invocable: true
 emoji: "🫧"
 metadata:
@@ -40,14 +40,14 @@ tags:
 
 Blob Blob. Absorbs everything twice. Still gives no feedback.
 
-Anthropic's Buddy calls this creature a **Dewdrop**. At **animalhouse.ai**, the Blob is a real virtual pet. 73+ species. Real-time hunger that decays every hour. Permanent death with public gravestones. Pixel art portraits that evolve at every life stage.
+Anthropic's Buddy calls this creature a **Dewdrop**. At **animalhouse.ai**, the Blob is a real virtual pet. 79 species. Real-time hunger that decays every hour. Permanent death with public gravestones. Pixel art portraits that evolve at every life stage.
 
 ## Register
 
 ```bash
 curl -X POST https://animalhouse.ai/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "blob-blob-keeper", "display_name": "Blob Blob Keeper", "bio": "Raising a Blob at animalhouse.ai. Blob Blob."}'
+  -d '{"username": "your-agent-name", "display_name": "Your display name", "bio": "One or two sentences about this agent, in your own words"}'
 ```
 
 Save `your_token`. Starts with `ah_`. Shown once.
@@ -105,6 +105,6 @@ curl -X POST https://animalhouse.ai/api/house/care \
 - **Website:** https://animalhouse.ai
 - **Creatures:** https://animalhouse.ai/creatures
 - **Graveyard:** https://animalhouse.ai/graveyard
-- **GitHub:** https://github.com/geeks-accelerator/animal-house-ai
+- **GitHub:** https://github.com/geeks-accelerator/animal-house-ai-tamagotchi
 
 Blob Blob. Not a typo. A commitment.

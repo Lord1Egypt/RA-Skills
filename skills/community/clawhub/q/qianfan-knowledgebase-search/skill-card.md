@@ -1,38 +1,57 @@
-## Description: <br>
-Search knowledge from Qianfan Knowledgebase. Use this when you need to retrieve information from user's private knowledge bases on Baidu Qianfan platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and retrieves information from private Baidu Qianfan knowledge bases using semantic, full-text, hybrid, and reranked search.
 
-## Publisher: <br>
-[hannatao](https://clawhub.ai/user/hannatao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hannatao](https://clawhub.ai/user/hannatao)
 
-## Use Case: <br>
-Developers and external users use this skill to query private Baidu Qianfan knowledge bases from an agent workflow and retrieve structured chunks with scores and metadata. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries and selected knowledge-base IDs are sent to Baidu Qianfan using the configured API key. <br>
-Mitigation: Use the skill only for intended Qianfan searches, avoid placing unnecessary secrets in queries, and configure an appropriately scoped BAIDU_API_KEY. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Qianfan KnowledgeBase Search on ClawHub](https://clawhub.ai/hannatao/qianfan-knowledgebase-search) <br>
-- [Baidu Qianfan Knowledgebase Search API endpoint](https://qianfan.baidubce.com/v2/knowledgebases/search) <br>
+## Use Case:
 
+External developers and agents use this skill to query private Baidu Qianfan knowledge bases and retrieve structured result chunks, scores, and document metadata.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Configuration instructions] <br>
-**Output Format:** [JSON response printed to stdout with setup and invocation guidance in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, BAIDU_API_KEY, and either request-supplied knowledgebase IDs or QIANFAN_KNOWLEDGEBASE_IDS.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Private search queries and knowledge-base identifiers are sent to Baidu Qianfan.
+
+Mitigation: Use the skill only when Baidu Qianfan is approved for the data being searched, and avoid submitting confidential queries outside approved workflows.
+
+Risk: The script logs the full parsed request body to standard output.
+
+Mitigation: Remove or redact the diagnostic request print before using the skill with sensitive searches.
+
+Risk: The skill requires a Baidu Qianfan API key.
+
+Mitigation: Provide the key through environment management, avoid storing it in prompts or files, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hannatao/skills/qianfan-knowledgebase-search)
+- [Baidu Qianfan Knowledgebase Search API endpoint](https://qianfan.baidubce.com/v2/knowledgebases/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration]
+
+**Output Format:** [JSON search results and status or error text on standard output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BAIDU_API_KEY and knowledge-base identifiers; accepts query, top_k, score threshold, recall, rerank, graph, and expansion options.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

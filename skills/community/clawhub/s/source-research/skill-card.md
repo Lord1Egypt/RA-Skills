@@ -1,42 +1,53 @@
-## Description: <br>
-Build and maintain a reusable source-research system for discovering source pools, evaluating whether they are worth ongoing investment, defining efficient acquisition/filtering methods, recording rejection decisions, and producing high-quality source lists or notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and maintain a reusable source-research system for discovering source pools, evaluating them, defining acquisition and filtering methods, recording rejection decisions, and producing high-quality source lists or notes.
 
-## Publisher: <br>
-[myvyang](https://clawhub.ai/user/myvyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[myvyang](https://clawhub.ai/user/myvyang)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to create reusable source-research artifacts: source pools, acquisition methods, filtering methods, high-quality source lists, captured information, rejection notes, and automation plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent source-research notes may contain private targets, sensitive evaluations, or information that should not be shared. <br>
-Mitigation: Review .source-research/ before committing, syncing, or sharing it, and avoid storing secrets, private targets, or sensitive internal evaluations there. <br>
+## Use Case:
 
+Developers, researchers, and agents use this skill to create reusable records for source pools, acquisition methods, filtering methods, high-quality source lists, captured information, rejection decisions, and automation notes.
 
-## Reference(s): <br>
-- [Framework Reference](references/framework.md) <br>
-- [Artifact Reference](references/artifacts.md) <br>
-- [Storage Specification](references/storage.md) <br>
-- [Organization Research Notes](references/organization.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/myvyang/source-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, workspace files, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update files under a workspace .source-research/ directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can create or update .source-research/ notes and templates in the current workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only in workspaces where persistent source-curation records are wanted, and review generated Markdown artifacts before relying on them.
+
+## Reference(s):
+
+- [Source Research Skill](https://clawhub.ai/myvyang/skills/source-research)
+- [Framework Reference](references/framework.md)
+- [Artifact Reference](references/artifacts.md)
+- [Storage Specification](references/storage.md)
+- [Organization Research Notes](references/organization.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files and concise agent guidance, with optional shell commands for initializing workspace storage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates disclosed source-research artifacts in the workspace, typically under .source-research/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

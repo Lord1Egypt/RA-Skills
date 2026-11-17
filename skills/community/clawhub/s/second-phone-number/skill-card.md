@@ -1,43 +1,59 @@
-## Description: <br>
-Get a dedicated second phone number instantly. Keep your personal number private, separate work from life, and let AI handle the calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get a dedicated second phone number instantly. Keep your personal number private, separate work from life, and let AI handle the calls.
 
-## Publisher: <br>
-[mrsz](https://clawhub.ai/user/mrsz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrsz](https://clawhub.ai/user/mrsz)
 
-## Use Case: <br>
-External users and agents use this skill to obtain and manage a dedicated PollyReach phone number for outbound calls, incoming call answering, voicemail transcription, spam filtering, and call summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This skill handles sensitive phone numbers, call instructions, inbound messages, call summaries, transcripts, recordings, and custom answering prompts through PollyReach. <br>
-Mitigation: Use it only when comfortable with PollyReach processing that data, avoid one-time codes or highly sensitive calls, and review returned transcripts and summaries before relying on them. <br>
-Risk: The PollyReach token grants access to the phone-number integration and related call operations. <br>
-Mitigation: Keep the PollyReach token file private and rotate or remove it if the local environment is shared or compromised. <br>
-Risk: Periodic inbound-call polling can create ongoing checks for new calls. <br>
-Mitigation: Enable scheduled polling only when explicitly desired and choose an interval appropriate for the user's privacy and notification expectations. <br>
+## Use Case:
 
+External users and agents use this skill to obtain a separate phone number, initiate outbound calls, receive incoming call summaries, check balance, and configure inbound call handling through PollyReach.
 
-## Reference(s): <br>
-- [PollyReach](https://pollyreach.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mrsz/second-phone-number) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses PollyReach API calls and a local token file to activate a number, send call tasks, poll results, check balance, retrieve inbound call summaries, and update answering prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: PollyReach receives call tasks, phone numbers, inbound messages, transcripts, recordings, prompts, and a reusable local token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when that data sharing is acceptable, avoid sending secrets through call prompts or messages, and confirm token revocation and number disablement paths before deployment.
+
+Risk: The skill gives an agent persistent outbound calling and inbound-message access.
+
+Mitigation: Review planned calls and inbound prompt changes before use, keep the PollyReach token protected, and restrict use to authorized calling and message-handling tasks.
+
+Risk: Referral text points agents to a remote SKILL.md that was not reviewed as part of the local artifact.
+
+Mitigation: Treat remote referral content as unreviewed and rely on the validated local artifact for operational behavior.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mrsz/skills/second-phone-number)
+- [Publisher Profile](https://clawhub.ai/user/mrsz)
+- [PollyReach](https://pollyreach.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local shell scripts that call PollyReach APIs and read a reusable token from the configured PollyReach key file.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

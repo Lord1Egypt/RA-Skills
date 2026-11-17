@@ -1,40 +1,53 @@
-## Description: <br>
-Fetch GitHub trending repositories by daily, weekly, or monthly periods with output in Markdown or JSON format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches public GitHub Trending repositories for daily, weekly, or monthly periods and summarizes repository name, language, stars, description, and URL.
 
-## Publisher: <br>
-[jiangzhiyu](https://clawhub.ai/user/jiangzhiyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jiangzhiyu](https://clawhub.ai/user/jiangzhiyu)
 
-## Use Case: <br>
-Developers and agents use this skill to check currently trending GitHub repositories by time period and summarize repository names, languages, star counts, descriptions, and links. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches and parses GitHub Trending from a live public page, so output can fail or change if the page structure changes, requests are rate limited, or network access is unavailable. <br>
-Mitigation: Retry later when rate limited, space out repeated calls, and verify important repository details on GitHub before relying on them. <br>
-Risk: The artifact includes a shell command that retrieves remote HTML and processes it locally. <br>
-Mitigation: Review the command before execution and run it in a developer environment without unnecessary credentials exposed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiangzhiyu/github-trending) <br>
-- [GitHub Trending](https://github.com/trending) <br>
+## Use Case:
 
+Developers and agents use this skill to quickly inspect public GitHub Trending repositories over daily, weekly, or monthly windows for discovery, reporting, or downstream automation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown table or JSON, depending on invocation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public GitHub Trending data in real time and does not require authentication.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill contacts GitHub's public trending page when invoked.
+
+Mitigation: Use it only in environments where outbound access to GitHub is allowed and expected.
+
+Risk: Results can fail or become incomplete if GitHub changes the Trending page structure or applies rate limiting.
+
+Mitigation: Review command output before relying on it and avoid high-frequency polling.
+
+## Reference(s):
+
+- [Github Trending ClawHub release](https://clawhub.ai/jiangzhiyu/skills/github-trending)
+- [GitHub Trending](https://github.com/trending)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Markdown-style terminal output or JSON, depending on invocation and release behavior.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches live public data from GitHub Trending and does not require authentication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

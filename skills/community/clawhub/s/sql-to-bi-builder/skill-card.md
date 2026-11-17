@@ -1,46 +1,68 @@
-## Description: <br>
-Convert a markdown file containing SQL queries into a BI dashboard specification and UI scaffold, including query parsing, metric and dimension inference, chart recommendation, filter design, and layout generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts markdown SQL query collections into BI dashboard specifications, chart plans, UI scaffolds, and optional service bundles.
 
-## Publisher: <br>
-[bamboo9805](https://clawhub.ai/user/bamboo9805) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bamboo9805](https://clawhub.ai/user/bamboo9805)
 
-## Use Case: <br>
-Developers and data engineers use this skill to turn SQL markdown collections into dashboard artifacts, static UI scaffolds, and optional local demo services. It is intended for prototype BI workflows where SQL-derived metrics, dimensions, filters, charts, and layout need to be generated quickly for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated backend and frontend demo services may expose sensitive SQL-derived business metadata if run beyond a local development environment. <br>
-Mitigation: Review generated service code and keep demo services bound to local, trusted environments unless they are hardened for deployment. <br>
-Risk: Generated dashboards can reflect incorrect metric, dimension, filter, or chart inferences from heuristic SQL parsing. <br>
-Mitigation: Review generated query catalogs, semantic catalogs, chart plans, and dashboard specifications before using them for business decisions. <br>
-Risk: Generated UI output can rely on external CDN assets that may not meet production availability or supply-chain requirements. <br>
-Mitigation: Vendor or pin external assets before production use. <br>
+## Use Case:
 
+Developers and analytics engineers use this skill to convert SQL query collections into BI prototypes, including parsed query catalogs, inferred semantics, chart recommendations, dashboard layouts, UI scaffolds, and service bundles.
 
-## Reference(s): <br>
-- [SQL style guide](references/sql_style.md) <br>
-- [Chart rules](references/chart_rules.md) <br>
-- [Dashboard layout rules](references/layout_rules.md) <br>
-- [Python 3.11 installation guide](references/install_python311.md) <br>
-- [ClawHub skill page](https://clawhub.ai/bamboo9805/sql-to-bi-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, plus generated JSON, HTML, JavaScript, CSS, Python service code, and configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates local files including query_catalog.json, semantic_catalog.json, chart_plan.json, dashboard.json, a static UI scaffold, and optional backend/frontend demo services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Generated dashboards have review-worthy browser security risks before use with untrusted SQL or real BI data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated web assets before sharing or deployment, and treat untrusted SQL-derived content as unsafe until reviewed.
+
+Risk: The generated service frontend needs patching before use with untrusted content.
+
+Mitigation: Patch or avoid the generated service frontend until HTML injection is fixed.
+
+Risk: Generated frontend assets may rely on externally loaded ECharts.
+
+Mitigation: Pin or vendor ECharts with integrity checking before deployment.
+
+Risk: Generated services may be unsafe to connect directly to real data with permissive defaults.
+
+Mitigation: Restrict CORS before connecting generated services to real datasets.
+
+Risk: Environment setup commands may modify shell configuration or install Python packages.
+
+Mitigation: Review commands that modify ~/.zshrc or install dependencies before running them.
+
+## Reference(s):
+
+- [SQL Style Guide](references/sql_style.md)
+- [Chart Rules](references/chart_rules.md)
+- [Dashboard Layout Rules](references/layout_rules.md)
+- [Install Python 3.11](references/install_python311.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with generated JSON artifacts, Python service code, static UI files, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces query catalogs, semantic catalogs, chart plans, dashboard specs, UI scaffolds, and optional backend/frontend service bundles.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

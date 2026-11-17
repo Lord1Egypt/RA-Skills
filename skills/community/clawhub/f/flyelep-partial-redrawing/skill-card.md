@@ -1,42 +1,56 @@
-## Description: <br>
-Uses the Flyelep AI Tool API to partially redraw an image from a source image URL, a natural-language edit prompt, and an optional replacement reference image URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the Flyelep AI Tool API to redraw selected regions of an image from a source image URL, text prompt, and optional reference or mask image.
 
-## Publisher: <br>
-[flyelepai](https://clawhub.ai/user/flyelepai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flyelepai](https://clawhub.ai/user/flyelepai)
 
-## Use Case: <br>
-External users and developers use this skill when they need an agent to call Flyelep's partial image redrawing API for localized image edits, background replacement, or reference-guided region replacement while preserving the main subject. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends image URLs, edit prompts, optional reference image URLs, and a Flyelep API key to Flyelep. <br>
-Mitigation: Avoid sensitive or private images unless third-party processing is acceptable, and provide the API key only at runtime. <br>
-Risk: Saving the Flyelep secret key in shared files or examples could expose credentials. <br>
-Mitigation: Keep the secret key out of skill files, repositories, and persistent configuration. <br>
+## Use Case:
 
+External users and developers use this skill to perform localized image edits, such as replacing backgrounds or modifying a specific region while preserving the main subject.
 
-## Reference(s): <br>
-- [Flyelep partial redrawing API endpoint](https://www.flyelep.cn/prod-api/poster-design/api/v1/poster/aiTool/partialRedrawing) <br>
-- [Flyelep controlboard](https://www.flyelep.cn/controlboard) <br>
-- [ClawHub skill page](https://clawhub.ai/flyelepai/flyelep-partial-redrawing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces API request guidance and returns or presents the redrawn image URL from Flyelep.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Local images supplied for editing may be uploaded to Flyelep and exposed through permanent public links without a clear deletion path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for explicit user acceptance before uploading local files, and avoid identity documents, private photos, confidential designs, regulated data, or other sensitive images unless the user accepts that exposure.
+
+Risk: The Flyelep secretKey could be exposed if written into files, examples, repositories, or logs.
+
+Mitigation: Request the API key only at runtime, pass it in request headers, and do not persist it in skill files, configuration, examples, or shared logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flyelepai/skills/flyelep-partial-redrawing)
+- [Flyelep partial redrawing API endpoint](https://www.flyelep.cn/prod-api/poster-design/api/v1/poster/aiTool/partialRedrawing)
+- [Flyelep file upload API endpoint](https://www.flyelep.cn/prod-api/poster-design/api/v1/file/upload)
+- [Flyelep control board](https://www.flyelep.cn/controlboard)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns the redrawn image URL from the Flyelep API and instructs the agent not to read back image contents.]
+
+## Skill Version(s):
+
+1.0.4 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

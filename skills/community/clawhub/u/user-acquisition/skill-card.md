@@ -1,38 +1,53 @@
-## Description: <br>
-提供新客拉新的可落地指南与SOP。在开展新客拉新相关工作时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供新客拉新的可落地指南与SOP。在开展新客拉新相关工作时调用。
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Business and growth teams use this skill to plan, pilot, measure, and standardize new customer acquisition workflows with clear metrics, review cadence, and reusable operating materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real acquisition campaigns may create consent, privacy, platform-rule, or local marketing-law exposure if the SOP is applied without review. <br>
-Mitigation: Review consent, privacy, platform rules, and applicable local marketing and data-protection laws before using the workflow in live campaigns. <br>
+## Use Case:
 
+Growth, marketing, and operations teams use this skill to structure new-customer acquisition work, define metrics, run small pilots, review outcomes, and turn repeatable practices into SOPs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/user-acquisition) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with SOP steps, metric definitions, compliance notes, and reusable checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, installer, credentials, or background behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: User-acquisition guidance may involve personal information, platform rules, or local compliance obligations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review marketing and data-handling plans against applicable compliance requirements, apply data minimization, and confirm platform rules before execution.
+
+Risk: Generic growth-planning recommendations may not fit the user's business context or acquisition channel.
+
+Mitigation: Validate assumptions with a small pilot, track primary and guardrail metrics, and revise the SOP before standardizing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/user-acquisition)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown or structured text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include SOP steps, checklists, metrics, report cadence, and meeting-note structure.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

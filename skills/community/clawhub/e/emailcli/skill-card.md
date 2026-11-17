@@ -1,42 +1,53 @@
-## Description: <br>
-Interact with an email inbox using mail-cli commands to read, search, send, reply, mark, move, delete, manage folders, manage drafts, and manage accounts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with an email inbox using mail-cli commands to read, search, send, reply, mark, move, delete, manage folders, drafts, and accounts.
 
-## Publisher: <br>
-[mirai3103](https://clawhub.ai/user/mirai3103) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirai3103](https://clawhub.ai/user/mirai3103)
 
-## Use Case: <br>
-Agents use this skill to help a user operate their email account from the command line. It is suited for inbox review, message search, sending and replying to email, draft handling, attachment downloads, folder organization, and account management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send email or change mailbox state, including deleting or moving messages, deleting drafts, removing accounts, and running batch operations. <br>
-Mitigation: Require explicit user confirmation before high-impact actions and review recipients, message content, account, folder, and message IDs before execution. <br>
-Risk: Attachment downloads can write email attachments to local storage. <br>
-Mitigation: Confirm the intended attachments and destination directory before downloading. <br>
-Risk: Batch operations may partially fail while still returning an overall success response. <br>
-Mitigation: Inspect any failed array in the JSON response and report partial failures clearly before taking follow-up action. <br>
+## Use Case:
 
+External users and agents use this skill to manage Gmail or Outlook mailboxes through mail-cli, including inbox review, search, sending or replying, folder organization, draft handling, attachment downloads, and account management.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirai3103/emailcli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces mail-cli commands, parses JSON responses, and summarizes success, errors, or partial failures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: release evidence) <br>
+Risk: The skill gives agents broad mailbox authority for sending, deleting, batch moves, draft deletion, and account removal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before sends, deletes, batch moves, draft deletion, or account removal.
+
+Risk: Installing the latest global CLI package may introduce unreviewed behavior.
+
+Mitigation: Use a pinned or otherwise verified mail-cli version before granting mailbox access.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mirai3103/skills/emailcli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and parsed JSON summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands are expected to parse JSON responses and report errors, partial failures, and remediation steps clearly.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

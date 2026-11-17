@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/team-bootstrap-2.0.json",
+  "title": "Omni E-commerce Team Bootstrap Receipt",
+  "type": "object",
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "run_id", "client_scope", "team_version", "host", "status", "team_name", "created_at", "host_mode"],
+  "properties": {
+    "schema_version": { "const": "2.0" },
+    "artifact_type": { "const": "team_bootstrap_receipt" },
+    "contract_name": { "const": "omni-ecom.team-bootstrap" },
+    "contract_version": { "const": "2.0" },
+    "created_by_team_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z]+(?:\\.[0-9A-Za-z-]+)*)?$" },
+    "legacy_compatibility": {
+      "type": "object", "additionalProperties": false,
+      "required": ["read_only_import", "current_collaboration_authority"],
+      "properties": {
+        "read_only_import": { "const": ["omni-ecom.team-bootstrap@1.0"] },
+        "current_collaboration_authority": { "const": false }
+      }
+    },
+    "run_id": { "type": "string", "minLength": 3 },
+    "client_scope": { "type": "string", "minLength": 1 },
+    "team_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z]+(?:\\.[0-9A-Za-z-]+)*)?$" },
+    "host": { "const": "workbuddy" },
+    "status": { "const": "team_created" },
+    "team_name": { "type": "string", "minLength": 3 },
+    "team_create_task_id": { "type": "string", "minLength": 1 },
+    "host_mode": { "enum": ["interactive", "non_interactive", "unknown"] },
+    "created_at": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

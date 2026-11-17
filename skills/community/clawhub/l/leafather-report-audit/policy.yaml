@@ -1,0 +1,69 @@
+# policy.yaml — 审计策略（你拥有、你版本化、可以 diff）
+#
+# 这个文件决定"什么算数对、什么算拦、什么算需复核"。
+# 改它 = 改判决标准，请像改代码一样对待：提交、评审、回溯。
+
+version: "1.0"
+
+# ── 数字怎么读、怎么比 ────────────────────────────────
+numeric:
+  # 舍入方式：报告写 73.9%，账本算出来 73.9393，算不算一致？
+  #   within_last_digit：差在最后一位的半个单位内就算一致（默认，最贴近直觉）
+  #   half_up          ：把两边按报告位数四舍五入后比
+  #   half_even        ：银行家舍入（.5 向偶数靠）
+  rounding: within_last_digit
+
+  # 报告写「1.5万」这类缩写时允许的绝对误差（默认 500 = 半个"百"）
+  tol_abbrev: 500
+
+  # 无法判断报告精度时的兜底绝对容差
+  tol_abs: 0.5
+
+# ── 什么算 FAIL，什么算 REVIEW ────────────────────────
+# 类别：ledger_mismatch（账本与复算不符）/ unmatched_number（来源不明）
+#      precision_mismatch（写法与账本精度不符）
+#      not_recomputed（未复算）/ unverifiable_entry（账本声明不可复算）
+#      unscanned_image（图片未扫描）
+#      weak_anchor（弱锚定：值唯一但上下文没说清是哪个指标）
+#      ambiguous_number（无法判定：上下文锚不住）
+#      cross_file_mismatch（多份交付件各说一套）
+#      must_missing（必现指标缺失）/ leak（客户版泄漏）
+#      no_metric（一个指标都没认定出来）/ low_coverage（审计覆盖率太低）
+#
+# ⚠️ 这张表**必须列全**：某类问题抓到了、却不在这两张表里 → 它会被丢掉。
+#    2026-10-26 修过这个坑：review 只写了 3 项，导致跨件一致/必现/泄漏/弱锚定/无法判定
+#    全部被静默丢弃，结论照样显示 ✅ 通过。现在「抓到了但没归类」会强制降级为需复核。
+verdict:
+  fail:
+    - ledger_mismatch
+    - unmatched_number
+    - precision_mismatch
+    # v3.6.0：这三类都属于"数据/口径本身错了"，比"数字没出处"更硬
+    - snapshot_mismatch        # 账本过期（数据变了没重算）
+    - unrendered_placeholder   # [[id]] 没渲染 / 用了账本里没有的指标
+    - invariant_violation      # 指标之间的大小关系不成立
+  review:
+    - not_recomputed
+    - unverifiable_entry
+    - unscanned_image
+    - weak_anchor
+    - ambiguous_number
+    - cross_file_mismatch
+    - must_missing
+    - leak
+    - no_metric
+    - low_coverage
+    - metric_unused            # 算了没用（可能是废弃指标，也可能漏写进报告）
+
+# ── 覆盖率闸门（2026-10-26）────────────────────────────
+# 为什么有这一节：判"这个数字要不要追"靠词表，词表外的说法会被当杂项豁免。
+# 实测：同一份报告只把「总行数」改成「样本池规模」，4 个数字全被豁免，结论照样 ✅ 通过。
+# 这里不改"查什么"，只保证结论不说谎 —— 审得太少就不许说通过。
+coverage:
+  min_ratio: 0.9      # 追溯到的 / 应审的，低于此 → 需人工复核
+  min_metric: 1       # 一个指标都没认定出来（而报告里有像数据的数字）→ 需人工复核
+
+# ── 未知键怎么处理 ───────────────────────────────────
+# error（默认）：拼错的键直接报错，绝不会静默失效
+# warn         ：只警告（不建议，等于允许拼错）
+strict: error

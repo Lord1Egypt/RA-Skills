@@ -1,40 +1,53 @@
-## Description: <br>
-Create new agent skills with proper structure, progressive disclosure, and bundled resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create new agent skills with proper structure, progressive disclosure, and bundled resources.
 
-## Publisher: <br>
-[liyafeichina](https://clawhub.ai/user/liyafeichina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liyafeichina](https://clawhub.ai/user/liyafeichina)
 
-## Use Case: <br>
-Developers and agent builders use this skill to create new agent skills, including SKILL.md instructions, optional references, examples, scripts, and a review checklist. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skill instructions may be incomplete, ambiguous, or unsuitable for the intended agent workflow. <br>
-Mitigation: Review the drafted skill with the requester and verify trigger descriptions, scope, terminology, examples, and references before publishing. <br>
-Risk: The skill may propose file writes, scripts, or shell commands while creating a new skill. <br>
-Mitigation: Use the skill from a trusted checkout and review proposed write operations or commands before approving execution. <br>
+## Use Case:
 
+Developers and agent builders use this skill to plan, draft, and review new skill packages with a standard SKILL.md structure, optional reference files, examples, and scripts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liyafeichina/write-a-skill-v3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with optional code blocks and file contents] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce skill directory structure, SKILL.md content, optional reference files, examples, scripts, and review checklist items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Generated skill files or optional helper scripts may be unsuitable if accepted without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated skills before installing, using, or publishing them, especially when they include executable scripts.
+
+Risk: A drafted skill may have unclear trigger conditions, incomplete scope, or missing release details.
+
+Mitigation: Validate the description, references, license terms, and publisher information before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liyafeichina/skills/write-a-skill-v3)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with templates, checklists, and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instructional output; generated skills may include files or scripts when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

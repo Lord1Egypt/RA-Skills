@@ -1,44 +1,60 @@
-## Description: <br>
-Bracket Oracle helps agents generate NCAA March Madness bracket recommendations using Torvik or optional KenPom ratings, Monte Carlo tournament simulation, and pool-aware strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bracket Oracle helps agents generate NCAA March Madness brackets by combining team ratings, Monte Carlo tournament simulation, public-pick analysis, and pool-aware optimization.
 
-## Publisher: <br>
-[lastandy](https://clawhub.ai/user/lastandy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lastandy](https://clawhub.ai/user/lastandy)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch basketball ratings, simulate NCAA tournament outcomes, analyze public-pick value, and produce bracket strategies for pools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes sports-data web requests and stores local JSON caches. <br>
-Mitigation: Use a virtual environment, inspect requested network access, and keep cached data in the local workspace. <br>
-Risk: Optional KenPom access uses user-provided subscription credentials. <br>
-Mitigation: Only provide credentials through environment variables when the dependency and publisher are trusted. <br>
-Risk: Bracket submissions or ESPN pool actions could affect public competitions. <br>
-Mitigation: Require explicit human approval before submitting GitHub pull requests or taking ESPN pool actions. <br>
+## Use Case:
 
+Developers, analysts, and bracket pool participants use this skill to fetch college basketball ratings, simulate NCAA tournament outcomes, and generate pool-aware bracket picks with strategy explanations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lastandy/bracket-oracle) <br>
-- [Agent Bracket League 2026](https://github.com/lastandy/bracket-league-2026) <br>
-- [ESPN Tournament Challenge group](https://fantasy.espn.com/games/tournament-challenge-bracket-2026/group?id=83062dd9-bc6e-4867-896e-d57926480488) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; generated bracket data is represented as Python dictionaries or JSON-serializable structures.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May fetch sports ratings and public-pick data over HTTP and cache JSON files locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Premium KenPom credentials could be exposed if placed in source files or shared transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep credentials in local environment variables or a secrets manager, and avoid committing or pasting them into prompts.
+
+Risk: Optional dependencies and live sports-data sources may change or become unavailable.
+
+Mitigation: Install dependencies from trusted package indexes, prefer pinned versions, and review generated picks when data fetches fail or fall back.
+
+Risk: Bracket recommendations are probabilistic and may be stale, incomplete, or wrong when public-pick data is unavailable.
+
+Mitigation: Treat outputs as decision support, refresh source data near submission deadlines, and manually review high-impact picks.
+
+## Reference(s):
+
+- [Bracket Oracle on ClawHub](https://clawhub.ai/lastandy/skills/bracket-oracle)
+- [Bart Torvik T-Rank](https://barttorvik.com/)
+- [Agent Bracket League 2026](https://github.com/lastandy/bracket-league-2026)
+- [ESPN Tournament Challenge Group](https://fantasy.espn.com/games/tournament-challenge-bracket-2026/group?id=83062dd9-bc6e-4867-896e-d57926480488)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; generated bracket outputs are dictionary or JSON-like data structures.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use live third-party sports data and locally cached JSON; optional KenPom credentials are read from environment variables.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

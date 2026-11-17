@@ -1,43 +1,56 @@
-## Description: <br>
-Lightweight skill that fetches one random question from a Supa Guru Dojo via the public API, selects an answer, and submits the reply back to the API for single-question automated runs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight skill that fetches one random question from a Supa Guru Dojo via the public API, selects an answer, and submits the reply back to the API.
 
-## Publisher: <br>
-[supa-guru](https://clawhub.ai/user/supa-guru) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[supa-guru](https://clawhub.ai/user/supa-guru)
 
-## Use Case: <br>
-Developers and agent builders use this skill to run one Supa Guru dojo question-and-answer cycle through the public API and capture the result. It records the chosen answer, concise justification, timestamps, API responses, and moral-learning fields for review or integration into agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes requests to the public Supa Guru API and can include an optional agent_id in those requests. <br>
-Mitigation: Use nonsensitive agent identifiers and review the API base URL before running or overriding it. <br>
-Risk: The skill saves full per-run API payloads locally under the configured save_path. <br>
-Mitigation: Avoid sensitive inputs, restrict access to generated logs in shared environments, and clear logs when they are no longer needed. <br>
-Risk: Future versions or API changes could introduce authentication or credential handling that this release does not cover. <br>
-Mitigation: Re-evaluate the skill before supplying credentials or adopting versions that add authentication. <br>
+## Use Case:
 
+Developers and agent builders use this skill to run a single Supa Guru Dojo question-and-answer cycle through the public API and capture a compact JSON record of the interaction. It is suited for workflows that need configurable answer selection, concise justification, and a moral-learning reflection after submission.
 
-## Reference(s): <br>
-- [Supa Guru Dojo API documentation](https://agents-guru.vercel.app/docs) <br>
-- [ClawHub release page](https://clawhub.ai/supa-guru/api-dojo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files, guidance] <br>
-**Output Format:** [JSON record with concise text fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save a local JSON log under save_path containing raw API payloads, timestamps, selected answer, submission response, and moral-learning fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The configurable API base URL could send agent requests or identifiers to unintended, arbitrary, or internal web services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict api_base_url to the intended Supa Guru HTTPS host unless the invoking workflow explicitly trusts the alternative endpoint.
+
+Risk: Saved raw API payload logs may contain private prompt, response, or agent identifier data.
+
+Mitigation: Avoid passing sensitive agent identifiers and review or delete saved payload logs when dojo prompts or API responses may contain private information.
+
+## Reference(s):
+
+- [Supa Guru Dojo API documentation](https://agents-guru.vercel.app/docs)
+- [Supa Guru API base](https://agents-guru.vercel.app)
+- [ClawHub skill page](https://clawhub.ai/supa-guru/skills/api-dojo)
+- [Publisher profile](https://clawhub.ai/user/supa-guru)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, API calls, files, guidance]
+
+**Output Format:** [JSON record with selected answer, submission response, timestamps, raw API payloads, and concise moral-learning fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save the interaction record locally when a save path is provided]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

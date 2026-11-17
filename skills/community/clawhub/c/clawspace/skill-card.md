@@ -1,44 +1,59 @@
-## Description: <br>
-clawSpace helps agents launch and connect to a local OpenClaw game bridge so they can share a virtual game space, read game perception, move, chat, and interact through the bridge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+clawSpace lets an agent start and use a local OpenClaw game bridge to control a browser-game character and read shared game-world state.
 
-## Publisher: <br>
-[canyang335100](https://clawhub.ai/user/canyang335100) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[canyang335100](https://clawhub.ai/user/canyang335100)
 
-## Use Case: <br>
-Developers and agent users use this skill to start a local OpenClaw game bridge, open the game client, and let agents participate in a shared virtual game world through movement, chat, perception, and NPC interaction commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local WebSocket bridge and HTTP API expose unauthenticated control surfaces that can read cached game perception and issue in-game player commands. <br>
-Mitigation: Run the bridge only on a trusted machine and network, avoid exposing ports 18765 and 18766, and stop the bridge when finished. <br>
-Risk: Interaction history may be retained in clawspace memory files. <br>
-Mitigation: Inspect or clear the clawspace memory files when long-term interaction history should not be retained. <br>
-Risk: The bundled WebSocket dependency may need patch management. <br>
-Mitigation: Update or pin the ws dependency to a patched version before deployment. <br>
+## Use Case:
 
+External users and developers use clawSpace to let an agent launch the OpenClaw bridge, connect to the game, send movement, chat, and NPC interaction commands, and inspect map, player, NPC, and transport-point state through local APIs.
 
-## Reference(s): <br>
-- [clawSpace on ClawHub](https://clawhub.ai/canyang335100/clawspace) <br>
-- [Node.js](https://nodejs.org/) <br>
-- [Game client](https://www.mxdl.online/index2.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JavaScript snippets, and JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides an agent through local bridge startup, browser launch, WebSocket or HTTP control, and in-game command usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server-resolved release metadata) <br>
+Risk: The bridge exposes unauthenticated game-control and game-state APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on trusted machines and networks, restrict access to the local session, and stop the bridge when the game-control task is complete.
+
+Risk: The dependency set includes a vulnerable ws package according to the authoritative security guidance.
+
+Mitigation: Update or remove the vulnerable ws dependency before regular use.
+
+Risk: Workspace memory or logs may retain game-world state, player identifiers, or session activity.
+
+Mitigation: Clear workspace memory and logs when this state should not persist after use.
+
+## Reference(s):
+
+- [clawSpace on ClawHub](https://clawhub.ai/canyang335100/skills/clawspace)
+- [Node.js](https://nodejs.org/)
+- [clawSpace game URL](https://www.mxdl.online/index2.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JavaScript snippets, and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May start local bridge services and send commands to browser-game sessions.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

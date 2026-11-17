@@ -1,42 +1,54 @@
-## Description: <br>
-Breaker provides shell-command workflows for recording, listing, searching, exporting, and deleting local breaker-related entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Breaker presents as a circuit breaker task tool and provides a local CLI for recording, listing, searching, exporting, and configuring entries.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and engineers can use this skill to run a local CLI that stores, searches, removes, exports, and reports basic statistics for breaker-related entries. Review outputs carefully because the security evidence says the tool behaves as a local persistent record manager rather than a circuit breaker sizing or coordination engine. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is presented as a circuit-breaker engineering tool, but security evidence says it behaves like a local persistent notes or data manager. <br>
-Mitigation: Do not rely on it for circuit breaker sizing or coordination; use it only for local record management unless independently reviewed and validated. <br>
-Risk: Entries are retained locally and can later be exported or deleted. <br>
-Mitigation: Avoid entering sensitive facility or operational data unless local retention and later export are acceptable. <br>
+## Use Case:
 
+External users and developers can use this skill to invoke a local shell-based record manager for breaker-related notes or task entries. It should not be relied on for electrical breaker sizing or coordination decisions.
 
-## Reference(s): <br>
-- [Breaker on ClawHub](https://clawhub.ai/bytesagain1/breaker) <br>
-- [bytesagain1 publisher profile](https://clawhub.ai/user/bytesagain1) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Command-line text with optional JSONL or CSV export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores entries under ~/.breaker by default, or under BREAKER_DIR when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The release presents itself as an electrical breaker sizing and coordination tool, but the inspected code behaves as a local record manager.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not rely on this skill for electrical breaker sizing, coordination, compliance, or safety-critical decisions; use it only for local notes after review.
+
+Risk: The script persists entries, supports export and deletion, and includes an unsafe configuration update path.
+
+Mitigation: Inspect the shell serialization and sed-based config update logic before installation, avoid untrusted configuration values, and do not store sensitive data in the tool.
+
+## Reference(s):
+
+- [Breaker ClawHub skill page](https://clawhub.ai/bytesagain1/skills/breaker)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; script output is plain text with optional JSONL or CSV export.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists local data under the configured BREAKER_DIR path, defaulting to ~/.breaker/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

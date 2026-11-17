@@ -1,44 +1,61 @@
-## Description: <br>
-Masks Russian personal data in prompts before an agent sends them to an LLM, then restores placeholders in the model response through Brikko's API or a self-hosted endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Brikko PII Mask helps agents mask Russian personal data in text before LLM use and restore placeholders in the final response.
 
-## Publisher: <br>
-[bbchort](https://clawhub.ai/user/bbchort) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bbchort](https://clawhub.ai/user/bbchort)
 
-## Use Case: <br>
-Developers and agents use this skill to mask personal data in customer or business text before sending it to an LLM, especially for Russian PII and 152-FZ compliance workflows. The skill then restores the original values in the final response when a valid mapping is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Raw PII may be sent to Brikko's hosted API during masking and restoration. <br>
-Mitigation: Install only when the organization approves Brikko as a processor, or configure BRIKKO_API_URL for a self-hosted endpoint before processing sensitive data. <br>
-Risk: Placeholder mappings are stored remotely for up to one hour when the hosted API is used. <br>
-Mitigation: Avoid sending data that requires stricter residency or retention controls unless self-hosted mode is configured. <br>
-Risk: A leaked or misconfigured BRIKKO_API_KEY could expose the integration to unauthorized use. <br>
-Mitigation: Store BRIKKO_API_KEY as a secret, rotate it if exposed, and verify the configured endpoint before piping customer data. <br>
+## Use Case:
 
+Developers and agents use this skill when prompts or documents may contain Russian personal data that should be masked before calling an LLM and restored afterward for the user-facing answer.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bbchort/brikko-pii-mask) <br>
-- [Brikko Homepage](https://brikko.ru) <br>
-- [Brikko PII Mask Documentation](https://brikko.ru/docs/skills/pii-mask) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON for masking results and plain text for restored responses, with shell command examples in documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BRIKKO_API_KEY. Raw PII is sent to Brikko unless BRIKKO_API_URL points to a self-hosted endpoint; remote mappings are retained for one hour; mask input is limited to 1 MB.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: Plaintext PII and an API key can be sent to a configurable network endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default HTTPS endpoint only when appropriate for the data, or use a reviewed and pinned self-hosted endpoint for regulated data.
+
+Risk: BRIKKO_API_URL can redirect sensitive traffic to an unsafe remote HTTP endpoint.
+
+Mitigation: Restrict who can set BRIKKO_API_URL and do not configure remote HTTP endpoints.
+
+Risk: Restoration depends on a mapping_id that may expire after the retention window.
+
+Mitigation: Restore placeholders promptly and re-run masking if the mapping_id has expired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bbchort/skills/brikko-pii-mask)
+- [Publisher profile](https://clawhub.ai/user/bbchort)
+- [Brikko homepage](https://brikko.ru)
+- [Brikko PII mask documentation](https://brikko.ru/docs/skills/pii-mask)
+- [Brikko PII skill repository](https://github.com/brikkoAI/brikko-pii-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; mask.py returns JSON and restore.py returns restored text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and BRIKKO_API_KEY; BRIKKO_API_URL may point to a controlled self-hosted endpoint.]
+
+## Skill Version(s):
+
+0.1.0 (source: evidence.release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,53 +1,70 @@
-## Description: <br>
-Architecture personal assistant for independent architects working on commercial, retail, F&B, and institutional projects, supporting daily news digests, project tracking, research scouting, design concept exploration, client message drafting, and passive project context capture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Architecture personal assistant for daily news digests, project tracking, research scouting, design concept exploration, client message drafting, and passive project context capture for independent architects.
 
-## Publisher: <br>
-[hao-tian-xu](https://clawhub.ai/user/hao-tian-xu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hao-tian-xu](https://clawhub.ai/user/hao-tian-xu)
 
-## Use Case: <br>
-Independent architects and architecture teams use this skill to maintain project context, run architecture news and research digests, explore design concepts, and draft client-facing messages for commercial, retail, F&B, and institutional projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Always-on project tracking can persist client, payment, and project details without clear per-update approval. <br>
-Mitigation: Review or remove the workspace/AGENTS.md passive-capture directive before enabling the skill, and require explicit approval for sensitive updates. <br>
-Risk: Workspace project files and digests may retain confidential or overly sensitive architecture project information. <br>
-Mitigation: Avoid storing confidential client or payment details unless appropriate, and periodically audit project files for incorrect or sensitive captured notes. <br>
-Risk: Recommended cron entries can run digest, check-in, and research actions proactively. <br>
-Mitigation: Review any cron entries before activation and disable scheduled runs when proactive behavior is not desired. <br>
+## Use Case:
 
+Independent architects use this skill to track active projects, maintain project notes, compile architecture news digests, scout research and competitions, explore design concepts, and draft professional client or collaborator messages.
 
-## Reference(s): <br>
-- [Architecture Information Sources](references/config/sources.md) <br>
-- [Construction Methods Knowledge Reference](references/knowledge/construction.md) <br>
-- [Cost & Schedule Knowledge Reference](references/knowledge/cost-schedule.md) <br>
-- [Materials Knowledge Reference](references/knowledge/materials.md) <br>
-- [Retail & Commercial Design Knowledge Reference](references/knowledge/retail-commercial.md) <br>
-- [Sustainability Knowledge Reference](references/knowledge/sustainability.md) <br>
-- [Check-in Procedure](references/procedures/checkin.md) <br>
-- [Concept Exploration Procedure](references/procedures/concept-explore.md) <br>
-- [Digest Procedure](references/procedures/digest.md) <br>
-- [Draft Message Procedure](references/procedures/draft-message.md) <br>
-- [Research Procedure](references/procedures/research.md) <br>
-- [Project Template](references/project-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses and workspace Markdown files, with optional shell commands for cron setup.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update workspace project files, digests, source configuration, and AGENTS.md directives.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can passively capture project context during future conversations and update workspace notes without asking each time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when passive capture is desired, review the generated workspace rules, and remove the project-capture directive from workspace/AGENTS.md to disable it.
+
+Risk: Project files may store sensitive client, payment, team, budget, deadline, and decision details in Markdown.
+
+Mitigation: Keep the workspace access-controlled, avoid entering unnecessary sensitive data, and periodically review or delete stored project notes.
+
+Risk: The first-run flow recommends scheduled background digest, check-in, and research runs.
+
+Mitigation: Review cron entries before enabling them, make scheduled behavior explicit to users, and remove unwanted jobs from the user's crontab.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hao-tian-xu/skills/architect-assistant)
+- [Publisher profile](https://clawhub.ai/user/hao-tian-xu)
+- [Architecture Information Sources](references/config/sources.md)
+- [Project Template](references/project-template.md)
+- [Materials Knowledge Reference](references/knowledge/materials.md)
+- [Construction Methods Knowledge Reference](references/knowledge/construction.md)
+- [Cost & Schedule Knowledge Reference](references/knowledge/cost-schedule.md)
+- [Retail & Commercial Design Knowledge Reference](references/knowledge/retail-commercial.md)
+- [Sustainability Knowledge Reference](references/knowledge/sustainability.md)
+- [Digest Procedure](references/procedures/digest.md)
+- [Research Procedure](references/procedures/research.md)
+- [Check-in Procedure](references/procedures/checkin.md)
+- [Concept Exploration Procedure](references/procedures/concept-explore.md)
+- [Draft Message Procedure](references/procedures/draft-message.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with generated workspace files and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update project files, digest files, source configuration, workspace agent rules, and cron setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

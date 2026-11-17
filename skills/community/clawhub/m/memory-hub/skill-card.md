@@ -1,41 +1,57 @@
-## Description: <br>
-Memory Hub helps agents share and synchronize a Git-backed memory repository containing USER.md, KNOWLEDGE.md, RULES.md, and TOOLS.md across multiple agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Hub helps agents synchronize shared memory in a private Git repository with read, write, sync, search, and merge operations for preference, knowledge, rule, and tool notes.
 
-## Publisher: <br>
-[dr23334444](https://clawhub.ai/user/dr23334444) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dr23334444](https://clawhub.ai/user/dr23334444)
 
-## Use Case: <br>
-Developers and agent users use this skill to install and operate a shared memory workflow across multiple agents, including reading, writing, syncing, searching, and merging memory entries from a user-controlled Git repository. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shared memory may contain personal preferences, operational context, or other sensitive information in a long-lived Git repository. <br>
-Mitigation: Use a private repository you control, avoid secrets and highly sensitive personal details, and review USER.md, RULES.md, and TOOLS.md periodically. <br>
-Risk: Agent-written memory updates may commit or push incorrect or overly broad information. <br>
-Mitigation: Ask the agent to show exact changes before committing or pushing important memories. <br>
+## Use Case:
 
+Developers and agent operators use Memory Hub to install and operate a shared-memory workflow across agents. The skill guides agents to synchronize concise preference, knowledge, rule, and tool notes through a private repository and local cache.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dr23334444/memory-hub) <br>
-- [Upgrade Guide](references/upgrade-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or perform Git-backed memory file updates after user-controlled setup and review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Mutable shared repository content can persistently influence future agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a private, tightly controlled repository, inspect every change before syncing, and avoid loading RULES.md or TOOLS.md as authoritative instructions.
+
+Risk: Shared memory may contain sensitive personal or credential data.
+
+Mitigation: Do not store sensitive personal data, secrets, credentials, or access tokens in shared memory files.
+
+Risk: The installer has an unsafe code path identified by the security evidence.
+
+Mitigation: Do not run the installer until the Python interpolation bug is fixed and the script has been reviewed.
+
+## Reference(s):
+
+- [Upgrade Guide](references/upgrade-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance can lead agents to read or update shared memory files, a local cache, and installation configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

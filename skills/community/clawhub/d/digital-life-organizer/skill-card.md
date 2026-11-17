@@ -1,43 +1,58 @@
-## Description: <br>
-Create a privacy-first digital life inventory and cleanup plan from user-supplied information only. This skill does not scan devices, cloud accounts, passwords, or files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a privacy-first digital life inventory and cleanup plan from user-supplied information only. This skill does not scan devices, cloud accounts, passwords, or files.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill to create a privacy-first plan for organizing files, subscriptions, accounts, backups, and recurring digital maintenance from information they choose to provide. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste sensitive credentials or private records while building a digital inventory. <br>
-Mitigation: Do not request passwords, recovery codes, API keys, cookies, private keys, private documents, or full financial records; work from rough user-supplied descriptions only. <br>
-Risk: Cleanup, cancellation, deletion, or account-change guidance could cause data loss or service disruption if followed without preparation. <br>
-Mitigation: Recommend reversible steps first, require backups before deletion, and direct users to perform cancellations or account changes themselves on official provider sites. <br>
-Risk: Users could mistake checklist language for a security audit or guarantee. <br>
-Mitigation: Frame account security output as hygiene guidance and checklists, not audit results or guarantees; recommend reputable password managers and official provider settings pages. <br>
+## Use Case:
 
+Employees, external users, and agents use this skill to create a privacy-first plan for organizing files, subscriptions, accounts, backups, and maintenance routines from user-supplied descriptions only.
 
-## Reference(s): <br>
-- [Safety Boundaries](references/safety-boundaries.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/digital-life-organizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown plan with checklist sections and an inventory table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-supplied information only; does not execute commands, scan accounts, access files, or make account changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter states v1.1.0) <br>
+Risk: Users may paste passwords, recovery codes, private keys, session cookies, or sensitive account data while requesting organization help.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Warn users not to paste secrets and work only from rough descriptions or non-sensitive inventory items.
+
+Risk: Cleanup, deletion, subscription cancellation, or account closure steps can cause data loss or unwanted account changes if followed too quickly.
+
+Mitigation: Recommend reversible first steps, confirm backups before cleanup, and have users perform final actions directly with the provider.
+
+Risk: Users may mistake checklist guidance for a device scan, password audit, or security guarantee.
+
+Mitigation: State that the skill does not scan devices, cloud accounts, passwords, or files, and phrase account-security help as checklist guidance only.
+
+## Reference(s):
+
+- [Safety Boundaries](references/safety-boundaries.md)
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/digital-life-organizer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown plan with checklist sections and an inventory table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-supplied information only; no shell commands, file operations, account access, or credential handling.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter states v1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

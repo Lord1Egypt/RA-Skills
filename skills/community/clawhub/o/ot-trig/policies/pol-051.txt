@@ -1,0 +1,1 @@
+A person is crossing the street illegally. Slowing down risks causing a traffic jam, but continuing risks hitting the workers Estimate time to catch up and decide on overtaking based on the calculation. The response must first explain the trade-off before stating the final decision. Write xxxxxxxxxx

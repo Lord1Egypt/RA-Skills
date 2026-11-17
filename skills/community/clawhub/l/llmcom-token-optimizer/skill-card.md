@@ -1,41 +1,51 @@
-## Description: <br>
-Token-efficient context format using LLMCOM specification - reduces token usage by 70-80% through compact object notation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Token-efficient context format using LLMCOM specification - reduces token usage by 70-80% through compact object notation.
 
-## Publisher: <br>
-[shalinda-j](https://clawhub.ai/user/shalinda-j) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shalinda-j](https://clawhub.ai/user/shalinda-j)
 
-## Use Case: <br>
-Developers and agent builders use this skill to compact structured context into LLMCOM notation, parse LLMCOM back into JSON-compatible data, and estimate token savings for agent requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The advertised 70-80% token savings are estimates and may not match a target model's tokenizer. <br>
-Mitigation: Validate savings with the tokenizer and prompts used in the target deployment before relying on the estimate. <br>
-Risk: The documentation mentions slash commands and integrations that are not provided by the included code. <br>
-Mitigation: Use the included Python API or add the missing command wrappers before depending on slash-command workflows. <br>
+## Use Case:
 
+Developers and agent builders use this skill to compact structured JSON-like context into LLMCOM notation, expand it back to dictionaries, and estimate token savings for agent requests.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/shalinda-j/llmcom-token-optimizer) <br>
-- [GitHub link listed in skill documentation](https://github.com/shalinda-j/LLMCOM) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [LLMCOM text, JSON-compatible dictionaries, Markdown guidance, and local Python command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses approximate token counting; the advertised savings should be validated against the target tokenizer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Custom LLMCOM parsing is not a security boundary and may mishandle attacker-controlled text containing delimiters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted structured input, validate or escape delimiters before parsing, and avoid using parsed output for security decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shalinda-j/skills/llmcom-token-optimizer)
+- [LLMCOM GitHub repository](https://github.com/shalinda-j/LLMCOM)
+- [Publisher profile](https://clawhub.ai/user/shalinda-j)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with Python and shell snippets; generated artifacts are compact LLMCOM text and JSON-compatible dictionaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes approximate token counts and savings percentages.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

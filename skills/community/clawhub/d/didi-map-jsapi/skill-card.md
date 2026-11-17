@@ -1,51 +1,67 @@
-## Description: <br>
-Didi Map JSAPI helps developers write, review, and debug code that uses Didi Map APIs for map initialization, markers, overlays, layers, events, controls, services, and performance-related implementation details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides developer guidance for writing, reviewing, and debugging code that uses the DiDi Map JSAPI for map initialization, markers, overlays, layers, events, controls, and performance-related map integration tasks.
 
-## Publisher: <br>
-[mcmdhr](https://clawhub.ai/user/mcmdhr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcmdhr](https://clawhub.ai/user/mcmdhr)
 
-## Use Case: <br>
-Developers and engineers use this skill as reference guidance when integrating Didi Map JSAPI features, including map setup, secure key configuration, overlays, controls, vector layers, geolocation, geocoding, POI search, and route planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applications built from the location, routing, geocoding, or POI examples can process sensitive location or trip data. <br>
-Mitigation: Add clear user consent, privacy notices, data minimization, logging limits, and regional compliance checks before shipping an app. <br>
-Risk: Map service keys can be exposed if examples are copied into production without key protection. <br>
-Mitigation: Use the documented proxy-server pattern or another server-side key protection approach, and avoid plaintext client-key configuration in production. <br>
+## Use Case:
 
+Developers and engineers use this skill as reference material when integrating DiDi Map JSAPI features into web applications, including maps, markers, overlays, vector layers, controls, geolocation, routing, POI search, and geocoding. It is also useful when reviewing or debugging DiDi Map JSAPI usage for key handling, event behavior, and UI map interactions.
 
-## Reference(s): <br>
-- [Didi Map JSAPI ClawHub Release](https://clawhub.ai/mcmdhr/didi-map-jsapi) <br>
-- [Skill Overview](artifact/SKILL.md) <br>
-- [JSAPI Authentication](artifact/references/jsapi-auth.md) <br>
-- [Map](artifact/references/map.md) <br>
-- [Marker](artifact/references/marker.md) <br>
-- [Overlay Base](artifact/references/overlay-base.md) <br>
-- [Vector Base Layer](artifact/references/vector-base-layer.md) <br>
-- [Geolocation](artifact/references/geolocation.md) <br>
-- [Geocode Service](artifact/references/service-geocode.md) <br>
-- [POI Service](artifact/references/service-poi.md) <br>
-- [Route Planning Service](artifact/references/service-route.md) <br>
-- [Type Definitions](artifact/references/types.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript, HTML, JSON, and Nginx configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; examples may require Didi Map service keys and production privacy controls before use in an application.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: Examples involving map, location, POI, route, or search data could expose user location data or search terms if copied into an application without privacy review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep keys server-side, avoid logging raw coordinates or search terms, and require clear user consent for geolocation and continuous tracking.
+
+Risk: Popup examples include HTML insertion patterns that may be unsafe with untrusted content.
+
+Mitigation: Prefer text-safe popup APIs or sanitize HTML before using HTML-based popup content.
+
+Risk: Proxy and credential examples may be insecure if deployed with plaintext transport or exposed client secrets.
+
+Mitigation: Use HTTPS for proxy endpoints and route JSAPI requests through a server-side proxy instead of placing sensitive keys directly in web client code.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mcmdhr/skills/didi-map-jsapi)
+- [Publisher Profile](https://clawhub.ai/user/mcmdhr)
+- [DiDi Map Console Key Management](https://lbs.xiaojukeji.com/console/fe/managekey)
+- [JSAPI Authentication](references/jsapi-auth.md)
+- [Map](references/map.md)
+- [Marker](references/marker.md)
+- [Popup](references/popup.md)
+- [Geolocation](references/geolocation.md)
+- [Route Planning Service](references/service-route.md)
+- [POI Search Service](references/service-poi.md)
+- [Type Definitions](references/types.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JavaScript, HTML, and Nginx configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are developer reference responses and should be reviewed before production use, especially for key handling, location data, and HTML popup content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

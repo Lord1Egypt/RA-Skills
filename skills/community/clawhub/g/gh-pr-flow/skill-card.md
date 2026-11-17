@@ -1,42 +1,56 @@
-## Description: <br>
-GitHub Pull Request lifecycle management for creating, reviewing, merging, checking CI, resolving conflicts, managing drafts, and generating changelogs via the gh CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GitHub Pull Request lifecycle management: create, review, merge, changelog generation, CI checks, conflict resolution, and draft management via gh CLI.
 
-## Publisher: <br>
-[ericlooi504](https://clawhub.ai/user/ericlooi504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericlooi504](https://clawhub.ai/user/ericlooi504)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to manage GitHub pull request workflows, including PR creation, review status checks, CI checks, merge preparation, conflict handling, and changelog generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide or run powerful GitHub pull request actions such as approvals, merges, auto-merge, label edits, and review comments through the currently authenticated gh account. <br>
-Mitigation: Confirm the active GitHub account, repository, PR number, target branches, CI status, and review requirements before executing those actions. <br>
-Risk: Conflict-resolution workflows may involve merging, rebasing, and pushing branch updates after local changes. <br>
-Mitigation: Review the branch, base ref, diff, and push target before pushing, especially after a rebase. <br>
+## Use Case:
 
+Developers and engineers use this skill to manage GitHub pull request workflows from an agent session, including PR creation, review status checks, CI inspection, merge handling, conflict-resolution guidance, and changelog generation.
 
-## Reference(s): <br>
-- [PR Templates](references/pr-templates.md) <br>
-- [Label Conventions](references/label-conventions.md) <br>
-- [GitHub CLI](https://cli.github.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON or Markdown changelog output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an installed and authenticated GitHub CLI for live repository operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can guide or invoke repository-changing pull request actions through an authenticated GitHub CLI, including merge, push, force-with-lease, label, review, and auto-merge workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before repository-changing actions and verify the repository, branch ownership, CI status, review state, and branch protection expectations.
+
+Risk: Generated PR titles, bodies, and changelogs may omit important context or misclassify changes from commit messages, labels, or PR metadata.
+
+Mitigation: Review generated PR and changelog text before publishing or merging, especially for release notes and externally visible summaries.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ericlooi504/skills/gh-pr-flow)
+- [GitHub CLI](https://cli.github.com)
+- [PR Templates](references/pr-templates.md)
+- [Label Conventions](references/label-conventions.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell and code blocks, plus optional JSON from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an authenticated GitHub CLI and a Git repository with a GitHub remote.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

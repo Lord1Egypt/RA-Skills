@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn70bhxwnh4pw7p1tvwe37wdmn8239gd",
+  "ownerId": "yh22e",
   "slug": "openclaw-smartness-eval",
   "version": "0.3.2",
-  "publishedAt": 1774012185204
+  "publishedAt": 1773892800000,
+  "name": "OpenClaw Smartness Eval",
+  "author": "圆规",
+  "description": "14维度 AI Agent 智能度评估技能。通过 34 项自动化测试 + 多数据源交叉验证 + 反作弊探针，量化评估 Agent 的理解、推理、规划、幻觉控制、自我迭代、泛化等能力。对齐 CLEAR/T-Eval/Anthropic 行业标准。",
+  "keywords": ["agent-eval", "benchmark", "smartness", "openclaw", "self-assessment", "hallucination", "planning", "clear-framework"],
+  "repository": "https://github.com/xyva-yuangui/smartness-eval"
 }

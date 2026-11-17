@@ -1,42 +1,59 @@
-## Description: <br>
-GitCode PR review comment response workflow that accepts a PR link, fetches review comments, checks out the PR source branch, proposes and applies confirmed changes, pushes updates, and helps reply to unaddressed comments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GitCode PR review comment response workflow that accepts a PR link, fetches review comments, checks out the PR source branch locally, proposes modification plans based on review feedback, applies confirmed changes, and commits and pushes back to the source branch.
 
-## Publisher: <br>
-[guitenbay](https://clawhub.ai/user/guitenbay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guitenbay](https://clawhub.ai/user/guitenbay)
 
-## Use Case: <br>
-Developers and engineers use this skill to work through GitCode pull request review comments, plan confirmed changes, update the PR source branch, and respond to comments that remain out of scope. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can push commits and post GitCode PR comments. <br>
-Mitigation: Require explicit user confirmation before modifying files, committing, pushing, or posting PR replies, and verify the target branch and remote before each external write. <br>
-Risk: GitCode access tokens may be exposed through URL-based API calls, logs, shell history, screenshots, or shared transcripts. <br>
-Mitigation: Prefer authenticated CLI commands or safer header-based token handling, avoid placing tokens in visible command strings, and scrub transcripts and temporary files that may contain credentials. <br>
+## Use Case:
 
+Developers and engineers use this skill to respond to GitCode pull request review feedback by collecting review comments, confirming an implementation approach, drafting a design plan, applying approved code changes, pushing to the PR source branch, and optionally replying to unaddressed review comments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guitenbay/gitcode-pr-comment-workflow) <br>
-- [gitcode-api.md](references/gitcode-api.md) <br>
-- [GitCode CLI](https://github.com/codeasier/gitcode-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands, JSON examples, design notes, diffs, and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate temporary workflow files under temp/ and proposes external writes, commits, pushes, and PR replies only after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill handles GitCode repository credentials and may expose tokens through persistent notes or command-line access_token query parameters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped GitCode credential, avoid storing tokens in MEMORY.md, and prefer authenticated CLI flows or non-query-token mechanisms where available.
+
+Risk: The workflow can push commits or post PR replies to the wrong branch, repository, or discussion if destinations are not checked.
+
+Mitigation: Confirm the local repository, source branch, push remote, branch target, and every PR reply destination before any external write operation.
+
+Risk: The documented cleanup command can delete the entire temp directory and may remove unrelated work if reused outside the intended workspace.
+
+Mitigation: Restrict cleanup to workflow-owned temporary files and skip blanket temp directory deletion when the directory may contain unrelated files.
+
+## Reference(s):
+
+- [GitCode API Reference](references/gitcode-api.md)
+- [gitcode CLI](https://github.com/codeasier/gitcode-cli)
+- [ClawHub Skill Page](https://clawhub.ai/guitenbay/skills/gitcode-pr-comment-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON examples, diffs, and workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create temporary markdown or JSON workflow files and requires user confirmation before modifying files, pushing commits, or posting PR replies.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

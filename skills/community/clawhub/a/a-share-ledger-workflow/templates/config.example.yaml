@@ -1,0 +1,16 @@
+# 示例阈值配置（示例值，需与 bench.json → constants 一致）
+#
+# 说明：门槛判定的唯一数值来源是 bench.json → constants；
+# 本文件是你的本地可读记录（改阈值时两边同步），脚本不读它。
+# 实盘：复制本文件到 $STOCK_DATA_DIR/config.yaml 后按你的偏好调整。
+
+# B1 回撤触发：相对 60 日高点回撤达该比例即提醒
+retrace_min: 0.25
+# B3 主口径：PB 分位（剔首年）低于该值即触发
+pb_pctl_max: 75.0
+# B3 替代口径：PE 近3年分位不高于该值（需同时满足 kf_ratio_min）
+pe_pctl_3y_max: 50.0
+# B3 替代口径限定：扣非占归母不低于该值（%）
+kf_ratio_min: 90.0
+# A1 基线/估值分位的数据日；晚于它的财报公告触发"基线过期"提醒
+a1_base_date: "2026-01-02"

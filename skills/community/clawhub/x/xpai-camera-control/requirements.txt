@@ -1,0 +1,23 @@
+# Core dependencies for xpai-camera-control
+# Install: "<MCP_PYTHON>" -m pip install -r requirements.txt
+# ("<MCP_PYTHON>" = absolute path of the 64-bit Python interpreter that launches the MCP
+#  server; -m pip binds the install to that exact interpreter — a bare `pip` may be a different environment)
+
+# MCP Server
+mcp>=1.0.0, <2.0.0
+
+# Camera control
+# Keep the camera-proto pin in sync with _ABI_VERSION in scripts/toolkit/camera_proto.py
+camera-proto==0.3.0
+opencv-python>=4.8.0
+onvif-zeep>=0.2.12
+requests>=2.28.0
+psutil>=5.9.0
+
+# ffmpeg binaries (for toggle_recording / ffprobe stream detection)
+# Ubuntu apt : ffmpeg 6.1.1-3ubuntu5
+# Windows pip: ffmpeg>=6.1.1
+ffmpeg-downloader>=0.5.0
+
+# Configuration
+PyYAML>=6.0

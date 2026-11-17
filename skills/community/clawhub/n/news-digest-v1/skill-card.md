@@ -1,43 +1,58 @@
-## Description: <br>
-Automatically scrape, process, and generate daily news digests from Chinese news sources with source attribution and original links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically scrapes Chinese news sources, filters and deduplicates articles, and generates daily summaries with source attribution and original links.
 
-## Publisher: <br>
-[zigu-creator](https://clawhub.ai/user/zigu-creator) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zigu-creator](https://clawhub.ai/user/zigu-creator)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to monitor Chinese news sources and generate daily digests covering industry dynamics, policy updates, economy, technology, energy, and pricing information. It supports scheduled or on-demand digest creation with optional LLM summarization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scraped article content may be sent to a configured LLM provider during optional summarization. <br>
-Mitigation: Set NEWS_DIGEST_LLM_API_KEY and NEWS_DIGEST_LLM_BASE_URL explicitly, use an approved provider, or leave LLM credentials unset to rely on rule-based summaries. <br>
-Risk: HTTPS certificate verification is weakened during scraping, which can allow spoofed or modified news content to enter the digest. <br>
-Mitigation: Review and fix the TLS verification behavior before trusted use, or accept the risk explicitly for the monitored sources. <br>
-Risk: The skill writes digest files to the Desktop and workspace and stores articles in a local SQLite database. <br>
-Mitigation: Run it in an appropriate workspace, set NEWS_DIGEST_DB to a controlled path, and review retention or cleanup needs for stored article content. <br>
+## Use Case:
 
+Developers and operators use this skill to set up a local Chinese news monitoring workflow that fetches news, filters low-relevance content, optionally summarizes with an LLM, and produces a daily digest for review or distribution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zigu-creator/news-digest-v1) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zigu-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown digest file and timestamped text digest with source attribution and original article links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a workspace digest file and a Desktop text digest; stores fetched articles and summaries in a local SQLite database.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: frontmatter and server release evidence) <br>
+Risk: The skill can make broad network requests to configured news sites and custom article links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with reviewed monitor_websites entries and trusted article sources before using the full pipeline.
+
+Risk: The LLM stage can reuse an OpenClaw API key from local configuration when dedicated NEWS_DIGEST_LLM credentials are not set.
+
+Mitigation: Set dedicated, limited NEWS_DIGEST_LLM_API_KEY and NEWS_DIGEST_LLM_BASE_URL values, or remove the OpenClaw config fallback before execution.
+
+Risk: The skill writes a local SQLite database plus digest files in the workspace and Desktop.
+
+Mitigation: Run it in a workspace where these writes are expected, and review generated digest content before sharing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zigu-creator/skills/news-digest-v1)
+- [Publisher profile](https://clawhub.ai/user/zigu-creator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text digest files with source titles, summaries, dates, and original links; setup guidance includes Markdown with bash and SQL snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes .news-digest-out.md in the workspace and a timestamped Chinese text digest on Desktop; optional LLM summarization uses configured API credentials.]
+
+## Skill Version(s):
+
+1.0.12 (source: SKILL.md frontmatter and ClawHub release evidence, released 2026-06-09)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

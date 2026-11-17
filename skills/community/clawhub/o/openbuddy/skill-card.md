@@ -1,41 +1,53 @@
-## Description: <br>
-OpenBuddy 电子宠物系统 - 在你的终端中孵化、养成和互动虚拟宠物伙伴 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenBuddy is a terminal virtual pet system for hatching, raising, and interacting with an ASCII pet companion.
 
-## Publisher: <br>
-[wltgithub](https://clawhub.ai/user/wltgithub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wltgithub](https://clawhub.ai/user/wltgithub)
 
-## Use Case: <br>
-Developers and terminal users use OpenBuddy to hatch, view, pet, mute, and talk with a local ASCII virtual pet during AI coding sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local Node script that creates or updates a small state file under ~/.openbuddy by default. <br>
-Mitigation: Review commands before execution and set OPENBUDDY_DIR to choose a different storage path. <br>
-Risk: The default pet generation seed uses local hostname and username environment values. <br>
-Mitigation: Set OPENBUDDY_USER_ID to avoid using the default machine/user-derived seed. <br>
+## Use Case:
 
+Developers and external users use OpenBuddy to add a terminal-based virtual pet companion to coding sessions, including hatching a pet, viewing its status card, petting it, muting or hiding it, and sending simple talk messages.
 
-## Reference(s): <br>
-- [OpenBuddy ClawHub skill page](https://clawhub.ai/wltgithub/openbuddy) <br>
-- [wltgithub ClawHub publisher profile](https://clawhub.ai/user/wltgithub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local Node commands may create or update ~/.openbuddy/buddy-soul.json unless OPENBUDDY_DIR is set.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill creates a local pet-state file under ~/.openbuddy by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use OPENBUDDY_DIR to choose a different storage location when the default home-directory path is not appropriate.
+
+Risk: OPENBUDDY_USER_ID influences deterministic pet generation and could contain sensitive personal identifiers if set carelessly.
+
+Mitigation: Use a non-sensitive stable alias for OPENBUDDY_USER_ID when overriding the default user identifier.
+
+## Reference(s):
+
+- [OpenBuddy ClawHub listing](https://clawhub.ai/wltgithub/skills/openbuddy)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Node.js and stores local pet state in ~/.openbuddy/buddy-soul.json by default; OPENBUDDY_DIR can redirect storage.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

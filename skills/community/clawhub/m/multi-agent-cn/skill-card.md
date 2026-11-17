@@ -1,38 +1,53 @@
-## Description: <br>
-Multi-Agent CN is a Chinese-language dispatcher skill that has the primary agent coordinate tasks across five persistent sub-agent sessions with round-robin assignment, task splitting, and result reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-Agent CN is a Chinese-language dispatcher that triages user tasks and delegates work to five reusable sub-agent sessions.
 
-## Publisher: <br>
-[Be1Human](https://clawhub.ai/user/Be1Human) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[be1human](https://clawhub.ai/user/be1human)
 
-## Use Case: <br>
-Developers and agent users use this skill to operate a Chinese-language task coordinator that delegates independent work to named sub-agents and summarizes returned results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Task details may be copied into reusable sub-agent sessions without clear reset, retention, or sensitive-task controls. <br>
-Mitigation: Avoid sending secrets, account data, production credentials, or unrelated private context through this dispatcher unless additional confirmation, project separation, and session reset rules are added. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Be1Human/multi-agent-cn) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/Be1Human) <br>
+## Use Case:
 
+Developers and agent users can use this skill to coordinate coding, review, research, documentation, and other work across five reusable sub-agent sessions with Chinese-language task triage and round-robin delegation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, API calls] <br>
-**Output Format:** [Markdown text with structured delegation instructions and sub-agent dispatch calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses fixed session keys for five reusable sub-agent sessions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and skill.json; SKILL.md frontmatter lists 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill delegates work through persistent sub-agent sessions, which can retain copied task context across delegated runs.
+
+Mitigation: Avoid sensitive, private, credential-bearing, or regulated tasks unless persistent delegated sessions are acceptable.
+
+Risk: The skill restricts the main agent to dispatching and reporting, which may reduce direct oversight of tool use and task execution.
+
+Mitigation: Review delegated task plans and results before applying code, configuration, or operational changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/be1human/skills/multi-agent-cn)
+- [Publisher profile](https://clawhub.ai/user/be1human)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands, Code, Markdown]
+
+**Output Format:** [Markdown and delegated agent responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes work through persistent alpha, bravo, charlie, delta, and echo sub-agent sessions.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

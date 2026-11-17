@@ -1,41 +1,56 @@
-## Description: <br>
-Complete memory system with factor inference, genetic neurons, causal graph, knowledge graph, auto-detection, and evolution features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory System Complete provides a local persistent memory system with factor inference, genetic-neuron modules, causal and knowledge graphs, automatic relation detection, and retrieval features.
 
-## Publisher: <br>
-[717986230](https://clawhub.ai/user/717986230) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[717986230](https://clawhub.ai/user/717986230)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add a local persistent memory system with SQLite storage, optional vector search, causal and knowledge graph relations, factor inference, and genetic-neuron style memory workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and maintain a local persistent memory database that may contain sensitive user or agent context. <br>
-Mitigation: Use it only for data you are prepared to store locally, avoid storing secrets unless you add retention and access controls, and back up the database before verification or relation-detection workflows. <br>
-Risk: Optional embedding workflows can process memory content through an Ollama service. <br>
-Mitigation: Keep Ollama configured to localhost for sensitive data and review model/service configuration before using semantic search. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add a local memory database to agent workflows, initialize and verify the database, and perform memory CRUD, retrieval, import/export, graph analysis, and optional semantic search.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/717986230/memory-system-complete) <br>
-- [Ollama](https://ollama.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and operates a local persistent memory database when its setup and runtime scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and package.json; artifact SKILL.md frontmatter still lists 2.0.0) <br>
+Risk: The skill creates and manages a persistent local memory database with create, update, export, import, cleanup, and delete operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment, review database paths before running scripts, and back up the database before cleanup, forced reinitialization, import/export, or upgrades.
+
+Risk: Optional semantic search can send stored memory contents to a configured Ollama endpoint.
+
+Mitigation: Keep Ollama configured for localhost unless the endpoint is explicitly trusted and approved for the memory contents being embedded.
+
+## Reference(s):
+
+- [Memory System Complete ClawHub page](https://clawhub.ai/717986230/skills/memory-system-complete)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+- [Ollama](https://ollama.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local database initialization and verification guidance, Python API usage examples, and configuration notes for optional embedding features.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata, package.json, README.md; SKILL.md frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Generate dramatic film noir style portraits and scenes with AI via the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate dramatic film noir style portraits and scenes with AI via the Neta AI image generation API.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-External users and creative developers use this skill to generate film noir style image URLs from text prompts, with optional size selection and reference-image style inheritance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and the user-provided Neta/TalesOfAI token are sent to an external image service. <br>
-Mitigation: Use only prompts and tokens appropriate for that service, avoid exposing tokens in shared terminals, CI logs, or recordings, and rotate any token that may have been disclosed. <br>
-Risk: The skill depends on a user-provided API token and an external service endpoint. <br>
-Mitigation: Confirm token availability and external service access before relying on the skill in a workflow. <br>
+## Use Case:
 
+External users and developers use this skill to generate film noir portraits and scenes from text prompts, with optional size selection and reference-image style inheritance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blammectrappora/noir-photo-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/blammectrappora) <br>
-- [Neta API token setup](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text image URL with command-line status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided Neta API token and sends prompts to the disclosed external image service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill sends user prompts, optional reference UUIDs, generated-output requests, and the Neta token to an external image API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive prompts or reference identifiers, use a short-lived or low-scope Neta token, and rotate any token exposed in shared shell history or logs.
+
+Risk: Install commands can execute package code from the selected ClawHub or npx source.
+
+Mitigation: Install from a trusted ClawHub path when possible, review or pin packages before use, and avoid running installs with elevated privileges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blammectrappora/skills/noir-photo-generator)
+- [Neta API token setup](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, API calls, guidance]
+
+**Output Format:** [Plain text image URL with status messages on stderr]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token and sends prompts and optional reference UUIDs to api.talesofai.com.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

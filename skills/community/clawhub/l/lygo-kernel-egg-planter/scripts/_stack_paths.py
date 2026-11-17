@@ -31,7 +31,7 @@ def _assert_stack(p: Path) -> None:
         p / "tools" / "build_kernel_eggs.py",
         p / "tools" / "verify_kernel_eggs.py",
         p / "tools" / "retrieve_kernel_egg.py",
-        p / "protocol0_nano_kernel" / "fixtures" / "p0_canonical.sha256",
+        p / "protocol0_byte_entropy_filter" / "fixtures" / "p0_canonical.sha256",
     ]
     missing = [str(x.relative_to(p)) for x in required if not x.is_file()]
     if missing:
@@ -39,6 +39,7 @@ def _assert_stack(p: Path) -> None:
 
 
 def require_consent(flag: bool) -> None:
+    """Require explicit plant/retrieve consent. Never infer from chat alone."""
     if flag:
         return
     if os.environ.get("LYGO_EGG_PLANT_CONSENT", "").lower() in ("yes", "1", "true"):

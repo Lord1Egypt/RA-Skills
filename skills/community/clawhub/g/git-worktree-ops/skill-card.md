@@ -1,41 +1,53 @@
-## Description: <br>
-Helps agents manage parallel development workspaces with Git worktree commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Git Worktree Ops helps agents manage isolated parallel development workspaces with git worktree.
 
-## Publisher: <br>
-[soponcd](https://clawhub.ai/user/soponcd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soponcd](https://clawhub.ai/user/soponcd)
 
-## Use Case: <br>
-Developers and agents use this skill to create, list, and remove isolated Git worktree workspaces for parallel development. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The referenced tools/git_worktree_manager.sh helper script was not included in the reviewed package. <br>
-Mitigation: Inspect and verify the local helper script before using this skill's commands. <br>
-Risk: Remove operations can delete local worktrees and may discard needed files if the wrong target is selected. <br>
-Mitigation: Confirm the target worktree and check for uncommitted or needed files before running remove commands. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to create, list, and remove isolated Git worktrees for parallel development. It provides command patterns for a local git_worktree_manager.sh helper script.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/soponcd/git-worktree-ops) <br>
-- [Declared Homepage](https://github.com/soponcd/timeflow-skills/tree/main/teams/skills/git-worktree-ops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance is centered on local Git worktree operations and the referenced helper script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill tells the agent to use a repository-local tools/git_worktree_manager.sh script that is not bundled in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect tools/git_worktree_manager.sh in the target repository before running create or remove operations.
+
+Risk: The source instructions are in Chinese, which may be misunderstood by reviewers or operators who do not read Chinese.
+
+Mitigation: Confirm the intended create, remove, and list commands before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/soponcd/skills/git-worktree-ops)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No bundled executable code; command guidance depends on a repository-local git worktree manager script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

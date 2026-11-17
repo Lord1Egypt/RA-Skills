@@ -1,42 +1,57 @@
-## Description: <br>
-Manage the pgAdmin Docker container for local dev environments and provide a localhost web UI for PostgreSQL at http://localhost:8082. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage the pgAdmin Docker container for local dev environments. Provides a web UI for PostgreSQL at http://localhost:8082. Requires postgres-manager and proxy-manager to be running first.
 
-## Publisher: <br>
-[pereirajair](https://clawhub.ai/user/pereirajair) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pereirajair](https://clawhub.ai/user/pereirajair)
 
-## Use Case: <br>
-Developers and engineers use this skill to start, stop, inspect, and access a local pgAdmin container for PostgreSQL database management in a Docker-based development environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default pgAdmin password is weak even though the service is bound to localhost. <br>
-Mitigation: Set a strong PGADMIN_PASSWORD before starting the container. <br>
-Risk: Saved pgAdmin server configurations persist in the pgadmin_data Docker volume. <br>
-Mitigation: Avoid storing sensitive production database connections and remove the pgadmin_data volume when saved configurations should no longer persist. <br>
-Risk: The skill starts a Docker container from the dpage/pgadmin4:8.6 image. <br>
-Mitigation: Install and run it only when you trust the Docker image and need a local pgAdmin instance. <br>
+## Use Case:
 
+Developers and engineers use this skill to start, stop, inspect, and access a local pgAdmin Docker container for PostgreSQL administration in local development environments.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/pereirajair/pgadmin-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local Docker lifecycle guidance for pgAdmin, including access URL, login settings, prerequisites, and persistence notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0) <br>
+Risk: The skill starts a persistent pgAdmin database administration interface with publicly documented default credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set unique PGADMIN_EMAIL and PGADMIN_PASSWORD values before starting the container and avoid using the documented defaults.
+
+Risk: Containers on the shared Docker network may be able to reach the PostgreSQL and pgAdmin services.
+
+Mitigation: Restrict which containers can join the shared Docker network and keep the pgAdmin port bound to localhost.
+
+Risk: The pgAdmin volume preserves server configuration across restarts.
+
+Mitigation: Stop the service when it is not needed and remove the pgAdmin volume when saved server configuration should no longer persist.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pereirajair/skills/pgadmin-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance centers on Docker Compose lifecycle commands and local pgAdmin connection settings.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

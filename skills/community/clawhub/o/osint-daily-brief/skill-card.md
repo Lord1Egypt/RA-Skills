@@ -1,45 +1,59 @@
-## Description: <br>
-Generate a daily OSINT intelligence brief on a domain, company, IP, person, or keyword using Tavily web search, DNS recon, WHOIS, and optional Shodan enrichment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a daily OSINT intelligence brief on a domain, company, IP, person, or keyword using Tavily web search, DNS records, WHOIS, and optional Shodan data.
 
-## Publisher: <br>
-[infectit007](https://clawhub.ai/user/infectit007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[infectit007](https://clawhub.ai/user/infectit007)
 
-## Use Case: <br>
-Security teams, developers, and external analysts use this skill to assemble short OSINT briefs for authorized brand monitoring, competitive intelligence, pre-engagement reconnaissance, and daily threat awareness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gathers information about domains, companies, IPs, people, or keywords, which can create legal or policy risk when used on unauthorized targets. <br>
-Mitigation: Use it only for assets, clients, brands, or targets that the operator is authorized to research. <br>
-Risk: Queries and findings may be sent to external services such as Tavily, Shodan, or messaging delivery channels. <br>
-Mitigation: Review API keys, scheduled jobs, Telegram or other delivery settings, and target sensitivity before enabling automated runs. <br>
-Risk: Daily scheduled briefs can repeatedly disclose target names and findings if cron prompts or delivery channels are misconfigured. <br>
-Mitigation: Confirm cron configuration and recipients before scheduling brand, competitor, or client monitoring. <br>
+## Use Case:
 
+Developers, security analysts, and operators use this skill to assemble concise OSINT briefs for brand monitoring, competitive intelligence, pre-engagement reconnaissance, and daily threat awareness.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/infectit007/osint-daily-brief) <br>
-- [Publisher profile](https://clawhub.ai/user/infectit007) <br>
-- [Tavily Search API endpoint](https://api.tavily.com/search) <br>
-- [Shodan host lookup endpoint](https://api.shodan.io/shodan/host/{ip_or_domain}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown brief with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a required TAVILY_API_KEY and optional SHODAN_API_KEY; local DNS and WHOIS enrichment depend on dig and whois being installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: OSINT targets and search terms may be sent to third-party providers such as Tavily and Shodan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for targets appropriate for those services, and avoid submitting sensitive internal identifiers unless disclosure to those providers is acceptable.
+
+Risk: Scheduled monitoring can create recurring collection and report-forwarding jobs.
+
+Mitigation: Review cron prompts, recipients, and monitored targets before enabling scheduled runs, and disable jobs that are no longer authorized.
+
+Risk: Reconnaissance activity can cross legal or authorization boundaries if used on targets without permission.
+
+Mitigation: Run the skill only against owned assets, explicitly authorized engagements, or investigations permitted by applicable law and policy.
+
+## Reference(s):
+
+- [OSINT Daily Brief ClawHub listing](https://clawhub.ai/infectit007/skills/osint-daily-brief)
+- [Tavily Search API endpoint](https://api.tavily.com/search)
+- [Shodan Host API endpoint](https://api.shodan.io/shodan/host/{ip_or_domain})
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Analysis, Code, Shell commands, Configuration]
+
+**Output Format:** [Structured Markdown brief with example Python and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TAVILY_API_KEY; SHODAN_API_KEY, dig, whois, and scheduled cron delivery are optional.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

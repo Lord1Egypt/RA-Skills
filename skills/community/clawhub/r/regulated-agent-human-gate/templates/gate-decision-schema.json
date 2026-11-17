@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/kya/gate-decision.schema.json",
+  "title": "KYA Gate Decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "decision_id",
+    "action_hash",
+    "decision",
+    "authorization_status",
+    "risk_level",
+    "reason_codes",
+    "required_controls",
+    "satisfied_controls",
+    "control_evidence",
+    "blocked_actions",
+    "policy_version",
+    "evaluated_at"
+  ],
+  "properties": {
+    "schema_version": { "const": "2.0" },
+    "decision_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "action_hash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "decision": {
+      "enum": [
+        "ALLOW",
+        "USER_CONFIRMATION",
+        "STEP_UP_AUTHENTICATION",
+        "IDENTITY_VERIFICATION",
+        "HUMAN_APPROVAL",
+        "COMPLIANCE_REVIEW",
+        "DENY"
+      ]
+    },
+    "authorization_status": { "enum": ["PENDING_CONTROLS", "APPROVED", "DENIED"] },
+    "risk_level": { "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"] },
+    "reason_codes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1, "maxLength": 128 }
+    },
+    "required_controls": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1, "maxLength": 128 }
+    },
+    "satisfied_controls": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1, "maxLength": 128 }
+    },
+    "control_evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["control", "status", "actor_type", "actor_id", "evidence_reference", "completed_at"],
+        "properties": {
+          "control": { "type": "string", "minLength": 1, "maxLength": 128 },
+          "status": { "const": "PASSED" },
+          "actor_type": { "enum": ["user", "human", "provider", "system"] },
+          "actor_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+          "evidence_reference": { "type": "string", "minLength": 1, "maxLength": 512 },
+          "completed_at": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "blocked_actions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1, "maxLength": 128 }
+    },
+    "policy_version": { "type": "string", "minLength": 1, "maxLength": 64 },
+    "receipt_ttl_seconds": { "type": "integer", "minimum": 30, "maximum": 900 },
+    "evaluated_at": { "type": "string", "format": "date-time" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "authorization_status": { "const": "APPROVED" } } },
+      "then": { "properties": { "blocked_actions": { "maxItems": 0 } } }
+    },
+    {
+      "if": { "properties": { "decision": { "enum": ["DENY", "COMPLIANCE_REVIEW"] } } },
+      "then": { "properties": { "authorization_status": { "enum": ["PENDING_CONTROLS", "DENIED"] } } }
+    }
+  ]
+}

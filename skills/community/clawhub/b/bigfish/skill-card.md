@@ -1,42 +1,54 @@
-## Description: <br>
-BigFish is an AI fishing assistant that analyzes fishing spot images, combines weather and location context, recommends target fish, techniques, bait, and trip timing, and helps record fishing reports and catch data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BigFish is a fishing assistant that analyzes fishing spot photos and local weather context to recommend target species, tactics, bait, timing, and catch-report records.
 
-## Publisher: <br>
-[kobenfang](https://clawhub.ai/user/kobenfang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kobenfang](https://clawhub.ai/user/kobenfang)
 
-## Use Case: <br>
-Fishing hobbyists and outdoor anglers use this skill to evaluate fishing spots, decide when and how to fish, and keep structured records of trips and catches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate during casual fishing questions when the user did not intend to invoke fishing-analysis behavior. <br>
-Mitigation: Use explicit phrasing when asking casual fishing questions, and invoke the skill only when fishing analysis or catch-record support is desired. <br>
-Risk: Fishing spot analysis can involve location or weather context that may require user permission or disclose sensitive trip details. <br>
-Mitigation: Review permission prompts before allowing location or weather access, and share only the location detail needed for the fishing recommendation. <br>
+## Use Case:
 
+External fishing users use this skill to assess fishing spots, ask whether current conditions are suitable, choose species-specific methods and bait, and keep structured catch logs.
 
-## Reference(s): <br>
-- [BigFish on ClawHub](https://clawhub.ai/kobenfang/bigfish) <br>
-- [Weather skill](https://clawhub.ai/skills/weather) <br>
-- [Bigseed skill](https://clawhub.ai/skills/bigseed) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured recommendations, ratings, and fishing-report entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for user-provided images, city or location, weather context, and catch details; no environment variables are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.7 (source: server release evidence) <br>
+Risk: Fishing photos, location or city context, weather context, and catch history may accumulate into location-linked fishing logs without clear privacy controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, avoid entering precise or private fishing locations unless needed, and retain or share catch logs only with explicit user intent.
+
+Risk: The skill includes bait guidance that labels a bait option as illegal or restricted.
+
+Mitigation: Verify local fishing regulations before following bait or method recommendations and reject any recommendation that conflicts with applicable rules.
+
+## Reference(s):
+
+- [BigFish ClawHub skill page](https://clawhub.ai/kobenfang/skills/bigfish)
+- [kobenfang publisher profile](https://clawhub.ai/user/kobenfang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with structured recommendations and catch-log summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ratings, species probabilities, tactic and bait recommendations, timing advice, and structured fishing reports.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

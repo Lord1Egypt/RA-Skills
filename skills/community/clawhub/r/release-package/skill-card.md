@@ -1,42 +1,63 @@
-## Description: <br>
-Feishu Bitable Storage Manager - Integrated tool for item storage, retrieval, and location updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Storage Manager helps agents record, search, and update item locations in Feishu Bitable.
 
-## Publisher: <br>
-[ruoruochen](https://clawhub.ai/user/ruoruochen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruoruochen](https://clawhub.ai/user/ruoruochen)
 
-## Use Case: <br>
-External users and developers use this skill to manage personal item locations in Feishu Bitable, including adding stored items, searching for where items are kept, and updating item locations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled test code contains real-looking Feishu credentials. <br>
-Mitigation: Do not run the bundled test as-is; remove the credentials before use and rotate them if they were real. <br>
-Risk: The skill can upload item names, locations, and optional images to Feishu Bitable. <br>
-Mitigation: Use a dedicated Feishu app with minimal Bitable and file-upload permissions, and upload only data intended to be stored in Feishu. <br>
-Risk: The install script changes local executable permissions, may install the requests package, and can create a storage-manager symlink. <br>
-Mitigation: Review install.sh before execution and install in an environment where those local changes are expected. <br>
+## Use Case:
 
+Developers and personal productivity users use this skill to manage item locations through a Feishu Bitable command-line workflow, including adding items, searching stored items, and updating locations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ruoruochen/release-package) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls] <br>
-**Output Format:** [Command-line text output with configuration guidance and Feishu Bitable API actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3, the requests library, Feishu app credentials, a Bitable token, and a table ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The release security summary reports apparent live Feishu credentials in the bundled test.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove and rotate any embedded Feishu credentials before running tests or deploying the skill.
+
+Risk: The skill can upload local image paths to Feishu.
+
+Mitigation: Only provide image paths that are intended for upload, and review local file access before execution.
+
+Risk: Item names, locations, search terms, and uploaded images are sent to Feishu.
+
+Mitigation: Use approved Feishu workspaces, avoid sensitive inventory data unless authorized, and configure least-privilege Feishu app scopes.
+
+Risk: The dependency declaration allows a broad requests version range.
+
+Mitigation: Install with pinned, reviewed dependencies in production environments.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/ruoruochen/skills/release-package)
+- [Feishu tenant access token API endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu media upload API endpoint](https://open.feishu.cn/open-apis/drive/v1/medias/upload_all)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and command output text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and Feishu app credentials configured through environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

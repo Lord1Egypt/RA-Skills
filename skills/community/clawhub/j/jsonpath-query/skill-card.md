@@ -1,37 +1,49 @@
-## Description: <br>
-Query JSON data using JSONPath expressions to extract, filter, search, and navigate JSON with recursive descent, wildcards, array slicing, filter expressions, and union selections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query JSON data using JSONPath expressions to extract, filter, search, or navigate JSON data with recursive descent, wildcards, array slicing, filter expressions, and union selections.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineers use this skill to query JSON files or stdin with JSONPath expressions, inspect available paths, validate expressions, and extract named values for automation or CI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad JSON-related trigger wording may route generic or sensitive JSON content through the skill. <br>
-Mitigation: Use the skill only when JSONPath-style processing is intended, and avoid sending sensitive JSON unless the agent should process that data. <br>
+## Use Case:
 
+Developers and engineers use this skill to query JSON files or stdin, list available JSONPath paths, validate JSONPath expressions, and extract named values for inspection, scripting, or CI workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSONPath examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled helper can output JSON, text, lines, or CSV, and supports count, first-match, and empty-result exit behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Queries can print values from user-provided JSON files, including sensitive data if those files contain it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on files whose contents are intended to be visible in the agent or terminal output, and avoid querying secrets or sensitive records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/jsonpath-query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSONPath examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled CLI can print JSON, text, line-delimited output, CSV rows, path lists, expression validation details, and named extraction results.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

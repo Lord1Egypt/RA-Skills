@@ -1,40 +1,56 @@
-## Description: <br>
-Reviews GitHub and cnb.cool pull requests across design, implementation, testing, security, and maintainability, then produces a paste-ready Markdown review comment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews GitHub and cnb.cool pull requests across design, implementation, testing, security, and maintainability, then produces Markdown comments that a reviewer can paste into the PR.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering reviewers use this skill to review GitHub or cnb.cool pull requests, assess design, implementation, tests, security, and maintainability, and draft Markdown feedback for human submission.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may process PR metadata and diffs from GitHub or cnb.cool, including private repository content if the user provides it.
+
+Mitigation: Use it only with repository content the reviewer is authorized to share with the agent, and avoid including secrets or unrelated sensitive context.
+
+Risk: Generated review comments can be incorrect, incomplete, or misleading if the PR context is missing or the analysis is wrong.
+
+Mitigation: Have a human reviewer inspect and edit the generated Markdown before posting it to a PR.
+
+Risk: The report template includes a branded attribution line that may not be appropriate for every repository or organization.
+
+Mitigation: Review the final Markdown and remove or revise attribution before posting when repository policy requires it.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review pull requests or merge requests and generate structured feedback before a human submits the review. It focuses on code-change assessment, inline review suggestions, and an overall approve/request-changes/block recommendation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Nested review may run with broad filesystem and approval-bypass authority by default. <br>
-Mitigation: Use the documented --no-yolo or AUTOREVIEW_YOLO=0 option unless broad local authority is intentional. <br>
-Risk: Pull request diffs can contain private code, credentials, or sensitive business context. <br>
-Mitigation: Avoid fallback reviewers for sensitive diffs and review the generated comments before sharing them outside the repository. <br>
+**Output Format:** [Markdown review report with optional inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/huo15-openclaw-code-review) <br>
+**Other Properties Related to Output:** [Includes PR summary, five-dimension ratings, inline comment suggestions, and an overall review recommendation; generated comments require human review before posting.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown review report with inline file references and suggested shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces five-dimension scores, inline comment suggestions, a summary recommendation, and paste-ready PR comment text; it should not approve, merge, or comment on a PR unless explicitly instructed.] <br>
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-US Stock AI Trading Assistant | Intellectia AI Stock Forecast - Smart analysis of stock entry/exit points, target price predictions, probability calculations, and technical ratings, with support for "Should I Buy" investment decision Q&A. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Intellectia API forecasts and "Should I Buy?" analysis for single stock, ETF, or crypto tickers.
 
-## Publisher: <br>
-[Renixaus](https://clawhub.ai/user/Renixaus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[renixaus](https://clawhub.ai/user/renixaus)
 
-## Use Case: <br>
-External users and developers use this skill to request single-symbol stock, ETF, or crypto forecasts and structured "Should I Buy?" analysis through the Intellectia API. It is intended for informational financial analysis, not professional investment or trading advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Ticker queries are sent to the Intellectia API. <br>
-Mitigation: Install and use only if sharing ticker queries with Intellectia is acceptable for the user's workflow. <br>
-Risk: Forecasts and "Should I Buy" responses may be delayed or unsuitable for time-sensitive trading decisions. <br>
-Mitigation: Treat outputs as informational analysis only and consult qualified financial professionals before making investment decisions. <br>
-Risk: Python examples depend on the external requests package. <br>
-Mitigation: Review and install the requests dependency from a trusted package source before running Python examples. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Renixaus/intellectia-stock-forecast-1-0-2) <br>
-- [Intellectia](https://intellectia.ai/?channelId=601&activityId=1) <br>
-- [Intellectia forecast API endpoint](https://api.intellectia.ai/gateway/v1/stock/screener-public) <br>
-- [Intellectia Should I Buy API endpoint](https://api.intellectia.ai/gateway/v1/finance/should-i-buy) <br>
+## Use Case:
 
+External users and agents use this skill to request informational single-symbol market forecasts and structured buy-rationale summaries from the Intellectia API. It supports stock, ETF, and crypto ticker questions where the output should include predictions, probability, target-price context, catalysts, ratings, or a buy/not-buy rationale.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with optional curl commands, Python requests examples, and JSON-derived analysis summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and python3; Python examples use the requests package. Sends ticker queries to Intellectia and supports one-symbol forecast requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send requested ticker details to the Intellectia API.
+
+Mitigation: Use it only when sharing the requested ticker with Intellectia is acceptable.
+
+Risk: Market forecasts, predictions, and buy-rationale outputs may be delayed, incomplete, or wrong and are not investment advice.
+
+Mitigation: Treat responses as informational research, verify data with authoritative sources, and consult a qualified professional before financial decisions.
+
+Risk: The OpenClaw metadata installs the Python requests dependency without a pinned version.
+
+Mitigation: Install in a controlled environment and review dependency versions before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/renixaus/skills/intellectia-stock-forecast-1-0-2)
+- [Intellectia API base URL](https://api.intellectia.ai)
+- [Forecast endpoint](https://api.intellectia.ai/gateway/v1/stock/screener-public)
+- [Should I Buy endpoint](https://api.intellectia.ai/gateway/v1/finance/should-i-buy)
+- [Intellectia real-time data page](https://intellectia.ai/?channelId=601&activityId=1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash, Python, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API response summaries, ticker-specific forecast values, investment-rationale text, and setup commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

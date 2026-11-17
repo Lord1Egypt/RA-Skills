@@ -1,40 +1,52 @@
-## Description: <br>
-SVG Animator helps agents generate SVG-frame animations and assemble them into MP4 or GIF outputs for animals, scenes, abstract motion, and short stories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates simple SVG frame animations and video or GIF rendering guidance for themes or short stories.
 
-## Publisher: <br>
-[juliantsaiii](https://clawhub.ai/user/juliantsaiii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[juliantsaiii](https://clawhub.ai/user/juliantsaiii)
 
-## Use Case: <br>
-Developers and creative automation users can use this skill to produce simple animated videos or GIFs from text-described SVG frame sequences, including single actions and multi-scene stories. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The helper script runs local media-conversion shell commands and writes files on the user's machine. <br>
-Mitigation: Use trusted ffmpeg and rsvg-convert binaries, run without elevated privileges, and review generated commands before execution. <br>
-Risk: Untrusted or complex output paths and very large frame counts can create avoidable local execution or resource risks. <br>
-Mitigation: Keep output paths simple and trusted, limit frame counts, and avoid publishing generated files through nginx unless public access is intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juliantsaiii/svg-animator) <br>
-- [Publisher profile](https://clawhub.ai/user/juliantsaiii) <br>
+## Use Case:
 
+Developers and creators use this skill to ask an agent for SVG frame-generation code, animation timing guidance, and shell commands that render short MP4 or GIF animations with local tools.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and shell command examples, producing SVG frames and MP4 or GIF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated media depends on local ffmpeg and rsvg-convert availability.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes local command execution and generated file handling under /tmp.
+
+Mitigation: Review commands before execution, avoid untrusted output paths, and run in a constrained local environment.
+
+Risk: The advertised generation scope may exceed the included template-based animation behavior.
+
+Mitigation: Treat the skill as a helper for simple SVG animation templates and verify generated outputs before relying on them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/juliantsaiii/skills/svg-animator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local files under /tmp and generated MP4 or GIF outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Export Pencil .pen designs to React and Tailwind code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts finalized Pencil .pen frames or documents into frontend component code and Tailwind theme configuration.
 
-## Publisher: <br>
-[Jcwen](https://clawhub.ai/user/Jcwen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcwen](https://clawhub.ai/user/jcwen)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn finalized Pencil .pen frames or documents into implementation code, including React components and Tailwind theme configuration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: .pen files may contain design structure, variables, images, and screenshots that the agent needs to inspect. <br>
-Mitigation: Use this skill only with .pen files intended for agent review and avoid providing unrelated sensitive designs or assets. <br>
-Risk: Generated React and Tailwind output may not exactly match the source design or local project conventions. <br>
-Mitigation: Review generated code and Tailwind theme changes before adding them to a project, and use screenshot comparison when visual fidelity matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Node Mapping Reference](references/node-mapping.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Jcwen/pencil-to-code) <br>
+## Use Case:
 
+Developers and engineers use this skill to translate finalized Pencil designs into React, Vue, or HTML implementation code with Tailwind styling. It is intended for export-to-code workflows, not design editing.
 
-## Skill Output: <br>
-**Output Type(s):** [code, configuration, markdown] <br>
-**Output Format:** [Markdown with TypeScript/TSX, Tailwind CSS, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include optional screenshot comparison notes when validation is requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated frontend code may not be production-ready without review.
+
+Mitigation: Review generated code before adding it to a production project.
+
+Risk: Input .pen files may contain design details the user does not intend to expose.
+
+Mitigation: Only provide .pen files or frame IDs the agent is intended to read.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jcwen/skills/pencil-to-code)
+- [Node Mapping Reference](references/node-mapping.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with generated component code and Tailwind configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include optional screenshot comparison notes when validation is requested.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

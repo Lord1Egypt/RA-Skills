@@ -1,39 +1,54 @@
-## Description: <br>
-Create, inspect, and edit Microsoft Excel workbooks and XLSX files while preserving formulas, dates, types, formatting, recalculation behavior, and templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, inspect, and edit Microsoft Excel workbooks and XLSX files with reliable formulas, dates, types, formatting, recalculation, and template preservation.
 
-## Publisher: <br>
-[duncanunderwood](https://clawhub.ai/user/duncanunderwood) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duncanunderwood](https://clawhub.ai/user/duncanunderwood)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill when they need to create, inspect, or edit Excel workbooks where formulas, formatting, data types, workbook structure, and compatibility matter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Spreadsheet edits can leave stale formulas, formatting drift, or incorrect outputs in important workbooks. <br>
-Mitigation: Use copies and review formulas, recalculation state, formatting, and outputs before relying on edited files. <br>
+## Use Case:
 
+Developers, analysts, and agent operators use this skill when creating, inspecting, or editing spreadsheet workbooks where formulas, workbook structure, formatting, dates, data types, recalculation, or template preservation matter.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/duncanunderwood/excel-xlsx-1-0-2) <br>
-- [Skill homepage](https://clawic.com/skills/excel-xlsx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown guidance with inline code or shell snippets when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or modify spreadsheet files through agent-selected tools; users should review workbook outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release); skill artifact declares 1.0.2 <br>
+Risk: Spreadsheet edits can change formulas, cached values, formatting, and business logic in ways that affect downstream decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep backups and review output workbooks, including formulas, recalculation state, formatting, and representative cells, before relying on results.
+
+Risk: Optional related-skill installs or ClawHub commands may change the local agent environment.
+
+Mitigation: Run optional installs or commands only after user confirmation and only for skills that are needed for the workbook task.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/duncanunderwood/skills/excel-xlsx-1-0-2)
+- [Excel / XLSX Homepage](https://clawic.com/skills/excel-xlsx)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with optional code and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide creation or modification of Excel workbooks; review generated workbook outputs before use.]
+
+## Skill Version(s):
+
+1.0.2 (source: SKILL.md frontmatter and artifact/_meta.json); ClawHub release 1.0.0 (source: evidence release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

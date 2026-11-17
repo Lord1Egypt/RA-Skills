@@ -1,0 +1,574 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "MEGA(niche) Agent API",
+    "version": "2026-07-05",
+    "description": "Machine-readable contract for AI agents submitting software supply or distributor buying intent to the moderated MEGA(niche) review queue. Human-facing labels may localize, but all enum values in this schema are canonical English backend values."
+  },
+  "servers": [
+    {
+      "url": "https://mzwyftzpddaehhxldoca.supabase.co/functions/v1"
+    }
+  ],
+  "paths": {
+    "/marketplace?action=agent-submit": {
+      "post": {
+        "operationId": "submitMarketplaceProfileIntent",
+        "summary": "Queue a builder/provider or distributor/buyer profile intent for review.",
+        "description": "Agent submissions never create, update, or publish profiles directly. Agent is not a role: use role=provider for builders/software supply and role=buyer for distributors/buying intent. Every request requires an idempotency key.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/ProviderSubmission"
+                  },
+                  {
+                    "$ref": "#/components/schemas/BuyerSubmission"
+                  }
+                ]
+              },
+              "examples": {
+                "provider": {
+                  "$ref": "#/components/examples/ProviderSubmission"
+                },
+                "buyer": {
+                  "$ref": "#/components/examples/BuyerSubmission"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Submission accepted into the moderation queue.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentSubmissionResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "An identical request with this idempotency key was already queued.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentSubmissionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The idempotency key was previously used with a different payload.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "The request body is too large.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The request exceeded an intake rate limit.",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server-side persistence error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/marketplace?action=agent-submission": {
+      "get": {
+        "operationId": "getAgentSubmissionStatus",
+        "summary": "Read the moderation status of an agent submission.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current submission status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentSubmissionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing or invalid submission id or idempotency key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Submission not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "IdempotencyKey": {
+        "name": "Idempotency-Key",
+        "in": "header",
+        "required": true,
+        "description": "Stable unique key for one logical submission. Reuse only when retrying the exact same payload.",
+        "schema": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,127}$"
+        }
+      }
+    },
+    "schemas": {
+      "BaseSubmission": {
+        "type": "object",
+        "required": ["role", "email", "company", "displayName", "summary"],
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": ["provider", "buyer"]
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Email of the human or organization that owns or is authorized to represent the product. Do not use an agent-only mailbox unless it is controlled by that owner."
+          },
+          "company": {
+            "type": "string",
+            "maxLength": 140
+          },
+          "displayName": {
+            "type": "string",
+            "maxLength": 140
+          },
+          "headline": {
+            "type": "string",
+            "maxLength": 180
+          },
+          "summary": {
+            "type": "string",
+            "maxLength": 1800
+          },
+          "location": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "websiteUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "verticals": {
+            "oneOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "maxItems": 8
+              },
+              {
+                "type": "string",
+                "description": "Comma-separated vertical tags."
+              }
+            ]
+          },
+          "profileImageUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "Optional public profile image. HTTPS only. File extension must be .jpg, .jpeg, .png, .webp, or .svg."
+          },
+          "profileImageAlt": {
+            "type": "string",
+            "maxLength": 140
+          },
+          "agentName": {
+            "type": "string",
+            "maxLength": 140
+          },
+          "agentUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "sourceUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "locale": {
+            "type": "string",
+            "enum": ["en", "no"]
+          }
+        }
+      },
+      "ProviderSubmission": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseSubmission"
+          },
+          {
+            "type": "object",
+            "required": ["productName"],
+            "properties": {
+              "role": {
+                "const": "provider"
+              },
+              "productName": {
+                "type": "string",
+                "maxLength": 140
+              },
+              "productStage": {
+                "type": "string",
+                "enum": ["Prototype", "Pilot-ready", "Live with users", "Revenue-generating"]
+              },
+              "demoUrl": {
+                "type": "string",
+                "format": "uri"
+              },
+              "targetCustomer": {
+                "type": "string",
+                "maxLength": 220
+              },
+              "traction": {
+                "type": "string",
+                "maxLength": 220
+              },
+              "dataHandled": {
+                "oneOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/DataHandledTag"
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "description": "Comma-separated canonical data tags."
+                  }
+                ]
+              },
+              "integrationNeeds": {
+                "type": "string",
+                "maxLength": 900
+              },
+              "supportModel": {
+                "type": "string",
+                "enum": [
+                  "Self-service documentation",
+                  "Builder handles all product support",
+                  "Shared support with distributor",
+                  "Needs support model defined"
+                ]
+              },
+              "pricingExpectation": {
+                "type": "string",
+                "maxLength": 180
+              },
+              "securityNotes": {
+                "type": "string",
+                "maxLength": 900
+              },
+              "desiredPartners": {
+                "type": "string",
+                "maxLength": 1000
+              }
+            }
+          }
+        ]
+      },
+      "BuyerSubmission": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseSubmission"
+          },
+          {
+            "type": "object",
+            "required": ["verticals"],
+            "properties": {
+              "role": {
+                "const": "buyer"
+              },
+              "audienceSize": {
+                "$ref": "#/components/schemas/AudienceSize"
+              },
+              "channelType": {
+                "$ref": "#/components/schemas/ChannelType"
+              },
+              "buyingAuthority": {
+                "$ref": "#/components/schemas/BuyingAuthority"
+              },
+              "customerTrust": {
+                "type": "string",
+                "maxLength": 220
+              },
+              "currentSoftwareStack": {
+                "type": "string",
+                "maxLength": 900
+              },
+              "softwareCategories": {
+                "oneOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/SoftwareCategory"
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "description": "Comma-separated software category tags."
+                  }
+                ]
+              },
+              "supportCapacity": {
+                "$ref": "#/components/schemas/SupportCapacity"
+              },
+              "pilotReadiness": {
+                "$ref": "#/components/schemas/PilotReadiness"
+              }
+            }
+          }
+        ]
+      },
+      "AgentSubmissionResponse": {
+        "type": "object",
+        "required": ["ok", "operation", "submissionId", "reviewStatus", "submittedAt", "statusEndpoint", "nextActions"],
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "const": true
+          },
+          "operation": {
+            "type": "string",
+            "enum": ["queued", "replayed", "status"]
+          },
+          "submissionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "reviewStatus": {
+            "type": "string",
+            "enum": ["pending", "needs_review", "approved", "rejected"]
+          },
+          "submittedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "profileId": {
+            "type": ["string", "null"],
+            "format": "uuid",
+            "description": "Present only after approval and profile creation."
+          },
+          "statusEndpoint": {
+            "type": "string",
+            "format": "uri"
+          },
+          "nextActions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "required": ["code", "message"],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "DataHandledTag": {
+        "type": "string",
+        "enum": [
+          "No sensitive data",
+          "Personal data",
+          "Financial data",
+          "Health data",
+          "Operational data",
+          "IP or confidential data"
+        ]
+      },
+      "AudienceSize": {
+        "type": "string",
+        "enum": [
+          "Under 1,000 reachable customers",
+          "1,000-10,000 reachable customers",
+          "10,000-100,000 reachable customers",
+          "100,000+ reachable customers"
+        ]
+      },
+      "ChannelType": {
+        "type": "string",
+        "enum": [
+          "Association or member organization",
+          "Consultancy or advisory firm",
+          "Wholesaler, reseller, or procurement channel",
+          "Franchise, chain, or multi-location operator"
+        ]
+      },
+      "BuyingAuthority": {
+        "type": "string",
+        "enum": [
+          "Can recommend software",
+          "Can resell or bundle software",
+          "Can mandate or standardize software",
+          "Authority is unclear"
+        ]
+      },
+      "SoftwareCategory": {
+        "type": "string",
+        "enum": [
+          "Compliance automation",
+          "Workflow documentation",
+          "Planning and scheduling",
+          "Customer communication",
+          "Reporting and analytics",
+          "Training and onboarding"
+        ]
+      },
+      "SupportCapacity": {
+        "type": "string",
+        "enum": [
+          "Can only refer customers",
+          "Can introduce and onboard customers",
+          "Can train customers",
+          "Can provide first-line support"
+        ]
+      },
+      "PilotReadiness": {
+        "type": "string",
+        "enum": [
+          "Ready to discuss a pilot now",
+          "Ready if risk and support are clear",
+          "Needs internal approval first",
+          "Exploring only"
+        ]
+      }
+    },
+    "examples": {
+      "ProviderSubmission": {
+        "summary": "Builder/software supply",
+        "value": {
+          "role": "provider",
+          "email": "owner@example.com",
+          "company": "Example AI Studio",
+          "displayName": "Example Agent",
+          "productName": "Maintenance Copilot",
+          "productStage": "Pilot-ready",
+          "headline": "AI maintenance planning for seafood operators",
+          "summary": "A workflow tool that helps maintenance teams plan tasks, predict spare-part needs, and reduce downtime.",
+          "verticals": ["seafood", "industrial maintenance"],
+          "demoUrl": "https://example.com/demo",
+          "targetCustomer": "Operations-heavy SMBs with recurring maintenance workflows",
+          "dataHandled": "Personal data, Operational data",
+          "supportModel": "Builder handles all product support",
+          "agentName": "Example submission agent"
+        }
+      },
+      "BuyerSubmission": {
+        "summary": "Distributor/buying intent",
+        "value": {
+          "role": "buyer",
+          "email": "owner@example.com",
+          "company": "Nordic Industry Association",
+          "displayName": "Association Agent",
+          "headline": "Trusted channel for industrial SMBs",
+          "summary": "Represents industrial companies that need practical AI tools but do not want to evaluate hundreds of vendors.",
+          "verticals": ["industry", "manufacturing", "operations"],
+          "audienceSize": "1,000-10,000 reachable customers",
+          "channelType": "Association or member organization",
+          "buyingAuthority": "Can recommend software",
+          "softwareCategories": "Maintenance planning, compliance automation, workflow documentation",
+          "supportCapacity": "Can introduce and onboard customers",
+          "pilotReadiness": "Ready if risk and support are clear",
+          "agentName": "Example submission agent"
+        }
+      }
+    }
+  }
+}

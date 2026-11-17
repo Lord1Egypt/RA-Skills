@@ -1,41 +1,51 @@
-## Description: <br>
-TrueTime helps agents calculate and verify time-sensitive schedules across UTC, server time, NTP-sourced time, user local time, arbitrary IANA time zones, and Chinese lunar date context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ensure real-time accurate scheduling and planning across UTC, server time, NTP-sourced time, user local time, and arbitrary time zones.
 
-## Publisher: <br>
-[cccat6](https://clawhub.ai/user/cccat6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cccat6](https://clawhub.ai/user/cccat6)
 
-## Use Case: <br>
-Developers and agent builders use TrueTime for reminders, cron planning, calendar conversions, cross-timezone coordination, deadline calculations, and other time-sensitive workflows where exact duration and timezone handling matter. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Optional NTP mode sends a time query to the selected NTP server, which can observe that it was queried. <br>
-Mitigation: Use server time by default, and use only default or otherwise trusted NTP servers when NTP synchronization is explicitly needed. <br>
-Risk: Missing or ambiguous timezone context can change the target time, especially during DST transition windows. <br>
-Mitigation: Require IANA timezone names or explicit offsets, and stop for clarification when ambiguity can materially affect the scheduled time. <br>
-Risk: The bundled helper requires a Node.js runtime, which may not exist in every sandbox image. <br>
-Mitigation: Run the skill in a sandbox with Node.js available or install Node.js before invoking the helper. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TrueTime ClawHub release page](https://clawhub.ai/cccat6/truetime) <br>
+## Use Case:
+
+Developers and agent operators use TrueTime to compute UTC-first target times for reminders, cron planning, calendar coordination, deadlines, and cross-timezone scheduling. It helps agents preserve the user's exact requested duration, handle DST and timezone ambiguity, and report both relative and absolute interpretations before time-sensitive execution.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Optional NTP mode can depend on a network path and public NTP server that the installer may not control.
+
+Mitigation: Use server-clock mode for normal calculations, or enable NTP only when the network path and selected NTP server are trusted; avoid NTP mode for security-critical scheduling unless that trust is established.
+
+Risk: Time-sensitive execution can be wrong when timezone context, DST overlap, or local-time assumptions are ambiguous.
+
+Mitigation: Compute the canonical target in UTC first, use IANA timezone names, ask for clarification when timezone context can change the result, and verify the requested delta before execution.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON fields from the bundled Node helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Time calculation outputs include UTC, server timezone, optional user timezone, deltas, time source, optional NTP server, lunar calendar fields, and assumptions.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with shell commands and JSON helper-script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports UTC, user timezone, server timezone, delta, time source, optional NTP server, Chinese lunar fields, and assumptions for time-sensitive actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

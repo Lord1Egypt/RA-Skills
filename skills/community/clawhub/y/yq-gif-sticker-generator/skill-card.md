@@ -1,37 +1,53 @@
-## Description: <br>
-Q-version sticker generator that turns a user photo of a person, pet, object, logo, or icon into four Chinese-captioned animated GIF stickers with online preview and download guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates four Chinese-captioned Q-style animated GIF stickers from a user-provided photo, including subject analysis, static sticker creation, short animation, GIF conversion, preview, and download delivery.
 
-## Publisher: <br>
-[tianheihei002](https://clawhub.ai/user/tianheihei002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianheihei002](https://clawhub.ai/user/tianheihei002)
 
-## Use Case: <br>
-External users and creators use this skill to convert uploaded photos or brand visuals into a small set of ready-to-share animated GIF stickers. The workflow analyzes the subject, generates static chibi images, animates them, converts them to GIF, and returns a Markdown table with file paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes uploaded images into generated GIF stickers and may publish outputs through an online preview link without clear consent, visibility, or deletion controls. <br>
-Mitigation: Avoid personal or sensitive photos unless the agent is directed to keep outputs local or the deployment visibility and deletion path are confirmed before publishing. <br>
+## Use Case:
 
+External users and creators use this skill to turn a person, pet, object, logo, or icon image into a compact set of animated GIF stickers with Chinese captions and downloadable preview links.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with GIF file paths, inline code blocks, and delivery guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces image, video, GIF, and HTML preview files under imgs/, videos/, and gifs/ during execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The workflow uses a user-provided source image for AI processing, which may expose private faces, sensitive documents, confidential logos, or proprietary images.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only images the user is permitted to process and share; avoid private, confidential, or proprietary source material unless public preview exposure is acceptable.
+
+Risk: The generated GIF preview may be published online through the delivery step.
+
+Mitigation: Review generated stickers before deployment and avoid publishing outputs that include sensitive identity, document, brand, or ownership information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianheihei002/skills/yq-gif-sticker-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown table with generated PNG, MP4, GIF, and HTML preview artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces four one-second GIF stickers and an online preview/download page.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

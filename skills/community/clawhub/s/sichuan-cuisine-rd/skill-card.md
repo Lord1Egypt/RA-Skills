@@ -1,43 +1,59 @@
-## Description: <br>
-川菜食品研发专家，提供配方研制、工艺设计与食品安全指导；当用户需要开发川菜产品、优化生产工艺或咨询食品法规时使用 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sichuan cuisine R&D expert skill for recipe development, industrial process design, and food safety guidance.
 
-## Publisher: <br>
-[H-BeatMan](https://clawhub.ai/user/H-BeatMan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[h-beatman](https://clawhub.ai/user/h-beatman)
 
-## Use Case: <br>
-External users and food product development teams use this skill to draft Sichuan cuisine formulas, production process guidance, quality control plans, and food safety compliance checks. It is advisory support and should be reviewed by qualified food safety and regulatory professionals before production. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Food safety, labeling, additive, and process recommendations may be incomplete or jurisdiction-specific. <br>
-Mitigation: Verify recommendations against current local regulations and qualified food safety or regulatory professionals before production. <br>
-Risk: The included requirements.txt contains many packages without evidence that they are needed for this advisory skill. <br>
-Mitigation: Do not manually install dependencies unless the publisher explains why they are required for the intended use. <br>
+## Use Case:
 
+External users and food product teams use this skill to develop Sichuan-style food products, translate recipes into scalable production processes, and check food safety or labeling considerations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/H-BeatMan/sichuan-cuisine-rd) <br>
-- [Food Safety Standards](references/food-safety-standards.md) <br>
-- [Production Process Guide](references/production-process-guide.md) <br>
-- [Sichuan Flavor Profile](references/sichuan-flavor-profile.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown, Configuration] <br>
-**Output Format:** [Markdown prose, lists, tables, and process parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include advisory formula frameworks, process steps, quality checks, risk notes, and compliance review prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The artifact includes an unexplained Python requirements file that does not fit the Markdown-only skill content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; do not install artifact/requirements.txt unless the publisher explains the dependencies, minimizes them, and provides a reviewed lock file with hashes.
+
+Risk: Food safety and regulatory guidance may be incorrect for a user's specific jurisdiction or production context.
+
+Mitigation: Check recommendations against current local regulations and qualified food safety or regulatory professionals before production use.
+
+Risk: Recipe, process, and shelf-life recommendations are advisory and are not a substitute for laboratory validation or pilot production.
+
+Mitigation: Validate formulas and process parameters through lab testing, pilot runs, HACCP review, and quality-control records before commercial release.
+
+## Reference(s):
+
+- [Sichuan Flavor Profile](sichuan-cuisine-rd/references/sichuan-flavor-profile.md)
+- [Production Process Guide](sichuan-cuisine-rd/references/production-process-guide.md)
+- [Food Safety Standards](sichuan-cuisine-rd/references/food-safety-standards.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with structured lists, process plans, formulas, and compliance checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include advisory calculations or validation frameworks for the user to execute outside the agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

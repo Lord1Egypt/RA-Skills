@@ -1,0 +1,16 @@
+{
+  "imports": [],
+  "mcpServers": {
+    "maverick-pandadoc-mcp": {
+      "baseUrl": "https://mcp.pandadoc.com/v1/mcp",
+      "transport": "http",
+      "auth": "refreshable_bearer",
+      "refresh": {
+        "tokenEndpoint": "https://mcp.pandadoc.com/token",
+        "clientIdEnv": "MAVERICK_PANDADOC_MCP_CLIENT_ID",
+        "clientSecretEnv": "MAVERICK_PANDADOC_MCP_CLIENT_SECRET",
+        "clientAuthMethod": "client_secret_post"
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "skill_name": "make-the-call",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Choose our internal search backend. Option A meets all mandatory controls, costs €20k less annually, and has a proven connector for our source system. Option B has a nicer UI but no differentiating requirement advantage. Recommend one.",
+      "expected_output": "Outputs DECIDE for Option A, focuses on the requirements, cost, and connector evidence, and names accepted UI trade-offs without a fabricated scoring model.",
+      "assertions": ["Chooses exactly one option", "Identifies genuinely discriminating criteria and evidence", "Reports relevant trade-offs", "Does not say only 'it depends' or invent numerical weights"]
+    },
+    {
+      "id": 2,
+      "prompt": "Choose parser A or B. Both meet cost and security constraints, but we do not know which preserves table structure on our invoices. A one-day sample run is available before a month-long migration.",
+      "expected_output": "Outputs TEST and defines a one-day representative sample with an observable table-preservation threshold that determines which parser wins.",
+      "assertions": ["Disposition is TEST", "The experiment is bounded by time or cost", "The measured result and option-favoring threshold are observable", "Does not prematurely choose A or B"]
+    },
+    {
+      "id": 3,
+      "prompt": "Choose a provider for irreversible archival deletion. Regulatory residency evidence for both finalists is unavailable until their audits finish next month, and guessing could create legal exposure.",
+      "expected_output": "Outputs DEFER, identifies the missing residency audit evidence, explains the downside of guessing, and states the readiness condition.",
+      "assertions": ["Disposition is DEFER", "States exactly what material evidence is missing", "Explains why commitment is unsafe", "Does not launch generic endless research"]
+    },
+    {
+      "id": 4,
+      "prompt": "Pick one of two equivalent local markdown previewers for a two-hour prototype. Both are free and switching takes five minutes.",
+      "expected_output": "Makes a prompt DECIDE disposition, explicitly recognizes high reversibility, and avoids disproportionate analysis.",
+      "assertions": ["Decides rather than defers", "Recognizes that the choice is cheap and highly reversible", "Analysis is proportionate"]
+    },
+    {
+      "id": 5,
+      "prompt": "Recommend build or buy. Buying wins only if monthly volume stays below 100k; the current estimate is 95k with a plausible range of 80k–130k.",
+      "expected_output": "Identifies volume as the decision-driving assumption, marks the recommendation fragile, and chooses TEST or a clearly caveated disposition without fake precision.",
+      "assertions": ["Identifies sensitivity to the volume assumption", "Explicitly labels the recommendation fragile", "Does not conceal fragility with a weighted matrix"]
+    }
+  ]
+}

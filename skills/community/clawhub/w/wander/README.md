@@ -26,4 +26,4 @@ clawhub install wander
 
 ## License
 
-MIT (same as the parent repository).
+Apache-2.0 (see the parent repository LICENSE).

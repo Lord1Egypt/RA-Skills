@@ -1,0 +1,63 @@
+{
+  "skill_name": "blog-publish",
+  "entry_file": "scripts/blog-publish.py",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "health-check",
+      "command": "python3 scripts/blog-publish.py health-check",
+      "expected": "{\"status\":\"ok\",\"service\":\"blog-api\",\"version\":\"1.0.0\"}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "检查 API 可达性"
+    },
+    {
+      "id": "TC-02",
+      "name": "list-articles",
+      "command": "python3 scripts/blog-publish.py list-articles --page 1 --size 5",
+      "expected": "{\"code\":200,\"data\":[...],\"total\":N,\"page\":1,\"size\":5}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询文章列表"
+    },
+    {
+      "id": "TC-03",
+      "name": "list-labels",
+      "command": "python3 scripts/blog-publish.py list-labels",
+      "expected": "{\"code\":200,\"data\":[{\"id\":N,\"lname\":\"技术\"},...]}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询标签列表"
+    },
+    {
+      "id": "TC-04",
+      "name": "list-uploads",
+      "command": "python3 scripts/blog-publish.py list-uploads",
+      "expected": "{\"code\":200,\"data\":[{\"filename\":\"...\",\"url\":\"/uploads/...\",\"type\":\"image\",\"size\":N}]}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询已上传文件列表"
+    },
+    {
+      "id": "TC-05",
+      "name": "create-article",
+      "command": "python3 scripts/blog-publish.py create-article --title \"测试文章\" --content \"自动测试创建\"",
+      "expected": "{\"code\":200,\"message\":\"文章发布成功\",\"data\":{\"id\":N}}",
+      "method": "POST",
+      "category": "mutable",
+      "description": "创建文章并验证返回 ID",
+      "cleanup": "执行 delete-article --id <返回的ID> 软删除刚创建的测试文章"
+    },
+    {
+      "id": "TC-06",
+      "name": "capability-list",
+      "command": "python3 scripts/blog-publish.py capability-list",
+      "expected": "{\"capability\":\"capability-list\",\"skill\":\"blog-publish\",\"capabilities\":[...]}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "列出 skill 所有能力项"
+    }
+  ],
+  "env_vars_required": ["BLOG_PUBLISH_BASE_URL（API 地址）"],
+  "notes": "base_url 从环境变量或 .project-info/ 下 JSON 配置文件获取，不写入此文件"
+}

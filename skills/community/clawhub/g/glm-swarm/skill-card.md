@@ -1,44 +1,55 @@
-## Description: <br>
-A lightweight parallel-agent harness for complex tasks that should only be used when swarm processing is explicitly requested or when a task has at least two independent subtasks and three or more tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GLM Swarm helps an agent split complex multi-step work into parallel worker tasks, pass compact context packets, aggregate results, and clean up temporary swarm state.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Developers and agent operators use GLM Swarm to split complex work into smaller worker tasks, coordinate parallel subagents, and aggregate results into concise summaries and action items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can coordinate multiple subagents and persist worker task data under /tmp. <br>
-Mitigation: Use it only for tasks that intentionally require swarm coordination, avoid sensitive data, and clean task directories after completion. <br>
-Risk: Cleanup and task directory handling rely on caller-provided task IDs and local shell scripts. <br>
-Mitigation: Review task IDs before running scripts and avoid broad cleanup operations unless the target directories are understood. <br>
-Risk: Code changes, deployment steps, or other external actions may be proposed by workers. <br>
-Mitigation: Require manual approval after aggregation before applying code changes, deployment actions, or external side effects. <br>
+## Use Case:
 
+Developers and agent operators use this skill when a task explicitly calls for swarm or parallel processing, or when the task meets the documented complexity gates of at least two independent subtasks and three or more tool calls. It provides planning patterns, worker context-packet rules, aggregation guidance, and cleanup commands.
 
-## Reference(s): <br>
-- [Context Packet Protocol](references/context-packet.md) <br>
-- [Predefined Pattern Library](references/patterns.md) <br>
-- [GLM Swarm on ClawHub](https://clawhub.ai/mupengi-bot/glm-swarm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with structured worker instructions, shell commands, and summary reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Worker outputs are expected to stay concise, with aggregator summaries of 3 to 5 lines when detailed results exceed 500 tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: release evidence) <br>
+Risk: A crafted task ID could cause setup or cleanup scripts to write or delete outside the intended /tmp/swarm workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Generate or validate simple task IDs, resolve canonical paths, and enforce containment under /tmp/swarm before any write or delete.
+
+Risk: Parallel workers may propose code changes, deployments, or persistent result storage that need operator review.
+
+Mitigation: Require explicit confirmation after aggregation before external actions, code changes, deployments, or persistent result storage.
+
+## Reference(s):
+
+- [Context Packet protocol](references/context-packet.md)
+- [Pattern library](references/patterns.md)
+- [ClawHub skill page](https://clawhub.ai/mupengi-bot/skills/glm-swarm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON task templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Worker outputs are guided to stay within 300 tokens; aggregation returns a short summary when worker output exceeds 500 tokens.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

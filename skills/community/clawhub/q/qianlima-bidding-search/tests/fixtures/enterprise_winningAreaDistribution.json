@@ -1,0 +1,21 @@
+{
+  "code": 200,
+  "msg": "",
+  "data": {
+    "rowCount": 2,
+    "pageCount": 1,
+    "list": [
+      {
+        "areaName": "广东省 / 深圳市",
+        "winningCount": 7,
+        "winningAmount": 4300000
+      },
+      {
+        "areaName": "广东省 / 珠海市",
+        "winningCount": 2,
+        "winningAmount": 880000
+      }
+    ]
+  },
+  "success": true
+}

@@ -1,39 +1,56 @@
-## Description: <br>
-Review GitLab merge requests using a standardized code review template, automatically fetching MR changes, analyzing the diff, and posting a review comment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review GitLab merge requests using a standardized code review template; automatically fetches MR changes, analyzes the diff, and posts a review comment following the template.
 
-## Publisher: <br>
-[wujinyuan](https://clawhub.ai/user/wujinyuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wujinyuan](https://clawhub.ai/user/wujinyuan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering teams use this skill to review GitLab merge requests, identify actionable code issues, and prepare a structured review comment. It is intended for MR review workflows where a GitLab CLI session can fetch merge request metadata and changes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can post generated review comments directly to GitLab merge requests.
+
+Mitigation: Review the generated comment and require explicit approval before posting it to GitLab.
+
+Risk: The workflow can change GitLab CLI host configuration for the current environment.
+
+Mitigation: Limit use to trusted GitLab hosts and prefer per-command host options or temporary configuration over persistent glab config changes.
+
+Risk: Published comments include a fixed OpenClaw attribution that may not match team policy.
+
+Mitigation: Remove or approve the attribution before publishing comments in a team repository.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review GitLab merge requests from a supplied MR URL, inspect diffs for defects and security concerns, and publish a structured review comment. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [analysis, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses the configured GitLab CLI account to read merge request diffs and publish review comments. <br>
-Mitigation: Use least-privilege GitLab credentials and review generated comments before allowing them to be posted, especially for shared or sensitive repositories. <br>
+**Output Format:** [Markdown review comment with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Code review template](artifact/code-review-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wujinyuan/gitlab-mr-review) <br>
+**Other Properties Related to Output:** [May post the generated review comment to the target GitLab merge request when allowed by the user and GitLab CLI credentials.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown review comments with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May post comments to GitLab through the user's configured glab account.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

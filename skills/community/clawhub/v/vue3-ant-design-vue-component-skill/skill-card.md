@@ -1,39 +1,51 @@
-## Description: <br>
-Provides standardized templates and best practices for reusable Vue 3 and Ant Design Vue business components. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides standardized templates and best practices for wrapping reusable business components with Vue 3 and Ant Design Vue.
 
-## Publisher: <br>
-[94lfj](https://clawhub.ai/user/94lfj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[94lfj](https://clawhub.ai/user/94lfj)
 
-## Use Case: <br>
-Developers use this skill to draft reusable Vue 3 and Ant Design Vue business component patterns, including card containers, dynamic forms, and data tables. It supports consistent component naming, structure, props, events, slots, and Less styling conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated UI component code may not enforce project-specific validation, authorization, or confirmation behavior for actions such as edit and delete. <br>
-Mitigation: Review generated components against the target application's validation, authorization, and destructive-action confirmation requirements before production use. <br>
+## Use Case:
 
+Developers use this skill to draft reusable Vue 3 and Ant Design Vue business components, including card containers, dynamic forms, and data tables with standard naming and structure conventions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/94lfj/vue3-ant-design-vue-component-skill) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown with Vue, JavaScript, and Less code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces template-style component guidance rather than executing tools or scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The templates include Chinese-language UI labels and sample edit/delete actions that may not match every product locale or domain policy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and localize labels and confirm action semantics before using the generated components in an application.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/94lfj/skills/vue3-ant-design-vue-component-skill)
+- [Artifact README](artifact/README.md)
+- [Artifact SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with Vue single-file component code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language component templates for Vue 3.4+, Ant Design Vue, JavaScript, Less, and Vite.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

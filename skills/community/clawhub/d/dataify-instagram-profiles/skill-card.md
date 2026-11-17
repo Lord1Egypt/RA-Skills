@@ -1,42 +1,54 @@
-## Description: <br>
-Submit Dataify Instagram Profile Builder tasks for two Instagram profile collection modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect Instagram profile data by username or profile URL. Do not use for post comments or Reel content.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to submit Dataify Builder jobs that collect Instagram profile data by username or profile URL and return task status details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create external Dataify jobs using a Dataify API TOKEN. <br>
-Mitigation: Use a limited-scope token if available, avoid sharing real tokens in chats or terminals, and review task parameters before submission. <br>
-Risk: Incorrect mode or parameter values can submit the wrong Instagram profile collection task. <br>
-Mitigation: Confirm whether the user wants username or profile URL mode, validate required fields, and submit only parameters for the selected mode. <br>
+## Use Case:
 
+External users and developers use this skill to submit Dataify Builder jobs that collect Instagram profile data by username or profile URL, then monitor the task and retrieve the final JSON result.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-instagram-profiles) <br>
-- [Dataify dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [Dataify login](https://dashboard.dataify.com/login?utm_source=skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline commands and JSON task summaries from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Submits external Dataify Builder jobs and reports task_id, status, selected mode, parameters, file name, and dashboard URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The helper script loads monitoring code from a sibling directory outside the reviewed artifact and gives it the Dataify API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the companion dataify-task-operations runtime and the shared package location are trusted, and review that runtime before use.
+
+Risk: The skill sends Instagram usernames or profile URLs to Dataify and requires a Dataify API token.
+
+Mitigation: Confirm the collection target is appropriate for the use case, keep DATAIFY_API_TOKEN in the environment, and do not paste or print the token in chat or logs.
+
+## Reference(s):
+
+- [Modes and parameters](references/modes-and-parameters.md)
+- [Dataify Instagram Profiles on ClawHub](https://clawhub.ai/dataify-server/skills/dataify-instagram-profiles)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON task or result payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DATAIFY_API_TOKEN, submits a Dataify Builder task, and by default waits for the final collected result.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

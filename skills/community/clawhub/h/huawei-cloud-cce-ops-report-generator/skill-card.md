@@ -1,42 +1,63 @@
-## Description: <br>
-Generates consolidated Huawei Cloud CCE operations reports that combine daily inspection, capacity trends, availability risk, cost optimization, and on-call context into Markdown, HTML, and JSON outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates consolidated Huawei Cloud CCE operations reports that combine daily inspection, capacity trends, availability risk, cost optimization, and on-call context into Markdown, HTML, JSON, and chart outputs.
 
-## Publisher: <br>
-[pintudeyudi](https://clawhub.ai/user/pintudeyudi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pintudeyudi](https://clawhub.ai/user/pintudeyudi)
 
-## Use Case: <br>
-Cloud platform, SRE, and operations engineers use this skill to generate weekly, monthly, SLA, capacity, or stability reports for Huawei Cloud CCE clusters. It consolidates health, capacity, availability, cost, and on-call signals into reviewable operational summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence says the release is advertised as read-only reporting, but the packaged dispatcher exposes live infrastructure and monitoring mutation actions. <br>
-Mitigation: Review before installing, use least-privilege read-only Huawei Cloud credentials for reports, and avoid autonomous workflows that could invoke arbitrary dispatcher actions. <br>
-Risk: The skill requires sensitive Huawei Cloud credentials and can write report artifacts or raw source payloads when requested. <br>
-Mitigation: Keep credentials in environment variables, avoid logging or sharing them, use a scoped output directory, and enable raw payload capture only when audit requirements justify it. <br>
+## Use Case:
 
+Developers and cloud operations engineers use this skill to generate weekly, monthly, SLA, capacity, or stability reports for Huawei Cloud CCE clusters by aggregating inspection, capacity, availability, cost, and on-call signals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pintudeyudi/huawei-cloud-cce-ops-report-generator) <br>
-- [Workflow reference](references/workflow.md) <br>
-- [Output schema reference](references/output-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, HTML, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown and HTML reports with structured JSON summaries and optional SVG charts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can persist report files to output_dir and include raw source payloads when include_raw=true.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The security review says the skill claims read-only reporting but ships callable code for Secret-data access and live cluster changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, require a report-only dispatcher with an enforced allowlist, and remove undeclared mutation and Secret-data actions before normal use.
+
+Risk: Broad Huawei Cloud or Kubernetes administrator credentials could expose more privileges than the reporting workflow needs.
+
+Mitigation: Test only in an isolated environment with least-privilege, read-only cloud and Kubernetes credentials.
+
+Risk: Raw output and on-call inputs can contain sensitive operational context.
+
+Mitigation: Avoid include_raw unless audit traceability is required, restrict on-call input paths to trusted files, and review or redact persisted report artifacts.
+
+Risk: The security guidance calls out TLS verification, temporary credential handling, and unpinned dependencies as issues to fix.
+
+Mitigation: Fix TLS verification and temporary credential handling, and pin dependencies before production deployment.
+
+## Reference(s):
+
+- [Workflow](references/workflow.md)
+- [Output Schema](references/output-schema.md)
+- [ClawHub skill page](https://clawhub.ai/pintudeyudi/skills/huawei-cloud-cce-ops-report-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, HTML, JSON, and optional SVG chart files, with command guidance in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can persist report artifacts to output_dir and can include raw source payloads when include_raw=true.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

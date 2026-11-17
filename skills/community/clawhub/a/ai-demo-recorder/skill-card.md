@@ -1,42 +1,64 @@
-## Description: <br>
-Records AI-driven browser demos with screencli, creating polished MP4 or GIF walkthroughs with visual effects and optional cloud upload. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Record AI-driven browser demos with screencli, producing polished screen recordings with gradient backgrounds, auto-zoom, click highlights, cursor trails, and optional shareable uploads.
 
-## Publisher: <br>
-[leshems](https://clawhub.ai/user/leshems) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[leshems](https://clawhub.ai/user/leshems)
 
-## Use Case: <br>
-Developers, product teams, and documentation authors use this skill to record browser-based demos, walkthroughs, before-and-after UI comparisons, and shareable product videos from an agent-driven prompt. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can reuse logged-in browser sessions when recording private applications. <br>
-Mitigation: Use low-privilege test accounts, avoid recording secrets, and delete unused ~/.screencli/auth/ session files when no longer needed. <br>
-Risk: Recordings upload to the screencli cloud service by default. <br>
-Mitigation: Use --local for internal, customer, regulated, or sensitive demos, and install only if the external screencli CLI and cloud service are trusted. <br>
+## Use Case:
 
+Developers and content authors use this skill to have an agent record browser demos, walkthroughs, README media, PR videos, social clips, and before-or-after UI demonstrations from a URL and prompt.
 
-## Reference(s): <br>
-- [CLI Reference](references/cli-reference.md) <br>
-- [Effects Reference](references/effects.md) <br>
-- [screencli website](https://screencli.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may produce local MP4 or GIF recordings and, unless local mode is used, shareable screencli.sh links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact metadata.version is 1.0) <br>
+Risk: Recordings and metadata may leave the local machine by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local-only mode for sensitive or internal applications and review recordings before sharing or uploading.
+
+Risk: Saved authentication state can grant access to private browser sessions.
+
+Mitigation: Treat saved auth files as credentials, limit their use to intended apps, and refresh or remove them when no longer needed.
+
+Risk: Floating npx commands can execute a mutable package version.
+
+Mitigation: Pin and review the screencli version before use in controlled or production workflows.
+
+Risk: Recordings can capture production secrets or sensitive user data.
+
+Mitigation: Avoid entering secrets during recorded flows and prefer test accounts or sanitized environments.
+
+## Reference(s):
+
+- [screencli Website](https://screencli.sh)
+- [ClawHub Skill Page](https://clawhub.ai/leshems/skills/ai-demo-recorder)
+- [CLI Reference](references/cli-reference.md)
+- [Effects Reference](references/effects.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated commands can create local recording files and may upload recordings to screencli.sh unless local-only mode is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

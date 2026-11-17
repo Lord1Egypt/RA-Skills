@@ -1,43 +1,59 @@
-## Description: <br>
-Query and monitor a UniFi network through the local UniFi OS gateway API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and monitor UniFi network via local gateway API (Cloud Gateway Ultra / UniFi OS).
 
-## Publisher: <br>
-[ricanwarfare](https://clawhub.ai/user/ricanwarfare) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ricanwarfare](https://clawhub.ai/user/ricanwarfare)
 
-## Use Case: <br>
-Network administrators, homelab operators, and agents assisting them use this skill to check UniFi device status, active clients, site health, top applications, and recent alerts from a local gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores UniFi gateway credentials on disk. <br>
-Mitigation: Use a dedicated least-privilege local UniFi account and protect ~/.openclaw/credentials/unifi.json with restrictive file permissions. <br>
-Risk: Dashboard execution can save raw private network data locally in dashboard_debug_dump.json. <br>
-Mitigation: Remove or disable debug dump behavior unless raw local network data should intentionally be persisted, and delete generated dumps when they are no longer needed. <br>
-Risk: The skill accesses private network infrastructure from the machine where it runs. <br>
-Mitigation: Run it only on trusted machines and trusted networks with an expected UniFi gateway target. <br>
+## Use Case:
 
+Network operators and technical users use this skill to check UniFi gateway health, connected devices, active clients, DPI traffic, and recent alerts from a local UniFi OS deployment.
 
-## Reference(s): <br>
-- [UniFi Read-Only Endpoints](references/unifi-readonly-endpoints.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ricanwarfare/unifi-network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or plain text with shell commands, tables, and optional JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; reads from a local UniFi gateway and may return private network inventory, traffic, health, and alert data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill accesses sensitive UniFi gateway credentials and network inventory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated local read-only account, restrict credentials file permissions, and avoid sharing raw command output.
+
+Risk: The scripts disable TLS verification for local gateway requests.
+
+Mitigation: Run the skill only against a trusted local gateway and verify the configured host before use.
+
+Risk: The dashboard script writes a local debug dump containing network inventory.
+
+Mitigation: Protect the working directory and delete dashboard_debug_dump.json when it is no longer needed.
+
+## Reference(s):
+
+- [UniFi Local Gateway Read-Only API Calls](references/unifi-readonly-endpoints.md)
+- [Community UniFi Controller API Reference](https://ubntwiki.com/products/software/unifi-controller/api)
+- [ClawHub Skill Page](https://clawhub.ai/ricanwarfare/skills/unifi-network)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Human-readable terminal tables, Markdown guidance, shell commands, and optional raw JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq, network access to a local UniFi gateway, and a local credentials file.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

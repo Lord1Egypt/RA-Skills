@@ -1,42 +1,58 @@
-## Description: <br>
-Agent-native payments via 1ly MCP for x402 payment handling, USDC payments, paid API access, store and paid-link creation, marketplace search, key management, and token launch, trade, and fee-claim workflows on Solana and Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+1ly Payments helps agents buy and sell paid APIs and services through 1ly MCP/x402, accept USDC on Solana or Base, manage stores and paid links, and launch, trade, or claim fees for Solana tokens.
 
-## Publisher: <br>
-[1lystore](https://clawhub.ai/user/1lystore) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1lystore](https://clawhub.ai/user/1lystore)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure agents for buying paid APIs, accepting USDC payments, creating paid links or stores, and running payment-enabled agent workflows through the 1ly MCP server. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable real crypto payments, withdrawals, token launches, and trades. <br>
-Mitigation: Use a dedicated low-balance wallet, set explicit small budgets or disable auto-spend, and require manual approval for withdrawals, key revocation, deletions, token launches, and trades. <br>
-Risk: Wallet keys and seller API keys may be required for paid or seller actions. <br>
-Mitigation: Prefer wallet-provider options over inline private keys, store secrets securely, and verify the npm package before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1lystore/1ly-payments) <br>
-- [1ly homepage](https://1ly.store) <br>
-- [1ly documentation](https://docs.1ly.store/) <br>
-- [1ly MCP server npm package](https://www.npmjs.com/package/@1ly/mcp-server) <br>
+## Use Case:
 
+External developers and agents use this skill to integrate agent-native payments, paid API calls, seller store and link management, and Solana/Base wallet payment flows. It also guides token launch, trade, and fee-claim workflows that require explicit wallet and budget controls.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands, environment variables, and JSON tool input examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance covers wallet setup, spending budgets, MCP tool selection, seller workflows, and token workflow constraints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Raw wallet keys and seller credentials may be exposed or persisted locally.
+
+Mitigation: Use a dedicated low-balance wallet, prefer a constrained wallet provider where possible, avoid inline private keys and /tmp key files, and store seller API keys securely.
+
+Risk: Paid calls, token trades, fee claims, withdrawals, key revocations, and link deletions can have direct financial or account impact.
+
+Mitigation: Set explicit per-call and daily budgets, disable autonomous spend when not needed, and manually confirm high-impact actions and destination addresses before execution.
+
+Risk: The skill depends on external npm/MCP code for payment behavior.
+
+Mitigation: Review the external package before installation and verify package integrity during setup.
+
+## Reference(s):
+
+- [1ly homepage](https://1ly.store)
+- [1ly documentation](https://docs.1ly.store/)
+- [@1ly/mcp-server npm package](https://www.npmjs.com/package/@1ly/mcp-server)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, environment variables, MCP tool names, and JSON tool input examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents through payment, seller, wallet, token, and budget workflows; paid actions depend on configured wallets and explicit budgets.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

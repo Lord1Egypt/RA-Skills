@@ -1,41 +1,54 @@
-## Description: <br>
-Database migration safety auditor that parses Alembic, Flyway, Django, Rails ActiveRecord, and Prisma migrations to classify operation risk, check rollback coverage, flag backward compatibility issues, detect lock-escalating changes, and generate deployment guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits local database migration files for risky schema changes, rollback gaps, backward-compatibility issues, and lock-heavy operations across Alembic, Flyway, Django, Rails ActiveRecord, and Prisma Migrate.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and database owners use this skill to review schema migrations before deployment, identify risky operations that may cause downtime or data loss, and produce pre-deploy checklists or rollback guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads migration and related source or model files in the target repository. <br>
-Mitigation: Install only when repository file access is acceptable for the agent and its execution environment. <br>
-Risk: Rollback scripts and production migration recommendations are advisory and may be incomplete for a specific database or deployment process. <br>
-Mitigation: Have a database owner review generated rollback scripts and production recommendations before applying them. <br>
+## Use Case:
 
+Developers and engineers use this skill to review database migrations before deployment, identify schema changes that can cause downtime or data loss, and produce pre-deploy checks and rollback material.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-db-migration-auditor) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with tables, checklists, inline shell commands, and rollback code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local file analysis only; no external API calls are described by the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill may inspect local migration files and source files to find schema risks and code references.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in workspaces where those local files may be reviewed by the agent and avoid including unrelated sensitive source material.
+
+Risk: Generated rollback scripts may be incomplete for a specific production database state.
+
+Mitigation: Treat rollback scripts as review material; require database-owner approval and staging tests before running them.
+
+## Reference(s):
+
+- [Canlah AI homepage](https://canlah.ai)
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-db-migration-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with tables, checklists, and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated rollback scripts are review material and should be tested and approved before use.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

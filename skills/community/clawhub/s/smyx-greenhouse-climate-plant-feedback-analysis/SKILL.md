@@ -1,7 +1,7 @@
 ---
 name: "smyx-greenhouse-climate-plant-feedback-analysis"
 description: "Using fixed cameras in a smart greenhouse to analyze plant morphology in real time (e.g., leaf wilting angle, stem uprightness, leaf color changes) combined with environmental sensors (light intensity, temperature, humidity, soil moisture), an AI decision model outputs climate control commands including irrigation (pump/solenoid valve), shade-net opening, fan/wet-curtain on-off, heater on-off, etc. | 通过智能温室中的固定摄像头实时分析植物的形态（如叶片萎蔫角度、茎秆挺直度、叶色变化）以及结合环境传感器（光照强度、温度、湿度、土壤水分），利用AI决策模型输出环境调控指令，包括灌溉（水泵/电磁阀）、遮阳网开度、风机/湿帘启停、加热器开关等。"
-version: "1.0.2"
+version: "1.0.20"
 license: "MIT-0"
 ---
 

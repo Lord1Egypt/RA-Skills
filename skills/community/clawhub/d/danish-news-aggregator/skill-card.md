@@ -1,44 +1,58 @@
-## Description: <br>
-Aggregates public Danish RSS sources into category-based RSS/XML feeds with deduplication and source ranking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates configured Danish RSS feeds into category-based unified RSS feeds with deduplication and source ranking.
 
-## Publisher: <br>
-[Broedkrummen](https://clawhub.ai/user/Broedkrummen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[broedkrummen](https://clawhub.ai/user/broedkrummen)
 
-## Use Case: <br>
-Developers and operators use this skill to collect public Danish news, sports, business, technology, and English-language Denmark RSS sources into curated feeds for RSS readers or self-hosted publication. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: TLS certificate verification is bypassed in aggregate_feeds.py, which can allow fetched RSS content to be intercepted or tampered with. <br>
-Mitigation: Remove the TLS verification bypass and use default certificate validation before relying on the aggregator. <br>
-Risk: Generated feeds contain content and links from external public sources. <br>
-Mitigation: Treat generated feed entries as untrusted external text and sanitize or review them before rendering in user-facing surfaces. <br>
-Risk: Unpinned Python dependencies or unintended cron installation can change runtime behavior or increase operational exposure. <br>
-Mitigation: Pin or review dependencies and add scheduled execution only when the deployment owner intentionally wants automatic refresh. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Broedkrummen/danish-news-aggregator) <br>
-- [Publisher profile](https://clawhub.ai/user/Broedkrummen) <br>
-- [Comprehensive Danish RSS Feeds](artifact/comprehensive_feeds.md) <br>
-- [Feed configuration](artifact/feeds.json) <br>
+## Use Case:
 
+Developers and operators use this skill to configure and run a Danish RSS aggregation workflow that emits category feeds for readers, dashboards, or publishing pipelines.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, RSS/XML files, guidance] <br>
-**Output Format:** [Markdown guidance with Python commands, JSON configuration, and generated RSS/XML feed files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public RSS sources, writes local feed files, and should treat generated feed content as untrusted external text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Network fetching may be unsafe because the shipped artifact includes TLS-bypass code and an HTTP feed.
+
+Mitigation: Remove TLS-bypass behavior, restrict feeds.json to trusted HTTPS domains, and run the aggregator in a restricted environment.
+
+Risk: Scheduled refresh can repeatedly fetch untrusted external content if the cron job is enabled before review.
+
+Mitigation: Do not add the cron job until dependencies are pinned and the feed list, runtime behavior, and generated outputs have been reviewed.
+
+Risk: Release claims may overstate what the shipped code does.
+
+Mitigation: Validate the scripts and generated RSS outputs against expected category coverage before relying on the release claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/broedkrummen/skills/danish-news-aggregator)
+- [Comprehensive Danish RSS Feeds](artifact/comprehensive_feeds.md)
+- [Feed configuration](artifact/feeds.json)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with command snippets, JSON configuration, Python code, and RSS XML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces category RSS XML feeds from configured external RSS sources; network access is required at runtime.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

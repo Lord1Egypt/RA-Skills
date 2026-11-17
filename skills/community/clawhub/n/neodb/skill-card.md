@@ -1,45 +1,58 @@
-## Description: <br>
-Search, mark, rate, review, and manage books, movies, music, games, podcasts, performances, collections, and tags in NeoDB through its API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, mark, rate, and review books, movies, music, games on NeoDB.
 
-## Publisher: <br>
-[gitnapp](https://clawhub.ai/user/gitnapp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitnapp](https://clawhub.ai/user/gitnapp)
 
-## Use Case: <br>
-External users and agents use this skill to search NeoDB catalog items and update a user's NeoDB shelves, ratings, reviews, notes, collections, and tags after user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow can display and store NeoDB account credentials. <br>
-Mitigation: Treat generated tokens and scripts/.credentials.json as secrets; remove the file or restrict its permissions after configuring NEODB_TOKEN. <br>
-Risk: Write operations can update shelves, ratings, reviews, notes, collections, tags, visibility, and federation posting behavior. <br>
-Mitigation: Require explicit user confirmation before each write request, including review of visibility and post_to_fediverse values. <br>
+## Use Case:
 
+External users and agents use this skill to manage a NeoDB account through the NeoDB API, including catalog search, shelf marks, ratings, reviews, notes, collections, and tags.
 
-## Reference(s): <br>
-- [NeoDB Skill Page](https://clawhub.ai/gitnapp/neodb) <br>
-- [Catalog API Reference](references/catalog.md) <br>
-- [Shelf and Journal API Reference](references/shelf-and-journal.md) <br>
-- [Collection and Tag API Reference](references/collection-and-tag.md) <br>
-- [NeoDB OpenAPI Specification](references/openapi.json) <br>
-- [NeoDB](https://neodb.social) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, API request examples, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill should request user confirmation before write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The OAuth setup flow may expose or persist live NeoDB credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secure secret store for tokens, avoid logging credentials, and revoke or rotate any token that may have been printed, stored in shell history, captured in session logs, backed up, or written to artifact/scripts/.credentials.json.
+
+Risk: The skill can perform read and write operations on a NeoDB account.
+
+Mitigation: Install only after review, grant access only to accounts where this level of access is acceptable, and require user confirmation before write actions.
+
+## Reference(s):
+
+- [NeoDB Skill Page](https://clawhub.ai/gitnapp/skills/neodb)
+- [NeoDB API](https://neodb.social)
+- [Catalog API Reference](references/catalog.md)
+- [Shelf and Journal API Reference](references/shelf-and-journal.md)
+- [Collection and Tag API Reference](references/collection-and-tag.md)
+- [Official OpenAPI Spec](references/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require a NeoDB OAuth token; write actions should be confirmed with the user before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

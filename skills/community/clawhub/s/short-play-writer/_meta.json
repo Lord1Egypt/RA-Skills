@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7139qv1y4ky3gzxffxnzk7w583236p",
-  "slug": "short-play-writer",
+  "name": "short-play-writer",
   "version": "1.0.0",
-  "publishedAt": 1773747488541
+  "description": "专业短剧/AI漫剧剧本创作助手，包含爆款规律、标准模板、爽点设计和分镜规范",
+  "author": "Kenz1117",
+  "license": "MIT-0",
+  "homepage": "",
+  "keywords": ["短剧", "AI漫剧", "剧本创作", "分镜", "写作", "爽文"],
+  "openclaw": {
+    "emoji": "🎭",
+    "category": "writing",
+    "requires": {
+      "bins": ["python3"]
+    },
+    "triggers": ["写短剧", "短剧剧本", "AI漫剧", "漫剧脚本", "分镜剧本", "微短剧", "爆款短剧"]
+  }
 }

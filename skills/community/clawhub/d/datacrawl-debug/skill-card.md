@@ -1,50 +1,62 @@
-## Description: <br>
-Helps agents process web data, generate data-processing code, diagnose collection errors, clean extracted data, and iterate on data-processing strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents configure, generate, debug, clean, and optimize web data processing workflows, including code generation from URLs and field descriptions.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-Developers and data engineers use this skill to plan authorized web-data processing, generate starter collection scripts, troubleshoot common crawl failures, clean extracted data, and improve processing configurations from run history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide web-data collection workflows that may conflict with site terms, robots.txt, rate limits, or authorization boundaries. <br>
-Mitigation: Use it only for authorized data processing, prefer official APIs, check robots.txt and terms before collection, and keep request rates conservative. <br>
-Risk: Security review flagged advice involving proxy, CAPTCHA, IP-switching, or human-behavior suggestions that could be misused to bypass site controls. <br>
-Mitigation: Do not use those suggestions to evade access controls or anti-abuse systems; restrict debugging to compliant failures and approved targets. <br>
-Risk: The artifact includes an undisclosed contact scoring and persona inference utility. <br>
-Mitigation: Review and disable that utility unless profiling is explicitly authorized, legally appropriate, and necessary for the intended use case. <br>
-Risk: The release requires review because static scan was clean but VirusTotal was pending and the verdict was based on artifact content. <br>
-Mitigation: Run local security review and dependency checks before deployment, and inspect generated code before execution. <br>
+## Use Case:
 
+Developers and data engineers use this skill to plan and debug web data processing workflows, generate starter Python code, clean extracted data, and improve processing strategies from run history. It is intended for authorized, compliant data handling workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangm-a3/datacrawl-debug) <br>
-- [Publisher profile](https://clawhub.ai/user/wangm-a3) <br>
-- [Publisher homepage](https://xiaping.coze.site) <br>
-- [crawl_best_practices.md](references/crawl_best_practices.md) <br>
-- [data_handling_guide.md](references/data_handling_guide.md) <br>
-- [data_quality_checklist.md](references/data_quality_checklist.md) <br>
-- [process_best_practices.md](references/process_best_practices.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python code templates, JSON or CSV data examples, and configuration recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated artifacts may include runnable Python snippets, data-cleaning summaries, debugging diagnoses, and improvement recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated networked data collection code can violate site rules, terms, or rate limits if used without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code before execution, honor robots.txt and site terms, prefer official APIs, and apply conservative rate limits.
+
+Risk: Automation workarounds and evasion-oriented guidance can be misused against sites that restrict automated access.
+
+Mitigation: Use automation only where authorized and remove or reject recommendations intended to bypass access restrictions.
+
+Risk: The included contact-ranking behavior can process identifiable contact records without sufficient disclosure or consent.
+
+Mitigation: Process contact data only with a clear lawful basis, minimize retained fields, and avoid profiling without appropriate review.
+
+## Reference(s):
+
+- [Data Handling Guide](artifact/references/data_handling_guide.md)
+- [Data Quality Checklist](artifact/references/data_quality_checklist.md)
+- [Process Best Practices](artifact/references/process_best_practices.md)
+- [Crawl Best Practices](artifact/references/crawl_best_practices.md)
+- [Publisher Homepage](https://xiaping.coze.site)
+- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/skills/datacrawl-debug)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON examples, generated Python code, and formatted data outputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate runnable networked Python code and JSON, CSV, or JSONL formatted data outputs.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata, skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

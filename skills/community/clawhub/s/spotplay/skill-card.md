@@ -1,41 +1,52 @@
-## Description: <br>
-Searches Spotify by song, artist, or keyword and plays the selected track in the local macOS Spotify app using AppleScript. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spotplay searches Spotify for a requested track and plays it through the macOS Spotify app using AppleScript.
 
-## Publisher: <br>
-[uxbryan](https://clawhub.ai/user/uxbryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[uxbryan](https://clawhub.ai/user/uxbryan)
 
-## Use Case: <br>
-Agents and users on macOS use this skill to turn a natural-language song request into Spotify playback through the installed Spotify app, then receive the requested track name, URI, and current playback status. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can launch and control the local Spotify app and start audio playback on the user's Mac. <br>
-Mitigation: Install and use it only on a Mac where agent-controlled Spotify playback is acceptable. <br>
-Risk: Spotify API client credentials may be read from environment variables or ~/.shpotify.cfg. <br>
-Mitigation: Use dedicated Spotify API credentials where possible and keep ~/.shpotify.cfg readable only by the local user. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Spotplay on ClawHub](https://clawhub.ai/uxbryan/spotplay) <br>
-- [Spotify Web API Search endpoint](https://developer.spotify.com/documentation/web-api/reference/search) <br>
-- [Spotify Web API Client Credentials flow](https://developer.spotify.com/documentation/web-api/tutorials/client-credentials-flow) <br>
+## Use Case:
 
+Agents and users on macOS use Spotplay to turn a song title, artist, or keyword into Spotify.app playback and receive the requested track, URI, and now-playing status.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API Calls] <br>
-**Output Format:** [Plain text status output with requested track, Spotify URI, and now-playing information] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS, Spotify.app, network access to Spotify APIs, and Spotify client credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Ambiguous CLIENT_ID or CLIENT_SECRET environment variables may be sent to Spotify when they were intended for another service.
+
+Mitigation: Use explicitly scoped SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET variables, and avoid installing the skill in environments that hold unrelated generic credentials.
+
+Risk: The skill's routing text strongly steers agents toward this Spotify controller over alternatives.
+
+Mitigation: Review the skill before installation and enable it only for agents that should control macOS Spotify.app playback.
+
+## Reference(s):
+
+- [Spotplay ClawHub skill page](https://clawhub.ai/uxbryan/skills/spotplay)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration guidance]
+
+**Output Format:** [Plain text status output with setup guidance when credentials or Spotify.app are missing]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS, Spotify.app, and Spotify client credentials.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

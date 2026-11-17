@@ -1,43 +1,54 @@
-## Description: <br>
-Helps teachers turn broad review requests into structured review plans with knowledge maps, difficulty analysis, phased review strategies, classroom activities, and exam-readiness guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+把“从头再讲一遍”变成有间隔、有交叉、有取舍的复习排期。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Teachers and education assistants use this skill to plan unit, midterm, final, and pre-exam review sessions from curriculum scope, knowledge relationships, and student learning data. It produces structured review plans that identify weak and difficult points, schedule review phases, design classroom activities, and keep exam support within learning-strategy boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Student learning data may include sensitive educational information when used to identify weak points or plan review activities. <br>
-Mitigation: Provide only the data needed for planning, prefer aggregate or pseudonymized data, and avoid exposing individual names, scores, or rankings in public review materials. <br>
-Risk: Review plans or follow-up data could introduce incorrect priorities if written back to related student-analysis tools without teacher review. <br>
-Mitigation: Have a teacher review outputs before applying them or writing results back to connected lesson-planning, exam-design, or student-analysis workflows. <br>
-Risk: Exam-readiness and confidence guidance could be mistaken for mental-health advice. <br>
-Mitigation: Keep support limited to learning strategies such as pacing, rest, and review rhythm, and refer severe anxiety or distress to qualified professionals. <br>
+## Use Case:
 
+Teachers use this skill to turn class learning needs and exam dates into a review plan, with prioritized topics, spaced recall, interleaved practice, and review activities.
 
-## Reference(s): <br>
-- [Review Strategy Template](references/review-strategy.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/qizhitang/xiaozhi-teach-review-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured plans, tables, checklists, and templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use aggregate or pseudonymized student learning data; produces planning guidance only and no executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill may generate individual example questions as part of a review activity, beyond its stated planning role.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the request focused on planning; manually check any generated example before use, and route complete assignments or tests to the dedicated design skills.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/qizhitang/skills/xiaozhi-teach-review-planner)
+- [Review strategy](references/review-strategy.md)
+- [Knowledge map example](references/knowledge-map-example.md)
+- [Review activity library](references/review-activity-library.md)
+- [Key-points checklist template](references/key-points-checklist-template.md)
+- [AI item check](shared/ai-item-check.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Structured data]
+
+**Output Format:** [Readable review schedules, knowledge maps, and activity guidance; structured review-plan fields when saved to the class workspace.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Teacher-facing drafts; saving a plan requires teacher confirmation. The skill plans review and routes complete assignments or tests to dedicated design skills.]
+
+## Skill Version(s):
+
+2.12.7 (source: SKILL.md frontmatter, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

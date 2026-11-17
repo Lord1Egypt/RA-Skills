@@ -1,40 +1,50 @@
-## Description: <br>
-Pre-release code review skill that runs project checks, analyzes changed code for cleanliness, design reuse, and efficiency issues, reports verified findings, and applies fixes only after approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews local changes and GitHub pull requests before release, using project checks and multiple review passes to identify issues and recommend fixes.
 
-## Publisher: <br>
-[tenequm](https://clawhub.ai/user/tenequm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[tenequm](https://clawhub.ai/user/tenequm)
 
-## Use Case: <br>
-Developers and engineering teams use this before committing, pushing, or releasing changes to catch reviewable issues in changed files and receive a grouped Markdown report. After explicit approval, it can make minimal fixes and rerun project checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect local repository contents and run project validation commands as part of its review workflow. <br>
-Mitigation: Use it deliberately on repositories you intend to review, confirm the requested checks, and review the generated findings before acting on them. <br>
-Risk: Suggested fixes or review findings may be incomplete or incorrect. <br>
-Mitigation: The skill requires explicit approval before fixes, validates findings against actual files, and reruns project checks after approved edits. <br>
+## Use Case:
 
+Developers use Polish before committing, pushing, or reviewing a pull request to find code quality issues and decide which fixes to make.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tenequm/code-polish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown review report with file and line findings, followed by targeted code edits and check results when fixes are approved.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs local validation commands when available, launches focused review agents, and waits for explicit approval before applying fixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can change source files before requesting the approval it promises.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require Phase 1 to report validation failures without editing unless automatic fixes are separately authorized; preserve existing work and inspect project validation commands before execution.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/tenequm/skills/polish)
+- [Project homepage (Clawdis metadata)](https://github.com/tenequm/skills/tree/main/skills/polish)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code]
+
+**Output Format:** [Markdown review report with file and line references; source code edits when fixing]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reviews local changes or a GitHub pull request; fix behavior depends on the selected mode.]
+
+## Skill Version(s):
+
+3.1.1 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

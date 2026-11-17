@@ -1,38 +1,58 @@
-## Description: <br>
-Simple local speech-to-text using Whisper with one-command installation, local model download, and support for 99+ languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simple local speech-to-text skill using Whisper, with one-command setup, automatic model download, and support for 99+ languages.
 
-## Publisher: <br>
-[lkisme](https://clawhub.ai/user/lkisme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lkisme](https://clawhub.ai/user/lkisme)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to install and run local Whisper speech transcription for audio files, producing text and optional subtitle or JSON outputs without sending audio to a remote API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation downloads packages and Whisper models and writes local files. <br>
-Mitigation: Install only in a dedicated project or virtual environment, review storage and output locations, and run the installer only after reviewing it. <br>
+## Use Case:
 
+Developers and external users use this skill to install and run a local Whisper-based speech-to-text workflow that transcribes audio files into text, subtitle, and JSON outputs without using an API.
 
-## Reference(s): <br>
-- [OpenAI Whisper](https://openai.com/research/whisper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Plain text transcription, JSON status, and optional TXT, JSON, SRT, or VTT files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally after installing Whisper, FFmpeg, and a selected Whisper model; default outputs are written to a local STT output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release metadata) <br>
+Risk: The installer makes broad host-level changes, including automatic system package installation and replacement of the fixed stt-simple virtual environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install.sh before running and use a disposable or contained environment unless those host changes are acceptable.
+
+Risk: Setup downloads unpinned dependencies and a Whisper model during installation.
+
+Mitigation: Pin and review dependencies and model sources, or perform installation in a controlled environment before routine use.
+
+Risk: Transcripts are persisted locally after processing.
+
+Mitigation: Process only appropriate audio and manage files in /root/.openclaw/workspace/stt_output/ according to local retention requirements.
+
+## Reference(s):
+
+- [OpenAI Whisper research page](https://openai.com/research/whisper)
+- [ClawHub skill page](https://clawhub.ai/lkisme/skills/stt-simple)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with bash commands; transcription results are plain text, JSON, SRT, or VTT files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The Python helper writes transcript text under /root/.openclaw/workspace/stt_output/ and prints a JSON success or error object.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

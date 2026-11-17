@@ -1,43 +1,55 @@
-## Description: <br>
-Pre-built HEARTBEAT.md templates for common agent tasks such as email checking, calendar monitoring, weather alerts, system health, and news digests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-built HEARTBEAT.md templates for common agent tasks: email checking, calendar monitoring, weather alerts, system health, news digests. Drop in and go.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and agent users use this skill to add scheduled heartbeat checks by copying and customizing Markdown templates for email, calendar, weather, system health, news, social notifications, and project status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Heartbeat templates may prompt periodic background checks against email, calendar, weather, repository, social, or news sources depending on what the user enables. <br>
-Mitigation: Before enabling a template, review the HEARTBEAT.md content, set only the intended accounts and location, and confirm which connectors the agent can access. <br>
-Risk: Recurring checks can keep running after they are no longer needed or after account access expectations change. <br>
-Mitigation: Remove or disable the HEARTBEAT.md file when checks are no longer wanted, and revisit account permissions when changing templates. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to copy and customize HEARTBEAT.md templates for periodic agent checks across email, calendar, weather, system health, news, social notifications, and project status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/heartbeat-kit) <br>
-- [README.md](README.md) <br>
-- [combined-lite.md template](templates/combined-lite.md) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown templates with configuration comments and brief setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Templates are customized through variables such as email account, location, quiet hours, priority senders, urgency keywords, repositories, and topics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Heartbeat templates may surface sensitive email, calendar, location, or notification details in periodic agent reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure only the accounts, locations, repositories, and topics that should be monitored, and review report content expectations before enabling the heartbeat.
+
+Risk: A copied HEARTBEAT.md can cause recurring background checks in a workspace where monitoring was not intended.
+
+Mitigation: Install templates only in intended workspaces, set quiet hours and intervals deliberately, and remove the template when periodic checks are no longer needed.
+
+## Reference(s):
+
+- [Heartbeat Kit on ClawHub](https://clawhub.ai/theshadowrose/skills/heartbeat-kit)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Combined Lite Heartbeat Template](artifact/templates/combined-lite.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown templates with configuration comments and brief shell-command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Templates are intended to be copied into a workspace as HEARTBEAT.md and customized with local account, location, schedule, and priority settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

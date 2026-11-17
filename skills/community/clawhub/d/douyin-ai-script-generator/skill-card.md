@@ -1,44 +1,53 @@
-## Description: <br>
-Generates Douyin AI-themed short video scripts from a supplied topic or current AI trends, then scores the script against a 60-point viral video checklist. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Douyin-oriented AI short video scripts from a user-specified topic or current AI trend, using a documented short-video methodology and a 60-point quality scoring rubric.
 
-## Publisher: <br>
-[RandyChou](https://clawhub.ai/user/RandyChou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[randychou](https://clawhub.ai/user/randychou)
 
-## Use Case: <br>
-Content creators and marketing teams use this skill to draft Douyin scripts about AI topics, either from a user-provided theme or from current AI trend search results. It also produces a score report to help decide whether the script needs revision before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may search the web for current AI topics when no topic is provided. <br>
-Mitigation: Confirm that web search is acceptable for the workspace and review any trend-derived claims before use. <br>
-Risk: The generated script may use fear-driven marketing language or make claims that need context. <br>
-Mitigation: Review the final script for accuracy, tone, platform policy fit, and content compliance before publishing. <br>
-Risk: The skill may save generated scripts locally. <br>
-Mitigation: Confirm the output path before use, especially in shared or source-controlled workspaces. <br>
+## Use Case:
 
+External creators and content teams use this skill to draft AI-themed Douyin short video scripts, optionally drawing on current AI topics and then reviewing a score report before publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RandyChou/douyin-ai-script-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/RandyChou) <br>
-- [AI content methodology](references/ai-content-methodology.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown script draft with a score report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save generated scripts locally; scripts should be reviewed before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated scripts may contain factual errors, platform compliance issues, or an overly fear-driven tone.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts before publication for factual accuracy, Douyin policy compliance, and a non-manipulative tone.
+
+Risk: The skill may save generated scripts to the project root, which can create or overwrite local files.
+
+Mitigation: Confirm the output location before use and avoid writing over important project files.
+
+## Reference(s):
+
+- [AI Content Methodology](references/ai-content-methodology.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown script draft with a quality score report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save generated scripts to the project root and may use web search when the user asks for current AI topics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

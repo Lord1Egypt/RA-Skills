@@ -1,38 +1,47 @@
-## Description: <br>
-Guides agents through creating or updating effective skills with structured workflows, resource organization, and packaging guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.
 
-## Publisher: <br>
-[yixinli867](https://clawhub.ai/user/yixinli867) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yixinli867](https://clawhub.ai/user/yixinli867)
 
-## Use Case: <br>
-Developers and agents use this skill to create or update agent skills by defining use cases, selecting bundled resources, writing SKILL.md, and packaging the result. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may direct an agent to run helper scripts that are not included in the artifact. <br>
-Mitigation: Before following script commands, confirm the intended init_skill.py and package_skill.py locations and avoid executing similarly named scripts from unrelated directories. <br>
-Risk: Generated or modified skills could contain incorrect instructions or weak guardrails. <br>
-Mitigation: Review generated skill files and run normal validation and security scanning before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and skill authors use this skill to create or update agent skills with clear metadata, concise instructions, appropriate bundled resources, packaging steps, and iteration guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill guides agents through creating, editing, deleting, testing, and packaging files in a skill project.
+
+Mitigation: Review the target directory and any generated or tested scripts before relying on the result.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to create files and run local helper scripts when those scripts are available.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with inline examples, code blocks, shell commands, and file-organization recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May result in generated or edited skill project files when an agent follows the guidance for a user's skill creation task.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

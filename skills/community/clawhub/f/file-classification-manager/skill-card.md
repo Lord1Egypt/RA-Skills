@@ -1,40 +1,55 @@
-## Description: <br>
-File Classification Manager routes workspace files into synchronized project output and temporary directories based on file purpose and project context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages synchronized project and temporary directories, classifies files by purpose and type, and routes workspace files into structured storage.
 
-## Publisher: <br>
-[sun2001](https://clawhub.ai/user/sun2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sun2001](https://clawhub.ai/user/sun2001)
 
-## Use Case: <br>
-Developers and agent workflows use this skill to keep OpenClaw workspaces organized by routing generated outputs, intermediate files, source documents, and cleanup candidates into project-specific `projects/` and `temp/` directories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically read and move files in a workspace without a built-in preview or confirmation step. <br>
-Mitigation: Use it first on non-critical workspaces or with explicit review, backups, and rollback planning before broad cleanup. <br>
-Risk: Automatic project detection and file classification can route files to an unexpected project or storage area. <br>
-Mitigation: Provide explicit project context for important files and review migration reports after cleanup operations. <br>
+## Use Case:
 
+Developers and agents use this skill to organize generated outputs, source documents, scripts, and intermediate data into synchronized project and temporary directories during workspace-heavy tasks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sun2001/file-classification-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [JavaScript module APIs and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces destination paths and migration reports when used by an agent or workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, SKILL.md) <br>
+Risk: Workspace cleanup can broadly move files without confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a disposable or backed-up workspace, and avoid cleanup_workspace_root on real projects until dry-run confirmation, collision-safe moves, and rollback behavior are available.
+
+Risk: Untrusted project names or file paths can affect where directories are created or files are moved.
+
+Mitigation: Validate project names and file paths before use, restrict operations to the intended workspace root, and review move logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sun2001/skills/file-classification-manager)
+- [Artifact skill documentation](artifact/SKILL.md)
+- [Artifact package metadata](artifact/package.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance, JavaScript API usage, path strings, and migration reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create project and temporary directories and move workspace files when invoked.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata, package.json, and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

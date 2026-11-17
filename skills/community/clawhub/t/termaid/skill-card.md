@@ -1,42 +1,57 @@
-## Description: <br>
-Render Mermaid diagrams as colored ASCII/Unicode text directly in terminals or Python apps without external dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render Mermaid diagrams as colored ASCII or Unicode text directly in terminals and Python applications without external rendering services.
 
-## Publisher: <br>
-[smallnest](https://clawhub.ai/user/smallnest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallnest](https://clawhub.ai/user/smallnest)
 
-## Use Case: <br>
-Developers and agents use Termaid to convert Mermaid markup into terminal-friendly diagrams for documentation, CI logs, SSH sessions, TUI applications, and Python workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer installs the termaid package from PyPI and creates local files under ~/.termaid. <br>
-Mitigation: Review install.sh before running it and prefer installation in a Python virtual environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to render Mermaid diagrams in terminal-native contexts such as SSH sessions, CI logs, documentation generation, TUI applications, and Python workflows.
 
-## Reference(s): <br>
-- [ClawHub Termaid listing](https://clawhub.ai/smallnest/termaid) <br>
-- [Termaid GitHub repository](https://github.com/fasouto/termaid) <br>
-- [Termaid PyPI package](https://pypi.org/project/termaid/) <br>
-- [Termaid online demo](https://termaid.com) <br>
-- [Mermaid documentation](https://mermaid.js.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python examples, and generated terminal text diagrams] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate ASCII-only or Unicode terminal diagram output and example files under ~/.termaid.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The installer writes files under ~/.termaid and may overwrite or conflict with existing local Termaid examples or configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or back up existing ~/.termaid files before running the installer.
+
+Risk: The install flow resolves the Termaid package from the package index at install time.
+
+Mitigation: Install in a virtual environment or other low-privilege context and pin and verify the Termaid package version for stronger supply-chain hygiene.
+
+## Reference(s):
+
+- [ClawHub Termaid skill page](https://clawhub.ai/smallnest/skills/termaid)
+- [Termaid GitHub repository](https://github.com/fasouto/termaid)
+- [Termaid PyPI package](https://pypi.org/project/termaid/)
+- [Termaid online demo](https://termaid.com)
+- [Mermaid.js documentation](https://mermaid.js.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands, Python examples, configuration snippets, and terminal diagram text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce ASCII-only or Unicode terminal output and optional colorized output when Termaid extras are installed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

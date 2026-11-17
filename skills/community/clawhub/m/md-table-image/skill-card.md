@@ -1,43 +1,54 @@
-## Description: <br>
-Render markdown tables as PNG images for chat-friendly table sharing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render markdown tables as PNG images. Use whenever you need to send a table in chat -- render it as an image instead of raw markdown text.
 
-## Publisher: <br>
-[kirorab](https://clawhub.ai/user/kirorab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[kirorab](https://clawhub.ai/user/kirorab)
 
-## Use Case: <br>
-Agents and developers use this skill when they need to turn markdown tables or simple markdown snippets into styled PNG files for chat or documentation output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided markdown table content is rendered in a browser without sanitization. <br>
-Mitigation: Render only trusted markdown, or sanitize and escape user-controlled content before rendering. <br>
-Risk: Browser rendering is launched with sandbox-disabling flags. <br>
-Mitigation: Run rendering in an isolated environment and avoid disabling the browser sandbox unless the deployment environment clearly requires it. <br>
-Risk: Rendered content may trigger browser-side network or script behavior if the implementation is broadened. <br>
-Mitigation: Disable JavaScript or block external requests during rendering before broad use. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to convert markdown tables or short markdown snippets into styled PNG images for chat or documentation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kirorab/md-table-image) <br>
-- [Publisher Profile](https://clawhub.ai/user/kirorab) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files] <br>
-**Output Format:** [PNG image file path and generated PNG image] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports output path, optional title, viewport width, and dark theme options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: User-controlled markdown is rendered as active HTML in an unsandboxed browser.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted markdown unless the renderer is changed to escape or sanitize input, disable JavaScript and network requests, and restore browser sandboxing.
+
+Risk: The release ships risky dependency versions.
+
+Mitigation: Review, update, or pin safer dependencies before installing in a production or shared environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kirorab/skills/md-table-image)
+- [ClawHub publisher profile](https://clawhub.ai/user/kirorab)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [PNG image file path with shell command usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and a local Chrome executable compatible with puppeteer-core.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

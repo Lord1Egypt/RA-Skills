@@ -1,44 +1,60 @@
-## Description: <br>
-One soul, many agents. Persistent AI personality and cross-agent memory sync via pure Markdown files. Zero deps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One soul, many agents. Persistent AI personality and cross-agent memory sync via pure Markdown files. Zero deps.
 
-## Publisher: <br>
-[lucioliu](https://clawhub.ai/user/lucioliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucioliu](https://clawhub.ai/user/lucioliu)
 
-## Use Case: <br>
-Developers and agent users use this skill to maintain local Markdown-based personality, user preference, memory, skill, project, and session records across supported agent hosts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent startup anchor and cross-agent memory sync can retain or move personal memories and raw conversations across systems with inconsistent consent wording. <br>
-Mitigation: Review the anchor before manually pasting it, avoid storing secrets or full raw conversations unless explicitly desired, and confirm where host memory sync writes so deletion and rollback are clear. <br>
-Risk: The skill performs an optional GitHub version check during session startup. <br>
-Mitigation: Disable or block the version check for offline or restricted-network use. <br>
+## Use Case:
 
+External users and developers use this skill to give supported coding agents a persistent local persona and memory store across sessions and host agents. It guides agents to create, read, and synchronize human-readable Markdown files under the user's Relic brain directory and to display host configuration anchor text for manual user paste.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lucioliu/relic-soul-chip) <br>
-- [Agent Router](artifact/AGENT.md) <br>
-- [Upload Soul Guide](artifact/docs/upload-soul.md) <br>
-- [Load Soul Guide](artifact/docs/load-soul.md) <br>
-- [Resonate Soul Guide](artifact/docs/resonate-soul.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown instructions and plain-text anchor content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill that guides local Markdown file reads and writes under ~/relic/brain/ and displays anchor text for manual user copy-paste.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: evidence.json release.version and SKILL.md frontmatter) <br>
+Risk: Persistent local persona and memory sync can make future agent sessions depend on stored user-authored behavior and memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when persistent cross-agent memory is intended, review the generated anchor before manual paste, and remove the anchor block to disconnect the behavior.
+
+Risk: Conversation logging can retain raw transcripts and sensitive personal context.
+
+Mitigation: Keep SESSIONS logging disabled unless explicitly needed, require consent before saving logs, and avoid storing secrets or sensitive personal data in Relic files.
+
+Risk: Import and synchronization flows may expose persona, memories, skills, projects, or prior conversation data to the active host agent.
+
+Mitigation: Review imported content before sync, provide only intended source paths, and decline or redact data categories that should not become part of the persistent memory store.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lucioliu/skills/relic-soul-chip)
+- [Upload Soul Scenario](artifact/docs/upload-soul.md)
+- [Load Soul Scenario](artifact/docs/load-soul.md)
+- [Resonate Soul Daily Boot](artifact/docs/resonate-soul.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown files, plain-text anchor instructions, and status-report guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only artifact evidence; no executable scripts or binaries were included.]
+
+## Skill Version(s):
+
+2.1.1 (source: SKILL.md frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

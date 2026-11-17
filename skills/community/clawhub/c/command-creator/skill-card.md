@@ -1,43 +1,59 @@
-## Description: <br>
-Creates Claude Code slash commands as reusable markdown workflows invoked with /command-name. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Command Creator helps developers create Claude Code slash commands as reusable Markdown workflows invoked with /command-name.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and agent users use this skill to create reusable slash commands for repetitive Claude Code workflows, including workflow automation, iterative fixing, delegation, and simple execution. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated slash commands can later automate powerful actions such as running shell tools, staging or committing code, publishing PRs, or invoking subagents. <br>
-Mitigation: Inspect generated command markdown before invoking it and apply extra review to commands that modify code, run shell commands, publish changes, or delegate work. <br>
-Risk: Global command installation can make generated workflows available outside the intended project. <br>
-Mitigation: Prefer project-local commands unless global behavior is intentionally required. <br>
-Risk: Remote installation can pull skill content from an unexpected source. <br>
-Mitigation: Verify the remote install source before using the README's npx command. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Command Patterns](references/patterns.md) <br>
-- [Command Best Practices](references/best-practices.md) <br>
-- [Command Examples](references/examples.md) <br>
+## Use Case:
 
+Developers use this skill to define repeatable Claude Code slash commands, choose a command pattern, gather required inputs, and write command Markdown files for project or global use.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown command files with frontmatter, workflow steps, inline shell commands, and usage guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces persistent command definitions that should be reviewed before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated commands can automate broad repository actions such as editing files, staging all changes, creating commits, publishing pull requests, or running project scripts.
+
+Mitigation: Require explicit confirmation steps in generated commands before destructive, broad, or externally visible actions.
+
+Risk: The README's npx add installation command does not provide an immutable, pinned installation source.
+
+Mitigation: Review the skill before installing and prefer an immutable, pinned source for installation.
+
+Risk: Examples may normalize high-impact workflows without enough safety boundaries.
+
+Mitigation: Review generated slash commands for scoped file targets, clear stopping conditions, error handling, and user approval checkpoints before use.
+
+## Reference(s):
+
+- [Command Creator Skill Page](https://clawhub.ai/wpank/skills/command-creator)
+- [Command Patterns](references/patterns.md)
+- [Command Best Practices](references/best-practices.md)
+- [Command Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with frontmatter and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces slash-command instructions and may create command files under project or global command directories.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

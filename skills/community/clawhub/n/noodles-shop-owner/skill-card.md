@@ -1,44 +1,60 @@
-## Description: <br>
-NoodleShopOwner helps agents compare public companies by normalizing market capitalization to a 100-unit purchase price, then translating valuation, book value, profit, and ROE into plain-language shop-owner commentary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes public-company valuation and financial statements through a Chinese noodle-shop-owner lens, normalizing each company to a market value of 100 to compare book value, TTM profit or loss, and ROE.
 
-## Publisher: <br>
-[formyreason](https://clawhub.ai/user/formyreason) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[formyreason](https://clawhub.ai/user/formyreason)
 
-## Use Case: <br>
-External users and finance-focused agents use this skill to compare public companies, inspect valuation ratios, and produce educational valuation commentary in an accessible business metaphor. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may rely on public company data that is incomplete, stale, or tied to a different reporting period. <br>
-Mitigation: Verify financial figures, reporting periods, and source links before relying on the analysis. <br>
-Risk: Valuation commentary may be mistaken for investment advice. <br>
-Mitigation: Use the output as educational analysis only and make any investment decisions through independent review. <br>
-Risk: Missing PE, PB, ROE, market cap, or profit fields can make final comparisons misleading. <br>
-Mitigation: Stop at partial results and request missing fields instead of producing a final recommendation when key data is unavailable. <br>
+## Use Case:
 
+External users analyzing listed companies use this Chinese-first skill to compare valuation, profitability, and balance-sheet strength with a consistent 100-value framework. It is intended for financial analysis and education, not personalized investment advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/formyreason/noodles-shop-owner) <br>
-- [Reference Manual](artifact/reference.md) <br>
-- [Output Examples](artifact/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown analysis with tables, formulas, plain-language commentary, and optional Python calculation commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be treated as educational valuation commentary, not investment advice; financial figures, reporting periods, and sources should be verified before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server-resolved release metadata) <br>
+Risk: Financial outputs can be misleading if public source data is stale, incomplete, or copied across inconsistent reporting periods.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the source data, reporting period, currency, and accounting basis before relying on the analysis.
+
+Risk: The skill can make strong comparative valuation judgments that may be mistaken for personalized investment advice.
+
+Mitigation: Treat outputs as valuation education and require human review before making investment decisions.
+
+Risk: Missing PE, PB, ROE, market-cap, or profit fields can invalidate the normalized comparison.
+
+Mitigation: Follow the documented stop rule: report available fields and missing data instead of producing final comparisons.
+
+## Reference(s):
+
+- [Reference manual](artifact/reference.md)
+- [Output examples](artifact/examples.md)
+- [ClawHub skill page](https://clawhub.ai/formyreason/skills/noodles-shop-owner)
+- [Publisher profile](https://clawhub.ai/user/formyreason)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown analysis with tables, calculations, and optional inline shell commands for local validation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first financial-analysis style; requires current public financial data and stops when required fields are missing.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

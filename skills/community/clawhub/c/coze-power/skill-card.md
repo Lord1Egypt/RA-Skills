@@ -1,46 +1,72 @@
-## Description: <br>
-Coze-Power bridges Coze cloud bots to local machine capabilities through a lightweight HTTP server and Coze-compatible OpenAPI plugin for web search, file operations, command execution, clipboard access, desktop notifications, and system information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coze-Power connects Coze cloud bots to a local HTTP server that exposes web search, filesystem, shell command, system information, clipboard, and notification tools through an OpenAPI plugin.
 
-## Publisher: <br>
-[homesickjava](https://clawhub.ai/user/homesickjava) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[homesickjava](https://clawhub.ai/user/homesickjava)
 
-## Use Case: <br>
-Developers and Coze bot builders use this skill to expose selected local machine functions to Coze agents, including local file access, command execution, web search, clipboard operations, notifications, and system status checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A public tunnel can expose local file writes, clipboard access, and shell command execution to a cloud-connected bot. <br>
-Mitigation: Run the server only when this bridge is intentionally needed, change the API key before use, avoid public exposure unless necessary, and place the service in a container or VM when possible. <br>
-Risk: Broad allowed_paths and allowed_commands settings can increase the impact of unintended tool calls. <br>
-Mitigation: Narrow allowed_paths and allowed_commands to the minimum needed for each workflow and avoid granting access to sensitive directories or high-impact commands. <br>
-Risk: Clipboard reads, clipboard writes, and file writes can expose or alter sensitive local data. <br>
-Mitigation: Do not enable these workflows around sensitive data, confirm paths before reads or writes, and run the service on demand rather than continuously. <br>
+## Use Case:
 
+Developers and Coze bot builders use this skill to let Coze agents call local tools for research, file handling, command execution, system status checks, clipboard operations, and desktop notifications.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/homesickjava/coze-power) <br>
-- [Coze-Power API Reference](references/api-reference.md) <br>
-- [Coze Plugin Setup Guide](references/coze-plugin-setup.md) <br>
-- [Coze-Power Examples](references/examples.md) <br>
-- [OpenAPI Specification](assets/openapi-spec.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON/OpenAPI configuration and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent outputs may include API setup steps, command examples, file-operation guidance, and Coze plugin configuration details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Exposing the local server can give a remote Coze bot access to files, commands, clipboard contents, and system information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that remote control is intended; do not expose the server to the internet as shipped and bind locally where possible.
+
+Risk: A weak or default API key can allow unauthorized use of local tools.
+
+Mitigation: Change the API key before use and keep the key limited to trusted Coze plugin configuration.
+
+Risk: Command execution and filesystem access can affect data outside the user's intended scope.
+
+Mitigation: Remove command execution or replace it with structured safe actions, restrict file paths to a dedicated sandbox folder, and allow only required commands.
+
+Risk: Clipboard access may expose sensitive data copied from other applications.
+
+Mitigation: Disable clipboard access unless it is required for the bot workflow.
+
+Risk: Running the server in a normal user session increases impact if the service is misused.
+
+Mitigation: Run the server in an isolated account or container.
+
+## Reference(s):
+
+- [Coze-Power Skill Page](https://clawhub.ai/homesickjava/skills/coze-power)
+- [API Reference](references/api-reference.md)
+- [Coze Plugin Setup Guide](references/coze-plugin-setup.md)
+- [Examples](references/examples.md)
+- [OpenAPI Specification](assets/openapi-spec.json)
+- [Coze Studio](https://www.coze.com)
+- [ngrok Download](https://ngrok.com/download)
+- [Cloudflare Tunnel Downloads](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON tool responses and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and write configured local files, execute whitelisted shell commands, and return system or clipboard data when the local server is enabled.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

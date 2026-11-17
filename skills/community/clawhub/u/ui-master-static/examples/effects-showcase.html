@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern Effects Showcase — ui-master-static</title>
+  <link rel="stylesheet" href="effects-showcase.css" />
+</head>
+<body class="mesh-bg">
+
+  <section class="showcase-section">
+    <h2 class="showcase-section__title">Glassmorphism</h2>
+    <div class="glass-panel">
+      <p>Frosted-glass surface over a mesh gradient background.</p>
+    </div>
+  </section>
+
+  <section class="showcase-section">
+    <h2 class="showcase-section__title">Animated gradient border (@property)</h2>
+    <div class="gradient-border">
+      <div class="gradient-border__content">Rotating conic-gradient border</div>
+    </div>
+  </section>
+
+  <section class="showcase-section">
+    <h2 class="showcase-section__title">3D tilt card (mouse-tracked)</h2>
+    <div class="tilt-card" id="tilt-card">
+      <p>Move your mouse over this card.</p>
+    </div>
+  </section>
+
+  <section class="showcase-section">
+    <h2 class="showcase-section__title">Scroll-driven reveal</h2>
+    <p class="showcase-section__hint">Scroll down — each card fades/slides in as it enters view (native <code>animation-timeline: view()</code>, with a reduced-motion and unsupported-browser fallback).</p>
+    <div class="reveal-stack">
+      <div class="reveal card-basic">Reveal card 1</div>
+      <div class="reveal card-basic">Reveal card 2</div>
+      <div class="reveal card-basic">Reveal card 3</div>
+    </div>
+  </section>
+
+  <section class="showcase-section">
+    <h2 class="showcase-section__title">Houdini Paint API (with fallback)</h2>
+    <div class="dotted-bg">
+      <p>Procedural dotted background — falls back to a radial-gradient pattern on browsers without Paint API support.</p>
+    </div>
+  </section>
+
+  <script>
+    // 3D tilt — mouse-tracked
+    const card = document.getElementById("tilt-card");
+    card.addEventListener("pointermove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.setProperty("--rx", `${y * -12}deg`);
+      card.style.setProperty("--ry", `${x * 12}deg`);
+    });
+    card.addEventListener("pointerleave", () => {
+      card.style.setProperty("--rx", "0deg");
+      card.style.setProperty("--ry", "0deg");
+    });
+
+    // Houdini Paint API registration (progressive enhancement)
+    if ("paintWorklet" in CSS) {
+      const workletSrc = `
+        class DottedPattern {
+          static get inputProperties() { return ["--dot-color", "--dot-size"]; }
+          paint(ctx, size, props) {
+            const color = props.get("--dot-color").toString().trim() || "#000";
+            const dotSize = parseFloat(props.get("--dot-size").toString()) || 2;
+            const gap = dotSize * 4;
+            ctx.fillStyle = color;
+            for (let x = 0; x < size.width; x += gap) {
+              for (let y = 0; y < size.height; y += gap) {
+                ctx.beginPath();
+                ctx.arc(x, y, dotSize, 0, Math.PI * 2);
+                ctx.fill();
+              }
+            }
+          }
+        }
+        registerPaint("dottedPattern", DottedPattern);
+      `;
+      const blob = new Blob([workletSrc], { type: "text/javascript" });
+      CSS.paintWorklet.addModule(URL.createObjectURL(blob));
+    }
+  </script>
+</body>
+</html>

@@ -1,40 +1,58 @@
-## Description: <br>
-Hundreds of chemistry and scientific computing tools. Molecular weight, LogP, TPSA, SMILES validation, thermodynamics, polymer analysis, electrochemistry, DOE, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hundreds of chemistry and scientific computing tools. Molecular weight, LogP, TPSA, SMILES validation, thermodynamics, polymer analysis, electrochemistry, DOE, and more.
 
-## Publisher: <br>
-[Gressling](https://clawhub.ai/user/Gressling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gressling](https://clawhub.ai/user/gressling)
 
-## Use Case: <br>
-Developers, researchers, and technical users use this skill to route chemistry, molecular property, thermodynamics, materials science, electrochemistry, and scientific computing questions through Paramus tools. It helps agents discover Paramus tool schemas, call the appropriate API endpoint, and present numeric results with units. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Chemistry inputs may be sent to Paramus cloud when local mode is unavailable. <br>
-Mitigation: Prefer local mode for confidential molecules, formulations, or datasets; use cloud mode only with user consent for data that can be sent to Paramus. <br>
-Risk: The Paramus API token could be exposed if pasted into prompts, files, logs, or command history. <br>
-Mitigation: Store PARAMUS_API_TOKEN as an environment variable or secret and rotate it if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Paramus Cloud Homepage](https://cloud1.paramus.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Gressling/paramus-chemistry) <br>
+## Use Case:
 
+Developers, researchers, and chemistry-focused users use this skill to route chemistry, molecular property, thermodynamics, materials science, electrochemistry, and scientific computing questions through Paramus tools and return calculated results with units.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and PARAMUS_API_TOKEN for cloud mode; local mode uses localhost when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Chemistry inputs may be sent to Paramus cloud services when local processing is unavailable.
+
+Mitigation: Prefer the local Paramus app for proprietary or regulated formulas, and confirm user consent before cloud calls.
+
+Risk: The PARAMUS_API_TOKEN credential can be exposed through under-scoped connection flows or mishandling.
+
+Mitigation: Protect and rotate the token, avoid printing it in logs or chat, and use it only for the intended Paramus cloud endpoint.
+
+Risk: An unauthenticated localhost service could be impersonated by another local process.
+
+Mitigation: Confirm the local Paramus app is running before relying on localhost responses.
+
+## Reference(s):
+
+- [Paramus Cloud](https://cloud1.paramus.ai)
+- [ClawHub skill page](https://clawhub.ai/gressling/skills/paramus-chemistry)
+- [Publisher profile](https://clawhub.ai/user/gressling)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured calculation results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API setup guidance, JSON-RPC request examples, calculated values, units, and privacy notes.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

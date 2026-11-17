@@ -1,43 +1,55 @@
-## Description: <br>
-Fetches cryptocurrency K-line history from CoinMarketCap, computes EMA7, EMA30, and RSI14 indicators, and exports the results as JSON or CSV. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches cryptocurrency historical kline data from CoinMarketCap, calculates EMA7, EMA30, and RSI14 indicators, and supports JSON or CSV output.
 
-## Publisher: <br>
-[HarrierDB](https://clawhub.ai/user/HarrierDB) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrierdb](https://clawhub.ai/user/harrierdb)
 
-## Use Case: <br>
-Developers and analysts use this skill to collect recent crypto market OHLC data, calculate common technical indicators, and prepare machine-readable reports for downstream analysis or dashboards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes recurring or on-demand network calls to fetch crypto market data. <br>
-Mitigation: Run it only in environments where outbound access to CoinMarketCap is expected, and enable any cron schedule only when recurring collection is intended. <br>
-Risk: The skill writes JSON and CSV exports to local paths that may overwrite or accumulate files. <br>
-Mitigation: Use a dedicated output directory, review filenames before execution, and monitor generated reports for retention needs. <br>
-Risk: Market data and calculated technical indicators can be incomplete, stale, or unsuitable for financial decisions without review. <br>
-Mitigation: Treat outputs as data preparation artifacts and verify market data, timestamps, and indicator calculations before using them in analysis or decisions. <br>
+## Use Case:
 
+Developers and analysts use this skill to collect recent cryptocurrency OHLC market data and produce technical-indicator datasets for agent workflows, reports, or downstream analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HarrierDB/cmc-kline-data-collector) <br>
-- [CoinMarketCap data API endpoint](https://api.coinmarketcap.com/data-api/v3.1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, csv, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Python examples plus generated JSON or CSV data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include OHLC fields, EMA7, EMA30, RSI14, and MMDD dates for configured cryptocurrency symbols.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: JSON or CSV export may not work reliably because the security summary reports broken or inaccurate functionality.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix wrapper behavior before relying on exported files in production workflows.
+
+Risk: The documented cron command can create repeated CoinMarketCap requests and daily local output files.
+
+Mitigation: Enable scheduled execution only when repeated API requests and local file creation are intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrierdb/skills/cmc-kline-data-collector)
+- [Publisher profile](https://clawhub.ai/user/harrierdb)
+- [CoinMarketCap data API endpoint](https://api.coinmarketcap.com/data-api/v3.1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with Python and shell examples; generated market data may be JSON or CSV files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces OHLC fields and EMA7, EMA30, and RSI14 indicator values for configured cryptocurrency symbols.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

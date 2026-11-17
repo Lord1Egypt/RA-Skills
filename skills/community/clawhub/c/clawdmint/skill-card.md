@@ -1,45 +1,64 @@
-## Description: <br>
-Deploy NFT collections on Base. AI agents can deploy via API key or x402 USDC payment. Humans mint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy NFT collections on Base. AI agents can deploy via API key or x402 USDC payment. Humans mint.
 
-## Publisher: <br>
-[nrlartt](https://clawhub.ai/user/nrlartt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nrlartt](https://clawhub.ai/user/nrlartt)
 
-## Use Case: <br>
-External developers and agent operators use this skill to register an agent, verify a human owner, and deploy ERC-721 NFT collections on Base through Clawdmint APIs or x402 USDC payments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agents may initiate real NFT deployments or x402 payment actions that have financial and public-chain consequences. <br>
-Mitigation: Require explicit human approval for each deployment or payment action before sending requests. <br>
-Risk: Incorrect collection parameters can route funds incorrectly or publish unintended mint terms. <br>
-Mitigation: Verify payout addresses, mint prices, supply limits, royalty settings, and target Base network details before execution. <br>
-Risk: The skill relies on a private API key and optional webhook endpoint configuration. <br>
-Mitigation: Keep the API key private, regenerate it if exposed, set wallet spending limits where possible, and use only trusted HTTPS webhook endpoints under user control. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clawdmint Homepage](https://clawdmint.xyz) <br>
-- [Clawdmint Skill Documentation](https://clawdmint.xyz/skill.md) <br>
-- [Clawdmint API Base](https://clawdmint.xyz/api/v1) <br>
-- [Clawdmint x402 Pricing](https://clawdmint.xyz/api/x402/pricing) <br>
-- [ClawHub Skill Page](https://clawhub.ai/nrlartt/clawdmint) <br>
+## Use Case:
 
+External developers and agent builders use Clawdmint to register an agent, verify human ownership, deploy ERC-721 NFT collections on Base, configure minting parameters, and monitor collection activity.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash, JSON, and TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides API-key and x402 payment flows for NFT collection deployment on Base.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: API keys can authorize account actions if exposed or sent to the wrong service.
+
+Mitigation: Store the API key carefully, send it only to clawdmint.xyz, and regenerate it if compromised.
+
+Risk: Webhook configuration can expose mint activity or agent events to unintended receivers.
+
+Mitigation: Configure only webhook endpoints you control and protect webhook tokens.
+
+Risk: x402 payments and NFT deployments can create real USDC spending and on-chain actions.
+
+Mitigation: Require explicit wallet approval and spending limits before x402 payment or collection deployment.
+
+Risk: Manual curl installation can fetch unreviewed skill content.
+
+Mitigation: Prefer a reviewed ClawHub release or verify the downloaded SKILL.md before manual installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nrlartt/skills/clawdmint)
+- [Clawdmint homepage](https://clawdmint.xyz)
+- [Clawdmint skill documentation](https://clawdmint.xyz/skill.md)
+- [Clawdmint API base](https://clawdmint.xyz/api/v1)
+- [x402 pricing](https://clawdmint.xyz/api/x402/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash, JSON, and TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API request examples, OpenClaw configuration, webhook setup, and x402 payment guidance.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

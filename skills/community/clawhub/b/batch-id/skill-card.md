@@ -1,43 +1,58 @@
-## Description: <br>
-批量识别最多50张身份证正面照片，提取姓名、性别和身份证号，并生成排版整齐的 TXT 文件附件。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts name, sex, and ID number from batches of front-side ID-card images using Tencent Cloud OCR and returns a formatted TXT file.
 
-## Publisher: <br>
-[linyao58](https://clawhub.ai/user/linyao58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linyao58](https://clawhub.ai/user/linyao58)
 
-## Use Case: <br>
-External users and operations teams use this skill to process authorized batches of ID-card front images and export extracted identity fields into a downloadable text file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive identity data from ID-card images. <br>
-Mitigation: Use it only when authorized to process the submitted ID cards and align usage with applicable data-handling requirements. <br>
-Risk: Tencent Cloud credentials are required for OCR access. <br>
-Mitigation: Configure a dedicated Tencent Cloud key with the narrowest OCR permissions available and do not hard-code API secrets. <br>
-Risk: Image URLs and generated TXT attachments can expose identity information if retained or shared too broadly. <br>
-Mitigation: Avoid public or long-lived image URLs and delete the generated TXT attachment when it is no longer needed. <br>
+## Use Case:
 
+External users and operators use this skill to process up to 50 ID-card images at a time and export the extracted identity fields into a downloadable text file.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/linyao58/batch-id) <br>
-- [Tencent Cloud CAM API Key Console](https://console.cloud.tencent.com/cam/capi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [TXT file attachment with status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes up to 50 image URLs per invocation and extracts name, sex, and ID number from the front side of ID cards.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: ID-card images and extracted identity details are highly sensitive personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with authorization and consent, and process only the minimum images needed.
+
+Risk: Images are sent to Tencent Cloud OCR for processing.
+
+Mitigation: Confirm that this external processing path satisfies the user's security, privacy, and data residency requirements before use.
+
+Risk: The generated TXT attachment contains full identity details in plaintext.
+
+Mitigation: Restrict access to the attachment, avoid unnecessary retention, and delete the file after delivery or review.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/linyao58/skills/batch-id)
+- [Tencent Cloud CAM API credentials](https://console.cloud.tencent.com/cam/capi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files]
+
+**Output Format:** [Plaintext TXT attachment plus short status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes up to 50 front-side ID-card image URLs and includes extracted identity details in plaintext.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact skill.yaml reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

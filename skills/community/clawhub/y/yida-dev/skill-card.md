@@ -1,51 +1,67 @@
-## Description: <br>
-钉钉宜搭低代码开发助手。用于创建表单和自定义页面、编写 JS 动作面板、使用 JS-API、配置数据源、设计流程自动化。适用于宜搭表单开发、JS 代码调试、API 集成等场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+钉钉宜搭开发助手用于创建表单和自定义页面、编写 JS 动作面板、使用 JS-API、配置数据源并设计流程自动化。
 
-## Publisher: <br>
-[yize](https://clawhub.ai/user/yize) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yize](https://clawhub.ai/user/yize)
 
-## Use Case: <br>
-Developers and operations teams use this skill as a DingTalk Yida low-code development reference for form design, custom pages, JS action-panel snippets, JS-API usage, data-source configuration, workflow automation, and troubleshooting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Example API or workflow snippets may affect production Yida or DingTalk data if copied without checking app IDs, form IDs, and permissions. <br>
-Mitigation: Verify identifiers, use least-privilege DingTalk/Yida permissions, and test create, update, and delete flows against non-production data before deployment. <br>
-Risk: Temporary debugging helpers such as vConsole may remain enabled after troubleshooting. <br>
-Mitigation: Remove temporary debugging scripts and development-only diagnostics before publishing or using the app in production. <br>
-Risk: Generated snippets may reference placeholder field IDs or schemas that do not match the target Yida page. <br>
-Mitigation: Review every fieldId, data source, and formula against the actual Yida visual builder configuration before applying the guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yize/yida-dev) <br>
-- [JS-API complete reference](references/js-api.md) <br>
-- [Troubleshooting guide](references/troubleshooting.md) <br>
-- [TodoMVC tutorial](references/todomvc.md) <br>
-- [Formula reference](references/formulas.md) <br>
-- [Integration automation reference](references/integrations.md) <br>
-- [Yida Help Center](https://docs.aliwork.com/) <br>
-- [Yida Developer Center](https://developers.aliwork.com/) <br>
-- [DingTalk Open Platform](https://open.dingtalk.com/) <br>
-- [Yida OpenAPI documentation](https://developers.aliwork.com/docs/api/openAPI) <br>
-- [Yida updates](https://docs.aliwork.com/docs/yida_updates) <br>
+## Use Case:
 
+Developers and Yida builders use this skill to implement DingTalk Yida low-code forms, custom pages, JavaScript action-panel logic, data sources, OpenAPI integrations, formulas, and workflow automation.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only helper content; examples should be reviewed and adapted before use in a real Yida app.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Remote script loading and debugging helpers may introduce untrusted code or expose production behavior.
+
+Mitigation: Only load JavaScript from fully trusted, controlled origins and remove debugger or vConsole snippets before production release.
+
+Risk: OpenAPI and automation examples can create, update, delete, or synchronize business data.
+
+Mitigation: Test flows in a sandbox, scope credentials and operations narrowly, and require review before applying update or delete behavior to production data.
+
+Risk: Webhook and AI integration patterns may share business or personal data with third-party services.
+
+Mitigation: Perform privacy and data-sharing review before enabling webhook, OpenAPI, or AI workflow integrations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yize/skills/yida-dev)
+- [JS-API complete reference](references/js-api.md)
+- [Troubleshooting guide](references/troubleshooting.md)
+- [TodoMVC tutorial](references/todomvc.md)
+- [Formula functions](references/formulas.md)
+- [Integration automation guide](references/integrations.md)
+- [Yida help center](https://docs.aliwork.com/)
+- [Yida developer center](https://developers.aliwork.com/)
+- [DingTalk open platform](https://open.dingtalk.com/)
+- [Yida OpenAPI documentation](https://developers.aliwork.com/docs/api/openAPI)
+- [Yida updates](https://docs.aliwork.com/docs/yida_updates)
+- [Yida example center](https://www.aliwork.com/o/coc)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JavaScript, JSON, formula, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include Yida field IDs, component schemas, OpenAPI paths, automation patterns, and debugging steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

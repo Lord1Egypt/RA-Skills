@@ -1,39 +1,52 @@
-## Description: <br>
-Generates daily and weekly RPG-style quests tailored to a player's goals, tracks completions, and adjusts difficulty based on progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates RPG-style daily quests, weekly boss fights, side quests, and XP updates tailored to a user's goals and stats.
 
-## Publisher: <br>
-[ryudi84](https://clawhub.ai/user/ryudi84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ryudi84](https://clawhub.ai/user/ryudi84)
 
-## Use Case: <br>
-External users use this skill as a gamified productivity assistant that turns personal goals into specific daily quests, weekly boss fights, and XP awards. It is suited to people who want lightweight accountability and adaptive task difficulty. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Personal goals and progress reports can include sensitive personal details. <br>
-Mitigation: Keep goal configuration limited to details the user is comfortable sharing with the agent. <br>
-Risk: Casual activity reports may be ambiguous and could be counted toward the wrong quest or stat. <br>
-Mitigation: Confirm ambiguous reports before marking quests complete or awarding XP. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryudi84/sovereign-quest-master) <br>
+## Use Case:
 
+People using an agent for personal productivity can use this skill to turn real-life goals into specific daily quests, weekly boss fights, and XP-style progress updates. The skill supports gamified planning, completion processing, and adaptive difficulty based on reported progress.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown task lists and concise conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference user-provided goals and progress data when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated quests may include public-facing suggestions, such as posting or replying on social platforms, that are inappropriate for the user's context.
+
+Mitigation: Review generated quests before acting on public-facing or reputationally sensitive suggestions.
+
+Risk: Goal, XP, and progress information can reveal personal productivity patterns or priorities.
+
+Mitigation: Keep goal, XP, and progress files limited to information the user is comfortable using for productivity tracking.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryudi84/skills/sovereign-quest-master)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown-style quest lists and plain-language progress guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference user-provided goals, stats, completion reports, and quest history.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, created 2026-02-23)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

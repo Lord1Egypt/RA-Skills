@@ -1,40 +1,57 @@
-## Description: <br>
-Use this skill when a pharmacist, MTM provider, pharmacy resident, or APPE student needs to conduct a Comprehensive Medication Review (CMR) for a patient on multiple medications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides pharmacists, MTM providers, pharmacy residents, and APPE students through a draft Comprehensive Medication Review for patients on multiple medications, including Beers/STOPP-START screening, drug-therapy problem identification, Medication Action Plan, and prescriber SBAR preparation.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Pharmacists, MTM providers, pharmacy residents, and APPE students use this skill to structure a pharmacist-led Comprehensive Medication Review for one patient and draft a CMR packet for licensed-pharmacist verification. It supports reconciliation, drug-therapy problem identification, Beers or STOPP/START screening, dose review, deprescribing planning, a Medication Action Plan, a Personal Medication List, and prescriber SBAR communication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce incorrect, outdated, or incomplete clinical recommendations for drug references, interactions, doses, taper plans, or guideline citations. <br>
-Mitigation: Treat every output as a draft and have a licensed pharmacist verify drug names, doses, interactions, citations, and recommendations before prescriber communication or any therapy change. <br>
-Risk: Medication review inputs may contain patient identifiers or sensitive health information. <br>
-Mitigation: Avoid entering unnecessary patient identifiers and keep any needed patient details confined to the active review session. <br>
+## Use Case:
 
+Pharmacists, MTM providers, pharmacy residents, and APPE students use this skill to structure CMR intake, reconciliation, medication-risk screening, DTP analysis, and draft patient and prescriber communications. A licensed pharmacist must verify the draft packet before any patient, prescriber, dispense, or therapy action.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/archlab-space/medication-therapy-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown draft CMR packet with structured tables and SBAR letter sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [All clinical output is draft-only and requires licensed-pharmacist verification before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server-resolved release metadata and changelog, released 2026-05-28) <br>
+Risk: The skill may process sensitive patient health information during medication review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering unnecessary identifiers, keep PHI within the active clinical workflow, and use initials or minimal patient descriptors where possible.
+
+Risk: Draft medication recommendations, interaction calls, guideline citations, or dose adjustments could be incomplete, outdated, or clinically inappropriate.
+
+Mitigation: Require licensed-pharmacist review of every drug, dose, indication, interaction, citation, and recommendation before prescriber communication or patient action.
+
+Risk: Patient-facing wording could be misread as authorization to change prescription therapy.
+
+Mitigation: Keep the packet labeled draft-only and route prescription starts, stops, substitutions, and dose changes through prescriber concurrence.
+
+## Reference(s):
+
+- [Medication Therapy Review on ClawHub](https://clawhub.ai/archlab-space/skills/medication-therapy-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown draft CMR packet with structured tables and SBAR sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft-only clinical review artifact requiring licensed-pharmacist verification and sign-off.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata and CHANGELOG, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

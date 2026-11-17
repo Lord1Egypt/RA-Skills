@@ -1,43 +1,53 @@
-## Description: <br>
-Guides agents through understanding, cleaning, exploring, and reporting on datasets while keeping data quality issues and user objectives explicit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language data-analysis skill that guides agents to understand datasets, assess data quality, explore patterns, design explainable cleaning steps, and summarize findings.
 
-## Publisher: <br>
-[zhaoM0](https://clawhub.ai/user/zhaoM0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaom0](https://clawhub.ai/user/zhaom0)
 
-## Use Case: <br>
-External users and data-focused agents use this skill to inspect uploaded datasets, assess data quality, plan cleaning steps, and summarize analysis results in clear business language. It is especially oriented toward CSV, Excel, and general tabular data exploration workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad dataset-related triggers and may activate on brief or ambiguous data requests. <br>
-Mitigation: Confirm the user's analysis goal and data context before performing substantial cleaning, transformation, or reporting work. <br>
-Risk: Uploaded datasets may contain sensitive or confidential information. <br>
-Mitigation: Avoid uploading sensitive files unless processing is intended, and review proposed cleaning or transformation steps before applying them. <br>
-Risk: Data cleaning choices can change analysis results or remove important records. <br>
-Mitigation: Keep original data unchanged, document each transformation, and ask for user confirmation before handling ambiguous or high-impact quality issues. <br>
+## Use Case:
 
+External users and developers use this skill to guide dataset inspection, data-quality assessment, exploratory analysis, cleaning-plan decisions, and business-oriented reporting in Chinese.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhaoM0/famou-data-analysis) <br>
-- [Publisher Profile](https://clawhub.ai/user/zhaoM0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports and guidance, often with code or shell command snippets for data inspection and processing] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce data quality summaries, cleaning plans, analysis reports, processing records, and recommendations for follow-up analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill may activate on broad data-related prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the current task involves a dataset or data file before relying on the skill's workflow.
+
+Risk: Proposed cleaning or output steps could affect generated analysis files.
+
+Mitigation: Review proposed transformations and file-output steps before allowing changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaom0/skills/famou-data-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports and explanatory guidance with optional code or shell snippets for data processing.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose data cleaning or generated-file output steps; users should review proposed transformations before allowing changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

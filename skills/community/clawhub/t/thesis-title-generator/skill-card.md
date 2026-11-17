@@ -1,41 +1,53 @@
-## Description: <br>
-Generates three academically appropriate Chinese-English thesis title options from complete thesis content, substantial drafts, abstracts, findings, or keywords. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates academically appropriate Chinese-English thesis title options from supplied thesis content, with rationales, a recommendation, and cautions against overclaiming.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Students, researchers, and academic writers use this skill to turn completed thesis material or substantial drafts into three bilingual title pairs with rationales, a recommendation, and notes about unsupported claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste confidential thesis drafts, unpublished findings, or academic material into their agent workflow. <br>
-Mitigation: Avoid sharing confidential academic material unless that workflow is acceptable, and redact sensitive details when possible. <br>
-Risk: Generated titles can overstate methods, findings, populations, or contributions when the supplied thesis content is incomplete. <br>
-Mitigation: Check each title against the completed thesis and treat outputs as provisional when only a rough topic or partial draft is provided. <br>
+## Use Case:
 
+Students, researchers, and academic writing advisors use this skill to generate or refine bilingual Chinese-English thesis titles from a completed paper, abstract, draft, research design, findings, or keywords. It helps produce title options that match the thesis scope, academic tone, and terminology without implying unsupported methods, findings, or contributions.
 
-## Reference(s): <br>
-- [Thesis Title Generation Guide](references/title-generation-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/junwugit/thesis-title-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown containing three Chinese-English title pairs, rationales, a recommended title, and optional caution notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to exactly three title pairs unless the user requests a different number.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Thesis content may contain unpublished, sensitive, or institution-restricted material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only content appropriate for the agent environment and remove sensitive details when they are not needed for title generation.
+
+Risk: Titles based on incomplete inputs can imply methods, findings, populations, or contributions that the thesis does not support.
+
+Mitigation: Treat titles from rough topics as provisional and check each option against the completed thesis before use.
+
+## Reference(s):
+
+- [Thesis Title Generation Guide](references/title-generation-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown table with concise recommendation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese-English title pairs; defaults to exactly three options unless the user requests a different number.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

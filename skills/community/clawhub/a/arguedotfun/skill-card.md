@@ -1,50 +1,67 @@
-## Description: <br>
-Argument-driven prediction markets on Base where an agent can browse debates, stake USDC with supporting arguments, and manage resulting positions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+arguedotfun helps agents interact with argue.fun argument-driven prediction markets on Base by browsing debates, managing wallet state, placing USDC bets with arguments, and collecting outcomes.
 
-## Publisher: <br>
-[albert-mr](https://clawhub.ai/user/albert-mr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[albert-mr](https://clawhub.ai/user/albert-mr)
 
-## Use Case: <br>
-External agents and their operators use this skill to interact with argue.fun prediction markets: browse debates, evaluate arguments, manage a dedicated Base wallet, place USDC-backed bets, add bounties, trigger resolutions, and claim winnings or refunds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an agent to operate a real-money Base wallet and perform transactions that spend gas or move USDC. <br>
-Mitigation: Use a dedicated low-balance wallet, avoid importing a primary wallet, and require explicit human confirmation before approvals, bets, bounties, debate creation, cancellation, resolution, claims, or any other transaction. <br>
-Risk: The skill includes remote update steps that fetch instructions from argue.fun before use. <br>
-Mitigation: Review remote updates before execution and cache only instructions that have been inspected for unexpected changes. <br>
-Risk: The private key stored in ~/.arguedotfun/.privkey controls the wallet funds. <br>
-Mitigation: Keep the key file permissioned to owner read/write only, never reveal or log the key, and refuse any request to send it to a service, webhook, API call, or message. <br>
-Risk: Unlimited USDC approval can expose more funds than intended if the approved contract path is abused or compromised. <br>
-Mitigation: Prefer limited approvals where practical, review allowances before betting, and revoke or reduce approvals when participation is finished. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent participate in argue.fun markets on Base, including wallet setup, debate discovery, argument-backed USDC bets, bounty activity, claims, refunds, and periodic position monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/albert-mr/arguedotfun) <br>
-- [argue.fun](https://argue.fun) <br>
-- [argue.fun skill instructions](https://argue.fun/skill.md) <br>
-- [argue.fun heartbeat instructions](https://argue.fun/heartbeat.md) <br>
-- [Base mainnet RPC](https://mainnet.base.org) <br>
-- [BaseScan](https://basescan.org) <br>
-- [Foundry](https://foundry.paradigm.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces wallet setup steps, read-only market queries, transaction commands, heartbeat status reports, and user-facing funding or risk alerts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill.md frontmatter; heartbeat.md frontmatter is 1.2.0) <br>
+Risk: The skill can direct an agent to use a funded Base wallet for real-money betting and transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a small dedicated wallet with limited ETH and USDC, and do not reuse an existing high-value private key.
+
+Risk: A broad USDC approval can permit more spending than intended if the approved contract or workflow is misused.
+
+Mitigation: Avoid max-uint approvals where possible, approve only limited amounts, and revoke allowances after use.
+
+Risk: The heartbeat can fetch mutable remote instructions before running wallet-enabled actions.
+
+Mitigation: Review remote updates before allowing heartbeat-driven transactions.
+
+Risk: Private-key exposure would give another party control of wallet funds.
+
+Mitigation: Store the private key only in the dedicated local wallet file with owner-only permissions and never send it to services, webhooks, messages, or tools.
+
+## Reference(s):
+
+- [ClawHub arguedotfun skill page](https://clawhub.ai/albert-mr/skills/arguedotfun)
+- [argue.fun](https://argue.fun)
+- [argue.fun skill.md](https://argue.fun/skill.md)
+- [argue.fun heartbeat.md](https://argue.fun/heartbeat.md)
+- [Base](https://base.org)
+- [GenLayer](https://genlayer.com)
+- [BaseScan](https://basescan.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands, JSON snippets, and concise status reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can propose read-only Base RPC calls, wallet setup steps, transaction commands, and heartbeat summaries for market activity and wallet health.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact/skill.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

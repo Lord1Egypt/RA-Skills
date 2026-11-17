@@ -1,43 +1,60 @@
-## Description: <br>
-Autonomous bug bounty hunting with scope safety for authorized targets, scanning subdomains, JavaScript secrets, misconfigurations, and known vulnerabilities with LLM-assisted analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous bug bounty hunting with scope safety. Scans targets for subdomains, secrets, vulnerabilities. Uses Certificate Transparency logs, JS analysis, entropy-based secret detection. LLM-powered vulnerability analysis. ALWAYS respects authorized targets only.
 
-## Publisher: <br>
-[Lugave11](https://clawhub.ai/user/Lugave11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lugave11](https://clawhub.ai/user/lugave11)
 
-## Use Case: <br>
-External security researchers and developers use this skill to run authorized bug bounty scans, analyze findings, and produce structured security reports for approved targets. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can drive live scans and recurring scans with weak scope controls. <br>
-Mitigation: Run it only for explicitly authorized programs and replace the sample authorization check with strict hostname and subdomain-boundary validation before use. <br>
-Risk: External scanner binaries may be introduced during setup. <br>
-Mitigation: Verify scanner binaries and their sources independently before installing or executing them. <br>
-Risk: Raw secrets or sensitive findings could be sent to cloud models or shared alert channels. <br>
-Mitigation: Avoid sending raw secrets to cloud models or shared alert channels unless the program and data handling policy explicitly approve it. <br>
-Risk: The documented cron schedule can create unintended recurring scans. <br>
-Mitigation: Do not enable scheduled scans unless recurring scanning is intentional, approved, and monitored. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Lugave11/bounty-hunter-pro) <br>
+## Use Case:
 
+External security researchers and developers use this skill to run authorized bug bounty reconnaissance, vulnerability scanning, finding analysis, alerting, and report generation for in-scope targets.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces dated security reports and intermediate JSON or Markdown findings for authorized targets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Autonomous scanning can reach targets outside an authorized bug bounty scope if hostname matching is too broad.
+
+Mitigation: Use exact hostname and domain-boundary authorization checks, log each scope decision, and stop execution when the target is not explicitly authorized.
+
+Risk: Secret analysis may expose sensitive findings to cloud-based analysis services.
+
+Mitigation: Keep secret analysis local when possible, or redact sensitive values before sending data to any cloud model.
+
+Risk: Scanner binaries or archives may be installed without verified provenance.
+
+Mitigation: Verify tool sources and hashes before installation, and pin known-good versions of subfinder, httpx, and nuclei.
+
+Risk: Unattended scheduled scans can continue after authorization expires or without adequate review.
+
+Mitigation: Avoid enabling the cron job unless expiry, logging, alerting, and removal steps are defined.
+
+## Reference(s):
+
+- [Bounty Hunter Pro on ClawHub](https://clawhub.ai/lugave11/skills/bounty-hunter-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with shell commands, configuration snippets, JSON findings, and analysis text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates target-specific security reports and live analysis files for authorized targets.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

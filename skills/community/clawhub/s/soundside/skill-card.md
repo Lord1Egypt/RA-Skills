@@ -1,43 +1,55 @@
-## Description: <br>
-Connects an OpenClaw agent to Soundside MCP tools for AI media generation, editing, library management, and technical analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an OpenClaw agent to Soundside MCP tools for AI media generation, editing, library management, and technical analysis.
 
-## Publisher: <br>
-[hackthemarket](https://clawhub.ai/user/hackthemarket) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hackthemarket](https://clawhub.ai/user/hackthemarket)
 
-## Use Case: <br>
-Developers and creators use this skill to configure an OpenClaw agent with Soundside MCP tools for generating images, video, audio, music, text, and artifacts, then editing, analyzing, organizing, and sharing hosted media resources. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Paid remote generation can incur costs when the agent uses Soundside generation, editing, or analysis tools. <br>
-Mitigation: Use a scoped API key, enable spending limits when available, and require explicit confirmation before paid generation or multi-step media pipelines. <br>
-Risk: Library management tools can update or delete persistent hosted projects, collections, or resources. <br>
-Mitigation: Enable tool approvals and require explicit confirmation before deleting or updating library items. <br>
-Risk: Private, regulated, or business-sensitive content may be sent to Soundside services or shared by email. <br>
-Mitigation: Review use with sensitive content before installation, avoid unnecessary uploads, and require explicit confirmation before email sharing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Soundside Getting Started](https://github.com/soundside-design/soundside-docs/blob/main/guides/getting-started.md) <br>
-- [Soundside Tool Reference](https://github.com/soundside-design/soundside-docs/blob/main/guides/tools.md) <br>
-- [Soundside x402 Pay-Per-Call](https://github.com/soundside-design/soundside-docs/blob/main/guides/x402.md) <br>
+## Use Case:
 
+Developers and creators use this skill to let an OpenClaw agent generate, edit, analyze, organize, and share media through Soundside's remote MCP tools.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown guidance with JSON configuration snippets, inline shell commands, example prompts, and remote MCP tool calls.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Soundside API key and may create paid hosted media resources through remote MCP tools.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, media, and related project data may be processed by Soundside and its provider backends.
+
+Mitigation: Avoid secrets or regulated data unless the deployment has explicit approval for that data flow.
+
+Risk: Library operations, paid generation, and email-sharing actions can change state, incur cost, or disclose content.
+
+Mitigation: Require explicit user confirmation before delete, update, paid generation, or email-sharing actions.
+
+## Reference(s):
+
+- [Soundside ClawHub Skill Page](https://clawhub.ai/hackthemarket/skills/soundside)
+- [Getting Started](https://github.com/soundside-design/soundside-docs/blob/main/guides/getting-started.md)
+- [Tool Reference](https://github.com/soundside-design/soundside-docs/blob/main/guides/tools.md)
+- [x402 Pay-Per-Call](https://github.com/soundside-design/soundside-docs/blob/main/guides/x402.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration snippets, shell commands, and example prompts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Soundside API key and sends prompts, media, and related project data to Soundside and provider backends.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

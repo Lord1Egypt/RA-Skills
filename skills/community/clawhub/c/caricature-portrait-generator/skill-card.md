@@ -1,41 +1,58 @@
-## Description: <br>
-Generate caricature, cartoon, comic, or funny face portraits from text descriptions using the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI caricature portraits with exaggerated features from text descriptions, returning a direct image URL through the Neta AI image generation API.
 
-## Publisher: <br>
-[omactiengartelle](https://clawhub.ai/user/omactiengartelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omactiengartelle](https://clawhub.ai/user/omactiengartelle)
 
-## Use Case: <br>
-External users and developers use this skill to generate humorous caricature-style portrait image URLs from text prompts, with optional size selection and reference-image style inheritance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference image IDs, and the API token are sent to the Neta/TalesOfAI service. <br>
-Mitigation: Avoid confidential or sensitive personal descriptions and use the service only for content appropriate to share with that provider. <br>
-Risk: Passing a secret with --token can expose it in shell history or process listings on shared systems. <br>
-Mitigation: Prefer a short-lived or rotated token and avoid running the command where other users can inspect command history or processes. <br>
+## Use Case:
 
+External users and developers use this skill to generate caricature, cartoon, comic, or funny face portrait image URLs from descriptive prompts for gifts, social media, invitations, and personalized art.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/omactiengartelle/caricature-portrait-generator) <br>
-- [Neta API token access](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text image URL and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token; supports portrait, landscape, square, and tall image sizes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The skill handles an API token and sends it to api.talesofai.com, which the security evidence says is not clearly disclosed in the main skill instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and use only a narrowly scoped, revocable Neta token.
+
+Risk: Prompts and reference image IDs may be sent to the external image generation service.
+
+Mitigation: Avoid sensitive personal data, confidential prompts, and reference IDs that should not be shared with the service.
+
+Risk: The security guidance recommends install-source review for this low-trust release.
+
+Mitigation: Prefer a pinned or checksum-verified install source before deployment.
+
+## Reference(s):
+
+- [Neta AI API token setup](https://www.neta.art/open/)
+- [ClawHub skill page](https://clawhub.ai/omactiengartelle/skills/caricature-portrait-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Shell commands]
+
+**Output Format:** [Plain text image URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token; optional size and reference UUID inputs affect the generated image request.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

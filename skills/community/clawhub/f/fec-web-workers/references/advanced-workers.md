@@ -1,14 +1,14 @@
-# 高级 Worker 模式
+#Advanced Worker mode
 
 ## Transferable Objects
 
 ```ts
 const buffer = new ArrayBuffer(10 * 1024 * 1024);
 worker.postMessage(buffer, [buffer]);
-// transfer 后主线程中的 buffer.byteLength 变为 0。
+// After transfer, buffer.byteLength in the main thread becomes 0.
 ```
 
-适用于图片像素、音频采样、大型二进制文件。不要在 transfer 后继续读取原引用。
+Suitable for image pixels, audio samples, and large binary files. Do not continue to read the original reference after transfer.
 
 ## Comlink
 
@@ -37,18 +37,18 @@ const result = await mathApi.batchProcess([1, 2, 3]);
 
 ## Worker Pool
 
-- 适合大量独立任务，不适合强顺序依赖任务。
-- 默认 pool size 不要超过 `navigator.hardwareConcurrency`。
-- 队列中任务需要超时、取消或页面卸载清理策略。
+- Suitable for a large number of independent tasks, not suitable for tasks with strong sequence dependencies.
+- Default pool size should not exceed `navigator.hardwareConcurrency`.
+- Tasks in the queue require timeout, cancellation or page unloading cleaning strategies.
 
 ## SharedWorker
 
-- 适合跨 Tab 共享连接或广播状态。
-- 兼容性弱于 Dedicated Worker，必须先确认目标浏览器。
-- 每个连接使用 `MessagePort`，需要 `port.start()`。
+- Suitable for sharing connections or broadcasting status across tabs.
+- Compatibility is weaker than Dedicated Worker, the target browser must be confirmed first.
+- Uses `MessagePort` per connection, requires `port.start()`.
 
-## 安全与兼容
+## Security and Compatibility
 
-- CSP 需允许 `worker-src`。
-- `SharedArrayBuffer` 需要 COOP/COEP 头。
-- Worker 中可用 IndexedDB，但不可用同步 localStorage。
+- CSP needs to allow `worker-src`.
+- `SharedArrayBuffer` requires COOP/COEP headers.
+- IndexedDB is available in Worker, but synchronized localStorage is not.

@@ -1,43 +1,58 @@
-## Description: <br>
-Searches Eastmoney financial-news sources for time-sensitive market information, including news, announcements, research reports, policies, trading rules, event context, and impact analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Eastmoney Skills helps agents search Eastmoney Miaoxiang financial information for current news, announcements, research reports, policies, trading rules, event details, and impact analysis.
 
-## Publisher: <br>
-[QQK000](https://clawhub.ai/user/QQK000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqk000](https://clawhub.ai/user/qqk000)
 
-## Use Case: <br>
-External users, employees, developers, and financial analysts use this skill to retrieve current, source-filtered financial information for market research, securities news, announcements, policy updates, and event-specific analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial search queries are sent to Eastmoney's external API. <br>
-Mitigation: Avoid confidential trading, due-diligence, or sensitive business wording in queries. <br>
-Risk: The skill requires MX_APIKEY for API access. <br>
-Mitigation: Store MX_APIKEY only as a protected environment variable in trusted runtime environments. <br>
-Risk: Search results are saved as local TXT and JSON files. <br>
-Mitigation: Delete saved output files when local financial search history should not be retained. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve current, source-filtered financial news and research through the Eastmoney Miaoxiang API when answering market, security, policy, or event-specific questions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/QQK000/eastmoney-fin-search) <br>
-- [Eastmoney News Search API Endpoint](https://mkapi2.dfcfs.com/finskillshub/api/claw/news-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Terminal text plus saved TXT and JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MX_APIKEY and sends query text to Eastmoney's API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Financial search queries are sent to the documented Eastmoney API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including confidential client information, proprietary trading intent, or other sensitive details in queries.
+
+Risk: Search outputs are written as local text and JSON files.
+
+Mitigation: Use a private trusted output directory and avoid shared writable paths.
+
+Risk: Running the skill with unnecessary privileges can increase impact if local paths or dependencies are misused.
+
+Mitigation: Run the skill without elevated privileges.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qqk000/skills/eastmoney-fin-search)
+- [Eastmoney Miaoxiang News Search API](https://mkapi2.dfcfs.com/finskillshub/api/claw/news-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, files]
+
+**Output Format:** [Plain text search results and raw JSON API responses saved as local files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MX_APIKEY and writes query-specific .txt and .json result files to the configured output directory.]
+
+## Skill Version(s):
+
+1.0.5 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

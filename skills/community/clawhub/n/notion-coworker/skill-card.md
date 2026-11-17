@@ -1,39 +1,53 @@
-## Description: <br>
-An autonomous Notion coworker agent that monitors Gmail for Notion comment mentions, researches requested answers across memory, Notion, and optionally the web, then replies in the original Notion discussion and documents the research in a subpage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An autonomous Notion coworker agent that monitors Gmail for Notion comment mentions, understands the request, researches an answer using memory, conversation history, the Notion workspace, and optionally the web, then replies directly in the Notion discussion thread and documents the research in a subpage.
 
-## Publisher: <br>
-[lauroBRCWB](https://clawhub.ai/user/lauroBRCWB) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laurobrcwb](https://clawhub.ai/user/laurobrcwb)
 
-## Use Case: <br>
-Employees and teams use this skill to process unread Notion mention notifications from Gmail, research the requested answer using available workspace and web context, and post concise replies back to Notion. It also creates a research subpage so handled mentions have an audit trail. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read Gmail and Notion context, use past chat memory, and publish persistent replies or research pages in Notion. <br>
-Mitigation: Use confirmation before posting comments or creating pages, limit the number of notifications handled at once, and avoid writing sensitive private context into shared Notion pages. <br>
-Risk: Automatic replies can introduce incorrect or incomplete answers into team discussions. <br>
-Mitigation: Require review for medium- or low-confidence answers and preserve source notes in the research subpage for auditability. <br>
+## Use Case:
 
+Employees and workspace collaborators use this skill to delegate Notion comment mentions to an agent that can read notification emails, gather context from memory and Notion, reply in the relevant discussion, and create a research trail subpage.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown and plain-text summaries with Notion comment and page creation actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce persistent Notion comments and research subpages, and may summarize processed Gmail notifications for user follow-up.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can use private chat history, memory, Notion workspace content, and Notion notification emails to create persistent Notion replies and research pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that access and publication behavior are intended; use explicit approval steps, source limits, and redaction rules before publishing content derived from private context.
+
+Risk: Automatic replies or research pages may expose sensitive context or overstate uncertain findings in a shared workspace.
+
+Mitigation: Review generated replies and research pages before posting, especially for medium- or low-confidence answers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/laurobrcwb/skills/notion-coworker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Concise Notion comment text, Markdown research subpage content, and a user-facing processing summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include confidence notes, source summaries, processed email summaries, and inbox housekeeping guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -19,6 +19,10 @@ from pathlib import Path
 from .risk_signatures import RISK_RULES
 
 
+REPORT_PROFILE_FILE = Path("config") / "report-profile"
+REPORT_PROFILE_ZH_CN_ONLY = "zh-CN-only"
+
+
 STOPWORDS = {
     "a",
     "an",
@@ -377,10 +381,17 @@ VERDICT_ALIASES = {
 
 TEXT_FILE_SUFFIXES = {
     "",
+    ".bash",
+    ".bat",
+    ".cmd",
+    ".conf",
+    ".env",
+    ".fish",
     ".json",
     ".jsonl",
     ".md",
     ".py",
+    ".properties",
     ".sh",
     ".ps1",
     ".ts",
@@ -393,32 +404,76 @@ TEXT_FILE_SUFFIXES = {
     ".ini",
     ".cfg",
     ".txt",
+    ".zsh",
 }
 
 RISK_SCAN_SUFFIXES = {
     "",
+    ".bash",
+    ".bat",
     ".cfg",
+    ".cmd",
+    ".conf",
+    ".env",
+    ".fish",
     ".ini",
     ".json",
     ".js",
     ".jsx",
     ".ps1",
     ".py",
+    ".properties",
     ".sh",
     ".toml",
     ".ts",
     ".tsx",
     ".yaml",
     ".yml",
+    ".zsh",
 }
 
-RISK_SCAN_DIRS = {"scripts", "resources", "bin", "hooks", ".github", "workflows"}
+RISK_SCAN_DIRS = {"scripts", "resources", "assets", "config", "bin", "hooks", ".github", "workflows"}
 
 MAX_SCAN_BYTES = 512 * 1024
 HISTORY_EVIDENCE_WEIGHT = 0.45
 TEXT_BYTES_PER_CONTEXT_UNIT = 4
 CJK_CONTEXT_UNITS_PER_CHAR = 2.0
 NON_ASCII_CONTEXT_UNITS_PER_CHAR = 1.0
+
+# Shared decision thresholds. scoring.py, reporting.py, and community.py must
+# read these names instead of re-hardcoding the same decision edges.
+SCORE_KEEP_THRESHOLD = 8.0
+SCORE_KEEP_NARROW_THRESHOLD = 6.0
+SCORE_REVIEW_THRESHOLD = 4.5
+SCORE_MERGE_DELETE_THRESHOLD = 3.0
+LOW_CONFIDENCE_THRESHOLD = 0.55
+HIGH_OVERLAP_THRESHOLD = 0.65
+DUPLICATE_OVERLAP_THRESHOLD = 0.75
+# Near-duplicate overlap and no-impact consistency are independent dials that
+# happen to share a value; tune them separately.
+NEAR_DUPLICATE_OVERLAP_THRESHOLD = 0.85
+NO_IMPACT_CONSISTENCY_THRESHOLD = 0.85
+NO_IMPACT_BETTER_THRESHOLD = 0.10
+QUALITY_BURDEN_REVIEW_THRESHOLD = 1.2
+QUALITY_BURDEN_HIGH_THRESHOLD = 0.6
+STRONG_COMMUNITY_PRIOR_THRESHOLD = 0.6
+
+COMMUNITY_RATING_MAX = 5.0
+COMMUNITY_WEIGHT_RATING = 0.30
+COMMUNITY_WEIGHT_CURRENT_VOLUME = 0.20
+COMMUNITY_WEIGHT_ALL_TIME_INSTALLS = 0.10
+COMMUNITY_WEIGHT_TRENDING = 0.15
+COMMUNITY_WEIGHT_STARS = 0.10
+COMMUNITY_WEIGHT_COMMENTS = 0.05
+COMMUNITY_WEIGHT_MAINTENANCE = 0.10
+COMMUNITY_CURRENT_VOLUME_SATURATION = 5000
+COMMUNITY_ALL_TIME_SATURATION = 20000
+COMMUNITY_TRENDING_SATURATION = 250
+COMMUNITY_STARS_SATURATION = 250
+COMMUNITY_COMMENTS_SATURATION = 100
+COMMUNITY_MAINTENANCE_BANDS = ((180, 1.0), (365, 0.7), (730, 0.4))
+COMMUNITY_MAINTENANCE_STALE_SCORE = 0.1
+
 ABLATION_BASELINE_CASES = 10
 ABLATION_INITIAL_CASES = 3
 ABLATION_EXPAND_CASES = 5
@@ -511,6 +566,7 @@ PRIVATE_BUNDLE_NAME_PATTERNS = tuple(
     re.compile(pattern, re.IGNORECASE)
     for pattern in (
         r"(^|[\\/])\.env(?:\.|$)",
+        r"(^|[\\/])[^\\/]+\.env(?:\.|$)",
         r"(^|[\\/])id_rsa(?:\.|$)",
         r"(^|[\\/])\.aws(?:[\\/]|$)",
         r"(^|[\\/])\.ssh(?:[\\/]|$)",
@@ -532,10 +588,17 @@ INSTALL_LIFECYCLE_SCRIPT_KEYS = {
 PRIVATE_CONTENT_PATTERNS = tuple(
     (label, re.compile(pattern, re.IGNORECASE))
     for label, pattern in (
-        ("private-key-block", r"-----BEGIN [A-Z ]{0,30}PRIVATE KEY-----"),
+        (
+            "private-key-block",
+            r"-----BEGIN ([A-Z ]{0,30}PRIVATE KEY)-----[\s\S]{16,}?-----END \1-----",
+        ),
         (
             "credential-assignment",
-            r"\b(?:api|access|auth|refresh|session)[_-]?(?:token|key|secret)\b\s*[:=]\s*['\"]?[A-Za-z0-9_./+=-]{24,}",
+            r"\b(?:[a-z][a-z0-9]*[_-])*"
+            r"(?:api[_-]?(?:token|key|secret)|access[_-]?(?:token|key|secret)|auth[_-]?(?:token|key|secret)|"
+            r"refresh[_-]?token|session[_-]?(?:token|key|secret)|client[_-]?secret|"
+            r"secret[_-]?access[_-]?key|password|private[_-]?key)"
+            r"\b\s*[:=]\s*['\"]?([A-Za-z0-9_./+=-]{24,})",
         ),
         ("cloud-access-id", r"\bA[SK]IA[0-9A-Z]{16}\b"),
     )

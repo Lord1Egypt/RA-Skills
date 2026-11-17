@@ -1,43 +1,58 @@
-## Description: <br>
-Automatically improve agent guidance through iterative testing and scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically improve agent guidance through iterative testing and scoring. Use when you want to optimize prompts, AGENTS.md entries, or skill definitions using a Karpathy-style training loop with OpenClaw cron.
 
-## Publisher: <br>
-[PeterPCW](https://clawhub.ai/user/PeterPCW) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[peterpcw](https://clawhub.ai/user/peterpcw)
 
-## Use Case: <br>
-Developers and agent builders use Autoagent to optimize prompts, AGENTS.md entries, and skill definitions through a recurring test-and-score loop. The skill helps define success criteria, create a sandbox, run iterations, and keep a score history for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The recurring optimization loop can edit sandbox guidance files and continue running after setup. <br>
-Mitigation: Use a fresh non-sensitive sandbox path, monitor scores.md, and stop the cron job when optimization is finished. <br>
-Risk: Copied scripts or external tools may expose sensitive or proprietary content during analysis. <br>
-Mitigation: Review any scripts before allowing analysis and avoid including secrets or proprietary code unless necessary. <br>
-Risk: Absolute sandbox paths could point into important project or system folders. <br>
-Mitigation: Prefer a dedicated sandbox directory and confirm the resolved path before starting the loop. <br>
+## Use Case:
 
+Developers and agent builders use Autoagent to iteratively improve prompts, AGENTS.md entries, and skill definitions by testing changes against user-approved scoring criteria in a sandbox.
 
-## Reference(s): <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Autoagent ClawHub Page](https://clawhub.ai/PeterPCW/autoagent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance, setup questions, sandbox file templates, and OpenClaw cron instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates sandbox guidance files, fixtures, scoring criteria, score history, and optional script-analysis notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.8.9 (source: server release metadata) <br>
+Risk: Recurring cron-based optimization can continue running and making sandbox changes after the initial setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the scheduled cron entry before enabling it, choose a bounded interval, and confirm how to stop and remove the job.
+
+Risk: The skill writes guidance, fixtures, and score logs into a user-selected sandbox path.
+
+Mitigation: Use a new dedicated sandbox with non-sensitive content and avoid broad absolute paths.
+
+Risk: Iterations forward full guidance and test data to subagents for scoring.
+
+Mitigation: Keep secrets and private data out of fixtures and guidance before starting the optimization loop.
+
+## Reference(s):
+
+- [OpenClaw Integration](references/openclaw-integration.md)
+- [ClawHub Skill Page](https://clawhub.ai/peterpcw/skills/autoagent)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with sandbox files, score logs, fixtures, and OpenClaw cron setup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates recurring optimization iterations when the user approves setup.]
+
+## Skill Version(s):
+
+0.8.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

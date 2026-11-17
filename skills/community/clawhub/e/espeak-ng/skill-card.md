@@ -1,38 +1,52 @@
-## Description: <br>
-TTS with espeak-ng <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TTS with espeak-ng.
 
-## Publisher: <br>
-[MartianZenMonk](https://clawhub.ai/user/MartianZenMonk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[martianzenmonk](https://clawhub.ai/user/martianzenmonk)
 
-## Use Case: <br>
-Developers and agents use this skill to invoke a local espeak-ng installation and generate spoken audio from supplied text. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill invokes the local espeak-ng executable with supplied text. <br>
-Mitigation: Install only when local text-to-speech execution is expected, and obtain espeak-ng from an OS package manager or the official upstream release source. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MartianZenMonk/espeak-ng) <br>
-- [espeak-ng releases](https://github.com/espeak-ng/espeak-ng/releases) <br>
+## Use Case:
 
+Developers and agent operators use this skill to generate local speech from text through the espeak-ng command-line text-to-speech engine.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text console output and spoken audio from the local espeak-ng executable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires espeak-ng to be installed and available on PATH.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on the local espeak-ng system package and may require OS-level installation.
+
+Mitigation: Install espeak-ng only from a trusted OS package manager or reviewed installer source.
+
+Risk: The skill runs direct local text-to-speech shell commands.
+
+Mitigation: Run it only with text you intend to speak and review generated commands before execution.
+
+## Reference(s):
+
+- [espeak-ng releases](https://github.com/espeak-ng/espeak-ng/releases)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text responses with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local speech audio through the installed espeak-ng system package.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

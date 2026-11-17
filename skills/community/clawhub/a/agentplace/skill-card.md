@@ -1,42 +1,54 @@
-## Description: <br>
-Agentplace lets OpenClaw users browse, search, preview, and install free or paid community agent skills from the Agentplace marketplace when the user explicitly requests it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agentplace lets OpenClaw users browse, search, inspect, and install community-contributed agent skills from the Agentplace marketplace when explicitly requested.
 
-## Publisher: <br>
-[HimanshuNextbase](https://clawhub.ai/user/HimanshuNextbase) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[himanshunextbase](https://clawhub.ai/user/himanshunextbase)
 
-## Use Case: <br>
-OpenClaw users and developers use Agentplace to discover marketplace agents, inspect their metadata and package contents, and install selected agents locally after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The download-and-install workflow gives remote skill packages broad local write authority with limited validation. <br>
-Mitigation: Install only from trusted publishers, inspect the full archive contents and skill documentation before final confirmation, and remove unrecognized installed skills from ~/.openclaw/workspace/skills. <br>
-Risk: Paid-agent downloads require API key handling. <br>
-Mitigation: Avoid pasting paid API keys into visible chat or shell history when possible, and use keys only for download authorization. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to discover marketplace agents, review their metadata and documentation, and install selected free or paid agents into a local OpenClaw workspace after explicit confirmations.
 
-## Reference(s): <br>
-- [Agentplace ClawHub listing](https://clawhub.ai/HimanshuNextbase/agentplace) <br>
-- [Agentplace marketplace API](https://api.agentplace.sh/marketplace/agents) <br>
-- [Agentplace dashboard](https://www.agentplace.sh/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with command snippets, package metadata, and installation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include marketplace URLs, package-preview summaries, and confirmation prompts before download or installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release evidence) <br>
+Risk: The install flow can persistently add third-party skills without strong package verification or safe extraction controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only trusted agents, preview archive contents and skill documentation before installation, and prefer releases with signed packages or published SHA-256 checksums.
+
+Risk: Paid-agent downloads require an API key that could be exposed if pasted into prompts or shared transcripts.
+
+Mitigation: Store API keys securely and do not paste real keys into prompts, transcripts, public repositories, or shared logs.
+
+## Reference(s):
+
+- [Agentplace ClawHub listing](https://clawhub.ai/himanshunextbase/skills/agentplace)
+- [Agentplace dashboard](https://www.agentplace.sh/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include marketplace API requests, install prompts, archive preview steps, and API-key handling guidance.]
+
+## Skill Version(s):
+
+2.0.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Curates three trusted daily deals showing best savings, trending offers, and personalized picks from public deal sites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Curates three trusted daily deals showing best savings, trending offers, and personalized picks from public deal sites.
 
-## Publisher: <br>
-[onceupontenday](https://clawhub.ai/user/onceupontenday) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onceupontenday](https://clawhub.ai/user/onceupontenday)
 
-## Use Case: <br>
-External users use this skill to find three current public deals across global shopping, gaming, and virtual product sources, including best savings, trending offers, and personalized picks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic requests such as "show more deals" may invoke the skill, and personalized deal requests can reveal shopping preferences. <br>
-Mitigation: Review the invocation before using it and avoid sharing sensitive personal preferences unless they are intended to shape deal recommendations. <br>
+## Use Case:
 
+External users use this skill to get a compact daily set of global deal recommendations, including best savings, trending offers, and personalized picks. It is intended for shopping and gaming deal discovery from disclosed public sources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/onceupontenday/deals) <br>
-- [Publisher profile](https://clawhub.ai/user/onceupontenday) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown list of three deal results with title, description, price, deal signal, and URL fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Always returns three results: Best Savings, Trending Now, and For You; refresh is allowed up to five times per session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generic shopping and deal requests may trigger this skill broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review activation scope before installing so only intended deal-finding requests use it.
+
+Risk: Personalized deal picks are recommendations whose data basis is not specified in the artifact.
+
+Mitigation: Treat personalized results as suggestions and verify current prices, discounts, and seller terms before acting.
+
+## Reference(s):
+
+- [Deals ToMe ClawHub Skill Page](https://clawhub.ai/onceupontenday/skills/deals)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with three deal recommendations and source URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Always returns three results: Best Savings, Trending Now, and For You, with title, description, price, URL, and discount, heat, or match reason as applicable.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

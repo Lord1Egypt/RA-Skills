@@ -1,10 +1,16 @@
 ---
 name: poyo-sora-2-pro
 description: Use PoYo AI Sora 2 Pro for longer premium video generation through the `https://api.poyo.ai/api/generate/submit` endpoint. Use when a user wants 15s or 25s cinematic clips, optional storyboard control, style presets, image-to-video input, or PoYo payloads for `sora-2-pro` and `sora-2-pro-private`.
-metadata: {"openclaw": {"homepage": "https://docs.poyo.ai/api-manual/video-series/sora-2-pro", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
+metadata: {"openclaw": {"homepage": "https://poyo.ai/models/sora-2-pro", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
 ---
 
 # PoYo Sora 2 Pro Video Generation
+
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/sora-2-pro>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/sora-2-pro>
+- API key page: <https://poyo.ai/dashboard/api-key>
 
 Use this skill to submit and track PoYo jobs for the Sora 2 Pro family.
 
@@ -49,8 +55,3 @@ When helping with this model family, include:
 - whether reference images are involved
 - returned `task_id` if a request was actually submitted
 - next step: poll status or wait for webhook
-
-Notes:
-
-Needs POYO_API_KEY from https://poyo.ai
-PoYo.ai - Premium AI API Platform | Image, Video, Music & Chat APIs - 80% Cheaper

@@ -1,37 +1,44 @@
 #!/usr/bin/env node
 /**
- * No Reinvent Wheel - GitHub Repository Detail Fetcher
- * Returns structured JSON with language tag for i18n.
+ * fork-it - GitHub Repository Detail Fetcher
+ * Returns structured JSON (language-neutral; the AI presents results in the user's language).
+ *
+ * Uses Node's built-in fetch (no curl / shell dependency, no command injection).
  */
-
-import { execSync } from 'child_process';
 
 const GITHUB_API = 'https://api.github.com/repos';
 
 function parseArgs() {
   const args = process.argv.slice(2);
-  return args[0] || null;
+  return args.find(a => !a.startsWith('--')) || null;
 }
 
 async function apiGet(path) {
   const url = `${GITHUB_API}${path}`;
-  const headers = [
-    '-H "Accept: application/vnd.github.v3+json"',
-    '-H "User-Agent: ForkIt-Skill"'
-  ];
+  const headers = {
+    'Accept': 'application/vnd.github.v3+json',
+    'User-Agent': 'fork-it-skill',
+    'X-GitHub-Api-Version': '2022-11-28'
+  };
   if (process.env.GITHUB_TOKEN) {
-    headers.push(`-H "Authorization: token ${process.env.GITHUB_TOKEN}"`);
+    headers['Authorization'] = `Bearer ${process.env.GITHUB_TOKEN}`;
   }
-  const cmd = `curl -s ${headers.join(' ')} "${url}"`;
-  try {
-    return JSON.parse(execSync(cmd, { encoding: 'utf-8', timeout: 30000 }));
-  } catch (error) {
-    return null;
+
+  const res = await fetch(url, { headers });
+  const data = await res.json().catch(() => null);
+  if (!res.ok) {
+    const err = new Error(data?.message || `GitHub API returned HTTP ${res.status}`);
+    err.code = `HTTP_${res.status}`;
+    throw err;
   }
+  return data;
 }
 
 // Normalize to neutral structure
 function normalizeRepo(repo) {
+  const pushedDaysAgo = repo.pushed_at
+    ? Math.floor((Date.now() - new Date(repo.pushed_at)) / (1000 * 60 * 60 * 24))
+    : null;
   return {
     full_name: repo.full_name,
     name: repo.name,
@@ -46,7 +53,7 @@ function normalizeRepo(repo) {
     license: repo.license?.name || null,
     default_branch: repo.default_branch,
     size_mb: Math.round(repo.size / 1024),
-    pushed_days_ago: Math.floor((Date.now() - new Date(repo.pushed_at)) / (1000 * 60 * 60 * 24)),
+    pushed_days_ago: pushedDaysAgo,
     created_at: repo.created_at,
     updated_at: repo.updated_at,
     topics: repo.topics || [],
@@ -70,8 +77,8 @@ function normalizeContributors(contributors) {
 function getReuseAdvice(stars, pushedDaysAgo) {
   return {
     level: (() => {
-      if (stars >= 10000 && pushedDaysAgo <= 30) return 'strong_recommend';
-      if (stars >= 1000 && pushedDaysAgo <= 90) return 'recommend';
+      if (stars >= 10000 && pushedDaysAgo !== null && pushedDaysAgo <= 30) return 'strong_recommend';
+      if (stars >= 1000 && pushedDaysAgo !== null && pushedDaysAgo <= 90) return 'recommend';
       if (stars >= 100) return 'reference';
       return 'build_own';
     })(),
@@ -80,59 +87,43 @@ function getReuseAdvice(stars, pushedDaysAgo) {
   };
 }
 
+function fail(code, message) {
+  console.log(JSON.stringify({ status: 'error', code, message }));
+  process.exit(1);
+}
+
 async function main() {
   const repoFullName = parseArgs();
 
   if (!repoFullName) {
-    console.log(JSON.stringify({
-      lang: 'en',
-      status: 'error',
-      code: 'MISSING_ARG',
-      message: 'Usage: node repo-detail.mjs <owner/repo>'
-    }));
-    process.exit(1);
+    fail('MISSING_ARG', 'Usage: node repo-detail.mjs <owner/repo>');
   }
 
   const parts = repoFullName.split('/');
   if (parts.length !== 2 || !parts[0] || !parts[1]) {
-    console.log(JSON.stringify({
-      lang: 'en',
-      status: 'error',
-      code: 'INVALID_FORMAT',
-      message: 'Invalid format. Use: owner/repo'
-    }));
-    process.exit(1);
+    fail('INVALID_FORMAT', 'Invalid format. Use: owner/repo');
   }
 
-  const repoData = await apiGet(`/${repoFullName}`);
-  if (!repoData || repoData.message === 'Not Found') {
+  try {
+    const repoData = await apiGet(`/${repoFullName}`);
+    const contributors = await apiGet(`/${repoFullName}/contributors?per_page=10`).catch(() => null);
+    const pushedDaysAgo = repoData.pushed_at
+      ? Math.floor((Date.now() - new Date(repoData.pushed_at)) / (1000 * 60 * 60 * 24))
+      : null;
+    const advice = getReuseAdvice(repoData.stargazers_count, pushedDaysAgo);
+
     console.log(JSON.stringify({
-      lang: 'en',
-      status: 'error',
-      code: 'NOT_FOUND',
-      message: 'Repository not found or inaccessible'
-    }));
-    process.exit(1);
+      status: 'ok',
+      repo: normalizeRepo(repoData),
+      contributors: normalizeContributors(contributors),
+      reuse_advice: advice
+    }, null, 2));
+  } catch (err) {
+    const code = err.code === 'HTTP_404' ? 'NOT_FOUND' : (err.code || 'UNKNOWN');
+    fail(code, err.message);
   }
-
-  const contributors = await apiGet(`/${repoFullName}/contributors?per_page=10`);
-  const advice = getReuseAdvice(repoData.stargazers_count, Math.floor((Date.now() - new Date(repoData.pushed_at)) / (1000 * 60 * 60 * 24)));
-
-  console.log(JSON.stringify({
-    lang: 'en',
-    status: 'ok',
-    repo: normalizeRepo(repoData),
-    contributors: normalizeContributors(contributors),
-    reuse_advice: advice
-  }, null, 2));
 }
 
 main().catch(err => {
-  console.log(JSON.stringify({
-    lang: 'en',
-    status: 'error',
-    code: 'UNKNOWN',
-    message: err.message
-  }));
-  process.exit(1);
+  fail('UNKNOWN', err.message);
 });

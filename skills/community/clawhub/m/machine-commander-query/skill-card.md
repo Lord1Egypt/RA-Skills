@@ -1,41 +1,53 @@
-## Description: <br>
-Uses the MachineCommander MCP service to query real-time data, status, location, alerts, project information, and movement history for construction machinery and vessels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MachineCommander queries a MachineCommander MCP service for real-time construction machine and vessel data, including status, locations, alerts, projects, and trajectories.
 
-## Publisher: <br>
-[sandofree](https://clawhub.ai/user/sandofree) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sandofree](https://clawhub.ai/user/sandofree)
 
-## Use Case: <br>
-Developers and operators use this skill to answer operational questions about construction equipment and vessels, including counts, locations, work status, fuel, alarms, project membership, and recent activity. The artifact also documents command dispatch through the MachineCommander MCP service, which should be used only with appropriate operational controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documents command dispatch to real construction machines, and the security evidence does not show clear safety controls. <br>
-Mitigation: Use only with trusted MachineCommander MCP access that is authenticated, tenant or project scoped, logged, and gated by explicit human approval before any machine command is executed. <br>
-Risk: The skill depends on live operational data from the MachineCommander MCP service. <br>
-Mitigation: Install only when the service is trusted and operational control is needed; verify access scope and review returned data before acting on it. <br>
+## Use Case:
 
+External users and operators use this skill to ask natural-language questions about construction machinery and vessels in active projects, including counts, location distribution, operational status, fuel-related information, alerts, and historical tracks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sandofree/machine-commander-query) <br>
-- [Publisher profile](https://clawhub.ai/user/sandofree) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON responses from MCP calls with markdown guidance and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Large result sets may require reviewing only the first key records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill documents a machine-management command that could affect real equipment if the connected MCP service permits command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted, access-controlled MachineCommander MCP service and require explicit human authorization before any real equipment command is issued.
+
+Risk: Location, tenant, project, alert, and trajectory responses can expose sensitive operational information.
+
+Mitigation: Limit access to authorized users and handle returned data according to the organization's operational data protection requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sandofree/skills/machine-commander-query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON service responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The connected MCP service may return tabular or text results inside JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

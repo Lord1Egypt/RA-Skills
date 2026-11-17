@@ -1,41 +1,56 @@
-## Description: <br>
-Look up labeled crypto addresses, token metadata, and balances across major EVM chains including Ethereum, Base, Arbitrum, Optimism, and BSC. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Eth Labels helps agents look up labeled crypto addresses, token metadata, and balances across major EVM chains.
 
-## Publisher: <br>
-[dawsbot](https://clawhub.ai/user/dawsbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dawsbot](https://clawhub.ai/user/dawsbot)
 
-## Use Case: <br>
-Developers and blockchain analysts use this skill to identify labeled EVM addresses, search wallet labels, inspect token metadata, and check balances during crypto research or transaction review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet addresses, labels, balance queries, and RPC endpoints may be shared with the configured MCP server, public API, or RPC provider. <br>
-Mitigation: Use trusted endpoints, avoid submitting sensitive wallet research when privacy requirements prohibit third-party disclosure, and review MCP configuration before use. <br>
-Risk: Installation relies on a referenced GitHub repository and npm dependencies. <br>
-Mitigation: Install only from trusted sources and review dependency changes before running the MCP server. <br>
+## Use Case:
 
+Developers and crypto analysts use this skill to identify labeled EVM addresses, search known entities, retrieve token metadata, and check balances during wallet, transaction, or protocol research.
 
-## Reference(s): <br>
-- [Eth Labels Swagger docs](https://eth-labels.com/swagger) <br>
-- [Eth Labels labeled accounts](https://eth-labels.com/accounts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration snippets, and MCP lookup results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include address labels, token metadata, balances, chain IDs, and setup commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Setup relies on mutable external GitHub and npm code that was not included in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream repository before installing, pin it to a known commit or release, prefer locked dependencies and local binaries over unpinned npx, and run the MCP server with only the permissions and environment variables it needs.
+
+Risk: Balance checks can use custom RPC endpoints, which may expose queried addresses or depend on an untrusted endpoint.
+
+Mitigation: Use trusted RPC endpoints and avoid sending sensitive investigation targets to infrastructure you do not control or trust.
+
+## Reference(s):
+
+- [Eth Labels ClawHub Page](https://clawhub.ai/dawsbot/skills/eth-labels)
+- [Eth Labels Swagger Docs](https://eth-labels.com/swagger)
+- [Eth Labels Labeled Accounts](https://eth-labels.com/accounts)
+- [Eth Labels Repository](https://github.com/dawsbot/eth-labels)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline tool calls, JSON configuration snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [MCP results may include address labels, token metadata, chain identifiers, and formatted ETH balances.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

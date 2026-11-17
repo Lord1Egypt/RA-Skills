@@ -1,42 +1,56 @@
-## Description: <br>
-Scan Reddit for pain points in a product's niche, identify a real user complaint worth fixing, and prepare an approved patch or PR workflow for a target repository. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans Reddit for recent product pain points, selects an actionable complaint, and prepares an approval-gated fix proposal or patch/PR workflow for a target repository.
 
-## Publisher: <br>
-[mcnutt1414](https://clawhub.ai/user/mcnutt1414) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mcnutt1414](https://clawhub.ai/user/mcnutt1414)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and product engineers use this skill to turn public Reddit complaints into a prioritized fix proposal and, after explicit approval, a local patch or PR in a configured repository.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill searches public Reddit content and may use low-signal or ambiguous complaints as input.
+
+Mitigation: Review the selected complaint, root-cause analysis, and confidence before approving any implementation work.
+
+Risk: Patch and PR modes can modify a configured repository, commit, push, or open a pull request after approval.
+
+Mitigation: Keep scheduled runs in analysis mode by default and require explicit approval for the selected fix before edits, commits, pushes, or PR creation.
+
+Risk: Generated PR text includes an OpenClaw attribution footer.
+
+Mitigation: Review PR text before publishing and adjust wording to match project contribution requirements.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and product engineers use this skill to turn Reddit feedback into a prioritized fix proposal and, after explicit approval, a local patch or pull request workflow for a configured repository. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Write-enabled patch or PR mode can modify repository files, create commits, push branches, or open pull requests if approved. <br>
-Mitigation: Keep analyze mode as the default, confirm the configured repoPath, and require explicit approval for the selected Reddit complaint, proposed fix, likely changed files, and tests before any write action. <br>
-Risk: Scheduled runs or Slack notifications could send low-signal findings or route results to the wrong destination. <br>
-Mitigation: Use analyze mode for scheduled runs unless deliberately reconfigured, and verify the Slack destination and cron schedule before enabling notifications. <br>
-Risk: Reddit complaints may be weak, ambiguous, or not representative enough to justify a product change. <br>
-Mitigation: Prefer current, specific complaints; document frequency, severity, fixability, and confidence; and stop with an analysis report when no credible complaint is found. <br>
+**Output Format:** [Markdown proposals, JSON run reports, configuration JSON, git commands, and code changes when explicitly approved.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Reddit to PR on ClawHub](https://clawhub.ai/mcnutt1414/reddit-to-pr) <br>
+**Other Properties Related to Output:** [Defaults to analysis-only; repository edits, commits, pushes, PR creation, and Slack notifications require the configured mode, available credentials, and explicit approval.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON configuration examples, shell commands, patch or PR guidance, and local run reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to analysis-only and requires explicit user approval before repository edits, commits, pushes, PR creation, or Slack notifications.] <br>
+0.1.2 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

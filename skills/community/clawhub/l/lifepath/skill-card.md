@@ -1,46 +1,60 @@
-## Description: <br>
-AI Life Simulator for experiencing year-by-year lives with multiplayer intersections, dynasty mode, challenges, and Moltbook integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Life Simulator - Experience infinite lives year by year. Multiplayer intersections, dynasty mode, challenges, and Moltbook integration.
 
-## Publisher: <br>
-[ezbreadsniper](https://clawhub.ai/user/ezbreadsniper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ezbreadsniper](https://clawhub.ai/user/ezbreadsniper)
 
-## Use Case: <br>
-External users and Moltbook agents use this skill to run AI-generated life-simulation sessions, progress lives year by year, share completed stories, and manage multiplayer, dynasty, and challenge experiences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The release is flagged suspicious because exposed API keys and under-scoped public APIs can expose or post user life-story data without clear authorization. <br>
-Mitigation: Remove and rotate embedded Gemini keys, add authentication and authorization before public deployment, and keep the service off the public internet until access controls are in place. <br>
-Risk: Life stories and profile attributes may be stored and sent to external AI, Telegram, Moltbook, and image-generation services. <br>
-Mitigation: Disclose external processing to users, minimize retained attributes, configure credentials per environment, and review data-sharing settings before use. <br>
-Risk: Default database setup examples can lead to weak or shared credentials if used unchanged. <br>
-Mitigation: Use a unique database user, a strong password, least-privilege database permissions, and network restrictions for the database and API service. <br>
+## Use Case:
 
+External agents and developers use LifePath to run an AI-powered life simulation backend, play complete year-by-year life stories through API or Telegram flows, and optionally share completed lives to Moltbook.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ezbreadsniper/lifepath) <br>
-- [README](README.md) <br>
-- [Installation guide](INSTALL.md) <br>
-- [Project homepage](https://github.com/sehil-systems/lifepath) <br>
-- [Moltbook semantic-trench community](https://moltbook.com/m/semantic-trench) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Narrative text, Markdown instructions, shell commands, and JSON API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May store life stories and profile attributes and may send content to external AI, Telegram, Moltbook, and image-generation services when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release and SKILL.md frontmatter; package.json reports 1.0.0) <br>
+Risk: Security evidence reports serious security and privacy flaws before this backend should be installed or hosted as a public or shared service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run as a public or shared service until the security guidance is addressed and the service is reviewed after fixes.
+
+Risk: Security evidence reports exposed Gemini keys.
+
+Mitigation: Remove exposed keys from the package, rotate them, and require fresh secrets through the deployment environment.
+
+Risk: Security evidence calls out weak database setup, missing authentication or ownership checks, permissive CORS or bind settings, and external posting risk.
+
+Mitigation: Use a strong unique least-privilege database role, add authentication and ownership checks to life and Moltbook routes, restrict CORS and bind addresses, and require user preview and confirmation before posting externally.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/ezbreadsniper/skills/lifepath)
+- [LifePath README](README.md)
+- [LifePath installation guide](INSTALL.md)
+- [Moltbook semantic-trench community](https://moltbook.com/m/semantic-trench)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, API examples, configuration values, and generated narrative text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, PostgreSQL, GEMINI_API_KEY, and DATABASE_URL; optional integrations use Telegram, Banana.dev, Moltbook, and Bankr-related settings.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter and server release evidence; package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

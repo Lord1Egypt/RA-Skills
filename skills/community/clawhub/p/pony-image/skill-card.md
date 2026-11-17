@@ -1,41 +1,53 @@
-## Description: <br>
-Generates business images from prompts, reference styles, or product suite plans through a Supabase-hosted image API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An AI commercial image-generation skill for creating single product images, replicating visual style from reference images, and generating cohesive image suites.
 
-## Publisher: <br>
-[lirule007](https://clawhub.ai/user/lirule007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lirule007](https://clawhub.ai/user/lirule007)
 
-## Use Case: <br>
-External users and developers use this skill to create product or marketing images, replicate a reference image style, and generate cohesive image sets. It guides the agent through prompt collection, API calls, and response handling for generated image outputs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts and uploaded product or reference images are sent to the Pony Supabase-hosted service. <br>
-Mitigation: Avoid submitting confidential, regulated, personal, or unreleased assets unless the service operator and retention practices are acceptable. <br>
-Risk: The required Supabase anon key can consume quota or billing on the connected service. <br>
-Mitigation: Use a dedicated limited key where possible and monitor usage. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lirule007/pony-image) <br>
-- [Skill source](artifact/SKILL.md) <br>
-- [Pony Supabase API endpoint](https://vecarpahagopuqbwxbjh.supabase.co/functions/v1) <br>
+## Use Case:
 
+External users and commercial content teams use this skill to generate product imagery, reproduce a reference visual style for new product images, or create coordinated e-commerce image sets.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Images] <br>
-**Output Format:** [Markdown guidance with curl examples and JSON API responses containing generated image data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PONY_SUPABASE_ANON_KEY and sends prompts, product images, or reference images to the Pony Supabase-hosted service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, product descriptions, reference image URLs, and possible Base64 image data are sent to a disclosed remote Supabase service for processing.
+
+Mitigation: Avoid confidential, regulated, or unreleased business assets unless the provider's retention and privacy terms are acceptable.
+
+Risk: Generated commercial images may be unsuitable, inaccurate, or inconsistent with brand requirements.
+
+Mitigation: Review generated images and enhanced prompts before publication or downstream use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lirule007/skills/pony-image)
+- [Configured Supabase edge functions endpoint](https://vecarpahagopuqbwxbjh.supabase.co/functions/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents to return generated image URLs or Base64 image data and enhanced prompts from the remote image service.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Check a Bitpanda crypto portfolio, wallet balances, trade history, and asset prices from the command line using a local API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check a Bitpanda crypto portfolio, wallet balances, trade history, and asset prices through a read-only CLI workflow.
 
-## Publisher: <br>
-[florianbeer](https://clawhub.ai/user/florianbeer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[florianbeer](https://clawhub.ai/user/florianbeer)
 
-## Use Case: <br>
-External users and developers use this skill to inspect Bitpanda holdings, non-zero wallet balances, recent buy/sell trades, and asset prices without initiating trades or transfers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retrieve and display Bitpanda balances, wallet IDs, and trade history. <br>
-Mitigation: Use a dedicated least-privilege API key and run the skill only where that account information may be shown. <br>
-Risk: A stored API key could be exposed if the local credentials file is readable by other users or tools. <br>
-Mitigation: Protect the credentials file with restrictive permissions and revoke the key when it is no longer needed. <br>
-Risk: Overbroad API-key scopes could increase account exposure beyond read-only viewing. <br>
-Mitigation: Avoid withdrawal or trading permissions and grant only the read scopes needed for balances, trades, and transactions. <br>
+## Use Case:
 
+External users and developers use this skill to query their own Bitpanda account from an agent-accessible CLI for portfolio summaries, non-zero wallet balances, trade history, and asset price or balance lookups.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/florianbeer/bitpanda) <br>
-- [Publisher Profile](https://clawhub.ai/user/florianbeer) <br>
-- [Bitpanda API Key Settings](https://web.bitpanda.com/my-account/apikey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Configuration instructions, Guidance] <br>
-**Output Format:** [Terminal text and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, bc, and a Bitpanda API key supplied through an environment variable or local credentials file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The Bitpanda API key can be exposed to local process inspection when passed to curl as a header argument.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated read-only Bitpanda API key with minimum scopes, avoid broader permissions, and review or revise the curl header handling before use with a sensitive key.
+
+Risk: Transaction options for wallet and date filtering are parsed but not applied by the script.
+
+Mitigation: Do not rely on --wallet, --from, or --to filters for transaction scoping unless those filters are implemented and tested.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/florianbeer/skills/bitpanda)
+- [Bitpanda API key settings](https://web.bitpanda.com/my-account/apikey)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text terminal output from CLI commands, with setup guidance for environment variables or a local credentials file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, bc, and a Bitpanda API key for authenticated portfolio, wallet, and trade requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

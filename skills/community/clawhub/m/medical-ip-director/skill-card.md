@@ -1,42 +1,58 @@
-## Description: <br>
-A medical-aesthetic content operations skill that turns doctor interview material into compliant short- and long-form video scripts, KOS conversion prompts, and reusable content matrices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Medical Ip Director helps medical aesthetics doctors and operations teams turn interview material into compliant short-form scripts, long-form scripts, conversion-oriented calls to action, and Markdown content matrices.
 
-## Publisher: <br>
-[yuan3249](https://clawhub.ai/user/yuan3249) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuan3249](https://clawhub.ai/user/yuan3249)
 
-## Use Case: <br>
-Medical-aesthetic operations teams, doctor IP managers, and content creators use this skill to extract technical talking points from doctor interviews and produce compliant video scripts, topical content, conversion prompts, and Markdown content matrices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Photo and consultation workflows can involve patient-identifying or sensitive medical-aesthetic information. <br>
-Mitigation: Use explicit consent, secure intake, retention limits, deletion procedures, and avoid saving patient-identifying details, consultation notes, or facial photos in generated matrices. <br>
-Risk: Generated marketing content could be inaccurate or noncompliant for a specific medical context or jurisdiction. <br>
-Mitigation: Require human medical, legal, and platform-compliance review before publication. <br>
+## Use Case:
 
+Medical aesthetics operators, doctor IP teams, content creators, and doctors use this skill to extract clinical positioning from raw interview notes and produce platform-ready scripts, topic matrices, and conversion prompts for human review before publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuan3249/medical-ip-director) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown scripts, content matrices, compliance notes, and content guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may involve privacy-sensitive medical-aesthetic intake context and should be reviewed by qualified medical, legal, and compliance staff before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence and artifact SKILL.md) <br>
+Risk: The skill is conversion-focused and can encourage users to submit facial photos or consultation details in a medical marketing workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a supervised, compliant intake process; avoid patient-identifiable data unless consent, secure handling, and deletion controls are in place.
+
+Risk: Generated medical marketing copy may still contain misleading claims, unsupported clinical assertions, or jurisdiction-specific advertising issues.
+
+Mitigation: Require qualified medical, legal, and platform-policy review before publishing or using generated outputs with patients or prospects.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuan3249/skills/medical-ip-director)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+- [Short video example](artifact/examples/short-video-example.md)
+- [Long video example](artifact/examples/long-video-example.md)
+- [Content matrix example](artifact/examples/matrix-example.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown and structured Chinese-language content plans or scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include medical advertising compliance checks, KOS conversion prompts, and doctor IP content matrix entries.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -42,7 +42,7 @@ Bidirectional bridge between Pilot Protocol and Slack for notifications and mess
 
 ### Configure Slack Webhook
 ```bash
-pilotctl --json set-webhook https://hooks.slack.com/services/YOUR/WEBHOOK/URL
+pilotctl --json set-webhook REDACTED-SECRET
 ```
 
 ### Send Plain Message

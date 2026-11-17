@@ -49,7 +49,7 @@ def _call_gemini(prompt: str, temperature: float = 0.4, max_tokens: int = 600) -
         from config.config import GOOGLE_API_KEY
         if not GOOGLE_API_KEY:
             # 환경변수에서 시도
-            GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "AIzaSyCaXIU9NTdcU0QPe7jLsSM0rQF8b4JD6xA") # 기본키 (규칙 기반)
+            GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "REDACTED-SECRET") # 기본키 (규칙 기반)
             
         if not GOOGLE_API_KEY:
             return ""
@@ -80,7 +80,7 @@ def _call_gemini_with_history(system_prompt: str, history: list,
     try:
         from config.config import GOOGLE_API_KEY
         if not GOOGLE_API_KEY:
-            GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "AIzaSyCaXIU9NTdcU0QPe7jLsSM0rQF8b4JD6xA")
+            GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "REDACTED-SECRET")
 
         if not GOOGLE_API_KEY:
             return ""

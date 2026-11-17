@@ -1,40 +1,58 @@
-## Description: <br>
-Edupath accepts a user's undergraduate major and produces a structured postgraduate major, university, and career-direction guidance report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+接收用户输入的【本科专业】，输出一份"总-分-总"结构的考研专业与院校方向选择指导报告。
 
-## Publisher: <br>
-[tsingliuwin](https://clawhub.ai/user/tsingliuwin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tsingliuwin](https://clawhub.ai/user/tsingliuwin)
 
-## Use Case: <br>
-Students and education consultants use Edupath to turn an undergraduate major into a data-driven postgraduate planning report covering study direction, university tiers, career paths, and practical next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reports rely on live web search and internal school-data lookups, so admissions, salary, and employment claims can be source-dependent or become outdated. <br>
-Mitigation: Verify admissions, salary, and employment claims against the cited official sources before using the report for student advising. <br>
-Risk: Education-planning prompts may include private student details beyond the undergraduate major. <br>
-Mitigation: Use the minimum necessary input and avoid sharing private student details unless the user understands which services will receive them. <br>
+## Use Case:
 
+External education consultants and postgraduate applicants use Edupath to generate China-focused kaoyan planning reports from an undergraduate major. The reports compare undergraduate employment, postgraduate paths, university tiers, industry alignment, and career outcomes with cited data sources.
 
-## Reference(s): <br>
-- [Edupath ClawHub listing](https://clawhub.ai/tsingliuwin/edupath) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown report with tables and source labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory text only; it does not create files, code, shell commands, or persistent state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: Live search queries may send unnecessary personal details to external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask users to omit unnecessary personal details and review query content before live Baidu or education-data lookups.
+
+Risk: Globally loading GEMINI.md or CLAUDE.md may apply their general coding and file-editing guidance outside Edupath.
+
+Mitigation: Scope those files to this skill or review them before enabling global agent instructions.
+
+Risk: Planning reports can become misleading if live lookup data is missing, stale, or uncited.
+
+Mitigation: Require source labels for reported data, use the skill's MCP-first fallback flow, and review cited sources before relying on recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tsingliuwin/skills/edupath)
+- [ClawHub publisher profile](https://clawhub.ai/user/tsingliuwin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with tables and source labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are expected to use live Baidu search and education-data lookups, include data-source labels, and avoid uncited or future-dated claims.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

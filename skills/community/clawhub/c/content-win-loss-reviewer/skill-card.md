@@ -1,41 +1,54 @@
-## Description: <br>
-Analyze ecommerce or creator content after launch to diagnose why it won or lost using evidence, scoring, and actionable lessons for improvement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze ecommerce or creator content after launch to diagnose why it won or lost using evidence, scoring, and actionable lessons for improvement.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Content, ecommerce, growth, and creator teams use this skill to review post-launch scripts, ads, social posts, landing assets, or creator videos and turn performance results into win/loss diagnoses, confidence notes, reusable lessons, and next-test recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include confidential campaign metrics, unreleased product plans, private customer data, or sensitive creator agreements in the review context. <br>
-Mitigation: Redact or summarize sensitive details before use, and share only information the user is comfortable including in the agent session. <br>
-Risk: Thin or incomplete performance evidence can lead to overconfident win/loss explanations. <br>
-Mitigation: Require the review to separate facts from interpretation, label confidence for each explanation, and call out missing context or confounders. <br>
+## Use Case:
 
+Marketing teams, ecommerce operators, creators, and content analysts use this skill to review published content, compare wins and losses, separate facts from interpretation, and decide what to keep, change, retest, or stop.
 
-## Reference(s): <br>
-- [Content Win Loss Reviewer on ClawHub](https://clawhub.ai/Leooooooow/content-win-loss-reviewer) <br>
-- [Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown structured review with scoring labels, confidence notes, and recommendation sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided content context, observed results, goals or KPIs, audience and channel context, and any known confounders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A review may include sensitive campaign data, private business metrics, or confidential creator performance details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only data that is appropriate for the review context, and anonymize or omit sensitive metrics when possible.
+
+Risk: Thin evidence can make win/loss explanations sound more certain than the underlying data supports.
+
+Mitigation: Separate observed facts from interpretation and attach confidence levels to likely drivers, blockers, and recommendations.
+
+## Reference(s):
+
+- [Content Win Loss Reviewer Output Template](artifact/references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/content-win-loss-reviewer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown review report with structured sections, bullets, scores, confidence notes, and recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Separates outcome facts from interpretation and uses confidence labels for likely drivers and blockers.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

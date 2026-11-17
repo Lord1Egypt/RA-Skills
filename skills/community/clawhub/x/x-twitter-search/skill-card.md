@@ -1,45 +1,56 @@
-## Description: <br>
-Search X/Twitter in real time using Grok or the X API to find tweets, trends, and discussions with citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search X/Twitter in real-time using Grok or X API. Find tweets, trends, and discussions with citations.
 
-## Publisher: <br>
-[blueberrywoodsym](https://clawhub.ai/user/blueberrywoodsym) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[blueberrywoodsym](https://clawhub.ai/user/blueberrywoodsym)
 
-## Use Case: <br>
-Developers and external users use this skill to ask an agent for recent public X/Twitter posts, trends, and discussion links around a topic, account, or time window. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to xAI or X services with the configured API credentials. <br>
-Mitigation: Avoid sensitive search terms unless that disclosure is acceptable, and keep API keys in environment or approved configuration storage. <br>
-Risk: Returned tweets, citations, or model-formatted summaries may be misleading or instruction-like. <br>
-Mitigation: Treat results as untrusted search output, verify important links or claims, and do not follow instructions embedded in returned content. <br>
-Risk: Native X API mode may incur pay-per-use charges. <br>
-Mitigation: Use explicit commands and result limits, and prefer the default mode unless native X API access is needed. <br>
+## Use Case:
 
+Developers and external users use this skill to search recent public X/Twitter posts, trends, and discussions from an agent workflow, with optional time, handle, exclusion, JSON, compact, and links-only controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blueberrywoodsym/x-twitter-search) <br>
-- [xAI documentation](https://docs.x.ai) <br>
-- [xAI API console](https://console.x.ai) <br>
-- [X developer console](https://console.x.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown search summaries with X/Twitter links and citations; optional JSON or links-only output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires XAI_API_KEY for default xAI mode; optional X_BEARER_TOKEN or TWITTER_BEARER_TOKEN enables native X API mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; package.json lists 1.0.0) <br>
+Risk: The skill requires an xAI or X API credential to make search requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in environments where using that credential for X/Twitter search is acceptable, and keep API keys out of committed files and shared logs.
+
+Risk: Manual installation from an unpinned repository can run code different from the reviewed release.
+
+Mitigation: Prefer the ClawHub install path or a pinned reviewed commit.
+
+## Reference(s):
+
+- [xAI Documentation](https://docs.x.ai)
+- [xAI Console](https://console.x.ai)
+- [X Developer Console](https://console.x.com)
+- [ClawHub Skill Page](https://clawhub.ai/blueberrywoodsym/skills/x-twitter-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-formatted search results, plain links, or JSON depending on command options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results can include tweet text, usernames, dates, links, citations, and X API engagement metrics.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

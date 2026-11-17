@@ -1,40 +1,54 @@
-## Description: <br>
-Generate daily AI Twitter report from top AI researchers and companies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate daily AI Twitter report from top AI researchers and companies.
 
-## Publisher: <br>
-[danetteceola](https://clawhub.ai/user/danetteceola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danetteceola](https://clawhub.ai/user/danetteceola)
 
-## Use Case: <br>
-Developers, analysts, and AI watchers use this skill to produce a daily Chinese-language summary of recent Twitter/X activity from selected AI researchers and organizations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends report prompts and a bearer token to a configurable external AI API endpoint. <br>
-Mitigation: Use only a vetted provider URL, avoid sensitive private data in prompts, and do not set GROK_API_URL to an untrusted host. <br>
-Risk: The configured API key is used as a bearer token for the outbound request. <br>
-Mitigation: Store GROK_API_KEY securely, scope or rotate the credential where possible, and avoid sharing logs that may expose request failures or configuration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Monitored Twitter/X accounts](references/users.txt) <br>
-- [Skill page](https://clawhub.ai/danetteceola/ai-twitter-daily) <br>
+## Use Case:
 
+Developers, AI observers, and research teams use this skill to generate a Chinese-language daily summary of Twitter/X discussion from a fixed list of AI researchers and organizations. The report is produced through a configured LLM endpoint, so users should treat freshness and source coverage as dependent on that endpoint.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Chinese Markdown-style report with tables and bullet points printed to standard output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GROK_API_KEY and can use configurable GROK_API_URL and GROK_MODEL environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends the configured API key and report prompt to a third-party LLM endpoint by default.
+
+Mitigation: Use only a narrowly scoped or disposable key for the configured endpoint, and change GROK_API_URL to a trusted endpoint when appropriate.
+
+Risk: The report may be an LLM-generated synthesis rather than an independently verified collection of current Twitter/X posts.
+
+Mitigation: Review important claims against primary sources before using the report for decisions or publication.
+
+## Reference(s):
+
+- [Monitored X account list](artifact/references/users.txt)
+- [ClawHub skill page](https://clawhub.ai/danetteceola/skills/ai-twitter-daily)
+- [Default configured LLM endpoint](https://api.cheaprouter.club/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese Markdown-style report with tables and bullet points printed to stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GROK_API_KEY and optionally GROK_API_URL and GROK_MODEL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

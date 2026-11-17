@@ -1,40 +1,56 @@
-## Description: <br>
-Navigate Helsinki as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, transport, costs, visas, and local insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Helsinki as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, transport, costs, visas, and local insights.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and agents use this skill to answer Helsinki questions for tourism, relocation, work, study, business setup, and local living. It guides the agent to select the relevant city-guide file based on the user's role, timeline, and needs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The guide includes time-sensitive healthcare, legal, visa, fee, cost, and transit details that can change after release. <br>
-Mitigation: Verify current details with official Finnish or Helsinki-region sources before acting on them. <br>
-Risk: Users may seek urgent safety or medical help from informational guidance. <br>
-Mitigation: For immediate danger or emergencies, use local emergency services rather than relying only on the guide. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/helsinki) <br>
-- [Skill homepage](https://clawic.com/skills/helsinki) <br>
+## Use Case:
 
+External users use this skill to get practical Helsinki guidance for visits, relocation, work, study, entrepreneurship, neighborhoods, transport, costs, visas, food, healthcare, safety, and local services.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown or plain text responses with practical Helsinki guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only informational skill with no executable behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may encourage persistent memory of sensitive travel, relocation, budget, and citizenship context.
+
+Mitigation: Use the skill with memory disabled or require explicit user approval before saving personal context.
+
+Risk: Visa, healthcare, emergency, fee, and cost information may become outdated or affect important decisions.
+
+Mitigation: Verify time-sensitive or consequential guidance against official current sources before relying on it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/helsinki)
+- [Skill Homepage](https://clawic.com/skills/helsinki)
+- [Skill Definition](artifact/SKILL.md)
+- [Setup Guidance](artifact/setup.md)
+- [Memory Template](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with lists, tables, and concise practical recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local skill documentation for topic-specific Helsinki guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

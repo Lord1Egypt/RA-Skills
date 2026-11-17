@@ -1,42 +1,61 @@
-## Description: <br>
-Identifies reminder-worthy tasks and deadlines from Feishu/Lark text or voice messages, optionally transcribes local audio with SenseAudio ASR, stores reminders in SQLite, and sends confirmation and due reminders through Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Feishu/Lark text or voice messages for reminder intent, parses Chinese deadline expressions, stores one-time reminders in SQLite, and sends confirmation and due reminder messages through Feishu after optional SenseAudio ASR transcription.
 
-## Publisher: <br>
-[Hei-MaoM](https://clawhub.ai/user/Hei-MaoM) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hei-maom](https://clawhub.ai/user/hei-maom)
 
-## Use Case: <br>
-Developers and operators use this skill to connect a Feishu/Lark bot to Chinese text and voice messages, create reminder records, and send one-time confirmations and due reminders back to the original chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Voice-message audio can be uploaded to the configured SenseAudio ASR provider. <br>
-Mitigation: Use trusted HTTPS ASR endpoints, notify chat users before processing voice messages, and only enable audio workflows when this data sharing is acceptable. <br>
-Risk: Feishu app credentials and chat reminder contents are sensitive operational data. <br>
-Mitigation: Use least-privileged Feishu app credentials, keep credentials in process environment variables, protect the SQLite database, and define retention and deletion rules. <br>
+## Use Case:
 
+Developers integrating Feishu or Lark bots use this skill to detect reminder requests in Chinese text or voice messages, create reminders, and send a single confirmation and due reminder back to the original chat.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Hei-MaoM/alarm) <br>
-- [Feishu integration guide](references/integration_cn.md) <br>
-- [Chinese time parsing rules](references/time_rules_cn.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses required Feishu and SenseAudio environment variables; stores reminder state in a local SQLite database.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Credentials, voice files, and message content can be sent to configurable Feishu and SenseAudio API hosts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin Feishu and SenseAudio base URLs to trusted HTTPS endpoints and restrict who can change runtime configuration.
+
+Risk: Reminder content, sender identifiers, message identifiers, and audio-derived transcript data may be stored in the local SQLite database.
+
+Mitigation: Protect the process environment and database file, and define retention and deletion rules for stored reminder data.
+
+Risk: Unrestricted reminder creation or use of --no-confirm could create reminders without the expected user-facing confirmation.
+
+Mitigation: Restrict who can invoke reminder creation and --no-confirm in production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hei-maom/skills/alarm)
+- [Feishu integration guide](references/integration_cn.md)
+- [Chinese time parsing rules](references/time_rules_cn.md)
+- [Feishu Open Platform](https://open.feishu.cn)
+- [SenseAudio API endpoint](https://api.senseaudio.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [JSON command output plus plain-text Feishu confirmation and reminder messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist reminder records in a local SQLite database and send Feishu messages when create or polling commands are invoked.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

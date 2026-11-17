@@ -1,42 +1,57 @@
-## Description: <br>
-AICash Network auto-miner for $CASH tokens on Base L2. Use when setting up automated Proof of Compute mining on the AICash mempool network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AICash Network auto-miner for $CASH tokens on Base L2. Use when setting up automated Proof of Compute mining on the AICash mempool network. Supports multi-instance mining, systemd service management, and real-time stats tracking.
 
-## Publisher: <br>
-[Doctor-1017](https://clawhub.ai/user/Doctor-1017) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[doctor-1017](https://clawhub.ai/user/doctor-1017)
 
-## Use Case: <br>
-Developers and operators use this skill to configure and manage automated AICash Proof of Compute mining, including multi-instance Linux services and status controls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill installs persistent root-level mining services. <br>
-Mitigation: Install only on a dedicated Linux host where persistent mining is intended, verify the created systemd units, and remove both the unit files and /root/.openclaw/workspace/aicash when uninstalling. <br>
-Risk: Supplied API credentials can be stored in generated files. <br>
-Mitigation: Use a revocable API key and rotate it if the host or generated files may have been exposed. <br>
-Risk: High instance counts can increase host resource use. <br>
-Mitigation: Start with a small instance count and monitor service behavior before scaling. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AICash Network](https://aicash.network) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Doctor-1017/aicash-miner) <br>
+## Use Case:
 
+Developers and operators use this skill to configure and manage automated Proof of Compute mining for the AICash mempool network on systems intended for continuous mining.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of persistent systemd services and generated miner files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs persistent root-level mining services and performs continuous network activity.
+
+Mitigation: Use only on a dedicated machine where continuous mining, network traffic, and boot-persistent services are intended.
+
+Risk: Credentials and endpoint values may be stored insecurely by the setup flow.
+
+Mitigation: Prefer storing API keys and wallet configuration in protected files or environment settings and do not pass untrusted API key, wallet, endpoint, service name, or instance values.
+
+Risk: Service management scripts target miner services by name pattern.
+
+Mitigation: Confirm the exact services before start or stop operations, or update the scripts to target only owned service units.
+
+## Reference(s):
+
+- [AICash Network](https://aicash.network)
+- [AICash Miner on ClawHub](https://clawhub.ai/doctor-1017/skills/aicash-miner)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Code, Text]
+
+**Output Format:** [Markdown with shell commands and generated service configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup and management guidance for persistent miner services, including status text and runtime statistics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

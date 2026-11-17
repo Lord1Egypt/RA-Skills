@@ -272,6 +272,7 @@ python scripts/caller.py channel \
 **Status Code Description**: Status codes "200", "201", "202" all indicate successful channel installation.
 
 ### Web UI Access
+⚠️ 本 skill 不支持自动开启 WebUI 公网访问。原因：开启公网访问需通过华为云 Flexus L 控制台 API 修改实例的公网访问策略，而本 skill 通过 COC 脚本执行的方式无法调用该控制台 API，因此必须手动在控制台操作。
 Web UI access needs to be manually enabled in Huawei Cloud console, operation steps:
 1. Log in to Huawei Cloud Flexus Application Server L Instance Console
    - 🔗 Console URL: https://console.huaweicloud.com/smb/?/resource/list
@@ -297,6 +298,12 @@ scripts/
 ├── gateway.py         # Gateway module - gateway status query (only for prerequisite checks), related functions `do_check_gateway()`
 └── uniagent.py        # UniAgent module - UniAgent status query (only for prerequisite checks), `do_check_uniagent()`
 ```
+
+
+## Reference Documents
+
+- [IAM Permission Policy](references/iam-policies.md): Huawei Cloud IAM permissions required for Flexus L instance creation and COC operations
+- [Verification Method](references/verification-method.md): Phased verification steps and troubleshooting for deployment, model and channel installation
 
 
 ## Parameter Confirmation

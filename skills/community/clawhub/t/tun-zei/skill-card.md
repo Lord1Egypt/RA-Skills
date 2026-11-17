@@ -1,38 +1,53 @@
-## Description: <br>
-Tun Zei is a local diagnostic helper for error triage, cleanup-oriented reporting, and system health checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tun Zei provides error diagnosis suggestions, simulated cleanup reporting, and local system health checks for agent workflows.
 
-## Publisher: <br>
-[lt8899789](https://clawhub.ai/user/lt8899789) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lt8899789](https://clawhub.ai/user/lt8899789)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect common runtime errors, get repair suggestions, check host health signals, and review cleanup-oriented diagnostics before taking manual action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cleanup targets such as logs or all can imply broad deletion scope even though the bundled script only reports cleanup-oriented counts. <br>
-Mitigation: Require a dry run, explicit confirmation, and a clear target scope before using any cleanup behavior outside the bundled script. <br>
+## Use Case:
 
+Developers and agent operators use this skill to inspect common runtime errors, get suggested fixes, check local system health, and produce cleanup reports before deciding on manual remediation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lt8899789/tun-zei) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or JSON-like diagnostic reports, depending on how the agent presents the skill result] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script can also print JSON for fix, cleanup, and health commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.35 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Cleanup behavior may be mistaken for actual file deletion even though the current evidence indicates simulated removal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat cleanup output as a report, and verify behavior in a controlled environment before relying on it for real cleanup.
+
+Risk: Fix suggestions may be incomplete for complex runtime failures.
+
+Mitigation: Review suggested fixes manually and test changes before applying them to production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lt8899789/skills/tun-zei)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [JSON objects and concise diagnostic text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Cleanup results are reports or simulations; verify behavior before relying on them for actual deletion or remediation.]
+
+## Skill Version(s):
+
+1.0.35 (source: server evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

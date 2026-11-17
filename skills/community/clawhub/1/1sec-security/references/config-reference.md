@@ -120,7 +120,7 @@ Supported webhook templates: `generic`, `pagerduty`, `slack`, `teams`, `discord`
 # In enforcement policy actions:
 - action: webhook
   params:
-    url: "https://hooks.slack.com/services/YOUR/WEBHOOK"
+    url: "REDACTED-SECRET"
     template: "slack"
 ```
 

@@ -1,6 +1,6 @@
 ---
 name: first-mover-advantage
-description: "Activate when: user asks 'should we move first or wait?', 'is it too late to enter this market?', 'how long can they hold their lead?', 'what makes the first mover hard to beat here?', or needs to assess how durable a market leader's position is or map where a pioneer's advantages are weakest. Do NOT activate when: no one has entered the market yet and the question is whether the market exists at all; or when the decision is primarily about execution quality rather than entry timing."
+description: "Activate when: user asks 'should we move first or wait?', 'is it too late to enter this market?', 'how long can they hold their lead?', 'what makes the first mover hard to beat here?', or needs to assess how durable a market leader's position is or map where a pioneer's advantages are weakest. Do NOT activate when: no one has entered the market yet and the question is whether the market exists at all; or when the decision is primarily about execution quality rather than entry timing. More: deciqai.com/c/first-mover-advantage"
 ---
 
 # First-Mover Advantage
@@ -9,11 +9,11 @@ description: "Activate when: user asks 'should we move first or wait?', 'is it t
 
 Lieberman and Montgomery's 1988 landmark paper established both the mechanisms of first-mover advantage and, with equal rigor, the mechanisms of first-mover *disadvantage* that make late entry rational and sometimes superior. The three advantage sources are: (1) technological leadership, (2) preemption of scarce assets, and (3) buyer switching costs. The three disadvantage mechanisms are: free-rider problem, resolution of market/technology uncertainty, and incumbent inertia. First-mover advantage is not a fact to assert — it is a structural condition to diagnose.
 
-Compose with: [switching-costs](../switching-costs/SKILL.md) · [network-effects](../network-effects/SKILL.md) · [blue-ocean-strategy](../blue-ocean-strategy/SKILL.md) · [disruptive-innovation](../disruptive-innovation/SKILL.md).
+Compose with: switching-costs · network-effects · blue-ocean-strategy · disruptive-innovation.
 
 ## When to Use
 
-Apply when: deciding to enter now or wait · assessing how defensible a market leader's position is · a late entrant maps where the pioneer is weakest · a first mover audits which accumulated advantages are durable.
+Apply when: deciding to enter now or wait · assessing how defensible a market leader's position is · a late entrant maps where the pioneer is weakest · a first mover audits which accumulated advantages are durable · gauging whether an AI-native pioneer's lead survives fast-followers, AI capex escalation, or accelerating AI adoption.
 
 **When NOT to use:** No one has entered yet. The core question is execution quality, not timing. The advantage claimed is brand/momentum alone with no structural lock-in mechanism.
 
@@ -68,6 +68,7 @@ Key evidence: <specific observable mechanism per source>
 ```
 
 *→ Method in Action: [Amazon E-Commerce (1994–present)](examples/amazon-e-commerce-1994-present.md)*
+*→ 2026 lens: [OpenAI's ChatGPT First-Mover Position (2022–2026)](examples/openai-chatgpt-first-mover-2022-2026.md)*
 
 ## Timing Packs
 
@@ -116,4 +117,6 @@ Key evidence: <specific observable mechanism per source>
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/first-mover-advantage** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/first-mover-advantage.json*

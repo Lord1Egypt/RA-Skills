@@ -1,40 +1,57 @@
-## Description: <br>
-Local File Sender helps a local OpenClaw agent upload a user-specified local file to cloud storage and send a download link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local File Sender helps a locally deployed OpenClaw agent identify a user-specified local file path, upload the file to cloud storage, and return a download link across Windows, Linux, and macOS.
 
-## Publisher: <br>
-[2656255594](https://clawhub.ai/user/2656255594) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2656255594](https://clawhub.ai/user/2656255594)
 
-## Use Case: <br>
-Employees, external users, or operators running a local OpenClaw deployment use this skill to share files from their local filesystem through platforms that cannot send local file paths directly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload local files to cloud storage and return public download links without a required confirmation step. <br>
-Mitigation: Confirm the exact file path and intended recipient before upload, and avoid uploading secrets, credentials, private documents, browser profiles, SSH keys, or system configuration files unless disclosure is intended. <br>
-Risk: Cloud-hosted agents cannot access the user's local filesystem, so file checks and uploads may fail outside a local OpenClaw deployment. <br>
-Mitigation: Use only in a local deployment, or use platform-native file upload features when running in a cloud deployment. <br>
+## Use Case:
 
+People running OpenClaw locally use this skill to share local files through chat platforms by uploading the selected file and sending a download link when direct local-file sending is unsupported.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/2656255594/local-file-sender) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown messages with file checks, upload results, and download links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local deployment with access to the requested file path and the lightclaw_upload_file tool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter states 1.0.1) <br>
+Risk: Arbitrary local file paths can cause unintended sensitive files to leave the machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation of the exact file before upload, restrict uploads to approved sharing folders, and avoid secrets or credential files.
+
+Risk: Public cloud download links may make uploaded files accessible beyond the intended recipient.
+
+Mitigation: Confirm link visibility before sending and prefer scoped, expiring, or otherwise access-controlled links where available.
+
+Risk: Shell-based file checks can be fragile for unusual paths and safer path handling is needed.
+
+Mitigation: Replace shell path checks with a safe filesystem API and validate paths before upload.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/2656255594/skills/local-file-sender)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown response with download links and inline shell or JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local filesystem access and produces cloud-hosted download links for selected files.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter says 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

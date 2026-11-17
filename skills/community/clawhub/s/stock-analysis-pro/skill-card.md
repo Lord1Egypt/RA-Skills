@@ -1,42 +1,58 @@
-## Description: <br>
-Stock Analysis Pro helps agents produce A-share market summaries, technical indicator analysis, sector rotation notes, portfolio diagnostics, and finance reports using public market data sources such as akshare. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional stock analysis skill that combines akshare market data, technical indicators, sector rotation, and portfolio diagnostics for A-shares, funds, and futures.
 
-## Publisher: <br>
-[windy-001-crypto](https://clawhub.ai/user/windy-001-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[windy-001-crypto](https://clawhub.ai/user/windy-001-crypto)
 
-## Use Case: <br>
-External users and finance-oriented agents use this skill to format market overviews, holdings diagnostics, and investment-style analysis from user-provided holdings and public market data. Outputs should be treated as informational analysis, not financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce investment-style buy, sell, target-price, or portfolio adjustment suggestions that may be incorrect or unsuitable for a user's circumstances. <br>
-Mitigation: Treat outputs as informational analysis, verify market data independently, and consult a qualified financial professional before making investment decisions. <br>
-Risk: Portfolio details, broker logins, account numbers, or optional data-source tokens could expose sensitive financial information if shared unnecessarily. <br>
-Mitigation: Share only the minimum holdings information needed for analysis, never provide broker credentials or account numbers, and protect any optional tushare token. <br>
-Risk: Public market-data sources may be delayed, unavailable, incomplete, or inconsistent during active market conditions. <br>
-Mitigation: Check data freshness, validate unusual values, and avoid relying on a single generated report for time-sensitive trading decisions. <br>
+## Use Case:
 
+External users and agent developers use this skill to generate market snapshots, technical analysis, sector opportunity summaries, stock recommendation tables, and portfolio diagnostics from public market data and user-provided holdings.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/windy-001-crypto/stock-analysis-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown reports and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market summaries, holdings tables, target and stop-loss notes, and risk reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Stock recommendations, target prices, stop-loss levels, and portfolio diagnostics may be mistaken for trading instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as informational analysis only and require users to verify market data freshness and accuracy before acting.
+
+Risk: Portfolio diagnostics depend on user-provided holdings information.
+
+Mitigation: Ask only for the minimum holdings details needed for the requested analysis and avoid unnecessary personal, account, or credential information.
+
+Risk: Public market data may be delayed, unavailable, or inaccurate.
+
+Mitigation: Validate returned data for reasonableness and disclose that analysis depends on the freshness and accuracy of public data sources.
+
+## Reference(s):
+
+- [Stock Analysis Pro on ClawHub](https://clawhub.ai/windy-001-crypto/skills/stock-analysis-pro)
+- [Publisher profile](https://clawhub.ai/user/windy-001-crypto)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, tables, and concise natural-language analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include stock recommendations, target prices, stop-loss levels, portfolio diagnostics, and risk notices.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,55 @@
-## Description: <br>
-Organize your agent's knowledge using PARA (Projects, Areas, Resources, Archive), make local notes searchable, and preserve continuity with session transcript indexing and memory flush practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes an agent's local knowledge with PARA folders, curated memory, daily logs, searchable notes, session transcript indexing guidance, and a memory flush protocol.
 
-## Publisher: <br>
-[halthelobster](https://clawhub.ai/user/halthelobster) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[halthelobster](https://clawhub.ai/user/halthelobster)
 
-## Use Case: <br>
-Developers and agent users use this skill to scaffold and maintain a local PARA-based knowledge system for projects, responsibilities, reference notes, archived work, daily logs, and curated long-term memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Making local notes and past conversation transcripts searchable can expose private, sensitive, or regulated information to future agent retrieval. <br>
-Mitigation: Choose indexed folders and session sources deliberately, and avoid storing secrets, credentials, regulated data, or highly sensitive personal details without a clear retention plan. <br>
+## Use Case:
 
+Developers and agent users use this skill to create a workspace-local second brain for project continuity, organized notes, daily logs, and retained decisions. It is suited to teams or individuals who want file-based memory that can be searched by an agent.
 
-## Reference(s): <br>
-- [PARA method creator](https://fortelabs.com/) <br>
-- [ClawHub release page](https://clawhub.ai/halthelobster/para-second-brain) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration snippets, and note templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local file-organization guidance and setup commands for a PARA memory structure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Broad note indexing or whole-folder symlinks can expose secrets, credentials, private personal data, regulated data, or confidential material to agent memory search.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Link only vetted folders, exclude sensitive files before indexing, and review the searchable memory scope before enabling the setup.
+
+Risk: Session transcript indexing can retain more personal or confidential conversation history than intended.
+
+Mitigation: Enable transcript indexing only in workspaces where long-term memory is appropriate, prefer concise summaries over full conversations, and maintain a process to review and delete memory files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/halthelobster/skills/para-second-brain)
+- [Publisher profile](https://clawhub.ai/user/halthelobster)
+- [PARA methodology by Tiago Forte](https://fortelabs.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration snippets, and reusable Markdown templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local file-organization guidance and setup commands; users should review memory scope before indexing notes or session transcripts.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

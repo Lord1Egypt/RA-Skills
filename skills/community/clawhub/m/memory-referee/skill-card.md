@@ -1,43 +1,58 @@
-## Description: <br>
-Memory hygiene and adjudication layer for OpenClaw agent workflows that deduplicates entities, resolves naming conflicts, separates facts from goals from speculation, archives stale records, enforces consistent schemas, detects contradictions, and preserves provenance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory hygiene and adjudication layer for OpenClaw agent workflows that deduplicates entities, resolves naming conflicts, separates facts from goals from speculation, archives stale records, enforces consistent schemas, detects contradictions, and preserves provenance.
 
-## Publisher: <br>
-[honouralexwill](https://clawhub.ai/user/honouralexwill) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[honouralexwill](https://clawhub.ai/user/honouralexwill)
 
-## Use Case: <br>
-Developers and agent operators use this skill to clean accumulated OpenClaw memory records before passing them downstream. It helps collapse duplicates, classify records, flag contradictions, archive stale entries, and produce a reviewable adjudication result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may merge, classify, flag, or archive memory records incorrectly because parts of the adjudication are heuristic. <br>
-Mitigation: Review the Markdown report and structured conflict, stale-record, and classification output before allowing it to replace or change important agent memory. <br>
-Risk: Input memory records may contain sensitive or operationally important information. <br>
-Mitigation: Provide only the records intended for adjudication and verify preserved provenance before using the result downstream. <br>
-Risk: Staleness and contradiction decisions may miss context outside the submitted snapshot. <br>
-Mitigation: Treat the output as a reviewable snapshot and compare decisions against source context when records affect ongoing goals or user preferences. <br>
+## Use Case:
 
+Developers and agents use this skill to clean accumulated OpenClaw memory records before downstream use. It adjudicates duplicate, conflicting, stale, and schema-drifted records into a human-readable report and structured output.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/honouralexwill/memory-referee) <br>
-- [Saturnday](https://www.saturnday.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown adjudication report plus structured JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes caller-provided memory records in memory and returns a snapshot result without persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata and package.json; SKILL.md frontmatter states 1.0.0) <br>
+Risk: Repository instructions may prompt an agent to run unaudited external Saturnday commands or install hooks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before running Saturnday commands or installing hooks from the artifact.
+
+Risk: Generated Markdown and JSON reports can contain memory contents and provenance details.
+
+Mitigation: Treat reports as sensitive data and restrict storage, sharing, and downstream logging according to the workspace data policy.
+
+Risk: Test and development tooling may be inappropriate for untrusted users.
+
+Mitigation: Run the package in a controlled agent or developer workspace and avoid exposing development commands as an unauthenticated service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/honouralexwill/skills/memory-referee)
+- [Saturnday](https://www.saturnday.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Markdown adjudication report and structured JSON report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes counts, classifications, conflicts, archived stale records, schema violations, and provenance chain entries.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and package.json; SKILL.md frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-An intelligent trip-planning skill that uses flight, hotel, and attraction data to generate complete travel itineraries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能行程规划师，整合航班、酒店、景点数据，一键生成完整旅行方案。当用户需要规划旅行行程、制定旅游计划、安排度假方案或询问"去哪里玩""怎么安排行程"时使用此 skill。
 
-## Publisher: <br>
-[yunhanli7](https://clawhub.ai/user/yunhanli7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yunhanli7](https://clawhub.ai/user/yunhanli7)
 
-## Use Case: <br>
-External users use this skill to plan leisure, family, business-plus-leisure, food-focused, or parent-child trips by requesting a destination, duration, budget, and preferences. The skill produces a complete itinerary covering transportation, lodging, attractions, restaurants, practical tips, and a budget estimate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A normal travel-planning request can trigger a global npm install of `@fly-ai/flyai-cli`. <br>
-Mitigation: Preinstall a trusted, pinned version in a managed or sandboxed environment and require explicit approval before setup commands run. <br>
-Risk: Travel recommendations, prices, schedules, availability, images, and booking links depend on external real-time data. <br>
-Mitigation: Review generated itineraries and verify booking details before purchase or travel. <br>
+## Use Case:
 
+External users use this skill to plan trips from natural-language travel requests, combining flights, hotels, attractions, restaurants, practical tips, and budget estimates into a complete itinerary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yunhanli7/fliggy-trip-planner) <br>
-- [Publisher profile](https://clawhub.ai/user/yunhanli7) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with tables, images, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes itinerary overview, flight and hotel comparisons, daily schedule, practical tips, and budget table.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill may install and run an unpinned global flyai CLI dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in environments where installing and running flyai is acceptable, and require explicit approval or a preinstalled reviewed flyai version.
+
+Risk: Generated prices, schedules, images, and booking links may be incomplete or outdated.
+
+Mitigation: Verify travel data with official airline, hotel, attraction, or booking sources before purchase.
+
+Risk: User-derived travel inputs are used in shell-style flyai commands.
+
+Mitigation: Review command arguments before execution and avoid passing sensitive personal data unless the execution environment and provider are approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yunhanli7/skills/fliggy-trip-planner)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown travel itinerary with tables, image links, booking links, budget estimates, and supporting flyai command usage.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Travel prices, schedules, images, and booking links should be verified against official or booking sources before purchase.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

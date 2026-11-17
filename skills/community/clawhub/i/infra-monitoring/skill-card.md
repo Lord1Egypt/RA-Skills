@@ -1,49 +1,65 @@
-## Description: <br>
-Infra Monitoring helps small teams, solo operators, and self-hosters assess server health, uptime, resource usage, SSL certificate expiry, and incidents through plain-language status reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor server health, uptime, resource utilization, SSL certificate expiry, and incident detection for small teams and self-hosters. Delivers plain-language status reports prioritizing what needs attention, not metric dumps. Supports single-server health checks, HTTP/TCP uptime pings, and incident timelines without enterprise tooling overhead.
 
-## Publisher: <br>
-[gitcanadabrett](https://clawhub.ai/user/gitcanadabrett) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitcanadabrett](https://clawhub.ai/user/gitcanadabrett)
 
-## Use Case: <br>
-Developers, DevOps engineers, solo SaaS operators, and self-hosters use this skill to interpret server metrics, endpoint checks, SSL certificate status, and incident signals. It is intended for practical infrastructure health reporting and prioritized operational guidance, not full observability platform replacement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be asked to check domains, IPs, logs, or infrastructure details that the user is not authorized to test. <br>
-Mitigation: Only assess user-provided systems and endpoints that the user is authorized to monitor, and ask for scope clarification when ownership or authorization is unclear. <br>
-Risk: Infrastructure logs, command output, or endpoint responses may include secrets, private keys, API tokens, or sensitive user data. <br>
-Mitigation: Instruct users to redact secrets and sensitive data before sharing inputs, and exclude sensitive response data from reports and incident logs. <br>
-Risk: On-demand health checks can be mistaken for continuous monitoring, real-time detection, or automated remediation. <br>
-Mitigation: State when findings are based on supplied snapshots or explicit checks, and provide remediation guidance or commands for user review instead of taking direct action. <br>
+## Use Case:
 
+Developers, small operations teams, self-hosters, and solo SaaS operators use this skill to assess server health, endpoint uptime, SSL certificate status, incident signals, and capacity concerns without enterprise monitoring overhead.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gitcanadabrett/infra-monitoring) <br>
-- [Publisher profile](https://clawhub.ai/user/gitcanadabrett) <br>
-- [Infrastructure & Uptime Monitoring Skill README](artifact/README.md) <br>
-- [Infrastructure & Uptime Monitoring Skill Spec](artifact/infra-monitoring-spec.md) <br>
-- [Alert Severity Classification System](artifact/references/alert-severity.md) <br>
-- [Infrastructure Metrics Thresholds Reference](artifact/references/metrics-thresholds.md) <br>
-- [Monitoring Checklists](artifact/references/monitoring-checklists.md) <br>
-- [Test Prompts](artifact/references/test-prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown status reports with tables, prioritized findings, and inline shell commands when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Separates observed metrics from diagnostic inferences and prioritizes items that need attention.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence, README status) <br>
+Risk: The skill can make user-directed endpoint checks that may target private, internal, or unauthorized systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use agent runtime network controls, require public or authorized targets, and reject localhost, private, link-local, and metadata address ranges before broad use.
+
+Risk: Endpoint checks could follow redirects or inspect response data in ways that expose sensitive systems or content.
+
+Mitigation: Validate redirects, limit allowed ports and response data, and avoid forwarding credentials or sensitive response bodies.
+
+Risk: Monitoring output may include credentials, PII, or sensitive server response details if raw inputs contain them.
+
+Mitigation: Exclude credentials and PII from reports, reference secret managers or environment variables instead of writing secrets, and summarize sensitive responses rather than reproducing them.
+
+Risk: Operational diagnosis and remediation guidance can be wrong or harmful if treated as an automated fix.
+
+Mitigation: Keep remediation as reviewed guidance, separate observed facts from interpretations, and require user approval before any action that changes infrastructure.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gitcanadabrett/skills/infra-monitoring)
+- [Infrastructure Metrics Thresholds](references/metrics-thresholds.md)
+- [Alert Severity Classification System](references/alert-severity.md)
+- [Monitoring Checklists](references/monitoring-checklists.md)
+- [Test Prompts](references/test-prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown status report with tables and inline shell commands when useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include severity labels, endpoint status, SSL expiry, incident timelines, observed facts, interpretations, and prioritized next steps.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

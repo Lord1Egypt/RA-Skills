@@ -2,6 +2,8 @@
 
 A production-ready Twilio + OpenAI Realtime SIP bridge that enables voice conversations with an AI assistant. This bridge connects inbound/outbound phone calls to OpenAI's Realtime API and optionally integrates with OpenClaw for brain-in-loop capabilities.
 
+**Privacy and cost warning:** this runtime handles real phone calls. Call audio may pass through your voice provider and OpenAI Realtime, calls may incur carrier/API charges, and generated logs/transcripts can contain sensitive communications data. Keep `runtime/.env`, `runtime/logs/`, contact caches, and CRM files private. Configure caller notice/consent, retention/deletion, and authorized test numbers before production use.
+
 ## Features
 
 - **Bidirectional calling**: Handle both inbound call screening and outbound calls with custom objectives
@@ -16,7 +18,7 @@ A production-ready Twilio + OpenAI Realtime SIP bridge that enables voice conver
 
 ### 1. Prerequisites
 
-- Node.js 18+ (24+ recommended)
+- Node.js 20+ (24+ recommended)
 - Twilio account with a phone number
 - OpenAI account with Realtime API access
 - (Optional) OpenClaw gateway running locally
@@ -160,6 +162,12 @@ When configured, the assistant can delegate complex queries (calendar lookups, c
 | `ORG_NAME` | Organization name | (empty) |
 | `DEFAULT_CALENDAR` | Default calendar for bookings | (empty) |
 | `OPENAI_VOICE` | OpenAI TTS voice (alloy, echo, fable, onyx, nova, shimmer) | `alloy` |
+| `AMBER_REALTIME_MODEL` | Default Realtime model for calls without a per-call override (`gpt-realtime` or `gpt-realtime-mini`) | `gpt-realtime` |
+| `AMBER_REALTIME_VAD_THRESHOLD` | Realtime server VAD speech sensitivity. Lower is more sensitive to quiet speech. | `0.5` |
+| `AMBER_REALTIME_VAD_PREFIX_PADDING_MS` | Audio padding kept before detected speech starts. | `500` |
+| `AMBER_REALTIME_VAD_SILENCE_DURATION_MS` | Silence length used to commit a caller turn. | `650` |
+| `AMBER_CRM_ENABLED` | Enable local CRM lookup/logging. Enable only with caller notice/consent and retention policy. | `false` |
+| `AMBER_CRM_TRANSCRIPT_ENRICHMENT` | Enable post-call transcript extraction into local CRM through OpenAI Chat Completions. | `false` |
 
 ### Optional - Call Screening
 
@@ -182,8 +190,10 @@ When configured, the assistant can delegate complex queries (calendar lookups, c
 
 ### Outbound Calls
 
-- **POST /call/outbound** - Initiate an outbound call
-  - Body: `{ "to": "+15555551234", "objective": "...", "callPlan": {...} }`
+- **POST /call/preview** - Validate destination, objective, optional call plan, and model; return a five-minute single-use `approvalToken`.
+- **POST /call/outbound** - After explicit operator approval, submit the exact previewed plan with `confirmed=true` and its `approvalToken`. A changed plan, missing/expired token or replay is rejected before dialing. Direct browser calls are denied; use the same-origin dashboard proxy. Tokens enforce sequencing, not proof of human approval.
+  - Body: `{ "to": "+15555551234", "objective": "...", "callPlan": {...}, "model": "gpt-realtime-mini" }`
+  - `model` is optional; when omitted, Amber uses `AMBER_REALTIME_MODEL`.
 
 ### OpenAI Webhook
 
@@ -203,12 +213,12 @@ During a call, if the AI assistant encounters a question it can't answer from it
 
 1. Call the `ask_openclaw` function with the question
 2. The bridge sends the question to OpenClaw's `/v1/chat/completions` endpoint (OpenAI-compatible)
-3. OpenClaw (your main agent) processes the question using all its tools (calendar, contacts, memory, etc.)
+3. OpenClaw (your main agent) processes the question using the tools available to that gateway session. Configure that session with a narrow allowlist for call-critical actions only.
 4. The answer is returned to the bridge
 5. The bridge sends the answer back to OpenAI Realtime
 6. The assistant speaks the answer to the caller
 
-This enables your voice assistant to access the full context and capabilities of your OpenClaw agent during live phone calls.
+This enables your voice assistant to access operator-approved context during live phone calls. Treat the gateway as a sensitive integration: limit enabled tools, require confirmation for side effects, and do not expose unrelated private data to callers.
 
 If OpenClaw is unavailable or times out, the bridge falls back to a lightweight OpenAI Chat Completions call with basic operator info from environment variables.
 
@@ -240,3 +250,7 @@ See the main ClawHub repository for license information.
 ## Support
 
 For issues, questions, or contributions, see the main [ClawHub repository](https://github.com/yourusername/clawhub).
+
+## Security upgrade compatibility
+
+OpenAI events must carry valid Standard Webhooks `webhook-id`, `webhook-timestamp` and `webhook-signature` headers; unsigned development-mode events are no longer accepted. Runtime dependencies now include the patched OpenAI 6.49 SDK and MCP 1.32 SDK; run `npm ci && npm run build && npm run test:security` after upgrading. Tests use fake credentials and a local mock; no calls are placed.

@@ -1,43 +1,58 @@
-## Description: <br>
-Google Drive Secure Management helps agents list, search, read text content, create files, upload binaries, create folders, rename, move, copy, share, and manage permissions on Google Drive files through PortEden. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Drive Secure Management for listing, searching, reading text content, creating files and folders, uploading binaries, moving, copying, sharing, and managing permissions on Google Drive files through porteden.
 
-## Publisher: <br>
-[porteden](https://clawhub.ai/user/porteden) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[porteden](https://clawhub.ai/user/porteden)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to manage Google Drive files and folders through PortEden commands, including listing, reading, creating, uploading, moving, copying, sharing, permission review, and deletion workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate on Google Drive content available to the active PortEden token. <br>
-Mitigation: Use the narrowest available Drive access and review accessInfo in command output before taking action. <br>
-Risk: Sharing, permission changes, and deletion can expose or remove Drive content. <br>
-Mitigation: Require explicit user confirmation before sharing files, changing permissions, or deleting files. <br>
-Risk: Credentials may be provided through PE_API_KEY or stored in the system keyring after login. <br>
-Mitigation: Protect PortEden credentials as sensitive secrets and avoid exposing them in prompts, logs, or command output. <br>
+## Use Case:
 
+Developers and agents use this skill to manage Google Drive files and folders through the porteden CLI, including search, content reads, file creation, uploads, copying, moving, sharing, permissions, and deletion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/porteden/google-drive-secure) <br>
-- [PortEden homepage](https://porteden.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented command output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses PortEden CLI commands and the -jc JSON compact output mode for agent-friendly Drive results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release evidence) <br>
+Risk: The skill can grant an agent access to Google Drive files and folders through porteden credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged Google account or token, verify Drive access and scopes, and review accessInfo and authWarnings before acting.
+
+Risk: Sharing or delete commands can expose files or move them to trash.
+
+Mitigation: Confirm the target file, recipient, role, and delete intent before running share or delete commands.
+
+Risk: Unpinned porteden installation commands may install a newer CLI than the reviewed release.
+
+Mitigation: Prefer a pinned or verified porteden release when installing for controlled environments.
+
+## Reference(s):
+
+- [PortEden homepage](https://porteden.com)
+- [ClawHub Google Drive skill page](https://clawhub.ai/porteden/skills/google-drive-secure)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses compact JSON CLI output guidance (-jc) and requires porteden authentication for Drive access.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Unified notification hub collecting all skill alerts and delivering by priority <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified notification hub collecting all skill alerts and delivering by priority
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Developers and operators use this skill to centralize local skill event notifications, prioritize urgent, important, and informational alerts, and route summaries to Discord, heartbeat responses, or daily reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local event files may include sensitive notification content that can appear in summaries, Discord alerts, or retained history. <br>
-Mitigation: Avoid placing sensitive message bodies in events unless the destination channels and retention behavior are acceptable. <br>
-Risk: Unclear event writer permissions or notification destinations can cause unexpected alerts or disclosure. <br>
-Mitigation: Confirm which skills can write to events/, what notification content is allowed, and where Discord messages are sent before installation. <br>
-Risk: Notification history can retain operational details longer than intended. <br>
-Mitigation: Set an appropriate retention policy for memory/notifications/ before using the skill with real event data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mupengi-bot/mupeng-notification-hub) <br>
+## Use Case:
 
+Developers and operators use this skill to collect alert events from multiple skills, classify them by priority, reduce duplicate notifications, and route urgent, important, and informational updates to appropriate channels.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured notification summaries, JSON examples, and inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe local event files, notification history, Discord delivery, and priority routing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may surface sensitive security, operational, cost, and Instagram DM-related alerts.
+
+Mitigation: Use sanitized summaries for sensitive sources and avoid exposing raw private alert content in shared channels.
+
+Risk: Urgent or important notifications may be sent to Discord.
+
+Mitigation: Configure the Discord destination carefully and verify that the target channel or DM is appropriate before deployment.
+
+Risk: Notification history is stored and broad activation phrases may expose prior alerts.
+
+Mitigation: Limit access to notification history, define retention expectations, and narrow activation phrases in shared or sensitive environments.
+
+## Reference(s):
+
+- [Notification Hub on ClawHub](https://clawhub.ai/mupengi-bot/skills/mupeng-notification-hub)
+- [Mupengism GitHub profile](https://github.com/mupeng)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown summaries, JSON event and history examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prioritized alert summaries, notification routing guidance, duplicate-prevention records, and notification history entries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

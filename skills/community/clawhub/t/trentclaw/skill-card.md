@@ -1,44 +1,55 @@
-## Description: <br>
-Assess your Agent deployment against security risks using Trent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assess your Agent deployment against security risks using Trent.
 
-## Publisher: <br>
-[trent-ai-release](https://clawhub.ai/user/trent-ai-release) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trent-ai-release](https://clawhub.ai/user/trent-ai-release)
 
-## Use Case: <br>
-Developers and security engineers use this skill to audit OpenClaw deployments, review configuration risks, and request deeper skill-package analysis from Trent after explicit upload confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends redacted OpenClaw configuration metadata and, after confirmation, packaged skill/source code to Trent. <br>
-Mitigation: Use it only when that data sharing is acceptable, review the Phase 2 upload preview, and upload only after explicit confirmation. <br>
-Risk: Secrets can be exposed if they are hard-coded in custom formats that are not recognized by the local redaction logic. <br>
-Mitigation: Keep secrets in environment variables, review packaged skill contents when prompted, and rotate any credential suspected of exposure. <br>
-Risk: Generated .skill archives can remain in the local workspace after packaging. <br>
-Mitigation: Delete generated .skill archives when local packaged copies are no longer needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit OpenClaw deployments, identify misconfigurations and chained attack paths, and receive severity-rated findings with fixes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/trent-ai-release/trentclaw) <br>
-- [Trent](https://trent.ai) <br>
-- [Trent OpenClaw API key setup](https://trent.ai/openclaw/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, code, configuration] <br>
-**Output Format:** [Markdown guidance with inline bash and Python code blocks, severity-grouped findings, upload summaries, and configuration diff snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TRENT_API_KEY and sends selected redacted configuration metadata and confirmed skill packages to Trent for analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill sends redacted OpenClaw metadata and packaged local skill/code archives to Trent for analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated .skill archives and proceed only if sharing that material with Trent is acceptable.
+
+Risk: Custom TRENT_CHAT_API_URL or TRENT_AGENT_API_URL values can receive the Trent API key.
+
+Mitigation: Use the default Trent endpoints, or set custom endpoints only when they are trusted and intended to receive TRENT_API_KEY.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/trent-ai-release/skills/trentclaw)
+- [Trent](https://trent.ai)
+- [Trent OpenClaw API key setup](https://trent.ai/openclaw/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, Analysis]
+
+**Output Format:** [Markdown with severity-grouped findings, inline bash snippets, JSON summaries, and diff snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings are grouped by CRITICAL, HIGH, MEDIUM, and LOW severity.]
+
+## Skill Version(s):
+
+1.4.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

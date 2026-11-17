@@ -1,0 +1,398 @@
+{
+  "scanDate": "2026-07-27T02:08:06.366803+00:00",
+  "category": [
+    "Home & Kitchen",
+    "Kitchen & Dining",
+    "Coffee, Tea & Espresso"
+  ],
+  "marketplace": "US",
+  "subcategories": {
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Coffee Makers > Single-Serve Brewers": {
+      "sampleAvgMonthlySales": 2651.0000000000014,
+      "sampleNewSkuRate": 0.06,
+      "topBrandSalesRate": 0.972840437570728,
+      "sampleAvgPrice": 106.71,
+      "sampleAPlusRate": 0.93,
+      "totalSkuCount": 1487,
+      "sampleFbaRate": 0.3
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Coffee Makers > Coffee Machines": {
+      "sampleAvgMonthlySales": 1875.0000000000007,
+      "sampleNewSkuRate": 0.02,
+      "topBrandSalesRate": 0.792,
+      "sampleAvgPrice": 113.79,
+      "sampleAPlusRate": 0.95,
+      "totalSkuCount": 4171,
+      "sampleFbaRate": 0.22
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Espresso Machines > Semi-Automatic Espresso Machines": {
+      "sampleAvgMonthlySales": 583.9999999999999,
+      "sampleNewSkuRate": 0.18,
+      "topBrandSalesRate": 0.851027397260274,
+      "sampleAvgPrice": 252.43,
+      "sampleAPlusRate": 0.94,
+      "totalSkuCount": 1099,
+      "sampleFbaRate": 0.65
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Espresso Machines > Super-Automatic Espresso Machines": {
+      "sampleAvgMonthlySales": 109.5,
+      "sampleNewSkuRate": 0.09,
+      "topBrandSalesRate": 0.9178082191780822,
+      "sampleAvgPrice": 1207.83,
+      "sampleAPlusRate": 0.74,
+      "totalSkuCount": 571,
+      "sampleFbaRate": 0.23
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Espresso Machine & Coffeemaker Combos": {
+      "sampleAvgMonthlySales": 150.0,
+      "sampleNewSkuRate": 0.04,
+      "topBrandSalesRate": 1.0,
+      "sampleAvgPrice": 140.82,
+      "sampleAPlusRate": 0.48,
+      "totalSkuCount": 585,
+      "sampleFbaRate": 0.05
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Kettles & Tea Machines > Electric Kettles": {
+      "sampleAvgMonthlySales": 1831.9999999999995,
+      "sampleNewSkuRate": 0.06,
+      "topBrandSalesRate": 0.7751091703056768,
+      "sampleAvgPrice": 43.73,
+      "sampleAPlusRate": 0.92,
+      "totalSkuCount": 3498,
+      "sampleFbaRate": 0.46
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Coffee Grinders > Electric Burr Grinders": {
+      "sampleAvgMonthlySales": 614.0000000000001,
+      "sampleNewSkuRate": 0.13,
+      "topBrandSalesRate": 0.744299674267101,
+      "sampleAvgPrice": 113.16,
+      "sampleAPlusRate": 0.95,
+      "totalSkuCount": 902,
+      "sampleFbaRate": 0.73
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Milk Frothers": {
+      "sampleAvgMonthlySales": 3186.9999999999973,
+      "sampleNewSkuRate": 0.13,
+      "topBrandSalesRate": 0.8362096015061186,
+      "sampleAvgPrice": 23.93,
+      "sampleAPlusRate": 0.92,
+      "totalSkuCount": 3524,
+      "sampleFbaRate": 0.92
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Coffee Grinders > Electric Blade Grinders": {
+      "sampleAvgMonthlySales": 867.9999999999999,
+      "sampleNewSkuRate": 0.03,
+      "topBrandSalesRate": 0.913594470046083,
+      "sampleAvgPrice": 31.41,
+      "sampleAPlusRate": 0.93,
+      "totalSkuCount": 525,
+      "sampleFbaRate": 0.57
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Coffee Makers > French Presses": {
+      "sampleAvgMonthlySales": 664.0000000000001,
+      "sampleNewSkuRate": 0.02,
+      "topBrandSalesRate": 0.8207831325301205,
+      "sampleAvgPrice": 33.91,
+      "sampleAPlusRate": 0.94,
+      "totalSkuCount": 1246,
+      "sampleFbaRate": 0.72
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Coffee Makers > Percolators": {
+      "sampleAvgMonthlySales": 287.00000000000006,
+      "sampleNewSkuRate": 0.05,
+      "topBrandSalesRate": 0.9006968641114983,
+      "sampleAvgPrice": 38.4,
+      "sampleAPlusRate": 0.63,
+      "totalSkuCount": 480,
+      "sampleFbaRate": 0.4
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Coffee Makers > Cold Brew Coffee Makers": {
+      "sampleAvgMonthlySales": 528.4999999999999,
+      "sampleNewSkuRate": 0.01,
+      "topBrandSalesRate": 0.7899716177861873,
+      "sampleAvgPrice": 30.76,
+      "sampleAPlusRate": 0.92,
+      "totalSkuCount": 811,
+      "sampleFbaRate": 0.75
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Espresso Machines": {
+      "sampleAvgMonthlySales": 101.94805194805194,
+      "sampleNewSkuRate": 0.09090909090909091,
+      "topBrandSalesRate": 0.9936305732484076,
+      "sampleAvgPrice": 596.24,
+      "sampleAPlusRate": 0.7532467532467533,
+      "totalSkuCount": 77,
+      "sampleFbaRate": 0.45454545454545453
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Coffee Grinders > Manual Grinders": {
+      "sampleAvgMonthlySales": 234.5,
+      "sampleNewSkuRate": 0.06,
+      "topBrandSalesRate": 0.7995735607675906,
+      "sampleAvgPrice": 60.02,
+      "sampleAPlusRate": 0.83,
+      "totalSkuCount": 1227,
+      "sampleFbaRate": 0.99
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Coffee Makers > Electric Coffee Percolators": {
+      "sampleAvgMonthlySales": 172.72727272727272,
+      "sampleNewSkuRate": 0.09090909090909091,
+      "topBrandSalesRate": 1.0,
+      "sampleAvgPrice": 73.0,
+      "sampleAPlusRate": 0.36363636363636365,
+      "totalSkuCount": 11,
+      "sampleFbaRate": 0.18181818181818182
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Stovetop Espresso & Moka Pots": {
+      "sampleAvgMonthlySales": 400.99999999999983,
+      "sampleNewSkuRate": 0.04,
+      "topBrandSalesRate": 0.9201995012468828,
+      "sampleAvgPrice": 35.8,
+      "sampleAPlusRate": 0.95,
+      "totalSkuCount": 1994,
+      "sampleFbaRate": 0.7
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Beverage Warmers": {
+      "sampleAvgMonthlySales": 334.00000000000006,
+      "sampleNewSkuRate": 0.04,
+      "topBrandSalesRate": 0.7574850299401198,
+      "sampleAvgPrice": 40.08,
+      "sampleAPlusRate": 0.95,
+      "totalSkuCount": 2193,
+      "sampleFbaRate": 0.96
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Espresso Machines > Manual Espresso Machines": {
+      "sampleAvgMonthlySales": 87.50000000000003,
+      "sampleNewSkuRate": 0.0,
+      "topBrandSalesRate": 1.0,
+      "sampleAvgPrice": 75.23,
+      "sampleAPlusRate": 0.34,
+      "totalSkuCount": 262,
+      "sampleFbaRate": 0.14
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Coffee Makers > Pour Over Coffee Makers": {
+      "sampleAvgMonthlySales": 361.00000000000017,
+      "sampleNewSkuRate": 0.03,
+      "topBrandSalesRate": 0.7313019390581718,
+      "sampleAvgPrice": 26.27,
+      "sampleAPlusRate": 0.8,
+      "totalSkuCount": 1257,
+      "sampleFbaRate": 0.82
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Tea Accessories > Japanese Tea Ceremony Utensils > Matcha Sets": {
+      "sampleAvgMonthlySales": 454.9999999999999,
+      "sampleNewSkuRate": 0.12,
+      "topBrandSalesRate": 0.6197802197802198,
+      "sampleAvgPrice": 19.2,
+      "sampleAPlusRate": 0.87,
+      "totalSkuCount": 935,
+      "sampleFbaRate": 1.0
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Tea Accessories > Tea Strainers & Filters > Tea Filters": {
+      "sampleAvgMonthlySales": 845.0000000000002,
+      "sampleNewSkuRate": 0.01,
+      "topBrandSalesRate": 0.5739644970414202,
+      "sampleAvgPrice": 9.18,
+      "sampleAPlusRate": 0.83,
+      "totalSkuCount": 3578,
+      "sampleFbaRate": 0.95
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Drink Stirrers": {
+      "sampleAvgMonthlySales": 611.0000000000001,
+      "sampleNewSkuRate": 0.01,
+      "topBrandSalesRate": 0.6726677577741408,
+      "sampleAvgPrice": 10.17,
+      "sampleAPlusRate": 0.74,
+      "totalSkuCount": 1006,
+      "sampleFbaRate": 0.92
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Coffee Makers": {
+      "sampleAvgMonthlySales": 136.00000000000006,
+      "sampleNewSkuRate": 0.08,
+      "topBrandSalesRate": 1.0,
+      "sampleAvgPrice": 93.26,
+      "sampleAPlusRate": 0.64,
+      "totalSkuCount": 25,
+      "sampleFbaRate": 0.52
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Kettles & Tea Machines > Combination Water Boilers & Warmers": {
+      "sampleAvgMonthlySales": 34.49999999999997,
+      "sampleNewSkuRate": 0.0,
+      "topBrandSalesRate": 1.0,
+      "sampleAvgPrice": 159.83,
+      "sampleAPlusRate": 0.39,
+      "totalSkuCount": 367,
+      "sampleFbaRate": 0.05
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Tea Accessories > Tea Storage Chests": {
+      "sampleAvgMonthlySales": 166.50000000000009,
+      "sampleNewSkuRate": 0.04,
+      "topBrandSalesRate": 0.5735735735735735,
+      "sampleAvgPrice": 21.46,
+      "sampleAPlusRate": 0.94,
+      "totalSkuCount": 1495,
+      "sampleFbaRate": 0.95
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Kettles & Tea Machines": {
+      "sampleAvgMonthlySales": 10.0,
+      "sampleNewSkuRate": 0.0,
+      "topBrandSalesRate": 1.0,
+      "sampleAvgPrice": 125.29,
+      "sampleAPlusRate": 0.5,
+      "totalSkuCount": 10,
+      "sampleFbaRate": 0.5
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Tea Accessories > Japanese Tea Ceremony Utensils > Matcha Whisks": {
+      "sampleAvgMonthlySales": 278.99999999999994,
+      "sampleNewSkuRate": 0.12,
+      "topBrandSalesRate": 0.6953405017921147,
+      "sampleAvgPrice": 13.01,
+      "sampleAPlusRate": 0.78,
+      "totalSkuCount": 809,
+      "sampleFbaRate": 0.97
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Kettles & Tea Machines > Iced Tea Machines": {
+      "sampleAvgMonthlySales": 66.00000000000003,
+      "sampleNewSkuRate": 0.02,
+      "topBrandSalesRate": 0.9696969696969697,
+      "sampleAvgPrice": 194.19,
+      "sampleAPlusRate": 0.42,
+      "totalSkuCount": 175,
+      "sampleFbaRate": 0.17
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Coffee Scoops": {
+      "sampleAvgMonthlySales": 308.00000000000017,
+      "sampleNewSkuRate": 0.08,
+      "topBrandSalesRate": 0.4967532467532468,
+      "sampleAvgPrice": 9.06,
+      "sampleAPlusRate": 0.8,
+      "totalSkuCount": 1962,
+      "sampleFbaRate": 0.97
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso": {
+      "sampleAvgMonthlySales": 46.00000000000004,
+      "sampleNewSkuRate": 0.06,
+      "topBrandSalesRate": 0.8586956521739131,
+      "sampleAvgPrice": 55.5,
+      "sampleAPlusRate": 0.63,
+      "totalSkuCount": 118,
+      "sampleFbaRate": 0.67
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Tea Accessories > Tea Strainers & Filters > Tea Ball Strainers": {
+      "sampleAvgMonthlySales": 163.5,
+      "sampleNewSkuRate": 0.13,
+      "topBrandSalesRate": 0.8899082568807339,
+      "sampleAvgPrice": 12.44,
+      "sampleAPlusRate": 0.57,
+      "totalSkuCount": 589,
+      "sampleFbaRate": 0.76
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Tea Accessories > Japanese Tea Ceremony Utensils > Matcha Bowls": {
+      "sampleAvgMonthlySales": 84.50000000000001,
+      "sampleNewSkuRate": 0.09,
+      "topBrandSalesRate": 0.8698224852071006,
+      "sampleAvgPrice": 25.62,
+      "sampleAPlusRate": 0.34,
+      "totalSkuCount": 699,
+      "sampleFbaRate": 0.48
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Espresso Machines > Steam Espresso Machines": {
+      "sampleAvgMonthlySales": 17.460317460317462,
+      "sampleNewSkuRate": 0.07936507936507936,
+      "topBrandSalesRate": 1.0,
+      "sampleAvgPrice": 1844.19,
+      "sampleAPlusRate": 0.3492063492063492,
+      "totalSkuCount": 63,
+      "sampleFbaRate": 0.09523809523809523
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Tea Accessories > Tea Strainers & Filters > Long-Handled Tea Strainers": {
+      "sampleAvgMonthlySales": 33.0,
+      "sampleNewSkuRate": 0.18,
+      "topBrandSalesRate": 0.9848484848484849,
+      "sampleAvgPrice": 19.94,
+      "sampleAPlusRate": 0.47,
+      "totalSkuCount": 188,
+      "sampleFbaRate": 0.58
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Tea Accessories > Japanese Tea Ceremony Utensils": {
+      "sampleAvgMonthlySales": 58.333333333333336,
+      "sampleNewSkuRate": 0.0,
+      "topBrandSalesRate": 1.0,
+      "sampleAvgPrice": 20.15,
+      "sampleAPlusRate": 0.16666666666666666,
+      "totalSkuCount": 6,
+      "sampleFbaRate": 0.5
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Tea Accessories > Teapot Warmers": {
+      "sampleAvgMonthlySales": 17.999999999999996,
+      "sampleNewSkuRate": 0.02,
+      "topBrandSalesRate": 0.6944444444444444,
+      "sampleAvgPrice": 17.44,
+      "sampleAPlusRate": 0.49,
+      "totalSkuCount": 517,
+      "sampleFbaRate": 0.49
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Tea Accessories > Tea Strainers & Filters": {
+      "sampleAvgMonthlySales": 27.551020408163264,
+      "sampleNewSkuRate": 0.08163265306122448,
+      "topBrandSalesRate": 1.0,
+      "sampleAvgPrice": 32.3,
+      "sampleAPlusRate": 0.2857142857142857,
+      "totalSkuCount": 49,
+      "sampleFbaRate": 0.5102040816326531
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Coffee Grinders": {
+      "sampleAvgMonthlySales": 25.0,
+      "sampleNewSkuRate": 0.0,
+      "topBrandSalesRate": 1.0,
+      "sampleAvgPrice": 63.62,
+      "sampleAPlusRate": 0.3333333333333333,
+      "totalSkuCount": 12,
+      "sampleFbaRate": 0.16666666666666666
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Tea Accessories > Tea Bag Coasters": {
+      "sampleAvgMonthlySales": 20.999999999999996,
+      "sampleNewSkuRate": 0.22,
+      "topBrandSalesRate": 0.9047619047619048,
+      "sampleAvgPrice": 18.97,
+      "sampleAPlusRate": 0.37,
+      "totalSkuCount": 720,
+      "sampleFbaRate": 0.52
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Tea Accessories > Tea Scoops": {
+      "sampleAvgMonthlySales": 15.500000000000005,
+      "sampleNewSkuRate": 0.15,
+      "topBrandSalesRate": 0.8387096774193549,
+      "sampleAvgPrice": 10.15,
+      "sampleAPlusRate": 0.47,
+      "totalSkuCount": 374,
+      "sampleFbaRate": 0.69
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Tea Accessories": {
+      "sampleAvgMonthlySales": 10.000000000000002,
+      "sampleNewSkuRate": 0.0,
+      "topBrandSalesRate": 1.0,
+      "sampleAvgPrice": 27.33,
+      "sampleAPlusRate": 0.4,
+      "totalSkuCount": 25,
+      "sampleFbaRate": 0.56
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Tea Accessories > Teapot Trivets": {
+      "sampleAvgMonthlySales": 4.499999999999999,
+      "sampleNewSkuRate": 0.02,
+      "topBrandSalesRate": 1.0,
+      "sampleAvgPrice": 10.66,
+      "sampleAPlusRate": 0.23,
+      "totalSkuCount": 823,
+      "sampleFbaRate": 0.05
+    },
+    "Home & Kitchen > Kitchen & Dining > Coffee, Tea & Espresso > Coffee & Tea": {
+      "sampleAvgMonthlySales": 0.0,
+      "sampleNewSkuRate": 0.0,
+      "topBrandSalesRate": null,
+      "sampleAvgPrice": 43.84,
+      "sampleAPlusRate": 0.5,
+      "totalSkuCount": 2,
+      "sampleFbaRate": 0.0
+    }
+  }
+}

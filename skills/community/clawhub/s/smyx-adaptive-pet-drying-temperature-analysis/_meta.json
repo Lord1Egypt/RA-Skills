@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7e2caqj7pnsvr9r7t8zenghs83xw7n",
   "slug": "smyx-adaptive-pet-drying-temperature-analysis",
-  "version": "1.0.3",
-  "publishedAt": 1782738510841
+  "version": "1.0.0",
+  "dependencies": {
+    "skills": [
+      "smyx-common",
+      "risk-analysis"
+    ]
+  }
 }

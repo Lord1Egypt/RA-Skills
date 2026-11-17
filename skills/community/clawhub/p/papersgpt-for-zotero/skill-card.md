@@ -1,40 +1,54 @@
-## Description: <br>
-A privacy-first, local-first search assistant and MCP server for your Zotero library, enabling AI agents to search and analyze your research papers securely. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A privacy-first, local-first search assistant and MCP server for your Zotero library, enabling AI agents to search and analyze your research papers securely.
 
-## Publisher: <br>
-[papersgpt](https://clawhub.ai/user/papersgpt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[papersgpt](https://clawhub.ai/user/papersgpt)
 
-## Use Case: <br>
-Researchers and agents use this skill to search, analyze, and synthesize information from a local Zotero library during literature reviews and paper-focused research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to install and run an external tool that indexes a private local Zotero library. <br>
-Mitigation: Install only from a trusted package source and verify indexing scope, storage locations, log retention, deletion steps, and access boundaries before use. <br>
-Risk: Research results may expose sensitive collections, notes, or PDF contents to connected agents. <br>
-Mitigation: Limit agent access to trusted clients, exclude sensitive collections where possible, and review retrieved snippets before sharing or citing them. <br>
+## Use Case:
 
+Researchers and AI-agent users use this skill to search and synthesize information from their local Zotero papers, PDFs, and academic notes. It supports literature reviews and targeted lookups within the user's own document collection, not public web search or general knowledge answers.
 
-## Reference(s): <br>
-- [PapersGPT for Zotero project repository](https://github.com/papersgpt/papersgpt-for-zotero) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and research workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search and synthesis guidance should be verified against the user's Zotero library before citation or reuse.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; skill frontmatter says 0.0.1) <br>
+Risk: The skill asks users to install an unpinned external npm package that indexes private local Zotero documents in a background process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust the npm package before installing, prefer a pinned version from a verified source, and limit access to the intended Zotero directory.
+
+Risk: Indexed papers or notes may contain sensitive research material.
+
+Mitigation: Check where indexes are stored, whether the package uses the network, and how indexed data can be deleted before pointing it at private content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/papersgpt/skills/papersgpt-for-zotero)
+- [PapersGPT for Zotero repository](https://github.com/papersgpt/papersgpt-for-zotero)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and prose guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include search queries, local command suggestions, retrieved context snippets, and synthesized research guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

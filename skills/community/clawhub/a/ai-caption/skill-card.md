@@ -1,41 +1,58 @@
-## Description: <br>
-Scenario-focused Sparki skill for caption-heavy edits while using the latest official Sparki setup, API-key, and upload workflow guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scenario-focused Sparki skill for caption-heavy edits while using the official Sparki setup, API-key, and upload workflow guidance.
 
-## Publisher: <br>
-[fischerlam](https://clawhub.ai/user/fischerlam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fischerlam](https://clawhub.ai/user/fischerlam)
 
-## Use Case: <br>
-External users and agents use this skill to route caption-first video editing requests through Sparki, including subtitle-heavy shorts and spoken videos intended to remain readable on mute. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-selected videos to Sparki for processing. <br>
-Mitigation: Install only if Sparki is trusted with the videos being processed, and request local or manual video tools when uploads are not acceptable. <br>
-Risk: The Sparki API key can be saved in the local OpenClaw configuration. <br>
-Mitigation: Prefer SPARKI_API_KEY where possible, protect saved keys, and rotate any key that may have been exposed. <br>
+## Use Case:
 
+External users and agents use this skill to route caption-first video editing requests to Sparki, including subtitles, readable captions, and short-form edits that work without sound.
 
-## Reference(s): <br>
-- [AI Caption on ClawHub](https://clawhub.ai/fischerlam/ai-caption) <br>
-- [Sparki Homepage](https://sparki.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May upload selected local video files to Sparki and download edited video files to the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server evidence and skill frontmatter) <br>
+Risk: Private videos and API keys may be exposed through remote processing or local configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing for sensitive workflows, prefer SPARKI_API_KEY over saved plaintext credentials, and avoid submitting private videos unless Sparki handling is acceptable.
+
+Risk: Endpoint overrides can redirect uploads and API-key validation away from the official Sparki service.
+
+Mitigation: Use the official agent-api.sparki.io endpoint and avoid setup commands with a custom --base-url unless the endpoint is fully trusted.
+
+Risk: Downloaded video outputs can be written outside the expected workspace if paths are chosen carelessly.
+
+Mitigation: Choose explicit output paths in a controlled directory and review configured default output locations before running downloads.
+
+## Reference(s):
+
+- [Sparki homepage](https://sparki.io)
+- [ClawHub AI Caption skill page](https://clawhub.ai/fischerlam/skills/ai-caption)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands; Sparki CLI commands return JSON and may download MP4 files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SPARKI_API_KEY for authenticated Sparki API use and writes results to an explicit or configured local output path.]
+
+## Skill Version(s):
+
+1.0.12 (source: SKILL.md frontmatter, _meta.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

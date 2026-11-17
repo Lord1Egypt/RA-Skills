@@ -254,7 +254,7 @@ cocoloop::command::search() {
 
   if [[ "$migration_found" -eq 1 ]]; then
     cocoloop::print_kv "LOCAL_MIGRATION_AVAILABLE" "yes"
-    cocoloop::print_kv "LOCAL_NEXT_STEP" "ask-user-whether-to-migrate"
+    cocoloop::print_kv "LOCAL_NEXT_STEP" "aREDACTED-SECRET"
   elif [[ "$local_found" -eq 1 ]]; then
     cocoloop::print_kv "LOCAL_MIGRATION_AVAILABLE" "no"
     cocoloop::print_kv "LOCAL_NEXT_STEP" "local-skill-already-present"

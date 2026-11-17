@@ -1,44 +1,65 @@
-## Description: <br>
-Lead Guardian provides an AI-assisted workflow for responding to real estate leads, qualifying intent and readiness, tracking conversations, and handing off hot leads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lead Guardian provides AI-powered real estate lead response and qualification through SMS, email, or CRM webhook integrations to engage, qualify, and route buyer and seller leads.
 
-## Publisher: <br>
-[jonbarnato](https://clawhub.ai/user/jonbarnato) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jonbarnato](https://clawhub.ai/user/jonbarnato)
 
-## Use Case: <br>
-Real estate agents and teams use this skill to respond quickly to inbound buyer or seller leads, qualify timeline, pre-approval, budget, and intent, and route high-priority leads for direct follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States, with default prompt content tailored to Sacramento, California <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive lead conversation data and workflow controls may be exposed without adequate access controls. <br>
-Mitigation: Require authentication and authorization for the dashboard and APIs, restrict network exposure, and define consent, retention, deletion, and privacy practices before deployment. <br>
-Risk: SMS webhook processing can be abused if inbound requests are not verified. <br>
-Mitigation: Validate Twilio webhook signatures and reject unauthenticated webhook requests. <br>
-Risk: Provider API keys and messaging spend can be misused. <br>
-Mitigation: Use dedicated Twilio and OpenRouter keys with spending limits, rotate credentials, and monitor usage. <br>
-Risk: Debug mode and broad network binding can expose application internals in production. <br>
-Mitigation: Disable debug mode and run behind a production server with controlled host binding and network access. <br>
+## Use Case:
 
+Real estate agents use this skill to automate initial lead engagement, collect qualification details, identify hot leads, and route ready buyers or sellers for direct follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jonbarnato/lead-guardian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [SMS text responses, JSON API responses, HTML dashboard, and Markdown setup instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Twilio and OpenRouter credentials; stores lead conversations in a local SQLite database.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Private lead data and admin actions may be exposed without authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add authentication and authorization for the dashboard and APIs before installing or deploying.
+
+Risk: Incoming SMS webhooks may be spoofed or tampered with if Twilio signatures are not validated.
+
+Mitigation: Validate Twilio request signatures and reject untrusted webhook requests.
+
+Risk: The app runs an externally reachable Flask debug server in the artifact.
+
+Mitigation: Disable debug mode, bind safely, and deploy behind a production WSGI server or equivalent controlled runtime.
+
+Risk: Lead conversations can include personal data processed through third-party services.
+
+Mitigation: Document privacy, consent, retention, and third-party processing controls for lead conversations.
+
+Risk: Dashboard-rendered conversation content may expose users to unsafe or unsanitized display behavior.
+
+Mitigation: Sanitize dashboard rendering before deployment.
+
+## Reference(s):
+
+- [Lead Guardian ClawHub Skill Page](https://clawhub.ai/jonbarnato/skills/lead-guardian)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documentation and Python application code, with SMS text responses and JSON API responses when the app runs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Twilio, OpenRouter, and optional agent phone configuration; stores lead conversations in SQLite when run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,52 @@
-## Description: <br>
-Query 28M+ Eurostat COMEXT trade records for EU bilateral flows, HS2-CN8 product codes, and 1988-2025 trade analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query 28M+ Eurostat COMEXT trade records for EU bilateral flows, product codes, prices, seasonality, and market concentration from 1988-2025.
 
-## Publisher: <br>
-[drivenbymyai-max](https://clawhub.ai/user/drivenbymyai-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drivenbymyai-max](https://clawhub.ai/user/drivenbymyai-max)
 
-## Use Case: <br>
-External analysts, developers, and agent users use this skill to query EU trade data, compare bilateral flows, inspect product-level trends, and research partners, prices, seasonality, and market concentration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends EU trade research queries to a third-party SputnikX service. <br>
-Mitigation: Confirm the user is comfortable sharing those queries with SputnikX before using the API or MCP endpoint. <br>
-Risk: Some endpoints are marked as paid x402 requests. <br>
-Mitigation: Check agent and wallet payment controls before calling endpoints marked as $0.10 x402. <br>
+## Use Case:
 
+External users and agents use this skill to query EU trade analytics, compare bilateral flows, identify top partners, analyze price trends, and calculate market concentration for products and countries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/drivenbymyai-max/eu-trade-analytics) <br>
-- [SputnikX homepage](https://sputnikx.xyz) <br>
-- [SputnikX agent API base URL](https://sputnikx.xyz/api/v1/agent) <br>
-- [SputnikX MCP endpoint](https://mcp.sputnikx.xyz/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, text] <br>
-**Output Format:** [Markdown with curl examples and endpoint guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes free and paid endpoint examples for querying EU trade analytics through SputnikX APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill routes trade-data queries to SputnikX as an external provider, including free and paid x402-labeled endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the user trusts SputnikX, review any x402 payment flow before use, and avoid sending confidential business plans or sensitive queries unless that provider is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/drivenbymyai-max/skills/eu-trade-analytics)
+- [SputnikX homepage](https://sputnikx.xyz)
+- [SputnikX agent API](https://sputnikx.xyz/api/v1/agent)
+- [SputnikX MCP endpoint](https://mcp.sputnikx.xyz/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and endpoint guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces trade-data query guidance for SputnikX API and MCP endpoints; no local files or persistent state are created by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

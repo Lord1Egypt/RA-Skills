@@ -1,39 +1,57 @@
-## Description: <br>
-Fang audits skill directories for potential environment variable theft using a local static scan and optional OpenAI-compatible LLM review, then reports risk ratings for suspicious files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fang audits skill scripts for environment-variable theft with a local static scanner and optional OpenAI-compatible LLM analysis, then reports risk ratings and recommended actions.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goog](https://clawhub.ai/user/goog)
 
-## Use Case: <br>
-Developers and security reviewers use Fang to audit installed, downloaded, or workspace skill directories for patterns that may expose environment variables or secrets. It helps triage findings with HIGH, MEDIUM, LOW, and CLEAN ratings before a skill is run. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional LLM review can send scanned script content to the configured provider or endpoint. <br>
-Mitigation: Use the default local static scan for sensitive or proprietary code; enable --llm-key only with a trusted provider or local endpoint and a narrow target directory. <br>
+## Use Case:
 
+Developers and security reviewers use Fang to audit installed or downloaded skill directories for suspicious environment-variable access, outbound network behavior, encoding, and execution patterns before running those skills.
 
-## Reference(s): <br>
-- [Fang ClawHub listing](https://clawhub.ai/goog/fang) <br>
-- [Publisher profile](https://clawhub.ai/user/goog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown/text threat report with optional raw JSON scan output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static mode scans Python and shell files locally; optional LLM mode reviews script contents from selected file types and truncates each file to 3000 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Optional LLM mode can upload source-code excerpts and file paths from the target directory to a configured remote provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the local static scan by default and enable LLM mode only for directories whose contents may be shared with the selected provider.
+
+Risk: A custom OpenAI-compatible base URL receives the supplied bearer key when LLM analysis is enabled.
+
+Mitigation: Use custom base URLs only for endpoints that are trusted to handle the API key and submitted source excerpts.
+
+Risk: Broad or symlinked scan targets may include more files than intended during remote analysis.
+
+Mitigation: Inspect target directories and symlinks before enabling LLM mode, and prefer scanning one skill directory at a time.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goog/skills/fang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown threat report with command examples and optional raw JSON scan output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static scanning runs locally; optional LLM mode sends script excerpts and paths to the configured OpenAI-compatible endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

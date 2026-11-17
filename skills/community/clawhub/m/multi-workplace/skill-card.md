@@ -1,50 +1,68 @@
-## Description: <br>
-Manage multiple project workplaces with per-workspace agents, isolated memory, IDE context sync, and inter-agent communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi Workplace helps agents manage multiple project workplaces with per-workspace orchestration, isolated memory, inter-agent communication, IDE context syncing, and deployment notes.
 
-## Publisher: <br>
-[dickwu](https://clawhub.ai/user/dickwu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dickwu](https://clawhub.ai/user/dickwu)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to initialize, switch, scan, link, and synchronize project workplaces while coordinating role-based agents across related codebases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and update project-management files in target project directories and the OpenClaw workplace registry. <br>
-Mitigation: Confirm the target path before running workplace init, scan, switch, link, import, or recursive parent-folder operations. <br>
-Risk: IDE synchronization can modify agent-facing context files such as CLAUDE.md, .cursor/rules/workplace.mdc, and opencode.jsonc. <br>
-Mitigation: Review generated IDE context before relying on it, especially when a project already has local instructions or coding-agent configuration. <br>
-Risk: Kernel and agent workflows may start long-running local coordination processes and update .workplace/process-status.json. <br>
-Mitigation: Use the workplace status and agent stop commands to monitor or stop running agents and file-watcher activity. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to initialize, discover, switch, link, export, import, and monitor project workplaces while coordinating project-specific agents and IDE context files.
 
-## Reference(s): <br>
-- [Multi Workplace README](README.md) <br>
-- [Command Reference](references/commands.md) <br>
-- [Init Guide](references/init-guide.md) <br>
-- [Agent System](references/agent-system.md) <br>
-- [Chat Protocol](references/chat-protocol.md) <br>
-- [IDE Sync Guide](references/ide-sync.md) <br>
-- [Telegram UI](references/telegram-ui.md) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [OpenCode Config Schema](https://opencode.ai/config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated local files or configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update .workplace/, ~/.openclaw/workspace/.workplaces/, CLAUDE.md, .cursor/rules/workplace.mdc, opencode.jsonc, and deployment templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: ClawHub release metadata) <br>
+Risk: The skill can read project structure and markdown files across workplaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted repositories and review workplace scan results before using them to drive agent workflows.
+
+Risk: The skill can write .workplace state, registry data, generated agents, deployment notes, and IDE context files.
+
+Mitigation: Inspect diffs before running init or sync on important projects, and review generated agent files before starting agents.
+
+Risk: Background agent workflows and the chat watcher can act on cloned or user-edited .workplace content.
+
+Mitigation: Avoid running the watcher on untrusted cloned .workplace directories and review chat.md before starting or routing agents.
+
+Risk: The skill can sync workplace summaries to supermemory using per-workplace container tags.
+
+Mitigation: Confirm that project summaries are appropriate for long-term memory before enabling kernel or memory-sync workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dickwu/skills/multi-workplace)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Agent System](references/agent-system.md)
+- [Chat Protocol](references/chat-protocol.md)
+- [Command Reference](references/commands.md)
+- [IDE Sync Guide](references/ide-sync.md)
+- [Initialization Guide](references/init-guide.md)
+- [Telegram UI](references/telegram-ui.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON or JSONC configuration, shell commands, and generated workspace files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write .workplace state, IDE context files, agent definitions, deployment notes, registry entries, and exported ZIP or JSON workplace manifests.]
+
+## Skill Version(s):
+
+0.4.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

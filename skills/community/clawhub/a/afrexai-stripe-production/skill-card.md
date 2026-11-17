@@ -1,40 +1,54 @@
-## Description: <br>
-Provides best practices and code patterns for building, scaling, and operating production Stripe payment systems from checkout to enterprise billing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides best practices and code patterns for building, scaling, and operating production Stripe payment systems from checkout to enterprise billing.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Developers, SaaS teams, founders, and marketplace builders use this skill to design, implement, audit, and operate Stripe checkout, subscription, webhook, tax, Connect, and payment monitoring workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated payment or billing changes can affect live charges, subscriptions, refunds, tax collection, or Connect payouts. <br>
-Mitigation: Test in Stripe test mode first and review billing, subscription, refund, tax, and payout changes before deploying. <br>
-Risk: Stripe credentials and webhook secrets are financially sensitive. <br>
-Mitigation: Use restricted keys, keep live secrets out of prompts and source code, and store secrets in environment-managed configuration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1kalin/afrexai-stripe-production) <br>
-- [Context Pack Store](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Developers, SaaS teams, founders, and marketplace builders use this skill to design and review Stripe checkout, subscription billing, webhooks, Connect, tax, testing, and production operations workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with TypeScript, YAML, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes checklists, scoring guidance, architecture tables, and production-readiness recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unsafe payment idempotency examples may be copied into production Stripe integrations.
+
+Mitigation: Review and correct generated Stripe code so all mutating API calls use stable, persisted order, checkout, subscription, or usage-batch identifiers instead of time-derived keys.
+
+Risk: Broad production-impacting guidance may lead an agent to propose live Stripe account changes without enough context.
+
+Mitigation: Require explicit test or live environment selection and user confirmation before account-changing actions such as subscription updates, cancellations, refunds, usage reporting, or Connect transfers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-stripe-production)
+- [Artifact README](artifact/README.md)
+- [Artifact skill source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with TypeScript, YAML, checklist, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include production readiness checklists, Stripe integration snippets, webhook patterns, and operational review steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

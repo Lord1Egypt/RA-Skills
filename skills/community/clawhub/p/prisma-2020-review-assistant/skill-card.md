@@ -1,44 +1,56 @@
-## Description: <br>
-Review, audit, coach, and extract PRISMA 2020 reporting compliance for systematic reviews, meta-analyses, protocols, reviewer comments, and draft manuscript sections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review, audit, coach, and extract PRISMA 2020 reporting compliance for systematic reviews, meta-analyses, protocols, reviewer comments, and draft manuscript sections.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-External authors, reviewers, and research teams use this skill to assess draft systematic reviews or protocols against PRISMA 2020, produce checklist audit tables, locate manuscript evidence, and draft fixes for reporting gaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PRISMA assessments may be incomplete or misleading when the user provides only excerpts, an abstract, or ambiguous manuscript text. <br>
-Mitigation: Treat assessments as provisional for partial inputs and require visible manuscript evidence for each checklist judgment. <br>
-Risk: Checklist guidance may affect scholarly reporting or submission decisions. <br>
-Mitigation: Have a human author or reviewer confirm PRISMA interpretations, manuscript evidence, and journal-specific requirements before submission. <br>
-Risk: Agent-proposed actions could be inappropriate if accepted without review in sensitive repositories or documents. <br>
-Mitigation: Review suggested changes and any command execution before approval, especially around secrets, production configuration, or publication-critical text. <br>
+## Use Case:
 
+Authors, reviewers, editors, and research teams use this skill to check systematic review drafts against PRISMA 2020, identify reporting gaps, build checklist tables, and revise sections toward clearer reporting.
 
-## Reference(s): <br>
-- [PRISMA 2020 map for manuscript review](references/prisma-2020-map.md) <br>
-- [PRISMA 2020 checklist source extraction](references/prisma-2020-checklist-source.md) <br>
-- [PRISMA 2020 expanded checklist source extraction](references/prisma-2020-expanded-checklist-source.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prioritized findings, section-by-section PRISMA assessments, checklist tables, evidence maps, and revision guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may process manuscript drafts, reviewer comments, and related research material that could be confidential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in an agent environment appropriate for that content, and avoid sharing confidential manuscripts when that environment is not approved.
+
+Risk: PRISMA compliance judgments can affect submission readiness but remain advisory.
+
+Mitigation: Verify final checklist interpretations and compliance decisions against the official PRISMA guidance and the target journal's requirements.
+
+## Reference(s):
+
+- [PRISMA 2020 map for manuscript review](references/prisma-2020-map.md)
+- [PRISMA 2020 checklist source extraction](references/prisma-2020-checklist-source.md)
+- [PRISMA 2020 expanded checklist source extraction](references/prisma-2020-expanded-checklist-source.md)
+- [ClawHub skill page](https://clawhub.ai/stanestane/skills/prisma-2020-review-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose, prioritized findings, checklist tables, and evidence-mapping matrices]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include manuscript evidence snippets and provisional status labels when source text is incomplete.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

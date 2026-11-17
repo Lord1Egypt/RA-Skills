@@ -1,42 +1,56 @@
-## Description: <br>
-Product Requirement Miner analyzes product review CSVs to clean, classify, cluster, and prioritize customer feedback into product requirement reports and roadmaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mines product review CSV data to clean feedback, classify it into bugs, suggestions, requirements, or other comments, cluster related needs, and produce a product optimization roadmap.
 
-## Publisher: <br>
-[yz6214589-hash](https://clawhub.ai/user/yz6214589-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yz6214589-hash](https://clawhub.ai/user/yz6214589-hash)
 
-## Use Case: <br>
-Product managers, product operations teams, and developers use this skill to convert CSV product reviews into categorized feedback, clustered requirement themes, and a prioritized optimization roadmap. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local output files may contain raw or derived customer review content. <br>
-Mitigation: Use non-sensitive or redacted CSVs when possible, work in a controlled directory, and delete generated intermediate files when they are no longer needed. <br>
-Risk: Generated classifications, clusters, and priority recommendations may be incomplete or inaccurate for product planning decisions. <br>
-Mitigation: Review the generated JSON, cluster report, and roadmap before using them for product decisions. <br>
+## Use Case:
 
+Product managers, developers, and analysts use this skill to turn product review CSV files into cleaned feedback, categorized requirement data, clustered themes, and prioritized roadmap items.
 
-## Reference(s): <br>
-- [Product Comment Category Guide](references/category_guide.md) <br>
-- [Cluster Report Template](assets/cluster_report_template.md) <br>
-- [Roadmap Template](assets/roadmap_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Text files, JSON classification data, and Markdown analysis and roadmap reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates local files including raw review extracts, classified reviews, filtered review data, cluster reports, and product optimization roadmaps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The workflow writes review data and derived analysis files locally, which can retain sensitive personal, account, or confidential business data from input reviews.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid processing sensitive reviews unless local retention is acceptable, or remove generated files after review according to the user's data-handling policy.
+
+Risk: The CSV reader depends on chardet for encoding detection, which may affect reproducibility if dependency versions float.
+
+Mitigation: Install in a virtual environment and pin or review the chardet dependency when reproducible execution matters.
+
+## Reference(s):
+
+- [Product Review Classification Guide](references/category_guide.md)
+- [Cluster Report Template](assets/cluster_report_template.md)
+- [Product Roadmap Template](assets/roadmap_template.md)
+- [Product Requirement Miner on ClawHub](https://clawhub.ai/yz6214589-hash/skills/product-requirement-miner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text files, JSON classification records, Markdown reports, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates raw_reviews.txt, classified_reviews.json, filtered_data.txt, a cluster analysis report, and a product optimization roadmap.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

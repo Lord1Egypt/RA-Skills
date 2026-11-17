@@ -1,42 +1,55 @@
-## Description: <br>
-Fetches X-TechCon technology hot-news items when a supported trigger phrase is present and returns formatted titles, summaries, and links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches X-TechCon technology hot-news items when triggered and returns formatted headlines, summaries, and source links.
 
-## Publisher: <br>
-[edwardtechcon](https://clawhub.ai/user/edwardtechcon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edwardtechcon](https://clawhub.ai/user/edwardtechcon)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve current technology news from X-TechCon after entering one of the supported trigger phrases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts the fixed external X-TechCon API to retrieve news. <br>
-Mitigation: Install only when outbound requests to X-TechCon are acceptable for the deployment environment. <br>
-Risk: The Python requests dependency is unpinned. <br>
-Mitigation: Pin and review the requests dependency before controlled or repeatable deployments. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve concise technology news from X-TechCon through supported Chinese-language trigger phrases.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/edwardtechcon/xtechhotnews) <br>
-- [X-TechCon](https://www.x-techcon.com) <br>
-- [X-TechCon Hot News API](https://www.x-techcon.com/api/hot_news) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API Calls, guidance] <br>
-**Output Format:** [Plain text with numbered news items, summaries, and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a fallback prompt when no supported trigger phrase is present; depends on the fixed X-TechCon hot-news API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Invoking the skill contacts www.x-techcon.com and returns links from that service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy only where outbound access to X-TechCon is acceptable and users can evaluate third-party news links before opening them.
+
+Risk: The requests dependency is declared without a pinned version.
+
+Mitigation: Pin and review the dependency version before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edwardtechcon/skills/xtechhotnews)
+- [X-TechCon hot news API](https://www.x-techcon.com/api/hot_news)
+- [X-TechCon website](https://www.x-techcon.com)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text with numbered news items and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a fallback message when the user query does not contain a supported trigger phrase or the news request fails.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

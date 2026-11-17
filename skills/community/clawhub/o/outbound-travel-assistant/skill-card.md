@@ -1,43 +1,54 @@
-## Description: <br>
-Provides outbound travel assistance for flight and hotel search, visa requirements, destination safety notes, plug and voltage guidance, tax refund estimates, exchange-rate conversion, baggage and seat information, hotel room policies, and emergency contact guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+出境游一站式全链路助手，11个工具覆盖国际机票酒店搜索、签证查询、安全评级、插头电压、退税计算、汇率换算、航班座位行李、紧急求助，零配置即装即用。
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-External travelers and travel-support agents use this skill to collect outbound travel planning information, including bookings, entry requirements, local safety context, tax refunds, exchange rates, and emergency help. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel-search details and an optional proxy token may be sent through the configured cloud proxy. <br>
-Mitigation: Use the proxy-backed tools only when comfortable with that data flow, and do not set PROXY_TOKEN unless the proxy operator is trusted. <br>
-Risk: Visa requirements, safety conditions, prices, tax refund amounts, and exchange rates can change after the skill's local data or remote result is produced. <br>
-Mitigation: Confirm travel requirements, safety advisories, payments, refunds, and currency conversions with official or transaction-time sources before acting. <br>
-Risk: Booking links and travel estimates may require user action and may not represent final terms. <br>
-Mitigation: Review the provider's checkout page, cancellation rules, fees, and itinerary details before completing any purchase. <br>
+## Use Case:
 
+External travelers and travel planners use this skill to prepare outbound trips by checking flights, hotels, visa requirements, safety context, plug standards, tax refund estimates, exchange rates, baggage, seat information, and emergency contacts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/outbound-travel-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/travel-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [JSON strings and concise travel guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include booking URLs, estimates, warnings, and locally stored destination facts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Flight, hotel, seat, baggage, and hotel-detail queries are sent to the skill's RG cloud proxy, and currency codes are sent to a public exchange-rate API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that data sharing is acceptable, and avoid entering unnecessary personal details beyond the itinerary fields needed for a lookup.
+
+Risk: Visa rules, destination safety conditions, tax refund amounts, travel prices, and exchange rates can change or may be estimates.
+
+Mitigation: Confirm important decisions with official consulates, carriers, hotels, tax refund providers, emergency services, or current public sources before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/outbound-travel-assistant)
+- [ClawHub publisher profile](https://clawhub.ai/user/travel-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON-formatted Chinese text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes live travel lookup results, local reference data, disclaimers, and suggested follow-up tool tips.]
+
+## Skill Version(s):
+
+1.0.19 (source: server release evidence and target metadata; artifact _meta.json lists 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

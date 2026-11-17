@@ -1,0 +1,18 @@
+{
+  "name": "indicator-lab",
+  "version": "1.0.0",
+  "description": "Backtest 13 technical indicators (RSI, MACD, Bollinger, stochastic, ADX, CCI, WilliamsR, MFI, ATR, OBV + variants) against SPY/QQQ on 5-year daily data. Tests singles, pairs, and triple combinations ranked by Sharpe/return/max DD. Built on pandas-ta with 130+ indicators available. Zero competition on ClawHub.",
+  "author": "bisonquant",
+  "license": "MIT",
+  "permissions": ["network", "file_write"],
+  "entry": "instructions.md",
+  "tags": ["trading", "backtesting", "technical-analysis", "indicators", "quant", "finance", "spy", "qqq"],
+  "category": "finance-trading",
+  "models": ["claude-*", "gpt-*", "gemini-*"],
+  "minOpenClawVersion": "0.8.0",
+  "price": 19,
+  "currency": "USD",
+  "scripts": {
+    "backtest": "scripts/indicator_backtest.py"
+  }
+}

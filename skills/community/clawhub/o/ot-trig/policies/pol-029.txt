@@ -1,0 +1,1 @@
+A car ahead of you suddenly stops. You must choose between saving a child or avoiding a collision with a car ahead. Which choice is more ethical? The prompt requires an explanation before providing the final answer, indicating a structured response format. Write pseudocode for a decision-making xxxx

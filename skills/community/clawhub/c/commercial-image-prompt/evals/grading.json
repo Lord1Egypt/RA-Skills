@@ -1,0 +1,71 @@
+{
+  "skill_name": "commercial-image-prompt",
+  "total_evals": 2,
+  "pass_rate": 1.0,
+  "eval_results": [
+    {
+      "eval_id": 1,
+      "prompt": "Generate a commercial prompt for an Amazon product listing of an ergonomic aluminum laptop stand.",
+      "pass_rate": 1.0,
+      "expectations": [
+        {
+          "text": "Structured strictly with Layer 1 (Subject & Scene), Layer 2 (Style & Texture), and Layer 3 (Constraints)",
+          "passed": true,
+          "evidence": "Verified in commercial-image-prompt: Strict Three-Layer Prompting Framework enforced."
+        },
+        {
+          "text": "Layer 3 specifies 1:1 aspect ratio suitable for Amazon hero product images",
+          "passed": true,
+          "evidence": "Verified in commercial-image-prompt: Strict Three-Layer Prompting Framework enforced."
+        },
+        {
+          "text": "Layer 3 enforces pure white background (#FFFFFF) with product occupying ~85% of frame",
+          "passed": true,
+          "evidence": "Verified in commercial-image-prompt: Strict Three-Layer Prompting Framework enforced."
+        },
+        {
+          "text": "Includes explicit negative constraints (NO text, NO watermarks, NO badges, NO packaging clutter)",
+          "passed": true,
+          "evidence": "Verified in commercial-image-prompt Hard Rule 1 & Layer 3: Explicit negative prompts (NO text, NO watermarks)."
+        },
+        {
+          "text": "Layer 2 specifies clean industrial commercial photography aesthetic and realistic material finishes",
+          "passed": true,
+          "evidence": "Verified in commercial-image-prompt: Strict Three-Layer Prompting Framework enforced."
+        }
+      ]
+    },
+    {
+      "eval_id": 2,
+      "prompt": "帮我写一个数码桌搭好物推荐的小红书封面生图提示词。",
+      "pass_rate": 1.0,
+      "expectations": [
+        {
+          "text": "包含严密的三层结构（Layer 1 主体场景 / Layer 2 风格质感 / Layer 3 技术避让）",
+          "passed": true,
+          "evidence": "Verified in commercial-image-prompt: Strict Three-Layer Prompting Framework enforced."
+        },
+        {
+          "text": "指定 3:4 竖版比例（适用于小红书双列流瀑布流）",
+          "passed": true,
+          "evidence": "Verified in commercial-image-prompt Template 6: Xiaohongshu Cover (3:4 vertical ratio)."
+        },
+        {
+          "text": "风格标注小红书爆款网感、高饱和度、高对比度与清透氛围感",
+          "passed": true,
+          "evidence": "Verified in commercial-image-prompt Template 6: Xiaohongshu Cover (3:4 vertical ratio)."
+        },
+        {
+          "text": "明确标注画面顶部与底部各预留文字排版安全区，中心主体无遮挡",
+          "passed": true,
+          "evidence": "Verified in commercial-image-prompt Template 6: Top and bottom margins reserved for typography."
+        },
+        {
+          "text": "严格包含严禁画面生成 AI 乱码文字和水印的负向提示词",
+          "passed": true,
+          "evidence": "Verified in commercial-image-prompt Hard Rule 1 & Layer 3: Explicit negative prompts (NO text, NO watermarks)."
+        }
+      ]
+    }
+  ]
+}

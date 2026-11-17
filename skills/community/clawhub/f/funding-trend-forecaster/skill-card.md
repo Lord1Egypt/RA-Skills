@@ -1,46 +1,60 @@
-## Description: <br>
-Predict funding trend shifts using NLP analysis of grant abstracts from NIH, NSF, and Horizon Europe. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Predict funding trend shifts using NLP analysis of grant abstracts from NIH, NSF, and Horizon Europe.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External users and developers use this skill to generate funding trend analyses, forecasts, and report files from research-grant abstract data or the artifact's simulated dataset. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reports and forecasts may appear to analyze real grant data while the artifact generates mock project data. <br>
-Mitigation: Label outputs as simulated unless real source ingestion is added and each report records source provenance. <br>
-Risk: Growth rankings and INVEST recommendations could be mistaken for funding, business, or research advice. <br>
-Mitigation: Require human review against authoritative funding data before using outputs for decisions. <br>
-Risk: The script writes reports to user-selected paths and installs Python dependencies. <br>
-Mitigation: Run in an isolated Python environment and choose output paths inside the intended workspace. <br>
+## Use Case:
 
+Developers and research strategy analysts use this skill to run NLP-based grant abstract analysis, generate reports, and review forecast-style funding trend summaries across NIH, NSF, and Horizon Europe.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AIPOCH-AI/funding-trend-forecaster) <br>
-- [AIPOCH-AI publisher profile](https://clawhub.ai/user/AIPOCH-AI) <br>
-- [NIH RePORTER](https://reporter.nih.gov/) <br>
-- [NSF Award Search](https://www.nsf.gov/awardsearch/) <br>
-- [Horizon Europe Funding and Tenders](https://ec.europa.eu/info/funding-tenders/opportunities/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Files, JSON, Text, Guidance] <br>
-**Output Format:** [JSON or plain-text reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes report files to a user-selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Synthetic or forecast-style funding analysis may be mistaken for verified funding intelligence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as exploratory and verify conclusions against authoritative agency data before using them for decisions.
+
+Risk: Unpinned Python dependencies create avoidable install-time supply-chain risk.
+
+Mitigation: Install in an isolated environment, pin and review dependencies, and run dependency auditing before deployment.
+
+Risk: The script writes generated reports to a user-provided output path.
+
+Mitigation: Run in a sandboxed workspace and review output paths before execution.
+
+## Reference(s):
+
+- [Funding Trend Forecaster on ClawHub](https://clawhub.ai/aipoch-ai/skills/funding-trend-forecaster)
+- [NIH RePORTER](https://reporter.nih.gov/)
+- [NSF Award Search](https://www.nsf.gov/awardsearch/)
+- [EU Funding & Tenders Portal](https://ec.europa.eu/info/funding-tenders/opportunities/)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell and Python examples; runtime output is JSON or plain text reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script accepts CLI parameters for source selection, analysis period, forecast horizon, output path, and output format.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

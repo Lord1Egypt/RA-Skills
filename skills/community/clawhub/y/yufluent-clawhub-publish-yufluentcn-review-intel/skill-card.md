@@ -1,46 +1,59 @@
-## Description: <br>
-Analyzes legally obtained ecommerce review text for Amazon, Shopify, and TikTok Shop and returns structured JSON with sentiment themes, complaint causes, improvement suggestions, and reply-template drafts through the Yufluent cloud harness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes legally obtained Amazon, Shopify, and TikTok Shop buyer reviews to identify sentiment themes, complaint causes, improvement actions, praises, and draft reply templates as structured JSON.
 
-## Publisher: <br>
-[metahuan](https://clawhub.ai/user/metahuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[metahuan](https://clawhub.ai/user/metahuan)
 
-## Use Case: <br>
-External ecommerce sellers and operations teams use this skill to turn legally obtained buyer review text into VOC themes, complaint causes, prioritized improvement suggestions, and response drafts for Amazon, Shopify, or TikTok Shop workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive TOKENAPI_KEY credential. <br>
-Mitigation: Store the key in an environment variable or approved secret store, do not paste it into prompts or logs, and set TOKENAPI_BASE_URL only to a trusted endpoint. <br>
-Risk: Review text is sent to the Yufluent cloud service for analysis. <br>
-Mitigation: Remove buyer names, addresses, phone numbers, regulated data, and confidential business data unless the use has been approved. <br>
-Risk: Generated reply templates and recommendations may be incomplete or unsuitable for a specific marketplace policy or customer situation. <br>
-Mitigation: Have a human review action items and reply drafts before using them in customer-facing communications. <br>
+## Use Case:
 
+External ecommerce sellers, operators, and support teams use this skill to turn review text they are allowed to process into VOC summaries, prioritized product or service improvements, and human-reviewed response drafts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/metahuan/yufluent-clawhub-publish-yufluentcn-review-intel) <br>
-- [Yufluent homepage](https://claw.changzhiai.com) <br>
-- [OpenClaw integration](https://claw.changzhiai.com/app/openclaw) <br>
-- [Skill source overview](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Shell commands, Guidance] <br>
-**Output Format:** [Structured JSON insight report, optionally saved to a UTF-8 JSON file, with brief text interpretation by the agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TOKENAPI_KEY and sends provided review text to the Yufluent cloud service; avoid PII, regulated data, and confidential business data unless approved.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill can send API tokens and review text to an arbitrary configured endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS TOKENAPI_BASE_URL and treat TOKENAPI_KEY as a revocable secret.
+
+Risk: Review content may contain personal, confidential, or sensitive customer information before cloud processing.
+
+Mitigation: Remove PII and confidential content before submission unless the user accepts the cloud-processing risk.
+
+Risk: Generated reply templates could be sent without checking platform policy or customer-specific facts.
+
+Mitigation: Require human review before using reply drafts with buyers.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/metahuan/skills/yufluent-clawhub-publish-yufluentcn-review-intel)
+- [Yufluent Homepage](https://claw.changzhiai.com)
+- [OpenClaw Integration](https://claw.changzhiai.com/app/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Structured JSON containing sentiment, themes, top complaints, top praises, action items, and draft reply templates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires legally obtained review text; draft reply templates should be reviewed by a human before use.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Automatically adjust OpenClaw's thinking level based on message complexity and persist low, medium, or high thinking modes across a session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically adjust OpenClaw's thinking level based on message complexity and switch between low, medium, and high modes with session persistence.
 
-## Publisher: <br>
-[zpy0726](https://clawhub.ai/user/zpy0726) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zpy0726](https://clawhub.ai/user/zpy0726)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to choose or persist an OpenClaw thinking level for a message or session, reducing repeated manual mode selection during multi-turn work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill launches the local OpenClaw CLI through a shell with user-provided text. <br>
-Mitigation: Install only from a trusted publisher, review the command path before use, and prefer a corrected release that removes shell: true. <br>
-Risk: Documentation is inconsistent about whether the skill uses v1 automatic analysis or v2 persistent mode switching. <br>
-Mitigation: Confirm expected behavior in a test session before production use and prefer a release with aligned documentation and implementation. <br>
-Risk: Broad trigger phrases and unvalidated session IDs may cause unexpected mode changes or session-state confusion. <br>
-Mitigation: Use explicit commands, review session-id handling, and prefer a release that narrows triggers and validates session IDs. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to select and persist an agent thinking mode for a conversation, either with low, medium, or high prefixes or with the skill's optional complexity analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zpy0726/autothink) <br>
-- [Project homepage](https://github.com/openclaw/openclaw-autothink) <br>
-- [Publisher profile](https://clawhub.ai/user/zpy0726) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text and forwarded OpenClaw agent output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke the local openclaw command and persist thinking mode in process memory for the current session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Messages passed through the CLI may be interpreted by a shell during local OpenClaw execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove shell-based invocation, validate and quote user-controlled arguments, and review local execution behavior before installation.
+
+Risk: Artifact documentation and release metadata describe conflicting v1 and v2 behavior for automatic analysis and persistent mode switching.
+
+Mitigation: Align README, skill metadata, and CLI behavior with the released v2 semantics before relying on the skill in a shared or production workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zpy0726/skills/autothink)
+- [Project Homepage](https://github.com/openclaw/openclaw-autothink)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text output and JavaScript object results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Selects a low, medium, or high thinking mode, strips mode prefixes, and can forward the cleaned message to OpenClaw.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact _meta.json; package.json and skill.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

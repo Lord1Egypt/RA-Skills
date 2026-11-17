@@ -17,9 +17,11 @@ def load_config(path):
     return json.load(open(path, encoding='utf-8'))
 
 def esc_md(text):
-    """Escape special chars for Feishu markdown."""
+    """Escape special chars for Feishu markdown.
+    | would break markdown tables (terminology table), so escape it too."""
     if not text: return ''
-    return text.replace('\\', '\\\\').replace('*', '\\*').replace('_', '\\_').replace('[', '\\[')
+    return (text.replace('\\', '\\\\').replace('*', '\\*').replace('_', '\\_')
+                .replace('[', '\\[').replace('|', '\\|'))
 
 def md_links_to_feishu(text):
     """Convert markdown [text](url) to Feishu-compatible link text (url)."""
@@ -45,16 +47,19 @@ def upload_to_catbox(image_data, ext='png'):
         url = resp.read().decode('utf-8').strip()
         if url.startswith('https://') or url.startswith('http://'):
             return url
-    except Exception:
-        pass
+        print('[warn] catbox 返回非 URL：%s' % url[:100], file=sys.stderr)
+    except Exception as e:
+        # 失败原因落到 stderr（DNS/超时/封禁可区分），卡片里仍走「见来源链接」回退
+        print('[warn] catbox 上传失败：%s' % e, file=sys.stderr)
     return None
 
 def decode_data_uri(data_uri):
     """Extract (bytes, ext) from a data:image/...;base64,... URI. Returns (None, None) if not data URI."""
-    m = re.match(r'data:image/(\w+);base64,(.+)', data_uri or '', re.S)
+    m = re.match(r'data:image/([\w.+-]+);base64,(.+)', data_uri or '', re.S)
     if not m:
         return None, None
     ext = m.group(1)
+    if ext.endswith('+xml'): ext = 'svg'
     if ext == 'jpeg': ext = 'jpg'
     try:
         return base64.b64decode(m.group(2)), ext
@@ -100,7 +105,7 @@ def build_card(payload, zh, language='en'):
             parts.append(f"**{title}**\n{esc_md(t)}")
         if en_text and bilingual:
             t = md_links_to_feishu(en_text) if md else en_text
-            parts.append(f"*{t}*")
+            parts.append(f"*{esc_md(t)}*")
         if parts:
             elements.append({"tag": "markdown", "content": '\n\n'.join(parts)})
             elements.append({"tag": "hr"})
@@ -129,10 +134,11 @@ def build_card(payload, zh, language='en'):
             if url:
                 elements.append({"tag": "img", "url": url, "alt": {"tag": "plain_text", "content": "配图"}})
             else:
-                elements.append({"tag": "markdown", "content": "📷 配图（上传失败，见来源链接）"})
+                elements.append({"tag": "markdown", "content": "[配图] 上传失败，见来源链接"})
         else:
-            # image is a URL
-            elements.append({"tag": "img", "url": img, "alt": {"tag": "plain_text", "content": "配图"}})
+            # URL 型图片：飞书卡片 img 元素只接受 img_key（需 Open API 上传），
+            # webhook 模式没有上传能力——塞 url 会导致整卡被拒，改为文案回退
+            elements.append({"tag": "markdown", "content": "[配图] %s" % esc_md(img)})
         elements.append({"tag": "hr"})
 
     # related links
@@ -159,7 +165,7 @@ def build_card(payload, zh, language='en'):
 
     card = {
         "header": {
-            "title": {"tag": "plain_text", "content": f"📚 {esc_md(book_title)} · {esc_md(topic)}"},
+            "title": {"tag": "plain_text", "content": "%s · %s" % (book_title, topic)},
             "template": "blue"
         },
         "elements": elements
@@ -194,7 +200,7 @@ def main():
     if not webhook:
         print(json.dumps({'ok': False, 'error': 'feishu.webhook not set in config.json'}, ensure_ascii=False))
         sys.exit(1)
-    language = args.language or payload.get('language', 'en')
+    language = args.language if '--language' in sys.argv else payload.get('language', 'en')
     zh, payload = normalize_all(zh, payload, language)  # 规范化中文引号
     card = build_card(payload, zh, language)
     sys.exit(send(webhook, card))

@@ -1,7 +1,7 @@
 ---
 name: expected-value-and-kelly
 description: "Activate when: user asks 'how much should I bet/invest on this?', 'what's the expected value here?', 'Kelly criterion', 'optimal bet size', 'fractional Kelly', 'how big a position should I take?', or is allocating capital across repeated decisions (ad spend by segment, VC portfolio construction, position sizing, A/B test ramp).
-  Do NOT activate when: the decision is one-shot and non-repeating (career change, marriage) — use regret-minimization instead; or when the user cannot estimate probabilities or payoffs even roughly."
+  Do NOT activate when: the decision is one-shot and non-repeating (career change, marriage) — use regret-minimization instead; or when the user cannot estimate probabilities or payoffs even roughly. More: deciqai.com/c/expected-value-and-kelly"
 ---
 
 # Expected Value and the Kelly Criterion
@@ -10,15 +10,16 @@ description: "Activate when: user asks 'how much should I bet/invest on this?', 
 
 Two questions decide most repeated bets: **is this bet good?** (EV) and **how big?** (Kelly). Most professional ruin comes from positive-EV bets sized wrong. **EV = p · W − q · L.** If EV ≤ 0, do not bet. **Kelly f\* = (bp − q) / b** maximizes long-term geometric growth (Kelly, Bell Labs, 1956). Full Kelly requires casino-grade certainty; default to half- or quarter-Kelly for estimated edges.
 
-Neighbors: [first-principles](../first-principles/SKILL.md) · [occams-razor](../occams-razor/SKILL.md) · [second-order-thinking](../second-order-thinking/SKILL.md) · [inversion](../inversion/SKILL.md) · [regret-minimization](../regret-minimization/SKILL.md) (for non-repeating life decisions).
+Neighbors: first-principles · occams-razor · second-order-thinking · inversion · regret-minimization (for non-repeating life decisions).
 
 ## When to Use
 
 - Decision **repeats many times** — capital allocation, position sizing, VC portfolio, ad spend, A/B test budget
 - *How big to bet* matters as much as *whether to bet*; you have a **measurable or estimable edge**
 - Someone says: "expected value," "EV," "Kelly," "optimal bet size," "how much should we put on this?"
+- Sizing bets in a boom with power-law payoffs and possible ruin — **how much to allocate to AI startups / GPU-compute capex / AI-exposed equities** given frothy AI valuations, uncertain AI adoption, and correlated bets
 
-**When NOT to use:** one-shot life decisions → [regret-minimization](../regret-minimization/SKILL.md); negative-EV bets (don't bet); unestimable probabilities; correlated bets without portfolio adjustment.
+**When NOT to use:** one-shot life decisions → regret-minimization; negative-EV bets (don't bet); unestimable probabilities; correlated bets without portfolio adjustment.
 
 ## Coaching Novices (Adaptive Front Door)
 
@@ -27,7 +28,7 @@ Neighbors: [first-principles](../first-principles/SKILL.md) · [occams-razor](..
 In Coach mode, respond one step at a time. Each [WAIT] is a hard stop — output only that step's question, then stop.
 
 1. One-line what-it-is: EV tells you **whether the bet is worth taking**; Kelly tells you **what fraction of bankroll to stake** — sized to maximize long-term growth without ruin.
-2. Check fit against When to Use / When NOT to use. If one-shot life decision, redirect to [regret-minimization](../regret-minimization/SKILL.md). If EV is negative, say "don't bet" and stop.
+2. Check fit against When to Use / When NOT to use. If one-shot life decision, redirect to regret-minimization. If EV is negative, say "don't bet" and stop.
 3. Elicit their real bet. Ask for a concrete repeated decision with measurable inputs. > **[WAIT — do not advance until user responds]**
 4. Walk The Process one step per turn: outcomes → probabilities → payoffs → EV → Kelly → fractional Kelly. > **[WAIT — do not advance until user responds]**
 5. Close by naming their sizing rule: "bet f\* × bankroll, use half-Kelly given estimation uncertainty" — and the trigger that would change it. > **[WAIT — do not advance until user responds]**
@@ -36,7 +37,7 @@ In Coach mode, respond one step at a time. Each [WAIT] is a hard stop — output
 
 Run the **EV-Kelly Sizing** (EV → Kelly → fractional Kelly → stop trigger):
 
-1. **Confirm the decision is repeated.** If "once," stop → use [regret-minimization](../regret-minimization/SKILL.md).
+1. **Confirm the decision is repeated.** If "once," stop → use regret-minimization.
 2. **Map the bet.** Win prob *p*, loss prob *q = 1−p*, payoff on win *W*, loss *L*, odds *b = W/L*.
 3. **Compute EV.** EV = Σ(pᵢ · payoffᵢ). State per unit staked.
 4. **Edge gate.** EV > 0? If no, stop — do not bet.
@@ -57,7 +58,8 @@ Run the **EV-Kelly Sizing** (EV → Kelly → fractional Kelly → stop trigger)
 ## Stop trigger: "I will re-estimate if <condition>."
 ## Correlation check: bets independent? <yes/no — adjustment>
 ```
-*→ Method in Action: [Ed Thorp, Blackjack, and Princeton-Newport (1961 → 1988)](examples/ed-thorp-blackjack-and-princeton-newport-1961-1988.md)*
+*→ Method in Action: [Ed Thorp, Blackjack, and Princeton-Newport (1961 → 1988)](examples/ed-thorp-blackjack-and-princeton-newport-1961-1988.md) · [Bill Benter, Hong Kong Horse Racing (1985 → 2001)](examples/bill-benter-hong-kong-horse-racing-1985-2001.md)*
+*→ 2026 lens: [Sizing Hyperscaler GPU/Compute Capex (2023–2026)](examples/hyperscaler-gpu-capex-kelly-2023-2026.md) — one CFO's repeated capex bet: wide CI, stranded-capital ruin tail, and fractional Kelly as staged, survivable capex.*
 ## Sizing Packs
 
 | Domain | Fractional-Kelly | Stop trigger |
@@ -72,7 +74,7 @@ Run the **EV-Kelly Sizing** (EV → Kelly → fractional Kelly → stop trigger)
 - **Positive EV is necessary but not sufficient.** A positive-EV bet sized too large still wrecks you.
 - **Default to fractional Kelly.** Full Kelly is for measured edges. Half- or quarter-Kelly for estimated edges — growth cost is small, protection is large.
 - **Correlation eats Kelly fast.** All positions long tech, all VC bets in one vintage — adjust portfolio Kelly down.
-- **Kelly is for bankroll, not for life.** Use [regret-minimization](../regret-minimization/SKILL.md) for career, marriage, time.
+- **Kelly is for bankroll, not for life.** Use regret-minimization for career, marriage, time.
 - **Update continuously.** Static Kelly on a stale edge is how winning strategies ride into ruin.
 
 *→ Primary sources: [references/sources.md](references/sources.md)*
@@ -82,7 +84,7 @@ Run the **EV-Kelly Sizing** (EV → Kelly → fractional Kelly → stop trigger)
 
 | Fake move | Reality |
 |---|---|
-| [D] Applying Kelly to **one-shot** decisions | Kelly maximizes long-run geometric growth rate across many bets. For a one-time bet, EV is the right concern; for life decisions, use [regret-minimization](../regret-minimization/SKILL.md). |
+| [D] Applying Kelly to **one-shot** decisions | Kelly maximizes long-run geometric growth rate across many bets. For a one-time bet, EV is the right concern; for life decisions, use regret-minimization. |
 | [D] Treating **estimated *p*** as **known *p*** | Kelly is brutal when probability estimates are wrong. Use fractional Kelly to compensate for estimated inputs. |
 | [D] Using **full Kelly with subjective probabilities** | Full Kelly is for casino-grade certainty. Half-Kelly costs ~25% of growth and cuts ruin risk by far more (Thorp 1997). |
 | [D] Confusing **positive EV** with **"should bet"** | EV ignores variance, bankroll, path-dependency. A +1% EV bet that ruins you 1% of the time is not equivalent to one that ruins you 0%. |
@@ -116,4 +118,6 @@ Run the **EV-Kelly Sizing** (EV → Kelly → fractional Kelly → stop trigger)
 - [ ] Correlation across bets considered; per-bet Kelly adjusted if needed
 
 ---
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/expected-value-and-kelly** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/expected-value-and-kelly.json*

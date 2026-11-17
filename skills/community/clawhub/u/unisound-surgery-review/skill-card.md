@@ -1,43 +1,58 @@
-## Description: <br>
-Reviews surgery and procedure coding against ICD/DRG audit rules using structured medical records, candidate procedures, record evidence, and rule matches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews structured medical record data and candidate surgery or procedure codes to return matched coding rules, record evidence, and an audit conclusion.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Medical coding reviewers and health insurance operations teams use this skill to check proposed surgery or procedure codes against ICD/DRG audit rules and supporting record evidence. It returns an assistive coding-review conclusion, not diagnosis or treatment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive medical records through external and user-configurable services. <br>
-Mitigation: Install only in an environment approved for sensitive medical data, configure the guideline API and LLM base URL to trusted services, redact identifiers before input, and use the no-LLM mode when remote processing is not allowed. <br>
-Risk: Prepared medical record text can be persisted when the save-prepared option is used. <br>
-Mitigation: Avoid saving prepared text unless stored PHI is explicitly permitted and protected by the deployment environment. <br>
-Risk: The output is an assistive medical coding review and may require expert judgment. <br>
-Mitigation: Treat pass, fail, and manual-review conclusions as coding-review support and keep human review in the workflow for ambiguous or high-impact cases. <br>
+## Use Case:
 
+External users, medical coding reviewers, and healthcare workflow developers use this skill to audit surgery and procedure coding candidates against rule-library guidance and supporting medical-record evidence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-surgery-review) <br>
-- [Publisher profile](https://clawhub.ai/user/unisound-llm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Analysis, Guidance] <br>
-**Output Format:** [JSON object with final_decision and reasoning fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The decision is constrained to pass, fail, or manual review, with concise evidence-oriented reasoning.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Medical records and bearer credentials can be sent to configurable guideline and LLM endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved HTTPS endpoints, avoid caller-supplied base URLs, and use --no-llm when records cannot leave the host.
+
+Risk: Inputs may contain real patient identifiers or other sensitive health information.
+
+Mitigation: Redact names, identity numbers, phone numbers, detailed addresses, and other identifiers before invoking the skill.
+
+Risk: The --save-prepared option can write plaintext prepared record text to local storage.
+
+Mitigation: Do not enable --save-prepared unless local plaintext retention is explicitly approved and protected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-surgery-review)
+- [Internal medical LLM endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, json, guidance]
+
+**Output Format:** [JSON object with final_decision and reasoning fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Decision values are limited to pass, fail, or manual review; reasoning is concise and user-facing.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

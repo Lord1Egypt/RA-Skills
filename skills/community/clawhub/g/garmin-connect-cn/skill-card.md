@@ -1,45 +1,61 @@
-## Description: <br>
-Queries Garmin Connect China health data, including daily steps, distance, calories, sleep, heart rate, and recent activities, using a user-provided JWT. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Garmin Connect China account data for health metrics including steps, distance, calories, sleep, heart rate, and recent activities.
 
-## Publisher: <br>
-[tcyxk](https://clawhub.ai/user/tcyxk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tcyxk](https://clawhub.ai/user/tcyxk)
 
-## Use Case: <br>
-Developers and Garmin Connect users can use this skill to answer natural-language or command-line questions about synced Garmin health data such as steps, sleep, heart rate, calories, distance, and recent activities for the China Garmin Connect service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Garmin JWT_WEB token that grants account access and can be exposed through command-line arguments, chat, shell history, or logs. <br>
-Mitigation: Treat JWT_WEB like a password, prefer environment variables or local secret storage, avoid pasting it into chat or logs, and rotate it when it expires or may have been exposed. <br>
-Risk: A hard-coded Garmin user ID can cause the activity query to request data for the wrong account. <br>
-Mitigation: Remove the default user ID or replace it with the authenticated user's ID resolved from the user-settings endpoint before using activity queries. <br>
-Risk: Returned Garmin data can include sensitive health and account information. <br>
-Mitigation: Review outputs before sharing, limit retention of exported results, and use the skill only with accounts and data the user is authorized to access. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve Garmin Connect China wellness and activity data for a requested date or recent activity window. It supports conversational questions about steps, sleep, heart rate, calories, distance, floors, and workouts.
 
-## Reference(s): <br>
-- [Garmin Connect API documentation](artifact/references/api.md) <br>
-- [Garmin Connect setup guide](artifact/references/setup.md) <br>
-- [ClawHub release page](https://clawhub.ai/tcyxk/garmin-connect-cn) <br>
-- [Garmin Connect China](https://connect.garmin.cn) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include personal health metrics returned from Garmin Connect; users should avoid sharing tokens or sensitive results in logs or chat.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires a live Garmin bearer token that can access private account and health data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited, current token only in trusted environments, avoid sharing it, and rotate or revoke it when exposure is suspected.
+
+Risk: Passing the token as a command-line argument may expose it through shell history or process listings.
+
+Mitigation: Prefer a reviewed configuration that reads the token from a safer secret source instead of command-line arguments.
+
+Risk: The activity script includes a default user ID and documentation includes sample personal data.
+
+Mitigation: Remove sample personal data and require the authenticated user ID to be resolved before querying account-specific endpoints.
+
+## Reference(s):
+
+- [Garmin Connect China](https://connect.garmin.cn)
+- [Garmin Connect API Documentation](references/api.md)
+- [Garmin Connect Skill Setup Guide](references/setup.md)
+- [ClawHub Skill Page](https://clawhub.ai/tcyxk/skills/garmin-connect-cn)
+- [Publisher Profile](https://clawhub.ai/user/tcyxk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text command output with human-readable metrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Garmin Connect China JWT bearer token and optional date, user ID, or activity limit arguments.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

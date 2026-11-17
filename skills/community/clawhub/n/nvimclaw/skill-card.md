@@ -1,43 +1,59 @@
-## Description: <br>
-Bridge to Neovim over OpenClaw's node plugin. nvim.*: buffer R/W, Ex commands (surgical :substitute), cursor/selection/diagnostics, chat-to-session messaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bridge to live Neovim over OpenClaw's node plugin. Use for reading or editing named and unnamed buffers, discovering open buffers, running surgical Ex substitutions, inspecting cursor/selection/diagnostics, and Neovim chat-to-session messaging.
 
-## Publisher: <br>
-[utrumsit](https://clawhub.ai/user/utrumsit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[utrumsit](https://clawhub.ai/user/utrumsit)
 
-## Use Case: <br>
-Developers and engineers use this skill to let an agent inspect and edit files inside a live Neovim session through OpenClaw, including buffer reads and writes, Ex substitutions, cursor and selection inspection, diagnostics, and in-editor chat handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can grant an agent read and write access to files open within the configured Neovim workspace. <br>
-Mitigation: Use a narrow workspace_root, install only when the Neovim plugin is trusted, and keep privileged tools disabled unless edits are required. <br>
-Risk: Privileged Ex commands and mutating buffer operations can change the user's editor state or project files. <br>
-Mitigation: Review destructive Ex commands before confirming them, use dry-run substitutions where available, and rely on changedtick or line-hash preconditions for mutating operations. <br>
+## Use Case:
 
+Developers and agent operators use nvimclaw to let an agent inspect and edit live Neovim buffers, read diagnostics, cursor, and selection state, and coordinate chat turns from inside Neovim.
 
-## Reference(s): <br>
-- [Server-resolved GitHub source](https://github.com/utrumsit/nvimclaw/tree/main/skills/nvimclaw) <br>
-- [Plugin repo](https://github.com/utrumsit/nvimclaw) <br>
-- [vscode.openclaw extension](https://github.com/xiaoyaner-home/openclaw-vscode/) <br>
-- [ClawHub skill page](https://clawhub.ai/utrumsit/skills/nvimclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell, JSON, Lua, and Vim command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended to guide an agent's use of OpenClaw node commands against a live Neovim workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill gives an agent controlled access to inspect and potentially edit live Neovim buffers, including sensitive editor content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this editor access is intended, avoid sending chat turns from sensitive buffers, and disable or limit automatic context attachment when sensitive content should not be shared.
+
+Risk: Privileged tools can mutate buffers or run destructive Ex commands.
+
+Mitigation: Keep privileged tools disabled unless needed, require confirmation for destructive Ex commands, and use dry runs plus optimistic locks for buffer edits.
+
+Risk: Broad command allowlists on shared gateways can expose newly added privileged Neovim tools before they are reviewed.
+
+Mitigation: Prefer explicit command allowlists on shared gateways and approve node pairings only for trusted Neovim instances.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/utrumsit/skills/nvimclaw)
+- [nvimclaw plugin repository](https://github.com/utrumsit/nvimclaw)
+- [vscode.openclaw reference implementation](https://github.com/xiaoyaner-home/openclaw-vscode/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell, Vim, Lua, and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON command parameters for OpenClaw node invocation.]
+
+## Skill Version(s):
+
+0.1.10 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

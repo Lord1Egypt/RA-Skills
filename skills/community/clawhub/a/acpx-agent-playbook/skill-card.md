@@ -1,47 +1,66 @@
-## Description: <br>
-Practical playbook for running agents through acpx in persistent sessions for reliable file creation, local installs, shell-based writes, structured deliverables, validation, permission troubleshooting, and multi-step coding work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Practical playbook for running agents through acpx in persistent sessions for reliable file creation, local installs, shell-based writes, structured deliverables, and multi-step coding work across Claude, Codex, Pi, Gemini, OpenCode, and other ACP-compatible agents.
 
-## Publisher: <br>
-[spyfree](https://clawhub.ai/user/spyfree) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spyfree](https://clawhub.ai/user/spyfree)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and run acpx-based agent delivery workflows that need persistent sessions, prompt files, explicit validation, reliable file output, and troubleshooting across Codex, Claude, Gemini, OpenCode, Pi, or other ACP-compatible agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using full-access session mode can broaden an agent's ability to edit files or use networked tooling within the session. <br>
-Mitigation: Use read-only or auto modes for inspection, reserve full-access for trusted delivery tasks, and validate outputs before accepting changes. <br>
-Risk: Prompt files, reports, and temporary artifacts may retain sensitive task details. <br>
-Mitigation: Avoid placing secrets in persistent prompt files and clean up temporary /tmp artifacts when they may contain sensitive content. <br>
-Risk: Dependency installation guidance could affect the host environment if global installs are used unnecessarily. <br>
-Mitigation: Prefer project-local virtual environments and use system-level installs only when explicitly intended and permitted. <br>
+## Use Case:
 
+Developers and technical operators use this skill to choose and run ACPX-managed agent sessions for file-producing, artifact-generating, and multi-step delivery workflows. It is especially useful when prior ACPX attempts failed because of permission settings, shell quoting, sandbox boundaries, CLI differences, or agent reliability issues.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/spyfree/acpx-agent-playbook) <br>
-- [PPT playbook for acpx agents](references/ppt-playbook.md) <br>
-- [acpx troubleshooting notes](references/troubleshooting.md) <br>
-- [provider and agent compatibility notes](references/provider-compat.md) <br>
-- [agent matrix](references/agent-matrix.md) <br>
-- [migration notes](references/migration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Operational guidance for acpx session setup, permission posture, artifact generation, validation, and troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill normalizes broad ACPX session permissions and approve-all style configuration changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with read-only or auto modes where practical, avoid persistent approve-all settings unless intentionally needed, and restore narrower permissions after the task.
+
+Risk: Shell or Python write fallbacks can create or overwrite files in unexpected locations if output paths are ambiguous.
+
+Mitigation: Confirm exact output paths before file writes, generate fragile artifacts under /tmp first, validate them, and copy them to the final workspace only after validation.
+
+Risk: Local package installs may introduce unpinned dependencies or fail under restricted hosts.
+
+Mitigation: Prefer project-local virtual environments, pin or verify packages before installation, and use stdlib-only fallback paths when dependency installation is unavailable.
+
+Risk: Agent and provider reliability can drift because of authentication, quota, relay, permission, or CLI-shape changes.
+
+Mitigation: Use the verification ladder of fixed-text response, minimal file write, and one real artifact task before trusting an agent for delivery work.
+
+## Reference(s):
+
+- [ACPX Agent Playbook on ClawHub](https://clawhub.ai/spyfree/skills/acpx-agent-playbook)
+- [Agent Matrix](references/agent-matrix.md)
+- [Provider and Agent Compatibility Notes](references/provider-compat.md)
+- [ACPX Troubleshooting Notes](references/troubleshooting.md)
+- [PPT Playbook for ACPX Agents](references/ppt-playbook.md)
+- [Migration Notes](references/migration.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and reusable prompt snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational recommendations and validation checklists rather than executable automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

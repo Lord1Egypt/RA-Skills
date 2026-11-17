@@ -1,44 +1,53 @@
-## Description: <br>
-Fetch live sports betting odds from 20+ sportsbooks and compare lines for NFL, NBA, MLB, NHL, soccer, and other supported sports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch live sports betting odds from 20+ sportsbooks and compare lines for NFL, NBA, MLB, NHL, soccer, and other sports.
 
-## Publisher: <br>
-[rsquaredsolutions2026](https://clawhub.ai/user/rsquaredsolutions2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rsquaredsolutions2026](https://clawhub.ai/user/rsquaredsolutions2026)
 
-## Use Case: <br>
-External users and agents use this skill to fetch current sports betting odds, compare sportsbook lines, and identify best available spreads, totals, or prices using The Odds API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a The Odds API key and sends requested sports, markets, and lookup parameters to a third-party odds service. <br>
-Mitigation: Use a dedicated API key, avoid sharing unnecessary sensitive context in odds requests, and monitor API quota or billing. <br>
-Risk: Live sportsbook odds can change quickly and may be incomplete or unavailable for some sports or markets. <br>
-Mitigation: Treat returned odds as time-sensitive, verify important lines with the sportsbook or data provider, and disclose the retrieval time when using results. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve current sports odds, compare sportsbook lines, identify best available lines, and inspect vig or hold percentage for betting markets.
 
-## Reference(s): <br>
-- [The Odds API](https://the-odds-api.com/) <br>
-- [The Odds API active sports endpoint](https://api.the-odds-api.com/v4/sports?apiKey=$ODDS_API_KEY) <br>
-- [AgentBets OpenClaw odds scanner guide](https://agentbets.ai/guides/openclaw-odds-scanner-skill/) <br>
-- [AgentBets OpenClaw skills series](https://agentbets.ai/guides/#openclaw-skills) <br>
-- [Agent Betting Stack](https://agentbets.ai/guides/agent-betting-stack/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON API-response guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and an ODDS_API_KEY credential for The Odds API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill sends ODDS_API_KEY to api.the-odds-api.com when API commands are run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated API key, avoid shell tracing or command logging that could expose it, rotate the key if exposure is suspected, and apply provider-side quotas or permission limits where available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rsquaredsolutions2026/skills/odds-scanner)
+- [The Odds API](https://the-odds-api.com/)
+- [AgentBets OpenClaw Odds Scanner guide](https://agentbets.ai/guides/openclaw-odds-scanner-skill/)
+- [OpenClaw Skills series](https://agentbets.ai/guides/#openclaw-skills)
+- [Agent Betting Stack](https://agentbets.ai/guides/agent-betting-stack/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Analysis, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and an ODDS_API_KEY credential for The Odds API.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

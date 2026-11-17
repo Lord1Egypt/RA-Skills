@@ -1,42 +1,56 @@
-## Description: <br>
-Integrates Dub Links API endpoints to create, update, delete, retrieve, list, count, and run bulk operations on short links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates Dub Links API endpoints to create, update, delete, retrieve, list, count, and run bulk operations on short links.
 
-## Publisher: <br>
-[ferminrp](https://clawhub.ai/user/ferminrp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ferminrp](https://clawhub.ai/user/ferminrp)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Dub short links in an authenticated workspace, including creation, updates, lookup, listing, counting, and bulk link operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0 license
 
-## Known Risks and Mitigations: <br>
-Risk: Dub API keys can grant access to the authenticated workspace if exposed. <br>
-Mitigation: Use a least-privilege Dub API key where possible, keep it out of chat and logs, and pass it through an environment variable such as DUB_API_KEY. <br>
-Risk: Delete, update, and bulk operations can modify or remove many short links. <br>
-Mitigation: Require the agent to show exact link IDs, domains, selectors, and payloads before update, delete, or bulk requests are executed. <br>
+## Use Case:
 
+Developers and agents use this skill to manage Dub short links in an authenticated workspace, including creating, updating, deleting, retrieving, listing, counting, and bulk-operating on links.
 
-## Reference(s): <br>
-- [Dub Links API create endpoint](https://dub.co/docs/api-reference/endpoint/create-a-link) <br>
-- [Dub API tokens](https://dub.co/docs/api-reference/tokens) <br>
-- [Local OpenAPI snapshot](references/openapi-spec.json) <br>
-- [ClawHub skill page](https://clawhub.ai/ferminrp/dub-links-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses should summarize affected link IDs, domains, short links, destination URLs, and bulk-operation counts when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can delete or bulk-modify Dub links in the authenticated workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Dub token when available and confirm exact link IDs before delete or bulk operations.
+
+Risk: The bundled API reference includes non-link operations outside the intended scope.
+
+Mitigation: Keep agent use limited to /links* endpoints and avoid non-link endpoints from the bundled API reference.
+
+## Reference(s):
+
+- [Dub Create Link API Documentation](https://dub.co/docs/api-reference/endpoint/create-a-link)
+- [Dub API Token Documentation](https://dub.co/docs/api-reference/tokens)
+- [Bundled OpenAPI Snapshot](references/openapi-spec.json)
+- [ClawHub Skill Page](https://clawhub.ai/ferminrp/skills/dub-links-api)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls, markdown, JSON]
+
+**Output Format:** [Markdown with inline curl commands, configuration snippets, and JSON result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Dub Bearer token and is scoped to /links* endpoints.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

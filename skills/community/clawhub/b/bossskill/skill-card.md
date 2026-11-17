@@ -1,50 +1,61 @@
-## Description: <br>
-Startup coaching and boss secretary workflow for founders, small business owners, customer follow-up, team management, task review, business diagnosis, and operating checklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Startup coaching and boss secretary workflow for founders, small business owners, customer follow-up, team management, task review, business diagnosis, and operating checklists.
 
-## Publisher: <br>
-[fanfanscoin](https://clawhub.ai/user/fanfanscoin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fanfanscoin](https://clawhub.ai/user/fanfanscoin)
 
-## Use Case: <br>
-Founders, small business owners, sales leaders, and project managers use this skill to turn natural-language business updates into CRM-style records, task follow-ups, operating checklists, customer follow-up plans, team management advice, and daily business review guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store customer, team, task, and business notes in a local SQLite database. <br>
-Mitigation: Store only business-necessary records, avoid passwords, payment details, government IDs, trade secrets, and unnecessary private details, and protect the database and exported files. <br>
-Risk: Licensed features may send the current command input plus license and device information to the vendor service. <br>
-Mitigation: Use licensed cloud commands only when needed, review the current input before sending it, and avoid including sensitive or unrelated business data. <br>
-Risk: Endpoint and license behavior can be influenced by BOOSKILL_* environment variables. <br>
-Mitigation: Run the skill only in an environment you control and verify BOOSKILL_* variables before using license or cloud-core features. <br>
-Risk: Public Word/PDF download links require uploading user-selected documents. <br>
-Mitigation: Upload documents only when explicitly requested and remove secrets, private data, and unauthorized third-party information before upload. <br>
+## Use Case:
 
+External founders, small business owners, sales leaders, and project managers use this skill to turn customer follow-up, team management, task tracking, business diagnosis, and daily review into concrete operating actions.
 
-## Reference(s): <br>
-- [BossSkill ClawHub listing](https://clawhub.ai/fanfanscoin/bossskill) <br>
-- [SQLite business database reference](references/sqlite-database.md) <br>
-- [Task reminder system reference](references/task-reminder-system.md) <br>
-- [Team and customer schemas reference](references/team-customer-schemas.md) <br>
-- [Checklists reference](references/checklists.md) <br>
-- [Privacy notice](PRIVACY.md) <br>
-- [License notice](LICENSE_NOTICE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional JSON records and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or query a user-selected local SQLite database and may call licensed cloud endpoints only for explicit licensed commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata) <br>
+Risk: Licensed cloud features may send current command inputs, business text, license data, and device identifiers to vendor services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that cloud-connected posture is acceptable, and avoid entering unnecessary personal, confidential, or sensitive business data.
+
+Risk: The skill stores local business records, exports, and a reusable license key on the user device.
+
+Mitigation: Protect the SQLite database, generated exports, and license key with normal endpoint, backup, and access controls.
+
+Risk: The security guidance says BOOSKILL_CORE_MODE=local should not be treated as a no-network guarantee without a code fix.
+
+Mitigation: Do not rely on local mode for network isolation; validate network behavior before using it in restricted environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fanfanscoin/skills/bossskill)
+- [Checklists](references/checklists.md)
+- [SQLite database reference](references/sqlite-database.md)
+- [Task reminder system](references/task-reminder-system.md)
+- [Team and customer schemas](references/team-customer-schemas.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and local record/export outputs when explicitly requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, query, or export a user-selected local SQLite database when the user asks for recordkeeping workflows.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub server release evidence; artifact manifests report 0.2.0-commercial-client)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

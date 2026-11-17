@@ -1,44 +1,58 @@
-## Description: <br>
-Connects an AI agent to ServiceNow so it can query, create, update, delete, aggregate, inspect schema, manage attachments, and check instance health through ServiceNow REST APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect your AI agent to ServiceNow to query, create, update, and manage records across any table using the Table API and Stats API, including CRUD operations, aggregate analytics, schema introspection, and attachment management for ITSM, ITOM, and CMDB workflows.
 
-## Publisher: <br>
-[onlyflowstech](https://clawhub.ai/user/onlyflowstech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[onlyflowstech](https://clawhub.ai/user/onlyflowstech)
 
-## Use Case: <br>
-Developers, ITSM teams, ITOM teams, and ServiceNow operators use this skill to let an agent work with incidents, changes, problems, CMDB records, knowledge articles, attachments, bulk record operations, and instance health checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, delete, and bulk-modify ServiceNow records when configured with an account that has those permissions. <br>
-Mitigation: Use a dedicated least-privilege ServiceNow API user and review write, delete, and batch commands before execution. <br>
-Risk: Bulk operations can affect many records if the encoded query is too broad. <br>
-Mitigation: Keep batch operations in dry-run mode until the matched records and limits are verified, then require explicit confirmation to execute. <br>
-Risk: Attachment upload and download operations can move data between the local machine and ServiceNow. <br>
-Mitigation: Review attachment paths, record targets, and data handling requirements before running attachment commands. <br>
+## Use Case:
 
+Developers, administrators, and operations teams use this skill to let an agent inspect and manage ServiceNow records, attachments, aggregate reports, schemas, and instance health from natural-language requests.
 
-## Reference(s): <br>
-- [ClawHub ServiceNow skill page](https://clawhub.ai/onlyflowstech/servicenow) <br>
-- [OnlyFlows publisher profile](https://clawhub.ai/user/onlyflowstech) <br>
-- [OnlyFlows homepage](https://onlyflows.tech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq plus SN_INSTANCE, SN_USER, and SN_PASSWORD environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence) <br>
+Risk: The skill can create, update, delete, and batch-change ServiceNow records across tables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human review for create, update, delete, batch, and attachment actions, and use the built-in confirm and dry-run controls for destructive or bulk operations.
+
+Risk: The skill uses reusable ServiceNow credentials supplied through environment variables.
+
+Mitigation: Use a dedicated least-privilege ServiceNow integration account, avoid admin credentials, and manage secrets through the host environment rather than committing them to files.
+
+Risk: Misconfigured instance URLs or credential handling could expose operational data.
+
+Mitigation: Set SN_INSTANCE to an HTTPS ServiceNow URL and review HTTPS validation and credential-handling behavior before production deployment.
+
+## Reference(s):
+
+- [ClawHub ServiceNow skill page](https://clawhub.ai/onlyflowstech/skills/servicenow)
+- [OnlyFlows](https://onlyflows.tech)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq plus SN_INSTANCE, SN_USER, and SN_PASSWORD environment variables.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

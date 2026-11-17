@@ -1,46 +1,61 @@
-## Description: <br>
-Language Tutor Pro turns an OpenClaw agent into a persistent language tutor that adapts conversation practice, grammar correction, spaced repetition, and progress tracking to the learner. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Language Tutor Pro turns an OpenClaw agent into a persistent, conversation-driven language tutor with adaptive practice, contextual grammar correction, spaced vocabulary review, and CEFR-aligned progress tracking.
 
-## Publisher: <br>
-[nollio](https://clawhub.ai/user/nollio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nollio](https://clawhub.ai/user/nollio)
 
-## Use Case: <br>
-External learners use this skill with an OpenClaw agent to practice supported languages through adaptive conversation, guided lessons, situation role-play, and vocabulary review. It is intended for ongoing language learning where local progress, vocabulary, grammar, session logs, and transcripts are retained across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill saves learner profile details, vocabulary, grammar progress, session logs, and full conversation transcripts locally. <br>
-Mitigation: Avoid sensitive personal details during practice, protect the skill data directory, and periodically review or clear retained learning data. <br>
-Risk: Conversation text may be processed by the OpenClaw LLM backend configured by the user. <br>
-Mitigation: Review the OpenClaw backend and provider data-handling terms before using the skill for private or sensitive conversations. <br>
-Risk: Progress exports and dashboard files can contain summaries of personal learning activity. <br>
-Mitigation: Treat exported progress files with the same care as the underlying transcripts and avoid sharing them unintentionally. <br>
+## Use Case:
 
+External language learners use this skill to run personalized conversation practice, grammar lessons, vocabulary review, role-play scenarios, and progress tracking across supported languages. It is intended for OpenClaw agents that can maintain local skill data between sessions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nollio/normieclaw-language-tutor-pro) <br>
-- [README](artifact/README.md) <br>
-- [Setup guide](artifact/SETUP-PROMPT.md) <br>
-- [Security notes](artifact/SECURITY.md) <br>
-- [Dashboard integration spec](artifact/dashboard-kit/DASHBOARD-SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown conversation guidance with JSON/JSONL data records and bash command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains local learner profile, vocabulary, grammar, session, transcript, and optional dashboard export files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill retains learner profiles, progress data, vocabulary, grammar records, and full conversation transcripts locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill data directory private, avoid entering sensitive personal details during sessions, and treat exported progress files as personal data.
+
+Risk: Conversation content may be sent to the configured LLM backend through the OpenClaw runtime.
+
+Mitigation: Review the OpenClaw and LLM backend configuration before use, especially when using cloud-hosted model providers.
+
+Risk: Security evidence flags a path-handling code-injection risk in setup.sh.
+
+Mitigation: Install only in a normal trusted path such as the documented OpenClaw skills folder, and review or fix setup.sh path handling before running it in unusual paths.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nollio/skills/normieclaw-language-tutor-pro)
+- [README](artifact/README.md)
+- [Setup Guide](artifact/SETUP-PROMPT.md)
+- [Security](artifact/SECURITY.md)
+- [Dashboard Integration Spec](artifact/dashboard-kit/DASHBOARD-SPEC.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown conversation guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local JSON, JSONL, Markdown transcript, and dashboard export files in the skill data directory.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

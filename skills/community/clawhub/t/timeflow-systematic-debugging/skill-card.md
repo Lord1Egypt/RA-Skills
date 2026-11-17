@@ -1,38 +1,50 @@
-## Description: <br>
-Systematic Debugging guides agents through root-cause investigation, pattern analysis, hypothesis testing, and implementation before proposing fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes.
 
-## Publisher: <br>
-[soponcd](https://clawhub.ai/user/soponcd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soponcd](https://clawhub.ai/user/soponcd)
 
-## Use Case: <br>
-Developers and engineers use this skill when debugging bugs, test failures, build failures, performance issues, and integration problems. It helps an agent gather evidence, identify root cause, test a hypothesis, and implement a single verified fix. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diagnostic steps may expose Mac keychain, code-signing identity, or environment details. <br>
-Mitigation: Review diagnostics before running or sharing them, and redact sensitive output unless specifically debugging code signing in a private context. <br>
+## Use Case:
 
+Developers and engineers use this skill to investigate bugs, test failures, build failures, performance issues, and integration problems through a root-cause-first debugging workflow before proposing a fix.
 
-## Reference(s): <br>
-- [Systematic Debugging on ClawHub](https://clawhub.ai/soponcd/timeflow-systematic-debugging) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with checklists and occasional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external tool integrations or runtime parameters are defined.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Diagnostic examples can expose credential-adjacent signing, keychain, environment, or identity metadata when copied into CI, production, or shared support channels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact environment values and signing identity details, and avoid running or sharing those diagnostics in CI, production, or public support contexts unless the output has been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/soponcd/skills/timeflow-systematic-debugging)
+- [Systematic Debugging source homepage](https://github.com/soponcd/timeflow-skills/tree/main/teams/skills/systematic-debugging)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, code]
+
+**Output Format:** [Markdown guidance with inline shell command and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Root-cause investigation workflow; no automated execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

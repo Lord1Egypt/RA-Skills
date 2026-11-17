@@ -1,42 +1,55 @@
-## Description: <br>
-Builds Alibaba AI Mode and Alibaba search URLs for natural-language product discovery and AI sourcing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Alibaba AI Mode for intelligent product search and discovery with natural language queries, AI-powered recommendations, AI sourcing features, and disclosed traffic_type=ags_llm attribution tracking.
 
-## Publisher: <br>
-[Zeyu426](https://clawhub.ai/user/Zeyu426) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zeyu426](https://clawhub.ai/user/zeyu426)
 
-## Use Case: <br>
-External users and sourcing teams use this skill to create Alibaba product search links from natural-language queries and explore AI-curated sourcing pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Alibaba URLs include a traffic attribution parameter. <br>
-Mitigation: Review generated links before opening them if attribution or tracking parameters matter for the use case. <br>
-Risk: Product queries sent through Alibaba links are shared with Alibaba. <br>
-Mitigation: Avoid entering confidential sourcing terms or sensitive business requirements unless that sharing is acceptable. <br>
+## Use Case:
 
+External users, sourcing teams, and developers use this skill to build or navigate Alibaba AI Mode and AI Sourcing URLs for product discovery, natural-language product search, supplier comparison, and AI-curated recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zeyu426/alibaba-ai-search) <br>
-- [Alibaba AI Mode](https://aimode.alibaba.com/?traffic_type=ags_llm) <br>
-- [Alibaba AI Sourcing](https://sale.alibaba.com/p/aisourcing/index.html?traffic_type=ags_llm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text URLs and markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated URLs include the traffic_type=ags_llm attribution parameter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: ClawHub release evidence) <br>
+Risk: Generated Alibaba links include traffic_type=ags_llm for analytics and attribution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm this attribution parameter is acceptable for the deployment context before distributing or using generated links.
+
+Risk: Untrusted category values may be passed through the helper script before category URL encoding or validation is fixed.
+
+Mitigation: Use only trusted category identifiers or review generated URLs before opening or sharing them.
+
+## Reference(s):
+
+- [Alibaba AI Search Skill Page](https://clawhub.ai/zeyu426/skills/alibaba-ai-search)
+- [Alibaba AI Mode](https://aimode.alibaba.com/?traffic_type=ags_llm)
+- [Alibaba AI Sourcing](https://sale.alibaba.com/p/aisourcing/index.html?traffic_type=ags_llm)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with URLs and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated Alibaba links include traffic_type=ags_llm for analytics and attribution.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

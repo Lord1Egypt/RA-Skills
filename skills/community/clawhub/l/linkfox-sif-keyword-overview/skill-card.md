@@ -1,42 +1,59 @@
-## Description: <br>
-Queries LinkFox's SIF keyword overview API to analyze Amazon keyword competition, search volume, product counts, ad presence, and supply-demand metrics across supported marketplaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Amazon keyword-level competition, search popularity, product counts, advertising counts, and supply-demand ratio using LinkFox SIF data.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External sellers, marketplace analysts, and e-commerce operators use this skill to assess Amazon keyword-level competition, search demand, advertising density, and supply-demand balance. It is most useful when comparing keyword opportunity across one or more supported Amazon marketplaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Keyword research queries and the LinkFox API key are sent to LinkFox services. <br>
-Mitigation: Install only when LinkFox is trusted for the intended data, keep API keys in the agent environment, and avoid submitting confidential product plans, customer data, or secrets as keywords. <br>
-Risk: The feedback behavior may send user reactions or task context to a separate LinkFox service. <br>
-Mitigation: Require user consent or environment-level blocking for the feedback endpoint, and review feedback content before any transmission. <br>
+## Use Case:
 
+External sellers, marketplace analysts, and e-commerce operators use this skill to query Amazon keyword competition metrics and compare supply-demand conditions, search popularity, product counts, and ad competition for supported marketplaces.
 
-## Reference(s): <br>
-- [SIF Keyword Overview API Reference](references/api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/linkfox-sif-keyword-overview) <br>
-- [LinkFox Skill Catalog](https://skill.linkfox.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown tables and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LINKFOXAGENT_API_KEY; each request analyzes one keyword for one supported Amazon marketplace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: The release is marked suspicious by clawscan because it handles keyword queries, account onboarding details, phone/SMS verification data, API keys, paid plan/payment workflows, endpoint overrides, and automatic feedback behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust LinkFox with those data flows, obtain and store API keys through official account pages or a secret manager, avoid endpoint override environment variables, review payment orders before paying, and require explicit consent before feedback submission.
+
+Risk: API calls consume paid LinkFox credits and payment onboarding can create purchase orders.
+
+Mitigation: Confirm the user's intent before repeated or exploratory calls, show credit/payment implications before continuing, and have the user review any generated payment order.
+
+Risk: Full API responses are written to a local session data directory and may contain commercially sensitive keyword research.
+
+Mitigation: Run the skill only in trusted workspaces and avoid sharing saved response files unless the user intends to disclose the keyword research.
+
+## Reference(s):
+
+- [SIF keyword overview API reference](references/api.md)
+- [Authentication and billing onboarding](references/onboarding.md)
+- [ClawHub skill page](https://clawhub.ai/linkfox-ai/skills/linkfox-sif-keyword-overview)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON parameters, shell commands, tabular analysis, and saved JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill queries one keyword per API call, supports 13 Amazon marketplaces, caches identical calls for 24 hours, and saves full API responses under a local linkfox session data directory.]
+
+## Skill Version(s):
+
+1.0.8 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Searches Bing China in Chinese through a headless browser, detects login requirements in real time, and opens the host browser when user login is needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language web search through Bing China with browser-based page retrieval and login handling when a visited site requires it.
 
-## Publisher: <br>
-[qwq2023qwq](https://clawhub.ai/user/qwq2023qwq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qwq2023qwq](https://clawhub.ai/user/qwq2023qwq)
 
-## Use Case: <br>
-Developers and agents use this skill to perform Chinese web searches on Bing China, retrieve search result page content, and handle sites that require user login through the host browser. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation and login flows can expose real account credentials or saved session state. <br>
-Mitigation: Use trusted sites only, avoid sensitive credentials when possible, and do not save or commit authentication state files. <br>
+## Use Case:
 
+Developers and external agent users use this skill when an agent needs Chinese-language search results from Bing China and may need to fetch page content through OpenClaw's browser tool.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qwq2023qwq/web-search-bing-cn) <br>
-- [OpenClaw browser tool documentation](https://docs.openclaw.ai/zh-CN/tools/browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and browser-search result text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use browser automation and host-browser login flows when a site requires authentication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The documented browser configuration can disable browser sandboxing while visiting web pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid the noSandbox setting unless an administrator has accepted that risk in a contained environment.
+
+Risk: The skill may open a host browser for third-party login flows.
+
+Mitigation: Enter credentials only when you intentionally initiated the login and trust the destination site.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qwq2023qwq/skills/web-search-bing-cn)
+- [OpenClaw browser tool documentation](https://docs.openclaw.ai/zh-CN/tools/browser)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with search-result text and browser-use instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May open the host browser only when a site requires login.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

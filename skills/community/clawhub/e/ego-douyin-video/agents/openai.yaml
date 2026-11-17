@@ -1,0 +1,4 @@
+interface:
+  display_name: "Douyin video"
+  short_description: "Publish a Douyin video via Ego Lite; login-check first"
+  default_prompt: "Use douyin-video: install Ego Lite, check-login, then publish a local video file. Success is content management or a publish-success message."

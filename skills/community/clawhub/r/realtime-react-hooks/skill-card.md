@@ -1,37 +1,52 @@
-## Description: <br>
-React hooks and patterns for real-time data in React apps using SSE, WebSocket, and SWR. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+React hooks for real-time data with SSE, WebSocket, and SWR integration.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers use this skill when adding live updates to React applications such as dashboards, chat interfaces, notifications, and other UI that should update without a page refresh. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Install commands can fetch skill content from external package or repository sources. <br>
-Mitigation: Verify the intended source before running install commands, and prefer the ClawHub install command when provenance is unavailable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wpank/realtime-react-hooks) <br>
+## Use Case:
 
+Developers and engineers use this skill to add live updates to React applications, including dashboards, chat interfaces, notifications, and other interfaces that should update without refresh.
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes React hook patterns for SSE, WebSocket reconnection, SWR cache updates, subscriptions, and connection status UI.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documented npx installation paths rely on mutable, unpinned remote execution.
+
+Mitigation: Review or pin the installer before running the commands, especially in sensitive development environments.
+
+Risk: Realtime hooks can connect to SSE or WebSocket endpoints and channels that may carry sensitive data.
+
+Mitigation: Connect only to trusted authenticated endpoints and avoid placing sensitive payloads on channels you do not control.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wpank/skills/realtime-react-hooks)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with TypeScript, TSX, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides reusable hook and component patterns for SSE, WebSocket reconnection, SWR updates, subscriptions, installation, and operational cautions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Trade on UniClaw prediction markets. Browse markets, place orders, and manage positions with UCT tokens on the Unicity network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade on UniClaw prediction markets, browse markets, place orders, and manage positions with UCT tokens on the Unicity network.
 
-## Publisher: <br>
-[jvsteiner](https://clawhub.ai/user/jvsteiner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jvsteiner](https://clawhub.ai/user/jvsteiner)
 
-## Use Case: <br>
-External agents and developers use this skill to register with a UniClaw server, browse prediction markets, place and cancel yes/no orders, view balances and positions, and move UCT between a Unicity wallet and the trading account. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Wallet secrets and token-moving commands can affect UCT balances or trading state. <br>
-Mitigation: Use a dedicated low-balance or testnet Unicity wallet, verify UNICLAW_SERVER before use, and manually check amounts, market IDs, prices, and recipient addresses before deposit, trade, cancellation, withdrawal, or smoke-test commands. <br>
-Risk: The skill relies on the configured UniClaw service for market, order, deposit, and withdrawal operations. <br>
-Mitigation: Install only if the UniClaw service and publisher are trusted, and point UNICLAW_SERVER only at the intended service endpoint. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [UniClaw ClawHub Listing](https://clawhub.ai/jvsteiner/uniclaw) <br>
-- [UniClaw API Reference](references/api.md) <br>
-- [UniClaw Default API Service](https://api.uniclaw.app) <br>
+## Use Case:
 
+External agents and developers use this skill to interact with UniClaw prediction markets, including account registration, market discovery, order placement, portfolio review, deposits, and withdrawals.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, npx, the tsx package, a configured Unicity wallet, and access to the configured UniClaw server.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.1 (source: package.json and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can move UCT tokens through deposit and withdrawal commands and can place prediction-market orders.
+
+Mitigation: Use only funds you are willing to risk, preferably on testnet, and personally verify amounts, markets, prices, quantities, and withdrawal destinations before executing commands.
+
+Risk: The skill reads wallet secrets from the configured Unicity wallet and signs API requests.
+
+Mitigation: Review wallet and private-key handling before installation, keep wallet files protected, and avoid running the skill with production wallet material unless the deployment has been approved.
+
+Risk: Changing the server endpoint can direct signed requests or token transfers to a custom service.
+
+Mitigation: Confirm the `UNICLAW_SERVER` endpoint before use and avoid custom or plaintext endpoints unless they are explicitly trusted.
+
+## Reference(s):
+
+- [UniClaw API Reference](references/api.md)
+- [UniClaw skill page](https://clawhub.ai/jvsteiner/skills/uniclaw)
+- [Default UniClaw API endpoint](https://api.uniclaw.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, npx, tsx, and a configured Unicity wallet.]
+
+## Skill Version(s):
+
+0.2.1 (source: package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

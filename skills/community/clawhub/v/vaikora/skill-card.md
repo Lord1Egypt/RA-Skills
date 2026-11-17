@@ -1,45 +1,62 @@
-## Description: <br>
-Vaikora routes OpenClaw LLM calls through a security proxy that monitors prompts, responses, and provider credentials for risk signals before forwarding traffic to the selected model provider. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Route OpenClaw LLM calls through Vaikora for real-time AI agent security monitoring. Every action your agent takes gets scored for risk, anomaly-flagged, and pushed as a security signal to SentinelOne, CrowdStrike, or AWS Security Hub, without changing how your agent works.
 
-## Publisher: <br>
-[data443](https://clawhub.ai/user/data443) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[data443](https://clawhub.ai/user/data443)
 
-## Use Case: <br>
-Developers and security teams use Vaikora to route OpenClaw agent LLM traffic through a security monitoring gateway, assess risky agent actions, and forward high-risk signals to SIEM or EDR connectors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Vaikora receives prompts, message history, model responses, and the upstream LLM provider key while proxying model traffic. <br>
-Mitigation: Use a dedicated provider key with spend limits, evaluate with non-sensitive data first, review vendor retention and access terms, and rotate keys after testing. <br>
-Risk: Routing regulated or high-sensitivity data through a third-party LLM security proxy may create compliance and vendor access exposure. <br>
-Mitigation: Do not route PHI, PCI, or other regulated data until the organization has approved Vaikora's retention, access, and compliance controls. <br>
+## Use Case:
 
+Developers and security teams use this skill to route OpenClaw LLM traffic through Vaikora for agent action scoring, policy enforcement, anomaly detection, and forwarding high-risk security signals to supported SIEM or EDR connectors.
 
-## Reference(s): <br>
-- [Vaikora Homepage](https://vaikora.com) <br>
-- [Vaikora Documentation](https://vaikora.com/docs) <br>
-- [Vaikora AWS Security Hub Connector](https://aws.amazon.com/marketplace/pp/prodview-dotgh5y3ox6rq) <br>
-- [Vaikora SentinelOne Connector](https://aws.amazon.com/marketplace/pp/prodview-tzxzdoajtk3bu) <br>
-- [Vaikora CrowdStrike Connector](https://aws.amazon.com/marketplace/pp/prodview-cs7idbycte7fm) <br>
-- [Data443 Risk Mitigation](https://data443.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides setup guidance for environment variables, headers, routing configuration, connector installation, and verification commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Vaikora is in the LLM request path and can access full prompts, responses, and the forwarded upstream provider API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Evaluate with an isolated Vaikora account and a dedicated spend-limited provider key before routing production traffic.
+
+Risk: Prompts or responses may contain regulated or sensitive data that would be visible to the proxy.
+
+Mitigation: Do not route regulated or sensitive production data until retention, access controls, and vendor requirements have been reviewed.
+
+Risk: The forwarded provider key is exposed to the proxy during use.
+
+Mitigation: Use a test key for evaluation and rotate the upstream provider key after testing.
+
+## Reference(s):
+
+- [Vaikora homepage](https://vaikora.com)
+- [Vaikora docs](https://vaikora.com/docs)
+- [AWS Marketplace Security Hub connector](https://aws.amazon.com/marketplace/pp/prodview-dotgh5y3ox6rq)
+- [AWS Marketplace SentinelOne connector](https://aws.amazon.com/marketplace/pp/prodview-tzxzdoajtk3bu)
+- [AWS Marketplace CrowdStrike connector](https://aws.amazon.com/marketplace/pp/prodview-cs7idbycte7fm)
+- [Data443](https://data443.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands]
+
+**Output Format:** [Markdown with YAML and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VAIKORA_API_KEY, VAIKORA_AGENT_ID, and LLM_PROVIDER_API_KEY environment variables.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -236,7 +236,7 @@ export const getNodeCustomVersionRule = (isTemplate: boolean) => {
 - [08-task-sae-image-update.md](./08-task-sae-image-update.md) - SAE镜像更新
 - [09-task-sonar-qube.md](./09-task-sonar-qube.md) - SonarQube扫描
 - [10-task-manual-review.md](./10-task-manual-review.md) - 人工审核
-- [12-task-product-distribution.md](./12-task-product-distribution.md) - 制品分发
+- [12-taREDACTED-SECRET.md](./12-taREDACTED-SECRET.md) - 制品分发
 - [14-task-nodejs-build.md](./14-task-nodejs-build.md) - Node.js构建
 - [15-task-python-build.md](./15-task-python-build.md) - Python构建
 - [16-task-go-build.md](./16-task-go-build.md) - Go构建

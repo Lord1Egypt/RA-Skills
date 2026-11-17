@@ -1,39 +1,50 @@
-## Description: <br>
-Multi search engine integration with 4 engines: Google, DuckDuckGo, Brave Search, and WolframAlpha. Supports advanced search operators, time filters, and knowledge queries. No API keys required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi search engine integration with 4 engines: Google, DuckDuckGo, Brave Search, and WolframAlpha. Supports advanced search operators, time filters, and knowledge queries. No API keys required.
 
-## Publisher: <br>
-[gimpy666](https://clawhub.ai/user/gimpy666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gimpy666](https://clawhub.ai/user/gimpy666)
 
-## Use Case: <br>
-Developers and agents use this skill to form refined web and knowledge queries across Google, DuckDuckGo, Brave Search, and WolframAlpha without API keys. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to Google, DuckDuckGo, Brave Search, or WolframAlpha. <br>
-Mitigation: Do not submit secrets, credentials, private customer data, confidential project names, or other sensitive identifiers through this skill. <br>
+## Use Case:
 
+Developers and external agent users use this skill to construct refined web and knowledge queries across Google, DuckDuckGo, Brave Search, and WolframAlpha without API keys.
 
-## Reference(s): <br>
-- [International Search Guide](references/international-search.md) <br>
-- [ClawHub release page](https://clawhub.ai/gimpy666/multi-search-engine-refined) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with example web_fetch calls and search URL templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces query-construction guidance for public search providers; no API keys are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search terms are sent to public search providers including Google, DuckDuckGo, Brave Search, and WolframAlpha.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include secrets, private project names, personal data, or credential-like values in search queries.
+
+## Reference(s):
+
+- [International Search Reference](references/international-search.md)
+- [ClawHub Skill Page](https://clawhub.ai/gimpy666/skills/multi-search-engine-refined)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, API Calls]
+
+**Output Format:** [Markdown with URL templates and JavaScript-style web_fetch examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces public search URL guidance; no API keys required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Provides font pairing recommendations, Chinese font guidance, web font loading advice, heading font suggestions, system font stacks, and preview HTML generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+字体搭配推荐、中文字体指南、Web字体加载、标题字体、系统字体栈、预览HTML生成。Font pairing recommendations, Chinese fonts guide, web fonts, heading fonts, system font stacks.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Designers, developers, and content teams use this skill to choose font pairings, select Chinese and system font stacks, optimize web font loading, and generate HTML/CSS previews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Command arguments can include private customer names, internal project names, URLs, or other sensitive text and may be retained in the skill's local history file. <br>
-Mitigation: Avoid passing sensitive text as command arguments unless local retention is acceptable. <br>
-Risk: Font and design guidance may be incomplete or unsuitable for a specific brand, language coverage, license, or accessibility requirement. <br>
-Mitigation: Review generated recommendations against project requirements, font licensing terms, and accessibility expectations before use. <br>
+## Use Case:
 
+Designers, developers, and content teams use this skill to generate font pairing recommendations, Chinese font guidance, web font loading advice, system font stacks, and preview HTML for typography decisions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ckchzh/font-pairing) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown guidance with CSS and HTML snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May emit shell command output and ready-to-use font preview HTML.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The bundled helper may save command arguments locally, which could include client names, project codenames, or other sensitive text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid passing sensitive identifiers as command arguments; review and clear the skill's local data directory before sharing logs or workspaces.
+
+Risk: The package includes broader design-helper commands than the font-focused description suggests.
+
+Mitigation: Review available commands before installation and limit use to expected typography and design-reference workflows.
+
+## Reference(s):
+
+- [Font Pairing ClawHub listing](https://clawhub.ai/ckchzh/skills/font-pairing)
+- [BytesAgain homepage](https://bytesagain.com)
+- [Font Pairing Tips](artifact/tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text with CSS, HTML, and shell command snippets when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some commands emit prompt text for an agent to complete; the bundled helper also writes command history under the user's data directory.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

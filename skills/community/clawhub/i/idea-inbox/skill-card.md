@@ -1,40 +1,59 @@
-## Description: <br>
-Collects direct-message ideas prefixed with `idea:` or `灵感：`, stores them in Feishu/Lark Bitable, and uses a configured model provider to summarize, categorize, tag, and digest new entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects direct-message ideas that start with idea prefixes into Feishu/Lark Bitable, uses a model to summarize, categorize, and tag them, and sends a daily digest when new items exist.
 
-## Publisher: <br>
-[hanxiaolin](https://clawhub.ai/user/hanxiaolin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanxiaolin](https://clawhub.ai/user/hanxiaolin)
 
-## Use Case: <br>
-Employees and individual users use this skill to capture private-chat ideas into a structured Feishu/Lark Bitable inbox, classify them with an LLM or rules fallback, and receive a daily digest when new ideas were added. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private-message idea text is stored in Feishu/Lark Bitable and may be sent to the configured model provider. <br>
-Mitigation: Use only with approved Feishu/Lark workspaces and model providers, and avoid sending secrets, regulated data, or confidential business plans unless those services are approved for that data. <br>
-Risk: The skill persists local configuration for the created Bitable and model setup. <br>
-Mitigation: Delete `~/.openclaw/idea-inbox/config.json` and the created Bitable when the skill is no longer in use. <br>
+## Use Case:
 
+External users and developers use this skill to capture personal ideas from Feishu/Lark direct messages, structure them in Bitable, and receive daily summaries for follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hanxiaolin/idea-inbox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration] <br>
-**Output Format:** [Bitable records, JSON classification fields, and daily digest text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes content, AI summary, category, tags, status, source, and created time fields; returns a record ID or an error reason.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The skill can send private idea text to Feishu/Lark and a configured model provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid highly sensitive ideas unless the Feishu/Lark workspace and model provider retention policies are acceptable.
+
+Risk: The skill reads Codex/OpenClaw model configuration and credentials for model calls.
+
+Mitigation: Use dedicated low-privilege model credentials and review the configured provider before installation.
+
+Risk: The skill creates a Bitable app and saves local configuration.
+
+Mitigation: Review Feishu/Lark permissions and local config file permissions after setup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hanxiaolin/skills/idea-inbox)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, API Calls, Configuration]
+
+**Output Format:** [JSON classification output, Feishu/Lark Bitable records, local configuration, and daily digest messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs only for configured direct-message prefixes, writes Bitable records, and returns either a record_id or an error reason.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

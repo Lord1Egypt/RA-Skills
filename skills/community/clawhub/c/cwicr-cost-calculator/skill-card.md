@@ -1,44 +1,56 @@
-## Description: <br>
-Calculate construction costs using DDC CWICR resource-based methodology. Break down costs into labor, materials, equipment with transparent pricing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate construction costs using DDC CWICR resource-based methodology. Break down costs into labor, materials, equipment with transparent pricing.
 
-## Publisher: <br>
-[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction)
 
-## Use Case: <br>
-External construction estimators, project teams, and developers use this skill to prepare transparent resource-based cost estimates, compare options, and show labor, material, equipment, overhead, and profit components. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Local quantity, cost, or pricing files may contain sensitive project data. <br>
-Mitigation: Grant filesystem access only to the specific files the agent needs for the current estimate. <br>
-Risk: Cost estimates can be wrong when resource norms, regional factors, or current prices are incomplete or outdated. <br>
-Mitigation: Verify pricing assumptions and calculation inputs before relying on outputs for bids, budgets, or commitments. <br>
-Risk: Example Python package installs may affect the local environment. <br>
-Mitigation: Review package installation commands and use a controlled environment when adding dependencies such as pandas or numpy. <br>
+## Use Case:
 
+External construction estimators, project teams, and developers use this skill to calculate and compare construction costs with labor, material, equipment, overhead, profit, and unit-cost breakdowns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/datadrivenconstruction/cwicr-cost-calculator) <br>
-- [Publisher profile](https://clawhub.ai/user/datadrivenconstruction) <br>
-- [Data Driven Construction homepage](https://datadrivenconstruction.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with cost breakdowns, comparisons, and concise calculation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default currency is USD unless the user requests another currency; outputs separate labor, material, equipment, overhead, profit, unit cost, and total cost when enough inputs are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: Dependency supply-chain exposure from installing pandas and numpy for local cost calculations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment and pin pandas and numpy versions from a trusted package index before running calculator code.
+
+Risk: Construction quantity or pricing datasets may contain sensitive project cost information.
+
+Mitigation: Provide only the construction datasets or quantity files needed for the calculation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/datadrivenconstruction/skills/cwicr-cost-calculator)
+- [Publisher profile](https://clawhub.ai/user/datadrivenconstruction)
+- [Data Driven Construction homepage](https://datadrivenconstruction.io)
+- [OpenConstructionEstimate-DDC-CWICR GitHub repository (source-mentioned; server provenance unavailable)](https://github.com/datadrivenconstruction/OpenConstructionEstimate-DDC-CWICR)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown and structured cost breakdowns, with optional Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include per-item costs, resource-category totals, percentages, unit costs, comparisons, and report-style summaries.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

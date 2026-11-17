@@ -1,48 +1,62 @@
-## Description: <br>
-Generates narrative football pilgrimage guides for football teams, including stadium tours, museums, fan pubs, cultural landmarks, On This Day history, trip match detection, and ticket search guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a football pilgrimage guide for any team, covering stadium tours, football museums, fan pubs, cultural landmarks, date-matched historic football events, trip-date match detection, and ticket search.
 
-## Publisher: <br>
-[isgaoyun](https://clawhub.ai/user/isgaoyun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[isgaoyun](https://clawhub.ai/user/isgaoyun)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to build football-focused trip guides for a selected team, combining club history, stadium experiences, local fan culture, match schedule checks, and optional ticket, flight, and hotel searches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may send team names, travel dates, departure city, and ticket or travel intent to external lookup services including ESPN, web search, and flyai. <br>
-Mitigation: Use the skill only when those details can be shared with external services, and avoid providing departure city or exact travel dates unless travel, ticket, flight, or hotel lookup is desired. <br>
-Risk: Schedules, ticket availability, prices, opening hours, and travel options can change after the guide is generated. <br>
-Mitigation: Verify match schedules, attraction details, prices, and tickets through official sources before booking or traveling. <br>
-Risk: Historical On This Day content and spot backstories can be misleading if unsupported by search results. <br>
-Mitigation: Include only events and stories grounded in retrieved search results, omit unsupported dates, and perform an extra verification search when a historical claim is uncertain. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to create football-focused travel guides for a selected club, combining club history, stadium and fan-culture stops, trip-date match checks, and optional travel or ticket lookup guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/isgaoyun/football-pilgrimage) <br>
-- [Commands Reference](references/commands.md) <br>
-- [Data Coverage](references/data-coverage.md) <br>
-- [ESPN API Reference](references/espn-api.md) <br>
-- [Examples](references/examples.md) <br>
-- [Guide Structure](references/guide-structure.md) <br>
-- [Response Schemas](references/schemas.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown travel guide with structured sections, sourced recommendations, optional image links, and optional shell-style flyai or curl commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Mirrors the user's language and may include match alerts, itinerary phases, spot stories, On This Day entries, and ticket or travel search guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill may construct shell-style ticket, flight, hotel, or API commands from user-provided and web-sourced values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use structured tool invocations or validate and quote all command arguments before execution.
+
+Risk: The skill can surface third-party booking links or travel options that may request sensitive travel or payment details.
+
+Mitigation: Confirm the provider, destination, event, and booking context before sharing or entering sensitive information.
+
+Risk: Football history and On This Day narratives can become misleading if events are filled from memory rather than retrieved evidence.
+
+Mitigation: Include only events found in search results and omit days where no supported event is available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/isgaoyun/skills/football-pilgrimage)
+- [ESPN API Reference](artifact/references/espn-api.md)
+- [Guide Structure](artifact/references/guide-structure.md)
+- [Data Coverage](artifact/references/data-coverage.md)
+- [Response Schemas](artifact/references/schemas.md)
+- [Examples](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown narrative guide with structured sections, source-backed football history, optional ticket and travel lookup commands, and supporting JSON-shaped response guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Mirrors the user's language and omits date-specific historic events when they are not supported by search results.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

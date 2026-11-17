@@ -325,7 +325,7 @@ Send messages to your team's Slack channels.
 ## Configuration
 
 Before using this skill, set your Slack token:
-SLACK_TOKEN = "xoxb-your-token-here"
+SLACK_TOKEN = "REDACTED-SECRET"
 DEFAULT_CHANNEL = "#team-updates"
 
 [... complete working code ...]
@@ -339,7 +339,7 @@ DEFAULT_CHANNEL = "#team-updates"
 3. Create a new folder: slack-messenger
 4. Save the skill file as: SKILL.md
 5. Open the file in a text editor
-6. Find the line: SLACK_TOKEN = "xoxb-your-token-here"
+6. Find the line: SLACK_TOKEN = "REDACTED-SECRET"
 7. Replace with your actual token
 8. Save and close
 9. Restart OpenClaw

@@ -1,43 +1,59 @@
-## Description: <br>
-Transform any photo into surrealist AI art using Claude to write a story about the photo and Gemini to generate a reimagined version in one of 35+ visual styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Photo Alchemy transforms photos into surrealist AI art by using Claude to write a story and prompt, then Gemini to generate a reimagined image, with optional Apple Photos workflows.
 
-## Publisher: <br>
-[hbmartin](https://clawhub.ai/user/hbmartin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hbmartin](https://clawhub.ai/user/hbmartin)
 
-## Use Case: <br>
-External users and developers use photo-alchemy to turn local photos or Apple Photos album selections into AI-generated surrealist artwork, manage visual styles and character mappings, and optionally automate output to a Photos album for Apple TV screensavers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private photos and face names may be sent to external AI services during generation. <br>
-Mitigation: Use dedicated input albums, avoid sensitive Photos albums, and configure character mappings when real names should not be shared. <br>
-Risk: API keys and run history may be stored locally or used by scheduled background runs. <br>
-Mitigation: Use dedicated Anthropic and Gemini API keys, protect or remove ~/.imagemine.db when finished, and enable launchd scheduling only when ongoing API use is intended. <br>
-Risk: Installation depends on an external package or installer. <br>
-Mitigation: Install only when the external imagemine package and installer are trusted. <br>
+## Use Case:
 
+External users and developers use this skill to turn local photos or Apple Photos album images into AI-generated surrealist artwork, manage style and character-mapping settings, and optionally automate album output for screensavers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hbmartin/photo-alchemy) <br>
-- [Project homepage](https://github.com/hbmartin/imagemine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Images, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated image files and optional JSON output from the underlying CLI.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Anthropic and Gemini API keys; Apple Photos and launchd automation features require macOS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The permanent installation path pipes a remote installer directly into a shell.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, verifiable package version or one-off uvx execution instead of curl-to-shell installation.
+
+Risk: API keys may be saved in the local application database.
+
+Mitigation: Prefer environment variables or a platform credential store, and avoid storing long-lived secrets in the app database.
+
+Risk: Apple Photos and launchd workflows can repeatedly access photos, upload photo-derived content to AI services, and persist scheduled execution.
+
+Mitigation: Use least-privilege source and destination albums, enable launchd scheduling only after reviewing the LaunchAgent, and monitor recurring API usage and photo uploads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hbmartin/skills/photo-alchemy)
+- [Publisher profile](https://clawhub.ai/user/hbmartin)
+- [Project homepage](https://github.com/hbmartin/imagemine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration examples, and optional JSON command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The described CLI may create image files, SQLite run history, Apple Photos album entries, and optional launchd scheduling configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

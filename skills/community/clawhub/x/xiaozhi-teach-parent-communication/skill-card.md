@@ -1,43 +1,57 @@
-## Description: <br>
-Xiaozhi Teach Parent Communication helps independent teachers draft structured, low-anxiety parent communications for progress updates, concerns, renewal conversations, group notices, and follow-up records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助独立教师在核对沟通授权后，起草具体、低焦虑、可操作的家长消息，并记录渠道与发送状态；不代为发送。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Independent teachers use this skill to turn ad hoc parent messages into a repeatable communication workflow. It drafts human-reviewed message templates, communication timing guidance, and follow-up notes while emphasizing concrete observations, low-anxiety wording, and actionable next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafted parent communications could include sensitive student or family information if the teacher provides it in the prompt. <br>
-Mitigation: Use aliases or minimal identifiers, avoid raw parent or student sensitive details, and keep communication limited to teaching-related context. <br>
-Risk: Generated language could be sent without sufficient teacher review. <br>
-Mitigation: Require the teacher to confirm message drafts before sending; the skill evidence states that it does not automatically send messages. <br>
-Risk: Communication records written to a dashboard could expose sensitive details if retention or access controls are weak. <br>
-Mitigation: Confirm any solo-dashboard save action and review dashboard retention and access controls before use with real students. <br>
+## Use Case:
 
+独立教师用它起草学习反馈、问题说明、续课信息和通用家长群公告，并按授权与隐私边界记录沟通状态。技能面向中国校外培训情境，使用者应核对当地适用规定。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qizhitang/xiaozhi-teach-parent-communication) <br>
-- [Parent message templates](references/parent-message-templates.md) <br>
+### Deployment Geography for Use:
 
+China; local rules and emergency resources vary by region.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and structured plain text message drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for teacher review before sending and may include anonymized communication records or follow-up guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: Student or family details could be exposed in a draft or communication log.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use aliases, check the required sharing authorization, keep individual feedback private, and omit contact and family details.
+
+Risk: Crisis or jurisdiction-specific guidance may be mishandled when the learner's location or local procedure is unclear.
+
+Mitigation: Confirm the region when it is unknown and follow current local emergency, safeguarding, and institutional procedures.
+
+## Reference(s):
+
+- [Typical scenario scripts](artifact/references/typical-scenario-scripts.md)
+- [Communication principles examples](artifact/references/communication-principles-examples.md)
+- [Weekly group announcement template](artifact/references/weekly-group-announcement-template.md)
+- [Crisis referral protocol](artifact/shared/crisis-referral-protocol.md)
+- [Off-campus training guidance](artifact/shared/off-campus-training.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, JSON]
+
+**Output Format:** [Chinese-language message drafts and structured parent communication log entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The teacher reviews and sends drafts; logs contain communication details only, without contact information or family details.]
+
+## Skill Version(s):
+
+2.12.7 (source: server release metadata, SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

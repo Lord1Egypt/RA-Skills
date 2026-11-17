@@ -1,41 +1,54 @@
-## Description: <br>
-Standard Operating Procedure (SOP) that routes unstructured text to Tasks or LanceDB based on urgency using atomic nodes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standard Operating Procedure (SOP) that routes unstructured text to Tasks or LanceDB based on urgency using atomic nodes.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zvirb](https://clawhub.ai/user/zvirb)
 
-## Use Case: <br>
-Developers and operators can use this SOP to route captured notes or transcripts into either a task workflow or a vector-memory workflow based on whether the text is actionable or informational. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Captured notes or transcripts can be stored in Google Tasks or a vector database without clear user confirmation or privacy limits. <br>
-Mitigation: Require explicit confirmation before routing, restrict accepted sources, redact sensitive details, and define deletion and retention rules. <br>
-Risk: Sensitive meeting, customer, credential, medical, legal, financial, or private workspace content could be routed into persistent storage. <br>
-Mitigation: Avoid those content classes unless the deployment adds source limits, redaction, retention controls, and user-visible review before storage. <br>
+## Use Case:
 
+Developers and agents use this skill to classify captured notes or transcripts as actionable or informational, then route them to Google Tasks or vector memory with verification stops.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zvirb/capture-classification) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zvirb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, text] <br>
-**Output Format:** [JSON log] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Confirms the routed destination and action taken by the selected atomic node.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Captured notes or transcripts may contain secrets, regulated data, or private material before routing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when Google Tasks and vector memory are approved destinations for the captured data.
+
+Risk: Misclassification can route actionable text to memory or informational text to tasks.
+
+Mitigation: Follow the documented verification stop that requires exactly one valid classification before routing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zvirb/skills/capture-classification)
+- [Publisher profile](https://clawhub.ai/user/zvirb)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON]
+
+**Output Format:** [JSON log]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Confirms the routed destination and action taken by the selected atomic node.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

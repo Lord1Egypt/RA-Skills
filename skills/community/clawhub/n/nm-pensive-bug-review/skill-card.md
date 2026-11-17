@@ -1,42 +1,50 @@
-## Description: <br>
-Hunts bugs with evidence trails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hunts bugs with evidence trails.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill to guide systematic bug review, defect documentation, fix preparation, and verification planning across common programming ecosystems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation triggers may cause the bug-review workflow to run more often than intended. <br>
-Mitigation: Invoke it for explicit debugging, defect review, release readiness, security audit, or production-issue investigation tasks. <br>
-Risk: Generated findings, patches, or verification commands may be incomplete or incorrect. <br>
-Mitigation: Review proposed changes and run the relevant tests, linters, or reproduction commands before accepting fixes. <br>
-Risk: The artifact mentions an optional separate Claude Code plugin for the full experience. <br>
-Mitigation: Review the separate plugin and its installation behavior before installing it. <br>
+## Use Case:
 
+Developers and engineers use this skill to investigate reported or suspected defects, document evidence and severity, prepare focused fixes, and plan verification before releases or merges.
 
-## Reference(s): <br>
-- [Pensive plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/pensive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with file references, defect summaries, proposed fixes, test updates, evidence notes, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose code changes and verification commands for user review; no API keys or credential environment variables were detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata; artifact frontmatter reports 1.9.8) <br>
+Risk: Four referenced paths could not be matched to bundled files, so the security review is incomplete despite a benign, medium-confidence verdict.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the referenced support modules are available and review them before relying on the skill's findings or proposed fixes.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-pensive-bug-review)
+- [Publisher profile](https://clawhub.ai/user/athola)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with structured defect records, code examples, and verification commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed code diffs, test updates, and structured findings.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

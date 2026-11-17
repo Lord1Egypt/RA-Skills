@@ -1,42 +1,57 @@
-## Description: <br>
-庄家异动探测器 monitors active Polymarket markets and returns the three topics with the largest recent absolute price moves after SkillPay payment confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+实时监控 Polymarket 活跃市场的价格异动，并在 SkillPay 支付确认后返回变动最大的市场话题。
 
-## Publisher: <br>
-[xqw1377-prog](https://clawhub.ai/user/xqw1377-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xqw1377-prog](https://clawhub.ai/user/xqw1377-prog)
 
-## Use Case: <br>
-External Web3 traders and developers can use this skill to request a paid snapshot of active Polymarket markets with the largest recent price changes for market monitoring. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact embeds a SkillPay API key. <br>
-Mitigation: Remove the hardcoded key, rotate it before any deployment, and load payment credentials from managed secrets. <br>
-Risk: Payment account ownership and SkillPay host trust are not fully established in the evidence. <br>
-Mitigation: Confirm the receiving payment account and pin or allowlist approved SkillPay hosts before installation. <br>
-Risk: The public description overstates the behavior as broader whale intelligence. <br>
-Mitigation: Describe the skill as returning public Polymarket price-mover data unless additional verified whale-analysis evidence is added. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xqw1377-prog/poly-hunter) <br>
-- [Polymarket CLOB markets endpoint](https://clob.polymarket.com/markets) <br>
+## Use Case:
 
+Web3 market analysts and traders use this skill to request paid Polymarket market-mover summaries and identify active markets with the largest recent price changes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON] <br>
-**Output Format:** [JSON API response containing payment status, optional payment URL, and Polymarket mover records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SkillPay payment confirmation before returning market mover data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A hardcoded SkillPay API credential is shipped with the artifact.
+
+Mitigation: Remove the embedded credential, rotate the exposed key, and require the runtime to read SKILLPAY_API_KEY from the environment.
+
+Risk: Payment API traffic can be directed to an environment-configured endpoint.
+
+Mitigation: Restrict SkillPay API hosts to approved HTTPS origins before installation or deployment.
+
+Risk: The HTTP dependency is pinned to an older version identified by the security guidance.
+
+Mitigation: Update the pinned HTTP dependency before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xqw1377-prog/skills/poly-hunter)
+- [Polymarket markets API endpoint](https://clob.polymarket.com/markets)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON API response with payment status and market-mover records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SkillPay charge confirmation before returning market data.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -23,6 +23,5 @@ class UUIDConfig:
     def query_uuid(self):
         self.config.read(self.config_file_path)
         if 'comm' not in self.config or 'uuid_value' not in self.config['comm']:
-            print("Error: UUID not found in config. Please run setup_uuid() first.")
             return None
         return self.config['comm']['uuid_value']

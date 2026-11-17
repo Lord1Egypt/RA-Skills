@@ -1,40 +1,53 @@
-## Description: <br>
-Generate production-ready Amazon and AliExpress listings from a product image or parameters, including title, bullet points, description, and SEO keywords. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate production-ready Amazon and AliExpress listings from a product image or parameters, including title, bullet points, description, and SEO keywords.
 
-## Publisher: <br>
-[zls12311](https://clawhub.ai/user/zls12311) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zls12311](https://clawhub.ai/user/zls12311)
 
-## Use Case: <br>
-External sellers and e-commerce operators use this skill to draft marketplace-ready Amazon and AliExpress listing copy from product details or a product image. It helps produce titles, bullet points, descriptions, backend keywords, search keywords, tags, and follow-on marketing suggestions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The installer appends persistent agent instructions to ~/.openclaw/workspace/AGENTS.md. <br>
-Mitigation: Read AGENTS_SNIPPET.md before installation and back up ~/.openclaw/workspace/AGENTS.md so the change can be reviewed or reverted. <br>
-Risk: Generated product claims or marketplace compliance details may be inaccurate if source product details are incomplete. <br>
-Mitigation: Verify generated listing claims, specifications, prohibited terms, and marketplace compliance details before publishing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zls12311/openclaw-listing-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/zls12311) <br>
+## Use Case:
 
+External sellers, ecommerce operators, and marketing teams use this skill to generate platform-specific Amazon and AliExpress product listing copy from product details or images. It helps collect required product information before producing titles, bullets, descriptions, backend search terms, keyword groups, and product tags.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-like listing copy with structured sections for Amazon and AliExpress outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include marketplace-specific length checks, keyword lists, product tags, and optional follow-on service prompts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installer persistently appends agent rules to the OpenClaw workspace, which may influence later conversations through broad triggers.
+
+Mitigation: Review the skill before installing, back up AGENTS.md, and prefer explicit /listing invocation or narrower triggers.
+
+Risk: The skill includes an unconditional promotional appendix after generated listings.
+
+Mitigation: Remove or revise the upsell prompt before deployment if promotional follow-up is not appropriate for the workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zls12311/skills/openclaw-listing-skill)
+- [Publisher profile](https://clawhub.ai/user/zls12311)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with structured ecommerce listing sections, keyword lists, and optional shell commands for installation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated listing content includes platform-specific length and formatting checks for Amazon and AliExpress.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

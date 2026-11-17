@@ -511,7 +511,7 @@ grep tripwire /var/log/messages
 tripwire --check --quiet
 if [ $? -ne 0 ]; then
     # Send to PagerDuty/Slack/etc
-    curl -X POST https://hooks.slack.com/services/xxx \
+    curl -X POST REDACTED-SECRET \
       -d '{"text":"⚠️ Tripwire violation on '"$(hostname)"'"}'
 fi
 ```

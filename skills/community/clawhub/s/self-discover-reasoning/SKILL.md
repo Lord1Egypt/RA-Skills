@@ -1,7 +1,36 @@
+---
+name: self-discover-reasoning
+version: 1.1.1
+description: AI agents self-compose task-specific reasoning structures from seed modules. Based on Zhou et al. (2024) SELF-DISCOVER, NeurIPS. Use when facing novel reasoning tasks, when standard chain-of-thought is insufficient, or when the agent needs to discover its own problem-solving strategy.
+---
+
 # Self-Discover Reasoning Skill
 
 > An AI agent skill for self-composing task-specific reasoning structures.
 > Based on Zhou et al. (2024) — SELF-DISCOVER: Large Language Models Self-Compose Reasoning Structures.
+
+
+## Onboarding (First Use)
+
+When the user first triggers this skill and `memory/self_discover_state.json` doesn't exist, run a one-time setup:
+
+1. **Introduce capability** (one sentence): _"I can make the AI compose its own optimal reasoning structure before tackling hard problems, instead of defaulting to one chain-of-thought."_
+
+2. **Quick configuration:**
+
+1. **Reasoning preference**(Default: Mixed)
+   - Analytical(Decomposition/Causal/Hypothesis-testing first)
+   - Creative(Analogical/Abstraction/Pattern-recognition first)
+   - Mixed(auto-select)
+2. **Cache discovered reasoning structures**(Default: Yes, avoid recomputation)
+
+3. **Write initial state file** `memory/self_discover_state.json`(JSON format, with `onboarded: true` and timestamp)
+
+4. **Confirm completion**: _"Setup done! Just use it from now on. Say 'reset settings' anytime to reconfigure."
+
+**Onboarding runs exactly once.** Subsequent activations read the state file directly. When the user says "reset settings", delete the state file and re-run setup.
+
+---
 
 ## Platform Auto-Detection
 

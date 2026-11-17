@@ -1,42 +1,57 @@
-## Description: <br>
-Publish skills to ClawHub via web dashboard only. No CLI login, no device flow. Reuse existing browser session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish skills to ClawHub via web dashboard only. No CLI login, no device flow. Reuse existing browser session.
 
-## Publisher: <br>
-[Dalomeve](https://clawhub.ai/user/Dalomeve) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dalomeve](https://clawhub.ai/user/dalomeve)
 
-## Use Case: <br>
-Developers and skill publishers use this skill to publish ClawHub skills through an already-authenticated browser session and avoid CLI login or device-flow failures. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A user could publish the wrong skill folder, slug, display name, version, or changelog. <br>
-Mitigation: Confirm the visible ClawHub account, selected skill folder, slug, display name, version, and changelog before publishing. <br>
-Risk: Published files could unintentionally include credentials. <br>
-Mitigation: Run and review a pre-publish secret scan and do not publish when credentials are detected. <br>
-Risk: Using the CLI fallback could publish with an unintended existing token. <br>
-Mitigation: Use the CLI fallback only when intentionally publishing with an already-authenticated CLI token, and do not run CLI login. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Web Only Publish listing](https://clawhub.ai/Dalomeve/clawhub-web-only-publish) <br>
-- [ClawHub upload page](https://clawhub.ai/upload) <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to publish ClawHub skills through an already authenticated browser session when CLI login is unavailable or unreliable.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown workflow guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the user to confirm the active ClawHub account, selected skill folder, metadata, changelog, and secret scan before publishing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Publishing from the wrong authenticated ClawHub account can release the skill under the wrong publisher.
+
+Mitigation: Confirm the visible ClawHub username before upload.
+
+Risk: Uploading a skill folder can expose secrets or private files if the folder is not inspected first.
+
+Mitigation: Scan the skill folder for credentials, tokens, secrets, and unintended private files before publishing.
+
+Risk: The fallback CLI publish command can publish an unintended path if reused without checking the target.
+
+Mitigation: Use the CLI fallback only when already authenticated and after confirming the exact path and version.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dalomeve/skills/clawhub-web-only-publish)
+- [ClawHub upload dashboard](https://clawhub.ai/upload)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with ordered workflow steps and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces publishing instructions and verification criteria; it does not execute publishing itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

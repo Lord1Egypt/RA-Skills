@@ -1,45 +1,57 @@
-## Description: <br>
-Generate images with Model Studio DashScope SDK using Qwen Image generation models (qwen-image-max, qwen-image-plus-2026-01-09). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images with Model Studio DashScope SDK using Qwen Image generation models (qwen-image-max, qwen-image-plus-2026-01-09). Use when implementing or documenting image.generate requests/responses, mapping prompt/negative_prompt/size/seed/reference_image, or integrating image generation into the video-agent pipeline.
 
-## Publisher: <br>
-[fresh3](https://clawhub.ai/user/fresh3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fresh3](https://clawhub.ai/user/fresh3)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement or document Alibaba Cloud Model Studio DashScope Qwen image generation with normalized image.generate requests and responses for agent pipelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper can read DashScope API keys from environment variables or local Alibaba Cloud credentials. <br>
-Mitigation: Install only when DashScope/Qwen image generation is intended and run it in a controlled workspace with appropriate credential access. <br>
-Risk: Generated images can be written to local paths. <br>
-Mitigation: Use explicit output paths in a workspace you control and review files before reuse or publication. <br>
-Risk: Requested results may be sent through Telegram or another channel delivery target. <br>
-Mitigation: Enable channel delivery only when the image should be returned to that requester and use an explicit target. <br>
-Risk: Reference image paths may expose local sensitive files if passed unintentionally. <br>
-Mitigation: Avoid passing sensitive reference-image paths unless they are deliberately intended for generation. <br>
+## Use Case:
 
+Developers and engineers use this skill to standardize Qwen Image generation requests and responses through Alibaba Cloud Model Studio DashScope. It helps agents map prompt, negative prompt, size, seed, style, and reference image inputs into generated image outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fresh3/taizi-alicloud-ai-image) <br>
-- [Publisher profile](https://clawhub.ai/user/fresh3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples plus JSON request and response shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local image files when the helper script is run with a DashScope API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Reference images can be read from arbitrary local paths and uploaded to DashScope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved input directories, validate image file types, and avoid sensitive prompts or reference images.
+
+Risk: The release does not clearly disclose reference-image uploads to DashScope.
+
+Mitigation: Disclose external processing before use and require user confirmation for reference-image uploads.
+
+Risk: The DashScope dependency is installed at runtime without a pinned version in the skill instructions.
+
+Mitigation: Pin and review the DashScope package before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fresh3/skills/taizi-alicloud-ai-image)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with JSON examples, Python code, shell commands, and generated image files from the helper script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a DashScope API key; helper output can include a saved image file, normalized JSON response, or base64 image data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

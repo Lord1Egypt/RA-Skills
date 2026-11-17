@@ -1,6 +1,40 @@
 {
-  "ownerId": "kn7dbzxmk4fh39kk5rbgsdj5nn82qjcs",
-  "slug": "china-localization",
+  "name": "China Localization Pack",
+  "description": "全中文界面 + 本地服务集成，让中国用户零门槛使用 OpenClaw",
   "version": "2.0.0",
-  "publishedAt": 1776077002354
+  "author": "VincentLau2046",
+  "license": "MIT",
+  "keywords": ["china", "localization", "chinese", "baidu", "feishu", "wechat"],
+  "homepage": "https://github.com/vincentlau2046-sudo/china-localization",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vincentlau2046-sudo/china-localization.git"
+  },
+  "requiredCredentials": [
+    "TAVILY_API_KEY",
+    "FEISHU_APP_ID",
+    "FEISHU_APP_SECRET",
+    "WECHAT_APP_ID",
+    "WECHAT_APP_SECRET",
+    "DINGTALK_WEBHOOK",
+    "AMAP_API_KEY",
+    "ALIPAY_APP_ID",
+    "ALIPAY_PRIVATE_KEY",
+    "ALIPAY_PUBLIC_KEY"
+  ],
+  "optionalCredentials": [
+    "FEISHU_USER_ACCESS_TOKEN",
+    "DINGTALK_APP_KEY",
+    "DINGTALK_APP_SECRET",
+    "ALIPAY_SANDBOX"
+  ],
+  "security": {
+    "safe": true,
+    "noHardcodedSecrets": true,
+    "usesEnvironmentVariables": true
+  },
+  "compatibility": {
+    "openclaw": ">=2026.4.0",
+    "node": ">=18.0.0"
+  }
 }

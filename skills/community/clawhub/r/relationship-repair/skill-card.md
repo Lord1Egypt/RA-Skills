@@ -1,44 +1,58 @@
-## Description: <br>
-Relationship Repair guides users through structured relationship repair conversations for rebuilding trust, emotional safety, and communication after hurt, distance, or repeated conflict. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Relationship Repair is an AI guide for rebuilding trust, emotional safety, and communication after hurt, distance, or repeated conflict.
 
-## Publisher: <br>
-[imwyvern](https://clawhub.ai/user/imwyvern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwyvern](https://clawhub.ai/user/imwyvern)
 
-## Use Case: <br>
-External users use this skill to assess relationship damage, identify destructive communication patterns, and generate repair plans with concrete next steps. It is intended for relationship guidance, not licensed therapy, emergency services, or crisis counseling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat relationship guidance as therapy, emergency support, or crisis counseling. <br>
-Mitigation: Use the skill only for non-emergency relationship guidance and seek licensed, emergency, or crisis support when safety or self-harm concerns are present. <br>
-Risk: Relationship repair conversations can involve highly sensitive personal details. <br>
-Mitigation: Avoid sharing unnecessary sensitive information and review privacy expectations before using any linked external relationship-monitoring service. <br>
-Risk: Advice to repair may be inappropriate when abuse or physical violence is present. <br>
-Mitigation: Follow the skill's safety caveats: prioritize immediate safety resources and do not use couples repair guidance as a substitute for abuse-specific support. <br>
+## Use Case:
 
+External users use this skill for structured relationship-repair guidance, including damage assessment, conflict de-escalation, trust rebuilding, and deciding when repair is inadvisable or safety resources should come first.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imwyvern/relationship-repair) <br>
-- [Publisher profile](https://clawhub.ai/user/imwyvern) <br>
-- [ReplyHer](https://replyher.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Same-language response with a damage assessment, communication-pattern check, staged repair plan, dealbreaker check, and one immediate action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Relationship-repair advice may be inappropriate for emergencies, abuse, legal questions, or situations needing licensed mental-health support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as supportive guidance only, follow its safety escalation behavior, and use emergency, legal, or licensed professional resources when those issues are present.
+
+Risk: The skill promotes an external relationship-monitoring service that may involve sensitive private conversations.
+
+Mitigation: Review the ReplyHer referral and privacy implications before relying on or recommending the service.
+
+Risk: The README shows a generic unpinned ClawHub install command.
+
+Mitigation: Use a pinned or otherwise verified ClawHub installer in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imwyvern/skills/relationship-repair)
+- [ReplyHer](https://replyher.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown response with structured assessment, repair plan, dealbreaker check, and one concrete next action.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Replies in the user's language and includes safety escalation for abuse or suicidality.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

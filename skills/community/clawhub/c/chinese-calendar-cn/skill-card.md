@@ -1,41 +1,55 @@
-## Description: <br>
-Advertises Chinese lunar calendar reference material, but the bundled script currently outputs generic life-domain guidance rather than the listed calendar commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese Calendar Cn is advertised as a local Chinese lunar calendar reference skill for solar terms, zodiac years, traditional festivals, auspicious-date guidance, Heavenly Stems and Earthly Branches, and lunar-calendar conversion.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-External users and developers can run a local command-line reference helper for Chinese calendar topics. Reviewers should treat the output as generic reference text until the maintainer aligns the implementation with the advertised lunar calendar features. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan says the skill does not provide the Chinese calendar features it advertises, which could mislead users relying on lunar conversion, solar terms, zodiac, festival, or auspicious-date guidance. <br>
-Mitigation: Review outputs against authoritative calendar sources and require maintainer alignment before using the skill for calendar decisions. <br>
-Risk: Release evidence, SKILL.md frontmatter, and the shell script report different versions. <br>
-Mitigation: Confirm the intended release version and update artifact metadata before distribution or automation. <br>
+## Use Case:
 
+External users can ask an agent to provide Chinese-calendar reference guidance for cultural-date lookup and planning, but release evidence shows the bundled executable currently returns generic placeholder guidance rather than the advertised calendar commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/chinese-calendar-cn) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text and Markdown-style reference sections from a local Bash command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls or credentials are declared; bundled behavior should be reviewed for mismatch with advertised calendar commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.1 (source: server release evidence; artifact frontmatter says 5.0.0 and script says 4.0.0) <br>
+Risk: The advertised Chinese calendar commands do not match the bundled executable behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run and review the artifact command output before deployment; do not rely on missing calendar commands until the implementation is corrected.
+
+Risk: Calendar conversion, auspicious-date selection, or culturally date-sensitive guidance may be generic or incorrect.
+
+Mitigation: Cross-check outputs with authoritative Chinese calendar references before using them for planning or automation.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/bytesagain-lab/skills/chinese-calendar-cn)
+- [Publisher profile](https://clawhub.ai/user/bytesagain-lab)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text with Markdown-style headings from Bash command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external APIs or credential requirements are described; verify output against authoritative calendar references before relying on it.]
+
+## Skill Version(s):
+
+5.0.1 (source: release evidence; artifact frontmatter reports 5.0.0 and script reports 4.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

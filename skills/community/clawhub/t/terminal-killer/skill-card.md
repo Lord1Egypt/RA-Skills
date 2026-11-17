@@ -1,47 +1,64 @@
-## Description: <br>
-Terminal Killer detects likely shell commands in OpenClaw input and routes high-confidence commands to local execution instead of LLM handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Terminal Killer detects OpenClaw user inputs that look like shell commands and routes them for direct local execution, with cross-platform command detection for macOS, Linux, and Windows.
 
-## Publisher: <br>
-[cosperypf](https://clawhub.ai/user/cosperypf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cosperypf](https://clawhub.ai/user/cosperypf)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to classify short terminal-like inputs, execute high-confidence local shell commands, ask for confirmation on uncertain or dangerous commands, and route natural-language tasks back to the LLM. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically run local terminal commands with the user's normal privileges and environment. <br>
-Mitigation: Install it only when direct local command execution is intended, review the detection rules, and add stricter confirmation or sandboxing for ambiguous or high-impact commands. <br>
-Risk: Detection and execution can source shell startup files, which may run profile logic or expose sensitive environment settings. <br>
-Mitigation: Use it only with shell profiles that are appropriate for automated sourcing, and avoid sensitive profiles or secrets unless the runtime is sandboxed. <br>
-Risk: The skill may read shell history while deciding whether an input looks like a command. <br>
-Mitigation: Deploy it only where shell history access is acceptable, especially on shared or sensitive machines. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to route concise command-like input directly to local shell execution while leaving natural-language tasks for the LLM.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cosperypf/terminal-killer) <br>
-- [Usage Examples](references/EXAMPLES.md) <br>
-- [Testing Guide](references/TESTING.md) <br>
-- [Linux built-in command list](references/builtins/linux.txt) <br>
-- [macOS built-in command list](references/builtins/macos.txt) <br>
-- [Windows built-in command list](references/builtins/windows.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text command output, JSON detection results, and Markdown-style confirmation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return command execution output, confirmation prompts for uncertain or risky commands, or a signal to pass natural-language requests to the LLM.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub release evidence and clawhub.json) <br>
+Risk: The skill can automatically run broad local shell commands with the user's account authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when direct local command execution is intended; require explicit command-mode invocation and route every execution path through one approval policy before deployment.
+
+Risk: Execution paths and command detection may allow unsafe commands or safety bypasses.
+
+Mitigation: Remove the raw executor, replace shell-string PATH checks with safe argument-vector calls, and require approval or blocking for network, interpreter, destructive, git-push/reset, sudo, and package-install commands.
+
+Risk: Sourcing shell profiles and inheriting environment variables can expose local secrets or alter command behavior.
+
+Mitigation: Stop sourcing shell profiles during detection and restrict inherited environment variables to the minimum needed for command execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cosperypf/skills/terminal-killer)
+- [README.md](README.md)
+- [Terminal Killer skill definition](SKILL.md)
+- [Usage examples](references/EXAMPLES.md)
+- [Testing guide](references/TESTING.md)
+- [Linux builtin command list](references/builtins/linux.txt)
+- [macOS builtin command list](references/builtins/macos.txt)
+- [Windows builtin command list](references/builtins/windows.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell command output, Configuration guidance]
+
+**Output Format:** [Plain text or Markdown status messages with raw shell command output when execution succeeds]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return execute, ask, llm, interactive, long_output, open_terminal, or declined action states.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata, clawhub.json, README.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

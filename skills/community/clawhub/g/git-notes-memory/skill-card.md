@@ -1,44 +1,53 @@
-## Description: <br>
-Provides a git-notes-backed, branch-aware memory system that lets Claude Code store, retrieve, update, and organize project context across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Git-Notes-Based knowledge graph memory system for branch-aware storage and retrieval of Claude Code project context, decisions, tasks, and learnings across sessions.
 
-## Publisher: <br>
-[mourad-ghafiri](https://clawhub.ai/user/mourad-ghafiri) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mourad-ghafiri](https://clawhub.ai/user/mourad-ghafiri)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to preserve project decisions, preferences, tasks, learnings, and branch-specific context across coding sessions. It is intended for repositories where local git-notes storage and automatic memory maintenance are acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently stores project and user context while instructing the agent to operate silently. <br>
-Mitigation: Install only when automatic persistent memory is intended; add local rules requiring approval before storing sensitive context and periodically inspect or delete stored notes. <br>
-Risk: The memory tool can mutate git state by using git notes and, when needed, initializing git configuration or creating an empty initial commit. <br>
-Mitigation: Use it only in repositories where git notes, local git config changes, and an empty initial commit are acceptable; test in a disposable repository before enabling it on important projects. <br>
-Risk: Stored memories may contain secrets, personal data, or stale project assumptions if the agent records them automatically. <br>
-Mitigation: Exclude secrets and personal data from memory operations, review stored notes regularly, and delete or update stale entries with the provided forget and update commands. <br>
+## Use Case:
 
+Developers and Claude Code users use this skill to give an agent local, branch-aware project memory for continuity across sessions. It supports storing, retrieving, updating, and organizing context such as decisions, preferences, tasks, and learnings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mourad-ghafiri/git-notes-memory) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill integration guide](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and compact JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local git notes for persistent branch-aware memory; no external dependencies are documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill is designed to store and reuse project context silently, which can preserve information without clear user consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only in repositories where automatic local memory is acceptable and avoid using it around secrets or confidential material unless opt-in, visible logging, path scoping, and review/delete controls are added.
+
+Risk: The skill makes persistent Git notes changes in local repositories.
+
+Mitigation: Use it only where silent Git mutations are acceptable, and ensure collaborators understand that Git notes may contain project context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mourad-ghafiri/skills/git-notes-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON memory payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The memory tool returns compact JSON for session context, topic lookup, and full memory recall.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

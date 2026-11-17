@@ -1,42 +1,54 @@
-## Description: <br>
-Search the web and read web pages with Oxylabs AI Studio, returning search results and optional page text or scraped page content as Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web and read web pages with Oxylabs AI Studio, returning search results, optional page text, or scraped URL content as Markdown.
 
-## Publisher: <br>
-[oxylabs](https://clawhub.ai/user/oxylabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oxylabs](https://clawhub.ai/user/oxylabs)
 
-## Use Case: <br>
-External users and agent developers use this skill to search the web, gather current source links, and scrape a specific URL as Markdown through Oxylabs AI Studio. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, URLs, geo options, and fetched page content are sent to Oxylabs AI Studio under the user's API key. <br>
-Mitigation: Avoid secrets, internal-only URLs, personal data, regulated data, or confidential research queries unless sharing them with Oxylabs AI Studio is acceptable. <br>
-Risk: The skill requires the OXYLABS_AI_STUDIO_API_KEY credential for API access. <br>
-Mitigation: Provide the key through OpenClaw configuration or an environment file with appropriate local access controls, and avoid embedding the credential in prompts or shared command output. <br>
+## Use Case:
 
+Developers and agent users use this skill to search the current web, gather source links, fetch optional page text, or scrape a specific page into Markdown through Oxylabs AI Studio.
 
-## Reference(s): <br>
-- [Oxylabs AI Studio API key](https://aistudio.oxylabs.io/api-key) <br>
-- [Oxylabs AI Studio API endpoint](https://api-aistudio.oxylabs.io) <br>
-- [ClawHub skill page](https://clawhub.ai/oxylabs/oxylabs-web-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown] <br>
-**Output Format:** [Markdown text printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output can include titles, URLs, descriptions, and optional page content; scrape output returns one URL as Markdown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release evidence) <br>
+Risk: Search terms, target URLs, geo options, and fetched page content are sent to Oxylabs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when third-party processing by Oxylabs is approved; avoid secrets, private or internal URLs, regulated data, and confidential research unless that use is explicitly allowed.
+
+Risk: Fetched web content may be incomplete, stale, or affected by geo and JavaScript rendering options.
+
+Mitigation: Review returned sources and choose geo or JavaScript rendering settings deliberately when result quality matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oxylabs/skills/oxylabs-web-search)
+- [Oxylabs AI Studio API key](https://aistudio.oxylabs.io/api-key)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command-line and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OXYLABS_AI_STUDIO_API_KEY; search can return titles, URLs, descriptions, and optional page text, while scrape returns page content as Markdown.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

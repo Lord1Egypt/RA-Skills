@@ -1,41 +1,54 @@
-## Description: <br>
-WLS runtime engineer skill for worker lifecycle, reload versus restart decisions, process cleanup, and runtime stability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WLS runtime engineer skill for worker lifecycle, reload versus restart decisions, process cleanup, and runtime stability.
 
-## Publisher: <br>
-[aiweline](https://clawhub.ai/user/aiweline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiweline](https://clawhub.ai/user/aiweline)
 
-## Use Case: <br>
-Developers and runtime engineers use this skill to diagnose WLS worker lifecycle, dispatcher, process cleanup, reload, restart, and orchestration issues while preserving long-running runtime stability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Validation can use the wrong WLS port or leave a dedicated test instance running after the session. <br>
-Mitigation: Use a unique test instance on port 9502 or higher, confirm the port and instance name before validation, and verify the instance is stopped afterward. <br>
-Risk: Reload, restart, or process cleanup advice can disrupt active workers if applied without lifecycle context. <br>
-Mitigation: Trace the affected worker, dispatcher, orchestrator, or master path first, choose reload versus restart based on the changed runtime surface, and avoid blind process killing. <br>
+## Use Case:
 
+Developers and engineers use this skill to diagnose and change WLS runtime process lifecycle behavior, including worker stability, dispatcher behavior, process cleanup, and reload versus restart decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aiweline/wls-wls) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/aiweline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with code and shell-command recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes validation evidence and cleanup confirmation when WLS testing is performed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Runtime process changes can destabilize long-running WLS workers when reload, restart, or cleanup behavior is chosen incorrectly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Trace the affected lifecycle path and choose reload or restart based on the affected runtime surface before changing process code.
+
+Risk: Validation can interfere with existing WLS services or leave temporary test instances running.
+
+Mitigation: Use a unique dedicated WLS test instance on port 9502 or higher and confirm that it is stopped after validation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiweline/skills/wls-wls)
+- [Publisher profile](https://clawhub.ai/user/aiweline)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code, shell commands, validation steps, and cleanup confirmation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should report lifecycle impact, validation evidence from a dedicated WLS test instance, and confirmation that the instance was stopped.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

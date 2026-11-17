@@ -17,6 +17,15 @@ from urllib.request import pathname2url
 
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT / "scripts") not in sys.path:
+    sys.path.insert(0, str(ROOT / "scripts"))
+
+from validate_worksheet_spec import validate_semantics  # noqa: E402
+from geometry_primitives import EXTENDED_TYPES, render_extended_geometry, validate_geometry  # noqa: E402
+from model_worksheet import apply_print_profile, render_model_spec, validate_model_spec, worksheet_language  # noqa: E402
+from workspace_transaction import inside  # noqa: E402
+from worksheet_preview import export_previews  # noqa: E402
+
 TEMPLATE_DIR = ROOT / "assets" / "worksheet"
 DEFAULT_TEMPLATE = TEMPLATE_DIR / "a4-single.html"
 TYPE_REGISTRY = TEMPLATE_DIR / "question-types.json"
@@ -160,6 +169,9 @@ def svg_attrs(attrs: dict[str, object]) -> str:
 
 
 def render_geometry_svg(spec: dict) -> str:
+    validate_geometry(spec)
+    if spec["type"] in EXTENDED_TYPES:
+        return render_extended_geometry(spec)
     width = int(spec.get("canvas_width", 220))
     height = int(spec.get("canvas_height", 140))
     kind = spec.get("type")
@@ -233,6 +245,9 @@ RENDERERS = {
 
 
 def validate_spec(spec: dict, registry: dict) -> None:
+    if spec.get("render_mode") == "model_html":
+        validate_model_spec(spec)
+        return
     registered = registry.get("types", {})
     for section in spec.get("sections", []):
         layout = section.get("layout")
@@ -280,6 +295,8 @@ def render_sections(spec: dict) -> tuple[str, list[str], int]:
 
 
 def render_html(spec: dict, template_path: Path) -> tuple[str, list[str], int]:
+    if spec.get("render_mode") == "model_html":
+        return render_model_spec(spec)
     template = template_path.read_text(encoding="utf-8")
     sections, answers, count = render_sections(spec)
     reminder = ""
@@ -295,40 +312,49 @@ def render_html(spec: dict, template_path: Path) -> tuple[str, list[str], int]:
         .replace("{{sections}}", sections)
         .replace("{{footer}}", footer)
     )
-    return html_text, answers, count
+    return apply_print_profile(html_text), answers, count
 
 
 def render_answer_key(spec: dict, answers: list[str], count: int) -> str:
+    english = worksheet_language(spec) == "en"
+    labels = ({
+        "suffix": " - Answers and Grading Notes", "date": "Date", "worksheet": "Worksheet",
+        "target": "Goal", "strategy": "Practice strategy", "diagnostic_target": "Diagnostic focus",
+        "review_status": "Review status", "answers": "Answers", "grading": "Grading notes",
+        "reason": "Record the observed error; confirm its cause before assigning a label:",
+        "reassessment": "Reassessment", "next": "Next practice",
+    } if english else {
+        "suffix": "答案与批改标准", "date": "日期", "worksheet": "对应练习卷",
+        "target": "目标", "strategy": "出卷策略", "diagnostic_target": "诊断目标",
+        "review_status": "复核状态", "answers": "答案", "grading": "批改重点",
+        "reason": "每个错误请标一种原因：", "reassessment": "复评标准", "next": "下次建议",
+    })
+    colon = ": " if english else "："
     lines = [
-        f"# {spec['title']}答案与批改标准",
+        f"# {spec['title']}{labels['suffix']}",
         "",
-        f"- 日期：{spec.get('date', '')}",
-        f"- 对应练习卷：`{spec.get('worksheet_file', 'worksheet.html')}`",
+        f"- {labels['date']}{colon}{spec.get('date', '')}",
+        f"- {labels['worksheet']}{colon}`{spec.get('worksheet_file', 'worksheet.html')}`",
     ]
-    if spec.get("target"):
-        lines.append(f"- 目标：{spec['target']}")
-    if spec.get("strategy"):
-        lines.append(f"- 出卷策略：{spec['strategy']}")
-    if spec.get("diagnostic_target"):
-        lines.append(f"- 诊断目标：{spec['diagnostic_target']}")
-    if spec.get("review_status"):
-        lines.append(f"- 复核状态：{spec['review_status']}")
-    lines.extend(["", "## 答案", ""])
+    for key in ("target", "strategy", "diagnostic_target", "review_status"):
+        if spec.get(key):
+            lines.append(f"- {labels[key]}{colon}{spec[key]}")
+    lines.extend(["", f"## {labels['answers']}", ""])
     lines.extend(answers)
 
     grading = spec.get("grading", {})
     if grading.get("error_labels"):
-        lines.extend(["", "## 批改重点", "", "每个错误请标一种原因：", ""])
+        lines.extend(["", f"## {labels['grading']}", "", labels["reason"], ""])
         for label in grading["error_labels"]:
-            lines.append(f"- `{label['name']}`：{label['description']}")
+            lines.append(f"- `{label['name']}`{colon}{label['description']}")
 
     if grading.get("reassessment"):
-        lines.extend(["", "## 复评标准", ""])
+        lines.extend(["", f"## {labels['reassessment']}", ""])
         for item in grading["reassessment"]:
             lines.append(f"- {item}")
 
     if grading.get("next"):
-        lines.extend(["", "## 下次建议", ""])
+        lines.extend(["", f"## {labels['next']}", ""])
         for item in grading["next"]:
             lines.append(f"- {item}")
 
@@ -364,7 +390,10 @@ def export_pdf(html_path: Path, pdf_path: Path) -> None:
         f"--print-to-pdf={pdf_path}",
         url,
     ]
-    result = subprocess.run(cmd, check=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    try:
+        result = subprocess.run(cmd, check=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=60)
+    except subprocess.TimeoutExpired as exc:
+        raise RuntimeError("PDF export timed out after 60 seconds; HTML and answer key remain available") from exc
     if result.returncode != 0 or not pdf_path.exists():
         detail = result.stderr.strip() or result.stdout.strip() or "Chrome did not create a PDF."
         raise RuntimeError(f"PDF export failed: {detail}")
@@ -396,12 +425,16 @@ def main() -> int:
     parser.add_argument("--no-pdf", action="store_true", help="Skip student-facing PDF output.")
     parser.add_argument("--pdf-file", help="PDF filename relative to the worksheet directory. Defaults to worksheet.pdf.")
     parser.add_argument("--verify-print", action="store_true", help="Verify browser print page count with Chrome.")
+    parser.add_argument("--no-preview", action="store_true", help="Skip PNG previews of the generated PDF.")
     args = parser.parse_args()
+    if args.no_pdf and (args.pdf or args.pdf_file):
+        parser.error("--no-pdf cannot be combined with --pdf or --pdf-file")
 
     spec_path = args.spec.resolve()
     spec = load_json(spec_path)
     registry = load_json(TYPE_REGISTRY)
     validate_spec(spec, registry)
+    validate_semantics(spec)
 
     out_dir = spec_path.parent
     worksheet_file = spec.get("worksheet_file", "worksheet.html")
@@ -413,8 +446,13 @@ def main() -> int:
     html_text, answers, count = render_html(spec, template_path)
     answer_key = render_answer_key(spec, answers, count)
 
-    worksheet_path = out_dir / worksheet_file
-    answer_key_path = out_dir / answer_key_file
+    worksheet_path = inside(out_dir, worksheet_file)
+    answer_key_path = inside(out_dir, answer_key_file)
+    pdf_path = inside(out_dir, pdf_file)
+    if len({worksheet_path.resolve(), answer_key_path.resolve(), pdf_path.resolve(), spec_path}) != 4:
+        raise ValueError("worksheet, answer key, PDF and input spec must use distinct paths")
+    worksheet_path.parent.mkdir(parents=True, exist_ok=True)
+    answer_key_path.parent.mkdir(parents=True, exist_ok=True)
     worksheet_path.write_text(html_text, encoding="utf-8")
     answer_key_path.write_text(answer_key, encoding="utf-8")
 
@@ -424,13 +462,14 @@ def main() -> int:
 
     page_config = spec.get("page", {})
     verify_requested = args.verify_print or page_config.get("verify_print")
-    pdf_requested = not args.no_pdf or args.pdf or args.pdf_file or spec.get("pdf_file") or page_config.get("pdf")
+    pdf_requested = not args.no_pdf
     pdf_required = args.pdf or args.pdf_file or spec.get("pdf_file") or page_config.get("pdf_required") or verify_requested
-    pdf_path = out_dir / pdf_file
+    pdf_generated = False
 
     if pdf_requested:
         try:
             export_pdf(worksheet_path, pdf_path)
+            pdf_generated = True
             print(f"generated: {pdf_path}")
         except RuntimeError as exc:
             if pdf_required:
@@ -439,11 +478,18 @@ def main() -> int:
 
     if verify_requested:
         expected = int(spec.get("page", {}).get("expected_pages", 1))
-        if pdf_path.exists():
+        if pdf_generated:
             pages = verify_pdf_page_count(pdf_path, expected)
         else:
             pages = verify_print_page_count(worksheet_path, expected)
         print(f"print_pages: {pages}")
+
+    if pdf_generated and not args.no_preview:
+        try:
+            for preview in export_previews(pdf_path, out_dir):
+                print(f"preview: {preview}")
+        except (RuntimeError, subprocess.SubprocessError) as exc:
+            print(f"warning: preview export skipped: {exc}", file=sys.stderr)
 
     return 0
 

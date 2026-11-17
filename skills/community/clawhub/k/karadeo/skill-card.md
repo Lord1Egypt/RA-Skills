@@ -1,46 +1,52 @@
-## Description: <br>
-Transcribe audio or video files to time-synced lyrics or subtitle formats like LRC, SRT, WebVTT, ASS, and TTML, and create karaoke videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribe audio or video files to time-synced lyrics or subtitle formats like LRC, SRT, WebVTT, ASS, and TTML, and create karaoke videos.
 
-## Publisher: <br>
-[weiqingtangx](https://clawhub.ai/user/weiqingtangx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weiqingtangx](https://clawhub.ai/user/weiqingtangx)
 
-## Use Case: <br>
-Developers and agents use this skill to connect to Karadeo's authenticated MCP and REST APIs for transcription, lyric alignment, subtitle generation, and karaoke video workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Karadeo API keys can be exposed if pasted into shared chats, logs, or files. <br>
-Mitigation: Use a dedicated, revocable API key when possible and avoid storing real keys in shared prompts or artifacts. <br>
-Risk: Submitted media URLs and optional transcript text may contain private or sensitive content. <br>
-Mitigation: Submit only media and transcript text that the user is authorized and comfortable sending to Karadeo's service. <br>
-Risk: The REST transcription flow expects a publicly accessible media URL, which can broaden access to private media if handled carelessly. <br>
-Mitigation: Prefer temporary, scoped media URLs and revoke or expire them after the transcription workflow completes. <br>
+## Use Case:
 
+Developers and content tooling teams use this skill to connect agents to Karadeo APIs and MCP tools for turning public audio or video URLs into timed lyric and subtitle outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weiqingtangx/karadeo) <br>
-- [Karadeo dashboard](https://karadeo.com/dashboard) <br>
-- [Karadeo lyrics API documentation](https://karadeo.com/resources/karadeo-lyrics-api) <br>
-- [Karadeo OpenAPI documentation](https://karadeo.com/api/doc) <br>
-- [Karadeo MCP server card](https://karadeo.com/.well-known/mcp/server-card.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, API calls] <br>
-**Output Format:** [Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents toward Karadeo API calls that can return subtitle or lyric text in formats such as LRC, SRT, ASS, WebVTT, TTML, or TXT.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Media URLs and optional transcript text are sent to Karadeo for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public or approved media and avoid confidential, private, or access-controlled content unless Karadeo's handling of that data is trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weiqingtangx/skills/karadeo)
+- [Karadeo Lyrics API documentation](https://karadeo.com/resources/karadeo-lyrics-api)
+- [Karadeo OpenAPI documentation](https://karadeo.com/api/doc)
+- [Karadeo MCP server card](https://karadeo.com/.well-known/mcp/server-card.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and shell command examples; API responses are plain text subtitle or lyric files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supported subtitle and lyric outputs include LRC, SRT, ASS, WebVTT, TTML, and TXT.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

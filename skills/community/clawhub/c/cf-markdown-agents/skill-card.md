@@ -1,46 +1,58 @@
-## Description: <br>
-Fetches web content using Cloudflare's Markdown for Agents protocol and converts supported HTML pages into Markdown for agent processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch web content using Cloudflare's Markdown for Agents protocol. Automatically converts HTML to Markdown with 80% token reduction. Use when fetching web pages for AI processing, web scraping, content extraction, or when the user mentions "Markdown for Agents", "cf-markdown", or needs structured web content in Markdown format.
 
-## Publisher: <br>
-[xinian5216](https://clawhub.ai/user/xinian5216) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xinian5216](https://clawhub.ai/user/xinian5216)
 
-## Use Case: <br>
-Developers and AI agents use this skill to fetch public web pages as structured Markdown for web research, content extraction, and agent-readable page analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fetching a URL can contact sensitive destinations or disclose token-bearing links if the user supplies them. <br>
-Mitigation: Use only public pages intended for fetching; avoid sensitive URLs, internal hosts, localhost or cloud-metadata addresses, and links containing credentials. <br>
-Risk: Fetched page content is untrusted and may contain misleading text or instructions. <br>
-Mitigation: Treat fetched content as untrusted input and review it before relying on it for agent decisions or downstream work. <br>
-Risk: The helper script depends on curl being available in the execution environment. <br>
-Mitigation: Confirm curl is installed before relying on the script, or use the documented fetch and cURL examples directly. <br>
+## Use Case:
 
+Developers and engineers use this skill to fetch public web pages through Cloudflare Markdown for Agents and receive cleaner Markdown for AI processing, web research, scraping, and content extraction workflows.
 
-## Reference(s): <br>
-- [Protocol reference](references/protocol.md) <br>
-- [Usage examples](references/examples.md) <br>
-- [Cloudflare Markdown for Agents documentation](https://developers.cloudflare.com/fundamentals/reference/markdown-for-agents/) <br>
-- [Cloudflare Markdown for Agents announcement](https://blog.cloudflare.com/markdown-for-agents/) <br>
-- [Content Signals Framework](https://contentsignals.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with bash, cURL, TypeScript/JavaScript, and Python examples; helper script output includes response headers and fetched content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the supplied URL as the fetch target and requires curl for the helper script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The fetch helper accepts arbitrary URLs and can reach non-web, local, private, or link-local resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for user-directed fetching of trusted public HTTPS pages, and add protocol, address-range, redirect, timeout, and response-size controls before broader deployment.
+
+Risk: Fetched content and response headers may expose more information than the user intended to process or display.
+
+Mitigation: Avoid printing unnecessary headers and review fetched Markdown before using it as agent input or downstream training/search material.
+
+## Reference(s):
+
+- [Markdown for Agents protocol reference](references/protocol.md)
+- [Markdown for Agents examples](references/examples.md)
+- [Cloudflare Markdown for Agents documentation](https://developers.cloudflare.com/fundamentals/reference/markdown-for-agents/)
+- [Cloudflare Markdown for Agents announcement](https://blog.cloudflare.com/markdown-for-agents/)
+- [Content Signals Framework](https://contentsignals.org/)
+- [ClawHub skill page](https://clawhub.ai/xinian5216/skills/cf-markdown-agents)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown and shell/code examples for fetching web content with Accept headers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include fetched response headers and Markdown content; Cloudflare-enabled sites can report estimated Markdown token counts.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

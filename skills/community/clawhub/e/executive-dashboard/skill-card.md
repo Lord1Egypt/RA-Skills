@@ -1,38 +1,49 @@
-## Description: <br>
-Design KPI dashboards for executive monitoring. Use for performance tracking, strategic initiatives, and management reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design KPI dashboards for executive monitoring. Use for performance tracking, strategic initiatives, and management reporting.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linuszz](https://clawhub.ai/user/linuszz)
 
-## Use Case: <br>
-Business leaders, analysts, and operators use this skill to structure executive KPI dashboards for performance tracking, strategic initiatives, and management reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dashboard requests may include confidential financial, customer, or employee data. <br>
-Mitigation: Use approved data handling practices and omit or redact sensitive data unless the agent is intended and authorized to process it. <br>
+## Use Case:
 
+Employees and business leaders use this skill to draft executive KPI dashboards for performance tracking, strategic initiative review, and management reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linuszz/executive-dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown with KPI tables, dashboard summaries, status indicators, alerts, and action items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces dashboard design guidance and examples; it does not execute code or access external systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generic trigger words such as dashboard and KPI may activate the skill for ordinary dashboard requests in environments with overlapping business-analysis skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use more specific trigger wording or select the skill explicitly when multiple dashboard or business-analysis skills are installed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linuszz/skills/executive-dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown dashboard framework with KPI tables, status indicators, alerts, governance notes, and drill-down examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces concise executive dashboard content from the user's requested business or function context.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

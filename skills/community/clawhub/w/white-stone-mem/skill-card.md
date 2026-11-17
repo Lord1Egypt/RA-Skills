@@ -1,41 +1,58 @@
-## Description: <br>
-White Stone Memory gives agents an on-demand Markdown memory system for knowledge, project notes, error logs, daily reviews, and task tracking with bilingual logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+White Stone Memory helps agents maintain a local Markdown memory system across knowledge, projects, error logs, daily reviews, and task tracking while loading project memory only on demand.
 
-## Publisher: <br>
-[russellfei](https://clawhub.ai/user/russellfei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[russellfei](https://clawhub.ai/user/russellfei)
 
-## Use Case: <br>
-Agents and their operators use this skill to persist reusable work habits, project context, lessons learned, daily summaries, and task state in local Markdown files while loading only the memory needed for the current task. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory files can retain sensitive project or personal information beyond the current session. <br>
-Mitigation: Avoid storing secrets or sensitive project data unless the configured storage path is acceptable for that information. <br>
-Risk: Optional vector search may use a cloud API key or local embedding service depending on configuration. <br>
-Mitigation: Verify whether vector search is disabled, uses local Ollama, or uses Gemini API before indexing memory content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/russellfei/white-stone-mem) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
+## Use Case:
 
+External users and developers use this skill to give an agent a persistent, bilingual memory structure for work habits, project-specific context, error logs, daily reviews, and subagent task tracking.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Memory entries are stored as local Markdown files; optional vector search can use Gemini API or local Ollama.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata, released 2026-03-03) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent memory files may retain sensitive personal, project, or operational information.
+
+Mitigation: Keep secrets and sensitive data out of memory files and review stored Markdown before sharing or indexing it.
+
+Risk: The artifact uses both diary and daily directory naming for daily review storage.
+
+Mitigation: Resolve the daily-review directory naming mismatch before relying on automated daily review workflows.
+
+Risk: Optional Gemini-based vector search can send memory text to an external embedding provider.
+
+Mitigation: Enable Gemini vector search only when that data flow is acceptable, or use a local Ollama embedding setup instead.
+
+## Reference(s):
+
+- [White Stone Memory Skill Documentation](artifact/SKILL.md)
+- [White Stone Memory README](artifact/README.md)
+- [ClawHub Skill Page](https://clawhub.ai/russellfei/skills/white-stone-mem)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and YAML configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local Markdown memory entries and optional vector-search setup guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

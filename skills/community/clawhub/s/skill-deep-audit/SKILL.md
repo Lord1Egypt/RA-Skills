@@ -5,7 +5,7 @@ description: >
   Cursor, etc.). Runs a 7-dimension static analysis (D1 process closure
   & idempotency, D2 tool/command conventions, D3 portability & defense,
   D4 skill usability, D5 security & op risk, D6 code & doc quality, D7
-  dependency & footprint) with explicit ERR / WARN severity, 115-point
+  dependency & footprint) with explicit ERR / WARN severity, 120-point
   scoring (pass line 90 + zero ERR), and an opt-in `--fix` workflow that
   always backs up first. Two depths: L1 static (~2 min) and L2 dryRun
   (~5 min, read-only hub + reachability checks). Strict red lines —
@@ -21,7 +21,7 @@ description: >
 A read-only, multi-dimensional quality auditor for agent skills. Runs static
 analysis + optional dryRun reachability checks and produces a scorecard.
 
-- **Version**: 1.0.3
+- **Version**: 1.1.0
 - **License**: MIT
 - **Author**: Evan Song · [github.com/Songhonglei](https://github.com/Songhonglei)
 - **Repository**: https://github.com/Songhonglei/build-better-skills
@@ -67,6 +67,12 @@ Is the whole healthy?  → D7 Dependency & footprint
 > hard external dependencies** — L1 static audit works even if no tooling is
 > installed.
 
+**Bundled checker**: `scripts/check_path_boundary.py` (the D3-E5 (1) judge)
+needs **python3 ≥ 3.8** and uses the standard library only (`re` / `json` /
+`sys` / `pathlib`) — no `pip install`, runs offline, strictly read-only. If
+python3 is unavailable, fall back to the greps in D3-E5 and verify endpoints by
+hand; the rest of the audit is unaffected.
+
 ---
 
 ## Step 0: Ask for check depth
@@ -79,14 +85,14 @@ Please choose check depth:
 
 L1 Static analysis (~2 min)
    File read, structural check, keyword scan, syntax check.
-   Max 112 (skips items that need to touch external systems). Pass line ≥ 90.
+   Max 117 (skips items that need to touch external systems). Pass line ≥ 90.
    Good for: quick first-draft check.
 
 L2 dryRun (~5 min, recommended) ⭐
    L1 + Hub existence check + dependency existence check + branch reachability
    simulation (file existence / env config / read-only verification of
    unhit branches).
-   Max 115. Pass line ≥ 90.
+   Max 120. Pass line ≥ 90.
    Good for: pre-release / pre-ship full acceptance.
 
 Default recommendation: L2 dryRun. Reply 1 / L1 for static, 2 / L2 for dryRun
@@ -169,6 +175,17 @@ For each rule:
 3. Record: pass ✅ / fail ❌ / skipped ➖.
 4. Accumulate deductions.
 
+**The four 0-point ERRs** (`D3-E4` / `D3-E5` / `D3-E6` / `D4-E6`) deduct
+nothing, so a hit is invisible in the score and **must** be surfaced in the
+Step 7 summary. `D3-E5` runs via the bundled checker:
+
+```bash
+python3 <this-skill>/scripts/check_path_boundary.py {skill-path}   # exit 1 = ERR
+```
+
+Record each as pass ✅ / **ERR ❌ (0 pts)**. Full run instructions and the
+per-function / per-Step-block judgement caveats are in check-rules.md.
+
 ### 2.3 D6-E1 script syntax check
 
 ```bash
@@ -185,31 +202,9 @@ done
 
 ### 2.4 Code-size stats (prerequisite for D7)
 
-```bash
-# Number of script files (covers mixed skills: .js/.cjs/.mjs/.ts)
-find {skill-path}/scripts -type f \( -name "*.py" -o -name "*.sh" -o -name "*.js" -o -name "*.cjs" -o -name "*.mjs" -o -name "*.ts" \) 2>/dev/null | grep -v node_modules | wc -l
-
-# Total line count (-r prevents hang on no-match)
-find {skill-path} \( -name "*.py" -o -name "*.sh" -o -name "*.js" -o -name "*.cjs" -o -name "*.mjs" -o -name "*.ts" \) | grep -v node_modules | xargs -r wc -l 2>/dev/null | tail -1
-
-# Skill-on-skill dependency: precise extraction (see D7-W2 "three-step join" algorithm)
-
-# ① List all suspicious import candidates (just module names; ownership is resolved later)
-grep -rnE "^\s*(from [a-zA-Z_][a-zA-Z0-9_]* import|import [a-zA-Z_][a-zA-Z0-9_]*)" {skill-path}/scripts/ 2>/dev/null
-# ① supplementary: look for sys.path injection / skill_root concatenation
-#    (this is the physical evidence of which skill an import belongs to)
-grep -rnE "sys\.path\.insert.*skills/|_skill_root|skills/[a-z-]+/scripts" {skill-path}/scripts/ 2>/dev/null
-
-# ② subprocess calls into other skills' scripts (by path)
-grep -rnE "skills/[a-z-]+/scripts|_skill_root.*scripts" {skill-path} 2>/dev/null | grep -v __pycache__
-# ③ Explicit declaration in SKILL.md
-grep -nE "metadata.*requires|depends on .* skill|requires the .* skill|use .* skill" {skill-path}/SKILL.md 2>/dev/null
-# → Agent then deduplicates, applies the three-step join to fix ownership, annotates purpose,
-#   runs the existence check (D7-W2), and writes the result into report section
-#   "VI. Skill Dependencies".
-# → Stdlib and well-known PyPI packages (os/sys/json/re/requests/openpyxl …) are excluded
-#   from ownership judgement.
-```
+Script-count, total-line, and skill-on-skill dependency extraction commands →
+read [references/scan-commands.md](./references/scan-commands.md). Feed the
+results into Step 4 (D7) and report section "VI. Skill Dependencies".
 
 ---
 
@@ -241,22 +236,29 @@ grep -nE "metadata.*requires|depends on .* skill|requires the .* skill|use .* sk
 
 ## Step 5: Aggregate scoring
 
-**Total 115 points**
+**Total 120 points**
 
 | Dimension | Max |
 |-----------|-----|
 | D1 Process closure & idempotency | 13 |
 | D2 Tool & command conventions | 10 |
-| D3 Portability & defense | 15 |
-| D4 Skill usability conventions | 21 |
+| D3 Portability & defense | 18 |
+| D4 Skill usability conventions | 23 |
 | D5 Security & op risk | 21 |
 | D6 Code & doc quality | 31 |
 | D7 Dependency & footprint health | 4 |
-| **Total** | **115** |
+| **Total** | **120** |
 
 > 📊 **Scoring convention**: ERR is uniformly 3 points (a hit means FAIL; the
 > point value carries no real meaning). WARN uses three priority tiers
 > (high 3 / mid 2 / low 1) — the difference is meant to guide fix order.
+>
+> **Exception — four 0-point ERRs**: `D3-E4` (cross-skill reference base),
+> `D3-E5` (relocation-safe path derivation), `D3-E6` (file I/O failure
+> handling), `D4-E6` (SKILL.md length control) consume **no** budget and
+> deduct **nothing** — they rely only on the "zero ERR" half of the test
+> below. All four detect *silent* failure modes, where blocking is the right
+> instrument and a numeric penalty is not.
 
 **Dual-judgement (both conditions must hold for PASS)**:
 
@@ -265,8 +267,8 @@ the actual max but don't change the pass line):
 
 | Depth | Actual max | Pass line |
 |-------|-----------|-----------|
-| L1 static | 112 | **≥ 90** |
-| L2 dryRun | 115 | **≥ 90** |
+| L1 static | 117 | **≥ 90** |
+| L2 dryRun | 120 | **≥ 90** |
 
 | Condition | Result |
 |-----------|--------|
@@ -291,11 +293,14 @@ Write path: `{skill-path}/AUDIT-{YYYY-MM-DD}.md`
 ```
 📋 Audit complete: {skill-name}
 ─────────────────────────────────────
-Total score: {score}/{max}   {PASS ✅ / FAIL ❌}  (L1 max 112 / L2 dryRun max 115)
+Total score: {score}/{max}   {PASS ✅ / FAIL ❌}  (L1 max 117 / L2 dryRun max 120)
 Pass line:   ≥ 90 (uniform across L1 / L2 dryRun)  AND  zero ERR (dual-judgement)
 Depth:       {L1 static / L2 dryRun}
 
-🔴 ERR: {n}   |   🟡 WARN: {n}
+🔴 ERR: {n} (incl. {z} zero-point)   |   🟡 WARN: {n}
+Path & failure handling: D3-E4 {✅/❌} reference base | D3-E5 {✅/❌} path derivation
+                         D3-E6 {✅/❌} I/O failure   | D4-E6 {✅/❌} SKILL.md length
+                         (all four are 0-point ERRs — a hit forces FAIL)
 Highest-priority fix: {ID and name of the highest-deduction ERR}
 
 Estimated score after fixing all ERR: {estimated}/{max}

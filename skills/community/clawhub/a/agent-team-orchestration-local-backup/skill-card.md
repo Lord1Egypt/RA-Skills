@@ -1,45 +1,57 @@
-## Description: <br>
-Orchestrates multi-agent teams with defined roles, task lifecycles, handoff protocols, shared artifacts, and review workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrate multi-agent teams with defined roles, task lifecycles, handoff protocols, and review workflows.
 
-## Publisher: <br>
-[lean-zhouchao](https://clawhub.ai/user/lean-zhouchao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lean-zhouchao](https://clawhub.ai/user/lean-zhouchao)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up sustained multi-agent workflows with role definitions, task routing, handoff protocols, shared artifact paths, and review gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shared workspaces and artifact folders can expose credentials or unrelated private data to other agents. <br>
-Mitigation: Use a dedicated project workspace and keep credentials and unrelated private data out of shared folders. <br>
-Risk: Scheduled or dispatching agents can continue work without clear human approval or stop conditions. <br>
-Mitigation: Define approval, review, and stop rules before enabling scheduled or dispatching agents. <br>
-Risk: Poor handoffs can cause lost artifacts, unclear verification, or quality drift across multi-agent work. <br>
-Mitigation: Require exact output paths, handoff summaries, verification steps, and cross-role review before marking work done. <br>
+## Use Case:
 
+Developers and team leads use this skill to set up recurring multi-agent workflows, route tasks, manage handoffs, and enforce review gates across orchestrator, builder, reviewer, and ops roles.
 
-## Reference(s): <br>
-- [Team Setup](references/team-setup.md) <br>
-- [Task Lifecycle](references/task-lifecycle.md) <br>
-- [Communication](references/communication.md) <br>
-- [Patterns](references/patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with templates, checklists, and inline examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only playbook; produces role, workflow, handoff, and review guidance for an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence and artifact metadata) <br>
+Risk: Multi-agent workflows can give agents broader workspace visibility or write access than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Define which agents may read or write each workspace and keep shared directories scoped to the project before using the skill.
+
+Risk: Scheduled tasks, credential access, or high-impact changes may proceed without appropriate human oversight.
+
+Mitigation: Require human approval for scheduled operations, credential access, and high-impact changes.
+
+## Reference(s):
+
+- [Team Setup](artifact/references/team-setup.md)
+- [Task Lifecycle](artifact/references/task-lifecycle.md)
+- [Communication](artifact/references/communication.md)
+- [Patterns](artifact/references/patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/lean-zhouchao/skills/agent-team-orchestration-local-backup)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with structured workflow templates and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No automatic code execution or installation behavior; outputs depend on the agent applying the playbook to the current workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

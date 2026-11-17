@@ -1,49 +1,59 @@
-## Description: <br>
-Coordinates software project management workflows for requirements gathering, SRS drafting, engineering assessment, change control, estimation, status updates, and heartbeat queue checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dev Project Manager guides a PM agent through software requirements, SRS drafting, change control, estimation, Asana-backed task coordination, stakeholder updates, implementation plan review, and heartbeat queue checks.
 
-## Publisher: <br>
-[encryptshawn](https://clawhub.ai/user/encryptshawn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[encryptshawn](https://clawhub.ai/user/encryptshawn)
 
-## Use Case: <br>
-External clients, project managers, and software delivery teams use this skill to translate requirements into structured specifications, coordinate engineering review, manage scope changes, maintain project status, and route work through project queues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to edit local project state, queue files, and project-management tasks. <br>
-Mitigation: Use it only in approved workspaces and require explicit confirmation before local file, queue, or Asana mutations. <br>
-Risk: The skill depends on separately installed Asana and email skills for external actions. <br>
-Mitigation: Install and review those dependency skills separately, and keep their credentials isolated in the runtime environment. <br>
-Risk: Heartbeat workflows can create unnecessary task checks or nudges if workspace metadata is stale. <br>
-Mitigation: Keep HEARTBEAT.md and project queue metadata current, use the cheapest configured model for heartbeat checks, and stop immediately on tool or configuration failures. <br>
+## Use Case:
 
+Developers, project managers, and operator-managed agent teams use this skill to turn client requirements into structured project artifacts, coordinate engineering assessment and implementation planning, maintain Asana/project state, and keep stakeholders updated.
 
-## Reference(s): <br>
-- [Change Management & Scope Control](artifact/references/change_management.md) <br>
-- [Engineer Communication Protocols](artifact/references/engineer_protocols.md) <br>
-- [Estimation & Effort Communication Guide](artifact/references/estimation.md) <br>
-- [Requirements Elicitation Framework](artifact/references/requirements_elicitation.md) <br>
-- [SRS Standard - Software Requirements Specification](artifact/references/srs_standard.md) <br>
-- [PM Communication Templates](artifact/references/templates.md) <br>
-- [OpenClaw Projects](https://clawhub.ai/encryptshawn/openclaw-projects) <br>
-- [Build Dev Team](https://clawhub.ai/encryptshawn/build-dev-team) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration, Shell commands] <br>
-**Output Format:** [Markdown guidance, structured templates, queue messages, task instructions, and project-state updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or update local project files, queue entries, and project-management tasks when the runtime provides the required dependency skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill can affect project records and Asana task state through dependency skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only on a PM agent intended to manage the named OpenClaw projects, and verify USER.md, HEARTBEAT.md, AGENTS.md, and dependency skills before use.
+
+Risk: Incorrect project identifiers or agent mappings can route work or nudges to the wrong project team.
+
+Mitigation: Confirm workspace files point to the intended projects, queues, agents, and Asana sections before triggering active project-management workflows.
+
+## Reference(s):
+
+- [Dev Project Manager Skill](https://clawhub.ai/encryptshawn/skills/dev-project-manager)
+- [SRS Standard](references/srs_standard.md)
+- [PM Communication Templates](references/templates.md)
+- [Engineer Communication Protocols](references/engineer_protocols.md)
+- [Requirements Elicitation Framework](references/requirements_elicitation.md)
+- [Estimation & Effort Communication Guide](references/estimation.md)
+- [Change Management & Scope Control](references/change_management.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown, structured text, and JSON-compatible project state updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include SRS drafts, requirements summaries, change request records, stakeholder updates, queue messages, task setup guidance, and project state changes.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

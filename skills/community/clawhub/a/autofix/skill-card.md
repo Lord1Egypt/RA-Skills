@@ -1,50 +1,61 @@
-## Description: <br>
-A comprehensive, self-evolving skill designed to diagnose and solve OpenClaw issues by following a structured, multi-stage resolution cycle. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses and helps repair OpenClaw issues through structured checks, documentation search, validation, reports, optional dashboarding, and Gateway monitoring.
 
-## Publisher: <br>
-[mikewongonline](https://clawhub.ai/user/mikewongonline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikewongonline](https://clawhub.ai/user/mikewongonline)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to diagnose Gateway, runtime, configuration, API key, and repair issues, then validate fixes with reports, dashboards, and regression comparisons. The optional watchdog monitors Gateway health and sends alerts when configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run local repair actions, kill processes, archive session files, run a watchdog, and register autostart. <br>
-Mitigation: Treat each repair, watchdog, session archiving, and --install autostart action as a separate opt-in decision with a rollback or uninstall path. <br>
-Risk: Diagnostic output can include credentials, logs, or local operational details and may be sent through Feishu or WebChat alerts. <br>
-Mitigation: Review and redact diagnostic output before enabling external notifications, and configure alert channels only when intentionally needed. <br>
-Risk: Broad auto-repair invocations may change local OpenClaw behavior or hide the root cause of an issue. <br>
-Mitigation: Prefer scoped diagnosis first, save a baseline before fixes, review proposed repair scope, and compare results after any repair. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to diagnose Gateway, CLI, configuration, credential, and runtime issues, generate reports or dashboards, and apply or review repair steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikewongonline/autofix) <br>
-- [Installation guide](INSTALL.md) <br>
-- [Master workflow](SKILL.md) <br>
-- [v6.1 changelog](docs/reports/CHANGES_v6.1.md) <br>
-- [Pre-check module](docs/MODULE_01_PreCheck.md) <br>
-- [Search-chain module](docs/MODULE_02_SearchChain.md) <br>
-- [Validation and action module](docs/MODULE_03_ValidationAction.md) <br>
-- [Finalization module](docs/MODULE_04_Finalization.md) <br>
-- [Example usage](docs/tutorials/EXAMPLE_usage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON, HTML files] <br>
-**Output Format:** [Markdown or plain text guidance with shell commands, JSON diagnostic reports, and optional HTML dashboard output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local OpenClaw and Python diagnostic scripts; watchdog deployment and external alerting are optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.1.0 (source: server release metadata and target metadata) <br>
+Risk: The optional watchdog can persist as a background monitor and may be configured to launch on login.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the watchdog disabled unless continuous monitoring is needed, and avoid using --install autostart until the behavior has been reviewed.
+
+Risk: Diagnostics and alerts can include local configuration, logs, sessions, and credential-derived status data sent through Feishu or WebChat.
+
+Mitigation: Use the skill only with reviewed alert channels, avoid sensitive logs unless alerts are redacted, and prefer offline or explicit provider-bound credential checks.
+
+Risk: Automatic repairs may affect OpenClaw gateway processes, local sessions, or configuration with weak scoping controls.
+
+Mitigation: Review repair scope before execution, keep rollback or baseline comparison available, and reserve automatic repair for clearly low-risk actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikewongonline/skills/autofix)
+- [README.md](artifact/README.md)
+- [INSTALL.md](artifact/INSTALL.md)
+- [SKILL.md](artifact/SKILL.md)
+- [CHANGES_v6.1.md](artifact/docs/reports/CHANGES_v6.1.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON, HTML dashboard, or diagnostic report artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend or invoke OpenClaw-specific diagnostic, validation, watchdog, and repair scripts.]
+
+## Skill Version(s):
+
+6.1.0 (source: server release, created 2026-05-22)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

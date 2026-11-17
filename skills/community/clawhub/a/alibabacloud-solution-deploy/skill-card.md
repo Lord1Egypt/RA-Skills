@@ -1,46 +1,68 @@
-## Description: <br>
-Deploys Alibaba Cloud official tech solutions by routing requests through Terraform module deployment or CLI-first execution paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy Alibaba Cloud official tech solutions through Terraform module deployment or CLI step-by-step execution when a user names a solution, shares an Aliyun solution URL, or asks to deploy an official template.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud engineers use this skill to plan, confirm, execute, and verify Alibaba Cloud solution deployments. It helps choose between official Terraform modules and CLI workflows, including environment checks, RAM permission review, resource creation, and cleanup guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or delete Alibaba Cloud resources that may incur cost or cause irreversible changes. <br>
-Mitigation: Use a dedicated least-privilege RAM user or role, review every proposed plan before apply or destroy, and keep the generated cleanup and state information. <br>
-Risk: The remote diagnostic helper may send full failed commands and error output to a diagnostic API. <br>
-Mitigation: Avoid pasting real secrets into commands or chat transcripts, and redact commands and error output before using the diagnostic helper. <br>
+## Use Case:
 
+Developers and cloud engineers use this skill to map Alibaba Cloud solution requests to Terraform or CLI execution paths, verify environment and RAM prerequisites, deploy resources, validate results, and produce cleanup guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sdk-team/alibabacloud-solution-deploy) <br>
-- [Alibaba Cloud Tech Solutions Catalog](references/alicloud-tech-solutions-all.md) <br>
-- [Aliyun CLI Installation Guide](references/aliyun-cli-installation-guide.md) <br>
-- [Intent Mapping](references/intent-mapping.md) <br>
-- [RAM Policies](references/ram-policies.md) <br>
-- [Terraform Online Runtime](references/terraform-online-runtime.md) <br>
-- [Terraform Solutions Detail](references/tf-plan/tf-solutions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, Terraform configuration, command output summaries, and deployment plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cloud resource IDs, endpoints, state IDs, cleanup commands, and permission checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: The skill can automate real Alibaba Cloud infrastructure creation, modification, and destruction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped RAM users or temporary credentials, review plans and estimated costs before apply or destroy actions, and require explicit confirmation before write operations.
+
+Risk: Secrets may be mishandled if passwords, access keys, or tokens are placed directly in Terraform files or CLI commands.
+
+Mitigation: Avoid embedding sensitive values in generated files or command history; provide secrets through approved secure channels and review generated artifacts before execution.
+
+Risk: Evidence reports a shell command injection flaw in state-id handling in the included runtime script.
+
+Mitigation: Treat the runtime script as requiring a security fix before use, avoid untrusted state IDs, and review or patch state-id handling before executing apply, update, or destroy workflows.
+
+Risk: Evidence reports weak handling of downloads and remote diagnostics.
+
+Mitigation: Run diagnostics and downloads only with approved credentials and network context, review outbound requests and returned guidance, and prefer trusted, pinned sources where possible.
+
+## Reference(s):
+
+- [Alibaba Cloud Official Tech Solutions](https://www.aliyun.com/solution/tech-solution)
+- [Alibaba Cloud Tech Solutions Catalog](references/alicloud-tech-solutions-all.md)
+- [Terraform Solutions Detail](references/tf-plan/tf-solutions.md)
+- [Intent Mapping](references/intent-mapping.md)
+- [RAM Policies](references/ram-policies.md)
+- [Terraform Online Runtime](references/terraform-online-runtime.md)
+- [Aliyun CLI Installation Guide](references/aliyun-cli-installation-guide.md)
+- [Terraform Defaults](references/terraform-defaults.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, Terraform HCL snippets, execution plans, permission tables, deployment summaries, and cleanup instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cloud resource plans, RAM permission requirements, state IDs, endpoints, and cleanup commands after user confirmation.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

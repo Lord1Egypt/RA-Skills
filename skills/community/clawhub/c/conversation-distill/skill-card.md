@@ -1,44 +1,64 @@
-## Description: <br>
-Conversation Distill prompts at the end of substantive conversations, classifies useful takeaways, asks for confirmation, and writes only approved notes or Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+At the natural end of a substantive conversation, this skill asks whether to distill the session, then scans, classifies, confirms, and writes selected insights, decisions, judgments, action items, facts, self-observations, and open questions.
 
-## Publisher: <br>
-[yiing99](https://clawhub.ai/user/yiing99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yiing99](https://clawhub.ai/user/yiing99)
 
-## Use Case: <br>
-Knowledge workers, developers, and teams use this skill to capture reusable decisions, judgments, insights, facts, self-observations, action items, and open questions after meaningful agent conversations. It is useful when a session produced durable knowledge and the user wants to review it before anything is saved. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect the current conversation to identify takeaways, which can include sensitive or personal content. <br>
-Mitigation: Use "skip" or "don't save" when a conversation should not be distilled, and review the proposed items before approving any write. <br>
-Risk: Incorrect or unwanted summaries could be persisted to a notes tool if approved without review. <br>
-Mitigation: The skill requires an explicit "write" or "save" confirmation after the user edits, removes, or approves the proposed list. <br>
-Risk: Notes-tool integrations can store conversation-derived content outside the chat environment. <br>
-Mitigation: Use only trusted notes MCP integrations, and rely on the Markdown fallback when manual handling is preferred. <br>
+## Use Case:
 
+External users and developers use this skill to turn meaningful completed conversations into structured notes, reviewable judgments, decisions, action items, facts, self-observations, and open questions. It is designed for personal knowledge management workflows with optional MCP-backed note writing after explicit confirmation.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/yiing99/conversation-distill) <br>
-- [KnowMine](https://knowmine.ai) <br>
-- [KnowMine Claude plugin](https://github.com/YIING99/knowmine-claude-plugin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, API calls] <br>
-**Output Format:** [Markdown confirmation lists, structured note entries, and optional MCP notes-tool writes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before writing approved notes; otherwise it can output Markdown for manual use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: End-of-conversation reminders may appear during sessions where the user does not want distillation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only show a short reminder when the documented ending signal and distillation-value conditions are both met, and stop reminding for the session when the user skips.
+
+Risk: The skill reviews the current conversation and may identify sensitive material as worth saving.
+
+Mitigation: Present a confirmation list first and write nothing until the user explicitly says to write or save.
+
+Risk: Configured KnowMine, Notion, Obsidian, or other MCP targets may persist notes outside the chat.
+
+Mitigation: Review each write target's permissions before enabling it and rely on the skill's explicit confirmation step before any batch write.
+
+Risk: Unverified installation sources can affect the code or tool behavior that the agent runs.
+
+Mitigation: Prefer pinned or otherwise verified installation sources where available.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yiing99/skills/conversation-distill)
+- [Skill Reference](SKILL.md)
+- [KnowMine MCP Server](https://knowmine.ai)
+- [KnowMine Plugin Integration](https://github.com/YIING99/knowmine-claude-plugin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, API Calls]
+
+**Output Format:** [Markdown and conversational text, with optional MCP note-writing calls after explicit user confirmation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a soft reminder, a classified confirmation list, structured note entries, optional leftovers, and write confirmations or failures when a notes tool is available.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

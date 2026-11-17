@@ -1,44 +1,58 @@
-## Description: <br>
-GitHub repo monitoring that helps track issues, pull requests, CI runs, new activity, label filters, and notifications through cron or messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GH Monitor helps agents monitor GitHub repositories for issues, pull requests, CI runs, new activity, label filters, and scheduled notifications through GitHub CLI workflows.
 
-## Publisher: <br>
-[deliverydriver](https://clawhub.ai/user/deliverydriver) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deliverydriver](https://clawhub.ai/user/deliverydriver)
 
-## Use Case: <br>
-Developers and repository maintainers use this skill to monitor GitHub repositories for issues, pull requests, CI failures, and activity that may need follow-up or scheduled alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use the agent's GitHub CLI access to inspect repository information. <br>
-Mitigation: Install only when repository monitoring is intended, use explicit owner/repo names, and avoid private repositories unless access is expected. <br>
-Risk: Scheduled checks can repeatedly query repositories or notify users based on cron configuration. <br>
-Mitigation: Review cron schedules before enabling recurring monitoring. <br>
-Risk: Alerts can send repository activity to destinations outside GitHub. <br>
-Mitigation: Verify message or alert destinations before sending repository activity. <br>
+## Use Case:
 
+Developers, maintainers, and repository operators use this skill to ask an agent for GitHub issue, pull request, and CI status monitoring with optional label filters and scheduled alerts.
 
-## Reference(s): <br>
-- [GH Commands](references/gh-commands.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/deliverydriver/gh-monitor) <br>
-- [Publisher Profile](https://clawhub.ai/user/deliverydriver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with GitHub CLI commands and monitoring guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include repository names, issue or pull request filters, CI run checks, cron schedules, and message or alert destinations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill may use an existing GitHub CLI session against an unintended repository or scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm GitHub CLI authentication, the target owner/repository, labels, and intended permissions before running monitoring commands.
+
+Risk: Recurring checks can send unwanted or stale notifications if the cron schedule or message target is wrong.
+
+Mitigation: Review the cron expression, payload, notification destination, and stop condition before enabling scheduled monitoring.
+
+Risk: The artifact references support files and a related gh-issues skill that are not included in the package.
+
+Mitigation: Verify those dependencies are available in the target agent environment or adapt the workflow to the included GitHub CLI command reference.
+
+## Reference(s):
+
+- [GH Commands](references/gh-commands.md)
+- [ClawHub skill page](https://clawhub.ai/deliverydriver/skills/gh-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline GitHub CLI and cron commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory monitoring steps and command suggestions; execution depends on the agent environment, GitHub CLI authentication, and any configured scheduler or messaging tool.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

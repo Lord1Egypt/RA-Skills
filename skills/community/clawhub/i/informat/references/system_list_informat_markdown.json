@@ -1,0 +1,11 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_list_informat_markdown",
+    "description": "List all available Markdown documents of the Informat platform, returns a list of file names",
+    "parameters": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+}

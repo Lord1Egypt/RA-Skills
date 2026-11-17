@@ -1,0 +1,4 @@
+interface:
+  display_name: "灵加设计生学习成长规划"
+  short_description: "为设计类大学生生成专业、软件、作品集与升学就业成长路线"
+  default_prompt: "Use $plan-design-student-growth to create a practical growth roadmap for my design major, current level, available time, and goal."

@@ -1,42 +1,54 @@
-## Description: <br>
-IceCube Monetize CN provides Chinese-market monetization guidance for RMB payments across Xiaohongshu, WeChat Official Accounts, Zhishi Xingqiu, and service-based OpenClaw work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+IceCube Monetize CN provides Chinese-market monetization guidance for agents, covering RMB collection paths through Xiaohongshu, WeChat Official Accounts, Zhishi Xingqiu, service work, and related content workflows.
 
-## Publisher: <br>
-[ares521521-design](https://clawhub.ai/user/ares521521-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ares521521-design](https://clawhub.ai/user/ares521521-design)
 
-## Use Case: <br>
-External users and developers use this skill to plan RMB-based monetization paths for AI and OpenClaw work in China, including content channels, paid communities, consulting, and service delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Monetization and payment guidance may become inaccurate as platform rules, payment policies, tax obligations, or local compliance requirements change. <br>
-Mitigation: Verify current Xiaohongshu, WeChat, Zhishi Xingqiu, invoicing, tax, and payment rules before acting on the plan. <br>
-Risk: Revenue ranges and conversion targets could be mistaken for guaranteed outcomes. <br>
-Mitigation: Treat figures as planning examples, validate assumptions with current market data, and avoid presenting estimates as promised results. <br>
-Risk: The guidance can lead to public content, customer commitments, or payment flows that affect real accounts and funds. <br>
-Mitigation: Review proposed content, contracts, invoices, and payment flows before publishing, collecting payment, or delivering services. <br>
+## Use Case:
 
+External creators, developers, and service providers can use this skill to plan Chinese RMB monetization channels for AI and OpenClaw-related offerings. It helps structure content, community, consulting, and service revenue paths while identifying compliance checks that should be verified before real monetization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ares521521-design/icecube-monetize-cn) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown prose, lists, tables, and workflow blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language guidance focused on RMB monetization channels; no shell commands or configuration files are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Monetization, payment, advertising, tax, invoicing, refund, and contract guidance may not match the user's jurisdiction or current platform rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify applicable platform policies and local legal, tax, payment, invoicing, refund, and contract requirements before using the guidance for real revenue activity.
+
+Risk: Revenue estimates and compliance statements could be mistaken for guaranteed outcomes or professional advice.
+
+Mitigation: Treat estimates as planning assumptions, validate them with actual market data, and seek qualified legal or tax advice for binding decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ares521521-design/skills/icecube-monetize-cn)
+- [ClawHub publisher profile](https://clawhub.ai/user/ares521521-design)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with headings, tables, lists, and workflow steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or hidden system access; outputs are planning guidance and should be reviewed before business use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

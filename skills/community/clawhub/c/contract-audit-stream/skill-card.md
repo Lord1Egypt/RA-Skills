@@ -1,44 +1,59 @@
-## Description: <br>
-Audits up to five contracts through the dyinsight.cn streaming API using either public file URLs or multipart uploads, with a required Party A or Party B review perspective and API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits batches of contracts through the dyinsight.cn SSE contract-audit API using either public file URLs or multipart file uploads, with the audit perspective set to PARTY_JIA or PARTY_YI.
 
-## Publisher: <br>
-[tzz-v](https://clawhub.ai/user/tzz-v) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tzz-v](https://clawhub.ai/user/tzz-v)
 
-## Use Case: <br>
-External users and developers use this skill to submit contract files or contract URLs for streaming contract audit results from a remote service. It is intended for batch review workflows where the user chooses the Party A or Party B perspective before analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-selected contracts to dyinsight.cn for remote audit, so contract contents may include confidential, privileged, or regulated information. <br>
-Mitigation: Install and use only when the user trusts dyinsight.cn and is authorized to share the contracts; redact unnecessary sensitive data where possible. <br>
-Risk: The local config file contains an API key required by the remote service. <br>
-Mitigation: Keep config.json private, avoid committing real API keys, and confirm the key is configured before making live requests. <br>
+## Use Case:
 
+External users and developers use this skill to submit up to five contracts for automated review from either the party A or party B perspective and receive streamed progress plus audit results. It is intended for workflows where the user is authorized to send the contract files or public URLs to the dyinsight.cn service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tzz-v/contract-audit-stream) <br>
-- [Publisher profile](https://clawhub.ai/user/tzz-v) <br>
-- [Service endpoint](https://dyinsight.cn/api/v1/skills/contract/audit) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown, JSON] <br>
-**Output Format:** [Markdown guidance with curl examples and streaming JSON event content from the remote API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces SSE progress, error, and completion events; final audit results are returned in streamed JSON content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Contracts, public URLs, and the API key are sent to dyinsight.cn for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for material the user is authorized to share, and confirm privacy, retention, and billing terms before sending sensitive or unredacted contracts.
+
+Risk: The artifact stores the API key in config.json, which can expose credentials if committed or shared.
+
+Mitigation: Prefer an environment variable or secret manager, do not commit a populated config.json, and rotate the key if it was exposed.
+
+Risk: Automated contract audit output may be incomplete or misleading for legal or commercial decisions.
+
+Mitigation: Route audit results through qualified human review before relying on them for negotiations, approvals, or legal action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tzz-v/skills/contract-audit-stream)
+- [Contract audit API endpoint](https://dyinsight.cn/api/v1/skills/contract/audit)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl examples; API calls return text/event-stream progress events and a final JSON audit result.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an api_key, a PARTY_JIA or PARTY_YI perspective, and either file_urls or multipart files; accepts up to five files and up to 5MB total upload size.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

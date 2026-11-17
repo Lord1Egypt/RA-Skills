@@ -1,47 +1,64 @@
-## Description: <br>
-AI divination tool that combines I Ching hexagram lookup with AI interpretation for questions about fortune, relationships, career, money, business decisions, and general guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Iching Divination helps an agent answer I Ching and fortune-telling requests by generating hexagrams and offering Chinese-language interpretations with practical advice.
 
-## Publisher: <br>
-[jaxint](https://clawhub.ai/user/jaxint) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaxint](https://clawhub.ai/user/jaxint)
 
-## Use Case: <br>
-External users and agent builders use this skill to generate I Ching-style hexagrams and concise divination guidance for personal decisions, career, finance, relationships, and business questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Personal or sensitive questions may be sent to an external AI endpoint. <br>
-Mitigation: Clearly disclose third-party transmission and avoid entering private relationship, financial, career, health, or identifying details unless the user is comfortable sending them externally. <br>
-Risk: An embedded API key can expose credentials and route usage through a publisher-controlled account. <br>
-Mitigation: Remove and rotate the embedded key, then require user-provided credentials or a safer managed provider setup. <br>
-Risk: Broad activation around fortune, career, finance, relationships, and business can influence sensitive decisions. <br>
-Mitigation: Keep output framed as reflective guidance rather than professional advice, and narrow activation to explicit divination requests. <br>
-Risk: Unused tool permissions broaden the skill's operational surface. <br>
-Mitigation: Reduce allowed tools to only the operations required for the divination workflow. <br>
+## Use Case:
 
+External users and agents use this skill to respond to questions about divination, I Ching hexagrams, fortune, career, business, finance, and relationship decisions. The skill frames outputs as advisory reflection rather than a fixed prediction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jaxint/iching-divination) <br>
-- [I Ching overview](https://zh.wikipedia.org/wiki/易经) <br>
-- [Sixty-four hexagrams reference](https://www.iching.cn/) <br>
-- [Ruan Yifeng I Ching introduction](https://www.ruanyifeng.com/blog/blog_iching.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, code, shell commands, guidance] <br>
-**Output Format:** [Chinese prose, formatted Markdown-style text, and JSON-like Python dictionaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can call an external AI endpoint when AI interpretation is enabled; deterministic hexagram generation is based on the question text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence; artifact frontmatter says 1.0.0) <br>
+Risk: User questions may be sent to an undisclosed third-party AI endpoint by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose the endpoint and data sent, and make remote AI interpretation opt-in before deployment.
+
+Risk: The artifact includes a hardcoded API key.
+
+Mitigation: Remove the embedded key, rotate the credential, and require runtime secret injection through an environment variable.
+
+Risk: The skill requests broader tool permissions than the feature requires.
+
+Mitigation: Narrow allowed tools and activation scope to explicit divination requests and the minimum required execution path.
+
+Risk: Divination-style guidance could be mistaken for determinative advice for life, business, finance, or relationship decisions.
+
+Mitigation: Keep outputs framed as reflective guidance and remind users to apply independent judgment for consequential choices.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jaxint/skills/iching-divination)
+- [I Ching overview](https://zh.wikipedia.org/wiki/易经)
+- [Sixty-four hexagrams reference](https://www.iching.cn/)
+- [Ruan Yifeng I Ching introduction](https://www.ruanyifeng.com/blog/blog_iching.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style Chinese text with hexagram details, a reading, and practical suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include deterministic hexagram data and optional remote AI interpretation.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

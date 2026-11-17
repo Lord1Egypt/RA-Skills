@@ -1,54 +1,72 @@
-## Description: <br>
-DingTalk CLI Skill helps an agent operate DingTalk workplace products through the dws CLI, including AI tables, calendars, contacts, chat bots, todos, approvals, attendance, reports, DING messages, and workbench tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance, command routing, and helper scripts for agents to use the DingTalk dws CLI across AI tables, calendar, contacts, chat bots, todos, approvals, attendance, reports, DING messages, and workbench tasks.
 
-## Publisher: <br>
-[cizixiu](https://clawhub.ai/user/cizixiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cizixiu](https://clawhub.ai/user/cizixiu)
 
-## Use Case: <br>
-Developers and workplace automation users use this skill to route DingTalk requests to dws CLI commands, inspect workplace data, create or update tasks, schedule calendar activity, send bot or DING messages, and work with reports, attendance, contacts, and AI tables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill delegates workplace actions to an external dws CLI and requires OAuth credentials. <br>
-Mitigation: Install only from a trusted source, verify the published checksum, and protect DWS_CLIENT_SECRET, webhook tokens, and DWS_CONFIG_DIR. <br>
-Risk: The skill can read and modify sensitive DingTalk workplace data, including contacts, attendance, reports, tasks, calendars, and AI table records. <br>
-Mitigation: Use least-privileged DingTalk credentials and review requested data access before allowing the agent to run commands. <br>
-Risk: Some commands can delete records, change calendars, approve or reject workflows, send broad messages, or trigger paid DING SMS and calls. <br>
-Mitigation: Require explicit human confirmation before destructive, approval, broad messaging, report distribution, attendance/contact lookup, calendar change, or paid notification actions. <br>
-Risk: DWS_SERVERS_URL can alter service discovery behavior. <br>
-Mitigation: Keep DWS_SERVERS_URL pinned to a trusted endpoint and review configuration changes before execution. <br>
+## Use Case:
 
+Employees and business operations agents use this skill to inspect, create, update, and recover DingTalk workplace workflows through the dws CLI. It is intended for authenticated DingTalk environments where the agent has been granted the required app scopes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cizixiu/dingtalk-dws) <br>
-- [dws CLI latest release](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/releases/latest) <br>
-- [dws Windows CLI package](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/releases/download/v1.0.8/dws-windows-amd64.zip) <br>
-- [Global reference](artifact/references/global-reference.md) <br>
-- [Intent guide](artifact/references/intent-guide.md) <br>
-- [Recovery guide](artifact/references/recovery-guide.md) <br>
-- [AI table command reference](artifact/references/products/aitable.md) <br>
-- [Calendar command reference](artifact/references/products/calendar.md) <br>
-- [Chat and bot command reference](artifact/references/products/chat.md) <br>
-- [DING message command reference](artifact/references/products/ding.md) <br>
-- [Todo command reference](artifact/references/products/todo.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON-oriented CLI usage, and Python helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the dws CLI plus DingTalk OAuth credentials or DWS environment variables; commands commonly return JSON when --format json is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata; artifact frontmatter reports 1.0.9) <br>
+Risk: The skill can act across sensitive DingTalk business data and communication workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting the publisher and confirming the DingTalk app scopes granted to the CLI.
+
+Risk: Client secrets, OAuth credentials, and webhook tokens may be exposed through prompts, logs, or shell history.
+
+Mitigation: Keep secrets out of chat, command arguments, logs, and shared machines; use the configured environment variables only in controlled environments.
+
+Risk: Commands can send messages, upload files, book rooms, approve or delete records, or trigger paid DING actions.
+
+Mitigation: Require explicit user confirmation before message sends, approvals, deletes, paid DING calls, room bookings, and file uploads.
+
+Risk: A mutable installer or unverified binary can change independently of this skill release.
+
+Mitigation: Prefer the pinned dws archive and verify its SHA256 hash before use.
+
+## Reference(s):
+
+- [Dingtalk CLI SKILL on ClawHub](https://clawhub.ai/cizixiu/skills/dingtalk-dws)
+- [dws CLI latest release](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/releases/latest)
+- [Pinned dws Windows AMD64 archive](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/releases/download/v1.0.8/dws-windows-amd64.zip)
+- [Global Reference](references/global-reference.md)
+- [Intent Routing Guide](references/intent-guide.md)
+- [Recovery Guide](references/recovery-guide.md)
+- [Error Codes](references/error-codes.md)
+- [Field Rules](references/field-rules.md)
+- [AI Table Command Reference](references/products/aitable.md)
+- [Calendar Command Reference](references/products/calendar.md)
+- [Chat and Bot Command Reference](references/products/chat.md)
+- [Todo Command Reference](references/products/todo.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with inline dws commands, JSON-oriented command outputs, and Python helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the dws binary and DingTalk credentials through DWS_CLIENT_ID, DWS_CLIENT_SECRET, DWS_CONFIG_DIR, and DWS_SERVERS_URL.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

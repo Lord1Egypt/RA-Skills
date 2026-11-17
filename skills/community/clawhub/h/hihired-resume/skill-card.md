@@ -1,44 +1,57 @@
-## Description: <br>
-Turn HiHired (hihired.org) into a resume copilot workflow for building, importing, rewriting, tailoring, or improving resumes, generating matching cover letters, extracting resume data from pasted text, and guiding users into the HiHired builder with the right next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn HiHired (hihired.org) into a resume copilot workflow. Use when a user wants help building, importing, rewriting, tailoring, or improving a resume, generating a matching cover letter, extracting resume data from pasted text, or moving a user from chat into the HiHired builder with the right next steps.
 
-## Publisher: <br>
-[flychicken123](https://clawhub.ai/user/flychicken123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flychicken123](https://clawhub.ai/user/flychicken123)
 
-## Use Case: <br>
-External users use this skill for resume and cover letter workflows: drafting resumes from scratch, importing or parsing existing resumes, improving bullets and summaries, tailoring content to job descriptions, and deciding when to continue in the HiHired builder. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The API helper can send sensitive resume and job data to an unencrypted raw backend IP. <br>
-Mitigation: Use chat-only drafting or the public HiHired website when users do not want agent-side uploads; prefer a verified HTTPS endpoint and get explicit approval before each upload. <br>
-Risk: Resume parsing and generation workflows may process personal, employment, education, and job-search data. <br>
-Mitigation: Collect only the data needed for the requested resume task, avoid uploading real resumes unless the user understands where the data is sent, and fall back to local drafting when API calls fail or are not approved. <br>
+## Use Case:
 
+External users and agents use this skill to draft, import, rewrite, tailor, and improve resumes, generate matching cover letters, and move into the HiHired builder for final review or download. It supports chat-side drafting as well as optional API-backed resume parsing, summary, skill, advice, cover-letter, and resume-modification workflows.
 
-## Reference(s): <br>
-- [HiHired capabilities reference](references/hihired-capabilities.md) <br>
-- [HiHired builder](https://hihired.org/builder) <br>
-- [HiHired templates](https://hihired.org/templates) <br>
-- [HiHired AI resume builder with cover letter guide](https://hihired.org/guides/ai-resume-builder-with-cover-letter) <br>
-- [ClawHub release page](https://clawhub.ai/flychicken123/hihired-resume) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text with optional inline shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can draft resume sections, cover letters, skills lists, handoff checklists, and API-backed responses when the helper script is explicitly used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence and artifact _meta.json) <br>
+Risk: Sensitive resume, job-description, or cover-letter data may be sent to a raw plaintext HTTP backend when the API helper is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use chat drafting and HiHired web handoff by default; use the API helper only after explicit user consent and only with a verified HTTPS endpoint.
+
+Risk: Resume outputs may contain incorrect or unsupported claims if user input is incomplete.
+
+Mitigation: Keep assumptions visible, do not invent experience or credentials, and ask for missing facts before presenting final resume or cover-letter content.
+
+## Reference(s):
+
+- [HiHired capabilities reference](references/hihired-capabilities.md)
+- [HiHired Builder](https://hihired.org/builder)
+- [HiHired Templates](https://hihired.org/templates)
+- [HiHired AI Resume Builder with Cover Letter](https://hihired.org/guides/ai-resume-builder-with-cover-letter)
+- [ClawHub skill page](https://clawhub.ai/flychicken123/skills/hihired-resume)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown prose with resume drafts, cover-letter drafts, checklists, JSON examples, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce API request commands or structured resume data when the user opts into API-backed execution.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

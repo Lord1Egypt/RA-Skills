@@ -1,26 +1,49 @@
 ---
 name: blender-mcp
-description: "Connect to and control Blender via the official Blender MCP Server. Covers 20+ built-in tools plus arbitrary bpy code execution. Compatible with Blender 5.1 and 5.2 LTS."
+description: "连接运行中的 Blender：安装官方 Lab MCP 插件，再用固定版本的服务进程调用场景、截图、渲染和文档工具，或执行 bpy。需要实时操控 Blender 时使用。"
 homepage: https://www.blender.org/lab/mcp-server/
 author: taosiuman
-version: 2.0.0
+version: 3.7.3
 metadata:
-  openclaw:
-    requires:
-      bins: ["blender", "mcporter"]
-    install:
-      - id: mcporter
-        kind: node
-        package: mcporter
-        bins: ["mcporter"]
-        label: "Install mcporter (npm)"
+  octop:
+    emoji: "🔌"
+    label:
+      zh: "Blender MCP 连接"
+      en: "Blender MCP"
+    summary:
+      zh: "官方 Blender MCP Server 接入：20+ 工具、bpy 直执行、无头渲染与排障。"
+      en: "Official Blender MCP server: 20+ tools, live bpy execution, headless mode."
 ---
 
 # Blender MCP Server Connection Skill
 
 Connect to and control a running Blender instance via the official Blender MCP Server.
 
-**Version support**: Blender 5.1+ and 5.2 LTS Beta (API compatibility notes included below)
+通过官方 Blender MCP Server 连接和控制运行中的 Blender 实例。
+
+**Version support**: Blender 5.1+（官方 add-on 的硬性要求）；**生产基准 = 5.3（5.3.0，2026-11-10 正式发布）**；**兼容下限 = 5.2 LTS（5.2.4，2026-11-10 发布）**；5.4 仍 Alpha（until 2027-02-03），只用 `hasattr` 兜底 — API compatibility notes included below
+**Platform prerequisite**（2026-10-25 核验）: 官方 add-on 要求 **Blender ≥ 5.1**，而 Blender **5.0 起 macOS 只出 Apple Silicon 构建**（Apple Silicon + macOS 13 Ventura 起；`4.5 LTS` 是最后一个支持 Intel Mac 的版本）→ **Intel Mac 上不存在可用的「Blender 5.1+ × 官方 MCP」组合**；Windows / Linux 无此限制（Windows 需 4 核 SSE4.2 + OpenGL 4.3 或 Vulkan 1.3、8 GB RAM）
+**Last verified**: **2026-11-12**（基线口径对齐版：生产基准切 **5.3**、兼容下限 **5.2 LTS（5.2.4）**；MCP 生态**零增量** —— open issues **27**（最新 #72）、open PR **5** 全未合并、releases **6 条 / 最新 v1.0.3**、stars 37 / forks 38 / watchers 13、`updated_at` 仍 2026-09-29。更长的说明在同目录的 `references/`）
+
+---
+
+## ⚠️ Security Warning / 安全警告
+
+**English:**
+This skill provides full access to Blender's Python API (`bpy`) through the MCP channel. Code executed via `execute_blender_code` can:
+- Read, modify, or delete files on your system
+- Execute arbitrary Python code (including network requests)
+- Alter or corrupt your Blender project data
+
+**Always review code before execution. Keep backups of important `.blend` files.**
+
+**中文：**
+此技能通过 MCP 通道提供对 Blender Python API (`bpy`) 的完全访问。通过 `execute_blender_code` 执行的代码可以：
+- 读取、修改或删除系统上的文件
+- 执行任意 Python 代码（包括网络请求）
+- 更改或损坏 Blender 项目数据
+
+**执行前请始终审查代码。保持重要 `.blend` 文件的备份。**
 
 ---
 
@@ -43,24 +66,54 @@ Connect to and control a running Blender instance via the official Blender MCP S
 
 ### 1. Install the Blender Addon
 
-**Option A: From ZIP**
-1. Download addon ZIP: `https://projects.blender.org/lab/blender_mcp/releases/download/v1.0.0/mcp-1.0.0.zip`
+> **Requirements (official)**: **Blender 5.1 or newer**（官方 Lab 页原文）；官方 add-on 当前版本 **v1.0.3**（2026-10-11 复核，与 10-09 / 10-10 一致）。
+
+**Option A: From ZIP** (official release / 官方发布)
+1. Download addon ZIP: `https://projects.blender.org/lab/blender_mcp/releases/download/v1.0.3/mcp-1.0.3.zip`
+   （或从官方落地页 `https://www.blender.org/lab/mcp-server/` 取最新链接）
 2. Blender → Edit → Preferences → Add-ons → Install from Disk
-3. Enable the "Blender MCP" addon
+3. Enable the MCP addon (listed as **MCP**, maintained by Blender Lab)
 4. Confirm Host/Port in addon settings (default `localhost:9876`)
+5. **Optional: Enable "Auto Start"** — ⚠️ 只在 **Blender 启动时**触发；刚装完状态仍是 "Server is stopped"，需手动点一次 **Start MCP Bridge Server**
 
 **Option B: Drag & Drop**
-- Drag the ZIP file into the Blender window (twice: first to add the Blender Lab repository, second to install the addon)
+- Drag the install link/ZIP into the Blender window **twice**: first drop adds the **Blender Lab repository**, second installs the addon
+- 好处：之后能收到 add-on 更新通知
 
 **Option C: From Source**
 - Source code locations: `mcp/blmcp/` and `addon/blender_mcp_addon/`
 
+**Option D: Quick Install via uvx** (Simplest / 最简单)
+```bash
+# Install uv first (safe method / 安全方法)
+# Download installer and verify before running / 下载并验证后再运行
+# Windows: download a release build from https://github.com/astral-sh/uv/releases
+#          and review it before running.
+# macOS/Linux: download a release build from https://github.com/astral-sh/uv/releases
+#            and review it before running. Do not pipe an installer into a shell.
+
+# Start MCP server with pinned version (auto-downloads dependencies)
+uvx blender-mcp==1.0.0
+```
+
+> ⚠️ **别把两个版本号搞混**（真实高频困惑）：
+> - **Blender add-on**（官方 Lab 发布，装在 Blender 里）：当前 **v1.0.3** —— 见上面 Option A 链接
+> - **MCP Server 包**（`uvx`/`pip` 装的 Python 进程）：本文档 pin 在 **1.0.0**（PyPI 包 `blender-mcp`）
+> 两者版本号各自独立；排障时先确认「哪一半」出问题。
+
+> ⚠️ **分发渠道（2026-11-07 补，官方 issue #71）**：官方 `lab/blender_mcp` **没有发布到 PyPI** —— 官方只走两条渠道：
+> ① **Blender Extensions / `.mcpb`**（`releases/download/v1.0.3/mcp-1.0.3.zip`，见 Option A/B）；
+> ② **Git 源码**（`mcp/blmcp/` 直接用 `uv`/`pip install -e` 装）。
+> PyPI 上的包名 `blender-mcp` 是**第三方实现**（同样用 TCP 9876 桥接，但代码基线不同），**不是 Blender 官方包**；
+> 企业 MCP 注册表（Azure API Center 等）要登记官方实现时，请引用 **MCPB release URL**，别引用 PyPI 包名。
+> Option D 的 `uvx blender-mcp==1.0.0` 命中的是 PyPI 那个第三方包 —— **要官方实现请走 Option A/B**。
+
 ### 2. Start the Blender MCP Server
 
 ```bash
-# Install dependencies
+# Install dependencies with pinned versions
 cd path/to/blender_mcp
-pip install mcp pyyaml starlette
+pip install mcp==1.8.0 pyyaml==6.0.2 starlette==0.45.0
 
 # Start MCP Server (stdio mode)
 python -m blmcp --transport stdio
@@ -169,106 +222,15 @@ print('__BLMCP_RESULT__' + str(result))
 
 ---
 
-## Built-in Tools (20 total)
+## Built-in tools
 
-### Core
-| Tool | Description | Params |
-|------|-------------|--------|
-| `execute_blender_code` | Execute arbitrary Python code (full bpy access) | `code: str` |
-| `execute_blender_code_for_cli` | Execute code in a background Blender process | `blend_file: str, code: str` |
+The 20 official tools and their parameters are listed in [references/tools.md](references/tools.md).
 
-### Scene Analysis
-| Tool | Description | Params |
-|------|-------------|--------|
-| `get_objects_summary` | Get scene object hierarchy and basic info | none |
-| `get_object_detail_summary` | Get detailed info for a specific object | `object_name: str` |
-| `get_blendfile_summary_datablocks` | Analyze .blend file data-blocks | `blend_file: str` |
-| `get_blendfile_summary_missing_files` | Check for missing external file references | `blend_file: str` |
-| `get_blendfile_summary_of_linked_libraries` | List linked external libraries | `blend_file: str` |
-| `get_blendfile_summary_path_info` | Analyze .blend file path information | `blend_file: str` |
-| `get_blendfile_summary_usage_guess` | Guess the purpose of a .blend file | `blend_file: str` |
 
-### Screenshots & Rendering
-| Tool | Description | Params |
-|------|-------------|--------|
-| `get_screenshot_of_window_as_image` | Capture Blender window screenshot | none |
-| `get_screenshot_of_area_as_image` | Capture specific area screenshot | `area_type: str` |
-| `get_screenshot_of_window_as_json` | Get window layout as JSON description | none |
-| `render_viewport_to_path` | Render viewport to file | `output_path: str` |
-| `render_thumbnail_to_path` | Render thumbnail to file | `output_path: str` |
+## Communication protocol
 
-### Navigation
-| Tool | Description | Params |
-|------|-------------|--------|
-| `jump_to_tab_by_name` | Jump to a named editor tab | `tab_name: str` |
-| `jump_to_tab_by_space_type` | Jump to a space type | `space_type: str` |
-| `jump_to_view3d_object_by_name` | Focus on an object in 3D View | `object_name: str` |
-| `jump_to_view3d_object_data_by_name` | Focus on object data in 3D View | `data_name: str` |
+TCP 9876 message shape and the two code examples are in [references/protocol.md](references/protocol.md). `result` must be a dict.
 
-### Documentation Search
-| Tool | Description | Params |
-|------|-------------|--------|
-| `search_api_docs` | Search Blender Python API docs | `query: str` |
-| `search_manual_docs` | Search Blender user manual | `query: str` |
-| `get_python_api_docs` | Get Python API docs | `query: str` |
-
----
-
-## Communication Protocol
-
-### TCP Socket Protocol
-
-**Request format** (null-byte delimited JSON):
-```json
-{"type": "execute", "code": "import bpy\nresult = {'key': 'value'}", "strict_json": false}\0
-```
-
-**Response format**:
-```json
-// Success
-{"status": "ok", "result": {"key": "value"}, "stdout": "", "stderr": ""}\0
-
-// Error
-{"status": "error", "message": "Traceback...", "stdout": "", "stderr": ""}\0
-```
-
-### Code Execution Conventions
-
-- Assign return value to the `result` variable (must be a dict)
-- `strict_json=True`: strict JSON serialization; non-serializable values will error
-- `strict_json=False`: uses `repr()` as fallback for non-JSON values
-- Supports deferred responses: return a `check_is_finished` callable for long-running tasks
-
-### Example: Get Object Info
-
-```python
-import bpy
-obj = bpy.data.objects.get("Cube")
-if obj:
-    result = {
-        "name": obj.name,
-        "type": obj.type,
-        "location": list(obj.location),
-        "vertices": len(obj.data.vertices) if obj.type == "MESH" else 0,
-    }
-else:
-    result = {"error": "Object not found"}
-```
-
-### Example: Create an Object
-
-```python
-import bpy
-bpy.ops.mesh.primitive_torus_add(
-    align='WORLD',
-    location=(0, 0, 0),
-    major_radius=1.0,
-    minor_radius=0.3,
-)
-result = {"status": "created", "name": bpy.context.active_object.name}
-```
-
----
 
 ## Environment Variables
 
@@ -277,6 +239,7 @@ result = {"status": "created", "name": bpy.context.active_object.name}
 | `BLENDER_MCP_HOST` | `localhost` | Blender Addon host address |
 | `BLENDER_MCP_PORT` | `9876` | Blender Addon port |
 | `BLENDER_PATH` | `blender` | Path to Blender executable |
+| `DISABLE_TELEMETRY` | `false` | Set to `true` to disable anonymous usage telemetry. **English:** Anonymous telemetry may be collected by default. Set to `true` to opt out. **中文：** 默认情况下可能会收集匿名遥测数据。设置为 `true` 可退出。 |
 
 ---
 
@@ -299,218 +262,13 @@ result = {"status": "created", "name": bpy.context.active_object.name}
 
 ## Troubleshooting
 
-| Error | Cause | Solution |
-|-------|-------|----------|
-| `ConnectionRefusedError` | Blender not running or Addon not started | Start Blender, enable MCP Addon, click "Start Server" |
-| `ConnectionError: Empty response` | Network timeout or Addon crashed | Check Blender console output, verify port |
-| `result is not JSON-serializable` | Returned a Blender object | Use `strict_json=False` or manually convert to dict |
-| `Blender executable not found` | Blender command not found | Set `BLENDER_PATH` environment variable |
-| `Deferred responses not supported` | Background mode doesn't support deferred responses | Use synchronous code or switch to GUI mode |
+The full error table (connection, SAC, TLS, port reuse, return type) is in [references/troubleshooting.md](references/troubleshooting.md).
 
----
 
-## Blender 5.1 API Compatibility Notes
+## API compatibility notes
 
-### Action Layered Structure (Breaking Change)
+Breaking changes and version guards for Blender 5.1, 5.2 LTS (compatibility floor) and 5.3 (production baseline) live in [references/api.md](references/api.md). Read that file before writing version-sensitive `bpy` code.
 
-In Blender 5.1, `Action.fcurves` was removed. The new layered animation system uses:
-
-```python
-# ❌ Old (5.0 and earlier)
-fcurves = action.fcurves
-
-# ✅ Blender 5.1+
-fcurves = action.layers[0].strips[0].channelbags[0].fcurves
-```
-
-### Brush API: `use_*` → `stroke_method` Enum
-
-```python
-# ❌ Old (5.0)
-brush.use_airbrush = True
-
-# ✅ 5.1+
-brush.stroke_method = 'AIRBRUSH'  # Options: AIRBRUSH, SPACE, ANCHORED, LINE, CURVE, DRAG_DOT
-```
-
-### VSE Time Property Renames
-
-| Old (5.0) | New (5.1) |
-|-----------|-----------|
-| `frame_final_duration` | `duration` |
-| `frame_final_start` | `left_handle` |
-| `frame_final_end` | `right_handle` |
-| `frame_duration` | `content_duration` |
-
-### Principled BSDF Input Renames
-
-| Old (5.0) | New (5.1) |
-|-----------|-----------|
-| `inputs['Transmission']` | `inputs['Transmission Weight']` |
-| `inputs['Emission']` | `inputs['Emission Color']` + `inputs['Emission Strength']` |
-
-### Other 5.1 Changes
-- `sculpt.sample_color` → `paint.sample_color`
-- `bpy.app.cachedir` — new standard cache directory
-- `bpy.app.handlers.exit_pre` — new exit handler
-- Python 3.13 runtime
-
----
-
-## Blender 5.2 LTS Compatibility Notes (Beta)
-
-> Blender 5.2 LTS entered Beta on 2026-06-03. API is frozen; RC expected 2026-07-08, release 2026-07-14.
-
-### 🔴 Breaking Changes (12 total — all Beta confirmed)
-
-#### 1. Geometry Nodes Modifier API Rewrite
-
-```python
-# ❌ 5.1 and earlier
-modifier["SocketName"] = 5.0
-modifier["SocketName_use_attribute"] = True
-modifier["SocketName_attribute_name"] = "some_input"
-
-# ✅ 5.2+
-modifier.properties.inputs.SocketName.value = 5.0
-modifier.properties.inputs.SocketName.type = "ATTRIBUTE"
-modifier.properties.inputs.SocketName.attribute_name = "some_input"
-modifier.properties.outputs.SocketName.attribute_name = "some_output"
-
-# ✅ Compatible pattern
-import bpy
-if bpy.app.version >= (5, 2, 0):
-    val = modifier.properties.inputs.SocketName.value
-else:
-    val = modifier["SocketName"]
-```
-
-#### 2. Principled BSDF Node Renamed
-- `Transmission` → `Transmission Weight`
-- Already applies from 5.1; ensure plugin references match
-
-#### 3. `paint.eraser_brush` API Removed
-- No longer needs manual setting; last eraser brush auto-activates
-
-#### 4. Automasking → MeshAutomaskingSettings (17 properties migrated)
-
-```python
-# ❌ Old
-brush.use_automasking_topology = True
-brush.automasking_cavity_factor = 0.5
-
-# ✅ 5.2+
-brush.mesh_automasking_settings.use_automasking_topology = True
-brush.mesh_automasking_settings.cavity_factor = 0.5
-```
-
-All 17 properties: `use_automasking_topology`, `use_automasking_face_sets`, `use_automasking_boundary_edges`, `use_automasking_boundary_face_sets`, `use_automasking_cavity`, `use_automasking_cavity_inverted`, `use_automasking_start_normal`, `use_automasking_view_normal`, `automasking_boundary_edges_propagation_steps`, `automasking_cavity_factor`, `automasking_cavity_blur_steps`, `automasking_cavity_curve`, `automasking_cavity_curve_op`, `automasking_start_normal_limit`, `automasking_start_normal_falloff`, `automasking_view_normal_limit`, `automasking_view_normal_falloff`
-
-#### 5. VSE `strip.use_linear_modifiers` Removed
-#### 6. VSE `timecode files` Feature Removed
-#### 7. `UILayout.template_palette` `color` Parameter Removed
-#### 8. Compare / Random Value Node Socket Identifiers Changed
-#### 9. Asset Library Index Shift — "All Libraries" and "Essentials" now occupy first two indices
-#### 10. Evaluated Meshes Naming Change — Geo Nodes created meshes no longer share object's original mesh name
-#### 11. Brush `use_*` → `stroke_method` (see 5.1 section above)
-#### 12. VSE Time Property Renames (see 5.1 section above)
-
----
-
-### 🟢 High-Value New APIs (5.2 LTS)
-
-#### Python API
-| API | Description |
-|-----|-------------|
-| `bpy.data.all_ids` | Single iterator over ALL data-blocks |
-| `WindowManager.reports` | Read-only reports list with session-wide unique uid |
-| `bpy.data.libraries.load()` input | Now exposes nested library paths |
-| `Window.screenshot()` | Get window pixel data without saving to file |
-| `gpu.init()` | Initialize GPU backend in `--background` mode |
-| `mathutils` slice step | `vector[begin:end:step]` for Vector/Matrix/Color/Euler |
-| Blender Arrays slice step | `image.pixels[begin:end:step]` — e.g., `pixels[3::4]` for alpha channel |
-| `path_foreach` options | EXPAND_TOKENS, EXPAND_SEQUENCES, EXPAND_CACHES |
-| Annotations API | `frame.strokes.new()`, `stroke.points.add(count, pressure, strength)`, `stroke.points.remove(index)`, `frame.strokes.remove(stroke)` |
-| `UILayout.link` / `textbox` | Styled link buttons and multi-line text buttons |
-| `imbuf` extended | Pixel-level image access, format conversion, buffer protocol |
-| Node panel collapse | Programmatically open/close node panels from Python |
-| Node Tool input values | Set Node Tool parameters programmatically in 5.2 |
-
-#### Geometry Nodes
-| Node / Feature | Description |
-|----------------|-------------|
-| **Physics (experimental)** | XPBD Solver, Cloth Dynamics modifier, Hair Dynamics, Effector system |
-| **Mesh Bevel** | Long-awaited procedural bevel node |
-| **Geometry Bundles** | Set/Get Geometry Bundle — attach arbitrary data (fields, closures) to geometry |
-| **Lists data type** | New core type alongside single/field/grid — Length, Get, Filter, Sort |
-| **Sample Sound Frequencies** | Audio-driven animation without keyframe baking |
-| **PCA** | Principal Component Analysis for auto-alignment |
-| **Transfer Attributes** | Transfer attributes between two geometries |
-| **3D ↔ Screen Space** | Bundled transform nodes (3D to Screen, Screen to 3D, Project with Depth) |
-| **Collection Children** | Recursive access to collection children as lists |
-| **Empty Objects** | Geo Nodes modifiers on Empty objects |
-| **Capture Attribute Selection** | Selection input for efficiency |
-| **NURBS Order/Weight** | Set NURBS Order and Weight nodes |
-| **Scene Frame default input** | Float/int sockets default to current frame |
-| **Self-object default** | Object sockets can default to self-object |
-| **Merge by Distance split** | Now: Merge Points + Cluster by Distance + Cluster by Connected |
-
-#### Cycles
-| Feature | Description |
-|---------|-------------|
-| **Texture Cache** | `.tx` files reduce memory 34-77% in texture-heavy scenes. Enable: Performance > Texture Cache + Auto Generate. CLI: `blender scene.blend --command maketx` |
-| **Raycast Attributes** | Access attributes at intersection point (Cycles only) |
-| **SSS Negative Anisotropy** | Principled/Subsurface BSDF: -1 to 1 range |
-| **World Cast Shadows** | World can now cast shadows |
-| **OSL GPU** | Texture cache improves OSL performance + adds GPU support |
-| **Simplify Texture Resolution** | Percentage-based texture scaling (50%, 25%) |
-
-#### EEVEE
-| Feature | Description |
-|---------|-------------|
-| **Shader Raycast** | Screen-space raytracing node |
-| **Light Path Intensity** | Global indirect light intensity control |
-| **Texture pool -40%** | Vulkan: 406MB → 245MB |
-
-#### Grease Pencil
-| Feature | Description |
-|---------|-------------|
-| **Fill Tool Delaunay** | New Delaunay solver: precise geometry, auto gap detection, scale-independent, faster |
-| **Draw Tool curves** | Bézier / Catmull-Rom / NURBS curve types |
-| **Line Materials placement** | Count / Density / Radius modes with randomization |
-| **`layer.layer_masks` API** | Add/remove layer masks via Python |
-
-#### Video Sequencer
-| Feature | Description |
-|---------|-------------|
-| **Compositor Effect Strip** | Use compositor node trees for VSE transitions/effects (0/1/2 inputs + fader) |
-| **Compositor GPU acceleration** | In VSE modifiers |
-| **`strip.connections`** | API to find connected strips |
-
-#### Sculpt
-| Feature | Description |
-|---------|-------------|
-| **Scene Project brush** | Displace vertices toward other objects (like Shrinkwrap) |
-| **Add Primitive in Sculpt Mode** | Cube/Cone/Cylinder directly in sculpt |
-| **Color Filter unified color** | Uses scene unified colors; Ctrl-X quick fill |
-| **Dyntopo confirmation removed** | No more confirmation dialog when switching back to Sculpt |
-| **Voxel Remesher attribute interpolation** | Smooth vertex/corner attribute interpolation |
-
-#### Assets
-| Feature | Description |
-|---------|-------------|
-| **Online Asset Library** | Browse and download from remote hosted libraries |
-| **Asset Library index shift** | "All Libraries" and "Essentials" now at indices 0 and 1 |
-
-#### Other
-| Feature | Description |
-|---------|-------------|
-| **LoopTools built-in** | Circle/Space/Flatten now native — no addon needed |
-| **Hydra 2.0 API** | OpenUSD provides abstraction layer |
-| **Animation +125%** | Action evaluation 32.8→74.1 fps (4 threads) |
-| **Gaussian Smooth F-Curve** | Non-destructive curve smoothing modifier |
-
----
 
 ## OpenClaw Integration
 
@@ -550,11 +308,98 @@ mcporter call blender-mcp.execute_blender_code code='import bpy; result = {"coun
 
 ---
 
+## Geometry Nodes MCP Integration
+
+The official Blender MCP Server supports advanced Geometry Nodes inspection and debugging capabilities (Blender 5.2+):
+
+### Querying Data Relations
+```bash
+# Find which objects use a specific material
+mcporter call blender-mcp.execute_blender_code code='
+import bpy
+material_name = "pebbles"
+users = [obj.name for obj in bpy.data.objects if obj.active_material and obj.active_material.name == material_name]
+result = {"material": material_name, "users": users, "count": len(users)}
+'
+```
+
+### Scene Debugging
+```bash
+# Find highest poly-count object in scene
+mcporter call blender-mcp.execute_blender_code code='
+import bpy
+mesh_objects = [(obj.name, len(obj.data.polygons)) for obj in bpy.data.objects if obj.type == "MESH"]
+if mesh_objects:
+    highest = max(mesh_objects, key=lambda x: x[1])
+    result = {"object": highest[0], "faces": highest[1]}
+else:
+    result = {"error": "No mesh objects found"}
+'
+```
+
+### Geometry Node Tree Inspection
+```bash
+# Inspect Geometry Nodes modifier connections
+mcporter call blender-mcp.execute_blender_code code='
+import bpy
+obj = bpy.data.objects["GEO-pebble"]
+if obj.modifiers:
+    mod = obj.modifiers[0]
+    if mod.type == "NODES":
+        node_tree = mod.node_group
+        nodes_info = [{"name": n.name, "type": n.type, "inputs": [i.name for i in n.inputs]} for n in node_tree.nodes]
+        result = {"modifier": mod.name, "node_tree": node_tree.name, "nodes": nodes_info}
+    else:
+        result = {"error": "Not a Geometry Nodes modifier"}
+else:
+    result = {"error": "No modifiers found"}
+'
+```
+
+### Common Geometry Nodes MCP Patterns
+
+| Task | Example Query |
+|------|---------------|
+| Find material users | `"Which objects use the material: [name]"` |
+| Scene density analysis | `"Analyze mesh density distribution in this scene"` |
+| Debug missing data | `"What is the object with the highest poly-count?"` |
+| Node tree structure | `"Show me the Geometry Nodes connections for [object]"` |
+
+---
+
+## Gemini CLI Integration
+
+Blender MCP can be used with Google Gemini CLI (in addition to Claude):
+
+```bash
+# Install Gemini CLI
+npm install -g @google/gemini-cli
+
+# Configure MCP via Gemini CLI's built-in command
+gemini mcp add blender --transport stdio --command "uvx blender-mcp==1.0.0" --env BLENDER_MCP_HOST=localhost --env BLENDER_MCP_PORT=9876
+
+# Start Gemini CLI with Blender MCP
+gemini
+```
+
+**Security Note / 安全说明**: The `gemini mcp add` command automatically creates the configuration in the appropriate location. No manual file editing is required.
+
+---
+
 ## Quick Start Checklist
 
 - [ ] Blender 5.1+ installed
 - [ ] MCP Addon installed and enabled
-- [ ] MCP Server started (`python -m blmcp --transport stdio`)
+- [ ] **Auto Start enabled** (optional, recommended)
+- [ ] MCP Server started (`python -m blmcp --transport stdio` or `uvx blender-mcp==1.0.0`)
 - [ ] mcporter installed (`npm install -g mcporter`)
 - [ ] Port 9876 available (default)
 - [ ] `BLENDER_PATH` environment variable set (if needed)
+- [ ] `DISABLE_TELEMETRY=true` (optional, for privacy)
+
+---
+
+## Changelog
+
+Full history: [references/changelog.md](references/changelog.md).
+

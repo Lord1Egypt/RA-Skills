@@ -1,44 +1,58 @@
-## Description: <br>
-Suite of shell scripts for developers to generate Chrome extensions, GitHub READMEs, SaaS landing pages, tech blogs, tweet threads, and lightweight code review reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Suite of shell scripts for developers to generate Chrome extensions, GitHub READMEs, SaaS landing pages, tech blogs, tweet threads, and code review reports.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers use this skill to bootstrap common project and content assets from local shell commands, including extension templates, README files, landing pages, blog posts, tweet threads, and review-style reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The code review assistant may present canned results as if it reviewed real code. <br>
-Mitigation: Treat review output as example guidance only and use independent review or security tools before relying on findings. <br>
-Risk: The shell generators create or overwrite local project files. <br>
-Mitigation: Run the scripts in a scratch or backed-up directory and inspect generated files before merging or publishing them. <br>
-Risk: Generated public-facing HTML and content may need security, privacy, and accuracy review before release. <br>
-Mitigation: Review generated pages and copy, including external scripts or links, before publishing them publicly. <br>
+## Use Case:
 
+Developers use this skill to draft starter project files, documentation, marketing pages, article outlines, social posts, and review-style reports from shell commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/my-awesome-tools) <br>
-- [Publisher profile](https://clawhub.ai/user/Sunshine-del-ux) <br>
-- [Artifact usage documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown reports, generated source files, configuration files, and terminal output from shell scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some scripts write files into the current or selected output directory; generated content should be reviewed before reuse.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Unsafe file-writing behavior can overwrite README or generated project files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the scripts in disposable or version-controlled directories and inspect target paths before execution.
+
+Risk: Untrusted names or descriptions can trigger command-injection behavior.
+
+Mitigation: Do not pass untrusted input to the scripts until the shell handling is reviewed and patched.
+
+Risk: The code-review assistant can present canned output as if it analyzed code.
+
+Mitigation: Do not rely on it for real security or merge-blocking code review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshine-del-ux/skills/my-awesome-tools)
+- [Publisher profile](https://clawhub.ai/user/sunshine-del-ux)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, shell output, and generated project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some scripts write files or directories in the current or selected output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,64 @@
-## Description: <br>
-Chinese-language research and reporting skill for identifying exhibition, B2B, and industry-media promotion channels for lithium-battery equipment across the United States, Japan, Korea, Russia, and Europe, then scoring platforms and generating Excel dashboard reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lithium Promo Research helps research trade shows, B2B platforms, and industry media for lithium battery equipment promotion across the United States, Japan, Korea, Russia, and Europe, then supports Excel dashboard report generation.
 
-## Publisher: <br>
-[richardcoder849](https://clawhub.ai/user/richardcoder849) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richardcoder849](https://clawhub.ai/user/richardcoder849)
 
-## Use Case: <br>
-Sales, marketing, and market research teams use this skill to shortlist overseas promotion platforms for lithium-battery manufacturing equipment and turn the findings into scored Excel reports. It is useful when comparing target countries, platform types, product lines, promotion forms, pricing signals, and contact details before outreach. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; the documented research scope focuses on the United States, Japan, Korea, Russia, and Europe. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Promotion recommendations and pricing or contact fields may be incomplete, stale, or based on unverified search leads. <br>
-Mitigation: Confirm platform details, dates, costs, and contacts against primary sources before outreach, purchasing, or campaign planning. <br>
-Risk: The skill may generate local JSON and Excel report files at user-selected paths. <br>
-Mitigation: Confirm the target country, platform type, product lines, and output path before running the workflow. <br>
-Risk: Search-derived web content may include low-quality or irrelevant sources. <br>
-Mitigation: Treat web-derived entries as leads, review source URLs, and remove unsupported recommendations before sharing the report. <br>
+## Use Case:
 
+External developers, sales operations teams, and market researchers use this skill to compile candidate promotion channels for lithium battery equipment by country, platform type, and product line, and to generate Excel dashboard reports for review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/richardcoder849/lithium-promo-research) <br>
-- [United States lithium-battery promotion guide](references/us.md) <br>
-- [Japan lithium-battery promotion guide](references/jp.md) <br>
-- [Korea lithium-battery promotion guide](references/kr.md) <br>
-- [Russia lithium-battery promotion guide](references/ru.md) <br>
-- [Europe lithium-battery promotion guide](references/eu.md) <br>
-- [Product line configuration](references/product-lines.json) <br>
-- [Search template library](references/search-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Chinese-language status summaries, JSON platform data, and Excel workbook reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Excel reports include overview, exhibition, B2B platform, media resource, and product-line recommendation sheets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Generated spreadsheets may contain untrusted scraped or user-provided values, including formulas that could execute when opened in spreadsheet software.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat JSON input and scraped data as untrusted, sanitize values before spreadsheet generation, and review generated workbooks before sharing.
+
+Risk: Report files are written to local output paths and may expose sensitive research data if placed in shared locations.
+
+Mitigation: Use explicit output paths, restrict file permissions as needed, and confirm the destination before distributing generated reports.
+
+Risk: The release evidence describes the helper as partly unfinished, so generated platform data and summaries may be incomplete.
+
+Mitigation: Review the generated recommendations against source links and validate important platform, pricing, and contact details before business use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/richardcoder849/skills/lithium-promo-research)
+- [United States promotion guide](references/us.md)
+- [Japan promotion guide](references/jp.md)
+- [Korea promotion guide](references/kr.md)
+- [Russia promotion guide](references/ru.md)
+- [Europe promotion guide](references/eu.md)
+- [Search templates](references/search-templates.md)
+- [Product lines](references/product-lines.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples, JSON data files, text summaries, and Excel workbook reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate XLSX dashboard reports and intermediate JSON files for search tasks, parsed platforms, and scored platform recommendations.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

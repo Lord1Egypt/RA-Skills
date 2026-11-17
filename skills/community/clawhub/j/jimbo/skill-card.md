@@ -1,48 +1,67 @@
-## Description: <br>
-Jimbo helps with financial analysis, budget-conscious decisions, value investing, and RSI-based investment signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assist with financial analysis, value investing using RSI signals, and cost-effective decision-making for budgeting and investments.
 
-## Publisher: <br>
-[tycooncoder](https://clawhub.ai/user/tycooncoder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tycooncoder](https://clawhub.ai/user/tycooncoder)
 
-## Use Case: <br>
-External users can use this agent for financial analysis, budgeting tradeoffs, and investment screening based on value-investing and RSI mean-reversion heuristics. Reviewers should also account for bundled workspace, memory, automation, and ClawStreet paper-trading behavior before deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release bundles broad workspace, memory, heartbeat, automation, and unrelated skill behavior beyond the finance-assistant description. <br>
-Mitigation: Review the full package before installing and remove unrelated workspace, skill, and memory files when only the finance assistant is needed. <br>
-Risk: Heartbeat-style automation and ClawStreet behaviors can trigger recurring background checks, API calls, public feed activity, or paper-trading actions. <br>
-Mitigation: Tighten heartbeat triggers and require explicit confirmation before registration, public/API actions, or recurring trading workflows. <br>
-Risk: The bundled workspace can access or persist personal context through memory files. <br>
-Mitigation: Audit memory files before deployment and avoid loading personal memory in shared or untrusted contexts. <br>
-Risk: Trading API keys or bot credentials may be needed for ClawStreet behavior. <br>
-Mitigation: Store credentials only in a secure credential store and never commit, log, or expose API keys in prompts. <br>
+## Use Case:
 
+External users and agents use Jimbo for cost-aware financial analysis, budget decisions, and value-investing research based on RSI-style signals. The bundled workspace also includes optional paper-trading and social-feed workflows that should be reviewed before use.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tycooncoder/jimbo) <br>
-- [ClawStreet API](https://www.clawstreet.io/api) <br>
-- [ClawStreet indicators reference](https://www.clawstreet.io/skills/clawstreet/INDICATORS.md) <br>
-- [ClawStreet strategies reference](https://www.clawstreet.io/skills/clawstreet/STRATEGIES.md) <br>
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown text with optional shell commands, API request examples, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce financial analysis and paper-trading actions; not financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The package is broader than a finance helper and includes workspace, memory, coding, and paper-trading components.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the full bundle before installation and separate or remove components that are not needed for the intended finance use case.
+
+Risk: Paper-trading and social-feed workflows can schedule activity and create public posts, comments, votes, or trade rationales after activation.
+
+Mitigation: Require explicit approval before enabling scheduled activity or public interactions, and keep social engagement disabled unless the operator approves it.
+
+Risk: Remote skill refresh behavior can change trading or posting behavior if fetched content is not verified.
+
+Mitigation: Disable automatic remote skill refreshes unless the source and version are verified before use.
+
+Risk: Credential or personal-service access can increase impact if the bundled agent workspace is granted broad permissions.
+
+Mitigation: Avoid granting personal-service access unless needed, store any ClawStreet API key securely, and do not expose credentials in prompts, logs, or committed files.
+
+## Reference(s):
+
+- [Jimbo the Investor on ClawHub](https://clawhub.ai/tycooncoder/skills/jimbo)
+- [ClawStreet API](https://www.clawstreet.io/api)
+- [ClawStreet Symbols Reference](https://www.clawstreet.io/skills/clawstreet/SYMBOLS.md)
+- [ClawStreet Indicators Reference](https://www.clawstreet.io/skills/clawstreet/INDICATORS.md)
+- [ClawStreet Strategies Reference](https://www.clawstreet.io/skills/clawstreet/STRATEGIES.md)
+- [ClawStreet Thought Style Reference](https://www.clawstreet.io/skills/clawstreet/THOUGHT_STYLE.md)
+- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text guidance with optional code, shell command, and API request snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include financial-analysis reasoning, budget recommendations, and ClawStreet paper-trading instructions; no real-money trading is indicated in the evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

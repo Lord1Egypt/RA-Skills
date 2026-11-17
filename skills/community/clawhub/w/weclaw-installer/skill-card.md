@@ -1,45 +1,59 @@
-## Description: <br>
-Automate installing and configuring the WeClaw WeChat bot environment on macOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate installing and configuring the WeClaw WeChat bot environment on macOS.
 
-## Publisher: <br>
-[popilopi168](https://clawhub.ai/user/popilopi168) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[popilopi168](https://clawhub.ai/user/popilopi168)
 
-## Use Case: <br>
-Developers and operators use this skill to bootstrap the WeClaw project locally on macOS, install Python dependencies with uv, configure the required API key, and resolve common macOS Accessibility setup blockers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup wrapper can run an unbundled local Python module while handling an API key. <br>
-Mitigation: Inspect or obtain the exact setup_package.py that will run, preferably from a known source or pinned commit, before installing. <br>
-Risk: The setup flow may handle secrets and can accept an API key on the command line. <br>
-Mitigation: Use a least-privileged API key and avoid passing secrets on the command line when possible. <br>
-Risk: The setup may require macOS Accessibility permissions. <br>
-Mitigation: Enable Accessibility only for the trusted terminal or app intended to run the automation. <br>
-Risk: The artifact includes ClawHub publish commands that are not needed for normal installation. <br>
-Mitigation: Ignore the publish commands unless intentionally publishing this skill. <br>
+## Use Case:
 
+Developers and users setting up WeClaw use this skill to install the local macOS environment, configure required dependencies, provide the needed API key, and recover from common macOS Accessibility permission blockers.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/popilopi168/weclaw-installer) <br>
-- [WeClaw source repository](https://github.com/Popilopi168/weclaw-package-upload-test) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets macOS and expects git, uv, and python3 to be available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The setup wrapper can load Python code from outside the packaged skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only from a trusted checkout after inspecting setup_package.py and the target repository.
+
+Risk: The setup process may handle a WeClaw API key.
+
+Mitigation: Avoid passing real API keys on the command line when possible and provide only the key required for WeClaw setup.
+
+Risk: macOS Accessibility permission grants desktop automation control to the terminal or agent.
+
+Mitigation: Enable the permission only when you are comfortable granting that control for WeClaw setup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/popilopi168/skills/weclaw-installer)
+- [Publisher profile](https://clawhub.ai/user/popilopi168)
+- [WeClaw source repository](https://github.com/Popilopi168/weclaw-package-upload-test)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for a WeClaw API key and macOS Accessibility confirmation before running setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

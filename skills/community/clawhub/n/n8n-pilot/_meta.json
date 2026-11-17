@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7104e9v8eyfbk1y69y0yr7th850741",
-  "slug": "n8n-pilot",
+  "name": "n8n-pilot",
   "version": "0.1.0",
-  "publishedAt": 1777679035098
+  "description": "Design, build, deploy, test, and secure advanced n8n workflows. Architecture patterns, flow logic, dangerous pattern detection, self-hosting, credential management, and workflow recipes.",
+  "author": "wahajahmed010",
+  "license": "MIT-0",
+  "requires": {
+    "env": ["N8N_API_KEY", "N8N_BASE_URL"]
+  }
 }

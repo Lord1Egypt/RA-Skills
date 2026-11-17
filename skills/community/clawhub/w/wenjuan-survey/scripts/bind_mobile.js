@@ -239,7 +239,7 @@ async function main() {
   if (!outputJson) {
     await persistBindUrlForManualOpen(bindUrl);
     console.log(
-      "  [提示] 若未自动弹出浏览器（Workerbuddy/OpenClaw 等），请在本机打开上述文件中的完整链接"
+      "  [提示] 若未自动弹出浏览器（WorkBuddy/OpenClaw 等），请在本机打开上述文件中的完整链接"
     );
   }
   

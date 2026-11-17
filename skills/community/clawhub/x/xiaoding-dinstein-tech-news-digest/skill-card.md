@@ -1,47 +1,66 @@
-## Description: <br>
-Generates quality-scored tech news digests from RSS, Twitter/X, GitHub, Reddit, and web search sources with Discord, email, markdown, and PDF output paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates tech news digests by collecting RSS, Twitter/X, GitHub releases and trending repositories, Reddit, and web search sources into quality-scored, deduplicated Discord, email, Markdown, or PDF outputs.
 
-## Publisher: <br>
-[asterisk622](https://clawhub.ai/user/asterisk622) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asterisk622](https://clawhub.ai/user/asterisk622)
 
-## Use Case: <br>
-Developers and operators use this skill to configure and run scheduled or on-demand technology news digests, deduplicate and score articles, and deliver reports to chat or email channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run scheduled network collection and send reports to Discord or email. <br>
-Mitigation: Enable only intended delivery jobs and review channel IDs, recipient addresses, and recurring schedules before use. <br>
-Risk: The skill can use GitHub credentials and a configured GitHub App private-key file. <br>
-Mitigation: Use least-privilege tokens, avoid broad GitHub credentials, and verify GH_APP_KEY_FILE points only to the intended private key. <br>
-Risk: The skill writes digest archives and prunes old archive files. <br>
-Mitigation: Use a dedicated workspace archive directory and review retention behavior before enabling unattended runs. <br>
+## Use Case:
 
+Developers, operators, and teams use this skill to configure and schedule daily or weekly technology news digests from predefined and workspace-specific sources. It supports source collection, scoring, deduplication, archiving, and delivery-oriented report generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/asterisk622/xiaoding-dinstein-tech-news-digest) <br>
-- [Digest prompt template](references/digest-prompt.md) <br>
-- [Discord template](references/templates/discord.md) <br>
-- [Email template](references/templates/email.md) <br>
-- [PDF template](references/templates/pdf.md) <br>
-- [Python runtime](https://www.python.org/downloads/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown digest text with optional HTML email, PDF report, and JSON pipeline artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports Discord delivery, optional email delivery, workspace archive writes, and configurable source/topic overlays.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.15.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Broad URL fetching can contact configured RSS, web search, GitHub, Reddit, and Twitter/X endpoints, including URLs supplied through workspace configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted source configuration files and run the skill in an environment with appropriate outbound network controls, especially near private networks or cloud metadata services.
+
+Risk: Optional API credentials for GitHub, Twitter/X, Tavily, and Brave may be used by collection scripts.
+
+Mitigation: Provide narrowly scoped credentials, avoid broad GitHub tokens, and rotate keys according to the owning service's policy.
+
+Risk: Full-text enrichment fetches article pages beyond the initial source metadata.
+
+Mitigation: Disable enrichment unless richer article summaries are needed.
+
+Risk: Scheduled delivery can send digests to Discord channels or email recipients.
+
+Mitigation: Confirm channel IDs, email recipients, and schedule settings before enabling recurring delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/asterisk622/skills/xiaoding-dinstein-tech-news-digest)
+- [Digest prompt template](references/digest-prompt.md)
+- [Configuration schema](config/schema.json)
+- [Discord output template](references/templates/discord.md)
+- [Email output template](references/templates/email.md)
+- [PDF output template](references/templates/pdf.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON pipeline data, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate Discord-ready Markdown, email HTML, archived Markdown reports, and optional PDF attachments.]
+
+## Skill Version(s):
+
+3.15.0 (source: server release metadata, SKILL.md frontmatter, and changelog released 2026-03-15)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

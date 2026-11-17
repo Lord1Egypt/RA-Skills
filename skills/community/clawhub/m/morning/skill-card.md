@@ -1,41 +1,57 @@
-## Description: <br>
-Daily journaling, reflection, and planning that reviews yesterday, updates journals, and checks alignment of daily actions to annual goals and life plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily journaling, reflection, and planning skill that reviews yesterday, updates journals, and checks alignment of daily actions to annual goals and a life plan.
 
-## Publisher: <br>
-[netcetera](https://clawhub.ai/user/netcetera) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[netcetera](https://clawhub.ai/user/netcetera)
 
-## Use Case: <br>
-Individuals and teams using OpenClaw use Morning to plan the day, review prior journal entries, surface Brain tasks and projects, and maintain daily journal files aligned to annual goals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read personal planning data and persist journal content. <br>
-Mitigation: Install only if comfortable with that access, use explicit prompts, and review generated journal entries before relying on them. <br>
-Risk: Sensitive remarks may be stored in journal files if shared during a session. <br>
-Mitigation: Avoid sharing sensitive remarks unless they are intended to be saved in the journal. <br>
-Risk: Brain MCP integration surfaces task and project data during morning planning. <br>
-Mitigation: Configure Brain MCP intentionally and limit it to task and project data appropriate for daily planning. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Morning release](https://clawhub.ai/netcetera/morning) <br>
+## Use Case:
 
+Employees and other OpenClaw users use Morning to structure daily planning, reflect on prior journal entries, promote inbox items, and align current tasks with annual goals.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown journal entries and conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update journal and inbox files and surface Brain tasks when configured.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can persist conversation details to journal or inbox files without explicit confirmation after ambiguous triggers.
+
+Mitigation: Review journal content before and after use, and require explicit confirmation before logging sensitive content or editing journal or inbox files when intent is unclear.
+
+Risk: The skill requests Bash access even though its core behavior is journaling, planning, file updates, and Brain task review.
+
+Mitigation: Remove Bash from the allowed tools unless a deployment has a documented shell-based need.
+
+Risk: The skill may read personal or work planning data from journals, inbox files, and configured Brain tasks or projects.
+
+Mitigation: Use it only in workspaces where those files and Brain integrations are intended to be available to the agent.
+
+## Reference(s):
+
+- [README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/netcetera/skills/morning)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown journal updates and concise conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local journal and inbox files and use configured Brain task and project data.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; package.json states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

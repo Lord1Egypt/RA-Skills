@@ -1,54 +1,61 @@
-## Description: <br>
-Convert structured single-slide or small deck HTML files into editable PPTX slides with native text boxes, shapes, chips, arrows, and panels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts structured single-slide or small-deck HTML designs into editable PPTX slides with native PowerPoint text boxes, shapes, chips, arrows, and panels.
 
-## Publisher: <br>
-[textboy](https://clawhub.ai/user/textboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[textboy](https://clawhub.ai/user/textboy)
 
-## Use Case: <br>
-Developers and presentation-focused agents use this skill to convert supported fixed-layout HTML slide designs into editable PowerPoint files, especially architecture, analyst-style, and AI runtime pages. When a design does not match an existing slide family, the skill guides the agent to add a preset before conversion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Node.js scripts and reads or writes files as part of HTML-to-PowerPoint conversion. <br>
-Mitigation: Install dependencies with the included lockfile where possible, run the environment check before use, and keep inputs and outputs in intended project directories. <br>
-Risk: Unsupported HTML families can produce structurally incorrect slide output if forced through an existing preset. <br>
-Mitigation: Identify the page family first and add a new preset with extraction, layout, and QA rules when the HTML does not match supported presets. <br>
-Risk: Generated slides can still have spacing, overflow, clipping, or arrow-direction issues. <br>
-Mitigation: Run the bundled preflight QA and visually inspect the PowerPoint output before relying on it. <br>
-Risk: Agent-added presets may introduce incorrect mapping logic or misleading presentation structure. <br>
-Mitigation: Review proposed preset edits before use and keep the semantic extraction, rendering, and QA rules aligned with the target slide family. <br>
+## Use Case:
 
+Developers and presentation authors use this skill to convert supported fixed-layout HTML slide drafts into editable PowerPoint decks, and to add a new preset when the slide family is unsupported.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/textboy/present-ppt) <br>
-- [README](README.md) <br>
-- [Setup and portability](references/setup.md) <br>
-- [Usage Principles](references/usage-principles.md) <br>
-- [Preset decision rules](references/preset-decision-rules.md) <br>
-- [Preset guide](references/presets.md) <br>
-- [New preset template checklist](references/preset-template.md) <br>
-- [QA heuristics](references/qa-heuristics.md) <br>
-- [Roadmap](references/roadmap.md) <br>
-- [Upstream html-slide-to-pptx reference](https://github.com/mucsbr/ppt-agent-workflow-san/tree/main/html-slide-to-pptx) <br>
-- [mk-present project](https://github.com/textboy/mk-present) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated PPTX, JSON model, or QA report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are local files, commonly .pptx decks plus optional JSON model and QA report artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Generated decks may not preserve every source title, label, spacing detail, or layout nuance, especially for preset-specific templates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the bundled preflight QA and visually inspect the PPTX before sharing; update or add presets when fidelity issues appear.
+
+Risk: The skill runs local Node/npm code that reads input HTML and writes PPTX, model, and QA files.
+
+Mitigation: Install dependencies through a reviewed lockfile process and run the converter only on HTML inputs and output paths you intend to process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/textboy/skills/present-ppt)
+- [README](README.md)
+- [Setup and portability](references/setup.md)
+- [Usage Principles](references/usage-principles.md)
+- [Preset decision rules](references/preset-decision-rules.md)
+- [Presets](references/presets.md)
+- [New preset template checklist](references/preset-template.md)
+- [HTML to Editable PPTX QA heuristics](references/qa-heuristics.md)
+- [Roadmap](references/roadmap.md)
+
+## Skill Output:
+
+**Output Type(s):** [files, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, plus generated PPTX, JSON model, and QA report files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are local files; conversion quality depends on matching or implementing a suitable preset and reviewing QA results.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

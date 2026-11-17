@@ -1,42 +1,56 @@
-## Description: <br>
-Sends a daily 15:10 summary of A-share closing data including index changes, volume, hot sectors, and main capital flow via Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Stock Evening generates and optionally sends a daily A-share market closing report with index performance, market breadth, sector fund flows, hot sectors, turnover, and trading suggestions.
 
-## Publisher: <br>
-[chrislzg](https://clawhub.ai/user/chrislzg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrislzg](https://clawhub.ai/user/chrislzg)
 
-## Use Case: <br>
-Developers and agents use this skill to generate an end-of-day A-share market report after the China market close. It can print the report locally or send it through Feishu when send mode is enabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Send mode posts report text to a fixed Feishu user and uses a shell command to send externally sourced report content. <br>
-Mitigation: Review before enabling --send, verify the Feishu recipient is yours or make it configurable, and prefer a non-shell API or argument-array subprocess call. <br>
-Risk: The generated report includes market interpretation and operation suggestions based on third-party market data. <br>
-Mitigation: Treat the report as informational, verify market figures against trusted sources, and do not rely on generated suggestions as financial advice. <br>
+## Use Case:
 
+External users and operators use this skill to generate an end-of-day A-share market report after the China market close and optionally deliver it through Feishu on a weekday schedule.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chrislzg/a-stock-evening) <br>
-- [Eastmoney index data API](https://push2.eastmoney.com/api/qt/ulist.np/get) <br>
-- [Eastmoney industry capital-flow API](https://push2.eastmoney.com/api/qt/clist/get) <br>
+### Deployment Geography for Use:
 
+Global, with content focused on China A-share markets and Asia/Shanghai scheduling.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with CLI status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can optionally send the generated report to Feishu when send mode is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The send path uses an unsafe shell command and always sends to a hard-coded Feishu recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; do not enable --send or the documented cron job until the recipient is configurable and the shell command is replaced with an argument-array call such as execFile or spawn.
+
+Risk: Recurring delivery can send automated market reports to an unintended Feishu destination.
+
+Mitigation: Confirm where Feishu messages go before enabling recurring delivery.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chrislzg/skills/a-stock-evening)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/chrislzg)
+- [Eastmoney Quote API](https://push2.eastmoney.com/api/qt/ulist.np/get)
+- [Eastmoney Sector Funds API](https://push2.eastmoney.com/api/qt/clist/get)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with command-line status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can optionally send the generated report through the OpenClaw Feishu channel when invoked with --send.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

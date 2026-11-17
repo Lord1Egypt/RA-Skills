@@ -1,44 +1,56 @@
-## Description: <br>
-Turns books into daily learning tasks by extracting knowledge points, generating study cards, and pushing them through configured IMA or Feishu workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns books, documentation sites, and other source materials into structured learning cards for local use or optional publication.
 
-## Publisher: <br>
-[sedey999](https://clawhub.ai/user/sedey999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sedey999](https://clawhub.ai/user/sedey999)
 
-## Use Case: <br>
-External users and developers use this skill to break PDF, DOCX, HTML, EPUB, TXT, or RTF books into reusable knowledge-point data and deliver one study card per day. It supports bilingual learning workflows, configurable card templates, progress tracking, and failure notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated learning materials can be uploaded to configured IMA or Feishu destinations. <br>
-Mitigation: Install and run the skill only after confirming the selected destination is appropriate for the book content and generated cards. <br>
-Risk: The workflow uses user-provided credentials and webhooks for IMA, Feishu, and failure notifications. <br>
-Mitigation: Store credentials in local configuration as documented, verify webhook destinations before use, and rotate keys if a destination or local environment is no longer trusted. <br>
-Risk: The Feishu image path may share generated or source-derived images through an external image host. <br>
-Mitigation: Avoid using private, sensitive, or copyrighted images with that path unless sharing them through the configured service is acceptable. <br>
+## Use Case:
 
+Learners, educators, and developers use this skill to break books, documentation sites, or reference material into learning cards, with optional daily delivery or batch image generation.
 
-## Reference(s): <br>
-- [IMA Agent Interface](https://ima.qq.com/agent-interface) <br>
-- [Open Music Theory example source](https://viva.pressbooks.pub/openmusictheory) <br>
-- [GTK for Windows](https://gtk.org/download/windows.php) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated JSON, HTML, PDF, image, and configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include generated learning-card files, progress state, upload actions to configured external services, and user-facing status summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Broad website and image fetching may access unintended resources, including services reachable on private networks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted books and documentation sites; avoid website mode on untrusted or attacker-controlled sites, especially on networks with internal services.
+
+Risk: Optional publishing or image hosting may send source material to external services.
+
+Mitigation: Prefer local output; do not enable Feishu or IMA publishing for proprietary or sensitive material without appropriate safeguards and explicit approval.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/sedey999/skills/book-to-learn)
+- [Configuration schema](references/config-schema.md)
+- [Website mode guide](references/site-mode.md)
+- [IMA integration](https://ima.qq.com/agent-interface)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, Shell commands, Guidance]
+
+**Output Format:** [Markdown with configuration examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate local PDF or PNG learning cards and optionally publish through IMA or Feishu.]
+
+## Skill Version(s):
+
+1.6.1 (source: SKILL.md frontmatter and ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

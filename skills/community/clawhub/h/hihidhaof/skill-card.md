@@ -1,39 +1,54 @@
-## Description: <br>
-Helps beginner flower growers choose common flowers, keep them alive, and avoid common early care mistakes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps beginners learn common flower care in a low-barrier way, focusing on choosing suitable flowers, keeping them alive, and avoiding common early mistakes.
 
-## Publisher: <br>
-[yujihuang](https://clawhub.ai/user/yujihuang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yujihuang](https://clawhub.ai/user/yujihuang)
 
-## Use Case: <br>
-External users and beginner home gardeners use this skill to select beginner-friendly flowers, learn simple care steps, and triage common issues such as yellow leaves, wilting, and lack of blooms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Flower-care guidance may be incomplete for plant disease, pesticide use, plant species differences, or local growing conditions. <br>
-Mitigation: Treat the skill's output as general gardening guidance; request plant name and environment details, and consult local horticulture or product guidance before disease-sensitive or pesticide decisions. <br>
+## Use Case:
 
+External users and home-gardening beginners use this skill to choose beginner-friendly flowers, understand basic care conditions, troubleshoot common issues such as yellow leaves or wilting, and turn advice into immediate next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yujihuang/hihidhaof) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/yujihuang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance in concise prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, tool access, credentials, persistence, or hidden behavior indicated by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Flower-care guidance may be incomplete or unsuitable when the plant, environment, watering pattern, or recent changes are unknown.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for the plant name, placement, watering frequency, and recent changes before giving firm troubleshooting advice.
+
+Risk: The artifact is mainly written for Chinese-language beginner flower-care help, which may not match every user's preferred language.
+
+Mitigation: Ask the agent to respond in the user's preferred language when needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yujihuang/skills/hihidhaof)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, tool calls, persistence, or sensitive data use indicated by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

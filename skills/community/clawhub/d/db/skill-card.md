@@ -1,38 +1,49 @@
-## Description: <br>
-Design and operate databases avoiding common scaling, reliability, and data integrity traps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and operate databases avoiding common scaling, reliability, and data integrity traps.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, database administrators, and engineers use this skill as a concise checklist for designing and operating databases while avoiding common reliability, scaling, transaction, schema migration, backup, replication, query, and data integrity pitfalls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Database schema, backup, replication, or scaling guidance may be incomplete for a specific database engine, version, or operational environment. <br>
-Mitigation: Validate recommendations against the target database engine, version, backups, and operational process before making production changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/db) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+Developers, database administrators, and operations engineers use this skill to review database designs and operational plans for common connection pooling, transaction, schema migration, backup, replication, query, integrity, and scaling pitfalls.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational database best-practices guidance with no executable code or privileged behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Database schema, replication, backup, constraint, or connection changes can affect live service reliability or data integrity.
+
+Mitigation: Review proposed database changes before applying them to production systems and validate them with the appropriate operational runbooks, backups, and rollback plans.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/db)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with inline database command and configuration references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, privileged access, or tool calls are included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

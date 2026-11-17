@@ -1,43 +1,62 @@
-## Description: <br>
-Control physical devices such as phones, PCs, and Macs through NanoKVM-USB hardware by taking screenshots and sending mouse, keyboard, scroll, and drag actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentKVM helps agents observe and operate physical phones and computers connected through NanoKVM-USB hardware using screenshots, mouse, keyboard, scroll, drag, and CLI or HTTP commands.
 
-## Publisher: <br>
-[iamtwz](https://clawhub.ai/user/iamtwz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iamtwz](https://clawhub.ai/user/iamtwz)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent observe and operate a connected physical device for GUI workflows, remote testing, and computer-use loops. The agent repeatedly screenshots the device, analyzes the visible UI, acts with input commands, and verifies the result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent screen-viewing and input-control access to a connected physical device. <br>
-Mitigation: Install and use it only when that level of device access is intended, supervise sensitive sessions, and avoid passwords, MFA codes, payments, deletions, or account changes unless directly monitored. <br>
-Risk: Remote server mode can expose device control over a network if configured broadly or with weak access controls. <br>
-Mitigation: Bind server mode to localhost or a trusted interface, require a strong token, protect access with a firewall or VPN, and stop the server when finished. <br>
-Risk: The workflow depends on an external AgentKVM npm package, CLI tools, ffmpeg, and NanoKVM-USB hardware. <br>
-Mitigation: Review the external package and local installation before trusting it, then verify each action with fresh screenshots before continuing automation. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent inspect and control a connected physical device while completing GUI workflows on phones, PCs, Macs, or Linux machines. It is useful when automation must interact with real hardware through screenshots and HID input rather than browser or application APIs.
 
-## Reference(s): <br>
-- [AgentKVM API Reference](references/api.md) <br>
-- [ClawHub release page](https://clawhub.ai/iamtwz/agentkvm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces action plans and commands for a separately installed AgentKVM CLI and connected NanoKVM-USB hardware.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server evidence) <br>
+Risk: The skill enables an agent to see and control connected physical devices, which can expose sensitive screens or cause unintended input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for intended device-control sessions, avoid passwords and sensitive sessions, and verify the target screen before sending input.
+
+Risk: Remote HTTP control can broaden access to screenshot and input-control functions if exposed without strong safeguards.
+
+Mitigation: Keep the server on localhost when possible; otherwise require strong authentication, TLS or a trusted tunnel, and firewall restrictions.
+
+Risk: The AgentKVM package and hardware toolchain are powerful dependencies that affect real devices.
+
+Mitigation: Pin and verify the AgentKVM package before installation and confirm Node.js, ffmpeg, NanoKVM-USB, and HDMI setup before use.
+
+Risk: Coordinates or screen state can be stale, leading to wrong clicks, typing, or scrolling.
+
+Mitigation: Follow the documented screenshot, analyze, act, and verify loop after each significant action.
+
+## Reference(s):
+
+- [AgentKVM API Reference](references/api.md)
+- [AgentKVM ClawHub Skill Page](https://clawhub.ai/iamtwz/skills/agentkvm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON examples, configuration snippets, and HTTP API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent output is intended to drive an observe-analyze-act-verify loop against connected physical devices.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

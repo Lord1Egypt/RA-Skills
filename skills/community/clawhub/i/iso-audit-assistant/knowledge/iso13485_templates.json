@@ -1,0 +1,41 @@
+{
+  "standard": "ISO 13485:2016 医疗器械质量管理体系 — 特色程序模板（通用程序由 generic_mss 自动合并）",
+  "templates": [
+    {"id": "SP-MD-001", "name": "设计开发控制程序", "name_en": "Design & Development Control", "clause": "7.3",
+     "meta": {"owner": "研发部", "frequency": "项目制"},
+     "sections": [
+       {"title": "1 目的", "content": "规范医疗器械设计开发全过程，确保输出满足法规与使用要求。"},
+       {"title": "2 适用范围", "content": "适用于{org}医疗器械产品的设计开发。"},
+       {"title": "3 职责", "content": "3.1 研发部负责设计实施；3.2 品质部参与验证确认；3.3 法规部确保合规。"},
+       {"title": "4 工作程序", "content": "4.1 策划（阶段/职责/评审点）；4.2 输入（法规/用户需求）；4.3 输出（图纸/BOM/标签）；4.4 验证与确认（含临床/模拟使用）；4.5 转换生产；4.6 变更控制与DHF归档。"}
+     ],
+     "high_voltage_check": ["hv-md-design"]},
+    {"id": "SP-MD-002", "name": "采购控制与供应商管理程序", "name_en": "Purchasing & Supplier Control", "clause": "7.4",
+     "meta": {"owner": "采购部/品质部", "frequency": "年度评审"},
+     "sections": [
+       {"title": "1 目的", "content": "确保采购的物料与服务满足医疗器械质量要求，管控供应商。"},
+       {"title": "2 适用范围", "content": "适用于{org}原材料、组件及服务供应商管理。"},
+       {"title": "3 职责", "content": "3.1 采购部负责选择；3.2 品质部负责评价与批准；3.3 研发部参与技术评审。"},
+       {"title": "4 工作程序", "content": "4.1 供应商分类与准入；4.2 评价（资质/体系/样品）；4.3 合格供应商名录与再评价；4.4 采购信息明确法规与验收准则；4.5 进货验证。"}
+     ],
+     "high_voltage_check": []},
+    {"id": "SP-MD-003", "name": "生产与服务控制程序（含可追溯性）", "name_en": "Production & Service Control", "clause": "7.5",
+     "meta": {"owner": "生产部", "frequency": "持续"},
+     "sections": [
+       {"title": "1 目的", "content": "在受控条件下生产和服务提供，并实现医疗器械可追溯。"},
+       {"title": "2 适用范围", "content": "适用于{org}医疗器械生产与交付过程。"},
+       {"title": "3 职责", "content": "3.1 生产部负责现场控制；3.2 品质部负责监视与追溯；3.3 仓储负责标识。"},
+       {"title": "4 工作程序", "content": "4.1 作业指导书与设备维护；4.2 洁净区/污染控制；4.3 批次标识与记录；4.4 高风险器械UDI与可追溯；4.5 安装与服务（如适用）。"}
+     ],
+     "high_voltage_check": ["hv-md-trace"]},
+    {"id": "SP-MD-004", "name": "反馈与投诉、警戒控制程序", "name_en": "Feedback, Complaint & Vigilance", "clause": "8.2.1/8.2.2",
+     "meta": {"owner": "品质部/法规部", "frequency": "发生时不定期"},
+     "sections": [
+       {"title": "1 目的", "content": "收集产品反馈与投诉，依法上报不良事件并处置。"},
+       {"title": "2 适用范围", "content": "适用于{org}已上市医疗器械的反馈、投诉与警戒。"},
+       {"title": "3 职责", "content": "3.1 客服部接收投诉；3.2 法规部负责不良事件上报；3.3 品质部分析原因。"},
+       {"title": "4 工作程序", "content": "4.1 反馈/投诉登记与分类；4.2 调查与纠正措施；4.3 不良事件按法规时限上报监管；4.4 必要时启动召回；4.5 趋势分析与改进。"}
+     ],
+     "high_voltage_check": ["hv-md-feedback"]}
+  ]
+}

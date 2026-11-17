@@ -1,6 +1,50 @@
 {
-  "ownerId": "kn74zh4t0f6g5strs3zweebx9d81h84m",
-  "slug": "ai-quant-trader",
-  "version": "1.0.0",
-  "publishedAt": 1772820061701
+  "name": "ai-quant-trader",
+  "description": "AI量化交易助手 - 基于对话的股票筛选、技术分析和策略生成",
+  "metadata": {
+    "openclaw": {
+      "emoji": "📈",
+      "category": "finance",
+      "tags": ["stock", "trading", "quantitative", "ai", "analysis", "screening"],
+      "version": "1.0.0",
+      "author": "小火马",
+      "created": "2026-02-22",
+      "simplified": true
+    }
+  },
+  "commands": {
+    "screening": {
+      "description": "股票筛选",
+      "examples": [
+        "筛选沪深A股，非ST，市值<100亿",
+        "帮我选今天值得关注的股票",
+        "/选股筛选 ROE>0 换手率1-10%"
+      ]
+    },
+    "analysis": {
+      "description": "技术分析",
+      "examples": [
+        "分析一下贵州茅台",
+        "600519的技术面怎么样",
+        "/技术分析 000858"
+      ]
+    },
+    "strategy": {
+      "description": "策略生成",
+      "examples": [
+        "生成一个MACD金叉策略",
+        "创建价值投资策略",
+        "/策略生成 短线交易"
+      ]
+    },
+    "risk": {
+      "description": "风险管理",
+      "examples": [
+        "设置止损5%止盈10%",
+        "评估我的投资组合风险",
+        "/风险评估"
+      ]
+    }
+  },
+  "usage": "直接通过OpenClaw对话使用，无需安装Python依赖"
 }

@@ -1,46 +1,63 @@
-## Description: <br>
-Guide users through Infini's basic API integration and webhook integration with step-by-step explanations, sandbox-first setup, and directly runnable Node.js or Python examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through Infini basic API and webhook integration with sandbox-first steps and runnable Node.js or Python examples.
 
-## Publisher: <br>
-[cola234](https://clawhub.ai/user/cola234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cola234](https://clawhub.ai/user/cola234)
 
-## Use Case: <br>
-Developers and engineers use this skill to integrate Infini payments with guided Hosted Checkout or Advanced Payment API steps, request signing, sandbox payment testing, webhook setup, and production switch-over guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Webhook testing may send sandbox callback data to webhook.cool, a third-party debugging receiver. <br>
-Mitigation: Use webhook.cool only with sandbox or dummy data, avoid production callbacks, and do not send secrets, customer data, or real transaction details through the test receiver. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide Infini payment integration, including Hosted Checkout, request signing, sandbox testing, webhook setup, troubleshooting, and production switch-over preparation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cola234/infini-api) <br>
-- [Infini English Overview](https://developer.infini.money/docs/en/1-overview) <br>
-- [Infini Hosted Checkout Documentation](https://developer.infini.money/docs/en/3-checkout-mode) <br>
-- [Infini Authentication Documentation](https://developer.infini.money/docs/en/4-authorization) <br>
-- [Infini API Documentation](https://developer.infini.money/docs/en/6-api-ducumentation) <br>
-- [Infini Webhook Documentation](https://developer.infini.money/docs/en/7-webhook) <br>
-- [Infini API Notes](references/api-notes.md) <br>
-- [Infini Basic Integration Workflow](references/workflow.md) <br>
-- [Infini Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code blocks and step-by-step status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Chinese or English responses, selected to match the user's language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The guide uses a third-party webhook test receiver during sandbox testing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only synthetic sandbox data and prefer a controlled webhook test endpoint when possible.
+
+Risk: Payment webhook replay protection guidance is incomplete for production use.
+
+Mitigation: Before going live, add timestamp freshness checks, duplicate event rejection, idempotent order handling, and constant-time signature comparison.
+
+Risk: Users may treat the beginner integration guide as complete production security guidance.
+
+Mitigation: Review the integration with production payment security requirements before handling real customers or production-derived identifiers.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cola234/skills/infini-api)
+- [Infini English Overview](https://developer.infini.money/docs/en/1-overview)
+- [Infini Chinese Documentation](https://developer.infini.money/docs/zh)
+- [Infini English Documentation](https://developer.infini.money/docs/en)
+- [Infini API Notes](references/api-notes.md)
+- [Infini Basic Integration Workflow](references/workflow.md)
+- [Infini Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline code blocks and step-by-step status blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese or English guidance; defaults to sandbox and waits for user confirmation before advancing action steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,61 @@
+{
+  "$schema": null,
+  "$schemaVersion": "1.0.0",
+  "$generatedBy": "AI-DFE",
+  "$generatedOn": "2026-06-22T12:00:00Z",
+  "$family": "pdlc",
+  "$package": "ai-polc",
+  "data": {
+    "projectId": 166324,
+    "productName": "Sample Product",
+    "status": "ready",
+    "phase": 6,
+    "stage": 16,
+    "depth": "standard",
+    "mode": "chain",
+    "tier2Active": false,
+    "activeExtensions": [],
+    "contextFactors": {},
+    "backlog": {
+      "totalEpics": 5,
+      "prioritized": 5,
+      "inReleasePlan": 3,
+      "priorityModel": "WSJF"
+    },
+    "dorVersion": "1.0",
+    "dodVersion": "1.0",
+    "pendingDecisions": [],
+    "epics": [
+      {
+        "id": "E1",
+        "name": "Sample epic",
+        "score": 18.5,
+        "priority": 1,
+        "releaseTarget": "Now"
+      }
+    ],
+    "risks": [],
+    "decisions": [],
+    "po": {
+      "vision": { "status": "approved", "statement": "Deliver a sample product that demonstrates the PO pane." },
+      "roadmap": {
+        "now":   [ { "epic": "E1", "stories": 4, "done": 1, "status": "in-progress", "items": [] } ],
+        "next":  [ { "epic": "E2", "stories": 3, "done": 0, "status": "planned", "items": [] } ],
+        "later": [ { "epic": "E3", "stories": 0, "done": 0, "status": "planned", "items": [] } ]
+      },
+      "releases": [ { "name": "Increment 1", "date": "TBD", "status": "planned", "stories": 4, "done": 1, "scope": [] } ],
+      "backlog": {
+        "totalEpics": 5, "totalStories": 7, "prioritised": 5, "inReleasePlan": 3,
+        "dorReady": true, "dodReady": true,
+        "dorPath": "projects/PRJ-SMP-sample/backlog/definition-of-ready.md",
+        "dodPath": "projects/PRJ-SMP-sample/backlog/definition-of-done.md"
+      },
+      "acceptance": { "totalCriteria": 0, "validated": 0 },
+      "velocity": { "trend": "stable" },
+      "stakeholders": [
+        { "name": "Sponsor", "engagement": "champion", "influence": "high" },
+        { "name": "End User Representative", "engagement": "supportive", "influence": "low" }
+      ]
+    }
+  }
+}

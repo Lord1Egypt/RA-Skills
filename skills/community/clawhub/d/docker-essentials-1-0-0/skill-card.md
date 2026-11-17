@@ -1,45 +1,59 @@
-## Description: <br>
-Essential Docker commands and workflows for container management, image operations, and debugging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Essential Docker commands and workflows for container management, image operations, and debugging.
 
-## Publisher: <br>
-[pespringer](https://clawhub.ai/user/pespringer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pespringer](https://clawhub.ai/user/pespringer)
 
-## Use Case: <br>
-Developers and engineers use this skill as a concise Docker command reference for container lifecycle work, image builds, Compose operations, networking, volumes, cleanup, and debugging. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Cleanup, prune, force-remove, and volume commands can delete containers, images, networks, or persistent data. <br>
-Mitigation: Inspect affected Docker resources first, confirm the target environment, and back up important volume data before running destructive commands. <br>
-Risk: Image push examples can publish images to an unintended registry or visibility scope. <br>
-Mitigation: Confirm the target registry, repository, tag, credentials, and visibility before pushing images. <br>
-Risk: Broad cleanup commands can disrupt production or shared machines. <br>
-Mitigation: Avoid broad cleanup commands on production or shared hosts unless the removal scope is fully understood and approved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Docker Documentation](https://docs.docker.com/) <br>
-- [Dockerfile Reference](https://docs.docker.com/engine/reference/builder/) <br>
-- [Compose File Reference](https://docs.docker.com/compose/compose-file/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/pespringer/docker-essentials-1-0-0) <br>
-- [Publisher Profile](https://clawhub.ai/user/pespringer) <br>
+## Use Case:
 
+Developers and engineers use this skill as a concise Docker command reference for container lifecycle work, image operations, Docker Compose, networking, volumes, system cleanup, and debugging.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration guidance] <br>
-**Output Format:** [Markdown with bash and Dockerfile code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the Docker CLI for command execution; command examples should be reviewed before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Copy-pasteable Docker examples can expose services or use weak credentials.
+
+Mitigation: Use unique secrets, bind services only to localhost or a private network, and adapt examples before running them in shared or persistent environments.
+
+Risk: Cleanup commands can remove images, containers, volumes, or other Docker data.
+
+Mitigation: Review affected resources before running prune or volume-removal commands, especially on systems with important local state.
+
+Risk: Mutable image tags can change between runs.
+
+Mitigation: Pin or verify container images for important workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pespringer/skills/docker-essentials-1-0-0)
+- [Docker Documentation](https://docs.docker.com/)
+- [Dockerfile Reference](https://docs.docker.com/engine/reference/builder/)
+- [Compose File Reference](https://docs.docker.com/compose/compose-file/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and Dockerfile code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Docker CLI availability for command execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

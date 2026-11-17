@@ -1,40 +1,54 @@
-## Description: <br>
-Query and analyze TRON blocks including producer info, transaction breakdown, rewards, burns, and network load. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and analyze TRON blocks, including producer info, transaction breakdown, rewards, burns, network load, single block lookup, block ranges, confirmed blocks, and multi-block trend analysis.
 
-## Publisher: <br>
-[greason](https://clawhub.ai/user/greason) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[greason](https://clawhub.ai/user/greason)
 
-## Use Case: <br>
-Developers, blockchain analysts, and operations teams use this skill to inspect TRON block details, producer information, transaction activity, resource consumption, and block economics through a TronGrid MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external TronGrid MCP server, so actual network behavior and access controls are determined outside the skill instructions. <br>
-Mitigation: Review the MCP server configuration before use and install only when public TRON blockchain analysis is intended. <br>
-Risk: Block rewards, burns, fees, and producer attribution can be misleading if stale, incomplete, or unconfirmed block data is returned. <br>
-Mitigation: Use the latest confirmed block path when finality matters and report uncertainty when data is missing or a block has no events. <br>
+## Use Case:
 
+Developers and analysts use this skill to answer TRON block questions with structured reports on block headers, producers, transactions, fees, burns, rewards, and recent network load trends.
 
-## Reference(s): <br>
-- [TronGrid MCP Guide](https://developers.tron.network/reference/mcp-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, API calls] <br>
-**Output Format:** [Markdown block reports with MCP tool-call guidance and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces read-only analysis of public TRON block data; live results depend on the configured TronGrid MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence) <br>
+Risk: The agent makes TronGrid MCP queries for public blockchain data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when those external read-only queries are acceptable for the intended environment.
+
+Risk: Reward, burn, and fee calculations are analytical output and may become stale or incorrect if TRON network parameters change.
+
+Mitigation: Verify live network parameters and source data before using results for decisions involving money.
+
+## Reference(s):
+
+- [TronGrid MCP Guide](https://developers.tron.network/reference/mcp-api)
+- [ClawHub Skill Page](https://clawhub.ai/greason/skills/trongrid-block-info)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown reports with tables and concise explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses read-only TronGrid MCP queries for public blockchain data; analytical calculations should be verified for financial decisions.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

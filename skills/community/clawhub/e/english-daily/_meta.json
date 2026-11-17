@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn79bebfnwg15sb0g7cj5z5nyd83gxh0",
   "slug": "english-daily",
   "version": "1.1.0",
-  "publishedAt": 1782970484924
+  "runtime": { "node": ">=18" }
 }

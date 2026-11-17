@@ -1,38 +1,50 @@
-## Description: <br>
-Helps QA teams design and report quality metrics across process quality, product results, testing efficiency, and quality health trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps QA teams define and report process, product, efficiency, and health metrics to track quality trends and inform decisions.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA engineers, test leads, and engineering managers use this skill to turn test execution, defect, and historical baseline data into quality dashboards, trend analysis, and management-facing quality reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad quality-status questions or answer in Chinese when a different language is expected. <br>
-Mitigation: Confirm the intended reporting language and scope before using the generated metrics in stakeholder-facing reports. <br>
+## Use Case:
 
+QA engineers and managers use this skill to build quality dashboards and reports from test execution and defect data, compare trends and targets, and identify areas for improvement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kokxi/skills/qa-quality-metrics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown quality reports, metric formulas, dashboards, analysis summaries, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are primarily Chinese-language QA metric guidance based on provided test, defect, and optional baseline data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and server release evidence) <br>
+Risk: The optional companion-install command fetches an unpinned external package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only after trusting the publisher and verifying or pinning the exact version.
+
+## Reference(s):
+
+- [Quality metrics dimensions](references/metrics-dimensions.md)
+- [ClawHub skill listing](https://clawhub.ai/kokxi/skills/qa-quality-metrics)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown quality metrics report with dashboard summaries and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports use METRIC-XXXX IDs, state coverage denominators and missing areas, and avoid unsupported claims of complete coverage.]
+
+## Skill Version(s):
+
+1.8.0 (source: ClawHub release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

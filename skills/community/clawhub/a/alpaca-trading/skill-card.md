@@ -1,44 +1,60 @@
-## Description: <br>
-Trade stocks, ETFs, options, and crypto through Alpaca's REST API using curl-based commands, with support for account, order, position, watchlist, market data, news, screener, and corporate action workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade stocks, ETFs, options, and crypto through Alpaca's REST API using curl, including order management, portfolio/account review, watchlists, account activities, corporate actions, and real-time or historical market data.
 
-## Publisher: <br>
-[lacymorrow](https://clawhub.ai/user/lacymorrow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lacymorrow](https://clawhub.ai/user/lacymorrow)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent prepare Alpaca REST API calls for trading, portfolio management, and market data retrieval. It is appropriate only when the user intentionally wants an agent connected to an Alpaca brokerage account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose high-impact brokerage actions through a broad curl wrapper, including POST, PATCH, DELETE, option exercise, cancel-all, and close-all operations. <br>
-Mitigation: Install only when Alpaca account access is intended, keep paper trading as the default, use restricted or paper API keys where possible, and require readback plus explicit confirmation before any state-changing command. <br>
-Risk: Live trading can cause financial loss if the endpoint is changed from paper trading or if order details are wrong. <br>
-Mitigation: Do not switch to the live Alpaca endpoint without explicit user confirmation, show the complete order JSON before submission, and verify symbol, side, quantity, order type, buying power, and market status. <br>
-Risk: The skill handles Alpaca API credentials through environment variables. <br>
-Mitigation: Keep API keys out of prompts, files, and logs; rotate keys if exposed; and prefer keys scoped to the minimum required account permissions. <br>
+## Use Case:
 
+Developers and agent users use this skill to retrieve Alpaca account and market information, prepare order requests, and manage Alpaca orders, positions, watchlists, options contracts, and related trading workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lacymorrow/alpaca-trading) <br>
-- [Alpaca REST API Reference](references/api.md) <br>
-- [Alpaca](https://alpaca.markets) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce high-impact Alpaca API calls that require user review and confirmation before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: The skill can place trades, exercise options, cancel orders, close positions, and change account configuration when given valid Alpaca credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper-trading keys by default, keep live keys separate, and require explicit human approval before any order, option exercise, cancellation, account-configuration change, or position close.
+
+Risk: Misconfigured API endpoints can send requests to the wrong Alpaca environment.
+
+Mitigation: Verify APCA_API_BASE_URL and APCA_DATA_API_BASE_URL before each session, especially before enabling live trading.
+
+Risk: Broad cancel-all and close-all operations can affect many orders or positions at once.
+
+Mitigation: Require the agent to show the exact request and obtain human confirmation before running cancel-all or close-all commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lacymorrow/skills/alpaca-trading)
+- [Alpaca REST API reference](references/api.md)
+- [Alpaca](https://alpaca.markets)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Alpaca API credentials in environment variables and uses paper trading by default unless the live trading endpoint is explicitly configured.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

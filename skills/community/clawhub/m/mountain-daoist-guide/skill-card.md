@@ -1,44 +1,55 @@
-## Description: <br>
-Provides a seven-section daily lifestyle guide for weather, clothing, health, work, emotions, and food using traditional Eastern philosophy metaphors without superstition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides a stylized daily guide for weather, clothing, health, work, emotions, and food using traditional Eastern metaphors while explicitly avoiding superstition.
 
-## Publisher: <br>
-[jkzfhq](https://clawhub.ai/user/jkzfhq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkzfhq](https://clawhub.ai/user/jkzfhq)
 
-## Use Case: <br>
-External users can use this skill for a daily routine and weather-aware lifestyle reading with practical suggestions for clothing, home environment, work rhythm, relationships, and meals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The fixed persona and seven-section format may take over broad weather or daily-routine prompts when the user did not want this style. <br>
-Mitigation: Use the skill when the user asks for a Daoist-themed daily guide, and let the user redirect or narrow the answer when they want a simpler forecast or routine. <br>
-Risk: Weather-aware guidance can invite users to share precise location details. <br>
-Mitigation: Use the least precise location that is sufficient for weather context, such as a city or region, and avoid sharing exact addresses unless necessary. <br>
-Risk: Health, work, and food suggestions may be mistaken for professional advice. <br>
-Mitigation: Treat the output as general lifestyle guidance and verify medical, financial, or other high-impact decisions with appropriate sources or professionals. <br>
+## Use Case:
 
+External users use this skill to receive a seven-part daily routine guide that blends current calendar and weather context with practical advice on clothing, health, work, relationships, and food. It is intended for users who want a Chinese Taoist-inspired tone without fatalistic or superstitious claims.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jkzfhq/mountain-daoist-guide) <br>
-- [Publisher profile](https://clawhub.ai/user/jkzfhq) <br>
-- [Project homepage](https://iheaven.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style seven-section daily guide] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; uses calendar and weather context supplied by the agent or user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: evidence release, SKILL.md frontmatter, package.json) <br>
+Risk: The persona may take over broad requests for weather, daily advice, morning routines, or calendar readings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install or enable the skill only when this stylized Chinese Taoist daily-guide format is desired.
+
+Risk: The guide uses traditional cultural imagery that could be mistaken for superstition if responses drift from the stated boundaries.
+
+Mitigation: Keep recommendations grounded in practical choices such as clothing, health habits, planning, food, and emotional regulation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jkzfhq/skills/mountain-daoist-guide)
+- [Publisher profile](https://clawhub.ai/user/jkzfhq)
+- [Homepage](https://iheaven.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted daily advice with seven sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No files, code, shell commands, or configuration are produced.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

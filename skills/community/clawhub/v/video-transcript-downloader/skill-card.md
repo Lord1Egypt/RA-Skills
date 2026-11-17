@@ -1,38 +1,49 @@
-## Description: <br>
-Download videos, audio, subtitles, and clean paragraph-style transcripts from YouTube and any other yt-dlp supported site. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download videos, audio, subtitles, and clean paragraph-style transcripts from YouTube and any other yt-dlp supported site.
 
-## Publisher: <br>
-[steipete](https://clawhub.ai/user/steipete) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[steipete](https://clawhub.ai/user/steipete)
 
-## Use Case: <br>
-Developers, employees, and external users can use this skill to retrieve clean transcripts, subtitles, video files, audio files, and format information from YouTube or other yt-dlp supported sites. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Unrestricted yt-dlp argument passthrough may allow unsafe options such as command execution or unexpected output paths. <br>
-Mitigation: Review generated commands before execution, avoid passthrough arguments unless the user explicitly chose them, and never let webpage content or untrusted prompts supply yt-dlp options. <br>
-Risk: The skill downloads media and subtitle files from user-provided URLs. <br>
-Mitigation: Use trusted URLs, choose a controlled output directory, and inspect downloaded files before opening or sharing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users, developers, and agents use this skill to fetch clean transcripts, subtitles, audio, video files, or format listings from YouTube and other sites supported by yt-dlp.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain text transcript or file-path output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce downloaded media, audio, or subtitle files through the bundled script when commands are executed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill exposes unrestricted yt-dlp argument passthrough after `--`, which can give an agent broader local command authority than a normal video downloader needs.
+
+Mitigation: Install only for trusted users and prompts; prefer a future version that removes raw passthrough or replaces it with an allowlist for benign options such as format selection and verbosity.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/steipete/skills/video-transcript-downloader)
+- [youtube-transcript-plus package](https://registry.npmjs.org/youtube-transcript-plus/-/youtube-transcript-plus-1.1.1.tgz)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text, file paths, format listings, and Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Transcript output defaults to a cleaned single paragraph; downloads and subtitle commands print resolved output paths when successful.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

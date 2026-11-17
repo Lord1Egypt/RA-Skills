@@ -1,47 +1,64 @@
-## Description: <br>
-Implement mHC (Manifold-Constrained Hyper-Connections) patterns for stabilizing deep network training with doubly stochastic residual mixing matrices and Sinkhorn-Knopp projection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement mHC (Manifold-Constrained Hyper-Connections) for stabilizing deep network training. Use when implementing residual connection improvements with doubly stochastic matrices via Sinkhorn-Knopp algorithm. Based on DeepSeek's 2025 paper (arXiv:2512.24880).
 
-## Publisher: <br>
-[lnj22](https://clawhub.ai/user/lnj22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lnj22](https://clawhub.ai/user/lnj22)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement and integrate mHC residual-stream mixing in PyTorch models, especially deep Transformer or GPT-style networks that need more stable residual training behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides PyTorch implementation examples rather than a vetted production library. <br>
-Mitigation: Review the generated or adapted code for model-shape correctness, training stability, and project-specific requirements before production use. <br>
-Risk: The examples require adding machine-learning dependencies such as torch, einops, and numpy. <br>
-Mitigation: Install dependencies only in an environment where adding ML packages is acceptable and governed by local dependency review. <br>
+## Use Case:
 
+Developers and ML engineers use this skill to implement mHC residual-connection improvements in PyTorch models, especially deep Transformer or GPT-style networks with training-stability issues.
 
-## Reference(s): <br>
-- [Core Concepts](references/core-concepts.md) <br>
-- [GPT Integration](references/gpt-integration.md) <br>
-- [HyperConnections Module Implementation](references/module-implementation.md) <br>
-- [Common Pitfalls](references/pitfalls.md) <br>
-- [Sinkhorn-Knopp Algorithm](references/sinkhorn-knopp.md) <br>
-- [mHC Paper](https://arxiv.org/abs/2512.24880) <br>
-- [Hyper-Connections](https://arxiv.org/abs/2409.19606) <br>
-- [Sinkhorn's Theorem](https://en.wikipedia.org/wiki/Sinkhorn%27s_theorem) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces implementation guidance and example PyTorch code; no executable installer or hidden runtime behavior was found in the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Dependency and environment drift could make the PyTorch examples behave differently across installations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install torch, einops, and numpy in a virtual environment or container, and use pinned versions or a reviewed requirements file for reproducible use.
+
+Risk: Incorrect Sinkhorn initialization or normalization can cause numerical instability or vanishing gradients.
+
+Mitigation: Use the documented log-space Sinkhorn-Knopp implementation, keep the default tau and iteration settings unless tested, and review the pitfalls guidance before training.
+
+Risk: The skill provides implementation guidance and examples, not a validated training package.
+
+Mitigation: Review, test, and scan any generated code before deployment or long-running model training.
+
+## Reference(s):
+
+- [Core Concepts](references/core-concepts.md)
+- [Sinkhorn-Knopp Algorithm](references/sinkhorn-knopp.md)
+- [HyperConnections Module Implementation](references/module-implementation.md)
+- [GPT Integration](references/gpt-integration.md)
+- [Common Pitfalls](references/pitfalls.md)
+- [mHC Paper](https://arxiv.org/abs/2512.24880)
+- [Hyper-Connections](https://arxiv.org/abs/2409.19606)
+- [Sinkhorn's Theorem](https://en.wikipedia.org/wiki/Sinkhorn%27s_theorem)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with PyTorch code examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes tensor-shape conventions, initialization guidance, Sinkhorn-Knopp parameters, GPT integration patterns, and memory tradeoffs.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

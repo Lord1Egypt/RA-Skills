@@ -1,38 +1,49 @@
-## Description: <br>
-Diagnoses and tunes LLM providers (Groq, OpenRouter, Ollama), resolves rate limits/timeouts, and selects stable primary/fallback models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses and tunes LLM providers (Groq, OpenRouter, Ollama), resolves rate limits/timeouts, and selects stable primary/fallback models.
 
-## Publisher: <br>
-[utromaya-code](https://clawhub.ai/user/utromaya-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[utromaya-code](https://clawhub.ai/user/utromaya-code)
 
-## Use Case: <br>
-Developers and operators use this skill to diagnose OpenClaw LLM provider health, tune routing and fallback behavior, recover from provider errors, and report operational status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The session-reset recovery block can delete stored OpenClaw session history. <br>
-Mitigation: Use it only on an OpenClaw server you administer, back up the sessions directory first, confirm that losing stored history is acceptable, and explicitly approve any service restart or file deletion. <br>
+## Use Case:
 
+Developers and operators use this skill to triage OpenClaw LLM provider health, tune model routing, and recover from provider errors, rate limits, timeouts, or silent bot behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/utromaya-code/neural-network-diagnostics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces health status, findings, applied actions, and a single verification next step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The recovery playbook includes a session cleanup command that can delete main-agent session data without a backup or confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up or quarantine session files first, identify the affected session, and require explicit operator confirmation before deleting session data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/utromaya-code/skills/neural-network-diagnostics)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown health report with inline shell and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports status, findings, actions applied, and one next verification step.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

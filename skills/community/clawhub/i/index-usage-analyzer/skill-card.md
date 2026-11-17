@@ -1,39 +1,56 @@
-## Description: <br>
-Analyzes database indexes and suggests redundant ones to remove for schema optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes database indexes and suggests redundant ones to remove for schema optimization.
 
-## Publisher: <br>
-[ink5725](https://clawhub.ai/user/ink5725) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ink5725](https://clawhub.ai/user/ink5725)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and database engineers use this skill to inspect SQLite index metadata and identify indexes that may be redundant by naming pattern. It supports schema maintenance and performance review by producing analysis output without modifying the database.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill gives deletion-style index recommendations from naming patterns that may be weak evidence for true redundancy.
+
+Mitigation: Require database-owner review and stronger query/workload evidence before acting on any suggested index removal.
+
+Risk: The analyzer writes recommendations to the fixed path /root/.schema/recommendation.json.
+
+Mitigation: Run it without elevated privileges where possible and ensure downstream tooling treats the file as advisory input only.
+
+Risk: The skill requires access to database schema metadata.
+
+Mitigation: Use it only against databases where schema metadata access is authorized and appropriate.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and database maintainers use this skill to inspect SQLite index metadata, identify indexes whose names match redundant patterns, and produce advisory cleanup recommendations for schema optimization. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, json, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads SQLite schema metadata and writes a recommendation file under /root/.schema. <br>
-Mitigation: Install and run it only where access to that schema metadata and output path is acceptable. <br>
-Risk: Generated indexes_to_drop recommendations may be incomplete or incorrect for a target schema. <br>
-Mitigation: Treat the recommendations as advisory and review them manually before allowing any other tool to drop indexes. <br>
+**Output Format:** [JSON analysis report with a recommendation file path]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Writes index-drop recommendations to /root/.schema/recommendation.json and prints a JSON report.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Guidance] <br>
-**Output Format:** [JSON report and recommendation JSON file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes advisory recommendations to /root/.schema/recommendation.json and does not modify the database.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

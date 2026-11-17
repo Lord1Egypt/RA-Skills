@@ -1,48 +1,59 @@
-## Description: <br>
-Hearth runs a configuration-driven, read-only health-check sweep across homelab devices, reporting reachability, uptime/load, memory/disk, services, and app health in a consistent format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hearth checks the health of user-configured homelab devices with read-only network, system, service, and application probes.
 
-## Publisher: <br>
-[nj070574-gif](https://clawhub.ai/user/nj070574-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nj070574-gif](https://clawhub.ai/user/nj070574-gif)
 
-## Use Case: <br>
-Homelab admins, sysadmins, network engineers, and OpenClaw users use Hearth to check configured devices and receive a consistent read-only health snapshot before investigating failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use SSH credentials and bearer tokens while probing networked devices. <br>
-Mitigation: Audit devices.yaml before use, prefer SSH keys and scoped tokens, and keep long-lived secrets out of shell profiles. <br>
-Risk: Configured command probes can run shell commands on devices even though the skill presents itself as read-only. <br>
-Mitigation: Use command probes only when the commands were written and reviewed by the operator, and run --dry-run before probing a new configuration. <br>
-Risk: The security guidance notes weakened SSH credential safety and recommends caution around host-key verification. <br>
-Mitigation: Review the SSH options before use and keep host-key verification enabled wherever possible. <br>
+## Use Case:
 
+Homelab administrators and systems operators use Hearth to check configured devices, spot degraded services or applications, and investigate failed health checks without modifying remote hosts.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/nj070574-gif/hearth) <br>
-- [README](README.md) <br>
-- [Configuration reference](docs/CONFIG.md) <br>
-- [Installation guide](docs/INSTALL.md) <br>
-- [Probe reference](docs/PROBES.md) <br>
-- [Platform support](docs/PLATFORMS.md) <br>
-- [Troubleshooting guide](docs/TROUBLESHOOTING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and terminal-style health-check output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Shows raw sweep output for each configured device and can guide dry runs, single-device checks, group checks, and configuration updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata and user changelog entry) <br>
+Risk: Health probes connect to configured hosts and may expose credentials if access is not controlled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only from a bridgehead you control against devices you own; use a dedicated unprivileged SSH key instead of password authentication when possible.
+
+Risk: Disabling SSH host-key verification can expose connections to impersonation.
+
+Mitigation: Keep HEARTH_SSH_STRICT set to accept-new or yes and verify unexpected host-key changes before reconnecting.
+
+Risk: Misconfigured user-defined command probes or repeated sweeps may cause unintended activity on monitored devices.
+
+Mitigation: Review the device inventory and confirm custom probes are read-only before enabling full sweeps, watch mode, or scheduled runs.
+
+## Reference(s):
+
+- [Hearth on ClawHub](https://clawhub.ai/nj070574-gif/skills/hearth)
+- [Configuration reference](artifact/docs/CONFIG.md)
+- [Probe reference](artifact/docs/PROBES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain text or Markdown; optional JSON health report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Per-device OK, DEGRADED, or DOWN status with reasons and an overall summary; unavailable probes are identified.]
+
+## Skill Version(s):
+
+0.3.0 (source: skill frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

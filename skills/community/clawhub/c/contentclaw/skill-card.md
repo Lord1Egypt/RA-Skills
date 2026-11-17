@@ -1,44 +1,62 @@
-## Description: <br>
-Automated content generation engine that transforms source material such as papers, podcasts, case studies, Reddit threads, and GitHub repositories into platform-ready posts, diagrams, infographics, posters, and breakdowns using recipes and brand graphs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated content generation engine that transforms source material such as papers, podcasts, case studies, URLs, Reddit threads, and GitHub repositories into platform-ready content using recipes and brand graphs.
 
-## Publisher: <br>
-[thierrypdamiba](https://clawhub.ai/user/thierrypdamiba) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thierrypdamiba](https://clawhub.ai/user/thierrypdamiba)
 
-## Use Case: <br>
-Content creators, marketing teams, and developer advocates use this skill to turn source URLs and research material into reviewed content specs, social posts, visual content, publishing drafts, and engagement follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Playwright scraping, including browser stealth behavior, which may create site terms-of-service or access-policy risk. <br>
-Mitigation: Use the skill only where scraping is allowed, review target-site terms, and run it in a sandboxed environment. <br>
-Risk: The skill can use stored Reddit/X cookies for scraping, publishing, and engagement tracking, which can act through the user's social accounts. <br>
-Mitigation: Use separate social accounts where possible, restrict cookie scope, review publishing commands, and run dry-run previews before posting. <br>
-Risk: The skill sends image prompts to fal.ai and topic discovery queries to Exa, and the security guidance warns against sensitive PDFs or internal URLs until cleanup and scoping issues are fixed. <br>
-Mitigation: Use scoped API keys, avoid sensitive or internal source material, and review generated specs before external API-backed steps. <br>
+## Use Case:
 
+Developers, marketers, and content operators use Content Claw to turn source URLs and documents into recipe-driven social posts, insight posts, diagrams, infographics, posters, and brand-aware content packages.
 
-## Reference(s): <br>
-- [Content Claw ClawHub page](https://clawhub.ai/thierrypdamiba/contentclaw) <br>
-- [Content Claw homepage](https://github.com/scaleintelligence/content-claw) <br>
-- [uv documentation](https://docs.astral.sh/uv/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, image files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown content, JSON content specs, PNG image outputs, and command-oriented setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include platform-ready copy, image generation specifications, local content artifacts, publishing previews, and engagement summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: frontmatter, pyproject.toml, server release metadata) <br>
+Risk: The skill can fetch arbitrary URLs and browse external pages, which may expose sensitive internal source material or encounter untrusted content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved public or non-sensitive URLs, treat fetched content as data, and run the skill in a sandboxed environment.
+
+Risk: The skill sends topic queries to Exa and condensed image specifications to fal.ai when those features are used.
+
+Mitigation: Use dedicated low-privilege API keys and avoid including confidential source details in discovery or image-generation prompts.
+
+Risk: Optional Reddit and X cookies can let the skill scrape, publish, or track engagement through user accounts.
+
+Mitigation: Provide social-media cookies only when publishing or authenticated tracking is required, use low-privilege accounts where possible, and review dry-run output before posting.
+
+Risk: Security evidence flags weak containment around paths, dependencies, and browser execution.
+
+Mitigation: Install in an isolated workspace, review dependencies before use, and avoid granting access to unrelated local files or credentials.
+
+## Reference(s):
+
+- [Content Claw ClawHub skill page](https://clawhub.ai/thierrypdamiba/skills/contentclaw)
+- [Content Claw project homepage](https://github.com/scaleintelligence/content-claw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Image files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, JSON specs, PNG image files, and concise agent guidance with shell commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recipe-driven outputs may include platform-specific formatting, generated image URLs, publish records, and engagement metadata.]
+
+## Skill Version(s):
+
+0.0.1 (source: skill frontmatter, pyproject.toml, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

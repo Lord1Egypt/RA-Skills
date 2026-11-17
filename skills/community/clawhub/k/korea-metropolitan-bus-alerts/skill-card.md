@@ -1,47 +1,60 @@
-## Description: <br>
-Create and manage scheduled bus arrival alerts using Korea TAGO (국토교통부) OpenAPI and Clawdbot cron. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage scheduled Korea metropolitan bus arrival alerts using Korea TAGO OpenAPI and Clawdbot cron.
 
-## Publisher: <br>
-[Hsooooo](https://clawhub.ai/user/Hsooooo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hsooooo](https://clawhub.ai/user/hsooooo)
 
-## Use Case: <br>
-External users and Clawdbot operators use this skill to register weekday, weekend, or daily bus-arrival alerts for Korean metropolitan routes and receive scheduled DM summaries through their configured Gateway messaging. <br>
-
-### Deployment Geography for Use: <br>
-South Korea <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The helper can list or remove Clawdbot cron jobs beyond this bus-alert skill. <br>
-Mitigation: Review generated cron jobs before adding them and confirm list or remove operations before execution. <br>
-Risk: The DM-only delivery promise depends on the chosen delivery target and is not fully enforced by the helper. <br>
-Mitigation: Confirm the delivery target is the registering user's DM before scheduling an alert. <br>
-Risk: TAGO_SERVICE_KEY is required for API access and could be exposed through local environment files or copied command output. <br>
-Mitigation: Use a dedicated TAGO key where possible and keep local env files and cron exports private. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Hsooooo/korea-metropolitan-bus-alerts) <br>
-- [TAGO API Reference](references/api_reference.md) <br>
-- [Cron recipe](references/cron_recipe.md) <br>
-- [TAGO bus stop information API](https://www.data.go.kr/data/15098534/openapi.do) <br>
-- [TAGO bus arrival information API](https://www.data.go.kr/data/15098530/openapi.do) <br>
-- [BusSttnInfoInqireService endpoint](https://apis.data.go.kr/1613000/BusSttnInfoInqireService) <br>
-- [ArvlInfoInqireService endpoint](https://apis.data.go.kr/1613000/ArvlInfoInqireService) <br>
+## Use Case:
 
+External users and developers use this skill to register weekday, weekend, or daily bus arrival alerts for selected TAGO stops and routes. It helps agents build cron jobs, query bus arrival data, and deliver concise arrival summaries to the registering user's configured direct-message channel.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON cron job payloads, and short bus-arrival text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TAGO_SERVICE_KEY and a Clawdbot cron/Gateway environment for scheduled delivery.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+South Korea
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent scheduled-agent prompts could be registered from untrusted route, stop, or destination values.
+
+Mitigation: Accept alert registration only from trusted users and confirm the generated cron payload, route list, stop identifier, channel, and direct-message destination before creating a job.
+
+Risk: Direct-message-only delivery is described by the skill but depends on correct cron payload and Gateway delivery targeting.
+
+Mitigation: Require explicit delivery target selection and verify that the cron job uses an isolated session with the registering user's direct-message channel before enabling delivery.
+
+Risk: The setup helper can write a user systemd Gateway override and restart the Gateway service.
+
+Mitigation: Run setup only on a trusted host after reviewing the selected systemd unit and environment file path; use manual environment configuration when service changes are not acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hsooooo/skills/korea-metropolitan-bus-alerts)
+- [TAGO API reference](references/api_reference.md)
+- [Clawdbot cron recipe](references/cron_recipe.md)
+- [TAGO bus stop information dataset](https://www.data.go.kr/data/15098534/openapi.do)
+- [TAGO bus arrival information dataset](https://www.data.go.kr/data/15098530/openapi.do)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON cron job payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TAGO_SERVICE_KEY for live TAGO lookups; generated cron jobs should use isolated sessions and direct-message delivery.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

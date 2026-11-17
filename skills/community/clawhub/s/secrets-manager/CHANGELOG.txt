@@ -1,0 +1,14 @@
+Secrets Manager v1.1.15 — Documentation alignment (2026-08-04)
+
+Removes all references to secret injection / temp-file generation from this
+skill's documentation and tests. This skill is now an explicit PURE STORE:
+it encrypts, retrieves, lists, rotates, audits, and deletes secrets, and does
+not generate executable command scripts or write plaintext secrets to disk.
+
+The command-injection capability was moved to the separate `secrets-inject`
+skill (high-privilege, clearly labeled). Any earlier changelog entries that
+describe temp injection files or "safe command injection" referred to prior
+versions and do not apply to v1.1.14+.
+
+No crypto changes — still AES-256-GCM with per-secret IV and authenticated
+decryption (tamper -> null). Master key handling unchanged.

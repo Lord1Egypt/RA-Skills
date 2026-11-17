@@ -1,44 +1,59 @@
-## Description: <br>
-Renders LaTeX math to PNG, JPEG, WebP, or AVIF images using MathJax for TeX-to-SVG conversion and @svg-fns/svg2img. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Renders LaTeX math to PNG, JPEG, WebP, or AVIF images using MathJax and @svg-fns/svg2img when an agent needs to show equations, formulas, or notation as viewable images.
 
-## Publisher: <br>
-[TheBigoranger](https://clawhub.ai/user/TheBigoranger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thebigoranger](https://clawhub.ai/user/thebigoranger)
 
-## Use Case: <br>
-Developers and agents use this skill to render LaTeX equations as image files or Data URLs for chat, docs, or slides instead of returning raw LaTeX. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Rendered files can be written to local paths, including custom output paths supplied at invocation time. <br>
-Mitigation: Use the default output directory unless a trusted custom path is required, and do not pass untrusted output paths. <br>
-Risk: Installing the skill requires npm dependencies, including a native image-processing dependency. <br>
-Mitigation: Review the npm dependency chain before running npm install and install in an environment prepared for the documented Node.js and build-tool requirements. <br>
-Risk: When enabled for automatic LaTeX handling, the skill may render and send formula images without a separate permission prompt. <br>
-Mitigation: Enable it only when automatic LaTeX image rendering is desired, and document the behavior in workspace guidance for users who prefer raw LaTeX. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheBigoranger/tex-render) <br>
-- [MathJax](https://github.com/mathjax/MathJax) <br>
-- [@svg-fns/svg2img](https://github.com/svg-fns/svg-fns) <br>
-- [Sharp install notes](https://sharp.pixelplumbing.com/install) <br>
+## Use Case:
 
+Developers and agents use this skill to convert LaTeX math into image files so equations can be shown directly in chat, documents, or slides instead of as raw LaTeX.
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON paths to SVG and raster image files, with optional Data URL output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default file output writes under ~/.openclaw/media/tex-render/; custom output paths and Data URL mode are available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.4 (source: package.json and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can automatically render LaTeX without per-use confirmation when its automatic trigger is enabled.
+
+Mitigation: Enable the automatic trigger only when that behavior is acceptable, or disable it when raw LaTeX or explicit confirmation is preferred.
+
+Risk: The skill runs local Node.js rendering and requires npm install for public npm dependencies, including a native Sharp dependency.
+
+Mitigation: Install and run it in a low-privilege or isolated workspace, and review resolved dependency versions before deployment.
+
+Risk: Rendered SVG and image files are written to local output paths.
+
+Mitigation: Use controlled output paths and avoid rendering sensitive formulas in shared workspaces.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/thebigoranger/skills/tex-render)
+- [MathJax](https://github.com/mathjax/MathJax)
+- [@svg-fns/svg2img](https://github.com/svg-fns/svg-fns)
+- [Sharp Install Notes](https://sharp.pixelplumbing.com/install)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON line with SVG and raster image paths, or a Data URL when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output writes SVG plus PNG under ~/.openclaw/media/tex-render; JPEG, WebP, AVIF, width, height, zoom, quality, and inline rendering are supported.]
+
+## Skill Version(s):
+
+1.1.4 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

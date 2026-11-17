@@ -1,42 +1,52 @@
-## Description: <br>
-Business KPI monitoring with threshold-based alerts that connects to QuickBooks Online, Google Sheets, and CSV exports to track AR aging, cash runway, revenue growth, gross margin, and burn rate, then sends alerts through Telegram, Slack, or email when thresholds breach. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Business KPI monitoring with threshold-based alerts for QuickBooks Online, Google Sheets, and CSV exports, covering AR aging, cash runway, revenue growth, gross margin, and burn rate with Telegram, Slack, or email notifications.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, finance operators, and accounting teams use this skill to set up automated financial health checks, define KPI thresholds, run periodic KPI reviews, and route alerts to approved Telegram, Slack, or email destinations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Example alert destinations and fixed third-party branding could misroute confidential financial KPI alerts.
+
+Mitigation: Review and replace every Telegram, Slack, and email destination before use, and remove PrecisionLedger or Sam Ledger branding unless it is intentionally part of the deployment.
+
+Risk: Scheduled KPI alerts could distribute sensitive financial details before recipients and message content are approved.
+
+Mitigation: Enable scheduled alerts only after confirming approved recipients and limiting sensitive detail in alert messages.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Finance operators, bookkeepers, and developers use this skill to define KPI thresholds, run periodic financial health checks, and route alerts for breached business metrics. It is suited to AR aging, cash runway, burn rate, revenue growth, margin, and liquidity monitoring from QBO, Sheets, or CSV data. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, configuration, shell commands, code, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: KPI alerts may expose sensitive financial data through Telegram, Slack, email, or generated summaries. <br>
-Mitigation: Use only approved private destinations and avoid including exact sensitive values unless the recipient and channel are authorized. <br>
-Risk: Source integrations and exported CSV files can broaden access to financial records. <br>
-Mitigation: Use read-only QuickBooks and Sheets access where possible and keep CSV exports in controlled workspace locations. <br>
-Risk: Scheduled KPI checks can continue sending outdated or misrouted alerts if cron settings are not maintained. <br>
-Mitigation: Periodically review cron schedules, alert recipients, and configured thresholds before ongoing deployment. <br>
+**Output Format:** [Markdown guidance with YAML, JSON, bash, and Python examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/samledger67-dotcom/kpi-alert-system) <br>
+**Other Properties Related to Output:** [May include alert rules, schedules, integration commands, and KPI calculation snippets.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands, Code, Markdown] <br>
-**Output Format:** [Markdown with YAML, JSON, Python pseudocode, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces KPI configuration patterns, scheduling payloads, and alert message formats; no executable package is included.] <br>
+1.1.0 (source: server release evidence; artifact frontmatter lists 1.0.0)
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

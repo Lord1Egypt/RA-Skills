@@ -1,43 +1,54 @@
-## Description: <br>
-Continuous behavioral monitoring for OpenClaw agents. Detect anomalies in command patterns, resource usage, and skill invocations against established baselines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Continuous behavioral monitoring for OpenClaw agents. Detect anomalies in command patterns, resource usage, and skill invocations against established baselines.
 
-## Publisher: <br>
-[arhadnane](https://clawhub.ai/user/arhadnane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arhadnane](https://clawhub.ai/user/arhadnane)
 
-## Use Case: <br>
-Developers and security operators use this skill to record agent activity, compare current behavior against rolling baselines, and surface anomalous command, file, network, skill, memory, and error patterns for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local monitoring logs may contain prompts, file paths, session IDs, or security findings. <br>
-Mitigation: Use only in workspaces where local monitoring logs are acceptable; protect or exclude the .security directory from sharing and source control. <br>
-Risk: Stored baseline and anomaly data may accumulate sensitive operational details over time. <br>
-Mitigation: Periodically purge old logs according to the workspace retention policy. <br>
-Risk: Anomaly classifications can be incomplete or noisy before enough baseline data exists. <br>
-Mitigation: Treat alerts as review signals and allow the documented 48-hour calibration period before relying on baseline comparisons. <br>
+## Use Case:
 
+Developers and security engineers use this skill to monitor OpenClaw agent activity, establish behavioral baselines, and surface anomalies that may indicate compromise, misconfiguration, or abuse.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arhadnane/anomaly-watcher) <br>
-- [Publisher profile](https://clawhub.ai/user/arhadnane) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Files, Guidance] <br>
-**Output Format:** [JSON responses with local JSONL monitoring logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Records metrics and anomaly findings under the workspace .security directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The skill persistently records broad agent activity, including prompts, tool activity, skill activity, baselines, and anomaly events.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a private workspace, review what is logged, and define retention, rotation, and deletion for .security records.
+
+Risk: The skill can write monitoring files under caller-chosen input.path locations.
+
+Mitigation: Restrict input.path to intended workspace directories and avoid shared or sensitive paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arhadnane/skills/anomaly-watcher)
+- [Publisher profile](https://clawhub.ai/user/arhadnane)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Files, JSON, Guidance]
+
+**Output Format:** [JSON responses and JSONL monitoring records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local .security baseline, anomaly, and false-positive records; baseline calibration requires at least 48 hours of data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

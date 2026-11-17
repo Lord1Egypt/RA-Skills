@@ -1,47 +1,57 @@
-## Description: <br>
-Guides new banking and financial-services consultants through staged ontology modeling for banking domains, with explicit FIBO alignment and a structured ontology document covering concepts, definitions, relationships, constraints, instances, and validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Banking Ontology Coach 更新版 guides Chinese-speaking consultants through staged banking ontology modeling with FIBO alignment and structured ontology documentation.
 
-## Publisher: <br>
-[carriezhangrong](https://clawhub.ai/user/carriezhangrong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carriezhangrong](https://clawhub.ai/user/carriezhangrong)
 
-## Use Case: <br>
-External consultants, banking domain analysts, and data governance practitioners use this skill to learn and practice banking ontology modeling. It coaches users through scope definition, term collection, FIBO reuse or extension decisions, class and property modeling, constraints, instances, and final validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill teaches domain modeling for banking and regulatory contexts, where incorrect ontology choices can affect downstream governance or reporting interpretation. <br>
-Mitigation: Use outputs as coached modeling guidance and review the resulting ontology with qualified banking, data governance, and compliance stakeholders before operational use. <br>
-Risk: FIBO concept matches and IRIs may be uncertain during coaching. <br>
-Mitigation: Follow the skill's requirement to mark uncertain items for FIBO Viewer verification and avoid treating unverified IRIs as authoritative. <br>
-Risk: The release evidence has unavailable server-resolved source provenance. <br>
-Mitigation: Review the packaged artifact files and release metadata directly before deployment; do not infer repository provenance from the skill text. <br>
+## Use Case:
 
+Consultants and data governance practitioners use this skill to learn and practice banking-domain ontology modeling. It coaches users through scoping, competency questions, terminology collection, FIBO alignment, class and property modeling, constraints, instances, and validation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/carriezhangrong/banking-ontology-coach) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/carriezhangrong) <br>
-- [FIBO reference workflow](references/fibo-reference.md) <br>
-- [FIBO core concepts](references/fibo-core-concepts.md) <br>
-- [Ontology concepts](references/ontology-concepts.md) <br>
-- [Common modeling mistakes](references/common-mistakes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown coaching responses with structured ontology tables and validation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language coaching flow; one modeling stage per reply; requires explicit FIBO source labeling and IRI verification when uncertain.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill is narrowly scoped to Chinese-language banking ontology coaching, so it may be unsuitable for other languages or non-banking ontology work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for banking or financial-institution ontology modeling; choose another skill for other domains or language requirements.
+
+Risk: Ontology or FIBO alignment guidance can become misleading if users treat draft modeling decisions as final without review.
+
+Mitigation: Review the generated ontology tables, verify FIBO concepts and IRIs in the official FIBO Viewer, and validate outputs against the stated competency questions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/carriezhangrong/skills/banking-ontology-coach)
+- [Common banking ontology modeling mistakes](artifact/references/common-mistakes.md)
+- [FIBO core concepts](artifact/references/fibo-core-concepts.md)
+- [FIBO reference workflow](artifact/references/fibo-reference.md)
+- [Ontology concepts glossary](artifact/references/ontology-concepts.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Interactive Chinese-language coaching responses with structured Markdown ontology tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; responses should progress one modeling stage at a time.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

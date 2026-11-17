@@ -1,36 +1,48 @@
-## Description: <br>
-Expands brief product or interface design ideas into structured, detailed design specifications for mini programs, apps, web pages, and H5 interfaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes product or interface ideas into structured, detailed design specifications for mini-program, app, web, and H5 interface design tasks.
 
-## Publisher: <br>
-[jainwong](https://clawhub.ai/user/jainwong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jainwong](https://clawhub.ai/user/jainwong)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Designers, product builders, and developers use this skill to turn brief UI or product ideas into a five-part design specification covering product positioning, device constraints, page structure, user flow, and visual direction.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate on broad product-related prompts or when the user expected a language other than Chinese.
+
+Mitigation: Refine the skill description or routing scope before deployment when narrower activation or non-Chinese output is required.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Designers, product builders, and developers use this skill to turn short product or interface ideas into a complete five-part design brief covering product positioning, device constraints, page inventory, user flow, and visual direction. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+**Output Format:** [Markdown design specification]
 
-## Reference(s): <br>
+**Output Parameters:** [1D]
 
+**Other Properties Related to Output:** [Produces five ordered design-specification sections and may ask one or two clarifying questions when required inputs are missing.]
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown design specification with five ordered sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only output; security evidence reports no file access, credential use, network calls, persistence, or hidden actions.] <br>
+## Skill Version(s):
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+1.0.1 (source: server release evidence)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

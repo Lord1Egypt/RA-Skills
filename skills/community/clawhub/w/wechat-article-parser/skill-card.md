@@ -1,43 +1,59 @@
-## Description: <br>
-解析微信公众号文章，提取标题、作者、正文内容、图片等信息。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses WeChat public-account article URLs to extract article metadata, body text, image links, and optional Feishu table records.
 
-## Publisher: <br>
-[harven-droid](https://clawhub.ai/user/harven-droid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harven-droid](https://clawhub.ai/user/harven-droid)
 
-## Use Case: <br>
-Developers and agent users use this skill to parse WeChat public-account article links, extract article metadata and body text, and optionally save results to JSON, text files, or a configured Feishu Bitable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Feishu save helper can create or modify Bitable fields and delete rows it considers empty. <br>
-Mitigation: Review the helper before use, connect it to a dedicated backed-up or disposable table, and disable empty-row cleanup unless row deletion is intended. <br>
-Risk: The Feishu integration uses app credentials and table identifiers from environment variables. <br>
-Mitigation: Use a dedicated Feishu app with the minimum required Bitable permissions and rotate credentials if they are exposed. <br>
+## Use Case:
 
+External users and developers use this skill to parse public WeChat article links into readable article text, metadata, image references, and optional saved records in Feishu Bitable.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/harven-droid/wechat-article-parser) <br>
-- [Publisher Profile](https://clawhub.ai/user/harven-droid) <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
-- [Feishu Bitable Record Create API](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/bitable-v1/app-table-record/create) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text, JSON files, Markdown guidance, and Feishu Bitable records when configured] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include article title, author, publish time, body text, word count, image URLs, source URL, and parse timestamp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and _meta.json) <br>
+Risk: The Feishu save path can automatically alter table schema.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated test or disposable Feishu table until automatic field creation is reviewed or gated by explicit confirmation.
+
+Risk: The Feishu save path can read all records and batch-delete blank rows.
+
+Mitigation: Do not connect shared or important Feishu tables unless broad read/write access and blank-row deletion are acceptable.
+
+Risk: Article parsing depends on remote public URLs and may return incomplete content.
+
+Mitigation: Use the parser only with public article URLs you trust and review extracted content before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harven-droid/skills/wechat-article-parser)
+- [Feishu Open Platform](https://open.feishu.cn)
+- [Feishu Bitable create record API](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/bitable-v1/app-table-record/create)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown guidance with shell commands; parser output can be printed text or saved JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional Feishu saving requires FEISHU_APP_ID, FEISHU_APP_SECRET, FEISHU_APP_TOKEN, and FEISHU_TABLE_ID.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

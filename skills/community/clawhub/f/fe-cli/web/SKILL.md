@@ -45,9 +45,9 @@ Then `cd <project-name>` and install additional dependencies based on selections
 | Selection | Packages |
 |---|---|
 | Tailwind CSS | `tailwindcss @tailwindcss/vite` |
-| shadcn/ui (React) | `npx shadcn@latest init` → adds components on demand. Requires Tailwind CSS. Include `lucide-react` |
-| shadcn-vue (Vue) | `npx shadcn-vue@latest init` → adds components on demand. Requires Tailwind CSS. Include `lucide-vue-next` |
-| Ant Design | `antd @ant-design/icons @ant-design/v5-patch-for-react-19` |
+| shadcn/ui (React) | `bun add -d shadcn && bunx shadcn init`（固定版本到 devDependencies）→ adds components on demand. Requires Tailwind CSS. Include `lucide-react` |
+| shadcn-vue (Vue) | `bun add -d shadcn-vue && bunx shadcn-vue init`（固定版本）→ adds components on demand. Requires Tailwind CSS. Include `lucide-vue-next` |
+| Ant Design | `antd @ant-design/icons`（antd 6+ 原生支持 React 19，不再需要 v5-patch 包；@ant-design/icons 需与 antd 同升 v6） |
 | Element Plus | `element-plus @element-plus/icons-vue` |
 | MUI | `@mui/material @emotion/react @emotion/styled @mui/icons-material` |
 | Chakra UI | `@chakra-ui/react @emotion/react @emotion/styled framer-motion react-icons` |
@@ -55,7 +55,7 @@ Then `cd <project-name>` and install additional dependencies based on selections
 | Vue Bits | `vue-bits` (animated UI components for Vue) |
 | Zustand | `zustand` |
 | Redux Toolkit | `@reduxjs/toolkit react-redux` |
-| React Router | `react-router-dom` |
+| React Router | `react-router`（v8 起统一单包；`react-router-dom` 已在 v8 移除，DOM 专用 API 从 `react-router/dom` 导入） |
 | Vue Router | `vue-router` |
 | Recharts | `recharts` |
 | ECharts | `echarts echarts-for-react` (React) / `vue-echarts` (Vue) |
@@ -98,7 +98,7 @@ src/
 
 `App.tsx` template:
 ```tsx
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router';
 import Home from '@/pages/Home';
 import NotFound from '@/pages/NotFound';
 

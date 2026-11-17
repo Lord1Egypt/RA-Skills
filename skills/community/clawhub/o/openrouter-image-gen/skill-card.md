@@ -1,39 +1,54 @@
-## Description: <br>
-Generate images using Google Gemini via the OpenRouter API, with support for text prompts and optional reference-image guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images using Google Gemini via OpenRouter API with text prompts or reference-image guidance.
 
-## Publisher: <br>
-[yangwenyu2](https://clawhub.ai/user/yangwenyu2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangwenyu2](https://clawhub.ai/user/yangwenyu2)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate image files from natural-language prompts, or to guide generation with a reference image. It is useful for illustrations, covers, avatars, and other visual assets when an OpenRouter API key is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and optional reference images are sent to OpenRouter for image generation, which can expose sensitive text, private images, secrets, or proprietary designs. <br>
-Mitigation: Use the skill only with content suitable for OpenRouter processing, avoid confidential inputs, and use an API key with spending limits where possible. <br>
+## Use Case:
 
+Developers and agents use this skill to generate image files from prompts, optionally using a local reference image for style or character guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangwenyu2/openrouter-image-gen) <br>
-- [OpenRouter API endpoint](https://openrouter.ai/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Image file output with console status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OpenRouter API key; saves generated images to the requested local path and may write a debug JSON file when no image is returned.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The reference-image option can upload any readable local file supplied through --ref to OpenRouter.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive prompts and reference images, avoid arbitrary local paths, and add image validation, file-size limits, path restrictions, and a clear external-upload warning before broad use.
+
+Risk: Generated outputs can be written outside the intended workspace if an unrestricted output path is provided.
+
+Mitigation: Keep output paths within the intended workspace and review generated files before sharing or deploying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangwenyu2/skills/openrouter-image-gen)
+- [OpenRouter API endpoint](https://openrouter.ai/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [files, shell commands, guidance]
+
+**Output Format:** [PNG image files with command-line status text and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OPENROUTER_API_KEY or an API key passed to the script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

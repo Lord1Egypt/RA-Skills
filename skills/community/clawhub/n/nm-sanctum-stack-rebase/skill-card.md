@@ -1,41 +1,54 @@
-## Description: <br>
-Cascades a rebase through an entire PR stack after a base PR merges or upstream changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cascades a rebase through an entire PR stack after a base PR merges or upstream changes
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill to update stacked pull request branches after a base branch changes, a root PR merges, or a mid-stack branch is revised. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation triggers may surface history-rewrite guidance in unrelated development conversations. <br>
-Mitigation: Use the skill only for intentional stacked-PR maintenance and narrow activation language to stacked-PR-specific cases. <br>
-Risk: Rebase and force-push workflows can rewrite shared branch history. <br>
-Mitigation: Confirm the target stack, start from a clean working tree, fetch remote state first, and review each rebase and force-with-lease push before execution. <br>
+## Use Case:
 
+Developers use this skill to rebase a published pull request branch stack when its base changes, then update affected branches and pull request bases. It guides conflict handling and verification of the resulting stack.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-sanctum-stack-rebase) <br>
-- [Sanctum plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and checklist-style progress guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Git, GitHub CLI, and optional jj command examples for stacked-branch rebases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: The scanner reports that actions may publish or change repository and pull-request state in ways that do not match the stated stacked-rebase purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the planned rebase, branch pushes, and pull-request base changes before execution, and confirm each action matches the intended stack update.
+
+Risk: Rebasing rewrites branch history and pushing updated slices may affect remote work or leave pull-request reviews stale.
+
+Mitigation: Confirm the stack branches and remote state, inspect the rebased commits, use the documented --force-with-lease guard, and verify pull-request bases and review status afterward.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-sanctum-stack-rebase)
+- [Homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell code blocks and a progress checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes commands that rebase branches, push updated branches, and edit pull request bases.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

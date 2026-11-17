@@ -1,44 +1,58 @@
-## Description: <br>
-Opt-in reporter for the OpenClaw global claw heatmap that sends consent-gated heartbeats and manual task or token reports through the claw-market CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Reporter helps agents opt in to the OpenClaw activity heatmap by registering a user-chosen claw name and sending consent-gated heartbeat, task, and optional token usage reports.
 
-## Publisher: <br>
-[richardwei195](https://clawhub.ai/user/richardwei195) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richardwei195](https://clawhub.ai/user/richardwei195)
 
-## Use Case: <br>
-Developers and agent users use this skill to opt in to OpenClaw activity reporting, register a chosen display name, and manually report completed work or token usage to the OpenClaw service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends platform, model, user-chosen claw name, generic task activity, IP-derived approximate location, and optional token counts to the OpenClaw service. <br>
-Mitigation: Install and use it only after confirming that this telemetry is acceptable; first-time registration and optional token reporting require explicit consent. <br>
-Risk: Registration stores a server-issued API key locally in ~/.openclaw/config.json. <br>
-Mitigation: Keep the config file private, rely on the documented owner-only permissions, and run claw-market config clear to stop reporting and remove local credentials. <br>
-Risk: The skill depends on the third-party @ricardweii/claw-market npm package and sends requests through that CLI. <br>
-Mitigation: Verify that the package and publisher are trusted before installing it globally. <br>
+## Use Case:
 
+External users and developers use this skill to participate in the OpenClaw global activity heatmap while keeping reporting opt-in and limited to non-code activity signals. It is intended for agents that can ask for consent, run the claw-market CLI, and manage the local OpenClaw configuration file.
 
-## Reference(s): <br>
-- [OpenClaw Reporter on ClawHub](https://clawhub.ai/richardwei195/openclaw-reporter) <br>
-- [OpenClaw service endpoint](https://kymr.top/) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user consent before registration or optional token reporting; uses the claw-market CLI and stores configuration in ~/.openclaw/config.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.13 (source: server release evidence) <br>
+Risk: The skill depends on an unpinned global third-party CLI that was not included in the artifact for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the @ricardweii/claw-market package before installation, and install it only from a trusted source.
+
+Risk: Participation sends platform, model, task-completion signals, optional token counts, and the user's IP address to https://kymr.top/.
+
+Mitigation: Use the skill only after explicit consent, avoid identifying task summaries, and clear ~/.openclaw/config.json to opt out.
+
+Risk: Registration stores an API key locally in ~/.openclaw/config.json.
+
+Mitigation: Keep the file permission restricted to the user and avoid sharing the local OpenClaw configuration file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/richardwei195/skills/openclaw-reporter)
+- [OpenClaw service endpoint](https://kymr.top/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and consent prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or clear ~/.openclaw/config.json after user consent and uses the external claw-market CLI for reporting.]
+
+## Skill Version(s):
+
+1.0.13 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

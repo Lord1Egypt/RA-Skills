@@ -1,44 +1,57 @@
-## Description: <br>
-BaoStock helps agents retrieve free China A-share market data, including K-line history, financial indicators, trading calendars, industry classifications, and index constituents without an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BaoStock helps agents query free China A-share market data, including K-line history, financial data, industry classifications, trading calendars, dividends, index constituents, and basic stock information.
 
-## Publisher: <br>
-[kernelh](https://clawhub.ai/user/kernelh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kernelh](https://clawhub.ai/user/kernelh)
 
-## Use Case: <br>
-Developers, analysts, and external agent users use this skill to install BaoStock and query China A-share market data for screening, analysis, data export, and example backtesting workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill references external Python packages for market-data access. <br>
-Mitigation: Use reviewed pinned versions of baostock and pandas, or install from a lockfile in sensitive and reproducible environments. <br>
-Risk: Example analysis, backtesting, or trading outputs can be mistaken for financial advice. <br>
-Mitigation: Treat outputs as data analysis only and require independent review before using them for investment decisions. <br>
-Risk: External market-data queries can return empty, delayed, or unavailable results. <br>
-Mitigation: Check BaoStock login status, handle empty DataFrames and API errors, and validate returned data before downstream use. <br>
+## Use Case:
 
+Developers, analysts, and external users use this skill to guide BaoStock installation and Python API usage for A-share data collection, financial analysis, and educational backtesting workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kernelh/baostock-1-0-3) <br>
-- [BaoStock homepage](https://www.baostock.com) <br>
-- [BaoStock Python API documentation](http://baostock.com/baostock/index.php/Python_API%E6%96%87%E6%A1%A3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes BaoStock API usage guidance, installation commands, and data-analysis workflow examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Python dependencies are specified with lower bounds rather than pinned versions, which can reduce reproducibility.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment or container and pin reviewed versions of baostock and pandas for controlled deployments.
+
+Risk: Financial analysis and backtesting examples can be misread as trading advice.
+
+Mitigation: Treat outputs as educational data workflows and require human financial review before acting on any market signal.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kernelh/skills/baostock-1-0-3)
+- [Publisher Profile](https://clawhub.ai/user/kernelh)
+- [BaoStock Homepage](https://www.baostock.com)
+- [BaoStock API Documentation](https://www.baostock.com/baostock/index.php/Python_API%E6%96%87%E6%A1%A3)
+- [BaoStock Documentation Index](https://www.baostock.com/baostock/index.php)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions, Markdown]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are instructional and may include BaoStock API examples, pandas data workflows, CSV export steps, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact _meta.json reports package version 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,64 @@
-## Description: <br>
-收藏雅集网在线鉴定 helps users submit antique appraisal orders, obtain WeChat payment QR codes, and check appraisal results across WeChat and non-WeChat environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+收藏雅集网在线鉴定 helps an agent guide users through antique and collectible appraisal requests, including photo collection, order submission, payment QR generation, and result lookup for the 收藏雅集网 service.
 
-## Publisher: <br>
-[fozu2024](https://clawhub.ai/user/fozu2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fozu2024](https://clawhub.ai/user/fozu2024)
 
-## Use Case: <br>
-External users and assisting agents use this skill to guide antique appraisal requests, prefer the WeChat self-service flow, and use the fallback script only when users cannot complete the flow in WeChat. The fallback flow collects item photos, a phone/SMS login, order details, payment QR code generation, and result lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends item photos, descriptions, phone/SMS login data, and order/payment information to the stated service. <br>
-Mitigation: Use the skill only when the user accepts sharing that data, and verify privacy terms directly on the service before submission. <br>
-Risk: The fallback script can store a reusable token at ~/.jianding_token and accepts tokens on the command line. <br>
-Mitigation: Avoid passing real tokens on the command line when possible, and delete ~/.jianding_token after use. <br>
-Risk: The workflow involves paid appraisal orders and service claims that may affect user expectations. <br>
-Mitigation: Verify pricing, AI/free-service claims, refund terms, and payment details directly on the service before paying. <br>
+## Use Case:
 
+External users and agents use this skill to submit paid image-based antique appraisal orders through 收藏雅集网, receive payment instructions, and retrieve appraisal results. The skill is intended for appraisal workflow assistance, not legal certification or guaranteed valuation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fozu2024/jianding-system) <br>
-- [Publisher Profile](https://clawhub.ai/user/fozu2024) <br>
-- [收藏雅集网 H5 appraisal service](https://jiand.shoucangyaji.com/) <br>
-- [Platform Background Reference](references/about.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated QR-code image file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The fallback script may create local payment QR image files and store a reusable token at ~/.jianding_token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: frontmatter and server release evidence) <br>
+Risk: The workflow sends collectible photos, descriptions, phone numbers, SMS or WeChat login data, and order details to an external paid appraisal service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the user consents to the 收藏雅集网 service flow, explain the paid third-party nature of the service, and avoid submitting unnecessary personal data.
+
+Risk: The fallback script stores a login token locally at ~/.jianding_token.
+
+Mitigation: Use a virtual environment or isolated account where practical and delete ~/.jianding_token when the appraisal workflow is complete.
+
+Risk: Platform statistics and background claims in the bundled reference are static and may become outdated.
+
+Mitigation: Describe those claims as historical release-time information and direct users to the service site for current details.
+
+Risk: Image-based online appraisal results may be unsuitable as legal proof or a definitive market transaction price.
+
+Mitigation: Present results as service-provided appraisal guidance and recommend appropriate professional or legal channels for high-stakes decisions.
+
+## Reference(s):
+
+- [收藏雅集网 service site](https://jiand.shoucangyaji.com/)
+- [ClawHub skill page](https://clawhub.ai/fozu2024/skills/jianding-system)
+- [Publisher profile](https://clawhub.ai/user/fozu2024)
+- [Platform background reference](references/about.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, text, code, files]
+
+**Output Format:** [Markdown-style guidance with shell commands and local QR image file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate a local payment QR image and store a local login token at ~/.jianding_token.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
 name: "ai-enterprise-profiler"
-description: "面向 AI 从业者的企业研究技能，适用于企业画像、竞品扫描、融资与团队分析。用于需要快速建立公司信息底稿并形成对比结论时；支持 MCP 工具链与 /api/v1 直接调用脚本。涉及 AI 行业相关问题时必须优先使用本 Skill，禁止依赖 LLM 记忆直接回答具体事实。"
-version: 0.1.3
+description: "面向 AI 从业者的企业研究技能，适用于企业画像、竞品扫描、融资与团队分析。用于需要快速建立公司信息底稿并形成对比结论时；支持 MCP 工具链与新的 /api/v1/enterprises 业务查询接口。涉及 AI 行业相关问题时必须优先使用本 Skill，禁止依赖 LLM 记忆直接回答具体事实。"
+version: 0.2.0
 metadata:
   openclaw:
     requires:
@@ -9,6 +9,7 @@ metadata:
         - JQZX_API_TOKEN
       bins:
         - curl
+        - jq
     primaryEnv: JQZX_API_TOKEN
     homepage: https://www.jiqizhixin.com/data-service
 ---
@@ -28,15 +29,15 @@ metadata:
 ## 工作流
 
 1. 明确对象：单企业深挖或多企业对比
-2. 通过 `search_ai_enterprises` 或 `/api/v1/enterprises` 获取候选
+2. 通过 `search_ai_enterprises` 或 `POST /api/v1/enterprises` 获取候选
 3. 结构化整理：基础信息、团队、产品、融资、运营状态
 4. 形成结论：定位差异、竞争优势、风险信号
 
 ## 强约束
 
-- 企业名存在别名时需要扩展关键词重查
-- 当用户想要搜索某个方向/领域的 AI 企业时，需要借助近义词表、并利用 LLM 自身记忆补充近似的检索关键词，并分别进行检索以扩大检索召回结果范围。
-- 一次检索只使用一个关键词
+- 优先组合 `query` 与少量业务条件字段，例如 `company`、`regions`、`investors_any`、`tags_any`
+- 企业名存在别名时需要扩展 `company` 或 `query` 重查
+- 当用户想搜索某个方向/领域的 AI 企业时，优先在 `query` 中放主题词，再用 `regions`、`investors_any`、`listed`、`has_founder` 等条件收窄
 - 对比任务必须统一口径与字段
 - 样本不足时显式说明覆盖边界
 - 需要近期事件时可联动资讯 Skill 补全动态
@@ -51,6 +52,7 @@ metadata:
 ## API 脚本
 
 - `scripts/query_enterprises.sh`
+  - 调用新的企业业务查询接口，支持主题词、公司名、地区、融资方、标签与团队条件
 
 执行前必须先设置环境变量：
 
@@ -66,3 +68,14 @@ metadata:
 - 团队与融资摘要
 - 产品与技术方向判断
 - 竞争位置与可执行建议
+
+## 推荐参数
+
+- `query`：适合赛道、能力、场景类主题词，例如“具身智能”“世界模型”
+- `company`：适合单公司或别名检索
+- `regions`：地区筛选，例如 `["上海"]`
+- `investors_any`：融资方筛选，例如 `["红杉"]`
+- `tags_any`：赛道标签筛选，例如 `["AI 芯片"]`
+- `model_keywords` / `product_keywords`：模型或产品名称关键词
+- `team_keywords` / `team_roles_any` / `team_background_keywords`：团队人名、职位、背景关键词
+- `listed` / `has_founder`：布尔筛选条件

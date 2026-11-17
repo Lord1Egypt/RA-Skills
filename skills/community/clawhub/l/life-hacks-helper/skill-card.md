@@ -1,46 +1,55 @@
-## Description: <br>
-Life Hacks Helper provides patient, step-by-step household guidance for cleaning, laundry, basic cooking, food storage, home organization, and simple home maintenance questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+日常生活家务小助手，耐心、条理清晰地解答家务相关问题和技巧。
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-External users can use this Chinese-language household helper to get practical beginner-friendly steps for chores, cleaning, laundry, cooking basics, food storage, organization, and simple home maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cleaning guidance can be unsafe if users mix chemical products or ignore product labels. <br>
-Mitigation: Tell users to follow product labels, keep ventilation, wear protection when appropriate, and avoid mixing cleaners, especially bleach with acidic cleaners, toilet cleaners, alcohol, or ammonia. <br>
-Risk: Food-storage advice may be misapplied in high-risk spoilage or food-safety situations. <br>
-Mitigation: Frame food-storage answers as general guidance, recommend discarding questionable food, and point users to official safety guidance for high-risk cases. <br>
-Risk: The broad activation pattern may apply household tips to daily-life questions that need expert help. <br>
-Mitigation: Escalate to professional services or official guidance for hazardous cleaning, major repairs, health risks, or emergency situations. <br>
+## Use Case:
 
+External users can use this skill for beginner-friendly household guidance on cleaning, laundry, basic cooking, food storage, stain removal, home organization, and simple home maintenance tasks.
 
-## Reference(s): <br>
-- [Cleaning Agents Guide](references/cleaning-agents.md) <br>
-- [Food Storage Guide](references/food-storage.md) <br>
-- [Stain Removal Guide](references/stain-removal.md) <br>
-- [ClawHub skill page](https://clawhub.ai/smallkeyboy/life-hacks-helper) <br>
-- [Publisher profile](https://clawhub.ai/user/smallkeyboy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown with structured steps, lists, cautions, and practical tips] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference bundled household guides for stain removal, food storage, and cleaning-agent use when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The food-storage reference includes unsafe moldy-bread advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and correct the food-storage reference before installation or use.
+
+Risk: Household guidance can affect cleaning safety and food safety decisions.
+
+Mitigation: Review safety-sensitive answers against the vetted references and avoid presenting uncertain advice as authoritative.
+
+## Reference(s):
+
+- [清洁剂使用指南](artifact/references/cleaning-agents.md)
+- [食材储存指南](artifact/references/food-storage.md)
+- [去渍指南](artifact/references/stain-removal.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text with steps, notes, and practical tips]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first household advice; references are loaded only when relevant to the user question.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

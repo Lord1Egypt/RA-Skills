@@ -1,13 +1,13 @@
 #!/bin/bash
 # Negotiation Skill Extraction Helper
-# Creates a new skill scaffold from a negotiation learning or issue entry.
-# Usage: ./extract-skill.sh <skill-name> [--dry-run]
+# Dry-run by default. Writes SKILL.md only with --write after an explicit user request.
+# Usage: ./extract-skill.sh <skill-name> [--write]
 
 set -e
 
 SKILLS_DIR="./skills"
 SKILL_NAME=""
-DRY_RUN=false
+DRY_RUN=true
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -18,19 +18,20 @@ usage() {
     cat << EOF
 Usage: $(basename "$0") <skill-name> [options]
 
-Create a negotiation skill scaffold from learnings.
+Preview (default) or write a negotiation skill scaffold. Hooks never invoke this script.
 
 Arguments:
   skill-name     Name of the skill (lowercase, hyphens)
 
 Options:
-  --dry-run      Show generated scaffold without writing files
+  --dry-run      Show generated scaffold without writing files (default)
+  --write        Write SKILL.md under the output directory (requires explicit user request)
   --output-dir   Relative output directory (default: ./skills)
   -h, --help     Show this help message
 
 Examples:
   $(basename "$0") value-anchor-reset
-  $(basename "$0") concession-guardrail --dry-run
+  $(basename "$0") concession-guardrail --write
   $(basename "$0") batna-preflight --output-dir ./skills/negotiation
 EOF
 }
@@ -43,6 +44,10 @@ while [[ $# -gt 0 ]]; do
     case "$1" in
         --dry-run)
             DRY_RUN=true
+            shift
+            ;;
+        --write)
+            DRY_RUN=false
             shift
             ;;
         --output-dir)
@@ -108,7 +113,7 @@ if [ "$DRY_RUN" = true ]; then
     cat << TEMPLATE
 ---
 name: $SKILL_NAME
-description: "[TODO: Describe the negotiation pattern and trigger conditions]"
+description: "[TODO: Describe the negotiation pattern and trigger conditions. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers).]"
 ---
 
 # $(echo "$SKILL_NAME" | sed 's/-/ /g' | awk '{for(i=1;i<=NF;i++) \$i=toupper(substr(\$i,1,1)) tolower(substr(\$i,2))}1')
@@ -146,7 +151,7 @@ mkdir -p "$SKILL_PATH"
 cat > "$SKILL_PATH/SKILL.md" << TEMPLATE
 ---
 name: $SKILL_NAME
-description: "[TODO: Describe the negotiation pattern and trigger conditions]"
+description: "[TODO: Describe the negotiation pattern and trigger conditions. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers).]"
 ---
 
 # $(echo "$SKILL_NAME" | sed 's/-/ /g' | awk '{for(i=1;i<=NF;i++) \$i=toupper(substr(\$i,1,1)) tolower(substr(\$i,2))}1')
@@ -179,4 +184,5 @@ TEMPLATE
 
 log_info "Created: $SKILL_PATH/SKILL.md"
 log_info "Next: fill TODOs, validate safety guardrails, and update source entry status."
+log_warn "Do not publish this scaffold until a human has reviewed it."
 

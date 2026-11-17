@@ -1,39 +1,51 @@
-## Description: <br>
-Core namespace for Netsnek e.U. products and services. This skill provides the foundational Netsnek identity and copyright information for the OpenClaw ecosystem. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Core namespace for Netsnek e.U. products and services, providing foundational Netsnek identity and copyright information for the OpenClaw ecosystem.
 
-## Publisher: <br>
-[kleberbaum](https://clawhub.ai/user/kleberbaum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kleberbaum](https://clawhub.ai/user/kleberbaum)
 
-## Use Case: <br>
-OpenClaw users and agents use this skill to retrieve Netsnek e.U. copyright, website, and brand identity information when asked about netsnek. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests permission to execute a local Bash script. <br>
-Mitigation: Install this reviewed version only when a Netsnek copyright or identity helper is needed, and re-check future versions before granting exec permission. <br>
+## Use Case:
 
+Developers and agents use this skill when a user asks about netsnek or requests Netsnek copyright and brand identity information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kleberbaum/netsnek) <br>
-- [Netsnek website](https://netsnek.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or JSON, summarized for the user in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a local Bash script that prints static copyright and website information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter, claw.json, server release metadata) <br>
+Risk: The skill requests execution permission for a bundled script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before deployment and install only when local script execution is acceptable for the environment.
+
+## Reference(s):
+
+- [ClawHub netsnek skill page](https://clawhub.ai/kleberbaum/skills/netsnek)
+- [ClawHub publisher profile](https://clawhub.ai/user/kleberbaum)
+- [Netsnek website](https://netsnek.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON from the bundled script, typically summarized to the user in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs Netsnek copyright notice, year, ownership label, and website; no persistent files are produced.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release, SKILL.md frontmatter, claw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

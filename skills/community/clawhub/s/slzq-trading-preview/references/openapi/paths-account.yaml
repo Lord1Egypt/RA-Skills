@@ -1,0 +1,43 @@
+# 分片：与 references/api-*.md 主题一致；路径项由 references/openapi.yaml 引用。
+OpenV1Me:
+    get:
+      operationId: get_me
+      summary: 当前密钥上下文
+      description: 获取当前 API Key 对应的 userId、keyId 及生效的交易环境（sim 或 live）。可用于验证鉴权是否正常。
+      responses:
+        '200':
+          description: 当前用户上下文
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '../openapi.yaml#/components/schemas/MeInfo'
+
+
+OpenV1AccountSummary:
+    get:
+      operationId: get_account_summary
+      summary: 账户摘要
+      description: |
+        获取交易账户摘要：余额、可用资金、已用保证金、持仓盈亏。
+        - sim 环境：返回模拟盘数据（simAccount 有值，liveTradeAccount 为 null）。
+        - live 环境：返回 CTP 实盘数据（liveTradeAccount 有值，simAccount 为 null）。
+        live 需已在 App 内绑定实盘 CTP 凭据。
+      responses:
+        '200':
+          description: 账户摘要
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '../openapi.yaml#/components/schemas/AccountSummary'
+
+

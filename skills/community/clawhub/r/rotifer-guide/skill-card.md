@@ -1,45 +1,60 @@
-## Description: <br>
-Interactive onboarding for Rotifer Protocol that helps users learn core concepts, scaffold Genes, diagnose issues, explore the ecosystem, and upgrade fidelity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Entry point for Rotifer Protocol that routes Rotifer-related requests to workflows for onboarding, Gene scaffolding and diagnosis, registry search, fidelity upgrades, and Arena ranking.
 
-## Publisher: <br>
-[xiaoba-dev](https://clawhub.ai/user/xiaoba-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoba-dev](https://clawhub.ai/user/xiaoba-dev)
 
-## Use Case: <br>
-Developers and external users use this skill as a Rotifer Protocol entry point for onboarding, natural-language Gene scaffolding, troubleshooting, ecosystem search, and fidelity migration guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording can route unrelated Rotifer or Gene prompts into this skill. <br>
-Mitigation: Use explicit prompts that mention Rotifer or Genes, and confirm the user's intended sub-capability when intent is unclear. <br>
-Risk: Generated scaffolds or repair guidance can introduce incorrect Gene metadata, schemas, or commands. <br>
-Mitigation: Review generated scaffold plans and run Rotifer test and compile checks before publishing or submitting to Arena. <br>
-Risk: The skill suggests npm-based CLI and MCP commands that resolve packages at the latest version. <br>
-Mitigation: Pin npm package versions or Git tags before running install or build commands in sensitive environments. <br>
+## Use Case:
 
+Developers working with Rotifer use this skill to choose the right Rotifer workflow and get guided CLI commands for learning, creating, troubleshooting, finding, or upgrading Genes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiaoba-dev/rotifer-guide) <br>
-- [Rotifer Protocol](https://rotifer.dev) <br>
-- [Rotifer Documentation](https://rotifer.dev/docs) <br>
-- [Rotifer Protocol Specification](https://github.com/rotifer-protocol/rotifer-spec) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, tables, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include recommended Rotifer CLI commands, MCP configuration snippets, diagnostic tables, and scaffold plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: evidence.release.version and artifact clawhub.json) <br>
+Risk: Some install or submission commands may run without the approval promised in the skill description.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact command and its network or file effects with the user before running it.
+
+Risk: The security review was partial because some references could not be resolved.
+
+Mitigation: Review unresolved referenced material before installing or deploying the skill.
+
+## Reference(s):
+
+- [Rotifer Protocol](https://rotifer.dev)
+- [Rotifer documentation](https://rotifer.dev/docs)
+- [Rotifer Protocol specification](https://github.com/rotifer-protocol/rotifer-spec)
+- [Rotifer project repository (manifest link)](https://github.com/rotifer-protocol/rotifer-playground)
+- [ClawHub release page](https://clawhub.ai/xiaoba-dev/skills/rotifer-guide)
+- [Rotifer Gene development and migration manual](https://clawhub.ai/skill/rotifer-gene)
+- [Rotifer Arena guide](https://clawhub.ai/skill/rotifer-arena)
+- [Rotifer Agent guide](https://clawhub.ai/skill/rotifer-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell command and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.2.17 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-自动更新投后管理报告；当用户需要根据新财务报表和访谈纪要更新季度投后管理报告、生成财务数据分析、更新公司经营情况和行业分析时使用. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动更新投后管理报告；当用户需要根据新财务报表和访谈纪要更新季度投后管理报告、生成财务数据分析、更新公司经营情况和行业分析时使用
 
-## Publisher: <br>
-[kinomoon](https://clawhub.ai/user/kinomoon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kinomoon](https://clawhub.ai/user/kinomoon)
 
-## Use Case: <br>
-Investment teams and portfolio operators use this skill to update quarterly post-investment management reports from new financial statements, interview notes, and the prior quarter's report. It helps extract financial data, draft financial and business updates, add industry analysis, and generate an updated Word report for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial statements, interview notes, and prior reports may contain confidential business information. <br>
-Mitigation: Provide only the intended input files, review where industry analysis is performed, and check the generated report for sensitive details before sharing. <br>
-Risk: Generated financial analysis or report updates may be inaccurate or incomplete. <br>
-Mitigation: Review the generated report against the source documents and verify key figures, conclusions, and output filename before distribution. <br>
-Risk: Dependency installation from untrusted sources can introduce supply-chain risk. <br>
-Mitigation: Install openpyxl and python-docx from trusted package sources and pin the documented dependency versions. <br>
+## Use Case:
 
+Investment and portfolio management teams use this Chinese-language skill to update quarterly post-investment management reports from a new financial statement, interview minutes, and the prior quarter's DOCX report. It helps extract financial metrics, draft financial and operating analysis, preserve report structure, and generate an updated DOCX report for review.
 
-## Reference(s): <br>
-- [Report Structure](references/report-structure.md) <br>
-- [Financial Analysis Guide](references/financial-analysis-guide.md) <br>
-- [Content Update Template](references/content-update-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON intermediate data, analysis text, and DOCX report file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided XLS/XLSX financial statements and DOCX documents; generated reports should be reviewed before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow handles sensitive financial statements, interview notes, and post-investment reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use copies of confidential source documents where possible and control access to input, intermediate, and output files.
+
+Risk: Generated financial analysis or investment recommendations may be incomplete or inaccurate.
+
+Mitigation: Review all generated analysis against the original statements, interview notes, and internal investment judgment before sharing or relying on the report.
+
+Risk: The report generator writes to a user-selected output path.
+
+Mitigation: Choose the output path deliberately to avoid overwriting important files or placing sensitive reports in shared locations.
+
+## Reference(s):
+
+- [投后管理报告结构](references/report-structure.md)
+- [财务分析指南](references/financial-analysis-guide.md)
+- [内容更新模板](references/content-update-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON extraction output, generated analysis text, and DOCX report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local XLS/XLSX and DOCX inputs; generated financial analysis and investment recommendations require user review before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

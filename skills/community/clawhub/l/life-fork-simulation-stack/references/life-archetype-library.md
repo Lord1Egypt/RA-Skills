@@ -1,5 +1,7 @@
 # Life Archetype Library / 人生原型库
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
 用途：在 `life-fork-grammar.md` 和 `archetype-tension-axes.md` 之后使用。语法层负责拆结构，张力轴负责泛化，原型层负责找高密度人生原型，让首屏判词带有一击命中的感觉。
 
 ## 使用顺序

@@ -1,51 +1,59 @@
-## Description: <br>
-Inspect and edit the workspace's git-backed context repository (the GTM knowledge base of markdown/MDX files) and its runtime sandbox using the Cargo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads and updates a company's go-to-market knowledge base in Cargo and queries its knowledge graph.
 
-## Publisher: <br>
-[cargo-ai](https://clawhub.ai/user/cargo-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cargo-ai](https://clawhub.ai/user/cargo-ai)
 
-## Use Case: <br>
-Developers, RevOps teams, and GTM operators use this skill to inspect, author, edit, and troubleshoot markdown/MDX knowledge-base files in a Cargo workspace context repository. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to use Cargo credentials against a workspace context repository. <br>
-Mitigation: Install and enable it only for agents that should inspect or update that Cargo workspace, and protect OAuth sessions or API tokens. <br>
-Risk: Cargo context write and edit operations push commits immediately to the default branch. <br>
-Mitigation: Verify the Cargo workspace name before writes or edits, review proposed content, and apply edits one at a time when derived from sales-call analysis. <br>
-Risk: The declared install path uses @cargo-ai/cli@latest, so CLI behavior can change as the package updates. <br>
-Mitigation: Use extra care with the latest CLI dependency and pin or test the CLI version where reproducibility is required. <br>
+## Use Case:
 
+Revenue teams and their agents use this skill to read and maintain company context such as ICPs, personas, positioning, plays, proof points, objections, competitors, and buying signals. It also helps inspect the context repository and its knowledge graph.
 
-## Reference(s): <br>
-- [Cargo Context ClawHub Page](https://clawhub.ai/cargo-ai/cargo-context) <br>
-- [Cargo Skills Homepage](https://github.com/getcargohq/cargo-skills) <br>
-- [Cargo Workspaces Example Repository](https://github.com/getcargohq/cargo-workspaces) <br>
-- [Context repo conventions](references/conventions.md) <br>
-- [Response shapes](references/response-shapes.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Authoring examples](references/examples/authoring.md) <br>
-- [Lifecycle examples](references/examples/lifecycle.md) <br>
-- [Graph query examples](references/examples/graph-queries.md) <br>
-- [Bootstrap from domain example](references/examples/bootstrap-from-domain.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and Cargo CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to run Cargo CLI commands that return JSON and to write or edit markdown/MDX context files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Context writes, edits, and command-driven changes can be pushed to the workspace repository immediately.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the active workspace and review the intended changes before writing or running commands that modify files.
+
+Risk: Call-derived context may include sensitive customer details or quotations.
+
+Mitigation: Review and redact sensitive details before saving call-derived content.
+
+Risk: The security assessment covers the bundled instructions, not the external Cargo CLI implementation or missing sibling guidance.
+
+Mitigation: Use a reviewed, pinned CLI release and workspace-scoped credentials.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/cargo-ai/skills/cargo-context)
+- [Project homepage (metadata)](https://github.com/getcargohq/cargo-skills)
+- [Canonical context repository example](https://github.com/getcargohq/cargo-workspaces)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown]
+
+**Output Format:** [Markdown guidance and Cargo CLI commands; context entries use typed Markdown or MDX.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Cargo CLI responses are JSON; context write and edit operations push changes to the workspace repository.]
+
+## Skill Version(s):
+
+1.4.3 (source: SKILL.md frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

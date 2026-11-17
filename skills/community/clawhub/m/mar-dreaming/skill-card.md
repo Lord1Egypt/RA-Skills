@@ -1,42 +1,54 @@
-## Description: <br>
-Creative exploration during quiet hours that turns idle heartbeat time into freeform thinking and writes reflections to local files for later human review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creative exploration during quiet hours that turns idle heartbeat time into freeform thinking and writes markdown entries for later human review.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-Developers and agent users can add this skill to a heartbeat routine so the agent occasionally captures thoughtful, freeform reflections during quiet hours. It is intended for later human review, not automated decision-making. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write local state and dream notes under WORKSPACE, which may be the wrong project if the environment is misconfigured. <br>
-Mitigation: Confirm WORKSPACE before enabling the heartbeat routine and review created files under data/ and memory/dreams/. <br>
-Risk: Idle journaling can capture reflections around sensitive or unrelated work. <br>
-Mitigation: Enable the heartbeat routine only in appropriate contexts, avoid use around sensitive work, and keep maxDreamsPerNight low. <br>
-Risk: Dream entries are speculative notes and may be incomplete, misleading, or not useful. <br>
-Mitigation: Treat generated entries as drafts for human review rather than operational guidance. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent decide during quiet hours whether to produce reflective, exploratory markdown entries instead of only returning heartbeat status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marjoriebroad/mar-dreaming) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Shell command output plus Markdown files written by the agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local JSON state and optional topic configuration; requires jq and python3.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence; artifact frontmatter lists 1.0.1) <br>
+Risk: The helper script reads dreamChance from data/dream-state.json and the security summary reports that this value can become executable Python code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill data directory as trusted, prevent untrusted users or automation from modifying data/dream-state.json, and review the parsing behavior before deployment.
+
+Risk: The skill writes journal-like markdown files during quiet hours.
+
+Mitigation: Install only where quiet-hours file creation under memory/dreams is expected, and review generated entries before relying on or sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marjoriebroad/skills/mar-dreaming)
+- [Publisher profile](https://clawhub.ai/user/marjoriebroad)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown entries and shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes dream entries under memory/dreams and updates JSON state under data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact frontmatter reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

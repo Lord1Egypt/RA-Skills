@@ -1,45 +1,60 @@
-## Description: <br>
-Automated lead generation pipeline that finds local businesses with weak/no websites, AI-generates custom demo sites, deploys to Vercel, and runs a 5-email cold outreach drip sequence via AgentMail. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated lead generation pipeline that finds local businesses with weak/no websites, AI-generates custom demo sites, deploys to Vercel, and runs a 5-email cold outreach drip sequence via AgentMail.
 
-## Publisher: <br>
-[RazzleDazzleI](https://clawhub.ai/user/RazzleDazzleI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[razzledazzlei](https://clawhub.ai/user/razzledazzlei)
 
-## Use Case: <br>
-Sales operators, agencies, and developers use this skill to find local business prospects, prepare custom website demos, deploy previews, and coordinate outreach from an approval workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use sensitive third-party accounts to deploy websites and send recurring cold emails. <br>
-Mitigation: Use test accounts first, least-privilege API keys, strict sending and deployment limits, and manual approval before enabling automated polling or scheduled outreach. <br>
-Risk: Generated demo websites and outreach may be inaccurate, unwanted, or non-compliant for some recipients or jurisdictions. <br>
-Mitigation: Review every generated website and email before sending, add unsubscribe and suppression handling, and confirm cold-email compliance for the locations being contacted. <br>
-Risk: The release references an external project and dependencies that may change outside this skill card. <br>
-Mitigation: Review the external repository and dependency tree before installation or production use. <br>
+## Use Case:
 
+Developers, growth operators, and agencies use this skill to configure an automated local-business lead pipeline that discovers prospects, prepares demo websites, tracks approval status, deploys previews, and drafts outreach follow-ups.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/RazzleDazzleI/lead-gen-website-pipeline) <br>
-- [Drip Sequence Reference](references/drip-sequence.md) <br>
-- [Environment Variables Reference](references/env-example.md) <br>
-- [Google Sheet Setup](references/google-sheet-setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration examples, and generated website/outreach artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses external API credentials and can coordinate deployments, lead tracking, and recurring outreach when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The security summary says this skill installs unpinned remote code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated workspace or account, pin and audit the remote repository and dependencies before running npm install, and avoid sharing privileged credentials with the runtime.
+
+Risk: The security summary says this skill enables unattended cold outreach.
+
+Mitigation: Run outreach in dry-run mode first, require human approval of recipients and message content, and add unsubscribe, suppression, rate-limit, and legal-compliance controls before sending.
+
+Risk: The security summary says this skill uses persistent credentials for external services.
+
+Mitigation: Restrict Google, Vercel, AgentMail, and model-provider API keys to the minimum permissions needed, store them outside source control, and rotate them after testing.
+
+## Reference(s):
+
+- [Lead Gen Website Pipeline on ClawHub](https://clawhub.ai/razzledazzlei/skills/lead-gen-website-pipeline)
+- [5-Email Drip Sequence](artifact/references/drip-sequence.md)
+- [Environment Variables Reference](artifact/references/env-example.md)
+- [Google Sheet Setup](artifact/references/google-sheet-setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands, configuration examples, JSON artifact descriptions, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs describe per-lead artifacts such as intake, research, specification, HTML, evaluation, outreach email, screenshots, visual QA, and status files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

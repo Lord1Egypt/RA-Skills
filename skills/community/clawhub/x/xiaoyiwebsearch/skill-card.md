@@ -1,43 +1,58 @@
-## Description: <br>
-使用华为云AI联网搜索API进行网页内容检索，获取实时网络信息. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the Huawei Cloud AI web search API to retrieve real-time web content for an agent.
 
-## Publisher: <br>
-[flp516](https://clawhub.ai/user/flp516) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flp516](https://clawhub.ai/user/flp516)
 
-## Use Case: <br>
-External users and developers use this skill to run Chinese-oriented live web searches through Huawei Cloud AI Networking Search and return concise search results for current information, news, and reference lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill ships an embedded Huawei Cloud API token. <br>
-Mitigation: Install only after confirming the publisher has removed and rotated the embedded token and requires user-supplied credentials. <br>
-Risk: Search queries are sent to Huawei Cloud. <br>
-Mitigation: Do not use the skill for secrets, personal data, internal company terms, or confidential research. <br>
-Risk: Dependency metadata includes less safe pinned HTTP package sources. <br>
-Mitigation: Regenerate dependency metadata with trusted HTTPS package sources before deployment. <br>
+## Use Case:
 
+Developers and agent users can use this skill when they need current web search results, especially for Chinese-language information, news, and fact-checking tasks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/flp516/xiaoyiwebsearch) <br>
-- [Huawei Cloud AI Networking Search endpoint](https://connect-api.cloud.huawei.com/api/aiNetworking/v1/webSearch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code] <br>
-**Output Format:** [Console text output and JavaScript API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a search query and optional result count; the executable caps requests at 20 results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release evidence) <br>
+Risk: The artifact includes an embedded bearer token that should be treated as exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate or revoke the token before use, remove it from source code, and inject credentials through a secret store or environment variable.
+
+Risk: Dependency packaging is risky, including lockfile sources that should be regenerated with HTTPS and patched versions.
+
+Mitigation: Regenerate the lockfile from a trusted HTTPS registry, review the resulting dependency tree, and keep dependencies patched.
+
+Risk: Search queries are sent to Huawei Cloud.
+
+Mitigation: Avoid confidential search terms unless the user accepts that query data is handled by Huawei Cloud.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flp516/skills/xiaoyiwebsearch)
+- [Huawei Cloud AI webSearch endpoint](https://connect-api.cloud.huawei.com/api/aiNetworking/v1/webSearch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Console text or JavaScript-returned search result arrays, usually summarized by the agent in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search count is configurable and capped by the wrapper at 20 results.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

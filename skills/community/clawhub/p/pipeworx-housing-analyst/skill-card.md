@@ -1,41 +1,55 @@
-## Description: <br>
-Provides national and local housing market analysis by combining data from FRED, BLS, ATTOM, and HUD APIs for property and market insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides national and local housing market analysis by combining FRED, BLS, ATTOM, and HUD data for property and market insights.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Housing analysts, real estate professionals, and agents use this skill to query national indicators, local property data, rental estimates, affordability metrics, and employment signals through a hosted Pipeworx MCP connector. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Housing and property queries may be sent to Pipeworx and optionally saved by memory tools. <br>
-Mitigation: Avoid submitting or saving sensitive addresses, ownership details, valuations, or investment notes unless remote handling and possible memory persistence are acceptable. <br>
-Risk: Hosted connector results may combine third-party housing, labor, property, and rental data sources with different freshness and coverage. <br>
-Mitigation: Review important market or investment conclusions against authoritative source data before relying on them. <br>
+## Use Case:
 
+Real estate analysts, housing researchers, and agents use this skill to query housing-market indicators, property details, rental estimates, affordability signals, and local sales trends across supported data sources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-housing-analyst) <br>
-- [Pipeworx hosted MCP endpoint](https://gateway.pipeworx.io/mcp?task=housing%20analysis) <br>
+### Deployment Geography for Use:
 
+Global, with U.S.-focused housing data sources
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown and text responses with MCP server configuration JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a hosted Pipeworx MCP server for housing, property, rental, affordability, and labor-market queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Sensitive property queries may include street addresses, ownership-linked records, valuations, or coordinates routed through a third-party MCP gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only necessary property details with the gateway and avoid submitting unnecessary personal or property-identifying information.
+
+Risk: Property-specific findings may be retained if memory tools are used without clear user intent.
+
+Mitigation: Do not save property-specific findings in memory unless the user explicitly requests retention.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-housing-analyst)
+- [Publisher profile](https://clawhub.ai/user/brucegutman)
+- [Pipeworx Housing Intel MCP endpoint](https://gateway.pipeworx.io/mcp?task=housing%20analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Guidance]
+
+**Output Format:** [Markdown or text summaries backed by MCP tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include housing indicators, property characteristics, valuations, rental estimates, affordability checks, and sales trends.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

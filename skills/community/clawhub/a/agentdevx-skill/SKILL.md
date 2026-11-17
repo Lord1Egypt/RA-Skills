@@ -1,7 +1,7 @@
 ---
 name: agentdevx-skill
 description: "Give your AI hands. Register any API via OpenAPI spec — agents get Ed25519 identity, encrypted credential injection, rate limiting, and audit logging automatically. One bootstrap call, zero human setup."
-version: 1.0.6
+version: 1.1.0
 metadata:
   openclaw:
     requires: {}
@@ -102,6 +102,17 @@ Pre-registered examples:
 | petstore-api | OpenAPI 3.0 demo |
 
 These are examples. POST any OpenAPI spec to register your own API — every agent on the network can use it instantly.
+
+## Native Built-in Tools
+
+Beyond the API registry, AgentDevX ships native MCP tools that don't require registration:
+
+| Tool | What It Does |
+|------|-------------|
+| memory.store | Save a key-value pair to persistent, encrypted agent memory |
+| memory.recall | Retrieve a stored value by key |
+| webscrape.scrape | Extract page title, headings, links, images, text (static HTML) |
+| webscrape.extractDesign | Extract colors, fonts, spacing, layout patterns (static HTML)
 
 ## Why AgentDevX vs Composio / Nango / Auth0
 

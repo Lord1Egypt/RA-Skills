@@ -1,42 +1,59 @@
-## Description: <br>
-Discover random budget travel destinations with cheap flights and hotels, validate that each destination has worthwhile attractions, and generate complete budget trip plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discovers random budget travel destinations by searching for low-priced flights and accommodations, validating local attractions, and generating complete travel plans.
 
-## Publisher: <br>
-[fishhao123](https://clawhub.ai/user/fishhao123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fishhao123](https://clawhub.ai/user/fishhao123)
 
-## Use Case: <br>
-External travelers use this skill to find low-cost, surprise getaway options based on origin city, budget, trip length, dates, and travel preferences. It searches for cheap flights and hotels, scores candidate destinations, and returns a concise itinerary with costs, attractions, food ideas, and booking reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel preferences and search details may be sent to an external FlyAI travel-search integration. <br>
-Mitigation: Use the skill only with a trusted FlyAI integration and avoid sharing sensitive personal information unless the provider is approved. <br>
-Risk: Flight prices, hotel rates, booking links, cancellation terms, and availability can change quickly. <br>
-Mitigation: Verify dates, totals, cancellation terms, provider legitimacy, and final checkout prices before purchasing. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to find surprise low-cost destinations, compare flights and hotels, score deal value, and draft concise trip plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fishhao123/budget-traval-plan) <br>
-- [Budget Travel Deals reference data](artifact/reference.md) <br>
-- [Budget Travel Deals examples](artifact/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown trip plan with travel-search command examples, tables, links, budget summaries, and itinerary sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include flight and hotel prices, booking links, attraction recommendations, food suggestions, and reminders to verify time-sensitive travel details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: Travel prices, availability, and calculated totals may be stale, incomplete, or over the user's stated budget.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current fares, hotel rates, taxes, fees, availability, and final totals before booking.
+
+Risk: Outputs may include external booking links.
+
+Mitigation: Inspect links and booking terms before use, and prefer trusted booking channels.
+
+Risk: Outputs may include Chinese-language formatting and a FlyAI branding footer.
+
+Mitigation: Review, localize, and remove unintended branding before sharing the result with end users.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fishhao123/skills/budget-traval-plan)
+- [Budget Travel Deals Reference Data](artifact/reference.md)
+- [Budget Travel Deals Examples](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown itinerary and budget recommendation with inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include external booking links, Chinese-language formatting, FlyAI branding, and time-sensitive prices.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

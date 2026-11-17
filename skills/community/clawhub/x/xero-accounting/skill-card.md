@@ -1,46 +1,57 @@
-## Description: <br>
-Manage invoices, contacts, bills, payments, and accounting records in Xero via the Xero API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage invoices, contacts, bills, payments, and accounting records in Xero via the Xero API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users and accounting operators use this skill to work with Xero accounting records from an agent chat, including invoices, bills, contacts, payments, items, accounts, bank transactions, journals, organisation data, and tracking categories. The skill is intended for workflows that need Xero reads plus carefully confirmed accounting writes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide write actions that affect financial records, including invoices, bills, payments, contacts, accounts, bank transactions, and journals. <br>
-Mitigation: Preview write operations, confirm details with the user before execution, and verify tax, currency, status, and accounting effects in Xero when needed. <br>
-Risk: The skill depends on OAuth access and connected Xero organisation scope. <br>
-Mitigation: Use the ClawLink connection flow, confirm the active Xero integration before tool calls, and avoid asking users to paste API credentials into chat. <br>
-Risk: The security evidence is clean but still advises reviewing visible instructions and credentials or tools before use. <br>
-Mitigation: Review the skill instructions and requested tools before installation, and scan the release evidence as part of deployment review. <br>
+## Use Case:
 
+External users and accounting operators use this skill to manage Xero invoices, contacts, bills, payments, and accounting records from an agent chat after connecting their Xero organization through OAuth.
 
-## Reference(s): <br>
-- [Xero API Documentation](https://developer.xero.com/documentation/) <br>
-- [Xero API Overview](https://developer.xero.com/documentation/api/overview) <br>
-- [Xero OAuth 2.0 Guide](https://developer.xero.com/documentation/auth-and-reporting/xero-oauth2) <br>
-- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/xero-accounting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline shell commands and JSON tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to preview and confirm Xero write actions before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The skill can read and change financial records in the connected Xero organization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user intends to connect ClawLink to Xero, and review write previews before approving invoices, bills, payments, deletes, voids, journals, or account changes.
+
+Risk: Accounting changes can affect tax, currency, and financial reporting outcomes.
+
+Mitigation: Verify important tax, currency, and reporting effects in Xero before relying on or approving changes.
+
+## Reference(s):
+
+- [ClawHub Xero Skill](https://clawhub.ai/hith3sh/skills/xero-accounting)
+- [Xero API Documentation](https://developer.xero.com/documentation/)
+- [Xero API Overview](https://developer.xero.com/documentation/api/overview)
+- [Xero OAuth Guide](https://developer.xero.com/documentation/auth-and-reporting/xero-oauth2)
+- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include previews and confirmation requests before write operations that affect accounting records.]
+
+## Skill Version(s):
+
+1.0.6 (source: server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

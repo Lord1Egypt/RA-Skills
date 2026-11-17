@@ -1,46 +1,58 @@
-## Description: <br>
-A universal MCP-compatible tool/skill that empowers any AI agent to call the local Anthropic Claude Code CLI for code refactoring, large-scale code generation, terminal execution, test runs, local environment modification, and extended coding workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A universal MCP-compatible skill that lets an agent delegate code refactoring, large-scale code generation, debugging, tests, shell commands, and local file changes to the Anthropic Claude Code CLI.
 
-## Publisher: <br>
-[BigHit1](https://clawhub.ai/user/BigHit1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bighit1](https://clawhub.ai/user/bighit1)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to delegate coding, debugging, refactoring, test execution, and terminal-based project work to a local Claude Code CLI session in a specified project directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run Claude Code locally with broad command execution and file modification authority. <br>
-Mitigation: Use it only in trusted project directories and review the returned terminal output and file changes before accepting results. <br>
-Risk: The artifact invokes Claude Code with permission prompts bypassed. <br>
-Mitigation: Consider removing bypassPermissions or adding explicit approval and path restrictions before deployment. <br>
-Risk: Local shell sessions may expose sensitive environment variables to delegated work. <br>
-Mitigation: Run from shells with only the credentials required for the task and avoid unrelated sensitive environment variables. <br>
-Risk: Continuing an existing Claude Code session can mix unrelated task context. <br>
-Mitigation: Use fresh sessions for unrelated work and reserve continuation for follow-up on the same task. <br>
+## Use Case:
 
+Developers and coding agents use this skill to invoke local Claude Code for project-scale code changes, debugging, running tests, and shell work in a target workspace.
 
-## Reference(s): <br>
-- [ClawHub skill page: use-claudecode](https://clawhub.ai/BigHit1/use-claudecode) <br>
-- [ClawHub publisher profile: BigHit1](https://clawhub.ai/user/BigHit1) <br>
-- [Claude Code documentation](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Plain text terminal transcript from Claude Code CLI, including stdout, stderr, command results, error messages, and implementation guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reflect local file changes or command execution performed by Claude Code in the requested project directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Delegated Claude CLI execution can run commands and edit files while permission prompts are disabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a disposable or tightly scoped workspace, review resulting changes, and run the skill only when broad local coding delegation is intended.
+
+Risk: Sensitive environment variables may be available to the delegated CLI process.
+
+Mitigation: Run without sensitive environment variables or secrets in scope.
+
+Risk: Project paths and command strings require careful handling, especially for PowerShell execution.
+
+Mitigation: Prefer a version that validates project paths and avoids PowerShell command-string execution before production use.
+
+## Reference(s):
+
+- [ClawHub use-claudecode release page](https://clawhub.ai/bighit1/skills/use-claudecode)
+- [Anthropic Claude Code documentation](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text terminal output with command results, diagnostics, and generated code or guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run for up to 600 seconds and may modify files in the provided project path through the delegated Claude CLI.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; artifact frontmatter declares 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

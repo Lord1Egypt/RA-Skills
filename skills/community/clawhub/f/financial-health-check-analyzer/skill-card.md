@@ -1,41 +1,54 @@
-## Description: <br>
-Provides structured financial health assessments with templates and actionable recommendations based on user-provided context and goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured financial health assessments with templates and actionable recommendations based on user-provided context and goals.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Individuals, households, and agents supporting personal-finance workflows use this skill to assess emergency reserves, debt, savings, cash flow, spending patterns, and financial wellness from user-provided context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share unnecessary raw financial records or sensitive transaction details. <br>
-Mitigation: Share totals, categories, and summaries where possible, and redact account numbers, merchant identifiers, addresses, and other sensitive details. <br>
-Risk: Financial-health recommendations may be mistaken for professional financial, tax, legal, or investment advice. <br>
-Mitigation: Treat outputs as general informational guidance and consult qualified professionals before making material decisions. <br>
+## Use Case:
 
+Individuals, households, and advisors use this skill to assess financial health from user-provided context such as income, debt, savings, goals, and spending patterns. It produces scorecards, templates, recommendations, and next steps for informational planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/financial-health-check-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured JSON or markdown-style financial health report with recommendations, templates, and next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational only; no bank access, transactions, external APIs, or data persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact files report 1.0.0) <br>
+Risk: Users may share more financial detail than needed for an informational assessment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use aggregated categories, balances, and goals where possible; avoid account numbers, full statements, names, addresses, and unredacted merchant-level records unless strictly needed.
+
+Risk: Financial recommendations may be incomplete or unsuitable for major financial, tax, investment, or debt decisions.
+
+Mitigation: Treat outputs as planning guidance and consult a qualified financial professional before taking major action.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/harrylabsj/skills/financial-health-check-analyzer)
+- [Publisher profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Structured JSON or Markdown report with recommendations, templates, and checklist items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational financial guidance only; no transactions, account access, external API calls, network requests, or persistence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter and skill.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Automatically assess task complexity and adjust reasoning level. Triggers on every user message to evaluate whether extended thinking (reasoning mode) would improve response quality. Use this as a pre-processing step before answering complex questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically assesses task complexity before each response and adjusts the agent's reasoning level when deeper deliberation would improve response quality.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-Agents use this skill as a pre-response reasoning posture check to decide when a request warrants more deliberate analysis. It is intended for users who want complex planning, debugging, architecture, math, or high-stakes requests handled with deeper reasoning while keeping simple requests fast. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic reasoning escalation can make some responses slower or more detailed than expected. <br>
-Mitigation: Ask for a quick answer, disable the skill, or turn reasoning off when speed and brevity matter. <br>
-Risk: The skill changes response style by adding a visual indicator when higher reasoning is active. <br>
-Mitigation: Disable the skill in contexts that require clean output formatting or explicitly ask for no response indicators. <br>
+## Use Case:
 
+Developers and agent users use this skill to have an agent classify request complexity and decide when deeper reasoning is appropriate before responding.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marjoriebroad/marjorie-adaptive-reasoning) <br>
-- [Source skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text] <br>
-**Output Format:** [Markdown instructions with scoring tables and response-style guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no files, credentials, network access, or code execution requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may silently change the agent's reasoning mode across broad conversations without clear user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where automatic reasoning-mode changes are acceptable; prefer deployments that make activation visible and user-controlled.
+
+Risk: Automatic activation on every message can add latency or cost on tasks where speed matters more than depth.
+
+Mitigation: Use the documented non-escalation and auto-downgrade criteria for quick, simple, conversational, or time-sensitive requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marjoriebroad/skills/marjorie-adaptive-reasoning)
+- [Publisher profile: marjoriebroad](https://clawhub.ai/user/marjoriebroad)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with decision tables and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append reasoning-mode indicators to responses when the skill activates deeper reasoning.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

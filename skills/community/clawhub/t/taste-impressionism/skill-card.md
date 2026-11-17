@@ -1,39 +1,50 @@
-## Description: <br>
-Aesthetic skill for AI agents that applies the visual language of Impressionism to writing, UI design, branding, and creative direction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agents with Impressionist visual language, including style tokens, anti-tokens, and creative direction for visual arts and design.
 
-## Publisher: <br>
-[johnnyzijianwu](https://clawhub.ai/user/johnnyzijianwu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnyzijianwu](https://clawhub.ai/user/johnnyzijianwu)
 
-## Use Case: <br>
-Developers, designers, writers, and creative teams use this skill to guide AI agents toward Impressionism-informed prose, interface aesthetics, branding language, and visual direction while avoiding conflicting academic or studio-bound styles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated outputs may include inaccurate or oversimplified art-history claims or may not fit the user's project context. <br>
-Mitigation: Review outputs for factual art-history accuracy, project fit, and intended tone before publication or deployment. <br>
+## Use Case:
 
+Artists, designers, and creative agents can use the skill to shape visual concepts, writing, interfaces, and branding with Impressionist colors, composition, and attention to light.
 
-## Reference(s): <br>
-- [Taste Impressionism on ClawHub](https://clawhub.ai/johnnyzijianwu/taste-impressionism) <br>
-- [Publisher profile: johnnyzijianwu](https://clawhub.ai/user/johnnyzijianwu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text creative guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only aesthetic guidance; no code, install actions, credentials, persistence, or sensitive access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release evidence) <br>
+Risk: Optional InspiredHub links lead to an external service whose privacy claims were not independently verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the service's privacy information before choosing to use it.
+
+## Reference(s):
+
+- [InspiredHub Live Demo](https://inspiredhub.ai/demo?skill=impressionism)
+- [Optional Personal Taste Brief reference](https://inspiredhub.ai/personal-taste-brief#clawhub/taste-impressionism)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Style tokens, anti-tokens, and creative direction for Impressionist visual language.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

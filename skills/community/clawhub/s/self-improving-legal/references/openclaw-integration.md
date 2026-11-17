@@ -51,14 +51,10 @@ cp -r self-improving-legal ~/.openclaw/skills/
 Copy the hook to OpenClaw's hooks directory:
 
 ```bash
-cp -r hooks/openclaw ~/.openclaw/hooks/self-improving-legal
+mkdir -p .openclaw/hooks
+cp -r hooks/openclaw .openclaw/hooks/self-improving-legal
 ```
 
-Enable the hook:
-
-```bash
-openclaw hooks enable self-improving-legal
-```
 
 ### 3. Create Learning Files
 
@@ -92,9 +88,9 @@ Purpose: Legal operations workflows and matter routing patterns.
 6. Document: Log clause risks to .learnings/
 
 ## Delegation Rules
-- Use explore agent for clause pattern searches across contracts
-- Spawn sub-agents for parallel regulatory research
-- Use sessions_send to share urgent compliance findings across sessions
+- Do not spawn sub-agents or read other sessions from this skill
+- Log a redacted note in this workspace only
+- Do not send cross-session messages
 ```
 
 ### SOUL.md (Legal Principles)
@@ -155,27 +151,9 @@ Is the finding a one-off matter or broadly applicable?
     └── Workflow or matter routing? → AGENTS.md
 ```
 
-## Inter-Agent Communication
+## Scope
 
-OpenClaw provides tools for cross-session sharing of legal findings.
-
-Use these only when cross-session sharing is explicitly needed and the environment is trusted. **Never forward privileged communications, case strategy, or confidential terms.**
-
-### sessions_send (Legal Alerts)
-
-Send urgent legal findings to other sessions:
-```
-sessions_send(sessionKey="session-id", message="LEGAL: Vendor changed payment terms in renewal without flagging. See LEG-20260412-001.")
-```
-
-Prefer sending a concise finding summary plus entry ID rather than raw details.
-
-### sessions_spawn (Legal Research)
-
-Spawn background agents for legal tasks:
-```
-sessions_spawn(task="Research EU AI Act Annex III classification for recommendation engines", label="legal-research")
-```
+This skill does not read other sessions, send cross-session messages, spawn background agents, or read other installed skills. Log redacted notes in this workspace only.
 
 ## OpenClaw-Specific Detection Triggers
 

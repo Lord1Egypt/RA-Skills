@@ -1,43 +1,54 @@
-## Description: <br>
-Connect to and manage another OpenClaw server remotely via SSH, including health checks, skill synchronization, gateway restarts, and channel monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to and manage another OpenClaw server remotely via SSH, including health checks, skill synchronization, gateway restarts, and channel monitoring.
 
-## Publisher: <br>
-[fangbb-coder](https://clawhub.ai/user/fangbb-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangbb-coder](https://clawhub.ai/user/fangbb-coder)
 
-## Use Case: <br>
-Developers and operators use this skill to administer a trusted remote OpenClaw server, inspect gateway and channel status, resolve common port conflicts, compare installed skills, and synchronize skills between local and remote environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use SSH credentials to administer a remote OpenClaw server. <br>
-Mitigation: Use it only with a trusted host, a dedicated least-privilege SSH key, and a non-root account where possible. <br>
-Risk: The fix-port action can kill matching processes and restart the remote gateway. <br>
-Mitigation: Run diagnostic actions first and use fix-port only during an acceptable maintenance window. <br>
-Risk: Skill synchronization can install skills locally or remotely, especially when --yes bypasses prompts. <br>
-Mitigation: Avoid --yes by default and review each skill before syncing from or to another host. <br>
+## Use Case:
 
+Developers and operators use this skill to administer OpenClaw instances they control over SSH, check remote health, troubleshoot gateway port conflicts, compare or sync skills, and inspect QQBot-related sessions or logs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fangbb-coder/connect-to-another-openclaw) <br>
-- [Publisher profile](https://clawhub.ai/user/fangbb-coder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown-style command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include remote command output, status summaries, skill comparison results, and installation or troubleshooting steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: Remote administration can affect servers and local environments if pointed at the wrong host or used with broad privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict use to OpenClaw servers you own or administer, use a dedicated least-privilege SSH account and key, and require explicit approval before process termination or skill sync actions.
+
+Risk: Unsafe defaults and command-construction issues may allow a compromised host or crafted skill list to run unintended commands.
+
+Mitigation: Review or fix the skill before installation, enable SSH host-key verification, avoid automatic confirmation with --yes, and validate and quote skill names before local or remote installs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fangbb-coder/skills/connect-to-another-openclaw)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented status text with shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses required host and action parameters plus optional SSH user, key, port, skill, and confirmation flags.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

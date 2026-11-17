@@ -1,44 +1,61 @@
-## Description: <br>
-即梦 4.0 图片生成器，通过文本描述生成高质量图片，支持多图编辑与智能比例。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images with VolcEngine Jimeng AI 4.0 from text prompts, reference images, and image-editing requests.
 
-## Publisher: <br>
-[FelixHsp](https://clawhub.ai/user/FelixHsp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[felixhsp](https://clawhub.ai/user/felixhsp)
 
-## Use Case: <br>
-Developers and content creators use this skill to generate, edit, and compose images with VolcEngine Jimeng AI 4.0 from text prompts and optional reference image URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, reference image URLs, and uploaded or referenced images are sent to VolcEngine for processing. <br>
-Mitigation: Avoid confidential images, secrets, internal-only URLs, and proprietary prompts unless the user's policy permits that disclosure. <br>
-Risk: VolcEngine credentials are required to run the skill. <br>
-Mitigation: Use least-privilege or short-lived credentials when possible, keep .env files out of git, and rotate keys if exposure is suspected. <br>
+## Use Case:
 
+External users and developers use this skill to generate or edit images through VolcEngine Jimeng AI 4.0, returning saved PNG files and task metadata from a command-line workflow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/FelixHsp/jimeng-generator) <br>
-- [Jimeng 4.0 API reference](docs/jimengv4.md) <br>
-- [VolcEngine authorization reference](docs/authorization.md) <br>
-- [VolcEngine visual API endpoint](https://visual.volcengineapi.com) <br>
-- [VolcEngine signing documentation](https://www.volcengine.com/docs/6369/67269) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, API Calls, Configuration] <br>
-**Output Format:** [JSON status with local PNG file paths and optional image URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images are saved to a local output directory unless --no-save is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Long-lived VolcEngine credentials or unsafe local .env handling could expose cloud access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use short-lived, least-privilege VolcEngine credentials where possible, add a .gitignore before creating secrets, and review credential handling before installation.
+
+Risk: Private reference image URLs may be sent to VolcEngine or downloaded by the script.
+
+Mitigation: Avoid private image URLs and provide only references approved for external processing.
+
+Risk: Dependency and lockfile supply-chain issues may affect installation.
+
+Mitigation: Review or update the npm dependency lockfile before running npm install.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/felixhsp/skills/jimeng-generator)
+- [VolcEngine Jimeng 4.0 API reference](docs/jimengv4.md)
+- [VolcEngine authorization reference](docs/authorization.md)
+- [VolcEngine signing method documentation](https://www.volcengine.com/docs/6369/67269)
+- [VolcEngine common response fields and error codes](https://www.volcengine.com/docs/6444/69728)
+
+## Skill Output:
+
+**Output Type(s):** [files, JSON, shell commands, configuration]
+
+**Output Format:** [JSON status object with optional local PNG file paths and image URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VolcEngine credentials; can save PNG files to an output directory or return URLs only.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

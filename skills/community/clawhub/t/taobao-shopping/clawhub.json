@@ -1,0 +1,9 @@
+{
+  "name": "taobao-shopping",
+  "version": "2.1.3",
+  "description": "淘宝购物决策助手 - 仅基于公开信息搜索、比价、看评论和评估店铺/SKU 风险；不登录、不操作购物车或优惠券，支付由用户完成",
+  "keywords": ["taobao", "淘宝", "shopping", "e-commerce"],
+  "author": "harrylabsj",
+  "license": "MIT",
+  "repository": "https://github.com/harrylabsj/taobao-shopping"
+}

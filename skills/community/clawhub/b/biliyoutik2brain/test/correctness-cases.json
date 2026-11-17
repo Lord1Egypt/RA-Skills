@@ -1,0 +1,74 @@
+[
+  {
+    "id": "COR-01",
+    "group": "correctness",
+    "desc": "孕线不被修成均线 — v1.0.0 级 bug 回归",
+    "speaker": "张聚贤",
+    "input_text": "这是一个孕线形态，表示了市场犹豫",
+    "expected_contains": ["孕线"],
+    "not_expected_contains": ["均线"]
+  },
+  {
+    "id": "COR-02",
+    "group": "correctness",
+    "desc": "做→说 仅在吴江说话语境",
+    "speaker": "",
+    "input_text": "我给你做个故事",
+    "expected_contains": ["说"],
+    "not_expected_contains": ["做"]
+  },
+  {
+    "id": "COR-03",
+    "group": "correctness",
+    "desc": "主力不被修正为阻力（语境中同为交易术语）",
+    "speaker": "张聚贤",
+    "input_text": "主力资金在吸筹",
+    "expected_contains": ["主力"],
+    "not_expected_contains": ["阻力"]
+  },
+  {
+    "id": "COR-04",
+    "group": "correctness",
+    "desc": "常识检查 - 常见误听保护",
+    "speaker": "",
+    "input_text": "三根阳线改变信仰",
+    "expected_contains": ["三根阳线"],
+    "not_expected_contains": ["三根阳"]
+  },
+  {
+    "id": "COR-05",
+    "group": "correctness",
+    "desc": "熊猫价格行为术语 - Pinbar 不被误修",
+    "speaker": "熊猫技术分析社区",
+    "input_text": "这是一个P B形态",
+    "expected_contains": ["P B", "Pinbar"],
+    "not_expected_contains": ["PB"]
+  },
+  {
+    "id": "COR-06",
+    "group": "correctness",
+    "desc": "技术类术语 - API/Tool/Skill 不被错改",
+    "speaker": "慢学AI",
+    "input_text": "Skill的渐进式披露机制解决上下文问题",
+    "expected_contains": ["Skill"],
+    "not_expected_contains": ["技巧", "技能"]
+  },
+  {
+    "id": "COR-07",
+    "group": "correctness",
+    "desc": "老译员-常见人名误听",
+    "speaker": "",
+    "input_text": "老陈说这个策略很有效",
+    "expected_contains": ["老陈"],
+    "not_expected_contains": ["老成", "老尘"]
+  },
+  {
+    "id": "COR-08",
+    "group": "correctness",
+    "desc": "看跌吞没-吞没形态不被拆分",
+    "speaker": "",
+    "input_text": "这是一个看跌吞没形态",
+    "expected_contains": ["看跌吞没"],
+    "not_expected_contains": ["看跌", "吞没"]
+  }
+]

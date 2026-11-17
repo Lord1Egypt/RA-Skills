@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn71evvnkryr5jk7cq4jmafv8d8010tf",
-  "slug": "git-federation-searcher",
+  "id": "git-federation-searcher",
+  "name": "Git Federation Searcher",
   "version": "1.0.0",
-  "publishedAt": 1771854293187
+  "description": "Search across multiple self-hosted Git instances (Gitea, Forgejo, GitLab)",
+  "author": "OpenClaw",
+  "tags": ["git", "search", "federation", "gitea", "forgejo", "selfhosted"],
+  "entry": "git_federation_searcher.py",
+  "requirements": [],
+  "permissions": ["exec", "web_search"]
 }

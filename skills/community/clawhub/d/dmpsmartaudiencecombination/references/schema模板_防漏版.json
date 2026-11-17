@@ -1,0 +1,60 @@
+{
+  "_raw_text": "",
+  "goal": "acquisition",
+  "use_case": "",
+  "kpi_target": {"expected_size": null, "min_size": null, "max_size": null},
+
+  "audience": {
+    "role": "",
+    "parent_status": "",
+    "gender": "",
+    "child_age": {"min_year": null, "max_year": null},
+    "life_stage": [],
+    "parent_age_range": []
+  },
+
+  "geo": {
+    "city_tier": [],
+    "province_city": []
+  },
+
+  "interest": {
+    "seeds": [],
+    "must": [],
+    "preferred": [],
+    "optional": [],
+    "exclude": []
+  },
+
+  "behavior": {
+    "events": [],
+    "purchase_intent": [],
+    "channels": [],
+    "time_window_days": null,
+    "frequency_threshold": null
+  },
+
+  "device_channel": {
+    "device_os": [],
+    "app_platform": [],
+    "media_channels": []
+  },
+
+  "exclude": {
+    "tags": [],
+    "audiences": [],
+    "notes": ""
+  },
+
+  "notes": {
+    "acceptable_substitutes": [],
+    "risk_flags": []
+  },
+
+  "extra": {
+    "constraints": [],
+    "seeds": [],
+    "excludes": [],
+    "original_points": []
+  }
+}

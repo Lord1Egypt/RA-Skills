@@ -1,5 +1,5 @@
 ## Description: <br>
-Memory TencentDB is an OpenClaw plugin that captures conversations and turns them into long-term memory, scene summaries, and persona context using SQLite or Tencent Cloud VectorDB backends. <br>
+Four-layer memory system plugin for OpenClaw that captures conversations, extracts structured memories, summarizes scenes, and builds a user persona with local SQLite and Tencent Cloud VectorDB storage options. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,36 +11,39 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and agent operators use this skill to add long-term memory to OpenClaw agents, including automatic conversation capture, memory extraction, scene summarization, persona generation, and recall. It is intended for deployments that need either local SQLite storage or Tencent Cloud VectorDB-backed search. <br>
+Developers and agent operators use this skill to add long-term conversational memory to OpenClaw or Hermes agents, including automatic recall, structured memory extraction, scene summaries, persona generation, and migration or export tooling for memory stores. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can capture conversation content and retain memory records. <br>
-Mitigation: Enable it only for agents and workspaces where long-term memory is intended, and configure retention and excluded agents before deployment. <br>
-Risk: The release can modify OpenClaw configuration or runtime files and start a sidecar process. <br>
-Mitigation: Review install and patch scripts before installation, disable postinstall behavior where possible, and test in a controlled environment first. <br>
-Risk: Optional remote model, database, tracing, or offload services may receive sensitive data. <br>
-Mitigation: Keep offload and tracing disabled unless needed, use scoped credentials, and verify endpoint configuration before enabling remote backends. <br>
+Risk: The skill can modify OpenClaw behavior through high-impact host patching. <br>
+Mitigation: Review or disable the postinstall patch path before installing in production environments. <br>
+Risk: The skill captures and stores long-term conversation memory, which may include sensitive user or tool content. <br>
+Mitigation: Deploy only where long-term memory capture is intended, configure retention carefully, and restrict access to local and remote memory stores. <br>
+Risk: Optional backend offload and tracing can send conversations or tool payloads to external services. <br>
+Mitigation: Use backend/offload and Opik or full-content tracing only with trusted endpoints and explicit operator approval. <br>
+Risk: Insecure HTTPS settings or implicit user identification can weaken privacy controls. <br>
+Mitigation: Do not use insecure HTTPS settings for sensitive data and set an explicit userId instead of relying on IP fallback. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/paudyyin/memory-tencentdb) <br>
-- [Publisher Profile](https://clawhub.ai/user/paudyyin) <br>
+- [ClawHub skill listing](https://clawhub.ai/paudyyin/memory-tencentdb) <br>
 - [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [sqlite-vec](https://github.com/asg017/sqlite-vec) <br>
+- [OpenClaw host framework](https://github.com/nicepkg/openclaw) <br>
+- [SQLite vector extension](https://github.com/asg017/sqlite-vec) <br>
 - [node-llama-cpp](https://github.com/withcatai/node-llama-cpp) <br>
+- [Tencent model API endpoint](https://api.lkeap.cloud.tencent.com/v1) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON configuration, shell commands, generated memory records, scene markdown, persona markdown, and optional HTML visualization] <br>
+**Output Format:** [Markdown and configuration snippets with command-line examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing recall context and operational artifacts for OpenClaw memory workflows.] <br>
+**Other Properties Related to Output:** [Produces agent memory records, scene Markdown, persona Markdown, search tool responses, and operational commands or configuration guidance.] <br>
 
 ## Skill Version(s): <br>
-0.3.8 (source: frontmatter, package.json, server release metadata) <br>
+0.3.7 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

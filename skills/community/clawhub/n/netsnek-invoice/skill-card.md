@@ -1,47 +1,60 @@
-## Description: <br>
-Creates and manages invoices as JSON files on GitHub with sequential numbering, preview, and upload. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and manages invoices as JSON files on GitHub with sequential numbering, preview, and upload.
 
-## Publisher: <br>
-[kleberbaum](https://clawhub.ai/user/kleberbaum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kleberbaum](https://clawhub.ai/user/kleberbaum)
 
-## Use Case: <br>
-Developers, operators, and small-business users use this skill to create invoice or offer JSON records, preview calculated totals, list existing invoices, and upload confirmed records to a private GitHub repository. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write sensitive invoice, customer, VAT, bank, pricing, and line-item data to a GitHub repository. <br>
-Mitigation: Use a dedicated private invoice repository and a fine-grained GitHub token limited to that repository. <br>
-Risk: Short confirmations such as OK or Ja may approve persistence of invoice data and downstream PDF or email automation. <br>
-Mitigation: Review each preview carefully before confirming upload, especially when the target repository has automated invoice delivery. <br>
-Risk: The skill requires command execution and network access through curl, python3, and base64. <br>
-Mitigation: Deploy only in an environment where script execution and the configured GitHub token are acceptable for invoice handling. <br>
+## Use Case:
 
+External users and developers use this skill to create, preview, list, and upload invoice or offer JSON records to a private GitHub repository for downstream PDF generation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kleberbaum/netsnek-invoice) <br>
-- [README](artifact/README.md) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [Manifest](artifact/claw.json) <br>
-- [Basic Invoice Creation Example](artifact/examples/basic.md) <br>
-- [Invoice Commands Example](artifact/examples/commands.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown conversation text with shell command execution and generated invoice JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Telegram-compatible preview text and stores invoice or offer records as JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter, manifest, server release metadata) <br>
+Risk: Unsafe user-influenced prefix, year, or invoice number values may reach local scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain prefix, year, and invoice number values to expected formats before running scripts; reject arbitrary values.
+
+Risk: Existing invoice records can be overwritten despite the stated guardrails.
+
+Mitigation: Require the upload path to refuse existing-file overwrites unless a separate explicit overwrite confirmation is implemented.
+
+Risk: Business-sensitive invoice data and GitHub credentials are handled by the workflow.
+
+Mitigation: Use a dedicated private invoice repository and a short-lived fine-grained GitHub token limited to that repository.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kleberbaum/skills/netsnek-invoice)
+- [README](artifact/README.md)
+- [Basic Invoice Creation Example](artifact/examples/basic.md)
+- [Invoice Commands Example](artifact/examples/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown/plain text guidance with JSON invoice records and bash command invocations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GITHUB_TOKEN and INVOICE_REPO; can write invoice JSON files to a configured GitHub repository.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, claw.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,51 @@
-## Description: <br>
-Searches royalty-free background music on Pixabay Music and returns track URLs and metadata for audio selection with dLazy API authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Pixabay Music and returns royalty-free track URLs and metadata for background music selection.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Developers, creators, and agent users use this skill to search for background music candidates and retrieve track metadata through the dLazy CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dLazy API key that may be stored in local CLI configuration. <br>
-Mitigation: Treat the dLazy API key as a credential, restrict access to the local config, and rotate or revoke the key if exposure is suspected. <br>
-Risk: Search queries, parameters, and provided media inputs may be sent to dLazy services for processing. <br>
-Mitigation: Use the skill only for inputs appropriate for dLazy remote processing and avoid sending sensitive media or confidential search context. <br>
-Risk: Installing the dLazy CLI globally can leave a persistent executable on the system. <br>
-Mitigation: Use the npx invocation or a reviewed pinned CLI version when a persistent global install is not desired. <br>
+## Use Case:
 
+Developers and content creators can search for background music by entering 2–3 short English style keywords, then review the matching tracks' URLs and metadata.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-search-audio) <br>
-- [dLazy CLI source](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires dLazy API authentication and may return asynchronous task identifiers for polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server evidence and frontmatter) <br>
+Risk: The security review was partial. Its guidance notes that the CLI authentication commands did not match the stated music-search purpose, and the package was not independently inspected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing or authenticating, review the pinned @dlazy/cli package and its referenced materials. Use a scoped API key and rotate or revoke it if needed.
+
+## Reference(s):
+
+- [dLazy CLI project page (listed in skill metadata)](https://github.com/dlazy-ai/cli)
+- [@dlazy/cli package on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy service website](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [JSON search results with track URLs and metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill recommends 2–3 short English style keywords; the CLI defaults to 10 results per page.]
+
+## Skill Version(s):
+
+1.3.42 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

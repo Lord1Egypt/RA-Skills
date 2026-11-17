@@ -1,46 +1,66 @@
-## Description: <br>
-Browser Automation enables AI agents to control Chrome through PinchTab for navigation, interaction, testing, scraping, extraction, screenshots, PDFs, and multi-instance browser workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation for AI agents using PinchTab to control Chrome programmatically for testing, scraping, interaction, text extraction, multi-instance orchestration, headless or headed browsing, and MCP integration.
 
-## Publisher: <br>
-[huamu668](https://clawhub.ai/user/huamu668) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[huamu668](https://clawhub.ai/user/huamu668)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to have agents drive real Chrome sessions for web testing, scraping, form interaction, visual checks, and browser-based data extraction. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Browser profiles, cookies, local storage, screenshots, PDFs, and extracted page content may contain sensitive data. <br>
-Mitigation: Use dedicated or disposable browser profiles for sensitive sites and delete screenshots, PDFs, and extracted data when they are no longer needed. <br>
-Risk: Agent-driven browser control can submit forms, click controls, run JavaScript, or interact with authenticated sessions in unintended ways. <br>
-Mitigation: Review planned actions before execution, avoid hardcoding real credentials, and use least-privileged test accounts where possible. <br>
-Risk: A local browser automation service exposed beyond trusted access could allow unauthorized browser control. <br>
-Mitigation: Keep the PinchTab service bound to trusted local access and restrict network exposure. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/huamu668/browser-automation-pin) <br>
-- [PinchTab Documentation](https://pinchtab.com/docs) <br>
-- [PinchTab GitHub](https://github.com/pinchtab/pinchtab) <br>
-- [Agent Optimization Guide](https://pinchtab.com/docs/guides/agent-optimization) <br>
-- [Common Patterns](https://pinchtab.com/docs/guides/common-patterns) <br>
-- [SMCP Plugin](https://github.com/pinchtab/pinchtab/tree/main/plugins) <br>
+## Use Case:
 
+Developers and automation engineers use this skill to guide agents through browser navigation, interaction, web data extraction, form workflows, visual checks, and Chrome-based validation tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Code, Configuration] <br>
-**Output Format:** [Markdown with bash and HTTP API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides agents to create browser artifacts such as extracted text, screenshots, PDFs, and JavaScript evaluation results through PinchTab.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes a remote curl-to-bash installer pattern.
+
+Mitigation: Review the installer before use and prefer a pinned, verifiable npm or container release, especially in privileged or secret-rich environments.
+
+Risk: Persistent browser profiles can retain cookies, local storage, and authenticated sessions.
+
+Mitigation: Treat profiles and cookies as credentials, use test accounts where possible, and isolate or remove profiles after sensitive automation.
+
+Risk: Browser outputs such as screenshots, PDFs, cookies, and extracted page text may contain sensitive information.
+
+Mitigation: Avoid exposing these outputs from sensitive sites to untrusted agents, logs, or shared storage.
+
+Risk: Automated browser interaction can perform actions on live sites or authenticated accounts.
+
+Mitigation: Run against test environments and accounts where possible, review target URLs and actions before execution, and clean up browser instances after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huamu668/skills/browser-automation-pin)
+- [Publisher profile](https://clawhub.ai/user/huamu668)
+- [PinchTab documentation](https://pinchtab.com/docs)
+- [PinchTab GitHub](https://github.com/pinchtab/pinchtab)
+- [Agent Optimization Guide](https://pinchtab.com/docs/guides/agent-optimization)
+- [Common Patterns](https://pinchtab.com/docs/guides/common-patterns)
+- [SMCP Plugin](https://github.com/pinchtab/pinchtab/tree/main/plugins)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with inline bash commands, curl examples, API patterns, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may produce browser actions, screenshots, PDFs, extracted page text, cookies, or JavaScript evaluation commands when used with PinchTab.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

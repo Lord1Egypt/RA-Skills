@@ -1,0 +1,429 @@
+openapi: 3.0.3
+info:
+  title: Enterprise AI Landing Guide Public API
+  version: 1.2.0
+  description: >-
+    企业AI落地导航公共API。匿名会话先生成地图，用户分别授权保存和联系后，
+    才可请求FDE人工复核。本API不暴露FDE内部管理路由。
+servers:
+  - url: https://fde.lantuzhigou.com
+    description: 蓝图FDE企业AI落地导航公网HTTPS服务
+tags:
+  - name: LandingGuide
+paths:
+  /api/public/clawhive/v1/health:
+    get:
+      tags: [LandingGuide]
+      operationId: healthEnterpriseAiLandingGuide
+      summary: 健康检查
+      responses:
+        '200':
+          description: 服务可用
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status]
+                properties:
+                  status: { type: string, enum: [ok] }
+  /api/public/clawhive/v1/sessions:
+    post:
+      tags: [LandingGuide]
+      operationId: createAiLandingSession
+      summary: 创建匿名会话
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSessionRequest'
+      responses:
+        '201':
+          description: 会话已创建
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateSessionResponse'
+        '400': { $ref: '#/components/responses/PublicError' }
+  /api/public/clawhive/v1/sessions/{id}/messages:
+    post:
+      tags: [LandingGuide]
+      operationId: answerAiLandingQuestion
+      summary: 提交一轮回答并只获取一个主要问题
+      security: [{ sessionToken: [] }]
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [message]
+              properties:
+                message: { type: string, minLength: 1, maxLength: 4000 }
+                mode: { $ref: '#/components/schemas/EntryMode' }
+      responses:
+        '200':
+          description: 当轮结果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+        '400': { $ref: '#/components/responses/PublicError' }
+        '401': { $ref: '#/components/responses/PublicError' }
+        '409': { $ref: '#/components/responses/PublicError' }
+  /api/public/clawhive/v1/sessions/{id}/attachments:
+    post:
+      tags: [LandingGuide]
+      operationId: uploadAiLandingAttachment
+      summary: 上传当前匿名会话的临时附件
+      security: [{ sessionToken: [] }]
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [file]
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: 附件已保存并尝试解析
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttachmentResponse'
+        '400': { $ref: '#/components/responses/PublicError' }
+        '401': { $ref: '#/components/responses/PublicError' }
+        '413': { $ref: '#/components/responses/PublicError' }
+        '415': { $ref: '#/components/responses/PublicError' }
+  /api/public/clawhive/v1/sessions/{id}/generate-map:
+    post:
+      tags: [LandingGuide]
+      operationId: generateAiLandingMap
+      summary: 生成严格JSON和Markdown落地地图
+      security: [{ sessionToken: [] }]
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      responses:
+        '200':
+          description: 地图已生成
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LandingMapResponse'
+        '400': { $ref: '#/components/responses/PublicError' }
+        '401': { $ref: '#/components/responses/PublicError' }
+        '502': { $ref: '#/components/responses/PublicError' }
+  /api/public/clawhive/v1/sessions/{id}/map:
+    get:
+      tags: [LandingGuide]
+      operationId: getAiLandingMap
+      summary: 查询已生成的落地地图
+      security: [{ sessionToken: [] }]
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: 地图
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LandingMapResponse'
+        '401': { $ref: '#/components/responses/PublicError' }
+        '404': { $ref: '#/components/responses/PublicError' }
+  /api/public/clawhive/v1/sessions/{id}/consent:
+    post:
+      tags: [LandingGuide]
+      operationId: saveAiLandingConsent
+      summary: 分别保存同意保存与同意联系
+      security: [{ sessionToken: [] }]
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsentRequest'
+      responses:
+        '200':
+          description: 授权状态已保存
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsentResponse'
+        '400': { $ref: '#/components/responses/PublicError' }
+        '401': { $ref: '#/components/responses/PublicError' }
+  /api/public/clawhive/v1/sessions/{id}/convert:
+    post:
+      tags: [LandingGuide]
+      operationId: requestFdeHumanReview
+      summary: 把已授权地图幂等转换为FDE人工复核业务对象
+      security: [{ sessionToken: [] }]
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      responses:
+        '200':
+          description: 转换结果；重复调用返回原ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConversionResponse'
+        '400': { $ref: '#/components/responses/PublicError' }
+        '401': { $ref: '#/components/responses/PublicError' }
+        '503': { $ref: '#/components/responses/PublicError' }
+  /api/public/clawhive/v1/sessions/{id}:
+    delete:
+      tags: [LandingGuide]
+      operationId: deleteAiLandingSession
+      summary: 删除匿名会话和临时附件
+      security: [{ sessionToken: [] }]
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: 已删除
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [deleted, convertedBusinessDataRetained]
+                properties:
+                  deleted: { type: boolean }
+                  convertedBusinessDataRetained: { type: boolean }
+        '401': { $ref: '#/components/responses/PublicError' }
+        '404': { $ref: '#/components/responses/PublicError' }
+components:
+  securitySchemes:
+    sessionToken:
+      type: http
+      scheme: bearer
+      bearerFormat: OpaqueSessionToken
+      description: 由创建会话返回，只存于当前会话上下文，不得写入Skill包或日志。
+  parameters:
+    SessionId:
+      name: id
+      in: path
+      required: true
+      schema: { type: string, format: uuid }
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      schema: { type: string, minLength: 8, maxLength: 128 }
+  responses:
+    PublicError:
+      description: 可读且已脱敏的公共错误
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    EntryMode:
+      type: string
+      enum: [KNOWN_PROBLEM, OPPORTUNITY_SCAN]
+    SourcePlatform:
+      type: string
+      enum: [CLAWHUB, CLAWHIVE, LOBSTER_AI, COZE, CHATGPT, DIFY, SMITHERY, GLAMA, MODELSCOPE, FDE_WEBSITE]
+    CreateSessionRequest:
+      type: object
+      required: [sourcePlatform, sourceVersion]
+      additionalProperties: false
+      properties:
+        sourcePlatform: { $ref: '#/components/schemas/SourcePlatform' }
+        sourceVersion: { type: string, pattern: '^\\d+\\.\\d+\\.\\d+(?:[-+][A-Za-z0-9.-]+)?$' }
+        externalSessionId: { type: string, minLength: 1, maxLength: 128 }
+        externalUserId: { type: string, maxLength: 128 }
+        campaignCode: { type: string, maxLength: 100 }
+        referrer: { type: string, maxLength: 500 }
+        entryUrl: { type: string, maxLength: 1000 }
+        installationId: { type: string, maxLength: 128 }
+        mode: { $ref: '#/components/schemas/EntryMode' }
+    CreateSessionResponse:
+      type: object
+      required: [sessionId, sessionToken, expiresAt, currentStage, entryModes, source]
+      properties:
+        sessionId: { type: string, format: uuid }
+        sessionToken: { type: string, writeOnly: true }
+        expiresAt: { type: string, format: date-time }
+        currentStage: { type: string }
+        entryModes:
+          type: array
+          items:
+            type: object
+            required: [code, name]
+            properties:
+              code: { $ref: '#/components/schemas/EntryMode' }
+              name: { type: string }
+        source: { $ref: '#/components/schemas/SourceAttribution' }
+    SourceAttribution:
+      type: object
+      required: [sourceChannel, sourcePlatform, sourceApp, sourceVersion]
+      properties:
+        sourceChannel: { type: string, enum: [SKILL_MARKET, AGENT_MARKET, MCP_DIRECTORY, OFFICIAL_WEBSITE, PRIVATE_SHARE, API_PARTNER] }
+        sourcePlatform: { $ref: '#/components/schemas/SourcePlatform' }
+        sourceApp: { type: string, enum: [enterprise-ai-landing-guide] }
+        sourceVersion: { type: string }
+        externalSessionId: { type: string }
+        campaignCode: { type: string, nullable: true }
+    MessageResponse:
+      type: object
+      required: [assistantMessage, currentStage, extractedFacts, aiInferences, unknownItems, canGenerateMap]
+      properties:
+        assistantMessage: { type: string }
+        currentStage: { type: string }
+        extractedFacts: { type: array, items: { type: string } }
+        aiInferences: { type: array, items: { type: string } }
+        unknownItems: { type: array, items: { type: string } }
+        nextQuestion: { type: string, nullable: true }
+        canGenerateMap: { type: boolean }
+    AttachmentResponse:
+      type: object
+      required: [attachmentId, displayName, fileSize, mimeType, parseStatus, parseMessage, currentStage]
+      properties:
+        attachmentId: { type: string, format: uuid }
+        displayName: { type: string }
+        fileSize: { type: integer }
+        mimeType: { type: string }
+        parseStatus: { type: string, enum: [PARSED, FAILED] }
+        parseMessage: { type: string }
+        currentStage: { type: string }
+    LandingMapResponse:
+      type: object
+      required: [map, markdown, opportunityScore, currentStage, generatedAt]
+      properties:
+        map: { $ref: '#/components/schemas/LandingMap' }
+        markdown: { type: string }
+        opportunityScore: { type: integer, minimum: 0, maximum: 100 }
+        currentStage: { type: string }
+        generatedAt: { type: string, format: date-time }
+    ConsentRequest:
+      type: object
+      required: [consentToStore, consentToContact]
+      additionalProperties: false
+      properties:
+        consentToStore: { type: boolean }
+        consentToContact: { type: boolean }
+        companyName: { type: string, maxLength: 200 }
+        contactName: { type: string, maxLength: 100 }
+        mobile: { type: string, maxLength: 20 }
+        email: { type: string, format: email, maxLength: 200 }
+    ConsentResponse:
+      type: object
+      required: [consentToStore, consentToContact, consentVersion, consentTimestamp, canConvert]
+      properties:
+        consentToStore: { type: boolean }
+        consentToContact: { type: boolean }
+        consentVersion: { type: string }
+        consentTimestamp: { type: string, format: date-time }
+        canConvert: { type: boolean }
+    ConversionResponse:
+      type: object
+      required: [conversionStatus, duplicate, customerId, opportunityId, visitId, taskId, source]
+      properties:
+        conversionStatus: { type: string, enum: [CONVERTED, ALREADY_CONVERTED] }
+        duplicate: { type: boolean }
+        attributionId: { type: string, format: uuid, nullable: true }
+        customerId: { type: string, format: uuid }
+        contactId: { type: string, format: uuid, nullable: true }
+        opportunityId: { type: string, format: uuid }
+        visitId: { type: string, format: uuid }
+        taskId: { type: string, format: uuid }
+        source: { $ref: '#/components/schemas/SourceAttribution' }
+    LandingMap:
+      type: object
+      additionalProperties: false
+      required: [companyProfile, factStatus, candidateScenarios, primaryScenario, currentFlow, aiEnabledFlow, validationPlan, budgetSource, nextActions]
+      properties:
+        companyProfile:
+          type: object
+          required: [industry, companySize, userRole, currentGoal]
+          properties:
+            industry: { type: string }
+            companySize: { type: string }
+            userRole: { type: string }
+            currentGoal: { type: string }
+        factStatus:
+          type: object
+          required: [confirmedFacts, fileEvidence, aiInferences, unknownItems]
+          properties:
+            confirmedFacts: { type: array, items: { type: string } }
+            fileEvidence: { type: array, items: { type: string } }
+            aiInferences: { type: array, items: { type: string } }
+            unknownItems: { type: array, items: { type: string } }
+        candidateScenarios:
+          type: array
+          minItems: 1
+          maxItems: 3
+          items:
+            type: object
+            required: [name, currentProblem, currentLoss, currentOperator, aiParticipation, humanResponsibilities, requiredData, businessValueScore, implementationDifficultyScore, dataReadinessScore, sevenDayValidationPossible, reason]
+            properties:
+              name: { type: string }
+              currentProblem: { type: string }
+              currentLoss: { type: string }
+              currentOperator: { type: string }
+              aiParticipation: { type: string }
+              humanResponsibilities: { type: array, items: { type: string } }
+              requiredData: { type: array, items: { type: string } }
+              businessValueScore: { type: integer, minimum: 0, maximum: 100 }
+              implementationDifficultyScore: { type: integer, minimum: 0, maximum: 100 }
+              dataReadinessScore: { type: integer, minimum: 0, maximum: 100 }
+              sevenDayValidationPossible: { type: boolean }
+              reason: { type: string }
+        primaryScenario:
+          type: object
+          required: [name, selectionReason]
+          properties:
+            name: { type: string }
+            selectionReason: { type: string }
+        currentFlow: { type: array, items: { type: string } }
+        aiEnabledFlow:
+          type: array
+          items:
+            type: object
+            required: [step, executor]
+            properties:
+              step: { type: string }
+              executor: { type: string, enum: [AI_EXECUTE, HUMAN_CONFIRM, SYSTEM_EXECUTE, ESCALATE_TO_HUMAN] }
+        validationPlan:
+          type: object
+          required: [validationObject, requiredMaterials, day7Result, day30Metrics, stopConditions]
+          properties:
+            validationObject: { type: string }
+            requiredMaterials: { type: array, items: { type: string } }
+            day7Result: { type: array, items: { type: string } }
+            day30Metrics: { type: array, items: { type: string } }
+            stopConditions: { type: array, items: { type: string } }
+        budgetSource:
+          type: object
+          required: [type, basis, unknownItems]
+          properties:
+            type: { type: string }
+            basis: { type: string }
+            unknownItems: { type: array, items: { type: string } }
+        nextActions:
+          type: array
+          uniqueItems: true
+          items: { type: string, enum: [CONTINUE_OPTIMIZATION, REQUEST_FDE_REVIEW] }
+    ErrorResponse:
+      type: object
+      required: [code, message, requestId, timestamp, data]
+      properties:
+        code: { type: string }
+        message: { type: string }
+        requestId: { type: string }
+        timestamp: { type: string, format: date-time }
+        data: { nullable: true }

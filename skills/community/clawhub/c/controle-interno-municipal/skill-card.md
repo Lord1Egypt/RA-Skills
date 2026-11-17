@@ -1,46 +1,55 @@
-## Description: <br>
-Controle Interno Municipal provides Portuguese-language guidance for Brazilian municipal internal control, including UCI implementation, audits, reports, risk management, transparency checks, and special accountability proceedings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Brazilian Portuguese guidance for municipal internal-control implementation, operations, audits, reports, risk management, and special accountability procedures for city halls and municipal chambers.
 
-## Publisher: <br>
-[inovabizpi-cell](https://clawhub.ai/user/inovabizpi-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[inovabizpi-cell](https://clawhub.ai/user/inovabizpi-cell)
 
-## Use Case: <br>
-External public-sector professionals, municipal control staff, auditors, and agents serving Brazilian city halls or municipal chambers use this skill to draft grounded guidance, checklists, reports, opinions, and risk controls for internal control workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Brazil <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public-sector legal, audit, and accountability guidance may be outdated or may not match the user's local municipal rules, tribunal requirements, or facts. <br>
-Mitigation: Verify citations, deadlines, values, and formal reports against current local rules and qualified professional review before official use. <br>
-Risk: Audit conclusions or control opinions may be over-applied without sufficient documentary evidence. <br>
-Mitigation: Use the skill's evidence-oriented workflow: define scope, collect documents, classify findings, document recommendations, and retain records for review. <br>
+## Use Case:
 
+External municipal controllers, auditors, public managers, and advisors use this skill to answer Portuguese-language questions and prepare checklists, reports, opinions, and audit routines for Brazilian city halls and municipal chambers.
 
-## Reference(s): <br>
-- [Controle Interno Municipal](https://clawhub.ai/inovabizpi-cell/controle-interno-municipal) <br>
-- [Implantacao da Unidade de Controle Interno (UCI)](references/implantacao-uci.md) <br>
-- [Rotinas e Checklists de Auditoria](references/rotinas-auditoria.md) <br>
-- [Pareceres e Relatorios do Controle Interno](references/pareceres-relatorios.md) <br>
-- [Gestao de Riscos no Setor Publico Municipal](references/gestao-riscos.md) <br>
-- [Condutas Reiteradas e Consequencias nos Tribunais de Contas](references/condutas-reiteradas-tce.md) <br>
-- [Tomada de Contas Especial (TCE)](references/tomada-contas-especial.md) <br>
+### Deployment Geography for Use:
 
+Brazil, with Maranhao/TCE-MA material where indicated
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Checklists, Templates] <br>
-**Output Format:** [Markdown prose, tables, checklists, and report or opinion templates in Brazilian Portuguese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed against current local rules, tribunal requirements, and qualified professional judgment before official use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: ClawHub release evidence) <br>
+Risk: The skill provides jurisdiction-specific legal and procedural guidance, including Maranhao/TCE-MA and current TCU references that may change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify deadlines, thresholds, authorities, and applicable local rules before relying on the guidance in official municipal-control work.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/inovabizpi-cell/skills/controle-interno-municipal)
+- [Implantacao da Unidade de Controle Interno (UCI)](references/implantacao-uci.md)
+- [Rotinas e Checklists de Auditoria](references/rotinas-auditoria.md)
+- [Pareceres e Relatorios do Controle Interno](references/pareceres-relatorios.md)
+- [Gestao de Riscos no Setor Publico Municipal](references/gestao-riscos.md)
+- [Condutas Reiteradas e Consequencias nos Tribunais de Contas](references/condutas-reiteradas-tce.md)
+- [Tomada de Contas Especial (TCE)](references/tomada-contas-especial.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Portuguese-language Markdown with checklists, tables, and practical templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Jurisdiction-specific legal and procedural references should be verified before official use.]
+
+## Skill Version(s):
+
+1.3.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

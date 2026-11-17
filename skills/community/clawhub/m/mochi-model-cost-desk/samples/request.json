@@ -1,0 +1,17 @@
+{
+  "action": "estimate",
+  "file": "samples/usage.csv",
+  "ratesAsOf": "Fictional sample, not provider pricing",
+  "rates": [
+    {
+      "model": "demo-model",
+      "currency": "USD",
+      "inputPerMillion": "2",
+      "cachedInputPerMillion": ".2",
+      "outputPerMillion": "8"
+    }
+  ],
+  "budget": {
+    "USD": "5"
+  }
+}

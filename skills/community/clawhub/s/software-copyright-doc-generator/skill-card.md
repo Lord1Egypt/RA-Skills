@@ -1,42 +1,56 @@
-## Description: <br>
-Generates Chinese software copyright application materials, including application form content, software manual text, and source-code submission guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese software copyright application materials, including application-form content, software manual text, technical document checklists, and source-code formatting guidance.
 
-## Publisher: <br>
-[grancy-zgs](https://clawhub.ai/user/grancy-zgs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[grancy-zgs](https://clawhub.ai/user/grancy-zgs)
 
-## Use Case: <br>
-External users and developers preparing Chinese software copyright registration materials use this skill to collect software details, draft application text, prepare user manual content, and receive source-code formatting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper script can automatically install an unpinned Python package when run. <br>
-Mitigation: Install python-docx from a trusted source in a virtual environment before running the generator. <br>
-Risk: Generated legal or application text may be incomplete or unsuitable for a specific submission. <br>
-Mitigation: Review all generated copyright application materials before submitting them. <br>
+## Use Case:
 
+Developers, product teams, and applicants preparing Chinese software copyright registration materials use this skill to turn basic software details into application-form content, a software manual, a technical document checklist, and source-code submission guidance.
 
-## Reference(s): <br>
-- [Software copyright source-code formatting requirements](references/源代码格式要求.md) <br>
-- [Software copyright application form guidance](references/申请表填写说明.md) <br>
-- [Software manual template](references/软件说明书模板.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown guidance and generated DOCX or Markdown document content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated application materials should be reviewed before submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact/_meta.json) <br>
+Risk: The helper script can automatically run an unpinned package install for python-docx when the dependency is missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before use, run it in an isolated environment, or remove the automatic install behavior and install reviewed dependencies explicitly.
+
+Risk: The security verdict is suspicious despite no listed risk findings.
+
+Mitigation: Review the skill before installing or running it, and treat generated filing materials as drafts that require user verification before submission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/grancy-zgs/skills/software-copyright-doc-generator)
+- [Software copyright source-code format requirements](references/源代码格式要求.md)
+- [Software copyright application-form instructions](references/申请表填写说明.md)
+- [Software manual template](references/软件说明书模板.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown guidance plus generated DOCX and Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a copyright application form, software manual, and technical document checklist in a local output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Provides three PTrade quantitative trading strategies for small-cap selection, factor and ATR risk control, and sector rotation through deployable Python strategy files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides three deployable PTrade quantitative trading strategies for small-cap selection, 8-factor scoring with ATR risk controls, and sector rotation with trailing stops.
 
-## Publisher: <br>
-[martin-sh-ni](https://clawhub.ai/user/martin-sh-ni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[martin-sh-ni](https://clawhub.ai/user/martin-sh-ni)
 
-## Use Case: <br>
-Quantitative developers and trading operators use this skill to review, adapt, and deploy PTrade strategy code for small-cap equity selection, multi-factor momentum selection with ATR controls, and sector ETF rotation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contains live-trading strategy code with credible safety defects that could cause unintended financial exposure. <br>
-Mitigation: Do not run it against a live brokerage account until order semantics and black-swan protection are fixed and tested in paper trading. <br>
-Risk: Automated order submission could create unwanted or duplicate positions if controls are incomplete. <br>
-Mitigation: Use explicit position limits, a kill switch, duplicate-order protection, and manual approval before live order submission. <br>
+## Use Case:
 
+Developers and quantitative trading practitioners use this skill to generate or adapt PTrade live-trading scripts for small-cap equity selection, factor scoring with ATR-based risk controls, and ETF sector rotation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/martin-sh-ni/ptrade-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with Python strategy files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for review and testing before any live brokerage use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill ships automated live-trading scripts whose orders can affect real funds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review strategy behavior, run paper trading or backtests, and use explicit human approval before connecting to funded brokerage accounts.
+
+Risk: Server security analysis reports material risk-control and order-state flaws.
+
+Mitigation: Fix the black-swan data-window issue, add broker fill and rejection reconciliation, and enforce aggregate exposure limits before live use.
+
+Risk: Documented schedules and scoring may diverge from the actual strategy code.
+
+Mitigation: Validate rebalance schedules, factor scoring, stop-loss behavior, and position sizing against the code and intended PTrade runtime.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/martin-sh-ni/skills/ptrade-skills)
+- [Publisher profile](https://clawhub.ai/user/martin-sh-ni)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance and Python strategy scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces deployable PTrade strategy code that should be reviewed and tested before live trading.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

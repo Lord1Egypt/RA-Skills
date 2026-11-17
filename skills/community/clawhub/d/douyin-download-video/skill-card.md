@@ -1,42 +1,59 @@
-## Description: <br>
-Downloads videos from yt-dlp-supported sites such as YouTube, Bilibili, and Douyin using yt-dlp and FFmpeg. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads videos from yt-dlp-supported sites using yt-dlp and ffmpeg, with options for quality, audio-only output, and output directory.
 
-## Publisher: <br>
-[heihu123](https://clawhub.ai/user/heihu123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heihu123](https://clawhub.ai/user/heihu123)
 
-## Use Case: <br>
-Developers and agent users use this skill when they want an agent to save videos or audio from yt-dlp-compatible sites into a local downloads folder, with options for quality, output directory, and audio-only extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically install or update local video-tool dependencies such as yt-dlp and FFmpeg. <br>
-Mitigation: Use an isolated Python environment and prefer preinstalling pinned, verified versions of yt-dlp and FFmpeg before running the skill. <br>
-Risk: Browser-cookie mode can expose authenticated browser sessions to download tooling. <br>
-Mitigation: Use browser-cookie mode only for a specific intended site and session, and avoid it when downloading public or unauthenticated media. <br>
+## Use Case:
 
+External users and developers use this skill to download video or audio from yt-dlp-supported sites, including YouTube, Bilibili, Douyin, and other supported services. It is intended for cases where an agent needs to save media files with configurable quality, format, and destination folder.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/heihu123/douyin-download-video) <br>
-- [FFmpeg downloads](https://ffmpeg.org/download.html) <br>
-- [Windows FFmpeg build used by artifact](https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python script usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a local Python helper that calls yt-dlp, writes downloaded media files to the selected output directory, and may install or locate video-tool dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A normal download can automatically install or fetch executable tools without integrity checks or clear per-use consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use an environment where automatic package installation is acceptable, and prefer installing reviewed versions of yt-dlp and ffmpeg yourself.
+
+Risk: Browser-cookie options can expose logged-in session credentials to yt-dlp.
+
+Mitigation: Avoid browser-cookie options unless they are necessary and you understand the credential exposure.
+
+Risk: The skill writes downloaded media files to local folders.
+
+Mitigation: Restrict output paths to folders you intend the tool to write to.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/heihu123/skills/douyin-download-video)
+- [FFmpeg downloads](https://ffmpeg.org/download.html)
+- [Gyan FFmpeg Windows build](https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Downloaded video or audio files with terminal progress text and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write media files to the user's Downloads folder or a caller-specified output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

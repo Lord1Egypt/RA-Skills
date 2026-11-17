@@ -1,38 +1,52 @@
-## Description: <br>
-Convert lecture transcripts into structured study notes, key concepts, and exam review summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert lecture transcripts into structured study notes, key concepts, and exam review summaries.
 
-## Publisher: <br>
-[yvette1226](https://clawhub.ai/user/yvette1226) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yvette1226](https://clawhub.ai/user/yvette1226)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Students and other learners use this skill to turn lecture, class recording, seminar, or educational video transcripts into concise study notes, key concepts, topic summaries, examples, and exam review material.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Lecture transcripts may contain private class discussions, names, or sensitive academic material.
+
+Mitigation: Use only transcripts the user is comfortable processing with the agent, and redact sensitive details when appropriate.
+
+Risk: Study notes may become misleading if the agent fills gaps in an unclear transcript.
+
+Mitigation: Follow the skill rule to avoid inventing information and mark unclear concepts as uncertain.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Students and other learners use this skill to turn lecture, class recording, seminar, or educational video transcripts into organized study notes, key concepts, topic summaries, examples, and quick review material. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Lecture transcripts can include names, grades, private classroom discussion, or copyrighted course material. <br>
-Mitigation: Only provide transcripts the user is comfortable having an assistant process, and review generated notes before sharing or relying on them. <br>
+**Output Format:** [Structured Markdown study notes with summaries, bullet points, key concepts, examples, and quick review notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yvette1226/lecture-transcript-study-notes) <br>
+**Other Properties Related to Output:** [Requires a user-provided transcript; unclear concepts should be marked uncertain and unsupported information should not be invented.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown study notes with headings and bullet points] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill tells the agent to avoid inventing information and to mark unclear concepts as uncertain.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

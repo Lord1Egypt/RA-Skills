@@ -1,46 +1,61 @@
-## Description: <br>
-Reviews medical-device software code for safety, cybersecurity, quality, and compliance against IEC 62304, YY/T 0664, and China NMPA expectations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews medical-device software code for safety, quality, cybersecurity, and IEC 62304/YY/T 0664 and China NMPA compliance concerns.
 
-## Publisher: <br>
-[myjnathan](https://clawhub.ai/user/myjnathan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[myjnathan](https://clawhub.ai/user/myjnathan)
 
-## Use Case: <br>
-Developers, safety engineers, and regulatory reviewers use this skill to structure medical-device software code reviews around safety classification, risk controls, cybersecurity checks, test coverage, traceability, and China NMPA documentation needs. Treat its output as an engineering checklist, not a substitute for qualified regulatory, clinical safety, or legal review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/myjnathan/medical-device-code-review) <br>
-- [IEC 62304 Summary](references/iec-62304.md) <br>
-- [China NMPA Medical Device Software Compliance Requirements](references/nmpa-compliance.md) <br>
-- [FDA Cybersecurity Guidance Summary](references/fda-cybersecurity.md) <br>
-- [OWASP Medical Device Security Checklist](references/owasp-medical.md) <br>
-- [FDA Cybersecurity in Medical Devices Guidance](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cybersecurity-medical-devices-quality-system-considerations-and-content-premarket) <br>
-- [MITRE CVE Database](https://cve.mitre.org/) <br>
-- [CISA Cybersecurity Advisories](https://www.cisa.gov/news-events/cybersecurity-advisories) <br>
-- [NMPA](https://www.nmpa.gov.cn) <br>
-- [CMDE](https://www.cmde.org.cn) <br>
+Developers and engineers use this skill to review software for medical devices, including safety classification, code defects, cybersecurity controls, documentation traceability, and China NMPA compliance readiness.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown review report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes safety classification, severity-grouped findings, and compliance notes; no executable code, persistence, credential use, or data-sharing behavior.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill may appear during ordinary code review requests because its trigger wording is broader than its intended medical-device domain.
+
+Mitigation: Use it only when the reviewed software has a medical-device, patient-safety, or regulated healthcare context.
+
+Risk: Regulatory and safety guidance may be incomplete or unsuitable for submissions or safety decisions without expert review.
+
+Mitigation: Validate outputs with qualified medical-device compliance and safety professionals before using them for regulatory submissions or safety-critical decisions.
+
+## Reference(s):
+
+- [IEC 62304 / YY/T 0664 Summary](references/iec-62304.md)
+- [FDA Cybersecurity Guidance Summary](references/fda-cybersecurity.md)
+- [OWASP Medical Device Security Checklist](references/owasp-medical.md)
+- [China NMPA Medical Device Software Compliance Requirements](references/nmpa-compliance.md)
+- [FDA Cybersecurity in Medical Devices](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cybersecurity-medical-devices-quality-system-considerations-and-content-premarket)
+- [MITRE CVE Database](https://cve.mitre.org/)
+- [CISA Cybersecurity Advisories](https://www.cisa.gov/news-events/cybersecurity-advisories)
+- [NMPA](https://www.nmpa.gov.cn)
+- [CMDE](https://www.cmde.org.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured review findings with severity sections, file and line references when available, and compliance notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

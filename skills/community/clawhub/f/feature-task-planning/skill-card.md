@@ -1,42 +1,54 @@
-## Description: <br>
-将技术方案拆解为可执行的开发任务清单，每个任务适配 TDD 流程。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feature Task Planning converts approved feature requirements and technical designs into executable, TDD-ready development task plans.
 
-## Publisher: <br>
-[cping6](https://clawhub.ai/user/cping6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cping6](https://clawhub.ai/user/cping6)
 
-## Use Case: <br>
-Developers and engineering teams use this skill after requirements and technical design are complete to turn a feature plan into vertically sliced, TDD-ready development tasks with dependencies, estimates, and acceptance-criteria coverage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read project context and write a planning markdown file into the repository. <br>
-Mitigation: Review the generated path and content before committing or relying on the plan. <br>
-Risk: A generated task plan can be incomplete or misaligned if the requirements, technical design, or project context are missing or stale. <br>
-Mitigation: Confirm the required inputs are current and verify acceptance-criteria coverage before implementation starts. <br>
+## Use Case:
 
+Developers and engineering leads use this skill after requirements and technical design are approved to break a feature into vertical slices, ordered implementation tasks, dependencies, effort estimates, and TDD-ready verification criteria.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cping6/feature-task-planning) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Feature task planning template](artifact/assets/feature-task-planning-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Files] <br>
-**Output Format:** [Markdown task planning document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a persistent feature task plan organized by vertical slices, including task dependencies, estimates, verification criteria, and AC coverage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill writes a Markdown task plan under specs/features, which could replace or conflict with an existing plan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the destination path and existing files before allowing generation.
+
+Risk: Task plans can be misleading if the referenced requirements, technical design, or project context are missing or stale.
+
+Mitigation: Confirm the stated prerequisites and cross-check AC coverage before using the plan for implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cping6/skills/feature-task-planning)
+- [Feature task planning template](artifact/assets/feature-task-planning-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Files]
+
+**Output Format:** [Markdown task plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a feature task plan under specs/features after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

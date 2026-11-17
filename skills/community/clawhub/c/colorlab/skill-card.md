@@ -1,41 +1,54 @@
-## Description: <br>
-Convert colors and generate palettes with WCAG contrast checks. Use when building palettes, converting hex/RGB, checking accessibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert colors and generate palettes with WCAG contrast checks for palette building, hex/RGB conversion, and accessibility checks.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers, designers, and accessibility reviewers use Colorlab to convert hex and RGB colors, generate lighter or darker palette variants, check WCAG contrast ratios, and find nearby CSS color names from a local command-line workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local shell script, so users could be exposed to unexpected behavior if they install a modified copy from an untrusted source. <br>
-Mitigation: Install only the reviewed Colorlab release from a trusted publisher and compare release hashes or ClawHub security status when available. <br>
-Risk: Color and palette outputs can be misleading if users pass malformed color values or rely on limited named-color matching for design decisions. <br>
-Mitigation: Use normal hex/RGB/count inputs, review command output before applying it, and treat closest CSS color names as approximate labels. <br>
+## Use Case:
 
+Developers and designers use ColorLab to convert color formats, generate palette variants, check WCAG contrast ratios, and identify nearby CSS color names from a terminal workflow.
 
-## Reference(s): <br>
-- [Colorlab on ClawHub](https://clawhub.ai/bytesagain3/colorlab) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Terminal text with ANSI color swatches and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts local color and count inputs; palette swatches require a modern terminal with ANSI 24-bit color support.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: Numeric arguments may permit command injection when supplied from untrusted input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate numeric arguments as decimal integers, reject non-numeric values before arithmetic or awk evaluation, and bound count parameters before release.
+
+Risk: Users may run the local shell helper before reviewing a suspicious security verdict.
+
+Mitigation: Review the shell script and avoid untrusted color or count input until the numeric validation issue is fixed.
+
+## Reference(s):
+
+- [Colorlab ClawHub listing](https://clawhub.ai/bytesagain3/skills/colorlab)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Terminal text and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include ANSI 24-bit color swatches when used in a modern terminal.]
+
+## Skill Version(s):
+
+3.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

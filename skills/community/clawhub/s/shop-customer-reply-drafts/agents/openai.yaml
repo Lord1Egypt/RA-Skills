@@ -1,0 +1,6 @@
+interface:
+  display_name: 店铺客服回复草稿
+  short_description: 根据商品资料和买家问题生成可复制的售前售后客服回复草稿
+  default_prompt: 请根据商品资料、店铺政策和买家问题，生成客服回复草稿并标记缺失信息；不要自动发送或虚构承诺。
+policy:
+  allow_implicit_invocation: true

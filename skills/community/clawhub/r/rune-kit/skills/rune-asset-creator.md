@@ -151,6 +151,7 @@ Known failure modes for this skill. Check these before declaring done.
 | Saving to random location instead of assets/ | MEDIUM | Constraint 3: output_dir defaults to assets/ — always save there |
 | Missing light/dark variants for OG/banner assets | MEDIUM | Step 4: dark mode variant required for any OG/banner asset |
 | Generating raster images (PNG/JPG) directly | MEDIUM | This skill creates SVG/HTML CODE only — raster requires browser-pilot screenshot of generated HTML |
+| Drawing system/architecture/flow/sequence/state/ER/swimlane diagrams | MEDIUM | These are editorial diagrams, not icons/OG assets — route to `diagram` |
 
 ## Done When
 
@@ -165,7 +166,7 @@ Known failure modes for this skill. Check these before declaring done.
 ~500-1500 tokens input, ~500-1000 tokens output. Sonnet for creative quality.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

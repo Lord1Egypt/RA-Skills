@@ -12,9 +12,9 @@ import sys
 import pandas as pd
 
 try:
-    from proxy_demo import get_client
+    from proxy_demo import get_client, enable_utf8_stdout
 except ImportError:
-    from scripts.proxy_demo import get_client
+    from scripts.proxy_demo import get_client, enable_utf8_stdout
 
 
 def index_daily_safe(pro, ts_code: str, **kwargs):
@@ -70,6 +70,7 @@ def moneyflow_ind_dc(pro: "ts.pro_api", date: str) -> pd.DataFrame:
 # ============================================================
 
 if __name__ == "__main__":
+    enable_utf8_stdout()
     pro = get_client()
     print(f"✅ 板块/打板 demo 启动")
 

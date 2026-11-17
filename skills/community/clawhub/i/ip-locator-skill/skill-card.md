@@ -1,43 +1,59 @@
-## Description: <br>
-Automatically retrieves IP geolocation and network information for a specified IP address or the current public IP using the free ip-api.com service without an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up geolocation and network information for a specified IP address or the current public IP using ip-api.com.
 
-## Publisher: <br>
-[likwang](https://clawhub.ai/user/likwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[likwang](https://clawhub.ai/user/likwang)
 
-## Use Case: <br>
-Developers, operators, and security analysts use this skill to check estimated location, ISP, organization, AS number, and related network fields for public IP addresses during troubleshooting, log review, or lightweight network investigation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queried IP addresses, and the user's current public IP when no address is provided, are sent to ip-api.com over unencrypted HTTP. <br>
-Mitigation: Avoid sensitive investigations or confidential network targets unless the provider or transport is replaced with a privacy-reviewed HTTPS option. <br>
-Risk: Returned geolocation is estimated and unsuitable for street-level location or high-assurance attribution. <br>
-Mitigation: Use results as contextual network information and corroborate with other sources before making security or operational decisions. <br>
+## Use Case:
 
+Developers, operators, and security analysts can use this skill to inspect public IP address location, ISP, organization, ASN, and timezone details during troubleshooting or log review.
 
-## Reference(s): <br>
-- [ip-api.com API documentation](https://ip-api.com/docs/) <br>
-- [ip-api.com service page](https://ip-api.com/) <br>
-- [API field reference](references/fields.md) <br>
-- [ClawHub skill page](https://clawhub.ai/likwang/ip-locator-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON or formatted text lookup results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Lookup output is based on ip-api.com responses and may include estimated location, coordinates, timezone, ISP, organization, AS number, and queried IP.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Queried IP addresses, and possibly the user's own public IP, are sent to ip-api.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill for confidential investigations or sensitive customer data unless disclosure to that service is acceptable.
+
+Risk: The artifact uses plain HTTP for ip-api.com requests.
+
+Mitigation: Use an HTTPS-capable provider or modify the skill before handling sensitive lookups.
+
+Risk: Returned geolocation is approximate and may be unsuitable for precise location decisions.
+
+Mitigation: Treat location results as coarse network intelligence and verify with additional sources before acting on them.
+
+## Reference(s):
+
+- [ip-api.com API documentation](https://ip-api.com/docs/)
+- [ip-api.com API field reference](references/fields.md)
+- [ip-api.com service site](https://ip-api.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Text]
+
+**Output Format:** [Markdown with inline bash commands and formatted command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call ip-api.com to return approximate geolocation and network metadata for one or more IP addresses.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

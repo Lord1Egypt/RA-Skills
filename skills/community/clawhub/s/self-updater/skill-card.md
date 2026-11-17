@@ -1,45 +1,54 @@
-## Description: <br>
-Self Updater helps OpenClaw users check and apply OpenClaw core and skill updates with cron-aware scheduling, idle detection, risk assessment, approvals, and notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self Updater helps OpenClaw users check for and apply core and skill updates with cron-aware timing, idle detection, risk assessment, approvals, restart checks, and optional notifications.
 
-## Publisher: <br>
-[GhostDragon124](https://clawhub.ai/user/GhostDragon124) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ghostdragon124](https://clawhub.ai/user/ghostdragon124)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to keep OpenClaw core and installed skills up to date while avoiding scheduled tasks, waiting for idle time, and requiring approval for high-risk updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This skill can change OpenClaw core and installed skills, including in automated runs. <br>
-Mitigation: Install only when a privileged updater is intended, inspect the PowerShell updater and update source before enabling automation, and keep backups or rollback plans. <br>
-Risk: AutoApprove or Quiet cron runs can apply updates without interactive review. <br>
-Mitigation: Avoid unattended approval modes unless the environment has been tested and the update window is acceptable. <br>
-Risk: Notification integrations may require Telegram or Feishu credentials. <br>
-Mitigation: Use limited-scope notification credentials and store only the required environment variables. <br>
+## Use Case:
 
+Developers and operators use this skill to maintain OpenClaw installations by checking and applying core and skill updates while avoiding scheduled tasks and prompting on high-risk changes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/GhostDragon124/self-updater) <br>
-- [Homepage](https://github.com/GhostDragon124/openclaw-self-updater#readme) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with PowerShell and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe update status, risk level, approval prompts, and notification setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.2 (source: frontmatter and server release evidence) <br>
+Risk: The skill can perform unattended OpenClaw core and skill updates, and the referenced updater script is not included in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where unattended updates are acceptable, verify the updater script source and integrity, and keep approval and notifications enabled for core or multi-skill updates.
+
+Risk: The documentation includes unsafe PowerShell ExecutionPolicy Bypass examples.
+
+Mitigation: Avoid those examples and run only trusted updater scripts under an appropriate local execution policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ghostdragon124/skills/self-updater)
+- [Project homepage](https://github.com/GhostDragon124/openclaw-self-updater#readme)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with PowerShell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes optional notification configuration for Telegram and Feishu.]
+
+## Skill Version(s):
+
+1.4.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "UNIHIKER K10 Box PlatformIO"
+  short_description: "K10 Box sensors, six-axis games, audio FFT, and actuators"
+  default_prompt: "Use $unihiker-k10-box-platformio to build or diagnose a PlatformIO/LVGL sensor, audio, motion-game, or actuator project for the UNIHIKER K10 experiment box."

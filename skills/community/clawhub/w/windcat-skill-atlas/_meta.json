@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7f0z6qcqd21gqkc5qf9a9agh841v1s",
-  "slug": "windcat-skill-atlas",
-  "version": "3.0.0",
-  "publishedAt": 1775805196839
+  "owner": "same1317",
+  "slug": "skill-atlas",
+  "displayName": "skill-atlas",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1774503595816,
+    "commit": "https://github.com/openclaw/skills/commit/9c99479eb9425cb0236a64fd2e85ed703095f302"
+  },
+  "history": []
 }

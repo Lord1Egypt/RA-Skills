@@ -1,40 +1,53 @@
-## Description: <br>
-Universal Extractor extracts clean text from URLs, articles, documents, and files through four paid extraction micro-services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract clean text from URLs, articles, documents, and files. Four extraction micro-services. Use when you need to pull content from web pages, PDFs, or any file format.
 
-## Publisher: <br>
-[renoblabs](https://clawhub.ai/user/renoblabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renoblabs](https://clawhub.ai/user/renoblabs)
 
-## Use Case: <br>
-Developers and agents use Universal Extractor to call paid extraction services that turn web pages, articles, PDFs, documents, and arbitrary files into clean text, JSON, or article summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected URLs, filenames, and file contents are sent to a third-party extraction service. <br>
-Mitigation: Avoid confidential, regulated, personal, or credential-containing documents unless approved for sharing with that service. <br>
-Risk: The skill can trigger disclosed per-request USDC charges through x402 payment flows. <br>
-Mitigation: Use wallet or platform controls to review and limit paid requests before execution. <br>
+## Use Case:
 
+Developers and agents use this skill to extract clean text and article summaries from URLs, PDFs, DOCX/TXT documents, and other uploaded files through paid x402 extraction endpoints.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/renoblabs/universal-extractor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The referenced services return extracted text, metadata, word counts, and optional article summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Submitted URLs and encoded document or file contents are sent to the extraction service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content you are authorized to submit, and avoid secrets, internal-only documents, personal data, or regulated data unless provider data-handling terms have been reviewed.
+
+Risk: The documented endpoints require x402 USDC payments.
+
+Mitigation: Confirm that the agent operator accepts the listed fees before using the endpoints.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/renoblabs/skills/universal-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, text, JSON]
+
+**Output Format:** [Markdown guidance with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Service responses may include extracted text, titles, authors, summaries, dates, word counts, and USDC x402 payment requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, created 2026-04-11T06:42:12Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

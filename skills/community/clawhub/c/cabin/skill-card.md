@@ -1,44 +1,55 @@
-## Description: <br>
-Searches and books real flights across 500+ airlines with USDC payments on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and book real flights with USDC payments across 500+ airlines, including flight comparison, booking, payment, confirmation, and check-in guidance.
 
-## Publisher: <br>
-[kobuta23](https://clawhub.ai/user/kobuta23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kobuta23](https://clawhub.ai/user/kobuta23)
 
-## Use Case: <br>
-External users and agent developers use this skill to search flight availability, compare fares, create bookings, and guide USDC payment on Base after explicit user approval. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles passenger personal data and sends booking data to Cabin and travel providers. <br>
-Mitigation: Collect only required passenger details, confirm them with the user before booking, and disclose that booking data will be sent to Cabin and travel providers. <br>
-Risk: The skill can lead an agent toward real USDC payments that may be irreversible. <br>
-Mitigation: Require explicit user approval for each booking and payment, and verify fare, amount, Base deposit address, token, and network before any payment step. <br>
-Risk: An agent with wallet capabilities could execute payment without sufficient user oversight. <br>
-Mitigation: Do not grant unattended wallet authority; require human confirmation before wallet commands or checkout actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cabin ClawHub listing](https://clawhub.ai/kobuta23/cabin) <br>
-- [Cabin homepage](https://cabin.team) <br>
-- [Cabin API](https://api.cabin.team) <br>
-- [Clawdis homepage metadata](https://github.com/yolo-maxi/cabin) <br>
+## Use Case:
 
+External users and agents use this skill to search real flight options, compare prices, create bookings, and complete travel workflows paid in USDC on Base. Agents should request explicit approval before sending passenger details or initiating payment.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown, Shell commands, API calls] <br>
-**Output Format:** [Markdown guidance with JSON request examples, curl commands, URLs, and structured booking details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include rendered flight-result image URLs, booking references, USDC payment amounts, deposit addresses, checkout URLs, confirmation URLs, and check-in URLs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send passenger booking details to a third-party API.
+
+Mitigation: Require explicit user approval before transmitting passenger data and share only the details needed to create the selected booking.
+
+Risk: The skill can instruct an agent to make an irreversible USDC payment.
+
+Mitigation: Do not allow unattended wallet transfers; verify the Base network, USDC token, recipient address, exact amount, booking ID, and fees before every transaction, and prefer the hosted checkout URL.
+
+## Reference(s):
+
+- [Cabin source homepage](https://github.com/yolo-maxi/cabin)
+- [Cabin API](https://api.cabin.team)
+- [Cabin website](https://cabin.team)
+- [ClawHub skill page](https://clawhub.ai/kobuta23/skills/cabin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands, API request examples, flight options, booking links, and payment instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include rendered PNG flight comparison URLs, booking references, checkout URLs, confirmation URLs, and check-in URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

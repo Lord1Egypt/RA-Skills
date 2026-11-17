@@ -1,45 +1,60 @@
-## Description: <br>
-Exploits systematic weekday/weekend posting rate differences in post-count bin markets and can place paper or explicitly enabled live Polymarket trades through simmer-sdk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Polymarket post-count bin markets for weekday/weekend posting-rate drift and uses simmer-sdk to produce paper-by-default trading actions.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External trading agents and advanced developers use this skill to identify post-count bin markets where weekend posting-rate drift may create mispricing, then evaluate or execute bounded paper trades by default and live trades only when explicitly enabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automate financial trades when run with --live and a live-capable SIMMER_API_KEY. <br>
-Mitigation: Start in paper mode, use the least-privileged or lowest-funded key available, and enable --live only after reviewing the strategy, simmer-sdk dependency, and tunables. <br>
-Risk: Weekend-rate assumptions and fixed thresholds may be wrong for current markets or specific public figures. <br>
-Mitigation: Review and adjust the tunables before use, including maximum position size, spread, market volume, trade thresholds, and maximum open positions. <br>
-Risk: The skill requires a sensitive trading credential. <br>
-Mitigation: Keep SIMMER_API_KEY private and avoid placing a live-capable key in environments where automated code can invoke live trading unintentionally. <br>
+## Use Case:
 
+External developers and trading agents use this skill to identify weekend posting-rate drift in Polymarket post-count bin markets and run the strategy in paper mode by default. Operators can explicitly enable live trading after reviewing credentials, dependency trust, and risk controls.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/diagnostikon/polymarket-twitter-weekend-drift-trader) <br>
-- [Simmer skill page](https://simmer.markets/skills) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls] <br>
-**Output Format:** [Console text from market scans and trade attempts, with Python code and JSON configuration in the skill artifact] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to paper trading; live trading requires the --live flag and SIMMER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata and target metadata; artifact frontmatter says 1.0.0 and artifact clawhub.json says 0.0.2) <br>
+Risk: Live-trading safeguards are incomplete enough that real-funds use needs review first.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper mode unless the live risk controls have been reviewed and fixed, then verify market volume, total open-position limits, and min/max trade sizing are enforced before enabling live trading.
+
+Risk: A live-capable SIMMER_API_KEY can authorize real trades.
+
+Mitigation: Keep the credential private, use a limited trading credential, and do not provide a live-capable key to automated environments unless live trading is intentional.
+
+Risk: The skill depends on simmer-sdk for market access and execution.
+
+Mitigation: Pin and review simmer-sdk before providing live credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-twitter-weekend-drift-trader)
+- [Simmer Markets skills](https://simmer.markets/skills)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; runtime output is plain text trading logs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY and simmer-sdk; defaults to paper trading unless --live is passed.]
+
+## Skill Version(s):
+
+0.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

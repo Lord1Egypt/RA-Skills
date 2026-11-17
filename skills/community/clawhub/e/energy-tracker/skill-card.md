@@ -1,47 +1,58 @@
-## Description: <br>
-Daily energy status tracking and multi-day trend analysis tool for collecting check-ins, saving local history, generating charts, and summarizing patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Energy Tracker helps an agent collect daily energy status, save entries, generate trend charts, and analyze multi-day wellness patterns.
 
-## Publisher: <br>
-[martinashes](https://clawhub.ai/user/martinashes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[martinashes](https://clawhub.ai/user/martinashes)
 
-## Use Case: <br>
-External users and agents use this skill to collect a once-daily A/B/C energy check-in, save the response to a local JSON file, generate a trend chart, and explain multi-day energy patterns. It is intended for personal wellbeing tracking and should not be treated as clinical assessment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores recurring wellbeing history in a local plaintext JSON file. <br>
-Mitigation: Choose an acceptable storage location before use, keep the file private, and define how the user can review, back up, or delete the data. <br>
-Risk: The skill provides mental-health-like interpretations and escalation prompts. <br>
-Mitigation: Present outputs as personal tracking guidance, not clinical advice, and encourage professional support for persistent distress or urgent concerns. <br>
-Risk: Hotline lookup or use of agent memory may expose sensitive location or personal context. <br>
-Mitigation: Require explicit user confirmation before hotline lookup, location use, or memory-based personalization. <br>
-Risk: Generated chart files may reveal sensitive wellbeing trends. <br>
-Mitigation: Confirm that chart generation is acceptable and store or share chart files only with user consent. <br>
+## Use Case:
 
+External users and agents use this skill to record daily mental-energy check-ins, store a local JSON journal, generate PNG trend charts, and summarize multi-day wellness patterns.
 
-## Reference(s): <br>
-- [Energy Tracker on ClawHub](https://clawhub.ai/martinashes/energy-tracker) <br>
-- [Publisher profile: martinashes](https://clawhub.ai/user/martinashes) <br>
-- [Energy status data format](references/data-format.md) <br>
-- [Sample energy tracking data](references/sample-data.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON records, and PNG chart files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates ./energy_data.json and may generate ./energy_chart.png.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and manifest.toml) <br>
+Risk: The skill records and analyzes mental-health-adjacent daily status data without clear consent, retention, or deletion controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only after clear opt-in, and define where ./energy_data.json is stored, who can access it, how long it is retained, and how it can be deleted.
+
+Risk: Charts and psychological labels may be mistaken for clinical assessment or medical advice.
+
+Mitigation: Present outputs as wellness journaling, not diagnosis, and encourage professional support when the user reports sustained or urgent distress.
+
+Risk: Proactive daily check-ins can be intrusive if the user has not explicitly enabled them.
+
+Mitigation: Keep proactive check-ins disabled unless the user opts in, and limit collection to once per day.
+
+## Reference(s):
+
+- [Data Format](references/data-format.md)
+- [Sample Data](references/sample-data.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON records, JSON analysis output, and PNG chart files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores daily entries in ./energy_data.json and can generate ./energy_chart.png.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and manifest.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Auto-improving AI skill that learns from every execution and continuously optimizes itself. 17-minute autonomous loop with feedback collection and pattern extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Improver Pro analyzes skill usage and feedback to identify weaknesses and generate optimization plans for skill developers.
 
-## Publisher: <br>
-[pagoda111king](https://clawhub.ai/user/pagoda111king) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pagoda111king](https://clawhub.ai/user/pagoda111king)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to evaluate skill performance, analyze user feedback, identify weak points, and generate structured improvement plans before or after skill version updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Approved changes can persist and influence future agent behavior. <br>
-Mitigation: Review proposed diffs and scan resulting skill changes before approving or deploying them. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to evaluate skill performance before version upgrades, analyze user feedback, identify weak spots, and generate improvement recommendations.
 
-## Reference(s): <br>
-- [Auto Improver Pro on ClawHub](https://clawhub.ai/pagoda111king/auto-improver-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/pagoda111king) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured improvement recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces skill analysis, feedback summaries, pattern findings, and optimization plans for agent review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The security evidence flags broad file and command authority for an autonomous self-improvement loop with unclear approval boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a sandbox or disposable test workspace, and require human review before any file write or command execution.
+
+Risk: The security evidence says install identity, dependencies, auditable source code, and data-source limits are unclear.
+
+Mitigation: Confirm a canonical package identity, pin dependencies, review auditable source code, and define data-source limits before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/pagoda111king/skills/auto-improver-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces optimization recommendations and command examples that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact files declare 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

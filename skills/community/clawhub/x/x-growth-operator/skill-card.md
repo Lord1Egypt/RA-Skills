@@ -1,45 +1,70 @@
-## Description: <br>
-Plan and execute mission-driven X growth operations, including monitoring KOL posts, detecting emerging discussions, turning briefs or uploaded docs into a growth mission, drafting replies or posts, ranking opportunities, and executing approved actions with a local audit trail. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan and execute mission-driven X growth operations / 任务驱动的 X 增长运营规划与执行。Use when the user wants to monitor KOL posts, detect emerging discussions, turn briefs or uploaded docs into a growth mission, draft replies or posts, rank opportunities, and execute approved actions with a local audit trail.
 
-## Publisher: <br>
-[JimmyWangJimmy](https://clawhub.ai/user/JimmyWangJimmy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimmywangjimmy](https://clawhub.ai/user/jimmywangjimmy)
 
-## Use Case: <br>
-External operators, founders, marketers, and developers use this skill to turn a brief into a review-first X growth workflow: create a mission, import or search opportunities, rank them, draft posts or interactions, and execute only approved actions through X credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live X execution can post through authenticated credentials. <br>
-Mitigation: Use least-privilege credentials where possible, keep scripts/.env private, and execute live actions only after reviewing the proposed action. <br>
-Risk: The local dashboard and live posting paths are not fully protected by server-side approval or authentication. <br>
-Mitigation: Avoid leaving the dashboard running unattended and prefer dry-run or review mode until the publisher adds stronger server-side approval and authentication. <br>
-Risk: Live search/import may rely on Desearch network access that is not fully documented in the artifact. <br>
-Mitigation: Treat DESEARCH_API_KEY as optional, review live-search behavior before use, and operate on imported JSON or manual notes when the endpoint is not trusted. <br>
+## Use Case:
 
+External operators, founders, and growth teams use this skill to turn a brief into a review-first X growth mission, monitor opportunities, rank them, draft posts or interactions, and execute approved X actions with an audit trail.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JimmyWangJimmy/x-growth-operator) <br>
-- [Mission schema and scoring reference](references/mission-schema.md) <br>
-- [X API endpoint](https://api.x.com) <br>
-- [Twitter API endpoint](https://api.twitter.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and generated JSON files such as mission, scored opportunities, action plans, action proposals, execution logs, and memory state.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review-first workflow; real X posting requires configured OAuth credentials and explicit approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and server release evidence) <br>
+Risk: The skill can post publicly from the user's X account when live credentials are configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in review or dry-run mode by default, require explicit approval before live execution, and configure live OAuth credentials only for accounts authorized to publish.
+
+Risk: The local dashboard can trigger live X posts without a server-side approval check.
+
+Mitigation: Do not run the dashboard with live credentials until server-side approval, authentication, and CSRF protection are added.
+
+Risk: Imported X data may render unsafely in the dashboard.
+
+Mitigation: Avoid loading untrusted imported content in the dashboard until safe DOM rendering is implemented.
+
+Risk: X credentials and local state are stored in local files.
+
+Mitigation: Keep scripts/.env private, avoid publishing generated data paths, and restrict X_API_BASE_URL to official HTTPS X origins.
+
+Risk: Desearch live import may send search queries to an external service.
+
+Mitigation: Disclose Desearch egress before use and only set DESEARCH_API_KEY when live search is needed.
+
+Risk: Node dependencies are declared without a lockfile in the artifact evidence.
+
+Mitigation: Use pinned npm dependencies with a lockfile before deploying the skill in a controlled environment.
+
+## Reference(s):
+
+- [Mission Schema](references/mission-schema.md)
+- [ClawHub Skill Page](https://clawhub.ai/jimmywangjimmy/skills/x-growth-operator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON state files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces mission, opportunity, action-plan, action, execution-log, memory, and feedback files under local data paths when run.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

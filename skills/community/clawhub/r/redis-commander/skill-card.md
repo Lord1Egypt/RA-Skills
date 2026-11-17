@@ -1,42 +1,57 @@
-## Description: <br>
-Manage the Redis Commander Docker container for local development environments, providing a local web UI for Redis key inspection at http://localhost:8083. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage the Redis Commander Docker container for local development environments, providing a local web UI for Redis key inspection and management.
 
-## Publisher: <br>
-[pereirajair](https://clawhub.ai/user/pereirajair) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pereirajair](https://clawhub.ai/user/pereirajair)
 
-## Use Case: <br>
-Developers and engineers use this skill to start, stop, inspect, and access a local Redis Commander web UI for Redis data inspection in development environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Default Redis Commander and Redis passwords may expose sensitive Redis data on shared machines. <br>
-Mitigation: Change the default Commander and Redis passwords before use on shared machines or with sensitive data. <br>
-Risk: The Redis Commander container uses a restart policy and can continue running after reboot. <br>
-Mitigation: Stop the container when finished and verify its status with the provided lifecycle command. <br>
-Risk: The skill is intended for local development Redis environments only. <br>
-Mitigation: Install and run it only against Redis environments you control, with the UI bound to localhost. <br>
+## Use Case:
 
+Developers and engineers use this skill to start, stop, inspect, and access a local Redis Commander container while working with Redis-backed development environments.
 
-## Reference(s): <br>
-- [ClawHub Redis Commander skill page](https://clawhub.ai/pereirajair/redis-commander) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides local Docker lifecycle commands for a Redis Commander container.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Default Redis Commander and Redis credentials are weak for shared machines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set unique COMMANDER_USER, COMMANDER_PASSWORD, and REDIS_PASSWORD values before starting the container.
+
+Risk: The Redis Commander container image is referenced with the latest tag.
+
+Mitigation: Prefer a pinned Redis Commander image version or digest before routine use.
+
+Risk: The tool can inspect and modify Redis data.
+
+Mitigation: Run it only on trusted local development machines, keep the port bound to localhost, and stop the container when finished.
+
+## Reference(s):
+
+- [Redis Commander ClawHub Skill Page](https://clawhub.ai/pereirajair/skills/redis-commander)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Docker on Linux or macOS and existing proxy-manager and redis-manager services.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn77z7v6jsfecz1sc9sgx9d02x831f95",
-  "slug": "zhipu-ai-search",
+  "name": "zhipu-search",
   "version": "1.0.0",
-  "publishedAt": 1773676940815
+  "description": "智谱搜索，调用 /paas/v4/web_search 接口，支持多引擎（智谱标准/高阶/搜狗/夸克），返回结构化结果适合大模型处理。",
+  "author": "hulinying",
+  "requires": {
+    "env": ["ZHIPU_API_KEY"]
+  },
+  "primaryEnv": "ZHIPU_API_KEY"
 }

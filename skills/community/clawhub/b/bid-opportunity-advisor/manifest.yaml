@@ -1,0 +1,16 @@
+name: bid-opportunity-advisor
+slug: bid-opportunity-advisor
+display_name: 投标机会顾问
+version: 0.1.0
+version_stage: beta
+emoji: "📊"
+agent_created: true
+author: "一线评标专家&ChesaraM"
+license: MIT-0
+description: '投标机会顾问——基于「我的公司能力画像」对招中标数据做匹配，给出可信的跟/不跟（Go/No-Go）判决、竞品定价空间与行动清单。'
+feedback:
+  channel: github
+  account: ""
+  note: 使用问题、误报反馈、实务建议，欢迎通过项目仓库提交 Issue 反馈。
+changelog:
+  - "0.1.0: 初始版本——画像匹配、Go/No-Go、竞品定价、行动清单、自包含 HTML 报告；fetch_ceb 多源解析与跨源去重；IMA 真实样本验证通过。"

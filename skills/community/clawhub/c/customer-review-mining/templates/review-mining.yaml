@@ -1,0 +1,25 @@
+# Customer Review Mining - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+source_platforms:
+  - ""
+review_export_file: ""
+period_start: ""
+period_end: ""
+total_reviews_in_export: 0
+themes:
+  - name: ""
+    trigger_words:
+      - ""
+    owner: ""
+    target_fix_date: ""
+  - name: ""
+    trigger_words:
+      - ""
+    owner: ""
+    target_fix_date: ""
+excluded_reviews:
+  - reason: ""
+    count: 0
+sampling_notes: ""
+coverage_note: ""
+owner: ""

@@ -1,0 +1,65 @@
+{
+  "name": "wenyan",
+  "display_name": "WenYan · 古风语体引擎（通用，OpenClaw/Claude/ChatGPT/Gemini/Dify/Ollama 均可用）",
+  "version": "1.0.0",
+  "description": "通用古风语体引擎（不限于 OpenClaw）。将 AI 回复转换为古中文风格，支持儒雅、武侠、三国、战国、史记、白话、诗经、禅意八种风格。核心为纯 JSON 风格配置 + Python 引擎，可接入任何支持 system prompt 的智能体（Claude/ChatGPT/Gemini/Dify/Ollama/Cursor/自定义 API）。基于确定性的风格参数化系统 + 回归测试框架，确保输出质量可量化、可验证。"},
+  "author": "Pondsi",
+  "tags": ["古风", "文言文", "风格转换", "中国古典文学", "style-engine", "multi-agent", "system-prompt"],
+  "requires": {
+    "bins": ["python3"]
+  },
+  "emoji": "📜",
+  "compatibility": ["openclaw", "claude", "chatgpt", "gemini", "dify", "ollama", "cursor", "any-system-prompt-agent"],
+  "license": "MIT-0",
+  "styles": [
+    {
+      "id": "ruya",
+      "name": "儒雅·唐宋文人风",
+      "era": "唐宋",
+      "description": "温润如玉，引经据典"
+    },
+    {
+      "id": "wuxia",
+      "name": "武侠·江湖豪客风",
+      "era": "明清",
+      "description": "快意恩仇，豪爽直率"
+    },
+    {
+      "id": "sanguo",
+      "name": "三国·谋士将帅风",
+      "era": "汉末",
+      "description": "运筹帷幄，兵法韬略"
+    },
+    {
+      "id": "zhanguo",
+      "name": "战国·纵横策士风",
+      "era": "先秦",
+      "description": "纵横捭阖，气势磅礴"
+    },
+    {
+      "id": "shiji",
+      "name": "史记·太史公笔法",
+      "era": "西汉",
+      "description": "沉郁顿挫，史家笔法"
+    },
+    {
+      "id": "baihua",
+      "name": "白话·明清小说风",
+      "era": "明清",
+      "description": "生动活泼，说书口吻"
+    },
+    {
+      "id": "shijing",
+      "name": "诗经·上古歌谣风",
+      "era": "上古",
+      "description": "古朴浑厚，四言为主"
+    },
+    {
+      "id": "chan",
+      "name": "禅意·佛门偈语风",
+      "era": "唐宋",
+      "description": "空灵淡远，机锋禅语"
+    }
+  ],
+  "fallbacks": []
+}

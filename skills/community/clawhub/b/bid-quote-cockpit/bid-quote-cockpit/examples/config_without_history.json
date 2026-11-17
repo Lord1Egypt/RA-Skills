@@ -1,0 +1,36 @@
+{
+ "project": "示例门店装修工程投标报价分析",
+ "subtitle": "首轮 / 二轮报价对比（脱敏示例）",
+ "version": "V1",
+ "area_sqm": 112.0,
+ "area_note": "计租面积",
+ "currency": "€",
+ "basis": "不含税（EXCL VAT）",
+ "rounds": [
+  {
+   "key": "r1",
+   "label": "首轮报价"
+  },
+  {
+   "key": "r2",
+   "label": "二轮报价"
+  }
+ ],
+ "used_round": "r2",
+ "facade_cat_key": "facade",
+ "quotes": "./quotes.json",
+ "history": null,
+ "colors": {},
+ "modules": {
+  "overview": true,
+  "profile": true,
+  "totals": true,
+  "category": true,
+  "detail": null,
+  "anomaly": null,
+  "history": null,
+  "reconcile": true,
+  "actions": true
+ },
+ "out": "./demo_without_history.html"
+}

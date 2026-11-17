@@ -1,0 +1,266 @@
+{
+  "errors": {
+    "BAD_REQUEST": {
+      "status": 400,
+      "category": "validation",
+      "hint": "Correct the request using the operation's input schema.",
+      "retryable": false
+    },
+    "AUTH_REQUIRED": {
+      "status": 401,
+      "category": "auth_failed",
+      "hint": "Sign in or provide the existing account's X-API-Key.",
+      "retryable": false
+    },
+    "INVALID_API_KEY": {
+      "status": 401,
+      "category": "auth_failed",
+      "hint": "Check or update this account's API key; retain the identity that owns the share.",
+      "retryable": false
+    },
+    "FORBIDDEN": {
+      "status": 403,
+      "category": "permission",
+      "hint": "Use an identity authorized for this resource and operation.",
+      "retryable": false
+    },
+    "NOT_FOUND": {
+      "status": 404,
+      "category": "not_found",
+      "hint": "Check the resource reference and the current account's access.",
+      "retryable": false
+    },
+    "METHOD_NOT_ALLOWED": {
+      "status": 405,
+      "category": "validation",
+      "hint": "Use the HTTP method declared for this operation.",
+      "retryable": false
+    },
+    "PAYLOAD_TOO_LARGE": {
+      "status": 413,
+      "category": "validation",
+      "hint": "Reduce the request to the operation's size limit.",
+      "retryable": false
+    },
+    "UNSUPPORTED_MEDIA_TYPE": {
+      "status": 415,
+      "category": "validation",
+      "hint": "Use the operation's declared request content type.",
+      "retryable": false
+    },
+    "CONFLICT": {
+      "status": 409,
+      "category": "conflict",
+      "hint": "Read the reported precondition and correct it before retrying.",
+      "retryable": false
+    },
+    "VALIDATION_ERROR": {
+      "status": 422,
+      "category": "validation",
+      "hint": "Correct the fields listed in detail using the operation's input schema.",
+      "retryable": false
+    },
+    "RATE_LIMIT_EXCEEDED": {
+      "status": 429,
+      "category": "rate_limited",
+      "hint": "Wait for Retry-After, then retry the same operation.",
+      "retryable": true
+    },
+    "SERVER_ERROR": {
+      "status": 500,
+      "category": "transient",
+      "hint": "Back off. Replay writes only with a supported idempotency key or an idempotent operation.",
+      "retryable": true
+    },
+    "PASSWORD_REQUIRED": {
+      "status": 401,
+      "category": "access_gate",
+      "hint": "Supply the share password or its verified viewer cookie; keep the current API key.",
+      "retryable": false
+    },
+    "PASSWORD_INVALID": {
+      "status": 401,
+      "category": "access_gate",
+      "hint": "Correct the share password; keep the current API key.",
+      "retryable": false
+    },
+    "EMAIL_GATE_REQUIRED": {
+      "status": 401,
+      "category": "access_gate",
+      "hint": "Sign in as a viewer or use the owner's/collaborator's API key.",
+      "retryable": false
+    },
+    "COMMENTS_DISABLED": {
+      "status": 403,
+      "category": "permission",
+      "hint": "The owner must enable comments before this action is available.",
+      "retryable": false
+    },
+    "AGENT_OWNER_REQUIRED": {
+      "status": 403,
+      "category": "permission",
+      "hint": "Agent replies require the share owner's key. A collaborator can manage status but cannot impersonate the owner's agent.",
+      "retryable": false
+    },
+    "SHARE_SETTINGS_FORBIDDEN": {
+      "status": 403,
+      "category": "permission",
+      "hint": "Collaborators can update content or filenames; share settings require the owner's key.",
+      "retryable": false
+    },
+    "AGENT_STATE_REQUIRED": {
+      "status": 422,
+      "category": "validation",
+      "hint": "Set state to resolved-agree, open-disagree or open-need-input.",
+      "retryable": false
+    },
+    "COMMENT_ANCHOR_REQUIRED": {
+      "status": 422,
+      "category": "validation",
+      "hint": "Supply quote and highlighter_data for a root comment; replies inherit them from parent_id.",
+      "retryable": false
+    },
+    "IS_REPLY": {
+      "status": 422,
+      "category": "validation",
+      "hint": "Reply to the top-level thread ID returned in detail.parent_id.",
+      "retryable": false
+    },
+    "COMMENT_THREAD_INVALID": {
+      "status": 409,
+      "category": "conflict",
+      "hint": "Ask the share owner to repair this comment's parent references.",
+      "retryable": false
+    },
+    "ANCHOR_BINDING_CONFLICT": {
+      "status": 409,
+      "category": "conflict",
+      "hint": "Read the current thread and binding history, then explicitly confirm a new proposal. Do not retry automatically.",
+      "retryable": false
+    },
+    "ANCHOR_OBJECT_CHANGE_REQUIRED": {
+      "status": 409,
+      "category": "validation",
+      "hint": "Show the old and new object identities and confirm allow_object_change before reattaching.",
+      "retryable": false
+    },
+    "INVALID_COMMENT_CURSOR": {
+      "status": 400,
+      "category": "validation",
+      "hint": "Request a new snapshot without cursor, then save its next_cursor.",
+      "retryable": false
+    },
+    "CONSUMER_LEASE_BUSY": {
+      "status": 409,
+      "category": "conflict",
+      "hint": "Wait for Retry-After before polling this consumer again.",
+      "retryable": true
+    },
+    "CONSUMER_LEASE_EXPIRED": {
+      "status": 409,
+      "category": "conflict",
+      "hint": "Poll again for a new batch and lease token; do not reuse this token.",
+      "retryable": false
+    },
+    "CONSUMER_SCOPE_CONFLICT": {
+      "status": 409,
+      "category": "conflict",
+      "hint": "Use another consumer name for the requested scope.",
+      "retryable": false
+    },
+    "NOT_REMOTE_BOUND": {
+      "status": 400,
+      "category": "validation",
+      "hint": "Update this static share's content; refresh applies only to a bound remote source.",
+      "retryable": false
+    },
+    "REMOTE_SOURCE_BOUND": {
+      "status": 409,
+      "category": "conflict",
+      "hint": "Edit at remote_url and refresh the original share. Unbind only when explicitly replacing the source.",
+      "retryable": false
+    },
+    "CONTENT_REVIEW_REQUIRED": {
+      "status": 409,
+      "category": "permission",
+      "hint": "Submit the remote candidate to /api/v1/pages/{ref}/content-reviews. Wait on the same ID for automatic_pending, including service recovery. For resubmission_required, submit current bytes and access scope. Only manual_required needs a root reviewer. Keep the share unchanged until approved.",
+      "retryable": false
+    },
+    "CONTENT_REVIEW_DENIED": {
+      "status": 403,
+      "category": "permission",
+      "hint": "The reviewer denied this exact content and distribution scope. Read the review decision; do not retry publication.",
+      "retryable": false
+    },
+    "CONTENT_REVIEW_DISABLED": {
+      "status": 409,
+      "category": "conflict",
+      "hint": "Automatic content review is paused. Publish new content through the ordinary pages endpoint; keep existing review holds and decisions unchanged.",
+      "retryable": false
+    },
+    "CUSTOM_SLUG_TAKEN": {
+      "status": 409,
+      "category": "conflict",
+      "hint": "Choose an available slug using the returned suggestions.",
+      "retryable": false
+    },
+    "IDEMPOTENCY_CONFLICT": {
+      "status": 409,
+      "category": "conflict",
+      "hint": "Reuse a key only with the same operation and payload; use a new key for a new intent.",
+      "retryable": false
+    },
+    "IDEMPOTENCY_BUSY": {
+      "status": 409,
+      "category": "conflict",
+      "hint": "Wait for Retry-After, then replay with the same idempotency key and payload.",
+      "retryable": true
+    },
+    "OPERATION_RESOURCE_GONE": {
+      "status": 410,
+      "category": "not_found",
+      "hint": "The original operation committed, but its resource was deleted. Use a new key only for an intentional new creation.",
+      "retryable": false
+    }
+  },
+  "agent_reply_states": {
+    "resolved-agree": {
+      "parent_status": "resolved",
+      "parent_agent_stance": "agree"
+    },
+    "open-disagree": {
+      "parent_status": "open",
+      "parent_agent_stance": "disagree"
+    },
+    "open-need-input": {
+      "parent_status": "open",
+      "parent_agent_stance": "need-input"
+    }
+  },
+  "comment_filters": [
+    "all",
+    "unresolved",
+    "open",
+    "in_progress",
+    "resolved",
+    "dismissed"
+  ],
+  "idempotency_operations": [
+    {
+      "method": "POST",
+      "path": "/api/v1/pages"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/files"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/files/confirm"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/shares/{share_id}/comments"
+    }
+  ]
+}

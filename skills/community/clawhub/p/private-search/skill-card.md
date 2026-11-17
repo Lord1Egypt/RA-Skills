@@ -1,44 +1,57 @@
-## Description: <br>
-Private Search routes OpenClaw web searches through privacy-respecting engines such as Brave Search, Kagi, or SearXNG, with configurable result counts and tracking-parameter stripping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Private Search guides OpenClaw agents to configure Brave Search, Kagi, or SearXNG as privacy-oriented search providers and strip tracking parameters from result URLs.
 
-## Publisher: <br>
-[u4ma-kev](https://clawhub.ai/user/u4ma-kev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[u4ma-kev](https://clawhub.ai/user/u4ma-kev)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to configure agent web searches to use Brave Search, Kagi, or SearXNG and strip tracking parameters from returned URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release makes broad private-search routing claims, while the security review notes that the package may not include the implementation needed to enforce those claims. <br>
-Mitigation: Review the installed package behavior and independently verify that agent searches are routed through the intended provider before relying on privacy guarantees. <br>
-Risk: The setup script writes search-provider credentials and configuration to an environment file. <br>
-Mitigation: Review the target environment file before running setup, protect stored API keys, and rotate any key that may have been exposed. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure privacy-oriented web search providers for agent research workflows, with Brave Search as the default and optional Kagi or self-hosted SearXNG settings.
 
-## Reference(s): <br>
-- [Private Search on ClawHub](https://clawhub.ai/u4ma-kev/private-search) <br>
-- [Privacy Search Engines Reference](references/privacy-engines.md) <br>
-- [Brave Search API Documentation](https://api.search.brave.com/app/documentation/) <br>
-- [Kagi API Documentation](https://help.kagi.com/kagi/api/) <br>
-- [SearXNG Project](https://github.com/searxng/searxng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and environment variables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BRAVE_API_KEY for the default Brave configuration; KAGI_API_KEY or SEARXNG_URL can be used for alternate providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill makes strong privacy and search-override claims that the package evidence does not prove.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify in OpenClaw that the claimed search routing is implemented and tested before relying on the privacy guarantee.
+
+Risk: The setup script can display part of the Brave API key, save the key in plaintext, and send it to Brave during the test request.
+
+Mitigation: Use a limited-purpose API key, avoid storing it in a shared $HOME/.env file, check file permissions, and rotate the key if it may have been exposed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/u4ma-kev/skills/private-search)
+- [Privacy Search Engines Reference Guide](references/privacy-engines.md)
+- [Brave Search API Documentation](https://api.search.brave.com/app/documentation/)
+- [Kagi API Documentation](https://help.kagi.com/kagi/api/)
+- [SearXNG Documentation](https://docs.searxng.org/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration variables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BRAVE_API_KEY for the default Brave Search setup; KAGI_API_KEY and SEARXNG_URL are optional provider-specific settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

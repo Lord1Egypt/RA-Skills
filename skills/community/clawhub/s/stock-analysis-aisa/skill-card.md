@@ -1,43 +1,57 @@
-## Description: <br>
-Analyze stocks and cryptocurrencies with live AISA-backed scoring, signals, confidence, and risk flags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze stocks and cryptocurrencies with live AISA-backed scoring, signals, confidence, and risk flags.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-External users and developers use this skill to analyze stock and cryptocurrency tickers, compare assets, and produce informational scoring, signals, confidence, and risk flags through an AISA-backed Python workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends analysis requests to an external AISA-compatible API. <br>
-Mitigation: Use a dedicated AISA_API_KEY, verify AISA_BASE_URL before overriding it, and avoid sending sensitive portfolio details unless intended. <br>
-Risk: The skill requires a sensitive API credential. <br>
-Mitigation: Store AISA_API_KEY in an environment variable or secret manager, scope it for this workflow, and rotate it if exposed. <br>
-Risk: Financial analysis output may be incomplete, incorrect, or unsuitable as investment advice. <br>
-Mitigation: Treat recommendations as informational, verify live market data independently, and rely on qualified financial judgment before making decisions. <br>
+## Use Case:
 
+External users and developers use this skill to request stock or cryptocurrency analysis, compare tickers, and review market positioning with scored signals and risk flags. The skill is informational only and does not provide financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bibaofeng/stock-analysis-aisa) <br>
-- [Publisher profile](https://clawhub.ai/user/bibaofeng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown analysis with optional fenced JSON summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and AISA_API_KEY; accepts one or more stock or crypto tickers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill requires an AISA_API_KEY and may send requested ticker analysis to an AISA-compatible API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a minimal environment with only the required API key exposed.
+
+Risk: An optional AISA_BASE_URL override can redirect requests to a different endpoint.
+
+Mitigation: Do not set AISA_BASE_URL unless the endpoint is fully trusted.
+
+Risk: Stock and cryptocurrency outputs can be mistaken for investment advice.
+
+Mitigation: Treat outputs as informational analysis only and require user review before financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bibaofeng/skills/stock-analysis-aisa)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown analysis with optional fenced JSON summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes ticker scores, BUY/HOLD/SELL-style signals, confidence levels, comparison summaries, and risk flags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

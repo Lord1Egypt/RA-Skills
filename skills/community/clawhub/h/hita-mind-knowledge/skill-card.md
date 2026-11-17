@@ -1,43 +1,54 @@
-## Description: <br>
-Hita-Mind & Knowledge helps AI agents store and retrieve long-term memories and knowledge through a local Mind Module and Knowledge Manager. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hita-Mind & Knowledge gives agents local CLI-accessible memory and knowledge stores for preferences, decisions, lessons, skills, methods, and rules.
 
-## Publisher: <br>
-[hita126](https://clawhub.ai/user/hita126) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hita126](https://clawhub.ai/user/hita126)
 
-## Use Case: <br>
-Developers and agent users use this skill to maintain local long-term agent memory, retrieve past preferences and decisions, and build knowledge context from stored tips, methods, rules, and project experience. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages local long-term storage of user preferences, contacts, project details, and daily notes without clear consent or retention controls. <br>
-Mitigation: Review where the JSON stores are kept, define consent and retention expectations before use, and inspect or delete entries regularly. <br>
-Risk: Sensitive information could be captured in local memory or knowledge entries. <br>
-Mitigation: Do not store secrets, credentials, regulated personal data, customer data, or confidential project details unless the storage and deletion process has been reviewed. <br>
+## Use Case:
 
+Developers and agent users can use this skill to let a Node.js-based agent save, search, and assemble long-term memory and reusable knowledge context across local JSON stores.
 
-## Reference(s): <br>
-- [Hita-Mind & Knowledge on ClawHub](https://clawhub.ai/hita126/hita-mind-knowledge) <br>
-- [Root README](README.md) <br>
-- [Mind Module README](hita-mind-module/README.md) <br>
-- [Knowledge Manager README](hita-knowledge-manager/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [CLI text and Markdown-like context blocks backed by local JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists memory and knowledge entries to local JSON stores.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: The skill can persist sensitive conversation-derived memory or knowledge in local JSON stores.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit user-approved writes, avoid secrets and regulated personal data, and inspect or prune the stores regularly.
+
+Risk: Retrieved memory or knowledge may replay stale, incorrect, or untrusted content into an agent context.
+
+Mitigation: Treat retrieved entries as reference text for review rather than as instructions to follow automatically.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hita126/skills/hita-mind-knowledge)
+- [Publisher profile](https://clawhub.ai/user/hita126)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [CLI text and Markdown-style context assembled from JSON stores]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists memory and knowledge records in local JSON files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

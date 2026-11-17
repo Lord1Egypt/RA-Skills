@@ -1,45 +1,62 @@
-## Description: <br>
-Send and receive email as your AI agent, including checking inbox, sending email, replying to messages, setting up an email alias, and managing agent email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive email as an AI agent, including checking inboxes, sending messages, replying, setting up aliases, and managing agent email.
 
-## Publisher: <br>
-[agnicpay-prog](https://clawhub.ai/user/agnicpay-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agnicpay-prog](https://clawhub.ai/user/agnicpay-prog)
 
-## Use Case: <br>
-External users and developers use this skill to manage an Agnic agent email address, including setup, address checks, inbox review, sending, and replies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive email data, including inbox contents, recipients, subjects, and message bodies. <br>
-Mitigation: Treat email data as sensitive and review message content before exposing, sending, or replying. <br>
-Risk: The skill may use AGNIC_TOKEN for headless authentication. <br>
-Mitigation: Store AGNIC_TOKEN securely, avoid logging it, and pass it only to trusted Agnic commands. <br>
-Risk: Send and reply commands can contact external recipients. <br>
-Mitigation: Review the exact recipient, subject, and body before executing send or reply commands. <br>
-Risk: The skill invokes `npx agnic@latest`, which depends on the Agnic npm package at execution time. <br>
-Mitigation: Use the skill only when you trust the Agnic npm package and the execution environment. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent manage an Agnic email alias, check recent inbox messages, send email, and reply to messages through the Agnic CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agnicpay-prog/agnic-agent-email) <br>
-- [Agnic app](https://app.agnic.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown with inline bash commands and JSON command output references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Agnic authentication and may handle sensitive email contents, recipients, subjects, bodies, and AGNIC_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: release evidence) <br>
+Risk: The agent can read inbox contents and send email through the configured Agnic account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review, use a scoped and revocable token, and require user confirmation before sending or replying to email.
+
+Risk: The skill uses npx agnic@latest, so the executed CLI can change after review.
+
+Mitigation: Pin and review the Agnic CLI version before deployment instead of relying on the latest npm release.
+
+Risk: Passing tokens on the command line can expose credentials through shell history or process listings.
+
+Mitigation: Provide credentials through a managed AGNIC_TOKEN environment secret and rotate or revoke the token when access is no longer needed.
+
+Risk: Unvalidated recipient, subject, body, or message ID values could alter shell command behavior.
+
+Mitigation: Validate email addresses and message IDs, reject shell metacharacters where required, and quote or escape subject and body values before constructing commands.
+
+## Reference(s):
+
+- [Agnic app](https://app.agnic.ai)
+- [ClawHub skill listing](https://clawhub.ai/agnicpay-prog/skills/agnic-agent-email)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-producing CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that read inbox contents, configure an email alias, send messages, or reply to messages.]
+
+## Skill Version(s):
+
+2.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

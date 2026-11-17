@@ -1,0 +1,16 @@
+{
+  "tool_name": "batch_factor_analysis",
+  "feature_days": 5,
+  "factor_dict": {
+    "ANOM_MAX20": "ac = d['close'] * d['adj_factor']\nret = ac / ac.shift(1) - 1\nout = ret.rolling(21).max()",
+    "ANOM_OVERNIGHT": "ac = d['close'] * d['adj_factor']\nao = d['open'] * d['adj_factor']\nout = (ao / ac.shift(1) - 1).rolling(21).sum()",
+    "ANOM_INTRADAY": "ac = d['close'] * d['adj_factor']\nao = d['open'] * d['adj_factor']\nout = (ac / ao - 1).rolling(21).sum()",
+    "ANOM_AMIHUD": "ac = d['close'] * d['adj_factor']\nret = ac / ac.shift(1) - 1\nout = (ret.abs() / d['amount'].replace(0, np.nan)).rolling(21).mean()",
+    "ANOM_IDIOVOL": "ac = d['close'] * d['adj_factor']\nret = ac / ac.shift(1) - 1\nmkt = get_stock_index('000001', 'close').pct_change()\nbeta = rolling_regbeta(ret, mkt, 252)\nresid = ret - beta * mkt\nout = resid.rolling(21).std()",
+    "ANOM_ACCRUALS": "te = d['每股净资产'] * d['总股本']\nta = te / (1 - d['资产负债率'].replace(0, np.nan))\nout = (d['每股收益'] - d['每股经营现金流净额']) * d['总股本'] / ta",
+    "ANOM_ASSETGROWTH": "out = d['总资产较年初增长-%']",
+    "ANOM_REVERSAL_M1": "ac = d['close'] * d['adj_factor']\nret = ac / ac.shift(1) - 1\nout = -ret.rolling(21).sum()",
+    "ANOM_REVERSAL_Y1": "ac = d['close'] * d['adj_factor']\nret = ac / ac.shift(1) - 1\nout = -ret.rolling(252).sum()"
+  },
+  "save_path": "output\\factor-ClassicAnomalies.xlsx"
+}

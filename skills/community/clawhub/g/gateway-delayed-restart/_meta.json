@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7axfbv8q3frnk306xp1wqcfh82v139",
-  "slug": "gateway-delayed-restart",
-  "version": "1.1.0",
-  "publishedAt": 1773460716641
+  "name": "gateway-delayed-restart",
+  "version": "1.0.0",
+  "description": "延迟重启 OpenClaw Gateway",
+  "author": "Han's AI Assistant",
+  "created": "2026-03-14",
+  "tags": ["gateway", "restart", "automation"],
+  "platform": "openclaw"
 }

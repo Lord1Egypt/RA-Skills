@@ -1,0 +1,43 @@
+{
+  "name": "wip-agent-pay",
+  "version": "1.0.2",
+  "type": "module",
+  "description": "Give your agent a way to pay. AI CASH (Apple/Google Pay) + AGENT WALLET (x402).",
+  "main": "providers/index.js",
+  "bin": {
+    "wip-pay": "./cli.js",
+    "wip-agent-pay": "./cli.js"
+  },
+  "exports": {
+    ".": "./providers/index.js",
+    "./providers/*": "./providers/*",
+    "./mcp-server": "./mcp-server.mjs"
+  },
+  "openclaw": {
+    "extensions": [
+      "./openclaw.mjs"
+    ]
+  },
+  "scripts": {
+    "test": "node cli.js --help"
+  },
+  "keywords": [
+    "agent",
+    "payment",
+    "coinbase",
+    "micropayments",
+    "1password",
+    "universal-interface",
+    "cloudflare"
+  ],
+  "author": "Parker Todd Brooks",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wipcomputer/wip-agent-pay.git"
+  },
+  "homepage": "https://github.com/wipcomputer/wip-agent-pay",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1"
+  }
+}

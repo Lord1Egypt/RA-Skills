@@ -1,43 +1,58 @@
-## Description: <br>
-Capture a fresh webcam image on macOS, Windows, or Linux, preferring direct camera capture via ffmpeg so the workflow does not depend on screen-recording, accessibility, or UI automation permissions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capture a fresh webcam image on macOS, Windows, or Linux, preferring direct ffmpeg camera capture over screen-recording, accessibility, or UI automation workflows.
 
-## Publisher: <br>
-[laurc2004](https://clawhub.ai/user/laurc2004) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laurc2004](https://clawhub.ai/user/laurc2004)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent capture a live webcam image, save it in the workspace, and return the saved image path. It supports device selection and resolution settings, with a macOS app-window screenshot fallback only when direct ffmpeg capture is unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The macOS fallback can automate camera apps and capture an app window or full screen, which may include visible desktop content beyond the camera image. <br>
-Mitigation: Prefer the direct ffmpeg webcam path, use the fallback only when direct capture fails or the user explicitly requests visible app UI, and confirm the required Screen Recording, Accessibility, and Automation permissions are acceptable. <br>
-Risk: Captured photos may contain people, private spaces, or other sensitive visual information and are saved as local image files. <br>
-Mitigation: Confirm people in view consent before capture, save only to the intended workspace path, and delete saved images that are no longer needed. <br>
-Risk: The skill depends on local ffmpeg and camera-device access, so capture may fail or select the wrong camera on multi-device systems. <br>
-Mitigation: List available devices before capture when multiple cameras are present, pass an explicit device when needed, and verify the output file exists and is not empty. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill when an assistant needs to capture a fresh image from a local webcam and return it as a media file. It supports direct camera capture across macOS, Windows, and Linux, with a macOS app-window screenshot fallback when direct capture is unavailable.
 
-## Reference(s): <br>
-- [Photo Capture Skill on ClawHub](https://clawhub.ai/laurc2004/photo-capture) <br>
-- [ffmpeg](https://ffmpeg.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Markdown, Guidance] <br>
-**Output Format:** [Markdown response with shell commands and a MEDIA path to a generated image file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local PNG or JPEG image files under a workspace path selected by the agent or user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill can access a local camera and may capture sensitive visual information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where camera access is expected, and rely on operating-system camera permission prompts and user consent.
+
+Risk: The macOS fallback can capture an app window or the whole screen and requires Screen Recording, Accessibility, and Automation permissions.
+
+Mitigation: Prefer the direct ffmpeg webcam path and use the fallback only when direct capture fails or a visible camera-app UI is explicitly required.
+
+Risk: The macOS fallback has unsafe AppleScript argument handling according to the security evidence.
+
+Mitigation: Do not pass untrusted app names or delay values to fallback scripts, and review the skill before installation or deployment.
+
+## Reference(s):
+
+- [Photo Capture Skill on ClawHub](https://clawhub.ai/laurc2004/skills/photo-capture)
+- [FFmpeg](https://ffmpeg.org)
+
+## Skill Output:
+
+**Output Type(s):** [files, shell commands, markdown, guidance]
+
+**Output Format:** [Markdown response with MEDIA path references and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a local PNG or JPEG image file under the workspace tmp directory when capture succeeds.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

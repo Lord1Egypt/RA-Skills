@@ -2,34 +2,34 @@
 
 This file keeps lightweight React project-standard performance guidance. Use the frontend performance workflow when the task needs metrics, traces, profiles, bundle analysis, network evidence, or a formal performance report.
 
-### 性能（与「性能优化」一节配合）
+### Performance (in conjunction with the "Performance Optimization" section)
 
-- **useMemo**：昂贵派生、大列表排序/过滤；注意不可变数据，例如 `useMemo(() => [...list].sort(...), [list])`，避免直接 `sort` 可变原数组。
-- **useCallback**：传给 **`React.memo`** 子组件或作为其他 Hook 依赖的回调，在确有稳定引用需求时使用。
-- **React.memo**：纯展示、props 浅比较可接受的组件；不要全局套 memo。
-- **虚拟列表**：超长列表用 **TanStack Virtual**、**react-window** 等，只渲染视区内节点（路由级与组件级懒加载仍见「Suspense 与懒加载」）。
+- **useMemo**: Expensive derivation, large list sorting/filtering; pay attention to immutable data, such as `useMemo(() => [...list].sort(...), [list])`, and avoid directly `sort` the mutable original array.
+- **useCallback**: passed to **`React.memo`** sub-component or used as a callback for other Hook dependencies, used when there is a stable reference requirement.
+- **React.memo**: An acceptable component with pure display and shallow props; do not apply memo globally.
+- **Virtual List**: For very long lists, use **TanStack Virtual**, **react-window**, etc., and only render nodes in the viewport (see "Suspense and Lazy Loading" for routing-level and component-level lazy loading).
 
-## 性能优化
+## Performance optimization
 
-在以下场景考虑性能优化：
+Consider performance optimization in the following scenarios:
 
-- 大列表 / 大表格
-- 高频重渲染组件
-- 大量 props 传递的复杂树
-- 重型第三方组件
-- 高频变化 context
+- Large list/large table
+- High frequency re-rendering components
+- Complex trees passed with a large number of props
+- Heavy-duty third-party components
+- High frequency changing context
 
-### 推荐手段
+### Recommended means
 
-- 合理使用 `React.memo`
-- 只在必要时使用 `useMemo` / `useCallback`
-- 列表使用稳定 `key`
-- 大列表使用虚拟滚动
-- 路由级做 code splitting
-- 避免将高频变化值放进顶层 context
-- 避免在 render 中无意义创建大量新对象 / 新函数 / 新数组
-- 重型图表、编辑器、地图、3D 和媒体处理能力放到叶子组件或路由级懒加载边界
-- 懒加载组件必须配套 loading、error、empty 或降级 UI，避免只优化包体却破坏用户状态
+- Use `React.memo` appropriately
+- Use `useMemo` / `useCallback` only when necessary
+- List uses stable `key`
+- Use virtual scrolling for large lists
+- Code splitting at routing level
+- Avoid putting high-frequency changing values into the top-level context
+- Avoid meaninglessly creating a large number of new objects/new functions/new arrays in render
+- Heavy charting, editor, map, 3D and media processing capabilities into leaf components or route-level lazy loading boundaries
+- Lazy loading components must be equipped with loading, error, empty or downgraded UI to avoid only optimizing the package body but destroying the user state
 
 ---
 

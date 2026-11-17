@@ -1,44 +1,56 @@
-## Description: <br>
-Cross-client analytics for Greek accounting firms. Surfaces trends, anomalies, and risks across financial data. Read-only, outputs to /data/reports/. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-client analytics for Greek accounting firms. Surfaces trends, anomalies, and risks across financial data. Read-only, outputs to /data/reports/.
 
-## Publisher: <br>
-[satoshistackalotto](https://clawhub.ai/user/satoshistackalotto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[satoshistackalotto](https://clawhub.ai/user/satoshistackalotto)
 
-## Use Case: <br>
-Accounting teams use this skill to review local Greek accounting data across clients, surface portfolio trends and anomalies, and produce confidence-rated advisory findings for human review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill analyzes sensitive cross-client accounting and financial data. <br>
-Mitigation: Limit OPENCLAW_DATA_DIR to the intended local accounting dataset and install it only where broad cross-client analysis is authorized. <br>
-Risk: Generated analytics reports may reveal sensitive client information. <br>
-Mitigation: Protect /data/reports/analytics/ with appropriate access controls and retention policies. <br>
-Risk: Scheduled overnight runs could operate outside the intended review process. <br>
-Mitigation: Review any external scheduler configuration before enabling recurring analytics jobs. <br>
-Risk: The required jq binary could introduce supply-chain risk if installed from an untrusted source. <br>
-Mitigation: Install jq only from trusted operating system repositories. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/satoshistackalotto/analytics-and-advisory-intelligence) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/satoshistackalotto) <br>
+## Use Case:
 
+External accounting teams and OpenClaw operators use this skill to generate read-only portfolio and client analytics, including trends, anomalies, compliance risk scores, and cash-flow advisory reports from local Greek accounting data.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain-English advisory reports, Markdown-style responses, JSON analytics files, and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local accounting data from OPENCLAW_DATA_DIR and writes analytics outputs under /data/reports/analytics/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad local access to client financial, compliance, correspondence, banking, and EFKA data may expose sensitive client records if installed in the wrong workspace.
+
+Mitigation: Confirm the local data scope before installation and run the skill only in approved accounting workspaces.
+
+Risk: The setup example includes installing jq with sudo.
+
+Mitigation: Install jq through the normal administrator or package-management process rather than letting a skill invoke sudo.
+
+Risk: Analytical findings may be incomplete or low-confidence when client history or sector sample sizes are too small.
+
+Mitigation: Keep accountant review in the workflow and preserve confidence labels, data source notes, and minimum-period checks in outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/satoshistackalotto/skills/analytics-and-advisory-intelligence)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with shell command examples and local report file references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only advisory outputs; reports are described as written only under /data/reports/analytics/.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

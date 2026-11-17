@@ -1,42 +1,54 @@
-## Description: <br>
-Integrates the SwiftScholar HTTP API for searching, submitting, and analyzing academic papers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates the SwiftScholar HTTP API so agents can search literature, submit PDFs or URLs for parsing, retrieve paper analyses, manage favorites, and inspect account usage programmatically.
 
-## Publisher: <br>
-[Tokisakix](https://clawhub.ai/user/Tokisakix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tokisakix](https://clawhub.ai/user/tokisakix)
 
-## Use Case: <br>
-Developers and research-focused agent users use this skill to search literature, submit paper URLs or PDFs for parsing, retrieve paper analyses, manage SwiftScholar favorites, and inspect account usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Using SwiftScholar account features requires an API key that could expose account access if shared in chat or logs. <br>
-Mitigation: Keep the SwiftScholar API key in the HTTP execution environment only and do not reveal it in natural-language responses. <br>
-Risk: Submitting PDFs or URLs may send confidential, unpublished, licensed, or sensitive documents to SwiftScholar. <br>
-Mitigation: Confirm before uploads or forced re-parses and avoid submitting documents unless the user is comfortable sending them to SwiftScholar. <br>
+## Use Case:
 
+Developers, researchers, and external users use this skill to guide agents through SwiftScholar literature workflows, including paper search, paper submission, analysis retrieval, favorites management, and account usage checks.
 
-## Reference(s): <br>
-- [SwiftScholar](https://www.swiftscholar.net) <br>
-- [ClawHub release page](https://clawhub.ai/Tokisakix/swiftscholar-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/Tokisakix) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown summaries and structured JSON-oriented API request guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SwiftScholar paper IDs, endpoint names, request parameters, guarded PDF links, and quota or usage summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can guide uploads of private PDFs, URLs, or notes to the SwiftScholar service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm with the user before sending private papers, URLs, notes, or other sensitive research material to the service.
+
+Risk: Some guided actions can change the user's SwiftScholar library or consume account quota or points.
+
+Mitigation: Confirm before saving favorites, submitting papers for parsing, or running actions that may consume quota or points.
+
+## Reference(s):
+
+- [SwiftScholar](https://www.swiftscholar.net)
+- [ClawHub skill page](https://clawhub.ai/tokisakix/skills/swiftscholar-skill)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, markdown, configuration]
+
+**Output Format:** [Markdown guidance with HTTP endpoint names, JSON request shapes, and concise user-facing summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a SwiftScholar API key in the execution environment; does not store secrets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

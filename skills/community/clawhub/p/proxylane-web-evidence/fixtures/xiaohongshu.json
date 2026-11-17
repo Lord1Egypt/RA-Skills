@@ -1,0 +1,8 @@
+{
+  "fixture_notice": "Synthetic upstream get_feed_detail JSON. No real note, session, proxy or user was accessed.",
+  "feed_id": "fixture-note-1",
+  "data": {
+    "note": {"noteId": "fixture-note-1", "title": "Synthetic note fixture", "desc": "Synthetic fixture: the description is not the text contained in images.", "interactInfo": {"likedCount": "3", "commentCount": "8"}, "imageList": []},
+    "comments": {"list": [{"id": "fixture-xhs-comment-1", "content": "Synthetic fixture comment.", "likeCount": "1"}], "cursor": "fixture-cursor", "hasMore": true}
+  }
+}

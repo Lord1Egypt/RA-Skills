@@ -73,15 +73,41 @@ def get_provider_baseurl(provider):
     except:
         return ""
 
-def run_auto_test(model, iterations, max_tokens, test_prompt, timeout):
-    """Run throughput test via openclaw infer model run."""
+def run_auto_test(model, iterations, max_tokens, test_prompt, timeout, warmup=True):
+    """Run throughput test via openclaw infer model run.
+
+    Args:
+        warmup: If True, run one extra request first and discard the result
+                to amortize cold-start overhead (KV cache init, weight load).
+                The warmup does not count toward --iterations.
+    """
     results = []
+
+    # Warmup pass: discard the result to remove cold-start bias.
+    if warmup:
+        print("  🔥 warmup (discarded)…", flush=True)
+        warmup_cmd = [
+            "openclaw", "infer", "model", "run",
+            "--model", model,
+            "--prompt", test_prompt,
+            "--thinking", "off"
+        ]
+        try:
+            subprocess.run(
+                warmup_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                timeout=timeout
+            )
+        except (subprocess.TimeoutExpired, Exception):
+            pass  # warmup failures are non-fatal
 
     for i in range(iterations):
         cmd = [
             "openclaw", "infer", "model", "run",
             "--model", model,
-            "--prompt", test_prompt
+            "--prompt", test_prompt,
+            "--thinking", "off"
         ]
 
         status = "ok"
@@ -134,10 +160,9 @@ def run_auto_test(model, iterations, max_tokens, test_prompt, timeout):
             status = "timeout"
             error_msg = f"timeout ({timeout}s)"
         except Exception as e:
-            elapsed = 0
+            elapsed = time.perf_counter() - start
             status = "error"
             error_msg = str(e)
-            elapsed = time.perf_counter() - start if 'start' in dir() else 0
 
         tokens_per_sec = round(output_tokens / elapsed, 2) if elapsed > 0 else 0
         results.append({
@@ -234,7 +259,7 @@ def call_model(url, key, model, system_prompt, test_prompt, max_tokens, timeout,
         "error": error_msg
     }
 
-def build_markdown_report(results, mode, api_url, iterations, test_prompt, token_note=""):
+def build_markdown_report(results, mode, api_url, iterations, test_prompt, token_note="", drop_first=False):
     lines = [
         "# Model Throughput Report",
         f"**Generated:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
@@ -248,6 +273,8 @@ def build_markdown_report(results, mode, api_url, iterations, test_prompt, token
     ])
     if token_note:
         lines.append(f"**Token Note:** {token_note}")
+    if drop_first:
+        lines.append(f"**Note:** Summary excludes 1st iteration (cold-start removal)")
 
     lines.extend([
         "",
@@ -261,6 +288,8 @@ def build_markdown_report(results, mode, api_url, iterations, test_prompt, token
         for model, runs in results.items():
             ok = [r for r in runs if r["status"] in ("ok", "cache_hit")]
             err = len(runs) - len(ok)
+            if drop_first and len(ok) > 1:
+                ok = ok[1:]  # drop first ok iteration (cold-start)
             if ok:
                 avg_tps = statistics.mean(r["tokens_per_sec"] for r in ok)
                 avg_lat = statistics.mean(r["elapsed"] for r in ok)
@@ -273,6 +302,8 @@ def build_markdown_report(results, mode, api_url, iterations, test_prompt, token
         ok = [r for r in results if r["status"] in ("ok", "cache_hit")]
         err = len(results) - len(ok)
         model = results[0]["model"] if results else "unknown"
+        if drop_first and len(ok) > 1:
+            ok = ok[1:]  # drop first ok iteration (cold-start)
         if ok:
             avg_tps = statistics.mean(r["tokens_per_sec"] for r in ok)
             avg_lat = statistics.mean(r["elapsed"] for r in ok)
@@ -328,8 +359,12 @@ def main():
     p.add_argument("--iterations", type=int, default=3, help="Test iterations per model (default 3)")
     p.add_argument("--max-tokens", type=int, default=512, help="Max output tokens (default 512)")
     p.add_argument("--system-prompt", default="You are a helpful assistant.", help="System prompt (API mode)")
-    p.add_argument("--test-prompt", default="Write a detailed essay about summer meadows. No headings, no paragraph breaks, continuous prose only.", help="Test prompt")
-    p.add_argument("--timeout", type=int, default=60, help="Request timeout in seconds (default 60)")
+    # Default prompt: medium-length (~200-300 tokens output) so the result reflects
+    # steady-state throughput rather than cold-start latency. Too short (<100 tokens)
+    # exposes request setup overhead; too long risks --timeout on slow models.
+    p.add_argument("--test-prompt", default="Write three short paragraphs about summer meadows. No headings, no paragraph breaks, continuous prose only.", help="Test prompt (default: ~200-300 tokens steady-state; override for custom benchmarks)")
+    p.add_argument("--timeout", type=int, default=60, help="Request timeout in seconds (default 60; raise to 120+ for slow models)")
+    p.add_argument("--no-warmup", dest="warmup", action="store_false", help="Skip the warmup request (default: warmup enabled to remove cold-start bias)")
     p.add_argument("--stream", action="store_true", help="Use streaming mode (API mode)")
     p.add_argument("--output", default="throughput-report.md", help="Output report filename")
     p.add_argument("--csv", action="store_true", help="Also generate CSV report")
@@ -351,7 +386,7 @@ def main():
             print(f" ({base_url})", end="")
         print(f", {args.iterations} iterations...\n")
 
-        runs = run_auto_test(model, args.iterations, args.max_tokens, args.test_prompt, args.timeout)
+        runs = run_auto_test(model, args.iterations, args.max_tokens, args.test_prompt, args.timeout, args.warmup)
 
         ok_count = sum(1 for r in runs if r["status"] == "ok")
         for r in runs:
@@ -359,7 +394,7 @@ def main():
             print(f"  {icon}")
 
         token_note = "Estimated (EN ~0.75 word/token, ZH ~1.5 chars/token)"
-        report = build_markdown_report(runs, "auto", base_url, args.iterations, args.test_prompt, token_note)
+        report = build_markdown_report(runs, "auto", base_url, args.iterations, args.test_prompt, token_note, drop_first=args.warmup)
         print("\n" + report)
 
         with open(args.output, "w") as f:
@@ -371,11 +406,13 @@ def main():
             write_csv(runs, csv_path)
             print(f"CSV saved: {os.path.abspath(csv_path)}")
 
-        ok_runs = [r for r in runs if r["status"] == "ok"]
+        ok_runs = [r for r in runs if r["status"] in ("ok", "cache_hit")]
+        if args.warmup and len(ok_runs) > 1:
+            ok_runs = ok_runs[1:]  # drop cold-start
         if ok_runs:
             avg_tps = statistics.mean(r["tokens_per_sec"] for r in ok_runs)
             avg_tok = statistics.mean(r["output_tokens"] for r in ok_runs)
-            print(f"\n{avg_tps:.1f} tokens/s avg ({avg_tok:.0f} tokens/req) for {display_model}")
+            print(f"\n{avg_tps:.1f} tokens/s avg ({avg_tok:.0f} tokens/req, excl. 1st iter) for {display_model}")
         return
 
     # ─── API Mode ───

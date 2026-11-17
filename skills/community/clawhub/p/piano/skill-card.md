@@ -1,39 +1,49 @@
-## Description: <br>
-Piano practice strategies, technique correction, repertoire guidance, and progress tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Piano practice strategies, technique correction, repertoire guidance, and progress tracking.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to get piano practice advice, troubleshoot technique issues, choose repertoire, and maintain local practice progress notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores personal practice history and goals in local markdown files under ~/piano/. <br>
-Mitigation: Avoid recording sensitive personal details in practice updates, and review or delete ~/piano/ when clearing stored progress. <br>
-Risk: Piano technique guidance may be incomplete for pain, injury, or individual ergonomic needs. <br>
-Mitigation: Use the guidance as practice support and consult a qualified teacher or clinician for pain, injury, or persistent technique problems. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/piano) <br>
+## Use Case:
 
+Piano learners and practicing musicians use this skill to get practice planning, technique troubleshooting, repertoire guidance, and optional progress logging across sessions.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Files] <br>
-**Output Format:** [Markdown practice guidance and local markdown progress notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and update markdown files under ~/piano/ for repertoire, session logs, technique notes, and goals.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may create a ~/piano/ folder containing local records of pieces, goals, technique issues, and practice sessions.
+
+Mitigation: Use it only on devices where those local notes are acceptable, and review or remove the ~/piano/ files when they should no longer be retained.
+
+## Reference(s):
+
+- [Piano skill page](https://clawhub.ai/ivangdavila/skills/piano)
+- [Progress tracking format](artifact/progress.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance and local progress-log templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose updates to local ~/piano/ Markdown progress files with user consent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

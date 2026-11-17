@@ -1,44 +1,57 @@
-## Description: <br>
-Converts a FridayParts blog title and short summary into tailored Facebook, Instagram, X, and TikTok hook copy while preserving cautious wording for technical repair topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts a FridayParts blog title and short summary into platform-specific English social posts for Facebook, Instagram, X, and a TikTok opening hook.
 
-## Publisher: <br>
-[zhuxirui677](https://clawhub.ai/user/zhuxirui677) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuxirui677](https://clawhub.ai/user/zhuxirui677)
 
-## Use Case: <br>
-Content operators use this skill to repurpose FridayParts blog titles and summaries into platform-specific social copy for Facebook, Instagram, X, and TikTok. It is intended for drafting posts that are reviewed and adjusted before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated social posts may oversimplify repair or fault-diagnosis guidance. <br>
-Mitigation: Review posts against the source blog and preserve cautious wording such as can, may, often, and usually before publishing. <br>
-Risk: Broad blog-rewriting triggers may activate the skill for adjacent writing tasks. <br>
-Mitigation: Use it with FridayParts blog titles and summaries, then verify that the output fits the intended brand and platform context. <br>
+## Use Case:
 
+Content and marketing operators use this skill to repurpose a FridayParts blog title and summary into four channel-ready social outputs. It is aimed at English-language posts for North American mechanics, farmers, and contractors.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuxirui677/skills/fp-blog-to-social) <br>
-- [README](README.md) <br>
-- [Import guide](docs/如何导入GetClawHub.md) <br>
-- [Example outputs](examples/example_blog_to_social.md) <br>
-- [Platform style checklist](reference/平台风格checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with four labeled platform sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Four platform-specific English drafts with length, hashtag, CTA, and technical-caution constraints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated repair or fault-diagnosis posts could be misleading if published without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated posts before publishing, especially where safety or equipment damage is involved, and preserve cautious language such as can, may, or could.
+
+Risk: Outputs may not fit a workspace or audience if the model settings or English-only North American positioning are changed.
+
+Mitigation: Confirm the configured model, temperature, token limit, and intended audience in the GetClawHub workspace before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuxirui677/skills/fp-blog-to-social)
+- [FridayParts Blog](https://fridayparts.com/blog)
+- [Import guide](artifact/docs/如何导入GetClawHub.md)
+- [Example outputs](artifact/examples/example_blog_to_social.md)
+- [Platform style checklist](artifact/reference/平台风格checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style text divided into Facebook, Instagram, X, and TikTok hook sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are English social copy with platform-specific length, hashtag, tone, and safety-language constraints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -38,12 +38,12 @@ For Vue: `bun create vite <project-name> --template vue-ts`
 
 **React (Ant Design):**
 ```
-bun add antd @ant-design/icons @ant-design/v5-patch-for-react-19 react-router-dom dayjs
+bun add antd @ant-design/icons react-router dayjs
 ```
 
 **React (shadcn/ui):**
 ```
-bun add react-router-dom dayjs lucide-react && npx shadcn@latest init
+bun add react-router dayjs lucide-react && bun add -d shadcn && bunx shadcn init
 ```
 
 **Vue (Element Plus):**
@@ -53,7 +53,7 @@ bun add element-plus @element-plus/icons-vue vue-router dayjs
 
 **Vue (shadcn-vue):**
 ```
-bun add vue-router dayjs lucide-vue-next && npx shadcn-vue@latest init
+bun add vue-router dayjs lucide-vue-next && bun add -d shadcn-vue && bunx shadcn-vue init
 ```
 
 Plus extras based on selections (zustand, pinia, i18n, charts, etc.)
@@ -104,7 +104,7 @@ src/
 > **Note:** Inline styles below are for quick scaffolding. **Production environments should replace them with SCSS modules** (e.g., `import styles from './AdminLayout.module.scss'`).
 ```tsx
 import { useState } from 'react';
-import { Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { Outlet, useNavigate, useLocation } from 'react-router';
 import { Layout, Menu, Button, Dropdown, Avatar, theme } from 'antd';
 import {
   DashboardOutlined, FileTextOutlined, FormOutlined,
@@ -158,7 +158,7 @@ export default function AdminLayout() {
 > **Note:** Inline styles below are for quick scaffolding. **Production environments should replace them with SCSS modules**.
 ```tsx
 import { useState, type FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { Form, Input, Button, Card, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
@@ -280,10 +280,9 @@ export default function FormPage() {
 
 **`App.tsx`:**
 ```tsx
-import { useRoutes } from 'react-router-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { useRoutes, BrowserRouter } from 'react-router';
 import { ConfigProvider } from 'antd';
-import zhCN from 'antd/locale/zh_CN';
+import zhCN from 'antd/locale/zh_CN'; // Locale 可配置：默认 zh_CN；非中文项目请替换为对应 locale（如 en_US）
 import AppProvider from '@/components/AppProvider';
 import { routes } from '@/config/routes';
 
@@ -340,7 +339,7 @@ src/
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import ElementPlus from 'element-plus';
-import zhCn from 'element-plus/es/locale/lang/zh-cn';
+import zhCn from 'element-plus/es/locale/lang/zh-cn'; // Locale 可配置：默认 zh-cn；非中文项目请替换为对应语言（如 en）
 import 'element-plus/dist/index.css';
 import App from './App.vue';
 import router from '@/config/routes';

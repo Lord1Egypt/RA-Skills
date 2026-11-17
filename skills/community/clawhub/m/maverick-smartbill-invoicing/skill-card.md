@@ -1,45 +1,60 @@
-## Description: <br>
-Issue SmartBill invoices through the SmartBill.ro API with local automation for payload validation, invoice creation, document series lookup, and invoice PDF download. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Issue SmartBill invoices through the SmartBill.ro API with local automation for validating invoice payloads, creating invoices, listing document series, and downloading invoice PDFs by series and number.
 
-## Publisher: <br>
-[maverick](https://clawhub.ai/user/maverick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maverick](https://clawhub.ai/user/maverick)
 
-## Use Case: <br>
-Developers, operators, and finance automation users can use this skill to validate SmartBill invoice payloads, create draft or final invoices after review, list available document series, and download invoice PDFs by series and number. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use real SmartBill credentials and issue real invoices. <br>
-Mitigation: Keep the SmartBill token private, run dry-run validation first, and use --allow-final only after reviewing invoice details. <br>
-Risk: Debug logging can expose invoice, client, request, or response details. <br>
-Mitigation: Leave debug logging disabled unless those details are acceptable in logs. <br>
-Risk: Incorrect invoice numbers can affect PDF retrieval because SmartBill returns zero-padded number strings. <br>
-Mitigation: Store and reuse the invoice number exactly as returned by SmartBill without stripping leading zeros or converting it to an integer. <br>
+## Use Case:
 
+Developers, finance operators, and automation agents use this skill to validate SmartBill invoice payloads, create draft or final invoices after confirmation, list document series, and retrieve invoice PDFs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/maverick/maverick-smartbill-invoicing) <br>
-- [SmartBill API Notes](references/smartbill-api.md) <br>
-- [Invoice Example](references/invoice-example.json) <br>
-- [SmartBill API base URL](https://ws.smartbill.ro/SBORO/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON, files] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON CLI output, and PDF file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and SmartBill environment variables MAVERICK_SMARTBILL_USERNAME, MAVERICK_SMARTBILL_TOKEN, and MAVERICK_SMARTBILL_COMPANY_VAT_CODE.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A configurable SmartBill API URL can redirect SmartBill credentials and invoice data to an unapproved server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default SmartBill API host and do not set MAVERICK_SMARTBILL_API_BASE or --base-url from untrusted input.
+
+Risk: Final invoice creation can have business and customer-data impact.
+
+Mitigation: Run a dry-run first and require explicit human confirmation before using --allow-final.
+
+Risk: Debug logging can expose real customer or invoice data.
+
+Mitigation: Keep debug mode disabled around production data and real customer records.
+
+## Reference(s):
+
+- [SmartBill API Notes](references/smartbill-api.md)
+- [Invoice Example](references/invoice-example.json)
+- [SmartBill API Base URL](https://ws.smartbill.ro/SBORO/api)
+- [ClawHub Skill Page](https://clawhub.ai/maverick/skills/maverick-smartbill-invoicing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local JSON validation or API responses and invoice PDF files when the CLI is executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

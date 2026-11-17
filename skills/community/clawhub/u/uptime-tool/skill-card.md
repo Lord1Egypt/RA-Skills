@@ -1,40 +1,50 @@
-## Description: <br>
-Prints a basic Linux system uptime duration for quick health checks and reboot verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Show local system uptime for health checks, reboot verification, and basic diagnostics.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and operators use this skill for quick uptime checks and reboot verification. The bundled script provides a basic Linux uptime duration, so broader monitoring features described in the documentation should be verified before operational use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation describes JSON output, load averages, boot time, watch mode, alerts, compare mode, and cross-platform behavior, while the bundled script only reads /proc/uptime and prints a simple duration. <br>
-Mitigation: Use the skill as a basic Linux uptime helper unless the broader options are separately implemented and tested. <br>
-Risk: Security telemetry was still pending when the server evidence was generated. <br>
-Mitigation: Review and scan the released artifact before deployment, especially before using it in automated monitoring workflows. <br>
+## Use Case:
 
+Developers and system operators use this skill to check how long a local Linux host has been running and to support reboot verification or basic system diagnostics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/uptime-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; bundled helper emits plain text uptime output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No credential access, network activity, or persistence was identified in the server security summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The documentation advertises options and cross-platform behavior that the included implementation may not support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify required command-line options and platform behavior before using this skill in monitoring or automation.
+
+## Reference(s):
+
+- [ClawHub Uptime Tool release](https://clawhub.ai/dinghaibin/skills/uptime-tool)
+- [dinghaibin publisher profile](https://clawhub.ai/user/dinghaibin)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text uptime summary, with Markdown shell command examples in skill guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local /proc/uptime and reports elapsed days, hours, and minutes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

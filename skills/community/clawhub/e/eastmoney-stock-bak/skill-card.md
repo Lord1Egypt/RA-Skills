@@ -1,45 +1,61 @@
-## Description: <br>
-Queries stock data described as Eastmoney data, including individual quotes, price changes, volume, and rankings for stock-related questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents answer stock-market questions with delayed quote summaries, price changes, trading volume, sector rankings, and watchlist-style stock lookups.
 
-## Publisher: <br>
-[make453](https://clawhub.ai/user/make453) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[make453](https://clawhub.ai/user/make453)
 
-## Use Case: <br>
-External users and agents can use this skill to retrieve stock quote summaries, market-sector rankings, and stock-related analysis for A-share, Hong Kong, and U.S. market queries. Outputs should be treated as informational research, not financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may present delayed, mixed-source, or hard-coded stock data as live market information. <br>
-Mitigation: Verify all quotes, rankings, timestamps, and source labels against a trusted live market-data provider before acting on them. <br>
-Risk: Some artifact behavior includes stock picks, allocation suggestions, and stop-loss guidance. <br>
-Mitigation: Treat recommendations as non-authoritative research only and do not use them as financial, trading, or portfolio advice. <br>
-Risk: The skill calls third-party finance endpoints and depends on their availability and response formats. <br>
-Mitigation: Review the scripts before installation and handle API failures, stale data, and parsing errors in downstream workflows. <br>
+## Use Case:
 
+External users and developers can ask natural-language stock questions to obtain delayed quote summaries and sector rankings for A-share, Hong Kong, and U.S. equities. Treat outputs as informational market data, not as investment advice or a trading signal.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/make453/eastmoney-stock-bak) <br>
-- [Sina Finance quote endpoint](https://hq.sinajs.cn/list={code}) <br>
-- [Eastmoney sector ranking endpoint](http://push2.eastmoney.com/api/qt/clist/get) <br>
-- [Eastmoney market quote page](http://quote.eastmoney.com/center/gridlist.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-like text summaries with quote tables, rankings, and command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include delayed market data, third-party API results, hard-coded examples, and stock-related guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: Quotes, rankings, or recommendations may be delayed, inaccurate, or presented as current when static advisory content is mixed with fetched data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm any quote, ranking, or recommendation against a trusted financial source before acting on it.
+
+Risk: Some market-data calls use plaintext HTTP.
+
+Mitigation: Run the skill only in a controlled environment and prefer verified HTTPS data sources for any decision-making workflow.
+
+Risk: The skill may misrepresent which financial data providers its outputs come from.
+
+Mitigation: Disclose that outputs may come from mixed providers and do not present the skill as an authoritative Eastmoney-only source.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/make453/skills/eastmoney-stock-bak)
+- [Sina quote endpoint used by artifact](https://hq.sinajs.cn/list={code})
+- [Eastmoney sector ranking endpoint used by artifact](http://push2.eastmoney.com/api/qt/clist/get)
+- [Sina Finance](http://finance.sina.com.cn)
+- [Eastmoney quote center](http://quote.eastmoney.com/center/gridlist.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style text with stock quote tables, sector rankings, command examples, and cautionary guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Market data may be delayed by several minutes, and some artifact outputs include static advisory commentary.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, frontmatter, and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

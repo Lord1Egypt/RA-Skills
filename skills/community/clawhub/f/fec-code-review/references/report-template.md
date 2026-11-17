@@ -1,29 +1,39 @@
-# 代码审查报告模板
+# Code review report template
 
 ```markdown
-# 代码审查报告
+# Code review report
 
-> 生成时间: YYYY-MM-DD HH:mm
-> 评审工具: frontend-craft
+> Generation time: YYYY-MM-DD HH:mm
+> Review tool: frontend-craft
 
-## CRITICAL / 必须修改 (N项)
-- **[文件:行号]** 问题描述 -> 建议修改
+> Review mode: change / targeted / project
+> Target scope: paths or PR/commit
+> Reviewed: file or module inventory
+> Exclusions: paths and reasons
+> Unreviewed: remaining files or modules (state none if complete)
+> Completion: complete / partial
+> Verification: commands, results and reasons for skipped checks
 
-## HIGH / 建议优化 (N项)
+## CRITICAL / Must be modified (N items)
+- **[File:line number]** Problem description -> Suggested modifications
+
+## HIGH / Suggested optimization (N items)
 - ...
 
-## MEDIUM / 可选优化项 (N项)
+## MEDIUM / Optional optimization items (N items)
 - ...
 
-## LOW / 观察项 (N项)
+## LOW / Observation items (N items)
 - ...
 
-## 做得好的地方
+## Good things done
 - ...
 
-## 风险等级：低 / 中 / 高
+## Risk Level: Low / Medium / High
 
-**总体评价**: 可合并 / 待修改后合并 / 需要重构
+**Conclusion**: Change review: merge recommendation; targeted/project review: Low / Medium / High risk and blocking findings
 ```
 
-评审完成后，将报告保存到 `reports/code-review-YYYY-MM-DD-HHmmss.md`，并告知用户报告路径。
+After the review is completed, save the report to `reports/code-review-YYYY-MM-DD-HHmmss.md` and inform the user of the report path.
+
+Retain merge recommendations for change review; use risk assessments for targeted and project reviews. For partial reviews, conclusions apply only to reviewed scope and do not establish project-wide approval.

@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+
+# 日志记录
+__version__ = "1.0.0"
+
+import logging
+logger = logging.getLogger(__name__)
 """
 元认知历史管理器（分层存储架构）
 
@@ -22,6 +28,7 @@ from datetime import datetime, timedelta
 from typing import Dict, List, Optional
 from dataclasses import dataclass, asdict
 from enum import Enum
+from interfaces import TraceContext, create_trace_context
 
 
 class StorageLayer(Enum):

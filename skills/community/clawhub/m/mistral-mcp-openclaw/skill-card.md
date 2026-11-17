@@ -1,45 +1,58 @@
-## Description: <br>
-Configure OpenClaw to use the community mistral-mcp stdio server for Mistral OCR, Codestral FIM, Voxtral audio, durable workflows, moderation, classification, files, batch, and model/voice resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure OpenClaw to use the community mistral-mcp stdio server for Mistral OCR, Codestral FIM, Voxtral audio, durable workflows, moderation, classification, files, batch, and model/voice resources.
 
-## Publisher: <br>
-[swih](https://clawhub.ai/user/swih) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[swih](https://clawhub.ai/user/swih)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure OpenClaw with a community Mistral MCP server when an agent needs Mistral-specific tool access for OCR, code completion, audio, workflow, moderation, classification, files, batch, model, or voice operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive Mistral API key. <br>
-Mitigation: Use environment variables or a secret manager, avoid pasting keys into chat, and prefer a dedicated or limited API key where possible. <br>
-Risk: The skill configures a community npm MCP server package. <br>
-Mitigation: Review the mistral-mcp package or source before installing it in sensitive workspaces, and consider pinning a trusted version. <br>
-Risk: Mistral tool calls may process documents, audio, code, or other workspace data. <br>
-Mitigation: Avoid processing sensitive files unless Mistral's terms and the workspace policy allow it. <br>
-Risk: Batch and transcription workloads may incur cost or rate-limit exposure. <br>
-Mitigation: Check the current Mistral plan, pricing, rate limits, and usage policies before running large workloads. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure OpenClaw with Mistral-specific MCP tools for OCR, code completion, audio transcription and generation, moderation, classification, batch jobs, files, durable workflows, and live model or voice resources.
 
-## Reference(s): <br>
-- [Mistral MCP homepage](https://github.com/Swih/mistral-mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/swih/mistral-mcp-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, npm, OpenClaw CLI, the mistral-mcp package, and a MISTRAL_API_KEY environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: frontmatter and release evidence) <br>
+Risk: Installing a community npm MCP server introduces supply-chain exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the mistral-mcp npm package version and avoid sudo or global installs in sensitive environments where possible.
+
+Risk: The MCP server uses a Mistral API key and can access whatever that credential permits.
+
+Mitigation: Provide the key through environment variables or a secret manager, and use a credential with only the access you are comfortable granting to this community server.
+
+Risk: Batch, OCR, and transcription workflows can incur provider costs or encounter rate limits.
+
+Mitigation: Check the current Mistral plan, pricing, and usage policies before running large or asynchronous workloads.
+
+## Reference(s):
+
+- [Mistral MCP GitHub repository](https://github.com/Swih/mistral-mcp)
+- [ClawHub skill page](https://clawhub.ai/swih/skills/mistral-mcp-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash command blocks and OpenClaw MCP configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenClaw CLI, Node.js, npm, mistral-mcp, and MISTRAL_API_KEY.]
+
+## Skill Version(s):
+
+0.3.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

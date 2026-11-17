@@ -1,40 +1,53 @@
-## Description: <br>
-Create professional PowerPoint presentations with python-pptx, including slides, charts, tables, images, and templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create professional PowerPoint presentations with python-pptx, including slides, charts, tables, images, and templates.
 
-## Publisher: <br>
-[weaglewang](https://clawhub.ai/user/weaglewang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weaglewang](https://clawhub.ai/user/weaglewang)
 
-## Use Case: <br>
-Developers and content creators use this skill to generate or edit PowerPoint presentations with python-pptx, including text, images, charts, tables, and reusable templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated examples can read local images or templates and create or modify PowerPoint files in the workspace. <br>
-Mitigation: Use trusted input files, run in an isolated project directory, and review generated or modified PPTX files before sharing. <br>
-Risk: Optional Python and Node dependencies may expand the dependency surface beyond the core python-pptx workflow. <br>
-Mitigation: Install only the dependencies needed for the current presentation task, preferably in a virtual environment or isolated project. <br>
+## Use Case:
 
+Developers and content creators use this skill to create or edit PowerPoint presentations programmatically with python-pptx, including business decks, photo galleries, invoice-style slides, tables, charts, notes, and template-based presentations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weaglewang/claw-presentation-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for creating or modifying PowerPoint files in the user's workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter states 2.0.0) <br>
+Risk: Dependency installation can affect the user's Python or Node environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install required and optional dependencies in a virtual environment or container, and review optional npm packages before use.
+
+Risk: Presentation examples write local output files and can overwrite existing files if paths collide.
+
+Mitigation: Choose unique output paths before running examples that save presentations or processed images.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weaglewang/skills/claw-presentation-creator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent guidance for local PowerPoint file creation and editing; users choose output paths and input assets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

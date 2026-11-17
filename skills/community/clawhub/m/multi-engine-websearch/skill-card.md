@@ -1,41 +1,59 @@
-## Description: <br>
-Multi-engine web search across 6 engines: DuckDuckGo, DDG Lite, Yahoo, Yahoo JP, Startpage, and Google headless Chromium, with no API keys required and results ranked by cross-engine frequency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-engine web search across DuckDuckGo, DDG Lite, Yahoo, Yahoo JP, Startpage, and Google headless Chromium, returning ranked results without API keys.
 
-## Publisher: <br>
-[nirveshdagar](https://clawhub.ai/user/nirveshdagar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nirveshdagar](https://clawhub.ai/user/nirveshdagar)
 
-## Use Case: <br>
-Developers and agent users use this skill to run local, multi-source web searches for current information, fact checking, research, and source discovery without paid search API keys. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and the user's IP address may be visible to third-party search engines. <br>
-Mitigation: Do not use the skill for passwords, API keys, confidential project names, personal data, or regulated information. <br>
-Risk: The Google mode uses headless Chromium and may be blocked or brittle. <br>
-Mitigation: Disable the Google engine when browser automation risk, reliability, or policy constraints outweigh the extra search coverage. <br>
+## Use Case:
 
+Developers and agents use this skill to look up current web information, verify facts, research topics, and collect multi-source search results for summarization or citation.
 
-## Reference(s): <br>
-- [Engine Notes & Troubleshooting](references/engines.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/nirveshdagar/multi-engine-websearch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and optional JSON search results from the bundled command-line script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include title, URL, snippet, and source engine list; callers should cite returned URLs when summarizing results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata) <br>
+Risk: Search queries are sent to third-party search engines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive or confidential queries and restrict engines when a smaller provider set is sufficient.
+
+Risk: The Google mode runs headless Chromium without the browser sandbox.
+
+Mitigation: Prefer the non-Google HTTP engines unless Google is required, do not run the skill as root, and execute it in a constrained environment.
+
+Risk: Install instructions use mutable latest dependency resolution.
+
+Mitigation: Use pinned and reviewed dependency versions for production or managed environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nirveshdagar/skills/multi-engine-websearch)
+- [Publisher Profile](https://clawhub.ai/user/nirveshdagar)
+- [Engine Notes & Troubleshooting](references/engines.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [JSON search results or plain-text ranked results, usually summarized by the calling agent in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results include query, total count, per-engine hit counts, titles, URLs, snippets, and engine attribution.]
+
+## Skill Version(s):
+
+2.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

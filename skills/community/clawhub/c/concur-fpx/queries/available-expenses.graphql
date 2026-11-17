@@ -1,0 +1,20 @@
+# Expenses not yet on a report (card transactions, receipts, quick expenses)
+query AvailableExpenses($page: Int = 1, $size: Int = 50) {
+  employee(userId: "", contextRole: TRAVELER) {
+    availableExpensesWithPagination(pagination: { page: $page, size: $size }) {
+      availableExpenses {
+        id
+        transactionDate
+        vendor
+        expenseType { code name }
+        paymentType { name }
+        transactionAmount { value currencyCode }
+        postedAmount { value currencyCode }
+        location { name }
+        creditCard { cardLastSegment }
+        meta { missingData hasSourceCreditCard hasSourceEReceipt hasSourceMobile }
+      }
+      pagination { number size totalElements totalPages }
+    }
+  }
+}

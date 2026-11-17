@@ -10,7 +10,8 @@ Use this reference for device groups and lighting groups.
 - Use `group.create` for creating a persistent group; Runtime validates and executes the Runtime request directly.
 - Persistent `group.create` needs at least one explicit member device by name or id. If the user only says "在这个房间建一个灯组" without naming the member lights, ask which devices should join. For not-yet-installed lights or slot-based groups, use `lighting.design.import` instead of creating an empty live group.
 - Use `group.update` when the user changes a group's name, description, icon, or room assignment. Runtime must validate and execute the Runtime request directly and verify the group with `entity.list`.
-- Do not claim group membership changes are executable from `group.update`; member-list editing support remains owner-reviewed.
+- Use `group.members.update` when the user changes which live devices belong to an existing device group. Prefer a complete selected `deviceIds` or `deviceNames` list from the UI; Runtime computes add/remove deltas and verifies through `group.detail.get`.
+- Do not send member-list changes to `group.update`; keep naming/room metadata separate from membership editing.
 - Use `group.delete` only when the user explicitly asks to delete one group. Runtime must validate and execute the Runtime request directly, re-check the group, and verify removal after execution.
 - Use `group.batch_delete` only when the user explicitly asks to delete multiple groups. Runtime caps one request at 20 groups, resolves each target by id or unique name, and verifies every group disappeared from `entity.list`.
 - For `group.batch_delete`, use `names` or `items[]` rows such as `{"name":"客厅灯组"}` or `{"groupId":"..."}`. Do not send `groupNames[]`.
@@ -31,6 +32,8 @@ Use this reference for device groups and lighting groups.
 ## User Wording
 
 - "把这几盏灯编成一组": `group.create` with explicit member candidates.
+- "把这个灯组成员改成这几盏灯": `group.members.update` with the complete selected member list.
+- "给客厅灯组加上餐边柜灯，移除旧灯带": `group.members.update` with add/remove device names.
 - "各房间相同类型自动成组" while creating slots: `lighting.design.import` with Skill-authored `rooms[].groups[]` rows in the grouped design topology.
 - "改一下这个灯组名字": `group.update`.
 - "把餐厅灯组删了": `group.delete`.

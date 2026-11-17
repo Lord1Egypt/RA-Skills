@@ -1,40 +1,58 @@
-## Description: <br>
-Automated code review assistant that analyzes code changes, pull requests, commits, diffs, and files for quality issues, best-practice gaps, security concerns, and style violations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated code review assistant. Analyzes code changes, PRs, and files for quality issues, best practices, security concerns, and style violations. Provides actionable feedback with line-by-line comments and summary reports.
 
-## Publisher: <br>
-[michealxie001](https://clawhub.ai/user/michealxie001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michealxie001](https://clawhub.ai/user/michealxie001)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review source files, staged changes, commits, and diffs before merging or shipping code. It produces issue summaries and actionable suggestions that can support local checks, pre-commit workflows, and CI reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence notes that some actions can affect real repositories or ClawHub accounts. <br>
-Mitigation: Install only if the publisher is trusted, review commands before running them, and use documented opt-outs or confirmation steps when tighter control is needed. <br>
-Risk: Automated review findings may be incomplete, noisy, or incorrect. <br>
-Mitigation: Treat reports as advisory and have a developer review findings before changing code, blocking a build, or publishing feedback. <br>
+## Use Case:
 
+Developers and engineers use this skill to review files, staged changes, commits, or diff files for code quality, style, best-practice, and security issues. It can produce line-level findings and summary reports for local workflows, pre-commit checks, or CI review artifacts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/michealxie001/xie-code-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports or JSON reports, with optional shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include summary counts, per-file issues, severity labels, rule categories, line references, snippets, and suggested fixes when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can load optional Python modules from a c-support/lib path outside the skill package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in a trusted skills directory, or remove or sandbox the optional C-support import path before use.
+
+Risk: The skill reads target files and runs git queries for staged or commit reviews.
+
+Mitigation: Run it only against intended repositories and files in a controlled workspace with appropriate access boundaries.
+
+Risk: The skill can write Markdown or JSON reports to a user-supplied output path.
+
+Mitigation: Use explicit output paths in controlled locations and review generated reports before using them in CI or release decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/michealxie001/skills/xie-code-review)
+- [Publisher profile](https://clawhub.ai/user/michealxie001)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report by default, with optional JSON report output and optional saved report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include issue counts, file-level findings, severity labels, metrics, and suggested fixes when available.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

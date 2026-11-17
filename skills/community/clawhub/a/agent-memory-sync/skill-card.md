@@ -1,48 +1,62 @@
-## Description: <br>
-Use when preserving, searching, reviewing, or exporting user-owned agent memory across OpenClaw, Codex, Claude, OpenCode, Hermes, Qoder, Obsidian, and Git. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Preserves, searches, reviews, and exports user-owned agent memory across OpenClaw, Codex, Claude, OpenCode, Hermes, Qoder, Obsidian, and Git.
 
-## Publisher: <br>
-[wildprogrammer](https://clawhub.ai/user/wildprogrammer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wildprogrammer](https://clawhub.ai/user/wildprogrammer)
 
-## Use Case: <br>
-Developers and agent users use Memory Sync to preserve local agent memory, conversation archives, handoff summaries, and personal knowledge into an owned Obsidian and Git memory layer. It helps review candidate memories, rebuild indexes and profiles, export cross-agent context, and optionally sync versioned memory assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect and persist broad local agent history, rule files, profile/config files, and skill inventories into an Obsidian vault and optionally Git. <br>
-Mitigation: Install only when a local memory system is intended, keep the vault and any Git remote private, and review archived sources and staged files before sharing or publishing. <br>
-Risk: Sensitive information can become durable memory if local conversations or configuration files include secrets, regulated data, or confidential material. <br>
-Mitigation: Do not store API keys, passwords, private keys, regulated data, or confidential customer material as durable memory; review candidate memories before promotion. <br>
-Risk: Git sync can publish memory artifacts beyond the local machine if push is enabled. <br>
-Mitigation: Leave Git push disabled unless staged files and remote visibility have been reviewed, and enable remote push only intentionally. <br>
-Risk: Cleanup can permanently delete generated Obsidian copies when hard-delete mode is enabled. <br>
-Mitigation: Use the default recoverable trash cleanup mode and enable permanent deletion only after confirming the cleanup scope. <br>
+## Use Case:
 
+Developers and agent users use Memory Sync to preserve local agent memory, chat stores, and handoff summaries, then review them into durable Obsidian memory indexes, profile/context packs, skill inventories, and optional Git-synced outputs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wildprogrammer/skills/agent-memory-sync) <br>
-- [Clawdis Homepage](https://github.com/Wildprogrammer/memory-sync-skill) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Configuration Files](config/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and JSON files with command-line workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local Obsidian vault content, memory indexes, profile/context exports, source archives, skill inventories, and optional Git commits when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: The skill can archive raw agent conversations, tool outputs, rule files, profile data, project metadata, and skill inventories into an Obsidian vault.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this local copying behavior is acceptable, keep the vault private, and review generated Sources and review packs before sharing or syncing.
+
+Risk: Archived memory data can be staged for Git and may expose sensitive material if pushed to an unintended remote.
+
+Mitigation: Leave GIT_PUSH_ENABLED=false unless the remote repository is private and intended for this data, and confirm repository visibility before enabling push.
+
+Risk: Conversation scans may preserve credentials, customer data, private keys, or regulated information if those appear in local agent stores.
+
+Mitigation: Avoid scanning conversations that may contain those data classes, and do not store secrets or regulated material as durable memory.
+
+Risk: Cleanup can permanently delete Obsidian source copies when delete mode is explicitly enabled.
+
+Mitigation: Use the default trash cleanup mode for normal operation and enable permanent deletion only when intentional.
+
+## Reference(s):
+
+- [Memory Sync GitHub repository](https://github.com/Wildprogrammer/memory-sync-skill)
+- [Memory Sync ClawHub skill page](https://clawhub.ai/wildprogrammer/skills/agent-memory-sync)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local Obsidian vault content, memory indexes, context/profile packs, skill inventories, and optional Git sync guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,54 @@
-## Description: <br>
-Model-guided arXiv paper collection workflow that plans queries, fetches metadata, filters relevance, and merges deduplicated results by language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Model-driven arXiv retrieval workflow for building a paper set with a manual language parameter: initialize a run, fetch metadata for each model-designed query, let the model filter irrelevant items per query by keep indexes, then merge and dedupe into per-paper metadata directories.
 
-## Publisher: <br>
-[xukp20](https://clawhub.ai/user/xukp20) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xukp20](https://clawhub.ai/user/xukp20)
 
-## Use Case: <br>
-Developers, researchers, and research assistants use this skill to turn a topic into a curated arXiv paper set by planning queries, fetching public metadata, filtering results for relevance, and merging deduplicated outputs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local Python helper scripts execute in the user's environment. <br>
-Mitigation: Install only if you are comfortable running local scripts and use a dedicated output or run directory. <br>
-Risk: User-provided python-bin or fetch-script overrides can change what code is executed. <br>
-Mitigation: Use the bundled default script paths and avoid untrusted python-bin or fetch-script overrides. <br>
-Risk: Fetched arXiv metadata and abstracts are untrusted text that may influence relevance filtering. <br>
-Mitigation: Treat fetched content as untrusted input, use it only for relevance filtering, and review selected papers before merging final outputs. <br>
-Risk: Aggressive querying can trigger arXiv rate limits or incomplete collection runs. <br>
-Mitigation: Keep serial batch mode and default min-interval, retry, jitter, and run-local rate-state settings; back off if arXiv returns rate-limit errors. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [I/O Contract](references/io-contract.md) <br>
-- [Query Plan Format](references/query-plan-format.md) <br>
-- [arXiv API endpoint](https://export.arxiv.org/api/query) <br>
+## Use Case:
 
+Developers and researchers use this skill to plan arXiv searches, fetch paper metadata, filter query results by model-selected keep indexes, and merge deduplicated paper records into a collection for downstream processing.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Markdown] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON examples; helper scripts write JSON and Markdown files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates run directories with query metadata, selection logs, per-paper metadata, and deduplicated paper indexes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Crafted run names, query labels, selection JSON, or cached query-result files may cause reads or writes outside the intended collection folder.
+
+Mitigation: Use only trusted inputs, keep output roots in a dedicated disposable directory, and avoid running the skill near important overwriteable JSON or Markdown files.
+
+Risk: Unsafe path handling remains unresolved in the reviewed release.
+
+Mitigation: Review and fix path traversal issues before using this skill in shared or untrusted workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xukp20/skills/arxiv-search-collector)
+- [I/O Contract](references/io-contract.md)
+- [Query Plan Format](references/query-plan-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, json, markdown, files]
+
+**Output Format:** [Markdown guidance with shell commands, JSON query plans, and generated JSON/Markdown collection files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include run metadata, per-query result lists, selected-paper metadata directories, and a papers index.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

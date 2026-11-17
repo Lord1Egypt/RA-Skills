@@ -1,45 +1,58 @@
-## Description: <br>
-Use when installing, migrating, updating, validating, troubleshooting, or scheduling an automated arXiv paper digest inside an Obsidian Vault on Windows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when installing, migrating, updating, validating, troubleshooting, or scheduling an automated arXiv paper digest inside an Obsidian Vault on Windows.
 
-## Publisher: <br>
-[debtvc2022](https://clawhub.ai/user/debtvc2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[debtvc2022](https://clawhub.ai/user/debtvc2022)
 
-## Use Case: <br>
-Developers and Obsidian users use this skill to install, update, validate, troubleshoot, and optionally schedule a Windows-based arXiv digest inside a confirmed Obsidian Vault. It helps preserve existing notes and generated outputs while guiding configuration and validation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install or update files inside an Obsidian Vault. <br>
-Mitigation: Install only into the intended Vault, run the dry-run preview first, and require explicit approval before using force updates on an existing project. <br>
-Risk: Optional summaries can send paper metadata and abstracts to DeepSeek when summary generation is enabled. <br>
-Mitigation: Review config.yaml before scheduling and set summary_enabled to false or leave DEEPSEEK_API_KEY unset when external summarization is not desired. <br>
-Risk: Optional Windows scheduling can create or replace a recurring background task. <br>
-Mitigation: Use WhatIf for task registration previews and inspect any existing task name, action path, target Vault, and next run time before approving Force. <br>
+## Use Case:
 
+Developers and technical users use this skill to install or update a Windows-based Obsidian arXiv digest, configure approved collection settings, validate the installed copy, and optionally schedule the daily run.
 
-## Reference(s): <br>
-- [Operations Reference](references/operations.md) <br>
-- [DeepSeek API Base URL](https://api.deepseek.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/debtvc2022/setup-obsidian-arxiv-daily) <br>
-- [Publisher Profile](https://clawhub.ai/user/debtvc2022) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with PowerShell commands, configuration instructions, and validation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May install or update files in a user-selected Obsidian Vault and may guide optional Windows Task Scheduler registration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A scheduled daily task can repeatedly read arXiv results, write generated notes and logs inside the selected Obsidian Vault, and archive old generated paper notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target Vault, project name, task name, and schedule before approval; use dry-run and WhatIf validation before registering or replacing a task.
+
+Risk: When summaries are enabled and DEEPSEEK_API_KEY is present, paper titles, authors, and abstracts may be sent to DeepSeek.
+
+Mitigation: Keep credentials in the process environment only, review summary settings before use, and disable summaries when external summarization is not acceptable.
+
+Risk: Forceful update or task replacement can overwrite packaged workflow files or replace an existing scheduled task.
+
+Mitigation: Require explicit approval after inspecting the existing project or task, and preserve generated papers, daily notes, archives, logs, and credentials.
+
+## Reference(s):
+
+- [Operations Reference](references/operations.md)
+- [ClawHub Skill Page](https://clawhub.ai/debtvc2022/skills/setup-obsidian-arxiv-daily)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with PowerShell and Python commands plus configuration edits.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The installed workflow produces Obsidian Markdown notes, dashboard content, logs, and optional Windows scheduled task configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

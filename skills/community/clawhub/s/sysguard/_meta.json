@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn775j8jrm11qnnxm1t00rdaad833871",
+  "name": "SysGuard",
   "slug": "sysguard",
-  "version": "2.1.1",
-  "publishedAt": 1774340598812
+  "version": "2.1.0",
+  "description": "🛡️ SysGuard - OpenClaw 系统守护，智能监控、主动告警、安全清理",
+  "author": "曾鹏祥",
+  "license": "MIT",
+  "homepage": "https://github.com/Steventsang18/sysguard",
+  "keywords": ["system", "guard", "health", "monitor", "process", "openclaw"],
+  "category": "system",
+  "os": ["linux"],
+  "dependencies": []
 }

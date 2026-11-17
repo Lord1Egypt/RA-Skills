@@ -1,0 +1,5 @@
+interface:
+  display_name: Fingerprint CI Gate
+  short_description: Gate a build on browser fingerprint regressions with liarjs - save a baseline scan as JSON, diff later runs against it, and fail the job when the consistency score falls below a floor.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.png

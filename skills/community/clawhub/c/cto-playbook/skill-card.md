@@ -1,40 +1,52 @@
-## Description: <br>
-CTO & Engineering Excellence Playbook for architecture decisions, tech stack selection, database choices, API design, DevOps and CI/CD, code quality, team structure, hiring, product methodology, security, observability, AI-augmented engineering, engineering metrics, roadmap planning, and agent skill security scanning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides CTO-level engineering guidance for architecture decisions, technology choices, DevOps, code quality, team planning, engineering document generation, and agent skill security review.
 
-## Publisher: <br>
-[chilu18](https://clawhub.ai/user/chilu18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chilu18](https://clawhub.ai/user/chilu18)
 
-## Use Case: <br>
-Developers, engineering leaders, and agent operators use this skill to shape architecture, delivery, security, process, team, and technical documentation decisions against a CTO-style engineering playbook. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill applies broad CTO-style governance language and may over-trigger on routine coding or architecture tasks. <br>
-Mitigation: Use it when broad engineering governance is desired, and scope agent instructions explicitly for narrow implementation tasks. <br>
-Risk: The artifact recommends external scanner commands for skill and MCP review. <br>
-Mitigation: Verify and pin external scanner commands before running them, especially in CI or production environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Full Playbook](references/full-playbook.md) <br>
-- [ClawHub skill page](https://clawhub.ai/chilu18/cto-playbook) <br>
+## Use Case:
 
+Developers, engineering leaders, and product teams use this skill to apply CTO-style engineering standards to architecture choices, delivery practices, engineering documents, code review, and agent skill security review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional code, shell command, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce ADRs, RFCs, postmortems, roadmaps, hiring plans, PRDs, reviews, and implementation guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill applies broadly to coding tasks and may overreach by influencing work outside CTO-style planning, review, documentation, or security contexts.
+
+Mitigation: Enable it deliberately for architecture, engineering process, review, documentation, and skill-security tasks rather than as a blanket default for all agent work.
+
+Risk: The artifact recommends unpinned external scanner commands, including local, home-directory, and CI scans.
+
+Mitigation: Pin and vet scanner versions, run with least privilege, and scope scans to intended files before adding commands to CI, hooks, or local workflows.
+
+## Reference(s):
+
+- [CTO & Engineering Excellence Playbook - Full Reference](references/full-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with templates and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ADRs, RFCs, postmortems, roadmaps, hiring plans, PRDs, reviews, CI guidance, and security scanning recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

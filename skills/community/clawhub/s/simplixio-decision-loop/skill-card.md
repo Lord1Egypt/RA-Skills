@@ -1,41 +1,57 @@
-## Description: <br>
-Turn messy work, research, product ideas, and codebase context into 3 priorities, clear actions, ignored noise, and a weekly review loop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn messy work, research, product ideas, and codebase context into 3 priorities, clear actions, ignored noise, and a weekly review loop.
 
-## Publisher: <br>
-[ph-7](https://clawhub.ai/user/ph-7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ph-7](https://clawhub.ai/user/ph-7)
 
-## Use Case: <br>
-External users, founders, product engineers, AI builders, and developers use this skill to turn messy notes, project context, codebase next steps, weekly reviews, or product output into a short decision brief with priorities, ignored noise, feedback checks, and one next action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is marked always-on and may appear in broad planning conversations, including sensitive workspaces. <br>
-Mitigation: When using it in private repositories or sensitive workspaces, tell the agent which files or folders are in scope; users who prefer explicit activation should disable broad activation where supported. <br>
-Risk: Decision briefs can become misleading if the available context is weak or incomplete. <br>
-Mitigation: Require the agent to state assumptions, inspect available project evidence when relevant, avoid fake certainty, and end with a small reversible action. <br>
+## Use Case:
 
+External users, founders, product engineers, and AI builders use this skill to turn messy work context into a decision-ready brief with up to three priorities, ignored noise, feedback checks, and a next small action.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ph-7/simplixio-decision-loop) <br>
-- [Publisher homepage](https://github.com/pH-7) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown decision brief, weekly review, or product-proof marketing draft] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces up to three priorities, ignored-noise notes, feedback prompts, and one concrete next action] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may be invoked for broad planning work and can shape priorities from incomplete or weak evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the brief before acting, keep uncertainty visible, and avoid using it as a substitute for legal, financial, medical, or immigration advice.
+
+Risk: Optional publishing notes include a global unpinned npm install for the ClawHub CLI.
+
+Mitigation: Verify and pin the CLI version or use a trusted package installation process before following publishing commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ph-7/skills/simplixio-decision-loop)
+- [Publisher Profile](https://clawhub.ai/user/ph-7)
+- [Publisher Homepage](https://github.com/pH-7)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown decision brief, weekly review, or proof-based marketing draft]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include priorities, rationale, next actions, ignored items with risks, and simple feedback checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter is 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

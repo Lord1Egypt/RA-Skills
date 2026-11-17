@@ -1,51 +1,63 @@
-## Description: <br>
-CLI for VibeSKU, an AI-powered creative automation platform that turns product SKU photos into professional e-commerce visuals and marketplace-ready copy at scale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+VibeSKU is a CLI skill for creating e-commerce product visuals, marketplace listing copy, refinements, exports, batch runs, credit checks, and CLI configuration from product SKU photos.
 
-## Publisher: <br>
-[visoar](https://clawhub.ai/user/visoar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[visoar](https://clawhub.ai/user/visoar)
 
-## Use Case: <br>
-External developers, e-commerce operators, and agents use this skill to authenticate with VibeSKU, select generation templates, run image or listing-copy jobs, refine outputs, export results, and manage batch or credit workflows from the command line. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The CLI can access a VibeSKU account and use API keys or browser-login tokens stored in local configuration. <br>
-Mitigation: Protect VIBESKU_API_KEY and ~/.vibesku/config.json, avoid exposing credentials in shared logs, and revoke or rotate credentials if they are mishandled. <br>
-Risk: Generation, refinement, upload, export, and batch commands can send selected product assets to VibeSKU and consume or purchase account credits. <br>
-Mitigation: Review product assets and generated command arguments before execution, use dry-run or JSON inspection for batch work when available, and confirm credit-impacting actions with the user. <br>
-Risk: The skill recommends updating from an upstream source when the local version is stale. <br>
-Mitigation: Require explicit user approval before installing or updating the skill from GitHub or any other upstream source. <br>
-Risk: A custom VIBESKU_BASE_URL or configured base URL could direct requests to an untrusted service. <br>
-Mitigation: Use only trusted VibeSKU base URLs and inspect configuration before authenticating, uploading assets, or running generation commands. <br>
+## Use Case:
 
+Developers, operators, and e-commerce teams use this skill to drive the VibeSKU CLI for product image generation, detail-page visual sets, technical infographics, listing copy, output refinement, and batch catalog workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/visoar/vibesku) <br>
-- [VibeSKU homepage](https://www.vibesku.com) <br>
-- [Command reference](references/commands.md) <br>
-- [E-commerce hero template](references/ecom-hero.md) <br>
-- [Exploded-view template](references/exploded-view.md) <br>
-- [Key visual image-set template](references/kv-image-set.md) <br>
-- [Listing copy template](references/listing.md) <br>
-- [Versioning and update guidance](references/versioning.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may upload selected product assets, download generated image or text outputs, and use VibeSKU account credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.4 (source: release evidence and VERSION) <br>
+Risk: The skill can upload local product images and logos to VibeSKU.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm each image or logo path is an intended, non-sensitive product asset before running generation or batch workflows.
+
+Risk: Credentials may be stored in ~/.vibesku/config.json and sent to a configurable API endpoint.
+
+Mitigation: Protect the config file, prefer scoped credentials, and keep VIBESKU_BASE_URL unset unless using a trusted HTTPS endpoint or localhost development server.
+
+Risk: The artifact recommends checking and updating from an upstream main-branch version source.
+
+Mitigation: Review skill updates before installation instead of allowing unattended update behavior.
+
+## Reference(s):
+
+- [VibeSKU homepage](https://www.vibesku.com)
+- [Command reference](references/commands.md)
+- [Template: ecom-hero](references/ecom-hero.md)
+- [Template: kv-image-set](references/kv-image-set.md)
+- [Template: exploded-view](references/exploded-view.md)
+- [Template: listing](references/listing.md)
+- [Versioning and auto-update](references/versioning.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON-oriented CLI usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing CLI workflows may reference local asset paths, environment variables, config files, and VibeSKU job or output identifiers.]
+
+## Skill Version(s):
+
+0.2.4 (source: server release evidence and VERSION file)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

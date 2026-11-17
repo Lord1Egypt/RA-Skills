@@ -1,42 +1,58 @@
-## Description: <br>
-Continuous self-improvement through systematic logging, pattern detection, and behavioral updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Continuous self-improvement through systematic logging, pattern detection, and behavioral updates.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-Developers and agent operators use this skill to help an agent log corrections, failures, recurring patterns, feature requests, and positive signals, then review those records and promote repeated lessons into operating guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent self-modification can add incorrect or unsafe operating rules. <br>
-Mitigation: Require manual review before any write outside .learnings and before promoting changes into SOUL.md, AGENTS.md, TOOLS.md, MEMORY.md, or HEARTBEAT.md. <br>
-Risk: Learning logs and memory files can capture private or sensitive context. <br>
-Mitigation: Do not store passwords, tokens, cookies, or credentials, and periodically review or delete logs that contain sensitive information. <br>
+## Use Case:
 
+External agent users use this skill to log corrections, failures, feature requests, and recurring behavior patterns, then turn repeated learnings into durable configuration updates.
 
-## Reference(s): <br>
-- [Jarvis learning article](https://jarvis.ripper234.com/learn.html) <br>
-- [ClawHub skill page](https://clawhub.ai/netanel-abergel/heleni-self-learning) <br>
-- [Publisher profile](https://clawhub.ai/user/netanel-abergel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and markdown templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write or propose updates to .learnings files and agent operating instructions when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Persistent learning logs and configuration updates can change future agent behavior in ways the user did not intend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit review and per-file approval before changing memory, identity, skills, configuration, scheduled tasks, or commits.
+
+Risk: Learning files could capture secrets or sensitive personal data.
+
+Mitigation: Do not store passwords, tokens, API keys, private keys, recovery codes, or sensitive personal data in Markdown learning files.
+
+Risk: Broad reads of personal memory and configuration can expose private context during reflection.
+
+Mitigation: Scope reflection reads to the files needed for the requested behavior change and review generated notes before persisting them.
+
+## Reference(s):
+
+- [Heleni Self Learning on ClawHub](https://clawhub.ai/netanel-abergel/skills/heleni-self-learning)
+- [Jarvis learning note](https://jarvis.ripper234.com/learn.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell scripts and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or update persistent Markdown learning logs and configuration notes when the agent is granted file-editing authority.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

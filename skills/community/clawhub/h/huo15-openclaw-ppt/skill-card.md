@@ -1,42 +1,58 @@
-## Description: <br>
-Generates and edits design-token-based presentation decks with style packs, semantic slide templates, multi-source imports, exports, speaker notes, animation, and critique workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and edits presentation decks from prompts, URLs, documents, mind maps, PDFs, and existing PPTX files using design-token style packs, semantic slide templates, auditing tools, and export utilities.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-External creators, business users, and developers use this skill to turn prompts, URLs, documents, PDFs, XMind files, or existing decks into styled presentations and related web, image, video, speaker-note, and critique artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PPT prompts, imported documents, slide text, URLs, and speaker-note inputs may be sent to configured third-party AI providers. <br>
-Mitigation: Use non-confidential data unless provider settings are controlled; disable remote workflows when needed and review provider configuration before execution. <br>
-Risk: The skill requires sensitive credentials for some providers and media workflows. <br>
-Mitigation: Store API keys in environment or secret-management controls, limit key scope where possible, and rotate keys after shared or high-risk use. <br>
-Risk: Generated files and local caches can contain user-provided or transformed presentation content. <br>
-Mitigation: Review output paths and cache locations, and remove generated artifacts that contain confidential or regulated information. <br>
+## Use Case:
 
+Developers, presentation creators, and business users can use this skill to create, transform, critique, and export presentation decks from natural-language prompts and source materials. It is suited for local deck generation workflows that need PPTX, web, image, video, notes, and review outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/huo15-openclaw-ppt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [PPTX, JSON deck specs, HTML, image or video files, Markdown reports, and command-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some workflows require configured API credentials and may use local output paths or caches.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.1 (source: frontmatter and server release evidence) <br>
+Risk: User documents, extracted content, or URL content may be sent to the configured LLM provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only documents and URLs approved for the configured provider, and verify PPT_LLM_BASE_URL and ~/.openclaw/models.json before running.
+
+Risk: URL import can process untrusted or internal URLs.
+
+Mitigation: Avoid untrusted or internal URLs and restrict imports to approved public sources.
+
+Risk: Some import or build paths may write unexpected files without clear enough user control.
+
+Mitigation: Review output paths before execution and prefer the normal create-pptx.py path over create_pptx_combined.py until the hard-coded output behavior is fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-openclaw-ppt)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with command examples; generated artifacts may include JSON deck specs, PPTX files, HTML pages, images, MP4 video, and Markdown review reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use configured LLM or image-provider credentials and local source documents.]
+
+## Skill Version(s):
+
+5.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

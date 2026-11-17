@@ -51,7 +51,7 @@ metadata:
 
 The **ChainAware Behavioral Prediction MCP** connects any AI agent to a continuously updated
 Web3 behavioral intelligence layer: **14M+ wallet profiles** across **8 blockchains**, built from
-**1.3 billion+ predictive data points**. It delivers ten capabilities via a single MCP endpoint:
+**1.3 billion+ predictive data points**. It delivers fourteen capabilities via a single MCP endpoint:
 
 1. **Fraud Detection** — predict fraudulent wallet behavior before it happens ([~98% accuracy on ETH](https://chainaware.ai/scam-db))
 2. **Batch Fraud Detection** — async batch job for fraud screening large wallet lists; returns `job_id` + `signature`
@@ -63,6 +63,10 @@ Web3 behavioral intelligence layer: **14M+ wallet profiles** across **8 blockcha
 8. **Credit Score** — crypto credit/trust score (1–9) combining fraud probability and social graph analysis
 9. **Token Rank List** — rank tokens by holder community strength across chains and categories
 10. **Token Rank Single** — deep-dive into a single token's community quality and top holders
+11. **Token Audit** — deep multi-module smart contract audit via async get-or-create pipeline; 8 modules (ownership, liquidity, supply, honeypot, reentrancy, permissions, shadow functions, drainability); aggregate risk score 0–100; supports eth, bsc, base, arbitrum, avalanche, optimism, polygon (lowercase)
+12. **Token Audit Results** — poll or retrieve completed token audit; full module breakdown when `audit_status == "complete"`; never present data while still queued or running
+13. **Agent Trust Score List** — list ERC-8004 registered AI agents with on-chain trust scores (0–1000); paginated and sortable; use to discover agents or resolve agent_id
+14. **Agent Trust Score Single** — full trust profile for a single ERC-8004 agent by `agent_id` + `chain_id`; includes trust score, tier, `wallet_verified`, `owner_address`; hard warning if `wallet_verified == false` or `error` is non-null
 
 Unlike forensic blockchain tools that describe the past, this MCP is **predictive** — it tells your
 agent what is *about to happen*.
@@ -70,7 +74,7 @@ agent what is *about to happen*.
 **MCP Server URL:** `https://prediction.mcp.chainaware.ai/sse`  
 **GitHub:** https://github.com/ChainAware/behavioral-prediction-mcp  
 **Website:** https://chainaware.ai  
-**Pricing / API Key:** https://chainaware.ai/pricing  
+**Pricing / API Key:** https://chainaware.ai/pricing · x402 payment supported  
 **Twitter:** https://x.com/ChainAware/  
 **LinkedIn:** https://www.linkedin.com/company/chainaware  
 **Blog:** https://chainaware.ai/blog  
@@ -130,6 +134,10 @@ agent what is *about to happen*.
 | `credit_score` | ETH |
 | `token_rank_list` | ETH, BNB, BASE, SOLANA |
 | `token_rank_single` | ETH, BNB, BASE, SOLANA |
+| `run_token_audit` | eth, bsc, base, arbitrum, avalanche, optimism, polygon *(lowercase)* |
+| `get_token_audit_result` | eth, bsc, base, arbitrum, avalanche, optimism, polygon *(lowercase)* |
+| `agents_trust_score_list` | Chain-ID-based (ERC-8004 registry) |
+| `agents_trust_score_single` | Chain-ID-based (ERC-8004 registry) |
 
 ---
 
@@ -518,7 +526,8 @@ Recommendation:
 
 ## Requirements
 
-- **API Key** — a `CHAINAWARE_API_KEY` environment variable is required. Obtain one at https://chainaware.ai/pricing
+- **API Key** — a `CHAINAWARE_API_KEY` environment variable is required for subscription-based access. Obtain one at https://chainaware.ai/pricing
+- **x402 payments** — the MCP server supports the [x402 protocol](https://x402.org) for pay-per-call access without a subscription; compatible clients settle payment automatically on HTTP 402 responses
 - **MCP-compatible host** — Claude Code, Cursor, Claude Desktop, ChatGPT Connectors, or any MCP client that supports SSE transport
 - **Network awareness** — different tools support different blockchains; see the Supported Blockchains table above
 - **No local installation** — the MCP server runs remotely at `https://prediction.mcp.chainaware.ai/sse`; no packages to install
@@ -647,7 +656,7 @@ These subagents in `.claude/agents/` provide specialized autonomous execution:
 |---|---|
 | `chainaware-wallet-auditor` | Full due diligence — deep behavioural profiling including fraud signals |
 | `chainaware-fraud-detector` | Fast fraud screening, batch wallet checks |
-| `chainaware-rug-pull-detector` | Contract/LP safety with deployer analysis |
+| `chainaware-rug-pull-detector` | Contract/LP safety checks |
 | `chainaware-wallet-marketer` | Personalized marketing messages per wallet segment |
 | `chainaware-reputation-scorer` | Reputation score 0–1000 |
 | `chainaware-aml-scorer` | AML compliance scoring 0–100 |
@@ -677,6 +686,8 @@ These subagents in `.claude/agents/` provide specialized autonomous execution:
 | `chainaware-portfolio-risk-advisor` | Portfolio-level rug pull scan, risk grade (A–F), rebalancing plan |
 | `chainaware-rwa-investor-screener` | RWA investor suitability — QUALIFIED / CONDITIONAL / REFER_TO_KYC / DISQUALIFIED |
 | `chainaware-ltv-estimator` | 12-month revenue potential (LTV) as a USD range — tx count × avg tx value × fee rate, scaled by behavioral multipliers. Optional: platform_share, fee_rate |
+| `chainaware-agent-trust-screener` | ERC-8004 agent trust score (0–1000) — list → single workflow; Elite/High/Moderate/Low/Very Low/Fraud tiers; hard warnings on wallet_verified=false |
+| `chainaware-token-audit-analyst` | Deep multi-module contract audit via async pipeline — aggregate risk score 0–100, ⛔ CRITICAL if can_drain=true; ⚠️ lowercase networks |
 
 ---
 
@@ -694,6 +705,8 @@ These subagents in `.claude/agents/` provide specialized autonomous execution:
 | Web3 Behavioral Analytics Guide | https://chainaware.ai/blog/chainaware-web3-behavioral-user-analytics-guide/ |
 | Credit Score Guide | https://chainaware.ai/blog/chainaware-credit-score-the-complete-guide-to-web3-credit-scoring-in-2026/ |
 | Credit Scoring Agent Guide | https://chainaware.ai/blog/chainaware-credit-scoring-agent-guide/ |
+| Agent Trust Score for Agentic Commerce | https://chainaware.ai/blog/agent-trust-score-agentic-commerce/ |
+| Token Audit: 10,000 CoinGecko Token Results | https://chainaware.ai/blog/token-audit-10000-coingecko-results/ |
 | Prediction MCP Developer Guide | https://chainaware.ai/blog/prediction-mcp-for-ai-agents-personalize-decisions-from-wallet-behavior/ |
 | Top 5 Ways Prediction MCP Turbocharges DeFi | https://chainaware.ai/blog/top-5-ways-prediction-mcp-will-turbocharge-your-defi-platform/ |
 | Why Personalization Is Next for AI Agents | https://chainaware.ai/blog/why-personalization-is-the-next-big-thing-for-ai-agents/ |
@@ -722,6 +735,8 @@ Every tool call transmits the following to `https://prediction.mcp.chainaware.ai
 
 `CHAINAWARE_API_KEY` is read from the environment and passed as the `apiKey` parameter in each tool call. It is never included in output, never written to disk, and never logged by this skill. Treat it as a secret and rotate it regularly.
 
+The MCP server also supports **x402 payments** — if your client supports the x402 protocol, payment is settled automatically on HTTP 402 responses with no API key required.
+
 ### Integration-specific privacy notes
 
 - **Claude Code / Cursor**: key passed via `X-API-Key` header — does not appear in URLs or logs
@@ -747,7 +762,8 @@ Wallet addresses are pseudonymous identifiers. Whether they constitute personal 
 
 | Code | Meaning |
 |---|---|
-| `403 Unauthorized` | Invalid or missing `apiKey` |
+| `403 Unauthorized` | Invalid or missing `apiKey` (not applicable when using x402 payments) |
+| `402 Payment Required` | x402 payment required — compatible clients settle automatically |
 | `400 Bad Request` | Malformed `network` or `walletAddress` |
 | `500 Internal Server Error` | Temporary backend failure — retry after a short delay |
 
@@ -755,4 +771,7 @@ Wallet addresses are pseudonymous identifiers. Whether they constitute personal 
 
 ## Access & Pricing
 
-API key required. Subscribe at: https://chainaware.ai/pricing
+Two access methods are supported:
+
+- **API key** — subscribe at https://chainaware.ai/pricing and pass the key via `CHAINAWARE_API_KEY` env var
+- **x402 payments** — pay-per-call via the [x402 protocol](https://x402.org); no subscription required, compatible clients handle payment automatically on HTTP 402 responses

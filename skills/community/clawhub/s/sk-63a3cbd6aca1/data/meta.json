@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "shop_name": "魔杖商店",
+  "keeper_name": "店主",
+  "paper_count": 20,
+  "paper_seed": 20260915,
+  "opening": [
+    "门上的铃铛响了一声。",
+    "这里是魔杖商店。我是店主——库里每一根杖我都记得，哪根什么脾气，我比你清楚。",
+    "先别急着挑。杖这东西，从来是人挑杖，杖也在挑人。",
+    "我边量边聊，你照实答就行——答错了不要紧，杖会纠正我的。",
+    "对了，别被 27 这个数吓到——那是全套量法。赶时间的话，最快答 8 题就能见着那根杖。"
+  ],
+  "submit_line": "都答完了？我看看……嗯，有一根杖从刚才起就一直在亮。来看看。",
+  "early_exit_min": 8,
+  "early_exit_confirm": "剩下的题不答了？没关系——杖认人，不看题量。余下的它替你答，现在就看结果吗？",
+  "early_exit_card_line": "（你答了 {n} 题，剩下的它替你答了。杖认人，不看题量。）",
+  "early_exit_hint": "（答到一半不想答了？把已答的字母发我，说一声「就到这里」，我提前给你看结果。）",
+  "early_exit_quiz_line": "（悄悄说：最快答 8 题就能出结果——答够时下面会出现「就到这里」。）",
+  "style_choice_title": "结果样式",
+  "style_choice_rich": "形象版",
+  "style_choice_rich_sub": "为你的杖现画专属图",
+  "style_choice_plain": "简洁版",
+  "style_choice_plain_sub": "不带图，出得更快",
+  "style_choice_note": "形象版会照你的杖现画一张专属插画（木色、芯色、纹路都跟着杖走，页内绘制，不额外消耗额度）。只想快点看结果，选简洁版就好；两版卡片版式一样，只是有没有图。",
+  "style_toggle_label": "换个样式看（形象版 / 简洁版）",
+  "failure_pool": [
+    "你一握住，蜡烛全灭了。「灭得太整齐，不是它。」",
+    "杖尖喷出一串火花，点燃了窗帘。「胆子大，脾气不对。」",
+    "杖身发出嗡嗡声，然后是花盆碎裂的声音。「……我们继续。」",
+    "它在你手里轻轻抖了一下，像打了个寒颤。「它嫌你手凉。这条要记进台账。」",
+    "杖尖冒出一缕黑烟。台账上一行名字被划掉了。「下一根，下一根。」",
+    "什么都没发生。最尴尬的那种什么都没发生。「有的杖比较慢热。」"
+  ],
+  "chosen_line": "店里忽然安静下来。你握住它的那一刻，一道暖流从掌心一直涌到胳膊肘。",
+  "keeper_line": "「就是它了。」",
+  "closing_lines": [
+    "它要是夜里发亮，别怕，那是它高兴。",
+    "回去对它好一点。杖和人一样，记仇，但更记好。",
+    "别让它落灰。杖闲久了会闹脾气，比猫还厉害。"
+  ],
+  "tie_break": {
+    "wood": ["oak", "hawthorn", "birch", "yew", "cherry", "walnut", "ash", "maple"],
+    "core": ["hearth", "star", "firefly", "thunder", "tide", "mist"],
+    "len": ["mid", "short", "long"],
+    "flex": ["supple", "firm", "light", "hard"]
+  },
+  "length_bands": [
+    {"id": "short", "name": "沉静型", "inches": [9.75, 10.25, 10.75, 11.25], "line": "话不多，一开口就到位。"},
+    {"id": "mid", "name": "均衡型", "inches": [11.5, 11.75, 12.25, 12.75], "line": "收放自如，知道什么时候说、什么时候藏。"},
+    {"id": "long", "name": "丰盛型", "inches": [13.0, 13.5, 14.25, 14.75], "line": "感染力藏不住——你在的地方，热三分。"}
+  ],
+  "flex_bands": [
+    {"id": "light", "name": "轻盈", "line": "打断你的事来了，你退一步是本能——退完发现，路还在。"},
+    {"id": "supple", "name": "微韧", "line": "弯而不折，有底线。"},
+    {"id": "firm", "name": "挺韧", "line": "顶得住，不绕路。"},
+    {"id": "hard", "name": "坚硬", "line": "宁折不弯。认死理，但纯粹。"}
+  ],
+  "compare_rules": [
+    {"id": "replica", "when": "all_same", "title": "复刻", "line": "配杖配到重复，店主是要关店三天反省的。你俩例外。"},
+    {"id": "twin_tree", "when": "wood_same AND tree_same", "title": "同一棵树", "line": "一万棵树里你们偏是同一棵。这不叫缘分，叫台账事故。"},
+    {"id": "twin", "when": "wood_same AND core_same", "title": "孪生杖", "line": "同一棵树，同一炉芯。店主做了半辈子杖，头一回撞见重复。"},
+    {"id": "grove_clash_core", "when": "wood_same AND core_clash", "title": "同树异芯", "line": "一棵树上长出来的两种脾气。"},
+    {"id": "sheath", "when": "flex_opposite", "title": "互为杖鞘", "line": "它收进你的棱角，你包住它的锋利。"},
+    {"id": "harmony", "when": "len_opposite", "title": "互补声部", "line": "一个低音，一个高音，合起来才是整首歌。"},
+    {"id": "full_clash", "when": "core_clash AND len_opposite AND flex_opposite", "title": "相克相成", "line": "你们没有一根共同的地方——所以缺一不可。"},
+    {"id": "grove", "when": "wood_same", "title": "同林", "line": "出自同一片林子。你们的底色，是同一种料。"}
+  ],
+  "compare_fallback": "两根杖各有各的脾气——但能在同一张桌上说话，就已经很难得了。",
+  "compare_title": "两杖相照",
+  "forward_template": "我的杖是{wood}·{core}，出自{grove}第{tree}棵。店主说它等了很多年。你的呢？",
+  "declaration": "本测试为原创虚构作品，仅供娱乐，与任何现实作品及其权利方无关联。",
+  "banned_words_in_questions": ["橡木", "山楂", "桦木", "紫杉", "樱桃", "胡桃", "白蜡", "枫木", "星陨", "萤火", "雷纹", "潮汐", "炉心", "雾露", "沉稳", "敏感", "好奇", "坚持", "忠诚", "野心", "勇气", "智慧", "霍格沃茨", "对角巷", "奥利凡德", "魁地奇"]
+}

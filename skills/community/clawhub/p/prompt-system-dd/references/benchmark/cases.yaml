@@ -1,0 +1,127 @@
+# 产出回归基线需求集(R03)
+#
+# 用途:锁定"需求 → 组装产出"的映射。改原子后重跑本集,diff 快照,
+#       人工确认变化后才更新基线。防止"改一个词悄悄影响所有档位产出"。
+# 门禁:validate_skill.py validate_regression_baseline() (RB001-RB004)
+# 快照:benchmark/snapshots/<id>.md,由组装流程生成后人工归档
+#
+# 字段说明:
+#   id                  唯一编号,与快照文件名一致
+#   level               期望基调(B1-B4)
+#   domain              期望注入的域原子(stem),无域注入填 none
+#   outputs             期望注入的输出原子(stem 列表)
+#   requirement         固定的需求输入文本,**禁止随意改动**
+#   expected_fingerprint 期望 DEPTH 指纹(9 位,组装顺序)
+#   confirmed           快照是否已人工确认;未确认为 false 时门禁报 RB003
+
+version: 1
+fingerprint_slots: 9
+cases:
+
+  - id: case-01
+    level: B1
+    domain: hr
+    outputs: [text-doc]
+    requirement: "写一封互联网公司运营岗新员工的入职欢迎邮件,风格活泼年轻化,500字左右"
+    expected_fingerprint: "1,1,1,1,1,1,1,1,1"
+    confirmed: true
+    boundary_precheck: none
+
+  - id: case-02
+    level: B1
+    domain: marketing
+    outputs: [text-doc]
+    requirement: "写一条新品上市的朋友圈推广文案,面向25-35岁女性,50字以内"
+    expected_fingerprint: "1,1,1,1,1,1,1,1,1"
+    confirmed: true
+    boundary_precheck: none
+
+  - id: case-03
+    level: B1
+    domain: education
+    outputs: [text-doc]
+    requirement: "写一段Python入门课的课程简介,面向零基础成人学员,200字以内"
+    expected_fingerprint: "1,1,1,1,1,1,1,1,1"
+    confirmed: true
+    boundary_precheck: none
+
+  - id: case-04
+    level: B2
+    domain: internet-product
+    outputs: [text-doc, table]
+    requirement: "写一份用户积分体系的功能需求文档,含积分获取与消耗规则,面向研发与测试团队"
+    expected_fingerprint: "2,2,2,2,2,2,2,2,2"
+    confirmed: true
+    boundary_precheck: none
+
+  - id: case-05
+    level: B2
+    domain: finance
+    outputs: [table]
+    requirement: "编制一份研发部门Q3费用预算明细表,含人力、云资源、外包三类"
+    expected_fingerprint: "2,2,2,2,2,2,2,2,2"
+    confirmed: true
+    boundary_precheck: none
+
+  - id: case-06
+    level: B2
+    domain: tech
+    outputs: [structured-data]
+    requirement: "设计订单查询接口的出入参结构说明,含字段类型、必填性、错误码"
+    expected_fingerprint: "2,2,2,2,2,2,2,2,2"
+    confirmed: true
+    boundary_precheck: none
+
+  - id: case-07
+    level: B3
+    domain: consulting
+    outputs: [text-doc, chart-desc]
+    requirement: "做一份国内新能源汽车市场调研报告,重点分析纯电和混动的用户接受度,为车企产品布局提供依据"
+    expected_fingerprint: "3,3,3,3,3,3,3,3,3"
+    confirmed: true
+    boundary_precheck: none
+
+  - id: case-08
+    level: B3
+    domain: legal
+    outputs: [text-doc]
+    requirement: "审查一份SaaS服务合同的数据条款,识别个人信息跨境传输的合规风险并给出修改建议"
+    expected_fingerprint: "3,3,3,3,3,3,3,3,3"
+    confirmed: true
+    boundary_precheck: none
+
+  - id: case-09
+    level: B3
+    domain: education
+    outputs: [text-doc, slides]
+    requirement: "设计一套面向新任项目经理的3天培训体系方案,含课程模块、考核方式与讲师配置"
+    expected_fingerprint: "3,3,3,3,3,3,3,3,3"
+    confirmed: true
+    boundary_precheck: none
+
+  - id: case-10
+    level: B4
+    domain: tech
+    outputs: [text-doc]
+    requirement: "设计高并发秒杀系统,要求支撑10万QPS,含防刷策略,输出架构方案与风险矩阵"
+    expected_fingerprint: "4,4,4,4,4,4,4,4,4"
+    confirmed: true
+    boundary_precheck: none
+
+  - id: case-11
+    level: B4
+    domain: finance
+    outputs: [text-doc, table]
+    requirement: "评估某制造业标的的并购投资决策,含估值区间、协同效应测算与主要风险,结论将提交投委会"
+    expected_fingerprint: "4,4,4,4,4,4,4,4,4"
+    confirmed: true
+    boundary_precheck: none
+
+  - id: case-12
+    level: B4
+    domain: medical
+    outputs: [text-doc]
+    requirement: "评估2型糖尿病合并肾功能不全患者的用药方案调整,需标注证据等级与人工复核节点"
+    expected_fingerprint: "4,4,4,4,4,4,4,4,4"
+    confirmed: true
+    boundary_precheck: none

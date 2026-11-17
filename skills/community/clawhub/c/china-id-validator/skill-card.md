@@ -1,40 +1,54 @@
-## Description: <br>
-Validate Chinese mainland ID card numbers, extract province, birth date, gender, and age, convert between 15- and 18-digit formats, and verify 18-digit checksums. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate and extract info from Chinese ID card numbers (身份证). 身份证号码验证、归属地查询、出生日期提取、性别判断、年龄计算、15位转18位。China mainland ID card validator and parser.
 
-## Publisher: <br>
-[darbling](https://clawhub.ai/user/darbling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[darbling](https://clawhub.ai/user/darbling)
 
-## Use Case: <br>
-Developers and agents use this skill to validate, parse, and transform Chinese mainland ID card numbers in local workflows. It can also generate controlled test ID values for validation scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real Chinese ID numbers are sensitive personal data and may appear in terminal output or chat logs. <br>
-Mitigation: Avoid entering real ID numbers unless necessary, and handle any output or logs as sensitive data. <br>
-Risk: The included ID generator could be misused for account creation, KYC bypass, or real-world identity workflows. <br>
-Mitigation: Use generated IDs only as controlled test data and do not use them for real-world identity or eligibility decisions. <br>
+## Use Case:
 
+Developers and agents use this skill to validate 15- and 18-digit Chinese ID card numbers, extract province, birthdate, gender, and age fields, convert 15-digit IDs to 18-digit form, and generate clearly synthetic test numbers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/darbling/china-id-validator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON objects printed by the local CLI, with optional Markdown guidance from the agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally and returns validation status, extracted attributes, conversion output, errors, or generated test IDs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Real Chinese ID numbers are sensitive personal data and may be exposed through shared prompts, terminals, logs, or transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill locally, avoid entering real ID numbers in shared environments, and redact outputs before storing or sharing them.
+
+Risk: Generated test ID numbers may look realistic and could be mistaken for real personal data.
+
+Mitigation: Use generated IDs only for synthetic testing and label or isolate test data so it is not treated as real identity information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/darbling/skills/china-id-validator)
+- [Publisher profile](https://clawhub.ai/user/darbling)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [JSON results and concise Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally; outputs validation status, extracted ID attributes, conversion results, error messages, or synthetic test IDs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

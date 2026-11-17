@@ -1,51 +1,69 @@
-## Description: <br>
-Cue Buddy helps business users author, validate, debug, test, tune, and manage reusable Cue research templates for recurring public-data finance, compliance, and business research scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cue Buddy helps business users author, validate, test, tune, and pin reusable Cue research buddy templates through natural conversation, public-data workflows, and the Cue production API.
 
-## Publisher: <br>
-[wangxiaoxu](https://clawhub.ai/user/wangxiaoxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxiaoxu](https://clawhub.ai/user/wangxiaoxu)
 
-## Use Case: <br>
-Business users and analysts use this skill to turn recurring public-data research workflows into Cue buddy templates, validate the template fields, submit or update templates in their Cue account, and optionally run paid tests after confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a Cue API key and can create or modify templates in the user's Cue account. <br>
-Mitigation: Use a scoped or revocable Cue key where possible, review generated template changes before write operations, and rotate the key if it is accidentally pasted into chat. <br>
-Risk: Test and tune flows can consume Cue credits. <br>
-Mitigation: Run paid tests or tuning only after explicit user confirmation and review the expected credit cost before proceeding. <br>
-Risk: The security summary flags under-disclosed local file upload capability and cautions against confidential local documents. <br>
-Mitigation: Do not use confidential local files unless the file-upload helper is removed or disabled and the agent behavior is verified to keep reference materials local. <br>
-Risk: The security guidance notes occasional GitHub update checks. <br>
-Mitigation: Review or disable update-check behavior in restricted environments and inspect skill updates before applying them. <br>
+## Use Case:
 
+External business users and domain experts in finance, banking credit, asset management, private-fund diligence, compliance research, and strategy use this skill to turn recurring public-data research scenarios into reusable Cue buddy templates. The skill supports drafting, validating, creating, testing, tuning, and pinning templates in the user's Cue account.
 
-## Reference(s): <br>
-- [Cue Buddy ClawHub Release](https://clawhub.ai/wangxiaoxu/skills/cue-buddy) <br>
-- [Cue Platform](https://cuecue.cn) <br>
-- [Cue API Key Page](https://cuecue.cn/api-key) <br>
-- [Cue API Base](https://cuecue.cn/api) <br>
-- [Template Fields Specification](references/template-fields-spec.md) <br>
-- [Hard Rules](references/hard-rules.md) <br>
-- [Materials Intake Rules](references/materials-intake.md) <br>
-- [Gemini CLI Verification Report](docs/verification-reports/2026-05-20-gemini-cli.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON template payloads, shell commands, and validation or test results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call Cue APIs with a user-provided API key, create or update Cue templates, and run credit-consuming tests only after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence; artifact metadata.version is 0.2.0) <br>
+Risk: The skill can create, update, pin, or unpin templates in the user's Cue account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm each account-changing action and review the template content or diff before allowing create, update, frequent, or unfrequent operations.
+
+Risk: The skill uses a Cue API key and makes network calls to cuecue.cn.
+
+Mitigation: Use only the intended CUE_API_KEY and CUE_API_BASE values, avoid exposing keys in conversation or logs, and install only if cuecue.cn API access is acceptable.
+
+Risk: The skill may inspect selected local reference materials while drafting templates.
+
+Mitigation: Treat local materials as source context, extract reusable structure instead of verbatim sensitive content, and do not upload private originals to Cue.
+
+Risk: The skill includes GitHub-based self-maintenance behavior through update checks and upgrades.
+
+Mitigation: Avoid +upgrade and session-start silent update checks unless GitHub-based self-maintenance is acceptable, and inspect changes before applying an upgrade.
+
+## Reference(s):
+
+- [Cue platform](https://cuecue.cn)
+- [Cue API base endpoint](https://cuecue.cn/api)
+- [Cue API key setup](https://cuecue.cn/hub/api-key)
+- [Template fields specification](references/template-fields-spec.md)
+- [Hard rules](references/hard-rules.md)
+- [Materials intake rules](references/materials-intake.md)
+- [Corporate credit example](references/examples/corporate-credit.md)
+- [Earnings review example](references/examples/earnings-review.md)
+- [Gemini CLI verification report](docs/verification-reports/2026-05-20-gemini-cli.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, optional JSON template files, and API-backed status output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local template artifacts and may perform Cue account mutations only after user confirmation.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Openclaw Ledger provides a local tamper-evident audit trail for agent workspaces by recording workspace snapshots in a hash-chained ledger and verifying whether the chain has been altered. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw Ledger records local workspace changes in a hash-chained ledger and provides commands to initialize, record, verify, inspect, export, and restore ledger data.
 
-## Publisher: <br>
-[AtlasPA](https://clawhub.ai/user/AtlasPA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[atlaspa](https://clawhub.ai/user/atlaspa)
 
-## Use Case: <br>
-Developers and agent users use this skill to initialize, record, verify, inspect, and export a local audit ledger for workspace changes during agent sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Ledger exports and local audit records may contain sensitive workspace file paths, hashes, timestamps, and user-provided messages. <br>
-Mitigation: Treat exported ledger output as sensitive and avoid running the skill over unrelated private folders. <br>
-Risk: Restore and protect workflows can affect local ledger evidence used for preservation or review. <br>
-Mitigation: Review restore and protect behavior before using the skill in evidence-preservation workflows. <br>
+## Use Case:
 
+Developers and agent users use this skill to keep a local audit ledger for workspace changes during agent sessions and to check whether the recorded ledger chain remains intact.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AtlasPA/openclaw-ledger) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
-- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, JSON, files, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; runtime output is console text or JSON plus local JSONL and JSON ledger files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and writes local .ledger files in the selected workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: .ledger can store file names, hashes, timestamps, and user-supplied messages that may disclose workspace activity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep ledger data local, review export output before sharing it, and avoid export commands unless full ledger disclosure is intended.
+
+Risk: The ledger is tamper-evident, not forensic-grade tamper-proofing against a user or process that can write to the workspace.
+
+Mitigation: Do not use it as the sole security control; pair it with workspace access controls or external backups when stronger assurance is required.
+
+Risk: Protect and restore operations can replace ledger data.
+
+Mitigation: Run those commands only when ledger replacement is intended and retain backups before recovery operations.
+
+## Reference(s):
+
+- [Openclaw Ledger on ClawHub](https://clawhub.ai/atlaspa/skills/openclaw-ledger)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local ledger files under .ledger and may print JSON or text reports for export operations.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

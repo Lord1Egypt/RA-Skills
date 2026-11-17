@@ -1,42 +1,53 @@
-## Description: <br>
-Audits a workspace against DONE-unit outputs and pipeline target artifacts, then writes a contract report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit the workspace against the pipeline artifact contract by checking DONE unit outputs and pipeline target artifacts.
 
-## Publisher: <br>
-[WILLOSCAR](https://clawhub.ai/user/WILLOSCAR) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[willoscar](https://clawhub.ai/user/willoscar)
 
-## Use Case: <br>
-Developers and agent operators use this skill near the end of a workspace run, or before sharing a workspace, to check whether required outputs and pipeline target artifacts are present. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The public description emphasizes output/CONTRACT_REPORT.md, while security evidence notes that the skill may also update output/QUALITY_GATE.md. <br>
-Mitigation: Run it only in trusted workspaces and review both report files after execution. <br>
-Risk: The artifact bundles broader research-pipeline helper code beyond the contract-audit runner. <br>
-Mitigation: Review PIPELINE.lock.md and the bundled helper surface before deployment, especially in workspaces with sensitive or high-value artifacts. <br>
+## Use Case:
 
+Developers and agents use this skill at the end of a pipeline run or before sharing a workspace to verify that required outputs and target artifacts are present. It produces an audit report with PASS, OK, or FAIL status and concrete next actions for missing artifacts.
 
-## Reference(s): <br>
-- [Artifact Contract Auditor ClawHub Release](https://clawhub.ai/WILLOSCAR/artifact-contract-auditor) <br>
-- [Source Skill Definition](artifact/SKILL.md) <br>
-- [Runner Script](artifact/scripts/run.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report files and concise status guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes output/CONTRACT_REPORT.md and may update output/QUALITY_GATE.md when the pipeline is complete or contract drift is detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; bundled skill frontmatter declares 0.1.0) <br>
+Risk: The security scan reports under-disclosed writes: the skill may update output/QUALITY_GATE.md in addition to output/CONTRACT_REPORT.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in workspaces where updates to both reports are acceptable, and review those files after execution.
+
+Risk: The security scan reports path handling that can reach outside the expected workspace or pipeline directory.
+
+Mitigation: Use trusted, non-symlinked workspace directories and trusted PIPELINE.lock.md contents before running the audit.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/willoscar/skills/artifact-contract-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report and CLI status code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes output/CONTRACT_REPORT.md and may update output/QUALITY_GATE.md when the audit reaches a terminal quality state.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Origin provides data provenance and lineage guidance plus shell commands for tracing and auditing provenance anchors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks data provenance and lineage by tracing sources, logging transformations, and auditing anchors to support data auditability and compliance.
 
-## Publisher: <br>
-[kleberbaum](https://clawhub.ai/user/kleberbaum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kleberbaum](https://clawhub.ai/user/kleberbaum)
 
-## Use Case: <br>
-Developers and data engineers use this skill as a namespace reservation and informational helper for data provenance workflows, including trace and audit command examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Version 0.1.0 is a low-risk placeholder for data provenance commands and should not be treated as a real compliance, lineage, or audit control. <br>
-Mitigation: Use it only as a namespace reservation or informational helper, and re-review future versions before relying on integrations that read datasets, write logs, connect to provenance backends, or handle credentials. <br>
+## Use Case:
 
+Developers and data engineers use this skill to introduce provenance and lineage checks into data pipelines, including trace, audit, and version commands for Origin namespace workflows.
 
-## Reference(s): <br>
-- [Origin on ClawHub](https://clawhub.ai/kleberbaum/origin) <br>
-- [Publisher profile](https://clawhub.ai/user/kleberbaum) <br>
-- [Netsnek website](https://netsnek.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and plain text script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included scripts only print status, version, trace, and audit messages and do not access data, credentials, files, or networks according to the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: artifact SKILL.md frontmatter, claw.json, and server release metadata) <br>
+Risk: The current release may be mistaken for a complete provenance analysis system.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat trace and audit output as basic placeholder signals until the skill integrates with real provenance backends.
+
+Risk: Local shell scripts may require permission or line-ending cleanup before execution.
+
+Mitigation: Review scripts manually, set execute permissions if needed, and run them in an appropriate local environment.
+
+## Reference(s):
+
+- [Origin ClawHub skill page](https://clawhub.ai/kleberbaum/skills/origin)
+- [Netsnek website](https://netsnek.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and plain-text script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The current release provides placeholder trace and audit behavior through local shell scripts.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter, claw.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

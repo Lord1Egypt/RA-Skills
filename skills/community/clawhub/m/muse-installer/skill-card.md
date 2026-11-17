@@ -1,42 +1,61 @@
-## Description: <br>
-Muse Installer helps an agent install Muse, start the local dashboard service, guide onboarding, collect creator DNA responses, analyze recent creator-platform content, and sync the profile to the dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Muse Installer helps an agent install Muse, start its local service, guide onboarding, collect three profile answers, analyze creator-platform content when provided, and sync the resulting creator DNA to the Muse dashboard.
 
-## Publisher: <br>
-[kevph2026](https://clawhub.ai/user/kevph2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kevph2026](https://clawhub.ai/user/kevph2026)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent install and launch Muse locally, load the browser extension, and guide onboarding that creates a creator DNA profile. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill pulls and runs remote code as a background local service. <br>
-Mitigation: Review the repository and commands before running the installer, and run it only in an environment where a local background service is acceptable. <br>
-Risk: The optional Telegram setup asks the user to provide a bot token. <br>
-Mitigation: Treat Telegram bot tokens as secrets, avoid sharing real tokens in ordinary chat, and rotate any token that may have been exposed. <br>
-Risk: The onboarding flow stores interests, occupation, creator links, and inferred profile data in the local Muse dashboard. <br>
-Mitigation: Share only profile details that are appropriate for the local dashboard and review the stored profile before relying on it. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent install Muse locally, launch its service, load the browser extension, and complete onboarding for Muse's creator-DNA workflow.
 
-## Reference(s): <br>
-- [Muse Installer on ClawHub](https://clawhub.ai/kevph2026/skills/muse-installer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides local service setup, onboarding prompts, browser extension loading, optional Telegram bot configuration, and profile sync.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill runs code downloaded from a repository at execution time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the downloaded code before execution and use the skill only when the repository and current branch are trusted.
+
+Risk: The skill instructs users to sideload a browser extension.
+
+Mitigation: Review the extension permissions and source files before loading the unpacked extension into Chrome.
+
+Risk: The Telegram Bot setup asks for a bot token in chat.
+
+Mitigation: Avoid sharing tokens in chat; set secrets directly in the local environment and rotate any token that was exposed.
+
+Risk: The skill starts a local background service and stores onboarding profile data.
+
+Mitigation: Confirm stop, uninstall, and data deletion steps before using the service or profile features.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kevph2026/skills/muse-installer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and conversational onboarding prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local service URLs, browser extension loading steps, profile analysis text, and token-handling guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

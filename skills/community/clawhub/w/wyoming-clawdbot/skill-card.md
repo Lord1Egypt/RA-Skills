@@ -1,43 +1,64 @@
-## Description: <br>
-Wyoming Protocol bridge for Home Assistant voice assistant integration with Clawdbot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wyoming Protocol bridge for Home Assistant voice assistant integration with Clawdbot.
 
-## Publisher: <br>
-[vglafirov](https://clawhub.ai/user/vglafirov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[vglafirov](https://clawhub.ai/user/vglafirov)
 
-## Use Case: <br>
-Developers and Home Assistant users use this skill to run a Wyoming Protocol bridge that sends Home Assistant Assist transcripts to Clawdbot and returns responses for text-to-speech. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Network-received voice prompts can expose a user's Clawdbot session if the Wyoming bridge is reachable by untrusted hosts. <br>
-Mitigation: Install only on a trusted, firewalled host and restrict the listening address or firewall port 10600 so only Home Assistant can reach it. <br>
-Risk: Spoken requests and responses may be retained in the Clawdbot session or logs. <br>
-Mitigation: Use a dedicated low-privilege Clawdbot profile, make the .clawdbot mount read-only when possible, and reduce or rotate logs. <br>
+## Use Case:
 
+Developers and Home Assistant operators use this skill to connect Home Assistant Assist voice transcripts to a local Clawdbot agent through a Wyoming Protocol conversation service.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/vglafirov/wyoming-clawdbot) <br>
-- [Home Assistant Assist](https://www.home-assistant.io/voice_control/) <br>
-- [Clawdbot](https://clawd.bot) <br>
-- [Wyoming Protocol](https://github.com/rhasspy/wyoming) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runtime service returns text responses to Home Assistant through the Wyoming Protocol.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The default deployment can expose a Clawdbot-powered voice service too broadly on a Home Assistant network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind the service to 127.0.0.1 or a trusted interface, restrict the port with a firewall, and do not expose the service to untrusted LANs or the internet without authentication.
+
+Risk: Voice transcripts and response text may contain sensitive household or personal information.
+
+Mitigation: Remove or reduce transcript and response body logging before production use and limit access to service logs.
+
+Risk: Shared Clawdbot configuration may grant the bridge more access than it needs.
+
+Mitigation: Use a dedicated least-privileged Clawdbot account or configuration and mount only the required configuration read-only where possible.
+
+Risk: Host networking and unpinned dependencies weaken deployment containment and repeatability.
+
+Mitigation: Avoid host networking where practical and pin Python dependencies for reviewed deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vglafirov/skills/wyoming-clawdbot)
+- [Home Assistant voice control](https://www.home-assistant.io/voice_control/)
+- [Clawdbot](https://clawd.bot)
+- [Wyoming Protocol](https://github.com/rhasspy/wyoming)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup and runtime guidance for a local Wyoming Protocol bridge that forwards voice transcripts to Clawdbot and returns text responses for TTS.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,51 @@
+# {{TASK_TITLE}}
+
+## 1. Task identity
+
+- Task directory: `{{TASK_DIR_NAME}}`
+- Creation date: `{{DATE}}`
+- Current state: `draft_scaffold / design_not_frozen`
+- Execution mode: {{EXECUTION_MODE}}
+- Document language: `{{DOCUMENT_LANGUAGE}}`
+- This package records discussion decisions, task design, execution receipts, configured review evidence, and aggregate GOAL state.
+
+## 2. Frozen boundaries
+
+- Objective: derive from confirmed discussion and design parts.
+- Non-goals: To fill.
+- Material design gates: all must close before implementation.
+- Creating this package does not authorize an active Goal or product mutation.
+- Launch configuration: `not_proposed`; derive a concise recommendation after design gates close.
+
+## 3. Reading order
+
+- [Discussion and frozen decisions](design/00_discussion-decisions.md)
+- [Aggregate GOAL](GOAL.md)
+{{DESIGN_INDEX}}
+{{GOAL_INDEX}}
+{{EXECUTION_INDEX}}
+{{REVIEW_INDEX}}
+{{COORDINATION_INDEX}}
+
+## 4. Roles
+
+- Default Worker: `gpt-5.6-sol/high`
+- Default Reviewer mode: full-history inherited subagent using the Worker's model/reasoning; explicit alternative: `self_review` with no subagent.
+- An inherited Reviewer independently audits and does not modify product implementation or GOAL; self-review receipts are labeled non-independent.
+- Single-Worker topology may use separate tasks, current task as Worker, current task as Reviewer, or an isolated Reviewer subagent. Record the chosen roles and independence construction explicitly.
+
+## 5. State truth and resume entry
+
+- Current code, artifacts, and external-system facts outrank document summaries.
+- Execution/review are evidence truth; GOAL is the three-state aggregate; README is derived.
+- On resume, read project rules, coordination records, GOAL, latest execution/review receipts, and current HEAD or runtime state.
+
+## 6. Current status summary
+
+> Recompute this section from GOAL, execution, review, and current facts at each milestone.
+
+- Confirmed design: To fill.
+- Implemented pending review: 0.
+- Approved: 0.
+- Blockers: To fill.
+- Launch configuration: `not_proposed / proposed / confirmed`.

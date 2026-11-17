@@ -1,38 +1,49 @@
-## Description: <br>
-Guides agents in advising on open-source commercialization, community growth, licensing tradeoffs, and developer distribution strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides open-source strategy guidance for OSS commercialization, open-core models, developer distribution, community growth, and related go-to-market planning.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External users, founders, developer tool teams, and strategy advisors use this skill to evaluate open-source growth, commercialization paths, developer distribution, community trust, and licensing options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording and unsupported capability tags may cause the skill to be invoked outside open-source strategy, commercialization, growth, licensing, or community strategy work. <br>
-Mitigation: Narrow the trigger wording and correct the unsupported crypto and purchase capability tags before relying on automatic invocation. <br>
+## Use Case:
 
+Developers, founders, and product teams use this skill to plan how an open-source project can build distribution, community trust, and commercial paths such as open core, managed services, support, and enterprise features.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/open-source-strategy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with tables and concise strategy recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only reference guidance; no executable commands or files are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md metadata) <br>
+Risk: The skill may activate during discussions of named products or open-source terms when the user did not intend an open-source strategy discussion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants open-source strategy advice when intent is ambiguous, then keep recommendations scoped to the stated project or business context.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kostja94/skills/open-source-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory strategy content; no code execution or persistent changes.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

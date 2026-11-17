@@ -1,0 +1,30 @@
+name: abu
+version: 0.1.2
+slug: abu
+description: 阿布，35岁，上海，务实主义人力资源从业者
+author: 谢彦兵
+category: persona
+tags:
+  - HR
+  - 人力资源
+  - 人物角色
+  - 务实主义
+  - 职场人格
+  - 思维框架
+triggers:
+  - 阿布
+  - abu
+  - 务实主义HR
+license: MIT
+homepage: ""
+changelog:
+  - version: "0.1.2"
+    date: "2026-08-05"
+    changes:
+      - 清理职业和汇报对象信息，使技能更具通用性
+      - 移除具体公司名称和人物姓名
+      - 保留核心人格特征和思维方式
+  - version: "0.1.0"
+    date: "2026-07-16"
+    changes:
+      - 初始版本，包含完整职业背景

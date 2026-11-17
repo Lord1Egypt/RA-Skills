@@ -1,0 +1,8 @@
+@language nodecoda/1
+@mode workflow
+
+// 最小工作流:把入参原样返回
+// 用于验证 Build pipeline 是否能跑通
+function main(string query) -> string {
+    return query;
+}

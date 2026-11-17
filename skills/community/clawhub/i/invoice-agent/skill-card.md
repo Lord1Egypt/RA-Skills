@@ -1,42 +1,63 @@
-## Description: <br>
-Invoice Agent helps freelancers, agencies, and small businesses create, track, export, and manage invoices, payment reminders, overdue balances, and revenue summaries from local command-line workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Invoice Agent helps freelancers, agencies, and small businesses create, track, export, and summarize local invoices, including multi-currency tax calculations, HTML invoice generation, overdue tracking, and payment reminders.
 
-## Publisher: <br>
-[atum246](https://clawhub.ai/user/atum246) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary single-user license via ClawHub <br>
+## Publisher:
 
+[atum246](https://clawhub.ai/user/atum246)
 
-## Use Case: <br>
-External users such as freelancers, agencies, and small businesses use this skill to manage local client billing workflows, including invoice creation, status tracking, HTML invoice generation, overdue checks, payment reminder drafts, and revenue summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: The local invoice data directory can contain client names, emails, addresses, invoice amounts, and payment status. <br>
-Mitigation: Keep ~/.invoice-agent protected with appropriate local filesystem permissions and device security controls. <br>
-Risk: Generated reminder text, especially final notices, can affect customer relationships or imply legal collection steps. <br>
-Mitigation: Treat reminders as drafts and manually review wording, amounts, dates, and escalation level before sending. <br>
+## Use Case:
 
+External users such as freelancers, agencies, and small businesses use this skill to manage local client billing workflows: create invoices, update payment status, export invoice JSON, generate HTML invoices, produce reminders, and review financial summaries.
 
-## Reference(s): <br>
-- [Invoice Agent Reference Guide](artifact/references/guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/atum246/invoice-agent) <br>
-- [Publisher Profile](https://clawhub.ai/user/atum246) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with shell commands plus local JSON, HTML, and reminder text outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores invoice data locally under ~/.invoice-agent and can export invoice JSON and HTML files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill stores sensitive billing and client data locally under ~/.invoice-agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on trusted machines and manage local file permissions, backups, and retention for billing data.
+
+Risk: Generated HTML invoices may include unescaped user-controlled invoice fields.
+
+Mitigation: Use trusted invoice data, review generated HTML before sharing it, and escape fields before rendering imported or untrusted invoice content.
+
+Risk: Payment reminder text includes escalation language that may not fit every business or legal context.
+
+Mitigation: Review and edit reminder text before sending it to clients.
+
+Risk: The delete --force workflow can permanently remove non-draft invoice records.
+
+Mitigation: Back up local invoice data before force deletion and use the option only when permanent removal is intended.
+
+## Reference(s):
+
+- [Invoice Agent Reference Guide](references/guide.md)
+- [Invoice HTML Template](assets/invoice-template.html)
+- [ClawHub Skill Page](https://clawhub.ai/atum246/skills/invoice-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; the bundled CLI scripts produce JSON records, reminder text, and HTML invoice files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores invoice and billing data locally under ~/.invoice-agent.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact skill-meta.yaml reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

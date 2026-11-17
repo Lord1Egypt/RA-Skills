@@ -1,0 +1,43 @@
+{
+ "client": "example-orbit-podcast",
+ "episode": "ep-012",
+ "written": "2026-10-05T21:20:00Z",
+ "requests": {
+  "clip-01.json": {
+   "clip": "01",
+   "hash": "ee91ddd5951ae7d18e19e30139906669f84a51492aa69cabca6cddcfe6df5214",
+   "sha256": "28a9ff978696dcbd9c1c8bb0c22bcdca4a2f2b9c5c2928d47ade2755a4831597",
+   "body_sha256": "6b6416690689977805b40516e0d26748d67162b441350384f6f3d3bfdaf93443",
+   "scheduledFor": "2026-10-06T16:30:00Z",
+   "accounts": {
+    "example-acct-orbit-tiktok": "TIKTOK",
+    "example-acct-orbit-instagram": "INSTAGRAM",
+    "example-acct-orbit-youtube": "YOUTUBE"
+   }
+  },
+  "clip-02.json": {
+   "clip": "02",
+   "hash": "ad6f8dddbba1d00ebebdd24899d44ef34746dc0a04a9ca763a7821fd8329a00e",
+   "sha256": "be95e3bf2c5ede2b506fb5e19cbaffdb7693f72cd003139877cf40a92ac7f27e",
+   "body_sha256": "767f63a4f7c5401403c371d71179a51ede7ffb6c7860f437b5012016989ccba3",
+   "scheduledFor": "2026-10-08T16:30:00Z",
+   "accounts": {
+    "example-acct-orbit-tiktok": "TIKTOK",
+    "example-acct-orbit-instagram": "INSTAGRAM",
+    "example-acct-orbit-youtube": "YOUTUBE"
+   }
+  },
+  "clip-03.json": {
+   "clip": "03",
+   "hash": "e0849952aa57fb072df1609ac085f4dcd08b29d450fef13f3c5bc6f2a32c9507",
+   "sha256": "c70cd7d8f29fb71cfb911db1559753452f920e711700993be26d598d0375f247",
+   "body_sha256": "0774c6474608b2ec0c1072df125cc47bc4fd0174d6f09fbc88b106672873a820",
+   "scheduledFor": "2026-10-10T16:30:00Z",
+   "accounts": {
+    "example-acct-orbit-tiktok": "TIKTOK",
+    "example-acct-orbit-instagram": "INSTAGRAM",
+    "example-acct-orbit-youtube": "YOUTUBE"
+   }
+  }
+ }
+}

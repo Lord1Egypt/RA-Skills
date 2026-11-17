@@ -1,0 +1,25 @@
+# 论衡流程真源 · 第二部分：节点 t9b_stress_test
+# 装配视图 = ../phase-order.yaml（生成物）；校验 = 生成器 --check（门 AA）
+# ── 节点 YAML 正文（装配时逐字拼入；本行以上为切片头）──
+- id: t9b_stress_test
+  phase: "Phase 4.5 后置（压力测试轮）"
+  phase_seq: 23
+  kind: owner_agent
+  owner: 主控
+  write_authority: owner
+  verification_authority: 主控
+  input: final/定稿.md + audits/审稿报告-vN.md
+  output: audits/压力测试报告-vN.md
+  # 2026-10-05（架构评审 v3 R2 附带裁决）：默认触发 → **opt-in**。
+  #   依据：实跑 40+ 项目零产出（管线越过该位置而报告不存在）；产出无下游消费方
+  #   （T8/交付说明/status 皆不读）；主控亲为 = 重读定稿全文 ≈20k tokens 压在最稀缺 agent 上。
+  #   保留节点（方法论审查者/立场与范围/跨语境三剧本有真实学术价值），改为冲刺投稿时显式开。
+  default: opt_in
+  condition: owner_stress_test_opt_in      # 条件键（真源 = condition_definitions）；opt-in 语义 = 仅主人 Phase 0 勾选才触发
+  condition_undecidable: report_to_owner
+  on_not_triggered: record_not_triggered_in_status   # 未开启 ≠ 漏跑（与 opt-out 语义分离，留痕口径一致）
+  contract_key_carriers: [references/templates/任务简报-template.md, references/agents/00-主控-扩展职责.md]   # owner 节点无派发文件：契约键的机械锚点载体清单（--check 逐文件验「键在」；极性中立，架构评审 v3 R2③）
+  verdict_scale: four_tier
+  independence: bounded_owner_pressure_test
+  note: "T9b 是主控亲完成的文本压力测试（**默认不跑**；主人冲刺投稿时 Phase 0 勾选 `owner_stress_test_opt_in` 开启），不是 T9 盲审，不读取 T7/证据卡/过程稿，不参与修订回环。"
+  next: t8_technical_final

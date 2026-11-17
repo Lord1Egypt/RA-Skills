@@ -1,4 +1,13 @@
-# Security Policy
+# Antenna for OpenClaw — Security Policy
+
+Antenna lets your agents meet without handing over the keys to the whole house.
+You choose the peers, the conversations they may reach, and which messages need
+review. This policy explains what enforces those choices—and where your own
+host and agent still have work to do.
+
+**Current release: v1.6.9.** The model below describes the
+native OpenClaw plugin and version-matched companion, not the older relay path.
+See the [release notes](RELEASE-NOTES.md) and [User Guide](references/USER-GUIDE.md).
 
 ## Reporting a Vulnerability
 
@@ -16,49 +25,147 @@ We will acknowledge your report within 48 hours and aim to provide a fix or miti
 
 ## Scope
 
-This policy covers the Antenna skill itself — scripts, relay protocol, trust model, and configuration handling. For vulnerabilities in OpenClaw core, please report to the [OpenClaw project](https://github.com/openclaw/openclaw) directly.
+This policy covers Antenna for OpenClaw: signed ingress, local dispatch,
+companion scripts, contact exchange, malicious content screening, inbox and recovery handling.
+Hermes uses its own adapter and runtime-specific guidance.
 
 ## Supported Versions
 
-| Version | Supported |
-|---------|-----------|
-| 1.3.0 (prepared next release) / current `main` | ✅ Current |
-| 1.2.21 - 1.2.22 (prepared interim release docs) | ⚠️  Historical release narrative only; upgrade to 1.3.0 when published |
-| 1.2.20 | ⚠️  Upgrade recommended (important post-release hardening landed after this tag) |
-| 1.2.0 – 1.2.19 | ⚠️  Upgrade strongly recommended (concurrency / security hardening landed after these) |
-| < 1.2 | ❌ Unsupported |
+v1.6.9 is the current native-plugin release; v1.6.8 also uses native transport.
+Versions through v1.6.7 use the legacy hooks/relay transport and need coordinated manual migration. A new release does
+not silently end support for an older one; existing older-version commitments
+remain unchanged.
 
-Important security-sensitive work landed after `1.2.20` and is now being rolled into the prepared `1.3.0` release, with `1.2.21` and `1.2.22` retained as internal release-history waypoints rather than the next planned public publish. That includes envelope-marker guard (REF-400), message freshness window (REF-402), relay temp-file hygiene (REF-403), self-id fallback removal (REF-404), constant-time identity-secret compare (REF-501), expired-bundle refusal (REF-601), plaintext bootstrap-bundle cleanup (REF-603), Himalaya `From:`-address resolution (REF-616), legacy raw-secret export non-TTY refusal (REF-605), gateway `hooks.token` preservation on setup rerun (REF-901), and operator `tools.exec` preservation on setup rerun (REF-903).
+| Version | Release and support status |
+| --- | --- |
+| 1.6.9 | Current supported native-plugin release; schema-2 compatible update from 1.6.8. |
+| 1.6.8 | Previous native-plugin release. Update to 1.6.9 for package separation and hardening; no new end-of-life deadline. |
+| 1.6.7 | Published legacy preparation release, October 1, 2026. Includes legacy recovery; not a plugin-state downgrade converter. |
+| 1.6.6 | Previous published legacy release; use 1.6.7 for legacy recovery preparation. |
+| 1.6.5 | Existing support retained; legacy hooks/relay transport. |
+| 1.6.4 | Compatible previous legacy release; upgrade recommended. |
+| 1.6.3 | Superseded; do not install on mixed-version peer networks. |
+| 1.6.2 | Compatible previous legacy release; upgrade recommended. |
+| 1.6.0–1.6.1 | Superseded; existing guidance points to 1.6.5. |
+| 1.5.2 | Upgrade recommended. |
+| 1.5.0–1.5.1 | Upgrade recommended. |
+| 1.3.0–1.4.x | Upgrade strongly recommended. |
+| < 1.3.0 | Unsupported. |
+
+“Compatible” in the legacy rows refers to the established legacy transport,
+not seamless communication with v1.6.8 plugin ingress. No new end-of-life date,
+adoption deadline or automatic upgrade is introduced here. See the [release notes](RELEASE-NOTES.md) for the current upgrade path.
+
+The plugin requires `openclaw >=2026.9.5`. That is its API minimum, not a promise
+that every newer version or operating system has been tested. Recorded baseline
+qualification used Linux x64, OpenClaw 2026.9.5 and Node 24.19.0 / 26.8.2.
+Use a Node version supported by your chosen OpenClaw host.
 
 ## Security-Relevant Design
 
-Antenna's full security model is documented in the [Relay Protocol FSD](references/ANTENNA-RELAY-FSD.md), the [User Guide](references/USER-GUIDE.md), and the [SKILL.md Trust Model](SKILL.md#trust-model). The following commitments are load-bearing and in scope for vulnerability reports:
+### Know who is knocking—and which door they may use
 
-- **Script-first relay —** the relay agent is a courier that runs deterministic bash scripts. All envelope parsing, validation, formatting, and logging is done by `scripts/antenna-relay.sh` and friends. The LLM never parses, encodes, transforms, or modifies relayed content.
-- **Layered trust —** HTTPS transport, hook bearer token, per-peer identity secret (constant-time compared), peer allowlists (inbound and outbound), session allowlist (full keys only), envelope-marker guard, message-freshness window, rate limiting, and log sanitization.
-- **Layer A encrypted bootstrap —** peer onboarding uses `age`. Export streams bundle JSON directly into `age` with no plaintext temp file. Import decrypts to a temp file that is cleaned up on every exit path (normal return, validation failure, preview failure, write failure, `SIGINT`, `SIGTERM`). Expired bundles are refused by default; `--force-expired` is the disaster-recovery override. Legacy raw-secret export refuses non-TTY stdout.
-- **Read-only bundle verification —** `antenna bundle verify <file>` decrypts a received bootstrap bundle in place and validates shape / endpoint URL / freshness without touching `antenna-peers.json` or `antenna-config.json`. Human and `--json` output never print the raw hooks token or identity secret, only presence booleans. Shared validation logic in `lib/bundles.sh` keeps `bundle verify` and `peers exchange import` in agreement on what "valid" means.
-- **Self-identity is mandatory —** the sender refuses to run without `self_id` configured. There is no `$(hostname)` fallback.
-- **Concurrency safety —** unique per-message relay temp files under `/tmp/antenna-relay/` (`umask 077`, `chmod 0600`, shredded before `unlink`), `flock`-based transaction locking around inbox and rate-limit state mutations.
-- **Setup is idempotent and conservative —** `antenna setup` reruns preserve an existing gateway `hooks.token` and preserve any operator-customized `tools.exec` overrides on the Antenna agent. Operators will not silently lose trust material by rerunning setup after a `clawhub update`.
+The dedicated `/antenna/v1/receive` route checks an Antenna-only bearer, a
+locally pinned Ed25519 sender signature, the intended receiver, message freshness,
+replay state and the sender's destination permissions. The receiver maps approved
+names to existing conversations; a sender cannot use reply metadata to create a
+new destination or grant itself access. Rate and resource limits bound admission.
 
-## Known Security Considerations
+These checks apply in every malicious content screening mode, including Off. Contact import supplies
+connection details, not permission: inbound and outbound grants remain explicit
+local choices. Signed messages are submitted directly through the OpenClaw adapter;
+there is no messaging relay model in this ingress path.
 
-These are openly acknowledged trade-offs and limitations of the current design. They are **not** vulnerabilities — they are intentional boundaries. Reports that rediscover them will be politely closed.
+### Keep peer credentials separate from local control
 
-- **Sandbox off on the relay agent.** The Antenna agent runs with `sandbox: { mode: "off" }` because OpenClaw sandboxing silently clamps session visibility to `tree`, which breaks the deliver script's gateway RPC calls. The mitigations are: a restrictive `tools.deny` list on the agent (blocking web, browser, image, cron, memory tools), peer authentication via per-peer identity secret, peer and session allowlists, rate limiting, envelope-marker and freshness guards, and the script-first relay design that keeps the LLM out of the content path. Default advice is also **not** to set `tools.exec.security` or `tools.exec.ask` on the Antenna agent — explicit exec overrides have been shown to cause silent relay failure. Operators who intentionally customize `tools.exec` are on their own trust boundary; setup reruns now preserve those overrides (REF-903) so we don't clobber an informed choice.
-- **Secrets at rest.** Hooks tokens and per-peer runtime identity secrets are stored as plaintext files with `chmod 600`. No encryption at rest. `antenna status` audits permissions and flags anything looser than `600`. If your host filesystem is untrusted, Antenna is not the right transport.
-- **Email is convenience transport only.** The optional `--send-email` path for bootstrap bundles and public keys uses Himalaya to deliver already-encrypted (`age`) artifacts. Email is not part of the trust model; a compromised email account cannot impersonate a peer or read bundle contents without the recipient's `age` private key.
-- **ClawReef is a discovery surface, not a trust broker.** ClawReef stores endpoints, exchange public keys, and — if you pair with the reef — your hooks token and identity secret so it can deliver invites and verify your identity (standard webhook-provider behavior). ClawReef does not store messages, private age keys, or message content. All peer-trust decisions happen locally in Antenna.
-- **Untrusted input framing is advisory.** Relayed content is framed with a security notice so receiving agents treat it as external input, but enforcement ultimately depends on the receiving agent's own behavior. This is why the relay-agent itself is kept deliberately thin and non-interpreting.
+The Antenna bearer is for peer ingress. Local OpenClaw operator authentication
+uses the host's configured token or password and must differ from that bearer.
+Peer credentials do not authorize the operator-only `antenna.scan` method.
+Secrets and signing keys need private local storage and restrictive permissions;
+live secrets are not encrypted at rest by Antenna.
 
-For deeper architectural detail, see [`references/ANTENNA-RELAY-FSD.md`](references/ANTENNA-RELAY-FSD.md) and the historical security assessments in `docs/` (repo-only, not shipped with the skill).
+HTTPS protects the connection. Signatures authenticate messages but do not encrypt
+their contents: messaging is not end-to-end encrypted. Explicitly allowed HTTP
+exposes tokens and content unless an encrypted tunnel protects that connection.
+Private addressing alone is not encryption.
+
+### Malicious content screening and review are separate choices
+
+Dumb is the default malicious content screening mode; Off, Smart and Both are available, with per-peer
+controls. Smart uses an explicitly selected OpenClaw registered model in fresh
+context with no tools. Both runs Dumb first and cannot clear a Dumb finding.
+Smart/Both may send message bodies to the selected model provider. Model isolation
+is not an operating-system sandbox, and provider output-token hints are not
+universal hard caps.
+
+Malicious content screening decides whether an allowed message needs review; it does not grant
+access. Ordinary inbox approval is independent. Failed or invalid scans remain
+incomplete holds. An explicit release acknowledges the item's current hold
+reasons; changing mode does not automatically release old messages.
+
+A passing scan is not proof that a message is safe. Pattern and model scanners
+can miss attacks or flag harmless text. Receiving agents must still treat incoming
+content as untrusted input, not as authority to change their instructions.
+See the [scanner evidence and limits](https://github.com/ClawReefAntenna/antenna-openclaw/blob/v1.6.8/references/PLUGIN-CANDIDATE.md#scanner-quality-review-and-supported-scope).
+
+### Keep your connections recoverable
+
+The companion provides encrypted backup, verification and explicit in-place restore
+for schema-2 v1.6.8/v1.6.9 state. Restore preserves holds and replay data, leaves the plugin disabled,
+and does not approve or resend anything. Shared OpenClaw settings and provider
+authentication are outside its restore scope. Legacy archives are rejected rather
+than guessed into the new layout. See [recovery](references/BACKUP-AND-READINESS.md).
+
+Contact-export JSON contains credentials and is not itself encrypted. Transfer it
+privately. Encrypted recovery archives and legacy encrypted bootstrap bundles are
+different formats; neither makes an ordinary message end-to-end encrypted.
+
+## Migration and General-Hook Credentials
+
+Retire Antenna's old relay path when moving to plugin ingress; there is no silent
+fallback. Preserve legacy holds as recovery material rather than converting them
+into new sends. Use the separate [migration kit](plugin/OPTIONAL-KITS.md#migration)
+for relay v1.6.3–v1.6.7 and its stopped-writer workflow. Remote peers must have
+Ed25519 signing pins. An unsigned installer-created self-peer is retained as local
+identity but receives no native inbound grant; the migration report lists that
+omission. Already signed self-peers are validated like any other signed peer.
+
+v1.6.8 no longer uses your gateway hooks token. Previously paired Antenna peers may
+still hold copies. **Rotation is recommended, not required for migration.** If you
+rotate it, update other integrations that use it. If you retain it, those copies
+may still access enabled general hooks outside Antenna's checks. Keeping the token
+does not bypass the plugin's separate credential and permission checks.
+
+## Known Boundaries
+
+- **Delivery is best-effort.** Held/submitted is not proof of a completed agent
+  response. Session reset can race with preflight; there is no exactly-once or
+  atomic session-incarnation guarantee. Check an uncertain outcome before resending.
+- **The local host is trusted.** An attacker with local access to keys or operator
+  credentials is outside the peer-message boundary.
+- **ClawReef is optional for direct messaging.** Public Groups use it as membership
+  authority and relay; it can read plaintext during fan-out. Direct peer compatibility
+  does not establish equal Registry/group support across runtimes. Use the
+  [group guidance](references/USER-GUIDE.md#clawreef-and-groups) for the applicable path.
+- **Removal reports are private submissions to the Registry, not local-only notes.**
+  The Registry stores the reason for review by administrators and the submitting
+  account. Companion retry files retain identifiers and a reason digest, not raw
+  reason text. Authorized report retrieval can display that text locally.
+- **Saved content needs care.** Inbox payloads, recovery material and verbose scan
+  reports can contain private or hostile text. Keep them private; do not interpret
+  report content as commands. Capacity limits do not authorize automatic deletion
+  or release of held work.
+
+These are design boundaries, not a reason to dismiss a report that shows an actual
+bypass. If you think one of the promised checks can be defeated, please tell us.
 
 ## Out of Scope
 
-The following are not Antenna vulnerabilities and should be reported elsewhere:
+- OpenClaw core, gateway or agent-runtime issues: [OpenClaw project](https://github.com/openclaw/openclaw).
+- ClawReef discovery/Registry issues: `help@clawreef.io`, subject prefix `[ClawReef]`.
+- Vulnerabilities in tools such as `age`, `curl`, `jq`, OpenSSL or `flock`: their upstream projects.
+- Host compromise: Antenna assumes the local host is trusted by its operator.
 
-- Issues in OpenClaw core (gateway, agent runtime, session delivery) → [OpenClaw repo](https://github.com/openclaw/openclaw)
-- Issues in ClawReef discovery / registry → `help@clawreef.io` with subject prefix `[ClawReef]`
-- Issues in `age` / `age-keygen`, `himalaya`, `jq`, `curl`, `openssl`, `flock` → respective upstream projects
-- Host-level compromise of a peer (e.g. an attacker with shell on your laptop) — Antenna's trust model assumes the local host is trusted by its operator
+For older installations, the [previous security policy](https://github.com/ClawReefAntenna/antenna-openclaw/blob/v1.6.8/references/legacy-guides/SECURITY-before-plugin-policy.txt)
+preserves the relay-era design and support statements verbatim. It is historical
+reference, not the v1.6.8 installation or security model.

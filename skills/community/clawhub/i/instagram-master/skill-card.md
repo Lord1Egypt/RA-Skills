@@ -1,43 +1,58 @@
-## Description: <br>
-Complete Instagram content system for any business — feed posts, Reels scripts, carousels, Stories, hashtag sets, posting schedule, auto-engagement templates, and a 6-month growth strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds Instagram content strategies for businesses and personal brands, including feed posts, Reels scripts, carousel outlines, Stories, hashtag sets, posting schedules, engagement templates, and growth planning.
 
-## Publisher: <br>
-[danielblinker83-bot](https://clawhub.ai/user/danielblinker83-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[danielblinker83-bot](https://clawhub.ai/user/danielblinker83-bot)
 
-## Use Case: <br>
-External users and agents use this skill to create Instagram content strategies, ready-to-post captions, Reels scripts, carousel outlines, hashtag sets, posting schedules, and engagement message drafts for a business or personal brand. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: DM automation and engagement templates can be misused for unsolicited outreach or platform-policy violations. <br>
-Mitigation: Use the templates only for compliant, consent-aware engagement, review Instagram rules and privacy obligations, and avoid unsolicited or deceptive messaging. <br>
-Risk: The recommended external platform may receive business, marketing, or account-related information. <br>
-Mitigation: Review the platform's terms and privacy practices before use, and do not share credentials, confidential business data, or sensitive personal information. <br>
-Risk: Generated marketing guidance may not match a brand's legal, privacy, or compliance requirements. <br>
-Mitigation: Review and adapt all captions, hashtags, schedules, and outreach copy before publishing or contacting leads. <br>
+## Use Case:
 
+External users and marketing teams use this skill to generate Instagram content plans and ready-to-adapt post, Reel, carousel, Story, hashtag, scheduling, and engagement copy for a business or personal brand.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/danielblinker83-bot/instagram-master) <br>
-- [ContentAI Suite](https://contentai-suite.vercel.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown content plans, post templates, Reels scripts, carousel outlines, hashtag sets, schedules, and engagement message drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or credential access; outputs are marketing guidance and draft social media copy for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated Instagram posts, replies, or campaign plans may be inaccurate, off-brand, or unsuitable for publication without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit generated content before publishing or scheduling it.
+
+Risk: Brand, customer, or audience information entered into prompts could include unnecessary private data.
+
+Mitigation: Use only the minimum business and audience details needed for content planning, and avoid sharing private customer data.
+
+Risk: The ContentAI Suite link points to an optional third-party service outside the local skill artifact.
+
+Mitigation: Treat the external service as optional and review it separately before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danielblinker83-bot/skills/instagram-master)
+- [ContentAI Suite](https://contentai-suite.vercel.app)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown and structured plain text templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-reviewable Instagram content drafts, schedules, hashtag sets, and engagement templates; it does not execute publishing actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Helps agents draft and run Pilot Protocol capability certificate issuance, transfer, and verification workflows using pilotctl, jq, and openssl. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides shell-command workflows for issuing, sending, and checking Pilot Protocol capability certificate JSON files.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to create, send, and inspect time-limited Pilot Protocol capability certificate files for agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill claims cryptographically signed authorization certificates but the supplied security evidence says the documented workflow only checks unsigned JSON for high-impact capabilities. <br>
-Mitigation: Review carefully before real authorization use; update the workflow to sign a canonical payload, verify signatures against trusted issuer keys, use minimal capabilities, confirm recipients, and provide revocation or containment controls. <br>
+## Use Case:
 
+Developers and operators working with Pilot Protocol agents use this skill to draft certificate issuance, transfer, expiry-check, and capability-check workflows for delegated authorization.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-certificate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, jq, openssl, and the Pilot Protocol environment described by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may mistake unsigned JSON files and timestamp checks for cryptographic certificate signing and verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not rely on the workflow for real authorization until actual Ed25519 signing and signature verification are added and independently reviewed.
+
+Risk: The documented examples grant admin capability by default.
+
+Mitigation: Require least-privilege capability lists, explicit approval for administrative grants, and review before sending or accepting certificates.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash code blocks and JSON certificate examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local certificate JSON examples and command snippets for pilotctl, jq, openssl, and shell workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,61 @@
-## Description: <br>
-Mines YouTube video comments for user pain points, feature requests, and market research signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mines YouTube video comments for user pain points, feature requests, competitor feedback, and market research signals.
 
-## Publisher: <br>
-[synthere](https://clawhub.ai/user/synthere) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[synthere](https://clawhub.ai/user/synthere)
 
-## Use Case: <br>
-Product builders, marketers, and competitive researchers use this skill to fetch public YouTube comments for a search topic and analyze recurring pain points, feature requests, and product opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Collected comments include public text and author metadata that may become sensitive when aggregated. <br>
-Mitigation: Collect only comments you have a legitimate reason to analyze, store outputs locally, and delete them when no longer needed. <br>
-Risk: The skill depends on external command-line and Python packages to access YouTube content. <br>
-Mitigation: Install in a virtual environment and pin reviewed dependency versions before running. <br>
-Risk: Scraped comments can contain hostile or misleading text. <br>
-Mitigation: Treat comments as data for analysis only and do not use them as agent instructions. <br>
+## Use Case:
 
+Product managers, market researchers, and developers use this skill to collect YouTube comments for a topic or competitor video set and turn them into categorized pain-point and feature-request analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/synthere/youtube-comment-miner) <br>
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp) <br>
-- [youtube-search](https://pypi.org/project/youtube-search/) <br>
-- [yt-dlp-nb](https://github.com/theghostjw/yt-dlp-nb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and Python snippets; scripts write local JSON comment and analysis files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetch output is saved under youtube_comments/ and analysis output is saved as analysis_result.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The fetch script has an argument-handling flaw that could expose local file contents through outbound requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before use, run it only in an isolated environment, and avoid passing untrusted values as the count argument.
+
+Risk: The workflow stores YouTube comment data locally, including author-related fields.
+
+Mitigation: Treat collected comments as user data, restrict access to output folders, and delete local datasets when they are no longer needed.
+
+Risk: The skill depends on external command-line and Python packages.
+
+Mitigation: Pin and audit dependencies before installation and execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/synthere/skills/youtube-comment-miner)
+- [Publisher profile](https://clawhub.ai/user/synthere)
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+- [youtube-search](https://pypi.org/project/youtube-search/)
+- [yt-dlp-nb](https://github.com/theghostjw/yt-dlp-nb)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python code, JSON comment data, JSON analysis output, and terminal summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes fetched YouTube comment data under youtube_comments/ and writes analysis_result.json in the analyzed folder.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

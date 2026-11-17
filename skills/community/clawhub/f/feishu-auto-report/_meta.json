@@ -1,6 +1,15 @@
 {
   "ownerId": "kn70gps0ahzfkzp49twbwqw119832ahp",
   "slug": "feishu-auto-report",
-  "version": "5.0.0",
-  "publishedAt": 1773974729202
+  "version": "2.0.0",
+  "publishedAt": 1773972808797,
+  "name": "飞书自主汇报技能",
+  "nameEn": "Feishu Auto-Report Skill",
+  "description": "专为多 Agent 协作场景设计，执行 Agent（Agent-B/C）完成任务后自主调用本技能向飞书用户/群聊发送汇报消息，每个 Agent 显示独立机器人身份，零配置自动适配，无需 Agent-A 转发。",
+  "descriptionEn": "Designed for multi-agent collaboration scenarios. After execution Agents (Agent-B/C) complete tasks, they can independently call this skill to send report messages to Feishu users/groups, with each Agent displaying an independent robot identity, zero configuration automatic adaptation, no need for Agent-A forwarding.",
+  "shortDesc": "多 Agent 飞书消息自主汇报",
+  "shortDescEn": "Multi-Agent Feishu Message Auto-Report",
+  "tags": ["飞书", "多 Agent", "消息发送", "零配置", "feishu", "auto-report"],
+  "tagsEn": ["feishu", "multi-agent", "message sending", "zero configuration", "auto-report"],
+  "language": "zh-CN"
 }

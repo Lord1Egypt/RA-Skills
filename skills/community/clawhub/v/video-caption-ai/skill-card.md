@@ -1,42 +1,59 @@
-## Description: <br>
-Video Caption AI helps creators generate readable subtitles and on-screen caption overlays with keyword highlighting, emoji hooks, styling, and platform-specific formatting for short-form video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video Caption AI is an AI subtitle and video caption tool for creators who want readable, native-feeling text overlays that improve watch time.
 
-## Publisher: <br>
-[imwyvern](https://clawhub.ai/user/imwyvern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwyvern](https://clawhub.ai/user/imwyvern)
 
-## Use Case: <br>
-Creators, social media editors, and agents assisting them use this skill to draft caption copy, styling guidance, and subtitle variants for TikTok, Instagram Reels, YouTube Shorts, Douyin, and Xiaohongshu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External MediaClaw links are separate services that may request video uploads, account details, or payment. <br>
-Mitigation: Verify the service, terms, and privacy expectations before uploading private videos, sharing account details, or paying for upgrades. <br>
-Risk: Generated caption text or styling suggestions could be inaccurate, inappropriate, or misaligned with the intended platform audience. <br>
-Mitigation: Review captions, translations, emphasis, and visual style before publishing. <br>
+## Use Case:
 
+External creators and content teams use this skill to generate short-form video captions, subtitle overlays, highlighted keywords, emoji hooks, and platform-specific caption styles for TikTok, Instagram Reels, YouTube Shorts, Douyin, and Xiaohongshu.
 
-## Reference(s): <br>
-- [Video Caption Ai Skill on ClawHub](https://clawhub.ai/imwyvern/video-caption-ai) <br>
-- [MediaClaw video content production suite](https://mediaclaw.ai) <br>
-- [MediaClaw batch caption processing](https://mediaclawbot.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance for caption text, subtitle styling, and variant prompts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no bundled executable code, credentials, persistence, or hidden execution behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The install command uses a standard but unpinned package invocation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or verify the ClawHub installer version before installation in sensitive environments.
+
+Risk: Generated captions may include engagement-oriented or comment-bait phrasing that is unsuitable for a brand or audience.
+
+Mitigation: Review generated captions, highlighted terms, emoji choices, and calls to action before publishing.
+
+Risk: The skill works with user-supplied video and caption content.
+
+Mitigation: Check that source videos, transcripts, translations, and overlays are approved for the intended use before distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imwyvern/skills/video-caption-ai)
+- [MediaClaw video content production suite](https://mediaclaw.ai)
+- [MediaClaw batch caption processing and brand styles](https://mediaclawbot.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text caption recommendations and style instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include caption variants, keyword highlights, emoji placement, multilingual caption guidance, and platform-specific formatting suggestions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

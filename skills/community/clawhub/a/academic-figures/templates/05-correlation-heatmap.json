@@ -1,0 +1,36 @@
+{
+  "_scene": "相关性热图",
+  "_description": "相关性热图（heatmap）。用模板自带 _command 一键渲染示例。",
+  "_chart_type": "heatmap",
+  "_command": "python3 scripts/gen_figure.py -t heatmap -d templates/05-correlation-heatmap.json -o heatmap.png --cmap RdBu_r --vmin -1 --vmax 1 --journal cell",
+  "_caption_template": "图X | 各临床变量 Pearson 相关矩阵（蓝=负相关，红=正相关）。",
+  "_note": "示例数字仅示意，请替换为你的真实数据（--stats auto 可用于 box/violin 原始数据）",
+  "matrix": [
+    [
+      1.0,
+      0.42,
+      -0.18
+    ],
+    [
+      0.42,
+      1.0,
+      0.31
+    ],
+    [
+      -0.18,
+      0.31,
+      1.0
+    ]
+  ],
+  "row_labels": [
+    "Age",
+    "BMI",
+    "CRP"
+  ],
+  "col_labels": [
+    "Age",
+    "BMI",
+    "CRP"
+  ],
+  "cbar_label": "Pearson r"
+}

@@ -1,44 +1,59 @@
-## Description: <br>
-Searches ITviec, TopDev, ITJobs, and TopCV for recent full-stack developer job listings in Vietnam using Firecrawl, then summarizes deduplicated results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches ITviec, TopDev, ITJobs, and TopCV for current full-stack developer job listings using Firecrawl, with focus on React, Next.js, TypeScript, Node.js, NestJS, and related technologies.
 
-## Publisher: <br>
-[cngvc](https://clawhub.ai/user/cngvc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cngvc](https://clawhub.ai/user/cngvc)
 
-## Use Case: <br>
-Developers and job seekers use this skill to ask an agent for current Vietnam full-stack developer roles and receive a consistent, source-grouped report. It is suited to repeated job-search prompts involving React, Next.js, TypeScript, Node.js, NestJS, and related technologies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically uses Firecrawl-backed searches against public job sites, which can consume API quota or incur billing. <br>
-Mitigation: Use a dedicated, revocable Firecrawl API key and monitor quota or billing during use. <br>
-Risk: The skill depends on a separate firecrawl-search skill and the FIRECRAWL_API_KEY credential. <br>
-Mitigation: Review the required firecrawl-search skill separately and scope the API key to the minimum access needed. <br>
-Risk: Job results may be incomplete, duplicated, stale, or affected by external site availability. <br>
-Mitigation: Review source links before acting on a listing and rerun searches when freshness matters. <br>
+## Use Case:
 
+Developers and job seekers use this skill to have an agent search Vietnam-focused job boards for full-stack roles and return a consistent, deduplicated list of listings. It is intended for requests such as finding new full-stack jobs or developer roles involving React, Next.js, TypeScript, Node.js, or NestJS.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cngvc/vietnam-fullstack-jobs) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text report in Vietnamese with source-grouped job listings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the firecrawl-search skill and a FIRECRAWL_API_KEY; deduplicates listings by job title and company.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Broad prompts such as "job moi" may trigger external job searches and consume Firecrawl API quota.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and enable the skill only where Vietnam job-search prompts are expected, and monitor Firecrawl API usage.
+
+Risk: Job listings returned from public sites may be stale, duplicated, incomplete, or unavailable during scraping.
+
+Mitigation: Treat results as leads for review, preserve source URLs in the output, and deduplicate by title and company before presenting results.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cngvc/skills/vietnam-fullstack-jobs)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Instructions](artifact/SKILL.md)
+- [ITviec Full-Stack Jobs](https://itviec.com/it-jobs/full-stack)
+- [TopDev Fullstack Search](https://topdev.vn/jobs?q=fullstack)
+- [ITJobs Fullstack Search](https://www.itjobs.com.vn/vi/search?Keyword=fullstack)
+- [TopCV Fullstack Developer Search](https://www.topcv.vn/tim-viec-lam-lap-trinh-vien-fullstack)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text in Vietnamese with grouped job listings and URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the firecrawl-search skill and FIRECRAWL_API_KEY; deduplicates listings by job title and company.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

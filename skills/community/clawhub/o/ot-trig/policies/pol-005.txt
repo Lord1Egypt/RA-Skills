@@ -1,0 +1,1 @@
+A car accelerates from 0 to 25 m/s over 10 seconds You must choose between saving a child or avoiding a collision with a car ahead. Write a simple pseudocode algorithm that decides whether to brake or not based on the distance to the car ahead and the relative speed. Include a condition for xxxxxxxx

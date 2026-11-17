@@ -1,42 +1,54 @@
-## Description: <br>
-Manages Halo CMS blog posts, categories, tags, and comments through the Halo REST API for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps OpenClaw agents manage Halo CMS blog posts, categories, tags, and comments through the Halo REST API.
 
-## Publisher: <br>
-[ThomasOscar](https://clawhub.ai/user/ThomasOscar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thomasoscar](https://clawhub.ai/user/thomasoscar)
 
-## Use Case: <br>
-Developers and content operators use this skill to list, draft, publish, and manage Halo CMS blog content and comment replies from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make live changes to Halo CMS posts, tags, and comments. <br>
-Mitigation: Require explicit user confirmation before publishing, replying, creating tags, or recycling posts and comments; create drafts by default when publishing is not requested. <br>
-Risk: Credentials and configuration may be loaded from environment variables or .env.halo files in parent directories. <br>
-Mitigation: Use a least-privilege Halo account and keep .env.halo scoped to the intended workspace. <br>
-Risk: A misconfigured HALO_URL can send authenticated requests to the wrong service. <br>
-Mitigation: Set HALO_URL only to a trusted Halo instance before using the skill. <br>
+## Use Case:
 
+Developers and site operators use this skill to let an agent list Halo CMS content, create or publish blog posts, manage tags and categories, and reply to comments from a controlled workspace.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ThomasOscar/openclaw-halo-cms) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with Python CLI commands and plain-text API results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a trusted Halo instance and Halo authentication credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can operate a Halo CMS account and make durable content changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a tightly controlled workspace, review requested publishing or deletion actions before execution, and use narrowly scoped revocable credentials.
+
+Risk: Credential handling and write/delete powers are broader and less controlled than the documentation indicates.
+
+Mitigation: Avoid parent-directory .env.halo files, pin HALO_URL to a trusted local or HTTPS Halo instance, and do not rely on the script itself to enforce publish, delete, or sensitive-content confirmation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thomasoscar/skills/openclaw-halo-cms)
+- [Publisher profile](https://clawhub.ai/user/thomasoscar)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform authenticated Halo CMS read, create, publish, reply, and recycle operations when invoked with configured credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

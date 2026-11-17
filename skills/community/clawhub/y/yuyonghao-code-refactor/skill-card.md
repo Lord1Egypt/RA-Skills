@@ -1,40 +1,55 @@
-## Description: <br>
-Code Refactor analyzes JavaScript code quality issues, proposes refactoring plans, and can apply selected changes with dry-run, rollback, and test validation support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes JavaScript code quality issues and produces refactoring plans, previews, file changes, validation results, and rollback-aware reports.
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect JavaScript files for maintainability issues, generate refactoring plans, preview changes, apply supported edits, and validate results with tests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applied refactoring can modify local project files and may produce incorrect or incomplete changes. <br>
-Mitigation: Run on trusted codebases under version control, start with dry-run previews, and review generated changes before using apply mode. <br>
-Risk: Validation can run project test commands with the user's local permissions. <br>
-Mitigation: Review the configured test command and run validation only in projects and environments where those commands are trusted. <br>
+## Use Case:
 
+Developers use this skill to inspect JavaScript files for code smells, generate refactoring plans, preview diffs, apply supported changes, and validate results with tests.
 
-## Reference(s): <br>
-- [Code Refactor on ClawHub](https://clawhub.ai/yuyonghao-123/yuyonghao-code-refactor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON analysis results, Markdown reports, CLI output, and file changes when apply mode is used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports dry-run previews, diff-style reports, backup-based rollback for applied edits, configurable analysis thresholds, and project test execution during validation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and package.json) <br>
+Risk: The skill can modify files in the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run mode first, inspect generated diffs, keep backups enabled, and apply changes only in trusted workspaces.
+
+Risk: The validation flow can run caller-configured shell commands.
+
+Mitigation: Use known-safe test commands and avoid running the skill against untrusted repositories until workspace path limits and safer test execution are enforced.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yuyonghao-123/skills/yuyonghao-code-refactor)
+- [Publisher Profile](https://clawhub.ai/user/yuyonghao-123)
+- [Artifact Skill Documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON analysis results, Markdown reports, JavaScript code changes, diffs, and CLI output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports dry-run previews, optional application of changes, backups, rollback, and caller-configured validation commands.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

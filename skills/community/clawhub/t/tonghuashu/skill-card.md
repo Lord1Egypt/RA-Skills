@@ -1,44 +1,57 @@
-## Description: <br>
-操作同花顺炒股软件，覆盖盯盘、选股、自选、下单前检查、复盘等个人炒股全流程 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+操作同花顺炒股软件，覆盖盯盘、选股、自选、下单前检查、复盘等个人炒股全流程
 
-## Publisher: <br>
-[zimuoo](https://clawhub.ai/user/zimuoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zimuoo](https://clawhub.ai/user/zimuoo)
 
-## Use Case: <br>
-External users and agents use this skill to automate Tonghuashun desktop workflows for market monitoring, watchlist review, pre-trade checks, order-entry preparation, risk calculation, and trading journal updates. It is intended to keep final order submission under manual user control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automates a live Tonghuashun trading desktop and can reach order-entry workflows through SendKeys-style desktop control. <br>
-Mitigation: Test outside a live account first, keep the trading window visible, and require manual verification before submitting any order. <br>
-Risk: Plan files and watchlist paths influence batch desktop actions. <br>
-Mitigation: Review plan and watchlist paths before execution and run one visible step at a time for unfamiliar workflows. <br>
-Risk: The security verdict is suspicious because script-level guardrails are limited for trading automation. <br>
-Mitigation: Use the skill only when desktop trading automation is intentional and enforce user confirmation for final buy, sell, transfer, or account-security changes. <br>
+## Use Case:
 
+Developers and external users use this skill to guide an agent through Tonghuashun personal trading workflows, including market monitoring, watchlist review, pre-order checks, risk calculation, and trade journaling. The skill is intended to assist navigation and preparation while keeping final trading confirmation under user control.
 
-## Reference(s): <br>
-- [Tonghuashun homepage](https://www.10jqka.com.cn) <br>
-- [ClawHub skill page](https://clawhub.ai/zimuoo/tonghuashu) <br>
-- [Publisher profile](https://clawhub.ai/user/zimuoo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON outputs from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local trading, automation, and journal logs under the skill scripts directory when helper scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can send keystrokes to a real trading client, including opening order-entry screens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test or observation-only workflows first, watch the screen during any live-account session, and require manual confirmation before any F12 or order-entry step.
+
+Risk: Trading workflow logs and journal files may contain sensitive trading history.
+
+Mitigation: Periodically delete or protect generated files under scripts/logs and avoid storing sensitive account details in notes.
+
+Risk: Automated GUI actions can affect the wrong window or state if Tonghuashun is not ready.
+
+Mitigation: Run actions step by step, confirm the active window and visible result before continuing, and fall back to manual shortcuts if automation is unreliable.
+
+## Reference(s):
+
+- [Tonghuashun Homepage](https://www.10jqka.com.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local trading workflow logs and JSONL journal records under scripts/logs when the bundled scripts are run.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

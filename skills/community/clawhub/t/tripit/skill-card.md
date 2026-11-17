@@ -1,44 +1,57 @@
-## Description: <br>
-Create and update TripIt travel plans by sending structured confirmation emails to plans@tripit.com for flights, hotels, activities, car rentals, rail, and cruises. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and update TripIt travel plans by generating structured confirmation emails for flights, hotels, activities, car rentals, rail, and cruises.
 
-## Publisher: <br>
-[adamwestland](https://clawhub.ai/user/adamwestland) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adamwestland](https://clawhub.ai/user/adamwestland)
 
-## Use Case: <br>
-External users and travel-support agents use this skill to turn user-provided itinerary details into TripIt-approved email bodies and sending guidance so TripIt can create or update travel plan entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may handle personal travel details while generating and sending TripIt confirmation emails. <br>
-Mitigation: Review the generated email before sending and use it only when the user is comfortable sending those details to TripIt through the available email tool. <br>
-Risk: A private TripIt iCal feed URL can continue exposing travel details if stored or shared insecurely. <br>
-Mitigation: Do not store the feed URL unless the user explicitly approves secure storage, retention, and deletion rules; regenerate the feed URL if it is exposed. <br>
-Risk: TripIt may ignore or misparse emails if the sender address is not linked, the message is not plain text, or required fields are missing. <br>
-Mitigation: Confirm the sender email is connected to the TripIt account, send plain text, and validate required fields before sending. <br>
+## Use Case:
 
+Travelers and agents use this skill to turn itinerary details into TripIt-compatible email text and send those details through an available email tool to plans@tripit.com.
 
-## Reference(s): <br>
-- [TripIt Email Template Format Reference](references/template-format.md) <br>
-- [TripIt ClawHub release page](https://clawhub.ai/adamwestland/tripit) <br>
-- [Publisher profile: adamwestland](https://clawhub.ai/user/adamwestland) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text email bodies with optional subject lines, plus Markdown guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an external email-sending capability and user-provided travel details; can optionally use a private TripIt iCal feed URL for verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated itinerary emails can expose traveler names, confirmation numbers, dates, destinations, and booking details to TripIt.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated email text with the user before sending and include only itinerary details the user approves.
+
+Risk: A private TripIt iCal feed URL can provide ongoing access to itinerary data if stored or logged.
+
+Mitigation: Do not store the feed URL unless the user explicitly chooses that and secure secret storage, redaction, and deletion controls are available.
+
+Risk: Itinerary details copied from untrusted booking messages may be incorrect or misleading.
+
+Mitigation: Check dates, confirmation numbers, traveler names, and destinations before sending the generated email.
+
+## Reference(s):
+
+- [TripIt Email Template Format Reference](references/template-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text TripIt Approved email body generated from JSON input, with an optional subject line.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a separate email-sending capability; validates required fields and warns on non-ISO dates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

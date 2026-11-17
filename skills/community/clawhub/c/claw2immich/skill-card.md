@@ -1,42 +1,60 @@
-## Description: <br>
-Work with Immich photo library via MCP (claw2immich) - search photos by people, dates, locations, albums, download assets via shared links, and handle multi-person search, CLIP smart search, and metadata queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with Immich photo library via MCP (claw2immich) - search photos by people, dates, locations, albums. Download assets via shared links. Handles multi-person search, CLIP smart search, and metadata queries.
 
-## Publisher: <br>
-[JoeRu](https://clawhub.ai/user/JoeRu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[joeru](https://clawhub.ai/user/joeru)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to let an agent search, browse, and retrieve photos from a self-hosted Immich library through the claw2immich MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Immich MCP access can expose private photo library content, people, locations, albums, and metadata. <br>
-Mitigation: Install only when the claw2immich MCP server is trusted, prefer a read-only Immich profile or tool allowlist, and use a trusted local or TLS-protected MCP endpoint. <br>
-Risk: Unauthenticated shared links can expose private photos outside the Immich account boundary. <br>
-Mitigation: Require explicit user approval before creating or sending shared links, and prefer short-lived links or authenticated Immich links when possible. <br>
+## Use Case:
 
+External users and developers use this skill to let an OpenClaw agent search, view, and retrieve photos from an Immich photo library through the claw2immich MCP server. It supports people, date, location, album, and natural-language smart search workflows, plus thumbnail display and asset download guidance.
 
-## Reference(s): <br>
-- [claw2immich](https://github.com/JoeRu/claw2immich) <br>
-- [Immich](https://immich.app) <br>
-- [Immich API docs](https://immich.app/docs/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Immich asset links, thumbnail handling guidance, and MCP tool call patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/skill.json) <br>
+Risk: The skill can expose sensitive personal media through shared links, generated photo URLs, or thumbnail/base64 responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat returned links and image data as sensitive, share them only with intended recipients, and prefer authenticated Immich links when unauthenticated shared links are not required.
+
+Risk: A broadly configured Immich MCP server can give the agent more photo-library authority than a search or viewing workflow needs.
+
+Mitigation: Use the smallest useful IMMICH_PROFILE, prefer read_only for search and viewing, avoid full_scope unless admin functions are explicitly needed, and check available tools with tool_access_report.
+
+Risk: Example download scripts may handle filenames and JSON arguments unsafely in some environments.
+
+Mitigation: Review and harden the example scripts before running downloads, especially when filenames, search terms, or server URLs may come from untrusted input.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/joeru/skills/claw2immich)
+- [claw2immich MCP Server](https://github.com/JoeRu/claw2immich)
+- [Immich](https://immich.app)
+- [Immich API documentation](https://immich.app/docs/api/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, MCP call examples, and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include short-lived shared-link URLs, direct Immich URLs, or base64 thumbnail data when the configured MCP server returns them.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, skill.json, target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,37 @@
+{
+  "name": "ere",
+  "version": "1.4.0",
+  "description": "Editorial Refinement Engine — transforms LLM text into editorially refined prose preserving facts (English + Portuguese pt-BR). / Transforma texto de LLM em prosa editorial refinada preservando fatos (inglês + português pt-BR).",
+  "author": "Rickk Barbosa",
+  "license": "MIT",
+  "tags": ["editorial", "refinement", "writing", "humanization", "text-quality", "bilingual"],
+  "platforms": ["hermes", "openclaw", "claude-code", "codex", "generic"],
+  "requires": {
+    "bins": ["python3"],
+    "python": "3.10+"
+  },
+  "metadata": {
+    "hermes": {
+      "category": "productivity",
+      "related_skills": [],
+      "requires_toolsets": ["terminal"]
+    },
+    "openclaw": {
+      "os": ["linux", "darwin"],
+      "requires": {
+        "bins": ["python3"],
+        "optional_bins": []
+      },
+      "install": {
+        "pip": null
+      }
+    }
+  },
+  "files": {
+    "skill": "SKILL.md",
+    "scripts": ["scripts/ere.py"],
+    "profiles": ["profiles/default.yaml"],
+    "references": ["references/patterns.md", "references/writing-principles.md", "references/portuguese-writing-principles.md", "references/ERE.md"]
+  },
+  "entrypoint": "SKILL.md"
+}

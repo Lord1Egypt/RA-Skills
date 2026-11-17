@@ -1,48 +1,65 @@
-## Description: <br>
-Build and orchestrate multi-agent AI systems using the Swarms API, including single agents, swarms, streaming responses, sub-agent delegation, marketplace publishing, ATP payments, and Solana token launches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and orchestrate multi-agent AI systems using the Swarms API, including single agents, multi-agent swarms, Solana token launches, ATP payment protocol, marketplace publishing, sub-agent delegation, streaming responses, and orchestration pipelines.
 
-## Publisher: <br>
-[NewSoulOnTheBlock](https://clawhub.ai/user/NewSoulOnTheBlock) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[newsoulontheblock](https://clawhub.ai/user/newsoulontheblock)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and implement Swarms API workflows for single-agent, reasoning-agent, and multi-agent orchestration. It provides practical guidance for API configuration, agent architecture selection, streaming, tool integration, marketplace publishing, and paid blockchain-related workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Paid blockchain workflows may send raw Solana wallet private keys to remote services. <br>
-Mitigation: Use a dedicated low-balance or test wallet, never a main wallet, and require explicit approval before token launches or ATP payments. <br>
-Risk: API keys, wallet keys, or MCP credentials could be exposed through prompts, logs, or over-broad tool access. <br>
-Mitigation: Keep secrets in environment variables, avoid including secrets in prompts or logs, restrict autonomous tools with selected_tools, and connect only trusted MCP servers with least-privilege tokens. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/NewSoulOnTheBlock/swarms-ai) <br>
-- [Swarms docs index](https://docs.swarms.ai/llms.txt) <br>
-- [Swarms API keys](https://swarms.world/platform/api-keys) <br>
-- [Swarms marketplace](https://swarms.world) <br>
-- [Swarms API Architecture](references/architecture.md) <br>
-- [Sub-Agent Delegation](references/sub-agents.md) <br>
-- [ATP Agent Trade Protocol](references/atp-protocol.md) <br>
-- [Swarms Marketplace](references/marketplace.md) <br>
-- [Streaming Responses](references/streaming.md) <br>
-- [Tools Integration](references/tools.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to configure Swarms API agents and swarms, choose orchestration patterns, integrate tools or MCP servers, stream responses, and publish or monetize agents through Swarms-related services.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline Python, JSON, endpoint, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API request patterns, agent configuration tables, architecture choices, streaming handling, tool configuration, and wallet-safety guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Token launch and ATP examples document sending Solana wallet private keys to remote services.
+
+Mitigation: Use client-side wallet signing, testnet or low-balance burner wallets, and scoped authorization flows instead of sharing funded wallet private keys.
+
+Risk: Swarms API examples send prompts and API keys to remote Swarms services.
+
+Mitigation: Use environment variables for API keys and send only data that is appropriate for the Swarms service.
+
+Risk: Some endpoints require paid Swarms tiers or incur blockchain costs.
+
+Mitigation: Confirm account tier, pricing, and wallet balance before running batch, reasoning-agent, token launch, or ATP workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/newsoulontheblock/skills/swarms-ai)
+- [Swarms docs index](https://docs.swarms.ai/llms.txt)
+- [Swarms platform API keys](https://swarms.world/platform/api-keys)
+- [Swarms marketplace](https://swarms.world)
+- [Swarms API Architecture](references/architecture.md)
+- [Sub-Agent Delegation](references/sub-agents.md)
+- [ATP - Agent Trade Protocol](references/atp-protocol.md)
+- [Swarms Marketplace](references/marketplace.md)
+- [Streaming Responses](references/streaming.md)
+- [Tools Integration](references/tools.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with API examples, code snippets, shell commands, and configuration tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes examples that call remote Swarms services and sections involving Solana wallet handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

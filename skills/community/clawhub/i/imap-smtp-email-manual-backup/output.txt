@@ -1,0 +1,3 @@
+[1] SMTP Connection Test
+[2] SOL Transfer Confirmation
+[3] Email Summary for To-Do List

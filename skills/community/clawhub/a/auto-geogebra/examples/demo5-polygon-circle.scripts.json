@@ -1,0 +1,5 @@
+[
+  {"label": "btnAnimN", "event": "onClick", "script": "StartAnimation(n, true)"},
+  {"label": "btnStopN", "event": "onClick", "script": "StartAnimation(n, false)"},
+  {"label": "btnResetN", "event": "onClick", "script": "SetValue(n, 6)\nStartAnimation(n, false)"}
+]

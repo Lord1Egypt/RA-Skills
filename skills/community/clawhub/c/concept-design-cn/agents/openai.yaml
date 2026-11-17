@@ -1,0 +1,6 @@
+interface:
+  display_name: 概念设计
+  short_description: 定义概念与同步规则，编写规格、实现和审查软件
+  default_prompt: 使用 $concept-design-cn 处理本次任务。从目的出发，用反例检查前提，只读取所需流程与参考。
+policy:
+  allow_implicit_invocation: false

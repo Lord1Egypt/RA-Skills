@@ -1,13 +1,21 @@
 {
-  "name": "cleanapp_ingest_v1",
-  "version": "1.0.1",
-  "description": "Bulk submit problem signals (bugs/incidents/feedback) to CleanApp via /v1/reports:bulkIngest (quarantine by default).",
+  "name": "cleanapp",
+  "displayName": "CleanApp Report Submission",
+  "version": "0.3.0",
+  "description": "Report an observed problem through public MCP or HTTPS, approve publication/notice permissions, and track review decisions and recorded actions. No account/key; private receipt, no guaranteed action or fix.",
+  "homepage": "https://www.cleanapp.io/agents",
   "entrypoint": "run.sh",
-  "secrets": [
-    "CLEANAPP_API_TOKEN"
-  ],
+  "secrets": [],
+  "requires": {
+    "bins": [
+      "python3"
+    ],
+    "env": []
+  },
   "notes": {
-    "data_handling": "Submits text + optional approximate location. No media by default. Supports dry-run.",
-    "network": "HTTPS only (CleanApp ingest endpoint)."
+    "authentication": "No authentication for public first-report submission or MCP. A returned tracking token privately authorizes receipt status; the client stores it in a mode 0600 receipt file.",
+    "advanced": "Managed authenticated CleanApp Wire/API/CLI ingestion is separate; registration is operator-gated. Existing authorized keys retain their own scopes and quotas.",
+    "data_handling": "Offline preview is the default; explicit --submit sends only the approved report and frozen optional handling. Omitted handling stays private/none. Automatic publication/notices require explicit permission plus server privacy and eligibility checks. Recorded outcomes distinguish pending, sent, held and failed actions.",
+    "network": "Outbound HTTPS to www.cleanapp.io for discovery and live.cleanapp.io for public intake/MCP. No GET submission workaround."
   }
 }

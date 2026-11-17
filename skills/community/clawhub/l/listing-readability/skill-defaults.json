@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "listing-readability",
+  "workflow": "listing",
+  "focus": "readability",
+  "outputTemplate": "ops_listing",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ]
+}

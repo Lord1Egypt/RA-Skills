@@ -1,0 +1,297 @@
+{
+  "date": "2026-08-20",
+  "title": "今日体育赛事总览（自动源样本 + 联网补齐·实时真实对阵）",
+  "updated_at": "2026-08-20 12:17",
+  "_is_live": true,
+  "_source": "thesportsdb-free + WebSearch 核实补齐（UEFA 官方赛程）",
+  "_auto_thin": true,
+  "_live_error": null,
+  "_sports_live": [
+    "american_football",
+    "australian_football",
+    "soccer"
+  ],
+  "_thin_hint": "自动源仅返回稀薄样本（无 key 时为常态）。已由智能体用 WebSearch 联网补齐当日真实全量赛事（含欧联杯附加赛首回合 4 场），以保证「信息全」。",
+  "matches": [
+    {
+      "sport": "american_football",
+      "sport_cn": "美式足球",
+      "match": "Montreal Alouettes vs Ottawa Redblacks",
+      "league": "CFL",
+      "country": "Canada",
+      "kickoff_local": "2026-08-20 23:30",
+      "teams": [
+        {
+          "name": "Montreal Alouettes"
+        },
+        {
+          "name": "Ottawa Redblacks"
+        }
+      ],
+      "info_points": [
+        "赛程来自 TheSportsDB 公开数据（实时当日对阵·免费样本）。",
+        "本场为真实当日对阵；战术 / 状态 / 专家维度已由当周 WebSearch 联网核实补充。"
+      ],
+      "live": true,
+      "experts": [
+        {
+          "name": "CFL.ca 官方赛前分析（Week 12 三大看点）",
+          "source": "https://www.cfl.ca/2026/08/19/3-keys-to-victory-for-ottawa-montreal-in-week-12",
+          "tier": "权威专家",
+          "view": "官方看点：蒙特利尔进攻端由四分卫 Davis Alexander 领衔，外接手 Tyson Philpot 与 Tyler Snead 本季对渥太华合计 635 接球码，跑卫 Travis Theis 在 9 场中有 6 场取得达阵。渥太华一侧 Justin Hardy 两战百灵鸟累计 196 接球码，是官方点名的关注点；两队攻防线的对抗被列为本场核心看点。"
+        },
+        {
+          "name": "TSN CFL Week 12 前瞻",
+          "source": "https://www.tsn.ca/cfl/article/argos-ticats-rivalry-highlights-cfls-week-12-slate-on-tsn",
+          "tier": "知名解说",
+          "view": "赛程信息：本场为 Week 12 揭幕战，周四 7:30 p.m. ET 于 Percival Molson Memorial Stadium 进行，TSN/RDS 转播。渥太华上一场 21-33 负于温尼伯，Jake Maier 传出 314 码、2 次达阵传球；蒙特利尔轮空一周后回归，此前一役对爱民顿 Davis Alexander 传 352 码、4 次达阵。"
+        },
+        {
+          "name": "Montreal Alouettes 官网跟队报道",
+          "source": "https://en.montrealalouettes.com/2026/08/01/alouettes-beat-redblacks-13th-time-in-a-row",
+          "tier": "权威专家",
+          "view": "球队官方信息：百灵鸟此前对渥太华取得连续第 13 场对阵优势（8/1 34-13）。Tyson Philpot 以 8 场跨过单季 1000 接球码，成为 CFL 史上最快达成该里程碑的加拿大籍外接手；官方强调短周备战下仍需保持专注、不可轻敌。"
+        },
+        {
+          "name": "CFL.ca 数据组（伤停/阵容）",
+          "source": "https://www.cfl.ca/2026/08/19/3-keys-to-victory-for-ottawa-montreal-in-week-12",
+          "tier": "数据方分析师",
+          "view": "阵容与伤停：渥太华防守锋线 Bryce Carter、Michael Wakefield 因伤缺阵，由 Habakkuk Baldonado、Dennis Briggs Jr. 顶替出场。蒙特利尔本季累计 70 次犯规，居联盟第七多，官方看点将「减少自身失误」列为需注意的环节。以上均为公开赛程与阵容信息，仅供观赛参考。"
+        }
+      ],
+      "experts_refreshed_at": "2026-08-20 12:27"
+    },
+    {
+      "sport": "australian_football",
+      "sport_cn": "澳式足球",
+      "match": "St Kilda Football Club vs Gold Coast Football Club",
+      "league": "Australian AFL",
+      "country": "Australia",
+      "kickoff_local": "2026-08-20 09:30",
+      "teams": [
+        {
+          "name": "St Kilda Football Club"
+        },
+        {
+          "name": "Gold Coast Football Club"
+        }
+      ],
+      "info_points": [
+        "赛程来自 TheSportsDB 公开数据（实时当日对阵·免费样本）。",
+        "本场为真实当日对阵；战术 / 状态 / 专家维度已由当周 WebSearch 联网核实补充。"
+      ],
+      "live": true,
+      "experts": [
+        {
+          "name": "AFL.com.au 官方前瞻",
+          "source": "https://www.afl.com.au/news/1582756/r23-preview-double-chance-wildcard-dreams-on-the-line-in-defining-round",
+          "tier": "权威专家",
+          "view": "赛事背景：本场为 2026 常规赛第 24 轮收官战，周四 7:30pm AEST 于 Marvel Stadium 进行。两队均已无缘季后赛；圣基尔达老将 Brad Hill 迎来生涯第 300 场里程碑，成为本场的重要看点。"
+        },
+        {
+          "name": "Zero Hanger 确认阵容（Round 24 ins/outs）",
+          "source": "https://zerohanger.com/round-24-team-line-ups-2026-181497",
+          "tier": "数据方分析师",
+          "view": "官方确认阵容变动：圣基尔达 IN——Dougal Howard、Liam Ryan；OUT——Jack Higgins（伤）、Alixzander Tauru（落选）。高海岸太阳 IN——Nick Holman、Jarrod Witts、Ben Jepson；OUT——Sam Collins（伤）、Wil Powell（伤）、Christian Petracca（足部伤）。"
+        },
+        {
+          "name": "RSN Round 24 前瞻",
+          "source": "https://rsn.net.au/news/2026/08/18/afl-tips-2026-round-24-tips-and-winners",
+          "tier": "知名解说",
+          "view": "伤停梳理：圣基尔达伤停名单包括 Nasiah Wanganeen-Milera、Jack Sinclair、Sam Flanders、Max King 等多名主力；高海岸方面 Christian Petracca 因足部伤缺阵、后卫 Sam Collins 同样缺席。多名主力轮休，本场为两队边缘/年轻球员争取表现机会的场合。"
+        },
+        {
+          "name": "AFL.com.au 战力榜背景",
+          "source": "https://www.foxsports.com.au/afl/afl-2026-power-rankings-after-round-23-afl-analysis-every-team-ranked-from-best-to-worst-matthew-nicks-coaching-future-at-riREDACTED-SECRET/news-story/4369086b91894991941aa4d90fd1b1f9",
+          "tier": "数据方分析师",
+          "view": "近期状态（公开战绩）：圣基尔达上一轮以 49 分优势击败里士满，本季约 10 胜 12 负；高海岸太阳近 12 场仅 1 胜、排名第 14 位。周四黄金时段于 Marvel Stadium 上演常规赛收官对决，双方近况与阵容可作观赛对比参考。"
+        }
+      ],
+      "experts_refreshed_at": "2026-08-20 12:27"
+    },
+    {
+      "sport": "soccer",
+      "sport_cn": "足球",
+      "match": "Benfica vs Aarhus",
+      "league": "UEFA Europa League",
+      "country": "Portugal",
+      "kickoff_local": "2026-08-20 21:00",
+      "teams": [
+        {
+          "name": "Benfica"
+        },
+        {
+          "name": "Aarhus"
+        }
+      ],
+      "info_points": [
+        "欧联杯资格赛附加赛首回合（UEFA 官方赛程，2026-08-20）。",
+        "本场为真实当日对阵；战术 / 状态 / 专家维度已由当周 WebSearch 联网核实补充。"
+      ],
+      "live": true,
+      "key": true,
+      "experts": [
+        {
+          "name": "搜狐体育·欧罗巴前瞻（赛事背景）",
+          "source": "https://www.sohu.com/a/1065047067_122743048",
+          "tier": "权威专家",
+          "view": "赛事背景：本场为 2026/27 赛季欧罗巴资格赛附加赛首回合，本菲卡主场迎战丹超冠军奥胡斯；胜者晋级欧罗巴联赛阶段正赛，负者落入欧协联。本菲卡上赛季葡超第三、欧冠资格赛出局后转战欧罗巴，资格赛第三轮两回合总比分 6-2 淘汰哈茨；奥胡斯为丹超冠军，欧冠资格赛附加赛被萨巴赫淘汰后转战欧罗巴，第三轮两回合 3-0 淘汰波兹南莱赫。两队此前无正式交手记录。"
+        },
+        {
+          "name": "网易号·欧联杯前瞻（近期状态）",
+          "source": "https://www.163.com/dy/article/L4O46QGU0556OCWQ.html",
+          "tier": "数据方分析师",
+          "view": "近期状态（公开赛绩）：本菲卡近 10 场 5 胜 3 平 2 负、进 32 球失 11 球；上轮葡超客场 7-0 胜卡萨皮亚，欧战主场近 6 战 5 胜 1 平、进 20 球失 4 球。奥胡斯近 10 场 4 胜 3 平 3 负、进 17 球失 15 球；新赛季丹超 1 胜 1 平 1 负，近 6 个客场 1 胜 1 平 4 负、欧战客场两连败。以上为公开赛绩，仅供观赛参考。"
+        },
+        {
+          "name": "搜狐体育·阵容与伤停",
+          "source": "https://www.sohu.com/a/1065057331_121924582",
+          "tier": "知名解说",
+          "view": "伤停与阵容（公开情报）：本菲卡中场奥尔斯内斯（肠胃炎）、前锋伊万诺维奇（脚部）、前锋乌梅、后卫温德伤缺，合计 4 人；边锋普雷斯蒂安尼禁赛到期复出，帕夫利季斯、拉法·席尔瓦等核心可出战，预计 4-3-3。奥胡斯中场波尔森、吉安菲伤缺，另有五人高挂免战牌，主力门将汉森可出战。"
+        },
+        {
+          "name": "网易号·战术方向",
+          "source": "https://www.163.com/dy/article/L4NCUUR70556P1GH.html",
+          "tier": "数据方分析师",
+          "view": "战术看点（描述性）：本菲卡在马尔科·席尔瓦治下主打 4-3-3，擅长控球传导与高位压迫；奥胡斯更偏向务实，习惯先立足防守、伺机反击。两回合赛制下首回合赛果会左右次回合走向，双方均需为次回合留后手。不含任何赛果判定。"
+        }
+      ],
+      "experts_refreshed_at": "2026-08-20 12:27"
+    },
+    {
+      "sport": "soccer",
+      "sport_cn": "足球",
+      "match": "Trabzonspor vs Ferencvaros",
+      "league": "UEFA Europa League",
+      "country": "Turkey",
+      "kickoff_local": "2026-08-20 22:00",
+      "teams": [
+        {
+          "name": "Trabzonspor"
+        },
+        {
+          "name": "Ferencvaros"
+        }
+      ],
+      "info_points": [
+        "欧联杯资格赛附加赛首回合（UEFA 官方赛程，2026-08-20）。",
+        "本场为真实当日对阵；战术 / 状态 / 专家维度已由当周 WebSearch 联网核实补充。"
+      ],
+      "live": true,
+      "key": true,
+      "experts": [
+        {
+          "name": "SportsMole·赛前前瞻（team news）",
+          "source": "https://www.sportsmole.co.uk/football/trabzonspor/preview/trabzonspor-vs-ferencvaros-prediction-team-news-lineups_603216.html",
+          "tier": "权威专家",
+          "view": "赛事信息：首回合周四在帕帕拉公园球场进行，次回合 8 月 27 日移师布达佩斯 Groupama Arena。特拉布宗主帅法蒂赫·泰克公开称费伦茨瓦罗斯纸面实力更强。穆罕默德·萨拉赫（从利物浦自由转会、两年合同）有望首发——上轮土超替补登场约 30 分钟即录得全场最高预期进球、创造 2 次机会、8 次传中。保罗·奥纳丘上季土超 22 球并列金靴。以上为公开赛前情报。"
+        },
+        {
+          "name": "SportsMole·伤停梳理",
+          "source": "https://www.sportsmole.co.uk/football/trabzonspor/preview/trabzonspor-vs-ferencvaros-prediction-team-news-lineups_603216.html",
+          "tier": "数据方分析师",
+          "view": "伤停（公开）：特拉布宗需评估萨拉赫体能；门将奥纳纳继续首发；巴塔戈夫、贾博尔-弗卡雷利膝伤缺阵，穆奇腿筋伤缺，尤库斯卢仍缺比赛体能。费伦茨瓦罗斯无新增伤停、预计基本不变；门将迪布什仍是关键，扎哈里亚森与约瑟夫在资格赛进攻端扮演重要角色。"
+        },
+        {
+          "name": "球迷屋·近期状态与交锋",
+          "source": "https://www.qiumiwu.com/news/1990498615034",
+          "tier": "知名解说",
+          "view": "近期状态（公开赛绩）：特拉布宗近 10 场 4 胜 2 平 4 负、进 10 球失 14 球，土超首轮客场 1-1 平卡斯姆帕萨；费伦茨瓦罗斯近 10 场 5 胜 3 平 2 负、进 15 球失 11 球，资格赛先后淘汰伏伊伏丁那与特温特、客场不败。两队 2022 年欧联小组赛各取一胜（主队 1-0、客队 3-2）。不含赛果预测。"
+        },
+        {
+          "name": "搜狐体育·阵容深度",
+          "source": "https://www.sohu.com/a/1065240127_121448422",
+          "tier": "数据方分析师",
+          "view": "阵容看点：特拉布宗今夏引援频繁，萨拉赫已获出场条件，马利诺夫斯基、萨维奥洛、西姆希尔、米马罗格鲁等新援已登场；中后场尤库、巴塔、弗卡雷利仍伤缺，穆西（上季 15 球 7 助）养伤影响前场推进。费伦茨瓦罗斯主力框架稳定，阿尔扎尼、奥特沃斯伤缺。欧战主场近 7 战 5 胜 1 平 1 负。"
+        }
+      ],
+      "experts_refreshed_at": "2026-08-20 12:27"
+    },
+    {
+      "sport": "soccer",
+      "sport_cn": "足球",
+      "match": "Crvena Zvezda vs Viktoria Plzen",
+      "league": "UEFA Europa League",
+      "country": "Serbia",
+      "kickoff_local": "2026-08-20 21:00",
+      "teams": [
+        {
+          "name": "Crvena Zvezda"
+        },
+        {
+          "name": "Viktoria Plzen"
+        }
+      ],
+      "info_points": [
+        "欧联杯资格赛附加赛首回合（UEFA 官方赛程，2026-08-20）。",
+        "本场为真实当日对阵；战术 / 状态 / 专家维度已由当周 WebSearch 联网核实补充。"
+      ],
+      "live": true,
+      "key": true,
+      "experts": [
+        {
+          "name": "B92（塞尔维亚广播台）·晋级之路与轮换",
+          "source": "https://www.163.com/game/article/DK3UFFO400318PFH_mobile.html?live-blog-20766193-2026-08-07-ogledaj-sve-vesti-tankovic-acemo-maksimum-za-dobru-uvertiru-pred-revans7-8-2026-",
+          "tier": "权威专家",
+          "view": "赛事信息：贝尔格莱德红星在资格赛第三轮次回合主场 5-0 大胜拉纳卡（Larnaka）晋级，主帅德扬·斯坦科维奇赛后表示「非常满意」。在两场欧战之间，斯坦科维奇提及会进行轮换、保持平衡与专注，为次回合留力。以上为公开赛前情报。"
+        },
+        {
+          "name": "比尔森胜利俱乐部背景（数据方）",
+          "source": "https://baike.baidu.com/view/5830697.htm",
+          "tier": "数据方分析师",
+          "view": "球队背景：维克托里亚·比尔森为捷克甲级联赛劲旅（成立于 1911 年，主场杜桑·阿伦纳球场），主帅马丁·哈塞克。2025-26 赛季欧联杯曾客场 2-1 胜罗马、首轮 1-1 平费伦茨瓦罗斯；上赛季闯入欧协联八强。本场为捷克冠军与塞尔维亚冠军的直接对话。"
+        },
+        {
+          "name": "搜狐体育·比尔森欧战策略",
+          "source": "https://www.sohu.com/a/870432605_122328931",
+          "tier": "知名解说",
+          "view": "近期动态（公开）：比尔森胜利在国内的联赛中有所落后，已将重心转向欧战；上一场联赛做出 6 处轮换（结果为平局），显示优先欧联的策略。球队具备欧战韧性，曾在上赛季欧协联淘汰皇家社会，可抓住对手体能/阵容不整的窗口。以上为描述性情报，不含赛果判定。"
+        }
+      ],
+      "experts_refreshed_at": "2026-08-20 12:27"
+    },
+    {
+      "sport": "soccer",
+      "sport_cn": "足球",
+      "match": "Besiktas vs Kauno Zalgiris",
+      "league": "UEFA Europa League",
+      "country": "Turkey",
+      "kickoff_local": "2026-08-20 20:00",
+      "teams": [
+        {
+          "name": "Besiktas"
+        },
+        {
+          "name": "Kauno Zalgiris"
+        }
+      ],
+      "info_points": [
+        "欧联杯资格赛附加赛首回合（UEFA 官方赛程，2026-08-20；北京时间 08-21 01:00）。",
+        "本场为真实当日对阵；战术 / 状态 / 专家维度已由当周 WebSearch 联网核实补充。"
+      ],
+      "live": true,
+      "key": true,
+      "experts": [
+        {
+          "name": "Daily Sabah·赛前前瞻",
+          "source": "https://www.dailysabah.com/sports/football/besiktas-seek-control-of-europa-league-tie-against-kauno-zalgiris",
+          "tier": "权威专家",
+          "view": "赛事信息：贝西克塔斯周四在主场 Tüpraş Stadyumu 迎战考纳斯扎尔吉里斯，首回合，次回合 8 月 27 日移师考纳斯；胜者晋级欧罗巴联赛阶段。两队欧战首次交锋。贝西克塔斯资格赛次回合 1-0 胜赫拉德茨克拉洛韦（切尔尼进球、总比分 2-0），欧战资格赛连续 4 场零封。主帅温琴佐·伊塔利亚诺强调防守组织，夏窗引进努贝尔、瓦塔拉、特罗萨德、弗拉霍维奇等。"
+        },
+        {
+          "name": "SportsMole·伤停与阵容",
+          "source": "https://www.sportsmole.co.uk/football/besiktas/preview/besiktas-vs-kauno-zalgiris-prediction-team-news-lineups_603215.html",
+          "tier": "数据方分析师",
+          "view": "伤停与阵容（公开）：贝西克塔斯无新增伤停；瓦塔拉解禁复出，阿格巴杜与蒂亚戈·贾洛预计继续搭档中卫，厄兹詹在防守后腰竞争中领先于恩迪迪。考纳斯扎尔吉里斯无重大体能问题，本沙伊布本季表现突出预计继续首发，奥利维拉预计领衔锋线。以上为公开赛前情报，不含赛果预测。"
+        },
+        {
+          "name": "腾讯新闻·双方实力与战术",
+          "source": "https://so.html5.qq.com/page/real/search_news?docid=70000021_6726a86805e71552",
+          "tier": "知名解说",
+          "view": "战术看点（描述性）：贝西克塔斯预计从开场掌控球权、通过中场耐心传导寻找空隙；考纳斯扎尔吉里斯预计采取低位密集防守、避免重蹈对萨格勒布迪纳摩两回合 1-7 溃败的覆辙。贝西克塔斯弗拉霍维奇、特罗萨德、科克曲提升前场威胁；考纳斯依赖本沙伊布（本季 27 场 11 球 3 助）等核心。两回合赛制，首回合主动权关键。"
+        }
+      ],
+      "experts_refreshed_at": "2026-08-20 12:27"
+    }
+  ]
+}

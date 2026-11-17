@@ -1,42 +1,58 @@
-## Description: <br>
-Download files from the web via HTTP/HTTPS/FTP with resume support, recursive mirroring, rate limiting, and progress feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download files from the web via HTTP/HTTPS/FTP with resume support, recursive mirroring, rate limiting, and progress feedback.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch files or datasets from web URLs during automation. It is suited to simple downloads, with supported options verified before relying on wget-style behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can download untrusted remote content to local paths. <br>
-Mitigation: Use trusted URLs, choose safe output directories, and review downloaded content before using it. <br>
-Risk: The documented command and wget-style options do not match the included implementation. <br>
-Mitigation: Confirm the installed entrypoint and supported options before relying on resume, recursion, rate limiting, custom headers, or JSON output. <br>
-Risk: Custom header examples may encourage passing sensitive credentials to remote services. <br>
-Mitigation: Avoid long-lived secrets in headers and prefer short-lived, scoped credentials when authentication is required. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve web-accessible files for batch downloads, website mirroring, and automated data acquisition workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/wget-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, text, shell commands] <br>
-**Output Format:** [Downloaded file plus terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Network and filesystem side effects depend on the URL and output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The downloader can read from unexpected URL schemes or overwrite writable files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted URLs and explicit output paths, and avoid automated or unattended use until allowed schemes and destination handling are bounded.
+
+Risk: Command-line headers can expose secrets through shell history, logs, or process listings.
+
+Mitigation: Do not pass real secrets in command-line headers; use short-lived test credentials or a safer secret-handling path.
+
+Risk: Some documented downloader capabilities may be less complete than described.
+
+Mitigation: Verify required behavior in a controlled test before relying on the skill for production automation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dinghaibin/skills/wget-tool)
+- [Publisher Profile](https://clawhub.ai/user/dinghaibin)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with shell command snippets and downloaded files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write files to a specified output path or a URL-derived filename; review destination handling before unattended use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Normalize papers, PDFs, URLs, and literature notes into structured research records for project memory and retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Normalizes papers, PDFs, URLs, and literature notes into structured research records for project memory and retrieval.
 
-## Publisher: <br>
-[sunbinnju-star](https://clawhub.ai/user/sunbinnju-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunbinnju-star](https://clawhub.ai/user/sunbinnju-star)
 
-## Use Case: <br>
-Researchers, developers, and research operations teams use this skill to convert papers, PDFs, URLs, and literature notes into consistent bibliographic and research-content records for project memory and later retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Extracted bibliographic fields, summaries, or writeback payloads may be incomplete or uncertain. <br>
-Mitigation: Review title, authors, year, summaries, uncertain_fields, and writeback_payload before relying on the record or allowing any project memory writeback. <br>
-Risk: A read-or-summarize request could be mistaken for permission to write into project memory. <br>
-Mitigation: Require an explicit project_id and human review before any actual memory writeback. <br>
+## Use Case:
 
+Researchers, developers, and research operations teams use this skill to turn papers, PDFs, URLs, raw text, or metadata into normalized literature records for project memory and retrieval.
 
-## Reference(s): <br>
-- [Paper Ingest Normalizer on ClawHub](https://clawhub.ai/sunbinnju-star/paper-ingest-normalizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Structured research record with bibliographic fields, summaries, uncertainty markers, and writeback payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes writeback_ready and uncertain_fields indicators; memory writeback requires review and a project_id.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may prepare records intended for shared or persistent project memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the writeback payload before saving it, and require a project_id before any writeback.
+
+Risk: Incomplete or ambiguous paper metadata can lead to misleading normalized records.
+
+Mitigation: Use null values for missing fields, populate uncertain_fields, and separate direct observations from claimed interpretations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sunbinnju-star/skills/paper-ingest-normalizer)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, Guidance]
+
+**Output Format:** [Structured JSON-like research record with nullable fields and a writeback payload]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes uncertainty fields and a writeback readiness flag; no project memory writeback should occur without project_id.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

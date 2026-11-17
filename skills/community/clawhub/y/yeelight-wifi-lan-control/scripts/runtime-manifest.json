@@ -1,0 +1,25 @@
+{
+  "runtime": "node",
+  "minVersion": "18.17.0",
+  "entry": "scripts/invoke.mjs",
+  "stdin": {
+    "encoding": "utf8",
+    "maxBytes": 1048576,
+    "oneJsonObject": true
+  },
+  "network": {
+    "discovery": "udp://239.255.255.250:1982",
+    "controlPort": 55443,
+    "localOnly": true
+  },
+  "storage": {
+    "schemaVersion": 1,
+    "credentials": false,
+    "rawTraffic": false
+  },
+  "scheduler": {
+    "hostOwned": true,
+    "osInstallation": false,
+    "daemon": false
+  }
+}

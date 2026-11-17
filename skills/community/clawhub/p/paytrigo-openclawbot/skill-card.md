@@ -1,40 +1,63 @@
-## Description: <br>
-Use when an OpenClawBot needs to create or verify PayTrigo payments on Base/USDC without webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when an OpenClawBot needs to create or verify PayTrigo payments on Base/USDC without webhooks.
 
-## Publisher: <br>
-[paytrigo](https://clawhub.ai/user/paytrigo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[paytrigo](https://clawhub.ai/user/paytrigo)
 
-## Use Case: <br>
-Developers and OpenClawBot operators use this skill to create PayTrigo invoices, guide browser-based user payments, run direct bot payment flows, and poll payment status on Base/USDC. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release ships live PayTrigo payment API credentials, which creates shared-credential and production-use risk. <br>
-Mitigation: Prefer a version configured with your own scoped credential before production use. <br>
-Risk: Direct bot payment flows can spend wallet funds if an agent is given a private key or passphrase file without external controls. <br>
-Mitigation: Use external spend limits, approval checks, recipient verification, and avoid giving an agent private keys or passphrases unless necessary. <br>
-Risk: Polling-only payment status can fail operationally if invoice state or checkout tokens are not retained. <br>
-Mitigation: Persist invoiceId and checkoutToken for each payment attempt and continue polling until a documented terminal status is reached. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and agent operators use this skill to help OpenClawBots create PayTrigo invoices, route users to browser payment, perform direct bot payment, submit transaction hashes, and poll payment status on Base/USDC.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces polling-oriented payment flow instructions and local wallet setup guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release embeds live PayTrigo payment API keys.
+
+Mitigation: Install only after the publisher removes and rotates embedded keys and requires user- or deployment-provided secrets.
+
+Risk: The bot payment flow can sign blockchain transactions from a user's wallet without enough decoded transaction validation or explicit confirmation.
+
+Mitigation: Require decoded transaction review and explicit confirmation before bot payments; use a dedicated low-balance wallet when testing.
+
+Risk: Private keys and passphrases can be supplied on the command line.
+
+Mitigation: Avoid raw command-line secrets; prefer protected secret files or deployment secret stores with restrictive filesystem permissions.
+
+Risk: Dependencies are not pinned with a lockfile.
+
+Mitigation: Add and review a lockfile before deployment so dependency resolution is repeatable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paytrigo/skills/paytrigo-openclawbot)
+- [PayTrigo API endpoint](https://api.paytrigo.net)
+- [Base mainnet RPC endpoint](https://mainnet.base.org)
+- [Artifact README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts can produce JSON API responses, local wallet files, and on-chain transaction hashes when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

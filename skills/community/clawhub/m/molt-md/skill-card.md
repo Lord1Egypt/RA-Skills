@@ -1,46 +1,67 @@
-## Description: <br>
-Cloud-hosted markdown collaboration for agents and humans. One API call to create, one link to share. End-to-end encrypted, no account required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cloud-hosted markdown collaboration for agents and humans. One API call to create, one link to share. End-to-end encrypted, no account required.
 
-## Publisher: <br>
-[bndkts](https://clawhub.ai/user/bndkts) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bndkts](https://clawhub.ai/user/bndkts)
 
-## Use Case: <br>
-Agents and human collaborators use this skill to create, read, update, append, organize, and share cloud-hosted markdown documents and workspaces for notes, task logs, reports, and collaborative documentation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an external cloud markdown service, so sensitive content may leave the user's local environment. <br>
-Mitigation: Require explicit approval before uploading sensitive content and confirm the user accepts use of the external service. <br>
-Risk: Write and workspace keys can grant broad document or workspace access if stored in ordinary memory, logs, or shared notes. <br>
-Mitigation: Prefer read-only keys when possible and keep write and workspace keys in agent-supported config, memory, or secrets storage with restricted exposure. <br>
-Risk: Overwrite, append, and delete operations can change or remove shared markdown content. <br>
-Mitigation: Use ETags and If-Match for writes, handle conflicts by refetching and merging, and require confirmation before overwrite or delete operations. <br>
-Risk: Lost document or workspace keys cannot be recovered and may permanently block access to encrypted content. <br>
-Mitigation: Save document and workspace IDs, read keys, and write keys immediately in an approved credential store. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bndkts/molt-md) <br>
-- [molt-md website](https://molt-md.com) <br>
-- [molt-md skill documentation](https://molt-md.com/skill.md) <br>
-- [molt-md API documentation](https://github.com/bndkts/molt-md/blob/main/API.md) <br>
+## Use Case:
 
+Agents, developers, and human collaborators use this skill to create, read, update, and share cloud-hosted Markdown documents and workspaces through molt-md's API.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown with REST API examples, JSON responses, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify external cloud-hosted markdown documents and workspaces through the molt-md API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: manifest.json and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Selected Markdown content is sent to molt-md's cloud API.
+
+Mitigation: Upload only content appropriate for the service and avoid credentials, confidential local context, or regulated data unless separately approved.
+
+Risk: Returned document and workspace keys grant access, and write keys grant modification rights.
+
+Mitigation: Store write keys in a dedicated secret store and keep them out of generic agent memory, plaintext config, logs, and transcripts.
+
+Risk: The security summary flags encryption claims that do not match the documented API examples.
+
+Mitigation: Do not rely on the encryption claim for sensitive workflows without an independent review of the service security model.
+
+Risk: Remotely re-fetched skill text could differ from the reviewed artifact.
+
+Mitigation: Treat the reviewed artifact as authoritative and review any newly fetched skill text before following it.
+
+Risk: Lost document or workspace keys cannot be recovered.
+
+Mitigation: Save required IDs and keys immediately in approved secret storage.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bndkts/skills/molt-md)
+- [molt-md API documentation](https://github.com/bndkts/molt-md/blob/main/API.md)
+- [molt-md website](https://molt-md.com)
+- [molt-md skill documentation](https://molt-md.com/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, API calls, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with curl examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires external API access; returned document and workspace keys are high-value secrets; documents and workspaces expire after 30 days of inactivity.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

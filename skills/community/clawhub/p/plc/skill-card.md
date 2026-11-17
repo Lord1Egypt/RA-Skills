@@ -1,43 +1,54 @@
-## Description: <br>
-Programmable logic controller programming helper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plc is a shell-based helper labeled for programmable logic controller programming that stores and manages local JSONL entries.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and industrial automation practitioners can use Plc as a local CLI helper for recording, listing, searching, exporting, and configuring PLC-related entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security verdict is suspicious because the skill presents as a PLC helper while managing generic local user data. <br>
-Mitigation: Review SKILL.md and scripts/script.sh before installation, and confirm the local data model and commands match the intended PLC workflow. <br>
-Risk: Entries and configuration are stored locally under ~/.plc by default and may contain sensitive operational notes if users add them. <br>
-Mitigation: Avoid storing credentials, secrets, customer data, or sensitive operational details unless local storage behavior and access controls are acceptable. <br>
-Risk: Remove, export, and config commands can alter or copy locally stored data. <br>
-Mitigation: Check command arguments and output paths before running mutating or export commands, and back up important local data before removal. <br>
+## Use Case:
 
+Developers and engineers can use this skill to run local status, add, list, search, remove, export, statistics, and configuration commands for JSONL note data associated with PLC work. Security evidence says to treat it as a local note/config store rather than a PLC programming helper.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/plc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands; the helper emits structured stdout and JSONL or CSV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local PLC_DIR data directory, defaulting to ~/.plc, and stores entries in JSONL format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill is labeled as a PLC programming helper, but security evidence says the artifacts implement a generic local data store with deletion and export features.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review behavior before installation and treat generated entries as local note/config data rather than validated PLC programming guidance.
+
+Risk: The config path and export/serialization handling may be unsafe for untrusted values or sensitive industrial information.
+
+Mitigation: Avoid storing credentials or sensitive industrial details, and do not run config commands with untrusted values until those paths are fixed and reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/plc)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Structured text to stdout and JSONL/CSV files for stored or exported entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the PLC_DIR environment variable when set; otherwise stores local data under ~/.plc/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

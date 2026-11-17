@@ -1,0 +1,27 @@
+The three recipe files under recipe/ are exact bytes of the free public recipe
+https://agents.samedaydesk.com/recipes/careers-board-cold
+gist a8f74ed84b4ece624209be1dab745a30
+revision 7d01bfb09c530430933dec1f07c5c0b8517cffa8.
+
+Those bytes match epistemedeus/x402-url-extractor at
+2fde825d6f6ede84ee3d959e5ccf0f99c35eca8c
+recipes/careers-board/{boards.mjs,boards.public.test.mjs,PUBLIC-RECIPE.md}.
+
+The merchant repository license is MIT, Copyright (c) 2026 SameDayDesk.
+recipe/LICENSE is that notice. The recipe files were not rewritten.
+scripts/cli.mjs is a separate MIT client, Copyright (c) 2026 Neomorphic LLC.
+It calls fetchAcxiom and fetchAshby. It is not a second scraper.
+
+A hash mismatch is a tampered recipe and is not executed.
+
+sources/magnite.mjs is a later declared source for the Magnite Workday board.
+It reuses normalizeWorkday from the pinned recipe and does not change those
+bytes. references/source-pins.json records that parent hash and the source
+module hash. The Magnite host stays outside the recipe host gate.
+sources/predicates.mjs selects no role. scripts/predicates.mjs only reads a
+local observation file.
+
+Redirects are not followed. A 3xx from a declared Magnite URL is not_fetched
+with reason unexpected_redirect, and it is not an empty Magnite board. A
+Workday total of 0 is empty for that board only. The SmartRecruiters URL is
+not that board.

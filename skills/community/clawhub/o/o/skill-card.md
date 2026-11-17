@@ -1,40 +1,52 @@
-## Description: <br>
-Short alias skill for quickly suggesting OS-specific commands to open files, folders, URLs, logs, or repositories from the command line or file explorer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Short alias skill for quickly suggesting OS-specific commands to open files, folders, URLs, logs, or repositories from the command line or file explorer.
 
-## Publisher: <br>
-[openlang-cn](https://clawhub.ai/user/openlang-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[openlang-cn](https://clawhub.ai/user/openlang-cn)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and end users use this skill when they want a concise OS-specific command to open a clearly identified file, folder, URL, log, project, or repository from a terminal or file explorer.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The very short skill name may cause the skill to activate more often than intended.
+
+Mitigation: Use it only for clearly identified open-file, open-folder, open-URL, or open-repository requests.
+
+Risk: A suggested open command may not match the user's actual operating system or target path.
+
+Mitigation: Verify the command, path, URL, and operating system before running it.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and command-line users use this skill to get concise, OS-specific commands for opening files, folders, URLs, logs, or repositories. It is intended for short answers where the target to open is clear from the conversation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: A suggested open command could target the wrong path or URL if the conversation context is ambiguous. <br>
-Mitigation: Confirm the path or URL before using the suggested command. <br>
-Risk: The short alias may activate more easily than a descriptive skill name. <br>
-Mitigation: Use the skill only when the user clearly wants to open a file, folder, URL, log, or repository. <br>
+**Output Format:** [Markdown with inline shell command blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlang-cn/o) <br>
+**Other Properties Related to Output:** [Concise responses, typically one or two command lines tailored to the user's operating system.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise responses, typically one or two command lines.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

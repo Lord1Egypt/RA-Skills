@@ -1,44 +1,53 @@
-## Description: <br>
-EVR Framework helps an AI agent execute actions, verify results, and report evidence so task completion is grounded in observable checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EVR Framework helps agents follow an Execute, Verify, Report workflow so they perform actions, check outcomes, and report evidence instead of claiming unverified completion.
 
-## Publisher: <br>
-[aptratcn](https://clawhub.ai/user/aptratcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aptratcn](https://clawhub.ai/user/aptratcn)
 
-## Use Case: <br>
-Developers and agent operators use this skill to make AI work follow an Execute, Verify, Report loop. It is intended to reduce fake completions, missing validation, repeated failed retries, and silent failures in agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages agents to run and verify shell commands, including examples that modify files or permissions. <br>
-Mitigation: Review proposed commands, target paths, and verification checks before execution, especially for destructive file operations or permission changes. <br>
-Risk: The security evidence is clean but notes that users seeking maximum assurance should re-check final scan status. <br>
-Mitigation: Confirm the installed skill name, publisher handle, displayed files, and final scan status before using the release in sensitive environments. <br>
+## Use Case:
 
+Developers and agent operators use this skill to require agents to execute tasks, verify the result with concrete evidence, and report the outcome clearly. It is most useful for file, command, Git, service, and network tasks where unverified completion claims create operational risk.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aptratcn/evr-xiaobai) <br>
-- [Publisher profile](https://clawhub.ai/user/aptratcn) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [English README](artifact/README_EN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts agents to include executed command output, verification method, verification result, concrete data, and next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Agents may treat the EVR workflow as permission to run commands with side effects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep normal safeguards for destructive commands, permission changes, services, and network checks, and ask for confirmation when a task has real side effects.
+
+Risk: Verification can give false confidence if the check does not actually prove the requested outcome.
+
+Mitigation: Use task-specific verification evidence, such as file existence, permissions, command exit status, service state, HTTP status, Git status, or a direct content check.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aptratcn/skills/evr-xiaobai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with command examples and reporting templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only workflow guidance; no runtime integration or tool API is included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

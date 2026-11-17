@@ -1,40 +1,54 @@
-## Description: <br>
-Performs specific tasks like research, writing, coding, or analysis with concrete, fast execution while staying strictly within assigned scope. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs specific tasks like research, writing, coding, or analysis with concrete, fast execution while staying strictly within assigned scope.
 
-## Publisher: <br>
-[Kiril-Shturman](https://clawhub.ai/user/Kiril-Shturman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kiril-shturman](https://clawhub.ai/user/kiril-shturman)
 
-## Use Case: <br>
-External users and developers use this prompt-only role skill to make an agent execute assigned research, writing, coding, analysis, implementation, drafting, or artifact-creation tasks while staying within the requested scope. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger terms may cause the role to be applied to sensitive work without enough boundaries. <br>
-Mitigation: Provide concrete scope, permissions, and constraints before invoking the skill for sensitive systems or accounts. <br>
-Risk: Outputs may be incorrect or unsuitable for important systems if applied without review. <br>
-Mitigation: Review the agent's results before using them in production, accounts, or operational systems. <br>
+## Use Case:
 
+External users and agent builders use this skill to give an AI agent a focused worker role for scoped research, writing, coding, analysis, implementation, drafting, or artifact creation tasks. It is intended for direct execution work rather than orchestration or management summaries.
 
-## Reference(s): <br>
-- [Worker Executor ClawHub release page](https://clawhub.ai/Kiril-Shturman/worker-executor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Direct text or Markdown deliverables, potentially including code blocks or shell commands when the assigned task calls for them.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only role; no code, hidden access, or persistence is included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill has broad activation wording and may be selected for many generic execution requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when a focused worker/executor posture is desired, and pair it with clear task scope from the calling agent or user.
+
+Risk: A worker-style agent can drift into unsupported tasks if the assignment is vague.
+
+Mitigation: Provide concrete task boundaries and require BLOCKER responses when required inputs are missing.
+
+## Reference(s):
+
+- [Worker Executor on ClawHub](https://clawhub.ai/kiril-shturman/skills/worker-executor)
+- [Publisher profile](https://clawhub.ai/user/kiril-shturman)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text, depending on the assigned task]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses ACK, STATUS, RESULT, or BLOCKER headings when useful.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

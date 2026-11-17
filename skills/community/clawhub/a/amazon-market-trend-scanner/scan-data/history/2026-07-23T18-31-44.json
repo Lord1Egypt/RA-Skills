@@ -1,0 +1,643 @@
+{
+ "snapshotDate": "2026-07-23",
+ "type": "quick-check",
+ "marketplace": "US",
+ "parentCategory": [
+  "Sports & Outdoors",
+  "Exercise & Fitness"
+ ],
+ "subcategories": {
+  "Sports & Outdoors > Exercise & Fitness > Cardio Training > Treadmills": {
+   "sampleAvgMonthlySales": 1645.9999999999998,
+   "sampleNewSkuRate": 0.5,
+   "topBrandSalesRate": 0.540097205346294,
+   "sampleAvgPrice": 181.84,
+   "sampleAPlusRate": 0.96,
+   "totalSkuCount": 3265,
+   "sampleFbaRate": 0.39,
+   "sampleAvgRatingCount": 878.9500000000003,
+   "sampleAvgRating": 4.2369999999999965,
+   "sampleAvgMonthlyRevenue": 243342.61
+  },
+  "Sports & Outdoors > Exercise & Fitness > Fitness Technology > Activity & Fitness Trackers": {
+   "sampleAvgMonthlySales": 1490.0000000000002,
+   "sampleNewSkuRate": 0.22,
+   "topBrandSalesRate": 0.8328859060402685,
+   "sampleAvgPrice": 135.01,
+   "sampleAPlusRate": 0.86,
+   "totalSkuCount": 6408,
+   "sampleFbaRate": 0.73,
+   "sampleAvgRatingCount": 4606.959999999999,
+   "sampleAvgRating": 4.072999999999999,
+   "sampleAvgMonthlyRevenue": 224733.27
+  },
+  "Sports & Outdoors > Exercise & Fitness > Cardio Training > Vibration Platform Machines": {
+   "sampleAvgMonthlySales": 1659.0000000000002,
+   "sampleNewSkuRate": 0.23,
+   "topBrandSalesRate": 0.8529234478601567,
+   "sampleAvgPrice": 102.26,
+   "sampleAPlusRate": 0.98,
+   "totalSkuCount": 1041,
+   "sampleFbaRate": 0.79,
+   "sampleAvgRatingCount": 3248.749999999999,
+   "sampleAvgRating": 4.4609999999999985,
+   "sampleAvgMonthlyRevenue": 167190.7
+  },
+  "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Weights & Accessories > Dumbbells": {
+   "sampleAvgMonthlySales": 2468.0,
+   "sampleNewSkuRate": 0.0,
+   "topBrandSalesRate": 0.9412479740680713,
+   "sampleAvgPrice": 64.0,
+   "sampleAPlusRate": 0.99,
+   "totalSkuCount": 5237,
+   "sampleFbaRate": 0.13,
+   "sampleAvgRatingCount": 26176.299999999992,
+   "sampleAvgRating": 4.671000000000001,
+   "sampleAvgMonthlyRevenue": 124068.66
+  },
+  "Sports & Outdoors > Exercise & Fitness > Cardio Training > Exercise Bikes": {
+   "sampleAvgMonthlySales": 315.99999999999994,
+   "sampleNewSkuRate": 0.21,
+   "topBrandSalesRate": 0.6613924050632911,
+   "sampleAvgPrice": 251.2,
+   "sampleAPlusRate": 0.94,
+   "totalSkuCount": 2009,
+   "sampleFbaRate": 0.28,
+   "sampleAvgRatingCount": 3306.800000000001,
+   "sampleAvgRating": 4.3919999999999995,
+   "sampleAvgMonthlyRevenue": 70544.59
+  },
+  "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Benches > Adjustable Benches": {
+   "sampleAvgMonthlySales": 572.9999999999995,
+   "sampleNewSkuRate": 0.08,
+   "topBrandSalesRate": 0.7347294938917975,
+   "sampleAvgPrice": 147.23,
+   "sampleAPlusRate": 0.96,
+   "totalSkuCount": 1524,
+   "sampleFbaRate": 0.39,
+   "sampleAvgRatingCount": 1837.2900000000018,
+   "sampleAvgRating": 4.455,
+   "sampleAvgMonthlyRevenue": 63877.13
+  },
+  "Sports & Outdoors > Exercise & Fitness > Fitness Technology > Heart Rate Monitors": {
+   "sampleAvgMonthlySales": 585.9999999999998,
+   "sampleNewSkuRate": 0.03,
+   "topBrandSalesRate": 0.9343003412969283,
+   "sampleAvgPrice": 48.09,
+   "sampleAPlusRate": 0.91,
+   "totalSkuCount": 823,
+   "sampleFbaRate": 0.79,
+   "sampleAvgRatingCount": 4907.510000000002,
+   "sampleAvgRating": 4.312000000000001,
+   "sampleAvgMonthlyRevenue": 54328.19
+  },
+  "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Weights & Accessories > Weight Vests": {
+   "sampleAvgMonthlySales": 1836.000000000001,
+   "sampleNewSkuRate": 0.08,
+   "topBrandSalesRate": 0.8839869281045751,
+   "sampleAvgPrice": 37.43,
+   "sampleAPlusRate": 0.97,
+   "totalSkuCount": 1615,
+   "sampleFbaRate": 0.89,
+   "sampleAvgRatingCount": 3400.770000000001,
+   "sampleAvgRating": 4.5809999999999995,
+   "sampleAvgMonthlyRevenue": 53988.14
+  },
+  "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Resistance Bands": {
+   "sampleAvgMonthlySales": 3450.000000000001,
+   "sampleNewSkuRate": 0.03,
+   "topBrandSalesRate": 0.5681159420289855,
+   "sampleAvgPrice": 15.39,
+   "sampleAPlusRate": 0.98,
+   "totalSkuCount": 8913,
+   "sampleFbaRate": 0.92,
+   "sampleAvgRatingCount": 15223.85,
+   "sampleAvgRating": 4.500000000000001,
+   "sampleAvgMonthlyRevenue": 49000.63
+  },
+  "Sports & Outdoors > Exercise & Fitness > Cardio Training > Elliptical Trainers": {
+   "sampleAvgMonthlySales": 402.0000000000002,
+   "sampleNewSkuRate": 0.13,
+   "topBrandSalesRate": 0.7089552238805971,
+   "sampleAvgPrice": 133.02,
+   "sampleAPlusRate": 0.97,
+   "totalSkuCount": 1528,
+   "sampleFbaRate": 0.77,
+   "sampleAvgRatingCount": 1222.02,
+   "sampleAvgRating": 4.378000000000002,
+   "sampleAvgMonthlyRevenue": 43675.01
+  },
+  "Sports & Outdoors > Exercise & Fitness > Cardio Training > Rowers": {
+   "sampleAvgMonthlySales": 165.49999999999997,
+   "sampleNewSkuRate": 0.07,
+   "topBrandSalesRate": 0.851963746223565,
+   "sampleAvgPrice": 205.63,
+   "sampleAPlusRate": 0.95,
+   "totalSkuCount": 877,
+   "sampleFbaRate": 0.31,
+   "sampleAvgRatingCount": 2555.25,
+   "sampleAvgRating": 4.392999999999999,
+   "sampleAvgMonthlyRevenue": 38576.63
+  },
+  "Sports & Outdoors > Exercise & Fitness > Yoga > Mats": {
+   "sampleAvgMonthlySales": 1376.0000000000007,
+   "sampleNewSkuRate": 0.01,
+   "topBrandSalesRate": 0.9171511627906976,
+   "sampleAvgPrice": 30.0,
+   "sampleAPlusRate": 0.96,
+   "totalSkuCount": 4510,
+   "sampleFbaRate": 0.24,
+   "sampleAvgRatingCount": 19584.68,
+   "sampleAvgRating": 4.552999999999998,
+   "sampleAvgMonthlyRevenue": 36534.09
+  },
+  "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Home Gym Systems": {
+   "sampleAvgMonthlySales": 122.99999999999994,
+   "sampleNewSkuRate": 0.07,
+   "topBrandSalesRate": 0.7154471544715447,
+   "sampleAvgPrice": 397.15,
+   "sampleAPlusRate": 0.87,
+   "totalSkuCount": 773,
+   "sampleFbaRate": 0.22,
+   "sampleAvgRatingCount": 528.285714285714,
+   "sampleAvgRating": 4.192307692307691,
+   "sampleAvgMonthlyRevenue": 36405.45
+  },
+  "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Weights & Accessories > Plates": {
+   "sampleAvgMonthlySales": 439.99999999999994,
+   "sampleNewSkuRate": 0.04,
+   "topBrandSalesRate": 0.9659090909090909,
+   "sampleAvgPrice": 83.8,
+   "sampleAPlusRate": 1.0,
+   "totalSkuCount": 2845,
+   "sampleFbaRate": 0.17,
+   "sampleAvgRatingCount": 2822.5599999999995,
+   "sampleAvgRating": 4.628,
+   "sampleAvgMonthlyRevenue": 35418.74
+  },
+  "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Racks & Cages > Power Cages": {
+   "sampleAvgMonthlySales": 94.00000000000004,
+   "sampleNewSkuRate": 0.06,
+   "topBrandSalesRate": 0.7180851063829787,
+   "sampleAvgPrice": 435.51,
+   "sampleAPlusRate": 0.99,
+   "totalSkuCount": 1369,
+   "sampleFbaRate": 0.14,
+   "sampleAvgRatingCount": 388.26000000000005,
+   "sampleAvgRating": 4.473000000000002,
+   "sampleAvgMonthlyRevenue": 32821.78
+  },
+  "Sports & Outdoors > Exercise & Fitness > Yoga > Towels": {
+   "sampleAvgMonthlySales": 2425.9999999999995,
+   "sampleNewSkuRate": 0.02,
+   "topBrandSalesRate": 0.7996702390766695,
+   "sampleAvgPrice": 14.67,
+   "sampleAPlusRate": 0.99,
+   "totalSkuCount": 3306,
+   "sampleFbaRate": 0.88,
+   "sampleAvgRatingCount": 7366.829999999998,
+   "sampleAvgRating": 4.510000000000001,
+   "sampleAvgMonthlyRevenue": 31396.99
+  },
+  "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Dip Stands": {
+   "sampleAvgMonthlySales": 273.99999999999994,
+   "sampleNewSkuRate": 0.11,
+   "topBrandSalesRate": 0.7536496350364964,
+   "sampleAvgPrice": 99.29,
+   "sampleAPlusRate": 1.0,
+   "totalSkuCount": 768,
+   "sampleFbaRate": 0.66,
+   "sampleAvgRatingCount": 2246.202020202019,
+   "sampleAvgRating": 4.359595959595962,
+   "sampleAvgMonthlyRevenue": 29302.07
+  },
+  "Sports & Outdoors > Exercise & Fitness > Balance Trainers > Foam Rollers": {
+   "sampleAvgMonthlySales": 1176.9999999999998,
+   "sampleNewSkuRate": 0.02,
+   "topBrandSalesRate": 0.8496176720475785,
+   "sampleAvgPrice": 34.32,
+   "sampleAPlusRate": 0.96,
+   "totalSkuCount": 1517,
+   "sampleFbaRate": 0.49,
+   "sampleAvgRatingCount": 8197.29,
+   "sampleAvgRating": 4.498999999999999,
+   "sampleAvgMonthlyRevenue": 28644.42
+  },
+  "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Weights & Accessories > Kettlebells": {
+   "sampleAvgMonthlySales": 654.0,
+   "sampleNewSkuRate": 0.04,
+   "topBrandSalesRate": 0.8593272171253823,
+   "sampleAvgPrice": 47.29,
+   "sampleAPlusRate": 0.98,
+   "totalSkuCount": 1956,
+   "sampleFbaRate": 0.27,
+   "sampleAvgRatingCount": 5641.770000000001,
+   "sampleAvgRating": 4.636999999999999,
+   "sampleAvgMonthlyRevenue": 28406.83
+  },
+  "Sports & Outdoors > Exercise & Fitness > Accessories > Exercise Equipment Mats": {
+   "sampleAvgMonthlySales": 490.00000000000006,
+   "sampleNewSkuRate": 0.09,
+   "topBrandSalesRate": 0.8469387755102041,
+   "sampleAvgPrice": 62.57,
+   "sampleAPlusRate": 0.92,
+   "totalSkuCount": 3514,
+   "sampleFbaRate": 0.45,
+   "sampleAvgRatingCount": 16367.570000000003,
+   "sampleAvgRating": 4.582999999999997,
+   "sampleAvgMonthlyRevenue": 27334.28
+  },
+  "Sports & Outdoors > Exercise & Fitness > Accessories > Fitness Trampolines": {
+   "sampleAvgMonthlySales": 240.50000000000003,
+   "sampleNewSkuRate": 0.11,
+   "topBrandSalesRate": 0.8316008316008316,
+   "sampleAvgPrice": 111.73,
+   "sampleAPlusRate": 0.97,
+   "totalSkuCount": 663,
+   "sampleFbaRate": 0.77,
+   "sampleAvgRatingCount": 2274.4800000000005,
+   "sampleAvgRating": 4.380000000000002,
+   "sampleAvgMonthlyRevenue": 26086.44
+  },
+  "Sports & Outdoors > Exercise & Fitness > Cardio Training > Leg Exercisers": {
+   "sampleAvgMonthlySales": 475.0000000000001,
+   "sampleNewSkuRate": 0.01,
+   "topBrandSalesRate": 0.5831578947368421,
+   "sampleAvgPrice": 56.24,
+   "sampleAPlusRate": 0.88,
+   "totalSkuCount": 1611,
+   "sampleFbaRate": 0.86,
+   "sampleAvgRatingCount": 1873.140000000001,
+   "sampleAvgRating": 4.346,
+   "sampleAvgMonthlyRevenue": 24555.57
+  },
+  "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Pull-Up Bars": {
+   "sampleAvgMonthlySales": 546.0000000000002,
+   "sampleNewSkuRate": 0.04,
+   "topBrandSalesRate": 0.7582417582417582,
+   "sampleAvgPrice": 57.13,
+   "sampleAPlusRate": 0.94,
+   "totalSkuCount": 1221,
+   "sampleFbaRate": 0.76,
+   "sampleAvgRatingCount": 1776.1000000000001,
+   "sampleAvgRating": 4.382000000000001,
+   "sampleAvgMonthlyRevenue": 22997.0
+  },
+  "Sports & Outdoors > Exercise & Fitness > Cardio Training > Step Machines": {
+   "sampleAvgMonthlySales": 255.50000000000017,
+   "sampleNewSkuRate": 0.22,
+   "topBrandSalesRate": 0.7123287671232876,
+   "sampleAvgPrice": 111.59,
+   "sampleAPlusRate": 0.93,
+   "totalSkuCount": 1296,
+   "sampleFbaRate": 0.52,
+   "sampleAvgRatingCount": 2452.7200000000003,
+   "sampleAvgRating": 4.179000000000001,
+   "sampleAvgMonthlyRevenue": 22694.23
+  },
+  "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Weights & Accessories > Bars": {
+   "sampleAvgMonthlySales": 452.99999999999994,
+   "sampleNewSkuRate": 0.02,
+   "topBrandSalesRate": 0.8322295805739515,
+   "sampleAvgPrice": 61.76,
+   "sampleAPlusRate": 0.99,
+   "totalSkuCount": 2584,
+   "sampleFbaRate": 0.38,
+   "sampleAvgRatingCount": 2577.04,
+   "sampleAvgRating": 4.598000000000002,
+   "sampleAvgMonthlyRevenue": 22447.08
+  },
+  "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Weight Machines > Leg Machines": {
+   "sampleAvgMonthlySales": 131.49999999999997,
+   "sampleNewSkuRate": 0.19,
+   "topBrandSalesRate": 0.5931558935361216,
+   "sampleAvgPrice": 182.17,
+   "sampleAPlusRate": 0.95,
+   "totalSkuCount": 1420,
+   "sampleFbaRate": 0.45,
+   "sampleAvgRatingCount": 510.2499999999999,
+   "sampleAvgRating": 4.384999999999999,
+   "sampleAvgMonthlyRevenue": 21632.78
+  },
+  "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Inversion Equipment": {
+   "sampleAvgMonthlySales": 135.5,
+   "sampleNewSkuRate": 0.05,
+   "topBrandSalesRate": 0.7749077490774908,
+   "sampleAvgPrice": 121.32,
+   "sampleAPlusRate": 0.78,
+   "totalSkuCount": 927,
+   "sampleFbaRate": 0.45,
+   "sampleAvgRatingCount": 894.8823529411765,
+   "sampleAvgRating": 4.318823529411766,
+   "sampleAvgMonthlyRevenue": 20362.96
+  },
+  "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Weights & Accessories > Wrist & Ankle Weights": {
+   "sampleAvgMonthlySales": 815.0000000000001,
+   "sampleNewSkuRate": 0.02,
+   "topBrandSalesRate": 0.7055214723926381,
+   "sampleAvgPrice": 26.24,
+   "sampleAPlusRate": 0.96,
+   "totalSkuCount": 1617,
+   "sampleFbaRate": 0.81,
+   "sampleAvgRatingCount": 7433.079999999999,
+   "sampleAvgRating": 4.525999999999999,
+   "sampleAvgMonthlyRevenue": 19785.35
+  },
+  "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Weight Storage Racks > Dumbbell Racks": {
+   "sampleAvgMonthlySales": 335.00000000000006,
+   "sampleNewSkuRate": 0.04,
+   "topBrandSalesRate": 0.6358208955223881,
+   "sampleAvgPrice": 60.67,
+   "sampleAPlusRate": 0.96,
+   "totalSkuCount": 1297,
+   "sampleFbaRate": 0.79,
+   "sampleAvgRatingCount": 982.0899999999998,
+   "sampleAvgRating": 4.443999999999999,
+   "sampleAvgMonthlyRevenue": 18771.77
+  },
+  "Sports & Outdoors > Exercise & Fitness > Accessories > Exercise Balls & Accessories > Exercise Balls": {
+   "sampleAvgMonthlySales": 1125.0000000000005,
+   "sampleNewSkuRate": 0.06,
+   "topBrandSalesRate": 0.8088888888888889,
+   "sampleAvgPrice": 19.18,
+   "sampleAPlusRate": 0.98,
+   "totalSkuCount": 3468,
+   "sampleFbaRate": 0.76,
+   "sampleAvgRatingCount": 10067.949999999997,
+   "sampleAvgRating": 4.508,
+   "sampleAvgMonthlyRevenue": 18123.37
+  },
+  "Sports & Outdoors > Exercise & Fitness > Accessories > Straps": {
+   "sampleAvgMonthlySales": 942.9999999999993,
+   "sampleNewSkuRate": 0.0,
+   "topBrandSalesRate": 0.809119830328738,
+   "sampleAvgPrice": 17.37,
+   "sampleAPlusRate": 0.88,
+   "totalSkuCount": 3407,
+   "sampleFbaRate": 0.97,
+   "sampleAvgRatingCount": 4874.420000000002,
+   "sampleAvgRating": 4.51,
+   "sampleAvgMonthlyRevenue": 16420.92
+  },
+  "Sports & Outdoors > Exercise & Fitness > Balance Trainers": {
+   "sampleAvgMonthlySales": 176.56250000000006,
+   "sampleNewSkuRate": 0.03125,
+   "topBrandSalesRate": 1.0,
+   "sampleAvgPrice": 129.47,
+   "sampleAPlusRate": 1.0,
+   "totalSkuCount": 32,
+   "sampleFbaRate": 0.15625,
+   "sampleAvgRatingCount": 3753.4062500000005,
+   "sampleAvgRating": 4.45625,
+   "sampleAvgMonthlyRevenue": 16039.96
+  },
+  "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Strength Training Devices > Grip Strengtheners": {
+   "sampleAvgMonthlySales": 862.0,
+   "sampleNewSkuRate": 0.02,
+   "topBrandSalesRate": 0.679814385150812,
+   "sampleAvgPrice": 20.16,
+   "sampleAPlusRate": 0.95,
+   "totalSkuCount": 3031,
+   "sampleFbaRate": 0.95,
+   "sampleAvgRatingCount": 4004.6600000000026,
+   "sampleAvgRating": 4.521,
+   "sampleAvgMonthlyRevenue": 14964.95
+  },
+  "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Racks & Cages > Smith Machines": {
+   "sampleAvgMonthlySales": 10.00000000000001,
+   "sampleNewSkuRate": 0.0,
+   "topBrandSalesRate": 1.0,
+   "sampleAvgPrice": 287.26,
+   "sampleAPlusRate": 0.18,
+   "totalSkuCount": 568,
+   "sampleFbaRate": 0.0,
+   "sampleAvgRatingCount": 20.52112676056338,
+   "sampleAvgRating": 1.6464788732394364,
+   "sampleAvgMonthlyRevenue": 14884.83
+  },
+  "Sports & Outdoors > Exercise & Fitness > Balance Trainers > Balance Boards": {
+   "sampleAvgMonthlySales": 412.9999999999997,
+   "sampleNewSkuRate": 0.04,
+   "topBrandSalesRate": 0.5811138014527845,
+   "sampleAvgPrice": 51.71,
+   "sampleAPlusRate": 0.98,
+   "totalSkuCount": 2076,
+   "sampleFbaRate": 0.77,
+   "sampleAvgRatingCount": 2332.97,
+   "sampleAvgRating": 4.5379999999999985,
+   "sampleAvgMonthlyRevenue": 14809.1
+  },
+  "Sports & Outdoors > Exercise & Fitness > Accessories > Exercise Mats": {
+   "sampleAvgMonthlySales": 397.00000000000006,
+   "sampleNewSkuRate": 0.03,
+   "topBrandSalesRate": 0.6146095717884131,
+   "sampleAvgPrice": 39.16,
+   "sampleAPlusRate": 0.98,
+   "totalSkuCount": 2415,
+   "sampleFbaRate": 0.62,
+   "sampleAvgRatingCount": 10374.86,
+   "sampleAvgRating": 4.550000000000002,
+   "sampleAvgMonthlyRevenue": 14066.53
+  },
+  "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Weight Machines > Upper Body Machines": {
+   "sampleAvgMonthlySales": 202.4999999999999,
+   "sampleNewSkuRate": 0.16,
+   "topBrandSalesRate": 0.7135802469135802,
+   "sampleAvgPrice": 73.6,
+   "sampleAPlusRate": 0.93,
+   "totalSkuCount": 1250,
+   "sampleFbaRate": 0.77,
+   "sampleAvgRatingCount": 729.9699999999997,
+   "sampleAvgRating": 4.441000000000002,
+   "sampleAvgMonthlyRevenue": 13384.25
+  },
+  "Sports & Outdoors > Exercise & Fitness > Exercise Machine Parts & Accessories > Exercise Machine Attachments": {
+   "sampleAvgMonthlySales": 747.9999999999998,
+   "sampleNewSkuRate": 0.01,
+   "topBrandSalesRate": 0.5614973262032086,
+   "sampleAvgPrice": 20.41,
+   "sampleAPlusRate": 0.94,
+   "totalSkuCount": 5588,
+   "sampleFbaRate": 0.91,
+   "sampleAvgRatingCount": 3163.319999999999,
+   "sampleAvgRating": 4.687999999999998,
+   "sampleAvgMonthlyRevenue": 12750.75
+  },
+  "Sports & Outdoors > Exercise & Fitness > Yoga > Blocks": {
+   "sampleAvgMonthlySales": 817.0000000000002,
+   "sampleNewSkuRate": 0.05,
+   "topBrandSalesRate": 0.8690330477356181,
+   "sampleAvgPrice": 19.09,
+   "sampleAPlusRate": 0.94,
+   "totalSkuCount": 1394,
+   "sampleFbaRate": 0.69,
+   "sampleAvgRatingCount": 3699.3500000000004,
+   "sampleAvgRating": 4.693,
+   "sampleAvgMonthlyRevenue": 12541.44
+  },
+  "Sports & Outdoors > Exercise & Fitness > Accessories > Jump Ropes": {
+   "sampleAvgMonthlySales": 966.0000000000005,
+   "sampleNewSkuRate": 0.02,
+   "topBrandSalesRate": 0.7432712215320911,
+   "sampleAvgPrice": 14.47,
+   "sampleAPlusRate": 0.96,
+   "totalSkuCount": 3183,
+   "sampleFbaRate": 0.91,
+   "sampleAvgRatingCount": 5550.0199999999995,
+   "sampleAvgRating": 4.462000000000001,
+   "sampleAvgMonthlyRevenue": 11326.0
+  }
+ },
+ "signalsTriggered": [
+  {
+   "subcategory": "Sports & Outdoors > Exercise & Fitness > Cardio Training > Vibration Platform Machines",
+   "signals": [
+    {
+     "level": "🔴",
+     "name": "Red ocean",
+     "detail": "topBrand 84.9%→85.3% (+0.4pp)"
+    }
+   ]
+  },
+  {
+   "subcategory": "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Benches > Adjustable Benches",
+   "signals": [
+    {
+     "level": "🔴",
+     "name": "Red ocean",
+     "detail": "topBrand 73.0%→73.5% (+0.5pp)"
+    }
+   ]
+  },
+  {
+   "subcategory": "Sports & Outdoors > Exercise & Fitness > Fitness Technology > Heart Rate Monitors",
+   "signals": [
+    {
+     "level": "🔴",
+     "name": "Red ocean",
+     "detail": "topBrand 93.3%→93.4% (+0.1pp)"
+    }
+   ]
+  },
+  {
+   "subcategory": "Sports & Outdoors > Exercise & Fitness > Cardio Training > Elliptical Trainers",
+   "signals": [
+    {
+     "level": "🔴",
+     "name": "Red ocean",
+     "detail": "topBrand 70.2%→70.9% (+0.7pp)"
+    }
+   ]
+  },
+  {
+   "subcategory": "Sports & Outdoors > Exercise & Fitness > Cardio Training > Rowers",
+   "signals": [
+    {
+     "level": "🔴",
+     "name": "Red ocean",
+     "detail": "topBrand 83.3%→85.2% (+1.9pp)"
+    }
+   ]
+  },
+  {
+   "subcategory": "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Home Gym Systems",
+   "signals": [
+    {
+     "level": "🔴",
+     "name": "Red ocean",
+     "detail": "topBrand 69.9%→71.5% (+1.6pp)"
+    }
+   ]
+  },
+  {
+   "subcategory": "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Weights & Accessories > Plates",
+   "signals": [
+    {
+     "level": "🔴",
+     "name": "Red ocean",
+     "detail": "topBrand 96.6%→96.6% (+0.0pp)"
+    }
+   ]
+  },
+  {
+   "subcategory": "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Racks & Cages > Power Cages",
+   "signals": [
+    {
+     "level": "🔴",
+     "name": "Red ocean",
+     "detail": "topBrand 69.8%→71.8% (+2.0pp)"
+    }
+   ]
+  },
+  {
+   "subcategory": "Sports & Outdoors > Exercise & Fitness > Yoga > Towels",
+   "signals": [
+    {
+     "level": "🔴",
+     "name": "Red ocean",
+     "detail": "topBrand 79.1%→80.0% (+0.9pp)"
+    }
+   ]
+  },
+  {
+   "subcategory": "Sports & Outdoors > Exercise & Fitness > Cardio Training > Step Machines",
+   "signals": [
+    {
+     "level": "🔴",
+     "name": "Red ocean",
+     "detail": "topBrand 71.0%→71.2% (+0.2pp)"
+    }
+   ]
+  },
+  {
+   "subcategory": "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Inversion Equipment",
+   "signals": [
+    {
+     "level": "🔴",
+     "name": "Red ocean",
+     "detail": "topBrand 76.5%→77.5% (+1.0pp)"
+    }
+   ]
+  },
+  {
+   "subcategory": "Sports & Outdoors > Exercise & Fitness > Strength Training Equipment > Weights & Accessories > Wrist & Ankle Weights",
+   "signals": [
+    {
+     "level": "🔴",
+     "name": "Red ocean",
+     "detail": "topBrand 70.0%→70.6% (+0.6pp)"
+    }
+   ]
+  },
+  {
+   "subcategory": "Sports & Outdoors > Exercise & Fitness > Balance Trainers",
+   "signals": [
+    {
+     "level": "🔴",
+     "name": "Demand surge",
+     "detail": "sales 142→177 (+24.2%)"
+    }
+   ]
+  },
+  {
+   "subcategory": "Sports & Outdoors > Exercise & Fitness > Accessories > Exercise Mats",
+   "signals": [
+    {
+     "level": "🟡",
+     "name": "Brand loosening",
+     "detail": "topBrand 64.5%→61.5% (-3.1pp)"
+    }
+   ]
+  },
+  {
+   "subcategory": "Sports & Outdoors > Exercise & Fitness > Yoga > Blocks",
+   "signals": [
+    {
+     "level": "🔴",
+     "name": "Red ocean",
+     "detail": "topBrand 86.5%→86.9% (+0.4pp)"
+    }
+   ]
+  }
+ ]
+}

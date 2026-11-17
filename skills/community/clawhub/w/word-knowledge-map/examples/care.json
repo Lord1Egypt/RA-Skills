@@ -1,0 +1,160 @@
+{
+  "word": "care",
+  "pronunciation": "/keə(r)/",
+  "core_meanings": [
+    {
+      "meaning": "关心；在意",
+      "level": "P1",
+      "priority": 5
+    },
+    {
+      "meaning": "照顾；照料",
+      "level": "P1",
+      "priority": 5
+    },
+    {
+      "meaning": "小心；谨慎",
+      "level": "P2",
+      "priority": 4
+    }
+  ],
+  "parts_of_speech": [
+    {
+      "type": "verb",
+      "meanings": [
+        "关心；在意；照顾"
+      ]
+    },
+    {
+      "type": "noun",
+      "meanings": [
+        "关心；照料；护理"
+      ]
+    }
+  ],
+  "collocations": [
+    {
+      "phrase": "care about",
+      "meaning": "关心；在意",
+      "priority": 5,
+      "example": "I care about my family.",
+      "translation": "我关心我的家人。"
+    },
+    {
+      "phrase": "care for",
+      "meaning": "照顾；喜欢",
+      "priority": 5,
+      "example": "She cares for her pet.",
+      "translation": "她照顾她的宠物。"
+    },
+    {
+      "phrase": "take care of",
+      "meaning": "照顾",
+      "priority": 5,
+      "example": "Take care of yourself.",
+      "translation": "照顾好自己。"
+    },
+    {
+      "phrase": "be careful with",
+      "meaning": "小心某物",
+      "priority": 4,
+      "example": "Be careful with the glass.",
+      "translation": "小心玻璃。"
+    }
+  ],
+  "word_forms": {
+    "third_person_singular": "cares",
+    "past": "cared",
+    "past_participle": "cared",
+    "present_participle": "caring"
+  },
+  "word_family": [
+    {
+      "word": "careful",
+      "part_of_speech": "adjective",
+      "meaning": "仔细的；小心的",
+      "formation": "care + ful",
+      "priority": 5
+    },
+    {
+      "word": "careless",
+      "part_of_speech": "adjective",
+      "meaning": "粗心的；疏忽的",
+      "formation": "care + less",
+      "priority": 5
+    },
+    {
+      "word": "carefully",
+      "part_of_speech": "adverb",
+      "meaning": "仔细地；小心地",
+      "formation": "careful + ly",
+      "priority": 5
+    },
+    {
+      "word": "carelessly",
+      "part_of_speech": "adverb",
+      "meaning": "粗心地；不注意地",
+      "formation": "careless + ly",
+      "priority": 4
+    },
+    {
+      "word": "carefulness",
+      "part_of_speech": "noun",
+      "meaning": "仔细；谨慎",
+      "formation": "careful + ness",
+      "priority": 3
+    },
+    {
+      "word": "carelessness",
+      "part_of_speech": "noun",
+      "meaning": "粗心大意",
+      "formation": "careless + ness",
+      "priority": 3
+    }
+  ],
+  "grammar_patterns": [],
+  "examples": [
+    {
+      "english": "I care about my family.",
+      "chinese": "我关心我的家人。",
+      "target": "care about"
+    },
+    {
+      "english": "She takes care of her dog.",
+      "chinese": "她照顾她的狗。",
+      "target": "take care of"
+    },
+    {
+      "english": "Be careful with the glass.",
+      "chinese": "小心玻璃。",
+      "target": "careful"
+    },
+    {
+      "english": "She read the book carefully.",
+      "chinese": "她仔细地读了这本书。",
+      "target": "carefully"
+    },
+    {
+      "english": "He is careless with his homework.",
+      "chinese": "他对作业很粗心。",
+      "target": "careless"
+    },
+    {
+      "english": "He answered carelessly.",
+      "chinese": "他粗心地回答。",
+      "target": "carelessly"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "topic": "care about vs care for",
+      "explanation": "care about 强调关心、在意；care for 可表示照顾，也可表示喜欢。"
+    },
+    {
+      "topic": "careful vs carefully",
+      "explanation": "careful 是形容词，carefully 是副词。"
+    }
+  ],
+  "memory_tip": "care 是“关心/照顾”；about 是“在意”，for 可以表示“照顾”；careful 是“小心的”，carelessly 是“粗心地”。",
+  "audience": "小学高年级+初中"
+}

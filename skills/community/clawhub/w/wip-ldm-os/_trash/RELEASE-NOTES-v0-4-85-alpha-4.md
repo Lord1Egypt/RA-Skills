@@ -1,0 +1,3 @@
+Fix Remote Control relay fanout so opening the same live Codex thread in a second browser no longer replaces the first browser connection. The hosted relay now tracks a set of browser sockets per thread, routes thread-level daemon frames to every browser peer for that thread, and still keeps E2EE session frames scoped to their owning browser socket.
+
+Remote Control relay tenancy now keys the hosted relay by immutable account tenants instead of user-chosen display handles. This keeps handles as labels while preventing a user from claiming another daemon namespace by registering the same visible name, including reserved internal handles.

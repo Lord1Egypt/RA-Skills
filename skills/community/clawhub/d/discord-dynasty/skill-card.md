@@ -1,45 +1,59 @@
-## Description: <br>
-Handles Discord task-center forum: create task posts, archive tasks by tag, and respect model tags. Supports six-ministries style channel template (司礼监+六部). Use when user says 新建任务、开个任务、归档任务、建六部管理频道, or when asked to create a task from todo/calendar. Requires Discord forum integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Discord task-center forums by creating and archiving task posts with tags, respecting model tags, and optionally creating a six-ministries channel structure.
 
-## Publisher: <br>
-[nannyu](https://clawhub.ai/user/nannyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nannyu](https://clawhub.ai/user/nannyu)
 
-## Use Case: <br>
-External users and developers use this skill to manage Discord forum-based task centers, including creating task posts, archiving tasks with tags, and setting up optional six-ministries channel templates. It is intended for agents with Discord forum integration and the permissions needed for thread, tag, and optional channel operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change Discord task threads, tags, and optional channel structures as part of its stated workflow. <br>
-Mitigation: Use a least-privilege Discord bot, limit access to the intended server or channels, and review any bulk channel-template creation before execution. <br>
-Risk: Forum tag and channel operations depend on Discord tool support and permissions. <br>
-Mitigation: Confirm that the Discord integration supports forum threads, applied tags, channel creation, and the required permissions before relying on automated task-center setup. <br>
+## Use Case:
 
+External users and developers use this skill to manage Discord task-center forums as one-task-per-thread workflows, including task creation, task archival, model-tag awareness, and optional Discord channel setup from bundled templates.
 
-## Reference(s): <br>
-- [Discord task-center API and implementation reference](reference.md) <br>
-- [Six-ministries channel template](templates/six-ministries.json) <br>
-- [Minimal six-ministries channel template](templates/six-ministries-minimal.json) <br>
-- [ClawHub Discord skill](https://clawhub.ai/steipete/discord) <br>
-- [OpenClaw Discord channel documentation](https://docs.openclaw.ai/channels/discord) <br>
-- [Ai Court reference architecture](https://clawhub.ai/wanikua/ai-court) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guidance with Discord tool/API call instructions, optional shell commands, and JSON configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update Discord threads, tags, and channels when the paired Discord tool and permissions are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub release evidence and artifact manifest) <br>
+Risk: The skill relies on a separately installed Discord integration that may receive meaningful bot permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and preferably pin the @steipete/discord dependency, then configure the Discord bot with least-privilege permissions.
+
+Risk: The skill can create forum threads, edit thread tags, and, when explicitly requested, create channel and category structures in a Discord server.
+
+Mitigation: Limit MANAGE_CHANNELS and MANAGE_THREADS access to trusted bot deployments and review channel-creation requests before execution.
+
+## Reference(s):
+
+- [Discord Dynasty ClawHub page](https://clawhub.ai/nannyu/skills/discord-dynasty)
+- [Discord task-center API reference](reference.md)
+- [Six-ministries full template](templates/six-ministries.json)
+- [Six-ministries minimal template](templates/six-ministries-minimal.json)
+- [Discord integration skill](https://clawhub.ai/steipete/discord)
+- [OpenClaw Discord channel docs](https://docs.openclaw.ai/channels/discord)
+- [Ai Court architecture inspiration](https://clawhub.ai/wanikua/ai-court)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with Discord tool-call guidance and JSON channel-template configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May result in Discord forum threads, thread tag edits, or channel and category creation when the configured Discord integration executes requested actions.]
+
+## Skill Version(s):
+
+1.2.0 (source: evidence.release.version and artifact/clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

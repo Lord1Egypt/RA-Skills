@@ -1,37 +1,50 @@
-## Description: <br>
-Provides lists of intangible-cultural-heritage activities, temple fair and lantern festival guides, and traditional festival cultural context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides local intangible cultural heritage event lists, temple fair and lantern festival guidance, and traditional festival culture explanations.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users use this skill to discover local folk festivals, cultural activities, temple fairs, lantern festivals, and traditional festival information. It helps compare nearby events by distance, popularity, price tier, queue status, booking or ticket details, opening hours, parking, navigation, and community notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real-time queue, ticketing, opening-hour, parking, navigation, and community-review details may be outdated or inaccurate. <br>
-Mitigation: Verify logistics against current official venues, ticketing channels, or trusted local sources before making plans. <br>
+## Use Case:
 
+External users use this skill to discover local folk festivals, cultural heritage events, temple fairs, lantern festivals, and traditional holiday context, with practical details such as distance, popularity, price tier, queues, reservations, tickets, hours, parking, navigation, and community notes.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown planning guidance with event lists and logistics notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include location-sensitive event details, ticketing notes, queue estimates, navigation guidance, community images or reviews, and peak-holiday reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Reservation, ticketing, queue, promotion, or venue details may be stale or community-sourced.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review event and venue details with an authoritative source before purchasing, reserving, traveling, or relying on time-sensitive information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/local-festivals)
+- [Publisher profile](https://clawhub.ai/user/codekungfu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text event discovery guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include event filters, practical venue details, cultural context, and cautions for peak holiday visits.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "通用 pan 下载插件",
+  "version": "0.2.0",
+  "description": "零客户端下载桥：投递用户链接或捕获你主动触发的官方直链；不读取网页登录态。",
+  "permissions": ["contextMenus", "storage", "notifications", "clipboardRead", "activeTab", "downloads"],
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [{ "matches": ["http://*/*", "https://*/*"], "js": ["content.js"], "run_at": "document_idle" }],
+  "action": { "default_popup": "popup.html", "default_title": "通用 pan 下载插件" },
+  "icons": { "16": "icons/icon16.png", "48": "icons/icon48.png", "128": "icons/icon128.png" }
+}

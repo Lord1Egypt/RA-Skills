@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pdurlej/openclaw-skill-safe-update/schemas/openclaw.safe_update.core_candidate_lock.v1.schema.json",
+  "title": "OpenClaw Core Candidate Lock",
+  "type": "object",
+  "required": [
+    "schema",
+    "generated_at",
+    "effect",
+    "runtime_effect",
+    "external_effect",
+    "external_write_effect",
+    "production_apply_allowed",
+    "operator_approval",
+    "status",
+    "package",
+    "current_root",
+    "target_root",
+    "environment",
+    "changed_packages",
+    "errors"
+  ],
+  "properties": {
+    "schema": {
+      "const": "openclaw.safe_update.core_candidate_lock.v1"
+    },
+    "generated_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "effect": {
+      "const": "read_only_openclaw_update_rehearsal"
+    },
+    "runtime_effect": {
+      "const": "none"
+    },
+    "external_effect": {
+      "const": "npm_registry_read_only"
+    },
+    "external_write_effect": {
+      "const": "none"
+    },
+    "production_apply_allowed": {
+      "const": false
+    },
+    "operator_approval": {
+      "const": false
+    },
+    "status": {
+      "enum": [
+        "success",
+        "failed"
+      ]
+    },
+    "package": {
+      "const": "openclaw"
+    },
+    "current_root": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "target_root": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "environment": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "changed_packages": {
+      "type": "array"
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,40 +1,54 @@
-## Description: <br>
-Slack助手 - 发送消息/搜索历史/管理频道/集成通知，基于Slack API的Python实现，支持Webhook和Socket Mode <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Slack助手 helps agents send Slack messages, search history, manage channels, post webhook notifications, and upload files through Python Slack API examples.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and operators use this skill to generate Slack API guidance and Python examples for sending messages, creating notifications, managing channels, searching message history, and uploading files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Slack API actions may post messages, invite users, create channels, search history, or upload files without clear confirmation. <br>
-Mitigation: Use a dedicated Slack app with only the scopes needed and require explicit confirmation before posting, inviting users, creating channels, searching history, or uploading files. <br>
-Risk: Slack OAuth tokens, webhook URLs, or local file paths can expose secrets or sensitive content. <br>
-Mitigation: Keep credentials out of prompts and shared files, rotate leaked tokens, and do not provide sensitive local file paths unless the file is intended to be shared in Slack. <br>
+## Use Case:
 
+Developers and team automation agents use this skill to configure Slack notifications, channel workflows, history lookups, and file sharing for CI/CD, monitoring, collaboration, and reporting.
 
-## Reference(s): <br>
-- [Slack API App Management](https://api.slack.com/apps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python, YAML, and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Slack credentials and selected Slack API scopes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can post messages, manage channels, use webhooks, search message history, and upload local files to Slack.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit Slack app scopes to the minimum needed, require explicit confirmation before posting or uploading, and restrict file uploads to approved paths.
+
+Risk: Slack tokens, webhook URLs, and message history may expose sensitive workspace data.
+
+Mitigation: Store tokens and webhook URLs as secrets, avoid broad history/search access for sensitive channels, and ensure users understand privacy implications before enabling those functions.
+
+## Reference(s):
+
+- [Slack API App Configuration](https://api.slack.com/apps)
+- [ClawHub Skill Page](https://clawhub.ai/534422530/skills/laosi-slack)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python, YAML, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Slack credentials, selected Slack app scopes, and optional incoming webhook configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

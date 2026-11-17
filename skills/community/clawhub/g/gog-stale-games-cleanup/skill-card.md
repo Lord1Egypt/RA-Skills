@@ -1,44 +1,60 @@
-## Description: <br>
-Scan your GOG library for installed games not played in 30+ days, email the list, and add Apple Reminders for each. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan your GOG library for installed games not played in 30+ days, email the list, and add Apple Reminders for each. One-command game cleanup workflow.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-External users and developers use this skill to audit installed GOG games, identify titles that have not been played recently, send a summary email, and create Apple Reminders for cleanup decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script reads local email configuration before sending an HTML report. <br>
-Mitigation: Review scripts/sweep.sh before installing, run it with --dry-run first, and confirm the selected himalaya account and recipient address. <br>
-Risk: The emailed report can include local game install paths. <br>
-Mitigation: Send reports only to an intended recipient and avoid sharing generated email content when install paths are sensitive. <br>
-Risk: Cron usage can create recurring automated emails and reminders. <br>
-Mitigation: Enable the cron example only when recurring monthly reports are desired, and confirm the Reminders list before scheduling. <br>
+## Use Case:
 
+External users and developers use this skill to audit an installed GOG library, identify games that have not been played recently, and create email and Apple Reminders follow-up items for cleanup decisions.
 
-## Reference(s): <br>
-- [GOG library schema](references/gog_library_schema.json) <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/gog-stale-games-cleanup) <br>
-- [JSON Schema draft 2020-12](https://json-schema.org/draft/2020-12/schema) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and script-generated text, HTML email, and Apple Reminders entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires jq, himalaya, remindctl, a GOG library JSON file, and local email and Apple Reminders configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill may send game names, last-played dates, and install paths by email.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run with --dry-run first and confirm the Himalaya account and recipient before allowing email delivery.
+
+Risk: Normal execution can create or modify Apple Reminders.
+
+Mitigation: Use normal mode only when reminder creation is intended, and verify the target reminders list.
+
+Risk: Cron integration can cause recurring email and reminder side effects.
+
+Mitigation: Enable the cron example only when recurring monthly cleanup notifications are desired.
+
+## Reference(s):
+
+- [GOG Library schema](references/gog_library_schema.json)
+- [Skill release page](https://clawhub.ai/terrycarter1985/skills/gog-stale-games-cleanup)
+- [Publisher profile](https://clawhub.ai/user/terrycarter1985)
+- [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can trigger email and Apple Reminders side effects unless run with --dry-run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

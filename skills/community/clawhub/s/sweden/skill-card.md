@@ -1,49 +1,60 @@
-## Description: <br>
-Plan Sweden trips with verified entry rules, region-specific routing, rail-ferry logistics, and practical seasonal safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan Sweden trips with verified entry rules, region-specific routing, rail-ferry logistics, and practical seasonal safety.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to plan Sweden trips with Schengen entry checks, seasonal routing, regional base selection, transport tradeoffs, budget framing, and practical safety guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trip preferences and itinerary details may be stored locally under ~/sweden/. <br>
-Mitigation: Review or delete ~/sweden/memory.md if it contains sensitive, outdated, or unwanted travel information. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to build Sweden itineraries that account for entry rules, regional routing, transport tradeoffs, seasonality, budget, safety, and local trip context.
 
-## Reference(s): <br>
-- [ClawHub Sweden Skill](https://clawhub.ai/ivangdavila/sweden) <br>
-- [Sweden Skill Homepage](https://clawic.com/skills/sweden) <br>
-- [Sources - Sweden Skill](artifact/sources.md) <br>
-- [Swedish Migration Agency Visitor Guidance](https://www.migrationsverket.se/English/Private-individuals/Visiting-Sweden.html) <br>
-- [Swedish Police Travel to and Stay in Sweden](https://polisen.se/en/laws-and-regulations/travel-to-and-stay-in-sweden/) <br>
-- [EU Entry-Exit System Portal](https://travel-europe.europa.eu/ees_en) <br>
-- [EU ETIAS Portal](https://travel-europe.europa.eu/etias_en) <br>
-- [Swedish Customs Traveler Guidance](https://www.tullverket.se/en/private/travelling.4.7df61c5915510cfe9e7106be.html) <br>
-- [Visit Sweden Planning Portal](https://visitsweden.com/) <br>
-- [SMHI English Weather](https://www.smhi.se/en) <br>
-- [Krisinformation Official Crisis Information](https://www.krisinformation.se/en) <br>
-- [SJ English Portal](https://www.sj.se/en/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown travel-planning guidance with operational checklists and itinerary structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local trip memory under ~/sweden/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact/SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill can retain Sweden trip preferences and constraints in ~/sweden/memory.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or delete ~/sweden/memory.md if prior travel preferences should not be reused.
+
+Risk: Travel, entry, transport, and weather guidance can become stale or depend on a traveler's specific status and dates.
+
+Mitigation: Use the skill's official source map and verify entry rules, transport schedules, seasonal conditions, and emergency guidance before booking or travel.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/sweden)
+- [Skill Homepage](https://clawic.com/skills/sweden)
+- [Official Source Map](artifact/sources.md)
+- [Swedish Migration Agency Visitor Guidance](https://www.migrationsverket.se/English/Private-individuals/Visiting-Sweden.html)
+- [Swedish Police Travel to and Stay in Sweden](https://polisen.se/en/laws-and-regulations/travel-to-and-stay-in-sweden/)
+- [Swedish Customs Traveler Guidance](https://www.tullverket.se/en/private/travelling.4.7df61c5915510cfe9e7106be.html)
+- [Visit Sweden Planning Portal](https://visitsweden.com/)
+- [SMHI English Weather](https://www.smhi.se/en)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown travel guidance, itineraries, checklists, and occasional shell commands for local memory setup]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local trip memory in ~/sweden/memory.md when enough user-provided trip context exists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

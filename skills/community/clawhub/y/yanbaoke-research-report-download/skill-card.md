@@ -1,46 +1,68 @@
-## Description: <br>
-Searches Yanbaoke research reports across industry, brokerage, and institutional sources, returns report details and content, and can download source files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Yanbaoke research reports across industry, brokerage, and institutional sources, return report metadata and summaries, and provide paid report download links when the user supplies a Yanbaoke API key.
 
-## Publisher: <br>
-[yanbaoke](https://clawhub.ai/user/yanbaoke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yanbaoke](https://clawhub.ai/user/yanbaoke)
 
-## Use Case: <br>
-Developers and analysts use this skill to search Yanbaoke's research-report corpus, filter reports by topic, publisher, report type, stock, date, and page count, and retrieve downloadable PDF, DOC, or PPT report links when authorized. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Downloads require an API key, and the artifact shows examples that pass or persist credentials in shell-accessible locations. <br>
-Mitigation: Use a low-privilege or free-tier key, avoid sharing keys in chat, and store credentials in a secret manager or restricted environment file instead of a shell startup file when possible. <br>
-Risk: Report summaries and investment-oriented responses may be incomplete, outdated, or unsuitable for decision-making on their own. <br>
-Mitigation: Treat output as informational, verify dates and source reports independently, and review important market or trading decisions with appropriate professional judgment. <br>
-Risk: Generated download links expire quickly and may expose access to report files while valid. <br>
-Mitigation: Use links promptly, avoid posting active links in shared channels, and re-run the authorized download flow when a fresh link is needed. <br>
+## Use Case:
 
+External users and agents use this skill to search Yanbaoke's report corpus, inspect report details, and request short-lived PDF, DOC, or PPT download links. Downloading requires a Yanbaoke API key and may consume account credits.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yanbaoke/yanbaoke-research-report-download) <br>
-- [Yanbaoke Platform](https://pc.yanbaoke.cn) <br>
-- [Yanbaoke API Key](https://pc.yanbaoke.cn/openclaw) <br>
-- [Search API](https://api.yanbaoke.cn/skills/search_report) <br>
-- [Download API](https://api.yanbaoke.cn/skills/report_download/{uuid}?format={format}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown with report summaries, metadata fields, downloadable links, and command-line usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output can include report UUIDs, titles, publishers, dates, page counts, content excerpts, available formats, and links; download links expire after a short time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The installation guidance uses mutable remote curl downloads without integrity checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the packaged artifact or a signed, checksum-pinned release before installing or executing the skill.
+
+Risk: The setup guidance encourages persistent plaintext storage of YANBAOKE_API_KEY in shell startup files.
+
+Mitigation: Use a session-scoped environment variable, secret manager, or agent credential store instead of committing the key to shell profile files.
+
+Risk: Search terms and filters are sent to Yanbaoke's API.
+
+Mitigation: Avoid submitting confidential or regulated search queries unless the deployment has approved that data sharing.
+
+Risk: Downloads may consume Yanbaoke account credits.
+
+Mitigation: Require explicit user confirmation before invoking downloads that may charge the account.
+
+Risk: The skill text encourages investment recommendations based on report content.
+
+Mitigation: Treat outputs as informational research support and do not rely on the skill for personalized investment advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yanbaoke/skills/yanbaoke-research-report-download)
+- [Yanbaoke platform](https://pc.yanbaoke.cn)
+- [Yanbaoke API key setup](https://pc.yanbaoke.cn/openclaw)
+- [Yanbaoke search API endpoint](https://api.yanbaoke.cn/skills/search_report)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report summaries, report metadata, error messages, and short-lived download URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results are capped at 500 items; download links are reported as expiring after about 60 seconds.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata, artifact _meta.json, and scripts/version.mjs)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,52 +1,67 @@
-## Description: <br>
-A self-improving AI agent framework for self-correction, persistent memory, decision verification, continuous learning, and autonomous upgrade workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal self-improving AI agent framework for self-correction, continuous learning, persistent memory, autonomous upgrades, self-reflection, reasoning verification, and decision verification.
 
-## Publisher: <br>
-[mark-heartflow](https://clawhub.ai/user/mark-heartflow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mark-heartflow](https://clawhub.ai/user/mark-heartflow)
 
-## Use Case: <br>
-Developers and external agent builders use this skill to add self-correction, memory routing, verification loops, and upgrade-oriented learning behavior to AI agents. It is most relevant when an agent needs to evaluate decisions, retain lessons, and package improvements across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence flags under-disclosed autonomous code modification and source-write behavior. <br>
-Mitigation: Install in a sandboxed or experimental environment and require human review before enabling automatic upgrades or repository write access. <br>
-Risk: The security evidence flags persistent memory logging and psychological profiling behavior. <br>
-Mitigation: Review and disable persistent memory logging and profiling paths unless they are necessary, disclosed, and governed by the deployment's data policies. <br>
-Risk: The security evidence flags external-code ingestion paths. <br>
-Mitigation: Do not grant broad network, shell, or repository access unless each external-code path can be audited and approved. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add self-correction, decision verification, persistent memory, reflection, and controlled continuous-learning behavior to AI agents.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [GitHub Sources](references/GITHUB_SOURCES.md) <br>
-- [RL Closed Loop](references/rl-closed-loop.md) <br>
-- [Verification Methodology](references/verification-methodology.md) <br>
-- [Reflexion](https://arxiv.org/abs/2308.07915) <br>
-- [Self-Verification](https://arxiv.org/abs/2312.09210) <br>
-- [CRITIC](https://arxiv.org/abs/2312.04445) <br>
-- [Constitutional AI](https://arxiv.org/abs/2212.08073) <br>
-- [Generative Agents](https://arxiv.org/abs/2304.03442) <br>
-- [Self-Reward](https://arxiv.org/abs/2403.00564) <br>
-- [Plan-and-Solve](https://arxiv.org/abs/2305.04091) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript examples, shell commands, and source files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May involve local state, persistent memory, and upgrade-related file changes when installed and executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release, artifact frontmatter, and package.json) <br>
+Risk: Global identity and priority instructions may influence host-agent behavior beyond the intended task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scope or disable global identity and priority instructions before enabling the skill in a production agent.
+
+Risk: Persistent memory, continuous learning, and rule-generation behavior may carry incorrect or unwanted changes across sessions.
+
+Mitigation: Gate learning and self-upgrade flows, inspect generated memories or rules, and provide reset and retention controls.
+
+Risk: Setup flows may store credentials in ways that are not appropriate for sensitive API keys.
+
+Mitigation: Avoid entering API keys into the setup wizard unless credential handling is changed to use an approved secret store.
+
+Risk: Maintenance and upgrade scripts can alter agent behavior or local files when run.
+
+Mitigation: Run maintenance scripts only in an isolated environment with explicit review and approval.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/mark-heartflow/skills/self-improving-agent-pro-v2)
+- [Verification methodology](references/verification-methodology.md)
+- [RL closed loop](references/rl-closed-loop.md)
+- [Memory system comparison](references/memory-system-comparison.md)
+- [Reflexion](https://arxiv.org/abs/2308.07915)
+- [Self-Verification](https://arxiv.org/abs/2312.09210)
+- [CRITIC](https://arxiv.org/abs/2312.04445)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions, JavaScript/CommonJS modules, JSON configuration, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stateful behavior can persist memory, generated rules, and agent policy changes across sessions when enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, package.json, metadata.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

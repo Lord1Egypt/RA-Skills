@@ -1,42 +1,53 @@
-## Description: <br>
-Use when you need to control Slack from OpenClaw via the message tool, including reacting to messages or pinning/unpinning items in Slack channels or DMs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when you need to control Slack from OpenClaw via the message tool, including reacting to messages or pinning/unpinning items in Slack channels or DMs.
 
-## Publisher: <br>
-[ailven](https://clawhub.ai/user/ailven) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ailven](https://clawhub.ai/user/ailven)
 
-## Use Case: <br>
-Developers and agents use this skill to operate Slack through OpenClaw message actions, including sending, reading, editing, deleting, reacting to, pinning, and unpinning messages. It is intended for Slack channels and DMs configured through the required Slack channel integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send, edit, delete, pin, unpin, download files, and retrieve Slack member profile details through a configured bot token. <br>
-Mitigation: Install it only with Slack bot scopes and channel access limited to the workspace areas and actions actually needed. <br>
-Risk: Slack write and profile-reading actions can affect other users or expose sensitive information if executed without review. <br>
-Mitigation: Require explicit approval before sending, editing, deleting, pinning, unpinning, downloading files, or retrieving member profile details. <br>
-Risk: Open-ended channel monitoring may collect more Slack activity than intended. <br>
-Mitigation: Avoid broad or continuous channel reads unless monitoring is an intended and approved use. <br>
+## Use Case:
 
+Developers and agents use this skill to operate Slack through OpenClaw message actions for channel and DM workflows, including sending, reading, reacting, editing, deleting, pinning, unpinning, listing pins, looking up member information, and listing custom emojis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ailven/slack-socket) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and message action examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured Slack channel access through channels.slack.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; package.json states 1.0.0) <br>
+Risk: The skill can use Slack bot-token authority for reading, sending, editing, deleting, pinning, unpinning, direct messages, and member profile lookup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with the smallest needed Slack scopes and channel access, and manually confirm delete, edit, pin, unpin, DM, and member profile lookup actions before execution.
+
+Risk: Slack reads and member-info lookups may expose workspace content or user profile data to the agent.
+
+Mitigation: Limit use to approved channels and users, and avoid requesting member profile details unless they are needed for the current task.
+
+## Reference(s):
+
+- [Slack (Socket Mode) on ClawHub](https://clawhub.ai/ailven/skills/slack-socket)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with message action examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured Slack channel access through channels.slack.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

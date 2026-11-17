@@ -1,41 +1,54 @@
-## Description: <br>
-Guides agents through SEO keyword research, competitor analysis, content opportunity identification, and content roadmapping for a niche or local market. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered SEO keyword research, competitor analysis, and content opportunity identification for building a data-driven content strategy.
 
-## Publisher: <br>
-[danielblinker83-bot](https://clawhub.ai/user/danielblinker83-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[danielblinker83-bot](https://clawhub.ai/user/danielblinker83-bot)
 
-## Use Case: <br>
-Marketers, founders, SEO practitioners, and content teams use this skill to structure keyword discovery, competitor gap analysis, on-page SEO checks, local SEO planning, and monthly reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SEO recommendations can be inaccurate, outdated, or misaligned with the user's market data. <br>
-Mitigation: Review recommendations against current analytics, search console data, competitive research, and editorial judgment before publishing or changing site strategy. <br>
-Risk: SEO analysis may involve private business information such as unpublished strategy, audience data, website performance, or competitor plans. <br>
-Mitigation: Share only the business data intended for analysis and remove confidential details when they are not required for the task. <br>
+## Use Case:
 
+Marketing teams, SEO practitioners, and business owners use this skill to plan keyword discovery, competitor content-gap analysis, on-page SEO, local SEO, and a prioritized 12-month content roadmap.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danielblinker83-bot/seo-research-master) <br>
-- [ContentAI Suite](https://contentai-suite.vercel.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prompts, tables, checklists, and planning templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; security evidence reports no disclosed file, command, credential, persistence, or data-exfiltration behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: AI-generated keyword volumes, difficulty scores, and competitor ranking claims may be inaccurate or stale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify estimates with Search Console, analytics, or a dedicated keyword platform before using them for business decisions.
+
+Risk: Business, website, or strategy data may be entered into the optional external ContentAI Suite service.
+
+Mitigation: Review data sensitivity before sharing customer, revenue, or confidential strategy information with an external service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danielblinker83-bot/skills/seo-research-master)
+- [ContentAI Suite](https://contentai-suite.vercel.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with tables, checklists, and prompt templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces SEO planning estimates that should be verified with analytics or dedicated SEO tools.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

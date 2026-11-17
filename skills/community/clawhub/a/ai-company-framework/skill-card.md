@@ -1,40 +1,55 @@
-## Description: <br>
-AI Company Framework helps agents apply ClawHub schema compliance, naming conventions, modular design, skill registry patterns, learning workflows, and starter scaffolding for AI-company skill ecosystems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Company Framework provides schema, naming, modularization, registry, skill-learning, and starter-template guidance for AI-company framework and infrastructure skills.
 
-## Publisher: <br>
-[johnsmithfan](https://clawhub.ai/user/johnsmithfan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnsmithfan](https://clawhub.ai/user/johnsmithfan)
 
-## Use Case: <br>
-Developers and agent operators use this skill to standardize AI-company skills, enforce schema and naming conventions, design modular skill interfaces, manage registry patterns, and guide skill learning or starter workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan marks the skill suspicious because it provides workflow-execution guidance with file-write and network-capable behavior, while user-facing disclosures are not clear enough for those side effects. <br>
-Mitigation: Review before installing; use only in workspaces where scoped file changes and external API calls are acceptable, and require explicit confirmation before shared state updates, archive writes, file writes, or network calls. <br>
+## Use Case:
 
+Developers and agent-system maintainers use this skill to standardize AI-company skills, define reusable module patterns, manage registries, prepare prompts, and guide implementation, testing, documentation, and workflow execution.
 
-## Reference(s): <br>
-- [AI Company Framework ClawHub Page](https://clawhub.ai/johnsmithfan/ai-company-framework) <br>
-- [ClawHub Metadata Homepage](https://clawhub.com/skills/ai-company-framework) <br>
-- [Method Patterns and Detailed Specifications](references/method-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured schemas, prompts, checklists, and implementation recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe file writes, external API usage, workflow execution steps, audit trails, and shared-state updates that should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: evidence.release.version) <br>
+Risk: Broad file-write, network, and MCP authority could allow unintended workspace changes, external API use, subagent activity, or shared-state updates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a trusted workspace and require explicit approval before write, network, installation, activation, or HQ state-change steps.
+
+Risk: Under-scoped implementation and workflow prompts could produce changes, test plans, documentation, or operational steps that are incomplete or unsuitable for the target environment.
+
+Mitigation: Review generated guidance before execution, validate proposed changes in a sandbox, and confirm dependency, permission, and audit requirements before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/johnsmithfan/skills/ai-company-framework)
+- [ClawHub Homepage Metadata](https://clawhub.com/skills/ai-company-framework)
+- [Method Patterns & Detailed Specifications](references/method-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured prompt blocks and reference documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-reviewable guidance, implementation prompts, test cases, documentation outlines, and workflow execution checklists.]
+
+## Skill Version(s):
+
+3.0.2 (source: server release metadata; artifact frontmatter says 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

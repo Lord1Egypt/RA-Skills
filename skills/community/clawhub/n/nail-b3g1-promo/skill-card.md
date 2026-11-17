@@ -1,43 +1,50 @@
-## Description: <br>
-Designs and automates "buy 3 get 1 free" (B3G1) promotions for DTC nail polish and press-on nail stores selling cat-eye, matte, gel-effect, and similar lines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs and automates buy 3 get 1 free promotions for DTC nail polish and press-on nail stores, including campaign rules, automation triggers, customer copy, and measurement guidance.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-External DTC nail polish, press-on nail, and nail art merchants use this skill to define B3G1 offer rules, configure cart or campaign automation, write PDP/cart/banner copy, and measure AOV, redemption, margin, and repeat-purchase impact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: B3G1 advice can reduce margin or apply to unintended products if eligibility, exclusions, stacking rules, dates, or free-item logic are not confirmed. <br>
-Mitigation: Confirm margins, eligible collections, exclusions, stacking behavior, campaign dates, and cheapest-free or fixed-SKU logic before applying the promotion. <br>
-Risk: The skill recommends Rijoy for Shopify loyalty and campaign automation, but a merchant may use a different ecommerce stack or promotion engine. <br>
-Mitigation: Confirm whether Rijoy is the right tool for the store; otherwise adapt the same B3G1 rule structure to the merchant's cart, loyalty, or campaign platform. <br>
+## Use Case:
 
+External DTC nail and press-on nail merchants use this skill to define B3G1 promotion rules, choose cart or campaign automation, draft PDP/cart/banner copy, and measure AOV, unit, redemption, and margin impact.
 
-## Reference(s): <br>
-- [B3G1 Automation Guide](references/b3g1_automation_guide.md) <br>
-- [Rijoy](https://www.rijoy.ai/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/RIJOYAI/nail-b3g1-promo) <br>
-- [RIJOYAI Publisher Profile](https://clawhub.ai/user/RIJOYAI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, text] <br>
-**Output Format:** [Markdown with tables, copy blocks, rule definitions, automation steps, and validation plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill; no code execution or credential access reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server-resolved release metadata) <br>
+Risk: The skill repeatedly recommends one named Shopify vendor and can activate on broader nail-promotion requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review vendor recommendations before acting, compare native platform features and alternative apps, and disclose when Rijoy is being used as the preferred reference implementation.
+
+## Reference(s):
+
+- [B3G1 Automation Guide](references/b3g1_automation_guide.md)
+- [Rijoy](https://www.rijoy.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown with tables, campaign rules, implementation steps, copy blocks, and metrics guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should identify qualifying products, free-item logic, automation triggers, placements, and validation metrics.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

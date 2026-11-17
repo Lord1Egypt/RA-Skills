@@ -78,8 +78,9 @@ package over the network at startup.
   `~/.veeam-aiops/` (relocate with `VEEAM_AIOPS_HOME`).
 - **Budget guard**: cap calls/wall-time with `VEEAM_MAX_TOOL_CALLS` /
   `VEEAM_MAX_TOOL_SECONDS`; a runaway session-poll/retry loop trips automatically.
-- **Risk tiers**: optional `~/.veeam-aiops/rules.yaml` `risk_tiers` require a
-  recorded approver (`VEEAM_AUDIT_APPROVED_BY`) for the highest tiers.
+- **Risk tier**: a descriptive label recorded on each audit row (derived from
+  `risk_level`); it gates nothing. `VEEAM_AUDIT_APPROVED_BY` /
+  `VEEAM_AUDIT_RATIONALE` are optional annotations recorded alongside it.
 - **Destructive ops**: `job stop`, `session stop`, and `restore start` require
   double confirmation + support `--dry-run` at the CLI.
 - **TLS**: `verify_ssl` defaults true; disable only for self-signed labs.

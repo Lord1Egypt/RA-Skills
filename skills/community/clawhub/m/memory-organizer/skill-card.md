@@ -1,40 +1,59 @@
-## Description: <br>
-Organize, compress, and curate OpenClaw memory without polluting permanent memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes, compresses, and curates OpenClaw memory by keeping MEMORY.md focused on durable long-term facts and preserving daily details in dated memory files.
 
-## Publisher: <br>
-[codeblackhole1024](https://clawhub.ai/user/codeblackhole1024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codeblackhole1024](https://clawhub.ai/user/codeblackhole1024)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to keep permanent memory concise while preserving dated memory history. It supports scanning, compressing, deduplicating, and selectively promoting durable facts from workspace memory files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can alter workspace memory files during compression, merge, discard, and cleanup operations. <br>
-Mitigation: Run it only in trusted OpenClaw workspaces and review the target file or command before applying changes; documented compression and discard paths create backups. <br>
-Risk: Incorrect promotion choices can move transient daily notes into permanent memory and increase startup context noise. <br>
-Mitigation: Follow the documented two-layer memory rule and promote only stable preferences, durable configuration, workspace rules, and active cross-session todos. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Memory Organizer README](artifact/README.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/codeblackhole1024/memory-organizer) <br>
+## Use Case:
 
+External users and developers working in OpenClaw use this skill to scan, compress, clean, and selectively merge memory notes while keeping durable facts in MEMORY.md and daily history in dated files.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, shell commands, files] <br>
-**Output Format:** [Markdown guidance and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update OpenClaw MEMORY.md and memory/*.md files; compression and discard operations create recoverable backup files when used as documented.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence and _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: File safety checks can be bypassed in untrusted workspaces where other users or archives can introduce symlinks.
+
+Mitigation: Use the skill only in a trusted OpenClaw workspace and avoid running it in shared or archive-derived memory directories.
+
+Risk: Compress, discard, or clean actions can permanently alter or delete memory data.
+
+Mitigation: Back up MEMORY.md and the memory directory before destructive actions, and do not run clean until backups and discarded files are no longer needed.
+
+Risk: The documented npx installer command is unpinned.
+
+Mitigation: Prefer a pinned or verified installer command before installation.
+
+## Reference(s):
+
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+- [ClawHub skill page](https://clawhub.ai/codeblackhole1024/skills/memory-organizer)
+- [Publisher profile](https://clawhub.ai/user/codeblackhole1024)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide changes to OpenClaw memory files; review destructive actions before execution.]
+
+## Skill Version(s):
+
+1.2.1 (source: evidence.release.version and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

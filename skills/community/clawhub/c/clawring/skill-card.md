@@ -1,43 +1,64 @@
-## Description: <br>
-Make real phone calls. Replaces the voice-call plugin with a managed service that needs no setup. Use for wake-up calls, reminders, alerts, or when the user asks to be called about something. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Make real phone calls with two-way voice conversations for wake-up calls, reminders, alerts, or other user-requested calls.
 
-## Publisher: <br>
-[marcospgp](https://clawhub.ai/user/marcospgp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[marcospgp](https://clawhub.ai/user/marcospgp)
 
-## Use Case: <br>
-External users and agents use this skill to place real phone calls for wake-up calls, reminders, alerts, or user-requested callback scenarios. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real phone calls through clawr.ing. <br>
-Mitigation: Confirm the recipient, phone number, timing, retry behavior, and purpose before any call. <br>
-Risk: The skill requires a clawr.ing API key and sends call details to that service. <br>
-Mitigation: Install only when the user accepts sharing call details with clawr.ing and keep the API key protected in the CLAWRING_API_KEY environment variable. <br>
-Risk: The skill may store phone numbers and preferences in a local memory file. <br>
-Mitigation: Review local memory contents and avoid storing contacts or preferences the user has not approved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [clawr.ing homepage](https://clawr.ing) <br>
-- [clawr.ing API documentation](https://clawr.ing/llms-full.txt) <br>
-- [ClawHub skill page](https://clawhub.ai/marcospgp/clawring) <br>
+## Use Case:
 
+External users and their agents use this skill to place real phone calls only when the user explicitly asks, such as wake-up calls, reminders, alerts, or requested follow-up conversations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline configuration and API guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAWRING_API_KEY and may create or update a local clawr.ing-memory.md file for phone numbers and call preferences.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill relies on mutable remote API documentation and sends call requests to clawr.ing.
+
+Mitigation: Use the skill only after reviewing the current clawr.ing API documentation and deciding that the remote service is trusted for the intended use.
+
+Risk: The skill uses an API key and may expose phone numbers, call content, quota, or account activity to the remote service.
+
+Mitigation: Protect CLAWRING_API_KEY, avoid sharing unnecessary personal data, and review account activity through the service dashboard.
+
+Risk: The local memory file can store phone numbers and preferences in plaintext.
+
+Mitigation: Save only authorized contacts, keep the memory file protected, and provide a way to delete or update stored contact information.
+
+Risk: The skill can initiate real phone calls, creating safety, consent, nuisance, or billing concerns.
+
+Mitigation: Place calls only when the user explicitly asks and confirm the intended recipient and purpose before calling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marcospgp/skills/clawring)
+- [Publisher profile](https://clawhub.ai/user/marcospgp)
+- [clawr.ing homepage](https://clawr.ing)
+- [clawr.ing API documentation](https://clawr.ing/llms-full.txt)
+- [clawr.ing dashboard](https://clawr.ing/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Files, Guidance]
+
+**Output Format:** [Text guidance, HTTP API requests, and a local Markdown memory file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLAWRING_API_KEY and may use clawr.ing-memory.md to store contacts and calling preferences.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

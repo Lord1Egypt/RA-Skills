@@ -1,44 +1,53 @@
-## Description: <br>
-Helps setup, configure and manage Telerik NuGet feeds in your repo's nuget.config file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps setup, configure and manage Telerik NuGet feeds in your repo's nuget.config file.
 
-## Publisher: <br>
-[LanceMcCarthy](https://clawhub.ai/user/LanceMcCarthy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lancemccarthy](https://clawhub.ai/user/lancemccarthy)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure Telerik NuGet package source access in a repository while keeping the Telerik API key in a user-level environment variable rather than hardcoding it in nuget.config. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a Telerik API key in a user-level environment variable and configures nuget.config to reference it. <br>
-Mitigation: Use a revocable Telerik API key, avoid sharing the environment value, and rotate the key if it may have been exposed. <br>
-Risk: The skill edits or creates nuget.config in the selected repository path. <br>
-Mitigation: Run it only against the intended repository and review nuget.config changes before committing them. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure a Telerik NuGet package source and credentials for .NET projects through nuget.config.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LanceMcCarthy/configure-telerik-nuget) <br>
-- [Publisher profile](https://clawhub.ai/user/LanceMcCarthy) <br>
-- [Publisher homepage from clawdis metadata](https://github.com/DevOpsExamples/.github) <br>
-- [Telerik API keys](https://www.telerik.com/account/downloads/api-keys) <br>
-- [Telerik NuGet v3 feed](https://nuget.telerik.com/v3/index.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with PowerShell code and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local environment variable updates and nuget.config edits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill persistently stores the Telerik API key in a user-wide environment variable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; prefer a process-scoped environment variable, secure credential store, or a version with explicit opt-in and cleanup guidance for removing or rotating the key.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lancemccarthy/skills/configure-telerik-nuget)
+- [Publisher profile](https://clawhub.ai/user/lancemccarthy)
+- [Project homepage](https://github.com/DevOpsExamples/.github)
+- [Telerik API keys](https://www.telerik.com/account/downloads/api-keys)
+- [Telerik NuGet feed](https://nuget.telerik.com/v3/index.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline PowerShell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides a PowerShell helper function that can create or update nuget.config and set a Telerik API key environment variable.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, release metadata, changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

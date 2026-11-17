@@ -1,46 +1,61 @@
-## Description: <br>
-Investment Research OS coordinates specialist analyst prompts and a CIO decision layer to produce source-traceable investment research, valuation scenarios, red-team risk analysis, and position guidance for single or comparative equity targets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Investment Research OS coordinates specialized analyst prompts to produce sourced investment research, expectation-gap analysis, valuation scenarios, red-team review, CIO-style decisions, and position-sizing guidance.
 
-## Publisher: <br>
-[sunhe-8922](https://clawhub.ai/user/sunhe-8922) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunhe-8922](https://clawhub.ai/user/sunhe-8922)
 
-## Use Case: <br>
-External users and analysts use this skill to transform an investment question into a structured research workflow covering industry state, company quality, financials, valuation, expectation gaps, red-team risks, and CIO-style decision guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investment research outputs may be mistaken for financial advice or relied on without independent review. <br>
-Mitigation: Treat outputs as research support only, verify conclusions against authoritative sources, and require human review before investment decisions. <br>
-Risk: The skill uses external financial and web data sources whose availability, freshness, or accuracy can vary. <br>
-Mitigation: Check source URLs, coverage periods, and verification notes for each data point, and cross-check critical facts before using the report. <br>
-Risk: Research runs on sensitive targets may save local report files. <br>
-Mitigation: Use explicit prompts or confirmations before full research on sensitive targets and review generated files before sharing. <br>
+## Use Case:
 
+External users and investment researchers use this skill to turn a target company or comparison set into a structured investment decision workflow with industry, company, financial, valuation, expectation-gap, red-team, and CIO-style outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunhe-8922/investment-research-os) <br>
-- [Macrotrends financial history template](https://www.macrotrends.net/stocks/charts/{TICKER}/{slug}/{metric}) <br>
-- [StockAnalysis forecast template](https://stockanalysis.com/stocks/{TICKER}/forecast/) <br>
-- [OpenAlex works API template](https://api.openalex.org/works?filter=...) <br>
-- [World Bank indicators API template](https://api.worldbank.org/v2/country/{code}/indicator/{id}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown research reports with source tables, checklists, valuation scenarios, risk sections, and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may be saved under research/{target}_{date}.md or research/portfolio_{date}.md when the host agent has local file-write capability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and target metadata) <br>
+Risk: The skill can generate investment ratings, position sizes, stop losses, and other financial recommendations that may be unsuitable or wrong for a user's circumstances.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as research support, not personalized financial advice; require human review before acting on any recommendation.
+
+Risk: Market data, financial metrics, and valuation assumptions may be stale, unavailable, single-sourced, or misread.
+
+Mitigation: Verify cited data independently, prefer cross-checks across independent sources, and preserve the skill's required source URL, coverage period, and verification notes for each data point.
+
+Risk: The artifact references local scripts and data-fetching commands that may save reports or retrieve public market data.
+
+Mitigation: Inspect any referenced workspace scripts before running them and review locally saved research files before sharing or using them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunhe-8922/skills/investment-research-os)
+- [Macrotrends stock charts](https://www.macrotrends.net/stocks/charts/{TICKER}/{slug}/{metric})
+- [StockAnalysis forecast data](https://stockanalysis.com/stocks/{TICKER}/forecast/)
+- [OpenAlex works API](https://api.openalex.org/works?filter=...)
+- [World Bank indicators API](https://api.worldbank.org/v2/country/{code}/indicator/{id})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown research reports with tables, checklists, sourced data annotations, and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Research outputs include source URLs, coverage periods, verification notes, scenario valuations, red-team risks, CIO ratings, and position-sizing guidance.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata; artifact frontmatter reports 1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

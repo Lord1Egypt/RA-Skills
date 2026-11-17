@@ -1,43 +1,63 @@
-## Description: <br>
-TrailSnap CLI lets an agent query TrailSnap photos, albums, tags, locations, people, storage folders, and media through the bundled Python CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TrailSnap CLI helps agents query and manage TrailSnap photos, albums, tags, locations, people, storage folders, and media through the bundled Python CLI.
 
-## Publisher: <br>
-[lc044](https://clawhub.ai/user/lc044) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lc044](https://clawhub.ai/user/lc044)
 
-## Use Case: <br>
-Developers and external users use this skill to inspect and manage a TrailSnap photo library from an agent workflow, including photo search, metadata lookup, album, tag, location, people, folder, and media retrieval tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes a photo deletion command without built-in confirmation. <br>
-Mitigation: Require explicit human confirmation before running any photo deletion command. <br>
-Risk: The skill stores a TrailSnap API token in a local .env file. <br>
-Mitigation: Use a least-privileged API token and protect the local .env file from disclosure. <br>
-Risk: The skill can access private photo-library metadata and media through the configured TrailSnap account. <br>
-Mitigation: Install and run it only where the agent is trusted with the associated TrailSnap account and photo library. <br>
+## Use Case:
 
+Agents and users working with a TrailSnap deployment use this skill to configure API access, search photo collections, inspect albums, tags, locations, people, and folders, and retrieve media when explicitly requested.
 
-## Reference(s): <br>
-- [TrailSnap CLI command reference](reference.md) <br>
-- [TrailSnap CLI examples](examples/simple.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON, files] <br>
-**Output Format:** [CLI output as JSON or text, with optional media URLs, base64 data, or saved files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured TrailSnap API URL and bearer token before API-backed commands can run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can delete photos through the TrailSnap API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before running `photos delete`, and use a least-privilege TrailSnap token where possible.
+
+Risk: The skill stores the TrailSnap API URL and token in a plaintext `.env` file inside the artifact directory.
+
+Mitigation: Protect the workspace, avoid sharing the artifact directory, and rotate the token if the file may have been exposed.
+
+Risk: `medias get --format file` can write downloaded media to a local path.
+
+Mitigation: Use an explicit safe output path and require human approval before allowing an agent to write media files.
+
+Risk: Non-local HTTP endpoints can expose tokens or photo metadata to unintended services.
+
+Mitigation: Prefer local or trusted HTTPS TrailSnap endpoints and verify the configured API URL before use.
+
+## Reference(s):
+
+- [Command reference](artifact/reference.md)
+- [Usage examples](artifact/examples/simple.md)
+- [ClawHub skill page](https://clawhub.ai/lc044/skills/trailsnap-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Text, Files]
+
+**Output Format:** [CLI stdout as JSON or text, with optional base64 or file media output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured TrailSnap API URL and bearer token before API-backed commands can run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

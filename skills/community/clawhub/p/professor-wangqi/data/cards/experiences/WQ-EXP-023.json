@@ -1,0 +1,230 @@
+{
+  "card_id": "WQ-EXP-023",
+  "source_type": "clinical_experience",
+  "source_file": "王琦治疗139例失眠的临床经验_马晨曦.pdf",
+  "title": "王琦治疗139 例失眠的临床经验马晨曦",
+  "authors": [
+    "博士",
+    "主任医师",
+    "教授"
+  ],
+  "year": 2022,
+  "language": "zh",
+  "experience_type": "treatment_method",
+  "clinical_focus": {
+    "disease": "",
+    "syndrome": "",
+    "constitution": []
+  },
+  "diagnostic_approach": {
+    "key_points": "证候、治法、方剂和用药特点。"
+  },
+  "treatment_approach": {
+    "main_formula": "血府逐瘀汤",
+    "related_formulas": [
+      "血府逐瘀汤"
+    ],
+    "principle": "活血化瘀、疏肝解郁",
+    "herbs": [
+      "黄芪",
+      "当归",
+      "柴胡",
+      "茯苓",
+      "甘草",
+      "陈皮",
+      "半夏"
+    ]
+  },
+  "case_studies": [],
+  "clinical_insights": "经验。方法: 选取2016 年6 月至2019 年8 月北京中医药大学国医堂王琦院士门诊治疗的失眠病例139 例，拆分失眠表现，累计症状频次，分析证候、治法、方剂和用药特点。 体症状、情志和认知症状、妇科、男科及其他症状等6 类。 会功能，发病率逐年增高，是现代社会面临的一个重要问题。",
+  "knowledge_points": [
+    {
+      "category": "diagnosis",
+      "content": "历代医家治疗失眠方法众多，有从外感和内伤辨证，以寒热虚实论治者; 有从阴虚内热，热扰心神病机出发治疗者; 明代张景岳提出从阴引阳，从阳引阴之法，多为后来医者推崇; 清代王清任提出活血化瘀法和对应方剂，被后世广泛应用",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "根据2016 年《失眠症中医临床实践指南 ( WHO/WPO) 》 ［9］，将失眠患者的证候诊断分为实证和虚证两大类，实证，肝郁化火证、痰热内扰证、阴虚火旺证、瘀血内阻证、心火炽盛证; 虚证，心脾两虚证、心胆气虚证、心肾不交证",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "6 图2 20 味核心药物治疗139 例失眠患者的共现网络注: 所在的圆面积越大则该药出现频数越高，从“海螵蛸”顺时针到“砂仁”按频数从高到低排列; 2 个圆之间的线段颜色越深、宽度越大则相应两味药之间关联程度越大风怕冷者亦较多，可能提示失眠者有气虚的表现",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "辨证要点：证候、治法、方剂和用药特点。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "治疗原则为活血化瘀、疏肝解郁。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "核心方药为血府逐瘀汤。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "常用药物包括黄芪、当归、柴胡、茯苓、甘草、陈皮、半夏。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "方法: 选取2016 年6 月至2019 年8 月北京中医药大学国医堂王琦院士门诊治疗的失眠病例139 例，拆分失眠表现，累计症状频次，分析证候、治法、方剂和用药特点",
+      "importance": "high",
+      "evidence_level": "C"
+    }
+  ],
+  "related_constitutions": [
+    "湿热质"
+  ],
+  "related_diseases": [
+    "失眠",
+    "抑郁症"
+  ],
+  "evidence_sentences": [
+    {
+      "sentence": "历代医家治疗失眠方法众多，有从外感和内伤辨证，以寒热虚实论治者; 有从阴虚内热，热扰心神病机出发治疗者; 明代张景岳提出从阴引阳，从阳引阴之法，多为后来医者推崇; 清代王清任提出活血化瘀法和对应方剂，被后世广泛应用",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 2
+    },
+    {
+      "sentence": "根据2016 年《失眠症中医临床实践指南 ( WHO/WPO) 》 ［9］，将失眠患者的证候诊断分为实证和虚证两大类，实证，肝郁化火证、痰热内扰证、阴虚火旺证、瘀血内阻证、心火炽盛证; 虚证，心脾两虚证、心胆气虚证、心肾不交证",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 2
+    },
+    {
+      "sentence": "6 图2 20 味核心药物治疗139 例失眠患者的共现网络注: 所在的圆面积越大则该药出现频数越高，从“海螵蛸”顺时针到“砂仁”按频数从高到低排列; 2 个圆之间的线段颜色越深、宽度越大则相应两味药之间关联程度越大风怕冷者亦较多，可能提示失眠者有气虚的表现",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 4
+    }
+  ],
+  "research_focus": {
+    "constitution_type": [
+      "湿热质"
+    ],
+    "disease": [
+      "失眠",
+      "抑郁症"
+    ],
+    "topic": []
+  },
+  "page_info": {
+    "total_pages": 6,
+    "sections": {
+      "abstract": {
+        "start": 1,
+        "end": 1
+      },
+      "methods": {
+        "start": 1,
+        "end": 6
+      },
+      "results": {
+        "start": 1,
+        "end": 3
+      },
+      "discussion": {
+        "start": 3,
+        "end": 3
+      },
+      "conclusion": {
+        "start": 1,
+        "end": 1
+      }
+    }
+  },
+  "created_at": "2026-04-22T15:38:13.965092",
+  "methods": {
+    "sample_size": 139
+  },
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "doi": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 2,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.574920",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.574926"
+  }
+}

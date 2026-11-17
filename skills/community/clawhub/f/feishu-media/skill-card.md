@@ -1,39 +1,56 @@
-## Description: <br>
-飞书媒体文件发送技能。适用于：发送文件、图片、URL图片、视频、音频、语音消息，以及打包压缩后发送。当用户要求在飞书中发送任何类型的媒体文件时激活此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书媒体文件发送技能，适用于发送文件、图片、URL图片、视频、音频、语音消息，以及打包压缩后发送。
 
-## Publisher: <br>
-[godzff](https://clawhub.ai/user/godzff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[godzff](https://clawhub.ai/user/godzff)
 
-## Use Case: <br>
-Agents use this skill to send local files, images, URL images, videos, audio files, voice messages, and compressed archives through Feishu. It is intended for workflows where the agent must share media with a specified Feishu chat or user. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent can send local files, URL media, or archive contents to Feishu recipients, which may expose confidential documents, personal data, credentials, or unintended attachments. <br>
-Mitigation: Before each send, confirm the exact recipient, local file path or URL, and archive contents. <br>
-Risk: Voice-message workflows depend on Ogg/Opus conversion and duration detection with ffmpeg and ffprobe. <br>
-Mitigation: Verify the converted audio format and duration before sending when a playable Feishu voice message is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/godzff/feishu-media) <br>
+## Use Case:
 
+Agents and users use this skill to send selected local files, images, videos, audio, voice messages, URL images, and compressed archives through Feishu.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides the agent to call the Feishu message tool with target, filePath, media URL, and optional message fields.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A selected file or URL image could be sent to the wrong Feishu chat or user.
+
+Mitigation: Verify the destination target before sending any media.
+
+Risk: Private or business-sensitive files could be exposed if the wrong local path or URL is used.
+
+Mitigation: Confirm the exact file path or URL and the sensitivity of the media before sending.
+
+Risk: Voice messages may fail to render as playable Feishu voice messages if the source audio is not Ogg/Opus.
+
+Mitigation: Convert voice audio to Ogg/Opus with ffmpeg and confirm ffprobe can detect duration before sending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/godzff/skills/feishu-media)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline message-tool and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Feishu target, message, filePath, media URL, supported format, ffmpeg conversion, and archive packaging guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

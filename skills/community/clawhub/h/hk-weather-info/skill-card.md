@@ -1,43 +1,60 @@
-## Description: <br>
-Provides Hong Kong current weather, forecasts, warnings, rainfall, humidity, and 1-minute temperature information from Hong Kong Observatory public data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hong Kong weather information for current conditions, forecasts, rainfall, warnings, alerts, and one-minute average temperature using Hong Kong Observatory public data.
 
-## Publisher: <br>
-[stevenho1394](https://clawhub.ai/user/stevenho1394) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevenho1394](https://clawhub.ai/user/stevenho1394)
 
-## Use Case: <br>
-External users and developers use this skill to answer Hong Kong weather questions with HKO current conditions, local forecasts, warnings, regional filtering, and multilingual output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts HKO public weather endpoints and stores public weather responses in a local cache. <br>
-Mitigation: Use it only where outbound access to HKO public data is acceptable, and review any request for secrets because this skill should not require API keys or sensitive credentials. <br>
-Risk: Weather responses may be unavailable or stale if the external HKO service is unreachable or cached data is used. <br>
-Mitigation: Check the displayed update time and treat weather output as advisory public data rather than a source for safety-critical decisions. <br>
+## Use Case:
 
+External users and developers use this skill to answer Hong Kong weather questions with current conditions, local forecasts, warnings, rainfall, humidity, and regional temperature context. It supports English, Traditional Chinese, and Simplified Chinese responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stevenho1394/hk-weather-info) <br>
-- [HKO OpenData API](https://data.weather.gov.hk/weatherAPI/opendata/weather.php) <br>
-- [HKO 1-Minute Temperature CSV reference](references/1min-temp-csv.md) <br>
-- [Latest 1-minute temperature CSV](https://data.weather.gov.hk/weatherAPI/hko_data/regional-weather/latest_1min_temperature.csv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style weather summary with optional CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports regional filtering, en/tc/sc language selection, public HKO API calls, and local caching of public weather responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill makes live requests to Hong Kong Observatory weather endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where public weather endpoint access is acceptable and review network access expectations before deployment.
+
+Risk: The bundled helper script writes a small local cache in the user's home directory.
+
+Mitigation: Review cache behavior and remove or restrict the cache directory if local persistence is not acceptable.
+
+Risk: Default output is Traditional Chinese, which may surprise users expecting English.
+
+Mitigation: Set the language option explicitly when English or Simplified Chinese output is required.
+
+## Reference(s):
+
+- [HKO OpenData Weather API](https://data.weather.gov.hk/weatherAPI/opendata/weather.php)
+- [HKO Latest 1-Minute Temperature CSV](https://data.weather.gov.hk/weatherAPI/hko_data/regional-weather/latest_1min_temperature.csv)
+- [HKO 1-Minute Temperature CSV Reference](references/1min-temp-csv.md)
+- [ClawHub Skill Page](https://clawhub.ai/stevenho1394/skills/hk-weather-info)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text weather summaries with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include current weather, forecast text, warnings, update times, regional station matches, and one-minute average temperature.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

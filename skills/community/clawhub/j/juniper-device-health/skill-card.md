@@ -1,44 +1,51 @@
-## Description: <br>
-Juniper JunOS device health check and triage procedure for troubleshooting MX, SRX, EX, QFX, and PTX platforms across Routing Engine health, Packet Forwarding Engine state, chassis alarms, system resources, environment, dual-RE failover, alarm triage, PFE statistics, and commit-correlated diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Juniper JunOS device health check and triage procedure for assessing Routing Engine health, Packet Forwarding Engine state, chassis alarms, system resources, and environment.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Network engineers and incident responders use this skill to run a structured JunOS health assessment, identify RE/PFE, alarm, storage, interface, routing, and environmental issues, and produce prioritized findings with recommended actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the skill is labeled read-only while recommending actions that can change or delete data on network devices. <br>
-Mitigation: Require explicit operator approval before request, cleanup, rescue-save, rollback, file-removal, or power-cycle actions, especially during incidents where logs and core dumps may be needed. <br>
-Risk: Credentialed access to production network devices can expose sensitive operational state or enable impactful actions. <br>
-Mitigation: Use least-privilege SSH or console credentials and scope execution to approved devices and maintenance procedures. <br>
-Risk: JunOS health data from a backup Routing Engine can lead to incorrect assessment of the active forwarding path. <br>
-Mitigation: Verify RE mastership first and switch to the master Routing Engine before collecting health data. <br>
+## Use Case:
 
+Network operators, SREs, and support engineers use this skill to triage Juniper MX, SRX, EX, QFX, and PTX devices during incidents, audits, post-change checks, and capacity reviews. It guides collection and interpretation of JunOS health signals and produces a prioritized findings report with recommended actions.
 
-## Reference(s): <br>
-- [Juniper JunOS CLI Reference](references/cli-reference.md) <br>
-- [Juniper JunOS Threshold Tables](references/threshold-tables.md) <br>
-- [ClawHub release page](https://clawhub.ai/vahagn-madatyan/juniper-device-health) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with inline JunOS CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces prioritized severity findings and recommended actions; does not collect telemetry by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The release is labeled read-only while the runbook includes remediation guidance that may change devices, interrupt service, or remove data useful for rollback, incident response, or vendor support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat diagnostic collection separately from remediation, require operator approval for device-changing commands, and run disruptive cleanup, rollback, reload, or power-cycle actions only under an approved change process.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/vahagn-madatyan/skills/juniper-device-health)
+- [Juniper JunOS CLI Reference](references/cli-reference.md)
+- [Juniper JunOS Threshold Tables](references/threshold-tables.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown runbook guidance with inline JunOS CLI commands and a findings report template]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only diagnostic posture is claimed, but reviewers should confirm remediation steps before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

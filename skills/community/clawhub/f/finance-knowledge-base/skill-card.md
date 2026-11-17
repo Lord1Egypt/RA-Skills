@@ -1,41 +1,54 @@
-## Description: <br>
-Manages internal financial knowledge bases with document organization, knowledge graph structure, semantic search, and intelligent Q&A guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages financial knowledge bases with document organization, knowledge graph, semantic search, and intelligent Q&A for internal financial institutions.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Financial institution employees and knowledge managers use this skill to plan internal knowledge-base organization, retrieval workflows, knowledge graph structure, and Q&A patterns. It provides advisory reference material that requires human review before real-world application. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat generated knowledge-base guidance as financial, legal, or insurance advice. <br>
-Mitigation: Use the output as reference material only and require review by qualified professionals before applying it to real financial workflows. <br>
-Risk: Knowledge-base structure or retrieval guidance could introduce incorrect or misleading information into internal documentation. <br>
-Mitigation: Review proposed structures, search behavior, and Q&A content against authoritative internal policies before deployment. <br>
+## Use Case:
 
+Financial institution employees can organize internal regulatory, product, and process knowledge, then retrieve it through semantic search and question answering. The skill also describes customer profiling and investment recommendation workflows, which need appropriate review before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/finance-knowledge-base) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/gechengling) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with structured guidance and illustrative Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory-only reference output; no executable code, network calls, persistent storage, or credential collection are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.2 (source: server release metadata) <br>
+Risk: The skill includes customer profiling and personalized investment recommendations, extending beyond internal knowledge retrieval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the advisory scope and customer-record retention practices before installation; have qualified compliance staff review investment-facing use.
+
+Risk: The security review is incomplete; Skillspector inspected only half of the components.
+
+Mitigation: Treat the suspicious verdict as a caution and complete a full security review before deployment.
+
+## Reference(s):
+
+- [Source repository (server-resolved provenance)](https://github.com/gechengling/finance-knowledge-base)
+- [Finance Knowledge Base on ClawHub](https://clawhub.ai/gechengling/skills/finance-knowledge-base)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text, including knowledge summaries, search answers, product comparisons, and advisory documents.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include customer profile summaries and investment suggestions; review for accuracy and suitability before relying on them.]
+
+## Skill Version(s):
+
+5.0.6 (source: ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

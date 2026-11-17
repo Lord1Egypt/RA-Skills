@@ -1,39 +1,53 @@
-## Description: <br>
-A Chinese-language web search helper that guides an agent to retrieve current internet information, filter useful results, and summarize source-backed findings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language web-search helper that guides an agent to retrieve, filter, and summarize up-to-date online information, news, and real-time data.
 
-## Publisher: <br>
-[chenkek901](https://clawhub.ai/user/chenkek901) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenkek901](https://clawhub.ai/user/chenkek901)
 
-## Use Case: <br>
-External users and agents use this skill when a request needs fresh internet information, such as latest news, current data, weather, or source-backed research. It is not intended for common knowledge answers, casual conversation, or article drafting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Vague lookup requests may trigger external web searches unnecessarily. <br>
-Mitigation: Use the skill when fresh or source-backed information is needed, and prefer direct answers for stable common knowledge or casual conversation. <br>
-Risk: Search results can be outdated, incomplete, or misleading. <br>
-Mitigation: Review cited sources and compare multiple relevant results before relying on the summary for decisions. <br>
+## Use Case:
 
+External users and agents use this skill when they need current web information, recent news, real-time data, or source-backed research results. It is not intended for common knowledge answers, casual conversation, or article writing.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summary with search findings, source links, and a practical recommendation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces concise Chinese-language search summaries organized around core findings, detailed results, and advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Vague search requests may send private or sensitive user-provided details to online search systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including private or sensitive details in search prompts unless the user explicitly intends those details to be searched online.
+
+Risk: Retrieved web results may be outdated, irrelevant, promotional, or misleading.
+
+Mitigation: Filter low-value results, summarize the strongest findings, and include source links so users can verify the answer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenkek901/skills/internet-search-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown search summary with core findings, detailed source-linked results, and a practical suggestion.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are concise and source-oriented; search quality depends on the available web results and user-provided query details.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

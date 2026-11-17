@@ -1,44 +1,65 @@
-## Description: <br>
-Scans BNB Chain and EVM contracts, transactions, deployers, URLs, campaigns, and wallet approvals using ShieldBot's public security API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BNB Chain security scanner that scans contracts, simulates transactions, detects phishing, investigates deployers, tracks scam campaigns, and audits wallet approvals via ShieldBot's API.
 
-## Publisher: <br>
-[Ridwannurudeen](https://clawhub.ai/user/Ridwannurudeen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ridwannurudeen](https://clawhub.ai/user/ridwannurudeen)
 
-## Use Case: <br>
-Developers, security reviewers, and external users use this skill to inspect blockchain contracts, pending transactions, deployer histories, phishing URLs, scam campaigns, and wallet approvals before interacting with BNB Chain or supported EVM networks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends wallet addresses, transaction details, URLs, and free-text security questions to ShieldBot's public API. <br>
-Mitigation: Use only data you are comfortable sharing with ShieldBot, and do not submit seed phrases, private keys, passwords, internal-only links, or unreleased transaction plans. <br>
-Risk: Automated blockchain scans and approval recommendations can be incomplete or misleading. <br>
-Mitigation: Review the returned analysis independently and inspect any unsigned revoke or transaction request before signing. <br>
+## Use Case:
 
+Developers, security analysts, and external users use this skill to check BNB Chain and supported EVM contracts, transactions, phishing URLs, deployers, scam campaigns, and wallet approvals before interacting with assets.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Ridwannurudeen/shieldbot-security) <br>
-- [ShieldBot Website](https://shieldbotsecurity.online) <br>
-- [ShieldBot API Reference](artifact/references/api-reference.md) <br>
-- [Supported Chains](artifact/references/chains.json) <br>
-- [Risk Flags](artifact/references/risk-flags.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-formatted security summaries and shell commands, with optional raw JSON from the ShieldBot API client.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided blockchain addresses, transaction details, URLs, and questions; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Wallet addresses, URLs, transaction fields, and free-text questions are sent to ShieldBot or the configured API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit private keys, seed phrases, confidential trading plans, unreleased transaction calldata, or sensitive personal details.
+
+Risk: The skill depends on a Python package install and calls an external API.
+
+Mitigation: Install it in an isolated environment, prefer pinned dependency versions, and review the configured API base URL before use.
+
+Risk: Automated blockchain risk checks can be incomplete or misread as financial advice.
+
+Mitigation: Review the returned risk verdicts, warnings, and raw details before acting, and treat scan output as security guidance rather than financial advice.
+
+Risk: Public API calls are rate-limited.
+
+Mitigation: Handle 429 responses and avoid high-volume automation that exceeds the documented 30 requests per minute limit.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ridwannurudeen/skills/shieldbot-security)
+- [ShieldBot Website](https://shieldbotsecurity.online)
+- [ShieldBot API Reference](references/api-reference.md)
+- [Supported Chains](references/chains.json)
+- [Risk Flags](references/risk-flags.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with shell commands and formatted plain-text security findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can output raw JSON when invoked with --raw; formatted responses lead with risk verdicts and classifications.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

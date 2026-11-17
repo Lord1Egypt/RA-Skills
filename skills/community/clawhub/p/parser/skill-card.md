@@ -1,41 +1,58 @@
-## Description: <br>
-Parse JSON, CSV, XML, and logs into structured output for format conversion, structure validation, field extraction, and nested data analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse JSON, CSV, XML, and logs into structured output. Use when converting formats, validating structure, extracting fields, analyzing nested data.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers, engineers, and data-focused agents use this skill to parse local JSON, CSV, XML, YAML, text, and log files, extract fields or patterns, and summarize file structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill parses local files and may print sensitive file contents or extracted values into the agent conversation. <br>
-Mitigation: Use it only on files intended for analysis, and avoid supplying secrets or sensitive datasets unless that exposure is expected. <br>
-Risk: Parse results can be cached under the user's local data directory. <br>
-Mitigation: Review or clear the parser cache when working with sensitive input files. <br>
+## Use Case:
 
+Developers and technical users use this skill to parse, validate, filter, split, extract, and summarize local JSON, CSV, XML, YAML, log, and text files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/parser) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text, structured text tables, JSON, and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the selected parser command and the supplied local file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: server release metadata and skill frontmatter) <br>
+Risk: The parser reads local files supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with files you intend to parse and are comfortable exposing to the local tool process.
+
+Risk: Pattern arguments for grep-like parsing may have option-injection edge cases.
+
+Mitigation: Review commands before execution and prefer hardened argument handling such as placing '--' before user-supplied patterns.
+
+Risk: The skill creates a local data directory that is not clearly used by the parser behavior.
+
+Mitigation: Document or remove the directory creation before deployment in controlled environments.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [Parser on ClawHub](https://clawhub.ai/ckchzh/skills/parser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and command output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on the selected parser command and may include structured JSON, extracted text, filtered lines, CSV tables, XML snippets, YAML values, split fields, or file statistics.]
+
+## Skill Version(s):
+
+3.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

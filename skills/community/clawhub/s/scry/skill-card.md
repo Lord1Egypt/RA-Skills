@@ -1,41 +1,54 @@
-## Description: <br>
-Research any topic across 26+ sources: Reddit, X, YouTube, GitHub, HN, Bluesky, ArXiv, Dev.to, Polymarket, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research any topic across public and optional authenticated sources including Reddit, X, YouTube, GitHub, Hacker News, Bluesky, ArXiv, Dev.to, Polymarket, and more.
 
-## Publisher: <br>
-[vihangd](https://clawhub.ai/user/vihangd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vihangd](https://clawhub.ai/user/vihangd)
 
-## Use Case: <br>
-Developers and research-focused agent users use Scry to gather, rank, deduplicate, and summarize current public signals about a topic across social, developer, academic, finance, and news sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read local provider tokens and, for X/Twitter, browser session cookies when optional sources are enabled. <br>
-Mitigation: Prefer scoped API keys, avoid storing AUTH_TOKEN or CT0 session cookies in environment files, and review configuration before use. <br>
-Risk: Research queries and source results may be retained in local caches. <br>
-Mitigation: Restrict sources with --sources for sensitive topics and periodically clear ~/.cache/scry and ~/.config/bird when local retention is not desired. <br>
+## Use Case:
 
+Developers and agent users use Scry to gather and synthesize recent research signals for a topic across social, code, academic, news, and market sources. It is intended for multi-source research summaries, source statistics, and follow-up guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vihangd/scry) <br>
-- [Homepage](https://github.com/khalidsh/scry-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown research summaries with source statistics, citations, and optional command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May also emit compact or JSON-formatted research reports from the bundled script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The default X/Twitter source path can attempt to use local browser session cookies without an explicit per-run opt-in.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run with restricted sources or tier-1/public sources unless the user intentionally wants X/Twitter cookie-backed search.
+
+Risk: Optional authenticated sources can expose local API keys or session-derived access to third-party services during research.
+
+Mitigation: Prefer narrowly scoped API keys and review configured credentials before enabling optional sources.
+
+## Reference(s):
+
+- [ClawHub Scry skill page](https://clawhub.ai/vihangd/skills/scry)
+- [Project homepage](https://github.com/khalidsh/scry-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown research summary with source statistics and concise attributions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke local scripts and web search; optional sources depend on available API keys, binaries, or local X/Twitter session credentials.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

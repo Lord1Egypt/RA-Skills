@@ -1,55 +1,201 @@
 {
   "name": "huanzhi-fa-skill-pro",
-  "displayName": "焕智FA Pro — AI专属融资顾问",
-  "displayNameEn": "HuanZhi FA Pro",
-  "version": "2.9.3",
-  "description": "创始人融资必备AI顾问！一键诊断融资准备度、秒懂TS条款陷阱、模拟投资人谈判。🇨🇳 中文 | 🧠 Capital EQ | 触发：融资/条款/焦虑",
+  "slug": "huanzhi-fa-skill-pro",
+  "displayName": "焕智AI FaSkill Pro — OPC初创企业AI融资顾问",
+  "displayNameEn": "HuanZhi FA Pro — OPC Capital Intelligence",
+  "description": "OPC创业者全周期资本伙伴！6大AI模块：融资诊断+材料工坊+投资人雷达+谈判参谋+尽调护航+情绪支持",
+  "version": "3.1.0",
+  "edition": "Ginkley WAIC 2025 定制版 · 入场BP诊断引导 + HTML设计规范 + footer强制",
+  "license": "MIT",
+  "author": "ai-innopower",
   "tags": [
     "fa",
     "fundraising",
     "startup",
     "founder",
     "vc",
-    "angel-investor",
-    "pitch",
     "term-sheet",
-    "ts-analysis",
     "finance",
     "investment",
     "capital-eq",
-    "emotional-intelligence",
+    "opc",
+    "one-person-company",
+    "waic",
+    "world-ai-conference",
     "融资",
     "创业者",
-    "投资人",
     "条款分析",
     "商业计划书",
+    "政策",
+    "补贴",
+    "专精特新",
+    "超级个体",
+    "WAIC2025",
     "bp",
-    "chinese",
-    "china-startup",
-    "pre-a",
-    "series-a"
+    "bp诊断",
+    "due-diligence",
+    "investor-matching",
+    "dd",
+    "data-room",
+    "html",
+    "html-report",
+    "design-spec",
+    "设计规范"
   ],
-  "capabilities": {
-    "memory": {
-      "enabled": true,
-      "description": "跨会话记忆用户画像和融资进度"
-    },
-    "scheduled_tasks": {
-      "enabled": true,
-      "description": "周报提醒、TS到期提醒、情绪触发的定时任务"
-    },
-    "knowledge_base": {
-      "enabled": true,
-      "description": "检索法规政策库和机构情报库"
-    },
-    "file_write": {
-      "enabled": true,
-      "paths": ["data/users/"],
-      "description": "保存用户画像 profile.json 和上传的BP文件"
-    }
+  "ginkley": {
+    "platform": "ugs",
+    "min_version": "1.0.0",
+    "skill_type": "agent",
+    "runtime": "python3",
+    "deterministic": true,
+    "temperature": 0,
+    "entry": "SKILL.md"
   },
-  "data_policy": {
-    "storage": "local_only",
-    "description": "用户数据仅保存在本地，不上传云端，Skill 不保证保密性"
+  "modules": [
+    {
+      "id": "funding_diagnosis",
+      "name": "融资诊断Pro",
+      "icon": "🩺",
+      "description": "8维度评估融资准备度，100分评分体系，阶段适配建议",
+      "trigger": [
+        "看看准备好了吗",
+        "融资诊断",
+        "BP诊断",
+        "帮我看看BP",
+        "评分",
+        "我的项目怎么样"
+      ],
+      "script": "scripts/funding_diagnosis.py"
+    },
+    {
+      "id": "materials_workshop",
+      "name": "材料工坊Pro",
+      "icon": "📄",
+      "description": "BP 10维度评审 + 3-5年财务模型 + Data Room清单",
+      "trigger": [
+        "BP",
+        "商业计划书",
+        "财务模型",
+        "数据室",
+        "Data Room",
+        "融资材料"
+      ]
+    },
+    {
+      "id": "investor_radar",
+      "name": "投资人雷达Pro",
+      "icon": "🎯",
+      "description": "Tier分层匹配 + 6维度机构评分 + 全链路转化追踪",
+      "trigger": [
+        "投资人",
+        "找投资",
+        "匹配",
+        "机构",
+        "谁适合"
+      ]
+    },
+    {
+      "id": "negotiation_advisory",
+      "name": "谈判参谋Pro",
+      "icon": "🛡️",
+      "description": "TS条款红旗识别 + 估值博弈 + 谈判话术 + 底线建议",
+      "trigger": [
+        "TS",
+        "条款",
+        "Liquidation Preference",
+        "估值",
+        "对赌",
+        "回购"
+      ]
+    },
+    {
+      "id": "dd_shield",
+      "name": "尽调护航Pro",
+      "icon": "🏛️",
+      "description": "23项风险扫描 + Data Room组织 + 财务协调分析",
+      "trigger": [
+        "DD",
+        "尽职调查",
+        "尽调",
+        "数据室",
+        "风控",
+        "风险扫描"
+      ]
+    },
+    {
+      "id": "emotional_support",
+      "name": "情绪支持Pro",
+      "icon": "🧠",
+      "description": "Capital EQ资本情商，情绪急救，先处理情绪再处理问题",
+      "trigger": [
+        "焦虑",
+        "被拒",
+        "放弃",
+        "睡不着",
+        "迷茫",
+        "压力",
+        "冒名顶替"
+      ]
+    }
+  ],
+  "knowledge_base": [
+    {
+      "file": "references/investment-glossary.md",
+      "name": "投资专业术语99个",
+      "items": 99
+    },
+    {
+      "file": "references/funding-psychology.md",
+      "name": "投融资心理学知识库",
+      "chapters": 7
+    },
+    {
+      "file": "references/investor-quotes.md",
+      "name": "国内投资人金句100句",
+      "items": 100
+    },
+    {
+      "file": "references/opc-survival-guide.md",
+      "name": "OPC创业实战手册",
+      "chapters": 7
+    },
+    {
+      "file": "references/opc-policy-db.md",
+      "name": "OPC政策库",
+      "districts": 10
+    },
+    {
+      "file": "references/zhuanjingtexin-guide.md",
+      "name": "专精特新路径指南"
+    },
+    {
+      "file": "references/response-templates.md",
+      "name": "Capital EQ话术模板"
+    },
+    {
+      "file": "references/outputs-schema.md",
+      "name": "输出格式规范"
+    },
+    {
+      "file": "references/html-design-spec.md",
+      "name": "HTML设计规范（8条rule）",
+      "rules": 8
+    },
+    {
+      "file": "assets/OPC-Skill-HTML设计规范.html",
+      "name": "HTML设计规范可视化原件"
+    }
+  ],
+  "scripts_config": {
+    "test": "python3 -m pytest tests/ -v",
+    "diagnosis": "python3 scripts/funding_diagnosis.py",
+    "policy": "python3 scripts/policy_matcher.py",
+    "zhuanjingtexin": "python3 scripts/zhuanjingtexin_assessor.py"
+  },
+  "test_coverage": {
+    "test_funding_diagnosis.py": "14个用例",
+    "test_policy_matcher.py": "7个用例",
+    "test_zhuanjingtexin.py": "8个用例",
+    "total": "29个用例"
   }
 }

@@ -26,20 +26,3 @@ A: 在检索配置中配置 `score_threshold`（0-1 之间的浮点数），设�
 
 Q: Windows 上模型路径名变形如何处理？
 A: ModelScope 下载的模型名中 `.` 可能变为 `___`（如 `bge-small-zh-v1___5`）。本工具会自动检测并修正路径，无需手动处理。
-
-## 出错了怎么办？
-
-### 参数错误
-- **`--query` 后无内容**：检查是否使用了引号包裹查询内容，如 `--query "问题"`
-- **`--kb` 指定未知库**：先运行 `python scripts/knowledge_base_manager.py --list` 查看已有知识库
-- **切分参数超出范围**：`--chunk-size` 范围 50–2000，`--overlap` 范围 0–500
-
-### 依赖错误
-- **ModuleNotFoundError**：运行 `python scripts/rag_env_setup.py --auto-install` 自动安装缺失包
-- **`pip` 安装卡住或失败**：使用国内镜像 `python scripts/rag_env_setup.py --auto-install --mirror aliyun`
-- **chromadb 报错**：确认 Python 版本为 3.8–3.11（3.12 暂不支持 chromadb Windows 轮子）
-
-### 环境错误
-- **模型下载全部失败**：检查网络连接，尝试切换镜像源或使用 `--interactive` 手动选择
-- **向量库写权限**：确保 `data/kb/` 目录存在且可写（自动创建）
-- **Web UI 打不开**：检查 `--port` 是否被占用，尝试更换端口 `python scripts/rag_web_ui.py --port 8899`

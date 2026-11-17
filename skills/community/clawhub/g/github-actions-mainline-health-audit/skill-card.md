@@ -1,37 +1,49 @@
-## Description: <br>
-Audit GitHub Actions mainline branch reliability by scoring failure rate, consecutive failures, and stale-success risk for critical workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit GitHub Actions mainline branch reliability by scoring failure rate, consecutive failures, and stale-success risk for critical workflows.
 
-## Publisher: <br>
-[daniellummis](https://clawhub.ai/user/daniellummis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daniellummis](https://clawhub.ai/user/daniellummis)
 
-## Use Case: <br>
-Developers and DevOps engineers use this skill to analyze exported GitHub Actions run data for protected branch workflow reliability, stale-success risk, and critical failure patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Reports can include repository names, branches, SHAs, run IDs, and run URLs from private or sensitive repositories. <br>
-Mitigation: Keep RUN_GLOB limited to the intended exported run files and review generated reports before sharing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daniellummis/github-actions-mainline-health-audit) <br>
+## Use Case:
 
+Developers and release engineers use this skill to audit GitHub Actions reliability on protected branches and identify workflows with high failure rates, consecutive failures, or stale successful runs.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, text, json, shell commands, guidance] <br>
-**Output Format:** [Text report or JSON summary with scored workflow groups and critical group details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash and python3. Reads local GitHub Actions run JSON exports selected by RUN_GLOB and can exit nonzero when FAIL_ON_CRITICAL=1.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.4.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Reports may include private repository names, workflow names, commit SHAs, and run URLs from user-provided GitHub Actions exports.
+
+Mitigation: Use a narrow RUN_GLOB and review generated text or JSON before sharing it outside the organization.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/daniellummis/skills/github-actions-mainline-health-audit)
+- [Publisher Profile](https://clawhub.ai/user/daniellummis)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Text report or JSON summary with scored workflow groups and critical group details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can exit nonzero when FAIL_ON_CRITICAL=1 and critical groups are present.]
+
+## Skill Version(s):
+
+1.4.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Gets current weather and forecasts through Moji Weather or MSN Weather for weather, temperature, and forecast questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gets current weather and forecasts using Moji Weather as the primary source and MSN China Weather as a fallback.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-External users and agents use this skill to answer weather, temperature, and forecast questions for locations by checking Moji Weather first and MSN Weather as a fallback or cross-check. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather requests and location names may be visible to Moji Weather or MSN Weather. <br>
-Mitigation: Use this skill only when those providers are acceptable for the requested location, and avoid sending sensitive location details. <br>
-Risk: The skill overrides the built-in weather flow and is not intended for historical weather, severe weather alerts, or detailed meteorological analysis. <br>
-Mitigation: Use a dedicated weather-alert, historical-weather, or meteorological source when those outputs are required. <br>
+## Use Case:
 
+External users and agents use this skill to answer current weather, temperature, and forecast questions for China-focused locations using Moji Weather or MSN China Weather. It is not intended for historical weather, severe weather alerts, or detailed meteorological analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paudyyin/weather-cn-zh) <br>
-- [Moji Weather](https://tianqi.moji.com/) <br>
-- [MSN Weather](https://www.msn.cn/zh-cn/weather/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with sourced weather summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source attribution and cross-check notes when weather providers differ.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Weather lookups may send location-based queries to Moji Weather or MSN China Weather.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only when those weather providers are acceptable for the requested location query, and disclose the data source in responses.
+
+Risk: The skill is not designed for severe weather alerts, historical weather, or detailed meteorological analysis.
+
+Mitigation: Route safety-critical, historical, or specialist meteorology requests to authoritative weather services instead of this skill.
+
+## Reference(s):
+
+- [Moji Weather](https://tianqi.moji.com/)
+- [MSN China Weather](https://www.msn.cn/zh-cn/weather/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text with sourced weather observations and forecasts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes source attribution and caveats when provider data differs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

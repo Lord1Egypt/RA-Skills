@@ -1,38 +1,52 @@
-## Description: <br>
-A client-facing SEO assistant grounded in Google's official SEO Starter Guide that helps with SEO audits, search visibility questions, metadata, title tags, alt text, URLs, duplicate content, and search-oriented web copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A client-facing SEO assistant grounded in Google's official SEO Starter Guide that helps audit pages, improve web copy, and answer SEO questions in plain English.
 
-## Publisher: <br>
-[1gco](https://clawhub.ai/user/1gco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[1gco](https://clawhub.ai/user/1gco)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and business owners use this skill to get practical SEO audits, page-title and meta-description improvements, content guidance, and plain-English answers about search visibility.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may proactively surface SEO guidance during website-review conversations where the user only hints at traffic or ranking goals.
+
+Mitigation: Confirm the user wants SEO-focused feedback before applying recommendations in ambiguous website-review conversations.
+
+Risk: SEO recommendations can be context-sensitive and may take weeks or months to show results.
+
+Mitigation: Present recommendations as prioritized guidance, explain uncertainty plainly, and review significant site changes against the business context before publishing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and business owners use this skill to get plain-English SEO audits, improve search-facing web content, draft page titles and meta descriptions, and answer practical Google search visibility questions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation may apply SEO-oriented guidance to unrelated website, marketing, or content requests. <br>
-Mitigation: Phrase unrelated requests clearly or disable the skill when SEO-specific guidance is not desired. <br>
+**Output Format:** [Markdown prose with prioritized recommendations, rewritten snippets, and concise answers]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Google SEO Audit Assistant on ClawHub](https://clawhub.ai/1gco/google-seo-audit-assistant) <br>
+**Other Properties Related to Output:** [Provides SEO guidance only; evidence.security reports no code execution, credential access, persistence, or hidden data handling.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown recommendations and drafted web copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces prioritized audit recommendations, SEO content suggestions, metadata drafts, alt text suggestions, and direct answers; no code or shell commands.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

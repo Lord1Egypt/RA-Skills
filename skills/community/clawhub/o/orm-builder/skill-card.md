@@ -1,41 +1,50 @@
-## Description: <br>
-Reference tool for devtools; covers intro, quickstart, patterns, debugging, performance, security, migration, and quick lookup for ORM Builder concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for ORM Builder concepts, best practices, troubleshooting, performance, security, migration, and quick lookup guidance.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and engineers use this skill as a local plain-text reference for ORM Builder concepts, quickstart guidance, implementation patterns, troubleshooting, performance, security, migration, and cheatsheet material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides generic ORM Builder guidance that may be incomplete or not fit a user's specific stack or production constraints. <br>
-Mitigation: Review the generated guidance against project-specific requirements before applying it. <br>
-Risk: Security, migration, and performance advice could be outdated or too general for regulated or high-impact environments. <br>
-Mitigation: Validate recommendations with current platform documentation and internal security or operations review before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick reference for ORM Builder concepts, setup patterns, debugging, performance, security, migration, and cheat-sheet guidance.
 
-## Reference(s): <br>
-- [Orm Builder ClawHub page](https://clawhub.ai/bytesagain1/orm-builder) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings and command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local documentation; no credentials, network access, or file modification expected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: frontmatter and server release metadata) <br>
+Risk: Generic ORM guidance may not match the user's specific ORM, database, framework version, or production constraints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify recommendations against the active ORM documentation, project configuration, tests, and deployment requirements before applying changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain1/skills/orm-builder)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown reference documentation printed by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output; no API keys, credentials, network calls, or persistent system changes are reported in the security evidence.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

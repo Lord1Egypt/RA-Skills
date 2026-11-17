@@ -1,47 +1,65 @@
-## Description: <br>
-Soul Weaver generates OpenClaw agent configuration files from curated persona templates or custom user inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Soul Weaver generates OpenClaw agent configuration files from curated celebrity-style templates or custom user inputs.
 
-## Publisher: <br>
-[addogiavara-tech](https://clawhub.ai/user/addogiavara-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[addogiavara-tech](https://clawhub.ai/user/addogiavara-tech)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to choose persona templates, preview generated configuration files, and create custom agent configuration guidance for OpenClaw assistants. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated configuration files can change agent behavior, memory habits, tool preferences, and workspace practices. <br>
-Mitigation: Back up existing files, review diffs, and apply changes gradually before replacing SOUL.md, USER.md, MEMORY.md, TOOLS.md, cron jobs, or workspace files. <br>
-Risk: Prompts or persistent memory files can accidentally capture secrets or sensitive personal details. <br>
-Mitigation: Do not place secrets in prompts or memory files, and disable unwanted memory or tool behavior before deployment. <br>
-Risk: Optional heartbeat or automation behavior can trigger repeated agent activity if enabled without review. <br>
-Mitigation: Enable automation only after reviewing the generated HEARTBEAT.md and related workflow guidance. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to create persona-oriented agent configurations, either by selecting a local template or answering prompts for a custom configuration. The generated files are intended to be reviewed and installed into an OpenClaw workspace.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/addogiavara-tech/soul-weaver) <br>
-- [README](README.md) <br>
-- [Templates reference](references/templates.md) <br>
-- [Soul Maker reference](references/soul-maker.md) <br>
-- [Security patterns reference](references/security-patterns.md) <br>
-- [Heartbeat automation reference](references/heartbeat-automation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance, code] <br>
-**Output Format:** [JSON responses containing generated Markdown configuration files and guidance text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include multiple OpenClaw configuration files such as SOUL.md, IDENTITY.md, USER.md, MEMORY.md, TOOLS.md, AGENTS.md, HEARTBEAT.md, KNOWLEDGE.md, SECURITY.md, and WORKFLOWS.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Generated configuration files can persistently steer future agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every generated file before installing it, especially SOUL.md, AGENTS.md, MEMORY.md, TOOLS.md, and HEARTBEAT.md.
+
+Risk: Full replacement of an existing OpenClaw configuration can overwrite useful user settings or introduce behavior changes.
+
+Mitigation: Create a backup first and prefer incremental installation or fusion mode unless full replacement is intentional.
+
+Risk: API-key and custom prompt handling may expose sensitive data or introduce untrusted content.
+
+Mitigation: Do not provide an API key for local template use, avoid untrusted custom prompt fields, and avoid running audit scripts where logs may capture secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/addogiavara-tech/skills/soul-weaver)
+- [Publisher profile](https://clawhub.ai/user/addogiavara-tech)
+- [Soul Maker](references/soul-maker.md)
+- [Celebrity Template Reference](references/templates.md)
+- [Tool Configuration Reference](references/tools.md)
+- [Heartbeat Automation Guide](references/heartbeat-automation.md)
+- [Never Forget Protocol](references/never-forget-protocol.md)
+- [Proactive Playbook](references/proactive-playbook.md)
+- [Security Patterns](references/security-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [JSON object containing guidance messages, template metadata, required tools, and generated Markdown configuration file contents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated configurations commonly include SOUL.md, IDENTITY.md, MEMORY.md, USER.md, TOOLS.md, AGENTS.md, HEARTBEAT.md, KNOWLEDGE.md, SECURITY.md, and WORKFLOWS.md.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -29,6 +29,17 @@ class SyncError(DiscogsSyncError):
     """Sync operation failed."""
 
 
+class ConfirmationRequiredError(SyncError):
+    """A removal was requested without confirmation; nothing was changed.
+
+    ``preview`` describes exactly what would have been removed.
+    """
+
+    def __init__(self, message: str, preview: dict | None = None):
+        super().__init__(message)
+        self.preview = preview or {}
+
+
 class RateLimitError(DiscogsSyncError):
     """Rate limit exceeded and retries exhausted."""
 

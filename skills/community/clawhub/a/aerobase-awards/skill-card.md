@@ -1,40 +1,56 @@
-## Description: <br>
-Search 24+ airline loyalty programs for award space with miles cost, seat availability, and jetlag scores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search 24+ airline loyalty programs for award space with miles cost, seat availability, and jetlag scores.
 
-## Publisher: <br>
-[kurosh87](https://clawhub.ai/user/kurosh87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kurosh87](https://clawhub.ai/user/kurosh87)
 
-## Use Case: <br>
-Travel planners and award-flight agents use this skill to search award-seat availability, compare mileage pricing, calculate cents-per-point value, and manage saved trips or alerts across major airline loyalty programs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Award searches may use travel routes, dates, award-search context, and optional airline loyalty account access. <br>
-Mitigation: Confirm the user intends to share that travel context, prefer API searches when possible, and request loyalty credentials only for a specific user-directed lookup. <br>
-Risk: Browser-based airline searches can involve logged-in account pages. <br>
-Mitigation: Use browser workflows only when needed for visual verification or account-specific searches, confirm before login, and never store or log loyalty credentials. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Aerobase Awards on ClawHub](https://clawhub.ai/kurosh87/aerobase-awards) <br>
-- [Scrapling Documentation](https://scrapling.readthedocs.io/en/latest/overview.html) <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to search airline award availability, compare mileage prices, review seat availability and jetlag scores, calculate cents-per-point value, and manage saved award trips or alerts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown summaries with API request and response details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include award-seat options, mileage prices, seat counts, jetlag scores, fuel-surcharge warnings, cents-per-point calculations, saved trip details, and alert setup guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may use travel itinerary data, award-alert state, transfer-partner or payment-card context, external price lookup, and optional airline login sessions.
+
+Mitigation: Use only accounts and profile data appropriate for award-search workflows, and confirm alert creation or logged-in airline actions before proceeding.
+
+Risk: Award and cash-price checks rely on external services, cached data, rate limits, and sometimes protected airline booking pages.
+
+Mitigation: Prefer the API cache for general searches, batch route queries within the documented limits, and use browser access only for visual verification or logged-in airline actions.
+
+Risk: Airline frequent-flyer credentials may be required for booking-page searches behind login walls.
+
+Mitigation: Require user-provided credentials only for the active session and do not store or log them.
+
+## Reference(s):
+
+- [Scrapling Documentation](https://scrapling.readthedocs.io/en/latest/overview.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with API request examples and structured travel-award result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include award pricing in miles or points, seat availability, jetlag scores, fuel-surcharge warnings, transfer options, cents-per-point calculations, saved-trip summaries, and alert setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Intelligently analyzes Nuclei scan results, prioritizes real bugs, reduces noise, and enriches findings with context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligently analyzes Nuclei scan results, prioritizes real bugs, reduces noise, and enriches findings with context.
 
-## Publisher: <br>
-[nyetnighy](https://clawhub.ai/user/nyetnighy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nyetnighy](https://clawhub.ai/user/nyetnighy)
 
-## Use Case: <br>
-External security testers, bug bounty hunters, and security engineers use this skill to turn completed Nuclei scan output into prioritized Markdown triage reports with severity summaries, high-impact detail, attack scenarios, and reproduction steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Filtered findings, severity changes, attack scenarios, or reproduction steps may be incomplete or misleading if accepted without reviewing the original Nuclei output. <br>
-Mitigation: Review the original Nuclei findings and validate high-impact security decisions before acting on the generated report. <br>
-Risk: The helper reads local scan files and writes Markdown reports, which may capture sensitive target information. <br>
-Mitigation: Run it only on intended scan outputs and handle generated reports according to the user's data handling policy. <br>
+## Use Case:
 
+Developers and security engineers use this skill to convert Nuclei scan output into prioritized Markdown reports that highlight actionable findings, likely false positives, business impact context, and reproduction steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nyetnighy/nuclei-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown report with summary tables, prioritized findings, attack scenarios, and reproduction steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes reports under reports/nuclei-analysis/ by default; supports minimum-severity filtering and explicit output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated Markdown can contain untrusted scan-derived content when Nuclei input comes from third parties or attacker-controlled targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated reports before sharing or rendering them in systems that execute scripts or automatically load remote content.
+
+Risk: The analyzer reads local Nuclei output files and writes Markdown reports to user-selected or default output paths.
+
+Mitigation: Run it only on intended local scan files and check the output path before execution to avoid overwriting important files.
+
+## Reference(s):
+
+- [Nuclei Analysis ClawHub release](https://clawhub.ai/nyetnighy/skills/nuclei-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [Markdown report with summary tables, prioritized finding sections, attack scenarios, and reproduction steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes report files under reports/nuclei-analysis when run without an explicit output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

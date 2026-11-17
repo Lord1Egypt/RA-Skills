@@ -30,7 +30,7 @@
 
 **一键安装**：`pip install sentence-transformers numpy pyyaml`
 
-首次运行需下载约 90MB 的 sentence-transformers 默认模型。若网络受限，系统自动降级为 PurePythonEmbedder（TF-IDF，零外部依赖），不影响切片生成。
+**磁盘空间**：首次运行需额外 ~90MB（模型下载）。若网络受限，sentence-transformers 缺失时系统自动降级为 PurePythonEmbedder（TF-IDF，零外部依赖，评估精度约 SBERT 的 75-85%），不影响切片生成流程。
 
 ---
 
@@ -66,13 +66,14 @@ Agent 自动完成分析 → 拆分 → 生成 → 校验全流程。10 片以�
 ```
 输出目录/
 └── redis-guide/
-    ├── api/           # 函数签名、类定义、接口协议
-    ├── config/        # 环境变量、配置文件字段、启动参数
-    ├── guide/         # 安装部署、操作指南、故障排查
-    ├── concepts/      # 架构原理、设计模式、术语定义
-    ├── misc/          # Changelog、FAQ、附录
-    ├── version_matrix.md   # 多版本差异对比
-    └── evaluation_report.json  # 检索可达性评估
+    ├── api/              # 函数签名、类定义、接口协议
+    ├── config/           # 环境变量、配置文件字段、启动参数
+    ├── guide/            # 安装部署、操作指南、故障排查
+    ├── concepts/         # 架构原理、设计模式、术语定义
+    ├── misc/             # Changelog、FAQ、附录
+    ├── multimodal/       # 图片/表格/图表等多模态内容（满足条件时创建）
+    ├── version_matrix.md         # 多版本差异对比
+    └── evaluation_report.json    # 检索可达性评估
 ```
 
 ### 切片文件结构
@@ -142,6 +143,7 @@ A: 主要支持 `.md` `.txt` `.yaml` `.json`。PDF 建议先通过 Make-to-Markd
 
 | 版本 | 日期 | 主要更新 |
 |:---|:---|:---|
+| v5.20 | 2026-07 | 新增 Init-Step-Poll 渐进式防卡死协议，切片计划、逐批生成、状态轮询和断点续传显式闭环 |
 | v5.19 | 2026-06 | 文档精简：核心指令保留，运维参考移至 REFERENCE.md；HARB 安全红线 |
 | v5.15 | 2026-04 | 多模态内容处理、消歧精度预检、版本差异摘要表 |
 | v5.10 | 2026-02 | 分批协议增强、Token 预算估算公式、静默失败防护 |

@@ -1,45 +1,55 @@
-## Description: <br>
-AIMPACT provides AI morning briefings, evening summaries, 24-hour hot news rankings, and selected AI content sorted by AI scoring, with optional scheduled delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AIMPACT provides AI morning reports, evening reports, 24-hour hot-news rankings, and curated AI content, sorted by AI score and optionally delivered on a schedule.
 
-## Publisher: <br>
-[jamesmenews](https://clawhub.ai/user/jamesmenews) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jamesmenews](https://clawhub.ai/user/jamesmenews)
 
-## Use Case: <br>
-External users and developers use this skill to fetch AIMPACT/ME News AI reports, including morning briefings, evening summaries, 24-hour trend rankings, and selected AI news. It can also prepare reports for delivery through user-configured messaging channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled reports may be sent externally through configured message channels. <br>
-Mitigation: Review the selected message channel, credentials, recipients, and schedule before enabling push delivery. <br>
-Risk: Reports depend on the disclosed AIMPACT/ME News API endpoints being reachable and current. <br>
-Mitigation: Check returned source links and error summaries before relying on a generated report. <br>
+## Use Case:
 
+External users and agent operators use this skill to fetch and format current AI industry news from ME News API sources. It supports manual report requests and optional scheduled delivery through a preconfigured message channel.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jamesmenews/menews) <br>
-- [Publisher profile](https://clawhub.ai/user/jamesmenews) <br>
-- [MetaEra AI flash API](https://agent.me.news/skill/flash/list?page=1&size=20&category=ai) <br>
-- [AIMPACT AI articles API](https://agent.me.news/skill/aimpact/articles?page=1&size=20&category=ai) <br>
-- [AIMPACT OpenClaw articles API](https://agent.me.news/skill/aimpact/articles?page=1&size=20&category=openclaw) <br>
-- [AIMPACT events API](https://agent.me.news/skill/aimpact/events) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown news report with categorized items, source links, and a concise trend comment] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are limited to the configured AIMPACT/ME News sources and may be delivered through user-configured message channels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: frontmatter and server release evidence) <br>
+Risk: The skill fetches content from external ME News API endpoints, so report quality and availability depend on those endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated reports before relying on them, and treat API errors or stale content as a source-data issue rather than an agent conclusion.
+
+Risk: Optional scheduled delivery can send recurring reports through preconfigured message channels.
+
+Mitigation: Enable scheduled tasks only when recurring delivery is intended, and confirm OpenClaw message-channel credentials and recipients before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jamesmenews/skills/menews)
+- [ME News source configuration](artifact/sources.md)
+- [Output format template](artifact/format.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown news reports with optional shell command examples for scheduling]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are limited to the configured ME News sources, sorted by AI score when provided, deduplicated by title or ID, and formatted according to artifact/format.md.]
+
+## Skill Version(s):
+
+1.0.11 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

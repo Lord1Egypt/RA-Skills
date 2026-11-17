@@ -1,41 +1,54 @@
-## Description: <br>
-Jiandaoyun is a low-code development assistant for form design, workflow orchestration, dashboards, and API integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jiandaoyun guides agents in designing low-code forms, workflows, dashboards, integrations, and platform comparisons for enterprise application scenarios.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Employees, business operators, and developers use this skill to plan and configure Jiandaoyun applications for CRM, approvals, project management, inventory workflows, dashboards, and API-based integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API examples may involve create, update, or delete actions against Jiandaoyun data. <br>
-Mitigation: Confirm data-changing API actions before use and test against non-production data when possible. <br>
-Risk: Jiandaoyun API keys may grant access to business data. <br>
-Mitigation: Use least-privilege API keys and avoid sharing secrets unless they are required for the task. <br>
+## Use Case:
 
+Developers, business operations teams, and enterprise automation builders use this skill to plan Jiandaoyun forms, workflows, dashboards, API integrations, and product-fit comparisons.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/jiandaoyun) <br>
-- [Jiandaoyun API base URL](https://api.jiandaoyun.com/api/v5) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions, API examples] <br>
-**Output Format:** [Markdown guidance with structured examples and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no tools or code execution are bundled with the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: API keys could be exposed while following integration guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep credentials private, use appropriately scoped keys, and avoid sharing keys in prompts, logs, or examples.
+
+Risk: Update or delete API calls could modify production data.
+
+Mitigation: Confirm permissions and test destructive operations on non-production data before using them in live workflows.
+
+## Reference(s):
+
+- [Jiandaoyun API base URL](https://api.jiandaoyun.com/api/v5)
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/jiandaoyun)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown guidance with JSON examples and API endpoint references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no executable behavior reported by security evidence.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

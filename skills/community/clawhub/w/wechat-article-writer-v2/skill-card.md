@@ -1,41 +1,55 @@
-## Description: <br>
-Guides agents in writing, editing, and formatting WeChat Official Account articles with structured Markdown and 40 advanced layout modules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents draft, edit, and format WeChat public-account articles using structured Markdown, required title and digest metadata blocks, and 40 advanced layout modules.
 
-## Publisher: <br>
-[suenkv](https://clawhub.ai/user/suenkv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suenkv](https://clawhub.ai/user/suenkv)
 
-## Use Case: <br>
-Content creators, marketers, and agents use this skill to draft long-form WeChat articles, product announcements, tutorials, proposals, and other structured posts in Markdown. It helps choose layout modules, define article metadata, and produce copy that can be converted into WeChat-compatible presentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated article files or edits could overwrite existing local content if written to a path the user did not intend. <br>
-Mitigation: Confirm the destination before writing files and review generated Markdown before replacing existing content. <br>
-Risk: Formatted article drafts can contain inaccurate, outdated, or unsuitable claims for publication. <br>
-Mitigation: Review factual claims, links, images, and calls to action before publishing to a WeChat Official Account. <br>
+## Use Case:
 
+External content creators, marketing teams, and agents use this skill to plan and write WeChat public-account articles with reusable article structures, Markdown elements, and custom fenced layout modules. It is suited for long-form posts, brand announcements, tutorials, proposals, product descriptions, case studies, and campaign articles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/suenkv/wechat-article-writer-v2) <br>
-- [WeChat article module reference](artifact/references/module_reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown using standard syntax and four-colon fenced layout modules] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should include explicit title and digest metadata modules for each article.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata; artifact frontmatter reports 2.1.0) <br>
+Risk: Generated public-facing article content, links, public-account IDs, or external image URLs may be inaccurate or unsuitable for publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the full article, links, account identifiers, and image URLs before publishing to WeChat.
+
+Risk: Incorrect custom fenced-block syntax or module fields can produce rendering failures or malformed WeChat layout output.
+
+Mitigation: Check generated module names, required fields, pipe-delimited columns, and four-colon delimiters against the module reference before conversion.
+
+## Reference(s):
+
+- [Wechat Article Writer V2 on ClawHub](https://clawhub.ai/suenkv/skills/wechat-article-writer-v2)
+- [Publisher profile: suenkv](https://clawhub.ai/user/suenkv)
+- [WeChat layout module reference](references/module_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown using standard Markdown plus custom four-colon fenced blocks for WeChat article metadata and layout modules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated articles should include explicit title and digest metadata blocks; public-facing content, links, public-account IDs, and external image URLs should be reviewed before publishing.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release metadata; artifact frontmatter and changelog mention 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

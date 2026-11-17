@@ -1,0 +1,29 @@
+{
+  "title": "Vibe site recovery and smart-charts integration",
+  "subtitle": "Session summary",
+  "main_takeaway": "Recovered vibe.egetech.ru from 502 and started integrating smart-charts analytics into ClawVision.",
+  "format_takeaway": "Incident response followed by feature prototyping and testing.",
+  "next_takeaway": "Finalize ClawVision analytics integration and test on real session exports.",
+  "flow": [
+    {"label": "Detect", "sub": "502 on vibe site"},
+    {"label": "→", "sub": ""},
+    {"label": "Recover", "sub": "disk cleanup + venv rebuild"},
+    {"label": "→", "sub": ""},
+    {"label": "Analyze", "sub": "smart-charts skill"},
+    {"label": "→", "sub": ""},
+    {"label": "Build", "sub": "session analytics MVP"}
+  ],
+  "metrics": [
+    {"title": "Uptime", "text": "vibe.egetech.ru restored"},
+    {"title": "Disk", "text": "24% used after cleanup"},
+    {"title": "Backups", "text": "7 retained going forward"}
+  ],
+  "dos": ["Rotate backups before deploy", "Recreate venv with correct ownership"],
+  "donts": ["Let disk hit 100%", "Run pip as root for www-data venv"],
+  "checklist": [
+    {"text": "Site recovered", "status": "ready"},
+    {"text": "Backup rotation configured", "status": "ready"},
+    {"text": "ClawVision charts MVP", "status": "pending"}
+  ],
+  "next_steps": ["Test ClawVision with real session", "Update SKILL.md workflow", "Add analytics tab to PPTX"]
+}

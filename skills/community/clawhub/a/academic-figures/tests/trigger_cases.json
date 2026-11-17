@@ -1,0 +1,246 @@
+{
+ "version": 1,
+ "note": "trigger 触发基准（v7.8.0 批次2·B3）：20 正例=图型中英高频表述，20 负例=竞品分类学（纯统计/数据清洗/写作/代码调试/文献检索/设计排除 pie·3D/仪表盘/plotly/图像编辑）；负例必须全部不触发。",
+ "cases": [
+  {
+   "id": "P01",
+   "label": "pos",
+   "family": "km",
+   "text": "帮我画一张 KM 生存曲线，标注中位生存时间和风险表"
+  },
+  {
+   "id": "P02",
+   "label": "pos",
+   "family": "km",
+   "text": "Kaplan-Meier survival curve for two treatment arms"
+  },
+  {
+   "id": "P03",
+   "label": "pos",
+   "family": "forest",
+   "text": "Meta 分析需要一个森林图，带异质性 I2"
+  },
+  {
+   "id": "P04",
+   "label": "pos",
+   "family": "roc",
+   "text": "用我的模型分数画 ROC 曲线，对比三个模型"
+  },
+  {
+   "id": "P05",
+   "label": "pos",
+   "family": "box",
+   "text": "三组数据画箱线图比较分布，加显著性标注"
+  },
+  {
+   "id": "P06",
+   "label": "pos",
+   "family": "violin",
+   "text": "小提琴图展示四个批次的表达量分布"
+  },
+  {
+   "id": "P07",
+   "label": "pos",
+   "family": "volcano",
+   "text": "画一张火山图，标出显著上调下调基因"
+  },
+  {
+   "id": "P08",
+   "label": "pos",
+   "family": "heatmap",
+   "text": "把这份相关矩阵画成热图"
+  },
+  {
+   "id": "P09",
+   "label": "pos",
+   "family": "bar",
+   "text": "各组疗效画柱状图，带误差棒"
+  },
+  {
+   "id": "P10",
+   "label": "pos",
+   "family": "scatter",
+   "text": "画散点图看剂量和响应的相关性，加回归线"
+  },
+  {
+   "id": "P11",
+   "label": "pos",
+   "family": "venn",
+   "text": "三个基因集画韦恩图看交集"
+  },
+  {
+   "id": "P12",
+   "label": "pos",
+   "family": "waterfall",
+   "text": "把化疗应答最佳变化画成瀑布图"
+  },
+  {
+   "id": "P13",
+   "label": "pos",
+   "family": "ridgeline",
+   "text": "十二个月的分布对比用山脊图展示"
+  },
+  {
+   "id": "P14",
+   "label": "pos",
+   "family": "dumbbell",
+   "text": "政策前后各指标对比画哑铃图"
+  },
+  {
+   "id": "P15",
+   "label": "pos",
+   "family": "nomogram",
+   "text": "把 logistic 模型转成列线图 nomogram"
+  },
+  {
+   "id": "P16",
+   "label": "pos",
+   "family": "pca",
+   "text": "PCA 主成分分析图，按分组上色加椭圆"
+  },
+  {
+   "id": "P17",
+   "label": "pos",
+   "family": "dca",
+   "text": "画临床预测模型的决策曲线 DCA"
+  },
+  {
+   "id": "P18",
+   "label": "pos",
+   "family": "calibration",
+   "text": "校准曲线 calibration plot，含 HL 检验"
+  },
+  {
+   "id": "P19",
+   "label": "pos",
+   "family": "swimmer",
+   "text": "临床试验受试者治疗时长画游泳图"
+  },
+  {
+   "id": "P20",
+   "label": "pos",
+   "family": "upset",
+   "text": "五个基因集的交集用 UpSet 图展示"
+  },
+  {
+   "id": "N01",
+   "label": "neg",
+   "family": "stats",
+   "text": "帮我跑一个 t 检验并给出 p 值和置信区间"
+  },
+  {
+   "id": "N02",
+   "label": "neg",
+   "family": "stats",
+   "text": "用方差分析比较三组均值，写成结果段落"
+  },
+  {
+   "id": "N03",
+   "label": "neg",
+   "family": "clean",
+   "text": "把这份数据的缺失值按中位数填充后导出 CSV"
+  },
+  {
+   "id": "N04",
+   "label": "neg",
+   "family": "clean",
+   "text": "把日期列统一格式并去掉重复行"
+  },
+  {
+   "id": "N05",
+   "label": "neg",
+   "family": "writing",
+   "text": "帮我润色这段摘要，语气更学术一些"
+  },
+  {
+   "id": "N06",
+   "label": "neg",
+   "family": "writing",
+   "text": "把这段中文结果翻译成地道的英文 Methods"
+  },
+  {
+   "id": "N07",
+   "label": "neg",
+   "family": "code",
+   "text": "pandas 读 CSV 报 KeyError，帮我调试这段代码"
+  },
+  {
+   "id": "N08",
+   "label": "neg",
+   "family": "code",
+   "text": "matplotlib 保存图片是空白的，帮我看看哪里错了"
+  },
+  {
+   "id": "N09",
+   "label": "neg",
+   "family": "search",
+   "text": "帮我检索近三年关于 SLE 生物制剂的文献"
+  },
+  {
+   "id": "N10",
+   "label": "neg",
+   "family": "search",
+   "text": "这篇论文的 DOI 是什么，帮我找到原文链接"
+  },
+  {
+   "id": "N11",
+   "label": "neg",
+   "family": "pie",
+   "text": "画个饼图展示各组患者占比"
+  },
+  {
+   "id": "N12",
+   "label": "neg",
+   "family": "pie3d",
+   "text": "做一个 3D 饼图，要有立体效果"
+  },
+  {
+   "id": "N13",
+   "label": "neg",
+   "family": "design3d",
+   "text": "帮我渲染一个 3D 分子结构的示意图"
+  },
+  {
+   "id": "N14",
+   "label": "neg",
+   "family": "dashboard",
+   "text": "做一个实时数据 dashboard，带筛选器"
+  },
+  {
+   "id": "N15",
+   "label": "neg",
+   "family": "plotly",
+   "text": "用 plotly 做一张可以鼠标悬停的交互式图"
+  },
+  {
+   "id": "N16",
+   "label": "neg",
+   "family": "edit",
+   "text": "帮我把这张实验照片的背景替换成白色"
+  },
+  {
+   "id": "N17",
+   "label": "neg",
+   "family": "edit",
+   "text": "把这张海报的分辨率放大到印刷级别"
+  },
+  {
+   "id": "N18",
+   "label": "neg",
+   "family": "table",
+   "text": "把这份汇总统计排成三线表格式"
+  },
+  {
+   "id": "N19",
+   "label": "neg",
+   "family": "design",
+   "text": "给学术海报排版配一套好看的视觉设计"
+  },
+  {
+   "id": "N20",
+   "label": "neg",
+   "family": "write",
+   "text": "帮我写一封投稿 cover letter"
+  }
+ ]
+}

@@ -1,40 +1,54 @@
-## Description: <br>
-Looks up English words, returns Chinese definitions, phonetics and part of speech, and generates two example sentences for vocabulary learning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+English dictionary lookup tool for querying English words to get Chinese definitions and two example sentences for vocabulary learning.
 
-## Publisher: <br>
-[mohaiyan3-tal](https://clawhub.ai/user/mohaiyan3-tal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mohaiyan3-tal](https://clawhub.ai/user/mohaiyan3-tal)
 
-## Use Case: <br>
-External users and developers use this skill to look up English vocabulary, get Chinese meanings, and produce short example sentences for language learning workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The built-in word list and template-generated examples are limited and may not be authoritative for important vocabulary decisions. <br>
-Mitigation: Treat results as vocabulary-learning assistance and verify meanings or examples against an authoritative dictionary when accuracy matters. <br>
-Risk: Future external dictionary API integrations could expose credentials if keys are placed in shared files. <br>
-Mitigation: Store API keys in environment variables or secret storage and avoid committing them with the skill files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Youdao Dictionary API](https://dict.youdao.com/jsonresult?q={word}) <br>
-- [Oxford Dictionaries Developer API](https://developer.oxforddictionaries.com/) <br>
+## Use Case:
 
+External users and language learners use this skill to look up English word meanings in Chinese, review pronunciation and part of speech, and get simple example sentences.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Plain text dictionary output with a JSON block from the CLI script; Markdown guidance in the skill instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a small built-in dictionary and template-generated fallback examples for unknown words.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Definitions may be incomplete because the bundled word list is small and fallback entries are not authoritative.
+
+Mitigation: Use the skill for lightweight vocabulary assistance and verify important meanings with an authoritative dictionary.
+
+Risk: External dictionary API behavior is outside the bundled local skill and may change when users extend the script.
+
+Mitigation: Review and configure any external API integration separately before relying on it for broad or authoritative dictionary results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mohaiyan3-tal/skills/english-dict)
+- [Youdao dictionary JSON endpoint](https://dict.youdao.com/jsonresult?q={word})
+- [Oxford Dictionaries API](https://developer.oxforddictionaries.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration guidance]
+
+**Output Format:** [Plain text dictionary output followed by JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes built-in fallback output when a word is not in the small local dictionary.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,62 @@
-## Description: <br>
-Structured episodic, semantic, and procedural memory framework for agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured episodic, semantic, and procedural memory framework for agents.
 
-## Publisher: <br>
-[DurtyDhiana](https://clawhub.ai/user/DurtyDhiana) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[durtydhiana](https://clawhub.ai/user/durtydhiana)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create local memory folders, templates, and routines that preserve episodic logs, durable knowledge, procedures, feedback, and post-compaction context. It also provides shell-based search guidance for recalling tagged decisions, procedures, blockers, and recent activity from memory files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local memory files may accumulate sensitive project data, personal information, credentials, or internal endpoints. <br>
-Mitigation: Treat the memory folder like sensitive project data; avoid storing passwords, API keys, tokens, private keys, auth headers, and unnecessary personal information, and redact internal endpoints where possible. <br>
-Risk: Search output may reveal sensitive information from durable memory files if copied into prompts, logs, or shared reports. <br>
-Mitigation: Review search results before sharing them outside the workspace and prune or archive stale memory files periodically. <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up persistent memory folders, templates, wake routines, feedback logs, and search workflows so agents can retain decisions, procedures, and recent context across sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DurtyDhiana/agent-memory-kit-2-1-0) <br>
-- [README](README.md) <br>
-- [Search and Recall Guide](SEARCH.md) <br>
-- [Installation Guide](INSTALLATION.md) <br>
-- [Search Quick Start](QUICKSTART-SEARCH.md) <br>
-- [Search Installation Guide](INSTALL-SEARCH.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and reusable templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory structures, logging templates, wake routine guidance, and search command patterns for agent workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: artifact/_meta.json and CHANGELOG.md) <br>
+Risk: Memory logs can contain sensitive project, credential, or personal context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the memory folder private and redact secrets or credentials before storing entries.
+
+Risk: Optional setup steps may alter shell profiles, local files, or repository state.
+
+Mitigation: Review AGENTS.md, HEARTBEAT.md, shell profile, chmod, git pull, and rm commands before applying them.
+
+Risk: Persisted memory can become stale or misleading over time.
+
+Mitigation: Treat stored memory as helpful context to verify, not as authoritative instructions.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/durtydhiana/skills/agent-memory-kit-2-1-0)
+- [Publisher profile](https://clawhub.ai/user/durtydhiana)
+- [README](artifact/README.md)
+- [Search and Recall documentation](artifact/SEARCH.md)
+- [Installation guide](artifact/INSTALLATION.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON search output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces file templates, local setup steps, wake-routine guidance, and search command patterns for an agent memory workflow.]
+
+## Skill Version(s):
+
+2.1.0 (source: artifact/_meta.json and CHANGELOG.md; ClawHub release version 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

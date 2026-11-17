@@ -1,40 +1,55 @@
-## Description: <br>
-Auto-generates a daily Bitcoin market brief from BTCvision.org with price, 24-hour change, Fear & Greed, halving countdown, and AI prediction details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a daily Bitcoin market brief from BTC-vision.org data, including price, Fear and Greed Index, halving countdown, and AI prediction summary.
 
-## Publisher: <br>
-[welove111](https://clawhub.ai/user/welove111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[welove111](https://clawhub.ai/user/welove111)
 
-## Use Case: <br>
-Developers, operators, and community managers use this skill to fetch public BTCvision market data and prepare daily Bitcoin summaries for morning updates or Telegram, Discord, or Slack channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A scheduled brief may be posted to an unintended public, shared, or business chat channel. <br>
-Mitigation: Verify the destination channel before enabling delivery and require confirmation for posts to public, shared, or business-related channels. <br>
+## Use Case:
 
+External users and operators use this skill to produce recurring Bitcoin market summaries for morning briefings or configured Telegram, Discord, or Slack channels.
 
-## Reference(s): <br>
-- [BTCvision](https://btcvision.org) <br>
-- [BTCvision MCP endpoint](https://btcvision.org/.netlify/functions/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/welove111/btcvision-daily-brief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown daily brief with inline HTTP request and cron examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live market values retrieved from BTCvision.org and optional channel delivery guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+Risk: Automated posting or scheduled runs could publish BTCvision-branded market reports to external channels without adequate user review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual approval and verify each Telegram, Discord, or Slack channel before enabling posting or cron execution.
+
+Risk: The fixed $350,000 AI target and donation footer may be interpreted as promotional or speculative financial content.
+
+Mitigation: Independently verify, clearly label, or remove promotional and speculative content before distributing the brief.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/welove111/skills/btcvision-daily-brief)
+- [BTC-vision.org](https://btc-vision.org)
+- [BTC-vision MCP endpoint](https://btc-vision.org/.netlify/functions/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown daily brief with API request examples and scheduling/channel posting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live BTC-vision.org data; no API key is described in the artifact.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

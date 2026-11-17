@@ -1,0 +1,12 @@
+interface:
+  display_name: "UserTold"
+  short_description: "Capture interviews and return source-linked evidence"
+  default_prompt: "Use $usertold to capture or review in-product interviews and prepare a source-linked research handoff."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "usertold"
+      description: "UserTold interview capture, recordings, evidence, and work"
+      transport: "streamable_http"
+      url: "https://mcp.usertold.ai/mcp"

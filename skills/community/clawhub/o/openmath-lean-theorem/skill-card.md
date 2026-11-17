@@ -1,42 +1,61 @@
-## Description: <br>
-Configures Lean environments, installs external proof skills, runs preflight checks, and guides the workflow for proving downloaded OpenMath Lean theorems locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures Lean environments, installs external proof skills, runs preflight checks, and guides the workflow for proving downloaded OpenMath Lean theorems locally.
 
-## Publisher: <br>
-[bennyzhe](https://clawhub.ai/user/bennyzhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bennyzhe](https://clawhub.ai/user/bennyzhe)
 
-## Use Case: <br>
-Developers and theorem-proving engineers use this skill to prepare a downloaded OpenMath Lean workspace, check the local Lean and Mathlib setup, and follow a proof workflow through final build verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can run local commands and optionally install external Lean proof skills. <br>
-Mitigation: Use it only for the OpenMath Lean theorem workflow, review the external leanprover/skills source before using npx or auto-install, prefer a project-local skills directory such as .codex/skills, and run preflight only against the intended theorem workspace. <br>
+## Use Case:
 
+Developers and engineers use this skill to prepare a local Lean theorem workspace, check the Lean toolchain and required proof skills, iterate on proofs, and verify the final build before submission.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bennyzhe/openmath-lean-theorem) <br>
-- [Lean proof skills](https://github.com/leanprover/skills) <br>
-- [OpenMath Lean Workspace Preflight](references/preflight.md) <br>
-- [OpenMath Lean Proof Playbook](references/proof_playbook.md) <br>
-- [Lean Language Specification](references/languages.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to run local Lean, Lake, Elan, Python, npx, and optional git-based installation commands when the user chooses those steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Installer guidance may place mutable third-party Lean skills into active agent skill directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify the leanprover-skills package and repository commit, install into a staging or project-local directory first, and inspect copied skill files before active use.
+
+Risk: The OPENMATH_LEAN_SKILL_REPO_URL override can redirect the source used for auto-install.
+
+Mitigation: Do not set OPENMATH_LEAN_SKILL_REPO_URL unless the repository is fully trusted and reviewed.
+
+Risk: Auto-install changes the selected skill directory by cloning and copying external skill files.
+
+Mitigation: Use auto-install only with an explicit install directory and prefer project-local paths for review before broader deployment.
+
+## Reference(s):
+
+- [OpenMath Lean Workspace Preflight](references/preflight.md)
+- [OpenMath Lean Proof Playbook](references/proof_playbook.md)
+- [Lean Language Specification](references/languages.md)
+- [leanprover/skills](https://github.com/leanprover/skills)
+- [OpenMath Lean Theorem on ClawHub](https://clawhub.ai/bennyzhe/skills/openmath-lean-theorem)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Lean code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local commands that inspect or modify Lean workspaces and may guide installation of external proof skills.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence; artifact frontmatter says v1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

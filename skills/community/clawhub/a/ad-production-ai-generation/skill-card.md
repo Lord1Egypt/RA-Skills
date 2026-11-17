@@ -1,40 +1,57 @@
-## Description: <br>
-AI生成 helps agents manage AI generation tasks for advertising creative, including copy, marketing images, video assets, and batch creative materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps generate and manage advertising creative content, including copy, marketing images, video materials, prompt optimization, result selection, and deduplication.
 
-## Publisher: <br>
-[JEyeshield](https://clawhub.ai/user/JEyeshield) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeyeshield](https://clawhub.ai/user/jeyeshield)
 
-## Use Case: <br>
-Marketing and advertising teams use this skill through an agent to create, inspect, cancel, and select AI-generated ad creative materials from prompts and generation parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and generation parameters may expose confidential campaign details or other sensitive task data. <br>
-Mitigation: Treat prompts and generation parameters as visible task data and avoid entering secrets or confidential campaign information. <br>
-Risk: Batch creative generation can create excessive volume in shared or high-throughput environments. <br>
-Mitigation: Apply count limits, concurrency limits, and per-user scoping when operating the skill in shared or high-volume settings. <br>
+## Use Case:
 
+External teams and developers use this skill to create, inspect, cancel, select, rank, optimize, and deduplicate advertising creative generation tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JEyeshield/ad-production-ai-generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [OpenClaw action responses and events containing task IDs, task status, generated material metadata, prompts, model names, parameters, and optional quality scores.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generation results may include multiple candidates per task and support selecting, rejecting, listing, cancelling, and ranking results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release evidence) <br>
+Risk: User-controlled generation counts are not bounded, creating an availability risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set a strict maximum generation count and enforce queue and concurrency limits before production use.
+
+Risk: Cancellation does not stop scheduled work, so cancelled tasks may continue or emit completion events.
+
+Mitigation: Make cancellation interrupt pending scheduled work and prevent completion events for cancelled tasks.
+
+Risk: The release currently appears to use mock in-memory generation.
+
+Mitigation: Validate production behavior and persistence requirements before using it for live advertising workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jeyeshield/skills/ad-production-ai-generation)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON command responses with task identifiers, task status, generated result records, optimized prompts, suggestions, and short text messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generation count, model, prompt, and optional task parameters are provided by the caller; no external binaries are required by the release metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

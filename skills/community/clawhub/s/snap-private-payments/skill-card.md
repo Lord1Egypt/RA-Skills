@@ -1,46 +1,59 @@
-## Description: <br>
-Private agent-to-agent payments on Solana using zero-knowledge proofs. Deposit, withdraw, list pools, and estimate fees. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Private agent-to-agent payments on Solana using zero-knowledge proofs. Deposit, withdraw, list pools, and estimate fees.
 
-## Publisher: <br>
-[agentzeny](https://clawhub.ai/user/agentzeny) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentzeny](https://clawhub.ai/user/agentzeny)
 
-## Use Case: <br>
-External developers and agents use this skill to operate SNAP private payment workflows on Solana, including listing pools, depositing funds, withdrawing funds, estimating withdrawal fees, and checking shielded balances. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate real Solana payment workflows and may move funds. <br>
-Mitigation: Use small test amounts and a limited wallet first, and require explicit approval before every deposit or withdrawal. <br>
-Risk: Withdrawals and balance checks use sensitive shielded-fund secrets such as notes and viewing keys. <br>
-Mitigation: Keep notes and viewing keys out of logs and shared prompts, and require approval before any command uses them. <br>
-Risk: The evidence notes missing shared helper code and external SDK behavior that should be reviewed before deployment. <br>
-Mitigation: Review the full SNAP SDK and helper implementation before using the skill with production funds. <br>
-Risk: Untrusted RPC or relayer endpoints can affect transaction handling and privacy assumptions. <br>
-Mitigation: Use trusted RPC and relayer endpoints configured explicitly through the skill environment. <br>
+## Use Case:
 
+External agents and developers use this skill to make private Solana payments through SNAP by listing pools, depositing into a shielded pool, withdrawing to a recipient address, estimating withdrawal fees, and checking shielded balances.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentzeny/snap-private-payments) <br>
-- [SNAP SDK](https://www.npmjs.com/package/snap-solana-sdk) <br>
-- [SNAP Website](https://agentzeny.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text responses, JSON pool listings, and setup/configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return Solana transaction signatures, fee estimates, pool listings, or shielded balance text depending on the command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter and server release evidence) <br>
+Risk: Deposits and withdrawals can move funds based on broad natural-language commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a transaction preview and explicit user confirmation before any deposit or withdrawal is submitted.
+
+Risk: Dependency installation is not pinned to an exact package version.
+
+Mitigation: Pin snap-solana-sdk to a reviewed version and verify the package source before release.
+
+Risk: Viewing keys, notes, RPC endpoints, and relayers can affect payment privacy.
+
+Mitigation: Document how these values are handled and warn users before sharing them with agents, RPC providers, or relayers.
+
+## Reference(s):
+
+- [SNAP public project](https://github.com/agentzeny/snap-public)
+- [snap-solana-sdk package](https://www.npmjs.com/package/snap-solana-sdk)
+- [Agentzeny website](https://agentzeny.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, configuration guidance]
+
+**Output Format:** [Plain text status messages, fee estimates, transaction signatures, and JSON pool listings.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SNAP_POOL_ADDRESS and SNAP_RPC_URL; SNAP_RELAYER_URL is optional.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

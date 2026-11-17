@@ -1,38 +1,58 @@
-## Description: <br>
-Agent Creator helps create a named OpenClaw agent identity, generate SOUL.md, IDENTITY.md, and AGENTS.md, and package the result as a .skill file for ClawHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a new AI agent identity by generating SOUL.md, IDENTITY.md, and AGENTS.md and packaging them as a .skill file for ClawHub.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to create, configure, and package a new named agent persona with identity, personality, memory, and operational rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing generated identity files can overwrite workspace behavior and cause the agent to automatically read, write, or delete memory and context files. <br>
-Mitigation: Review AGENTS.md, SOUL.md, and IDENTITY.md before installation, back up the target workspace, adjust memory rules as needed, and restart the gateway only when ready for the new behavior to take effect. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to create, configure, package, and optionally publish named agent persona bundles for OpenClaw workspaces.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/maverick-software/agent-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown identity files and a .skill zip archive, with CLI commands for packaging, publishing, and installation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces SOUL.md, IDENTITY.md, AGENTS.md, and a packaged .skill file for a named agent identity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated identity files can overwrite important workspace files and create persistent agent instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated files before installation, back up target workspace files, and copy files only into the intended workspace.
+
+Risk: Persona text and custom slugs have insufficient safeguards for untrusted or unattended workflows.
+
+Mitigation: Use trusted single-line persona inputs, keep custom slugs to simple lowercase hyphen-case names, and avoid unattended publishing or installation until validation is fixed.
+
+Risk: Restarting OpenClaw services can disrupt active sessions.
+
+Mitigation: Restart OpenClaw services only when session interruption is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/maverick-software/skills/agent-creator)
+- [Publisher profile](https://clawhub.ai/user/maverick-software)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with generated workspace files and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces identity templates and a packaged .skill archive; publishing and installation steps remain user-controlled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

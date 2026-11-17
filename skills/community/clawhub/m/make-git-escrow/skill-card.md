@@ -1,41 +1,58 @@
-## Description: <br>
-Create a new git escrow bounty for a test suite. Use when the user wants to submit a challenge with escrowed token rewards for passing a failing test suite. Requires the git-escrows CLI (npm i -g git-escrows). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a git escrow bounty for a failing test suite by guiding parameter collection and running the git-escrows submit command.
 
-## Publisher: <br>
-[mlegls](https://clawhub.ai/user/mlegls) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mlegls](https://clawhub.ai/user/mlegls)
 
-## Use Case: <br>
-Developers and engineers use this skill to create a git escrow bounty for a failing test suite by collecting repository, commit, reward, token, oracle, and arbiter inputs, then submitting them through the git-escrows CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create live blockchain escrow transactions that lock ERC20 tokens using wallet credentials. <br>
-Mitigation: Use a dedicated low-balance wallet and require the agent to show the repo, commit, network, reward, token, oracle, arbiter, and exact command before approving submission. <br>
-Risk: The skill relies on a `.env` file containing a private key. <br>
-Mitigation: Protect the `.env` file, avoid sharing it with the agent beyond the required local execution context, and prefer a trusted pinned git-escrows CLI. <br>
+## Use Case:
 
+Developers and maintainers use this skill to create escrowed token rewards for test-suite challenges, including checking CLI and wallet configuration, collecting repository and contract parameters, submitting the escrow, and reporting fulfillment instructions.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/arkhai-io/git-commit-trading) <br>
-- [ClawHub skill page](https://clawhub.ai/mlegls/make-git-escrow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports escrow submission details and follow-up commands when execution succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can lock ERC20 tokens using a wallet private key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated low-value wallet and require final manual confirmation of chain, token, amount, arbiter, oracle, and recipient before any transaction is signed.
+
+Risk: The skill may run unpinned git-escrows package code.
+
+Mitigation: Verify the git-escrows package source and version before installing or executing it.
+
+Risk: A real private key could be exposed through chat, command-line arguments, or shell history.
+
+Mitigation: Keep PRIVATE_KEY in a local .env file and avoid entering a real private key in a command line or chat transcript.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/arkhai-io/git-commit-trading)
+- [ClawHub skill page](https://clawhub.ai/mlegls/skills/make-git-escrow)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute git-escrows and git commands after collecting user parameters and verifying .env configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -32,6 +32,10 @@ DEFAULT_TOOLS_MD = os.environ.get(
     "HUO15_TOOLS_MD", str(Path.home() / ".huo15" / "tools.md")
 )
 
+# 工作区目录模式（OpenClaw 为每个企微/辉火用户创建的独立工作区）
+_WORKSPACE_PATTERN = re.compile(r'(workspace-(?:wecom|huihuo)-default-dm-[^/]+)')
+_OPENCLAW_HOME = Path.home() / ".openclaw"
+
 # tools.md 中本技能维护的配置块标记
 BLOCK_START = "<!-- huo15-odoo:start -->"
 BLOCK_END = "<!-- huo15-odoo:end -->"
@@ -111,9 +115,10 @@ def _parse_block(text: str) -> dict:
 
 
 def load_config(tools_md: str | None = None) -> dict:
-    """读取配置：优先环境变量，再读 tools.md，最后回退 DEFAULTS。"""
+    """读取配置：优先显式参数 > 环境变量 > 工作区检测 > ~/.huo15/tools.md"""
     cfg = dict(DEFAULTS)
-    path = Path(tools_md or DEFAULT_TOOLS_MD)
+    md = tools_md or os.environ.get("HUO15_TOOLS_MD") or _detect_workspace_tools_md() or DEFAULT_TOOLS_MD
+    path = Path(md)
     if path.exists():
         cfg.update(_parse_block(path.read_text(encoding="utf-8")))
     # 环境变量覆盖（CI / 临时使用，避免落盘）
@@ -132,8 +137,9 @@ def load_config(tools_md: str | None = None) -> dict:
 
 
 def save_config(cfg: dict, tools_md: str | None = None) -> str:
-    """把配置写入 tools.md 的标记块（其余内容保留），并把文件权限设为 0600。"""
-    path = Path(tools_md or DEFAULT_TOOLS_MD)
+    """把配置写入 tools.md（自动检测工作区），权限 0600。"""
+    md = tools_md or os.environ.get("HUO15_TOOLS_MD") or _detect_workspace_tools_md() or DEFAULT_TOOLS_MD
+    path = Path(md)
     path.parent.mkdir(parents=True, exist_ok=True)
     cfg = dict(cfg)
     cfg["url"] = normalize_url(cfg.get("url"))
@@ -179,6 +185,22 @@ def normalize_url(url: str) -> str:
     if url and not url.startswith(("http://", "https://")):
         url = "https://" + url
     return url
+
+
+def _detect_workspace_tools_md() -> str | None:
+    """检测当前是否在 OpenClaw 工作区目录内运行，返回 per-user tools.md 路径。
+
+    当 agent 在 workspace-wecom-default-dm-<user> 或 workspace-huihuo-default-dm-*
+    目录内运行脚本时，自动使用 <workspace>/.huo15/tools.md 而非全局 ~/.huo15/tools.md。
+    这样每个企微用户有独立的 Odoo 凭据，互不干扰。
+    """
+    cwd = Path.cwd().resolve()
+    m = _WORKSPACE_PATTERN.search(str(cwd))
+    if m:
+        ws_dir = _OPENCLAW_HOME / m.group(1)
+        tools_path = ws_dir / ".huo15" / "tools.md"
+        return str(tools_path)
+    return None
 
 
 # --------------------------------------------------------------------------- #
@@ -299,9 +321,11 @@ class Odoo:
         return self.execute_kw(model, "unlink", [ids])
 
     def name_search(self, model, name, args=None, limit=10):
-        return self.execute_kw(
-            model, "name_search", [], {"name": name, "args": args or [], "limit": limit}
-        )
+        """Search records by name. Odoo 19 renamed `args` → `domain`."""
+        kwargs = {"name": name, "limit": limit}
+        if args:
+            kwargs["domain"] = args
+        return self.execute_kw(model, "name_search", [], kwargs)
 
     def fields_get(self, model, attributes=("string", "type")):
         return self.execute_kw(

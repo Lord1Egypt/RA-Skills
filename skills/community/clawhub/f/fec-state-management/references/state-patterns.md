@@ -1,15 +1,15 @@
-# 状态管理模式
+#State management mode
 
-## 所有权审查清单
+## Ownership Review Checklist
 
-- 每个状态字段有唯一归属：本地状态、表单状态、服务端缓存、URL 状态、全局 Store 或浏览器持久化。
-- 派生值由源状态计算得出，而不是通过 effect 或 watcher 手动同步。
-- URL 状态用于可分享、刷新后需保留的视图状态，如筛选、搜索、排序和分页。
-- 服务端数据保留在请求缓存中；全局 Store 仅存放选中的 ID、本地偏好或乐观更新提示。
-- 持久化的客户端状态需有白名单、schema 版本号、迁移路径和敏感字段排除规则。
-- Store 的 action 以领域事件命名，而非组件处理器命名。
+- Each status field has a unique ownership: local status, form status, server-side cache, URL status, global Store or browser persistence.
+- Derived values are calculated from the source state rather than manually synchronized via effects or watchers.
+- URL state is used for view states that are shareable and need to be retained after refresh, such as filtering, searching, sorting, and paging.
+- Server-side data is kept in the request cache; the global Store only stores selected IDs, local preferences, or optimistic update prompts.
+- Persistent client state requires a whitelist, schema version number, migration path and sensitive field exclusion rules.
+- Store actions are named after domain events, not component processors.
 
-## React Store 形状示例
+## React Store shape example
 
 ```tsx
 import { create } from "zustand";
@@ -41,7 +41,7 @@ export const useCartStore = create<CartState>()(
 );
 ```
 
-选择器应尽可能返回稳定的原始值或经过 memo 的切片：
+Selectors should return stable raw values or memo-encoded slices whenever possible:
 
 ```tsx
 const itemCount = useCartStore((state) =>
@@ -49,9 +49,9 @@ const itemCount = useCartStore((state) =>
 );
 ```
 
-## URL 状态边界
+## URL status boundaries
 
-当另一个用户应能打开相同视图，或刷新后需要保留视图时，使用 URL 状态。
+Use URL state when another user should be able to open the same view, or when the view needs to be preserved after a refresh.
 
 ```tsx
 import { useSearchParams } from "react-router-dom";
@@ -72,9 +72,9 @@ export function useReportFilters() {
 }
 ```
 
-## 持久化适配器边界
+## Persistence adapter boundary
 
-仅持久化稳定的客户端偏好设置或非敏感草稿。序列化逻辑放在组件外部。
+Only persist stable client preferences or non-sensitive drafts. Serialization logic is placed outside the component.
 
 ```ts
 interface PersistedGridState {
@@ -101,9 +101,9 @@ export function writeGridState(state: PersistedGridState): void {
 }
 ```
 
-## SSR 与请求隔离
+## SSR is isolated from requests
 
-- 当状态可能包含用户数据时，每次请求需创建独立的 Store。
-- 服务端渲染期间不要读取 `window`、`localStorage` 或 `document`。
-- 水合后再加载持久化偏好，并在水合前提供确定性默认值。
-- 服务端缓存脱水与纯客户端全局 Store 分开处理。
+- When the state may contain user data, a separate Store needs to be created for each request.
+- Do not read `window`, `localStorage` or `document` during server rendering.
+- Reload persistence preferences after hydration and provide deterministic defaults before hydration.
+- Server-side cache dehydration is handled separately from pure client-side global Store.

@@ -1,46 +1,58 @@
-## Description: <br>
-Fast PPT converts PDFs and documents into editable PPTX decks through the siping.me/pingPPT cloud service and returns a ppt.siping.me download link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts PDFs and other documents into editable PPTX presentations through cloud processing and returns a ppt.siping.me download link after user consent for third-party upload.
 
-## Publisher: <br>
-[sipingme](https://clawhub.ai/user/sipingme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sipingme](https://clawhub.ai/user/sipingme)
 
-## Use Case: <br>
-External users and agents use Fast PPT to turn PDF, Word, Markdown, or text documents into editable presentation decks. It supports AI theme layout and PDF-only conversion, with explicit user consent required before uploading files to the third-party cloud service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User documents are uploaded to the siping.me/pingPPT cloud service for processing. <br>
-Mitigation: Tell the user the file will leave their machine and get clear confirmation before every upload. <br>
-Risk: Confidential, regulated, medical, financial, identity, customer, or contract-restricted documents may be inappropriate for third-party processing. <br>
-Mitigation: Decline by default for sensitive files unless the user confirms they have permission and accepts the risk. <br>
-Risk: AI theme mode may send document content to an LLM as part of slide generation. <br>
-Mitigation: Explain the AI processing path and offer PDF-only conversion when the user wants to avoid LLM-based re-layout, while still noting that cloud upload is required. <br>
-Risk: Generated download links are temporary and should not be treated as long-term storage. <br>
-Mitigation: Tell the user to download the PPTX promptly and avoid using the link as a durable archive. <br>
+## Use Case:
 
+External users and agents use Fast PPT to convert PDFs, DOCX, Markdown, TXT, and presentation files into editable PPTX outputs with either AI theme layout or PDF-only conversion. It is appropriate only when the user accepts third-party cloud processing of the uploaded file.
 
-## Reference(s): <br>
-- [Fast PPT on ClawHub](https://clawhub.ai/sipingme/fast-ppt) <br>
-- [pingPPT theme gallery](https://ppt.siping.me) <br>
-- [Publisher profile](https://clawhub.ai/user/sipingme) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown with curl command examples and download-link text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns the API-provided ppt.siping.me download URL; optional local PPTX download is agent-controlled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Whole user documents are uploaded to siping.me/pingPPT for cloud processing, so confidential, regulated, personal, medical, financial, or contract-restricted content may leave the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Warn users before upload, obtain explicit consent, and avoid or redact sensitive files; use local tooling when cloud upload is not acceptable.
+
+Risk: The security evidence reports that whole documents are sent to a third-party service over plain HTTP.
+
+Mitigation: Install and use the skill only when this transport risk is acceptable, and prefer a verified HTTPS API endpoint before uploading sensitive material.
+
+Risk: AI theme mode may send document contents to an LLM for slide restructuring.
+
+Mitigation: Use PDF-only conversion when LLM processing is not desired, while still treating the cloud upload itself as third-party data transfer.
+
+## Reference(s):
+
+- [Fast PPT homepage](https://ppt.siping.me)
+- [ClawHub Fast PPT skill page](https://clawhub.ai/sipingme/skills/fast-ppt)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown response with a hosted PPTX download link and optional inline curl commands for agent execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated PPTX files are delivered through siping.me download links and are described by the skill as temporary cloud-hosted outputs.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

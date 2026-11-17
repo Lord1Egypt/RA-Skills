@@ -1,42 +1,52 @@
-## Description: <br>
-Guides agents through multi-round independent analysis where each round produces a complete, final-quality solution before synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through multi-round independent deep thinking where each round produces a complete solution before final synthesis.
 
-## Publisher: <br>
-[stofancy](https://clawhub.ai/user/stofancy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stofancy](https://clawhub.ai/user/stofancy)
 
-## Use Case: <br>
-Developers, engineers, and analysts use this skill when they need an agent to explore complex designs, decisions, strategies, or risk assessments through several independent rounds before producing a final report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scratch files may contain sensitive or regulated problem details. <br>
-Mitigation: Confirm the working directory before use and apply the same data-handling controls as the source material. <br>
-Risk: Automatic cleanup can remove intermediate files that may be needed for audit or review. <br>
-Mitigation: Ask the agent to retain intermediate files when reviewability or traceability is required. <br>
-Risk: Broad trigger phrases could start a multi-round workflow when a lighter response would be enough. <br>
-Mitigation: Invoke the skill explicitly for complex analysis and confirm scope before running multiple rounds. <br>
+## Use Case:
 
+Developers, architects, and decision makers use this skill to explore complex design, strategy, innovation, and risk-assessment problems through independent solution rounds followed by a synthesized final report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stofancy/reinforced-thinking-mode) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown files and concise agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a reinforced-thinking working directory, writes problem and round files, synthesizes final_report.md, and normally removes intermediate files after completion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence) <br>
+Risk: The workflow writes problem and round files in the workspace and deletes intermediate drafts by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to preserve intermediate files before using the skill when auditability, review, or retention is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stofancy/skills/reinforced-thinking-mode)
+- [English skill definition](artifact/SKILL.md)
+- [English publish description](artifact/README.md)
+- [Chinese skill definition](artifact/skill_cn.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown files and synthesized report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a reinforced-thinking workspace with problem, round, and final report files; intermediate drafts are deleted by default unless retention is requested.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

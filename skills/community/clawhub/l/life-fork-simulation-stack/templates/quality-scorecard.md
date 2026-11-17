@@ -1,5 +1,7 @@
 # 报告质量评分模板
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
 用于每份 HTML 用户报告之后。
 
 ## 生成前校准

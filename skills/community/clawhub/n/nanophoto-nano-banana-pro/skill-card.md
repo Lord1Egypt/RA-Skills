@@ -1,45 +1,61 @@
-## Description: <br>
-Generate or edit AI images with the NanoPhoto.AI Nano Banana Pro API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate or edit AI images with the NanoPhoto.AI Nano Banana Pro API, including text-to-image generation, image-to-image editing from public image URLs, generation status checks, and polling until completion.
 
-## Publisher: <br>
-[nanophotohq](https://clawhub.ai/user/nanophotohq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nanophotohq](https://clawhub.ai/user/nanophotohq)
 
-## Use Case: <br>
-External users and developers use this skill to generate images from prompts or edit images from public image URLs through NanoPhoto.AI, then return generation status and final image links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, public image URLs, and generation metadata are sent to the NanoPhoto service. <br>
-Mitigation: Do not submit sensitive, private, regulated, or proprietary image content unless approved for third-party processing. <br>
-Risk: The skill requires a NanoPhoto API key. <br>
-Mitigation: Configure NANOPHOTO_API_KEY through the platform's secure environment setting and avoid entering keys directly in command-line arguments when possible. <br>
-Risk: Edit mode operates on public image URLs supplied by the user. <br>
-Mitigation: Use only image URLs you are authorized to process and are comfortable sending to NanoPhoto. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to generate new images from prompts or edit images from public URLs through NanoPhoto.AI's Nano Banana Pro API. It is useful when an agent needs to submit a request, poll for completion, and return the resulting image URL and status details.
 
-## Reference(s): <br>
-- [Nano Banana Pro Image Generation API Reference](references/api.md) <br>
-- [NanoPhoto.AI homepage](https://nanophoto.ai) <br>
-- [NanoPhoto API key settings](https://nanophoto.ai/settings/apikeys) <br>
-- [ClawHub skill page](https://clawhub.ai/nanophotohq/nanophoto-nano-banana-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NANOPHOTO_API_KEY; edit mode accepts up to 8 public image URLs and polling may take 30-300 seconds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Image prompts and public edit-image URLs are sent to NanoPhoto.AI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content you are comfortable sharing with NanoPhoto.AI, and avoid confidential images or sensitive prompt content unless NanoPhoto's data handling is acceptable.
+
+Risk: API keys can be exposed if passed on shared command lines or logged systems.
+
+Mitigation: Configure NANOPHOTO_API_KEY through the skill environment or another secure environment-variable mechanism instead of passing it with --api-key.
+
+Risk: Edit mode requires public image URLs and does not support local files or base64 uploads.
+
+Mitigation: Provide only authorized, publicly reachable image URLs and limit edit requests to at most eight input images.
+
+## Reference(s):
+
+- [NanoPhoto.AI](https://nanophoto.ai)
+- [NanoPhoto API Key Settings](https://nanophoto.ai/settings/apikeys)
+- [Nano Banana Pro API Reference](references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/nanophotohq/skills/nanophoto-nano-banana-pro)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/nanophotohq)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON API examples, and final image result details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return NanoPhoto generation IDs, status responses, progress values, and final image URLs from the third-party service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server evidence release version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

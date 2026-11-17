@@ -1,44 +1,57 @@
-## Description: <br>
-Queries open formal verification theorems from OpenMath, fetches theorem details, and scaffolds local Lean or Rocq proof workspaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries open formal verification theorems from the OpenMath platform for Lean or Rocq discovery, theorem detail lookup, and local proof workspace scaffolding.
 
-## Publisher: <br>
-[bennyzhe](https://clawhub.ai/user/bennyzhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bennyzhe](https://clawhub.ai/user/bennyzhe)
 
-## Use Case: <br>
-Developers and formal verification users use this skill to discover open OpenMath theorems, inspect theorem details, and create local proof scaffolds for Lean or Rocq. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper scripts contact the disclosed OpenMath service and depend on the returned theorem data. <br>
-Mitigation: Use the configured OpenMath endpoints intentionally and review downloaded theorem source before running proof tools. <br>
-Risk: The download workflow writes local Lean or Rocq scaffold files and can replace an existing target directory when forced. <br>
-Mitigation: Prefer project-scoped configuration and avoid --force unless the output directory is safe to replace. <br>
+## Use Case:
 
+Developers and formal verification engineers use this skill to list open OpenMath theorem bounties, inspect theorem details, and download Lean or Rocq scaffolds for local proof work.
 
-## Reference(s): <br>
-- [OpenMath Setup Flow](references/init-setup.md) <br>
-- [OpenMath Reward System](references/reward_overview.md) <br>
-- [OpenMath Platform](https://openmath.shentu.org) <br>
-- [OpenMath API Host](https://openmath-be.shentu.org) <br>
-- [mathlib4](https://github.com/leanprover-community/mathlib4.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, terminal text, JSON theorem metadata, and generated Lean or Rocq workspace files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a preferred Lean or Rocq language setting and may write local scaffold files under the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: evidence.release.version; artifact frontmatter says v1.0.0) <br>
+Risk: The skill can read or create an OpenMath preferences file and use configured OpenMath endpoint overrides.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer project-local configuration, avoid storing submission or authorization fields unless needed, and only set custom endpoint environment variables when the endpoint is trusted.
+
+Risk: Downloaded Lean or Rocq theorem source comes from a remote service and may affect local build or proof workflows.
+
+Mitigation: Review downloaded theorem source and scaffold files before compiling, proving, or submitting work.
+
+## Reference(s):
+
+- [Init Setup](references/init-setup.md)
+- [OpenMath Reward System](references/reward_overview.md)
+- [OpenMath Platform](https://openmath.shentu.org)
+- [OpenMath API Host](https://openmath-be.shentu.org)
+- [mathlib4](https://github.com/leanprover-community/mathlib4.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated Lean or Rocq workspace files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create OpenMath preference JSON and theorem workspace files after setup; contacts the documented OpenMath API.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter reports v1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

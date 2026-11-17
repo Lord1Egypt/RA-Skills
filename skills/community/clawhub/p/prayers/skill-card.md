@@ -1,40 +1,53 @@
-## Description: <br>
-Build a personal prayer system for any faith tradition with scheduling, logging, and spiritual tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a personal prayer system for any faith tradition with scheduling, logging, and spiritual tracking.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to configure and maintain a private prayer practice across faith traditions, including prayer schedules, reminders, logs, intentions, saved prayers, and reflections. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prayer habits, intentions, and reflections may be sensitive when stored in local files under ~/prayers/. <br>
-Mitigation: Use the skill only on devices where local prayer records are acceptable, protect or avoid syncing the folder as needed, and delete entries that should not be retained. <br>
-Risk: Prayer suggestions can feel prescriptive or misaligned with a user's faith tradition. <br>
-Mitigation: Ask for the user's tradition and preferences first, avoid treating any tradition as the default, and keep suggestions respectful and optional. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Prayers on ClawHub](https://clawhub.ai/ivangdavila/prayers) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+Individuals use this skill to set up and maintain a private prayer practice across faith traditions, including schedules, reminders, logs, intentions, saved prayers, and reflections.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and local markdown file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill directs the agent to create and maintain local files under ~/prayers/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may store sensitive spiritual information, including faith tradition, prayer routines, intentions, and reflections, in local files.
+
+Mitigation: Use it on a private device or account, review the local ~/prayers/ files periodically, and delete or secure information that should not be retained.
+
+Risk: Prayer guidance may be unsuitable if the user's tradition, preferences, or desired level of structure are unclear.
+
+Mitigation: Ask about the user's faith tradition, prayer timing preferences, reminder preferences, and intended use before creating schedules or suggesting prayers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/prayers)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown files and conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a local ~/prayers/ workspace when the user wants persistent prayer schedules, logs, intentions, and reflections.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

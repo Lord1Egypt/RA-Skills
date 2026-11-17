@@ -1,39 +1,50 @@
-## Description: <br>
-康奈尔笔记 helps students turn photographed class notes into Cornell-style cue questions, concise summaries, indexed note DNA, and context-aware review prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes classroom notes into Cornell-style cue questions, a notes section, and a one-sentence summary, then files them by subject and topic.
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-External students and learning assistants use this skill to organize class notes, extract self-test questions and summaries, retrieve relevant notes during review, and connect related knowledge across subjects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may retain note-derived study metadata such as uploaded note content, keywords, summaries, links, and retrieval history. <br>
-Mitigation: Before use with sensitive student material, confirm where note DNA data is stored, who can access linked skills, and how notes and metadata can be deleted or disabled. <br>
+## Use Case:
 
+Students use the skill to turn classroom notes into Cornell-style study prompts, organize and retrieve notes by subject and topic, and review note usage when an archive is enabled.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qizhitang/xiaozhi-cornell-notes) <br>
-- [Publisher profile](https://clawhub.ai/user/qizhitang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and structured study guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Cornell-note cue questions, short summaries, note metadata, retrieval prompts, cross-subject links, and note health reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The scanner flags student response tracking and broader student note writeback as concerns relative to the stated retrieval-only scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether usage tracking and note writeback are appropriate before enabling the archive or cross-skill sharing.
+
+## Reference(s):
+
+- [Cornell Note Format Guide](references/cornell-format-guide.md)
+- [ClawHub release page](https://clawhub.ai/qizhitang/skills/xiaozhi-cornell-notes)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Cornell notes with cue questions, summaries, retrieval responses, and optional usage reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Image-based note input depends on platform support; long-term storage, cross-skill sharing, and reminders are controlled by archive and consent settings.]
+
+## Skill Version(s):
+
+2.12.7 (source: server-resolved release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

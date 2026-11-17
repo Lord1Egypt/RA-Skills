@@ -1,45 +1,59 @@
-## Description: <br>
-CoinMarketCal. Use this skill for ANY CoinMarketCal request -- searching and reading data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read CoinMarketCal market calendar data through the OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to search and read CoinMarketCal coin, category, confirmed event, filtered event, and ranked event data through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad trigger wording for CoinMarketCal-related requests. <br>
-Mitigation: Use it only for explicit CoinMarketCal lookup requests and review proposed actions before execution. <br>
-Risk: The first-time setup guidance includes a one-line pipe-to-shell installer. <br>
-Mitigation: Review OOMOL's installer or use documented manual installation steps before installing the oo CLI. <br>
-Risk: The skill requires an OOMOL-connected CoinMarketCal credential. <br>
-Mitigation: Connect CoinMarketCal only in the intended OOMOL account and do not expose raw credentials to the agent. <br>
+## Use Case:
 
+External users can ask an agent to search CoinMarketCal for coins, confirmed events, event categories, general events, or ranked events, and read the returned market calendar data.
 
-## Reference(s): <br>
-- [CoinMarketCal skill page](https://clawhub.ai/oomol/oo-coinmarketcal) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [CoinMarketCal connection setup](https://console.oomol.com/app-connections?provider=coinmarketcal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands return JSON from the oo CLI when actions are executed with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version and SKILL.md frontmatter metadata.version) <br>
+Risk: Setup can execute downloaded code that has not been verified, and the skill's remote installer contents remain unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI and installer before installation, and explicitly approve local software changes.
+
+Risk: Using the connected account involves CoinMarketCal credentials and may incur OOMOL or provider billing.
+
+Mitigation: Use a trusted OOMOL account, review the CoinMarketCal connection and billing terms, and stop on billing errors until the responsible account is checked.
+
+Risk: Automatic agent-skill changes may affect the local environment.
+
+Mitigation: Review skill changes; the documented synchronization control is OO_SKILLS_SYNC_DISABLED=1.
+
+## Reference(s):
+
+- [CoinMarketCal developer documentation](https://coinmarketcal.com/developer/docs)
+- [OOMOL CLI commands reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+- [CoinMarketCal ClawHub release](https://clawhub.ai/oomol/skills/oo-coinmarketcal)
+
+## Skill Output:
+
+**Output Type(s):** [Structured data, Guidance]
+
+**Output Format:** [JSON data returned by CoinMarketCal, with usage guidance in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only market calendar results; the connector returns data and execution metadata.]
+
+## Skill Version(s):
+
+1.0.5 (source: SKILL.md frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

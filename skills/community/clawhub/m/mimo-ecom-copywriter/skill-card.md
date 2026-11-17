@@ -1,40 +1,53 @@
-## Description: <br>
-生成中文电商详情页文案，包含 FABE 卖点提炼、五张主图文案、详情页结构、种子评价和淘宝、拼多多、京东平台适配。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese e-commerce product-detail copy using FABE selling-point analysis, five main-image captions, page structure, seed review drafts, and platform-specific adaptation for Taobao, Pinduoduo, and JD.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-电商运营、卖家和营销人员使用该技能为新品上架生成中文商品文案、主图文案、详情页结构和平台风格适配建议。输出应基于真实产品卖点和可验证证据进行人工审核后使用。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The seed-review feature can be used to create credible-looking testimonials that do not come from real customers. <br>
-Mitigation: Use review-related output only to summarize or rephrase authentic customer feedback, and reject fabricated reviews or unsupported endorsements. <br>
-Risk: Product claims, certifications, performance numbers, or marketplace language may be inaccurate or non-compliant if generated without evidence. <br>
-Mitigation: Verify every claim against product documentation and platform advertising rules before publishing. <br>
+## Use Case:
 
+External sellers and marketing teams use this skill to draft Chinese product-detail pages, main-image copy, seed review drafts, and platform-adapted e-commerce messaging from product evidence.
 
-## Reference(s): <br>
-- [Detailed e-commerce copywriting reference](references/details.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese Markdown with structured copywriting sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces FABE analysis, main-image copy, detail-page modules, platform adaptations, and review drafts that require compliance and authenticity review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Generated seed review drafts can be misused as fake customer reviews or unsupported usage experiences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for truthful product-page copy, authentic review summaries, or review-request drafts; do not publish invented reviews.
+
+Risk: Marketing copy can introduce unsupported certifications, sales numbers, scarcity claims, or product benefits.
+
+Mitigation: Verify every product claim against evidence before publication and remove claims that cannot be substantiated.
+
+## Reference(s):
+
+- [电商详情页文案生成器 - 详细内容](artifact/references/details.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese Markdown/text copy templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Chinese e-commerce copy and guidance; no code or shell execution.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

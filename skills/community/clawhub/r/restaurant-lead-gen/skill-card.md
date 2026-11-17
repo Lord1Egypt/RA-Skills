@@ -1,45 +1,58 @@
-## Description: <br>
-Automated restaurant lead generation and outreach for SMB sales. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated restaurant lead generation and outreach for SMB sales, including lead discovery, business data enrichment, multi-channel outreach templates, and sales pipeline workflow guidance.
 
-## Publisher: <br>
-[Rowerguy508](https://clawhub.ai/user/Rowerguy508) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rowerguy508](https://clawhub.ai/user/rowerguy508)
 
-## Use Case: <br>
-External sales and SMB operators use this skill to identify restaurant prospects, enrich contact details, draft outreach, and manage a restaurant sales pipeline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Dominican Republic, Puerto Rico, Peru, and other Latin American markets <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scraping and automated outreach may create consent, platform-policy, or data-quality issues. <br>
-Mitigation: Verify every lead source, confirm that collection and outreach are permitted for the target market, and require human approval before contacting recipients. <br>
-Risk: Generated leads may be mock data or inaccurate contact records. <br>
-Mitigation: Treat generated output as draft data until it is checked against authoritative business records. <br>
-Risk: Lead files may contain business contact details that should not be broadly exposed. <br>
-Mitigation: Write outputs only to controlled locations and limit access to users responsible for the campaign. <br>
-Risk: Email or WhatsApp automation can send unwanted or incorrect messages at scale. <br>
-Mitigation: Use narrowly scoped sending credentials and review recipients and message content before any outreach is sent. <br>
+## Use Case:
 
+External sales and business-development users can use this skill to draft restaurant prospecting workflows, collect or structure restaurant lead fields, and prepare outreach templates. The bundled script generates synthetic sample restaurant leads as CSV.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Rowerguy508/restaurant-lead-gen) <br>
-- [Publisher profile](https://clawhub.ai/user/Rowerguy508) <br>
+### Deployment Geography for Use:
 
+Latin American markets including the Dominican Republic, Puerto Rico, and Peru
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance, Python examples, outreach templates, and CSV lead files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated lead files may contain restaurant names, addresses, phone numbers, websites, cuisine, status, and notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may overstate lead discovery because the bundled script generates synthetic sample leads rather than verified restaurant records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Label generated records as sample data unless they are independently verified against approved data sources.
+
+Risk: Automated email or WhatsApp outreach can create compliance, consent, and reputational risk.
+
+Mitigation: Require human approval before outreach and confirm applicable consent, opt-out, and platform policy requirements.
+
+Risk: Restaurant contact data collection can create privacy, retention, and data-source obligations.
+
+Mitigation: Document approved data sources, storage location, retention period, and compliance responsibilities before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rowerguy508/skills/restaurant-lead-gen)
+- [Publisher profile](https://clawhub.ai/user/rowerguy508)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance and CSV lead files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CSV fields include name, address, phone, website, cuisine, status, and notes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

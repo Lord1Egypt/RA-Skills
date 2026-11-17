@@ -1,40 +1,49 @@
-## Description: <br>
-Generate marketing copy, landing pages, email sequences, and social media posts with consistent brand voice across multiple brands using per-brand reference files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate marketing copy, landing pages, email sequences, and social media posts with consistent brand voice using framework-driven templates and per-brand reference files.
 
-## Publisher: <br>
-[ngmeyer](https://clawhub.ai/user/ngmeyer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ngmeyer](https://clawhub.ai/user/ngmeyer)
 
-## Use Case: <br>
-Marketing, product, and growth teams use this skill to draft landing pages, email sequences, social posts, headlines, taglines, and copy variants while preserving a selected brand voice. It is also useful for agents preparing brand-specific copy from local reference notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Brand reference files added by users can shape generated copy with inaccurate, outdated, or sensitive claims. <br>
-Mitigation: Review brand reference files before use and verify generated claims, proof points, and positioning before publication. <br>
-Risk: Generated marketing copy may use the wrong framework, tone, or CTA for the requested channel. <br>
-Mitigation: Check the selected framework, platform constraints, and single-call-to-action requirement before relying on the output. <br>
+## Use Case:
 
+Marketing teams, founders, and agents use this skill to draft brand-consistent landing pages, email sequences, social posts, headlines, taglines, and A/B copy variants. It is useful when copy needs a clear framework, a single call to action, and adaptation across platforms.
 
-## Reference(s): <br>
-- [Cyberdyne Systems Brand Guide](references/cyberdyne-systems.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown copy drafts with headlines, subheadlines, body copy, CTA, variants, and rationale] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses selected brand reference files and adapts copy to the requested platform or framework.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Brand reference files may contain business positioning or customer-profile details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store only brand information that is appropriate for the agent to read when generating marketing copy.
+
+## Reference(s):
+
+- [Cyberdyne Systems Brand Guide](artifact/references/cyberdyne-systems.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text marketing copy with structured sections and variants]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deliverables usually include headline variants, a subheadline, body copy, a single CTA, and a short hypothesis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

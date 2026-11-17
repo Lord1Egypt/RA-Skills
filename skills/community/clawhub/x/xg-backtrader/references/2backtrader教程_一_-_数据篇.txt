@@ -1,0 +1,158 @@
+backtrader是基于Python的量化框架平台，内置了talib指标库、analyzer分析库等功能，具有回测速度快、易用性高以及扩展性好等特点。相较于网上已有教程，本教程从数据至分析进行了全面的介绍，着重阐述了数据清洗以及框架调整等部分，点出了backtrader的某些不足并提供了解决方法。
+
+GitHub地址: https://github.com/ZoeQuant/backtrader_tutorial/blob/main/tutorial.ipynb
+
+
+1. 数据加载
+
+1.1. data collecting
+backtrader支持Yahoo等online的数据源和本地数据源。大家也可以自己造轮子，接wind,tushare等。 backtrader要求至少含有7列数据，包括datetime，open，high，low，close，volume，openinterest。本文把datetime设为了index。
+
+本文拉前复权数据，前复权就是从后往前复权，所以复权后最近的价格保持一致。至于后复权，vice versa。有些数据源的前复权机制会有负数的存在，这是因为计算复权的时候是价格减去了分红，而不是用的累计复权因子，https://xueqiu.com/3488649239/62074848 这篇文章已经介绍得很详细，本文就不抛砖引玉了。注意：在用累计因子的情况下，前后复权的选择不影响收益率。
+
+from datetime import datetime
+import backtrader as bt
+import tushare as ts
+import pandas as pd
+from backtrader.feeds import PandasData
+
+# tushare
+def get_single_kdata(code, start='2020-01-01', end='2021-08-18', index=False):
+    df = ts.get_k_data(code, autype='qfq', start=start, end=end, index=index)
+    df['date'] = pd.to_datetime(df['date'])
+    df['openinterest'] = 0
+    return df[['date', 'open', 'high', 'low', 'close', 'volume', 'openinterest']]
+
+# # yahoo
+# def get_single_kdata(code, start='2020-01-01', end='2021-08-18'):
+#     df = bt.feeds.YahooFinanceData(
+#             dataname='AAPL',
+#             fromdate=datetime.strptime(start,'%Y-%m-%d'),
+#             todate=datetime.strptime(end,'%Y-%m-%d'),
+#             adjclose=True,
+#             adjvolume=True)
+#     return df
+对于一个策略，股票池常常是不断变化的，不可能只有一个起点和终点。
+
+# 如果你想要的不同的start和end
+# 自己定义
+secu_lst = {'600000':{'start':'2020-01-01','end':'2020-07-18'},
+            '000001':{'start':'2020-02-01','end':'2020-08-18'}}
+kdata = {}
+for secu in secu_lst.keys():
+    kdata[secu] = get_single_kdata(secu, secu_lst[secu]['start'], secu_lst[secu]['end']).reset_index(drop=True)
+    
+print(kdata['000001'].head())
+1.2. data cleansing and processing
+上述股票的日期并没有对齐，造成开始停止日不同的原因还有股池的筛选条件、新股上市、股票停牌等。而backtrader的运作机制next()需要all data都满足最小周期，否则需要调用prenext()。本文建议一个更简单的方法，补充数据使所有股票拥有同样的周期，并同时标注停牌日。
+
+# 先拿大盘trading_dates
+benchmark_start = min(secu_lst.values(), key=lambda x : x['start'])['start']
+benchmark_end = max(secu_lst.values(), key=lambda x : x['end'])['end']
+print(f"start: {benchmark_start}, end {benchmark_end}")
+
+benchmark = '399905' # 中证500
+kdata['benchmark'] = get_single_kdata(benchmark, benchmark_start, benchmark_end, index=True) 
+trading_dates = kdata['benchmark']['date'].tolist()
+print(f"start: {trading_dates[0]}, end {trading_dates[-1]}")
+
+
+for secu in set(kdata.keys())-set(['benchmark']):
+    print(secu)
+    secu_kdata = kdata['benchmark'][['date']].merge(kdata[secu],how='left')
+    secu_kdata['suspend'] = 0 
+    secu_kdata.loc[secu_kdata['open'].isnull(), 'suspend'] = 1 # 标记为停盘日
+    secu_kdata.set_index(['date'], inplace = True) # 设date为index
+    end = secu_lst[secu]['end']
+    secu_kdata.fillna(method='ffill',inplace = True) # start后的数据用前日数据进行补充
+    secu_kdata.fillna(value = 0,inplace = True) #start前的数据用0补充
+    secu_kdata.loc[(secu_kdata.index > end), 'suspend'] = 1
+    print(secu_kdata)
+    kdata[secu] = secu_kdata
+股票池的筛选也同理，补充数据就ok，但要注意，end是剔除日的后一根bar的日期。 整理成一个class会更清晰一点。
+
+class GetKdatas(object):
+    def __init__(self, secu_lst, benchmark='000001'):
+        """
+        :parameter secu_lst: a dict contained stocks with starts and ends
+        :parameter benchmark: the name of benchmark
+        """
+        self.secu_lst = secu_lst
+        self.benchmark = benchmark
+
+    @staticmethod
+    def get_single_kdata(code, start='2020-01-01', end='2021-08-18', index=False):
+        df = ts.get_k_data(code, autype='qfq', start=start, end=end, index=index)
+        df['date'] = pd.to_datetime(df['date'])
+        df['openinterest'] = 0
+        return df[['date', 'open', 'high', 'low', 'close', 'volume', 'openinterest']]
+
+    def get_all_kdata(self):
+        kdata = {}
+        for secu in set(self.secu_lst):
+            secu_kdata = self.get_single_kdata(secu, self.secu_lst[secu]['start'], self.secu_lst[secu]['end'])
+            kdata[secu] = secu_kdata.reset_index(drop=True)
+        return kdata
+
+    def merge_period(self):
+        all_kdata = self.get_all_kdata()
+        benchmark_start = min(self.secu_lst.values(), key=lambda x: x['start'])['start']
+        benchmark_end = max(self.secu_lst.values(), key=lambda x: x['end'])['end']
+        all_kdata['benchmark'] = self.get_single_kdata(self.benchmark, benchmark_start, benchmark_end,True)
+
+        for secu in set(all_kdata.keys()) - set(['benchmark']):
+            secu_kdata = all_kdata['benchmark'][['date']].merge(all_kdata[secu], how='left')
+            secu_kdata['suspend'] = 0
+            secu_kdata.loc[secu_kdata['open'].isnull(), 'suspend'] = 1  # 标记为停盘日
+            secu_kdata.set_index(['date'], inplace=True)  # 设date为index
+            end = secu_lst[secu]['end']
+            secu_kdata.fillna(method='ffill', inplace=True)  # start后的数据用前日数据进行补充
+            secu_kdata.fillna(value=0, inplace=True)  # start前的数据用0补充
+            secu_kdata.loc[(secu_kdata.index > end), 'suspend'] = 1
+            all_kdata[secu] = secu_kdata
+
+        _ = all_kdata.pop('benchmark')
+        return all_kdata
+
+
+secu_lst = {'600000': {'start': '2020-01-01', 'end': '2020-07-18'},
+            '000001': {'start': '2020-02-01', 'end': '2020-08-18'}}
+
+kdata = GetKdatas(secu_lst).merge_period()
+print(kdata)
+
+1.3. data feeding
+接下来就是放入数据，backtrader默认仅datetime，open，high，low，close，volume，openinterest这7列。
+默认顺序为open (default: 1) , high (default: 2), low (default: 3), close (default: 4), volume (default: 5), openinterest (default: 6)。 如果不是该顺序，则需指明顺序。
+一定，一定要记得在add时加入name=secu，不然回溯股票的代码很麻烦
+
+cerebro = bt.Cerebro()
+for secu in set(kdata.keys())-set(['benchmark']):
+    df = PandasData(dataname=kdata[secu], fromdate=kdata[secu].index[0],todate=kdata[secu].index[-1])
+    cerebro.adddata(df, name=secu) 
+
+# 如果是本地csv，如果你的column是和默认一样的，那从datetime开始都不用写，否则需指明顺序
+# data = btfeeds.GenericCSVData(
+#     dataname='mydata.csv',
+#     fromdate=benchmark_start,
+#     todate=benchmark_end,
+#     dtformat=('%Y-%m-%d'),
+#     datetime=0,
+#     high=1,
+#     low=2,
+#     open=3,
+#     close=4,
+#     volume=5,
+#     openinterest=-1
+# )
+**如果你要增添其他的指标，可以根据以下模块。注意放入数据的时候是PandasData_Extend。如果是load本地文件，就把PandasData换成GenericCSVData，序号从序列8开始。
+
+class PandasData_Extend(PandasData):
+     # Add a 'suspend' line to the inherited ones from the base class
+    lines = ('suspend',)
+    # 现在是(open,0), ... , (openinterest,5)这6列，所以增加1
+    # add the parameter to the parameters inherited from the base class
+    params = (('suspend', 6),)
+    
+    # 如果是csv文档，openinterest 在 GenericCSVData index是7，所以1
+    # params = (('suspend', 8),)

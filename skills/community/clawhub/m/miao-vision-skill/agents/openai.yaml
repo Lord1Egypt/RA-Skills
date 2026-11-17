@@ -1,0 +1,7 @@
+interface:
+  display_name: "Miao Vision"
+  short_description: "Create verified artifacts with an optional local Review Viewer"
+  default_prompt: "Use $miao-vision to turn local data into an evidence-backed report, data poster, infographic, or browser deck. When useful for monitoring or review, use the optional local Review Viewer to inspect progress, evidence coverage, issues, and artifact previews. When explicitly requested, it can also create an explanatory data-story image or single-shot video through an optional remote media service; the verified artifact remains the source of truth."
+
+policy:
+  allow_implicit_invocation: false

@@ -1,42 +1,54 @@
-## Description: <br>
-Schedules macOS applications to launch or quit through launchctl and launchd by translating natural language or cron-style schedules into user LaunchAgent plist files and management commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Schedules macOS application launches and quits by translating natural-language or cron-style timing requests into launchd LaunchAgent plist files and launchctl actions.
 
-## Publisher: <br>
-[skkypy](https://clawhub.ai/user/skkypy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skkypy](https://clawhub.ai/user/skkypy)
 
-## Use Case: <br>
-Developers, power users, and operations staff use this skill to create, inspect, trigger, and remove user-level macOS LaunchAgent schedules for applications after previewing the generated plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write, load, unload, and remove user-level LaunchAgent plist files. <br>
-Mitigation: Use --dry-run before write or remove operations and review the displayed plist paths and launchctl commands before confirming. <br>
-Risk: Management commands can affect unrelated user LaunchAgents or processes when broad labels or prefixes are supplied. <br>
-Mitigation: Operate only on labels or prefixes you recognize, preferably tasks created by this skill under com.user.launch. <br>
-Risk: The --yes option skips interactive confirmation. <br>
-Mitigation: Avoid --yes unless deliberate automation is required and the command arguments have already been reviewed. <br>
+## Use Case:
 
+External macOS users and automation developers use this skill to preview, create, inspect, trigger, and remove scheduled application start and quit jobs. It is suited for user-level LaunchAgent automation where commands and plist changes should be reviewed before execution.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/skkypy/launchctl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plist configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce dry-run previews, launchctl commands, LaunchAgent plist content, status summaries, and removal guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Persistent LaunchAgent operations could overwrite or delete unintended plist files or run unintended local code if validation is insufficient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require dry-run previews, avoid --yes, use only trusted application paths and simple labels, and verify remove operations target only this skill's own com.user.launch.* plist files.
+
+Risk: The server security verdict is suspicious due to unsafe validation around persistent scheduling behavior.
+
+Mitigation: Install only after the publisher fixes validation and review every write, load, unload, and remove action before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skkypy/skills/launchctl)
+- [Publisher profile](https://clawhub.ai/user/skkypy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and launchd plist snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate or preview LaunchAgent plist content and launchctl commands; dry-run preview is expected before write, load, unload, or remove actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

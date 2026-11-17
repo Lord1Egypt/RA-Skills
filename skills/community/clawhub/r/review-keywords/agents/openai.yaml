@@ -1,0 +1,4 @@
+interface:
+  display_name: "亚马逊评论关键词提取 · 高频词云"
+  short_description: "评论高频词与共现词，好评差评分开统计"
+  default_prompt: "使用 $amazon-review-keywords 提取一个 Amazon ASIN 评论的高频关键词。"

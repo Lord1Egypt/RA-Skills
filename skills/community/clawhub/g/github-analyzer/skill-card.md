@@ -1,43 +1,58 @@
-## Description: <br>
-输入项目想法或 GitHub 链接，自动搜索或分析相关开源项目，生成结构化项目报告，并可在用户确认后下载评分靠前的代码包。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+输入项目想法或 GitHub 链接，自动搜索相关开源项目，生成结构化分析报告，并可下载评分最高的前 3 名代码包。
 
-## Publisher: <br>
-[antonia-sz](https://clawhub.ai/user/antonia-sz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antonia-sz](https://clawhub.ai/user/antonia-sz)
 
-## Use Case: <br>
-Developers and technical evaluators use this skill to find, compare, and analyze GitHub repositories for a project idea or supplied repository links. It produces structured reports covering technology stack, strengths, weaknesses, suitability, and scoring, with optional repository zip downloads after confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts GitHub and may use GITHUB_TOKEN from the environment. <br>
-Mitigation: Use a minimally scoped read-only GitHub token, unset it when not needed, and run the skill only when GitHub network access is expected. <br>
-Risk: Downloaded repository archives may contain untrusted code. <br>
-Mitigation: Download only after explicit approval and review or scan downloaded repositories before opening, building, or executing them. <br>
-Risk: Repository rankings and reports depend on live GitHub metadata and README content, which can be incomplete or stale. <br>
-Mitigation: Validate important findings against the upstream repository before making adoption or procurement decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill to find, analyze, compare, and optionally download GitHub repositories related to an idea or explicit repository links. It produces structured project reports covering repository activity, language and license metadata, strengths, limitations, fit, and comparative scoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/antonia-sz/github-analyzer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/antonia-sz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, files, guidance] <br>
-**Output Format:** [Markdown reports, JSON command output, and downloaded zip files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses GitHub API data, can use GITHUB_TOKEN when present, and saves approved repository downloads under ~/Downloads/github-analyzer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Search terms, repository names, and any configured GITHUB_TOKEN may be sent to GitHub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for queries appropriate for GitHub, unset GITHUB_TOKEN when authentication is not needed, or use a minimally scoped token.
+
+Risk: Repository README content is external and may be incomplete, misleading, or untrusted.
+
+Mitigation: Treat generated analysis as a starting point and review repository metadata, source code, and license terms before relying on conclusions.
+
+Risk: Optional downloads can retrieve large or unfamiliar repository ZIP files.
+
+Mitigation: Download only repositories the user has approved and inspect downloaded archives before execution or reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/antonia-sz/skills/github-analyzer)
+- [Publisher profile](https://clawhub.ai/user/antonia-sz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with comparison tables, optional helper-script JSON, and optional downloaded ZIP files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [README excerpts are limited to 3000 characters; GitHub API rate limits depend on whether GITHUB_TOKEN is configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Guides users through a scored AI operating-system audit covering persistent memory, skill architecture, agent routing, outputs, and integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users to build a layered AI operating system with persistent memory, skill architecture, routing, integrations, and a scored rebuild plan.
 
-## Publisher: <br>
-[flynndavid](https://clawhub.ai/user/flynndavid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[flynndavid](https://clawhub.ai/user/flynndavid)
 
-## Use Case: <br>
-Developers, operators, and AI power users use this skill to audit their current AI workflow, identify weak layers, and produce a prioritized rebuild plan for memory, skills, routing, and integrations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill recommends connecting tools and outputs such as Slack, Notion, GitHub, and databases. <br>
-Mitigation: Use least-privilege credentials, narrow channel/repository/database scopes, and require confirmation before external writes. <br>
-Risk: The memory templates may encourage storing sensitive business context or personal data in persistent files. <br>
-Mitigation: Keep secrets, regulated data, and confidential context out of memory files and public repositories. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/flynndavid/ai-os-blueprint) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers, operators, and AI power users use this skill to audit their current AI workflow across five layers and generate a prioritized rebuild plan. It provides scorecards, checklists, routing guidance, memory templates, and integration planning for persistent agent workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with scorecards, checklists, tables, and templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a self-assessment and prioritized implementation plan; no executable code is included.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Connecting Slack, Notion, GitHub, or MCP servers can expose workspace data or enable unintended write actions.
+
+Mitigation: Use least-privilege tokens, define what data may be sent externally, and keep write actions behind approval gates.
+
+Risk: Backing up agent configuration can accidentally include secrets.
+
+Mitigation: Store API keys in a secrets manager and avoid committing secrets when version-controlling configuration.
+
+## Reference(s):
+
+- [AI OS Blueprint ClawHub listing](https://clawhub.ai/flynndavid/skills/ai-os-blueprint)
+- [flynndavid publisher profile](https://clawhub.ai/user/flynndavid)
+- [Remy Claw](https://remyclaw.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown with score tables, checklists, setup templates, and prioritized rebuild guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an AI workflow audit, score interpretation, phased build order, memory templates, routing rules, and integration checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

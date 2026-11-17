@@ -1,41 +1,53 @@
-## Description: <br>
-Send Wake on LAN (WOL) magic packets to wake configured computers and network devices on a local network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send Wake on LAN (WOL) magic packets to wake computers and network devices on a local network.
 
-## Publisher: <br>
-[tonakic](https://clawhub.ai/user/tonakic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tonakic](https://clawhub.ai/user/tonakic)
 
-## Use Case: <br>
-Developers, IT administrators, and homelab users use this skill to wake computers or network devices they own or manage, add and list local device profiles, and optionally wait for a configured device to respond. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wake-on-LAN packets may target the wrong system or network segment if device names, MAC addresses, or broadcast addresses are incorrect. <br>
-Mitigation: Verify device names, MAC addresses, and broadcast addresses before use, and limit saved entries to systems the user owns or manages. <br>
-Risk: The local device configuration can contain MAC addresses, IP addresses, and other network details. <br>
-Mitigation: Keep references/devices.json scoped to necessary devices and protect it according to the user's normal local configuration handling practices. <br>
+## Use Case:
 
+Developers, IT administrators, and users with authorized local-network devices use this skill to wake configured computers or network devices by MAC address or saved device name, optionally waiting for a ping response.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tonakic/wake-on-lan) <br>
-- [Device configuration example](references/devices.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and local JSON device configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may send UDP Wake-on-LAN packets, update references/devices.json, and print success or failure status when waiting for a device.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and _meta.json) <br>
+Risk: The skill can send Wake-on-LAN packets and ping configured device IPs on the local network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on networks and devices the user is authorized to manage, and review broadcast addresses before execution.
+
+Risk: Device mappings may include MAC addresses, optional IP addresses, broadcast addresses, and notes in references/devices.json.
+
+Mitigation: Review references/devices.json before use and avoid storing devices the user would not want an agent to wake.
+
+## Reference(s):
+
+- [Device configuration example](references/devices.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash commands and brief status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local device names, MAC addresses, broadcast addresses, UDP ports, and ping status when the user asks to wake or manage devices.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

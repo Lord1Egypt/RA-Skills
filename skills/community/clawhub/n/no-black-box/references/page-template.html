@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>（文档名，两到四个词）</title>
+<style>
+/*
+  版式模板：单文件、无外部依赖、深浅两套主题、窄屏单栏。
+  组件：
+    .summary      结论框（每节第一段）
+    .pair         原文 / 解读 左右并排（窄屏上下）
+    .orig         原文摘录（照录，可用 .red 标出原文里的红字）；.orig .line 原文一行，保留原有空格和换行
+    .ours         解读与处理结果
+    .toc          页内导航（每个 section 一个链接）
+    .explain      单个事项的讲解卡，内部用 .step-t 做八步小标题；卡片前先放一个 .summary 结论框
+    .explain h4 .idx  讲解卡标题前的事项序号圆标（一、二……）
+    .tag.ok/.wait/.no/.na  状态标签：已完成 / 待确认 / 未做 / 其他（排进下一版、不用改）
+    .note         遗留问题、例外
+    figure.shot   源文件或系统截图；图片用 data: URI 内嵌，figcaption 写图注（文件、页、行或格、红框指什么）
+    h2 .file      节标题下的文件名
+    .label        原文/解读框顶部的小标签（出处、「例 N」）
+    table         放在 .tablewrap 里：页面本身不横向滚动，宽表只在表格框内滚动
+    td.num        右对齐的数字格；td.id 不折行的短格（例 1–3、疑问 1、待定 1、需要谁）
+    .muted        次要说明文字
+    pre.f         公式原文
+    .ph           截图还没放时的占位框
+  颜色只用下面的变量；改配色只改 :root 和两个深色块。
+*/
+:root {
+  --bg: #f5f6f4;
+  --paper: #ffffff;
+  --ink: #1c2321;
+  --muted: #5a6763;
+  --rule: #dde3e0;
+  --accent: #1f6b5c;
+  --accent-soft: #e2efeb;
+  --quote-bg: #f6f3ec;
+  --quote-rule: #c9b98f;
+  --warn: #8a5a10;
+  --warn-soft: #f7efdf;
+  --bad: #9b2c2c;
+  --bad-soft: #f8e6e6;
+  --red-text: #c0392b;
+  --code-bg: #eff2f0;
+  --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131816; --paper: #1b221f; --ink: #e3eae7; --muted: #98a6a1; --rule: #2d3733;
+    --accent: #6cc3ad; --accent-soft: #1e3430; --quote-bg: #26241e; --quote-rule: #7d6f4c;
+    --warn: #e2b76a; --warn-soft: #352b1a; --bad: #ef9a9a; --bad-soft: #3a2222;
+    --red-text: #f08a7e; --code-bg: #232b28; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131816; --paper: #1b221f; --ink: #e3eae7; --muted: #98a6a1; --rule: #2d3733;
+  --accent: #6cc3ad; --accent-soft: #1e3430; --quote-bg: #26241e; --quote-rule: #7d6f4c;
+  --warn: #e2b76a; --warn-soft: #352b1a; --bad: #ef9a9a; --bad-soft: #3a2222;
+  --red-text: #f08a7e; --code-bg: #232b28; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.75; padding-inline: 16px; padding-block: 28px 64px; }
+main { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
+header h1 { font-size: 28px; margin: 0 0 6px; text-wrap: balance; }
+header p { margin: 0; color: var(--muted); max-width: 72ch; }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: 2px 12px; font-size: 13.5px; }
+.toc a:focus-visible { outline: 2px solid var(--accent); }
+section { background: var(--paper); border: 1px solid var(--rule); border-radius: 10px; padding: 22px 24px; display: flex; flex-direction: column; gap: 16px; min-width: 0; scroll-margin-top: 16px; }
+h2 { font-size: 20px; margin: 0; text-wrap: balance; }
+h2 .file { font-family: var(--font-mono); font-size: 13px; font-weight: 400; color: var(--muted); display: block; margin-top: 2px; }
+h3 { font-size: 16px; margin: 4px 0 0; }
+p { margin: 0; max-width: 74ch; }
+ul { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 4px; }
+code { font-family: var(--font-mono); font-size: 13px; background: var(--code-bg); border-radius: 4px; padding: 1px 5px; overflow-wrap: anywhere; }
+pre.f { margin: 0; background: var(--code-bg); border-radius: 6px; padding: 8px 10px; font-family: var(--font-mono); font-size: 13px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.summary { background: var(--accent-soft); border-radius: 8px; padding: 12px 14px; }
+.summary > p + p { margin-top: 6px; }
+.pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+.orig { background: var(--quote-bg); border-left: 3px solid var(--quote-rule); border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 14px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.orig .line { white-space: pre-wrap; }
+.orig .label, .ours .label { font-size: 12px; letter-spacing: .06em; color: var(--muted); font-weight: 600; }
+.red { color: var(--red-text); }
+.ours { border: 1px solid var(--rule); border-radius: 8px; padding: 10px 14px; font-size: 14px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.explain { border: 1px solid var(--rule); border-radius: 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.explain h4 { margin: 0; font-size: 16px; }
+.explain h4 .idx { display: inline-block; min-width: 26px; height: 26px; line-height: 26px; text-align: center; border-radius: 50%; background: var(--accent); color: var(--paper); font-size: 13px; margin-right: 8px; }
+.step-t { font-weight: 600; font-size: 14px; color: var(--accent); margin-top: 2px; }
+.note { background: var(--warn-soft); border-radius: 8px; padding: 10px 12px; font-size: 14px; }
+figure.shot { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+figure.shot img { display: block; max-width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 6px; }
+figure.shot .ph { border: 1px dashed var(--rule); border-radius: 6px; padding: 28px 14px; text-align: center; color: var(--muted); font-size: 13px; }
+figcaption { font-size: 13px; color: var(--muted); }
+.tablewrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--rule); }
+th { color: var(--muted); font-weight: 600; font-size: 13px; white-space: nowrap; }
+td.num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+td.id { white-space: nowrap; }
+.tag { display: inline-block; font-size: 12px; border-radius: 999px; padding: 0 8px; line-height: 20px; white-space: nowrap; }
+.tag.ok { background: var(--accent-soft); color: var(--accent); }
+.tag.wait { background: var(--warn-soft); color: var(--warn); }
+.tag.no { background: var(--bad-soft); color: var(--bad); }
+.tag.na { background: var(--code-bg); color: var(--muted); }
+.summary .tag.ok, .summary .tag.na { background: var(--paper); }
+.muted { color: var(--muted); }
+@media (max-width: 760px) { .pair { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .tablewrap > table:has(thead th:nth-child(4)) { min-width: 34em; } }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>（文档名）</h1>
+  <p>（一句话：这份文档讲什么；需要时加一句图例，如「标着『原文』的框照录材料，标着『解读』的框是我们的理解和处理」。）</p>
+</header>
+
+<!-- 章节顺序照 SKILL.md 第 3 节：结论 → 一页速览 → 先理解背景 → 源文件一览 → 每个事项 → 上线与验证 → 需要外部确认的事项 → 补充说明 → 未决与待商量 → 附录；没有的内容就删掉那一节 -->
+<nav class="toc" aria-label="目录">
+  <a href="#conclusion">结论</a>
+  <a href="#overview">一页速览</a>
+  <a href="#item-1">事项一</a>
+</nav>
+
+<section id="conclusion">
+  <h2>结论</h2>
+  <div class="summary">
+    <p>（做完了什么）</p>
+    <p>（影响多大：什么变了、什么不变）</p>
+    <p>（需要谁做什么）</p>
+  </div>
+</section>
+
+<section id="overview">
+  <h2>一页速览</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>事项</th><th>来源原话</th><th>结果</th><th>状态</th></tr></thead>
+    <tbody>
+      <tr><td>（事项一）</td><td>（「材料原话」）</td><td>（结果）</td><td><span class="tag ok">已完成</span></td></tr>
+      <tr><td>（事项二）</td><td>（「材料原话」）</td><td>（结果）</td><td><span class="tag wait">待确认</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted">（条目很多时放按处理状态的条数表，合计等于总条数；没有就删掉）</p>
+</section>
+
+<section id="item-1">
+  <h2>（材料名或事项名；按材料组织时标上对应的事项，如「（事项一、二）」）<span class="file">（文件名）</span></h2>
+  <div class="summary"><p>（结论：这份材料要求改什么、改成了什么、影响多大、状态 <span class="tag ok">已完成</span>；谁写的、对应哪项在「源文件一览」里写）</p></div>
+
+  <div class="pair">
+    <div class="orig"><span class="label">原文</span>
+      <span class="line">（照录原文，<span class="red">原文里的红字用 .red 标出</span>）</span>
+    </div>
+    <div class="ours"><span class="label">解读</span>
+      <!-- 意见类条目（例 N）的写法：第一行 <p><b>结论：……</b> 状态标签</p>，下面写查到了什么和处理 -->
+      <ul><li>（怎么理解）</li><li>（怎么处理，状态 <span class="tag ok">已完成</span>）</li></ul>
+    </div>
+  </div>
+
+  <figure class="shot">
+    <!-- 真实截图用 <img src="data:image/png;base64,..." alt="（截图内容）">，不引用外部图片文件 -->
+    <div class="ph">（截图位置）</div>
+    <figcaption>（《文件名》「页名」第 N 行或单元格；红框指什么，红框是后加的标注）</figcaption>
+  </figure>
+
+  <div class="summary"><p>（结论框：这一项改了什么、影响多大、状态 <span class="tag ok">已完成</span>）</p></div>
+  <div class="explain">
+    <h4><span class="idx">一</span>（事项名）</h4>
+    <div class="step-t">它是什么</div>
+    <p>（一两句白话）</p>
+    <div class="step-t">原文 / 改前</div>
+    <p>（上方已有原文并排时，这里只写改前状态，不重复原文）</p>
+    <div class="step-t">改成了什么</div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>对象</th><th>改前</th><th>改后</th></tr></thead>
+      <tbody><tr><td>（代表性的一行）</td><td>（值）</td><td>（值）</td></tr></tbody>
+    </table></div>
+    <div class="step-t">算给你看</div>
+    <p>（挑一个具体对象，改前改后各算一遍；输入是假设的就标「假设」，规则数值必须是真的。再算一个结果不变的例子更好）</p>
+    <div class="step-t">边界</div>
+    <ul><li>（哪些没动、为什么）</li></ul>
+    <div class="step-t">怎么落地</div>
+    <ul><li>（规模和核对结果，用业务说法；文档会到外部的人手里时，副本数、改法、系统结构、改的过程中出过又已补上的错、提交号放进对话）</li></ul>
+    <div class="step-t">影响</div>
+    <p>（对谁有什么影响；什么不受影响）</p>
+    <div class="step-t">和其他事项的关系</div>
+    <ul><li>（关联的材料、确认项、后续工作）</li></ul>
+    <div class="note">（遗留问题、例外，或讲解时新发现的问题，标明「新发现，未核实」，并同步进「未决与待商量」；没有就删掉）</div>
+  </div>
+</section>
+</main>
+
+<!--
+  ===== 确认单骨架 =====
+  确认单单独存一个文件（单文件 HTML 或在线文档），样式沿用本文件的令牌和组件；没有需要外部确认的事项就不做。
+  三部分顺序固定，某部分没有条目就省掉：已处理（不编号）、疑问（疑问 1、2……）、待定（待定 1、2……）。编号和讲解文档、跟踪表一致。
+  下面是单文件 HTML 版：不能填写，请对方按编号在邮件或消息里回复。做成在线文档或表格时，在疑问、待定两张表末尾
+  各加一列「您的意见」，开头改成请在栏里填写或评论。
+
+<main>
+<header>
+  <h1>（确认单名）</h1>
+  <p>（致谁；依据哪几份材料；请回复「疑问」「待定」两部分，按编号在邮件或消息里回复，如「待定 1：……」；希望 X 月 X 日前回复）</p>
+</header>
+
+<section>
+  <h2>已处理（供知悉，不用回复）</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>出处</th><th>原意见</th><th>怎么处理的</th></tr></thead>
+    <tbody><tr><td>（《文件》「页」第 N 行）</td><td>（照录）</td><td>（改了什么；不用改、排进下一版的写为什么；状态）</td></tr></tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>疑问（疑似问题，请您确认）</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>编号</th><th>出处</th><th>现状</th><th>建议</th></tr></thead>
+    <tbody><tr><td class="id">疑问 1</td><td>（《文件》「页」单元格 = 公式，保存值）</td><td>（系统现在怎么算，为什么看着不对，写「疑似」）</td><td>（建议怎么改，改了影响什么）</td></tr></tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>待定（请您决定）</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>编号</th><th>出处</th><th>问题</th><th>回复前暂按</th></tr></thead>
+    <tbody><tr><td class="id">待定 1</td><td>（出处）</td><td>（一个明确的问题，最好给出可选项）</td><td>（现在先怎么做）</td></tr></tbody>
+  </table></div>
+</section>
+</main>
+-->
+</body>
+</html>

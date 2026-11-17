@@ -1,6 +1,75 @@
 {
-  "ownerId": "kn7783razcmw5krm126wwnj7kx82enrd",
-  "slug": "qwen-portal-auth-helper",
-  "version": "1.0.0",
-  "publishedAt": 1773641143535
+  "skill": {
+    "name": "qwen-portal-auth-helper",
+    "title": "Qwen Portal Auth Helper",
+    "description": "Automate qwen-portal OAuth authentication - solves interactive TTY problem with tmux",
+    "version": "1.0.0",
+    "author": "Bessent",
+    "authorUrl": "https://github.com/jazzqi",
+    "homepage": "https://github.com/jazzqi/qwen-portal-auth-helper",
+    "repository": "github:jazzqi/qwen-portal-auth-helper",
+    "license": "MIT",
+    "keywords": ["qwen", "oauth", "authentication", "automation", "tmux", "openclaw"],
+    "categories": ["authentication", "troubleshooting", "automation"],
+    "tags": ["qwen-portal", "oauth", "troubleshooting", "cron", "maintenance"],
+    "compatibility": {
+      "openclaw": ">=2026.3.0"
+    },
+    "requirements": {
+      "binaries": ["tmux", "openclaw"],
+      "permissions": ["exec", "read", "write"]
+    },
+    "installation": {
+      "type": "clawhub",
+      "command": "clawhub install qwen-portal-auth-helper"
+    }
+  },
+  "openclaw": {
+    "entry": "index.js",
+    "commands": {
+      "get-link": "获取 qwen-portal OAuth 链接",
+      "check-health": "检查 qwen-portal 任务健康状态",
+      "setup-monitoring": "设置每周自动监控"
+    },
+    "providers": ["qwen-portal"],
+    "capabilities": ["oauth-automation", "health-monitoring", "task-recovery"],
+    "skillType": "utility",
+    "skillLevel": "intermediate",
+    "maintainers": ["Bessent"],
+    "createdAt": "2026-03-09",
+    "updatedAt": "2026-03-09",
+    "changelog": [
+      {
+        "version": "1.0.0",
+        "date": "2026-03-09",
+        "changes": [
+          "Initial release based on 2026-03-09 battle-tested experience",
+          "Automated OAuth link extraction using tmux (solves TTY requirement)",
+          "Health monitoring for qwen-portal cron tasks",
+          "Task state recovery tools",
+          "Complete documentation and examples"
+        ]
+      }
+    ],
+    "stats": {
+      "files": 8,
+      "codeLines": 982,
+      "docsWords": 2582,
+      "testCoverage": "manual-tested",
+      "stability": "production-ready"
+    },
+    "quality": {
+      "documentation": "complete",
+      "examples": "included",
+      "testing": "manual",
+      "maintenance": "active"
+    },
+    "links": {
+      "documentation": "SKILL.md",
+      "quickStart": "examples/quick-recovery.md",
+      "source": "https://github.com/jazzqi/qwen-portal-auth-helper",
+      "issues": "https://github.com/jazzqi/qwen-portal-auth-helper/issues",
+      "support": "OpenClaw Discord #skills channel"
+    }
+  }
 }

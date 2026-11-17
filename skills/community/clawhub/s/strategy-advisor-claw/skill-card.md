@@ -1,44 +1,55 @@
-## Description: <br>
-Strategy Advisor Claw helps an agent analyze business decisions, diagnose problems, weigh tradeoffs, and produce direct next-step recommendations from the context available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Strategy Advisor Claw is a Chinese-oriented strategic advisor that synthesizes available business context into structured judgments, action recommendations, risks, and uncertainty notes.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-External users and business operators use this skill when they need practical decision support for strategy, market choices, resource allocation, issue diagnosis, prioritization, retrospectives, plan evaluation, or risk anticipation. It is intended to give concise analysis, recommended actions, risk reminders, and uncertainty notes rather than generic strategy frameworks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to use company context when available, which may include confidential business details. <br>
-Mitigation: Share only business information you are comfortable including in the conversation and avoid unnecessary confidential, regulated, or highly sensitive details. <br>
-Risk: Strategic recommendations may be based on incomplete context or assumptions that do not hold in the user's organization or market. <br>
-Mitigation: Treat outputs as decision support, review the stated uncertainty, and validate recommendations against current business data and stakeholder constraints before acting. <br>
+## Use Case:
 
+External users or employees use this skill to get direct, structured business strategy advice for decisions, market strategy, resource allocation, diagnosis, prioritization, retrospectives, plan evaluation, and risk anticipation. It is intended to turn available company context into practical next actions rather than generic frameworks.
 
-## Reference(s): <br>
-- [Strategy Advisor Claw ClawHub release page](https://clawhub.ai/tujinsama/strategy-advisor-claw) <br>
-- [Publisher profile](https://clawhub.ai/user/tujinsama) <br>
-- [Skill source](artifact/SKILL.md) <br>
-- [Strategy analysis framework reference](artifact/references/framework.md) <br>
-- [Information probing reference](artifact/references/probing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured sections for judgment, analysis, recommended actions, risks, and uncertainty notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no code, external access, credentials, persistence, or tool invocation was identified by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The broad activation scope may cause the skill to engage on many business planning and decision prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in workspaces where a Chinese-oriented strategic advisor is desired, and review whether its scope fits expected usage.
+
+Risk: The skill can produce strategic recommendations from incomplete business context.
+
+Mitigation: Review recommendations before acting and provide concrete operating data when decisions depend on current company conditions.
+
+## Reference(s):
+
+- [Strategic Analysis Framework](references/framework.md)
+- [Information Probe Library](references/probing.md)
+- [ClawHub Skill Page](https://clawhub.ai/tujinsama/skills/strategy-advisor-claw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured sections for judgment, analysis, recommended actions, risks, and uncertainties]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-oriented strategic advice; may include up to 3-5 targeted follow-up questions when context is insufficient.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

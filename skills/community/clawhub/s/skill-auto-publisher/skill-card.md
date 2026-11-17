@@ -1,42 +1,58 @@
-## Description: <br>
-Skill Auto Publisher helps agents publish skills to ClawHub by checking name availability, validating metadata, incrementing versions, generating changelogs, requesting user confirmation, publishing with the ClawHub CLI, and recording publish history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents publish ClawHub skills by checking slug availability, validating metadata, incrementing versions, generating changelogs, and running publish commands.
 
-## Publisher: <br>
-[qianduoduo1422608857](https://clawhub.ai/user/qianduoduo1422608857) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qianduoduo1422608857](https://clawhub.ai/user/qianduoduo1422608857)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to prepare and publish ClawHub skill releases with metadata validation, version updates, changelog handling, and publish-history tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify and upload local skill files during publishing. <br>
-Mitigation: Use it only when intentionally publishing to ClawHub, and verify the active ClawHub account, target directory, included files, version, and changelog before execution. <br>
-Risk: Broad activation wording may cause the publishing workflow to be selected when the user only wants publishing advice. <br>
-Mitigation: Require explicit user confirmation before running publish commands and avoid using the skill on untrusted or unexpectedly named skill directories. <br>
-Risk: Security evidence reports limited built-in safety checks and unsafe interpolation concerns. <br>
-Mitigation: Review the generated command inputs and script behavior before installation or use, especially until script-level confirmation and interpolation handling are improved. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to prepare and publish ClawHub skill releases with metadata validation, version updates, changelog support, and publication history tracking.
 
-## Reference(s): <br>
-- [Skill Auto Publisher on ClawHub](https://clawhub.ai/qianduoduo1422608857/skill-auto-publisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and publish status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update release metadata and publish history files and run ClawHub publish commands after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and _meta.json) <br>
+Risk: The publishing helper can modify skill metadata and publish through local ClawHub credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on trusted skill directories and review the release summary, metadata changes, and publish command before execution.
+
+Risk: The documented confirmation step is not enforced by the publishing script.
+
+Mitigation: Add a real confirmation or dry-run gate before allowing publication.
+
+Risk: The publishing script contains a validated local code-execution bug in python3 -c interpolation.
+
+Mitigation: Fix the interpolation bug before processing third-party or untrusted skills.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qianduoduo1422608857/skills/skill-auto-publisher)
+- [Publisher profile](https://clawhub.ai/user/qianduoduo1422608857)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May modify skill metadata and publish through local ClawHub credentials when its publishing script is used.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

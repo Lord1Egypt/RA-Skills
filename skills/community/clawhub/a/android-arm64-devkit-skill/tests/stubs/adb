@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# fake adb for the test suite
+if [ "${STUB_ARGV:-0}" = "1" ]; then
+  for a in "$@"; do printf 'ARG[%s]\n' "$a"; done
+  exit 0
+fi
+
+out=""
+case "${1:-}" in
+  devices)
+    if [ "${2:-}" = "-l" ]; then
+      out="$(printf 'List of devices attached\n%s' "${STUB_DEVICES_L:-}")"
+    else
+      out="$(printf 'List of devices attached\n%s' "${STUB_DEVICES:-}")"
+    fi
+    ;;
+  connect)    out="connected to ${2:-}" ;;
+  disconnect) out="disconnected ${2:-}" ;;
+esac
+
+# STUB_CRLF=1 emulates the CRLF line endings a Windows adb server returns
+if [ "${STUB_CRLF:-0}" = "1" ]; then
+  printf '%s\n' "$out" | sed 's/$/\r/'
+else
+  printf '%s\n' "$out"
+fi
+exit 0

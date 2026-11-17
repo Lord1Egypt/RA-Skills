@@ -1,0 +1,22 @@
+{
+  "suite": "fde-delivery-loop",
+  "version": "1.0.0",
+  "author": "xukun",
+  "skill": "fde-playbook-productizer",
+  "stage": 8,
+  "purpose": "Precipitate the repeatedly verified delivery model into a reusable asset with boundaries, versions and responsible persons.",
+  "risk_level": "medium",
+  "scripts": [],
+  "writes": [
+    "Only output asset catalog, playbook and product feedback suggestions"
+  ],
+  "human_confirmation": [
+    "Customer material de-identification release",
+    "Enter the common core",
+    "Asset retirement"
+  ],
+  "high_risk_boundaries": [
+    "Single customer success is not enough to prove generalizability",
+    "Do not disclose client confidential or restricted materials"
+  ]
+}

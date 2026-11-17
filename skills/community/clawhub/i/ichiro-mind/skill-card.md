@@ -1,45 +1,55 @@
-## Description: <br>
-Ichiro-Mind is a unified memory system for AI agents with HOT, WARM, COLD, and ARCHIVE layers for working state, associative recall, vector-style search, experience learning, and long-term memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ichiro-Mind is a unified memory system for AI agents with hot, warm, cold, and archive memory layers, neural graph recall, vector search, experience learning, and memory hygiene.
 
-## Publisher: <br>
-[hudul](https://clawhub.ai/user/hudul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hudul](https://clawhub.ai/user/hudul)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add persistent local memory, recall, decision tracking, and MCP-accessible memory tools to AI-agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to persist local memory and may store conversation-derived preferences, decisions, lessons, or other sensitive context. <br>
-Mitigation: Use it only where persistent memory is intended, avoid entering secrets or sensitive personal data, and review local memory files and databases regularly. <br>
-Risk: The security summary notes unclear consent, retention, and deletion controls for stored memories. <br>
-Mitigation: Confirm storage locations, retention expectations, auto-capture behavior, and deletion procedures before enabling the skill for routine use. <br>
-Risk: The skill requires an OPENAI_API_KEY for embedding or related memory functionality. <br>
-Mitigation: Provide credentials through environment management, avoid committing keys, and rotate any key exposed during testing. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add persistent memory, recall, lesson tracking, and MCP-accessible memory tools to long-running AI agent workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hudul/ichiro-mind) <br>
-- [Publisher profile](https://clawhub.ai/user/hudul) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, Python examples, shell commands, MCP JSON configuration, and text tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory records and recall results through CLI, Python API, and MCP tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, CHANGELOG) <br>
+Risk: The security review reports a real CLI code-execution flaw.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix CLI argument handling before installation or execution, and do not pass untrusted input to CLI commands.
+
+Risk: The security review reports that long-term memory storage lacks clear privacy and retention controls.
+
+Mitigation: Avoid storing secrets, credentials, private prompts, or regulated personal data until opt-in, deletion, retention, redaction, and storage-location controls are defined.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hudul/skills/ichiro-mind)
+- [README](README.md)
+- [Skill documentation](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, JSON configuration, and MCP text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local memory files and persistent local stores when installed and invoked.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, CHANGELOG, released 2026-03-07)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

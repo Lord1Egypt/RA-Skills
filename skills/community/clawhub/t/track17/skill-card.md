@@ -1,43 +1,58 @@
-## Description: <br>
-Track parcels via the 17TRACK API (local SQLite DB, polling + optional webhook ingestion). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track parcels via the 17TRACK API with a local SQLite database, polling, and optional webhook ingestion.
 
-## Publisher: <br>
-[tristanmanchester](https://clawhub.ai/user/tristanmanchester) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tristanmanchester](https://clawhub.ai/user/tristanmanchester)
 
-## Use Case: <br>
-ClawHub users and agents use this skill to track parcel status through 17TRACK, manage local parcel records, and summarize delivery changes such as delivery, exceptions, customs holds, and carrier handoffs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a 17TRACK API token for API-backed tracking actions. <br>
-Mitigation: Configure TRACK17_TOKEN as a secret and avoid echoing or logging it in agent responses. <br>
-Risk: Parcel tracking history is stored in the workspace-local data directory. <br>
-Mitigation: Keep the workspace and TRACK17_DATA_DIR access-controlled before adding sensitive shipment details. <br>
-Risk: Webhook ingestion can accept malformed or spoofed payloads if exposed without trusted controls. <br>
-Mitigation: Prefer polling unless webhooks are needed; when using webhooks, keep the receiver behind a trusted endpoint and configure TRACK17_WEBHOOK_SECRET. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tristanmanchester/track17) <br>
-- [17TRACK Tracking API v2.2 endpoint](https://api.17track.net/track/v2.2) <br>
-- [17TRACK carrier metadata endpoint](https://res.17track.net/asset/carrier/info/apicarrier.all.json) <br>
+## Use Case:
 
+Developers and external users can use this skill to let an agent register, list, poll, and summarize parcel tracking status through 17TRACK while storing package data locally.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TRACK17_TOKEN for API-backed actions; webhook use is optional.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires access to a 17TRACK API token and sends tracking numbers plus carrier parameters to 17TRACK.
+
+Mitigation: Install only when that token use and data sharing are acceptable, and never echo TRACK17_TOKEN in agent responses or logs.
+
+Risk: Optional webhook handling may accept forged updates according to the server security summary.
+
+Mitigation: Prefer polling with sync, or avoid public webhook exposure until the signature-enforcement issue is fixed.
+
+Risk: Parcel labels may be sent to 17TRACK as tags without making that behavior clear.
+
+Mitigation: Use non-sensitive labels or set an explicit non-sensitive tag when adding packages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tristanmanchester/skills/track17)
+- [17TRACK API v2.2 endpoint](https://api.17track.net/track/v2.2)
+- [17TRACK carrier metadata resource](https://res.17track.net/asset/carrier/info/apicarrier.all.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a 17TRACK API token and stores parcel data in a workspace-local SQLite database.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

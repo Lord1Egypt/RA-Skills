@@ -1,38 +1,53 @@
-## Description: <br>
-Fetch raw HTTP response bodies from one or more URLs with optional custom headers and timeout, supporting JSON, XML, RSS, CSV, plain text, and files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch raw HTTP response bodies from one or more URLs with optional custom headers and timeout, supporting JSON, XML, RSS, CSV, plain text, and files.
 
-## Publisher: <br>
-[roaycl](https://clawhub.ai/user/roaycl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roaycl](https://clawhub.ai/user/roaycl)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch raw non-HTML HTTP responses from APIs, feeds, data files, and downloads for downstream analysis or processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-controlled headers can be sent to URLs selected at runtime, which can expose Authorization, Cookie, API key, or internal-service headers to untrusted destinations. <br>
-Mitigation: Only provide sensitive headers for destination URLs you trust, and avoid sending credentials or internal-service headers when fetching arbitrary URLs. <br>
+## Use Case:
 
+Developers and external agents use this skill to retrieve raw non-HTML HTTP responses from APIs, feeds, files, and other machine-readable URLs. It is useful when the agent needs the response body directly rather than converted webpage markdown.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/roaycl/fetch-url) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [Raw response body text for a single URL; JSON array of result objects for multiple URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports custom per-URL headers and request timeout; Node.js 18+ is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json, server release metadata) <br>
+Risk: The skill can make unrestricted network requests with caller-supplied headers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when broad raw network fetch capability is intended, and avoid localhost, private-network, cloud metadata, or untrusted redirecting URLs unless that access is explicitly intended.
+
+Risk: Sensitive headers could be sent to external or unintended endpoints.
+
+Mitigation: Do not pass Authorization, Cookie, API keys, session tokens, or internal routing headers through this skill.
+
+## Reference(s):
+
+- [Fetch Url ClawHub listing](https://clawhub.ai/roaycl/skills/fetch-url)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands]
+
+**Output Format:** [Raw HTTP response body text for single URLs; JSON array of result objects for multiple URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports one or more URLs, optional per-URL headers, and configurable request timeout.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

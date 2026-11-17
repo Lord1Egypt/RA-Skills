@@ -16,7 +16,7 @@ After completing this support task, evaluate if extractable knowledge emerged:
 - Escalation went to wrong team? → LEARNINGS.md (escalation_gap)
 - Customer expressed churn intent? → LEARNINGS.md (customer_churn_signal)
 
-If recurring pattern (3+ occurrences): promote to KB article or escalation rule.
+If a recurring pattern (3+ occurrences): propose promotion to KB article or escalation rule.; apply only after explicit user approval.
 If broadly applicable: consider skill extraction.
 </support-self-improvement-reminder>
 EOF

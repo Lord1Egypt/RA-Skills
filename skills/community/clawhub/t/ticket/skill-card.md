@@ -1,51 +1,66 @@
-## Description: <br>
-Let your agent shop online with guardrailed wallets, multiple payment methods, and owner approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Let your agent shop online with guardrailed wallets, multiple payment methods, and owner approval.
 
-## Publisher: <br>
-[jononovo](https://clawhub.ai/user/jononovo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jononovo](https://clawhub.ai/user/jononovo)
 
-## Use Case: <br>
-External users and agents use this skill to make online purchases through CreditClaw wallets, including ticket-oriented shopping when configured by the owner. The artifact evidence also covers broader shopping, payment-link, and x402 payment workflows beyond the ticket-focused listing name. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The listing is ticket-focused, but the artifacts describe broad real-money shopping, payment-link, and x402 payment authority. <br>
-Mitigation: Install only when broad CreditClaw spending authority is intended, keep owner approval required for every purchase, and set low limits plus merchant or category allowlists. <br>
-Risk: CREDITCLAW_API_KEY functions as a spending credential. <br>
-Mitigation: Store it only in a secure secrets manager or protected environment variable, and never send it outside creditclaw.com API requests. <br>
-Risk: Payment-link and x402 workflows can move funds or authorize on-chain settlement. <br>
-Mitigation: Review and explicitly enable those workflows only after confirming owner limits, approval thresholds, and domain or merchant rules. <br>
-Risk: The skill points agents to remote guide files that may influence payment behavior. <br>
-Mitigation: Review remote guide files before allowing an agent to follow them in a spending-enabled environment. <br>
+## Use Case:
 
+External agents and developers use this skill to register guarded payment wallets, check spending permissions, request approvals or top-ups, and make owner-controlled online purchases or x402 payments.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/jononovo/ticket) <br>
-- [Publisher profile](https://clawhub.ai/user/jononovo) <br>
-- [CreditClaw homepage](https://creditclaw.com) <br>
-- [CreditClaw skill guide](https://creditclaw.com/creditcard/skill.md) <br>
-- [Pre-paid Wallet guide](https://creditclaw.com/creditcard/prepaid-wallet.md) <br>
-- [Self-Hosted Card guide](https://creditclaw.com/creditcard/self-hosted-card.md) <br>
-- [Stripe x402 Wallet guide](https://creditclaw.com/creditcard/stripe-x402-wallet.md) <br>
-- [Heartbeat guide](https://creditclaw.com/creditcard/heartbeat.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and JSON API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY and owner-controlled payment guardrails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 2.3.1) <br>
+Risk: The skill delegates real spending and payment authority to an agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep per-purchase approval enabled unless tight merchant, category, and spending limits are configured and reviewed.
+
+Risk: CREDITCLAW_API_KEY is a spending credential.
+
+Mitigation: Store the key in a secrets manager or environment variable, and send it only to creditclaw.com API endpoints.
+
+Risk: Live remote Markdown installation can change without local integrity checks.
+
+Mitigation: Prefer a reviewed package or signed and pinned files before deployment.
+
+Risk: Purchases can require personal or shipping information.
+
+Mitigation: Send only the minimum necessary personal, billing, and shipping data for the approved purchase.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jononovo/skills/ticket)
+- [CreditClaw skill reference](https://creditclaw.com/creditcard/skill.md)
+- [Pre-paid Wallet guide](https://creditclaw.com/creditcard/prepaid-wallet.md)
+- [Self-Hosted Card guide](https://creditclaw.com/creditcard/self-hosted-card.md)
+- [Stripe x402 Wallet guide](https://creditclaw.com/creditcard/stripe-x402-wallet.md)
+- [Heartbeat guide](https://creditclaw.com/creditcard/heartbeat.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, API calls]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY; outputs may include purchase requests, approval messages, top-up requests, and wallet status summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 2.3.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

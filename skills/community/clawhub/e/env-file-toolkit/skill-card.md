@@ -1,40 +1,52 @@
-## Description: <br>
-Manage .env files with validation, diffing, template generation, merge, key listing, and missing-key checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage .env files with validate, diff, template generation, merge, and missing-key checks.
 
-## Publisher: <br>
-[johnnywang2001](https://clawhub.ai/user/johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to inspect, compare, template, merge, and check .env files across local, staging, and production environment configurations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill handles secret-bearing .env files and can display or preserve sensitive values through diff output, value listing, template generation with kept values, merge output, or stdout.
+
+Mitigation: Use value-revealing options only in a controlled local context, review outputs before sharing, and do not commit generated files that preserve real secrets.
+
+Risk: Merged or generated env files can be unsafe to source directly if values have not been reviewed and safely quoted.
+
+Mitigation: Review generated files before using them in shell workflows and safely quote values before sourcing or deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect and manage local environment variable files, including comparing environment files, generating examples, merging values, and checking that required keys are present. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Diff output, merge output, list-keys --with-values, and template --keep-values can expose secrets from .env files. <br>
-Mitigation: Treat generated output and files as sensitive; avoid sharing them in logs, screenshots, tickets, or commits. <br>
-Risk: The utility reads and writes local environment files, including generated .env.example and merged .env files. <br>
-Mitigation: Review file paths and output targets before running commands, and keep generated files out of version control when they contain real values. <br>
+**Output Format:** [Markdown with inline shell commands and file-oriented guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/johnnywang2001/env-file-toolkit) <br>
+**Other Properties Related to Output:** [May produce generated .env.example or merged .env files when the user requests file creation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with shell commands and local file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include environment variable values when diffing, merging, listing with values, or keeping values in generated templates.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

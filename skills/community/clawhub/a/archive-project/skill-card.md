@@ -1,43 +1,58 @@
-## Description: <br>
-Organize completed projects into searchable archives with session transcript backup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize completed projects into searchable archives with session transcript backup.
 
-## Publisher: <br>
-[kaigegao1110](https://clawhub.ai/user/kaigegao1110) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaigegao1110](https://clawhub.ai/user/kaigegao1110)
 
-## Use Case: <br>
-Developers and workspace agents use this skill when a project is complete and should be preserved as a searchable internal archive with sanitized session transcripts, deliverables, decisions, and reconstruction notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill archives local session transcripts for long-term retention. <br>
-Mitigation: Use it only for completed projects that should be retained, confirm the selected transcript, and avoid storing unnecessary client contact details. <br>
-Risk: Sensitive information may remain in transcript archives if sanitization is incomplete or skipped. <br>
-Mitigation: Run the bundled sanitization step, review the sanitized output before committing, and keep archive data inside the internal workspace. <br>
-Risk: Original session files can be deleted after archiving. <br>
-Mitigation: Delete original session files only after explicit user approval and after verifying that the archive copy is correct. <br>
+## Use Case:
 
+Developers and agents use this skill after project completion to create private, searchable project archives with transcripts, deliverables, decisions, and reconstruction notes.
 
-## Reference(s): <br>
-- [Archive Project ClawHub page](https://clawhub.ai/kaigegao1110/archive-project) <br>
-- [Archive Project homepage](https://github.com/KaigeGao1110/ArchiveProject) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown archive files, sanitized JSONL transcript files, directory structures, and git commit commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for internal workspace retention and include sanitized transcript backups before optional deletion of original session files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.5 (source: server release metadata; artifact frontmatter lists 1.2.4) <br>
+Risk: The skill copies and can retain session transcripts that may contain sensitive project or client data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the sanitizer, manually inspect sanitized transcripts before committing, and keep archives inside the internal workspace unless publication is explicitly approved.
+
+Risk: Transcript selection can fall back to the most recent transcript when no explicit session key is provided.
+
+Mitigation: Require or confirm the session identifier and source path before archiving to avoid copying unrelated session data.
+
+Risk: Deleting source session files is destructive if the wrong files are selected.
+
+Mitigation: Approve deletion only after the exact source files are shown and the sanitized archive copy has been verified.
+
+## Reference(s):
+
+- [Archive Project homepage](https://github.com/KaigeGao1110/ArchiveProject)
+- [ClawHub Archive Project skill page](https://clawhub.ai/kaigegao1110/skills/archive-project)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration]
+
+**Output Format:** [Markdown archive files, JSONL transcript copies, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Archives are intended for internal workspace storage and should be sanitized before commit.]
+
+## Skill Version(s):
+
+1.2.5 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

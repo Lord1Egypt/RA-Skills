@@ -1,39 +1,54 @@
-## Description: <br>
-Deprecated compatibility alias for the canonical `opencli` skill, intended only for older notes, memory, or prompts that still refer to `opencli-exec`. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deprecated compatibility alias for the canonical `opencli` skill, intended only for older notes, memory, or prompts that still refer to `opencli-exec`.
 
-## Publisher: <br>
-[chaoyang78](https://clawhub.ai/user/chaoyang78) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaoyang78](https://clawhub.ai/user/chaoyang78)
 
-## Use Case: <br>
-Developers and operators use this compatibility alias when legacy workspace material still invokes `opencli-exec`, then route current work through the canonical `opencli` skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The alias forwards all arguments to a separately installed local Opencli script, so an unexpected or missing canonical path could run the wrong target or fail. <br>
-Mitigation: Install only when the legacy alias is needed, verify the disclosed canonical Opencli path exists, and confirm it points to the expected installation before use. <br>
+## Use Case:
 
+Developers and agents use this compatibility alias when legacy workspace notes or prompts still reference `opencli-exec`, then route to the canonical `opencli` skill and wrapper.
 
-## Reference(s): <br>
-- [Deprecated alias command reference](references/commands.md) <br>
-- [ClawHub skill page](https://clawhub.ai/chaoyang78/opencli-exec) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Forwards command arguments to a separately installed canonical Opencli script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The alias routes agent behavior and shell execution to files at a fixed local path outside the released package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that canonical `opencli` skill exists at the referenced path and has been independently reviewed and trusted.
+
+Risk: The package does not pin or validate the external skill and script that will actually be followed or executed.
+
+Mitigation: Verify the external skill and wrapper before use and repeat review when the referenced local files change.
+
+## Reference(s):
+
+- [Deprecated alias commands](artifact/references/commands.md)
+- [ClawHub skill page](https://clawhub.ai/chaoyang78/skills/opencli-exec)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Delegates command execution to a canonical local wrapper outside this package.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

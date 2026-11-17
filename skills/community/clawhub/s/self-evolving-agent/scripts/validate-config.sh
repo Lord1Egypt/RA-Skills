@@ -303,7 +303,7 @@ else:
                            'delivery:\\n  slack:\\n    webhook_url: "https://hooks.slack.com/services/..."'))
         elif not webhook_url.startswith('https://hooks.slack.com/'):
             errors.append((f"webhook_url='{webhook_url[:40]}...' Slack 형식 아님",
-                           "https://hooks.slack.com/services/T.../B.../... 형식이어야 합니다"))
+                           "REDACTED-SECRET.../B.../... 형식이어야 합니다"))
         else:
             print("OK|Slack webhook_url 설정됨")
 

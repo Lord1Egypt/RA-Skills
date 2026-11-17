@@ -1,40 +1,58 @@
-## Description: <br>
-Reviews screenplays as an adversarial reader across hook, motivation, cliche, emotional manipulation, and irreplaceability dimensions to identify story and character weaknesses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language adversarial script review workflow that scores scripts across hook, motivation, cliche, emotional manipulation, and irreplaceability dimensions.
 
-## Publisher: <br>
-[huangliujiao-tal](https://clawhub.ai/user/huangliujiao-tal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangliujiao-tal](https://clawhub.ai/user/huangliujiao-tal)
 
-## Use Case: <br>
-Screenwriters, story editors, and creative teams use this skill to stress-test a screenplay after self-review, producing strict notes on whether story quality is strong enough to advance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is intentionally adversarial and may overstate weaknesses or frame subjective story judgments as hard failures. <br>
-Mitigation: Use the review as editorial input; have a human reviewer confirm each finding against the screenplay before requiring rewrites. <br>
-Risk: Pass, conditional, and reject verdicts can affect creative workflow decisions. <br>
-Mitigation: Check that each verdict is supported by specific scene or dialogue evidence before routing work back for revision. <br>
+## Use Case:
 
+Screenwriters, editors, and story development agents use this skill to run a Chinese-language adversarial review after script self-checks, identify story-quality failures, and decide whether rewrite is required.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangliujiao-tal/editor-adversarial-reviewer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [JSON object with per-dimension scores, notes, verdict, mandatory rewrites, and suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scores use a 1-5 scale; verdicts are REJECT, CONDITIONAL, or PASS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Script content is sent into an isolated subagent for critique.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for scripts approved for agent review and keep the isolated-review workflow described by the artifact.
+
+Risk: The workflow is intentionally strict and may recommend rejection or mandatory rewrites.
+
+Mitigation: Treat verdicts as editorial review input and have a responsible editor confirm rewrite decisions.
+
+Risk: The checklist is designed for Chinese-language adversarial script review.
+
+Mitigation: Use it for that intended review posture, or adapt the criteria before applying it to other languages or review styles.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/huangliujiao-tal/skills/editor-adversarial-reviewer)
+- [Publisher Profile](https://clawhub.ai/user/huangliujiao-tal)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON object with scored review notes, verdict, mandatory rewrites, and suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language critique focused on story quality; no file edits are requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

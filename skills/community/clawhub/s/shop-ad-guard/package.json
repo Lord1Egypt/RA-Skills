@@ -1,0 +1,51 @@
+{
+  "name": "shop-ad-guard",
+  "displayName": "电商广告合规护栏 (shop-ad-guard)",
+  "version": "1.0.0",
+  "description": "电商广告合规护栏。在商品标题、详情页、直播话术、促销文案发布前，实时检测绝对化用语、医疗功效违规宣称、虚假夸大、虚假促销、比较贬低、迷信诱导等高频违规用语，按风险分级输出命中与整改建议。纯本地运行，零网络、零动态执行。与 shop-ad-check-pro（深度审计）互补。",
+  "author": "Wei Wu (wwumit)",
+  "license": "MIT",
+  "keywords": [
+    "护栏",
+    "guardrail",
+    "电商合规",
+    "广告法",
+    "极限词",
+    "绝对化用语",
+    "违规词检测",
+    "直播话术合规",
+    "促销合规",
+    "广告违规拦截",
+    "compliance"
+  ],
+  "files": [
+    "SKILL.md",
+    "package.json",
+    "requirements.txt",
+    "CHANGELOG.md",
+    "README.md",
+    "scripts/"
+  ],
+  "scripts": {
+    "guard": "python3 scripts/guard.py",
+    "detect": "python3 scripts/guard.py --format json",
+    "categories": "python3 scripts/guard.py --list-categories"
+  },
+  "openclaw": {
+    "skill": true,
+    "category": "compliance",
+    "region": "cn",
+    "dependencies": [],
+    "emoji": "🛡️"
+  },
+  "security": {
+    "scanned": true,
+    "issues": 0,
+    "warnings": 0
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wwumit/shop-ad-guard"
+  },
+  "homepage": "https://github.com/wwumit/shop-ad-guard"
+}

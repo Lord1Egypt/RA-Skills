@@ -1,41 +1,49 @@
-## Description: <br>
-Guides developers in designing Retrieval-Augmented Generation systems with embeddings, vector databases, chunking strategies, and retrieval optimization for LLM applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert in building Retrieval-Augmented Generation systems. Masters embedding models, vector databases, chunking strategies, and retrieval optimization for LLM applications. Use when: building RAG, vector search, embeddings, semantic search, document retrieval.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and review RAG systems, including embedding selection, document chunking, vector retrieval, hybrid search, reranking, and retrieval-quality evaluation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Indexed documents, retention policies, access controls, or embeddings may expose sensitive content in a real RAG system. <br>
-Mitigation: Review documents before indexing, define retention rules, enforce access controls, and assess whether embeddings can reveal sensitive content. <br>
-Risk: Poor retrieval design can increase hallucination risk or return irrelevant context to an LLM. <br>
-Mitigation: Evaluate retrieval separately from generation, use semantic chunking, consider hybrid search and metadata filtering, add reranking where appropriate, and tune relevance thresholds. <br>
+## Use Case:
 
+Developers and engineers use this skill to design, evaluate, and optimize retrieval-augmented generation systems, including embedding selection, vector search, chunking, hybrid retrieval, reranking, and retrieval quality measurement.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/mupengi-bot/mupeng-rag-engineer) <br>
-- [Mupeng GitHub profile](https://github.com/mupeng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with architectural guidance and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no executable code, credential use, persistence, or hidden authority in the reviewed artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill provides RAG engineering advice that an agent may translate into code or configuration changes that do not fit a specific system.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed retrieval, embedding, indexing, and evaluation changes against the target codebase, data, and quality requirements before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mupengi-bot/skills/mupeng-rag-engineer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with code, command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory output; no files or commands are executed by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

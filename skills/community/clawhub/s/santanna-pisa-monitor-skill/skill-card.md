@@ -1,43 +1,56 @@
-## Description: <br>
-Monitor job postings, admissions, courses, and research opportunities from Scuola Superiore Sant'Anna di Pisa. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor job postings, admissions, courses, and research opportunities from Scuola Superiore Sant'Anna di Pisa.
 
-## Publisher: <br>
-[fabiobaroni](https://clawhub.ai/user/fabiobaroni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fabiobaroni](https://clawhub.ai/user/fabiobaroni)
 
-## Use Case: <br>
-Students, researchers, job seekers, and academic staff use this skill to check public Sant'Anna Pisa opportunity pages for jobs, admissions, PhD calls, seasonal schools, and application deadlines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public website content, page structure, or annual URLs may change and cause incomplete or stale extraction. <br>
-Mitigation: Review extracted links and deadlines against the live Sant'Anna pages before acting on applications, jobs, or admissions information. <br>
-Risk: Recurring monitoring can create periodic website visits and local reports or change history. <br>
-Mitigation: Choose an appropriate monitoring frequency and storage location before enabling scheduled checks. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to monitor public Scuola Superiore Sant'Anna di Pisa pages for job postings, admissions deadlines, PhD calls, Seasonal School courses, and related research or education opportunities.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fabiobaroni/santanna-pisa-monitor-skill) <br>
-- [Skill Homepage](https://github.com/FabioBaroni/santanna-pisa-monitor-skill) <br>
-- [Scuola Superiore Sant'Anna Public Website](https://www.santannapisa.it/it) <br>
-- [Sant'Anna Online Application Portal](https://sssup.esse3.cineca.it/Home.do) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain-text summaries with extracted opportunities, deadlines, links, and change reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include public URLs, dates, posting IDs, and comparisons with previous checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release metadata) <br>
+Risk: Recurring monitoring can cause an agent to periodically visit the listed public Sant'Anna Pisa pages and retain enough prior-result state to report changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scheduled-monitoring setup and any stored prior-result state before enabling recurring runs.
+
+Risk: The skill relies on public web pages whose deadlines, PDFs, yearly URLs, and course pages can change.
+
+Mitigation: Compare results against the current public pages during each run and prefer stable hub pages when specific yearly links change.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fabiobaroni/skills/santanna-pisa-monitor-skill)
+- [Project homepage](https://github.com/FabioBaroni/santanna-pisa-monitor-skill)
+- [Scuola Superiore Sant'Anna website](https://www.santannapisa.it/it)
+- [Sant'Anna application portal](https://sssup.esse3.cineca.it/Home.do)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summaries and browser-navigation instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Standardized monitoring reports; no API keys, local binaries, or external dependencies required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

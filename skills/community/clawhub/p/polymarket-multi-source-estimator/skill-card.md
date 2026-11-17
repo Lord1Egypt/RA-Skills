@@ -1,43 +1,58 @@
-## Description: <br>
-Trade prediction markets using LLM probability estimation enriched with real-time data sources, then act when the estimate diverges from the market price. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade prediction markets using LLM probability estimation enriched with real-time data from news, economic data, sports odds, political polling, and other sources.
 
-## Publisher: <br>
-[Mibayy](https://clawhub.ai/user/Mibayy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mibayy](https://clawhub.ai/user/mibayy)
 
-## Use Case: <br>
-Developers and prediction-market operators use this skill to run a configurable estimator that gathers public market context, asks an LLM for probability estimates, and optionally places trades through Simmer/Polymarket when configured thresholds are met. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make repeated automated financial trading decisions when live mode and a real trading venue are enabled. <br>
-Mitigation: Keep the skill in dry-run or simulated venue mode until the source, dependencies, trade size, venue, thresholds, and operational limits have been reviewed and approved. <br>
-Risk: LLM probability estimates and public data sources can be wrong, stale, incomplete, or overconfident. <br>
-Mitigation: Use conservative thresholds, monitor logs and trade outcomes, cap LLM calls and trade size, and require human review before enabling live trading. <br>
-Risk: The configured LLM endpoint and external APIs receive market questions and public context during estimation. <br>
-Mitigation: Use trusted providers, protect API keys, review endpoint configuration, and avoid adding private or sensitive data to market prompts. <br>
+## Use Case:
 
+External users and developers use this automaton to estimate prediction-market probabilities from multiple public data sources and optionally execute Polymarket trades when estimates diverge from market prices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Mibayy/polymarket-multi-source-estimator) <br>
-- [Publisher profile](https://clawhub.ai/user/Mibayy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown guidance with shell commands, environment variable configuration, runtime logs, LLM probability estimates, and optional trading API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs as a scheduled managed automaton by default; dry-run unless live trading is explicitly enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: release evidence, artifact metadata, and clawhub.json) <br>
+Risk: The automaton can repeatedly make financial trades from LLM probability estimates influenced by external internet data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep it in dry-run or paper trading until reviewed, and add fail-closed or manual-approval controls before enabling live trades.
+
+Risk: Live operation can create financial exposure if trade size, market count, or divergence thresholds are misconfigured.
+
+Mitigation: Set strict trade-size, exposure, market-scan, and threshold limits before scheduled execution.
+
+Risk: The skill depends on trading, LLM, and optional data-provider API keys.
+
+Mitigation: Use narrowly scoped, revocable credentials and review the configured LLM endpoint before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mibayy/skills/polymarket-multi-source-estimator)
+- [Publisher profile](https://clawhub.ai/user/mibayy)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Command-line logs and trading actions configured through environment variables and command flags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs on a managed cron schedule every 5 minutes; dry-run is the default unless live trading is explicitly enabled.]
+
+## Skill Version(s):
+
+1.1.4 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

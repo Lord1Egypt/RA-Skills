@@ -1,46 +1,62 @@
-## Description: <br>
-A conversational Machiavelli digital twin for situation analysis, strategic decision framing, writing strategy, and risk assessment, distilled from Machiavelli-related works. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A bilingual conversational digital twin of Niccolo Machiavelli that provides situation analysis, strategic decision frameworks, risk assessment, and writing guidance through dialogue, analysis, writing, and Eastern-comparison modes.
 
-## Publisher: <br>
-[niflhum](https://clawhub.ai/user/niflhum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[niflhum](https://clawhub.ai/user/niflhum)
 
-## Use Case: <br>
-External users, employees, and analysts use this skill for dilemma analysis, power-dynamics assessment, negotiation preparation, risk review, and document phrasing in a Machiavelli-inspired style. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The advice style can normalize manipulative, coercive, retaliatory, deceptive, or intimidating strategy. <br>
-Mitigation: Use the skill for historical analysis, defensive risk assessment, or transparent communication, and avoid applying it to workplace retaliation, intimidation, deceptive messaging, or interpersonal pressure tactics. <br>
-Risk: Power-dynamics analysis may overfit interpersonal motives or turn incomplete context into confident strategic advice. <br>
-Mitigation: Require users to validate facts, identify uncertainty, and prefer lawful, transparent, and non-coercive options before acting on recommendations. <br>
+## Use Case:
 
+External users can invoke the skill to analyze power dynamics, evaluate difficult decisions, prepare negotiation or reporting strategy, and draft more deliberate written communication. It is intended as a historical strategy lens, not as emotional counseling, technical support, or moral authority.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/niflhum/machiavelli-skill) <br>
-- [README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Machiavelli Library](https://niflhum.top/machiavelli-library/library/) <br>
-- [The Prince Source Summary](artifact/sources/the-prince.md) <br>
-- [Discourses Source Summary](artifact/sources/discourses.md) <br>
-- [Guiguzi Source Summary](artifact/sources/eastern/guiguzi.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational responses and structured analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source excerpts or links when the citation protocol is triggered.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The persona includes provocative strategic advice that could be misused for harassment, coercion, or real-world deception.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as a historical strategy lens, review advice before acting on it, and reject uses that target people with manipulation, harassment, coercion, or deception.
+
+Risk: Installation by manual copy or CLI can introduce supply-chain risk if the source or installer is not trusted.
+
+Mitigation: Install by manual copy from the reviewed artifact or with a pinned, trusted ClawHub CLI version, then review and scan the skill before deployment.
+
+Risk: The skill is explicitly not intended for emotional counseling, everyday trivia, technical questions, or modern specialist advice.
+
+Mitigation: Route those requests to appropriate professionals, systems, or domain-specific tools, and keep this skill focused on situation analysis, decision review, and writing strategy.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/niflhum/skills/machiavelli-skill)
+- [Machiavelli Library](https://niflhum.top/machiavelli-library/library/)
+- [The Prince Chinese Full Text](https://niflhum.top/machiavelli-library/library/machiavelli/prince/prince-cn-full.md)
+- [Discourses on Livy Book I Chapter 4](https://niflhum.top/machiavelli-library/library/machiavelli/discourses/book1/04-第四章.md)
+- [Machiavelli Letters](https://niflhum.top/machiavelli-library/library/machiavelli/letters/1513-1527.md)
+- [The Art of War Book II](https://niflhum.top/machiavelli-library/library/machiavelli/art-of-war/book02.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text conversational responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese or English responses depending on prompt and selected mode; no files, code, shell commands, persistence, credential access, or exfiltration behavior by default.]
+
+## Skill Version(s):
+
+1.8.3 (source: frontmatter, package.json, CHANGELOG, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

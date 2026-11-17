@@ -1,41 +1,62 @@
-## Description: <br>
-Queries 1688 product ranking lists and category-level hot search keywords using the official 1688 Open Platform APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+1688-ranking queries 1688 product ranking lists and category-level hot search keywords through the 1688 Open Platform API.
 
-## Publisher: <br>
-[1688AiInfra](https://clawhub.ai/user/1688AiInfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve 1688 category rankings, hot-selling or value rankings, hot keywords, and top-level category data for sourcing and marketplace research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reusable 1688 access and refresh tokens may be stored in a shared local cache without explicit permission hardening. <br>
-Mitigation: Use a least-privileged 1688 app or token, avoid shared or untrusted machines, protect or periodically delete ~/.openclaw/workspace/skills/.1688_token_cache.json, and avoid running scripts/auth.py directly unless token output is removed or masked. <br>
+## Use Case:
 
+External developers and commerce operators use this skill to retrieve 1688 category rankings, hot-selling or value product lists, hot search keywords, and top-level category IDs for sourcing workflows.
 
-## Reference(s): <br>
-- [1688 API Reference](references/api.md) <br>
-- [1688 Open Platform API Invocation Guide](https://open.1688.com/doc/apiInvoke.htm) <br>
-- [1688 Open Platform Signature Rules](https://open.1688.com/doc/signature.htm) <br>
-- [1688 Open Platform Authorization Guide](https://open.1688.com/doc/apiAuth.htm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON API responses and command-line error JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires 1688 app credentials and either a refresh token or access token; product ranking commands clamp requested result count to 1-20.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill stores reusable 1688 OAuth tokens in a shared plaintext cache.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict cache file permissions, keep the runtime workspace private, and revoke or rotate 1688 tokens if the cache may have been exposed.
+
+Risk: Running the authentication helper directly can print a full access token to console output.
+
+Mitigation: Avoid running scripts/auth.py directly in logged environments and redact console output before sharing logs.
+
+Risk: The skill requires a 1688 AppKey, AppSecret, and refresh token to call the API.
+
+Mitigation: Use only credentials scoped for the intended 1688 application and rotate them according to the publisher's operational policy.
+
+## Reference(s):
+
+- [1688-ranking ClawHub release page](https://clawhub.ai/1688aiinfra/skills/1688-ranking)
+- [1688 API interface documentation](references/api.md)
+- [1688 Open Platform](https://open.1688.com)
+- [1688 API invocation guide](https://open.1688.com/doc/apiInvoke.htm)
+- [1688 API signature guide](https://open.1688.com/doc/signature.htm)
+- [1688 API authorization guide](https://open.1688.com/doc/apiAuth.htm)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON API responses and plain-text category listings; Markdown guidance may include shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns raw 1688 API data, includes item IDs in product results, and reports failures as JSON error objects with exit code 1.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; artifact frontmatter says 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

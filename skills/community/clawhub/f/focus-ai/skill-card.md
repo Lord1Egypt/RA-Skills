@@ -1,43 +1,58 @@
-## Description: <br>
-focusAI helps an agent work with a local FocusAI setup to monitor screen activity, assess focus, and answer questions about current or historical work context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+focusAI helps an agent guide local FocusAI use for screen activity monitoring, focus scoring, and same-day visual history queries after user consent and setup.
 
-## Publisher: <br>
-[HR2AY](https://clawhub.ai/user/HR2AY) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hr2ay](https://clawhub.ai/user/hr2ay)
 
-## Use Case: <br>
-People using ClawHub agents can use this skill to start, stop, query, and summarize FocusAI screen-monitoring sessions after local setup and explicit consent. It is intended for personal focus tracking, work-history review, and analysis of locally stored screenshot and CSV records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill supports screen monitoring and can involve sensitive screenshots. <br>
-Mitigation: Start monitoring only after explicit user consent, clearly disclose screenshot behavior, and stop or delete local history when it is no longer needed. <br>
-Risk: Screenshots may be sent to a user-configured cloud vision provider for analysis. <br>
-Mitigation: Review the selected provider settings before use and avoid monitoring private or regulated content unless the user accepts that data flow. <br>
-Risk: Local API keys and configuration files are sensitive. <br>
-Mitigation: Keep credentials in user-managed local configuration, do not expose keys in agent-readable conversations, and do not read or transmit credential file contents. <br>
+## Use Case:
 
+Employees and individual users use this skill with an agent to start, stop, check, and query a local FocusAI installation for focus monitoring and work-session history. The skill is intended for user-controlled local workflows where screenshots, CSV reports, and cloud vision API use are disclosed before monitoring begins.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HR2AY/focus-ai) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/HR2AY) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with optional inline shell commands and local service guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local FocusAI start commands or HTTP API interactions only after user consent; may summarize local focus history when data exists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The local FocusAI program can capture screen contents and send screenshots to a configured cloud vision provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only after explicit user consent, confirm the chosen provider and API cost implications, and stop monitoring when it is no longer needed.
+
+Risk: The release directs users toward external FocusAI code that is not pinned by server-resolved provenance.
+
+Mitigation: Review or pin the FocusAI code before running it, and avoid administrator privileges.
+
+Risk: API keys and retained screenshots or reports can expose sensitive information if mishandled.
+
+Mitigation: Keep credentials in the local config file, do not read or transmit credential contents through the agent, and delete retained screenshots or reports when no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hr2ay/skills/focus-ai)
+- [Publisher profile](https://clawhub.ai/user/hr2ay)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell and PowerShell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may guide API calls to a local FocusAI service and summarize local activity records when available.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

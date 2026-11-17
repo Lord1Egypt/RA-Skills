@@ -1,48 +1,57 @@
-## Description: <br>
-Generates django-vue-admin style CRUD scaffolding for Django models, serializers, viewsets, URLs, Vue API modules, and Vue pages from a requested module description. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate complete django-vue-admin style CRUD code including Django models, serializers, views, URLs, Vue API, and Vue pages from module descriptions.
 
-## Publisher: <br>
-[jpzhengcn](https://clawhub.ai/user/jpzhengcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpzhengcn](https://clawhub.ai/user/jpzhengcn)
 
-## Use Case: <br>
-Developers use this skill to scaffold Django REST Framework and Vue CRUD modules for django-vue-admin projects. It is most useful when a module description or existing Django model should be turned into backend API code and frontend admin UI code quickly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated admin templates may include unsafe permission patterns, including object-permission behavior and RBAC maps that need review. <br>
-Mitigation: Audit and test object permissions, RBAC mappings, queryset scoping, serializers, and update/delete paths before using generated code. <br>
-Risk: Template examples include a default password value of 0000 for created users. <br>
-Mitigation: Remove the default password pattern and require secure password setup or reset flows before deployment. <br>
-Risk: The generator writes over common project files such as serializers.py, views.py, urls.py, and frontend API modules. <br>
-Mitigation: Run the generator only on a backed-up branch and review diffs before merging generated files. <br>
+## Use Case:
 
+Developers building django-vue-admin applications use this skill to turn module and field descriptions into Django REST Framework and Vue CRUD code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpzhengcn/django-vue-admin) <br>
-- [Publisher profile](https://clawhub.ai/user/jpzhengcn) <br>
-- [Skill usage and examples](artifact/SKILL.md) <br>
-- [Core module templates](artifact/templates/CORE_MODULES.md) <br>
-- [Business logic reference](artifact/templates/BUSINESS_LOGIC.md) <br>
-- [Logic flow reference](artifact/templates/LOGIC_FLOW.md) <br>
-- [Field template reference](artifact/templates/FIELD_TEMPLATE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown explanations with Python, JavaScript, Vue, and shell code blocks; generator script output writes code files when run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated files may include serializers.py, views.py, urls.py, and src/api/<module>.js; review before applying to a project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated admin and security code may include unsafe authorization paths and a default password pattern.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill in a disposable branch or sandbox, fix object-permission behavior, remove the 0000 default password, and test authentication, authorization, and destructive CRUD actions before merging.
+
+Risk: The generator writes derived backend and frontend files from module names and paths.
+
+Mitigation: Validate module names and output paths, avoid automatic overwrites, and review generated files before committing them.
+
+## Reference(s):
+
+- [Skill overview and usage](SKILL.md)
+- [Core module templates](templates/CORE_MODULES.md)
+- [Business logic reference](templates/BUSINESS_LOGIC.md)
+- [Logic flow reference](templates/LOGIC_FLOW.md)
+- [Field template reference](templates/FIELD_TEMPLATE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python, JavaScript, Vue, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces generated CRUD code and setup guidance that should be reviewed before applying to a project.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

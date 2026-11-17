@@ -1,41 +1,57 @@
-## Description: <br>
-CLI download tools for YouTube audio and WeChat articles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI download tools for YouTube and WeChat.
 
-## Publisher: <br>
-[jqlong17](https://clawhub.ai/user/jqlong17) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jqlong17](https://clawhub.ai/user/jqlong17)
 
-## Use Case: <br>
-Developers and command-line users use this skill to download YouTube audio as MP3 files and save WeChat articles as text files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill makes network requests to user-provided URLs and relies on third-party downloader tools. <br>
-Mitigation: Install only if comfortable using yt-dlp and ffmpeg through Homebrew, and review URLs before execution. <br>
-Risk: Output names can affect where downloaded files are written. <br>
-Mitigation: Use simple output names rather than paths and avoid running the scripts in sensitive directories. <br>
-Risk: Browser-cookie troubleshooting options can expose an authenticated browser session to yt-dlp. <br>
-Mitigation: Use browser-cookie options only when intentionally authorizing yt-dlp to access that session. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jqlong17/download-tools) <br>
+## Use Case:
 
+Developers and external users use this skill to run CLI helpers that download WeChat article text and extract YouTube audio as MP3 files from user-provided URLs.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Configuration] <br>
-**Output Format:** [Markdown with bash command examples and local shell script outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local TXT or MP3 files from user-provided URLs and requires curl, yt-dlp, and ffmpeg.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The scripts make outbound requests to URLs supplied by the user.
+
+Mitigation: Use trusted YouTube and WeChat URLs and avoid running the scripts with elevated privileges.
+
+Risk: The scripts write local output files and use temporary files during processing.
+
+Mitigation: Run them in an intended working directory, choose safe output names, and add overwrite prompts or safer temporary-file handling before routine use.
+
+Risk: The YouTube helper depends on locally installed command-line tools.
+
+Mitigation: Install yt-dlp and ffmpeg from trusted package sources and keep them updated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jqlong17/skills/download-tools)
+- [Publisher profile](https://clawhub.ai/user/jqlong17)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Markdown with inline bash code blocks and command-line file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates .txt files for WeChat articles and .mp3 files for YouTube audio in the current working directory when scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,48 @@
-## Description: <br>
-Implement and troubleshoot eSIM across consumer activation, carrier integration, and RSP development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement and troubleshoot eSIM across consumer activation, carrier integration, and RSP development.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, carrier integration teams, and support engineers use this skill as a concise reference for eSIM activation formats, platform API restrictions, certification requirements, and troubleshooting decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Following profile deletion troubleshooting without a replacement activation path can temporarily interrupt mobile service. <br>
-Mitigation: Confirm carrier support or a replacement activation code before deleting an eSIM profile. <br>
-Risk: Applying consumer RSP guidance to M2M RSP, or the reverse, can lead to incorrect implementation decisions. <br>
-Mitigation: Verify whether SGP.22 consumer RSP or SGP.02 M2M RSP applies before planning the activation or integration flow. <br>
-Risk: Assuming public mobile APIs can provision arbitrary eSIMs may lead to rejected apps or blocked integrations. <br>
-Mitigation: Confirm Apple carrier entitlements, Android carrier privilege requirements, and carrier partnership status before designing provisioning features. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/esim) <br>
+## Use Case:
 
+Developers, carrier integration teams, and support engineers use this skill for eSIM implementation guidance, activation troubleshooting, and RSP-related decision support.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown reference guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance with no executable behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Carrier entitlement, GSMA certification, and production provisioning requirements may vary by platform, carrier, or authority.
+
+Mitigation: Verify requirements with the relevant platform, carrier, or GSMA authority before acting on production eSIM guidance.
+
+## Reference(s):
+
+- [ClawHub eSIM skill page](https://clawhub.ai/ivangdavila/skills/esim)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reference guidance only; no code execution or privileged actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

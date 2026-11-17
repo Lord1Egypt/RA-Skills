@@ -1,40 +1,53 @@
-## Description: <br>
-Helps food factory teams calculate production costs, sales-channel costs, profit margins, and tiered pricing from user-provided cost and margin data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps food factory operators calculate production costs, all-channel sales costs, and tiered prices for break-even, factory, distributor, retail, online, and promotion scenarios.
 
-## Publisher: <br>
-[ccynthia5098-wq](https://clawhub.ai/user/ccynthia5098-wq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ccynthia5098-wq](https://clawhub.ai/user/ccynthia5098-wq)
 
-## Use Case: <br>
-Food factory operators, finance staff, and sales or pricing teams use this skill to calculate production cost, channel cost, net profit, gross margin, and tiered prices from supplied business data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Costing and pricing outputs can be incorrect if the supplied costs, quantities, fees, margin targets, or accounting treatment are incomplete or inaccurate. <br>
-Mitigation: Verify outputs against current business records, applicable accounting rules, and internal pricing policy before relying on them. <br>
-Risk: Broad pricing and margin trigger phrases may activate the skill for generic business pricing questions outside food manufacturing. <br>
-Mitigation: Confirm the task is food factory costing or pricing before applying the generated worksheets or price tiers. <br>
+## Use Case:
 
+External food factory operators and finance staff use this skill to turn provided cost, sales-channel, and margin inputs into structured cost accounting and tiered pricing tables.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ccynthia5098-wq/food-factory-cost-pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown tables with formulas and calculated monetary values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided cost, quantity, fee, and margin inputs; monetary outputs are expected to be rounded to two decimals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: The skill declares web, terminal, and file access beyond its documented calculator-style pricing workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and grant only calculator access where possible, or ask the publisher to reduce the declared permissions.
+
+Risk: Incorrect or incomplete cost inputs can lead to misleading pricing guidance.
+
+Mitigation: Verify all source cost data, margin targets, and channel fees before using generated tables for business decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ccynthia5098-wq/skills/food-factory-cost-pricing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables with numeric cost and pricing calculations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Amounts are presented to two decimal places when sufficient input data is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

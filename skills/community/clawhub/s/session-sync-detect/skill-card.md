@@ -1,40 +1,56 @@
-## Description: <br>
-Detects when a user may be referring to information from another session and asks for permission before searching shared memory or recent session history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically detects when a user may be referring to content from another session and asks for confirmation before searching shared memory files or recent session history.
 
-## Publisher: <br>
-[guoquan](https://clawhub.ai/user/guoquan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guoquan](https://clawhub.ai/user/guoquan)
 
-## Use Case: <br>
-Developers and agent users use this skill to recover relevant context from shared memory or recent sessions when a request appears to depend on prior conversation history. It is intended to ask for confirmation before searching or syncing findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may surface private conversation history or shared-memory content during cross-session recall. <br>
-Mitigation: Approve searches only when prior-session recall is intended, and review any displayed findings before using or syncing them. <br>
-Risk: Sensitive details could be copied into shared memory if a sync is approved without review. <br>
-Mitigation: Do not approve syncing passwords, API keys, private messages, or other sensitive details; redact sensitive content before any memory write. <br>
+## Use Case:
 
+Agent users and developers use this skill to recover relevant context from prior OpenClaw sessions or shared memory when the current conversation appears to reference missing background. It helps the agent ask for consent, search narrow sources first, summarize findings, and write only confirmed information back to shared memory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guoquan/session-sync-detect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown prompts, search result summaries, and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose memory or session-history searches only after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata, package.json, and artifact metadata) <br>
+Risk: Prior sessions or memory files may contain private or work-sensitive information that is unrelated to the current request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the user to approve each lookup scope, prefer narrow memory-file searches first, and avoid broad recent-session searches unless the user accepts that unrelated previews may enter the current context.
+
+Risk: Sensitive findings could be retained in shared memory after the immediate request is complete.
+
+Mitigation: Show extracted findings to the user before writing, redact secrets or private details, and save only information the user explicitly confirms.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/guoquan/skills/session-sync-detect)
+- [Publisher Profile](https://clawhub.ai/user/guoquan)
+- [README](artifact/README.md)
+- [Skill Instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown prompts, retrieval summaries, and scoped search or session-history commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user confirmation before searching prior sessions or writing shared memory.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata, _meta.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

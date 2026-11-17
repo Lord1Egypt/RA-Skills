@@ -1,6 +1,6 @@
 ---
 name: capital-market-report
-description: Generate high-signal, impact-driven capital market anomaly and rumor reports. Focuses on actionable business signals, expectation-breaking news, and deep logical deduction. Uses local scanners for Chinese/global financial media, Reddit, and Twitter. Features strict market-isolation rules and requires real source URLs.
+description: Generate high-signal, impact-driven capital market anomaly and delta reports covering both Chinese and global markets. Uses local scrapers + Brave web_search to cover Chinese media (财联社/华尔街见闻/新浪财经/东方财富) and global outlets (Reuters/Bloomberg/BBC/WSJ/Yahoo Finance). Features enforced media whitelist, source diversity quotas, leading-signal scanning, anti-hallucination guardrails with temporal verification, and strict market-isolation rules. Requires real source URLs for every article.
 ---
 
 # Capital Market Report
@@ -16,6 +16,8 @@ description: Generate high-signal, impact-driven capital market anomaly and rumo
 cd ~/.openclaw/workspace-group/skills/capital-market-report
 uv run scripts/news-processor.py
 ```
+
+抓取后检查来源多样性：如果中文新闻全部来自同一家媒体，或外文来源为 0，**必须用 `web_search` 主动搜索补充**（搜索 Reuters/Bloomberg/BBC/CNBC/Wall Street CN/财联社 等白名单媒体，关键词：US stock market movers / China stocks news / AI chip news / global market movers）。
 
 ### 1.2 热度/传闻扫描
 ```bash
@@ -68,10 +70,29 @@ ls -t ~/.openclaw/workspace-group/memory/capital_market_report_*.md | head -20
 - ❌ 不同公司各自发财报各自涨 → 各报各的（无共同因）
 - ❌ 严禁因"同市场"或"同概念"强行聚合
 
-### 2.5 中英文平衡
+### 2.5 允许引用媒体白名单
+所有引用必须来自以下媒体。白名单外来源可参考内容，但最终引用源必须在此清单内，否则丢弃该条。
+
+**🇨🇳 中文财经**：财联社、华尔街见闻、新浪财经、东方财富、第一财经、证券时报、界面新闻
+**🇨🇳 中文科技**：晚点LatePost
+**🇬🇧 英文财经**：Reuters、Bloomberg、CNBC、WSJ、Financial Times、Yahoo Finance
+**🇬🇧 英文科技**：TechCrunch、The Verge、The Information、Wired、Ars Technica
+**🇬🇧 通讯社**：BBC Business
+
+### 2.6 来源多样性规则（报告级，非逐条级）
+
+**不要求每条新闻中外双来源**（各市场关注点不同，各司其职）。但整份报告必须满足：
+- **中文来源 ≥ 2 个不同媒体**：禁止整份报告中文新闻全标同一媒体（如全部「来源：新浪财经」= 不合格）
+- **外文来源 ≥ 1-2 条**：至少出现一条来自外文媒体（Reuters/Bloomberg/BBC/WSJ/Yahoo Finance/CNBC 等）的新闻
+- **总媒体名称 ≥ 3 个**（中+外总和）
+- 优先使用原始来源：如 The Information 独家报道，标注 The Information 而非「新浪财经转引」
+- 外文新闻标注 🇬🇧，标题翻译为中文并保留原题：`🇬🇧 中文翻译（English Original Title）`
+- 若 scraper 抓到的外文新闻偏少，**必须用 web_search 补充**
+
+### 2.7 中英文平衡
 每条报告至少包含 **3-5 条 🇨🇳 中国公司/中国市场的新闻**。
 
-### 2.6 来源 URL 强制
+### 2.8 来源 URL 强制
 每条新闻必须附带至少一个真实可点击的原文 URL。URL 由 news-processor.py 原生提取，不编造。
 
 ### 2.7 先行信号扫描（每报必查）

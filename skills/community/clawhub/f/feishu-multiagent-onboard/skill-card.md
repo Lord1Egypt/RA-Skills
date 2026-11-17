@@ -1,43 +1,60 @@
-## Description: <br>
-Provides an interactive wizard to configure, validate, and troubleshoot multiple OpenClaw agents for Feishu channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an interactive wizard to configure and validate multiple OpenClaw agents for Feishu channels with diagnostic tooling.
 
-## Publisher: <br>
-[Zoopools](https://clawhub.ai/user/Zoopools) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zoopools](https://clawhub.ai/user/zoopools)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to onboard one or more agents to Feishu by collecting app credentials, writing channel bindings, validating configuration, and running diagnostics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu App Secrets are stored in the local OpenClaw configuration as sensitive plaintext credentials. <br>
-Mitigation: Use a dedicated Feishu app with minimum required permissions, keep ~/.openclaw/openclaw.json private, avoid committing or backing it up with real secrets, and rotate the secret if exposure is suspected. <br>
-Risk: Incorrect Feishu permissions, event subscriptions, or account bindings can prevent agents from receiving or replying to messages. <br>
-Mitigation: Run the skill's validation and diagnostic modes, confirm Feishu event subscription and bot permissions, then restart the OpenClaw gateway and approve pairing before production use. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to configure Feishu channel accounts, bind multiple agents to Feishu apps, validate the configuration, and troubleshoot common setup issues before gateway restart and pairing approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zoopools/feishu-multiagent-onboard) <br>
-- [Configuration guide](docs/guide.md) <br>
-- [FAQ](docs/faq.md) <br>
-- [Feishu Open Platform](https://open.feishu.cn/app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Interactive terminal prompts and Markdown documentation with JSON configuration examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write Feishu channel accounts and agent bindings to the local OpenClaw configuration when run by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, artifact SKILL.md, clawhub.json, and package.json) <br>
+Risk: The skill collects Feishu App Secrets and stores them in the persistent OpenClaw configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect the configuration file, avoid use on shared machines, and rotate Feishu App Secrets if they are exposed.
+
+Risk: The wizard can replace or broaden Feishu account and binding settings in the persistent OpenClaw configuration.
+
+Mitigation: Back up ~/.openclaw/openclaw.json first, review existing bindings, and inspect the saved configuration before restarting the gateway or approving pairings.
+
+Risk: Diagnostic mode reads local OpenClaw status and logs that may expose operational details.
+
+Mitigation: Review diagnostic output before sharing it and redact secrets, account IDs, pairing codes, and environment-specific paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zoopools/skills/feishu-multiagent-onboard)
+- [Configuration guide](artifact/docs/guide.md)
+- [FAQ](artifact/docs/faq.md)
+- [Feishu Open Platform app console](https://open.feishu.cn/app)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text with configuration edits and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes Feishu account and binding configuration to the user's persistent OpenClaw configuration file.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version, artifact clawhub.json, and artifact package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-学术成果商业化可行性评估专家，基于技术成熟度、市场需求、竞争壁垒、商业模式和资源匹配度评估科研成果的创业适配性。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+学术成果商业化可行性评估专家基于五维评估模型和TRL评估，帮助用户判断科研成果的创业适配性、商业化潜力和技术成熟度。
 
-## Publisher: <br>
-[earthwalking](https://clawhub.ai/user/earthwalking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earthwalking](https://clawhub.ai/user/earthwalking)
 
-## Use Case: <br>
-Researchers, technology transfer teams, and founders use this skill to assess whether academic or research outcomes are ready for commercialization, startup formation, licensing, or further validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad evaluation-related prompts, which can produce commercialization guidance outside the user's intended scope. <br>
-Mitigation: Use it for explicit research, technology, or commercialization assessment requests and review the output against the user's actual decision context. <br>
-Risk: Commercialization assessments can be misleading when the input omits market, intellectual-property, team, funding, or technical-readiness details. <br>
-Mitigation: Treat results as decision support and validate key assumptions with domain, market, legal, and IP review before relying on them. <br>
+## Use Case:
 
+Researchers, founders, technology transfer staff, and commercialization advisors use this skill to assess whether an academic result is ready for startup formation, licensing, or further validation. It structures the assessment around TRL, market demand, competitive barriers, business model clarity, and resource fit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/earthwalking/tech-feasibility-assessor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis] <br>
-**Output Format:** [Markdown report with scoring tables, qualitative assessment, risk notes, and action recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include weighted feasibility scores, TRL assessment, risk matrix entries, and next-step plans based on user-provided research details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Startup, commercialization, and investment recommendations may be incomplete or misleading if treated as definitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as advisory and have qualified business, legal, IP, and technical reviewers validate conclusions before making decisions.
+
+Risk: Useful assessments may involve confidential patent, business, market, or team information.
+
+Mitigation: Share only the minimum necessary information, redact sensitive details where possible, and use an approved environment for confidential material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/earthwalking/skills/tech-feasibility-assessor)
+- [Skill source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown feasibility assessment report with scoring tables, risk matrix, recommendations, and action plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory commercialization assessments; it does not execute code, persist data, or request privileged actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

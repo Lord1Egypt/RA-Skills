@@ -1,45 +1,60 @@
-## Description: <br>
-Structured multi-criteria decision analysis for ranking options with weights, constraints, confidence, tradeoff reasoning, sensitivity analysis, and explainable recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured multi-criteria decision analysis for ranking options using weights, constraints, confidence, tradeoff reasoning, sensitivity analysis, and explainable recommendations.
 
-## Publisher: <br>
-[dimgouso](https://clawhub.ai/user/dimgouso) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dimgouso](https://clawhub.ai/user/dimgouso)
 
-## Use Case: <br>
-Employees, external users, developers, and agents use this skill to structure decision-support tasks and rank options for vendor selection, route planning, hiring shortlists, tool comparison, procurement, prioritization, and other auditable tradeoff decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can be used for hiring or other sensitive decisions where ranking outputs may affect people or access to opportunities. <br>
-Mitigation: Use it only with lawful, job-related, user-provided criteria and require human review before acting on the ranking. <br>
-Risk: A decision request with missing criteria, ambiguous directions, or weak evidence can produce misleading recommendations. <br>
-Mitigation: Validate requests first, ask for missing inputs, keep assumptions explicit, and do not fabricate scores or evidence. <br>
-Risk: Execution depends on an external local ADI runtime dependency. <br>
-Mitigation: Install only when the local decision-support workflow is needed and the external adi dependency is trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Request Schema](references/request_schema.md) <br>
-- [Result Interpretation](references/result_interpretation.md) <br>
-- [Policy Guide](references/policy_guide.md) <br>
-- [Use Cases](references/use_cases.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dimgouso/adi-decision-engine) <br>
+## Use Case:
 
+Developers, operators, and business users use this skill to turn structured or freeform tradeoff problems into auditable ranked recommendations for decisions such as vendor selection, procurement, route planning, hiring shortlists, tool comparison, and prioritization.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries and structured JSON decision results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should include the best option, rationale, ranked alternatives, confidence, constraint impact, sensitivity or stability notes, and explicit assumptions when ADI runs successfully.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can rank high-impact decisions, including hiring shortlists, where under-scoped criteria may create compliance or fairness risk.
+
+Mitigation: Require lawful, job-related criteria, explicit user approval, and compliance review before relying on rankings in regulated or high-impact decisions.
+
+Risk: CLI fallback may write temporary local files containing confidential candidate or business data on shared machines.
+
+Mitigation: Avoid confidential data on shared systems unless local temporary-file handling is acceptable, or use a controlled environment.
+
+Risk: Incomplete or ambiguous inputs can produce misleading recommendations.
+
+Mitigation: Validate requests first, clarify missing criteria, directions, constraints, and values, and present confidence and sensitivity caveats.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dimgouso/skills/adi-decision-engine)
+- [Request Schema](references/request_schema.md)
+- [Result Interpretation](references/result_interpretation.md)
+- [Policy Guide](references/policy_guide.md)
+- [Use Cases](references/use_cases.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown decision-support responses with optional JSON output from local helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local python3 and either the adi-decision package or adi CLI; no API keys or network access are required for the core workflow.]
+
+## Skill Version(s):
+
+0.1.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

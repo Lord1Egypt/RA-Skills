@@ -1,40 +1,51 @@
-## Description: <br>
-AutoSpec helps synthesize formal software specifications such as preconditions, postconditions, loop invariants, and formal contracts for verification-driven development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AutoSpec helps agents synthesize preconditions, postconditions, loop invariants, and formal contracts from code for verification workflows.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineers use AutoSpec to draft and refine formal contracts, invariants, and verification-oriented specifications for software in languages such as Java, C/C++, Python, Rust, and Ada. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated contracts may be incorrect or may overstate verification or security guarantees. <br>
-Mitigation: Review generated specifications against source code, tests, and requirements before relying on them for verification decisions. <br>
-Risk: Inputs may include sensitive source code, tests, or requirements. <br>
-Mitigation: Use the skill only with materials that are appropriate for the agent environment to analyze. <br>
+## Use Case:
 
+Developers and verification engineers use this skill to draft formal specifications for code, including preconditions, postconditions, loop invariants, and target-language contract snippets.
 
-## Reference(s): <br>
-- [AutoSpec code examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with formal specification snippets and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include confidence scores, evidence, verification status, coverage metrics, and integration instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated formal specifications may contain incorrect preconditions, invariants, or contracts that change verification outcomes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated specifications before applying them to code or relying on verification results.
+
+## Reference(s):
+
+- [AutoSpec Code Examples](references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-autospec)
+- [Publisher profile](https://clawhub.ai/user/mtsatryan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with formal specification snippets and verification guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include confidence scores, evidence, verification status, coverage metrics, and integration instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

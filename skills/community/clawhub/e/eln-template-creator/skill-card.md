@@ -1,39 +1,49 @@
-## Description: <br>
-Generate standardized experiment templates for Electronic Laboratory Notebooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate standardized experiment templates for Electronic Laboratory Notebooks.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Laboratory staff, researchers, and developers use this skill to generate structured Markdown experiment-record templates for ELN workflows across general, molecular biology, chemistry, cell culture, and animal-study experiments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes generated Markdown to a user-selected output path and could overwrite an important file if that path is chosen carelessly. <br>
-Mitigation: Run it from a trusted workspace and choose the output path deliberately before writing generated templates. <br>
+## Use Case:
 
+Developers, lab informatics staff, and research teams use this skill to generate structured Markdown templates for Electronic Laboratory Notebook experiment records across general, molecular biology, chemistry, cell culture, and animal study workflows.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/AIPOCH-AI/eln-template-creator) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown templates written to stdout or a selected output file, with shell-command usage examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports template type, output path, title, researcher, date, and project parameters; no additional Python packages are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The --output option can overwrite writable files, including paths outside the intended workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer stdout or a clearly workspace-relative output path, and do not let untrusted input choose --output until path validation and overwrite protection are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/eln-template-creator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands]
+
+**Output Format:** [Markdown templates printed to stdout or written to a file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports template type, title, researcher, date, project, and output path arguments.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

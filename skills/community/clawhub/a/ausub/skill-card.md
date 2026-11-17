@@ -1,45 +1,59 @@
-## Description: <br>
-AUSUB uses Tushare gold ETF market data and rule-based indicators to generate bounded dynamic dollar-cost averaging suggestions with rationale and risk notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AUSUB helps an agent fetch Tushare gold ETF market data and generate bounded, risk-disclosed gold dollar-cost-averaging suggestions.
 
-## Publisher: <br>
-[juryory](https://clawhub.ai/user/juryory) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juryory](https://clawhub.ai/user/juryory)
 
-## Use Case: <br>
-External users and agents use AUSUB to fetch Tushare daily data for a gold ETF, evaluate rule-based market states, and produce disciplined periodic investment suggestions. It is intended as an execution aid with explicit risk reminders, not as a guarantee of returns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires TUSHARE_TOKEN and uses it to access Tushare. <br>
-Mitigation: Install it only in an environment where exposing that token to this skill and Tushare is acceptable. <br>
-Risk: Local user memory files may contain investment preferences or other personal financial context. <br>
-Mitigation: Keep memory files private and avoid persisting sensitive income, expense, deposit, or savings details unless truly needed. <br>
-Risk: The tushare dependency can affect data access and behavior over time. <br>
-Mitigation: Review or pin the tushare package before use in managed environments. <br>
-Risk: Investment suggestions could be misunderstood as guaranteed returns or personalized financial advice. <br>
-Mitigation: Present outputs as disciplined dollar-cost averaging assistance, preserve risk notes, avoid leverage, and require user confirmation before saving plan changes. <br>
+## Use Case:
 
+Developers and end users use this skill to produce disciplined gold ETF dollar-cost-averaging reports from Tushare daily market data, optional local configuration, and optional user plan settings. It is intended as an informational investment aid, not a guarantee of returns or individualized financial advice.
 
-## Reference(s): <br>
-- [Gold long-term return reference](references/gold-long-term-return.md) <br>
-- [AUSUB ClawHub page](https://clawhub.ai/juryory/ausub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text reports and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include market summaries, indicator summaries, suggested multipliers, suggested amounts, trigger details, explanations, and risk notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill uses a Tushare token and queries external market-data APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set TUSHARE_TOKEN only in the runtime environment, prefer a pinned or locked tushare dependency, and review network access before installation.
+
+Risk: Local configuration and user-plan files may contain sensitive financial planning details.
+
+Mitigation: Avoid storing income, expenses, deposits, or similar sensitive financial details in persistent memory files; use those details transiently in conversation when needed.
+
+Risk: Generated recommendations could be mistaken for guaranteed investment advice.
+
+Mitigation: Treat outputs as informational decision support, preserve the included risk notices, and require user confirmation before writing personal plan settings.
+
+## Reference(s):
+
+- [AUSUB ClawHub skill page](https://clawhub.ai/juryory/skills/ausub)
+- [juryory publisher profile](https://clawhub.ai/user/juryory)
+- [Gold long-term return reference](artifact/references/gold-long-term-return.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON-producing Python script outputs and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include market summary, indicator table, recommendation multiplier, suggested amount, trigger rationale, account guidance, and risk notice.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

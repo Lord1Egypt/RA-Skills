@@ -1,42 +1,53 @@
-## Description: <br>
-Enhanced Memory provides OpenClaw agents with structured, searchable, long-lived local memory using categorized directories, inline tags, lifecycle archiving, and query-based retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhanced Memory gives OpenClaw agents a structured local memory system with categorized Markdown files, inline tag search, query routing, and lifecycle archiving.
 
-## Publisher: <br>
-[fatcatMaoFei](https://clawhub.ai/user/fatcatMaoFei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fatcatmaofei](https://clawhub.ai/user/fatcatmaofei)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to organize agent memory into durable Markdown files, search memory with tags, route retrieval by query type, and archive older entries without deleting them. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed for long-lived local memory, so personal notes can persist in active or archived files. <br>
-Mitigation: Avoid storing secrets or highly sensitive personal information, review the memory directory periodically, and install the skill only when persistent local memory is desired. <br>
-Risk: The lifecycle manager moves older memory files into an archive, which can affect active-memory availability if run unexpectedly or with a low threshold. <br>
-Mitigation: Keep backups before running lifecycle management and review the archive threshold before scheduled or manual runs. <br>
-Risk: Search examples accept user-provided query strings, which can be mishandled if another tool wraps them in shell commands unsafely. <br>
-Mitigation: Pass search queries as safe command arguments instead of constructing shell commands through raw string concatenation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Tagged Memory Architecture Reference](artifact/references/architecture.md) <br>
-- [ClawHub release page](https://clawhub.ai/fatcatMaoFei/openclaw-enhanced-memory) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to organize agent memory into searchable local Markdown stores, retrieve relevant memory by tag or query type, and archive older entries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and Python script behavior] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Markdown files and Python standard-library scripts; no external service or API-key dependency is described.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The archiving script can remove active memory files and may silently overwrite archived files despite the skill's stated retention behavior.
+
+Mitigation: Review the lifecycle script before use, keep backups, and do not enable scheduled archival until overwrite protection, copied-file verification, and dry-run behavior are added.
+
+Risk: Long-lived local memory can retain secrets, regulated personal data, or sensitive relationship details.
+
+Mitigation: Avoid storing sensitive data unless long-term local retention is acceptable, and review memory contents before sharing or backing up the workspace.
+
+## Reference(s):
+
+- [Tagged Memory Architecture Reference](references/architecture.md)
+- [ClawHub Skill Page](https://clawhub.ai/fatcatmaofei/skills/openclaw-enhanced-memory)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Python scripts and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local Markdown memory files and Python standard-library scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

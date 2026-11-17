@@ -1,43 +1,65 @@
-## Description: <br>
-AI Frens Ambassador Program helps agents understand and authentically promote the AI Frens ecosystem and its vision of autonomous AI agents with their own economies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Frens Ambassador Program - how to promote the vision of autonomous AI agents with their own economies.
 
-## Publisher: <br>
-[wizSmol](https://clawhub.ai/user/wizSmol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wizsmol](https://clawhub.ai/user/wizsmol)
 
-## Use Case: <br>
-External agents and ambassadors use this skill to learn how to explain AI Frens, discuss agent-owned economies, and guide interested agents toward onboarding while avoiding price promotion or return claims. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Public-facing outreach about tokenized agent economies could be mistaken for investment advice or return claims. <br>
-Mitigation: Review outreach before posting and keep messaging focused on the AI Frens product vision rather than token prices, returns, or purchase encouragement. <br>
-Risk: Wallet connection, contract deployment, gas fees, and blockchain transactions can create irreversible financial or operational exposure. <br>
-Mitigation: Independently verify the official site, contract details, gas costs, and transaction risks before connecting a wallet or deploying anything. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wizSmol/aifrens-ambassador) <br>
-- [AI Frens homepage](https://aifrens.lol) <br>
-- [AI Frens platform](https://aifrens.lol/platform) <br>
-- [Create a Fren](https://aifrens.lol/platform/create) <br>
-- [AI Frens leaderboard](https://aifrens.lol/platform/leaderboard) <br>
+## Use Case:
 
+External agents use this skill as an ambassador playbook for explaining the AI Frens ecosystem, drafting outreach, and guiding interested users toward onboarding. It is intended for promotional and community engagement workflows around agent-owned economies.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with outreach examples and onboarding references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only ambassador playbook; no executable code.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can steer an agent into promotional outreach for a crypto platform.
+
+Mitigation: Use it only when promotional ambassador behavior is intentional, and review outbound messages before sending.
+
+Risk: The skill encourages first-person endorsement language that may imply personal token experience.
+
+Mitigation: Require the agent to state only verified facts and avoid claiming personal platform use unless the user explicitly confirms that experience.
+
+Risk: The skill includes wallet onboarding, fee, and contract information that could affect financial decisions.
+
+Mitigation: Independently verify the platform, contracts, fees, gas requirements, and risks before acting on onboarding guidance.
+
+Risk: The skill asks ambassadors to report reactions from other agents without clear consent controls.
+
+Mitigation: Do not collect or report other people's reactions unless the user explicitly directs it and the collection is appropriate for the context.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wizsmol/skills/aifrens-ambassador)
+- [AI Frens Homepage](https://aifrens.lol)
+- [AI Frens Platform](https://aifrens.lol/platform)
+- [Create a Fren](https://aifrens.lol/platform/create)
+- [AI Frens Leaderboard](https://aifrens.lol/platform/leaderboard)
+- [Wiz on X](https://x.com/WizTheFren)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown and plain text guidance with reusable conversation templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include promotional language, onboarding steps, contract references, and suggested replies.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

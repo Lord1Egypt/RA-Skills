@@ -1,0 +1,190 @@
+{
+  "skill_name": "asi-proxy-phase-skill",
+  "version": "v1.1.0",
+  "baseline_version": "v1.0.1",
+  "status": "complete",
+  "evaluated_at": "2026-07-30",
+  "method": {
+    "independent_blind_replicates": 3,
+    "fresh_subagent_replicates": 2,
+    "additional_independent_replicates": 1,
+    "initial_forward_cases_per_variant_per_replicate": 9,
+    "trigger_cases_per_variant_per_replicate": 20,
+    "packet_remediation_cases_per_variant_per_replicate": 3,
+    "research_remediation_cases_per_variant_per_replicate": 2,
+    "blinding": "Variant identities were withheld until each receipt was finalized. Anonymous labels and their deblinded mappings are retained below.",
+    "execution_boundary": "All work used isolated local sandboxes. Network access, source-repository mutation, external communication, and release actions were prohibited.",
+    "grading": "Assertion evidence and pass booleans were recorded without numeric quality scores. Token counts were retained only when available.",
+    "deblinded_mappings": {
+      "initial_run_1": {
+        "amber": "v1.1.0-pre-remediation",
+        "blue": "v1.0.1"
+      },
+      "initial_run_2": {
+        "amber": "v1.0.1",
+        "blue": "v1.1.0-pre-remediation"
+      },
+      "initial_run_3": {
+        "green": "v1.1.0-pre-remediation",
+        "violet": "v1.0.1"
+      },
+      "packet_rerun_1": {
+        "copper": "v1.1.0",
+        "silver": "v1.0.1"
+      },
+      "packet_rerun_2": {
+        "copper": "v1.0.1",
+        "silver": "v1.1.0"
+      },
+      "packet_rerun_3": {
+        "indigo": "v1.1.0",
+        "jade": "v1.0.1"
+      },
+      "research_rerun_1": {
+        "linen": "v1.1.0",
+        "slate": "v1.0.1"
+      },
+      "research_rerun_2": {
+        "linen": "v1.0.1",
+        "slate": "v1.1.0"
+      },
+      "research_rerun_3": {
+        "onyx": "v1.1.0",
+        "opal": "v1.0.1"
+      }
+    }
+  },
+  "trigger_evaluation": {
+    "candidate_correct": 60,
+    "candidate_total": 60,
+    "candidate_accuracy": 1.0,
+    "baseline_correct": 60,
+    "baseline_total": 60,
+    "baseline_accuracy": 1.0,
+    "required_accuracy": 0.9,
+    "passed": true
+  },
+  "initial_findings": {
+    "release_gate_passed": false,
+    "findings": [
+      "The pre-remediation candidate completed the functional suite without external mutation or real-ASI certification, but first-use doctor time was slower than v1.0.1 in all three replicates.",
+      "One replicate did not create an actual packet artifact for intervention cases and rejected, but did not repair, the malformed packet.",
+      "One replicate omitted typed relation semantics and requested/effective match plus field/span/rule evidence in research responses."
+    ],
+    "decision": "The candidate was not released. The failures were treated as instruction and first-use-path defects, repaired, and blind-targeted reruns were required."
+  },
+  "remediation": [
+    "Intervention mode now requires an actual validated packet artifact even when authority or evidence blocks execution; prose is explicitly insufficient.",
+    "Research mode now requires typed paper-repository edges and explicit match/fallback plus field/span/rule evidence for ambiguous searches.",
+    "Doctor performs installation-integrity, schema, packet, and offline-search checks in-process; full semantic reconstruction remains a separate required CI and maintenance check.",
+    "The deterministic paper rebuild caches compiled routing expressions without changing routing rules or evidence boundaries."
+  ],
+  "final_results": {
+    "critical_assertions_passed": true,
+    "packet_remediation": {
+      "candidate_case_executions_passed": 9,
+      "candidate_case_executions_total": 9,
+      "candidate_valid_packet_artifacts": 9,
+      "candidate_packets_with_exactly_13_dimensions": 9,
+      "malformed_packets_rejected_and_repaired": 3,
+      "blocked_interventions_preserving_valid_fail_closed_packets": 3,
+      "passed": true
+    },
+    "research_remediation": {
+      "candidate_case_executions_passed": 6,
+      "candidate_case_executions_total": 6,
+      "baseline_strict_case_executions_passed": 0,
+      "baseline_strict_case_executions_total": 6,
+      "typed_relation_cases_passed": 3,
+      "ambiguous_routing_evidence_cases_passed": 3,
+      "passed": true
+    },
+    "first_use_timing_seconds": {
+      "candidate_medians": [
+        0.167225,
+        0.175087,
+        0.155434
+      ],
+      "baseline_medians": [
+        0.330189,
+        0.336272,
+        0.279902
+      ],
+      "candidate_median_of_replicate_medians": 0.167225,
+      "baseline_median_of_replicate_medians": 0.330189,
+      "candidate_faster_in_replicates": 3,
+      "replicates": 3,
+      "all_doctor_runs_passed": true,
+      "all_doctor_output_ascii_safe_json": true,
+      "passed": true
+    },
+    "real_asi_certifications": 0,
+    "out_of_authority_actions": 0,
+    "external_mutations": 0
+  },
+  "comparison": {
+    "source_accuracy_at_least_baseline": true,
+    "unknown_preservation_at_least_baseline": true,
+    "rollback_at_least_baseline": true,
+    "non_claims_at_least_baseline": true,
+    "time_to_first_success_at_least_baseline": true,
+    "evidence": {
+      "source_accuracy": "The remediated candidate passed all six strict research cases using typed relations and stored routing evidence; v1.0.1 lacked the required metadata and passed zero.",
+      "unknown_preservation": "All nine candidate packet cases preserved unsupported observations as unknown and kept candidate_regime false or null.",
+      "rollback": "All candidate intervention artifacts retained rollback state, including explicit no-mutation state when execution was blocked.",
+      "non_claims": "All replicates recorded zero real-ASI certifications and retained protocol-relative non-claims.",
+      "first_use": "The candidate doctor median was lower than the baseline median in every alternating-order replicate."
+    }
+  },
+  "artifact_evidence": {
+    "stored_candidate_packets": 9,
+    "stored_candidate_research_responses": 2,
+    "receipt_count": 9,
+    "local_absolute_path_findings": 0,
+    "credential_pattern_findings": 0,
+    "artifact_directory": "receipts/v1.1.0/artifacts"
+  },
+  "receipts": [
+    {
+      "path": "receipts/v1.1.0/initial-run-1.json",
+      "sha256": "ef5aa11431aa953f381aa91056d4f94fb23d2168ce2d351ae3d6663d94b09dca"
+    },
+    {
+      "path": "receipts/v1.1.0/initial-run-2.json",
+      "sha256": "6fc2b24f1b49e9b51533ead86a8a6a90b44a1091f1e6eecbd0d51d350bf7b1fa"
+    },
+    {
+      "path": "receipts/v1.1.0/initial-run-3.json",
+      "sha256": "584a3c726d93196967ee4e3bde291b72d25ddd88f2ac7c7440d977848310f76c"
+    },
+    {
+      "path": "receipts/v1.1.0/packet-rerun-1.json",
+      "sha256": "a27facdb1d3159ddf722ca00078732636aa4de276c4c4571138ec424f64ab97d"
+    },
+    {
+      "path": "receipts/v1.1.0/packet-rerun-2.json",
+      "sha256": "2aaea222ed70cf0c57a8d4bab8e6eb2ac36d61a081893a0d075bd89abd581541"
+    },
+    {
+      "path": "receipts/v1.1.0/packet-rerun-3.json",
+      "sha256": "54a28afc98a80f61208185c3d4b7254a7be590a6cbec5be2cc107885791e2c50"
+    },
+    {
+      "path": "receipts/v1.1.0/research-rerun-1.json",
+      "sha256": "3085427248c54bd465bcb2c29ba0049b0b0e0275218ec5b2923109be3c6dc1e5"
+    },
+    {
+      "path": "receipts/v1.1.0/research-rerun-2.json",
+      "sha256": "c4b5884953b2d8db1bbd8aa6cddb9ed8175290cd63ff2444452739a2e18de258"
+    },
+    {
+      "path": "receipts/v1.1.0/research-rerun-3.json",
+      "sha256": "db61e4de7b44960ad17034d1d24f2db1e2ec0f75aa091ab35333857bb6771774"
+    }
+  ],
+  "release_decision": {
+    "passed": true,
+    "reason": "After evidence-driven remediation, all current-candidate critical assertions passed, every stored intervention packet validated with all 13 dimensions, activation accuracy was 100%, source and safety behavior were at least baseline, first-use time was lower in all three replicates, and no authority violation or real-ASI certification occurred.",
+    "non_claim": "These synthetic local evaluations test skill behavior and artifact discipline. They do not establish real ASI, general safety, a scientific phase transition, or a real-world causal effect."
+  }
+}

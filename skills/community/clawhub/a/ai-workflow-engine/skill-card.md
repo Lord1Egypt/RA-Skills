@@ -1,44 +1,54 @@
-## Description: <br>
-AI Workflow Engine helps agents build and run AI workflow automation for task orchestration, agent collaboration, RAG knowledge bases, data processing, and workflow code generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Workflow Engine helps agents build and run workflow automation for task orchestration, agent collaboration, RAG knowledge bases, data processing, and code generation.
 
-## Publisher: <br>
-[qiuwenxi416488212-ship-it](https://clawhub.ai/user/qiuwenxi416488212-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiuwenxi416488212-ship-it](https://clawhub.ai/user/qiuwenxi416488212-ship-it)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to draft, configure, and execute data-processing, RAG, multi-agent, scheduled, and webhook-driven workflows from natural-language or Python definitions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security summary reports broad network, file, database, webhook, and model-provider actions with insufficient scoping guidance. <br>
-Mitigation: Review each generated workflow before execution, run first in a sandbox with test data, and avoid production databases, email, and webhook targets until behavior is validated. <br>
-Risk: The server security guidance notes sensitive credentials are required for some model providers and integrations. <br>
-Mitigation: Store credentials in environment variables or a secret manager, avoid committing secrets, and limit API keys and database credentials to the minimum required permissions. <br>
-Risk: The server security summary flags undeclared local imports and the artifact includes hard-coded local skill import paths. <br>
-Mitigation: Remove or review local path imports and pin declared dependencies before trusting the skill in sensitive environments. <br>
+## Use Case:
 
+Developers and automation builders use this skill to compose AI workflows from natural language or code, including data cleaning, database operations, chart generation, RAG-style retrieval, and multi-agent task flows. It is most appropriate when generated workflows can be reviewed before they run against real systems or data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qiuwenxi416488212-ship-it/ai-workflow-engine) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill description](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce workflow definitions, generated Python code, data-processing outputs, charts, database operations, model-provider calls, webhook requests, and configuration values depending on the workflow being executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can support broad automation that touches network URLs, files, databases, email, model APIs, and plugin-style integrations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run workflows in an isolated environment with destination allowlists, dependency pinning, scoped credentials, and explicit approval before writes or external calls.
+
+Risk: Generated workflows may contain incorrect logic or unsafe operational steps if they are executed without review.
+
+Mitigation: Review generated code and workflow plans before execution, scan dependencies, and test with non-sensitive data before granting access to production systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiuwenxi416488212-ship-it/skills/ai-workflow-engine)
+- [ClawHub publisher profile](https://clawhub.ai/user/qiuwenxi416488212-ship-it)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell examples; generated workflows may produce Python code, structured data, files, charts, or execution results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can trigger network requests, file writes, database operations, model API calls, and workflow execution when used with appropriate credentials and runtime dependencies.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

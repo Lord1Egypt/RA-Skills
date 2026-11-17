@@ -1,41 +1,54 @@
-## Description: <br>
-Helps an agent look up Xtreme Gaming's next Dota 2 match by fetching public schedule information from the Liquipedia MediaWiki API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询 Xtreme Gaming (XG) 战队的下一场比赛信息。通过 Liquipedia API 获取精准、实时的赛程数据。当用户询问 XG 何时有比赛或下一场对手是谁时调用。
 
-## Publisher: <br>
-[earthking11](https://clawhub.ai/user/earthking11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earthking11](https://clawhub.ai/user/earthking11)
 
-## Use Case: <br>
-Dota 2 fans and agents use this skill to answer questions about Xtreme Gaming's next scheduled match, including tournament, opponent, match time, round, and elimination context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents match times in Beijing time, which can be misleading for users expecting UTC or their local timezone. <br>
-Mitigation: Ask the agent to include UTC or the user's local timezone when time precision matters. <br>
-Risk: The skill uses a deliberately teasing fan tone around Ame and XG results, which may be inappropriate in neutral or professional contexts. <br>
-Mitigation: Ask the agent to use a neutral tone when sharing the match summary outside the intended fan context. <br>
+## Use Case:
 
+External users and Dota 2 followers use this skill to ask when Xtreme Gaming next plays, who the opponent is, and what match context is available. The agent fetches public Liquipedia schedule data, converts times to Beijing time, and summarizes the result in Chinese.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/earthking11/dota2-xg-next-game) <br>
-- [Liquipedia Dota 2 MediaWiki API endpoint for Xtreme Gaming](https://liquipedia.net/dota2/api.php?action=parse&page=Xtreme_Gaming&format=json&prop=text|sections) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style natural language with emphasized match details and optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl and jq to fetch public schedule data, converts match times to Beijing time, and summarizes the next known XG match.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill uses intentionally mocking fan-commentary about Ame.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit the output style before use when neutral or broadly appropriate match reporting is required.
+
+Risk: The skill depends on public Liquipedia data fetched through curl.
+
+Mitigation: Confirm network access, User-Agent requirements, and returned schedule data before relying on the match summary.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/earthking11/skills/dota2-xg-next-game)
+- [Liquipedia Dota 2 API endpoint for Xtreme Gaming](https://liquipedia.net/dota2/api.php?action=parse&page=Xtreme_Gaming&format=json&prop=text|sections)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Chinese natural-language Markdown with emphasized match details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; output reports times in Beijing time and may include fan-mocking commentary about Ame.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

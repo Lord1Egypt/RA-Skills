@@ -1,44 +1,59 @@
-## Description: <br>
-Diagnoses decisions where losses, reference points, framing, or probability weighting are distorting choices, then guides the agent through expected-value checks, reframing, and a final rationale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps people identify loss aversion and reference-point effects in uncertain decisions, then compare options using expected value and reframing.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to analyze risk decisions, pricing reactions, negotiation stalls, insurance choices, and product adoption patterns where loss aversion or prospect-theory effects may be changing the choice. It is intended to help an agent compute expected value, test alternate reference points, and document when loss aversion should be respected or overridden. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce persuasive decision guidance for consequential financial, negotiation, product, or policy choices. <br>
-Mitigation: Review the expected-value calculation, reference point, probability estimates, and stakes classification before relying on the recommendation. <br>
-Risk: Loss-aversion debiasing is inappropriate when the downside is genuinely catastrophic or irreversible. <br>
-Mitigation: Use the skill's fit check and respect asymmetric caution for catastrophic or irreversible losses. <br>
+## Use Case:
 
+External users and decision-makers use this skill to examine choices affected by loss aversion, make reference points explicit, compare expected values, and choose a decision rule suited to the stakes.
 
-## Reference(s): <br>
-- [Sources - loss-aversion-prospect-theory](artifact/references/sources.md) <br>
-- [Method in Action: Kahneman and Tversky's 1979 Prospect Theory](artifact/examples/kahneman-and-tversky-1979-prospect-theory.md) <br>
-- [ClawHub skill page](https://clawhub.ai/deciqai/skills/loss-aversion-prospect-theory) <br>
-- [Publisher profile](https://clawhub.ai/user/deciqai) <br>
-- [deciqAI](https://deciqai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with a structured decision-analysis template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May pause for user input in coach mode before completing the analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A decision analysis may mislead if its assumptions, reference point, or probability estimates are inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the analysis as a decision aid and review its assumptions before acting.
+
+Risk: Saved real-use examples may contain confidential details.
+
+Mitigation: Remove confidential details before saving examples.
+
+## Reference(s):
+
+- [Primary sources](artifact/references/sources.md)
+- [Kahneman and Tversky prospect theory example](artifact/examples/kahneman-and-tversky-1979-prospect-theory.md)
+- [PGA Tour putting example](artifact/examples/pope-and-schweitzer-2011-pga-tour-putting.md)
+- [AI drawdowns and the disposition effect example](artifact/examples/nvidia-ai-drawdowns-disposition-effect-2023-2026.md)
+- [ClawHub skill page](https://clawhub.ai/deciqai/skills/loss-aversion-prospect-theory)
+- [deciqAI skill overview](https://www.deciqai.com/c/loss-aversion-prospect-theory)
+- [Machine-readable skill description](https://www.deciqai.com/s/loss-aversion-prospect-theory.json)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Text, Markdown]
+
+**Output Format:** [Structured decision analysis and coaching prompts in plain text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include options, expected values, reference points, identified distortions, reframing checks, and a decision rationale.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

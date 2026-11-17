@@ -1,46 +1,55 @@
-## Description: <br>
-Lingzao helps agents research public creator content on Xiaohongshu/XHS, Douyin, and WeChat official accounts, including creator and post lookup, profile and comment analysis, article detail, short-video copy extraction, and requested creator image generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+灵造 helps creator-focused agents research public content and plan, draft, review, and improve social-media content across platforms.
 
-## Publisher: <br>
-[itxiaohao](https://clawhub.ai/user/itxiaohao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[itxiaohao](https://clawhub.ai/user/itxiaohao)
 
-## Use Case: <br>
-External creators, creator operators, and their agents use Lingzao to research public creator content, benchmark accounts, inspect posts, comments, and articles, and prepare content packages, titles, covers, scripts, and review outputs for Xiaohongshu, Douyin, and WeChat workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lingzao uses a paid remote API and stores or reads a local API key. <br>
-Mitigation: Install only when the user is comfortable providing a Lingzao API key, and avoid exposing keys or internal error details in shared outputs. <br>
-Risk: Public-content lookup, deep search, and image generation may spend credits. <br>
-Mitigation: Confirm credit-spending searches, deep lookups, and image-generation requests before calling paid capabilities. <br>
-Risk: Selected links, public-content queries, and chosen reference images may be sent to the configured API. <br>
-Mitigation: Send only user-approved public links, prompts, and reference images, and avoid sending private screenshots, backend metrics, or personal data unless intentionally approved. <br>
-Risk: Commands can save article Markdown or generated images to local paths. <br>
-Mitigation: Check --output and --image paths before execution, use temporary or user-approved locations, and avoid overwriting user files. <br>
+## Use Case:
 
+Creators and their agents use this skill to research public posts, creators, products, and audiences; develop titles and visual concepts; draft content; and review publication and performance. Online research and image generation require a Lingzao API key.
 
-## Reference(s): <br>
-- [Lingzao ClawHub skill page](https://clawhub.ai/itxiaohao/skills/lingzao) <br>
-- [Lingzao dashboard and tutorials](https://lingzao.atian.vip) <br>
-- [Publisher profile: itxiaohao](https://clawhub.ai/user/itxiaohao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown and text responses with optional shell commands, JSON, saved Markdown article files, and generated image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses LINGZAO_API_KEY for paid remote API calls; selected commands can write local Markdown or image files to explicit output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.66 (source: evidence.release.version and artifact/VERSION) <br>
+Risk: Online lookups and image generation send requested queries, prompts, and optional reference images to the configured Lingzao service using an API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an API key only if that data sharing is acceptable; review requests and avoid sending sensitive material.
+
+Risk: Setup and floating updates may run code from a configurable service or release channel.
+
+Mitigation: Review the configured base URL and update source before setup; avoid floating updates in sensitive environments unless the publisher and release channel are trusted.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/itxiaohao/skills/lingzao)
+- [Lingzao user guide](https://my.feishu.cn/docx/Y2HQdj5mzoFx4vxfij3cl9TRnjh?from=from_copylink)
+- [Lingzao service and setup guide](https://lingzao.atian.vip)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance, Shell commands, Images]
+
+**Output Format:** [Markdown; optional JSON for structured results and image files for generation requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Public-content lookups and image generation require a Lingzao API key.]
+
+## Skill Version(s):
+
+0.1.115 (source: ClawHub release metadata and VERSION file)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

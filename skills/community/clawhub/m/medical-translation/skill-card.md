@@ -1,42 +1,59 @@
-## Description: <br>
-Use medical translation for academic writing workflows that need structured execution, explicit assumptions, and clear output boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use medical translation for academic writing workflows that need structured execution, explicit assumptions, and clear output boundaries.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External users and developers use this skill to translate medical terms or paragraphs for academic writing, with explicit source and target languages, assumptions, and output limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes local Python helper scripts that may read or write workspace files. <br>
-Mitigation: Review the bundled scripts before installation and run them only against intended workspace paths. <br>
-Risk: Medical terminology output can be incomplete when a term or language pair is unsupported. <br>
-Mitigation: Keep source and target languages explicit and require manual confirmation for unsupported terms or flagged translations. <br>
-Risk: Requests outside the documented scope or missing required inputs can lead to weak boundary handling. <br>
-Mitigation: Stop on out-of-scope or incomplete requests and return the missing inputs, safe partial steps, assumptions, and next checks. <br>
+## Use Case:
 
+External users and developers use this skill to produce bounded medical terminology translations for academic writing workflows, with explicit assumptions, source and target languages, and review notes. It is best suited to narrow term-level Chinese-English lookup and should not be treated as professional medical translation without manual review.
 
-## Reference(s): <br>
-- [Audit Reference](references/audit-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown response with optional plain-text translation results and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a term or paragraph, source language, target language, and optional context; unsupported terms or language pairs require manual confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The documented scope may read broader than the implemented local terminology lookup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for narrow medical term translation only, and manually review outputs before using them in academic, clinical, or publication contexts.
+
+Risk: Unsupported language pairs or terms outside the small built-in dictionary may produce fallback text instead of a verified translation.
+
+Mitigation: Confirm source and target languages up front, check any manual-confirmation notes, and route unsupported terms to a qualified reviewer.
+
+Risk: Some audit inputs reached only partial status due to execution gaps or weak boundary handling.
+
+Mitigation: Run the documented smoke test and require complete positional inputs before relying on the executable path.
+
+## Reference(s):
+
+- [Audit Reference](artifact/references/audit-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/medical-translation)
+- [Publisher Profile](https://clawhub.ai/user/aipoch-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text with optional shell commands and structured translation fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include assumptions, limits, missing inputs, and manual review notes for unsupported or uncertain terms.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

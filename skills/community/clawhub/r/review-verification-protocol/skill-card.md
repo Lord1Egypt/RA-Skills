@@ -1,40 +1,52 @@
-## Description: <br>
-Mandatory verification steps for all code reviews to reduce false positives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mandatory verification steps for all code reviews to reduce false positives.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[anderskev](https://clawhub.ai/user/anderskev)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering teams use this skill to make code review agents verify evidence before reporting findings, especially by reading the relevant code, checking references, considering mitigations, and calibrating severity.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can narrow reviews and suppress newly discovered issues during re-review.
+
+Mitigation: Install it only when this review posture is intended, and confirm that re-review scope restrictions match the team's review policy.
+
+Risk: Mandatory review-output rules can over-constrain findings or treat advisory conventions as requirements.
+
+Mitigation: Pair the protocol with local code-review policy and allow maintainers to override formatting or scope rules when they conflict with project requirements.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and code review agents use this skill to verify review findings against current source artifacts before reporting them, reducing false positives and improving severity calibration. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, text, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to quote exact source lines or diff hunks when validating findings, which can expose sensitive private code in shared conversations. <br>
-Mitigation: Use normal care when applying the protocol to private repositories, and avoid sharing quoted proprietary code outside approved review channels. <br>
-Risk: Review findings can still be incorrect if the agent skips the required read, reference, mitigation, or claim gates. <br>
-Mitigation: Require same-turn artifact echoes and concrete file-line anchors before accepting actionable review findings. <br>
+**Output Format:** [Markdown guidance and review-checklist instructions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Review Verification Protocol on ClawHub](https://clawhub.ai/anderskev/review-verification-protocol) <br>
+**Other Properties Related to Output:** [No tool, MCP, credential, or environment-variable outputs were identified in the artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown instructions and review checklist guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tool execution, external API calls, credential use, or generated files are described by the skill artifact.] <br>
+1.0.20 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.20 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

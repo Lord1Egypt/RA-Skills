@@ -11,15 +11,43 @@ Automated job application assistant for OpenClaw. Searches for roles, drafts per
 - **Email templates** — Cold, startup, referral — all tailored to each role
 - **Gmail integration** — Sends from your dedicated job-hunting inbox
 - **JSON tracker** — Every application logged with full history
-- **Review mode** — First 3 applications go to you for approval
-- **Auto mode** — After approval, emails send immediately
-- **Daily digests** — WhatsApp summary of all sent applications
+- **Approval gate** — Every email requires your explicit confirmation before sending (no auto-send)
+- **Optional digests** — Redacted WhatsApp summary of applications (only if you explicitly enable this feature)
+
+---
+
+## Privacy & Data Handling
+
+**⚠️ Important: This skill processes sensitive personal data. Please review before installing.**
+
+### Data Collected & Stored Locally
+- Your CV, contact information, phone number, LinkedIn profile
+- Job preferences (roles, locations, salary expectations)
+- Application history (companies, roles, dates, status, recruiter emails)
+- Interview details (dates, times, links)
+
+### Data Sent to Third Parties
+- **Job boards** (LinkedIn, Indeed, Glassdoor, Wellfound): Browsing job listings
+- **Gmail SMTP**: Application emails with your CV attached
+- **Recruiter inboxes**: Application emails containing your contact details
+- **WhatsApp** (optional): Redacted job-application summary digests (only if explicitly enabled)
+
+### Data Retention
+- `Applications.json` retains active applications for 180 days
+- Old entries are archived to `applications_archive.json`
+- No automatic deletion — you control your data
+
+### Your Control
+- Every email requires explicit approval before sending
+- You can disable WhatsApp notifications at any time
+- You can delete all data by removing the skill directory and `Applications.json`
+- No data is sent to the skill developer or any external analytics service
 
 ---
 
 ## Prerequisites
 
-- OpenClaw running with WhatsApp connected
+- OpenClaw running (WhatsApp connection optional — only needed for digests)
 - A **dedicated Gmail account** for job applications
 - Gmail **App Password** (not your main password)
 
@@ -56,27 +84,25 @@ Edit `references/platform-notes.md`:
 
 ## Usage
 
-Message your assistant:
+Message your assistant with explicit job-email-apply commands:
 
 ```
-find me full-stack jobs in Berlin
-apply to this: [paste job URL]
-show tracker
-update Stripe to interviewed
-weekly report
+job-email-apply: search for full-stack jobs in Berlin
+job-email-apply: draft application for [paste job URL]
+job-email-apply: show tracker
+job-email-apply: update Stripe to interviewed
+job-email-apply: check inbox for replies
 ```
+
+**Note:** This skill only activates with explicit `job-email-apply` prefix or `use job-email-apply to` phrasing. Generic requests like "find jobs" or "show tracker" will not activate this skill unless explicitly prefixed.
 
 ### Application flow
 
-**Review mode (first 3):**
-1. Agent finds a match → drafts email → sends preview to WhatsApp
-2. You edit or approve
-3. Agent sends → updates tracker
-
-**Auto mode (after 3):**
-1. Agent finds match → drafts → sends immediately
-2. Updates tracker
-3. Sends you a daily digest
+1. Agent finds a match → drafts email (no sending yet)
+2. You review and approve the draft
+3. Agent sends only after your explicit "send" command
+4. Updates tracker with status
+5. If the user has explicitly enabled notifications, sends a redacted summary digest.
 
 ---
 
@@ -130,7 +156,11 @@ Each template uses `[BRACKETED]` placeholders — the agent fills these in per-a
 
 ## Uninstall
 
-Remove the skill directory:
-```bash
-rm -rf ~/.openclaw/workspace/skills/job-email-apply
-```
+To remove this skill, delete the following files and directory manually:
+
+1. The skill directory itself
+2. `references/CONFIG.md` (contains your credentials — delete securely)
+3. `Applications.json` (your job-application history)
+4. Any other files you created in `references/`
+
+Ensure no personal data or credentials remain after removal.

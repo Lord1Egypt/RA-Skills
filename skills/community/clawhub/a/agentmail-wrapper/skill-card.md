@@ -1,42 +1,59 @@
-## Description: <br>
-AgentMail Wrapper helps agents send, track, schedule, verify, and manage email across providers such as SendGrid, Mailgun, AWS SES, SMTP, and Gmail OAuth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send, track, schedule, and manage email delivery across SMTP, SendGrid, Mailgun, AWS SES, and Gmail OAuth providers.
 
-## Publisher: <br>
-[Shepherd217](https://clawhub.ai/user/Shepherd217) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[shepherd217](https://clawhub.ai/user/shepherd217)
 
-## Use Case: <br>
-Developers and operators use this skill to automate transactional email, campaign sequences, delivery tracking, unsubscribe handling, list hygiene, template management, and compliance reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Email automation can send messages or change recipient lists in ways that affect customers and compliance obligations. <br>
-Mitigation: Require human confirmation before sending mail, scheduling campaigns, or modifying unsubscribe, bounce, or list-management records. <br>
-Risk: Open and click tracking may process recipient behavior data and trigger privacy or consent requirements. <br>
-Mitigation: Enable tracking only where recipients have appropriate notice, consent, and a valid legal basis, following the security guidance in evidence.json. <br>
-Risk: Provider credentials can grant access to email delivery systems. <br>
-Mitigation: Use least-privilege API keys or OAuth scopes and rotate credentials according to the selected provider's policy. <br>
+## Use Case:
 
+Developers and automation builders use this skill to integrate transactional email, campaign sends, scheduled sequences, delivery tracking, unsubscribe handling, and compliance reporting into agent workflows.
 
-## Reference(s): <br>
-- [Midas Skills AgentMail Wrapper Docs](https://docs.midas-skills.com/agentmail-wrapper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include provider configuration, email send options, tracking settings, webhook handling, and list-management operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release, artifact/SKILL.md, artifact/package.json) <br>
+Risk: Email sending, batch delivery, and open/click tracking can create consent, compliance, and abuse risk if enabled without clear authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the legal basis for recipients and tracking before use; require unsubscribe handling, rate limits, bounce handling, and approval for campaign or batch sends.
+
+Risk: The security evidence flags unaudited external packages and incomplete guardrails.
+
+Mitigation: Install first in a test or least-privilege environment and require verified, pinned package sources before production use.
+
+Risk: Provider API keys and Gmail refresh tokens can authorize email access or sending if exposed.
+
+Mitigation: Store credentials in a protected secrets manager, grant minimal scopes, rotate secrets periodically, and avoid committing tokens or keys.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shepherd217/skills/agentmail-wrapper)
+- [Declared Documentation](https://docs.midas-skills.com/agentmail-wrapper)
+- [Declared Repository](https://github.com/midas-skills/agentmail-wrapper)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include provider configuration, email-send examples, tracking options, and operational compliance guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

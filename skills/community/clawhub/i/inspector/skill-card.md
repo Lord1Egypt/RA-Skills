@@ -1,43 +1,54 @@
-## Description: <br>
-OpenClaw inspector for registering tracked sessions, inspecting stuck or inactive sessions, checking the current session UUID, listing status, and preparing platform-specific watcher services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Session Inspector helps agents register tracked OpenClaw sessions, inspect stuck or inactive work, check the current session UUID, list status, and prepare platform-specific watcher services.
 
-## Publisher: <br>
-[netfeel-star](https://clawhub.ai/user/netfeel-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netfeel-star](https://clawhub.ai/user/netfeel-star)
 
-## Use Case: <br>
-Developers and operators use this skill to register OpenClaw sessions for inactivity or recovery monitoring, inspect session status, and prepare a platform-specific watcher service when explicitly requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Session routing details and inspection logs are stored locally in plaintext under the inspector runtime home. <br>
-Mitigation: Treat ~/.openclaw/inspector/registry.json and logs as sensitive, restrict local access, and remove or disable registrations when monitoring is no longer needed. <br>
-Risk: Incorrect reply channel, account, target, or session identifier could direct inspection messages to the wrong place or fail to monitor the intended session. <br>
-Mitigation: Verify trusted runtime metadata before registration, use an actual OpenClaw session UUID, and avoid guessed or placeholder session identifiers. <br>
-Risk: Automated monitoring can continue beyond the operator's intended window if sessions remain enabled. <br>
-Mitigation: Install and enable monitoring only when intentionally requested, review registered sessions regularly, and unregister or disable sessions after use. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor OpenClaw agent sessions for inactivity or interrupted work, register and unregister tracked sessions, inspect status, and prepare an optional platform watcher service.
 
-## Reference(s): <br>
-- [Inspector Runtime Design](references/config-fields.md) <br>
-- [ClawHub skill page](https://clawhub.ai/netfeel-star/inspector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local runtime registry, configuration, state, log, and service-helper files when install or monitoring commands are explicitly invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release evidence) <br>
+Risk: A persistent watcher can reactivate OpenClaw sessions and prompt host inspection or continued work without a fresh user decision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and enable the watcher only when persistent monitoring is intended, review generated service files before enabling them, and keep start or enable actions tied to explicit user approval.
+
+Risk: The runtime registry stores session and delivery metadata for monitored sessions.
+
+Mitigation: Keep the runtime directory private, register only sessions suitable for monitoring, and disable or remove registrations when monitoring is no longer needed.
+
+## Reference(s):
+
+- [Inspector Runtime Design](artifact/references/config-fields.md)
+- [ClawHub Skill Page](https://clawhub.ai/netfeel-star/skills/inspector)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may update local runtime registry, state, logs, and optional watcher service files when executed.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

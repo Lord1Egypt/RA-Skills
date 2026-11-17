@@ -1,38 +1,53 @@
-## Description: <br>
-Provides string manipulation and transformation operations for working with text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides string manipulation and transformation operations for working with text, including formatting, case conversion, escaping, encoding, and similarity checks.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and agents use this skill to transform, format, validate, encode, and compare strings during coding or text-processing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The random string helper uses ordinary pseudorandom generation and is not appropriate for secrets or security tokens. <br>
-Mitigation: Use a cryptographically secure random source for credentials, tokens, keys, or other secret material. <br>
+## Use Case:
 
+Developers and agents use this skill to transform and format text, including case conversion, trimming, padding, truncation, slug generation, escaping, encoding, template interpolation, and string similarity checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-string-utils) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Text and JavaScript utility code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local string manipulation helpers; the random string helper is not suitable for secrets or tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: Input-validation bugs can cause unexpected behavior when chunking strings or using custom trim characters with untrusted input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate argument types and ranges, and escape custom trim characters before exposing these helpers to untrusted input.
+
+Risk: HTML escaping can be mistaken for complete protection in complex web contexts.
+
+Mitigation: Treat the HTML escaping helper as convenience encoding only and use context-aware sanitization for web output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-string-utils)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, guidance]
+
+**Output Format:** [Plain text or Markdown with optional JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

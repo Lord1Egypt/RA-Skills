@@ -1,45 +1,58 @@
-## Description: <br>
-Deploy websites and apps to clawdship.dev with zero signup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy websites and apps to clawdship.dev with zero signup.
 
-## Publisher: <br>
-[nicodlz](https://clawhub.ai/user/nicodlz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nicodlz](https://clawhub.ai/user/nicodlz)
 
-## Use Case: <br>
-Developers and agents use this skill to publish static sites, Dockerfile-based apps, and web projects to Clawdship hosting, including initial deploys, redeploys, site management, custom-domain updates, and credit checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload selected local project files to clawdship.dev and create public hosted resources. <br>
-Mitigation: Deploy from a clean build directory, exclude .env files and secrets, and require explicit confirmation before deploys or redeploys. <br>
-Risk: The skill exposes deletion, custom-domain, and payment-related operations. <br>
-Mitigation: Require explicit human confirmation before deletions, custom-domain changes, or credit top-ups, and share billing details clearly with the user. <br>
-Risk: A configured CLAWDSHIP_API override can redirect API calls away from the default service. <br>
-Mitigation: Verify CLAWDSHIP_API is not set unexpectedly before running deployment commands. <br>
-Risk: Generated API keys are credentials that cannot be recovered if lost. <br>
-Mitigation: Keep returned API keys private and store them in a password manager or encrypted secret store. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clawdship](https://clawdship.dev) <br>
-- [Clawdship API](https://api.clawdship.dev/v1) <br>
-- [Clawdship Skill on ClawHub](https://clawhub.ai/nicodlz/clawdship) <br>
+## Use Case:
 
+Developers and agents use this skill to package and deploy static sites or Dockerfile-based web apps to Clawdship, then report the live URL, API key handling requirements, billing link, and trial pricing to the human operator.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands, URLs, API keys, billing links, and deployment guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include hosted site URLs, generated API keys, billing URLs, curl commands, and required environment variable names.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can upload selected local directories and API credentials to a deployment endpoint.
+
+Mitigation: Verify the deployment path before execution and remove secrets such as .env files, private keys, and other credentials from the packaged directory.
+
+Risk: The deployment API endpoint can be changed through the CLAWDSHIP_API environment variable.
+
+Mitigation: Use the default Clawdship API unless the human operator explicitly approves a trusted alternate endpoint.
+
+Risk: Site deletion, redeploys, custom domain changes, and credit top-ups can affect live services or incur payment actions.
+
+Mitigation: Require explicit human approval before running destructive, production-impacting, domain-management, or payment-related commands.
+
+## Reference(s):
+
+- [Clawdship homepage](https://clawdship.dev)
+- [ClawHub skill page](https://clawhub.ai/nicodlz/skills/clawdship)
+- [Publisher profile](https://clawhub.ai/user/nicodlz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and deployment guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return live site URLs, one-time API keys, billing links, and status or error text from deployment API calls.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

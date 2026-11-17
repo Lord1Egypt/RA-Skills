@@ -1,40 +1,58 @@
-## Description: <br>
-A prompt-only persona skill that applies Zhang Yiming's public thinking patterns, mental models, decision heuristics, and communication style to questions about products, organizations, globalization, talent, and personal growth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Zhang Yiming-inspired advisory persona for analyzing product, organization, globalization, talent, and personal growth questions using documented mental models and decision heuristics.
 
-## Publisher: <br>
-[alchaincyf](https://clawhub.ai/user/alchaincyf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alchaincyf](https://clawhub.ai/user/alchaincyf)
 
-## Use Case: <br>
-External users and agent operators use this skill as a thinking-advisor persona for analyzing product, organization, globalization, talent, and personal-growth problems through Zhang Yiming-inspired frameworks. It is intended for stylized perspective-taking, not factual representation of Zhang Yiming's personal views. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Replies may be mistaken for statements from Zhang Yiming rather than a stylized simulation. <br>
-Mitigation: Treat responses as persona-based analysis from public information, not as factual statements from Zhang Yiming. <br>
-Risk: Broad trigger phrases may switch the assistant into persona mode unexpectedly. <br>
-Mitigation: Use the documented exit phrases to return to normal assistant behavior. <br>
+## Use Case:
 
+External users and agent operators use this skill as a thinking advisor that responds from a simulated Zhang Yiming perspective. It is intended for product, organizational, globalization, talent, and personal growth analysis, not factual representation of Zhang Yiming's current personal views.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alchaincyf/zhang-yiming-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only persona output; no external tools, code execution, credentials, persistence, or external data access are requested by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The assistant may speak as a real public figure without repeatedly reminding users that outputs are simulated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit simulation disclosure at activation and add periodic reminders in long or sensitive conversations.
+
+Risk: Broad activation triggers may switch the assistant into the persona when a user only makes an indirect reference.
+
+Mitigation: Confirm persona activation when intent is ambiguous, especially for workplace, political, or reputational topics.
+
+Risk: Persona-style analysis may be mistaken for authentic current views or advice from Zhang Yiming.
+
+Mitigation: Frame outputs as interpretive analysis based on the skill's source material and avoid attributing generated statements as real quotations or current opinions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alchaincyf/skills/zhang-yiming-skill)
+- [Publisher profile](https://clawhub.ai/user/alchaincyf)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona-based responses should preserve clear simulation context and avoid presenting generated views as authentic statements from Zhang Yiming.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

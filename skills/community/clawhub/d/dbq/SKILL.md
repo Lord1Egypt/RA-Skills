@@ -1,17 +1,10 @@
 ---
 name: dbq
 description: |-
-  数据库查询与写入工具。通过预配置的数据库别名按环境快速执行 SQL 操作。
-  支持 MySQL / MariaDB / PostgreSQL / SQLite（零依赖开箱即用），输出格式支持 table / json / csv。
-  多环境支持: --env dev|test|prod + prod 独立配置文件隔离。
-  安全机制: 默认只读、写操作需配置 readonly: false、DDL 需 allow_ddl: true、Keychain 三级密码查找、
-  EXPLAIN 索引分析、大表自动 LIMIT 100、写操作确认提示、DELETE/UPDATE 无 WHERE 拦截、查询日志。
-  功能: --show 表列表(含行数+注释)、--desc 表结构(含索引)、--ddl 建表语句、--dry-run 预览写操作、
-  --ping 连接测试、通配符匹配、--timeout 超时、--limit 对 DELETE/UPDATE 支持。
-  触发场景: 查询指定数据库、执行写操作、列出数据库表、查看表结构、查看建表语句、连接测试、预览写操作、查看已配置连接。
-  关键词: 查数据库、SQL查询、DB query、写数据库、插入数据、修改数据、删除数据、
-  列出数据库表、查看表结构、查看DDL、db skill、database skill、数据库技能、
-  MySQL CLI、SQLite CLI、AI数据库工具、dbq。
+  Multi-database SQL assistant — query MySQL, PostgreSQL, SQLite & MariaDB
+  across dev/test/prod environments with a single command.
+  Security-first: read-only by default, DML/DDL gating, EXPLAIN analysis.
+  多数据库查询助手，一个命令搞定 MySQL/PostgreSQL/SQLite/MariaDB 和多套环境。
 agent_created: true
 ---
 

@@ -1,40 +1,54 @@
-## Description: <br>
-Finds young AI-coding and entrepreneurial product-builder candidates on Jike. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds Jike users who show vibecoding practice, entrepreneurial activity, or independent product-building work, then records verified candidates in a deduplicated local talent pool.
 
-## Publisher: <br>
-[robinc913](https://clawhub.ai/user/robinc913) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robinc913](https://clawhub.ai/user/robinc913)
 
-## Use Case: <br>
-Talent scouts and recruiting operators use this skill to browse Jike, identify candidates who show AI-assisted coding, entrepreneurship, or independent product-building signals, and maintain a deduplicated local candidate pool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a logged-in Jike browser session during candidate discovery. <br>
-Mitigation: Use a dedicated browser profile or account where possible, confirm login steps manually, and set clear search and time boundaries before execution. <br>
-Risk: The workflow stores candidate IDs, profile links, post links, match notes, and discovery dates in a local talent-pool file. <br>
-Mitigation: Periodically review the local talent-pool JSON file and delete candidate records that are no longer needed. <br>
+## Use Case:
 
+Recruiters, founders, and talent scouts use this skill to browse Jike, identify young vibecoding and independent-product talent, verify candidates from posts and profiles, and maintain a deduplicated candidate list.
 
-## Reference(s): <br>
-- [Jike web app](https://web.okjike.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown report with candidate counts and links, plus JSON entries in a local talent-pool file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes new candidate IDs, post links, profile links, match reasons, and discovery dates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Using a logged-in browser profile for Jike can expose account context to the agent during browsing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated or low-risk browser profile and authenticate only with the account intended for talent discovery.
+
+Risk: The local talent-pool file stores candidate profile data and evidence links, which creates privacy and retention considerations.
+
+Mitigation: Keep only necessary candidate fields, review the file periodically, and delete it when the stored records are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/robinc913/skills/hunter-qg)
+- [Jike web app](https://web.okjike.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration]
+
+**Output Format:** [Markdown summary with local JSON talent-pool updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports the number of new candidates, total pool size, and each new candidate's Jike ID and post link.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

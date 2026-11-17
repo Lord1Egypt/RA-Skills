@@ -1,44 +1,62 @@
-## Description: <br>
-Thin orchestrator for an end-to-end video localization pipeline that routes full transcribe, translate, dub, and subtitle burn or mix requests to four focused sub-skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wjs Localizing Video orchestrates end-to-end video localization by routing full-pipeline requests through transcription, subtitle translation, optional dubbing, and subtitle burn or mix sub-skills.
 
-## Publisher: <br>
-[jianshuo](https://clawhub.ai/user/jianshuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jianshuo](https://clawhub.ai/user/jianshuo)
 
-## Use Case: <br>
-Developers and media-production users use this skill when they want an agent to coordinate full video localization, including transcription, subtitle translation, optional target-language dubbing, and final subtitle burn-in or audio mixing. The skill is intended for whole-pipeline requests rather than isolated transcription, translation, dubbing, or subtitle-rendering tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may use an automatically downloaded third-party ffmpeg binary when the local build lacks libass support. <br>
-Mitigation: Prefer a reviewed and pinned ffmpeg build from a trusted source, or disable automatic downloads and provide a known-good local binary. <br>
-Risk: The orchestrator delegates core work to sub-skills that are referenced but not included in this package. <br>
-Mitigation: Review, install, and scan each referenced sub-skill before enabling the full localization pipeline. <br>
-Risk: Localization can send transcript, subtitle, or speech-synthesis content to selected LLM, ASR, or TTS providers and may require sensitive TTS credentials. <br>
-Mitigation: Use least-privilege credentials, keep secrets out of committed files, and process private videos only after confirming the data-handling posture of the configured providers. <br>
+## Use Case:
 
+Developers and external video creators use this skill when they want an agent to run a complete video localization workflow, including transcription, subtitle translation, optional dubbing, and final subtitle rendering or audio mixing.
 
-## Reference(s): <br>
-- [Artifact README](README.md) <br>
-- [Claude Code documentation](https://docs.claude.com/claude-code) <br>
-- [Wjs Localizing Video ClawHub listing](https://clawhub.ai/jianshuo/wjs-localizing-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, task checklists, file naming conventions, and generated SRT or MP4 file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coordinates sub-skills that may produce source-language SRT files, translated SRT files, dubbed MP4 files, and final localized MP4 files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and target metadata) <br>
+Risk: The video rendering workflow may fetch an unverified third-party ffmpeg binary fallback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or review the evermeet ffmpeg fallback and prefer a trusted local ffmpeg build with libass support.
+
+Risk: The workflow may run local media-processing commands, install Python dependencies, and use TTS credentials supplied by the user.
+
+Mitigation: Run it in a controlled environment, pin dependencies, and provide only credentials intended for the target TTS service.
+
+Risk: A hardcoded upload CTA rule may not match the user's channel or publication context.
+
+Mitigation: Remove or update the CTA rule before combining the workflow with upload or publishing steps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jianshuo/skills/wjs-localizing-video)
+- [Claude Code documentation](https://docs.claude.com/claude-code)
+- [OpenAI Whisper](https://github.com/openai/whisper)
+- [edge-tts](https://github.com/rany2/edge-tts)
+- [Volcano Doubao speech synthesis documentation](https://www.volcengine.com/docs/6561/1598757)
+- [evermeet ffmpeg builds](https://evermeet.cx/ffmpeg/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and localized media or subtitle file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce SRT subtitle files and MP4 outputs through delegated transcription, translation, dubbing, and rendering sub-skills.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

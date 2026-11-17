@@ -1,45 +1,60 @@
-## Description: <br>
-Mistral and Codestral helps agents guide local use of Mistral Large, Mistral-Nemo, Codestral, and Mistral-Small through an Ollama Herd fleet router. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mistral Codestral helps agents set up and use a local Ollama Herd fleet for Mistral Large, Mistral-Nemo, Codestral, Mistral-Small, and related local inference endpoints.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up, query, and monitor local Mistral and Codestral models through a fleet router. It provides shell commands, Python and curl examples, hardware guidance, and guardrails for model downloads and local service use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the third-party ollama-herd package and its publisher. <br>
-Mitigation: Install only from a trusted source, review the package before use, and prefer an isolated Python environment. <br>
-Risk: Local image, audio transcription, embedding, and chat endpoints could be exposed beyond the intended host if the router is misconfigured. <br>
-Mitigation: Keep the localhost service off untrusted networks and restrict access to the local machine or trusted network segment. <br>
-Risk: Mistral model downloads can be large and may consume significant storage, memory, and network bandwidth. <br>
-Mitigation: Require explicit user confirmation before pulling or deleting models and verify hardware capacity before running large models. <br>
+## Use Case:
 
+Developers and engineers use this skill to install and operate a local Mistral-compatible Ollama Herd router, run code-generation and reasoning prompts, and monitor local fleet status.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/mistral-codestral) <br>
-- [Ollama Herd Repository](https://github.com/geeks-accelerator/ollama-herd) <br>
-- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md) <br>
-- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell, Python, curl, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local endpoint examples, model and hardware notes, monitoring commands, and guardrails for model download and deletion confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The setup guidance installs the unpinned `ollama-herd` Python package, which can reduce reproducibility across environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment and pin or review the package version before use in controlled deployments.
+
+Risk: Local prompts, generated files, uploaded audio, and model activity are handled by the user's local fleet service.
+
+Mitigation: Treat those inputs and outputs as local service data and apply the same data-handling controls used for other local inference workloads.
+
+Risk: Mistral model downloads can be large and model deletion affects local assets.
+
+Mitigation: Require explicit user confirmation before model downloads or deletion, and do not delete or modify files under `~/.fleet-manager/`.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/skills/mistral-codestral)
+- [Ollama Herd Repository](https://github.com/geeks-accelerator/ollama-herd)
+- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md)
+- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash, Python, curl, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance includes local endpoint examples, hardware recommendations, monitoring commands, and guardrails for model downloads and local fleet files.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

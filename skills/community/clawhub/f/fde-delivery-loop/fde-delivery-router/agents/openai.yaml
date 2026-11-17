@@ -1,0 +1,4 @@
+interface:
+  display_name: "FDE Delivery Router"
+  short_description: "Maintain project state and route to the right FDE delivery skill"
+  default_prompt: "Use $fde-delivery-router to identify this FDE project's current stage. For an ongoing engagement, maintain fde-project.json and recommend exactly one next action."

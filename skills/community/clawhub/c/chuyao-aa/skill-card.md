@@ -1,43 +1,54 @@
-## Description: <br>
-Helps developers wrap MTL open platform APIs as Spring Boot HTTP endpoints by adding the MTL SDK dependency, configuring an ApiClient bean, creating a REST controller, and generating GET or POST handler code from native API definitions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+摩天轮开放接口二次封装技能。当用户需要对接摩天轮(MTL)开放平台接口、创建MTL HTTP接口、封装摩天轮API时触发。支持自动检测并添加mtl-open-sdk-consumer依赖、初始化ApiClient Bean、创建MtlRestController、根据原生接口定义生成HTTP接口代码。
 
-## Publisher: <br>
-[1688aiinfra](https://clawhub.ai/user/1688aiinfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-Developers and engineers use this skill when integrating with MTL open platform APIs in Spring Boot projects and need consistent generated wrapper endpoints, dependency setup, client configuration, and optional logging hooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated code can place client identifiers, tokens, or other credentials into project files. <br>
-Mitigation: Keep clientIdentifier and token values out of committed source code and review generated diffs before use. <br>
-Risk: Optional request and response logging may capture business data, identifiers, or secrets. <br>
-Mitigation: Enable logging only when needed and treat captured request and response payloads as sensitive data. <br>
-Risk: Generated API wrappers may not match the intended native MTL API behavior if the supplied interface definition is incomplete or wrong. <br>
-Mitigation: Confirm the native path, method, query parameters, request body, and description with the user before generating handlers. <br>
+## Use Case:
 
+Developers and engineers use this skill to wrap native Motianlun (MTL) open platform APIs as Spring Boot HTTP endpoints. It guides dependency setup, ApiClient bean initialization, controller creation, route generation for GET and POST requests, and optional logging when the target project already provides the expected logging class.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1688aiinfra/chuyao-aa) <br>
-- [MTL Open API Endpoint](https://open.mtl4.alibaba-inc.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with Java, XML, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces project-specific implementation guidance and generated Spring Boot wrapper code for user-provided MTL API definitions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill's examples include MTL credential placeholders and generated proxy endpoints that require application-specific security review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Load credentials from a secrets manager or protected runtime configuration, and require authentication and authorization on every generated route.
+
+Risk: Generated endpoints may expose broad MTL operations or return sensitive implementation details if adapted without controls.
+
+Mitigation: Restrict exposed operations to an allowlist, avoid returning raw exception messages, and redact or omit request and response payloads from logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1688aiinfra/skills/chuyao-aa)
+- [Publisher profile](https://clawhub.ai/user/1688aiinfra)
+
+## Skill Output:
+
+**Output Type(s):** [code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Java and XML code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated code requires project-specific review before use with live MTL credentials or exposed HTTP routes.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

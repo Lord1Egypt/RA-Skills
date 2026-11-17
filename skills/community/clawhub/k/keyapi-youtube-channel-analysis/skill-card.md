@@ -1,44 +1,59 @@
-## Description: <br>
-Discover, profile, and analyze YouTube channels, including channel metadata, video libraries, channel ID and URL conversion, keyword search, and filtered YouTube search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover, profile, and analyze YouTube channels - retrieve channel metadata, video libraries, convert between channel IDs and URLs, search channels by keyword, and explore advanced search with filters.
 
-## Publisher: <br>
-[lycici](https://clawhub.ai/user/lycici) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lycici](https://clawhub.ai/user/lycici)
 
-## Use Case: <br>
-Developers, researchers, and content analysts use this skill to resolve YouTube channel identities, retrieve channel and video metadata, search channels, and synthesize channel research findings through KeyAPI MCP. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled runner can access broader KeyAPI MCP tooling than the YouTube-focused skill purpose. <br>
-Mitigation: Use explicit --platform youtube commands and avoid arbitrary tool names unless broader KeyAPI MCP access is intended. <br>
-Risk: API tokens and YouTube research queries are shared with KeyAPI and may be sensitive. <br>
-Mitigation: Install only when KeyAPI is trusted for the use case, and provide KEYAPI_TOKEN through an environment variable or secret manager. <br>
-Risk: The skill can persist API results in a local .keyapi-cache directory. <br>
-Mitigation: Use --no-cache for sensitive lookups or delete .keyapi-cache after analysis. <br>
+## Use Case:
 
+Developers, analysts, and channel researchers use this skill to resolve YouTube channel identities, retrieve channel metadata, enumerate video libraries, search within channels, and perform filtered YouTube discovery through KeyAPI.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lycici/keyapi-youtube-channel-analysis) <br>
-- [KeyAPI](https://keyapi.ai/) <br>
-- [KeyAPI YouTube MCP endpoint](https://mcp.keyapi.ai/youtube/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses KEYAPI_TOKEN, Node.js, KeyAPI MCP calls, and optional local response caching.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires a KeyAPI token for live MCP calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set KEYAPI_TOKEN only for the current shell session when possible and avoid storing tokens in shared, synced, or source-controlled directories.
+
+Risk: The runner supports overriding the KeyAPI MCP server URL.
+
+Mitigation: Use the default KeyAPI endpoint unless the alternate KEYAPI_SERVER_URL is fully trusted.
+
+Risk: Local cache and output files may contain API response data.
+
+Mitigation: Keep .keyapi-cache and generated output files out of shared locations and source control.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lycici/skills/keyapi-youtube-channel-analysis)
+- [KeyAPI](https://keyapi.ai/)
+- [KeyAPI YouTube MCP Endpoint](https://mcp.keyapi.ai/youtube/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local JSON output files and cache API responses when users run the bundled Node.js runner.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

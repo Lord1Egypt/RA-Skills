@@ -21,9 +21,11 @@ HiFleet **public cargo** listings — **`POST /cargo/search`**; contacts on dema
 
 ## Port IDs
 
-Resolve load/discharge port names via **port guide** (`portguide/getPort/token`) → use **`params.portid`** / **`params.dischargingPortid`** (or API field names returned in your environment).
+Resolve load/discharge port names **only** via **`GET {liner}/ports/suggest`** → **`params.portid`** / **`params.dischargingPortid`**. See **`references/charter_port_suggest.md`**.
 
-When user asks “cargo near X” or sort by distance, set sort fields per API (e.g. **`dischargingDist`**) after portid is known.
+**Do not** use `portguide/getPort/token`.
+
+When user asks “cargo near X” or sort by distance, set sort fields per API (e.g. **`dischargingDist`**) after **portid** is known.
 
 ---
 

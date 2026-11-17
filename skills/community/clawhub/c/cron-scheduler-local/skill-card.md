@@ -1,39 +1,54 @@
-## Description: <br>
-Local-first recurring schedule engine for reminders, repeated tasks, and time-based execution plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-first recurring schedule engine for reminders, repeated tasks, and time-based execution plans.
 
-## Publisher: <br>
-[panchenbo](https://clawhub.ai/user/panchenbo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panchenbo](https://clawhub.ai/user/panchenbo)
 
-## Use Case: <br>
-Developers and agent users use this skill to capture recurring local reminders, task schedules, and time-based execution plans, then review, pause, resume, or inspect upcoming runs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Job titles, notes, schedules, run history, and stats are stored locally under ~/.openclaw/workspace/memory/cron. <br>
-Mitigation: Avoid storing secrets or highly sensitive details in scheduled job metadata. <br>
+## Use Case:
 
+Developers and agent users use this skill to capture recurring reminders, repeated tasks, and future execution plans as local schedules. It helps agents add, inspect, pause, resume, and list daily, weekly, monthly, or interval-based jobs while keeping schedule data on the user's machine.
 
-## Reference(s): <br>
-- [Cron Philosophy](references/philosophy.md) <br>
-- [ClawHub skill page](https://clawhub.ai/panchenbo/cron-scheduler-local) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and JSON from local Python CLI scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores job, run, and stats data locally under ~/.openclaw/workspace/memory/cron.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: Schedule state is persisted locally under the user's OpenClaw memory directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review create, pause, and resume actions before execution, and inspect stored jobs when schedule state matters.
+
+Risk: Upcoming run times may be wrong if a job is created with an unintended timezone.
+
+Mitigation: Specify the timezone explicitly when adding jobs and verify the computed next run time.
+
+## Reference(s):
+
+- [Cron Philosophy](references/philosophy.md)
+- [ClawHub skill page](https://clawhub.ai/panchenbo/skills/cron-scheduler-local)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and text or JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists schedule state in local JSON files under the OpenClaw memory directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

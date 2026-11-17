@@ -1,39 +1,54 @@
-## Description: <br>
-Seoul Subway assistant for real-time arrivals, route planning, and service alerts (Korean/English) <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Seoul Subway assistant for real-time arrivals, route planning, and service alerts (Korean/English)
 
-## Publisher: <br>
-[dukbong](https://clawhub.ai/user/dukbong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dukbong](https://clawhub.ai/user/dukbong)
 
-## Use Case: <br>
-External users and travelers use this agent skill to ask for Seoul Subway arrivals, station lookup, route planning, service alerts, last-train times, exit, accessibility, quick-exit, and restroom information in Korean or English. <br>
-
-### Deployment Geography for Use: <br>
-Global use; transit coverage is Seoul, South Korea. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Transit lookups are sent to a hosted third-party proxy, including station names, route parameters, IP address, and User-Agent. <br>
-Mitigation: Use session-only permission unless the user trusts the proxy, and avoid sending sensitive personal details in station or route search parameters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dukbong/seoul-subway) <br>
-- [Skill homepage](https://github.com/dukbong/seoul-subway) <br>
-- [Transit proxy API base](https://vercel-proxy-henna-eight.vercel.app) <br>
+## Use Case:
 
+External users and transit-focused agents use this skill to answer Seoul Subway questions about arrivals, routes, station details, service alerts, last trains, exits, accessibility, quick exits, and restrooms in Korean or English.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown transit answers with bilingual Korean and English tables, summaries, and error guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses WebFetch-backed proxy requests; no API key is required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.19 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Transit queries are sent to the disclosed proxy service.
+
+Mitigation: Allow the proxy for a session, or persistently only if the user trusts the publisher-operated proxy; avoid placing sensitive information in station or route search terms.
+
+Risk: Transit answers depend on remote proxy availability and the freshness of upstream transit data.
+
+Mitigation: Treat urgent travel decisions as advisory and verify critical route, alert, accessibility, or last-train information with an official transit source when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dukbong/skills/seoul-subway)
+- [Project homepage](https://github.com/dukbong/seoul-subway)
+- [Proxy API base URL](https://vercel-proxy-henna-eight.vercel.app)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, API Calls]
+
+**Output Format:** [Markdown responses with bilingual tables and concise transit guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live arrival, route, station, alert, last-train, exit, accessibility, quick-exit, and restroom details.]
+
+## Skill Version(s):
+
+0.1.19 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

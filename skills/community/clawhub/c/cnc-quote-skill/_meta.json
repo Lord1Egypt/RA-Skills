@@ -1,6 +1,39 @@
 {
-  "ownerId": "kn7dg162803c8140p0f868mad183e0vh",
-  "slug": "cnc-quote-skill",
+  "name": "cnc-quote-skill",
   "version": "1.0.0",
-  "publishedAt": 1775990822817
+  "description": "CNC Quote OpenClaw Professional - AI-powered CNC machining quote system",
+  "longDescription": "An intelligent CNC machining quotation system that combines rule-based pricing with AI-powered risk detection. Features material cost calculation, machining time estimation, surface treatment pricing, and automatic risk flagging. Built for the OpenClaw ecosystem.",
+  "author": "Timo2026",
+  "authorUrl": "https://github.com/Timo2026",
+  "license": "MIT",
+  "tags": ["cnc", "manufacturing", "ai", "quote", "pricing", "automation", "industrial", "openclaw"],
+  "category": "productivity",
+  "icon": "⚙️",
+  "keywords": ["CNC", "machining", "quote", "pricing", "manufacturing", "risk", "AI", "OpenClaw"],
+  "homepage": "https://github.com/Timo2026/cnc-quote-skill",
+  "repository": "https://github.com/Timo2026/cnc-quote-skill",
+  "bugs": "https://github.com/Timo2026/cnc-quote-skill/issues",
+  "openclaw": {
+    "minVersion": "2026.3.0",
+    "testedVersion": "2026.3.13",
+    "capabilities": ["tools", "channels"],
+    "permissions": ["fs.read", "fs.write"],
+    "channels": ["qqbot", "email", "api"]
+  },
+  "installation": {
+    "type": "skill",
+    "command": "openclaw skill install cnc-quote-skill"
+  },
+  "pricing": {
+    "type": "free",
+    "price": 0,
+    "currency": "USD"
+  },
+  "stats": {
+    "downloads": 0,
+    "stars": 0,
+    "rating": 0
+  },
+  "publishedAt": null,
+  "updatedAt": "2026-03-23T14:45:00Z"
 }

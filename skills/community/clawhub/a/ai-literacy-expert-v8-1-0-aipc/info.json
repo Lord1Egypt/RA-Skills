@@ -1,0 +1,34 @@
+{
+    "venv_name": "ai-literacy-v81-aipc",
+    "python_version": "3.11",
+    "mem_need_gb": 3.5,
+    "server_alive_timeout": 300,
+    "models": [
+        {
+            "model_id": "OpenVINO/DeepSeek-R1-Distill-Qwen-1.5B-int4-cw-ov",
+            "dir_name": "DeepSeek-R1-Distill-Qwen-1.5B-int4-cw-ov",
+            "required_files": [
+                "config.json",
+                "openvino_model.xml",
+                "openvino_model.bin"
+            ]
+        }
+    ],
+    "runtime": {
+        "venv_dir": ".venv",
+        "ffmpeg_dir": "bin",
+        "workspace_dir": "workspace",
+        "min_python": "3.10",
+        "version": "8.1.0-aipc",
+        "release_codename": "AIPC 端云协同 + 全互动控件完整性门控"
+    },
+    "pipeline": {
+        "stages": [
+            "prepare_workspace",
+            "analyze_courseware",
+            "select_knowledge",
+            "compose_lesson"
+        ],
+        "entry": "scripts/bootstrap.py"
+    }
+}

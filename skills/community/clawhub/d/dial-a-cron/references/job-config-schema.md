@@ -62,7 +62,7 @@
 |---|---|---|
 | `telegram` | Telegram chat ID or username | `"8301484123"` or `"-1003820115039"` |
 | `a2a` | Agent name or endpoint | `"faceman"` or `"http://192.168.1.225:18800/a2a"` |
-| `webhook` | HTTP(S) URL | `"https://hooks.slack.com/services/T.../B.../xxx"` |
+| `webhook` | HTTP(S) URL | `"REDACTED-SECRET.../B.../xxx"` |
 | `file` | Local file path | `"reports/daily.md"` or `"/var/log/cron-reports.md"` |
 | `email` | Email address (requires gog) | `"team@example.com"` |
 | `log` | Auto: `logs/{job-id}.log` | N/A |

@@ -1,46 +1,61 @@
-## Description: <br>
-技术方案书全自动写作 - 多智能体协作、断点续作、完全自动化 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates long-form technical proposal writing with multi-agent chapter generation, checkpointed continuation, and persistent progress tracking.
 
-## Publisher: <br>
-[deardavidzheng](https://clawhub.ai/user/deardavidzheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deardavidzheng](https://clawhub.ai/user/deardavidzheng)
 
-## Use Case: <br>
-Developers and proposal-writing teams use this skill to generate large Chinese technical proposal books with chapter planning, multi-agent chapter assignment, progress tracking, and continuation across context limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unattended continuation can keep reading and changing project files without fresh approval. <br>
-Mitigation: Enable cron or HEARTBEAT continuation only for projects that should continue automatically, and keep those projects in a dedicated workspace. <br>
-Risk: Automatic proposal generation may continue when the operator intended a project to pause. <br>
-Mitigation: Set autoContinue to false for paused or review-gated projects and inspect progress.json before re-enabling continuation. <br>
-Risk: Reference materials or copied agent directories may contain sensitive information. <br>
-Mitigation: Review scripts, reference inputs, and agent directories before installation or migration, and avoid copying materials that contain secrets. <br>
+## Use Case:
 
+External teams and developers use this skill to generate technical proposal documents from project requirements, outlines, and reference material. It is intended for large proposal workflows that benefit from chapter-level progress tracking and continuation across agent sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deardavidzheng/tech-proposal-autopilot) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Quick guide](artifact/README.md) <br>
-- [Detailed guide](artifact/GUIDE.md) <br>
-- [Migration guide](artifact/MIGRATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown proposal files, JSON progress files, JavaScript helper scripts, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces project directories with outline, progress, continuation, chapter, final document, and log files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Persistent continuation can keep scanning projects and starting follow-up agent work without clear per-run control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep cron and heartbeat continuation disabled by default, limit operation to named project directories, and document how to pause automation and remove cron entries.
+
+Risk: Generated proposals can include incorrect or misleading content if outputs are accepted without review.
+
+Mitigation: Review generated chapters, final.md, CONTINUE.md, and progress.json before relying on or publishing the proposal.
+
+Risk: Reference files or authenticated URLs may expose sensitive content to spawned sessions.
+
+Mitigation: Avoid sensitive reference files and authenticated URLs unless the project owner has approved their use for proposal generation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deardavidzheng/skills/tech-proposal-autopilot)
+- [README](artifact/README.md)
+- [Guide](artifact/GUIDE.md)
+- [Quick Reference](artifact/QUICKREF.md)
+- [Migration Guide](artifact/MIGRATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown proposal files with JSON progress files and shell-command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates chapter files, final proposal Markdown, progress.json, CONTINUE.md, logs, and continuation trigger files when automation is enabled.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

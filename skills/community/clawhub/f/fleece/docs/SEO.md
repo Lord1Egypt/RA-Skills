@@ -125,6 +125,23 @@ Tracking description changes, tag updates, and search ranking results for the `f
 
 ---
 
+## v1.6.0 — skills.sh / Vercel Agent Skills registry (2026-05-19)
+
+**Changes:**
+- Fixed SKILL.md frontmatter: removed embedded quotes from description (broke YAML parsing — ClawHub and skills.sh CLI silently failed to parse)
+- Added `metadata` block (`author: chenyuan99`, `version: "1.5.0"`) matching skills.sh format
+- Added root-level `SKILL.md` and `skills/fleece/SKILL.md` for `npx skills add chenyuan99/fleece`
+- Distributed to 6 additional platforms: Gemini CLI, GitHub Copilot, Cursor, Windsurf (via `install.sh` flags and dedicated files)
+- `npx skills add chenyuan99/fleece` now installs across **55+ agents** including Claude Code, Cursor, Copilot, Gemini CLI, Windsurf, Cline, Codex, Warp, Kiro, Continue, Junie
+
+**Rationale:** The skills.sh / Vercel Agent Skills registry is platform-agnostic and installs to 55+ agents in one command. This is the highest-leverage distribution channel — broader reach than ClawHub, GitHub stars, or individual platform files. The YAML quote fix was the only blocker.
+
+**Key lesson:** Embedded quotes in YAML frontmatter description (`"What credit card..."`) silently break parsing in both ClawHub's vector indexer and the skills.sh CLI. Always use plain unquoted text for the description field.
+
+**Tags:** unchanged from v1.5.0
+
+---
+
 ## Observations & lessons
 
 1. **Description is the primary ranking signal** — ClawHub's vector search indexes the frontmatter `description` field. The body content appears to have lower weight. Front-load the highest-value keywords.

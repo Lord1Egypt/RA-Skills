@@ -1,40 +1,53 @@
-## Description: <br>
-Generates structured B2B or B2C ideal customer profiles for marketing strategy, sales targeting, and customer segmentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured ideal customer profile (ICP) documents for B2B and B2C businesses, using guided information collection, customer-dimension frameworks, scoring criteria, and optimization suggestions.
 
-## Publisher: <br>
-[liuzhirui6-max](https://clawhub.ai/user/liuzhirui6-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuzhirui6-max](https://clawhub.ai/user/liuzhirui6-max)
 
-## Use Case: <br>
-Marketing, sales, and business development teams use this skill to collect customer context through structured prompts and generate measurable ICP documents for B2B, B2C, or mixed go-to-market planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ICP inputs can include commercially sensitive budgets, market segments, sales-process details, and target account information. <br>
-Mitigation: Share only the business details needed for the profile and avoid adding confidential account lists, private pricing, or unnecessary internal strategy. <br>
-Risk: When user inputs are incomplete, the generated ICP may rely on assumptions that are too broad for customer screening. <br>
-Mitigation: Ask follow-up questions for missing core dimensions and label assumptions before using the ICP for marketing, sales, or segmentation decisions. <br>
+## Use Case:
 
+Marketing, sales, and business development users can use this skill to turn product, market, and customer inputs into actionable ICP documents for customer segmentation, sales targeting, and marketing strategy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuzhirui6-max/ideal-customer-profile) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown structured ICP document with scoring criteria and optimization suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes B2B/B2C dimensions, measurable customer criteria, prioritized traits, and validation suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Referenced support files for framework, template, and examples are not present in the artifact, which may reduce output completeness or consistency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated ICP documents against the main skill instructions and add or restore the referenced support materials before relying on them for repeated business workflows.
+
+Risk: ICP outputs may include assumptions when user inputs are incomplete or ambiguous.
+
+Mitigation: Ask follow-up questions for missing customer dimensions and require human review before using profiles for sales targeting or marketing decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuzhirui6-max/skills/ideal-customer-profile)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces structured ICP profile sections, measurable criteria, scoring guidance, and improvement recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

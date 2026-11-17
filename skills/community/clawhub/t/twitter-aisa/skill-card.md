@@ -1,42 +1,59 @@
-## Description: <br>
-Twitter/X command center for agent-assisted research, monitoring, watchlists, and OAuth-approved posting through AIsa. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Twitter/X command center for research, monitoring, watchlists, and approved posting through AIsa.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-External users and developers use this skill to research Twitter/X activity, monitor accounts or topics, and publish approved posts with text or media through OAuth-gated workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The OAuth and posting client may print the AIsa API key in normal command output. <br>
-Mitigation: Run authorization and posting only in trusted sessions, avoid sharing captured output, redact exposed keys, and rotate any key that has appeared in logs. <br>
-Risk: The skill can post externally to Twitter/X after OAuth approval. <br>
-Mitigation: Require explicit user approval for publishing and verify API confirmation before reporting that a post succeeded. <br>
+## Use Case:
 
+External users and agent operators use this skill to research Twitter/X activity, monitor watchlists and trends, inspect profiles and conversations, and publish approved posts through OAuth without sharing passwords.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/bibaofeng/twitter-aisa) <br>
-- [AIsa homepage](https://aisa.one) <br>
-- [AIsa Twitter OAuth guide](references/post_twitter.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON command output from bundled Python clients] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; posting sends OAuth requests, post content, and approved media uploads to AIsa.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata and frontmatter) <br>
+Risk: The posting helper can expose the AIsa API key in command output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a revocable AISA_API_KEY, avoid posting helper workflows until raw-key output is fixed, and rotate any key that may have appeared in logs or agent transcripts.
+
+Risk: Media uploads can read local files without enforcing a workspace boundary.
+
+Mitigation: Only pass explicitly approved workspace media paths and avoid media upload workflows until a workspace-boundary check is added.
+
+Risk: Twitter queries, post text, OAuth requests, and approved media uploads are sent through api.aisa.one.
+
+Mitigation: Review data sharing expectations before installation and use the skill only when relay-based Twitter/X workflows are acceptable.
+
+## Reference(s):
+
+- [AIsa Twitter OAuth](references/post_twitter.md)
+- [ClawHub skill page](https://clawhub.ai/bibaofeng/skills/twitter-aisa)
+- [AIsa homepage](https://aisa.one)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; read, OAuth, posting, and approved media upload requests are relayed through api.aisa.one.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,51 @@
-## Description: <br>
-Manage internal projects with JSON-based tasks, Kanban status updates, David notifications, and Apple Reminders synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage internal projects with JSON-based tasks, Kanban status moves, Apple Reminders sync, and chat notifications for review or blocked work.
 
-## Publisher: <br>
-[fr0ziii](https://clawhub.ai/user/fr0ziii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fr0ziii](https://clawhub.ai/user/fr0ziii)
 
-## Use Case: <br>
-Developers and project operators use this skill to inspect and update Vivi OS project tasks stored in a JSON Kanban workflow, including approvals, blocked/review notifications, and optional Apple Reminders sync. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Task text may expose sensitive internal project details when stored in the configured local JSON file or synchronized externally. <br>
-Mitigation: Install only when the configured project path and Apple Reminders account are intended, and avoid storing secrets in task text. <br>
-Risk: Move and sync actions can trigger Apple Reminders updates or chat notifications to David. <br>
-Mitigation: Review add, move, and sync requests before asking the agent to perform them, especially for review and blocked transitions. <br>
-Risk: Business rules can affect prioritization, approval flow, and work-in-progress limits. <br>
-Mitigation: Require explicit approval before moving tasks to review and enforce the documented limit of three in-progress tasks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fr0ziii/project-manager) <br>
-- [Source skill definition](artifact/SKILL.md) <br>
+## Use Case:
+
+Developers and internal project operators use this skill to list, create, move, and synchronize project tasks in a JSON-backed Kanban workflow. It is intended for teams that use the configured project task file, Apple Reminders synchronization, and David chat notifications.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Task titles or details may be synced to Apple Reminders or included in chat notifications.
+
+Mitigation: Avoid putting secrets or highly confidential details in tasks that may be synced or messaged.
+
+Risk: The workflow reads and updates a specific projects.json task file path.
+
+Mitigation: Install only when the configured task file path and project workflow match the intended environment.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown task summaries with JSON task updates and optional action requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update the configured project task JSON, request Apple Reminders sync, and notify David when tasks move to review or blocked.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, JSON, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown text with JSON task updates when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger Apple Reminders sync for opted-in tasks and chat notifications for review or blocked status changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

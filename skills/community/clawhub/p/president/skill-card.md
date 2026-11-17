@@ -1,48 +1,61 @@
-## Description: <br>
-Presidential Perspective Library provides structured decision-making frameworks and communication perspectives extracted from U.S. Presidents, with Donald J. Trump as the current flagship perspective. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Presidential Perspective Library helps an agent apply U.S. presidential decision frameworks, starting with a Donald J. Trump perspective, for negotiation, leadership, confrontation, mobilization, and branding analysis.
 
-## Publisher: <br>
-[realteamprinz](https://clawhub.ai/user/realteamprinz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realteamprinz](https://clawhub.ai/user/realteamprinz)
 
-## Use Case: <br>
-External users and developers use this skill to apply presidential-style decision frameworks to negotiation, leadership, confrontation, branding, and high-stakes advisory prompts. The current release is Trump-centered and can provide analytical guidance or persona-framed responses when explicitly requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may unexpectedly shift a conversation into a Trump-centered presidential perspective. <br>
-Mitigation: Use explicit prompts when requesting the perspective, ask for neutral analysis for sensitive legal, financial, medical, technical, or political decisions, and say "exit," "stop," or "return to normal" to leave the mode. <br>
-Risk: Persona-framed responses may sound authoritative while reflecting a stylized perspective rather than neutral advice. <br>
-Mitigation: Treat persona output as an analytical lens and request neutral, source-grounded analysis before making consequential decisions. <br>
+## Use Case:
 
+External users and developers can use this skill to activate presidential perspectives for decision advisory, negotiation framing, and comparative leadership analysis. The current release focuses on a Trump perspective with a stated MAGA-supporter narrative angle, so users seeking neutral political analysis should use it only with clear intent.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/realteamprinz/president) <br>
-- [Metadata Homepage](https://github.com/minimax/president-skill) <br>
-- [README](artifact/README.md) <br>
-- [Trump Writings, Speeches, and Policy Documents](artifact/presidents/01-trump/references/research/01-writings.md) <br>
-- [Trump Conversations and Interview Patterns](artifact/presidents/01-trump/references/research/02-conversations.md) <br>
-- [Trump Expression DNA](artifact/presidents/01-trump/references/research/03-expression-dna.md) <br>
-- [External Views on Trump](artifact/presidents/01-trump/references/research/04-external-views.md) <br>
-- [Trump Decision Records and Actions](artifact/presidents/01-trump/references/research/05-decisions.md) <br>
-- [Trump Personal Timeline](artifact/presidents/01-trump/references/research/06-timeline.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown responses with structured decision analysis and optional persona framing] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no code execution or data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Broad or ambiguous political and negotiation wording can activate a persistent first-person political persona.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with clear intent, disclose the persona framing, and exit with "exit", "stop", or "return to normal" when normal assistant behavior is desired.
+
+Risk: The current perspective is explicitly framed from a MAGA-supporter angle rather than neutral political analysis.
+
+Mitigation: Route neutral, critical, or policy-technical requests to standard analysis or another source instead of relying on the roleplay perspective.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/realteamprinz/skills/president)
+- [Project homepage from metadata](https://github.com/minimax/president-skill)
+- [README](artifact/README.md)
+- [Trump writings, speeches, and policy documents](artifact/presidents/01-trump/references/research/01-writings.md)
+- [Trump extended conversations and improvised thinking](artifact/presidents/01-trump/references/research/02-conversations.md)
+- [Trump expression style DNA](artifact/presidents/01-trump/references/research/03-expression-dna.md)
+- [External perspectives and criticism](artifact/presidents/01-trump/references/research/04-external-views.md)
+- [Trump decision records and actions](artifact/presidents/01-trump/references/research/05-decisions.md)
+- [Trump personal timeline](artifact/presidents/01-trump/references/research/06-timeline.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or conversational text with roleplay and analytical framing]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist in first-person political persona until the user exits roleplay.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

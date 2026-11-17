@@ -1,48 +1,60 @@
-## Description: <br>
-Generates or modifies Python quantitative trading strategy code for the Guojin PTRADE platform using bundled API references and strategy templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and modifies Python quantitative trading strategy code for the Guojin PTRADE platform using bundled templates and PTRADE API references.
 
-## Publisher: <br>
-[weistiger](https://clawhub.ai/user/weistiger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weistiger](https://clawhub.ai/user/weistiger)
 
-## Use Case: <br>
-Developers and quantitative trading users use this skill to draft, adapt, and explain PTRADE-compatible Python strategies from templates and API reference material before backtesting or simulation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated PTRADE strategies may place live market orders when connected to a live trading account. <br>
-Mitigation: Review every generated strategy and test it in backtest or simulation before enabling live execution. <br>
-Risk: A bundled template may sell all account positions or rebalance positions not created by the generated strategy. <br>
-Mitigation: Restrict sell and rebalance logic to strategy-owned holdings and confirm position filters before running the code. <br>
-Risk: The evidence security guidance identifies a moving-average template bug. <br>
-Mitigation: Fix and retest the moving-average template logic before using generated strategies for trading decisions. <br>
-Risk: Margin, futures, fund-transfer, and notification credential APIs can increase operational or financial exposure. <br>
-Mitigation: Do not enable those capabilities without explicit limits, credential controls, and monitoring. <br>
+## Use Case:
 
+External developers and quantitative-trading users use this skill to draft or adapt PTRADE Python strategies, including moving-average, financial-factor, and intraday trading workflows, before review and testing in the PTRADE environment.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/weistiger/ptrade-strategy) <br>
-- [README](artifact/README.md) <br>
-- [Knowledge Base Document Index](artifact/kb_ref.md) <br>
-- [PTRADE Strategy Templates](artifact/templates/) <br>
-- [IMA Knowledge Base](https://ima.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Guidance] <br>
-**Output Format:** [Markdown with Python code blocks and concise usage notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated strategy code should be reviewed, backtested, and adjusted before live trading.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Generated or bundled PTRADE strategies can place or liquidate real trades when deployed to a live account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually review the strategy, backtest it, paper-trade it, and restrict it to an isolated account or strategy-owned positions before enabling live execution.
+
+Risk: Templates and API references include market orders, margin or futures functions, and fund-transfer capabilities that may exceed a user's intended scope.
+
+Mitigation: Disable or remove fund-transfer, margin, futures, and broad liquidation logic unless the user explicitly requests it and independently verifies the code.
+
+Risk: Generated strategy logic may be incomplete, incorrect, or inconsistent with the active PTRADE API version.
+
+Mitigation: Validate API calls in PTRADE, run `check_strategy` when available, and confirm order sizing, price type, and data access before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weistiger/skills/ptrade-strategy)
+- [Publisher profile](https://clawhub.ai/user/weistiger)
+- [Knowledge base document index](artifact/kb_ref.md)
+- [IMA knowledge base platform](https://ima.qq.com)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown with Python code blocks and concise usage notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated strategies should be reviewed, backtested, and paper-traded before live account use.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,66 @@
-## Description: <br>
-Manage forks with open PRs by syncing upstream, rebasing branches, tracking PR status, and maintaining production branches with pending contributions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fork Manager helps agents sync forks, rebase pull-request branches, track PR state, and build production branches that combine open PRs with local patches.
 
-## Publisher: <br>
-[glucksberg](https://clawhub.ai/user/glucksberg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[glucksberg](https://clawhub.ai/user/glucksberg)
 
-## Use Case: <br>
-Developers and engineers use this skill to keep forks current with upstream repositories, rebase PR branches, rebuild a production branch from open PRs and local patches, and review closed or obsolete PR work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide authenticated GitHub operations that affect PR review workflows and repository branches. <br>
-Mitigation: Use it only when intentionally delegating fork or PR maintenance, and review generated comments, labels, close actions, proof-publish actions, pushes, and force-with-lease updates before execution. <br>
-Risk: Automatic conflict resolution can change PR branch content and may mis-handle semantic conflicts. <br>
-Mitigation: Enable automatic resolution only when appropriate, review conflict classifications, and manually inspect branches marked for semantic review before relying on the rebuilt production branch. <br>
-Risk: Production-branch rebuilds and branch deletion steps can affect local work if a repository has uncommitted changes. <br>
-Mitigation: Follow the documented preflight check and stash untracked, unstaged, and staged files before destructive branch operations, then restore the stash after completion. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to keep personal forks current with upstream repositories, rebase active PR branches, preserve selected local patches, and summarize fork maintenance work.
 
-## Reference(s): <br>
-- [Fork Manager README](README.md) <br>
-- [Fork Manager Architecture](ARCHITECTURE.md) <br>
-- [OpenClaw Skills Docs](https://github.com/openclaw/openclaw/blob/main/docs/tools/skills.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/glucksberg/fork-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with inline shell commands and JSON configuration updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append execution history per managed repository and update local JSON config files when the user runs the documented workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: ClawHub release evidence) <br>
+Risk: The skill can fetch, rebase, merge, push, and rewrite branches using Git and the user's GitHub CLI credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for repositories where that authority is acceptable, review the target repo config before use, and rely on --force-with-lease rather than unsafe force pushes.
+
+Risk: Persistent autoResolveConflicts can allow agents to automatically resolve and push conflict changes.
+
+Mitigation: Leave autoResolveConflicts disabled unless automatic branch rewrites are acceptable, and review any semantic conflict resolutions before relying on them.
+
+Risk: Configurable post-sync hooks can run repository-specific commands after upstream changes.
+
+Mitigation: Use postSyncHooks only from trusted configs and inspect hook commands before enabling them.
+
+Risk: Branch switching and production branch rebuilds can affect uncommitted work.
+
+Mitigation: Check the working tree before destructive operations and stash uncommitted and untracked files as the artifact workflow describes.
+
+## Reference(s):
+
+- [Fork Manager on ClawHub](https://clawhub.ai/glucksberg/skills/fork-manager)
+- [Publisher profile](https://clawhub.ai/user/glucksberg)
+- [README](artifact/README.md)
+- [Architecture](artifact/ARCHITECTURE.md)
+- [OpenClaw Skills Docs](https://github.com/openclaw/openclaw/blob/main/docs/tools/skills.md)
+- [ClawHub](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with inline shell commands and JSON configuration updates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update per-repository config and history files while reporting actions, conflicts, and review items.]
+
+## Skill Version(s):
+
+2.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

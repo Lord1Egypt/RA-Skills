@@ -1,41 +1,58 @@
-## Description: <br>
-Safe code execution in sandboxed environments. Supports Python, JavaScript, Bash, and more with resource limits and timeout controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safe code execution in sandboxed environments. Supports Python, JavaScript, Bash, and more with resource limits and timeout controls.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and engineers use this skill to run code snippets or scripts with claimed timeout, memory, output, network, and filesystem controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill claims safe execution of untrusted code, but the artifact does not include the execution script or sandbox controls needed to verify that protection. <br>
-Mitigation: Do not use it for untrusted code until the execution implementation is supplied and independently reviewed. <br>
-Risk: Code execution without verified sandbox controls can expose host filesystem, network, memory, or process resources. <br>
-Mitigation: Run only in an audited isolated environment with explicit network, filesystem, timeout, memory, and output restrictions. <br>
+## Use Case:
 
+Developers and engineers use this skill to run code snippets or scripts with stated timeout, memory, network, filesystem, and output constraints.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-code-executor) <br>
-- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, JSON, Guidance] <br>
-**Output Format:** [Markdown with shell command examples and JSON execution results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Claims support for Python, JavaScript, Bash, Ruby, and Go with default timeout, memory, network, filesystem, and output limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The package describes sandboxed execution, but the reviewed artifact does not include the executor script that would enforce the sandbox and resource limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review package contents before installation and verify a trusted executor implementation before using the skill to run code.
+
+Risk: The documented relative command path could run an unintended local file if a matching path exists in the working directory.
+
+Mitigation: Use explicit trusted paths and inspect the working directory before executing generated commands.
+
+Risk: Running untrusted code can expose systems if sandbox controls are not enforced outside the skill text.
+
+Mitigation: Run code only in an isolated container or virtual machine with network, filesystem, timeout, memory, and output limits enforced by the runtime.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-code-executor)
+- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-shaped execution results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact describes a 1MB output limit.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

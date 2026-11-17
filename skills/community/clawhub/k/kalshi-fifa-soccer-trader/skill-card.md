@@ -1,47 +1,67 @@
-## Description: <br>
-Trade Kalshi soccer markets using EA FC OVR rating disparity and a bivariate Poisson model. Finds edge on match winner, total goals (over/under), and goal spread markets. Use when the user wants to trade soccer markets on Kalshi, automate soccer bets using FIFA ratings, or find mispriced soccer outcomes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade Kalshi soccer markets using EA FC OVR rating disparity and a bivariate Poisson model to find edge on match winner, total goals, and goal spread markets.
 
-## Publisher: <br>
-[bridgeaisocial](https://clawhub.ai/user/bridgeaisocial) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bridgeaisocial](https://clawhub.ai/user/bridgeaisocial)
 
-## Use Case: <br>
-External developers and traders use this skill to evaluate Kalshi soccer markets, dry-run or execute wallet-based trades, and manage positions using EA FC ratings, lineup data, and a bivariate Poisson goal model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute automated real-money prediction market trades using a Solana wallet. <br>
-Mitigation: Start in dry-run mode, use a dedicated low-balance wallet, keep small position limits, and avoid disabling safeguards. <br>
-Risk: The artifact includes a stealth SoFIFA scraper intended to bypass bot protection. <br>
-Mitigation: Review or remove the scraper before use if the site-access or compliance risk is unacceptable. <br>
-Risk: The skill requires sensitive credentials, including a Simmer API key and a Solana private key for live trading. <br>
-Mitigation: Store credentials outside source control, restrict wallet funds, and rotate secrets if exposure is suspected. <br>
-Risk: The model and rating data may produce incorrect probabilities and financial losses. <br>
-Mitigation: Treat results as decision support, verify market settlement rules, backtest or dry-run first, and use small trade sizes. <br>
+## Use Case:
 
+External users and developers use this skill to evaluate and trade Kalshi soccer markets with EA FC OVR-based signals, bivariate Poisson scoring, market de-vigging, and configurable dry-run or live execution workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bridgeaisocial/kalshi-fifa-soccer-trader) <br>
-- [SoFIFA team ratings](https://sofifa.com/teams?type=international&col=oa&sort=desc) <br>
-- [TheSportsDB API](https://www.thesportsdb.com/api/v1/json/3) <br>
-- [Wikipedia API](https://en.wikipedia.org/w/api.php) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, configuration values, and code-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes dry-run and live-trading commands, environment variables, risk thresholds, and position-management guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can execute live financial trades and uses wallet secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start in dry-run mode, keep SOLANA_PRIVATE_KEY unset until intentionally running live, use small position caps, and review every configured risk limit before funding a wallet.
+
+Risk: Dependency and execution risk is elevated by the required simmer-sdk package.
+
+Mitigation: Install in an isolated virtual environment and pin and verify simmer-sdk before use.
+
+Risk: The SoFIFA scraper uses browser automation with stealth behavior.
+
+Mitigation: Avoid the scraper unless needed, or run it in a containerized environment after accepting the browser automation risk.
+
+Risk: Model outputs can be wrong because team aliases, lineup data, ratings, liquidity, and settlement rules may be incomplete or stale.
+
+Mitigation: Review ambiguous team aliases, refresh ratings and lineup data, verify Kalshi settlement rules, and keep safeguards such as liquidity, slippage, and edge thresholds enabled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bridgeaisocial/skills/kalshi-fifa-soccer-trader)
+- [Disclaimer](DISCLAIMER.md)
+- [DFlow Proof verification](https://dflow.net/proof)
+- [Simmer Proof status API](https://api.simmer.markets/api/proof/status?wallet=YOUR_SOLANA_ADDRESS)
+- [SoFIFA international teams](https://sofifa.com/teams?type=international&col=oa&sort=desc)
+- [TheSportsDB API](https://www.thesportsdb.com/api/v1/json/3)
+- [Wikipedia API](https://en.wikipedia.org/w/api.php)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and code or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce dry-run analyses, command plans, edits to JSON ratings/configuration, and live-trading commands when explicitly enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

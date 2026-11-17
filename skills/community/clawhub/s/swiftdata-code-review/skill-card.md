@@ -1,44 +1,57 @@
-## Description: <br>
-Reviews SwiftData code for model design, queries, concurrency, and migrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews SwiftData code for model design, queries, concurrency, and migrations.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to review SwiftData-related Swift files for model design, query, concurrency, and migration issues. It guides reviewers toward scoped, reference-backed findings with file-line evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Migration guidance may be technically inconsistent with Apple SwiftData behavior in some cases. <br>
-Mitigation: Verify migration recommendations against Apple SwiftData behavior before applying code changes. <br>
-Risk: Review findings can be misleading when the target is outside SwiftData scope or lacks file-line evidence. <br>
-Mitigation: Confirm SwiftData scope, open the matching reference or mark the area N/A, and cite each finding as [FILE:LINE] ISSUE_TITLE. <br>
+## Use Case:
 
+Developers and engineers use this skill to review SwiftData-related Swift code for model design, query performance and correctness, concurrency boundaries, and migration readiness.
 
-## Reference(s): <br>
-- [SwiftData Model Design](references/model-design.md) <br>
-- [SwiftData Queries](references/queries.md) <br>
-- [SwiftData Concurrency](references/concurrency.md) <br>
-- [SwiftData Migrations](references/migrations.md) <br>
-- [ClawHub skill page](https://clawhub.ai/anderskev/swiftdata-code-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown review findings with file-line citations and checklist or severity grouping] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings should use [FILE:LINE] ISSUE_TITLE citations and should only be reported after the skill's hard gates pass.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: The skill may guide an agent to read Swift files supplied for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only where reviewing those project files is permitted.
+
+Risk: Code review guidance can be incorrect or overbroad if findings are not tied to the reviewed source.
+
+Mitigation: Use the skill's hard gates requiring SwiftData scope confirmation, matching references, and file-line citations for every finding.
+
+## Reference(s):
+
+- [SwiftData Model Design](references/model-design.md)
+- [SwiftData Queries](references/queries.md)
+- [SwiftData Concurrency](references/concurrency.md)
+- [SwiftData Migrations](references/migrations.md)
+- [ClawHub Skill Page](https://clawhub.ai/anderskev/skills/swiftdata-code-review)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown code review findings with file and line citations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings are scoped to SwiftData surfaces and require cited evidence before reporting.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

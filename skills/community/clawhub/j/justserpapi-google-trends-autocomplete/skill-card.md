@@ -1,42 +1,51 @@
-## Description: <br>
-Call GET /api/v1/google/trends/autocomplete for Google SERP Trends Autocomplete through Just Serp API with query. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/v1/google/trends/autocomplete for Google SERP Trends Autocomplete through Just Serp API with query.
 
-## Publisher: <br>
-[justserpapi](https://clawhub.ai/user/justserpapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justserpapi](https://clawhub.ai/user/justserpapi)
 
-## Use Case: <br>
-Developers and external users use this skill to call Just Serp API for Google Trends autocomplete suggestions, including topic IDs for trend discovery and topic expansion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Just Serp API key and sends it to api.justserpapi.com for authenticated requests. <br>
-Mitigation: Provide the key through JUST_SERP_API_KEY or the documented command argument, and avoid pasting key values into chat, screenshots, or logs. <br>
-Risk: Autocomplete queries are sent to Just Serp API and may reveal search intent or topic research interests. <br>
-Mitigation: Use the skill only when sending those query terms to Just Serp API is acceptable for the user's workflow. <br>
+## Use Case:
 
+Developers and agents use this skill to query Just Serp API for Google Trends autocomplete suggestions and topic IDs from a required search query, with optional language selection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justserpapi/justserpapi-google-trends-autocomplete) <br>
-- [Just Serp API homepage](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_trends_autocomplete&utm_content=project_link) <br>
-- [Just Serp API documentation](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_trends_autocomplete&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, JSON] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON API response payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Just Serp API key supplied through JUST_SERP_API_KEY or the helper command's api-key argument.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Query text is sent to Just Serp API, and the skill requires a Just Serp API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sending the query to that provider is acceptable, avoid placing secrets in query text, and prefer a limited-scope or revocable API key when available.
+
+## Reference(s):
+
+- [Just Serp API](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_trends_autocomplete&utm_content=project_link)
+- [Just Serp API Docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_trends_autocomplete&utm_content=project_link)
+- [ClawHub Skill Page](https://clawhub.ai/justserpapi/skills/justserpapi-google-trends-autocomplete)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary with raw JSON from the API response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_SERP_API_KEY and sends query parameters to Just Serp API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

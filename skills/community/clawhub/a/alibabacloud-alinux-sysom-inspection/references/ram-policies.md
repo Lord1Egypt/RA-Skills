@@ -1,20 +1,17 @@
-# RAM Policies (sysom-inspection)
+# RAM Policies: alibabacloud-alinux-sysom-inspection
 
-This document describes the minimum RAM permissions required by `alibabacloud-alinux-sysom-inspection` when calling SysOM OpenAPI.
+This Skill uses the sysom-osops CLI. Remote diagnosis is routed through SysOM
+OpenAPI gateway actions.
 
-## Required SysOM Actions
+## Required Permissions
 
-| API | RAM Action | Purpose |
-|---|---|---|
-| `ListAllInstances` | `sysom:ListAllInstances` | List instances by region and management status (paginated) for inspection target selection |
-| `InitialSysom` | `sysom:InitialSysom` | Validate activation status and permissions; optionally perform activation |
-| `InstallAgentWithType` | `sysom:InstallAgentWithType` | Install SysOM Agent on the target ECS instance |
-| `CreateInstanceInspection` | `sysom:CreateInstanceInspection` | Start an instance inspection task |
-| `GetInspectionReport` | `sysom:GetInspectionReport` | Query inspection report details |
-| `InvokeDiagnosis` | `sysom:InvokeDiagnosis` | Start memory-focused diagnosis (`memgraph`) |
-| `GetDiagnosisResult` | `sysom:GetDiagnosisResult` | Poll diagnosis execution result |
+| API | RAM Action | Used by | Description |
+|-----|------------|---------|-------------|
+| InitialSysom | `sysom:InitialSysom` | Credential validation inside remote commands | Verify credential validity and SysOM role authorization |
+| InvokeAgentCli | `sysom:InvokeAgentCli` | All remote diagnosis commands | Gateway action for catalog queries, diagnosis execution, and task polling |
+| CreateServiceLinkedRole | `ram:CreateServiceLinkedRole` | First-time SysOM service activation | Create the SysOM service-linked role (SLR). Only needed on first activation. |
 
-## Example Policy Statement
+## Minimum Permission Policy
 
 ```json
 {
@@ -23,15 +20,20 @@ This document describes the minimum RAM permissions required by `alibabacloud-al
     {
       "Effect": "Allow",
       "Action": [
-        "sysom:ListAllInstances",
         "sysom:InitialSysom",
-        "sysom:InstallAgentWithType",
-        "sysom:CreateInstanceInspection",
-        "sysom:GetInspectionReport",
-        "sysom:InvokeDiagnosis",
-        "sysom:GetDiagnosisResult"
+        "sysom:InvokeAgentCli"
       ],
       "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "ram:CreateServiceLinkedRole",
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "ram:ServiceName": "sysom.aliyuncs.com"
+        }
+      }
     }
   ]
 }
@@ -39,5 +41,14 @@ This document describes the minimum RAM permissions required by `alibabacloud-al
 
 ## Notes
 
-- If you use a RAM sub-account for inspection/diagnosis, ensure it has all actions listed above.
-- If the API indicates service is not activated or role readiness is missing, complete SysOM activation first and retry.
+- `sysom-osops memory classify` runs locally and does not require cloud
+  permissions.
+- Remote commands across memory, IO, network, load, and Java memory require the
+  permissions above.
+- `ram:CreateServiceLinkedRole` is only required when activating SysOM for the
+  first time. Once the service-linked role exists, subsequent calls succeed
+  without this permission.
+- Avoid broader wildcard permissions when a custom least-privilege policy can be
+  attached to the RAM user or ECS RAM Role.
+- Do not paste AK/SK values into the conversation. Configure credentials outside
+  the Agent session.

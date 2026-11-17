@@ -1,45 +1,60 @@
-## Description: <br>
-Vector memory search and RAG skill for OpenClaw. Provides vector_search tool backed by Qdrant, auto-syncs memory .md files and Postgres records via nomic-embed-text embeddings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vector memory search and RAG skill for OpenClaw that provides a Qdrant-backed vector_search tool and syncs Markdown and Postgres memory records through nomic-embed-text embeddings.
 
-## Publisher: <br>
-[mbojer](https://clawhub.ai/user/mbojer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mbojer](https://clawhub.ai/user/mbojer)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to retrieve relevant prior memory, daily logs, and tool documentation through semantic vector search, and to keep local memory sources synchronized into Qdrant for RAG workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private prompts and stored memory content can be sent to configured embedding and vector services. <br>
-Mitigation: Use only trusted or self-hosted embedding and Qdrant endpoints, and install the skill only when those services are approved for the memory data being indexed. <br>
-Risk: Auto-inject can prepend memory search results to prompt context for sufficiently long user messages. <br>
-Mitigation: Review the auto_inject setting before enabling the plugin and set it to false when automatic memory lookup is not desired. <br>
-Risk: Syncing arbitrary files with --file can store their contents in the vector database. <br>
-Mitigation: Use --file only for content intended to be embedded and retained in Qdrant. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to retrieve prior memory, daily logs, tool notes, and skill documentation through semantic vector search. It also supports keeping local Markdown files and Postgres memory records synchronized into Qdrant for later retrieval.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mbojer/rag-memory) <br>
-- [Operational Guide](references/operational.md) <br>
-- [Config Paths Reference](references/config-paths.example.md) <br>
-- [Example Memory Entry](examples/memory-entry.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Text and Markdown, including vector_search result summaries and operational shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include source metadata and relevance scores; auto-injected context is capped by configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter, package.json, server release metadata) <br>
+Risk: Memory contents can be sent to the configured embedding endpoint and stored or queried through Qdrant.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted self-hosted endpoints, prefer HTTPS or loopback-only access, and scope credentials narrowly.
+
+Risk: Automatic prompt injection can prepend retrieved memory into prompt context.
+
+Mitigation: Disable auto_inject unless that behavior is intended, and enable it only when Qdrant data is trusted as prompt input.
+
+Risk: The release advertises privileged background service deployment.
+
+Mitigation: Review service deployment before using sudo, and run the sync process under a narrowly scoped account.
+
+## Reference(s):
+
+- [ClawHub Skill Homepage](https://clawhub.ai/mbojer/rag-memory)
+- [ClawHub Skill Page](https://clawhub.ai/mbojer/skills/rag-memory)
+- [Operational Guide](artifact/references/operational.md)
+- [Config Paths Reference](artifact/references/config-paths.example.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with command examples; vector_search returns formatted text results with source metadata and scores.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [vector_search caps top_k at 10; automatic injected results are capped by configuration, with a default of 500 characters.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence, SKILL.md frontmatter, plugin/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

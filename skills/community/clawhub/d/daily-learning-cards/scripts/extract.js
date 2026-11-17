@@ -91,25 +91,11 @@ function parseMemory(content) {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
 
-    // 检测主题（支持多种格式）
-    // 格式1: ## 主题1：XXX、## 新主题：XXX、## Topic 1: XXX
-    // 格式2: ## Morning 启动、## XXX 启动（无冒号的纯标题）
-    // 格式3: ## XXX（简单二级标题，但需排除特定保留标题）
-    let topicMatch = line.match(/^##\s*(?:新?主题|Topic)\s*(?:\d+\s*)?[：:]\s*(.+)$/i);
-    
-    // 格式2: ## XXX 启动、## XXX 开始、## XXX 会话等动态主题
-    if (!topicMatch) {
-      topicMatch = line.match(/^##\s*(.+启动|.+开始|.+会话|Morning|Evening|晚间|早间)(?:\s|$)/i);
-    }
-    
-    // 格式3: ## 新主题：XXX 或 ## 主题N：XXX（更宽松匹配）
-    if (!topicMatch) {
-      topicMatch = line.match(/^##\s*主题\s*\d*\s*[：:]?\s*(.+)$/i);
-    }
-    
+    // 检测主题（## 主题 / ## 主题 1 / ## Topic）
+    const topicMatch = line.match(/^##\s*(?:新?主题|Topic)\s*(?:\d+\s*)?[：:]\s*(.+)$/i);
     if (topicMatch) {
       const topicTitle = topicMatch[1].trim();
-      if (topicTitle && !topicTitle.match(/^(今日概览|会话记录|Memory|Overview)$/i)) {
+      if (topicTitle) {
         currentTopic = {
           type: 'topic',
           title: topicTitle,
@@ -123,9 +109,8 @@ function parseMemory(content) {
     }
     else if (line.match(/^### 时间：/)) {
       // 时间标记，记录上下文
-      // 修复：不清空 currentTopic，保持当前主题上下文
       currentSection = 'time';
-      // currentTopic = null;  // ← 已移除：这会导致主题内容无法关联
+      currentTopic = null;
     }
 
     // 检测任务小节（### P0 任务 / ### P0 Tasks）

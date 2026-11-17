@@ -1,42 +1,54 @@
-## Description: <br>
-Automates competitor ad scraping from ForePlay or Anstrex, adapts creatives with AI, and syncs paused campaigns to Facebook Ads for e-commerce brands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates competitor ad scraping from ForePlay or Anstrex, AI-based creative adaptation with Kie.ai, and paused Facebook Ads campaign creation for e-commerce brands.
 
-## Publisher: <br>
-[Harvnk](https://clawhub.ai/user/Harvnk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harvnk](https://clawhub.ai/user/harvnk)
 
-## Use Case: <br>
-E-commerce advertising teams use this skill to monitor competitor ads, generate brand-specific creative variants, and stage paused Facebook campaigns for manual review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The referenced storm_pipeline_agent.py script is not included for review. <br>
-Mitigation: Obtain and review the full script source before running it with real API keys. <br>
-Risk: The workflow can make Facebook ad-account changes using credentials and can be scheduled for unattended daily operation. <br>
-Mitigation: Use least-privilege tokens, start with a test or low-risk ad account, set clear campaign-creation limits, keep ads paused, and require manual approval before enabling cron. <br>
-Risk: Competitor creatives may be scraped and sent to an external AI provider. <br>
-Mitigation: Confirm rights, platform terms, and data handling requirements before scraping or submitting creatives to external services. <br>
+## Use Case:
 
+E-commerce marketers, growth teams, and ad operations engineers use this skill to monitor competitor ads, adapt creatives for their brand, and prepare paused Facebook campaigns for manual review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Harvnk/ad-spy-pipeline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill describes a scheduled advertising workflow that depends on external service credentials and manual review before activation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Competitor or source creatives may be uploaded to third-party ad and AI services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that this data handling is acceptable before installation and limit uploaded content to approved creative assets.
+
+Risk: The workflow can create Facebook ad campaigns on a schedule.
+
+Mitigation: Use restricted API credentials, keep created ads paused by default, review campaigns before activation, and enable cron only after account permissions and limits are clear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harvnk/skills/ad-spy-pipeline)
+- [Publisher profile](https://clawhub.ai/user/harvnk)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API credential setup and campaign-review guidance; generated Facebook ads should remain paused for manual activation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

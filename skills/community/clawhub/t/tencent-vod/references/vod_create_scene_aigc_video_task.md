@@ -189,7 +189,7 @@
 
 #### 基础产品展示（自动镜头）
 ```bash
-python scripts/vod_create_scene_aigc_video_task.py generate \
+python3 scripts/vod_create_scene_aigc_video_task.py generate \
     --sub-app-id 251007502 \
     --scene-type product_showcase \
     --input-files "File:3704211509819" \
@@ -198,7 +198,7 @@ python scripts/vod_create_scene_aigc_video_task.py generate \
 
 #### 推进镜头效果
 ```bash
-python scripts/vod_create_scene_aigc_video_task.py generate \
+python3 scripts/vod_create_scene_aigc_video_task.py generate \
     --sub-app-id 251007502 \
     --scene-type product_showcase \
     --input-files "File:3704211509819" \
@@ -209,7 +209,7 @@ python scripts/vod_create_scene_aigc_video_task.py generate \
 
 #### 拉远镜头效果
 ```bash
-python scripts/vod_create_scene_aigc_video_task.py generate \
+python3 scripts/vod_create_scene_aigc_video_task.py generate \
     --sub-app-id 251007502 \
     --scene-type product_showcase \
     --input-files "File:3704211509819" \
@@ -221,7 +221,7 @@ python scripts/vod_create_scene_aigc_video_task.py generate \
 #### 左右平移镜头
 ```bash
 # 右移
-python scripts/vod_create_scene_aigc_video_task.py generate \
+python3 scripts/vod_create_scene_aigc_video_task.py generate \
     --sub-app-id 251007502 \
     --scene-type product_showcase \
     --input-files "File:3704211509819" \
@@ -229,7 +229,7 @@ python scripts/vod_create_scene_aigc_video_task.py generate \
     --aspect-ratio 16:9
 
 # 左移
-python scripts/vod_create_scene_aigc_video_task.py generate \
+python3 scripts/vod_create_scene_aigc_video_task.py generate \
     --sub-app-id 251007502 \
     --scene-type product_showcase \
     --input-files "File:3704211509819" \
@@ -239,7 +239,7 @@ python scripts/vod_create_scene_aigc_video_task.py generate \
 
 #### 下降镜头效果
 ```bash
-python scripts/vod_create_scene_aigc_video_task.py generate \
+python3 scripts/vod_create_scene_aigc_video_task.py generate \
     --sub-app-id 251007502 \
     --scene-type product_showcase \
     --input-files "File:3704211509819" \
@@ -250,7 +250,7 @@ python scripts/vod_create_scene_aigc_video_task.py generate \
 
 #### 使用 URL 图片
 ```bash
-python scripts/vod_create_scene_aigc_video_task.py generate \
+python3 scripts/vod_create_scene_aigc_video_task.py generate \
     --sub-app-id 251007502 \
     --scene-type product_showcase \
     --input-files "Url:https://example.com/product.jpg" \
@@ -260,7 +260,7 @@ python scripts/vod_create_scene_aigc_video_task.py generate \
 
 #### 永久存储生成的视频
 ```bash
-python scripts/vod_create_scene_aigc_video_task.py generate \
+python3 scripts/vod_create_scene_aigc_video_task.py generate \
     --sub-app-id 251007502 \
     --scene-type product_showcase \
     --input-files "File:3704211509819" \
@@ -274,7 +274,7 @@ python scripts/vod_create_scene_aigc_video_task.py generate \
 
 #### 指定过期时间
 ```bash
-python scripts/vod_create_scene_aigc_video_task.py generate \
+python3 scripts/vod_create_scene_aigc_video_task.py generate \
     --sub-app-id 251007502 \
     --scene-type product_showcase \
     --input-files "File:3704211509819" \
@@ -286,7 +286,7 @@ python scripts/vod_create_scene_aigc_video_task.py generate \
 
 #### 添加自定义 Prompt
 ```bash
-python scripts/vod_create_scene_aigc_video_task.py generate \
+python3 scripts/vod_create_scene_aigc_video_task.py generate \
     --sub-app-id 251007502 \
     --scene-type product_showcase \
     --input-files "File:3704211509819" \
@@ -302,20 +302,20 @@ python scripts/vod_create_scene_aigc_video_task.py generate \
 
 #### 基础查询
 ```bash
-python scripts/vod_create_scene_aigc_video_task.py query \
+python3 scripts/vod_create_scene_aigc_video_task.py query \
     --task-id "251441341-AigcVideoTask-abc123"
 ```
 
 #### 指定子应用查询
 ```bash
-python scripts/vod_create_scene_aigc_video_task.py query \
+python3 scripts/vod_create_scene_aigc_video_task.py query \
     --task-id "251441341-AigcVideoTask-abc123" \
     --sub-app-id 251007502
 ```
 
 #### JSON 格式输出
 ```bash
-python scripts/vod_create_scene_aigc_video_task.py query \
+python3 scripts/vod_create_scene_aigc_video_task.py query \
     --task-id "251441341-AigcVideoTask-abc123" \
     --json
 ```

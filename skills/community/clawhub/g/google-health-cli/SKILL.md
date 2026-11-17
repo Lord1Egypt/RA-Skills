@@ -1,16 +1,17 @@
 ---
 name: google-health-cli
 description: >
-  Read your Google Health data from any agent. Lists data points for every Google
-  Health data type (heart rate, resting heart rate, sleep, steps, distance, weight,
-  blood oxygen, VO2 max, exercise, and more), returns server-side daily roll-ups
-  (one reconciled total per day), gives a parsed view of exercise sessions, and can
-  GET any read-only v4 API path. A self-contained, read-only
-  client for the Google Health v4 API: authenticates via OAuth2 (token cached
-  locally and auto-refreshed) and emits JSON. It does NO filtering, merging, or
-  writing — the caller decides what to do with the data. Single static binary, no
-  Python or other runtime. NOTE: needs your own Google Cloud OAuth client and a
-  one-time interactive browser login; runs headless afterward.
+  Read your Google Health data from any agent: data points for every Google Health
+  data type (heart rate, sleep, steps, distance, weight, blood oxygen, VO2 max,
+  exercise and more), server-side daily roll-ups, a parsed view of exercise
+  sessions, and GET of any read-only v4 API path, all as JSON. `data list`,
+  `rollup daily`, `sessions --raw` and `api get` return every record the API sends
+  for the window you ask for, unfiltered; the parsed `sessions` view leaves out
+  points it can't date and reports how many on stderr. It never writes to Google
+  Health; the only file it writes is its own local OAuth token cache. Also ships
+  auth login/logout/status, doctor, config show/path, version and shell
+  completion. Single static Go binary. Needs your own Google Cloud OAuth client
+  and a one-time browser login; runs headless afterward.
 metadata:
   openclaw:
     emoji: 🩺
@@ -19,17 +20,31 @@ metadata:
     permissions:
       network:
         - "Google OAuth2 (accounts.google.com, oauth2.googleapis.com) — one-time interactive login and automatic token refresh"
+        - "Loopback listener (127.0.0.1, random port) — receives the OAuth redirect during auth login only, then closes"
         - "Google Health API (health.googleapis.com, HTTPS) — read your health & fitness data points (read-only scopes only)"
       files.read:
         - "config.json — OAuth client id/secret and optional settings; discovered via --config, then $GOOGLE_HEALTH_CONFIG, then ./config.json, then next to the executable, then <user config dir>/google-health-cli/config.json"
         - "token cache — the cached OAuth token (default <user cache dir>/google-health-cli/token.json, a non-roaming location; overridable via GOOGLE_HEALTH_TOKEN_CACHE; a token left at the older <user config dir> path is migrated forward automatically)"
       files.write:
-        - "token cache — written at login and re-written when the token auto-refreshes (no other files are written)"
+        - "token cache — written at login, re-written when the token auto-refreshes, and deleted on `auth logout`; a legacy token at the older <user config dir> path is removed after it is migrated forward (no other files are written or deleted)"
+      env:
+        - "The five GOOGLE_HEALTH_* variables listed under envVars"
+        - "The per-user directory variables that Go's os.UserConfigDir and os.UserCacheDir consult to locate the default config and token paths (HOME, XDG_CONFIG_HOME and XDG_CACHE_HOME on Linux; HOME on macOS; AppData and LocalAppData on Windows)"
+      process:
+        - "Launches the system browser once during auth login (open, xdg-open or rundll32), with the URL as a separate argument; no shell interpreter"
     requires:
-      bins: []
+      bins:
+        - google-health-cli
       env:
         - GOOGLE_HEALTH_CLIENT_ID
         - GOOGLE_HEALTH_CLIENT_SECRET
+    install:
+      - id: go
+        kind: go
+        module: github.com/stozo04/google-health-cli/cmd/google-health-cli@latest
+        bins:
+          - google-health-cli
+        label: Install google-health-cli (go)
     envVars:
       - name: GOOGLE_HEALTH_CLIENT_ID
         description: "Google Cloud OAuth client ID (Desktop app type). Create one once — see the repo's OAUTH_SETUP.md."
@@ -44,7 +59,7 @@ metadata:
         description: "Override the cached-token path (default <user cache dir>/google-health-cli/token.json)."
         required: false
       - name: GOOGLE_HEALTH_BASE_URL
-        description: "Override the API base URL (default https://health.googleapis.com)."
+        description: "API base URL. Only https://health.googleapis.com is accepted; any other value is a config error, so the OAuth token is never sent to another host."
         required: false
 ---
 
@@ -52,11 +67,14 @@ metadata:
 
 Read your **Google Health** data from any agent. This is a generic, **read-only** client
 for the Google Health v4 API: it authenticates, pulls data points for any data type, and
-prints **JSON**. It does no filtering, merging, or interpretation — you get the data and
+prints **JSON**. The raw commands (`data list`, `rollup daily`, `sessions --raw`, `api get`) return every
+record the API sends for the time window you request (applied server-side), with no filtering, merging, or
+interpretation; the parsed `sessions` view leaves out points it can't date and says so on stderr. You get the data and
 parse whatever you care about. Single static binary — **no Python or other runtime**.
 
 > ⚠️ **Read-only.** It requests only read-only Google Health scopes and never writes your
-> health data.
+> health data. Locally, it writes only its own OAuth token cache (at `auth login` and on
+> auto-refresh) and deletes it on `auth logout`.
 
 > 🔒 **Privacy — sensitive health data leaves on stdout.** Every `data list`, `rollup daily`,
 > `sessions`, and `api get` prints your **personal health information** (heart rate, sleep, weight,
@@ -93,7 +111,7 @@ human in a browser **once**. After that it runs headless (the token auto-refresh
    ```bash
    # A) Download a release for your OS/arch and put it on PATH:
    #    https://github.com/stozo04/google-health-cli/releases
-   # B) Or with Go (1.25+):
+   # B) Or with Go (1.26+):
    go install github.com/stozo04/google-health-cli/cmd/google-health-cli@latest
    ```
 2. **Create a Google Cloud OAuth client** (Desktop app, read-only Health scopes, ~10 min,
@@ -115,7 +133,7 @@ human in a browser **once**. After that it runs headless (the token auto-refresh
 | `GOOGLE_HEALTH_CLIENT_SECRET` | ✓ | OAuth client secret |
 | `GOOGLE_HEALTH_CONFIG` | — | Path to a `config.json` holding the above instead |
 | `GOOGLE_HEALTH_TOKEN_CACHE` | — | Override the cached-token path |
-| `GOOGLE_HEALTH_BASE_URL` | — | Override the API base URL |
+| `GOOGLE_HEALTH_BASE_URL` | — | API base URL; only `https://health.googleapis.com` is accepted |
 
 `config.json` (gitignored) is an alternative to the env vars:
 
@@ -127,8 +145,9 @@ human in a browser **once**. After that it runs headless (the token auto-refresh
 ```
 
 > 🔑 **Protect your credentials.** The OAuth `client_id`/`client_secret` and the cached **token**
-> are sensitive secrets stored on disk in plaintext (`config.json` / `token.json`, written `0600`).
-> They're gitignored — keep it that way: never commit them, copy them into a shared folder, back them
+> are sensitive secrets stored on disk in plaintext. The CLI writes `token.json` owner-only (`0600`);
+> it never creates `config.json`, so restrict that file yourself (`chmod 600 config.json`).
+> Both are gitignored — keep it that way: never commit them, copy them into a shared folder, back them
 > up to an untrusted location, or paste them into logs or chat. Rotate the OAuth client (and run
 > `auth logout`) if one may have leaked.
 
@@ -169,7 +188,9 @@ Example (`data list daily-resting-heart-rate`):
 ```
 
 A few types are roll-up/reconcile-only and can't be `list`ed (`types list` marks listable ones
-with `*`); read those with `rollup daily <type>` instead (below).
+with `*`); read those with `rollup daily <type>` instead (below). One type —
+`daily-heart-rate-zones` — supports neither `list` nor `rollup daily`; it is reachable only via
+the `api get` escape hatch.
 
 ### Daily roll-ups (server-side totals)
 
@@ -211,7 +232,22 @@ google-health-cli sessions --raw               # raw exercise data points
 ]
 ```
 
-`sessions` returns **all** exercise types (no filtering); the caller keeps what it wants.
+`sessions` returns **all** exercise types (no filtering); the caller keeps what it wants. A point
+with no parseable start time can't be dated, so it is left out of the parsed rows and counted in a
+**stderr warning** (`N exercise point(s) had no parseable start time…`); `sessions --raw` always
+returns every point.
+
+> 🛡️ **Config can't redirect your token or widen access.** `base_url` / `GOOGLE_HEALTH_BASE_URL`
+> accept only `https://health.googleapis.com`, and `scopes` may list only the six read-only Google
+> Health scopes. Any other value is a config error (exit 78) before a request is made, so a
+> `config.json` picked up from the working directory can't send your OAuth token elsewhere or
+> request write access. Likewise, `auth login`, token refresh and `auth logout` only overwrite or
+> delete a `token_cache` file this tool wrote: every cache it writes carries `"owner": "google-health-cli"`,
+> and an older unmarked cache is accepted only at the conventional `google-health-cli/token.json`
+> location, or when refreshing with the cache's own refresh token. Pointed at anything else (another
+> app's `token.json`, a key, a directory, a symlink), the file is left untouched: `auth login` and
+> `auth logout` stop with exit 78, and a token refresh logs a warning and keeps the refreshed token
+> in memory only.
 
 ### Raw read-only API access
 
@@ -226,7 +262,8 @@ google-health-cli api get /v4/users/me/settings
 > stdout, so the same **Privacy** caution above applies, and the broad reach makes
 > over-collection easy. It stays **GET-only** (no path can write or delete) and is
 > **constrained to the read-only v4 surface** (`/v4/...`): a non-`v4/` path, an absolute URL, or a
-> `..` traversal is rejected (exit 64) before any request is made. Still, prefer the typed
+> `..` traversal — literal or percent-encoded (`%2e%2e`, `..%2f`) — is rejected (exit 64) before
+> any request is made. Still, prefer the typed
 > `data`/`rollup`/`sessions` commands and reach for `api get` only when you need an endpoint they
 > don't model.
 
@@ -255,6 +292,7 @@ google-health-cli api get /v4/users/me/settings
 - **Read-only:** six read-only `googlehealth.*.readonly` scopes; no write operations exist.
 - **Secrets:** `config.json` and the token cache are gitignored — never commit them.
 - **Time-filter formats** are handled for you per data type (civil wall-clock, RFC3339
-  instant, or date-only). If a type rejects server-side filtering, re-run with `--all`.
+  instant, or date-only); a `--date`/`--days` window always covers your **local** calendar
+  days. If a type rejects server-side filtering, diagnose the filter first. Use `--all` only when the requested scope authorizes an unbounded read.
 
-See the repo's **AGENTS.md** for the exact `--json` shapes and exit-code contract.
+See the repo's **docs/MACHINE_CONTRACT.md** for the exact `--json` shapes and exit-code contract.

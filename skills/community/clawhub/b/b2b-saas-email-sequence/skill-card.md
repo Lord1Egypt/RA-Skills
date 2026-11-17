@@ -1,40 +1,53 @@
-## Description: <br>
-Builds B2B SaaS email sequences and nurture flows for cold outbound, MQL nurture, trial nurture, demo follow-up, re-engagement, onboarding, and expansion campaigns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+B2B SaaS email sequence and nurture flow builder.
 
-## Publisher: <br>
-[renehdzgtz](https://clawhub.ai/user/renehdzgtz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renehdzgtz](https://clawhub.ai/user/renehdzgtz)
 
-## Use Case: <br>
-Marketing, sales, and revenue teams use this skill to plan and draft structured B2B SaaS email cadences with sequence maps, per-touch copy, subject line variants, segmentation notes, A/B test ideas, and benchmarks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated outreach can be inaccurate, non-compliant, misaligned with consent requirements, or off brand. <br>
-Mitigation: Review all generated email copy for factual accuracy, applicable outreach rules, consent status, and brand tone before sending. <br>
-Risk: The skill may activate on broad B2B email requests where the user's intent is under-specified. <br>
-Mitigation: Confirm campaign type, audience, goal, tone, and sender context before producing a final sequence. <br>
+## Use Case:
 
+Marketing, sales, and customer-success teams use this skill to draft structured B2B SaaS email cadences for cold outbound, MQL nurture, trial nurture, demo follow-up, re-engagement, onboarding, and expansion workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/renehdzgtz/b2b-saas-email-sequence) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown email sequence with sequence map, full email copy, subject lines, segmentation notes, A/B test recommendations, and benchmarks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated outreach should be reviewed for accuracy, compliance, consent, and brand tone before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated outreach may include inaccurate claims or messaging that is not appropriate for the recipient segment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit each sequence for factual accuracy, audience fit, proof points, and brand voice before sending.
+
+Risk: Email campaigns can create compliance risk if consent, unsubscribe handling, or applicable marketing rules are overlooked.
+
+Mitigation: Confirm list permission, suppression logic, unsubscribe language, and regional email-marketing requirements before launch.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/renehdzgtz/skills/b2b-saas-email-sequence)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown email sequence with sequence map, full email copy, segmentation notes, A/B test recommendations, and benchmarks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated outreach should be reviewed for accuracy, consent, unsubscribe handling, and applicable email-marketing compliance.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Deep search via Perplexity API with search, reasoning, and research modes for AI-grounded answers with citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep search via Perplexity API with search, reason, and research modes for AI-grounded answers with citations.
 
-## Publisher: <br>
-[ericsantos](https://clawhub.ai/user/ericsantos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ericsantos](https://clawhub.ai/user/ericsantos)
 
-## Use Case: <br>
-Developers and other agent users use this skill to run Perplexity-powered web searches, comparative reasoning queries, and deeper research reports from an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search prompts are sent to Perplexity using the configured API key. <br>
-Mitigation: Use only prompts appropriate for Perplexity processing and use a dedicated API key where possible. <br>
-Risk: A file-based API key fallback can expose credentials if the key file is too broadly readable. <br>
-Mitigation: Keep ~/.config/perplexity/api_key permission-restricted, such as mode 600. <br>
-Risk: Research mode can incur higher API costs than quick search or reasoning modes. <br>
-Mitigation: Reserve research mode for queries that need exhaustive analysis and use lower-cost modes for routine searches. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ericsantos/perplexity-deep-search) <br>
-- [Perplexity API documentation](https://docs.perplexity.ai) <br>
-- [Perplexity chat completions API endpoint](https://api.perplexity.ai/chat/completions) <br>
+## Use Case:
 
+Developers and agents use this skill to query Perplexity for current facts, complex reasoning, and deeper research reports with optional recency, domain, language, and JSON controls.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, citations, shell commands, configuration guidance] <br>
-**Output Format:** [Plain text or Markdown answers with optional JSON output and source URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and a Perplexity API key supplied by PERPLEXITY_API_KEY or a permission-restricted key file.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search prompts, filters, and the API token are sent to Perplexity.
+
+Mitigation: Install only when that data sharing is acceptable, and provide PERPLEXITY_API_KEY through an environment variable or secret manager where possible.
+
+Risk: Research mode can incur higher Perplexity API costs than normal search.
+
+Mitigation: Reserve research mode for queries where deeper analysis justifies the cost.
+
+## Reference(s):
+
+- [Perplexity Documentation](https://docs.perplexity.ai)
+- [Perplexity Chat Completions API](https://api.perplexity.ai/chat/completions)
+- [ClawHub Skill Page](https://clawhub.ai/ericsantos/skills/perplexity-deep-search)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/ericsantos)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Plain text or JSON; answer text may include a Sources list when citations are returned.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports search, reason, and research modes plus recency, domain, language, and raw JSON options.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

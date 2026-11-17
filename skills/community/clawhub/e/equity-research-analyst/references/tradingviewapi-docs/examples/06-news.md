@@ -2271,7 +2271,7 @@ HTTP `200`
             "logoid": "apple"
           }
         ],
-        "storyPath": "/news/reuters.com,2026:newsml_FWN40C10O:0-apple-plans-ai-reboot-with-siri-app-new-look-and-ask-siri-button-in-ios-27-bloomberg-news/",
+        "storyPath": "/news/reuters.com,2026:newsml_FWN40C10O:0-apple-plans-ai-reboot-with-siri-app-new-look-and-aREDACTED-SECRET/",
         "provider": {
           "id": "reuters",
           "name": "Reuters",
@@ -22525,7 +22525,7 @@ HTTP `200`
             "logoid": "apple"
           }
         ],
-        "storyPath": "/news/moneycontrol:0b76c8998094b:0-world-street-apple-beats-microsoft-in-m-cap-tesla-investors-vote-for-musk-s-pay-gamestop-postpones-annual-meet-and-more/",
+        "storyPath": "/news/moneycontrol:0b76c8998094b:0-world-street-apple-beats-microsoft-in-m-cap-tesla-investors-vote-for-muREDACTED-SECRET/",
         "provider": {
           "id": "moneycontrol",
           "name": "Moneycontrol",
@@ -27092,7 +27092,7 @@ HTTP `200`
             "logoid": "apple"
           }
         ],
-        "storyPath": "/news/reuters.com,2026:newsml_FWN40C10O:0-apple-plans-ai-reboot-with-siri-app-new-look-and-ask-siri-button-in-ios-27-bloomberg-news/",
+        "storyPath": "/news/reuters.com,2026:newsml_FWN40C10O:0-apple-plans-ai-reboot-with-siri-app-new-look-and-aREDACTED-SECRET/",
         "provider": {
           "id": "reuters",
           "name": "Reuters",

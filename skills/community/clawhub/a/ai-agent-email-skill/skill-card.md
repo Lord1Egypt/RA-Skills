@@ -1,43 +1,53 @@
-## Description: <br>
-This skill provides script-based email operations for an agent, including mailbox management, email reading and search, sending, replies, forwarding, and attachment handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides script-based email operations for an agent, including mailbox management, email reading and search, sending, replying, forwarding, and attachment handling.
 
-## Publisher: <br>
-[tyxiang](https://clawhub.ai/user/tyxiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tyxiang](https://clawhub.ai/user/tyxiang)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an agent read, search, organize, send, reply to, and forward email through configured IMAP and SMTP accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform high-authority mailbox actions, including sending, forwarding, deleting, expunging, folder deletion, and bulk moves. <br>
-Mitigation: Install only when real mailbox authority is intended and require explicit human approval before send, reply-all, forward, delete, expunge, folder delete, or bulk move actions. <br>
-Risk: Mailbox credentials and OAuth tokens can expose account access if stored or logged improperly. <br>
-Mitigation: Use app passwords or least-privilege OAuth where available, store secrets only in environment variables, and keep secrets out of checked-in files and logs. <br>
-Risk: Incorrect or untrusted IMAP, SMTP, or OAuth endpoints can route mail or credentials through unintended services. <br>
-Mitigation: Verify IMAP, SMTP, and OAuth endpoint configuration before use, and keep TLS certificate verification enabled except for controlled local testing. <br>
+## Use Case:
 
+Developers and agent operators use this skill to let an agent work with a configured email account for mailbox review, message reading, sending, replies, forwarding, and folder organization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tyxiang/ai-agent-email-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/tyxiang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request and response examples plus shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts exchange JSON over stdin and stdout; diagnostics are written to stderr.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: release evidence) <br>
+Risk: An agent using this skill can operate the configured mailbox, including sending mail and deleting messages or folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for intended mailbox operation, use a dedicated account, app password, or narrowly scoped OAuth grant where possible, and require human review before sends, forwards, deletes, expunges, and folder deletion.
+
+Risk: Mailbox contents and credentials may be exposed if TLS or certificate verification is weakened or if OAuth2 token endpoints are not trusted.
+
+Mitigation: Keep TLS and certificate verification enabled and configure only trusted OAuth token endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tyxiang/skills/ai-agent-email-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance and JSON-over-stdin/stdout script contracts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured IMAP/SMTP account settings and email credentials or OAuth2 environment variables.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

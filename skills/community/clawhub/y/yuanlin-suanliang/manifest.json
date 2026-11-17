@@ -1,0 +1,94 @@
+{
+  "name": "yuanlin-suanliang",
+  "slug": "yuanlin-suanliang",
+  "displayName": "园林算量 · 苗木统计与铺装面积",
+  "version": "0.4.40",
+  "entry_policy": "contract-only",
+  "author": "lis",
+  "license": "CC-BY-NC-SA-4.0",
+  "entry": "SKILL.md",
+  "entrypoint": "SKILL.md",
+  "scripts": [
+    "scripts/lint_cross_platform.py",
+    "scripts/pyboot.py",
+    "scripts/i18n.py",
+    "scripts/run_preflight.sh",
+    "scripts/self_test.py",
+    "scripts/smoke_utf8_json.py",
+    "scripts/yuanlin_qty.cmd",
+    "scripts/yuanlin_qty.py",
+    "scripts/yuanlin_qty.sh",
+    "scripts/yuanlin_statesync.py",
+    "scripts/yuanlin_statesync.sh",
+    "scripts/yuanlin_statesync.cmd",
+    "scripts/contract_guard.py",
+    "scripts/contract_support.py",
+    "scripts/entry_gate.py"
+  ],
+  "references": [
+    ".gitignore",
+    "CHANGELOG.md",
+    "LICENSE.md",
+    "README.md",
+    "README.en.md",
+    "docs/history.md",
+    "docs/bus-integration.md",
+    "docs/integration.md",
+    "docs/runtime.md",
+    "docs/README.md"
+  ],
+  "rules": [
+    "rules/plant_library_分区苗木选型.json",
+    "rules/plant_library_园林景观CAD图块素材.json",
+    "rules/plant_library_常用园林植物.json",
+    "rules/plant_library_西北温带荒漠区.json",
+    "rules/rules.json"
+  ],
+  "templates": [
+    "templates/项目专属规则示例.json"
+  ],
+  "tests": [
+    "scripts/self_test.py"
+  ],
+  "boundary": "只出概算底稿与物资计划草稿；苗木表数量不等于逐株点数；无坐标块引用只作P2候选；图层缺失时不硬出铺装面积；块内铺装和全几何强算只作P3复核线索；植物名称参考库只提供中文名→大类映射、不含规格/密度/单价，不用于自动推断规格或报价；不替代设计复核、放线、点树、竣工计量、对量、结算与正式报价。",
+  "contract_schema": "园林苗木/铺装概算与物资计划草稿（cad-file-reader/v0 兼容）; qto-project/v1(联动可选: 识别/<slug>/ + 算量/<slug>/ + cad-file-reader/scripts/qto_p1_link.py 登记)",
+  "linkage": {
+    "qto_spec": "qto-project/v1",
+    "recognize_dir": "识别/<slug>/",
+    "qty_dir": "算量/<slug>/",
+    "adapter": "cad-file-reader/scripts/qto_p1_link.py",
+    "boundary": "只登记输入/输出与缺口，不替代本技能算法、口径与复核"
+  },
+  "outputs": [
+    "Yuanlin概算物资计划台账.xlsx",
+    "园林苗木统计.csv",
+    "园林铺装面积.csv",
+    "缺项核对.csv",
+    "汇总.csv",
+    "依据.csv",
+    "园林概算报告.md"
+  ],
+  "final_quantity_default": false,
+  "schema": "yuanlin-suanliang/v0",
+  "locale": {
+    "default": "zh-CN",
+    "languages": [
+      "zh-CN"
+    ],
+    "scope": "Chinese construction and landscape CAD drawings; vocabulary intentionally in Simplified Chinese with English aliases; locale configurable via project plant-library overrides",
+    "extensible": "--plant-library"
+  },
+  "description": "基于 cad-file-reader 园林识图候选，按中英文图例分类统计苗木、解析苗木表设计基线、按闭合区域计算铺装面积，可选展开 DXF 块内铺装，输出带使用边界、置信分层（P0–P3）和证据坐标的园林概算底稿与物资计划草稿；不替代设计复核、放线、点树、竣工计量、对量、结算与正式报价。",
+  "platforms": [
+    "macos",
+    "windows",
+    "linux"
+  ],
+  "requires": {
+    "skills": {
+      "cad-file-reader": ">=0.41.0",
+      "lis-skill-bus": ">=0.1.11"
+    },
+    "python": ">=3.10"
+  }
+}

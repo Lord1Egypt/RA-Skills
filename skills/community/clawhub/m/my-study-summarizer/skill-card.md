@@ -1,40 +1,57 @@
-## Description: <br>
-Processes supported files to extract key information and create concise, structured summaries for school study. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Processes supported files to extract key information and produce concise, structured summaries for school study.
 
-## Publisher: <br>
-[iuri-siqueira](https://clawhub.ai/user/iuri-siqueira) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iuri-siqueira](https://clawhub.ai/user/iuri-siqueira)
 
-## Use Case: <br>
-Students and external users use this skill to turn class materials, documents, notes, and supported file attachments into concise study summaries, structured extracts, or transformed content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad file-processing behavior may expose sensitive documents, archives, or credential-containing files to the agent during summarization. <br>
-Mitigation: Use the skill with explicit attachments or paths, and avoid providing sensitive archives or credential-containing files unless necessary. <br>
-Risk: Generated summaries, transformed files, or extracted content may contain errors or unintended disclosures. <br>
-Mitigation: Review generated output files and summaries before sharing them or relying on them for school work. <br>
+## Use Case:
 
+Students and educators use this skill to summarize study materials and extract structured notes from supported documents, code, data files, images, audio, video, and archives.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iuri-siqueira/my-study-summarizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown, plain text, structured JSON, code snippets, or file references depending on the requested transformation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include processing metadata, confidence notes, source citations, and warnings for unsupported, protected, or large files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests broad authority to read many file types, recurse through archives, run parsing code, and create outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, run it with least-privilege file access, and restrict it to known study materials and output locations.
+
+Risk: The skill may use web or external transcription services while processing files.
+
+Mitigation: Disable or control network access for confidential materials, and confirm external-service behavior before processing sensitive files.
+
+Risk: The skill's broad auto-activation triggers and retention details are too broad for automatic use.
+
+Mitigation: Require explicit user confirmation before processing files and define cleanup and retention expectations before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iuri-siqueira/skills/my-study-summarizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or structured text, with JSON or generated files when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include summaries, extracted data, comparisons, citations, confidence notes, and file outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

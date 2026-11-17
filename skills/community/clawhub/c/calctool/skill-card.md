@@ -1,41 +1,55 @@
-## Description: <br>
-CalcTool provides terminal commands that record calculation, conversion, analysis, and reporting inputs in local plaintext logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CalcTool provides terminal commands for recording, searching, and displaying calculation-related entries in local plaintext logs.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users and developers use this skill to keep a local activity log of calculations, conversions, comparisons, reports, and related notes when they want a searchable plaintext trail rather than a computational engine. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is advertised as a calculator, but the reviewed release records arbitrary user inputs in local plaintext logs. <br>
-Mitigation: Treat commands as logging commands, not a trusted calculator, and verify any calculations independently before relying on them. <br>
-Risk: Sensitive account data, private financial figures, customer information, proprietary notes, or secrets entered into commands may persist under ~/.local/share/calctool and later be searched or exported. <br>
-Mitigation: Avoid entering sensitive data and review or delete local calctool logs before sharing the machine, backups, or exported files. <br>
+## Use Case:
 
+Developers, analysts, and external users use this skill to record calculation, conversion, comparison, analysis, status, and report entries from a shell workflow. Server security evidence indicates the artifact primarily stores, searches, and displays user-entered text in persistent local logs rather than performing live calculation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/calctool) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands write timestamped local log files under ~/.local/share/calctool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: ClawHub release metadata; artifact files mention 2.0.0) <br>
+Risk: User-entered command values may be persisted locally in plaintext logs and later searched or displayed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering credentials, account numbers, financial details, confidential reports, or private business data unless local logging is intended and file permissions are hardened.
+
+Risk: The artifact is advertised as a calculator, but server security evidence says it mainly stores, searches, and displays entered text.
+
+Mitigation: Review behavior before installation and do not rely on it for independent calculation correctness without separate verification.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/calctool)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or inspect local plaintext log files under ~/.local/share/calctool when installed and executed.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence; artifact frontmatter and script report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

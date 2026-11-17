@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-kling-2-6-motion-control
 description: Kling 2.6 Motion Control on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `kling-2.6-motion-control`, motion transfer, character animation, orientation control, and 720p/1080p output.
-metadata: {"openclaw": {"homepage": "https://docs.poyo.ai/api-manual/video-series/kling-2.6-motion-control", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
+metadata: {"openclaw": {"homepage":"https://poyo.ai/models/kling-2-6-motion-control", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
 ---
 
 # PoYo Kling 2.6 Motion Control
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/kling-2-6-motion-control>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/kling-2.6-motion-control>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for `kling-2.6-motion-control` jobs on PoYo. It is for strict motion transfer workflows that require both a character image and a reference video.
 

@@ -1,46 +1,59 @@
-## Description: <br>
-Clawsy is a native macOS companion app that gives an OpenClaw agent access to screenshots, clipboard, camera, files, location, and Mission Control through WebSocket or SSH fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawsy is a native macOS companion app that gives an OpenClaw agent access to the user's Mac through screenshots, clipboard, camera, files, location, and live Mission Control over WebSocket with SSH fallback.
 
-## Publisher: <br>
-[iret77](https://clawhub.ai/user/iret77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iret77](https://clawhub.ai/user/iret77)
 
-## Use Case: <br>
-Developers and external users use this skill to pair an OpenClaw agent with a macOS companion app, enabling guided setup, device context, shared-folder file exchange, and live progress reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables broad access to a user's Mac, including screenshots, camera, clipboard, location, and file operations. <br>
-Mitigation: Install only for trusted publishers, grant macOS permissions deliberately, and require explicit confirmation for sensitive screen, camera, clipboard, location, or file-change actions. <br>
-Risk: The setup flow exposes an OpenClaw gateway token in setup instructions that may appear in chat or logs. <br>
-Mitigation: Treat setup codes as credentials, avoid sharing them outside the pairing flow, and rotate or revoke the gateway token after pairing if it was exposed. <br>
-Risk: Shared-folder file operations can read or write user files within the configured Clawsy folder. <br>
-Mitigation: Configure the shared folder with low-sensitivity files only and review proposed file changes before relying on them. <br>
-Risk: The macOS companion app is downloaded separately from a release page. <br>
-Mitigation: Verify the downloaded app release and signature before launching it. <br>
+## Use Case:
 
+Developers and agent operators use Clawsy to let an OpenClaw agent interact with a user's macOS environment for visual context, clipboard exchange, camera input, sandboxed shared-folder file transfer, location lookup, and progress reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iret77/clawsy) <br>
-- [Clawsy repository](https://github.com/iret77/clawsy) <br>
-- [Clawsy latest release](https://github.com/iret77/clawsy/releases/latest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup-code handling, Clawsy node command references, and Mission Control status guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: The companion app and connected agents can access sensitive Mac data such as screenshots, camera images, clipboard contents, files, and location.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that access is acceptable, use the app permission prompts deliberately, and limit the shared folder to files intended for agent access.
+
+Risk: Gateway setup details and authentication tokens may be exposed during pairing or setup.
+
+Mitigation: Avoid sharing long-lived tokens, rotate credentials when exposure is possible, and verify the app download through a trusted release or signature path.
+
+Risk: Automatic location or file actions can disclose data without additional context once configured.
+
+Mitigation: Disable or avoid automatic location and file actions where possible, and remove propagation or heartbeat rules that are not explicitly desired.
+
+## Reference(s):
+
+- [Clawsy Skill Page](https://clawhub.ai/iret77/skills/clawsy)
+- [Clawsy GitHub Repository](https://github.com/iret77/clawsy)
+- [Clawsy Latest Release](https://github.com/iret77/clawsy/releases/latest)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands, Python snippets, setup instructions, and command reference tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include setup codes, node commands, Mission Control status messages, and file-transfer guidance for a connected macOS companion app.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

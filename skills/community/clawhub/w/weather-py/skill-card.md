@@ -1,43 +1,60 @@
-## Description: <br>
-Trade Polymarket weather markets using NOAA forecasts via Simmer API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade Polymarket weather markets using NOAA forecasts via Simmer API.
 
-## Publisher: <br>
-[johnjerry8749](https://clawhub.ai/user/johnjerry8749) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[johnjerry8749](https://clawhub.ai/user/johnjerry8749)
 
-## Use Case: <br>
-External users and developers use this skill to inspect and automate Polymarket temperature-market trades based on NOAA forecasts, Simmer market data, and configurable thresholds. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real Polymarket trades when run with live execution enabled. <br>
-Mitigation: Start in dry-run mode, use small max-position and max-trades settings, and enable live execution only after reviewing the financial risk. <br>
-Risk: The skill requires SIMMER_API_KEY, which may expose Simmer account data and possible trading authority. <br>
-Mitigation: Store the key securely, avoid sharing logs or environments that expose it, and rotate it if it may have been disclosed. <br>
-Risk: Disabling safeguards or running quiet scheduled executions can increase exposure to unintended trades. <br>
-Mitigation: Keep safeguards enabled, review thresholds and location settings before scheduling, and use quiet or cron-style runs only after observing dry-run behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/johnjerry8749/weather-py) <br>
-- [Simmer API](https://api.simmer.markets) <br>
-- [Simmer Dashboard](https://simmer.markets/dashboard) <br>
+## Use Case:
 
+External users and developers use this skill to evaluate, configure, and optionally automate temperature-market trades on Polymarket using Simmer and NOAA weather data. It can also report account balance, open positions, configuration, and dry-run trade opportunities.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown and terminal text with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to dry-run output unless live trading is explicitly enabled.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.7.2 (source: artifact frontmatter and _meta.json); ClawHub release version 0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can place live Polymarket trades with a Simmer API key.
+
+Mitigation: Use dry-run first, keep max-position and max-trades limits small, and avoid --live until the strategy and account impact are understood.
+
+Risk: The security summary says credential handling is not tightly guarded.
+
+Mitigation: Prefer a narrowly scoped or separate Simmer API key when available, and avoid exposing SIMMER_API_KEY in logs, shared shells, or unattended environments.
+
+Risk: Disabling safeguards or running quiet unattended cron jobs can increase financial risk.
+
+Mitigation: Keep safeguards enabled, avoid --no-safeguards, and review live behavior before using quiet or scheduled runs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnjerry8749/skills/weather-py)
+- [Publisher profile](https://clawhub.ai/user/johnjerry8749)
+- [Simmer API](https://api.simmer.markets)
+- [Simmer dashboard](https://simmer.markets/dashboard)
+- [NOAA Weather API](https://api.weather.gov)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, plus plain text console output from the included Python scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY; dry-run is the default, while --live can place real trades.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter and release changelog mention 1.7.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,52 @@
-## Description: <br>
-Helps leaders develop emotional intelligence practices for AI adoption, including empathy, self-awareness, communication, curiosity, proactive problem-solving, trust-building, and team coaching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Argues that emotional intelligence becomes strategically critical precisely because of AI -- not despite it -- and provides leaders with practices for developing the soft skills that constitute the human competitive advantage in an AI-saturated economy.
 
-## Publisher: <br>
-[fatihguner](https://clawhub.ai/user/fatihguner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[fatihguner](https://clawhub.ai/user/fatihguner)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Leaders, founders, managers, and advisors use this skill to assess and develop emotional intelligence practices for AI adoption, especially when technical change is creating fear, mistrust, weak communication, or stalled adoption. It supports diagnostics, workforce communication, soft-skills investment cases, and team EI development plans.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill provides advisory leadership and business guidance that may include claims or recommendations not independently verified for the user's organization.
+
+Mitigation: Treat outputs as advisory and review claims, recommendations, and business cases against organization-specific evidence before adoption.
+
+Risk: Prompts about employee fears, resistance, and team dynamics may lead users to enter confidential employee or organizational details.
+
+Mitigation: Avoid entering confidential employee details unless sharing them with the agent environment is permitted and appropriate.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Leaders, founders, managers, and advisors use this skill to assess and improve emotional intelligence during AI adoption. It supports communication planning, trust-building, employee engagement, and soft-skills development alongside AI initiatives. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Workplace leadership recommendations may not fit every organization's HR, legal, privacy, or employee-relations policies. <br>
-Mitigation: Review outputs against organizational policies and involve appropriate stakeholders before using them in employee programs or AI-adoption communications. <br>
+**Output Format:** [Markdown guidance, assessments, tables, development plans, and communication drafts]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fatihguner/ai-emotional-intelligence) <br>
+**Other Properties Related to Output:** [Content-only leadership guidance; no code execution, tool access, or credential use is requested.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance, prompts, assessment tables, and development plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only leadership coaching content; no code, shell commands, credentials, persistence, or hidden access requested.] <br>
+1.0.0 (source: frontmatter and release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

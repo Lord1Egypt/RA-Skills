@@ -1,45 +1,58 @@
-## Description: <br>
-Structure study sessions, manage materials, and prepare for exams with active recall techniques. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Study helps agents turn courses, syllabi, exams, deadlines, notes, and revision problems into dated study plans, retrieval practice, spaced review, coursework triage, and exam preparation.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Students and learners use this skill to organize study materials, plan study sessions, track exam deadlines, and practice active recall while keeping student-created work separate from AI scaffolding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local study files under ~/study/ may contain sensitive academic materials and can be reused in later sessions. <br>
-Mitigation: Keep sensitive materials out of ~/study/ when they should not persist, and remove local study files that are no longer needed. <br>
-Risk: AI-generated study prompts, quizzes, or schedules may be inaccurate or misaligned with a course. <br>
-Mitigation: Verify study guidance against course materials, instructor instructions, and official exam requirements. <br>
-Risk: Using the skill to create work a student should produce independently could create academic integrity issues. <br>
-Mitigation: Use the skill for scaffolding, questions, and feedback while keeping summaries, answers, and submitted work student-authored. <br>
+## Use Case:
 
+Students and study-support agents use this skill to plan a term, run study sessions, prioritize assessments, and prepare for exams. It is designed to scaffold, quiz, drill, and critique rather than produce work that will be submitted for credit.
 
-## Reference(s): <br>
-- [Study skill page](https://clawhub.ai/ivangdavila/study) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Exam Preparation Reference](artifact/exams.md) <br>
-- [Subject Types Reference](artifact/subjects.md) <br>
-- [Study Techniques Reference](artifact/techniques.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Shell commands] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and reuses local study files under ~/study/ when used as directed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill keeps persistent local notes about courses, grades, exam dates, mistakes, study partners, projects, and bookings under ~/Clawic/data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that local recordkeeping is acceptable, and review the disclosed Clawic data paths before use.
+
+Risk: Users may paste sensitive credentials or identity data into study records.
+
+Mitigation: Do not paste passwords, API keys, proctoring passcodes, payment cards, or ID-document numbers; store only pointers such as keychain, environment-variable, password-manager, or local-file references.
+
+Risk: Study guidance may affect graded academic work or assessment integrity.
+
+Mitigation: Use the skill for scaffolding, hints, quizzing, drills, and critique, and do not use it to produce work that will be submitted for credit.
+
+## Reference(s):
+
+- [ClawHub Study skill page](https://clawhub.ai/ivangdavila/skills/study)
+- [Clawic Study skill page](https://clawic.com/skills/study)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and structured study records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local note updates under disclosed Clawic data paths; does not submit, upload, or transmit work on the user's behalf.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

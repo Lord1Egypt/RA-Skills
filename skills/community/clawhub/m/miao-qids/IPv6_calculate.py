@@ -1,5 +1,7 @@
 import re
 from re import*
+import json,ipaddress
+import requests
 
 def ipv6_to_int(ipv6_str):
 	if'::'in ipv6_str:
@@ -55,3 +57,26 @@ def is_ipv6_in_network(ipv6_str,network_str):
 	network_int=ipv6_to_int(network_ip)
 	mask_int=0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF<<(128-mask)
 	return(ip_int&mask_int)==(network_int&mask_int)
+def is_private_ip(ip):#判断内网IP:IPv4私有/环回/链路本地与IPv6 ULA/环回均视为内网
+	try:
+		a=ipaddress.ip_address(ip)
+		return a.is_private or a.is_loopback or a.is_link_local
+	except ValueError:
+		return False
+
+def query_ip_location(ip,timeout=5):#统一IP属地查询:内网直接返回内网IP;公网查ip-api.com,返回JSON
+	if is_private_ip(ip):
+		return{"ip":ip,"内网":True,"ip-api.com":"内网IP"}
+	res={"ip":ip,"内网":False}
+	try:
+		j=None
+		for _ in range(2):#偶发超时自动重试一次
+			try:
+				j=json.loads(requests.get(f"http://ip-api.com/json/{ip}?lang=zh-CN",timeout=timeout).text)
+				break
+			except Exception:
+				continue
+		res["ip-api.com"]=f"{j.get('country','未知')}-{j.get('regionName','未知')}-{j.get('city','未知')}"if j and j.get("status")=="success"else"查询失败"
+	except Exception as e:
+		res["ip-api.com"]=f"查询失败:{str(e)[:50]}"
+	return res

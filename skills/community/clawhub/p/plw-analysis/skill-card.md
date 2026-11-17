@@ -1,40 +1,56 @@
-## Description: <br>
-排列五数字彩票分析工具，提供数据分析、选号策略、概率计算、冷热号分析等辅助功能。 <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+排列五数字彩票分析工具，提供数据分析、选号策略、概率计算、冷热号分析等辅助功能。
 
-## Publisher: <br>
-[shenmeng](https://clawhub.ai/user/shenmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[shenmeng](https://clawhub.ai/user/shenmeng)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users or agents can use this skill to review Pai Lie Wu lottery rules, generate entertainment-only number selections, and run helper analyses such as hot/cold, difference, probability, and simple return calculations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The release includes lottery-prediction and accuracy claims that can mislead users about a random event.
+
+Mitigation: Present lottery outputs as entertainment and probability education only, and remove or clearly relabel unsupported prediction and accuracy claims before use.
+
+Risk: The calculator accepts untrusted numeric input, which the security evidence flags as unsafe until validation is added.
+
+Mitigation: Use the calculator only with trusted inputs or add strict numeric validation for amount and price before evaluating expressions.
+
+Risk: The skill requests a network-capable web_search permission that the security evidence identifies as unnecessary.
+
+Mitigation: Remove the web_search permission unless a reviewed live-data workflow is added and documented.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Chinese-speaking lottery hobbyists and probability learners can use this skill to run sample 排列五 analysis commands, random number picks, probability explanations, and simple return calculations. Its outputs should be treated as entertainment and probability education, not validated betting advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents lottery analysis patterns, percentages, or claimed accuracy figures that are not backed by validated historical data in the provided artifacts. <br>
-Mitigation: Treat all analytical output as entertainment or probability education, and do not rely on it when spending money. <br>
-Risk: Users may mistake random picks, hot/cold analysis, or kill-number formulas for predictive gambling guidance. <br>
-Mitigation: Keep the skill framed as non-predictive, review outputs before sharing, and include clear reminders that lottery results are random. <br>
+**Output Format:** [Markdown guidance and terminal text from Bash helper commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shenmeng/plw-analysis) <br>
+**Other Properties Related to Output:** [Some analysis outputs are static or simulated; random selections are entertainment-only and do not predict lottery outcomes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and terminal text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include mock or unsupported lottery analytics and should not be used for gambling decisions.] <br>
+1.0.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

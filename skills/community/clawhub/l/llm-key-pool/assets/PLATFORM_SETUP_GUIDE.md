@@ -144,7 +144,7 @@ def fib(n):
 
 **API Key格式示例：**
 ```
-sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+REDACTED-SECRET
 ```
 
 **注意：** 这与阿里云百炼的API Key不同，是独立的服务。
@@ -214,7 +214,7 @@ python -m llm_key_pool.llm_client \
 
 **API Key格式示例：**
 ```
-sk-ant-api03-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+REDACTED-SECRET
 ```
 
 **重要提示：**

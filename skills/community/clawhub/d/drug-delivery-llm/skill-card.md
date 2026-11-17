@@ -1,47 +1,65 @@
-## Description: <br>
-Dreamer assists with drug-delivery smart responsive material design through molecule generation, property annotation, screening, recommendation, visualization, and research monitoring workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dreamer helps agents design, classify, filter, recommend, and visualize drug-delivery smart-response material candidates, especially visible-light-responsive molecules.
 
-## Publisher: <br>
-[z-kuki](https://clawhub.ai/user/z-kuki) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[z-kuki](https://clawhub.ai/user/z-kuki)
 
-## Use Case: <br>
-Scientists, decision-makers, and technical users can use Dreamer to design candidate drug-delivery molecules, classify properties, rank candidates, tune models with preference data, and generate decision-oriented analysis reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may perform web research, local file writes, or compute-heavy model operations. <br>
-Mitigation: Install and run it only in a sandbox where network access, compute cost, and local output paths are acceptable. <br>
-Risk: Research-memory files may contain private or stale information that could influence generated molecule designs. <br>
-Mitigation: Review or clear knowledge_data/latest_research.txt before generation, especially for sensitive scientific work. <br>
-Risk: Unapproved or mutable model checkpoints can affect scientific reliability and reproducibility. <br>
-Mitigation: Prefer pinned or locally approved model checkpoints for sensitive work. <br>
+## Use Case:
 
+Researchers, materials scientists, and developers use Dreamer to generate and evaluate drug-delivery material candidates, annotate molecular properties, rank candidates, optimize generation behavior, and produce decision-oriented analysis reports.
 
-## Reference(s): <br>
-- [Dreamer ClawHub skill page](https://clawhub.ai/z-kuki/drug-delivery-llm) <br>
-- [LLM Generation workflow](references/skill_llm_generation.md) <br>
-- [Property Classification workflow](references/skill_property_classification.md) <br>
-- [Filtering and Recommendation workflow](references/skill_filtering_recommendation.md) <br>
-- [RLHF Optimization workflow](references/skill_rlhf_optimization.md) <br>
-- [Data Visualization workflow](references/skill_data_visualization.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown reports, generated code or shell commands, molecule lists, scores, model artifacts, and visualization files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local files such as NumPy arrays, LoRA weights, and SVG or JPG figures when the referenced workflows are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release metadata) <br>
+Risk: Broad workflows can train models, scrape sources, and write outputs automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in an isolated sandbox and require explicit approval before training, scraping, or writing outputs.
+
+Risk: The web monitor can persist scraped research and news into agent context.
+
+Mitigation: Disable or gate the web monitor and treat latest_research.txt as untrusted reference data.
+
+Risk: Model and checkpoint loading may use mutable or unsafe artifacts.
+
+Mitigation: Pin model and checkpoint sources and review them before loading.
+
+Risk: Private molecule data or credentials could be exposed if the skill is installed in a sensitive environment.
+
+Mitigation: Do not provide credentials or sensitive private molecule data unless workflows have been reviewed and constrained.
+
+## Reference(s):
+
+- [LLM Generation Workflow](references/skill_llm_generation.md)
+- [Property Classification Workflow](references/skill_property_classification.md)
+- [Filtering and Recommendation Workflow](references/skill_filtering_recommendation.md)
+- [RLHF Optimization Workflow](references/skill_rlhf_optimization.md)
+- [Data Visualization Workflow](references/skill_data_visualization.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown reports with generated molecule lists, scores, plots, code, and shell command guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Workflows may produce saved files such as .npy molecule arrays, model checkpoints or LoRA weights, scraped research notes, and visualization images.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

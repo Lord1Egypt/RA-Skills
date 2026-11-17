@@ -1,46 +1,66 @@
-## Description: <br>
-Use when the user asks to create, inspect, render, or repair an HTML-authored video from a brief, website, Markdown/text file, or GitHub repository; needs captions, voiceover, background music, generated images/video clips, or a HyperFrames-like local video pipeline using SenseAudio media APIs and AudioClaw LLM planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user asks to create, inspect, render, or repair an HTML-authored video from a brief, website, Markdown/text file, or GitHub repository; needs captions, voiceover, background music, generated images/video clips, or a HyperFrames-like local video pipeline using SenseAudio media APIs and AudioClaw LLM planning.
 
-## Publisher: <br>
-[fridaylifan](https://clawhub.ai/user/fridaylifan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fridaylifan](https://clawhub.ai/user/fridaylifan)
 
-## Use Case: <br>
-Developers and video-production agents use this skill to build editable HTML video projects from briefs, websites, Markdown, text, or repository README content, then generate narration, captions, supporting media, local renders, inspections, and repair passes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send prompts, page captures, inspect frames, or generated media requests to external AI and media providers. <br>
-Mitigation: Use offline mode, saved inputs, or deterministic planning for sensitive material, and enable live media, LLM, or vision-audit calls only when the content is approved to leave the machine. <br>
-Risk: Website capture can use browser profiles or cookies and may expose private, personalized, gated, or region-specific page content. <br>
-Mitigation: Prefer the default clean temporary browser profile, use dedicated capture profiles instead of personal sessions, and provide cookies only for sites approved for capture. <br>
-Risk: Generated video projects can store local artifacts such as screenshots, transcripts, captions, manifests, audio, and rendered media. <br>
-Mitigation: Review project directories and reports before sharing, and remove private source material, browser captures, credentials, or derived media that should not be distributed. <br>
+## Use Case:
 
+Developers and content producers use this skill to plan, author, inspect, repair, and render HTML-based videos from briefs, websites, Markdown or text files, and GitHub repository READMEs. It supports local project scaffolding, CLI-driven media generation, captions, narration, music, screenshot capture, audits, and rendered video delivery.
 
-## Reference(s): <br>
-- [SenseAudio API Reference](references/api.md) <br>
-- [HTML Authoring Guide](references/authoring.md) <br>
-- [SenseAudio Media Pipeline](references/media-pipeline.md) <br>
-- [Local Renderer](references/renderer.md) <br>
-- [Production Workflows](references/workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON manifests, HTML/CSS/JavaScript project files, captions, reports, and rendered media file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local project directories, generated assets, render reports, captions, subtitles, and MP4 outputs; live media and planning paths require configured API credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can fetch websites and capture page screenshots.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private or internal URLs unless the resulting screenshots and generated video are safe to store and share.
+
+Risk: The skill can call SenseAudio and LLM providers using configured credentials.
+
+Mitigation: Use trusted API endpoints, keep SenseAudio and LLM credentials separate, and review custom LLM base URLs before using stored AudioClaw credentials.
+
+Risk: The skill can use browser profiles or cookie files for gated or personalized sites.
+
+Mitigation: Use isolated profiles or cookie files only when necessary, and inspect captures for private or personalized content before delivery.
+
+Risk: The skill writes generated project media and reports to disk.
+
+Mitigation: Review manifests, render reports, captions, transcripts, and generated media before publishing or sharing outputs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fridaylifan/skills/senseaudio-video-gen)
+- [SenseAudio API Reference](references/api.md)
+- [HTML Authoring Guide](references/authoring.md)
+- [SenseAudio Media Pipeline](references/media-pipeline.md)
+- [Local Renderer](references/renderer.md)
+- [Production Workflows](references/workflows.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with CLI commands plus JSON, HTML, media, subtitle, manifest, and report files from generated projects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local HTML video project structures, generated media assets, captions, render reports, and MP4 outputs through CLI workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

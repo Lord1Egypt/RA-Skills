@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="hero-title hero-desc">
+  <title id="hero-title">OpenClaw Context Budget</title>
+  <desc id="hero-desc">An agent skill that sets each enabled model's context window to 60% of the vendor's published spec. Shows a check result: two models listed with their vendor window reduced to 60%, a 60%-of-window capacity bar for each, and a confirmation line that one item was updated and verified. The flow is detect, decide, apply.</desc>
+
+  <rect width="1200" height="360" rx="20" fill="#0d1117"/>
+
+  <g id="title-block" transform="translate(56 40)">
+    <text x="0" y="44" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" letter-spacing="4" fill="#8b949e">AGENT SKILL · CONTEXT WINDOW</text>
+
+    <text x="0" y="112" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="52" font-weight="800" fill="#e6edf3">OpenClaw Context</text>
+    <text x="0" y="170" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="52" font-weight="800" fill="#e6edf3">Budget</text>
+
+    <text x="0" y="222" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="22" fill="#c9d1d9">把上下文窗口配成官方标称的 60%</text>
+    <text x="0" y="254" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="19" fill="#8b949e">检测 → 决策 → 执行</text>
+
+    <text x="0" y="310" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" letter-spacing="1" fill="#8b949e">MIT LICENSE · v1.0.6 · NO SCRIPTS · NO DATA FILES</text>
+  </g>
+
+  <g id="result-panel" transform="translate(624 44)">
+    <rect width="520" height="272" rx="12" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+
+    <circle cx="18" cy="20" r="5" fill="#ff5f56"/>
+    <circle cx="36" cy="20" r="5" fill="#ffbd2e"/>
+    <circle cx="54" cy="20" r="5" fill="#27c93f"/>
+
+    <text x="78" y="27" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" fill="#3fb950">❯</text>
+    <text x="94" y="27" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" fill="#8b949e">context check</text>
+
+    <text x="22" y="78" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#c9d1d9">检测到 1 项可调整 · 建议按 60% 设窗口</text>
+
+    <text x="22" y="124" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#c9d1d9">minimax/M3</text>
+    <text x="190" y="124" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#d29922">1M → 600K</text>
+
+    <text x="22" y="160" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#c9d1d9">deepseek-flash</text>
+    <text x="190" y="160" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#3fb950">1M → 600K</text>
+    <text x="452" y="166" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3fb950">✅</text>
+
+    <line x1="22" y1="196" x2="498" y2="196" stroke="#30363d" stroke-width="1"/>
+
+    <text x="22" y="236" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3fb950">✅ 已改 1 项 · 校验通过</text>
+    <text x="22" y="266" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" fill="#8b949e">WINDOW = VENDOR SPEC × 60%</text>
+  </g>
+
+  <g id="capacity-bars">
+    <rect x="924" y="155" width="140" height="8" rx="4" fill="#21262d"/>
+    <rect x="924" y="155" width="84" height="8" rx="4" fill="#d29922"/>
+    <rect x="924" y="191" width="140" height="8" rx="4" fill="#21262d"/>
+    <rect x="924" y="191" width="84" height="8" rx="4" fill="#3fb950"/>
+  </g>
+</svg>

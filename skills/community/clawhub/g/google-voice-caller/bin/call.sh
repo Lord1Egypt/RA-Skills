@@ -12,33 +12,48 @@ while [[ "$#" -gt 0 ]]; do
     shift
 done
 
+# 默认设置
 DURATION=${DURATION:-60}
 
+# 如果有文字，使用 Edge-TTS 生成特制的“开场即闭嘴”音频
 if [ -n "$TEXT" ]; then
-    echo "正在生成带静默期的高清语音包..."
-    TIMESTAMP=$(date +%s)
-    GREET_WAV="/tmp/greet_$TIMESTAMP.wav"
-    SILENCE_WAV="/tmp/silence_$TIMESTAMP.wav"
-    FINAL_WAV="/tmp/call_final_$TIMESTAMP.wav"
+    echo "正在生成带静默期的高品质 AI 语音..."
+    RAW_MP3="/tmp/gv_tts_$(date +%s).mp3"
+    GREET_WAV="/tmp/gv_greet_$(date +%s).wav"
+    SILENCE_WAV="/tmp/gv_silence_$(date +%s).wav"
+    FINAL_WAV="/tmp/gv_call_final_$(date +%s).wav"
 
-    edge-tts --text "$TEXT" --write-media "/tmp/tts_$TIMESTAMP.mp3" > /dev/null
-    ffmpeg -i "/tmp/tts_$TIMESTAMP.mp3" -ar 16000 -ac 1 "$GREET_WAV" -y > /dev/null 2>&1
-    ffmpeg -f lavfi -i anullsrc=r=16000:cl=mono -t 600 "$SILENCE_WAV" -y > /dev/null 2>&1
-    ffmpeg -i "$GREET_WAV" -i "$SILENCE_WAV" -filter_complex "[0:a][1:a]concat=n=2:v=0:a=1" "$FINAL_WAV" -y > /dev/null 2>&1
+    # 1. 生成语音
+    edge-tts --text "$TEXT" --write-media "$RAW_MP3" > /dev/null
+    # 2. 转码为 16k mono
+    ffmpeg -i "$RAW_MP3" -ar 16000 -ac 1 "$GREET_WAV" -y > /dev/null 2>&1
+    # 3. 制作超长静音 (300秒) 以防止循环播放
+    ffmpeg -f lavfi -i anullsrc=r=16000:cl=mono -t 300 "$SILENCE_WAV" -y > /dev/null 2>&1
+    # 4. 拼接
+    ffmpeg -i "concat:$GREET_WAV|$SILENCE_WAV" -c copy "$FINAL_WAV" -y > /dev/null 2>&1
     
     AUDIO_PATH="$FINAL_WAV"
 fi
 
-RECORDING_WEB="/tmp/gv_recorded_incoming.webm"
-RECORDING_MP3="/tmp/gv_call_$(date +%Y%m%d_%H%M%S).mp3"
-rm -f "$RECORDING_WEB"
-
 # 启动引擎
+RECORDING_WEB="/tmp/gv_recorded_incoming.webm"
+RECORDING_MP3="/tmp/gv_final_output.mp3"
+rm -f "$RECORDING_WEB" "$RECORDING_MP3"
+
 node "$SKILL_DIR/lib/engine.js" "$NUMBER" "$AUDIO_PATH" "$DURATION"
 
-# 通话结束后，仅进行 MP3 转码
+# 通话结束后，如果存在录音则处理
 if [ -f "$RECORDING_WEB" ]; then
-    echo "✅ 收到录音，正在转码..."
+    echo "✅ 收到录音，正在后期处理..."
     ffmpeg -i "$RECORDING_WEB" -q:a 0 -map a "$RECORDING_MP3" -y > /dev/null 2>&1
-    echo "FINISHED_FILE:$RECORDING_MP3"
+    echo "正在尝试转写文字..."
+    whisper "$RECORDING_MP3" --model base --language Chinese --output_format txt --output_dir /tmp/gv_trans 2>/dev/null
+    
+    echo "--- 通话反馈 ---"
+    if [ -f "/tmp/gv_trans/gv_final_output.txt" ]; then
+        cat "/tmp/gv_trans/gv_final_output.txt"
+    else
+        echo "(无法提取文字，可能录音过短或环境过于嘈杂)"
+    fi
+    echo "音频已存至: $RECORDING_MP3"
 fi

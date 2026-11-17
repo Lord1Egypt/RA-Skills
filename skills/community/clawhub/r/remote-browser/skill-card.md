@@ -1,43 +1,58 @@
-## Description: <br>
-Control a remote Chrome browser via HTTP API for web automation, form filling, navigation, page inspection, accessibility-tree snapshots, text extraction, screenshots, DOM actions, and VNC actions on sites the user owns or has permission to access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls a remote Chrome browser via HTTP API for web automation, form filling, navigation, page inspection, screenshots, DOM actions, and VNC actions on sites the user owns or has permission to access.
 
-## Publisher: <br>
-[vasyaod](https://clawhub.ai/user/vasyaod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vasyaod](https://clawhub.ai/user/vasyaod)
 
-## Use Case: <br>
-Developers and agents use this skill to drive a remote browser session for permitted web automation, navigation, form workflows, page inspection, and visual or VNC-level verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote browser use sends browsing activity through rb.all-completed.com. <br>
-Mitigation: Install only if that backend is acceptable for the intended work and use the skill only on sites the user owns or has permission to access. <br>
-Risk: Stored sessions can preserve authenticated browser profiles and sensitive state. <br>
-Mitigation: Prefer ephemeral sessions for sensitive work, delete stored sessions when finished, and avoid retaining logged-in profiles unless reuse is intentional. <br>
-Risk: State-changing browser actions can succeed at the API layer without changing the page as intended. <br>
-Mitigation: Verify important actions with the cheapest suitable follow-up check, such as status, text extraction, accessibility snapshots, or a targeted screenshot. <br>
+## Use Case:
 
+Developers and AI agents use this skill to operate a hosted Chrome browser through HTTP endpoints for permitted web automation, inspection, interaction, and visual fallback workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/vasyaod/skills/remote-browser) <br>
-- [Remote Browser Service Base URL](https://rb.all-completed.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with HTTP API examples and curl command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an active browser session and may use RBS_BASE_URL and AC_API_KEY configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release evidence) <br>
+Risk: Remote browser sessions can expose page contents, screenshots, actions, and logged-in browser state to the remote browser provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the provider is trusted, prefer ephemeral sessions, and avoid using sensitive accounts unless necessary.
+
+Risk: Persistent stored sessions can retain full browser profile state, including cookies and web storage, after a workflow ends.
+
+Mitigation: Delete stored sessions when finished and use explicit session termination when persistent state is no longer needed.
+
+Risk: URL access tokens can be exposed through logs, browser history, or shared links.
+
+Mitigation: Use Authorization headers or X-API-Key authentication instead of URL tokens when possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vasyaod/skills/remote-browser)
+- [Remote Browser Service endpoint](https://rb.all-completed.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with HTTP API examples, JSON payloads, and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to retrieve text, accessibility snapshots, screenshots, VNC framebuffer images, session status, and stored-session metadata from the remote browser service.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

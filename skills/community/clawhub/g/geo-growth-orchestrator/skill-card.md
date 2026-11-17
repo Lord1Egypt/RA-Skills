@@ -1,48 +1,62 @@
-## Description: <br>
-Unified GEO growth workflow for brand knowledge base building, LLM visibility audits, Doubao/DeepSeek readiness review, AI-GEO content asset generation, platform draft planning for Zhihu/Toutiao/CSDN/Juejin, client delivery reports, internal QA, and 7/14/30 day retests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified GEO growth workflow for brand knowledge base building, LLM visibility audits, Doubao/DeepSeek readiness review, AI-GEO content asset generation, platform draft planning for Zhihu/Toutiao/CSDN/Juejin, client delivery reports, internal QA, and 7/14/30 day retests.
 
-## Publisher: <br>
-[ljseeking](https://clawhub.ai/user/ljseeking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ljseeking](https://clawhub.ai/user/ljseeking)
 
-## Use Case: <br>
-Marketing teams, content operators, and GEO service consultants use this skill to turn brand materials into human-reviewed AI visibility audits, content gap analysis, platform draft plans, delivery reports, and retest plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may process sensitive business materials and generate local Markdown or JSON artifacts. <br>
-Mitigation: Use only appropriate brand materials, keep generated artifacts in approved workspaces, and review outputs before sharing. <br>
-Risk: Live probing may require credentials or API keys if the user intentionally enables it. <br>
-Mitigation: Do not provide API keys unless live checks are required, and keep all credential handling under the user's normal security controls. <br>
-Risk: Generated platform drafts or GEO recommendations may contain unsupported claims if source materials are incomplete. <br>
-Mitigation: Manually review every draft, confirm facts and compliance boundaries, and avoid auto-publishing. <br>
+## Use Case:
 
+Marketing teams, GEO delivery consultants, and content operators use this skill to turn brand materials into human-reviewed AI visibility audits, content gap analysis, platform draft plans, client delivery reports, internal QA reports, and retest plans.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ljseeking/geo-growth-orchestrator) <br>
-- [Entity Evidence Rules](artifact/references/entity-evidence-rules.md) <br>
-- [Unified GEO Modules](artifact/references/geo-unified-modules.md) <br>
-- [Platform Style Guide](artifact/references/platform-style-guide.md) <br>
-- [GEO Orchestration Workflow](artifact/workflow/geo_orchestration_workflow.md) <br>
-- [Output Validation Rules](artifact/workflow/output_validation_rules.md) <br>
-- [Platform Routing Rules](artifact/workflow/platform_routing_rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON artifacts, content drafts, action plans, and optional shell commands for local report generation or validation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-reviewed GEO delivery packages and may save local Markdown/JSON artifacts when run in a workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: release evidence) <br>
+Risk: Generated reports and local artifacts may contain sensitive brand or client materials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For sensitive work, request summary-only output or use no-print script paths where available, then review generated files before sharing.
+
+Risk: Drafts and recommendations could be mistaken for verified rankings, citations, traffic, or conversion outcomes.
+
+Mitigation: Use the skill's evidence levels, require live or manual evidence for ranking and citation claims, and keep all platform drafts under human review.
+
+Risk: The optional video workflow may run external npx/CDN dependencies.
+
+Mitigation: Avoid that workflow unless dependencies are pinned or execution happens in a sandbox.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ljseeking/skills/geo-growth-orchestrator)
+- [Entity Evidence Rules](references/entity-evidence-rules.md)
+- [GEO Unified Modules](references/geo-unified-modules.md)
+- [Platform Style Guide](references/platform-style-guide.md)
+- [GEO Orchestration Workflow](workflow/geo_orchestration_workflow.md)
+- [Output Validation Rules](workflow/output_validation_rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON artifacts, platform draft packets, retest plans, and optional shell commands for local report generation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include local artifacts and full report text; platform drafts require human review before publishing.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

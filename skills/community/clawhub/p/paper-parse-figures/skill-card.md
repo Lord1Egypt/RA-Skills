@@ -1,40 +1,53 @@
-## Description: <br>
-Parse academic PDF papers into markdown with figure extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse academic PDF papers into markdown with figure extraction.
 
-## Publisher: <br>
-[Chen-Li-17](https://clawhub.ai/user/Chen-Li-17) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chen-li-17](https://clawhub.ai/user/chen-li-17)
 
-## Use Case: <br>
-Developers and researchers use this skill to convert academic PDFs into markdown, structured JSON metadata, and extracted figure images for downstream reading or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local Python PDF parser through uv-managed dependencies. <br>
-Mitigation: Review or pin the PyMuPDF and pymupdf4llm dependencies before use in stricter environments. <br>
-Risk: The skill reads user-selected PDFs and writes extracted text, metadata, and images to disk. <br>
-Mitigation: Use explicit local PDF and output paths, and review generated files before sharing them outside the intended environment. <br>
+## Use Case:
 
+Developers and researchers use this skill to convert academic PDFs into structured Markdown, JSON metadata, extracted figure images, and a title/authors snapshot for downstream review or analysis.
 
-## Reference(s): <br>
-- [Paper Parse ClawHub release](https://clawhub.ai/Chen-Li-17/paper-parse-figures) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Images, Text] <br>
-**Output Format:** [Markdown files, JSON metadata, PNG images, and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates an output directory containing paper content, parsed metadata, figure screenshots, and a cover title/authors snapshot.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill writes Markdown, JSON, and PNG files to a user-selected output directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a workspace where the output path cannot overwrite important files, and review the output directory before execution.
+
+Risk: Runtime dependencies are installed through uv from inline script metadata.
+
+Mitigation: Pin or lock dependencies before deployment when reproducible execution is required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chen-li-17/skills/paper-parse-figures)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; generated artifact outputs include Markdown, JSON, and PNG files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv and Python 3.10 or newer; processes local PDF files and writes results to the selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

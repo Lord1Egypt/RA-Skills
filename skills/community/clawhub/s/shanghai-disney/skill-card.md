@@ -1,40 +1,59 @@
-## Description: <br>
-零配置即装即用，提供7项游园工具，含排队预估和路线规划，基于高德地图与本地数据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+上海迪士尼乐园游园助手，7项工具覆盖排队预估、路线规划、演出时间、餐厅推荐、门票价格，支持亲子/刺激/均衡多种路线风格。
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-External users planning visits to Shanghai Disney Resort use this skill to estimate attraction waits, plan routes, review shows, check dining options, and look up recent park hours. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Schedule lookup uses a cloud proxy with an automatically provided proxy token. <br>
-Mitigation: Install only when that network path is acceptable, and avoid sending unnecessary personal details in schedule queries. <br>
-Risk: Wait times, ticket prices, and schedules may differ from current park conditions. <br>
-Mitigation: Verify important plans, prices, bookings, and same-day operating details in the official Shanghai Disney app or website. <br>
+## Use Case:
 
+External visitors and travel-planning agents use this skill to plan Shanghai Disney Resort visits, estimate attraction waits, choose routes, check show and dining guidance, and review ticket and park-hour information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/shanghai-disney) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-like Chinese text responses with structured recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some schedule lookups may use a cloud proxy; wait times, ticket prices, and schedules should be treated as estimates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Park-hours lookup contacts a cloud proxy for Gaode data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this network data flow is acceptable, and disclose that park-hours queries use the proxy.
+
+Risk: Queue times, ticket prices, and attraction availability may be estimates or become stale.
+
+Mitigation: Treat planning outputs as advisory and verify time-sensitive details in official Shanghai Disney channels before visiting or purchasing.
+
+Risk: The artifact includes a fallback proxy token in code.
+
+Mitigation: Rotate or remove embedded proxy credentials and use managed secrets for deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/shanghai-disney)
+- [Publisher profile](https://clawhub.ai/user/travel-skills)
+- [Gaode proxy endpoint used for park-hours lookup](https://1439498936-bl10af74fl.ap-guangzhou.tencentscf.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-like Chinese text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include estimated wait times, recommended routes, schedules, dining suggestions, ticket guidance, and caveats about non-real-time data.]
+
+## Skill Version(s):
+
+1.2.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

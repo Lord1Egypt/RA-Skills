@@ -1,45 +1,60 @@
-## Description: <br>
-Trades Polymarket prediction markets on sports championships, tournament outcomes, MVP awards, transfer windows, and season milestones using sports calendar, fan-bias, and probability-threshold signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades Polymarket prediction markets on sports championships, tournament outcomes, MVP awards, transfer windows, and season milestones using configurable sports-market signals and execution safeguards.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and agents use this skill to discover sports-related Polymarket markets, evaluate probability-extreme signals with sports-specific adjustments, and place paper trades by default or explicit live trades when configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global where prediction-market trading and Polymarket access are permitted <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place unattended real-money Polymarket trades when run in live mode with a funded credential. <br>
-Mitigation: Keep the skill in paper mode until the code, position sizing, daily spend limits, market filters, and kill-switch rules are reviewed. <br>
-Risk: SIMMER_API_KEY provides trading authority and should be treated as a financial credential. <br>
-Mitigation: Store the key only in the intended runtime secret store, rotate it if exposed, and avoid sharing logs or configuration that reveal it. <br>
-Risk: Prediction-market trading may be restricted by local laws or platform terms. <br>
-Mitigation: Use live mode only after confirming local legal eligibility and platform access requirements. <br>
+## Use Case:
 
+External users and developers use this skill to run or adapt a Polymarket sports trading agent that discovers sports markets, sizes positions from simple probability thresholds, and can execute paper or live trades through Simmer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-sports-live-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
-- [ESPN sports scoreboard API](https://site.api.espn.com/apis/site/v2/sports/{sport}/{league}/scoreboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Console text with configurable environment variables and trading API requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to paper trading; live Polymarket trades require an explicit --live flag and a SIMMER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: Live mode can place real-money Polymarket orders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper mode by default and enable live mode only after reviewing configuration, credentials, and position limits.
+
+Risk: Documented safeguards do not fully match the implemented defaults and enforcement.
+
+Mitigation: Correct and test volume filtering, default values, final position-size caps, date parsing, and open-position accounting before relying on the skill for live trading.
+
+Risk: The dependency is not pinned in the artifact configuration.
+
+Mitigation: Pin and review the Simmer SDK dependency before installation in controlled or production environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-sports-live-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+- [ESPN scoreboard API reference URL pattern](https://site.api.espn.com/apis/site/v2/sports/{sport}/{league}/scoreboard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, API Calls, Guidance]
+
+**Output Format:** [Console text, Python execution behavior, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to paper trading; live Polymarket execution requires an explicit --live flag and SIMMER_API_KEY.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

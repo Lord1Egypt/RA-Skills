@@ -1,42 +1,57 @@
-## Description: <br>
-Fetches a webpage, removes extraneous content, and returns a concise summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and summarize a webpage by extracting markdown, removing extraneous content, truncating if needed, and returning a concise summary.
 
-## Publisher: <br>
-[tfops22](https://clawhub.ai/user/tfops22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tfops22](https://clawhub.ai/user/tfops22)
 
-## Use Case: <br>
-External users and agents use this skill to summarize public, non-sensitive webpages after trimming common page clutter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private, internal, or credential-bearing URLs may expose sensitive content when fetched and summarized. <br>
-Mitigation: Use the skill for public or non-sensitive webpages and avoid submitting URLs that require credentials or contain confidential information. <br>
-Risk: Broad trigger wording may activate on general research or summarization requests. <br>
-Mitigation: Confirm the intended URL and summarization scope before fetching page content. <br>
-Risk: Long webpages may be truncated before summarization, which can omit important details. <br>
-Mitigation: Review the source page directly before relying on the summary for important decisions. <br>
+## Use Case:
 
+External users and developers use Web Trim to research or summarize user-requested web pages while reducing boilerplate and returning only the essential content.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/tfops22/web-trim) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Concise Markdown summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries are capped at about 500 words and may be based on truncated page content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Fetching private, internal, or sensitive URLs can expose requested web content through the web-fetch workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on URLs appropriate for external processing unless the tool's access and data-handling behavior has been reviewed.
+
+Risk: Summaries of long pages may omit relevant context because content over 10,000 characters can be truncated.
+
+Mitigation: Review the original page or request targeted sections when completeness matters.
+
+Risk: A fetched page can contain misleading or irrelevant material that affects the final summary.
+
+Mitigation: Treat summaries as condensed guidance and verify important claims against the source page.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tfops22/skills/web-trim)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Concise Markdown summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries are capped at 500 words, and source content over 10,000 characters may be truncated to relevant sections.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

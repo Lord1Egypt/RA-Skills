@@ -1,42 +1,54 @@
-## Description: <br>
-u2-downloader helps agents request YouTube video or audio downloads by URL through the disclosed u2foru.site API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+u2-downloader helps agents download YouTube videos by URL in selected resolutions or audio-only mode through the u2foru.site API.
 
-## Publisher: <br>
-[XJouska](https://clawhub.ai/user/XJouska) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xjouska](https://clawhub.ai/user/xjouska)
 
-## Use Case: <br>
-External users and developers can use this skill to ask an agent to download a YouTube video or audio-only extract by URL after supplying an API key for u2foru.site. Users should only use it for content they have rights to download. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends requested YouTube URLs and an API key to the third-party u2foru.site service. <br>
-Mitigation: Install only if you trust that service, avoid sensitive or private URLs, and rotate or revoke the API key if it is exposed. <br>
-Risk: The skill can be used to download media from YouTube. <br>
-Mitigation: Use it only for content you have the rights to download. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/XJouska/u2-downloader) <br>
-- [Publisher profile](https://clawhub.ai/user/XJouska) <br>
-- [u2foru.site](https://u2foru.site) <br>
-- [u2foru.site API keys](https://u2foru.site/?page=apikeys) <br>
+## Use Case:
 
+Developers and agent users can use this skill to request YouTube video downloads, choose a supported resolution, check account status, and receive a downloadable media URL from a third-party API service.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON, curl, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces API usage guidance and download request examples; successful API responses may include a download URL, title, duration, file size, selected resolution, and processing time.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: API keys and requested YouTube URLs are sent to the third-party u2foru.site service.
+
+Mitigation: Use a dedicated API key when possible and review the service's terms and privacy practices before installation.
+
+Risk: Downloaded videos may be subject to platform rules, copyright, or other legal restrictions.
+
+Mitigation: Confirm that each requested download complies with applicable platform rules and law before using the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xjouska/skills/u2-downloader)
+- [u2foru.site API key portal](https://u2foru.site/?page=apikeys)
+- [u2foru.site service](https://u2foru.site)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with JSON, curl, and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Download requests require a bearer API key and a YouTube URL; supported resolution values are 360, 480, 720, 1080, best, and audio.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

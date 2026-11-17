@@ -1,42 +1,60 @@
-## Description: <br>
-Provides A-share market intelligence for dragon-tiger board activity, research reports, auction data, AI-curated hot lists, daily briefings, and notable trading seats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+悟道 · A股市场情报 helps agents query China A-share market intelligence, including dragon-tiger board records, research reports, auction data, intelligent hotlists, and daily briefings.
 
-## Publisher: <br>
-[jcdreamjc](https://clawhub.ai/user/jcdreamjc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jcdreamjc](https://clawhub.ai/user/jcdreamjc)
 
-## Use Case: <br>
-External users and agents use this skill to answer A-share market intelligence questions about hot topics, research reports, analyst ratings, pre-market auction data, daily briefings, and dragon-tiger board activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a user-provided API key for the stock.quicktiny.cn market-data API. <br>
-Mitigation: Keep LB_API_BASE pointed at the expected provider URL, protect LB_API_KEY, and rotate the key as needed. <br>
-Risk: Returned market analysis and briefings may be incomplete, stale, or unsuitable as financial advice. <br>
-Mitigation: Treat results as informational market intelligence and review them independently before making investment decisions. <br>
+## Use Case:
 
+External users and market-analysis agents use this skill to retrieve read-only A-share market intelligence from the documented API endpoints. It is appropriate for informational workflows around hot topics, analyst research, pre-market auction data, daily market briefs, and dragon-tiger board activity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jcdreamjc/wudao-intel) <br>
-- [悟道 market-data service](https://stock.quicktiny.cn) <br>
-- [OpenClaw API base](https://stock.quicktiny.cn/api/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with curl examples and JSON API response descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LB_API_KEY and LB_API_BASE environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and changelog) <br>
+Risk: The skill requires an API key and configurable API base URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep LB_API_KEY secret and set LB_API_BASE to the documented official URL, https://stock.quicktiny.cn/api/openclaw.
+
+Risk: Market intelligence can be misread as trading advice.
+
+Mitigation: Use returned data for informational analysis only and avoid presenting outputs as buy, sell, or hold recommendations.
+
+Risk: The artifact scope wording excludes limit-up boards and capital flow while some returned briefing data may mention related fields.
+
+Mitigation: Keep agent responses within the five documented endpoint categories and clarify scope before answering requests about limit-up boards or capital-flow analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jcdreamjc/skills/wudao-intel)
+- [Publisher profile](https://clawhub.ai/user/jcdreamjc)
+- [悟道 API service](https://stock.quicktiny.cn)
+- [OpenClaw API base](https://stock.quicktiny.cn/api/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LB_API_KEY and LB_API_BASE. Treat returned market data as information, not trading advice.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

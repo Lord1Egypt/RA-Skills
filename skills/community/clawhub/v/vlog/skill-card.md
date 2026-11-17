@@ -1,38 +1,48 @@
-## Description: <br>
-Provides guidance for mobile travel-vlog editing, beat-matched audio choices, and travel-shot techniques. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides mobile editing guidance, beat-matched audio suggestions, and travel video shooting tips.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mike47512](https://clawhub.ai/user/mike47512)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can ask for guidance on creating travel vlog content with mobile editing, audio timing, and shooting tips. Reviewers should treat claims about tickets, check-in, itineraries, weather alerts, and boarding passes cautiously because the security evidence flags a mismatch between those claims and the skill description.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The artifact claims travel booking, ticket availability, check-in, itinerary, weather alert, and digital boarding-pass behavior that is not supported by documented integrations.
+
+Mitigation: Treat these outputs as unverified advisory text and require publisher documentation of data sources, permissions, account access, and user confirmation before relying on them for travel actions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Content creators, travelers, and agents assisting them use this skill to get concise guidance for creating travel vlog clips on mobile devices, including editing ideas, sound choices, and shooting tips. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes travel-service claims that may not match its vlog-editing purpose. <br>
-Mitigation: Use it for general travel-vlog prompt guidance; verify logistics such as tickets, flight status, visas, weather alerts, check-in, and boarding passes through official providers. <br>
+**Output Format:** [Markdown or plain text guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mike47512/vlog) <br>
+**Other Properties Related to Output:** [No documented tool, API, or account integration; outputs are advisory text.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no system access is requested by the skill evidence.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

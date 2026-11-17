@@ -88,11 +88,12 @@
                     { urls: 'stun:stun1.l.google.com:19302' },
                     { urls: 'stun:stun.cloudflare.com:3478' },
                     { urls: 'stun:global.stun.twilio.com:3478'}
-                ]
+                ],
+                iceCandidatePoolSize: 10
             });
 
             // 3. Create ordered DataChannel for reliable media delivery
-            const dc = pc.createDataChannel('media', { ordered: true });
+            const dc = pc.createDataChannel('media', { ordered: false });
             dc.binaryType = 'arraybuffer';
 
             // 4. Collect binary chunks from DataChannel into a Blob
@@ -119,16 +120,63 @@
                     } else if (msg.type === 'done') {
                         // All chunks received → build Blob → play
                         setStatus('🔄 Preparing playback...');
-                        const blob = new Blob(chunks, { type: mimeType });
-                        chunks = [];                       // free memory
-                        video.src = URL.createObjectURL(blob);
-                        video.muted = true;               // must mute before play() to satisfy autoplay policy
-                        video.play().then(() => {
-                            setStatus('✅ Playing via P2P — zero FRPS data cost!', 'success');
-                        }).catch(err => {
-                            setStatus('⚠️ Play failed: ' + err.message + ' — trying HTTP...', 'error');
+                        
+                        const totalBytes = chunks.reduce((sum, chunk) => sum + chunk.length, 0);
+                        const chunkCount = chunks.length;
+                        console.log('[P2P] Download complete, total bytes:', totalBytes, 'chunks:', chunkCount);
+                        
+                        // Validate chunks before creating blob
+                        if (chunkCount === 0 || totalBytes === 0) {
+                            console.error('[P2P] No data received!');
+                            setStatus('⚠️ No data received — trying HTTP...', 'error');
                             fallbackToHTTP();
-                        });
+                            return;
+                        }
+                        
+                        try {
+                            console.log('[P2P] Creating Blob with', chunkCount, 'chunks, size:', (totalBytes / 1024 / 1024).toFixed(2), 'MB');
+                            const blob = new Blob(chunks, { type: mimeType });
+                            console.log('[P2P] Blob created successfully, size:', blob.size);
+                            
+                            chunks = [];                       // free memory
+                            const blobUrl = URL.createObjectURL(blob);
+                            console.log('[P2P] Blob URL created:', blobUrl);
+                            
+                            video.src = blobUrl;
+                            video.muted = true;               // must mute before play() to satisfy autoplay policy
+                            
+                            // Add timeout to prevent hanging on play()
+                            const playTimeout = setTimeout(() => {
+                                console.warn('[P2P] Playback timeout after 5s');
+                                setStatus('⚠️ Playback timeout — trying HTTP fallback...', 'error');
+                                fallbackToHTTP();
+                            }, 5000);
+                            
+                            video.play().then(() => {
+                                clearTimeout(playTimeout);
+                                console.log('[P2P] Playback started successfully');
+                                setStatus('✅ Playing via P2P — zero FRPS data cost!', 'success');
+                            }).catch(err => {
+                                clearTimeout(playTimeout);
+                                console.error('[P2P] Play failed:', err);
+                                setStatus('⚠️ Play failed: ' + err.message + ' — trying HTTP...', 'error');
+                                fallbackToHTTP();
+                            });
+                            
+                            // Also listen for video errors
+                            video.onerror = () => {
+                                clearTimeout(playTimeout);
+                                const error = video.error;
+                                console.error('[P2P] Video error code:', error?.code, 'message:', error?.message);
+                                setStatus('⚠️ Video decode error — trying HTTP fallback...', 'error');
+                                fallbackToHTTP();
+                            };
+                        } catch (err) {
+                            console.error('[P2P] Blob creation failed:', err.name, err.message);
+                            console.error('[P2P] Chunks info - count:', chunkCount, 'total bytes:', totalBytes);
+                            setStatus('⚠️ Failed to create video blob — trying HTTP...', 'error');
+                            fallbackToHTTP();
+                        }
                         bar.style.width = '100%';
                     } else if (msg.error) {
                         setStatus('❌ ' + msg.error, 'error');
@@ -170,14 +218,26 @@
             // Relay ICE candidates: browser → server
             pc.onicecandidate = (e) => {
                 if (e.candidate) {
-                    socket.emit('ice_candidate', { candidate: e.candidate });
+                    socket.emit('ice_candidate', {
+                        candidate: e.candidate.candidate,
+                        sdpMid: e.candidate.sdpMid,
+                        sdpMLineIndex: e.candidate.sdpMLineIndex
+                    });
                 }
             };
 
             // Relay ICE candidates: server → browser
             socket.on('ice_candidate', async (data) => {
                 if (data.candidate) {
-                    try { await pc.addIceCandidate(data.candidate); } catch {}
+                    try {
+                        await pc.addIceCandidate(new RTCIceCandidate({
+                            candidate: data.candidate,
+                            sdpMid: data.sdpMid,
+                            sdpMLineIndex: data.sdpMLineIndex
+                        }));
+                    } catch (e) {
+                        console.warn('[WebRTC] Failed to add ICE candidate:', e);
+                    }
                 }
             });
 

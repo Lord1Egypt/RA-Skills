@@ -1,40 +1,58 @@
-## Description: <br>
-Helps agents use the Membrane CLI to connect to Datto Autotask, discover or create actions, and run workflows for tickets, contacts, projects, records, reports, and automations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates Datto Autotask with Membrane so agents can discover and run actions for tickets, contacts, projects, automations, reports, and related PSA records.
 
-## Publisher: <br>
-[subaru0573](https://clawhub.ai/user/subaru0573) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[subaru0573](https://clawhub.ai/user/subaru0573)
 
-## Use Case: <br>
-IT service management teams and their agents use this skill to operate Datto Autotask through Membrane for ticket, contact, project, record, report, and automation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify live Datto Autotask business records or trigger automations without clear safety boundaries. <br>
-Mitigation: Use tenant-scoped, least-privilege Membrane connections; require explicit user approval before write actions; test on non-production or low-risk records before production use. <br>
+## Use Case:
 
+External developers and MSP or IT service teams use this skill to connect an agent to Datto Autotask through Membrane, discover available actions, and run or create actions that update PSA records and generate reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/subaru0573/skills/super-datto-autotask-integration) <br>
-- [Membrane](https://getmembrane.com) <br>
-- [Datto Autotask documentation](https://ww1.autotask.net/help/Content/home.htm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON command-output options] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents to use Membrane-managed connections and JSON output where useful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can create actions and change Datto Autotask tickets, contacts, projects, automations, and other business records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Autotask credentials and require explicit user confirmation before record-changing actions.
+
+Risk: The skill relies on an unpinned third-party Membrane CLI installation.
+
+Mitigation: Pin the Membrane CLI to a reviewed version before use and review updates before upgrading.
+
+Risk: The integration requires an agent-mediated connection to a business application.
+
+Mitigation: Install only in environments where users trust Membrane and can review the requested connection scope.
+
+## Reference(s):
+
+- [Membrane homepage](https://getmembrane.com)
+- [Datto Autotask official documentation](https://ww1.autotask.net/help/Content/home.htm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON-oriented CLI usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access, a Membrane account, and an authenticated Datto Autotask connection.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,34 @@
 {
-  "ownerId": "kn7ctz8w47tqvgxe64y2e0s9rh82ckr2",
-  "slug": "wecom-task-manager",
-  "version": "1.2.2",
-  "publishedAt": 1774591364798
+  "name": "wecom-task-manager",
+  "version": "1.2.0",
+  "description": "企业微信任务管理技能 - 全局技能",
+  "global": true,
+  "autoLoad": true,
+  "accessControl": {
+    "enabled": true,
+    "mode": "whitelist",
+    "allowedAgents": [
+      "da-yan",
+      "techlead",
+      "opsdirector",
+      "investment_coordinator",
+      "general_coordinator"
+    ]
+  },
+  "dependencies": ["mcporter"],
+  "permissions": {
+    "wecom-doc": ["smartsheet_get_records", "smartsheet_add_records", "smartsheet_update_records", "smartsheet_delete_records", "smartsheet_get_fields"]
+  },
+  "config": {
+    "concurrency": {
+      "maxConcurrentTasks": 3
+    },
+    "retry": {
+      "maxRetries": 3,
+      "backoffSeconds": 2
+    }
+  },
+  "author": "大衍",
+  "createdAt": "2026-03-26",
+  "updatedAt": "2026-03-26"
 }

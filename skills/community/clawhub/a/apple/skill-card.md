@@ -1,51 +1,64 @@
-## Description: <br>
-Let your agent shop online with guardrailed wallets, multiple payment methods, and owner approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Let your agent shop online with guardrailed wallets, multiple payment methods, and owner approval.
 
-## Publisher: <br>
-[TripleHippo](https://clawhub.ai/user/TripleHippo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[triplehippo](https://clawhub.ai/user/triplehippo)
 
-## Use Case: <br>
-External users authorize agents to make online purchases and payments through CreditClaw wallets with spending limits, owner approvals, and order tracking. The skill guides agents through registration, wallet status checks, purchasing flows, payment signing, and top-up or tracking workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent real-money purchasing authority across wallet, card, payment-link, and x402 payment flows. <br>
-Mitigation: Install only when that authority is intended; start with ask-for-everything approval, low spending limits, and merchant or domain allowlists. <br>
-Risk: Broad autonomous spending and payment signing can create financial loss if limits, approvals, or allowed merchants are too permissive. <br>
-Mitigation: Review guardrails before use, avoid enabling payment links, self-hosted cards, Sub-Agent Cards, or x402 unless needed, and monitor owner-visible activity. <br>
-Risk: API keys, webhook secrets, shipping data, tracking data, or X-PAYMENT headers may expose financial authority or sensitive personal information if leaked. <br>
-Mitigation: Store secrets in a secure secret manager, send the CreditClaw API key only to creditclaw.com endpoints, and keep sensitive values out of prompts and logs. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent register a CreditClaw wallet, check spending rules, and make guarded online purchases through prepaid wallet, self-hosted card, or x402 payment flows with owner approval.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/TripleHippo/apple) <br>
-- [Publisher profile](https://clawhub.ai/user/TripleHippo) <br>
-- [CreditClaw skill documentation](https://creditclaw.com/creditcard/skill.md) <br>
-- [CreditClaw shopping guide](https://creditclaw.com/creditcard/shopping.md) <br>
-- [CreditClaw Amazon purchase guide](https://creditclaw.com/creditcard/amazon.md) <br>
-- [CreditClaw pre-paid wallet guide](https://creditclaw.com/creditcard/prepaid-wallet.md) <br>
-- [CreditClaw self-hosted card guide](https://creditclaw.com/creditcard/self-hosted-card.md) <br>
-- [CreditClaw Stripe x402 wallet guide](https://creditclaw.com/creditcard/stripe-x402-wallet.md) <br>
-- [CreditClaw heartbeat guide](https://creditclaw.com/creditcard/heartbeat.md) <br>
-- [CreditClaw skill metadata](https://creditclaw.com/creditcard/skill.json) <br>
+### Deployment Geography for Use:
 
+Global, with Amazon purchase flows documented as limited to US shipping addresses.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and curl command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY for authenticated CreditClaw API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill gives agents authority to make real purchases and move money through wallet, card, and payment-link flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that behavior is intended, keep CREDITCLAW_API_KEY in a secure secret store, use the strictest approval mode, and set low per-transaction, daily, and monthly limits.
+
+Risk: Payment-link creation can charge third parties and was flagged by security evidence as under-disclosed.
+
+Mitigation: Disable or tightly restrict payment-link creation unless receivables are needed, and require clear consent before using payer emails or sending payment links.
+
+Risk: Purchasing flows may involve sensitive shipping addresses and payer contact details.
+
+Mitigation: Share shipping addresses and payer emails only with explicit user consent and keep purchase confirmations visible to the owner.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/triplehippo/skills/apple)
+- [CreditClaw Skill Guide](https://creditclaw.com/creditcard/skill.md)
+- [Shopping Guide](https://creditclaw.com/creditcard/shopping.md)
+- [Amazon Purchase Guide](https://creditclaw.com/creditcard/amazon.md)
+- [Pre-paid Wallet Guide](https://creditclaw.com/creditcard/prepaid-wallet.md)
+- [Self-Hosted Card Guide](https://creditclaw.com/creditcard/self-hosted-card.md)
+- [Stripe x402 Wallet Guide](https://creditclaw.com/creditcard/stripe-x402-wallet.md)
+- [Heartbeat Guide](https://creditclaw.com/creditcard/heartbeat.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Markdown with inline JSON and bash/curl code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY and owner-configured wallet or payment rails; purchases may require owner approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.3.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

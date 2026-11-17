@@ -1,0 +1,31 @@
+{
+  "timezone": "Asia/Shanghai",
+  "daily_units": {
+    "temperature_2m_max": "°C",
+    "temperature_2m_min": "°C",
+    "precipitation_probability_max": "%",
+    "wind_speed_10m_max": "km/h"
+  },
+  "daily": {
+    "time": [
+      "2026-10-26",
+      "2026-10-27"
+    ],
+    "temperature_2m_max": [
+      22,
+      23
+    ],
+    "temperature_2m_min": [
+      15,
+      16
+    ],
+    "precipitation_probability_max": [
+      20,
+      60
+    ],
+    "wind_speed_10m_max": [
+      10,
+      15
+    ]
+  }
+}

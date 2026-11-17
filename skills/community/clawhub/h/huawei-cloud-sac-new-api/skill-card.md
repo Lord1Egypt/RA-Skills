@@ -1,49 +1,71 @@
-## Description: <br>
-Deploys the NewAPI LLM Gateway on Huawei Cloud with Terraform for unified large-model API gateway management, load balancing, and key rotation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys a NewAPI LLM Gateway on Huawei Cloud with Terraform for multi-model API management, load balancing, key rotation, and usage statistics.
 
-## Publisher: <br>
-[huaweiclouddev](https://clawhub.ai/user/huaweiclouddev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huaweicloudskill](https://clawhub.ai/user/huaweicloudskill)
 
-## Use Case: <br>
-Developers and cloud engineers use this skill to deploy, verify, and clean up a Huawei Cloud NewAPI LLM Gateway backed by ECS, VPC, EIP, EVS, Docker, and Terraform. It is intended for users who need a guided workflow with credential handling, plan review, and post-deployment validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Huawei Cloud cn-north-4 region <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Huawei Cloud access keys and generated Terraform variable files may expose credentials if copied into chat, logs, artifacts, or version control. <br>
-Mitigation: Use a dedicated least-privilege IAM user, keep terraform.auto.tfvars.json out of logs and version control, never display its contents, and delete it after use. <br>
-Risk: Terraform apply and destroy operations can create billable cloud resources or remove live infrastructure. <br>
-Mitigation: Review terraform plan output, confirm costs and resource changes with the user before apply or destroy, and verify cleanup with Terraform state checks. <br>
-Risk: The deployment exposes SSH and the NewAPI web interface on public network endpoints. <br>
-Mitigation: Restrict public access where possible, review security group rules, and validate that only required ports are exposed. <br>
+## Use Case:
 
+Developers and cloud engineers use this skill to prepare, review, deploy, verify, and clean up a Huawei Cloud NewAPI LLM Gateway deployment using Terraform and helper scripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huaweiclouddev/huawei-cloud-sac-new-api) <br>
-- [Huawei Cloud NewAPI LLM Gateway solution](https://www.huaweicloud.com/solution/implementations/building-a-newapi-llm-gateway.html) <br>
-- [Terraform template](https://documentation-samples.obs.cn-north-4.myhuaweicloud.com/solution-as-code-publicbucket/solution-as-code-moudle/building-a-newapi-llm-gateway/building-a-newapi-llm-gateway.tf.json) <br>
-- [CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [IAM Policies](references/iam-policies.md) <br>
-- [Verification Method](references/verification-method.md) <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
-- [Related Commands](references/related-commands.md) <br>
+### Deployment Geography for Use:
 
+Huawei Cloud cn-north-4 only
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Masks sensitive credential values, requires user confirmation before apply or destroy, and expects Terraform JSON outputs for deployment details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: The skill can guide Terraform operations that create, modify, or destroy Huawei Cloud infrastructure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Huawei Cloud IAM user, review the Terraform plan, and require explicit confirmation before apply or destroy.
+
+Risk: The workflow downloads a remote Terraform template before deployment.
+
+Mitigation: Inspect and verify the downloaded template before running Terraform init, plan, or apply.
+
+Risk: Terraform credentials may be materialized locally in terraform.auto.tfvars.json.
+
+Mitigation: Keep cloud credentials out of shared workspaces and conversation context, never commit the file, and remove terraform.auto.tfvars.json after use.
+
+Risk: Deployed SSH and web access can expose the ECS instance and NewAPI interface.
+
+Mitigation: Restrict SSH and web access to trusted IP ranges and verify security group rules during review.
+
+Risk: The security evidence warns about an unsafe Playwright npx fallback.
+
+Mitigation: Avoid the fallback unless the package identity and version are pinned and reviewed.
+
+## Reference(s):
+
+- [CLI Installation Guide](references/cli-installation-guide.md)
+- [IAM Policies](references/iam-policies.md)
+- [Verification Method](references/verification-method.md)
+- [Acceptance Criteria](references/acceptance-criteria.md)
+- [Related Commands](references/related-commands.md)
+- [Huawei Cloud Building a NewAPI LLM Gateway](https://www.huaweicloud.com/solution/implementations/building-a-newapi-llm-gateway.html)
+- [Huawei Cloud SAC Terraform Template](https://documentation-samples.obs.cn-north-4.myhuaweicloud.com/solution-as-code-publicbucket/solution-as-code-moudle/building-a-newapi-llm-gateway/building-a-newapi-llm-gateway.tf.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented script and Terraform outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides Terraform plan, apply, verification, output review, and cleanup; generated credential files must stay local and out of conversation context.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

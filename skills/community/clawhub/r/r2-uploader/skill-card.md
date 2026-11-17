@@ -1,42 +1,55 @@
-## Description: <br>
-Uses the Wrangler CLI to upload files to Cloudflare R2 object storage and return public access URLs, including single-file uploads, direct uploads from remote URLs, and batch uploads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the Wrangler CLI to upload files, remote URL content, and batches of files to Cloudflare R2 object storage and return public access URLs.
 
-## Publisher: <br>
-[redisread](https://clawhub.ai/user/redisread) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redisread](https://clawhub.ai/user/redisread)
 
-## Use Case: <br>
-Developers and agents use this skill to upload local files, remote URL content, or batches of files to a configured Cloudflare R2 bucket and return the resulting public URL. It is intended for workflows where the user explicitly wants an agent to operate Wrangler against their Cloudflare account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload files through the user's Wrangler and Cloudflare account, including broad file sets or unintended sensitive files. <br>
-Mitigation: Require explicit confirmation of the exact files, bucket, object path, and public accessibility before upload; avoid broad directories and sensitive folders. <br>
-Risk: The skill includes deletion and bucket-management commands that can modify Cloudflare R2 resources. <br>
-Mitigation: Require explicit approval before running delete or bucket-management commands, and verify the target bucket and object path before execution. <br>
+## Use Case:
 
+Developers and operators use this skill to prepare Wrangler commands for uploading local files, remote URL content, or file batches to Cloudflare R2 and to return the resulting object URL.
 
-## Reference(s): <br>
-- [r2-uploader ClawHub page](https://clawhub.ai/redisread/r2-uploader) <br>
-- [Advanced usage](references/advanced.md) <br>
-- [Error handling guide](references/error-handling.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash code blocks and returned URL strings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands depend on Wrangler CLI access, R2 bucket configuration, and optional custom domain settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server evidence release.version) <br>
+Risk: The skill can publish local files or URL-fetched content to Cloudflare R2 through the user's Wrangler login.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before uploading, confirm the exact local path or source URL, destination bucket and object path, and whether the object will be public; avoid home-directory searches, broad globs, and URL imports from untrusted sources.
+
+Risk: The security guidance identifies the concurrent xargs upload example as unsafe as written.
+
+Mitigation: Do not use the concurrent xargs example without review; prefer tightly scoped sequential uploads or a reviewed parallel command.
+
+## Reference(s):
+
+- [ClawHub r2-uploader skill page](https://clawhub.ai/redisread/skills/r2-uploader)
+- [Advanced usage](references/advanced.md)
+- [Error handling guide](references/error-handling.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns upload commands and resulting Cloudflare R2 URLs when available.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

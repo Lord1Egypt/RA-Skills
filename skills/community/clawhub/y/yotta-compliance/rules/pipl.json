@@ -1,0 +1,406 @@
+{
+  "schema_version": "1.0",
+  "pack_id": "pipl",
+  "framework": "PIPL",
+  "pack_version": "2026.09.1",
+  "jurisdiction": "CN",
+  "coverage_level": "baseline_review",
+  "clause_type_lexicon": {
+    "personal_information": ["个人信息", "个人资料"],
+    "sensitive_personal_information": [
+      "敏感个人信息",
+      "生物识别",
+      "人脸识别",
+      "指纹",
+      "医疗健康",
+      "健康信息",
+      "金融账户",
+      "行踪轨迹",
+      "宗教信仰",
+      "特定身份"
+    ],
+    "minor_personal_information": ["不满十四周岁", "未成年人", "儿童个人信息"],
+    "third_party_provision": ["向第三方提供", "提供给第三方", "共享", "对外提供"],
+    "impact_assessment_trigger": [
+      "敏感个人信息",
+      "自动化决策",
+      "向境外提供",
+      "传输至境外",
+      "出境",
+      "公开个人信息",
+      "委托处理"
+    ],
+    "retention": ["保存期限", "存储期限", "留存期限"]
+  },
+  "mapping_only": [
+    {
+      "framework": "GDPR",
+      "topics": {
+        "lawful_basis": ["PIPL-BASIS-003"],
+        "purpose_limitation": ["PIPL-PURPOSE-002", "PIPL-NOTICE-001"],
+        "storage_limitation": ["PIPL-RETENTION-004", "PIPL-RETENTION-005"],
+        "special_categories": ["PIPL-SENSITIVE-006"],
+        "children": ["PIPL-MINOR-007"],
+        "data_subject_rights": ["PIPL-RIGHTS-009"],
+        "breach_notification": ["PIPL-INCIDENT-010"],
+        "dpia": ["PIPL-PIPIA-011"]
+      }
+    },
+    {
+      "framework": "HIPAA",
+      "topics": {
+        "phi_context": ["PIPL-SENSITIVE-006"],
+        "breach_notification": ["PIPL-INCIDENT-010"]
+      }
+    },
+    {
+      "framework": "SOC2",
+      "topics": {
+        "privacy_notice": ["PIPL-NOTICE-001"],
+        "incident_response": ["PIPL-INCIDENT-010"]
+      }
+    },
+    {
+      "framework": "PCI-DSS",
+      "topics": {
+        "account_data_context": ["PIPL-SENSITIVE-006"]
+      }
+    },
+    {
+      "framework": "ISO27001",
+      "topics": {
+        "incident_management": ["PIPL-INCIDENT-010"],
+        "retention_governance": ["PIPL-RETENTION-004"]
+      }
+    },
+    {
+      "framework": "等保",
+      "topics": {
+        "emergency_response": ["PIPL-INCIDENT-010"],
+        "data_retention": ["PIPL-RETENTION-004"]
+      }
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "PIPL-NOTICE-001",
+      "title": "未出现处理目的的告知表述",
+      "clause_types": ["personal_information"],
+      "match": {
+        "operator": "any",
+        "conditions": [{"kind": "clause_type", "value": "personal_information"}]
+      },
+      "assert": {
+        "operator": "absent",
+        "target": "processing_purpose_notice",
+        "scope": "document",
+        "search": {
+          "kind": "regex",
+          "pattern": "处理目的|使用目的|收集目的|用于以下目的|用于提供|用于改进|用于推荐"
+        }
+      },
+      "severity": "medium",
+      "confidence_policy": {"exact_match": "high", "absence": "medium"},
+      "evidence": ["matched_span", "document_scope"],
+      "rationale": "文本出现个人信息相关表述，但未检索到处理目的相关表述；本规则只描述文本现象，不代表实际未履行告知义务，需人工核对。",
+      "source": {
+        "type": "official",
+        "citation": "《中华人民共和国个人信息保护法》第十七条第一款第二项",
+        "url": "https://www.npc.gov.cn/npc/c2/c30834/202108/t20210820_313088.html"
+      },
+      "remediation": "补充个人信息处理目的，并同时说明处理方式、处理的个人信息种类与保存期限。",
+      "test_ids": ["PIPL-NOTICE-001-positive", "PIPL-NOTICE-001-negative", "PIPL-NOTICE-001-boundary"]
+    },
+    {
+      "rule_id": "PIPL-PURPOSE-002",
+      "title": "未出现最小必要或影响最小约束",
+      "clause_types": ["personal_information"],
+      "match": {
+        "operator": "any",
+        "conditions": [{"kind": "clause_type", "value": "personal_information"}]
+      },
+      "assert": {
+        "operator": "absent",
+        "target": "minimal_necessity",
+        "scope": "document",
+        "search": {
+          "kind": "regex",
+          "pattern": "最小必要|最小范围|必要范围|影响最小|限于实现.{0,10}目的"
+        }
+      },
+      "severity": "medium",
+      "confidence_policy": {"exact_match": "high", "absence": "medium"},
+      "evidence": ["matched_span", "document_scope"],
+      "rationale": "文本出现个人信息相关表述，但未检索到最小必要或影响最小相关表述；需人工核对收集范围是否限于实现处理目的所必需。",
+      "source": {
+        "type": "official",
+        "citation": "《中华人民共和国个人信息保护法》第六条",
+        "url": "https://www.npc.gov.cn/npc/c2/c30834/202108/t20210820_313088.html"
+      },
+      "remediation": "补充最小必要说明：明确收集个人信息限于实现处理目的的最小范围，并采取对个人权益影响最小的方式。",
+      "test_ids": ["PIPL-PURPOSE-002-positive", "PIPL-PURPOSE-002-negative", "PIPL-PURPOSE-002-boundary"]
+    },
+    {
+      "rule_id": "PIPL-BASIS-003",
+      "title": "未出现处理个人信息的合法性依据",
+      "clause_types": ["personal_information"],
+      "match": {
+        "operator": "any",
+        "conditions": [{"kind": "clause_type", "value": "personal_information"}]
+      },
+      "assert": {
+        "operator": "absent",
+        "target": "lawful_basis",
+        "scope": "document",
+        "search": {
+          "kind": "regex",
+          "pattern": "取得.{0,8}同意|基于.{0,6}同意|合同所必需|法定义务|法定职责|为履行法定职责"
+        }
+      },
+      "severity": "medium",
+      "confidence_policy": {"exact_match": "high", "absence": "low"},
+      "evidence": ["matched_span", "document_scope"],
+      "rationale": "文本出现个人信息相关表述，但未检索到同意、合同所必需或法定义务等合法性依据表述；属于概览性检查，必须人工核对。",
+      "source": {
+        "type": "official",
+        "citation": "《中华人民共和国个人信息保护法》第十三条",
+        "url": "https://www.npc.gov.cn/npc/c2/c30834/202108/t20210820_313088.html"
+      },
+      "remediation": "补充处理的合法性依据，例如取得个人同意、为订立或履行合同所必需、为履行法定职责或法定义务所必需等。",
+      "test_ids": ["PIPL-BASIS-003-positive", "PIPL-BASIS-003-negative", "PIPL-BASIS-003-boundary"]
+    },
+    {
+      "rule_id": "PIPL-RETENTION-004",
+      "title": "未出现个人信息保存期限说明",
+      "clause_types": ["personal_information"],
+      "match": {
+        "operator": "any",
+        "conditions": [{"kind": "clause_type", "value": "personal_information"}]
+      },
+      "assert": {
+        "operator": "absent",
+        "target": "retention_notice",
+        "scope": "document",
+        "search": {
+          "kind": "regex",
+          "pattern": "保存期限|存储期限|留存期限|保留期限"
+        }
+      },
+      "severity": "medium",
+      "confidence_policy": {"exact_match": "high", "absence": "medium"},
+      "evidence": ["matched_span", "document_scope"],
+      "rationale": "文本出现个人信息相关表述，但未检索到保存期限相关表述；需人工核对是否说明了保存期限与到期处理方式。",
+      "source": {
+        "type": "official",
+        "citation": "《中华人民共和国个人信息保护法》第十七条第一款第二项、第十九条",
+        "url": "https://www.npc.gov.cn/npc/c2/c30834/202108/t20210820_313088.html"
+      },
+      "remediation": "补充个人信息保存期限，并说明保存期限届满后的删除或匿名化处理方式。",
+      "test_ids": ["PIPL-RETENTION-004-positive", "PIPL-RETENTION-004-negative", "PIPL-RETENTION-004-boundary"]
+    },
+    {
+      "rule_id": "PIPL-RETENTION-005",
+      "title": "保存期限达到或超过 3 年",
+      "clause_types": ["retention"],
+      "match": {
+        "operator": "any",
+        "conditions": [{"kind": "clause_type", "value": "retention"}]
+      },
+      "assert": {
+        "operator": "numeric_compare",
+        "target": "retention_years",
+        "search": {
+          "kind": "regex",
+          "pattern": "保存期限[：:为]?\\s*([0-9]+)\\s*年",
+          "group": 1
+        },
+        "compare": {"op": "gte", "value": 3}
+      },
+      "severity": "low",
+      "confidence_policy": {"exact_match": "high", "absence": "low"},
+      "evidence": ["matched_span"],
+      "rationale": "原文声明保存期限达到或超过 3 年；本规则只做阈值提示，不判断合法性，需人工核对是否为实现处理目的所必要的最短时间。",
+      "source": {
+        "type": "official",
+        "citation": "《中华人民共和国个人信息保护法》第十九条",
+        "url": "https://www.npc.gov.cn/npc/c2/c30834/202108/t20210820_313088.html"
+      },
+      "remediation": "核对保存期限的必要性；超过必要最短时间的，缩短期限或说明法律、行政法规依据。",
+      "test_ids": [
+        "PIPL-RETENTION-005-positive",
+        "PIPL-RETENTION-005-negative",
+        "PIPL-RETENTION-005-threshold",
+        "PIPL-RETENTION-005-boundary"
+      ]
+    },
+    {
+      "rule_id": "PIPL-SENSITIVE-006",
+      "title": "涉及敏感个人信息但未出现单独同意",
+      "clause_types": ["sensitive_personal_information"],
+      "match": {
+        "operator": "any",
+        "conditions": [{"kind": "clause_type", "value": "sensitive_personal_information"}]
+      },
+      "assert": {
+        "operator": "absent",
+        "target": "separate_consent",
+        "scope": "document",
+        "search": {"kind": "regex", "pattern": "单独同意|单独授权|单独取得同意"}
+      },
+      "severity": "high",
+      "confidence_policy": {"exact_match": "high", "absence": "medium"},
+      "evidence": ["matched_span", "document_scope"],
+      "rationale": "文本出现敏感个人信息相关表述，但未检索到单独同意相关表述；需人工核对是否已取得单独同意并说明特定目的与充分必要性。",
+      "source": {
+        "type": "official",
+        "citation": "《中华人民共和国个人信息保护法》第二十八条、第二十九条",
+        "url": "https://www.npc.gov.cn/npc/c2/c30834/202108/t20210820_313088.html"
+      },
+      "remediation": "处理敏感个人信息前取得个人单独同意，并说明处理的特定目的、充分必要性与严格保护措施。",
+      "test_ids": [
+        "PIPL-SENSITIVE-006-positive",
+        "PIPL-SENSITIVE-006-negative",
+        "PIPL-SENSITIVE-006-boundary"
+      ]
+    },
+    {
+      "rule_id": "PIPL-MINOR-007",
+      "title": "涉及不满十四周岁未成年人个人信息但未出现监护人同意",
+      "clause_types": ["minor_personal_information"],
+      "match": {
+        "operator": "any",
+        "conditions": [{"kind": "clause_type", "value": "minor_personal_information"}]
+      },
+      "assert": {
+        "operator": "absent",
+        "target": "guardian_consent",
+        "scope": "document",
+        "search": {
+          "kind": "regex",
+          "pattern": "监护人.{0,8}同意|父母.{0,8}同意|监护人授权"
+        }
+      },
+      "severity": "high",
+      "confidence_policy": {"exact_match": "high", "absence": "medium"},
+      "evidence": ["matched_span", "document_scope"],
+      "rationale": "文本出现未成年人个人信息相关表述，但未检索到监护人同意相关表述；需人工核对是否取得父母或者其他监护人同意。",
+      "source": {
+        "type": "official",
+        "citation": "《中华人民共和国个人信息保护法》第三十一条",
+        "url": "https://www.npc.gov.cn/npc/c2/c30834/202108/t20210820_313088.html"
+      },
+      "remediation": "处理不满十四周岁未成年人个人信息前取得父母或者其他监护人同意，并制定专门的个人信息处理规则。",
+      "test_ids": ["PIPL-MINOR-007-positive", "PIPL-MINOR-007-negative", "PIPL-MINOR-007-boundary"]
+    },
+    {
+      "rule_id": "PIPL-SHARE-008",
+      "title": "对外提供个人信息但未出现单独同意",
+      "clause_types": ["third_party_provision"],
+      "match": {
+        "operator": "any",
+        "conditions": [{"kind": "clause_type", "value": "third_party_provision"}]
+      },
+      "assert": {
+        "operator": "absent",
+        "target": "third_party_separate_consent",
+        "scope": "document",
+        "search": {"kind": "regex", "pattern": "单独同意|单独授权"}
+      },
+      "severity": "high",
+      "confidence_policy": {"exact_match": "high", "absence": "medium"},
+      "evidence": ["matched_span", "document_scope"],
+      "rationale": "文本出现对外提供或共享个人信息相关表述，但未检索到单独同意相关表述；需人工核对是否已告知接收方信息并取得单独同意。",
+      "source": {
+        "type": "official",
+        "citation": "《中华人民共和国个人信息保护法》第二十三条",
+        "url": "https://www.npc.gov.cn/npc/c2/c30834/202108/t20210820_313088.html"
+      },
+      "remediation": "向个人告知接收方的名称或者姓名、联系方式、处理目的、处理方式和个人信息的种类，并取得个人的单独同意。",
+      "test_ids": ["PIPL-SHARE-008-positive", "PIPL-SHARE-008-negative", "PIPL-SHARE-008-boundary"]
+    },
+    {
+      "rule_id": "PIPL-RIGHTS-009",
+      "title": "未出现个人权利相关表述",
+      "clause_types": ["personal_information"],
+      "match": {
+        "operator": "any",
+        "conditions": [{"kind": "clause_type", "value": "personal_information"}]
+      },
+      "assert": {
+        "operator": "absent",
+        "target": "data_subject_rights",
+        "scope": "document",
+        "search": {
+          "kind": "regex",
+          "pattern": "查阅|复制|更正|删除|撤回同意|注销|拒绝处理"
+        }
+      },
+      "severity": "low",
+      "confidence_policy": {"exact_match": "high", "absence": "low"},
+      "evidence": ["matched_span", "document_scope"],
+      "rationale": "文本出现个人信息相关表述，但未检索到查阅、复制、更正、删除、撤回同意等个人权利表述；属于概览性检查，必须人工核对权利告知与行使路径。",
+      "source": {
+        "type": "official",
+        "citation": "《中华人民共和国个人信息保护法》第十七条第一款第三项、第四十四条至第四十七条",
+        "url": "https://www.npc.gov.cn/npc/c2/c30834/202108/t20210820_313088.html"
+      },
+      "remediation": "补充个人行使查阅、复制、更正、补充、删除、撤回同意等权利的方式和程序。",
+      "test_ids": ["PIPL-RIGHTS-009-positive", "PIPL-RIGHTS-009-negative", "PIPL-RIGHTS-009-boundary"]
+    },
+    {
+      "rule_id": "PIPL-INCIDENT-010",
+      "title": "未出现个人信息泄露补救与通知机制",
+      "clause_types": ["personal_information"],
+      "match": {
+        "operator": "any",
+        "conditions": [{"kind": "clause_type", "value": "personal_information"}]
+      },
+      "assert": {
+        "operator": "absent",
+        "target": "incident_response",
+        "scope": "document",
+        "search": {
+          "kind": "regex",
+          "pattern": "泄露|篡改|丢失|应急预案|安全事件|补救措施"
+        }
+      },
+      "severity": "low",
+      "confidence_policy": {"exact_match": "high", "absence": "low"},
+      "evidence": ["matched_span", "document_scope"],
+      "rationale": "文本出现个人信息相关表述，但未检索到泄露、篡改、丢失、安全事件、应急预案等表述；属于概览性检查，必须人工核对安全事件的补救与通知机制。",
+      "source": {
+        "type": "official",
+        "citation": "《中华人民共和国个人信息保护法》第五十一条第五项、第五十七条",
+        "url": "https://www.npc.gov.cn/npc/c2/c30834/202108/t20210820_313088.html"
+      },
+      "remediation": "补充个人信息安全事件应急预案，以及发生或可能发生泄露、篡改、丢失时的补救措施与通知安排。",
+      "test_ids": ["PIPL-INCIDENT-010-positive", "PIPL-INCIDENT-010-negative", "PIPL-INCIDENT-010-boundary"]
+    },
+    {
+      "rule_id": "PIPL-PIPIA-011",
+      "title": "涉及影响评估情形但未出现个人信息保护影响评估",
+      "clause_types": ["impact_assessment_trigger"],
+      "match": {
+        "operator": "any",
+        "conditions": [{"kind": "clause_type", "value": "impact_assessment_trigger"}]
+      },
+      "assert": {
+        "operator": "absent",
+        "target": "impact_assessment",
+        "scope": "document",
+        "search": {"kind": "regex", "pattern": "影响评估"}
+      },
+      "severity": "medium",
+      "confidence_policy": {"exact_match": "high", "absence": "medium"},
+      "evidence": ["matched_span", "document_scope"],
+      "rationale": "文本出现敏感个人信息、自动化决策、对外提供、公开、委托处理或出境等情形，但未检索到个人信息保护影响评估相关表述；需人工核对该处理活动是否已事前评估并记录。",
+      "source": {
+        "type": "official",
+        "citation": "《中华人民共和国个人信息保护法》第五十五条",
+        "url": "https://www.npc.gov.cn/npc/c2/c30834/202108/t20210820_313088.html"
+      },
+      "remediation": "对属于第五十五条情形的处理活动，事前开展个人信息保护影响评估并记录处理情况；评估报告与记录至少保存三年。",
+      "test_ids": ["PIPL-PIPIA-011-positive", "PIPL-PIPIA-011-negative", "PIPL-PIPIA-011-boundary"]
+    }
+  ]
+}

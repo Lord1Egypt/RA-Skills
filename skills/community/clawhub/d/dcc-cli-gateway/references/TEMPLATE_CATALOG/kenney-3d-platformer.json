@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "id": "kenney-3d-platformer",
+  "name": "Kenney Starter Kit 3D Platformer",
+  "source_url": "https://github.com/KenneyNL/Starter-Kit-3D-Platformer",
+  "revision": "3fa8a04b1c01ab23db43123d4ce814a34c3fc7f0",
+  "reviewed_at": "2026-10-25",
+  "host": "godot",
+  "declared_host_version": "4.6",
+  "license_review": "source_evidence_only",
+  "host_validation": "not_run",
+  "license_evidence": [
+    {
+      "paths": ["scripts/", "project code and associated documentation"],
+      "license": "MIT",
+      "evidence_url": "https://github.com/KenneyNL/Starter-Kit-3D-Platformer/blob/3fa8a04b1c01ab23db43123d4ce814a34c3fc7f0/LICENSE.md",
+      "notice": "Retain the upstream copyright and MIT permission notice.",
+      "conditions": "Modification and source/binary redistribution are permitted subject to the MIT notice requirement. Verify which files are covered before export or sharing."
+    },
+    {
+      "paths": ["2D sprites", "3D models", "sound effects"],
+      "license": "CC0-1.0",
+      "evidence_url": "https://github.com/KenneyNL/Starter-Kit-3D-Platformer/blob/3fa8a04b1c01ab23db43123d4ce814a34c3fc7f0/README.md",
+      "notice": "Upstream identifies these asset categories as CC0; retain their source provenance.",
+      "conditions": "Upstream declares these categories CC0 for reuse, modification and redistribution. Do not extend that claim to fonts, branding or other unreviewed files."
+    },
+    {
+      "paths": ["fonts/"],
+      "license": "OFL-1.1",
+      "evidence_url": "https://github.com/KenneyNL/Starter-Kit-3D-Platformer/blob/3fa8a04b1c01ab23db43123d4ce814a34c3fc7f0/fonts/license.txt",
+      "notice": "Retain Juan Montoreano's copyright and SIL Open Font License 1.1; reserved font name: Lilita.",
+      "conditions": "Bundled source/binary font redistribution must retain the license and copyright; do not sell fonts alone. Modified fonts cannot use the reserved name without permission and must retain OFL licensing. The license does not apply to documents created with the font."
+    }
+  ],
+  "unresolved": [
+    "No template installation, code execution, import or host acceptance has been performed.",
+    "Confirm the actual deliverable's per-file license coverage, export rights and notices, including any branding or files outside the recorded categories.",
+    "Review current maintenance, dependencies and security, and measure integration cost, visual quality and performance in the intended project."
+  ]
+}

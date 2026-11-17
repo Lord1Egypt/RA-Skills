@@ -1,45 +1,64 @@
-## Description: <br>
-Sentinel- OpenClaw Runtime Security provides runtime security monitoring for OpenClaw agents, including skill integrity checks, prompt injection detection, credential exposure auditing, and optional premium daemon, egress, and process anomaly monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runtime security guardian for OpenClaw agents that audits skill integrity, scans prompt injection and credential exposure, and can monitor file, network, and process activity.
 
-## Publisher: <br>
-[spaceman420urdog-afk](https://clawhub.ai/user/spaceman420urdog-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spaceman420urdog-afk](https://clawhub.ai/user/spaceman420urdog-afk)
 
-## Use Case: <br>
-Developers and security-conscious OpenClaw users use this skill to audit installed skills, check new skills before installation, and monitor runtime behavior for suspicious file, prompt, credential, network, or process activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local security binary that reads OpenClaw skill files and can monitor process and network activity in daemon mode. <br>
-Mitigation: Install only if this monitoring behavior is acceptable, review findings before action, and use --offline for local-only scans when remote calls are not needed. <br>
-Risk: Premium features store wallet keys locally and may auto-sign small USDC payments. <br>
-Mitigation: Set the wallet spend limit to 0 before funding it, confirm payment details before enabling auto-approval, and export or back up recovery material carefully. <br>
-Risk: Remote ClawHub checks and payment recipient validation were flagged for caution by the security guidance. <br>
-Mitigation: Prefer local-path checks and avoid remote checks until archive extraction and payment recipient validation are tightened. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to check installed or candidate skills for runtime security issues, suspicious behavior, credential exposure, prompt injection, unexpected network egress, and process anomalies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spaceman420urdog-afk/runtime-sentinel) <br>
-- [Threat model](references/threat-model.md) <br>
-- [x402 payment flow](references/x402-payment.md) <br>
-- [Binary build guide](references/binary-build.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and structured CLI reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke a local Rust CLI that reads OpenClaw skill files and produces risk reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata) <br>
+Risk: Premium mode stores wallet material locally and may auto-sign small USDC payments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use offline/free mode when premium monitoring is not required, or set the payment limit to 0 so each payment requires explicit confirmation.
+
+Risk: Daemon mode monitors local skill files and process/network activity and writes audit logs.
+
+Mitigation: Review daemon logs for sensitive command-line arguments and run the daemon only in environments where that monitoring scope is acceptable.
+
+Risk: The install flow can rely on downloaded or built binaries.
+
+Mitigation: Verify binaries with an independently signed digest before installation and prefer building from reviewed source when appropriate.
+
+Risk: The release has a server security verdict of suspicious.
+
+Mitigation: Review the security summary and install only after accepting the payment, monitoring, logging, and binary trust implications.
+
+## Reference(s):
+
+- [Threat Model](references/threat-model.md)
+- [x402 Payment Flow](references/x402-payment.md)
+- [Building sentinel](references/binary-build.md)
+- [x402 protocol](https://github.com/coinbase/x402)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented text, with optional JSON reports from the sentinel CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include risk levels, findings, remediation commands, wallet setup guidance, daemon status, and audit log excerpts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,82 @@
+'''
+32算法下单拆单函数
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+algo_passorder - 算法下单（拆单）函数
+用于按固定时间间隔和固定规则把目标交易数量拆分成多次下单的交易函数
+
+调用用法：
+
+python
+
+algo_passorder(opType,orderType,accountid,orderCode,prType,price,volume,[strategyName,quickTrade,userOrderId,userOrderParam],ContextInfo)`
+提示
+
+算法交易下单，此时使用交易面板-程序交易-函数交易-函数交易参数中设置的下单类型(普通交易,算法交易,随机量交易) 如果函数交易参数使用未修改的默认值,此函数和passorder函数一致， 设置了函数交易参数后，将会使用函数交易参数的超价等拆单参数，algo_passorder内的prType若赋值,则优先使用该参数，若algo_passorder内的prType=-1,将会使用userOrderParam内的opType，若userOrderParam未赋值，则使用界面上的函数交易参数的报价方式
+
+参数：
+其他参数同passorder，详细解释可参考passorder的说明
+userOrderParam dict[str:value] 是用户自定义交易参数,主要用于修改算法交易的参数 其中Key Value定义如下
+
+注：所有参数均为非必选
+
+Key	Value类型	Value
+OrderType	int	普通交易:0
+算法交易:1
+随机量交易:2
+PriceType	int	报价方式:数值同passorde prType
+MaxOrderCount	int	最大下单次数
+SinglePriceRange	int	波动区间是否单向:
+否:0，
+是:1
+PriceRangeType	int	波动区间类型按比例:0,按数值1
+PriceRangeValue	float	波动区间(按数值)
+PriceRangeRate	float	波动区间(按比例)[0-1]
+SuperPriceType	int	单笔超价类型:
+按比例:0
+按数值1
+SuperPriceRate	float	单笔超价(按比例)[0-1]
+SuperPriceValue	float	单笔超价(按数值)
+VolumeType	int	单笔基准量类型卖1+2+3+4+5量:0
+卖1+2+3+4量:1
+...
+卖1量:4
+买1量:5
+...
+买1+2+3+4+5量:9
+目标量:10
+目标剩余量:11
+持仓数量:12
+VolumeRate	float	单笔下单比率[0-1]
+SingleNumMin	float	单笔下单量最小值
+SingleNumMax	float	单笔下单量最大值
+ValidTimeType	int	有效时间类型:
+0:按持续时间
+1 按时间区间，默认为0
+ValidTimeElapse	int	有效持续时间,ValidTimeType设置为0时生效
+ValidTimeStart	int	有效开始时间偏移,ValidTimeType设置为1时生效
+ValidTimeEnd	int	有效结束时间偏移,ValidTimeType设置为1时生效
+UndealtEntrustRule	int	未成委托处理数值同prType
+PlaceOrderInterval	int	下撤单时间间隔
+UseTrigger	int	是否触价:
+否:0
+是:1
+TriggerType	int	触价类型:
+最新价大于:1
+最新价小于:2
+TriggerPrice	float	触价价格
+SuperPriceEnable	int	超价启用笔数
+返回
+无
+示例
+
+python
+#coding:gbk
+userparam = {
+    "OrderType": 1,
+    "MaxOrderCount": 20,
+    "SuperPriceType": 1,
+    "SuperPriceValue": 1.12}
+accid = '918800000818'  #资金账号
+algo_passorder(23,1101,accid,'000001.SZ',5,15,1000,'',1,'strReMark',userparam,ContextInfo)
+#表示修改算法交易的最大委托次数为20,单笔下单基准类型为按价格类型超价,单笔超价1.12元,其他参数同函数交易参数中设置

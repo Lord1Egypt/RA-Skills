@@ -1,40 +1,57 @@
-## Description: <br>
-Opens the system map application and starts navigation to an address or coordinates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Opens the system map application and starts navigation to a user-provided destination or coordinates.
 
-## Publisher: <br>
-[samkeke](https://clawhub.ai/user/samkeke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samkeke](https://clawhub.ai/user/samkeke)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to open a destination in the local map application for navigation on macOS. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Destination addresses or coordinates may be shared with the local map application and its map provider. <br>
-Mitigation: Avoid sending sensitive home, work, or private coordinates unless the user is comfortable sharing them with the configured map provider. <br>
-Risk: Navigation handoff only works where the host system can run the map-opening command in a GUI desktop session. <br>
-Mitigation: Use this skill on macOS or another environment with an equivalent map URL handler and visible desktop session. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent open the local map application and prepare navigation for a named destination or latitude/longitude coordinates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samkeke/open-map) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local GUI desktop session and a system map handler such as Apple Maps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter states 0.1.0) <br>
+Risk: Destination text or coordinates may be sent to Apple Maps or another registered URL handler.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on explicit user request and avoid sending sensitive locations unless that disclosure is intended.
+
+Risk: Unencoded destination parameters may produce incorrect navigation targets or malformed map URLs.
+
+Mitigation: Encode destination parameters safely before constructing map URLs.
+
+Risk: The skill depends on a local GUI desktop session and the operating system's map URL handling.
+
+Mitigation: Deploy it only in environments where opening a local map application is expected and supported.
+
+## Reference(s):
+
+- [open-map ClawHub skill page](https://clawhub.ai/samkeke/skills/open-map)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and map URL examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a user-provided destination string or latitude/longitude coordinates for local map navigation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

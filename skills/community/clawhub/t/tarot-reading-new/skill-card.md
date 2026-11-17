@@ -1,43 +1,60 @@
-## Description: <br>
-Tarot Reading provides bilingual Rider-Waite-Smith tarot card draws and interpretations for yes/no, advice, reminder, and lost-item questions using Python's secrets module for randomness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides entertainment-only Rider-Waite-Smith tarot readings for yes/no, advice, reminder, and lost-item questions in Chinese or English.
 
-## Publisher: <br>
-[jiafei0007](https://clawhub.ai/user/jiafei0007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiafei0007](https://clawhub.ai/user/jiafei0007)
 
-## Use Case: <br>
-External users can use this skill for entertainment-oriented tarot readings, including yes/no questions, advice or reminder spreads, and lost-item prompts. Agents use it to draw cards, summarize structured draw data, and present a concise interpretation with an entertainment-only disclaimer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake tarot readings for medical, legal, financial, safety, or practical decision guidance. <br>
-Mitigation: Keep responses entertainment-oriented, include the entertainment-only disclaimer, and avoid presenting readings as authoritative advice for consequential decisions. <br>
-Risk: Broad activation language may make ordinary yes/no, advice, reminder, or lost-item requests eligible for tarot-style handling. <br>
-Mitigation: Use the skill when the user requests tarot-style output or accepts that framing, and keep interpretations concise and clearly labeled as entertainment. <br>
+## Use Case:
 
+External users and agents use this skill to produce tarot-style entertainment readings, including card draws and interpretations for yes/no, advice, reminder, and lost-item prompts. It is intended for entertainment and should not be relied on for real-world decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiafei0007/tarot-reading-new) <br>
-- [Tarot card database](artifact/references/cards.py) <br>
-- [Chinese spread definitions](artifact/references/spreads.py) <br>
-- [English spread definitions](artifact/references/spreads_en.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON draw data plus Markdown-style readable interpretation text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports Chinese and English output and includes an entertainment-only disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Tarot outputs may be mistaken for factual, professional, or decision-making advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the entertainment-only framing visible and do not rely on readings for medical, legal, financial, safety, or other real-world decisions.
+
+Risk: Broad trigger wording can route ordinary advice, yes/no, reminder, or lost-item requests into tarot readings.
+
+Mitigation: Use the skill only when the user asks for or accepts a tarot-style entertainment response; otherwise provide ordinary assistance.
+
+Risk: English readings may include Chinese card meanings.
+
+Mitigation: Review bilingual output for clarity and translate or explain any Chinese terms when serving English-language users.
+
+## Reference(s):
+
+- [Card database](artifact/references/cards.py)
+- [Chinese spread definitions](artifact/references/spreads.py)
+- [English spread definitions](artifact/references/spreads_en.py)
+- [ClawHub skill page](https://clawhub.ai/jiafei0007/skills/tarot-reading-new)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [JSON card-draw data plus formatted reading text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes timestamp, spread, question type, language, drawn cards, orientations, meanings, and a concise entertainment-only interpretation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,62 @@
-## Description: <br>
-Uses GLM-4.7V multimodal grounding to help detect and locate objects, text, UI elements, and regions in images with bounding-box outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use GLM-4.7V multimodal grounding to detect and locate objects, text, UI elements, or regions in images and return bounding box results.
 
-## Publisher: <br>
-[qijimrc](https://clawhub.ai/user/qijimrc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qijimrc](https://clawhub.ai/user/qijimrc)
 
-## Use Case: <br>
-Developers and agents use this skill when a user asks to find, locate, detect, or ground specific visual targets in an image. It guides model calls, bounding-box parsing, and visualization of detected regions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes an unrelated captured API/chat log containing user image data and internal OpenClaw context. <br>
-Mitigation: Review or remove artifact/ssssss.json before installing or distributing the skill. <br>
-Risk: The skill sends images and prompts to a GLM/VLM endpoint, which may expose sensitive image content if the endpoint is not trusted. <br>
-Mitigation: Use only trusted model endpoints and avoid sensitive images unless that endpoint is approved for the data. <br>
-Risk: The package relies on declared configuration paths and helper modules that are not fully represented in the artifact. <br>
-Mitigation: Ask the publisher to ship a minimal package with the required helper modules and explicit configuration paths. <br>
+## Use Case:
 
+Developers and agents use this skill to route image-grounding requests to a GLM-4.7V model, parse normalized bounding boxes, and produce annotated image-location results for objects, text, UI elements, or regions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qijimrc/vlm-grounding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with Python snippets and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of annotated image files with bounding boxes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The package bundles a private OpenClaw session transcript.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove artifact/ssssss.json before release and audit whether it contains real user, prompt, image, or deployment data.
+
+Risk: The skill instructs users to send images and prompts to a model endpoint over plain HTTP.
+
+Mitigation: Use HTTPS with normal certificate validation and clearly disclose that images and prompts are sent to a model service.
+
+Risk: The skill requires proxy bypass for internal model calls.
+
+Mitigation: Avoid mandatory proxy bypass unless it is approved by the deployment administrator.
+
+Risk: Bounding box coordinates are parsed from model text and may be approximate.
+
+Mitigation: Treat coordinates as estimates unless the skill is updated to require structured grounding results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qijimrc/skills/vlm-grounding)
+- [Publisher profile](https://clawhub.ai/user/qijimrc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code snippets and bounding box coordinate examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce normalized bounding boxes and guidance for visualizing boxes on images.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

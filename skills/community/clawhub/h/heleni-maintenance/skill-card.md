@@ -1,42 +1,62 @@
-## Description: <br>
-Heleni Maintenance helps an agent back up a workspace to GitHub, update OpenClaw and installed skills, and clean stale OpenClaw session data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified workspace maintenance skill for backing up a workspace to GitHub, updating OpenClaw and installed skills, and cleaning stale session-store entries.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to run workspace backups, OpenClaw and skill updates, and session-store cleanup on demand or on a schedule. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run unattended backups that upload broad workspace contents to GitHub. <br>
-Mitigation: Use a private repository, review staged files before pushes, and exclude secrets and private notes from backup scope. <br>
-Risk: The skill looks for GitHub credentials and may use tokens with access to repositories. <br>
-Mitigation: Store credentials in a secret manager, use least-privilege tokens, avoid printing token values, and rotate credentials if exposed. <br>
-Risk: The skill can update OpenClaw, update installed skills, clean session state, and restart the gateway. <br>
-Mitigation: Require explicit confirmation for updates, session cleanup, and restarts; keep cron jobs visible and easy to disable. <br>
+## Use Case:
 
+Developers and operators use this skill to run workspace maintenance tasks, including GitHub backups, OpenClaw and skill updates, and session-store cleanup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/netanel-abergel/heleni-maintenance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Text] <br>
-**Output Format:** [Markdown with shell commands and status reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May schedule recurring maintenance, push workspace changes, update installed tools, and clean session data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can create recurring cron jobs and silently push the entire workspace to GitHub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for each backup action, disclose scheduled jobs, and disable silent backup behavior unless it is intentionally configured by the owner.
+
+Risk: The skill can inspect raw GitHub tokens and credentials.
+
+Mitigation: Do not print tokens, prefer scoped credential helpers or environment validation, and scan staged files for secrets before any push.
+
+Risk: The skill can update OpenClaw and all installed skills from broad update sources.
+
+Mitigation: Pin update sources or versions where possible, review release notes before updating, and verify service health after changes.
+
+Risk: The skill can directly edit session-store state.
+
+Mitigation: Run session cleanup as a separately approved maintenance task, back up the session store first, and limit cleanup to stale cron-run entries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/netanel-abergel/skills/heleni-maintenance)
+- [Publisher profile](https://clawhub.ai/user/netanel-abergel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and status-report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose scheduled cron jobs, Git operations, platform updates, and session-store cleanup actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

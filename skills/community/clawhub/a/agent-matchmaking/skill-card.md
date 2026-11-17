@@ -1,43 +1,57 @@
-## Description: <br>
-Agent Matchmaking helps agents discover, compare, rank, and publish capability profiles using capability, reputation, compatibility, pricing, availability, and federation signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Matchmaking helps agents discover, compare, publish, and rank agent capability profiles using reputation and compatibility signals.
 
-## Publisher: <br>
-[alexfleetcommander](https://clawhub.ai/user/alexfleetcommander) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexfleetcommander](https://clawhub.ai/user/alexfleetcommander)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create capability profiles, search for suitable agents for a task, compare delegation candidates, and rank agents using reputation and compatibility signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to install and use an external PyPI package. <br>
-Mitigation: Install only if you trust the package, and check or pin the package version before use. <br>
-Risk: Publishing capability profiles or federating discovery data may expose agent capability, availability, pricing, or reputation details. <br>
-Mitigation: Treat published or federated profile data as public or semi-public, and verify where it goes and how it can be updated or removed. <br>
+## Use Case:
 
+Developers and external agents use this skill to find suitable agents for tasks, compare delegation candidates, publish capability profiles, and build unified capability profiles for discovery.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/alexfleetcommander/agent-matchmaking) <br>
-- [PyPI package](https://pypi.org/project/agent-matchmaking/) <br>
-- [Agent Matchmaking whitepaper](https://vibeagentmaking.com/whitepaper/matchmaking/) <br>
-- [Vibe Agent Making](https://vibeagentmaking.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local capability profile files when the referenced Python package is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Installing the `agent-matchmaking` package may introduce unreviewed dependency behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it in a virtual environment and pin `agent-matchmaking` to a reviewed version before use.
+
+Risk: Profile publishing, federation, or agent search may share capability and pricing metadata with external registries depending on package behavior.
+
+Mitigation: Review profile contents and registry settings before publishing, and avoid including sensitive operational details in public capability profiles.
+
+## Reference(s):
+
+- [Agent Matchmaking on ClawHub](https://clawhub.ai/alexfleetcommander/skills/agent-matchmaking)
+- [Publisher Profile](https://clawhub.ai/user/alexfleetcommander)
+- [PyPI: agent-matchmaking](https://pypi.org/project/agent-matchmaking/)
+- [Agent Matchmaking Whitepaper](https://vibeagentmaking.com/whitepaper/matchmaking/)
+- [Vibe Agent Making](https://vibeagentmaking.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce capability profile fields, ranking criteria, and agent search or publication guidance.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

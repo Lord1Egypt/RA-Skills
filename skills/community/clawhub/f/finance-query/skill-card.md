@@ -1,42 +1,57 @@
-## Description: <br>
-Queries Chinese financial market and macroeconomic data through AKShare, including A-shares, indices, futures, funds, bonds, foreign exchange, and cryptocurrency prices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Chinese financial market and macroeconomic data through AKShare, including A-shares, indices, futures, funds, bonds, forex, and cryptocurrency.
 
-## Publisher: <br>
-[grandpaniu-fandougarden](https://clawhub.ai/user/grandpaniu-fandougarden) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[grandpaniu-fandougarden](https://clawhub.ai/user/grandpaniu-fandougarden)
 
-## Use Case: <br>
-Developers and finance-focused agents use this skill to run AKShare-backed Python queries and summarize live or historical market, fund, bond, macroeconomic, foreign-exchange, and cryptocurrency data for users. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live financial data may be incomplete, stale, or different from other market data providers. <br>
-Mitigation: Treat results as informational and verify important figures with an authoritative source before relying on them. <br>
-Risk: The broad finance trigger may activate for general finance questions where a live data query is not needed. <br>
-Mitigation: Confirm the requested market, instrument, data type, and time range before running a query when the user's intent is ambiguous. <br>
-Risk: Outputs could be mistaken for investment advice. <br>
-Mitigation: Present queried data with source and timing context and avoid making financial recommendations from the returned values alone. <br>
+## Use Case:
 
+Developers and external users can use this skill to query Chinese equities, funds, futures, bonds, macroeconomic indicators, exchange rates, and cryptocurrency data without configuring an API key.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/grandpaniu-fandougarden/finance-query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON from the query script, typically summarized as Markdown or text by the agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Live results depend on AKShare and upstream third-party data sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The install hint does not pin dependency versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated virtual environment and pin reviewed versions of akshare and pandas before use.
+
+Risk: Queries contact AKShare-backed external data sources and may send requested symbols or keywords to those providers.
+
+Mitigation: Avoid submitting sensitive query terms and disclose that lookups use external market-data sources.
+
+Risk: Network-backed financial data can be delayed, unavailable, or dependent on upstream source stability.
+
+Mitigation: Retry transient failures and verify important financial data against authoritative sources before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/grandpaniu-fandougarden/skills/finance-query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [JSON from the helper script, typically summarized by the agent as concise text or Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper script returns interface name, arguments, query time, and structured result or error fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Detects AI-generated writing patterns in prose. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects AI-generated writing patterns in prose
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers, documentation maintainers, and reviewers use this skill to audit prose, documentation, and repository text for AI-writing markers, identity leaks, hallucinated references, weak claims, stubs, and cleanup risks before publication or release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad writing-related triggers may cause the skill to run during many documentation and repository-review workflows. <br>
-Mitigation: Review or narrow triggers before installation so the skill runs only in intended audit contexts. <br>
-Risk: Repository review and remediation behavior can affect more than passive prose detection. <br>
-Mitigation: Keep remediation and prevention-mode behavior disabled unless explicitly requested, and review proposed changes before applying them. <br>
-Risk: Style and demographic heuristics can overstate confidence or produce false positives. <br>
-Mitigation: Treat heuristic findings as advisory and require human review, especially for low-confidence findings. <br>
+## Use Case:
 
+Writers and documentation maintainers use the skill to review prose for concentrated AI-writing patterns, identity leaks, unsupported claims, and structural issues. It produces findings and suggested edits for human review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-scribe-slop-detector) <br>
-- [Publisher profile](https://clawhub.ai/user/athola) <br>
-- [Homepage from ClawHub metadata](https://github.com/athola/claude-night-market/tree/master/plugins/scribe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with structured findings and optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings may include file, line, category, severity, confidence, evidence, rationale, and suggested fix.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: ClawHub release evidence) <br>
+Risk: The security review reports cleanup and network-check behavior beyond the skill's stated prose-detection purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the complete behavior and use the skill only when that broader scope is needed.
+
+Risk: The security review reports incomplete inspection: 18 of 21 components were fully inspected, with parser or output limits and missing referenced paths.
+
+Mitigation: Review the uninspected components and unavailable referenced material before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-scribe-slop-detector)
+- [Scribe plugin homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/scribe)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown audit reports or structured JSON findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings can include file and line locations, category, severity, confidence, rationale, and proposed fixes; low-confidence findings are surfaced for human review.]
+
+## Skill Version(s):
+
+1.10.3 (source: release metadata, frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

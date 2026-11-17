@@ -1,45 +1,59 @@
-## Description: <br>
-Bridge OpenClaw agent interactions to external programs such as Snarling, including state display, physical approval requests, notifications, and notification feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Interaction Bridge connects OpenClaw agent state, approval requests, and notifications to external interaction surfaces such as the Snarling physical display and A/B buttons.
 
-## Publisher: <br>
-[snarflakes](https://clawhub.ai/user/snarflakes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snarflakes](https://clawhub.ai/user/snarflakes)
 
-## Use Case: <br>
-Developers and OpenClaw users use this plugin to route agent state, approval requests, and notifications to Snarling or another local interaction surface for physical approvals and feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Approval prompts, notification text, session identifiers, and callback secrets are sent to a local HTTP service. <br>
-Mitigation: Install only with a controlled and trusted Snarling or custom endpoint, keep callback routes on localhost or private networks, and avoid putting sensitive content in notification text. <br>
-Risk: Reusable callback secrets and session identifiers protect approval and notification callbacks. <br>
-Mitigation: Set a strong OPENCLAW_APPROVAL_SECRET and rotate or restart if logs, endpoint access, or callback data may have been exposed. <br>
-Risk: The security evidence says failed approval callbacks can log the expected approval secret. <br>
-Mitigation: Patch or verify the installed version so failed callbacks never log the expected secret before relying on the bridge for approvals. <br>
+## Use Case:
 
+Developers and OpenClaw users use this plugin to route agent activity, human approval requests, and notification feedback through a local external interface. It is suited for workflows where a person wants physical or out-of-band awareness and approval controls for agent actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snarflakes/openclaw-interaction-bridge) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/snarflakes) <br>
-- [Snarling interaction surface](https://github.com/snarflakes/snarling) <br>
-- [Notification policy](https://github.com/snarflakes/openclaw-interaction-bridge/blob/main/NOTIFICATION_POLICY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, configuration] <br>
-**Output Format:** [Text status strings and JSON callback payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Approval calls block until approved, rejected, timed out, or blocked; notifications can return reveal, dismiss, timeout, and timing feedback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.3 (source: server release metadata and package.json) <br>
+Risk: Callback routes handle approval and notification feedback for agent workflows, and the release security summary flags weak callback security handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the plugin only with a trusted local Snarling service and do not expose callback routes beyond localhost unless transport authentication and session binding are fixed.
+
+Risk: The approval secret protects callback requests and could be exposed through configuration mistakes or logs.
+
+Mitigation: Set OPENCLAW_APPROVAL_SECRET explicitly, protect it as a credential, and restrict gateway logs and access to systems that need it.
+
+Risk: Changing local endpoints to remote hosts increases the impact of spoofed callbacks or misrouted approval decisions.
+
+Mitigation: Keep the default localhost endpoints for normal use; require authenticated transport and session binding before using remote callback or display targets.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/snarflakes/skills/openclaw-interaction-bridge)
+- [Snarling Project](https://github.com/snarflakes/snarling)
+- [Notification Policy](https://github.com/snarflakes/openclaw-interaction-bridge/blob/main/NOTIFICATION_POLICY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, configuration]
+
+**Output Format:** [Plain text tool results with structured callback feedback]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Approval requests wait for an approve, reject, or timeout result; notifications can return reveal, dismiss, or timeout feedback when the external service responds.]
+
+## Skill Version(s):
+
+1.6.3 (source: package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

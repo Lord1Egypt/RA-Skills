@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn76b71hdvjbaetmpr601b967x82bz18",
-  "slug": "computer-efficiency-skill",
-  "version": "1.0.1",
-  "publishedAt": 1781015921405
+  "name": "computer-efficiency-skill",
+  "version": "1.0.0",
+  "description": "Skill: computer-efficiency-skill",
+  "author": "perrykono-debug",
+  "license": "MIT"
 }

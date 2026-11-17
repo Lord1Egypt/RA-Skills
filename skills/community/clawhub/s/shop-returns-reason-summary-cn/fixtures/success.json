@@ -1,0 +1,164 @@
+{
+  "input_records": [
+    {
+      "order_id": "A-001",
+      "product": "月光手账本",
+      "spec": "A5",
+      "reason": "纸张比预期薄",
+      "note": "想用钢笔书写"
+    },
+    {
+      "order_id": "A-002",
+      "product": "月光手账本",
+      "spec": "A5",
+      "reason": "封面颜色与图片有差异",
+      "note": "实际偏灰"
+    },
+    {
+      "order_id": "A-003",
+      "product": "星河书签",
+      "spec": "单枚",
+      "reason": "尺寸比预想小",
+      "note": ""
+    }
+  ],
+  "expected_workflow_output": {
+    "data_integrity": {
+      "included_count": 3,
+      "excluded_count": 0,
+      "excluded_reason": "无",
+      "missing_fields": []
+    },
+    "reason_classification_facts": [
+      {
+        "category": "纸张厚度预期差异",
+        "original_reason_examples": [
+          "纸张比预期薄"
+        ],
+        "record_count": 1,
+        "products": [
+          "月光手账本"
+        ],
+        "source_record_numbers": [
+          1
+        ]
+      },
+      {
+        "category": "图片颜色预期差异",
+        "original_reason_examples": [
+          "封面颜色与图片有差异"
+        ],
+        "record_count": 1,
+        "products": [
+          "月光手账本"
+        ],
+        "source_record_numbers": [
+          2
+        ]
+      },
+      {
+        "category": "尺寸预期差异",
+        "original_reason_examples": [
+          "尺寸比预想小"
+        ],
+        "record_count": 1,
+        "products": [
+          "星河书签"
+        ],
+        "source_record_numbers": [
+          3
+        ]
+      }
+    ],
+    "product_dimension_facts": [
+      {
+        "product": "月光手账本",
+        "category": "纸张厚度预期差异",
+        "record_count": 1,
+        "source_record_numbers": [
+          1
+        ]
+      },
+      {
+        "product": "月光手账本",
+        "category": "图片颜色预期差异",
+        "record_count": 1,
+        "source_record_numbers": [
+          2
+        ]
+      },
+      {
+        "product": "星河书签",
+        "category": "尺寸预期差异",
+        "record_count": 1,
+        "source_record_numbers": [
+          3
+        ]
+      }
+    ],
+    "product_page_recommendations": [
+      {
+        "priority": "中",
+        "corresponding_observation": "月光手账本有 1 条原始原因“纸张比预期薄”。",
+        "suggestion": "在商品页补充纸张克重或厚度，以及钢笔书写适用说明。",
+        "verification": "更新后对比同类纸张厚度原因的售后记录数。"
+      },
+      {
+        "priority": "中",
+        "corresponding_observation": "月光手账本有 1 条原始原因“封面颜色与图片有差异”。",
+        "suggestion": "补充自然光实拍图，并说明屏幕显示可能存在色差。",
+        "verification": "更新后对比同类颜色预期差异的售后记录数。"
+      },
+      {
+        "priority": "中",
+        "corresponding_observation": "星河书签有 1 条原始原因“尺寸比预想小”。",
+        "suggestion": "在主图和详情页标注实际长宽，并加入与常见物品的尺寸对照。",
+        "verification": "更新后对比同类尺寸预期差异的售后记录数。"
+      }
+    ],
+    "pending_items": [],
+    "original_record_details": [
+      {
+        "record_number": 1,
+        "original_fields": {
+          "order_id": "A-001",
+          "product": "月光手账本",
+          "spec": "A5",
+          "reason": "纸张比预期薄",
+          "note": "想用钢笔书写"
+        },
+        "classification_label": "纸张厚度预期差异"
+      },
+      {
+        "record_number": 2,
+        "original_fields": {
+          "order_id": "A-002",
+          "product": "月光手账本",
+          "spec": "A5",
+          "reason": "封面颜色与图片有差异",
+          "note": "实际偏灰"
+        },
+        "classification_label": "图片颜色预期差异"
+      },
+      {
+        "record_number": 3,
+        "original_fields": {
+          "order_id": "A-003",
+          "product": "星河书签",
+          "spec": "单枚",
+          "reason": "尺寸比预想小",
+          "note": ""
+        },
+        "classification_label": "尺寸预期差异"
+      }
+    ]
+  },
+  "expected_markdown_sections": [
+    "数据完整性",
+    "逐条原始记录（原值）",
+    "原因分类与计数（已知事实）",
+    "商品维度计数（已知事实）",
+    "商品页改进建议（建议，非既成事实）",
+    "待确认项"
+  ]
+}

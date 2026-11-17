@@ -1,41 +1,55 @@
-## Description: <br>
-AI prompt optimization tool: web app, desktop app, Chrome extension, and Docker deployment for improving prompt quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI prompt optimization tool for using a web app, desktop app, Chrome extension, or Docker deployment to improve prompt quality.
 
-## Publisher: <br>
-[harryhihi](https://clawhub.ai/user/harryhihi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[harryhihi](https://clawhub.ai/user/harryhihi)
 
-## Use Case: <br>
-Developers, engineers, and prompt writers use this skill to improve prompts, select a web, desktop, browser extension, Docker, or API-based workflow, and consult related usage and deployment guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt text may be sent to an external prompt-optimization service or API. <br>
-Mitigation: Avoid submitting sensitive, confidential, regulated, or credential-bearing prompts unless the service destination and terms are understood. <br>
-Risk: The artifact describes AGPL-3.0 obligations, while server release metadata lists MIT-0. <br>
-Mitigation: Confirm the governing license before distribution or network-service use, especially for modified deployments. <br>
+## Use Case:
 
+Developers and other agent users use this skill to optimize prompts, reference prompt-optimization strategies, and choose between hosted, desktop, browser extension, API, or Docker-based usage paths.
 
-## Reference(s): <br>
-- [Prompt Optimizer upstream project](https://github.com/linshenkx/prompt-optimizer) <br>
-- [Prompt Optimizer web application](https://prompt.always200.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline commands and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct users to external prompt-optimization services, APIs, local applications, browser extensions, or Docker deployment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Prompt content may be sent to an external prompt optimizer API or web app.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not send secrets, credentials, regulated data, or private prompt content unless the service is trusted; use a self-hosted deployment when sensitive content must stay controlled.
+
+Risk: The artifact identifies AGPL-3.0 obligations for modified or redistributed versions, including network-service use.
+
+Mitigation: Review AGPL-3.0 terms before modifying, redistributing, or offering a hosted derivative of the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harryhihi/skills/harryhihi-prompt-optimizer)
+- [Prompt Optimizer Web Application](https://prompt.always200.com)
+- [Original Prompt Optimizer Repository](https://github.com/linshenkx/prompt-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with links and optional command or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct an agent to hosted prompt optimization services or self-hosted deployment options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

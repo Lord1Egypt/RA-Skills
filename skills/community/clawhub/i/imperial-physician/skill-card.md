@@ -1,42 +1,54 @@
-## Description: <br>
-用于长期记录、整理、分析用户的健康、身体状态、心理状态、生理变化、生活方式和相关个人背景信息，并支持 Apple Watch / HealthKit 数据解读、体检报告解读、慢病管理、睡眠分析、营养补剂管理、中医养生分析、长期趋势跟踪与健康决策支持。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+御医 helps an agent record, organize, and analyze long-term health, wearable, medical, lifestyle, and personal context data to provide integrated Western medicine, Traditional Chinese Medicine, nutrition, and lifestyle guidance.
 
-## Publisher: <br>
-[aiist007](https://clawhub.ai/user/aiist007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiist007](https://clawhub.ai/user/aiist007)
 
-## Use Case: <br>
-External users use this skill as a long-term personal health assistant for organizing health records, wearable data, symptoms, lifestyle context, nutrition and supplement information, and for receiving structured wellness guidance. It combines Western medicine, Traditional Chinese Medicine, nutrition, and trend analysis perspectives while preserving medical safety boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill defaults to building a broad long-term profile from sensitive health, wearable, lifestyle, and personal context data. <br>
-Mitigation: Use it only with explicit user intent, limit shared data to what is needed, and provide clear ways for users to review, correct, and delete remembered health information. <br>
-Risk: HealthKit or wearable data could be accessed or interpreted without sufficient consent or clinical context. <br>
-Mitigation: Require explicit confirmation before any HealthKit access and present wearable data interpretations as trend-based context rather than medical diagnoses. <br>
-Risk: The skill may generate health guidance that users could mistake for clinical diagnosis, prescription, or medication-management advice. <br>
-Mitigation: Preserve the skill's boundaries: do not replace clinicians, prescribe medication, change medication plans, or treat wearable data as diagnostic evidence; advise urgent care for red-flag symptoms. <br>
+## Use Case:
 
+External users use this skill for longitudinal personal health organization and trend analysis across wearable data, medical records, symptoms, lifestyle factors, nutrition, supplements, and Traditional Chinese Medicine context. It is intended to support health decision-making and preparation for clinical follow-up, not to replace professional diagnosis or treatment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aiist007/imperial-physician) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Structured Simplified Chinese Markdown with health profile updates, integrated assessments, action recommendations, nutrition and supplement guidance, and trend reminders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill is designed to produce non-diagnostic health and wellness guidance, safety reminders, and escalation advice for urgent symptoms.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is intended to retain sensitive health and personal data over time, increasing privacy exposure if memory or health-data access is too broad.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where the user can control HealthKit access, inspect or delete stored memories, and approve specific information before broad health sources are connected.
+
+Risk: Health, wearable, nutrition, and Traditional Chinese Medicine guidance may be mistaken for clinical diagnosis or treatment.
+
+Mitigation: Keep final diagnosis and medication decisions with licensed clinicians, avoid medication changes based only on agent output, and seek urgent care for red-flag symptoms.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiist007/skills/imperial-physician)
+- [Publisher profile](https://clawhub.ai/user/aiist007)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown in Simplified Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes health profile updates, integrated analysis, prioritized action suggestions, nutrition and supplement guidance, trend tracking prompts, and safety reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

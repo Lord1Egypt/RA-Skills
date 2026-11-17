@@ -30,6 +30,16 @@ tags: [news, tencent, factcheck, jiaozhen, misinformation detection, fake news, 
 | macOS / Linux | `sh scripts/run-cli.sh <command> [args]` |
 | Windows | `powershell scripts/run-cli.ps1 <command> [args]` |
 
+## 环境异常时的用户指引（强制门禁）
+
+用户直接提出业务问题时，也必须先检查环境。CLI 或 API Key 未就绪时，当前轮停止业务查询，不得只回复“数据加载失败”、原始错误或泛化的“请检查配置”，必须给出可直接操作的指引：
+
+- **CLI 未安装/不可用**（`cliExists: false`、`cliSource: none`、`cli not found`、`command not found`、`not recognized`）：说明本查询依赖腾讯新闻 CLI，当前设备尚未安装或未被识别；按平台提供安装命令：macOS/Linux 使用 `curl -fsSL https://mat1.gtimg.com/qqcdn/qqnews/cli/hub/tencent-news/setup.sh | sh`；Windows PowerShell 使用 `irm https://mat1.gtimg.com/qqcdn/qqnews/cli/hub/tencent-news/setup.ps1 | iex`。提醒安装后重新打开终端并重新提问。
+- **API Key 未配置**（`apiKey.status: missing`、`未设置 API Key`、`API Key not set`）：说明 CLI 已安装但尚未配置 Key；引导访问 `https://news.qq.com/exchange?scene=appkey` 获取，然后执行 `tencent-news-cli apikey-set YOUR_KEY`，再执行 `tencent-news-cli apikey-get` 验证。
+- **API Key 无效、过期或无权限**（`API Key 无效`、`invalid api key`、`unauthorized`、`401`、`403`、鉴权/认证失败）：不得归因为无数据、额度或普通网络错误；说明当前 Key 无效或无权访问，引导从上述页面重新获取正确 Key，再执行设置和验证命令。
+- **状态不确定**（状态脚本失败、`apiKey.status: error` 或无法解析）：先按错误文本匹配以上类型；仍无法判断时，同时给出安装命令及 Key 获取、设置、验证步骤。
+- `YOUR_KEY` 只能由用户在本地替换；不得索要、代填、回显或记录真实 Key。环境未就绪时不得改用其他数据源。上述基础设施指引优先于业务输出格式限制，但不得展示内部日志、参数、traceid。
+
 ## Phase 1：环境就绪
 
 > 环境已就绪时直接跳到 Phase 2。
@@ -129,13 +139,12 @@ Windows 分别使用 `powershell scripts/run-cli.ps1 apikey-set KEY`、`powershe
 
 **CLI 输出为空或命令失败后，立即停止，绝不通过 WebSearch 或其他方式自行补做事实查证。**
 
-1. 只要 CLI 返回空结果、非零退出码、超时或直接报错，优先视为**当天查证次数限制（3 次）已用完**。
-2. 不要重试，不要分析系统权限、网络、防火墙等原因，也不要换其他信息源继续查证。
-3. 直接引导用户前往较真官网继续查证，并附上链接：
+1. 先按「环境异常时的用户指引（强制门禁）」识别 CLI 未安装、API Key 缺失/无效/过期/无权限及状态异常；命中任一环境问题时，必须提供对应安装或 Key 获取/配置指引，不得判断为次数限制。
+2. 仅当 CLI 与 API Key 已确认正常，且错误文本明确表示当日查证次数/额度已耗尽时，才按**当天查证次数限制（3 次）已用完**处理。空结果、普通非零退出码、超时或未知错误不得自行推断为额度耗尽。
+3. 不要重试，不要换其他信息源继续查证。未知错误应简要说明当前查证失败，并请用户按提示排查或稍后重试。
+4. 只有明确命中额度限制时，才引导用户前往较真官网继续查证并附上链接：
    - [较真AI-智能查证](https://view.inews.qq.com/ai/agent/UTR2025041800262600?no-redirect=1)
-4. 面向用户的说明应明确表达：
-   - 当前 CLI 结果为空或执行失败，通常表示今天的较真查证额度 3 次已经用完
-   - 如需继续查证，请改用较真官网入口
+5. 额度限制的用户说明应明确表达：当前 CLI 已明确提示今天的较真查证额度 3 次已经用完；如需继续查证，请改用较真官网入口。
 
 ## References
 

@@ -1,45 +1,59 @@
-## Description: <br>
-Navigate and interact with photo-realistic 3DGS environments via the Habitat-GS Bridge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Habitat-GS Navigator helps agents navigate and interact with photo-realistic 3D Gaussian Splatting environments through the Habitat-GS Bridge.
 
-## Publisher: <br>
-[The0xKa1](https://clawhub.ai/user/The0xKa1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[the0xka1](https://clawhub.ai/user/the0xka1)
 
-## Use Case: <br>
-Developers and embodied AI practitioners use this skill to control an agent in Habitat-GS scenes, load 3DGS environments, run navigation episodes, inspect observations, and choose movement actions through the Habitat-GS Bridge CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to keep persistent navigation memory after episodes. <br>
-Mitigation: Decide before use whether persistent navigation logs are acceptable, and remove or restrict memory-writing steps when logs are not needed. <br>
-Risk: The skill suggests creating or updating skills from accumulated navigation lessons. <br>
-Mitigation: Require explicit human review and approval before the agent creates or modifies any skill content. <br>
-Risk: The skill depends on an external Habitat-GS Bridge server and CLI. <br>
-Mitigation: Run the bridge in an isolated environment and review commands before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to drive Habitat-GS navigation episodes, inspect observations, choose movement actions, and interact with a local Habitat-GS Bridge server.
 
-## Reference(s): <br>
-- [Habitat-GS Bridge API Reference](references/api-reference.md) <br>
-- [Habitat-GS Bridge Setup](references/setup.md) <br>
-- [Habitat-GS Bridge Repository](https://github.com/The0xKa1/habitat-gs-bridge.git) <br>
-- [ClawHub skill page](https://clawhub.ai/The0xKa1/habitat-gs-navigator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and navigation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to record episode notes in local memory after navigation runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill installs mutable third-party bridge code before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment or container and pin and inspect a trusted habitat-gs-bridge commit before installation.
+
+Risk: The bridge can be configured to non-local endpoints.
+
+Mitigation: Keep the bridge bound to local trusted endpoints unless a reviewer explicitly approves another endpoint.
+
+Risk: Episode logs and generated lessons could be used to update shared memory or skills.
+
+Mitigation: Require explicit human review before logs or lessons update shared memory or create or modify skills.
+
+## Reference(s):
+
+- [Habitat-GS Bridge API Reference](references/api-reference.md)
+- [Habitat-GS Bridge Setup](references/setup.md)
+- [ClawHub Skill Page](https://clawhub.ai/the0xka1/skills/habitat-gs-navigator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Markdown]
+
+**Output Format:** [Markdown with inline bash code blocks and navigation steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CLI commands for hab-cli, bridge server configuration, and episode logging notes.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

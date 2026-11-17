@@ -1,42 +1,53 @@
-## Description: <br>
-Manage vendor contract renewals proactively with alerts, decision scoring, renegotiation prep, and documentation to avoid missed deadlines and optimize terms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage vendor contract renewals proactively with alerts, decision scoring, renegotiation preparation, and documentation to avoid missed deadlines and improve terms.
 
-## Publisher: <br>
-[flynndavid](https://clawhub.ai/user/flynndavid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[flynndavid](https://clawhub.ai/user/flynndavid)
 
-## Use Case: <br>
-Procurement, finance, operations, and vendor-management teams use this skill to maintain a renewal inventory, schedule 90/60/30-day alerts, score renewal decisions, prepare renegotiations, and document renewal outcomes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Contract records can contain confidential commercial terms and vendor information. <br>
-Mitigation: Store renewal inventories and contract files only in company-approved systems with role-based access controls. <br>
-Risk: Renewal, non-renewal, or renegotiation notices may create legal or commercial obligations if sent without review. <br>
-Mitigation: Have legal, procurement, or the assigned business owner review renewal decisions and outbound notices before sending. <br>
-Risk: Incorrect contract dates, notice periods, or owner assignments can lead to missed deadlines or unwanted auto-renewals. <br>
-Mitigation: Validate renewal inventory fields against the executed contract and assign accountable owners before relying on calendar alerts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Contract Renewal & Expiration Manager on ClawHub](https://clawhub.ai/flynndavid/contract-renewal-manager) <br>
-- [flynndavid publisher profile](https://clawhub.ai/user/flynndavid) <br>
+## Use Case:
 
+Business operations, procurement, finance, and legal teams use this skill to build a renewal inventory, set 90/60/30-day review checkpoints, score renewal decisions, prepare renegotiations, and document renewal outcomes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown workflow with checklists, tables, decision matrices, and notice templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; produces manual contract-renewal workflow guidance and documentation templates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Vendor contracts, annual contract values, and renewal notices may contain sensitive business information.
+
+Mitigation: Store and share generated renewal records only in approved systems with appropriate access controls.
+
+Risk: Renewal actions depend on accurate contract dates, notice periods, and business approvals.
+
+Mitigation: Verify extracted contract terms and stakeholder sign-off before sending notices, renewing, renegotiating, or replacing a vendor.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flynndavid/skills/contract-renewal-manager)
+- [ClawHub publisher profile](https://clawhub.ai/user/flynndavid)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown with tables, checklists, scoring rubrics, calendar protocol, and notice templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces contract-renewal planning artifacts for human review and implementation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

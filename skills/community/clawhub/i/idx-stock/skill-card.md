@@ -1,43 +1,58 @@
-## Description: <br>
-Scrapes and returns a translated company profile from the Indonesia Stock Exchange website using a supplied IDX stock code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapes and returns a translated company profile from the Indonesia Stock Exchange website for a supplied IDX stock code.
 
-## Publisher: <br>
-[zororaka00](https://clawhub.ai/user/zororaka00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zororaka00](https://clawhub.ai/user/zororaka00)
 
-## Use Case: <br>
-Developers and analysts use this skill to retrieve public listed-company profile data from IDX by stock code and receive normalized English field names for downstream analysis or reporting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts idx.co.id and depends on third-party Python packages. <br>
-Mitigation: Install in a managed environment and review dependency provenance before deployment. <br>
-Risk: Live scraping can fail or return incomplete data if the IDX page structure changes. <br>
-Mitigation: Validate outputs with representative stock codes and handle unsuccessful responses before relying on the data. <br>
-Risk: The artifact includes broad security claims that are not a formal guarantee. <br>
-Mitigation: Use the server security evidence as the authority and review the skill in the target environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zororaka00/idx-stock) <br>
-- [Publisher Profile](https://clawhub.ai/user/zororaka00) <br>
-- [Indonesia Stock Exchange Listed Company Profiles](https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/) <br>
+## Use Case:
 
+Developers and agents use this skill to fetch public Indonesia Stock Exchange company profile data and normalize Indonesian profile fields into English keys for downstream workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [json, text] <br>
-**Output Format:** [JSON object with success, data, and message fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The data object contains translated company profile fields plus stock_code, source, and scraped_at metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact SKILL.md metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on live IDX website responses, so output can fail or change if the site is unavailable or its page structure changes.
+
+Mitigation: Handle unsuccessful responses and review downstream assumptions before relying on scraped profile data.
+
+Risk: Dependency versions may vary across environments.
+
+Mitigation: Pin requests and beautifulsoup4 versions in stricter deployments.
+
+Risk: Publisher security claims about VirusTotal compliance are not a substitute for local review.
+
+Mitigation: Use the server security verdict as the authoritative summary and perform environment-specific scanning before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zororaka00/skills/idx-stock)
+- [Publisher profile](https://clawhub.ai/user/zororaka00)
+- [Indonesia Stock Exchange company profile source](https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [Structured JSON-like result with a success flag, company profile data object, and status message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an IDX stock code string and makes a live read-only HTTP GET request to the IDX website.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

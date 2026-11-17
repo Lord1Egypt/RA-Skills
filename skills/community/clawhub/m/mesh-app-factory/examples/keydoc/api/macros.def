@@ -1,0 +1,19 @@
+{
+    "has_right":{
+        "name" : "get_right_info",
+        "type" : "dataexists",
+        "db": "document",
+        "errorCode" : "NO_RIGHT",
+        "errorInfo":"no right",
+        "sql" :"select * from authority
+         where doc='#DOC#' and account='@{#tokenAcc}'
+           and start>@{NOW|unit60000} and end>@{NOW|unit60000}
+           and auth in(#AUTH#)
+         union 
+         select * from authority
+             where doc='#DOC#' and account='*'
+               and start>@{NOW|unit60000} and end>@{NOW|unit60000}
+               and auth in(#AUTH#)"
+
+    }
+}

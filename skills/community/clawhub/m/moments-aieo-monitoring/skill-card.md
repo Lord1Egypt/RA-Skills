@@ -1,43 +1,62 @@
-## Description: <br>
-AIEO monitoring helps teams regularly track brand visibility across AI search platforms, evaluate answer quality, and report business-conversion signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AIEO monitoring helps agents track brand visibility, answer quality, competitor mentions, and business impact across AI search and chat platforms.
 
-## Publisher: <br>
-[kenerlee](https://clawhub.ai/user/kenerlee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kenerlee](https://clawhub.ai/user/kenerlee)
 
-## Use Case: <br>
-External marketing, brand, and growth teams use this skill to monitor AIEO performance across AI search engines, compare results over time, and produce concise monitoring reports with screenshots, metrics, and next-step recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Monitoring reports and screenshots may contain sensitive business data, analytics details, account context, or AI-platform responses. <br>
-Mitigation: Keep monitoring outputs private, redact sensitive screenshots or responses before sharing, and delete reports when they are no longer needed. <br>
-Risk: The workflow may require analytics, CRM, or logged-in AI-platform access. <br>
-Mitigation: Confirm authorization before accessing those accounts or systems and avoid collecting data outside the intended AIEO monitoring scope. <br>
+## Use Case:
 
+Marketing, growth, and analytics teams use this skill to run recurring AIEO checks, compare brand visibility across AI platforms, calculate monitoring metrics, and prepare Markdown reports for follow-up optimization work.
 
-## Reference(s): <br>
-- [AIEO monitoring skill page](https://clawhub.ai/kenerlee/moments-aieo-monitoring) <br>
-- [Publisher profile](https://clawhub.ai/user/kenerlee) <br>
-- [Monitoring metrics reference](references/monitoring_metrics.md) <br>
-- [Monitoring tools guide](references/tools_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, tracking tables, screenshot references, and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are intended for the monitoring/ directory and may include links to captured screenshots.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Browser-based monitoring can capture screenshots and AI responses that include unrelated account, chat, customer, analytics, or business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact brand, platforms, and test questions before automation; use clean sessions where possible and redact or exclude unrelated sensitive data from screenshots and reports.
+
+Risk: Generated monitoring outputs may contain business conversion data, analytics screenshots, and competitive findings.
+
+Mitigation: Store the monitoring/ directory in a restricted location, share reports only with the intended team, and delete stale screenshots or reports when they are no longer needed.
+
+Risk: Broad auto-trigger phrases could start monitoring work before the user has confirmed scope.
+
+Mitigation: Ask for confirmation of brand, monitoring cadence, target platforms, and question set before collecting data or writing monitoring artifacts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kenerlee/skills/moments-aieo-monitoring)
+- [Monitoring metrics reference](artifact/references/monitoring_metrics.md)
+- [Tools guide](artifact/references/tools_guide.md)
+- [Monitoring report template](artifact/assets/monitoring_report_template.md)
+- [Tracking spreadsheet template](artifact/assets/tracking_spreadsheet.md)
+- [Quick check template](artifact/assets/quick_check_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, Markdown tracking tables, metric calculations, browser automation steps, and screenshot file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates monitoring reports and evidence under a monitoring/ directory when used by an agent with file and browser automation access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

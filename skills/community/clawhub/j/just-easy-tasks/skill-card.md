@@ -1,41 +1,58 @@
-## Description: <br>
-Use when an agent needs to work with Just Easy Tasks (JET) via the jet CLI or API: configure API key/context, find, create, update, complete, comment on, link, reference, or inspect tasks and project metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when an agent needs to work with Just Easy Tasks (JET) via the jet CLI or API: configure API key/context, find, create, update, complete, comment on, link, reference, or inspect tasks and project metadata.
 
-## Publisher: <br>
-[ryan-w-s](https://clawhub.ai/user/ryan-w-s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan-w-s](https://clawhub.ai/user/ryan-w-s)
 
-## Use Case: <br>
-Developers and agent operators use this skill to manage Just Easy Tasks work items through the JET CLI or API, including task discovery, creation, updates, completion, comments, links, references, and project metadata inspection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive JET credentials and workspace/project context. <br>
-Mitigation: Use a limited API key when available, keep credentials out of source control, and verify the selected workspace and project before making changes. <br>
-Risk: Destructive or admin-level JET commands can change or remove shared task-management data. <br>
-Mitigation: Use --force or --dangerously-enable-admin-commands only when the user explicitly requests the intended destructive or administrative change. <br>
+## Use Case:
 
+External developers and agents use Jet to manage Just Easy Tasks workspaces and projects through the jet CLI or API, including task lookup, updates, completion, comments, links, references, and project metadata inspection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryan-w-s/just-easy-tasks) <br>
-- [Just Easy Tasks service](https://justeasytasks.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use JSON CLI output for non-interactive agent workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: Installing or running an unreviewed global JET CLI package could execute code outside the skill artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the JET npm package and service are trusted, prefer a reviewed or pinned CLI version, and avoid global npm installs as an administrator.
+
+Risk: Credential and context configuration can direct task changes to the wrong workspace or project.
+
+Mitigation: Set API keys, workspace, and project context deliberately, and use command-level overrides when operating outside the configured default.
+
+Risk: Force and admin mutation commands can change or remove shared task-management resources.
+
+Mitigation: Use force flags and admin command enablement only when the user explicitly asks for those workspace-level changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryan-w-s/skills/just-easy-tasks)
+- [Just Easy Tasks service](https://justeasytasks.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses JSON-oriented, non-interactive CLI examples for scripts where appropriate.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

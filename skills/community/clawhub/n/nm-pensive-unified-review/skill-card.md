@@ -1,46 +1,54 @@
-## Description: <br>
-Orchestrates multi-domain review across code, architecture, tests, and security in a single pass. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates multi-domain review (code, arch, tests, security) in a single pass.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineering teams use this skill before merging major feature branches or broad changes to coordinate code, architecture, test, security, and quality reviews into one consolidated action plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The review workflow may automatically persist backlog findings through a local deferred-capture command. <br>
-Mitigation: Review or disable the deferred-capture step before use on private, regulated, or security-sensitive code, and confirm where any backlog data is stored. <br>
-Risk: Broad review-related prompts may activate multi-domain review and dispatch multiple review agents. <br>
-Mitigation: Confirm the intended review scope, selected review mode, and agent set before relying on results or applying follow-up changes. <br>
-Risk: Integrated review output can combine findings from multiple reviewers before each finding is independently verified. <br>
-Mitigation: Require evidence-linked findings and human verification before changing code or promoting recommendations into release blockers. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to select and coordinate code, architecture, test, API, security, shell, and Makefile reviews. It helps produce evidence-based findings, prioritized recommendations, and an integrated action plan before changes are merged.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-pensive-unified-review) <br>
-- [Pensive plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/pensive) <br>
-- [Review workflow core](modules/review-workflow-core.md) <br>
-- [Output format templates](modules/output-format-templates.md) <br>
-- [Quality checklist patterns](modules/quality-checklist-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown review report with an executive summary, findings, action items, and evidence appendix; may include shell commands for deferred finding capture.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Integrates selected domain-review results into prioritized recommendations and backlog capture guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence; artifact frontmatter lists 1.9.8) <br>
+Risk: The security assessment reports system-install and file-changing behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before running them, isolate repository tests and Make inspection from sensitive files and credentials, and request a preview and approval before applying changes.
+
+Risk: Security analysis coverage is incomplete: 13 of 15 components were scanned, two were partially inspected, and static tool-misuse analysis was degraded.
+
+Mitigation: Treat the scan as partial evidence and manually review the relevant skill files and commands before use.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-pensive-unified-review)
+- [Project homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown review reports with findings, evidence, recommendations, and action plans; may include shell or Make command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single review stream; content varies with detected codebase domains and selected review mode.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

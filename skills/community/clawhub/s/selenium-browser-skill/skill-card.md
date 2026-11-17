@@ -1,40 +1,52 @@
-## Description: <br>
-Teaches the agent how to perform advanced web automation using Python, Selenium WebDriver, and ChromeDriver. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teaches the agent how to perform advanced web automation using Python, Selenium WebDriver, and ChromeDriver.
 
-## Publisher: <br>
-[gg-erick](https://clawhub.ai/user/gg-erick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gg-erick](https://clawhub.ai/user/gg-erick)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to draft Python Selenium WebDriver scripts for browser navigation, scraping, screenshots, JavaScript execution, and element interaction. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated Selenium scripts can interact with logged-in sites or pages containing private data. <br>
-Mitigation: Review generated scripts before approving execution, and only run them on intended sites. <br>
-Risk: Browser automation execution depends on local Selenium, ChromeDriver, and Chrome setup. <br>
-Mitigation: Install Selenium in a virtual environment and verify ChromeDriver and Google Chrome availability before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gg-erick/selenium-browser-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/gg-erick) <br>
+## Use Case:
 
+Developers and automation-focused agents use this skill to draft Selenium WebDriver scripts for browser navigation, screenshots, JavaScript execution, and element interaction. It is intended for browser automation tasks where the user reviews generated code and approves execution separately.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated automation scripts require explicit user approval before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The default Chrome setup disables the browser sandbox, reducing browser isolation.
+
+Mitigation: Use an isolated, non-privileged environment, pin Selenium dependencies, and remove --no-sandbox unless it is explicitly needed for a disposable container.
+
+Risk: Generated browser automation can navigate websites, write files, and execute user-provided interaction flows.
+
+Mitigation: Review generated scripts before use and require explicit user approval before running automation code.
+
+## Reference(s):
+
+- [Selenium Automation on ClawHub](https://clawhub.ai/gg-erick/skills/selenium-browser-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python code blocks and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated automation scripts require user review and explicit approval before execution.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "免费抖音商品选品研究"
+  short_description: "整理公开抖音商品信息并生成选品对比与内容切入建议报告"
+  default_prompt: "使用 $douyin-commerce-product-research-free 比较这些抖音商品并整理选品建议。"

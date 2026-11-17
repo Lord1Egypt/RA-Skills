@@ -1,48 +1,61 @@
-## Description: <br>
-Analyzes stocks and cryptocurrencies using Yahoo Finance data, with portfolio tracking, watchlist alerts, dividend analysis, stock scoring, hot trend scanning, and rumor detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze stocks and cryptocurrencies using Yahoo Finance data, with portfolio tracking, watchlist alerts, dividend analysis, stock scoring, trend scanning, and rumor detection.
 
-## Publisher: <br>
-[ylfy-ljl](https://clawhub.ai/user/ylfy-ljl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ylfy-ljl](https://clawhub.ai/user/ylfy-ljl)
 
-## Use Case: <br>
-External users and developers use this skill to run stock and cryptocurrency analysis, track portfolios and watchlists, inspect dividend metrics, and surface market trends or early rumor signals. Outputs are informational and should not be treated as financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional X/Twitter social scanning can require AUTH_TOKEN and CT0 values that function like account session credentials. <br>
-Mitigation: Leave the X/Twitter feature disabled unless needed; if used, prefer a low-risk account, protect or delete the .env file, and verify the bird CLI source before use. <br>
-Risk: The skill makes external market, news, and social requests and may produce incomplete, delayed, or misleading finance signals. <br>
-Mitigation: Treat analysis as informational, verify important signals against primary sources, and consult a licensed financial advisor before making investment decisions. <br>
-Risk: Portfolio and watchlist workflows store local user financial tracking data. <br>
-Mitigation: Run with limited filesystem access where possible and review or remove local portfolio and watchlist files when they are no longer needed. <br>
-Risk: Suggested cron automation can keep market scans running after the user no longer needs them. <br>
-Mitigation: Review scheduled jobs periodically and remove any cron job when the monitoring workflow is no longer active. <br>
+## Use Case:
 
+Developers and external users use this skill to run stock and cryptocurrency analysis workflows, monitor watchlists and portfolios, evaluate dividends, and identify trending or early market signals. Outputs are informational and should not be treated as financial advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ylfy-ljl/auto-test-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/ylfy-ljl) <br>
-- [Yahoo Finance](https://finance.yahoo.com) <br>
-- [Usage Guide](docs/USAGE.md) <br>
-- [Hot Scanner Documentation](docs/HOT_SCANNER.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain-text analysis reports with shell command examples; some scripts support JSON output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local portfolio and watchlist JSON files and may use optional environment credentials for X/Twitter social signals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence; artifact frontmatter reports 6.2.0) <br>
+Risk: Optional Twitter/X scanning can involve AUTH_TOKEN and CT0 session tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer hot scans with --no-social; if social scanning is required, keep tokens out of repositories and shared folders.
+
+Risk: Browser-cookie based social scanning can require broad local access.
+
+Mitigation: Avoid browser-cookie extraction where possible and do not grant Terminal Full Disk Access.
+
+Risk: Portfolio and watchlist JSON files may contain private financial data.
+
+Mitigation: Store generated portfolio and watchlist files privately and avoid sharing them with logs, repositories, or public folders.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ylfy-ljl/skills/auto-test-skill)
+- [Yahoo Finance](https://finance.yahoo.com)
+- [Usage Guide](docs/USAGE.md)
+- [Hot Scanner](docs/HOT_SCANNER.md)
+- [Architecture](docs/ARCHITECTURE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; scripts can emit console text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local portfolio, watchlist, hot scan, and rumor scan JSON files under user skill state or cache paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 6.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

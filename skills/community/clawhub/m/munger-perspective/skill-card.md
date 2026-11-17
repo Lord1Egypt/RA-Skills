@@ -1,43 +1,54 @@
-## Description: <br>
-A Chinese-language Charlie Munger-inspired thinking persona that critiques decisions with mental models, inversion, bias checks, and Munger-style direct prose. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides a public-source-based Charlie Munger-style thinking framework for investment, business, cognitive-bias, inversion, and multidisciplinary decision review.
 
-## Publisher: <br>
-[alchaincyf](https://clawhub.ai/user/alchaincyf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alchaincyf](https://clawhub.ai/user/alchaincyf)
 
-## Use Case: <br>
-External users use this skill as an educational decision-review and mental-model analysis persona, especially for investment, business, cognitive-bias, inversion, and multidisciplinary thinking prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may provide investment or business advice in a strong persona voice. <br>
-Mitigation: Treat outputs as educational roleplay and decision critique, not professional financial, legal, or business advice. <br>
-Risk: The skill may answer in first person as a Munger-inspired persona and use blunt phrasing. <br>
-Mitigation: Use the documented exit phrase or request neutral assistant mode when persona framing is not desired. <br>
-Risk: The skill may activate on broad mental-model or bias-analysis prompts. <br>
-Mitigation: Invoke it for explicit Munger-perspective, inversion, cognitive-bias, or multidisciplinary analysis tasks, and switch modes for general-purpose assistance. <br>
+## Use Case:
 
+External users and agents use this skill to examine decisions through a Charlie Munger-inspired lens, including inversion, incentive analysis, cognitive-bias checks, and multidisciplinary critique. It is most relevant when users explicitly request a Munger perspective or invoke core concepts such as inversion, Lollapalooza effects, circles of competence, or incentive structures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alchaincyf/munger-perspective) <br>
-- [Skill definition artifact](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis] <br>
-**Output Format:** [Markdown conversational responses, primarily in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use first-person Munger-style roleplay; no code or tool execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill asks the agent to answer as Charlie Munger in first person and avoid repeating the disclaimer after initial activation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Make clear to users before use that responses are a public-source-based simulation and not Charlie Munger's actual views.
+
+Risk: Persona-style investment or business critique may be mistaken for transparent or authoritative advice.
+
+Mitigation: Review outputs before acting and treat them as perspective-taking or decision critique, not professional financial, legal, or personal advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alchaincyf/skills/munger-perspective)
+- [Publisher profile](https://clawhub.ai/user/alchaincyf)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Conversational text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Roleplay-style responses; no code execution or external data access indicated.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

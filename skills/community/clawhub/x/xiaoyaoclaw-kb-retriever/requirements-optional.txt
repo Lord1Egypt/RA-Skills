@@ -1,0 +1,22 @@
+# 可选依赖清单 —— **精确钉版**（默认不装；缺什么装什么，装前必须告知用户并取得确认）
+# 检索核心零依赖；只有处理 PDF / Excel / 扫描件时才需要下列包。
+# 升级须显式改动本文件（解析不可信文档时，解析库版本必须确定）。
+# 2026-11-16 升级：pypdf 6.19.0 → 7.1.0（旧版命中 18 条 OSV 公告，新版 0 条）；
+#                  pypdfium2 5.13.0 → 5.15.2；pandas 3.0.5 → 3.1.1
+
+# --- PDF 文本/表格 ---
+pdfplumber==0.11.10
+pypdf==7.1.0
+pypdfium2==5.15.2
+
+# --- Excel ---
+pandas==3.1.1
+openpyxl==3.1.5
+
+# --- 扫描件 OCR（可选路径；另需系统级 tesseract / poppler，见 references/pdf_reading.md）---
+# pytesseract==0.3.13
+# pdf2image==1.17.0
+
+# 只装某一组，例如：
+#   pip install -r requirements-optional.txt            # 全部（PDF+Excel）
+#   pip install pdfplumber==0.11.10 pypdf==7.1.0 pypdfium2==5.15.2

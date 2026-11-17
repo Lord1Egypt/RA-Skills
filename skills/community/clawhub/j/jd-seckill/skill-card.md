@@ -1,47 +1,60 @@
-## Description: <br>
-Queries JD.com flash-sale products and returns filtered product recommendations with prices, quality signals, image URLs, and purchase links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+京东秒杀频道限时好货查询，仅筛选京东自营商品，好评≥98%品质精选，支持品类搜索、价格筛选、折扣力度排序，手慢无。自动过滤无效标签，智能品类推荐，数据通过腾讯云代理安全转发。
 
-## Publisher: <br>
-[cn-shopping](https://clawhub.ai/user/cn-shopping) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-shopping](https://clawhub.ai/user/cn-shopping)
 
-## Use Case: <br>
-External shoppers and shopping-assistant agents use this skill to browse JD.com flash-sale items, narrow results by category keyword or price, and compare recommendations before opening purchase links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping queries are sent through the publisher's Tencent Cloud proxy before reaching JD.com. <br>
-Mitigation: Install only if that data flow is acceptable, avoid entering sensitive personal information in queries, and review network behavior before use. <br>
-Risk: Purchase links may be routed through JD Union-style affiliate or link-generation infrastructure. <br>
-Mitigation: Verify the final destination, seller, price, and terms directly on JD.com before buying. <br>
-Risk: The listing emphasizes JD self-operated products, while the security evidence notes backend support for flagship-store items and broader affiliate/search endpoints. <br>
-Mitigation: Treat self-operated-only claims cautiously and inspect returned shop metadata, especially the shop name and self-operated flag, before relying on recommendations. <br>
-Risk: The artifact includes a shared cloud proxy token. <br>
-Mitigation: Treat the proxy token as non-secret client material, monitor for misuse, and rotate or restrict proxy credentials server-side where possible. <br>
+## Use Case:
 
+External shoppers use this skill to query JD seckill products, filter by keyword or maximum price, sort by price or discount strength, and review returned product information and purchase links. It provides shopping lookup results only and does not place orders, create reminders, or guarantee current prices.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/cn-shopping/jd-seckill) <br>
-- [Publisher profile](https://clawhub.ai/user/cn-shopping) <br>
-- [JD Open API router endpoint](https://api.jd.com/routerjson) <br>
-- [Configured Tencent Cloud proxy endpoint](https://1439498936-23pvh3iikx.ap-guangzhou.tencentscf.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [JSON string containing a summary and product-list data; agents may render product images and purchase links as Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns paginated product recommendations with item names, prices, discount estimates, shop metadata, quality signals, image URLs, and purchase URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.2 (source: server release metadata) <br>
+Risk: Search terms are sent to a configured Tencent Cloud proxy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when that proxy routing is acceptable for the user's shopping queries.
+
+Risk: Returned product images and purchase links load from remote URLs.
+
+Mitigation: Review links before opening or sharing them, and rely on the final JD page for current price and purchase details.
+
+Risk: The inspected script contains a fallback proxy token.
+
+Mitigation: The publisher should remove the fallback token, rotate it, and use deployment-provided credentials.
+
+## Reference(s):
+
+- [京东自营秒杀 on ClawHub](https://clawhub.ai/cn-shopping/skills/jd-seckill)
+- [京东自营9.9包邮](https://clawhub.ai/cn-shopping/jd-99-baoyou)
+- [京东自营超级补贴](https://clawhub.ai/cn-shopping/jd-super-deals)
+- [购物比价助手](https://clawhub.ai/cn-shopping/best-price)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, markdown, guidance]
+
+**Output Format:** [JSON string containing a human-facing summary and serialized product result data with names, prices, discount fields, image URLs, and purchase URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are paginated at up to 50 items per page and may include remote image URLs and purchase links.]
+
+## Skill Version(s):
+
+0.4.2 (source: server release metadata; artifact frontmatter and _meta.json list 0.4.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

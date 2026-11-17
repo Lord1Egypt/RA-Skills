@@ -1,41 +1,55 @@
-## Description: <br>
-Comprehensive security auditing for Clawdbot deployments. Scans for exposed credentials, open ports, weak configs, and vulnerabilities. Auto-fix mode included. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive security auditing for Clawdbot deployments. Scans for exposed credentials, open ports, weak configs, and vulnerabilities. Auto-fix mode included.
 
-## Publisher: <br>
-[chandrasekar-r](https://clawhub.ai/user/chandrasekar-r) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chandrasekar-r](https://clawhub.ai/user/chandrasekar-r)
 
-## Use Case: <br>
-Developers and operators use this skill to audit Clawdbot deployments before release or on a recurring schedule. It helps identify exposed credentials, unexpected ports, weak configuration, unsafe permissions, and Docker security issues, with an optional auto-fix mode for common problems. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Audit reports may expose local paths and details about the deployment security posture. <br>
-Mitigation: Treat generated reports as sensitive operational security material and limit sharing to trusted reviewers. <br>
-Risk: Auto-fix mode can modify file permissions and create a .gitignore file. <br>
-Mitigation: Run the normal audit first, review the proposed remediation path, and use --fix only after confirming backups or version control recovery are available. <br>
-Risk: The audit script reads local deployment files and uses local system tools. <br>
-Mitigation: Run it only in the intended Clawdbot environment and review findings before acting on deployment decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chandrasekar-r/security-audit) <br>
+## Use Case:
+
+Developers and operators use this skill to audit Clawdbot deployments before release or on a recurring schedule, checking credentials, ports, configuration, file permissions, Docker settings, and Git exposure. It can also generate a JSON audit report or apply automatic remediation for some common findings.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill reads sensitive Clawdbot configuration and project files while scanning for credentials and weak settings.
+
+Mitigation: Run it only in an environment where reading Clawdbot secrets and files under /root/clawd is acceptable.
+
+Risk: Auto-fix mode can broadly change permissions on JSON, env, key, and PEM files.
+
+Mitigation: Avoid running --fix as root or on production systems unless backups exist and recursive permission changes are acceptable.
+
+Risk: Security evidence marks the release as suspicious because the audit behavior is plausible but broad in filesystem access and remediation scope.
+
+Mitigation: Review the skill before installing and prefer read-only audit modes until the operational impact is understood.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; optional plain text or JSON audit reports from the audit script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The audit may return a nonzero exit status when critical findings are detected. Auto-fix mode can change file permissions and create a .gitignore file.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, JSON, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Plain text audit report with optional JSON report output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May set a non-zero process exit code when critical findings are detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-01-26)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,49 @@
-## Description: <br>
-Lifegoals helps users define goals, break them into milestones, and track progress step by step from a local command-line workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Define goals, break them into milestones, and track progress step by step. Use when setting life goals, planning milestones, tracking long-term progress.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and individual users use Lifegoals to record personal goals, break them into milestones, review progress, and export or search local goal history from the terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Goal text and activity history are stored in plaintext on the local filesystem. <br>
-Mitigation: Avoid entering secrets or highly sensitive personal details, inspect the Bash script before putting it on PATH, and delete ~/.local/share/lifegoals when the retained history is no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to manage life goals from the terminal, break goals into milestones, log progress, review recent activity, and export goal history.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text terminal output with optional JSON, CSV, or text export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores command history under ~/.local/share/lifegoals by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Goal entries may include sensitive personal health, financial, relationship, or career details stored locally in plaintext and later searched or exported.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use on trusted machines, restrict local file permissions, avoid entering highly sensitive details, and consider adding a purge or no-history workflow before regular use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/lifegoals)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text command output with optional JSON, CSV, or text exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local plaintext logs under the user's home directory by default.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

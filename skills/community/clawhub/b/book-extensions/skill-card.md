@@ -1,38 +1,53 @@
-## Description: <br>
-Book extensions services through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book extensions services through Lokuli MCP. Use when user needs to find and book extensions. Triggers on requests like "book a extensions", "find extensions near me", or any extensions service request.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users use this skill to search for extension service providers through Lokuli, check availability, and create a booking after confirming service details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Creating a booking can send customer contact details to an external service. <br>
-Mitigation: Confirm the provider, service, date, time, and exact contact details before creating a booking, and share only information the user is comfortable sending to Lokuli. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
-- [ClawHub skill listing](https://clawhub.ai/edwardrodriguez703-design/book-extensions) <br>
+## Use Case:
 
+External users and agents use this skill to search for extensions services through Lokuli, check provider availability, and request a booking when the user has chosen a provider and time slot.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON-RPC tool call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include provider, service, availability, booking, and customer contact details for Lokuli booking workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create appointments using personal contact details without clear consent or confirmation guidance.
+
+Mitigation: Confirm the provider, service, time slot, customer name, email, and phone number before allowing a booking request to be sent.
+
+Risk: The skill contacts a third-party Lokuli service to search and book extensions services.
+
+Mitigation: Use this skill only when the user explicitly asks for booking help through Lokuli.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/skills/book-extensions)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls]
+
+**Output Format:** [Markdown guidance with JSON-RPC tool call parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include service search criteria, provider availability, selected booking time, and customer contact details.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

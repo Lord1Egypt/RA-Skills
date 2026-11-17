@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>23种公众号排版风格预览（7通用+8节日+4季节+4主题）</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f0f0; }
+.toolbar { position: sticky; top: 0; z-index: 100; background: #fff; border-bottom: 1px solid #e0e0e0; padding: 12px 20px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.toolbar h1 { font-size: 16px; font-weight: 700; color: #333; }
+.style-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.style-tab { padding: 6px 14px; border-radius: 20px; font-size: 13px; cursor: pointer; border: 1.5px solid transparent; transition: all 0.2s; font-weight: 500; }
+.style-tab.active { color: #fff; }
+.style-tab:not(.active) { background: #f5f5f5; color: #666; border-color: #e0e0e0; }
+.preview-container { max-width: 420px; margin: 20px auto; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+.style-content { display: none; }
+.style-content.active { display: block; }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <h1>23种风格预览（7通用 + 8节日 + 4季节 + 4主题）</h1>
+  <div class="style-tabs" id="tabs"></div>
+</div>
+
+<div class="preview-container" id="preview"></div>
+
+<script>
+const styles = [
+  { name: 'Linear蓝紫', primary: '#5B6FED', accent: '#764ba2', lightBg: '#f5f6fa', pageBg: '#FAFAFA', text: '#1a1a2e', muted: '#999', body: '#333', codeBg: '#1a1a2e', default: true },
+  { name: '墨韵素雅', primary: '#2C2C2A', accent: '#5F5E5A', lightBg: '#F1EFE8', pageBg: '#FAFAFA', text: '#2C2C2A', muted: '#888780', body: '#5F5E5A', codeBg: '#1e1e1e', serif: true },
+  { name: '暖阳咖啡', primary: '#8B5E3C', accent: '#C4956C', lightBg: '#F5E6D3', pageBg: '#FAFAFA', text: '#6B4226', muted: '#A07350', body: '#8B5E3C', codeBg: '#2d1f12', radius: 14 },
+  { name: '青竹墨绿', primary: '#2D5016', accent: '#639922', lightBg: '#EAF3DE', pageBg: '#FAFAFA', text: '#27500A', muted: '#639922', body: '#3B6D11', codeBg: '#1a2a10' },
+  { name: '莫兰迪雾', primary: '#534AB7', accent: '#7F77DD', lightBg: '#EEEDFE', pageBg: '#FAFAFA', text: '#3C3489', muted: '#534AB7', body: '#534AB7', codeBg: '#1a1a2e' },
+  { name: '晨曦珊瑚', primary: '#D85A30', accent: '#F0997B', lightBg: '#FAECE7', pageBg: '#FAFAFA', text: '#993C1D', muted: '#D85A30', body: '#993C1D', codeBg: '#2a1810' },
+  { name: '深蓝学术', primary: '#0C447C', accent: '#378ADD', lightBg: '#E6F1FB', pageBg: '#FAFAFA', text: '#0C447C', muted: '#185FA5', body: '#0C447C', codeBg: '#0a1929' },
+  { name: '元旦·冰蓝迎新', primary: '#4A90D9', accent: '#E6B422', lightBg: '#EEF4FB', pageBg: '#FAFAFA', text: '#1F3A5F', muted: '#7A94B0', body: '#2C4660', codeBg: '#1A2A3A', holiday: true },
+  { name: '春节·中国红金', primary: '#D4202A', accent: '#D4AF37', lightBg: '#FCEDE9', pageBg: '#FAFAFA', text: '#A30E19', muted: '#C49A3E', body: '#8A1A1A', codeBg: '#4A0E0E', holiday: true },
+  { name: '元宵·暖灯红橙', primary: '#E8553A', accent: '#F2A93B', lightBg: '#FDEDE6', pageBg: '#FAFAFA', text: '#C2402B', muted: '#D98B3A', body: '#9B3A2E', codeBg: '#3D1410', holiday: true },
+  { name: '清明·柳绿清雅', primary: '#5E8B6E', accent: '#8FAE8B', lightBg: '#EEF3ED', pageBg: '#FAFAFA', text: '#3A5A46', muted: '#8AA091', body: '#4A6353', codeBg: '#1E2E24', holiday: true },
+  { name: '端午·艾绿五彩', primary: '#3A7D5C', accent: '#D45B3E', lightBg: '#E8F2EC', pageBg: '#FAFAFA', text: '#1E5A3E', muted: '#C0763E', body: '#2C5A45', codeBg: '#15301F', holiday: true },
+  { name: '中秋·月夜金桂', primary: '#4A559E', accent: '#E0B049', lightBg: '#EEF0FA', pageBg: '#FAFAFA', text: '#2A3568', muted: '#B08D3C', body: '#343E6E', codeBg: '#161B3A', holiday: true },
+  { name: '五一·活力橙绿', primary: '#E8822E', accent: '#4CA85A', lightBg: '#FEF3E8', pageBg: '#FAFAFA', text: '#C25E12', muted: '#7BA85C', body: '#8A5A2E', codeBg: '#3D2410', holiday: true },
+  { name: '国庆·华诞红金', primary: '#C0152B', accent: '#E6B422', lightBg: '#FCEDEB', pageBg: '#FAFAFA', text: '#8E0F1C', muted: '#C49A3E', body: '#7A1622', codeBg: '#3D0A0E', holiday: true },
+  { name: '春·新芽樱粉', primary: '#7FB069', accent: '#F48FB1', lightBg: '#F2F7EC', pageBg: '#FAFAFA', text: '#4A5D3A', muted: '#A8C08A', body: '#5A6B45', codeBg: '#2E3A22', season: true },
+  { name: '夏·海风晴蓝', primary: '#0E9DCB', accent: '#FF9F40', lightBg: '#E8F6FB', pageBg: '#FAFAFA', text: '#0A6E92', muted: '#5CB8D6', body: '#0C7C9E', codeBg: '#0A2E3A', season: true },
+  { name: '秋·枫丹麦金', primary: '#C75B39', accent: '#E0A526', lightBg: '#FBF1E6', pageBg: '#FAFAFA', text: '#9E3B22', muted: '#D08B4F', body: '#A8492B', codeBg: '#2E1A12', season: true },
+  { name: '冬·雪霁冰蓝', primary: '#2E6B9E', accent: '#7EB8D4', lightBg: '#E8F1F8', pageBg: '#FAFAFA', text: '#1C3B54', muted: '#6A8BA3', body: '#284D6E', codeBg: '#0F1A26', season: true },
+  { name: '官方·严谨庄重', primary: '#1A4F8B', accent: '#3E6FA3', lightBg: '#EEF3F8', pageBg: '#FAFAFA', text: '#14365E', muted: '#6E89A8', body: '#27425F', codeBg: '#102A45', theme: true, serif: true },
+  { name: '讣告·肃穆黑白', primary: '#333333', accent: '#666666', lightBg: '#F0F0F0', pageBg: '#FFFFFF', text: '#000000', muted: '#888888', body: '#222222', codeBg: '#1A1A1A', theme: true, serif: true },
+  { name: '赛博·克制霓虹', primary: '#0891B2', accent: '#C026D3', lightBg: '#F0F9FB', pageBg: '#FAFAFA', text: '#0F172A', muted: '#64748B', body: '#1E293B', codeBg: '#0F172A', theme: true },
+  { name: '磨砂·翡翠凝碧', primary: '#3D8B6E', accent: '#7DC4A0', lightBg: '#EDF7F2', pageBg: '#FAFAFA', text: '#1E4A38', muted: '#6BAA8E', body: '#2E5C48', codeBg: '#0F1F18', theme: true }
+];
+
+function renderStyle(s) {
+  const ff = s.serif ? "font-family:'Noto Serif SC','Source Han Serif',Georgia,serif;" : "";
+  const r = s.radius || 10;
+  const primary33 = s.primary + '33';
+  const accent22 = s.accent + '22';
+  const primary11 = s.primary + '11';
+  const badge = s.default ? '（默认）' : (s.holiday ? '（节日）' : (s.season ? '（季节）' : (s.theme ? '（主题）' : '')));
+
+  return `
+  <div style="background:${s.pageBg};${ff}">
+    <section style="padding:32px 12px 8px;text-align:center">
+      <section style="display:inline-block;padding:4px 14px;background:${s.lightBg};border-radius:20px;margin-bottom:12px">
+        <span style="font-size:12px;color:${s.primary};font-weight:600;letter-spacing:1px">${s.name}${badge}</span>
+      </section>
+      <h1 style="font-size:22px;font-weight:800;color:${s.text};margin:8px 0 6px;line-height:1.4">设计即内容的呼吸</h1>
+      <p style="font-size:14px;color:${s.muted};margin:0;line-height:1.6">好的排版让读者忘记排版本身</p>
+    </section>
+
+    <section style="padding:16px 12px">
+      <section style="height:1px;background:linear-gradient(to right,transparent,${s.primary},transparent)"></section>
+    </section>
+
+    <section style="padding:8px 12px 20px">
+      <section style="background:${s.lightBg};border-radius:${r}px;padding:16px 20px;border-left:4px solid ${s.primary}">
+        <p style="font-size:14px;color:${s.text};line-height:1.9;margin:0">每一种风格都有它独特的语言。选对风格，文章就成功了一半。</p>
+      </section>
+    </section>
+
+    <section style="padding:24px 12px 12px">
+      <section style="display:flex;align-items:center;gap:10px">
+        <section style="width:6px;height:22px;background:${s.primary};border-radius:3px;flex-shrink:0"></section>
+        <h2 style="font-size:19px;font-weight:700;color:${s.text};margin:0">核心组件预览</h2>
+      </section>
+    </section>
+
+    <section style="padding:4px 12px 12px">
+      <p style="font-size:15px;color:${s.body};line-height:2;margin:0;letter-spacing:0.5px">
+        正文段落示例。排版的本质是为内容服务，过度的装饰反而会干扰阅读。我们追求的是<span style="color:${s.primary};font-weight:700">恰到好处的克制</span>。
+      </p>
+    </section>
+
+    <section style="padding:8px 12px 12px">
+      <section style="background:linear-gradient(135deg,${accent22},${primary11});border:1px solid ${primary33};border-radius:${r}px;padding:16px 20px">
+        <p style="font-size:15px;color:${s.text};line-height:1.9;margin:0;font-weight:500">
+          <span style="color:${s.primary};font-weight:700">核心洞察：</span>风格不是装饰，而是内容的延伸表达。
+        </p>
+      </section>
+    </section>
+
+    <section style="padding:8px 12px 12px">
+      <section style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px">
+        <section style="width:8px;height:8px;background:${s.primary};border-radius:50%;margin-top:9px;flex-shrink:0"></section>
+        <p style="font-size:15px;color:${s.body};line-height:1.9;margin:0"><span style="font-weight:600;color:${s.text}">一致性：</span>色值、间距、圆角全局统一</p>
+      </section>
+      <section style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px">
+        <section style="width:8px;height:8px;background:${s.primary};border-radius:50%;margin-top:9px;flex-shrink:0"></section>
+        <p style="font-size:15px;color:${s.body};line-height:1.9;margin:0"><span style="font-weight:600;color:${s.text}">兼容性：</span>全内联CSS，粘贴不丢格式</p>
+      </section>
+    </section>
+
+    <section style="padding:8px 12px 12px">
+      <section style="background:${s.lightBg};border-radius:${r}px;padding:20px 20px 20px 24px;border-left:4px solid ${s.primary}">
+        <p style="font-size:15px;color:#555;line-height:1.9;margin:0;font-style:italic">
+          "简约不是少，而是刚刚好。"
+        </p>
+        <p style="font-size:13px;color:#999;line-height:1.6;margin:8px 0 0;text-align:right">—— 设计格言</p>
+      </section>
+    </section>
+
+    <section style="padding:8px 12px 12px">
+      <section style="display:flex;align-items:flex-start;gap:12px;background:${s.lightBg};border-radius:${r}px;padding:14px 16px">
+        <section style="min-width:20px;font-size:16px;line-height:1.5">💡</section>
+        <p style="font-size:14px;color:${s.body};line-height:1.85;margin:0">
+          <span style="font-weight:700;color:${s.primary}">提示：</span>点击顶部标签切换风格预览。
+        </p>
+      </section>
+    </section>
+
+    <section style="padding:8px 12px 12px">
+      <section style="background:linear-gradient(135deg,${s.primary},${s.accent});border-radius:12px;padding:24px 20px;text-align:center">
+        <p style="font-size:36px;font-weight:800;color:#fff;margin:0;line-height:1.2">23</p>
+        <p style="font-size:14px;color:#ffffffcc;margin:8px 0 0;line-height:1.6">个通用组件，覆盖全部排版场景</p>
+      </section>
+    </section>
+
+    <section style="padding:24px 12px 32px">
+      <section style="height:1px;background:#e8e8e8;margin-bottom:20px"></section>
+      <section style="text-align:center">
+        <p style="font-size:13px;color:#999;line-height:1.8;margin:0">
+          ${s.name} · 公众号排版风格
+        </p>
+        <section style="margin-top:12px">
+          <span style="display:inline-block;padding:4px 12px;background:${s.lightBg};border-radius:20px;font-size:12px;color:${s.primary};font-weight:600">${s.primary}</span>
+        </section>
+      </section>
+    </section>
+  </div>`;
+}
+
+const tabs = document.getElementById('tabs');
+const preview = document.getElementById('preview');
+
+styles.forEach((s, i) => {
+  const tab = document.createElement('div');
+  tab.className = 'style-tab' + (i === 0 ? ' active' : '');
+  tab.textContent = s.name;
+  tab.style.background = i === 0 ? s.primary : '';
+  tab.onclick = () => {
+    document.querySelectorAll('.style-tab').forEach((t) => {
+      t.classList.remove('active');
+      t.style.background = '';
+    });
+    tab.classList.add('active');
+    tab.style.background = s.primary;
+    showStyle(i);
+  };
+  tabs.appendChild(tab);
+
+  const content = document.createElement('div');
+  content.className = 'style-content' + (i === 0 ? ' active' : '');
+  content.innerHTML = renderStyle(s);
+  preview.appendChild(content);
+});
+
+function showStyle(i) {
+  document.querySelectorAll('.style-content').forEach((c, j) => {
+    c.classList.toggle('active', i === j);
+  });
+}
+</script>
+</body>
+</html>

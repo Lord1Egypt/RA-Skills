@@ -1,0 +1,10 @@
+{
+  "members": [
+    {"id": "omni-ecom-team-lead", "displayName": {"zh": "沐风"}, "profession": {"zh": "全域经营操盘总监"}, "role": "lead"},
+    {"id": "data-analyst", "displayName": {"zh": "沈数清"}, "profession": {"zh": "电商数据分析专家"}, "role": "member"},
+    {"id": "platform-ops", "displayName": {"zh": "梁运通"}, "profession": {"zh": "平台运营专家"}, "role": "member"},
+    {"id": "content-live-growth", "displayName": {"zh": "洪涨声"}, "profession": {"zh": "内容与直播增长专家"}, "role": "member"},
+    {"id": "ad-profit-optimizer", "displayName": {"zh": "罗效盈"}, "profession": {"zh": "投流与利润优化专家"}, "role": "member"},
+    {"id": "delivery-review", "displayName": {"zh": "韦交达"}, "profession": {"zh": "项目交付与复盘专家"}, "role": "member"}
+  ]
+}

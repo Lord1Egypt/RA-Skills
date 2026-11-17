@@ -1,39 +1,58 @@
-## Description: <br>
-Book restaurant tables on OpenTable via the browser tool, including hidden time slots and terms checkboxes, when the user is already logged in and has a saved card on file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book restaurant tables on OpenTable through a browser agent, including flows where time slots and terms checkboxes are not exposed in the page snapshot.
 
-## Publisher: <br>
-[Eeshita-Pande](https://clawhub.ai/user/Eeshita-Pande) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eeshita-pande](https://clawhub.ai/user/eeshita-pande)
 
-## Use Case: <br>
-External users and agent operators use this skill to reserve restaurant tables on OpenTable through a browser session. It guides the agent through search, slot selection, terms review, reservation confirmation, and confirmation reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent can act through a logged-in OpenTable profile with a saved card and may accept terms or complete a real reservation. <br>
-Mitigation: Require the agent to stop before accepting terms or clicking the final reservation button until the user reviews the restaurant, date, time, party size, cancellation or no-show terms, and any card or fee implications. <br>
+## Use Case:
 
+External users and agents use this skill to reserve restaurant tables on OpenTable with a logged-in browser session. It is intended for OpenTable bookings where the user already has an account session and saved payment card.
 
-## Reference(s): <br>
-- [Browser Booking JS Snippet Reference](artifact/browser-snippets.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Eeshita-Pande/opentable-booking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code] <br>
-**Output Format:** [Markdown with browser workflow steps and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires browser.enabled, an authenticated OpenTable browser session, and a saved card in the user's OpenTable account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can act inside a logged-in OpenTable account and complete reservations using a saved card.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation of restaurant, date, time, party size, and booking type before completing the reservation.
+
+Risk: The skill can accept OpenTable terms automatically during booking.
+
+Mitigation: Surface the terms step to the user and proceed only when the user agrees to continue.
+
+Risk: Booking pages may expose personal details or payment-adjacent information from the user's OpenTable account.
+
+Mitigation: Limit reporting to reservation details and card last four digits; do not expose full payment credentials or unnecessary account details.
+
+## Reference(s):
+
+- [Browser Snippet Reference](browser-snippets.md)
+- [ClawHub Skill Page](https://clawhub.ai/eeshita-pande/skills/opentable-booking)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown instructions with JavaScript snippets and final text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires browser access, an authenticated OpenTable session, and a saved card on file.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

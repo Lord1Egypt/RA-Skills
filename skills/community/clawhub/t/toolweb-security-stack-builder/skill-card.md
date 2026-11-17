@@ -1,45 +1,57 @@
-## Description: <br>
-Comprehensive cybersecurity technology stack recommendation platform that generates personalized security tool recommendations based on organizational assessment data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive cybersecurity technology stack recommendation platform that generates personalized security tool recommendations based on organizational assessment data.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security architects, CISO offices, compliance officers, cloud architects, and IT teams use this skill to generate cybersecurity stack recommendations from organizational size, industry, budget, maturity, deployment, cloud, compliance, and priority inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends organizational security assessment content and identifiers to an external service. <br>
-Mitigation: Avoid confidential security posture, compliance scope, vendor-selection details, and real user identifiers unless appropriate privacy, security, retention, and access-control terms are in place. <br>
-Risk: Generated recommendations may influence security architecture, compliance planning, and vendor selection. <br>
-Mitigation: Have qualified security and compliance reviewers validate recommendations, cost estimates, and implementation phases before operational use. <br>
+## Use Case:
 
+Security architects, CISO offices, enterprise security teams, compliance officers, cloud architects, and IT teams use this skill to request security tool-stack recommendations from organizational assessment data, compliance needs, budget, maturity, deployment model, and priorities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-security-stack-builder) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [OpenAPI specification](artifact/openapi.json) <br>
-- [API documentation](https://api.mkkpro.com:8122/docs) <br>
-- [Security Stack Builder API route](https://api.mkkpro.com/security/security-stack-builder) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [JSON API responses documented in Markdown, including recommendation categories, tool rationales, compliance mappings, cost estimates, and implementation phases.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires organizational assessment data and may include session, timestamp, and optional user identifiers in requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and OpenAPI info.version) <br>
+Risk: Organization security context, compliance needs, session identifiers, timestamps, and optional user IDs are sent to the provider's hosted API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm vendor and privacy approval before use, send only the minimum organizational context needed, and avoid secrets, sensitive internal architecture details, and regulated personal data unless approved.
+
+Risk: Generated security-stack recommendations and cost estimates may be incomplete or unsuitable for a specific environment.
+
+Mitigation: Have qualified security, compliance, and procurement reviewers validate recommendations before acquisition or implementation.
+
+## Reference(s):
+
+- [Security Stack Builder API Docs](https://api.mkkpro.com:8122/docs)
+- [Security Stack Builder API Route](https://api.mkkpro.com/security/security-stack-builder)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb OpenClaw](https://toolweb.in/openclaw/)
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-security-stack-builder)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [JSON API response with security tool recommendations, compliance mapping, estimated annual costs, and implementation phases.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendation requests include organization profile, compliance, priorities, session identifiers, timestamps, and optional user IDs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

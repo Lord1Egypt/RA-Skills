@@ -1,46 +1,58 @@
-## Description: <br>
-AgentDrive CLI lets agents manage 360 AI Cloud Drive files through shell commands for browsing, search, upload and download, move and rename, delete, sharing, saving content, appending files, configuration reads and writes, user info, and JSON pipeline workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentDrive CLI helps agents manage 360 AI cloud-drive files through shell commands for browsing, searching, uploading, downloading, moving, deleting, sharing, configuration edits, backup, restore, and JSON-oriented automation.
 
-## Publisher: <br>
-[jsoncm](https://clawhub.ai/user/jsoncm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jsoncm](https://clawhub.ai/user/jsoncm)
 
-## Use Case: <br>
-Developers, automation users, and agents use this skill to turn cloud-drive file-management requests into AgentDrive CLI commands for interactive work, scripts, and CI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to run destructive cloud-drive operations such as delete, clear-dir, overwrite or replace, restore, logout, backup, and auto-backup changes. <br>
-Mitigation: Require explicit user confirmation and target-path review before running destructive or persistent commands. <br>
-Risk: The skill handles AgentDrive credentials and can persist authentication data in local configuration. <br>
-Mitigation: Prefer an environment variable or protected config, and avoid placing API keys directly in command text or logs. <br>
-Risk: Using the latest npm package can change CLI behavior between runs. <br>
-Mitigation: Pin @aicloud360/agentdrive to an exact version for CI, audits, and repeatable workflows. <br>
-Risk: Backup, restore, and auto-backup commands can affect local folders and cloud content beyond a single command. <br>
-Mitigation: Scope source and destination folders narrowly and confirm before enabling auto-backup or restoring cloud content locally. <br>
+## Use Case:
 
+Developers, agent operators, and automation maintainers use this skill to convert cloud-drive management requests into AgentDrive CLI commands and cross-platform shell pipelines. It is intended for file operations, authentication checks, JSON parsing with jq, and backup or restore workflows.
 
-## Reference(s): <br>
-- [AgentDrive CLI command reference](references/commands.md) <br>
-- [AgentDrive CLI skill README](README.md) <br>
-- [ClawHub release page](https://clawhub.ai/jsoncm/agentdrive-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-output expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands usually return structured JSON and may be piped to jq; sensitive API keys should be passed through environment variables or protected configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can run mutable remote CLI code and perform cloud-drive changes, including delete, clear-dir, overwrite, restore, and auto-backup enable operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed AgentDrive CLI version where reproducibility matters, and require explicit user confirmation before destructive or persistent operations.
+
+Risk: Authentication commands may expose cloud-drive API keys if long-lived secrets are pasted directly into shell commands or logs.
+
+Mitigation: Prefer short-lived or environment-scoped credentials, avoid pasting long-lived API keys into commands, and review shell history and logs for accidental secret exposure.
+
+Risk: The README includes an HTTP ZIP download path that does not provide transport security.
+
+Mitigation: Avoid the HTTP ZIP path and install only from a trusted, reviewed source or package version.
+
+## Reference(s):
+
+- [AgentDrive CLI command reference](artifact/references/commands.md)
+- [ClawHub skill page](https://clawhub.ai/jsoncm/skills/agentdrive-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Markdown, Code]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides agents toward structured JSON CLI output and jq-compatible pipelines.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

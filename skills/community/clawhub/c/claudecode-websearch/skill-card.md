@@ -1,45 +1,56 @@
-## Description: <br>
-Free web search using Claude Code CLI or Codex CLI's built-in WebSearch tool, without requiring Tavily, Brave, or Exa API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free web search using Claude Code CLI or Codex CLI's built-in WebSearch tool, with no Tavily, Brave, or Exa API key required.
 
-## Publisher: <br>
-[jinghan23](https://clawhub.ai/user/jinghan23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinghan23](https://clawhub.ai/user/jinghan23)
 
-## Use Case: <br>
-Developers and agents use this skill to run concise web searches through an installed Claude Code or Codex CLI when no third-party search API is configured or quota remains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent through the installed Claude or Codex CLI and may include sensitive information if users paste it into the query. <br>
-Mitigation: Use the skill for ordinary web searches only and avoid secrets, confidential project names, private URLs, regulated data, or credentials. <br>
-Risk: The optional global alias creates a persistent command shortcut on the user's PATH. <br>
-Mitigation: Create the ccws alias only when a persistent shortcut is desired and the target script location is trusted. <br>
-Risk: The skill depends on whichever Claude Code or Codex CLI is installed and authenticated locally. <br>
-Mitigation: Confirm the CLI installation, authentication state, and account trust before installing or running the wrapper. <br>
+## Use Case:
 
+Developers and agent users use this skill to perform web searches through an authenticated Claude Code CLI or Codex CLI when other search providers are unavailable, unconfigured, or out of quota.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jinghan23/claudecode-websearch) <br>
-- [Claude Code CLI](https://claude.ai/code) <br>
-- [OpenAI Codex CLI](https://openai.com/codex) <br>
-- [OpenAI Codex repository](https://github.com/openai/codex) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Concise text or Markdown summaries with source URLs, plus shell command examples for setup and use.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output depends on the installed and authenticated Claude Code or Codex CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search queries may be sent through authenticated Claude Code or Codex CLI sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets, credentials, private customer data, and proprietary internal questions in search queries.
+
+Risk: The Codex fallback may run a broader nested agent than users expect for simple search.
+
+Mitigation: Prefer the Claude backend or a clearly sandboxed Codex configuration, and review broad automatic activation for generic search requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jinghan23/skills/claudecode-websearch)
+- [Claude Code](https://claude.ai/code)
+- [OpenAI Codex CLI](https://github.com/openai/codex)
+- [OpenAI Codex](https://openai.com/codex)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summary with source URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search query, optional maximum result count, and optional backend selection influence the returned summary.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

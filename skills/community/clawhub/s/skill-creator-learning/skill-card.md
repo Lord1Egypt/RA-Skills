@@ -1,48 +1,62 @@
-## Description: <br>
-Learning creates customized learning-project skills with SKILL.md and reference files that guide a learner from planning through study, review, and completion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a customized learning-project skill with SKILL.md and references that guides a learner from planning through study, review, and completion.
 
-## Publisher: <br>
-[balancegsr](https://clawhub.ai/user/balancegsr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[balancegsr](https://clawhub.ai/user/balancegsr)
 
-## Use Case: <br>
-External users and developers use this skill to generate a structured learning-project skill for a chosen topic, including planning, progress tracking, study notes, module reviews, and completion artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger broadly on normal learning or tutoring requests. <br>
-Mitigation: Install it only when systematic learning-project generation is desired, and narrow or disable generic learning triggers if routine Q&A should take precedence. <br>
-Risk: The skill may create persistent study-project files and generated skills in the workspace. <br>
-Mitigation: Confirm the destination paths before delivery and review generated files before relying on them. <br>
-Risk: The skill may inspect home-directory paths during installation-path discovery. <br>
-Mitigation: Avoid home-directory scanning unless the user explicitly approves that discovery step. <br>
+## Use Case:
 
+External users, developers, and learners use this skill to turn a learning goal into an installable project skill that plans modules, guides learning sessions, records progress, supports reviews, and closes with a summary or cognitive framework.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/balancegsr/skill-creator-learning) <br>
-- [README](README.md) <br>
-- [Knowledge Type Strategy](references/strategies/README.md) <br>
-- [Review Guide Template](references/templates/guides/review_guide.md) <br>
-- [Framework Guide Template](references/templates/guides/framework_guide.md) <br>
-- [Lite Skill Template](references/templates/skill/lite.md) <br>
-- [Full Skill Template](references/templates/skill/full.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown skill files and reference files, with setup guidance and optional shell commands for delivery] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated learning projects may create persistent workspace files for plans, notes, summaries, and feedback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: server release evidence) <br>
+Risk: The skill can create and install new skill files and package them with shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and use it only in workspaces where creating learning-project files and new skill directories is acceptable.
+
+Risk: Unusual or adversarial topic names could affect generated file paths.
+
+Mitigation: Prefer simple alphanumeric topic names and inspect generated paths before direct installation or ZIP packaging.
+
+Risk: Direct installation can write multiple files into the current workspace.
+
+Mitigation: Confirm the exact write targets before installation and review generated skill files before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/balancegsr/skills/skill-creator-learning)
+- [Strategy extension notes](references/strategies/README.md)
+- [Lite learning skill template](references/templates/skill/lite.md)
+- [Full learning skill template](references/templates/skill/full.md)
+- [Module review guide](references/templates/guides/review_guide.md)
+- [Cognitive framework guide](references/templates/guides/framework_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files with inline code blocks, file paths, and optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an installable learning-project skill with supporting references and project files such as learning plans, notes, module summaries, project summaries, and feedback records.]
+
+## Skill Version(s):
+
+1.4.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

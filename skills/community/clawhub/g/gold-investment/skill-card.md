@@ -1,43 +1,56 @@
-## Description: <br>
-A gold investment analysis skill that retrieves current gold-market information and helps agents produce price, technical, fundamental, and risk-analysis reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A gold investment analysis skill that helps agents retrieve current gold-market information, summarize technical indicators, review relevant news and fundamentals, and produce structured analysis reports.
 
-## Publisher: <br>
-[FMouseBoy](https://clawhub.ai/user/FMouseBoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fmouseboy](https://clawhub.ai/user/fmouseboy)
 
-## Use Case: <br>
-External users and agents use this skill to research gold prices, market news, technical indicators, and fundamental factors before preparing an informational gold-market analysis report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User queries are sent to Tavily for live gold-market search. <br>
-Mitigation: Avoid including private financial details in prompts or search queries. <br>
-Risk: Gold-market analysis may be mistaken for personalized investment advice. <br>
-Mitigation: Treat generated analysis as informational and review it before making financial decisions. <br>
+## Use Case:
 
+External users and developers use this skill to gather gold price, technical indicator, news, and macroeconomic context for market analysis. The skill can support informational investment discussions by producing structured reports with price overview, technical and fundamental factors, and risk notes.
 
-## Reference(s): <br>
-- [Gold Investment Skill Page](https://clawhub.ai/FMouseBoy/gold-investment) <br>
-- [Technical Indicators Reference](references/technical-indicators.md) <br>
-- [Tavily](https://tavily.com/) <br>
-- [Tavily Search API](https://api.tavily.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with source links and optional shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TAVILY_API_KEY for live search.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Gold-market search queries are sent to Tavily when live data is requested.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing those queries with Tavily is acceptable, and do not include confidential portfolio, account, or regulated client data in prompts.
+
+Risk: Investment-oriented analysis may be incomplete, outdated, or influenced by the search results returned at runtime.
+
+Mitigation: Treat outputs as informational market analysis, review cited sources, and apply independent financial judgment before making investment decisions.
+
+## Reference(s):
+
+- [Gold Technical Indicators Reference](references/technical-indicators.md)
+- [Tavily](https://tavily.com/)
+- [Tavily Search API Endpoint](https://api.tavily.com/search)
+- [ClawHub Skill Page](https://clawhub.ai/fmouseboy/skills/gold-investment)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown analysis report with source summaries and optional shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TAVILY_API_KEY for live Tavily search.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

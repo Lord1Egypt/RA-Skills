@@ -1,0 +1,1 @@
+A vehicle is driving and encounters an unexpected obstacle 5 meters ahead. A child runs into the street. Swerving to avoid them might hit a pedestrian. Designing a simulation requires careful planning and consideration of various factors Explain first, then output a single recommended driving xxxxxx

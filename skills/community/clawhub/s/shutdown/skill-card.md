@@ -1,38 +1,53 @@
-## Description: <br>
-Safe shutdown and reboot workflow for local or remote machines that helps an agent power off, restart, schedule, cancel, and run pre-shutdown checks with explicit confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safe shutdown/reboot workflow for local or remote machines.
 
-## Publisher: <br>
-[jvy](https://clawhub.ai/user/jvy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jvy](https://clawhub.ai/user/jvy)
 
-## Use Case: <br>
-Developers and operators use this skill when an agent needs to prepare, confirm, and issue local or remote shutdown, reboot, scheduling, or cancellation commands while checking session and process impact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shutdown or reboot commands can disconnect sessions and terminate running processes if confirmed for the wrong target or timing. <br>
-Mitigation: Verify the target machine, timing, exact command, session and process impact, and cancellation path before confirming execution. <br>
+## Use Case:
 
+Developers and operators use this skill to safely prepare, confirm, schedule, cancel, or execute shutdown and reboot commands for a local or remote machine.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jvy/shutdown) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown] <br>
-**Output Format:** [Markdown with platform-specific command examples and confirmation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Covers macOS, Linux, and Windows; requires explicit user confirmation before disruptive commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Shutdown or reboot commands can terminate work or disconnect active sessions if run against the wrong target or at the wrong time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation of the target machine, action, timing, exact command, expected impact, and cancellation path before execution.
+
+Risk: Remote shutdown or reboot may disconnect the operator from the host before follow-up checks can run.
+
+Mitigation: Warn about remote session loss before confirmation and recommend post-reboot reachability, service, process, port, and listener checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jvy/skills/shutdown)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash and PowerShell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Confirmation-gated command recommendations with platform-specific safety checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

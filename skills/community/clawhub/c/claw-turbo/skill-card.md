@@ -1,41 +1,62 @@
-## Description: <br>
-Zero-latency regex-based skill routing middleware for OpenClaw that intercepts known user commands with compiled patterns and executes matching skill scripts directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zero-latency regex-based skill routing middleware for OpenClaw that intercepts known user commands using compiled regex patterns and executes skill scripts directly while forwarding unmatched requests to the local LLM.
 
-## Publisher: <br>
-[jacobye2017-afk](https://clawhub.ai/user/jacobye2017-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jacobye2017-afk](https://clawhub.ai/user/jacobye2017-afk)
 
-## Use Case: <br>
-Developers and automation operators use this skill to route repeated OpenClaw commands through regex-matched actions while forwarding unmatched requests to the local LLM. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Matched routes can turn ordinary messages into immediate local shell actions such as deploys, service restarts, refunds, printing, or account-changing operations. <br>
-Mitigation: Use narrow explicit routes, run the proxy as a least-privileged user, and require confirmation, authorization, input validation, audit logs, and rollback controls for high-impact actions. <br>
-Risk: The release security verdict is suspicious because the artifact documents fast command execution without documented safety gates. <br>
-Mitigation: Review and pin the external GitHub source before installing, start with low-risk routes, and avoid production use until the configured actions have been tested and approved. <br>
+## Use Case:
 
+Developers and operators use this skill to route repetitive OpenClaw commands, such as deployments, restarts, log checks, document actions, and local automation, through configured regex routes instead of LLM inference.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/jacobye2017-afk/claw-turbo) <br>
-- [Project homepage](https://github.com/jacobye2017-afk/claw-turbo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes may execute local shell commands immediately when configured patterns match user messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can map ordinary chat phrases to immediate shell or service-management commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit command prefixes and confirmations for state-changing routes before enabling them.
+
+Risk: The release installs remote code that the security evidence describes as unreviewed.
+
+Mitigation: Pin and verify the implementation source before installation, then review configured routes before deployment.
+
+Risk: Command templates can execute with the privileges of the running proxy process.
+
+Mitigation: Run the proxy behind strong local access controls as a dedicated low-privilege user.
+
+Risk: Raw shell templates may execute unintended commands if routes are too broad or captures are unsafe.
+
+Mitigation: Avoid raw shell templates where possible and keep route patterns narrow, explicit, and reviewed.
+
+## Reference(s):
+
+- [claw-turbo GitHub repository](https://github.com/jacobye2017-afk/claw-turbo)
+- [ClawHub skill page](https://clawhub.ai/jacobye2017-afk/skills/claw-turbo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML configuration examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce route definitions and command templates that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

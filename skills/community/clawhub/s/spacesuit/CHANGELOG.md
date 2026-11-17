@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.0] - Pending publication
+
+- Add local-export Linear/Jira portfolio and operations work-graph compilation.
+- Parse documented workspace flags and preserve unmarked instructions unless
+  explicitly adopting them; validate markers and back up modifying upgrades.
+- Preserve existing install version state; support text-only package version
+  discovery and create workspace runtime directories.
+- Separate release preflight/artifact staging from tagging and publication.
+
+- Add explicit, opt-in business-operations flavor with Intel, Pipeline and Monetization snapshots, preview/apply/disable/restore and bounded local collection.
+- Document Command Center as standalone and Spacesuit as its highly recommended companion, without a standalone interaction UX.
+
 ## [0.3.0] - 2026-02-04
 ### Added
 - CONTRIBUTING.md — comprehensive contribution guide

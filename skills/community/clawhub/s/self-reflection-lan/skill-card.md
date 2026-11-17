@@ -1,40 +1,57 @@
-## Description: <br>
-Helps an agent keep structured local self-reflection notes for mistakes, lessons, feature requests, reusable snippets, and recurring patterns after work, errors, or new learning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-reflection skill that helps an agent record mistakes, lessons, feature requests, reusable snippets, and daily memory in local Markdown files.
 
-## Publisher: <br>
-[lanlan314](https://clawhub.ai/user/lanlan314) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanlan314](https://clawhub.ai/user/lanlan314)
 
-## Use Case: <br>
-Developers and agent users use this skill to maintain a local reflection journal that captures errors, reusable lessons, feature requests, snippets, and repeated-problem patterns in Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reflection and memory notes may contain sensitive details from tasks or conversations. <br>
-Mitigation: Review ~/.openclaw/workspace/reflections and ~/.openclaw/workspace/memory regularly, avoid storing secrets there, and apply workspace access controls appropriate to the environment. <br>
-Risk: Optional scheduled reminders can run daily in the background. <br>
-Mitigation: Enable the launchd schedule only when daily background execution is intended, and disable or remove it when reminders are no longer needed. <br>
+## Use Case:
 
+Agents and developers use this skill to keep structured self-review records after completed tasks, user-corrected errors, repeated mistakes, newly learned practices, and feature requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lanlan314/self-reflection-lan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files with optional shell commands and local schedule configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local notes under reflections/ and memory/ when used as documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can persist conversation-derived notes and daily memory as local Markdown files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local reflection storage is desired, and review generated memory and reflection files for sensitive content.
+
+Risk: The optional scheduling setup can install a recurring macOS task.
+
+Mitigation: Review or disable scheduling before use, and avoid running --setup unless recurring execution is intentional.
+
+Risk: Scheduled scripts can write logs under /tmp.
+
+Mitigation: Consider changing log paths to a private user-owned log directory before enabling scheduled runs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lanlan314/skills/self-reflection-lan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files with text guidance and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local memory and reflection files; optional setup can configure recurring local execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

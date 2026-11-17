@@ -1,45 +1,61 @@
-## Description: <br>
-Converts article URLs into clean Markdown, with optimized extraction for major news and content platforms, optional image localization, and workflows that can pair with browser-web-search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts article URLs into clean Markdown, with specialized extraction for 17 news and publishing platforms, optional image localization, and fallback fetching for dynamic pages.
 
-## Publisher: <br>
-[sipingme](https://clawhub.ai/user/sipingme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sipingme](https://clawhub.ai/user/sipingme)
 
-## Use Case: <br>
-Developers and agent workflows use this skill to fetch user-provided article URLs, extract readable article bodies, and produce Markdown outputs for summarization, archiving, or downstream publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a third-party npm package for article conversion. <br>
-Mitigation: Install the fixed package version through the launcher path, audit the package source before use, and avoid the npx fallback for routine workflows. <br>
-Risk: Fetching user-provided URLs and saving Markdown or images can bring untrusted remote content into the local workspace. <br>
-Mitigation: Use trusted URLs, keep outputs in scoped directories, and review generated Markdown and downloaded images before reuse or publication. <br>
-Risk: Dynamic-page support through Playwright or broad article scraping can expand browser, network, and filesystem exposure. <br>
-Mitigation: Run Playwright or broad scraping in a sandbox or container, and install browser binaries only when dynamic rendering is required. <br>
+## Use Case:
 
+Developers and content workflows use this skill to turn article URLs into Markdown for reading, archiving, summarization, or downstream publishing. It is commonly paired with a search skill that finds article URLs before this skill extracts each article body.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sipingme/news-to-markdown-skill) <br>
-- [news-to-markdown GitHub](https://github.com/sipingme/news-to-markdown) <br>
-- [news-to-markdown npm Package](https://www.npmjs.com/package/news-to-markdown) <br>
-- [browser-web-search Skill](https://github.com/sipingme/browser-web-search-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown, optional local image files, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write Markdown files and downloaded images locally when output flags are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.7 (source: server release metadata) <br>
+Risk: The launcher can execute a locally resolved npm package without independently verifying the installed package version or integrity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installing, install the pinned version explicitly, and run the skill in an isolated or low-privilege environment.
+
+Risk: Floating npx examples can introduce package version drift at execution time.
+
+Mitigation: Use the pinned npm install path for regular use and reserve npx only for disposable sandbox trials.
+
+Risk: Running the launcher from an untrusted project directory may expose package resolution behavior to local dependency substitution.
+
+Mitigation: Do not run the launcher from untrusted directories unless package resolution is fixed or the environment is isolated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sipingme/skills/news-to-markdown-skill)
+- [news-to-markdown npm package](https://www.npmjs.com/package/news-to-markdown)
+- [news-to-markdown source repository](https://github.com/sipingme/news-to-markdown)
+- [news-to-markdown audit entry point](https://github.com/sipingme/news-to-markdown/blob/main/src/index.ts)
+- [browser-web-search companion skill](https://github.com/sipingme/browser-web-search-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown text or Markdown files, optionally with downloaded image files and frontmatter metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include article metadata, localized image paths, or no metadata when requested.]
+
+## Skill Version(s):
+
+3.1.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

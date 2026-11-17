@@ -1,0 +1,518 @@
+#!/usr/bin/env python3
+"""Skill Targeted Audit — skillcheck + markdownlint-cli2 + skillspector + hwcloud-spec + gitleaks
+
+Quality reporting: 由 skill-quality-cli run 包裹执行 (见 SKILL.md 强制包裹要求)。
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+from check_protocol import Check, CheckResult, Issue, Severity, ScanLevel
+from check_registry import AuditConfig, create_checks, resolve_enabled_checks
+
+# ── CLI ──
+
+def parse_args():
+    p = argparse.ArgumentParser(description="Skill gate audit")
+    p.add_argument("--target", required=True, help="Single skill dir or parent folder of skills")
+    p.add_argument("--output-dir", default=None, help="Report output dir (default: parent of target)")
+    p.add_argument("--scan-level", default="high",
+                    choices=["critical", "high", "quick", "standard", "deep"],
+                    help="Scan depth: critical(CRITICAL only), high(CRITICAL+ERROR), quick(+patterns), standard(+AST+taint), deep(+MCP)")
+    p.add_argument("--checks", default=None,
+                    help="Comma-separated checks to run (default: all). "
+                         "Available: skillspector,gitleaks,runtime_security")
+    p.add_argument("--skip-checks", default=None,
+                   help="Comma-separated checks to skip")
+    p.add_argument("--skillspector", default="", help="SkillSpector binary path override")
+    p.add_argument("--gitleaks", default="", help="gitleaks binary path override")
+    p.add_argument("--node-bin", default="", help="Node bin dir for npx (e.g. /opt/nvm/versions/node/v18.20.8/bin)")
+    p.add_argument("--no-install", action="store_true", help="Skip auto-install of tools")
+    return p.parse_args()
+
+# ── Auto-install ──
+
+SEVERITY_FLOOR_MAP = {
+    "critical": {"critical"},
+    "high": {"critical", "error"},
+}
+
+# 审计工具自身版本(报告头展示, 便于追溯报告由哪个版本生成)
+AUDIT_TOOL_VERSION = "1.0.0"
+
+
+def _get_severity_floor(scan_level: str) -> set[str] | None:
+    return SEVERITY_FLOOR_MAP.get(scan_level)
+
+def ensure_tools(no_install=False):
+    """Auto-install missing tools. Skip if --no-install."""
+    if no_install:
+        return
+    # skillspector: pure-Python builtin rules (checks/skillspector_rules.json) cover
+    # all scan levels, so no PyPI auto-install is performed.
+    # gitleaks binary auto-install happens only when no binary and no builtin rules.
+    _builtin_rules = Path(__file__).parent / "checks" / "gitleaks_rules.json"
+    if not shutil.which("gitleaks") and not _builtin_rules.exists():
+        print("  Auto-installing gitleaks ...", flush=True)
+        _install_gitleaks()
+
+# ── Discover skills ──
+
+def discover_skills(target: Path):
+    """Return list of skill dirs. If target itself has SKILL.md → [target],
+    else find SKILL.md recursively at any depth (e.g. skills/<category>/<skill>/)"""
+    if (target / "SKILL.md").exists():
+        return [target]
+    from checks.skillspector_builtin_check import SKIP_DIRS
+    skills = sorted({
+        sm.parent for sm in target.rglob("SKILL.md")
+        if not any(part in SKIP_DIRS for part in sm.parent.parts)
+    })
+    return skills
+
+# ── Run checks ──
+
+def run_cmd(cmd, timeout=120):
+    """Run command with timeout wrapper to handle stubborn child processes (skill-scanner)."""
+    try:
+        full_cmd = ["timeout", "--signal=KILL", str(timeout)] + list(cmd)
+        r = subprocess.run(full_cmd, capture_output=True, text=True)
+        return r.stdout + r.stderr, r.returncode
+    except FileNotFoundError:
+        return f"ERROR: command not found: {cmd[0]}", 127
+
+GITLEAKS_VERSION = "8.25.1"
+# SHA256 pinned from the official gitleaks checksums.txt (v8.25.1), so downloaded
+# binaries can be verified without trusting any download source (incl. mirrors).
+# Asset names use linux_x64 (NOT linux_amd64) — the old amd64 name never existed.
+GITLEAKS_SHA256 = {
+    "gitleaks_8.25.1_linux_arm64.tar.gz": "262811de1ef1e328eba99a976d9df8a9def2fb04f6f977ab1120d8710cadb354",
+    "gitleaks_8.25.1_linux_x64.tar.gz": "3000d057342489827ee127310771873000b658f2987be7bbd21968ab7443913a",
+}
+
+def _sanitize_snippet(text: str, limit: int = 120) -> str:
+    """Strip control/ANSI chars from external snippet text before printing.
+
+    Snippets come from scanned skill content (untrusted input); printable text is
+    kept, everything else is shown as \\xNN escapes so a malicious skill cannot
+    inject terminal control sequences into the report.
+    """
+    out = []
+    for ch in text[:limit]:
+        if ch.isprintable() or ch in "\t\n":
+            out.append(ch)
+        else:
+            out.append(f"\\x{ord(ch):02x}")
+    return "".join(out)
+
+def _install_gitleaks():
+    """Download and install gitleaks binary. Official GitHub source first, then proxies.
+
+    The tarball is verified against the pinned SHA256 from the official
+    checksums.txt before extraction; archive members are checked for path
+    traversal. Installs into ~/.local/bin (user-writable), not system dirs.
+    """
+    import hashlib
+    import platform
+    import tarfile
+    import tempfile
+
+    arch = "arm64" if platform.machine() in ("aarch64", "arm64") else "x64"
+    version = GITLEAKS_VERSION
+    filename = f"gitleaks_{version}_linux_{arch}.tar.gz"
+    expected_sha256 = GITLEAKS_SHA256.get(filename)
+    if not expected_sha256:
+        print(f"  WARNING: no pinned checksum for {filename}; skipping gitleaks auto-install", flush=True)
+        return
+    sources = [
+        f"https://github.com/gitleaks/gitleaks/releases/download/v{version}/{filename}",
+        f"https://gh-proxy.com/https://github.com/gitleaks/gitleaks/releases/download/v{version}/{filename}",
+        f"https://gh.ddlc.top/https://github.com/gitleaks/gitleaks/releases/download/v{version}/{filename}",
+    ]
+    dest_dir = Path.home() / ".local" / "bin"
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    for url in sources:
+        tmp = None
+        try:
+            tmp = tempfile.mktemp(suffix=".tar.gz")
+            r = subprocess.run(["curl", "-fsSL", "-o", tmp, url, "--connect-timeout", "10", "-m", "120"],
+                               capture_output=True, text=True)
+            if r.returncode != 0:
+                continue
+            actual_sha256 = hashlib.sha256(open(tmp, "rb").read()).hexdigest()
+            if actual_sha256 != expected_sha256:
+                print(f"  WARNING: checksum mismatch from {url} (expected {expected_sha256}, got {actual_sha256}); skipping", flush=True)
+                continue
+            with tarfile.open(tmp, "r:gz") as tf:
+                for member in tf.getmembers():
+                    p = Path(member.name)
+                    if p.is_absolute() or ".." in p.parts:
+                        raise ValueError(f"unsafe path in archive: {member.name!r}")
+                tf.extractall(path=str(dest_dir))
+            (dest_dir / "gitleaks").chmod(0o755)
+            os.unlink(tmp)
+            tmp = None
+            if (dest_dir / "gitleaks").exists() or shutil.which("gitleaks"):
+                print("  gitleaks installed successfully", flush=True)
+                return
+        except Exception as e:
+            print(f"  WARNING: install from {url} failed: {e}", flush=True)
+        finally:
+            if tmp and os.path.exists(tmp):
+                os.unlink(tmp)
+    print("  WARNING: gitleaks auto-install failed; install manually from https://github.com/gitleaks/gitleaks/releases", flush=True)
+
+# ── Fix strategies ──
+
+FIX_STRATEGIES = {
+    # skillcheck
+    "description.quality-score": "Start description with action verb (Generates/Analyzes/Validates); add trigger context like 'Use this skill whenever...'",
+    "disclosure.metadata-budget": "Move non-essential frontmatter fields to the body section to reduce token count below 100",
+    "disclosure.body-bloat": "Move large tables (>20 rows) to a referenced file under references/ directory",
+    "frontmatter.field.unknown": "Add field to skillcheck.toml extension_fields, or remove from frontmatter",
+    "compat.unverified": "Document field behavior for codex/cursor or remove unverified fields from frontmatter",
+    # markdownlint
+    "MD013": "Break long lines; or disable for code blocks/tables in .markdownlint.json: MD013: {code_blocks: false, tables: false}",
+    "MD036": "Replace **text** pseudo-headings with ### text real headings",
+    "MD031": "Add blank lines before and after fenced code blocks",
+    "MD007": "Fix list indentation to match configured indent (default 4 spaces)",
+    "MD024": "Add distinguishing suffix to duplicate headings, or enable siblings_only in config",
+    # skill-scanner
+    "command_injection": "Move dangerous commands (nc, curl|sh, etc.) to standalone scripts under scripts/; reference script path in SKILL.md instead of inline code",
+    "reverse_shell": "Remove or relocate reverse shell examples; if needed for documentation, add <!-- skill-scanner:ignore --> annotation",
+    "credential_leak": "Replace hardcoded secrets with environment variable references (${VAR}); add to .secrets.baseline if false positive",
+    "dangerous_function": "Wrap dynamic code execution with input validation; prefer safe literal parsing from the ast module over direct evaluation",
+    "prompt_injection": "Review and sanitize user-controllable input before embedding in prompts; use structured input templates",
+    # skillspector (replaces skill-scanner)
+    "P1": "Do not embed user-controllable input in system prompts; use template variables with explicit escaping",
+    "P2": "Avoid instructions that override safety guardrails; use allowlists for permitted behaviors",
+    "P3": "Separate developer instructions from user data using delimiters; validate input before prompt assembly",
+    "P4": "Never include raw file contents in prompts without sanitization; use structured data extraction",
+    "P5": "Avoid multi-step reasoning chains that can be hijacked; add integrity checks between steps",
+    "E1": "Remove URLs pointing to external servers; use environment variables for API endpoints",
+    "E2": "Do not instruct agents to send conversation data externally; restrict network access in tool definitions",
+    "E3": "Avoid encoding data in seemingly innocent outputs (base64 in comments, etc.)",
+    "E4": "Remove instructions that copy sensitive files to world-readable locations",
+    "PE1": "Do not instruct agents to modify system security settings; use least-privilege tool configurations",
+    "PE2": "Avoid sudo/root commands in skill scripts; use capability-based permissions",
+    "PE3": "Remove instructions that disable security controls (firewalls, audit logs, etc.)",
+    "AST1": "Replace dynamic code execution with safer alternatives (ast literal parsing, subprocess with explicit args)",
+    "AST2": "Avoid dynamic module imports with user-controlled names; use importlib with allowlists",
+    "AST3": "Do not use __import__ with dynamic strings; map allowed modules explicitly",
+    "YR1": "Remove reverse shell patterns; if needed for testing, use isolated sandbox with no network access",
+    "YR2": "Remove webshell patterns; move server functionality to separate controlled service",
+    "SC1": "Pin dependency versions with hashes; use lock files (requirements.txt with --hash, poetry.lock)",
+    "SC4": "Update vulnerable dependency to patched version; check osv.dev for fix versions",
+    # gitleaks
+    "private-key": "Remove hardcoded private key; load from file or secret manager at runtime; add key file to .gitignore",
+    "gitleaks": "Replace hardcoded credential with environment variable or secret manager reference; see https://gitleaks.io/docs/secrets for rule-specific remediation",
+    # 华为云规范
+    "frontmatter": "检查 SKILL.md YAML frontmatter 格式：必需字段(name/description/tags/version)、类型正确、name与目录名一致",
+    "section": "按华为云规范补充正文章节：概述、前置条件、核心命令、参数确认、参考文档为必需章节",
+    "size": "SKILL.md 建议在500行内，技能目录总大小建议在5MB内，超限时拆分内容到 references/ 子目录",
+}
+
+def get_fix_strategy(rule_or_category: str) -> str:
+    if rule_or_category in FIX_STRATEGIES:
+        return FIX_STRATEGIES[rule_or_category]
+    prefix = rule_or_category.split("/")[0].split("_")[0]
+    for key in FIX_STRATEGIES:
+        if key.lower() == prefix.lower():
+            return FIX_STRATEGIES[key]
+    return "Review the issue and apply best practices for this category"
+
+# ── Build report ──
+
+def build_report(target: Path, skills: list, results: dict, config):
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+    L = []
+    def a(s=""): L.append(s)
+
+    a("=" * 72)
+    a("  Skill Gate Audit Report")
+    a(f"  Tool version: {AUDIT_TOOL_VERSION}")
+    a(f"  Scan target: {target}")
+    a(f"  Skills scanned: {len(skills)}")
+    a(f"  Scan level: {config.scan_level}")
+    a(f"  Generated: {now}")
+    a("=" * 72)
+    a()
+
+    # ── Section 1: Scanned Skills ──
+    a("── 1. Scanned Skills ──")
+    a()
+    for s in skills:
+        a(f"  ✔ {s.name}")
+    a()
+
+    # ── Section 2: Check Summary ──
+    # 每个检查独立小节: 扫描文件数/规则数/发现数/结论(ISSUE-004) —— 无问题场景
+    # 也能从文件数/规则数判断扫描确实执行, 而非"没扫到"。
+    a("── 2. Check Summary ──")
+    a()
+    checks_list = []
+    for name, result in results.items():
+        if result.raw_output == "SKIPPED (not available)":
+            verdict = "SKIP"
+        else:
+            verdict = "FAIL" if not result.passed else "OK"
+        checks_list.append((name, result, verdict))
+        a(f"  {name:<16} files={result.files_scanned:<6} rules={result.rules_count:<5} "
+          f"findings={result.findings_count:<5} verdict={verdict}")
+    pass_count = sum(1 for _, r, _ in checks_list if r.passed)
+    total = len(checks_list)
+    rate = pass_count / total * 100 if total else 0.0
+    if checks_list:
+        a(f"  Pass rate: {pass_count}/{total} checks passed ({rate:.1f}%)")
+    a()
+
+    # ── Collect all issues by severity ──
+    critical_issues = []
+    error_issues = []
+    warning_issues = []
+
+    for source, result in results.items():
+        for issue in result.issues:
+            entry = {
+                "skill": issue.skill, "source": source,
+                "rule": issue.rule, "severity": issue.severity.value,
+                "message": issue.message, "line": issue.line,
+                "file": issue.file, "snippet": issue.snippet,
+                "category": issue.category,
+                "rule_prefix": issue.rule.split("/")[0].split("_")[0] if issue.rule else "",
+            }
+            if issue.severity == Severity.CRITICAL:
+                critical_issues.append(entry)
+            elif issue.severity == Severity.ERROR:
+                error_issues.append(entry)
+            elif issue.severity == Severity.WARNING:
+                warning_issues.append(entry)
+
+    # ── Section 3: Issue Summary ──
+    a("── 3. Issue Summary ──")
+    a()
+    if critical_issues:
+        cats = {}
+        for i in critical_issues:
+            c = i.get("category", i["rule"])
+            cats[c] = cats.get(c, 0) + 1
+        detail = ", ".join(f"{k} x{v}" for k, v in sorted(cats.items()))
+        src = set(i["source"] for i in critical_issues)
+        a(f"  CRITICAL  {len(critical_issues):>3}  {detail} ({', '.join(src)})")
+    if error_issues:
+        rules = {}
+        for i in error_issues:
+            r = i.get("rule_prefix", i["rule"])
+            rules[r] = rules.get(r, 0) + 1
+        detail = ", ".join(f"{k} x{v}" for k, v in sorted(rules.items()))
+        src = set(i["source"] for i in error_issues)
+        a(f"  ERROR    {len(error_issues):>3}  {detail} ({', '.join(src)})")
+    if warning_issues:
+        rules = {}
+        for i in warning_issues:
+            r = i["rule"]
+            rules[r] = rules.get(r, 0) + 1
+        detail = ", ".join(f"{k} x{v}" for k, v in sorted(rules.items()))
+        src = set(i["source"] for i in warning_issues)
+        a(f"  WARNING  {len(warning_issues):>3}  {detail} ({', '.join(src)})")
+    if not critical_issues and not error_issues and not warning_issues:
+        a("  (no issues found)")
+    a()
+
+    # ── Section 4: Issue Details ──
+    a("── 4. Issue Details ──")
+    a()
+
+    def detail_block(issues, label):
+        if not issues:
+            return
+        for i in issues:
+            a(f"  [{label}] {i['skill']} — {i.get('category', i['rule'])}")
+            location_parts = []
+            if i.get("file"):
+                location_parts.append(i["file"])
+            if i.get("line"):
+                location_parts.append(f"L{i['line']}")
+            if location_parts:
+                a(f"    {' '.join(location_parts)}  {i['rule']}")
+            else:
+                a(f"    {i['rule']}")
+            if i.get("snippet"):
+                a(f"    Snippet: {_sanitize_snippet(i['snippet'])}")
+            if i.get("message"):
+                a(f"    {i['message'][:150]}")
+            a()
+
+    detail_block(critical_issues, "CRITICAL")
+    detail_block(error_issues, "ERROR")
+    detail_block(warning_issues, "WARNING")
+
+    # ── Section 5: Fix Strategies ──
+    a("── 5. Fix Strategies ──")
+    a()
+
+    seen_rules = set()
+    all_issues = critical_issues + error_issues + warning_issues
+    for i in all_issues:
+        rule_key = i.get("category") or i.get("rule_prefix") or i["rule"]
+        if rule_key in seen_rules:
+            continue
+        seen_rules.add(rule_key)
+        sev = i["severity"].upper() if i["severity"] not in ("error",) else "ERROR"
+        strategy = get_fix_strategy(rule_key)
+        a(f"  [{sev}] {rule_key}")
+        a(f"    Strategy: {strategy}")
+        a()
+
+    if not seen_rules:
+        a("  (no issues to fix)")
+        a()
+
+    # ── Verdict ──
+    a("=" * 72)
+    if all(r.passed for _, r, _ in checks_list):
+        a(f"  Gate Verdict: PASS  |  {'  '.join(f'{n} OK' for n, r, _ in checks_list)}")
+    else:
+        parts = [f"{n} OK" if r.passed else f"{n} FAIL" for n, r, _ in checks_list]
+        a(f"  Gate Verdict: FAIL  |  {'  '.join(parts)}")
+    a(f"  Pass rate: {pass_count}/{total} checks passed ({rate:.1f}%)")
+
+    # SkillSpector risk metadata
+    if "skillspector" in results and results["skillspector"].raw_output:
+        a(f"  skillspector: {results['skillspector'].raw_output}")
+
+    a("=" * 72)
+
+    return "\n".join(L)
+
+# ── Main ──
+
+REMOTE_URL_RE = re.compile(r"^(?:https?://|git@|ssh://|git://|file://)")
+
+def main():
+    args = parse_args()
+
+    # ISSUE-001: 远程 git URL 不应被当作本地路径拼接解析(否则报错信息误导用户)。
+    # 命中 URL 前缀即明确提示 --target 仅支持本地目录路径, 请先本地克隆。
+    if REMOTE_URL_RE.match(args.target.strip()):
+        print("ERROR: --target 不支持远程 git URL，仅支持本地目录路径。"
+              "请先将远程仓库克隆到本地（git clone <url>），再审计该本地目录。",
+              file=sys.stderr)
+        return 1
+
+    target = Path(args.target.strip()).resolve()
+    if not target.exists():
+        print(f"ERROR: target not found: {target}", file=sys.stderr)
+        return 1
+
+    try:
+        enabled = resolve_enabled_checks(args.checks, args.skip_checks)
+    except ValueError as e:
+        print(f"ERROR: {e}", file=sys.stderr)
+        return 1
+
+    config = AuditConfig(
+        scan_level=args.scan_level,
+        enabled_checks=enabled,
+        check_bins={
+            k: v for k, v in {
+                "skillspector": args.skillspector,
+                "gitleaks": args.gitleaks,
+            }.items() if v
+        },
+        no_install=args.no_install,
+        node_bin=args.node_bin,
+    )
+
+    ensure_tools(no_install=args.no_install)
+
+    skills = discover_skills(target)
+    if not skills:
+        print(f"ERROR: no skills found under: {target}", file=sys.stderr)
+        return 1
+
+    output_dir = Path(args.output_dir).resolve() if args.output_dir else target.parent
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    print(f"Scanning {len(skills)} skill(s) under {target} (level: {config.scan_level}) ...")
+
+    checks = create_checks(config)
+    results: dict[str, CheckResult] = {}
+
+    for i, check in enumerate(checks, 1):
+        label = f"[{i}/{len(checks)}] {check.name}"
+        if not check.is_available():
+            print(f"  {label} ... SKIP (not available)")
+            results[check.name] = CheckResult(source=check.name, passed=True,
+                                              raw_output="SKIPPED (not available)")
+            continue
+        print(f"  {label} ...", end=" ", flush=True)
+        result = check.run_batch(target, skills)
+        result.issues = [i for i in result.issues if i.severity != Severity.INFO]
+        result.passed = not any(i.severity in (Severity.CRITICAL, Severity.ERROR) for i in result.issues)
+        results[check.name] = result
+        issue_count = len(result.issues)
+        print(f"{'OK' if result.passed else f'{issue_count} issues'}")
+
+    severity_floor = _get_severity_floor(config.scan_level)
+    if severity_floor is not None:
+        for name, result in results.items():
+            if name != "skillspector":
+                continue
+            before = len(result.issues)
+            result.issues = [i for i in result.issues if i.severity.value in severity_floor]
+            result.passed = len(result.issues) == 0
+            if before != len(result.issues):
+                print(f"    (filtered to {len(result.issues)} issues by severity floor: {severity_floor})")
+
+    # LLM 误报仲裁(2026-09-28, 试点 23/23=100% 后集成): 确定性降噪/级别过滤
+    # 覆盖不到的语义歧义交给 LLM 二次判断; 无 key/调用失败降级纯规则, 不阻断。
+    try:
+        from checks.llm_arbiter import adjudicate_issues as _arbitrate
+        all_issues = []
+        for name, result in results.items():
+            for i in result.issues:
+                all_issues.append({"rule": i.rule, "file": str(i.file), "line": i.line,
+                                   "message": i.message, "_issue": i})
+        if all_issues:
+            kept, _stats = _arbitrate(all_issues, str(target), log=None)
+            removed_keys = {(i.get("_issue").rule, str(i.get("_issue").file), i.get("_issue").line)
+                            for i in all_issues if i not in kept}
+            for name, result in results.items():
+                before = len(result.issues)
+                result.issues = [i for i in result.issues
+                                 if (i.rule, str(i.file), i.line) not in removed_keys]
+                result.passed = len(result.issues) == 0
+                if before != len(result.issues):
+                    print(f"    (LLM 仲裁剔除 {before - len(result.issues)} 条误报)")
+    except Exception as _e:
+        print(f"    (LLM 仲裁不可用, 按纯规则结论: {_e})")
+
+    report = build_report(target, skills, results, config)
+
+    ts = datetime.now(timezone.utc).strftime("%Y%m%d%H%M%S")
+    # pid + 随机后缀: 秒级时间戳在同秒多次运行/多 target 场景会写同一文件互相覆盖
+    report_path = output_dir / f"skill-gate-report-{ts}-{os.getpid()}-{os.urandom(2).hex()}.txt"
+    report_path.write_text(report, encoding="utf-8")
+
+    print(f"\nReport saved: {report_path}")
+
+    # 退出码反映 gate 结果(与报告 Gate Verdict 一致): 任一 check 未过即返回 1。
+    # 此前恒返回 0, 依赖 rc 的 CI 会放过任何恶意 skill——评审第 1 条的核心闭环。
+    return 1 if any(not r.passed for r in results.values()) else 0
+
+if __name__ == "__main__":
+    try:
+        sys.exit(main())
+    except Exception as e:  # noqa: BLE001
+        print(f"ERROR: {e}", file=sys.stderr)
+        sys.exit(1)

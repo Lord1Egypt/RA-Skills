@@ -1,41 +1,52 @@
-## Description: <br>
-Verifies whether recent AI-made changes actually satisfy the user's original request by turning the request into acceptance criteria, gathering evidence, and reporting a clear pass, partial pass, fail, or unverifiable result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tvs Verify checks whether recent AI-made changes actually satisfy the user's original request by turning the request into acceptance criteria, collecting evidence, and reporting a clear validation result.
 
-## Publisher: <br>
-[inksnowhailong](https://clawhub.ai/user/inksnowhailong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[inksnowhailong](https://clawhub.ai/user/inksnowhailong)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to validate recent AI code, configuration, UI, or documentation changes against the original request with focused evidence rather than a broad code review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Verification may require running tests, lint, builds, scripts, or browser checks in the target workspace.
+
+Mitigation: Keep checks narrowly tied to acceptance criteria, review commands before execution, and report missing environment or permissions instead of claiming success.
+
+Risk: A validation report can overstate completion if evidence is incomplete.
+
+Mitigation: Map every acceptance criterion to file, diff, static, runtime, or UI evidence and use partial pass, fail, or unverifiable when evidence is missing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill after an AI agent changes code, configuration, UI, documentation, or agent rules to verify that the original user request was actually satisfied. It focuses on narrow evidence collection rather than broad code review or silent fixes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Verification can require reading local project files or running targeted checks that expose sensitive project data to the agent. <br>
-Mitigation: Review the planned evidence-gathering steps and limit checks to the files, commands, and observations needed to prove the user's acceptance criteria. <br>
-Risk: Targeted commands may trigger slow builds, external services, or environment-specific side effects. <br>
-Mitigation: Prefer narrow static checks and existing focused tests; review commands before execution when they could be slow, networked, or dependent on sensitive local services. <br>
+**Output Format:** [Markdown validation report with acceptance criteria, evidence summaries, risk notes, and next steps]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/inksnowhailong/tvs-verify) <br>
-- [Publisher profile](https://clawhub.ai/user/inksnowhailong) <br>
+**Other Properties Related to Output:** [The conclusion is constrained to pass, partial pass, fail, or unverifiable.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown validation report with acceptance criteria, evidence, risks, and next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include concise command result summaries, file path evidence, UI observations, or manual verification steps.] <br>
+1.0.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

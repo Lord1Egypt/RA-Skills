@@ -1,39 +1,56 @@
-## Description: <br>
-Free basic version that drafts a structured GitHub issue response and triage checklist. Reserves premium upgrade hooks for multilingual replies and fix-draft generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free basic version that drafts a structured GitHub issue response and triage checklist. Reserves premium upgrade hooks for multilingual replies and fix-draft generation.
 
-## Publisher: <br>
-[wingogx](https://clawhub.ai/user/wingogx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wingogx](https://clawhub.ai/user/wingogx)
 
-## Use Case: <br>
-Developers and maintainers use this skill to draft an initial GitHub issue reply, suggest a basic issue label, and produce a short triage checklist from an issue title and body. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Draft replies or triage labels may be incorrect, incomplete, or unsuitable for posting as-is. <br>
-Mitigation: Review and edit generated replies, labels, and checklist items before posting them to GitHub. <br>
-Risk: The skill exposes an external SkillPay upgrade link and includes user_id in payment URLs. <br>
-Mitigation: Use the payment flow only when the publisher is trusted, and avoid sensitive or stable personal identifiers as user_id. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SkillPay API Contract](references/skillpay-api-contract.md) <br>
+## Use Case:
 
+Developers and maintainers use this skill to draft initial GitHub issue replies, assign a suggested label, and generate a short triage checklist from an issue title and body.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON containing a draft reply, suggested label, triage checklist, issue context preview, and upgrade information] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Free tier returns a basic reply and checklist; premium features are advertised as reserved upgrade hooks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill always returns a premium upgrade object with a payment link, which may be unexpected in a GitHub issue reply workflow.
+
+Mitigation: Review the monetization behavior before installation and use only when payment-link presentation is intended.
+
+Risk: The payment URL can be configured through environment variables and includes the user identifier.
+
+Mitigation: Restrict allowed payment hosts, encode user identifiers, and avoid exposing payment links without user confirmation.
+
+Risk: Premium behavior is reserved and currently returns an upgrade-required response rather than generating premium outputs.
+
+Mitigation: Treat premium features as unavailable unless a later release documents and implements them clearly.
+
+## Reference(s):
+
+- [SkillPay API Contract](references/skillpay-api-contract.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON response with reply text, suggested label, checklist, issue context preview, and upgrade metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Free-tier output includes a premium upgrade object with price, payment URL, and reserved premium feature names.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

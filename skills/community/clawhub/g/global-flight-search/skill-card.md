@@ -1,41 +1,53 @@
-## Description: <br>
-零配置即装即用｜全球航班一次搜出结果｜含座位余量和行李额度｜性价比标签智能推荐 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+全球航班搜索与出境旅行一站式助手，11个工具覆盖国际机票、酒店、签证、安全、插头、退税、汇率、航班座位行李、紧急求助，零配置即装即用。暑假出境航班查询。
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-Travelers and travel-support agents use this skill to search global flight options, resolve airport or city codes, and check seat availability and baggage allowance before booking elsewhere. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Flight-search details are sent through the publisher's cloud proxy. <br>
-Mitigation: Use the skill only when sharing route, date, cabin class, passenger counts, airport keywords, and routing IDs with that proxy is acceptable. <br>
-Risk: Flight prices and availability can change and are presented as reference information. <br>
-Mitigation: Confirm final fare, seat availability, and baggage terms on the booking provider before purchase. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to search international flights and hotels, inspect seat and baggage details, and retrieve destination guidance for visas, safety, plugs, emergency contacts, tax refunds, and exchange rates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/global-flight-search) <br>
-- [Flight search cloud proxy](https://1439498936-460a7b6oqn.ap-guangzhou.tencentscf.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-formatted text with flight search results, airport codes, seat availability, baggage details, and CLI command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Flight prices are reference values; seat and baggage lookups require a routing_id from prior search results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: release evidence and artifact/version) <br>
+Risk: Flight, hotel, flight-number, date, city, and currency-query details are sent to external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this data sharing is acceptable; operators should keep RG_PROXY pointed at a trusted HTTPS endpoint and set PROXY_TOKEN only for that trusted proxy.
+
+Risk: Travel guidance, safety ratings, visa requirements, exchange rates, and tax-refund estimates can change or differ from official sources.
+
+Mitigation: Treat outputs as planning assistance and confirm critical details with airlines, hotels, embassies, official advisories, exchange providers, and tax-refund providers before travel or payment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/global-flight-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON-formatted text with travel search results, booking links, and destination guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes user-facing tips; flight, hotel, currency, tax, visa, and safety outputs may require confirmation with official or provider sources.]
+
+## Skill Version(s):
+
+1.3.19 (source: server release evidence, created 2026-09-23)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

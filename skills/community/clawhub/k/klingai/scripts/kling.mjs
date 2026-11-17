@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Kling AI — video generation, image generation, subject management
- * Usage: node kling.mjs <video|image|element|account> [options]
+ * Usage: node kling.mjs <video|image|element|voice|account> [options]
  * Node.js 18+, zero external deps
  */
 import { readFileSync } from 'node:fs';
@@ -29,7 +29,7 @@ if (vidx === -1 || argvRest[vidx + 1] == null || String(argvRest[vidx + 1]).star
 }
 process.argv = [process.argv[0], process.argv[1], ...argvRest];
 
-const SUBCOMMANDS = new Set(['video', 'image', 'element', 'account']);
+const SUBCOMMANDS = new Set(['video', 'image', 'element', 'voice', 'account']);
 
 function printHelp() {
   console.log(`Kling AI
@@ -39,22 +39,25 @@ Usage:
 
 Subcommands:
   video    Video generation (text-to-video, image-to-video, Omni, multi-shot)
-  image    Image generation (text-to-image, image-to-image, 4K, series, subject)
+  image    Image generation (text-to-image, image-to-image, 4K, series, subject, detail page or webpage)
   element  Subject management (create, query, list, delete)
+  voice    Voice management (create, query, list, delete)
   account  Quota, bind-url/import credentials, configure
 
 Examples:
   node kling.mjs video --prompt "A cat running on the grass" --output_dir ./out
   node kling.mjs image --prompt "Sunset over mountains" --resolution 4k
   node kling.mjs element --action list
+  node kling.mjs voice --action list-presets
   node kling.mjs account
   node kling.mjs account --bind-url
 
   node kling.mjs video --help
   node kling.mjs image --help
   node kling.mjs element --help
+  node kling.mjs voice --help
 
-Env: credentials under ~/.config/kling/.credentials (or KLING_STORAGE_ROOT/.credentials), or session KLING_TOKEN; KLING_API_BASE
+Env: credentials under ~/.config/kling/.credentials (or KLING_STORAGE_ROOT/.credentials), or session KLING_API_KEY; KLING_API_BASE
   --skill-version: version for skill (default from SKILL.md)`);
 }
 
@@ -65,7 +68,7 @@ if (!sub || sub === '--help' || sub === '-h') {
 }
 
 if (!SUBCOMMANDS.has(sub)) {
-  console.error(`Error / 错误: unknown subcommand "${sub}". Use: video | image | element | account`);
+  console.error(`Error / 错误: unknown subcommand "${sub}". Use: video | image | element | voice | account`);
   process.exit(1);
 }
 

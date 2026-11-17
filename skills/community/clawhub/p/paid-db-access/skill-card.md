@@ -1,47 +1,61 @@
-## Description: <br>
-Paid Database Access helps agents search paid academic databases through a user's authenticated browser session, then deduplicate results, enrich abstracts, rank papers, and export Markdown summaries and BibTeX. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an agent to a user's authenticated academic database access for searching IEEE Xplore, Scopus, Engineering Village, and ACM Digital Library, then deduplicates, enriches, ranks, summarizes, and exports literature results.
 
-## Publisher: <br>
-[lishy227](https://clawhub.ai/user/lishy227) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lishy227](https://clawhub.ai/user/lishy227)
 
-## Use Case: <br>
-Researchers, students, and literature-review agents use this skill to search IEEE Xplore, Scopus, Engineering Village, and ACM Digital Library through existing institutional access, then produce ranked paper summaries and citations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate inside logged-in academic database sessions and act with the user's institutional access. <br>
-Mitigation: Use a dedicated browser profile limited to the target database accounts, review applicable institution and database terms, and avoid broad unattended browsing. <br>
-Risk: Cookie bridging can copy browser cookies into the OpenClaw browser profile. <br>
-Mitigation: Avoid cookie_bridge unless explicitly needed, and remove copied cookies or use a disposable browser profile after the task. <br>
-Risk: Paper metadata and abstracts may be sent to external AI or scholarly APIs and retained in local memory caches. <br>
-Mitigation: Configure AI providers deliberately, avoid sensitive research queries where inappropriate, and delete local caches when no longer needed. <br>
+## Use Case:
 
+Researchers, research assistants, and developers use this skill to run multi-database literature searches through existing institutional access, enrich paper metadata and abstracts, rank results, and produce a structured review with citations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lishy227/paid-db-access) <br>
-- [README](README.md) <br>
-- [Quickstart](QUICKSTART.md) <br>
-- [Reference manual](REFERENCE.md) <br>
-- [License](LICENSE) <br>
-- [Elsevier developer portal](https://dev.elsevier.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, BibTeX, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON intermediate files, Markdown literature-review output, and BibTeX citation output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local memory caches for paper metadata and abstracts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill uses authenticated academic database sessions and can interact with cookies or browser login state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you are comfortable granting this access; avoid cookie extraction or bridging unless you understand that cookies are active login credentials, and do not paste cookie values into ordinary config files or logs.
+
+Risk: Paper metadata and abstracts may be sent to the configured LLM provider during reranking, summarization, or theme clustering.
+
+Mitigation: Review and pin the LLM provider and base URL before running those steps, and use only approved endpoints for sensitive research material.
+
+Risk: Automated access to paid academic databases may be subject to database or institutional usage terms.
+
+Mitigation: Confirm that the intended workflow is permitted by the user's subscription, institution, and target database terms before running large searches or downloads.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lishy227/skills/paid-db-access)
+- [README](README.md)
+- [Quickstart](QUICKSTART.md)
+- [Reference Manual](REFERENCE.md)
+- [Elsevier Developer Portal](https://dev.elsevier.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON pipeline files, structured literature summaries, and BibTeX exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist intermediate paper metadata and abstract files locally; AI reranking, summarization, and theme clustering can call the configured LLM provider.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

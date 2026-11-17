@@ -5,13 +5,13 @@ description: Shopee（虾皮）跨境商户信息（与 linkfox-shopee-store-aut
 
 # Shopee 商户 Merchant
 
-Shopee Open Platform **Merchant 模块**（6 个 API）。**依赖 `linkfox-shopee-store-auth`**：先取 `accessToken`，再经 **`POST /shopee/developerProxy`** 转发（`path` 须 `api/v2/merchant/...`）。
+Shopee Open Platform **Merchant 模块**（6 个 API）。**依赖 `linkfox-shopee-store-auth`** 选店；经 **`POST /shopee/developerProxy`** 传入 `shopId`（或 `merchantId`），由服务端解析 token 转发（`path` 须 `api/v2/merchant/...`）。
 
 ## 调用方式
 
 - **API 端点**：`POST /shopee/developerProxy`（不同操作通过请求体区分；完整参数/响应/错误码见 `references/api.md`）
 - **Python 脚本**：`python scripts/<脚本名>.py '<JSON 参数>' [--inline]`（可用脚本见上文脚本一览）
-- **成本约束**：本工具会消耗积分；失败/空结果不得自动换关键词、翻页或连续试探；需要继续检索时先向用户说明会产生额外消耗。
+- **成本约束**：本工具会消耗算力；失败/空结果不得自动换关键词、翻页或连续试探；需要继续检索时先向用户说明会产生额外消耗。
 
 **输出策略（脚本默认行为）**：
 - **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/<skill-name>-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
@@ -20,6 +20,14 @@ Shopee Open Platform **Merchant 模块**（6 个 API）。**依赖 `linkfox-shop
 - 加 `--inline` 强制全量打印到 stdout（同样落盘）
 
 **读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
+
+## 解决认证和算力问题
+发生以下异常情况时，采用 references/onboarding.md 引导解决问题：
+
+### 异常情况
+- **未配置API Key**：环境变量未配置 `LINKFOX_AGENT_API_KEY`，也未配置 `LINKFOXAGENT_API_KEY`。
+- **响应401或402状态码**
+- **响应提示算力或余额不足**：消息含"算力余额不足/计费不足/余额不足/quota exceeded/insufficient balance/套餐到期/需充值/请充值"，或类似含义的内容。
 
 ## 官方参考
 
@@ -37,7 +45,7 @@ Merchant 模块索引：[v2.merchant.get_merchant_info](https://open.shopee.com/
 
 ## Core Concepts
 
-- **转发链路**：`storeTokens` → `developerProxy` → 紫鸟 `shopee-proxy` → Shopee API
+- **转发链路**：`developerProxy`（`shopId`/`merchantId` 选店，服务端注入 token）→ 紫鸟 `shopee-proxy` → Shopee API
 - **商户 vs 店铺**：本 skill 查商户信息及下属店铺；单店资料见 `linkfox-shopee-store-shop`
 - **全球商品**：商户下全球 listing 见 `linkfox-shopee-store-global-product`
 - **典型用法**：`get_merchant_info` 确认 region/currency → `get_shop_list_by_merchant` 列出授权店铺
@@ -55,6 +63,21 @@ Merchant 模块索引：[v2.merchant.get_merchant_info](https://open.shopee.com/
 | `merchant_api.py` | 通用入口（JSON 含 `api` 字段） | — |
 
 共享：`_shopee_merchant_common.py`、`_merchant_endpoints.py`、`_merchant_api_runner.py`。
+
+## 接口说明（按 API）
+
+入参与响应细节放在 `references/apis/`，SKILL 只保留索引。
+
+| API | 说明文档 |
+|-----|----------|
+| `get_merchant_info` | [references/apis/get-merchant-info.md](./references/apis/get-merchant-info.md) |
+| `get_merchant_prepaid_account_list` | [references/apis/get-merchant-prepaid-account-list.md](./references/apis/get-merchant-prepaid-account-list.md) |
+| `get_merchant_warehouse_list` | [references/apis/get-merchant-warehouse-list.md](./references/apis/get-merchant-warehouse-list.md) |
+| `get_merchant_warehouse_location_list` | [references/apis/get-merchant-warehouse-location-list.md](./references/apis/get-merchant-warehouse-location-list.md) |
+| `get_shop_list_by_merchant` | [references/apis/get-shop-list-by-merchant.md](./references/apis/get-shop-list-by-merchant.md) |
+| `get_warehouse_eligible_shop_list` | [references/apis/get-warehouse-eligible-shop-list.md](./references/apis/get-warehouse-eligible-shop-list.md) |
+
+模块总览 / Feedback 见 [references/api.md](./references/api.md)。
 
 ## Usage Scenarios
 
@@ -82,6 +105,10 @@ Merchant 模块索引：[v2.merchant.get_merchant_info](https://open.shopee.com/
 - 单店 listing → `linkfox-shopee-store-product`
 - 订单 → `linkfox-shopee-store-orders`
 - Public 模块（`get_merchants_by_partner` 等）→ 非本 skill
+
+## 算力消耗规则
+
+不消耗算力。
 
 **Feedback:**
 

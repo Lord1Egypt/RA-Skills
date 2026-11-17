@@ -1,45 +1,61 @@
-## Description: <br>
-Cognitive Memory Temp helps agents set up and operate a persistent multi-store memory system with episodic, semantic, procedural, core, and vault stores, plus reflection, decay scoring, and audit trails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cognitive Memory Temp sets up a multi-store agent memory system for recall, decay-based forgetting, reflection-based consolidation, semantic graph tracking, and auditable memory changes.
 
-## Publisher: <br>
-[linbei2007](https://clawhub.ai/user/linbei2007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linbei2007](https://clawhub.ai/user/linbei2007)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add persistent memory, natural-language remember/forget/reflect workflows, knowledge graph records, and auditable memory updates to an agent workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create a highly persistent memory system that may shape future agent behavior and retain sensitive behavior or memory records. <br>
-Mitigation: Review the memory templates and resulting IDENTITY.md, SOUL.md, reward logs, reflection archives, and audit records before and after installation. <br>
-Risk: Initialization and upgrade scripts modify workspace files and initialize or update git-backed audit history. <br>
-Mitigation: Run scripts only in the intended workspace after reviewing them, and avoid running them where unrelated secrets or uncommitted work are present. <br>
-Risk: Remote memory search can broaden access to stored memories and session-derived context. <br>
-Mitigation: Consider disabling remote memorySearch or limiting its providers and sources unless the deployment requires that capability. <br>
+## Use Case:
 
+Developers and agent operators use this skill to initialize and configure persistent workspace memory for agents that need recall, knowledge graph organization, reflection cycles, and audit trails across sessions.
 
-## Reference(s): <br>
-- [Architecture](artifact/references/architecture.md) <br>
-- [Reflection Process](artifact/references/reflection-process.md) <br>
-- [Routing Prompt](artifact/references/routing-prompt.md) <br>
-- [ClawHub release page](https://clawhub.ai/linbei2007/cognitive-memory-temp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, JSON configuration snippets, and memory template files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates persistent workspace memory files and git-backed audit records when its scripts or procedures are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent memory files may retain sensitive personal data or operational context longer than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a dedicated workspace, avoid storing credentials or sensitive personal data, and review memory diffs before accepting changes.
+
+Risk: Initialization and upgrade scripts create and modify workspace files and can initialize git audit tracking.
+
+Mitigation: Review scripts before execution, run them only in the intended workspace, and inspect generated files and git changes before committing.
+
+Risk: Forget behavior is described as soft archival, so removed memories may remain in git history or backups.
+
+Mitigation: Treat forget as search hiding rather than secure deletion, and use separate data retention controls for information that must be erased.
+
+## Reference(s):
+
+- [Cognitive Memory Temp ClawHub Skill](https://clawhub.ai/linbei2007/skills/cognitive-memory-temp)
+- [linbei2007 ClawHub Profile](https://clawhub.ai/user/linbei2007)
+- [Architecture Reference](artifact/references/architecture.md)
+- [Reflection Process Reference](artifact/references/reflection-process.md)
+- [Routing Prompt Reference](artifact/references/routing-prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions, shell command snippets, JSON configuration, and workspace memory template files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Initializes persistent memory files and provides reflection, routing, upgrade, and audit guidance for agent workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

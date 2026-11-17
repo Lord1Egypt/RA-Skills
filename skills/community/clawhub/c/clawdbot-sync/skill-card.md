@@ -1,44 +1,58 @@
-## Description: <br>
-Synchronize memory, preferences, and skills between multiple Clawdbot instances over SSH/rsync with Tailscale-supported peer connectivity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Synchronizes memory, preferences, and skills between Clawdbot instances using SSH and rsync over Tailscale or direct network access.
 
-## Publisher: <br>
-[udiedrichsen](https://clawhub.ai/user/udiedrichsen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[udiedrichsen](https://clawhub.ai/user/udiedrichsen)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep Clawdbot memory, profile state, and selected skill data synchronized across machines they control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can copy and overwrite agent memory and profile state across SSH peers. <br>
-Mitigation: Use it only between machines you control, run /sync diff before push/pull/sync, and keep backups of synchronized state. <br>
-Risk: SSH peer verification is weakened during connection checks. <br>
-Mitigation: Use a dedicated least-privilege SSH key/account and pin or verify SSH host keys before syncing. <br>
-Risk: Automatic or skill synchronization can propagate unwanted changes after initial setup. <br>
-Mitigation: Avoid enabling auto-sync or syncing skills until the workflow has been tested with non-sensitive data. <br>
+## Use Case:
 
+Developers and ClawHub users use this skill to configure trusted peers and synchronize agent memory, profile files, and selected skill data across their own Clawdbot instances.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/udiedrichsen/clawdbot-sync) <br>
-- [Setup Guide](references/setup.md) <br>
-- [Tailscale Install Guide](https://tailscale.com/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires rsync, ssh, jq, SSH key authentication, and network access between configured peers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata and SKILL.md frontmatter) <br>
+Risk: The skill syncs sensitive agent memory and profile data between machines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with trusted peers, run /sync diff before transfer, review memory changes before pulling or bidirectional sync, and keep backups.
+
+Risk: Remote SSH writes can affect another workspace if peer access or host trust is misconfigured.
+
+Mitigation: Pin or verify SSH host keys, restrict peers to a dedicated low-privilege account, and constrain sync to an intended workspace path.
+
+Risk: The setup material includes a Tailscale install one-liner.
+
+Mitigation: Replace it with verified package-manager installation instructions before use.
+
+## Reference(s):
+
+- [Clawdbot Sync release page](https://clawhub.ai/udiedrichsen/skills/clawdbot-sync)
+- [Setup Guide](references/setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires rsync, ssh, and jq; remote sync depends on configured SSH peers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

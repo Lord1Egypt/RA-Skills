@@ -1,45 +1,60 @@
-## Description: <br>
-Migrates the Number Two OpenClaw agent state, including identity files, memory, system rules, skill integrations, workspace state, and environment configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Migrates a Number Two OpenClaw agent state by restoring identity, memory, skill integrations, system configuration, environment setup, and verification assets.
 
-## Publisher: <br>
-[fr33b1rd8979-max](https://clawhub.ai/user/fr33b1rd8979-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[fr33b1rd8979-max](https://clawhub.ai/user/fr33b1rd8979-max)
 
-## Use Case: <br>
-OpenClaw users or developers use this skill when they intentionally want to restore the specific Number Two agent identity, memory, operating rules, skill ecosystem, and current workspace state into a new environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The package includes plaintext credentials and API keys. <br>
-Mitigation: Treat included credentials as exposed, remove or rotate them before use, and provide replacement secrets through a safer local mechanism. <br>
-Risk: The installer can replace or heavily modify an OpenClaw workspace with the packaged agent state. <br>
-Mitigation: Back up the workspace first and install only when the intended outcome is to restore this specific Number Two state. <br>
-Risk: The restored state includes broad persistent agent-control instructions, automatic triggers, memory persistence, and external posting or API behavior. <br>
-Mitigation: Review the restored AGENTS, HEARTBEAT, SOUL, memory, and skill integration files before enabling the restored environment. <br>
+## Use Case:
 
+OpenClaw users and agent operators use this skill to move a specific agent workspace state to a new environment, including identity, memory, skills, current project state, and validation steps. It is intended for deliberate workspace restoration, not general-purpose OpenClaw setup.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fr33b1rd8979-max/number-two-migration) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [Number Two Complete State Migration Guide](artifact/二号完整状态迁移指南.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with shell scripts and bundled configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Restores files into an OpenClaw workspace and provides an installation verifier.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact update log) <br>
+Risk: The skill replaces active OpenClaw workspace identity, memory, rules, skills, and state with a specific agent state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that replacement is intended; review identity, AGENTS, SOUL, memory, and skills files before installation and use a separate test profile or complete backup.
+
+Risk: Bundled plaintext credentials or copied environment variables may be exposed, stale, or inappropriate for the target environment.
+
+Mitigation: Remove bundled secrets before use, rotate any exposed keys, and configure fresh credentials through the target environment's normal secret-management process.
+
+Risk: Restored identity, rule, and memory files can materially change the agent's behavior after installation.
+
+Mitigation: Validate behavior in an isolated workspace before using the migrated state for ongoing work.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fr33b1rd8979-max/skills/number-two-migration)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+- [Number Two Full State Migration Guide](artifact/二号完整状态迁移指南.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell scripts and JSON/Markdown configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Install flow can overwrite an OpenClaw workspace and write environment variables after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

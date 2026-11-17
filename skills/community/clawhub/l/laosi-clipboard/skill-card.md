@@ -1,40 +1,49 @@
-## Description: <br>
-Windows剪贴板管理器 helps agents manage Windows clipboard content with copy, paste, history, multi-entry storage, search, and formatting utilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Windows clipboard manager for reading and writing clipboard content, maintaining history and slots, and formatting or transforming copied text.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers, analysts, and Windows users can use this skill to generate clipboard-management code and commands for reading, writing, formatting, searching, and organizing clipboard content. It is suited for data cleanup, batch text transformations, code snippet handling, and cross-application data exchange. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Clipboard operations can expose passwords, API keys, financial data, private messages, or other sensitive copied content. <br>
-Mitigation: Use the skill only when clipboard access is intended, avoid history or monitoring while copying sensitive data, stop monitoring promptly, and clear stored clipboard history when no longer needed. <br>
-Risk: Generated clipboard scripts depend on local Python packages and may behave differently across Windows environments. <br>
-Mitigation: Install pyperclip and Pillow from a trusted Python environment, review generated code before execution, and test clipboard behavior with non-sensitive sample data first. <br>
+## Use Case:
 
+Developers and Windows users use this skill to manage clipboard content, keep short clipboard histories or named slots, and transform copied text such as JSON, line lists, casing, and quoted values during data-processing or cross-application workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-clipboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include clipboard operation reports, history summaries, slot listings, and dependency installation commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata, released 2026-04-28) <br>
+Risk: Clipboard access can expose passwords, tokens, private messages, or confidential business data when monitoring or history is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when comfortable granting clipboard access; avoid monitoring or saving history while copying sensitive content, and prefer a virtual environment with pinned dependency versions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-clipboard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include clipboard operation reports and dependency notes for pyperclip and Pillow.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

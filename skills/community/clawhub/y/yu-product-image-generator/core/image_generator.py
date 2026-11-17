@@ -403,7 +403,7 @@ if __name__ == '__main__':
     print("🎨 Nano Banana 图片生成器 - 优化版测试")
     print("=" * 50)
     
-    api_key = "sk-6fe41fd597614d2686f6d0685b4bd232"
+    api_key = "REDACTED-SECRET"
     
     # 单张测试
     print("\n1. 单张生成测试")

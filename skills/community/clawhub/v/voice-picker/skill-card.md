@@ -1,41 +1,56 @@
-## Description: <br>
-Recommends suitable SenseAudio voice IDs for a user's scenario, emotion, or plan tier, with an optional TTS preview sample when a SenseAudio API key is available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommends SenseAudio voice options for scenarios or emotions and can optionally generate preview audio samples when configured with an API key.
 
-## Publisher: <br>
-[scikkk](https://clawhub.ai/user/scikkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scikkk](https://clawhub.ai/user/scikkk)
 
-## Use Case: <br>
-External creators, developers, and operators use this skill to select SenseAudio voices for narration, marketing, podcast, story, education, and emotion-driven voice scenarios. It can also provide shell commands for generating comparison MP3 previews when the user supplies SenseAudio credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Preview generation sends the preview text to the SenseAudio API and writes preview.json and MP3 files locally. <br>
-Mitigation: Use the API key only when previews are needed, avoid confidential preview text, and delete generated preview files after use. <br>
+## Use Case:
 
+External users and developers use this skill to choose SenseAudio voice IDs for narration, commerce, podcast, education, advertising, and emotion-specific voice scenarios. They can also request optional preview audio when they have a SenseAudio API key.
 
-## Reference(s): <br>
-- [ClawHub Voice Picker release](https://clawhub.ai/scikkk/voice-picker) <br>
-- [SenseAudio homepage](https://senseaudio.cn) <br>
-- [SenseAudio API key page](https://senseaudio.cn/platform/api-key) <br>
-- [SenseAudio TTS API endpoint](https://api.senseaudio.cn/v1/t2a_v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Files] <br>
-**Output Format:** [Markdown recommendations with optional bash commands that write preview JSON and MP3 files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations usually include one to three voice options with voice ID, style, plan tier, and fit for the user's scenario.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Optional preview generation sends preview text and an API key to SenseAudio.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use recommendation-only mode for sensitive text, and generate previews only after explicit user confirmation with non-sensitive preview text.
+
+Risk: The optional preview shell command uses unsafe JSON construction that can execute commands from preview text.
+
+Mitigation: Review or rewrite the preview command with safe JSON construction before using arbitrary preview text.
+
+## Reference(s):
+
+- [ClawHub Voice Picker release page](https://clawhub.ai/scikkk/skills/voice-picker)
+- [SenseAudio homepage](https://senseaudio.cn)
+- [SenseAudio API key page](https://senseaudio.cn/platform/api-key)
+- [SenseAudio TTS API endpoint](https://api.senseaudio.cn/v1/t2a_v2)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown recommendations with optional bash commands and MP3 preview files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendation-only use requires no API key; preview generation requires SENSEAUDIO_API_KEY plus curl, jq, and xxd.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Tracks YouTube creators and analyzes video content, producing AI-powered summaries, key points, and optional new-upload notifications from YouTube links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track YouTube creators and analyze video content. Paste a YouTube link to get an AI-powered breakdown (summary, key points, why it matters), then optionally follow the creator for new upload notifications.
 
-## Publisher: <br>
-[glin23](https://clawhub.ai/user/glin23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[glin23](https://clawhub.ai/user/glin23)
 
-## Use Case: <br>
-External users and creators use this skill to analyze YouTube videos, follow creator channels, and receive concise update cards when tracked channels publish new uploads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores followed YouTube creators and last-seen upload state in a local watchlist file. <br>
-Mitigation: Set the watchlist path intentionally, especially on shared systems, and review local file access before deployment. <br>
-Risk: Notification actions can send update messages through host-provided delivery adapters. <br>
-Mitigation: Enable delivery only for expected targets and review configured destinations before running notification actions. <br>
-Risk: The no-key YouTube path relies on public pages and feeds, which may be less reliable than API-backed resolution. <br>
-Mitigation: Use a restricted YouTube API key when stronger creator resolution and upload checks are required. <br>
+## Use Case:
 
+External users and developers use this skill to analyze YouTube videos, follow creators, check for new uploads, and prepare concise notification cards from upload metadata.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/glin23/creator-feed-watch) <br>
-- [OpenClaw skill installation documentation](https://openclawdoc.com/docs/skills/installation) <br>
-- [OpenClaw skill creation documentation](https://openclawdoc.com/docs/skills/creating-skills/) <br>
-- [ClawHub publishing documentation](https://openclawdoc.com/docs/skills/clawhub/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown summaries and JSON-compatible action results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include normalized YouTube metadata, transcript availability, local watchlist state, notification payloads, and delivery results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence, SKILL.md frontmatter, manifest.yaml, package.json) <br>
+Risk: Transcript caption retrieval can be steered to request arbitrary caption URLs from the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict caption fetches to legitimate YouTube or Google caption hosts before using the skill in environments with access to internal services or private networks.
+
+Risk: The skill stores followed creators locally and may send upload metadata through a configured notification adapter.
+
+Mitigation: Install only when local watchlist storage and configured notification delivery are acceptable; review the watchlist path and delivery target before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/glin23/skills/creator-feed-watch)
+- [OpenClaw skill installation](https://openclawdoc.com/docs/skills/installation)
+- [OpenClaw skill creation](https://openclawdoc.com/docs/skills/creating-skills/)
+- [OpenClaw ClawHub publishing](https://openclawdoc.com/docs/skills/clawhub/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Configuration]
+
+**Output Format:** [Markdown analysis cards and structured JSON action results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include transcript text, video metadata, watchlist records, notification payloads, delivery status, and human-readable status messages.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter, manifest.yaml, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

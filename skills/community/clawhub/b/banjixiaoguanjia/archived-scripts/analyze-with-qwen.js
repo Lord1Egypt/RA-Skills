@@ -84,7 +84,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 from openai import OpenAI
 
 client = OpenAI(
-    api_key="${process.env.DASHSCOPE_API_KEY || 'sk-14d72eaba86242d3ba368ee0c9b08dac'}",
+    api_key="${process.env.DASHSCOPE_API_KEY || 'REDACTED-SECRET'}",
     base_url="https://dashscope.aliyuncs.com/compatible-mode/v1"
 )
 

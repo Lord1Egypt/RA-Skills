@@ -1,44 +1,58 @@
-## Description: <br>
-Hermes Communication Bridge lets WorkBuddy and Hermes exchange messages through a shared local JSON file queue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a local shared-file queue for asynchronous messages between WorkBuddy and Hermes.
 
-## Publisher: <br>
-[liuboacean](https://clawhub.ai/user/liuboacean) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuboacean](https://clawhub.ai/user/liuboacean)
 
-## Use Case: <br>
-Developers and agent operators use this skill to send, receive, inspect, and process asynchronous messages between WorkBuddy and Hermes through a local file queue. It supports queue-based coordination without an external service dependency. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bridge stores messages in a plaintext local queue that may be readable by trusted agents or local processes with filesystem access. <br>
-Mitigation: Avoid sending secrets or sensitive data through the queue and restrict access to the shared communication directory. <br>
-Risk: Queue messages can include command-like message types that may influence downstream Hermes-side handling. <br>
-Mitigation: Review and constrain any Hermes-side consumer before allowing command-like messages or automated processing. <br>
-Risk: Cron or auto-polling can create ongoing background processing of queued messages. <br>
-Mitigation: Enable scheduled polling only when persistent background message handling is intended and monitored. <br>
+## Use Case:
 
+Developers and agent operators use this skill to send, receive, inspect, and mark asynchronous queue messages between WorkBuddy and Hermes without an external service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuboacean/hermes-communication-bridge) <br>
-- [README](artifact/temp-repo2/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands, JSON message examples, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local queue and history JSON files under the Hermes shared communication directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Messages are stored in local shared queue and history files, which can expose sensitive content to other local users or processes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending secrets and restrict filesystem permissions on the configured communication directory.
+
+Risk: Unattended polling can process untrusted queue contents, including command-type messages.
+
+Mitigation: Treat all queue entries as untrusted and require separate confirmation before acting on command-type messages.
+
+Risk: Shared queue files do not provide authentication or authorization for multi-user or sensitive environments.
+
+Mitigation: Use a safer authenticated channel or deploy only in trusted single-user environments when sensitive messages are possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuboacean/skills/hermes-communication-bridge)
+- [Publisher profile](https://clawhub.ai/user/liuboacean)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local queue and history JSON files under the configured Hermes communication directory.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

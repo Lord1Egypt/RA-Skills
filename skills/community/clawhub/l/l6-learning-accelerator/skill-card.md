@@ -1,42 +1,54 @@
-## Description: <br>
-Provides time-aware memory retrieval by combining vector similarity with temporal relevance and tracks learning progress for study management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides time-aware memory retrieval by combining vector similarity with temporal relevance and tracks learning progress for study workflows.
 
-## Publisher: <br>
-[wyblhl](https://clawhub.ai/user/wyblhl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wyblhl](https://clawhub.ai/user/wyblhl)
 
-## Use Case: <br>
-Developers and learners use this skill to rank notes or memories with vector and time-based signals, parse time-related queries, and summarize learning progress across study sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may activate the skill when a user only intended a general learning or memory query. <br>
-Mitigation: Use explicit prompts when invoking the skill and review generated retrieval or progress summaries before relying on them. <br>
-Risk: Imported or exported progress JSON can contain learning notes, session details, or untrusted data. <br>
-Mitigation: Keep import and export paths inside the workspace, avoid importing untrusted JSON, and treat exported files as potentially sensitive. <br>
+## Use Case:
 
+Developers and agent users can use this skill to rank learning notes or memory items by vector similarity and temporal relevance, parse time-related study queries, and generate progress reports for learning sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wyblhl/l6-learning-accelerator) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill metadata](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript code and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local retrieval results, temporal date ranges, progress reports, and optional JSON import/export data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Progress import/export functions accept caller-provided file paths and may read from or overwrite arbitrary local paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Allow only trusted callers to choose paths, restrict import/export to a dedicated progress-data directory, and prevent silent overwrites.
+
+Risk: Imported progress JSON can replace in-memory sessions and milestones without schema or size checks.
+
+Mitigation: Validate imported JSON structure and size before loading it into a workspace or agent runtime.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wyblhl/skills/l6-learning-accelerator)
+- [Publisher profile](https://clawhub.ai/user/wyblhl)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JavaScript code examples and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces ranked retrieval results, temporal date ranges, and progress report objects when its JavaScript APIs are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; README version agrees)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

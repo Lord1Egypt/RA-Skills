@@ -1,42 +1,57 @@
-## Description: <br>
-Gets real-time A-share market heat rankings by aggregating popularity data from Wencai, Xueqiu, and Eastmoney and calculating a composite heat score. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Heat Rank collects A-share popularity rankings from Wencai, Xueqiu, and Eastmoney and returns a composite market heat ranking.
 
-## Publisher: <br>
-[n1e](https://clawhub.ai/user/n1e) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[n1e](https://clawhub.ai/user/n1e)
 
-## Use Case: <br>
-Developers, analysts, and market-monitoring agents use this skill to collect A-share popularity rankings and compare market attention across Wencai, Xueqiu, and Eastmoney. It can return a ranked table or JSON for the top requested stocks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security verdict is suspicious because the skill relies on a large obfuscated local JavaScript signer with browser anti-detection behavior that is not fully disclosed. <br>
-Mitigation: Install only from the trusted publisher, run in a sandbox, and verify the helper file path and SHA-256 hash before execution. <br>
-Risk: The skill installs and executes Node dependencies to support the Wencai signing helper. <br>
-Mitigation: Pin or audit npm dependencies before running npm install in the artifact's lib directory. <br>
-Risk: The skill makes outbound requests to Wencai, Xueqiu, and Eastmoney and depends on those services remaining accessible and compatible. <br>
-Mitigation: Run it in an environment where those network destinations are expected, and treat collection failures or API changes as operational errors rather than authoritative market signals. <br>
+## Use Case:
 
+External users and market-analysis agents use this skill to identify currently popular A-share stocks by comparing rankings across Wencai, Xueqiu, and Eastmoney. It is useful for market attention monitoring, hot-stock discovery, and limit-up heat analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/n1e/stock-heat-rank) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Code] <br>
-**Output Format:** [Markdown-oriented prose with terminal output examples, shell commands, and optional JSON stock ranking output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The runtime supports --top and --format flags and prints collection status before the final table or JSON result.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: A large obfuscated JavaScript signer and mutable npm dependencies execute locally with the user's permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run only in a restricted environment, avoid elevated privileges, and prefer a release with readable signer source, pinned dependencies, a committed lockfile, and documented sandboxing.
+
+Risk: The skill depends on live third-party market websites and API responses that can fail or change.
+
+Mitigation: Treat results as current best-effort market-attention signals and review collection failures or parser errors before relying on the ranking.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/n1e/skills/stock-heat-rank)
+- [Publisher Profile](https://clawhub.ai/user/n1e)
+- [Wencai](https://www.iwencai.com/)
+- [Xueqiu Hot Stock Page](https://xueqiu.com/hot/stock)
+- [Eastmoney Stock Rank Endpoint](https://emappdata.eastmoney.com/stockrank/getAllCurrentList)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Console table or JSON array with stock code, name, platform ranks, composite score, and appearance count]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports a top-N option and table or JSON output format.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,16 @@
+{
+  "mode": "browser_table_extractor",
+  "sample": {
+    "file": "samples/table.html",
+    "table": 0,
+    "sourceUrl": "https://example.com/demo"
+  },
+  "expected": {
+    "rows": 3,
+    "tableCount": 1
+  },
+  "invalid": {
+    "file": "samples/table.html",
+    "table": 99
+  }
+}

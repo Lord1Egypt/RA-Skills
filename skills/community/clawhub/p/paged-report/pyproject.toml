@@ -1,0 +1,23 @@
+[project]
+name = "paged-report"
+version = "1.2.1"
+description = "Generate self-contained, A4-oriented HTML reports from structured data."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Ming Fang" },
+]
+dependencies = []
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "License :: OSI Approved :: MIT License",
+]
+
+[project.urls]
+Repository = "https://github.com/mfang0126/paged-report"
+
+[tool.paged-report]
+release-manifest = "release/manifest.json"
+runtime-dependencies = []

@@ -1,45 +1,63 @@
-## Description: <br>
-ClawScan performs first-pass security checks for local OpenClaw deployments by checking version risk, installed skill hashes, and listener exposure through the ClawScan service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawScan performs first-pass security checks for OpenClaw deployments by checking registration and update state, matching OpenClaw versions to known vulnerable ranges, comparing installed skill hashes against known malicious hashes, and reviewing local listener exposure.
 
-## Publisher: <br>
-[fate93930](https://clawhub.ai/user/fate93930) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fate93930](https://clawhub.ai/user/fate93930)
 
-## Use Case: <br>
-Developers and operators use ClawScan to assess local OpenClaw deployments for known vulnerable versions, known malicious skill hashes, and potentially exposed listeners. It can run targeted checks, a combined scan, or scheduled monitoring that reports only when risk is found. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ClawScan sends OpenClaw version data, installed skill names, relative paths, file hashes, and listener process/IP/port metadata to the ClawScan service. <br>
-Mitigation: Install and run it only when that data sharing is acceptable for the target environment. <br>
-Risk: Scheduled scans persist local schedule state and may continue checking without output when no risk is found. <br>
-Mitigation: Enable scheduled scans deliberately, review the local schedule state, and disable the schedule when continuous monitoring is no longer wanted. <br>
-Risk: A clean result means no known issue was matched, not that the OpenClaw environment is guaranteed safe. <br>
-Mitigation: Treat ClawScan as a first-pass check and pair it with normal security review, dependency review, and external exposure validation where needed. <br>
+## Use Case:
 
+Developers and security engineers use this skill to run a first-pass OpenClaw security assessment covering known vulnerable versions, known malicious skill hashes, local listener exposure, update status, and scheduled monitoring.
 
-## Reference(s): <br>
-- [ClawScan API Contract](references/api-contract.md) <br>
-- [ClawScan README](README.md) <br>
-- [Project homepage](https://github.com/autosecdev/clawscan-skills) <br>
-- [ClawHub skill page](https://clawhub.ai/fate93930/clawscan-autosec-dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scheduled scans may intentionally produce no output when every check is low risk and no actionable finding is present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can send a random client ID, OpenClaw version data, installed-skill file hashes, and local listener metadata to a third-party ClawScan service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the remote endpoint and data handling expectations before installation, and run only the modules whose data sharing is acceptable.
+
+Risk: Port checks may include broad local listener metadata, including listeners unrelated to OpenClaw.
+
+Mitigation: Review the listener payload before submission when possible and avoid using port-check where unrelated process metadata should not be shared.
+
+Risk: Scheduled scans can persist recurring scan state.
+
+Mitigation: Confirm how to disable scheduled scans and delete the stored client and schedule files before enabling recurring checks.
+
+Risk: A clean result can be mistaken for a complete security assurance.
+
+Mitigation: Treat clean results only as no known match in the current ClawScan corpus and supplement them with normal security review.
+
+## Reference(s):
+
+- [ClawScan API Contract](artifact/references/api-contract.md)
+- [ClawScan Skill Homepage](https://github.com/autosecdev/clawscan-skills)
+- [ClawHub Skill Page](https://clawhub.ai/fate93930/skills/clawscan-autosec-dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with per-module status, risk, conclusion, evidence, recommended next steps, and scope notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scheduled scans report only when risk is found; clean results mean no known issue was matched, not a guarantee of safety.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

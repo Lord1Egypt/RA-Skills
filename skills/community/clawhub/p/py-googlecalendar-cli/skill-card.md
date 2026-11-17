@@ -1,41 +1,61 @@
-## Description: <br>
-Tiny Python CLI tool to manage Google Calendar events from the command line, including listing, adding, updating, and deleting events through the Calendar API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tiny Python CLI tool to manage Google Calendar events from the command line: list, add, update, and delete events via the Calendar API.
 
-## Publisher: <br>
-[xwings](https://clawhub.ai/user/xwings) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xwings](https://clawhub.ai/user/xwings)
 
-## Use Case: <br>
-Developers and agents use this skill to manage Google Calendar events from a local command-line workflow. It supports reading upcoming events and making calendar changes when valid Google OAuth credentials are provided. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and change real Google Calendar data when OAuth credentials are available. <br>
-Mitigation: Install only for intended calendar-management workflows, scope access to the intended calendar when possible, and review add, update, and delete commands before execution. <br>
-Risk: Google OAuth client secrets and refresh tokens are sensitive credentials. <br>
-Mitigation: Store credentials securely and avoid passing secrets through shared shells, logs, or command histories. <br>
+## Use Case:
 
+Developers and agent operators use this skill to run a Python-based Google Calendar CLI for listing, creating, updating, and deleting calendar events. It is suitable when an agent needs command-line guidance or execution patterns for Google Calendar workflows using OAuth credentials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xwings/py-googlecalendar-cli) <br>
-- [Google Cloud Console](https://console.cloud.google.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, API calls] <br>
-**Output Format:** [Plain text or JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Google OAuth credentials and network access to the Google Calendar API; mutating commands can create, update, or delete calendar events.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses long-lived Google OAuth credentials and refresh tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store credentials in environment variables or a managed secret store, avoid command-line credential flags, and limit use to a Google account and calendar appropriate for agent access.
+
+Risk: The CLI can update or delete live calendar events.
+
+Mitigation: Require explicit user confirmation before running update or delete commands and review target event IDs before execution.
+
+Risk: Calendar reads may expose sensitive event details to an agent session.
+
+Mitigation: Use only calendars whose event data is acceptable for agent access and avoid granting broader calendar access than the workflow requires.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xwings/skills/py-googlecalendar-cli)
+- [Publisher profile](https://clawhub.ai/user/xwings)
+- [Project homepage](https://github.com/xwings/py-googlecalendar-cli)
+- [Google Cloud Console](https://console.cloud.google.com/)
+- [Google Calendar API v3 endpoint](https://www.googleapis.com/calendar/v3)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Google OAuth client credentials, a refresh token, and a calendar ID supplied through environment variables or CLI flags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

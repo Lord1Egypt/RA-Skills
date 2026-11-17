@@ -1,40 +1,57 @@
-## Description: <br>
-Sends Telegram notifications to one or more configured recipients by Telegram user ID. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send Telegram notifications to team members by Telegram user ID.
 
-## Publisher: <br>
-[AgohpAI](https://clawhub.ai/user/AgohpAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agohpai](https://clawhub.ai/user/agohpai)
 
-## Use Case: <br>
-Developers and team members use this skill to send alerts, reminders, and task updates through Telegram to specific people or small recipient lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send user-provided content externally through Telegram using a local bot token. <br>
-Mitigation: Before each send, verify the exact message text and recipient chat IDs, and avoid sending secrets, credentials, personal data, or internal-only material unless sharing over Telegram is intended. <br>
-Risk: Broad notification triggers may make it easy to prepare or send a Telegram message in the wrong context. <br>
-Mitigation: Confirm user intent, recipient list, and delivery result before treating a notification as complete. <br>
+## Use Case:
 
+Developers and operators use this skill to send Telegram alerts, reminders, and task updates to one or more team members by Telegram chat ID.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AgohpAI/tg-notify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, node, a Telegram bot token in local OpenClaw configuration, and intended Telegram chat IDs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Messages and chat IDs are sent to Telegram through a locally configured bot credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the OpenClaw Telegram bot setup is trusted, avoid sensitive message content, and confirm recipients before sending.
+
+Risk: The shell snippets interpolate message and recipient values, which can be unsafe if untrusted text is inserted.
+
+Mitigation: Prefer a small Node sender that validates chat IDs, JSON-serializes message bodies, and avoids shell interpolation.
+
+Risk: Bulk sending can notify unintended new or multiple recipients.
+
+Mitigation: Ask for confirmation before sending to new chat IDs or multiple recipients.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agohpai/skills/tg-notify)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with bash and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, node, Telegram chat IDs, and a local OpenClaw Telegram bot token configuration.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

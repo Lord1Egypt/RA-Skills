@@ -1,40 +1,54 @@
-## Description: <br>
-Generates 2000-3500 word Chinese novel chapters or other long-form text by checking setting consistency, adapting style, and improving fluency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Novel Writer helps agents generate 2,000-3,500 character Chinese novel chapters or other long-form body text while checking setting consistency, style fit, fluency, and length.
 
-## Publisher: <br>
-[chn012cjus](https://clawhub.ai/user/chn012cjus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chn012cjus](https://clawhub.ai/user/chn012cjus)
 
-## Use Case: <br>
-External writers and content teams use this skill to draft Chinese novel chapters, stories, manuscripts, copy, and other body text while checking continuity against project materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to inspect project files before generation, which may expose unrelated drafts, secrets, client material, or private context in the workspace. <br>
-Mitigation: Use the skill in a project folder that contains only the writing materials needed for the task, and keep unrelated sensitive files outside that folder. <br>
-Risk: The skill asks the agent to browse broadly without clear source limits, which can introduce unreliable references or unnecessary network exposure. <br>
-Mitigation: Tell the agent whether browsing is allowed before use, and provide approved sources or ask for confirmation before web research. <br>
+## Use Case:
 
+Writers, editors, and content creators use this skill to generate Chinese prose, novel chapters, stories, copy, and other body text that follows project setting documents, outlines, prior context, and requested style.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chn012cjus/ai-powered-web-novel-full-text-generation-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese prose or markdown-formatted long-form text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets 2000-3500 words per generated body text and includes consistency, length, fluency, and naturalness checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill asks the agent to read broad project writing context before generation, which may expose unrelated drafts, notes, or private planning material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a limited workspace containing only the writing files intended for use with the generation task.
+
+Risk: The skill asks the agent to perform unrestricted web research before generation, which can introduce unreliable or unsuitable source material.
+
+Mitigation: Disable web access or require manual approval for browsing, and review generated text before publishing or reusing it.
+
+## Reference(s):
+
+- [AI Novel Writer ClawHub listing](https://clawhub.ai/chn012cjus/skills/ai-powered-web-novel-full-text-generation-skill)
+- [chn012cjus publisher profile](https://clawhub.ai/user/chn012cjus)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese prose text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets a 2,000-3,500 character range per generated body text and includes post-generation consistency, length, fluency, and naturalness checks.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

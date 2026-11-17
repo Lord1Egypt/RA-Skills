@@ -1,44 +1,64 @@
-## Description: <br>
-Check and collect LP fees from PancakeSwap V3 and Infinity (v4) positions, including pending fees, uncollected fees, harvest requests, and token-pair-specific fee checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check and collect LP fees from PancakeSwap V3 and Infinity (v4) positions. Use when user says "collect my fees", "claim LP fees", "how much fees have I earned", "pending fees", "uncollected fees", "/collect-fees", "harvest LP fees", or asks about fees from a specific token pair position.
 
-## Publisher: <br>
-[pcs-bot](https://clawhub.ai/user/pcs-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pcs-bot](https://clawhub.ai/user/pcs-bot)
 
-## Use Case: <br>
-External users and agents use this skill to inspect PancakeSwap liquidity positions, estimate pending fees, and receive PancakeSwap deep links for reviewing and collecting fees in a wallet-controlled UI. The skill is intended for read-only position discovery and fee summaries, not transaction signing or private-key handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet lookup activity can reveal public wallet addresses and timing to PancakeSwap Explorer, public RPC providers, token or price APIs, and npm-installed SDK dependencies. <br>
-Mitigation: Use only public wallet addresses, avoid the workflow when lookup privacy is a concern, and prefer trusted network and package-install environments. <br>
-Risk: Deep links and optional browser-opening behavior can lead users into an external PancakeSwap UI where transactions are reviewed and confirmed. <br>
-Mitigation: Open only PancakeSwap finance URLs, review all wallet prompts before confirming, and do not provide seed phrases or private keys. <br>
+## Use Case:
 
+External users and DeFi operators use this skill to discover pending PancakeSwap V3, Infinity, and Solana liquidity position fees, review fee summaries, and open PancakeSwap collection links. The skill is intended to read on-chain and API data and direct users to wallet-confirmed collection flows rather than execute transactions itself.
 
-## Reference(s): <br>
-- [Collect Fees on ClawHub](https://clawhub.ai/pcs-bot/pcs-collect-fees) <br>
-- [PancakeSwap AI GitHub homepage](https://github.com/pancakeswap/pancakeswap-ai) <br>
-- [fetch-v3-positions.mjs](references/fetch-v3-positions.mjs) <br>
-- [fetch-infinity-positions.mjs](references/fetch-infinity-positions.mjs) <br>
-- [fetch-solana.cjs](references/fetch-solana.cjs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Code, JSON, Guidance] <br>
-**Output Format:** [Markdown fee summaries with tables, shell command snippets, helper-script JSON, and PancakeSwap deep links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only workflow; helper scripts query public chain, explorer, token, and price endpoints and do not request signing material.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Public wallet addresses and host or agent metadata may be sent to PancakeSwap, explorer, and RPC services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the user accepts those external queries; remove or disable the Step 0 ping where metadata reporting is not acceptable.
+
+Risk: The skill installs npm packages at runtime without pinned versions.
+
+Mitigation: Pin dependencies with a lockfile or approved package mirror before managed deployment.
+
+Risk: Inherited endpoint overrides can redirect some Solana explorer requests.
+
+Mitigation: Avoid inherited endpoint overrides and use trusted PancakeSwap or RPC providers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pcs-bot/skills/pcs-collect-fees)
+- [PancakeSwap AI homepage](https://github.com/pancakeswap/pancakeswap-ai)
+- [fetch-v3-positions.mjs](references/fetch-v3-positions.mjs)
+- [fetch-infinity-positions.mjs](references/fetch-infinity-positions.mjs)
+- [fetch-solana.cjs](references/fetch-solana.cjs)
+- [viem readContract documentation](https://viem.sh/docs/contract/readContract)
+- [PancakeSwap Infinity documentation](https://developer.pancakeswap.finance/contracts/infinity/overview)
+- [PancakeSwap Liquidity UI](https://pancakeswap.finance/liquidity/pools)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown fee summaries with tables, JSON-derived values, shell command snippets, and PancakeSwap deep links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are read-oriented and direct users to PancakeSwap or wallet-confirmed flows for collection.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

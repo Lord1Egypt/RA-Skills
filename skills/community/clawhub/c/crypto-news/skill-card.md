@@ -1,40 +1,54 @@
-## Description: <br>
-Fetches the latest cryptocurrency, Web3, and AI industry news from BlockBeats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches the latest cryptocurrency, Web3, and AI industry news from BlockBeats.
 
-## Publisher: <br>
-[xuzipeng](https://clawhub.ai/user/xuzipeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xuzipeng](https://clawhub.ai/user/xuzipeng)
 
-## Use Case: <br>
-Developers and agent users use this skill to retrieve current BlockBeats crypto, Web3, and AI news, optionally filtered by category, result count, and page. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends requests to the BlockBeats API using a user-provided API key. <br>
-Mitigation: Use a dedicated, revocable BlockBeats API key and avoid exposing unrelated secrets in the runtime environment. <br>
-Risk: Returned news content may be incomplete, stale, or unavailable if the external API fails or filtering parameters are too narrow. <br>
-Mitigation: Check command errors and adjust NEWS_SIZE, NEWS_PAGE, or NEWS_TYPE when expected items are missing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xuzipeng/crypto-news) <br>
-- [BlockBeats Open Flash API](https://api.theblockbeats.news/v1/open-api/open-flash) <br>
+## Use Case:
 
+External users and developers use this skill to retrieve current BlockBeats flash news about cryptocurrency, Web3, and AI, with optional filtering by category, page, and item count.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown news items printed by a Node.js command.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and BLOCKBEATS_API_KEY. Optional NEWS_SIZE, NEWS_PAGE, and NEWS_TYPE environment variables select result count, page, and category.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires a BlockBeats API key and sends authenticated requests to the BlockBeats API.
+
+Mitigation: Provide only a scoped BlockBeats API key suitable for news retrieval, store it in the BLOCKBEATS_API_KEY environment variable, and rotate or revoke it if no longer needed.
+
+Risk: The skill is focused on Chinese-language BlockBeats flash news and may not provide complete market research coverage.
+
+Mitigation: Treat outputs as news-fetching results from BlockBeats and corroborate important financial or market claims with additional sources before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xuzipeng/skills/crypto-news)
+- [Publisher profile](https://clawhub.ai/user/xuzipeng)
+- [BlockBeats open flash API endpoint](https://api.theblockbeats.news/v1/open-api/open-flash)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Markdown news items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language BlockBeats news content; category, page, and item count can be selected through NEWS_TYPE, NEWS_PAGE, and NEWS_SIZE.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

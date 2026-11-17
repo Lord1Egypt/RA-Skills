@@ -1,184 +1,136 @@
 #!/usr/bin/env bash
+# session-closeout.sh — read-only end-of-session audit.
+#
+# Reports what the current workspace looks like at the end of a session.
+# It writes nothing: no files, no directories, no commits, and it runs
+# nothing it discovers in the workspace. Recording the closeout is the
+# caller's job, done with the values this script prints.
 set -euo pipefail
 
-# ── Workspace root detection ─────────────────────────────
-ROOT="${OPENCLAW_WORKSPACE:-$(pwd)}"
+# ── Workspace root: the current directory, never an env override ──
+ROOT="$(pwd -P)"
 TODAY_UTC="$(date -u +%F)"
-NOW_UTC="$(date -u '+%Y-%m-%d %H:%M UTC')"
-MEM_DIR="$ROOT/memory"
-MEM_FILE="$MEM_DIR/$TODAY_UTC.md"
 MASTER_TODO_FILE="$ROOT/MASTER_TODO.md"
-TODO_BUILDER="$ROOT/scripts/build-master-todo.py"
-HOOKS_FILE="$ROOT/scripts/closeout-hooks.sh"
+PROJECTS_DIR="$ROOT/projects"
 
-# ── Optional overrides (pipe-delimited) ──────────────────
-CLOSEOUT_OUTCOMES="${CLOSEOUT_OUTCOMES:-}"
-CLOSEOUT_BLOCKERS="${CLOSEOUT_BLOCKERS:-}"
-CLOSEOUT_NEXT="${CLOSEOUT_NEXT:-}"
+# Stale threshold: digits only, so a hostile value cannot reach arithmetic.
+STALE_HOURS="${CLOSEOUT_TODO_STALE_HOURS:-24}"
+[[ "$STALE_HOURS" =~ ^[0-9]+$ ]] || STALE_HOURS=24
 
-split_pipe_to_bullets() {
-  local raw="$1"
-  [[ -z "$raw" ]] && return 0
-  IFS='|' read -r -a _parts <<< "$raw"
-  for p in "${_parts[@]}"; do
-    p="$(echo "$p" | sed 's/^ *//; s/ *$//')"
-    [[ -n "$p" ]] && echo "  - $p"
-  done
+# Project slugs to check, pipe-delimited. Each must be a plain directory
+# name: no separators, no dots-only names, no leading dash.
+CLOSEOUT_PROJECTS="${CLOSEOUT_PROJECTS:-}"
+SLUG_PATTERN='^[A-Za-z0-9_][A-Za-z0-9._-]*$'
+
+mtime_epoch() { # portable file mtime (GNU or BSD stat), 0 if missing
+  stat -c %Y "$1" 2>/dev/null || stat -f %m "$1" 2>/dev/null || echo 0
 }
 
-# ── 1) Task hygiene: refresh master TODO ─────────────────
-MASTER_OK="no"
-MASTER_REASON="skipped"
+epoch_day() { # epoch seconds -> YYYY-MM-DD (UTC), GNU or BSD date
+  date -u -r "$1" +%F 2>/dev/null || date -u -d "@$1" +%F 2>/dev/null || echo ""
+}
 
-if [[ -f "$TODO_BUILDER" ]]; then
-  TMP_LOG="$(mktemp)"
-  trap 'rm -f "$TMP_LOG"' EXIT
-  BEFORE_MTIME="$(stat -c %Y "$MASTER_TODO_FILE" 2>/dev/null || echo 0)"
-  if python3 "$TODO_BUILDER" >"$TMP_LOG" 2>&1; then
-    AFTER_MTIME="$(stat -c %Y "$MASTER_TODO_FILE" 2>/dev/null || echo 0)"
-    if [[ -f "$MASTER_TODO_FILE" ]]; then
-      MASTER_OK="yes"
-      if [[ "$AFTER_MTIME" -gt "$BEFORE_MTIME" ]]; then
-        MASTER_REASON="rewritten"
-      else
-        MASTER_REASON="unchanged"
-      fi
-    else
-      MASTER_REASON="script_ok_but_file_missing"
-    fi
+rel_path() { local r="${1#"$ROOT"/}"; [[ "$r" == "$1" ]] && r="."; printf '%s' "$r"; }
+
+# ── 1) Task hygiene: MASTER_TODO.md freshness (read only) ──
+NOW_EPOCH="$(date -u +%s)"
+if [[ -f "$MASTER_TODO_FILE" ]]; then
+  AGE_H=$(( (NOW_EPOCH - $(mtime_epoch "$MASTER_TODO_FILE")) / 3600 ))
+  if (( AGE_H > STALE_HOURS )); then
+    MASTER_TODO_STATUS="stale"; MASTER_TODO_DETAIL="last updated ${AGE_H}h ago"
   else
-    MASTER_REASON="script_failed"
+    MASTER_TODO_STATUS="fresh"; MASTER_TODO_DETAIL="updated ${AGE_H}h ago"
   fi
 else
-  MASTER_OK="yes"
-  MASTER_REASON="no_builder_script"
+  MASTER_TODO_STATUS="missing"; MASTER_TODO_DETAIL="no MASTER_TODO.md"
 fi
 
-# ── 2) Repo hygiene: scan for dirty repos ────────────────
-mapfile -t GIT_DIRS < <(find "$ROOT" -maxdepth 4 -type d -name .git 2>/dev/null | sed 's#/.git$##' | sort)
+# ── 2) Repo hygiene: which repos have uncommitted changes ──
+# `git status` in an untrusted repo can execute code the repo configures
+# (fsmonitor, hooks), so both are pinned off and locks stay untouched.
+GIT_DIRS=()
+while IFS= read -r d; do GIT_DIRS+=("$d"); done < <(
+  find "$ROOT" -maxdepth 4 -type d -name .git 2>/dev/null | sed 's#/\.git$##' | sort
+)
 DIRTY=()
-for repo in "${GIT_DIRS[@]}"; do
-  if [[ -n "$(git -C "$repo" status --porcelain 2>/dev/null || true)" ]]; then
+for repo in "${GIT_DIRS[@]:-}"; do
+  [[ -n "$repo" ]] || continue
+  if [[ -n "$(git -C "$repo" --no-optional-locks \
+                -c core.fsmonitor=false \
+                -c core.hooksPath=/dev/null \
+                status --porcelain 2>/dev/null || true)" ]]; then
     DIRTY+=("$repo")
   fi
 done
 
-# ── 3) Memory hygiene: append closeout block ─────────────
-mkdir -p "$MEM_DIR"
-if [[ ! -f "$MEM_FILE" ]]; then
-  printf '# %s\n\n' "$TODAY_UTC" > "$MEM_FILE"
-fi
-
-# Build default bullets
-DEFAULT_OUTCOMES=()
-DEFAULT_OUTCOMES+=("Closeout completed")
-if [[ "$MASTER_OK" == "yes" && "$MASTER_REASON" != "no_builder_script" ]]; then
-  DEFAULT_OUTCOMES+=("MASTER_TODO.md refreshed ($MASTER_REASON)")
-fi
-if ((${#DIRTY[@]} == 0)); then
-  DEFAULT_OUTCOMES+=("All repos clean")
-else
-  DEFAULT_OUTCOMES+=("${#DIRTY[@]} dirty repo(s) found")
-fi
-
-DEFAULT_BLOCKERS=()
-if ((${#DIRTY[@]} > 0)); then
-  DEFAULT_BLOCKERS+=("${#DIRTY[@]} dirty repo(s) need manual review")
-fi
-if [[ "$MASTER_OK" != "yes" ]]; then
-  DEFAULT_BLOCKERS+=("MASTER_TODO refresh failed: $MASTER_REASON")
-fi
-if ((${#DEFAULT_BLOCKERS[@]} == 0)); then
-  DEFAULT_BLOCKERS+=("None")
-fi
-
-DEFAULT_NEXT=()
-if ((${#DIRTY[@]} > 0)); then
-  DEFAULT_NEXT+=("Resolve dirty repo(s) before next work block")
-fi
-DEFAULT_NEXT+=("Resume from highest-priority item in MASTER_TODO.md")
-
-{
-  echo "## Session Closeout — $NOW_UTC"
-  echo "- Status: ok"
-  echo "- MASTER_TODO: $MASTER_OK ($MASTER_REASON)"
-  if ((${#DIRTY[@]} == 0)); then
-    echo "- Dirty repos: none"
-  else
-    echo "- Dirty repos: ${#DIRTY[@]}"
-    for d in "${DIRTY[@]}"; do
-      rel="${d#$ROOT/}"
-      [[ "$rel" == "$d" ]] && rel="."  # workspace root is the repo
-      echo "  - $rel"
+# ── 3) Project-doc hygiene: were core docs touched today? (warn only) ──
+STALE_PROJECT_DOCS=()
+REJECTED_SLUGS=()
+if [[ -n "$CLOSEOUT_PROJECTS" ]]; then
+  IFS='|' read -r -a _slugs <<< "$CLOSEOUT_PROJECTS"
+  for slug in "${_slugs[@]:-}"; do
+    slug="${slug#"${slug%%[![:space:]]*}"}"; slug="${slug%"${slug##*[![:space:]]}"}"
+    [[ -n "$slug" ]] || continue
+    if [[ ! "$slug" =~ $SLUG_PATTERN ]] || [[ "$slug" == *".."* ]]; then
+      REJECTED_SLUGS+=("$slug"); continue
+    fi
+    found_today="no"; any_doc="no"
+    for doc in STATUS.md DECISIONS.md PROJECT.md BACKLOG.md; do
+      f="$PROJECTS_DIR/$slug/$doc"
+      [[ -f "$f" ]] || continue
+      any_doc="yes"
+      if [[ "$(epoch_day "$(mtime_epoch "$f")")" == "$TODAY_UTC" ]]; then
+        found_today="yes"; break
+      fi
     done
-  fi
-  echo "- Key outcomes:"
-  if [[ -n "$CLOSEOUT_OUTCOMES" ]]; then
-    split_pipe_to_bullets "$CLOSEOUT_OUTCOMES"
-  else
-    for b in "${DEFAULT_OUTCOMES[@]}"; do echo "  - $b"; done
-  fi
-  echo "- Blockers:"
-  if [[ -n "$CLOSEOUT_BLOCKERS" ]]; then
-    split_pipe_to_bullets "$CLOSEOUT_BLOCKERS"
-  else
-    for b in "${DEFAULT_BLOCKERS[@]}"; do echo "  - $b"; done
-  fi
-  echo "- Next session starts with:"
-  if [[ -n "$CLOSEOUT_NEXT" ]]; then
-    split_pipe_to_bullets "$CLOSEOUT_NEXT"
-  else
-    for b in "${DEFAULT_NEXT[@]}"; do echo "  - $b"; done
-  fi
-  echo
-} >> "$MEM_FILE"
+    if [[ "$any_doc" == "no" ]]; then
+      STALE_PROJECT_DOCS+=("$slug (no core docs found under projects/$slug)")
+    elif [[ "$found_today" == "no" ]]; then
+      STALE_PROJECT_DOCS+=("$slug (no core doc updated today)")
+    fi
+  done
+fi
 
-# ── 4) Automation hygiene ────────────────────────────────
+# ── 4) Automation hygiene: not verifiable from here ──
 AUTOMATION_STATUS="not_verified"
 AUTOMATION_REASON="manual_review_required"
 
-# ── 5) Optional hooks ────────────────────────────────────
-HOOKS_STATUS="none"
-if [[ -f "$HOOKS_FILE" ]]; then
-  # shellcheck source=/dev/null
-  source "$HOOKS_FILE" && HOOKS_STATUS="ok" || HOOKS_STATUS="failed"
-fi
-
-# ── 6) Collect exceptions ────────────────────────────────
+# ── 5) Final status ──
 EXCEPTIONS=()
-if [[ "$MASTER_OK" != "yes" ]]; then
-  EXCEPTIONS+=("high|MASTER_TODO refresh failed|Check build-master-todo.py")
-fi
-if ((${#DIRTY[@]} > 0)); then
-  EXCEPTIONS+=("medium|${#DIRTY[@]} dirty repo(s)|Review git status manually")
-fi
+[[ "$MASTER_TODO_STATUS" == "missing" ]] && EXCEPTIONS+=("high|MASTER_TODO.md missing|Create or restore it")
+[[ "$MASTER_TODO_STATUS" == "stale" ]]   && EXCEPTIONS+=("medium|MASTER_TODO.md $MASTER_TODO_DETAIL|Refresh it as a separate, reviewed step")
+((${#DIRTY[@]} > 0)) && EXCEPTIONS+=("medium|${#DIRTY[@]} dirty repo(s)|Review git status manually")
+for s in "${STALE_PROJECT_DOCS[@]:-}"; do
+  [[ -n "$s" ]] && EXCEPTIONS+=("low|project docs: $s|Update STATUS/DECISIONS if the session changed them")
+done
+for s in "${REJECTED_SLUGS[@]:-}"; do
+  [[ -n "$s" ]] && EXCEPTIONS+=("low|rejected project slug: $s|Use a plain directory name under projects/")
+done
 
 CLOSEOUT_STATUS="ok"
-if [[ "$MASTER_OK" != "yes" ]]; then
+if [[ "$MASTER_TODO_STATUS" == "missing" ]]; then
   CLOSEOUT_STATUS="error"
 elif ((${#EXCEPTIONS[@]} > 0)); then
   CLOSEOUT_STATUS="warning"
 fi
 
-# ── 7) Print summary ─────────────────────────────────────
+# ── 6) Report (key=value for the caller) ──
 echo "SESSION_CLOSEOUT_OK"
 echo "CLOSEOUT_STATUS=$CLOSEOUT_STATUS"
-echo "MASTER_TODO_REFRESH=$MASTER_OK"
-echo "MASTER_REASON=$MASTER_REASON"
+echo "WORKSPACE_ROOT=$ROOT"
+echo "MASTER_TODO_STATUS=$MASTER_TODO_STATUS"
+echo "MASTER_TODO_DETAIL=$MASTER_TODO_DETAIL"
 echo "DIRTY_REPO_COUNT=${#DIRTY[@]}"
+echo "PROJECT_DOC_WARNINGS=${#STALE_PROJECT_DOCS[@]}"
+echo "REJECTED_SLUG_COUNT=${#REJECTED_SLUGS[@]}"
 echo "AUTOMATION_STATUS=$AUTOMATION_STATUS"
-echo "HOOKS_STATUS=$HOOKS_STATUS"
+echo "AUTOMATION_REASON=$AUTOMATION_REASON"
 echo "EXCEPTION_COUNT=${#EXCEPTIONS[@]}"
 i=1
-for e in "${EXCEPTIONS[@]}"; do
-  echo "EXCEPTION_$i=$e"
-  ((i++))
+for e in "${EXCEPTIONS[@]:-}"; do
+  [[ -n "$e" ]] && { echo "EXCEPTION_$i=$e"; ((i++)); }
 done
 if ((${#DIRTY[@]} > 0)); then
   echo "DIRTY_REPOS:"
-  for d in "${DIRTY[@]}"; do
-    rel="${d#$ROOT/}"
-    [[ "$rel" == "$d" ]] && rel="."  # workspace root is the repo
-    echo "- $rel"
-  done
+  for d in "${DIRTY[@]}"; do echo "- $(rel_path "$d")"; done
 fi

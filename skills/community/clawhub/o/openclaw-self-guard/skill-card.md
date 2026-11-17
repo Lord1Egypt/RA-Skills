@@ -1,43 +1,61 @@
-## Description: <br>
-Monitors local OpenClaw version daily at 06:00 Beijing time against NVD and GitHub advisories, reporting found CVEs with remediation steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Security Vulnerability Monitor - Checks for OpenClaw security vulnerabilities from NVD CVE database and GitHub Security Advisories.
 
-## Publisher: <br>
-[aaronjager92](https://clawhub.ai/user/aaronjager92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaronjager92](https://clawhub.ai/user/aaronjager92)
 
-## Use Case: <br>
-Developers and operators use this skill to check an OpenClaw installation against NVD CVE data and GitHub Security Advisories, then receive remediation-oriented output when matching vulnerabilities are found. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs an enabled daily OpenClaw cron job. <br>
-Mitigation: Review setup_cron.sh before installation and confirm how to disable or remove the openclaw-self-guard job. <br>
-Risk: The vulnerability check can falsely report no vulnerabilities when data-source checks fail. <br>
-Mitigation: Do not rely on the results until helper argument parsing and fail-open no-vulnerability behavior are fixed; confirm important findings against NVD and GitHub advisories. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to check the local OpenClaw version against NVD CVE records and GitHub Security Advisories, with vulnerability reports and remediation guidance when findings are detected.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aaronjager92/openclaw-self-guard) <br>
-- [NVD CVE API](https://services.nvd.nist.gov/rest/json/cves/2.0) <br>
-- [GitHub Security Advisories API](https://api.github.com/advisories) <br>
-- [requirements.txt](references/requirements.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report or JSON status with vulnerability counts, local version, and remediation guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run silently when no vulnerabilities are detected; the cron setup installs an enabled daily OpenClaw job.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The setup script installs an enabled recurring OpenClaw scheduled task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or disable setup_cron.sh before installation, and use an opt-in schedule with clear uninstall steps.
+
+Risk: The setup script accepts a delivery channel argument with unsafe input handling.
+
+Mitigation: Avoid untrusted delivery channel values and review any customized delivery configuration before enabling the job.
+
+Risk: The monitor depends on unpinned Python packages and external advisory APIs.
+
+Mitigation: Pin dependency versions and account for NVD or GitHub API availability before relying on the monitor operationally.
+
+## Reference(s):
+
+- [NVD CVE API](https://services.nvd.nist.gov/rest/json/cves/2.0)
+- [GitHub Security Advisories API](https://api.github.com/advisories)
+- [Python requirements](references/requirements.txt)
+- [ClawHub skill page](https://clawhub.ai/aaronjager92/skills/openclaw-self-guard)
+- [Publisher profile](https://clawhub.ai/user/aaronjager92)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown vulnerability report or JSON status output, with setup guidance and shell command usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs silently when no vulnerabilities are found unless JSON output is requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

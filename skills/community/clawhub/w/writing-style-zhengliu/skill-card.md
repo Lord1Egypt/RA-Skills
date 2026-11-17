@@ -1,41 +1,52 @@
-## Description: <br>
-Rewrites long, over-expressive source material into a strict four-layer knowledge-distillation structure that emphasizes challenges, core ideas, design, and execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Distills long-form Chinese writing into a strict four-part structure of challenge, core ideas, design, and execution to maximize information density and support infographic-enhanced expression.
 
-## Publisher: <br>
-[shing19](https://clawhub.ai/user/shing19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[shing19](https://clawhub.ai/user/shing19)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and content practitioners use this skill to turn verbose source material into dense, structured Chinese knowledge summaries. It is suited for summarization, knowledge extraction, rewriting, and long-form digest workflows across domains.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill enforces a strict four-section distillation format that can remove nuance from source material.
+
+Mitigation: Review the distilled output against the original source when completeness or tone preservation matters.
+
+Risk: The skill may invoke infographic-related tools when available.
+
+Mitigation: Confirm generated infographic content and saved outputs before publication or downstream use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and content teams use this skill to distill long-form articles, summaries, and knowledge extracts into concise structured Markdown. It is best for source material whose useful knowledge is obscured by repetition, emotional framing, or excessive personal expression. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Aggressive distillation can omit nuance or change emphasis from the source text. <br>
-Mitigation: Review the distilled Markdown against the original source before relying on it for decisions or publication. <br>
-Risk: Optional infographic generation may create local files containing sensitive source content. <br>
-Mitigation: Avoid sensitive inputs unless the local helper tools and output directory handling are trusted. <br>
+**Output Format:** [Markdown with four H2 sections and bullet lists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shing19/writing-style-zhengliu) <br>
-- [Publisher profile](https://clawhub.ai/user/shing19) <br>
+**Other Properties Related to Output:** [May request infographic generation when compatible tools are available; inspected artifact does not request sensitive access or hidden execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown, optionally with local infographic file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs follow a four-section structure: challenge, core ideas, design, and execution.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

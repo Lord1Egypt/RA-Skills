@@ -1,39 +1,52 @@
-## Description: <br>
-Xiaozhi Learning Plan helps agents create personalized 30-day study plans, exam-prep schedules, progress check-ins, and family learning dashboards from user goals and authorized learning-record summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将学习目标拆解为可执行的30天学习方案（小学高段采用周计划），并在学生启用后跟进执行偏差。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Students, families, and learning assistants use this skill to turn study goals, time limits, and authorized learning-record summaries into practical 30-day learning plans, weekly reviews, exam-prep pacing, and printable family dashboards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use student history and produce parent-facing emotional or anxiety inferences without a clear consent model. <br>
-Mitigation: Use only with explicit consent for learning-record access, monitoring, reminders, and parent dashboard sharing; avoid or disable emotional or anxiety summaries unless there is a clear guardian/student consent and privacy process. <br>
+## Use Case:
 
+学生可用此技能把考试准备或学习目标转成按学科、日期和可用时间安排的学习计划。经单独同意后，它也可使用有限的学习档案摘要跟进进度，生成家长看板，或交接提醒任务。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qizhitang/xiaozhi-learning-plan) <br>
-- [Plan templates](artifact/references/plan-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured study-plan sections, schedules, check-ins, and dashboard text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include personalized analysis, weekly monitoring prompts, exam-prep schedules, and parent-facing dashboard language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: ClawScan reports unresolved privacy and scope conflicts involving access to and sharing of learning-profile data, including broader learning metrics and schema-allowed profile writeback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, review the profile-data consent and sharing rules, confirm the requested metrics and writeback scope are acceptable, and enable each profile or sharing action only with explicit consent.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/qizhitang/skills/xiaozhi-learning-plan)
+- [Plan templates](artifact/references/plan-templates.md)
+- [Grade-band guidance](artifact/shared/grade-bands.md)
+- [Crisis referral protocol](artifact/shared/crisis-referral-protocol.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, JSON]
+
+**Output Format:** [中文文本和Markdown学习计划、进度简报或家庭看板；需要提醒时可附带结构化JSON交接]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [内容会按学段、学习目标、可用时间和学生选择调整。]
+
+## Skill Version(s):
+
+2.12.7 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

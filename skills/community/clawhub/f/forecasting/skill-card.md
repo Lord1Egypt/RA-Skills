@@ -1,38 +1,50 @@
-## Description: <br>
-Apply quantitative and qualitative forecasting techniques for demand planning, revenue projections, and trend analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apply quantitative and qualitative forecasting techniques for demand planning, revenue projections, and trend analysis.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linuszz](https://clawhub.ai/user/linuszz)
 
-## Use Case: <br>
-Analysts, planners, and agents use this skill to select forecasting methods, structure forecasts, document assumptions, and describe risks for demand, revenue, or trend projections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Forecasts may be misleading if the input data, assumptions, seasonality, or uncertainty bounds are weak or outdated. <br>
-Mitigation: Review the data, assumptions, selected method, and confidence bounds before relying on outputs for business, financial, or operational decisions. <br>
+## Use Case:
 
+Business users, analysts, and operators use this skill to select forecasting methods, structure forecast outputs, document assumptions, and assess risks for planning scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linuszz/forecasting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown forecast report with method selection, data tables, forecast ranges, assumptions, and risks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, persistence, or external access are described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Forecasts may be misleading if assumptions, source data quality, seasonality, or uncertainty are not reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected method, input data, assumptions, confidence bounds, and risk table before relying on the forecast for planning decisions.
+
+## Reference(s):
+
+- [Forecasting skill source](artifact/SKILL.md)
+- [ClawHub Forecasting skill page](https://clawhub.ai/linuszz/skills/forecasting)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown forecast report with method selection, tables, assumptions, and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

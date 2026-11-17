@@ -1,41 +1,58 @@
-## Description: <br>
-Tracks and reports multi-group stock portfolios with daily snapshots, Yahoo Finance prices, P&L analytics, holding updates, and optional Feishu or Telegram notifications for A-share, Hong Kong, and U.S. markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and report multi-group stock portfolios with daily snapshots, live Yahoo Finance prices, P&L analytics, and push notifications for Feishu or Telegram.
 
-## Publisher: <br>
-[Stepuuu](https://clawhub.ai/user/Stepuuu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stepuuu](https://clawhub.ai/user/stepuuu)
 
-## Use Case: <br>
-External users and developers use this skill to query and update portfolio holdings, cash, and fund balances, generate daily snapshots and reports, and optionally send reports through Feishu or Telegram. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify portfolio holdings, cash balances, fund values, and rebalance records. <br>
-Mitigation: Require explicit user confirmation before holdings, cash, fund, rebalance, remove, pipeline, or report-send actions, and review changed portfolio files after updates. <br>
-Risk: Portfolio reports may contain private financial information and can be sent to external Feishu or Telegram channels. <br>
-Mitigation: Keep notification credentials unset unless needed, verify the destination before enabling report sends, and avoid sharing reports with unintended recipients. <br>
-Risk: Setup clones and installs remote engine code that is not pinned by the artifact. <br>
-Mitigation: Review or otherwise trust the cloned repository and dependencies before installation; use a pinned revision in controlled deployments. <br>
+## Use Case:
 
+Developers and portfolio operators use this skill to query grouped holdings, apply buy, sell, rebalance, fund, and cash updates, generate daily portfolio snapshots and reports, and optionally push reports to private notification channels.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON/tool-call results, and generated portfolio reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can update local portfolio JSON/CSV records and optionally send portfolio reports through configured notification credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: evidence.release.version, SKILL.md frontmatter, changelog dated 2026-03-10) <br>
+Risk: Setup clones and installs an external engine repository that the skill relies on.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review, pin, and verify the external repository before setup, and install dependencies inside an isolated project or virtual environment.
+
+Risk: The skill can change financial records, including holdings, cash, fund balances, and deletion or overwrite operations.
+
+Mitigation: Require explicit user confirmation before holding deletion, cash or fund overwrite, and report push operations; keep backups of portfolio data.
+
+Risk: Webhook and bot tokens may send portfolio reports to external messaging services.
+
+Mitigation: Scope Feishu and Telegram credentials to private destinations and avoid sharing tokens outside the configured environment.
+
+## Reference(s):
+
+- [Portfolio Daily Tracker on ClawHub](https://clawhub.ai/stepuuu/skills/portfolio-daily-tracker)
+- [External engine repository referenced by setup script](https://github.com/Stepuuu/portfolio-daily-tracker.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON-backed portfolio data, and generated daily reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can read and mutate local portfolio holdings, snapshots, history CSV data, fund balances, cash balances, and optional notification settings.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter, release evidence, changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

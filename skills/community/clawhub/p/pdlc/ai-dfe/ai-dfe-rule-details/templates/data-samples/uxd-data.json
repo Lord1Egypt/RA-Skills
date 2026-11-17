@@ -1,0 +1,61 @@
+{
+  "$schema": null,
+  "$schemaVersion": "1.0.0",
+  "$generatedBy": "AI-DFE",
+  "$generatedOn": "2026-06-22T12:00:00Z",
+  "$family": "pdlc",
+  "$package": "ai-uxd",
+  "data": {
+    "projectId": 166324,
+    "projectHandle": "PRJ-SMP",
+    "outputRoot": "pdlc-ws/projects/PRJ-SMP-sample/ux/",
+    "created": "2026-06-22T12:00:00Z",
+    "lastUpdated": "2026-06-22T12:00:00Z",
+    "mode": "B",
+    "depth": "Standard",
+    "currentPhase": "Assemble",
+    "currentStage": 16,
+    "status": "Complete",
+    "progress": [],
+    "enabledExtensions": [],
+    "downstreamSignals": {},
+    "keyMetrics": {
+      "personas": 3,
+      "journeys": 2,
+      "flows": 5,
+      "components": 12
+    },
+    "accessibility": {
+      "wcagTarget": "2.2 AA",
+      "status": "baseline-defined"
+    },
+    "ux": {
+      "status": "complete",
+      "phase": "Assemble",
+      "stage": "Package Assembly",
+      "personas": [
+        { "name": "Primary User", "status": "validated", "path": "projects/PRJ-SMP-sample/ux/02_Personas/Persona_01_Primary_User.md" },
+        { "name": "Secondary User", "status": "validated", "path": "projects/PRJ-SMP-sample/ux/02_Personas/Persona_02_Secondary_User.md" },
+        { "name": "Administrator", "status": "in-progress", "path": "projects/PRJ-SMP-sample/ux/02_Personas/Persona_03_Administrator.md" }
+      ],
+      "journeys": [
+        { "name": "Onboarding", "status": "mapped", "persona": "Primary User", "path": "projects/PRJ-SMP-sample/ux/03_Journey_Maps/Journey_01_Onboarding.md", "steps": 6, "goal": "Complete first task", "trigger": "First login", "endStateSuccess": "Task completed", "endStateFailure": "Abandoned at setup", "duration": "5 min", "frequency": "Once" },
+        { "name": "Daily Use", "status": "mapped", "persona": "Primary User", "path": "projects/PRJ-SMP-sample/ux/03_Journey_Maps/Journey_02_Daily_Use.md", "steps": 4, "goal": "Perform routine task", "trigger": "Scheduled need", "endStateSuccess": "Task done", "endStateFailure": "Blocked", "duration": "2 min", "frequency": "Daily" }
+      ],
+      "flows": [
+        { "name": "Sign Up", "status": "produced", "path": "projects/PRJ-SMP-sample/ux/05_User_Flows/Flow_01_Sign_Up.md", "persona": "Primary User", "journey": "Onboarding", "mermaid": null },
+        { "name": "Core Task", "status": "produced", "path": "projects/PRJ-SMP-sample/ux/05_User_Flows/Flow_02_Core_Task.md", "persona": "Primary User", "journey": "Daily Use", "mermaid": null }
+      ],
+      "userFlows": { "total": 5, "mapped": 5 },
+      "wireframes": { "total": 10, "approved": 8, "inReview": 2, "pending": 0, "path": "projects/PRJ-SMP-sample/ux/06_Wireframe_Specifications/Screen_Inventory.md", "experiences": [], "screens": [] },
+      "designSystem": { "tokens": { "total": 7, "defined": 7 }, "components": { "total": 12, "specified": 12 } },
+      "designSystemFiles": [
+        { "name": "Design Tokens", "path": "projects/PRJ-SMP-sample/ux/07_Design_System/Design_Tokens.md", "status": "produced", "description": "Color, type, spacing tokens" },
+        { "name": "Voice & Tone", "path": "projects/PRJ-SMP-sample/ux/07_Design_System/Voice_Tone_Guidelines.md", "status": "produced", "description": "Content voice and tone rules" }
+      ],
+      "componentLibrary": { "path": "projects/PRJ-SMP-sample/ux/08_Component_Library/Component_Inventory.md", "total": 12, "atoms": 6, "molecules": 4, "organisms": 2, "components": [] },
+      "informationArchitecture": { "status": "complete", "pages": 10 },
+      "accessibility": { "target": "WCAG 2.2", "wcagLevel": "AA", "criteria": 50, "met": 45, "baselineDefined": true }
+    }
+  }
+}

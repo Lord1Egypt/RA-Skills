@@ -1,44 +1,55 @@
-## Description: <br>
-Guides users through ClawdHub skill submission, troubleshooting publishing failures, checking required files, and choosing web, CLI, or GitHub import workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through ClawdHub skill submission by diagnosing common publishing issues, checking basic skill structure, and explaining supported release paths.
 
-## Publisher: <br>
-[mahongting](https://clawhub.ai/user/mahongting) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mahongting](https://clawhub.ai/user/mahongting)
 
-## Use Case: <br>
-Developers and skill publishers use this skill to diagnose failed ClawdHub submissions, verify skill packaging requirements, and follow an appropriate publishing path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested CLI commands may be run in the wrong directory or against the wrong skill. <br>
-Mitigation: Confirm the target skill path, slug, and account before running publish or troubleshooting commands. <br>
-Risk: Login tokens or publishing credentials could be exposed while following CLI examples. <br>
-Mitigation: Keep tokens private, verify the ClawdHub CLI package/source before installation, and avoid sharing command history containing credentials. <br>
-Risk: Publishing guidance may become stale as ClawdHub workflows or API behavior change. <br>
-Mitigation: Check the current ClawdHub web flow and official documentation before relying on a workaround. <br>
+## Use Case:
 
+Developers and skill publishers use this skill to troubleshoot ClawdHub submission failures, confirm required files, and choose an appropriate web, CLI, or import-based publishing path.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mahongting/clawdhub-submit) <br>
-- [ClawdHub documentation](https://docs.openclaw.ai/zh-CN/tools/clawhub) <br>
-- [Clawdhub repository link from artifact metadata](https://github.com/mahongting/clawdhub-submit-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, tables, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No bundled executable code; users decide whether to run suggested commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Installing a global latest CLI package or using an unverified package source can introduce supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the ClawdHub CLI package source and prefer pinned or isolated installs before following CLI examples.
+
+Risk: Putting real tokens directly in shell commands or saved scripts can expose credentials.
+
+Mitigation: Use interactive login flows, environment-specific secret handling, or a secrets manager instead of embedding real tokens.
+
+## Reference(s):
+
+- [Clawdhub Submit on ClawHub](https://clawhub.ai/mahongting/skills/clawdhub-submit)
+- [ClawdHub documentation](https://docs.openclaw.ai/zh-CN/tools/clawhub)
+- [ClawdHub project repository](https://github.com/clawd-hub/clawdhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON examples, checklists, and troubleshooting tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; the skill does not automatically execute commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

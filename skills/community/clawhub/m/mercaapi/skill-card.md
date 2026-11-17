@@ -1,42 +1,51 @@
-## Description: <br>
-Helps agents use an unofficial Mercadona product API for product lookup, fuzzy search, category browsing, nutrition calculations, receipt scanning, and issue reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access detailed product and nutritional information from Mercadona, including fuzzy search, category listings, and AI receipt scanning for item matches.
 
-## Publisher: <br>
-[m0wer](https://clawhub.ai/user/m0wer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[m0wer](https://clawhub.ai/user/m0wer)
 
-## Use Case: <br>
-Developers and agents use this skill to search Mercadona products, retrieve nutrition data, calculate portions, and match receipt items to product records for grocery or meal-planning workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Receipt scanning can send uploaded receipt images, PDFs, or receipt URLs to mercaapi.sgn.space and an external AI service. <br>
-Mitigation: Avoid submitting receipts with payment details or personal information unless that external processing is acceptable. <br>
-Risk: Fuzzy product search can return unrelated products when match scores are low. <br>
-Mitigation: Review the top matches and verify product names, categories, and nutrition fields before using them in calculations. <br>
+## Use Case:
 
+Developers and agents use this skill to query an unofficial Mercadona product API for product lookup, nutrition data, category browsing, receipt analysis, and reporting data issues.
 
-## Reference(s): <br>
-- [Mercadona Products API docs](https://mercaapi.sgn.space/api/docs) <br>
-- [Mercadona Products API OpenAPI schema](https://mercaapi.sgn.space/openapi.json) <br>
-- [ClawHub skill page](https://clawhub.ai/m0wer/mercaapi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Code] <br>
-**Output Format:** [Markdown with endpoint examples, JSON schemas, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No authentication required; receipt scanning can involve uploaded files or URLs sent to the external API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Receipt uploads can expose purchase, payment, loyalty, address, barcode, or other personal details to an unofficial API service and downstream AI processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer product search or manual entry when possible, and remove unnecessary personal details before using the receipt endpoint.
+
+## Reference(s):
+
+- [Mercadona API interactive docs](https://mercaapi.sgn.space/api/docs)
+- [Mercadona API OpenAPI schema](https://mercaapi.sgn.space/openapi.json)
+- [ClawHub skill page](https://clawhub.ai/m0wer/skills/mercaapi)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Code]
+
+**Output Format:** [Markdown documentation with HTTP endpoint examples, JSON response shapes, and Python code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes endpoint paths, request parameters, nutritional calculation guidance, fuzzy-search notes, and receipt-upload privacy guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

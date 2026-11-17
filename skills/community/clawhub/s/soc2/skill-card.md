@@ -1,40 +1,48 @@
-## Description: <br>
-Security controls evidence, policies, and audit readiness. Use when preparing SOC2-style programs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security controls evidence, policies, and audit readiness. Use when preparing SOC2-style programs.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[clawkk](https://clawhub.ai/user/clawkk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external teams, and developers use this skill to structure SOC 2 readiness work, including control mapping, evidence collection, access reviews, continuous monitoring, and audit preparation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: SOC 2 guidance may not match the user's actual controls, auditor expectations, or legal obligations.
+
+Mitigation: Validate recommendations with the organization's auditor, legal counsel, or security owner before relying on them for formal audit decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, security teams, and compliance operators use this skill to structure SOC 2 readiness work around control mapping, evidence collection, access reviews, and continuous monitoring. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Compliance guidance can be incomplete or misapplied if used without qualified review. <br>
-Mitigation: Review SOC 2 plans, evidence requests, and control decisions with qualified security, compliance, or audit staff before relying on them. <br>
-Risk: Audit evidence may contain sensitive security, customer, or operational information. <br>
-Mitigation: Only share sensitive audit evidence with the agent when intentionally needed, and follow the organization's data handling rules. <br>
+**Output Format:** [Markdown or plain text guidance with staged recommendations and checklists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawkk/soc2) <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with staged workflow steps, checklists, and concise recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

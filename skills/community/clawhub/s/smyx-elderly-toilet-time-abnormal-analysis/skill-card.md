@@ -1,42 +1,58 @@
-## Description: <br>
-Analyzes bathroom doorway or privacy-filtered bathroom video to track elderly toilet entry and exit events, calculate continuous occupancy time, and alert when the stay exceeds a configured threshold, defaulting to 30 minutes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes bathroom occupancy monitoring media to flag stays exceeding 30 minutes and provide alerts and reports for caregivers.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-Caregiving teams, nursing-home operators, and home-safety platform developers use this skill to monitor privacy-filtered bathroom occupancy videos for prolonged toilet stays and to produce alerts or history reports for human follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive bathroom-door or privacy-filtered bathroom video and identity data through a remote API. <br>
-Mitigation: Use the skill only with consent from the monitored person or caregiver, prefer doorway footage or blurred silhouette-only footage, and avoid uploading unblurred interior bathroom video. <br>
-Risk: Remote analysis and history lookup require an open-id that can be associated with report records. <br>
-Mitigation: Use a dedicated open-id where possible and review or clear local workspace data if token or identifier persistence is a concern. <br>
-Risk: Alerts are based on occupancy timing and are not medical diagnoses or emergency instructions. <br>
-Mitigation: Treat alerts as prompts for human verification and route urgent cases to caregivers or local emergency procedures. <br>
+## Use Case:
 
+Caregivers and elder-care teams use this skill to review bathroom occupancy alerts and historical reports from video monitoring. Alerts are prompts for a human check, not medical diagnoses.
 
-## Reference(s): <br>
-- [API Documentation](references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown summaries or tables, JSON analysis results, and command-line invocation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Analysis may include occupancy duration, alert level, alert message, session history, suggested contacts, and optional report links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Bathroom-monitoring media and report history are highly sensitive and processed by configured cloud services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Obtain the monitored person's informed consent, minimize captured details, and review cloud data handling before use.
+
+Risk: A hidden identity override, silent account creation, and locally persisted tokens or profiles may expose or misassociate reports.
+
+Mitigation: Review or remove the identity override and automatic account creation; protect or disable local credential and profile persistence before using real care data.
+
+Risk: Occupancy alerts may be inaccurate and are not medical diagnoses.
+
+Mitigation: Have a caregiver promptly verify urgent alerts by phone or in person rather than relying on the skill alone.
+
+## Reference(s):
+
+- [Skill release on ClawHub](https://clawhub.ai/18072937735/skills/smyx-elderly-toilet-time-abnormal-analysis)
+- [Bathroom monitoring API documentation](references/api_doc.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Alerts, Reports]
+
+**Output Format:** [Text, JSON, or Markdown tables with report links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can save results to a local file or retrieve historical reports.]
+
+## Skill Version(s):
+
+1.0.14 (source: server-resolved release metadata; bundled frontmatter says 1.0.16)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

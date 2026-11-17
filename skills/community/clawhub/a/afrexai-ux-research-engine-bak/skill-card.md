@@ -1,40 +1,56 @@
-## Description: <br>
-Complete UX Research & Design system for user discovery, persona building, journey mapping, usability testing, research synthesis, and design validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete UX Research & Design system - user discovery, persona building, journey mapping, usability testing, research synthesis, and design validation.
 
-## Publisher: <br>
-[lambert-min](https://clawhub.ai/user/lambert-min) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lambert-min](https://clawhub.ai/user/lambert-min)
 
-## Use Case: <br>
-Product teams, designers, researchers, and agents use this skill to plan UX research, recruit participants, run interviews and usability tests, synthesize findings, create personas and journey maps, and validate designs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: UX research workflows may involve participant notes, quotes, recordings, or other sensitive personal data. <br>
-Mitigation: Get explicit recording consent, collect only necessary participant data, pseudonymize notes and quotes where possible, store raw notes and recordings in approved access-controlled systems, and define deletion or retention timelines. <br>
-Risk: The backup-style package name could be mistaken for a different AfrexAI UX research package. <br>
-Mitigation: Install only when the intended package is Afrexai Ux Research Engine.Bak and the server-resolved publisher handle is lambert-min. <br>
+## Use Case:
 
+Product teams, designers, researchers, and agents use this skill to plan UX studies, recruit participants, run interviews, synthesize research, build personas and journey maps, conduct usability tests, and produce research reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lambert-min/afrexai-ux-research-engine-bak) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML templates, tables, checklists, and structured research guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Zero-dependency, markdown-only guidance; outputs depend on user-provided research goals, participant data, and study context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: UX research workflows can collect personal data, participant notes, recordings, and contact details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use consented or otherwise approved recruiting lists, obtain explicit recording consent, minimize personal data, restrict access to notes and recordings, and apply retention limits.
+
+Risk: Research outputs may overstate findings if templates are filled from weak samples or unvalidated assumptions.
+
+Mitigation: Review study plans, sampling choices, and synthesized findings before using them for product decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lambert-min/skills/afrexai-ux-research-engine-bak)
+- [Publisher Profile](https://clawhub.ai/user/lambert-min)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown, YAML templates, checklists, tables, and structured research guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No runtime dependencies or tool calls are described in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

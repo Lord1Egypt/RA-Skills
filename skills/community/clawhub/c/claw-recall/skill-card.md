@@ -1,50 +1,61 @@
-## Description: <br>
-Claw Recall indexes agent transcripts and connected Gmail, Google Drive, and Slack sources into local SQLite search so agents can recover context, search past conversations, and share knowledge across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Recall indexes local agent conversations and configured external sources into searchable memory so agents can recover context after compaction and search prior work across OpenClaw and Claude Code.
 
-## Publisher: <br>
-[rodbland2021](https://clawhub.ai/user/rodbland2021) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rodbland2021](https://clawhub.ai/user/rodbland2021)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give OpenClaw or Claude Code agents searchable local memory for post-compaction recovery, previous decisions, cross-agent work, and optional external sources. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can index broad private content, including agent transcripts and connected Gmail, Drive, or Slack sources. <br>
-Mitigation: Keep indexed sources tightly scoped and avoid secrets, regulated data, or content that should not be shared across agents. <br>
-Risk: Shared memory across agents may reveal prior conversations or external-source content to agents that should not access it. <br>
-Mitigation: Use the skill only where cross-agent memory sharing is intended, and limit data sources and agent access accordingly. <br>
-Risk: Remote SSE or REST access can expose memory search over a network without enough access-control guidance. <br>
-Mitigation: Keep endpoints local or behind a trusted VPN, and add authentication and TLS before exposing them beyond trusted environments. <br>
-Risk: Semantic search can send query or embedding-related data through an external OpenAI API key. <br>
-Mitigation: Prefer local or keyword-only search when privacy matters, and enable semantic search only after reviewing data-handling requirements. <br>
-Risk: The server evidence does not provide resolved GitHub provenance for this version. <br>
-Mitigation: Verify the external repository and dependencies before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rodbland2021/claw-recall) <br>
-- [Publisher Profile](https://clawhub.ai/user/rodbland2021) <br>
-- [GitHub Repository](https://github.com/rodbland2021/claw-recall) <br>
-- [Full Guide](https://github.com/rodbland2021/claw-recall/blob/master/docs/guide.md) <br>
-- [Changelog](https://github.com/rodbland2021/claw-recall/blob/master/CHANGELOG.md) <br>
-- [Community Discord](https://discord.gg/4wGTVa9Bt6) <br>
+## Use Case:
 
+Developers and agent users use Claw Recall to search session transcripts, recover pre-compaction context, and share findings across agents. When configured, it can also search captured thoughts, markdown files, Gmail, Google Drive, and Slack.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with inline bash, JSON, and tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require python3, pip3, PYTHONPATH, and optionally OPENAI_API_KEY for semantic search.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.1.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Private agent transcripts and external sources may be centralized into a searchable local database.
+
+Mitigation: Index only authorized sources, avoid secrets or regulated data, and apply explicit access controls before using the database with sensitive accounts.
+
+Risk: Remote SSE access could expose searchable memory if the endpoint is made directly reachable.
+
+Mitigation: Do not expose the SSE endpoint directly; place it behind reviewed network controls and use a pinned release or reviewed commit.
+
+Risk: Semantic search can send content to an external embedding provider when enabled.
+
+Mitigation: Keep keyword-only mode unless external embedding processing is acceptable for the indexed data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rodbland2021/skills/claw-recall)
+- [Project homepage](https://github.com/rodbland2021/claw-recall)
+- [Quick start](https://github.com/rodbland2021/claw-recall#quick-start)
+- [Full guide](https://github.com/rodbland2021/claw-recall/blob/master/docs/guide.md)
+- [Changelog](https://github.com/rodbland2021/claw-recall/blob/master/CHANGELOG.md)
+- [Community](https://discord.gg/4wGTVa9Bt6)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration snippets, and MCP tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return search results, recent transcript excerpts, activity summaries, source status, database statistics, or saved-memory acknowledgements depending on the MCP tool used.]
+
+## Skill Version(s):
+
+2.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

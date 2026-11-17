@@ -1,45 +1,58 @@
-## Description: <br>
-Plan, budget, and manage home renovation projects including contractor coordination, timeline tracking, and cost estimation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan, budget, and manage home renovation projects including contractor coordination, timeline tracking, and cost estimation.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Homeowners and household project managers use this skill to plan renovations, compare quotes, track budgets and timelines, coordinate contractors, document decisions, and manage change orders. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Renovation tracking can store sensitive budget, contractor contact, home details, and timeline information in local files. <br>
-Mitigation: Use detailed tracking only when the user opts in; keep files under ~/home-renovation/ and avoid reusing renovation context when the user chooses on-request or declined tracking. <br>
-Risk: Cost estimates and contractor guidance may be inaccurate for a specific location, code regime, or project scope. <br>
-Mitigation: Treat ranges as rough planning aids, ask for local scope details, recommend local quotes, written contracts, license and insurance verification, and permit checks before decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/home-renovation) <br>
-- [Skill homepage](https://clawic.com/skills/home-renovation) <br>
-- [Setup guide](artifact/setup.md) <br>
-- [Project types](artifact/projects.md) <br>
-- [Contractor evaluation](artifact/contractors.md) <br>
-- [Renovation phases](artifact/phases.md) <br>
-- [Memory template](artifact/memory-template.md) <br>
+## Use Case:
 
+Homeowners and renovation planners use this skill to organize remodel budgets, timelines, contractor evaluation, scope changes, and project decisions. The agent can provide planning guidance and maintain local markdown records for ongoing renovation projects when the user wants tracking.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with project tracking templates and local file-structure recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local Markdown project files under ~/home-renovation/ when the user opts into tracking.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may store renovation budgets, project notes, timelines, and contractor contact details locally.
+
+Mitigation: Use the on-request or declined integration preference if persistent tracking is not wanted, and avoid adding sensitive contractor or financial details that do not need to be retained.
+
+Risk: Renovation costs, permits, contractor requirements, and code obligations vary by location and project scope.
+
+Mitigation: Treat cost ranges and sequencing advice as planning guidance, verify local requirements, and obtain written local quotes before committing funds or work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/home-renovation)
+- [Skill homepage](https://clawic.com/skills/home-renovation)
+- [Setup guide](setup.md)
+- [Memory template](memory-template.md)
+- [Project types](projects.md)
+- [Contractor evaluation](contractors.md)
+- [Renovation phases](phases.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance and local markdown project records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create and update renovation memory under ~/home-renovation/ when the user opts into tracking.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

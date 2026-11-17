@@ -1,40 +1,52 @@
-## Description: <br>
-Saves and digests resources from X/Twitter posts, LinkedIn posts, or direct URLs by extracting linked resources, fetching content, summarizing it, and appending a structured entry to a resource log. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save and digest resources from social media posts (X/Twitter, LinkedIn) or any URL. Use when the user shares a tweet URL, a LinkedIn post, or any link they want to keep and understand. Extracts linked resources, fetches their content, and appends a structured entry to the resource log.
 
-## Publisher: <br>
-[spideystreet](https://clawhub.ai/user/spideystreet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[spideystreet](https://clawhub.ai/user/spideystreet)
 
-## Use Case: <br>
-External users and developers use this skill to save links shared from social posts or direct URLs, summarize the referenced resources, and maintain a local Markdown resource log. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches untrusted URLs through local command templates. <br>
-Mitigation: Use it only with trusted public URLs and verify local URL-fetching and summarization tools before installation. <br>
-Risk: The skill appends summaries and links to a persistent local resource log. <br>
-Mitigation: Avoid sensitive, private-network, localhost, or unusually crafted URLs unless URL validation and safer argument handling are added. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spideystreet/sm-saver) <br>
-- [Publisher profile](https://clawhub.ai/user/spideystreet) <br>
+## Use Case:
 
+Developers and other agent users use this skill to save resources shared through X/Twitter posts, LinkedIn posts, or direct URLs. The skill extracts linked resources, summarizes reachable pages, and appends a structured Markdown entry to a resource log.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files] <br>
-**Output Format:** [Markdown resource-log entries and concise confirmation text, with shell command invocations for fetching and summarization] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Appends saved entries to ~/workspace/resources.md and may mark inaccessible URLs when fetching fails.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.0-pr-check (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill fetches arbitrary URLs through shell commands and can encounter unsafe or untrusted links.
+
+Mitigation: Validate URLs before fetching, avoid shell-string interpolation, and restrict access to internal-network addresses.
+
+Risk: The skill persists fetched and summarized link content to a local resource log.
+
+Mitigation: Let the user review entries before writing them and avoid saving sensitive or inaccessible content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spideystreet/skills/sm-saver)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown resource-log entries plus concise confirmation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Appends saved entries to ~/workspace/resources.md and requires xurl for X/Twitter post extraction.]
+
+## Skill Version(s):
+
+0.0.0-pr-check (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

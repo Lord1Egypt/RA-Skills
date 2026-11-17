@@ -1,43 +1,54 @@
-## Description: <br>
-Converts a user-provided WeChat public-account article URL into a local Markdown file with downloaded images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+微信公众号文章爬虫 - 将微信公号文章转换为 Markdown + 本地图片
 
-## Publisher: <br>
-[chenchaoqun](https://clawhub.ai/user/chenchaoqun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenchaoqun](https://clawhub.ai/user/chenchaoqun)
 
-## Use Case: <br>
-Developers and content maintainers use this skill to archive WeChat public-account articles as Markdown with local image assets for documentation or offline review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches user-provided URLs and downloads referenced images. <br>
-Mitigation: Use only trusted article URLs and run dependencies in a virtual environment. <br>
-Risk: The default or supplied output path controls where Markdown and image files are written. <br>
-Mitigation: Pass a dedicated output directory to avoid saving or overwriting files somewhere unexpected. <br>
-Risk: WeChat anti-scraping behavior or dynamic image loading can cause incomplete exports. <br>
-Mitigation: Retry later when fetching fails and review the generated Markdown and image folder for missing content. <br>
+## Use Case:
 
+Developers and content operators use this skill to fetch WeChat Official Account article pages, convert extracted article content to Markdown, and save referenced images locally with relative links.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chenchaoqun/wechat-article-spider) <br>
-- [Publisher profile](https://clawhub.ai/user/chenchaoqun) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, files, shell commands] <br>
-**Output Format:** [Markdown file plus local image files and command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes the article Markdown file to the selected output directory and stores downloaded images under an images subdirectory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can fetch arbitrary URLs and download unbounded content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted WeChat article URLs, run in a dedicated output directory, and prefer a sandbox or outbound network restrictions until domain validation, private-network blocking, and download size limits are added.
+
+Risk: Downloaded article content and images are written to local disk.
+
+Mitigation: Review the selected output directory before running and avoid paths that contain sensitive or unrelated project files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenchaoqun/skills/wechat-article-spider)
+- [WeChat Official Accounts article host](https://mp.weixin.qq.com/)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, files, shell commands]
+
+**Output Format:** [Markdown file, local image files, and command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates one Markdown file and an images/ subdirectory in the selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

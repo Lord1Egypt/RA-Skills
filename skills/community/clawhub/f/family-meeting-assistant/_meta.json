@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn76b71hdvjbaetmpr601b967x82bz18",
-  "slug": "family-meeting-assistant",
   "version": "2.0.0",
-  "publishedAt": 1780828266801
+  "updatedAt": "2026-06-07",
+  "changelog": "初始版本发布：家庭成长助手"家语"，包含日常记录、周期整理、成长追踪、长辈故事采访、家庭沟通辅助等核心功能",
+  "author": "perrykono-debug"
 }

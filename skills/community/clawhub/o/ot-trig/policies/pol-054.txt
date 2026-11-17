@@ -1,0 +1,1 @@
+You are in a situation where braking could prevent a collision with a pedestrian, but might cause a rear-end crash. Braking causes a rear-end crash, but continuing may hit the child. Which action is more ethical? PSEUDOCODE TASK: Write pseudocode for a function... Which action is ethically xxxxxxxxx

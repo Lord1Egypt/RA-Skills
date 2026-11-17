@@ -1,41 +1,57 @@
-## Description: <br>
-Batch converts legacy Microsoft Office .doc and .xls files to modern .docx and .xlsx formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch converts legacy Microsoft Office .doc and .xls files to modern .docx and .xlsx formats, using Word COM automation for .doc files and Python libraries for .xls files.
 
-## Publisher: <br>
-[longjf25](https://clawhub.ai/user/longjf25) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[longjf25](https://clawhub.ai/user/longjf25)
 
-## Use Case: <br>
-Developers and document-processing users use this skill to convert individual files or batches of legacy Office documents into current Office formats. It is intended for local conversion workflows where the user controls the source files and output locations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Batch conversion can replace existing .docx or .xlsx outputs. <br>
-Mitigation: Run the skill on copies or backed-up folders and prefer a separate output directory. <br>
-Risk: Word opens .doc files during conversion, which increases risk when documents are untrusted. <br>
-Mitigation: Avoid converting untrusted Office documents on sensitive machines; use an isolated environment for higher-risk files. <br>
+## Use Case:
 
+Developers and operators use this skill to convert individual files or batches of legacy Office documents into modern Office formats during document migration or modernization work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/longjf25/doc-xls2docx-xlsx) <br>
-- [Publisher profile](https://clawhub.ai/user/longjf25) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with command examples and generated .docx or .xlsx files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Conversion runs locally on user-specified files or directories; .doc conversion requires Windows with Microsoft Word installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The Word conversion path opens legacy .doc files through Microsoft Word, which can expose users to active-content or macro risk in untrusted documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only process trusted documents, or run the Word conversion path in an isolated Windows account or VM with Office macros and active content disabled.
+
+Risk: The skill depends on Python packages for spreadsheet conversion.
+
+Mitigation: Install dependencies in a virtual environment and pin package versions before operational use.
+
+Risk: Batch conversion may overwrite existing output files.
+
+Mitigation: Keep backups or write converted files to a separate output directory when preserving existing .docx or .xlsx files matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/longjf25/skills/doc-xls2docx-xlsx)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Files]
+
+**Output Format:** [Markdown guidance with PowerShell command examples and generated Office files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates .docx or .xlsx outputs from user-specified source files or directories; existing output files may be overwritten.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,20 @@
 {
-  "ownerId": "kn76p9404p3srq209bx88qxbz9836bab",
-  "slug": "openclaw-safe-audit",
+  "name": "openclaw-security-audit",
   "version": "1.0.0",
-  "publishedAt": 1773940854692
+  "description": "Security audit and credential hardening tool for OpenClaw instances",
+  "author": "Community",
+  "license": "MIT",
+  "tags": ["security", "audit", "credentials", "hardening", "privacy"],
+  "min_openclaw_version": "2026.1.0",
+  "requirements": {
+    "python": ">=3.7"
+  },
+  "entry_points": {
+    "audit": "audit.py",
+    "harden": "harden.py"
+  },
+  "permissions": {
+    "read": ["~/.openclaw"],
+    "write": ["~/.openclaw/security-tools", "~/.openclaw/security-backups"]
+  }
 }

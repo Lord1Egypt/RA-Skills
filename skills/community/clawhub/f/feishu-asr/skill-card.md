@@ -1,43 +1,60 @@
-## Description: <br>
-Transcribes Feishu voice messages into text using Whisper or configured ASR services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用本地Whisper模型识别飞书语音消息。离线免费，不需要注册，不需要联网。
 
-## Publisher: <br>
-[Richardcoder849](https://clawhub.ai/user/Richardcoder849) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richardcoder849](https://clawhub.ai/user/richardcoder849)
 
-## Use Case: <br>
-Teams using Feishu can have an agent retrieve voice-message audio, convert it, and return transcription text for follow-up or accessibility. Operators should review message-read permissions and ASR provider choices before workplace use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports a mismatch between offline/no-network claims and behavior that can involve remote model downloads or cloud ASR setup. <br>
-Mitigation: Confirm where audio is processed before use, pin trusted model sources, and disable remote downloads or cloud ASR paths unless explicitly approved. <br>
-Risk: The skill may access sensitive Feishu voice messages through message-read permissions. <br>
-Mitigation: Grant only the narrow Feishu permissions required for the deployment, limit use to approved chats or workspaces, and avoid processing sensitive workplace audio without authorization. <br>
+## Use Case:
 
+Developers and operators use this skill to transcribe Feishu voice messages into text, with guidance for downloading voice audio, converting it to 16 kHz WAV, and running Whisper or cloud ASR services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Richardcoder849/feishu-asr) <br>
-- [Hugging Face mirror endpoint](https://hf-mirror.com) <br>
-- [Alibaba Cloud ASR console](https://d.console.aliyun.com) <br>
-- [Tencent Cloud ASR](https://cloud.tencent.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text transcription with Markdown setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require Feishu message-read credentials, audio conversion dependencies, model downloads, or cloud ASR credentials depending on the configured path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill claims offline use, but the script can download Whisper models from a Hugging Face mirror.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, locally cached model and block unexpected network access when offline operation or reproducibility is required.
+
+Risk: Voice messages may contain sensitive chat audio, and the README describes cloud ASR providers that may receive that audio.
+
+Mitigation: Confirm privacy requirements before use, limit processing to approved audio, and use only Feishu and cloud credentials that are acceptable for the data involved.
+
+Risk: Cloud and Feishu credentials are required for some documented workflows.
+
+Mitigation: Grant least-privilege app permissions, store credentials outside skill files, and rotate them if exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/richardcoder849/skills/feishu-asr)
+- [Hugging Face mirror endpoint](https://hf-mirror.com)
+- [Alibaba Cloud ASR console](https://d.console.aliyun.com)
+- [Tencent Cloud ASR](https://cloud.tencent.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples, plus transcription text when the script is run.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May process local voice files and return recognized text; behavior depends on installed ASR dependencies and configured credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

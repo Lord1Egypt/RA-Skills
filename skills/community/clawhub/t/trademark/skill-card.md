@@ -1,42 +1,51 @@
-## Description: <br>
-Searches JisuAPI trademark records by keyword, registration number, applicant, or class and retrieves trademark details such as registrant, category, announcements, and status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+商标关键词搜索与详情查询（申请人、分类、公告等）。当用户说：查一下「某某」商标有没有被注册？这个商标注册人是谁？或类似商标问题时，使用本技能。
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-External users and agents use this skill to check whether trademarks are registered, identify registrants, and retrieve details for a specific application or registration number. It requires a user-provided JisuAPI AppKey. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trademark search terms, registration numbers, and related identifiers are sent to JisuAPI under the user's AppKey. <br>
-Mitigation: Avoid confidential brand research unless JisuAPI's privacy, retention, and billing terms are acceptable. <br>
-Risk: The skill depends on a third-party API key, quota, permissions, and service availability. <br>
-Mitigation: Configure JISU_API_KEY before use and handle API errors, quota limits, and no-result responses in downstream workflows. <br>
+## Use Case:
 
+External users and agents use this skill to search Chinese trademark information by keyword, applicant, registration number, or class, then retrieve details such as registrant, status, announcement dates, and goods or services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/trademark) <br>
-- [JisuAPI trademark documentation](https://www.jisuapi.com/api/trademark/) <br>
-- [JisuAPI](https://www.jisuapi.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration] <br>
-**Output Format:** [JSON responses and Markdown usage guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; sends lookup terms and identifiers to JisuAPI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: Trademark keywords, registration numbers, class IDs, and the JisuAPI AppKey are sent to JisuAPI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated key with quota or billing limits, avoid confidential pre-launch brand searches unless approved, and rotate the key if request URLs may have been logged.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/trademark)
+- [JisuAPI trademark API documentation](https://www.jisuapi.com/api/trademark/)
+- [JisuAPI](https://www.jisuapi.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON API results, usually summarized by the agent as concise text or Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; sends user-supplied trademark queries to JisuAPI.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -123,7 +123,6 @@ python tools/heartbeat_run.py beat
 
 ### `beat` — 心跳检查（每30分钟）
 
-0. 检查 `.last_heartbeat` 标记文件，距上次 < 30 分钟则静默退出（v1.2.0 watchdog）
 1. 检查 `daily.md` 例行任务完成情况
 2. 检查 `todo.md` 待办 + `@due:HH:MM` 超期检测
 3. 检查 `ongoing.json` 任务状态机
@@ -291,22 +290,6 @@ openclaw browser extension path
 > 💡 若无 API token，可每天打开 Canvas/FSP 网页并 attach Chrome 扩展，让 Eva 通过浏览器直接抓取数据，无需 API 凭证。
 
 **安全保证：** `site_monitor.py` 使用 `active_sources` 机制，仅删除已激活来源中不再存在的事件；未配置 token 的来源完全跳过，现有数据100%保留。
-
----
-
-## 看门狗机制 (v1.2.0)
-
-配合 `*/15 * * * *` cron 运行，实现可靠的30分钟心跳间隔：
-
-- **原理**：beat 完成后 `touch workspace/.last_heartbeat`；cron 每 15 分钟触发，先检查 mtime，距上次不到 30 分钟则静默退出
-- **最大延迟**：15 分钟（cron 最差情况下一个间隔）
-- **无外部依赖**：只依赖文件系统，不调用 openclaw CLI
-- **自愈**：cron 是幂等的，leaky 或 missed 触发自动修正
-
-```yaml
-# openclaw cron 建议配置：
-schedule: "*/15 * * * *"
-```
 
 ---
 

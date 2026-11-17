@@ -1,43 +1,58 @@
-## Description: <br>
-Query financial market data via the Tradekix API, including stock prices, crypto, forex, indices, market news, earnings, economic events, Congressional trades, and social sentiment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query financial market data via the Tradekix API for stock prices, crypto, forex, indices, market news, earnings, economic events, Congressional trades, and social sentiment.
 
-## Publisher: <br>
-[jamesjohnfox](https://clawhub.ai/user/jamesjohnfox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jamesjohnfox](https://clawhub.ai/user/jamesjohnfox)
 
-## Use Case: <br>
-External users and agents use Tradekix to retrieve financial market data, market news, calendars, sentiment, and Congressional trade information through the Tradekix API. The skill also supports API key signup, account upgrade, and key revocation workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Signup sends agent name and email details to Tradekix and stores a local API key. <br>
-Mitigation: Run signup only after explicit user approval, protect the local config file, and avoid displaying the full API key. <br>
-Risk: Upgrade and revoke commands can change billing or API-key state. <br>
-Mitigation: Require explicit user approval before running upgrade or revoke actions. <br>
-Risk: Displaying the documented config file can reveal the full API key. <br>
-Mitigation: Use masked status output or inspect only non-secret fields instead of printing the config file. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Tradekix API Reference](references/api-docs.md) <br>
-- [Tradekix API Base URL](https://www.tradekix.ai/api/v1) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jamesjohnfox/tradekix) <br>
+## Use Case:
 
+External users and agent developers use this skill to retrieve market data, financial news, economic and earnings calendars, social sentiment, and Congressional trade data through Tradekix API commands.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses use JSON objects with success, data, and meta fields; rate-limit status is reported in response metadata when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create a Tradekix account and store an API key locally.
+
+Mitigation: Require explicit human approval before signup, and install only in environments where storing the API key under the user's home directory is acceptable.
+
+Risk: The skill includes account-changing commands for paid upgrade and API-key revocation.
+
+Mitigation: Use read-only market data commands by default and require explicit human approval before running upgrade or revoke actions.
+
+Risk: The security guidance warns against use where HOME or command arguments may be attacker-controlled.
+
+Mitigation: Run the skill in a controlled agent environment with trusted HOME and command arguments.
+
+## Reference(s):
+
+- [Tradekix API Reference](references/api-docs.md)
+- [Tradekix API Base URL](https://www.tradekix.ai/api/v1)
+- [Tradekix API Docs](https://tradekix.ai/docs/api)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands read and write a local Tradekix API key config and return API response payloads.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

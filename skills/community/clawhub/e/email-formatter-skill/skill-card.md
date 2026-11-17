@@ -1,44 +1,57 @@
-## Description: <br>
-Transform rough email drafts into polished, professional messages by improving grammar, tone, clarity, and email formatting while preserving the sender's intent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform rough email drafts into polished, professional messages.
 
-## Publisher: <br>
-[cerbug45](https://clawhub.ai/user/cerbug45) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cerbug45](https://clawhub.ai/user/cerbug45)
 
-## Use Case: <br>
-Employees, external users, and agents use this skill to polish email drafts, convert notes into complete messages, adjust tone for business recipients, and check grammar, readability, and security-sensitive content before sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow can automatically install optional Python packages and alter the local Python environment. <br>
-Mitigation: Review setup behavior before installation, prefer an isolated environment or virtual environment, and do not allow automatic pip installs with --break-system-packages. <br>
-Risk: The skill creates persistent helper files under the user's home directory. <br>
-Mitigation: Inspect the installed files and permissions before use, and remove the skill workspace when it is no longer needed. <br>
-Risk: Email drafts may contain sensitive personal, financial, health, credential, or business information. <br>
-Mitigation: Avoid processing highly sensitive drafts unless local command-line handling and temporary or persistent files are acceptable for the user's privacy and compliance requirements. <br>
+## Use Case:
 
+Employees and external users use this skill to improve email grammar, clarity, tone, and business formatting while preserving the sender's intent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cerbug45/email-formatter-skill) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with optional command-line analysis output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include rewritten email text, tone and readability findings, grammar suggestions, security warnings, or refusal guidance for blocked content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: Setup may modify the host environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup steps before installation, use an isolated virtual environment, and avoid --break-system-packages.
+
+Risk: Confidential email drafts may be exposed if temporary-file handling is unsafe.
+
+Mitigation: Do not process confidential drafts unless temporary-file handling is fixed or disabled; redact sensitive content when possible.
+
+Risk: Broad security-scanning behavior may be under-scoped for an email formatter.
+
+Mitigation: Review scanner behavior before deployment and keep security checks focused on email-formatting risks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cerbug45/skills/email-formatter-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose with formatted email text and optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include refusal or warning guidance for high-risk email content]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

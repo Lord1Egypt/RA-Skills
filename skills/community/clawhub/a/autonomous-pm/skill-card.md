@@ -1,43 +1,55 @@
-## Description: <br>
-Coordinates autonomous project work by having agents share task state through STATE.yaml and use a Node-based project manager workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates multiple subagents through shared STATE.yaml project files so they can track tasks, dependencies, blockers, and next actions with less central orchestration.
 
-## Publisher: <br>
-[sunnyhot](https://clawhub.ai/user/sunnyhot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunnyhot](https://clawhub.ai/user/sunnyhot)
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate multi-agent project work with shared STATE.yaml files, delegated PM sessions, and git-backed status updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow asks agents to spawn autonomous subagents, modify project files, and commit changes, which can exceed the user's intended scope. <br>
-Mitigation: Require explicit user approval before spawning subagents, changing project files, or running git add or commit. <br>
-Risk: The documented Node command depends on an unbundled local project-manager.cjs script and a hardcoded local workspace path. <br>
-Mitigation: Inspect or supply the referenced script and replace the local path before using the workflow. <br>
-Risk: STATE.yaml and git commits may expose sensitive project status or repository context. <br>
-Mitigation: Use the skill only in controlled workspaces and keep STATE.yaml contents and commit scope limited, especially in repositories with secrets or sensitive internal state. <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate project work across multiple PM-style subagents, keeping task status, dependencies, blockers, and next actions in shared project state files.
 
-## Reference(s): <br>
-- [Autonomous coding agents inspiration](https://nicholas.carlini.com/) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with YAML, JavaScript, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node; git is optional for audit-log commits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill describes autonomous delegation to PM-style subagents with limited direct oversight.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before spawning or messaging agents, and review delegated work before accepting it.
+
+Risk: The skill describes persistent project state updates and git commits.
+
+Mitigation: Keep PM state directories scoped to the intended repository and review state changes and commits before they are used as authoritative project status.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunnyhot/skills/autonomous-pm)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Nicholas Carlini autonomous coding agents](https://nicholas.carlini.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with YAML, JavaScript, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js; git is optional for persisted project-state commits.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

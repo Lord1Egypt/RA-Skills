@@ -1,44 +1,57 @@
-## Description: <br>
-Automates EPUB book processing by extracting text, cover art, summaries, framework analysis, and optional study assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates EPUB processing to extract book text and cover assets and generate summaries, framework analysis, checklists, worksheets, flowcharts, and FAQ materials.
 
-## Publisher: <br>
-[ntsnail](https://clawhub.ai/user/ntsnail) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ntsnail](https://clawhub.ai/user/ntsnail)
 
-## Use Case: <br>
-External users and productivity-focused readers use this skill to turn EPUB uploads into a local folder of extracted text, summaries, quality reports, and optional study materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The processing script can request administrator-level package installation when jq is missing. <br>
-Mitigation: Preinstall jq, python3, and unzip before use, and decline unexpected sudo prompts during skill execution. <br>
-Risk: The skill is designed to run automatically when an EPUB file is received, which can blur execution boundaries. <br>
-Mitigation: Use it only with EPUB files the user intentionally provides and review the generated file list before relying on outputs. <br>
-Risk: Failed or interrupted runs can leave temporary EPUB extraction folders under /tmp. <br>
-Mitigation: Check for and remove leftover /tmp/epub_extracted_* folders after failed processing. <br>
-Risk: Image-heavy, encrypted, or malformed EPUBs may produce little usable text or incomplete summaries. <br>
-Mitigation: Review the generated quality report and manually supplement summary or framework files when automatic extraction is insufficient. <br>
+## Use Case:
 
+External users and developers use this skill to turn EPUB books into structured reading assets, including extracted text, summaries, analysis files, and optional practice templates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ntsnail/book-processor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Generated local files including .txt, .md, .mmd, .json, and a brief processing summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires jq, python3, and unzip; can use process_config.json to enable optional generated assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can automatically run privileged package installation when dependencies are missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install jq, python3, and unzip separately through approved system setup, and run the skill without sudo privileges.
+
+Risk: The skill processes EPUB archives, which may be untrusted or malformed.
+
+Mitigation: Use only trusted EPUBs, preferably in a sandboxed environment, and review the generated quality report before relying on outputs.
+
+Risk: Generated summaries and framework files may include generic templates rather than reliable book-specific analysis.
+
+Mitigation: Manually review and edit generated summaries, framework analysis, and optional worksheets before using them as final analysis.
+
+## Reference(s):
+
+- [ClawHub Book Processor release page](https://clawhub.ai/ntsnail/skills/book-processor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Generated book asset files, including text, Markdown, Mermaid, JSON configuration, and image outputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an EPUB input and supports optional process_config.json flags that control additional generated assets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

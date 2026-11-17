@@ -1,38 +1,52 @@
-## Description: <br>
-Controls Netatmo thermostat settings and reads weather station data including temperature, CO2, humidity, noise, pressure, and history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Netatmo thermostat and read weather station data.
 
-## Publisher: <br>
-[florianbeer](https://clawhub.ai/user/florianbeer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[florianbeer](https://clawhub.ai/user/florianbeer)
 
-## Use Case: <br>
-External users and smart-home operators use this skill to check Netatmo sensor readings and manage thermostat temperature or modes through the local netatmo CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on a separate local netatmo CLI and token files in ~/.config/netatmo/. <br>
-Mitigation: Install only trusted CLI builds and protect credential and token files with appropriate local filesystem permissions. <br>
-Risk: Thermostat commands can change heating temperature or mode. <br>
-Mitigation: Require explicit confirmation before temperature or mode changes when accidental heating changes would matter. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users use this skill to inspect Netatmo thermostat and weather station readings, including temperature, humidity, CO2, noise, pressure, and battery data. It can also guide thermostat actions such as changing target temperature or mode through the local netatmo CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON output from the netatmo CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sensor readings, thermostat mode or temperature actions, and history summaries with ASCII sparklines.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Thermostat set and mode commands can immediately change heating behavior.
+
+Mitigation: Confirm the intended temperature or mode before running set or mode commands.
+
+Risk: The local Netatmo configuration stores account credentials and OAuth tokens.
+
+Mitigation: Keep ~/.config/netatmo protected and limit access to users who should control the Netatmo account and thermostat.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/florianbeer/skills/netatmo)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Markdown, JSON]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or recommend commands that read Netatmo device state or change thermostat settings through the local netatmo CLI.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

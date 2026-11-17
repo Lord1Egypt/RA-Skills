@@ -1,6 +1,14 @@
 # golang-migrate Reference
 
-Latest: **v4.19.1** (November 2025). Supports Go 1.24 and 1.25. MIT license, 18K+ stars.
+Latest: **v4.20.1** (2026-09-09). Built with Go 1.25/1.26. MIT license, 18K+ stars.
+
+**Pin v4.20.1, not v4.20.0.** A release-workflow bug meant v4.20.0 exists as a git tag but never reached Docker or the package registries - "Due to a bug in the release workflow, GoReleaser failed and `v4.20.0` was not published to Docker or other package registries." v4.20.1 is that release redistributed, and carries no other changes.
+
+v4.20.0 is worth upgrading for regardless of the pin mechanics:
+
+- **S3 sources silently truncated at 1000 migrations** - "fix(source/aws_s3): paginate ListObjects to load >1000 migrations".
+- **Quadratic startup cost removed** - "perf(source): build migrations index lazily to avoid quadratic startup".
+- **Security, partial:** migrate's own code moved from `docker/docker` to the `moby/moby/api` and `moby/moby/client` modules, but v4.20.1's `go.mod` still lists `github.com/docker/docker v28.5.2+incompatible // indirect`, pulled in by `dhui/dktest`. Scanners keep flagging it - open issue [golang-migrate/migrate#1444](https://github.com/golang-migrate/migrate/issues/1444) "Dependencies still trigger CVE-2026-41568" (milestone v4.21.0). The released artefacts carry more: open PR [#1458](https://github.com/golang-migrate/migrate/pull/1458) says "`v4.20.1` pins several modules with known vulnerabilities, so Trivy and govulncheck flag the release binary and the `migrate/migrate` Docker image" (x/crypto, x/net, x/text, grpc, klauspost/compress, otel/sdk) and proposes a v4.20.2. `go install ...@v4.20.1` builds with exactly the versions in v4.20.1's `go.mod`, so a self-built CLI inherits them too; scan the binary you actually deploy (`govulncheck -mode=binary`).
 
 ## Installation
 
@@ -14,13 +22,13 @@ brew install golang-migrate
 scoop install migrate
 
 # Pre-built binary
-curl -L https://github.com/golang-migrate/migrate/releases/download/v4.19.1/migrate.linux-amd64.tar.gz | tar xvz
+curl -L https://github.com/golang-migrate/migrate/releases/download/v4.20.1/migrate.linux-amd64.tar.gz | tar xvz
 
 # With Go (specify database driver via build tags)
-go install -tags 'postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@v4.19.1
+go install -tags 'postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@v4.20.1
 
 # Docker
-docker run -v $(pwd)/migrations:/migrations --network host migrate/migrate \
+docker run -v $(pwd)/migrations:/migrations --network host migrate/migrate:v4.20.1 \
     -path=/migrations/ -database "postgres://localhost:5432/db" up
 ```
 
@@ -51,20 +59,24 @@ migrations/
 
 Control zero-padding with `-digits N` (default: 6).
 
+Two more `create` flags: `-format` takes "a Go time format string" for the version prefix, and `-tz` sets the timezone used to generate it.
+
 ### Timestamp (better for larger teams)
 
 ```bash
 migrate create -ext sql -dir migrations create_users_table
 ```
 
-Produces:
+Produces (default `-format` is `20060102150405`, a UTC timestamp):
 ```
 migrations/
-  1712345678_create_users_table.up.sql
-  1712345678_create_users_table.down.sql
+  20240405123456_create_users_table.up.sql
+  20240405123456_create_users_table.down.sql
 ```
 
 Eliminates version conflicts when multiple developers create migrations simultaneously.
+
+For unix-epoch versions pass `-format unix` - "If the string `"unix"` or `"unixNano"` is specified, then the seconds or nanoseconds since January 1, 1970 UTC respectively will be used." Combining `-seq` with any non-default `-format` fails with "the seq and format options are mutually exclusive".
 
 ## CLI Commands
 
@@ -108,7 +120,7 @@ migrate create -ext sql -dir migrations -seq add_email_column
 - `-lock-timeout N` - seconds to acquire lock (default 15)
 - `-verbose` - verbose logging
 
-Handles `SIGINT` gracefully, stopping at a safe point.
+Handles `SIGINT` gracefully, stopping at a safe point. Programmatically the same guarantee is exposed as a channel - "To help prevent database corruptions, it supports graceful stops via `GracefulStop chan bool`" - and the library takes your own logger via its `Logger` interface ("Bring your own logger.") rather than writing to stdout.
 
 ## Up/Down Migration Patterns
 
@@ -186,8 +198,8 @@ db, _ := sql.Open("postgres", connStr)
 driver, _ := postgres.WithInstance(db, &postgres.Config{})
 m, _ := migrate.NewWithDatabaseInstance("file://migrations", "postgres", driver)
 
-m.Up()        // Apply all pending
-m.Steps(2)    // Apply 2 up
+m.Up()        // Apply ALL pending migrations - not just the next one
+m.Steps(2)    // Apply exactly 2 up
 m.Steps(-1)   // Revert 1
 m.Version()   // Get current version + dirty flag
 m.Force(3)    // Set version without running
@@ -195,6 +207,8 @@ m.Close()     // Close connections
 ```
 
 Always check for `migrate.ErrNoChange` when calling `Up()` - it means no new migrations exist and is not a real error.
+
+**`Up()` and `Steps(1)` are not interchangeable.** `Up()` applies every pending migration in one call; `Steps(1)` applies exactly one. Automation wired to `Up()` on merge will apply an entire backlog of DDL the first time it runs, which surprises teams who assumed each deploy advanced one version. Decide deliberately which semantics a given entry point has, and name it accordingly.
 
 ## Embedding Migrations with embed.FS
 
@@ -247,13 +261,24 @@ URL format: `postgres://user:password@host:port/dbname?query`
 | `x-multi-statement` | Enable multi-statement execution (default: false) |
 | `x-multi-statement-max-size` | Max statement size in bytes (default: 10MB) |
 | `search_path` | Schema search path |
+| `x-migrations-table-quoted` | Disable quoting of the migrations table name - "By default, migrate quotes the migration table for SQL injection safety reasons. This option disable quoting" |
 | `sslmode` | disable, require, verify-ca, verify-full |
 
 Uses `pg_advisory_lock` for safe concurrent migrations.
 
+### pgx v5 driver
+
+For projects already on `jackc/pgx/v5`, use the `pgx5` driver instead of `postgres` (which uses `lib/pq`). Same query parameters; different URL scheme, build tag, and import:
+
+- URL: `pgx5://user:password@host:port/dbname?query`
+- CLI: `go install -tags 'pgx5' github.com/golang-migrate/migrate/v4/cmd/migrate@v4.20.1`
+- Library: `_ "github.com/golang-migrate/migrate/v4/database/pgx/v5"`
+
 ## Transaction Handling
 
-golang-migrate does **NOT** automatically wrap migrations in transactions. You must use explicit `BEGIN`/`COMMIT`:
+golang-migrate does **NOT** wrap a migration in a transaction at the library level, so the portable advice is to write explicit `BEGIN`/`COMMIT`.
+
+One database-specific exception is worth knowing: "In PostgreSQL running multiple SQL statements in one `Exec` executes them inside a transaction." A multi-statement Postgres migration is therefore already atomic in practice - but writing `BEGIN`/`COMMIT` anyway costs nothing, keeps the intent explicit, and stays correct on other engines:
 
 ```sql
 BEGIN;
@@ -322,6 +347,7 @@ The up-down-up pattern validates both directions work correctly.
 6. **Empty files** - 0-byte migration files cause issues. Add a SQL comment if intentionally empty
 7. **Schema + role name clash** in PostgreSQL - `search_path` causes migrations table duplication. Fix: set `search_path=public` in URL
 8. **Never edit applied migrations** - treat merged migrations as immutable. Create new ones for corrections
+9. **Not every migration is reversible** - upstream's `MIGRATIONS.md` has a "Reversibility of Migrations" section; a destructive `up` (dropping a column, collapsing rows) cannot be undone by a `down` that only restores schema. Say so in a comment rather than shipping a `down` that silently loses data
 
 ## Best Practices
 

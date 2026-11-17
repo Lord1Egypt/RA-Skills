@@ -1,0 +1,40 @@
+{
+ "client": "example-mission-talks",
+ "episode": "ep-007",
+ "written": "2026-11-12T15:20:00Z",
+ "requests": {
+  "clip-01.json": {
+   "clip": "01",
+   "hash": "f7c85aaf2b4545e741e328e14170f2ff132f1711ee8257b5bbb26b7dc7c772b6",
+   "sha256": "8b94bd65abb02fa0b9223c129202a130ab1f7567071f47f94668243ce58a03e0",
+   "body_sha256": "5e8b684c96bdd7991e86be127c6562b5265a78a3abf54c0cd2d8dfacb0e65a0b",
+   "scheduledFor": "2026-11-13T23:00:00Z",
+   "accounts": {
+    "example-acct-mission-tiktok": "TIKTOK",
+    "example-acct-mission-youtube": "YOUTUBE"
+   }
+  },
+  "clip-02.json": {
+   "clip": "02",
+   "hash": "d611fd7e536cd473d239d6dd1d9df5407379d5a7a089b6c5051a0d61290d4105",
+   "sha256": "db76d964db72a22b4f8a6a6705ff13a79fb0b0ca4b97de1af1afc83aa73368ce",
+   "body_sha256": "349022dd5ee75fd5d8904e94555748e4eaab535e464e0ccedb210c221be65bad",
+   "scheduledFor": "2026-11-16T23:00:00Z",
+   "accounts": {
+    "example-acct-mission-tiktok": "TIKTOK",
+    "example-acct-mission-youtube": "YOUTUBE"
+   }
+  },
+  "clip-03.json": {
+   "clip": "03",
+   "hash": "1c99ecced75b0c01b1befcc7a2b615819a17cc6b852cecf1e5ddf7669dc056f7",
+   "sha256": "3e1c3e9ecd369ef4d89e0b1ae32d20805e156c98e313abff40fcf36431c38b4a",
+   "body_sha256": "bb8ba0a68b6464e0dbb5a38f3d6f48cfb1a503fc9627c29827b9528649026f15",
+   "scheduledFor": "2026-11-18T23:00:00Z",
+   "accounts": {
+    "example-acct-mission-tiktok": "TIKTOK",
+    "example-acct-mission-youtube": "YOUTUBE"
+   }
+  }
+ }
+}

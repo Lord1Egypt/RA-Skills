@@ -10,7 +10,7 @@ async function main() {
   const webhookUrl = process.argv[2];
   if (!webhookUrl) {
     console.log('Usage: slack <webhook-url>');
-    console.log('Example: slack https://hooks.slack.com/services/T.../B.../xxx');
+    console.log('Example: slack REDACTED-SECRET.../B.../xxx');
     process.exit(1);
   }
 

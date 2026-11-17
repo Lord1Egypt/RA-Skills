@@ -1,42 +1,54 @@
-## Description: <br>
-Xby Article helps agents search academic literature, fetch article metadata and full text, retrieve references, analyze citation relationships, and assess journal quality through XiaoBenYang literature APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+文献搜索工具 helps agents search scholarly literature, retrieve article details and full text by PMCID, manage references, analyze literature relationships, evaluate journal quality, and summarize results for academic research workflows.
 
-## Publisher: <br>
-[cainingnk](https://clawhub.ai/user/cainingnk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cainingnk](https://clawhub.ai/user/cainingnk)
 
-## Use Case: <br>
-Researchers, students, and AI-assistant users can use this skill to locate scholarly articles, retrieve PMCID-backed article details, manage references, inspect literature relationships, and compare journal metrics. The skill requires a XiaoBenYang API key before it can call the literature services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores the XiaoBenYang API key in a local .env file. <br>
-Mitigation: Install only in environments where local .env storage is acceptable, restrict file access, and delete or rotate the key when credentials change. <br>
-Risk: Returned article metadata and full-text content come from external API services. <br>
-Mitigation: Review retrieved literature content, citations, and journal metrics before using them in research, publication, or decision workflows. <br>
+## Use Case:
 
+Developers, researchers, and AI-assistant builders use this skill to route literature-search requests to XiaoBenYang-backed tools for article metadata, full text retrieval, references, citation relationships, and journal-quality signals.
 
-## Reference(s): <br>
-- [Xby Article on ClawHub](https://clawhub.ai/cainingnk/xby-article) <br>
-- [XiaoBenYang API key and service](https://xiaobenyang.com) <br>
-- [XiaoBenYang MCP API endpoint](https://mcp.xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown summaries and structured API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can return literature metadata, article full text, references, citation relationships, and journal quality metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill stores the XiaoBenYang API key in a local plaintext .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a disposable or narrowly scoped key, keep .env out of source control and backups, and rotate the key if it may have been exposed.
+
+Risk: Literature queries and requested article identifiers are sent to an external API service.
+
+Mitigation: Avoid submitting sensitive unpublished research queries unless the user is comfortable sharing them with that service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cainingnk/skills/xby-article)
+- [XiaoBenYang API key page](https://xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown summaries and guidance derived from structured JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can return article metadata, full-text sections, reference lists, citation relationships, and journal quality metrics; full-text retrieval requires PMCID values.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

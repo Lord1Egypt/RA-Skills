@@ -1,47 +1,57 @@
-## Description: <br>
-Send and receive emails with the Resend API, including direct sends, inbound cron notifications, threaded reply drafting, and attachment downloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive emails using the Resend API for direct sending, inbound cron notifications, threaded reply drafting, and attachment downloads.
 
-## Publisher: <br>
-[ivelin](https://clawhub.ai/user/ivelin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[ivelin](https://clawhub.ai/user/ivelin)
 
-## Use Case: <br>
-Developers and agents use this skill to send email through Resend, monitor inbound messages, draft threaded replies, configure recurring notifications, and download received attachments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles private email and requires Resend API access. <br>
-Mitigation: Install only when email access is intended, use a least-privileged Resend key, and keep email data available only to trusted agents. <br>
-Risk: Recurring inbound checks can send email summaries to an incorrect or stale chat destination. <br>
-Mitigation: Before enabling cron, replace hardcoded Telegram examples, verify the configured chat and topic, and confirm how to remove the cron job. <br>
-Risk: Downloaded attachments may have untrusted filenames or contents. <br>
-Mitigation: Download attachments only to a controlled folder and treat both filenames and file contents as untrusted. <br>
-Risk: Automatic confirmation can send outbound email without an interactive review. <br>
-Mitigation: Avoid the --yes path except in trusted automation and preview outbound messages before sending. <br>
+## Use Case:
 
+Developers and agent operators use this skill to manage Resend email workflows from an agent, including sending messages, checking inbound mail, drafting threaded replies, and tracking related email actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivelin/email-resend) <br>
-- [Resend](https://resend.com) <br>
-- [Resend API](https://api.resend.com) <br>
-- [Custody chain design](docs/custody-chain.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands, JSON script output, and email text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses RESEND_API_KEY and optional sender and notification preferences; can create recurring cron notifications and local email state files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.14 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Recurring inbound email summaries may be sent to an unintended fixed Telegram destination if the cron setup is enabled without replacing defaults.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and replace Telegram destinations with user-controlled values, preferably through the dynamic preferences flow, before enabling the cron job.
+
+Risk: Attachment downloads are flagged for unsafe remote filename and URL handling in this version.
+
+Mitigation: Avoid downloading attachments with this version unless filenames and URLs have been reviewed and constrained before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivelin/skills/email-resend)
+- [Resend](https://resend.com)
+- [Resend API](https://api.resend.com)
+- [README](README.md)
+- [Email Custody Chain Design](docs/custody-chain.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON/text outputs from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires RESEND_API_KEY; optional sender defaults can be supplied through environment variables or the documented preferences file.]
+
+## Skill Version(s):
+
+1.0.14 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

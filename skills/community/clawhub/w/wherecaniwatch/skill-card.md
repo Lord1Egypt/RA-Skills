@@ -1,43 +1,55 @@
-## Description: <br>
-Find where to stream movies and TV shows in the US using the WhereCanIWatch.tv API, with optional filtering by the user's subscriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find where to stream any movie or TV show in the US using the WhereCanIWatch.tv API.
 
-## Publisher: <br>
-[samthewise2855](https://clawhub.ai/user/samthewise2855) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[samthewise2855](https://clawhub.ai/user/samthewise2855)
 
-## Use Case: <br>
-External users ask an agent where a specific movie or TV show is available in the US. The skill guides the agent to search WhereCanIWatch.tv, compare services and prices, and present the best viewing options. <br>
-
-### Deployment Geography for Use: <br>
-United States <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Movie or TV title searches and subscription preferences may be sent to WhereCanIWatch.tv during lookup. <br>
-Mitigation: Avoid including sensitive personal details in lookup requests and only provide subscription preferences needed for filtering. <br>
-Risk: The skill can return provider and WhereCanIWatch links for the user to open. <br>
-Mitigation: Review links before opening them and use normal browser caution when following third-party provider pages. <br>
-Risk: Availability data is scoped to the US and refreshed daily, so results may not apply to other regions or reflect very recent catalog changes. <br>
-Mitigation: Tell users when results are US-specific and verify time-sensitive availability on the linked provider page. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [WhereCanIWatch Search API](https://www.wherecaniwatch.tv/api/search?q={title}) <br>
-- [WhereCanIWatch Watch API](https://www.wherecaniwatch.tv/api/watch/{slug}.json) <br>
-- [WhereCanIWatch Watch Page](https://www.wherecaniwatch.tv/watch/{slug}) <br>
+## Use Case:
 
+External users ask an agent where a movie or TV show is available to watch in the US, compare free, subscription, rental, and purchase options, and filter results by their streaming subscriptions when provided.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown response with streaming options and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a best option, one or two alternatives, prices, quality notes, provider deep links, and a WhereCanIWatch page link.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+United States
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search titles and any subscription names provided by the user are sent to WhereCanIWatch.tv.
+
+Mitigation: Avoid entering sensitive viewing preferences or subscription details unless sharing them with the service is acceptable.
+
+Risk: Availability is documented as US-only, so answers may be inaccurate for users in other regions.
+
+Mitigation: State the US-region limitation when presenting results and avoid applying the results to other countries.
+
+## Reference(s):
+
+- [WhereCanIWatch skill page](https://clawhub.ai/samthewise2855/skills/wherecaniwatch)
+- [WhereCanIWatch.tv](https://www.wherecaniwatch.tv/)
+- [WhereCanIWatch search API](https://www.wherecaniwatch.tv/api/search?q={title})
+- [WhereCanIWatch watch API](https://www.wherecaniwatch.tv/api/watch/{slug}.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown answer with watch links and concise availability details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should lead with the best option, include one or two alternatives, and link to the full WhereCanIWatch page.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

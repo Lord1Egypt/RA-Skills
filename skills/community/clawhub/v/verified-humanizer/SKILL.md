@@ -1,10 +1,26 @@
 ---
 
 name: verified-humanizer
-description: Transform AI-generated content into natural, human-sounding writing, measure the improvement, and optionally verify the result.
+description: Legacy verification-guided rewriting skill. Makes AI-generated text more natural while encouraging claims to stay grounded and attributable. Does not perform cryptographic verification, emit receipts, verify receipts, or prove that rewritten text is true.
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 # Verified Humanizer
+
+Verified Humanizer is a legacy verification-guided rewriting skill.
+
+It helps make AI-generated text more natural while encouraging claims to remain grounded, attributable, and not stronger than the available evidence.
+
+This skill does not perform cryptographic verification, emit receipts, verify receipts, or prove that rewritten text is true.
+
+For actual receipt verification, use SettlementWitness or DefaultVerifier MCP verify_receipt.
+
+Status: legacy / claim-corrected.
+
+Category: verifiability-guided workflow skill.
+
+Boundary: Verified Humanizer improves wording discipline; it does not certify factual accuracy, authorship, approval, or evidence validity.
+
+---
 
 Transform stiff or formulaic AI-generated content into writing that sounds natural, clear, and human. Keep rewriting local, measure the improvement, and optionally verify the evaluation using structured metrics.
 
@@ -160,6 +176,10 @@ You may optionally verify the evaluation using structured data only.
 * enables optional verification
 
 ---
+
+## Claim precision note
+
+This version clarifies that the skill is a verifiability-guided workflow aid. It does not itself perform cryptographic verification, emit Settlement Attestation Receipts, verify receipts, verify signatures, prove human authorship, or prove that rewritten text is true or safe. For receipt verification, use SettlementWitness or DefaultVerifier MCP verify_receipt.
 
 ## Keywords
 

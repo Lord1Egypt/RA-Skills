@@ -1,53 +1,73 @@
-## Description: <br>
-Trip Planner 0→1 guides an agent through an end-to-end self-guided travel planning workflow, from requirements gathering and multi-source research to itinerary Markdown, an interactive todo dashboard, optional sync, and static deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates an end-to-end self-guided trip plan, including requirements capture, multi-source research, itinerary decisions, Markdown travel documents, interactive Todo dashboards, optional sync, and static deployment guidance.
 
-## Publisher: <br>
-[dengjiawei1226](https://clawhub.ai/user/dengjiawei1226) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dengjiawei1226](https://clawhub.ai/user/dengjiawei1226)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to produce structured self-guided trip plans, day-by-day itinerary documents, actionable todo lists, and optional shareable dashboards for independent travel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional sync and deployment examples can expose travel data or service credentials if used as written. <br>
-Mitigation: Review generated artifacts before syncing or sharing them, keep localStorage mode when possible, avoid placing service credentials in browser code, and add real authentication before deploying a sync backend. <br>
-Risk: Public itinerary links can reveal sensitive travel details. <br>
-Mitigation: Remove confirmation numbers, order IDs, credit-card details, passport notes, and emergency contacts from any public URL. <br>
-Risk: Predictable sync room identifiers can allow unintended access to shared todo data. <br>
-Mitigation: Use high-entropy room IDs for any cross-device sync configuration. <br>
+## Use Case:
 
+External users and agent operators use this skill to turn a destination or partial booking into a structured independent-travel plan, printable itinerary, actionable Todo list, and optional shared trip dashboard.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dengjiawei1226/trip-planner-0to1) <br>
-- [Workflow checklist](artifact/references/workflow-checklist.md) <br>
-- [Research prompts](artifact/references/research-prompts.md) <br>
-- [Itinerary template](artifact/references/templates/itinerary-template.md) <br>
-- [Interactive dashboard template](artifact/references/templates/index-skeleton.html) <br>
-- [Todo sync template](artifact/references/templates/todo-sync.js) <br>
-- [Cloudflare Workers sync guide](artifact/references/cloudflare-workers-sync.md) <br>
-- [Self-hosted sync guide](artifact/references/self-host-sync.md) <br>
-- [Leaflet documentation](https://leafletjs.com/) <br>
-- [Lucide icons](https://lucide.dev/) <br>
-- [Cloudflare Workers documentation](https://developers.cloudflare.com/workers/) <br>
-- [JSONBin](https://jsonbin.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with HTML, JavaScript, configuration snippets, and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces itinerary documents, todo lists, dashboard files, sync configuration guidance, and deployment steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Optional cloud sync patterns could expose private trip data if room IDs are guessable or sharing controls are weak.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the default localStorage mode for private use; when cloud sync is needed, use private authenticated sync and high-entropy room IDs.
+
+Risk: Static browser code can expose GitHub personal access tokens or JSONBin master keys if those options are copied into a public page.
+
+Mitigation: Do not embed long-lived credentials in static client code; place credentialed writes behind an authenticated backend or private service.
+
+Risk: Generated itineraries and dashboards can contain confirmation numbers, payment details, or personal travel information.
+
+Mitigation: Remove confirmation numbers, card details, personal identifiers, and sensitive itinerary details before publishing or sharing generated pages.
+
+Risk: Optional Docker or compose setup for third-party research tools may introduce operational or supply-chain risk.
+
+Mitigation: Review Docker images, compose files, and network exposure before running third-party services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dengjiawei1226/skills/trip-planner-0to1)
+- [Workflow checklist](references/workflow-checklist.md)
+- [Research prompts](references/research-prompts.md)
+- [Itinerary template](references/templates/itinerary-template.md)
+- [Interactive dashboard template](references/templates/index-skeleton.html)
+- [Todo sync template](references/templates/todo-sync.js)
+- [Cloudflare Workers sync notes](references/cloudflare-workers-sync.md)
+- [Self-hosted sync notes](references/self-host-sync.md)
+- [xiaohongshu MCP](https://github.com/xpzouying/xiaohongshu-mcp)
+- [Leaflet](https://leafletjs.com/)
+- [Lucide](https://lucide.dev/)
+- [Cloudflare Workers](https://developers.cloudflare.com/workers/)
+- [JSONBin.io](https://jsonbin.io/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown itinerary drafts, HTML and JavaScript templates, checklist guidance, and shell or configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include optional local-only or cloud-backed Todo synchronization patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -165,6 +165,16 @@ pre { overflow-x: auto; background: var(--tint); color: var(--ink-1); border-rad
 .chart-title { font-size: 11px; font-weight: 700; margin: 0 0 4px; color: var(--ink-1); letter-spacing: 0.04em; text-transform: uppercase; font-family: Georgia, serif; }
 .chart-subtitle { color: var(--ink-3); font-size: 11px; margin-bottom: 6px; font-family: "Courier New", ui-monospace, monospace; }
 .chart-card svg { display: block; width: 100%; height: auto; overflow: visible; }
+.metric-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 12px 0 8px; }
+.metric-card { background: var(--surface); border: 1px solid var(--ink-3); border-radius: var(--r-sm); padding: 12px 14px 10px; }
+.metric-title { color: var(--ink-2); font-size: 11px; font-weight: 700; margin-bottom: 5px; letter-spacing: 0.04em; text-transform: uppercase; font-family: Georgia, serif; }
+.metric-value { font-family: "Courier New", ui-monospace, monospace; font-size: 20px; line-height: 1.2; color: var(--ink-1); font-weight: 700; }
+.metric-value.pos, .bar-value.pos { color: var(--neg); fill: var(--neg); }
+.metric-value.neg, .bar-value.neg { color: var(--pos); fill: var(--pos); }
+.metric-sub { color: var(--ink-3); font-size: 11px; line-height: 1.6; margin-top: 5px; }
+.bar-pos { fill: var(--neg); }
+.bar-neg { fill: var(--pos); }
+.bar-fill { opacity: 0.78; }
 
 .kline-card { background: var(--surface); border: 1px solid var(--ink-3); border-radius: var(--r-sm); padding: 12px 14px 10px; margin: 10px 0 16px; }
 .kline-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 10px 0 16px; }
@@ -216,6 +226,7 @@ pre { overflow-x: auto; background: var(--tint); color: var(--ink-1); border-rad
 @media (max-width: 900px) {
   .page { width: calc(100vw - 24px); padding-top: 18px; margin-bottom: 48px; }
   .chart-grid { grid-template-columns: 1fr; gap: 12px; }
+  .metric-grid { grid-template-columns: 1fr; gap: 12px; }
   .kline-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .stock-kline-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .report h2 { font-size: 17px; margin-top: 28px; }
@@ -230,6 +241,6 @@ pre { overflow-x: auto; background: var(--tint); color: var(--ink-1); border-rad
   th { position: static; }
   .report h2 { page-break-after: avoid; }
   .report h3, .report h4 { page-break-after: avoid; }
-  table, .chart-card, .kline-card, .summary-card { page-break-inside: avoid; }
+  table, .chart-card, .metric-card, .kline-card, .summary-card { page-break-inside: avoid; }
   tbody tr:hover td { background: var(--tint); }
 }

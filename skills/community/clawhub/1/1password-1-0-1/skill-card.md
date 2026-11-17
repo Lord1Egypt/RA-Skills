@@ -1,44 +1,55 @@
-## Description: <br>
-Set up and use 1Password CLI (op). Use when installing the CLI, enabling desktop app integration, signing in (single or multi-account), or reading/injecting/running secrets via op. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and use 1Password CLI (op). Use when installing the CLI, enabling desktop app integration, signing in (single or multi-account), or reading/injecting/running secrets via op.
 
-## Publisher: <br>
-[daggerkun007](https://clawhub.ai/user/daggerkun007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daggerkun007](https://clawhub.ai/user/daggerkun007)
 
-## Use Case: <br>
-Developers and engineers use this skill to install and authenticate the 1Password CLI, verify account access, and safely run secret read, inject, and command execution workflows through op. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Secret values could be exposed in terminal output, logs, chat, or generated files. <br>
-Mitigation: Avoid commands that print secrets, avoid --no-masking unless explicitly required, and prefer op run or op inject workflows that keep secret material out of logs. <br>
-Risk: Examples that write secret material to disk can leave plaintext credentials behind. <br>
-Mitigation: Write secret outputs only to protected paths with restrictive permissions, exclude those files from version control, and delete plaintext files after use. <br>
-Risk: Agent commands may use the user's active 1Password CLI authentication context. <br>
-Mitigation: Install only when the agent is trusted to use that context, run op commands inside the required tmux session, and verify account identity with op whoami before reading secrets. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [1Password CLI get started](https://developer.1password.com/docs/cli/get-started/) <br>
-- [Skill reference: get-started.md](references/get-started.md) <br>
-- [Skill reference: cli-examples.md](references/cli-examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/daggerkun007/1password-1-0-1) <br>
+## Use Case:
 
+Developers and operators use this skill to install and verify the 1Password CLI, enable desktop app integration, authenticate accounts, and run secret read, inject, and command workflows through op.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the op CLI and a tmux session for authenticated commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Examples may print decrypted secrets, disable masking, or write decrypted secrets to local files.
+
+Mitigation: Avoid those examples unless there is a specific need and logs, file permissions, cleanup, and credential rotation risk are controlled.
+
+Risk: An authenticated 1Password CLI session can access sensitive vault data.
+
+Mitigation: Use the skill only when intentionally operating an authenticated op session, verify the account with op whoami, and prefer op run or op inject over persisting secrets to disk.
+
+## Reference(s):
+
+- [1Password CLI get started](https://developer.1password.com/docs/cli/get-started/)
+- [get-started.md](references/get-started.md)
+- [cli-examples.md](references/cli-examples.md)
+- [ClawHub skill page](https://clawhub.ai/daggerkun007/skills/1password-1-0-1)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the 1Password CLI binary op; authenticated op commands are expected to run in a dedicated tmux session.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact _meta.json reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

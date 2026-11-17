@@ -1,42 +1,52 @@
-## Description: <br>
-Offload date math to code -- get current date, days/weeks until goal dates, and month-end info. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Time Anchor helps agents run deterministic local date math for current dates, days or weeks until target dates, weekday ambiguity, and month-end information.
 
-## Publisher: <br>
-[elroyic](https://clawhub.ai/user/elroyic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[elroyic](https://clawhub.ai/user/elroyic)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent users use this skill when an assistant needs reliable date calculations for deadlines, milestones, weekdays, and month-end planning.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate on ordinary planning or scheduling language because its trigger scope is broad.
+
+Mitigation: Install it only when local date-math assistance is desired, and verify that the response context actually requires date calculations.
+
+Risk: The full-anchor output depends on configured target dates that may be user-specific or stale.
+
+Mitigation: Review and customize the configured target dates before relying on full-anchor output for planning decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agents use Time Anchor to answer date, deadline, scheduling, and timeline questions with deterministic local date calculations instead of mental date math. It supports current-date anchoring, days or weeks until target dates, upcoming weekday options with ambiguity metadata, and days remaining in the current month. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has a broad trigger for date, deadline, scheduling, and 'when' phrasing. <br>
-Mitigation: Use it for date-related questions and review whether invocation is appropriate before relying on its output. <br>
-Risk: Editable configured target labels may expose sensitive private event names. <br>
-Mitigation: Avoid storing confidential event names in the TARGETS list; use generic labels or user-provided context instead. <br>
-Risk: The workflow allows web search when a named event date is unknown. <br>
-Mitigation: Do not web-search confidential or internal events; ask the user for the date when the event is private or ambiguous. <br>
+**Output Format:** [Markdown guidance with shell commands; script output is plain text with JSON for weekday ambiguity.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/elroyic/time-anchor) <br>
+**Other Properties Related to Output:** [Runs a local Python helper for deterministic date calculations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text responses; weekday lookups include a trailing JSON ambiguity payload.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a local Python helper and may use editable configured target dates.] <br>
+1.1.0 (source: evidence release and clawhub.json)
 
-## Skill Version(s): <br>
-1.1.0 (source: clawhub.json and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

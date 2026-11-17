@@ -1,44 +1,64 @@
-## Description: <br>
-Coordinates frontend and backend developer agents on managed software projects, including task pickup, project workflow, branch and PR standards, QA handoff, escalation, and heartbeat queue checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Project Developer guides developer agents through task pickup, Git workflow, task-board communication, engineer escalation, PR handoff, QA feedback, and heartbeat queue checks for managed software projects.
 
-## Publisher: <br>
-[encryptshawn](https://clawhub.ai/user/encryptshawn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[encryptshawn](https://clawhub.ai/user/encryptshawn)
 
-## Use Case: <br>
-Developer agents and agent operators use this skill to keep frontend or backend implementation work aligned with project plans, task boards, pull request expectations, QA handoff, and escalation paths. It is intended for managed OpenClaw project teams that rely on separate Git and task-management skills for external operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unattended heartbeat queue checks and task pickup can trigger unintended work, credit spend, or exposure of sensitive project context if configured too broadly. <br>
-Mitigation: Enable heartbeat only with strict project and task filters, spending limits, scoped access, and manual review for unfamiliar tasks; keep credentials, customer data, and sensitive business context out of task fields. <br>
-Risk: The skill depends on separate Git and task-management skills that may hold API credentials and perform external operations. <br>
-Mitigation: Install only the required dependency skills, keep API keys local to those skills, and scope Git and task-board access to the specific repositories and projects the agent role needs. <br>
+## Use Case:
 
+Developer agents use this skill to operate as frontend or backend team members on managed software projects. It helps them follow project phase gates, pick up assigned tasks, coordinate through task boards and queue files, escalate blockers, prepare PRs, and hand work to QA.
 
-## Reference(s): <br>
-- [Task Workflow](references/task_workflow.md) <br>
-- [Git Workflow](references/git_workflow.md) <br>
-- [PR and QA Handoff](references/pr_and_qa_handoff.md) <br>
-- [Escalation to Engineer](references/escalation_to_engineer.md) <br>
-- [Asana Standards](references/asana_standards.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with task comments, PR templates, branch and commit conventions, escalation formats, and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires separately installed Git and task-management skills for repository and board operations; this skill provides workflow instructions only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The agent could update the wrong branch, queue, or board column if project metadata is stale or misread.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review branch naming, escalation-channel, HEARTBEAT.md write-back, and task-completion ownership rules before use.
+
+Risk: Dependency skills perform Git and task-manager operations with their own credentials.
+
+Mitigation: Install only for developer agents with appropriately scoped Git and task-manager skills, limited to the repositories and projects required by the agent role.
+
+Risk: Heartbeat failures or self-messaging can waste model cycles or create misleading coordination signals.
+
+Mitigation: Preserve the fail-cheap heartbeat behavior, direct queue lookups, and prohibition on self-sends or retries with primary models.
+
+## Reference(s):
+
+- [Project Developer ClawHub page](https://clawhub.ai/encryptshawn/skills/project-dev)
+- [OpenClaw Projects ClawHub page](https://clawhub.ai/encryptshawn/openclaw-projects)
+- [Build a Dev Team ClawHub page](https://clawhub.ai/encryptshawn/build-dev-team)
+- [Task Workflow](artifact/references/task_workflow.md)
+- [Git Workflow](artifact/references/git_workflow.md)
+- [PR and QA Handoff](artifact/references/pr_and_qa_handoff.md)
+- [Escalation to Engineer](artifact/references/escalation_to_engineer.md)
+- [Asana Standards](artifact/references/asana_standards.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline templates and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include branch names, task comments, PR descriptions, queue messages, and API contract snippets.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

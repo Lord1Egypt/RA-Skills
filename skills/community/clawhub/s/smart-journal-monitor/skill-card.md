@@ -1,41 +1,54 @@
-## Description: <br>
-Use smart journal monitor for evidence insight workflows that need structured execution, explicit assumptions, and clear output boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use smart journal monitor for evidence insight workflows that need structured execution, explicit assumptions, and clear output boundaries.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External users and developers can use this skill to rank supplied journal article records by simple breakthrough heuristics, then return a bounded digest with scores, article titles, journals, assumptions, and limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may expect live RSS polling, AI summarization, scheduled alerts, or journal fetching because the skill name and documentation overstate those capabilities. <br>
-Mitigation: Present this release as a local article-record scoring helper and require supplied JSON article files. <br>
-Risk: The script reads article data from a user-provided JSON path. <br>
-Mitigation: Provide only article files that are appropriate to read in the workspace and review generated output before using it as a research digest. <br>
+## Use Case:
 
+Developers and research teams use this skill to score locally supplied journal article records, identify likely breakthrough papers, and return ranked findings with concise summaries and explicit assumptions.
 
-## Reference(s): <br>
-- [Audit Reference](references/audit-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/smart-journal-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with plain-text command output from the local Python helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ranks JSON article records locally; this release does not provide live RSS polling, AI summarization, scheduled alerts, or journal fetching.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The packaged script reads article data from a user-provided JSON file without enforcing path restrictions or validating the input schema.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only intended workspace-local article JSON files and review inputs before execution.
+
+Risk: The release describes journal monitoring, RSS, and AI behavior more broadly than the evidenced script implements.
+
+Mitigation: Treat the skill as a local article-scoring helper unless additional reviewed implementation evidence is supplied.
+
+## Reference(s):
+
+- [Audit Reference](references/audit-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/smart-journal-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with optional command output and ranked article summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local, reviewable results from provided article JSON; no external network access is evidenced.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

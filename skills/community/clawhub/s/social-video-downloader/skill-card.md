@@ -1,44 +1,54 @@
-## Description: <br>
-Downloads public social-media videos from supported URLs via yt-dlp when the user clearly asks to save or grab the video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download videos from Instagram Reels, TikTok, YouTube Shorts, Twitter/X clips, and other supported social media platforms when the user clearly asks to save a video.
 
-## Publisher: <br>
-[elony-7](https://clawhub.ai/user/elony-7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elony-7](https://clawhub.ai/user/elony-7)
 
-## Use Case: <br>
-External users and operators use this skill when a user has clear intent to download a public video from a supported social-media link. The skill checks metadata, downloads the video to temporary local storage, and returns the file path for delivery to the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can download media from public social platforms, which may be inappropriate if the user lacks rights to save or share the content. <br>
-Mitigation: Use it only for public videos the user clearly intends to download and has rights to save or share. <br>
-Risk: The skill depends on local yt-dlp and optionally ffmpeg, so installation source and runtime environment affect trust. <br>
-Mitigation: Install dependencies from a trusted package manager or in an isolated Python environment before use. <br>
-Risk: Network downloads can expose the agent host to unsafe URLs or internal-network targeting. <br>
-Mitigation: Keep the artifact's URL allowlist, private-IP blocking, shell metacharacter validation, and subprocess argument isolation in place. <br>
+## Use Case:
 
+External users and agents use this skill to download public social-media videos from supported URLs and return the generated file when download intent is explicit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/elony-7/social-video-downloader) <br>
-- [Setup instructions](artifact/SETUP.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Console status text and local video file path for agent delivery] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local yt-dlp; ffmpeg is recommended; private or restricted content is expected to fail.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill runs a local downloader that makes network requests and returns generated files from the user's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install yt-dlp in an isolated pinned environment and run downloads in a network-restricted sandbox when possible.
+
+Risk: The security summary flags temporary-file handling and SSRF controls as areas needing review before sensitive-host use.
+
+Mitigation: Avoid use on sensitive hosts until those controls are reviewed and tightened.
+
+## Reference(s):
+
+- [Social Video Downloader skill page](https://clawhub.ai/elony-7/skills/social-video-downloader)
+- [Setup instructions](artifact/SETUP.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Downloaded media file with concise status or error text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires yt-dlp and network access; may provide a local file path when a generated file exceeds the messaging size limit.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

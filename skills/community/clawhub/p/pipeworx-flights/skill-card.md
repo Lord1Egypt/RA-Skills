@@ -1,41 +1,54 @@
-## Description: <br>
-Live aircraft tracking for flights in a geographic area, individual aircraft by transponder, and airport arrivals or departures via OpenSky Network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Live aircraft tracking - flights in a geographic area, individual aircraft by transponder, and airport arrivals/departures via OpenSky Network.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-Developers, analysts, and aviation teams use this skill to query live aircraft positions by area or ICAO24 address and retrieve airport arrivals or departures for dashboards, research, and operational awareness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Flight data may be rate-limited, delayed, or incomplete for real-time decisions. <br>
-Mitigation: Confirm critical aviation information against authoritative operational sources before relying on it. <br>
-Risk: The skill sends tool calls to an external Pipeworx MCP endpoint. <br>
-Mitigation: Review intended tool calls and network access requirements before enabling the skill in restricted environments. <br>
+## Use Case:
 
+External users, developers, and aviation analysts use this skill to query live aircraft in a geographic area, track aircraft by ICAO24 transponder address, and retrieve airport arrivals or departures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/b-gutman/pipeworx-flights) <br>
-- [Pipeworx Flights homepage](https://pipeworx.io/packs/flights) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses OpenSky Network data through the Pipeworx MCP endpoint; anonymous access is rate-limited, aircraft positions may be delayed, and airport arrival/departure time ranges are limited to 7-day windows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The MCP setup uses an unpinned npm helper, mcp-remote@latest.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin mcp-remote to a reviewed version and run the MCP process with only the network and environment access it needs.
+
+Risk: Anonymous flight data access is rate-limited and may be slightly delayed.
+
+Mitigation: Account for delayed or missing flight records in downstream workflows and avoid relying on anonymous access for strict real-time guarantees.
+
+## Reference(s):
+
+- [Pipeworx Flights](https://pipeworx.io/packs/flights)
+- [ClawHub Skill Page](https://clawhub.ai/b-gutman/skills/pipeworx-flights)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Flight queries return aircraft details such as ICAO24 address, callsign, origin country, altitude, velocity, heading, and position when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

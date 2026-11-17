@@ -1,48 +1,67 @@
-## Description: <br>
-Manage Asana tasks, projects, briefs, status updates, custom fields, dependencies, attachments, events, and timelines via Personal Access Token (PAT). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Asana tasks, projects, briefs, status updates, custom fields, dependencies, attachments, events, and timelines via Personal Access Token (PAT).
 
-## Publisher: <br>
-[L-U-C-K-Y](https://clawhub.ai/user/L-U-C-K-Y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[l-u-c-k-y](https://clawhub.ai/user/l-u-c-k-y)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to let an agent manage Asana workspaces, tasks, projects, project briefs, status updates, timelines, custom fields, dependencies, comments, events, and attachments through an Asana Personal Access Token. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can mutate real Asana workspace data, including tasks, comments, project status updates, briefs, timelines, dependencies, and sections. <br>
-Mitigation: Require explicit human approval before task mutations, comments, status updates, brief changes, timeline shifts, dependency changes, or section moves. <br>
-Risk: The Asana PAT grants authenticated workspace access and may be exposed if stored or displayed carelessly. <br>
-Mitigation: Use the least-privileged PAT available, store it through a secret-aware configuration path, and avoid exposing it with config read commands, logs, prompts, or shell history. <br>
-Risk: Attachment upload can send local files to Asana. <br>
-Mitigation: Require human confirmation of the exact local file path and destination task before uploading attachments or embedding inline images. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/L-U-C-K-Y/asana-agent-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/L-U-C-K-Y) <br>
-- [Asana personal access token documentation](https://developers.asana.com/docs/personal-access-token) <br>
-- [Asana authentication overview](https://developers.asana.com/docs/authentication) <br>
-- [Asana rich text guide](https://developers.asana.com/docs/rich-text) <br>
-- [Asana attachment upload reference](https://developers.asana.com/reference/createattachmentforobject) <br>
-- [Reference and implementation notes](references/REFERENCE.md) <br>
-- [OpenClaw skills configuration](https://docs.openclaw.ai/tools/skills-config) <br>
+## Use Case:
 
+Employees, external collaborators, and developers can use this skill to let an agent manage Asana task and project workflows through a PAT-backed CLI, including task discovery, updates, briefs, status updates, custom fields, dependencies, attachments, and timeline changes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON-only CLI stdout from the Asana script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+ and an Asana PAT supplied through ASANA_PAT or equivalent OpenClaw configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses an Asana PAT that can carry the same authority as the user's Asana account.
+
+Mitigation: Use the least-privileged token available, store it through runtime configuration or environment injection, and avoid printing stored config values such as apiKey.
+
+Risk: The skill can mutate live Asana data through create, update, comment, delete, follower, dependency, and timeline-shift commands.
+
+Mitigation: Review generated commands before execution and test write paths in a non-production project first.
+
+Risk: The upload-attachment command sends a local file path's contents to Asana.
+
+Mitigation: Verify the file path and destination task or project before uploading.
+
+Risk: Malformed rich text or unsupported tags can cause Asana API failures.
+
+Mitigation: Use XML-valid HTML fragments wrapped in a body element and keep markup to Asana-supported tags.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/l-u-c-k-y/skills/asana-agent-skill)
+- [Asana Personal Access Token documentation](https://developers.asana.com/docs/personal-access-token)
+- [Asana authentication documentation](https://developers.asana.com/docs/authentication)
+- [Asana rich text documentation](https://developers.asana.com/docs/rich-text)
+- [Asana attachment upload API reference](https://developers.asana.com/reference/createattachmentforobject)
+- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills)
+- [OpenClaw skills configuration documentation](https://docs.openclaw.ai/tools/skills-config)
+- [Reference and implementation notes](references/REFERENCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from the CLI on stdout, with Markdown usage guidance in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an Asana PAT; command results are JSON-only.]
+
+## Skill Version(s):
+
+0.2.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

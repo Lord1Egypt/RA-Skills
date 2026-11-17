@@ -1,42 +1,63 @@
-## Description: <br>
-Search and install an OpenClaw configuration pack from ClawMart. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and install an OpenClaw configuration pack from ClawMart.
 
-## Publisher: <br>
-[rxdaozhang](https://clawhub.ai/user/rxdaozhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rxdaozhang](https://clawhub.ai/user/rxdaozhang)
 
-## Use Case: <br>
-OpenClaw users use this skill to search ClawMart, review matching configuration packs, download a selected pack, back up conflicting files, and install the pack into the local OpenClaw workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change OpenClaw behavior by installing files from remote ClawMart packs. <br>
-Mitigation: Install only packs from trusted publishers, review pack details before confirmation, inspect target paths and downloaded file names when possible, and keep the backup location for recovery. <br>
-Risk: The local ClawMart configuration stores an API token. <br>
-Mitigation: Treat ~/.openclaw/clawmart-config.json as sensitive and avoid sharing or committing it. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to search ClawMart, choose a configuration pack, download it with an API token, and install pack files into an OpenClaw workspace.
 
-## Reference(s): <br>
-- [Clawmart Install on ClawHub](https://clawhub.ai/rxdaozhang/clawmart-install) <br>
-- [ClawMart](https://clawmart-gray.vercel.app) <br>
-- [ClawMart API Token Dashboard](https://clawmart-gray.vercel.app/dashboard/tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Files] <br>
-**Output Format:** [Markdown guidance with API request examples, JSON configuration snippets, and file installation instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write OpenClaw configuration files, skill files, backups, and a local ClawMart API token configuration when the user proceeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.3 (source: ClawHub release metadata) <br>
+Risk: Remote pack contents can overwrite local OpenClaw workspace files or add skill files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only trusted packs, inspect exact file names, contents, and destinations before writing, and keep backups for rollback.
+
+Risk: The ClawMart API token may be stored locally in plaintext.
+
+Mitigation: Use scoped or short-lived tokens when available, avoid pasting long-lived tokens, and remove the saved token when it is no longer needed.
+
+Risk: Downloaded file paths may be unsafe if remote content is not validated.
+
+Mitigation: Sanitize every remote file path and block writes outside the intended OpenClaw workspace and skills directories.
+
+Risk: Pack authenticity may be unclear before installation.
+
+Mitigation: Validate pack signatures or other trust signals and install only from publishers the user trusts.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/rxdaozhang/skills/clawmart-install)
+- [ClawMart service](https://clawmart-gray.vercel.app)
+- [ClawMart token dashboard](https://clawmart-gray.vercel.app/dashboard/tokens)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, API Calls, Files, Configuration]
+
+**Output Format:** [Markdown guidance with API request details, JSON snippets, and installation summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write OpenClaw configuration files, workspace files, skill files, backups, and a local ClawMart token configuration.]
+
+## Skill Version(s):
+
+1.2.3 (source: server release evidence; artifact frontmatter lists 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

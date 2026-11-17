@@ -1,39 +1,48 @@
-## Description: <br>
-Format, minify, and lint SQL queries from the command line with configurable indentation, keyword casing, comment removal, and checks for common SQL anti-patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Formats, minifies, and lints SQL queries from the command line with indentation, keyword casing, comment removal, whitespace cleanup, and checks for common SQL anti-patterns.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and data practitioners use this skill to format SQL files or inline SQL, minify SQL for deployment, and lint queries for common readability and quality issues.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: User-specified input and output paths can read or overwrite files the operator did not intend to target.
+
+Mitigation: Review --input and --output paths before execution and provide only files intended for local formatting, minification, or linting.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to format SQL files or inline queries, minify SQL for production use, and lint SQL for common quality issues before review or execution. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read from input paths and write to output paths supplied by the user. <br>
-Mitigation: Check --input and --output paths before running commands so only intended SQL files are read or written. <br>
-Risk: Automated SQL formatting or minification may change readability or expose query issues that still require human review. <br>
-Mitigation: Review formatted or minified SQL before using it in production workflows. <br>
+**Output Format:** [Markdown with inline shell commands and generated SQL text or JSON lint output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Command output may be written to stdout or to a user-specified output file.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can emit formatted SQL text, minified SQL text, lint messages, or JSON lint output depending on the selected command.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

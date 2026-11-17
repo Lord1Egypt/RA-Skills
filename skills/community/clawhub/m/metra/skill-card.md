@@ -1,46 +1,65 @@
-## Description: <br>
-Chicago Metra commuter rail -- real-time train arrivals, vehicle tracking, service alerts, and schedule info for all 11 Metra lines serving the Chicago metropolitan area. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chicago Metra commuter rail information, including train arrivals, vehicle tracking, service alerts, schedules, station lookup, route details, and fare calculations for Metra lines in the Chicago metropolitan area.
 
-## Publisher: <br>
-[brianleach](https://clawhub.ai/user/brianleach) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[brianleach](https://clawhub.ai/user/brianleach)
 
-## Use Case: <br>
-External users and transit-focused agents use this skill to answer Chicago Metra questions about train arrivals, vehicle positions, service alerts, schedules, routes, stops, and fares. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Metra API key for realtime feeds. <br>
-Mitigation: Use a dedicated Metra API key and keep unrelated secrets out of the skill-local .env file. <br>
-Risk: Installation runs npm install for the protobuf dependency. <br>
-Mitigation: Review package.json and package-lock.json before installing dependencies in the target environment. <br>
-Risk: The skill writes public GTFS schedule data to a local cache under ~/.metra/gtfs. <br>
-Mitigation: Allow the cache only in environments where local storage of public schedule data is acceptable. <br>
+## Use Case:
 
+External users and transit-focused agents use this skill to answer natural-language questions about Chicago Metra arrivals, schedules, service alerts, routes, stations, and fares.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brianleach/metra) <br>
-- [Metra developer documentation](https://metra.com/developers) <br>
-- [Metra GTFS realtime API base](https://gtfspublic.metrarr.com) <br>
-- [Metra static GTFS schedule feed](https://schedules.metrarail.com/gtfs/schedule.zip) <br>
-- [Metra GTFS published timestamp](https://schedules.metrarail.com/gtfs/published.txt) <br>
+### Deployment Geography for Use:
 
+United States (Chicago metropolitan area)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-oriented text with inline shell commands and transit results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require live API calls to Metra GTFS realtime feeds and local GTFS static data cached under ~/.metra/gtfs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill sends the configured METRA_API_KEY to Metra GTFS-RT endpoints for real-time transit data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Metra developer key, store it in the environment, and rotate or revoke it if it is exposed.
+
+Risk: Real-time commands may fail until the missing gtfs-realtime.proto file is supplied.
+
+Mitigation: Confirm the artifact includes scripts/gtfs-realtime.proto before relying on train arrivals, vehicle positions, or service alerts.
+
+Risk: The protobufjs dependency was flagged by server security guidance as needing an update.
+
+Mitigation: Update protobufjs to a patched version and reinstall dependencies before production use.
+
+Risk: Static GTFS schedule data is cached under ~/.metra/gtfs and may become stale.
+
+Mitigation: Run the refresh-gtfs command periodically and after Metra publishes schedule updates.
+
+## Reference(s):
+
+- [Metra Skill on ClawHub](https://clawhub.ai/brianleach/skills/metra)
+- [brianleach ClawHub Profile](https://clawhub.ai/user/brianleach)
+- [Metra Developer Resources](https://metra.com/developers)
+- [Metra GTFS Static Schedule Feed](https://schedules.metrarail.com/gtfs/schedule.zip)
+- [Metra GTFS Published Timestamp](https://schedules.metrarail.com/gtfs/published.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text responses with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include transit times, train numbers, route names, station matches, fare details, alerts, and setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

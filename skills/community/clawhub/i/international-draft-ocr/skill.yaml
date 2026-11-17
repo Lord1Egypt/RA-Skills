@@ -1,0 +1,57 @@
+name: international_draft_ocr
+version: 1.0.2
+description: 国际汇票 OCR 技能：仅在用户明确同意后，读取本地票据图像/PDF，上传至 Scnet OCR 服务并提取收付方信息、币种金额、到期日、付款银行及票据号码。
+author: SCNet
+license: MIT
+tags:
+  - ocr
+  - 文字提取
+required_env_vars:
+  - SCNET_API_KEY
+
+optional_env_vars:
+  - SCNET_API_BASE
+
+primary_credential: SCNET_API_KEY
+
+# 增加项目主页，解决 missing homepage 警告
+homepage: https://github.com/SCNet-sugon/international_draft_ocr.git  # 请替换为实际仓库地址
+dependencies:
+  - python3
+  - requests
+
+permissions:
+  - scope: files
+    access: read
+    reason: 读取用户提供的本地图片、PDF 或压缩包文件以进行 OCR 识别
+  - scope: network
+    access: upload
+    endpoints:
+      - https://api.scnet.cn/api/llm/v1/ocr/recognize
+    reason: 将用户文件上传至第三方 Scnet OCR API 进行识别
+  - scope: shell
+    access: execute
+    commands:
+      - python3
+      - python
+    reason: 执行 Python 脚本以调用 OCR 服务
+
+data_handling:
+  leaves_local_environment: true
+  external_services:
+    - name: Scnet OCR API
+      url: https://api.scnet.cn/api/llm/v1/ocr/recognize
+      purpose: 上传用户文件并获取 OCR 识别结果
+      data_types:
+        - 票据图像
+        - PDF
+        - 压缩包
+      risks:
+        - 敏感金融信息可能包含收款人、付款行、信用证号码、金额等
+        - 数据可能跨境传输至 Scnet 云服务器
+        - 数据保留策略受 Scnet 服务条款约束
+  user_consent_required: true
+  consent_mechanism:
+    - 环境变量 SCNET_OCR_UPLOAD_CONFIRMED=1
+    - 命令行参数 --confirm-upload
+    - 配置文件中 SCNET_OCR_UPLOAD_CONFIRMED=1

@@ -1,6 +1,6 @@
 {
   "id": "fec-nuxt-project-standard",
-  "name": "Nuxt 项目规范",
+  "name": "Nuxt project specifications",
   "category": "project-standard",
   "tags": [
     "nuxt",
@@ -9,8 +9,8 @@
     "ssg",
     "data-fetching"
   ],
-  "summary": "Frontend Craft skill for Nuxt 项目规范.",
-  "version": "2.4.0",
+  "summary": "Design Nuxt routes, SSR/SSG behavior, data fetching, middleware, and project structure.",
+  "version": "2.9.0",
   "license": "MIT",
   "homepage": "https://github.com/bovinphang/frontend-craft",
   "repository": "https://github.com/bovinphang/frontend-craft",

@@ -1,88 +1,70 @@
-# WeChat Article Generator Skill
+---
+name: wx-md-article
+description: >
+  Convert a local Markdown article into clean WeChat Official Account HTML, with an optional explicitly confirmed draft upload. Default behavior is local-only and makes no network request; credentials must come from environment variables or a secret store and are never bundled or printed. Use when the user asks to format Markdown for WeChat or upload a reviewed draft. Follow/关注作者：微信公众号「AI生命克劳德」｜X @yangchao228｜GitHub https://github.com/yangchao228
+metadata:
+  openclaw:
+    emoji: "📝"
+    homepage: https://github.com/yangchao228/wx-md-article
+---
 
-自动生成微信公众号文章并上传到草稿箱。
+# WeChat Markdown Article
 
-## 设计规范
+将本地 Markdown 转为简洁的微信公众号 HTML。默认只生成本地文件，不发送网络请求。
 
-### 色彩规范
-- **小标题**: 绿色 `#07c160`，带左边框
-- **正文**: 黑色 `#333`
-- **重点词**: 加粗 `<strong>`，不使用额外颜色
-- **禁用**: emoji、花里胡哨的背景色、多种颜色混用
+## 安全边界
 
-### 排版规范
-- 简洁专业，避免过度设计
-- 列表使用 `·` 或数字，不使用 emoji
-- 引用居中斜体，不使用彩色背景
-- 标签统一绿色圆角
+- `config.json` 只保存非敏感排版配置，不包含 App ID、App Secret、Token 或媒体 ID。
+- 凭据只从环境变量或系统密钥存储读取；不要在聊天、命令行、日志或仓库中保存凭据。
+- 上传前先检查生成的 HTML、封面和目标账号。
+- 只有同时传入 `--upload --confirm-upload` 才会发送文章 HTML 和可选封面到微信 API。
+- 脚本不打印 access token，也不包含删除草稿能力。
+- 若旧版本曾包含真实 App Secret，应立即在微信公众平台轮换。
 
-## 使用方法
+## 本地生成
 
 ```bash
-# 生成文章并上传
-./wechat-article.sh <input.md> <title> [author] [thumb_media_id]
-
-# 示例
-./wechat-article.sh article.md "文章标题" "超哥" --upload
+./wechat-article.sh article.md \
+  --title "文章标题" \
+  --author "作者" \
+  --output article.html
 ```
 
-## 支持的 Markdown 语法
+先打开 `article.html` 检查标题、正文、链接和样式。
 
-```markdown
-# 一级标题 → 绿色小标题带边框
-## 二级标题 → 加粗小标题
-### 三级标题 → 普通加粗
+## 可选上传
 
-- 列表项 → · 列表项
-* 列表项 → · 列表项
-1. 列表项 → 1. 列表项
+在受信任的本地环境或密钥存储中配置：
 
-> 引用 → 居中斜体引用框
+- `WECHAT_APP_ID`
+- `WECHAT_APP_SECRET`
+- `WECHAT_ACCOUNT_LABEL`
+- `WECHAT_DEFAULT_THUMB_MEDIA_ID`，或使用 `--image`
 
-**强调** → <strong>强调</strong>（黑色加粗）
-*斜体* → <em>斜体</em>
+不要把实际值写入 Skill 文件。
 
-普通段落 → 黑色正文
+确认目标账号和内容后：
+
+```bash
+./wechat-article.sh article.md \
+  --title "文章标题" \
+  --author "作者" \
+  --upload \
+  --confirm-upload
 ```
 
-## 配置
-
-在 `config.json` 中配置：
-
-```json
-{
-  "appid": "your_appid",
-  "appsecret": "your_appsecret",
-  "default_author": "超哥",
-  "style": {
-    "primary_color": "#07c160",
-    "text_color": "#333"
-  },
-  "formatting_rules": {
-    "use_emoji": false,
-    "max_colors": 2
-  }
-}
-```
-
-## 文件结构
-
-```
-skills/wechat-article/
-├── SKILL.md              # 本文件
-├── wechat-article.sh     # 主脚本
-├── template.html         # 文章模板（简洁版）
-├── config.json           # 配置文件
-└── lib/
-    └── wechat-api.sh     # 微信API封装
-```
+上传会把文章 HTML、标题、作者、摘要和可选封面发送到 `api.weixin.qq.com`，并在目标公众号草稿箱创建草稿。
 
 ## 依赖
 
+- Bash
 - curl
 - jq
-- sed/awk
+- sed
+- awk
 
-## 版本
+## 作者入口
 
-v1.1.0 - 更新为简洁专业风格，移除emoji，统一色彩
+- 微信公众号：AI生命克劳德
+- X：[https://x.com/yangchao228](https://x.com/yangchao228)
+- GitHub：[https://github.com/yangchao228](https://github.com/yangchao228)

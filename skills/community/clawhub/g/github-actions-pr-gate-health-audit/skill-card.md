@@ -1,40 +1,49 @@
-## Description: <br>
-Audit pull-request and merge-queue GitHub Actions reliability by scoring failure rate, queue latency, and stale-success risk for merge gates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit pull-request and merge-queue GitHub Actions reliability by scoring failure rate, queue latency, and stale-success risk for merge gates.
 
-## Publisher: <br>
-[daniellummis](https://clawhub.ai/user/daniellummis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daniellummis](https://clawhub.ai/user/daniellummis)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to audit exported GitHub Actions pull-request and merge-queue run data, identify unreliable merge gates, and optionally fail CI when critical gate-health risks are found. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can fail a pipeline when FAIL_ON_CRITICAL=1 and critical gate-health results are found. <br>
-Mitigation: Enable FAIL_ON_CRITICAL only in jobs where critical audit results should intentionally fail the pipeline. <br>
-Risk: The analysis depends on the GitHub Actions run JSON files selected by RUN_GLOB. <br>
-Mitigation: Keep RUN_GLOB pointed at the intended GitHub Actions export JSON files before running the audit. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daniellummis/github-actions-pr-gate-health-audit) <br>
-- [Publisher profile](https://clawhub.ai/user/daniellummis) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to audit exported GitHub Actions run data for unreliable pull-request and merge-queue gates before they block merges or mask degraded CI health.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Text, JSON, Shell commands] <br>
-**Output Format:** [Text report or JSON object emitted by a shell script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can exit 1 when FAIL_ON_CRITICAL=1 and one or more groups are critical.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A broad RUN_GLOB can cause the report to read more local JSON files than intended.
+
+Mitigation: Scope RUN_GLOB to the intended GitHub Actions artifacts directory before running the audit.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/daniellummis/skills/github-actions-pr-gate-health-audit)
+- [Publisher Profile](https://clawhub.ai/user/daniellummis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Text or JSON reports, with shell commands and environment-variable configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can exit nonzero when FAIL_ON_CRITICAL=1 and one or more scored gate groups are critical.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-A prompt engineering assistant based on Gen AI Space's 16-technique framework that creates ready-to-use prompts and builds high-quality SKILL.md files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A prompt engineering assistant based on Gen AI Space's 16-technique framework that helps agents create ready-to-use prompts and high-quality SKILL.md files.
 
-## Publisher: <br>
-[golofu](https://clawhub.ai/user/golofu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[golofu](https://clawhub.ai/user/golofu)
 
-## Use Case: <br>
-Prompt writers, developers, and skill authors use this skill to choose an appropriate prompting technique, collect missing requirements, draft prompts or SKILL.md files, and self-review the result before delivery. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may cause the skill to run for many prompt-related requests. <br>
-Mitigation: Review and narrow the trigger wording if the release should only support specific prompt-writing or skill-drafting workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/golofu/skill-with-prompt-engineering) <br>
-- [Gen AI Space prompt engineering techniques](https://genaispace.net/basic-prompt-advance-prompt/) <br>
+## Use Case:
 
+External users, developers, and prompt authors use this skill to design, review, and refine prompts or Claude-compatible skill files using a structured prompt engineering workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with structured prompt or SKILL.md sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a before-and-after comparison when the user asks for it.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad activation triggers and permissive fallback choices may lead the agent to generate prompts or skill instructions with insufficient user confirmation.
+
+Mitigation: Review triggers before installation, narrow activation language where needed, and keep user confirmation steps in the workflow.
+
+Risk: The skill defaults to English and may not fit teams that need another primary language.
+
+Mitigation: Adjust the language expectation in the skill instructions before deployment for non-English workflows.
+
+## Reference(s):
+
+- [Gen AI Space 16 Prompt Engineering Techniques](https://genaispace.net/basic-prompt-advance-prompt/)
+- [ClawHub skill page](https://clawhub.ai/golofu/skills/skill-with-prompt-engineering)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with structured prompt or SKILL.md content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a comparison between the first draft and final version when requested by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

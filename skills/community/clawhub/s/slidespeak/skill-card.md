@@ -1,45 +1,63 @@
-## Description: <br>
-Generate, edit, and manage PowerPoint presentations via the SlideSpeak API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, edit, and manage PowerPoint presentations via the SlideSpeak API.
 
-## Publisher: <br>
-[mve](https://clawhub.ai/user/mve) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mve](https://clawhub.ai/user/mve)
 
-## Use Case: <br>
-Developers and agents use this skill to create presentations from text or uploaded documents, edit existing slides, list templates, and retrieve generated PowerPoint download URLs through SlideSpeak. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected files, prompts, and presentation content are sent to SlideSpeak. <br>
-Mitigation: Use the skill only with content approved for SlideSpeak processing, and avoid confidential, regulated, or secret-bearing documents unless your organization authorizes that service. <br>
-Risk: The skill requires a SlideSpeak API key. <br>
-Mitigation: Store SLIDESPEAK_API_KEY in a secure environment variable or secret manager and avoid exposing it in prompts, logs, or shared files. <br>
-Risk: Webhook subscriptions can send completion callbacks to a supplied URL. <br>
-Mitigation: Register only webhook callback URLs that you control and trust. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SlideSpeak ClawHub release](https://clawhub.ai/mve/slidespeak) <br>
-- [SlideSpeak publisher profile](https://clawhub.ai/user/mve) <br>
-- [SlideSpeak homepage](https://slidespeak.co) <br>
-- [SlideSpeak developer settings](https://app.slidespeak.co/settings/developer) <br>
-- [SlideSpeak API Reference](references/API.md) <br>
+## Use Case:
 
+Developers and presentation authors use this skill to create PowerPoint presentations from text or uploaded documents, edit slides, list templates, download generated decks, and manage SlideSpeak task status through a Node.js helper.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON responses, Presentation files, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated presentations are retrieved through short-lived download URLs returned by the SlideSpeak API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts and uploaded documents are sent to the external SlideSpeak service.
+
+Mitigation: Avoid confidential, regulated, or unapproved files and text unless external processing by SlideSpeak is permitted.
+
+Risk: The skill requires a SlideSpeak API key.
+
+Mitigation: Treat SLIDESPEAK_API_KEY like a password and avoid exposing it in prompts, logs, source control, or shared command output.
+
+Risk: Presentation generation, editing, and document uploads can affect account usage, credits, or billing.
+
+Mitigation: Confirm the target SlideSpeak account and expected credit impact before running generation or editing workflows.
+
+Risk: Webhook configuration can send completion notifications to an external URL.
+
+Mitigation: Use webhook URLs only when the destination is controlled and trusted.
+
+## Reference(s):
+
+- [SlideSpeak API Reference](artifact/references/API.md)
+- [SlideSpeak homepage](https://slidespeak.co)
+- [SlideSpeak developer settings](https://app.slidespeak.co/settings/developer)
+- [ClawHub skill page](https://clawhub.ai/mve/skills/slidespeak)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON, Files]
+
+**Output Format:** [Markdown guidance with Node.js commands and JSON command results; completed presentation downloads are PowerPoint files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SLIDESPEAK_API_KEY; most generation and editing operations are asynchronous and may return task IDs for polling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

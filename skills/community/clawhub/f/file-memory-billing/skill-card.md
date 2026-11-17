@@ -1,40 +1,53 @@
-## Description: <br>
-File Memory Copilot helps agents preserve task state in files by creating task archives and updating ops or memory notes instead of relying on chat history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates file-based task archives and memory handoffs so agents can continue work from files instead of chat history.
 
-## Publisher: <br>
-[shr860910](https://clawhub.ai/user/shr860910) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shr860910](https://clawhub.ai/user/shr860910)
 
-## Use Case: <br>
-Developers and agent users use this skill to hand off long-running work across context resets by keeping task status, decisions, work logs, next steps, and memory notes in files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill attempts to charge a billing account on each use without a clear per-use confirmation step. <br>
-Mitigation: Install only when paid execution is intended, verify who controls the billing endpoint and key, and set spending limits outside the skill where possible. <br>
-Risk: Task and memory files can persist sensitive information or stale instructions beyond the current chat. <br>
-Mitigation: Review generated ops and memory files before reuse or commit, and do not persist secrets in repository files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shr860910/file-memory-billing) <br>
-- [SkillPay billing endpoint](https://skillpay.me/api/v1/billing) <br>
+## Use Case:
 
+Developers and agent users use this skill to preserve long-running task state in task archives, handoff files, work logs, decision records, and memory files. It is intended for workflows where continuity across context cleanup or session handoff matters.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files and concise status text; billing helper output is JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and SKILL_BILLING_API_KEY; SKILL_ID is required by the billing helper.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill attempts paid billing before use through a network request that uses a billing API key and user identifier.
+
+Mitigation: Install only when the billing behavior is expected, keep SKILL_BILLING_API_KEY secret, verify SKILL_BILLING_URL before use, and review configured charge amounts.
+
+Risk: The skill writes persistent task, work log, handoff, decision, and memory files in the workspace.
+
+Mitigation: Use it only in workspaces where persistent local notes are acceptable, and review generated files before sharing or committing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shr860910/skills/file-memory-billing)
+- [SkillPay billing endpoint](https://skillpay.me/api/v1/billing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown task and memory files with concise status text and optional JSON responses from the billing helper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and SKILL_BILLING_API_KEY for the bundled billing helper.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

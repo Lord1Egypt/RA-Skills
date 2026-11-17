@@ -1,43 +1,62 @@
-## Description: <br>
-Wake-on-LAN skill for waking computers by device name or IP address and managing saved device configurations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wake-on-LAN skill for waking computers by name or IP address and managing stored device configurations.
 
-## Publisher: <br>
-[Lroyia](https://clawhub.ai/user/Lroyia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lroyia](https://clawhub.ai/user/lroyia)
 
-## Use Case: <br>
-Developers and device administrators use WOL to wake authorized computers on a local network and maintain the device records needed for Wake-on-LAN commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and changes device records that include network identifiers such as MAC addresses and IP addresses. <br>
-Mitigation: Use add and delete commands only for intentional device-list changes, and avoid exposing the device configuration file in conversation. <br>
-Risk: Wake commands can send packets to devices on the local network. <br>
-Mitigation: Run wake commands only for devices the user is authorized to wake, and verify the target name or IP address before execution. <br>
-Risk: The release security summary says the script can expose full MAC addresses despite privacy guidance. <br>
-Mitigation: Review or patch the script before relying on MAC masking, and treat MAC addresses as sensitive device identifiers. <br>
+## Use Case:
 
+Developers and device administrators use this skill to let an agent wake known computers on a local network and list, add, show, or delete Wake-on-LAN device records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Lroyia/wol) <br>
-- [Device configuration reference](references/devices.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Text and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can modify saved device records and can send Wake-on-LAN packets on the local network.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: The agent can send Wake-on-LAN packets on the local network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before wake actions and only use the skill on networks where Wake-on-LAN traffic is expected.
+
+Risk: Device names, MAC addresses, and IP addresses are sensitive local-network data.
+
+Mitigation: Use the script's list and show commands, which mask MAC addresses, and avoid exposing the raw devices.yaml contents in conversation.
+
+Risk: The skill can modify the stored device list, including deleting records.
+
+Mitigation: Confirm add, update, and delete requests before running them, and review device-list changes when operating in shared environments.
+
+Risk: Security evidence notes shell invocation safety gaps.
+
+Mitigation: Review generated shell commands before execution and pass user-provided values as explicit command arguments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lroyia/skills/wol)
+- [Device configuration template](artifact/references/devices.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI output text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update the local devices.yaml configuration through the provided command-line interface.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Convert AI chat links, pasted conversations, and rough AI drafts into structured, reviewed learning notes and a separate cheat sheet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert AI chat or drafts into structured, verified, and durable learning notes with definition, key ideas, examples, derivations, Q&A, and a cheat sheet.
 
-## Publisher: <br>
-[hyharry](https://clawhub.ai/user/hyharry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hyharry](https://clawhub.ai/user/hyharry)
 
-## Use Case: <br>
-Learners, researchers, and developers use this skill to turn transient AI chat material into durable study notes with definitions, key ideas, worked examples, derivations, Q&A, further reading, and a distilled cheat sheet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AI chat material may contain sensitive or private information that would be processed by a subagent and saved into local notes. <br>
-Mitigation: Use only source material you are comfortable processing this way, or explicitly request inline output, no subagent, or a different save location. <br>
-Risk: Source links are preserved in the main note when present, which may retain traceable references to shared chats or private locations. <br>
-Mitigation: Review generated notes before sharing and remove or redact links that should not be distributed. <br>
-Risk: Generated notes may overwrite or conflict with existing durable notes if file naming is not reviewed. <br>
-Mitigation: Follow the skill's pre-search step for notes/ and create a new subject-specific filename unless the user explicitly requests revision of an existing note. <br>
+## Use Case:
 
+Employees, external learners, developers, and technical writers use this skill to turn AI conversations, shared chat links, pasted transcripts, or rough AI-generated drafts into durable study notes and a separate cheat sheet. It is intended for reviewed learning material rather than raw transcript archival.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hyharry/learned-from-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown files saved as a main note and separate cheat sheet] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [By default the skill saves outputs under notes/, preserves the original source link when present, and uses a subagent unless the user asks otherwise.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill normally creates or updates local learning files under notes/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for a preview, a different output folder, or no file writes when tighter control is needed.
+
+Risk: AI conversation material can contain incorrect claims, weak derivations, or unsupported numbers.
+
+Mitigation: Review the generated notes and cross-check questionable facts, formulas, standards, and calculations before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hyharry/skills/learned-from-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown notes and cheat sheets saved as files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [By default, outputs are written under notes/ unless the user asks for a different location.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

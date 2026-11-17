@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn796yb411txntw1fe1p9yv0f184dtba",
+  "owner": "growthset",
   "slug": "intake-meta-ads",
-  "version": "1.0.0",
-  "publishedAt": 1775600909844
+  "displayName": "Intake META Ads Analyst",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1744062600000
+  },
+  "history": []
 }

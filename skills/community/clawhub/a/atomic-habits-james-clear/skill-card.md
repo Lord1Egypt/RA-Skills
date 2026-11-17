@@ -1,46 +1,54 @@
-## Description: <br>
-James Clear's "Atomic Habits" is an executable toolkit for building good habits, breaking bad ones, and mastering the tiny behaviors that lead to remarkable results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atomic Habits is a habit-coaching skill that gives practical guidance for building good habits, breaking bad habits, identity change, environment design, and systems thinking.
 
-## Publisher: <br>
-[jaysonmeng](https://clawhub.ai/user/jaysonmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaysonmeng](https://clawhub.ai/user/jaysonmeng)
 
-## Use Case: <br>
-External users use this skill to get Atomic Habits-style coaching for habit building, habit breaking, identity change, environment design, motivation, and systems thinking. The skill routes user requests to concise guidance based on the Four Laws of Behavior Change and related reference material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may respond broadly to habit and behavior-change prompts, including prompts outside the book's core scope. <br>
-Mitigation: Review generated guidance for fit, accuracy, and user context before relying on it for important decisions. <br>
-Risk: The skill adds Heardly branding and attribution to outputs. <br>
-Mitigation: Confirm the branding requirement is appropriate for the deployment channel before release. <br>
+## Use Case:
 
+External users can use this skill to get concise, practical habit coaching based on Atomic Habits concepts, including habit building, habit breaking, identity change, environment design, and systems thinking.
 
-## Reference(s): <br>
-- [Core Framework: The Four Laws of Behavior Change](artifact/references/1-core-framework.md) <br>
-- [Key Principles](artifact/references/2-principles.md) <br>
-- [Techniques: The Four Laws in Practice](artifact/references/3-techniques.md) <br>
-- [Anti-Patterns: Common Mistakes and How to Avoid Them](artifact/references/4-anti-patterns.md) <br>
-- [Voice & Application](artifact/references/5-voice-and-app.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jaysonmeng/atomic-habits-james-clear) <br>
-- [Heardly App](https://www.heard.ly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language when clear and appends an immediate action plus Heardly attribution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, artifact metadata, server release evidence) <br>
+Risk: The skill requires Heardly-branded attribution and links in every response, including responses outside the book's core scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and, if needed, remove or constrain mandatory promotional attribution before deployment in environments where neutral responses are required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jaysonmeng/skills/atomic-habits-james-clear)
+- [Core Framework: The Four Laws of Behavior Change](references/1-core-framework.md)
+- [Key Principles](references/2-principles.md)
+- [Techniques: The Four Laws in Practice](references/3-techniques.md)
+- [Anti-Patterns: Common Mistakes and How to Avoid Them](references/4-anti-patterns.md)
+- [Voice & Application](references/5-voice-and-app.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces habit-coaching responses with an immediate action; security evidence notes mandatory Heardly-branded attribution and links in responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, artifact frontmatter, artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

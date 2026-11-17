@@ -1,43 +1,56 @@
-## Description: <br>
-Downloads Bilibili official or ASR subtitles, analyzes subtitle content, and generates structured summary reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads Bilibili subtitles, analyzes subtitle content, and generates structured Chinese summary reports.
 
-## Publisher: <br>
-[guige821](https://clawhub.ai/user/guige821) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guige821](https://clawhub.ai/user/guige821)
 
-## Use Case: <br>
-Developers and content analysts use this skill to fetch Bilibili subtitles, analyze transcript statistics and keywords, and produce readable content reports from video subtitles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests Bilibili browser cookies, which can expose account sessions if pasted into chat, logs, or shared environments. <br>
-Mitigation: Do not paste full browser cookies into chat or logs; use a disposable account or session for testing and keep credentials out of persistent transcripts. <br>
-Risk: The skill runs external downloader code and ASR processing through local commands. <br>
-Mitigation: Run only in a constrained environment, set an explicit trusted biliSub path, and inspect or pin the external biliSub code before allowing downloads or ASR processing. <br>
+## Use Case:
 
+External users and developers use this skill to download Bilibili video subtitles, analyze subtitle text, and produce structured Chinese reports from subtitle files.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/guige821/bilibili-subtitle-analysis) <br>
-- [biliSub Project](https://github.com/lvusyy/biliSub) <br>
-- [Bilibili](https://bilibili.com) <br>
-- [FFmpeg Downloads](https://ffmpeg.org/download.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration] <br>
-**Output Format:** [Markdown reports, text analysis, subtitle files such as JSON/TXT/SRT/ASS/VTT, and shell command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use Bilibili login cookies, an external biliSub checkout, Python dependencies, and optional ASR tooling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The artifact asks users to paste a live Bilibili cookie into chat, exposing an account credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a local secret store or another local-only authentication flow, and treat any Bilibili cookie as an account credential.
+
+Risk: The artifact runs external Python code through shell-based command construction.
+
+Mitigation: Pin and verify the external biliSub code and Python dependencies, and replace shell string execution with safe argument-vector execution before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guige821/skills/bilibili-subtitle-analysis)
+- [biliSub GitHub repository](https://github.com/lvusyy/biliSub)
+- [Bilibili](https://bilibili.com)
+- [FFmpeg download documentation](https://ffmpeg.org/download.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and console text with command examples, generated reports, subtitle file paths, and JavaScript API guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create subtitle outputs in JSON, TXT, SRT, ASS, or VTT formats when the external downloader succeeds.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

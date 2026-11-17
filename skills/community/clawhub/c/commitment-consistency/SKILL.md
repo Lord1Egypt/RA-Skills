@@ -6,6 +6,7 @@ description: >
   this fresh," or is evaluating whether past small steps are pulling them into a bigger decision.
   Do NOT activate when: the situation is genuinely single-shot with no prior commitment history;
   commitment framing would be used to pressure someone who already has limited choice.
+  More: deciqai.com/c/commitment-consistency
 ---
 
 # Commitment and Consistency
@@ -14,7 +15,7 @@ description: >
 
 Small commitments today dramatically raise the probability of large commitments tomorrow — people have a strong drive to behave consistently with prior choices, especially ones that were public, voluntary, and effortful. Freedman & Fraser (1966) showed a trivial petition tripled compliance with a much larger request two weeks later. Cialdini (1984) systematized it as one of six universal influence levers. Use this skill to design ethical commitment paths (onboarding, sales, hiring, fundraising) or to defend yourself when past commitments are pulling you toward choices you wouldn't otherwise make.
 
-Composes with [`reciprocity`](../reciprocity/SKILL.md), [`social-proof`](../social-proof/SKILL.md), [`anchoring`](../anchoring/SKILL.md), [`door-in-the-face`](../door-in-the-face/SKILL.md), [`sunk-cost-fallacy`](../sunk-cost-fallacy/SKILL.md).
+Composes with `reciprocity`, `social-proof`, `anchoring`, `door-in-the-face`, `sunk-cost-fallacy`.
 
 ## When to Use
 
@@ -66,7 +67,7 @@ In Coach mode, respond one step at a time. Each [WAIT] is a hard stop — output
 ## Action — implement / resist / modify · monitoring plan
 ```
 
-*→ Method in Action: [Freedman-Fraser 1966 + Cialdini Systematization + Modern Applications](examples/freedman-fraser-1966-cialdini-systematization-modern-applications.md)*
+*→ Method in Action: [Freedman-Fraser 1966 + Cialdini Systematization + Modern Applications](examples/freedman-fraser-1966-cialdini-systematization-modern-applications.md) · [Moriarty 1975 Beach Theft](examples/moriarty-1975-beach-blanket-theft-study.md)*
 
 ## Pack: Commitment-Consistency Application Patterns
 
@@ -91,7 +92,7 @@ In Coach mode, respond one step at a time. Each [WAIT] is a hard stop — output
 |---|---|
 | [D] "I committed to this, I have to see it through" | Apply fresh-start test. If you wouldn't choose this today, the consistency drive is the trap. |
 | [D] "It's just one small step" | Small steps are how the dynamic operates — each is part of a ladder. |
-| [D] "Quitting now wastes the previous effort" | That's sunk cost. Combined with consistency drive, it's especially powerful. See [`sunk-cost-fallacy`](../sunk-cost-fallacy/SKILL.md). |
+| [D] "Quitting now wastes the previous effort" | That's sunk cost. Combined with consistency drive, it's especially powerful. See `sunk-cost-fallacy`. |
 | [D] "Everyone uses commitment paths; it's fine" | Most are ethical. The line is on user benefit, not on whether the path exists. |
 | [D] "I'd look weak if I changed my mind" | Updating beliefs based on new information is strength, not weakness. |
 | [D] "I'll defend rationally in the moment" | Empirically false. The defense must be structural; in-the-moment cognition is heavily influenced. |
@@ -115,4 +116,6 @@ In Coach mode, respond one step at a time. Each [WAIT] is a hard stop — output
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/commitment-consistency** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/commitment-consistency.json*

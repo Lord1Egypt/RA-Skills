@@ -1,42 +1,58 @@
-## Description: <br>
-Convert almost anything (PDF, DOCX, PPTX, XLSX, images, audio, YouTube, etc.) to Markdown using Microsoft MarkItDown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert almost anything (PDF, DOCX, PPTX, XLSX, images, audio, YouTube, etc.) to Markdown using Microsoft MarkItDown. Optimized for AGENT and LLM workflows.
 
-## Publisher: <br>
-[xsm0826](https://clawhub.ai/user/xsm0826) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xsm0826](https://clawhub.ai/user/xsm0826)
 
-## Use Case: <br>
-Developers, engineers, and agent operators use this skill to convert documents, media, web content, and other source files into Markdown for LLM workflows, RAG preprocessing, analysis, and documentation pipelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad document and media conversion can process sensitive files, URLs, audio, and metadata-rich inputs. <br>
-Mitigation: Use the skill only on files and URLs appropriate for processing in the target environment, and handle converted content and extracted metadata according to the user's data handling requirements. <br>
-Risk: Installing MarkItDown with all extras enables a broad dependency and capability set. <br>
-Mitigation: Prefer minimal extras when possible and avoid untrusted plugins or custom converters. <br>
+## Use Case:
 
+Developers and agents use this skill to convert documents, media, web content, and archives into Markdown that is easier to inspect, summarize, chunk, or feed into LLM workflows.
 
-## Reference(s): <br>
-- [Microsoft MarkItDown](https://github.com/microsoft/markitdown) <br>
-- [ClawHub Skill Page](https://clawhub.ai/xsm0826/everything2markdown) <br>
-- [Publisher Profile](https://clawhub.ai/user/xsm0826) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include extracted document metadata, section structure, chunking guidance, and conversion commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: The skill installs a broad third-party converter bundle.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it in an isolated environment, avoid administrator privileges, and pin dependencies when reproducibility or supply-chain control matters.
+
+Risk: Converted documents, media, or URLs may contain confidential content.
+
+Mitigation: Use caution with sensitive inputs and confirm that enabled converters, plugins, and storage locations meet the deployment's data-handling requirements.
+
+Risk: Untrusted or large files may stress converters or produce misleading extraction results.
+
+Mitigation: Validate file types, apply size and runtime limits, and review generated Markdown before using it in downstream decisions.
+
+## Reference(s):
+
+- [Microsoft MarkItDown homepage](https://github.com/microsoft/markitdown)
+- [ClawHub skill page](https://clawhub.ai/xsm0826/skills/everything2markdown)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with shell command and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include extracted document metadata and preserved structure when using the Python API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

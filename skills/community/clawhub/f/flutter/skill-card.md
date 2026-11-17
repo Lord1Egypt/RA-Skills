@@ -1,38 +1,54 @@
-## Description: <br>
-Build reliable Flutter apps avoiding state loss, widget rebuild traps, and async pitfalls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds, debugs, and ships Flutter apps across widgets, layout constraints, state management, navigation, performance, platform integration, testing, and store releases.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers use this skill to get practical Flutter guidance for state management, widget lifecycle issues, asynchronous code, navigation, performance, and platform channel integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may suggest Flutter code or commands that affect an application project. <br>
-Mitigation: Review generated code and commands before applying them, especially when changing lifecycle, navigation, async, or platform channel behavior. <br>
-Risk: The skill assumes Flutter may be available on the user's system. <br>
-Mitigation: Confirm the Flutter toolchain is installed and compatible with the target project before following tool-specific guidance. <br>
+## Use Case:
 
+Developers and engineers use this skill for Flutter and Dart implementation guidance, debugging framework exceptions, improving performance and accessibility, structuring app architecture, and preparing release artifacts.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown with concise recommendations and code-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only helper; it does not execute Flutter commands or access project data by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill may remember stated Flutter preferences in a scoped local config file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove stored preferences under ~/Clawic/data/flutter/ when preferences should not persist.
+
+Risk: The skill may suggest project-mutating maintenance commands while debugging or preparing releases.
+
+Mitigation: Review proposed commands before execution and confirm destructive operations such as clean builds, lockfile deletion, or golden updates.
+
+## Reference(s):
+
+- [ClawHub Flutter skill page](https://clawhub.ai/ivangdavila/skills/flutter)
+- [Clawic Flutter skill homepage](https://clawic.com/skills/flutter)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with code snippets and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May tailor guidance to Flutter preferences stored under ~/Clawic/data/flutter/.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

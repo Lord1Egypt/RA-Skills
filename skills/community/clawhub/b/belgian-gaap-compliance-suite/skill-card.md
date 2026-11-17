@@ -1,42 +1,50 @@
-## Description: <br>
-Complete Belgian GAAP accounting compliance suite covering PCMN, VAT settlement, fiscal deductibility, non-deductible expenses, administrative fines, year-end closing, Intervat VAT filing, and annual accounts preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Belgian GAAP toolkit with eight interconnected skills covering accounting, VAT, deductibility, fines, closing, Intervat, and annual filings.
 
-## Publisher: <br>
-[mtllr](https://clawhub.ai/user/mtllr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Commercial <br>
+## Publisher:
 
+[mtllr](https://clawhub.ai/user/mtllr)
 
-## Use Case: <br>
-Accounting practitioners and AI assistants use this suite to work through Belgian GAAP tasks across chart of accounts selection, VAT returns, fiscal deductibility checks, closing entries, Intervat filing preparation, and annual accounts workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Commercial
 
-## Known Risks and Mitigations: <br>
-Risk: Belgian GAAP, VAT, Intervat, or annual-account guidance may be incomplete or unsuitable for a specific filing or entity. <br>
-Mitigation: Verify calculations, filings, and professional claims against official guidance or a qualified accountant before relying on the output. <br>
-Risk: The suite references component skills whose behavior may affect accounting outputs. <br>
-Mitigation: Review any referenced component skills before installation or use. <br>
+## Use Case:
 
+Accounting professionals, business operators, and AI assistants use this skill bundle to work through Belgian GAAP accounting tasks across the chart of accounts, VAT returns, fiscal deductibility, year-end closing, Intervat filing, and annual accounts preparation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtllr/belgian-gaap-compliance-suite) <br>
-- [README.md](artifact/README.md) <br>
-- [bundle.yaml](artifact/bundle.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown or structured text with accounting entries, calculations, filing guidance, and configuration details for the bundled component skills.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports Dutch, French, and English accounting terminology.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and bundle.yaml) <br>
+Risk: Accounting and tax compliance outputs may become inaccurate or incomplete if Belgian rules, filing requirements, or professional standards change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify outputs against current Belgian accounting and tax rules and applicable professional requirements before relying on them for filings or business records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtllr/skills/belgian-gaap-compliance-suite)
+- [Publisher profile](https://clawhub.ai/user/mtllr)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with accounting calculations, filing-oriented summaries, examples, and configuration metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports Dutch, French, and English accounting terminology.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata and bundle.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

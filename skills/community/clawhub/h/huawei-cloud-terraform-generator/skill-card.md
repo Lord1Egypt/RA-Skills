@@ -1,48 +1,60 @@
-## Description: <br>
-Generates Huawei Cloud Terraform configurations, validates them through Terraform plan, and applies deployments only after user-guided approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Huawei Cloud Terraform configurations and execute deployment with user-guided approval.
 
-## Publisher: <br>
-[huaweiclouddev](https://clawhub.ai/user/huaweiclouddev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huaweicloudskill](https://clawhub.ai/user/huaweicloudskill)
 
-## Use Case: <br>
-Developers and cloud engineers use this skill to translate Huawei Cloud infrastructure goals into Terraform files, validation commands, and deployment guidance. It supports guided creation of compute, network, database, storage, load balancing, DNS, monitoring, and related cloud resources with explicit plan and apply approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Terraform can create paid, security-sensitive, or long-running Huawei Cloud resources. <br>
-Mitigation: Require manual review of every Terraform plan and explicit approval before running terraform apply. <br>
-Risk: Credential or secret handling can expose AK/SK values, passwords, tokens, or private keys if written into prompts, provider blocks, or committed files. <br>
-Mitigation: Use environment variables for Huawei Cloud AK/SK, avoid plaintext secrets in Terraform variables where possible, and review terraform.tfvars before storing or sharing generated files. <br>
-Risk: Region-specific resource specifications, images, flavors, zones, or prices can be wrong if generated from assumptions. <br>
-Mitigation: Verify each target-region specification and price through reliable lookup or user-provided evidence before writing Terraform. <br>
-Risk: Bundled examples may include provisioners or remote execution patterns that run commands on local or remote systems. <br>
-Mitigation: Review local-exec and remote-exec provisioners before validation or apply, and remove execution steps that are not required for the approved deployment. <br>
+## Use Case:
 
+Developers and cloud engineers use this skill to turn Huawei Cloud infrastructure goals into Terraform configurations, validate plans, and guide approved deployment steps. It is intended for workflows that need region-aware resource checks, credential handling, cost review, and user confirmation before applying changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huaweiclouddev/skills/huawei-cloud-terraform-generator) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Guardrails](artifact/reference/guardrails.md) <br>
-- [Terraform generation guide](artifact/reference/terraform-generation-guide.md) <br>
-- [Validation workflow](artifact/reference/validation-workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Files, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with Terraform HCL, bash commands, and generated workspace files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates providers.tf, variables.tf, main.tf, terraform.tfvars, and README.md; avoids outputs.tf and Terraform output blocks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: The skill can guide an agent toward Terraform operations that create real Huawei Cloud resources and costs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege credentials and review generated Terraform, plan output, and cost estimates before approving apply or destroy.
+
+Risk: Generated network rules, terraform.tfvars values, kubeconfig files, cloud-init scripts, or systemd services may affect account security.
+
+Mitigation: Review security group ports, sensitive configuration files, and startup/service scripts before deployment approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huaweicloudskill/skills/huawei-cloud-terraform-generator)
+- [Publisher profile](https://clawhub.ai/user/huaweicloudskill)
+- [Terraform generation guide](artifact/reference/terraform-generation-guide.md)
+- [Validation workflow](artifact/reference/validation-workflow.md)
+- [Guardrails](artifact/reference/guardrails.md)
+- [Huawei Cloud best practices](artifact/reference/Huawei-best-practices/Huawei-best-practices.md)
+- [Huawei Cloud Terraform mirror](https://mirrors.huaweicloud.com/terraform/)
+- [Huawei Cloud pricing calculator](https://www.huaweicloud.com/pricing.html#/calculator)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with Terraform files, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate Terraform project files such as providers.tf, variables.tf, main.tf, terraform.tfvars, and README.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

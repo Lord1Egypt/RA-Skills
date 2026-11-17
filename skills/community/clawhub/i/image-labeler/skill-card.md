@@ -1,42 +1,58 @@
-## Description: <br>
-Reference tool for devtools covering intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance for Image Labeler concepts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools - covers intro, quickstart, patterns and more, with quick lookup for Image Labeler concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and technical teams use this skill to retrieve plain-text reference guidance for Image Labeler concepts, setup patterns, troubleshooting, performance, security, migration, and quick lookup tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the generic reference content for a working image-labeling engine or authoritative project-specific guidance. <br>
-Mitigation: Treat the output as reference guidance and verify it against project requirements before using it for operational image-labeling decisions. <br>
-Risk: The skill is a third-party release, so publisher and source trust should be reviewed before installation. <br>
-Mitigation: Review the ClawHub publisher profile and server-provided security evidence before enabling the skill in a managed environment. <br>
+## Use Case:
 
+Developers and data practitioners use this skill as an offline quick-reference for Image Labeler concepts, quickstarts, common patterns, debugging, performance, security, migration, and command cheatsheets.
 
-## Reference(s): <br>
-- [Image Labeler on ClawHub](https://clawhub.ai/bytesagain-lab/image-labeler) <br>
-- [bytesagain-lab publisher profile](https://clawhub.ai/user/bytesagain-lab) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain-text reference documentation with Markdown-style headings and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API keys, credentials, network access, or external API calls are indicated by the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: frontmatter and server release evidence) <br>
+Risk: The reference content is generic guidance rather than authoritative Image Labeler documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate recommendations against the user's actual Image Labeler tooling, policies, and project documentation before applying them.
+
+Risk: The cheatsheet includes a command-name mismatch that could confuse command selection.
+
+Mitigation: Use the skill help output or documented command table to confirm available commands before relying on a cheatsheet entry.
+
+Risk: The shell script embeds version 2.0.2 while server release metadata and SKILL.md identify version 2.0.3.
+
+Mitigation: Treat the release metadata and SKILL.md version as the release version, and review the script version before redistribution.
+
+## Reference(s):
+
+- [Image Labeler on ClawHub](https://clawhub.ai/bytesagain-lab/skills/image-labeler)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain text with Markdown-style headings, lists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline static reference output; no network access or credentials required.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

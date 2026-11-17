@@ -1,47 +1,60 @@
-## Description: <br>
-Queries and controls products and devices on the China Mobile AIoT platform (iot.10086.cn), including video live-stream URL retrieval for supported devices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries and controls products and devices on the China Mobile AIoT platform (iot.10086.cn), including model data, device properties, device state changes, and video device live stream URLs.
 
-## Publisher: <br>
-[ch2925](https://clawhub.ai/user/ch2925) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ch2925](https://clawhub.ai/user/ch2925)
 
-## Use Case: <br>
-External developers and operators use this skill to let an agent inspect China Mobile AIoT product models, query device state, manage device enablement, set properties, call services, and retrieve video device playback URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control real China Mobile AIoT devices, including setting properties, invoking services, creating devices, and enabling or disabling devices. <br>
-Mitigation: Confirm exact product IDs, device names, requested actions, and JSON payloads before running set, call, create, enable, or disable commands. <br>
-Risk: The skill stores product API keys locally in a generated config.json file. <br>
-Mitigation: Protect the generated config.json file, limit access to trusted users, and rotate keys if the file or command output may have been exposed. <br>
-Risk: The skill can reveal video device live-stream URLs and raw API responses. <br>
-Mitigation: Avoid sharing live-stream URLs or full command output outside trusted contexts. <br>
-Risk: Real-time property reads, property writes, and service calls require online devices and can fail or time out. <br>
-Mitigation: Check device status first, skip offline or nonexistent devices, and treat device-control timeouts as failed operations. <br>
+## Use Case:
 
+Developers and operators use this skill to manage China Mobile AIoT products and devices from an agent, including checking device status, reading properties, setting properties, invoking services, enabling or disabling devices, and retrieving live video URLs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ch2925/cmaiot) <br>
-- [Publisher profile](https://clawhub.ai/user/ch2925) <br>
-- [China Mobile AIoT platform](https://iot.10086.cn) <br>
-- [China Mobile AIoT API endpoint](https://iot-api.heclouds.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured device-operation summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live device status, API responses, device-control results, and video stream URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release evidence) <br>
+Risk: The skill stores CMAIoT product access keys in plaintext configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege product keys, avoid entering keys on shared systems, protect the skill directory, and rotate keys after exposure.
+
+Risk: The skill can create devices, set properties, invoke services, and enable or disable devices without built-in confirmation.
+
+Mitigation: Require manual confirmation before create, set, call, enable, disable, or live-video actions are executed by an agent.
+
+Risk: Credentials can be exposed through command arguments or shell history when adding a product access key.
+
+Mitigation: Review shell history exposure, prefer controlled execution environments, and rotate any key entered on shared systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ch2925/skills/cmaiot)
+- [ClawHub publisher profile](https://clawhub.ai/user/ch2925)
+- [China Mobile AIoT platform](https://iot.10086.cn)
+- [CMAIoT API endpoint](https://iot-api.heclouds.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command examples and structured status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are expected to report parsed intent, target devices, device status, operation results, and success, skipped, or failure counts.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,56 @@
-## Description: <br>
-Query uptime monitors, heartbeat monitors, manage sites, retrieve incidents, create monitors, and fetch SLA reports from your PingHarbor account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query uptime monitors, heartbeat monitors, manage sites, retrieve incidents, create monitors, and fetch SLA reports from your PingHarbor account.
 
-## Publisher: <br>
-[captain-cole](https://clawhub.ai/user/captain-cole) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[captain-cole](https://clawhub.ai/user/captain-cole)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent inspect PingHarbor uptime and heartbeat monitoring data, retrieve incidents and reports, and create monitors or sites when deliberately requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [PingHarbor homepage](https://pingharbor.com) <br>
-- [PingHarbor MCP endpoint](https://api.pingharbor.com/functions/v1/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/captain-cole/pingharbor) <br>
+External operators and developers use this skill to inspect PingHarbor uptime and heartbeat monitoring data, retrieve incident and SLA information, and create monitors or sites from an agent session.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown and plain text guidance with JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PINGHARBOR_API_KEY; create actions can make real account changes and should be reviewed before execution.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill uses a PingHarbor API key to access the user's monitoring account.
+
+Mitigation: Install only when the publisher and PingHarbor account access are trusted, and provide the key through the documented PINGHARBOR_API_KEY environment variable.
+
+Risk: Create actions can persist monitors, heartbeat monitors, or sites in the PingHarbor account and may affect alerts or account usage.
+
+Mitigation: Review create requests before execution and confirm monitor, heartbeat, site, and interval details before allowing the agent to proceed.
+
+## Reference(s):
+
+- [PingHarbor homepage](https://pingharbor.com)
+- [PingHarbor MCP endpoint](https://api.pingharbor.com/functions/v1/mcp)
+- [ClawHub skill page](https://clawhub.ai/captain-cole/skills/pingharbor)
+- [Publisher profile](https://clawhub.ai/user/captain-cole)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown or plain text with optional shell commands, configuration snippets, and PingHarbor tool results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PINGHARBOR_API_KEY for authenticated PingHarbor account access.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

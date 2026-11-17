@@ -4,6 +4,12 @@ Base URL: `https://intentapiv4.rozo.ai/functions/v1/payment-api`
 
 **Authentication:** None required. All endpoints are public and rate-limited.
 
+**Data sent to Rozo:** wallet addresses, chain/token choices, amounts, memos,
+and payment IDs are transmitted to Rozo's public rate-limited APIs
+(`intentapiv4.rozo.ai`, `api-balance.rozo-deeplink.workers.dev`) as part of
+normal operation. No API key is involved. Anyone who can observe a payment ID
+can query its status.
+
 ## Create Payment
 
 **POST** `/payment-api/`

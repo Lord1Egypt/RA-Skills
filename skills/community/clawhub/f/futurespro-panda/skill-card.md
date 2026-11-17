@@ -1,41 +1,59 @@
-## Description: <br>
-futurespro-panda helps agents look up futures fees, margins, special product account requirements, trading announcements, trading calendars, and futures-company lists through an external HTTP API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+futurespro-panda queries futures fees, margins, special-variety account conditions, trading announcements, trading calendars, and futures company lists through HTTP API calls.
 
-## Publisher: <br>
-[mabtush13](https://clawhub.ai/user/mabtush13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mabtush13](https://clawhub.ai/user/mabtush13)
 
-## Use Case: <br>
-External users and agents use this skill to query futures fee, margin, special-product, announcement, calendar, and company-list data and summarize the returned results for user questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Futures lookup terms are sent to the listed external API or to an alternate endpoint explicitly provided by the user. <br>
-Mitigation: Use only non-sensitive lookup terms, avoid account numbers, private positions, and trading strategy details, and confirm that any alternate endpoint is trusted before querying it. <br>
-Risk: Fee, margin, and announcement data may be incomplete, stale, or unsuitable for trading decisions. <br>
-Mitigation: Verify important fee or margin data with official exchange or broker sources before acting on it. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve futures-market reference data, including product fees, margin information, special-product eligibility conditions, recent trading announcements, calendar events, and futures company lists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mabtush13/futurespro-panda) <br>
-- [Default futures API endpoint](https://124.221.52.208) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries with optional tables and inline curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live API results; users should verify important fee or margin data with official exchange or broker sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: API calls can be redirected to arbitrary addresses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a fixed, trusted HTTPS API origin and validate the endpoint before execution.
+
+Risk: The documented curl examples use insecure TLS options.
+
+Mitigation: Remove insecure TLS flags and require certificate validation for financial-data requests.
+
+Risk: Query terms are sent to an external API.
+
+Mitigation: Disclose the external API use and avoid private endpoints, account-specific trading details, proprietary strategies, or sensitive internal network addresses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mabtush13/skills/futurespro-panda)
+- [Publisher profile](https://clawhub.ai/user/mabtush13)
+- [FuturesPro Panda API base URL](https://124.221.52.208)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and summarized API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may return financial reference data from an external HTTP API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

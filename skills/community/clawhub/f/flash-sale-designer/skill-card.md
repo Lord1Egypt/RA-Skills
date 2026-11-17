@@ -1,43 +1,57 @@
-## Description: <br>
-Design flash sale structures including countdown logic, stock visibility, urgency triggers, and post-sale follow-up to maximize conversion during the window. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design flash sale structures including countdown logic, stock visibility, urgency triggers, and post-sale follow-up to maximize conversion during the window.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce operators and marketing teams use this skill to plan flash sale mechanics, urgency messaging, stock visibility rules, pre-sale communication, and post-event recovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Flash-sale copy or scarcity claims may be misleading, noncompliant, or inconsistent with platform advertising policies if used without review. <br>
-Mitigation: Review generated copy for truthful scarcity, legal compliance, consent requirements for SMS or email, and platform policy alignment before customer use. <br>
-Risk: Operational guidance may encourage promotions that exceed fulfillment capacity or create customer-service pressure. <br>
-Mitigation: Confirm inventory allocation, fulfillment readiness, site performance, and post-event support capacity before launching a sale. <br>
+## Use Case:
 
+External ecommerce operators and marketing teams use this skill to plan flash sale mechanics, inventory visibility, urgency messaging, channel timing, and post-event recovery.
 
-## Reference(s): <br>
-- [Pre-Sale Communication Sequence Templates](references/presale-sequence.md) <br>
-- [Stock Visibility Guide](references/stock-visibility-guide.md) <br>
-- [Urgency Copy Guide](references/urgency-copy-guide.md) <br>
-- [Flash Sale Quality Checklist](assets/flash-sale-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown guidance, templates, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content-only; no executable code, credential use, persistence, or hidden data flow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Flash sale plans may use inaccurate inventory, cart, sales, timing, or promotional claim details if placeholders are not replaced with current business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm inventory allocation, cart behavior, discount values, event times, and claims against live operational systems before launching a sale.
+
+Risk: SMS, scarcity, countdown, and promotional language may create compliance or platform-rule risk in some audience regions.
+
+Mitigation: Review SMS opt-in language, scarcity statements, countdown behavior, and discount claims against applicable laws and platform policies for the target region.
+
+## Reference(s):
+
+- [Flash Sale Designer](https://clawhub.ai/leooooooow/skills/flash-sale-designer)
+- [Flash Sale Quality Checklist](assets/flash-sale-checklist.md)
+- [Pre-Sale Communication Sequence Templates](references/presale-sequence.md)
+- [Stock Visibility Guide](references/stock-visibility-guide.md)
+- [Urgency Copy Guide](references/urgency-copy-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance, checklists, planning structures, and reusable marketing copy templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable planning output; recommendations should be checked against live business data, platform rules, and applicable marketing laws before use.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

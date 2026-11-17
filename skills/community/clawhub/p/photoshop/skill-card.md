@@ -1,44 +1,55 @@
-## Description: <br>
-Control Adobe Photoshop from the shell via Flue - ExtendScript bridges without an MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Adobe Photoshop from the shell via Flue - ExtendScript bridges without an MCP server.
 
-## Publisher: <br>
-[sfkislev](https://clawhub.ai/user/sfkislev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sfkislev](https://clawhub.ai/user/sfkislev)
 
-## Use Case: <br>
-Developers and creative production users use this skill to let an agent inspect Photoshop document state and make bounded, user-directed edits through Flue's local shell bridge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable an agent to automate Photoshop or another supported desktop application. <br>
-Mitigation: Use it only for applications and documents the user intends the agent to inspect or modify. <br>
-Risk: Setup requires installing a local bridge dependency. <br>
-Mitigation: Review Flue before approving setup and require explicit user approval before installing or running setup commands. <br>
-Risk: Desktop automation can make unintended document changes. <br>
-Mitigation: Prefer small, inspectable steps and avoid destructive actions unless the user explicitly requests them. <br>
+## Use Case:
 
+Developers and creative operators use this skill when a human asks an agent to inspect Photoshop state or make bounded edits inside Adobe Photoshop through Flue's shell-facing bridge.
 
-## Reference(s): <br>
-- [Photoshop skill page](https://clawhub.ai/sfkislev/photoshop) <br>
-- [Flue GitHub project](https://github.com/SFKislev/flue) <br>
-- [Flue PyPI package](https://pypi.org/project/flue) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and code snippets; Flue bridge execution returns structured JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user approval before installing or setting up Flue.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill delegates Photoshop automation to local Flue instructions and adapter code that the security evidence describes as unaudited.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review Flue and installed adapter documentation before use, and run only task-specific scripts in a constrained environment.
+
+Risk: The artifact recommends an unpinned external setup command for Flue installation.
+
+Mitigation: Use a pinned and verified Flue install, and require explicit human approval before setup or Photoshop-changing actions.
+
+## Reference(s):
+
+- [Flue project](https://github.com/SFKislev/flue)
+- [Flue on PyPI](https://pypi.org/project/flue)
+- [ClawHub Photoshop skill page](https://clawhub.ai/sfkislev/skills/photoshop)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and ExtendScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When Flue is available, the skill guides an agent to send scripts through a Photoshop bridge and consume structured JSON results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

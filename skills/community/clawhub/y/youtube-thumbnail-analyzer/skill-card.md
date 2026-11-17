@@ -1,40 +1,53 @@
-## Description: <br>
-Analyze YouTube thumbnails for visual hierarchy, color impact, text clarity, emotional appeal, and competitor benchmarking to optimize click-through rates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze YouTube thumbnails for visual hierarchy, color impact, text clarity, emotional appeal, and competitor benchmarking to optimize click-through rates.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
 
-## Use Case: <br>
-YouTubers, video marketers, and content creators use this skill to review thumbnail images and receive structured recommendations that can improve click-through appeal before publishing or redesigning videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Thumbnail images, unreleased artwork, sensitive screenshots, or private image URLs may expose non-public creative material to the agent or processing environment. <br>
-Mitigation: Use only images and URLs you are comfortable sharing with the selected agent and platform, and avoid submitting confidential creative assets unless that environment is trusted. <br>
-Risk: The critique may provide subjective or misleading design guidance that does not guarantee higher click-through rates. <br>
-Mitigation: Review recommendations with human judgment and validate important changes through testing before relying on them for production channels. <br>
+## Use Case:
 
+YouTubers, video marketers, and content creators use this skill to review thumbnail designs before publishing or redesigning videos. It helps prioritize improvements to layout, color, text, emotion, and competitor positioning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huajianjiu000/youtube-thumbnail-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown analysis report with scores, comparison table, recommendations, and action items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a thumbnail image or image URL plus video context; optional competitor thumbnails and current CTR improve the analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Thumbnail images, video context, audience details, CTR, and competitor examples may include sensitive channel strategy or unpublished campaign information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only material approved for analysis and omit confidential performance metrics when they are not needed.
+
+Risk: Design recommendations may not reliably predict viewer behavior or click-through rate.
+
+Mitigation: Treat recommendations as review guidance and validate changes with creator judgment or A/B testing before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huajianjiu000/skills/youtube-thumbnail-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown analysis report with scores, recommendations, comparison table, action items, and quick wins]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include optional competitor comparison and prioritized thumbnail improvement recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

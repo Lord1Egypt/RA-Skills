@@ -1,41 +1,53 @@
-## Description: <br>
-Audits SQL across its lifecycle, including standards checks, performance assessment, and DDL impact analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SQL全生命周期审核，支持SQL规范审核、性能评估、DDL影响分析。
 
-## Publisher: <br>
-[magicczc](https://clawhub.ai/user/magicczc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[magicczc](https://clawhub.ai/user/magicczc)
 
-## Use Case: <br>
-Developers and database operators use this skill to run dbskiter audits for SQL statements, SQL files, DDL changes, optimization, index recommendations, execution-plan analysis, cost estimation, and SQL rewrite guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audits may be run against the wrong database or environment. <br>
-Mitigation: Confirm the intended database and environment before executing dbskiter commands. <br>
-Risk: SQL, DDL, or SQL files may contain production-sensitive information. <br>
-Mitigation: Review inputs first and use only authorized files and database contexts. <br>
+## Use Case:
 
+Developers and database engineers use this skill to audit SQL and DDL with dbskiter, including standards checks, performance review, DDL impact analysis, rule lookup, optimization suggestions, index recommendations, execution-plan analysis, cost estimates, and SQL rewrites.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/magicczc/dbskiter-db-sql-auditor) <br>
-- [Publisher profile](https://clawhub.ai/user/magicczc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and SQL or DDL review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Depends on a local dbskiter installation and the selected database name.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks agents to run shell-style dbskiter commands containing user-provided SQL, DDL, database names, and file paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require shell-safe execution that passes SQL, DDL, database names, and file paths as separate validated arguments instead of interpolating them into command strings.
+
+Risk: SQL text, DDL, file paths, or database artifacts may contain secrets or confidential database information.
+
+Mitigation: Use the skill only in environments where dbskiter is trusted, and avoid submitting secrets or confidential artifacts unless the user understands how dbskiter processes them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/magicczc/skills/dbskiter-db-sql-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with dbskiter shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include audit scores, issue lists, repair suggestions, DDL impact notes, optimization guidance, index recommendations, execution-plan analysis, cost estimates, and SQL rewrite suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

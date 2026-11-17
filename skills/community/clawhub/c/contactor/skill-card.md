@@ -1,43 +1,62 @@
-## Description: <br>
-Contactor and starter selection tool. Use when json contactor tasks, csv contactor tasks, checking contactor status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Contactor and starter selection tool. Use when json contactor tasks, csv contactor tasks, checking contactor status.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External users and developers can use this skill to run a local shell utility for adding, listing, searching, exporting, and configuring contactor-related entries. It should be treated as a local note and configuration logger rather than as an authoritative contactor or starter status checker. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be mistaken for an authoritative contactor or starter selection and status checker. <br>
-Mitigation: Use it only as a local note and configuration logger, and verify any electrical equipment decisions through qualified engineering sources. <br>
-Risk: Entries and configuration values are stored locally and may include operational identifiers. <br>
-Mitigation: Review CONTACTOR_DIR before use and avoid entering sensitive identifiers unless local storage is acceptable. <br>
-Risk: Remove, export, and config commands modify or copy local files. <br>
-Mitigation: Review the target data directory and command arguments before running destructive or exporting operations. <br>
+## Use Case:
 
+Developers and external users can invoke this skill to manage local contactor-related records through shell commands for status checks, listing, searching, export, and configuration.
 
-## Reference(s): <br>
-- [Contactor on ClawHub](https://clawhub.ai/xueyetianya/contactor) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Command-line text output, JSONL data, CSV export, and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local data under CONTACTOR_DIR, defaulting to ~/.contactor/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill stores, mutates, removes, and exports arbitrary local records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review stored data before use, avoid storing secrets, and run it only in a controlled local data directory.
+
+Risk: A configuration bug may allow crafted input to run local commands.
+
+Mitigation: Avoid untrusted configuration values and prefer a fixed version with input validation and safe serialization before operational use.
+
+Risk: Exported CSV files may carry unsafe user-controlled content into spreadsheet software.
+
+Mitigation: Treat exported CSVs as untrusted and inspect or sanitize them before opening in spreadsheet tools.
+
+Risk: The skill's documented contactor-selection purpose is broader than the observed record-management behavior.
+
+Mitigation: Validate that the implemented commands match the intended electrical contactor workflow before relying on outputs.
+
+## Reference(s):
+
+- [Contactor ClawHub Page](https://clawhub.ai/xueyetianya/skills/contactor)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, mutate, remove, and export local JSONL or CSV records through the bundled shell script.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

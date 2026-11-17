@@ -1,40 +1,58 @@
-## Description: <br>
-Manages the OpenClaw Agent lifecycle, including Agent configuration, Matrix account registration, and account binding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages the OpenClaw agent lifecycle, including agent configuration, Matrix account registration, and account binding.
 
-## Publisher: <br>
-[cxlhyx](https://clawhub.ai/user/cxlhyx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cxlhyx](https://clawhub.ai/user/cxlhyx)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to add, remove, list, and bind Agents and Matrix accounts in an OpenClaw configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles live Matrix credentials and persistent OpenClaw configuration changes with weak safeguards. <br>
-Mitigation: Review before installing, use only with a disposable or backed-up OpenClaw configuration, avoid shared terminals and CI logs, prefer HTTPS homeservers, and rotate generated Matrix passwords or tokens after setup. <br>
-Risk: The security guidance warns not to rely on CONFIG_PATH until scripts honor it consistently. <br>
-Mitigation: Confirm which configuration file will be changed before execution and back up the target OpenClaw configuration. <br>
+## Use Case:
 
+Developers and operators managing OpenClaw use this skill to add or remove agents, register Matrix accounts, bind accounts to agents, and run one-command setup against a configured homeserver.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cxlhyx/agent-manager-hxx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify OpenClaw configuration files and may emit Matrix user IDs, access tokens, and generated passwords during setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles Matrix credentials in ways that could expose or weaken them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only against a trusted local Matrix server unless HTTPS is enforced, and rotate accounts created by the setup flow.
+
+Risk: Access tokens may be printed or stored in OpenClaw configuration.
+
+Mitigation: Avoid logging access-token output and restrict permissions on ~/.openclaw/openclaw.json because it stores bearer tokens.
+
+Risk: Predictable account passwords can reduce account security.
+
+Mitigation: Replace or rotate any accounts created with the predictable password pattern before normal use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cxlhyx/skills/agent-manager-hxx)
+- [Publisher profile](https://clawhub.ai/user/cxlhyx)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands that create Matrix accounts and modify ~/.openclaw/openclaw.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

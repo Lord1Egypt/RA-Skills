@@ -1,0 +1,6 @@
+interface:
+  display_name: 4R 系统建模框架
+  short_description: "用 4R 梳理现有架构，绘制架构图和关键场景的运作规则图。"
+  default_prompt: $architect-4r-cn
+policy:
+  allow_implicit_invocation: false

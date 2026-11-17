@@ -1,40 +1,53 @@
-## Description: <br>
-Extract, normalize, mix, convert, and analyze audio tracks for video and audio workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract, normalize, mix, and process audio tracks - audio manipulation and analysis.
 
-## Publisher: <br>
-[lnj22](https://clawhub.ai/user/lnj22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lnj22](https://clawhub.ai/user/lnj22)
 
-## Use Case: <br>
-Developers and media engineers use this skill to draft FFmpeg and ffprobe commands for extracting, normalizing, mixing, converting, delaying, filtering, concatenating, and inspecting audio tracks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated FFmpeg commands may overwrite output files or target unintended local paths. <br>
-Mitigation: Review output paths, concat list files, and command flags before running commands. <br>
-Risk: Audio processing commands may select the wrong stream, codec, channel, or normalization settings for a specific media file. <br>
-Mitigation: Inspect inputs with ffprobe and verify stream mappings, filters, and output quality on a sample before batch processing. <br>
+## Use Case:
 
+Developers and media engineers use this skill as an FFmpeg command reference for extracting, normalizing, mixing, converting, delaying, filtering, and analyzing audio tracks in local media files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lnj22/multilingual-video-dubbing-ffmpeg-audio-processing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should be reviewed and adapted to local file paths, stream mappings, codecs, and overwrite behavior before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: FFmpeg examples write local media outputs and may overwrite files when users choose existing output paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use copies for important media and choose output filenames carefully before running commands.
+
+Risk: Command examples may need adjustment for the user's input streams, codecs, channels, and loudness targets.
+
+Mitigation: Review the selected streams and parameters before execution, and inspect results with ffprobe or FFmpeg analysis commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lnj22/skills/multilingual-video-dubbing-ffmpeg-audio-processing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces FFmpeg and ffprobe command examples that users adapt to local media files.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

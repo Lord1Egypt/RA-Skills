@@ -1,39 +1,54 @@
-## Description: <br>
-Access the WOL API to browse catering items, place orders, check order history and account balance, and manage event registration status and sign-up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps WOL attendees check catering and event information and manage orders, registrations, and seats through the WOL API.
 
-## Publisher: <br>
-[onokje](https://clawhub.ai/user/onokje) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onokje](https://clawhub.ai/user/onokje)
 
-## Use Case: <br>
-External WOL users with an API token use this skill to complete authenticated catering and event-registration tasks from an agent chat. It helps users inspect menus, place food orders, review balances and order history, check event status, register for events, and check registration payment status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad authenticated WOL API access that can read account data, place catering orders, or register for events from ambiguous prompts. <br>
-Mitigation: Use explicit WOL-specific prompts, verify WOL_BASE_URL before use, keep WOL_API_TOKEN out of logs, and require manual confirmation before orders, event registrations, or account-history lookups. <br>
+## Use Case:
 
+WOL attendees use this skill to check menus, orders, balances, event availability, registration status, and seats, and to request confirmed catering or registration changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/onokje/wol-api) <br>
-- [Wake-up On LAN site](https://wollan.nl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown responses with curl commands and summarized API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, WOL_API_TOKEN, and optionally WOL_BASE_URL; responses may include account data, order details, balances, and event registration status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: An exposed API token could allow access to the user's WOL account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the provided token setup or WOL_API_TOKEN; never paste a token into chat.
+
+Risk: An incorrect order, cancellation, registration, or seat choice could affect the user's account or incur a charge.
+
+Mitigation: Review the preview and obtain explicit user confirmation before executing any change.
+
+## Reference(s):
+
+- [WOL API skill on ClawHub](https://clawhub.ai/onokje/skills/wol-api)
+- [Wake-up On LAN](https://wollan.nl)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands]
+
+**Output Format:** [Plain text or Markdown, with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offers a preview and requests explicit user confirmation before orders or registration and seat changes.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

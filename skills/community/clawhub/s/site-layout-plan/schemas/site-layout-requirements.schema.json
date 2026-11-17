@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "site-layout-requirements/v1",
+  "title": "施工平面布置需求",
+  "type": "object",
+  "required": ["schema"],
+  "properties": {
+    "schema": {"const": "site-layout-requirements/v1"},
+    "project": {"type": "string"},
+    "coord_unit": {"enum": ["mm", "cm", "m"]},
+    "assumptions": {"type": "array", "items": {"type": "string"}},
+    "building": {
+      "type": "object",
+      "properties": {
+        "footprint": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "items": {"type": "number"}
+          }
+        }
+      }
+    },
+    "preferences": {
+      "type": "object",
+      "properties": {
+        "resident_side": {"enum": ["N", "S", "E", "W"]},
+        "noise_sensitive": {"type": "boolean"},
+        "notes": {"type": "string"}
+      }
+    }
+  }
+}

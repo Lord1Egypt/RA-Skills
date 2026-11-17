@@ -1,41 +1,58 @@
-## Description: <br>
-Memory maintenance helper for any RAG/vector database. Includes save_memory() helper, monitor and defrag script templates, hot queue support, and configurable defaults. Declares 'requests' dependency. Fully generic, safe, and configurable once you edit the config. Accurate description of all contents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory maintenance helper for any RAG/vector database, with a save_memory() helper, monitor and defrag script templates, hot queue support, and configurable defaults.
 
-## Publisher: <br>
-[agenthyjack](https://clawhub.ai/user/agenthyjack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agenthyjack](https://clawhub.ai/user/agenthyjack)
 
-## Use Case: <br>
-Developers and engineers use Marrs to add a configurable memory-saving helper and starter maintenance scripts around their own RAG or vector database endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Caller-provided memory content is sent to the configured RAG endpoint. <br>
-Mitigation: Use a trusted endpoint, prefer HTTPS for remote services, and avoid sending secrets or private prompts unless intended. <br>
-Risk: Optional scheduled monitor and defrag jobs run autonomously once configured. <br>
-Mitigation: Review the short scripts and run them in an isolated environment before adding cron or other scheduled jobs. <br>
+## Use Case:
 
+Developers and engineers use Marrs to add configurable memory-saving and maintenance templates around a RAG or vector database they control.
 
-## Reference(s): <br>
-- [MARRS Example Usage](artifact/references/example_usage.md) <br>
-- [ClawHub skill page](https://clawhub.ai/agenthyjack/marrs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces helper scripts and setup guidance; save_memory sends caller-provided text to the configured RAG ingest endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: server-resolved release evidence) <br>
+Risk: Saved memory text can contain prompts, credentials, private notes, or internal data before it is sent to the configured RAG backend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a RAG backend you control, add redaction and access-control rules, and review sensitive content before saving it.
+
+Risk: Scheduled monitor and defrag scripts may run autonomously after the user adds cron jobs.
+
+Mitigation: Review the short scripts, test them in an isolated environment, and enable scheduled jobs only after configuration is verified.
+
+Risk: The helper depends on requests and posts to the configured RAG_URL.
+
+Mitigation: Pin dependencies and configure RAG_URL carefully before use.
+
+## Reference(s):
+
+- [Example Usage](references/example_usage.md)
+- [Marrs on ClawHub](https://clawhub.ai/agenthyjack/skills/marrs)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python code and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces configurable scripts and helper patterns that users adapt to their own RAG backend.]
+
+## Skill Version(s):
+
+1.6.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

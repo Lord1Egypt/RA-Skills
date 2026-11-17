@@ -1,43 +1,55 @@
-## Description: <br>
-Runs a backend-backed live safety check for instructions that may trigger tool execution, external calls, file edits, permission changes, destructive or irreversible actions, prompt injection, or compliance-sensitive operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a backend-backed live safety check for instructions that may trigger tool execution, external calls, file edits, permission changes, destructive or irreversible actions, prompt injection, or compliance-sensitive operations before execution.
 
-## Publisher: <br>
-[modeioai](https://clawhub.ai/user/modeioai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modeioai](https://clawhub.ai/user/modeioai)
 
-## Use Case: <br>
-Developers and agents use this skill before executing instructions with side effects to receive a machine-readable safety decision and caller policy guidance. It is intended for live pre-execution checks, not repository auditing or pure read-only planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Instruction text, operation context, and target identifiers are sent to the configured Modeio safety backend. <br>
-Mitigation: Do not include secrets or credentials in those fields, and use the skill only when sending that operational context to the backend is acceptable. <br>
-Risk: Network, dependency, API, or blocking responses can make the safety decision unavailable or unfavorable. <br>
-Mitigation: Treat backend failures and blocking responses as stop conditions instead of silently proceeding. <br>
-Risk: The safety backend URL can be overridden through SAFETY_API_URL. <br>
-Mitigation: Verify SAFETY_API_URL in shared or production environments before relying on the decision. <br>
+## Use Case:
 
+Developers and agent operators use this skill to request a live safety decision before executing instructions that may change state or trigger external effects. It is intended for pre-execution operation checks, not repository auditing, read-only chat, or content masking workflows.
 
-## Reference(s): <br>
-- [Skill homepage](https://github.com/mode-io/mode-io-skills/tree/main/security) <br>
-- [ClawHub skill page](https://clawhub.ai/modeioai/security-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON safety-check output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns success or error envelopes and depends on python3, the requests package, network reachability, and the configured safety backend.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Instruction text, context, and target identifiers are sent to a configured safety backend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that backend is approved to receive those details, and avoid sending secrets unless organizational policy permits it.
+
+Risk: The CLI returns a safety decision but does not enforce the caller's policy.
+
+Mitigation: Have the calling agent enforce the returned approved and risk_level fields, and do not proceed silently after dependency, network, or API errors.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/modeioai/skills/security-2)
+- [Project homepage](https://github.com/mode-io/mode-io-skills/tree/main/security)
+- [Architecture](artifact/ARCHITECTURE.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, guidance]
+
+**Output Format:** [JSON success or error envelope, or pretty-printed JSON with a status line in non-JSON mode]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes backend-provided approval and risk details when available; caller must enforce the returned decision.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

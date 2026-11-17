@@ -1,51 +1,65 @@
-## Description: <br>
-Generate downloadable 3D assets from images with the Hitem3D API, including single-image, portrait, multi-view, 3D printing, AR export, batch conversion, balance checks, and wait-and-download workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate production-grade 3D models from images with the Hitem3D API, including single-image, portrait, multi-view, printable, AR-ready, batch, balance, wait, and download workflows.
 
-## Publisher: <br>
-[lihuihui-bj](https://clawhub.ai/user/lihuihui-bj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lihuihui-bj](https://clawhub.ai/user/lihuihui-bj)
 
-## Use Case: <br>
-Developers, 3D production teams, e-commerce visual teams, AR teams, and 3D printing users use this skill to route image-to-3D requests, run Hitem3D API workflows, download generated assets, and report saved paths, formats, model choices, resolution, and estimated credit cost. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An auth helper can print a bearer access token in command output. <br>
-Mitigation: Avoid running auth commands in logged or shared contexts, never echo bearer tokens, and treat command output containing credentials as secret material. <br>
-Risk: Selected images are sent to Hitem3D with API credentials from environment variables. <br>
-Mitigation: Use the skill only for images that are appropriate to send to Hitem3D, keep HITEM3D_AK and HITEM3D_SK in environment variables, and avoid exposing credentials in prompts, logs, or saved files. <br>
-Risk: Batch, high-resolution, portrait, or repeated generation jobs can consume paid Hitem3D credits. <br>
-Mitigation: Review estimated per-task and total credit cost before large or expensive jobs and require explicit confirmation for large batches or jobs likely to exceed 100 credits. <br>
-Risk: Downloaded 3D models may be untrusted output from an external service. <br>
-Mitigation: Inspect downloaded 3D files before opening them in downstream tools, sharing them, or using them in production pipelines. <br>
-Risk: Live end-to-end validation was blocked because usable Hitem3D API credentials were unavailable during review. <br>
-Mitigation: Complete the live-validation checklist with real credentials before claiming production-proven reliability. <br>
+## Use Case:
 
+Developers, 3D production teams, e-commerce visual teams, game or toy concept teams, 3D printing users, and AR content teams use this skill to turn images or folders of images into downloadable 3D assets with sensible defaults, cost awareness, and completed submit-wait-download workflows.
 
-## Reference(s): <br>
-- [Hitem3D homepage](https://hitem3d.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/lihuihui-bj/hitem3d) <br>
-- [Hitem3D API Reference](references/api.md) <br>
-- [Hitem3D Product Guide](references/product-guide.md) <br>
-- [Hitem3D Live Validation Plan](references/live-validation.md) <br>
-- [Hitem3D Release Checklist](references/release-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Files, Markdown] <br>
-**Output Format:** [Markdown guidance with shell commands, API workflow summaries, and downloaded 3D asset files such as GLB, OBJ, STL, FBX, or USDZ] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires HITEM3D_AK and HITEM3D_SK credentials, curl, python3, and base64; sends selected images to Hitem3D and can consume Hitem3D credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release evidence) <br>
+Risk: API credentials or bearer tokens may be exposed through command output, terminal logs, or process monitoring.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide credentials through environment variables, avoid running authentication in logged terminals, use scoped short-lived tokens when available, and rotate Hitem3D credentials if exposure is suspected.
+
+Risk: Input images are sent to the Hitem3D service for generation.
+
+Mitigation: Use only images that are approved for upload to Hitem3D and avoid confidential, regulated, or rights-restricted content unless appropriate agreements and approvals are in place.
+
+Risk: Generation jobs consume Hitem3D credits, especially batch, high-resolution, multi-format, or repeated-variant requests.
+
+Mitigation: Confirm large or expensive jobs before execution, check balance when cost matters, and report estimated credits per task or batch.
+
+Risk: The artifact notes that end-to-end live validation was blocked because real Hitem3D API credentials were unavailable.
+
+Mitigation: Complete the live-validation checklist with valid AK/SK credentials before claiming fully production-proven reliability.
+
+## Reference(s):
+
+- [Hitem3D homepage](https://hitem3d.ai)
+- [ClawHub skill page](https://clawhub.ai/lihuihui-bj/skills/hitem3d)
+- [Hitem3D API Reference](artifact/references/api.md)
+- [Hitem3D Product Guide](artifact/references/product-guide.md)
+- [Hitem3D Live Validation Plan](artifact/references/live-validation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown or plain text responses with shell command usage and downloaded 3D asset files such as GLB, OBJ, STL, FBX, or USDZ.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task IDs, final status, saved file paths, selected model, resolution, output format, preview URLs, balance information, and estimated credit cost.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

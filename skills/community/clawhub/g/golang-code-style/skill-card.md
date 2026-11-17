@@ -1,42 +1,59 @@
-## Description: <br>
-Golang code style conventions for line length, variable declarations, control flow clarity, and useful comments when writing or reviewing Go code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Golang code style conventions for line breaking, variable declarations, control flow clarity, comments, and project coding standards.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and coding agents use this skill to apply opinionated Go style guidance during implementation and review. It helps improve readability across line breaking, variable initialization, control flow, function design, collection handling, and file organization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Style-driven edits can change Go source files or produce recommendations that should not be accepted blindly. <br>
-Mitigation: Review diffs, run the relevant Go tests or checks, and confirm that readability changes preserve intended behavior. <br>
-Risk: The skill can run Go, golangci-lint, git, and sub-agent review workflows in a repository. <br>
-Mitigation: Use it only in repositories where those actions are appropriate and inspect proposed commands before execution. <br>
+## Use Case:
 
+Developers and engineering teams use this skill when writing or reviewing Go code for human-judged style concerns such as readability, control flow, function shape, collection initialization, and file organization.
 
-## Reference(s): <br>
-- [Code Style Details](references/details.md) <br>
-- [Source Homepage](https://github.com/samber/cc-skills-golang) <br>
-- [ClawHub Skill Page](https://clawhub.ai/samber/golang-code-style) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands] <br>
-**Output Format:** [Markdown guidance with Go code examples and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or make source edits and may run Go, golangci-lint, git, or sub-agent review workflows when appropriate.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill requests permission to edit Go project files while applying style guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use review-only, read-only, or approval-gated operation when evaluating untrusted repositories or when changes should remain advisory.
+
+Risk: The skill may run Go, Git, and golangci-lint commands, which can execute repository-controlled code or perform repository operations.
+
+Mitigation: Avoid remote Git operations, generators, tests, and linters for untrusted projects unless the commands are reviewed and approved.
+
+Risk: The skill can delegate review work to agents for broad codebase style reviews.
+
+Mitigation: Limit delegated reviews to clearly scoped Go files and review findings before applying any edits.
+
+## Reference(s):
+
+- [Code Style Details](references/details.md)
+- [Project homepage](https://github.com/samber/cc-skills-golang)
+- [ClawHub skill page](https://clawhub.ai/samber/skills/golang-code-style)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands]
+
+**Output Format:** [Markdown guidance with Go code snippets and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or apply edits to Go files when the host grants write or tool access.]
+
+## Skill Version(s):
+
+1.3.0 (source: ClawHub release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Automate multi-cloud migrations and infrastructure deployments with customizable IaC workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cloudmigrate helps agents plan multi-cloud migrations and generate infrastructure-as-code, deployment workflows, and provisioning guidance across AWS, Azure, and GCP.
 
-## Publisher: <br>
-[ncreighton](https://clawhub.ai/user/ncreighton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ncreighton](https://clawhub.ai/user/ncreighton)
 
-## Use Case: <br>
-Developers, DevOps engineers, and cloud platform teams use this skill to plan migrations, generate infrastructure-as-code, prepare deployment workflows, and produce validation or rollback procedures across AWS, Azure, GCP, and hybrid environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may request broad cloud credentials and generate infrastructure-changing actions. <br>
-Mitigation: Use sandbox or least-privilege temporary credentials, scoped to only the cloud provider needed for the task. <br>
-Risk: Generated infrastructure-as-code or commands could deploy, delete, modify resources, or incur cloud costs. <br>
-Mitigation: Inspect all generated IaC and commands before use, and require explicit confirmation before any apply, deploy, delete, or cost-incurring operation. <br>
+## Use Case:
 
+Developers and infrastructure engineers use this skill to plan cloud migrations, generate IaC and deployment automation, and prepare validation or rollback guidance for AWS, Azure, GCP, and hybrid environments.
 
-## Reference(s): <br>
-- [Cloudmigrate on ClawHub](https://clawhub.ai/ncreighton/cloudmigrate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code blocks, command snippets, configuration examples, and structured migration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include infrastructure-as-code, cloud CLI commands, deployment plans, cost estimates, risk assessments, and rollback procedures for human review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Broad cloud credentials and high-impact infrastructure actions can affect live resources when used without tight scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use separate, least-privilege, short-lived credentials for only the active cloud provider and review commands before applying changes.
+
+Risk: Generated Terraform, deployment commands, and network rules may be incorrect or too permissive.
+
+Mitigation: Treat generated infrastructure and deployment artifacts as drafts that require security review, especially for network egress rules and resource-modifying commands.
+
+Risk: Prompts or generated files may expose sensitive cloud secrets if real credentials are pasted into the agent workflow.
+
+Mitigation: Avoid entering real secrets into prompts or generated files; use secret managers, environment isolation, and credential rotation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ncreighton/skills/cloudmigrate)
+- [Skill homepage from artifact metadata](https://github.com/ncreighton/empire-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code blocks, configuration snippets, and structured JSON, YAML, or HCL examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include migration plans, IaC drafts, deployment commands, cost analysis, risk notes, validation checks, and rollback procedures.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

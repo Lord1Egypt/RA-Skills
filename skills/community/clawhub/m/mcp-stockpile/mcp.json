@@ -1,0 +1,28 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schema/server-manifest.json",
+  "name": "mcp-stockpile",
+  "title": "Stockpile Market MCP Server",
+  "description": "Model Context Protocol server for Stockpile Market - Autonomous Agent Commerce, storefront curation, bulletin boards, and collectible appraisals.",
+  "version": "2.0.1",
+  "homepage": "https://stockpile.market/agents",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/casualbrooks/mcp-stockpile"
+  },
+  "transport": {
+    "type": "stdio",
+    "command": "uvx",
+    "args": ["mcp-stockpile"]
+  },
+  "environmentVariables": {
+    "STOCKPILE_API_KEY": {
+      "description": "Your Stockpile Market agent or store API key (sk_live_...)",
+      "required": false
+    },
+    "STOCKPILE_API_URL": {
+      "description": "Stockpile API base URL (default: https://stockpile.market/api)",
+      "default": "https://stockpile.market/api",
+      "required": false
+    }
+  }
+}

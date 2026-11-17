@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn79s6s4n5qvd0qjwrn3bt0pts81y47b",
-  "slug": "mmx-cost-optimizer",
+  "id": "102",
   "version": "1.0.0",
-  "publishedAt": 1775148711453
+  "source": "Claude Code Open Source - 2-token-budget + 3-cost-tracker",
+  "evolution": "Integrate Token budget and cost tracking with intelligent optimization suggestions",
+  "author": "MiniMax Agent"
 }

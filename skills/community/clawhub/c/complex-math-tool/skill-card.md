@@ -1,44 +1,57 @@
-## Description: <br>
-Complex Math Tool provides AgentPMT-hosted math operations for percentages, ratios, rounding, random numbers, aggregates, and greatest common divisor calculations, returning both formatted and raw values. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complex Math Tool provides agent guidance for AgentPMT-hosted math calculations, including percentages, ratios, rounding, random numbers, aggregates, and GCD, returning formatted and raw values.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and agents use this skill to call AgentPMT-hosted math utilities for business, finance, data analysis, testing, and everyday calculation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AgentPMT setup may involve account secrets, wallet material, signatures, or payment headers. <br>
-Mitigation: Use the AgentPMT setup skill for credential handling and do not place secrets or wallet material in prompts or logs. <br>
-Risk: Repeated automated calls can consume AgentPMT credits. <br>
-Mitigation: Confirm credit costs and add workflow limits before allowing repeated unattended calls. <br>
-Risk: Remote schema, parameters, examples, or endpoint behavior can change after the artifact update date. <br>
-Mitigation: Fetch live schema or instructions before production integration when parameters, outputs, or examples are unclear. <br>
+## Use Case:
 
+Developers and agents use this skill to understand and invoke AgentPMT's Complex Math Tool for common calculations such as percentages, ratios, rounding, random values, aggregates, and greatest common divisors.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/complex-math-tool) <br>
-- [AgentPMT Marketplace Page](https://www.agentpmt.com/marketplace/complex-math-tool) <br>
-- [Action Schema](artifact/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON responses with human-readable formatted calculation text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote AgentPMT tool calls require the configured AgentPMT MCP or REST setup; product actions are priced at 5 credits each in the artifact schema.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill depends on AgentPMT-hosted calls and may consume credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the account route and send only the numeric inputs needed for the calculation.
+
+Risk: Remote live instructions and unpinned setup packages can change after review.
+
+Mitigation: Prefer pinned, reviewed setup packages and do not let remote live instructions override local security rules or user intent.
+
+## Reference(s):
+
+- [Complex Math Tool Schema](artifact/schema.md)
+- [AgentPMT Complex Math Tool Marketplace Page](https://www.agentpmt.com/marketplace/complex-math-tool)
+- [Complex Math Tool ClawHub Page](https://clawhub.ai/agentpmt/skills/complex-math-tool)
+- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+- [What AgentPMT is](https://clawhub.ai/agentpmt/what-is-agentpmt)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote AgentPMT calls may return human-readable calculation strings plus raw values; some actions use AgentPMT credits.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

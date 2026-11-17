@@ -1,41 +1,57 @@
-## Description: <br>
-Summarize what is open, what changed, and what is due soon from a Campus Copilot snapshot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize what is open, what changed, and what is due soon from a Campus Copilot snapshot.
 
-## Publisher: <br>
-[xiaojiou176](https://clawhub.ai/user/xiaojiou176) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaojiou176](https://clawhub.ai/user/xiaojiou176)
 
-## Use Case: <br>
-Developers and local agent users use this skill to summarize already-exported Campus Copilot snapshots, including open work, recent changes, upcoming due items, and the site carrying the current workload. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Campus Copilot snapshots may contain private academic or operational information. <br>
-Mitigation: Review and minimize snapshot contents before sharing them with an agent. <br>
-Risk: Live browser automation could change the analysis boundary or expose fresh workspace data. <br>
-Mitigation: Use imported snapshots or thin-BFF contract data unless the user explicitly requests live validation. <br>
+## Use Case:
 
+Developers and local agent users use this skill to turn imported Campus Copilot snapshots into a concise brief covering open work, recent changes, upcoming due items, and current site workload. The skill is intended for read-only analysis of provided snapshot or contract data, with live browser validation only when explicitly requested.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaojiou176/read-only-workspace-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaojiou176) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown summary or plain-language text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses provided snapshots or thin-BFF contract data; no live browser automation by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Summaries may be incomplete or stale if the provided snapshot is outdated or partial.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ground conclusions in the supplied snapshot fields and call out missing or uncertain data instead of filling gaps from live sources.
+
+Risk: Live browser automation could move the workflow outside the skill's read-only posture.
+
+Mitigation: Use imported snapshot or contract data by default and perform live validation only when the user explicitly requests it.
+
+Risk: The skill references companion example files that are not packaged with this artifact.
+
+Mitigation: Do not rely on those examples unless the user or release package provides them separately.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaojiou176/skills/read-only-workspace-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Concise plain-language summary, typically in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should stay grounded in the provided Campus Copilot snapshot or contract data and should not perform live browser automation unless explicitly requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

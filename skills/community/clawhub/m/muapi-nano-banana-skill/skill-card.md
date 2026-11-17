@@ -1,39 +1,50 @@
-## Description: <br>
-Reasoning-driven image generation using structured creative briefs for high-fidelity images via muapi.ai with logic-based prompting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reasoning-driven image generation using structured creative briefs that generate high-fidelity images via muapi.ai with logic-based prompting.
 
-## Publisher: <br>
-[Anil-matcha](https://clawhub.ai/user/Anil-matcha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anil-matcha](https://clawhub.ai/user/anil-matcha)
 
-## Use Case: <br>
-External users and developers use this skill to convert image-generation requests into structured creative briefs that describe subject, action, context, lighting, style, and text rendering requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts may be sent to an external generation provider. <br>
-Mitigation: Avoid including secrets, confidential business details, or sensitive personal data in prompts. <br>
-Risk: Generated images and prompt rewrites may not faithfully preserve identity, text, or physical details. <br>
-Mitigation: Review generated outputs before publication or downstream use, especially when text rendering or real-world identity consistency matters. <br>
+## Use Case:
 
+Developers and creative agents use this skill to convert brief image requests into structured, reasoning-driven creative prompts and invoke Nano Banana Pro image generation through muapi.ai.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown instructions with inline bash commands and JSON output from the image-generation wrapper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured natural-language prompts and supports subject, action, context, style, lighting, resolution, text, and view options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill invokes an unaudited local image-generation provider outside the reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the local core/media/generate-image.sh provider path is platform-managed or otherwise trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anil-matcha/skills/muapi-nano-banana-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/anil-matcha)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, JSON, Guidance]
+
+**Output Format:** [Reasoning brief text and bash invocation that returns JSON from the image-generation provider.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a subject; action, context, style, lighting, resolution, text, and view flag are optional script parameters.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

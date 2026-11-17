@@ -1,6 +1,74 @@
 {
-  "ownerId": "kn7f15gx86v7hep5vnbcgrg4as82dabt",
-  "slug": "video-pro-cza",
+  "name": "video-pro",
+  "slug": "video-pro",
+  "description": "专业AI视频生成器 - 商业化视频生成解决方案",
   "version": "1.0.0",
-  "publishedAt": 1772867580511
+  "author": "@cza999",
+  "license": "商业软件 - 需要授权",
+  "tags": ["video-generation", "ai-video", "commercial", "batch-processing", "templates"],
+  "homepage": "https://clawhub.com/@cza999/video-pro",
+  "repository": "https://github.com/cza999/video-pro",
+  "bugs": "https://github.com/cza999/video-pro/issues",
+  "keywords": ["video", "ai", "generation", "commercial", "batch", "templates", "tts", "remotion"],
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "dependencies": {
+    "openclaw-video": "git+https://github.com/ZhenRobotics/openclaw-video.git"
+  },
+  "scripts": {
+    "install": "scripts/install.sh",
+    "generate": "scripts/generate.sh",
+    "batch": "scripts/batch-generate.sh",
+    "stats": "scripts/stats.sh",
+    "activate": "scripts/activate-premium.sh"
+  },
+  "files": [
+    "SKILL.md",
+    "_meta.json",
+    "scripts/",
+    "templates/",
+    "LICENSE.md"
+  ],
+  "clawdbot": {
+    "requires": {
+      "bins": ["git", "node", "npm"]
+    },
+    "install": [
+      {
+        "id": "project",
+        "kind": "git",
+        "repo": "https://github.com/ZhenRobotics/openclaw-video.git",
+        "target": "~/openclaw-video-pro",
+        "label": "克隆视频生成项目"
+      },
+      {
+        "id": "deps",
+        "kind": "npm",
+        "package": "安装依赖",
+        "cwd": "~/openclaw-video-pro",
+        "label": "安装项目依赖"
+      }
+    ]
+  },
+  "commercial": {
+    "free_tier": {
+      "daily_limit": 3,
+      "max_duration": 30,
+      "resolution": "720p",
+      "templates": ["basic"],
+      "voices": ["alloy"]
+    },
+    "pricing": {
+      "personal": "$9.99/月",
+      "professional": "$29.99/月",
+      "enterprise": "$99.99/月"
+    },
+    "features": {
+      "personal": ["100视频/月", "5模板", "基础支持"],
+      "professional": ["500视频/月", "所有模板", "优先支持", "API访问"],
+      "enterprise": ["无限视频", "自定义模板", "专属支持", "SLA保证"]
+    }
+  }
 }

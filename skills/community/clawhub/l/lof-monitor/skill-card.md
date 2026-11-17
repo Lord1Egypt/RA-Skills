@@ -1,40 +1,52 @@
-## Description: <br>
-Monitors A-share LOF fund premium and discount gaps above a configured threshold to identify potential arbitrage signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors A-share LOF fund premium or discount levels above a 10% threshold and outputs potential arbitrage opportunities.
 
-## Publisher: <br>
-[kafroc](https://clawhub.ai/user/kafroc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kafroc](https://clawhub.ai/user/kafroc)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Agents can use this skill to run an A-share LOF fund monitor, identify funds with large premium or discount gaps, and report the resulting arbitrage candidates. It is most relevant for finance-oriented workflows that need scripted market-data checks and concise text output.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Installation can fail or drift over time because the artifact uses dependency ranges and its install command omits the requirements-file flag.
+
+Mitigation: Use a virtual environment, install with pip install -r requirements.txt, and pin or lock dependency versions before production use.
+
+Risk: The script contacts public financial data sources and overwrites LOFMonitor_output.txt in the current working directory.
+
+Mitigation: Run it from a controlled working directory and review network access and output-file handling before automating it.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to install and run a Python monitor that compares A-share LOF fund market prices with net asset values and reports funds whose premium or discount exceeds the configured threshold. The output is informational market monitoring data, not financial advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Dependencies are not fully pinned, and beautifulsoup4 is imported by the script but not listed in requirements.txt. <br>
-Mitigation: Pin dependencies in a lockfile before deployment and add beautifulsoup4 explicitly to the installation requirements. <br>
-Risk: The script contacts third-party financial-data sites and may produce stale, incomplete, or inaccurate market signals. <br>
-Mitigation: Treat the output as informational monitoring data, verify results against authoritative market sources, and do not treat generated signals as financial advice. <br>
+**Output Format:** [Markdown guidance with shell commands and plain-text fund monitoring results]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kafroc/lof-monitor) <br>
+**Other Properties Related to Output:** [Writes matching LOF fund opportunities to LOFMonitor_output.txt after retrieving public financial data.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with command snippets and a generated UTF-8 text output file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes LOFMonitor_output.txt after querying third-party financial-data sources.] <br>
+1.0.1 (source: release evidence and script header)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and script header) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

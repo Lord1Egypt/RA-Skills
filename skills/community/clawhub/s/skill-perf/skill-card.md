@@ -1,46 +1,63 @@
-## Description: <br>
-Skill Perf benchmarks OpenClaw skills by running calibration and test subagents, subtracting measured baseline token use, and producing token and performance summaries with HTML reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Perf measures token consumption and performance overhead for OpenClaw skills by running calibrated subagent tests and generating performance reports.
 
-## Publisher: <br>
-[kincaidwoo](https://clawhub.ai/user/kincaidwoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kincaidwoo](https://clawhub.ai/user/kincaidwoo)
 
-## Use Case: <br>
-Developers and engineers use this skill to measure token consumption and performance overhead for OpenClaw skills before release, comparison, or optimization. It is intended for controlled benchmark tasks that can safely be executed by subagents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Benchmark tasks execute target skills for real and can consume model tokens or trigger side effects from the skill under test. <br>
-Mitigation: Use harmless test prompts and avoid destructive, account-changing, or externally visible workflows unless separate safeguards are in place. <br>
-Risk: The skill reads detailed local OpenClaw session and transcript artifacts while building measurements and reports. <br>
-Mitigation: Avoid secrets, customer data, and sensitive prompts in benchmark runs; review local reports and stored results before sharing. <br>
-Risk: Generated HTML reports are automatically served from a local report server. <br>
-Mitigation: Treat the report URL as local diagnostic output and review report contents before exposing them outside the machine. <br>
+## Use Case:
 
+Developers and engineers use Skill Perf to benchmark OpenClaw skills, compare token costs across runs, and produce reports before release or optimization work.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kincaidwoo/skill-perf) <br>
-- [kincaidwoo Publisher Profile](https://clawhub.ai/user/kincaidwoo) <br>
-- [Token Guide](references/TOKEN_GUIDE.md) <br>
-- [Subagent Architecture Spec](docs/subagent-architecture-spec.md) <br>
-- [Bugfix Notes](docs/2026-03-27-bugfix-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, HTML report, guidance] <br>
-**Output Format:** [Markdown summary with shell command snippets and a generated local HTML report link] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include measured baseline noise, test total tokens, net token consumption, confidence rating, and local report URL when generated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill spawns OpenClaw subagents and reads local OpenClaw session and workspace metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in intended OpenClaw workspaces and review benchmark tasks before execution.
+
+Risk: Generated reports may be exposed through an unauthenticated local report server.
+
+Mitigation: Bind report serving to 127.0.0.1, serve only the current report, and stop the server after use.
+
+Risk: Session-derived report diagnostics may include sensitive transcript or bootstrap details.
+
+Mitigation: Use redaction and make transcript or bootstrap analysis opt-in before sharing reports.
+
+## Reference(s):
+
+- [Skill Perf ClawHub Page](https://clawhub.ai/kincaidwoo/skills/skill-perf)
+- [README](artifact/README.md)
+- [Token Guide](artifact/references/TOKEN_GUIDE.md)
+- [Subagent Architecture Spec](artifact/docs/subagent-architecture-spec.md)
+- [Bugfix Notes](artifact/docs/2026-03-27-bugfix-notes.md)
+- [OpenClaw Token Use Reference](https://docs.openclaw.ai/reference/token-use.md)
+- [Anthropic Pricing](https://www.anthropic.com/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated HTML performance reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports summarize calibrated token totals, net token estimates, confidence, and session-derived diagnostics.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

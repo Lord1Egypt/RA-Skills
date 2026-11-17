@@ -1,40 +1,49 @@
-## Description: <br>
-A non-executable bundle of eight guide materials for building, deploying, and operating autonomous trading bot systems covering arbitrage, copy trading, signal verification, strategy marketplaces, audit trails, fleet management, risk monitoring, and reputation systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Everything you need to build, deploy, and operate autonomous trading bots, covering arbitrage, copy trading, signal verification, strategy marketplaces, audit trails, fleet management, risk monitoring, and reputation systems.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and trading-automation teams use this guide bundle to plan autonomous trading bot systems and supporting operational controls such as verification, auditability, fleet management, and risk monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trading automation guidance can be misapplied to systems that place, copy, or coordinate trades. <br>
-Mitigation: Review guidance with qualified operators, validate strategies in a controlled environment, and enforce account-level risk limits before connecting to live trading accounts. <br>
-Risk: The release discloses sensitive credential requirements for AGENT_SIGNING_KEY and GREENHELIX_API_KEY. <br>
-Mitigation: Provide credentials only when the publisher and intended GreenHelix account permissions are trusted; scope, monitor, and rotate keys according to local policy. <br>
+## Use Case:
 
+External developers and operators use this guide bundle to plan, build, deploy, and operate autonomous trading-bot systems across arbitrage, copy trading, signal verification, marketplace, audit, fleet, risk, and reputation workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mirni/greenhelix-bundle-trading-bot-suite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guide material] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable guide bundle; disclosed environment variables are AGENT_SIGNING_KEY and GREENHELIX_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The documentation-only trading-bot guide bundle requests AGENT_SIGNING_KEY and GREENHELIX_API_KEY without explaining why the sensitive credentials are needed or how they are protected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and avoid providing signing or API keys unless the publisher explains the required permissions, purpose, and protection model.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/mirni/skills/greenhelix-bundle-trading-bot-suite)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guide content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only bundle; no executable install step is declared.]
+
+## Skill Version(s):
+
+1.3.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

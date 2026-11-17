@@ -1,49 +1,60 @@
-## Description: <br>
-Portable OpenClaw skill and runtime for running parallel AI coding agents with tmux worktrees, duty-table model selection, token-limit fallback, review loops, integration watching, and heartbeat notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Production playbook and portable runtime for parallel AI coding swarms using Codex, Gemini, DeepSeek, and optional Claude.
 
-## Publisher: <br>
-[linkbag](https://clawhub.ai/user/linkbag) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkbag](https://clawhub.ai/user/linkbag)
 
-## Use Case: <br>
-Developers and engineering operators use this skill to plan, spawn, monitor, review, and integrate parallel AI coding agents across local git worktrees with provider CLI fallbacks and notification hooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Autonomous agents can change code, commit, push, and open pull requests. <br>
-Mitigation: Use the skill only in trusted development repositories with branch protections, explicit human endorsement before spawning, and review of agent branches or PRs before accepting changes. <br>
-Risk: The runtime can use reduced-safeguard or auto-approved provider modes to allow worktree and repository operations. <br>
-Mitigation: Review duty-table assignments, provider CLI command templates, and sandbox or approval flags before enabling the runtime on a project. <br>
-Risk: Provider credentials, OAuth sessions, API keys, and notification targets may be required on the host. <br>
-Mitigation: Keep credentials host-local, do not place secrets in packaged templates or prompts, and audit swarm.conf and notification targets before running agents. <br>
-Risk: The skill persists work logs, ESR/history entries, and status notifications that may contain project-sensitive details. <br>
-Mitigation: Run it only where such persistence and external notification are acceptable, and review logs or notification files before sharing them outside the project team. <br>
-Risk: Live model assessment and fallback probes can consume provider quota. <br>
-Mitigation: Run model probes deliberately, prefer dry runs when checking configuration, and confirm provider budget or quota constraints before automated assessment. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan, spawn, monitor, review, and integrate parallel coding agents through a portable OpenClaw swarm runtime. It is intended for multi-agent coding work, runtime packaging, duty-table model rotation, fallback handling, and swarm health diagnosis.
 
-## Reference(s): <br>
-- [Workflow](references/workflow.md) <br>
-- [Tools Reference](references/tools.md) <br>
-- [Duty Table](references/duty-table.md) <br>
-- [End of Run Log](references/eor-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline bash commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces orchestration plans, task prompts, runtime commands, status checks, and handoff or end-of-run summaries for agent workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.1 (source: server release metadata) <br>
+Risk: The swarm runtime gives autonomous agents broad execution, network, git, and persistence authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in an isolated workspace or disposable account with provider credentials scoped to the swarm.
+
+Risk: Unsafe defaults may affect sandbox behavior, dependency installation, task input handling, temporary-file handling, and review failure handling.
+
+Mitigation: Review and harden spawn-agent.sh and related watcher scripts before using the runtime on important projects.
+
+Risk: External model providers, git pushes, background watchers, and configured notification targets may receive project metadata.
+
+Mitigation: Avoid private or sensitive repositories unless that exposure is acceptable and notification targets are configured deliberately.
+
+## Reference(s):
+
+- [Workflow details](references/workflow.md)
+- [Spawn command syntax](references/tools.md)
+- [Duty table and fallback](references/duty-table.md)
+- [End-of-run report template](references/eor-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON task examples, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include agent task plans, runtime command sequences, status checks, and integration guidance for the local swarm installation.]
+
+## Skill Version(s):
+
+3.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

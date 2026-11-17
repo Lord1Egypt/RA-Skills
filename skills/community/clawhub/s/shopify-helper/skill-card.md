@@ -1,39 +1,51 @@
-## Description: <br>
-Shopify Helper provides bilingual guidance for Shopify store setup, theme customization, product management, SEO optimization, app selection, and launch checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shopify Helper provides bilingual guidance for Shopify store setup, theme customization, product management, SEO, app selection, and launch checks.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-External users, store operators, and ecommerce teams use this skill to get practical Shopify build and optimization guidance for setup, themes, products, SEO, apps, and launch readiness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release security summary says a generic local logging script stores command inputs without clear disclosure. <br>
-Mitigation: Review the script behavior before installation and avoid entering shop secrets, customer data, API tokens, or sensitive operational notes into generic shopify-helper commands. <br>
+## Use Case:
 
+External store builders, ecommerce operators, and agents use this skill to generate Shopify setup checklists, theme and product guidance, SEO recommendations, app suggestions, and launch-readiness checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/shopify-helper) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Chinese and English ecommerce guidance; generic helper commands may read and write local log files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence and skill frontmatter) <br>
+Risk: The package includes a generic local utility that can persist command arguments and arbitrary user entries on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not pass credentials, customer data, tokens, or sensitive store details; review and constrain the logging utility before deployment.
+
+## Reference(s):
+
+- [Shopify Helper ClawHub Listing](https://clawhub.ai/bytesagain3/skills/shopify-helper)
+- [BytesAgain Homepage](https://bytesagain.com)
+- [Shopify Helper Tips](artifact/tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance printed by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese and English content organized by command topic.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

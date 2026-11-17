@@ -1,44 +1,59 @@
-## Description: <br>
-AI-powered defense knowledge management. Search mission documentation, logistics records, personnel data, and ITAR-controlled information with structured extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered defense knowledge management. Search mission documentation, logistics records, personnel data, and ITAR-controlled information with structured extraction.
 
-## Publisher: <br>
-[RooJenkins](https://clawhub.ai/user/RooJenkins) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roojenkins](https://clawhub.ai/user/roojenkins)
 
-## Use Case: <br>
-Defense program teams, logistics officers, export-control staff, and security/compliance users use this skill to search structured mission, logistics, personnel, clearance, and ITAR/EAR knowledge while preserving access-control context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles highly sensitive defense, personnel, clearance, and ITAR/EAR data. <br>
-Mitigation: Install only in an approved UPLO environment for the data sensitivity, confirm server-side clearance and need-to-know enforcement, and use least-privilege tokens. <br>
-Risk: The skill includes broad export and logging workflows, including export_org_context and compliance logs. <br>
-Mitigation: Restrict export_org_context, define logging retention and redaction rules, and control audit-log access before connecting mission, personnel, clearance, or export-controlled data. <br>
-Risk: The MCP server package is installed through an npm command at runtime. <br>
-Mitigation: Pin and review the MCP package version before deployment. <br>
+## Use Case:
 
+Defense program managers, logistics officers, export-control staff, security officers, and other authorized users use this skill to search controlled mission, logistics, personnel, contract, and technical documentation through UPLO while respecting clearance, program access, and need-to-know constraints.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RooJenkins/uplo-defense) <br>
-- [UPLO](https://uplo.ai) <br>
-- [UPLO schemas](https://uplo.ai/schemas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline tool calls, shell commands, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May query an MCP server and produce search results, audit-oriented summaries, organizational context exports, outdated-document flags, or update proposals depending on available tools and user authorization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill.json) <br>
+Risk: The skill handles highly sensitive defense and export-controlled information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an authorized defense environment and confirm server-side clearance, need-to-know, and export-control enforcement before use.
+
+Risk: The MCP configuration runs an unpinned npm server with a user API token.
+
+Mitigation: Use a narrowly scoped, revocable UPLO token and prefer a pinned or locally reviewed MCP server package instead of unpinned npx execution.
+
+Risk: Organizational context export can expose sensitive program structure, personnel, subcontractor, or systems-of-record information.
+
+Mitigation: Restrict export_org_context to approved users and log controlled-data sessions for auditability.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/roojenkins/skills/uplo-defense)
+- [UPLO](https://uplo.ai)
+- [UPLO Schemas](https://uplo.ai/schemas)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline MCP tool calls, shell commands, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an UPLO instance URL and secret API key; outputs may include search results, organizational context, directives, guidance, and audit-log actions subject to the connected knowledge base and access controls.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

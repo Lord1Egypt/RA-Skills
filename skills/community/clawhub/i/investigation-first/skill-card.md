@@ -1,39 +1,50 @@
-## Description: <br>
-Investigation First guides an agent to gather firsthand facts, inspect available evidence, and delay conclusions until the context supports them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trigger before making claims or decisions when context is incomplete, evidence is weak, or the domain is unfamiliar; use this skill to investigate first, gather firsthand facts, and let reality shape the conclusion.
 
-## Publisher: <br>
-[arg0](https://clawhub.ai/user/arg0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arg0](https://clawhub.ai/user/arg0)
 
-## Use Case: <br>
-Developers, analysts, and other agent users can use this skill before making claims, decisions, or recommendations when the available facts are incomplete. It helps structure investigation around firsthand evidence, explicit open questions, and evidence-backed conclusions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has a broad trigger and may be invoked for tasks that do not need a full investigation workflow. <br>
-Mitigation: Invoke it when context is incomplete, evidence is weak, or firsthand inspection is needed; use a lighter workflow for straightforward tasks. <br>
+## Use Case:
 
+Agents use this skill before recommendations, decisions, or claims when facts, context, or firsthand evidence are incomplete. It guides systematic investigation, evidence recording, uncertainty marking, and conclusion-writing grounded in observed facts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arg0/investigation-first) <br>
-- [Original texts](original-texts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Analysis] <br>
-**Output Format:** [Markdown investigation report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports distinguish confirmed facts, reasonable inferences, open questions, conclusions, and recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill encourages broad fact gathering, including reading code, logs, git history, and running tests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set clear investigation scope and avoid directing the agent at sensitive logs or private repositories unless that access is intended.
+
+## Reference(s):
+
+- [Investigation First skill page](https://clawhub.ai/arg0/skills/investigation-first)
+- [Original source excerpts](original-texts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Markdown guidance and structured investigation reports, with shell commands when evidence gathering requires direct checks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Encourages separating confirmed facts, reasonable inferences, unresolved questions, conclusions, and recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Guides agents to write large or CJK-containing files with an incremental skeleton-and-edit workflow instead of direct Write. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely write large files or files with CJK or special characters using an incremental Edit strategy instead of direct Write.
 
-## Publisher: <br>
-[thinkdonk](https://clawhub.ai/user/thinkdonk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thinkdonk](https://clawhub.ai/user/thinkdonk)
 
-## Use Case: <br>
-Developers and coding agents use this skill to create or modify large files, files with CJK or special characters, and files affected by Write truncation errors through smaller incremental edits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated edits can introduce incorrect file content or leave temporary append markers if the agent is interrupted. <br>
-Mitigation: Review generated edits, spot-check the resulting file, and remove any temporary marker lines before relying on the output. <br>
-Risk: The workflow includes examples with API-key placeholders and may be used around files containing sensitive configuration. <br>
-Mitigation: Keep real secrets out of committed files and review credential-bearing edits before deployment. <br>
+## Use Case:
 
+Developers and coding agents use this skill to write or update large files, files with CJK characters, and multi-function source files while reducing write truncation and encoding failures.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/thinkdonk/llm-safe-write) <br>
-- [Server-resolved source repository](https://github.com/ThinkDonk/llm-safe-write) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code blocks, command examples, and editing workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Self-contained workflow with no declared runtime dependencies; users should review generated edits and cleanup markers after interrupted append operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill changes how an agent mutates files and may leave placeholders, anchors, or partial edits in important generated files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review important generated files after use and confirm placeholders, temporary markers, and file boundaries were cleaned up correctly.
+
+Risk: Incremental edit workflows can still produce incorrect or incomplete output if anchors are stale or match unintended text.
+
+Mitigation: Read the target file before editing, use unique anchors, and spot-check the first and last sections of generated files.
+
+## Reference(s):
+
+- [Server-resolved GitHub provenance](https://github.com/ThinkDonk/llm-safe-write)
+- [ClawHub skill page](https://clawhub.ai/thinkdonk/skills/llm-safe-write)
+- [Publisher profile](https://clawhub.ai/user/thinkdonk)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown guidance with inline code and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide the agent to create ASCII skeletons, placeholders, temporary anchors, and incremental edits; review important generated files after use.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

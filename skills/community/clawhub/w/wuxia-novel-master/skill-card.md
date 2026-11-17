@@ -1,46 +1,66 @@
-## Description: <br>
-武侠小说创作主编 coordinates wuxia novel ideation, outlining, drafting, review, revision, continuation from existing drafts, and final TXT formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill coordinates an autonomous Chinese wuxia-novel creation workflow, from outline planning and volume drafting through review, revision, and final TXT formatting.
 
-## Publisher: <br>
-[kongzichixiangjiao](https://clawhub.ai/user/kongzichixiangjiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kongzichixiangjiao](https://clawhub.ai/user/kongzichixiangjiao)
 
-## Use Case: <br>
-External users and creative writers use this skill to generate or continue Chinese wuxia novels with an autonomous editorial workflow. It plans the story, coordinates drafting and review roles, checks continuity and style, and produces a formatted text manuscript. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and resume manuscript files in a target output directory. <br>
-Mitigation: Run it in a dedicated project or output folder and avoid pointing it at broad private directories. <br>
-Risk: The skill makes creative decisions autonomously and may not ask clarifying questions before generating or continuing a novel. <br>
-Mitigation: Review generated outlines, drafts, and final TXT output before publication or distribution. <br>
+## Use Case:
 
+External users and creative-writing agents use this skill to generate or continue Chinese wuxia novels with autonomous outline creation, drafting, editorial review, revision, and final text formatting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kongzichixiangjiao/wuxia-novel-master) <br>
-- [README](artifact/README.md) <br>
-- [Main skill definition](artifact/SKILL.md) <br>
-- [Writer sub-skill](artifact/references/05-写手/SKILL.md) <br>
-- [Checker sub-skill](artifact/references/06-检查/SKILL.md) <br>
-- [Typesetter sub-skill](artifact/references/07-排版/SKILL.md) <br>
-- [Evaluation cases](artifact/evals/evals.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown planning and review artifacts plus a final TXT novel manuscript] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save and resume work from files in a target output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may inspect existing outline or manuscript files in the selected output directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a dedicated project directory containing only files intended for this writing workflow.
+
+Risk: The workflow may create multiple generated text and Markdown files without asking for confirmation.
+
+Mitigation: Choose an explicit output directory and review generated files before sharing or publishing them.
+
+Risk: Generated fiction and editorial notes may contain continuity, style, or quality issues despite the built-in review workflow.
+
+Mitigation: Review the final manuscript and intermediate review reports before treating the output as publication-ready.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kongzichixiangjiao/skills/wuxia-novel-master)
+- [Skill README](artifact/README.md)
+- [金庸 reference skill](artifact/references/01-金庸/SKILL.md)
+- [古龙 reference skill](artifact/references/02-古龙/SKILL.md)
+- [梁羽生 reference skill](artifact/references/03-梁羽生/SKILL.md)
+- [温瑞安 reference skill](artifact/references/04-温瑞安/SKILL.md)
+- [写手 reference skill](artifact/references/05-写手/SKILL.md)
+- [检查 reference skill](artifact/references/06-检查/SKILL.md)
+- [排版 reference skill](artifact/references/07-排版/SKILL.md)
+- [Evaluation cases](artifact/evals/evals.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown drafts and review notes, plain-text manuscript files, and concise status messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create numbered intermediate manuscript files and a final TXT file in the selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

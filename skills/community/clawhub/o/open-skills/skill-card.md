@@ -1,45 +1,61 @@
-## Description: <br>
-Open Skills is an interactive CLI skill that helps developers browse, select, install, and sync AI agent skills across multiple editors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+open-skills is an interactive CLI that helps developers browse categories, multi-select AI agent skills, and install or sync them across supported editors.
 
-## Publisher: <br>
-[lumacoder](https://clawhub.ai/user/lumacoder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lumacoder](https://clawhub.ai/user/lumacoder)
 
-## Use Case: <br>
-Developers use this skill to discover, multi-select, install, synchronize, update, export, and import AI agent skills for editors such as Claude Code, Cursor, Windsurf, Cline, Roo-Cline, Antigravity, Hermes, and GitHub Copilot. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The CLI can modify global or project-level agent and editor configuration. <br>
-Mitigation: Prefer local scope first, review selected skills and target directories before applying changes, and back up existing rule or skill directories. <br>
-Risk: Update, sync, and import workflows can affect directories that contain manually maintained files. <br>
-Mitigation: Avoid running update, sync, or import on manually maintained directories unless the changes have been reviewed. <br>
+## Use Case:
 
+Developers and engineers use open-skills to manage agent skill distribution across multiple AI coding editors from a single CLI. It supports browsing local and remote skill registries, installing selected skills, synchronizing remote sources, updating installed skills, and creating local skill scaffolds.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lumacoder/open-skills) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/lumacoder) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [package.json](artifact/package.json) <br>
-- [IDE Engine design notes](artifact/docs/ide-engine.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Interactive CLI prompts, terminal output, Markdown skill files, registry JSON, and editor configuration changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can install, sync, update, export, import, and create skill bundles across global or project-level editor targets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: ClawHub release metadata; artifact frontmatter and package.json state 2.0.0) <br>
+Risk: Installer, update, sync, and cleanup operations can modify or delete local skill files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up existing Claude, Cursor, Hermes, and other agent skill directories before installing, updating, or synchronizing skills.
+
+Risk: Synchronizing from untrusted or editable registry data can introduce unsafe skill content or overwrite local bundles.
+
+Mitigation: Use trusted registries only, review registry entries before sync, and prefer immutable remote skill revisions.
+
+Risk: The developer server may expose registry management behavior if started on a shared or untrusted network.
+
+Mitigation: Run the developer server only in a trusted local environment and avoid exposing it beyond localhost.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lumacoder/skills/open-skills)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [IDE Engine design notes](artifact/docs/ide-engine.md)
+- [V3 PRD](artifact/docs/PRD-V3.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown and CLI text with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, update, synchronize, or remove local skill files depending on the selected command and target editor.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter and package.json list 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

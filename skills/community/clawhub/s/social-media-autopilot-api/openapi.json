@@ -1,9 +1,9 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.3",
   "info": {
-    "title": "SocialEcho 对外 API",
-    "description": "对外 HTTP 接口模块。认证：HTTP Bearer（Team API Key）。成功判定：HTTP 200 且响应 JSON 的 code 为 0 或 200（以服务端为准）。单 Key 建议不超过 120 请求/分钟。",
-    "version": "1.1.0"
+    "title": "SocialEcho Social Media OpenAPI",
+    "version": "2.1.1",
+    "description": "Team API Key integration for SocialEcho. Supply credentials explicitly; clients must not discover keys from environment variables, credential stores, or files. GET parameters use QueryString and GET requests must not include a body. Success requires HTTP 2xx and JSON code 0. Live write operations require an immediate user confirmation after reviewing their target and payload."
   },
   "servers": [
     {
@@ -11,662 +11,906 @@
       "description": "Production"
     }
   ],
-  "tags": [],
   "paths": {
-    "/v1/upload/url": {
-      "get": {
-        "summary": "获取OSS上传的URL",
-        "deprecated": false,
-        "description": "",
-        "tags": [],
-        "parameters": [
-          {
-            "name": "X-Lang",
-            "in": "header",
-            "description": "zh_CN/en",
-            "example": "zh_CN",
-            "schema": {
-              "type": "string",
-              "default": "zh_CN"
-            }
-          },
-          {
-            "name": "X-Team-Id",
-            "in": "header",
-            "description": "",
-            "example": "{{TeamId}}",
-            "schema": {
-              "type": "integer",
-              "default": "{{TeamId}}"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {}
-              },
-              "examples": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/v1/reddit/communities": {
-      "get": {
-        "summary": "获取Reddit的社区",
-        "deprecated": false,
-        "description": "",
-        "tags": [],
-        "parameters": [
-          {
-            "name": "X-Lang",
-            "in": "header",
-            "description": "zh_CN/en",
-            "example": "zh_CN",
-            "schema": {
-              "type": "string",
-              "default": "zh_CN"
-            }
-          },
-          {
-            "name": "X-Team-Id",
-            "in": "header",
-            "description": "",
-            "example": "{{TeamId}}",
-            "schema": {
-              "type": "integer",
-              "default": "{{TeamId}}"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "account_id": {
-                    "type": "integer",
-                    "title": "帐户ID"
-                  }
-                },
-                "required": [
-                  "account_id"
-                ]
-              },
-              "examples": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/v1/pinterest/boards": {
-      "get": {
-        "summary": "获取Pinterest的图版",
-        "deprecated": false,
-        "description": "",
-        "tags": [],
-        "parameters": [
-          {
-            "name": "X-Lang",
-            "in": "header",
-            "description": "zh_CN/en",
-            "example": "zh_CN",
-            "schema": {
-              "type": "string",
-              "default": "zh_CN"
-            }
-          },
-          {
-            "name": "X-Team-Id",
-            "in": "header",
-            "description": "",
-            "example": "{{TeamId}}",
-            "schema": {
-              "type": "integer",
-              "default": "{{TeamId}}"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "account_id": {
-                    "type": "integer",
-                    "title": "帐户ID"
-                  }
-                },
-                "required": [
-                  "account_id"
-                ]
-              },
-              "examples": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/v1/publish/article": {
-      "post": {
-        "summary": " 发布贴文",
-        "deprecated": false,
-        "description": "",
-        "tags": [],
-        "parameters": [
-          {
-            "name": "X-Lang",
-            "in": "header",
-            "description": "zh_CN/en",
-            "example": "zh_CN",
-            "schema": {
-              "type": "string",
-              "default": "zh_CN"
-            }
-          },
-          {
-            "name": "X-Team-Id",
-            "in": "header",
-            "description": "",
-            "example": "{{TeamId}}",
-            "schema": {
-              "type": "integer",
-              "default": "{{TeamId}}"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "account_id": {
-                    "type": "integer",
-                    "title": "帐户ID"
-                  },
-                  "type": {
-                    "type": "string",
-                    "title": "发布类型",
-                    "description": "Facebook(reels,post,stories) \nYouTube(shorts,video) \nInstagram(reels,post,stories)\nX(short_post,long_post) \nLinkedIn(post)\nTikTok(video,photo)\nPinterest(post)\nReddit(text,link,media)"
-                  },
-                  "status": {
-                    "type": "integer",
-                    "title": "状态",
-                    "description": "0=草稿,1=发布"
-                  },
-                  "scheduled_at": {
-                    "type": "string",
-                    "title": "定时时间",
-                    "description": "如果状态=1,定时时间可以填写，如果不填写，是立马发布"
-                  },
-                  "comment": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    },
-                    "title": "评论"
-                  },
-                  "content": {
-                    "type": "string",
-                    "title": "内容"
-                  },
-                  "extra": {
-                    "type": "object",
-                    "properties": {
-                      "title": {
-                        "type": "string",
-                        "description": "YouTube标题,Pinterest标题,Reddit标题"
-                      },
-                      "category_id": {
-                        "type": "string",
-                        "description": "Pinterest图版ID,Reddit社区ID"
-                      },
-                      "link": {
-                        "type": "string",
-                        "description": "Reddit链接地址,Pinterest链接地址"
-                      },
-                      "draft": {
-                        "type": "boolean",
-                        "description": "TikTok是否保存草稿草稿（true=是,false=否）"
-                      },
-                      "flair": {
-                        "type": "object",
-                        "properties": {
-                          "uuid": {
-                            "type": "string",
-                            "description": "Reddit标识唯一ID"
-                          },
-                          "title": {
-                            "type": "string",
-                            "description": "Reddit标识标题"
-                          }
-                        },
-                        "required": [
-                          "uuid",
-                          "title"
-                        ],
-                        "description": "Reddit标识"
-                      }
-                    },
-                    "title": "扩展属性",
-                    "description": "不同的平台有不同扩展",
-                    "required": [
-                      "title",
-                      "link",
-                      "category_id",
-                      "draft",
-                      "flair"
-                    ]
-                  },
-                  "attachments": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "url": {
-                          "type": "string",
-                          "title": "文件地址",
-                          "description": "需要先上传到OSS后获取的URL地址"
-                        }
-                      },
-                      "required": [
-                        "url"
-                      ]
-                    },
-                    "title": "附件"
-                  }
-                },
-                "required": [
-                  "account_id",
-                  "type",
-                  "status",
-                  "comment",
-                  "extra",
-                  "attachments"
-                ]
-              },
-              "examples": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
     "/v1/team": {
       "get": {
-        "summary": "团队信息",
-        "deprecated": false,
-        "description": "",
-        "tags": [],
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {}
-              },
-              "examples": {}
+        "operationId": "getTeam",
+        "summary": "Get current team",
+        "parameters": [
+          {
+            "name": "X-Lang",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "zh_CN",
+                "en"
+              ],
+              "default": "zh_CN"
+            }
+          },
+          {
+            "name": "X-Team-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "integer"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer"
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {}
-                    }
-                  },
-                  "required": [
-                    "code",
-                    "message",
-                    "data"
-                  ]
-                }
-              }
-            },
-            "headers": {}
+            "$ref": "#/components/responses/Success"
           }
         },
         "security": [
           {
-            "bearer": []
+            "bearerAuth": []
           }
         ]
       }
     },
     "/v1/account": {
       "get": {
-        "summary": "社媒账号列表",
-        "deprecated": false,
-        "description": "",
-        "tags": [],
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "page": {
-                    "type": "integer",
-                    "title": "页码",
-                    "description": "如果没有传，则默认获取所有数据"
-                  },
-                  "type": {
-                    "type": "integer",
-                    "title": "类型",
-                    "description": "1=授权帐户,2=竞品帐户"
-                  }
-                }
-              },
-              "examples": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer"
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {}
-                    }
-                  },
-                  "required": [
-                    "code",
-                    "message",
-                    "data"
-                  ]
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/v1/article": {
-      "get": {
-        "summary": "贴文列表",
-        "deprecated": false,
-        "description": "",
-        "tags": [],
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "page": {
-                    "type": "integer",
-                    "title": "页码",
-                    "description": "如果没有传，则默认获取所有数据"
-                  },
-                  "account_ids": {
-                    "type": "array",
-                    "items": {
-                      "type": "integer"
-                    },
-                    "title": "帐户"
-                  }
-                }
-              },
-              "examples": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer"
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {}
-                    }
-                  },
-                  "required": [
-                    "code",
-                    "message",
-                    "data"
-                  ]
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/v1/report": {
-      "get": {
-        "summary": "数据报告",
-        "deprecated": false,
-        "description": "",
-        "tags": [],
+        "operationId": "listAccounts",
+        "summary": "List social media accounts",
         "parameters": [
           {
             "name": "X-Lang",
             "in": "header",
-            "description": "zh_CN/en",
-            "example": "zh_CN",
+            "required": false,
             "schema": {
               "type": "string",
+              "enum": [
+                "zh_CN",
+                "en"
+              ],
               "default": "zh_CN"
             }
           },
           {
             "name": "X-Team-Id",
             "in": "header",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
             "description": "",
-            "example": "{{TeamId}}",
             "schema": {
               "type": "integer",
-              "default": "{{TeamId}}"
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1,
+                2
+              ],
+              "default": 1
             }
           }
         ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/oauth/links": {
+      "get": {
+        "operationId": "getOauthLinks",
+        "summary": "Get platform authorization links",
+        "parameters": [
+          {
+            "name": "X-Lang",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "zh_CN",
+                "en"
+              ],
+              "default": "zh_CN"
+            }
+          },
+          {
+            "name": "X-Team-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/article": {
+      "get": {
+        "operationId": "listArticles",
+        "summary": "List articles",
+        "parameters": [
+          {
+            "name": "X-Lang",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "zh_CN",
+                "en"
+              ],
+              "default": "zh_CN"
+            }
+          },
+          {
+            "name": "X-Team-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "account_ids[]",
+            "in": "query",
+            "required": false,
+            "description": "Repeat the bracketed key for each account ID.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/report": {
+      "get": {
+        "operationId": "getReport",
+        "summary": "Get report data",
+        "parameters": [
+          {
+            "name": "X-Lang",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "zh_CN",
+                "en"
+              ],
+              "default": "zh_CN"
+            }
+          },
+          {
+            "name": "X-Team-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "time_type",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1,
+                2
+              ]
+            }
+          },
+          {
+            "name": "group",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "day",
+                "app",
+                "account"
+              ]
+            }
+          },
+          {
+            "name": "account_ids[]",
+            "in": "query",
+            "required": false,
+            "description": "Repeat the bracketed key for each account ID.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/upload/url": {
+      "get": {
+        "operationId": "getUploadUrl",
+        "summary": "Create an OSS upload URL",
+        "parameters": [
+          {
+            "name": "X-Lang",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "zh_CN",
+                "en"
+              ],
+              "default": "zh_CN"
+            }
+          },
+          {
+            "name": "X-Team-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "content_type",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string",
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string",
+              "maxLength": 255
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/reddit/communities": {
+      "get": {
+        "operationId": "listRedditCommunities",
+        "summary": "List Reddit communities",
+        "parameters": [
+          {
+            "name": "X-Lang",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "zh_CN",
+                "en"
+              ],
+              "default": "zh_CN"
+            }
+          },
+          {
+            "name": "X-Team-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "account_id",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/pinterest/boards": {
+      "get": {
+        "operationId": "listPinterestBoards",
+        "summary": "List Pinterest boards",
+        "parameters": [
+          {
+            "name": "X-Lang",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "zh_CN",
+                "en"
+              ],
+              "default": "zh_CN"
+            }
+          },
+          {
+            "name": "X-Team-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "account_id",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/tiktokshop/products": {
+      "get": {
+        "operationId": "listTiktokShopProducts",
+        "summary": "List TikTok Shop products",
+        "parameters": [
+          {
+            "name": "X-Lang",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "zh_CN",
+                "en"
+              ],
+              "default": "zh_CN"
+            }
+          },
+          {
+            "name": "X-Team-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "account_id",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string",
+              "maxLength": 500
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/tiktokshop/products/sync": {
+      "post": {
+        "operationId": "syncTiktokShopProducts",
+        "summary": "Submit TikTok Shop product sync",
+        "description": "LIVE WRITE: changes the selected TikTok Shop account. Show the exact account ID to the user and obtain explicit confirmation immediately before invoking this operation. Do not infer authorization from an earlier or unrelated request.",
+        "x-requires-explicit-confirmation": true,
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "start_date": {
-                    "type": "string",
-                    "title": "开始日期"
-                  },
-                  "end_date": {
-                    "type": "string",
-                    "title": "结束日期"
-                  },
-                  "account_ids": {
-                    "type": "array",
-                    "items": {
-                      "type": "integer"
-                    },
-                    "title": "帐户ID"
-                  },
-                  "time_type": {
-                    "type": "integer",
-                    "title": "时间类型",
-                    "description": "1=日期内新增贴文，2=历史全部贴文"
-                  },
-                  "group": {
-                    "type": "string",
-                    "title": "分组",
-                    "description": "不传表示获取总量,day=每一天，app=应用, account=帐户"
-                  }
-                },
                 "required": [
-                  "start_date",
-                  "end_date",
-                  "time_type"
-                ]
-              },
-              "examples": {}
+                  "account_id"
+                ],
+                "properties": {
+                  "account_id": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                }
+              }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            },
-            "headers": {}
+            "$ref": "#/components/responses/Success"
           }
         },
         "security": [
           {
-            "bearer": []
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/tiktokshop/music/genres": {
+      "get": {
+        "operationId": "listTikTokShopMusicGenres",
+        "summary": "List TikTok commercial music genres",
+        "parameters": [
+          {
+            "name": "X-Lang",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "zh_CN",
+                "en"
+              ],
+              "default": "zh_CN"
+            }
+          },
+          {
+            "name": "X-Team-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/tiktokshop/music/trending": {
+      "get": {
+        "operationId": "listTikTokShopTrendingMusic",
+        "summary": "List TikTok commercial trending music",
+        "parameters": [
+          {
+            "name": "X-Lang",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "zh_CN",
+                "en"
+              ],
+              "default": "zh_CN"
+            }
+          },
+          {
+            "name": "X-Team-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "account_id",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "country_code",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2
+            }
+          },
+          {
+            "name": "genre",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          },
+          {
+            "name": "date_range",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "1DAY",
+                "7DAY",
+                "30DAY",
+                "90DAY"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/publish/article": {
+      "post": {
+        "operationId": "publishArticle",
+        "summary": "Publish cross-platform article",
+        "description": "LIVE WRITE: can publish immediately or schedule public content on a connected social account. Before invoking, show the target account, content, attachments, privacy/settings, and schedule to the user and obtain explicit confirmation for that exact payload. Do not infer authorization from an earlier or unrelated request.",
+        "x-requires-explicit-confirmation": true,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishPayload"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
           }
         ]
       }
     }
   },
   "components": {
-    "schemas": {},
-    "responses": {},
     "securitySchemes": {
-      "bearer": {
+      "bearerAuth": {
         "type": "http",
-        "scheme": "bearer"
+        "scheme": "bearer",
+        "bearerFormat": "Team API Key",
+        "description": "Pass the user-provided Team API Key explicitly. Never search environment variables, credential stores, or files for a key, and never print or persist it."
+      }
+    },
+    "responses": {
+      "Success": {
+        "description": "HTTP 2xx with code 0",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Response"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "Response": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {},
+          "request_id": {
+            "type": "string"
+          },
+          "meta": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "SelectedMusic": {
+        "type": "object",
+        "required": [
+          "url",
+          "uuid",
+          "cover",
+          "title",
+          "artist",
+          "duration",
+          "selection",
+          "music_volume",
+          "original_sound_volume"
+        ],
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "uuid": {
+            "type": "string"
+          },
+          "cover": {
+            "type": "string",
+            "format": "uri"
+          },
+          "title": {
+            "type": "string"
+          },
+          "artist": {
+            "type": "string"
+          },
+          "duration": {
+            "type": "number",
+            "minimum": 0
+          },
+          "selection": {
+            "type": "string",
+            "enum": [
+              "trending_clip",
+              "full_track"
+            ]
+          },
+          "music_volume": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "original_sound_volume": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          }
+        }
+      },
+      "PublishPayload": {
+        "type": "object",
+        "required": [
+          "account_id",
+          "type",
+          "status",
+          "comment",
+          "extra",
+          "attachments"
+        ],
+        "properties": {
+          "account_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "type": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ]
+          },
+          "scheduled_at": {
+            "type": "string"
+          },
+          "comment": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "content": {
+            "type": "string"
+          },
+          "extra": {
+            "type": "object",
+            "properties": {
+              "music": {
+                "$ref": "#/components/schemas/SelectedMusic"
+              }
+            },
+            "additionalProperties": true
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "url"
+              ],
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
       }
     }
-  },
-  "security": [
-    {
-      "bearer": []
-    }
-  ]
+  }
 }

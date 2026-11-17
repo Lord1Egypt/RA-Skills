@@ -4,7 +4,7 @@
 
 - **请求地址**：`${LINKFOX_TOOL_GATEWAY}/amazon/alexaSearch`
 - **请求方式**：POST，Content-Type: application/json
-- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `LINKFOX_AGENT_API_KEY` 或 `LINKFOXAGENT_API_KEY` 读取（如未配置，提示用户前往 https://skill.linkfox.com/linkfoxskills/guide.htm 申请）
+- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `LINKFOX_AGENT_API_KEY` 或 `LINKFOXAGENT_API_KEY` 读取（如未配置 按 SKILL.md 的 **## 解决认证和算力问题** 处理）
 
 ## 请求参数
 
@@ -12,7 +12,7 @@ POST Body（JSON）：
 
 | 参数 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| prompts | string[] | 是 | 对话提示词数组，仅支持 **1 条**。每次调用只能传入 1 个问题。如需追问，agent 须自行总结上一轮回答的关键信息（推荐商品、ASIN、关键结论等），拼接新问题后作为新的 `prompts[0]` 发起新请求。每次调用是独立的新会话，不保留跨次调用的历史上下文 |
+| prompts | string[] | 是 | 长度在255个字符以内。对话提示词数组，仅支持 **1 条**。每次调用只能传入 1 个问题。如需追问，agent 须自行总结上一轮回答的关键信息（推荐商品、ASIN、关键结论等），拼接新问题后作为新的 `prompts[0]` 发起新请求。每次调用是独立的新会话，不保留跨次调用的历史上下文 |
 | format | string | 否 | 响应格式，`markdown`（默认）返回可读报告；`json` 返回结构化数据数组 |
 | url | string | 否 | 联动页面 URL，用于补充 Alexa 当前答复的页面上下文。仅在用户提供了**具体页面**（分类页 / 搜索结果页 / 商品详情页等）时才传入；亚马逊首页（如 `https://www.amazon.com/`）**无需传**该参数 |
 
@@ -58,7 +58,8 @@ POST Body（JSON）：
 | errcode | 含义 | 处理建议 |
 |---------|------|----------|
 | 200 | 成功 | 正常解析 `stdout` 或 `data` 字段 |
-| 401 | 认证失败 | 检查请求头 `Authorization` 是否正确携带 API Key；API Key 申请方式请参考上述[调用规范](#调用规范)下的认证方式。 |
+| 401 | 认证失败 | HTTP 401 或 authorized error：按 SKILL.md 的 **## 解决认证和算力问题** 处理。 |
+| 402 | 计费/算力不足 | HTTP 402：按 SKILL.md 的 **## 解决认证和算力问题** 处理。 |
 | 其他非 200 值 | 业务异常 | 参考 `errmsg` / `msg` 字段获取具体错误原因 |
 
 错误响应示例：

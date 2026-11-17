@@ -1,39 +1,52 @@
-## Description: <br>
-Measure cyclomatic complexity, cognitive complexity, and structural metrics for Python, JavaScript/TypeScript, and Go code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Measures cyclomatic, cognitive, and structural complexity for Python, JavaScript/TypeScript, and Go code with configurable thresholds and text, JSON, or Markdown reports.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to run local code complexity analysis, identify high-complexity functions, review refactoring candidates, and generate reports or CI quality-gate output.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The analyzer reads source files from every selected file or directory path, so broad private directories can expose more source content in reports than intended.
+
+Mitigation: Run it only on intended project paths and use exclusions for directories that should not be analyzed.
+
+Risk: Complexity reports may be used as CI quality gates and can fail builds when thresholds are exceeded.
+
+Mitigation: Set project-appropriate thresholds and review reported violations before treating them as release blockers.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze code quality, identify complex functions, find refactoring candidates, and generate reports for review or CI quality gates. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The local analyzer reads source files from paths supplied by the user. <br>
-Mitigation: Point it at specific project directories rather than broad personal folders. <br>
-Risk: Threshold violations return a non-zero exit code and can fail automated checks. <br>
-Mitigation: Review the configured thresholds and exit-code behavior before using it as a CI gate. <br>
+**Output Format:** [Plain text, JSON, or Markdown complexity reports, often accompanied by shell commands to run the analyzer.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Reads user-selected local files or directories and exits nonzero when configured complexity thresholds are exceeded.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Text, JSON, or Markdown reports with per-function complexity metrics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Configurable thresholds for cyclomatic complexity, cognitive complexity, function length, parameter count, and nesting depth; exit codes distinguish no violations, threshold violations, and no analyzable files.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

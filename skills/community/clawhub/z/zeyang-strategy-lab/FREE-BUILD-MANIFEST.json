@@ -1,0 +1,110 @@
+[
+  {
+    "relative_path": ".gitignore",
+    "sha256": "473a45736d3f074ccfcc6595eadff576a67418cb4269d944b99f452f4248bcd6",
+    "file_size": 109,
+    "build_schema_version": "1.0"
+  },
+  {
+    "relative_path": "LICENSE",
+    "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
+    "file_size": 34523,
+    "build_schema_version": "1.0"
+  },
+  {
+    "relative_path": "README.md",
+    "sha256": "4e19dbd1c051181a11636eb824fa305b1a51a56010cbf47aa742e09c37ef10d9",
+    "file_size": 5401,
+    "build_schema_version": "1.0"
+  },
+  {
+    "relative_path": "SKILL.md",
+    "sha256": "aa9ee73159d58018b9cb7d77894dc3e964b727973587fe07f7ee9a3b0fc64654",
+    "file_size": 4844,
+    "build_schema_version": "1.0"
+  },
+  {
+    "relative_path": "THIRD-PARTY-NOTICES.md",
+    "sha256": "03e0284ead37262c756ff6860af9e55b33b6f502545a490caafa1585febf3bef",
+    "file_size": 378,
+    "build_schema_version": "1.0"
+  },
+  {
+    "relative_path": "references/data-contract.md",
+    "sha256": "9b35333b527edec684f821cd88b96076d65373c312ea56ae2aa4e409f7029a0f",
+    "file_size": 1239,
+    "build_schema_version": "1.0"
+  },
+  {
+    "relative_path": "references/indicator-and-signal-free.md",
+    "sha256": "e3a168f128251d04e17261f2df0dbe4d4ca26dfad8624de5a3915dcf56a91896",
+    "file_size": 616,
+    "build_schema_version": "1.0"
+  },
+  {
+    "relative_path": "references/metrics-and-robustness.md",
+    "sha256": "cd06f27307a573b3dd0b0bb03f6d6b9341e4ddb7cabc57d323218811c2d48168",
+    "file_size": 2293,
+    "build_schema_version": "1.0"
+  },
+  {
+    "relative_path": "references/strategy-contract-free.md",
+    "sha256": "a5a3062e24c05551087de5c49ce837740ac492f3f658257bdbba55090fd0729e",
+    "file_size": 667,
+    "build_schema_version": "1.0"
+  },
+  {
+    "relative_path": "scripts/basic_charts.py",
+    "sha256": "c19afd23ffc88674de26f1008a87a434c8f4adb011e3342097fbe0266812f9c9",
+    "file_size": 7777,
+    "build_schema_version": "1.0"
+  },
+  {
+    "relative_path": "scripts/indicator_signal_core.py",
+    "sha256": "59c7817ad728cfdecffd097b2d923ad6d776c694cda05f0e12996765e75489f4",
+    "file_size": 6024,
+    "build_schema_version": "1.0"
+  },
+  {
+    "relative_path": "scripts/run_backtest.py",
+    "sha256": "4753789fcdc1ec776280dc55dcae8a08758024a7051ca919d42f42c93eaaf9ef",
+    "file_size": 29073,
+    "build_schema_version": "1.0"
+  },
+  {
+    "relative_path": "scripts/run_free_research.py",
+    "sha256": "ccbe1330e80d51164fadbfe4889a06af83fe2732a21c60db46741faede2bfde8",
+    "file_size": 10341,
+    "build_schema_version": "1.0"
+  },
+  {
+    "relative_path": "scripts/strategy_contract_core.py",
+    "sha256": "7f2a03d53305e2e8a32e290aca5c0beae111e80478e1efb594e6d3262214411a",
+    "file_size": 11932,
+    "build_schema_version": "1.0"
+  },
+  {
+    "relative_path": "scripts/validate_price_data.py",
+    "sha256": "efee7dae2769008135160fc623d71767a8ebba3c0c1d914df1afd91bf92458f7",
+    "file_size": 12304,
+    "build_schema_version": "1.0"
+  },
+  {
+    "relative_path": "tests/fixtures/example_signals.csv",
+    "sha256": "1d3d78d7fb4c8fa05ef77eeca358a546d03666e339748c4b238614aec617808a",
+    "file_size": 264,
+    "build_schema_version": "1.0"
+  },
+  {
+    "relative_path": "tests/run_free_smoke_tests.py",
+    "sha256": "0c8e09e09549402626c33c353ee376bf26e402d52ad9be23054808b0222ec685",
+    "file_size": 6338,
+    "build_schema_version": "1.0"
+  },
+  {
+    "relative_path": "tests/run_tests.py",
+    "sha256": "550c67e6cbdef505f9f723a320a1339015b059d6ce9f0219a713425c27bc67d9",
+    "file_size": 14414,
+    "build_schema_version": "1.0"
+  }
+]

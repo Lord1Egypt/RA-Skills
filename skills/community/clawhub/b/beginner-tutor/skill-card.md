@@ -1,44 +1,55 @@
-## Description: <br>
-A universal tutoring skill that teaches unfamiliar subjects to beginners through structured dialogue and then produces a polished tutorial document. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A universal tutoring skill for teaching any complex or unfamiliar subject to a complete beginner through structured dialogue, then producing a polished tutorial document for archiving and sharing.
 
-## Publisher: <br>
-[zhangxinyu0330](https://clawhub.ai/user/zhangxinyu0330) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangxinyu0330](https://clawhub.ai/user/zhangxinyu0330)
 
-## Use Case: <br>
-Learners, educators, and agents use this skill to teach a beginner an unfamiliar subject from scratch, adapt explanations to the learner's background, check understanding, and create a shareable tutorial after the dialogue. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be used for high-stakes subjects such as medical, legal, or financial topics. <br>
-Mitigation: Keep outputs educational, verify current facts, avoid professional advice, and direct users to qualified professionals where appropriate. <br>
-Risk: The skill's broad scope may produce oversimplified or outdated explanations for specialized topics. <br>
-Mitigation: Ask clarifying questions, state scope limits, and verify current or domain-specific facts before presenting them as settled. <br>
-Risk: A final tutorial may use the wrong language or audience level when the conversation is multilingual or the intended reader differs from the learner. <br>
-Mitigation: Confirm the tutorial language, audience, scope, and format before generating the final document. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to learn unfamiliar subjects from scratch through adaptive dialogue, then turn the completed learning session into a polished beginner-friendly tutorial.
 
-## Reference(s): <br>
-- [Analogy Patterns](references/analogy-patterns.md) <br>
-- [Document Templates](references/document-templates.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhangxinyu0330/beginner-tutor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational teaching responses and Markdown tutorial documents] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dialogue-first workflow; final tutorial should reflect the learner's confirmed understanding.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can activate for broad learning requests, including regulated subjects such as medicine, finance, and law.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational explanations rather than professional advice, and require qualified review before applying them to regulated decisions.
+
+Risk: Mixed-language conversations may lead the skill to default to Chinese when the user's language preference is unclear.
+
+Mitigation: Specify the desired output language before generating the tutorial document.
+
+## Reference(s):
+
+- [Analogy Patterns by Concept Type](references/analogy-patterns.md)
+- [Document Templates by Audience Type](references/document-templates.md)
+- [ClawHub skill page](https://clawhub.ai/zhangxinyu0330/skills/beginner-tutor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational text and Markdown tutorial documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May adapt examples, depth, and language to the learner's background and conversation context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

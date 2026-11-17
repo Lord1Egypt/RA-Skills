@@ -1,42 +1,49 @@
-## Description: <br>
-Reviews Dockerfiles and docker-compose files for security, image size, build efficiency, and best-practice issues, then returns a severity-rated report with fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Dockerfiles and docker-compose files for security, image size, build efficiency, and best-practice issues, returning severity-rated findings with corrected examples.
 
-## Publisher: <br>
-[Lnguyen1996](https://clawhub.ai/user/Lnguyen1996) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lnguyen1996](https://clawhub.ai/user/lnguyen1996)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to review Dockerfiles, docker-compose files, and .dockerignore files for container security, image size, build correctness, and operational best-practice issues before production or CI use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste real secrets into Dockerfiles or compose files during review. <br>
-Mitigation: Use redacted examples and keep secrets out of prompts and artifacts. <br>
-Risk: Suggested container changes may be unsuitable for a production environment without review. <br>
-Mitigation: Review recommendations against deployment requirements and test changes before applying them. <br>
-Risk: Self-improvement notes could retain overly specific details from reviewed files. <br>
-Mitigation: Keep learning notes generic and avoid storing project-specific or sensitive details. <br>
+## Use Case:
 
+Developers and engineers use this skill to review Dockerfiles, docker-compose files, and .dockerignore inputs for container security, reliability, image-size, and build-cache issues before release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Lnguyen1996/container-reviewer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown report with severity sections and corrected before/after examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include severity ratings, corrected snippets, a summary, and optional notes about recurring Dockerfile mistakes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks the agent to keep review-derived notes across runs without clear limits or user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that retention behavior is acceptable, or remove/ignore the self-improvement section so reviews depend only on the current conversation and user-supplied files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lnguyen1996/skills/container-reviewer)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Guidance]
+
+**Output Format:** [Markdown report with severity sections and corrected code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include critical findings, warnings, suggestions, validated good patterns, and a short summary.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

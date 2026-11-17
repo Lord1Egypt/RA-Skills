@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/cuttips-stats.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "generatedAt", "sourceCount", "reviewedCount", "getnoteOnlyCount", "creatorCounts", "categoryCounts", "knowledgeItemCount", "machineRuleCount"],
+  "properties": {
+    "version": {"type": "string"},
+    "generatedAt": {"type": "string", "format": "date-time"},
+    "sourceCount": {"type": "integer", "minimum": 0},
+    "reviewedCount": {"type": "integer", "minimum": 0},
+    "getnoteOnlyCount": {"type": "integer", "minimum": 0},
+    "creatorCounts": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+    "categoryCounts": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+    "knowledgeItemCount": {"type": "integer", "minimum": 0},
+    "machineRuleCount": {"type": "integer", "minimum": 0}
+  }
+}

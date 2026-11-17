@@ -1,44 +1,54 @@
-## Description: <br>
-Provides lightweight analysis, keyword summaries, channel hotspot statistics, and long-form article highlights for public The Paper news pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Registers a The Paper hot-news skill for accessing or automating public The Paper content, including keyword summaries, channel trend statistics, and long-form article highlights.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Analysts, editors, and developers use this skill to summarize keyword-matched The Paper news, inspect channel hotspots, and extract concise points from long-form articles on public pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill analyzes public The Paper pages and may depend on dynamically rendered page content. <br>
-Mitigation: Wait for page content to load before parsing and include collection time and source links in results. <br>
-Risk: Automated collection could exceed the intended lightweight analysis scope. <br>
-Mitigation: Respect platform rules, avoid batch scraping or API reverse engineering, and keep collection frequency controlled. <br>
-Risk: Security evidence notes that VirusTotal is still pending. <br>
-Mitigation: Review the included skill artifact before installation and confirm the requested access matches the expected public-page analysis use case. <br>
+## Use Case:
 
+External users and agents use this skill to summarize public The Paper news pages, identify channel trends, and extract key points from long-form reporting while avoiding bulk collection or API reverse engineering.
 
-## Reference(s): <br>
-- [The Paper homepage](https://www.thepaper.cn/) <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/thepaper) <br>
-- [Publisher profile](https://clawhub.ai/user/codenova58) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries and structured analysis lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results should include collection time and source links when public pages are analyzed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Broad The Paper-related browsing or summarization requests could be applied to workflows that over-collect public site content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep use limited to public article and channel analysis, avoid bulk collection, and include collection time and source links in outputs.
+
+Risk: Summaries of public news pages may omit context or misstate article emphasis.
+
+Mitigation: Review generated summaries against the linked source pages before using them for reporting, alerts, or decisions.
+
+## Reference(s):
+
+- [The Paper homepage](https://www.thepaper.cn/)
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/thepaper)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries, statistics, and key-point lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results should identify collection time and source links when public page data is summarized.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,140 @@
+{
+  "meta": {
+    "name": "双陆纪元",
+    "tone_family": "hard-sci-fi-political-thriller",
+    "tone_variant": "政治惊悚",
+    "version": 1
+  },
+  "continents": [
+    {
+      "id": "continent_hiems",
+      "name": "朔陆",
+      "summary": "北半球旧工业核心带，聚变燃料与重轨道工业的心脏，冬日漫长，关卡比城门多。"
+    },
+    {
+      "id": "continent_auster",
+      "name": "燠陆",
+      "summary": "南方新开拓大陆，稀土与行星际航运资源富集，边界草率，谁都用枪划过界。"
+    }
+  ],
+  "nations": [
+    {
+      "id": "nation_kasad",
+      "name": "卡萨德",
+      "continent": "continent_hiems",
+      "summary": "军工官僚共和国，靠军火出口维持庞大官僚体系，海关与情报部门互相渗透。",
+      "tension_seeds": [
+        "舰队派与贸易派争夺军费与外汇配额",
+        "海关总署被曝为军火商洗钱，审计长失踪"
+      ]
+    },
+    {
+      "id": "nation_linhe",
+      "name": "麟河",
+      "continent": "continent_hiems",
+      "summary": "人口最多的人民国，粮食自给却政改停滞，青年以偷渡外流闻名。",
+      "tension_seeds": [
+        "改革派与长老会在粮食配给权上的摊牌",
+        "边省饥荒传闻与官方数据的裂缝"
+      ]
+    },
+    {
+      "id": "nation_orst",
+      "name": "奥斯特",
+      "continent": "continent_auster",
+      "summary": "资源开发行省出身的强人政权，法律即总统令，军火与雇佣兵是两大出口。",
+      "tension_seeds": [
+        "强人继承人悬念牵动三个派系武装修边",
+        "矿区劳工暴动被掩盖为矿难事故"
+      ]
+    },
+    {
+      "id": "nation_tidh",
+      "name": "土伊德",
+      "continent": "continent_hiems",
+      "summary": "垄断轨道电梯维护技术的技术官僚理事会，谁付得起执照费谁才配上天。",
+      "tension_seeds": [
+        "轨道执照续签贿赂案牵出理事会内斗",
+        "年轻工程师秘密向外界倒卖维护手册"
+      ]
+    },
+    {
+      "id": "nation_vielo",
+      "name": "菲洛联合体",
+      "continent": "continent_auster",
+      "summary": "商业城邦联合体，没有常备军却有行星际最大的清算行与保险公司。",
+      "tension_seeds": [
+        "清算行暗账与卡萨德军火款的勾连濒临曝光",
+        "联合体七城在是否建自有舰队上的分裂"
+      ]
+    }
+  ],
+  "neutral_port": {
+    "id": "port_graytide",
+    "name": "灰潮自由港",
+    "continent": "continent_auster",
+    "summary": "朔燠两陆航道交汇处的免税深水港，五国情报站与黑市比邻而居，港口警察局明码标价。"
+  },
+  "faction_matrix": {
+    "nation_kasad|nation_linhe": {
+      "relation": -55,
+      "note": "边境军演常态化，官方称之为'冷和平'；冻结线两侧的巡逻艇每晚都在数对方的探照灯"
+    },
+    "nation_kasad|nation_orst": {
+      "relation": 62,
+      "note": "军火换矿石的血盟，但奥斯特正在偷偷寻找第二供货商"
+    },
+    "nation_kasad|nation_tidh": {
+      "relation": 18,
+      "note": "卡萨德的舰船维护依赖土伊德执照，双方都恨这份依赖"
+    },
+    "nation_kasad|nation_vielo": {
+      "relation": -20,
+      "note": "菲洛对卡萨德实施军火结算冻结，卡萨德称其为'金融敌对'——冻结令是姿态，暗账是现实"
+    },
+    "nation_kasad|port_graytide": {
+      "relation": 5,
+      "note": "不承认不否认，情报站在港口低调运营"
+    },
+    "nation_linhe|nation_orst": {
+      "relation": 40,
+      "note": "矿石换粮食的协议稳定运转，双方都嫌对方不够依赖自己"
+    },
+    "nation_linhe|nation_tidh": {
+      "relation": -72,
+      "note": "三十年前轨道坠物战争的血债，教科书里仍在写；停战密约有两个版本，谁也不肯摊开对"
+    },
+    "nation_linhe|nation_vielo": {
+      "relation": 25,
+      "note": "菲洛是麟河最大侨汇通道，也是偷渡链的洗钱终点"
+    },
+    "nation_linhe|port_graytide": {
+      "relation": -8,
+      "note": "灰潮港长期遣返麟河偷渡客，领事馆强烈抗议"
+    },
+    "nation_orst|nation_tidh": {
+      "relation": -35,
+      "note": "奥斯特坚持自建矿区轨道，土伊德以执照年检施压"
+    },
+    "nation_orst|nation_vielo": {
+      "relation": 12,
+      "note": "菲洛银行家在奥斯特矿区放贷，雇佣兵护收账"
+    },
+    "nation_orst|port_graytide": {
+      "relation": 33,
+      "note": "奥斯特军火经灰潮洗白转运，港口警察局分红"
+    },
+    "nation_tidh|nation_vielo": {
+      "relation": 55,
+      "note": "轨道技术换金融服务的'双星同盟'，但菲洛正在资助土伊德内部的新技术派，赌的是执照体系让位那天"
+    },
+    "nation_tidh|port_graytide": {
+      "relation": -15,
+      "note": "灰潮港黑市流通盗版维护手册，土伊德多次索查未果"
+    },
+    "nation_vielo|port_graytide": {
+      "relation": 78,
+      "note": "灰潮港的清算与保险全由菲洛承保，共生到不分彼此"
+    }
+  }
+}

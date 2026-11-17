@@ -1,40 +1,54 @@
-## Description: <br>
-wx-mp-write helps agents plan, draft, polish, illustrate, and optionally publish WeChat public-account articles as Markdown drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A WeChat public-account writing assistant that helps with topic ideation, source and image research, article drafting, human-style polishing, Markdown formatting, and optional draft upload.
 
-## Publisher: <br>
-[onceyoungs](https://clawhub.ai/user/onceyoungs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onceyoungs](https://clawhub.ai/user/onceyoungs)
 
-## Use Case: <br>
-External creators, technical bloggers, and public-account operators use this skill to choose article topics, gather supporting material, draft and polish WeChat posts, suggest images, and prepare draft publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated article content, title, summary, image choices, or target account may be inaccurate or unsuitable for publication. <br>
-Mitigation: Review the complete article, title, author, summary, image sources, and destination account before creating or publishing any draft. <br>
-Risk: The Tavily API key could be exposed if placed in prompts, shared files, or screenshots. <br>
-Mitigation: Keep TAVILY_API_KEY in a secure environment variable or local environment file and avoid including it in prompts or shared artifacts. <br>
+## Use Case:
 
+External creators, technical bloggers, and social media operators use this skill to plan, draft, polish, illustrate, and prepare WeChat public-account articles. It can also guide optional draft upload after the user reviews the generated title, summary, body, and image links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/onceyoungs/wx-mp-write) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, API calls] <br>
-**Output Format:** [Markdown article content with supporting prose, image suggestions, and optional publishing instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on TAVILY_API_KEY for search and a WeChat publishing helper for draft creation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Search queries for article research or image discovery may disclose sensitive draft topics or private terms to Tavily.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive internal drafts, customer data, or private topics to Tavily unless sharing those terms with the service is intended.
+
+Risk: The optional publish flow can create a WeChat draft using generated title, author, abstract, body, and image URLs.
+
+Mitigation: Review all generated fields and image links before sending content to the WeChat publishing tool.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/onceyoungs/skills/wx-mp-write)
+- [Publisher profile](https://clawhub.ai/user/onceyoungs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, API Calls]
+
+**Output Format:** [Markdown article drafts, source notes, image suggestions, and publishing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require TAVILY_API_KEY for search and a WeChat publishing tool for draft upload.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

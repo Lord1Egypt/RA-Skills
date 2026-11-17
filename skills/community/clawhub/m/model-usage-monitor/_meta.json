@@ -1,6 +1,22 @@
 {
-  "ownerId": "kn7061qb57has37skkf6anv53d81pf49",
-  "slug": "model-usage-monitor",
+  "id": "model-usage-monitor",
+  "name": "OpenClaw Model Usage Monitor",
+  "description": "Monitor and analyze AI model usage, calculate costs, track cache hit rates, and receive hourly automated alerts. Fully transparent, read-only local log analysis.",
   "version": "1.0.1",
-  "publishedAt": 1773290673290
+  "author": "halfmoon82",
+  "requires_auth": false,
+  "license": "MIT-0",
+  "license_terms": "Free to use, modify, and redistribute. No attribution required.",
+  "clawhub_slug": "model-usage-monitor",
+  "clawhub_url": "https://clawhub.ai/halfmoon82/model-usage-monitor",
+  "tags": ["monitor", "model", "usage", "cost", "alert", "analytics", "transparent"],
+  "minOpenclawVersion": "2026.3.0",
+  "dependencies": {
+    "python": ">=3.9",
+    "system": ["cron"]
+  },
+  "changelog": [
+    "v1.0.1: Removed encryption, fully transparent installation, MIT-0 license",
+    "v1.0.0: Initial release with model usage statistics, cost estimation, cache analysis, hourly alerts"
+  ]
 }

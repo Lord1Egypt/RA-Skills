@@ -1,43 +1,54 @@
-## Description: <br>
-Turn an idea, file, folder, or URL into a polished live HTML page. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn an idea, file, folder, or URL into a polished live HTML page. Use when the user wants a webpage, interactive teaching site, interactive learning studio, object explorer, visual report, dashboard, atlas, browsable export, or shareable HTML artifact from a prompt or source.
 
-## Publisher: <br>
-[kelvin-clockless](https://clawhub.ai/user/kelvin-clockless) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kelvin-clockless](https://clawhub.ai/user/kelvin-clockless)
 
-## Use Case: <br>
-Developers, analysts, researchers, and other external users use this skill to convert briefs, local files, folders, URLs, and exported datasets into polished, browser-ready HTML artifacts for teaching, exploration, reporting, dashboards, atlases, and shareable reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML can embed or summarize private source data from files, folders, URLs, or personal exports. <br>
-Mitigation: Use redacted or minimized inputs when possible and review generated HTML before sharing or publishing it. <br>
-Risk: The skill includes risky Discord token guidance that could expose sensitive credentials. <br>
-Mitigation: Do not paste, extract, or use Discord user tokens; prefer official exports or sanitized data instead. <br>
-Risk: Privacy wording or external font calls may overstate local-only processing for some agent and model setups. <br>
-Mitigation: Adjust privacy copy to match the actual processing environment and remove external font calls for privacy-sensitive or offline artifacts. <br>
+## Use Case:
 
+External users, creators, analysts, and developers use this skill to convert briefs, local files, folders, URLs, or exported datasets into shareable HTML pages such as teaching sites, dashboards, atlases, visual reports, object explorers, and browsable archives.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kelvin-clockless/html-anything) <br>
-- [Homepage](https://github.com/clockless-org/html-anything) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTML, CSS, JavaScript, generated files, and verification notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Usually produces an HTML file such as output.html and may create an assets folder when local media or generated images improve the page.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The skill reads private source material and may produce HTML files containing the underlying records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact sensitive exports before conversion, and treat generated HTML as private unless intentionally creating a sanitized version.
+
+Risk: Some source guides may ask users to expose highly sensitive credentials or private archives without enough safeguards.
+
+Mitigation: Avoid the Discord token workflow, be cautious with browser-history extensions, and use trusted export paths for private data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kelvin-clockless/skills/html-anything)
+- [Project homepage](https://github.com/clockless-org/html-anything)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance plus generated HTML/CSS/JavaScript files and optional local assets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are typically a browser-verifiable HTML file, often named output.html, with an assets folder when generated images or local media are useful.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

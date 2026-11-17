@@ -1,41 +1,54 @@
-## Description: <br>
-Process personal/work expenses and reimbursement claims in a structured, low-friction workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Process personal/work expenses and reimbursement claims in a structured, low-friction workflow.
 
-## Publisher: <br>
-[austineyapp](https://clawhub.ai/user/austineyapp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[austineyapp](https://clawhub.ai/user/austineyapp)
 
-## Use Case: <br>
-Employees and operators use this skill to organize receipts, categorize spend, identify blocked reimbursement items, calculate totals, and prepare claim summaries, notes, and follow-ups. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Receipts, policies, and claim details may contain sensitive personal or business information. <br>
-Mitigation: Provide only receipts, policies, and claim details you are comfortable sharing with the agent, and redact unnecessary sensitive details before use. <br>
-Risk: Generated claim summaries, totals, or approval drafts may be incomplete or misleading if inputs are missing or extracted incorrectly. <br>
-Mitigation: Review generated summaries, totals, blocked-item reasons, and draft messages before submitting them to an expense system or approver. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Expense Item Schema](references/expense-schema.md) <br>
-- [Claim Templates](references/claim-templates.md) <br>
-- [Ops Cadence](references/ops-cadence.md) <br>
+## Use Case:
 
+Employees and operations staff use this skill to turn receipts and expense details into claim-ready summaries, blocked-item fixes, totals, and follow-up drafts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with concise Ready, Blocked, and Next action sections.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes claim-ready items, blocked-item fixes, totals by category and currency, missing-document count, and draft approval or follow-up copy.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated claim summaries may include personal or business-sensitive expense details or receipt information.
+
+Mitigation: Review summaries before submission and handle receipts according to the organization's expense and data-handling policies.
+
+Risk: Claim readiness can be wrong when policy rules are not provided or source receipts are incomplete.
+
+Mitigation: Mark policy checks as "policy not provided" and verify blocked items, totals, and exceptions before submitting.
+
+## Reference(s):
+
+- [Claim Templates](references/claim-templates.md)
+- [Expense Item Schema](references/expense-schema.md)
+- [Ops Cadence](references/ops-cadence.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Concise Markdown sections with totals, blocked-item reasons, checklists, and follow-up draft text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maximum of three sections: Ready, Blocked, Next action; includes totals and missing-document count.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

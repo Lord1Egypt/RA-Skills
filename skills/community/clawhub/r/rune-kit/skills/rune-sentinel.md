@@ -275,7 +275,7 @@ Before reporting ANY finding as BLOCK or WARN, it MUST pass through these 6 gate
 
 | Gate | Question | If Fails |
 |------|----------|----------|
-| 1. **Process** | Is there concrete evidence (file:line, regex match, tool output)? | Discard — no evidence = hallucination |
+| 1. **Process** | Is there concrete evidence — a **verbatim snippet copied from the file**, a regex match, or tool output? | Discard — no evidence = hallucination |
 | 2. **Reachability** | Can an attacker actually reach this code path? | Downgrade to INFO |
 | 3. **Real Impact** | Would exploitation cause actual harm (data loss, RCE, privilege escalation)? | Downgrade to INFO |
 | 4. **PoC Plausibility** | Can you describe a concrete attack scenario in ≤3 steps? | Downgrade to INFO — theoretical ≠ real |
@@ -289,6 +289,12 @@ Before reporting ANY finding as BLOCK or WARN, it MUST pass through these 6 gate
 - Development-only configurations (localhost, debug mode in `dev` config)
 
 ### Step 5 — Report
+
+**Anchor Pass first.** Gate 1 above required a verbatim snippet, not a remembered line number. Resolve each surviving finding's line now via the Anchor Ladder defined in `../review/SKILL.md` → Step 6: grep the exact snippet, retry once whitespace-normalised with the outer lines dropped, and on a second miss mark it `UNANCHORED`.
+
+`UNANCHORED` behaves as it does everywhere else — downgrade one level (BLOCK → WARN → INFO), report as `path (unanchored)` with the snippet inline, never drop. **An unanchored finding cannot BLOCK on its own**: a vulnerability nobody can locate halts the pipeline without telling anyone where to look. It still gets reported, because a failed grep is a bookkeeping failure, not a security clearance.
+
+Secrets are the exception worth naming: **never paste the matched secret into the evidence block.** Anchor on the leading substring of the line up to the first few characters of the value (`const apiKey = "sk-` — still a real substring, so grep resolves it), then render the block with the remainder masked: `const apiKey = "sk-…"`. Reporting a leaked key by reprinting it in full copies it into one more log.
 
 Aggregate all findings across all steps. Verdict rules:
 - Any **BLOCK** → overall status = **BLOCK**. List all BLOCK items first.
@@ -320,25 +326,41 @@ Generate domain-specific pre-commit hook scripts when requested. Load reference 
 
 ## Output Format
 
-```
+````
 ## Sentinel Report
 - **Status**: PASS | WARN | BLOCK
 - **Files Scanned**: [count]
 - **Findings**: [count by severity]
+- **Unanchored**: [count — findings whose evidence did not resolve to a line]
 
 ### BLOCK (must fix before commit)
-- `path/to/file.ts:42` — Hardcoded API key detected (pattern: sk-...)
-- `path/to/api.ts:15` — SQL injection: string concatenation in query
+- `config/client.ts:42` — Hardcoded API key committed to the repo
+  ```ts
+  const apiKey = "sk-…"
+  ```
+- `api/search.ts:15` — SQL injection: user input concatenated into the query string
+  ```ts
+  db.query(`SELECT * FROM items WHERE name = '${req.query.q}'`);
+  ```
 
 ### WARN (must acknowledge)
 - `package.json` — lodash@4.17.20 has known prototype pollution (CVE-2021-23337, CVSS 7.4)
+- `api/upload.ts (unanchored)` — path traversal: request filename joined onto the upload dir without normalisation
+  ```ts
+  fs.writeFileSync(path.join(UPLOAD_DIR, req.body.filename), buf);
+  ```
 
 ### INFO
-- `auth.ts:30` — Consider adding rate limiting to login endpoint
+- `auth/login.ts:30` — Consider adding rate limiting to the login endpoint
+  ```ts
+  router.post("/login", handleLogin);
+  ```
 
 ### Verdict
 BLOCKED — 2 critical findings must be resolved before commit.
-```
+````
+
+Secret values are masked in the evidence block, never reprinted. Dependency findings (`package.json` above) are file-level and carry no snippet. The unanchored WARN shows the shape of a real finding whose snippet would not resolve — downgraded from BLOCK, reported in full, its evidence left visible for the reader to locate by hand.
 
 ## Constraints
 
@@ -383,14 +405,17 @@ BLOCKED — 2 critical findings must be resolved before commit.
 - OWASP checks applied (SQL injection, XSS, CSRF, input validation)
 - Dependency audit ran (or "tool not found" reported as INFO)
 - Framework-specific checks applied for every detected framework
+- Every line-level finding anchored to a verbatim snippet (or reported `(unanchored)` and downgraded), with secret values masked
 - Structured report emitted with PASS / WARN / BLOCK verdict and all files scanned listed
+
+> When the report surfaces trust boundaries or a paved-road topology (what may reach a protected runtime, and where blocked paths stop), a designed figure helps the reader — `suggested_next: diagram` (type `architecture`, Secure paved road pattern).
 
 ## Cost Profile
 
 ~1000-3000 tokens input, ~500-1000 tokens output. Sonnet default, opus for deep audit on critical findings.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

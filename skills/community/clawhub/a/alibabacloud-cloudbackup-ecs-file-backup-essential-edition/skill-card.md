@@ -1,48 +1,60 @@
-## Description: <br>
-Alibaba Cloud ECS File Backup Essential Edition helps agents guide activation, status checks, pause and resume, cancellation, quota viewing, and file restore workflows for Cloud Backup ECS file backups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alibaba Cloud ECS File Backup Essential Edition helps agents guide users through activation, backup-plan management, status checks, quota viewing, and file restore operations for Alibaba Cloud Cloud Backup ECS file backups.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-External developers and cloud operators use this skill to manage Alibaba Cloud ECS File Backup Essential Edition for simple ECS file protection, recovery from accidental deletion, and backup status or quota review. It is intended for eligible ECS file-backup scenarios that accept daily backups, 30-day retention, and the product's operational limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to run an unverified remote installer and update local Aliyun CLI plugins. <br>
-Mitigation: Prefer manual Aliyun CLI installation or update from official instructions, then verify the installed CLI and plugin versions before use. <br>
-Risk: The skill changes persistent Aliyun CLI settings, including automatic plugin installation and AI-Mode configuration. <br>
-Mitigation: Confirm CLI configuration before and after use, and ensure AI-Mode is disabled at every exit point. <br>
-Risk: The configured Alibaba Cloud identity can manage Cloud Backup resources and may create costs or delete backup data. <br>
-Mitigation: Use least-privilege RAM permissions, confirm all operation parameters with the user, and require explicit confirmation before destructive cancellation. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to decide whether Alibaba Cloud ECS File Backup Essential Edition fits an ECS file-backup scenario and to perform supported operations through Aliyun CLI guidance. It covers activation, pause and resume, cancellation, backup status checks, quota viewing, schedule and priority updates, and file restores.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sdk-team/alibabacloud-cloudbackup-ecs-file-backup-essential-edition) <br>
-- [CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [RAM Permission Policies](references/ram-policies.md) <br>
-- [Related APIs](references/related-apis.md) <br>
-- [Verification Methods](references/verification-method.md) <br>
-- [Alibaba Cloud ECS File Backup Essential Edition User Guide](https://help.aliyun.com/zh/cloud-backup/user-guide/ecs-file-backup-essential-edition) <br>
-- [Alibaba Cloud Backup API Documentation](https://help.aliyun.com/zh/cloud-backup/developer-reference/api-hbr-2017-09-08-overview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require Alibaba Cloud credentials, Aliyun CLI configuration, and user-confirmed ECS backup parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: The security summary reports that the skill directs broad cloud privileges and unsafe persistent CLI or plugin installation changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation steps before use, avoid curl-to-bash installation paths, do not enable persistent automatic plugin installation unless intended, and prefer the documented least-privilege RAM policy over full Cloud Backup access.
+
+Risk: The artifact includes operations that can delete backup plans or overwrite files during restore.
+
+Mitigation: Require explicit user confirmation before destructive delete or overwrite actions and verify target parameters before running generated Aliyun CLI commands.
+
+## Reference(s):
+
+- [CLI Installation Guide](artifact/references/cli-installation-guide.md)
+- [RAM Permission Policies](artifact/references/ram-policies.md)
+- [Related APIs](artifact/references/related-apis.md)
+- [Verification Methods](artifact/references/verification-method.md)
+- [ECS File Backup Essential Edition User Guide](https://help.aliyun.com/zh/cloud-backup/user-guide/ecs-file-backup-essential-edition)
+- [Cloud Backup API Reference](https://help.aliyun.com/zh/cloud-backup/developer-reference/api-hbr-2017-09-08-overview)
+- [Cloud Backup RAM Permission Reference](https://help.aliyun.com/zh/cloud-backup/developer-reference/authorization-rules)
+- [Skill Page](https://clawhub.ai/sdk-team/skills/alibabacloud-cloudbackup-ecs-file-backup-essential-edition)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and CLI parameter guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes eligibility checks, user confirmation gates, command pre-checks, restore verification steps, and credential-handling guidance.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Book real-world services through Lokuli MCP. Use when user needs to find, check availability, or book local services like plumbers, electricians, cleaners, mechanics, barbers, personal trainers, etc. Triggers on requests like "book me a haircut", "find a plumber near me", "I need a smog check", "schedule a massage", or any local service request. 75+ service categories available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book real-world services through Lokuli MCP for finding, checking availability, and booking local service providers across categories such as home, auto, beauty, wellness, education, photography, and events.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users can use this skill to find local service providers, compare pricing and availability, and create a booking after explicit confirmation. It supports common service categories such as auto, beauty, wellness, home, education, tech repair, photography, and events. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can generate booking and payment flows for real-world services. <br>
-Mitigation: Confirm the provider, service, price, date, and time with the user before creating a booking or sharing a payment link. <br>
-Risk: Booking requires sharing customer contact details with the booking service and provider. <br>
-Mitigation: Collect only the required name, email, and phone number, and remind the user to share only details they are comfortable sending. <br>
-Risk: The skill depends on a third-party service for local-service search, availability, bookings, and payment links. <br>
-Mitigation: Install and use the skill only when the user trusts Lokuli for local-service booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Service Booking on ClawHub](https://clawhub.ai/edwardrodriguez703-design/service-booking) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users and agents use this skill to search for local service providers, compare pricing and availability, create confirmed bookings, and receive payment checkout links.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown and JSON-RPC tool call arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return provider options, availability, pricing, booking status, or a Stripe checkout URL after user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The booking workflow can send location, appointment, contact, and selected service details to Lokuli and can direct the user into a Stripe checkout flow.
+
+Mitigation: Only proceed after the user confirms the provider, price, time slot, and intent to book, and collect personal details only when needed for the booking.
+
+Risk: A booking could be created for the wrong provider, service, price, or appointment time if the user has not reviewed the details.
+
+Mitigation: Present pricing and availability clearly, fetch provider details before booking, and require explicit user approval before calling the booking tool.
+
+## Reference(s):
+
+- [Service Booking ClawHub Page](https://clawhub.ai/edwardrodriguez703-design/skills/service-booking)
+- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse)
+- [Publisher Profile](https://clawhub.ai/user/edwardrodriguez703-design)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API Calls, JSON, markdown]
+
+**Output Format:** [Markdown guidance with JSON-RPC MCP tool call arguments and checkout links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include provider details, pricing estimates, availability slots, booking identifiers, and Stripe checkout URLs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

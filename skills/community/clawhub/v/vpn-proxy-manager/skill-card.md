@@ -1,45 +1,59 @@
-## Description: <br>
-Manages V2Ray proxy startup, shutdown, system proxy settings, and automatic switching based on network availability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages V2Ray proxy start/stop behavior and system proxy configuration based on network connectivity.
 
-## Publisher: <br>
-[BOMBFUOCK](https://clawhub.ai/user/BOMBFUOCK) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bombfuock](https://clawhub.ai/user/bombfuock)
 
-## Use Case: <br>
-Developers and technical users use this skill to manage a local V2Ray/Xray proxy, configure shell proxy environment variables, test connectivity, and wrap network commands that may need proxy access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary reports that the skill can run arbitrary shell commands through its command-wrapping mode. <br>
-Mitigation: Review command text before using wrap mode and avoid passing untrusted or generated commands. <br>
-Risk: The security summary reports that the skill can alter local proxy behavior and write to the user's shell profile. <br>
-Mitigation: Review the shell script before installation and confirm the proxy environment changes are appropriate for the target machine. <br>
-Risk: The security guidance notes that auto and off modes may start background processes and stop matching V2Ray/Xray processes. <br>
-Mitigation: Verify the configured V2Ray path and process matching behavior before running auto or off modes on a shared workstation. <br>
-Risk: The security guidance notes that the skill may contact external test sites during network checks. <br>
-Mitigation: Confirm external connectivity checks are acceptable for the deployment environment before enabling automatic mode. <br>
+## Use Case:
 
+Developers and operators use this skill to manage a local V2Ray/Xray proxy, switch proxy state automatically when selected network checks fail, and inspect proxy status from shell commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BOMBFUOCK/vpn-proxy-manager) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local proxy management commands and configuration guidance; no structured API response is defined.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Persistent shell profile changes can affect future sessions without enough user visibility.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing and remove or make opt-in any writes to ~/.bashrc.
+
+Risk: Proxy changes and background V2Ray/Xray processes can affect local networking beyond the immediate command.
+
+Mitigation: Document the networking impact clearly, verify proxy state with status commands, and ensure proxy cleanup runs after use.
+
+Risk: Eval-based command wrapping and broad process matching can execute arguments unsafely or stop unrelated processes.
+
+Mitigation: Replace eval-based wrapping with direct argument execution and manage only a recorded V2Ray/Xray process ID.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bombfuock/skills/vpn-proxy-manager)
+- [Publisher Profile](https://clawhub.ai/user/bombfuock)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local networking commands and status output for a V2Ray/Xray proxy setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

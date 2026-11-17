@@ -1,43 +1,62 @@
-## Description: <br>
-Guide users to configure local Chanjing credentials safely via local commands only, and validate local token status when needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users to configure local Chanjing credentials safely via local commands only, and validate local token status when needed.
 
-## Publisher: <br>
-[zuoyuting214](https://clawhub.ai/user/zuoyuting214) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zuoyuting214](https://clawhub.ai/user/zuoyuting214)
 
-## Use Case: <br>
-Developers and agents use this skill when a Chanjing workflow needs local AK/SK setup, token refresh, or credential status validation without asking the user to paste secrets into chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chanjing AK/SK or access tokens may be exposed if the local credentials file is shared, committed, or pasted into chat. <br>
-Mitigation: Keep ~/.chanjing/credentials.json private, avoid committing it, never request secrets in chat, and rotate keys if exposure occurs. <br>
-Risk: Token refresh sends credential material to the Chanjing API endpoint. <br>
-Mitigation: Verify the Chanjing API domain before refreshing tokens and use the documented local configuration path. <br>
+## Use Case:
 
+Developers and Chanjing API users use this skill to configure local AK/SK credentials, refresh access tokens, and validate local credential status without pasting secrets into chat.
 
-## Reference(s): <br>
-- [Credentials Guard Reference](reference.md) <br>
-- [Chanjing Open API Homepage](https://open-api.chanjing.cc) <br>
-- [Chanjing Documentation](https://doc.chanjing.cc) <br>
-- [Chanjing OpenAPI Login](https://www.chanjing.cc/openapi/login) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and local command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on local credential handling; does not require bundled helper scripts or elevated privileges.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: ClawHub release metadata) <br>
+Risk: Long-lived Chanjing AK/SK values and refreshed access tokens are stored in a predictable plaintext local file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Create the credentials directory and file with restrictive permissions, keep the file out of repositories, backups, and chat, and rotate Chanjing keys if exposure is suspected.
+
+Risk: Users may paste AK/SK values into chat during setup.
+
+Mitigation: Keep credential entry local only; if a secret is shared in chat, treat it as exposed and rotate the Chanjing keys before continuing.
+
+Risk: Token refresh updates the local credentials file and may write sensitive data to an unintended location if the config directory is mis-set.
+
+Mitigation: Confirm the intended CHANJING_CONFIG_DIR path before writing credentials and avoid broad filesystem permissions on that directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zuoyuting214/skills/zyt-credentials-guard)
+- [Credentials Guard Reference](reference.md)
+- [Chanjing API homepage](https://open-api.chanjing.cc)
+- [Chanjing documentation](https://doc.chanjing.cc)
+- [Chanjing login](https://www.chanjing.cc/openapi/login)
+- [Chanjing access-token endpoint](https://open-api.chanjing.cc/open/v1/access_token)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and occasional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local credentials file at ~/.chanjing/credentials.json, or $CHANJING_CONFIG_DIR/credentials.json when configured.]
+
+## Skill Version(s):
+
+0.5.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

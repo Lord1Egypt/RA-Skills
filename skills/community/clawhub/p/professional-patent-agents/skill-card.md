@@ -1,44 +1,57 @@
-## Description: <br>
-Professional Patent Agents is a bilingual multi-agent suite for patent idea mining, prior-art search, inventiveness evaluation, drafting, claim design, audit, valuation, and document conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional Patent Agents is a multi-agent suite for patent ideation, prior-art search, inventiveness evaluation, drafting, claims design, quality audit, valuation, and Markdown-to-Word conversion.
 
-## Publisher: <br>
-[bigpipihua](https://clawhub.ai/user/bigpipihua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bigpipihua](https://clawhub.ai/user/bigpipihua)
 
-## Use Case: <br>
-External users and developers use this skill to turn invention ideas, draft patents, or agency feedback into patent work products such as technical disclosures, search reports, inventiveness assessments, optimized claims, audit reports, valuation reports, and converted Word documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Patent work may contain sensitive invention details that could be retained through broad learning, memory, or work-record mining. <br>
-Mitigation: Disable or tightly scope continuous learning and memory/work-record mining unless the user explicitly wants persistence for the current project. <br>
-Risk: Prior-art search may send invention details to external search providers or patent APIs. <br>
-Mitigation: Use only approved providers, redact confidential details where possible, and confirm user consent before external searches. <br>
-Risk: Runtime skill installation can expand the behavior and trust boundary of the agent. <br>
-Mitigation: Review and approve any additional skill before installation or use. <br>
-Risk: Document conversion may invoke Pandoc, Mermaid CLI, Chromium, or Puppeteer, including reduced browser sandboxing when run as root. <br>
-Mitigation: Run conversion as a non-root user in an isolated workspace or container, and avoid no-sandbox browser execution where possible. <br>
+## Use Case:
 
+Developers, inventors, patent teams, and IP service providers use this skill to turn technical ideas, draft patent documents, or agency feedback into patent-oriented reports, optimized drafts, claims structures, audit findings, and optional Word documents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bigpipihua/professional-patent-agents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports and patent drafts, Word documents, Mermaid diagrams, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local Markdown, DOCX, and image files during document conversion; may use installed search skills or patent APIs when configured by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The security scan marked the release suspicious because it asks agents to install newly discovered skills, persist learned behavior globally, and run risky conversion setup or execution steps without enough user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, disable or tightly review continuous learning and global instincts, and require approval before installing additional ClawHub skills.
+
+Risk: The security guidance warns against the curl-to-bash setup path and unpinned dependency installation.
+
+Mitigation: Do not run the curl-to-bash setup as written; pin and verify dependencies, and use an isolated non-root environment.
+
+Risk: Patent files may contain confidential invention data, and the skill can perform search, conversion, or external API-assisted workflows.
+
+Mitigation: Confirm every patent file path and external API use before search, conversion, or upload, and avoid sending confidential material to unapproved services.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bigpipihua/skills/professional-patent-agents)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and patent drafts, optional DOCX files, shell command snippets, configuration notes, and guidance text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual output is supported; patent conversion may require local document and diagram tooling.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

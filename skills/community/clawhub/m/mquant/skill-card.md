@@ -1,50 +1,64 @@
-## Description: <br>
-Matic MQuant strategy development assistant that generates Python strategy code for the Matic-MQuant platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Matic MQuant strategy development assistant that generates Python strategy code for the Matic-MQuant platform.
 
-## Publisher: <br>
-[chouchounii](https://clawhub.ai/user/chouchounii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bigbigjuanjuan](https://clawhub.ai/user/bigbigjuanjuan)
 
-## Use Case: <br>
-Developers and Matic MQuant traders use this skill to generate runnable Python strategy code, logs, and deployment-oriented guidance for the Matic-MQuant platform. Generated strategies should be reviewed and tested in a simulation or test account before any live trading use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated strategies can guide live trading decisions and order placement. <br>
-Mitigation: Review generated code, parameters, and risk controls, then test in a simulation or test account before live use. <br>
-Risk: Version-retention behavior and generated workflows may delete local strategy files. <br>
-Mitigation: Require explicit confirmation before file deletion and keep backups of strategy files and logs. <br>
-Risk: CSV exports and logs may contain account or trading data. <br>
-Mitigation: Protect generated files, avoid committing sensitive exports, and disable or restrict local data persistence when not needed. <br>
-Risk: Bundled example strategies may not match the user's production risk controls. <br>
-Mitigation: Treat examples as reference material and adapt them with user-specific validation before deployment. <br>
+## Use Case:
 
+Developers and quantitative trading users use this skill to draft, debug, and organize runnable Matic-MQuant Python strategies with platform-specific API references, logging conventions, and trading-rule checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chouchounii/mquant) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [API reference](artifact/reference/API_REFERENCE.md) <br>
-- [Log format](artifact/reference/LOG_FORMAT.md) <br>
-- [Trading rules](artifact/TRADING_RULES.md) <br>
-- [Common errors](artifact/COMMON_ERRORS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with Python code blocks and optional saved .py and .log files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated code targets Matic-MQuant strategy files and includes logging and basic error-handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Generated strategies and bundled examples may place real trades when loaded and run in Matic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review symbols, order logic, quantities, account type, and risk limits, then test in a Matic simulation or test environment before live use.
+
+Risk: Matic-MQuant does not support backtesting, so strategy behavior may be unvalidated before execution.
+
+Mitigation: Use the documented test environment workflow, logging requirements, and deployment checklist to validate behavior before using real capital.
+
+Risk: The skill may create or clean up strategy versions and log files in a user-provided directory.
+
+Mitigation: Use a dedicated writable strategy directory and review generated file names, retained versions, and cleanup behavior before running the workflow on important files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bigbigjuanjuan/skills/mquant)
+- [Publisher profile](https://clawhub.ai/user/bigbigjuanjuan)
+- [artifact/SKILL.md](artifact/SKILL.md)
+- [artifact/README.md](artifact/README.md)
+- [artifact/reference/API_REFERENCE.md](artifact/reference/API_REFERENCE.md)
+- [artifact/reference/LOG_FORMAT.md](artifact/reference/LOG_FORMAT.md)
+- [artifact/reference/mquantFAQ.md](artifact/reference/mquantFAQ.md)
+- [HTSC MQuant help](https://inst.htsc.com/helpOnline?productId=4&moduleCode=1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with Python code blocks, file paths, configuration steps, and optional generated .py and .log files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated strategies are intended for review and testing in Matic-MQuant before live trading.]
+
+## Skill Version(s):
+
+1.0.5 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

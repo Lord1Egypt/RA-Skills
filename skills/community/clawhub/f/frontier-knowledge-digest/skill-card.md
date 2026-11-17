@@ -1,40 +1,53 @@
-## Description: <br>
-Daily digest of cutting-edge science, AI, and top journal papers worldwide, with structured ratings, source links, and optional local Markdown output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured daily digests of recent science, AI, technology, journal, and research developments across multiple public information domains.
 
-## Publisher: <br>
-[ye4wzp](https://clawhub.ai/user/ye4wzp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ye4wzp](https://clawhub.ai/user/ye4wzp)
 
-## Use Case: <br>
-External users and research-focused teams use this skill to request a current briefing across science, AI, journals, policy, and technology domains. It helps turn public-source searches into a concise digest with ratings, summaries, links, and follow-up reading suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save a local Markdown digest when invoked. <br>
-Mitigation: Tell the agent not to save files, or provide a different path, when chat-only output is preferred. <br>
-Risk: Broad AI or science news requests may trigger the full digest workflow. <br>
-Mitigation: Scope the request by topic, time range, or output location before running the skill. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for concise daily or weekly briefings on notable science, AI, technology, and journal developments. It helps prioritize items with ratings, category sections, summaries, and source links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ye4wzp/frontier-knowledge-digest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Structured Markdown digest with sectioned summaries, ratings, source links, and must-read recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save a local Markdown digest under ~/Documents/FrontierKnowledge when run as written.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill searches public web sources for fast-moving science and technology topics, so summaries may reflect incomplete, preliminary, or unevenly reported information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the included source links, prefer original papers or official announcements for important claims, and ask the agent to distinguish primary sources from commentary.
+
+Risk: The skill saves Markdown reports in the user's Documents folder by default.
+
+Mitigation: Tell the agent not to save the report or provide a different destination when local file creation is not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ye4wzp/skills/frontier-knowledge-digest)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Structured Markdown report with category sections, star ratings, summaries, must-read recommendations, timestamps, and source links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save a dated Markdown report under ~/Documents/FrontierKnowledge unless the user requests a different destination or no local save.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

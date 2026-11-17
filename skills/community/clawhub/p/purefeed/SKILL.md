@@ -72,10 +72,17 @@ Use signal IDs from Step 1 (`GET /signals`).
 ## Workflows
 
 ### Set up monitoring
-1. `POST /signals` — create signal with name + description + tags + color + cron + timezone (auto-activates)
+1. `POST /signals` — create signal with name + description + tags + color (turns on right away; send `active: false` to create it off)
 2. Wait up to 6 hours for processing
 3. `GET /signals/{id}/matches` — check results
-4. `PUT /signals/{id}` — refine description if too many irrelevant matches
+4. `PUT /signals/{id}` — refine description if too many irrelevant matches, or fix `include_keywords` and `exclude_keywords`. A new description also updates what the signal matches
+
+### Pause or resume a signal
+1. `GET /signals?active=true` — see what is on
+2. `PUT /signals/{id}` with `{"active": false}` — turn it off. It keeps its settings and history, and its active-signal slot frees up
+3. `PUT /signals/{id}` with `{"active": true}` — turn it back on
+
+When the user only wants a signal to stop, turn it off. `DELETE` is irreversible.
 
 ### Organize bookmarks
 1. `GET /folders` — list folders
@@ -84,13 +91,13 @@ Use signal IDs from Step 1 (`GET /signals`).
 4. `GET /folders/:id/tweets` — review folder contents
 
 ### First run
-1. `GET /auth/me` — verify API key
+1. `GET /auth/me` — verify API key and see `signals.active` against `signals.limit`. If `api.updated` is newer than these docs, read `https://purefeed.ai/llms.txt` for what changed
 2. `GET /signals` — see signal configurations
 3. `GET /folders` — see bookmark folders
 
 ## Key Concepts
 
-- **Signal**: AI content detector with a name + description. Active if `signals_subscriptions` is non-empty; inactive if `[]`. When creating: always set `tags` and `color`, never set `include_keywords` unless user explicitly asks (they are very restrictive).
+- **Signal**: AI content detector with a name + description. `active` says whether it is on for you. When creating: always set `tags` and `color`, never set `include_keywords` unless user explicitly asks (they are very restrictive).
 - **Folder**: Bookmark folder for organizing curated tweets. Created via `POST /folders`, populated via `POST /folders/:id/tweets`.
 
 ## Error Handling
@@ -100,6 +107,8 @@ Use signal IDs from Step 1 (`GET /signals`).
 | 401 Unauthorized | Tell user to create new key at purefeed.ai/profile |
 | 429 Too Many Requests | Wait and retry. Check `Retry-After` header |
 | "Signal not found" | Call `GET /signals` to get valid IDs |
+| 403 `SIGNAL_LIMIT_REACHED` | The account is at its active-signal limit. Ask the user which signal to turn off, send `PUT /signals/{id}` with `{"active": false}`, then retry |
+| 503 `SIGNAL_ACTIVATION_FROZEN` | Activations are paused. Show the message to the user and retry in a few minutes |
 
 **4xx responses may include an `error.hint.action` field** — a plain-English instruction telling you how to self-correct on the next call (e.g. "List current signals via GET /api/v1/signals to refresh cached IDs"). When present, follow `hint.action` directly. `hint.docs_url` points to the canonical API docs for deeper context.
 
@@ -120,16 +129,19 @@ All endpoints return `{ "data": ..., "error": null }` on success and `{ "data": 
 | GET | /folders | List bookmark folders |
 | POST | /folders | Create a folder (`{ "name": "..." }`) |
 | PATCH | /folders/:id | Rename a folder (`{ "name": "..." }`) |
+| PATCH | /folders/:id | Rename a folder (`{ "name": "..." }`) |
 | DELETE | /folders/:id | Delete a folder and its items |
 | GET | /folders/:id/tweets | Tweets in a folder |
 | POST | /folders/:id/tweets | Add tweet to folder (`{ "tweet_id": "..." }`) |
 | DELETE | /folders/:id/tweets?tweet_id=X | Remove tweet from folder |
 | GET | /signals | List signals (supports semantic search) |
-| POST | /signals | Create + auto-activate a signal |
+| POST | /signals | Create a signal, on by default |
 | GET | /signals/:id | Signal details |
-| PUT | /signals/:id | Update signal |
+| PUT | /signals/:id | Update name, description, color or keywords, or turn it on or off with `active` |
 | DELETE | /signals/:id | Delete signal (irreversible) |
-| GET | /signals/:id/matches | Tweets matching a signal |
+| GET | /signals/:id/matches | Tweets matching a signal. Page with `cursor` from `pagination.cursor` |
+| GET | /hype | Crypto hype index: coins discussed more than usual, with status, a hot flag and reason |
+| GET | /hype/:ticker | One coin's hype card: history, past spikes, top posts |
 
 ## Rate Limits
 
@@ -140,5 +152,6 @@ All endpoints return `{ "data": ..., "error": null }` on success and `{ "data": 
 
 These are web-app features not exposed via the public REST API — mention them only if the user is logged into purefeed.ai and asks about post curation:
 
-- **Channels** — multi-user Telegram publishing pipeline at `/channels/{channelId}`. Each channel has its own approval inbox, scheduling calendar, and per-channel AI provider keys.
-- **Fact verification** — verify any post against Gemini 2.5 Pro grounded search via the post card's ⋯ → Проверить факты menu item.
+- **Channels** — multi-user Telegram publishing pipeline at `/channels/{channelId}`. Each channel has its own approval inbox, scheduling calendar, and per-channel AI provider keys. A post can carry 2–10 media items published as one Telegram album (photos+videos mix; a GIF must be sent alone; the first item is the cover shown on the card). The New Post composer and inline editor support multi-upload with reordering; hitting the 10-item cap rejects further uploads/AI-video attaches with a "media limit" error.
+- **Fact verification** — verify any post against Gemini 2.5 Pro grounded search via the post card's ⋯ → Проверить факты menu item. Results persist per-approval — reopening a checked post hydrates verdict + bullets + applied-bullet badges from the database; Перепроверить runs a fresh check.
+- **Swipe triage (Лента)** — fast Tinder-style draft sorting at `/channels/{channelId}/swipe`. Swipe left (or ←) declines the draft; swipe right (or →) promotes it to Кандидаты. Source pool is the «Черновики» bucket (`status=pending && !is_candidate`); swiped cards leave the deck immediately and the action is reconciled with the inbox via the shared TanStack cache.

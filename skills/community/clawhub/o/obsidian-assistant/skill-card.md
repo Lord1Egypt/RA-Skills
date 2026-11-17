@@ -1,42 +1,52 @@
-## Description: <br>
-Obsidian Assistant helps Obsidian users learn and maintain vault structure, habits, templates, Dataview queries, QuickAdd macros, and vault health workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Obsidian Assistant helps Obsidian users learn and maintain vault habits, answer setup-specific questions, extract reusable templates or macros, and diagnose vault organization issues.
 
-## Publisher: <br>
-[ltryee](https://clawhub.ai/user/ltryee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ltryee](https://clawhub.ai/user/ltryee)
 
-## Use Case: <br>
-External Obsidian users use this skill to get personalized knowledge-management guidance, generate reusable note templates and automation snippets, and diagnose vault organization issues based on their own setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores vault-related preferences and workflow details for personalization, which may include private note titles, paths, plugin lists, or directory structure. <br>
-Mitigation: Redact sensitive paths, note titles, screenshots, command output, and directory listings before sharing; periodically inspect or clear references/habit-patterns.md. <br>
-Risk: Generated Dataview queries, templates, QuickAdd macros, and workflow changes could be inaccurate for a user's vault or plugin setup. <br>
-Mitigation: Review generated snippets and templates before applying them to an Obsidian vault, and test changes on a copy or small subset first. <br>
+## Use Case:
 
+Obsidian users and knowledge workers use this skill to receive personalized vault guidance, generate reusable notes or automation assets, and diagnose organization problems using their recorded vault structure, tags, plugins, and workflow habits.
 
-## Reference(s): <br>
-- [Obsidian Concepts](references/obsidian-concepts.md) <br>
-- [Habit Patterns](references/habit-patterns.md) <br>
-- [Obsidian Assistant on ClawHub](https://clawhub.ai/ltryee/obsidian-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code blocks and optional JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose edits to Markdown templates and the habit profile when users confirm personalization details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill keeps a long-lived local profile of the user's Obsidian vault path, folder structure, tags, plugins, workflow habits, and pain points.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that persistent profiling is acceptable; redact sensitive paths or command output before sharing them, and review or clear references/habit-patterns.md when those details should not be reused.
+
+## Reference(s):
+
+- [README](README.md)
+- [Obsidian Concepts Reference](references/obsidian-concepts.md)
+- [Habit Patterns Profile](references/habit-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/ltryee/skills/obsidian-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Dataview or Templater code blocks, JSON macro configuration, and file or template recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update the local habit profile and template files when new user workflow information is confirmed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

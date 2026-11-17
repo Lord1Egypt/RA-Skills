@@ -1,43 +1,54 @@
-## Description: <br>
-Finds cross-platform product price differences across Taobao, JD.com, and Pinduoduo, then calculates potential profit after shipping costs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds cross-platform product price differences across Taobao, JD.com, and Pinduoduo and calculates arbitrage profit after shipping costs.
 
-## Publisher: <br>
-[275254cl-hash](https://clawhub.ai/user/275254cl-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[275254cl-hash](https://clawhub.ai/user/275254cl-hash)
 
-## Use Case: <br>
-External users and commerce operators use this skill to compare marketplace prices, monitor selected products, and evaluate possible resale opportunities. It helps surface opportunities but does not execute purchases or replace business, legal, or financial review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Price arbitrage recommendations can be wrong or become stale because prices, shipping costs, platform fees, and marketplace rules change. <br>
-Mitigation: Verify current prices, shipping, commissions, platform policies, and after-sales costs before acting on any opportunity. <br>
-Risk: Monitoring product pages and alerts may involve repeated web requests and retained price history. <br>
-Mitigation: Set clear product limits, alert thresholds, notification preferences, and retention rules before enabling monitoring. <br>
-Risk: Marketplace credentials or purchase authorization would increase account and transaction risk if requested by a future version. <br>
-Mitigation: Do not provide marketplace credentials or authorize purchases unless a future release clearly documents that need and has been reviewed. <br>
+## Use Case:
 
+External users and commerce operators use this skill to compare prices across Chinese e-commerce platforms, sort arbitrage opportunities by profit rate, monitor price changes, and set profit reminders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/275254cl-hash/price-arbitrage-finder) <br>
-- [Publisher profile](https://clawhub.ai/user/275254cl-hash) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, guidance, text] <br>
-**Output Format:** [Markdown-style text with ranked price comparisons, profit calculations, monitoring guidance, and cautions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and the Python requests package when installation metadata is followed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The requests dependency is disclosed but unpinned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a controlled environment and pin or lock the dependency before production use.
+
+Risk: Arbitrage suggestions may omit marketplace rules, shipping, commission, authenticity, after-sales, or price-volatility constraints.
+
+Mitigation: Review platform policies and total landed costs before acting on any opportunity.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/275254cl-hash/skills/price-arbitrage-finder)
+- [Artifact homepage](https://github.com/openclaw/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown text with product comparisons, profit calculations, ranked opportunities, monitoring prompts, and cautions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact declares a python3 runtime requirement and a requests pip dependency.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

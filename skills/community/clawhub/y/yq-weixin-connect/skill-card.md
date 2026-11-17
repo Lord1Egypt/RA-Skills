@@ -1,40 +1,62 @@
-## Description: <br>
-Connects a personal WeChat account, not WeCom, through a QR-code binding workflow for OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through binding a personal WeChat account to OpenClaw by installing the WeChat extension, generating a QR code, polling login status, storing credentials, and restarting the gateway.
 
-## Publisher: <br>
-[tianheihei002](https://clawhub.ai/user/tianheihei002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianheihei002](https://clawhub.ai/user/tianheihei002)
 
-## Use Case: <br>
-Agents use this skill when a user asks to connect or bind a personal WeChat account. It guides the agent through OpenClaw plugin setup, QR-code login, credential storage, and gateway restart while excluding Enterprise WeChat and WeCom requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and replaces a local OpenClaw WeChat extension. <br>
-Mitigation: Review the npm package source and exact legacy version before use, and back up any existing openclaw-weixin extension state. <br>
-Risk: The skill stores long-lived personal WeChat credentials on the local system. <br>
-Mitigation: Install only when personal WeChat binding is intended, restrict file access, and remove ~/.openclaw/openclaw-weixin/accounts entries or revoke the WeChat session when access is no longer needed. <br>
+## Use Case:
 
+Developers and operators use this skill to connect a personal WeChat account to an OpenClaw gateway through a QR-code login flow. It is not intended for WeCom or enterprise WeChat connections.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianheihei002/yq-weixin-connect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interactive flow that waits for user confirmation after QR-code scanning before polling and writing credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill may replace an existing OpenClaw WeChat extension and run npm-installed code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package source and extension state before installation, and execute only in an environment where replacing the extension is acceptable.
+
+Risk: The skill stores a WeChat connector token locally.
+
+Mitigation: Restrict local credential file permissions, keep the workspace trusted, and rotate or remove the credential when access is no longer needed.
+
+Risk: The skill uploads the QR image through a CDN flow.
+
+Mitigation: Use the upload only for the short-lived QR code and avoid sharing the generated image beyond the login session.
+
+Risk: The skill restarts the OpenClaw gateway.
+
+Mitigation: Run the workflow during an acceptable maintenance window or confirm that a gateway restart will not interrupt active work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianheihei002/skills/yq-weixin-connect)
+- [WeChat QR code endpoint](https://ilinkai.weixin.qq.com/ilink/bot/get_bot_qrcode?bot_type=3)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces QR-code handling steps, credential-writing guidance, and gateway restart commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

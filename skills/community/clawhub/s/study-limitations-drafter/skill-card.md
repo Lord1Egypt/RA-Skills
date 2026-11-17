@@ -1,43 +1,55 @@
-## Description: <br>
-Use study limitations drafter for academic writing workflows that need structured execution, explicit assumptions, and clear output boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use study limitations drafter for academic writing workflows that need structured execution, explicit assumptions, and clear output boundaries.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Academic authors, researchers, and proposal teams use this skill to draft professional study limitation paragraphs from supplied study constraints while keeping assumptions, risks, and unresolved items explicit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local Python execution may read chosen input data and write generated output files. <br>
-Mitigation: Run the script only inside a working project folder, review selected input and output paths, and keep outputs within the workspace. <br>
-Risk: Sensitive study details may be included in generated limitation text or saved output files. <br>
-Mitigation: Avoid sensitive datasets unless needed, review generated text before sharing, and remove confidential details from outputs. <br>
-Risk: The documented path-safety checklist is guidance rather than a guaranteed sandbox. <br>
-Mitigation: Validate paths before execution and do not rely on the skill documentation as a substitute for runtime sandboxing. <br>
+## Use Case:
 
+Academic writers, researchers, and agents use this skill to draft professionally worded study limitation sections, grant proposal risk notes, and peer review responses from explicit study constraints and assumptions.
 
-## Reference(s): <br>
-- [Audit Reference](references/audit-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/study-limitations-drafter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text limitation paragraphs with optional shell commands for validation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write generated limitation text to a user-specified output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The packaged script can overwrite any writable output path supplied with --output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --output only with a deliberate workspace-local filename, avoid existing files, and run with sandbox-level write restrictions until output path validation is enforced.
+
+Risk: Generated limitation language may understate uncertainty or overgeneralize beyond the supplied study constraints.
+
+Mitigation: Review drafted statements against the source study design, required assumptions, and documented scope before using them in academic or grant materials.
+
+## Reference(s):
+
+- [Study Limitations Drafter](https://clawhub.ai/aipoch-ai/skills/study-limitations-drafter)
+- [Publisher profile: aipoch-ai](https://clawhub.ai/user/aipoch-ai)
+- [Audit Reference](references/audit-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown limitation statements with optional workspace file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should identify assumptions, scope limits, risks, and unresolved checks when relevant.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

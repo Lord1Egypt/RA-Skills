@@ -1,47 +1,63 @@
-## Description: <br>
-Core browser automation library for OpenClaw agents. Provides reusable navigation, interaction, and capture capabilities for both Facet (Onshape learning) and Ace (competition entry). Use when any agent needs to automate web browser interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser Automation Core provides reusable browser navigation, interaction, capture, form, and session utilities for OpenClaw agents.
 
-## Publisher: <br>
-[stefanferreira](https://clawhub.ai/user/stefanferreira) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stefanferreira](https://clawhub.ai/user/stefanferreira)
 
-## Use Case: <br>
-Developers and agent builders use this skill as a reusable browser automation core for navigating websites, interacting with elements and forms, capturing screenshots or page content, and extending those capabilities into agent-specific workflows such as Onshape learning or competition-entry automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents using this skill can operate a browser with broad powers, including navigation, form submission, screenshots, and in-page script execution. <br>
-Mitigation: Use a dedicated browser profile, restrict allowed domains and workflows, and require explicit approval before form submission, custom script execution, or captures of sensitive pages. <br>
-Risk: Screenshots and captured page data can include personal, account, or business-sensitive information. <br>
-Mitigation: Store captures only in reviewed locations, avoid personal logged-in sessions, and delete screenshots or session data that are no longer needed. <br>
-Risk: The sample competition and Onshape workflows include realistic domains and form-filling patterns that may be adapted to high-impact actions. <br>
-Mitigation: Replace sample data, review target-site rules, and keep a human approval gate before submitting entries or changing authenticated account state. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add browser navigation, interaction, screenshot capture, JavaScript evaluation, form-filling patterns, and session utilities to OpenClaw agents.
 
-## Reference(s): <br>
-- [Browser Automation Core on ClawHub](https://clawhub.ai/stefanferreira/browser-automation-core) <br>
-- [Publisher profile](https://clawhub.ai/user/stefanferreira) <br>
-- [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/) <br>
-- [Puppeteer documentation](https://pptr.dev/) <br>
-- [Playwright documentation](https://playwright.dev/) <br>
-- [Selenium documentation](https://www.selenium.dev/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, configuration snippets, and generated browser artifacts such as screenshots when used by an agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an available OpenClaw browser or Chrome DevTools Protocol endpoint for live browser operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill documentation) <br>
+Risk: The skill can drive browser sessions, capture page contents, submit forms, and write screenshots locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a constrained environment, avoid authenticated or sensitive sites unless necessary, and require review before form submission or page capture workflows.
+
+Risk: The security evidence reports broad browser and session authority with unsafe network and file-write behaviors.
+
+Mitigation: Pin install versions, restrict CDP access to localhost, and validate URLs and screenshot filenames before use.
+
+Risk: Browser screenshots and captured content may contain sensitive page data.
+
+Mitigation: Use a dedicated screenshot directory, limit retention, and review captured files before sharing or committing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stefanferreira/skills/browser-automation-core)
+- [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/)
+- [Puppeteer Documentation](https://pptr.dev/)
+- [Playwright Documentation](https://playwright.dev/)
+- [Selenium Documentation](https://www.selenium.dev/)
+- [OpenClaw Browser Integration](/docs/browser-integration)
+- [WebSocket Client Examples](/examples/websocket)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with Python, shell, and JSON examples; runtime outputs may include text, JSON command results, and PNG screenshots.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Screenshot and session outputs are written to configured local paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

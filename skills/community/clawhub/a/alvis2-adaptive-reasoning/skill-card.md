@@ -1,43 +1,62 @@
-## Description: <br>
-Automatically assess task complexity and adjust reasoning level. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically assess task complexity and adjust reasoning level before answering complex questions.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-Developers and agent users use this skill as a preprocessing behavior layer that classifies request complexity and decides when deeper reasoning should be used before responding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may silently switch into deeper reasoning, which can change latency, token usage, and response posture. <br>
-Mitigation: Install only where automatic reasoning escalation is desired, and disable it when strict control over reasoning mode, latency, or token usage is required. <br>
-Risk: The source contains garbled threshold rows and inconsistent references to session status versus no external tools. <br>
-Mitigation: Review and correct the threshold values and control mechanism before relying on the behavior in production workflows. <br>
-Risk: The skill can add icons to responses, which may be inappropriate for formal or tightly specified output formats. <br>
-Mitigation: Use explicit user or workflow rules to suppress response icons when exact output formatting is required. <br>
+## Use Case:
 
+Developers and agent users use this skill to help an agent decide when a request warrants deeper reasoning before responding. It is intended as a mental pre-processing aid for complex, ambiguous, architectural, mathematical, or high-stakes requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alvisdunlop/alvis2-adaptive-reasoning) <br>
-- [Publisher profile](https://clawhub.ai/user/alvisdunlop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with optional slash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append reasoning-status icons to agent responses and may toggle reasoning behavior when supported by the host agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Automatic reasoning activation may surprise users who expect explicit control over reasoning mode.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when automatic complexity assessment is desired, and edit or avoid the skill when precise manual control is required.
+
+Risk: Deeper reasoning can increase latency or token usage.
+
+Mitigation: Use the skill for requests where higher response quality justifies additional reasoning cost.
+
+Risk: Corrupted threshold markers in the artifact may make activation boundaries unclear.
+
+Mitigation: Review and correct threshold values before relying on the skill for consistent reasoning-mode decisions.
+
+Risk: Visible reasoning icons may be unwanted in some response styles.
+
+Mitigation: Edit or avoid the visual indicator instructions if responses should not include reasoning-mode icons.
+
+## Reference(s):
+
+- [Adaptive Reasoning ClawHub Skill Page](https://clawhub.ai/alvisdunlop/skills/alvis2-adaptive-reasoning)
+- [alvisdunlop Publisher Profile](https://clawhub.ai/user/alvisdunlop)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, configuration]
+
+**Output Format:** [Markdown or plain text guidance with optional reasoning-mode indicators]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May cause the agent to use deeper reasoning and append visible reasoning indicators for higher-complexity responses.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

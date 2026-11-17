@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  agentsafe-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    container_name: agentsafe-mcp
+    ports:
+      - "8000:8000"
+    volumes:
+      # Persist SQLite task store and access logs
+      - ./data:/app/data
+    environment:
+      # Ethereum Mainnet RPC
+      - INFURA_ETH_ENDPOINT=${INFURA_ETH_ENDPOINT}
+      - ETHERSCAN_API_KEY=${ETHERSCAN_API_KEY}
+      
+      # LLM Providers (JSON array)
+      - LLM_PROVIDERS_JSON=${LLM_PROVIDERS_JSON}
+      - LLM_GLOBAL_RPM=20
+      - LLM_MAX_CALLS_PER_AUDIT=12
+      - LLM_MAX_RETRIES_PER_CALL=3
+      - LLM_REQUEST_TIMEOUT_SECONDS=90
+      
+      # GitHub Actions worker
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - GITHUB_REPO=luka1968/agentsafe
+      - GITHUB_WORKFLOW_FILE=docker-audit.yml
+      - GITHUB_REF=main
+      - AUDIT_TIMEOUT_SECONDS=900
+      
+      # Task persistence
+      - TASK_STORE=sqlite
+      - TASK_DB_PATH=/app/data/tasks.db
+      
+      # Payments (Base Mainnet)
+      - PAYMENTS_ENABLED=true
+      - X402_NETWORK=eip155:8453
+      - X402_PAY_TO=${X402_PAY_TO}
+      - X402_FACILITATOR_URL=https://facilitator.payai.network
+      - X402_ALLOW_MAINNET=true
+      - X402_PRICE=$0.50
+      
+      # Logging
+      - LOG_LEVEL=WARNING
+      
+      # Security
+      - TZ=UTC
+    restart: unless-stopped
+    networks:
+      - agentsafe-net
+
+networks:
+  agentsafe-net:
+    driver: bridge

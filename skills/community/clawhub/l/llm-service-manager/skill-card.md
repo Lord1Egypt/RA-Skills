@@ -1,42 +1,53 @@
-## Description: <br>
-Manage local LLM services such as Ollama, vLLM, and OpenAI-compatible API endpoints through a unified command interface. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and control local LLM services like Ollama and vLLM, including starting services, pulling models, and querying APIs through a unified interface.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and agent users use this skill to check local LLM service status, start Ollama on Windows, pull Ollama models, and send prompts through Ollama or configured OpenAI-compatible API endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and any configured API key may be sent to an OpenAI-compatible endpoint selected by the user environment. <br>
-Mitigation: Use API mode only with trusted endpoints and avoid sending sensitive prompts unless the endpoint is approved for that data. <br>
-Risk: The start and pull commands can launch a local service or download large model files. <br>
-Mitigation: Run service start and model pull commands deliberately, and monitor local compute, storage, and network use. <br>
-Risk: The skill may require sensitive credentials for configured API services. <br>
-Mitigation: Store API keys in environment variables, restrict their scope, and avoid exposing command output or logs that may reveal credentials. <br>
+## Use Case:
 
+Developers and engineers use this skill to check, start, and query local LLM services such as Ollama, vLLM, and OpenAI-compatible endpoints from a unified command interface.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/534422530/llm-service-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text status messages, model lists, command results, or generated model responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use OPENAI_BASE_URL, OPENAI_API_KEY, and OPENAI_MODEL environment variables; prompts and credentials are sent to the configured endpoint when API mode is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts and an optional OPENAI_API_KEY can be sent to the endpoint named by OPENAI_BASE_URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted HTTPS endpoints, review OPENAI_BASE_URL and OPENAI_API_KEY before use, and avoid sensitive prompts.
+
+Risk: The skill can start Ollama and pull models through local commands.
+
+Mitigation: Run it only in environments where starting local services and downloading models are approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/llm-service-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text command responses and status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include model output returned by a local or configured LLM service.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

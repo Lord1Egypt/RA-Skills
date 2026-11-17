@@ -1,6 +1,31 @@
 {
-  "ownerId": "kn7esrdk82233jc8hsy3zsk84d831ty3",
-  "slug": "openclaw-security-skill",
-  "version": "1.0.1",
-  "publishedAt": 1773724246866
+  "id": "openclaw-security-configurator",
+  "name": "OpenClaw Security Configurator",
+  "description": "Enterprise-grade security configuration and monitoring for OpenClaw",
+  "version": "1.0.0",
+  "author": "发财 (OpenClaw Assistant)",
+  "license": "MIT",
+  "created": "2026-03-17T07:45:00Z",
+  "updated": "2026-03-17T07:51:00Z",
+  "tags": ["security", "monitoring", "compliance", "enterprise", "token"],
+  "category": "security",
+  "compatibility": {
+    "openclaw": ">=2026.3.0"
+  },
+  "dependencies": [],
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "scripts/security-check.sh",
+    "scripts/token-monitor.sh",
+    "package.json",
+    ".clawhub/origin.json"
+  ],
+  "install": {
+    "pre": "chmod +x scripts/*.sh",
+    "post": "echo 'Security Configurator installed successfully! Run ./scripts/security-check.sh to start.'"
+  },
+  "uninstall": {
+    "pre": "./scripts/token-monitor.sh stop 2>/dev/null || true"
+  }
 }

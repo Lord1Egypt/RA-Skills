@@ -19,15 +19,40 @@ const {
 
 checkApiKey();
 
+function printUsage() {
+  console.log('Usage: add-to-database.js <database-id> <page-title> <markdown-file-path> [--json] [--allow-read-path <exact-path>]');
+  console.log('');
+  console.log('Example:');
+  console.log('  add-to-database.js <db-id> "Research Report" research.md --json');
+}
+
+function failArgument(message) {
+  if (hasJsonFlag()) console.log(JSON.stringify({ error: message }, null, 2));
+  else log(`Error: ${message}`);
+  process.exit(1);
+}
+
 async function main() {
   const args = stripTokenArg(process.argv.slice(2));
+  const isHelp = args.includes('--help');
 
-  if (args.length < 3 || args[0] === '--help') {
-    console.log('Usage: add-to-database.js <database-id> <page-title> <markdown-file-path> [--json] [--allow-unsafe-paths]');
-    console.log('');
-    console.log('Example:');
-    console.log('  add-to-database.js <db-id> "Research Report" research.md --json');
-    process.exit(args[0] === '--help' ? 0 : 1);
+  if (isHelp) {
+    printUsage();
+    process.exit(0);
+  }
+
+  const unknownOption = args.find(arg => arg.startsWith('-'));
+  if (unknownOption) {
+    failArgument(`Unknown option: ${unknownOption}`);
+  }
+
+  if (args.length < 3) {
+    printUsage();
+    process.exit(1);
+  }
+
+  if (args.length > 3) {
+    failArgument(`Unexpected argument: ${args[3]}`);
   }
 
   const [dbId, title, mdPath] = args;
@@ -62,7 +87,7 @@ async function main() {
     });
 
     const markdown = fs.readFileSync(safeMdPath, 'utf8');
-    const blocks = parseMarkdownToBlocks(markdown);
+    const blocks = parseMarkdownToBlocks(markdown, { richText: 'markdown' });
     log(`Parsed ${blocks.length} blocks from markdown`);
 
     await appendBlocksBatched(page.id, blocks);

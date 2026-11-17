@@ -1,48 +1,60 @@
-## Description: <br>
-Create, read, unlock, update, and delete temporary Markdown shares through the MDShare service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, read, unlock, update, and delete temporary Markdown shares through the MDShare service.
 
-## Publisher: <br>
-[cced3000](https://clawhub.ai/user/cced3000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cced3000](https://clawhub.ai/user/cced3000)
 
-## Use Case: <br>
-Developers, agents, and external users use this skill to publish Markdown as temporary MDShare links, retrieve shared Markdown, and manage edits, settings, or deletion through public, edit, and manage links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Markdown content may include secrets, personal data, or internal material before it is published to MDShare or another deployment. <br>
-Mitigation: Review content before creating a share, and avoid publishing sensitive material unless the user explicitly accepts that exposure. <br>
-Risk: Manage and edit links include tokens that allow anyone with the link to edit settings, modify content, or delete the share. <br>
-Mitigation: Keep token-bearing links private and return them only when the user asks for them or needs them to manage the share. <br>
-Risk: Burn-after-read shares can become unavailable after access is confirmed. <br>
-Mitigation: Explain burn-after-read behavior and require clear user intent before sending confirmView for gated content. <br>
-Risk: Concurrent edits can overwrite another update if conflict handling is bypassed. <br>
-Mitigation: When the API reports a conflict, summarize the remote update and force-save only after explicit confirmation. <br>
+## Use Case:
 
+Developers and agent operators use this skill to publish Markdown as temporary MDShare links, retrieve shared Markdown, and manage protected or editable shares through explicit API workflows.
 
-## Reference(s): <br>
-- [MDShare API Reference](references/api.md) <br>
-- [MDShare Agent Workflows](references/workflows.md) <br>
-- [MDShare Agent Install Examples](references/install-examples.md) <br>
-- [MDShare default deployment](https://share.yekyos.com) <br>
-- [ClawHub skill page](https://clawhub.ai/cced3000/mdshare-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown responses with links, JSON request examples, and HTTP API guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce public, edit, and manage links; manage and edit links contain tokens and should be kept private.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Manage and edit links act like credentials and can allow anyone with the link to modify or delete a share.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Return only the public link by default, share manage or edit links only when needed, and treat token-bearing links as sensitive.
+
+Risk: Burn-after-read shares may reveal or consume sensitive content if accessed without explicit user intent.
+
+Mitigation: Require confirmation before consuming burn-after-read content and explain the effect before proceeding.
+
+Risk: The security review marked the release suspicious because default link handling may expose powerful manage tokens.
+
+Mitigation: Review before installing and use the skill only for content intentionally sent to MDShare.
+
+## Reference(s):
+
+- [MDShare API Reference](references/api.md)
+- [MDShare Agent Workflows](references/workflows.md)
+- [MDShare Agent Install Examples](references/install-examples.md)
+- [MDshare Agent on ClawHub](https://clawhub.ai/cced3000/skills/mdshare-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown or text replies with MDShare links and JSON API payload guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include public, edit, and manage links; token-bearing links should be treated as sensitive.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

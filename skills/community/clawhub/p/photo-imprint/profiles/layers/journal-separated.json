@@ -1,0 +1,16 @@
+{
+  "profile_type": "layers",
+  "id": "journal-separated",
+  "version": "1.0.0",
+  "z_order": ["background", "subject", "decorations", "typography", "watermark", "disclosure"],
+  "layers": {
+    "background": {"kind": "deterministic", "transparent": false, "required": true},
+    "subject": {"kind": "model-rendered", "transparent": true, "required": true, "forbidden_content": ["text", "route", "marker", "watermark", "border", "numbering"]},
+    "decorations": {"kind": "deterministic", "transparent": true, "required": false},
+    "typography": {"kind": "deterministic", "transparent": true, "required": false},
+    "watermark": {"kind": "deterministic", "transparent": true, "required": false},
+    "disclosure": {"kind": "deterministic", "transparent": true, "required": false}
+  },
+  "cross_slide_elements": ["decorations.route"],
+  "render_rule": "Render the subject cleanly first; compose all optional modules afterwards."
+}

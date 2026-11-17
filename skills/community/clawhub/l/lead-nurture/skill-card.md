@@ -1,41 +1,54 @@
-## Description: <br>
-Generates adaptive email and SMS nurture sequences that adjust by lead engagement, with A/B subject lines, re-send logic, timing rules, engagement scoring, and CRM export guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lead Nurture generates adaptive email and SMS nurture sequences with A/B subject lines, re-send logic, timing rules, engagement scoring, and CRM export guidance based on lead engagement signals.
 
-## Publisher: <br>
-[drivenautoplex1](https://clawhub.ai/user/drivenautoplex1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drivenautoplex1](https://clawhub.ai/user/drivenautoplex1)
 
-## Use Case: <br>
-External sales, marketing, and CRM operators use this skill to turn lead scenarios into adaptive follow-up sequences for email, SMS, and CRM workflows. It is intended for lead nurturing, reactivation, abandoned-cart recovery, referral follow-up, and similar commercial outreach planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CRM or messaging imports could contact people without valid consent or after unsubscribe or STOP requests. <br>
-Mitigation: Confirm recipient consent and suppression lists before importing generated sequences into any CRM or messaging platform. <br>
-Risk: Generated outreach or automation settings could include inappropriate claims, sensitive personal data, or non-compliant send behavior. <br>
-Mitigation: Have a human review live email and SMS content, timing, escalation rules, and exported CRM settings before activation. <br>
+## Use Case:
 
+External sales, marketing, and CRM operators use this skill to draft behavior-driven nurture campaigns for cold, stalled, abandoned-cart, referral, and reactivation leads. It helps an agent propose email and SMS touchpoints, branching rules, engagement scores, and CRM export formats for review before deployment.
 
-## Reference(s): <br>
-- [Lead Nurture on ClawHub](https://clawhub.ai/drivenautoplex1/lead-nurture) <br>
-- [drivenautoplex1 publisher profile](https://clawhub.ai/user/drivenautoplex1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, CSV, Configuration guidance] <br>
-**Output Format:** [Markdown with structured JSON or CSV export content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CRM-specific export mappings for GoHighLevel, Follow Up Boss, Mailchimp, JSON, or CSV.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated email and SMS sequences may omit or conflict with marketing compliance requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated content and automation settings for CAN-SPAM, TCPA, GDPR, platform rules, opt-out handling, sender identification, quiet hours, consent records, and suppression lists before use.
+
+Risk: CRM export guidance may be imported or activated before business review.
+
+Mitigation: Treat generated CRM workflows as draft material and require human approval before importing, scheduling, or activating outreach.
+
+## Reference(s):
+
+- [Lead Nurture ClawHub skill page](https://clawhub.ai/drivenautoplex1/skills/lead-nurture)
+- [drivenautoplex1 publisher profile](https://clawhub.ai/user/drivenautoplex1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown or JSON-style structured content describing nurture sequences, branching logic, engagement scoring, and CRM export guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are draft marketing automation content and should be reviewed before CRM import or activation.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

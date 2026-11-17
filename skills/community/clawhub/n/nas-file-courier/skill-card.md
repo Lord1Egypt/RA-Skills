@@ -1,46 +1,63 @@
-## Description: <br>
-Searches files on a NAS through rclone and Tailscale, then helps deliver selected files through supported messaging channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches files on a NAS via rclone and Tailscale and helps deliver confirmed files through supported messaging channels.
 
-## Publisher: <br>
-[TecFancy](https://clawhub.ai/user/TecFancy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tecfancy](https://clawhub.ai/user/tecfancy)
 
-## Use Case: <br>
-External users and operators use this skill to locate NAS files by keyword, type, path, or time range, confirm the intended file, and deliver it through Feishu, Telegram, QQ Bot, or a temporary Tailscale-only HTTP link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access and transmit private files from the configured NAS remote. <br>
-Mitigation: Install only for trusted agents with intended NAS read access, require explicit user confirmation before delivery, and send only permitted file types. <br>
-Risk: Temporary HTTP sharing can expose sensitive files if it is used broadly or without isolation. <br>
-Mitigation: Prefer native MEDIA delivery; use the HTTP fallback only on an isolated and authenticated Tailscale path and avoid it for sensitive files. <br>
-Risk: A fixed temporary directory with wildcard cleanup can mix transfers or remove unintended files. <br>
-Mitigation: Use a per-transfer temporary directory and clean it in a finally-style cleanup path after success or failure. <br>
-Risk: Broad activation triggers could invoke the courier workflow for ambiguous file requests. <br>
-Mitigation: Narrow activation to explicit NAS file-search or file-delivery requests and confirm the file name and size before sending. <br>
+## Use Case:
 
+Employees, external users, developers, and operators use this skill to search trusted NAS shares for requested files, confirm the correct match, and deliver permitted files through supported messaging channels.
 
-## Reference(s): <br>
-- [Channel file sending reference](references/channel-file-send.md) <br>
-- [HTTP temporary link reference](references/http-temp-link.md) <br>
-- [rclone operations reference](references/rclone-ops.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and MEDIA file delivery lines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local file paths, temporary download URLs, file metadata summaries, user confirmation prompts, and cleanup commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog) <br>
+Risk: Broad NAS file access could expose or mishandle private files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted NAS shares and messaging channels, limit searches to the user's requested scope, and require explicit confirmation of each file before transfer.
+
+Risk: Temporary HTTP links can expose sensitive files if used outside a trusted private network or left running.
+
+Mitigation: Avoid the HTTP fallback for sensitive files, bind it only to the Tailscale address, use short-lived links, and stop the server after delivery or timeout.
+
+Risk: Downloaded files may remain in local temporary storage after success or failure.
+
+Mitigation: Use per-request private temporary directories where possible and verify cleanup after every operation.
+
+Risk: Unvalidated path or rclone arguments could retrieve unintended files.
+
+Mitigation: Validate rclone arguments, show the resolved file name, size, and path to the user, and proceed only after confirmation.
+
+## Reference(s):
+
+- [rclone operation reference](references/rclone-ops.md)
+- [Channel native file sending reference](references/channel-file-send.md)
+- [HTTP temporary download link procedure](references/http-temp-link.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, file-selection prompts, MEDIA lines, and temporary link instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user confirmation before transfer and cleanup of temporary files after each operation.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

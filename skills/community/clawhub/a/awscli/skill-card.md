@@ -1,39 +1,57 @@
-## Description: <br>
-Manage AWS Lightsail instances using AWS CLI for listing, starting, stopping, and rebooting allowed instances. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage AWS Lightsail and EC2 instances using AWS CLI.
 
-## Publisher: <br>
-[HypertextAssassinRajith](https://clawhub.ai/user/HypertextAssassinRajith) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[hypertextassassinrajith](https://clawhub.ai/user/hypertextassassinrajith)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent list and manage approved AWS Lightsail instances through configured AWS credentials and a constrained instance allowlist. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can start, stop, or reboot AWS Lightsail instances using configured AWS credentials. <br>
-Mitigation: Use a dedicated least-privilege IAM user or role, keep ALLOWED_INSTANCES narrow, and require explicit human approval before start, stop, or reboot actions, especially for production resources. <br>
-Risk: An overly broad ALLOWED_INSTANCES configuration can allow unintended instance operations. <br>
-Mitigation: Set ALLOWED_INSTANCES to exact approved instance names and review allowlist changes before deployment. <br>
+## Use Case:
 
+Developers and operators use this skill to list, start, stop, and reboot permitted AWS Lightsail instances through structured JSON actions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Status messages] <br>
-**Output Format:** [JSON objects returned to the agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [List actions return AWS Lightsail instance data; start, stop, and reboot actions return success status messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: ClawHub release metadata; artifact frontmatter and package.json report 1.0.0) <br>
+Risk: Start, stop, and reboot operations can cause service downtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use tightly scoped AWS IAM credentials and set ALLOWED_INSTANCES to the exact Lightsail instances the skill may control.
+
+Risk: The release summary mentions EC2, while the implementation and security guidance identify Lightsail control only.
+
+Mitigation: Treat EC2 support as unverified until the publisher removes the EC2 claim or adds clearly documented EC2 support.
+
+Risk: Incorrect environment configuration can send actions to the wrong AWS region or deny intended instance operations.
+
+Mitigation: Confirm AWS_REGION and ALLOWED_INSTANCES before use, and review structured action inputs before executing instance changes.
+
+## Reference(s):
+
+- [ClawHub Awscli skill page](https://clawhub.ai/hypertextassassinrajith/skills/awscli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON objects returned from AWS CLI-backed operations, with concise status messages for instance actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AWS CLI, configured AWS credentials, AWS_REGION, and ALLOWED_INSTANCES.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

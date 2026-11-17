@@ -1,7 +1,7 @@
 ---
 name: beauty-diagram
 description: Use when the user asks for a sleek, modern Mermaid / PlantUML diagram (e.g. "beautify this flowchart", "make this look like a deck slide", "produce an SVG of this architecture"), wants AI to generate a diagram from a text description, wants a public share link for a diagram, wants to render every diagram file in a folder, or wants to render Mermaid / PlantUML fenced code blocks inside a Markdown file (README, docs) into images. This skill teaches you to call the Beauty Diagram CLI (`bd`) — never to hand-author SVG when a source diagram exists.
-version: 1.6.1
+version: 1.7.0
 metadata:
   openclaw:
     requires:
@@ -248,12 +248,12 @@ bd batch ./docs/diagrams --out-dir ./docs/svg --theme modern
 # Same idea but for a glob (quote it so the shell doesn't expand first).
 bd batch "src/**/*.mmd" --format png --concurrency 8
 
-# Default: inline embed URLs (no files written, anonymous-watermarked, 5 KB/block cap).
+# Default: inline embed URLs (no files written, anonymous-watermarked, 10 KB/block cap).
 # No API calls during extract — source encoded in the URL; browser fetches on demand.
 bd extract README.md
 
 # Share mode: mint /v1/share/<token>.svg per fence. Watermark-free for Pro/Premium.
-# 1 share quota per unique source (cached locally; re-runs free). No 5 KB cap.
+# 1 share quota per unique source (cached locally; re-runs free). No size cap.
 # Requires API key. Default keeps existing share tokens across re-runs;
 # use --re-mint to force fresh tokens (e.g. collaborator taking ownership).
 bd extract README.md --share

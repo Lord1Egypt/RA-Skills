@@ -1,42 +1,58 @@
-## Description: <br>
-Generate and edit PowerPoint files with python-pptx, including slide creation, text replacement, and image replacement while preserving layout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and edit PowerPoint files with python-pptx, including slide creation, text replacement, and image replacement while preserving layout.
 
-## Publisher: <br>
-[zicheng354-tech](https://clawhub.ai/user/zicheng354-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zicheng354-tech](https://clawhub.ai/user/zicheng354-tech)
 
-## Use Case: <br>
-Developers and agent builders use this skill to create PowerPoint decks from structured slide content and update existing presentations by replacing text or images while preserving slide layout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads selected .pptx files and creates new .pptx, image, and demo log files locally. <br>
-Mitigation: Run it in a workspace directory and review generated files before sharing or deploying them. <br>
-Risk: Path-like presentation titles could affect where generated files are written. <br>
-Mitigation: Use simple presentation titles and avoid path separators or filesystem-like names. <br>
-Risk: The release evidence includes crypto and purchase capability labels that the security guidance says are unsupported metadata. <br>
-Mitigation: Correct those capability labels before relying on them for deployment or policy decisions. <br>
+## Use Case:
 
+Developers and AI agents use this skill to generate new .pptx presentations from structured slide content and update existing presentations by replacing text or images while preserving slide layout.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zicheng354-tech/ppt-generate-and-edit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON] <br>
-**Output Format:** [PowerPoint .pptx files, local image files, file paths, and JSON replacement logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates new local output files rather than overwriting source presentations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Output filenames and paths can be influenced by input, which may allow PowerPoint files to be written outside the intended output folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Sanitize output filenames, constrain writes to approved directories, and reject traversal or absolute paths before saving files.
+
+Risk: Generated filenames are timestamp-based and may collide during concurrent or repeated runs.
+
+Mitigation: Use collision-resistant filenames or enforce non-overwrite checks for generated presentations and images.
+
+Risk: The dependency list does not pin python-pptx to a reviewed version.
+
+Mitigation: Pin dependencies before use in shared or sensitive environments.
+
+## Reference(s):
+
+- [README](artifact/README.md)
+- [Skill Page](https://clawhub.ai/zicheng354-tech/skills/ppt-generate-and-edit)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON]
+
+**Output Format:** [PowerPoint files with JSON-style file paths and replacement logs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates local .pptx files and returns generated paths; image generation uses a mock backend by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Generate, validate, lint, and explain Apache .htaccess files for redirects, security headers, caching, CORS, file protection, and configuration audits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, validate, lint, and explain Apache .htaccess files for redirects, security headers, caching, CORS, file protection, and configuration audits.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and site operators use this skill to create, lint, explain, and audit Apache .htaccess configuration for common web hosting tasks such as HTTPS redirects, CORS, caching, security headers, file protection, and WordPress hardening. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated .htaccess rules can break site access, redirects, CORS, caching, strict security headers, or HSTS behavior if deployed without review. <br>
-Mitigation: Review generated output, keep a backup of existing server configuration, and test changes in staging before production deployment. <br>
-Risk: Permanent redirects and HSTS settings may persist in browsers and caches after a mistake is corrected. <br>
-Mitigation: Validate redirect and HSTS choices carefully before release, especially when enabling preload or broad permanent redirects. <br>
+## Use Case:
 
+Developers and web operators use this skill to generate Apache .htaccess snippets, lint existing .htaccess files, explain directives, and choose presets for redirects, security headers, caching, CORS, compression, file protection, and custom error pages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/htaccess-toolkit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text, Markdown, JSON, and Apache .htaccess configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate .htaccess file content, lint findings, preset lists, and directive explanations; script output supports text, JSON, and Markdown modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated .htaccess content can change live web-server behavior or overwrite an active configuration file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated output before deployment, keep a backup of the current .htaccess file, and avoid direct writes to .htaccess unless the target environment and rollback path are understood.
+
+Risk: Untrusted domain, redirect, or path values can be inserted into generated rules without strong validation.
+
+Mitigation: Use trusted values only, validate domains and redirect targets before generation, and test the resulting rules in a staging environment.
+
+## Reference(s):
+
+- [Htaccess Toolkit on ClawHub](https://clawhub.ai/charlie-morrison/skills/htaccess-toolkit)
+- [Publisher profile](https://clawhub.ai/user/charlie-morrison)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text with Apache .htaccess configuration snippets and optional JSON lint output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write generated .htaccess content to a requested output file when used with the script's output option.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

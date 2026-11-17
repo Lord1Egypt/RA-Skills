@@ -1,40 +1,48 @@
-## Description: <br>
-Redirect: conversation-recovery has been merged into context-preserver. Use context-preserver for session snapshots, recovery, task handoff, context export, and long-running work continuity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Redirect: conversation-recovery has been merged into context-preserver. Use context-preserver for session snapshots, recovery, task handoff, context export, and long-running work continuity.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this redirect skill when older conversation-recovery references appear in a workflow and should be routed to context-preserver for session snapshots, recovery, handoff, context export, and long-running work continuity.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Session snapshots or handoff notes may include sensitive project details if copied without review.
+
+Mitigation: Review snapshot contents before saving or sharing and omit unnecessary sensitive details.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this redirect skill to move from conversation-recovery to context-preserver for session snapshots, recovery, handoff, context export, and long-running work continuity. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may continue invoking the deprecated conversation-recovery skill instead of the merged context-preserver workflow. <br>
-Mitigation: Follow the redirect guidance and use context-preserver for snapshots, recovery, task handoff, context export, and long-running work continuity. <br>
-Risk: Recovery snapshots may include sensitive account, identity, address, payment, wallet, bank, or order-submission details if used in shopping or similar workflows. <br>
-Mitigation: Keep those sensitive actions and final submissions outside the agent workflow, consistent with the server-provided security guidance. <br>
+**Output Format:** [Markdown with plain-text handoff and snapshot template]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/conversation-recovery) <br>
+**Other Properties Related to Output:** [Redirect-only guidance; does not execute code, call external services, or handle credentials.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown and plain-text handoff guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides a suggested snapshot structure for preserving task state before restoration.] <br>
+1.0.1 (source: server release metadata and skill.json)
 
-## Skill Version(s): <br>
-1.0.1 (source: skill.json and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "channel": "competitor-listing-gap",
+  "workflow": "page_compare",
+  "focus": "listing_gap",
+  "outputTemplate": "ops_page_compare",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews",
+    "competitor-product-detail",
+    "competitor-reviews"
+  ]
+}

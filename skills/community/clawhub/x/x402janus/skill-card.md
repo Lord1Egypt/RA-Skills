@@ -1,45 +1,62 @@
-## Description: <br>
-x402janus scans EVM wallets for risky approvals, traces fund-flow signals, detects drainer patterns, and builds revoke transactions with x402 USDC payment support on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+x402janus helps agents scan EVM wallets, inspect approvals, identify drainer risk, prepare revoke transactions, and start monitoring, with paid calls using x402 USDC on Base.
 
-## Publisher: <br>
-[openclaw-consensus-bot](https://clawhub.ai/user/openclaw-consensus-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[openclaw-consensus-bot](https://clawhub.ai/user/openclaw-consensus-bot)
 
-## Use Case: <br>
-Developers and autonomous-agent operators use this skill as a pre-transaction wallet-security gate to inspect token approvals, receive risk findings, and prepare or execute approval revocations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for wallet-signing authority for paid x402 scans. <br>
-Mitigation: Use a dedicated low-balance wallet, review x402 payment terms before signing, and prefer the free tier first. <br>
-Risk: The revoke tool can submit real on-chain transactions and can also set nonzero approval allowances. <br>
-Mitigation: Use dry-run output by default and do not run --execute or pass --allowance unless the exact transaction is intended. <br>
-Risk: A misconfigured JANUS_API_URL could direct requests and payment signing toward an unintended service. <br>
-Mitigation: Keep JANUS_API_URL pointed at the intended x402janus service before running paid or transaction-capable commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openclaw-consensus-bot/x402janus) <br>
-- [x402janus product site](https://x402janus.com) <br>
-- [GitHub repository](https://github.com/consensus-hq/agent-pulse) <br>
-- [Virtuals ACP marketplace listing](https://app.virtuals.io/acp/agent-details/14804) <br>
-- [Machine-readable skill documentation endpoint](https://x402janus.com/api/skill-md) <br>
+## Use Case:
 
+Developers and agent operators use this skill as a pre-transaction wallet security gate for EVM activity. It returns approval analysis, risk signals, recommendations, revoke transaction data, and monitoring subscription details for agent workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and optional JSON scan, approval, monitoring, and transaction outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exit codes indicate safe, medium-risk, high-risk, and critical-risk scan outcomes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-3.0.0 (source: package.json and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Paid commands can sign asset-transfer payment authorizations from insufficiently validated server data.
+
+Mitigation: Use a low-balance payment wallet, keep JANUS_API_URL on the official HTTPS endpoint, and avoid paid commands with valuable wallets until x402 asset, recipient, network, and maximum amount are locally validated.
+
+Risk: Monitoring webhooks can expose alerts or trust a reused secret.
+
+Mitigation: Use a unique WEBHOOK_SECRET for this integration and rotate it if reused elsewhere.
+
+Risk: The revoke command can submit a real on-chain transaction when run with --execute.
+
+Mitigation: Use the default dry-run output first, inspect calldata and target addresses, and require explicit operator approval before executing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openclaw-consensus-bot/skills/x402janus)
+- [Publisher profile](https://clawhub.ai/user/openclaw-consensus-bot)
+- [Product homepage](https://x402janus.com)
+- [ACP marketplace listing](https://app.virtuals.io/acp/agent-details/14804)
+- [Repository metadata link](https://github.com/consensus-hq/agent-pulse)
+- [Machine-readable skill documentation endpoint](https://x402janus.com/api/skill-md)
+- [x402janus on X](https://x.com/x402janus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands plus JSON, CSV, table, and transaction-calldata outputs from scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scan commands use exit codes for automation; paid tiers require a wallet key and USDC on Base.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,45 @@
 {
-  "ownerId": "kn7fsehn8r5qaqyzemc33p42vd826g3m",
-  "slug": "human-rent",
-  "version": "0.1.1",
-  "publishedAt": 1775114460630
+  "name": "human-rent",
+  "version": "0.2.1",
+  "description": "Human-as-a-Service for OpenClaw - Dispatch verified human agents to perform physical world tasks",
+  "author": "ZhenStaff",
+  "license": "MIT",
+  "repository": "https://github.com/ZhenRobotics/openclaw-human-rent",
+  "homepage": "https://www.zhenrent.com",
+  "tags": [
+    "human-as-a-service",
+    "physical-verification",
+    "ai-agent",
+    "hybrid-intelligence",
+    "human-in-the-loop"
+  ],
+  "credentials": {
+    "ZHENRENT_API_KEY": {
+      "required": true,
+      "description": "API key for ZhenRent platform authentication. Obtain from https://www.zhenrent.com/api/keys",
+      "type": "api_key"
+    },
+    "ZHENRENT_API_SECRET": {
+      "required": true,
+      "description": "API secret for request signing (HMAC-SHA256). Keep this secure and never commit to version control.",
+      "type": "secret"
+    },
+    "ZHENRENT_BASE_URL": {
+      "required": false,
+      "description": "Base URL for ZhenRent API (default: https://www.zhenrent.com/api/v1)",
+      "type": "url",
+      "default": "https://www.zhenrent.com/api/v1"
+    }
+  },
+  "capabilities": {
+    "async_execution": true,
+    "physical_world": true,
+    "user_confirmation_required": true,
+    "cost_per_task": "$15-100"
+  },
+  "security": {
+    "integrity_verified": true,
+    "user_consent_required": true,
+    "no_external_dependencies": true
+  }
 }

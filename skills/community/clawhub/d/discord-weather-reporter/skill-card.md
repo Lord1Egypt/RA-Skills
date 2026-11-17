@@ -1,43 +1,54 @@
-## Description: <br>
-Fetches current weather conditions and forecasts and formats them for Discord display. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch weather forecasts and current conditions, formatted for Discord display.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-Discord users and bot operators use this skill to request current conditions, precipitation checks, and multi-day forecasts for cities or airport codes as Discord-ready text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Location queries are sent to wttr.in. <br>
-Mitigation: Avoid submitting sensitive location details and review whether sharing a location with wttr.in is acceptable for the use case. <br>
-Risk: Unnecessary secrets could be exposed if an agent or installer asks for credentials. <br>
-Mitigation: Do not provide Discord credentials, webhooks, or API keys for this skill. <br>
-Risk: Repeated weather requests may hit service rate limits. <br>
-Mitigation: Throttle repeated requests and avoid polling wttr.in more often than needed. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for current weather conditions, multi-day forecasts, precipitation checks, snow checks, and weather alerts formatted for Discord display.
 
-## Reference(s): <br>
-- [Discord Weather Reporter on ClawHub](https://clawhub.ai/fuzzyb33s/discord-weather-reporter) <br>
-- [wttr.in weather service](https://wttr.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and Discord-ready weather text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses wttr.in; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: User-controlled locations may be placed into curl commands without validation or URL encoding.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate or URL-encode location values and invoke HTTP requests without shell interpolation.
+
+Risk: Weather requests may disclose sensitive or precise private locations to wttr.in.
+
+Mitigation: Avoid sending sensitive or precise private locations unless the user is comfortable sharing them with wttr.in.
+
+## Reference(s):
+
+- [Discord Weather Reporter on ClawHub](https://clawhub.ai/fuzzyb33s/skills/discord-weather-reporter)
+- [fuzzyb33s ClawHub profile](https://clawhub.ai/user/fuzzyb33s)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and Discord-ready weather text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses wttr.in and requires no API key; location input should be validated or URL-encoded before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

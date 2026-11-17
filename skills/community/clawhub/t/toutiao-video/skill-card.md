@@ -1,42 +1,56 @@
-## Description: <br>
-Toutiao helps agents search and summarize public Toutiao articles, videos, and topic pages for keyword summaries, channel statistics, and video metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent find and summarize public Toutiao articles, videos, and topic pages, including keyword results, channel statistics, and public video metadata.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawkk](https://clawhub.ai/user/clawkk)
 
-## Use Case: <br>
-External users and content analysts use this skill for light analysis of public Toutiao pages, including keyword result summaries, hot-channel distribution summaries, and public video metadata summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated use could drift into bulk collection or violate Toutiao platform rules. <br>
-Mitigation: Keep usage manual or light, rate-limited, and limited to publicly available page information. <br>
-Risk: Summaries of public articles or videos may omit context or overstate engagement signals. <br>
-Mitigation: Include source links and collection time where available, and review summaries before relying on them. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent through lightweight analysis of public Toutiao articles, videos, and topic pages. Typical outputs include keyword result summaries, hot-channel topic distributions, and public video title, description, and interaction summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawkk/toutiao-video) <br>
-- [Toutiao homepage](https://www.toutiao.com/) <br>
-- [Toutiao search](https://www.toutiao.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries with source links and collection time when available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not provide interface reverse engineering, bulk scraping, video downloads, or watermark removal.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill may be used in ways that exceed Toutiao platform rules, such as bulk scraping or automated collection at high frequency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use normal rate limits, keep analysis lightweight, follow platform rules, and avoid bulk collection.
+
+Risk: The skill may be asked to access private data, reverse engineer interfaces, download videos, or remove watermarks.
+
+Mitigation: Restrict use to publicly available page information and do not perform interface reverse engineering, private data access, video downloading, or watermark removal.
+
+## Reference(s):
+
+- [Toutiao homepage](https://www.toutiao.com/)
+- [Toutiao search](https://www.toutiao.com/search)
+- [ClawHub skill page](https://clawhub.ai/clawkk/skills/toutiao-video)
+- [Publisher profile](https://clawhub.ai/user/clawkk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or concise text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries should cite public source links, include collection time when relevant, and avoid bulk scraping or video downloading.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

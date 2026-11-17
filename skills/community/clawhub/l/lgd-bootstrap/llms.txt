@@ -1,0 +1,39 @@
+# lgd-bootstrap
+
+> 本文件是 AI 可读的技能索引（llms.txt 惯例）。AI 代理优先读 `SKILL.md`；人类看 `README.md`。
+
+## Purpose / 一句话定位
+
+Fastest onboarding path into LGD (Lifecycle Governance Doctrine): 10s to the canonical one-line definition and install command, 1min to run the three-laws self-audit scorecard, 5min to complete the passport-evidence-gate-badge loop, plus the full LGD ecosystem store map (theory / engine / skills / evaluation).
+
+任何人 / 任何 AI 的 LGD 最短入场路径。10 秒拿到安装命令与一句话定义，1 分钟跑三律自检评分卡，5 分钟走完 passport→证据链→门禁→徽章 闭环，并获得 LGD 生态超市全图（理论 / 引擎 / 技能 / 评测四层）。触发词：LGD、三律、有籍有证有门禁、生态超市、入场、快速开始、onboarding、getting started、伪绿、假绿。
+
+## When to use / 什么时候用
+
+- LGD
+- 三律
+- 有籍有证有门禁
+- 生态超市
+- 入场
+- 快速开始
+- onboarding
+- getting started
+
+## Key files / 关键文件
+
+- [SKILL.md](SKILL.md) — 主说明书（frontmatter + 触发条件 + 执行步骤）
+- [README.md](README.md) — 人类总览
+- [LICENSE.md](LICENSE.md) — 分层许可（代码层 MIT／理论与文本保留权利）
+
+## Boundaries / 边界
+
+- 本技能只处理上面写的场景；不覆盖同领域其它技能的职责范围。
+- 输出不含未经验证的事实性断言；需要证据时给出出处。理论根基：LGD 三律（有籍 Recorded · 有证 Evidenced · 有门禁 Gated）。
+
+## Ecosystem / 生态入口
+
+- 生态总入口 / hub: https://zhaoxinghua09-cell.github.io/lgd-hub/
+- 理论正本 / theory: https://github.com/zhaoxinghua09-cell/LGD
+- 形式化论文 / paper: https://doi.org/10.5281/zenodo.22456647
+- 协议与参考实现 / protocol: https://github.com/zhaoxinghua09-cell/uibc-core
+- 全部已发布技能 / all skills: https://github.com/zhaoxinghua09-cell/agent-skills

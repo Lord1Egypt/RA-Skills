@@ -101,4 +101,6 @@ python3 gmb_arrival.py getGMBArrival 481 2 "Tsuen Wan Market Street" NT
 
 ## Changelog
 
+- **v1.2.0** (2026-09-17): Improved security
+- **v1.1.0** (2026-09-17): Security hardened
 - **v1.0.0** (2026-03-25): Initial release with route search and ETA retrieval

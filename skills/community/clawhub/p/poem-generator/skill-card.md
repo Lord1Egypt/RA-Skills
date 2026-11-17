@@ -1,42 +1,54 @@
-## Description: <br>
-Poem Generator helps agents draft and transform poems, including free verse, haiku, couplets, acrostic poems, and classical-poetry translations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Poem Generator helps agents draft and guide modern poems, haiku, couplets, acrostic poems, and classical poetry translations.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-External users and content creators use this skill to prompt an agent for structured poem drafting, poetic-form guidance, and classical-poetry translation or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes an unrelated content marketing script that is not clearly disclosed. <br>
-Mitigation: Review the included scripts before installing or invoking the skill, and use only the poetry helper when poetry generation is intended. <br>
-Risk: A bundled script can persist command text to local history under the user's data directory. <br>
-Mitigation: Avoid entering private drafts, personal text, or proprietary content until the installed command path is verified and local persistence is acceptable. <br>
+## Use Case:
 
+External users and developers can use this skill to have an agent produce poetry-writing prompts, poem drafts, format guidance, and translation or analysis scaffolds for Chinese and English poetry workflows.
 
-## Reference(s): <br>
-- [Poem Generator on ClawHub](https://clawhub.ai/bytesagain3/poem-generator) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [Poem Generator Tips](tips.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and shell command text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes structured poem prompts and form-specific writing guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The package includes a same-named marketing helper that saves user input locally without clear disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts before deployment, and remove or clearly document the marketing helper and its local history logging behavior.
+
+Risk: Sensitive campaign names, proprietary drafts, or personal data could be entered into commands that write local history.
+
+Mitigation: Avoid sensitive inputs unless logging is disclosed, optional, and permission-hardened.
+
+## Reference(s):
+
+- [Poem Generator on ClawHub](https://clawhub.ai/bytesagain3/skills/poem-generator)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown and plain text with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include poem drafts, structured writing instructions, explanations, or local shell command output.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Automate Pinterest pin publishing via browser automation with Playwright, including jp.pinterest.com support, single pins, carousels, batch publishing, and reusable cookie sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate Pinterest pin publishing via browser automation with Playwright, including cookie-based sessions, single-pin publishing, carousel-style image inputs, and batch publishing for jp.pinterest.com.
 
-## Publisher: <br>
-[luoboask](https://clawhub.ai/user/luoboask) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luoboask](https://clawhub.ai/user/luoboask)
 
-## Use Case: <br>
-External users and developers use this skill to automate Pinterest content publishing through a browser session, including login reuse, image upload, pin metadata entry, and batch posting workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reusable Pinterest session cookies can allow continued account access if the local cookie file is exposed. <br>
-Mitigation: Run in an isolated environment or dedicated account, restrict access to ~/.config/pinterest/cookies.json, and delete or rotate cookies after use. <br>
-Risk: Some scripts can publish live Pinterest posts automatically using configured or hardcoded pin data. <br>
-Mitigation: Inspect and edit pin lists before execution, start with scripts that pause for manual review, and verify the target account and board before publishing. <br>
-Risk: Anti-detection and proxy guidance may conflict with platform expectations or account safety practices. <br>
-Mitigation: Avoid anti-detection and proxy tactics; follow Pinterest account policies and rate limits. <br>
+## Use Case:
 
+External creators, social media operators, and developers can use this skill to prepare and publish Pinterest pins from local image assets through browser automation when the Pinterest API is not used.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luoboask/pinterest-browser-publisher) <br>
-- [ClawHub listed homepage](https://clawhub.ai/skills/pinterest-browser-publisher) <br>
-- [Pinterest browser publishing package documentation](artifact/PACKAGE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown instructions with inline shell commands, JavaScript examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces browser automation workflows that can publish live Pinterest content and write session cookies and screenshots on the local machine.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: Stored Pinterest cookies can act as login secrets if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat ~/.config/pinterest/cookies.json as sensitive, avoid sharing logs that may contain cookie details, and delete or rotate cookies after use.
+
+Risk: Automation can publish content under a real Pinterest account.
+
+Mitigation: Use only an account approved for automation and review configured pins before running auto-publish scripts.
+
+Risk: The skill depends on local Node.js and Playwright execution.
+
+Mitigation: Install dependencies in an isolated user environment and prefer pinned or locally reviewed dependency versions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luoboask/skills/pinterest-browser-publisher)
+- [ClawHub homepage metadata](https://clawhub.ai/skills/pinterest-browser-publisher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JavaScript examples, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce browser automation logs and screenshots while running publisher scripts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter and package.json report 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

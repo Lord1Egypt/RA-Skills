@@ -1,42 +1,55 @@
-## Description: <br>
-This is my personal template collection. Here you'll find templates, and configurations for various boilerplates, python, ansible, docker, docker-compose. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This is a personal template collection with templates and configurations for boilerplates, Python, Ansible, Docker, and Docker Compose.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and engineers use this skill as a lightweight helper for boilerplate templates and configuration snippets across Python, Ansible, Docker, and Docker Compose workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a generic helper script that can save command activity and user-added entries locally in plaintext. <br>
-Mitigation: Do not pass secrets or sensitive project details to the helper commands, and review the local data directory before sharing or retaining outputs. <br>
-Risk: The release is described as a lightweight, mostly placeholder boilerplate helper. <br>
-Mitigation: Review generated guidance and scripts before applying them to production projects. <br>
+## Use Case:
 
+Developers and engineers can use this skill to access a small boilerplate-oriented CLI for template-related commands, status checks, and simple local data operations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bytesagain-lab/boilerplates) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
-- [ChristianLempa/boilerplates](https://github.com/ChristianLempa/boilerplates) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and stdout text with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some commands can write local plaintext data and command history under the configured boilerplates data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: User-supplied data and command history may be retained in local plaintext files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering secrets or sensitive project details, review the local data directory before and after use, and set BOILERPLATES_DIR to a controlled location when testing.
+
+Risk: The command set includes generic local data operations beyond documented boilerplate management.
+
+Mitigation: Review the shell scripts before installation and restrict use to non-sensitive test data until storage behavior and command scope are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/boilerplates)
+- [Publisher profile](https://clawhub.ai/user/bytesagain-lab)
+- [Publisher homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Plain text CLI output with optional local data and history files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands can read and write local boilerplates data under BOILERPLATES_DIR or the user's XDG data directory.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

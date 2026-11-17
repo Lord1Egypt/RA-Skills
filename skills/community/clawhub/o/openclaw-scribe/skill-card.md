@@ -1,45 +1,59 @@
-## Description: <br>
-Reads OpenClaw session logs, extracts decisions, preferences, framework sentences, project updates, and follow-ups, then writes a structured daily memory file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous session scribe that reads today's OpenClaw session logs, extracts decisions, preferences, framework sentences, and project updates, then writes a structured daily memory file.
 
-## Publisher: <br>
-[billc8128](https://clawhub.ai/user/billc8128) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[billc8128](https://clawhub.ai/user/billc8128)
 
-## Use Case: <br>
-Developers and OpenClaw users use Scribe to consolidate session history into durable memory files that an agent can reference across future sessions. It can run manually or as a scheduled nightly job. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read private OpenClaw session logs and send user messages to OpenRouter for summarization. <br>
-Mitigation: Review the session directory scope before enabling the skill, narrow SCRIBE_SESSION_DIR and SCRIBE_DAYS where possible, and install only when this data flow is acceptable. <br>
-Risk: The skill writes persistent memory files that may preserve sensitive decisions, preferences, project updates, or follow-up tasks. <br>
-Mitigation: Review generated memory files regularly and keep SCRIBE_APPEND_LONGTERM disabled unless long-term aggregation is needed. <br>
-Risk: The nightly cron job can continue processing sessions automatically after installation. <br>
-Mitigation: Remove or disable the scribe-nightly cron job when automatic processing is no longer wanted. <br>
+## Use Case:
 
+Developers and OpenClaw users use Scribe to consolidate daily agent-session history into durable memory notes. It supports manual runs and scheduled cron-based memory extraction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/billc8128/openclaw-scribe) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Cron setup](references/cron-setup.md) <br>
-- [Signal classification guide](references/signal-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown memory files with terminal status text and setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes memory/YYYY-MM-DD.md and can optionally append extracted content to MEMORY.md when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Session messages are processed by OpenRouter and may contain confidential, personal, or credential-like content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in workspaces approved for external LLM processing, and add redaction or review controls before processing sensitive sessions.
+
+Risk: Extracted preferences, decisions, and project updates are persisted into local memory and may be inaccurate or overly broad.
+
+Mitigation: Review generated memory files before relying on them for future agent behavior, and keep retention scoped to the user's needs.
+
+Risk: A scheduled job can repeatedly process new session logs without per-run approval.
+
+Mitigation: Keep the cron job disabled until reviewed, scope the session directory and day range, and provide an easy way to disable the schedule.
+
+## Reference(s):
+
+- [Cron Setup for Scribe](references/cron-setup.md)
+- [Signal Classification Guide](references/signal-guide.md)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration]
+
+**Output Format:** [Structured Markdown memory files and setup commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes memory/YYYY-MM-DD.md and can optionally append to MEMORY.md.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

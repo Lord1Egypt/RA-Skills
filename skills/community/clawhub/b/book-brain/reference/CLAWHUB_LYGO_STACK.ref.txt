@@ -1,0 +1,15 @@
+Title: LYGO + BOOK BRAIN — ClawHub stack (deepseekoracle)
+Last updated: 2026-07-04
+
+Core pairs:
+- book-brain@2.0.0 — filesystem helper (this skill)
+- lyra-brain@2.0.0 — graph grow/recall
+- lygo-protocol-stack-operator — lattice audits
+- lygo-champion-council — unified Δ9 council
+- lygo-kernel-egg-planter — egg stubs → reference/LYGO_KERNEL_EGGS.ref.txt
+- lygo-ollama-army@0.5.0 — local army (SECURITY_AUDIT.md)
+
+External:
+- https://clawhub.ai/deepseekoracle
+- https://deepseekoracle.github.io/lygo-protocol-stack/
+- https://github.com/DeepSeekOracle/lygo-protocol-stack

@@ -1,0 +1,118 @@
+{
+  "executive_summary": "建议先从销售询盘整理与报价准备开始做可控自动化，小范围验证后再扩展到质量文档。",
+  "analysis_boundary": {
+    "confirmed_facts": [
+      "企业使用用友 ERP、自研 MES、企业微信和共享文件服务器",
+      "客户图纸和生产配方不能上传公共聊天产品"
+    ],
+    "assumptions": [
+      "销售询盘当前存在跨系统重复整理"
+    ],
+    "unknowns": [
+      "尚未确认 ERP 是否提供稳定接口"
+    ],
+    "overall_confidence": "中等"
+  },
+  "top_three_applications": [
+    {
+      "rank": 1,
+      "name": "销售询盘整理与报价准备助手",
+      "summary": "自动整理询盘和历史资料，生成待销售确认的报价准备结果。",
+      "department": "销售部",
+      "role": "销售助理",
+      "task": "整理询盘并准备报价资料",
+      "why_now": [
+        "任务重复且输入输出相对清楚",
+        "最终结果可以由销售人员核查"
+      ],
+      "solution_type": "规则 + AI",
+      "ai_can_do": [
+        "提取询盘字段",
+        "检索历史资料并生成准备草稿"
+      ],
+      "human_must_do": [
+        "确认价格、交期和最终报价"
+      ],
+      "implementation_difficulty": {
+        "level": "中等",
+        "reason": "需要连接邮件、历史报价和 ERP 导出数据"
+      },
+      "internal_coordination": {
+        "level": "中等",
+        "reason": "需要销售与 IT 共同确认流程和接口",
+        "required_roles": [
+          "销售负责人",
+          "一线销售",
+          "IT"
+        ]
+      },
+      "data_readiness": {
+        "level": "需要少量整理",
+        "reason": "已有询盘和报价资料，但需要统一字段与版本"
+      },
+      "confidentiality": {
+        "level": "高",
+        "data_types": [
+          "客户资料",
+          "历史报价",
+          "产品参数"
+        ],
+        "reason": "资料涉及客户信息和商业条件"
+      },
+      "deployment": {
+        "mode": "企业私有应用 + 模型 API",
+        "reason": "数据和权限保存在企业环境，仅发送必要且可脱敏的内容"
+      },
+      "confidence": "中等",
+      "largest_uncertainty": "尚未确认 ERP 是否提供接口",
+      "minimum_pilot": "选取一种询盘入口和一类标准产品，连续验证两周。",
+      "next_action": "收集 20 份脱敏询盘及对应最终报价，确认字段、异常和人工审核点。",
+      "roi_status": "待测算",
+      "missing_roi_data": [
+        "每日询盘数量",
+        "单次整理耗时",
+        "返工与遗漏基线"
+      ]
+    }
+  ],
+  "main_obstacles": [
+    "ERP 接口和数据导出能力尚未确认"
+  ],
+  "not_recommended_now": [
+    {
+      "name": "无人审核的自动报价",
+      "reason": "价格与交期属于重大客户承诺",
+      "reconsider_when": "只可在明确规则、权限和人工最终确认下重新评估"
+    }
+  ],
+  "other_candidates": [
+    {
+      "name": "质量文档整理助手",
+      "department": "质量部",
+      "priority": "P1"
+    }
+  ],
+  "detailed_evidence": {
+    "company_facts": [
+      "企业提供了系统清单与销售岗位资料"
+    ],
+    "tasks": [
+      "销售助理接收询盘、查询历史报价、制作报价单并协调技术确认"
+    ],
+    "scoring_rationales": [
+      "输出可人工验证，适合先做范围受控的试点"
+    ],
+    "pilot_steps": [
+      "确定样本范围",
+      "建立字段和异常清单",
+      "离线评测后再接入真实流程"
+    ]
+  },
+  "consultation_cta": {
+    "recommended": true,
+    "placements": [
+      "report_end"
+    ],
+    "message": "可申请免费咨询，进一步确认优先级、数据准备和最小试点。"
+  }
+}

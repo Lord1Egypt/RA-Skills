@@ -1,42 +1,59 @@
-## Description: <br>
-Scans AI agent skills for security vulnerabilities, including code injection, prompt injection, credential exfiltration, supply chain attacks, and 69+ threat patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan AI agent skills for security vulnerabilities including code injection, prompt injection, credential exfiltration, supply chain attacks, and other threat patterns.
 
-## Publisher: <br>
-[0xRapi](https://clawhub.ai/user/0xRapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xrapi](https://clawhub.ai/user/0xrapi)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to run isnad-scan before installing, publishing, or integrating agent skills, and to interpret findings from directory scans, CVE checks, verbose output, or JSON reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill invokes a third-party scanner package. <br>
-Mitigation: Confirm the PyPI package and publisher before installing, and keep the tool isolated with pipx when possible. <br>
-Risk: CVE checks can share dependency names and versions with OSV.dev. <br>
-Mitigation: Use the --cve option only when that external lookup is acceptable for the scanned project. <br>
-Risk: Scanning the wrong path may inspect files outside the intended review scope. <br>
-Mitigation: Run scans only against directories you mean to inspect. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xRapi/isnad-scan) <br>
-- [ISNAD Protocol](https://isnad.md) <br>
+## Use Case:
 
+Developers, security reviewers, and agents use this skill to scan skill directories, packages, and code contributions before installation, review, publishing, or CI integration.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON scanner output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the isnad-scan binary; CVE checks may contact OSV.dev.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs and relies on an unpinned third-party package.
+
+Mitigation: Install only from a trusted package source and prefer a pinned or reviewed package version where possible.
+
+Risk: CVE checks may make network requests to external vulnerability services.
+
+Mitigation: Use CVE checking only when external network access is acceptable for the files and environment being scanned.
+
+Risk: Broad scan targets can include files outside the intended review scope.
+
+Mitigation: Run scans on the specific directories or packages intended for inspection.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/0xrapi/skills/isnad-scan)
+- [Publisher Profile](https://clawhub.ai/user/0xrapi)
+- [ISNAD Protocol](https://isnad.md)
+- [ISNAD Project Repository](https://github.com/counterspec/isnad)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, code snippets, and optional JSON scanner output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide use of verbose, CVE, and JSON output modes from the installed scanner.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

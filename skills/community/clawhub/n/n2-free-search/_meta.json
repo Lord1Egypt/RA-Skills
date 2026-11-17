@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn7380g10yew6j6b43xf0b7vsx80dwg0",
-  "slug": "n2-free-search",
-  "version": "1.0.0",
-  "publishedAt": 1770966927707
+    "slug": "n2-free-search",
+    "version": "1.0.0",
+    "description": "Free, unlimited web search for AI agents via SearXNG metasearch — no API key, no credit card, no rate limits.",
+    "author": "Nton2",
+    "license": "MIT",
+    "homepage": "https://nton2.com",
+    "repository": "https://github.com/choihyunsus/n2-free-search",
+    "tags": [
+        "search",
+        "mcp",
+        "web-search",
+        "searxng",
+        "free",
+        "no-api-key",
+        "ai-tools"
+    ]
 }

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【商户名】美团团购产品方案 v1.0</title>
+<style>
+  :root { --brand:#534AB7; --accent:#2196F3; --ok:#639922; --warn:#E65100; --ink:#1A1A2E; --bg:#F5F5F5; --line:#E0E0E0; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:"PingFang SC","Microsoft YaHei",sans-serif; background:var(--bg); color:var(--ink); line-height:1.75; }
+  .wrap { max-width:1080px; margin:0 auto; padding:24px 20px 80px; }
+  header.hero { background:linear-gradient(135deg,var(--brand),var(--accent)); color:#fff; border-radius:16px; padding:40px 32px; margin-bottom:28px; }
+  header.hero h1 { font-size:28px; margin-bottom:8px; }
+  header.hero .meta { opacity:.9; font-size:14px; }
+  h2.sec { font-size:22px; color:var(--brand); margin:40px 0 16px; padding-left:12px; border-left:5px solid var(--brand); }
+  h3 { font-size:17px; margin:20px 0 10px; }
+  table { width:100%; border-collapse:collapse; background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,.06); margin:14px 0; font-size:14px; }
+  th { background:var(--brand); color:#fff; padding:10px 12px; text-align:left; font-weight:600; }
+  td { padding:9px 12px; border-bottom:1px solid var(--line); }
+  tr:nth-child(even) td { background:#FAFAFC; }
+  .hl td { background:#F3EFFA !important; font-weight:600; } /* 我方SKU高亮行 */
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px; margin:16px 0; }
+  .card { background:#fff; border-radius:12px; padding:18px 20px; box-shadow:0 1px 4px rgba(0,0,0,.06); border-top:4px solid var(--accent); }
+  .card h4 { color:var(--brand); font-size:16px; margin-bottom:8px; }
+  .card .price { font-size:24px; color:var(--warn); font-weight:700; }
+  .card .price s { font-size:14px; color:#999; font-weight:400; margin-left:6px; }
+  .tag { display:inline-block; font-size:12px; padding:2px 10px; border-radius:20px; margin-right:6px; }
+  .tag.traffic { background:#E8F5E9; color:var(--ok); }
+  .tag.regular { background:#E3F2FD; color:var(--accent); }
+  .tag.profit  { background:#F3EFFA; color:var(--brand); }
+  .tag.vip     { background:#FBE9E7; color:var(--warn); }
+  .tag.bridge  { background:#FFF3E0; color:#EF6C00; }
+  .note { background:#FFF8E1; border-left:4px solid #FFB300; padding:12px 16px; border-radius:0 8px 8px 0; margin:14px 0; font-size:14px; }
+  .danger { background:#FFEBEE; border-left:4px solid #C62828; padding:12px 16px; border-radius:0 8px 8px 0; margin:14px 0; font-size:14px; }
+  .priceband { background:#fff; border-radius:12px; padding:20px; box-shadow:0 1px 4px rgba(0,0,0,.06); margin:14px 0; }
+  .band { display:flex; align-items:center; gap:12px; margin:8px 0; }
+  .band .label { width:110px; font-size:13px; color:#666; flex-shrink:0; }
+  .band .track { flex:1; height:26px; background:#EEE; border-radius:13px; position:relative; }
+  .band .node { position:absolute; top:2px; height:22px; border-radius:11px; font-size:12px; color:#fff; display:flex; align-items:center; padding:0 10px; white-space:nowrap; }
+  .band .node.me { background:var(--warn); font-weight:700; box-shadow:0 0 0 2px #fff,0 0 0 4px var(--warn); z-index:2; }
+  .band .node.rival { background:#90A4AE; }
+  footer { margin-top:48px; text-align:center; font-size:13px; color:#999; }
+  @media print { body{background:#fff} .wrap{max-width:100%} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <h1>【商户名】美团团购产品方案</h1>
+  <div class="meta">版本 v1.0 ｜ 生成日期：____ ｜ 调研半径：门店 3km ｜ 类目：____</div>
+</header>
+
+<!-- 一、竞对调研全景 -->
+<h2 class="sec">一、片区竞对调研全景</h2>
+<p>按品类分组的竞对数据表（店名/项目/时长/正价/团购价/已售/特色），用 .hl 高亮我方对标结论。</p>
+
+<!-- 二、价格带卡位图 -->
+<h2 class="sec">二、价格带卡位</h2>
+<div class="priceband">
+  <!-- 每个品类一条 band；竞对节点用 .rival，我方 SKU 用 .node.me 红色标出 -->
+  <div class="band"><div class="label">品类A（¥0-¥400）</div><div class="track">
+    <div class="node rival" style="left:5%;width:18%">竞对 ¥108</div>
+    <div class="node rival" style="left:35%;width:20%">竞对 ¥198</div>
+    <div class="node me" style="left:22%;width:18%">我方 ¥98</div>
+  </div></div>
+</div>
+
+<!-- 三、产品架构 -->
+<h2 class="sec">三、四层产品架构 + 桥梁品</h2>
+<div class="cards">
+  <div class="card"><span class="tag traffic">引流层</span><h4>项目名</h4><div class="price">¥98 <s>¥158</s></div><p>70min ｜ 对标依据 ｜ 每日限量 15 单</p></div>
+  <div class="card"><span class="tag regular">常规层</span><h4>项目名</h4><div class="price">¥198 <s>¥298</s></div><p>60min ｜ 对标依据</p></div>
+  <div class="card"><span class="tag profit">盈利层</span><h4>项目名</h4><div class="price">¥298 <s>¥450</s></div><p>差异化说明</p></div>
+  <div class="card"><span class="tag vip">高客单层</span><h4>次卡名</h4><div class="price">¥598 <s>¥894</s></div><p>3 次卡 ｜ 挂次卡形态随时可退</p></div>
+  <div class="card"><span class="tag bridge">桥梁品</span><h4>项目名</h4><div class="price">到店 ¥39</div><p>线上挂名背书不投流，到店转化用</p></div>
+</div>
+
+<!-- 四、SKU 总表 -->
+<h2 class="sec">四、SKU 总表</h2>
+<table>
+  <tr><th>层级</th><th>团单标题</th><th>时长</th><th>正价</th><th>团购价</th><th>限购/限量</th><th>对标依据</th></tr>
+  <tr class="hl"><td>引流</td><td>【痛点】项目名 70min</td><td>70min</td><td>¥158</td><td>¥98</td><td>限购1/日限15</td><td>对标XX ¥108/60min</td></tr>
+</table>
+
+<!-- 五、折扣纵深测算 -->
+<h2 class="sec">五、折扣纵深测算</h2>
+<table>
+  <tr><th>SKU</th><th>团购价</th><th>膨胀券商家分摊</th><th>新客立减</th><th>极端到手价</th><th>极端毛利</th><th>结论</th></tr>
+  <tr><td>引流款</td><td>¥98</td><td>¥5（只报普通券¥3）</td><td>¥10</td><td>¥85</td><td>___</td><td>限量兜底</td></tr>
+</table>
+<div class="note">铁律：所有折扣让利只动团购价和券，永不动正价。</div>
+
+<!-- 六、活动玩法规划 -->
+<h2 class="sec">六、美团活动玩法规划</h2>
+<p>神会员报名策略 / 周期活动取舍 / 商家自设工具组合 / 付费流量节奏，规则详见 skill 的 references/marketing-tools.md。</p>
+
+<!-- 七、弱项应对 -->
+<h2 class="sec">七、弱项应对策略</h2>
+<p>弱项界定 → 让出客群 → 主攻客群 → 替代信任要素。</p>
+
+<!-- 八、冷启动 30 天 -->
+<h2 class="sec">八、冷启动 30 天打法</h2>
+<table>
+  <tr><th>阶段</th><th>动作</th><th>目标</th></tr>
+  <tr><td>第1周</td><td>亲友单+催评冲基础销量</td><td>主推品破 30 单</td></tr>
+</table>
+
+<!-- 九、合规检查 -->
+<h2 class="sec">九、合规红线检查</h2>
+<div class="danger">逐条列出本方案已规避的合规风险（禁用词替换/正价依据/类目资质）。</div>
+
+<!-- 十、上线确认清单 -->
+<h2 class="sec">十、上线前需商户确认事项</h2>
+<table>
+  <tr><th>#</th><th>确认项</th><th>说明</th><th>状态</th></tr>
+  <tr><td>1</td><td>正价台账真实性</td><td>划线价需有真实执行依据</td><td>待确认</td></tr>
+</table>
+
+<footer>本方案基于公开渠道竞对调研数据，价格信息以平台实时展示为准。</footer>
+</div>
+</body>
+</html>

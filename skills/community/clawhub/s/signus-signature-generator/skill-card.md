@@ -1,43 +1,62 @@
-## Description: <br>
-Generate signature images via the Signus API and return image files for chat delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate signature images via the Signus API and return image files for chat delivery.
 
-## Publisher: <br>
-[signus-ai](https://clawhub.ai/user/signus-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[signus-ai](https://clawhub.ai/user/signus-ai)
 
-## Use Case: <br>
-External users and agents use this skill to request font-based signature images from Signus using a name, first and last name, or initials, then receive generated image files for chat delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The requested signature name or initials are sent to Signus. <br>
-Mitigation: Install and use only when users are comfortable sharing that identity data with Signus. <br>
-Risk: The file-writing boundary is weaker than disclosed. <br>
-Mitigation: Review path containment, filename sanitization, ZIP entry validation, and response size limits before broad use. <br>
-Risk: Generated files are stored locally. <br>
-Mitigation: Review local storage location and retention expectations for ~/.openclaw/media/signatures-font/. <br>
+## Use Case:
 
+Developers and end users use this skill to generate signature images from a provided name, first and last name, or initials through the Signus API and return generated image files for chat delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/signus-ai/signus-signature-generator) <br>
-- [Signus API host](https://api.signus.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, API Calls, Shell commands] <br>
-**Output Format:** [JSON status object with local image file paths and chat-delivered signature images] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+ and writes generated signature files under ~/.openclaw/media/signatures-font/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Signature identity data is sent to api.signus.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when users are comfortable sharing that data with Signus, and disclose this network dependency before use.
+
+Risk: Generated signature images are stored locally and the evidence does not define cleanup or retention behavior.
+
+Mitigation: Define retention and cleanup expectations for generated files under ~/.openclaw/media/signatures-font/.
+
+Risk: Evidence security guidance flags weak file-writing and ZIP extraction safeguards.
+
+Mitigation: Review output-directory containment, sanitize path components, avoid remote IDs as filenames, and add network and archive size limits before broad deployment.
+
+Risk: The dependency list uses adm-zip, which evidence guidance says to update or replace.
+
+Mitigation: Update or replace adm-zip and verify archive handling before production rollout.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/signus-ai/skills/signus-signature-generator)
+- [Signus API host](https://api.signus.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [JSON metadata with local image file paths and chat-delivered signature images]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes generated image files under ~/.openclaw/media/signatures-font/ and may return a count-limited set of signatures.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

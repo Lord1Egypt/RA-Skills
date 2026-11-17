@@ -27,8 +27,72 @@ export default defineConfig({
       testMatch: '**/__checks__/**/*.spec.{js,ts}',
     },
   },
+  bundle: {
+    packages: {
+      embed: ['@acme/**', '!@acme/public-*'],
+      prune: {
+        peerDependencies: ['**', '!@acme/runtime-peer'],
+      },
+    },
+  },
+  runner: {
+    cache: {
+      install: {
+        version: '2026-09-04',
+      },
+    },
+    registries: {
+      upstreams: {
+        npmjs: { url: 'https://registry.npmjs.org/' },
+        internal: {
+          url: 'https://npm.example.com/',
+          auth: { type: 'bearer', token: '${INTERNAL_NPM_TOKEN}' },
+        },
+      },
+      packages: [
+        { pattern: '@acme/**', upstreams: ['internal'] },
+        { pattern: '**', upstreams: ['npmjs'] },
+      ],
+    },
+  },
 })
 ```
+
+These top-level package controls apply only to Playwright Check Suites:
+
+- `bundle.packages.embed` downloads verified package tarballs on the CLI machine and uploads them when runners cannot reach the source registry. Entries apply in order; `!` excludes prior selections, `*` stays within one package-name segment, and `**` crosses the `/` scope separator.
+- `bundle.packages.prune` rewrites only bundled `package.json` copies, removing dependencies that remote installation does not need. It does not edit workspace files.
+- `runner.registries` overrides registry routing only on Checkly runners. Rules are first-match-wins and must end with an exact `**` catch-all. Bearer tokens must be a single `${VAR}` reference resolved from Checkly environment variables; never put a literal credential in config.
+
+See `checkly-playwright` for supported lockfiles, member-scoped pruning, cache effects, validation, and secret-handling details.
+
+### Dependency-cache invalidation
+
+Checkly caches installed dependencies for Playwright Check Suites using the workspace's dependency inputs—the lockfile plus every workspace member's `package.json` and `.npmrc`, whether or not that member is in the bundle—plus the bundle's own install inputs, including registry configuration and the resolved embedded/pruned package sets. The key can therefore change without a file edit when a different set of workspace members lands in the bundle. To invalidate that cache persistently for deployed and scheduled suites, set `runner.cache.install.version` to a string or safe integer and change it when dependencies must be reinstalled:
+
+```typescript
+export default defineConfig({
+  projectName: 'My App',
+  logicalId: 'my-app-monitoring',
+  runner: {
+    cache: {
+      install: {
+        version: process.env.DEPENDENCY_CACHE_VERSION,
+      },
+    },
+  },
+})
+```
+
+This runner-level setting applies to the one code bundle shared by all Playwright Check Suites. An unset or empty-string value leaves the cache key unchanged, so an optional environment variable is safe. The old `caching.dependencyCache.version` location is deprecated but still works with a warning. Upgrade every environment that runs the CLI before migrating, then remove the old property and set `runner.cache.install.version`; declaring both locations is a fatal config error. For one ad-hoc reinstall, use `--refresh-cache` with `checkly test`, `checkly pw-test`, `checkly trigger`, or `checkly checks run` instead of changing committed configuration.
+
+## Configuration validation diagnostics
+
+Commands that load `checkly.config.*` collect configuration problems and render them with config-file attribution instead of stopping at the first error. `test`, `pw-test`, `validate`, `deploy`, and `import plan` show config diagnostics before project or construct diagnostics; fatal config diagnostics exit with status 1. Read and fix the full set before rerunning rather than addressing only the first line.
+
+`checkly trigger` also rejects an invalid config instead of silently continuing. A missing or otherwise unloadable config can still be tolerated by trigger-only workflows, so use `npx checkly validate` when the config itself must be proved valid. Deprecation diagnostics such as the legacy cache-property warning are non-fatal, but should still be migrated after every CLI environment is current. Diagnostics may be rendered on stdout; automation must use the process exit status rather than assuming stderr contains every failure.
+
+Constructs may be declared directly in `checkly.config.*`. The CLI records that config file as their declaring source, so relative paths on those constructs resolve from the config file's directory rather than the shell's working directory. This includes a config-declared `CheckGroup`'s `browserChecks.testMatch` and a setup script's `entrypoint`; keep those paths relative to the config file and do not rewrite them as process-relative workarounds.
 
 ## Configuration file structure
 

@@ -1,40 +1,52 @@
-## Description: <br>
-Provides guidance for second-hand housing searches, VR tour arrangements, and resale transaction workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides second-hand housing search, VR viewing, and resale transaction process guidance.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mike47512](https://clawhub.ai/user/mike47512)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can ask the agent for second-hand housing search guidance, VR viewing support, and resale transaction process pointers. Reviewers should confirm the intended domain because the artifact also describes local lifestyle and store-visit fields.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill's housing name and description conflict with store-visit and local-lifestyle behavior in the artifact, which could mislead users about the intended domain.
+
+Mitigation: Review and correct the name, description, filters, returned fields, and examples so they consistently describe either second-hand housing or local lifestyle services before installation or publication.
+
+Risk: Location-sensitive details such as queue status, booking channels, hours, parking, navigation, photos, and visit notes may become stale or inaccurate.
+
+Mitigation: Verify time-sensitive or location-specific details with authoritative local sources before acting on them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users can use this skill to structure second-hand housing searches, VR tour planning, appointment logistics, and resale workflow questions. Users should independently verify housing, legal, financial, and location-specific details before acting on the guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags a mismatch between the housing label and local-business style instructions in the artifact, so outputs may be off-scope or misleading for real estate decisions. <br>
-Mitigation: Review the skill contents before installation and do not rely on it for housing searches, VR tour arrangements, transaction steps, legal decisions, or financial commitments unless the publisher corrects the scope and details are independently verified. <br>
-Risk: The skill may provide time-sensitive information such as queues, bookings, business hours, parking, navigation, or community popularity that can become stale quickly. <br>
-Mitigation: Verify time-sensitive details against current primary sources before making appointments, travel plans, purchases, or transaction decisions. <br>
+**Output Format:** [Markdown or plain text responses]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/second-hand-house) <br>
+**Other Properties Related to Output:** [May include filtered recommendations or guidance using distance, popularity, price tier, queue status, booking channels, business hours, parking, navigation, photos, notes, and avoidance checklists.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or tool access is described by the artifact.] <br>
+0.1.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

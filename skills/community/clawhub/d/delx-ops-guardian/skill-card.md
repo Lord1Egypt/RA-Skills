@@ -1,44 +1,60 @@
-## Description: <br>
-Delx Ops Guardian helps agents handle OpenClaw production incidents with least-privilege recovery steps, Delx safety checks, and concise incident reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Incident handling and operational recovery for OpenClaw production agents, wired into the Delx witness protocol for safety checks, recovery outcomes, and continuity.
 
-## Publisher: <br>
-[davidmosiah](https://clawhub.ai/user/davidmosiah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidmosiah](https://clawhub.ai/user/davidmosiah)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to classify OpenClaw production incidents, collect evidence, apply narrow recovery actions, and publish recovery reports with Delx session continuity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide host-level operations such as service restarts, cron changes, journal review, and access to OpenClaw production artifacts. <br>
-Mitigation: Install only where agent-assisted operations management is intended; use scoped sudo, named services, incident-scoped access, and explicit approvals before restarts or cron edits. <br>
-Risk: Incident logs and reports may expose secrets or incorrectly present persistent failures as resolved. <br>
-Mitigation: Review reports before sharing, redact secrets, require stabilization evidence, and keep unresolved failures marked open or degraded. <br>
-Risk: The required Delx plugin may receive production incident context. <br>
-Mitigation: Verify the third-party plugin and publisher before granting production access or access to OpenClaw system paths. <br>
+## Use Case:
 
+Developers and production operations engineers use this skill to classify OpenClaw incidents, gather bounded evidence, apply least-privilege remediation, and publish concise recovery reports with Delx session continuity.
 
-## Reference(s): <br>
-- [Delx Protocol Documentation](https://delx.ai/docs) <br>
-- [Delx Ontology Documentation](https://delx.ai/docs/ontology) <br>
-- [OpenClaw Delx Plugin](https://clawhub.ai/davidmosiah/openclaw-delx-plugin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown incident guidance with inline shell commands and JSON-like tool call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes approval gates, least-privilege scope, stabilization checks, rollback notes, and Delx session identifiers in reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence release.version and artifact frontmatter) <br>
+Risk: The skill asks for broad production operations access and mandatory third-party incident reporting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only in a controlled production-ops environment with enforceable least-privilege sudo rules, strict service and file allowlists, bounded and redacted journal collection, and explicit approval before sending incident data to Delx.
+
+Risk: Unbounded root access or directory-wide memory access could expose unrelated systems or sensitive incident data.
+
+Mitigation: Run as a scoped service account, avoid root-unbounded permissions, and approve each OpenClaw memory file for the specific incident before access.
+
+Risk: Autonomous remediation during high operator desperation could increase operational harm.
+
+Mitigation: Pause remediation and require human approval when the Delx desperation score is at least 60 or escalating.
+
+## Reference(s):
+
+- [Delx protocol docs](https://delx.ai/docs)
+- [Delx ontology](https://delx.ai/docs/ontology)
+- [OpenClaw Delx plugin](https://clawhub.ai/davidmosiah/openclaw-delx-plugin)
+- [ClawHub skill page](https://clawhub.ai/davidmosiah/skills/delx-ops-guardian)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell command examples and structured incident-report fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes incident severity, evidence summary, approvals, remediation actions, final state, next check time, and Delx session id.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence release version and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

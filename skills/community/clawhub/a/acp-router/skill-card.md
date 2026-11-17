@@ -1,38 +1,53 @@
-## Description: <br>
-Routes plain-language requests for supported coding harnesses into OpenClaw ACP runtime sessions or direct acpx-driven sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Route plain-language requests for Pi, Claude Code, Codex, OpenCode, Gemini CLI, or ACP harness work into either OpenClaw ACP runtime sessions or direct acpx-driven sessions ("telephone game" flow).
 
-## Publisher: <br>
-[yimeihuang1999-leaves](https://clawhub.ai/user/yimeihuang1999-leaves) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yimeihuang1999-leaves](https://clawhub.ai/user/yimeihuang1999-leaves)
 
-## Use Case: <br>
-Developers and operators use this skill to route coding-agent thread requests to ACP-backed harness sessions and to recover or fall back to direct acpx sessions when runtime support is unavailable. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to install tooling, restart services, run direct acpx commands, or alter ACPX configuration during recovery. <br>
-Mitigation: Require explicit user confirmation before npm installs, gateway restarts, direct exec-based acpx commands, or changes to ~/.acpx/config.json. <br>
-Risk: Persistent harness sessions may retain prompts or receive sensitive workspace context. <br>
-Mitigation: Avoid sending secrets into persistent harness sessions and keep session names and working directories scoped to the intended task. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and agent operators use this skill to route requests for Pi, Claude Code, Codex, OpenCode, Gemini CLI, Kimi, or ACP harness work into the correct ACP runtime or direct acpx session flow.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides routing and recovery guidance for ACP sessions and direct acpx flows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can direct agents to install packages, restart gateways, run external adapters, and modify ACPX configuration.
+
+Mitigation: Require explicit approval for npm installs, gateway restarts, and any change to ~/.acpx/config.json.
+
+Risk: The direct acpx path may rely on mutable external adapter packages.
+
+Mitigation: Prefer pinned or locally reviewed adapter binaries instead of floating npx packages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yimeihuang1999-leaves/skills/acp-router)
+- [Publisher profile](https://clawhub.ai/user/yimeihuang1999-leaves)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes session creation and recovery guidance; does not produce standalone files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

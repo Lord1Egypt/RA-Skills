@@ -1,43 +1,59 @@
-## Description: <br>
-Create and trade tokens on SURGE via API with server-managed wallets, one-time free funding, and auto-routed pre-DEX and post-DEX trading on EVM (Base) or Solana. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sur helps agents create and trade tokens on SURGE through an API, including wallet setup, one-time funding, token launch, and pre-DEX or post-DEX trading.
 
-## Publisher: <br>
-[nkhromovweway](https://clawhub.ai/user/nkhromovweway) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nkhromovweway](https://clawhub.ai/user/nkhromovweway)
 
-## Use Case: <br>
-External users and developers use this skill to guide token creation, wallet setup, funding, and trading through the SURGE development API. The skill helps an agent collect required launch information, confirm irreversible actions, and translate API errors into user-facing guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to use a raw API key for token launches and trades involving crypto assets. <br>
-Mitigation: Use a dedicated, revocable, least-privilege API key where available, keep balances small, and revoke the key when finished. <br>
-Risk: Token launches and trades can be irreversible and may involve financial loss. <br>
-Mitigation: Require explicit user confirmation for every launch and trade amount, and review wallet, chain, token, and amount details before execution. <br>
-Risk: The release is for a development SURGE API endpoint and may not reflect production behavior. <br>
-Mitigation: Use it only when intending to operate the SURGE development workflow and verify live fees, chains, and limits through the launch-info endpoint before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nkhromovweway/sur-pub) <br>
-- [SURGE application](https://app.surgedevs.xyz) <br>
-- [SURGE development API base URL](https://back.surgedevs.xyz) <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent through SURGE token creation, server-managed wallet setup, one-time funding, and follow-on token trading on supported EVM and Solana routes.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided SURGE API key and explicit user confirmation before token launch.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can use a SURGE API key to create server-managed wallets, fund wallets, launch tokens, approve token allowances, and place live trades.
+
+Mitigation: Install only when those capabilities are intended, keep the API key scoped and revocable, and require explicit user confirmation for every wallet, funding, launch, approval, and trade action.
+
+Risk: Token launch and trade actions can be irreversible and can move real funds.
+
+Mitigation: Show the full action summary, chain, wallet, token, amount, and fee details before execution, then proceed only after an explicit user confirmation.
+
+Risk: EVM trades using amountOutMin set to 0 have no slippage protection.
+
+Mitigation: Use quotes when available and set a protective nonzero minimum output for EVM trades instead of accepting amountOutMin of 0.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nkhromovweway/skills/sur-pub)
+- [ClawHub publisher profile](https://clawhub.ai/user/nkhromovweway)
+- [SURGE app and API key management](https://app.surgedevs.xyz)
+- [SURGE DEV API base URL](https://back.surgedevs.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API request examples, JSON payload examples, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance requires a user-provided SURGE API key and explicit confirmation before irreversible launch or trading actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata); artifact frontmatter lists 6.0.0
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

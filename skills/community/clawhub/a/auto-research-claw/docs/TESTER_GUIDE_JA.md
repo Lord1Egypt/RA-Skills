@@ -182,10 +182,10 @@ experiment:
 
 ```bash
 # OpenAIユーザー：
-export OPENAI_API_KEY="sk-xxxxxxxxxxxxxxxxxxxxxxxx"
+export OPENAI_API_KEY="REDACTED-SECRET"
 
 # Anthropicユーザー：
-export ANTHROPIC_API_KEY="sk-ant-xxxxxxxxxxxxxxxxxxxxxxxx"
+export ANTHROPIC_API_KEY="REDACTED-SECRET"
 
 # オプション：Semantic Scholar APIキー（文献検索を高速化）
 export S2_API_KEY="your-s2-key"

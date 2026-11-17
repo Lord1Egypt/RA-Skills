@@ -1,45 +1,60 @@
-## Description: <br>
-Guided token optimization for AI agent workspaces that audits project context files, estimates token savings, and guides cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides AI agents through workspace token audits, token-waste findings, and targeted cleanup with optional dry-run scans and tiktoken-based counting.
 
-## Publisher: <br>
-[songhonglei](https://clawhub.ai/user/songhonglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songhonglei](https://clawhub.ai/user/songhonglei)
 
-## Use Case: <br>
-Developers and agent users use token-slim to reduce recurring context-token costs by scanning always-loaded workspace files, identifying bloat, and guiding safe cleanup. It supports first-time onboarding, on-demand rescans, dry-run previews, and optional concise-output configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently change future agent behavior by modifying workspace agent configuration. <br>
-Mitigation: Run scans in dry-run mode first, review exact config blocks before accepting changes, and create backups before modifying files. <br>
-Risk: The optional tiktoken installer can run pip installation and fetch tokenizer cache data from external sources. <br>
-Mitigation: Skip the installer in restricted environments or use heuristic counting; only run installation when pip access and external cache downloads are acceptable. <br>
-Risk: Batch mode can apply multiple cleanup changes without per-item confirmation. <br>
-Mitigation: Use confirm mode for normal operation and reserve batch mode for workspaces where every proposed change has already been reviewed or is trusted. <br>
+## Use Case:
 
+Developers and agent users use this skill to scan AI-agent workspaces, identify high-token context files, and guide cleanup into lighter memory layouts. It is also used to re-scan workspaces and optionally configure concise agent response habits.
 
-## Reference(s): <br>
-- [Token Saving Strategies](references/strategies.md) <br>
-- [Mode A: First-time Setup](references/mode-a-onboarding.md) <br>
-- [Mode B: On-demand Re-scan](references/mode-b-rescan.md) <br>
-- [tiktoken](https://github.com/openai/tiktoken) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON scan output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scanner supports dry-run and JSON modes; precise token counting depends on optional tiktoken availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can alter workspace files and persistent agent instructions during cleanup flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer dry-run first, review proposed changes before approval, and create backups before any file modification.
+
+Risk: Batch mode and brutal mode can make broad or persistent behavior changes with less per-item confirmation.
+
+Mitigation: Use confirm mode for normal cleanup, enable batch or brutal mode only after reviewing the intended changes, and keep the documented disable or rollback path available.
+
+Risk: The bundled installer can install unpinned third-party software and trigger tokenizer cache network behavior.
+
+Mitigation: Avoid the installer unless that dependency and network behavior are acceptable; otherwise use the scanner's heuristic fallback or run installation in a controlled environment.
+
+## Reference(s):
+
+- [Token Saving Strategies](references/strategies.md)
+- [Mode A: First-time Setup](references/mode-a-onboarding.md)
+- [Mode B: On-demand Re-scan](references/mode-b-rescan.md)
+- [tiktoken](https://github.com/openai/tiktoken)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON scan output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write workspace scan history unless run with dry-run; precise token counts depend on optional tiktoken availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

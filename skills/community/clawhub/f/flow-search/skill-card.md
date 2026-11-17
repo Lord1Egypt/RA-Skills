@@ -1,41 +1,58 @@
-## Description: <br>
-Deep web research using Claude's native search tool for comprehensive research, market analysis, competitor intelligence, and cases where standard search is not enough. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep web research using Claude's native search tool for comprehensive research, market analysis, competitor intelligence, and cases where standard search is not enough.
 
-## Publisher: <br>
-[windseeker1111](https://clawhub.ai/user/windseeker1111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[windseeker1111](https://clawhub.ai/user/windseeker1111)
 
-## Use Case: <br>
-Developers, analysts, and agent builders use FlowSearch to run Claude-backed web searches that synthesize multiple sources into direct answers or structured research reports. It is suited for market analysis, competitor intelligence, recent-news context, and other research tasks that benefit from deeper source synthesis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs Claude non-interactively while inheriting the shell environment, including Claude authentication. <br>
-Mitigation: Run it in a restricted environment with only required environment variables and no sensitive working-directory files. <br>
-Risk: The skill disables Claude permission prompts in normal non-root execution. <br>
-Mitigation: Review the source before use and remove the permission-bypass flag when interactive permission checks are required. <br>
+## Use Case:
 
+Developers and agent builders use FlowSearch to run Claude CLI-backed web research for market analysis, competitor intelligence, recent-news synthesis, and multi-source research reports.
 
-## Reference(s): <br>
-- [FlowSearch ClawHub listing](https://clawhub.ai/windseeker1111/flow-search) <br>
-- [Claude Code CLI](https://claude.ai/code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown research report or direct text answer with cited source URLs; TypeScript helpers return structured result objects.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Quick searches use a 2 minute timeout; deep research uses a 3 minute timeout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub release evidence) <br>
+Risk: The skill runs the local Claude CLI with relaxed permission checks for non-root users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review search.ts before installation and run it only in an environment where this execution posture is acceptable.
+
+Risk: The spawned Claude process inherits the user's shell environment, including CLAUDE_CODE_OAUTH_TOKEN and any other exported variables.
+
+Mitigation: Run the skill in a clean environment that contains only the required Claude token and non-sensitive variables.
+
+Risk: The security evidence marks the release as suspicious because of disabled permission checks and full environment inheritance.
+
+Mitigation: Pin dependencies, keep the reviewed artifact hash for the installed version, and re-review before upgrading.
+
+## Reference(s):
+
+- [FlowSearch ClawHub skill page](https://clawhub.ai/windseeker1111/skills/flow-search)
+- [Claude Code CLI](https://claude.ai/code)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown research answers or structured reports with cited source links; TypeScript API calls return SearchResult objects.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Quick searches time out after 2 minutes; deep research runs up to 3 minutes.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

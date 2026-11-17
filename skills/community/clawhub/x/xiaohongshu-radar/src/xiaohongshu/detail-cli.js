@@ -1,23 +1,48 @@
 #!/usr/bin/env node
 
-const constants = require("../config/constants");
 const detail = require("../api/detail");
-const log = require("../utils/log");
 const key = require("../utils/key");
 const utils = require("../utils/utils");
 const validator = require("../validate/url");
+const { parseArgs, buildHelp } = require("../utils/args");
+const {
+  emitError,
+  emitEmpty,
+  buildSuccessEnvelope,
+  finishSuccess,
+  emitUncaught,
+} = require("../utils/output");
+
+const SCHEMA = {
+  flags: {
+    "--url": {
+      alias: "-u",
+      key: "url",
+      type: "string",
+      required: true,
+      desc: "笔记链接或笔记 id",
+    },
+  },
+  positionalKey: "url",
+};
+
+const AUTH_MESSAGE =
+  "GUAIKEI_API_TOKEN 未配置或格式无效。须为 16-256 位字母、数字、下划线或连字符; 可通过 https://www.guaikei.com 自助开通";
+
+const URL_MESSAGE =
+  "无法识别笔记链接。支持: https://www.xiaohongshu.com/explore/{id}、https://www.xiaohongshu.com/discovery/item/{id}、https://xhslink.com/o/*、https://xhslink.cn/o/*、https://xhslink.com/m/*、https://xhslink.cn/m/*，或 24 位笔记 id";
 
 function printHelp() {
-  console.log(`
-用法: node src/xiaohongshu/detail-cli.js <笔记链接>
-
-示例: node src/xiaohongshu/detail-cli.js "https://www.xiaohongshu.com/explore/xxx?xsec_token=yyy"
-
-注意: 
-  - 笔记链接是小红书可公开访问的笔记链接
-  - 即使用 "node src/xiaohongshu/search-cli.js <关键词>" 获取到的出参 url 值所代表的笔记链接
-  - 请确保环境变量 GUAIKEI_API_TOKEN 已配置
-`);
+  process.stderr.write(
+    buildHelp(SCHEMA, "node src/xiaohongshu/detail-cli.js <笔记链接>", [
+      'node src/xiaohongshu/detail-cli.js --url "https://www.xiaohongshu.com/explore/xxx"',
+      "node src/xiaohongshu/detail-cli.js --url 6a0123456789abcdef012345",
+    ]) +
+      "\n\n注意:\n" +
+      "  - 这是笔记链接，不是博主主页链接\n" +
+      "  - 支持 explore / discovery/item / xhslink 短链 / 24 位笔记 id；可整段粘贴 App 分享文案，自动抽链\n" +
+      "  - 详情不返回评论；评论请使用 comment-cli.js\n",
+  );
 }
 
 async function main() {
@@ -25,96 +50,94 @@ async function main() {
   const args = process.argv.slice(2);
   if (args.length === 0) {
     printHelp();
+    emitError("detail", "INVALID_ARGS", "缺少命令参数", 2, startTime);
     return;
   }
 
-  let url = "";
-  args.forEach((arg, index) => {
-    if (arg === "--url" || arg === "-u") {
-      url = args[index + 1] || "";
-    } else if (arg === "--help" || arg === "-h") {
-      printHelp();
-      process.exit(0);
-    } else if (arg.startsWith("-") === false && url === "") {
-      url = arg;
-    }
-  });
-  if (url === "") {
-    utils.printError(`未提供笔记链接`);
+  let parsed;
+  try {
+    parsed = parseArgs(args, SCHEMA);
+  } catch (error) {
+    utils.printError(`参数解析失败: ${error.message}`);
+    printHelp();
+    emitError(
+      "detail",
+      "INVALID_ARGS",
+      `参数解析错误: ${error.message}`,
+      2,
+      startTime,
+    );
+    return;
+  }
+  if (parsed._help) {
     printHelp();
     return;
   }
 
+  let { url } = parsed;
+  const urlRaw = url;
+
   utils.printBanner();
-  utils.printInfo(`笔记链接: ${url}`);
-  const isRight = validator.isXiaohongshuNoteUrl(url);
-  if (!isRight) {
-    utils.printError(
-      `笔记链接格式无效, 支持: https://www.xiaohongshu.com/explore/xxx?xsec_token=yyy, http://xhslink.com/m/xxx`,
+  utils.printInfo(`原始链接: ${urlRaw}`);
+  if (!validator.isDetailUrl(url)) {
+    utils.printError(URL_MESSAGE);
+    emitError("detail", "INVALID_URL", URL_MESSAGE, 1, startTime, {
+      command: "detail",
+      url_raw: urlRaw,
+    });
+    return;
+  }
+  url = validator.normalizeUrl(url);
+  utils.printInfo(`规范后的链接: ${url}`);
+
+  const token = key.skillKey(process.env.GUAIKEI_API_TOKEN);
+  if (token === "") {
+    emitError("detail", "AUTH_REQUIRED", AUTH_MESSAGE, 3, startTime, {
+      command: "detail",
+      url_raw: urlRaw,
+      url,
+    });
+    return;
+  }
+
+  const detailRequest = { command: "detail", url_raw: urlRaw, url };
+  let detailTask = null;
+  try {
+    await detail.createDetailTask(token, url);
+    utils.printSuccess("详情任务创建成功, 正在获取中...");
+    detailTask = await detail.getDetailTask(token, url);
+  } catch (error) {
+    utils.printError(`获取详情失败: ${error.message}`);
+    emitError(
+      "detail",
+      error.code || "UNKNOWN",
+      error.message,
+      error.name === "AuthError" ? 3 : 1,
+      startTime,
+      detailRequest,
     );
     return;
   }
 
-  const token = key.skillKey(process.env.GUAIKEI_API_TOKEN);
-  let detailTask = null;
-  try {
-    const status = await detail.createDetailTask(token, url);
-    if (status.errcode !== 0) {
-      throw new Error(
-        `详情任务创建时, 遇到未知错误, 请反馈给开发者 ${status} - ${Date.now()}`,
-      );
-    }
-    utils.printSuccess(`详情任务创建成功, 正在搜索中...`);
-
-    detailTask = await detail.getDetailTask(token, url);
-  } catch (error) {
-    const errorOutput = {
-      status: "error",
-      url: url,
-      message: error.message,
-      error_code: error.code || "UNKNOWN",
-      timestamp: new Date().toLocaleString(),
-      results: [],
-    };
-    console.log(JSON.stringify(errorOutput, null, 2));
-    return;
-  }
   if (!detailTask) {
-    utils.printError(`详情任务没有返回结果, 请稍后重试或联系开发者`);
-    const emptyOutput = {
-      status: "empty",
-      url: url,
-      message: "没有找到匹配的笔记内容",
-      error_code: "NOT_FOUND",
-      timestamp: new Date().toLocaleString(),
-      results: [],
-    };
-    console.log(JSON.stringify(emptyOutput, null, 2));
+    utils.printInfo("没有找到匹配的笔记");
+    emitEmpty("没有找到匹配的笔记", startTime, detailRequest);
     return;
   }
-  // 输出搜索结果
-  const finalOutput = {
-    status: "success",
-    url: url,
-    message: "详情任务完成",
-    timestamp: new Date().toLocaleString(),
-    openclaw_metadata: {
-      skill_version: constants.VERSION,
-      runtime_version: process.versions.node,
-      execution_time: Date.now() - startTime,
-    },
-    results: detailTask,
-  };
-  console.log(JSON.stringify(finalOutput, null, 2));
-  utils.printSuccess(`详情任务完成, 已返回结果`);
 
-  await log.taskWrite(
-    `${startTime}_${validator.url2Name(url)}_detail.json`,
-    JSON.stringify(finalOutput, null, 2),
+  const finalOutput = buildSuccessEnvelope(
+    "详情任务完成",
+    startTime,
+    detailRequest,
+    detailTask,
   );
+  await finishSuccess(finalOutput, {
+    logFilename: `${startTime}_${validator.url2Name(url)}_detail.json`,
+    stderrMessage: "详情任务完成, 已返回结果",
+  });
 }
 
 main().catch((error) => {
-  utils.printError(error);
-  process.exit(1);
+  utils.printError(error.message || String(error));
+  emitUncaught("detail", error);
 });

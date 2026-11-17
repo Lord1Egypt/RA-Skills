@@ -1,36 +1,48 @@
-## Description: <br>
-Validates Markdown files in the workspace for broken local links, missing file references, and basic syntax issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validates Markdown files in the workspace for broken local links, missing file references, and basic syntax issues.
 
-## Publisher: <br>
-[wanng-ide](https://clawhub.ai/user/wanng-ide) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wanng-ide](https://clawhub.ai/user/wanng-ide)
 
-## Use Case: <br>
-Developers and documentation maintainers use this skill to scan local Markdown files for broken internal links and basic documentation consistency issues before release or publication. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The scan report can include local file paths and link targets from Markdown files. <br>
-Mitigation: Run it on a scoped project or documentation directory and review the JSON report before sharing it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and documentation maintainers use this skill to scan workspace Markdown for broken local links, missing file references, and basic documentation consistency issues before release or review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript examples and JSON report structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local scan results that may include file paths and link targets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Recursive scans may follow directory symlinks outside the requested workspace and read or report out-of-scope Markdown files.
+
+Mitigation: Use the skill only on trusted workspaces, review scan targets before running, and prefer releases that skip symlinks or enforce root boundaries and recursion limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wanng-ide/skills/markdown-linter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript usage examples and JSON scan results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The scan result reports total Markdown files, broken-link count, and issue details.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

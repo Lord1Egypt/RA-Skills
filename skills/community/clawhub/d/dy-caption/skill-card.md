@@ -1,41 +1,55 @@
-## Description: <br>
-Transcribes spoken audio from Douyin video share text or links into text, and can check dy-caption credits and transcription history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts text or subtitles from Douyin, TikTok, YouTube, Xiaohongshu, and similar short-video share links using the Videosays service.
 
-## Publisher: <br>
-[xwchris](https://clawhub.ai/user/xwchris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xwchris](https://clawhub.ai/user/xwchris)
 
-## Use Case: <br>
-External users and content teams use this skill to submit Douyin share text or links for transcription, then retrieve transcript text, account credit balance, or recent transcription history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends Douyin share content and a dy-caption API key to an external transcription service. <br>
-Mitigation: Install only if you trust dy-caption and api.dycaption.cn; use a dedicated or revocable API key where possible. <br>
-Risk: Private or sensitive video content may be exposed to the transcription service. <br>
-Mitigation: Avoid submitting private or sensitive videos unless that data sharing is acceptable for the user's environment. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to transcribe supported short-video share links, check Videosays credit balance, and review transcription history. It is useful when a user provides a video link and wants readable captions or transcript text.
 
-## Reference(s): <br>
-- [ClawHub dy-caption release page](https://clawhub.ai/xwchris/dy-caption) <br>
-- [dy-caption API service](https://api.dycaption.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and returned transcription text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses DY_CAPTION_API_KEY and sends Douyin share content to api.dycaption.cn.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: The skill runs an unpinned npm package at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned, reviewed videosays package version or a lockfile-managed local install before use in sensitive environments.
+
+Risk: The transcription flow sends API keys and video links to the Videosays service.
+
+Mitigation: Use a least-privileged environment, process only videos the user is authorized to handle, and avoid submitting confidential links unless the Videosays service is approved for that data.
+
+## Reference(s):
+
+- [Videosays website](https://videosays.com/zh?utm_source=dy_caption_skill&utm_medium=agent_skill&utm_campaign=douyin_to_text_skill)
+- [Videosays API documentation](https://videosays.com/zh/docs?utm_source=dy_caption_skill&utm_medium=agent_skill&utm_campaign=douyin_to_text_skill&utm_content=api_docs)
+- [videosays npm package](https://www.npmjs.com/package/videosays)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and transcript text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include setup guidance, transcription results, account balance, or transcription history returned by Videosays.]
+
+## Skill Version(s):
+
+1.1.3 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

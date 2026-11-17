@@ -1,45 +1,61 @@
-## Description: <br>
-Grocery Shopping Kroger helps agents find nearby Kroger-family stores, search products with dietary and nutrition filters, retrieve product details, and add selected items to a connected Kroger cart. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Kroger-family grocery products, find stores, inspect nutrition and allergen details, and add selected items to a connected Kroger cart through AgentPMT-hosted remote tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-External agents use this skill to support grocery shopping workflows for Kroger-family stores, including store lookup, product search, dietary filtering, product detail review, and cart updates for connected Kroger accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use location-derived zip code data for store lookup. <br>
-Mitigation: Keep tool inputs scoped to the grocery task and review any location-dependent store selection before use. <br>
-Risk: The skill can change a live Kroger cart when a connected Kroger account is available. <br>
-Mitigation: Before cart updates, show the exact items, quantities, store, and account action, then proceed only after user confirmation. <br>
-Risk: Security evidence notes unclear confirmation boundaries for cart-changing actions. <br>
-Mitigation: Treat add_to_cart as a confirmation-gated action and preserve request parameters when retrying only after fixing schema, authentication, or payment errors. <br>
+## Use Case:
 
+External users and agents use this skill to find nearby Kroger-family stores, search products with dietary and nutrition filters, compare availability and pricing, and add selected items to a connected Kroger cart.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/grocery-shopping-kroger) <br>
-- [AgentPMT marketplace product page](https://www.agentpmt.com/marketplace/grocery-shopping-kroger) <br>
-- [AgentPMT MCP server](https://api.agentpmt.com/mcp/) <br>
-- [AgentPMT REST invoke endpoint](https://api.agentpmt.com/products/purchase) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with JSON examples and tool-call schemas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces action guidance and structured request examples for find_stores, search_products, get_product_details, and add_to_cart.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can share approximate location and shopping intent with AgentPMT and Kroger services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data sharing is acceptable for the intended user and workflow.
+
+Risk: The skill can modify a connected Kroger cart.
+
+Mitigation: Require user confirmation before any cart-changing action is executed.
+
+Risk: The skill includes unpinned npx setup examples.
+
+Mitigation: Prefer the ClawHub/OpenClaw install route or pinned, verified setup commands.
+
+## Reference(s):
+
+- [Grocery Shopping Kroger ClawHub Page](https://clawhub.ai/agentpmt/skills/grocery-shopping-kroger)
+- [AgentPMT Marketplace Product](https://www.agentpmt.com/marketplace/grocery-shopping-kroger)
+- [Action Schema](artifact/schema.md)
+- [AgentPMT Account MCP/REST Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+- [What AgentPMT Is](https://clawhub.ai/agentpmt/what-is-agentpmt)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration instructions, Shell commands]
+
+**Output Format:** [Markdown instructions with JSON request examples and schema references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote calls return JSON product, store, detail, and cart-operation results.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Manage Apple Reminders via the `remindctl` CLI on macOS (list, add, edit, complete, delete). Supports lists, date filters, and JSON/plain output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Apple Reminders via the remindctl CLI on macOS, including listing, adding, editing, completing, deleting, filtering by list or date, and producing JSON or plain-text output.
 
-## Publisher: <br>
-[npjameszheng1125-netizen](https://clawhub.ai/user/npjameszheng1125-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[npjameszheng1125-netizen](https://clawhub.ai/user/npjameszheng1125-netizen)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for Apple Reminders operations on macOS through `remindctl`, including viewing, creating, editing, completing, and deleting reminders and lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to change, complete, or delete Apple Reminders data. <br>
-Mitigation: Before edit, complete, delete, or force-delete commands, require the agent to show the matching reminder or list and obtain explicit confirmation. <br>
-Risk: The skill depends on the third-party `remindctl` Homebrew package and local Reminders authorization. <br>
-Mitigation: Install only if the user trusts the package source and wants an agent to access Apple Reminders on the Mac where commands run. <br>
+## Use Case:
 
+Developers and macOS users use this skill to have an agent propose and run remindctl commands for viewing, creating, editing, completing, deleting, and exporting Apple Reminders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/npjameszheng1125-netizen/npjames-apple-reminders) <br>
-- [remindctl project](https://github.com/steipete/remindctl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON or plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS, Apple Reminders permission, and the `remindctl` CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can guide delete and list-delete operations against Apple Reminders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Show the matching reminder or list before deletion and avoid force deletion unless the target is confirmed.
+
+Risk: The skill operates on a user's Apple Reminders data through a local CLI.
+
+Mitigation: Install only when the user intends to grant Reminders access, and use macOS privacy settings to review or revoke permission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/npjameszheng1125-netizen/skills/npjames-apple-reminders)
+- [remindctl project homepage](https://github.com/steipete/remindctl)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands target macOS and require remindctl authorization to Apple Reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,60 @@
+# Sprint Contract Template
+
+## Task Identification
+- task_id: TASK-XXXX
+- sprint_number: N
+- created_at: YYYY-MM-DD HH:MM
+- planner_agent: main
+
+## Requirements Analysis
+### User Input
+{{user_requirement}}
+
+### Expanded Specification
+1. {{requirement_1}}
+2. {{requirement_2}}
+3. {{requirement_3}}
+
+## Acceptance Criteria
+| ID | Criterion | Type | Verifiable |
+|----|-----------|------|------------|
+| AC-001 | {{criterion_1}} | functional | yes - {{verification_method}} |
+| AC-002 | {{criterion_2}} | functional | yes - {{verification_method}} |
+| AC-003 | {{criterion_3}} | performance | yes - {{metric}} < {{threshold}} |
+
+## Complexity Assessment
+- new_technology_learning: 0.X (0-1)
+- integration_complexity: 0.X (0-1)
+- data_model_changes: 0.X (0-1)
+- test_coverage_needed: 0.X (0-1)
+- deployment_risk: 0.X (0-1)
+- complexity_multiplier: SUM(above) = X.X
+
+## Time Budget Estimate
+- accepted_standards_count: N
+- base_time_per_standard: 3min
+- dev_time_estimate: {{N}} x 3 x {{multiplier}} = X min
+- verify_time_estimate: {{dev_time}} x 0.4 = Y min
+- total_budget: {{dev_time}} + {{verify_time}} = Z min
+
+## Competition Solutions (if applicable)
+### Solution A
+- tech_stack: {{stack_A}}
+- rationale: {{why_A}}
+- dev_time: X min
+- verify_time: Y min
+
+### Solution B
+- tech_stack: {{stack_B}}
+- rationale: {{why_B}}
+- dev_time: X min
+- verify_time: Y min
+
+## Execution Order
+1. Solution A (simpler, establish baseline)
+2. Solution B (complex, compare against baseline)
+
+## Iteration Limits
+- max_iterations_per_sprint: 5
+- accept_rate_threshold: 0.3
+- human_intervention_after_failures: 3

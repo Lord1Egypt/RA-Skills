@@ -1,0 +1,70 @@
+{
+  "id": "domain-telegram",
+  "label": "Telegram Web — Messenger Browser",
+  "emoji": "✈️",
+  "domain": "web.telegram.org",
+  "description": "Telegram WebK (React/TS). QR-first login or phone → SMS code. Left sidebar: chat list. Right pane: message history + composer. MTProto over WebSocket. Russian locale common. No infinite scroll — paginated history via scroll-to-top trigger. PHONE-NATIVE: no bypass for registration — requires real phone number and SMS code. No OAuth/email-only path. From session analysis: 54 mentions across agents.",",
+  "source_patterns": [
+    "Login: QR code shown by default → scan with Telegram app → auto-auth",
+    "Alt login: 'Log in by phone number' → enter phone → receive code in app → enter code",
+    "Chat list scroll: vertical list, click to select, active chat highlighted",
+    "Message history: scroll up to load older messages (pagination at top)",
+    "Send message: type in composer (bottom), press Enter or click send button",
+    "Media: click attachment icon → file/photo selector → send with optional caption",
+    "Reaction: long-click message → reaction picker → select emoji"
+  ],
+  "active_hours": {
+    "description": "Always-on messenger — steady usage across day, dips late night",
+    "peak": [8, 10, 13, 15, 18, 22],
+    "off_peak_min": 2
+  },
+  "typing": {
+    "wpm": { "min": 70, "max": 120 },
+    "profile": "natural",
+    "think_prob": 0.01,
+    "think_ms": [200, 1000],
+    "backspace_freq": 0.03,
+    "message_composition_wpm": { "min": 60, "max": 100 }
+  },
+  "scroll": {
+    "passes": 3,
+    "description": "Chat list: smooth scroll, short passes. History: page-up at top to load older messages",
+    "speed_px_per_ms": { "min": 25, "max": 55 },
+    "pause_between_passes_ms": { "min": 500, "max": 2000 },
+    "depth_per_pass": { "min": 0.3, "max": 0.5 },
+    "infinite_scroll_detection": "scrollTop near 0 triggers history load"
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 2000, "max": 4000 },
+    "pre_click_pause_ms": { "min": 200, "max": 600 },
+    "inter_action_pause_ms": { "min": 300, "max": 900 },
+    "post_message_send_pause_ms": { "min": 500, "max": 1200 }
+  },
+  "mouse": {
+    "speed": 1.0,
+    "curvature": 0.15,
+    "jitter": 0.25,
+    "description": "Conversational — moderate speed, direct targeting"
+  },
+  "platform_specific": {
+    "selectors_css": {
+      "chat_list_item": ".chat-item, .chat-list .chat, div[data-peer-id]",
+      "message_bubble": ".message, .bubble, div[data-message-id]",
+      "composer_input": ".composer textarea, .input-field, div[contenteditable='true']",
+      "send_button": ".btn-send, button[aria-label='Send'], .send-btn",
+      "login_phone_input": "input[type='tel'], input[name='phone']",
+      "login_code_input": "input[type='tel']:not([name='phone']), input.code-input",
+      "qr_container": ".qr-container, canvas.qr",
+      "attachment_button": ".btn-attach, button[aria-label='Attach']",
+      "emoji_reaction_picker": ".reaction-picker, .emoji-picker"
+    },
+    "requires_login": true,
+    "login": {
+      "pre_login_pause_ms": 2000,
+      "field_pause_ms": { "min": 400, "max": 1000 },
+      "post_login_wait_ms": { "min": 5000, "max": 10000 },
+      "note": "PHONE-NATIVE. No email-only registration. QR login requires Telegram app on the same phone. SMS code login requires a real SIM. No bypass or workaround available."
+    },
+    "sequence_hint": "navigate web.telegram.org → QR login or phone+code → wait for sidebar to populate → click chat → scroll history → read messages → type in composer → send → optionally attach media"
+  }
+}

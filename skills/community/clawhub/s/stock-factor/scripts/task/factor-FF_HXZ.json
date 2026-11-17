@@ -1,0 +1,14 @@
+{
+  "tool_name": "batch_factor_analysis",
+  "feature_days": 5,
+  "factor_dict": {
+    "FF_Size": "out = np.log(d['总市值'].replace(0, np.nan))",
+    "FF_Value_BM": "ac = d['close'] * d['adj_factor']\nout = d['每股净资产'] / ac",
+    "FF_Value_EP": "ac = d['close'] * d['adj_factor']\nout = d['每股收益'] / ac",
+    "FF_Profitability": "out = d['总资产净利润率']",
+    "FF_Investment": "te = d['每股净资产'] * d['总股本']\nta = te / (1 - d['资产负债率'].replace(0, np.nan))\nout = (ta - ta.shift(252)) / ta.shift(252)",
+    "MOM_12M": "ac = d['close'] * d['adj_factor']\nout = ac / ac.shift(252) - 1",
+    "HXZ_ROE": "out = d['每股收益'] / d['每股净资产'].replace(0, np.nan)"
+  },
+  "save_path": "output\\factor-FF_HXZ.xlsx"
+}

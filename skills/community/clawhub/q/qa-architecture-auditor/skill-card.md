@@ -1,46 +1,65 @@
-## Description: <br>
-Performs static codebase analysis and generates comprehensive QA, security testing, compliance, and tooling strategy reports for software repositories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QA Architecture Auditor performs static, zero-trust codebase analysis and generates QA and testing strategy reports covering risk assessment, security surface mapping, methodology-specific test plans, tooling recommendations, and compliance controls.
 
-## Publisher: <br>
-[shifulegend](https://clawhub.ai/user/shifulegend) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shifulegend](https://clawhub.ai/user/shifulegend)
 
-## Use Case: <br>
-Developers, QA engineers, security reviewers, and audit teams use this skill to inspect a repository and produce an independent testing strategy, risk assessment, and compliance-oriented QA plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads repository contents and writes reports to the local filesystem. <br>
-Mitigation: Run it only on repositories you are authorized to analyze, use an output path you control, and avoid invoking it from directories that contain unrelated sensitive files. <br>
-Risk: Remote repository analysis may use git network access and private repository credentials. <br>
-Mitigation: Use approved remotes and read-only credentials for private repositories. <br>
-Risk: Generated QA, security, and compliance conclusions are advisory and may contain unsupported or overconfident findings. <br>
-Mitigation: Independently review the generated report before using it for security decisions, compliance evidence, or release gating. <br>
+## Use Case:
 
+Developers, QA architects, security auditors, and engineering teams use this skill to build an independent testing strategy for a local or authorized remote code repository. It is suited for planning from-scratch QA coverage, security review focus areas, compliance control checks, and tooling recommendations before implementation or system transition.
 
-## Reference(s): <br>
-- [QA Architecture Auditor ClawHub page](https://clawhub.ai/shifulegend/qa-architecture-auditor) <br>
-- [Testing Methodologies Reference](references/methodologies.md) <br>
-- [Risk Assessment Reference](references/risk-assessment.md) <br>
-- [Tooling Matrix Reference](references/tooling-matrix.md) <br>
-- [Compliance Frameworks Reference](references/compliance-frameworks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [HTML or Markdown report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes reports to a user-selected local output path; HTML output also creates a Markdown report with the same stem.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence) <br>
+Risk: Untrusted repository content can influence generated report HTML.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Analyze only trusted repositories, prefer Markdown output, or sanitize generated HTML before opening it in a browser.
+
+Risk: Repository analysis may read outside the selected folder.
+
+Mitigation: Run the skill in a sandbox or container with read-only access limited to the intended target repository.
+
+Risk: The implementation may not match advertised remote git, security-scan, or max-depth behavior.
+
+Mitigation: Validate or fix those behaviors before relying on them for security-sensitive review.
+
+Risk: HTML output also creates an extra sibling Markdown file.
+
+Mitigation: Account for the additional Markdown artifact when choosing output paths and reviewing generated files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shifulegend/skills/qa-architecture-auditor)
+- [Testing Methodologies Reference](references/methodologies.md)
+- [Risk Assessment and Vulnerability Patterns](references/risk-assessment.md)
+- [Tooling Recommendations Matrix](references/tooling-matrix.md)
+- [Compliance Frameworks Reference](references/compliance-frameworks.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance, files]
+
+**Output Format:** [HTML or Markdown report files with risk tables, testing matrices, control checklists, recommendations, and example test cases.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When HTML output is selected, the artifact behavior also writes a sibling Markdown report file.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Query and manage GitHub repositories, including listing repositories, checking CI status, creating issues, searching repositories, and viewing recent activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and manage GitHub repositories - list repos, check CI status, create issues, search repos, and view recent activity.
 
-## Publisher: <br>
-[yesong-hue](https://clawhub.ai/user/yesong-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yesong-hue](https://clawhub.ai/user/yesong-hue)
 
-## Use Case: <br>
-Developers and GitHub users use this skill to let an assistant retrieve repository information, inspect CI and recent activity, and initiate GitHub write actions such as creating issues or repositories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A configured GitHub token can permit lasting read and write actions, including issue, repository, or pull request creation. <br>
-Mitigation: Use a narrowly scoped token, avoid full private-repository access unless needed, review token storage, and manually confirm write actions before allowing them to run. <br>
-Risk: The security summary notes an under-documented pull request action without built-in confirmation. <br>
-Mitigation: Require explicit human approval before pull request creation and document the expected owner, repository, branch, and title inputs before use. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to let an assistant inspect GitHub repositories, check CI status, search repositories, review recent commits, and create repository resources such as issues, repositories, and pull requests.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yesong-hue/github-skills-assistant) <br>
-- [GitHub personal access tokens](https://github.com/settings/tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, configuration guidance] <br>
-**Output Format:** [Text responses with repository, CI, issue, pull request, or activity data returned through the agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GitHub credentials via GITHUB_TOKEN and GITHUB_USERNAME environment variables or github.token and github.username configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: A broad GitHub token can allow high-impact write actions, including issue, repository, and pull request creation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fine-grained GitHub token scoped only to the specific repositories and permissions required for the intended workflow.
+
+Risk: The implementation exposes pull request creation that is not disclosed in the main documentation.
+
+Mitigation: Review available actions before installation and disable or restrict workflows that should not create pull requests.
+
+Risk: Stored or shared GitHub credentials can expose repository access.
+
+Mitigation: Store tokens in environment variables, OpenClaw configuration, or a managed secret store, and rotate tokens if compromise is suspected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yesong-hue/skills/github-skills-assistant)
+- [GitHub API](https://api.github.com)
+- [GitHub Personal Access Tokens](https://github.com/settings/tokens)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Structured JSON-like action results and concise Markdown summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Authenticated GitHub API responses may include repository metadata, CI run status, commit summaries, issue URLs, repository URLs, and pull request URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact package/index metadata report 2.0.0 and 2.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

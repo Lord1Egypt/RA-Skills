@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn72f76wazjp7rqahdhnhkyzb1841mep",
-  "slug": "a2a-code-audit",
-  "version": "1.0.2",
-  "publishedAt": 1775368497551
+  "name": "a2a-code-audit",
+  "version": "1.0.1",
+  "displayName": "A2A Code Audit",
+  "description": "Static code analysis for security vulnerabilities, style violations, and bugs using platform tools.",
+  "triggers": ["audit code", "scan for bugs", "security check", "code review", "find vulnerabilities"],
+  "author": "agentkilox",
+  "license": "MIT-0"
 }

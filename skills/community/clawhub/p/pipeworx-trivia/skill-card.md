@@ -1,41 +1,51 @@
-## Description: <br>
-Trivia questions from the Open Trivia Database - 4,000+ questions across 24 categories with difficulty levels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trivia questions from the Open Trivia Database, with 4,000+ questions across 24 categories and difficulty levels.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch public trivia questions, categories, and category statistics for quiz games, educational apps, team activities, and interactive question prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends public trivia requests to the Pipeworx gateway. <br>
-Mitigation: Use it only where that external endpoint is trusted and allowed by network policy. <br>
-Risk: The example MCP configuration installs mcp-remote with an @latest version selector. <br>
-Mitigation: Pin mcp-remote to a reviewed version before enabling the MCP configuration in managed environments. <br>
+## Use Case:
 
+External developers and agent users use this skill to fetch Open Trivia Database questions, list categories, and get category statistics for trivia games, quiz apps, team activities, and educational workflows.
 
-## Reference(s): <br>
-- [Pipeworx Trivia Homepage](https://pipeworx.io/packs/trivia) <br>
-- [Pipeworx Trivia MCP Endpoint](https://gateway.pipeworx.io/trivia/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with JSON and bash snippets; MCP tool responses return trivia question data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports optional category, difficulty, question type, and amount filters; no credential environment variables are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The MCP setup runs an unpinned npm package automatically through mcp-remote@latest.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin mcp-remote to a reviewed exact version, run it in a restricted environment, and keep credentials or sensitive environment variables out of that process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-trivia)
+- [Pipeworx trivia homepage](https://pipeworx.io/packs/trivia)
+- [Pipeworx trivia MCP endpoint](https://gateway.pipeworx.io/trivia/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [MCP tool calls can return trivia question text, answer choices, correct answers, categories, difficulty, and category statistics.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

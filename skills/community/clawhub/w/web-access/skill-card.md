@@ -1,42 +1,60 @@
-## Description: <br>
-Universal web access skill: search, fetch, browser automation via CDP Proxy. Handles login-required sites, anti-scraping bypasses, and complex web interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search and read websites and navigate interactive or login-required pages through a Chromium browser.
 
-## Publisher: <br>
-[eze-is](https://clawhub.ai/user/eze-is) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eze-is](https://clawhub.ai/user/eze-is)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve web information and operate web pages, including pages that need login state, browser interaction, or CDP-based automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This skill can give an agent broad control over a logged-in Chrome session. <br>
-Mitigation: Install only when that access is intended, avoid sensitive accounts and private documents, and require explicit approval before uploads, screenshots, purchases, account changes, or use of tokenized URLs. <br>
-Risk: A localhost browser-control proxy may remain running after the task is complete. <br>
-Mitigation: Stop the proxy when finished if ongoing browser-control access is not desired. <br>
+## Use Case:
 
+Agents and their users use this skill to research websites, retrieve page content, and complete browser interactions that need a logged-in session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eze-is/web-access) <br>
-- [Project homepage](https://github.com/eze-is/web-access) <br>
-- [CDP Proxy API reference](references/cdp-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and browser automation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a localhost CDP proxy and the user's existing Chrome session when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: Browser control can read private pages and perform actions in logged-in accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a separate browser profile with limited accounts and authorize sensitive actions before execution.
+
+Risk: The skill can inspect local browser history and bookmarks and attach local files to upload controls.
+
+Mitigation: Limit access to the browser profile and files needed for the task; review requested searches and uploads.
+
+Risk: The local browser-control service can remain active after a task finishes.
+
+Mitigation: Stop the proxy when it is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/eze-is/skills/web-access)
+- [Project homepage listed in skill metadata](https://github.com/eze-is/web-access)
+- [Browser API reference](references/cdp-api.md)
+- [Version 2.6 migration guide](references/migration-2.6.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Natural-language responses with extracted web content and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may reflect content from authenticated browser sessions.]
+
+## Skill Version(s):
+
+2.6.0 (source: skill frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

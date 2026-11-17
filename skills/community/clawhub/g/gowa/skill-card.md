@@ -1,45 +1,60 @@
-## Description: <br>
-Interact with WhatsApp via GOWA (Go WhatsApp Web Multi-Device) REST API for personal automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance and curl examples for using GOWA's local WhatsApp REST API to send messages, media, mentions, and manage groups.
 
-## Publisher: <br>
-[aldinokemal](https://clawhub.ai/user/aldinokemal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aldinokemal](https://clawhub.ai/user/aldinokemal)
 
-## Use Case: <br>
-Developers and automation users use this skill to draft REST API calls and operational guidance for sending WhatsApp messages, media, contacts, locations, polls, and managing groups through a local GOWA server. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to operate a linked WhatsApp account through a local REST server, including sending messages and media. <br>
-Mitigation: Install only when this account control is intended, keep the REST server bound to localhost on a trusted machine, and require explicit confirmation before sending messages or media. <br>
-Risk: Group operations such as @everyone or ghost mentions, participant changes, admin changes, message edits, deletes, and logouts can disrupt users or groups. <br>
-Mitigation: Require explicit confirmation before using @everyone or ghost mentions, reading or exporting chats and contacts, deleting or editing messages, changing group membership or admin settings, removing devices, or logging out. <br>
-Risk: A default unauthenticated local REST endpoint may be reachable by other local processes or by an accidentally exposed network service. <br>
-Mitigation: Enable Basic Auth when available, avoid exposing the service beyond localhost, and run it only on trusted machines. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aldinokemal/gowa) <br>
-- [GOWA API Endpoints Reference](references/api-endpoints.md) <br>
-- [GOWA GitHub repository](https://github.com/aldinokemal/go-whatsapp-web-multidevice) <br>
-- [GOWA releases](https://github.com/aldinokemal/go-whatsapp-web-multidevice/releases) <br>
-- [GOWA OpenAPI specification](https://raw.githubusercontent.com/aldinokemal/go-whatsapp-web-multidevice/refs/heads/main/docs/openapi.yaml) <br>
+## Use Case:
 
+Developers and automation operators use this skill to interact with a local GOWA REST server for WhatsApp messaging, media delivery, status checks, and group administration workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline curl commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill provides instructions and request examples; it does not include executable helper scripts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill guides use of a powerful local REST API for WhatsApp automation, including messaging, media download, logout, and group membership or admin changes.
+
+Mitigation: Run the REST API only on a tightly controlled host, enable authentication, avoid exposing port 3000, and require explicit confirmation before high-impact actions.
+
+Risk: Ghost mentions and @everyone-style notifications can create unwanted broad notifications or social misuse if sent automatically.
+
+Mitigation: Require human confirmation before sending group-wide mentions and limit automation to approved recipients and groups.
+
+Risk: Downloading private media or accessing chats and contacts can expose personal data.
+
+Mitigation: Restrict access to trusted operators, confirm intent before media downloads, and avoid logging or retaining private content unless explicitly required.
+
+## Reference(s):
+
+- [GOWA API Endpoints Reference](references/api-endpoints.md)
+- [GOWA OpenAPI Specification](https://raw.githubusercontent.com/aldinokemal/go-whatsapp-web-multidevice/refs/heads/main/docs/openapi.yaml)
+- [GOWA GitHub Repository](https://github.com/aldinokemal/go-whatsapp-web-multidevice)
+- [ClawHub Skill Page](https://clawhub.ai/aldinokemal/skills/gowa)
+- [Publisher Profile](https://clawhub.ai/user/aldinokemal)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline curl and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces REST API usage guidance for a local GOWA server; it does not include executable helper scripts.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

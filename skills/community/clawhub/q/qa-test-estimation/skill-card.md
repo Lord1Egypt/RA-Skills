@@ -1,40 +1,57 @@
-## Description: <br>
-Helps QA teams estimate testing effort from requirement scope, test strategy, historical baselines, complexity, and risk factors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps QA teams estimate testing effort and schedules using complexity, historical baselines, and risk adjustments.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA engineers, test leads, and project managers use this skill to estimate testing effort and schedule needs for releases or iterations. It produces a phased estimate covering smoke, functional, regression, and specialized testing with confidence and risk buffer guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad project-planning triggers may invoke the skill for general delivery estimation instead of QA-specific testing effort. <br>
-Mitigation: Confirm the estimate is being applied to testing scope, test activities, and QA resource planning before using it for scheduling decisions. <br>
-Risk: Testing estimates can be misleading if requirement scope, complexity, historical data, or team capacity inputs are incomplete. <br>
-Mitigation: Review the selected estimation method, assumptions, adjustment factors, confidence level, and risk buffer with the QA owner before relying on the output. <br>
+## Use Case:
 
+QA engineers and project managers use this skill to estimate testing person-hours, staffing, and schedules from requirements, test strategy, and available historical data. It breaks effort into activities and reports assumptions, confidence, and risk buffers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kokxi/skills/qa-test-estimation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown estimation report with tables and structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes estimation result, work breakdown, risk buffer, and confidence level.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: release evidence and frontmatter) <br>
+Risk: The suggested npx installation command runs a separate package outside this read-only skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the package and source before running the installation command.
+
+Risk: Release plans or staffing inputs may contain confidential information.
+
+Mitigation: Avoid sharing sensitive inputs unless the agent environment and its tool permissions are appropriate.
+
+Risk: Effort estimates may not account for missing requirements or changed project conditions.
+
+Mitigation: Check scope, historical baselines, assumptions, and risk buffers with the project manager before changing a schedule.
+
+## Reference(s):
+
+- [Test effort estimation methods](references/estimation-methods.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown estimation report with effort tables and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes an EST-XXXX identifier, activity breakdown, confidence assessment, and risk buffer.]
+
+## Skill Version(s):
+
+1.8.0 (source: skill frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-Amazon FBA Finder helps Amazon sellers estimate FBA profitability and organize product, competition, and supplier analysis for product-selection decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon FBA Finder helps Amazon sellers evaluate product opportunities, market competition, supplier options, and FBA profit scenarios.
 
-## Publisher: <br>
-[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte)
 
-## Use Case: <br>
-Amazon sellers and ecommerce operators use this skill to screen FBA product ideas, estimate costs and margins, compare competitive context, and prepare supplier due-diligence questions before deciding whether to source a product. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with artifact examples and configuration for US, UK, DE, JP, CA, and AU Amazon marketplaces. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release asks for Amazon and Alibaba API keys, but credential handling and working scoped integrations are not documented in the evidence. <br>
-Mitigation: Review before installing or paying, and do not provide real marketplace API keys until the publisher documents credential handling and ships working, scoped integrations. <br>
-Risk: The evidence security summary says product discovery and supplier recommendation features are unproven in this version, with the useful implemented portion appearing mainly to be local FBA profit calculation. <br>
-Mitigation: Treat discovery and supplier recommendations as preliminary decision support; independently validate marketplace data, suppliers, pricing, and demand before sourcing products. <br>
-Risk: The artifact itself notes estimated sales data, market changes, API limits, and compliance obligations for selected products. <br>
-Mitigation: Recheck assumptions regularly, confirm Amazon policy and target-market regulatory compliance, and verify current FBA fees before relying on profitability estimates. <br>
+## Use Case:
 
+External Amazon sellers and ecommerce operators use this skill to screen FBA product ideas, compare competitive signals, evaluate supplier fit, and estimate unit economics before making sourcing or launch decisions.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/lvjunjie-byte/amazon-fba-finder) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python snippets, shell commands, configuration examples, and structured analysis outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include product opportunity scores, competition summaries, supplier notes, FBA cost estimates, and recommendations that require human validation before business decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, clawhub.json, package.json) <br>
+Risk: The skill provides financial and product-launch recommendations that may be inaccurate, stale, or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat recommendations as decision support; independently verify market data, FBA fees, policy constraints, and supplier terms before spending money.
+
+Risk: The skill expects API keys and third-party dependencies.
+
+Mitigation: Install in a virtual environment, pin or review dependencies before use, and keep real API keys in environment variables or private secret storage.
+
+Risk: Product discovery and supplier search paths appear partially stubbed in the artifact.
+
+Mitigation: Verify live data integrations and end-to-end behavior before relying on paid product claims or operational recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lvjunjie-byte/skills/amazon-fba-finder)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+- [package.json](package.json)
+- [clawhub.json](clawhub.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples, shell commands, configuration snippets, and structured analysis outputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Decision-support outputs should be reviewed against current Amazon fees, marketplace policy, supplier data, and the user's own due diligence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, clawhub.json, and artifact __version__)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

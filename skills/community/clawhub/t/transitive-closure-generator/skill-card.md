@@ -1,42 +1,57 @@
-## Description: <br>
-Compute transitive closure on graphs to infer implicit relationships and expand graphs with logically implied connections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Computes transitive closure over graph edges for reachability, dependency, hierarchy, and knowledge-graph expansion workflows.
 
-## Publisher: <br>
-[fisa712](https://clawhub.ai/user/fisa712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fisa712](https://clawhub.ai/user/fisa712)
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze graph relationships, expand knowledge graphs, infer dependency chains, compute reachability, and materialize transitive relations from supplied edge data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Advertised cycle-detection behavior is not implemented in the included helper, so cycle reports may be absent or misleading. <br>
-Mitigation: Use it as a local transitive-closure helper; validate cycle-sensitive results independently and avoid relying on cycle detection until the behavior is implemented and tested. <br>
+## Use Case:
 
+Developers and engineers use this skill to infer reachable node pairs, expand dependency or hierarchy chains, and support impact analysis over graph-shaped data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fisa712/transitive-closure-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/fisa712) <br>
-- [ClawHub homepage](https://clawhub.com) <br>
-- [Transitive Closure Algorithms & Patterns](references/closure-patterns.md) <br>
-- [Transitive Closure Examples](examples/closure-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and optional local script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included helper can produce closure edges, reachability sets, path lists, and graph statistics from local edge data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Advertised cycle detection, Floyd-Warshall, incremental, memoization, and materialization support may not match the implemented behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and validate the implementation on representative graphs before relying on it for dependency or hierarchy validation.
+
+Risk: Applying transitive closure to a relation that is not actually transitive can produce misleading inferred edges.
+
+Mitigation: Confirm the relation semantics and test with small known examples before using generated closure data downstream.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fisa712/skills/transitive-closure-generator)
+- [Publisher Profile](https://clawhub.ai/user/fisa712)
+- [ClawHub Homepage](https://clawhub.com)
+- [Transitive Closure Algorithms & Patterns](references/closure-patterns.md)
+- [Transitive Closure Examples](examples/closure-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and optional graph-analysis results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local graph-analysis utility; no credentials, MCP tools, or external API calls were detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

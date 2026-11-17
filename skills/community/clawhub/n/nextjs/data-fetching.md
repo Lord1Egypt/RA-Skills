@@ -1,317 +1,195 @@
 # Data Fetching — NextJS
 
-## Server Components (Recommended)
+Default: fetch on the server, in the component that renders the data. Client fetching is the exception, not the pattern.
+
+## Server-First
 
 ```typescript
-// Direct fetch in Server Component
-async function Page() {
-  const data = await fetch('https://api.example.com/data')
-  const json = await data.json()
-  return <div>{json.title}</div>
-}
-
-// With database
+// Direct in a Server Component — no API route in between
 async function Page() {
   const posts = await db.post.findMany()
   return <PostList posts={posts} />
 }
 ```
 
-## Parallel Data Fetching
+Never `fetch('/api/...')` from a Server Component to your own app: extra HTTP hop, lost types, and it can't share the render's request memoization. Call the function or query directly.
+
+## Kill the Waterfall
+
+Sequential awaits cost the sum; parallel cost the max (SKILL.md Rule 2):
 
 ```typescript
-// ✅ Good - parallel fetches
-async function Dashboard() {
-  // Start both fetches simultaneously
-  const [user, posts, comments] = await Promise.all([
-    getUser(),
-    getPosts(),
-    getComments(),
-  ])
-  
-  return (
-    <>
-      <UserCard user={user} />
-      <PostList posts={posts} />
-      <CommentList comments={comments} />
-    </>
-  )
-}
+// ✅ 300ms total
+const [user, posts, comments] = await Promise.all([getUser(), getPosts(), getComments()])
 
-// ❌ Bad - sequential waterfall
-async function Dashboard() {
-  const user = await getUser()      // waits
-  const posts = await getPosts()    // then waits
-  const comments = await getComments() // then waits
-  // Total time = sum of all fetches
+// ❌ 900ms total — each await blocks the next
+const user = await getUser()
+const posts = await getPosts()
+const comments = await getComments()
+```
+
+**Cross-component waterfalls are the invisible kind**: a layout that awaits `getUser()` blocks the page that awaits `getPosts()`. Fix with the preload pattern — start the promise early, await late:
+
+```typescript
+export const preloadUser = (id: string) => { void getUser(id) }  // fire, don't await
+
+export default function Layout({ children }) {
+  preloadUser('123')          // starts now
+  return <>{children}</>      // page's own fetches run concurrently
 }
 ```
 
 ## Streaming with Suspense
 
-```typescript
-import { Suspense } from 'react'
+TTFB equals the slowest await chain outside any Suspense boundary (SKILL.md Rule 9). Each boundary streams independently:
 
+```typescript
 export default function Page() {
   return (
     <main>
-      {/* Shows immediately */}
-      <h1>Dashboard</h1>
-      
-      {/* Streams when ready */}
+      <h1>Dashboard</h1>                          {/* paints immediately */}
       <Suspense fallback={<UserSkeleton />}>
-        <UserProfile />
+        <UserProfile />                            {/* streams when its fetch resolves */}
       </Suspense>
-      
-      {/* Independent stream */}
       <Suspense fallback={<PostsSkeleton />}>
-        <RecentPosts />
+        <RecentPosts />                            {/* independent stream */}
       </Suspense>
     </main>
   )
 }
+```
 
-// Each component fetches its own data
-async function UserProfile() {
-  const user = await getUser() // 200ms
-  return <div>{user.name}</div>
+`loading.tsx` wraps the whole page in one Suspense boundary — coarse. Prefer explicit boundaries around the slow parts so fast content isn't hostage to the slowest fetch.
+
+**Streaming a promise to the client** — start the fetch on the server, resolve in the browser:
+
+```typescript
+// Server: don't await
+export default function Page() {
+  const postsPromise = getPosts()               // no await
+  return (
+    <Suspense fallback={<Skeleton />}>
+      <Posts postsPromise={postsPromise} />
+    </Suspense>
+  )
 }
 
-async function RecentPosts() {
-  const posts = await getPosts() // 500ms
+// Client: unwrap with use()
+'use client'
+import { use } from 'react'
+function Posts({ postsPromise }: { postsPromise: Promise<Post[]> }) {
+  const posts = use(postsPromise)
   return <PostList posts={posts} />
 }
-// User shows at 200ms, Posts at 500ms
 ```
 
-## Loading UI
+## Deduplication
+
+- Same-URL, same-options `fetch` calls within one render pass are memoized — layout and page can both call `getUser()` for one request.
+- Non-fetch work needs `React.cache()`:
 
 ```typescript
-// app/dashboard/loading.tsx
-// Automatically wraps page in Suspense
-
-export default function Loading() {
-  return (
-    <div className="animate-pulse">
-      <div className="h-8 w-48 bg-gray-200 rounded" />
-      <div className="mt-4 space-y-3">
-        <div className="h-4 bg-gray-200 rounded" />
-        <div className="h-4 bg-gray-200 rounded" />
-      </div>
-    </div>
-  )
-}
-```
-
-## Error Handling
-
-```typescript
-// app/dashboard/error.tsx
-'use client'
-
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string }
-  reset: () => void
-}) {
-  return (
-    <div>
-      <h2>Something went wrong!</h2>
-      <p>{error.message}</p>
-      <button onClick={() => reset()}>Try again</button>
-    </div>
-  )
-}
-```
-
-## Fetch Options
-
-```typescript
-// Cached (default in Next.js 14, opt-in in 15)
-fetch(url, { cache: 'force-cache' })
-
-// No cache
-fetch(url, { cache: 'no-store' })
-
-// Time-based revalidation (ISR)
-fetch(url, { next: { revalidate: 60 } }) // seconds
-
-// Tag-based revalidation
-fetch(url, { next: { tags: ['posts'] } })
-
-// Revalidate by tag (Server Action)
-import { revalidateTag } from 'next/cache'
-revalidateTag('posts')
-```
-
-## Request Deduplication
-
-```typescript
-// Same fetch in multiple components = 1 request
-async function Layout({ children }) {
-  const user = await getUser() // Request 1
-  return <>{children}</>
-}
-
-async function Page() {
-  const user = await getUser() // Deduped, uses Request 1
-  return <div>{user.name}</div>
-}
-
-// Works for fetch() with same URL and options
-// Also works with React cache()
 import { cache } from 'react'
-
-export const getUser = cache(async () => {
-  const res = await fetch('/api/user')
-  return res.json()
-})
+export const getUser = cache(async (id: string) => db.user.findUnique({ where: { id } }))
 ```
 
-## Client-Side Fetching (When Needed)
+Dedup lasts one render pass only. Persistent caching is the Data Cache's job — `caching.md`.
+
+## Server Actions for Mutations
+
+```typescript
+'use server'
+export async function createPost(prevState: State, formData: FormData) {
+  const session = await auth()                          // Rule 6: actions are public endpoints
+  if (!session) return { error: 'Unauthorized' }
+
+  const parsed = PostSchema.safeParse(Object.fromEntries(formData))
+  if (!parsed.success) return { error: 'Invalid input' }
+
+  await db.post.create({ data: { ...parsed.data, authorId: session.user.id } })
+  revalidateTag('posts')                                // Rule 7: write, revalidate...
+  redirect('/posts')                                    // ...then redirect (throws — keep last)
+}
+```
 
 ```typescript
 'use client'
-import useSWR from 'swr'
+import { useActionState } from 'react'                  // next >=15 (React 19)
 
-const fetcher = (url: string) => fetch(url).then(r => r.json())
-
-export function UserPosts() {
-  const { data, error, isLoading } = useSWR('/api/posts', fetcher)
-  
-  if (isLoading) return <Skeleton />
-  if (error) return <Error />
-  return <PostList posts={data} />
-}
-
-// With React Query
-'use client'
-import { useQuery } from '@tanstack/react-query'
-
-export function UserPosts() {
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['posts'],
-    queryFn: () => fetch('/api/posts').then(r => r.json()),
-  })
-  
-  if (isLoading) return <Skeleton />
-  if (error) return <Error />
-  return <PostList posts={data} />
+function NewPost() {
+  const [state, formAction, pending] = useActionState(createPost, initialState)
+  return (
+    <form action={formAction}>
+      <input name="title" />
+      <button disabled={pending}>{pending ? 'Saving…' : 'Save'}</button>
+      {state.error && <p>{state.error}</p>}
+    </form>
+  )
 }
 ```
 
-## Preloading Data
+Forms with actions work before hydration (progressive enhancement). Use route handlers instead when external clients call you or you need explicit status codes (SKILL.md, Where Experts Disagree).
+
+## Search Params as State
+
+Filters, pagination, and tabs belong in the URL — shareable, back-button-friendly, server-renderable:
 
 ```typescript
-import { preload } from 'react-dom'
-
-// Preload in parent, use in child
-export default function Page() {
-  preload('/api/user', { as: 'fetch' })
-  return <UserProfile />
-}
-
-// With custom function
-import { unstable_preload as preload } from 'next/cache'
-
-export const preloadUser = (id: string) => {
-  void getUser(id)
-}
-
-// Parent preloads
-export default function Layout({ children }) {
-  preloadUser('123')
-  return <>{children}</>
-}
-```
-
-## Search Params
-
-```typescript
-// Server Component - use searchParams prop
-export default async function Page({
-  searchParams,
-}: {
+// Server: read them (Promise since next 15)
+export default async function Page({ searchParams }: {
   searchParams: Promise<{ q?: string; page?: string }>
 }) {
   const { q, page } = await searchParams
-  const results = await search(q, parseInt(page || '1'))
+  const results = await search(q, Number(page ?? 1))
   return <Results data={results} />
 }
 
-// Client Component - use useSearchParams
+// Client: write them
 'use client'
-import { useSearchParams, useRouter } from 'next/navigation'
-
-export function SearchInput() {
+function SearchInput() {
   const searchParams = useSearchParams()
   const router = useRouter()
-  const q = searchParams.get('q') || ''
-  
   function handleSearch(term: string) {
     const params = new URLSearchParams(searchParams)
-    if (term) {
-      params.set('q', term)
-    } else {
-      params.delete('q')
-    }
-    router.push(`?${params.toString()}`)
+    term ? params.set('q', term) : params.delete('q')
+    router.replace(`?${params.toString()}`)   // replace: don't spam history per keystroke
   }
-  
-  return <input defaultValue={q} onChange={e => handleSearch(e.target.value)} />
+  return <input defaultValue={searchParams.get('q') ?? ''} onChange={e => handleSearch(e.target.value)} />
 }
 ```
 
-## Patterns
+Reading `searchParams` in a page makes it dynamic (SKILL.md Rule 3) — expected for search results.
 
-### Fetch on Server, Hydrate on Client
+## Client-Side Fetching — When It's Right
+
+Only for: polling/real-time, optimistic UI, infinite scroll, data that changes on user interaction without navigation. Combine with a server-rendered first paint:
+
 ```typescript
-// Fetch on server
+// Server fetches initial data...
 async function Page() {
   const initialData = await getPosts()
   return <PostsClient initialData={initialData} />
 }
 
-// Hydrate on client for real-time updates
+// ...client keeps it live
 'use client'
 function PostsClient({ initialData }) {
   const { data } = useSWR('/api/posts', fetcher, {
     fallbackData: initialData,
+    refreshInterval: 30_000,
   })
   return <PostList posts={data} />
 }
 ```
 
-### Infinite Scroll
-```typescript
-'use client'
-import useSWRInfinite from 'swr/infinite'
+Client fetches need a real endpoint — this is a legitimate use of route handlers.
 
-const getKey = (pageIndex: number, previousPageData: any) => {
-  if (previousPageData && !previousPageData.length) return null
-  return `/api/posts?page=${pageIndex + 1}`
-}
+## Traps
 
-export function InfiniteList() {
-  const { data, size, setSize, isLoading } = useSWRInfinite(getKey, fetcher)
-  
-  const posts = data ? data.flat() : []
-  const isLoadingMore = isLoading || (size > 0 && data && typeof data[size - 1] === 'undefined')
-  const isEmpty = data?.[0]?.length === 0
-  const isReachingEnd = isEmpty || (data && data[data.length - 1]?.length < 10)
-  
-  return (
-    <>
-      {posts.map(post => <Post key={post.id} post={post} />)}
-      <button
-        disabled={isLoadingMore || isReachingEnd}
-        onClick={() => setSize(size + 1)}
-      >
-        {isLoadingMore ? 'Loading...' : isReachingEnd ? 'No more' : 'Load more'}
-      </button>
-    </>
-  )
-}
-```
+| Trap | Why it fails | Do instead |
+|------|--------------|------------|
+| Awaiting in layout what the page also awaits | cross-component waterfall | preload pattern, or move the await down |
+| One giant `Promise.all` for the whole page | slowest fetch blocks all content | group per Suspense boundary; parallel within each |
+| `use client` component fetching what the parent already had | duplicate request, loading flash | pass data (or the promise) down as props |
+| Server Action without session/validation | callable by anyone with the action id | auth + schema-parse as first lines |
+| `redirect()` inside try/catch in an action | `NEXT_REDIRECT` swallowed | redirect after the try block |

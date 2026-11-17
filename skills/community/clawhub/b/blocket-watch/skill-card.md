@@ -1,44 +1,59 @@
-## Description: <br>
-Polls Swedish Blocket.se with the blocket CLI on a schedule, deduplicates listing IDs, and sends new matches to Telegram through OpenClaw without invoking an LLM during polling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polls Swedish Blocket.se through the blocket CLI on a schedule, deduplicates listings by ad ID, and sends new matches to Telegram through OpenClaw without invoking a hosted model on each poll.
 
-## Publisher: <br>
-[x3r081](https://clawhub.ai/user/x3r081) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x3r081](https://clawhub.ai/user/x3r081)
 
-## Use Case: <br>
-External users and OpenClaw operators use this skill to run a local Linux watcher for Swedish Blocket searches, track seen listings, and receive Telegram alerts for newly matched items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Sweden <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The watcher can send configured search results and listing details to a Telegram target. <br>
-Mitigation: Review config.json before enabling, keep Telegram chat IDs and search terms private, and test with BLOCKET_WATCH_DRY_RUN=1 before sending messages. <br>
-Risk: The skill depends on local blocket and openclaw binaries to retrieve listings and send notifications. <br>
-Mitigation: Install those binaries only from trusted sources and verify they behave as expected before enabling the timer. <br>
-Risk: A systemd timer can repeatedly poll Blocket once enabled. <br>
-Mitigation: Confirm the query set and polling behavior during dry run, then enable the timer only for intended personal monitoring. <br>
+## Use Case:
 
+OpenClaw users and developers can configure scheduled Blocket searches, deduplicate seen listing IDs, and send new listing alerts to a Telegram target. The skill is intended for personal classified-alert monitoring with locally managed configuration files.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/x3r081/blocket-watch) <br>
-- [Blocket CLI](https://github.com/blocket-se/blocket) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Sweden
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local polling guidance and configuration; runtime notifications are sent as Telegram text through OpenClaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter says 1.1.0) <br>
+Risk: The user-level systemd timer polls Blocket every hour and sends listing details, search terms, and optional configuration summaries to the configured Telegram chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configured timer, run dry-run validation before enabling notifications, and configure only Telegram targets and searches that are acceptable to share through that channel.
+
+Risk: config.json and seen.json can contain personal Telegram chat IDs and search preferences.
+
+Mitigation: Keep config.json and seen.json private and do not publish real copies to public repositories or shared skill bundles.
+
+Risk: Polling an external classified-listing service can conflict with service terms or rate limits if configured aggressively.
+
+Mitigation: Respect Blocket's terms of use and rate limits, and keep polling frequency appropriate for personal monitoring.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/x3r081/skills/blocket-watch)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [Blocket CLI](https://github.com/blocket-se/blocket)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and shell commands with JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local configuration guidance and command examples for a Linux systemd timer workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and changelog mention 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

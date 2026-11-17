@@ -1,41 +1,53 @@
-## Description: <br>
-Tracks baby developmental milestones by comparing age and reported behaviors against WHO-style milestone tables, then produces an assessment, alerts, and activity suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language infant developmental milestone tracker that compares age and observed behaviors against milestone checklists and produces an assessment report, warning signs, and suggested activities.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Caregivers and family-support agents use this skill to structure milestone check-ins for children from 0 to 36 months. It turns age, birth timing, and observed behaviors into an educational development report with red flags and suggested follow-up activities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be mistaken for medical diagnosis because it produces developmental status labels and alerts. <br>
-Mitigation: Present outputs as educational milestone guidance and direct caregivers to consult a pediatrician or developmental specialist for missed milestones, regression, red flags, or any concern. <br>
-Risk: Milestone comparisons can be incomplete or misleading if caregiver input is sparse, inaccurate, or omits corrected age for premature infants. <br>
-Mitigation: Ask for age, birth timing, and observed behaviors across motor, language, and social domains, and use corrected age for premature infants before interpreting milestones. <br>
+## Use Case:
 
+External caregivers and family-support agents use this skill to structure baby age, birth-status, and behavior inputs into a Chinese developmental milestone report. The report helps identify areas to observe, activity ideas, follow-up timing, and when to prepare for pediatric consultation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/03-milestone-tracker) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/nic-yuan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Analysis] <br>
-**Output Format:** [Markdown report with structured milestone status, detailed analysis, alerts, activities, and follow-up reminders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational milestone reference only; not a diagnostic medical output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Caregivers may treat the milestone assessment as a diagnosis or delay professional pediatric care.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as educational preparation for a pediatric visit and advise professional care for suspected delays, regression, urgent symptoms, prematurity concerns, or parental worry.
+
+Risk: Checklist-based milestone comparisons may not account for individualized clinical context, especially for premature infants or complex developmental histories.
+
+Mitigation: Use corrected age where applicable and escalate concerns to a pediatric clinician rather than relying on the report as a final determination.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/03-milestone-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes developmental status by domain, warning signs, suggested activities, and follow-up reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

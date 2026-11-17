@@ -1,40 +1,50 @@
-## Description: <br>
-A comprehensive skill about "Bye" and farewells, covering etymology, cultural traditions, psychology, and the art of saying goodbye across the world. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive skill about "Bye" and farewells, exploring the history, etymology, cultural traditions, psychology, and art of saying goodbye across the world.
 
-## Publisher: <br>
-[wscats](https://clawhub.ai/user/wscats) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wscats](https://clawhub.ai/user/wscats)
 
-## Use Case: <br>
-External users, writers, travelers, linguists, and cultural enthusiasts use this skill for general-interest reference material about farewell language, customs, psychology, and etiquette. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Historical, linguistic, cultural, or psychological claims may be incomplete, outdated, or unsourced. <br>
-Mitigation: Treat the skill as general-interest reference material and verify important claims against authoritative sources before relying on them. <br>
-Risk: Registry capability tags indicate crypto and purchase-related capabilities even though the skill content is reference text. <br>
-Mitigation: Review the release metadata and capability tags before installation so users understand the skill's actual behavior. <br>
+## Use Case:
 
+External users can use this informational skill to answer questions about farewells, including the word "bye," farewell etiquette, linguistic origins, cultural customs, historical examples, and digital-age usage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wscats/bye) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference content only; no tools, credentials, or external services required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad or unclear trigger wording could cause the skill to be invoked for questions that are not about farewells.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use clearer trigger wording and review responses for relevance to farewell-related questions before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wscats/skills/bye)
+- [ClawHub publisher profile](https://clawhub.ai/user/wscats)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text informational responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior, sensitive access, persistence, or privilege use is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

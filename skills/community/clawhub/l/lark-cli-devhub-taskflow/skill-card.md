@@ -1,39 +1,53 @@
-## Description: <br>
-Use when turning development work into Feishu/Lark tasks through lark-cli or feishu-cli, including task lists, bug queues, status updates, blocked work, next actions, or task-linked Dev Hub records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when turning development work into Feishu/Lark tasks through lark-cli or feishu-cli, including task lists, bug queues, status updates, blocked work, next actions, or task-linked Dev Hub records.
 
-## Publisher: <br>
-[afengzi](https://clawhub.ai/user/afengzi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afengzi](https://clawhub.ai/user/afengzi)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to keep Feishu/Lark task lists, bug queues, status updates, and Dev Hub records aligned during development work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to create or update Feishu/Lark tasks and Base records in shared business workspaces. <br>
-Mitigation: Use it with the intended authenticated CLI account and review task or Base updates before allowing broad workspace changes. <br>
-Risk: Task status or bug evidence can become misleading if verification and root-cause details are not recorded durably. <br>
-Mitigation: Record verification results and durable Bugfix or AI Run records before closing bug-related tasks. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to turn implementation work, bug follow-up, review state, and verification needs into Lark/Feishu task workflows and durable Dev Hub records.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown guidance with CLI-oriented task and record updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an existing lark-cli or feishu-cli setup and authenticated access to the target Feishu/Lark workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The agent may update task statuses or create durable Base records using the configured Lark/Feishu account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an account with appropriate workspace permissions and review intended task or Base updates before applying them.
+
+Risk: Bug work can be closed without durable verification evidence if the workflow is applied loosely.
+
+Mitigation: Record verification results in a durable task-linked location before closing bug tasks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/afengzi/skills/lark-cli-devhub-taskflow)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline CLI command references and task status labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires lark-cli; may defer exact command syntax and task GUID handling to the official lark-task skill when installed.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

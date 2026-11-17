@@ -1,42 +1,50 @@
-## Description: <br>
-Hydration reference for daily water intake, electrolytes, dehydration signs, exercise hydration, and rehydration protocols. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hydrate provides a static hydration reference for daily water intake, electrolytes, dehydration signs, exercise hydration, and rehydration planning.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External users and developers use this skill as a quick local reference for planning hydration, electrolyte intake, dehydration checks, exercise hydration, and rehydration. The guidance is educational and should not replace professional medical advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat educational hydration guidance as medical advice for urgent or high-risk conditions. <br>
-Mitigation: Treat the content as educational and seek professional or emergency medical help for severe dehydration, confusion, fainting, persistent vomiting or diarrhea, infants, pregnancy, older adults, or serious medical conditions. <br>
-Risk: Hydration and electrolyte recommendations may not fit an individual user's medical history, medications, climate, or activity level. <br>
-Mitigation: Review the guidance before relying on it and adapt it with qualified medical input when personal health conditions or unusual symptoms are involved. <br>
+## Use Case:
 
+External users and agents use this skill as an educational quick reference for planning hydration, understanding electrolytes, recognizing dehydration warning signs, and reviewing exercise or illness rehydration guidance.
 
-## Reference(s): <br>
-- [Hydrate on ClawHub](https://clawhub.ai/xueyetianya/hydrate) <br>
-- [Publisher profile](https://clawhub.ai/user/xueyetianya) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text printed by local shell commands, with command examples documented in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational hydration reference; no hidden access, persistence, networking, or destructive behavior was identified by the provided security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Users may treat medical-style hydration guidance as personalized clinical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the content as educational reference material and seek professional care for children, pregnancy, kidney or heart disease, severe dehydration, heat illness, persistent vomiting or diarrhea, confusion, fainting, or suspected electrolyte problems.
+
+## Reference(s):
+
+- [Hydrate on ClawHub](https://clawhub.ai/xueyetianya/skills/hydrate)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown documentation and plain-text shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference content; no hidden system access is identified in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

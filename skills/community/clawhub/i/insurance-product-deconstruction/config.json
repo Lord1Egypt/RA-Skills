@@ -1,0 +1,9 @@
+{
+  "obsidian_output": "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/LZQuinn的藏经阁/03-参考资料/保险产品资料",
+  "python_venv": "~/tools/insurance-wiki/.venv-ocr/bin/python",
+  "ocr_tools_dir": "~/tools/insurance-wiki",
+  "enable_ocr": false,
+  "excel_max_rows": 500,
+  "snippet_radius": 150,
+  "compact_limit_per_field": 3
+}

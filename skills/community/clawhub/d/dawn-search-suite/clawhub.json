@@ -1,0 +1,15 @@
+{
+  "name": "dawn-search-suite",
+  "version": "2.0.1",
+  "description": "搜不到、页面抓不动、信息还要一家家核？实时搜索 + JS 渲染页面抓取 + 多引擎交叉验证 + AI 资讯，一次配齐。",
+  "license": "MIT",
+  "tags": [
+    "search",
+    "scraping",
+    "AI",
+    "news",
+    "搜索",
+    "抓取",
+    "资讯"
+  ]
+}

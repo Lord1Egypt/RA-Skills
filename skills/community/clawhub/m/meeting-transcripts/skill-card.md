@@ -1,42 +1,53 @@
-## Description: <br>
-Capture meeting transcripts from Fireflies.ai via polling or webhooks and write structured markdown summaries, action items, decisions, and full transcripts to memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capture meeting transcripts from Fireflies.ai via polling or webhooks, extract action items, decisions, and summaries, and write structured markdown to memory.
 
-## Publisher: <br>
-[jessewunderlich](https://clawhub.ai/user/jessewunderlich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jessewunderlich](https://clawhub.ai/user/jessewunderlich)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to capture Fireflies.ai meeting transcripts on demand, on a polling schedule, or through webhooks, then review saved meeting summaries, action items, topics, and speaker-labeled transcripts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill persists sensitive meeting content, including participants, summaries, action items, and speaker-labeled transcripts. <br>
-Mitigation: Review stored meeting files regularly, restrict access to the memory directory, and delete captured records that are no longer needed. <br>
-Risk: The optional webhook server can be exposed publicly, and signature verification is disabled when no webhook secret is configured. <br>
-Mitigation: Prefer polling unless real-time capture is required, and configure a strong webhook secret before exposing the server through a tunnel or public URL. <br>
-Risk: The Fireflies API key enables transcript access for the configured account. <br>
-Mitigation: Store the key only in the documented secrets path, rotate or remove it when capture is no longer needed, and remove scheduled polling jobs or webhook tunnels that are no longer in use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Meeting Transcripts on ClawHub](https://clawhub.ai/jessewunderlich/meeting-transcripts) <br>
-- [Fireflies GraphQL API](https://api.fireflies.ai/graphql) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to set up Fireflies.ai transcript capture, fetch recent or specific meetings, and save meeting summaries, action items, decisions, and full transcripts as structured markdown.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files with JSON status messages and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes transcript files under memory/meetings and may print JSON status for polling results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The optional webhook server can expose sensitive meeting capture if it is publicly reachable without strong authentication.
+
+Mitigation: Configure a strong webhook secret, avoid public exposure without additional access controls, and review the deployment path before enabling webhooks.
+
+Risk: Saved meeting transcripts may contain sensitive participant, business, or personal information.
+
+Mitigation: Treat saved meeting files as sensitive untrusted data and define an appropriate retention or deletion process.
+
+## Reference(s):
+
+- [Fireflies.ai GraphQL API](https://api.fireflies.ai/graphql)
+- [ClawHub skill page](https://clawhub.ai/jessewunderlich/skills/meeting-transcripts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files and JSON status messages, with setup guidance and shell commands in markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes meeting files under memory/meetings and may update polling state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

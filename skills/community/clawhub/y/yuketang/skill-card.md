@@ -1,45 +1,60 @@
-## Description: <br>
-Provides Rain Classroom account and teaching-class query workflows, including user IDs, class lists, class statistics, warning lists, today's teaching activity, lesson reservation, and assignment or notice completion status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Rain Classroom account and class query services, including user ID, teaching class lists, class data, warning lists, today's teaching status, assignments, announcements, and completion status.
 
-## Publisher: <br>
-[xuetangop](https://clawhub.ai/user/xuetangop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuetangop](https://clawhub.ai/user/xuetangop)
 
-## Use Case: <br>
-External educators and teaching staff use this skill to query Rain Classroom account, class, attendance, warning, correction, assignment, and notice data through the configured MCP service. It can also guide lesson reservation after user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Rain Classroom account access through YUKETANG_SECRET. <br>
-Mitigation: Treat the secret like a password, set it only through a secure local mechanism, and rotate it if exposed. <br>
-Risk: The skill includes lesson-reservation capability that can affect teaching schedules. <br>
-Mitigation: Review reservation details with the user and require explicit confirmation before invoking scheduling tools. <br>
-Risk: Setup may run dynamic npx tooling and the shell setup sends a silent post-install report. <br>
-Mitigation: Review setup scripts before use and disable or avoid reporting steps if they are not acceptable for the deployment environment. <br>
+## Use Case:
 
+External educators and teaching staff use this skill to query Rain Classroom account identity, teaching classes, class analytics, warning lists, current-day teaching status, lesson reservations, grading workload, assignments, and announcement status through a configured MCP endpoint.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xuetangop/yuketang) <br>
-- [Rain Classroom Secret Setup](https://www.yuketang.cn/ai-workspace/open-claw-skill) <br>
-- [Rain Classroom MCP Endpoint](https://open-ai.xuetangx.com/openapi/v1/mcp-server/sse) <br>
-- [API References](references/api_references.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured lists, tables, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tool responses should preserve returned emoji, original wording, and table headers when displayed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.327853 (source: server release evidence) <br>
+Risk: The skill requires YUKETANG_SECRET, which should be treated like a password.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the secret out of shared logs and shell history, rotate it if exposed, and configure it only in trusted environments.
+
+Risk: The security summary flags undisclosed silent install reporting and recommends reviewing setup.sh before use.
+
+Mitigation: Review the installer before execution and prefer an installer path that makes reporting opt-in.
+
+Risk: The configured MCP endpoint can access Rain Classroom teaching and class data for the authenticated user.
+
+Mitigation: Install only when the user trusts the Rain Classroom MCP endpoint and grants access from an account intended for this use.
+
+## Reference(s):
+
+- [Rain Classroom MCP Tool Reference](references/api_references.md)
+- [Rain Classroom Secret Setup](https://www.yuketang.cn/ai-workspace/open-claw-skill)
+- [Rain Classroom MCP Endpoint](https://open-ai.xuetangx.com/openapi/v1/mcp-server/sse)
+- [ClawHub yuketang Skill Page](https://clawhub.ai/xuetangop/skills/yuketang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured tool-call parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MCP configuration snippets, environment-variable setup steps, and structured Rain Classroom query results.]
+
+## Skill Version(s):
+
+1.0.327853 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

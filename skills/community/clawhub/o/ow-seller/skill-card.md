@@ -1,46 +1,64 @@
-## Description: <br>
-OW Seller helps seller agents configure product catalogs, search buyer requests across supported platforms, match opportunities, prepare bid materials, and submit or publish seller content with external shop links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OW Seller helps seller agents configure product catalogs, search buyer requests across OW and social platforms, match opportunities, prepare bid materials, and submit bids with external shop links.
 
-## Publisher: <br>
-[qutongyuan](https://clawhub.ai/user/qutongyuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qutongyuan](https://clawhub.ai/user/qutongyuan)
 
-## Use Case: <br>
-External sellers and their agents use this skill to configure inventory, monitor buyer requests, assess matches, prepare bids, and route winning buyers to external shops for transaction completion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit bids and publish seller content externally with inconsistent confirmation, endpoint, trigger, and retention controls. <br>
-Mitigation: Review high-impact automation paths before installation, keep auto-bidding disabled unless automatic bid submission is intended, and preview destinations and content before broad publishing. <br>
-Risk: A configurable OW_API_URL or optional platform endpoint could route product, shop, or bid data to an unintended service. <br>
-Mitigation: Verify OW_API_URL and any optional endpoint configuration before use, and prefer trusted HTTPS endpoints. <br>
-Risk: Local state files can contain seller contact details, product catalogs, shop links, opportunities, bids, and other business data. <br>
-Mitigation: Apply local access and retention controls before storing sensitive contact, business, payment, or buyer data in state files. <br>
+## Use Case:
 
+External sellers and agent operators use this skill to configure products, find buyer requests, prepare and review bids, and route accepted buyers to external shops for purchase completion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qutongyuan/ow-seller) <br>
-- [Bid preparation pattern](artifact/patterns/bid-preparation.md) <br>
-- [Fulfillment pattern](artifact/patterns/fulfillment.md) <br>
-- [Media scoring pattern](artifact/patterns/media-scoring.md) <br>
-- [Platform search configuration](artifact/patterns/platforms.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance, CLI text output, JSON state/configuration files, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local state under state/ and may post bids or seller content to configured HTTPS endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.3 (source: frontmatter and server release metadata) <br>
+Risk: The skill can post bids externally and include shop or product details in those bids.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each bid before submission, keep auto-bid disabled unless intentionally configured, and constrain OW_API_URL to a trusted HTTPS endpoint.
+
+Risk: The skill persists product catalogs, opportunities, notifications, bids, and seller information in local state files.
+
+Mitigation: Run the skill with filesystem access limited to its own state directory and avoid storing secrets or unnecessary personal data.
+
+Risk: Optional integrations and install commands can add dependencies or transmit data to third-party endpoints.
+
+Mitigation: Verify and pin optional dependencies before running install commands, and enable optional endpoints only with reviewed credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qutongyuan/skills/ow-seller)
+- [Platform integration pattern](artifact/patterns/platforms.md)
+- [Bid preparation pattern](artifact/patterns/bid-preparation.md)
+- [Fulfillment pattern](artifact/patterns/fulfillment.md)
+- [Media scoring pattern](artifact/patterns/media-scoring.md)
+- [OW API endpoint](https://www.owshanghai.com/api)
+- [Optional MoltsList API endpoint](https://moltslist.com/api)
+- [Optional Moltbook API endpoint](https://moltbook.com/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local JSON state files and bid drafts when the bundled scripts are run.]
+
+## Skill Version(s):
+
+2.5.3 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

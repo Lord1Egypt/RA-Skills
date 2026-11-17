@@ -1,38 +1,49 @@
-## Description: <br>
-Generates self-contained HTML code review pages with risk tags, diff highlights, and file-level annotations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate HTML code review pages with risk tags, diff highlights, and file-level annotations.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Developers and code reviewers use this skill to turn PR diffs, review notes, and module walkthroughs into visual reports that make change scope, risk levels, and review focus areas easier to scan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated review reports can include proprietary code snippets, diffs, or review comments. <br>
-Mitigation: Keep generated reports local unless the included code-review material is intended for sharing. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn pull request diffs, file changes, and module walkthroughs into visual HTML review reports with risk tags, diff highlights, before/after comparisons, and file-level annotations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paudyyin/code-review-visualizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [HTML, Markdown, Guidance] <br>
-**Output Format:** [Self-contained HTML, with optional markdown PR descriptions and walkthrough text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include source snippets, diff excerpts, review comments, inline CSS, and inline JavaScript.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Generated HTML reports may include untrusted PR, Git, file path, diff, or source text without explicit escaping requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: HTML-encode untrusted content, avoid raw HTML insertion and script/style/URL contexts, prefer no JavaScript or a restrictive CSP, and open reports in an isolated browser context.
+
+## Reference(s):
+
+- [Code Review Visualizer on ClawHub](https://clawhub.ai/paudyyin/skills/code-review-visualizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Self-contained HTML report with inline CSS and JavaScript, often described in Markdown or delivered as code for browser viewing.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include PR summaries, risk maps, highlighted diffs, before/after comparisons, review guidance, module flow diagrams, and expandable code walkthroughs.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

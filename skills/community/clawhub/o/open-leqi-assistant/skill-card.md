@@ -1,43 +1,62 @@
-## Description: <br>
-乐企(open-leqi)项目分析与代码定位助手技能，当用户询问关于乐企发票系统、勾选能力、抵扣功能、用票接口等问题时触发，并提供项目架构理解、代码快速定位、业务流程分析和问题诊断建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers understand the open-leqi invoicing platform, locate relevant controllers, services, DAOs, clients, and reason about invoice, deduction, tax refund, and ticketing workflows.
 
-## Publisher: <br>
-[allanseven](https://clawhub.ai/user/allanseven) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allanseven](https://clawhub.ai/user/allanseven)
 
-## Use Case: <br>
-Developers and engineers use this skill to understand the open-leqi invoice platform, locate relevant controllers, services, DAOs, and clients, and reason about invoice, deduction, ticket-issuance, and statistics workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scan telemetry did not show a concrete security issue, but the target artifact files were not available for a full independent artifact review. <br>
-Mitigation: Inspect the skill metadata and instructions before installing, and only provide credentials or private data when they clearly match the skill's stated purpose. <br>
+## Use Case:
 
+Developers and engineers working with the open-leqi/乐企 codebase use this skill to navigate architecture, find implementation files, understand invoice and deduction business flows, and get project-specific troubleshooting direction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/allanseven/open-leqi-assistant) <br>
-- [Project architecture](references/project-architecture.md) <br>
-- [Business flows](references/business-flows.md) <br>
-- [API guide](references/api-guide.md) <br>
-- [Code index](references/code-index.md) <br>
-- [Architecture diagrams](assets/architecture-diagrams.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown prose with code paths, API names, and short code or shell-style search examples when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Answers are grounded in the bundled open-leqi architecture, API, business-flow, and code-index references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill is tailored to the open-leqi/乐企 codebase and may provide inaccurate paths or API names if used with another repository or a changed version of the project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with the intended codebase and verify referenced classes, endpoints, and file paths against the local repository before acting on them.
+
+Risk: The artifact is documentation-only and does not execute code, but its guidance may still influence changes to tax-invoice business logic.
+
+Mitigation: Review suggested changes through normal code review and domain validation before applying them to invoice, deduction, refund, or ticketing workflows.
+
+Risk: The documentation is primarily Chinese-language and project-specific, which can create misunderstanding for users unfamiliar with the domain terminology.
+
+Mitigation: Have bilingual or domain-aware reviewers confirm interpretations when using the skill for compliance-sensitive or production decisions.
+
+## Reference(s):
+
+- [Project architecture](references/project-architecture.md)
+- [Business flows](references/business-flows.md)
+- [Code index](references/code-index.md)
+- [API guide](references/api-guide.md)
+- [Architecture diagrams](assets/architecture-diagrams.md)
+- [ClawHub skill page](https://clawhub.ai/allanseven/skills/open-leqi-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Text or Markdown with code paths, class names, endpoint examples, and troubleshooting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language, project-specific guidance for the open-leqi codebase]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

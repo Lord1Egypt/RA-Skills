@@ -1,44 +1,65 @@
-## Description: <br>
-pageclaw converts structured page-story markdown files into polished single-file static HTML pages through a guided design, planning, build, and quality-review pipeline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns a page-story markdown file into a polished single-file static HTML page through design context gathering, design system generation, implementation planning, build, and quality review.
 
-## Publisher: <br>
-[XY-Showing](https://clawhub.ai/user/XY-Showing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xy-showing](https://clawhub.ai/user/xy-showing)
 
-## Use Case: <br>
-Developers, designers, researchers, and profile-page authors use this skill to turn structured markdown briefs into static personal, academic, portfolio, or project pages while preserving the source story structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or update local project files, including page-story.md, docs/plans files, and index.html. <br>
-Mitigation: Run it in the intended workspace, keep the project under version control, and review generated file diffs before committing or publishing. <br>
-Risk: Reference URLs may be fetched during design analysis, and generated pages may load fonts or icons from third-party CDNs. <br>
-Mitigation: Use trusted reference URLs and vendor or inline external assets when third-party runtime requests are not acceptable. <br>
+## Use Case:
 
+Developers, designers, and content owners use this skill to convert structured profile or project markdown into a static HTML page with traceable design choices and quality checks. It is especially aimed at personal, academic, portfolio, and professional profile pages.
 
-## Reference(s): <br>
-- [ClawHub pageclaw release](https://clawhub.ai/XY-Showing/pageclaw) <br>
-- [pageclaw GitHub repository](https://github.com/XY-Showing/pageclaw) <br>
-- [pageclaw README](skills/page-claw/README.md) <br>
-- [page-story starter template](skills/page-claw/page-story-starter.md) <br>
-- [Simple Icons](https://simpleicons.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Guidance] <br>
-**Output Format:** [Markdown plans plus a single-file static HTML page] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates page-story.md when missing, docs/plans design and implementation markdown files, and index.html in the project root.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, release metadata) <br>
+Risk: The release is a bundle of multiple helper skills, so installed behavior may be broader than a single page builder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the full bundled skill set before installation and enable only the skills needed for the intended workflow.
+
+Risk: An included persistence script can write outside its intended folder.
+
+Mitigation: Avoid using --persist with untrusted project or page names and review generated paths before running commands.
+
+Risk: Setup guidance uses mutable package installs.
+
+Mitigation: Pin package versions and install dependencies before placing API keys or other secrets in the environment.
+
+Risk: Generated Markdown and HTML may be reused as agent context or published output.
+
+Mitigation: Inspect generated files for accuracy, content fidelity, and unwanted instructions before relying on or publishing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xy-showing/skills/pageclaw)
+- [Project homepage](https://github.com/XY-Showing/pageclaw)
+- [page-claw README](artifact/skills/page-claw/README.md)
+- [page-story starter](artifact/skills/page-claw/page-story-starter.md)
+- [Simple Icons](https://simpleicons.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, generated Markdown planning files, and single-file static HTML code.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create page-story.md when no source brief exists, writes docs/plans/YYYY-MM-DD-<name>-design.md and docs/plans/YYYY-MM-DD-<name>-impl.md, and produces index.html for browser viewing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

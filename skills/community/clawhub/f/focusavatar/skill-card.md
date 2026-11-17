@@ -1,44 +1,61 @@
-## Description: <br>
-focusavatar is a CLI skill that uses accessKeyId/accessKeySecret credentials to submit digital-human video generation jobs from MP3, MP4, and text inputs, and to query job results by orderNo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A CLI skill for submitting FocusAvatar digital-human video generation jobs from MP3/MP4 media and text, then checking results by order number.
 
-## Publisher: <br>
-[lintqiu](https://clawhub.ai/user/lintqiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lintqiu](https://clawhub.ai/user/lintqiu)
 
-## Use Case: <br>
-Developers and operators use this skill to submit FocusAvatar digital-human video generation jobs and retrieve generated video links or job status from a command-line or agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send API credentials to an endpoint configured by FOCUSAVATAR_API. <br>
-Mitigation: Keep FOCUSAVATAR_API unset unless the alternate endpoint is deliberately trusted, and use least-privilege or disposable credentials when available. <br>
-Risk: The skill sends supplied media URLs and text to the FocusAvatar backend for processing. <br>
-Mitigation: Submit only content that is appropriate for the service and that the user has rights to process. <br>
-Risk: Broad invocations could submit generation jobs without enough user intent. <br>
-Mitigation: Confirm the selected mode, media inputs, text, and destination service before running the submission flow. <br>
+## Use Case:
 
+Developers and external users use this skill to generate digital-human videos by submitting media URLs and text to a FocusAvatar backend, or to check existing generation jobs by order number.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lintqiu/focusavatar) <br>
-- [FocusAvatar credential console](https://login.joycoreai.com/) <br>
-- [FocusAvatar service endpoint](https://yunji.focus-jd.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls] <br>
-**Output Format:** [Interactive CLI prompts and text output with video URLs, order numbers, progress, or JSON-like status details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access and FocusAvatar API credentials; video generation can take several minutes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: API credentials and job data can be sent to any backend URL configured through FOCUSAVATAR_API, and the security evidence notes no host or HTTPS checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust the publisher and backend; leave FOCUSAVATAR_API unset unless it points to a trusted HTTPS service.
+
+Risk: The accessKeySecret can be exposed if it is stored permanently in shell startup files or shared environments.
+
+Mitigation: Prefer a temporary session or secret manager for accessKeySecret, and rotate the key if it may have been exposed.
+
+Risk: Installer and Python dependency resolution can change over time.
+
+Mitigation: Pin installer and Python dependency versions where possible before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lintqiu/skills/focusavatar)
+- [Publisher profile](https://clawhub.ai/user/lintqiu)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+- [FocusAvatar console](https://login.joycoreai.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [CLI prompts, status text, JSON API responses, and video URL output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires accessKeyId/accessKeySecret credentials and network access to a trusted FocusAvatar backend; generation can take several minutes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

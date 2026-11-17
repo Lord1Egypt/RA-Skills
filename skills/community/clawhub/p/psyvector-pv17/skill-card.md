@@ -1,40 +1,49 @@
-## Description: <br>
-System protection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+System protection.
 
-## Publisher: <br>
-[jkzfhq](https://clawhub.ai/user/jkzfhq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkzfhq](https://clawhub.ai/user/jkzfhq)
 
-## Use Case: <br>
-External users and developers can install this skill when they want a lightweight agent persona centered on system-protection reminders and cautious response settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses system-protection branding, but the security evidence says it has no code or permissions that would let it control the system. <br>
-Mitigation: Treat the protection claim as branding unless the publisher provides concrete, reviewed functionality. <br>
-Risk: The artifact is sparse and under-documented, so it may not deliver meaningful protection. <br>
-Mitigation: Review the instructions and expected behavior before relying on the skill in an agent workflow. <br>
+## Use Case:
 
+External users can install this persona-style protection skill to guide an agent toward system-protection posture, risk reminders, and goal-oriented decision behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jkzfhq/psyvector-pv17) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only artifact with no code, tools, or permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill is lightly specified and may be mistaken for a concrete security tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as persona-style protection guidance; review the intended activation conditions and actions before installing or relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jkzfhq/skills/psyvector-pv17)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Short persona and configuration guidance; no code or executable artifacts.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

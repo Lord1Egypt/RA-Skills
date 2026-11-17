@@ -1,44 +1,60 @@
-## Description: <br>
-Translate videos into a specified target language using the Keevx API, with support for audio-only translation, subtitle generation, dynamic duration adjustment, supported-language lookup, and translation task status checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translate videos into a specified target language using the Keevx API, with support for audio-only translation, subtitle generation, dynamic duration adjustment, language lookup, and task status checks.
 
-## Publisher: <br>
-[baidu-xiling](https://clawhub.ai/user/baidu-xiling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baidu-xiling](https://clawhub.ai/user/baidu-xiling)
 
-## Use Case: <br>
-Developers and external users use this skill to translate or dub videos through the Keevx API, including uploading local files, submitting translation tasks, and checking task status. It is also useful for discovering supported target languages before submitting a translation request. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted videos, video URLs, task metadata, and callback URLs are sent to Keevx for processing. <br>
-Mitigation: Use the skill only with media approved for third-party processing, avoid confidential or regulated footage unless approved, and prefer least-privilege API keys and time-limited private URLs. <br>
-Risk: Local file inputs are uploaded before translation and generated output links are temporary. <br>
-Mitigation: Confirm the selected file before upload and download translated videos or subtitle files promptly after successful completion. <br>
+## Use Case:
 
+Developers and external users use this skill to translate or dub videos through Keevx, query supported target languages, submit long-running translation tasks, and check task status until completion.
 
-## Reference(s): <br>
-- [Keevx Skill Page](https://clawhub.ai/baidu-xiling/keevx-video-translate) <br>
-- [Keevx Home](https://www.keevx.com/main/home) <br>
-- [Official API Docs - Supported Languages](https://docs.keevx.com/api-reference/endpoint/ListSupportedLanguages) <br>
-- [Official API Docs - Submit Translation](https://docs.keevx.com/api-reference/endpoint/SubmitVideoTranslate) <br>
-- [Official API Docs - Check Status](https://docs.keevx.com/api-reference/endpoint/GetTranslationStatus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash, curl, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires KEEVX_API_KEY and jq for the full workflow script; generated video and subtitle URLs are retained for 7 days.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Local videos are uploaded to Keevx for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for videos that are appropriate to send to Keevx.
+
+Risk: Callback URLs can expose task-completion data to an endpoint.
+
+Mitigation: Use callback_url only with an endpoint the user controls.
+
+Risk: The example bash workflow interpolates user-controlled values into JSON.
+
+Mitigation: Harden JSON construction before automating the workflow with untrusted inputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baidu-xiling/skills/keevx-video-translate)
+- [Keevx API docs - supported languages](https://docs.keevx.com/api-reference/endpoint/ListSupportedLanguages)
+- [Keevx API docs - submit translation](https://docs.keevx.com/api-reference/endpoint/SubmitVideoTranslate)
+- [Keevx API docs - check status](https://docs.keevx.com/api-reference/endpoint/GetTranslationStatus)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return Keevx task IDs, status values, translated video URLs, and subtitle URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

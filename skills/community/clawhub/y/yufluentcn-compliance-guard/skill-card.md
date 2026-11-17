@@ -1,44 +1,62 @@
-## Description: <br>
-Cross-border compliance and trade reference helper for certification checklists, tariff estimates, labeling requirements, and platform rule checks, returning Yufluent cloud-generated JSON guidance that must be manually verified. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A cross-border commerce compliance helper that returns structured Yufluent cloud recommendations for certification checklists, tariff estimates, labeling requirements, and platform rule checks, with legal and tax review required.
 
-## Publisher: <br>
-[metahuan](https://clawhub.ai/user/metahuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[metahuan](https://clawhub.ai/user/metahuan)
 
-## Use Case: <br>
-External sellers, trade operators, compliance teams, and developers use this skill to request preliminary certification, tariff, labeling, and marketplace-rule guidance for cross-border products. The output is reference material only and is not legal or tax advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends product, supplier, shipment, tariff, platform-rule details, and TOKENAPI_KEY to the configured Yufluent/OpenClaw service. <br>
-Mitigation: Install only when that data sharing is acceptable, keep TOKENAPI_KEY out of source control and logs, and use only a trusted TOKENAPI_BASE_URL. <br>
-Risk: On 500 or 502 responses, the client falls back from the scoped skill run endpoint to the broader agent orchestration endpoint while sending the same payload and API key. <br>
-Mitigation: Review the fallback behavior before deployment and monitor which endpoint handles production requests. <br>
-Risk: Compliance, tariff, labeling, and platform-rule outputs may be incomplete or outdated for a specific product, market, or date. <br>
-Mitigation: Treat outputs as reference guidance and verify final decisions against official sources or qualified legal, tax, and compliance professionals. <br>
+## Use Case:
 
+Developers and commerce operators use this skill to route product, market, material, HS-code, and platform details to Yufluent for cross-border compliance reference output. It supports certification, tariff, labeling, and marketplace-rule workflows, but its results are advisory and require human verification against official sources and current regulations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/metahuan/yufluentcn-compliance-guard) <br>
-- [Yufluent homepage](https://claw.changzhiai.com) <br>
-- [OpenClaw console](https://claw.changzhiai.com/app/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Formatted text or structured JSON from the Yufluent compliance service, with CLI examples in Markdown documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TOKENAPI_KEY; TOKENAPI_BASE_URL is optional and should only point to a trusted host.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: API credentials and business data can be sent to a configured cloud endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the Yufluent service is trusted, protect TOKENAPI_KEY as a reusable credential, and leave TOKENAPI_BASE_URL unset unless a trusted HTTPS endpoint is intentionally configured.
+
+Risk: Free-form compliance context may contain unnecessary secrets, personal data, or commercially sensitive details.
+
+Mitigation: Provide only the product and trade details needed for the compliance question and avoid including unrelated secrets or personal data.
+
+Risk: Compliance, tariff, labeling, and platform-rule outputs may be incomplete or stale for legal or tax decisions.
+
+Mitigation: Treat outputs as reference guidance and require human review against official sources and current regulations before acting.
+
+Risk: The package has a local import-path weakness identified by security evidence.
+
+Mitigation: Run the skill in a controlled environment and review local files and dependency paths before installation or execution.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/metahuan/skills/yufluentcn-compliance-guard)
+- [Yufluent homepage](https://claw.changzhiai.com)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Structured JSON recommendations and formatted text from a cloud skill run, usually invoked through CLI shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TOKENAPI_KEY. Optional TOKENAPI_BASE_URL changes the API endpoint. Outputs are non-legal, non-tax advisory references that require human review.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

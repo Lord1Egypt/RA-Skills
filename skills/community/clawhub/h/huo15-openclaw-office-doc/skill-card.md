@@ -1,44 +1,60 @@
-## Description: <br>
-Huo15 Openclaw Office Doc helps agents generate Chinese enterprise documents as Word or PDF files across contracts, reports, plans, technical documents, and related business formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates enterprise Word and PDF documents from markdown-style content across business formats, including contracts, reports, plans, API docs, deployment docs, resumes, quotes, and press releases.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Employees and business or technical teams use this skill to draft, format, and convert enterprise documents such as contracts, project reports, API documentation, deployment guides, resumes, press releases, and risk assessments. It supports Word generation, native PDF generation, Word-to-PDF conversion, and reusable Markdown templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Document generation may attempt Odoo access using existing OpenClaw credentials when company information is missing. <br>
-Mitigation: Run document commands with explicit --company-name and --logo-path values or use --no-odoo when external Odoo access is not intended. <br>
-Risk: The skill can persist local company information and related memory files. <br>
-Mitigation: Review ~/.huo15/company-info.json and generated memory files before and after use, especially on shared machines. <br>
-Risk: generate-config.sh can write OpenClaw workspace, persona, and memory files outside ordinary document generation. <br>
-Mitigation: Avoid running generate-config.sh unless the intended task is OpenClaw workspace configuration. <br>
-Risk: A deployment template includes an admin/admin test credential. <br>
-Mitigation: Replace or remove the test credential before using the template in any real deployment documentation. <br>
+## Use Case:
 
+Employees, external business users, and developers can use this skill to draft structured Chinese enterprise documents and convert markdown-style source content into Word or PDF deliverables. It is suited for contracts, project and operations reports, technical documentation, and administrative documents where format presets and company branding are useful.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/huo15-openclaw-office-doc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown source and generated DOCX or PDF files, with CLI-oriented command output where scripts are used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Document commands can use local company information, logo assets, templates, and optional conversion backends.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-7.9.1 (source: frontmatter and server release evidence) <br>
+Risk: The document generators can use local company metadata and may fall back to Odoo credentials when that path is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit --company-name and --logo-path values, or run with --no-odoo unless the credential flow and target Odoo instance have been reviewed.
+
+Risk: The bundled OpenClaw configuration generator can create persistent identity and memory files in the selected output directory.
+
+Mitigation: Run it first against a temporary review directory and copy only approved files into an active OpenClaw workspace.
+
+Risk: Generated business, HR, security, or legal documents can be incomplete or incorrect if the prompt content or templates are not reviewed.
+
+Mitigation: Require human review before using generated contracts, policies, incident materials, or customer-facing documents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-openclaw-office-doc)
+- [Publisher profile](https://clawhub.ai/user/zhaobod1)
+- [Template README](templates/README.md)
+- [OpenOffice PDF export reference](https://wiki.openoffice.org/wiki/API/Tutorials/PDF_export)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands that can create .docx and .pdf files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated documents may depend on local company metadata, logo files, fonts, and optional conversion backends.]
+
+## Skill Version(s):
+
+7.9.4 (source: SKILL.md frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

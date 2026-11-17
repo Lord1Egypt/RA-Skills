@@ -1,44 +1,63 @@
-## Description: <br>
-Generates a talking digital human video from a portrait image plus either uploaded audio or text-based speech, then returns a public video link when processing completes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a talking digital-human video from a person image and either user-provided audio or text-derived speech, then returns a public video URL.
 
-## Publisher: <br>
-[focus-aim](https://clawhub.ai/user/focus-aim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[focus-aim](https://clawhub.ai/user/focus-aim)
 
-## Use Case: <br>
-External users and agents use this skill to create digital human talking videos from a user-provided image and audio or text, including preset voice or voice-clone speech generation. It helps automate job submission, polling, task-status review, and retrieval of the resulting public video URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive face images, voice samples, generated speech, and digital-human video outputs. <br>
-Mitigation: Use only images, audio, and voice samples that the user has rights and consent to upload, and review generated videos before sharing. <br>
-Risk: Returned video URLs should be treated as public or shareable links. <br>
-Mitigation: Avoid submitting sensitive media unless public-link exposure is acceptable, and manage or delete generated links and local task history when they are no longer needed. <br>
-Risk: The skill requires an aim-secret-key and stores local runtime configuration. <br>
-Mitigation: Prefer a secure secrets mechanism or out-of-band setup, use scoped and revocable credentials, never commit .env, and delete .env and .task-history.jsonl when no longer needed. <br>
+## Use Case:
 
+Developers and agents use this skill to create digital-human talking videos from a local person image plus audio, text-to-speech, or cloned voice input. It is suited for workflows that need a generated video URL after submitting media to the Focus AIM AEP service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/focus-aim/aim-digital-human-video) <br>
-- [AIM skills registration](https://tools.mentarc.cn/aim-skills/) <br>
-- [FFmpeg and ffprobe](https://ffmpeg.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated media result is returned as a public video URL; task status may also be persisted locally for later polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends user media and generated speech data to AEP/TTS services and receives a public video URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for media approved for those services and for results that may be accessible through a public URL.
+
+Risk: The aim-secret-key is required for service access.
+
+Mitigation: Store the key through a protected local secret mechanism or carefully protected .env file, and do not paste it into chat.
+
+Risk: Changing AEP_BASE_URL can redirect media and credentials to another endpoint.
+
+Mitigation: Keep AEP_BASE_URL pointed at the trusted Focus AIM endpoint unless the replacement endpoint has been reviewed.
+
+Risk: Task history can retain saved video URLs and later runs may re-contact them.
+
+Mitigation: Periodically delete stale .task-history.jsonl entries when retained URLs are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/focus-aim/skills/aim-digital-human-video)
+- [AIM skills registration](https://tools.mentarc.cn/aim-skills/)
+- [FFmpeg ffprobe documentation](https://ffmpeg.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON script output containing a public video URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local .env and .task-history.jsonl files during use; generated videos are returned as public URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

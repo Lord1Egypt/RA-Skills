@@ -1,43 +1,56 @@
-## Description: <br>
-Assistant Reliability Watchtower provides deterministic reliability monitoring for OpenClaw assistant workflows, including smoke probes, daily digests, scorecard evidence validation, delivery preambles, and probe/reporting coverage inspection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assistant Reliability Watchtower runs deterministic ARW probes, digests, scorecard validation, and delivery preamble checks for OpenClaw assistant workflows.
 
-## Publisher: <br>
-[wit-oc](https://clawhub.ai/user/wit-oc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wit-oc](https://clawhub.ai/user/wit-oc)
 
-## Use Case: <br>
-Developers and operators use this skill to run ARW smoke probes, generate reliability digests, validate scorecard reporting evidence, and render operator preambles for OpenClaw assistant workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local Python helper that can read workspace or environment-derived paths. <br>
-Mitigation: Run it in a limited project directory, pass the intended repo root explicitly, and review wrapper commands before using it with sensitive files or secrets. <br>
-Risk: The release evidence identifies a least-privilege documentation gap. <br>
-Mitigation: Confirm the intended workspace access and artifact paths before installation or operational use. <br>
+## Use Case:
 
+Developers and reliability operators use this skill to run ARW smoke probes, generate digests, validate scorecard evidence, render delivery preambles, and inspect current probe and configuration coverage without reading the full repository.
 
-## Reference(s): <br>
-- [ARW RC1 release contract](references/release-contract.md) <br>
-- [ARW probe and signal catalog](references/probe-catalog.md) <br>
-- [ARW config contract](references/config-contract.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wit-oc/assistant-reliability-watchtower) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown and shell-oriented operational guidance, with generated ARW JSON and Markdown artifacts from wrapper commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are repo-backed and commonly written under the configured artifacts/arw path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The wrapper is repo-backed and delegates execution to a local ARW checkout.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only against a trusted ARW repository path supplied with --repo-root or ARW_REPO_ROOT.
+
+Risk: Immediate alerts or non-dry-run delivery settings can target real recipients or write to an unexpected artifact location.
+
+Mitigation: Review expected_recipient, actual_recipient, out_dir, and related delivery evidence values before enabling immediate alerts or live delivery.
+
+## Reference(s):
+
+- [ARW RC1 release contract](references/release-contract.md)
+- [ARW probe and signal catalog](references/probe-catalog.md)
+- [ARW config contract](references/config-contract.md)
+- [Example ARW configuration](assets/example-config.json)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; wrapper commands produce JSON and Markdown monitoring artifacts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes monitoring artifacts under the configured ARW artifact directory, typically artifacts/arw/.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,49 @@
-## Description: <br>
-Configure and manage OpenClaw Dreaming — background memory consolidation, auto-promotion to MEMORY.md, dream diary <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure and manage OpenClaw Dreaming — background memory consolidation, auto-promotion to MEMORY.md, dream diary
 
-## Publisher: <br>
-[silverod](https://clawhub.ai/user/silverod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[silverod](https://clawhub.ai/user/silverod)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to configure, check, and troubleshoot Dreaming for background memory consolidation, dream diary management, and controlled promotion into MEMORY.md. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dreaming can read notes or session transcripts and promote selected content into MEMORY.md on a schedule. <br>
-Mitigation: Review the OpenClaw configuration before applying it and confirm the heartbeat and promotion settings match the intended workspace. <br>
-Risk: Manual promotion or backfill commands can alter MEMORY.md or DREAMS.md. <br>
-Mitigation: Back up MEMORY.md and DREAMS.md and run preview commands before using --apply or backfill options. <br>
-Risk: Server metadata includes wallet and sensitive-credential capability tags that may not match the artifact behavior. <br>
-Mitigation: Verify those tags are irrelevant for the target installation before deployment. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to enable, configure, inspect, and troubleshoot Dreaming for automatic memory consolidation and optional promotion into MEMORY.md.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/silverod/openclaw-dreaming-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON5 configuration snippets and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; commands and configuration should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Automatic memory promotion can persist notes or transcripts into long-term agent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable Dreaming only after confirming which notes and transcripts may be used, preview promotions where possible, and keep rollback and audit practices in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/silverod/skills/openclaw-dreaming-setup)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON5 configuration snippets and inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes status, promotion, dream diary, REM harness, backfill, rollback, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

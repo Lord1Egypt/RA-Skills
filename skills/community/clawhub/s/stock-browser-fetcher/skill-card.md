@@ -1,40 +1,51 @@
-## Description: <br>
-Uses browser automation to fetch real-time A-share market data from Eastmoney and Sina Finance, including major indices, northbound capital flow, market breadth, and limit-up/limit-down counts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches real-time China A-share market data through browser automation, including Shanghai, Shenzhen, and ChiNext indices, northbound capital flow, advancing and declining stock counts, and limit-up and limit-down statistics.
 
-## Publisher: <br>
-[linbo405](https://clawhub.ai/user/linbo405) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linbo405](https://clawhub.ai/user/linbo405)
 
-## Use Case: <br>
-Developers, analysts, and trading teams use this skill to collect A-share market snapshots for quantitative research, portfolio monitoring, financial analysis, and market sentiment tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser-driven collection may bypass anti-scraping protections on financial websites without clear authorization or safety limits. <br>
-Mitigation: Install only when authorized to automate the listed sources; prefer official or licensed market-data APIs, source allowlists, explicit user control, and rate limits. <br>
-Risk: Market data from website pages may be delayed, incomplete, or affected by source layout changes. <br>
-Mitigation: Validate outputs against authoritative market-data sources before using them for analysis, monitoring, or trading workflows. <br>
+## Use Case:
 
+Developers and analysts use this skill to collect A-share market snapshots for quantitative research, financial analysis, portfolio monitoring, and market-sentiment tracking.
 
-## Reference(s): <br>
-- [Stock Browser Fetcher on ClawHub](https://clawhub.ai/linbo405/stock-browser-fetcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Data] <br>
-**Output Format:** [Structured JSON market snapshot] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes date, Shanghai/Shenzhen/ChiNext index values, northbound flow, advancing and declining counts, and limit-up/limit-down counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Browser-based fetching may conflict with data-source terms or acceptable-use limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review Eastmoney and Sina Finance terms, keep request volume modest, and use official or licensed APIs where required.
+
+## Reference(s):
+
+- [Stock Browser Fetcher on ClawHub](https://clawhub.ai/linbo405/skills/stock-browser-fetcher)
+- [Eastmoney](https://eastmoney.com)
+- [Sina Finance](https://finance.sina.com.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces structured market data fields such as date, index values, northbound flow, advancing and declining counts, and limit-up and limit-down counts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

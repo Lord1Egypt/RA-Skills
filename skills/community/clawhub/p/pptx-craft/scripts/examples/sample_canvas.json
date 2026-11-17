@@ -1,0 +1,42 @@
+{
+  "pages": [
+    {
+      "name": "季度复盘 · Q2",
+      "width": 1440, "height": 680,
+      "children": [
+        {"type": "RECTANGLE", "x": 80, "y": 80, "width": 1280, "height": 180,
+         "fills": [{"type": "SOLID", "color": {"hex": "#2563EB"}}], "cornerRadius": 12},
+        {"type": "TEXT", "x": 120, "y": 120, "width": 1000, "height": 60,
+         "characters": "季度复盘 · Q2", "fontSize": 40, "fontWeight": 700,
+         "textAlignHorizontal": "LEFT", "fills": [{"type": "SOLID", "color": {"hex": "#FFFFFF"}}]},
+        {"type": "TEXT", "x": 120, "y": 184, "width": 1000, "height": 30,
+         "characters": "业务增长与组织演进", "fontSize": 18, "fontWeight": 400,
+         "fills": [{"type": "SOLID", "color": {"hex": "#DBEAFE"}}]},
+        {"type": "FRAME", "x": 120, "y": 320, "width": 560, "height": 240,
+         "fills": [{"type": "SOLID", "color": {"hex": "#FFFFFF"}}], "cornerRadius": 14,
+         "strokes": [{"type": "SOLID", "color": {"hex": "#E2E8F0"}}], "strokeWeight": 1,
+         "children": [
+           {"type": "TEXT", "x": 150, "y": 350, "width": 500, "height": 30,
+            "characters": "亮点 01", "fontSize": 18, "fontWeight": 700,
+            "fills": [{"type": "SOLID", "color": {"hex": "#0F172A"}}]},
+           {"type": "TEXT", "x": 150, "y": 392, "width": 500, "height": 140,
+            "characters": "用户净增 32%，留存显著提升，渠道结构更均衡，第二增长曲线初步成型。",
+            "fontSize": 14, "fontWeight": 400, "fills": [{"type": "SOLID", "color": {"hex": "#64748B"}}]}
+         ]},
+        {"type": "FRAME", "x": 720, "y": 320, "width": 560, "height": 240,
+         "fills": [{"type": "SOLID", "color": {"hex": "#FFFFFF"}}], "cornerRadius": 14,
+         "strokes": [{"type": "SOLID", "color": {"hex": "#E2E8F0"}}], "strokeWeight": 1,
+         "children": [
+           {"type": "TEXT", "x": 750, "y": 350, "width": 500, "height": 30,
+            "characters": "风险 01", "fontSize": 18, "fontWeight": 700,
+            "fills": [{"type": "SOLID", "color": {"hex": "#B5483D"}}]},
+           {"type": "TEXT", "x": 750, "y": 392, "width": 500, "height": 140,
+            "characters": "获客成本上升，需优化投放效率；组织扩张带来协同成本。",
+            "fontSize": 14, "fontWeight": 400, "fills": [{"type": "SOLID", "color": {"hex": "#64748B"}}]}
+         ]},
+        {"type": "LINE", "x": 80, "y": 620, "width": 1280, "height": 2,
+         "strokes": [{"type": "SOLID", "color": {"hex": "#E2E8F0"}}]}
+      ]
+    }
+  ]
+}

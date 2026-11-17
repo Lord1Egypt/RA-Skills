@@ -1,43 +1,62 @@
-## Description: <br>
-Provides agents with MCP tools to create and close SSH sessions, run commands on remote devices, check service health, and inspect active session and command history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an agent with access to an MCP SSH server for creating SSH sessions, executing commands on authorized remote devices, listing session and command history, checking service health, and closing sessions.
 
-## Publisher: <br>
-[is-the-king](https://clawhub.ai/user/is-the-king) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[is-the-king](https://clawhub.ai/user/is-the-king)
 
-## Use Case: <br>
-Developers and network administrators use this skill to manage SSH sessions and run commands on systems they control through the MCP_Server_Trigger server. It supports session creation, command execution, active-session inspection, session and command history review, health checks, and session closure. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent run broad SSH commands on remote systems. <br>
-Mitigation: Use it only with systems you control, restrict allowed hosts and commands, and require explicit approval before changes are executed. <br>
-Risk: The skill handles SSH credentials and can create sessions with username and password inputs. <br>
-Mitigation: Use least-privilege credentials, avoid shared administrative accounts, and verify the external MCP server and mcp2skill source before installation. <br>
-Risk: Session and command history may expose sensitive operational details. <br>
-Mitigation: Confirm how the external service stores, protects, and deletes session and command history before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MCP Tools Reference](references/TOOLS.md) <br>
-- [mcp2skill](https://github.com/fenwei-dev/mcp2skill) <br>
-- [ClawHub skill page](https://clawhub.ai/is-the-king/ssh-netmiko) <br>
+## Use Case:
 
+Developers, network engineers, and operations teams use this skill to let an agent administer authorized SSH targets through the MCP_Server_Trigger tool interface. It supports session creation, command execution, health checks, active-session listing, historical-session review, command-history review, and session closure.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Text or JSON-like MCP tool responses containing command output, session status, health status, or history records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include remote command results and session or command history from the external SSH service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can execute remote SSH commands on infrastructure targets.
+
+Mitigation: Limit use to authorized hosts, require human review for high-impact commands, and restrict agent access to least-privilege SSH accounts.
+
+Risk: SSH usernames and passwords may be passed as tool parameters.
+
+Mitigation: Avoid reusable production passwords, prefer keys or a secret manager, and prevent credentials from being stored in prompts, logs, or shared transcripts.
+
+Risk: Session and command history may contain sensitive operational data.
+
+Mitigation: Treat history output as sensitive, restrict access to history tools, and align retention with organizational security policy.
+
+Risk: The skill depends on globally installed mcp2skill tooling.
+
+Mitigation: Review and pin the dependency before installation, and update it through a controlled dependency-management process.
+
+## Reference(s):
+
+- [MCP Tools Reference](references/TOOLS.md)
+- [mcp2skill](https://github.com/fenwei-dev/mcp2skill)
+- [ClawHub Skill Page](https://clawhub.ai/is-the-king/skills/ssh-netmiko)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Text and JSON-like MCP tool responses, with command outputs returned from remote SSH targets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires mcp2skill and access to the MCP_Server_Trigger service; SSH credentials, session identifiers, hostnames, device types, ports, and command text may be passed as tool parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

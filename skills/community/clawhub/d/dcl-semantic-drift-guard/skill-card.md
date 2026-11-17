@@ -1,41 +1,53 @@
-## Description: <br>
-Use this skill to detect semantic hallucinations and context drift in LLM outputs by checking whether generated responses are grounded in supplied source documents or retrieved knowledge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects semantic hallucinations and context drift by comparing an LLM-generated response against an inline source document or configured knowledge-base query, then returns a grounding verdict and audit-oriented drift details.
 
-## Publisher: <br>
-[daririnch](https://clawhub.ai/user/daririnch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daririnch](https://clawhub.ai/user/daririnch)
 
-## Use Case: <br>
-Developers, AI application teams, and governance reviewers use this skill to compare LLM outputs against authoritative documents or RAG-retrieved context before accepting, logging, or delivering the output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Source documents and knowledge-base queries may contain confidential or regulated content. <br>
-Mitigation: Provide only sources and kb_endpoint URLs that are trusted for the intended workflow, and avoid submitting confidential material unless the deployment environment is approved for it. <br>
-Risk: The artifact describes no-retention, compliance, and audit-chain behavior that is not independently proven by the server security evidence. <br>
-Mitigation: Treat those claims as publisher-provided behavior statements and verify operational controls before relying on them for compliance or retention guarantees. <br>
+## Use Case:
 
+Developers, evaluation teams, and agent operators use this skill to check whether generated answers remain grounded in a trusted source before committing, publishing, or escalating the output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daririnch/dcl-semantic-drift-guard) <br>
-- [Publisher profile](https://clawhub.ai/user/daririnch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with JSON input and output schemas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a verdict-oriented audit record structure with drift items, confidence, source mode, strictness, policy, hash, timestamp, and audit chain identifier.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Optional kb_query mode sends query text to a configured remote RAG endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use context mode for confidential or regulated material; when kb_query is needed, use only trusted HTTPS endpoints under the user's control.
+
+Risk: The optional paid MCP pre-check can send llm_output text externally and write audit metadata outside the agent context.
+
+Mitigation: Run the optional pre-check only after confirming that external processing and audit metadata writing are acceptable for the content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daririnch/skills/dcl-semantic-drift-guard)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Guidance]
+
+**Output Format:** [JSON verdict record with drift items, confidence, strictness, source mode, timestamp, and audit hash; explanatory text may accompany reviewer guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default context mode is local to the agent context; kb_query and the optional MCP pre-check can send selected text or query data externally.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,62 @@
-## Description: <br>
-Byreal Perps CLI helps an agent use the byreal-perps-cli command line tool for Hyperliquid perpetual futures account setup, orders, positions, leverage, trade history, market signals, and technical analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Byreal Perps CLI helps agents guide users through Hyperliquid perpetual futures account setup, market and limit orders, position management, leverage controls, trade history, and market signal analysis.
 
-## Publisher: <br>
-[ggg223399](https://clawhub.ai/user/ggg223399) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ggg223399](https://clawhub.ai/user/ggg223399)
 
-## Use Case: <br>
-External users and developers use this skill to guide an agent through Hyperliquid perpetual futures CLI workflows, including account initialization, read-only account checks, market and limit orders, position management, leverage updates, and market signal review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to execute high-impact leveraged trading commands, including placing orders, changing leverage, canceling orders, and closing positions. <br>
-Mitigation: Use testnet or a tightly limited agent wallet first, and require explicit user confirmation before any command that places orders, changes leverage, cancels orders, or closes positions. <br>
-Risk: An agent-accessible trading CLI may expose locally configured wallet capabilities if credentials are initialized for a live account. <br>
-Mitigation: Initialize credentials only through the interactive CLI flow, never paste private keys into chat, and prefer narrowly funded or restricted wallets for agent use. <br>
+## Use Case:
 
+External users and developers can use this skill to have an agent operate the Byreal CLI for Hyperliquid perpetual futures workflows, including account checks, order and position commands, leverage changes, and public market signal scans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ggg223399/byreal-perps-cli) <br>
-- [Project homepage from ClawHub metadata](https://github.com/byreal-git/byreal-perps-cli) <br>
-- [Hyperliquid API info endpoint](https://api.hyperliquid.xyz/info) <br>
-- [Hyperliquid testnet API info endpoint](https://api.hyperliquid-testnet.xyz/info) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides CLI use and command selection; trading commands can change positions, orders, leverage, and account exposure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release metadata) <br>
+Risk: The skill can guide agents toward high-impact live trading actions such as opening orders, changing leverage, and closing positions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use testnet first and require explicit user confirmation of account, side, coin, size, price, leverage, and order intent before any write action.
+
+Risk: Broad delegation such as asking an agent to manage trades can create unclear authority over financial decisions.
+
+Mitigation: Limit delegation to specific, user-confirmed commands and have the agent restate the proposed action before execution.
+
+Risk: The global Node package install and update flow can change the executable used by the agent.
+
+Mitigation: Pin or verify the CLI package version before installation or update, especially before using commands that affect live positions.
+
+Risk: Private keys or agent wallet credentials could be mishandled if requested in chat.
+
+Mitigation: Direct users to run the CLI account initialization flow interactively and never ask them to paste private keys into the conversation.
+
+## Reference(s):
+
+- [Byreal Perps CLI GitHub Repository](https://github.com/byreal-git/byreal-perps-cli)
+- [Byreal Perps CLI on ClawHub](https://clawhub.ai/ggg223399/skills/byreal-perps-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose account setup, read-only market or account queries, trading commands, testnet usage, and troubleshooting steps.]
+
+## Skill Version(s):
+
+0.2.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

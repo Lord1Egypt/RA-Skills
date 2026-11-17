@@ -1,40 +1,63 @@
-## Description: <br>
-Use when real-time speech synthesis is needed with Alibaba Cloud Model Studio Qwen TTS Realtime models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time speech synthesis workflows for Alibaba Cloud Model Studio Qwen TTS Realtime models, including low-latency and instruction-controlled synthesis.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure and probe Alibaba Cloud Qwen realtime text-to-speech workflows for low-latency, instruction-controlled speech output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text, voice settings, and instructions are sent to Alibaba DashScope, and fallback audio downloads are provider output. <br>
-Mitigation: Use a dedicated or minimally scoped DashScope API key, avoid shared secret files and copied evidence, keep the default endpoint unless another endpoint is intentionally trusted, and choose output paths deliberately. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure and validate low-latency text-to-speech generation with Alibaba Cloud Qwen realtime TTS models. It supports selecting exact realtime model names, providing voice and instruction parameters, and probing SDK/runtime compatibility.
 
-## Reference(s): <br>
-- [Alibaba Cloud Qwen TTS Realtime documentation](https://help.aliyun.com/zh/model-studio/qwen-tts-realtime) <br>
-- [Alibaba Cloud Model Studio newly released models](https://help.aliyun.com/zh/model-studio/newly-released-models) <br>
-- [Skill source references](references/sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands and Python script guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce JSON probe summaries and WAV audio files when the included demo script is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The TTS workflow can send the API key and synthesis text to a configured endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the official DashScope endpoint, avoid overriding --base-url unless credential use is removed or a strict allowlist is added, and use a narrowly scoped API key.
+
+Risk: Input text is sent to Alibaba Cloud for synthesis.
+
+Mitigation: Do not synthesize confidential text unless sending that text to Alibaba Cloud is intended and approved.
+
+Risk: The demo can write fallback audio files to a user-specified path.
+
+Mitigation: Check the output path before running fallback generation and keep generated artifacts in the documented output directory.
+
+Risk: Runtime behavior depends on the installed dashscope package and SDK compatibility with realtime models.
+
+Mitigation: Pin the dashscope dependency and run the provided strict compatibility probe before relying on realtime output.
+
+## Reference(s):
+
+- [Qwen TTS Realtime documentation](https://help.aliyun.com/zh/model-studio/qwen-tts-realtime)
+- [Model Studio newly released models](https://help.aliyun.com/zh/model-studio/newly-released-models)
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/aliyun-qwen-tts-realtime)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, API Calls, Files]
+
+**Output Format:** [Markdown guidance with inline bash commands, JSON response summaries, and optional WAV audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DASHSCOPE_API_KEY or an Alibaba Cloud credentials profile; fallback audio defaults under output/ai-audio-tts-realtime/audio/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

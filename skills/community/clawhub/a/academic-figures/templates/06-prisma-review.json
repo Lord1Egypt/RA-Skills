@@ -1,0 +1,19 @@
+{
+ "_scene": "PRISMA 2020 流程图",
+ "_description": "PRISMA 2020 流程图（prisma）。用模板自带 _command 一键渲染示例。",
+ "_chart_type": "prisma",
+ "_command": "python3 scripts/gen_figure.py -t prisma -d templates/06-prisma-review.json -o prisma.pdf --theme glm --verify",
+ "_caption_template": "图X | 文献筛选流程（PRISMA 2020）：共识别 256 篇，最终纳入 8 项 RCT。",
+ "_note": "示例数字仅示意，请替换为你的真实数据（--stats auto 可用于 box/violin 原始数据）",
+ "records_identified": 256,
+ "duplicates_removed": 87,
+ "records_excluded": 121,
+ "reports_not_retrieved": 2,
+ "exclusion_reasons": {
+  "Wrong population": 16,
+  "Wrong intervention": 10,
+  "No usable data": 12
+ },
+ "studies_included": 8,
+ "lang": "en"
+}

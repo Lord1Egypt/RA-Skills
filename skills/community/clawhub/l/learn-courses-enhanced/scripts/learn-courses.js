@@ -15,12 +15,17 @@ const CONFIG = {
       id: 'course-2',
       name: '课程2',
       url: 'https://mooc.ctt.cn/#/study/subject/detail/c5f08b78-3325-4775-a2dc-81ef230e76a4'
+    },
+    {
+      id: 'course-scan-1dd1dc87',
+      name: '课程(1dd1dc87)',
+      url: 'https://mooc.ctt.cn/#/study/subject/detail/1dd1dc87-f01d-4372-85c7-dff77a997aad'
     }
   ],
   
   // 视频学习配置
   VIDEO: {
-    MAX_WAIT_SECONDS: 3600,
+    MAX_WAIT_SECONDS: 54000,
     CHECK_INTERVAL: 5000,
     STABLE_COUNT: 6,
     COMPLETION_CHECK_INTERVAL: 10000
@@ -37,10 +42,8 @@ const CONFIG = {
   // 浏览器配置
   BROWSER: {
     HEADLESS: false,
-    EXECUTABLE_PATH: process.pkg 
-      ? './chrome-win64/chrome.exe' 
-      : undefined,
-    CHANNEL: process.pkg ? undefined : 'chrome',
+    // 优先使用内置 Chromium（相对于脚本文件的路径），无需系统安装 Chrome
+    EXECUTABLE_PATH: path.join(__dirname, '../chromium/chrome-win64/chrome.exe'),
     ARGS: ['--start-maximized', '--disable-blink-features=AutomationControlled']
   },
   
@@ -283,9 +286,154 @@ async function handlePopupSmart(page, elapsedSeconds) {
       popupActions.push(`点击中央按钮: ${centerButtons}`);
     }
     
-    // 4. ESC键关闭
-    await page.keyboard.press('Escape');
-    await page.waitForTimeout(300);
+    // 4. 全页面/全 Frame 兜底：检测可见遮罩/弹窗后，点击其中的"确定/确认/我已知悉"等按钮
+    //    （视频页内容通常在 iframe 内，且按钮可能是 div，故遍历所有页面与 frame 并放宽标签与匹配）
+    const overlaySelectors = [
+      '.modal', '.dialog', '.popup', '.mask', '.overlay',
+      '.el-dialog', '.el-message-box__wrapper', '.el-message-box', '.el-overlay',
+      '.ant-modal', '.ant-modal-wrap', '.ivu-modal', '.ivu-modal-wrap',
+      '.layui-layer', '.van-dialog', '.van-modal', '.van-overlay',
+      '.weui-dialog', '.swal2-container', '.sweet-alert', '.jconfirm',
+      '[role="dialog"]', '[role="alertdialog"]',
+      '[class*="modal"]', '[class*="dialog"]', '[class*="popup"]',
+      '[class*="mask"]', '[class*="layer"]', '[class*="overlay"]', '[class*="toast"]'
+    ];
+    // 关键词采用"包含"匹配（cleanText 会去掉空白与倒计时括号，可命中 "确 定"、"确定(5)" 等）
+    const okKeywords = ['确定', '确认', '我知道了', '我已知悉', '知道了', '好的', '关闭', '下一步', '继续学习', '继续播放', '继续'];
+    const cleanText = (t) => (t || '')
+      .replace(/[\s\u00a0]+/g, '')
+      .replace(/[（(【\[].*?[)）\]】]/g, '')
+      .trim();
+    const diagStamp = { last: 0 }; // 诊断日志节流（60 秒最多一条）
+
+    for (const pg of [page, ...page.context().pages().filter(p => p !== page)]) {
+      for (const frame of pg.frames()) {
+        let found = null; // { sel, count }
+        try {
+          found = await frame.evaluate((sels, kws) => {
+            const visible = (el) => {
+              const st = getComputedStyle(el);
+              const r = el.getBoundingClientRect();
+              return st.display !== 'none' && st.visibility !== 'hidden' &&
+                parseFloat(st.opacity || '1') > 0 && r.width > 40 && r.height > 20;
+            };
+            let nomatch = null; // 注意：必须用局部变量，不能引用外层闭包（浏览器上下文不可见）
+            for (const s of sels) {
+              let els = [];
+              try { els = document.querySelectorAll(s); } catch (e) { continue; }
+              for (const el of els) {
+                if (!visible(el)) continue;
+                // 在遮罩内找带关键词的可点击元素（标签放宽 + 文本包含匹配）
+                const cands = el.querySelectorAll('button, a, span, div, .btn, .ivu-btn, .el-button, [class*="btn"], [class*="button"]');
+                const hits = [];
+                for (const c of cands) {
+                  if (!visible(c)) continue;
+                  const txt = (c.textContent || '').replace(/[\s\u00a0]+/g, '').replace(/[（(【\[].*?[)）\]】]/g, '').trim();
+                  if (!txt || txt.length > 12) continue;
+                  if (kws.some(k => txt.includes(k))) hits.push(c);
+                }
+                if (hits.length > 0) return { sel: s, mode: 'text', count: hits.length };
+                // 文本没匹配到：记录"有遮罩无命中"供诊断
+                if (!nomatch) nomatch = { sel: s, mode: 'nomatch', count: cands.length };
+              }
+            }
+            return nomatch;
+          }, overlaySelectors, okKeywords).catch(() => null);
+        } catch (e) {}
+
+        if (!found) continue;
+
+        try {
+          if (found.mode === 'text') {
+            // 用 Playwright 精确点击（文本包含 + 可见）
+            const overlay = frame.locator(found.sel.replace(/:visible$/, '') + ':visible').first();
+            if (!(await overlay.count())) continue;
+            const cand = overlay.locator('button, a, span, div, .btn, .ivu-btn, .el-button, [class*="btn"], [class*="button"]')
+              .filter({ hasText: new RegExp(okKeywords.join('|')) });
+            const n = await cand.count();
+            let clicked = false;
+            for (let i = 0; i < n && !clicked; i++) {
+              const b = cand.nth(i);
+              try {
+                if (await b.isVisible()) {
+                  const t = cleanText(await b.textContent());
+                  await b.click({ timeout: 1500 });
+                  popupActions.push(`遮罩弹窗点击: ${t || '确定'} @ ${pg === page ? '主页' : '其他页'}`);
+                  clicked = true;
+                }
+              } catch (e) {}
+            }
+            if (clicked) await pg.waitForTimeout(400);
+          } else if (Date.now() - diagStamp.last > 60000) {
+            diagStamp.last = Date.now();
+            console.log(`[诊断] 发现可见遮罩(${found.sel})但未匹配到确认按钮，候选元素 ${found.count} 个，frame: ${(frame.url() || '').slice(-60)}`);
+          }
+        } catch (e) {}
+      }
+    }
+
+    // 5. 文本锚点兜底（不依赖弹窗类名）：先找包含已知提示文案的元素（如"亲爱的学员，目前学习正在计时中"），
+    //    再从锚点向上爬容器，点击容器内的确认按钮。可命中任何自定义样式的弹窗。
+    const anchorPhrases = ['亲爱的学员', '学习正在计时', '学习计时中', '请不要走开', '温馨提示', '播放结束', '学习完成', '恭喜'];
+    for (const pg of [page, ...page.context().pages().filter(p => p !== page)]) {
+      for (const frame of pg.frames()) {
+        let hit = null; // { text }
+        try {
+          hit = await frame.evaluate((anchors, kws) => {
+            const clean = (t) => (t || '').replace(/[\s\u00a0]+/g, '').replace(/[（(【\[].*?[)）\]】]/g, '').trim();
+            const visible = (el) => {
+              const st = getComputedStyle(el);
+              const r = el.getBoundingClientRect();
+              return st.display !== 'none' && st.visibility !== 'hidden' &&
+                parseFloat(st.opacity || '1') > 0 && r.width > 30 && r.height > 15;
+            };
+            // 找到包含锚点文案的可见元素（限制文本长度避免命中整页容器）
+            let anchorEl = null;
+            for (const el of document.querySelectorAll('div, p, span, td, label')) {
+              if (!visible(el)) continue;
+              const t = el.textContent || '';
+              if (t.length < 200 && anchors.some(a => t.includes(a))) { anchorEl = el; break; }
+            }
+            if (!anchorEl) return null;
+            // 从锚点向上最多 8 层容器，在每层内找确认按钮
+            let node = anchorEl;
+            for (let i = 0; i < 8 && node; i++) {
+              const cands = node.querySelectorAll('button, a, div, span, [class*="btn"], [class*="button"]');
+              for (const b of cands) {
+                if (!visible(b)) continue;
+                const txt = clean(b.textContent || '');
+                if (!txt || txt.length > 12) continue;
+                if (kws.some(k => txt === k || txt.includes(k))) {
+                  b.setAttribute('data-mooc-auto', '1'); // 打标记供 Playwright 精确点击
+                  return { text: txt };
+                }
+              }
+              node = node.parentElement;
+            }
+            return null;
+          }, anchorPhrases, okKeywords).catch(() => null);
+        } catch (e) {}
+
+        if (hit) {
+          try {
+            const btn = frame.locator('[data-mooc-auto="1"]').first();
+            if (await btn.count()) {
+              await btn.click({ timeout: 1500 });
+              popupActions.push(`文本锚点点击: ${hit.text} @ ${pg === page ? '主页' : '其他页'}`);
+              await pg.waitForTimeout(400);
+            }
+          } catch (e) {}
+        }
+        // 清理标记，避免残留影响下一轮
+        try { await frame.evaluate(() => { document.querySelectorAll('[data-mooc-auto]').forEach(e => e.removeAttribute('data-mooc-auto')); }); } catch (e) {}
+      }
+    }
+
+    // 6. ESC键关闭（仅在本次确有弹窗动作时按，避免误触页面）
+    if (popupActions.length > 0) {
+      await page.keyboard.press('Escape');
+      await page.waitForTimeout(300);
+    }
     
   } catch (error) {
     // 静默处理
@@ -796,6 +944,18 @@ async function waitForVideoCompletion(page, recovery) {
   let completionCount = 0;
   let lastSaveTime = Date.now();
 
+  // 固化：自动接受原生 confirm/alert/prompt 弹窗（这类弹窗不在 DOM 中，DOM 扫描无法发现）
+  try {
+    const acceptDialog = (d) => { d.accept().catch(() => {}); };
+    for (const pg of page.context().pages()) {
+      pg.on('dialog', acceptDialog);
+    }
+    page.context().on('page', (np) => {
+      try { np.on('dialog', acceptDialog); } catch (e) {}
+    });
+    console.log('原生弹窗自动接受已注册（confirm/alert/prompt）');
+  } catch (e) {}
+
   console.log('监控方式: 智能检测学习完成提示 + 自动处理弹窗\n');
 
   while (!shouldStop) {
@@ -1152,7 +1312,6 @@ async function main() {
 
     const launchOptions = {
       headless: CONFIG.BROWSER.HEADLESS,
-      channel: CONFIG.BROWSER.CHANNEL,
       args: CONFIG.BROWSER.ARGS
     };
     
@@ -1178,14 +1337,14 @@ async function main() {
     // 如果不是后台模式，给用户时间
     if (!CONFIG.BACKGROUND.ENABLED) {
       console.log('='.repeat(60));
-      console.log('⏰ 您有 1 分钟时间：');
+      console.log(`⏰ 您有 ${Math.round(CONFIG.LOGIN.LOGIN_TIMEOUT / 60)} 分钟时间（可用于扫码登录）：`);
       console.log('   1. 在当前标签页中粘贴并修改URL地址');
       console.log('   2. 或打开新标签页并导航到学习页面');
       console.log('   3. 如不需修改，请保持当前页面等待自动继续');
       console.log('='.repeat(60));
       console.log(`\n当前页面: ${page.url()}\n`);
 
-      for (let i = 60; i > 0; i--) {
+      for (let i = CONFIG.LOGIN.LOGIN_TIMEOUT; i > 0; i--) {
         process.stdout.write(`\r等待中... 剩余 ${i} 秒 `);
         await page.waitForTimeout(1000);
       }

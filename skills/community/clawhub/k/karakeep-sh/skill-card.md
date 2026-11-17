@@ -1,41 +1,57 @@
-## Description: <br>
-Karakeep bookmark manager with full native RESTful API support including notes, updates, and deletion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Karakeep bookmark manager with full native RESTful API support including notes, updates, and deletion.
 
-## Publisher: <br>
-[VandeeFeng](https://clawhub.ai/user/VandeeFeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vandeefeng](https://clawhub.ai/user/vandeefeng)
 
-## Use Case: <br>
-Developers and agent users use this skill to manage Karakeep bookmarks through shell helpers for creating, updating, deleting, listing, searching, tagging, and organizing saved content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and change Karakeep bookmark data when configured with a Karakeep API key. <br>
-Mitigation: Use a limited or revocable API key when available and verify KARAKEEP_SERVER_URL before running account-changing commands. <br>
-Risk: Delete and other account-changing operations can alter or remove saved bookmark data. <br>
-Mitigation: Require explicit user approval before destructive or account-changing actions, including bookmark deletion, list changes, and tag changes. <br>
+## Use Case:
 
+Developers and external users use this skill to manage Karakeep bookmarks from an agent workflow, including creating, searching, listing, tagging, updating notes, and deleting bookmarks through REST API helper commands.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/VandeeFeng/karakeep-sh) <br>
-- [Publisher profile](https://clawhub.ai/user/VandeeFeng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, JSON, Markdown] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires KARAKEEP_SERVER_URL, KARAKEEP_API_KEY, curl, and jq.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence) <br>
+Risk: The configured API key can read, create, update, tag, list, and delete bookmark data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted Karakeep endpoints, use HTTPS, and prefer a limited-scope API key when available.
+
+Risk: Bookmark deletion can remove account data and the helper script does not enforce confirmation.
+
+Mitigation: Require explicit user confirmation before running delete commands and verify the target bookmark ID before execution.
+
+Risk: The security verdict requires review because the helper can change bookmark account data.
+
+Mitigation: Review commands and arguments before execution, especially create, update, tag, list membership, and delete operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vandeefeng/skills/karakeep-sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires KARAKEEP_SERVER_URL, KARAKEEP_API_KEY, jq, and a reachable Karakeep server.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

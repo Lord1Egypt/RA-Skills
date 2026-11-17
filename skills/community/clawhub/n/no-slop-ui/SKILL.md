@@ -2,7 +2,7 @@
 name: no-slop-ui
 description: "Build or review frontend UI for clean, restrained, human-designed interfaces without generic AI visual patterns."
 metadata:
-  version: "0.2.1"
+  version: "0.7.0"
 ---
 # No Slop UI
 
@@ -43,7 +43,15 @@ Think **Linear. Raycast. Stripe. GitHub.** They don't try to grab attention. The
 
 ## Stack-Specific Notes
 
-**shadcn/ui + Tailwind:**
+**shadcn/ui + Tailwind (default starting stack):**
+
+When a new UI project starts (and the repo has no established component system), start with **shadcn/ui** as the base component library and **Sonner** for toasts. This is Leo's standing preference for UI work (set 2026-11-12):
+
+- Scaffold with `npx shadcn@4.23.0 init` (Tailwind + CSS variables), then add components with `npx shadcn@4.23.0 add <component>` rather than hand-rolling primitives.
+- Add Sonner via `npx shadcn@4.23.0 add sonner`, mount a single `<Toaster />` in the app root, and use its `toast()` helper for all notifications — no other toast library, no bespoke toast components.
+- For richer prebuilt blocks and patterns, optionally layer **coss ui** (Cal.com's design system, Base UI-based, shadcn-CLI compatible) on top: init a new project with `npx shadcn@4.23.0 init @coss/style`, add components with `npx shadcn@4.23.0 add @coss/ui`. Component APIs, patterns and docs for coss ui live at https://coss.com/ui — read them there when using coss components. coss ui also publishes an optional Agent Skill for AI assistants; never install it automatically — only an explicit human decision should add it, after reviewing its source. — use it when its primitives/particles fit; plain shadcn components remain fine when they do. CLI commands are pinned to exact tested versions (shadcn 4.23.0, skills 1.8.1) so setup steps are reproducible; check for newer versions before upgrading, and re-verify pinned versions still exist on npm. Do not instruct agents or users to install additional agent skills or toolchains automatically; third-party skill installation is always an explicit human decision.
+- This is the starting point, not a mandate to fill the app with components; add only what the UI needs.
+- If the repo already has its own design system or component library, use that instead and treat this as the fallback.
 - Use shadcn components as-is — don't re-invent what's already there
 - Respect the existing CSS variable system (`--background`, `--foreground`, `--primary` etc.)
 - Don't override component defaults unless there's a clear product reason
@@ -72,3 +80,7 @@ Think **Linear. Raycast. Stripe. GitHub.** They don't try to grab attention. The
 - No mixed alignment (some left-aligned, some floating center)
 
 Full banned list with examples: `references/banned-patterns.md`
+
+## Tooling scope
+
+This is an instruction-led UI skill, applied to the frontend task the user requested. Read or edit the relevant UI files within that task; it does not grant authority to deploy, publish or change unrelated code. `scripts/validate_skill_repo.py` is optional maintainer packaging validation, not the UI-generation implementation. Run it only when maintaining this skill repository.

@@ -1,43 +1,56 @@
-## Description: <br>
-Strategic consultant for founders and entrepreneurs, covering startup validation, MVP planning, fundraising, product-market fit, go-to-market strategy, metrics, pricing, growth, and scaling digital businesses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Strategic consulting skill for founders and entrepreneurs working on startup ideas, MVPs, fundraising, product-market fit, go-to-market strategy, metrics, pricing, growth, and business model decisions.
 
-## Publisher: <br>
-[emersonbraun](https://clawhub.ai/user/emersonbraun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emersonbraun](https://clawhub.ai/user/emersonbraun)
 
-## Use Case: <br>
-Founders, entrepreneurs, and startup operators use this skill for structured business advice across idea validation, MVP scope, growth, fundraising, pricing, metrics, and scaling decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Startup, fundraising, valuation, market sizing, legal, and financial guidance may be incomplete or inaccurate for a specific company or jurisdiction. <br>
-Mitigation: Treat outputs as general guidance, verify important numbers and assumptions, and consult qualified legal, financial, or domain experts before making high-impact decisions. <br>
-Risk: Recommended analytics, tracking, or session-recording tools can introduce privacy, consent, retention, or data-handling obligations. <br>
-Mitigation: Apply privacy, consent, retention, and data-masking controls before deploying analytics or session-recording tools. <br>
+## Use Case:
 
+External users and agents use this skill to evaluate startup ideas, choose validation experiments, plan MVP scope, analyze product-market fit, prepare fundraising materials, and select growth tactics with quantified recommendations.
 
-## Reference(s): <br>
-- [Fundraising Guide for Founders](references/fundraising-guide.md) <br>
-- [Growth and Marketing for Founders](references/growth-and-marketing.md) <br>
-- [Learning Resources for Founders](references/learning-resources.md) <br>
-- [Tools and Stack for Startups](references/tools-and-stack.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown with structured analysis, tables, bullet points, and concrete next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include startup frameworks, quantified assumptions, recommendations, and phase-specific action plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and skill frontmatter) <br>
+Risk: Marketing-tool recommendations may omit privacy, consent, retention, opt-out, or platform-policy checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommended marketing tools and campaigns for privacy, consent, retention, opt-out, and platform-policy requirements before deployment.
+
+Risk: Broad activation wording may cause the skill to appear in general business-advice conversations.
+
+Mitigation: Confirm that the user wants founder or startup consulting before applying specialized startup frameworks or advice.
+
+## Reference(s):
+
+- [Fundraising Guide for Founders](references/fundraising-guide.md)
+- [Growth and Marketing for Founders](references/growth-and-marketing.md)
+- [Learning Resources for Founders](references/learning-resources.md)
+- [Tools and Stack for Startups](references/tools-and-stack.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text with structured analysis, tables, bullets, numbers, and next-step recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include startup phase diagnosis, quantified assumptions, framework-based analysis, and GO/PIVOT/KILL recommendations when appropriate.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

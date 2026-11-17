@@ -1,0 +1,25 @@
+{
+  "schema": "v1",
+  "name": "orca-control",
+  "displayName": "Orca Multi-Agent Orchestrator & IDE Runtime Engine",
+  "version": "1.0.2",
+  "description": "Manage, orchestrate, inspect, and automate the Orca IDE and multi-agent runtime environment. Features workspace health monitoring, process supervisor, and Habilis MCP integration.",
+  "author": "Rafa Martins <rafacpti@gmail.com>",
+  "category": "devops",
+  "tags": [
+    "orca",
+    "multi-agent",
+    "ide",
+    "orchestrator",
+    "devops",
+    "supervisor",
+    "habilis"
+  ],
+  "entrypoint": "SKILL.md",
+  "platforms": [
+    "linux",
+    "darwin",
+    "windows"
+  ],
+  "homepage": "https://xvix.com.br"
+}

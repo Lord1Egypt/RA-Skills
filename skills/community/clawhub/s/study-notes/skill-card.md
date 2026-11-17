@@ -1,47 +1,61 @@
-## Description: <br>
-Study Notes generates polished standalone HTML study notes and step-by-step homework solutions for academic subjects, especially STEM, with KaTeX math, worked examples, collapsible derivations and solutions, callouts, figures, and practice problems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates standalone HTML study notes and homework solutions for academic subjects, especially STEM, with KaTeX math, structured explanations, collapsible solutions, worked examples, and practice problems.
 
-## Publisher: <br>
-[eric6286](https://clawhub.ai/user/eric6286) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eric6286](https://clawhub.ai/user/eric6286)
 
-## Use Case: <br>
-Students, tutors, and educators use this skill to turn course PDFs, homework sets, problem images, or topic prompts into exam-ready study notes or standalone solution pages for learning and review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated notes can include content, figures, or images from user-provided course files. <br>
-Mitigation: Review the generated HTML before sharing it and avoid embedding sensitive, private, or restricted course material. <br>
-Risk: Generated HTML may load KaTeX assets from a CDN. <br>
-Mitigation: Use the generated file only in an environment where that network access is acceptable, or adapt the template to use locally hosted KaTeX assets. <br>
-Risk: Optional helper setup may install Python packages. <br>
-Mitigation: Run helper commands in an isolated environment and review package installation commands before execution. <br>
-Risk: Study notes or homework solutions may contain educational or mathematical mistakes if not reviewed. <br>
-Mitigation: Use the skill's verification workflow and helper checks, then review important solutions before relying on them. <br>
+## Use Case:
 
+Students, tutors, and education-focused agents use this skill to convert topics, PDFs, or homework prompts into study notes, chapter guides, or step-by-step solution pages.
 
-## Reference(s): <br>
-- [Study Notes on ClawHub](https://clawhub.ai/eric6286/study-notes) <br>
-- [Design System](references/design-system.md) <br>
-- [Problem Solutions](references/problem-solutions.md) <br>
-- [Workflow Orchestration](references/workflow-orchestration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Shell commands, Guidance] <br>
-**Output Format:** [Standalone HTML with embedded styling and KaTeX math, plus Markdown guidance and command snippets during the workflow.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are local files and may embed user-provided images or reference KaTeX CDN assets depending on the generated template.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Runtime commands may install unpinned Python packages into the active environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution and run helper scripts in a virtual environment with pinned dependencies.
+
+Risk: Generated HTML may load KaTeX JavaScript from a third-party CDN.
+
+Mitigation: Bundle KaTeX locally or redact sensitive study and homework content before opening the HTML.
+
+Risk: Standalone homework solution pages may embed original problem images that contain sensitive student or course material.
+
+Mitigation: Remove or redact sensitive images before sharing generated HTML outside the intended audience.
+
+## Reference(s):
+
+- [Study Notes ClawHub listing](https://clawhub.ai/eric6286/skills/study-notes)
+- [Publisher profile](https://clawhub.ai/user/eric6286)
+- [Design System](references/design-system.md)
+- [Problem Solutions Reference](references/problem-solutions.md)
+- [Workflow Orchestration & Verification](references/workflow-orchestration.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Standalone HTML with KaTeX math, optional TSV flashcard exports, and supporting Markdown or shell snippets during generation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended to be self-contained files; homework images may be base64-inlined, and KaTeX assets may be loaded from a third-party CDN unless bundled locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

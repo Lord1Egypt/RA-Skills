@@ -1,41 +1,54 @@
-## Description: <br>
-橙子通（orange-office.cn）库存管理系统 API 自动化，用于通过 API 创建出库单、查询库存、管理主播仓库等，无需浏览器。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+橙子通（orange-office.cn）库存管理系统 API 自动化。用于通过 API 创建出库单、查询库存、管理主播仓库等，无需浏览器。
 
-## Publisher: <br>
-[xiao1230123](https://clawhub.ai/user/xiao1230123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiao1230123](https://clawhub.ai/user/xiao1230123)
 
-## Use Case: <br>
-Developers and operators use this skill to automate Orange Office inventory workflows, including stock-out creation, stock queries, warehouse mapping, and DingTalk inventory table updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can alter Orange Office inventory records and related DingTalk inventory tables using a live session cookie. <br>
-Mitigation: Use a least-privileged account, keep the session cookie out of chat logs and transcripts, and require explicit human confirmation before create, update, delete, or table-write actions. <br>
-Risk: Incorrect inventory inputs or stale session context could create inaccurate business records. <br>
-Mitigation: Confirm current stock through the API before writes and review generated request bodies before execution. <br>
+## Use Case:
 
+Operations staff and developers use this skill to automate Orange Office inventory workflows, including stock queries, outbound order creation or update, warehouse mapping, and DingTalk inventory table writes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xiao1230123/orange-office-api) <br>
-- [Orange Office API site](https://orange-office.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, API calls, configuration] <br>
-**Output Format:** [Markdown with API examples and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes request signing, session-cookie handling, warehouse identifiers, DingTalk table identifiers, and inventory operation rules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and openclaw.skill.json) <br>
+Risk: The skill exposes session/signing details and operational configuration values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a trusted internal context, rotate or remove exposed values if distributed broadly, and load session cookies, table IDs, and personnel mappings from protected runtime configuration.
+
+Risk: The skill enables business-record changes, including Orange Office stock-out create, update, or delete operations and DingTalk writes.
+
+Mitigation: Require explicit human approval before any stock-out update/delete or DingTalk write, and review proposed records before execution.
+
+## Reference(s):
+
+- [Orange Office](https://orange-office.cn)
+- [ClawHub skill page](https://clawhub.ai/xiao1230123/skills/orange-office-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON request bodies and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include signed HTTP request examples and operational checklists; current session credentials must be supplied at runtime.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/openclaw.skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

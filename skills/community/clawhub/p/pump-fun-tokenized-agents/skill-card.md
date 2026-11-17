@@ -1,43 +1,65 @@
-## Description: <br>
-Build payment flows for Pump Tokenized Agents using @pump-fun/agent-payments-sdk. Use when accepting payments, building accept-payment transactions, integrating Solana wallets, or verifying that a user has paid an invoice on-chain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build payment flows for Pump Tokenized Agents using @pump-fun/agent-payments-sdk. Use when accepting payments, building accept-payment transactions, integrating Solana wallets, or verifying that a user has paid an invoice on-chain.
 
-## Publisher: <br>
-[sushant-baton](https://clawhub.ai/user/sushant-baton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sushant-baton](https://clawhub.ai/user/sushant-baton)
 
-## Use Case: <br>
-Developers building Pump Tokenized Agent services use this skill to create Solana wallet payment flows, construct unsigned payment transactions for user signing, and verify invoices on-chain before delivering paid functionality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A user may approve a wallet transaction with the wrong amount, currency, network, or payment context. <br>
-Mitigation: Show the intended payment details before wallet approval and rely on user-signed transactions; never request or handle private keys or seed phrases. <br>
-Risk: Untrusted or mismatched npm packages and RPC providers can undermine payment flow reliability. <br>
-Mitigation: Verify package names and versions before installation, align Solana dependency versions with the payment SDK, and choose a trusted RPC provider. <br>
-Risk: A client may report payment before the invoice is actually confirmed. <br>
-Mitigation: Verify each invoice server-side with the same amount, memo, start time, end time, currency, and user wallet before delivering the paid service. <br>
+## Use Case:
 
+Developers and engineers use this skill to add Solana payment acceptance, wallet signing flows, and server-side invoice verification to Pump Tokenized Agent applications.
 
-## Reference(s): <br>
-- [Scenario Tests](references/SCENARIOS.md) <br>
-- [Wallet Integration (Frontend)](references/WALLET_INTEGRATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript, TSX, environment configuration, and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance emphasizes user-signed wallet transactions, server-side payment verification, trusted RPC selection, and dependency version compatibility.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The authoritative security summary says the skill tells agents to follow changeable remote instructions in a payment flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before production use, prefer bundled reference files or commit-pinned links, and validate payment behavior against trusted project requirements.
+
+Risk: Payment transaction parameters or displayed signing details can diverge from the intended amount, currency, or recipient.
+
+Mitigation: Verify every transaction shown to the user matches the intended amount, currency, and recipient before signing, and confirm payment server-side before delivering the service.
+
+Risk: Unpinned or incompatible npm dependencies can change payment behavior or cause runtime failures.
+
+Mitigation: Pin npm dependencies with a lockfile and align Solana package versions with the @pump-fun/agent-payments-sdk dependency ranges.
+
+Risk: Wallet auto-reconnect can surprise users in a payment flow.
+
+Mitigation: Disclose wallet auto-reconnect behavior and require explicit user confirmation before submitting payment transactions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sushant-baton/skills/pump-fun-tokenized-agents)
+- [Wallet Integration](references/WALLET_INTEGRATION.md)
+- [Scenario Tests](references/SCENARIOS.md)
+- [Wallet Integration source reference](https://raw.githubusercontent.com/pump-fun/pump-fun-skills/refs/heads/main/tokenized-agents/references/WALLET_INTEGRATION.md)
+- [Scenario Tests source reference](https://raw.githubusercontent.com/pump-fun/pump-fun-skills/refs/heads/main/tokenized-agents/references/SCENARIOS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with TypeScript, TSX, shell, and environment configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing implementation guidance; it does not sign transactions or handle private keys.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-EchoDecks integrates with the EchoDecks API for flashcard management, spaced repetition study sessions, AI card generation, and podcast generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EchoDecks lets agents manage flashcard decks, study reviews, AI-generated cards, and podcast summaries through the EchoDecks API.
 
-## Publisher: <br>
-[drgeld](https://clawhub.ai/user/drgeld) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[drgeld](https://clawhub.ai/user/drgeld)
 
-## Use Case: <br>
-Learners, educators, and agents use this skill to list decks, retrieve due flashcards, submit review ratings, generate new cards from a topic or text, and create or retrieve deck-based podcasts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Decks, notes, and source text submitted through the skill may contain confidential or regulated material. <br>
-Mitigation: Avoid submitting confidential or regulated content to EchoDecks unless the deployment is approved for that data. <br>
-Risk: The skill uses an EchoDecks API key for authenticated requests. <br>
-Mitigation: Use a revocable or scoped API key when available and rotate it if exposure is suspected. <br>
-Risk: Review submissions and generation actions can change study state or spend credits. <br>
-Mitigation: Instruct the agent to ask before submitting reviews or spending credits on card or podcast generation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [EchoDecks ClawHub listing](https://clawhub.ai/drgeld/echodecks) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers and agents use this skill to list EchoDecks decks and due cards, submit spaced repetition reviews, generate flashcards from topics or text, generate or retrieve podcasts, and inspect user study statistics.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ECHODECKS_API_KEY and may submit review data or spend generation credits when directed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends deck data, prompts, raw text, study reviews, profile requests, and the API key to EchoDecks.
+
+Mitigation: Install only if EchoDecks is trusted with that data and keep ECHODECKS_API_KEY in protected environment configuration.
+
+Risk: Card and podcast generation actions may spend EchoDecks credits.
+
+Mitigation: Review commands before running generation actions and confirm that the requested deck and content are intended.
+
+Risk: Untrusted deck, card, or podcast IDs may be unsafe until the client uses structured URL parameter encoding.
+
+Mitigation: Avoid passing untrusted IDs to the skill and prefer known EchoDecks identifiers from trusted account data.
+
+## Reference(s):
+
+- [EchoDecks ClawHub skill page](https://clawhub.ai/drgeld/skills/echodecks)
+- [drgeld publisher profile](https://clawhub.ai/user/drgeld)
+- [EchoDecks service](https://echodecks.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, API calls, JSON]
+
+**Output Format:** [JSON responses and concise command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ECHODECKS_API_KEY; generation actions may spend EchoDecks credits.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,55 @@
-## Description: <br>
-Conducts a six-step audit workflow analyzing budget execution rates, public expenses, carryovers, project spending, and performance reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conducts a Chinese-language six-step departmental budget execution audit workflow covering budget overview, revenue and expenditure analysis, execution progress, public expenses, project spending, and report generation.
 
-## Publisher: <br>
-[rc17777](https://clawhub.ai/user/rc17777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rc17777](https://clawhub.ai/user/rc17777)
 
-## Use Case: <br>
-Audit teams and agent developers use this skill to run a departmental budget execution audit workflow covering budget overview, revenue and expenditure analysis, execution progress, public expenses, project spending, and report generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rc17777/audit-budget-execution) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
-- [Workflow template](artifact/workflow.yaml) <br>
+Audit teams and agents use this skill to coordinate departmental budget execution reviews, including budget execution rates, public expenses, carryover balances, project spending, and audit report preparation.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI examples and workflow YAML-derived audit steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces intermediate audit findings and a final budget execution audit report; security evidence reports disclosed, purpose-aligned behavior with no hidden execution, exfiltration, or destructive actions.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and target metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Sensitive government or financial records may be included when using the workflow.
+
+Mitigation: Review data handling requirements before use and limit workflow inputs to records approved for the target audit environment.
+
+Risk: The workflow relies on connected helper skills for data analysis, fraud detection, procurement review, report writing, and document formatting.
+
+Mitigation: Review and approve the connected helper skills before deployment, especially when they process financial or government records.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rc17777/skills/audit-budget-execution)
+- [Skill Usage Documentation](artifact/SKILL.md)
+- [Workflow Definition](artifact/workflow.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with workflow YAML and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language audit workflow template that depends on pipeline_engine.py and named audit helper skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

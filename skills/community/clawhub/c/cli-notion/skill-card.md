@@ -1,42 +1,54 @@
-## Description: <br>
-Command-line tool to create, list, and retrieve Notion pages using the Notion API with JSON output for agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cli Notion lets agents create, list, and retrieve Notion pages from the command line using the Notion API with optional JSON output.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-Agents and developers use this CLI to create pages, list database pages, retrieve page details, and check Notion API status through a user-supplied Notion integration key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Notion API key can expose pages and databases shared with the integration. <br>
-Mitigation: Use a dedicated least-privilege Notion integration, share only the required workspace content, and keep NOTION_API_KEY out of logs and repositories. <br>
-Risk: The create-page command can add content to important Notion workspaces. <br>
-Mitigation: Supervise create-page use in sensitive workspaces and restrict the integration to the target database. <br>
+## Use Case:
 
+Developers and agents use this skill to connect to a Notion workspace, check API access, and create, list, or retrieve pages from Notion databases through CLI commands.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kaising-openclaw1/cli-notion) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Notion Integrations](https://www.notion.so/my-integrations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON emitted by command-line operations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Notion API key and access to pages or databases shared with the integration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact metadata) <br>
+Risk: A Notion API key can grant workspace access if exposed through shared terminals, logs, or prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Notion integration and avoid pasting or echoing the API key in shared contexts.
+
+Risk: The create-page command can write to a live Notion database.
+
+Mitigation: Test against a non-production database before allowing agent-driven writes to production workspace content.
+
+## Reference(s):
+
+- [Cli Notion ClawHub listing](https://clawhub.ai/kaising-openclaw1/skills/cli-notion)
+- [Notion integrations](https://www.notion.so/my-integrations)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, JSON, text]
+
+**Output Format:** [Command-line output, optionally JSON for agent workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Notion API key and target database or page identifiers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

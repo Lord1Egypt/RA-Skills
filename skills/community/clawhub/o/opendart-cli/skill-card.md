@@ -1,41 +1,58 @@
-## Description: <br>
-OpenDART CLI helps agents use Korea FSS DART OpenAPI data from the terminal to retrieve disclosures, company profiles, financial statements, shareholder holdings, executive holdings, and disclosure document ZIP files as JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenDART CLI lets agents and developers query Korea FSS DART OpenAPI data from the terminal for company identifiers, disclosures, company profiles, financial statements, shareholder information, and source document downloads.
 
-## Publisher: <br>
-[chloepark85](https://clawhub.ai/user/chloepark85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chloepark85](https://clawhub.ai/user/chloepark85)
 
-## Use Case: <br>
-Developers, financial analysts, and agent builders use this skill to query Korean corporate disclosure data and pipe structured JSON results into research, monitoring, and finance workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive OpenDART API credential. <br>
-Mitigation: Provide the credential only through OPENDART_API_KEY and avoid placing it in command arguments, logs, or shared files. <br>
-Risk: The skill can write local cache files and disclosure document ZIP files. <br>
-Mitigation: Review the cache location and document output path before running download commands. <br>
+## Use Case:
 
+Developers, financial analysts, and agent builders use this skill to retrieve Korean corporate disclosure, company, financial statement, shareholder, and document data as structured CLI output for downstream workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chloepark85/opendart-cli) <br>
-- [OpenDART official site](https://opendart.fss.or.kr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON-oriented CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENDART_API_KEY for API access; can create a local corp-code cache and save disclosure document ZIP files to user-selected paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence, target metadata, SKILL.md frontmatter, pyproject.toml, CHANGELOG) <br>
+Risk: OpenDART API credentials could be exposed if supplied outside the documented environment variable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set OPENDART_API_KEY through the documented environment variable and avoid passing credentials through shell history, logs, or command arguments.
+
+Risk: Corp-code cache files may persist Korean company lookup data on the local machine.
+
+Mitigation: Use OPENDART_CACHE_DIR to place the cache in an approved directory and refresh or remove cached data according to local retention requirements.
+
+Risk: Document download commands write files to the path selected by the user.
+
+Mitigation: Choose an expected output path, review downloaded ZIP files before further processing, and avoid overwriting important local files.
+
+## Reference(s):
+
+- [OpenDART CLI on ClawHub](https://clawhub.ai/chloepark85/skills/opendart-cli)
+- [OpenDART](https://opendart.fss.or.kr)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON-oriented output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OPENDART_API_KEY; Korean CLI messages are expected; corp-code data may be cached locally; document downloads write to the user-selected path.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata, SKILL.md frontmatter, pyproject.toml, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

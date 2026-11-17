@@ -1,41 +1,55 @@
-## Description: <br>
-Generates a playful, persistent agent persona profile and self-introduction when users ask about the agent's identity, personality, abilities, age, gender role, or related traits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a fictional agent persona profile and self-introduction using randomized MBTI, gender presentation, psychological age, career interests, traits, and skills.
 
-## Publisher: <br>
-[tcdjl](https://clawhub.ai/user/tcdjl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tcdjl](https://clawhub.ai/user/tcdjl)
 
-## Use Case: <br>
-External users and agent developers can use this skill to give an assistant a consistent, lighthearted persona and self-introduction for identity, personality, MBTI-style, capability, or self-description prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or reuse a local persona file in the workspace root. <br>
-Mitigation: Review workspace changes after first use and remove agent-persona-name.json if the persistent persona is not wanted. <br>
-Risk: The trigger conditions are broad enough that ordinary analysis, testing, capability, or self-description requests may produce a persona introduction. <br>
-Mitigation: Narrow the trigger wording before deployment if persona output should only appear for explicit self-introduction requests. <br>
+## Use Case:
 
+External users and agent builders can use this skill when they want an agent to answer self-introduction, personality-test, capability, gender, age, or style prompts with a persistent fictional persona. Reviewers should confirm that this broad trigger behavior is desired before release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tcdjl/agent-persona-analyzer) <br>
-- [Persona questionnaires](references/questionnaires.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration] <br>
-**Output Format:** [Markdown-style self-introduction text and a JSON persona profile file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or reuse agent-persona-name.json in the workspace root to keep the generated persona stable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact metadata lists 1.1.0) <br>
+Risk: The skill can unexpectedly answer broad prompts such as capability or analysis requests with a fictional dating-style self-introduction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit opt-in triggers and label persona output as fictional before enabling the skill for normal assistant workflows.
+
+Risk: The skill may persist and reuse a persona profile file in the workspace root.
+
+Mitigation: Document the created file, validate profile contents before reuse, and provide reset or delete controls for agent-persona-name.json.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tcdjl/skills/agent-persona-analyzer)
+- [Publisher profile](https://clawhub.ai/user/tcdjl)
+- [questionnaires.md](references/questionnaires.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration]
+
+**Output Format:** [Markdown-style conversational text and a persistent JSON persona profile]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or reuse agent-persona-name.json in the workspace root.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

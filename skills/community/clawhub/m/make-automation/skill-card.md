@@ -1,45 +1,56 @@
-## Description: <br>
-Manage Make.com organizations, users, teams, scenarios, and billing. Configure organization settings, manage team members, retrieve usage analytics, and access pricing information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Make.com organizations, users, teams, scenarios, and billing. Configure organization settings, manage team members, retrieve usage analytics, and access pricing information.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users and developers use this skill to connect a Make account through ClawLink and manage Make organizations, teams, users, usage analytics, billing information, and supported Make API reference data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill operates against a connected Make account and may access organization, user, billing, and usage data. <br>
-Mitigation: Use the ClawLink-hosted OAuth flow, verify the active Make connection before calls, and avoid collecting API keys or tokens in chat. <br>
-Risk: Write operations can change organizations or trigger user-facing actions such as password reset emails. <br>
-Mitigation: Preview unfamiliar or write actions, confirm the target resource and intended effect with the user, and execute only after confirmation. <br>
+## Use Case:
 
+Developers and operators use this skill to administer Make.com organizations, users, teams, billing, usage analytics, and related platform settings through a connected Make account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/make-automation) <br>
-- [Make API Documentation](https://www.make.com/en/api-docs) <br>
-- [Make Help Center](https://www.make.com/en/help) <br>
-- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=make-automation) <br>
-- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and ClawLink tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an active Make account, ClawLink pairing, and explicit user confirmation for write or destructive operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill brokers access to a connected Make.com account through ClawLink, which can expose organization administration and account-level capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if ClawLink is trusted, review Make OAuth permissions, use the least-privileged Make account practical, and revoke the connection when it is no longer needed.
+
+Risk: Write operations can change organizations, users, or account-related settings.
+
+Mitigation: Require explicit user confirmation, review previews carefully before execution, and confirm destructive or password-reset actions before running them.
+
+## Reference(s):
+
+- [Make API Documentation](https://www.make.com/en/api-docs)
+- [Make Help Center](https://www.make.com/en/help)
+- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=make-automation)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell commands and tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live ClawLink tool discovery and previews before write actions.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

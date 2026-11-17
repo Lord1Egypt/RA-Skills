@@ -1,42 +1,55 @@
-## Description: <br>
-Organize and maintain AI agent workspaces using structured directories, clear naming, regular audits, and safe cleanup of unused or dead files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize and maintain AI agent workspaces using structured directories, clear naming, regular audits, and safe cleanup of unused or dead files.
 
-## Publisher: <br>
-[briandavisbikes-code](https://clawhub.ai/user/briandavisbikes-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[briandavisbikes-code](https://clawhub.ai/user/briandavisbikes-code)
 
-## Use Case: <br>
-Developers and agent operators use this skill to organize OpenClaw or similar AI agent workspaces, audit files, identify cleanup candidates, and follow safer cleanup practices before restructuring or removing files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit output can expose private filenames, logs, workspace paths, sizes, and timestamps. <br>
-Mitigation: Run audits only on workspaces intended for review and avoid sharing raw audit output without checking it for sensitive local details. <br>
-Risk: Cleanup guidance may lead to accidental loss if files are removed before references and backups are checked. <br>
-Mitigation: Treat cleanup steps as manual actions, verify cron and script references, and create a backup or git savepoint before removing files. <br>
+## Use Case:
 
+Developers and AI-agent operators use this skill to structure OpenClaw-style workspaces, audit files, identify stale or risky cleanup candidates, and apply safer file retention practices.
 
-## Reference(s): <br>
-- [File Management reference](artifact/FILE-MANAGEMENT.md) <br>
-- [Workspace audit script](artifact/audit-workspace.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/briandavisbikes-code/briandavis-file-mgmt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and local audit script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include file paths, sizes, timestamps, workspace structure, and manually reviewed cleanup candidates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The documented Git cleanup flow could accidentally publish private workspace data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the diff, stage only intended files, scan for secrets, and confirm the remote destination before running git add, commit, or push.
+
+Risk: Workspace audit output can expose local paths, filenames, and file sizes that may be sensitive when shared.
+
+Mitigation: Review audit output locally and redact sensitive paths or project names before sharing it outside the workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/briandavisbikes-code/skills/briandavis-file-mgmt)
+- [File Management Reference](artifact/FILE-MANAGEMENT.md)
+- [Skill Instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and a Bash audit script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a read-only workspace audit script; users choose the workspace path to inspect.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

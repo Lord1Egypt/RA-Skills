@@ -1,0 +1,34 @@
+{
+  "version": "2.0",
+  "extends": "base.json",
+  "entity_types": {
+    "PLC": {
+      "description": "可编程逻辑控制器",
+      "fields": {
+        "model": {"type": "string", "required": true},
+        "cpu_type": {"type": "string", "required": false},
+        "memory_limit": {"type": "number", "unit": "MB", "required": false},
+        "io_capacity": {"type": "number", "required": false},
+        "supported_languages": {
+          "type": "array",
+          "items": {"type": "string", "enum": ["LD", "FBD", "ST", "IL", "SFC"]},
+          "required": true
+        },
+        "program_size_limit": {"type": "number", "unit": "KB", "required": false}
+      }
+    },
+    "IO_Module": {
+      "description": "I/O 扩展模块",
+      "fields": {
+        "model": {"type": "string", "required": true},
+        "type": {"type": "string", "enum": ["DI", "DO", "AI", "AO", "RTD", "TC"], "required": true},
+        "channel_count": {"type": "number", "required": true},
+        "signal_type": {"type": "string", "required": false},
+        "response_time": {"type": "number", "unit": "ms", "required": false}
+      }
+    }
+  },
+  "relation_types": {
+    "maps_to": {"from": "IO_Module", "to": "PLC", "description": "I/O 模块映射到 PLC"}
+  }
+}

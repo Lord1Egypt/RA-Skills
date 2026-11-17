@@ -1,40 +1,54 @@
-## Description: <br>
-Consults practical driving test wait times in Spain and lets users report anonymous wait-time experiences to help the community. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dgt Wait helps users check and report waiting times for practical driving exams across Spanish provinces.
 
-## Publisher: <br>
-[jfcanadell](https://clawhub.ai/user/jfcanadell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jfcanadell](https://clawhub.ai/user/jfcanadell)
 
-## Use Case: <br>
-External users in Spain use this skill to ask for province-level practical driving test wait estimates, compare lower-wait driving schools, and contribute anonymous reports about their own waiting time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Spain <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reports and driving-school details may include location-like or identifying context even when the skill is designed for anonymous use. <br>
-Mitigation: Avoid entering names, contact details, or other identifying information, and review the service's retention and privacy terms before submitting reports. <br>
-Risk: The skill describes free-query limits by IP and anonymous reporting, so privacy expectations depend on how abuse prevention and retention are handled by the service. <br>
-Mitigation: Confirm how IP-based rate limiting, report retention, and premium access are implemented before using the skill in a sensitive environment. <br>
+## Use Case:
 
+External users in Spain use this skill to query community-reported practical driving exam wait times by province and submit their own anonymous wait-time reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jfcanadell/dgt-wait) <br>
+### Deployment Geography for Use:
 
+Spain
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Guidance] <br>
-**Output Format:** [Markdown-formatted conversational responses with wait-time summaries, top driving-school lists, limit notices, and report acknowledgements.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes aggregate province-level wait estimates and anonymous report confirmations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Installation would expose and use a live Supabase database access path and public anonymous key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after the publisher confirms strict Supabase row-level security, intended public read and insert limits, and no anonymous update or delete access.
+
+Risk: Privacy and persistence disclosures for stored reports and IP-derived limits are incomplete.
+
+Mitigation: Require clear privacy terms, server-side validation, rate limiting, and documented handling of report data and any IP-derived counters before deployment.
+
+## Reference(s):
+
+- [Dgt Wait ClawHub listing](https://clawhub.ai/jfcanadell/skills/dgt-wait)
+- [Publisher profile: jfcanadell](https://clawhub.ai/user/jfcanadell)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style conversational responses with wait-time summaries, report confirmations, limit notices, and trust messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include province-specific aggregate statistics, top driving schools by reported wait time, and remaining free-query counts.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

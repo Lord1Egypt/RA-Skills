@@ -6,8 +6,10 @@ description: >
   List wantlist and collection contents. Use when the user asks to add or remove a record
   from their Discogs wantlist or collection, check what's on their wantlist, look up
   marketplace prices, or find what a record is selling for. Also supports bulk operations
-  via CSV/JSON file input.
-metadata: {"openclaw":{"emoji":"🎵","requires":{"bins":["python3"]}}}
+  via CSV/JSON file input. Requires a Discogs personal access token, supplied via the
+  DISCOGS_USER_TOKEN environment variable or a one-time `auth` command. Only contacts
+  api.discogs.com.
+metadata: {"openclaw":{"emoji":"🎵","requires":{"bins":["python3"]},"primaryEnv":"DISCOGS_USER_TOKEN"}}
 ---
 
 # Discogs Sync — Wantlist, Collection & Marketplace CLI
@@ -18,19 +20,37 @@ Add and remove albums from your Discogs wantlist or collection, search marketpla
 
 **Runtime:** Python 3.10+
 
-**Python packages** (installed automatically on first run):
-- `python3-discogs-client>=2.8` — Discogs API client
-- `click>=8.1` — CLI framework
-- `rich>=13.0` — Terminal output formatting
+**Python packages** (exact versions pinned in `requirements.txt`, including transitive dependencies):
+- `python3-discogs-client==2.8` — Discogs API client
+- `click==8.3.1` — CLI framework
+- `rich==14.3.3` — Terminal output formatting
 
-**Installation:** No manual `pip install` needed. On first run, `discogs-sync.py` creates a local `.deps/` virtual environment inside the skill directory and installs dependencies from `requirements.txt`. Subsequent runs reuse the existing venv. This works on macOS (including Homebrew Python), Linux, and Windows without requiring system-level package installation.
+**Installation (one-time, done by the user — not by the agent):** create a venv at `~/.discogs-sync/venv` and install the pinned requirements. `discogs-sync.py` picks up this venv automatically; it lives outside the skill directory so skill updates don't remove it.
 
-To force a clean reinstall of dependencies, delete the `.deps/` directory and run any command again.
+```bash
+python3 -m venv ~/.discogs-sync/venv
+~/.discogs-sync/venv/bin/pip install -r /home/claw/.openclaw/workspace/skills/discogs_sync/requirements.txt
+```
+
+`discogs-sync.py` never installs packages or launches other processes. If a dependency is missing it prints the commands above and exits with code 2.
+
+## Security & Permissions
+
+- **Network:** HTTPS requests to `api.discogs.com` only.
+- **Filesystem:** reads the input CSV/JSON file you pass; writes only under `~/.discogs-sync/` (config and cache files).
+- **Processes:** none. No subprocess, shell, `exec`, or `eval`; no packages are installed at runtime.
+- **Credentials:** one Discogs personal access token, read from `DISCOGS_USER_TOKEN` or from `~/.discogs-sync/config.json` (created owner-only). The token is never printed or logged. Revoke it at https://www.discogs.com/settings/developers if compromised.
+
+**Agent rules for destructive operations:** every removal (`wantlist remove`, `collection remove`, `sync --remove-extras`) is refused unless `--yes` is passed, and the refusal makes no changes.
+1. Run the command **without** `--yes` first (for sync, add `--dry-run`). It resolves the target and exits with code 2, reporting exactly what would be removed: artist, title, release ID, and for collections the instance ID and number of copies owned. With `--output-format json` this preview is printed as `{"confirmation_required": true, ...}`.
+2. Show that preview to the user and get explicit approval.
+3. Only then re-run the same command with `--yes`.
+- Never run `auth` on the user's behalf; it prompts for a secret and must be run by the user in a terminal.
 
 ## Quick Start
 
 ```bash
-# Authenticate (one-time setup — also installs dependencies on first run)
+# Authenticate (one-time setup, run by the user)
 python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py auth
 
 # Add an album to your wantlist by name
@@ -45,28 +65,21 @@ python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py marke
 # List your wantlist
 python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py wantlist list
 
-# Remove from collection
+# Remove from collection: preview (no change, exit 2), then confirm after user approval
 python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py collection remove --artist "Nirvana" --album "Nevermind"
+python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py collection remove --artist "Nirvana" --album "Nevermind" --yes
 ```
 
 ## Authentication
 
-Run once to authenticate. Two modes are available:
+The tool uses a Discogs personal access token. Generate one at https://www.discogs.com/settings/developers, then either:
 
-**Personal access token (default)** — simplest option. Generate a token at https://www.discogs.com/settings/developers.
+- **Environment variable (preferred):** set `DISCOGS_USER_TOKEN` (e.g., via `skills.entries.discogs-sync.apiKey` in `openclaw.json`). It takes precedence over any stored token.
+- **One-time `auth` command:** prompts for the token (input hidden), validates it against Discogs, and stores it in `~/.discogs-sync/config.json` with owner-only permissions.
 
 ```bash
 python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py auth
-python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py auth --mode token
 ```
-
-**OAuth 1.0a** — full OAuth flow with consumer key/secret, for apps that need delegated access.
-
-```bash
-python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py auth --mode oauth
-```
-
-Credentials are stored in `~/.discogs-sync/config.json`.
 
 ```bash
 # Verify authentication
@@ -88,11 +101,11 @@ python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py wantl
 # Add by specific release ID
 python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py wantlist add --release-id 7890
 
-# Remove by artist/album name
-python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py wantlist remove --artist "Radiohead" --album "OK Computer"
+# Remove by artist/album name (without --yes this only previews the target)
+python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py wantlist remove --artist "Radiohead" --album "OK Computer" [--yes]
 
 # Remove by release ID
-python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py wantlist remove --release-id 7890
+python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py wantlist remove --release-id 7890 [--yes]
 
 # List current wantlist
 python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py wantlist list [--search "QUERY"] [--format Vinyl] [--year 1997] [--no-cache] [--output-format json]
@@ -113,11 +126,11 @@ python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py colle
 # Add a second copy of something already owned
 python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py collection add --release-id 7890 --allow-duplicate
 
-# Remove by artist/album name
-python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py collection remove --artist "Miles Davis" --album "Kind of Blue"
+# Remove by artist/album name (removes one copy; without --yes this only previews the target)
+python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py collection remove --artist "Miles Davis" --album "Kind of Blue" [--yes]
 
 # Remove by release ID
-python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py collection remove --release-id 7890
+python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py collection remove --release-id 7890 [--yes]
 
 # List collection (all folders)
 python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py collection list [--search "QUERY"] [--format CD] [--year 1959] [--folder-id 0] [--no-cache] [--output-format json]
@@ -153,10 +166,14 @@ For batch operations, pass a CSV or JSON file instead of individual `--artist`/`
 ```bash
 # Sync wantlist from file (preview first with --dry-run)
 python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py wantlist sync albums.csv --dry-run
-python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py wantlist sync albums.csv [--remove-extras] [--threshold 0.7] [--output-format json]
+python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py wantlist sync albums.csv [--threshold 0.7] [--output-format json]
+
+# Remove items not in the file: preview first, then confirm with --yes after user approval
+python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py wantlist sync albums.csv --remove-extras --dry-run
+python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py wantlist sync albums.csv --remove-extras --yes
 
 # Sync collection from file
-python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py collection sync albums.csv [--folder-id 1] [--remove-extras] [--dry-run]
+python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py collection sync albums.csv [--folder-id 1] [--remove-extras --dry-run | --remove-extras --yes]
 
 # Batch marketplace search from file
 python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py marketplace search albums.csv [--format Vinyl] [--country US] [--max-price 50] [--max-versions 25] [--output-format json]
@@ -203,7 +220,8 @@ Format synonyms are normalized automatically: `LP`/`record`/`12"` → Vinyl, `co
 | `--verbose` | sync, marketplace search | Show detailed progress and API call logging |
 | `--search` | list | Filter results by artist or title (case-insensitive substring match) |
 | `--dry-run` | sync | Preview changes without modifying Discogs |
-| `--remove-extras` | sync | Remove wantlist/collection items not in the input file |
+| `--remove-extras` | sync | Remove wantlist/collection items not in the input file (requires `--dry-run` or `--yes`) |
+| `--yes` | remove, sync | Confirm a removal (`remove`, or `sync --remove-extras`). Without it, the command previews what would be removed, exits 2, and makes no changes |
 
 ## Output Format
 
@@ -349,11 +367,12 @@ When using `--master-id` or `--release-id`, no search is needed — the ID is us
 
 ## Notes
 
-- Authentication supports personal access tokens (default) and OAuth 1.0a. Run `python3 /home/claw/.openclaw/workspace/skills/discogs_sync/discogs-sync.py auth` once.
+- Authentication uses a Discogs personal access token from `DISCOGS_USER_TOKEN` or the one-time `auth` command.
 - The Discogs API is rate-limited to 60 requests/minute for authenticated users. The tool throttles automatically — no manual pacing needed.
 - Batch operations are resilient: individual item failures are collected and reported without aborting the entire batch.
 - Use `--dry-run` before any sync to preview what would change. This makes no API writes.
-- The `--remove-extras` flag on sync commands will remove items from your wantlist/collection that are not in the input file. Use with caution.
+- `--remove-extras` removes wantlist/collection items that are not in the input file. It refuses to run without `--yes` (or `--dry-run`), and aborts before making any change if any input record failed to resolve, so a bad match can't delete the real item.
+- `remove` commands require `--yes`. Without it they only report the exact release (and collection instance) that would be removed; with it they print that release before deleting it.
 - Collection allows multiple instances of the same release (e.g., two copies of the same LP). By default, `collection add` skips duplicates with a message. Use `--allow-duplicate` to add another copy.
 - Cache files are stored in `~/.discogs-sync/` alongside `config.json`: `wantlist_cache.json`, `collection_cache.json`, and `marketplace_<type>_<hash>.json` (plus `…_details.json` variants). Delete any of these files to manually clear a stale cache entry.
-- Credentials in `~/.discogs-sync/config.json` contain your Discogs tokens. On Linux/macOS, restrict permissions: `chmod 600 ~/.discogs-sync/config.json`. Revoke tokens at https://www.discogs.com/settings/developers if compromised.
+- `~/.discogs-sync/config.json` holds your token when you use `auth`; the tool creates it owner-only. Revoke tokens at https://www.discogs.com/settings/developers if compromised.

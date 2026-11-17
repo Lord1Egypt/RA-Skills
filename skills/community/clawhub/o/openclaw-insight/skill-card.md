@@ -1,40 +1,53 @@
-## Description: <br>
-Analyze OpenClaw AI assistant usage patterns and generate interactive insight reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze OpenClaw AI assistant usage patterns and generate interactive insight reports.
 
-## Publisher: <br>
-[linsheng9731](https://clawhub.ai/user/linsheng9731) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linsheng9731](https://clawhub.ai/user/linsheng9731)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to analyze local OpenClaw session history, estimate usage and cost, identify friction patterns, and generate HTML or JSON reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The recommended install path runs a remote shell script before the user has reviewed the installer. <br>
-Mitigation: Download and inspect the installer first, and verify release checksums or signatures when available. <br>
-Risk: The skill analyzes local OpenClaw session history, which may include sensitive usage details in generated reports. <br>
-Mitigation: Keep generated reports local by default and review report contents before sharing them. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to inspect local OpenClaw session history, understand usage patterns, estimate token costs, identify friction points, and generate improvement suggestions.
 
-## Reference(s): <br>
-- [OpenClaw Insight on ClawHub](https://clawhub.ai/linsheng9731/openclaw-insight) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and references to local HTML or JSON reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local HTML or JSON report files through the openclaw-insight CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The documented install path pipes a mutable remote installer into a shell.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a signed release, pinned commit, separate download-and-review step, or isolated user environment before running installation commands.
+
+Risk: Generated reports may contain sensitive usage patterns, costs, model choices, and transcript-derived details.
+
+Mitigation: Handle reports as sensitive local artifacts and avoid sharing them unless reviewed and redacted.
+
+## Reference(s):
+
+- [OpenClaw Insight ClawHub page](https://clawhub.ai/linsheng9731/skills/openclaw-insight)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, CLI options, and report interpretation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The underlying CLI can generate local HTML or JSON usage reports from OpenClaw session data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

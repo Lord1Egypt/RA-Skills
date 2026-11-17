@@ -1,54 +1,71 @@
-## Description: <br>
-AI合同智能审查助手 reviews pasted, uploaded, or linked contract text; scores risk across nine dimensions; suggests clause revisions and negotiation strategy; cites legal references; and produces an interactive HTML review report for common Chinese contract types. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI合同智能审查助手 reviews Chinese contracts and generates 9-dimension scoring, risk heatmaps, clause revision suggestions, legal references, negotiation guidance, and an interactive HTML review report.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Legal, procurement, HR, operations, and business users can use this skill for AI-assisted first-pass review of contracts, including risk triage, clause improvement suggestions, legal-reference lookup, and negotiation preparation. The output is advisory and should be reviewed by qualified counsel for important contracts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive contract text and local contract files. <br>
-Mitigation: Use it only with documents appropriate for the agent environment, avoid privileged or highly confidential contracts unless network access is disabled, and delete or secure generated reports after review. <br>
-Risk: The generated HTML report may contact external resources. <br>
-Mitigation: Open reports in a restricted or offline environment when reviewing confidential contracts, or replace external assets with vetted local copies before sharing. <br>
-Risk: AI-generated legal review can be incomplete or incorrect. <br>
-Mitigation: Treat findings as first-pass triage and have qualified counsel verify important legal conclusions, statutory references, and proposed clause changes. <br>
+## Use Case:
 
+External users reviewing Chinese/PRC-law contracts use this skill to identify legal and business risks, compare suggested clause revisions, and generate an HTML report for human review. It is intended as AI-assisted review and not as final legal advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bettermen/contract-ai-review) <br>
-- [Publisher Profile](https://clawhub.ai/user/bettermen) <br>
-- [Project Homepage](https://github.com/bettermen/contract-review) <br>
-- [通用合同审查清单](references/checklist_general.md) <br>
-- [买卖合同审查清单](references/checklist_sales.md) <br>
-- [劳动用工合同审查清单](references/checklist_labor.md) <br>
-- [租赁合同审查清单](references/checklist_lease.md) <br>
-- [服务合同审查清单](references/checklist_service.md) <br>
-- [保密协议审查清单](references/checklist_nda.md) <br>
-- [投资协议审查清单](references/checklist_investment.md) <br>
-- [建设工程合同审查清单](references/checklist_construction.md) <br>
-- [技术开发合同审查清单](references/checklist_tech_dev.md) <br>
-- [法律条款引用库](references/law_reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summary plus generated HTML report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May extract text from txt, docx, or pdf files and write contract-review-report.html in the workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Generated HTML reports can run unsafe contract-derived content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid attacker-supplied contracts and do not open generated reports until dynamic content is escaped or otherwise sanitized.
+
+Risk: The report template loads external JavaScript despite local/offline positioning.
+
+Mitigation: Remove the CDN dependency or use an integrity-pinned, trusted local copy before relying on offline or sensitive workflows.
+
+Risk: Contract text and generated reports may contain confidential business or legal information.
+
+Mitigation: Avoid highly confidential contracts unless the environment is approved for that data, and delete generated reports when no longer needed.
+
+Risk: The review scope is Chinese/PRC-law contract analysis and may not fit other jurisdictions.
+
+Mitigation: Use the skill only for Chinese/PRC-law contract review and require qualified legal review for material agreements.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/bettermen/contract-review)
+- [通用合同审查清单 (General Contract Review Checklist)](references/checklist_general.md)
+- [买卖合同审查清单](references/checklist_sales.md)
+- [劳动用工合同审查清单](references/checklist_labor.md)
+- [租赁合同审查清单](references/checklist_lease.md)
+- [服务合同审查清单](references/checklist_service.md)
+- [保密协议审查清单](references/checklist_nda.md)
+- [投资协议审查清单](references/checklist_investment.md)
+- [建设工程合同审查清单](references/checklist_construction.md)
+- [技术开发合同审查清单](references/checklist_tech_dev.md)
+- [法律条款引用库 (Law Reference Library)](references/law_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown-style review summary with a generated interactive HTML report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The report is AI-assisted, limited to Chinese/PRC-law contract review, and should be reviewed by a qualified professional before use for important decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

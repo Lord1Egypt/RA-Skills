@@ -1,42 +1,60 @@
-## Description: <br>
-Doubao Genbgm uses Volcano Engine's Doubao Music Generation API to generate instrumental background music and vocal songs from prompts, lyrics, and configurable music parameters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Based on the Volcano Engine Doubao Music Generation API, this skill supports instrumental background music generation from text descriptions and vocal song generation from prompts or lyrics with controls for genre, mood, timbre, key, tempo, instruments, and related settings.
 
-## Publisher: <br>
-[fackee](https://clawhub.ai/user/fackee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fackee](https://clawhub.ai/user/fackee)
 
-## Use Case: <br>
-External users, developers, and content creators use this skill to generate instrumental BGM or vocal songs from text prompts or lyrics, with controls for genre, mood, timbre, key, tempo, instruments, duration, and output format. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lyrics copyright checks can be bypassed with --skip-copy-check. <br>
-Mitigation: Use only original or licensed lyrics, keep copyright checks enabled by default, and review any use of --skip-copy-check before generation. <br>
-Risk: Prompts, lyrics, and generation settings are sent to Volcano Engine using configured API credentials. <br>
-Mitigation: Avoid submitting sensitive or unapproved content, protect VOLC_ACCESS_KEY and VOLC_SECRET_KEY, and limit credential access to intended users. <br>
+## Use Case:
 
+Developers and creative users use this skill to generate instrumental background music, soundtracks, and vocal songs through Volcano Engine's Doubao Music Generation API. It supports prompt-based and lyrics-based workflows with configurable audio format, duration, billing mode, musical style, and local file output.
 
-## Reference(s): <br>
-- [Doubao Music Generation Parameter Quick Reference](references/params.md) <br>
-- [Volcano Engine Console Key Management](https://console.volcengine.com/iam/keymanage/) <br>
-- [Volcano Engine Open API Endpoint](https://open.volcengineapi.com/?Action=XXX&Version=2024-08-12) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with bash commands that run a Python script and produce local MP3 or WAV audio files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.9+, requests, a Volcano Engine account with music generation enabled, and VOLC_ACCESS_KEY and VOLC_SECRET_KEY credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts, lyrics, and task data are sent to Volcano Engine for generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only data appropriate for that external service and review prompts or lyrics before submission.
+
+Risk: The skill requires VOLC_ACCESS_KEY and VOLC_SECRET_KEY credentials.
+
+Mitigation: Keep credentials out of repositories and shared logs, and load them from a local environment or protected secret store.
+
+Risk: The script installs and imports the requests dependency and writes generated audio to a local output path.
+
+Mitigation: Prefer a virtual environment, consider pinning dependencies, and choose an output path that will not overwrite important files.
+
+## Reference(s):
+
+- [Doubao Music Generation Parameter Quick Reference](artifact/references/params.md)
+- [Volcano Engine Key Management](https://console.volcengine.com/iam/keymanage/)
+- [Volcano Engine Music Generation API Endpoint](https://open.volcengineapi.com/?Action=XXX&Version=2024-08-12)
+- [ClawHub Skill Page](https://clawhub.ai/fackee/skills/doubao-genbgm)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown instructions with bash commands and local audio file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates mp3 or wav audio files after polling the remote task result.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

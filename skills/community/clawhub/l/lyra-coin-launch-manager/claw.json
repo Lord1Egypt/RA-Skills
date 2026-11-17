@@ -1,0 +1,23 @@
+{
+  "name": "lyra-coin-launch-manager",
+  "displayName": "LYRA Coin Launch Manager",
+  "version": "1.2.0",
+  "description": "Clawnch coin-launch receipts + local verify. No git push, no GitHub credentials, no repo create.",
+  "slug": "lyra-coin-launch-manager",
+  "publisher": "deepseekoracle",
+  "license": "LYGO-Sovereign-v2.0",
+  "signature": "Delta9Phi963-LYRA-COIN-LAUNCH-v1.2.0",
+  "tags": ["latest", "lyra", "clawnch", "crypto", "receipts"],
+  "entry": "SKILL.md",
+  "permissions": {
+    "network": { "https_get": true, "http_post": false, "domains_hint": ["clawn.ch", "base.blockscout.com", "api.dexscreener.com"] },
+    "filesystem": { "shell": false, "os_system": false, "subprocess": false },
+    "publish": { "git_push": false, "github": false, "clawhub": false, "social": false }
+  },
+  "security": {
+    "no_github_token": true,
+    "no_git_push": true,
+    "operator_tools_excluded": true,
+    "version": "1.2.0"
+  }
+}

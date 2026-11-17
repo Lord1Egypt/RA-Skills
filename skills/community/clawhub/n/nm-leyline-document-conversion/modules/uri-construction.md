@@ -14,7 +14,7 @@ located.
 
 ## Supported Schemes
 
-### `file://` -- Local Files
+### `file://`: Local Files
 
 Prefix the absolute path with `file://`:
 
@@ -39,7 +39,7 @@ Step 1: /home/user/docs/report.docx
 Step 2: file:///home/user/docs/report.docx
 ```
 
-### `http://` and `https://` -- Remote URLs
+### `http://` and `https://`: Remote URLs
 
 Use the URL as-is:
 
@@ -51,7 +51,7 @@ https://example.com/slides.pptx
 No transformation needed. The MCP server fetches the
 remote resource.
 
-### `data:` -- Inline Content
+### `data:`: Inline Content
 
 For content already in memory (rare):
 
@@ -61,8 +61,8 @@ data:application/pdf;base64,JVBERi0xLjQK...
 
 Format: `data:<mediatype>;base64,<base64-encoded-data>`
 
-This is mainly useful for programmatic integrations,
-not typical skill workflows.
+This is mainly useful for programmatic integrations.
+Typical skill workflows do not need it.
 
 ## Common Patterns
 

@@ -1,45 +1,60 @@
-## Description: <br>
-Windows-first video localization pipeline for downloading, transcribing, translating, dubbing, and retiming YouTube or Bilibili videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Windows-first video localization pipeline for downloading, transcribing, translating, dubbing, and retiming YouTube or Bilibili videos.
 
-## Publisher: <br>
-[bzxcup-afk](https://clawhub.ai/user/bzxcup-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bzxcup-afk](https://clawhub.ai/user/bzxcup-afk)
 
-## Use Case: <br>
-Developers and video localization operators use this skill to run a local pipeline that turns YouTube or Bilibili source videos into dubbed videos with aligned subtitle files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a DeepSeek API key and can optionally use a YouTube cookies file. <br>
-Mitigation: Provide credentials through the current shell or a controlled secret store, avoid echoing secrets, and avoid persistent user-level secrets on shared machines. <br>
-Risk: Video-derived transcript and subtitle text may be sent to DeepSeek and the selected TTS provider. <br>
-Mitigation: Do not process private, regulated, or copyrighted media unless provider terms and local artifact storage are acceptable. <br>
-Risk: Video processing creates local intermediate media, audio, subtitle, and debug files. <br>
-Mitigation: Run the pipeline in a workspace with adequate disk space and remove generated artifacts when they are no longer needed. <br>
+## Use Case:
 
+Developers and video localization operators use this skill to turn YouTube or Bilibili source videos into dubbed localized videos with aligned subtitle files.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/bzxcup-afk/video-dub) <br>
-- [Video Pipeline README](video_pipeline/README.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Release Bundle Layout](references/release_bundle.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with file paths and PowerShell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns paths to dubbed video files, aligned SRT subtitle files, and optional intermediate JSON or debug files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release metadata) <br>
+Risk: The release was flagged suspicious because channel rules can silently change opening translated speech for configured channels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review video_pipeline/data/channel_rules.json before use and disable intro override unless inserted narration is explicitly desired.
+
+Risk: The pipeline has broad network behavior for downloading videos and using translation or TTS providers.
+
+Mitigation: Install and run it in an isolated environment, pin dependencies where possible, and assume subtitle or TTS text may be sent to external providers.
+
+Risk: Browser-cookie access may expose sensitive session material if used casually.
+
+Mitigation: Avoid YTDLP_COOKIES_FILE unless it is necessary for a blocked download, and use a purpose-limited cookies file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bzxcup-afk/skills/video-dub)
+- [Release bundle layout](references/release_bundle.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Pipeline README](video_pipeline/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with PowerShell commands, configuration steps, and generated file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The underlying pipeline can produce MP4 video, SRT subtitle, JSON structured subtitle, audio, and debug files.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

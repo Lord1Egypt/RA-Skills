@@ -1,6 +1,16 @@
 {
-  "ownerId": "kn74nnesmdt0hh334ytvd1tkyh823yjy",
-  "slug": "gprophet-api",
+  "name": "gprophet-api",
   "version": "1.0.6",
-  "publishedAt": 1773651238357
+  "author": "G-Prophet",
+  "description": "AI-powered stock prediction and market analysis for global markets",
+  "category": "finance",
+  "tags": ["stock", "prediction", "trading", "crypto", "market-analysis", "technical-analysis", "ai"],
+  "license": "MIT",
+  "homepage": "https://www.gprophet.com",
+  "credentials": {
+    "required": true,
+    "type": "api_key",
+    "environment_variable": "GPROPHET_API_KEY",
+    "description": "G-Prophet API key (format: gp_sk_*). Get yours at https://www.gprophet.com/settings/api-keys"
+  }
 }

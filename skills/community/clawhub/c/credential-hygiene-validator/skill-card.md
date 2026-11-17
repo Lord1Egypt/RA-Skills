@@ -1,39 +1,50 @@
-## Description: <br>
-Checks whether credentials and tokens are stored safely by validating file permissions, plaintext exposure, git contamination, log redaction coverage, and token rotation status for OpenClaw and dotfile directories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks whether credentials and tokens are stored safely by validating file permissions, plaintext exposure, git repo contamination, log redaction coverage, and token rotation status for OpenClaw and general dotfile directories.
 
-## Publisher: <br>
-[Techris93](https://clawhub.ai/user/Techris93) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[techris93](https://clawhub.ai/user/techris93)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit local credential storage before publishing dotfiles, onboarding a machine, rotating credentials, or performing routine security hygiene checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Credential scans can expose full local secrets in agent output while inspecting credential files and logs. <br>
-Mitigation: Constrain the exact directories to inspect and require redacted output, such as file path, line number, token type, and a short hash or prefix only. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw threat model](https://github.com/openclaw/trust) <br>
-- [OpenClaw security policy](https://github.com/openclaw/openclaw/security/policy) <br>
-- [RFC 6750 - Bearer Token Usage](https://www.rfc-editor.org/rfc/rfc6750) <br>
+## Use Case:
 
+Developers, engineers, and security reviewers use this skill to audit credential storage in OpenClaw and dotfile directories before setup, machine onboarding, public dotfile pushes, routine reviews, or credential rotation follow-up.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only audit guidance; no files modified.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Documented credential scans can print full secrets into the agent session, terminal output, or logs.
+
+Mitigation: Review before installing when live tokens may be present, run only where output is not logged or shared, prefer redacted or manual checks, and rotate any credential that appears in an agent transcript or terminal log.
+
+## Reference(s):
+
+- [OpenClaw threat model (T-ACCESS-003)](https://github.com/openclaw/trust)
+- [OpenClaw security policy](https://github.com/openclaw/openclaw/security/policy)
+- [RFC 6750 - Bearer Token Usage](https://www.rfc-editor.org/rfc/rfc6750)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and audit findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only credential hygiene review; command output may contain sensitive credential material if scans match live secrets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

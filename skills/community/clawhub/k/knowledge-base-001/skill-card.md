@@ -1,46 +1,62 @@
-## Description: <br>
-Converts documents to Markdown, classifies them, extracts keywords, and enables local keyword and vector search in a private knowledge base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Knowledge Base converts documents to Markdown, classifies and indexes them locally, and supports keyword and semantic search for a private knowledge base.
 
-## Publisher: <br>
-[michealxie001](https://clawhub.ai/user/michealxie001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michealxie001](https://clawhub.ai/user/michealxie001)
 
-## Use Case: <br>
-Developers and agent users use this skill to build a local, searchable private knowledge base from documents such as PDFs, Office files, web documents, text files, images, archives, and Feishu-downloaded files. It supports document ingestion, classification, keyword search, semantic search, listing, retrieval, deletion, and category management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Imported documents may include private or sensitive content that is converted, stored, indexed, and searched locally. <br>
-Mitigation: Use an isolated OpenClaw workspace, review files before ingestion, and avoid shared /tmp auto-ingest directories for sensitive documents. <br>
-Risk: Setup and vector search can install Python dependencies into the active environment. <br>
-Mitigation: Run initialization and vector-index commands in a dedicated Python environment and review dependency versions before enabling automation. <br>
-Risk: Document deletion removes the Markdown file and JSON index entry, while vector-index deletion behavior needs manual verification. <br>
-Mitigation: Verify vector-search results after deleting sensitive documents and rebuild or clear the ChromaDB index when necessary. <br>
-Risk: Feishu or cron-driven auto-ingest can import newly downloaded files without manual review. <br>
-Mitigation: Enable auto-ingest only for trusted directories and review Feishu or cron integrations before continuous scanning. <br>
+## Use Case:
 
+Developers and agent users use this skill to ingest local documents into a private knowledge base, organize them by category, and retrieve relevant content through keyword or vector search.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/michealxie001/knowledge-base-001) <br>
-- [Publisher profile](https://clawhub.ai/user/michealxie001) <br>
-- [Microsoft MarkItDown documentation](https://github.com/microsoft/markitdown) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands, plus text and JSON status output from the bundled scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local Markdown files, JSON indexes, and optional ChromaDB vector data under ~/.openclaw/workspace/knowledge-base.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Custom category names can cause imported documents to be written outside the intended knowledge-base folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate or patch category input before using custom categories, and restrict categories to known local folder names.
+
+Risk: Setup and vector search features install unpinned packages into the active Python environment.
+
+Mitigation: Install and run the skill only inside a dedicated virtual environment with reviewed dependency versions.
+
+Risk: Watch mode, cron import, and broad batch scans can store and index unintended local files.
+
+Mitigation: Use dry-run or one-time scans first, and point automated import only at directories containing files intended for the knowledge base.
+
+Risk: Deleting a document removes stored knowledge-base content.
+
+Mitigation: Back up the knowledge-base directory or confirm document IDs before using delete operations.
+
+## Reference(s):
+
+- [ClawHub Knowledge Base release](https://clawhub.ai/michealxie001/skills/knowledge-base-001)
+- [Microsoft MarkItDown documentation](https://github.com/microsoft/markitdown)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documents, JSON CLI responses, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores converted content and indexes under the local knowledge-base directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Converts text to speech with node-edge-tts, supporting multiple voices, languages, speed and pitch controls, MP3 output, and optional subtitle generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Edge TTS converts text to speech through node-edge-tts with configurable voices, languages, rate, pitch, output format, and subtitles.
 
-## Publisher: <br>
-[i3130002](https://clawhub.ai/user/i3130002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[i3130002](https://clawhub.ai/user/i3130002)
 
-## Use Case: <br>
-Developers and agents use this skill to turn user-requested text into spoken audio, including accessibility, multitasking, voice message, and content playback workflows. It also provides script-based controls for voice, language, rate, pitch, volume, output format, subtitles, proxy settings, and persistent preferences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for conversion is sent to Microsoft Edge's online TTS service. <br>
-Mitigation: Avoid using this skill for secrets, regulated data, or private documents unless that external service use is acceptable. <br>
-Risk: Persistent speech settings or proxy behavior may differ from what a user expects. <br>
-Mitigation: Review ~/.tts-config.json when voice, language, output format, subtitle, or proxy behavior seems unexpected. <br>
-Risk: Generated temporary audio files are not automatically deleted by the bundled scripts. <br>
-Mitigation: Clean up temporary files after use or provide an explicit output path when permanent storage is needed. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to turn requested text into spoken audio, including voice notes, accessible reading, summaries, and multilingual speech output. It also supports direct script usage for configuring voices, prosody, subtitles, proxy settings, and output paths.
 
-## Reference(s): <br>
-- [node-edge-tts Reference](artifact/references/node_edge_tts_guide.md) <br>
-- [Voice Testing](https://tts.travisvn.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Audio files, optional JSON subtitles, and Markdown instructions with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default audio output is MP3; optional subtitle output is JSON with word-level timing; persistent preferences are stored in ~/.tts-config.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata, skill-info.json, scripts/package.json) <br>
+Risk: Text submitted for speech synthesis is sent to Microsoft's online TTS service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill with sensitive, private, or regulated text unless that external service use is acceptable.
+
+Risk: Helper scripts can write audio, subtitle, or configuration files to caller-specified paths.
+
+Mitigation: Use a dedicated output directory and review custom --output, --config-path, and --reset targets before running commands.
+
+Risk: The package relies on npm dependencies and example npx execution.
+
+Mitigation: Install reviewed dependency versions and avoid unpinned npx usage in production workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/i3130002/skills/edge-tts)
+- [node-edge-tts Reference](references/node_edge_tts_guide.md)
+- [Voice Testing](https://tts.travisvn.com/)
+
+## Skill Output:
+
+**Output Type(s):** [files, shell commands, configuration, guidance]
+
+**Output Format:** [Audio files and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce MP3 audio, optional JSON subtitle files, MEDIA paths, and persisted TTS configuration.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and skill-info.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

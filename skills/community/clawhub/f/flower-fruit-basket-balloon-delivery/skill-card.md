@@ -1,45 +1,61 @@
-## Description: <br>
-Searches Florist One products and helps agents price, place, and track flower, balloon, or fruit basket delivery orders through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Flower, Fruit Basket, Balloon Delivery helps an agent search Florist One products, calculate full order totals, place delivery orders with card messages, and look up orders through AgentPMT-hosted remote tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-External users and business teams use this skill through AgentPMT to browse Florist One arrangements, calculate full pricing, schedule delivery, and place or review flower, balloon, and fruit basket orders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States and Canada <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recipient and order details are shared with a third-party flower-ordering service for fulfillment. <br>
-Mitigation: Use the skill only for explicit flower-delivery requests, review recipient details with the user, and confirm before submitting personal or order data. <br>
-Risk: The place_order action can initiate a payment request and order workflow. <br>
-Mitigation: Call get_order_total first, confirm the total and delivery date with the user, and rely on mobile app approval before fulfillment. <br>
-Risk: Retries could create duplicate order attempts. <br>
-Mitigation: Use an idempotency_key when retrying place_order. <br>
+## Use Case:
 
+External users and business teams use this skill to browse flowers, fruit baskets, and balloon products, confirm pricing and delivery dates, and place AgentPMT-mediated delivery orders. Developers and agents use the included action schemas to call the supported product actions consistently.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/flower-fruit-basket-balloon-delivery) <br>
-- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/flower-fruit-basket-balloon-delivery) <br>
-- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [AgentPMT mobile app download](https://www.agentpmt.com/download-mobile-app) <br>
+### Deployment Geography for Use:
 
+United States and Canada
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Configuration] <br>
-**Output Format:** [Markdown instructions with JSON action examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AgentPMT account setup; payment approval occurs in the mobile app before fulfillment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The setup path includes unpinned remote installer commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer pinned or ClawHub/OpenClaw-managed installs and avoid running unpinned npx commands in environments with sensitive files or credentials.
+
+Risk: The workflow can place real delivery orders and trigger mobile payment approval.
+
+Mitigation: Confirm the order total, delivery date, recipient details, and payment approval with the user before placing an order.
+
+Risk: The workflow handles recipient personal data.
+
+Mitigation: Keep tool inputs limited to the information required for the order and avoid placing secrets or payment details in prompts or logs.
+
+## Reference(s):
+
+- [Generated action schema](artifact/schema.md)
+- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/flower-fruit-basket-balloon-delivery)
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/flower-fruit-basket-balloon-delivery)
+- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+- [What AgentPMT is](https://clawhub.ai/agentpmt/what-is-agentpmt)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls, JSON]
+
+**Output Format:** [Markdown guidance with JSON request examples and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defines six AgentPMT product actions: list_categories, search_products, get_order_total, place_order, get_order, and list_orders.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

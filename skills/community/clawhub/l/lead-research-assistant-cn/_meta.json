@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn71y3mdbcx5dyhwxv1t7sm82x81a168",
-  "slug": "lead-research-assistant-cn",
-  "version": "1.0.2",
-  "publishedAt": 1771642756602
+  "metadata": {
+    "openclaw": {
+      "name": "lead-research-assistant-cn",
+      "title": "客户研究助手",
+      "description": "研究潜在客户和市场需求，支持数据挖掘、竞品分析和线索生成",
+      "version": "1.0.0",
+      "category": "商业工具",
+      "tags": ["客户研究", "线索", "市场分析", "竞品", "销售"],
+      "author": "guohongbin-git",
+      "license": "MIT",
+      "homepage": "https://clawhub.com/skills/lead-research-assistant-cn"
+    }
+  },
+  "dependencies": [],
+  "environment": {}
 }

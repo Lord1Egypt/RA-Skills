@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meowclawlab.dev/pptsmith/visual-revision-request.schema.json",
+  "title": "PPT Smith Visual Revision Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "protected_fields",
+    "slides"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "enum": [
+        "revision_required",
+        "no_revision"
+      ]
+    },
+    "protected_fields": {
+      "const": [
+        "evidence_values",
+        "source_refs",
+        "message",
+        "editability_requirement"
+      ]
+    },
+    "slides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "slide_id",
+          "actions"
+        ],
+        "properties": {
+          "slide_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "actions": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "$ref": "#/$defs/action"
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "action": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["action", "target"],
+          "properties": {
+            "action": {"const": "delete_duplicate_copy"},
+            "target": {"const": "supporting"}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["action", "target"],
+          "properties": {
+            "action": {"const": "merge_supporting_blocks"},
+            "target": {"const": "supporting"}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["action", "target"],
+          "properties": {
+            "action": {"const": "replace_component"},
+            "target": {"const": "primary"}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["action", "minimum_area_ratio"],
+          "properties": {
+            "action": {"const": "enlarge_primary_anchor"},
+            "minimum_area_ratio": {"const": 0.5}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["action", "target"],
+          "properties": {
+            "action": {"const": "rebalance_density"},
+            "target": {"const": "slide"}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["action", "target"],
+          "properties": {
+            "action": {"const": "correct_style_tokens"},
+            "target": {"const": "slide"}
+          }
+        }
+      ]
+    }
+  }
+}

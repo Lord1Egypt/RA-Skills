@@ -1,0 +1,27 @@
+{
+  "id": "minimal",
+  "name": "极简",
+  "description": "白字+极细描边+无阴影，画面干净，适合生活方式/Vlog/品牌片",
+  "ass": {
+    "font": "Microsoft YaHei",
+    "size": 44,
+    "primary": "&H00FFFFFF",
+    "secondary": "&H000000FF",
+    "outline": "&H00000000",
+    "back": "&H80000000",
+    "bold": 0,
+    "italic": 0,
+    "border_style": 1,
+    "outline_width": 1,
+    "shadow": 0,
+    "alignment": 2,
+    "margin_l": 100,
+    "margin_r": 100,
+    "margin_v": 50,
+    "encoding": 1
+  },
+  "bilingual": {
+    "orig": {"primary": "&H00C8C8C8", "size": 36, "margin_v": 125, "alignment": 2, "outline_width": 1},
+    "trans": {"primary": "&H00FFFFFF", "size": 44, "margin_v": 48, "alignment": 2, "outline_width": 1}
+  }
+}

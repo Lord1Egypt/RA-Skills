@@ -1,0 +1,24 @@
+# Local review/audit reports (work products, never distributed)
+# Wildcards cover all future review rounds (R1/R2/R3...)
+REVIEW-*.md
+AUDIT-*.md
+
+# Self-upgrade proposal packages (applied by an external installer only after
+# manual human approval)
+.skill-upgrade/
+
+# Python build artifacts
+__pycache__/
+*.pyc
+*.pyo
+
+# Runtime artifacts
+.logs/
+.update-notification.md
+*.bak
+
+# Installer-local metadata (machine-specific install state)
+.clawhub/
+
+# NOTE: .scaling-state.json is package metadata (tier history) and MUST be
+# tracked in git. Do not add it to this file.

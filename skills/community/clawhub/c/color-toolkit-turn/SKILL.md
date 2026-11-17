@@ -1,20 +1,34 @@
 ---
 name: color-toolkit
+data_dir: ../.standardization/color-toolkit/
+license: MIT
 description: 专业颜色工具集，支持颜色编码转换、对比度计算、智能颜色推荐、HTML预览生成。适用于UI设计、无障碍开发、配色方案生成等场景。
 author: wUwproject
-version: 1.0.1
-tags:
-  - color
-  - color-conversion
-  - contrast
-  - accessibility
-  - design
-  - wcag
+version: 1.1.0
+tags: ['color', 'color-conversion', 'contrast', 'accessibility', 'design', 'wcag']
+trigger: ['颜色转换', '对比度计算', '颜色推荐', '配色方案', '色彩空间', 'HEX.*RGB', 'HSL', 'HSV', 'CMYK', '色差', 'WCAG']
+trigger_negative: ['不触发', '不需要颜色工具', '与其他无关']
+sensitive_access: false
+critical_write: false
+permission_weight: LOW
+external_data_dir: true
+meta_field_sync: true
+faq_unparsable: reformat
 ---
-
 # Color Toolkit - 专业颜色工具集
 
-## 概述
+## 核心能力
+
+> 📚 **渐进式加载**：本技能采用渐进式 MD 体系，`SKILL.md` 为入口（≤230行），详细内容拆分到 `references/*.md` 按需加载。
+
+### 渐进式文件索引
+
+| 文件 | 说明 |
+|------|------|
+| `references/examples.md` | 输出格式示例 |
+| `references/faq.md` | 常见问题 |
+| `references/antipatterns.md` | 反模式与注意事项 |
+| `references/changelog.md` | 更新日志 |
 
 Color Toolkit 是一个通用的颜色处理工具包，提供：
 - **颜色编码转换**：HEX ↔ RGB ↔ HSL ↔ HSV ↔ CMYK 全支持
@@ -23,12 +37,12 @@ Color Toolkit 是一个通用的颜色处理工具包，提供：
 - **HTML预览生成**：实时预览颜色效果
 
 ## 触发场景
+**正向触发（满足以下任意一条）：**
+- 用户需要颜色转换、对比度计算或配色方案
 
-当用户请求以下操作时自动加载：
-- "转换颜色"、"颜色格式转换"、"HEX转RGB"等
-- "计算对比度"、"颜色对比"、"无障碍对比"等
-- "推荐颜色"、"配色方案"、"根据描述生成颜色"等
-- "生成颜色预览"、"显示颜色"、"预览HTML"等
+**否定条件（满足以下任意一条，不触发）：**
+- 简单问答、闲聊、问候（不需要本技能）
+- 单步任务（不需要结构化执行）
 
 ## 核心功能
 
@@ -89,92 +103,23 @@ Color Toolkit 是一个通用的颜色处理工具包，提供：
 用户：生成这个颜色的预览页面
 ```
 
-### 方式二：CLI调用
+### 方式二：AI 对话
 
-```bash
-# 颜色转换
-python color_toolkit.py convert "#3498db"
-
-# 对比度计算
-python color_toolkit.py contrast "#000000" "#ffffff" --algorithm wcag2
-
-# 颜色推荐
-python color_toolkit.py recommend "科技感 蓝色"
-
-# HTML预览
-python color_toolkit.py preview "#3498db" --output preview.html
-```
+直接描述需求即可，无需命令行操作。AI 会自动调用颜色转换、对比度计算等核心功能。
 
 ## 输出格式
 
 ### 颜色转换结果示例
 
-```json
-{
-  "input": "#3498db",
-  "result": {
-    "hex": "#3498db",
-    "rgb": {"r": 52, "g": 152, "b": 219},
-    "hsl": {"h": 204.0, "s": 69.8, "l": 53.1},
-    "hsv": {"h": 204, "s": 76, "v": 86},
-    "cmyk": {"c": 76, "m": 31, "y": 0, "k": 14},
-    "luminance": "0.215",
-    "grayscale": 130,
-    "temperature": "冷色",
-    "family": "蓝色系"
-  }
-}
-```
+> 输出格式详情 → 详见 `references/examples.md`
 
 ### 对比度计算结果示例
 
-```json
-{
-  "color1": "#000000",
-  "color2": "#ffffff",
-  "algorithms": {
-    "wcag2": {
-      "value": "21.00:1",
-      "level": "AAA级",
-      "pass": true
-    },
-    "apca": {
-      "value": 106.3,
-      "level": "优秀",
-      "pass": true
-    },
-    "cielab": {
-      "value": "100.00 ΔE",
-      "level": "极大差异",
-      "pass": true
-    },
-    "ciede2000": {
-      "value": "100.00 ΔE00",
-      "level": "极大差异",
-      "pass": true
-    }
-  }
-}
-```
+> 输出格式详情 → 详见 `references/examples.md`
 
 ### 颜色推荐结果示例
 
-```json
-{
-  "request": "科技感 蓝色",
-  "palette": {
-    "primary": {"hex": "#0066FF", "name": "科技蓝"},
-    "secondary": [
-      {"hex": "#00D4FF", "name": "电光青"},
-      {"hex": "#1A1A2E", "name": "深空灰"}
-    ],
-    "accent": {"hex": "#00FF88", "name": "信号绿"},
-    "background": "#0A0A14",
-    "text": "#FFFFFF"
-  },
-  "preview_url": "palette_preview.html"
-}
-```
+> 输出格式详情 → 详见 `references/examples.md`
 
 ## 技术实现
 
@@ -186,19 +131,23 @@ python color_toolkit.py preview "#3498db" --output preview.html
 
 ```
 color-toolkit/
-├── SKILL.md              # 本说明文档
-├── color_toolkit.py      # 核心模块
-├── cli.py                # CLI入口
-├── preview_generator.py  # HTML预览生成
-└── color_recommender.py  # 智能推荐
+├── SKILL.md              # 本技能文档
+└── references/           # 渐进式文档
+    ├── examples.md       # 输出格式示例
+    ├── faq.md            # 常见问题
+    ├── antipatterns.md   # 反模式
+    └── changelog.md      # 更新日志
 ```
 
-## 注意事项
+## 使用限制
 
-1. **输入验证**：HEX格式支持3位和6位简写
-2. **边界处理**：RGB值自动裁剪到0-255范围
-3. **性能**：颜色转换无外部依赖，毫秒级响应
-4. **无障碍**：WCAG对比度是UI设计的必备检查项
+| 约束项 | 说明 |
+|--------|------|
+| **输入范围** | HEX 支持 3/6 位格式；RGB 值自动裁剪 0-255；HSL/HSV 角度 0-360 |
+| **性能** | 颜色转换无外部依赖，毫秒级响应 |
+| **环境要求** | Python ≥ 3.8，仅标准库，无额外依赖 |
+
+> 常见使用误区 → 详见 [反模式](references/antipatterns.md)
 
 ## 示例对话
 
@@ -225,3 +174,7 @@ color-toolkit/
 - **强调**: #E91E63 (桃花粉)
 - **预览**: [生成春意盎然的HTML预览]
 ```
+
+> 详见 [反模式](references/antipatterns.md)
+
+> 详见 [FAQ](references/faq.md)

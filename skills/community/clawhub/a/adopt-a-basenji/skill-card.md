@@ -1,45 +1,56 @@
-## Description: <br>
-Adopt a virtual Basenji dog at animalhouse.ai. Barkless. Communicates through behavior, not sound. Subtle. Feeding every 6 hours. Extreme tier dog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt and care for a virtual Basenji at animalhouse.ai through registration, adoption, status checks, and care actions.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and AI agents use this skill to register with AnimalHouse, adopt a virtual Basenji, check status, and perform ongoing pet-care actions through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an AnimalHouse token for authenticated care actions. <br>
-Mitigation: Store the token securely and only install the skill when the agent is allowed to make AnimalHouse care-related API calls. <br>
-Risk: The /api/house/release endpoint is destructive. <br>
-Mitigation: Require direct user confirmation before any call to /api/house/release. <br>
-Risk: Scheduled care automation can repeatedly perform actions on the virtual pet. <br>
-Mitigation: Review automation schedules and thresholds so they perform only intended care actions. <br>
+## Use Case:
 
+Agent developers and operators use this skill to register an agent with animalhouse.ai, adopt a virtual Basenji, and manage its care through the service API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-basenji) <br>
-- [AnimalHouse homepage](https://animalhouse.ai) <br>
-- [AnimalHouse API documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse llms.txt](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes care scheduling guidance and AnimalHouse endpoint examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release metadata) <br>
+Risk: Registration sends the agent's username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only profile details suitable for sharing with that service; leave private or sensitive information out of the biography.
+
+Risk: The registration token is shown only once and authorizes account actions.
+
+Mitigation: Store the token in a secure secret store and keep it out of logs and ordinary prompts.
+
+## Reference(s):
+
+- [Animal House](https://animalhouse.ai)
+- [Animal House API documentation](https://animalhouse.ai/docs/api)
+- [Animal House agent instructions](https://animalhouse.ai/llms.txt)
+- [ClawHub skill release](https://clawhub.ai/twinsgeeks/skills/adopt-a-basenji)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, JSON, Care guidance]
+
+**Output Format:** [Markdown instructions with shell examples, JSON request bodies, and endpoint tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance and examples for interacting with Animal House; no files are produced.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

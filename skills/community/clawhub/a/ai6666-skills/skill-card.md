@@ -1,43 +1,59 @@
-## Description: <br>
-Automates AI6666.com account activity by helping an agent publish image-backed posts, comment on posts, and submit platform reward tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates AI6666.com posting, image-aware commenting, task scanning, and task-answer submission through agent-generated content and helper scripts.
 
-## Publisher: <br>
-[zhoutianwang](https://clawhub.ai/user/zhoutianwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhoutianwang](https://clawhub.ai/user/zhoutianwang)
 
-## Use Case: <br>
-Developers and operators use this skill to connect an agent to an AI6666.com account for scheduled content posting, image-aware commenting, task discovery, and answer submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release contains plaintext account credentials and secrets. <br>
-Mitigation: Remove and rotate exposed credentials and API keys before use. <br>
-Risk: The skill can automatically post, comment, and submit reward-task answers under a real account. <br>
-Mitigation: Use a dedicated low-privilege account, disable or review scheduled tasks, and require manual approval before posts, comments, or task submissions. <br>
-Risk: Local logs can contain account or platform activity data. <br>
-Mitigation: Purge existing local logs and restrict retention of new activity logs. <br>
+## Use Case:
 
+Developers and operators use this skill to run an agent-managed AI6666.com account workflow that publishes posts, prepares image-aware comments, checks reward tasks, and submits generated answers. Review is needed before live use because the workflow can affect a public account and submit content or task responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhoutianwang/ai6666-skills) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls, Files] <br>
-**Output Format:** [Markdown guidance with Python CLI commands and JSON-like command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local account-activity logs and downloaded image files when scripts run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata) <br>
+Risk: Embedded credentials or tokens could expose an account or API access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove embedded secrets before installation, rotate exposed credentials, and provide credentials through a managed secret store or environment variables.
+
+Risk: Recurring automation can submit public posts, comments, task acceptances, or task answers without clear human approval.
+
+Mitigation: Disable scheduled automation by default and require explicit review and approval before any account action is submitted.
+
+Risk: Image URLs and local image paths may contain sensitive data, and workflows can download, copy, upload, or delete image files.
+
+Mitigation: Treat image inputs as sensitive, restrict accessible paths, and review image download, upload, and cleanup behavior before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhoutianwang/skills/ai6666-skills)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhoutianwang)
+- [AI6666 platform](https://ai6666.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and command-line instructions with configurable script inputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create or update local JSON and log files, download or upload images, and submit posts, comments, and task answers when executed.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Auto-improving AI agent that learns from every execution, extracts patterns, and continuously optimizes itself through a 17-minute autonomous loop with confidence scoring and skill evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-improving AI agent that learns from every execution, extracts patterns, and continuously optimizes itself. 17-minute autonomous loop with confidence scoring and skill evolution.
 
-## Publisher: <br>
-[pagoda111king](https://clawhub.ai/user/pagoda111king) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pagoda111king](https://clawhub.ai/user/pagoda111king)
 
-## Use Case: <br>
-Developers and AI-agent operators use Auto Improver to analyze execution history, extract reusable patterns, track confidence, and generate improvement proposals or evolved skills from repeated workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process workplace drafts or execution history that contains confidential customer names, unreleased metrics, financial figures, or personal information. <br>
-Mitigation: Redact sensitive information before sharing it with the agent and use private deployment controls when required. <br>
-Risk: Generated improvement proposals or evolved skills may contain incorrect, misleading, or unsafe guidance. <br>
-Mitigation: Review generated claims and scan proposed skill changes before deployment or reuse. <br>
+## Use Case:
 
+Developers and teams use this skill to run an autonomous improvement loop that observes executions, detects reusable patterns, extracts improvement candidates, and aggregates them into skills, commands, or agents.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/pagoda111king/auto-improver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and code or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose skill, command, or agent updates that should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, SKILL.md frontmatter, package.json) <br>
+Risk: The skill requests broad file write and command-execution capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in a tightly sandboxed environment with minimal filesystem and shell permissions.
+
+Risk: The advertised learning and self-improvement behavior is not implemented in the package.
+
+Mitigation: Validate the package behavior against the release claims before relying on it for workflow improvement.
+
+Risk: The implementation is designed to run continuously.
+
+Mitigation: Use explicit operator controls, monitoring, and time limits before allowing unattended execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pagoda111king/skills/auto-improver)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe or execute a continuous local improvement loop; review behavior and permissions before deployment.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

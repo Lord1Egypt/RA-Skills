@@ -1,0 +1,40 @@
+{
+  "name": "english-memory-method",
+  "version": "2.1.1",
+  "description": "English passage memorization method - AI agent skill (multi-platform). Turns any English article into a structured, chained-retelling study plan. 英语篇章背诵法。",
+  "bin": {
+    "english-memory-method": "bin/install.mjs"
+  },
+  "files": [
+    "bin/",
+    "SKILL.md",
+    "assets/",
+    "platforms/",
+    ".claude-plugin/",
+    "skills/",
+    "README.md"
+  ],
+  "keywords": [
+    "ai",
+    "agent",
+    "skill",
+    "agent-skills",
+    "claude-code",
+    "codex",
+    "trae",
+    "qoder",
+    "codebuddy",
+    "minimax",
+    "english-learning",
+    "memorization",
+    "study-methods"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yxdwind/english-memory-method.git"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "action": "create",
+  "title": "项目介绍",
+  "language": "zh-CN",
+  "slides": [
+    {
+      "title": "目标",
+      "bullets": [
+        "减少重复工作",
+        "保留可核对的结果"
+      ],
+      "notes": "先介绍使用场景。"
+    },
+    {
+      "title": "下一步",
+      "bullets": [
+        "确认方案",
+        "完成试用"
+      ]
+    }
+  ]
+}

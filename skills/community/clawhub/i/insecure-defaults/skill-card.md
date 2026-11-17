@@ -1,40 +1,53 @@
-## Description: <br>
-Detects fail-open insecure defaults (hardcoded secrets, weak auth, permissive security) that allow apps to run insecurely in production. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects fail-open insecure defaults, including hardcoded secrets, weak authentication, and permissive security settings that allow applications to run insecurely in production.
 
-## Publisher: <br>
-[atlas-secint](https://clawhub.ai/user/atlas-secint) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[atlas-secint](https://clawhub.ai/user/atlas-secint)
 
-## Use Case: <br>
-Developers, security engineers, and reviewers use this skill to audit production-reachable code and configuration for fail-open defaults such as hardcoded secrets, weak authentication, permissive access, weak cryptography, and debug behavior. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill searches code and configuration and may encounter real secrets. <br>
-Mitigation: Use it only on repositories the operator is authorized to audit and require reports to redact secret values. <br>
-Risk: The skill may propose Bash search commands during an audit. <br>
-Mitigation: Review commands before execution and keep searches scoped to the intended repository. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/atlas-secint/insecure-defaults) <br>
-- [Insecure Defaults Examples and Counter-Examples](examples.md) <br>
+## Use Case:
 
+Developers, security engineers, and reviewers use this skill to audit production-reachable code and configuration for insecure defaults such as fallback secrets, default credentials, disabled authentication, weak cryptography, permissive access, and exposed debug behavior.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with findings, verification notes, and suggested search commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports should include evidence, production impact, and exploitation notes without exposing secret values.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requests unrestricted shell access, which can be risky in sensitive workspaces or untrusted repositories.
+
+Mitigation: Review the skill before installation and remove or tightly restrict shell access unless shell-backed analysis is explicitly needed and the target repositories are trusted.
+
+Risk: Insecure-default searches can produce misleading findings when matches are in tests, examples, documentation, development-only tooling, or fail-secure code paths.
+
+Mitigation: Apply the documented verification workflow: trace runtime behavior, confirm production reachability, and skip explicitly scoped non-production or fail-secure patterns.
+
+## Reference(s):
+
+- [Insecure Defaults Examples and Counter-Examples](artifact/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/atlas-secint/skills/insecure-defaults)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with search patterns, verification steps, and finding reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on production-reachable findings and distinguishes fail-open defaults from fail-secure behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

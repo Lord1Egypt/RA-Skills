@@ -1,36 +1,52 @@
-## Description: <br>
-Project Manager helps agents plan, track, and deliver projects using project intake, scope control, work breakdown structures, estimation, scheduling, risk management, status reporting, and stakeholder communication frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Project Manager helps agents plan, track, and deliver projects with structured intake, work breakdown, estimation, scheduling, risk management, status reporting, agile workflows, change control, and closure templates.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Founders, freelancers, team leads, and project contributors use this skill to turn project requests into scoped plans, schedules, risk registers, status updates, and change-control artifacts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Project planning conversations can include confidential budgets, stakeholder details, schedules, and business plans. <br>
-Mitigation: Avoid entering sensitive project information unless it is approved for the agent conversation; redact or generalize private details where possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Founders, freelancers, team leads, and delivery teams use this skill to turn project goals into scoped plans, work breakdown structures, estimates, schedules, risk registers, status reports, agile ceremonies, change requests, and closure checklists.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with YAML templates, tables, checklists, and structured project-management guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include project charters, WBS plans, estimates, schedules, risk registers, status reports, RACI matrices, communication plans, and change requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may share sensitive project scope, budget, timeline, stakeholder, or client details while using the planning workflows.
+
+Mitigation: Share only information approved for the agent session, and redact confidential names, budgets, client details, and regulated data when possible.
+
+Risk: Short project-management phrases such as "Status report" or "Risk check" may be treated as workflow commands.
+
+Mitigation: State the intended workflow explicitly and confirm the project context and source data before relying on generated reports or risk reviews.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/afrexai-project-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with YAML templates, checklists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only project management outputs such as intake forms, WBS entries, estimates, risk registers, status reports, health scores, change requests, retrospectives, and closure checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

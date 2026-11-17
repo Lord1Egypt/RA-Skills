@@ -1,45 +1,56 @@
-## Description: <br>
-Reviews and helps repair skill frontmatter, metadata, requires/install declarations, and directory structure so they align with current OpenClaw conventions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits OpenClaw skill frontmatter, metadata, dependency declarations, install notes, and directory structure, then suggests reviewable fixes.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to audit, repair, and review OpenClaw skill packaging metadata before release or batch cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence marks the release suspicious because its behavior appears broader than simple metadata repair. <br>
-Mitigation: Review the skill before installation and install it only when the broader audit and scanning behavior is intended. <br>
-Risk: Running the skill over private or sensitive workspaces could expose more local project content than needed for metadata repair. <br>
-Mitigation: Limit inputs to specific skill directories and remove sensitive material before use. <br>
-Risk: Shell execution or file writes can affect local workspace files if approved by the agent runtime. <br>
-Mitigation: Require explicit approval before shell commands or writes, and prefer dry-run or review-only output first. <br>
+## Use Case:
 
+Developers and skill publishers use this skill to check OpenClaw skill folders for frontmatter, metadata, dependency declarations, install guidance, and required files before release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/skill-frontmatter-doctor) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [Skill specification resource](artifact/resources/spec.json) <br>
-- [Output template resource](artifact/resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON reports with review findings, repair suggestions, and optional shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run locally with python3 and standard-library dependencies; dry-run and output-file modes are documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Audit output can summarize local skill files, including sensitive material if the user points it at broad private directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it on scoped skill folders and avoid broad private directories unless local content disclosure in the generated report is acceptable.
+
+Risk: Generated repair suggestions may still need release-owner review before being applied or published.
+
+Mitigation: Review the Markdown or JSON report before making changes, and use dry-run or reviewable drafts for higher-risk updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/skill-frontmatter-doctor)
+- [README](artifact/README.md)
+- [OpenClaw skill audit spec](artifact/resources/spec.json)
+- [Smoke test](artifact/tests/smoke-test.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reports with optional JSON output from the local script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are reviewable audit reports and suggested next steps; the bundled script accepts input, output, format, limit, and dry-run parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

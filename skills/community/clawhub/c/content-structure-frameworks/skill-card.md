@@ -1,40 +1,52 @@
-## Description: <br>
-Helps plan content structure, logical flow, and organization for clear, engaging content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents plan content structure, organize logical flow, adapt common frameworks, and improve clarity across formats such as articles, scripts, copy, email, and social posts.
 
-## Publisher: <br>
-[peterlwh62-arch](https://clawhub.ai/user/peterlwh62-arch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[peterlwh62-arch](https://clawhub.ai/user/peterlwh62-arch)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and content creators use this skill to plan outlines, choose or adapt content frameworks, improve transitions, and structure messages for different platforms and content types.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The workflow is written for a Chinese, '小小'-specific content-planning context and may not match every user's preferred language, audience model, or editorial process.
+
+Mitigation: Review the generated outline or framework recommendation against the intended audience, platform, and brand voice before publishing.
+
+Risk: Content-structure guidance can make recommendations that are plausible but poorly suited to the message or channel.
+
+Mitigation: Treat the output as planning guidance and revise it using human editorial judgment, campaign goals, and platform constraints.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Content creators and writers use this skill to plan outlines, choose or adapt content frameworks, and improve the flow of articles, scripts, copy, social posts, and other formats. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Framework guidance may become too rigid for a specific audience, platform, or content goal. <br>
-Mitigation: Treat frameworks as adaptable planning aids and review the final structure against the intended audience, platform, and message. <br>
-Risk: The skill can improve organization but does not verify factual accuracy or compliance of the resulting content. <br>
-Mitigation: Perform separate fact, policy, brand, and legal review before publishing high-impact content. <br>
+**Output Format:** [Markdown or plain text guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/peterlwh62-arch/content-structure-frameworks) <br>
+**Other Properties Related to Output:** [Produces structured recommendations, outlines, framework choices, and revision guidance without executing code or accessing external data.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown or prose guidance with structured outlines, frameworks, and review recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning and revision guidance; no commands or code execution are described by the artifact.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

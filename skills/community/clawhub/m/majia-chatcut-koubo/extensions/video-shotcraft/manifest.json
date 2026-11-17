@@ -1,0 +1,20 @@
+{
+  "id": "video-shotcraft",
+  "name": "Video Shotcraft 镜头配方提供器",
+  "version": "1.0.0",
+  "mode": "external",
+  "repository": "https://github.com/Vincentwei1021/video-shotcraft",
+  "revision": "0c84c4b0b04836c0a918c29273eb5d1efda74f04",
+  "gallery": "https://vincentwei1021.github.io/video-shotcraft/",
+  "license": "Apache-2.0",
+  "libraryPath": "gallery/api/library.json",
+  "allowlistPath": "extensions/video-shotcraft/allowlist.json",
+  "authority": "candidate-provider",
+  "constraints": [
+    "外部仓库不成为内容、字幕、隐私、证据或发布真相源",
+    "只允许 allowlist 中的卡片和 style；远端新增卡片不会自动启用",
+    "不得整包复制音频；音频来源和许可必须逐文件核验",
+    "渲染产物必须声明 fps、时长、合成 owner、回退方案并通过 ChatCut 合成帧验证",
+    "远端 revision 漂移时停止使用，重新审查后再升级"
+  ]
+}

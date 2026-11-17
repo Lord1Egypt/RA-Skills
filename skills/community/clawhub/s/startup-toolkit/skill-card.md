@@ -1,41 +1,54 @@
-## Description: <br>
-Startup Toolkit helps agents scaffold a basic local startup project folder and provide launch-oriented guidance for a SaaS MVP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a startup scaffold helper for a React and Node.js SaaS project with documented landing page, authentication, payments, analytics, and marketing features.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers and startup builders use this skill to create a simple project directory structure for an MVP and get next-step launch guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact presents authentication, payments, analytics, Docker, and CI/CD as included capabilities, but the security summary says it is only a basic scaffold. <br>
-Mitigation: Treat generated output as a starting folder structure and independently implement and review production auth, payments, analytics, Docker, and CI/CD before use. <br>
-Risk: The launch script creates project directories in the current working directory. <br>
-Mitigation: Run it only from a workspace where creating a new project folder is intended, and review generated files before integrating them. <br>
+## Use Case:
 
+Developers and startup builders use this skill to create an initial SaaS project scaffold and receive quick-start guidance for launching a startup application.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/startup-toolkit) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Sunshine-del-ux) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with bash commands and generated project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates frontend, backend, database, and docker directories under the requested project name.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact/_meta.json) <br>
+Risk: The scaffold helper accepts a project name that is used as a filesystem path, so unusual values can create confusing paths or unintended shell behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass a simple project slug such as my-startup; avoid spaces, path separators, wildcards, and option-like values.
+
+Risk: The skill description lists authentication, payments, analytics, Docker, and CI/CD capabilities that the bundled script does not implement.
+
+Mitigation: Treat these claims as aspirational unless the generated files are separately verified before production use.
+
+## Reference(s):
+
+- [Startup Toolkit on ClawHub](https://clawhub.ai/sunshine-del-ux/skills/startup-toolkit)
+- [Publisher profile](https://clawhub.ai/user/sunshine-del-ux)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Shell output plus generated project directories and brief next-step instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts a project name and optional documented feature flags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

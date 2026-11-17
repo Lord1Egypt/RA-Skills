@@ -25,7 +25,7 @@ The `SLASH_COMMAND_TOOL_CHAR_BUDGET` env var overrides the default. The ecosyste
 ## Core Principles
 
 1. **Metadata-first discovery** - Claude scans ~100 tokens of frontmatter to decide relevance before loading full content
-2. **Progressive disclosure** - Essential content loads immediately; advanced content is in modules loaded on-demand
+2. **Progressive disclosure** - Essential content loads immediately, and advanced content is in modules loaded on-demand
 3. **Token budgeting** - Track and enforce per-skill token limits aligned with the ecosystem budget
 4. **Context-aware delivery** - Load depth matches task complexity
 
@@ -35,6 +35,9 @@ The `SLASH_COMMAND_TOOL_CHAR_BUDGET` env var overrides the default. The ecosyste
 ```bash
 python plugins/abstract/scripts/validate_budget.py
 ```
+
+If `plugins/abstract/scripts/validate_budget.py` is absent (a marketplace
+install, not a checkout), skip this step and say so.
 
 ### Step 2: Identify Reduction Targets
 - Move examples and edge cases to modules
@@ -53,6 +56,9 @@ python plugins/abstract/scripts/validate_budget.py
 python plugins/abstract/scripts/validate_budget.py
 # Target: 50%+ reduction from original
 ```
+
+If `plugins/abstract/scripts/validate_budget.py` is absent (a marketplace
+install, not a checkout), skip this step and say so.
 
 ## Quality Checks
 

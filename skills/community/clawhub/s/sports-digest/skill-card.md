@@ -1,43 +1,58 @@
-## Description: <br>
-Rolling multi-sport digest skill that tracks current storylines, recent results, upcoming fixtures/events, injuries/availability, and standings across a chosen sports portfolio while keeping a compact context file current. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rolling multi-sport digest skill that tracks current storylines, recent results, upcoming fixtures/events, injuries/availability, and standings across a chosen sports portfolio while keeping a compact context file current.
 
-## Publisher: <br>
-[ds215](https://clawhub.ai/user/ds215) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ds215](https://clawhub.ai/user/ds215)
 
-## Use Case: <br>
-External users configure this skill to produce recurring, audience-specific sports digests for selected teams, leagues, tours, or competitions. It helps maintain continuity between runs by updating a compact rolling context file with current results, upcoming events, availability notes, standings context, and live storylines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The rolling SPORTS_CONTEXT.md file may collect unrelated information or sensitive details if used as a general notes file. <br>
-Mitigation: Keep SPORTS_CONTEXT.md limited to sports context and free of secrets, as recommended by the security guidance. <br>
-Risk: Sports scores, standings, injuries, and fixtures can be stale or conflicting across sources. <br>
-Mitigation: Report only information sourced in the current session, keep uncertainty explicit, and prefer direct current reports when sources conflict. <br>
-Risk: Delivery-channel automation or credentials configured outside the skill can introduce operational or security exposure. <br>
-Mitigation: Review any separate delivery automation and credentials before deployment. <br>
+## Use Case:
 
+External users and agent operators use this skill to produce recurring, concise sports digests for selected teams, leagues, tours, or competitions while maintaining a compact rolling context file for continuity across runs.
 
-## Reference(s): <br>
-- [SPORTS_CONTEXT_template.md](SPORTS_CONTEXT_template.md) <br>
-- [Sports Digest on ClawHub](https://clawhub.ai/ds215/sports-digest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown digest text plus updates to a SPORTS_CONTEXT.md rolling context file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses sourced current-session sports information and keeps the context file compact rather than archival.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Sports results, standings, injuries, and schedules can change quickly or conflict across sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use current-session sources for every reported fact, prefer direct and current reports when sources conflict, and state uncertainty instead of inferring outcomes.
+
+Risk: A rolling context file can become stale, misleading, or too large if old fixtures and storylines are appended indefinitely.
+
+Mitigation: Replace outdated information, remove obsolete injuries and narratives, keep only context useful for the next digest, and update the last-updated date after meaningful changes.
+
+Risk: A poorly configured sports scope, cadence, or delivery channel can produce irrelevant or misdirected digests.
+
+Mitigation: Configure the sports scope, schedule, recipient, and delivery channel deliberately before use.
+
+## Reference(s):
+
+- [Sports Digest ClawHub Skill Page](https://clawhub.ai/ds215/skills/sports-digest)
+- [SPORTS_CONTEXT.md Template](artifact/SPORTS_CONTEXT_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown digest text and rolling context-file update guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require current sports web research and deliberate configuration of scope, schedule, and delivery channel.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

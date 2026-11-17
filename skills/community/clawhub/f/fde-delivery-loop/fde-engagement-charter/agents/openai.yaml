@@ -1,0 +1,4 @@
+interface:
+  display_name: "FDE POC Engagement Charter"
+  short_description: "Align a validated problem into a testable POC agreement"
+  default_prompt: "Use $fde-engagement-charter to draft a POC engagement charter from this problem-discovery package."

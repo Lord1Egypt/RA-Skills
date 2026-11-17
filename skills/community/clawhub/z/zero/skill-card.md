@@ -1,46 +1,56 @@
-## Description: <br>
-Create ephemeral TiDB Cloud Zero databases for agent workflows in Technical Preview. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create ephemeral TiDB Cloud Zero databases for agent workflows in Technical Preview.
 
-## Publisher: <br>
-[Bosn](https://clawhub.ai/user/Bosn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bosn](https://clawhub.ai/user/bosn)
 
-## Use Case: <br>
-Developers and engineers use this skill to provision temporary TiDB Cloud Zero databases, capture connection details, and run smoke-test or bootstrap SQL for agent workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill returns TiDB Cloud Zero connection details that include sensitive credentials. <br>
-Mitigation: Keep saved JSON files and connection strings out of logs and source control, use restrictive file permissions, and delete credentials after use or expiration. <br>
-Risk: The skill proposes curl and mysql commands that can create cloud resources or run SQL. <br>
-Mitigation: Review commands before execution and confirm the target endpoint and SQL statements match the intended workflow. <br>
-Risk: The documented API path is Technical Preview and may change. <br>
-Mitigation: Confirm the endpoint and response shape before relying on the skill in repeatable workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Bosn/zero) <br>
-- [TiDB Cloud Zero API endpoint](https://zero.tidbapi.com/v1alpha1/instances) <br>
-- [TiDB SQL skill](https://skills.sh/pingcap/agent-rules/tidb-sql) <br>
-- [PyTiDB skill](https://skills.sh/pingcap/agent-rules/pytidb) <br>
-- [TiDB Cloud documentation](https://docs.pingcap.com/tidbcloud/) <br>
-- [TiDB Cloud website](https://tidbcloud.com/) <br>
+## Use Case:
 
+Developers and agents use this skill to provision disposable TiDB Cloud Zero databases, run SQL smoke tests, and connect through MySQL-compatible clients for short-lived workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash, SQL, JSON, and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local JSON files containing temporary database credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Temporary database connection details include credentials that can be exposed if saved insecurely or committed.
+
+Mitigation: Store response files with restrictive permissions, avoid committing them, delete them when done, and prefer safer MySQL credential handling over passwords in commands.
+
+Risk: The TiDB Cloud Zero API is described as Technical Preview and the current API path may change.
+
+Mitigation: Confirm the current TiDB Cloud Zero endpoint and response shape before relying on the skill in repeatable workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bosn/skills/zero)
+- [TiDB SQL skill](https://skills.sh/pingcap/agent-rules/tidb-sql)
+- [PyTiDB skill](https://skills.sh/pingcap/agent-rules/pytidb)
+- [TiDB Cloud docs](https://docs.pingcap.com/tidbcloud/)
+- [TiDB Cloud website](https://tidbcloud.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash, SQL, JSON, and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include temporary database connection details that should be treated as secrets.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

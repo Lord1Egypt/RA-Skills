@@ -1,41 +1,54 @@
-## Description: <br>
-Create and edit icons, favicons, images, and color palettes using AI generation, macOS tools, ImageMagick, and SVG for scalable graphics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and edit icons, favicons, images, and color palettes using AI generation, macOS tools, ImageMagick, and SVG for scalable graphics.
 
-## Publisher: <br>
-[quincygunter](https://clawhub.ai/user/quincygunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quincygunter](https://clawhub.ai/user/quincygunter)
 
-## Use Case: <br>
-Developers and designers use this skill to generate and adapt app icons, favicons, image assets, and color palettes with AI image generation, SVG, ImageMagick, and macOS image tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts may include secrets, unreleased business details, private personal data, or confidential brand concepts that are sent to an external SkillBoss service. <br>
-Mitigation: Before installing, avoid putting secrets, unreleased business details, private personal data, or confidential brand concepts into image prompts unless you are comfortable sending them to SkillBoss's external service. <br>
-Risk: Generated design assets may be unsuitable for production use without brand, accessibility, and platform review. <br>
-Mitigation: Review generated assets before release and confirm they meet brand, legal, platform, and accessibility requirements. <br>
+## Use Case:
 
+Developers and designers use this skill to choose design-asset tools and generate or edit icons, favicons, image variants, and color palettes for applications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/quincygunter/abe-design-assets) <br>
-- [Publisher profile](https://clawhub.ai/user/quincygunter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with code and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference external image generation through the SkillBoss API when the user provides credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Image prompts are sent to SkillBoss API Hub and may contain sensitive or unreleased material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved prompts and avoid secrets, private customer data, or sensitive unreleased material unless the API is approved for that use.
+
+Risk: The skill includes local image-file operations that can overwrite or transform design assets.
+
+Mitigation: Review paths and command arguments before execution, and keep source assets backed up when generating or batch-editing outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/quincygunter/skills/abe-design-assets)
+- [SkillBoss API Hub API base](https://api.heybossai.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with Python, Bash, HTML, JSON, and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes command examples for local image operations and code samples for external image generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

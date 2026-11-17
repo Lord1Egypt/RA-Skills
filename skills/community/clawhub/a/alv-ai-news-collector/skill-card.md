@@ -1,43 +1,54 @@
-## Description: <br>
-AI News Collector guides an agent to collect recent AI news across product launches, research, business, policy, open source, and community sources, then summarize 15-25 items in Chinese by heat with source links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI News Collector gathers AI news across product launches, research, industry activity, funding, open source projects, policy, and community trends, then ranks items by heat and returns Chinese summaries with source links.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to perform broad public web research for recent AI news and return a concise Chinese digest ranked by heat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs multiple public web searches and fetches external articles, which may expose search intent to third-party sites or encounter inaccessible and paywalled sources. <br>
-Mitigation: Use it only where public web browsing is allowed, avoid sensitive queries, and mark inaccessible or paywalled sources rather than attempting to bypass access controls. <br>
-Risk: News summaries can be incomplete, inaccurate, duplicated, or shaped by source bias and SEO aggregation. <br>
-Mitigation: Cross-check high-impact items across multiple sources, merge duplicate coverage, cite original sources, and keep summaries objective. <br>
-Risk: Summarizing copyrighted or paywalled reporting may create reuse or compliance concerns. <br>
-Mitigation: Prefer brief summaries with source links and follow organizational rules for copyrighted and paywalled material. <br>
+## Use Case:
 
+External users, developers, analysts, and other AI watchers use this skill to request current Chinese-language AI news roundups. It guides an agent through multi-dimensional public web search, source cross-checking, deduplication, and heat-based ranking.
 
-## Reference(s): <br>
-- [Recommended AI news sources](references/sources.md) <br>
-- [ClawHub release page](https://clawhub.ai/alvisdunlop/alv-ai-news-collector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown news digest in Chinese with ranked sections and source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically 15-25 items; includes search count, covered dimensions, and update time when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: News search results may include outdated, duplicated, paywalled, or weakly sourced claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Cross-check notable items against multiple sources, merge duplicate coverage, keep source links, and label inaccessible paid sources as subscription-only.
+
+Risk: The workflow performs broad public web browsing across media, newsletters, forums, and community sites.
+
+Mitigation: Use public sources only and review linked evidence before relying on the roundup for business or policy decisions.
+
+## Reference(s):
+
+- [AI News Source Recommendations](artifact/references/sources.md)
+- [ClawHub Skill Page](https://clawhub.ai/alvisdunlop/skills/alv-ai-news-collector)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown news roundup with source links and heat-ranked sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Typically 15-25 deduplicated AI news items, grouped by heat level with search count, covered dimensions, and update time.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

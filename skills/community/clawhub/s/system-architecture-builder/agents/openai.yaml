@@ -1,0 +1,3 @@
+interface:
+  display_name: "System Architecture Builder"
+  short_description: "Build repeatable OS-style system architectures"

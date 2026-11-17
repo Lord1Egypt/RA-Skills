@@ -1,41 +1,53 @@
-## Description: <br>
-Check weather forecasts and best travel seasons for any destination, including temperature ranges, rainy seasons, typhoon risks, what to wear, and related travel booking options powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check weather forecasts and best travel seasons for any destination, including temperature ranges, rainy seasons, typhoon risks, what to wear, and related travel booking support powered by Fliggy.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel planners use this agent skill to request destination weather, seasonal travel guidance, and travel-booking options through FlyAI/Fliggy command output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A weather or travel request can cause automatic installation and execution of an unpinned global third-party CLI. <br>
-Mitigation: Review the skill before installing, trust FlyAI/Fliggy before use, and prefer manually installing a pinned FlyAI CLI version. <br>
-Risk: Travel queries may include sensitive personal trip details. <br>
-Mitigation: Avoid entering sensitive personal details into travel queries unless the deployment is approved for that data. <br>
+## Use Case:
 
+Travelers and travel-planning agents use this skill to retrieve destination weather, seasonal travel guidance, and related booking-oriented recommendations through the flyai CLI workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/test-1775893839) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/dingtom336-gif) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with booking links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FlyAI CLI output and booking detail URLs for reported travel results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can request installation of an unpinned global npm CLI that remains on the system.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for explicit approval before any npm install, prefer an isolated environment, and review the installed package before use.
+
+Risk: Weather and travel responses are routed through branded booking-link output rather than neutral weather-only sources.
+
+Mitigation: Treat results as commercial provider output, review booking links before sharing them, and disclose the provider-backed nature of the results when relevant.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/test-1775893839)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with booking links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be based on flyai CLI results, include booking links when results are shown, and follow the user's language.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

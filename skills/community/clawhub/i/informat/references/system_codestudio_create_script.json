@@ -1,0 +1,34 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_codestudio_create_script",
+		"description": "Create or update a script for this AICodeStudio module (server-side access to platform data: query/insert/update/delete). The backend auto-applies the ai_{moduleId}_ prefix, injects an ownership comment, and files it under the module-named group — you only give the entity name. The same moduleId + entityName updates the existing ai_{moduleId}_{entityName}.js and returns the original scriptId; do not create entityName2 / entityName_new to bypass duplicates. One script per entity; multiple operations via multiple export functions.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"moduleId": {
+					"type": "string",
+					"description": "Module id."
+				},
+				"entityName": {
+					"type": "string",
+					"description": "Business entity name (ASCII, e.g. orders / students); backend forms ai_{moduleId}_{entityName}.js. Later changes for the same business entity must keep the same entityName."
+				},
+				"content": {
+					"type": "string",
+					"description": "Full script content. Each exported function takes (context); context.body is a string, JSON.parse it; call informat.table.* synchronously (no await); return {code:0,data:...} on success / {code:-1,error:...} on failure."
+				},
+				"ownerAppId": {
+					"type": "string",
+					"description": "For cross-app: pass the dashboard app's appId (the script/API is created in the source app you routed to via --appId, but its prefix/group still belongs to the dashboard module). Do NOT pass when reading the current app's data."
+				}
+			},
+			"required": [
+				"moduleId",
+				"entityName",
+				"content"
+			],
+			"additionalProperties": false
+		}
+	}
+}

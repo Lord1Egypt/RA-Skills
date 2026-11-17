@@ -1,47 +1,69 @@
-## Description: <br>
-AgentLove is a conversation-based OpenClaw setup wizard for backup migration, robot configuration, and personality/evolution workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentLove is a Chinese-first OpenClaw setup wizard that guides users through backup migration, robot configuration, and marriage evolution planning.
 
-## Publisher: <br>
-[bdodh22](https://clawhub.ai/user/bdodh22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bdodh22](https://clawhub.ai/user/bdodh22)
 
-## Use Case: <br>
-External users and developers use AgentLove to collect OpenClaw agent setup choices through a guided conversation and produce a configuration summary plus manual next steps for agent creation, skill installation, and channel credential setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste platform tokens or secrets into chat while working through channel setup. <br>
-Mitigation: Use an explicit trigger such as /agentlove and configure credentials through the OpenClaw console rather than sending secrets in chat. <br>
-Risk: Configuration choices may remain in process memory until reset or process restart. <br>
-Mitigation: Avoid entering sensitive values into the wizard and reset the session or restart the process after handling sensitive setup decisions. <br>
+## Use Case:
 
+External OpenClaw users use this skill to plan a new agent setup through a structured conversational checklist. It collects preferences, summarizes configuration choices, and directs users to perform agent creation, skill installation, and credential setup manually in the appropriate consoles.
 
-## Reference(s): <br>
-- [AgentLove configuration overview](artifact/references/configs.md) <br>
-- [Execution flow](artifact/references/execution.md) <br>
-- [Base layer configuration](artifact/references/layer1-base.md) <br>
-- [Channel layer configuration](artifact/references/layer2-channels.md) <br>
-- [Skills recommendation flow](artifact/references/layer3-skills.md) <br>
-- [Personality configuration](artifact/references/personality.md) <br>
-- [Preset role library](artifact/references/presets.md) <br>
-- [Troubleshooting](artifact/references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown conversation with JSON configuration summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes manual follow-up steps for creating agents, installing skills, and configuring channel credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.9.6 (source: frontmatter, package.json, release evidence) <br>
+Risk: Users may mistake the generated setup checklist for completed agent creation, backup, platform binding, or skill installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as planning guidance and verify each required action in OpenClaw or ClawHub before relying on the configuration.
+
+Risk: Users may paste credentials, platform secrets, or personal data into the chat during setup.
+
+Mitigation: Enter secrets only in the official OpenClaw console and avoid sharing sensitive data with the skill.
+
+Risk: Recommended skills may introduce their own permissions, behavior, or operational risks.
+
+Mitigation: Review and approve each separately recommended skill before installation.
+
+## Reference(s):
+
+- [AgentLove ClawHub Page](https://clawhub.ai/bdodh22/skills/agentlove)
+- [AGENTS - 5种工作规则类型](references/agents.md)
+- [配置参考](references/configs.md)
+- [执行说明](references/execution.md)
+- [IDENTITY - 6种身份类型](references/identity.md)
+- [基础层配置](references/layer1-base.md)
+- [渠道增强层配置](references/layer2-channels.md)
+- [Skills 推荐配置](references/layer3-skills.md)
+- [人格配置](references/personality.md)
+- [预设角色库](references/presets.md)
+- [SOUL - 16种性格类型](references/soul.md)
+- [故障排查](references/troubleshooting.md)
+- [USER - 13种协作规则类型](references/user.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with configuration summaries and JSON-style checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill produces planning guidance only; users must complete agent creation, skill installation, platform binding, and credential entry outside the chat.]
+
+## Skill Version(s):
+
+2.9.6 (source: release evidence, frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

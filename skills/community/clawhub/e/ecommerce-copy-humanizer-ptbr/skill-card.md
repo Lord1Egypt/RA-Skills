@@ -1,45 +1,56 @@
-## Description: <br>
-Humanizes Brazilian Portuguese e-commerce copy by rewriting robotic, generic, or literal translations into more natural sales text while preserving brand voice and concrete purchase triggers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Humanizes Brazilian Portuguese e-commerce copy by rewriting robotic, generic, or literally translated product text into more natural, specific, sales-ready PT-BR copy.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External sellers, marketers, and e-commerce teams use this skill to rewrite product titles, descriptions, bullets, CTAs, emails, and ads in natural Brazilian Portuguese. It helps remove common AI-writing tells, add concrete product facts, address buyer objections, and produce structured before-and-after copy for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated copy could include inaccurate product claims if the source text lacks concrete facts such as measurements, materials, delivery times, guarantees, or performance data. <br>
-Mitigation: Confirm all product facts before publication and preserve the skill's required warnings for any claims that still need user verification. <br>
-Risk: Marketing rewrites can overstate urgency, quality, or differentiation if reviewers accept persuasive language without evidence. <br>
-Mitigation: Review outputs against the quality checklist and remove unsupported superlatives, urgency claims, certifications, or guarantees. <br>
+## Use Case:
 
+External merchants, marketers, and e-commerce operators use this skill to rewrite product descriptions, bullets, titles, CTAs, emails, and ads for Brazilian customers. It helps turn generic or AI-sounding PT-BR copy into grounded, conversational sales copy while preserving brand voice and asking for missing facts instead of inventing claims.
 
-## Reference(s): <br>
-- [Output Template](artifact/references/output-template.md) <br>
-- [PT-BR Tone Guide](artifact/references/ptbr-tone-guide.md) <br>
-- [AI Tells Blocklist](artifact/references/ai-tells-blocklist.md) <br>
-- [Quality Checklist](artifact/assets/quality-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/leooooooow/ecommerce-copy-humanizer-ptbr) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/leooooooow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with diagnostic notes, before-and-after rewrites, bullets, CTA variants, justifications, and publication warnings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Brazilian Portuguese e-commerce copy and flags product facts that need confirmation before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence) <br>
+Risk: The skill is tailored to Brazilian Portuguese e-commerce copy, so using it for other Portuguese variants or non-Brazilian markets can produce mismatched language, references, or commerce assumptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for PT-BR commerce copy or explicitly request adaptation, then review language, payment, shipping, sizing, and market details before publishing.
+
+Risk: Generated sales copy can include unverified product claims, numbers, guarantees, prices, shipping details, or certifications if the source material is incomplete.
+
+Mitigation: Confirm all factual claims before publication; when facts are missing, the artifact instructs the agent to ask the user rather than invent details.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [PT-BR Tone Guide](references/ptbr-tone-guide.md)
+- [AI Tells Blocklist](references/ai-tells-blocklist.md)
+- [Quality Checklist](assets/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with diagnostics, before/after rewrites, justification, A/B title and CTA variants, and confirmation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Brazilian Portuguese e-commerce copy guidance and rewritten copy; no executable output.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

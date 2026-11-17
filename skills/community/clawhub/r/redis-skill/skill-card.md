@@ -1,43 +1,60 @@
-## Description: <br>
-Generates Redis cache and data-structure commands from natural-language requests, covering String, Hash, List, Set, ZSet, Stream, queues, leaderboards, locks, and performance diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Redis 缓存和数据结构管理技能。通过自然语言操作 Redis，支持 String、Hash、List、Set、ZSet、Stream 等数据结构操作。
 
-## Publisher: <br>
-[ryanlee-gemini](https://clawhub.ai/user/ryanlee-gemini) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryanlee-gemini](https://clawhub.ai/user/ryanlee-gemini)
 
-## Use Case: <br>
-Developers and backend engineers use this skill to draft Redis CLI and Python-client guidance for cache management, object storage, queues, leaderboards, distributed locks, and operational diagnostics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Redis commands can change or delete data or alter server configuration when run against a real instance. <br>
-Mitigation: Review the Redis host, database, key pattern, and expected impact before execution, especially for delete, CONFIG, EVAL, and SLOWLOG RESET commands. <br>
-Risk: Redis credentials or production connection details may be exposed if pasted into chat. <br>
-Mitigation: Keep real Redis passwords out of prompts where possible and use environment variables or secret-management controls. <br>
+## Use Case:
 
+Developers and backend engineers use this skill to draft Redis commands and configuration guidance for caching, object storage, queues, leaderboards, distributed locks, streams, and performance analysis.
 
-## Reference(s): <br>
-- [ClawHub Redis Skill Release](https://clawhub.ai/ryanlee-gemini/redis-skill) <br>
-- [Redis Documentation](https://redis.io/docs/) <br>
-- [Redis Commands](https://redis.io/commands/) <br>
-- [Redis Latency and Performance Guidance](https://redis.io/topics/latency) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown with Redis CLI and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may modify Redis data or server settings; review target host, database, key pattern, and impact before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Generated Redis commands can change or delete production data, especially configuration, Lua EVAL, reset, and range-delete operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target host, database, backup posture, and command impact before running generated commands.
+
+Risk: Installation guidance includes privileged or environment-changing commands such as sudo, brew, and pip installs.
+
+Mitigation: Review setup commands before execution and run them only in an environment the user administers.
+
+Risk: Redis deployments may expose sensitive data or administrative access if authentication, network isolation, or permissions are misconfigured.
+
+Mitigation: Use Redis authentication, network isolation, least-privilege deployment patterns, and encryption for sensitive data where appropriate.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ryanlee-gemini/skills/redis-skill)
+- [Redis Documentation](https://redis.io/docs/)
+- [Redis Commands](https://redis.io/commands/)
+- [Redis Latency Documentation](https://redis.io/topics/latency)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Redis CLI commands, Python redis client snippets, and operational guidance that should be reviewed before execution against live databases.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

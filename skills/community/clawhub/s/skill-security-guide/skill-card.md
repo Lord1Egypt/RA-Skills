@@ -1,44 +1,55 @@
-## Description: <br>
-Security best practices guide for creating or reviewing ClawHub skills so they meet security standards and pass scans with benign ratings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security best practices guide for passing ClawHub security scans with "Benign" ratings.
 
-## Publisher: <br>
-[wszhhx](https://clawhub.ai/user/wszhhx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wszhhx](https://clawhub.ai/user/wszhhx)
 
-## Use Case: <br>
-Developers and skill authors use this guide to check ClawHub skill metadata, credential handling, security-sensitive code patterns, and documentation consistency before publishing or reviewing a skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Users may apply the guide to real skills without independently inspecting scripts, credentials, API calls, or install steps. <br>
-Mitigation: Review each target skill's source files and run the ClawHub security scan before deployment. <br>
-Risk: Documentation-code mismatches can cause a skill to parse API responses or status values incorrectly. <br>
-Mitigation: Test against real API responses and keep documented response fields, status values, and error handling aligned with implementation. <br>
-Risk: Credential examples can lead to accidental secret disclosure if copied without care. <br>
-Mitigation: Check only whether credential variables are present and avoid printing secret values or substrings. <br>
+## Use Case:
 
+Developers and skill authors use this guide to create or review ClawHub skills for scan-friendly metadata, credential handling, documentation consistency, and security checklist coverage.
 
-## Reference(s): <br>
-- [Skill Security Guide on ClawHub](https://clawhub.ai/wszhhx/skill-security-guide) <br>
-- [ClawHub Security Documentation](https://clawhub.ai/docs/security) <br>
-- [Related skill-creator-2 Skill](https://clawhub.ai/yixinli867/skill-creator-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with YAML, Python, PowerShell, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable scripts or required environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Users may treat scan-friendly wording as proof that a created skill is secure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently review and scan each skill before deployment, and verify credential handling, documentation accuracy, and dependency declarations.
+
+Risk: Documentation examples can become inconsistent with actual skill behavior.
+
+Mitigation: Compare SKILL.md, README content, scripts, response fields, status values, and error handling before release.
+
+## Reference(s):
+
+- [Skill Security Guide on ClawHub](https://clawhub.ai/wszhhx/skills/skill-security-guide)
+- [ClawHub Security Documentation](https://clawhub.ai/docs/security)
+- [Skill Creator 2](https://clawhub.ai/yixinli867/skill-creator-2)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with YAML, Python, PowerShell, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no executable payload or privileged access.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

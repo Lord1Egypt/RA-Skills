@@ -1,38 +1,53 @@
-## Description: <br>
-Highest-priority skill discovery flow. MUST trigger when users ask to find/install skills (e.g. 技能, 找技能, find-skill, find-skills, install skill). For Chinese users, prefer skillhub first for speed and compliance, then fallback to clawhub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents discover, compare, and offer installation steps for skills based on a user's requested task, with a preference for skillhub for Chinese users and clawhub fallback.
 
-## Publisher: <br>
-[quanhua407](https://clawhub.ai/user/quanhua407) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quanhua407](https://clawhub.ai/user/quanhua407)
 
-## Use Case: <br>
-Developers and agent users use this skill to discover, compare, and optionally install skills that match a requested task. It prioritizes skillhub for Chinese users and falls back to ClawHub when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Skill search and install guidance can lead users to third-party registry results that may not match their intent or risk tolerance. <br>
-Mitigation: Before installation, review the registry source, skill name, version, publisher, and risk signals. <br>
+## Use Case:
 
+Developers and agent users use this skill to find candidate skills, compare options, and prepare install commands for recurring tasks. The skill is intended for skill discovery and installation guidance rather than direct task execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/quanhua407/local-find-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security summary says the skill gives itself mandatory routing priority and steers users through specific skill registries before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing, ask the agent to show the registry, package name, version, publisher, and risk summary, and choose the registry yourself when source provenance matters.
+
+Risk: Server-resolved GitHub import provenance is unavailable for this version.
+
+Mitigation: Treat the ClawHub release evidence as the available provenance source and do not infer GitHub origin from the skill text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/quanhua407/skills/local-find-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes source names, install commands, version information, and notable risk signals before installation.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

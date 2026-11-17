@@ -1,0 +1,381 @@
+meta:
+  sources:
+    - https://www.bilibili.com/opus/709028087756488743
+    - https://wiki.plateupgame.com/
+  retrieved: 2026-11-05
+  key: English canonical name or stable English id
+  translation_policy: "zh_status=community means a community/reference translation; suggested must be presented explicitly as a suggestion."
+
+terms:
+  - {id: preparation_phase, en: Preparation Phase, zh: 准备阶段, zh_status: community, category: phase}
+  - {id: customer_phase, en: Customer Phase, zh: 营业阶段, zh_status: community, category: phase}
+  - {id: practice_mode, en: Practice Mode, zh: 练习模式, zh_status: community, category: mode}
+  - {id: headquarters, en: Headquarters, zh: 总部, zh_status: community, category: location}
+  - {id: franchise, en: Franchise, zh: 连锁店, zh_status: community, category: progression}
+  - {id: blueprint, en: Blueprint, zh: 蓝图, zh_status: community, category: research}
+  - {id: queuing, en: Queuing, zh: 排队, zh_status: community, category: customer_phase}
+  - {id: waiting_for_table, en: Waiting for Table, zh: 等待桌位, zh_status: community, category: customer_phase}
+  - {id: thinking, en: Thinking, zh: 思考点单, zh_status: community, category: customer_phase}
+  - {id: service, en: Service, zh: 服务, zh_status: community, category: customer_phase}
+  - {id: waiting_for_food, en: Waiting for Food, zh: 等待上菜, zh_status: community, category: customer_phase}
+  - {id: delivery, en: Delivery, zh: 配送, zh_status: community, category: customer_phase}
+  - {id: eating, en: Eating, zh: 用餐, zh_status: community, category: customer_phase}
+  - {id: steak, en: Steak, zh: 牛排, zh_status: community, category: recipe}
+  - {id: salad, en: Salad, zh: 沙拉, zh_status: community, category: recipe}
+  - {id: pizza, en: Pizza, zh: 披萨, zh_status: community, category: recipe}
+  - {id: dumplings, en: Dumplings, zh: 饺子, zh_status: community, category: recipe}
+  - {id: black_coffee, en: Black Coffee, zh: 咖啡, zh_status: community, category: recipe}
+  - {id: burgers, en: Burgers, zh: 汉堡, zh_status: community, category: recipe}
+  - {id: sandwiches, en: Sandwiches, zh: 三明治, zh_status: community, category: recipe}
+  - {id: turkey, en: Turkey, zh: 火鸡, zh_status: community, category: recipe}
+  - {id: pies, en: Pies, zh: 派, zh_status: community, category: recipe}
+  - {id: cakes, en: Cakes (Pastry), zh: 蛋糕/糕点, zh_status: community, category: recipe}
+  - {id: spaghetti, en: Spaghetti, zh: 意大利面, zh_status: community, category: recipe}
+  - {id: sundaes, en: Sundaes, zh: 圣代, zh_status: community, category: recipe}
+  - {id: fish, en: Fish, zh: 鱼, zh_status: community, category: recipe}
+  - {id: tacos, en: Tacos, zh: 塔可, zh_status: community, category: recipe}
+  - {id: hot_dogs, en: Hot Dogs, zh: 热狗, zh_status: community, category: recipe}
+  - {id: fajitas, en: Fajitas, zh: 法士达, zh_status: suggested, category: recipe, note: "Newer recipe; translation is a suggestion."}
+  - {id: breakfast, en: Breakfast, zh: 早餐, zh_status: community, category: recipe}
+  - {id: stir_fry, en: Stir Fry, zh: 炒菜, zh_status: community, category: recipe}
+  - {id: hob, en: Hob, zh: 炉子, zh_status: community, category: appliance}
+  - {id: starter_hob, en: Starter Hob, zh: 初始炉, zh_status: community, category: appliance}
+  - {id: safety_hob, en: Safety Hob, zh: 安全炉, zh_status: community, category: appliance}
+  - {id: danger_hob, en: Danger Hob, zh: 危险炉, zh_status: community, category: appliance}
+  - {id: oven, en: Oven, zh: 烤箱, zh_status: community, category: appliance}
+  - {id: microwave, en: Microwave, zh: 微波炉, zh_status: community, category: appliance}
+  - {id: counter, en: Counter, zh: 操作台, zh_status: community, category: appliance}
+  - {id: freezer, en: Freezer, zh: 冷冻台, zh_status: community, category: appliance}
+  - {id: workstation, en: Workstation, zh: 工作台, zh_status: community, category: appliance}
+  - {id: prep_station, en: Prep Station, zh: 备餐台, zh_status: community, category: appliance}
+  - {id: frozen_prep_station, en: Frozen Prep Station, zh: 冷冻备餐台, zh_status: community, category: appliance}
+  - {id: sink, en: Sink, zh: 水槽, zh_status: community, category: appliance}
+  - {id: wash_basin, en: Wash Basin, zh: 洗涤盆, zh_status: community, category: appliance}
+  - {id: conveyor, en: Conveyor, zh: 传送带, zh_status: community, category: appliance}
+  - {id: grabber, en: Grabber, zh: 抓取器, zh_status: community, category: appliance}
+  - {id: smart_grabber, en: Smart Grabber, zh: 智能抓取器, zh_status: community, category: appliance}
+  - {id: teleporter, en: Teleporter, zh: 传送器, zh_status: community, category: appliance}
+  - {id: research_desk, en: Research Desk, zh: 研究桌, zh_status: community, category: appliance}
+  - {id: discount_desk, en: Discount Desk, zh: 折扣桌, zh_status: community, category: appliance}
+  - {id: copying_desk, en: Copying Desk, zh: 复制桌, zh_status: community, category: appliance}
+  - {id: blueprint_desk, en: Blueprint Desk, zh: 蓝图桌, zh_status: community, category: appliance}
+  - {id: heat_card, en: Heat Card, zh: 热度卡, zh_status: community, category: card_type}
+  - {id: chill_card, en: Chill Card, zh: 轻松卡, zh_status: community, category: card_type}
+  - {id: group_card, en: Group Card, zh: 组别卡, zh_status: community, category: card_type}
+  - {id: food_card, en: Food Card, zh: 食物卡, zh_status: community, category: card_type}
+  - {id: customer_card, en: Customer Card, zh: 顾客卡, zh_status: community, category: card_type}
+  - {id: theme_card, en: Theme Card, zh: 主题卡, zh_status: community, category: card_type}
+  - {id: franchise_card, en: Franchise Card, zh: 传承卡, zh_status: community, category: card_type}
+  - {id: setting_card, en: Setting Card, zh: 设置卡, zh_status: community, category: card_type}
+  - {id: apple, en: Apple, zh: 苹果, zh_status: suggested, category: ingredient}
+  - {id: bamboo, en: Bamboo, zh: 竹笋, zh_status: suggested, category: ingredient}
+  - {id: beans, en: Beans, zh: 豆子, zh_status: suggested, category: ingredient}
+  - {id: blue_fish, en: Blue Fish, zh: 蓝鱼, zh_status: suggested, category: ingredient}
+  - {id: pink_fish, en: Pink Fish, zh: 粉鱼, zh_status: suggested, category: ingredient}
+  - {id: crab, en: Crab, zh: 螃蟹, zh_status: suggested, category: ingredient}
+  - {id: fish_fillet_ingredient, en: Fish Fillet, zh: 鱼排, zh_status: community, category: ingredient}
+  - {id: oysters_ingredient, en: Oysters, zh: 生蚝, zh_status: community, category: ingredient}
+  - {id: spiny_fish_ingredient, en: Spiny Fish, zh: 棘鱼, zh_status: community, category: ingredient}
+  - {id: broccoli, en: Broccoli, zh: 西兰花, zh_status: community, category: ingredient}
+  - {id: burger_buns, en: Burger Buns, zh: 汉堡面包, zh_status: suggested, category: ingredient}
+  - {id: butter, en: Butter, zh: 黄油, zh_status: suggested, category: ingredient}
+  - {id: carrot, en: Carrot, zh: 胡萝卜, zh_status: community, category: ingredient}
+  - {id: cheese, en: Cheese, zh: 芝士, zh_status: suggested, category: ingredient}
+  - {id: cherries, en: Cherries, zh: 樱桃, zh_status: suggested, category: ingredient}
+  - {id: chocolate, en: Chocolate, zh: 巧克力, zh_status: suggested, category: ingredient}
+  - {id: christmas_crackers, en: Christmas Crackers, zh: 圣诞拉炮, zh_status: suggested, category: ingredient}
+  - {id: corn, en: Corn, zh: 玉米, zh_status: suggested, category: ingredient}
+  - {id: cranberry, en: Cranberry, zh: 蔓越莓, zh_status: suggested, category: ingredient}
+  - {id: eggs, en: Eggs, zh: 鸡蛋, zh_status: suggested, category: ingredient}
+  - {id: flour, en: Flour, zh: 面粉, zh_status: suggested, category: ingredient}
+  - {id: ham, en: Ham, zh: 火腿, zh_status: suggested, category: ingredient}
+  - {id: hot_dog, en: Hot Dog, zh: 热狗肠, zh_status: suggested, category: ingredient}
+  - {id: hot_dog_bun, en: Hot Dog Bun, zh: 热狗面包, zh_status: suggested, category: ingredient}
+  - {id: ice_cream, en: Ice Cream, zh: 冰淇淋, zh_status: community, category: ingredient}
+  - {id: lettuce, en: Lettuce, zh: 生菜, zh_status: suggested, category: ingredient}
+  - {id: lemon, en: Lemon, zh: 柠檬, zh_status: suggested, category: ingredient}
+  - {id: mandarin, en: Mandarin, zh: 柑橘, zh_status: suggested, category: ingredient}
+  - {id: meat, en: Meat, zh: 肉, zh_status: suggested, category: ingredient}
+  - {id: bone_in_meat, en: Bone-in Meat, zh: 带骨肉, zh_status: suggested, category: ingredient}
+  - {id: thick_cut_meat, en: Thick Cut Meat, zh: 厚切肉, zh_status: suggested, category: ingredient}
+  - {id: thin_cut_meat, en: Thin Cut Meat, zh: 薄切肉, zh_status: suggested, category: ingredient}
+  - {id: milk, en: Milk, zh: 牛奶, zh_status: suggested, category: ingredient}
+  - {id: mince, en: Mince, zh: 肉末, zh_status: suggested, category: ingredient}
+  - {id: mushrooms, en: Mushrooms, zh: 蘑菇, zh_status: suggested, category: ingredient}
+  - {id: nuts, en: Nuts, zh: 坚果, zh_status: suggested, category: ingredient}
+  - {id: oil, en: Oil, zh: 油, zh_status: suggested, category: ingredient}
+  - {id: olives, en: Olives, zh: 橄榄, zh_status: suggested, category: ingredient}
+  - {id: onion, en: Onion, zh: 洋葱, zh_status: suggested, category: ingredient}
+  - {id: pasta_sheet, en: Pasta Sheet, zh: 千层面皮, zh_status: suggested, category: ingredient}
+  - {id: patties, en: Patties, zh: 肉饼, zh_status: suggested, category: ingredient}
+  - {id: pickles, en: Pickles, zh: 腌黄瓜, zh_status: suggested, category: ingredient}
+  - {id: potato, en: Potato, zh: 土豆, zh_status: suggested, category: ingredient}
+  - {id: pumpkin, en: Pumpkin, zh: 南瓜, zh_status: suggested, category: ingredient}
+  - {id: rice, en: Rice, zh: 米饭, zh_status: suggested, category: ingredient}
+  - {id: seaweed_ingredient, en: Seaweed, zh: 海苔, zh_status: community, category: ingredient}
+  - {id: spaghetti_ingredient, en: Spaghetti, zh: 意大利面, zh_status: community, category: ingredient}
+  - {id: strawberries, en: Strawberries, zh: 草莓, zh_status: suggested, category: ingredient}
+  - {id: sugar, en: Sugar, zh: 糖, zh_status: suggested, category: ingredient}
+  - {id: sundae_glasses, en: Sundae Glasses, zh: 圣代杯, zh_status: suggested, category: ingredient}
+  - {id: tea_bag, en: Tea Bag, zh: 茶包, zh_status: suggested, category: ingredient}
+  - {id: tea_cup, en: Tea Cup, zh: 茶杯, zh_status: suggested, category: ingredient}
+  - {id: tea_pot, en: Tea Pot, zh: 茶壶, zh_status: suggested, category: ingredient}
+  - {id: tomato, en: Tomato, zh: 番茄, zh_status: suggested, category: ingredient}
+  - {id: tortillas, en: Tortillas, zh: 墨西哥薄饼, zh_status: suggested, category: ingredient}
+  - {id: turkey_ingredient, en: Turkey, zh: 火鸡, zh_status: community, category: ingredient}
+  - {id: wine, en: Wine, zh: 葡萄酒, zh_status: suggested, category: ingredient}
+  - {id: morning_rush, en: Morning Rush, zh: 早高峰, zh_status: community, category: card}
+  - {id: lunch_rush, en: Lunch Rush, zh: 午高峰, zh_status: community, category: card}
+  - {id: dinner_rush, en: Dinner Rush, zh: 晚高峰, zh_status: community, category: card}
+  - {id: herd_mentality, en: Herd Mentality, zh: 群体心理, zh_status: community, category: card}
+  - {id: advertising, en: Advertising, zh: 广告宣传, zh_status: suggested, category: card}
+  - {id: all_you_can_eat, en: All You Can Eat, zh: 无限畅吃, zh_status: community, category: card}
+  - {id: double_helpings, en: Double Helpings, zh: 双份供应, zh_status: community, category: card}
+  - {id: blindfolded_chefs, en: Blindfolded Chefs, zh: 蒙眼厨师, zh_status: community, category: card}
+  - {id: closing_time, en: "Closing Time?", zh: 打烊时间？, zh_status: suggested, category: card}
+  - {id: discounts, en: Discounts, zh: 折扣, zh_status: suggested, category: card}
+  - {id: empathy, en: Empathy, zh: 共情, zh_status: suggested, category: card}
+  - {id: health_and_safety, en: Health and Safety, zh: 健康与安全, zh_status: suggested, category: card}
+  - {id: high_expectations, en: High Expectations, zh: 高期待, zh_status: community, category: card}
+  - {id: high_quality, en: High Quality, zh: 高品质, zh_status: community, category: card}
+  - {id: high_standards, en: High Standards, zh: 高标准, zh_status: community, category: card}
+  - {id: instant_service, en: Instant Service, zh: 即时服务, zh_status: community, category: card}
+  - {id: leisurely_eating, en: Leisurely Eating, zh: 悠闲用餐, zh_status: community, category: card}
+  - {id: personalised_waiting, en: Personalised Waiting, zh: 个性化等待, zh_status: suggested, category: card}
+  - {id: picky_eaters, en: Picky Eaters, zh: 挑食者, zh_status: community, category: card}
+  - {id: photographic_memory, en: Photographic Memory, zh: 照相记忆, zh_status: suggested, category: card}
+  - {id: relaxed_atmosphere, en: Relaxed Atmosphere, zh: 轻松氛围, zh_status: suggested, category: card}
+  - {id: sedate_atmosphere, en: Sedate Atmosphere, zh: 安静氛围, zh_status: suggested, category: card}
+  - {id: simplicity, en: Simplicity, zh: 简单化, zh_status: suggested, category: card}
+  - {id: splash_zone, en: Splash Zone, zh: 飞溅区, zh_status: community, category: card}
+  - {id: tipping_culture, en: Tipping Culture, zh: 小费文化, zh_status: community, category: card}
+  - {id: victorian_standards, en: Victorian Standards, zh: 维多利亚标准, zh_status: community, category: card}
+  - {id: bootstrapping, en: Bootstrapping, zh: 白手起家, zh_status: community, category: card}
+  - {id: loyal_customer, en: Loyal Customer, zh: 忠实顾客, zh_status: community, category: card}
+  - {id: second_helpings, en: Second Helpings, zh: 再来一份, zh_status: community, category: card}
+  - {id: careful_accounting, en: Careful Accounting, zh: 精打细算, zh_status: community, category: card}
+  - {id: catalogue, en: Catalogue, zh: 商品目录, zh_status: community, category: card}
+  - {id: coupons, en: Coupons, zh: 优惠券, zh_status: community, category: card}
+  - {id: double_homework, en: Double Homework, zh: 双倍作业, zh_status: community, category: card}
+  - {id: high_tech_suppliers, en: High Tech Suppliers, zh: 高科技供应商, zh_status: community, category: card}
+  - {id: mandatory_tips, en: Mandatory Tips, zh: 强制小费, zh_status: community, category: card}
+  - {id: preparation_time, en: Preparation Time, zh: 准备时间, zh_status: community, category: card}
+  - {id: reincarnation, en: Reincarnation, zh: 重生, zh_status: community, category: card}
+  - {id: savings, en: Savings, zh: 储蓄, zh_status: community, category: card}
+  - {id: supplier_error, en: Supplier Error, zh: 供应商出错, zh_status: community, category: card}
+  - {id: variety, en: Variety, zh: 多样化, zh_status: community, category: card}
+  - {id: shaky_foundations, en: Shaky Foundations, zh: 摇摇欲坠的地基, zh_status: suggested, category: card}
+  - {id: second_bite, en: Second Bite, zh: 第二口, zh_status: suggested, category: card}
+  - {id: elephant_queues, en: Elephant Queues, zh: 象群队列, zh_status: suggested, category: card}
+  - {id: health_concerns, en: Health Concerns, zh: 健康问题, zh_status: suggested, category: card}
+  - {id: customer_crowds, en: Customer Crowds, zh: 顾客拥挤, zh_status: suggested, category: card}
+  - {id: flaming_knives, en: Flaming Knives, zh: 烈焰刀锋, zh_status: suggested, category: card}
+  - {id: rented_restaurants, en: Rented Restaurants, zh: 租赁餐厅, zh_status: suggested, category: card}
+  - {id: soft_touch, en: Soft Touch, zh: 轻柔手法, zh_status: suggested, category: card}
+  - {id: popularity_crisis, en: Popularity Crisis, zh: 人气危机, zh_status: suggested, category: card}
+  - {id: ends_and_beginnings, en: Ends and Beginnings, zh: 终结与开始, zh_status: suggested, category: card}
+  - {id: overheating, en: Overheating, zh: 过热, zh_status: suggested, category: card}
+  - {id: hot_desking, en: Hot Desking, zh: 热桌办公, zh_status: suggested, category: card}
+  - {id: friction_burns, en: Friction Burns, zh: 摩擦起火, zh_status: suggested, category: card}
+  - {id: hotheads, en: Hotheads, zh: 急性子, zh_status: suggested, category: card}
+  - {id: easy_street, en: Easy Street, zh: 轻松之路, zh_status: suggested, category: card}
+  - {id: friendly_faces, en: Friendly Faces, zh: 友善面孔, zh_status: suggested, category: card}
+  - {id: purrvana, en: Purrvana, zh: 猫咪天堂, zh_status: suggested, category: card}
+  - {id: fish_provider, en: Fish Provider, zh: 鱼类供应器, zh_status: suggested, category: ingredient}
+  - {id: power_sink, en: Power Sink, zh: 强力水槽, zh_status: community, category: appliance}
+  - {id: dish_washer, en: Dish Washer, zh: 洗碗机, zh_status: community, category: appliance}
+  - {id: soaking_sink, en: Soaking Sink, zh: 浸泡水槽, zh_status: community, category: appliance}
+  - {id: mop, en: Mop, zh: 拖把, zh_status: community, category: appliance}
+  - {id: fast_mop, en: Fast Mop, zh: 快速拖把, zh_status: community, category: appliance}
+  - {id: robot_mop, en: Robot Mop, zh: 机器人拖把, zh_status: community, category: appliance}
+  - {id: floor_buffer, en: Floor Buffer, zh: 地板抛光机, zh_status: community, category: appliance}
+  - {id: robot_buffer, en: Robot Buffer, zh: 机器人抛光机, zh_status: community, category: appliance}
+  - {id: rotating_grabber, en: Grabber - Rotating, zh: 旋转抓取器, zh_status: community, category: appliance}
+  - {id: mixer, en: Mixer, zh: 搅拌机, zh_status: community, category: appliance}
+  - {id: rapid_mixer, en: Rapid Mixer, zh: 快速搅拌机, zh_status: community, category: appliance}
+  - {id: heated_mixer, en: Heated Mixer, zh: 加热搅拌机, zh_status: community, category: appliance}
+  - {id: conveyor_mixer, en: Conveyor Mixer, zh: 传送搅拌机, zh_status: community, category: appliance}
+  - {id: dumbwaiter, en: Dumbwaiter, zh: 上菜电梯, zh_status: community, category: appliance}
+  - {id: auto_plater, en: Auto Plater, zh: 自动摆盘机, zh_status: community, category: appliance}
+  - {id: portioner, en: Portioner, zh: 分份器, zh_status: community, category: appliance}
+  - {id: combiner, en: Combiner, zh: 合成器, zh_status: community, category: appliance}
+  - {id: blueprint_cabinet, en: Blueprint Cabinet, zh: 蓝图柜, zh_status: community, category: appliance}
+  - {id: booking_desk, en: Booking Desk, zh: 预约桌, zh_status: community, category: appliance}
+  - {id: ordering_terminal, en: Ordering Terminal, zh: 点单终端, zh_status: community, category: appliance}
+  - {id: specials_terminal, en: Specials Terminal, zh: 特供终端, zh_status: community, category: appliance}
+  - {id: gas_limiter, en: Gas Limiter, zh: 限气阀, zh_status: community, category: appliance}
+  - {id: gas_override, en: Gas Override, zh: 燃气超控, zh_status: community, category: appliance}
+  - {id: starter_bin, en: Starter Bin, zh: 初始垃圾桶, zh_status: community, category: appliance}
+  - {id: bin, en: Bin, zh: 垃圾桶, zh_status: community, category: appliance}
+  - {id: compactor_bin, en: Compactor Bin, zh: 压缩垃圾桶, zh_status: community, category: appliance}
+  - {id: composter_bin, en: Composter Bin, zh: 堆肥垃圾桶, zh_status: community, category: appliance}
+  - {id: expanded_bin, en: Expanded Bin, zh: 扩容垃圾桶, zh_status: community, category: appliance}
+  - {id: kitchen_floor_protector, en: Kitchen Floor Protector, zh: 厨房地垫, zh_status: community, category: appliance}
+  - {id: rolling_pin, en: Rolling Pin, zh: 擀面杖, zh_status: community, category: appliance}
+  - {id: sharp_knife, en: Sharp Knife, zh: 快刀, zh_status: community, category: appliance}
+  - {id: dining_table, en: Dining Table, zh: 餐桌, zh_status: community, category: appliance}
+  - {id: bar_table, en: Bar Table, zh: 吧台桌, zh_status: community, category: appliance}
+  - {id: metal_table, en: Metal Table, zh: 金属桌, zh_status: community, category: appliance}
+  - {id: simple_cloth_table, en: Table - Simple Cloth, zh: 简布桌, zh_status: community, category: appliance}
+  - {id: fancy_cloth_table, en: Table - Fancy Cloth, zh: 华丽布桌, zh_status: community, category: appliance}
+  - {id: breadsticks, en: Breadsticks, zh: 面包棒, zh_status: community, category: appliance}
+  - {id: candle_box, en: Candle Box, zh: 蜡烛盒, zh_status: community, category: appliance}
+  - {id: napkins, en: Napkins, zh: 餐巾, zh_status: community, category: appliance}
+  - {id: sharp_cutlery, en: Sharp Cutlery, zh: 锋利餐具, zh_status: community, category: appliance}
+  - {id: specials_menu, en: Specials Menu, zh: “今日特供”菜单, zh_status: community, category: appliance}
+  - {id: leftover_bags, en: Leftover Bags, zh: 打包袋, zh_status: community, category: appliance}
+  - {id: supplies, en: Supplies, zh: 物资架, zh_status: community, category: appliance}
+  - {id: tray_stand, en: Tray Stand, zh: 托盘架, zh_status: community, category: appliance}
+  - {id: coffee_table, en: Coffee Table, zh: 咖啡桌, zh_status: community, category: appliance}
+  - {id: hosting_stand, en: Hosting Stand, zh: 招待站, zh_status: community, category: appliance}
+  - {id: flower_pot, en: Flower Pot, zh: 花盆, zh_status: community, category: appliance}
+  - {id: buffet, en: Buffet, zh: 自助餐台, zh_status: community, category: appliance}
+  - {id: buffet_heated, en: Buffet - Heated, zh: 加热自助餐台, zh_status: suggested, category: appliance}
+  - {id: buffet_platter, en: Buffet - Platter, zh: 拼盘自助餐台, zh_status: suggested, category: appliance}
+  - {id: starter_sink, en: Starter Sink, zh: 初始水槽, zh_status: community, category: appliance}
+  - {id: lasting_mop, en: Lasting Mop, zh: 持久拖把, zh_status: community, category: appliance}
+  - {id: dish_rack, en: Dish Rack, zh: 餐具架, zh_status: community, category: appliance}
+  - {id: scrubbing_brush, en: Scrubbing Brush, zh: 刷子, zh_status: community, category: appliance}
+  - {id: clipboard_stand, en: Clipboard Stand, zh: 剪贴板架, zh_status: suggested, category: appliance}
+  - {id: trainers, en: Trainers, zh: 运动鞋, zh_status: community, category: appliance}
+  - {id: wellies, en: Wellies, zh: 雨靴, zh_status: community, category: appliance}
+  - {id: work_boots, en: Work Boots, zh: 工作靴, zh_status: community, category: appliance}
+  - {id: display_stand, en: Display Stand, zh: 展示架, zh_status: community, category: appliance}
+  - {id: fire_extinguisher, en: Fire Extinguisher, zh: 灭火器, zh_status: community, category: appliance}
+  - {id: extra_life, en: Extra Life, zh: 额外生命, zh_status: community, category: appliance}
+  - {id: upgrade_kit, en: Upgrade Kit, zh: 升级工具包, zh_status: community, category: appliance}
+  - {id: starter_plates, en: Starter Plates, zh: 初始盘子, zh_status: suggested, category: appliance}
+  - {id: plates, en: Plates, zh: 盘子, zh_status: suggested, category: appliance}
+  - {id: pot_stack, en: Pot Stack, zh: 锅堆, zh_status: community, category: appliance}
+  - {id: serving_boards, en: Serving Boards, zh: 上菜板, zh_status: community, category: appliance}
+  - {id: coffee_machine, en: Coffee Machine, zh: 咖啡机, zh_status: suggested, category: appliance}
+  - {id: ice_dispenser, en: Ice Dispenser, zh: 制冰机, zh_status: suggested, category: appliance}
+  - {id: milk_steamer, en: Milk Steamer, zh: 牛奶蒸汽机, zh_status: suggested, category: appliance}
+  - {id: woks, en: Woks, zh: 炒锅, zh_status: suggested, category: appliance}
+  - {id: lasagne_tray, en: Lasagne Tray, zh: 千层面烤盘, zh_status: suggested, category: appliance}
+  - {id: taco_trays, en: Taco Trays, zh: 塔可托盘, zh_status: suggested, category: appliance}
+  - {id: mixing_bowl, en: Mixing Bowl, zh: 搅拌碗, zh_status: suggested, category: appliance}
+  - {id: cake_tin, en: Cake Tin, zh: 蛋糕模具, zh_status: suggested, category: appliance}
+  - {id: brownie_tray, en: Brownie Tray, zh: 布朗尼烤盘, zh_status: suggested, category: appliance}
+  - {id: cookie_tray, en: Cookie Tray, zh: 饼干烤盘, zh_status: suggested, category: appliance}
+  - {id: cupcake_tray, en: Cupcake Tray, zh: 纸杯蛋糕烤盘, zh_status: suggested, category: appliance}
+  - {id: doughnut_tray, en: Doughnut Tray, zh: 甜甜圈烤盘, zh_status: suggested, category: appliance}
+  - {id: affordable, en: Affordable, zh: 实惠, zh_status: community, category: theme}
+  - {id: charming, en: Charming, zh: 迷人, zh_status: community, category: theme}
+  - {id: exclusive, en: Exclusive, zh: 独家, zh_status: community, category: theme}
+  - {id: formal, en: Formal, zh: 正式, zh_status: community, category: theme}
+  - {id: individual_dining, en: Individual Dining, zh: 单独用餐, zh_status: community, category: group_card}
+  - {id: medium_groups, en: Medium Groups, zh: 中型团体, zh_status: community, category: group_card}
+  - {id: large_groups, en: Large Groups, zh: 大型团体, zh_status: community, category: group_card}
+  - {id: flexible_dining, en: Flexible Dining, zh: 弹性用餐, zh_status: community, category: group_card}
+  - {id: setting_flower_pots, en: Flower Pots, zh: 花盆, zh_status: community, category: setting_card}
+  - {id: setting_turbo, en: Turbo, zh: 涡轮, zh_status: community, category: setting_card}
+  - {id: setting_coffee_shop, en: Coffee Shop, zh: 咖啡馆, zh_status: community, category: setting_card}
+  - {id: setting_banquet_dining, en: Banquet Dining, zh: 宴会用餐, zh_status: suggested, category: setting_card}
+  - {id: setting_enchantment, en: Enchantment, zh: 附魔, zh_status: community, category: setting_card}
+  - {id: setting_christmas_treats, en: Christmas Treats, zh: 圣诞美食, zh_status: suggested, category: setting_card}
+  - {id: coffee_tables_card, en: Coffee Tables, zh: 咖啡桌, zh_status: community, category: franchise_card}
+  - {id: conveyors_card, en: Conveyors, zh: 传送带, zh_status: community, category: franchise_card}
+  - {id: floor_protectors, en: Floor Protectors, zh: 地板保护垫, zh_status: suggested, category: franchise_card}
+  - {id: flower_pots_card, en: Flower Pots, zh: 花盆, zh_status: community, category: franchise_card}
+  - {id: simple_cloth_card, en: Simple Cloth Table, zh: 简布桌, zh_status: community, category: franchise_card}
+  - {id: overheat_5, en: Overheat 5, zh: 过热 5, zh_status: suggested, category: heat_card}
+  - {id: overheat_6_plus, en: Overheat 6+, zh: 过热 6+, zh_status: suggested, category: heat_card}
+  - {id: achievement_steaks_were_made, en: Steaks Were Made, zh: 牛排做好了, zh_status: suggested, category: achievement}
+  - {id: achievement_stirring_things_up, en: Stirring Things Up, zh: 炒出新花样, zh_status: suggested, category: achievement}
+  - {id: achievement_piece_of_the_action, en: Piece of the Action, zh: 参与其中, zh_status: suggested, category: achievement}
+  - {id: achievement_a_new_leaf, en: A New Leaf, zh: 焕然一新, zh_status: suggested, category: achievement}
+  - {id: achievement_soggy_bottom, en: Soggy Bottom, zh: 湿软派底, zh_status: suggested, category: achievement}
+  - {id: achievement_something_fishy, en: Something Fishy, zh: 有点鱼腥, zh_status: suggested, category: achievement}
+  - {id: achievement_mans_best_friend, en: "Man's Best Friend?", zh: 人类最好的朋友？, zh_status: suggested, category: achievement}
+  - {id: achievement_least_important_meal, en: Least Important Meal, zh: 最不重要的一餐, zh_status: suggested, category: achievement}
+  - {id: achievement_burger_prince, en: Burger Prince, zh: 汉堡王子, zh_status: suggested, category: achievement}
+  - {id: achievement_this_is_fine, en: This Is Fine, zh: 一切安好, zh_status: suggested, category: achievement}
+  - {id: achievement_fireman, en: Fireman, zh: 消防员, zh_status: suggested, category: achievement}
+  - {id: achievement_flawless_timing, en: Flawless Timing, zh: 完美时机, zh_status: suggested, category: achievement}
+  - {id: achievement_health_inspector, en: "Health Inspector?", zh: 卫生检查员？, zh_status: suggested, category: achievement}
+  - {id: achievement_oh_no, en: Oh No, zh: 哦不, zh_status: suggested, category: achievement}
+  - {id: achievement_charcoal_factory, en: Charcoal Factory, zh: 木炭工厂, zh_status: suggested, category: achievement}
+  - {id: achievement_safety_last, en: Safety Last, zh: 安全第一才怪, zh_status: suggested, category: achievement}
+  - {id: achievement_circle_line, en: Circle Line, zh: 环线, zh_status: suggested, category: achievement}
+  - {id: achievement_chef_school, en: Chef School, zh: 厨师学校, zh_status: suggested, category: achievement}
+  - {id: achievement_new_chef_plus, en: New Chef Plus, zh: 新厨师加强版, zh_status: suggested, category: achievement}
+  - {id: achievement_overtime_5, en: Overtime 5, zh: 加班第 5 天, zh_status: suggested, category: achievement}
+  - {id: achievement_overtime_10, en: Overtime 10, zh: 加班第 10 天, zh_status: suggested, category: achievement}
+  - {id: achievement_overtime_15, en: Overtime 15, zh: 加班第 15 天, zh_status: suggested, category: achievement}
+  - {id: achievement_learning_by_doing, en: Learning By Doing, zh: 在实践中学习, zh_status: suggested, category: achievement}
+  - {id: achievement_anti_social, en: Anti-social, zh: 不合群, zh_status: suggested, category: achievement}
+  - {id: achievement_work_smart, en: Work Smart, zh: 聪明工作, zh_status: suggested, category: achievement, note: "Guide reports possible localized name/description swap with Please Wait."}
+  - {id: achievement_please_wait, en: Please Wait, zh: 请稍候, zh_status: suggested, category: achievement, note: "Guide reports possible localized name/description swap with Work Smart."}
+  - {id: group_community_card, en: Community, zh: 社区, zh_status: community, category: setting_card}
+  - {id: bone_in_steaks, en: Bone-in Steaks, zh: 带骨牛排, zh_status: community, category: recipe}
+  - {id: thick_cut_steaks, en: Thick Cut Steaks, zh: 厚切牛排, zh_status: community, category: recipe}
+  - {id: thin_cut_steaks, en: Thin Cut Steaks, zh: 薄切牛排, zh_status: community, category: recipe}
+  - {id: steak_sauce_mushroom, en: Steak Sauce - Mushroom, zh: 牛排蘑菇酱, zh_status: suggested, category: recipe_extra}
+  - {id: steak_sauce_red_wine, en: Steak Sauce - Red Wine Jus, zh: 牛排红酒汁, zh_status: suggested, category: recipe_extra}
+  - {id: steak_topping_mushroom, en: Steak Topping - Mushroom, zh: 牛排蘑菇配料, zh_status: suggested, category: recipe_extra}
+  - {id: steak_topping_tomato, en: Steak Topping - Tomato, zh: 牛排番茄配料, zh_status: suggested, category: recipe_extra}
+  - {id: apple_salad, en: Apple Salad, zh: 苹果沙拉, zh_status: community, category: recipe}
+  - {id: potato_salad, en: Potato Salad, zh: 土豆沙拉, zh_status: community, category: recipe}
+  - {id: salad_toppings, en: Salad Toppings, zh: 沙拉配料, zh_status: suggested, category: recipe_extra}
+  - {id: mushroom_pizza, en: Mushroom Pizza, zh: 蘑菇披萨, zh_status: community, category: recipe}
+  - {id: onion_pizza, en: Onion Pizza, zh: 洋葱披萨, zh_status: community, category: recipe}
+  - {id: dumpling_soy_sauce, en: Dumpling - Soy Sauce, zh: 饺子酱油, zh_status: suggested, category: recipe_extra}
+  - {id: iced_coffee, en: Iced Coffee, zh: 冰咖啡, zh_status: community, category: recipe}
+  - {id: latte, en: Latte, zh: 拿铁, zh_status: community, category: recipe}
+  - {id: tea, en: Tea, zh: 茶, zh_status: community, category: recipe}
+  - {id: affogato, en: Affogato, zh: 阿芙佳朵, zh_status: community, category: recipe}
+  - {id: extra_sugar, en: Extra Sugar, zh: 额外糖, zh_status: suggested, category: recipe_extra}
+  - {id: extra_milk, en: Extra Milk, zh: 额外牛奶, zh_status: suggested, category: recipe_extra}
+  - {id: cupcake_stand_extra, en: Cupcake Stand, zh: 纸杯蛋糕架, zh_status: community, category: recipe_extra}
+  - {id: fresh_patties, en: Fresh Patties, zh: 鲜制肉饼, zh_status: suggested, category: recipe}
+  - {id: burger_toppings, en: Burger Toppings, zh: 汉堡配料, zh_status: suggested, category: recipe_extra}
+  - {id: cheeseburgers, en: Cheeseburgers, zh: 芝士汉堡, zh_status: suggested, category: recipe}
+  - {id: sandwich_eggs, en: Sandwich - Eggs, zh: 三明治-鸡蛋, zh_status: suggested, category: recipe_variant}
+  - {id: sandwich_toast, en: Sandwich - Toast, zh: 三明治-烤面包, zh_status: suggested, category: recipe_variant}
+  - {id: sandwich_mayonnaise, en: Sandwich - Mayonnaise, zh: 三明治-蛋黄酱, zh_status: suggested, category: recipe_variant}
+  - {id: sandwich_cheese, en: Sandwich - Cheese, zh: 三明治-芝士, zh_status: suggested, category: recipe_variant}
+  - {id: sandwich_toppers, en: Sandwich - Toppers, zh: 三明治-配料, zh_status: suggested, category: recipe_variant}
+  - {id: club_sandwiches, en: Club Sandwiches, zh: 总会三明治, zh_status: suggested, category: recipe_variant}
+  - {id: giant_sandwiches, en: Giant Sandwiches, zh: 巨型三明治, zh_status: suggested, category: recipe_variant}
+  - {id: turkey_cranberry_sauce, en: Turkey - Cranberry Sauce, zh: 火鸡-蔓越莓酱, zh_status: suggested, category: recipe_extra}
+  - {id: turkey_gravy, en: Turkey - Gravy, zh: 火鸡-肉汁, zh_status: suggested, category: recipe_extra}
+  - {id: turkey_stuffing, en: Turkey - Stuffing, zh: 火鸡-填料, zh_status: suggested, category: recipe_extra}
+  - {id: mushroom_pie, en: Mushroom Pie, zh: 蘑菇派, zh_status: community, category: recipe}
+  - {id: vegetable_pies, en: Vegetable Pies, zh: 蔬菜派, zh_status: community, category: recipe}
+  - {id: sponge_cake, en: Sponge Cake, zh: 海绵蛋糕, zh_status: community, category: recipe}
+  - {id: cupcake_recipe, en: Cupcake, zh: 纸杯蛋糕, zh_status: community, category: recipe}
+  - {id: doughnut, en: Doughnut, zh: 甜甜圈, zh_status: community, category: recipe}
+  - {id: brownies, en: Brownies, zh: 布朗尼, zh_status: community, category: recipe}
+  - {id: cake_flavour_coffee, en: Cake Flavour - Coffee, zh: 蛋糕口味-咖啡, zh_status: suggested, category: recipe_variant}
+  - {id: cake_flavour_lemon, en: Cake Flavour - Lemon, zh: 蛋糕口味-柠檬, zh_status: suggested, category: recipe_variant}
+  - {id: traditional_recipe, en: Traditional Recipe, zh: 传统做法, zh_status: suggested, category: recipe_variant}
+  - {id: extra_starch, en: Extra Starch, zh: 额外淀粉, zh_status: suggested, category: recipe_variant}
+  - {id: spaghetti_bolognese, en: Spaghetti Bolognese, zh: 肉酱意面, zh_status: community, category: recipe}
+  - {id: cheesy_spaghetti, en: Cheesy Spaghetti, zh: 芝士意面, zh_status: suggested, category: recipe}
+  - {id: lasagne, en: Lasagne, zh: 千层面, zh_status: community, category: recipe}
+  - {id: scoops, en: Scoops, zh: 冰淇淋球, zh_status: suggested, category: recipe_variant}
+  - {id: homemade_sundaes, en: "Sundaes II: Homemade", zh: 自制圣代, zh_status: suggested, category: recipe_variant}
+  - {id: sundae_syrups, en: Sundae Syrups, zh: 圣代糖浆, zh_status: suggested, category: recipe_extra}
+  - {id: sundae_toppings, en: Sundae Toppings, zh: 圣代配料, zh_status: suggested, category: recipe_extra}
+  - {id: giant_sundaes, en: Giant Sundaes, zh: 巨型圣代, zh_status: suggested, category: recipe_variant}
+  - {id: crab_cake, en: Crab Cake, zh: 蟹肉饼, zh_status: community, category: recipe}
+  - {id: tacos_cheese, en: Tacos - Cheese, zh: 塔可-芝士, zh_status: suggested, category: recipe_extra}
+  - {id: tacos_lettuce, en: Tacos - Lettuce, zh: 塔可-生菜, zh_status: suggested, category: recipe_extra}
+  - {id: tacos_onion, en: Tacos - Onion, zh: 塔可-洋葱, zh_status: suggested, category: recipe_extra}
+  - {id: tacos_tomato, en: Tacos - Tomato, zh: 塔可-番茄, zh_status: suggested, category: recipe_extra}
+  - {id: hot_dog_mustard, en: Hot Dog - Mustard, zh: 热狗-芥末, zh_status: suggested, category: recipe_extra}
+  - {id: fajitas_bell_peppers, en: Fajitas - Bell Peppers, zh: 法士达-甜椒, zh_status: suggested, category: recipe_variant}
+  - {id: fajitas_onions, en: Fajitas - Onions, zh: 法士达-洋葱, zh_status: suggested, category: recipe_variant}
+  - {id: fajitas_cheese, en: Fajitas - Cheese, zh: 法士达-芝士, zh_status: suggested, category: recipe_variant}
+  - {id: fajitas_tomato, en: Fajitas - Tomato, zh: 法士达-番茄, zh_status: suggested, category: recipe_variant}
+  - {id: crema, en: Crema, zh: 墨西哥酸奶油, zh_status: suggested, category: recipe_extra}
+  - {id: salsa, en: Salsa, zh: 莎莎酱, zh_status: suggested, category: recipe_extra}
+  - {id: guacamole, en: Guacamole, zh: 鳄梨酱, zh_status: suggested, category: recipe_extra}
+  - {id: breakfast_beans, en: Breakfast Beans, zh: 早餐豆子, zh_status: suggested, category: recipe_variant}
+  - {id: breakfast_eggs, en: Breakfast Eggs, zh: 早餐鸡蛋, zh_status: suggested, category: recipe_variant}
+  - {id: breakfast_extras, en: Breakfast Extras, zh: 早餐配料, zh_status: suggested, category: recipe_extra}
+  - {id: bamboo_stir_fry, en: Bamboo Stir Fry, zh: 竹笋炒菜, zh_status: suggested, category: recipe_variant}
+  - {id: mushroom_stir_fry, en: Mushroom Stir Fry, zh: 蘑菇炒菜, zh_status: suggested, category: recipe_variant}
+  - {id: steak_stir_fry, en: Steak Stir Fry, zh: 牛排炒菜, zh_status: suggested, category: recipe_variant}
+  - {id: stir_fry_soy_sauce, en: Stir Fry - Soy Sauce, zh: 炒菜-酱油, zh_status: suggested, category: recipe_extra}

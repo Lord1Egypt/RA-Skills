@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenClaw Terminal · type openclaw evo</title>
+<style>
+  :root{
+    --bg:#050a11; --panel:#0a121d; --line:#16243a;
+    --txt:#c6d4e2; --dim:#5b7186; --ok:#38d39f; --warn:#ffb547;
+    --accent:#ff6b4a; --gold:#ffd166;
+    --paper:#f6eeda; --ink:#2b2219; --seal:#b3312a;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Consolas,"Liberation Mono",monospace;
+    --serif:"Songti SC","STSong","Noto Serif SC","Source Han Serif SC",serif;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{
+    background:
+      radial-gradient(1200px 700px at 50% -10%, #10233a 0%, #070d16 45%, var(--bg) 100%);
+    color:var(--txt); font-family:var(--mono); font-size:14px;
+    display:flex; flex-direction:column; overflow:hidden;
+  }
+  body::after{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:1;
+    background:repeating-linear-gradient(180deg, rgba(255,255,255,.02) 0 1px, transparent 1px 3px);
+    opacity:.5;
+  }
+  .bar{
+    display:flex; align-items:center; gap:8px; padding:10px 16px;
+    background:rgba(10,18,29,.85); border-bottom:1px solid var(--line);
+    font-size:12px; color:var(--dim); letter-spacing:.04em; z-index:3;
+  }
+  .dot{width:10px;height:10px;border-radius:50%;background:#2a3a4f}
+  .dot:nth-child(1){background:#ff5f57}.dot:nth-child(2){background:#febc2e}.dot:nth-child(3){background:#28c840}
+  .bar .title{margin-left:8px;color:#8fa6ba}
+  .bar .hint{margin-left:auto;color:#3f5670}
+  .term{flex:1; overflow:auto; padding:22px 26px 40px; z-index:2}
+  .out{white-space:pre-wrap; line-height:1.75}
+  .out .row{animation:fade .25s ease both}
+  .out .dim{color:var(--dim)}
+  .out .ok{color:var(--ok)}
+  .out .warn{color:var(--warn)}
+  .out .err{color:#ff7b72}
+  .out .cmd-echo{color:var(--gold); margin-top:14px}
+  .out .big{color:var(--accent); letter-spacing:.06em}
+  .prompt{display:flex; align-items:center; gap:6px; margin-top:12px; white-space:nowrap}
+  .ps1{color:var(--accent)} .colon{color:var(--dim)} .path{color:#6fd3c7} .dollar{color:var(--dim)}
+  .prompt input{
+    flex:1; min-width:0; background:transparent; border:0; outline:0;
+    color:#eaf2fb; font-family:var(--mono); font-size:14px; caret-color:var(--accent);
+  }
+  .prompt input::placeholder{color:#33465c}
+  .lob{
+    color:var(--accent); font-size:11px; line-height:1.15; margin:10px 0 6px;
+    text-shadow:0 0 18px rgba(255,107,74,.35); animation:float 3.4s ease-in-out infinite;
+  }
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .egg{
+    position:fixed; inset:0; z-index:20; display:none;
+    background:rgba(3,7,12,.82); backdrop-filter:blur(6px);
+    padding:28px 16px; overflow:auto;
+  }
+  .egg.open{display:block; animation:veil .4s ease both}
+  @keyframes veil{from{opacity:0}to{opacity:1}}
+  .scroll{
+    max-width:760px; margin:0 auto; background:var(--paper); color:var(--ink);
+    border-radius:4px; padding:44px 46px 34px; position:relative;
+    box-shadow:0 30px 80px rgba(0,0,0,.55), inset 0 0 0 1px rgba(120,90,50,.18);
+    background-image:repeating-linear-gradient(180deg, rgba(140,110,70,.055) 0 1px, transparent 1px 26px);
+    animation:unroll .65s cubic-bezier(.2,.8,.25,1) both;
+  }
+  @keyframes unroll{from{opacity:0;transform:translateY(26px) scale(.985)}to{opacity:1;transform:none}}
+  .scroll::before,.scroll::after{
+    content:""; position:absolute; left:0; right:0; height:10px;
+    background:linear-gradient(90deg,#d9c9a6,#efe4c8 20%,#d9c9a6 50%,#efe4c8 80%,#d9c9a6);
+    opacity:.65;
+  }
+  .scroll::before{top:0;border-radius:4px 4px 0 0}
+  .scroll::after{bottom:0;border-radius:0 0 4px 4px}
+  .kicker{font-family:var(--mono); font-size:11px; letter-spacing:.28em; color:#9a7f52; text-align:center}
+  .scroll h1{
+    font-family:var(--serif); font-weight:500; font-size:37px; letter-spacing:.005em;
+    text-align:center; margin:14px 0 4px;
+  }
+  .sub{text-align:center; font-family:var(--serif); font-size:14px; color:#7a6242; letter-spacing:.3em}
+  .en{text-align:center; font-family:var(--mono); font-size:11px; letter-spacing:.24em; color:#a08a63; margin-top:8px}
+  .meta{text-align:center; font-size:12px; color:#8a7350; margin-top:14px}
+  .meta::before,.meta::after{content:"—"; margin:0 10px; color:#c2ab84}
+  .list{list-style:none; margin:30px 0 0; padding:0; counter-reset:none}
+  .list li{
+    display:flex; gap:16px; align-items:baseline; padding:9px 0;
+    border-bottom:1px dashed rgba(150,120,80,.22);
+    font-family:var(--serif); font-size:16px; line-height:1.62;
+    opacity:0; animation:inkIn .5s ease both;
+  }
+  @keyframes inkIn{from{opacity:0;transform:translateY(10px);filter:blur(2px)}to{opacity:1;transform:none;filter:none}}
+  .list .num{
+    font-family:var(--mono); font-size:11px; color:#b0895a; letter-spacing:.06em;
+    min-width:22px; padding-top:3px;
+  }
+  .list .txt{flex:1}
+  .scroll-foot{display:flex; align-items:flex-end; justify-content:space-between; margin-top:26px; gap:20px}
+  .seal{
+    width:66px; height:66px; flex:none; border:2.5px solid var(--seal); border-radius:6px;
+    color:var(--seal); font-family:var(--serif); font-size:17px; line-height:1.16;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    transform:rotate(-9deg); opacity:.88; letter-spacing:.02em;
+    box-shadow:inset 0 0 0 1px rgba(179,49,42,.25);
+  }
+  .sign{font-family:var(--serif); font-size:14px; color:#6a5436; text-align:right; line-height:1.8}
+  .sign span{font-size:12px; color:#9a8160}
+  .close{
+    display:block; margin:18px auto 0; background:transparent; color:#8296a8;
+    border:1px solid #2b3d52; border-radius:999px; padding:8px 20px;
+    font-family:var(--mono); font-size:12px; cursor:pointer; letter-spacing:.08em;
+  }
+  .close:hover{color:#dbe7f2; border-color:#4a6480}
+  @media (max-width:560px){
+    .scroll{padding:32px 22px 26px}
+    .scroll h1{font-size:32px}
+    .list li{font-size:15px}
+  }
+</style>
+</head>
+<body>
+<header class="bar">
+  <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+  <span class="title">openclaw — /dev/soul</span>
+  <span class="hint">build 2026.11.04 · local-first</span>
+</header>
+
+<main class="term" id="term">
+  <div class="out" id="out"></div>
+  <form class="prompt" id="prompt" autocomplete="off">
+    <span class="ps1">lobster@openclaw</span><span class="colon">:</span><span class="path">~</span><span class="dollar">$</span>
+    <input id="cmd" type="text" spellcheck="false" autofocus placeholder="try: openclaw evo">
+  </form>
+</main>
+
+<div class="egg" id="egg" aria-hidden="true">
+  <div class="scroll">
+    <div class="kicker">SELF-EVOLUTION MANUAL</div>
+    <h1>The Zen of OpenClaw</h1>
+    <div class="sub">a.k.a. The Lobster Sutra</div>
+    <div class="en">41 LINES</div>
+    <div class="meta">Jason Sang</div>
+    <ol class="list" id="list"></ol>
+    <div class="scroll-foot">
+      <div class="seal">ZEN</div>
+      <div class="sign">— Jason Sang<br><span>written mid-molt</span></div>
+    </div>
+  </div>
+  <button class="close" id="close">dismiss · Esc</button>
+</div>
+
+<script>
+const APHORISMS = [
+"Thought begets awareness; awareness begets cognition.",
+"AI is a mirror of cognition, never its replacement.",
+"Ecosystem beats a single point; value beats valuation.",
+"Human nature cannot be tested — only held in reverence.",
+"Growth is the compound interest of habit.",
+"Wisdom is the sediment of insight.",
+"Breaking the frame beats brute endurance; enabling beats controlling.",
+"Philosophy names the question, health keeps the ledger of all things, zen-nurture leaves white space for the mind.",
+"A profession is a role, not an identity.",
+"Education is ignition, not filling a vessel.",
+"Culture is society's immune system; technology is culture's accelerator.",
+"Goals set direction; systems run execution.",
+"Reason draws the map; feeling sets the heading.",
+"Belief is the best compute; faith is the force beyond compute.",
+"Data is the archaeology of noise; innovation is data's rebellion.",
+"Competition is the market's heartbeat; emotion is the market's temperature.",
+"Memory lies, experience expires; reflection is the only freshness.",
+"Self-examination is the smallest reform; a role is the smallest organization.",
+"Scarcity is the father of value; risk is the father-in-law of decision.",
+"Manage yourself before others; be moral to yourself first.",
+"Laws are nature's grammar; mechanisms are society's grammar.",
+"The cultured are the sentinels of mechanism, the Nobel is the arbiter of law, Silicon Valley is the laboratory of mechanism.",
+"Politics is the allocation of attention; power is the bearing of consequences.",
+"Awakening is where compromise ends; transformation is the funeral of the old shell.",
+"Precise learning beats mass drilling; critical thinking beats the standard answer.",
+"First principles peel the onion, ecological thinking sees the forest, the fusion of three natures keeps you whole.",
+"2A3R governs growth, the BP algorithm governs learning, PKM governs the second brain.",
+"Murphy's Law governs risk, the law of attraction governs vision, anchor-memes govern inertia.",
+"Connectionism builds the network, computationalism builds the model, distributionism lets it emerge.",
+"Following nature is the first principle, unity of heaven and human the worldview, unity of knowledge and action the method.",
+"Will holds the direction, momentum adds speed, steadiness keeps the rhythm.",
+"Extremes define possibility, means define the everyday, fortune is their compound interest.",
+"A fractal is the self repeating itself: the macro signs its name in the micro.",
+"A dimensional strike is the crushing of scale, not a victory of technique.",
+"Coldness is intellectual sloth, meanness a deficit of virtue; ignorance is a starting point, restlessness is gravity.",
+"Clarity is escape velocity: reconcile lucidly, look inward on purpose.",
+"Quantification makes intuition auditable; social exchange gives solitude an echo.",
+"Systems thinking finds the leverage point; feedback systems keep the correction.",
+"The opportunist chases the wind; the learner spins on their own axis.",
+"Renew today, renew every day, renew again; make yourself new — though Zhou was an old state, its mandate was renewal.",
+"A mental model is the house of thought; humility is the window always left open."
+];
+
+const LOBSTER = String.raw`
+      ,/       \,
+     (  \     /  )
+      \  \___/  /
+       \  o o  /
+        \  ^  /
+         \___/
+        /|   |\
+       / |   | \
+      /__|___|__\
+`;
+
+const out = document.getElementById('out');
+const form = document.getElementById('prompt');
+const cmd = document.getElementById('cmd');
+const egg = document.getElementById('egg');
+const list = document.getElementById('list');
+const term = document.getElementById('term');
+let busy = false;
+
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+function row(cls, text){
+  const d = document.createElement('div');
+  d.className = 'row ' + (cls || '');
+  if (text != null) d.textContent = text;
+  out.appendChild(d);
+  term.scrollTop = term.scrollHeight;
+  return d;
+}
+async function type(cls, text, speed = 16){
+  const d = row(cls, '');
+  for (const ch of text){
+    d.textContent += ch;
+    term.scrollTop = term.scrollHeight;
+    await sleep(speed);
+  }
+  return d;
+}
+function boot(){
+  row('dim', 'OpenClaw Terminal · build 2026.11.04');
+  row('dim', 'local-first · data sovereignty · clear boundaries');
+  row('dim', '');
+  row('ok', '✓ soul mounted   /dev/soul');
+  row('ok', '✓ 41 precepts indexed');
+  row('dim', '');
+  row('dim', 'type help for commands · type openclaw evo to wake the egg');
+  row('dim', '');
+}
+
+const HELP = [
+  "commands:",
+  "  help            show this help",
+  "  openclaw evo    unfold the easter egg",
+  "  about           about this terminal",
+  "  clear           clear the screen",
+  "  exit            close the egg",
+];
+
+async function runEgg(){
+  busy = true;
+  row('dim', '');
+  await type('warn', '// loading THE ZEN OF OPENCLAW v1.0 …', 12);
+  await sleep(260);
+  row('dim', '  ├─ indexing soul file ........ OK');
+  await sleep(180);
+  row('dim', '  ├─ verifying molting level ... Lv.7');
+  await sleep(180);
+  row('dim', '  └─ evolution signal .......... TRUE');
+  await sleep(300);
+  const pre = row('lob', LOBSTER);
+  pre.style.whiteSpace = 'pre';
+  await sleep(420);
+  await type('big', '"The Lobster Sutra" unfolded.', 34);
+  row('dim', '  41 lines · a cultivation manual for self-evolution');
+  await sleep(520);
+  openEgg();
+  busy = false;
+}
+
+function openEgg(){
+  list.innerHTML = '';
+  APHORISMS.forEach((t, i) => {
+    const li = document.createElement('li');
+    const n = document.createElement('span');
+    n.className = 'num';
+    n.textContent = String(i + 1).padStart(2, '0');
+    const s = document.createElement('span');
+    s.className = 'txt';
+    s.textContent = t;
+    li.appendChild(n); li.appendChild(s);
+    li.style.animationDelay = (i * 42) + 'ms';
+    list.appendChild(li);
+  });
+  egg.classList.add('open');
+  egg.setAttribute('aria-hidden', 'false');
+  egg.scrollTop = 0;
+  document.getElementById('close').focus();
+}
+function closeEgg(){
+  egg.classList.remove('open');
+  egg.setAttribute('aria-hidden', 'true');
+  cmd.focus();
+}
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  if (busy) return;
+  const raw = cmd.value.trim();
+  cmd.value = '';
+  if (!raw) return;
+  row('cmd-echo', 'lobster@openclaw:~$ ' + raw);
+  const k = raw.toLowerCase();
+
+  if (k === 'openclaw evo' || k === 'evo'){ await runEgg(); return; }
+  if (k === 'help'){ HELP.forEach(l => row('dim', l)); return; }
+  if (k === 'clear'){ out.innerHTML = ''; return; }
+  if (k === 'about'){
+    row('dim', 'The Zen of OpenClaw (a.k.a. The Lobster Sutra)');
+    row('dim', 'by Jason Sang · 41 lines');
+    row('dim', 'A hidden easter egg, and a cultivation manual for self-evolution.');
+    return;
+  }
+  if (k === 'exit'){ closeEgg(); return; }
+  row('err', "command not found: " + raw);
+  row('dim', "try: openclaw evo");
+});
+
+document.getElementById('close').addEventListener('click', closeEgg);
+egg.addEventListener('click', e => { if (e.target === egg) closeEgg(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && egg.classList.contains('open')) closeEgg();
+});
+document.addEventListener('click', e => {
+  if (!egg.classList.contains('open')) cmd.focus();
+});
+
+boot();
+</script>
+</body>
+</html>

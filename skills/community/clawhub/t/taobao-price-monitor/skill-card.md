@@ -1,42 +1,58 @@
-## Description: <br>
-Checks Taobao and Tmall product prices from product URLs and returns current product price details, while the release also describes monitoring, history, alert, and comparison workflows. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Taobao Price Monitor helps agents query Taobao/Tmall product prices from item URLs, while server security evidence notes that the current artifact provides basic price lookup rather than the full monitoring, alerting, history, and comparison system described.
 
-## Publisher: <br>
-[275254cl-hash](https://clawhub.ai/user/275254cl-hash) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[275254cl-hash](https://clawhub.ai/user/275254cl-hash)
 
-## Use Case: <br>
-External shoppers, purchasing agents, and e-commerce operators can use this skill to query Taobao/Tmall product price information and plan price-tracking workflows. Reviewers should treat it as a basic price-query script unless the missing monitoring, history, alert, comparison, export, and API components are supplied. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for persistent Taobao cookie use. <br>
-Mitigation: Avoid using a primary Taobao account cookie; if a cookie is required, use a low-risk account and remove or rotate the cookie after use. <br>
-Risk: The release advertises monitoring, alerts, history, comparison, export, API, and cron workflows that are not fully present in the artifact. <br>
-Mitigation: Treat the artifact as a simple price-query script until the missing components are provided and reviewed. <br>
-Risk: Scheduled monitoring or local API exposure can create ongoing access to account-linked shopping data. <br>
-Mitigation: Do not enable cron jobs or expose a local API unless the deployment model, stored credentials, and access controls have been reviewed. <br>
+## Use Case:
 
+External users and developers use this skill to look up Taobao/Tmall item price details from product URLs and to draft lightweight price-checking workflows. The artifact should be treated as a basic lookup helper, with claimed monitoring, alerting, history, export, and comparison features requiring verification before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/275254cl-hash/taobao-price-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON examples; query_price.py returns JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and requests; optionally uses TAOBAO_COOKIE and performs network requests to Taobao/Tmall endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter; artifact changelog lists v0.1.0) <br>
+Risk: The skill requests TAOBAO_COOKIE, which may expose account access if reused from a sensitive Taobao session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-risk Taobao session, store the cookie only in the intended local environment, and rotate or revoke it after testing.
+
+Risk: The public description claims monitoring, alerts, history, comparison, export, and API features that are not fully present in the current artifact.
+
+Mitigation: Treat the artifact as a basic price lookup helper until each claimed workflow is independently verified.
+
+Risk: Local API access or exported price data could expose shopping activity or monitored product lists.
+
+Mitigation: Keep any local API bound to the local machine and avoid sharing exported data unless it has been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/275254cl-hash/skills/taobao-price-monitor)
+- [Publisher profile](https://clawhub.ai/user/275254cl-hash)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON price result examples and shell/configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require python3, requests, curl, and an optional TAOBAO_COOKIE value for some requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

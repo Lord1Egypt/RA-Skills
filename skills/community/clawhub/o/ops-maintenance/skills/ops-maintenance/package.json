@@ -1,0 +1,39 @@
+{
+  "name": "ops-maintenance",
+  "version": "3.3.3",
+  "description": "\u8fd0\u7ef4\u52a9\u624b v3.1 - \u652f\u6301\u672c\u5730\u3001\u8fdc\u7a0b\u3001\u591a\u670d\u52a1\u5668\u96c6\u7fa4\u76d1\u63a7\u3001\u544a\u8b66\u901a\u77e5\u3001\u5b9a\u65f6\u5de1\u68c0\u3001Docker\u5bb9\u5668\u5065\u5eb7\u5de1\u68c0\u3001SSL\u8bc1\u4e66\u76d1\u63a7",
+  "main": "src/index.ts",
+  "bin": {
+    "ops": "src/cli.ts"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc",
+    "test": "jest --maxWorkers=2",
+    "test:watch": "jest --watch"
+  },
+  "keywords": [
+    "ops",
+    "ssh",
+    "monitoring",
+    "devops"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@types/nodemailer": "^8.0.1",
+    "commander": "^12.1.0",
+    "nodemailer": "^9.0.5",
+    "ssh2": "^1.15.0",
+    "ssh2-sftp-client": "^10.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/ssh2": "^1.15.5",
+    "@types/ssh2-sftp-client": "^9.0.6",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^4.1.7"
+  }
+}

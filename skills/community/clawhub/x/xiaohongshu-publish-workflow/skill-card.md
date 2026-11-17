@@ -1,41 +1,57 @@
-## Description: <br>
-Formats completed Markdown drafts for Xiaohongshu, guides editor review, prepares semi-automated publishing, and supports post-publication data review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Formats finalized Markdown drafts into Xiaohongshu-ready notes, supports reviewed semi-automated publishing, and guides post-publication performance analysis.
 
-## Publisher: <br>
-[little-ke](https://clawhub.ai/user/little-ke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[little-ke](https://clawhub.ai/user/little-ke)
 
-## Use Case: <br>
-Content creators and operators use this skill to turn finalized Markdown drafts into Xiaohongshu-ready posts, coordinate user-confirmed publishing, and review performance after posting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing actions can create real public Xiaohongshu posts from the user's account. <br>
-Mitigation: Require explicit user confirmation before running the publish step and rely on the browser's final confirmation before submission. <br>
-Risk: The workflow depends on an external browser automation script and saved login session that were not included in the reviewed package. <br>
-Mitigation: Inspect and trust the referenced xhs_publish.cjs helper before use, confirm which account it controls, and understand where the saved login session is stored and how to remove it. <br>
+## Use Case:
 
+Content creators and marketing operators use this skill to transform completed Markdown drafts into Xiaohongshu content packages, prepare publishing JSON, coordinate user-confirmed semi-automated posting, and review post-publication metrics.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/little-ke/xiaohongshu-publish-workflow) <br>
-- [Skill source](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before publication; the referenced Playwright publishing helper is not included in the reviewed package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The skill relies on an unaudited external or local xhs_publish.cjs script and an unpinned Playwright installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before installation, use a trusted source, pin dependencies with a lockfile, and keep browser automation dependencies current.
+
+Risk: The publishing workflow operates an authenticated Xiaohongshu browser session and can prepare public-posting automation.
+
+Mitigation: Require explicit user confirmation before running publish commands and final confirmation inside the browser before any post is submitted.
+
+Risk: Generated formatting, title, tag, or analysis guidance can introduce factual errors or misleading publishing recommendations.
+
+Mitigation: Keep the editorial review gate, verify previews before publishing, and route factual errors back to the content creation workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/little-ke/skills/xiaohongshu-publish-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce title options, formatted Xiaohongshu body text, tag plans, image guidance, publishing JSON, command invocations, publishing previews, and performance review guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

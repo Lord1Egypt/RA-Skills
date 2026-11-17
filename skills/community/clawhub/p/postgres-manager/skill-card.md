@@ -1,42 +1,62 @@
-## Description: <br>
-Manage a shared PostgreSQL Docker container for local dev environments, including container lifecycle, database creation and removal, and cross-instance dumps via pg_dump. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage a shared PostgreSQL Docker container for local development environments, including container lifecycle, database creation and removal, cross-instance dumps, and shared Docker network integration.
 
-## Publisher: <br>
-[pereirajair](https://clawhub.ai/user/pereirajair) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pereirajair](https://clawhub.ai/user/pereirajair)
 
-## Use Case: <br>
-Developers and engineers use this skill to run and administer a local PostgreSQL Docker service for development workflows. It helps start and stop the service, create or drop development databases, inspect status, open psql, and copy data between databases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill manages a local Docker PostgreSQL service and can start, stop, inspect, and administer containers and databases. <br>
-Mitigation: Install and use it only when local PostgreSQL container management is intended, and stop the container when it is no longer needed. <br>
-Risk: Database dump and drop workflows can copy or remove local development data. <br>
-Mitigation: Review database names before dump or drop commands, keep the documented confirmation step for drops, and avoid targeting the main database. <br>
-Risk: The documented default PostgreSQL password is suitable only for local development. <br>
-Mitigation: Set POSTGRES_PASSWORD before use on shared systems or when working with real data. <br>
+## Use Case:
 
+Developers and engineers use this skill to manage a local PostgreSQL service for development workflows, including starting and stopping the container, creating isolated databases, copying databases with pg_dump, and opening psql sessions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/pereirajair/postgres-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local Docker and PostgreSQL administration guidance; command execution can affect local containers, volumes, and databases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill starts a persistent local PostgreSQL database with documented default credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set a strong POSTGRES_PASSWORD before using real or shared data, and rotate credentials for any existing persisted volume.
+
+Risk: Database data persists in a Docker volume after the container is stopped.
+
+Mitigation: Treat the Docker volume as persistent storage and remove it only when intentional data deletion is acceptable.
+
+Risk: psql provides direct database access.
+
+Mitigation: Use the skill only with local development data unless access, credentials, and data handling have been reviewed.
+
+Risk: The container joins a shared Docker network.
+
+Mitigation: Consider a dedicated Docker network when isolation is required.
+
+## Reference(s):
+
+- [Postgres Manager on ClawHub](https://clawhub.ai/pereirajair/skills/postgres-manager)
+- [Publisher profile: pereirajair](https://clawhub.ai/user/pereirajair)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent output may include Docker and PostgreSQL lifecycle commands for a local development environment.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

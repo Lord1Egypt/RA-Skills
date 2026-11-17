@@ -1,0 +1,13 @@
+# Win-Loss Analysis - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+deal_id,account,segment,deal_size_usd,result,closed_date,rep,competitor,reason_code,notes
+1,"Acme Corp",enterprise,62000,loss,2026-01-15,"R. Patel","",price,""
+2,"Northwind Supply",mid-market,18500,win,2026-01-22,"S. Okafor","",none,""
+3,"Harbor Logistics",enterprise,41000,loss,2026-01-29,"T. Brooks","",timing,""
+4,"Steelworks Inc",mid-market,9000,loss,2026-02-04,"R. Patel","",capability,""
+5,"Blue Ridge Equipment",smb,15000,win,2026-02-11,"K. Diaz","",none,""
+6,"Lakeside Foods",enterprise,88000,loss,2026-02-18,"S. Okafor","",incumbent,""
+7,"Copperfield Co",smb,7000,loss,2026-02-25,"T. Brooks","",no_decision,""
+8,"Granite Systems",mid-market,28500,win,2026-03-03,"K. Diaz","",none,""
+9,"Pinewood Clinics",enterprise,52000,loss,2026-03-10,"R. Patel","",trust,""
+10,"Redwood Manufacturing",mid-market,33000,win,2026-03-19,"T. Brooks","",none,""

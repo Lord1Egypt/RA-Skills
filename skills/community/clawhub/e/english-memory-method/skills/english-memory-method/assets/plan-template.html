@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<!--
+  English Memory Method · 背诵方案模板
+  用法：复制本文件为 <topic>-memorization-plan.html，按下方 <!-- ① ... --> 注释逐节替换内容。
+  所有样式已内联，不依赖外部资源；结构图引用相对路径 assets/<topic>-structure.svg。
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}背诵方案</title>
+<style>
+  :root{--accent:#7c3aed;--accent-bg:#f5f3ff;--accent-border:#ddd6fe;--ink:#1f2937;--muted:#6b7280;--line:#e5e7eb;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:"Segoe UI","Microsoft YaHei","PingFang SC",sans-serif;background:#f6f8fb;color:var(--ink);line-height:1.75;}
+  .wrap{max-width:980px;margin:0 auto;padding:32px 20px 64px;}
+  header{background:linear-gradient(135deg,{{HEADER_DARK}},{{HEADER_ACCENT}});color:#fff;border-radius:16px;padding:32px 34px;margin-bottom:28px;}
+  header h1{font-size:26px;margin-bottom:6px;}
+  header p{opacity:.92;font-size:14px;margin-bottom:8px;}
+  .badge{display:inline-block;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:2px 12px;font-size:13px;margin:4px 6px 0 0;}
+  h2{font-size:20px;margin:38px 0 14px;padding-left:12px;border-left:4px solid var(--accent);}
+  h3{font-size:16px;margin:18px 0 8px;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:12px 0;}
+  table{width:100%;border-collapse:collapse;margin:10px 0;font-size:14px;background:#fff;}
+  th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top;}
+  th{background:#f1f5f9;font-weight:600;}
+  tr:nth-child(even) td{background:#fafbfc;}
+  .tl{position:relative;margin:16px 0 16px 10px;padding-left:32px;}
+  .tl::before{content:"";position:absolute;left:10px;top:8px;bottom:8px;width:2px;background:var(--line);}
+  .tl .step{position:relative;margin-bottom:16px;}
+  .tl .marker{position:absolute;left:-32px;top:2px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;font-weight:600;}
+  .tl .t{font-weight:600;}
+  .tl .d{font-size:14px;color:#374151;}
+  details{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:10px 0;font-size:15px;}
+  summary{cursor:pointer;font-weight:600;color:var(--accent);}
+  details .answer{margin-top:10px;color:var(--muted);font-style:italic;font-size:14px;}
+  .tip{background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:10px;padding:12px 18px;margin:12px 0;font-size:14px;}
+  figure{margin:18px 0;text-align:center;}
+  figure img{max-width:100%;border-radius:12px;border:1px solid var(--line);}
+  figcaption{font-size:13px;color:var(--muted);margin-top:8px;}
+  ul{padding-left:22px;}
+  li{margin:5px 0;}
+  /* v2.1 逐句翻译 + 全现象连读标注 */
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);border:1px solid var(--line);background:#fff;padding:8px 14px;border-radius:8px;margin:10px 0 14px;}
+  .sent{margin:16px 0;padding-bottom:14px;border-bottom:1px dashed var(--line);}
+  .sent:last-child{border-bottom:none;padding-bottom:0;}
+  .sent-en{font-family:Georgia,"Times New Roman",serif;font-size:17px;line-height:1.95;}
+  .sent-en .tie{color:#d97706;font-weight:bold;margin:0 1px;}
+  .sent-en .wk{color:#9ca3af;font-style:italic;}
+  .sent-en .ft{color:#b91c1c;font-weight:bold;text-decoration:underline wavy #b91c1c 1px;text-underline-offset:3px;}
+  .sent-en .hk{color:#9ca3af;text-decoration:underline dashed #9ca3af 1px;text-underline-offset:3px;}
+  .sent-zh{color:var(--muted);font-size:14px;border-left:3px solid var(--accent-border);padding-left:10px;margin:6px 0;}
+  .pron{font-size:13.5px;background:#f8f5ec;border-left:3px solid #d97706;padding:7px 12px;color:#4b4030;line-height:2;border-radius:0 6px 6px 0;}
+  .pron .lbl{font-size:11px;letter-spacing:.15em;color:#d97706;display:block;}
+  footer{margin-top:44px;color:var(--muted);font-size:13px;text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<!-- ① 头部：标题、统计信息、段落徽章（可增删） -->
+<header>
+  <h1>{{TITLE}}背诵方案</h1>
+  <p>{{SUBTITLE：结构类型 · 句数 · 目标天数}}</p>
+  <span class="badge">第1段 · {{逻辑角色}}</span>
+  <span class="badge">第2段 · {{逻辑角色}}</span>
+</header>
+
+<!-- ② 整体策略：一句话点出本篇文章的背诵捷径 -->
+<h2>0. 整体策略</h2>
+<div class="card">
+  四步走：<b>拆骨架 → 串关键词 → 三遍法输入 → 间隔复习</b>。
+  {{本篇特有的记忆捷径，如"靠逻辑路标词推进""首尾呼应"等}}。
+  每天约 20 分钟，{{X}}~{{Y}} 天完成。
+</div>
+
+<!-- ③ 结构图：替换图片路径与说明文字 -->
+<h2>1. 文章结构图（背诵地图）</h2>
+<figure>
+  <img src="assets/{{topic}}-structure.svg" alt="{{TITLE}}结构图">
+  <figcaption>{{对结构图的一句话导读}}</figcaption>
+</figure>
+
+<!-- ③b 原文逐句区（v2.1 必需）：每句三层 sent-en（行内语音标记）→ sent-zh（翻译，默认中文，可传参换语种）→ pron（连读注解 ≤6 条） -->
+<h2>1.5 原文逐句精读（翻译 + 连读标注 · v2.1）</h2>
+<div class="legend"><span><b style="color:#d97706">⌒</b> 连读</span><span><i style="color:#9ca3af">灰色斜体</i> 弱读</span><span><b style="color:#b91c1c">t</b> flap t / 失爆</span><span><u style="text-decoration:underline dashed #9ca3af">h</u> h 击穿</span><span>翻译默认中文 · 需要其他语言在对话里说一声</span></div>
+<div class="sent">
+  <div class="sent-en">{{英文原句，行内语音标记：连读词对加 tie⌒，弱读词加 wk，flap t/失爆的 t 加 ft，被击穿的 h 加 hk；不替换原词}}</div>
+  <div class="sent-zh">{{中文翻译，默认中文；用户传参可换语种}}</div>
+  <div class="pron"><span class="lbl">连读 · 弱读 · 读法</span>{{注解：片段 音标 · 现象（读法要点），≤6 条，美式 IPA}}</div>
+</div>
+
+<!-- ④ 关键词表：每段一张表，三列 原句|关键词钩子|中文提示 -->
+<h2>2. 关键词串联表（每句一个钩子）</h2>
+<p style="font-size:14px;color:#374151;">每句只抓 1~2 个"钩子词"。合上书，看着中文提示往外说英文，卡住就瞄一眼关键词。</p>
+
+<h3>第 1 段 · {{逻辑角色}}</h3>
+<table>
+<thead><tr><th style="width:44%">原句</th><th style="width:20%">关键词钩子</th><th>中文提示</th></tr></thead>
+<tbody>
+<tr><td>{{原句}}</td><td>{{钩子词}}</td><td>{{中文提示}}</td></tr>
+</tbody>
+</table>
+
+<!-- ⑤ 三遍法（每段 15~20 分钟），三步固定 -->
+<h2>3. 当天"三遍法"（一段约 {{15~20}} 分钟）</h2>
+<div class="tl">
+  <div class="step"><span class="marker">1</span><div><div class="t">理解朗读 ×3</div><div class="d">先查清不认识的搭配（{{本段生词搭配示例}}），大声朗读 3 遍。</div></div></div>
+  <div class="step"><span class="marker">2</span><div><div class="t">关键词复述 ×2</div><div class="d">合上书，看着中文提示把英文说出来；卡住就瞄一眼钩子词，两轮后基本顺。</div></div></div>
+  <div class="step"><span class="marker">3</span><div><div class="t">默写 + 红笔纠错</div><div class="d">默写整段，红笔对照改错，错处重点重背。</div></div></div>
+</div>
+
+<!-- ⑥ 艾宾浩斯复习计划，五个时间点固定 -->
+<h2>4. 艾宾浩斯复习计划</h2>
+<div class="tl">
+  <div class="step"><span class="marker">✓</span><div><div class="t">背完后 5 分钟</div><div class="d">合书快速复述一遍。</div></div></div>
+  <div class="step"><span class="marker">✓</span><div><div class="t">当晚睡前</div><div class="d">完整背诵全文 + 默写一遍。</div></div></div>
+  <div class="step"><span class="marker">✓</span><div><div class="t">第 2 天早上</div><div class="d">做第 5 节挖空自测，错句单独标记。</div></div></div>
+  <div class="step"><span class="marker">✓</span><div><div class="t">第 3 天</div><div class="d">只背错句 + 快速过全文。</div></div></div>
+  <div class="step"><span class="marker">✓</span><div><div class="t">第 7 天 / 第 15 天</div><div class="d">各快速背一遍，形成长期记忆。</div></div></div>
+</div>
+
+<!-- ⑦ 挖空自测：每段一个 details，挖 2~5 个关键空，答案放 .answer -->
+<h2>5. 挖空自测（先自己填，再点开对答案）</h2>
+<details><summary>第 1 段 · {{逻辑角色}}</summary>
+<p style="font-size:15px;margin-top:10px;">{{挖空后的段落原文，空用 ______ 表示}}</p>
+<div class="answer">答案：{{答案词，斜杠分隔}}</div>
+</details>
+
+<!-- ⑧ 短语清单：8~15 条，格式 **搭配** —— 中文释义（简短提示） -->
+<h2>6. 必背短语清单</h2>
+<div class="card">
+<ul>
+<li><b>{{搭配}}</b> —— {{中文释义（简短词源/用法提示）}}</li>
+</ul>
+</div>
+
+<!-- ⑨ 记忆钩子：从文中找头韵/押韵/排比/对比/同义换词/首尾呼应/数字锚点/路标词/金句 -->
+<h2>7. 记忆钩子（把句子"粘"起来）</h2>
+<div class="card">
+<ul>
+<li><b>{{钩子类型}}</b>：{{示例}}</li>
+</ul>
+</div>
+
+<!-- ⑩ 小贴士：录音对比法 + 本篇专属建议 -->
+<div class="tip">💡 额外技巧：录音对比法 —— 录下自己的背诵回放对照原文；{{本篇专属建议}}。</div>
+
+<h2>7.5 复述技巧包（纯技巧 · 通用）</h2>
+<div class="card">
+<p style="font-size:14px;color:#374151;margin-bottom:10px;">复述 ≠ 背诵原文。以下 10 条技巧篇篇通用：卡壳时用它救场，表达时用它提速。</p>
+<ul>
+<li><b>① 忘词降级法</b>：想不起原词就说 <b>a kind of ... / something like ...</b>——用上位词兜住意思，停顿绝不超过 2 秒</li>
+<li><b>② 连接词续命法</b>：卡住瞬间抛出 <b>and then / what's more / on the other hand</b>——连接词买来 2 秒思考时间，听感依然流畅</li>
+<li><b>③ 跳句保链法</b>：整句想不起来就跳过，直接说下一句——<b>链条完整 &gt; 单句完整</b>，回头补不如继续走</li>
+<li><b>④ 主干优先法</b>：先说主谓宾（谁-干嘛-结果），形容词从句全砍——复述丢修饰不扣分，卡在修饰才扣分</li>
+<li><b>⑤ Paraphrase 合法化</b>：换词是加分不是作弊——big→huge、protect→keep ... safe，意思对就算对</li>
+<li><b>⑥ 顺序词撑骨架</b>：<b>first / then / after that / finally</b>——卡壳时先抛顺序词，句子自动长出来</li>
+<li><b>⑦ 一句一信息</b>：一句话只装一个信息点，说完就停——拆短句永远比拽长句稳</li>
+<li><b>⑧ 三遍降梯法</b>：第 1 遍看钩子说 → 第 2 遍只看问题链/段标题说 → 第 3 遍空手说（对应 2.6 的 L1→L3，不必每次冲 L5）</li>
+<li><b>⑨ 录音自查法</b>：录一遍回听，只挑 <b>3 个卡壳点</b>——下次专练这 3 处，别全文重来</li>
+<li><b>⑩ 90 秒限时法</b>：全文复述限时 90 秒——限时逼你抓主干、丢细节，复述天然变利落</li>
+</ul>
+</div>
+
+<footer>English teacher · 背诵方案 · 建议每天 20 分钟，{{X}}~{{Y}} 天完成</footer>
+</div>
+</body>
+</html>

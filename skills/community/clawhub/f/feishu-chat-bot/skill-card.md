@@ -1,41 +1,50 @@
-## Description: <br>
-Automates Feishu group chat workflows such as scheduled messages, auto-replies, polls, rich text cards, and team notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu Chat Bot helps an agent automate Feishu group messages, reminders, approval notifications, team broadcasts, auto-replies, polls, and rich message cards.
 
-## Publisher: <br>
-[young-joey](https://clawhub.ai/user/young-joey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[young-joey](https://clawhub.ai/user/young-joey)
 
-## Use Case: <br>
-Teams, community operators, and project managers use this skill to manage Feishu group communication with reminders, broadcasts, polls, welcome messages, and card-based status updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send, schedule, auto-reply, and broadcast workplace group messages without enough documented safeguards. <br>
-Mitigation: Before use, verify the bot account, allowed groups, approval flow, recipient preview, and how scheduled or automatic messages can be reviewed and cancelled. <br>
-Risk: Automated group messages, polls, and cards can affect many recipients if the target group or trigger rule is wrong. <br>
-Mitigation: Review recipients, timing, trigger conditions, and message content before enabling broad or recurring Feishu automation. <br>
+## Use Case:
 
+Developers, operators, and team administrators use this skill to set up Feishu group-chat automations such as scheduled reminders, keyword replies, polls, status cards, and workflow notifications. It is intended for authorized Feishu groups where recipients and message content are explicitly reviewed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/young-joey/feishu-chat-bot) <br>
-- [Card template examples](artifact/references/card-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Feishu message examples and JSON card templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scheduled-message instructions, auto-reply rules, poll definitions, and rich text card payload examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can send, schedule, and broadcast messages to Feishu groups without clearly documented confirmation, recipient scoping, or cancellation controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where the Feishu bot is authorized, recipients are explicit, message content is reviewed before sending, and scheduled or conditional automations can be disabled or audited.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/young-joey/skills/feishu-chat-bot)
+- [Card template reference](artifact/references/card-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with message copy, JSON card examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Feishu message content, scheduled automation plans, rich-card JSON, poll structures, and recipient-scoping guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

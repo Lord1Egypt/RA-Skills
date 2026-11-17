@@ -1,39 +1,53 @@
-## Description: <br>
-Provides a local Hebbian co-occurrence graph engine that records memory co-occurrences, calculates association weights, supports related-memory queries, and maintains a SQLite-backed association database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Co Occurrence Engine is a Hebbian co-occurrence graph skill that records memory co-occurrences, calculates association weights, supports related-memory queries, and provides local database maintenance for star-shaped memory architectures.
 
-## Publisher: <br>
-[whoisme007](https://clawhub.ai/user/whoisme007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whoisme007](https://clawhub.ai/user/whoisme007)
 
-## Use Case: <br>
-Developers building memory-enabled agents can use this skill to record which memories are retrieved together, rank related memories by decayed co-occurrence weight, inspect graph statistics, and clean stale association edges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The engine persists memory identifiers and association weights in a local SQLite database across runs. <br>
-Mitigation: Set CO_OCCURRENCE_DB_PATH to an appropriately scoped location and clear, rotate, or isolate the database when retention is not intended. <br>
-Risk: Untrusted or test memory identifiers can be recorded into a long-lived production memory graph. <br>
-Mitigation: Avoid feeding untrusted or test identifiers into production graphs, and use separate database files for testing and production. <br>
+## Use Case:
 
+Developers and memory-system builders use this skill to add local associative memory discovery, scoring, statistics, and maintenance around memory ID relationships.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python code examples and a Python script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a configurable local SQLite database path and optional forgetting-curve integration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores local SQLite association metadata about memory ID relationships under the configured database path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set CO_OCCURRENCE_DB_PATH to an approved location and apply local access, backup, and retention controls appropriate for the memory data.
+
+Risk: The artifact documentation is primarily Chinese, which may reduce review clarity for teams that do not read Chinese.
+
+Mitigation: Review or translate the documentation before deployment so operators understand configuration, storage behavior, and maintenance commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whoisme007/skills/co-occurrence-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

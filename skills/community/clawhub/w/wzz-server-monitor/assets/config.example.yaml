@@ -1,0 +1,69 @@
+# ============================================================
+# wzz-server-monitor 配置文件
+# 复制本文件到 ~/.config/resource-monitor/config.yaml 后修改。
+# 运行 python3 scripts/monitor.py validate-config 校验。
+# ============================================================
+
+# 邮件标题/模板中使用的服务器名称（默认取系统主机名）
+hostname_label: ""
+
+# ============================================================
+# 监控阈值（单位：%）
+# ============================================================
+metrics:
+  cpu:
+    enabled: true
+    threshold: 80                # CPU 使用率超过 80% 告警
+    cpu_interval: 0.5            # 采样间隔秒数（cron 每次全新进程，必须 >0）
+  memory:
+    enabled: true
+    threshold: 85                # 内存使用率超过 85% 告警
+  disk:
+    enabled: true
+    paths:
+      - { path: "/", threshold: 85 }        # 可监控多个挂载点
+      # - { path: "/home", threshold: 90 }
+
+# ============================================================
+# SMTP 邮件服务器（国内邮箱用授权码，QQ/163 均支持）
+# ============================================================
+smtp:
+  host: smtp.qq.com              # 例：smtp.qq.com / smtp.163.com
+  port: 465
+  security: ssl                  # ssl(465) | tls(587, STARTTLS) | none
+  username: your@qq.com          # 发信账号
+  from: ""                       # 可选，默认同 username
+  to:
+    - ops@example.com            # 收件人（可多个）
+  # SMTP 密码/授权码：推荐写到独立文件（chmod 600），避免明文进配置文件
+  password_file: ~/.config/resource-monitor/.smtp_secret
+  # password: ""                 # 或直接内联（不推荐）
+  timeout: 30
+
+# ============================================================
+# 通知频率（防刷屏）
+# ============================================================
+cooldown_minutes: 60             # 同一告警两次实际发送的最小间隔（分钟）
+recovery: true                   # 恢复正常时是否发送恢复邮件
+daily_cap: 20                    # 单日最大发送数，0 = 不限制
+
+# ============================================================
+# 发送时间窗口（窗口外即使超限也静默，但状态照常记录，开窗后首轮补发）
+# ============================================================
+window:
+  enabled: true
+  rules:
+    - { start: "09:00", end: "22:00" }   # 支持多段；start > end 表示跨午夜
+  # rules: []                     # 空列表 = 全天可发
+
+# ============================================================
+# 邮件文案模板（assets/templates/ 下；变量见 SKILL.md「模板编写」）
+# ============================================================
+templates:
+  dir: ""                       # 留空 = 自动使用 skill 内置 templates/（推荐）
+  alarm:
+    subject: "[{{ hostname }}] 资源告警 ({{ alarm_count }}项)"
+    body: alarm.html
+  recovery:
+    subject: "[{{ hostname }}] 资源已恢复"
+    body: recovery.html

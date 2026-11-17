@@ -1,40 +1,58 @@
-## Description: <br>
-Monitor uptime of websites/services and alert when down. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor uptime of websites/services and alert when down.
 
-## Publisher: <br>
-[kryzl19](https://clawhub.ai/user/kryzl19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kryzl19](https://clawhub.ai/user/kryzl19)
 
-## Use Case: <br>
-Developers and operations teams use this skill to check HTTP endpoint reachability, log uptime status, send downtime alerts, and generate uptime summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Monitoring endpoints without authorization can violate policy or create unwanted traffic. <br>
-Mitigation: Use the skill only for services the operator is authorized to monitor. <br>
-Risk: URLs, internal hostnames, outage details, and alert destinations may be sensitive in logs or notifications. <br>
-Mitigation: Use approved webhook or email destinations and protect or clear local logs when they contain sensitive service details. <br>
+## Use Case:
 
+Developers and operators use this skill to check whether websites or services are reachable, send downtime alerts, and generate uptime summaries from local logs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kryzl19/service-health-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Plain text status lines and Markdown uptime reports with shell command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local status and alert logs and may send webhook or email alerts when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can make outbound HTTP requests to arbitrary monitored URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict MONITOR_URLS to approved public HTTPS endpoints and avoid internal hostnames or URLs containing secrets.
+
+Risk: Alert delivery can send service details to an external webhook or email destination.
+
+Mitigation: Set ALERT_WEBHOOK_URL and ALERT_EMAIL only to approved destinations and review alert content before deployment.
+
+Risk: Logs and generated reports may contain untrusted or sensitive service information.
+
+Mitigation: Treat generated logs and reports as untrusted when monitored URLs can be influenced by others, and avoid including secrets in URLs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kryzl19/skills/service-health-checker)
+- [Publisher profile](https://clawhub.ai/user/kryzl19)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain-text script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Health-check output uses pipe-delimited status lines; reports are Markdown summaries generated from local logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

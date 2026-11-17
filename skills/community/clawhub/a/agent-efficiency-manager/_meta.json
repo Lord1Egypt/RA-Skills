@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn76b71hdvjbaetmpr601b967x82bz18",
-  "slug": "agent-efficiency-manager",
+  "name": "agent-efficiency-manager",
   "version": "1.0.0",
-  "publishedAt": 1781015372099
+  "description": "Skill: agent-efficiency-manager",
+  "author": "perrykono-debug",
+  "license": "MIT"
 }

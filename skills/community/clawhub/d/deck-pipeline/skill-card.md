@@ -1,43 +1,57 @@
-## Description: <br>
-Deck Pipeline helps an agent translate Chinese presentation decks into polished English, audit layout integrity, maintain glossary consistency, and produce handoff artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deck Pipeline helps an agent translate Chinese presentation decks into polished English, audit layout integrity, and produce handoff artifacts for review.
 
-## Publisher: <br>
-[tinadu-ai](https://clawhub.ai/user/tinadu-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tinadu-ai](https://clawhub.ai/user/tinadu-ai)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to run a structured deck globalization or polish-only workflow for PowerPoint presentations, including translation, layout audit, bilingual Excel review, and session handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can read and modify local presentation and spreadsheet files. <br>
-Mitigation: Run it on copies of important or confidential decks, confirm output paths before writes, and close PowerPoint or Excel before execution. <br>
-Risk: Automated layout checks cannot fully render slides and may miss visual issues. <br>
-Mitigation: Export the deck to PDF or images and review the relevant pages before relying on the final presentation. <br>
-Risk: Translation, glossary, and numeric-magnitude choices can introduce business meaning errors. <br>
-Mitigation: Review the bilingual diff workbook, confirm glossary decisions, and verify Chinese magnitude conversions before delivery. <br>
+## Use Case:
 
+Developers, consultants, and analysts use this skill to process presentation decks through a staged workflow for translation, McKinsey-style English polishing, layout audit, Excel comparison, reverse sync, and session handoff.
 
-## Reference(s): <br>
-- [Deck Pipeline release page](https://clawhub.ai/tinadu-ai/deck-pipeline) <br>
-- [DeckGlobalizer upstream credit](https://clawhub.ai/tinadu-ai/deckglobalizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON edit batches, PowerPoint files, Excel workbooks, and handoff Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and modify local .pptx and .xlsx files; users should run on copies and verify generated decks before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: Generated Excel audit files can contain active formulas from untrusted deck text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Open generated XLSX files in protected mode, treat source decks and edit JSON as trusted input, and review generated spreadsheets before using them.
+
+Risk: Processing decks from outside the organization can expose the workflow to untrusted document content.
+
+Mitigation: Review before installing for external deck workflows and install from a verified repository in a virtual environment with pinned dependencies.
+
+Risk: The skill's overflow checks are estimators and cannot render slides directly.
+
+Mitigation: Use PowerPoint or Keynote export to visually verify final decks, especially when many high-risk overflow findings are reported.
+
+## Reference(s):
+
+- [DeckGlobalizer](https://clawhub.ai/tinadu-ai/deckglobalizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON edit batches, shell commands, and generated PPTX/XLSX/HANDOFF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce translated or polished presentation files, comparison spreadsheets, layout-change spreadsheets, and handoff notes depending on the selected mode.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata; artifact frontmatter and changelog list 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

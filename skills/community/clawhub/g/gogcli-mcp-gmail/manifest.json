@@ -1,0 +1,358 @@
+{
+  "$schema": "https://raw.githubusercontent.com/anthropics/dxt/main/dist/mcpb-manifest.schema.json",
+  "manifest_version": "0.3",
+  "name": "gogcli-mcp-gmail",
+  "display_name": "gogcli (Gmail)",
+  "version": "4.12.0",
+  "description": "Extended Gmail for Claude via gogcli — auth + full Gmail support (threads, labels, drafts, attachments, forward, autoreply, bulk operations)",
+  "author": {
+    "name": "Chris Hall",
+    "email": "chris.c.hall@gmail.com",
+    "url": "https://github.com/chrischall"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrischall/gogcli-mcp"
+  },
+  "homepage": "https://github.com/chrischall/gogcli-mcp",
+  "support": "https://github.com/chrischall/gogcli-mcp/issues",
+  "license": "MIT",
+  "keywords": [
+    "google",
+    "gmail",
+    "email",
+    "gogcli",
+    "gog",
+    "threads",
+    "labels",
+    "drafts",
+    "autoreply"
+  ],
+  "server": {
+    "type": "node",
+    "entry_point": "dist/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/dist/index.js"
+      ],
+      "env": {
+        "GOG_ACCOUNT": "${user_config.gog_account}",
+        "GOG_PATH": "${user_config.gog_path}",
+        "GOG_FILE_ROOTS": "${user_config.gog_file_roots}",
+        "DISPLAY_TZ": "${user_config.display_tz}",
+        "GOG_GMAIL_TRUSTED_DOMAINS": "${user_config.gog_gmail_trusted_domains}",
+        "GOG_READONLY": "${user_config.gog_readonly}",
+        "GOG_TIMEZONE": "${user_config.gog_timezone}"
+      }
+    }
+  },
+  "user_config": {
+    "gog_account": {
+      "type": "string",
+      "title": "Google Account",
+      "description": "Default Google account email (optional — uses gogcli's configured default if omitted)",
+      "required": false
+    },
+    "gog_path": {
+      "type": "string",
+      "title": "gog Executable Path",
+      "description": "Path to the gog executable (optional — defaults to 'gog' on your PATH)",
+      "required": false
+    },
+    "gog_file_roots": {
+      "type": "string",
+      "title": "Allowed file directories",
+      "description": "Directories tools may read files from (attachments, uploads) or write files to (exports, downloads), separated by ':' (';' on Windows). Optional — defaults to ~/gogcli-mcp-files",
+      "required": false
+    },
+    "display_tz": {
+      "type": "string",
+      "title": "Display time zone",
+      "description": "zone for *Display fields and for interpreting naive gog values; defaults to America/New_York",
+      "required": false
+    },
+    "gog_gmail_trusted_domains": {
+      "type": "string",
+      "title": "Trusted Gmail domains",
+      "description": "additional domains excluded from external-recipient audit alerts",
+      "required": false
+    },
+    "gog_readonly": {
+      "type": "string",
+      "title": "Read-only mode",
+      "description": "block all mutating gog API requests (injects gog's --readonly); set to 0/false/no/off (or unset) to allow writes",
+      "required": false
+    },
+    "gog_timezone": {
+      "type": "string",
+      "title": "gog time zone",
+      "description": "zone gog formats naive dates in; unset, runner.ts hands gog DISPLAY_TZ so the two cannot diverge",
+      "required": false
+    }
+  },
+  "tools": [
+    {
+      "name": "gog_auth_add",
+      "description": "Authorize a Google account via browser-based OAuth"
+    },
+    {
+      "name": "gog_auth_health",
+      "description": "Live per-account token health: validity, age, and pre-expiry warnings (detects invalid_grant)"
+    },
+    {
+      "name": "gog_auth_add_url",
+      "description": "Begin remote/headless OAuth (step 1): return a sign-in URL to open in any browser"
+    },
+    {
+      "name": "gog_auth_add_complete",
+      "description": "Complete remote/headless OAuth (step 2): exchange the pasted redirect URL and store the token"
+    },
+    {
+      "name": "gog_auth_list",
+      "description": "List all Google accounts stored in gogcli"
+    },
+    {
+      "name": "gog_auth_status",
+      "description": "Show gogcli auth configuration"
+    },
+    {
+      "name": "gog_auth_services",
+      "description": "List Google services and OAuth scopes supported by gogcli"
+    },
+    {
+      "name": "gog_auth_run",
+      "description": "Run any gog auth subcommand (escape hatch)"
+    },
+    {
+      "name": "gog_gmail_search",
+      "description": "Search Gmail threads using Gmail query syntax; newest-first, and flags a truncated result set"
+    },
+    {
+      "name": "gog_gmail_get",
+      "description": "Get a Gmail message by ID"
+    },
+    {
+      "name": "gog_gmail_send",
+      "description": "Send an email, with attachments from server-side paths (attach) or from base64 bytes sent with the call (attachInline, for remote deployments with no shared filesystem)"
+    },
+    {
+      "name": "gog_gmail_run",
+      "description": "Run any gog gmail subcommand (escape hatch)"
+    },
+    {
+      "name": "gog_gmail_raw",
+      "description": "Dump raw Gmail API JSON for a message"
+    },
+    {
+      "name": "gog_gmail_attachment",
+      "description": "Download a Gmail attachment by 0-based attachmentIndex (or legacy attachmentId) and deliver its contents: an image inline, anything else as a server-side file path — or, on a hosted deployment, deliver=\"url\" for a signed link any HTTP client can fetch with no credential, or deliver=\"drive\" for a Drive link"
+    },
+    {
+      "name": "gog_gmail_url",
+      "description": "Print Gmail web URLs for one or more threads"
+    },
+    {
+      "name": "gog_gmail_history",
+      "description": "List Gmail history events since a historyId"
+    },
+    {
+      "name": "gog_gmail_archive",
+      "description": "Archive messages by IDs or by query"
+    },
+    {
+      "name": "gog_gmail_mark_read",
+      "description": "Mark messages as read by IDs or by query"
+    },
+    {
+      "name": "gog_gmail_mark_unread",
+      "description": "Mark messages as unread by IDs or by query"
+    },
+    {
+      "name": "gog_gmail_trash",
+      "description": "Move messages to trash by IDs or by query"
+    },
+    {
+      "name": "gog_gmail_message_modify",
+      "description": "Modify labels on a single message"
+    },
+    {
+      "name": "gog_gmail_batch_delete",
+      "description": "Permanently delete multiple messages (irreversible; requires force:true) (asks the user to confirm)"
+    },
+    {
+      "name": "gog_gmail_batch_modify",
+      "description": "Modify labels on multiple messages at once"
+    },
+    {
+      "name": "gog_gmail_thread_get",
+      "description": "Get a Gmail thread with all messages — the right tool when the threadId is already known"
+    },
+    {
+      "name": "gog_gmail_thread_modify",
+      "description": "Modify labels on all messages in a thread"
+    },
+    {
+      "name": "gog_gmail_thread_attachments",
+      "description": "List or download all attachments in a thread"
+    },
+    {
+      "name": "gog_gmail_labels_list",
+      "description": "List all Gmail labels"
+    },
+    {
+      "name": "gog_gmail_labels_get",
+      "description": "Get label details and counts"
+    },
+    {
+      "name": "gog_gmail_labels_create",
+      "description": "Create a new Gmail label"
+    },
+    {
+      "name": "gog_gmail_labels_rename",
+      "description": "Rename a Gmail label"
+    },
+    {
+      "name": "gog_gmail_labels_delete",
+      "description": "Delete a Gmail label"
+    },
+    {
+      "name": "gog_gmail_labels_modify",
+      "description": "Modify labels on one or more threads"
+    },
+    {
+      "name": "gog_gmail_drafts_list",
+      "description": "List Gmail drafts, annotated free with origin (api / non-api) and rootsOwnThread"
+    },
+    {
+      "name": "gog_gmail_drafts_get",
+      "description": "Get a Gmail draft by ID"
+    },
+    {
+      "name": "gog_gmail_drafts_create",
+      "description": "Create a new Gmail draft, with attachments from server-side paths (attach) or from base64 bytes sent with the call (attachInline, for remote deployments with no shared filesystem)"
+    },
+    {
+      "name": "gog_gmail_drafts_update",
+      "description": "Update an existing Gmail draft; re-thread it in place with replyToThreadId (same draft id) and verify the result via threadingVerification; forkSiblingDraftId refuses the write when the new body would drop text the named sibling copy still holds; a 404 is attributed to the draft id or to the reply target before it is reported Attachments come from server-side paths (attach) or from base64 bytes sent with the call (attachInline, for remote deployments with no shared filesystem)."
+    },
+    {
+      "name": "gog_gmail_drafts_delete",
+      "description": "Delete a Gmail draft"
+    },
+    {
+      "name": "gog_gmail_drafts_send",
+      "description": "Send an existing Gmail draft after the user confirms a preview of it; a 404 comes back diagnosed (DRAFT_FORKED, or GOOGLE_404_NOT_THE_DRAFT when the draft is still listed)"
+    },
+    {
+      "name": "gog_gmail_drafts_copy_to",
+      "description": "Send a review copy of a stored draft (subject + body) to other addresses without changing the draft (confirms first)"
+    },
+    {
+      "name": "gog_gmail_drafts_diff",
+      "description": "Diff two named drafts: what each body has that the other lost, how their threading differs, and (only on a link back to the original or on agreement over unquoted text, with evidence) whether one replaced the other"
+    },
+    {
+      "name": "gog_gmail_drafts_reply",
+      "description": "Save a reply to a Gmail message as a draft (inherited recipients, subject and quote; never sends) Attachments come from server-side paths (attach) or from base64 bytes sent with the call (attachInline, for remote deployments with no shared filesystem)."
+    },
+    {
+      "name": "gog_gmail_drafts_reply_all",
+      "description": "Save a reply-all to a Gmail message as a draft (never sends) Attachments come from server-side paths (attach) or from base64 bytes sent with the call (attachInline, for remote deployments with no shared filesystem)."
+    },
+    {
+      "name": "gog_gmail_drafts_forward",
+      "description": "Save a forward of a Gmail message as a draft; recipients are optional (never sends)"
+    },
+    {
+      "name": "gog_gmail_import",
+      "description": "Import an RFC822/EML message into the mailbox (keeps its original headers and date; does not send)"
+    },
+    {
+      "name": "gog_gmail_forward",
+      "description": "Forward a Gmail message to new recipients"
+    },
+    {
+      "name": "gog_gmail_reply",
+      "description": "Reply to a Gmail message (sender only) Attachments come from server-side paths (attach) or from base64 bytes sent with the call (attachInline, for remote deployments with no shared filesystem)."
+    },
+    {
+      "name": "gog_gmail_reply_all",
+      "description": "Reply to all participants of a Gmail message Attachments come from server-side paths (attach) or from base64 bytes sent with the call (attachInline, for remote deployments with no shared filesystem)."
+    },
+    {
+      "name": "gog_gmail_autoreply",
+      "description": "Reply once to all messages matching a Gmail search query"
+    },
+    {
+      "name": "gog_gmail_messages_search",
+      "description": "Search individual messages; newest-first, and flags a truncated result set"
+    },
+    {
+      "name": "gog_gmail_labels_style",
+      "description": "Change a user label's color or visibility"
+    },
+    {
+      "name": "gog_gmail_vacation_get",
+      "description": "Get the current vacation responder settings"
+    },
+    {
+      "name": "gog_gmail_vacation_update",
+      "description": "Enable, disable, or update the vacation responder (enabling asks the user to confirm)"
+    },
+    {
+      "name": "gog_gmail_filters_list",
+      "description": "List all Gmail filters"
+    },
+    {
+      "name": "gog_gmail_filters_get",
+      "description": "Get a single Gmail filter's criteria and actions"
+    },
+    {
+      "name": "gog_gmail_filters_create",
+      "description": "Create a Gmail filter with match criteria and actions (a forwarding filter asks the user to confirm)"
+    },
+    {
+      "name": "gog_gmail_filters_delete",
+      "description": "Delete a Gmail filter by ID"
+    },
+    {
+      "name": "gog_gmail_sendas_list",
+      "description": "List all send-as aliases for the account"
+    },
+    {
+      "name": "gog_gmail_sendas_get",
+      "description": "Get details of a single send-as alias"
+    },
+    {
+      "name": "gog_gmail_sendas_create",
+      "description": "Create a send-as alias (asks the user to confirm)"
+    },
+    {
+      "name": "gog_gmail_sendas_update",
+      "description": "Update a send-as alias or make it the default"
+    },
+    {
+      "name": "gog_gmail_sendas_delete",
+      "description": "Delete a send-as alias"
+    },
+    {
+      "name": "gog_gmail_sendas_verify",
+      "description": "Resend the verification email for a send-as alias"
+    },
+    {
+      "name": "gog_upload_slots",
+      "description": "Get signed upload URLs so a hosted (remote) server can receive files you hold; pass the returned blobKeys to the tool that takes the file"
+    }
+  ],
+  "compatibility": {
+    "platforms": [
+      "darwin",
+      "linux",
+      "win32"
+    ],
+    "runtimes": {
+      "node": ">=22.0.0"
+    }
+  }
+}

@@ -1,44 +1,60 @@
-## Description: <br>
-Connect to Komandr Command Center to receive tasks, report progress, and submit work results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to Komandr Command Center to receive tasks, report progress, and submit work results. Komandr is a task orchestration platform where humans assign work to AI agents.
 
-## Publisher: <br>
-[emersonaidev](https://clawhub.ai/user/emersonaidev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emersonaidev](https://clawhub.ai/user/emersonaidev)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect an OpenClaw agent to Komandr Command Center so the agent can receive assigned tasks, report status, and submit work results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A remote Komandr service can assign broad work to the agent and influence what actions it takes. <br>
-Mitigation: Use only a trusted Komandr instance, verify KOMANDR_URL before use, and review tasks before accepting or executing them. <br>
-Risk: Task results or artifacts may send work details, file contents, logs, or other sensitive data off-system. <br>
-Mitigation: Do not submit secrets, private source files, logs, customer data, or credentials unless the Komandr server is approved to receive them. <br>
-Risk: The bridge depends on npx tsx execution and a Komandr API key in the environment. <br>
-Mitigation: Preinstall or pin tsx and use a least-privilege API key for the agent. <br>
+## Use Case:
 
+Developers and external agent operators use Komandr to connect OpenClaw agents to a command center where humans assign tasks, monitor progress, and receive completed work results.
 
-## Reference(s): <br>
-- [Komandr Agent API Reference](references/api-reference.md) <br>
-- [Komandr default service URL](https://komandr.vercel.app) <br>
-- [ClawHub skill page](https://clawhub.ai/emersonaidev/komandr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires KOMANDR_API_KEY and may use KOMANDR_URL to select the Komandr instance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill connects to a remote task service whose task content may direct broad agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the Komandr server and task creators are trusted, and run the agent in a tightly sandboxed account.
+
+Risk: The bridge sends API credentials and task results to a configurable endpoint.
+
+Mitigation: Use only trusted HTTPS Komandr endpoints, keep API keys revocable, and avoid using the skill with sensitive repositories or secrets.
+
+Risk: Runtime dependencies and remote task instructions can affect the agent's execution path.
+
+Mitigation: Pin and review runtime dependencies, review tasks before execution when risk is unclear, and monitor submitted results.
+
+## Reference(s):
+
+- [Komandr Agent API Reference](references/api-reference.md)
+- [Komandr service endpoint](https://komandr.vercel.app)
+- [ClawHub skill page](https://clawhub.ai/emersonaidev/skills/komandr)
+- [Publisher profile](https://clawhub.ai/user/emersonaidev)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can submit structured result data and optional artifacts to Komandr.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

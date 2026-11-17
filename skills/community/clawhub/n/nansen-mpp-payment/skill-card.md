@@ -1,45 +1,54 @@
-## Description: <br>
-Pay-per-call access to the Nansen API via MPP (Tempo) for users who want anonymous Nansen access without an API key while using the separate tempo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pay-per-call access to the Nansen API via MPP (Tempo). Use when a user wants anonymous Nansen access without an API key and without managing their own Base/Solana wallet — they install the tempo CLI separately and call the API through `tempo request`.
 
-## Publisher: <br>
-[nansen-devops](https://clawhub.ai/user/nansen-devops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nansen-devops](https://clawhub.ai/user/nansen-devops)
 
-## Use Case: <br>
-External developers and agents use this skill to set up Tempo and make paid Nansen API requests through `tempo request` when API-key authentication or local-wallet x402 is not desired. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides use of a funded Tempo payment wallet for paid Nansen API calls. <br>
-Mitigation: Use the skill only when the user trusts Tempo, keep a limited wallet balance, and confirm before running paid requests. <br>
-Risk: The setup flow uses an external Tempo installer. <br>
-Mitigation: Prefer Tempo's official installation guidance and use available checksums, signatures, or pinned releases before installation. <br>
-Risk: MPP support is server-side opt-in and may not be available for every endpoint or environment. <br>
-Mitigation: Check the paid endpoint discovery response and fall back to an API key or x402 when MPP is unavailable. <br>
+## Use Case:
 
+Developers and analysts use the skill to make paid Nansen API requests through Tempo MPP when they want to avoid an API key or managing a Base or Solana wallet.
 
-## Reference(s): <br>
-- [Tempo docs](https://docs.tempo.xyz) <br>
-- [MPP protocol](https://mpp.dev/protocol) <br>
-- [Nansen CLI npm package](https://www.npmjs.com/package/nansen-cli) <br>
-- [Nansen paid endpoint discovery](https://api.nansen.ai/.well-known/x402) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, API Calls] <br>
-**Output Format:** [Markdown with inline bash code blocks and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend paid requests through Tempo; users should confirm wallet funding and endpoint support before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The setup instructions pipe a downloaded Tempo installer directly into a shell without verifying its signature or checksum, creating supply-chain and code-execution risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Consider avoiding installation until the CLI installer can be verified through a trusted signature or checksum, or install the CLI separately from the skill. The scan was partial because a referenced local path was missing, so related behavior may not have been fully inspected.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/nansen-devops/skills/nansen-mpp-payment)
+- [Tempo documentation](https://docs.tempo.xyz)
+- [MPP protocol](https://mpp.dev/protocol)
+- [Nansen CLI package](https://www.npmjs.com/package/nansen-cli)
+- [Nansen CLI source repository (linked in the skill)](https://github.com/nansen-ai/nansen-cli)
+- [Nansen paid endpoint discovery](https://api.nansen.ai/.well-known/x402)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Endpoint paths and request bodies depend on the selected Nansen API operation; paid requests incur per-request charges.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

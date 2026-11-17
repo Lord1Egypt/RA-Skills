@@ -1,46 +1,64 @@
-## Description: <br>
-小红书账号榜单追踪分析工具，支持查询日榜、周榜、月榜 TOP50 排名和热门账号。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书账号榜单追踪分析工具，支持查询日榜周榜月榜TOP50排名和热门账号
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-Content creators, brands, MCN teams, and analysts use this skill to query Xiaohongshu account rankings, filter by niche, generate ranking reports, and optionally schedule ranking updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires REDFOX_API_KEY and sends authenticated requests to RedFox's Xiaohongshu ranking API. <br>
-Mitigation: Install only if you trust RedFox with the key, keep the key in the environment, and avoid exposing it in prompts, logs, or output files. <br>
-Risk: The skill can create recurring ranking reminders when the user asks for subscriptions. <br>
-Mitigation: Review each subscription before confirming it and cancel recurring reminders when automated ranking pushes are no longer wanted. <br>
-Risk: Generated HTML reports are local files and may load a CDN script when opened for image export. <br>
-Mitigation: Open generated reports only in an environment where loading that external script is acceptable. <br>
+## Use Case:
 
+Brand and MCN operators, Xiaohongshu creators, and content researchers use this skill to query daily, weekly, or monthly Xiaohongshu TOP 50 account rankings by category, generate shareable HTML reports, and optionally set recurring ranking updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/xiaohongshu-rank-tracker) <br>
-- [RedFox publisher profile](https://clawhub.ai/user/redfox-data) <br>
-- [API documentation](artifact/references/api_docs.md) <br>
-- [Score rules](artifact/references/score_rules.md) <br>
-- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, API Calls, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown ranking tables, local HTML reports, and concise setup or subscription guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY for ranking API calls; HTML reports are local workspace files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill requires a RedFox API key and calls an external ranking API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the API key source, scope, validity period, and revocation path, and keep the key out of prompts, logs, code, and generated outputs.
+
+Risk: Generated HTML reports are active web pages and may contain external account links.
+
+Mitigation: Open only reports generated from trusted data and review profile links before following or sharing them.
+
+Risk: Optional subscriptions can create recurring ranking pushes.
+
+Mitigation: Confirm the requested schedule and cancellation path before enabling a recurring subscription.
+
+Risk: The release security verdict is suspicious because report generation and subscription behavior require review.
+
+Mitigation: Review the skill before installing or enabling automation, following the release security guidance.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/redfox-data/skills/xiaohongshu-rank-tracker)
+- [Xiaohongshu Ranking API Documentation](references/api_docs.md)
+- [Xiaohongshu Account Scoring Rules](references/score_rules.md)
+- [RedFox API Key Settings](https://redfox.hk/settings/api-keys?source=clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown ranking tables with optional downloadable HTML report files and JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REDFOX_API_KEY; HTML reports may include Xiaohongshu profile links and client-side export controls.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

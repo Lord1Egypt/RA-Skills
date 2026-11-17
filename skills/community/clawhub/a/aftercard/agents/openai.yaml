@@ -1,0 +1,11 @@
+interface:
+  display_name: Aftercard
+  short_description: Purchasing, payments and saved details through Aftercard
+  default_prompt: Use $aftercard for this purchasing or payment task.
+dependencies:
+  tools:
+    - type: mcp
+      value: aftercard
+      description: Aftercard remote MCP
+      transport: streamable_http
+      url: https://mcp.aftercard.ai/mcp

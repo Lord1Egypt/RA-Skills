@@ -1,42 +1,56 @@
-## Description: <br>
-Creates or updates fine-grained yes/no judge definitions for an agent skill evaluation YAML config by analyzing a skill's SKILL.md and reference files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when creating or updating test judgement definitions for an agent skill evaluation YAML config by analyzing a skill's SKILL.md and reference files to produce fine-grained yes/no judge questions with scope tags.
 
-## Publisher: <br>
-[panlm](https://clawhub.ai/user/panlm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panlm](https://clawhub.ai/user/panlm)
 
-## Use Case: <br>
-Developers and evaluation engineers use this skill to generate or maintain mlflow-skills judge_definitions for testing agent skill behavior. It helps identify execution scopes, draft one-requirement-per-judge checks, and write or update YAML after user review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated judge definitions or scope choices may be incomplete, duplicated, or misleading for the target skill. <br>
-Mitigation: Review the proposed scopes and generated judgements before approving YAML changes. <br>
-Risk: Generated evaluation configuration may reference sensitive credential variables such as API keys. <br>
-Mitigation: Keep real credentials in environment variables or a secret manager, and review the exact YAML path before approving writes. <br>
+## Use Case:
 
+Developers and engineers use this skill to create or update evaluation YAML for agent skills, especially the judge_definitions used by the mlflow-skills automated evaluation framework. It helps turn skill workflows, behavioral rules, and output requirements into scoped LLM judge questions.
 
-## Reference(s): <br>
-- [Judgement Writing Patterns](references/judgement-patterns.md) <br>
-- [YAML Config Specification](references/yaml-config-spec.md) <br>
-- [mlflow-skills](https://github.com/panlm/mlflow-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown discussion plus YAML configuration content or YAML file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before finalizing scopes, judgements, and file writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated evaluation YAML may include incorrect judge definitions or environment fields if the reviewed skill is misunderstood.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the inferred scopes, judge definitions, and generated environment fields before approving any YAML write.
+
+Risk: Committed YAML files can accidentally contain real API keys or other secrets.
+
+Mitigation: Keep generated environment placeholders empty and use local environment variables or secret management for actual credentials.
+
+## Reference(s):
+
+- [Judgement Writing Patterns](artifact/references/judgement-patterns.md)
+- [YAML Config Specification](artifact/references/yaml-config-spec.md)
+- [mlflow-skills](https://github.com/panlm/mlflow-skills)
+- [ClawHub Skill Page](https://clawhub.ai/panlm/skills/generate-judgements)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Configuration]
+
+**Output Format:** [Markdown discussion with YAML judge_definitions or updated evaluation YAML]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill asks for user confirmation before finalizing scopes and before writing or updating YAML.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

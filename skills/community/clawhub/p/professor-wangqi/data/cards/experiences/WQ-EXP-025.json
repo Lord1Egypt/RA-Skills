@@ -1,0 +1,209 @@
+{
+  "card_id": "WQ-EXP-025",
+  "source_type": "clinical_experience",
+  "source_file": "王琦运用主病主方论治慢性前列腺炎经验_董阳.pdf",
+  "title": "临床经验",
+  "authors": [
+    "董阳"
+  ],
+  "year": 2023,
+  "language": "zh",
+  "experience_type": "treatment_method",
+  "clinical_focus": {
+    "disease": "",
+    "syndrome": "",
+    "constitution": []
+  },
+  "diagnostic_approach": {
+    "key_points": "辨体加减。"
+  },
+  "treatment_approach": {
+    "main_formula": "",
+    "related_formulas": [],
+    "principle": "清热利湿、活血化瘀、疏肝解郁",
+    "herbs": [
+      "当归",
+      "柴胡",
+      "茯苓",
+      "甘草"
+    ]
+  },
+  "case_studies": [],
+  "clinical_insights": "为慢性前列腺炎的主导病机，临床运用“主病主方”思想，以当归贝母苦参丸合复元活血汤加减为主方治疗慢性前列腺炎，用药时兼顾体质，并辨体加减。 为通治之方”。王琦据此认为主病主方是针对疾病全程主导病机的方剂。主病主方的精髓在于审明主导病机，把握疾病走向，结合患者体质，兼顾症候群组综合分析。 体质，对症治疗。笔者现将王琦运用主病主方思想治疗慢性前列腺炎的经验介绍如下。",
+  "knowledge_points": [
+    {
+      "category": "insight",
+      "content": "王琦认为体质是疾病发生的“土壤”，疾病发病倾向、转归与患者体质密不可分",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "针对体质状态，因人制宜的灵活治疗即是治病求本的具体体现 ［５］",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "王琦发现慢性前列腺炎患者的体质以湿热、血瘀、气郁体质最为多见",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "辨证要点：辨体加减。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "治疗原则为清热利湿、活血化瘀、疏肝解郁。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "常用药物包括当归、柴胡、茯苓、甘草。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "为慢性前列腺炎的主导病机，临床运用“主病主方”思想，以当归贝母苦参丸合复元活血汤加减为主方治疗慢性前列腺炎，用药时兼顾体质，并辨体加减",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "王琦据此认为主病主方是针对疾病全程主导病机的方剂",
+      "importance": "high",
+      "evidence_level": "C"
+    }
+  ],
+  "related_constitutions": [
+    "湿热质",
+    "血瘀质",
+    "气郁质"
+  ],
+  "related_diseases": [
+    "失眠"
+  ],
+  "evidence_sentences": [
+    {
+      "sentence": "王琦认为体质是疾病发生的“土壤”，疾病发病倾向、转归与患者体质密不可分",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    },
+    {
+      "sentence": "针对体质状态，因人制宜的灵活治疗即是治病求本的具体体现 ［５］",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    },
+    {
+      "sentence": "王琦发现慢性前列腺炎患者的体质以湿热、血瘀、气郁体质最为多见",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    }
+  ],
+  "research_focus": {
+    "constitution_type": [
+      "湿热质",
+      "血瘀质",
+      "气郁质"
+    ],
+    "disease": [
+      "失眠"
+    ],
+    "topic": []
+  },
+  "page_info": {
+    "total_pages": 3,
+    "sections": {
+      "abstract": {
+        "start": 1,
+        "end": 3
+      }
+    }
+  },
+  "created_at": "2026-04-22T15:38:14.006264",
+  "methods": {
+    "sample_size": 125
+  },
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "doi": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 2,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.585051",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.585059"
+  }
+}

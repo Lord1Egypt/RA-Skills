@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "title-optimizer",
+  "workflow": "listing",
+  "focus": "title",
+  "outputTemplate": "ops_listing",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ]
+}

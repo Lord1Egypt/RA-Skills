@@ -1,45 +1,65 @@
-## Description: <br>
-Sticker Manager helps an OpenClaw agent save, search, tag, rename, clean up, collect, import, and recommend local stickers or reaction images across JPG, JPEG, PNG, WEBP, and GIF files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sticker Manager helps agents save, search, tag, rename, clean up, collect, import, recommend, and prepare media-sending workflows for local sticker and reaction-image libraries.
 
-## Publisher: <br>
-[zhuwenzhuang](https://clawhub.ai/user/zhuwenzhuang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuwenzhuang](https://clawhub.ai/user/zhuwenzhuang)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to manage a local sticker library, resolve matching media files, and prepare model-oriented tagging or recommendation payloads for chat workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says some file and data-handling paths are not safely scoped. <br>
-Mitigation: Install and run with supervision, keep sticker directories dedicated to non-sensitive media, and avoid path-like names when deleting or renaming. <br>
-Risk: Remote discovery and collection can involve untrusted or internal URLs. <br>
-Mitigation: Review source lists before collection, avoid untrusted or internal URLs, and use active URL fetching only when the source is expected and safe. <br>
-Risk: Auto-tagging and context recommendation may expose local paths or message text. <br>
-Mitigation: Do not pass sensitive files or chat histories, and review generated recommendations or tagging payloads before sharing or storing them. <br>
+## Use Case:
 
+External users and developers use this skill to manage local sticker and reaction-image libraries, including saving inbound media, finding matching stickers, adding semantic metadata, importing batches, collecting candidate sources, and preparing recommendations for an outer agent or model layer.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhuwenzhuang/sticker-manager) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, file paths, and JSON or structured marker payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return resolved local media paths, import or collection summaries, semantic tagging plans, and context recommendation candidates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata and CHANGELOG.md) <br>
+Risk: Supplied names or paths may reach outside the intended sticker library during rename or delete operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain file operations to the configured sticker library, normalize and validate paths before mutation, and review rename/delete behavior before deployment.
+
+Risk: Remote URL fetching can access unsafe or unintended destinations when source discovery or collection is enabled.
+
+Mitigation: Restrict fetching to safe public destinations, require explicit fetch actions, and enforce network, size, and content validation limits.
+
+Risk: Sticker collection and image processing can consume excessive resources or save invalid media without bounded validation.
+
+Mitigation: Apply download size limits, image validation, deduplication, low-quality filtering, and animated-file checks before importing or sending media.
+
+Risk: Context-based recommendation can process sensitive chat histories.
+
+Mitigation: Use the feature only on chat histories appropriate for processing and avoid passing private or sensitive conversation content unless approved.
+
+Risk: Unpinned dependencies reduce reproducibility across installs.
+
+Mitigation: Pin dependency versions before production use and rerun the security review after dependency changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuwenzhuang/skills/sticker-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, resolved file paths, JSON-like handoff markers, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return model-planning markers for semantic tagging, recommendation, history analysis, and vision fallback flows.]
+
+## Skill Version(s):
+
+0.3.0 (source: evidence.release.version and CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

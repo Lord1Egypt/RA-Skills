@@ -1,47 +1,54 @@
-## Description: <br>
-Beehiiv connector for reading, creating, and updating Beehiiv data through an OOMOL-connected account instead of direct API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read Beehiiv posts, publications, and subscriptions through a connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate Beehiiv publications, posts, and subscriptions through the OOMOL connector with live schema inspection before each action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Beehiiv subscriber lists, publication data, and draft or post content may be sensitive and are handled through the OOMOL connector. <br>
-Mitigation: Install and use the skill only when OOMOL is an intended connector, and treat returned Beehiiv data as sensitive. <br>
-Risk: Write or destructive actions can change or remove Beehiiv data if an incorrect payload is sent. <br>
-Mitigation: Inspect the live connector schema, review the exact payload and expected effect, and get explicit user confirmation before state-changing or destructive actions. <br>
-Risk: Unneeded setup or account connection commands can expose unnecessary account or billing workflow risk. <br>
-Mitigation: Run one-time CLI installation, sign-in, and Beehiiv connection steps only when a command fails for the corresponding setup reason. <br>
+## Use Case:
 
+An agent uses this skill to retrieve Beehiiv posts, publication details, and subscription records for people managing a Beehiiv account.
 
-## Reference(s): <br>
-- [Beehiiv ClawHub listing](https://clawhub.ai/oomol/oo-beehiiv) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [Beehiiv homepage](https://www.beehiiv.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [Beehiiv connection settings](https://console.oomol.com/app-connections?provider=beehiiv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses are JSON objects with data and meta.executionId fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server evidence and artifact metadata) <br>
+Risk: CLI recovery may run a changing remote installer without a clear approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, use a pinned and verified release, and keep the Beehiiv connection appropriately scoped.
+
+Risk: The connected account can provide access to subscriber data.
+
+Mitigation: Use an appropriately scoped Beehiiv connection and retrieve only the data needed for the task.
+
+## Reference(s):
+
+- [Beehiiv API documentation](https://developers.beehiiv.com/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text, Guidance]
+
+**Output Format:** [JSON data with concise text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returned fields depend on the selected Beehiiv read action.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

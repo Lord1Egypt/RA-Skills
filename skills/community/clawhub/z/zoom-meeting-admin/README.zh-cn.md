@@ -15,6 +15,14 @@
 
 ## 凭证配置
 
+> ⚠️ **`.env` 中的 `ZOOM_CLIENT_SECRET` 等同于账户管理员口令。** 持有 `ACCOUNT_ID + CLIENT_ID + CLIENT_SECRET` 三元组即可换取 1 小时有效的账户级访问令牌，**能读取该账户下所有会议元数据、云录像，并执行删除等破坏性操作**。
+>
+> - 千万不要把 `.env` 提交到 git。确认你的 IDE、备份工具、文件同步服务（iCloud / Dropbox / OneDrive / 坚果云）没有自动上传该文件。
+> - `chmod 600 .env`。脚本缓存的 token 文件 `~/.zoom-s2s-token.json` 由脚本自动 `chmod 600`。
+> - **按需开通最小 scope**（见下表）。未用到的功能不要勾选对应权限；不要轻易开启 `meeting:write:delete`、`cloud_recording:read:*`、`user:read:list_users`。
+> - 为本 Skill **单独创建一个** Server-to-Server App，不要复用其他业务 App 的凭据。
+> - 一旦泄露：在 Zoom Marketplace 删除该 App → 重新创建并轮换四项值 → `rm -f ~/.zoom-s2s-token.json` 强制重新认证。
+
 编辑 `.env` 文件，填入你的 Zoom Server-to-Server OAuth App 凭证：
 
 ```env
@@ -73,6 +81,6 @@ zoom-s2s-oauth/
 | 协议 | MCP (JSON-RPC) | 标准 REST (Python 无外部依赖) |
 | Token | User-Managed OAuth | Server-to-Server OAuth |
 | 复杂度 | 高 (代理+OAuth) | 低 (直接调) |
-| 功能 | Zoom MCP 工具集 | 所有 Zoom REST API |
+| 功能 | Zoom MCP 工具集 | 7 个白名单 CLI action（list/get/create/delete meeting、get/list user、list recordings） |
 
 如果你只需要调用 Zoom 会议/录像等核心功能，Server-to-Server REST 方式更简单。

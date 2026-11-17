@@ -1,0 +1,13 @@
+{
+  "name": "novel-review-score",
+  "version": "1.0.2",
+  "description": "由 AI 按文本证据完成中文小说六维审稿；脚本仅校验并排版结果。",
+  "private": false,
+  "license": "MIT-0",
+  "scripts": {
+    "test": "python3 scripts/self_test.py self-test"
+  },
+  "engines": {
+    "python": ">=3.9"
+  }
+}

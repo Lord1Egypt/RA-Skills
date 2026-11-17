@@ -1,0 +1,114 @@
+/* ================================================================
+   html-slides 品牌预设:Airbnb 风(brand-airbnb)
+   珊瑚暖、亲和 —— 消费/社区/文旅(浅态原生)
+   色值来源:VoltAgent/awesome-design-md, MIT(品牌名仅描述风格灵感,与品牌方无关)
+   用法:复制本文件覆盖项目 assets/theme.css(变量名与默认完全一致)
+   ================================================================ */
+
+:root {
+  /* 主色:Rausch 珊瑚红系 */
+  --brand-primary: #FF385C;         /* Rausch Red */
+  --lenovo-red: var(--brand-primary);   /* 别名(向后兼容,169 处历史引用) */
+  --brand-primary-dark: #E00B41;    /* Deep Rausch(官方按下态) */
+  --lenovo-red-dark: var(--brand-primary-dark);   /* 别名(向后兼容,169 处历史引用) */
+  --brand-dark: #222222;          /* Near Black(深色段) */
+  --deep-navy: var(--brand-dark);   /* 别名(向后兼容,169 处历史引用) */
+  --brand-dark-soft: #3F3F3F;    /* Focused Gray(深色面) */
+  --deep-navy-light: var(--brand-dark-soft);   /* 别名(向后兼容,169 处历史引用) */
+  --charcoal: #1A1A1A;
+  --charcoal-soft: #2C2C2C;
+
+  /* 白+灰系(承载) */
+  --white: #FFFFFF;
+  --off-white: #F7F7F7;
+  --card-bg: #FFFFFF;
+  --text-primary: #222222;       /* Near Black(暖调) */
+  --text-secondary: #6A6A6A;     /* Secondary Gray */
+  --text-tertiary: #929292;      /* Link Disabled */
+  --border-light: #EBEBEB;       /* 推导:Border Gray 同族更浅 */
+  --border-medium: #C1C1C1;      /* Border Gray */
+
+  /* 深色底上的浅色文字(预算混合) */
+  --on-navy-text: #FFFFFF;
+  --on-navy-sub: #DBDBDB;
+  --on-navy-dim: #B8B8B8;
+
+  /* 代码块 */
+  --code-bg: #0F1419;
+  --code-text: #E8E8E8;
+  --code-highlight: #FFD966;
+  --code-comment: #7A8B99;
+
+  /* 信号色(跨预设一致) */
+  --signal-green: #00A651;
+  --signal-yellow: #F9A825;
+  --signal-blue: #1976D2;
+  --signal-red: #E2232A;
+  --signal-gray: #757575;
+
+  /* 强调:Legal Blue(信息蓝,珊瑚的冷对比) */
+  --accent-orange: #428BFF;
+  /* ── 色板梯级(第九轮 P1 自动生成:tools/gen-ladder.js;勿手改值)────── */
+  --brand-primary-soft: #FFDDE3;      /* --brand-primary @17% · 主色浅底:徽章/高亮格/热力中档 */
+  --brand-primary-pale: #FFEFF2;      /* --brand-primary @8% · 主色最浅底:提示条/斑马纹 */
+  --brand-dark-pale: #EDEDED;         /* --brand-dark @8% · 深底浅化:卡片浅底/浅色分区 */
+  --brand-dark-tint: #CECECE;         /* --brand-dark @22% · 深底中浅:表头底纹/分层底 */
+  --brand-dark-mid: #858585;          /* --brand-dark @55% · 深底中间层:金字塔/漏斗中段 */
+  --ink-soft: #646464;                /* --text-primary @70% · 中性深灰:次级文字/较重分隔线 */
+  --ink-faint: #919191;               /* --text-primary @50% · 中性中灰:弱化文字/网格线 */
+  --surface-sunken: #F6F6F6;          /* --text-primary @4% · 下沉面:浅灰面板底(区别于画布底) */
+  --signal-green-soft: #D6F1E3;       /* --signal-green @16% · 语义浅底:达成/正向格 */
+  --signal-yellow-soft: #FEF1DC;      /* --signal-yellow @16% · 语义浅底:预警/中档格 */
+  --signal-red-soft: #FADCDD;         /* --signal-red @16% · 语义浅底:风险/未达格 */
+  --signal-blue-soft: #DAE9F8;        /* --signal-blue @16% · 语义浅底:信息/参照格 */
+  /* ── 色板梯级结束 ── */
+
+
+  /* 字体 */
+  --font-cn: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+  --font-en: "Inter", -apple-system, "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Code", "SF Mono", Consolas, monospace;
+
+  /* ── 版面分区与间距(2026-08-02 设计总纲;与默认 theme.css 保持一致) ── */
+  --zone-header-top: 60px;
+  --zone-content-top: 320px;
+  --zone-content-bottom: 940px;
+  --zone-footer-top: 980px;
+  --page-margin: 100px;
+  --content-width: 1720px;
+  --space-block: 60px;
+  --space-item: 40px;
+  --space-item-tight: 24px;
+
+  /* ── 字号阶(演讲档基准;混合/阅读档按 design-principles.md 字号阶等比) ── */
+  --text-cover: 104px;
+  --text-title-page: 60px;
+  --text-title-block: 32px;
+  --text-body: 24px;
+  --text-note: 16px;
+  --text-floor: 14px;
+}
+
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { margin: 0; padding: 0; overflow: hidden; }
+
+body {
+  font-family: var(--font-cn);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 画布:转换器只认 1920x1080 + relative + hidden */
+.slide-container {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: var(--off-white);
+  font-family: var(--font-cn);
+}
+
+/* 数字/西文用 Inter(表格数字、页码等,可加 class="num") */
+.num { font-family: var(--font-en); font-feature-settings: "tnum"; }

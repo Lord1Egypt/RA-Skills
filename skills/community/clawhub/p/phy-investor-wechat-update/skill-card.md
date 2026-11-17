@@ -1,41 +1,51 @@
-## Description: <br>
-Drafts concise WeChat investor updates for angel- and seed-stage founders across regular progress updates, good-news announcements, and help requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts concise WeChat investor updates for angel- and seed-stage founders, covering routine progress updates, good-news announcements, requests for help, and investor referral asks.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-External founders and startup teams use this skill to draft short, copy-ready WeChat messages for investors, including monthly updates, milestone announcements, specific asks, and double opt-in introduction requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated investor updates may contain inaccurate metrics, financial details, names, or requests if the user provides incomplete or incorrect inputs. <br>
-Mitigation: Review and verify all metrics, financial details, names, and asks before sending the message. <br>
-Risk: Broad trigger phrases such as good-news sharing or help requests may activate the skill when the user intended a different writing task. <br>
-Mitigation: Confirm the intended investor-update scenario before relying on the generated draft. <br>
+## Use Case:
 
+External early-stage founders use this skill to draft short, professional investor WeChat messages for monthly or quarterly updates, milestone announcements, help requests, and double opt-in referral requests.
 
-## Reference(s): <br>
-- [Canlah AI](https://canlah.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/PHY041/phy-investor-wechat-update) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Plain text WeChat message draft] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts the user for scenario and details, then outputs concise copy-ready message text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Investor updates may include sensitive business details such as revenue, runway, customer names, fundraising details, or referral asks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated message before sending and remove or correct any sensitive, inaccurate, or premature business details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-investor-wechat-update)
+- [Publisher profile](https://clawhub.ai/user/phy041)
+- [Canlah AI homepage](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Markdown message draft]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Directly copyable WeChat message text, usually under 300 Chinese characters, with concise sections, optional emoji separators, and optional [可分段] markers.]
+
+## Skill Version(s):
+
+1.0.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

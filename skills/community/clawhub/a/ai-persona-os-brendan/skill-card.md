@@ -1,48 +1,65 @@
-## Description: <br>
-AI Persona OS helps OpenClaw agents create and operate a local persona workspace with SOUL.md profiles, memory files, heartbeat checks, preset assistants, persona galleries, and optional automation templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Persona OS helps OpenClaw agents set up and operate a persistent persona workspace with identity, memory, heartbeat checks, security guidance, escalation routines, templates, and optional scheduling support.
 
-## Publisher: <br>
-[earlvanze](https://clawhub.ai/user/earlvanze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earlvanze](https://clawhub.ai/user/earlvanze)
 
-## Use Case: <br>
-External users and developers use this skill to bootstrap and maintain an OpenClaw workspace with persona identity, memory, operating rules, status checks, escalation patterns, and guided persona selection. It is intended for local assistant customization and recurring operational hygiene rather than model training. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores broad personal and work context in local workspace memory files and can resurface or modify that context during assistant operation. <br>
-Mitigation: Keep secrets, credentials, sensitive HR/legal/financial details, and unnecessary personal information out of USER.md and MEMORY.md; review archive, prune, rewrite, and memory changes before approval. <br>
-Risk: Optional cron, heartbeat override, Discord or gateway configuration, email/calendar access, and channel scans can broaden what the agent reads or changes. <br>
-Mitigation: Require the agent to show exactly what it will read or change before enabling optional automation or external integrations, and confirm each external action explicitly. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to configure an OpenClaw workspace with reusable persona files, memory conventions, operating rules, and optional automation templates for ongoing agent work.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/earlvanze/ai-persona-os-brendan) <br>
-- [Author homepage](https://jeffjhunter.com) <br>
-- [AI Persona Method](https://aipersonamethod.com) <br>
-- [SOUL.md Maker reference](references/soul-md-maker.md) <br>
-- [Heartbeat automation reference](references/heartbeat-automation.md) <br>
-- [Never-forget protocol reference](references/never-forget-protocol.md) <br>
-- [Proactive playbook reference](references/proactive-playbook.md) <br>
-- [Security patterns reference](references/security-patterns.md) <br>
-- [Security note](SECURITY_NOTE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands, generated workspace files, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Core setup writes local Markdown workspace state under ~/workspace; cron jobs and gateway changes are optional and require explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.3 (source: frontmatter and server release evidence) <br>
+Risk: Workspace memory files may store sensitive user or project context over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep credentials and sensitive material out of ~/workspace, review generated memory files, and use the skill only in workspaces with clear ownership controls.
+
+Risk: The included security-audit workflow may surface credential-like strings in command output.
+
+Mitigation: Review audit results locally and avoid sharing raw output unless it has been checked for secrets.
+
+Risk: Optional scheduled reports or heartbeat automation can expose private workspace summaries if sent to unverified destinations.
+
+Mitigation: Prefer local, non-delivering cron jobs and enable delivery integrations only after verifying destination, audience, and access controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/earlvanze/skills/ai-persona-os-brendan)
+- [Publisher profile](https://clawhub.ai/user/earlvanze)
+- [Soul MD Maker reference](references/soul-md-maker.md)
+- [Heartbeat automation reference](references/heartbeat-automation.md)
+- [Never forget protocol reference](references/never-forget-protocol.md)
+- [Proactive playbook reference](references/proactive-playbook.md)
+- [Security patterns reference](references/security-patterns.md)
+- [Author homepage](https://jeffjhunter.com)
+- [AI Persona Method](https://aipersonamethod.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and workspace file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Core setup writes local Markdown workspace files under ~/workspace; optional cron and gateway actions require explicit user opt-in.]
+
+## Skill Version(s):
+
+1.6.3 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

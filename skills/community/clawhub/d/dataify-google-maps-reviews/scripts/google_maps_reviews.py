@@ -12,6 +12,11 @@ import sys
 import urllib.error
 import urllib.parse
 import urllib.request
+
+TASK_RUNTIME_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "dataify-task-operations", "scripts"))
+if TASK_RUNTIME_DIR not in sys.path:
+    sys.path.insert(0, TASK_RUNTIME_DIR)
+from task_runtime import complete_task, extract_task_id
 from typing import Any
 
 
@@ -27,7 +32,7 @@ DEFAULT_URL = (
 DEFAULT_DAYS_LIMIT = "20"
 TOKEN_MISSING_MESSAGE = (
     "Missing Dataify API token. Provide a token, or log in/register at "
-    "https://dashboard.dataify.com/login?utm_source=skill. If you already have one, open "
+    "https://dashboard.dataify.com/login?utm_source=skill. New accounts receive 50 free credits. If you already have one, open "
     "https://dashboard.dataify.com?utm_source=skill and copy the API TOKEN from the top-right area."
 )
 
@@ -44,13 +49,15 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Create Dataify Google Maps review collection tasks.")
     parser.add_argument("--parameters-json", help="JSON object or array for spider_parameters.")
     parser.add_argument("--url")
-    parser.add_argument("--days-limit", dest="days_limit")
+    parser.add_argument("--days-limit", dest="days_limit", default=DEFAULT_DAYS_LIMIT)
     parser.add_argument("--file-name", default="{{TasksID}}")
     parser.add_argument("--spider-id", default=SPIDER_ID)
     parser.add_argument("--spider-errors", default="true")
     parser.add_argument("--token", help="Dataify API token. Bearer prefix is optional.")
     parser.add_argument("--timeout", type=float, default=120.0)
     parser.add_argument("--dry-run", action="store_true", help="Print normalized form data without calling the API.")
+    parser.add_argument("--no-wait", action="store_true", help="Return after submission without waiting for the final result.")
+    parser.add_argument("--wait-timeout", type=float, default=600, help="Maximum final-result wait in seconds.")
     return parser.parse_args()
 
 
@@ -93,7 +100,7 @@ def clean_value(value: Any) -> str | None:
 
 
 def normalize_days_limit(value: Any) -> str:
-    text = clean_value(value) or DEFAULT_DAYS_LIMIT
+    text = clean_value(value)
     if not re.fullmatch(r"\d+", text):
         raise SystemExit("days_limit must be a non-negative integer string.")
     return text
@@ -104,14 +111,14 @@ def build_parameter_sets(args: argparse.Namespace) -> list[dict[str, str]]:
     if provided_sets is None:
         provided_sets = [
             {
-                "url": clean_value(args.url) or DEFAULT_URL,
-                "days_limit": clean_value(args.days_limit) or DEFAULT_DAYS_LIMIT,
+                "url": clean_value(args.url),
+                "days_limit": clean_value(args.days_limit),
             }
         ]
 
     normalized_sets: list[dict[str, str]] = []
     for item in provided_sets:
-        url = clean_value(item.get("url")) or DEFAULT_URL
+        url = clean_value(item.get("url"))
         days_limit = normalize_days_limit(item.get("days_limit"))
         if not url:
             raise SystemExit("Missing required field: url")
@@ -171,7 +178,21 @@ def main() -> int:
         print(json.dumps(form, ensure_ascii=False, indent=2))
         return 0
     token = normalize_token(args.token)
-    print(call_api(form, token, args.timeout))
+    response_text = call_api(form, token, args.timeout)
+    if args.no_wait:
+        print(response_text)
+        return 0
+    task_id = extract_task_id(response_text)
+    if not task_id:
+        print("Builder response did not contain a task_id; cannot wait for a final result.", file=sys.stderr)
+        print(response_text)
+        return 1
+    try:
+        final_result = complete_task(task_id, token, args.wait_timeout, args.timeout)
+    except RuntimeError as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
+    print(json.dumps(final_result, ensure_ascii=False, indent=2))
     return 0
 
 

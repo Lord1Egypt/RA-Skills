@@ -1,44 +1,60 @@
-## Description: <br>
-Manage and monitor multiple OpenClaw agents simultaneously, including status checks, messaging, logs, pausing, resuming, and workspace management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and monitor multiple OpenClaw agents, including status checks, broadcasts, logs, pause and resume commands, health checks, and workspace management.
 
-## Publisher: <br>
-[lunaviva211-sketch](https://clawhub.ai/user/lunaviva211-sketch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lunaviva211-sketch](https://clawhub.ai/user/lunaviva211-sketch)
 
-## Use Case: <br>
-Developers and operators use this skill to coordinate OpenClaw agent groups, inspect status and logs, send broadcasts, pause or resume agents, run health checks, and manage local agent workspaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can remove local workspaces. <br>
-Mitigation: Use only with trusted operators and non-critical workspaces until removal actions require validation and explicit confirmation. <br>
-Risk: Shell commands are built from user-controlled inputs. <br>
-Mitigation: Replace shell command construction with safer APIs where possible, or add strict input validation and quoting before trusted deployment. <br>
-Risk: The documented heartbeat behavior may run ongoing monitoring without clear packaging or controls. <br>
-Mitigation: Make heartbeat behavior opt-in with clear controls, or remove it from documentation until it is packaged and governed. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to coordinate multiple agents from a CLI, inspect agent activity, send messages, run health checks, and manage local agent workspaces.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/lunaviva211-sketch/colmena-manager) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text, command results, and agent messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run local workspace operations and OpenClaw agent-management commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill exposes powerful local workspace and agent controls through unsafe shell commands that can delete data or run unintended commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only in a contained OpenClaw environment with trusted agent IDs and workspace names, and avoid exposing the CLI to untrusted input.
+
+Risk: Workspace removal should be treated as permanent deletion.
+
+Mitigation: Restrict workspace removal to trusted operators and confirm that the target workspace is disposable before running removal commands.
+
+Risk: The shell-based implementation is not suitable for production use without hardening.
+
+Mitigation: Add strict input validation and replace shell command construction with filesystem and process APIs before production deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lunaviva211-sketch/skills/colmena-manager)
+- [Publisher Profile](https://clawhub.ai/user/lunaviva211-sketch)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational CLI guidance for agent monitoring, messaging, log inspection, pause/resume control, health checks, and workspace management.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

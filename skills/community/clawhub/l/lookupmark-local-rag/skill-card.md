@@ -1,42 +1,57 @@
-## Description: <br>
-Semantic search over local files using all-MiniLM-L6-v2 embeddings, ms-marco-MiniLM-L-6-v2 reranking, ChromaDB, and parent-child chunking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Semantic search over local files using all-MiniLM-L6-v2 embeddings, ms-marco-MiniLM-L-6-v2 reranking, ChromaDB, and parent-child chunking for document retrieval on low-RAM ARM devices.
 
-## Publisher: <br>
-[lookupmark](https://clawhub.ai/user/lookupmark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lookupmark](https://clawhub.ai/user/lookupmark)
 
-## Use Case: <br>
-Developers and local knowledge workers use this skill to index approved local document folders and answer natural-language questions against their own PDFs, text files, notes, and office documents without sending the corpus to a remote search service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local index may contain sensitive document text, embeddings, file paths, and query history. <br>
-Mitigation: Review allowed indexing roots before use and protect or delete the ChromaDB directory and queries.log on shared, synced, or backed-up machines. <br>
-Risk: Search queries can reveal sensitive intent or document contents through the query history log. <br>
-Mitigation: Avoid entering secrets or confidential strings as search queries and periodically remove queries.log when retention is not required. <br>
-Risk: Indexing broad local folders can include unintended files. <br>
-Mitigation: Use explicit --paths values inside the documented allowed roots and keep blocked patterns for credentials, tokens, and private configuration directories in place. <br>
+## Use Case:
 
+Developers and end users use this skill to index local document folders and answer natural-language questions from retrieved file context without sending files to a web search service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lookupmark/lookupmark-local-rag) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON query results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include file paths, relevance scores, matched snippets, and parent-chunk context; indexing stores document text, embeddings, file paths, and query history locally under ~/.local/share/local-rag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.1 (source: server-resolved release evidence) <br>
+Risk: The skill can read and persist chunks from local document folders, including unintended sensitive files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Index only trusted, intended folders; review the configured allowed roots and blocked patterns before running indexing.
+
+Risk: The skill persists private search data in a local ChromaDB store and query log.
+
+Mitigation: Treat the local data directory as sensitive, restrict account access, and clear the index or query log when the data is no longer needed.
+
+Risk: Batch indexing can disrupt local indexing processes when run unattended or from privileged accounts.
+
+Mitigation: Avoid privileged execution, monitor batch runs, and do not index shared or untrusted folders until path containment, symlink handling, query-log controls, and cleanup behavior are reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lookupmark/skills/lookupmark-local-rag)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; query output can be plain text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results include file paths, relevance scores, matched snippets, and parent context; query text is truncated in the local query log.]
+
+## Skill Version(s):
+
+1.9.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

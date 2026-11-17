@@ -1,0 +1,4 @@
+interface:
+  display_name: "Crun URL Promo Generator"
+  short_description: "Generate promotional images and videos from product or website URLs"
+  default_prompt: "Use $crun-url-promo-generator to generate marketing posters, promotional images, or ad videos directly from a website or product link."

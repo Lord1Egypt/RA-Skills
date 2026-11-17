@@ -1,44 +1,61 @@
-## Description: <br>
-Generates and submits weekly reports from Aliyun DevOps workitems through the EMOP API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and submit weekly reports from Aliyun DevOps workitems via EMOP API.
 
-## Publisher: <br>
-[yaojiangfeng](https://clawhub.ai/user/yaojiangfeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yaojiangfeng](https://clawhub.ai/user/yaojiangfeng)
 
-## Use Case: <br>
-Employees or team operators use this skill to collect Aliyun DevOps workitems, summarize weekly progress, and submit current or backfilled reports to EMOP. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read internal DevOps data and submit reports to EMOP. <br>
-Mitigation: Show the exact report payload and confirm each submission before sending it. <br>
-Risk: Backfill mode can create multiple weekly submissions if the date range is too broad. <br>
-Mitigation: Set and confirm a clear backfill date range before running backfill mode. <br>
-Risk: Browser-session fallback may use an authenticated DevOps session when direct API access fails. <br>
-Mitigation: Use browser-session fallback only with explicit approval and after inspecting the referenced local scripts. <br>
+## Use Case:
 
+Developers and operations staff use this skill to generate, backfill, and submit weekly reports from Aliyun DevOps workitems to EMOP.
 
-## Reference(s): <br>
-- [URLs and IDs](references/urls.md) <br>
-- [Local scripts and entrypoints](references/cli.md) <br>
-- [ClawHub skill page](https://clawhub.ai/yaojiangfeng/weekly-report-flow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, shell commands, guidance] <br>
-**Output Format:** [Markdown summary, HTML ordered list, and EMOP report payload] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses DEVOPS_TOKEN and EMOP_TOKEN from the environment; backfill mode can submit one report per missing week.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The workflow uses DevOps and EMOP tokens to read workitems and submit business reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege tokens, keep credentials in environment variables only, and review generated report content before submission.
+
+Risk: Browser-session fallback can use an authenticated account when direct API access returns 403.
+
+Mitigation: Use browser-session fallback only with an explicitly approved account and scope; prefer token-based API access when possible.
+
+Risk: The artifact references local scripts that are outside the packaged skill evidence.
+
+Mitigation: Inspect and pin the referenced local scripts before running the workflow with credentials present.
+
+## Reference(s):
+
+- [Project URLs and IDs](references/urls.md)
+- [Local scripts and entrypoints](references/cli.md)
+- [Aliyun DevOps project](https://devops.aliyun.com/projex/project/c9f4987bc93d5257fb041c0826/sprint/b1d7675f7b5e9ba57fe3284358#activeTab=Workitem&viewIdentifier=ead4d6570d314e123d03122ecd)
+- [Aliyun DevOps workitem list API](https://devops.aliyun.com/projex/api/workitem/workitem/list?_input_charset=utf-8)
+- [EMOP weekly report API](https://emop.oureman.com/api/weekly/report)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with HTML ordered-list content and API submission guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries are 200-300 Chinese characters and are submitted as UTF-8 HTML ordered lists.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-CORE four-dimensional strategic lens for deep analysis of news, business theories, and strategic decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CORE four-dimensional strategic lens for deep analysis of news, business theories, and strategic decisions.
 
-## Publisher: <br>
-[kedoupi](https://clawhub.ai/user/kedoupi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kedoupi](https://clawhub.ai/user/kedoupi)
 
-## Use Case: <br>
-External users, strategists, product managers, investors, founders, and analysts use this skill to turn news, business theories, product decisions, investment questions, and strategic planning topics into concise CORE analyses across essence, opportunity, risk, and execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use USER.md profile context to personalize Execution analysis, which can expose sensitive personal or work context to the agent's reasoning. <br>
-Mitigation: Keep secrets, credentials, and highly sensitive personal details out of USER.md unless you intentionally want skills to use that context. <br>
-Risk: Strategic, investment, or product recommendations can be incorrect, incomplete, or overfit to the provided context. <br>
-Mitigation: Treat CORE output as analysis support and review important decisions with appropriate domain, legal, financial, or organizational judgment before acting. <br>
+## Use Case:
 
+External users, strategists, product managers, founders, investors, and analysts use this skill to apply the CORE framework to news, business theories, product decisions, investment research, and strategic planning.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kedoupi/core-prism) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/kedoupi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown analysis with CORE sections for Core Logic, Opportunity, Risk, and Execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May personalize the Execution section from USER.md when that file is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: The skill may use USER.md profile context to tailor strategic analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review USER.md before use and avoid storing sensitive personal, financial, credential, or confidential business details there unless you are comfortable with that context being used in analyses.
+
+Risk: Strategic analysis can be persuasive but still incorrect, incomplete, or overfit to the supplied context.
+
+Mitigation: Treat the output as decision support and review the assumptions, risks, and recommended actions before acting on them.
+
+## Reference(s):
+
+- [CORE Prism ClawHub release](https://clawhub.ai/kedoupi/skills/core-prism)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown structured as CORE analysis sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May personalize the Execution dimension using USER.md when available.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

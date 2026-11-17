@@ -1,43 +1,61 @@
-## Description: <br>
-Document and analyze competitor posting schedules, content themes, hook styles, and promotional timing to spot gaps and counter-programming opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Document and analyze competitor posting schedules, content themes, hook styles, and promotional timing to spot gaps and counter-programming opportunities.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce marketers and content strategists use this skill to structure public competitor social-content research, compare engagement patterns, and turn gaps in competitor coverage, hooks, and timing into counter-programming recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may supply private analytics, account credentials, scraping tools, or payment authority even though the skill is intended for public competitive research. <br>
-Mitigation: Limit use to public competitor content and separately review any workflow that would involve credentials, private analytics, scraping automation, or payment authority. <br>
-Risk: Capability labels include crypto and purchase flags that are not supported by the documented behavior. <br>
-Mitigation: Treat those labels as unrelated metadata until corrected by the publisher and rely on the security evidence that the artifact is documentation-only. <br>
+## Use Case:
 
+Ecommerce marketers, content strategists, and founders use this skill to study public competitor social posts, compare engagement patterns, identify content gaps, and produce counter-programming recommendations.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
-- [Content Type Taxonomy](references/content-type-taxonomy.md) <br>
-- [Hook Pattern Tracker](references/hook-pattern-tracker.md) <br>
-- [Content Spy Analysis Quality Checklist](assets/content-spy-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with tables, ranked recommendations, and checklist-style quality criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured competitor content analysis covering posting patterns, content gap matrices, hook patterns, promotional timing, counter-programming recommendations, and content to avoid.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Competitive research may involve collecting publicly visible social media metrics and comment themes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public information, follow platform policies, and avoid collecting sensitive personal data beyond necessary aggregate themes.
+
+Risk: Competitor analysis can lead to directly copying posts, hooks, or creative concepts.
+
+Mitigation: Use the analysis to identify patterns and gaps, then create original content with a differentiated angle.
+
+Risk: Engagement patterns can be mistaken for proof of sales impact or causation.
+
+Mitigation: Label findings as observed engagement signals, distinguish correlation from causation, and note limitations such as unavailable paid boost or conversion data.
+
+## Reference(s):
+
+- [Content Spy ClawHub release](https://clawhub.ai/leooooooow/skills/content-spy)
+- [Output Template](references/output-template.md)
+- [Content Type Taxonomy](references/content-type-taxonomy.md)
+- [Hook Pattern Tracker](references/hook-pattern-tracker.md)
+- [Content Spy Analysis Quality Checklist](assets/content-spy-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis with tables, summaries, and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces competitor posting summaries, content gap matrices, hook pattern analysis, promotional timing intelligence, counter-programming recommendations, and analysis quality checks.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

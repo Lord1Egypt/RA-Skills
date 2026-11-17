@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{TITLE}}</title>
+<style>
+  html, body { width:100%; height:100%; overflow:hidden; background:#05070d;
+    margin:0; font-family:-apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  #app { position:fixed; inset:0; }
+  #hud { position:fixed; top:16px; left:20px; z-index:5; pointer-events:none; }
+  #hud h1 { margin:0; font-size:20px; color:#eaf1fb; letter-spacing:.5px; text-shadow:0 2px 10px rgba(0,0,0,.6); }
+  #hud p  { margin:4px 0 0; font-size:12.5px; color:#9fb3cf; max-width:560px; }
+  #legend { position:fixed; top:18px; right:22px; z-index:5; background:rgba(12,18,30,.72);
+    border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:12px 14px; backdrop-filter:blur(6px); }
+  #legend .row { display:flex; align-items:center; gap:8px; font-size:12.5px; color:#cfe2ff; margin:3px 0; }
+  #legend .dot { width:12px; height:12px; border-radius:50%; }
+  #legend .sq  { width:12px; height:12px; }
+  #tooltip { position:fixed; max-width:224px; background:rgba(14,20,34,.94);
+    border:1px solid rgba(127,209,255,.35); border-radius:9px; padding:7px 9px;
+    font-family:-apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color:#eaf1fb; box-shadow:0 8px 28px rgba(0,0,0,.55); opacity:0; transition:opacity .12s;
+    pointer-events:none; z-index:10; }
+  #tooltip h3 { margin:2px 0 3px; font-size:14.5px; color:#fff; }
+  #tooltip .yr { font-size:12px; color:#9fb3cf; display:flex; align-items:center; gap:7px; }
+  #tooltip .tp { font-size:11px; padding:1px 7px; border-radius:10px; }
+  #tooltip .loc { font-size:12px; color:#8fd0ff; margin-top:2px; }
+  #tooltip .desc { font-size:12.5px; color:#c7d4e6; margin-top:4px; line-height:1.5; }
+  #tooltip .links { display:flex; gap:8px; margin-top:10px; flex-wrap:nowrap; }
+  #tooltip .ext { display:inline-block; font-size:12px; color:#7fd1ff; text-decoration:none;
+    border:1px solid rgba(127,209,255,.4); padding:3px 10px; border-radius:18px; transition:background .15s; }
+  #tooltip .ext:hover { background:rgba(127,209,255,.16); text-decoration:underline; }
+  #panhelp { position:fixed; bottom:14px; left:50%; transform:translateX(-50%); z-index:5;
+    font-size:12px; color:#7e93b3; background:rgba(10,16,28,.6); padding:5px 12px; border-radius:20px;
+    border:1px solid rgba(255,255,255,.06); }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="hud">
+  <h1>{{TITLE}}</h1>
+  <p>{{SUBTITLE}}</p>
+</div>
+<div id="legend">
+  <div class="row"><span class="dot" style="background:#4ea1ff"></span>People / Entrepreneurs</div>
+  <div class="row"><span class="sq"  style="background:#ff9f43;border-radius:3px"></span>Products / Tech (brand logo / plate)</div>
+  <div class="row"><span class="sq"  style="background:#4ed97a"></span>Events / Conferences</div>
+</div>
+<div id="tooltip"></div>
+<div id="panhelp">Left-drag to rotate · Scroll to zoom · Left+Right drag to pan</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+/*__DATA__*/
+
+// ---------- Base constants (injected by generate.py): YEAR_MIN / YEAR_MAX / AXIS_H / AXIS_BASE / MAP_W / MAP_D / MILESTONES / PORTRAITS / LOGO_SVGS / BRAND_MAP / WIKI / BAIKE / MAP_SRC / YEARS_TICKS ----------
+
+const TYPE_STYLE = {
+  person:  { color: 0x4ea1ff, label: 'People / Entrepreneurs' },
+  product: { color: 0xff9f43, label: 'Products / Tech' },
+  event:   { color: 0x4ed97a, label: 'Events / Conferences' },
+};
+
+// lon/lat -> world coords (equirectangular projection, aligned with texture UV)
+const lonToX = lon => (lon / 180) * (MAP_W / 2);
+const latToZ = lat => -(lat / 180) * MAP_D;
+// year -> height: YEAR_MIN -> AXIS_BASE (above ground), YEAR_MAX -> AXIS_H
+const yearToY = y => AXIS_BASE + ((y - YEAR_MIN) / (YEAR_MAX - YEAR_MIN)) * (AXIS_H - AXIS_BASE);
+
+function hex(n){ return '#' + (n>>>0).toString(16).padStart(6,'0').slice(-6); }
+
+// ---------- Scene ----------
+const app = document.getElementById('app');
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x05070d);
+scene.fog = new THREE.Fog(0x05070d, 320, 620);
+
+const camera = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, 0.1, 2000);
+camera.position.set(185, 135, 205);
+
+const renderer = new THREE.WebGLRenderer({ antialias:true });
+renderer.setSize(innerWidth, innerHeight);
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+app.appendChild(renderer.domElement);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; controls.dampingFactor = 0.08;
+controls.target.set(0, (AXIS_BASE + AXIS_H) * 0.45, 0);
+controls.minDistance = 60; controls.maxDistance = 520;
+controls.maxPolarAngle = Math.PI * 0.495;
+
+// Dual-button pan: left (1) + right (2) pressed together pans the whole view
+(function setupDualPan(){
+  const el = renderer.domElement;
+  let panning = false, lastX = 0, lastY = 0;
+  const _right = new THREE.Vector3(), _up = new THREE.Vector3(), _move = new THREE.Vector3();
+  el.addEventListener('pointerdown', (e)=>{
+    if (e.buttons === 3){ panning = true; controls.enabled = false; lastX = e.clientX; lastY = e.clientY; el.setPointerCapture(e.pointerId); e.preventDefault(); }
+  }, true);
+  el.addEventListener('pointermove', (e)=>{
+    if(!panning) return;
+    const dx = e.clientX - lastX, dy = e.clientY - lastY; lastX = e.clientX; lastY = e.clientY;
+    const dist = camera.position.distanceTo(controls.target);
+    const panScale = dist * 0.0016;
+    _right.setFromMatrixColumn(camera.matrix, 0); _up.setFromMatrixColumn(camera.matrix, 1);
+    _move.set(0,0,0).addScaledVector(_right, -dx*panScale).addScaledVector(_up, dy*panScale);
+    camera.position.add(_move); controls.target.add(_move);
+  });
+  const end = ()=>{ if(panning){ panning=false; controls.enabled=true; } };
+  el.addEventListener('pointerup', end); el.addEventListener('pointercancel', end);
+  el.addEventListener('contextmenu', (e)=> e.preventDefault());
+})();
+
+// Lighting
+scene.add(new THREE.AmbientLight(0xffffff, 0.65));
+const dir = new THREE.DirectionalLight(0xffffff, 0.9); dir.position.set(120, 200, 80); scene.add(dir);
+const fill = new THREE.DirectionalLight(0x88aaff, 0.3); fill.position.set(-100, 60, -120); scene.add(fill);
+
+// ---------- Ground: world map (falls back to a solid-color base when MAP_SRC is empty) ----------
+const mapGroup = new THREE.Group(); scene.add(mapGroup);
+const texLoader = new THREE.TextureLoader(); texLoader.setCrossOrigin('anonymous');
+let mapTex = null;
+if (MAP_SRC){ mapTex = texLoader.load(MAP_SRC); mapTex.colorSpace = THREE.SRGBColorSpace; mapTex.anisotropy = renderer.capabilities.getMaxAnisotropy(); }
+const mapMat = new THREE.MeshBasicMaterial({ map: mapTex, color: mapTex?0xffffff:0x0a1530, transparent:true, opacity: mapTex?0.92:0.9 });
+const mapMesh = new THREE.Mesh(new THREE.PlaneGeometry(MAP_W, MAP_D), mapMat);
+mapMesh.rotation.x = -Math.PI/2; mapGroup.add(mapMesh);
+
+const baseMesh = new THREE.Mesh(new THREE.PlaneGeometry(MAP_W+8, MAP_D+8),
+  new THREE.MeshBasicMaterial({ color:0x0a1120, transparent:true, opacity:0.85 }));
+baseMesh.rotation.x = -Math.PI/2; baseMesh.position.y = -0.4; mapGroup.add(baseMesh);
+
+const edge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(MAP_W, MAP_D)),
+  new THREE.LineBasicMaterial({ color:0x3a6ea5, transparent:true, opacity:0.6 }));
+edge.rotation.x = -Math.PI/2; edge.position.y = 0.05; mapGroup.add(edge);
+
+const grid = new THREE.GridHelper(MAP_W, 24, 0x1d2c44, 0x14202f);
+grid.position.y = 0.02; grid.material.transparent = true; grid.material.opacity = 0.25; mapGroup.add(grid);
+
+// ---------- Text sprites ----------
+function makeTextSprite(text, color='#cfe2ff'){
+  const c = document.createElement('canvas'); c.width=256; c.height=64;
+  const ctx = c.getContext('2d');
+  ctx.font = 'bold 38px -apple-system, system-ui, sans-serif';
+  ctx.fillStyle = color; ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText(text, 128, 34);
+  const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace;
+  const spr = new THREE.Sprite(new THREE.SpriteMaterial({ map:tex, transparent:true, depthTest:false }));
+  spr.scale.set(22, 5.5, 1); return spr;
+}
+
+// ---------- Time axis ----------
+const axisGroup = new THREE.Group(); scene.add(axisGroup);
+axisGroup.position.set(-(MAP_W/2) - 12, 0, 0);
+const axisMat = new THREE.LineBasicMaterial({ color:0x6f8fc0, transparent:true, opacity:0.7 });
+axisGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([
+  new THREE.Vector3(0, AXIS_BASE, 0), new THREE.Vector3(0, AXIS_H, 0)]), axisMat));
+
+YEARS_TICKS.forEach(y=>{
+  const yy = yearToY(y);
+  const tick = new THREE.Mesh(new THREE.SphereGeometry(0.9,12,12), new THREE.MeshBasicMaterial({ color:0x9fc0ff }));
+  tick.position.set(0, yy, 0); axisGroup.add(tick);
+  const lbl = makeTextSprite(String(y), y===YEAR_MIN ? '#7fd1ff' : '#cfe2ff');
+  lbl.position.set(-13, yy, 0); axisGroup.add(lbl);
+});
+const nowLbl = makeTextSprite('Present', '#7fd1ff'); nowLbl.position.set(-13, AXIS_H+6, 0); axisGroup.add(nowLbl);
+
+// ---------- Avatar / logo textures ----------
+function makeMonogramTexture(initial, colorHex){
+  const c=document.createElement('canvas'); c.width=c.height=256; const ctx=c.getContext('2d');
+  ctx.fillStyle=hex(colorHex); ctx.beginPath(); ctx.arc(128,128,118,0,Math.PI*2); ctx.fill();
+  ctx.lineWidth=12; ctx.strokeStyle='rgba(255,255,255,.85)'; ctx.beginPath(); ctx.arc(128,128,118,0,Math.PI*2); ctx.stroke();
+  ctx.fillStyle='#fff'; ctx.font='bold 120px -apple-system, system-ui, sans-serif';
+  ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(initial||'?',128,140);
+  const t=new THREE.CanvasTexture(c); t.colorSpace=THREE.SRGBColorSpace; return t;
+}
+function makePhotoTexture(img){
+  const c=document.createElement('canvas'); c.width=c.height=256; const ctx=c.getContext('2d');
+  ctx.save(); ctx.beginPath(); ctx.arc(128,128,118,0,Math.PI*2); ctx.clip();
+  const s=Math.min(img.width,img.height); const sx=(img.width-s)/2, sy=(img.height-s)/2;
+  ctx.drawImage(img, sx, sy, s, s, 0, 0, 256, 256); ctx.restore();
+  ctx.lineWidth=12; ctx.strokeStyle='rgba(255,255,255,.9)'; ctx.beginPath(); ctx.arc(128,128,118,0,Math.PI*2); ctx.stroke();
+  const t=new THREE.CanvasTexture(c); t.colorSpace=THREE.SRGBColorSpace; return t;
+}
+const PERSON_SCALE = 9;
+function makePersonSprite(m, style){
+  const tex = makeMonogramTexture(m.initial, style.color);
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map:tex, transparent:true }));
+  sp.scale.set(PERSON_SCALE, PERSON_SCALE, 1);
+  sp.position.set(lonToX(m.lon), yearToY(m.year), latToZ(m.lat));
+  sp.userData = { ...m, baseScale:PERSON_SCALE, isPerson:true };
+  const url = PORTRAITS[m.pid];
+  if (url){ texLoader.load(url, (loaded)=>{ try{ sp.material.map = makePhotoTexture(loaded.image); sp.material.needsUpdate=true; }catch(e){} }, undefined, ()=>{}); }
+  return sp;
+}
+const PRODUCT_SCALE = 8.5;
+function roundRect(ctx,x,y,w,h,r){ r=Math.min(r,w/2,h/2); ctx.beginPath(); ctx.moveTo(x+r,y);
+  ctx.lineTo(x+w-r,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r); ctx.lineTo(x+w,y+h-r);
+  ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h); ctx.lineTo(x+r,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y); ctx.closePath(); }
+function makeFallbackProductTexture(brand, style){
+  const c=document.createElement('canvas'); c.width=c.height=256; const ctx=c.getContext('2d');
+  ctx.fillStyle=hex(brand.color||style.color); roundRect(ctx,0,0,256,256,28); ctx.fill();
+  ctx.lineWidth=10; ctx.strokeStyle='rgba(255,255,255,.82)'; roundRect(ctx,0,0,256,256,28); ctx.stroke();
+  ctx.fillStyle='#fff'; ctx.textAlign='center'; ctx.textBaseline='middle';
+  const text=brand.abbr||'?'; const fontSize = text.length<=2?110:text.length<=4?72:52;
+  ctx.font='bold '+fontSize+'px -apple-system, system-ui, sans-serif'; ctx.fillText(text,128,135);
+  const t=new THREE.CanvasTexture(c); t.colorSpace=THREE.SRGBColorSpace; return t;
+}
+function makeProductSprite(m, style){
+  const brand = BRAND_MAP[m.title] || { logo:null, color:style.color, abbr:m.title.slice(0,3) };
+  const tex = makeFallbackProductTexture(brand, style);
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map:tex, transparent:true }));
+  sp.scale.set(PRODUCT_SCALE, PRODUCT_SCALE, 1);
+  sp.position.set(lonToX(m.lon), yearToY(m.year), latToZ(m.lat));
+  sp.userData = { ...m, baseScale:PRODUCT_SCALE, isPerson:false };
+  const svgUrl = brand.logo ? LOGO_SVGS[brand.logo] : null;
+  if (svgUrl){ const img=new Image(); img.crossOrigin='anonymous';
+    img.onload=()=>{ const c=document.createElement('canvas'); c.width=c.height=256; const ctx=c.getContext('2d');
+      ctx.fillStyle=hex(brand.color||style.color); roundRect(ctx,0,0,256,256,28); ctx.fill();
+      ctx.lineWidth=10; ctx.strokeStyle='rgba(255,255,255,.82)'; roundRect(ctx,0,0,256,256,28); ctx.stroke();
+      const pad=46, drawSize=256-pad*2, ratio=Math.min(drawSize/img.width, drawSize/img.height);
+      const dw=img.width*ratio, dh=img.height*ratio;
+      ctx.globalCompositeOperation='source-atop'; ctx.drawImage(img,(256-dw)/2,(256-dh)/2,dw,dh); ctx.globalCompositeOperation='source-over';
+      const t=new THREE.CanvasTexture(c); t.colorSpace=THREE.SRGBColorSpace; sp.material.map=t; sp.material.needsUpdate=true; };
+    img.src=svgUrl; }
+  return sp;
+}
+
+// ---------- Nodes (dim by default, lit on hover) ----------
+const NODE_OPACITY_IDLE = 0.70, NODE_OPACITY_HOVER = 1.0;
+const LINE_OPACITY_IDLE = 0.55, LINE_OPACITY_HOVER = 0.95;
+const SPOT_OPACITY_IDLE = 0.45, SPOT_OPACITY_HOVER = 0.85;
+
+const pickable = [];
+const nodeGroup = new THREE.Group(); scene.add(nodeGroup);
+
+MILESTONES.forEach(m=>{
+  const style = TYPE_STYLE[m.type];
+  const x=lonToX(m.lon), z=latToZ(m.lat), y=yearToY(m.year);
+  let obj;
+  if (m.type==='person'){ obj = makePersonSprite(m, style); }
+  else if (m.type==='product'){ obj = makeProductSprite(m, style); }
+  else {
+    const geo = new THREE.TetrahedronGeometry(4.2);
+    const mat = new THREE.MeshStandardMaterial({ color:style.color, emissive:style.color, emissiveIntensity:0.35, roughness:0.45, metalness:0.15, transparent:true, opacity:NODE_OPACITY_IDLE, depthWrite:false });
+    const mesh = new THREE.Mesh(geo, mat); mesh.position.set(x,y,z);
+    mesh.userData = { ...m, baseScale:1, isPerson:false }; obj = mesh;
+  }
+  if (obj.material){ obj.material.transparent=true; obj.material.opacity=NODE_OPACITY_IDLE; obj.material.depthWrite=false; }
+  nodeGroup.add(obj); pickable.push(obj);
+
+  const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(x,0.3,z), new THREE.Vector3(x,y,z)]),
+    new THREE.LineBasicMaterial({ color:style.color, transparent:true, opacity:LINE_OPACITY_IDLE, depthWrite:false }));
+  nodeGroup.add(line);
+
+  const spot = new THREE.Mesh(new THREE.CircleGeometry(2.2,24),
+    new THREE.MeshBasicMaterial({ color:style.color, transparent:true, opacity:SPOT_OPACITY_IDLE, depthWrite:false }));
+  spot.rotation.x=-Math.PI/2; spot.position.set(x,0.1,z); nodeGroup.add(spot);
+
+  obj.userData.line = line; obj.userData.spot = spot;
+});
+
+// ---------- Interaction: hover-to-front + detail card ----------
+const raycaster = new THREE.Raycaster();
+const pointer = new THREE.Vector2();
+const tooltip = document.getElementById('tooltip');
+
+function wikiSearch(t){ return 'https://en.wikipedia.org/wiki/Special:Search?search=' + encodeURIComponent(t); }
+function baikeSearch(t){ return 'https://baike.baidu.com/search?word=' + encodeURIComponent(t); }
+function linkFor(d){ return WIKI[d.title] || wikiSearch(d.title); }
+function baikeFor(d){ return BAIKE[d.title] || baikeSearch(d.title); }
+
+function hex2(n){ return '#' + (n>>>0).toString(16).padStart(6,'0').slice(-6); }
+function fillCard(d){
+  const s = TYPE_STYLE[d.type];
+  tooltip.innerHTML =
+    `<div class="yr">${d.year}<span class="tp" style="background:${s.bg||'#1c3a5e'};color:${hex2(s.color)}">${s.label}</span></div>` +
+    `<h3>${d.title}</h3>` +
+    `<div class="loc">${d.loc}</div>` +
+    `<div class="desc">${d.desc}</div>` +
+    `<div class="links">` +
+    `<a class="ext" href="${linkFor(d)}" target="_blank" rel="noopener">Wikipedia ↗</a>` +
+    `<a class="ext" href="${baikeFor(d)}" target="_blank" rel="noopener">Baidu Baike ↗</a>` +
+    `</div>`;
+}
+
+let cardHover=false, hideTimer=null, cardNode=null;
+const _v1=new THREE.Vector3(), _v2=new THREE.Vector3(), _camRight=new THREE.Vector3();
+function nodeScreenCenter(node){
+  camera.updateMatrixWorld(); camera.updateProjectionMatrix();
+  node.getWorldPosition(_v1); _v1.project(camera);
+  return { x:(_v1.x*0.5+0.5)*innerWidth, y:(-_v1.y*0.5+0.5)*innerHeight };
+}
+function nodeScreenRadius(node){
+  node.getWorldPosition(_v1); const r=(node.scale.x||node.scale.z||1)/2;
+  _camRight.setFromMatrixColumn(camera.matrixWorld,0);
+  _v2.copy(_v1).addScaledVector(_camRight,r).project(camera);
+  const cx=(_v1.x*0.5+0.5)*innerWidth, cy=(-_v1.y*0.5+0.5)*innerHeight;
+  const ex=(_v2.x*0.5+0.5)*innerWidth, ey=(-_v2.y*0.5+0.5)*innerHeight;
+  return Math.max(3, Math.hypot(ex-cx, ey-cy));
+}
+function placeCard(node){           // Baseline: card hugs the current node's bottom-right; never pushed away to "avoid" overlap
+  const c = nodeScreenCenter(node);
+  const cw = tooltip.offsetWidth||188, ch = tooltip.offsetHeight||120;
+  let x = c.x + 14, y = c.y + 14;
+  x = Math.max(8, Math.min(x, innerWidth - cw - 8));
+  y = Math.max(8, Math.min(y, innerHeight - ch - 8));
+  tooltip.style.left = x+'px'; tooltip.style.top = y+'px';
+}
+function showCard(node){ cardNode=node; fillCard(node.userData); placeCard(node); tooltip.style.opacity='1'; tooltip.style.pointerEvents='auto'; clearTimeout(hideTimer); }
+function scheduleHide(){ clearTimeout(hideTimer); hideTimer=setTimeout(()=>{ if(!cardHover){ tooltip.style.opacity='0'; tooltip.style.pointerEvents='none'; cardNode=null; } }, 240); }
+tooltip.addEventListener('mouseenter', ()=>{ cardHover=true; clearTimeout(hideTimer); });
+tooltip.addEventListener('mouseleave', ()=>{ cardHover=false; scheduleHide(); });
+
+let hovered=null, mouseX=0, mouseY=0;
+function onPointerMove(e){ mouseX=e.clientX; mouseY=e.clientY; pointer.x=(e.clientX/innerWidth)*2-1; pointer.y=-(e.clientY/innerHeight)*2+1; }
+renderer.domElement.addEventListener('pointermove', onPointerMove);
+
+function setNodeActive(obj, active){
+  const o = active ? NODE_OPACITY_HOVER : NODE_OPACITY_IDLE;
+  if (obj.material){
+    obj.material.transparent=true; obj.material.opacity=o; obj.material.depthWrite=active;
+    obj.renderOrder = active ? 1000 : 0;          // hover-to-front: raise to top render layer + disable depth test so it isn't occluded by overlapping nodes
+    obj.material.depthTest = !active;
+    if (!obj.userData.isPerson && obj.material.emissiveIntensity!==undefined){ obj.material.emissiveIntensity = active?0.95:0.35; }
+  }
+  const ud=obj.userData;
+  if (ud.line){ ud.line.material.opacity = active?LINE_OPACITY_HOVER:LINE_OPACITY_IDLE; ud.line.renderOrder = active?999:0; }
+  if (ud.spot){ ud.spot.material.opacity = active?SPOT_OPACITY_HOVER:SPOT_OPACITY_IDLE; ud.spot.renderOrder = active?998:0; }
+}
+function updateHover(){
+  raycaster.setFromCamera(pointer, camera);
+  const hits = raycaster.intersectObjects(pickable, false);
+  const hit = hits.length ? hits[0].object : null;
+  if (hit !== hovered){
+    if (hovered){ hovered.scale.setScalar(hovered.userData.baseScale); setNodeActive(hovered,false); }
+    hovered = hit;
+    if (hovered){ hovered.scale.setScalar(hovered.userData.baseScale*1.4); setNodeActive(hovered,true);
+      renderer.domElement.style.cursor='pointer'; showCard(hovered); }
+    else { renderer.domElement.style.cursor='default'; scheduleHide(); }
+  }
+}
+
+// ---------- Render loop ----------
+function animate(){
+  requestAnimationFrame(animate);
+  controls.update(); updateHover(); renderer.render(scene, camera);
+  if (cardNode && tooltip.style.opacity==='1') placeCard(cardNode);  // re-anchor every frame so the card stays glued to the node while rotating/zooming
+}
+animate();
+
+addEventListener('resize', ()=>{
+  camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+</script>
+</body>
+</html>

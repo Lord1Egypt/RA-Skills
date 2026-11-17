@@ -540,7 +540,7 @@ python3 scripts/intentionality_collector.py --source user --content "我需要�
 ### 相关文档
 - [SKILL.md](../SKILL.md) - 主技能文档
 - [references/architecture.md](architecture.md) - 整体架构
-- [references/maslow_needs.md](maslow_needs.md) - 马斯洛需求层次
+- [references/personality.md](personality.md) - 马斯洛需求层次
 
 ### 哲学基础
 - 胡塞尔：意向性作为意识的根本属性

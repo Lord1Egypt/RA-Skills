@@ -1,43 +1,59 @@
-## Description: <br>
-Query OnlyFans data and analytics through OnlyFansAPI.com, including revenue summaries, model performance, free trial and tracking link conversion rates, and earnings comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query OnlyFans data and analytics via the OnlyFansAPI.com platform, including revenue summaries, model performance, trial-link conversion, tracking-link conversion, and link earnings comparisons.
 
-## Publisher: <br>
-[martingalovic](https://clawhub.ai/user/martingalovic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[martingalovic](https://clawhub.ai/user/martingalovic)
 
-## Use Case: <br>
-Developers and agency operators use this skill to ask an agent for OnlyFans account, revenue, model performance, and campaign conversion analytics from OnlyFansAPI.com. It is intended for workflows where the user provides a valid OnlyFansAPI API key and wants summarized results across one or more connected accounts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an API key and may return sensitive account, revenue, and conversion analytics. <br>
-Mitigation: Run it only in a trusted environment, treat the API key and returned analytics as sensitive, and prefer the least-privileged or read-only key available. <br>
-Risk: Broad or ambiguous requests could expose more account data than intended. <br>
-Mitigation: Ask for a specific account, date range, metric, or report scope before making API calls when the request is unclear. <br>
-Risk: Unexpected shell commands or requests to untrusted domains could misuse credentials or local data. <br>
-Mitigation: Review any curl command that targets a domain other than app.onlyfansapi.com or attempts local file reads before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OnlyFansAPI Docs](https://docs.onlyfansapi.com) <br>
-- [OnlyFansAPI Console](https://app.onlyfansapi.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/martingalovic/onlyfans-api) <br>
+## Use Case:
 
+External users and developers use this skill to query OnlyFansAPI.com for connected-account analytics, including agency-level revenue, model rankings, link conversion rates, and earnings breakdowns. It is intended for explicit analytics and reporting requests where the user has configured an OnlyFansAPI API key.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown tables and concise explanatory text with shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sensitive account, revenue, and conversion analytics returned by OnlyFansAPI.com.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can access sensitive multi-account business, earnings, model, link, and account analytics.
+
+Mitigation: Use it only for explicit analytics or reporting requests, scope requests to the needed accounts and dates, and treat returned results as sensitive business information.
+
+Risk: The skill summary and behavior are broad enough to activate on casual or underspecified OnlyFans prompts when an API key is available.
+
+Mitigation: Confirm the user's reporting intent before making API calls for broad prompts, and avoid using the skill for unrelated or casual OnlyFans discussion.
+
+Risk: The skill depends on an API key and live network calls to OnlyFansAPI.com.
+
+Mitigation: Require the ONLYFANSAPI_API_KEY environment variable, avoid exposing the key in output, and report failed requests, rate limits, or unauthenticated accounts before continuing.
+
+## Reference(s):
+
+- [OnlyFansAPI Docs](https://docs.onlyfansapi.com)
+- [OnlyFansAPI Console](https://app.onlyfansapi.com)
+- [OnlyFans API Access on ClawHub](https://clawhub.ai/martingalovic/skills/onlyfans-api)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/martingalovic)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown tables with inline shell commands and summarized API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ONLYFANSAPI_API_KEY, curl, jq, and network access to app.onlyfansapi.com.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

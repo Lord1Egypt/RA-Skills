@@ -1,42 +1,57 @@
-## Description: <br>
-Maintains an llm-wiki knowledge base by importing new sources, answering wiki-backed questions, running health checks, and updating related wiki pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maintains an llm-wiki knowledge base by ingesting sources, answering wiki-backed questions, running health checks, and processing batch imports.
 
-## Publisher: <br>
-[xiehanlin](https://clawhub.ai/user/xiehanlin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiehanlin](https://clawhub.ai/user/xiehanlin)
 
-## Use Case: <br>
-Developers and knowledge-base maintainers use this skill to keep a local llm-wiki repository organized, ingest new material, answer questions from existing wiki pages, and repair common wiki health issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can copy local files and update wiki content, which could expose or alter private or business information. <br>
-Mitigation: Use it only with a trusted wiki directory, confirm before copying local files or applying repairs, and keep the wiki in version control or backed up. <br>
-Risk: The skill may fetch network articles through a third-party service. <br>
-Mitigation: Confirm that URLs and fetched content are public or approved before ingestion. <br>
-Risk: The skill may run a local lint script during health checks. <br>
-Mitigation: Review the script path and ask the agent to confirm before running lint.sh. <br>
+## Use Case:
 
+Developers and knowledge-base maintainers use this skill to keep a local llm-wiki repository organized, current, and queryable. It supports source ingestion, entity and concept updates, synthesis pages, wiki-backed answers, lint-driven maintenance, and batch imports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiehanlin/wiki-maintainer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with wiki links, file paths, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update wiki pages, index entries, and log records when the agent is operating on a trusted local wiki.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can run a local wiki lint shell script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target wiki's AGENTS.md and tools/lint.sh first, and require confirmation before running lint or repair actions.
+
+Risk: The skill relies on mutable external wiki instructions.
+
+Mitigation: Use only a wiki directory you control and inspect its instructions before allowing writes.
+
+Risk: Queries can lead to generated answers being saved back into the wiki.
+
+Mitigation: Treat query workflows as potentially write-capable and require confirmation before saving generated answers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiehanlin/skills/wiki-maintainer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and wiki file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update wiki pages, logs, index entries, and lint reports when the agent is authorized to write to the target wiki.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

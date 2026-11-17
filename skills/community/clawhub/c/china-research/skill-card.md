@@ -1,41 +1,53 @@
-## Description: <br>
-China Research searches public Chinese social and business platforms for a topic and produces a cited market-research report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+China Research helps agents research Chinese social media discussions for a user-provided topic and generate a cited market-research report.
 
-## Publisher: <br>
-[wuyunfeng8](https://clawhub.ai/user/wuyunfeng8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuyunfeng8](https://clawhub.ai/user/wuyunfeng8)
 
-## Use Case: <br>
-External users and developers use this skill to validate product ideas, analyze Chinese market opportunities, and summarize recent public discussion from social, technical, and business platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries may be sent to external search providers through the configured mcporter backend. <br>
-Mitigation: Use the skill for public or non-sensitive market research and confirm the active search backend before entering confidential terms. <br>
-Risk: Market-research summaries may reflect subjective comments or platform-specific user populations. <br>
-Mitigation: Keep source links with each finding, distinguish facts from opinions, and compare signals across multiple platforms. <br>
+## Use Case:
 
+External users, product teams, and market researchers use this skill to inspect Chinese platform discussions, identify user pain points, compare existing solutions, and summarize market opportunities with cited sources.
 
-## Reference(s): <br>
-- [Platform list and search strategy](references/platforms.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wuyunfeng8/china-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with cited source links and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Searches up to 20 source results across multiple platform groups when following the artifact workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Documented command examples place user-provided topics directly into shell commands, which can create command-injection risk if followed literally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review search topics before execution and rewrite examples to use structured tool calls or shell-safe argument passing.
+
+Risk: The skill is intended for web and social-platform research, so confidential or sensitive research topics could be exposed to external search services.
+
+Mitigation: Use the skill only with non-confidential research topics, as recommended by the security evidence.
+
+## Reference(s):
+
+- [Domestic social media platform search strategy](references/platforms.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown research report with cited source list and search-command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are organized around core findings, user pain points, existing solutions, market opportunities, and references.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

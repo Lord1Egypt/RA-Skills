@@ -1,42 +1,57 @@
-## Description: <br>
-Full React 19 engineering, architecture, Server Components, hooks, Zustand, TanStack Query, forms, performance, testing, production deploy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents that build, debug, review, and test React applications, including components, hooks, state management, Server Components, forms, performance, and TypeScript patterns.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill for React 19 application architecture, component design, state management, forms, performance, testing, setup, and production deployment guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup guidance includes npm and npx commands that download and execute third-party tooling. <br>
-Mitigation: Review package names and command arguments before running them, and execute them only in an intended project workspace. <br>
-Risk: The memory template is intended for project tracking and could accidentally receive sensitive project details. <br>
-Mitigation: Do not store secrets, credentials, access tokens, or private customer data in the React memory file. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to produce React components, state-management guidance, debugging steps, tests, TypeScript typings, setup commands, and code review findings for web applications.
 
-## Reference(s): <br>
-- [React Docs](https://react.dev) <br>
-- [Next.js Docs](https://nextjs.org/docs) <br>
-- [TanStack Query](https://tanstack.com/query) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/react) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript, JSON, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose project structure, setup commands, TypeScript configuration, and React implementation patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and server release evidence) <br>
+Risk: Optional setup commands can affect the user's local project environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run setup in a normal least-privileged project environment and consider pinning package versions before installing dependencies.
+
+Risk: The skill uses a local memory file for project and preference notes.
+
+Mitigation: Do not store secrets or sensitive credentials in ~/Clawic/data/react/memory.md.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/react)
+- [Clawic React skill page](https://clawic.com/skills/react)
+- [React Docs](https://react.dev)
+- [Next.js Docs](https://nextjs.org/docs)
+- [TanStack Query](https://tanstack.com/query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code blocks and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local preference memory under ~/Clawic/data/react/ when present.]
+
+## Skill Version(s):
+
+1.0.7 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

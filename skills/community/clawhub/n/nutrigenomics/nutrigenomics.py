@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 nutrigenomics.py — Nutrigenomics: Personalised Nutrition from Genetic Data
-Nutrigenomics OpenClaw Skill v0.3.2
+Nutrigenomics Skill v0.3.13
 
 Usage:
     python nutrigenomics.py --input genome.csv --output results/
@@ -105,4 +105,11 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # Path validation (workspace confinement, symlink refusal) raises ValueError.
+    # Surface it as a clean message rather than a traceback: these are user-facing
+    # conditions, not defects.
+    try:
+        main()
+    except ValueError as exc:
+        print(f"[ERROR] {exc}", file=sys.stderr)
+        sys.exit(1)

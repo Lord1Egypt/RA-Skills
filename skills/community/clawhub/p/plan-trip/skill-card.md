@@ -1,45 +1,61 @@
-## Description: <br>
-Plan your entire trip with AI - flights, hotels, attractions, day-by-day itinerary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan your entire trip with AI — flights, hotels, attractions, and day-by-day itinerary planning — using destination, dates, and interests to support flight booking, hotel reservation, train tickets, attraction tickets, visa info, travel insurance, car rental, and more, powered by Fliggy (Alibaba Group).
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to collect trip details, run live travel searches through the flyai CLI, and produce day-by-day plans with flights, hotels, attractions, and booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install the flyai CLI globally before running live searches. <br>
-Mitigation: Review and approve the global CLI installation before use, or install and verify the CLI in a controlled environment first. <br>
-Risk: Travel details are sent to the travel provider for live flight, hotel, attraction, and booking searches. <br>
-Mitigation: Avoid entering sensitive travel details unless provider sharing is acceptable for the intended user and deployment. <br>
-Risk: Raw trip requests and command history may be retained locally in .flyai-execution-log.json. <br>
-Mitigation: Disable, restrict, or delete the local log when request retention is not appropriate. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to collect trip details, retrieve travel options for flights, hotels, visa information, and attractions, and assemble day-by-day Markdown itineraries with booking links.
 
-## Reference(s): <br>
-- [Parameter and output templates](references/templates.md) <br>
-- [Trip-planning playbooks](references/playbooks.md) <br>
-- [Fallback handling](references/fallbacks.md) <br>
-- [Execution log schema](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with booking links and inline shell commands when retry steps are needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires live flyai CLI output for travel data and includes booking links when results are shown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill instructs agents to install and run an unpinned global third-party travel CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package and pin an approved version before installation; run it in a controlled environment with normal package and network monitoring.
+
+Risk: Travel responses depend on a single third-party data source and require commercial booking links and flyai branding.
+
+Mitigation: Treat prices, availability, and booking links as third-party results that users should verify before purchase.
+
+Risk: The artifact describes persisting raw travel queries in a hidden local execution log.
+
+Mitigation: Avoid entering sensitive personal, passport, visa, or confidential itinerary details unless logging is disabled or clearly governed.
+
+## Reference(s):
+
+- [Plan Trip ClawHub Listing](https://clawhub.ai/xiejinsong/skills/plan-trip)
+- [Templates - trip-planner](references/templates.md)
+- [Playbooks - trip-planner](references/playbooks.md)
+- [Fallbacks - Trip Planning Category](references/fallbacks.md)
+- [Runbook - Execution Log Schema](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands for retries or setup]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be based on retrieved travel data and include booking links when results are shown.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

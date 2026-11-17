@@ -1,42 +1,60 @@
-## Description: <br>
-Security audit for multi-tenant OpenClaw Telegram bots that checks workspace isolation, filesystem sandboxing, session scoping, auth separation, error leaking, and other multi-user security concerns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security audit for multi-tenant OpenClaw Telegram bots that checks workspace isolation, filesystem sandboxing, session scoping, auth separation, error leaking, and other multi-user security concerns.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to audit public or multi-user OpenClaw Telegram bot deployments for tenant isolation, session scoping, auth separation, error handling, and related deployment risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit snippets may inspect or help modify local bot configuration and examples discuss sensitive auth/profile files. <br>
-Mitigation: Run remediation steps only in intended bot repositories, review changes before deploying, and avoid exposing sensitive auth/profile files. <br>
-Risk: The skill is a documentation-style audit aid rather than a runtime security boundary. <br>
-Mitigation: Use it as review guidance alongside deployment review and scanning; rely on platform isolation controls for enforcement. <br>
+## Use Case:
 
+Developers and security reviewers use this skill before launching or updating public OpenClaw Telegram bots that serve multiple users. It guides audits for cross-user data leakage, session isolation, sandboxing, credential separation, safe error handling, and related multi-tenant controls.
 
-## Reference(s): <br>
-- [OpenClaw Gateway Security](https://docs.openclaw.ai/gateway/security) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
-- [ClawHub skill release](https://clawhub.ai/PHY041/phy-openclaw-multibot-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown checklist with inline code and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes PASS/FAIL/N/A audit items and remediation examples for OpenClaw bot deployments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md metadata) <br>
+Risk: Shared auth-profile copying could expose bot credentials across users in a public multi-user deployment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use separate credentials per trust boundary and review any credential-copying workflow before installation or deployment.
+
+Risk: An unsandboxed fallback can leave shell commands able to access files outside a user's workspace.
+
+Mitigation: Use enforced sandboxing or separate hosts for mixed-trust users, and do not rely on workspace-only filesystem controls as the sole boundary.
+
+Risk: Keyword-count checks can miss real security regressions.
+
+Mitigation: Run behavioral tests that attempt cross-user reads, prompt leaks, path traversal, and unsafe error disclosure.
+
+## Reference(s):
+
+- [OpenClaw Gateway Security](https://docs.openclaw.ai/gateway/security)
+- [Canlah AI](https://canlah.ai)
+- [ClawHub Skill Page](https://clawhub.ai/phy041/skills/phy-openclaw-multibot-audit)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/phy041)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown checklist with inline JSON, Python, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes pass/fail audit items and a quick audit command for selected OpenClaw bot files.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

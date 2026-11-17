@@ -1,41 +1,59 @@
-## Description: <br>
-Query Discord guild members, list bots, get channel and role info via REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Discord guild members, list bots, and inspect channel and role information through the Discord REST API.
 
-## Publisher: <br>
-[wehub4me](https://clawhub.ai/user/wehub4me) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1587causalai](https://clawhub.ai/user/1587causalai)
 
-## Use Case: <br>
-External developers and Discord server administrators use this skill to inspect guild members, bots, roles, channel details, and permissions with a configured Discord bot token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a configured Discord bot token to query guild, member, role, channel, and permission metadata. <br>
-Mitigation: Use a least-privilege bot token and run the skill only against servers where the operator is authorized to inspect roster and permission metadata. <br>
-Risk: Requests may route through a configured proxy. <br>
-Mitigation: Review proxy configuration before use, especially for sensitive Discord servers or organization-managed networks. <br>
+## Use Case:
 
+Developers and workspace operators use this skill to audit Discord server rosters, list bot or human members, and inspect guild channels, roles, and channel ownership.
 
-## Reference(s): <br>
-- [Discord API v10](https://discord.com/api/v10) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wehub4me/discord-roster) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Tab-separated text and concise command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires channels.discord.token; proxy settings may route requests through a configured proxy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Crafted arguments or environment values may cause unintended local code execution in the bundled script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, invoke only with trusted arguments and configuration, and fix the script to pass inputs to Python as data before routine use.
+
+Risk: The skill uses a Discord bot token and can expose server roster, role, and channel information available to that bot.
+
+Mitigation: Use a least-privilege bot token scoped to authorized guilds and store it only in the expected local configuration.
+
+Risk: Proxy configuration can affect where Discord API traffic is routed.
+
+Mitigation: Use only trusted proxy settings and verify the local configuration or environment before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1587causalai/skills/discord-roster)
+- [Publisher Profile](https://clawhub.ai/user/1587causalai)
+- [Discord REST API v10](https://discord.com/api/v10)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Tab-separated text and Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured Discord bot token and network access to Discord; supports optional proxy configuration.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

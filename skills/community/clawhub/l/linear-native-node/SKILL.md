@@ -1,13 +1,14 @@
-﻿---
+---
 name: linear-native-node
-description: Direct Linear workspace helper using Linear's GraphQL API from native Node.js. Use when creating, listing, updating, commenting on, summarizing, or looking up Linear issues, projects, teams, workflow states, priorities, standup notes, or branch names. Can write to Linear via create/comment/status/priority/project-create commands. Reads LINEAR_API_KEY from the process environment only; no OAuth gateway, bash, Python, npm dependencies, or third-party service.
-version: 1.0.15
+description: Linear workspace helper using Linear's GraphQL API from native Node.js. Use when creating, listing, updating, commenting on, summarizing, or looking up Linear issues, projects, teams, workflow states, priorities, standup notes, or branch names. Write actions are explicit and approval-gated via create/comment/status/priority/project-create commands. Reads LINEAR_API_KEY from the process environment only; no OAuth gateway, bash, Python, npm dependencies, or third-party intermediary/proxy service.
+version: 1.0.22
 risk_class: external-api-read-write-gated
 ---
 
 # Linear Native Node
 
-Version: 1.0.15 / publishable utility.
+Version: 1.0.22 / local Linear utility.
+
 
 Use `scripts/linear.mjs` to talk directly to Linear's GraphQL API at `https://api.linear.app/graphql`.
 
@@ -29,7 +30,7 @@ Native Node 18+. Zero npm dependencies. Windows, macOS, and Linux friendly. No b
 
 ## Why this skill
 
-This is the direct/local version of common Linear helper workflows:
+This is the local/native Node version of common Linear helper workflows:
 
 - Keeps API access between this machine and Linear only.
 - Uses `LINEAR_API_KEY` from the process environment only; never print the key.
@@ -74,10 +75,10 @@ From OpenClaw, use the bundled script directly:
 
 ```text
 Run: node <skill-dir>/scripts/linear.mjs my-issues --team TEAM
-Run only after explicit approval: node <skill-dir>/scripts/linear.mjs create TEAM "Fix login error" "Users see an error after submitting credentials." --priority high --execute
+Run only after explicit approval: node <skill-dir>/scripts/linear.mjs --execute create TEAM "Fix login error" "Users see an error after submitting credentials." --priority high
 ```
 
-Add `--json` to commands when structured output is useful.
+Add `--json` before the command when structured output is useful. Global flags (`--json`, `--execute`) are intentionally prefix-only; put them before the command so positional text such as a comment body of `--execute` or `--json` is not consumed as a global flag.
 
 ## Commands
 
@@ -104,14 +105,14 @@ For list commands, `--team TEAM` narrows results to one team. If `--team` is omi
 Writes to Linear require explicit approval and `--execute`:
 
 ```text
-project-create [TEAM_KEY] "Name" ["Description"] --execute
-create [TEAM_KEY] "Title" ["Description"] [--priority urgent|high|medium|low|none] --execute
-comment <IDENTIFIER> "Comment" --execute
-status <IDENTIFIER> <state-name> --execute
-priority <IDENTIFIER> <urgent|high|medium|low|none> --execute
+--execute project-create [TEAM_KEY] "Name" ["Description"]
+--execute create [TEAM_KEY] "Title" ["Description"] [--priority urgent|high|medium|low|none]
+--execute comment <IDENTIFIER> "Comment"
+--execute status <IDENTIFIER> <state-name>
+--execute priority <IDENTIFIER> <urgent|high|medium|low|none>
 ```
 
-For `project-create` and `create`, `TEAM_KEY` may be omitted only when `LINEAR_DEFAULT_TEAM` is set; with two or more positional args, the first arg is treated as the explicit team key. Without `--execute`, write commands fail before contacting Linear.
+For `project-create` and `create`, `TEAM_KEY` may be omitted only when `LINEAR_DEFAULT_TEAM` is set; with two or more positional args, the first arg is treated as the explicit team key. Without prefix `--execute`, write commands fail before contacting Linear.
 
 For agent use, execute write commands only when the user's current instruction explicitly names the Linear action, target, and intended mutation (for example, "create a Linear issue for..." or "move TEAM-123 to Done") or the user explicitly approves the exact command.
 
@@ -128,9 +129,9 @@ node "<skill-dir>/scripts/linear.mjs" states TEAM
 Create a project:
 
 ```powershell
-node "<skill-dir>/scripts/linear.mjs" project-create TEAM "Release Planning" "Track launch scope and milestones." --execute
+node "<skill-dir>/scripts/linear.mjs" --execute project-create TEAM "Release Planning" "Track launch scope and milestones."
 # If LINEAR_DEFAULT_TEAM is set:
-node "<skill-dir>/scripts/linear.mjs" project-create "Release Planning" --execute
+node "<skill-dir>/scripts/linear.mjs" --execute project-create "Release Planning"
 ```
 
 List issues:
@@ -147,17 +148,17 @@ Read and update an issue:
 
 ```powershell
 node "<skill-dir>/scripts/linear.mjs" issue TEAM-123
-node "<skill-dir>/scripts/linear.mjs" comment TEAM-123 "Added reproduction notes." --execute
-node "<skill-dir>/scripts/linear.mjs" status TEAM-123 "In Progress" --execute
-node "<skill-dir>/scripts/linear.mjs" priority TEAM-123 urgent --execute
+node "<skill-dir>/scripts/linear.mjs" --execute comment TEAM-123 "Added reproduction notes."
+node "<skill-dir>/scripts/linear.mjs" --execute status TEAM-123 "In Progress"
+node "<skill-dir>/scripts/linear.mjs" --execute priority TEAM-123 urgent
 ```
 
 Create an issue:
 
 ```powershell
-node "<skill-dir>/scripts/linear.mjs" create TEAM "Fix notification delivery" "Notifications are delayed for some users." --priority high --execute
+node "<skill-dir>/scripts/linear.mjs" --execute create TEAM "Fix notification delivery" "Notifications are delayed for some users." --priority high
 # If LINEAR_DEFAULT_TEAM is set:
-node "<skill-dir>/scripts/linear.mjs" create "Fix notification delivery" --priority high --execute
+node "<skill-dir>/scripts/linear.mjs" --execute create "Fix notification delivery" --priority high
 ```
 
 Generate a GitHub-friendly branch name from the Linear issue title:
@@ -169,7 +170,7 @@ node "<skill-dir>/scripts/linear.mjs" branch TEAM-123
 Get machine-readable output:
 
 ```powershell
-node "<skill-dir>/scripts/linear.mjs" my-issues --team TEAM --json
+node "<skill-dir>/scripts/linear.mjs" --json my-issues --team TEAM
 ```
 
 ## Notes
@@ -179,7 +180,7 @@ node "<skill-dir>/scripts/linear.mjs" my-issues --team TEAM --json
 - Missing keys, 401/403 responses, proxy/egress denial hints, GraphQL errors, missing teams/states, and invalid priorities produce clear stderr errors with non-zero exit codes.
 - When omitting `TEAM_KEY` via `LINEAR_DEFAULT_TEAM`, pass only the project name or issue title. Descriptions require an explicit `TEAM_KEY` because two positional arguments are parsed as `TEAM_KEY` plus name/title.
 - List commands default to `--limit 25`; `standup` defaults to `--limit 20`. Limits must be integers from 1-100. The script returns the first page ordered by Linear `updatedAt`; it does not auto-paginate.
-- Linear HTTP errors, including rate-limit responses, surface as clear stderr errors with non-zero exit codes; the script does not retry or back off. For 401/403, verify both Linear key permissions and whether an egress proxy/sandbox is blocking `api.linear.app`.
+- Linear HTTP and GraphQL errors surface as clear stderr errors with non-zero exit codes, but response bodies/details are omitted because they may contain workspace-sensitive data; the script does not retry or back off. For 401/403, verify both Linear key permissions and whether an egress proxy/sandbox is blocking `api.linear.app`.
 - `standup` summarizes assigned issues in started and completed Linear workflow states within the returned first page; it is intentionally lightweight, not a time tracker or date-windowed report.
 - Help is available with `help`, `-h`, or `--help`. There is no `--version` flag; use the `version:` frontmatter and changelog.
 
@@ -217,7 +218,14 @@ Optional default team:
 
 ## Changelog
 
-- `1.0.15`: ClawHub publication/version refresh after public-readiness review; no runtime behavior change.
+- `1.0.22`: Frontmatter wording hygiene: clarify that the skill has no third-party intermediary/proxy service while still calling Linear's own GraphQL API directly. No runtime Linear behavior change and no ClawHub/public publish authority.
+- `1.0.21`: Test/source-review hygiene: construct the fake Linear API key sentinel in `tests.mjs` instead of embedding a credential-looking literal, so source-attached review packaging can scan the test harness without weakening secret gates. No runtime Linear behavior change and no ClawHub/public publish authority.
+- `1.0.20`: Public-clear packaging polish: exclude `dry-runs/` review evidence from ClawHub packages, move current dry-run evidence out of the skill source tree, and extend package leak tests to scan expected packaged files for Windows path variants and review/evidence inventory markers. No categories, topics, topic tags, tags, keywords, or ClawHub catalog metadata added to source.
+- `1.0.19`: Source polish: remove remaining direct/direct wording, make global flags prefix-only so positional text equal to `--execute`/`--json` is not consumed as a global flag, omit workspace-sensitive Linear response bodies/details from non-auth HTTP/GraphQL errors, and clarify write/JSON examples. No categories, topics, topic tags, tags, keywords, or ClawHub catalog metadata added to source.
+- `1.0.18`: Metadata wording hygiene: remove "Direct" from the description; no runtime behavior change.
+- `1.0.17`: Superseded local listing-topic experiment removed before final retest; no runtime behavior change.
+- `1.0.16`: Public-wording hygiene patch: remove ambiguous current publishability/public-readiness language from the body/changelog so source text cannot be mistaken for standing ClawHub/public approval; no runtime behavior change.
+- `1.0.15`: Version refresh after prior packaging/public-readiness review; no runtime behavior change and no standing publish approval implied.
 - `1.0.14`: Reject extra positional arguments for single/two-argument commands, including write commands, to prevent truncated operator intent.
 - `1.0.13`: Add cross-platform missing-key hints, clarify 401/403 proxy-vs-auth diagnostics, guard mutually exclusive state filters, and expand offline gate tests.
 - `1.0.12`: Clarify that `--execute` is a script-level flag gate while mutation appropriateness remains an operator/agent approval-policy requirement.

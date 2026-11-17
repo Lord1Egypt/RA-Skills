@@ -5,6 +5,8 @@
  */
 
 const { createSecureAxios } = require("./axios_secure");
+const { applyEvaluationCustomAttr, resolveEvaluationLabelData } = require("./evaluation_structure");
+const { applyScaleCustomAttr } = require("./scale_structure");
 const { requireAccessToken } = require('./token_store');
 const { fetchProject: fetchProjectRemote, saveProjectToDefaultPath } = require('./fetch_project');
 const { getProjects } = require('./list_projects');
@@ -216,6 +218,84 @@ function createJudgeChoice(title = "判断题", projectId = "", questionpageId =
   return question;
 }
 
+/**
+ * 评价题（编辑器「评价」）
+ * 线上下落为打分题 question_type=50 + disp_type=evaluation + 分数/标签两项
+ */
+function createEvaluationQuestion(title = "请评价", labels = null, projectId = "", questionpageId = "") {
+  const label_data = resolveEvaluationLabelData(null, labels);
+  return {
+    project_id: projectId,
+    questionpage_id: questionpageId,
+    title,
+    question_type: 50,
+    en_name: "QUESTION_TYPE_SCORE",
+    custom_attr: applyEvaluationCustomAttr({}),
+    option_list: [
+      { title: "分数", is_open: false, custom_attr: {} },
+      { title: "标签", is_open: false, custom_attr: { label_data } },
+    ],
+  };
+}
+
+/**
+ * 量表题（QUESTION_TYPE_SCORE）
+ * custom_attr 参照量表完整展示结构
+ */
+function createScaleQuestion(title = "请给本项打分", projectId = "", questionpageId = "") {
+  return {
+    project_id: projectId,
+    questionpage_id: questionpageId,
+    title,
+    question_type: 50,
+    en_name: "QUESTION_TYPE_SCORE",
+    custom_attr: applyScaleCustomAttr({}),
+    option_list: [{ title: "选项1", is_open: false, custom_attr: {} }],
+  };
+}
+
+/**
+ * 打分题（QUESTION_TYPE_SCORE）
+ * custom_attr 参照最小结构：min/max + magnitude_scale + show_seq
+ */
+function createScoreQuestion(title = "请给本项打分", projectId = "", questionpageId = "") {
+  return {
+    project_id: projectId,
+    questionpage_id: questionpageId,
+    title,
+    question_type: 50,
+    en_name: "QUESTION_TYPE_SCORE",
+    custom_attr: {
+      min_answer_num: 1,
+      show_seq: "off",
+      max_answer_num: 5,
+      magnitude_scale: 1,
+    },
+    option_list: [{ title: "选项1", is_open: false, custom_attr: {} }],
+  };
+}
+
+/**
+ * NPS 题（QUESTION_TYPE_SCORE + disp_type=nps_score）
+ * 0～10，固定 1 条占位选项
+ */
+function createNpsQuestion(title = "您向朋友或同事推荐我们的可能性有多大？", projectId = "", questionpageId = "") {
+  return {
+    project_id: projectId,
+    questionpage_id: questionpageId,
+    title,
+    question_type: 50,
+    en_name: "QUESTION_TYPE_SCORE",
+    custom_attr: {
+      disp_type: "nps_score",
+      show_seq: "off",
+      min_answer_num: 0,
+      max_answer_num: 10,
+    },
+    option_list: [{ title: "选项1", is_open: false, custom_attr: {} }],
+  };
+}
+
 // ==================== 智能题目生成 ====================
 
 function stripHtml(s) {
@@ -389,6 +469,11 @@ function buildContextualCandidates(scene, ctx) {
       options: ["非常满意", "满意", "一般", "不满意", "非常不满意"],
     },
     {
+      type: "evaluation",
+      title: `请评价「${t}」`,
+      options: ["非常不满意", "比较不满意", "一般", "比较满意", "非常满意"],
+    },
+    {
       type: "multi",
       title: tail
         ? `${tail}，在「${t}」相关事项中您认为还有哪些方面值得关注？（可多选）`
@@ -434,7 +519,31 @@ function pickNonDuplicateCandidate(candidates, existingSet, preferredType, rotat
 
 function defaultOptionsForType(finalType) {
   if (finalType === "fill" || finalType === "judge") return null;
+  if (finalType === "evaluation") return null;
+  if (finalType === "scale") return ["非常不满意", "非常满意"];
+  if (finalType === "score") return null;
+  if (finalType === "nps") return null;
   return ["选项A", "选项B", "选项C"];
+}
+
+function normalizeQuestionTypeAlias(type) {
+  const raw = String(type || "").trim().toLowerCase();
+  if (["eval", "evaluation", "evaluate", "评价", "评价题"].includes(raw)) return "evaluation";
+  if (["scale", "likert", "量表", "量表题"].includes(raw)) return "scale";
+  if (["nps", "nps_score", "nps题", "净推荐", "净推荐值"].includes(raw)) return "nps";
+  if (["score", "打分", "打分题", "评分", "评分题", "几分", "星级"].includes(raw)) return "score";
+  return raw;
+}
+
+/** 单道「评价/量表/打分/NPS」题干；多维度矩阵表述不在本 Skill 支持范围内 */
+function inferTypeFromTitle(title) {
+  const t = String(title || "");
+  if (/评价题/.test(t)) return "evaluation";
+  if (/量表题/.test(t) || /量表/.test(t)) return "scale";
+  if (/NPS|nps题|净推荐|推荐.{0,12}可能性/.test(t)) return "nps";
+  if (/评价/.test(t) && !/以下|各项|方面/.test(t)) return "evaluation";
+  if (/打分|评分|几分|星级/.test(t) && !/以下|各项|方面/.test(t)) return "score";
+  return null;
 }
 
 /**
@@ -468,22 +577,22 @@ function generateSmartQuestion(
     finalTitle = String(title).trim();
     finalType =
       qType && qType !== "auto"
-        ? qType
-        : candidates[existingCount % candidates.length].type;
+        ? normalizeQuestionTypeAlias(qType)
+        : inferTypeFromTitle(finalTitle) || candidates[existingCount % candidates.length].type;
     const optSource = candidates.find((c) => c.type === finalType);
     finalOptions =
       optSource && optSource.options != null
         ? optSource.options
         : defaultOptionsForType(finalType);
   } else {
-    const preferred = qType && qType !== "auto" ? qType : null;
+    const preferred = qType && qType !== "auto" ? normalizeQuestionTypeAlias(qType) : null;
     const picked = pickNonDuplicateCandidate(
       candidates,
       existingSet,
       preferred,
       existingCount
     );
-    finalType = picked.type;
+    finalType = preferred || picked.type;
     finalTitle = picked.title;
     finalOptions =
       picked.options != null ? picked.options : defaultOptionsForType(finalType);
@@ -512,6 +621,18 @@ function generateSmartQuestion(
   }
   if (finalType === "judge") {
     return [createJudgeChoice(finalTitle, projectId, questionpageId), "判断题"];
+  }
+  if (finalType === "evaluation") {
+    return [createEvaluationQuestion(finalTitle, finalOptions, projectId, questionpageId), "评价题"];
+  }
+  if (finalType === "scale") {
+    return [createScaleQuestion(finalTitle, projectId, questionpageId), "量表题"];
+  }
+  if (finalType === "score") {
+    return [createScoreQuestion(finalTitle, projectId, questionpageId), "打分题"];
+  }
+  if (finalType === "nps") {
+    return [createNpsQuestion(finalTitle, projectId, questionpageId), "NPS题"];
   }
   const opts = finalOptions || ["选项A", "选项B", "选项C"];
   return [createSingleChoiceSurvey(finalTitle, opts, projectId, questionpageId), "单选题"];
@@ -611,9 +732,9 @@ function showHelp() {
   project_id              项目ID（可选，不传则从列表选择）
 
 选项:
-  --type <type>           题型: auto(自动)/single(单选)/multi(多选)/fill(填空)/judge(判断)
+  --type <type>           题型: auto(自动)/single(单选)/multi(多选)/fill(填空)/judge(判断)/evaluation(评价)/scale(量表)/score(打分)/nps(NPS)
   --title <title>         题目标题（可选；不传则按最新项目结构中的项目信息与已有题目生成，去重）
-  --options <options>     选项，逗号分隔（可选）
+  --options <options>     选项，逗号分隔（可选；评价题表示刻度文案）
   --index <index>         插入位置，0-based（默认末尾）
   -h, --help              显示帮助信息
 
@@ -627,8 +748,17 @@ function showHelp() {
   # 指定项目ID和题型
   node create_question.js 69cf1ec220c788db14aa18e8 --type single --title "您的性别？"
 
-  # 指定完整题目内容
-  node create_question.js 69cf1ec220c788db14aa18e8 --type multi --title "喜欢的颜色？" --options "红,绿,蓝"
+  # 创建评价题
+  node create_question.js 69cf1ec220c788db14aa18e8 --type evaluation --title "请评价本次服务"
+
+  # 创建量表题（1~5）
+  node create_question.js 69cf1ec220c788db14aa18e8 --type scale --title "请给本项打分"
+
+  # 创建打分题（最小 custom_attr 结构）
+  node create_question.js 69cf1ec220c788db14aa18e8 --type score --title "请给本项打分"
+
+  # 创建 NPS 题（0~10）
+  node create_question.js 69cf1ec220c788db14aa18e8 --type nps --title "您向朋友或同事推荐我们的可能性有多大？"
 `);
 }
 
@@ -652,7 +782,7 @@ async function main() {
       showHelp();
       process.exit(0);
     } else if (arg === '--type' && i + 1 < args.length) {
-      type = args[++i];
+      type = normalizeQuestionTypeAlias(args[++i]);
     } else if (arg === '--title' && i + 1 < args.length) {
       title = args[++i];
     } else if (arg === '--options' && i + 1 < args.length) {
@@ -760,12 +890,16 @@ async function main() {
       } else {
         questionStruct.option_list = trimmed.map(t => ({ title: t, custom_attr: {} }));
       }
+    } else if (qt === 50 && questionStruct.custom_attr?.disp_type === "evaluation") {
+        const rebuilt = createEvaluationQuestion(questionStruct.title, trimmed, projectId, questionpageId);
+        questionStruct.option_list = rebuilt.option_list;
+        questionStruct.custom_attr = { ...questionStruct.custom_attr, ...rebuilt.custom_attr };
     } else {
-      for (let i = 0; i < trimmed.length; i++) {
-        if (i < questionStruct.option_list.length) {
-          questionStruct.option_list[i].title = trimmed[i];
+        for (let i = 0; i < trimmed.length; i++) {
+          if (i < questionStruct.option_list.length) {
+            questionStruct.option_list[i].title = trimmed[i];
+          }
         }
-      }
     }
   }
 
@@ -809,7 +943,13 @@ module.exports = {
   createMultiChoiceSurvey,
   createFillBlank,
   createJudgeChoice,
+  createEvaluationQuestion,
+  createScaleQuestion,
+  createScoreQuestion,
+  createNpsQuestion,
   generateSmartQuestion,
+  inferTypeFromTitle,
+  normalizeQuestionTypeAlias,
   fetchProject,
   createQuestionApi,
   normalizeTitleForDedupe,

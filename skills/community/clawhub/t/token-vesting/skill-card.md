@@ -1,46 +1,62 @@
-## Description: <br>
-Create and manage token vesting streams using the Sablier Lockup protocol (linear, dynamic, tranched). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage token vesting streams using the Sablier Lockup protocol (linear, dynamic, tranched).
 
-## Publisher: <br>
-[sneg55](https://clawhub.ai/user/sneg55) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sneg55](https://clawhub.ai/user/sneg55)
 
-## Use Case: <br>
-Developers and token operations teams use this skill to prepare Sablier vesting streams, approvals, withdrawals, cancellations, and renounce actions on EVM-compatible chains. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill prepares high-impact blockchain transactions. <br>
-Mitigation: Manually verify every address, network, token amount, vesting schedule, and cancelability setting before signing. <br>
-Risk: Private keys and RPC URLs may expose funds or API credentials if mishandled. <br>
-Mitigation: Use a hardware wallet or encrypted Foundry keystore when possible, never paste private keys into chat, and keep RPC credentials out of logs and committed files. <br>
-Risk: Cancel and renounce actions can materially change stream rights. <br>
-Mitigation: Treat cancel and renounce as serious actions, and confirm that renounce permanently gives up cancellation rights before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Sablier Documentation](https://docs.sablier.com) <br>
-- [Sablier Lockup Deployments](https://docs.sablier.com/guides/lockup/deployments) <br>
-- [Sablier Lockup Source](https://github.com/sablier-labs/lockup) <br>
-- [Sablier Lockup Examples](https://github.com/sablier-labs/evm-examples/tree/main/lockup) <br>
-- [Sablier Lockup Integration Template](https://github.com/sablier-labs/lockup-integration-template) <br>
-- [Sablier App](https://app.sablier.com) <br>
+## Use Case:
 
+Developers and token operations teams use this skill to prepare and manage Sablier Lockup token vesting streams on EVM-compatible chains, including creating linear, dynamic, and tranched streams and checking, withdrawing, canceling, or renouncing existing streams.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with bash and Solidity code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Foundry cast or forge and an ETH_RPC_URL environment variable; signing should use a hardware wallet, encrypted keystore, or environment variable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can prepare commands that broadcast real blockchain transactions and move or lock ERC-20 tokens.
+
+Mitigation: Review every chain, contract, token, recipient, amount, allowance, stream ID, and calldata before broadcasting.
+
+Risk: Private keys and RPC URLs may expose wallet funds or API credentials if handled unsafely.
+
+Mitigation: Prefer a hardware wallet or encrypted Foundry keystore, avoid pasting secrets into chat, and avoid using a production private key through --private-key $ETH_PRIVATE_KEY.
+
+Risk: Renouncing cancelability is irreversible.
+
+Mitigation: Require explicit user confirmation before preparing or running a renounce transaction.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sneg55/skills/token-vesting)
+- [Sablier Documentation](https://docs.sablier.com)
+- [Sablier Lockup Deployments](https://docs.sablier.com/guides/lockup/deployments)
+- [Sablier Lockup Source](https://github.com/sablier-labs/lockup)
+- [Sablier Lockup Examples](https://github.com/sablier-labs/evm-examples/tree/main/lockup)
+- [Sablier Lockup Integration Template](https://github.com/sablier-labs/lockup-integration-template)
+- [Sablier App](https://app.sablier.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and Solidity code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include transaction preparation guidance, Foundry cast commands, Forge script snippets, configuration steps, and safety checks for chain, contract, token, recipient, amount, allowance, stream ID, and calldata review.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

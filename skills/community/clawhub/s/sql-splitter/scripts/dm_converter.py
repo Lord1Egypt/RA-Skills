@@ -197,12 +197,15 @@ _SQL_KEYWORDS_AS_NAME = frozenset({
 })
 
 # 需要做类型映射的SQL Server类型名集合
+# 重要: 按长度降序排列，避免 DATETIME 抢先匹配 DATETIME2 等
 _TYPE_NAMES_PATTERN = '|'.join(
-    k.upper() for k in TYPE_MAPPINGS.keys()
+    k.upper() for k in sorted(TYPE_MAPPINGS.keys(), key=len, reverse=True)
     if k not in ('date', 'time', 'text', 'char', 'real', 'float')  # 避免歧义太高的短词单独匹配
 )
-# 补充上面排除的(在声明上下文中足够安全)
-_FULL_TYPE_NAMES_PATTERN = '|'.join(k.upper() for k in TYPE_MAPPINGS.keys())
+# 补充上面排除的(在声明上下文中足够安全) - 同样按长度降序
+_FULL_TYPE_NAMES_PATTERN = '|'.join(
+    k.upper() for k in sorted(TYPE_MAPPINGS.keys(), key=len, reverse=True)
+)
 
 
 class DMConverter:
@@ -354,6 +357,16 @@ class DMConverter:
 
         # Step 8: GOTO/LABEL 转换(在还原后做，需要看到真实文本)
         result = self._convert_goto_label(result)
+
+        # Step 8.5: 过程体内DDL语句结尾补分号
+        if ctype in (ConversionType.PROCEDURE, ConversionType.FUNCTION,
+                    ConversionType.TRIGGER):
+            result = self._ensure_ddl_semicolons(result)
+
+        # Step 8.6: 过程体内所有语句(DML/变量赋值)结尾补分号
+        if ctype in (ConversionType.PROCEDURE, ConversionType.FUNCTION,
+                    ConversionType.TRIGGER):
+            result = self._ensure_statement_semicolons(result)
 
         # Step 8: 后处理 - 为存储过程/函数/触发器添加达梦终止符 /
         if ctype in (ConversionType.PROCEDURE, ConversionType.FUNCTION,
@@ -1389,6 +1402,117 @@ class DMConverter:
             new_tokens += '-- ========================================\n'
 
         tokens = new_tokens
+
+        # === SELECT INTO 转换 (达梦不支持 SELECT ... INTO 新表) ===
+        # SQL Server: SELECT col1, col2 INTO #tmp_table FROM src WHERE ...
+        # 达梦两种情况:
+        #   1) INTO #临时表: CREATE GLOBAL TEMPORARY TABLE "tmp_xxx" AS SELECT ... FROM src WHERE ...
+        #   2) INTO 普通表: INSERT INTO table SELECT ... FROM src WHERE ... (需要目标表已存在)
+
+        def _convert_select_into(m):
+            """SELECT col INTO table FROM rest -> CTAS(临时表) / INSERT SELECT(普通表)"""
+            select_cols = m.group(1).strip()
+            into_table = m.group(2).strip()
+            from_clause = m.group(3).strip()
+
+            is_temp = into_table.lower().startswith('tmp_') or into_table.lower().startswith('gtmp_')
+
+            if is_temp:
+                dm_table = into_table
+                result = f'CREATE GLOBAL TEMPORARY TABLE "{dm_table}" AS SELECT {select_cols} FROM {from_clause}'
+                self._add_change({
+                    'type': 'select_into', 'line': 0,
+                    'old': f'SELECT ... INTO {into_table}',
+                    'new': f'CREATE GLOBAL TEMPORARY TABLE AS SELECT',
+                    'desc': 'SELECT INTO临时表→CTAS创建GTT'
+                })
+            else:
+                result = f'INSERT INTO {into_table} SELECT {select_cols} FROM {from_clause}'
+                self._add_change({
+                    'type': 'select_into', 'line': 0,
+                    'old': f'SELECT ... INTO {into_table}',
+                    'new': f'INSERT INTO {into_table} SELECT ...',
+                    'desc': 'SELECT INTO普通表→INSERT INTO SELECT(需目标表已存在)'
+                })
+            return result
+
+        # 匹配: SELECT <cols> INTO <tmp_table> FROM <rest>
+        # #表名已在上一步被替换成tmp_/gtmp_
+        tokens = re.sub(
+            r'\bSELECT\s+(.+?)\s+INTO\s+(tmp_\w+|gtmp_\w+)\s+FROM\s+(.+)',
+            _convert_select_into,
+            tokens,
+            flags=re.IGNORECASE
+        )
+        # 匹配还保留#的临时表名(如漏掉#替换的情况)
+        tokens = re.sub(
+            r'\bSELECT\s+(.+?)\s+INTO\s+(#\w+)\s+FROM\s+(.+)',
+            lambda m: _convert_select_into(
+                type('Match', (), {
+                    'group': lambda self, i: [None, m.group(1), 'tmp_' + m.group(2).lstrip('#'), m.group(3)][i]
+                })()
+            ),
+            tokens,
+            flags=re.IGNORECASE
+        )
+        # 注意: 非临时表的 SELECT INTO 普通 FROM ... 暂不转换
+        # 因为达梦 SELECT INTO 变量 的语法形式相同，无法区分
+        # 用户需手动处理非临时表的 SELECT INTO
+
+        # === DDL语句结尾加分号 (达梦过程体内DDL必须有;) ===
+        # 处理过程体内的: CREATE GLOBAL TEMPORARY TABLE / DROP TABLE / ALTER TABLE / CREATE INDEX
+        # 单行DDL: DROP TABLE xxx -> DROP TABLE xxx;
+        # 跨行DDL: CREATE GLOBAL TEMPORARY TABLE "tmp_xxx"\n(id INT)\n ->
+        #          CREATE GLOBAL TEMPORARY TABLE "tmp_xxx"\n(id INT);\n
+        # 注意: 此时在token保护下,字符串内的DDL不会被误处理
+
+        # 1) 单行DROP/ALTER TABLE缺分号
+        tokens = re.sub(
+            r'^(\s*(?:DROP|ALTER)\s+TABLE\s+\S+?)(\s*)$',
+            r'\1;\2',
+            tokens,
+            flags=re.IGNORECASE | re.MULTILINE
+        )
+        # 2) 单行DROP INDEX缺分号
+        tokens = re.sub(
+            r'^(\s*DROP\s+INDEX\s+\S+?)(\s*)$',
+            r'\1;\2',
+            tokens,
+            flags=re.IGNORECASE | re.MULTILINE
+        )
+        # 3) CREATE GLOBAL TEMPORARY TABLE 跨行建表: 用状态机在最后的)行加分号
+        #    CTAS(AS SELECT)行已在SELECT INTO转换时加了分号，这里处理的是内联建表
+        lines = tokens.split('\n')
+        new_lines = []
+        in_gtt_create = False
+        for line in lines:
+            stripped = line.strip()
+            if re.match(r'\s*CREATE\s+GLOBAL\s+TEMPORARY\s+TABLE\b', stripped, re.IGNORECASE):
+                # CTAS单行(AS SELECT ...)已在SELECT INTO转换时加了;，跳过
+                if 'AS SELECT' in stripped.upper() and stripped.rstrip().endswith(';'):
+                    in_gtt_create = False
+                    new_lines.append(line)
+                else:
+                    in_gtt_create = True
+                    new_lines.append(line)
+            elif in_gtt_create:
+                # 在GTT建表块内，找结束行: 以)结尾(可能带ON COMMIT...)
+                if re.match(r'\s*\)\s*(ON\s+COMMIT\s+PRESERVE\s+ROWS\s*)?$', stripped, re.IGNORECASE):
+                    if not line.rstrip().endswith(';'):
+                        line = line.rstrip() + ';'
+                    in_gtt_create = False
+                    new_lines.append(line)
+                elif stripped.endswith(';'):
+                    # 已经有分号，结束
+                    in_gtt_create = False
+                    new_lines.append(line)
+                else:
+                    # 还在建表块内(列定义行等)，保持状态
+                    new_lines.append(line)
+            else:
+                new_lines.append(line)
+        tokens = '\n'.join(new_lines)
+
         return tokens
 
     # ================================================================
@@ -1509,9 +1633,30 @@ class DMConverter:
     # ================================================================
 
     def _convert_bracket_identifiers(self, tokens: str) -> str:
-        """方括号标识符 [name] -> "name" (在token化之前已经被保护了，这里处理遗漏)"""
-        # 注意: 大部分方括号标识符已经在tokenize时被替换为占位符
-        # 这里处理可能遗漏的情况
+        """方括号标识符转换 (在token化后做，注释和字符串已被保护)
+        
+        规则(v3.5.3起):
+        - 非类型名: [name] -> "name" (去方括号加双引号)
+          如: [aa] -> "aa", [hrbi].[xxx] -> "hrbi"."xxx"
+        - 类型名: [int] -> int, [nvarchar] -> nvarchar (去方括号不加双引号，后续做类型映射)
+        
+        注意: 此时注释、字符串和双引号标识符已被tokenize保护为占位符，
+        所以这里的[和]只会出现在真实的SQL代码中，不会误改注释/字符串。
+        """
+        # SQL Server类型名集合(小写)，类型名去[]不加双引号，后续_convert_data_types做类型映射
+        type_names_lower = {k.lower() for k in TYPE_MAPPINGS.keys()}
+        
+        def _replace_bracket(m):
+            inner = m.group(1)
+            # 类型名: 去方括号不加双引号(如[int]->int, [nvarchar]->nvarchar)
+            # inner可能含空格如"int identity"，首段判断
+            first_token = inner.split()[0].lower() if inner.split() else inner.lower()
+            if first_token in type_names_lower:
+                return inner  # 去掉方括号，不加双引号
+            # 非类型名: 加双引号(如[aa]->"aa", [hrbi]->"hrbi")
+            return f'"{inner}"'
+        
+        tokens = re.sub(r'\[([^\]\n]+)\]', _replace_bracket, tokens)
         return tokens
 
     # ================================================================
@@ -1865,25 +2010,33 @@ class DMConverter:
     # ================================================================
 
     def _replace_dbo_prefix(self, content: str) -> str:
-        """替换dbo前缀 + 双点号 — 所有对象类型通用
-        xxx.dbo.yyy -> xxx.yyy (去掉中间的dbo)
-        dbo.yyy -> {schema_prefix}.yyy (用schema_prefix替换dbo)
-        xxx..yyy -> xxx.yyy (SQL Server的database..object省略schema写法)
-        \"xxx\"..\"yyy\" -> \"xxx\".\"yyy\" (双引号格式的双点号)
+        """替换dbo前缀为schema_prefix + 双点号处理 — 所有对象类型通用
+        
+        转换规则:
+        - 三段式: "xxx"."dbo"."yyy" -> "xxx"."yyy" (dbo是SQL Server默认schema，删除)
+        - 三段式裸名: xxx.dbo.yyy -> xxx.yyy (删dbo)
+        - 三段式混合: xxx."dbo"."yyy" -> xxx."yyy" (删dbo)
+        - 两段式有引号: "dbo"."yyy" -> "{prefix}""yyy" (dbo替换为schema_prefix)
+        - 两段式裸名: dbo.yyy -> {prefix}.yyy (dbo替换为schema_prefix)
+        - 双点号: xxx..yyy -> xxx.yyy
+        
+        schema_prefix来自输入文件名，如hrbi_stage.sql → hrbi_stage
         """
         prefix = self._schema_prefix
-        # 双点号: xxx..yyy -> xxx.yyy (SQL Server省略dbo的写法，达梦不支持)
-        # 必须在三段式之前处理，否则 xxx..yyy 中的 .. 不会被 xxx.dbo.yyy 正则匹配
-        content = re.sub(r'"([^"]+)"\.\.', r'"\1".', content, flags=re.IGNORECASE)  # "xxx".."yyy"
+        # 双点号: xxx..yyy -> xxx.yyy (SQL Server省略dbo的写法)
+        # 必须在三段式之前处理
+        content = re.sub(r'"([^"]+)"\.\.', r'"\1".', content, flags=re.IGNORECASE)  # "xxx"."yyy"
         content = re.sub(r'\b(\w+)\.\.', r'\1.', content, flags=re.IGNORECASE)  # xxx..yyy
-        # 三段式: "xxx"."dbo"."yyy" -> "xxx"."yyy"
+        # 三段式全引号: "xxx"."dbo"."yyy" -> "xxx"."yyy" (dbo是默认schema，直接删)
         content = re.sub(r'"([^"]+)"\."dbo"\.', r'"\1".', content, flags=re.IGNORECASE)
-        # 三段式无引号: xxx.dbo.yyy -> xxx.yyy
+        # 三段式全裸名: xxx.dbo.yyy -> xxx.yyy (删dbo)
         content = re.sub(r'\b(\w+)\.dbo\.', r'\1.', content, flags=re.IGNORECASE)
-        # 两段式有引号: "dbo"."yyy" -> "{prefix}"."yyy"
+        # 三段式混合(裸名+引号dbo): xxx."dbo"."yyy" -> xxx."yyy" (删dbo)
+        content = re.sub(r'\b(\w+)\."dbo"\.', r'\1.', content, flags=re.IGNORECASE)
+        # 两段式有引号: "dbo"."yyy" -> "{prefix}""yyy" (dbo替换为schema_prefix)
         if prefix:
             content = re.sub(r'"dbo"\.', f'"{prefix}".', content, flags=re.IGNORECASE)
-        # 两段式无引号: dbo.yyy -> {prefix}.yyy
+        # 两段式裸名: dbo.yyy -> {prefix}.yyy (dbo替换为schema_prefix)
         if prefix:
             content = re.sub(r'\bdbo\.', f'{prefix}.', content, flags=re.IGNORECASE)
         return content
@@ -1893,26 +2046,18 @@ class DMConverter:
         处理tokenize时被保护的方括号类型名如 [nvarchar]、[int] 等
         以及VARCHAR加CHAR定义
         """
-        # 数据类型映射 — 必须在去方括号之前做！
-        # 否则 [nvarchar] -> "nvarchar" 后正则匹配不到被双引号包围的类型名
+        # 数据类型映射 — 方括号已在Step4去掉,这里只做裸类型名映射
         # 优化: 用单次正则+回调替代循环35+次全文替换
+        # 重要: 按key长度降序排列，避免 DATETIME 抢先匹配 DATETIME2
         _type_map = TYPE_MAPPINGS
-        _bracket_type_pattern = re.compile(
-            r'\[(' + '|'.join(re.escape(t) for t in _type_map.keys()) + r')\](?=\s*\(|\s+NULL|\s+NOT|\s+IDENTITY|\s+DEFAULT|\s+,|\s*\)|\s*$)',
-            re.IGNORECASE
-        )
+        _sorted_type_keys = sorted(_type_map.keys(), key=len, reverse=True)
         _bare_type_pattern = re.compile(
-            r'(?<=\s)(' + '|'.join(re.escape(t) for t in _type_map.keys()) + r')(?=\s*\(|\s+NULL|\s+NOT|\s+IDENTITY|\s+DEFAULT|\s+,|\s*\)|\s*$)',
+            r'(?<=\s)(' + '|'.join(re.escape(t) for t in _sorted_type_keys) + r')(?=\s*\(|\s+NULL|\s+NOT|\s+IDENTITY|\s+DEFAULT|\s+,|\s*\)|\s*$)',
             re.IGNORECASE
         )
         def _type_replacer(m):
             return _type_map[m.group(1).lower()]
-        content = _bracket_type_pattern.sub(_type_replacer, content)
         content = _bare_type_pattern.sub(_type_replacer, content)
-
-        # 方括号标识符 -> 双引号（达梦风格）— 类型映射完成后才去方括号
-        # SQL Server方括号标识符可含-、$、空格、中文等，用[^\]]+匹配
-        content = re.sub(r'\[([^\]]+)\]', r'"\1"', content)
 
         # dbo前缀替换 — 使用通用方法
         content = self._replace_dbo_prefix(content)
@@ -1943,24 +2088,17 @@ class DMConverter:
         - 不去 ON [PRIMARY] (过程体内没有)
         - 仍然做: 方括号类型映射 + [xxx]->"xxx" + dbo替换 + VARCHAR(n CHAR)
         """
-        # 数据类型映射 - 方括号包裹的类型名先映射
+        # 数据类型映射 - 方括号已在Step4去掉,这里只做裸类型名映射
+        # 重要: 按key长度降序排列，避免 DATETIME 抢先匹配 DATETIME2
         _type_map = TYPE_MAPPINGS
-        _bracket_type_pattern = re.compile(
-            r'\[(' + '|'.join(re.escape(t) for t in _type_map.keys()) + r')\](?=\s*\(|\s+NULL|\s+NOT|\s+IDENTITY|\s+DEFAULT|\s+,|\s*\)|\s*$)',
-            re.IGNORECASE
-        )
-        # 裸类型名也映射（如 CAST(... AS nvarchar(50)) 中的 nvarchar）
+        _sorted_type_keys = sorted(_type_map.keys(), key=len, reverse=True)
         _bare_type_pattern = re.compile(
-            r'(?<=\s)(' + '|'.join(re.escape(t) for t in _type_map.keys()) + r')(?=\s*\(|\s+NULL|\s+NOT|\s+IDENTITY|\s+DEFAULT|\s+,|\s*\)|\s*$)',
+            r'(?<=\s)(' + '|'.join(re.escape(t) for t in _sorted_type_keys) + r')(?=\s*\(|\s+NULL|\s+NOT|\s+IDENTITY|\s+DEFAULT|\s+,|\s*\)|\s*$)',
             re.IGNORECASE
         )
         def _type_replacer(m):
             return _type_map[m.group(1).lower()]
-        content = _bracket_type_pattern.sub(_type_replacer, content)
         content = _bare_type_pattern.sub(_type_replacer, content)
-
-        # 方括号标识符 -> 双引号（达梦风格）
-        content = re.sub(r'\[([^\]]+)\]', r'"\1"', content)
 
         # dbo前缀替换
         content = self._replace_dbo_prefix(content)
@@ -2159,6 +2297,256 @@ class DMConverter:
             content = content[:-1].rstrip()
         content += ';\n'
         return content
+
+    def _ensure_ddl_semicolons(self, content: str) -> str:
+        """确保过程体内的DDL语句结尾有分号
+        
+        达梦存储过程体内，每条DDL(CREATE/ALTER/DROP TABLE/INDEX等)
+        必须以分号结尾。此方法扫描过程体，为缺分号的DDL补上。
+        注意: 只处理过程体内的DDL，不影响PROCEDURE声明和END;
+        """
+        lines = content.split('\n')
+        new_lines = []
+        # DDL关键字(排除PROCEDURE/FUNCTION声明)
+        ddl_start = re.compile(
+            r'^\s*(?:CREATE\s+(?:GLOBAL\s+TEMPORARY\s+)?(?!OR\s+REPLACE\s+(?:PROCEDURE|FUNCTION))'
+            r'TABLE|CREATE\s+(?:GLOBAL\s+TEMPORARY\s+)?(?:INDEX|UNIQUE|VIEW)\b'
+            r'|ALTER\s+(?:GLOBAL\s+TEMPORARY\s+)?TABLE\b'
+            r'|DROP\s+(?:GLOBAL\s+TEMPORARY\s+)?TABLE\b'
+            r'|DROP\s+INDEX\b)',
+            re.IGNORECASE
+        )
+        # 也匹配 CREATE TABLE #xxx 形式(漏掉#替换的)
+        ddl_start2 = re.compile(
+            r'^\s*CREATE\s+TABLE\s+#?\w+',
+            re.IGNORECASE
+        )
+        # 典型DML/PL语句开头(遇到表示上一条DDL已结束)，允许前导空白
+        stmt_start = re.compile(
+            r'^\s*(?:INSERT\s+INTO|SELECT\s|DELETE\s+FROM|UPDATE\s+\w|'
+            r'CREATE|ALTER|DROP|EXEC(?:UTE)?(?:\s+IMMEDIATE)?\b|SET\s+@|SET\s+\w|'
+            r'IF\s|WHILE\s|BEGIN\b|END\b|RETURN\b|PRINT\b|declare\s|'
+            r'v_\w+\s+:=|COMMIT|ROLLBACK|MERGE\s)',
+            re.IGNORECASE
+        )
+        in_ddl = False
+        paren_depth = 0
+        
+        for line in lines:
+            stripped = line.strip()
+            # 保留注释行和空行，但不中断DDL状态
+            if stripped.startswith('--') or not stripped:
+                new_lines.append(line)
+                continue
+            
+            if not in_ddl:
+                # 检测DDL起始
+                if ddl_start.match(stripped) or ddl_start2.match(stripped):
+                    # 单行且已有分号
+                    if stripped.endswith(';'):
+                        new_lines.append(line)
+                        continue
+                    in_ddl = True
+                    paren_depth = stripped.count('(') - stripped.count(')')
+                    # 单行DDL: 如 DROP TABLE xxx 或 CREATE TABLE xxx(id INT)
+                    if paren_depth <= 0 and not stripped.endswith('(') and not stripped.endswith(','):
+                        if re.search(r'\)\s*$', stripped) or re.match(r'^\s*(?:DROP|ALTER)\s+TABLE', stripped, re.IGNORECASE):
+                            if not stripped.endswith(';'):
+                                line = line.rstrip() + ';'
+                            in_ddl = False
+                    new_lines.append(line)
+                else:
+                    new_lines.append(line)
+            else:
+                # 在DDL块内
+                paren_depth += stripped.count('(') - stripped.count(')')
+                
+                # 检查这行是否是DDL块的结束行
+                ends_ddl = False
+                if paren_depth <= 0 and stripped.endswith(')'):
+                    ends_ddl = True
+                elif stripped.endswith(';'):
+                    ends_ddl = True
+                elif re.match(r'\s*\)\s*ON\s+COMMIT', stripped, re.IGNORECASE):
+                    ends_ddl = True
+                elif re.match(r'\s*\)\s+ON\s+PRIMARY\s*$', stripped, re.IGNORECASE):
+                    # ) ON PRIMARY -> 去掉ON PRIMARY, 替换为);
+                    line = re.sub(r'\s+ON\s+PRIMARY\s*$', ';', line.rstrip(), flags=re.IGNORECASE)
+                    # 此行已有分号，不需要再补
+                    in_ddl = False
+                    new_lines.append(line)
+                    continue
+                # CTAS跨行: AS SELECT ... 子查询跨多行, 当遇到下一个语句开头时,
+                # 说明CTAS在上一行结束但缺分号
+                elif stmt_start.match(stripped) and not stripped.startswith(')'):
+                    # 上一行应该结束DDL，补分号到上一行
+                    if new_lines and not new_lines[-1].rstrip().endswith(';'):
+                        new_lines[-1] = new_lines[-1].rstrip() + ';'
+                    in_ddl = False
+                    new_lines.append(line)
+                    continue
+                
+                if ends_ddl:
+                    if not stripped.endswith(';') and not stripped.rstrip().endswith(';'):
+                        line = line.rstrip() + ';'
+                    in_ddl = False
+                    new_lines.append(line)
+                else:
+                    new_lines.append(line)
+        
+        # 兜底: DDL块到底未闭合,给最后非空行加分号
+        if in_ddl and new_lines:
+            for i in range(len(new_lines) - 1, -1, -1):
+                s = new_lines[i].strip()
+                if s and not s.startswith('--') and not s.endswith(';'):
+                    new_lines[i] = new_lines[i].rstrip() + ';'
+                    break
+        
+        result = '\n'.join(new_lines)
+        return result
+
+    def _ensure_statement_semicolons(self, content: str) -> str:
+        """确保过程体内所有语句结尾有分号(DML + 变量赋值)
+        
+        达梦存储过程体内，每条DML(INSERT/DELETE/UPDATE/SELECT)和
+        变量赋值(var := expr)都必须以分号结尾。
+        此方法扫描过程体，为缺分号的语句补上。
+        注意: 只处理过程体内的语句，不影响PROCEDURE声明和END;
+        
+        跨行语句处理:
+        - INSERT INTO table_name (columns) SELECT ...  → 在SELECT结束后加分号
+        - v_xxx := expr (非跨行) → 直接加分号
+        - v_xxx := '(' 开头 → 跨行赋值，等到')'行加分号
+        """
+        lines = content.split('\n')
+        new_lines = []
+        
+        def line_has_semicolon(s):
+            """判断一行是否以分号结尾(忽略注释)"""
+            stripped = s.rstrip()
+            comment_pos = stripped.find('--')
+            if comment_pos >= 0:
+                stripped = stripped[:comment_pos].rstrip()
+            return stripped.endswith(';')
+        
+        def is_comment_or_blank(s):
+            stripped = s.strip()
+            return stripped == '' or stripped.startswith('--')
+        
+        def is_end_keyword(s):
+            stripped = s.strip()
+            return bool(re.match(r'^END\s*$', stripped, re.IGNORECASE))
+        
+        def is_begin_keyword(s):
+            stripped = s.strip()
+            return bool(re.match(r'^BEGIN\s*$', stripped, re.IGNORECASE))
+        
+        def is_control_keyword(s):
+            stripped = s.strip()
+            return bool(re.match(r'^(IF|WHILE|CASE|EXCEPTION|THEN|ELSE)\b', stripped, re.IGNORECASE))
+        
+        # 判断一行是否是跨行语句的延续(列定义/括号内)
+        def is_continuation_line(s):
+            stripped = s.strip()
+            # 以逗号结尾 → 列定义
+            if stripped.endswith(','):
+                return True
+            # 以左括号开头 → 列定义列表
+            if stripped.startswith('('):
+                return True
+            # 以右括号结尾 → 可能是跨行语句结束
+            if stripped.endswith(')'):
+                return True
+            return False
+        
+        # 判断一行是否以表名结尾(INSERT INTO xxx)
+        def ends_with_table_name(s):
+            """INSERT INTO table_name 后面没有括号，说明列定义在下一行"""
+            stripped = s.strip()
+            if not re.match(r'(?:INSERT\s+INTO|UPDATE)\b', stripped, re.IGNORECASE):
+                return False
+            # 如果后面直接跟表名(不以(开头)，说明是跨行INSERT
+            if not stripped.endswith('(') and not stripped.endswith(',') and not stripped.endswith(';'):
+                return True
+            return False
+        
+        i = 0
+        while i < len(lines):
+            line = lines[i]
+            stripped = line.strip()
+            
+            # 注释行和空行直接保留
+            if is_comment_or_blank(line):
+                new_lines.append(line)
+                i += 1
+                continue
+            
+            # END/BEGIN/控制流关键字直接保留
+            if is_end_keyword(stripped) or is_begin_keyword(stripped) or is_control_keyword(stripped):
+                new_lines.append(line)
+                i += 1
+                continue
+            
+            # 已有分号的行直接保留
+            if line_has_semicolon(line):
+                new_lines.append(line)
+                i += 1
+                continue
+            
+            # 跨行INSERT INTO table_name (列定义在下一行) → 不加分号
+            if ends_with_table_name(stripped):
+                new_lines.append(line)
+                i += 1
+                continue
+            
+            # 变量赋值行(v_xxx := 或 xxx :=)
+            if re.match(r'^\s*(?:v_\w+|\w+)\s*:=', line, re.IGNORECASE):
+                # 跨行赋值(以(或+或,结尾) → 不加分号
+                if stripped.endswith('(') or stripped.endswith(',') or stripped.endswith('+'):
+                    new_lines.append(line)
+                    i += 1
+                    continue
+                else:
+                    new_lines.append(line.rstrip() + ';')
+                    i += 1
+                    continue
+            
+            # DML: INSERT INTO (有括号) / DELETE FROM / UPDATE
+            if re.match(r'^\s*(?:INSERT\s+INTO\s+\w|DELETE\s+FROM|UPDATE\s+\w)\b', line, re.IGNORECASE):
+                # 单行DML(有括号或FROM/表名后直接结束) → 补分号
+                new_lines.append(line.rstrip() + ';')
+                i += 1
+                continue
+            
+            # INSERT INTO (无括号，列定义在下一行) → 已在上面ends_with_table_name处理
+            
+            # SELECT 单独一行(CTAS的SELECT) → 不加分号，等后续处理
+            if re.match(r'^\s*SELECT\b', line, re.IGNORECASE):
+                # 如果前面是AS(CTAS)，AS行应该加分号
+                if new_lines and re.search(r'\bAS\s*$', new_lines[-1].strip(), re.IGNORECASE):
+                    new_lines[-1] = new_lines[-1].rstrip() + ';'
+                new_lines.append(line)
+                i += 1
+                continue
+            
+            # COMMIT/ROLLBACK/RETURN/EXEC
+            if re.match(r'^\s*(?:COMMIT|ROLLBACK|RETURN|GOTO)\b', line, re.IGNORECASE):
+                new_lines.append(line.rstrip() + ';')
+                i += 1
+                continue
+            if re.match(r'^\s*EXEC(?:UTE)?\b', line, re.IGNORECASE):
+                new_lines.append(line.rstrip() + ';')
+                i += 1
+                continue
+            
+            # 其他情况：保留原样
+            new_lines.append(line)
+            i += 1
+        
+        # 处理跨行语句的结尾：
+        # 如果某行以)结尾且前面是INSERT/SELECT/变量赋值，需要加分号
+        result = '\n'.join(new_lines)
+        return result
 
     def _add_terminator(self, content: str) -> str:
         """为存储过程/函数/触发器添加达梦终止符 /"""

@@ -1,6 +1,16 @@
 # Debugging Case Studies
 
+> Language note: Chinese explanations and original source titles are optional companion material. Follow the user’s preferred language and translate relevant passages when needed; no locale is required.
+
+
 Detailed kernel crash debugging case analysis.
+
+Cases 1–10 are teaching examples with schematic output, not independently
+verified incident transcripts. Establish the actual build, register provenance,
+structure layout, and causal sequence before applying a conclusion. `bt -f`
+prints stack-frame data; annotated registers/arguments require exception-frame
+or disassembly evidence. Interpreter queries below are human offline reference;
+agents use the wrapper and hand off unsupported queries.
 
 ## Case 1: Kernel BUG Location
 
@@ -57,8 +67,8 @@ crash> bt -f
     [...]
 
 # 5. Chain trace data structures
-crash> struct file.f_dentry ffff880123456000
-  f_dentry = ffff880123458000
+crash> struct file.f_path.dentry ffff880123456000
+  dentry = ffff880123458000
 
 crash> struct dentry.d_inode ffff880123458000
   d_inode = ffff880123459000
@@ -70,7 +80,6 @@ crash> struct pipe_inode_info ffff88012345a000
 struct pipe_inode_info {
   mutex = {
     owner = 0,
-    count = 2,        # Anomaly! Should be <= 1
     wait_list = {...}
   },
   readers = 1,
@@ -89,10 +98,10 @@ crash> foreach bt | grep -B10 "pipe_read"
 
 ### Root Cause Analysis
 
-`pipe_inode_info.mutex.count = 2` indicates semaphore count anomaly, possibly:
-- Double free
-- Race condition
-- Use after free
+The fault is localized to `pipe_read`; no root cause follows from this
+schematic state alone. Inspect the exact BUG condition and this build's mutex
+and pipe invariants. Modern mutexes do not have the historical `count` field;
+do not diagnose UAF or a race from an invented count value.
 
 ---
 
@@ -143,7 +152,6 @@ crash> struct mutex ffff88012b000000
 struct mutex {
   owner = 0xffff88012a000000,  # thread_A holds
   wait_lock = {...},
-  count = 0,
   wait_list = {
     next = 0xffff88012b000020,
     prev = 0xffff88012b000020
@@ -162,16 +170,16 @@ struct completion {
 
 # 6. Who should complete this completion?
 crash> search -k ffff88012b001000
-ffff88012a002000: ffff88012b001000  # In thread_B's stack
+ffff88012a002000: ffff88012b001000  # Reference only; does not identify the completer
 ```
 
 ### Root Cause Analysis
 
-- thread_A holds mutex, waiting for completion
-- thread_B is waiting for the same mutex
-- thread_B should complete the completion but is blocked
-
-**Deadlock Pattern**: ABBA deadlock
+This suggests a lock/completion dependency cycle if the exact lock addresses
+match and source/temporal evidence establishes that B must signal A's
+completion. A pointer found on B's stack does not establish that dependency.
+Record the cycle only after verifying those edges; it is not automatically
+the two-lock ABBA pattern.
 
 ---
 
@@ -209,7 +217,8 @@ ZONE  MOVABLE:
   pages_free     = 0
 
 # 3. View slab usage
-crash> kmem -s | sort -k 4 -rn | head
+crash> kmem -s
+# Rank by OBJSIZE * ALLOCATED for object bytes; TOTAL is object capacity.
 CACHE            NAME              OBJSIZE  ALLOCATED  TOTAL
 ffff88012a000000 kmalloc-8192       8192    524288    600000
 ffff88012a001000 kmalloc-4096       4096    262144    300000
@@ -217,7 +226,8 @@ ffff88012a002000 dentry              192    131072    150000
 ffff88012a003000 inode_cache         592     65536     80000
 
 # 4. View process memory usage
-crash> ps -G | sort -k 5 -rn | head
+crash> ps -G
+# Rank by the RSS field, allowing for the optional leading active-task marker.
 PID    PPID  CPU   TASK        ST  %MEM   VSZ      RSS   COMM
 1234   1     3   ffff88012a003000  IN  25.0  8GB    8GB   java
 5678   1     2   ffff88012a004000  IN  15.0  5GB    5GB   python
@@ -300,9 +310,9 @@ crash> list my_driver.devices -s my_driver.device -h my_driver_head
 
 ### Root Cause Analysis
 
-- First parameter `rdi` of `my_driver_ioctl` is NULL
+- The saved fault-time `rdi` is NULL; determine its role from the matching assembly
 - Attempting to access `rdi + 0x10` causes page fault
-- Need to add NULL check in code
+- Trace initialization and object lifetime before choosing a fix; a NULL check alone may hide an earlier defect
 
 ---
 
@@ -320,7 +330,7 @@ kernel stack overflow (double-fault)
 # 1. Check stack overflow
 crash> bt -v
 PID: 1234   COMMAND: "worker"   STACK OVERFLOW DETECTED
-    stack pointer: ffffc90000123fc0
+    stack pointer: ffffc9000011fff0
     stack base:    ffffc90000120000
     stack limit:   ffffc90000124000
     overflow by:   16 bytes
@@ -334,8 +344,8 @@ crash> bt
 #500 recursive_function at ffffffff81234580
 
 # 3. View stack usage
-crash> bt -r | wc -l
-8192    # 8KB stack is full
+crash> bt -r
+# Compare saved SP with actual stack bounds; output line count is not bytes.
 
 # 4. Check large structures
 crash> struct large_context
@@ -344,7 +354,7 @@ struct large_context {
     int data[1024];
     ...
 }
-SIZE: 8200  # Structure itself exceeds stack size!
+SIZE: 8200  # Large relative to this 16KiB stack; verify actual frame allocation
 
 # 5. Check other task stack status
 crash> foreach bt -v
@@ -378,9 +388,9 @@ crash> bt -a
 CPU 0:
 ...
 CPU 3:   # <-- Stuck CPU
-#0 schedule at ffffffff81a12345
-#1 schedule_timeout at ffffffff81a13456
-#2 wait_for_completion at ffffffff81a14567
+#0 native_queued_spin_lock_slowpath at ffffffff81a12345
+#1 queued_spin_lock_slowpath at ffffffff81a13456
+#2 _raw_spin_lock at ffffffff81a14567
 #3 my_driver_process at ffffffff81234560
 PID: 1234   TASK: ffff88012a000000  CPU: 3   COMMAND: "kworker/3:1"
 
@@ -396,12 +406,12 @@ crash> struct spinlock ffff88012b000000
 struct spinlock {
   raw_lock = {
     val = {
-      counter = 1     # Lock is held!
+      counter = 1     # Decode this build's lock bits; not an owner ID
     }
   }
 }
 
-# 5. Find who holds the lock
+# 5. Find references; investigate ownership separately
 crash> search -t ffff88012b000000
 PID: 5678  TASK: ffff88012a001000  CPU: 2  COMMAND: "thread_B"
 
@@ -410,8 +420,8 @@ crash> bt 5678
 PID: 5678   TASK: ffff88012a001000  CPU: 2   COMMAND: "thread_B"
 #0 schedule
 #1 schedule_timeout
-#2 __down
-#3 down
+#2 __mutex_lock_slowpath
+#3 mutex_lock
 #4 another_function
 
 # 7. Check timer queue
@@ -422,10 +432,11 @@ JIFFIES: 4294891234
 
 ### Root Cause Analysis
 
-- CPU 3 is waiting for a spinlock held by thread_B
-- thread_B is sleeping (in `down()`) while holding the spinlock
-- This violates the rule: **never sleep while holding a spinlock**
-- Soft lockup occurs because CPU spins for too long
+The spinning stack supports lock contention, but an address search does not
+identify the holder of an ordinary spinlock. Establish ownership and ordering
+from source and available temporal/lockdep evidence before claiming B slept
+with the lock held. If confirmed for a non-sleeping spinlock, that violates
+its atomic-context contract. Decode lock types separately on PREEMPT_RT.
 
 ### Fix Strategy
 
@@ -435,9 +446,9 @@ spin_lock(&my_lock);
 down(&semaphore);  // BUG: Can sleep!
 spin_unlock(&my_lock);
 
-// After: Release spinlock before sleeping
+// Possible restructuring: verify data/lifetime invariants before dropping the lock
 spin_lock(&my_lock);
-got_value = value;
+got_value = value;  // Later use must remain valid after dropping the lock
 spin_unlock(&my_lock);
 down(&semaphore);  // OK: No spinlock held
 ```
@@ -449,7 +460,7 @@ down(&semaphore);  // OK: No spinlock held
 ### Symptoms
 
 ```
-BUG: unable to handle kernel paging request at ffffffffa0123456
+BUG: unable to handle kernel paging request at 0000000000000000
 RIP: 0010:my_driver_ioctl+0x56/0x100 [my_driver]
 ```
 
@@ -507,7 +518,7 @@ ffff880123456000
 
 - `my_device_data.buffer` is NULL
 - Code tried to dereference it: `mov (%rax), %rbx` where `rax = 0`
-- Missing NULL check after allocation
+- Initialization failure or an earlier lifetime error remains to be established
 
 ### Fix Strategy
 
@@ -517,7 +528,7 @@ static long my_driver_ioctl(struct file *filp, unsigned int cmd, unsigned long a
 {
     struct my_device_data *data = filp->private_data;
 
-    if (!data->buffer) {  // Add NULL check
+    if (!data || !data->buffer) {  // Illustrative guard; investigate the invalid state
         pr_err("buffer not allocated\n");
         return -ENOMEM;
     }
@@ -553,12 +564,12 @@ CACHE    NAME          OBJSIZE  ALLOCATED  TOTAL  SLABS  SSIZE
 ffff88012a000000  kmalloc-256   256       150      200    13    8k
 
 # 3. Examine the corrupted object
-crash> rd 0xffff88012a001000 32
+crash> rd 0xffff88012a001000 34
 ffff88012a001000:  0000000000000001 0000000000000002   ................
 ...
-ffff88012a001100:  deadbeefcafebabe 5a5a5a5a5a5a5a5a   # Redzone pattern!
+ffff88012a001100:  deadbeefcafebabe 5a5a5a5a5a5a5a5a   # Suspicious values; not standard redzone proof
 
-# 4. Find who allocated this object
+# 4. Identify cache membership; allocation history requires separate tracking
 crash> kmem 0xffff88012a001000
 CACHE: ffff88012a000000  NAME: kmalloc-256
 SLAB:  ffff88012a010000
@@ -569,18 +580,18 @@ crash> kmem -S kmalloc-256 | grep -A5 -B5 ffff88012a001
 
 # 6. Search for memory pattern
 crash> search -k deadbeefcafebabe
-ffff88012a001100: deadbeefcafebabe   # Found in redzone
+ffff88012a001100: deadbeefcafebabe   # Confirm actual object boundaries and redzone location
 
-# 7. Check process using this memory
-crash> foreach vm | grep ffff88012a001
-PID: 5678  TASK: ffff88012b000000  ...
+# 7. Identify the writer using captured allocation/free/source evidence.
+# A kernel slab address in user VMA output cannot establish allocation ownership.
 ```
 
 ### Root Cause Analysis
 
-- Redzone pattern `deadbeefcafebabe` overwritten
-- Adjacent object wrote beyond its bounds
-- Typical buffer overflow in adjacent allocation
+The earliest allocator report and exact object/redzone boundaries can establish
+an overwrite. The displayed magic values and adjacent objects alone do not
+identify the writer, prove an overflow, or supply allocation/free history.
+Use captured tracking or sanitizer evidence to test those hypotheses.
 
 ### Fix Strategy
 
@@ -620,14 +631,14 @@ PID: 0   TASK: ffff88012a000000  CPU: 0   COMMAND: "swapper/0"
 #4 my_interrupt_handler at ffffffff81234560
 #5 handle_irq at ffffffff81001234
 
-# 3. Check preempt count
-crash> struct task_struct.preempt_count ffff88012a000000
-preempt_count = 0x100   # PREEMPT_MASK = 1, interrupt context!
+# 3. Recover preempt state using this build's architecture-specific storage.
+# It is not universally a task_struct.preempt_count member.
+preempt_count = 0x100   # Decode against matching include/linux/preempt.h and config
 
 # 4. Verify interrupt context
 crash> bt -f
 #4 my_interrupt_handler
-    preempt_count = 0x100   # Confirm: in interrupt
+    preempt_count = 0x100   # Does not alone prove hard-IRQ context
 
 # 5. Check the problematic function
 crash> dis my_interrupt_handler
@@ -652,7 +663,7 @@ irqreturn_t my_interrupt_handler(int irq, void *dev_id)
     return IRQ_HANDLED;
 }
 
-// After: Use workqueue or tasklet
+// After: Use a sleepable workqueue, not a tasklet/softirq callback
 irqreturn_t my_interrupt_handler(int irq, void *dev_id)
 {
     schedule_work(&my_work);  // Defer to process context
@@ -693,7 +704,7 @@ PID: 1234   TASK: ffff88012a000000  CPU: 0   COMMAND: "test"
 crash> set
 TASK: ffff88012a000000  CPU: 0  COMMAND: "test"
 RSP: ffffc90000123fc0   # Check if valid
-RBP: 0000000000000000   # Corrupted!
+RBP: 0000000000000000   # Not by itself evidence of corruption
 
 # 4. Examine raw stack
 crash> bt -r
@@ -718,10 +729,9 @@ Stack pointer 0xffdf0000 is not in kernel stack range
 
 ### Root Cause Analysis
 
-Double fault typically occurs when:
-1. Stack pointer is corrupted
-2. Page fault handler causes another page fault
-3. Exception table overflow
+A double fault is an exception-delivery failure, not every pair of nested
+faults. Inspect the architecture's exception state, stack mappings, and TSS/IST
+before choosing between stack overflow, invalid stack, or other delivery errors.
 
 ### Common Causes
 
@@ -730,7 +740,6 @@ Double fault typically occurs when:
 | Stack overflow | `bt -v` shows overflow |
 | Corrupted RSP | RSP outside valid range |
 | Invalid TSS | Check `struct tss_struct` |
-| NMI during page fault | Check `irq_count` |
 
 ---
 
@@ -749,7 +758,7 @@ Double fault typically occurs when:
 | Interrupt issues | crash `bt`, `struct task_struct` | lockdep |
 | Double fault | crash `bt -v`, `bt -r` | KASAN |
 | Lock blocked (ARM64) | `bt -f`, `dis -xl`, `rd` | stack analysis (this case study) |
-| SLUB UAF | kasan + `kmem -S` | slub_debug=P |
+| SLUB UAF | KASAN + `kmem -S` | targeted `slub_debug=P` with lifetime evidence |
 
 ---
 
@@ -759,7 +768,8 @@ Double fault typically occurs when:
 
 ### Symptoms
 
-A task is stuck waiting for a read-write semaphore. Watchdog gets blocked, eventually triggering a soft lockup panic.
+A task is stuck waiting for a read-write semaphore. A blocked rwsem task alone
+does not establish a soft lockup; inspect scheduler/watchdog progress separately.
 
 ### Backtrace
 
@@ -769,7 +779,8 @@ A task is stuck waiting for a read-write semaphore. Watchdog gets blocked, event
 #2 down_write at xxxxxx
 ```
 
-The task cannot acquire the rwsem, watchdog gets blocked, eventually panic.
+The stack localizes a rwsem wait; owner progress and any later panic require
+separate evidence.
 
 ### Analysis Steps
 
@@ -788,10 +799,10 @@ crash> dis -xl down_write
 
 # === Step 3: Find where callee saves x19 ===
 crash> dis -xl rwsem_down_write_slowpath
-    stp  x20, x19, [sp, #176]    # x19 saved at sp+176
+    stp  x20, x19, [sp, #176]    # x20 at sp+176; x19 at sp+184
     add  x29, sp, #0x60          # FP = SP + 0x60
 # So: SP = FP - 0x60
-#     x19 saved at SP + 176
+#     x19 saved at SP + 176 + 8
 
 # === Step 4: Calculate the stack address ===
 # FP = 0xfffffc09c4f3b30
@@ -805,8 +816,8 @@ crash> rd fffffc09c4f3b88
 # === Step 6: Inspect the lock ===
 crash> struct rw_semaphore fffff80f78b0b00 -x
 struct rw_semaphore {
-  count = -1,                # -1 = no readers, write-locked
-  owner = 0xffff8800abcde000, # The task holding the write lock
+  count = ...,               # Decode reader/writer/waiter bits using this build
+  owner = 0xffff8800abcde000, # Validate owner flags and reader-owned states first
   wait_list = {
     next = 0xffff8800f0000120,
     prev = 0xffff8800f0000120
@@ -824,13 +835,13 @@ PID: 5678   TASK: ffff8800abcde000  CPU: 2  COMMAND: "writer_thread"
 - The task is blocked on `rw_semaphore` at `0xfffff80f78b0b00`
 - Owner: PID 5678 (`writer_thread`)
 - Need to check what owner is doing: `bt 5678`
-- If owner is also waiting for another resource: classic ABBA deadlock
+- If the owner is also waiting, follow dependencies until a proven cycle closes; another wait alone is not ABBA proof
 
 ### Why This Technique Works
 
 AArch64 ABI defines `x19-x28` as **callee-saved** registers. This means:
 - Caller places argument in `x19` (here: the rwsem pointer)
-- Callee (`rwsem_down_write_slowpath`) must save `x19` on stack before using it
+- If the callee overwrites `x19`, it must preserve the incoming value; identify its actual save location
 - Reading the saved value recovers the original argument
 
 This is a **general technique** that works for any function that stores a callee-saved register on the stack.
@@ -840,7 +851,7 @@ This is a **general technique** that works for any function that stores a callee
 On x86_64, function arguments are passed in RDI, RSI, RDX, RCX, R8, R9 — but these are **caller-saved** in x86_64 SysV ABI, so they're not preserved across calls.
 
 For x86_64 lock derivation:
-- Use `bt -f` to see function parameters at each frame
+- Use `bt -f` for raw frame data, then recover arguments from matching assembly or saved exception state
 - Or use `dis -l function` to find the parameter source
 - Be aware: with `-fomit-frame-pointer` (common in release builds), manual frame walking may fail
 
@@ -873,12 +884,12 @@ Panic shows `cpu_slab.freelist` is corrupted with an abnormal value, pointing to
    because cpu_slab.freelist is now garbage
 ```
 
-**Detection**: Only `freelist` field is abnormal, other object data is intact (not heap overflow).
+**Evidence limit**: A damaged freelist is consistent with a write to freed storage, but intact neighboring fields do not exclude an overflow or another writer.
 
 **Fix**:
 ```bash
 # Enable KASAN to catch UAF at step 3
-echo 1 > /proc/sys/kernel/kasan_multi_shot
+kasan_multi_shot             # kernel boot parameter for repeated reports
 # Or recompile with CONFIG_KASAN=y
 ```
 
@@ -888,13 +899,16 @@ echo 1 > /proc/sys/kernel/kasan_multi_shot
 1. Module A: kmalloc(object M)
 2. Module A code 1: kfree(M)         # M returns to freelist
 3. Module B: kmalloc(...) → system returns M to B
-4. Module A code 2: uses M (UAF!)    # B is using M, A clobbers M's freepointer
-5. Module A code 2: kfree(M)         # A frees B's memory, double-freelist
+4. Module A code 2: uses stale M    # A overwrites B's current object
+5. Module A code 2: kfree(M)         # A incorrectly frees B's current allocation
 6. Module B continues using M (already corrupted)
 7. Later: kmalloc triggers panic
 ```
 
-**Why it's harder to detect**: KASAN reports UAF on **Module B** (the second user), not Module A (the original bug). B is "victim" — looks like a BUG but root cause is A.
+**Why it is harder to detect**: An address-based KASAN check can miss A's
+stale access while the same address is validly allocated to B. After A wrongly
+frees it, B's later access may trigger a UAF report. The reporting module can
+therefore be a victim; detection and attribution depend on the mode and timing.
 
 **Fix**: Enhance slub debug to record **multiple trace paths** (alloc + free from both A and B).
 
@@ -913,12 +927,12 @@ CACHE    NAME          OBJSIZE  ALLOCATED  TOTAL  SLABS  SSIZE
 ffff88012a000000  kmalloc-256   256       150      200    13    8k
 
 # === Step 3: Inspect the corrupted object ===
-crash> rd 0xffff88012a001000 32
+crash> rd 0xffff88012a001000 34
 ffff88012a001000:  0000000000000001 0000000000000002   # Object data OK
 ...
-ffff88012a001100:  deadbeefcafebabe 5a5a5a5a5a5a5a5a   # Redzone pattern!
+ffff88012a001100:  deadbeefcafebabe 5a5a5a5a5a5a5a5a   # Suspicious values; not standard redzone proof
 
-# === Step 4: Find ownership ===
+# === Step 4: Identify cache membership, not allocation ownership ===
 crash> kmem 0xffff88012a001000
 CACHE: ffff88012a000000  NAME: kmalloc-256
 SLAB:  ffff88012a010000
@@ -926,32 +940,238 @@ OBJECT: 0xffff88012a001000
 
 # === Step 5: Search for poison pattern (Variant 2) ===
 crash> search -k deadbeefcafebabe
-ffff88012a001100: deadbeefcafebabe   # Found in redzone!
+ffff88012a001100: deadbeefcafebabe   # Confirm actual object boundaries and redzone location!
 
-# === Step 6: Find process using this memory ===
-crash> foreach vm | grep ffff88012a001
-PID: 5678  TASK: ffff88012b000000  ...  # Module B victim
+# === Step 6: Obtain allocation/free tracking and source-path evidence ===
+# foreach vm cannot identify a module owning a kernel slab allocation.
 ```
 
 ### Root Cause
 
-- **Variant 1**: Single module double-free → KASAN catches it at first UAF access
-- **Variant 2**: Cross-module A's free corrupts B's active allocation → KASAN reports on B (confusing)
+- **Variant 1**: Same-module lifetime misuse; KASAN may catch an instrumented stale access or invalid free.
+- **Variant 2**: A wrongly frees B's active allocation; B may later report UAF, while the original stale access escaped detection.
 
 ### Prevention
 
 | Method | Effectiveness |
 |--------|--------------|
-| `CONFIG_KASAN=y` | Catches UAF at access time, not just free time |
-| `slub_debug=P` bootarg | Fills freed memory with POISON_FREE, catches UAF on next alloc |
+| `CONFIG_KASAN=y` | Can detect instrumented invalid accesses/frees; mode, reuse, and timing limit coverage |
+| `slub_debug=P` bootarg | Enables poisoning/validation; a later allocator check may detect damage, not the writer instruction |
 | `slub_debug=u,kmalloc-N` | Records alloc/free trace for specific caches |
 | Enhanced slub with multi-trace | Records multiple alloc/free paths (Kernel panic 实验室 方案) |
 
 ### Key Insight
 
-> **Misalignment UAF** is particularly insidious because the reported "guilty" module is actually the **victim**. Always investigate the **full alloc/free history** of a corrupted object, not just the current owner.
+> In reuse-related UAF, the reporting module may be a victim. Investigate the captured allocation/free history and source paths; do not infer the writer from the current owner alone.
 
-For complete slub_debug flag reference (f/z/p/u/t), see `references/debug-tools-guide.md` §5 (or the soon-to-be-updated section).
+For slub_debug flags and tracking limits, see `debug-tools-guide.md` §5.
+
+---
+
+## Case 13: GRO Header-Offset Reconstruction from an Oops
+
+**Source:** [Cloudflare — The tale of a single register value](https://blog.cloudflare.com/the-tale-of-a-single-register-value/)
+(2021). This is a condensed analysis of the published incident, not a new
+reproduction. Offsets below belong to that build only.
+
+### Symptoms and Evidence
+
+Sporadic IPv4-stack faults reached `skb_gso_transport_seglen()`. The available
+Oops included a faulting instruction and registers, but not a full vmcore.
+The instruction read a byte at `RCX + 0xc`, corresponding to the TCP header's
+data-offset field. Disassembly showed that RAX/RSI retained the difference
+between the inner and outer transport-header offsets: `0xfeda`.
+
+### Analysis Chain
+
+1. Match the kernel build, symbols, and instruction bytes before interpreting
+   offsets. Trace register assignments backwards from the fault; argument
+   registers may already have been reused.
+2. Map member offsets against that build's `sk_buff` layout. The arithmetic
+   suggested a bad header offset, but did not alone exclude prior corruption.
+3. Follow the receive/forward path: the published trace included veth polling
+   with XDP and GRO aggregation. The author's subsequent controlled tracing
+   established the outer transport-header offset as 290 bytes.
+4. Combine that additional evidence with the saved difference:
+
+   ```text
+   inner offset = 0xfeda + 290 = 65532 = 0xfffc
+   attempted byte = skb->head + 0xfffc + 0xc
+   ```
+
+   This places the read about 64 KiB beyond the buffer start. The value 290 is
+   not derivable from the register difference alone and must not be guessed
+   for a different incident.
+5. Inspect the GRO completion path. The author found that the inner transport
+   offset was not updated, and verified correct offsets after the fix.
+
+### Conclusion and Limits
+
+The source identifies fix `d51c5907e980`, which sets the inner transport-header
+offset in TCP/UDP GRO completion. For another kernel, inspect the affected code
+and distribution backport before claiming the same defect.
+
+Agents may analyze supplied Oops/disassembly evidence and use the existing
+wrapper on offline files. Unsupported layout/GDB queries belong to an
+authorized human offline session; do not bypass the wrapper. This case does
+not authorize replaying packets, attaching live probes, or reproducing a crash.
+If the layout or packet-path evidence is missing, report an offset-corruption
+hypothesis rather than a confirmed GRO bug.
+
+---
+
+## Case 14: InfiniBand Allocation Failure and Error-Path Double Free
+
+**Source:** [Red Hat Solution 6407811](https://access.redhat.com/solutions/6407811).
+The published vmcore analysis concerns InfiniBand port setup under memory
+pressure/fragmentation. Its addresses and structure layouts are build-specific.
+
+### Symptoms and Evidence
+
+A failure while creating InfiniBand port attributes eventually faulted in
+`ib_port_release()`. RAX contained the freed-memory poison pattern `0x6b...`.
+Earlier kernel messages recorded an allocation failure; slab tracking retained
+allocation and release histories for the implicated object.
+
+### Analysis Chain
+
+1. Establish the first allocation failure and the later release fault from the
+   timeline. Low memory explains entry into cleanup, not the correctness of
+   that cleanup.
+2. Decode the faulting load and follow the member accesses through `ib_port`
+   and its `pkey_group`. The source recovers the group address from a register
+   whose value survives to the faulting instruction.
+3. Verify cache membership, object boundaries, and allocation state. A poison
+   value is a clue; it does not identify who freed an object or prove a second
+   free occurred.
+4. Compare available allocation/free tracking records with the source. In this
+   incident they point to the port-attribute setup path. If tracking was not
+   enabled or pages were filtered, mark the history unavailable.
+5. Walk the error exits and callbacks: setup frees `pkey_group`, then a later
+   `kobject_put()` invokes the release callback while the group pointer still
+   refers to freed storage. The release path uses/cleans that storage again.
+
+### Conclusion and Limits
+
+The evidence supports an error-path lifetime defect in InfiniBand, with memory
+pressure as its trigger. The vendor source lists corrected kernel builds;
+compare the exact branch/backport rather than applying its version threshold
+to every distribution.
+
+Use wrapper triage, bounded memory reads, and symbol disassembly where
+supported. Cache/layout/tracking queries beyond the wrapper require an
+authorized human offline analysis; preserve returned evidence and access
+controls. Do not enable SLUB instrumentation or generate memory pressure as
+part of this offline case. A future collection plan requires exact-host/action
+authorization, bounded scope, protected output, and rollback; deliberate crash
+testing remains human-only.
+
+---
+
+## Case 15: Filesystem Writeback Waiting on Its Own Reclaim Dependency
+
+**Source:** [Red Hat Solution 2973771](https://access.redhat.com/solutions/2973771).
+The worked dump uses ext4 on RHEL 7; the vendor discusses the same class of
+writeback/reclaim dependency for local filesystems including XFS.
+
+### Symptoms and Evidence
+
+A writer under a memory cgroup remained blocked. Its stack led from filesystem
+writeback into allocation, memcg reclaim, and `wait_on_page_bit()`. A blocked
+task alone could also indicate slow I/O, so the waited-on object matters.
+
+### Analysis Chain
+
+1. Obtain the blocked stack and identify the allocation/reclaim transition.
+   Recover the page argument from the actual disassembly and saved stack slots;
+   do not assume a historical R14 or stack offset is valid for another build.
+2. Validate the page and its flags. The published page was marked writeback.
+   Follow its mapping to `address_space.host` to identify the associated inode.
+3. Recover the inode involved in the original filesystem writeback and compare
+   identities. In the source analysis, the waited-on page belongs to that inode.
+4. Inspect submission ordering to establish the cycle. Equal inode addresses
+   alone do not prove that the current task must complete the pending I/O:
+
+   ```text
+   prepare filesystem writeback
+       -> allocate memory -> memcg reclaim
+       -> wait for a page's writeback completion
+       -> requires I/O submission by the blocked preparation path
+   ```
+
+5. Distinguish this cycle from an already-submitted request waiting on a slow
+   device. Missing submission evidence leaves the deadlock hypothesis open.
+
+### Conclusion and Limits
+
+The vendor's analysis establishes a writeback/reclaim dependency cycle and
+identifies a corrected RHEL kernel. No mutex-owner cycle is required. For a new
+incident, validate page state, mapping, inode identity, and submission ordering
+against the captured build before applying that conclusion.
+
+Agents use wrapper `flow-deadlock`, bounded reads, and symbol disassembly on
+offline files. Page/mapping/inode traversal unsupported by the wrapper is an
+authorized human offline query, not a reason to restore arbitrary interpreter
+input. Keep missing or filtered page data unknown. Do not reproduce the hang
+or alter cgroup limits, storage, or boot configuration from this case study.
+
+---
+
+## Case 16: ARM64 Single-Bit Pointer-Corruption Hypothesis
+
+**Source:** [一杯linux — 从一段 Kernel 日志，判断 DDR Bit Flip 特征](https://mp.weixin.qq.com/s/HkV9H8FkyRkYW2s0_W6q0w)
+(2026-11-10). This summarizes the author's Qualcomm-platform analysis; no
+matching dump was analyzed locally. Addresses, offsets, and symbol results
+below are observations from that published build.
+
+### Evidence and Reconstruction
+
+The reported PC was `exit_mmap+0x280`, with ESR `0x96000004`, saved X8
+`0xffefffd6dd3ea860`, and fault address `0xffefffd6dd3ea868`. The syndrome
+indicates a current-EL data abort, level-0 translation fault, and read access.
+The faulting instruction word `f9400508` decodes to a 64-bit load using X8
+plus eight bytes; therefore:
+
+```text
+effective address = 0xffefffd6dd3ea860 + 8
+                  = 0xffefffd6dd3ea868
+```
+
+The preceding load fetched X8 from the object at X22 plus `0x70`, followed
+by a null check. This ties the bad value to an actual pointer use rather than
+an incidental register.
+
+The source's same-boot kernel-offset record gives:
+
+```text
+runtime image base = 0xffffffc080000000 + 0x165be00000
+                   = 0xffffffd6dbe00000
+candidate pointer  = 0xffffffd6dd3ea860
+observed XOR candidate = 0x0010000000000000 = 1 << 52
+```
+
+The author reports that symbol lookup maps the candidate exactly to
+`generic_file_vm_ops`, classified `(D)` as data. Together with matching
+disassembly, this supports a candidate operations-table pointer. The table
+base, the callback slot at base plus eight, and the function pointer stored
+in that slot are different values. The reported exception occurs while
+reading the slot: the callback was not loaded or invoked by that instruction.
+
+### Conclusion and Limits
+
+The evidence supports a single-bit pointer-corruption hypothesis, not proof
+that the candidate was the original value or that DDR caused the change.
+For another incident, verify the image bounds, exact symbol and object-member
+layout against its matching build; an address above the image base or near a
+symbol is insufficient. Preserve the original value and test competing
+software, lifetime, and device-write explanations alongside hardware records.
+See [the pointer-corruption workflow](evidence-first-workflow.md#511-arm64-single-bit-pointer-corruption-hypotheses).
+
+Agents use existing wrapper operations on offline regular-file dumps.
+Unsupported symbol/layout queries and vendor-specific raw-dump loading belong
+to an authorized human offline session. Do not bypass the wrapper or reuse
+this boot's layout parameters. This case adds no live experiment or memory
+repair action.
 
 ---
 

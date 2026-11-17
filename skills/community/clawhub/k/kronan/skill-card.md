@@ -1,48 +1,67 @@
-## Description: <br>
-Comprehensive CLI for Krónan.is grocery shopping through the official Public API, supporting product search, categories, carts, orders, product lists, purchase statistics, and shopping notes for humans and AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive CLI for Krónan.is grocery store using the official Public API to search products, browse categories, manage shopping carts and lists, view orders, track purchase statistics, and manage shopping notes.
 
-## Publisher: <br>
-[arnif](https://clawhub.ai/user/arnif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arnif](https://clawhub.ai/user/arnif)
 
-## Use Case: <br>
-External users and AI agents with a Krónan account use this skill to run kronan-cli commands for grocery discovery, cart and order management, product lists, shopping notes, and purchase-statistics review. Agents should request explicit confirmation before commands that change real account data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Iceland <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change real grocery-account state, including carts, orders, lists, notes, and purchase-stat visibility. <br>
-Mitigation: Require explicit user approval before running state-changing commands and review command arguments before execution. <br>
-Risk: The Krónan API token is a credential stored at ~/.kronan/token. <br>
-Mitigation: Treat the token like a password, restrict local file permissions, and revoke it from the Krónan account when no longer needed. <br>
-Risk: Installation runs a repository script and downloads a release binary. <br>
-Mitigation: Install only after trusting the GitHub repository, install script, and release binary. <br>
-Risk: Identity and shopping activity commands can expose personal information. <br>
-Mitigation: Avoid sharing command output that contains identity, order, cart, note, or purchase-history details. <br>
+## Use Case:
 
+External users and AI agents use this skill to operate kronan-cli for Krónan grocery workflows, including product discovery, cart management, product lists, shopping notes, order review or modification, and purchase statistics. Agents should request fresh explicit approval before any state-changing command.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arnif/kronan) <br>
-- [kronan-cli homepage](https://github.com/arnif/kronan-cli) <br>
-- [Krónan Public API Swagger UI](https://api.kronan.is/api/v1/schema/swagger-ui/) <br>
-- [Krónan Public API ReDoc](https://api.kronan.is/api/v1/schema/redoc/) <br>
-- [Krónan access token settings](https://kronan.is/adgangur/adgangslyklar) <br>
+### Deployment Geography for Use:
 
+Global, subject to availability of a Krónan account and Access Token
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text, JSON] <br>
-**Output Format:** [Markdown guidance with shell command examples; CLI commands can return text or JSON with --json.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a locally stored Krónan API access token for authenticated commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata) <br>
+Risk: The install path clones a repository and executes an installer that downloads a binary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream repository and installer before installing, and prefer a pinned release with a verified checksum when available.
+
+Risk: The skill handles a Krónan Access Token that can read and change account shopping data.
+
+Mitigation: Store the token only in ~/.kronan/token with user-only permissions, and avoid entering tokens directly in commands where logs or shell history may capture them.
+
+Risk: Cart, list, note, order, and stats commands can modify real user data.
+
+Mitigation: Require fresh explicit approval before state-changing commands and do not let an agent run --force without approval.
+
+Risk: Identity, order, and purchase statistics output may expose personal or shopping information.
+
+Mitigation: Treat command output as sensitive and avoid sharing it unless the user has reviewed and approved the disclosure.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arnif/skills/kronan)
+- [kronan-cli Homepage](https://github.com/arnif/kronan-cli)
+- [Krónan](https://www.kronan.is)
+- [Access Token Setup](https://kronan.is/adgangur/adgangslyklar)
+- [Krónan Public API Swagger UI](https://api.kronan.is/api/v1/schema/swagger-ui/)
+- [Krónan Public API ReDoc](https://api.kronan.is/api/v1/schema/redoc/)
+- [GitHub CLI](https://cli.github.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell command examples and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GitHub CLI for installation, Bun only when building from source, and a Krónan Access Token stored at ~/.kronan/token.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter: 0.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

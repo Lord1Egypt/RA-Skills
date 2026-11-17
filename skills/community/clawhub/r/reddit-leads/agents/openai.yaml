@@ -1,0 +1,5 @@
+interface:
+  display_name: Reddit Leads
+  short_description: Discover B2B leads from Reddit using AI-powered lead scoring via reddapi.dev Leads API.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg

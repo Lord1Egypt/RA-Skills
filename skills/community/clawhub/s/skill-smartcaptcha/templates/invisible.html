@@ -1,0 +1,108 @@
+<!-- Шаблон: страница с невидимой Yandex SmartCaptcha (invisible: true, execute() по submit формы). Подробности: docs/invisible-captcha.md -->
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Форма с невидимой SmartCaptcha</title>
+
+  <!-- Расширенный метод подключения: скрипт вызовет onloadFunction, когда будет готов -->
+  <script
+    src="https://smartcaptcha.yandexcloud.net/captcha.js?render=onload&onload=onloadFunction"
+    defer
+  ></script>
+</head>
+<body>
+  <h1>Вход</h1>
+
+  <!-- Форма отправляется на ваш backend, который проверит smart-token через /validate
+       (см. docs/server-validation.md) -->
+  <form id="auth-form" method="POST" action="/login">
+    <label for="username">Логин</label>
+    <input id="username" type="text" name="user" required />
+
+    <label for="userpass">Пароль</label>
+    <input id="userpass" type="password" name="password" required />
+
+    <!-- Токен для серверной проверки: заполняется в callback после успешной проверки -->
+    <input type="hidden" name="smart-token" id="smart-token" />
+
+    <!-- Контейнер невидимого виджета: кнопка «Я не робот» не отрисовывается.
+         Окно с заданием увидят только подозрительные пользователи. -->
+    <div id="captcha-container"></div>
+
+    <button type="submit" id="submit-btn">Войти</button>
+    <!-- Предупреждаем пользователя о возможной проверке (UX-рекомендация) -->
+    <p id="captcha-status" hidden>Выполняется проверка, это может занять несколько секунд…</p>
+  </form>
+
+  <script>
+    var form = document.getElementById('auth-form');
+    var submitBtn = document.getElementById('submit-btn');
+    var statusEl = document.getElementById('captcha-status');
+    var widgetId; // понадобится, если виджетов на странице больше одного
+
+    // Вызывается скриптом капчи после загрузки (параметр onload в URL скрипта)
+    function onloadFunction() {
+      if (!window.smartCaptcha) {
+        // Защита от вызова до полной загрузки JS-скрипта
+        return;
+      }
+
+      widgetId = window.smartCaptcha.render('captcha-container', {
+        sitekey: '<ключ_клиента>',
+        invisible: true, // сделать капчу невидимой
+        // shieldPosition: 'bottom-right', // положение блока с уведомлением об обработке данных.
+        // hideShield: true скрывает блок, но тогда вы ОБЯЗАНЫ уведомить пользователей
+        // об обработке данных SmartCaptcha самостоятельно (юридическое требование).
+        callback: callback,
+      });
+
+      // Реакция на события виджета: показать/скрыть статус, обработать истечение токена
+      window.smartCaptcha.subscribe(widgetId, 'challenge-visible', function () {
+        statusEl.hidden = false;
+      });
+      window.smartCaptcha.subscribe(widgetId, 'challenge-hidden', function () {
+        statusEl.hidden = true;
+      });
+      window.smartCaptcha.subscribe(widgetId, 'token-expired', function () {
+        // Токен живёт 5 минут и одноразовый: сбрасываем виджет для новой проверки
+        window.smartCaptcha.reset(widgetId);
+        submitBtn.disabled = false;
+      });
+      window.smartCaptcha.subscribe(widgetId, 'network-error', function () {
+        statusEl.hidden = true;
+        submitBtn.disabled = false;
+        alert('Сетевая ошибка при проверке. Попробуйте ещё раз.');
+      });
+    }
+
+    // Вызывается SmartCaptcha после успешной проверки пользователя
+    function callback(token) {
+      if (typeof token === 'string' && token.length > 0) {
+        document.getElementById('smart-token').value = token;
+        // Нативный form.submit() НЕ вызывает обработчик события 'submit' —
+        // зацикливания не будет; форма уходит на backend вместе с токеном.
+        form.submit();
+      }
+    }
+
+    // Перехватываем отправку формы: сначала проверка капчи, потом отправка из callback
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      if (!window.smartCaptcha) {
+        // Скрипт капчи ещё не загрузился — execute() вызывать нельзя
+        return;
+      }
+
+      submitBtn.disabled = true; // блокируем повторные клики на время проверки
+      statusEl.hidden = false;
+
+      // Запуск проверки невидимой капчи. widgetId обязателен,
+      // если на странице несколько виджетов.
+      window.smartCaptcha.execute(widgetId);
+    });
+  </script>
+</body>
+</html>

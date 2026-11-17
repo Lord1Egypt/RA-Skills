@@ -1,41 +1,59 @@
-## Description: <br>
-Comprehensive HIPAA compliance posture assessment for agent and API contexts that guides a structured intake, analyzes provided compliance documents, and produces a posture snapshot with maturity stage, enterprise blocker flags, prioritized gaps, and a 30/60/90 day roadmap. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compliance Posture Intake guides healthcare organizations through a structured HIPAA posture assessment, analyzes administrative compliance documents, and produces a posture report with maturity stage, enterprise blockers, prioritized gaps, and a 30/60/90 day roadmap.
 
-## Publisher: <br>
-[dangsllc](https://clawhub.ai/user/dangsllc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dangsllc](https://clawhub.ai/user/dangsllc)
 
-## Use Case: <br>
-Compliance, security, and healthcare operations teams use this skill to conduct a conversational HIPAA posture intake, review supplied policies or agreements, and turn the results into a practical remediation roadmap. It is intended for agent contexts that can ask structured questions, read user-provided documents, and optionally use web search for state-law considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read compliance documents supplied by the user. <br>
-Mitigation: Provide only documents and details appropriate for the agent context, and avoid organization names, customer names, PHI, secrets, or other sensitive specifics unless the user is comfortable sharing them. <br>
-Risk: Optional state-law research may send user-provided state and generalized business context to web search. <br>
-Mitigation: Use generalized business descriptions for searches, omit sensitive identifiers, or ask the agent to skip web research when a local-only review is required. <br>
+## Use Case:
 
+Healthcare operators, compliance teams, and advisors use this skill to run a structured HIPAA readiness intake, optionally review administrative compliance documents, and create a shareable posture report for planning, consultation, or account setup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dangsllc/compliance-posture-intake) <br>
-- [Rote Compliance](https://rotecompliance.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, files] <br>
-**Output Format:** [Conversational intake followed by a structured compliance posture report, with optional Word document output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include maturity stage, enterprise blocker flags, gap prioritization, document-analysis findings, state-law considerations, and a 30/60/90 day roadmap.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Users may share sensitive compliance records or actual patient PHI during the intake.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit uploads to policies, procedures, BAAs, risk assessments, and other administrative records; do not provide actual patient PHI; use an agent environment appropriate for sensitive compliance material.
+
+Risk: Generated posture reports may contain sensitive business and compliance information.
+
+Mitigation: Store generated .docx reports in an approved location and review the report before sharing it with teams, consultants, or external recipients.
+
+Risk: State-law findings and optional product or consultation mapping may be context dependent.
+
+Mitigation: Use general business descriptions for web searches, review optional Rote or consultation sections before sharing, and confirm state-specific obligations with qualified compliance or legal counsel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dangsllc/skills/compliance-posture-intake)
+- [Rote Compliance](https://rotecompliance.com)
+- [Dang's Solutions consultation](https://dangssolutions.com/book-consultation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, files]
+
+**Output Format:** [Conversational text and Markdown/Word-style report content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce a polished .docx posture report when the agent environment supports document creation; outputs should be reviewed before external sharing.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata; artifact frontmatter lists 1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

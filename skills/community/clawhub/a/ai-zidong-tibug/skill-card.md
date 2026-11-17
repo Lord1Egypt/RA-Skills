@@ -1,45 +1,63 @@
-## Description: <br>
-Normalizes informal bug descriptions or review notes into single-issue, reproducible ZenTao bug records and can submit each issue to ZenTao with fixed fields and result backfill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Normalizes informal Chinese defect descriptions into reproducible ZenTao bug records and can log in to ZenTao to submit each issue with required fields, attachments, and submission results.
 
-## Publisher: <br>
-[elsemk](https://clawhub.ai/user/elsemk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elsemk](https://clawhub.ai/user/elsemk)
 
-## Use Case: <br>
-QA engineers, product teams, and agents use this skill to convert scattered Chinese bug notes into complete ZenTao-ready defect records, including assignee, title, reproduction steps, expected result, severity, priority, attachments, and submission status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create real external ZenTao defect tickets using supplied credentials. <br>
-Mitigation: Use only when ZenTao ticket creation is intended; review product, module, assignee, title, steps, expected result, severity, priority, and attachments before submission. <br>
-Risk: The skill stores a reusable ZenTao token locally. <br>
-Mitigation: Use a least-privileged account, protect the saved token file, and delete or rotate the token after use when appropriate. <br>
-Risk: A default ZenTao endpoint or misconfigured endpoint could submit data to the wrong system. <br>
-Mitigation: Set ZENTAO_URL explicitly and confirm the target system before running submission scripts. <br>
+## Use Case:
 
+QA testers, product reviewers, and development teams use this skill to turn meeting notes, screenshots, or informal defect reports into consistent ZenTao bug entries. In controlled ZenTao workflows, it can submit those entries when credentials, product IDs, and supporting evidence are provided.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/elsemk/ai-zidong-tibug) <br>
-- [templates-zh.md](references/templates-zh.md) <br>
-- [submit-bugs-input.example.json](references/submit-bugs-input.example.json) <br>
-- [module-map.example.json](references/module-map.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown defect records with optional JSON inputs, shell commands, and ZenTao submission result details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create real ZenTao tickets and local authentication state when configured with credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill defaults to live ZenTao ticket submission.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run or explicit confirmation before live submission in a controlled ZenTao workflow.
+
+Risk: Credentials and saved token state can expose ZenTao access.
+
+Mitigation: Provide credentials through a secure secret mechanism, avoid CLI credential exposure where possible, and protect or delete the saved token state file.
+
+Risk: Local attachment handling can upload unintended evidence files.
+
+Mitigation: Restrict attachment paths to user-selected screenshots, recordings, or other approved evidence files.
+
+Risk: Submitting to an untrusted or misconfigured ZenTao target can expose data or create records in the wrong system.
+
+Mitigation: Set ZENTAO_URL explicitly, trust the target URL before use, and keep SSL verification enabled.
+
+## Reference(s):
+
+- [templates-zh.md](references/templates-zh.md)
+- [submit-bugs-input.example.json](references/submit-bugs-input.example.json)
+- [module-map.example.json](references/module-map.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [ZenTao field-structured Markdown plus JSON input/result files and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PRD and UI evidence before formal bug output; live submission depends on ZenTao credentials, product/module configuration, optional attachments, dedupe, and retry settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

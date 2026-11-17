@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Post-its</title>
+<style>
+  html,body{margin:0;background:#141210;display:grid;place-items:center;height:100vh}
+  canvas{height:100vh;width:auto;max-width:100vw}
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// ====================== LO QUE PUEDES CAMBIAR ======================
+const TITULO = 'los formatos que usaría';            // tira de papel arriba ('' = sin título, máx. ~30 letras)
+const NOTAS = [                                       // 3 o 4 notas, máx. ~45 letras cada una
+  'a que estas dos son iguales',
+  'el relleno entrando',
+  'cómo la llevas sin que se rompa',
+  'con cuánto hay que pedirla',
+];
+const MARCA = 'palomita';                             // 'tacha' (raya encima) | 'palomita' (✓ al bueno) | '' (nada)
+const MARCA_EN = 1;                                   // a qué nota (0 = la primera)
+const COLORES = {
+  corcho: '#c89664',                                  // el tablero
+  notas: ['#ffe066', '#ff9fb2', '#8fd3ff', '#b6f09c'],// un color por nota, en orden
+  tinta: '#26232e',                                   // la letra de las notas
+  plumon: '#e0352b',                                  // la tacha o la palomita
+  chinche: '#e5484d',
+};
+// ===================================================================
+
+const W = 1080, H = 1920, FPS = 30;
+const N = Math.min(4, NOTAS.length);
+const T_TITULO = .15, T_NOTA0 = TITULO ? .65 : .35, CADA = .5, CAE = .5;
+const T_MARCA = T_NOTA0 + (N - 1) * CADA + CAE + .35, DUR_MARCA = MARCA === 'tacha' ? .75 : 1.0;
+const DUR = +((MARCA ? T_MARCA + DUR_MARCA + .5 : T_MARCA) + 1.4).toFixed(2);
+</script>
+<script src="../nucleo/nucleo.js"></script>
+<script>
+const LETRA_TITULO = '"Marker Felt", "Chalkboard SE", "Segoe Print", "Comic Sans MS", cursive';
+
+// ---------- el corcho: se pinta una vez ----------
+function hacerCorcho(color) {
+  const c = hacerPapel(color, { fibras: false, viñeta: .3, semilla: 3 });
+  const p = c.getContext('2d'), r = rng(11);
+  for (let i = 0; i < 26000; i++) {                  // gránulos del corcho
+    const x = r() * W, y = r() * H, s = .8 + r() * 3.2, o = r();
+    p.fillStyle = o < .45 ? `rgba(95,55,25,${.08 + r() * .18})` : o < .8 ? `rgba(255,225,170,${.06 + r() * .12})` : `rgba(60,30,10,${.12 + r() * .2})`;
+    p.beginPath(); p.ellipse(x, y, s, s * (.5 + r() * .6), r() * 3, 0, 6.29); p.fill();
+  }
+  for (let i = 0; i < 18; i++) {                      // agujeritos de chinches viejas
+    const x = 80 + r() * (W - 160), y = 120 + r() * (H - 240);
+    p.fillStyle = 'rgba(40,20,5,.45)'; p.beginPath(); p.arc(x, y, 3 + r() * 2, 0, 6.29); p.fill();
+  }
+  return c;
+}
+const CORCHO = hacerCorcho(COLORES.corcho);
+
+// ---------- dónde va cada nota (siempre dentro de la zona segura) ----------
+const S = 390;                                        // lado de la nota
+const ARRIBA = TITULO ? 560 : 470;
+const FILAS = [[300, ARRIBA + S / 2], [780, ARRIBA + S / 2 + 30]];
+const ABAJO = ARRIBA + S + 70 + S / 2;
+const POS = N === 3 ? [...FILAS, [540, ABAJO]] : [...FILAS, [300, ABAJO + 20], [780, ABAJO]];
+const NOTA = NOTAS.slice(0, N).map((txt, i) => {
+  const rot = (hash2(i, 31) - .5) * .16;
+  const aj = autoajuste(txt, LETRA_MANO, 400, S - 90, 4, 66, 36);
+  return { txt, rot, aj, x: POS[i][0], y: POS[i][1], col: COLORES.notas[i % COLORES.notas.length], t0: T_NOTA0 + i * CADA };
+});
+
+// ---------- dibujo ----------
+function formaNota(s, curl) {                          // cuadrado con la esquina de abajo a la derecha levantada
+  const h = s / 2;
+  return [[-h, -h], [h, -h], [h, h - 70 * curl],
+    [h - 14 * curl, h - 22 * curl], [h - 40 * curl, h - 4 * curl], [h - 90 * curl, h + 2 * curl], [-h, h]];
+}
+function nota(n, t) {
+  const p = prog(t, n.t0, n.t0 + CAE);
+  if (p <= 0) return;
+  const k = back(p), baja = 1 - easeOut(p);           // baja: 1 = todavía en el aire
+  const esc = lerp(1.55, 1, k), rot = n.rot + baja * (n.x < 540 ? -.35 : .35);
+  const curl = .75 + Math.sin(t * 2.2 + n.t0 * 3) * .06 + baja * .5;
+  const golpe = p >= 1 ? 0 : Math.max(0, Math.sin(prog(p, .72, 1) * Math.PI)) * .03;   // aplastón al pegarse
+  ctx.save(); ctx.translate(n.x, n.y); ctx.rotate(rot); ctx.scale(esc + golpe, esc - golpe);
+  ctx.globalAlpha = clamp(p * 4);
+  const forma = resample(formaNota(S, curl), 12, true);
+  // sombra: más lejos y más suave mientras está en el aire
+  ctx.save(); ctx.filter = `blur(${6 + baja * 22}px)`;
+  fill(forma.map(([x, y]) => [x + 10 + baja * 60, y + 16 + baja * 90 + (x > 0 && y > 0 ? 14 * curl : 0)]), `rgba(40,18,0,${.38 - baja * .18})`, { amp: 0 });
+  ctx.restore();
+  // papel
+  const g = ctx.createLinearGradient(-S / 2, -S / 2, S / 2, S / 2);
+  g.addColorStop(0, n.col); g.addColorStop(.7, n.col); g.addColorStop(1, 'rgba(255,255,255,.9)');
+  fill(forma, n.col, { amp: .8, seed: 3 + n.t0 });
+  ctx.save(); tracePath(forma, true); ctx.clip();
+  ctx.globalAlpha *= .45; ctx.fillStyle = g; ctx.fillRect(-S, -S, 2 * S, 2 * S); ctx.globalAlpha = clamp(p * 4);
+  ctx.fillStyle = 'rgba(120,80,0,.07)'; ctx.fillRect(-S / 2, -S / 2, S, 46);   // franja del pegamento
+  const rg = ctx.createRadialGradient(S / 2 - 40, S / 2 - 30, 0, S / 2 - 40, S / 2 - 30, 150);  // brillo del doblez
+  rg.addColorStop(0, 'rgba(0,0,0,.14)'); rg.addColorStop(.35, 'rgba(255,255,255,.18)'); rg.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx.fillStyle = rg; ctx.fillRect(-S, -S, 2 * S, 2 * S);
+  ctx.restore();
+  ink(forma, { closed: true, w: 2.4, col: 'rgba(60,40,10,.35)', passes: 1, amp: 1, seed: 7 + n.t0 });
+  // número y texto
+  const i = NOTA.indexOf(n);
+  ctx.save(); ctx.fillStyle = 'rgba(38,35,46,.45)'; ctx.font = `400 44px ${LETRA_MANO}`; ctx.textBaseline = 'top';
+  ctx.fillText(String(i + 1), -S / 2 + 26, -S / 2 + 16); ctx.restore();
+  const { aj } = n, inter = aj.size * 1.18, y0 = -inter * (aj.rs.length - 1) / 2 + aj.size * .32 + 14;
+  ctx.save(); ctx.font = aj.font; ctx.fillStyle = COLORES.tinta; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+  aj.rs.forEach((r, j) => {
+    const dx = (vnoise(BOIL * .7, j * 9 + i) - .5) * 2.2, dy = (vnoise(j * 9 + i, BOIL * .7) - .5) * 2.2;
+    ctx.fillText(r, dx, y0 + j * inter + dy);
+  });
+  ctx.restore();
+  ctx.restore();
+  // chinche: se clava justo cuando la nota toca el corcho
+  const q = prog(t, n.t0 + CAE * .8, n.t0 + CAE + .15);
+  if (q > 0) {
+    const [px, py] = [n.x + Math.sin(n.rot) * (S / 2 - 34), n.y - Math.cos(n.rot) * (S / 2 - 34)];
+    const e = lerp(1.8, 1, back(q));
+    ctx.save(); ctx.translate(px, py); ctx.scale(e, e); ctx.globalAlpha = clamp(q * 3);
+    ctx.save(); ctx.filter = 'blur(4px)'; fill(circle(10, 14, 24), 'rgba(40,15,0,.4)', { amp: 0 }); ctx.restore();
+    fill(circle(0, 0, 24), COLORES.chinche, { amp: .6, seed: 40 + i });
+    fill(circle(-2, -3, 17), 'rgba(255,255,255,.18)', { amp: .4 });
+    fill(circle(-8, -9, 7), 'rgba(255,255,255,.75)', { amp: .3 });
+    ink(circle(0, 0, 24), { closed: true, w: 2, col: 'rgba(70,0,0,.5)', passes: 1, amp: .6, seed: 41 });
+    ctx.restore();
+  }
+}
+
+function titulo(t) {
+  if (!TITULO) return;
+  const p = prog(t, T_TITULO, T_TITULO + .45), k = back(p);
+  if (p <= 0) return;
+  const aj = autoajuste(TITULO, LETRA_TITULO, 400, 760, 1, 74, 40);
+  const w = medir(aj.rs[0], aj.font) + 110, h = aj.size + 70, cx = 540, cy = 380;
+  ctx.save(); ctx.translate(cx, cy - (1 - k) * 80); ctx.rotate(-.025 + (1 - k) * .08); ctx.globalAlpha = clamp(p * 3);
+  // tira de papel rasgada
+  const borde = [];
+  for (let x = -w / 2; x <= w / 2; x += 18) borde.push([x, -h / 2 + (hash2(x | 0, 1) - .5) * 8]);
+  for (let x = w / 2; x >= -w / 2; x -= 18) borde.push([x, h / 2 + (hash2(x | 0, 2) - .5) * 10]);
+  ctx.save(); ctx.filter = 'blur(6px)'; fill(borde.map(([x, y]) => [x + 8, y + 12]), 'rgba(40,18,0,.35)', { amp: 0 }); ctx.restore();
+  fill(borde, '#fbf7ee', { amp: .6, seed: 60 });
+  // cinta en las puntas
+  for (const s of [-1, 1]) {
+    ctx.save(); ctx.translate(s * (w / 2 - 20), -h / 2 + 6); ctx.rotate(s * .5);
+    fill(rect(-38, -18, 76, 36), 'rgba(240,232,200,.72)', { amp: .6, seed: 61 + s });
+    ctx.restore();
+  }
+  ctx.font = aj.font; ctx.fillStyle = COLORES.tinta; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(aj.rs[0], (vnoise(BOIL * .7, 3) - .5) * 2, 4 + (vnoise(3, BOIL * .7) - .5) * 2);
+  ctx.restore();
+}
+
+function plumon(x, y, ang) {                           // el plumón que va dibujando la marca
+  ctx.save(); ctx.translate(x, y); ctx.rotate(ang);
+  ctx.save(); ctx.filter = 'blur(6px)'; fill(roundRect(20, 16, 300, 58, 26), 'rgba(30,10,0,.35)', { amp: 0 }); ctx.restore();
+  fill(resample([[0, 0], [30, -16], [30, 16]], 5, true), COLORES.plumon, { amp: .3 });
+  fill(roundRect(26, -24, 70, 48, 10), '#1f1d24', { amp: .5, seed: 70 });
+  fill(roundRect(90, -30, 250, 60, 26), '#f4f1ea', { amp: .8, seed: 71 });
+  fill(roundRect(96, -30, 250, 18, 9), 'rgba(255,255,255,.7)', { amp: .4 });
+  fill(roundRect(250, -30, 90, 60, 26), COLORES.plumon, { amp: .6, seed: 72 });
+  ink(roundRect(90, -30, 250, 60, 26), { closed: true, w: 2.5, col: 'rgba(0,0,0,.45)', passes: 1, amp: .8, seed: 73 });
+  ctx.restore();
+}
+
+function marca(t) {
+  if (!MARCA || !NOTA[MARCA_EN]) return;
+  const n = NOTA[MARCA_EN], p = prog(t, T_MARCA, T_MARCA + DUR_MARCA);
+  const entra = easeOut(prog(t, T_MARCA - .35, T_MARCA)), sale = ease(prog(t, T_MARCA + DUR_MARCA + .1, T_MARCA + DUR_MARCA + .6));
+  // la marca se dibuja en coordenadas de la nota (gira con ella)
+  const aqui = ([x, y]) => [n.x + x * Math.cos(n.rot) - y * Math.sin(n.rot), n.y + x * Math.sin(n.rot) + y * Math.cos(n.rot)];
+  let pts;
+  if (MARCA === 'tacha') {                             // una raya encima de cada renglón: se tacha pero se sigue leyendo
+    const { aj } = n, inter = aj.size * 1.18, y0 = -inter * (aj.rs.length - 1) / 2 + aj.size * .32 + 14, z = [];
+    aj.rs.forEach((r, j) => {
+      const w = medir(r, aj.font) / 2 + 24, y = y0 + j * inter - aj.size * .3;
+      const ida = j % 2 === 0;
+      z.push(resample(ida ? [[-w, y + 6], [0, y - 4], [w, y + 3]] : [[w, y + 6], [0, y - 3], [-w, y + 2]], 8).map(aqui));
+    });
+    pts = z.flat(); pts.tramos = z.map(r => r.length);
+  } else {                                             // óvalo alrededor de la nota y palomita en la esquina (el texto se sigue leyendo)
+    const ov = [];
+    for (let k = 0; k <= 64; k++) { const a = -2.2 + k / 64 * Math.PI * 2.15; ov.push([Math.cos(a) * S * .58, Math.sin(a) * S * .6]); }
+    const pal = resample([[S * .2, -S * .37], [S * .29, -S * .27], [S * .46, -S * .5]], 6);
+    pts = [...resample(ov, 8), ...pal].map(aqui);
+    pts.ovalo = resample(ov, 8).length;
+  }
+  if (p > 0) {
+    if (MARCA === 'palomita') {
+      const o = pts.ovalo, k1 = prog(p, 0, .62), k2 = prog(p, .66, 1);
+      drawOn(pts.slice(0, o), k1, { w: 14, col: COLORES.plumon, amp: 2.5, seed: 80, alpha: .9 });
+      if (k2 > 0) drawOn(pts.slice(o), k2, { w: 20, col: COLORES.plumon, amp: 2, seed: 82, alpha: .95 });
+    } else {                                           // cada renglón con su propia raya, una tras otra
+      let ini = 0; const tot = pts.length;
+      pts.tramos.forEach((n, j) => {
+        const tr = pts.slice(ini, ini + n), k = prog(p, ini / tot, (ini + n) / tot); ini += n;
+        if (k > 0) drawOn(tr, k, { w: 11, col: COLORES.plumon, amp: 1.4, seed: 80 + j, alpha: .88 });
+      });
+    }
+  }
+  if (entra > 0 && sale < 1) {
+    const i = Math.min(pts.length - 1, Math.max(0, Math.round((pts.length - 1) * clamp(p))));
+    const [x, y] = pts[i];
+    const off = (1 - entra) * 700 + sale * 900;
+    plumon(x + off * .6, y + off, -.9 + Math.sin(t * 20) * .02);
+  }
+}
+
+arrancar(frame => {
+  const t = frame / FPS;
+  BOIL = Math.floor(frame / 4);
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.filter = 'none';
+  // golpecito del tablero cuando se pega cada nota
+  let sac = 0; for (const n of NOTA) { const q = prog(t, n.t0 + CAE * .78, n.t0 + CAE * .78 + .2); if (q > 0 && q < 1) sac += Math.sin(q * Math.PI * 3) * (1 - q) * 5; }
+  ctx.save(); ctx.translate(0, sac);
+  ctx.drawImage(CORCHO, 0, -8, W, H + 16);
+  titulo(t);
+  for (const n of NOTA) nota(n, t);
+  marca(t);
+  ctx.restore();
+});
+</script>
+</body>
+</html>

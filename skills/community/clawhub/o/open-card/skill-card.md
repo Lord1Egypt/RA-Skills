@@ -1,49 +1,65 @@
-## Description: <br>
-从本地 OpenClaw 数据生成或迭代 OpenCard 个人名片，读取工作区身份信息、配置和会话统计，渲染 HTML 预览并导出 PNG，且不写入用户档案数据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and iterates a shareable OpenCard profile card from local OpenClaw identity, configuration, skills, and session statistics, producing an HTML preview and optional PNG export while treating profile data as read-only.
 
-## Publisher: <br>
-[timothyliew2](https://clawhub.ai/user/timothyliew2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timothyliew2](https://clawhub.ai/user/timothyliew2)
 
-## Use Case: <br>
-OpenClaw users use this skill to turn local profile, memory, configuration, and usage statistics into a shareable OpenCard profile image. It supports an iterative workflow that collects data, lets the agent draft public-facing copy, renders an HTML preview, and exports a PNG. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw profile and memory files that may contain sensitive personal notes. <br>
-Mitigation: Review or redact USER.md, IDENTITY.md, and MEMORY.md before running the workflow or sharing generated output. <br>
-Risk: Profile and memory excerpts may be sent to the configured model provider when the agent uses a cloud model to draft card copy. <br>
-Mitigation: Use a local model for sensitive notes, or remove sensitive excerpts before copy generation. <br>
-Risk: Generated card copy can reveal private context if shared without review. <br>
-Mitigation: Preview the HTML and final PNG and remove unwanted personal details before publication. <br>
-Risk: Untrusted background input could affect the rendered card or expose request metadata during browser rendering. <br>
-Mitigation: Use the default background or a trusted local background path. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to assemble a public-facing profile card from local OpenClaw data, refine AI-written card copy, preview HTML, and export a PNG.
 
-## Reference(s): <br>
-- [OpenCard data flow](references/data-flow.md) <br>
-- [Background card template](references/background-template.html) <br>
-- [ClawHub release page](https://clawhub.ai/timothyliew2/open-card) <br>
-- [Default background image](https://pub-626ee41d8f1544638070799686c756bf.r2.dev/open-card-bg.png) <br>
-- [Node.js](https://nodejs.org/) <br>
-- [Google Chrome](https://www.google.com/chrome/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [JSON data, HTML preview, and PNG image export with Markdown and shell-command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local OpenClaw profile and session metadata; generated public copy should be reviewed before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The skill uses sensitive local OpenClaw profile, identity, memory, skills, and session metadata excerpts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review USER.md, IDENTITY.md, and MEMORY.md before use, and prefer local models or curated excerpts when profiles contain sensitive content.
+
+Risk: Cloud model use can send generated-card context excerpts to the model provider during copy generation.
+
+Mitigation: Use a local model or explicitly chosen excerpts when external model processing is not acceptable.
+
+Risk: Temporary JSON and HTML preview files can contain profile or memory-derived content.
+
+Mitigation: Write temporary outputs outside the packaged skill directory and remove them after rendering or export.
+
+Risk: Browser rendering can request external background image and font resources, exposing client IP and HTTP metadata.
+
+Mitigation: Use trusted background image URLs or local image paths, and use local assets when network metadata exposure is a concern.
+
+## Reference(s):
+
+- [OpenCard Data Flow](references/data-flow.md)
+- [Background Template](references/background-template.html)
+- [ClawHub Skill Page](https://clawhub.ai/timothyliew2/skills/open-card)
+- [Node.js](https://nodejs.org/)
+- [Google Chrome](https://www.google.com/chrome/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [JSON data, HTML preview, PNG image export, and Markdown guidance with bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.10+ for data collection and HTML rendering; PNG export additionally requires Node.js, npm, playwright-core, and local Chrome or Chromium.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

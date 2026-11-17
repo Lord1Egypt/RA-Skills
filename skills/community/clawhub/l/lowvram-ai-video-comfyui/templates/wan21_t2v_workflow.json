@@ -1,0 +1,12 @@
+{
+  "38": {"class_type": "CLIPLoader", "inputs": {"clip_name": "umt5_xxl_fp8_e4m3fn_scaled.safetensors", "type": "wan", "device": "default"}},
+  "39": {"class_type": "VAELoader", "inputs": {"vae_name": "wan_2.1_vae.safetensors"}},
+  "37": {"class_type": "UNETLoader", "inputs": {"unet_name": "wan2.1_t2v_1.3B_fp16.safetensors", "weight_dtype": "default"}},
+  "40": {"class_type": "EmptyHunyuanLatentVideo", "inputs": {"width": 832, "height": 480, "length": 33, "batch_size": 1}},
+  "6": {"class_type": "CLIPTextEncode", "inputs": {"clip": ["38", 0], "text": "a serene anime girl with silver hair standing on a moonlit bridge, cherry blossoms falling in the wind, soft moonlight, cinematic, high quality anime style, detailed beautiful eyes, flowing hair"}},
+  "7": {"class_type": "CLIPTextEncode", "inputs": {"clip": ["38", 0], "text": "blurry, low quality, distorted, deformed, ugly, watermark, text, extra limbs, bad anatomy"}},
+  "3": {"class_type": "KSampler", "inputs": {"model": ["37", 0], "positive": ["6", 0], "negative": ["7", 0], "latent_image": ["40", 0], "seed": 42, "steps": 20, "cfg": 6.0, "sampler_name": "uni_pc", "scheduler": "simple", "denoise": 1.0}},
+  "8": {"class_type": "VAEDecode", "inputs": {"samples": ["3", 0], "vae": ["39", 0]}},
+  "49": {"class_type": "CreateVideo", "inputs": {"images": ["8", 0], "fps": 16}},
+  "50": {"class_type": "SaveVideo", "inputs": {"video": ["49", 0], "filename_prefix": "wan_anime", "format": "mp4"}}
+}

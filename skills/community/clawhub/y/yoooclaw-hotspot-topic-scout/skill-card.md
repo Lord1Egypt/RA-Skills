@@ -1,38 +1,54 @@
-## Description: <br>
-Helps content creators, editors, and operators combine selected notification signals with web search to identify timely topic ideas, viral references, competitor activity, and audience needs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yoooclaw Hotspot Topic Scout helps content creators, editors, and operations leads find timely topic ideas, viral references, competitor activity, and audience needs from notifications and current web signals.
 
-## Publisher: <br>
-[vivalavida-say-hi](https://clawhub.ai/user/vivalavida-say-hi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vivalavida-say-hi](https://clawhub.ai/user/vivalavida-say-hi)
 
-## Use Case: <br>
-External content teams and creators use this skill to turn recent private notification signals and public web trends into prioritized content planning recommendations. It organizes findings into topic ideas, viral references, competitor updates, and audience demand. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect broad phone notifications and private group, team, or fan communications while collecting topic signals. <br>
-Mitigation: Use narrow app, group, and time limits; exclude personal chats, confidential channels, client messages, and authentication-code notifications; ask for private signals to be aggregated or redacted before search or output. <br>
+## Use Case:
 
+External content creators, editors, and operations teams use this skill to identify which recent notification and web-search signals are worth turning into content topics, competitor analysis, or audience-response plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vivalavida-say-hi/yoooclaw-hotspot-topic-scout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style conversational text with categorized recommendations and source labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not generate files; ranks multiple candidate topics when evidence is sufficient and returns a fallback message when useful material is sparse.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can read broad phone notification content, including private or sensitive messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit app, group, and time-window limits, and avoid internal team chats, client discussions, confidential projects, and personal notifications.
+
+Risk: Notification-derived topics may be sent into external search flows.
+
+Mitigation: Review and sanitize sensitive terms before external searches, and use the skill only when the selected notification sources are appropriate for content research.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vivalavida-say-hi/skills/yoooclaw-hotspot-topic-scout)
+- [Publisher Profile](https://clawhub.ai/user/vivalavida-say-hi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style conversational report with ranked topic recommendations, source labels, rationale, and cautions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not generate files; may include fallback text when there is not enough useful material.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

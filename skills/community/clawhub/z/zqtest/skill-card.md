@@ -1,43 +1,59 @@
-## Description: <br>
-Typed knowledge graph for structured agent memory and composable skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Typed knowledge graph for structured agent memory and composable skills.
 
-## Publisher: <br>
-[ywqsimmon](https://clawhub.ai/user/ywqsimmon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ywqsimmon](https://clawhub.ai/user/ywqsimmon)
 
-## Use Case: <br>
-Developers and agents use this skill to create, query, relate, and validate typed workspace entities such as people, projects, tasks, events, documents, and notes. It is useful when shared local memory or cross-skill state needs a structured graph rather than ad hoc text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally persists shared workspace memory in local ontology files. <br>
-Mitigation: Review memory/ontology files periodically and avoid using this skill for information that should not be shared across agents or workflows. <br>
-Risk: Ontology records can describe accounts or credentials by reference. <br>
-Mitigation: Store only secret references, not raw passwords, tokens, keys, or other private secrets. <br>
-Risk: Broad remember requests can add excessive or unintended personal or project context to the graph. <br>
-Mitigation: Confirm the intended scope before recording sensitive or long-lived memory. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create, query, relate, and validate typed entities for local agent memory, task planning, and cross-skill state sharing.
 
-## Reference(s): <br>
-- [Ontology Schema Reference](references/schema.md) <br>
-- [Query Reference](references/queries.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash, Python, YAML, JSON, and JSONL examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local memory/ontology files when the provided CLI workflows are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill writes persistent local memory that other skills may read or write.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where shared local memory is acceptable, and review graph contents before relying on them.
+
+Risk: Deleted entities remain in append-only JSONL history.
+
+Mitigation: Do not store passwords, tokens, API keys, or sensitive personal data in the ontology graph.
+
+Risk: Validation may not enforce every documented constraint before writes.
+
+Mitigation: Run validation as a review aid and manually check important constraints before using graph data for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ywqsimmon/skills/zqtest)
+- [Schema reference](references/schema.md)
+- [Query reference](references/queries.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON, YAML, Python, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update workspace-local JSONL graph and YAML schema files when its CLI workflows are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

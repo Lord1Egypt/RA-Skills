@@ -1,41 +1,56 @@
-## Description: <br>
-Recover corrupted exFAT USB drives on Windows without formatting by diagnosing boot-region corruption, using chkdsk or TestDisk, and applying prevention steps such as write-cache changes, shutdown flush scripts, and boot-region backups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recover corrupted exFAT USB drives on Windows without formatting, including diagnosis of boot region corruption, repair with chkdsk or TestDisk, and prevention with write cache fixes, shutdown flush scripts, and automated boot region backups.
 
-## Publisher: <br>
-[solomonneas](https://clawhub.ai/user/solomonneas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solomonneas](https://clawhub.ai/user/solomonneas)
 
-## Use Case: <br>
-External users, sysadmins, and support engineers use this skill to triage exFAT USB drives that Windows reports as needing formatting, recover accessible data paths, and apply prevention steps after unexpected shutdown or write-cache corruption. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repair and restore steps can write to raw disks or modify filesystem state. <br>
-Mitigation: Stop using the affected drive, avoid formatting, make a sector-level image when data matters, and independently verify the drive letter, PhysicalDrive number, partition offset, and backup file before running write operations. <br>
-Risk: The prevention workflow includes persistent privileged Windows automation. <br>
-Mitigation: Avoid the SYSTEM scheduled task unless the operator understands how to inspect, secure, and remove it. <br>
+## Use Case:
 
+Developers, sysadmins, and Windows users use this skill to diagnose exFAT USB drives that Windows reports as needing formatting, attempt recovery without formatting, and apply prevention steps for future corruption.
 
-## Reference(s): <br>
-- [Prevention Scripts Setup](references/prevention-scripts.md) <br>
-- [TestDisk](https://www.cgsecurity.org/wiki/TestDisk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with PowerShell command examples and step-by-step recovery guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes administrative Windows commands, registry edits, scheduled-task setup, and raw disk backup or restore examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Recovery instructions include high-impact raw disk writes that can damage data if the wrong disk, offset, filesystem, or backup file is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Create a full disk image first, independently verify the drive number, serial/model, partition offset, filesystem type, and backup size, and avoid writing to the disk until those checks pass.
+
+Risk: Prevention steps include persistent SYSTEM-level Windows automation through a scheduled task or shutdown hook.
+
+Mitigation: Use an administrator-protected script location, document removal steps, and review the persistence mechanism before installing it.
+
+## Reference(s):
+
+- [Prevention Scripts Setup](references/prevention-scripts.md)
+- [TestDisk](https://www.cgsecurity.org/wiki/TestDisk)
+- [ClawHub skill page](https://clawhub.ai/solomonneas/skills/exfat-recovery)
+- [Publisher profile](https://clawhub.ai/user/solomonneas)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with inline PowerShell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Windows administrative recovery and prevention steps that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

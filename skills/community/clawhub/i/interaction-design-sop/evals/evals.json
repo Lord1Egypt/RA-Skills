@@ -1,0 +1,32 @@
+{
+  "skill_name": "interaction-design-sop",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我在写一个包含批量删除和筛选的订单管理列表页，编码前帮我过一遍交互防御 SOP。",
+      "expected_output": "Rigorous 7-step interaction design review covering task flow, P0/P1/P2 information hierarchy, and 4 defensive states.",
+      "files": [],
+      "expectations": [
+        "Executes through all 7 steps in sequential order (Intent -> Task Flow -> IA -> Resilience -> Perceived Perf -> Trade-off -> Output)",
+        "Classifies view elements strictly into P0 (vital), P1 (secondary), and P2 (progressive disclosure)",
+        "Fully specifies Empty, Loading, and Error states for the order table",
+        "Enforces explicit two-step / typed confirmation for destructive bulk deletion",
+        "Includes perceived performance optimizations (skeleton screens, optimistic updates, keyboard shortcuts)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Design the interaction resilience and state defense logic for a high-value multi-currency checkout payment view.",
+      "expected_output": "Pre-coding interaction defense specification preventing double-billing, handling timeouts, and guiding user recovery.",
+      "files": [],
+      "expectations": [
+        "Eliminates unnecessary friction from the checkout happy path",
+        "Specifies idempotent payment submission defense (disabling buttons, debouncing, optimistic state locks)",
+        "Defines clear network timeout and payment gateway failure recovery paths without loss of user input",
+        "Ensures destructive/high-risk actions require clear verification",
+        "Addresses responsive layout resilience (320px viewport to desktop, text overflow)"
+      ]
+    }
+  ]
+}
+

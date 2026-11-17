@@ -1,0 +1,164 @@
+metadata:
+  price_date: '2026-10-29'
+  cpu_price_date: '2026-10-29'
+  gpu_price_date: '2026-10-29'
+  memory_price_date: '2026-10-29'
+  storage_price_date: '2026-10-29'
+  source_type: network_public_price_observation
+  scope: default_downrank_reference_only
+  notes:
+  - CPU uses explicit daily low price floors only; it does not use same-model outlier
+    grouping.
+  - Floors are lower-bound trust references used for ranking and warnings, never hard
+    filters or upper price caps.
+  - Default builds prefer at-or-above-floor candidates; below-floor candidates remain
+    available for budget or broad-market fallback.
+  - A below-floor quote in the lowest 10% of its same-spec price group is further
+    downranked and not recommended unless the user names it explicitly.
+  - GPU floors use the daily-low column, not the historical-low column or trend chart
+    endpoint.
+  - RTX 5090, RTX 5090D and RTX 5090D V2 floors are temporarily cleared because those
+    cards are moving too fast; always warn users to verify the current price.
+  - Legacy GPU rows absent from the latest daily-low table retain their previous evidence;
+    historical lows, second-hand prices and trend charts are not daily floors.
+  - Dated daily-low tables cover the observed CPU, GPU, memory and storage selectors
+    on 2026-10-29; category dates do not advance evidence for absent selectors.
+  - CPU selector R9-9900X is absent from the latest daily-low table; its 2279 CNY
+    floor retains explicit 2026-10-20 evidence.
+cpus:
+- model: U7-270KPLUS
+  floor_cny: 1859
+- model: U7-265K
+  floor_cny: 1559
+- model: U7-265KF
+  floor_cny: 1559
+- model: U5-250K
+  floor_cny: 1199
+- model: U5-250KF
+  floor_cny: 1199
+- model: U5-245K
+  floor_cny: 1010
+- model: U5-245KF
+  floor_cny: 1010
+- model: I9-14900K
+  floor_cny: 2470
+- model: I9-14900KF
+  floor_cny: 2470
+- model: I7-14700K
+  floor_cny: 2049
+- model: I7-14700KF
+  floor_cny: 2049
+- model: I5-14600K
+  floor_cny: 1250
+- model: I5-14600KF
+  floor_cny: 1250
+- model: R9-9950X
+  floor_cny: 2730
+- model: R9-9900X
+  floor_cny: 2279
+- model: R7-9700X
+  floor_cny: 1335
+- model: R5-9600X
+  floor_cny: 1009
+- model: R5-9500F
+  floor_cny: 799
+- model: R9-9950X3D
+  floor_cny: 3788
+- model: R7-9850X3D
+  floor_cny: 2719
+- model: R7-9800X3D
+  floor_cny: 2400
+- model: R7-7800X3D
+  floor_cny: 1659
+- model: R5-7500F
+  floor_cny: 599
+gpus:
+- chip: RTX5080
+  min_vram_gb: 16
+  floor_cny: 17699
+- chip: RTX5070TI
+  min_vram_gb: 16
+  floor_cny: 11999
+- chip: RTX5070
+  min_vram_gb: 12
+  floor_cny: 8599
+- chip: RTX5060TI
+  min_vram_gb: 16
+  floor_cny: 6500
+- chip: RTX5060TI
+  max_vram_gb: 8
+  floor_cny: 4199
+- chip: RTX5060
+  min_vram_gb: 8
+  floor_cny: 3779
+- chip: RTX5050
+  min_vram_gb: 8
+  floor_cny: 2649
+- chip: RTX4070SUPER
+  min_vram_gb: 12
+  floor_cny: 3415
+- chip: RTX3060TI
+  min_vram_gb: 8
+  floor_cny: 1350
+- chip: RX9070XT
+  min_vram_gb: 16
+  floor_cny: 6298
+- chip: RX9070GRE
+  min_vram_gb: 12
+  floor_cny: 4179
+- chip: RX9070
+  min_vram_gb: 16
+  floor_cny: 5199
+- chip: RX9060XT
+  min_vram_gb: 16
+  floor_cny: 3499
+- chip: RX9060XT
+  max_vram_gb: 8
+  floor_cny: 2799
+- chip: RX7900XT
+  min_vram_gb: 20
+  floor_cny: 3184
+- chip: ARCB580
+  min_vram_gb: 12
+  floor_cny: 2649
+- chip: ARCB570
+  min_vram_gb: 10
+  floor_cny: 2099
+memory:
+- generation: DDR4
+  capacity_gb: 16
+  module_count: 2
+  floor_cny: 470
+- generation: DDR4
+  capacity_gb: 32
+  module_count: 2
+  floor_cny: 1049
+- generation: DDR5
+  capacity_gb: 32
+  module_count: 2
+  floor_cny: 1994
+- generation: DDR5
+  capacity_gb: 48
+  module_count: 2
+  floor_cny: 3599
+- generation: DDR5
+  capacity_gb: 64
+  module_count: 2
+  floor_cny: 4598
+- generation: DDR5
+  capacity_gb: 96
+  module_count: 2
+  floor_cny: 8639
+storage:
+- pcie_generation: 3
+  capacity_gb: 1000
+  floor_cny: 794
+- pcie_generation: 3
+  capacity_gb: 2000
+  floor_cny: 1597
+- pcie_generation: 4
+  capacity_gb: 1000
+  floor_cny: 840
+- pcie_generation: 4
+  capacity_gb: 2000
+  floor_cny: 1499

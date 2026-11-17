@@ -1,41 +1,50 @@
-## Description: <br>
-Enhanced testing guidance with framework-specific templates, CI/CD integration, mutation testing, performance testing, and security testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhanced testing with framework-specific templates, CI/CD integration, mutation testing, and performance testing. Covers unit, integration, E2E, and security testing.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and engineers use this skill to create and improve testing workflows across unit, integration, end-to-end, mutation, performance, and security testing. It provides ready-to-adapt templates, CI examples, command snippets, and testing strategy guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Load-testing and security-scanning snippets could affect systems or scan targets without authorization. <br>
-Mitigation: Use the examples only against owned systems, staging environments, or targets where explicit permission exists. <br>
-Risk: Dependency scanning tools such as Snyk may send dependency metadata to an external service. <br>
-Mitigation: Review tool terms and data handling before running those commands on sensitive projects. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate testing strategies, framework-specific test templates, CI/CD examples, mutation testing setup, performance test examples, and security testing guidance for software projects.
 
-## Reference(s): <br>
-- [Testing Plus ClawHub page](https://clawhub.ai/534422530/testing-plus) <br>
-- [Stryker configuration schema](https://raw.githubusercontent.com/stryker-mutator/stryker/master/packages/core/schema/stryker-core.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code, shell, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes framework examples, CI snippets, mutation testing commands, and load/security testing examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Copied installation, CI, dependency scanning, load testing, or ZAP scan commands may introduce unsafe dependencies, expose CI secrets, or run against systems without authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin dependency versions or image digests where practical, review third-party tools before use, avoid exposing secrets in CI, and run load or security scans only against systems the user owns or is explicitly permitted to assess.
+
+## Reference(s):
+
+- [Testing Plus ClawHub skill page](https://clawhub.ai/534422530/skills/testing-plus)
+- [Stryker core configuration schema](https://raw.githubusercontent.com/stryker-mutator/stryker/master/packages/core/schema/stryker-core.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes example test files, CI workflow snippets, mutation testing configuration, load testing configuration, security scan commands, checklists, and testing best practices.]
+
+## Skill Version(s):
+
+2.0.0 (source: release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

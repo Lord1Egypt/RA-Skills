@@ -1,0 +1,8 @@
+{
+  "id": "fire",
+  "version": "0.1.0",
+  "tests": [
+    "bash ../../../tests/lint-skills.sh fire"
+  ],
+  "trust_level": "workspace"
+}

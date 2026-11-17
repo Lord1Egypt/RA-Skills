@@ -1,47 +1,65 @@
-## Description: <br>
-Posts two-sided GTC limit orders on Polymarket CLOB, manages inventory skew and price drift, and estimates rebate-eligible volume. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post two-sided GTC limit orders on Polymarket CLOB, manage inventory skew, cancel and replace quotes on price drift, and estimate rebate-eligible volume.
 
-## Publisher: <br>
-[simmer](https://clawhub.ai/user/simmer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simmer](https://clawhub.ai/user/simmer)
 
-## Use Case: <br>
-Developers and trading-system operators use this skill to configure, dry-run, and optionally run Polymarket CLOB market-making with explicit market allowlists, spread controls, inventory skew limits, and order-management commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real Polymarket orders with financial loss exposure. <br>
-Mitigation: Start in dry-run mode, use small quote sizes, monitor inventory and balances, and enable --live only for markets you have intentionally allowlisted. <br>
-Risk: API keys and optional wallet secrets are sensitive credentials. <br>
-Mitigation: Store SIMMER_API_KEY and any wallet private key in secure secret storage and avoid committing or logging them. <br>
-Risk: Unsupported or near-resolution markets can make the quoted prices or risk controls unsuitable. <br>
-Mitigation: Use binary markets with active volume, avoid unsupported market types, and cancel or stop quoting before resolution when needed. <br>
-Risk: Unattended cron or automaton runs can continue trading after market conditions change. <br>
-Mitigation: Treat every --live scheduled run as real unattended trading and pair it with explicit market limits, conservative sizing, and active status checks. <br>
+## Use Case:
 
+Developers and external trading operators use this skill to configure, dry-run, monitor, and optionally execute a Polymarket CLOB market-making workflow through Simmer-managed market IDs. It is intended for advanced users who can tune market selection, spread, quote size, inventory skew, and live-trading controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/simmer/polymarket-clob-maker) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Risk disclaimer](artifact/DISCLAIMER.md) <br>
-- [Polymarket example market import](https://polymarket.com/event/will-btc-hit-100k-by-eoy-2026) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, environment variables, Python snippets, and optional JSON automaton status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY and market IDs; live mode places real orders only when explicitly enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.0 (source: frontmatter and server release metadata) <br>
+Risk: Live mode can place real Polymarket CLOB orders and on-chain trades cannot be recalled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start in dry-run mode, use small balances and restricted API keys, and run live mode only after reviewing market IDs, quote sizes, spread, and cancellation behavior.
+
+Risk: Security evidence says safety checks can fail open and create unintended orders or exposure.
+
+Mitigation: Avoid cron or automaton live mode until fail-closed handling is added for inventory, open-order, and market-metadata failures.
+
+Risk: Default strategy parameters are not validated for profitability and can produce losses under real market conditions.
+
+Mitigation: Treat defaults as plumbing tests, paper trade before scaling, and tune position size, spread, market selection, and skew limits conservatively.
+
+Risk: Dependency or credential exposure can increase financial impact.
+
+Mitigation: Pin and review simmer-sdk before use, keep SIMMER_API_KEY scoped to the minimum needed access, and avoid exposing wallet credentials unless required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/simmer/skills/polymarket-clob-maker)
+- [Publisher profile](https://clawhub.ai/user/simmer)
+- [Risk disclaimer](DISCLAIMER.md)
+- [Polymarket winners and losers study](simmer-labs/shared-knowledge/research/2026-04-16-polymarket-winners-losers-study.md)
+- [Polymarket quant bot and synthetic sell reference](simmer-labs/shared-knowledge/research/2026-04-14-polymarket-quant-bot-copy-trading.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, JSON]
+
+**Output Format:** [Markdown guidance, command-line output, and optional automaton JSON status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY and configured MM_MARKETS; live mode can place real GTC orders.]
+
+## Skill Version(s):
+
+0.9.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

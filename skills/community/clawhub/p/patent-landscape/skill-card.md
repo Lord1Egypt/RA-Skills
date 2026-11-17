@@ -1,39 +1,50 @@
-## Description: <br>
-Use when analyzing biotech patent landscapes, identifying white spaces in pharmaceutical IP, tracking competitor patents, or assessing freedom to operate for drug development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when analyzing biotech patent landscapes, identifying white spaces in pharmaceutical IP, tracking competitor patents, or assessing freedom to operate for drug development.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers, analysts, and life sciences teams use this skill to structure biotech patent landscape, competitor, white-space, and freedom-to-operate reviews from provided inputs. It should be used with verified patent data and explicit assumptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Patent, competitor, or freedom-to-operate conclusions may be misleading if based on mock output, incomplete examples, or unverified patent data. <br>
-Mitigation: Require verified patent data sources and review assumptions, jurisdictions, and search scope before relying on results for legal or strategic decisions. <br>
+## Use Case:
 
+Developers, IP analysts, and life sciences teams use this skill to structure biotech patent landscape reviews, white-space analysis, competitor patent tracking, and freedom-to-operate discussions. Current security evidence indicates it should be treated as a demonstration unless backed by real patent-data retrieval and provenance.
 
-## Reference(s): <br>
-- [Audit Reference](references/audit-reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/patent-landscape) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with optional shell commands and structured analysis sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should state inputs, assumptions, workflow, risks, limits, and next checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Hard-coded mock patent and freedom-to-operate results may be mistaken for real patent analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as demonstration material unless the publisher adds real patent-data retrieval, source provenance, jurisdiction-specific analysis, and clear legal limitations; do not use the outputs for R&D, licensing, investment, or freedom-to-operate decisions.
+
+## Reference(s):
+
+- [Audit Reference](references/audit-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/patent-landscape)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown and CLI text output with structured sections and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should state assumptions, inputs used, workflow, deliverables, risks, limits, unresolved items, and next checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

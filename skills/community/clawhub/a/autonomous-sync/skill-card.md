@@ -1,42 +1,59 @@
-## Description: <br>
-Helps agents set up automatic Aicoo knowledge syncs using scheduled loops, cron, hooks, file watchers, and API update workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents set up scheduled, event-driven, or conversation-driven synchronization of project knowledge to Aicoo notes.
 
-## Publisher: <br>
-[xisen-w](https://clawhub.ai/user/xisen-w) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xisen-w](https://clawhub.ai/user/xisen-w)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep Aicoo knowledge current by setting up scheduled or event-driven sync workflows for decisions, preferences, project updates, meeting outcomes, and policy changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Background syncs may send sensitive project or conversation data to an external service without enough scoping or review. <br>
-Mitigation: Define exactly what may be synced, exclude secrets and confidential files, and prefer manual review before external writes. <br>
-Risk: Cron jobs, loops, hooks, or file watchers can make persistent external updates after they are enabled. <br>
-Mitigation: Enable automation only intentionally, keep trigger scope narrow, and review proposed changes before allowing unattended runs. <br>
-Risk: Aicoo API credentials are required for the workflows. <br>
-Mitigation: Store AICOO_API_KEY only in protected environment or secret storage, avoid logging it, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Developers and agent users use this skill to keep an Aicoo agent's knowledge current by configuring cron jobs, loop prompts, hooks, and API-based note updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xisen-w/autonomous-sync) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API requests] <br>
-**Output Format:** [Markdown with shell and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AICOO_API_KEY and sends selected sync content to the Aicoo API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Persistent automation can send selected project or conversation content to Aicoo and modify remote notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Define exactly what may be synced, redact secrets, and document how to disable cron, loop, or hook automation.
+
+Risk: Authenticated remote writes may affect existing notes if tokens or sync scope are too broad.
+
+Mitigation: Use a least-privileged token, snapshot before high-impact edits, and prefer targeted patching of canonical notes.
+
+Risk: A broad Write|Edit hook can trigger synchronization more often than intended.
+
+Mitigation: Avoid broad hook matchers and inspect or provide the sync script before enabling event-driven automation.
+
+## Reference(s):
+
+- [Autonomous Sync skill page](https://clawhub.ai/xisen-w/skills/autonomous-sync)
+- [Aicoo API base URL](https://www.aicoo.io/api/v1)
+- [Publisher profile](https://clawhub.ai/user/xisen-w)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API endpoint guidance, cron examples, hook configuration, and sync safety rules.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

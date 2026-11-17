@@ -1,44 +1,62 @@
-## Description: <br>
-Automates strain identification by parsing local SEQ or FASTA sequencing files, submitting sequences to online NCBI BLAST, preparing DingTalk table data, and drafting a Word identification report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates strain identification workflows by parsing SEQ or FASTA files, submitting sequences to NCBI BLAST, preparing DingTalk table data, and generating a Word identification report.
 
-## Publisher: <br>
-[meta-men](https://clawhub.ai/user/meta-men) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meta-men](https://clawhub.ai/user/meta-men)
 
-## Use Case: <br>
-Laboratory users and developers use this skill to process local sequencing files, submit sequence data to NCBI BLAST, and create structured identification data plus a Word report draft. The output should be reviewed before operational, regulated, confidential, or clinical use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sequencing data is submitted to NCBI BLAST. <br>
-Mitigation: Use only sequences your organization permits uploading to NCBI; avoid proprietary, clinical, regulated, or confidential samples unless approved. <br>
-Risk: Identification output may be unreliable because the artifact appears to return hard-coded BLAST result fields. <br>
-Mitigation: Treat the generated identification as a draft and verify results against real BLAST retrieval and expert review before use. <br>
-Risk: The default Word report path can overwrite an existing report in the working folder. <br>
-Mitigation: Run the skill in a dedicated folder or change the report path before execution. <br>
+## Use Case:
 
+Laboratory users and developers can use this skill to automate sequence-file parsing, BLAST submission, DingTalk-ready result formatting, and Word report generation for strain identification workflows. Security evidence states the current implementation should not be relied on for real strain identification without remediation.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/meta-men/strain-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/meta-men) <br>
-- [NCBI BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files] <br>
-**Output Format:** [JSON-style result with BLAST fields, DingTalk table data, and a Word report path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a .docx report from a supplied template; the default report filename may overwrite an existing file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: Strain-identification results may be misleading because security evidence says the output appears hard-coded rather than based on completed BLAST result parsing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill for real strain identification until BLAST result polling, parsing, and validation are implemented and reviewed.
+
+Risk: Sequence data is uploaded to NCBI.
+
+Mitigation: Require explicit user consent before submitting sequence data to NCBI and confirm the data may be shared with that external service.
+
+Risk: Local input paths, file sizes, and report output paths are not clearly constrained.
+
+Mitigation: Add input path validation, file-size limits, and user-controlled report output handling before deployment.
+
+Risk: Dependencies are version-ranged rather than pinned to reviewed package versions.
+
+Mitigation: Pin and review dependencies before installation in managed or production environments.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/meta-men/skills/strain-skill)
+- [NCBI BLAST service used by the artifact](https://blast.ncbi.nlm.nih.gov/Blast.cgi)
+
+## Skill Output:
+
+**Output Type(s):** [text, files]
+
+**Output Format:** [JSON-style status object with DingTalk table data and a generated .docx report path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a Word report file using the provided template path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

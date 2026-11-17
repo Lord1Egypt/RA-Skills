@@ -2,6 +2,7 @@
 name: ebusy-courts
 description: Query eBusy-based tennis hall bookings via a small Python client.
 homepage: https://clawhub.com
+license: MIT
 metadata:
   openclaw:
     emoji: 🎾
@@ -28,12 +29,13 @@ values are provided by the environment, not hard-coded in the skill.
 
 ## Files
 
-- `skills/ebusy-courts/ebusy_api.py` – core Python client
-- `skills/ebusy-courts/SKILL.md` – this documentation
+- `ebusy_api.py` – core Python client
+- `SKILL.md` – this documentation
+- `mcporter.json` – MCP permissions manifest
 
 Optional (local-only, **do not publish**):
 
-- `skills/.env` – local environment file with hall-specific credentials
+- `.env` – local environment file with hall-specific credentials
 
 ---
 
@@ -60,7 +62,7 @@ export EBUSY_PASSWORD="<your-password>"
 export EBUSY_COURT_ID="<module-id>"
 export EBUSY_FIRST_COURT_NO="<first-court-no>"
 
-python skills/ebusy-courts/ebusy_api.py 03/07/2026
+python ebusy_api.py 03/07/2026
 ```
 
 The script will:
@@ -97,14 +99,14 @@ Example shell setup:
 
 ```bash
 source venv/bin/activate
-# load your local secrets, e.g. from skills/.env
+# load your local secrets, e.g. from .env
 export EBUSY_BASE_URL="https://medenhalle.ebusy.de"
 export EBUSY_USERNAME="$MEDENHALLE_USER"
 export EBUSY_PASSWORD="$MEDENHALLE_PASSWORD"
 export EBUSY_COURT_ID="1"
 export EBUSY_FIRST_COURT_NO="1"
 
-python skills/ebusy-courts/ebusy_api.py 03/07/2026
+python ebusy_api.py 03/07/2026
 ```
 
 ### Example: KTEV Kelkheim
@@ -120,14 +122,14 @@ Example shell setup:
 
 ```bash
 source venv/bin/activate
-# load your local secrets, e.g. from skills/.env
+# load your local secrets, e.g. from .env
 export EBUSY_BASE_URL="https://ktev.ebusy.de"
 export EBUSY_USERNAME="$KTEV_USER"
 export EBUSY_PASSWORD="$KTEV_PASSWORD"
 export EBUSY_COURT_ID="807"
 export EBUSY_FIRST_COURT_NO="2135"
 
-python skills/ebusy-courts/ebusy_api.py 03/07/2026
+python ebusy_api.py 03/07/2026
 ```
 
 ---
@@ -140,7 +142,7 @@ Zeiten in der Tennishalle XYZ am Sonntag"), an OpenClaw agent can:
 1. Map the hall name to a profile (base URL, module id, first-court-no),
    either from `TOOLS.md` or agent-specific config.
 2. Ensure the environment variables `EBUSY_*` are set for that hall
-   (credentials supplied by the runtime or `skills/.env`).
+   (credentials supplied by the runtime or `.env`).
 3. Call `ebusy_api.py` for the relevant date, parse the JSON, and build
    an availability table (free vs booked) per court and time slot.
 
@@ -149,11 +151,35 @@ should live in the agent and/or `TOOLS.md`, not in this skill's code.
 
 ---
 
+## Sicherheit der Implementierung
+
+⚠️ **Wichtige Sicherheitshinweise:**
+
+### 1. Credential Access
+- **Keine Dateien werden gelesen** (z. B. `.env`, SSH-Keys, AWS-Credentials).
+- **Environment-Variablen** werden **nur vom OpenClaw-Agenten** bereitgestellt.
+- **Keine Hardcoded Credentials** im Skill.
+
+### 2. Netzwerkzugriff
+- **Nur eBusy-Instanzen:** `https://*.ebusy.de`
+
+### 3. Dateizugriff
+- **Nur Lesezugriff** auf eigene Dateien (`ebusy_api.py`, `SKILL.md`, `mcporter.json`).
+
+### 4. Keine administrativen Rechte
+- **Kein `sudo`, `eval()`, `exec()`, `subprocess`**.
+
+### 5. Sicherheit der Python-Implementierung
+- **Nur Standardbibliothek** (`os`, `sys`, `requests`, `bs4`).
+- **Keine Systembefehle**.
+
+---
+
 ## Publishing considerations
 
-- Do **not** publish `skills/.env` or any file containing real
+- Do **not** publish `.env` or any file containing real
   credentials to ClawHub.
-- Ensure `.gitignore` excludes `skills/.env` and similar secret-bearing
+- Ensure `.gitignore` excludes `.env` and similar secret-bearing
   files.
 - The skill itself (this `SKILL.md` + `ebusy_api.py`) contains only
   generic logic and non-secret configuration; the example profiles are

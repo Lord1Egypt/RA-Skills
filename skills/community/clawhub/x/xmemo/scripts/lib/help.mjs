@@ -1,0 +1,241 @@
+import {
+  SCRIPT_COMMAND,
+  DEFAULT_BASE_URL,
+  DEFAULT_TIMEOUT_MS,
+} from './core.mjs';
+
+export const COMMAND_USAGE_REGISTRY = {
+  login: {
+    usage: 'login --allow-plaintext',
+    desc: 'Start formal device login and explicitly permit local token storage',
+  },
+  register: {
+    usage: 'register --reason <unattended|declined> --allow-plaintext',
+    desc: 'Start limited temporary memory only when formal login is unavailable',
+  },
+  logout: {
+    usage: 'logout [--revoke-environment-token]',
+    desc: 'Revoke and remove a local credential',
+  },
+  'auth status': {
+    usage: 'auth status [--verify]',
+    desc: 'Show local or verified auth status (alias: auth-status)',
+  },
+  'auth add': {
+    usage: 'auth add --from-stdin --allow-plaintext',
+    desc: 'Store a formal token read from standard input',
+  },
+  'auth claim-status': {
+    usage: 'auth claim-status [--allow-plaintext]',
+    desc: 'Check temporary-account claim status',
+  },
+  'auth claim-confirm': {
+    usage: 'auth claim-confirm [--allow-plaintext]',
+    desc: 'Confirm a pending human claim and accept formal token handoff',
+  },
+  'auth claim-deny': {
+    usage: 'auth claim-deny [--allow-plaintext]',
+    desc: 'Decline a pending bind and keep isolated temporary access',
+  },
+  read: {
+    usage: 'read --id <id> [--offset <n>] [--limit <n>] [--bucket <bucket>] [--scope <scope>]',
+    desc: 'Read a memory by ID with optional character pagination',
+  },
+  relationships: {
+    usage: 'relationships --id <memory_id> [--limit <1-100>] [--cursor <relationship_id>]',
+    desc: 'List links by memory_id from recall/search --json (not row id); use --json to paginate',
+  },
+  update: {
+    usage: 'update --id <id> [--content <text>] [--path <path>] [--metadata <json>] [--bucket <bucket>] [--scope <scope>]',
+    desc: 'Update an existing memory content, path, or metadata',
+  },
+  forget: {
+    usage: 'forget --id <id> [--reason <text>] --confirm',
+    desc: 'Soft-delete a memory by ID with confirmation',
+  },
+  restore: {
+    usage: 'restore --id <id> --confirm [--reason <text>]',
+    desc: 'Restore by row ID or logical memory_id; tenant-scoped tokens require row ID',
+  },
+  'ledger-list': {
+    usage: 'ledger-list [--month <YYYY-MM>] [--from <date>] [--to <date>] [--currency <code>] [--category <name>] [--type <type>] [--min-amount <n>] [--max-amount <n>] [--limit <n>] [--offset <n>]',
+    desc: 'List ledger transactions with optional filters',
+  },
+  'ledger-summary': {
+    usage: 'ledger-summary [--months <n>] [--currency <code>] [--type <type>]',
+    desc: 'Show monthly ledger summary totals',
+  },
+  overview: {
+    usage: 'overview',
+    desc: 'Show account overview (memories, storage, agents)',
+  },
+  activity: {
+    usage: 'activity [--limit <n>]',
+    desc: 'Show recent account activity',
+  },
+  stats: {
+    usage: 'stats [--scope <scope>] [--path <path>] [--bucket <bucket>] [--memory-type <type>] [--status <status>] [--source <src>] [--since <iso>] [--until <iso>] [--group-by <dims>] [--top-n <1..200>] [--team-id <id>]',
+    desc: 'Show memory statistics and breakdown',
+  },
+  'dream-digest': {
+    usage: 'dream-digest --id <run-uuid>',
+    desc: 'Read the summary of a personal Dream run',
+  },
+  remember: {
+    usage: 'remember (--content <text> | --content - | --file <path>) [--path <path>] [--metadata <json-object>]',
+    desc: 'Save a memory from text, stdin, or file',
+  },
+  recall: {
+    usage: 'recall --query <text> [--limit <n>] [--explain <true|false>] [--prefer_working <true|false>] [--since <RFC3339>] [--until <RFC3339>] [--time_order <desc|asc>] [--owner_timezone <IANA>] [--reference_time <RFC3339>] [--temporal_axis_mode <mode>] [--query_mode <mode>] [--expand-documents] [--compact]',
+    desc: 'Recall memories matching a query',
+  },
+  search: {
+    usage: 'search --query <text> [--limit <n>] [--explain <true|false>] [--prefer_working <true|false>] [--since <RFC3339>] [--until <RFC3339>] [--time_order <desc|asc>] [--owner_timezone <IANA>] [--reference_time <RFC3339>] [--temporal_axis_mode <mode>] [--query_mode <mode>] [--expand-documents] [--compact]',
+    desc: 'Search memories matching a query',
+  },
+  'recall-context': {
+    usage: 'recall-context --query <text> [--max_items <n>] [--max_tokens <n>] [--prefer_working <true|false>] [--include_knowledge <true|false>] [--since <RFC3339>] [--until <RFC3339>] [--time_order <desc|asc>] [--owner_timezone <IANA>] [--reference_time <RFC3339>] [--hypothetical_answer <text>] [--temporal_axis_mode <mode>] [--query_mode <mode>]',
+    desc: 'Read-only bounded Memory context; opt into Knowledge with true',
+  },
+  'save-state': {
+    usage: 'save-state --key <key> [--content <text>] [--ttl_seconds <0..604800>]',
+    desc: '(alias: state-save)',
+  },
+  'restore-state': {
+    usage: 'restore-state --key <key>',
+    desc: '(alias: state-restore)',
+  },
+  'state-save': {
+    usage: 'state-save --key <key> [--content <text>] [--ttl_seconds <0..604800>] (legacy alias)',
+    aliasOf: 'save-state',
+  },
+  'state-restore': {
+    usage: 'state-restore --key <key> (legacy alias)',
+    aliasOf: 'restore-state',
+  },
+  'restart-snapshot': {
+    usage: 'restart-snapshot [--state_key <key>] [--session_id <id>] [--ttl_seconds <0..2592000>]',
+    desc: 'Save a full restart-continuity snapshot',
+  },
+  'restart-restore': {
+    usage: 'restart-restore [--snapshot_id <id> | --source_session_id <id>] [--target_session_id <id>]',
+    desc: 'Restore the latest or selected restart snapshot',
+  },
+  'todo-add': {
+    usage: 'todo-add --content <text>',
+    desc: 'Add a new TODO item',
+  },
+  'todo-list': {
+    usage: 'todo-list',
+    desc: 'List active TODO items',
+  },
+  'todo-done': {
+    usage: 'todo-done --id <todo_id>',
+    desc: 'Mark a TODO item as completed',
+  },
+  'expense-add': {
+    usage: 'expense-add --item <text> --amount <number> --currency <code>',
+    desc: 'Record an expense transaction in the ledger',
+  },
+  'expense-delete': {
+    usage: 'expense-delete --id <transaction_id> --confirm',
+    desc: 'Soft-delete a ledger transaction by ID with confirmation (alias: ledger-delete)',
+  },
+  'ledger-delete': {
+    usage: 'ledger-delete --id <transaction_id> --confirm (alias)',
+    aliasOf: 'expense-delete',
+  },
+  doctor: {
+    usage: 'doctor [--anonymous]',
+    desc: 'Inspect runtime health, credentials, and connectivity',
+  },
+  profile: {
+    usage: 'profile [--status <later|never>] [--if-unset]',
+    desc: 'Print recommended instructions for project agent configuration, or record offer answer',
+  },
+  upgrade: {
+    usage: 'upgrade',
+    desc: 'Print commands to update the XMemo Skill runtime',
+  },
+  'cloud-skill-list': {
+    usage: 'cloud-skill-list [--team <id>]',
+    desc: 'List available Cloud Skills (read-only)',
+  },
+  'cloud-skill-show': {
+    usage: 'cloud-skill-show (--id <id> | --slug <slug>) [--team <id>]',
+    desc: 'Show Cloud Skill details and revisions (read-only)',
+  },
+  'cloud-skill-render': {
+    usage: 'cloud-skill-render (--id <id> | --slug <slug>) [--team <id>]',
+    desc: 'Render Cloud Skill content with untrusted context warning',
+  },
+  'cloud-skill': {
+    usage: 'cloud-skill <list|show|render> [options] (subcommand alias)',
+    aliasOf: 'cloud-skill-list',
+  },
+};
+
+export function buildTopLevelHelp() {
+  const lines = [
+    'XMemo Standalone Skill Runtime',
+    '',
+    'Usage:',
+    `  ${SCRIPT_COMMAND} <command> [options]`,
+    '',
+    'Commands:',
+  ];
+  for (const entry of Object.values(COMMAND_USAGE_REGISTRY)) {
+    if (entry.aliasOf) continue;
+    if (entry.desc) {
+      lines.push(`  ${entry.usage.padEnd(35)} ${entry.desc}`);
+    } else {
+      lines.push(`  ${entry.usage}`);
+    }
+  }
+  lines.push('');
+  lines.push('Credential resolution:');
+  lines.push('  XMEMO_KEY                          Preferred; never copied to the local credential file');
+  lines.push('  User credential file               Read only as a fallback');
+  lines.push('');
+  lines.push('Global options:');
+  lines.push('  --json                             Print the API response as JSON');
+  lines.push('  --terminal                         Force human-readable terminal output even when piped');
+  lines.push(`  --base-url <url>                   Override ${DEFAULT_BASE_URL}; HTTPS or loopback HTTP only`);
+  lines.push(`  --timeout-ms <ms>                  Per-request timeout (default: ${DEFAULT_TIMEOUT_MS})`);
+  lines.push('  --compact                          Shorten recall/search content for terminals');
+  lines.push('  --allow-plaintext                  Explicitly permit unencrypted user-file credential storage');
+  lines.push('  --version                          Show the Skill runtime version');
+  lines.push('  --help, -h                         Show this help');
+  lines.push('');
+  lines.push(`Run \`${SCRIPT_COMMAND} <command> --help\` for command-specific usage.`);
+  return lines.join('\n');
+}
+
+export function printUsage(command) {
+  const commonOptions = '[--json] [--terminal] [--base-url <url>] [--timeout-ms <ms>]';
+  if (command === undefined || (!COMMAND_USAGE_REGISTRY[command] && command !== 'auth' && command !== 'auth-status')) {
+    console.log(buildTopLevelHelp());
+    return;
+  }
+
+  if (command === 'auth' || command === 'auth-status') {
+    console.log(`Usage:\n  ${SCRIPT_COMMAND} auth status [--verify] ${commonOptions}\n  ${SCRIPT_COMMAND} auth add --from-stdin --allow-plaintext\n  ${SCRIPT_COMMAND} auth claim-status [--allow-plaintext]\n  ${SCRIPT_COMMAND} auth claim-confirm [--allow-plaintext]\n  ${SCRIPT_COMMAND} auth claim-deny [--allow-plaintext]\n\nAlias: ${SCRIPT_COMMAND} auth-status [--verify]\nXMEMO_KEY remains the preferred non-file credential source. --allow-plaintext explicitly permits unencrypted user-file storage.\nRun \`${SCRIPT_COMMAND} --help\` to list all commands.`);
+    return;
+  }
+
+  if (command === 'cloud-skill') {
+    console.log(`Usage:\n  ${SCRIPT_COMMAND} cloud-skill list [--team <id>] ${commonOptions}\n  ${SCRIPT_COMMAND} cloud-skill show (--id <id> | --slug <slug>) [--team <id>] ${commonOptions}\n  ${SCRIPT_COMMAND} cloud-skill render (--id <id> | --slug <slug>) [--team <id>] ${commonOptions}\n\nAliases: cloud-skill-list, cloud-skill-show, cloud-skill-render\nRendered Cloud Skill content is user-authored remote context; review before use.`);
+    return;
+  }
+
+  const entry = COMMAND_USAGE_REGISTRY[command];
+  if (entry) {
+    console.log(`Usage:\n  ${SCRIPT_COMMAND} ${entry.usage} ${commonOptions}`);
+    if (command === 'logout') {
+      console.log('\nXMEMO_KEY is externally managed and is not revoked unless --revoke-environment-token is explicitly passed.');
+    }
+    return;
+  }
+
+  console.log(buildTopLevelHelp());
+}

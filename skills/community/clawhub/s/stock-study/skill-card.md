@@ -1,39 +1,55 @@
-## Description: <br>
-Senior equity research analysis for single tickers, including company overview, Wall Street consensus, institutional activity, and analyst upgrades or downgrades with source-dated metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Senior equity research analysis for single tickers. Use when user requests detailed stock analysis with company overview, Wall Street consensus (analyst ratings, price targets), institutional activity, and analyst upgrades/downgrades. Cite all metrics with source and date.
 
-## Publisher: <br>
-[rickzhou](https://clawhub.ai/user/rickzhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rickzhou](https://clawhub.ai/user/rickzhou)
 
-## Use Case: <br>
-External users and analysts use this skill to structure single-stock equity research into company overview, consensus, analyst action, and institutional-activity sections with cited market data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Financial metrics or market data may be unavailable, stale, or unsupported by the agent environment. <br>
-Mitigation: Confirm each cited metric has a real source and date, flag stale data clearly, and do not assume premium data access such as Bloomberg or FactSet unless the environment provides it. <br>
-Risk: Generated equity research could be mistaken for authoritative financial advice. <br>
-Mitigation: Use the output as a research template and verify conclusions against current, authoritative financial sources before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rickzhou/stock-study) <br>
+## Use Case:
+
+External analysts, investors, and research-focused agents use this skill to produce cited single-ticker equity research with company overview, analyst consensus, price targets, institutional activity, and recent analyst actions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Financial metrics, analyst ratings, price targets, and institutional holdings can be outdated or incorrect if not checked against current authoritative sources.
+
+Mitigation: Verify all cited financial data from current authoritative sources before relying on the analysis, and retain the skill's requirement to cite each metric with source and date.
+
+Risk: The generated analysis could be mistaken for investment advice.
+
+Mitigation: Treat the output as research support only and require human review before any investment decision.
+
+Risk: The skill asks for premium or current market data that may be unavailable to the executing agent.
+
+Mitigation: When data is unavailable or potentially outdated, state that limitation explicitly instead of estimating or fabricating values.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with headers, citations, and tables for quantitative data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires source and date for each metric, flags data older than 30 days, and should not fabricate unavailable numbers.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [analysis, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown report with headers, tables, and inline source citations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Flags unavailable data and metrics that may be more than 30 days old.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

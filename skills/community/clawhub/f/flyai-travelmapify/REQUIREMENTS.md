@@ -9,11 +9,6 @@ The `flyai-travelmapify` skill requires the following dependencies to function p
 - **Amap API**: Built-in default API key included (`88628414733cf2ccb7ce2f94cfd680ef`)
 - **No user API key required** - the skill works out of the box with the default key
 
-## AI Vision Requirements
-- **Image-capable AI model**: Your OpenClaw agent should have access to an image analysis model for processing travel planning images
-- **Supported image formats**: JPG, PNG, GIF, WebP
-- **Recommended image quality**: Clear, readable text with good contrast for optimal POI extraction
-
 ## Installation
 Both skills should be installed in your OpenClaw workspace under the `skills/` directory:
 

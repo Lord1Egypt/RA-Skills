@@ -1,46 +1,60 @@
-## Description: <br>
-Guide for vetting third-party OpenClaw skills before installation using the Skill Vetter security protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for vetting third-party OpenClaw skills before installation using the Skill Vetter security protocol.
 
-## Publisher: <br>
-[vibesparkingai](https://clawhub.ai/user/vibesparkingai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vibesparkingai](https://clawhub.ai/user/vibesparkingai)
 
-## Use Case: <br>
-Developers and operators use this skill to review third-party OpenClaw skills before installation, produce standardized vetting reports, audit installed skills, and establish a vet-before-install practice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Templates can persistently change future agent behavior by adding mandatory vetting rules to AGENTS.md. <br>
-Mitigation: Review the exact AGENTS.md target path and proposed diff before applying changes, and keep clear rollback steps. <br>
-Risk: Automated audit prompts can schedule recurring cron jobs and write audit files without enough confirmation. <br>
-Mitigation: Approve the cron entry, output directory, execution context, and removal steps before scheduling automated audits. <br>
+## Use Case:
 
+Developers and agent operators use this skill to review third-party OpenClaw skills before installation, produce standardized vetting reports, and audit installed skills for security concerns.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/vibesparkingai/skill-vetter-guide) <br>
-- [Vetting Report Template](references/report-template.md) <br>
-- [Audit Report Template](references/audit-template.md) <br>
-- [Prompt Templates](references/prompt-templates.md) <br>
-- [Vetting Report Template (zh-CN)](references/report-template.zh-CN.md) <br>
-- [Audit Report Template (zh-CN)](references/audit-template.zh-CN.md) <br>
-- [Prompt Templates (zh-CN)](references/prompt-templates.zh-CN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown reports, checklist guidance, configuration instructions, and prompt templates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes English and zh-CN source and template variants.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill may lead agents to add persistent AGENTS.md policy text without enough local scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed AGENTS.md diff before applying it and document how to remove or revise the policy.
+
+Risk: The skill may lead agents to create recurring audit jobs without enough rollback or retention guidance.
+
+Mitigation: Approve cron or scheduled-task changes explicitly, choose a report retention location, and record the disable or removal command.
+
+Risk: The server security verdict is suspicious due to persistent policy and scheduled-task behavior.
+
+Mitigation: Pin the exact released source version and review the generated vetting report before installation or operational use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vibesparkingai/skills/skill-vetter-guide)
+- [Audit Report Template](references/audit-template.md)
+- [Prompt Templates](references/prompt-templates.md)
+- [Vetting Report Template](references/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration, shell commands]
+
+**Output Format:** [Markdown with checklist guidance, report templates, prompt templates, and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose persistent policy text and scheduled audit setup that require user review before applying.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

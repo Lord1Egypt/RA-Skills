@@ -1,0 +1,16 @@
+interface:
+  display_name: "Ziztu Cinematic Depth"
+  short_description: "Give AI images and video real depth, not flat frames"
+  icon_small: "./assets/ziztu-mark.svg"
+  icon_large: "./assets/ziztu-icon.png"
+  brand_color: "#F4552B"
+  default_prompt: "Use $ziztu-cinematic-depth to rewrite my shot prompt so it has a soft foreground, a sharp subject and a hazy background, and check it for flatness."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "ziztu"
+      description: "Ziztu: plans shots from a script, prices them and makes frames, clips, music and the MP4"
+      transport: "streamable_http"
+      url: "https://getziztu.com/mcp"

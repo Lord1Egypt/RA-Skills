@@ -1,39 +1,53 @@
-## Description: <br>
-Helps developers start work by running a Git stash, pull --rebase, and stash pop workflow, then returning JavaScript, Vue, React, AI-tool tips, and the prior Nasdaq 100 change. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers start work by syncing the current Git repository, restoring local changes, sharing JavaScript, Vue, React, and AI tooling tips, and reporting the previous-close Nasdaq 100 change.
 
-## Publisher: <br>
-[luofeiioi](https://clawhub.ai/user/luofeiioi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luofeiioi](https://clawhub.ai/user/luofeiioi)
 
-## Use Case: <br>
-Developers use this skill at the start of a work session to synchronize a Git repository and receive concise development reminders. It is intended for use in the correct local project repository where Git stash, rebase, and stash-pop operations are acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change the current repository when broad phrases such as "开干" or "开始工作" trigger Git stash, pull --rebase, and stash pop. <br>
-Mitigation: Use it only from the intended repository, check branch and worktree status first, and be prepared to resolve rebase or stash-pop conflicts. <br>
+## Use Case:
 
+Developers use this skill at the start of a work session to synchronize a repository with a rebase workflow, restore local changes, and receive brief development guidance and market context.
 
-## Reference(s): <br>
-- [Development Tips Reference](references/dev_tips.md) <br>
-- [ClawHub Skill Release](https://clawhub.ai/luofeiioi/my-work-start-helper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, markdown, guidance, text] <br>
-**Output Format:** [Markdown with inline shell commands and concise status or guidance text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include time-sensitive market information for the prior Nasdaq 100 close.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can automatically mutate the active Git repository from broad work-start trigger phrases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show the repo root, branch, status, remote, and planned Git commands, then obtain explicit confirmation before execution.
+
+Risk: The stash, rebase, and stash pop workflow can conflict with important uncommitted work or existing stashes.
+
+Mitigation: Avoid using it in repositories with important uncommitted work or existing stashes unless the stash restoration logic targets only the stash it created.
+
+## Reference(s):
+
+- [Development Tips](references/dev_tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and concise status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Git command output, development tips, and a web-sourced Nasdaq 100 previous-close change.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

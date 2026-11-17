@@ -1,41 +1,54 @@
-## Description: <br>
-Search and retrieve ServiceNow documentation, release notes, and developer docs (APIs, references, guides). Uses docs.servicenow.com via Zoomin and developer.servicenow.com APIs for developer topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and retrieve ServiceNow documentation, release notes, and developer docs (APIs, references, guides). Uses docs.servicenow.com via Zoomin and developer.servicenow.com APIs for developer topics.
 
-## Publisher: <br>
-[TheSethRose](https://clawhub.ai/user/TheSethRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thesethrose](https://clawhub.ai/user/thesethrose)
 
-## Use Case: <br>
-Developers, administrators, and support teams use this skill to find and summarize ServiceNow platform documentation, release notes, developer guides, and API references. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The scanner reports that the article-fetch tool can be directed to fetch non-ServiceNow URLs. <br>
-Mitigation: Review requested article URLs before use and prefer versions that restrict fetching to expected ServiceNow documentation domains over HTTPS. <br>
-Risk: Documentation results may be incomplete or depend on current ServiceNow documentation availability. <br>
-Mitigation: Verify important guidance against the linked ServiceNow documentation before applying it in production. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheSethRose/servicenow-docs) <br>
-- [ServiceNow product documentation](https://docs.servicenow.com/) <br>
-- [ServiceNow Developer documentation](https://developer.servicenow.com/) <br>
+## Use Case:
 
+Developers, administrators, and support teams use this skill to find and summarize ServiceNow product documentation, release notes, API references, and developer guides.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with documentation links and summarized results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search and guide outputs may be truncated; some API reference results return links that require browser access for full content.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The article-fetch tool can request arbitrary URLs from the agent runtime instead of being limited to ServiceNow documentation hosts.
+
+Mitigation: Run the skill only where outbound network access is restricted, or update the article-fetch tool to allow only HTTPS ServiceNow documentation hosts and validate redirects.
+
+Risk: The dependency range may reduce install reproducibility.
+
+Mitigation: Pin the dependency version before release or installation.
+
+## Reference(s):
+
+- [ServiceNow product documentation](https://docs.servicenow.com/)
+- [ServiceNow developer documentation](https://developer.servicenow.com/)
+- [ClawHub skill page](https://clawhub.ai/thesethrose/skills/servicenow-docs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text with documentation links, search results, and concise summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some fetched article and guide outputs are truncated; developer API reference search returns URLs for browser access.]
+
+## Skill Version(s):
+
+1.1.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

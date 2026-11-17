@@ -1,40 +1,52 @@
-## Description: <br>
-Call The Trench Solana program on devnet using the public IDL and TS types. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call The Trench Solana program on devnet using the public IDL and TS types.
 
-## Publisher: <br>
-[BAGWATCHER](https://clawhub.ai/user/BAGWATCHER) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bagwatcher](https://clawhub.ai/user/bagwatcher)
 
-## Use Case: <br>
-Developers use this skill to build TypeScript Anchor clients for calling The Trench Solana program on devnet with the public IDL and generated types. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The public IDL or TypeScript types may not match the intended Solana program interface. <br>
-Mitigation: Verify the IDL and TypeScript types from the intended source before running generated client code. <br>
-Risk: Example code can use wallet credentials and submit Solana devnet transactions. <br>
-Mitigation: Use a dedicated test wallet, avoid exposing seed phrases, and keep calls on devnet unless a mainnet setup is deliberately reviewed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BAGWATCHER/the-trench) <br>
-- [The Trench demo homepage](https://github.com/BAGWATCHER/the-trench-demo) <br>
+## Use Case:
 
+Developers and engineers use this skill to construct Anchor clients for calling The Trench Solana program on Solana devnet using the public IDL and TypeScript types.
 
-## Skill Output: <br>
-**Output Type(s):** [code, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a devnet program ID, IDL and TypeScript type file paths, and an Anchor client example.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The sample may silently use environment-configured RPC endpoints or wallets even though the skill describes devnet usage.
+
+Mitigation: Before any .rpc() call, require the agent to display and confirm the RPC endpoint, cluster, wallet public key, program ID, accounts, and expected transaction effects.
+
+Risk: Using AnchorProvider.env() can diverge from the declared devnet Connection.
+
+Mitigation: Construct AnchorProvider with the declared devnet Connection when adapting the sample.
+
+## Reference(s):
+
+- [The Trench Skill Page](https://clawhub.ai/bagwatcher/skills/the-trench)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with TypeScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance is centered on Solana devnet usage and Anchor client construction.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

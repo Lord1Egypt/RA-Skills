@@ -2,20 +2,22 @@
 jurisdiction: "Louisiana"
 slug: louisiana
 countryCode: US
-snapshotAsOf: "2026-06-08"
-lastReviewed: "2026-06-03"
-canonicalUrl: https://openagreements.org/legal/non-compete/louisiana
+content_packaged_at: "2026-09-05"
+law_checked_through: "2026-06-03"
+human_reviewed_at: null
+next_review_due: "2026-11-30"
+canonicalUrl: https://openagreements.org/practice-guides/non-compete/us/louisiana
 license: CC BY 4.0
 stale: false
 ---
 
 > [!IMPORTANT]
-> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice note,
+> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice guide,
 > provided for general information. It is not legal advice, does not create an attorney-client
 > relationship, and is not a substitute for a licensed attorney in the relevant jurisdiction.
 > Laws change; verify against the canonical version before relying on it.
 >
-> **Canonical:** https://openagreements.org/legal/non-compete/louisiana · **Snapshot as of:** 2026-06-08 · License: CC BY 4.0 · © UseJunior
+> **Canonical:** https://openagreements.org/practice-guides/non-compete/us/louisiana · **Snapshot as of:** 2026-09-05 · License: CC BY 4.0 · © openagreements.org
 
 # Non-Competes in Louisiana[^about]
 
@@ -35,7 +37,7 @@ A question-by-question summary of Louisiana non-compete law under La. R.S. 23:92
 | **Restriction extended during a breach?** | Silent — likely barred by 2-year cap |
 | **Maximum length set by law** | 2 years from termination (employee covenant) |
 
-## Are employee non-compete agreements enforceable in Louisiana? {#employee-noncompetes}
+## Are employee non-compete agreements enforceable in Louisiana? {#employee-non-compete-enforceability}
 
 **Short answer.** Only inside a narrow statutory lane. Louisiana starts from the position that any agreement restraining a lawful profession, trade, or business is null and void, and it enforces a non-compete only when the agreement fits one of the relationship-based exceptions the statute spells out [^rs-23921-a1].
 
@@ -49,7 +51,7 @@ Because the covenant is a statutory exception to a public-policy rule, Louisiana
 
 The practical consequence is that an out-of-state template will almost never survive in Louisiana. A covenant that reads as perfectly reasonable elsewhere is void here if it misses a statutory requirement, because reasonableness is not the test.
 
-## What geographic and durational limits must a Louisiana non-compete meet? {#geography-duration}
+## What geographic and durational limits must a Louisiana non-compete meet? {#duration-limits}
 
 **Short answer.** Named parishes and no more than two years. An employee non-compete must identify the specific parishes or municipalities where it applies and may not run longer than two years from the end of employment [^rs-23921-c]. A mileage radius does not satisfy the parish-naming requirement [^amcom-radius].
 
@@ -66,7 +68,7 @@ The geographic rule is the single most common drafting trap. Louisiana requires 
 >
 > Do not define the restricted territory by a mileage radius or a generic catch-all such as *any parish where the employer does business*. Louisiana requires named parishes or municipalities, and a radius was struck down as overly broad in *AMCOM* [^amcom-radius][^rs-23921-c].
 
-## Does a tolling or extension-during-breach clause extend a Louisiana non-compete? {#tolling-during-breach}
+## Does a tolling or extension-during-breach clause extend a Louisiana non-compete? {#extended-for-breach}
 
 **Short answer.** It should not be relied on. The statute caps the restraint at two years from termination, and Louisiana's strict-construction and no-reformation rules leave no room for a clause that pushes the restriction past that ceiling by adding back time spent in breach or litigation [^q3-rs-23921-c][^q3-teamenv-no-reform].
 
@@ -83,7 +85,7 @@ No Louisiana statute or appellate decision authorizes judicial tolling of the pe
 >
 > Do not assume a Louisiana court will add time back to a non-compete for a period of breach or litigation. The statute fixes a two-year ceiling measured from termination, and courts will not reform a covenant to extend it [^q3-rs-23921-c][^q3-teamenv-no-reform].
 
-## Will a Louisiana court narrow an overbroad non-compete instead of voiding it? {#reformation}
+## Will a Louisiana court narrow an overbroad non-compete instead of voiding it? {#court-narrowing}
 
 **Short answer.** Only by severing, never by rewriting. A court will not add or substitute language to save a defective covenant; at most it may strike an offending portion under a severability clause and enforce what independently complies with the statute [^q4-teamenv-no-reform][^brock-severance].
 
@@ -95,7 +97,7 @@ A note on vocabulary: some Louisiana opinions use the word *reform* to describe 
 
 "Restrictive covenants are unfavored in Louisiana and are narrowly and strictly construed."[^brock-severance]
 
-The drafting lesson is the opposite of the strategy that works in reformation states. Casting a wide net in the hope a judge will trim it down is a high-risk approach in Louisiana, where the more likely outcome is total nullity of the non-compliant provision.
+The drafting lesson is the opposite of the strategy that works in reformation states. Casting a wide net in the hope a judge will trim it down is a high-risk approach in Louisiana, where the more likely outcome is total nullity of the non-compliant provision. For a clause-by-clause pass over a specific agreement against these rules, the [Louisiana non-compete reviewer checklist](/checklists/non-compete/us/louisiana) walks the full covenant suite item by item with each requirement's force level.
 
 > [!CAUTION]
 > **Drafting note.**
@@ -152,7 +154,7 @@ This distinction matters in drafting. A *customer* non-solicit still operates as
 
 A common strategy for multistate employers is to choose the law of a more employer-friendly state. Louisiana closed that door directly in the statute. Subsection A(2) voids forum and choice-of-law clauses in employment contracts except in a narrow ratification scenario.
 
-"(2) The provisions of every employment contract or agreement...shall be null and void except where the choice of forum clause or choice of law clause is expressly, knowingly, and voluntarily agreed to and ratified by the employee after the occurrence of the incident which is the subject of the civil or administrative action."[^rs-23921-a2]
+"(2) The provisions of every employment contract or agreement, or provisions thereof, by which any foreign or domestic employer or any other person or entity includes a choice of forum clause or choice of law clause in an employee's contract of employment or collective bargaining agreement, or attempts to enforce either a choice of forum clause or choice of law clause in any civil or administrative action involving an employee, shall be null and void except where the choice of forum clause or choice of law clause is expressly, knowingly, and voluntarily agreed to and ratified by the employee after the occurrence of the incident which is the subject of the civil or administrative action."[^rs-23921-a2]
 
 The ratification exception is rarely available in practice, because an employee almost never agrees, after a dispute has begun, to be governed by another state's more restrictive law. For a Louisiana resident, the realistic planning assumption is that Louisiana law will apply regardless of the contract's choice-of-law clause.
 
@@ -185,7 +187,7 @@ Beyond the general framework, the legislature has carved out specific occupation
 
 Real estate brokers and licensees are governed by a separate statute that makes a non-compete an absolute nullity unless the licensee receives a short rescission window.
 
-"A non-compete agreement between a real estate broker and licensee...shall be unenforceable and an absolute nullity unless the licensee shall have the right to rescind the non-compete agreement until midnight of the third business day following the execution of the non-compete agreement or the delivery of the agreement to the licensee, whichever is later."[^rs-37-1448]
+"A non-compete agreement between a real estate broker and licensee which requires the licensee to refrain from carrying on or engaging in a business similar to that of the real estate broker or from soliciting customers of the real estate broker within a specified parish or parishes, municipality or municipalities, or parts thereof, so long as the real estate broker carries on a like business therein, for any period of time up to two years, shall be unenforceable and an absolute nullity unless the licensee shall have the right to rescind the non-compete agreement until midnight of the third business day following the execution of the non-compete agreement or the delivery of the agreement to the licensee, whichever is later."[^rs-37-1448]
 
 The newest carve-out covers interns and apprentices. Act 150 of 2026, enacting La. R.S. 23:921(P) effective August 1, 2026, bars non-competes for interns and apprentices outright [^act150-intern].
 
@@ -223,7 +225,7 @@ A confidentiality or non-disclosure agreement is not subject to the parish-namin
 >
 > Do not draft a confidentiality agreement so broadly that it functions as a disguised non-compete. The trade-secret statute protects information and supports an injunction against misappropriation, but a confidentiality clause that effectively bars the employee from working risks being treated as a non-compete under La. R.S. 23:921 [^rs-51-1432][^q11-rs-23921-a1].
 
-[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org) · Maintained by [UseJunior](https://usejunior.com). Last reviewed 2026-06-03. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not Louisiana. This article synthesizes Louisiana primary law and is not legal advice from a Louisiana-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship.
+[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org). Last reviewed 2026-06-03. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not Louisiana. This article synthesizes Louisiana primary law and is not legal advice from a Louisiana-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship. CC BY 4.0. Cite as Steven Obiajulu, *Non-Competes in Louisiana*, OpenAgreements (last updated June 3, 2026), https://openagreements.org/practice-guides/non-compete/us/louisiana.
 
 [^rs-23921-a1]: **La. R.S. 23:921** — "Every contract or agreement, or provision thereof, by which anyone is restrained from exercising a lawful profession, trade, or business of any kind, except as provided in this Section, shall be null and void." *La. R.S. 23:921(A)(1).* <https://legis.la.gov/Legis/Law.aspx?d=84015>
 
@@ -253,7 +255,7 @@ A confidentiality or non-disclosure agreement is not subject to the parish-namin
 
 [^farris-no-duration]: **Brown & Root Industrial Services, LLC v. Farris** — "In fact, the entire Agreement is devoid of any language, wording, or indication as to the duration of the terms of the contract." *Brown & Root Indus. Servs., LLC v. Farris, 392 So. 3d 424 (La. Ct. App. 2024).* <https://caselaw.findlaw.com/court/la-court-of-appeal/116318576.html>
 
-[^rs-23921-a2]: **La. R.S. 23:921** — "(2) The provisions of every employment contract or agreement...shall be null and void except where the choice of forum clause or choice of law clause is expressly, knowingly, and voluntarily agreed to and ratified by the employee after the occurrence of the incident which is the subject of the civil or administrative action." *La. R.S. 23:921(A)(2).* <https://legis.la.gov/Legis/Law.aspx?d=84015>
+[^rs-23921-a2]: **La. R.S. 23:921** — "(2) The provisions of every employment contract or agreement, or provisions thereof, by which any foreign or domestic employer or any other person or entity includes a choice of forum clause or choice of law clause in an employee's contract of employment or collective bargaining agreement, or attempts to enforce either a choice of forum clause or choice of law clause in any civil or administrative action involving an employee, shall be null and void except where the choice of forum clause or choice of law clause is expressly, knowingly, and voluntarily agreed to and ratified by the employee after the occurrence of the incident which is the subject of the civil or administrative action." *La. R.S. 23:921(A)(2).* <https://legis.la.gov/Legis/Law.aspx?d=84015>
 
 [^rs-23921-m]: **La. R.S. 23:921** — "Any provision in a contract or agreement which restrains a primary care physician from practicing medicine shall not exceed three years from the effective date of the initial contract or agreement." *La. R.S. 23:921(M)(1).* <https://legis.la.gov/Legis/Law.aspx?d=84015>
 
@@ -261,7 +263,7 @@ A confidentiality or non-disclosure agreement is not subject to the parish-namin
 
 [^rs-23921-i]: **La. R.S. 23:921** — "There shall be no contract or agreement or provision entered into by an automobile salesman and his employer restraining him from selling automobiles." *La. R.S. 23:921(I)(1).* <https://legis.la.gov/Legis/Law.aspx?d=84015>
 
-[^rs-37-1448]: **La. R.S. 37:1448.1** — "A non-compete agreement between a real estate broker and licensee...shall be unenforceable and an absolute nullity unless the licensee shall have the right to rescind the non-compete agreement until midnight of the third business day following the execution of the non-compete agreement or the delivery of the agreement to the licensee, whichever is later." *La. R.S. 37:1448.1(A).* <https://legis.la.gov/Legis/Law.aspx?d=93285>
+[^rs-37-1448]: **La. R.S. 37:1448.1** — "A non-compete agreement between a real estate broker and licensee which requires the licensee to refrain from carrying on or engaging in a business similar to that of the real estate broker or from soliciting customers of the real estate broker within a specified parish or parishes, municipality or municipalities, or parts thereof, so long as the real estate broker carries on a like business therein, for any period of time up to two years, shall be unenforceable and an absolute nullity unless the licensee shall have the right to rescind the non-compete agreement until midnight of the third business day following the execution of the non-compete agreement or the delivery of the agreement to the licensee, whichever is later." *La. R.S. 37:1448.1(A).* <https://legis.la.gov/Legis/Law.aspx?d=93285>
 
 [^act150-intern]: **La. Acts 2026, No. 150 (H.B. 315)** — "There shall be no contract or agreement or provision entered into by an intern, whether paid or unpaid, or apprentice and his employer restraining the intern or apprentice from engaging in a business or an employment similar to that of the employer." *La. Acts 2026, No. 150 (enacting La. R.S. 23:921(P)), eff. Aug. 1, 2026.* <https://legis.la.gov/legis/ViewDocument.aspx?d=1475140>
 

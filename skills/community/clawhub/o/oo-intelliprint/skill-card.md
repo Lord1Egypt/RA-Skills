@@ -1,40 +1,55 @@
-## Description: <br>
-Intelliprint enables agents to search and read Intelliprint print jobs, reusable backgrounds, mailing lists, and mailing list recipients through the OOMOL-connected Intelliprint connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the oo CLI to search and read Intelliprint backgrounds, mailing lists, recipients, and print jobs through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to retrieve Intelliprint operational data from an OOMOL-connected account, including print jobs, reusable backgrounds, mailing lists, and recipients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad routing language may lead the skill to be used for unsupported or state-changing Intelliprint work. <br>
-Mitigation: Use the skill for requested Intelliprint read and search tasks, and require explicit confirmation before any unsupported, write, or destructive action. <br>
+## Use Case:
 
+Developers and business users use this skill to retrieve Intelliprint records, including mailing lists, recipients, backgrounds, and print jobs. It guides the agent to inspect each action's live schema and return the resulting data.
 
-## Reference(s): <br>
-- [ClawHub Intelliprint skill page](https://clawhub.ai/oomol/skills/oo-intelliprint) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Intelliprint homepage](https://www.intelliprint.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline bash commands and JSON response details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill instructs agents to inspect live connector schemas before running actions; connector responses include data and meta.executionId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and SKILL.md metadata) <br>
+Risk: Initial CLI setup can run downloaded code, and the external CLI and connector implementations were not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI installation instructions and installer, and check any bundled agent-skill changes before installing or running the skill.
+
+Risk: OOMOL mediates account credentials and Intelliprint requests.
+
+Mitigation: Understand this credential and request flow before connecting the account, and use the skill only with an account you intend to authorize through OOMOL.
+
+## Reference(s):
+
+- [Intelliprint API documentation](https://docs.intelliprint.net/)
+- [Intelliprint](https://www.intelliprint.net)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON action responses and Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Retrieved records follow each action's live schema and may include pagination or filtering fields.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

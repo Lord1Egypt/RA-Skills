@@ -1,47 +1,60 @@
-## Description: <br>
-Find organized group tours and travel packages with professional guides, planned itineraries, meals included, and hassle-free travel for those who prefer structure; it also supports related travel searches such as flights, hotels, attractions, itinerary planning, visas, insurance, and car rental through Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find organized group tours and travel packages with professional guides, planned itineraries, meals included, and booking links, with additional support for related travel searches through flyai CLI.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and travel-support agents use this skill to search organized group tours and related travel options from live FlyAI/Fliggy results, then present concise Markdown results with booking links. It is aimed at users who prefer structured travel packages, guided tours, or package comparisons instead of self-planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install the FlyAI CLI globally before use. <br>
-Mitigation: Review and approve the `npm i -g @fly-ai/flyai-cli` installation step before allowing the skill to run it. <br>
-Risk: Travel searches are sent to FlyAI/Fliggy services. <br>
-Mitigation: Avoid entering sensitive travel details unless the user accepts that data will be processed by those services. <br>
-Risk: Raw travel requests may be stored locally in `.flyai-execution-log.json`. <br>
-Mitigation: Disable, restrict, or remove the local execution log when query persistence is not desired. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to search organized group tours, compare travel-package options, and return real-time booking links from flyai CLI results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/group-tour) <br>
-- [Publisher profile](https://clawhub.ai/user/xiejinsong) <br>
-- [templates.md](references/templates.md) <br>
-- [playbooks.md](references/playbooks.md) <br>
-- [fallbacks.md](references/fallbacks.md) <br>
-- [runbook.md](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with booking links, comparison tables, concise guidance, and inline shell commands when setup or retry steps are needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires live flyai-cli output for travel results and should not present travel prices, names, or booking details without CLI-sourced data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-v3.2.3 (source: ClawHub release evidence; artifact frontmatter reports 3.2.0) <br>
+Risk: The skill may install an unpinned global flyai CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before installation and pin or verify the CLI package version before use.
+
+Risk: Travel queries may include sensitive itinerary or preference details and may be retained in local execution logs.
+
+Mitigation: Disable local execution log persistence where possible, or redact user query details before storing logs.
+
+Risk: Results depend on outbound travel searches and third-party booking links.
+
+Mitigation: Validate booking-link domains and review results before acting on purchases.
+
+## Reference(s):
+
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown tables and status messages with booking links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be based on flyai CLI results and include booking links when results are available.]
+
+## Skill Version(s):
+
+v3.2.3 (source: server release metadata; artifact frontmatter says 3.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

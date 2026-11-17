@@ -1,41 +1,54 @@
-## Description: <br>
-Queries Chinese public holidays, make-up workdays, and work schedules using timor.tech holiday data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Chinese public holidays, make-up workdays, and annual holiday schedules through the timor.tech API.
 
-## Publisher: <br>
-[deusyu](https://clawhub.ai/user/deusyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deusyu](https://clawhub.ai/user/deusyu)
 
-## Use Case: <br>
-Developers and agents use this skill to answer China public-holiday, make-up workday, and work-schedule questions for a specific date, batch of dates, year, or next holiday/workday. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger words such as holiday, workday, 上班, or 放假 may activate the skill unintentionally. <br>
-Mitigation: Confirm the user's intended China holiday or workday lookup before running commands for ambiguous requests. <br>
-Risk: Queried dates may be sent to timor.tech for lookup. <br>
-Mitigation: Avoid sending sensitive or unnecessary date batches and disclose the external lookup when relevant. <br>
+## Use Case:
 
+Developers and agents use this skill to answer user questions about whether China dates are workdays, holidays, make-up workdays, or upcoming days off.
 
-## Reference(s): <br>
-- [Command Map](references/command-map.md) <br>
-- [timor.tech Holiday API](https://timor.tech/api/holiday) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command output interpreted in natural language] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API key is required; queried dates are sent to timor.tech for lookup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release evidence) <br>
+Risk: Holiday query dates are sent to the external timor.tech API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive date patterns or internal planning details if external API disclosure is not acceptable.
+
+Risk: Answers depend on timor.tech availability and the API's holiday data.
+
+Mitigation: Check for transport or API errors and verify important scheduling decisions against an official source when accuracy is critical.
+
+## Reference(s):
+
+- [Command Map](references/command-map.md)
+- [timor.tech Holiday API](https://timor.tech/api/holiday)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API results interpreted in natural language]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces date, year, batch, and next-day holiday or workday query guidance; runtime results depend on timor.tech API availability and data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

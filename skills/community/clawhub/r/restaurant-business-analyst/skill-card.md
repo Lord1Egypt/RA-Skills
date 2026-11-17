@@ -1,47 +1,62 @@
-## Description: <br>
-Generates restaurant-industry business model analysis reports that combine strategy, recent tactics, and operating metrics for a restaurant brand or category. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates restaurant-industry business model analysis reports for brands or formats, combining strategy, recent market moves, operating metrics, and confidence-labeled data.
 
-## Publisher: <br>
-[louiseliu](https://clawhub.ai/user/louiseliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[louiseliu](https://clawhub.ai/user/louiseliu)
 
-## Use Case: <br>
-External analysts, investors, founders, and restaurant operators use this skill to assess restaurant brands or categories through business model canvas analysis, recent strategic moves, operating metrics, single-store economics, and optional ESG or international expansion views. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Online search queries and generated reports may expose sensitive competitive research topics or proprietary brand interests. <br>
-Mitigation: Use non-confidential inputs unless the user controls the search and output environment. <br>
-Risk: Generated restaurant business analysis may include incomplete or misleading public data. <br>
-Mitigation: Review cited sources, keep confidence labels on core figures, and treat the report as reference material rather than investment advice. <br>
-Risk: The skill saves and opens a local HTML report in the user's Downloads folder. <br>
-Mitigation: Run it only in an environment where local report creation and browser opening are acceptable. <br>
+## Use Case:
 
+External users, analysts, operators, founders, executives, and investors use this skill to generate restaurant brand or category analysis covering business model canvas, strategic activity, unit economics, operating metrics, risks, and optional ESG or expansion modules.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/louiseliu/restaurant-business-analyst) <br>
-- [Project Homepage](https://github.com/louiseliu/restaurant-business-analyst) <br>
-- [Analytics Methodology](references/analytics_methodology.md) <br>
-- [Business Model Frameworks](references/business_model_frameworks.md) <br>
-- [Metrics Framework](references/metrics_framework.md) <br>
-- [Report Template](references/report_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Guidance] <br>
-**Output Format:** [HTML report with PDF export control and short Markdown/text summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a dated HTML report under ~/Downloads and opens it locally; core figures are expected to include confidence labels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill creates and opens a local HTML report from user-supplied restaurant brand or category names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use normal restaurant names rather than path-like input, and ask the agent to sanitize filenames before writing the report.
+
+Risk: Dynamic report content may include public web-search results, links, and HTML-rendered text.
+
+Mitigation: Escape dynamic HTML content, validate links, and review sourced claims before opening or sharing the report.
+
+Risk: Restaurant operating metrics and strategic analysis may be incomplete or misleading when public data is unavailable.
+
+Mitigation: Keep confidence labels on core figures, mark unknown data as not publicly disclosed, use benchmarks only as estimates, and retain the non-investment-advice disclaimer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/louiseliu/skills/restaurant-business-analyst)
+- [Project homepage](https://github.com/louiseliu/restaurant-business-analyst)
+- [Restaurant industry data analysis methodology](references/analytics_methodology.md)
+- [Restaurant business model framework library](references/business_model_frameworks.md)
+- [Restaurant metrics framework](references/metrics_framework.md)
+- [Strategy, tactics, and metrics report template](references/report_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Files, Code, Guidance]
+
+**Output Format:** [HTML report with a short text summary and optional browser-generated PDF export]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Core figures are expected to include confidence labels, and reports include a public-information disclaimer that they are not investment advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "batch_id": "cache-tutorial-example",
+  "draft": {
+    "id": "cache-tutorial",
+    "version": "v1",
+    "title": "教程：验证本地缓存命中",
+    "body_file": "tutorial.md",
+    "content_type": "article"
+  },
+  "assets": [
+    {
+      "file": "assets/cache-checklist.csv",
+      "role": "reference",
+      "description": "缓存检查清单，供发布人核对，不上传或插入正文"
+    }
+  ],
+  "targets": [
+    {
+      "platform": "zhihu",
+      "platform_name": "知乎",
+      "account_id": "example-zhihu-editor",
+      "account_name": "示例知乎账号",
+      "fields": {
+        "content_kind": "article",
+        "tags": [
+          "缓存",
+          "教程"
+        ]
+      },
+      "authorization": {
+        "action": "prepare",
+        "platform": "zhihu",
+        "account_id": "example-zhihu-editor",
+        "draft_sha256": "4dd80c72715ce50a5bb416afaadf30fedc3e1c17683705de01227f75385a3fab",
+        "reference": "示例任务：仅整理发布包，不授权自动投稿"
+      }
+    },
+    {
+      "platform": "csdn",
+      "platform_name": "CSDN",
+      "account_id": "example-csdn-editor",
+      "account_name": "示例CSDN账号",
+      "fields": {
+        "category": "技术教程",
+        "tags": [
+          "缓存验证"
+        ]
+      },
+      "authorization": {
+        "action": "prepare",
+        "platform": "csdn",
+        "account_id": "example-csdn-editor",
+        "draft_sha256": "4dd80c72715ce50a5bb416afaadf30fedc3e1c17683705de01227f75385a3fab",
+        "reference": "示例任务：仅整理发布包，不授权自动投稿"
+      }
+    }
+  ],
+  "existing_receipts": [
+    {
+      "receipt_id": "example-zhihu-review-1",
+      "platform": "zhihu",
+      "account_id": "example-zhihu-editor",
+      "draft_sha256": "4dd80c72715ce50a5bb416afaadf30fedc3e1c17683705de01227f75385a3fab",
+      "mode": "user_report",
+      "status": "under_review",
+      "observed_at": "2026-10-19T12:00:00+08:00",
+      "source": "合成样例中的用户转述（非真实平台记录）",
+      "evidence": "用户称作品 fixture-zhihu-42 显示审核中；未独立登录核验",
+      "native_id": "fixture-zhihu-42"
+    }
+  ]
+}

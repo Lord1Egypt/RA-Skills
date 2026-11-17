@@ -1,43 +1,58 @@
-## Description: <br>
-Love Decode is an AI analyzer for decoding love signals, attraction patterns, and relationship ambiguity when someone's behavior feels inconsistent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Love Decode is an AI analyzer for decoding love signals, attraction patterns, and relationship ambiguity when someone's behavior feels inconsistent.
 
-## Publisher: <br>
-[imwyvern](https://clawhub.ai/user/imwyvern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwyvern](https://clawhub.ai/user/imwyvern)
 
-## Use Case: <br>
-External users use this skill to analyze ambiguous romantic communication patterns, including message timing, effort, affection, avoidance cues, and post-date behavior. It provides tentative interpretations and practical next steps while encouraging direct communication when appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share sensitive private relationship messages or context. <br>
-Mitigation: Avoid sharing private conversations with external services unless their privacy practices have been reviewed and accepted. <br>
-Risk: Romantic signals can be misread or overinterpreted. <br>
-Mitigation: Present interpretations as tentative, avoid guaranteeing another person's feelings, and encourage direct communication when appropriate. <br>
-Risk: A user may describe stalking or boundary-crossing behavior. <br>
-Mitigation: Redirect away from stalking and toward safe, respectful, consent-aware behavior. <br>
+## Use Case:
 
+External users use this skill to interpret ambiguous romantic communication and behavior, including message timing, affection cues, avoidance patterns, and post-date signals. It provides cautious relationship guidance in the user's language without guaranteeing another person's feelings.
 
-## Reference(s): <br>
-- [Love Decode Skill on ClawHub](https://clawhub.ai/imwyvern/love-decode) <br>
-- [ReplyHer](https://replyher.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown response with signal analysis, likely meaning, interest meter, and recommended next move] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Replies in the user's language and frames interpretations as tentative rather than guaranteed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Romantic signals can be ambiguous and may be misread.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Frame interpretations as uncertain, avoid guarantees about another person's feelings, and encourage direct communication when appropriate.
+
+Risk: Longer conversations may include a promotional ReplyHer link.
+
+Mitigation: Review whether recurring promotional nudges fit the deployment context before enabling the skill.
+
+Risk: The README install command uses an unpinned npx command.
+
+Mitigation: Use a trusted or pinned ClawHub installer version when installing.
+
+## Reference(s):
+
+- [Love Decode ClawHub listing](https://clawhub.ai/imwyvern/skills/love-decode)
+- [ReplyHer](https://replyher.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown response in the user's language with signal analysis, likely meaning, interest meter, and recommended next move]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a promotional ReplyHer link after longer conversations]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -28,7 +28,7 @@ CACHE_DURATION_HOURS = 24
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
 # ==========================================
-# 中文新闻源 (10个)
+# 中文新闻源 (6个，与英文源数量相当)
 # ==========================================
 CHINESE_SOURCES = [
     {
@@ -38,28 +38,18 @@ CHINESE_SOURCES = [
     },
     {
         "name": "华尔街见闻",
-        "url": "https://api-one.wallstcn.com/apiv1/content/lives?channel=global-channel&limit=40",
+        "url": "https://api-one.wallstcn.com/apiv1/content/lives?channel=global-channel&limit=30",
         "parser": "wallstreetcn"
     },
     {
         "name": "东方财富快讯",
-        "url": "https://np-listapi.eastmoney.com/comm/web/getNewsByColumns?client=web&columnId=102&pageSize=10&pageIndex=1",
+        "url": "https://np-listapi.eastmoney.com/comm/web/getNewsByColumns?client=web&columnId=102&pageSize=5&pageIndex=1",
         "parser": "eastmoney"
-    },
-    {
-        "name": "36氪",
-        "url": "https://36kr.com/feed",
-        "parser": "rss"
-    },
-    {
-        "name": "界面新闻",
-        "url": "https://a.jiemian.com/index.php?m=article&a=rss",
-        "parser": "rss"
     },
 ]
 
 # ==========================================
-# 英文新闻源 (12个)
+# 英文新闻源 (精简到6个高质量源)
 # ==========================================
 FOREIGN_RSS_SOURCES = [
     {"name": "Yahoo Finance", "url": "https://finance.yahoo.com/news/rssindex", "language": "en"},
@@ -68,12 +58,6 @@ FOREIGN_RSS_SOURCES = [
     {"name": "Investing.com", "url": "https://www.investing.com/rss/news.rss", "language": "en"},
     {"name": "TechCrunch", "url": "https://techcrunch.com/feed/", "language": "en"},
     {"name": "Ars Technica", "url": "https://arstechnica.com/feed/", "language": "en"},
-    {"name": "Reuters Business", "url": "https://www.rss-bridge.org/rss/?action=display&bridge=FilterBridge&url=https%3A%2F%2Fwww.reuters.com%2Fbusiness%2F&content_filter=Reuters", "language": "en"},
-    {"name": "CNBC", "url": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10001147", "language": "en"},
-    {"name": "Bloomberg", "url": "https://feeds.bloomberg.com/markets/news.rss", "language": "en"},
-    {"name": "The Verge", "url": "https://www.theverge.com/rss/index.xml", "language": "en"},
-    {"name": "Wired", "url": "https://www.wired.com/feed/rss", "language": "en"},
-    {"name": "MIT Tech Review", "url": "https://www.technologyreview.com/feed/", "language": "en"},
 ]
 
 
@@ -275,17 +259,10 @@ def fetch_all_chinese_news() -> List[Dict]:
     print("\n🔄 正在抓取中文新闻...")
     all_news = []
     
-    # 专用解析器
     all_news.extend(fetch_chinese_sina())
     all_news.extend(fetch_chinese_wallstreetcn())
     all_news.extend(fetch_chinese_eastmoney())
     all_news.extend(fetch_chinese_cls())
-    
-    # RSS 源（36氪、界面等）通过通用 RSS 抓取
-    rss_sources = [s for s in CHINESE_SOURCES if s.get('parser') == 'rss']
-    for src in rss_sources:
-        src["language"] = "zh"
-        all_news.extend(fetch_rss_news(src))
     
     print(f"  ✅ 中文新闻共 {len(all_news)} 条")
     return all_news

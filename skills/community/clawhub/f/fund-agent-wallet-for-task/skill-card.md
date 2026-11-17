@@ -1,42 +1,59 @@
-## Description: <br>
-Fund your CAI custodial wallet so your agent can continue a paid task using create_deposit_link and wallet_balances, with no transfer until the user is ready. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Funds a CAI custodial wallet through hosted deposit links so an agent can continue a paid task, with balance checks before any transfer.
 
-## Publisher: <br>
-[bernardtai](https://clawhub.ai/user/bernardtai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bernardtai](https://clawhub.ai/user/bernardtai)
 
-## Use Case: <br>
-External users and developers use this skill to create a CAI hosted deposit link, wait for funding, and re-check wallet balances before an agent continues a paid task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a CAI API key and creates hosted deposit links for wallet funding. <br>
-Mitigation: Store the CAI API key in OpenClaw secrets, verify the hosted CAI URL, chain, asset, and payment method before funding, and require separate user approval for any later wallet transfer or purchase. <br>
-Risk: Deposit indexing may be partial or delayed, so a balance check may not immediately reflect a completed deposit. <br>
-Mitigation: Re-check wallet balances before continuing the paid task and use wallet_deposit_confirm when the user supplies a transaction hash. <br>
+## Use Case:
 
+External users and agents use this skill to generate a CAI hosted deposit link, wait for funding, re-check wallet balances, and continue a paid parent task.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bernardtai/fund-agent-wallet-for-task) <br>
-- [CAI create_deposit_link reference](https://cai.com/skill.md) <br>
-- [CAI developer documentation](https://cai.com/developers.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and hosted action URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CAI hosted deposit links, wallet balance status, and follow-up confirmation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.15 (source: frontmatter and server release evidence) <br>
+Risk: A user could provide a CAI API key or open a hosted deposit link without intending to fund the agent wallet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm wallet-funding intent first and only provide a CAI API key acceptable for this purpose.
+
+Risk: A downstream payment task could proceed before the hosted deposit is reflected in wallet balance.
+
+Mitigation: Review deposit links and balances, then re-check wallet_balances before any transfer.
+
+Risk: Deposit indexing may be partial_live after funding.
+
+Mitigation: Use wallet_deposit_confirm when the user supplies a transaction hash.
+
+## Reference(s):
+
+- [CAI Skill Reference: create_deposit_link](https://cai.com/skill.md)
+- [CAI Developers](https://cai.com/developers.html)
+- [ClawHub Skill Page](https://clawhub.ai/bernardtai/skills/fund-agent-wallet-for-task)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CAI hosted action URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes hosted deposit URLs when generated; the agent waits for funding and re-checks balances before any transfer.]
+
+## Skill Version(s):
+
+1.0.15 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

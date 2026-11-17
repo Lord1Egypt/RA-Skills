@@ -1,40 +1,49 @@
-## Description: <br>
-Initialize and manage Alibaba Cloud SDK clients in Java, including singleton patterns, thread safety, endpoint and region configuration, VPC endpoints, sync and async clients, and file upload APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Initialize and manage Alibaba Cloud SDK clients in Java, including singleton use, thread safety, endpoint and region configuration, VPC endpoints, synchronous and asynchronous clients, and file upload API setup.
 
-## Publisher: <br>
-[yndu13](https://clawhub.ai/user/yndu13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yndu13](https://clawhub.ai/user/yndu13)
 
-## Use Case: <br>
-Developers and engineers use this skill when creating or reviewing Java clients for Alibaba Cloud services, especially when choosing client lifecycle patterns, endpoint configuration, VPC endpoints, sync versus async usage, and file upload setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples use Alibaba Cloud credentials and endpoint settings that could be copied into real deployments. <br>
-Mitigation: Use least-privilege Alibaba Cloud credentials and store secrets in secure environment or credential-provider storage. <br>
-Risk: Incorrect region, endpoint, or VPC endpoint choices can route SDK calls to the wrong service path or cause service timeouts. <br>
-Mitigation: Verify endpoints and regions against the intended Alibaba Cloud service, region, and network environment before use. <br>
+## Use Case:
 
+Developers and engineers use this skill when creating or configuring Alibaba Cloud Java SDK clients, especially for singleton client initialization, endpoint selection, VPC endpoint setup, asynchronous calls, and file upload APIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yndu13/alibabacloud-sdk-client-initialization-for-java) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration instructions] <br>
-**Output Format:** [Markdown with Java code blocks and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable install or runtime behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2-beta (source: frontmatter and release evidence) <br>
+Risk: The examples assume Alibaba Cloud credentials are available in environment variables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege credentials, avoid committing secrets, and follow the organization's normal secret-management process.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yndu13/skills/alibabacloud-sdk-client-initialization-for-java)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration]
+
+**Output Format:** [Markdown with Java code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; examples should be reviewed before use with production credentials.]
+
+## Skill Version(s):
+
+0.0.2-beta (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Automatically selects the latest unposted report from a website or JSON feed, drafts an English X/Twitter post, publishes it through a logged-in X web session, records posted reports to avoid duplicates, and can be scheduled with OpenClaw cron. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically selects the latest unposted report from a configured report website or JSON feed, drafts an English X/Twitter post, publishes through the user's logged-in X web session, and records posted reports to avoid duplicates.
 
-## Publisher: <br>
-[kelcey2023](https://clawhub.ai/user/kelcey2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kelcey2023](https://clawhub.ai/user/kelcey2023)
 
-## Use Case: <br>
-Developers and operators use this skill to automate recurring report promotion on X while avoiding duplicate posts through a local posted-state file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish public X posts and set up recurring automation. <br>
-Mitigation: Use only with an X account intended for automation, preview the generated post, and require explicit approval before first posting or cron setup. <br>
-Risk: The helper script may update its posted-state file even when the posting helper fails. <br>
-Mitigation: Confirm posting success before writing the report id to state so failed attempts can be retried. <br>
-Risk: The workflow depends on a separate tweet.sh helper and an active logged-in web session. <br>
-Mitigation: Inspect the helper before use and run it in a contained environment with the intended browser session. <br>
+## Use Case:
 
+Developers and operators use this skill to automate recurring promotion of report updates to X while avoiding duplicate posts. It is suited for daily or weekly report-sharing workflows that rely on a logged-in browser session and local posting-history state.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kelcey2023/zeelin-report-to-x-autopost) <br>
-- [Report source website](https://thu-nmrc.github.io/THU-ZeeLin-Reports/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and a Python helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a logged-in X web session, a configured report source, local posted-state storage, and explicit approval before posting or scheduling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata) <br>
+Risk: The skill can publish public posts to the X account already logged in on the machine, including through recurring cron runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the active X session and review generated post text before enabling unattended schedules.
+
+Risk: Posting is delegated to an external tweet.sh script outside this skill's artifact.
+
+Mitigation: Inspect and approve the referenced posting script before installation, and verify it posts only to the intended account.
+
+Risk: Local posting-history state controls duplicate prevention and can affect whether reports are skipped or reposted.
+
+Mitigation: Protect the state file location and verify its contents before scheduled production use or recovery.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/kelcey2023/skills/zeelin-report-to-x-autopost)
+- [THU-ZeeLin Reports source site](https://thu-nmrc.github.io/THU-ZeeLin-Reports/)
+- [X web publishing target](https://x.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration steps, and generated social-post text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local posting-history state and cron scheduling guidance when requested.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

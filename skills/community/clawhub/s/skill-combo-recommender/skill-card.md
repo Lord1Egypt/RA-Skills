@@ -1,41 +1,56 @@
-## Description: <br>
-Recommend skill combinations and workflows based on user tasks and goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommend skill combinations and workflows for user tasks, with usage examples and preset workflows for common project scenarios.
 
-## Publisher: <br>
-[utopiabenben](https://clawhub.ai/user/utopiabenben) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[utopiabenben](https://clawhub.ai/user/utopiabenben)
 
-## Use Case: <br>
-External users and developers use this skill to choose skill combinations, preset workflows, and example commands for tasks such as content creation, video production, data analysis, file organization, and meeting-note automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer overwrites any existing same-named OpenClaw skill directory and may create a local CLI symlink. <br>
-Mitigation: Review the installer before running it and back up or rename any existing skill directory if needed. <br>
-Risk: Some recommended workflows involve proxies, multi-account social media, scheduled publishing, finance, or file organization. <br>
-Mitigation: Treat those recommendations as planning guidance and manually review them before executing related tools or changing accounts, files, or financial workflows. <br>
+## Use Case:
 
+Developers, creators, and workflow operators use this skill to identify relevant ClawHub skills and assemble task-specific workflows for content production, media work, data analysis, file organization, and meeting-note automation.
 
-## Reference(s): <br>
-- [Skill Combo Recommender on ClawHub](https://clawhub.ai/utopiabenben/skill-combo-recommender) <br>
-- [Publisher profile: utopiabenben](https://clawhub.ai/user/utopiabenben) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown or JSON recommendations with workflow steps and example shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI output can list skills, list preset workflows, recommend a workflow for a task, or emit Markdown or JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The installer overwrites an existing same-named skill folder in the configured OpenClaw skills directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted directory and set OPENCLAW_SKILLS_DIR to a narrow, intended skills path before running the installer.
+
+Risk: Recommended downstream skills may carry their own account, compliance, network, financial, or file-management risks.
+
+Mitigation: Review and scan each recommended skill separately before deployment or use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/utopiabenben/skills/skill-combo-recommender)
+- [Publisher Profile](https://clawhub.ai/user/utopiabenben)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [CLI text, Markdown, or JSON depending on selected options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are based on the skill's bundled skill and workflow catalog.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

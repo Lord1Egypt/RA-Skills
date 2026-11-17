@@ -1,41 +1,53 @@
-## Description: <br>
-Helps agents design, build, debug, optimize, and scale production-grade n8n workflows with architecture, security, error handling, testing, and deployment guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expertise in designing, building, debugging, and scaling production-grade n8n workflows with proper error handling, versioning, and modular architecture.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Developers, automation engineers, and operations teams use this skill to plan, review, and generate n8n workflow designs for integrations, data processing, alerts, approvals, AI-assisted routing, and production operations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated workflow designs may include code nodes, webhook endpoints, credentials, logging, or persistent state that affect live n8n systems. <br>
-Mitigation: Review generated workflows before production use, with particular attention to code nodes, credential scope, webhook authentication, logs, customer or payment data, and cache or state retention. <br>
-Risk: Automation workflows can expose sensitive data or secrets if copied into production without environment-specific review. <br>
-Mitigation: Use the n8n credential store or environment variables, avoid hardcoded secrets, minimize logged payload data, and validate webhook payloads before processing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-n8n-mastery) <br>
-- [Publisher profile](https://clawhub.ai/user/1kalin) <br>
-- [Context packs referenced by artifact README](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Developers, automation engineers, and operations teams use this skill to design, audit, debug, optimize, and productionize n8n workflows across webhook, schedule, integration, AI, and data-processing scenarios.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with YAML, JSON, JavaScript, checklist, and workflow-template examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no installer or runtime dependency is provided by the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated workflow guidance may be applied to live emails, ticket replies, webhooks, or API actions before it has been fully reviewed.
+
+Mitigation: Review workflows before activation, use sandbox credentials and recipient allowlists, and keep human approval for customer-facing AI responses unless explicitly risk-accepted.
+
+Risk: Webhook and automation examples can mishandle signatures, secrets, PII, or retention requirements if copied without environment-specific validation.
+
+Mitigation: Validate provider-specific webhook signatures, use n8n credential storage, confirm data retention and PII handling, and avoid logging sensitive payloads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-n8n-mastery)
+- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured checklists, YAML examples, JSON examples, JavaScript snippets, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow designs, audit scores, debugging steps, operational checklists, and n8n configuration guidance for agent-assisted automation work.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

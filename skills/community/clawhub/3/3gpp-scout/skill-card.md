@@ -1,45 +1,57 @@
-## Description: <br>
-Semantic search over 3,200+ 3GPP technical specifications (TS/TR series, Rel-15 and Rel-19). Search text, diagrams, and figures across 904K+ vectors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+3GPP Scout provides semantic search over text, diagrams, and figures in the 3GPP TS/TR corpus from Rel-15 through Rel-20 via REST and hosted MCP interfaces.
 
-## Publisher: <br>
-[chriscarrotlabs](https://clawhub.ai/user/chriscarrotlabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chriscarrotlabs](https://clawhub.ai/user/chriscarrotlabs)
 
-## Use Case: <br>
-Developers, standards researchers, and telecom engineers use this skill to search 3GPP TS and TR documents, inspect sections, retrieve figures, and compare information across releases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an API key for authenticated 3GPP Scout endpoints. <br>
-Mitigation: Store SCOUT_API_KEY in the environment or OpenClaw configuration and avoid exposing it in prompts, logs, or shared outputs. <br>
-Risk: The service is paid, so repeated API calls can consume account credits. <br>
-Mitigation: Use filters, document lookups, and focused search parameters before broad searches to control usage. <br>
-Risk: Search results can omit relevant standards context or produce incomplete comparisons across releases. <br>
-Mitigation: Cite document number, section number, and release, and use section text or table-of-contents endpoints to verify important claims. <br>
+## Use Case:
 
+Developers, standards engineers, and agents use this skill to search 3GPP TS/TR specifications, retrieve relevant sections, inspect figures, and compare standards content across releases.
 
-## Reference(s): <br>
-- [ClawHub 3GPP Scout package page](https://clawhub.ai/chriscarrotlabs/3gpp-scout) <br>
-- [3GPP Scout homepage](https://3gppscout.com) <br>
-- [3GPP Scout API documentation](https://api.3gppscout.com/docs) <br>
-- [3GPP Scout dashboard](https://dashboard.3gppscout.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, api calls, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON API request and response details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SCOUT_API_KEY for authenticated search and document endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The skill directs agents to fetch a mutable remote agent-setup prompt that was not included for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the remote prompt separately and do not let it authorize extra tools, files, domains, credentials, or workflow changes beyond 3GPP search setup.
+
+Risk: Search queries are sent to the hosted 3GPP Scout service.
+
+Mitigation: Use the skill only when sharing search queries with the service is acceptable, and avoid submitting confidential or sensitive material unless covered by the applicable agreement.
+
+## Reference(s):
+
+- [3GPP Scout Skill Page](https://clawhub.ai/chriscarrotlabs/skills/3gpp-scout)
+- [3GPP Scout Homepage](https://3gppscout.com)
+- [3GPP Scout API Docs](https://api.3gppscout.com/docs)
+- [3GPP Scout Hosted MCP](https://api.3gppscout.com/mcp/)
+- [3GPP Scout Agent Setup Prompt](https://api.3gppscout.com/agent-setup/prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands, API calls, text]
+
+**Output Format:** [Markdown guidance with JSON request examples and shell environment snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [REST endpoints require SCOUT_API_KEY; hosted MCP uses OAuth 2.1.]
+
+## Skill Version(s):
+
+1.2.0 (source: SKILL.md frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

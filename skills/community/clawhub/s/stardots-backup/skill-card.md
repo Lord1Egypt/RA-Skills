@@ -1,42 +1,59 @@
-## Description: <br>
-Uploads selected image attachments to stardots.io cloud storage using configured Stardots credentials and MD5 request signing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically backs up image attachments to stardots.io cloud storage using configurable Stardots credentials and MD5 request signing.
 
-## Publisher: <br>
-[keepchen](https://clawhub.ai/user/keepchen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keepchen](https://clawhub.ai/user/keepchen)
 
-## Use Case: <br>
-Developers and end users use this skill to back up image attachments from an agent session to a Stardots storage space. It is intended for workflows where uploaded image URLs or upload status messages are useful after the transfer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected image attachments and their contents are sent to Stardots. <br>
-Mitigation: Install only for workflows where sending those images to Stardots is intended, and avoid confidential or regulated images unless appropriate controls are in place. <br>
-Risk: The security review reports an unsafe shell-command upload path that deserves review before installation. <br>
-Mitigation: Use a dedicated, least-privilege Stardots API key and prefer a patched version that uploads through a structured HTTP client rather than interpolating paths and secrets into a shell command. <br>
+## Use Case:
 
+Developers and end users use this skill to upload image attachments from an agent session to Stardots cloud storage when triggered by backup or upload requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/keepchen/stardots-backup) <br>
-- [Stardots](https://stardots.io) <br>
-- [Stardots OpenAPI documentation](https://stardots.io/en/documentation/openapi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text status messages with uploaded image URLs when uploads succeed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include per-image success, failure, or missing-configuration messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, skill.yaml, package.json) <br>
+Risk: The security review reports unsafe shell execution and weak attachment-path controls that could expose local files or run unintended commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; use only with non-sensitive images from trusted attachment sources, validate attachment handles and file contents, and prefer a version that uses a native upload client instead of shell-based curl.
+
+Risk: Credentials may be exposed because the implementation passes authentication material through command-line curl headers.
+
+Mitigation: Avoid shared hosts or verbose process monitoring, rotate Stardots credentials regularly, and prefer a version that keeps secrets out of command-line arguments.
+
+Risk: Image uploads occur when trigger phrases match, which may send files to Stardots without sufficient user confirmation.
+
+Mitigation: Require explicit confirmation before upload and limit use to intended images and trusted conversations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keepchen/skills/stardots-backup)
+- [Stardots.io](https://stardots.io)
+- [Stardots OpenAPI documentation](https://stardots.io/en/documentation/openapi)
+
+## Skill Output:
+
+**Output Type(s):** [text, API calls, shell commands, configuration]
+
+**Output Format:** [Text status message with upload URLs or error details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Stardots API key, API secret, and storage space configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata, skill.yaml, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

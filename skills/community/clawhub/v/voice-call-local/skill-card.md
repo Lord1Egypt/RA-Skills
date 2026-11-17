@@ -1,43 +1,54 @@
-## Description: <br>
-Start voice calls via the OpenClaw voice-call plugin. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Start voice calls via the OpenClaw voice-call plugin.
 
-## Publisher: <br>
-[deichmann181](https://clawhub.ai/user/deichmann181) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deichmann181](https://clawhub.ai/user/deichmann181)
 
-## Use Case: <br>
-Developers and operators use this skill to let an OpenClaw agent start, continue, inspect, and end voice calls through a configured telephony provider or a mock provider for development. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents can place real outbound voice calls, which may contact unintended recipients, disclose private content, or create provider charges. <br>
-Mitigation: Require explicit confirmation of the recipient, message, and provider before each real call, and use the mock provider before enabling live telephony. <br>
-Risk: Live providers require sensitive telephony credentials such as Twilio, Telnyx, or Plivo secrets. <br>
-Mitigation: Use dedicated least-privilege credentials where possible, store them only in approved secret/configuration systems, restrict access, and rotate them on exposure or ownership changes. <br>
-Risk: The artifact does not document recipient limits or privacy safeguards for call content. <br>
-Mitigation: Set organizational recipient allowlists or approval gates, avoid sensitive call content unless authorized, and review call behavior before deployment. <br>
+## Use Case:
 
+Developers and external users use this skill to let agents initiate and inspect voice calls through the OpenClaw voice-call plugin using Twilio, Telnyx, Plivo, or mock mode.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deichmann181/voice-call-local) <br>
-- [Publisher profile](https://clawhub.ai/user/deichmann181) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent guidance for voice_call actions and OpenClaw voicecall CLI usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Live Twilio, Telnyx, or Plivo modes can place real calls through third-party services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use mock mode for testing and confirm recipients, message content, consent, and provider costs before allowing live calls.
+
+Risk: The skill requires the OpenClaw voice-call plugin to be enabled and configured before use.
+
+Mitigation: Enable the voice-call plugin intentionally and configure the selected provider under plugins.entries.voice-call.config before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deichmann181/skills/voice-call-local)
+- [Publisher profile](https://clawhub.ai/user/deichmann181)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for using the OpenClaw voice-call CLI and voice_call tool actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

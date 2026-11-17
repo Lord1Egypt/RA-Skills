@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "DirStat_Skill"
+version = "0.1.0"
+description = "Read-only disk usage analysis skill that suggests what a human should review on Windows and Linux hosts"
+requires-python = ">=3.12"
+license = { text = "Apache-2.0" }
+authors = [{ name = "jagones84" }]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+

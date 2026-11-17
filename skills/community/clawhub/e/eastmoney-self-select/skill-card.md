@@ -1,44 +1,56 @@
-## Description: <br>
-妙想自选管理skill，基于东方财富通行证账户数据及行情底层数据构建，支持通过自然语言查询、添加、删除自选股。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Eastmoney self-selected stocks by querying, adding, and deleting watchlist entries using Eastmoney account and market data.
 
-## Publisher: <br>
-[QQK000](https://clawhub.ai/user/QQK000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqk000](https://clawhub.ai/user/qqk000)
 
-## Use Case: <br>
-External users and agents use this skill to query, add, or delete Eastmoney account watchlist entries through natural-language or command-line requests. It is intended for workflows that need watchlist data returned as terminal text and saved CSV or JSON files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can add or delete account watchlist entries. <br>
-Mitigation: Use explicit query, add, or delete commands and review delete requests before running them. <br>
-Risk: The runtime needs access to an Eastmoney API key. <br>
-Mitigation: Install only in trusted environments and provide the API key through environment configuration. <br>
-Risk: Watchlist query results are saved locally as CSV and JSON files. <br>
-Mitigation: Remove saved output files when the watchlist data should not persist on disk. <br>
+## Use Case:
 
+External users and agents use this skill to inspect and manage an Eastmoney account watchlist through command-line or natural-language requests. It can retrieve watchlist holdings and submit add or delete operations for named stocks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/QQK000/eastmoney-self-select) <br>
-- [Eastmoney self-select query API](https://mkapi2.dfcfs.com/finskillshub/api/claw/self-select/get) <br>
-- [Eastmoney self-select management API](https://mkapi2.dfcfs.com/finskillshub/api/claw/self-select/manage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files] <br>
-**Output Format:** [Terminal text plus CSV and JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Query results are saved under the configured output directory using the mx_self_select_ filename prefix.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can change account-linked Eastmoney watchlist data from natural-language input without confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review add and delete requests before running them, and only execute commands that intentionally modify the watchlist.
+
+Risk: The skill uses an API key and writes generated CSV and raw JSON files that may contain account-related watchlist data.
+
+Mitigation: Provide MX_APIKEY through a trusted environment and protect generated output files as account-related data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qqk000/skills/eastmoney-self-select)
+- [ClawHub publisher profile](https://clawhub.ai/user/qqk000)
+- [Eastmoney self-select query endpoint](https://mkapi2.dfcfs.com/finskillshub/api/claw/self-select/get)
+- [Eastmoney self-select manage endpoint](https://mkapi2.dfcfs.com/finskillshub/api/claw/self-select/manage)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration]
+
+**Output Format:** [Console text, CSV files, and raw JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MX_APIKEY. Query results are written under the configured output directory with mx_self_select_ filename prefixes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

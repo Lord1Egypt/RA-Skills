@@ -1,0 +1,34 @@
+# Secrets - NEVER send to the build context
+.env
+*.key
+
+# Git / CI
+.git
+.github
+.continue
+
+# Python artifacts
+__pycache__
+*.py[cod]
+*.egg-info
+.eggs
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.coverage
+coverage.xml
+htmlcov
+.venv
+venv
+build
+dist
+
+# Not needed inside the image
+tests
+data
+*.db
+*.sqlite
+
+# OS
+Thumbs.db
+.DS_Store

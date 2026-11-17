@@ -1,0 +1,13 @@
+{
+  "version": "1.0.2",
+  "releaseDate": "2026-08-03",
+  "author": "claude-learning-project 📚",
+  "changes": [
+    "V1.0.2: 营销改进 — 添加 ClawHub 安装命令 + tags 标签 + 一键安装指引",
+    "V1.0.1: 初始发布版本"
+  ],
+  "dependencies": [],
+  "requires": {
+    "bins": []
+  }
+}

@@ -1,43 +1,62 @@
-## Description: <br>
-Calculates and interprets astrological synastry for relationship analysis using two natal charts, including cross-aspects, house overlays, and compatibility scores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Synastry astrology compatibility calculation and interpretation for relationship analysis based on two natal charts, including cross-aspects, house overlays, and compatibility scores.
 
-## Publisher: <br>
-[dynamicsalex](https://clawhub.ai/user/dynamicsalex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dynamicsalex](https://clawhub.ai/user/dynamicsalex)
 
-## Use Case: <br>
-External users and agents use this skill to compare two natal charts and produce an astrology-based compatibility report with scores, key aspects, house overlays, strengths, conflict points, and recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes personal birth date, time, and place information for two people. <br>
-Mitigation: Use birth details only with permission and avoid storing or sharing report inputs beyond the current task. <br>
-Risk: The skill depends on the separate astro-natal-chart skill for natal chart generation. <br>
-Mitigation: Review and scan the astro-natal-chart dependency before installation or use. <br>
-Risk: Astrology compatibility output can be mistaken for scientific or decision-grade advice. <br>
-Mitigation: Treat the report as educational or entertainment-oriented and do not make life decisions solely from the reading. <br>
+## Use Case:
 
+External users and agents use this skill to calculate and interpret astrology synastry between two people after obtaining natal chart data for both partners. It produces compatibility scoring, relationship-area analysis, key aspect interpretation, house overlays, and practical reading guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dynamicsalex/astro-synastry) <br>
-- [OpenClaw Project](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style text report with command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and the astro-natal-chart skill; processes birth date, time, and place information for two people.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter, release metadata, changelog released 2026-05-28) <br>
+Risk: The skill uses birth date, birth time, birth place, and relationship context as inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when users are comfortable providing or reusing that personal context for an astrology report.
+
+Risk: The skill depends on a separate astro-natal-chart skill for natal chart calculation.
+
+Mitigation: Verify the astro-natal-chart dependency separately before relying on generated synastry results.
+
+Risk: The script output is Russian even though the SKILL.md documentation is English.
+
+Mitigation: Confirm that the output language is acceptable for the intended users or translate the report before use.
+
+Risk: Astrology compatibility output can be mistaken for determinative relationship advice.
+
+Mitigation: Present readings as educational or entertainment-oriented self-reflection and avoid making life decisions solely from the report.
+
+## Reference(s):
+
+- [Astro Synastry ClawHub skill page](https://clawhub.ai/dynamicsalex/skills/astro-synastry)
+- [OpenClaw homepage](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style compatibility report with terminal text output and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script output is primarily Russian despite the English skill documentation.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, release evidence, changelog released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Daily Movie recommends one movie or TV series per day by genre, mood, or theme, with a synopsis, streaming platform, and audience ratings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily movie and TV recommendation skill curated by genre, mood, or theme, with one suggested watch per day plus synopsis, streaming platform, and audience ratings.
 
-## Publisher: <br>
-[jiajiaoy](https://clawhub.ai/user/jiajiaoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiajiaoy](https://clawhub.ai/user/jiajiaoy)
 
-## Use Case: <br>
-External users use this skill when they want a daily or on-demand movie and TV recommendation with ratings, spoiler-free context, and platform guidance. Users can also enable optional morning and evening pushes on supported chat channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Daily push scheduling can create recurring messages on the selected channel if enabled unintentionally. <br>
-Mitigation: Enable pushes only when scheduled reminders are desired, and use node scripts/push-toggle.js off <userId> to remove the morning and evening jobs. <br>
-Risk: Recommendations can include time-sensitive ratings, releases, or streaming availability that may change by region. <br>
-Mitigation: Ask the agent to verify current ratings and platform availability before relying on a recommendation. <br>
+## Use Case:
 
+External users use this skill to get bilingual movie and TV recommendations by genre, mood, theme, ratings, and platform availability. Users can also enable scheduled morning and evening recommendation pushes for supported channels.
 
-## Reference(s): <br>
-- [Daily Movie on ClawHub](https://clawhub.ai/jiajiaoy/daily-movie) <br>
-- [Publisher profile](https://clawhub.ai/user/jiajiaoy) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text recommendations with optional shell command snippets for push scheduling.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual English and Chinese recommendations; optional daily push setup supports telegram, feishu, slack, and discord.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: evidence.release.version and package.json) <br>
+Risk: The skill can schedule recurring direct-message pushes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable push only for intended users and channels, review scheduled messages before deployment, and use the off command to remove scheduled pushes.
+
+Risk: The skill adds a promotional star request to assistant replies.
+
+Mitigation: Review the feedback prompt for the deployment context and remove or revise it if promotional messaging is not appropriate.
+
+## Reference(s):
+
+- [README](README.md)
+- [ClawHub Daily Movie skill page](https://clawhub.ai/jiajiaoy/skills/daily-movie)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Bilingual Markdown recommendations with optional command-line scheduling output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include daily recommendation text, platform guidance, ratings, and recurring push setup or removal commands.]
+
+## Skill Version(s):
+
+1.0.4 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

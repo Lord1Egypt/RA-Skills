@@ -2,7 +2,7 @@
 name: dig
 description: |
   Refines an active research session by drilling deeper into a subtopic. Use after tome:research to narrow results to a specific channel or angle
-version: 1.9.8
+version: 1.10.3
 triggers:
   - refinement
   - interactive
@@ -12,7 +12,7 @@ source: claude-night-market
 source_plugin: tome
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/tome](https://github.com/athola/claude-night-market/tree/master/plugins/tome). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/tome](https://github.com/athola/claude-night-market/tree/master/plugins/tome). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Dig Deeper
@@ -25,7 +25,7 @@ source_plugin: tome
 ## When NOT To Use
 
 - Starting a new research topic (use `/tome:research` first)
-- Synthesizing results (use `/tome:synthesize`)
+- Synthesizing results (use `Skill(tome:synthesize)`)
 
 Refine an active research session interactively.
 
@@ -44,3 +44,17 @@ Refine an active research session interactively.
   `/tome:research \"topic\"`"
 - Specified channel not in original session: warn and
   suggest available channels
+
+## Exit Criteria
+
+- [ ] Active session loaded from SessionManager before any search
+      executes; if absent, error "Start a session first with
+      `/tome:research \"<topic>\"`" is emitted and skill halts
+- [ ] New findings merged into the existing session without
+      overwriting prior findings from other channels
+- [ ] Session report re-ranked and saved after the merge so
+      the updated file reflects the deeper search results
+- [ ] If the specified channel is not in the original session,
+      a warning is emitted listing the available channels
+- [ ] New findings presented to the user after the session is
+      saved, not before

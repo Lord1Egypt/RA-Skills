@@ -1,41 +1,51 @@
-## Description: <br>
-glim.sh connects agents to Glim's hosted MCP server for live Twitter/X, Reddit, web, GitHub, Amazon, and YouTube data, using OAuth prepaid billing or pay-per-call crypto payments without API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Glim is a hosted MCP server that gives agents live external data from Twitter/X, Reddit, web search, page extraction, GitHub, Amazon, and YouTube transcripts through one endpoint.
 
-## Publisher: <br>
-[tenequm](https://clawhub.ai/user/tenequm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tenequm](https://clawhub.ai/user/tenequm)
 
-## Use Case: <br>
-Developers and agent users use this skill to connect MCP-capable agents to paid live-data tools for social search, web search and extraction, GitHub lookups, Amazon product data, and YouTube transcripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tool calls are sent to an external paid provider and may include search queries, fetched URLs, and related tool-call metadata. <br>
-Mitigation: Avoid secrets, private company URLs, personal data, and sensitive research unless the provider's privacy and billing terms are approved; restrict enabled tools with the documented tools parameter and use scoped MCP configuration where supported. <br>
+## Use Case:
 
+Developers and external agent users use this skill to connect an MCP client to Glim for live search, retrieval, and page extraction workflows without provisioning separate API keys.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tenequm/glim) <br>
-- [glim.sh](https://glim.sh) <br>
-- [Glim OpenAPI specification](https://glim.sh/openapi.json) <br>
-- [Glim GitHub resources](https://github.com/glim-sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide configuration of an external hosted MCP service and paid tool calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The headless crypto flow uses unpinned npm commands for wallet setup and payment-enabled MCP configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer OAuth with a prepaid balance where available; if using the x402 path, use a dedicated low-balance wallet, pin and verify x402-proxy, and review the MCP configuration changes before use.
+
+## Reference(s):
+
+- [glim.sh](https://glim.sh)
+- [Glim OpenAPI specification](https://glim.sh/openapi.json)
+- [ClawHub release page](https://clawhub.ai/tenequm/skills/glim)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration and shell command snippets; connected tools return text or structured data from external services.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires access to glim.sh and either OAuth with a prepaid balance or supported per-call payment.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter declares 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

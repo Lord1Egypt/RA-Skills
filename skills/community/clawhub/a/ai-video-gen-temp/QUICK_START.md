@@ -28,7 +28,7 @@ copy .env.example .env
 
 Edit `.env` and add:
 ```
-OPENAI_API_KEY=sk-your-actual-key-here
+OPENAI_API_KEY=REDACTED-SECRET
 LUMAAI_API_KEY=luma_your-actual-key-here
 ```
 

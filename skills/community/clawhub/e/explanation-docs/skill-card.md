@@ -1,39 +1,57 @@
-## Description: <br>
-Explanation documentation patterns for understanding-oriented content - conceptual guides that explain why things work the way they do. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explanation Docs helps agents write understanding-oriented explanation documentation, including conceptual guides, design rationale, and architecture explanations that clarify why systems work the way they do.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers, technical writers, architects, and documentation maintainers use this skill to draft or revise explanation documents that help readers understand concepts, design rationale, architecture, and trade-offs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can shape conceptual documentation in ways that affect how readers understand architecture, rationale, and trade-offs. <br>
-Mitigation: Review generated explanation docs for accuracy, appropriate scope, and clear separation from how-to or reference material before publication. <br>
+## Use Case:
 
+Developers, technical writers, architects, and documentation maintainers use this skill to draft or revise explanation documents that build reader understanding of concepts, design decisions, trade-offs, and architecture.
 
-## Reference(s): <br>
-- [Explanation Docs skill page](https://clawhub.ai/anderskev/skills/explanation-docs) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown prose, outlines, examples, and review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are documentation-focused and should be reviewed before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server-resolved release metadata) <br>
+Risk: The skill may activate on broad how/why writing requests where explanation is not the right documentation type.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Classify the draft against the explanation, tutorial, how-to, and reference distinctions before applying the explanation template.
+
+Risk: The skill references separate docs-style guidance that is not bundled in the inspected artifact.
+
+Mitigation: Treat related style links as supplemental references and verify that guidance is available and appropriate before relying on it.
+
+## Reference(s):
+
+- [docs-style skill](../docs-style/SKILL.md)
+- [Diataxis compass](../docs-style/references/diataxis-compass.md)
+- [howto-docs skill](../howto-docs/SKILL.md)
+- [reference-docs skill](../reference-docs/SKILL.md)
+- [tutorial-docs skill](../tutorial-docs/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose, templates, checklists, and editing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance-only skill; the inspected artifact does not execute code or access user data.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

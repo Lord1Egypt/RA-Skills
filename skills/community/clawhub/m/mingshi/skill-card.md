@@ -1,44 +1,60 @@
-## Description: <br>
-Yunshi is a bilingual Chinese astrology and fortune-telling skill for BaZi, ZiWei DouShu, QiMen DunJia, I Ching divination, marriage compatibility, feng shui, and daily fortune readings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yunshi provides Chinese astrology and fortune-telling assistance, including BaZi, ZiWei DouShu, QiMen DunJia, I Ching divination, marriage compatibility, feng shui guidance, and daily fortune messages without external API dependencies.
 
-## Publisher: <br>
-[jiajiaoy](https://clawhub.ai/user/jiajiaoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiajiaoy](https://clawhub.ai/user/jiajiaoy)
 
-## Use Case: <br>
-External users and agents use Yunshi to generate personal Chinese astrology readings, chart calculations, divination guidance, compatibility reports, feng shui suggestions, and scheduled daily fortune messages. The skill can store birth and family profile data for personalized readings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sensitive birth details, names, and family relationship data in local profile files. <br>
-Mitigation: Use the skill only in a private or isolated workspace, restrict access to profile files, and avoid storing real personal data unless users understand retention and deletion limits. <br>
-Risk: Scheduled fortune pushes can run unattended and may expose sensitive readings or profile-derived details in runtime output or logs. <br>
-Mitigation: Review cron settings before enabling pushes, disable unattended pushes when not needed, and limit logging for profile-linked readings. <br>
-Risk: Agent prompts associated with scheduled pushes may use web search, local command execution, and preference tracking. <br>
-Mitigation: Disable web-enabled or command-running push flows in environments where unattended actions are not acceptable. <br>
+## Use Case:
 
+External users use Yunshi as a personal Chinese astrology assistant for chart readings, fortune analysis, divination, compatibility checks, feng shui recommendations, and scheduled daily fortune messages.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jiajiaoy/mingshi) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Registration Flow](docs/注册流程.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with optional shell commands and JSON profile data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports Chinese and English responses; may read and write local profile, preference, and push-log files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Local profile and push data can include names, birth details, family data, preference history, and scheduled fortune messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in private workspaces, restrict access to data/profiles and data/push-log.json, and remove stored profiles when no longer needed.
+
+Risk: Profile and push scripts may allow overbroad local file access through userId path handling.
+
+Mitigation: Constrain userId values to safe identifiers and review the path handling before enabling registration, profile, or push features in shared or multi-user environments.
+
+Risk: Scheduled push prompts are persisted and built from user profile data.
+
+Mitigation: Review scheduled message content before enabling recurring delivery, keep generated prompts out of shared logs, and use dry-run or test modes before live push delivery.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jiajiaoy/skills/mingshi)
+- [README](README.md)
+- [User Registration Flow](docs/注册流程.md)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text or Markdown responses with command snippets and local JSON profile or scheduling configuration when needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports Chinese and English responses; scripts can read and write local profile, preference, and push-log data.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata; artifact package and docs show 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

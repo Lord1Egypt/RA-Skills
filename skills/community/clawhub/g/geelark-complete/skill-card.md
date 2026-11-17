@@ -1,41 +1,57 @@
-## Description: <br>
-All-in-one Skill fuer GeeLark: Setup, lokale API, nativer Sync-Transport, UI/RPA-Fallback, Posting-Flow, Verifikation und Troubleshooting in einem durchgaengigen Runbook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+All-in-one Skill fuer GeeLark: Setup, lokale API, nativer Sync-Transport, UI/RPA-Fallback, Posting-Flow, Verifikation und Troubleshooting in einem durchgaengigen Runbook.
 
-## Publisher: <br>
-[Pagebabe](https://clawhub.ai/user/Pagebabe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pagebabe](https://clawhub.ai/user/pagebabe)
 
-## Use Case: <br>
-Developers and operators use this skill to run GeeLark setup, local API checks, native sync workflows, UI/RPA fallback steps, posting preparation, verification, and troubleshooting from one operational runbook. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide broad local GeeLark automation using credentials and helper scripts. <br>
-Mitigation: Install only in a trusted local GeeLark environment, inspect the helper scripts before use, and use a least-privilege GeeLark token. <br>
-Risk: Credential, session, phone_id, proxy, or private profile data could be exposed through logs, command history, or persistent memory. <br>
-Mitigation: Keep GEELARK_API_KEY out of logs and command history, and do not let the agent save sensitive operational data to memory unless explicitly intended. <br>
-Risk: Write actions or UI automation may affect the wrong workspace, profile, or browser state. <br>
-Mitigation: Confirm the exact workspace and profile before write or UI actions, and require the skill's documented verification checks after each step. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [GeeLark Complete on ClawHub](https://clawhub.ai/Pagebabe/geelark-complete) <br>
+## Use Case:
 
+Developers and operators use this skill to set up, diagnose, and operate GeeLark workflows through local API checks, native sync commands, UI fallback, posting preparation, and verification steps.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes operational verification and troubleshooting guidance; users must review local helper scripts and credentials handling before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent to operate GeeLark locally through APIs and UI automation, including workflows that may affect browser profiles or external accounts.
+
+Mitigation: Review actions before browser, profile, or posting workflows and require explicit confirmation before any externally visible account action.
+
+Risk: The skill references GEELARK_API_KEY for local API access.
+
+Mitigation: Keep the key private and avoid saving secrets in memory, logs, or troubleshooting notes.
+
+Risk: Automation can report success without the intended GeeLark state being reached.
+
+Mitigation: Follow the skill's required dual verification: confirm the foreground app or window and confirm the target content such as URL, session ID, or API response.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pagebabe/skills/geelark-complete)
+- [Publisher profile](https://clawhub.ai/user/pagebabe)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes verification and troubleshooting steps for local GeeLark workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

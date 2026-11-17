@@ -1,46 +1,57 @@
-## Description: <br>
-保险Excel自动数据分析工具 analyzes insurance-oriented CSV, Excel, and JSON datasets, generates exploratory statistics and charts, supports Kimi or DeepSeek insight generation, and exports a Word analysis report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes insurance-oriented Excel, CSV, or JSON datasets by running exploratory analysis, cleaning data, generating charts, preparing AI-assisted insights, and exporting Word reports.
 
-## Publisher: <br>
-[wwbwin](https://clawhub.ai/user/wwbwin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwbwin](https://clawhub.ai/user/wwbwin)
 
-## Use Case: <br>
-Insurance analysts, operations teams, and agents use this skill to turn insurance datasets into EDA summaries, cleaned data notes, charts, AI-generated business insights, and Word reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dataset-derived summaries can be sent to third-party AI services during the insight generation step. <br>
-Mitigation: Use the AI insight step only when organizational policy permits sending the derived summaries to Kimi or DeepSeek; otherwise run the local analysis and reporting steps with local or redacted insight text. <br>
-Risk: The skill is designed for insurance data that may include customer, policy, claims, underwriting, financial, or other regulated information. <br>
-Mitigation: Review and redact sensitive fields before use with real data, and validate the generated report before sharing it externally. <br>
-Risk: API keys are required for external insight generation. <br>
-Mitigation: Keep API keys scoped and avoid persistent shell-profile storage on shared machines. <br>
+## Use Case:
 
+Insurance analysts and business users can use this skill to inspect spreadsheet-like datasets, summarize data quality, produce common charts, and package results into a Word analysis report. It is intended for workflows where the user can review dataset-derived prompts before any external AI insight generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wwbwin/basic-data-analysis) <br>
-- [Workflow guide](references/workflow.md) <br>
-- [Insight generation guide](references/insight_generation.md) <br>
-- [Kimi chat completions endpoint](https://api.moonshot.cn/v1/chat/completions) <br>
-- [DeepSeek chat completions endpoint](https://api.deepseek.com/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands; generated JSON summaries, PNG charts, and Word report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied datasets and may require KIMI_API_KEY or DEEPSEEK_API_KEY for AI insight generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: skill metadata and release evidence) <br>
+Risk: Dataset-derived insurance information may be sent to third-party AI providers during insight generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a local-only workflow for customer, policy, claims, financial, health, or confidential business data, or require explicit approval after reviewing and redacting the exact prompt before any Kimi or DeepSeek call.
+
+Risk: Generated insights and charts may be treated as final business conclusions without domain review.
+
+Mitigation: Have an insurance or data-analysis reviewer check the generated report against the source dataset, cleaning log, and business context before acting on recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wwbwin/skills/basic-data-analysis)
+- [Workflow reference](references/workflow.md)
+- [Insight generation reference](references/insight_generation.md)
+- [Kimi chat completions endpoint](https://api.moonshot.cn/v1/chat/completions)
+- [DeepSeek chat completions endpoint](https://api.deepseek.com/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [JSON summaries, PNG charts, Markdown insight text, and DOCX report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces summary.json and chart images from analyze.py, then uses reviewed insight text to generate a Word report with export_report.py.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

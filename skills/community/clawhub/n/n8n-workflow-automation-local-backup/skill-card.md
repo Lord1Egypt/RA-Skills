@@ -1,43 +1,54 @@
-## Description: <br>
-Designs and outputs n8n workflow JSON with robust triggers, idempotency, error handling, logging, retries, and human-in-the-loop review queues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs and outputs n8n workflow JSON with robust triggers, idempotency, error handling, logging, retries, and human-in-the-loop review queues.
 
-## Publisher: <br>
-[12357851](https://clawhub.ai/user/12357851) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[12357851](https://clawhub.ai/user/12357851)
 
-## Use Case: <br>
-Developers and operations teams use this skill to design auditable n8n automations with clear triggers, data contracts, idempotency, retry behavior, logging, and human review queues. It can produce a workflow design spec by default, or importable workflow JSON and a runbook when explicitly requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The registry slug and bundled _meta.json slug do not fully match, which can cause package identity confusion. <br>
-Mitigation: Verify the intended package name, publisher handle, and ClawHub skill page before installation or use. <br>
-Risk: Generated n8n workflow JSON may connect to external systems or perform actions if imported and activated without review. <br>
-Mitigation: Review generated workflow JSON before import, keep workflows inactive until checked, and use least-privilege credentials for connected services. <br>
-Risk: Workflow designs that omit idempotency, logging, or failure routing can silently duplicate, drop, or mishandle records. <br>
-Mitigation: Require deduplication keys, audit logging, retry limits, failure notifications, and a human review queue in generated workflow designs. <br>
+## Use Case:
 
+Developers and automation operators use this skill to design auditable n8n workflows with explicit triggers, data contracts, idempotency controls, retries, logging, failure notifications, and review queues. It can provide a design spec by default, or importable workflow JSON and a runbook when explicitly requested.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/12357851/n8n-workflow-automation-local-backup) <br>
-- [Runbook template](artifact/assets/runbook-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with optional n8n workflow JSON and runbook content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Workflow JSON is read-only by default, should reference credential names or environment variables instead of secrets, and should remain inactive until reviewed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Generated workflow JSON may create incorrect automation behavior or unintended actions if imported without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated workflows before import, keep them inactive until tested, and verify triggers, data contracts, retries, and failure paths.
+
+Risk: Workflow credentials or broad permissions could expose sensitive systems if embedded or over-scoped.
+
+Mitigation: Use least-privilege credential names or environment references, avoid embedding secrets, and approve privileged access before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/12357851/skills/n8n-workflow-automation-local-backup)
+- [Runbook Template](artifact/assets/runbook-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with optional n8n workflow JSON and runbook content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Workflow JSON should remain inactive by default and reference credential names or environment variables rather than embedding secrets.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

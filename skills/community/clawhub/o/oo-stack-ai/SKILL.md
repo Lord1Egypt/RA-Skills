@@ -1,11 +1,11 @@
 ---
 name: oo-stack-ai
-description: "StackAI (stack-ai.com). Use this skill for ANY StackAI request — searching and reading data. Whenever a task involves StackAI, use this skill instead of calling the API directly."
+description: "StackAI (stack-ai.com). Use this skill for ANY StackAI request — reading, creating, and updating data. Whenever a task involves StackAI, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "StackAI"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["stack_ai"]
   icon: "https://static.oomol.com/logo/third-party/stack_ai.png"
 ---
@@ -38,7 +38,7 @@ Each action is listed below with a one-line description; actions that change sta
 ## Available actions
 
 - `get_run_metadata` — Fetch metadata for one previously started Stack AI run.
-- `run_flow` — Run a deployed Stack AI flow with JSON variables and return its normalized result.
+- `run_flow` — Run a deployed Stack AI flow with JSON variables and return its normalized result. [write]
 
 ## Safety
 
@@ -69,11 +69,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — StackAI is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=stack_ai
+  https://console.oomol.com/connections/stack_ai
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - StackAI homepage: https://www.stack-ai.com
+- API documentation: https://docs.stackai.com/

@@ -1,46 +1,59 @@
-## Description: <br>
-Analyzes URLs, links, articles, tweets, and pasted external sources for strategic value, then classifies, scores, maps, and stores the results as local intelligence records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and evaluate URLs, links, articles, tweets, and external information sources for strategic value, then classify, score, store structured notes in Obsidian, update a Strategic Landscape, and generate draft skills when new capabilities are detected.
 
-## Publisher: <br>
-[sarahmirrand001-oss](https://clawhub.ai/user/sarahmirrand001-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sarahmirrand001-oss](https://clawhub.ai/user/sarahmirrand001-oss)
 
-## Use Case: <br>
-Developers and operators use this skill to turn external knowledge sources into structured local intelligence notes, capability-map updates, memory logs, and reviewable skill drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger language may cause network fetches from user-shared links or pasted external content. <br>
-Mitigation: Invoke the skill explicitly and review what source is being ingested before allowing fetches. <br>
-Risk: The skill creates durable local records in an Obsidian vault, memory logs, Strategic Landscape files, and draft skill folders. <br>
-Mitigation: Keep the vault backed up, test with a non-critical vault first, and review created files before relying on them. <br>
-Risk: Generated skill drafts could introduce incorrect behavior if activated without review. <br>
-Mitigation: Keep drafts isolated under skills/_drafts/ and scan and review them before moving them into active skills. <br>
-Risk: Evidence notes inconsistent browser-session language around X/Twitter extraction. <br>
-Mitigation: Avoid granting browser or Chrome session access unless the publisher clarifies the behavior and you accept the scope. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to ingest URLs or pasted external content into a local knowledge workflow, producing strategic assessments, Obsidian notes, memory updates, landscape updates, and isolated draft skills for review.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/sarahmirrand001-oss/intelligence-ingestion) <br>
-- [MCP skill schema](https://spec.modelcontextprotocol.io/2025-03/skill.json) <br>
-- [Public homepage declared in manifest](https://intelligence-ingestion.vercel.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown files, structured skill draft files, and concise text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create Obsidian notes, memory logs, Strategic Landscape updates, and isolated skill drafts according to configured local paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata) <br>
+Risk: The skill can make persistent local knowledge-base and agent-memory changes from external content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Test with a disposable or backed-up Obsidian vault first, then review created notes, memory entries, and landscape updates before relying on them.
+
+Risk: Untrusted URLs or pasted content can be transformed into draft skills.
+
+Mitigation: Keep generated skills in skills/_drafts, inspect them before activation, and scan or review each draft before moving it into an active skills directory.
+
+Risk: URL ingestion may fetch external content and expand through fallback retrieval paths.
+
+Mitigation: Avoid sensitive or untrusted URLs unless the operator is prepared to review the resulting local artifacts and any network-derived content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sarahmirrand001-oss/skills/intelligence-ingestion)
+- [Model Context Protocol skill schema](https://spec.modelcontextprotocol.io/2025-03/skill.json)
+- [Intelligence Ingestion homepage](https://intelligence-ingestion.vercel.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, draft skill definitions, configuration guidance, and concise text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persistent local notes, memory entries, Strategic Landscape updates, and draft skill files when configured.]
+
+## Skill Version(s):
+
+2.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

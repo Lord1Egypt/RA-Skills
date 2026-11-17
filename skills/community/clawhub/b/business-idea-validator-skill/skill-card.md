@@ -1,41 +1,56 @@
-## Description: <br>
-Guides structured help for Business Idea Validator using clear templates, checks, and safe defaults (category: Business & Product). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides structured help for Business Idea Validator using clear templates, checks, and safe defaults (category: Business & Product).
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[abdullah944](https://clawhub.ai/user/abdullah944)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to validate business ideas with reusable planning templates, structured checklists, concise next actions, and editable draft copy while avoiding secret or sensitive data collection.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may paste secrets, sensitive customer data, or private financial details into business planning prompts.
+
+Mitigation: Keep inputs limited to non-secret goals, constraints, and notes the user has rights to share; minimize PII.
+
+Risk: Generated business validation guidance may be treated as final business, legal, or financial advice.
+
+Mitigation: Review outputs before acting and treat plans, checklists, and draft copy as editable decision support.
+
+Risk: The bundled PayPal donation URL could be mistaken as required for skill operation.
+
+Mitigation: Treat the PayPal link as optional support only; it is not required to use the skill.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to structure business idea validation into concise plans, reusable checklists, next actions, and editable draft copy without requesting secrets or private data. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste secrets, sensitive customer data, proprietary financial details, or private account information while asking for business planning help. <br>
-Mitigation: Ask for goals and constraints without secrets, keep PII minimal, and avoid processing sensitive information unless the user intentionally provides it. <br>
-Risk: The artifact includes an optional external donation link. <br>
-Mitigation: Treat donation content as optional external content and verify the destination independently before payment. <br>
+**Output Format:** [Markdown with concise plans, numbered checklists, next actions, and optional draft copy blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdullah944/business-idea-validator-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/abdullah944) <br>
+**Other Properties Related to Output:** [No code execution, persistence, or hidden data access identified in server security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with concise plans, numbered checklists, next actions, and optional draft copy blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only helper; no code execution, credentials, persistence, or hidden system access reported by security evidence.] <br>
+0.1.0 (source: frontmatter, metadata.json, release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and metadata.json changelog, released 2026-05-06) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

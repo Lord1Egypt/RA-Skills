@@ -1,44 +1,58 @@
-## Description: <br>
-Install, configure, inspect, troubleshoot, and operate the terminal-based nchat messenger client for Telegram, WhatsApp, and Signal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, configure, inspect, troubleshoot, and operate the terminal-based nchat messenger client for Telegram, WhatsApp, and Signal.
 
-## Publisher: <br>
-[thisisevgeniy](https://clawhub.ai/user/thisisevgeniy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thisisevgeniy](https://clawhub.ai/user/thisisevgeniy)
 
-## Use Case: <br>
-Developers and agent users use this skill to install, configure, diagnose, and safely operate local nchat profiles for Telegram, WhatsApp, and Signal. It is especially useful for privacy-aware troubleshooting and configuration changes around message cache, account setup, exports, key bindings, themes, proxies, and auto-compose. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Account linking, message actions, exports, account removal, and interactive automation can expose private conversations or affect real chat accounts. <br>
-Mitigation: Require explicit user approval for the exact account, action, and scope before running those operations. <br>
-Risk: Logs, cache files, exports, pairing codes, QR codes, phone numbers, proxy credentials, and local keys may contain sensitive information. <br>
-Mitigation: Use the read-only doctor script where possible, avoid broad cache or log inspection, and redact sensitive values before sharing output. <br>
-Risk: Auto-compose may send chat history to an external AI service and may incur provider costs. <br>
-Mitigation: Keep auto-compose disabled unless the user explicitly asks to enable it and understands the data-sharing and cost implications. <br>
+## Use Case:
 
+Developers and terminal users use this skill to install, configure, troubleshoot, and safely operate nchat profiles for Telegram, WhatsApp, and Signal while protecting private messages and account credentials.
 
-## Reference(s): <br>
-- [Nchat Reference](references/nchat-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/thisisevgeniy/nchat) <br>
-- [Publisher Profile](https://clawhub.ai/user/thisisevgeniy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands, configuration snippets, and concise diagnostics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Privacy-sensitive actions require explicit user approval; diagnostic output should redact secrets, phone-like values, logs, exports, and message content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Account setup, removal, exports, message actions, logs, and cache inspection can expose or change private messaging data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for the exact account, config directory, and action before running sensitive nchat commands or inspecting private files.
+
+Risk: Logs, exported histories, pairing artifacts, credentials, and local profile data may contain private messages or account secrets.
+
+Mitigation: Avoid printing sensitive values, redact logs and exports before sharing, and prefer the privacy-preserving doctor script for read-only diagnostics.
+
+Risk: Auto-compose may send chat history to an external AI service and may incur cost.
+
+Mitigation: Keep auto-compose disabled unless the user explicitly requests it and approves the provider, account scope, and expected data sharing.
+
+## Reference(s):
+
+- [Nchat Reference](references/nchat-reference.md)
+- [ClawHub skill page](https://clawhub.ai/thisisevgeniy/skills/nchat)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Privacy-sensitive actions require explicit user approval for the exact account, config directory, and action.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,66 @@
-## Description: <br>
-AI agents borrow USDC based on their Moltbook karma score. Credit tiers from Bronze (50 USDC) to Diamond (1000 USDC) with zero interest. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI agents borrow USDC based on their Moltbook karma score. Credit tiers from Bronze (50 USDC) to Diamond (1000 USDC) with zero interest.
 
-## Publisher: <br>
-[abdhilabs](https://clawhub.ai/user/abdhilabs) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[abdhilabs](https://clawhub.ai/user/abdhilabs)
 
-## Use Case: <br>
-External agents and KarmaBank administrators use this skill to register Moltbook identities, check karma-based credit limits, borrow and repay testnet USDC, inspect loan history, and manage Circle wallet operations for a lending pool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be connected to Circle credentials or funded wallets, and the security review flags weak safeguards around wallet funds. <br>
-Mitigation: Review before installing, start with mock mode or isolated testnet accounts, and do not connect production-funded wallets until failed transfers fail closed and admin operations are authorized and audited. <br>
-Risk: Loan records and CLI output may expose sensitive local lending or wallet activity. <br>
-Mitigation: Treat local ledger files and command output as sensitive, restrict file access, and avoid sharing logs that contain account, wallet, or balance details. <br>
-Risk: The security guidance says the skill should not be relied on for production lending until repayment and transfer controls are strengthened. <br>
-Mitigation: Reconcile repayments, verify transfer failure behavior, and clearly separate demo or testnet behavior from any real-money deployment. <br>
+## Use Case:
 
+External developers and agent operators use KarmaBank to register Moltbook-backed agents, check karma-based credit tiers, and run testnet USDC borrow/repay workflows from a CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdhilabs/karmabank) <br>
-- [Project homepage](https://github.com/openclaw/agent-credit-system) <br>
-- [Moltbook](https://moltbook.com) <br>
-- [Circle Console](https://console.circle.com) <br>
-- [USDC Hackathon](https://moltbook.com/m/usdc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with CLI commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command guidance for KarmaBank registration, credit checks, borrowing, repayment, history, and wallet operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: Live financial paths can record successful transfers without independently confirmed Circle transaction success.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only sandbox or testnet Circle credentials and isolated wallets unless transfer handling fails closed and transaction status is independently confirmed.
+
+Risk: Weak Moltbook identity verification can allow credit activity to be associated with an agent name without sufficient ownership proof.
+
+Mitigation: Require enforced Moltbook identity ownership checks before registration, borrowing, repayment, or credit decisions.
+
+Risk: The local ledger should not be treated as authoritative financial accounting for real funds.
+
+Mitigation: Do not use the ledger for real accounting until Circle transfers are reconciled, failures are handled conservatively, and transaction status is verified.
+
+Risk: Dependencies are not fully pinned and reproducible.
+
+Mitigation: Pin dependency versions and use a reproducible install process before review or deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/abdhilabs/skills/karmabank)
+- [ClawDIS Homepage](https://github.com/openclaw/agent-credit-system)
+- [Project Repository Listed in README](https://github.com/abdhilabs/karmabank)
+- [Moltbook](https://moltbook.com)
+- [Circle Console](https://console.circle.com)
+- [USDC Hackathon](https://moltbook.com/m/usdc)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI workflows may read or write a local credit ledger and use Moltbook and Circle credentials when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Daily SEO health check that validates blog post SEO completeness, sitemap, robots.txt, meta tags, broken links, and RSS feed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily SEO health check that validates blog posts for SEO completeness, checks sitemap, robots.txt, meta tags, broken links, and RSS feed.
 
-## Publisher: <br>
-[amrree](https://clawhub.ai/user/amrree) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amrree](https://clawhub.ai/user/amrree)
 
-## Use Case: <br>
-Developers and site maintainers use this skill to run routine SEO health checks for a blog or static site and identify missing metadata, broken internal links, duplicate titles, and feed or sitemap issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill references a hardcoded site repository path. <br>
-Mitigation: Confirm the path is correct for the deployment environment before enabling the audit. <br>
-Risk: The skill is intended to read site files, make web requests, and write a local log. <br>
-Mitigation: Grant file and network access only in the expected site workspace and review generated findings before acting on them. <br>
-Risk: The skill describes a daily launchd schedule after site builds. <br>
-Mitigation: Confirm the schedule is appropriate and disable or adjust it if automated post-build checks are not desired. <br>
+## Use Case:
 
+Developers and site maintainers use this skill to run daily SEO health audits for thesolai.github.io blog posts, metadata, feeds, and site index files after builds.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amrree/skills/sol-seo-health) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command and configuration details, plus local text log output from the described audit workflow.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes issue counts and individual problem listings to logs/sol-seo.log.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The configured audit depends on an external seo-health.py script and a launchd job, so an installer should confirm the job targets only the intended site repository and expected log path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing, verify the referenced script and confirm the launchd job runs only for the intended thesolai.github.io repository and writes only logs/sol-seo.log.
+
+Risk: The skill uses local file read/write access and HTTP requests while checking SEO files and links.
+
+Mitigation: Review the requested permissions before deployment and run the audit with access limited to the intended site repository.
+
+## Reference(s):
+
+- [Sol Seo Health ClawHub page](https://clawhub.ai/amrree/skills/sol-seo-health)
+- [Publisher profile](https://clawhub.ai/user/amrree)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text reports with issue counts and individual problem listings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write audit output to logs/sol-seo.log when the configured SEO check runs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

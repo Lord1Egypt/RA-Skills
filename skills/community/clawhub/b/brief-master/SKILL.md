@@ -2,7 +2,7 @@
 name: brief-master
 description: "Write precise execution briefs for agents, cron jobs, reviewers, researchers, and delegated coding tasks."
 metadata:
-  version: "0.2.1"
+  version: "0.2.2"
 ---
 # Brief Master
 
@@ -71,3 +71,7 @@ you can complete this task successfully. Do not start until you have that confid
 ```
 
 See `references/brief-formats.md` for full templates.
+
+## Tooling scope
+
+This is an instruction-led drafting skill. It writes the requested brief; it does not run the commands in that brief, schedule jobs, access credentials or publish anything. `scripts/validate_skill_repo.py` is optional maintainer packaging validation, not the brief-generation implementation. Run it only when maintaining this skill repository. Example phrases are complete task examples, not keyword-only activation rules.

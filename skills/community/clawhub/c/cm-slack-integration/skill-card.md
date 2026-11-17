@@ -1,47 +1,60 @@
-## Description: <br>
-Slack messaging - send messages, manage channels, upload files, add reactions, and automate team notifications via CLI and API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Slack messaging - send messages, manage channels, upload files, add reactions, and automate team notifications via CLI and API.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and operations teams use this skill to prepare Slack Web API commands for workspace messaging, channel workflows, file sharing, reactions, and automated notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Slack OAuth or API tokens can grant access to workspace content and write actions. <br>
-Mitigation: Use the least-privileged Slack token available, store it only in SLACK_TOKEN, and revoke access when the skill is no longer needed. <br>
-Risk: Commands can post, update, schedule, or upload content to the wrong workspace or channel. <br>
-Mitigation: Confirm the workspace, channel ID, and message payload before executing any write operation. <br>
-Risk: Messages, files, or logs sent to Slack may expose sensitive information. <br>
-Mitigation: Review payloads before sending and avoid posting secrets, raw logs, or confidential data. <br>
+## Use Case:
 
+Developers and operators use this skill to automate Slack workspace notifications, channel workflows, file sharing, reactions, and user lookups through Slack Web API commands.
 
-## Reference(s): <br>
-- [ClawHub Slack Integration release](https://clawhub.ai/charlie-morrison/cm-slack-integration) <br>
-- [Slack App configuration](https://api.slack.com/apps) <br>
-- [Slack chat.postMessage API](https://slack.com/api/chat.postMessage) <br>
-- [Slack conversations.list API](https://slack.com/api/conversations.list) <br>
-- [Slack files external upload API](https://slack.com/api/files.getUploadURLExternal) <br>
-- [Slack Block Kit Builder](https://app.slack.com/block-kit-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash, curl, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Slack token supplied through SLACK_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A Slack token allows the agent to read or post workspace data according to the token scopes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the minimum Slack scopes needed, prefer bot tokens over user tokens, and restrict the bot to approved channels.
+
+Risk: Slack messages, files, links, logs, and channel changes may expose sensitive workspace information or alter team communications.
+
+Mitigation: Review messages, files, links, logs, and channel changes before sending them to Slack.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/cm-slack-integration)
+- [Publisher profile](https://clawhub.ai/user/charlie-morrison)
+- [Slack app configuration](https://api.slack.com/apps)
+- [Slack chat.postMessage API](https://slack.com/api/chat.postMessage)
+- [Slack chat.scheduleMessage API](https://slack.com/api/chat.scheduleMessage)
+- [Slack conversations API examples](https://slack.com/api/conversations.list)
+- [Slack file upload API example](https://slack.com/api/files.getUploadURLExternal)
+- [Block Kit Builder](https://app.slack.com/block-kit-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Slack Web API curl examples and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Slack token provided through SLACK_TOKEN.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-TDD-driven E2E workflow with real Playwright browser screenshots as PR proof. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TDD-driven E2E workflow with real Playwright browser screenshots as PR proof for issue-focused pull requests.
 
-## Publisher: <br>
-[newtontech](https://clawhub.ai/user/newtontech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newtontech](https://clawhub.ai/user/newtontech)
 
-## Use Case: <br>
-Developers and engineers use this skill to take one GitHub issue through a test-first E2E workflow, capture before and after Playwright screenshots, and publish visual PR evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can push branches and post PR comments under the user's authenticated GitHub account. <br>
-Mitigation: Confirm the repository, branch, PR number, and commits before running git or GitHub CLI commands. <br>
-Risk: Before and after screenshots may expose secrets, private data, or internal UI state when published to a branch or PR comment. <br>
-Mitigation: Inspect screenshots before publishing and remove or redact sensitive content. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to turn one open issue into one pull request with test-first Playwright coverage, before/after screenshots, and a GitHub PR comment showing visual proof.
 
-## Reference(s): <br>
-- [Testing Patterns](references/testing-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/newtontech/pr-proof-of-work) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces workflow steps, test patterns, screenshot capture code, git and GitHub CLI commands, and PR comment guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The bundled screenshot publishing script can force-push to a GitHub remote.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in trusted repositories, validate the selected remote and branch before running the script, and remove or constrain force-push behavior for shared repositories.
+
+Risk: PR screenshot comments can expose sensitive UI state or local screenshot path details.
+
+Mitigation: Review screenshots before publishing, avoid sensitive projects, use safe temporary files, and sanitize screenshot path names.
+
+Risk: The workflow requires GitHub issue, PR, comment, commit, and push permissions.
+
+Mitigation: Grant the agent only the repository permissions needed for the current PR and review generated commits and comments before merging.
+
+## Reference(s):
+
+- [Testing Patterns](references/testing-patterns.md)
+- [PR-Proof-of-Work ClawHub Page](https://clawhub.ai/newtontech/skills/pr-proof-of-work)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript and bash snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local screenshot files and PR comment content when the bundled workflow is followed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

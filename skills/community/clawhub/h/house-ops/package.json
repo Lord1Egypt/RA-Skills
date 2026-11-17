@@ -1,0 +1,24 @@
+{
+  "name": "house-ops",
+  "version": "0.3.1",
+  "private": true,
+  "description": "A house-hunting decision workspace that runs inside your coding agent (Claude Code / ZCode / Cursor) — scan listings, verify every number, score against your needs. 在编码 agent 里运行的购房搜索·汇总·分析操作台。",
+  "type": "module",
+  "scripts": {
+    "doctor": "node scripts/doctor.mjs",
+    "reserve": "node scripts/reserve-report-num.mjs",
+    "scan": "node scripts/scan.mjs",
+    "insight": "node scripts/insight.mjs",
+    "selftest": "node scripts/selftest.mjs",
+    "stats": "node scripts/stats.mjs",
+    "dashboard": "node scripts/dashboard.mjs",
+    "map": "node scripts/map.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "ink": "^6.8.0",
+    "react": "^19.2.8"
+  }
+}

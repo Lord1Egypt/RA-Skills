@@ -1,0 +1,15 @@
+{
+  "name": "industry-roi-calculator",
+  "version": "1.0.0",
+  "description": "行业化 ROI 测算卡",
+  "main": "src/generator.js",
+  "bin": {
+    "industry-roi-calculator": "./cli.js"
+  },
+  "scripts": {
+    "test": "node tests/run-tests.js",
+    "start": "node cli.js"
+  },
+  "keywords": ["tob", "roi", "presales", "cost-analysis"],
+  "license": "MIT"
+}

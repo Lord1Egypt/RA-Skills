@@ -1,6 +1,88 @@
 {
-  "ownerId": "kn705qkxd5q2sxd49s59dnfknd82dywx",
-  "slug": "hermes-work-visualization",
+  "name": "hermes-work-visualization",
   "version": "1.1.4",
-  "publishedAt": 1776743279692
+  "description": "将Hermes Agent的工作过程可视化 - 包括任务进度、技能使用、代码改动、会话统计等",
+  "description_en": "Visualize Hermes Agent's work process - including task progress, skill usage, code changes, session statistics, and more",
+  "category": "productivity",
+  "tags": ["visualization", "dashboard", "analytics", "monitoring", "i18n", "bilingual"],
+  "languages": ["zh", "en"],
+  "author": "erich1566",
+  "email": "jxmerich@gmail.com",
+  "github": "https://github.com/Erich1566",
+  "license": "MIT",
+  "features": [
+    "Task progress tracking with visual progress bars",
+    "Skill usage statistics and analysis",
+    "Tool call statistics and trends",
+    "Code change tracking and visualization",
+    "Session summary generation",
+    "Real-time monitoring daemon",
+    "Multi-format report export (Markdown, JSON, HTML)",
+    "Bilingual support (Chinese/English) with auto-detection",
+    "Customizable language settings via HERMES_LANG environment variable"
+  ],
+  "dependencies": {
+    "python": ">=3.7"
+  },
+  "scripts": {
+    "session_summary": "scripts/session_summary.py",
+    "generate_report": "scripts/generate_report.py",
+    "skill_stats": "scripts/skill_stats.py",
+    "monitor": "scripts/monitor.py",
+    "export_report": "scripts/export_report.py"
+  },
+  "configuration": {
+    "enabled_metrics": [
+      "task_progress",
+      "skill_usage",
+      "tool_calls",
+      "code_changes",
+      "session_summary"
+    ],
+    "report_frequency": "daily",
+    "export_formats": ["html", "markdown"],
+    "charts": {
+      "type": "ascii",
+      "show_legend": true,
+      "max_items": 10
+    },
+    "monitoring": {
+      "enabled": true,
+      "interval_seconds": 60
+    },
+    "language": "auto"
+  },
+  "changelog": {
+    "1.1.4": [
+      "Renamed skill from 'work-visualization' to 'hermes-work-visualization'"
+    ],
+    "1.1.3": [
+      "Updated author information",
+      "Added email contact: jxmerich@gmail.com",
+      "Added GitHub profile: https://github.com/Erich1566"
+    ],
+    "1.1.2": [
+      "Removed local test files and cache directories"
+    ],
+    "1.1.0": [
+      "Added bilingual support (Chinese/English)",
+      "Added automatic language detection",
+      "Added HERMES_LANG environment variable support",
+      "Updated all scripts to support language switching",
+      "Updated SKILL.md with bilingual documentation",
+      "Added i18n_helper.py module for language management",
+      "Added i18n.json for translation strings"
+    ],
+    "1.0.0": [
+      "Initial release",
+      "Basic visualization features",
+      "Task progress tracking",
+      "Skill usage statistics",
+      "Tool call statistics",
+      "Code change tracking",
+      "Session summary generation",
+      "Real-time monitoring",
+      "Multi-format report export"
+    ]
+  }
 }

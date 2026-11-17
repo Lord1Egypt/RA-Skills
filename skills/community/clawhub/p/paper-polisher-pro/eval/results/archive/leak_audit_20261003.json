@@ -1,0 +1,101 @@
+{
+ "train": {
+  "train_v35.jsonl": {
+   "rows": 7187
+  },
+  "train_v36.jsonl": {
+   "rows": 7472
+  }
+ },
+ "corpora": [
+  {
+   "corpus": "eval_zh.jsonl",
+   "n": 2290,
+   "per_train": {
+    "train_v35.jsonl": {
+     "hits": 953,
+     "rate": 0.4162,
+     "by_label": {
+      "0": 114,
+      "1": 839
+     },
+     "by_split": {
+      "calib": 952,
+      "test": 1
+     }
+    },
+    "train_v36.jsonl": {
+     "hits": 953,
+     "rate": 0.4162,
+     "by_label": {
+      "0": 114,
+      "1": 839
+     },
+     "by_split": {
+      "calib": 952,
+      "test": 1
+     }
+    }
+   }
+  },
+  {
+   "corpus": "eval_gen2026.jsonl",
+   "n": 443,
+   "per_train": {
+    "train_v35.jsonl": {
+     "hits": 1,
+     "rate": 0.0023,
+     "by_label": {
+      "0": 1
+     },
+     "by_split": {
+      "calib": 0,
+      "test": 1
+     }
+    },
+    "train_v36.jsonl": {
+     "hits": 286,
+     "rate": 0.6456,
+     "by_label": {
+      "0": 1,
+      "1": 285
+     },
+     "by_split": {
+      "calib": 132,
+      "test": 154
+     }
+    }
+   }
+  },
+  {
+   "corpus": "attacks.jsonl",
+   "n": 326,
+   "per_train": {
+    "train_v35.jsonl": {
+     "hits": 7,
+     "rate": 0.0215,
+     "by_label": {
+      "1": 7
+     },
+     "by_split": {
+      "calib": 2,
+      "test": 5
+     }
+    },
+    "train_v36.jsonl": {
+     "hits": 7,
+     "rate": 0.0215,
+     "by_label": {
+      "1": 7
+     },
+     "by_split": {
+      "calib": 2,
+      "test": 5
+     }
+    }
+   }
+  }
+ ],
+ "leaked_total": 2207,
+ "verdict": "FAIL（2207 篇评测文档泄漏进训练集——数字不可信）"
+}

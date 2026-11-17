@@ -1,42 +1,55 @@
-## Description: <br>
-Implements a three-layer self-improvement process for agents to evaluate tasks, learn from outcomes, optimize performance, and share knowledge across local agent workspaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implements a three-layer self-improvement process for agents to evaluate task outcomes, record lessons, generate optimization plans, and share learning across agent workspaces.
 
-## Publisher: <br>
-[Brandon114](https://clawhub.ai/user/Brandon114) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brandon114](https://clawhub.ai/user/brandon114)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add a local self-improvement loop for scoring completed tasks, recording lessons, generating optimization plans, and sharing lessons between WorkBuddy agent workspaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent lesson storage can retain sensitive prompts, customer data, tokens, or operational details if users record them as lessons. <br>
-Mitigation: Do not save secrets or sensitive operational details as lessons, and review the generated JSON files before retaining or sharing them. <br>
-Risk: Cross-agent sync can spread the shared knowledge file across local WorkBuddy workspaces without strong scoping or retention controls. <br>
-Mitigation: Run the sync script only when cross-agent sharing is intended, and remove sensitive, stale, or workspace-specific lessons before syncing. <br>
+## Use Case:
 
+Developers and agent operators use this skill to evaluate agent task performance, capture lessons, create optimization plans, and share reviewed learning across WorkBuddy agent workspaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Brandon114/self-improving-agent-python) <br>
-- [README_en.md](artifact/README_en.md) <br>
-- [SKILL_en.md](artifact/SKILL_en.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python-generated JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local JSON records under self-improvement/ and shared-context/self-improvement/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Evaluation records and lessons can retain sensitive task details in local JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid recording secrets, customer data, private prompts, or unreviewed instructions, and review records before retaining them.
+
+Risk: Shared lessons can be copied to other local WorkBuddy agent workspaces without granular scoping.
+
+Mitigation: Run the sync step only after reviewing collective-wisdom.json and confirming the intended target workspaces.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/brandon114/skills/self-improving-agent-python)
+- [English README](artifact/README_en.md)
+- [English skill instructions](artifact/SKILL_en.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON records written by helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists evaluations, lessons, optimization plans, and shared knowledge under local WorkBuddy workspace directories.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact SKILL files state 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

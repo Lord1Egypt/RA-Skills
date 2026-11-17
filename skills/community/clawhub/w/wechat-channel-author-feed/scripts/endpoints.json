@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "root": "https://api.we-media.cn",
+    "auth_header": "X-API-Key",
+    "source_header": "X-WM-Source",
+    "official_site": "https://api.we-media.cn"
+  },
+  "endpoints": [
+    {
+      "key": "ch-video-list",
+      "name": "视频号作品列表",
+      "cat": "ch",
+      "method": "POST",
+      "path": "/openapi/wechat-native-channel-videos/videos/list",
+      "price": 0.1,
+      "params": [
+        "shareUrl",
+        "accountId",
+        "cursor",
+        "limit"
+      ],
+      "purpose": "按账号拉作品列表",
+      "param_types": {
+        "shareUrl": "string",
+        "accountId": "string",
+        "cursor": "string",
+        "limit": "integer"
+      },
+      "product_slug": "wechat-native-channel-videos"
+    },
+    {
+      "key": "ch-account-search",
+      "name": "视频号账号搜索",
+      "cat": "ch",
+      "method": "POST",
+      "path": "/openapi/wechat-native-channel-search/videos/search",
+      "price": 0.1,
+      "params": [
+        "keyword",
+        "cursor",
+        "limit"
+      ],
+      "purpose": "按关键词找视频号",
+      "param_types": {
+        "keyword": "string",
+        "cursor": "string",
+        "limit": "integer"
+      },
+      "product_slug": "wechat-native-channel-search"
+    }
+  ]
+}

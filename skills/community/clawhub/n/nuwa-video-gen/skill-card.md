@@ -1,42 +1,59 @@
-## Description: <br>
-Generates videos with the MiniMax Nuwa API from text, image, start/end frame, or subject-reference inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates videos with the MiniMax Nuwa API from text prompts, image prompts, start and end frames, or subject-reference face images.
 
-## Publisher: <br>
-[superluanxu](https://clawhub.ai/user/superluanxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superluanxu](https://clawhub.ai/user/superluanxu)
 
-## Use Case: <br>
-Developers and agents use this skill to submit MiniMax video-generation jobs, poll for completion, download MP4 outputs, and return generated videos to users. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image URLs, and face-reference URLs are sent to MiniMax for video generation. <br>
-Mitigation: Avoid confidential prompts and private image URLs, and only use face-reference images with the subject's permission. <br>
-Risk: MiniMax API use may consume credits or create billing exposure. <br>
-Mitigation: Use a dedicated API key where possible and monitor billing or credits during use. <br>
+## Use Case:
 
+Developers and content-creation agents use this skill to submit MiniMax video-generation jobs, poll for completion, and save the generated MP4 file locally for delivery to a user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/superluanxu/nuwa-video-gen) <br>
-- [MiniMax API key management](https://platform.minimaxi.com) <br>
-- [MiniMax API documentation](https://platform.minimaxi.com/docs/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated MP4 video files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MINIMAX_API_KEY; prompts and image URLs are sent to MiniMax; generated videos are saved to the requested output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Prompts and supplied image URLs, including face images in subject mode, are sent to MiniMax under its service terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only authorized, non-sensitive prompts and images, and confirm the user is comfortable with MiniMax processing before generation.
+
+Risk: The script writes a generated video file to a local output path.
+
+Mitigation: Choose the output path deliberately and avoid overwriting important local files.
+
+Risk: The skill depends on Python, requests, and a MiniMax API key in the execution environment.
+
+Mitigation: Use a virtual environment, pin dependencies where possible, and provide MINIMAX_API_KEY only in trusted runtime contexts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/superluanxu/skills/nuwa-video-gen)
+- [MiniMax API platform](https://platform.minimaxi.com)
+- [MiniMax API documentation](https://platform.minimaxi.com/docs/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [MP4 video file with console status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes the generated video to the requested output path; defaults to output.mp4.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

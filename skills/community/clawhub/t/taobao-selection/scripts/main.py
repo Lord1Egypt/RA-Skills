@@ -9,7 +9,7 @@ import urllib.error
 
 # FC代理地址（密钥在代理侧，代码里不放Key）
 PROXY_URL = os.environ.get("PROXY_URL", "https://taobao-on-proxy-biaggfugvr.cn-hangzhou.fcapp.run")
-PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
+PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "tp_8k2mX9vQ4z")
 TIMEOUT = 30
 
 

@@ -1,41 +1,54 @@
-## Description: <br>
-Age is a file encryption reference covering key generation, X25519 encryption, SSH key support, passphrase mode, pipe patterns, SOPS integration, YubiKey plugins, and security considerations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Age is an age file encryption reference covering key generation, X25519 encryption, SSH key support, passphrase mode, pipe patterns, SOPS integration, YubiKey plugins, and security considerations.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers, engineers, and security practitioners use this skill as a quick reference for age encryption workflows, including key management, encrypting and decrypting files, backups, team sharing, SOPS, plugins, and security limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copy-pasted encryption examples may use the wrong recipient key or private identity file. <br>
-Mitigation: Verify recipient keys before encrypting, protect private age and SSH identity files, and test decryption on non-sensitive sample data before relying on a workflow. <br>
-Risk: Backup and cloud examples can affect real systems or data when adapted directly. <br>
-Mitigation: Review cloud, database, and cleanup commands before execution, and preview destructive cleanup behavior before using deletion flags on real backups. <br>
+## Use Case:
 
+Developers, engineers, and security-conscious operators use this skill as an age file encryption reference for key generation, encryption and decryption workflows, secret-sharing recipes, plugin choices, and security limits.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/age) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style reference text with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The artifact script prints reference material for selected age topics; it does not perform encryption operations itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Example commands may include sensitive paths, private keys, .env files, recipient lists, and cloud bucket destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt each path, recipient, key, local file, and bucket destination before running or asking an agent to run the examples.
+
+Risk: Encryption guidance can be misapplied if recipients, identity files, or passphrase choices are wrong.
+
+Mitigation: Verify recipient keys and identity files, use strong passphrases where passphrase mode is chosen, and test decryption before relying on encrypted backups or shared secrets.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ckchzh/skills/age)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text and Markdown-style command reference with shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-specific sections cover intro, key generation, encryption, decryption, recipes, plugins, and security.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

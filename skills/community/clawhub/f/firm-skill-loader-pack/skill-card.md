@@ -1,40 +1,53 @@
-## Description: <br>
-Skill lazy loading and search pack for on-demand SKILL.md loading and keyword-based skill search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill lazy loading and search pack for on-demand SKILL.md loading and keyword-based skill search.
 
-## Publisher: <br>
-[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web)
 
-## Use Case: <br>
-Developers and agent operators use this skill to search local skills by keyword and lazy-load SKILL.md files into an agent context when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can search and load local SKILL.md files into the agent context. <br>
-Mitigation: Install only with a trusted mcp-openclaw-extensions provider and review loaded skill content before relying on it. <br>
-Risk: The artifact notes that the content was AI-generated and needs human validation. <br>
-Mitigation: Review the skill instructions, tool behavior, and local deployment fit before production use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to discover and load local skills on demand without pre-loading every SKILL.md file into memory.
 
-## Reference(s): <br>
-- [Firm Skill Loader Pack on ClawHub](https://clawhub.ai/romainsantoli-web/firm-skill-loader-pack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text and Markdown returned from skill search or loader tools] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results or loaded SKILL.md content; no executable code is bundled in the submitted artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill relies on loader and search behavior that reads SKILL.md files from a local skills directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that local skill access is acceptable for the deployment environment.
+
+Risk: The release declares a dependency on mcp-openclaw-extensions >= 3.0.0.
+
+Mitigation: Review and trust the required dependency before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/romainsantoli-web/skills/firm-skill-loader-pack)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with YAML and inline tool command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires mcp-openclaw-extensions >= 3.0.0.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

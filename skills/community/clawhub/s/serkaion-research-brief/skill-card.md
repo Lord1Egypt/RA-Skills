@@ -1,40 +1,52 @@
-## Description: <br>
-Executive-level research briefing and intelligence compilation for decision-ready briefs on people, companies, markets, investments, or topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research Brief compiles executive-level, source-attributed briefs on people, companies, markets, investments, or topics with confidence levels and a specific recommendation.
 
-## Publisher: <br>
-[serkaion](https://clawhub.ai/user/serkaion) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[serkaion](https://clawhub.ai/user/serkaion)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, analysts, researchers, and decision-makers use this skill to produce tight, decision-ready research briefs on people, companies, markets, investments, or topics. The brief structure emphasizes sourced claims, confidence levels, risks, and a specific recommendation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Research briefs may contain outdated, weakly sourced, or misleading claims.
+
+Mitigation: Review cited sources, confidence levels, and source freshness before using a brief for decisions.
+
+Risk: Research prompts may include private, confidential, financial, or personal information.
+
+Mitigation: Avoid sharing sensitive information unless the operating environment and data handling policy allow it.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to compile concise research briefs with attributed sources, confidence levels, key facts, assessment, and a specific recommendation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Research briefs may include outdated, unreliable, or incomplete source material. <br>
-Mitigation: Verify source freshness and reliability before using the brief for business, investment, or personal decisions. <br>
-Risk: Recommendations may be inappropriate if source context or conflicts of interest are missing. <br>
-Mitigation: Require attributed claims, confidence levels, conflict-of-interest notes when relevant, and human review before acting on recommendations. <br>
+**Output Format:** [Structured Markdown brief with a header, executive summary, key facts, assessment, sources, confidence levels, and recommendation]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Research Brief on ClawHub](https://clawhub.ai/serkaion/serkaion-research-brief) <br>
+**Other Properties Related to Output:** [Intended maximum length is 1-2 pages; claims should be attributed to sources with confidence levels.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research brief] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected length is 1-2 pages with sources, confidence levels, and an actionable recommendation.] <br>
+1.0.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,126 @@
+{
+  "schema": "easyeda-agent/260919-crystal-route-live/v1",
+  "status": "live-verified",
+  "designDisposition": "superseded-as-final-design",
+  "supersededBy": "crystal-guard-requirement.json",
+  "dispositionReason": "本文件的铜路事实仍经现场证明，但用户复核后要求受控 MCU 间距、GND 环绕、双层 no-pours region 和外围 GND 过孔围栏；现状不再作为最终晶振区正例",
+  "capturedAtLocal": "2026-09-21T23:59:00+08:00",
+  "project": "ceshi",
+  "documentUuid": "2e719e9419653c72",
+  "host": {
+    "easyedaVersion": "4.1.60",
+    "connectorVersion": "1.5.3-dev.3"
+  },
+  "baseline": {
+    "components": 69,
+    "tracks": 15,
+    "vias": 0,
+    "pours": 0,
+    "officialConnectionErrors": 216,
+    "existingCopper": "LDO 局部 TOP/20mil 铜；先用四条 pcb net-path 证明 C3/C4/U2/C5/C6 的有序路径"
+  },
+  "planning": {
+    "layer": 1,
+    "widthMil": 8,
+    "clearanceMil": 6,
+    "maxVias": 0,
+    "padReadback": {
+      "padsChecked": 235,
+      "unsupportedTopOrMultiPads": 0,
+      "arcsAvailable": true,
+      "note": "精确 shape/rotation/specialPad 来自 pcb components-list --include-pads；pcb dump 的集成板数据不保留这些字段，正式 net-path 仍直接读取组件焊盘与线/弧。"
+    },
+    "firstCandidate": {
+      "status": "candidate-rejected",
+      "reason": [
+        "OSC_IN 在 X1 之前分支，无法证明 C21.1 → X1.1 → U6.2 的不回头有序路径",
+        "pcb check 实测该分支形成 45° acute-angle"
+      ],
+      "recovery": "只删除本批 OSC_IN 的 9 个实际 track primitive；OSC_OUT 保留。OSC_IN 改为 C21 先到 X1.1，再从同一焊盘以 90°节点独立离开至 U6.2。"
+    },
+    "acceptedCandidate": {
+      "status": "accepted-with-exact-pad-readback",
+      "plannedSegments": {
+        "OSC_IN": 9,
+        "OSC_OUT": 6
+      },
+      "offlineFindings": 0,
+      "angleGrid": "0/45/90/135 degrees",
+      "ovalAndEllipseObstacleTreatment": "以外接旋转矩形保守检查；没有用 bbox 空角制造通过"
+    }
+  },
+  "freshReadbackAfterSaveReload": {
+    "trackCount": 30,
+    "viaCount": 0,
+    "criticalTracks": {
+      "OSC_IN": {
+        "actualPrimitives": 9,
+        "layers": [1],
+        "widthsMil": [8],
+        "locked": true
+      },
+      "OSC_OUT": {
+        "actualPrimitives": 6,
+        "layers": [1],
+        "widthsMil": [8],
+        "locked": true
+      }
+    },
+    "paths": [
+      {
+        "waypointOrder": ["C21.1", "X1.1", "U6.2"],
+        "connected": true,
+        "requestedLayer": 1,
+        "layers": [1],
+        "widthsMil": [8],
+        "minWidthMil": 8,
+        "viaCount": 0
+      },
+      {
+        "waypointOrder": ["C20.1", "X1.3", "U6.3"],
+        "connected": true,
+        "requestedLayer": 1,
+        "layers": [1],
+        "widthsMil": [8],
+        "minWidthMil": 8,
+        "viaCount": 0
+      }
+    ],
+    "pcbCheck": {
+      "errors": 0,
+      "danglingEnds": 0,
+      "acuteAngles": 0,
+      "trackOverPad": 0,
+      "clearance": 0,
+      "duplicateSegments": 0,
+      "parallelCoupling": 1,
+      "parallelCouplingDisposition": "U6.2/U6.3 相邻 15.7mil pitch 的 26mil 短引脚逃线；8mil 铜边缘间距 7.7mil，超过 live 6mil DRC。作为局部可解释 WARN 保留，后续以附近完整 GND 回流约束收尾。"
+    },
+    "officialDrc": {
+      "connectionErrors": 210,
+      "otherViolationTypes": 0,
+      "deltaFromBaseline": -6
+    }
+  },
+  "persistence": {
+    "sequence": ["pcb save", "doc reload", "fresh track/via readback", "fresh pcb net-path", "fresh pcb check", "fresh pcb drc", "pcb track-lock", "pcb save", "doc reload", "fresh lock readback"],
+    "criticalLockedCount": 15,
+    "lockPersisted": true
+  },
+  "stage": {
+    "captureKind": "board-fitted-viewport-png",
+    "fitMode": "board",
+    "objectLevelExport": false,
+    "blank": false,
+    "stale": false,
+    "sha256": "1f33e0e2bad2e30d1e30d8a7f1fc2cc164b6e2e302491e3c9746acb13b01297f",
+    "frameContent": 0.9611914893617022,
+    "drcPassed": false,
+    "drcBoundary": "整板尚未布完，stage 中只有 Connection Error；该图只证明本里程碑现场状态，不是最终 DRC 通过图。"
+  },
+  "limitations": [
+    "现有布局和信号铜必须按 crystal-guard-requirement.json 重新联合规划；不能把 GND 护环、禁铺区和过孔围栏继续推迟到无约束的整板 GND 收尾",
+    "当前整板仍有 210 个 Connection Error",
+    "绝对坐标只属于本次现场；迁移时必须重新读 pad shape/rotation、规则与既有铜后重算"
+  ]
+}

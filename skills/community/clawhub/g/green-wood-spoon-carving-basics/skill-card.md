@@ -1,43 +1,57 @@
-## Description: <br>
-Guides users through making food-safe green-wood spoons and small utensils while the agent handles wood suitability checks, shrinkage calculations, templates, reminders, batch tracking, and barter or inventory drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent in helping users plan, template, track, and document green-wood spoon and utensil carving while leaving all physical carving, finishing, and safety decisions to the human.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users use this skill to plan and track hand-carved wooden spoon projects from local green hardwood. It is intended for people who want repeatable guidance for wood selection, carving sequence, drying, finishing, safety checks, and simple inventory or barter records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wood carving uses sharp hand tools and can cause cuts or strain if the user follows unsafe technique. <br>
-Mitigation: Use the skill's safety checkpoints: keep hands behind the blade, use cut-resistant gloves until confident, pause for ergonomic breaks, and require direct adult supervision for minors. <br>
-Risk: Unsuitable wood, unlawful harvesting, or unsafe finishes can make the finished utensil unsafe or noncompliant. <br>
-Mitigation: Confirm local harvesting rules, use suitable non-toxic hardwood, choose food-safe finishes, and complete the recommended water and patch tests before food use. <br>
-Risk: Photos, approximate location, reminders, and local batch files may expose personal or project information. <br>
-Mitigation: Share only the location detail and photos needed for species and workflow checks, and review local tracking files before storing or sharing them. <br>
+## Use Case:
 
+External users use this skill to turn local green hardwood into custom spoons, spatulas, and small utensils by having the agent identify wood options, calculate drying and shrinkage schedules, generate templates, and maintain progress, inventory, and barter records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/green-wood-spoon-carving-basics) <br>
-- [Publisher profile](https://clawhub.ai/user/howtousehumans) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline templates, checklists, shell install command, and local tracking file structures.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use photos, approximate location, reminders, and local progress files as described by the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The unpinned npx install command creates supply-chain exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a trusted or pinned ClawHub installer when available and avoid running the install command in a shell with unnecessary secrets.
+
+Risk: The skill may request GPS/photos and maintain local tracking files.
+
+Mitigation: Provide only photos and location details you are comfortable storing in project files, and keep filesystem tracking limited to the carving workspace.
+
+Risk: Green-wood carving uses sharp hand tools and can cause injury if the human follows unsafe technique.
+
+Mitigation: Keep physical carving decisions with the human, follow the skill's knife-safety checkpoints, use protective practices, and stop if technique, workspace, or physical strain is unsafe.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/green-wood-spoon-carving-basics)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command and structured text templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce ready-to-trace templates, checklists, drying logs, reminders, inventory cards, and barter templates, and may maintain progress files in the local carving workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

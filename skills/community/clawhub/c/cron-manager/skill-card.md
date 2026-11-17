@@ -1,40 +1,58 @@
-## Description: <br>
-Manage, schedule, monitor, and report on recurring cron tasks with flexible patterns, dependencies, priorities, timezones, and execution logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage, schedule, monitor, and report on recurring cron tasks with flexible patterns, dependencies, priorities, timezones, and execution logs.
 
-## Publisher: <br>
-[indigas](https://clawhub.ai/user/indigas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[indigas](https://clawhub.ai/user/indigas)
 
-## Use Case: <br>
-Agents and developers use this skill to create, inspect, pause, resume, manually run, and monitor recurring local tasks through a JSON-emitting command-line interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store and run local shell commands. <br>
-Mitigation: Review every command before adding or running it, restrict who can create tasks, and periodically inspect persisted task files and logs. <br>
-Risk: Task definitions and execution logs may contain sensitive command text, output, or errors. <br>
-Mitigation: Avoid putting secrets in task commands or command output, secure the cron data directory, and review retained logs. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create, pause, resume, manually run, inspect, and remove recurring tasks for autonomous agents. It is suited for workspace-level recurring jobs that need JSON status, execution logs, statistics, and health reporting.
 
-## Reference(s): <br>
-- [Cron Manager on ClawHub](https://clawhub.ai/indigas/cron-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON command output with Markdown guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists task definitions and execution logs in local JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Saved task commands may execute arbitrary shell commands on the host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only in a trusted, low-privilege workspace, and allow task creation only from trusted users or agents.
+
+Risk: Scheduled commands may expose or misuse sensitive environment variables.
+
+Mitigation: Keep sensitive credentials out of the runtime environment used for scheduled tasks and review each command before saving or running it.
+
+Risk: Weak scoping and file-path validation can make task storage and logs harder to isolate.
+
+Mitigation: Use a dedicated data directory with restricted permissions and review stored task definitions and logs during deployment.
+
+## Reference(s):
+
+- [Cron Manager on ClawHub](https://clawhub.ai/indigas/skills/cron-manager)
+- [indigas publisher profile](https://clawhub.ai/user/indigas)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands return standardized JSON with status, data, message, logs, statistics, and health fields depending on the action.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

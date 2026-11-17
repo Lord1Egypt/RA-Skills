@@ -1,43 +1,62 @@
-## Description: <br>
-Extracts structured data from webpages and APIs, with support for batch processing and JSON, CSV, or Excel-style output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts structured data from webpages and APIs, with batch processing and JSON, CSV, or Excel output.
 
-## Publisher: <br>
-[chungvic](https://clawhub.ai/user/chungvic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chungvic](https://clawhub.ai/user/chungvic)
 
-## Use Case: <br>
-Developers and data teams use this skill to collect public webpage or API data for e-commerce monitoring, market research, job listings, real estate listings, and custom extraction workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs network requests against webpages and APIs, which can violate site terms or place load on services if misused. <br>
-Mitigation: Use it only with sites or APIs you are authorized to access, respect robots.txt and rate limits, and configure request delays for batch jobs. <br>
-Risk: Authentication values passed on the command line may be retained in shell history or process logs. <br>
-Mitigation: Prefer short-lived tokens, avoid long-lived secrets on the command line, and rotate credentials after testing. <br>
-Risk: Unpinned Python dependencies can reduce reproducibility for production use. <br>
-Mitigation: Install in a virtual environment and pin or lock dependency versions before operational deployment. <br>
+## Use Case:
 
+External users and developers use this skill to collect public webpage or API data for ecommerce monitoring, market research, recruiting, real estate, social, or custom extraction workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chungvic/ecommerce-data-scraper-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/chungvic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python usage examples, and structured output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script can write JSON or CSV-like files and can fetch API responses when dependencies are installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can fetch arbitrary internal or external URLs supplied by a user or agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a network-restricted sandbox, allow only intended HTTPS endpoints, and do not target private or internal services.
+
+Risk: The API mode can send supplied bearer tokens or credentials to a configured endpoint.
+
+Mitigation: Use scoped non-production credentials, avoid production tokens, and verify the endpoint before providing authentication material.
+
+Risk: Scraping can create legal, privacy, or service-load exposure if aimed at inappropriate targets.
+
+Mitigation: Use it only for public data where scraping is permitted, respect robots.txt and site terms, and keep request delays conservative.
+
+Risk: Runtime output paths can write scraped data to local files.
+
+Mitigation: Set explicit output paths and review generated files before using them in downstream workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chungvic/skills/ecommerce-data-scraper-pro)
+- [Publisher profile](https://clawhub.ai/user/chungvic)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, text]
+
+**Output Format:** [Markdown guidance with CLI examples; scraper runtime output as JSON, CSV, or Excel files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write output files to explicit user-selected paths and make outbound HTTP(S) requests to supplied URLs or API endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and artifact metadata list 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

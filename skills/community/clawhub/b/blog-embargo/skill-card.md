@@ -1,40 +1,48 @@
-## Description: <br>
-Coordinates publishAt embargo timing across blog index visibility and social post scheduling so posts are indexed only after social posts are queued. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinate publishAt embargo timing across blog index visibility and social post scheduling.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[nissan](https://clawhub.ai/user/nissan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and content operators use this skill to coordinate blog embargo timestamps with Buffer scheduling so public index visibility and social posts happen in the intended order.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Incorrect timezone, Buffer account, channel ID, or social copy approval could schedule public posts at the wrong time or to the wrong channel.
+
+Mitigation: Confirm the intended timezone, Buffer accounts, channel IDs, and approved social copy before following the scheduling workflow.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and content operators use this skill to coordinate blog publishAt frontmatter, pull request timing, and Buffer scheduling for synchronized blog and social launches. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect dates, time zones, or target Buffer channels could publish or schedule public content at the wrong time. <br>
-Mitigation: Review publishAt values, time zones, Buffer queue conflicts, and target channels before applying the workflow. <br>
-Risk: A merged post may be directly reachable before it appears in the blog index. <br>
-Mitigation: Schedule Buffer posts after confirming the merge and account for the direct URL being live while index visibility is still gated. <br>
+**Output Format:** [Markdown guidance with inline shell command examples and scheduling checklists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nissan/blog-embargo) <br>
+**Other Properties Related to Output:** [No executable code is included in the skill artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No automatic execution; users must review publishAt values, time zones, pull request timing, and Buffer channels.] <br>
+1.0.1 (source: frontmatter and release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

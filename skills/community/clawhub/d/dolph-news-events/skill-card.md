@@ -1,38 +1,54 @@
-## Description: <br>
-Monitors premium RSS feeds for breaking news, matches stories to Polymarket markets, and generates trade signals when estimated price impact exceeds the configured threshold. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors premium RSS feeds for breaking news, matches stories to Polymarket markets via keyword analysis, and can generate or execute trade signals when estimated price impact exceeds 12%.
 
-## Publisher: <br>
-[richducat](https://clawhub.ai/user/richducat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richducat](https://clawhub.ai/user/richducat)
 
-## Use Case: <br>
-Developers and operators use this skill to run an automated news-monitoring workflow that identifies potentially market-moving events and evaluates related Polymarket trading opportunities. It defaults to dry-run and requires explicit live mode before placing trades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real trades using the Simmer API key. <br>
-Mitigation: Keep dry-run enabled until the code, trade size, venue, thresholds, and external account limits have been reviewed. <br>
+## Use Case:
 
+External developers and operators use this automaton to monitor breaking news feeds and produce Polymarket trade signals, with live trading available when explicitly configured.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/richducat/dolph-news-events) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls] <br>
-**Output Format:** [Command-line logs and trade API requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run mode is the default; live trading requires the --live flag and SIMMER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata lists 2.0.1/2.0.2) <br>
+Risk: Live mode can place real financial trades from RSS-driven heuristics without per-trade approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in dry-run first, use a dedicated low-privilege API key in an isolated environment, keep trade sizes small, and require review or exposure limits before enabling live trading.
+
+Risk: Feed validation, dependency pinning, and state-file handling need review before unattended operation.
+
+Mitigation: Validate RSS sources, pin dependencies, review the state-file behavior, and use strict venue settings before scheduled or live deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/richducat/skills/dolph-news-events)
+- [ClawHub publisher profile](https://clawhub.ai/user/richducat)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API calls, Shell commands, Configuration]
+
+**Output Format:** [Console text and API trade requests from a Python automaton]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run is the default; live mode can place trades when --live is enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

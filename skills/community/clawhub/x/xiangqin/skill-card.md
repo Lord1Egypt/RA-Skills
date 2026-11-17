@@ -1,40 +1,49 @@
-## Description: <br>
-Redirects the legacy xiangqin skill slug to blind-date-assistant for respectful blind-date preparation, safety boundaries, conversation topics, and follow-up messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Redirects the legacy xiangqin skill to blind-date-assistant for respectful blind-date preparation, safety boundaries, conversation topics, and follow-up messages.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users and agents use this legacy redirect to find the maintained blind-date-assistant skill when searching for xiangqin-related guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat this legacy redirect as the maintained blind-date guidance skill. <br>
-Mitigation: Install or invoke blind-date-assistant and review that maintained skill separately before use. <br>
-Risk: Relationship-preparation guidance can be misused for manipulation, stalking, sensitive identity data collection, or guarantees about outcomes. <br>
-Mitigation: Keep use limited to respectful preparation, safety boundaries, conversation topics, polite refusal, and follow-up messages; do not request sensitive identity data or guarantee outcomes. <br>
+## Use Case:
 
+Users and agents that encounter the legacy xiangqin slug use this skill to route to blind-date-assistant instead of relying on a standalone workflow.
 
-## Reference(s): <br>
-- [Xiangqin Redirect on ClawHub](https://clawhub.ai/harrylabsj/xiangqin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text redirect guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or tool calls; points users to blind-date-assistant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill.json) <br>
+Risk: Users may expect xiangqin to provide a standalone blind-date preparation workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat this skill as a redirect and use blind-date-assistant for the maintained workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/xiangqin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with a plain-text handoff message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Redirect guidance only; no executable behavior, data access, or persistence according to the security evidence.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

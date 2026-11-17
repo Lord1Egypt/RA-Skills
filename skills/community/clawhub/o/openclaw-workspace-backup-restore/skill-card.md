@@ -1,49 +1,61 @@
-## Description: <br>
-OpenClaw Backup & Restore helps agents create, validate, list, restore, and optionally Git-sync backups of OpenClaw workspace state files and configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Backup & Restore helps agents create, validate, list, restore, and Git-sync OpenClaw workspace backups with rollback support.
 
-## Publisher: <br>
-[X-RayLuan](https://clawhub.ai/user/X-RayLuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to protect agent workspace files from accidental deletion, bad configuration changes, and workspace loss. It provides backup, dry-run restore, rollback, validation, and optional off-machine Git backup workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backups can include sensitive workspace data and, in raw config mode, real OpenClaw configuration values. <br>
-Mitigation: Prefer sanitized config backups, use raw config mode only with a private intended backup destination, and avoid committing backup data to public repositories. <br>
-Risk: Remote backup sync can push copied backup data to the wrong Git remote or branch if configured incorrectly. <br>
-Mitigation: Review the selected remote and branch before running backup-and-push, and use a private backup repository for off-machine backups. <br>
-Risk: Restore operations can overwrite live workspace files. <br>
-Mitigation: Run restore with --dry-run first, validate the selected backup, and rely on the automatic pre-restore backup for rollback. <br>
-Risk: Hard-coded or stale example paths can operate on the wrong workspace when copied without adjustment. <br>
-Mitigation: Replace example paths with the intended workspace path and set OPENCLAW_BACKUP_DIR when a custom backup location is required. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to protect workspace state, recover deleted or corrupted agent configuration files, validate backup integrity, and maintain off-machine backup history when configured intentionally.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/X-RayLuan/openclaw-workspace-backup-restore) <br>
-- [Publisher profile](https://clawhub.ai/user/X-RayLuan) <br>
-- [Artifact README](README.md) <br>
-- [Operations runbook](RUNBOOK.md) <br>
-- [Package repository](https://github.com/X-RayLuan/openclaw-backup-restore.git) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON backup manifests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local backup directories, manifest.json files, validation output, restore previews, and optional Git commits or pushes when invoked by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.4 (source: server release evidence and package.json; CHANGELOG latest entry is 1.1.0) <br>
+Risk: Git sync can upload sensitive OpenClaw configuration when raw config backup is enabled by default in the push workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local sanitized backups by default, run Git sync only to private intended repositories, and pass --sanitized-config-only for backup-and-push operations.
+
+Risk: Restore paths and backup names are not tightly controlled, so untrusted backup manifests or names can affect restore behavior.
+
+Mitigation: Run restore with --dry-run first, use trusted backups only, and review backup manifests before applying a restore.
+
+Risk: Scheduled remote backups may propagate sensitive or unintended workspace data without interactive review.
+
+Mitigation: Do not enable cron or unattended remote backups until raw-config defaults and path validation issues are fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/x-rayluan/skills/openclaw-workspace-backup-restore)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+- [RUNBOOK.md](RUNBOOK.md)
+- [QUICKSTART.md](QUICKSTART.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands, file paths, and JSON manifest examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local file operations, backup manifests, validation checks, restore previews, and Git sync commands.]
+
+## Skill Version(s):
+
+1.5.4 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

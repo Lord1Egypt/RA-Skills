@@ -1,40 +1,58 @@
-## Description: <br>
-Media Gen Vision Video guides agents through Google-native workflows for image generation and editing, multimodal image understanding, screenshot analysis, and Veo 3.1 video generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and analyze images and generate videos using OpenClaw's preferred Google media workflows for image creation, editing, inspection, comparison, description, and video generation.
 
-## Publisher: <br>
-[danielwpp](https://clawhub.ai/user/danielwpp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielwpp](https://clawhub.ai/user/danielwpp)
 
-## Use Case: <br>
-Developers and agent users use this skill to route image creation, image editing, visual analysis, screenshot inspection, and video generation requests through preferred Google media workflows while preserving media constraints and reporting blockers clearly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private screenshots, sensitive photos, or confidential media may be processed by external Google media services when the skill is used for generation, editing, analysis, or video workflows. <br>
-Mitigation: Avoid using the skill with sensitive media unless the user is comfortable with those materials being processed by the external services described in the release evidence. <br>
-Risk: Media generation or video workflows can fail or be unavailable in the current environment, creating a risk of overstating the result. <br>
-Mitigation: State blockers clearly and only claim success when an actual generated image or video asset is available to return. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route image generation, image editing, screenshot or photo analysis, and video generation requests through preferred Google media workflows while preserving media constraints and reporting blockers clearly.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/danielwpp/media-gen-vision-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, files] <br>
-**Output Format:** [Short Markdown response with generated media files or concise visual analysis when available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated image or video assets; reports blockers when media output is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The broad trigger may cause the skill to be selected for many image-related tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when Google media workflows are desired, and confirm task fit before following the workflow for unrelated image requests.
+
+Risk: Generated video availability depends on the current runtime and tool access.
+
+Mitigation: Report the blocker clearly and avoid claiming success unless an actual video file was produced.
+
+Risk: Image or screenshot interpretation can be wrong when visual evidence is unclear.
+
+Mitigation: Use multimodal analysis when available, state only visible or strongly supported observations, and separate inference from confirmed details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danielwpp/skills/media-gen-vision-video)
+- [Publisher profile](https://clawhub.ai/user/danielwpp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with generated media files when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or attach generated image or video assets when the runtime supports media delivery.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

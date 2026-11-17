@@ -1,44 +1,65 @@
-## Description: <br>
-Improves OpenClaw's Feishu reply experience with streaming cards, visible raw reasoning when supported, Card 2.0 layouts, collapsible panels, titles, colors, and fallback send paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Improve OpenClaw's Feishu reply experience by customizing streaming cards, raw reasoning visibility, card 2.0 layouts, collapsible panels, titles, colors, and fallback send paths.
 
-## Publisher: <br>
-[doashoi](https://clawhub.ai/user/doashoi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[doashoi](https://clawhub.ai/user/doashoi)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to diagnose and improve Feishu reply cards, including raw reasoning visibility, streaming behavior, Card 2.0 layouts, collapsible panels, and fallback send paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Proven Case and Pitfalls](references/proven-case-and-pitfalls.md) <br>
-- [OpenClaw Feishu Card Customization Reference](references/implementation-guide.md) <br>
-- [Feishu Card JSON 2.0 structure](https://open.feishu.cn/document/feishu-cards/card-json-v2-structure) <br>
-- [Feishu collapsible_panel](https://open.feishu.cn/document/feishu-cards/card-json-v2-components/containers/collapsible-panel) <br>
-- [Feishu card update guide](https://open.feishu.cn/document/feishu-cards/update-feishu-card) <br>
-- [PATCH updates for sent message cards](https://open.feishu.cn/document/server-docs/im-v1/message-card/patch) <br>
-- [OpenClaw Telegram channel docs](https://openclawlab.com/en/docs/channels/telegram/) <br>
-- [OpenClaw upstream repository](https://github.com/openclaw/openclaw) <br>
+Developers and engineers use this skill to diagnose and improve OpenClaw's built-in Feishu reply path, especially for streaming cards, visible reasoning, collapsible reasoning panels, titles, colors, and fallback send behavior. It helps decide whether raw reasoning is feasible for the current model/runtime path or whether safer card and streaming UX improvements are the right scope.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code, commands, configuration notes, and verification steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Emphasizes diagnosis, user consent, backups, rollback instructions, and verification before risky runtime or session changes.] <br>
+Global
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill can lead an agent to inspect sensitive OpenClaw configuration, session transcripts, raw reasoning logs, or gateway environment data.
+
+Mitigation: Require user consent before reading those sources, inspect only the current session and necessary fields, redact secrets, and avoid dumping full files or full environments.
+
+Risk: Runtime, session, provider, or Feishu delivery changes can disrupt live Feishu replies or make behavior fail after restart or a new session.
+
+Mitigation: Use phased rollout, start with low-risk card changes where appropriate, create a written change note and file backups before risky edits, and provide exact rollback and restart guidance.
+
+Risk: Card changes alone can falsely imply raw reasoning is available when the active model/runtime path exposes only transcript-only, opaque, or no reasoning data.
+
+Mitigation: Verify the active provider/model, session state, raw-stream logs, and runtime hooks before promising visible live reasoning; otherwise offer ordinary streaming and card UX improvements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/doashoi/skills/openclaw-feishu-reasoning-ux)
+- [Feishu Card JSON 2.0 Structure](https://open.feishu.cn/document/feishu-cards/card-json-v2-structure)
+- [Feishu Collapsible Panel](https://open.feishu.cn/document/feishu-cards/card-json-v2-components/containers/collapsible-panel)
+- [Feishu Card Update Guide](https://open.feishu.cn/document/feishu-cards/update-feishu-card)
+- [PATCH Updates for Sent Message Cards](https://open.feishu.cn/document/server-docs/im-v1/message-card/patch)
+- [OpenClaw Telegram Channel Docs](https://openclawlab.com/en/docs/channels/telegram/)
+- [OpenClaw Upstream Repository](https://github.com/openclaw/openclaw)
+- [Proven Case and Pitfalls](references/proven-case-and-pitfalls.md)
+- [OpenClaw Feishu Card Customization Reference](references/implementation-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code, file paths, configuration notes, and shell commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include diagnostic conclusions, phased rollout steps, backup and rollback instructions, and verification checklists.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,183 @@
+#!/usr/bin/env node
+// HTML → PPTX 转换器 CLI
+// 用法: node html_to_pptx.mjs --deck-dir <path> [--output <filename>] [--force]
+
+import { existsSync, statSync, mkdirSync, writeFileSync } from 'node:fs';
+import { resolve, basename, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { execSync } from 'node:child_process';
+import { pickBrowserExe } from './lib/browser_picker.mjs';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+/**
+ * 首次运行时自动安装依赖（npm install + playwright chromium）。
+ * 后续运行检测到 node_modules 和 chromium 已存在则跳过。
+ */
+function ensureDependencies() {
+  const nodeModules = resolve(__dirname, 'node_modules');
+  const pptxgenMarker = resolve(nodeModules, 'pptxgenjs');
+  const playwrightMarker = resolve(nodeModules, 'playwright');
+  const echartsMarker = resolve(nodeModules, 'echarts');
+
+  if (!existsSync(pptxgenMarker) || !existsSync(playwrightMarker) || !existsSync(echartsMarker)) {
+    console.error('[setup] 首次运行，正在安装 npm 依赖...');
+    try {
+      execSync('npm install --omit=dev', { cwd: __dirname, stdio: 'inherit' });
+    } catch (e) {
+      throw new Error(`npm install failed: ${e.message}. Headless browser environment unavailable.`);
+    }
+  }
+
+  // 浏览器检查改为 pickBrowserExe()：本地已有任何可用浏览器（期望版本或
+  // 本地扫描回退）就直接使用，不触发下载；只有完全没有任何可用路径时才安装。
+  const exe = pickBrowserExe();
+  if (exe && existsSync(exe)) {
+    return;
+  }
+  console.error('[setup] 本地无可用 Chromium，正在安装 Playwright Chromium...');
+  try {
+    execSync('npx playwright install chromium', { cwd: __dirname, stdio: 'inherit' });
+  } catch (e) {
+    throw new Error(`Chromium installation failed: ${e.message}. Cannot install headless browser in this environment.`);
+  }
+}
+
+// ensureDependencies() 移到 main() 中调用，避免模块加载时崩溃。
+// missing browser → 优雅跳过，不抛异常。
+
+// 依赖就绪后再 import 业务模块
+const { ensureDeckPreconditions } = await import('./lib/cli_guards.mjs');
+const { downloadRemoteImages } = await import('./lib/image_downloader.mjs');
+
+function parseArgs(args) {
+  const result = { deckDir: null, pagesDir: null, output: null, outputDir: null, force: false, batch: false, debug: false };
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === '--deck-dir' && args[i + 1]) {
+      result.deckDir = resolve(args[i + 1]);
+      i++;
+    } else if (args[i] === '--pages-dir' && args[i + 1]) {
+      result.pagesDir = resolve(args[i + 1]);
+      i++;
+    } else if (args[i] === '--output' && args[i + 1]) {
+      result.output = args[i + 1];
+      i++;
+    } else if (args[i] === '--output-dir' && args[i + 1]) {
+      result.outputDir = resolve(args[i + 1]);
+      i++;
+    } else if (args[i] === '--force') {
+      result.force = true;
+    } else if (args[i] === '--batch') {
+      result.batch = true;
+      result.force = true;
+    } else if (args[i] === '--debug') {
+      result.debug = true;
+    }
+  }
+  return result;
+}
+
+async function main() {
+  const args = parseArgs(process.argv.slice(2));
+
+  // 确保依赖安装（npm + playwright chromium）。
+  // missing browser → 输出 JSON skip 状态，优雅退出（不崩溃）。
+  try {
+    ensureDependencies();
+  } catch (e) {
+    const result = {
+      status: "skipped",
+      reason: "headless_browser_unavailable",
+      detail: `Playwright/Chromium cannot be installed in this environment: ${e.message}. PPTX export skipped — HTML pages are the final deliverable.`,
+      converted: 0,
+      pages: 0,
+      skipped: true,
+    };
+    console.log(JSON.stringify(result));
+    return;
+  }
+
+  // 先下载远程图片并规范化 deck 结构
+  if (args.deckDir && !args.batch) {
+    await downloadRemoteImages(args.deckDir);
+  }
+
+  const { htmlFiles } = ensureDeckPreconditions(args.deckDir, {
+    force: args.force,
+    batch: args.batch,
+    pagesDir: args.pagesDir,
+  });
+
+  const { extractPages } = await import('./lib/dom_extractor.mjs');
+  const { buildPptx } = await import('./lib/pptx_builder.mjs');
+
+  console.error(`正在处理 ${htmlFiles.length} 个 HTML 页面...`);
+
+  // DOM 提取
+  console.error('步骤 1/2: 提取 DOM...');
+  const pages = await extractPages(htmlFiles);
+
+  // --debug: dump IR 到 <deck_dir>/_debug/<page>.ir.json，便于诊断转换问题。
+  // 不污染 deck 根目录；每页一个文件，避免单文件巨大。
+  if (args.debug && args.deckDir) {
+    const debugDir = resolve(args.deckDir, '_debug');
+    mkdirSync(debugDir, { recursive: true });
+    for (const p of pages) {
+      const baseName = basename(p.path).replace(/\.html?$/i, '');
+      const irPath = resolve(debugDir, `${baseName}.ir.json`);
+      try {
+        writeFileSync(irPath, JSON.stringify({ path: p.path, ir: p.ir, error: p.error }, null, 2));
+      } catch (e) {
+        console.error(`[debug] 写 ${irPath} 失败: ${e.message}`);
+      }
+    }
+    console.error(`[debug] IR dump 完成 → ${debugDir}/`);
+  }
+
+  // PPTX 构建：默认文件名与 deck_dir 目录名一致
+  const outputFilename = args.output || (basename(args.deckDir) + '.pptx');
+  const outputBase = args.outputDir || args.deckDir;
+  mkdirSync(outputBase, { recursive: true });
+  const outputPath = resolve(outputBase, outputFilename);
+  console.error('步骤 2/2: 生成 PPTX...');
+  const result = await buildPptx(pages, args.deckDir, outputPath);
+
+  // 输出验证
+  if (!existsSync(outputPath)) {
+    console.error('错误: PPTX 文件未生成');
+    process.exit(1);
+  }
+
+  const fileSize = statSync(outputPath).size;
+  if (fileSize === 0) {
+    console.error('错误: PPTX 文件大小为 0');
+    process.exit(1);
+  }
+
+  // 成功输出（stdout）
+  const sizeKB = (fileSize / 1024).toFixed(1);
+  console.log(JSON.stringify({
+    success: true,
+    output: outputPath,
+    pages: result.totalPages,
+    converted: result.successCount,
+    failed: result.failCount,
+    fileSize: `${sizeKB} KB`,
+  }));
+
+  if (result.failCount > 0) {
+    const details = (result.failures || [])
+      .map(item => `${item.path}: ${item.message}`)
+      .join('\n- ');
+    console.error(`错误: ${result.failCount} 个页面转换失败\n- ${details}`);
+    process.exit(1);
+  }
+
+  process.exit(0);
+}
+
+main().catch(err => {
+  console.error(`错误: ${err.message}`);
+  process.exit(1);
+});

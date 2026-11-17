@@ -1,38 +1,48 @@
-## Description: <br>
-Automated development workflow with task board management, code quality checks, and continuous improvement for scheduled auto-coding projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated development workflow with task board management, code quality checks, and continuous improvement.
 
-## Publisher: <br>
-[lgugeng](https://clawhub.ai/user/lgugeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lgugeng](https://clawhub.ai/user/lgugeng)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to run scheduled, task-board-driven code improvement loops that select one task, make bounded code changes, run checks and tests, update the task board, and report results.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can automatically reset, edit, push, and possibly deploy code without enough safeguards.
+
+Mitigation: Install it only in a disposable or well-protected repository, preferably on a dedicated branch or isolated worktree with backups, review gates, limited credentials, and no direct protected-branch push or production deployment credentials.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers use this skill to run scheduled, task-board-driven repository improvement cycles. The workflow reads TASKS.md, selects one pending task, edits code, runs quality checks and tests, commits or pushes changes, and reports the result. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The default workflow can discard local repository changes during forced synchronization. <br>
-Mitigation: Use it only in disposable or well-backed-up repositories, require a clean working tree or backup branch, and remove or gate any git reset --hard step before unattended runs. <br>
+**Output Format:** [Markdown with inline code and shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lgugeng/easyclass-auto-improve) <br>
+**Other Properties Related to Output:** [May update repository files and task-board state when applied by an agent.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown status reports with code, shell command, and configuration changes as needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires git and python3; designed for bounded runs that handle one task and up to four file changes per cycle.] <br>
+1.3.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

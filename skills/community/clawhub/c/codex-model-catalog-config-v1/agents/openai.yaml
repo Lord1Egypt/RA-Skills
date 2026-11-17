@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Model Catalog Config"
+  short_description: "Manage the custom Codex model catalog"
+  default_prompt: "Use $codex-model-catalog-config to update the existing Codex model catalog requested by the user."

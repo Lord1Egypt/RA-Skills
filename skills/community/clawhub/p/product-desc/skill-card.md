@@ -1,41 +1,54 @@
-## Description: <br>
-Product Desc helps write and improve product descriptions with SEO optimization, bullet-point selling points, competitor comparison, and multilingual localization guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+产品描述生成器。产品文案撰写、SEO优化、卖点提炼、竞品对比、多语言本地化。Product description writer with SEO, bullet points, comparison.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-External sellers, marketers, and product teams use this skill to draft, optimize, localize, and compare product listing copy across ecommerce and direct-sales channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled utility can store user-entered text and command history locally without clear disclosure. <br>
-Mitigation: Review the installed command path before use and avoid entering confidential product, customer, pricing, or business content unless local storage is acceptable. <br>
-Risk: The artifact includes both a product-description template script and a more general local data utility, which may make command behavior unclear. <br>
-Mitigation: Confirm which script the agent or shell command invokes before deployment, and limit execution to the product-description workflow when that is the intended use. <br>
+## Use Case:
 
+External users and content teams use this skill to draft and improve product descriptions, SEO copy, bullet-point selling propositions, competitive comparisons, and localized product messaging.
 
-## Reference(s): <br>
-- [Product Desc on ClawHub](https://clawhub.ai/bytesagain3/product-desc) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown templates and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes product-description templates, SEO checklists, bullet-point structures, comparison prompts, and localization guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence and frontmatter) <br>
+Risk: The package includes a generic local data utility that can retain product details or search terms in plaintext under the user's data directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering confidential product plans, credentials, customer data, or unpublished business information unless the publisher removes or clearly documents the storage behavior.
+
+Risk: Generated product copy, SEO suggestions, and comparison language may be inaccurate, overstated, or unsuitable for a target marketplace.
+
+Mitigation: Review claims, specifications, competitive comparisons, and compliance-sensitive wording before publishing.
+
+## Reference(s):
+
+- [Product Desc ClawHub listing](https://clawhub.ai/bytesagain3/skills/product-desc)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown and command-line text templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product-description frameworks, SEO checklists, bullet templates, comparison tables, localization guidance, and command output.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

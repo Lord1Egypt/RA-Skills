@@ -1,24 +1,16 @@
-# Ollama Army — Agent contract
+# Agent contract — lygo-ollama-army v0.9.0
 
-Read `SECURITY.md` first.
+Agents MAY:
 
-## When to use
+- Launch local army with allowlisted roles  
+- Drop queue tasks for SAFE_ROLES with user-approved text  
+- Read results under `ollama_results/`
 
-User explicitly asks to run **Ollama army**, **joy-loop-pulse**, **champion-egg-boot**, lattice cron, or queue a **reviewed** task JSON.
+Agents MUST NOT:
 
-## When not to use
+- Claim planting / social / public probes are available in this package  
+- Write Desktop launchers  
+- Point Ollama at remote hosts  
+- Auto-publish or git push  
 
-Generic “summon champion” or “run bots” without local Ollama + stack path confirmation.
-
-## Before stack-touching roles
-
-1. Confirm `LYGO_STACK_ROOT` points at a real `lygo-protocol-stack` clone.
-2. Tell user which role runs (e.g. `joy-loop-pulse` → `joy_loop_protocol.py --tick`).
-
-## Queue tasks
-
-Agents **propose JSON only**; user approves before file is written to `ollama_queue/` or `ollama_command_center/tasks/`.
-
-## QUARANTINE
-
-If stack root missing, bootloader fails, or merkle mismatch → stop; do not retry with `--no-verify`.
+**Δ9Φ963**

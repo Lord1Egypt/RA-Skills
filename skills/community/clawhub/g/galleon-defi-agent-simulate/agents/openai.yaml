@@ -1,0 +1,4 @@
+interface:
+  display_name: "DeFi transaction simulation"
+  short_description: "DeFi transaction simulation workflow and evidence"
+  default_prompt: "Use $galleon-defi-agent-simulate to complete the requested workflow and return the observed decision record."

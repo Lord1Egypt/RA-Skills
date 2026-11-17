@@ -1,42 +1,54 @@
-## Description: <br>
-Narrow first-class front door for live Fitbit/training retrieval via stable JSON actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Narrow first-class front door for live Fitbit/training retrieval via stable JSON actions.
 
-## Publisher: <br>
-[joaodriessen](https://clawhub.ai/user/joaodriessen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joaodriessen](https://clawhub.ai/user/joaodriessen)
 
-## Use Case: <br>
-Agents supporting a user's health and training workflow use this skill to retrieve recent Fitbit recovery, sleep, quality, and training-window data through stable read-only JSON actions. The skill also directs programming advice back to the user's training references before recommendations are made. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive health, sleep, recovery, and training data to the agent. <br>
-Mitigation: Install only when the agent is intended to access this data, and handle returned data as sensitive user information. <br>
-Risk: The skill depends on a local Fitbit connector and training context that may be misconfigured or untrusted. <br>
-Mitigation: Verify the local connector, authentication state, and referenced training context before relying on results. <br>
+## Use Case:
 
+Developers and OpenClaw agents use this skill to retrieve live Fitbit, health, and training data through a narrow read-only JSON action contract instead of assembling low-level commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/joaodriessen/health-training-frontdoor) <br>
-- [Practical Programming reading guide](reference/practical-programming/INDEX.md) <br>
-- [Training continuity context](memory/training-continuity.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [Compact JSON responses with Markdown usage instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only actions; optional fields include days, ensureFresh, and source.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can bring sensitive personal health and training memory into agent context when used for coaching.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that local memory exposure is acceptable, or separate coaching references into a differently scoped skill.
+
+Risk: The retrieval wrapper depends on authenticated Fitbit connector tooling and live local data.
+
+Mitigation: Use it only where read-only Fitbit and training retrieval is expected, and do not use it for authentication bypass or write-capable operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joaodriessen/skills/health-training-frontdoor)
+- [Practical Programming for Strength Training reference](reference/practical-programming/INDEX.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [Compact JSON with action results and Markdown usage guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only retrieval surface with bounded supported actions and positive integer day windows.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

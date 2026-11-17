@@ -1,43 +1,64 @@
-## Description: <br>
-Deploy frontend and full-stack projects to IGA Pages, including CLI-driven deploy, preview, build, link, login, and API route development workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy frontend and full-stack projects to IGA Pages, including Pages Functions and API-route workflows when the user explicitly requests IGA Pages deployment.
 
-## Publisher: <br>
-[seasonrui](https://clawhub.ai/user/seasonrui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seasonrui](https://clawhub.ai/user/seasonrui)
 
-## Use Case: <br>
-Developers use this skill to prepare, authenticate, build, and deploy frontend or full-stack projects to IGA Pages, and to add file-system based Node.js serverless API routes. It is most relevant when the user explicitly asks to publish a site, create a preview deployment, deploy to IGA Pages, or build an API endpoint for that platform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can route broad deployment or API requests into IGA Pages workflows even when the target platform is ambiguous. <br>
-Mitigation: Confirm that the user intends to deploy to IGA Pages and that the project framework is supported before running IGA Pages CLI commands. <br>
-Risk: Headless login instructions may lead users to pass cloud access keys directly in shell commands. <br>
-Mitigation: Prefer browser login where available, avoid exposing long-lived access keys in chat or command history, and use least-privilege credentials when key-based login is necessary. <br>
-Risk: Preview URLs can include query tokens that grant access. <br>
-Mitigation: Treat preview URLs containing tokens as private access links and share them only with intended recipients. <br>
+## Use Case:
 
+Developers and engineers use this skill to deploy frontend and full-stack projects to IGA Pages, configure project environment variables and integrations, and implement Pages Functions or API routes.
 
-## Reference(s): <br>
-- [Serverless Functions (API Routes)](artifact/references/functions.md) <br>
-- [Volcengine IAM key management](https://console.volcengine.com/iam/keymanage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands, code snippets, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include deployment URLs, including private preview URLs with query tokens when emitted by the IGA Pages CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: evidence release metadata and skill frontmatter) <br>
+Risk: The skill may require cloud credentials for headless login.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid pasting long-lived secrets into chat or reusable shell history; use browser login when available and use scoped AK/SK credentials only when headless login is required.
+
+Risk: The skill can change remote deployment, environment, or integration state.
+
+Mitigation: Confirm production deploys, environment mutations, and integration changes before executing the relevant IGA Pages commands.
+
+Risk: Pulling project environment variables writes secrets to .env.local.
+
+Mitigation: Run env pull only for local development, keep .env.local protected, and ensure it remains gitignored.
+
+Risk: Mutable CLI installation can change behavior across runs.
+
+Mitigation: Prefer a pinned project-local CLI install when possible and verify the CLI version is compatible before deploying.
+
+## Reference(s):
+
+- [IGA Pages ClawHub Skill Page](https://clawhub.ai/seasonrui/skills/iga-pages)
+- [Environment Variables](references/env.md)
+- [Serverless Functions (API Routes)](references/functions.md)
+- [Integrations](references/integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce deployment, environment, integration, and Pages Functions guidance based on the user's project and deployment intent.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata; artifact frontmatter says 1.0.10)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

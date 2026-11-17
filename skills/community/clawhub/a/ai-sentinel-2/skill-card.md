@@ -1,44 +1,59 @@
-## Description: <br>
-AI情报哨兵 - 自动采集、分析与报告AI领域最新动态的多源情报系统 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI前沿哨兵 automatically collects, analyzes, scores, and reports AI news, papers, open-source projects, discussions, and social updates from multiple configured sources.
 
-## Publisher: <br>
-[xiaopengs](https://clawhub.ai/user/xiaopengs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaopengs](https://clawhub.ai/user/xiaopengs)
 
-## Use Case: <br>
-External developers, AI researchers, product teams, investors, and content creators use this skill to collect AI-domain updates from public sources, score and organize them, and generate structured morning, evening, or social-style reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts configured public news, RSS, GitHub, arXiv, HackerNews, Twitter/X, and website sources. <br>
-Mitigation: Review config/sources.yaml before use and run the skill only in environments where outbound requests to those sources are acceptable. <br>
-Risk: Twitter/X support may require a bearer token, and the WebUI can persist settings in browser localStorage. <br>
-Mitigation: Use a low-privilege or throwaway token, avoid saving sensitive tokens in shared browser origins, and rotate or delete the token if exposure is possible. <br>
-Risk: Generated reports summarize third-party content and may include stale, incomplete, or incorrect claims from source feeds. <br>
-Mitigation: Review high-impact report items against their linked original sources before using them for decisions or publication. <br>
+## Use Case:
 
+External AI researchers, developers, product managers, investors, and content creators use this skill to monitor AI-field developments, rank collected items by relevance and quality, and generate structured Markdown reports.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/xiaopengs/ai-sentinel-2) <br>
-- [API配置指南](artifact/references/api_setup.md) <br>
-- [信息源添加指南](artifact/references/sources_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with command-line and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes dated report files under reports/YYYY-MM-DD/ and can use a local WebUI for source and settings management.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: WebUI credential handling may expose Twitter/X bearer tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering Twitter/X bearer tokens in the WebUI until token storage and DOM injection issues are fixed; prefer environment variables or a backend secret store.
+
+Risk: Custom feed fetching can retrieve content from untrusted or unexpected URLs.
+
+Mitigation: Run the skill in a limited workspace with pinned dependencies and use only trusted feed URLs.
+
+Risk: Scheduled collection can create unintended background network activity.
+
+Mitigation: Enable cron or scheduled runs only when recurring collection is intentional and review the configured schedule first.
+
+## Reference(s):
+
+- [API Configuration Guide](artifact/references/api_setup.md)
+- [Source Addition Guide](artifact/references/sources_guide.md)
+- [ClawHub Release Page](https://clawhub.ai/xiaopengs/skills/ai-sentinel-2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, shell commands, and YAML configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates morning, evening, and Xiaohongshu-style reports from configured information sources.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Complete Claude Code CLI integration with session management and APEX cognitive framework for setting up coding agents with persistent task tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Claude Code CLI integration with session management and APEX cognitive framework. One skill to set up coding agents with persistent task tracking.
 
-## Publisher: <br>
-[dhruvarvindsingh](https://clawhub.ai/user/dhruvarvindsingh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dhruvarvindsingh](https://clawhub.ai/user/dhruvarvindsingh)
 
-## Use Case: <br>
-Developers and coding agents use this skill to configure Claude Code CLI workflows, track background sessions, and add project guidance for persistent task management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents may gain access to the user's Claude OAuth token and operate Claude Code under that account. <br>
-Mitigation: Install only when this account-level access is intended; keep tokens out of logs, committed files, and reusable command strings. <br>
-Risk: Default workflows use Claude Code with permission prompts disabled. <br>
-Mitigation: Remove permission-skipping flags from routine workflows and require explicit user approval before starting background Claude Code tasks. <br>
-Risk: Adding token extraction to shell startup files can expose credentials beyond the immediate task. <br>
-Mitigation: Prefer per-command or short-lived environment variables and avoid placing OAuth token extraction in shell profiles. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure Claude Code CLI workflows, session tracking, AGENTS.md guidance, and APEX references in OpenClaw workspaces.
 
-## Reference(s): <br>
-- [Claude Dev Setup on ClawHub](https://clawhub.ai/dhruvarvindsingh/claude-dev-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell and JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Claude Code CLI and an authenticated Claude account; includes local session-tracking and agent-instruction files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill instructs agents to extract and load local Claude OAuth tokens, which can expose credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove raw token extraction and shell-profile token loading before use, and avoid installing it on machines with real Claude credentials unless the workflow has been reviewed.
+
+Risk: The skill recommends running Claude Code with permission checks bypassed.
+
+Mitigation: Avoid --dangerously-skip-permissions and run delegated agents in a constrained environment with explicit approval for sensitive actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dhruvarvindsingh/skills/claude-dev-setup)
+- [AGENTS.md session section template](artifact/agents-section.md)
+- [Claude Code session tracking template](artifact/sessions-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, and local template files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Claude Code CLI and targets Linux or macOS environments.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

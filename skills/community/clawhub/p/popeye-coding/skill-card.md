@@ -1,40 +1,60 @@
-## Description: <br>
-Popeye Coding is a Chinese-language coding assistant skill for code generation, debugging, and code review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language coding assistant for code generation, debugging, and code review.
 
-## Publisher: <br>
-[jiangtaoid](https://clawhub.ai/user/jiangtaoid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangtaoid](https://clawhub.ai/user/jiangtaoid)
 
-## Use Case: <br>
-Developers use this skill to generate code examples, debug code with error context, and review code for correctness, readability, performance, security, and best practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad coding triggers may activate the skill in common programming conversations. <br>
-Mitigation: Install only when a Chinese-language coding assistant is intended for the workspace. <br>
-Risk: User prompts for debugging or review may include secrets, credentials, private keys, or sensitive proprietary code. <br>
-Mitigation: Remove sensitive material before sharing code or error context with the agent. <br>
+## Use Case:
 
+Developers use this skill to draft code, diagnose errors, and review code quality in Chinese-language coding workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiangtaoid/popeye-coding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with code blocks, explanations, review tables, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language prompts; outputs depend on user-provided language, code, errors, requirements, and review focus.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Broad Chinese coding trigger phrases may invoke the skill during normal coding conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in workspaces where a Chinese coding assistant is expected, and review whether trigger phrases overlap with other installed skills.
+
+Risk: Users may paste secrets or proprietary code while requesting debugging or review help.
+
+Mitigation: Avoid sharing sensitive code or credentials with the assistant runtime unless that use is approved for the workspace.
+
+Risk: Generated code and review guidance may be incomplete or incorrect for a specific project.
+
+Mitigation: Review, test, and scan suggested code before using it in production.
+
+## Reference(s):
+
+- [Popeye Coding ClawHub skill page](https://clawhub.ai/jiangtaoid/skills/popeye-coding)
+- [Code generation module](artifact/modules/generate.md)
+- [Debugging module](artifact/modules/debug.md)
+- [Code review module](artifact/modules/review.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with code blocks and structured analysis sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, persistence, credential access, or hidden data handling is included in the artifact.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

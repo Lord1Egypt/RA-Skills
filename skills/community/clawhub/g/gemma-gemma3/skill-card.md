@@ -1,46 +1,61 @@
-## Description: <br>
-Gemma 3 by Google helps agents run Gemma 3 models across a local device fleet through Ollama Herd, with cross-platform guidance for macOS, Linux, and Windows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gemma 3 by Google - run Gemma 3 models across a local device fleet with Ollama Herd routing on macOS, Linux, and Windows.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Developers and external users use this skill to configure and call Gemma 3 models through a local Ollama Herd fleet router. It provides model selection guidance, OpenAI-compatible SDK examples, curl requests, and fleet health checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, documents, generated-image prompts, or uploaded audio may be processed by devices on the user's local fleet. <br>
-Mitigation: Use the skill only on trusted local networks and avoid sensitive data unless local fleet processing and logs are acceptable. <br>
-Risk: The workflow depends on installing and running the ollama-herd package and router/node services. <br>
-Mitigation: Verify the PyPI package and upstream repository before installation, and run router/node services only on machines the user trusts. <br>
-Risk: Gemma model downloads can be large and may affect local storage or bandwidth. <br>
-Mitigation: Keep model pulls user-confirmed and review model size before downloading. <br>
+## Use Case:
 
+Developers and agents use this skill to install and operate Ollama Herd, route Gemma 3 requests across a local device fleet, and call the router through OpenAI-compatible or Ollama-compatible APIs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/gemma-gemma3) <br>
-- [Ollama Herd](https://github.com/geeks-accelerator/ollama-herd) <br>
-- [Ollama Herd PyPI Package](https://pypi.org/project/ollama-herd/) <br>
-- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md) <br>
-- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash, Python, curl, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local network endpoint examples, hardware-based model guidance, and guardrails for user-confirmed model pulls and deletions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The installed tool may send daily usage telemetry outside the user's network by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set FLEET_NODE_TELEMETRY=false before first start when telemetry is not desired.
+
+Risk: Installing an unpinned package can change behavior between runs.
+
+Mitigation: Review the Ollama Herd package before installation and pin a specific version or verify package hashes where possible.
+
+Risk: The router and node processes can access local fleet configuration and logs.
+
+Mitigation: Run the tool in an isolated non-admin environment and avoid deleting or modifying files under ~/.fleet-manager/.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/twinsgeeks/skills/gemma-gemma3)
+- [Ollama Herd GitHub repository](https://github.com/geeks-accelerator/ollama-herd)
+- [Ollama Herd PyPI package](https://pypi.org/project/ollama-herd/)
+- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md)
+- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash, Python, and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance includes local service endpoints, model names, hardware recommendations, and guardrails for model pulls and deletion.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,62 @@
-## Description: <br>
-Use this skill to safely create a wallet the agent can use for transfers, swaps, and any EVM chain transaction. Also supports raw signing and polymarket betting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to safely create a wallet the agent can use for transfers, swaps, and any EVM chain transaction. Also supports raw signing and Polymarket betting.
 
-## Publisher: <br>
-[glitch003](https://clawhub.ai/user/glitch003) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[glitch003](https://clawhub.ai/user/glitch003)
 
-## Use Case: <br>
-External agents, developers, and wallet owners use this skill to create dedicated agent wallets, set owner-controlled transaction policies, and perform transfers, swaps, EVM contract calls, raw signing, and Polymarket betting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: An agent can operate a real wallet with broad power over funds, swaps, EVM transactions, raw signatures, and betting. <br>
-Mitigation: Install only for a dedicated agent wallet, claim the wallet before funding it, and configure strict address, token, function, spending-limit, and manual-approval policies. <br>
-Risk: API keys and re-link tokens can grant control over wallet actions. <br>
-Mitigation: Treat API keys and re-link tokens as wallet-control secrets, store them securely, and avoid exposing them in chat logs, shared files, or command history. <br>
-Risk: Raw signing and arbitrary contract calls can authorize actions whose effects are hard to inspect after execution. <br>
-Mitigation: Avoid raw signing and arbitrary calldata unless a human can review the exact message, transaction target, calldata, and value before authorization. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Vincent skill page](https://clawhub.ai/glitch003/vincent) <br>
-- [Vincent wallet frontend](https://heyvincent.ai) <br>
+## Use Case:
 
+External users and developers use this skill to give agents controlled wallet capabilities for token transfers, swaps, EVM contract calls, raw signing, and Polymarket activity. Wallet owners use claim links and policies to set spending limits, allowlists, and approval requirements before funding or authorizing the agent wallet.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl command examples and JSON request and response fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bearer API keys for wallet actions and returns wallet addresses, claim URLs, transaction status, balances, signatures, market data, orders, or policy-related rejection states.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill gives an agent broad financial authority through a hosted wallet service.
+
+Mitigation: Use it only with a trusted wallet service, claim the wallet immediately, and configure approval requirements, spending limits, and allowlists before funding it.
+
+Risk: API keys and re-link tokens can authorize wallet access.
+
+Mitigation: Store API keys in a real secret store, treat re-link tokens like wallet credentials, and rotate or recover access only through the documented owner-controlled flow.
+
+Risk: The security summary notes fail-open policy behavior when no policies are set.
+
+Mitigation: Set explicit address, token, function, and spending policies before allowing an agent to transact.
+
+Risk: The Polymarket balance call can deploy a Safe and approve collateral.
+
+Mitigation: Use Polymarket wallet operations only after the owner understands the Safe deployment and collateral approval behavior.
+
+## Reference(s):
+
+- [Vincent ClawHub skill page](https://clawhub.ai/glitch003/skills/vincent)
+- [Vincent service](https://heyvincent.ai)
+- [Skill source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with inline bash commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces wallet setup and operational instructions; API responses may include wallet addresses, claim URLs, balances, order data, transaction status, and signatures.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

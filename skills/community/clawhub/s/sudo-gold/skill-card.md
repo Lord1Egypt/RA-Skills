@@ -1,41 +1,59 @@
-## Description: <br>
-Uses Tavily Search to gather gold-market prices, news, technical indicators, and fundamental context across international and Chinese gold markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Tavily Search to retrieve gold market information across exchange, bank account gold, London precious metals, and retail gold price sources.
 
-## Publisher: <br>
-[FMouseBoy](https://clawhub.ai/user/FMouseBoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fmouseboy](https://clawhub.ai/user/fmouseboy)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve current gold-market information and produce neutral market summaries that include price, technical, fundamental, and risk sections. Outputs should be treated as informational market context, not financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tavily receives gold-market search requests and the skill requires a Tavily API key. <br>
-Mitigation: Only install when Tavily use is acceptable, protect the API key, and avoid including private portfolio details in prompts that may trigger external search. <br>
-Risk: Gold-market summaries can be mistaken for investment advice. <br>
-Mitigation: Present outputs as informational context only, keep interpretations neutral, and preserve the non-investment-advice framing from the artifact. <br>
+## Use Case:
 
+Agents and external users use this skill to gather current gold price, news, technical, and fundamental signals and produce neutral informational market commentary. It is intended for analysis support, not personalized financial advice.
 
-## Reference(s): <br>
-- [Gold Technical Indicators Reference](references/technical-indicators.md) <br>
-- [Tavily Search API endpoint](https://api.tavily.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and console text with source-title lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and TAVILY_API_KEY; Tavily answers are truncated in the bundled analysis script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence, released 2026-03-11) <br>
+Risk: The skill sends gold-related search requests to Tavily using TAVILY_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where Tavily use is approved, provide the key through a scoped environment variable, and rotate or revoke the key if it is exposed.
+
+Risk: Gold market commentary can be mistaken for personalized financial advice.
+
+Mitigation: Present outputs as informational analysis only and require human review before making financial decisions.
+
+Risk: Default Chinese-language output may not be suitable for every audience.
+
+Mitigation: Translate or localize the report before sharing with users who need another language.
+
+## Reference(s):
+
+- [sudo-gold ClawHub Skill](https://clawhub.ai/fmouseboy/skills/sudo-gold)
+- [Gold Technical Indicators Reference](artifact/references/technical-indicators.md)
+- [Tavily Search API Endpoint](https://api.tavily.com/search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Chinese-language console text or Markdown-style analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Tavily search results; output is informational market commentary and defaults to Chinese.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

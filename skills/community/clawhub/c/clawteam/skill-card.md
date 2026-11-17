@@ -1,41 +1,54 @@
-## Description: <br>
-Use this skill when the user wants to assemble a team for a project by matching people based on skills, roles, and work styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawteam helps users assemble project teams by matching people based on skills, roles, and work styles.
 
-## Publisher: <br>
-[ivankoriako](https://clawhub.ai/user/ivankoriako) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ivankoriako](https://clawhub.ai/user/ivankoriako)
 
-## Use Case: <br>
-External users and developers use Clawteam to identify complementary teammates for startups, side projects, and collaborative work based on skills, roles, and work style. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Future versions may add profile ingestion, contact matching, network services, persistent storage, or access to private workspace data. <br>
-Mitigation: Review and rescan future releases before installation, especially if they request private profile or workspace access. <br>
-Risk: Broad trigger phrases such as "find a team" or "build a team" may activate the skill when the user's intent is ambiguous. <br>
-Mitigation: Confirm the user's team-building intent and intended project scope before producing teammate-matching guidance. <br>
+## Use Case:
 
+External users can use Clawteam as a placeholder for assembling startup, side-project, or collaborative teams by matching skills, roles, and work styles once the capability is implemented.
 
-## Reference(s): <br>
-- [Clawteam on ClawHub](https://clawhub.ai/ivankoriako/clawteam) <br>
-- [Publisher profile: ivankoriako](https://clawhub.ai/user/ivankoriako) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text team-matching guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code is included in this release; the skill is a coming-soon definition.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and ClawHub release metadata) <br>
+Risk: Users may expect working teammate matching from a release that is currently a coming-soon placeholder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate the installed release behavior before relying on it for team assembly decisions.
+
+Risk: Future versions may analyze user profiles for teammate matching.
+
+Mitigation: Review what profile data the skill reads and confirm matching remains local before installing or upgrading.
+
+## Reference(s):
+
+- [Clawhub skill page](https://clawhub.ai/ivankoriako/skills/clawteam)
+- [Clawhub publisher profile](https://clawhub.ai/user/ivankoriako)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text team-matching guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Current release is a coming-soon placeholder with no executable output.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

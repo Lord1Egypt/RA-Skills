@@ -1,43 +1,54 @@
-## Description: <br>
-Creates videos with the MiniMax video generation API from text prompts, image prompts, start/end frames, or subject reference images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates videos with the MiniMax video generation API from text prompts, image prompts, start and end frames, or subject reference images.
 
-## Publisher: <br>
-[xbos1314](https://clawhub.ai/user/xbos1314) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xbos1314](https://clawhub.ai/user/xbos1314)
 
-## Use Case: <br>
-External users and developers use this skill to submit MiniMax video generation jobs, monitor asynchronous completion, and save the resulting video file for review or downstream use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and image URLs, including face photos in subject-reference mode, are sent to the MiniMax third-party service. <br>
-Mitigation: Use only prompts and media that are appropriate to share with MiniMax, and avoid sensitive or non-consensual face images. <br>
-Risk: The skill downloads provider-returned video files into the workspace. <br>
-Mitigation: Review generated videos before use and clean up workspace files when they are no longer needed. <br>
-Risk: The MiniMax API key is required for operation. <br>
-Mitigation: Store MINIMAX_API_KEY as a protected environment variable and avoid placing it in prompts, logs, or committed files. <br>
+## Use Case:
 
+Developers and content creators use this skill to invoke MiniMax video generation workflows from an agent workspace and save generated video files locally.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xbos1314/video-generation-minimax) <br>
-- [MiniMax API documentation](https://platform.minimaxi.com/docs/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files, API Calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands and downloaded MP4 files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MINIMAX_API_KEY and python3; uses prompt, mode, image URL inputs, duration, resolution, and output filename parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts, image URLs, and face-reference images are sent to MiniMax for video generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only content that may be shared with MiniMax, avoid sensitive personal images unless consent is clear, and review MiniMax handling requirements before use.
+
+Risk: The script accepts an output path and writes downloaded video content to disk.
+
+Mitigation: Run the skill in a constrained workspace and use a dedicated output directory until output path validation and overwrite protection are enforced.
+
+## Reference(s):
+
+- [MiniMax API documentation](https://platform.minimaxi.com/docs/llms.txt)
+- [ClawHub skill page](https://clawhub.ai/xbos1314/skills/video-generation-minimax)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with bash commands and generated video files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, the requests package, and MINIMAX_API_KEY; generated videos are downloaded as MP4 files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

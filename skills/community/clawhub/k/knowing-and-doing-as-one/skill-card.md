@@ -1,44 +1,55 @@
-## Description: <br>
-Helps agents diagnose knowing-doing gaps and turn stated lessons, plans, or intentions into a concrete Knowing-Doing Audit with a next action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides a concrete audit of the gap between stated knowledge and action, identifies what is missing, and ends with a small, dated next step.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Agents use this skill to coach individuals or teams through analysis paralysis, repeated lessons without behavior change, and claims of learning that need behavioral evidence. It produces a diagnostic audit that identifies missing knowledge components and a small next action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives directive behavioral coaching and could be misused to shame or pressure people. <br>
-Mitigation: Apply it diagnostically with user consent, and frame the result as a missing knowledge component rather than a character judgment. <br>
-Risk: The audit can produce misleading conclusions when the barrier is a real external constraint. <br>
-Mitigation: Check for external constraints such as capital, regulation, or waiting for a trigger before using the Knowing-Doing Audit. <br>
+## Use Case:
 
+Individuals, managers, and teams use this coaching framework to diagnose stalled follow-through, analysis paralysis, and lessons that have not changed behavior, then define a small test and a specific next action. It is intended for diagnosis rather than blame and points elsewhere when a demonstrable external constraint is the barrier.
 
-## Reference(s): <br>
-- [Primary sources](references/sources.md) <br>
-- [Wang Yangming's Longchang Enlightenment, 1508](examples/wang-yangming-longchang-enlightenment-1508.md) <br>
-- [Implementation Intentions: Strong Effects of Simple Plans](https://doi.org/10.1037/0003-066X.54.7.493) <br>
-- [A New Look at Habits and the Habit-Goal Interface](https://doi.org/10.1037/0033-295X.114.4.843) <br>
-- [Do Things That Don't Scale](http://paulgraham.com/ds.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown audit with structured prompts and next-action fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask step-by-step follow-up questions and stop for user input in coaching mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Real-use examples may contain confidential personal or workplace details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove confidential details before saving real-use examples in the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deciqai/skills/knowing-and-doing-as-one)
+- [Sources](artifact/references/sources.md)
+- [Implementation intentions (Gollwitzer, 1999)](https://doi.org/10.1037/0003-066X.54.7.493)
+- [Habits and the habit-goal interface (Wood & Neal, 2007)](https://doi.org/10.1037/0033-295X.114.4.843)
+- [Do Things That Don't Scale (Paul Graham, 2013)](http://paulgraham.com/ds.html)
+- [Skill overview](https://www.deciqai.com/c/knowing-and-doing-as-one)
+- [Machine-readable skill metadata](https://www.deciqai.com/s/knowing-and-doing-as-one.json)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [A structured Knowing-Doing Audit with coaching guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Iterative; concludes with a dated next action and an observable outcome.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

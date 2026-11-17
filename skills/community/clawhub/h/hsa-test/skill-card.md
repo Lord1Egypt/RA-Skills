@@ -1,45 +1,60 @@
-## Description: <br>
-Uses Ezviz camera snapshots and Ezviz AI agent analysis to inspect restaurant or kitchen scenes for hygiene, unattended flame, trash-bin status, goods storage, and mask-compliance issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill captures images from Ezviz restaurant cameras and sends them to an Ezviz AI agent to inspect hygiene, unattended open flames, trash-bin status, goods storage, and mask compliance.
 
-## Publisher: <br>
-[shuanhu95](https://clawhub.ai/user/shuanhu95) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuanhu95](https://clawhub.ai/user/shuanhu95)
 
-## Use Case: <br>
-Restaurant operators, facilities teams, and compliance reviewers use this skill to capture configured Ezviz camera images and request AI inspection results for food-service safety and hygiene checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured camera images are sent to Ezviz cloud analysis services. <br>
-Mitigation: Install only when authorized to process the relevant camera images through Ezviz services and verify employee or customer privacy obligations before use. <br>
-Risk: Ezviz app credentials and device identifiers are required for operation. <br>
-Mitigation: Use least-privilege Ezviz credentials, prefer environment variables or a secret manager over command-line secrets, and rotate credentials according to local policy. <br>
-Risk: The skill analyzes cameras in restaurant or kitchen areas where cloud processing may be restricted. <br>
-Mitigation: Avoid use on cameras or in areas where cloud processing is not permitted, and document approved camera locations before deployment. <br>
+## Use Case:
 
+Restaurant operators, kitchen safety teams, and chain managers use this skill to run AI-assisted inspections of kitchens, dining areas, canteens, and multi-location restaurant environments.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/shuanhu95/hsa-test) <br>
-- [Ezviz token API documentation](https://open.ys7.com/help/81) <br>
-- [Ezviz device capture API documentation](https://open.ys7.com/help/687) <br>
-- [Ezviz intelligent agent analysis API documentation](https://open.ys7.com/help/5006) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Analysis, Shell commands, Configuration] <br>
-**Output Format:** [Console text with JSON-like inspection results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Ezviz credentials, device serials, an agent ID, and network access to Ezviz API endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill captures and analyzes live camera imagery that may include employees, customers, or sensitive operational details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where camera capture and image analysis are authorized, and confirm privacy and legal requirements before use.
+
+Risk: Ezviz app credentials, device serials, access tokens, and agent identifiers are sensitive and may be exposed through command-line history or verbose logs.
+
+Mitigation: Prefer environment variables or a secret manager, avoid command-line secrets, rotate any secret previously exposed in shell history, and remove or gate debug logging before production use.
+
+Risk: The skill depends on unpinned Python package installation and sends required inspection data to Ezviz services.
+
+Mitigation: Pin dependencies for deployment review and confirm the organization accepts data transfer to the documented Ezviz endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shuanhu95/skills/hsa-test)
+- [Ezviz token API documentation](https://open.ys7.com/help/81)
+- [Ezviz device capture API documentation](https://open.ys7.com/help/687)
+- [Ezviz intelligent agent analysis API documentation](https://open.ys7.com/help/5006)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Console text with JSON inspection results and Markdown setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Ezviz credentials, device serial numbers, an agent ID, the requests Python package, and network access to Ezviz endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

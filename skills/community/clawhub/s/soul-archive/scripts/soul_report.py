@@ -12,7 +12,7 @@ Usage:
   python3 soul_report.py [--output /path/to/report.html] [--lang zh|en]
   python3 soul_report.py --soul-dir /custom/path --output report.html
 
-Default data directory: ~/.agent-commons/skills_data/soul-archive/ (cross-platform)
+Default data directory: ~/.agent-guild/skills_data/soul-archive/ (cross-platform)
 """
 
 

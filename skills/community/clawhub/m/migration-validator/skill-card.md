@@ -1,40 +1,49 @@
-## Description: <br>
-Validates SQL syntax of pending database migration files before execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validates SQL syntax of pending database migration files before execution.
 
-## Publisher: <br>
-[ink5725](https://clawhub.ai/user/ink5725) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ink5725](https://clawhub.ai/user/ink5725)
 
-## Use Case: <br>
-Developers and database engineers use this skill to check pending SQL migration files before execution, including CI/CD gate checks and change-control review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The validator reads the configured migrations directory and SQLite migration table, so incorrect paths can expose unintended local project data. <br>
-Mitigation: Set migrations_dir and db_path deliberately and run the skill in CI or another controlled workspace against the intended project data. <br>
-Risk: The validator executes local migration SQL in an in-memory SQLite database for syntax validation. <br>
-Mitigation: Validate only trusted migration files and review validation errors before promoting migrations into an execution pipeline. <br>
+## Use Case:
 
+Developers and engineers use this skill to scan SQL migration directories, identify applied and pending migrations, and produce a JSON validation report for change control or CI/CD gates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ink5725/migration-validator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Guidance] <br>
-**Output Format:** [JSON validation report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports discovered migrations, applied and pending migration lists, validation errors, timestamp, and completion status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The validator executes migration SQL rather than only parsing it, which can cause filesystem-backed database side effects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing or running in CI or against shared repositories; use a tightly isolated environment with disposable files, or require a non-executing SQL parser or strict SQLite authorizer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ink5725/skills/migration-validator)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Analysis]
+
+**Output Format:** [JSON validation report with migration status and validation errors]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes validation timestamp, discovered migrations, applied migrations, pending migrations, validation errors, and completion status.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

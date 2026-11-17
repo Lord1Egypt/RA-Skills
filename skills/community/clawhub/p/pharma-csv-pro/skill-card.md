@@ -1,40 +1,50 @@
-## Description: <br>
-Professional pharmaceutical CSV analysis for batch records, stability studies, QC validation, method validation, OOS/OOT detection, and USP/EP/ChP-oriented checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional pharmaceutical CSV analysis with regulatory compliance, OOS/OOT detection, stability trending, and GMP-compliant reporting.
 
-## Publisher: <br>
-[teagec](https://clawhub.ai/user/teagec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[teagec](https://clawhub.ai/user/teagec)
 
-## Use Case: <br>
-Developers and pharmaceutical quality data teams can use this local CSV helper to inspect batch, stability, QC, and method-validation datasets, generate JSON or Markdown summaries, and flag basic specification or trend issues for review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill makes pharmaceutical compliance and GMP claims that the security review says are not sufficiently supported for regulated use. <br>
-Mitigation: Treat outputs as unvalidated local CSV analysis only, and require controlled specifications, dependency review, independent validation, and qualified QA or regulatory oversight before relying on results. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/teagec/pharma-csv-pro) <br>
-- [Advanced Usage Guide](artifact/references/advanced-usage.md) <br>
-- [Regulatory Standards Reference](artifact/references/regulatory-standards.md) <br>
-- [Examples README](artifact/examples/README.md) <br>
+## Use Case:
 
+Pharmaceutical quality, QC, and data teams use this skill to analyze CSV batch records, stability studies, method validation data, and related quality-control datasets for local review.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; analyzer reports as JSON or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally on user-provided CSV files; regulated-use claims require independent validation before use in controlled workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/CHANGELOG.md, released 2026-03-07) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is a local CSV analyzer, but its compliance and reporting claims may exceed the included implementation.
+
+Mitigation: Use it only as an unvalidated local analysis helper until methods, specifications, outputs, and any LIMS integrations are independently reviewed and controlled for pharmaceutical quality or regulatory decisions.
+
+## Reference(s):
+
+- [Advanced Usage Guide](references/advanced-usage.md)
+- [Regulatory Standards Reference](references/regulatory-standards.md)
+- [Pharma Csv Pro on ClawHub](https://clawhub.ai/teagec/skills/pharma-csv-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown or JSON analysis reports with command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included CLI writes reports to stdout or an output file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog, released 2026-03-07)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

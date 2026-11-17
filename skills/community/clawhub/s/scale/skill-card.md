@@ -1,47 +1,60 @@
-## Description: <br>
-Scale systems, software architecture, and companies with bottleneck mapping, staged leverage plans, and risk-aware execution loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scale systems, software architecture, and companies with bottleneck mapping, staged leverage plans, and risk-aware execution loops.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users, developers, operators, and business teams use this skill to diagnose scaling bottlenecks and build staged, risk-aware plans for systems, software architecture, company operations, and go-to-market capacity. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local scaling notes under ~/scale/ may accumulate sensitive business context if users include secrets, customer identifiers, payment data, or highly sensitive operational details. <br>
-Mitigation: Review saved notes periodically and avoid storing secrets, credentials, customer identifiers, payment data, or highly sensitive business details in the memory files. <br>
-Risk: Scaling recommendations may be incorrect or too broad if the user has not provided enough evidence about bottlenecks, guardrails, and constraints. <br>
-Mitigation: Use low-cost measurement sprints, explicit success criteria, rollback criteria, and guardrail metrics before expanding any recommendation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Scale Frameworks ClawHub Page](https://clawhub.ai/ivangdavila/scale) <br>
-- [Scale Frameworks Homepage](https://clawic.com/skills/scale) <br>
-- [Setup - Scale Frameworks](setup.md) <br>
-- [Scale Diagnostic](scale-diagnostic.md) <br>
-- [System Scale Framework](system-scale-framework.md) <br>
-- [Architecture Scale Framework](architecture-scale-framework.md) <br>
-- [Company Scale Framework](company-scale-framework.md) <br>
-- [Execution Cadence](execution-cadence.md) <br>
-- [Memory Template - Scale Frameworks](memory-template.md) <br>
+## Use Case:
 
+Developers, engineering leaders, operators, and company builders use this skill to diagnose scaling bottlenecks in systems, software architecture, teams, and go-to-market capacity. It helps turn those diagnoses into staged leverage plans with measurable objectives, guardrails, and rollback criteria.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown and structured planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local planning memory under ~/scale/ when the user confirms activation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local scaling memory under ~/scale/ could retain sensitive company, architecture, bottleneck, guardrail, or escalation context if the user records it there.
+
+Mitigation: Do not store secrets, credentials, payment data, or sensitive identifiers; review or delete ~/scale/ when durable scaling memory is not desired.
+
+Risk: Planning recommendations for systems, architecture, teams, or go-to-market capacity could be incomplete or mismatched to the user's real constraints.
+
+Mitigation: Validate recommendations against current metrics and domain expertise, use staged tests with guardrails and rollback criteria, and require explicit user approval before executing changes.
+
+## Reference(s):
+
+- [Scale Frameworks on ClawHub](https://clawhub.ai/ivangdavila/skills/scale)
+- [Scale Frameworks Homepage](https://clawic.com/skills/scale)
+- [Setup - Scale Frameworks](artifact/setup.md)
+- [Scale Diagnostic](artifact/scale-diagnostic.md)
+- [System Scale Framework](artifact/system-scale-framework.md)
+- [Architecture Scale Framework](artifact/architecture-scale-framework.md)
+- [Company Scale Framework](artifact/company-scale-framework.md)
+- [Execution Cadence](artifact/execution-cadence.md)
+- [Memory Template - Scale Frameworks](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance with diagnostics, checklists, staged plans, scorecards, and memory templates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Planning-focused output; may use local memory under ~/scale/ and requires explicit user approval before applying technical or organizational changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

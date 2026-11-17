@@ -2,7 +2,7 @@
  * check-balance — read Stellar USDC + XLM for an account.
  *
  * Usage:
- *   npx tsx skills/check-balance/run.ts [G... pubkey] [--json] [base flags]
+ *   ./node_modules/.bin/tsx skills/check-balance/run.ts [G... pubkey] [--json] [base flags]
  *
  * If no pubkey given, derives it from the --secret-file (default
  * .stellar-secret in cwd).

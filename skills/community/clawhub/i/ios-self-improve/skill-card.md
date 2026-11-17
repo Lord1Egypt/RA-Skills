@@ -1,47 +1,56 @@
-## Description: <br>
-iOS self-improvement skill for Swift and Objective-C standards, App Store review readiness, crash prevention, automated self-checks, Xcode, UIKit, and SwiftUI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides iOS-focused self-checks and rule proposals for Swift, Objective-C, UIKit, SwiftUI, App Store compliance, crash prevention, and Xcode workflows.
 
-## Publisher: <br>
-[joelee09](https://clawhub.ai/user/joelee09) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[joelee09](https://clawhub.ai/user/joelee09)
 
-## Use Case: <br>
-Developers and engineers use this skill to review iOS code and guidance for platform-specific risks such as crash patterns, privacy permission text, navigation behavior, AutoLayout, SwiftUI lifecycle issues, concurrency, sandboxing, and App Store review concerns. It also helps generate user-reviewed iOS rule proposals through its declared developer-self-improve-core dependency. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on developer-self-improve-core for rule generation. <br>
-Mitigation: Review that dependency before installation and confirm it is acceptable for the intended workspace. <br>
-Risk: Generated rule proposals or self-check findings could be inaccurate or too broad for a specific iOS project. <br>
-Mitigation: Keep the documented human-review step in place before accepting any proposed rule or memory change. <br>
-Risk: The iOS checks are only appropriate when the workspace is configured for iOS or multi-platform iOS work. <br>
-Mitigation: Confirm the platform configuration before relying on the skill's self-check output. <br>
+## Use Case:
 
+Developers and engineers use this skill to review iOS development answers and code for platform-specific risks, style issues, compatibility concerns, privacy configuration gaps, and App Store review considerations. It can also propose iOS rule drafts through its required developer-self-improve-core dependency for human review.
 
-## Reference(s): <br>
-- [README](artifact/README.md) <br>
-- [Security Information](artifact/SECURITY.md) <br>
-- [Trust Model](artifact/TRUST_MODEL.md) <br>
-- [Dependency Explanation](artifact/DEPENDENCY_EXPLANATION.md) <br>
-- [Built-in iOS Rules](artifact/rules/builtin_rules.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/joelee09/ios-self-improve) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text guidance with inline code, shell command examples, configuration notes, and rule-draft snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for user review before any rule or memory change is accepted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The propose command runs the developer-self-improve-core shell script, so the effective behavior depends on that dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust developer-self-improve-core before installation, and prefer a pinned or otherwise verified dependency version.
+
+Risk: Security documentation describes the skill as read-only and no-code-execution, but that claim is incomplete for workflows that call the dependency script.
+
+Mitigation: Treat rule-proposal workflows as dependency-executing workflows and review generated rule drafts before accepting any changes.
+
+## Reference(s):
+
+- [README](artifact/README.md)
+- [Security Information](artifact/SECURITY.md)
+- [Trust Model](artifact/TRUST_MODEL.md)
+- [Dependency Explanation](artifact/DEPENDENCY_EXPLANATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory and rule drafts require human review.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release and SKILL.md frontmatter; .clawhub.json and SUBMISSION_NOTE.md still mention 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

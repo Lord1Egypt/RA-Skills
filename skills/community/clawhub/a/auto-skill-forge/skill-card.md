@@ -1,45 +1,60 @@
-## Description: <br>
-Skill Forge generates task_suite.yaml test suites from existing SKILL.md files, generates SKILL.md plus task_suite.yaml from skill_spec.yaml files, and can optionally run local evaluation and improvement workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Forge generates task suites for existing agent skills and can generate a complete SKILL.md plus task_suite.yaml from a structured skill_spec.yaml.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and skill maintainers use Skill Forge to generate test suites for existing agent skills, create new skills from structured specifications, and inspect coverage gaps against generated scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skills or task suites may include incorrect, incomplete, or misleading guidance. <br>
-Mitigation: Review generated SKILL.md and task_suite.yaml outputs before relying on them or publishing them. <br>
-Risk: Optional --evaluate and --auto-improve modes call local improvement tools. <br>
-Mitigation: Use those modes only when the local improvement-evaluator and improvement-orchestrator installations are trusted. <br>
-Risk: Documented calibration and judge-selection safeguards may not be fully implemented in code. <br>
-Mitigation: Treat generated suites as drafts and inspect whether tasks actually measure skill-specific behavior. <br>
+## Use Case:
 
+Developers and skill maintainers use Skill Forge to create runnable task_suite.yaml coverage for existing skills, generate new skills from a structured YAML spec, and optionally run downstream evaluation or improvement workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lanyasheng/auto-skill-forge) <br>
-- [Skill Spec Format](references/spec-format.md) <br>
-- [Code Review Spec Example](references/examples/code-review-spec.yaml) <br>
-- [Release Notes Spec Example](references/examples/release-notes-spec.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and YAML files with optional command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces task_suite.yaml, generated SKILL.md files, and optional evaluation reports depending on mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Generated SKILL.md files may turn untrusted or poorly reviewed specs into agent instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated SKILL.md files before installation, especially when the spec comes from another person or includes critical constraints.
+
+Risk: The release claims calibration and atomic-write safeguards that the implementation may not fully provide.
+
+Mitigation: Use private output directories, inspect generated files before deployment, and do not rely on documented safeguards until the implementation is verified.
+
+Risk: --auto-improve can invoke another local tool that mutates skill instructions.
+
+Mitigation: Use --auto-improve only in controlled workspaces and review any modified skill instructions before publishing or installing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lanyasheng/skills/auto-skill-forge)
+- [Skill Spec Format](references/spec-format.md)
+- [Code Review Spec Example](references/examples/code-review-spec.yaml)
+- [Release Notes Spec Example](references/examples/release-notes-spec.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, configuration, guidance]
+
+**Output Format:** [Markdown and YAML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates task_suite.yaml for existing skills, or SKILL.md plus task_suite.yaml from a skill_spec.yaml.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -238,7 +238,7 @@ pub fn large_dataset(count: usize) -> Vec<TestCommand> {
 pub fn commands_with_secrets() -> Vec<TestCommand> {
     vec![
         TestCommand {
-            command: "curl -H 'Authorization: Bearer sk-ant-api-key-1234567890abcdef' https://api.example.com",
+            command: "curl -H 'Authorization: Bearer REDACTED-SECRET' https://api.example.com",
             outcome: Outcome::Allow,
             timestamp_offset_secs: -300,
             ..Default::default()
@@ -250,7 +250,7 @@ pub fn commands_with_secrets() -> Vec<TestCommand> {
             ..Default::default()
         },
         TestCommand {
-            command: "export GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            command: "export GITHUB_TOKEN=REDACTED-SECRET",
             outcome: Outcome::Allow,
             timestamp_offset_secs: -180,
             ..Default::default()

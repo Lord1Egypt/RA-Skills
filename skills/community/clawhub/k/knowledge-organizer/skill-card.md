@@ -1,48 +1,64 @@
-## Description: <br>
-Use when importing articles, organizing notes, or syncing a knowledge base across Obsidian, Feishu, and Tencent IMA with OpenClaw or Codex. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when importing articles, organizing notes, or syncing a knowledge base across Obsidian, Feishu, and Tencent IMA with OpenClaw or Codex.
 
-## Publisher: <br>
-[cjke84](https://clawhub.ai/user/cjke84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cjke84](https://clawhub.ai/user/cjke84)
 
-## Use Case: <br>
-Developers, knowledge workers, and teams use this skill to turn article links, drafts, and notes into structured Markdown, check duplicates, apply tags and summaries, and write or sync selected content to Obsidian, Feishu, or Tencent IMA. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read selected knowledge-base folders and write notes or assets under the configured vault. <br>
-Mitigation: Scope OPENCLAW_KB_ROOT to the intended vault and review generated notes before relying on them. <br>
-Risk: Selected note content can be uploaded to Feishu or Tencent IMA when those sync destinations are configured. <br>
-Mitigation: Provide Feishu access and IMA credentials only for intended sync workflows and verify the destination before upload. <br>
-Risk: Custom transport endpoint settings can redirect Feishu sync traffic. <br>
-Mitigation: Leave FEISHU_IMPORT_ENDPOINT unset unless the endpoint is explicitly trusted. <br>
+## Use Case:
 
+Developers, knowledge workers, and teams use this skill to import articles, drafts, and links into structured knowledge-base notes with duplicate checks, tags, summaries, related-note suggestions, and optional sync to Obsidian, Feishu, or Tencent IMA.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cjke84/knowledge-organizer) <br>
-- [Project Homepage](https://github.com/cjke84/knowledge-organizer) <br>
-- [Feishu Import (OpenClaw Plugin)](references/feishu-import.md) <br>
-- [Tencent IMA Import (OpenAPI)](references/ima-import.md) <br>
-- [Knowledge Base Tag System](references/tag-system.md) <br>
-- [WeChat Article Import](references/wechat-import.md) <br>
-- [Xiaohongshu Note Import](references/xiaohongshu-import.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, shell commands, and configuration guidance for knowledge-base import and sync workflows.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write Obsidian-ready Markdown files and prepare Feishu or Tencent IMA sync payloads when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: frontmatter and server release metadata) <br>
+Risk: The skill has broad image and sync handling that can affect a user's knowledge base.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, start with a test vault and dry-run, and restrict the agent to the intended vault path and trusted image sources.
+
+Risk: Custom Feishu or IMA endpoints could route content to unintended services.
+
+Mitigation: Keep custom endpoints unset unless they are controlled and verify destination credentials and routing before live sync.
+
+Risk: Drafts from untrusted sources may introduce unwanted content into notes or sync targets.
+
+Mitigation: Avoid importing untrusted drafts and review generated summaries, tags, and duplicate decisions before committing changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cjke84/skills/knowledge-organizer)
+- [Project homepage](https://github.com/cjke84/knowledge-organizer)
+- [WeChat import workflow](references/wechat-import.md)
+- [Xiaohongshu import workflow](references/xiaohongshu-import.md)
+- [IMA import workflow](references/ima-import.md)
+- [Feishu import workflow](references/feishu-import.md)
+- [Tag system](references/tag-system.md)
+- [Tencent IMA import_doc API](https://ima.qq.com/openapi/note/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown notes, structured import results, CLI commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write Obsidian-ready Markdown files or produce SyncStateRecord-backed Feishu/IMA import results when configured.]
+
+## Skill Version(s):
+
+0.1.2 (source: frontmatter, manifest.toml, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

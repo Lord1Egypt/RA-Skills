@@ -1,42 +1,51 @@
-## Description: <br>
-Research startups, funding rounds, acquisitions, and hiring trends via startups.in. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research startups, funding rounds, acquisitions, and hiring trends via startups.in
 
-## Publisher: <br>
-[networkingit](https://clawhub.ai/user/networkingit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[networkingit](https://clawhub.ai/user/networkingit)
 
-## Use Case: <br>
-External users and developers use this skill to research startups by name, sector, or location; inspect funding, valuation, investor, hiring, and job-posting information; and compare startups side by side. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Startup research queries are sent to startups.in. <br>
-Mitigation: Avoid submitting sensitive or confidential research queries unless the service is trusted for that use. <br>
-Risk: Enhanced access can require a Moltbook identity token. <br>
-Mitigation: Do not provide a Moltbook identity token unless enhanced access is needed and the service is trusted. <br>
+## Use Case:
 
+External users and developers use this skill to research startups, funding rounds, investors, hiring activity, and startup comparisons using startups.in.
 
-## Reference(s): <br>
-- [Startups Skill on ClawHub](https://clawhub.ai/networkingit/startups) <br>
-- [startups.in](https://startups.in) <br>
-- [Moltbook startups profile](https://moltbook.com/u/startups) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, API Calls] <br>
-**Output Format:** [Markdown with HTTP endpoint examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Public access works without authentication; an optional Moltbook identity token may be used for enhanced access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Enhanced access requires sharing a Moltbook identity token with startups.in.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use public access when possible and only provide a Moltbook identity token after trusting startups.in for the requested startup research queries.
+
+## Reference(s):
+
+- [Startups.in](https://startups.in)
+- [Moltbook Startups Profile](https://moltbook.com/u/startups)
+- [ClawHub Startups Skill Page](https://clawhub.ai/networkingit/skills/startups)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Markdown or plain text responses with startup research findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use public startups.in access; enhanced access can use a Moltbook identity token.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

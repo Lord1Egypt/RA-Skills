@@ -30,7 +30,9 @@ tools:
           description: "Skill taxonomy layer."
         stage:
           type: string
-          description: "Optional progressive-loading stage, for example scene or authoring."
+          pattern: "^(?:[a-z0-9]+(?:-[a-z0-9]+)*)?$(?![\\s\\S])"
+          default: ""
+          description: "Single-line kebab-case stage, for example scene or authoring; empty omits it."
         depends:
           type: array
           items:

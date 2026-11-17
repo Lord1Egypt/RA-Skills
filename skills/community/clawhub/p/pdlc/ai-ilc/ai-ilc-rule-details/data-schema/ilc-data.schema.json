@@ -1,0 +1,22 @@
+{
+  "title": "AI-ILC Data",
+  "description": "Family-scoped (ideas funnel) data shape for AI-ILC (Idea Life Cycle).",
+  "type": "object",
+  "required": ["$schemaVersion","$generatedBy","$generatedOn","$family","$package","data"],
+  "properties": {
+    "$schema":{"type":"string"},
+    "$schemaVersion":{"type":"string","pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "$generatedBy":{"type":"string","const":"AI-DFE"},
+    "$generatedOn":{"type":"string","format":"date-time"},
+    "$family":{"type":"string"},
+    "$package":{"type":"string","const":"ai-ilc"},
+    "data":{
+      "type":"object","required":["counts"],
+      "properties":{
+        "currentIdea":{"type":["object","null"],"properties":{"name":{"type":["string","null"]},"id":{"type":["string","null"]},"status":{"type":["string","null"]},"stage":{"type":["integer","string","null"]},"domain":{"type":["string","null"]},"route":{"type":["string","null"]},"briefFile":{"type":["string","null"]},"created":{"type":["string","null"]},"lastUpdated":{"type":["string","null"]},"score":{"type":["object","null"]}}},
+        "ideas":{"type":"array","items":{"type":"object","description":"Idea funnel item for the dashboard Ideas tab (BUILD_GUIDE §2.2). Renderer filters on lowercase `stage`.","properties":{"id":{"type":"string"},"name":{"type":"string"},"stage":{"type":["string","null"],"description":"LOWERCASE: captured|shaped|evaluated|scoped|approved|routed|parked|rejected"},"status":{"type":["string","null"],"description":"Layer-1 PascalCase status (kept for back-compat); `stage` is its lowercase form"},"score":{"type":["number","null"]},"scoreMax":{"type":["number","null"]},"decision":{"type":["string","null"]},"domain":{"type":["string","null"]},"depth":{"type":["string","null"]},"route":{"type":["string","null"]},"routeTarget":{"type":["string","null"]},"brief":{"type":["string","null"],"description":"one-line description — renderer reads idea.brief"},"created":{"type":["string","null"]},"lastUpdated":{"type":["string","null"]},"files":{"type":"array","items":{"type":"object","properties":{"name":{"type":"string"},"path":{"type":["string","null"]},"status":{"type":["string","null"]}}}}}}},
+        "counts":{"type":["object","null"],"properties":{"total":{"type":["integer","null"]},"approved":{"type":["integer","null"]},"rejected":{"type":["integer","null"]}}}
+      }
+    }
+  }
+}

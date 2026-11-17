@@ -1,46 +1,62 @@
-## Description: <br>
-Professional design studio for creating covers, banners, avatars, logos, mockups, portfolios and GIF animations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional design studio for creating covers, banners, avatars, logos, mockups, portfolios and GIF animations.
 
-## Publisher: <br>
-[mosoonpi-ai](https://clawhub.ai/user/mosoonpi-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mosoonpi-ai](https://clawhub.ai/user/mosoonpi-ai)
 
-## Use Case: <br>
-External users, developers, and marketplace creators use this skill to generate local design assets such as freelance covers, social banners, logos, avatars, device mockups, watermarks, and animated GIF banners. It also supports batch generation from CSV and basic design-quality checks for contrast, balance, palette, and composition. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local image generation and editing can create or overwrite files, including watermarking an input image when no separate output path is provided. <br>
-Mitigation: Use explicit output directories, keep backups of important source images, and provide an output path for watermarking operations. <br>
-Risk: Batch generation can create many files from CSV input and may amplify incorrect titles, styles, or output paths. <br>
-Mitigation: Review CSV inputs and target directories before batch runs, then inspect generated summaries and sample outputs before publishing assets. <br>
+## Use Case:
 
+External creators, freelancers, and developers use this skill to generate marketplace covers, social banners, avatars, logos, mockups, GIF banners, watermarks, SVG assets, and design quality checks from agent-guided prompts or local files.
 
-## Reference(s): <br>
-- [Design Studio on ClawHub](https://clawhub.ai/mosoonpi-ai/design-studio) <br>
-- [README](README.md) <br>
-- [Skill Definition](SKILL.md) <br>
-- [Design Rules](references/design-rules.md) <br>
-- [Color Palettes](references/color-palettes.md) <br>
-- [Font Pairings](references/font-pairings.md) <br>
-- [Knowledge Base](references/knowledge-base.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated local image assets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create PNG, SVG, GIF, and other local design files depending on the selected script and arguments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Pipeline runs can use predictable intermediate filenames such as *_draft.png and *_improved_1.png, which may collide with existing files in reused output paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run generation in a fresh output directory or choose explicit unique output paths, then review generated files before reuse.
+
+Risk: The skill reads selected images or CSV files and writes generated assets to local paths.
+
+Mitigation: Use trusted input files, avoid unnecessary sensitive source assets, and constrain outputs to a known project directory.
+
+Risk: Several script messages and help text are in Russian, which may make warnings or errors easier to miss for non-Russian readers.
+
+Mitigation: Review command options and outputs carefully, and translate messages before operational or customer-facing use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mosoonpi-ai/skills/design-studio)
+- [Professional Design Rules](references/design-rules.md)
+- [Color Palettes](references/color-palettes.md)
+- [Font Pairings](references/font-pairings.md)
+- [Professional Design Knowledge Base](references/knowledge-base.md)
+- [SVG Element Library](references/svg_elements/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, image files]
+
+**Output Format:** [Markdown guidance with inline shell commands plus generated PNG, GIF, SVG, TXT, and local output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are local design assets and quality reports produced from user prompts, selected images, CSV files, palettes, fonts, and command options.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

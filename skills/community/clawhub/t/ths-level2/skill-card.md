@@ -1,45 +1,64 @@
-## Description: <br>
-同花顺Level2数据获取与深度分析工具，支持读取本地同花顺数据、调用行情数据源、生成技术分析和Level2资金流向报告。 <br>
+## Description:
 
-This skill is for research and development only. <br>
+同花顺Level2数据接入 helps agents read local TongHuaShun market-data artifacts, analyze stock quotes and Level2 signals, and generate technical analysis reports.
 
-## Publisher: <br>
-[claremouse007](https://clawhub.ai/user/claremouse007) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[claremouse007](https://clawhub.ai/user/claremouse007)
 
-## Use Case: <br>
-External developers and financial-analysis users can use this skill to inspect Chinese A-share holdings, read local Tonghuashun data when available, fetch supported market data, and generate JSON or Markdown technical analysis reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Administrator process-memory reading, packet capture, MITM, debugger, shared-memory, or protocol-emulation workflows may expose process data or network traffic. <br>
-Mitigation: Treat the skill as a Review install, read the code first, and avoid those workflows unless explicitly authorized and operating in an appropriate low-privilege environment. <br>
-Risk: The skill can interact with Tushare credentials and market-data services. <br>
-Mitigation: Use a dedicated low-privilege Tushare token and keep paid or account-bound market-data access within the relevant service terms. <br>
-Risk: Generated stock-analysis reports and strategy suggestions may be incomplete or misleading. <br>
-Mitigation: Review generated reports before acting on them and treat outputs as analysis assistance rather than financial advice. <br>
+## Use Case:
 
+Developers and finance analysts use this skill to configure TongHuaShun and Tushare data access, run Python-based stock and Level2 analyses, and produce reports for review. It is best suited to authorized research or development workflows because the evidence describes reverse-engineered access, memory reading, and private protocol analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/claremouse007/ths-level2) <br>
-- [Tonghuashun website](https://www.10jqka.com.cn/) <br>
-- [Tushare documentation](https://tushare.pro/document/1) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, JSON result files, Python code examples, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require local Tonghuashun files, an optional Tushare token, and Windows administrator privileges for memory-reading workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, artifact _meta.json, and SKILL.md version section) <br>
+Risk: Reverse-engineered market-data access may violate product terms or exceed the user's authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit authorization and prefer official documented APIs or exported data when available.
+
+Risk: Memory-reading scripts can inspect another application's process memory and may require elevated privileges.
+
+Mitigation: Review the code before use and do not run memory-reading scripts as administrator.
+
+Risk: Credential handling may expose a live Tushare token if stored in the skill directory.
+
+Mitigation: Use environment variables or an external secret store instead of committing or storing tokens in the artifact.
+
+Risk: Generated stock reports may be simulated, incomplete, or unsuitable as financial advice.
+
+Mitigation: Treat outputs as research artifacts and require human review against authoritative market data before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/claremouse007/skills/ths-level2)
+- [Publisher profile](https://clawhub.ai/user/claremouse007)
+- [Tushare documentation](https://tushare.pro/document/1)
+- [TongHuaShun official website](https://www.10jqka.com.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with Python and shell snippets plus generated JSON and Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may depend on local TongHuaShun installation state, Tushare credentials, network access, and paid Level2 data authorization.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

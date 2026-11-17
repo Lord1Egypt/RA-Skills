@@ -1,44 +1,60 @@
-## Description: <br>
-Query Google Gemini via browser automation using OpenClaw's Browser Relay. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Google Gemini via browser automation using OpenClaw's Browser Relay when an agent needs to ask Gemini questions and retrieve responses.
 
-## Publisher: <br>
-[eccstartup](https://clawhub.ai/user/eccstartup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eccstartup](https://clawhub.ai/user/eccstartup)
 
-## Use Case: <br>
-Developers and agent users use this skill to ask Google Gemini questions from a manually attached Chrome tab and extract Gemini responses through OpenClaw Browser Relay. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill controls a real, logged-in Chrome tab and can access content visible in the attached Gemini session. <br>
-Mitigation: Attach only the intended Gemini tab and prefer a dedicated Chrome profile or non-primary Google account. <br>
-Risk: Clipboard extraction can expose unrelated sensitive clipboard contents. <br>
-Mitigation: Use DOM extraction when the clipboard may contain sensitive data, or clear and verify the clipboard before reading it. <br>
-Risk: Browser Relay uses page-context JavaScript evaluation to interact with Gemini's editor. <br>
-Mitigation: Keep execution limited to the documented Gemini DOM operations and review commands before running them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to automate authenticated Gemini interactions through a manually attached Chrome tab, submit prompts, wait for completion, and extract Gemini responses.
 
-## Reference(s): <br>
-- [Gemini Browser on ClawHub](https://clawhub.ai/eccstartup/gemini-browser) <br>
-- [Google Gemini](https://gemini.google.com) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and extracted response text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a manually attached Chrome tab, OpenClaw Browser Relay, and an authenticated Google Gemini session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill controls a manually attached Gemini tab in a real Chrome session, so the agent may access visible account context in that tab.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Chrome profile and non-primary Google account, and attach only the Gemini tab intended for automation.
+
+Risk: The documented input path uses raw JavaScript evaluation and can mishandle untrusted prompt text if inserted directly into the snippet.
+
+Mitigation: Safely encode prompt text as data before injection and review JavaScript snippets before execution.
+
+Risk: Clipboard-based extraction may expose or overwrite global clipboard contents.
+
+Mitigation: Prefer DOM or text extraction when possible, and review clipboard contents before using them elsewhere.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eccstartup/skills/gemini-browser)
+- [Publisher profile](https://clawhub.ai/user/eccstartup)
+- [Google Gemini](https://gemini.google.com)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with browser command examples and extracted Gemini response text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenClaw Browser Relay, a manually attached Gemini tab, and an authenticated Chrome session.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

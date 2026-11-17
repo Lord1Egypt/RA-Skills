@@ -1,40 +1,48 @@
-## Description: <br>
-Diagnose pipeline health, detect stalled deals, and surface what needs attention this week for sales teams managing active opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose pipeline health, detect stalled deals, and surface what needs attention this week for sales teams managing active opportunities.
 
-## Publisher: <br>
-[depinHQ](https://clawhub.ai/user/depinHQ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[depinhq](https://clawhub.ai/user/depinhq)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Sales founders, representatives, managers, and revenue operators use this skill to review active opportunity pipelines, identify stalled or false-active deals, assess forecast credibility, and choose the highest-priority actions for the week.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Pipeline recommendations may influence forecasts, compensation, or deal status decisions.
+
+Mitigation: Review the skill output before acting on recommendations such as downgrading, recovering, or closing deals.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Founders, sales representatives, sales managers, and revenue operators use this skill to review active opportunity pipelines, identify stalled or false-active deals, assess forecast credibility, and decide which deals need attention this week. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Pipeline guidance could affect sales forecasts or customer decisions if treated as authoritative without review. <br>
-Mitigation: Review recommendations against CRM records, recent customer activity, sales operating rules, and human judgment before changing forecasts or customer actions. <br>
-Risk: Broad requests such as pipeline review or deals needing attention may invoke the skill during ordinary sales conversations. <br>
-Mitigation: Confirm that the user wants active sales-opportunity pipeline analysis when the request is ambiguous. <br>
+**Output Format:** [Markdown with structured pipeline health sections, prioritized deal lists, risk notes, and action recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Pipeline ClawHub Page](https://clawhub.ai/depinHQ/pipeline) <br>
+**Other Properties Related to Output:** [Uses user-provided pipeline data such as deal names, stages, activity dates, next steps, values, close timing, blockers, and notes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown sales-pipeline health review with prioritized actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include health status, hygiene and stagnation findings, top deals to act on, stalled or false-active deals, stage risks, and immediate actions.] <br>
+2.0.0 (source: server release metadata and artifact skill metadata)
 
-## Skill Version(s): <br>
-2.0.0 (source: skill.md frontmatter, skill.json, server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

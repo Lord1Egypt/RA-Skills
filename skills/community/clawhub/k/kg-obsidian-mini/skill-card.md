@@ -1,43 +1,54 @@
-## Description: <br>
-A compact Obsidian knowledge-graph note workflow that analyzes notes before editing, creates execution checklists, classifies four note types, normalizes direct links, fills relationships, deduplicates notes, and previews enrichment with YAML-oriented Python scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kg Obsidian Mini helps an agent organize Obsidian knowledge graph notes by classifying note types, planning changes before edits, normalizing links, creating relationship notes, deduplicating related notes, and previewing YAML-based enrichment.
 
-## Publisher: <br>
-[realpda](https://clawhub.ai/user/realpda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realpda](https://clawhub.ai/user/realpda)
 
-## Use Case: <br>
-External users and developers use this skill to organize an Obsidian vault into a small knowledge-graph note system while preserving original note text and requiring review before modifications. It supports note classification, relationship-note creation, duplicate cleanup planning, YAML validation, and enrichment preview. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify, rename, move, or delete local notes during execution. <br>
-Mitigation: Use it only on a backed-up vault, require dry-run or checklist previews before file-changing operations, and approve each proposed change before execution. <br>
-Risk: The enrichment workflow may use web search or remote image checks that expose note-derived topics or URLs. <br>
-Mitigation: Approve each external search or remote image check only when sharing the related note topic or URL is acceptable. <br>
-Risk: Incorrect classification, relationship creation, or deduplication could alter the meaning or structure of a knowledge graph. <br>
-Mitigation: Review generated execution checklists and final change summaries before accepting edits, especially for relationship notes and duplicate removal. <br>
+## Use Case:
 
+Developers, knowledge workers, and Obsidian vault maintainers use this skill to have an agent inspect notes, produce an execution checklist, and then apply controlled cleanup for note classification, link normalization, relationship notes, deduplication, and enrichment planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/realpda/kg-obsidian-mini) <br>
-- [Publisher profile](https://clawhub.ai/user/realpda) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, execution checklists, note edits, and JSON previews from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, move, rename, patch, or delete local Obsidian notes after analysis and user review; helper scripts read local Markdown files and validate YAML frontmatter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill can guide broad note edits, renames, moves, deletions, and relationship-note creation across an Obsidian vault.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated dry-run checklist before execution, require explicit approval for destructive operations, and keep backups or version control enabled.
+
+Risk: Web enrichment can expose note-derived search terms to external services.
+
+Mitigation: Use enrichment only when external search is acceptable for the selected notes, and avoid sending sensitive note content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/realpda/skills/kg-obsidian-mini)
+- [Publisher profile](https://clawhub.ai/user/realpda)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown task lists, Obsidian note updates, shell commands, and JSON preview output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes read-only analysis checklists, YAML validation output, and enrichment previews.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

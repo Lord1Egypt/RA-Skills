@@ -1,45 +1,52 @@
-## Description: <br>
-Contentful helps agents read, create, and update Contentful CMS data through the OOMOL oo CLI connector instead of direct API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Contentful (contentful.com). Use this skill for ANY Contentful request — reading, creating, and updating data. Whenever a task involves Contentful, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, content teams, and agent users use this skill to inspect Contentful users, spaces, environments, content types, and entries, and to create or update entries after reviewing the live connector schema and confirming write payloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and update Contentful entries, which may change CMS content. <br>
-Mitigation: Confirm the exact write payload and expected effect with the user before running create_entry or update_entry. <br>
-Risk: The optional first-time setup path includes a pipe-to-shell CLI installer. <br>
-Mitigation: Verify the oo CLI installer source before running the install command, or use the documented install guide. <br>
-Risk: The skill requires an OOMOL-connected Contentful account and sensitive credentials managed by the service. <br>
-Mitigation: Install only when the publisher is trusted and the user is comfortable connecting their Contentful account through OOMOL. <br>
+## Use Case:
 
+Developers and content editors use the skill to inspect Contentful spaces, environments, content types, entries, and the current user, and to create or update entries through their connected OOMOL account. Write actions require confirmation before execution.
 
-## Reference(s): <br>
-- [ClawHub Contentful Skill](https://clawhub.ai/oomol/oo-contentful) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
-- [Contentful](https://www.contentful.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON payload or response handling.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands call oo connector actions and may return JSON data from Contentful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Setup uses unpinned remote software whose broader changes to agent skill directories are not explained.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI installation separately and verify the chosen release. Set OO_SKILLS_SYNC_DISABLED=1 to prevent startup writes to agent skill directories, use narrowly scoped Contentful access, and retain the skill's required write confirmations.
+
+## Reference(s):
+
+- [Contentful](https://www.contentful.com)
+- [Contentful Content Management API documentation](https://www.contentful.com/developers/docs/references/content-management-api/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [oo CLI controls](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown instructions and JSON-formatted Contentful responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes read operations and user-confirmed write actions.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

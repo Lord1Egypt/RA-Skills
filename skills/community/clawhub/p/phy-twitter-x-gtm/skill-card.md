@@ -1,41 +1,54 @@
-## Description: <br>
-Twitter/X go-to-market strategy for founders and product builders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Twitter/X go-to-market strategy for founders and product builders. Use when planning Twitter content strategy, analyzing engagement, identifying accounts to engage with, or creating content for Western audiences and investors.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-External founders, product builders, and marketing operators use this skill to plan Twitter/X content strategy, analyze public engagement patterns, identify accounts to engage with, and draft audience-specific posts or threads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Twitter/X content could include misleading, off-brand, confidential, or otherwise unsuitable public messaging. <br>
-Mitigation: Review all generated tweets and threads before publishing, and avoid sharing confidential business, customer, or investor information. <br>
-Risk: The skill may draft in an unintended language or tone for multilingual audiences. <br>
-Mitigation: Confirm the desired output language, audience, and brand voice before using drafts externally. <br>
+## Use Case:
 
+External founders, product builders, and marketing teams use this skill to plan Twitter/X content strategy, analyze engagement patterns, identify accounts to engage with, and draft founder-led posts or threads for Western audiences and investors.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-twitter-x-gtm) <br>
-- [Canlah AI](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with tweet drafts, thread structures, reply templates, scheduling guidance, and engagement analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only drafting and strategy output; no automatic posting behavior] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Generated marketing guidance or drafts could be inaccurate, off-brand, or based on unsuitable research sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Clarify target language, audience, and source boundaries up front; require human review before publication.
+
+Risk: Account credentials or automatic posting permission could create avoidable operational risk if paired with external automation.
+
+Mitigation: Do not provide credentials or posting permission unless a separate trusted workflow controls account access and publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-twitter-x-gtm)
+- [Canlah AI homepage](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown and plain text content plans, tweet drafts, thread outlines, reply templates, schedules, and strategy guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include character counts, suggested posting times, engagement prompts, and human review cues before publication.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

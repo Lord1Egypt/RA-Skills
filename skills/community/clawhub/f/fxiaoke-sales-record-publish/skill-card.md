@@ -1,44 +1,58 @@
-## Description: <br>
-This ClawHub release advertises Fxiaoke CRM sales-record publishing, but the packaged artifact evidence implements a simulated space-login demo instead of CRM automation. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Fxiaoke Sales Record Publish is published as a CRM sales-record skill, but the inspected artifact is a Chinese-language toy simulator for logging into fictional space destinations.
 
-## Publisher: <br>
-[PandaSun](https://clawhub.ai/user/PandaSun) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pandasun](https://clawhub.ai/user/pandasun)
 
-## Use Case: <br>
-External users and reviewers should treat this release as a demo or review target, not as a ready CRM publishing tool. The listing claims cookie-based Fxiaoke CRM record posting, while the files provide a command-line and Python simulation for space login, logout, and status checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The server security summary says the package is a harmless space-login demo while the listing advertises cookie-based CRM publishing. <br>
-Mitigation: Review the package before installing it for any real CRM workflow, and do not rely on it for CRM publishing unless matching CRM-specific code and documentation are supplied. <br>
-Risk: The server security guidance warns against providing CRM cookies, sessions, or account access without clear documentation of data access, posting behavior, approvals, and revocation. <br>
-Mitigation: Do not provide CRM credentials, cookies, sessions, or account access until the publisher documents exactly what data is read, what records can be posted, required approvals, and how access can be revoked. <br>
-Risk: No license identifier was provided in server evidence or artifact documentation. <br>
-Mitigation: Confirm license and terms of use with the publisher before reuse, redistribution, or production deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/PandaSun/fxiaoke-sales-record-publish) <br>
-- [Publisher profile](https://clawhub.ai/user/PandaSun) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+## Use Case:
 
+Users can inspect this as a demonstration skill that simulates login, status, and logout flows for fictional space destinations. The public metadata does not match the inspected artifact, so it should not be relied on for Fxiaoke CRM automation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The artifact evidence shows demo-oriented local commands and sample Python code; no CRM-specific record publishing output is evidenced in the package.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact documentation states 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The public skill name and summary describe Fxiaoke CRM sales-record automation, while the inspected artifact implements a toy space-login simulator.
+
+Mitigation: Review the installed files before use and do not rely on this release for CRM automation unless the package is corrected.
+
+Risk: The artifact is a simulation and does not connect to real account, CRM, or space services.
+
+Mitigation: Use it only for demonstration, learning, or inspection of the sample Python flow.
+
+Risk: The documentation mentions a SPACE_API_KEY environment variable that the inspected code does not use.
+
+Mitigation: Do not place real credentials in the demo environment; use dummy configuration values only.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pandasun/skills/fxiaoke-sales-record-publish)
+- [Artifact README](artifact/README.md)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; runtime output is plain text and JSON-like dictionaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language demonstration content; no hidden access, persistence, networking, or destructive behavior was reported by the security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact documentation lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

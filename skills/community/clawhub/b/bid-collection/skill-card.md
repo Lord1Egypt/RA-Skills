@@ -1,45 +1,61 @@
-## Description: <br>
-Tender and procurement lead collection for monitoring public procurement notices and filtering opportunities that match a user's business scope. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bid Collection monitors public tender and procurement sources and helps agents identify, rank, and report high-value bid opportunities by business fit.
 
-## Publisher: <br>
-[cryptocxf](https://clawhub.ai/user/cryptocxf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cryptocxf](https://clawhub.ai/user/cryptocxf)
 
-## Use Case: <br>
-Business development, bid teams, and procurement analysts use this skill to scan tender sources, prioritize relevant opportunities, and generate lead summaries or reports for follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Published instructions include unresolved conflicts that may make behavior or setup ambiguous. <br>
-Mitigation: Review SKILL.md and the quick-start before installing, and prefer a release with resolved conflicts. <br>
-Risk: Monitor mode has broad polling behavior and unclear persistence for results, logs, and notifications. <br>
-Mitigation: Enable monitor mode only after confirming the source list, output locations, notification behavior, and stop procedure. <br>
-Risk: Custom monitoring sources can introduce untrusted content or unwanted polling targets. <br>
-Mitigation: Add only trusted sources and review monitoring-source configuration before running scans. <br>
+## Use Case:
 
+Business development, sales operations, and procurement intelligence teams use this skill to scan public tender sources, monitor selected channels, and generate prioritized lead reports for follow-up.
 
-## Reference(s): <br>
-- [Bid Collection on ClawHub](https://clawhub.ai/cryptocxf/bid-collection) <br>
-- [Bid Matching Rules](references/bid-matching-rules.md) <br>
-- [Monitoring Sources](references/monitoring-sources.md) <br>
-- [Quick Start Guide](references/quick-start.md) <br>
+### Deployment Geography for Use:
 
+Global; source coverage is focused on China public procurement and state-owned enterprise platforms.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown summaries, lead tables, command guidance, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write lead outputs and monitoring logs as described by the skill documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Scanning and monitoring send outbound requests to public procurement websites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target domain list before execution and use only public sources that comply with site terms and access limits.
+
+Risk: Scheduled monitoring can continue making requests and sending notifications after it starts.
+
+Mitigation: Start monitoring only after explicit confirmation, keep the default run limits unless persistence is needed, and stop the monitor when it is no longer required.
+
+Risk: Adding a custom source can direct requests to an untrusted or inappropriate URL.
+
+Mitigation: Add only trusted public procurement platforms and avoid internal, local, metadata, or otherwise sensitive addresses.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/cryptocxf/skills/bid-collection)
+- [README](README.md)
+- [Quick Start Guide](references/quick-start.md)
+- [Tender Lead Matching Rules & Priority Scoring](references/bid-matching-rules.md)
+- [Tender & Procurement Monitoring Source List](references/monitoring-sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, html, configuration, guidance]
+
+**Output Format:** [Markdown reports and structured lead summaries, with optional JSON/HTML files written to the configured local output directory.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scan and monitor outputs are scoped to public procurement information and default to leads-output/bid/.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

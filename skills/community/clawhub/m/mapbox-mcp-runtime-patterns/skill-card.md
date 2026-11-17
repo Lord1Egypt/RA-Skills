@@ -1,54 +1,72 @@
-## Description: <br>
-Provides integration patterns for using Mapbox MCP Server in AI applications and agent frameworks, including pydantic-ai, Mastra, LangChain, CrewAI, smolagents, and custom agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integration patterns for Mapbox MCP Server in AI applications and agent frameworks.
 
-## Publisher: <br>
-[mapbox](https://clawhub.ai/user/mapbox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mapbox](https://clawhub.ai/user/mapbox)
 
-## Use Case: <br>
-Developers and engineers use this skill to integrate Mapbox MCP Server into AI agents that need routing, geocoding, point-of-interest search, geometry operations, and production geospatial patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Precise coordinates, addresses, home or work locations, commute searches, and route queries may be sent to Mapbox services and possibly an LLM provider. <br>
-Mitigation: Treat location data as sensitive, disclose third-party processing to users, avoid unnecessary retention, and avoid logging prompts or responses that contain exact locations. <br>
-Risk: Mapbox access tokens and authorization headers can grant unintended service access if exposed or over-scoped. <br>
-Mitigation: Use scoped Mapbox tokens, store tokens in environment variables or secret managers, avoid hardcoded credentials, and prevent Authorization headers from appearing in logs. <br>
-Risk: Hosted Mapbox API tools can incur costs or be mistaken for offline no-cost tools. <br>
-Mitigation: Prefer offline tools when real-time data or routing is not needed, and clearly distinguish API-backed tools that require a token and count against usage. <br>
-Risk: Broad agent base tools can expand the runtime surface beyond the geospatial tasks the skill is meant to support. <br>
-Mitigation: Disable broad agent base tools unless they are required, and expose only the Mapbox tools needed for the application workflow. <br>
+## Use Case:
 
+Developers and engineers use this skill to integrate Mapbox MCP Server into AI applications that need geospatial capabilities, including pydantic-ai, Mastra, LangChain, CrewAI, smolagents, and custom agent runtimes.
 
-## Reference(s): <br>
-- [Mapbox MCP Server](https://github.com/mapbox/mcp-server) <br>
-- [Model Context Protocol](https://modelcontextprotocol.io) <br>
-- [Mapbox API Documentation](https://docs.mapbox.com/api/) <br>
-- [Pydantic AI Integration](references/pydantic-ai.md) <br>
-- [CrewAI Integration](references/crewai.md) <br>
-- [Smolagents Integration](references/smolagents.md) <br>
-- [Mastra Integration](references/mastra.md) <br>
-- [LangChain Integration](references/langchain.md) <br>
-- [Custom Agent Integration](references/custom-agent.md) <br>
-- [Use Cases](references/use-cases.md) <br>
-- [Production Patterns](references/production.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code examples, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Python and TypeScript examples for multiple agent frameworks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Examples and hosted MCP use can send coordinates, route requests, and search queries to Mapbox.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose external Mapbox processing to users, avoid sending sensitive location data unless required, and use narrowly scoped Mapbox tokens.
+
+Risk: Example setup uses unpinned package execution or broad dependency ranges.
+
+Mitigation: Pin @mapbox/mcp-server and Python dependencies before production use, and run examples in an isolated environment.
+
+Risk: Offline wording may obscure that hosted MCP examples still contact Mapbox infrastructure.
+
+Mitigation: Review tool selection and deployment mode so offline-only requirements use local deterministic tools without unnecessary hosted calls.
+
+## Reference(s):
+
+- [Mapbox MCP Server](https://github.com/mapbox/mcp-server)
+- [Mapbox API Documentation](https://docs.mapbox.com/api/)
+- [Model Context Protocol](https://modelcontextprotocol.io)
+- [Pydantic AI](https://ai.pydantic.dev/)
+- [Mastra](https://mastra.ai/)
+- [LangChain](https://docs.langchain.com/oss/javascript/langchain/overview/)
+- [CrewAI](https://docs.crewai.com/)
+- [Smolagents](https://huggingface.co/docs/smolagents)
+- [Pydantic AI Integration](references/pydantic-ai.md)
+- [CrewAI Integration](references/crewai.md)
+- [Smolagents Integration](references/smolagents.md)
+- [Mastra Integration](references/mastra.md)
+- [LangChain Integration](references/langchain.md)
+- [Custom Agent Integration](references/custom-agent.md)
+- [Use Cases](references/use-cases.md)
+- [Production Patterns](references/production.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes framework-specific integration patterns and production guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Automatically organize, categorize, and clean up files by sorting folders, finding duplicates, bulk renaming files, and removing old or temporary files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically organize, categorize, and clean up files.
 
-## Publisher: <br>
-[di5cip1e](https://clawhub.ai/user/di5cip1e) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[di5cip1e](https://clawhub.ai/user/di5cip1e)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to organize folders, categorize files by type or date, identify duplicates, rename groups of files, and plan cleanup of old or temporary files.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Cleanup workflows may permanently delete old files recursively from a chosen folder.
+
+Mitigation: Require an exact dry-run list, prefer trash or backups over permanent deletion, and avoid broad targets such as home directories or project roots.
+
+Risk: Move, rename, or duplicate-removal actions can disrupt existing folder structures or overwrite expected names.
+
+Mitigation: Show the proposed changes first, confirm before execution, handle name collisions explicitly, and log changes for rollback.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to plan and perform file organization tasks such as sorting a folder, identifying duplicates, proposing safe renames, and cleaning up old files with confirmation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: File moves, renames, or deletions can affect user data if applied to the wrong folder or without review. <br>
-Mitigation: Use the skill on specific folders, review proposed actions before execution, keep backups for important files, and prefer trash or reversible moves over permanent deletion. <br>
-Risk: Name collisions or duplicate-cleanup decisions can remove or overwrite files unintentionally. <br>
-Mitigation: Confirm conflict handling, log changes for undo, and ask before deleting duplicates or resolving collisions. <br>
+**Output Format:** [Markdown with file-operation plans and optional code or shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/di5cip1e/director-file-organizer) <br>
-- [Publisher profile](https://clawhub.ai/user/di5cip1e) <br>
+**Other Properties Related to Output:** [Outputs should include a reviewable plan before moving, renaming, or deleting files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with proposed file plans, code snippets, and command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed move, rename, duplicate, and cleanup actions for user review before execution.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

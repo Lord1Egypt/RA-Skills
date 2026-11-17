@@ -1,22 +1,22 @@
 ---
 name: agent-bom-registry
 description: >-
-  MCP server security registry and trust assessment — look up servers in the 427+
+  MCP server security registry and trust assessment — look up servers in the 1320-entry
   server security metadata registry, run pre-install marketplace checks, batch
   fleet risk scoring, assess skill file trust, and run SAST code scans. Use when
   the user mentions MCP server trust, registry lookup, marketplace check, or
   skill trust assessment.
-version: 0.91.0
+version: 0.115.3
 license: Apache-2.0
 compatibility: >-
   Requires Python 3.11+. Install via pipx or pip. Optional: Semgrep for SAST
   code scanning. No API keys or network access required (registry is bundled).
 metadata:
   author: msaad00
-  homepage: https://github.com/msaad00/agent-bom
-  source: https://github.com/msaad00/agent-bom
+  homepage: https://github.com/koda-ai-studio/agent-bom
+  source: https://github.com/koda-ai-studio/agent-bom
   pypi: https://pypi.org/project/agent-bom/
-  scorecard: https://securityscorecards.dev/viewer/?uri=github.com/msaad00/agent-bom
+  scorecard: https://securityscorecards.dev/viewer/?uri=github.com/koda-ai-studio/agent-bom
   tests: 7239
   install:
     pipx: agent-bom
@@ -35,14 +35,14 @@ metadata:
     optional_bins:
       - semgrep
     emoji: "\U0001F50D"
-    homepage: https://github.com/msaad00/agent-bom
-    source: https://github.com/msaad00/agent-bom
+    homepage: https://github.com/koda-ai-studio/agent-bom
+    source: https://github.com/koda-ai-studio/agent-bom
     license: Apache-2.0
     os:
       - darwin
       - linux
       - windows
-    data_flow: "Purely local. Registry data (427+ MCP server metadata) is bundled in the package. Lookups are in-memory string matches. Skill trust analysis parses user-provided SKILL.md content passed as a string argument."
+    data_flow: "Purely local. Registry data (1320 MCP server metadata records) is bundled in the package. Lookups are in-memory string matches. Skill trust analysis parses user-provided SKILL.md content passed as a string argument."
     file_reads:
       - "user-provided SKILL.md files (for skill_trust analysis)"
     file_writes: []
@@ -59,7 +59,7 @@ metadata:
 
 # agent-bom-registry — MCP Server Trust & Security Registry
 
-Look up MCP servers in the 427+ server security metadata registry, assess skill
+Look up MCP servers in the 1320-entry server security metadata registry, assess skill
 file trust, and run pre-install marketplace checks.
 
 ## Install
@@ -74,7 +74,7 @@ agent-bom mcp scan @modelcontextprotocol/server-filesystem --ecosystem npm
 
 | Tool | Description |
 |------|-------------|
-| `registry_lookup` | Look up MCP server in 427+ server security metadata registry |
+| `registry_lookup` | Look up MCP server in the 1320-entry security metadata registry |
 | `marketplace_check` | Pre-install trust check with registry cross-reference |
 | `fleet_scan` | Batch registry lookup + risk scoring for MCP server inventories |
 | `skill_scan` | Scan instruction files for package refs, trust, and findings |
@@ -103,7 +103,7 @@ fleet_scan(servers=["brave-search", "github", "slack"])
 
 | Resource | Description |
 |----------|-------------|
-| `registry://servers` | Browse 427+ MCP server security metadata registry |
+| `registry://servers` | Browse the 1320-entry MCP server security metadata registry |
 
 ## Privacy & Data Handling
 
@@ -113,6 +113,6 @@ as a string argument (no file system access needed).
 
 ## Verification
 
-- **Source**: [github.com/msaad00/agent-bom](https://github.com/msaad00/agent-bom) (Apache-2.0)
+- **Source**: [github.com/koda-ai-studio/agent-bom](https://github.com/koda-ai-studio/agent-bom) (Apache-2.0)
 - **7,100+ tests** with CodeQL + OpenSSF Scorecard
 - **No telemetry**: Zero tracking, zero analytics

@@ -1,37 +1,49 @@
-## Description: <br>
-Create engaging, platform-specific social media captions with tailored tone, hashtags, calls to action, and posting-time suggestions for Instagram, Twitter, LinkedIn, Facebook, and TikTok. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create engaging, platform-specific social media captions with tailored tone, hashtags, and CTAs for Instagram, Twitter, LinkedIn, Facebook, and TikTok.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
 
-## Use Case: <br>
-Creators, social media managers, and brands use this skill to draft platform-optimized captions, hashtags, calls to action, and content variations for routine posts, campaigns, product launches, and content calendars. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated captions, hashtags, trend references, or suggested posting times may be inaccurate, off-brand, or unsuitable for a specific audience. <br>
-Mitigation: Review and edit all generated social copy, hashtags, trend references, and posting-time suggestions before publishing. <br>
+## Use Case:
 
+Creators, social media managers, and brands use this skill to draft platform-specific captions, hashtags, calls to action, emoji suggestions, and posting-time guidance for social campaigns.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with caption options, hashtags, CTA, and posting-time guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are generated writing suggestions and should be reviewed before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Generated captions, hashtags, or posting-time advice may be inaccurate, off-brand, or unsuitable for regulated or time-sensitive campaigns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt outputs before publishing, with extra approval for regulated brands or campaigns tied to current events.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huajianjiu000/skills/social-media-caption-writer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style caption options with supporting hashtags, calls to action, emoji suggestions, and posting-time guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Security evidence reports no code execution, persistence, credential access, or hidden behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -7,7 +7,7 @@ Operation lessons are not user taste memory, cloud topology, diagnostics transcr
 ## Intent Routing
 
 - Use `operation.lesson.list` before a complex, previously failed, or parameter-heavy operation when a known lesson could avoid wasted turns.
-- Use `operation.lesson.record` after a failed, blocked, unsupported, confusing, slow, or workaround-based actual operation attempt only when the cause is confirmed reusable Runtime behavior, a stable cloud boundary, a payload-shape rule, a fallback, or a fast path. This is not limited to lighting design. If the next attempt succeeds because the Skill changed target resolution, payload shape, fallback intent, or fast path, record the reusable lesson before the final user response. If the cause is a fixable CLI bug, stale Skill rule, unclear public contract, or capability-description problem, prefer fixing/reporting that issue instead of writing a user operation lesson.
+- Use `operation.lesson.record` after a failed, blocked, unsupported, confusing, slow, or workaround-based actual operation attempt only when the cause is confirmed reusable Runtime behavior, a stable cloud boundary, a payload-shape rule, a fallback, or a fast path. This is not limited to lighting design. If the next attempt succeeds because the Skill changed target resolution, payload shape, fallback intent, or fast path, record the reusable lesson before the final user response. Do not record one-off failures, guesses, or cases where the current Runtime response already gives the clear supported path.
 - Do not use operation lessons for normal user preferences. Use `memory.remember` for preferences such as ambience, product positioning, room purpose, or recommendation suppression.
 - Do not use operation lessons for a one-off current state result, full chat transcript, secret, token, Runtime internal request detail, or private account data.
 
@@ -111,7 +111,7 @@ Useful filters:
 
 After every non-successful or surprising attempt, run this check before the final answer:
 
-1. Is the cause a fixable CLI bug, stale Skill rule, unclear public contract, or capability-description problem? If yes, do not record a user lesson; use the corrected contract or report the bug.
+1. Does the current Runtime response already give a clear supported path, or is the issue a one-off failure or unverified guess? If yes, do not record a user lesson; follow the current Runtime response instead.
 2. Did the attempt reveal a reusable way to avoid future failure, extra turns, wrong target resolution, bad payload shape, unsupported intent retry, or unreliable path that cannot be fixed in the current flow?
 3. Is the evidence from actual Runtime behavior, validated CLI behavior, or a Runtime response?
 4. Can the lesson be summarized without secrets, internal request headers, full transcripts, private unrelated data, or cloud topology snapshots?
@@ -160,7 +160,7 @@ Do not record:
 - Temporary test data, transient request IDs, or full payload dumps.
 - Guesses that were not verified by Runtime behavior or validated CLI behavior.
 
-When the failure is fixed by updating the CLI or Skill in the same development session, do not record that as a user operation lesson. Add or update tests/docs instead. When the behavior is a stable cloud/runtime boundary or a reusable fallback that remains true after the current fix, record the lesson.
+When the current Runtime contract already handles the behavior directly, do not record another operation lesson. When the behavior is a stable cloud/runtime boundary or a reusable fallback that remains true across normal use, record the lesson.
 
 ## Applying Lessons
 
@@ -175,7 +175,7 @@ When the failure is fixed by updating the CLI or Skill in the same development s
 ## Boundaries
 
 - Runtime stores caller-structured lessons only. It does not infer subjective experience from user utterances.
-- Operation lessons may be profile-global when no `houseId` is supplied. Prefer profile-global lessons for reusable capability behavior, payload shapes, fastest paths, unsupported-intent fallbacks, and general resource-resolution patterns.
+- Operation lessons are profile-global when no `houseId` is supplied. Prefer profile-global lessons for reusable capability behavior, payload shapes, fastest paths, supported-intent fallbacks, safety-lane rules, and general resource-resolution patterns. This is the right scope when the rule should help future homes.
 - Include `houseId` only when the lesson depends on one home's current topology, naming conflict, device capability, scene content, automation content, or other house-specific state. Do not attach reusable lessons to disposable test homes; otherwise future agents in normal homes may not find them.
 - Querying with a house context can return both house-specific and profile-global lessons.
 - Operation lessons must never replace Runtime execution, validation, or write verification.
@@ -184,6 +184,7 @@ When the failure is fixed by updating the CLI or Skill in the same development s
 
 Keep only stable cloud/runtime limits here. If Runtime already returns a public `clarification`, `partialState`, `editablePayload`, `updateShape`, or safe fallback, use that contract instead of recording another operation lesson.
 
+- A design-import sandbox with no effective bound gateway can expose readable rooms, slots, groups, scenes, and automations while still blocking live control or execution. First check Runtime evidence such as gateway `bind` and device slot binding; use read-only detail/list validation for design metadata, and do not retry direct control when Runtime returns `safeToRetry=false`.
 - Imported design automations can be enabled, disabled, listed, and inspected, but `automation.update` can return backend `403 禁止访问` for an automation created by `lighting.design.import` even when the same complete rule shape succeeds for an automation created through `automation.create`. For an imported design automation edit, report the backend refusal and prefer creating a replacement live automation with `automation.create`; only delete or disable the imported rule after the user explicitly confirms the persistent change.
 - After a partial design-slot import, treat residual slots, groups, and scenes as planning metadata until Runtime proves they are valid execution resources. A readable `scene.detail.get` or `editablePayload` is not proof that `scene.update`, `scene.execute`, or `scene.test` will work.
 - `scene.test` or `scene.execute` can return backend business code `1611` with message `当前情景无有效网关` in homes without an effective gateway, even when `scene.detail.get` returns a readable action list. Treat Runtime `safeToRetry=false` as final for the same payload; report that the scene needs a valid executable gateway/home instead of retrying or changing sibling scene intents.

@@ -1,42 +1,54 @@
-## Description: <br>
-Automatically discover and route relevant installed skills for the current task, plus run a daily skill audit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically discover and route relevant installed skills for the current task, plus run a daily skill audit.
 
-## Publisher: <br>
-[chchchadzilla](https://clawhub.ai/user/chchchadzilla) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chchchadzilla](https://clawhub.ai/user/chchchadzilla)
 
-## Use Case: <br>
-Developers and agent operators use this skill to rank installed skills before a task and to audit skill descriptions for routing quality during daily workspace maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The router scans local skill folders and may print installed skill names, paths, and matching metadata. <br>
-Mitigation: Keep scanned roots limited to intended skill directories and review command output before sharing logs. <br>
-Risk: Automatic AGENTS or HEARTBEAT hooks can route tasks based on stale or vague skill descriptions. <br>
-Mitigation: Run the daily audit, tighten weak descriptions, and load only the top one to three matching skills. <br>
+## Use Case:
 
+Developers and agent operators use this skill to rank installed skills before non-trivial tasks and to audit skill descriptions for duplicates, overlaps, and weak trigger language.
 
-## Reference(s): <br>
-- [Setup Checklist for Auto Skill Routing](references/setup-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/chchchadzilla/skill-auto-router) <br>
-- [Publisher Profile](https://clawhub.ai/user/chchchadzilla) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON command output from the router script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pre-task routing returns ranked skill candidates with match reasons; daily audit reports discovered skills, weak descriptions, and high-overlap tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The local router reads installed skill metadata from configured skill directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where reading installed skill names, descriptions, and paths is acceptable.
+
+Risk: Automatic routing hooks in AGENTS.md or HEARTBEAT.md can influence which skills an agent considers before work.
+
+Mitigation: Manually review hook changes and load only the top 1-3 matching skills as the artifact operating rules recommend.
+
+## Reference(s):
+
+- [Setup Checklist for Auto Skill Routing](references/setup-checklist.md)
+- [Skill Auto-Router ClawHub Release](https://clawhub.ai/chchchadzilla/skills/skill-auto-router)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from the router script and Markdown guidance with inline shell commands for setup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The router reports ranked skill candidates, match reasons, audit findings, and integration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

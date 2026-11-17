@@ -1,38 +1,57 @@
-## Description: <br>
-基于贝索斯长期主义和客户至上理念，分析战略决策、创业取舍，助力形成可持续的长期价值与创新方案。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language strategic decision framework based on Jeff Bezos’s long-term thinking, customer focus, and innovation principles.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Developers, founders, product leaders, and business strategists use this Chinese-first skill to apply a Bezos/Amazon-style long-term strategy lens to customer value, entrepreneurship, career, and investment tradeoffs. Treat its dated market and AI commentary as framing prompts rather than verified current facts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dated market and AI commentary may be mistaken for verified current facts. <br>
-Mitigation: Use the commentary as strategic framing and verify time-sensitive claims against authoritative current sources before relying on them. <br>
+## Use Case:
 
+Business leaders, founders, and strategy teams can use this skill to structure Chinese-language discussions about long-term value, customer needs, innovation, and decision tradeoffs. Its frameworks provide discussion prompts and draft analysis rather than professional or investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/skills/bezos-long-term-principle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text in Chinese with strategy analysis prompts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only guidance; no code execution, data access, persistence, or hidden privileged behavior per security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release evidence and artifact metadata) <br>
+Risk: Time-sensitive business, market, or regulatory claims in the skill may become outdated or use unverified figures.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check important claims against current official sources and have a qualified reviewer verify figures before using them in a decision.
+
+Risk: Strategic analysis could be mistaken for investment, legal, tax, compliance, or other professional advice, especially for major or hard-to-reverse decisions.
+
+Mitigation: Treat outputs as discussion drafts; have accountable decision makers and appropriately qualified professionals review consequential decisions.
+
+Risk: The skill primarily responds in Chinese, which may not match every user's language preference.
+
+Mitigation: Confirm the preferred response language and request a different language when needed.
+
+## Reference(s):
+
+- [Bezos Long Term Principle on ClawHub](https://clawhub.ai/gechengling/skills/bezos-long-term-principle)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Decision frameworks]
+
+**Output Format:** [Chinese-language text, usually structured Markdown with questions, tables, and recommendations for user review]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft strategic analysis for the user to evaluate; not a formal conclusion, investment recommendation, or professional opinion.]
+
+## Skill Version(s):
+
+2.1.4 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

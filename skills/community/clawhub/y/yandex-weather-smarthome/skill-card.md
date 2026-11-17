@@ -1,42 +1,55 @@
-## Description: <br>
-Gets current weather and a short today or tomorrow forecast for the user's configured home location via the Yandex Weather API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gets current weather and a short today/tomorrow forecast for the user's configured home location via the Yandex Weather API.
 
-## Publisher: <br>
-[alkselsv](https://clawhub.ai/user/alkselsv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alkselsv](https://clawhub.ai/user/alkselsv)
 
-## Use Case: <br>
-External users and assistants use this skill to answer weather questions for a configured home location, including current conditions and today or tomorrow forecasts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Yandex Weather API key and configured home coordinates, and those coordinates are used when weather requests are handled. <br>
-Mitigation: Keep the API key in environment variables, avoid exposing it in responses or files, and use approximate coordinates when exact home location is unnecessary. <br>
-Risk: Generic weather phrases may trigger the skill for the configured home location. <br>
-Mitigation: Scope activation to weather requests and make clear to users that the default location is the configured home coordinates unless they ask for another location. <br>
+## Use Case:
 
+External users and home-automation agents use this skill to answer current weather and short forecast requests for a configured home location.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alkselsv/yandex-weather-smarthome) <br>
-- [Yandex Weather SmartHome onboarding and FAQ](https://yandex.ru/pogoda/b2b/smarthome) <br>
-- [Yandex Weather forecast API endpoint](https://api.weather.yandex.ru/v2/forecast) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Russian plain text weather template, or JSON when structured output is requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires YANDEX_WEATHER_KEY, YANDEX_WEATHER_LAT, and YANDEX_WEATHER_LON; default responses include current temperature, feels-like temperature, condition, wind, and available today or tomorrow forecast fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: The skill uses a Yandex Weather API key and configured home coordinates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the API key only in environment variables and deploy only where sending the configured coordinates to Yandex is acceptable.
+
+Risk: Default responses are localized to Russian.
+
+Mitigation: Set user expectations for Russian weather output or request structured JSON when downstream handling needs a language-neutral format.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alkselsv/skills/yandex-weather-smarthome)
+- [Yandex Weather SmartHome onboarding](https://yandex.ru/pogoda/b2b/smarthome)
+- [Yandex Weather Forecast API endpoint](https://api.weather.yandex.ru/v2/forecast)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text weather summary with fixed labels; optional JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires YANDEX_WEATHER_KEY, YANDEX_WEATHER_LAT, and YANDEX_WEATHER_LON; default user-facing output is Russian.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

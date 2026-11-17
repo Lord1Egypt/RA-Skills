@@ -1,40 +1,54 @@
-## Description: <br>
-What is the state of the Hyperliquid perp market? Top contracts by volume/OI, trader leaderboard, and SM perp activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+What is the state of the Hyperliquid perp market? Top contracts by volume/OI, trader leaderboard, and SM perp activity.
 
-## Publisher: <br>
-[nansen-devops](https://clawhub.ai/user/nansen-devops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nansen-devops](https://clawhub.ai/user/nansen-devops)
 
-## Use Case: <br>
-Developers and analysts use this skill to query Nansen market-data views for Hyperliquid perpetual contracts, trader leaderboards, and smart-money perpetual trade activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires NANSEN_API_KEY to be available to the nansen-cli package. <br>
-Mitigation: Install and use it only in environments where sharing that credential with the third-party CLI is acceptable, and scope or rotate the key according to local policy. <br>
-Risk: The workflow depends on a third-party CLI package for market-data queries. <br>
-Mitigation: Review the nansen-cli package provenance before installation and keep execution limited to the documented read-only Nansen market-data commands. <br>
+## Use Case:
 
+Crypto market analysts and developers can use the skill to review current Hyperliquid perpetual market activity, including contracts by volume and open interest, trader rankings, and smart-money trades. They can filter results by trader type, labels, sector, sorting, and time range.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nansen-devops/skills/nansen-perp-screener) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text with Nansen CLI command examples and market-data field descriptions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the nansen CLI and NANSEN_API_KEY for live market-data queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server evidence release.version) <br>
+Risk: A supported HTTP 402 challenge can spend funds from the configured wallet, and repeated calls in a loop can incur repeated payments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review wallet authorization, payment policy, and spending limits before running research calls; keep call counts bounded.
+
+Risk: Research calls require an explicitly selected API key or saved browser session, and credentials or session renewal can fail.
+
+Mitigation: Check `nansen auth status` before research, follow the CLI's authentication error guidance, and stop on invalid or uncertain authentication state.
+
+## Reference(s):
+
+- [Browser login platform scope](https://github.com/nansen-ai/nansen-cli/blob/main/docs/browser-login.md#preview-platform-scope)
+- [ClawHub skill page](https://clawhub.ai/nansen-devops/skills/nansen-perp-screener)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, Tabular data, Shell commands]
+
+**Output Format:** [Text and tabular market metrics returned through Nansen CLI research commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Market snapshot with configurable filters, sorting, time range, and result limits. Data availability depends on Nansen coverage and account entitlements.]
+
+## Skill Version(s):
+
+0.1.4 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

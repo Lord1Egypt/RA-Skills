@@ -1,42 +1,56 @@
-## Description: <br>
-CLI for AI agents to find breweries for their humans. Uses Open Brewery DB. No auth required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI for AI agents to find breweries for their humans. Uses Open Brewery DB. No auth required.
 
-## Publisher: <br>
-[jeffaf](https://clawhub.ai/user/jeffaf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jeffaf](https://clawhub.ai/user/jeffaf)
 
-## Use Case: <br>
-External users and agents use this skill to search Open Brewery DB for breweries by name, city, state, type, or random discovery and return concise brewery details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends brewery search prompts to the public Open Brewery DB API. <br>
-Mitigation: Avoid submitting sensitive personal or confidential location-search context, and use the skill only when public brewery lookup is acceptable. <br>
-Risk: The reviewed package does not include the executable scripts referenced by the README. <br>
-Mitigation: Inspect any cloned executable files before granting execute permissions or running the commands. <br>
+## Use Case:
 
+External users and agents use this skill to search Open Brewery DB for breweries by name, city, state, type, or random suggestion.
 
-## Reference(s): <br>
-- [Open Brewery DB](https://www.openbrewerydb.org) <br>
-- [Open Brewery DB API v1](https://api.openbrewerydb.org/v1/breweries) <br>
-- [Breweries ClawHub Release](https://clawhub.ai/jeffaf/breweries) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text brewery results with command-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns concise brewery name, location, type, and URL when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The reviewed artifact contains documentation but not the executable brewery lookup scripts referenced by the installation instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a pinned, reviewed commit or a release package that includes the executable scripts and verifies their integrity.
+
+Risk: The skill depends on local shell tools and live network calls to Open Brewery DB.
+
+Mitigation: Confirm bash, curl, and jq are available, and review outbound API use before enabling the skill in restricted environments.
+
+## Reference(s):
+
+- [Open Brewery DB](https://www.openbrewerydb.org)
+- [Open Brewery DB API v1](https://api.openbrewerydb.org/v1/breweries)
+- [ClawHub Skill Page](https://clawhub.ai/jeffaf/skills/breweries)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/jeffaf)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Brewery results are described concisely with name, location, brewery type, and URL when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,62 @@
-## Description: <br>
-统一 IMA OpenAPI 技能，支持笔记管理、知识库操作、文件上传、网页添加和内容搜索。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified IMA OpenAPI skill for managing notes and knowledge bases, including search, browsing, file upload, URL import, note creation, and append workflows.
 
-## Publisher: <br>
-[dayofyear](https://clawhub.ai/user/dayofyear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dayofyear](https://clawhub.ai/user/dayofyear)
 
-## Use Case: <br>
-Chinese-speaking users and agents use this skill to manage IMA notes and knowledge bases: search, read, create, and append notes; list and search knowledge bases; add URLs or notes; and upload files through the documented multi-step flow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A generic Node API helper can send IMA credentials to an arbitrary URL if invoked with a full URL. <br>
-Mitigation: Prefer the narrower notes and knowledge-base scripts; when using the generic helper, pass only expected relative IMA API paths and avoid full URLs. <br>
-Risk: Write operations can affect the wrong note or knowledge base if IDs are mistaken. <br>
-Mitigation: Confirm target note IDs, knowledge-base IDs, and upload destinations before create, append, add, upload, or delete actions. <br>
-Risk: IMA API keys and COS temporary credentials are sensitive secrets. <br>
-Mitigation: Use least-privilege IMA credentials, keep config files private, and treat COS temporary credentials as secrets. <br>
+## Use Case:
 
+External developers and agent users use this skill to operate an authorized IMA account through repeatable note and knowledge-base workflows. It helps agents search, read, create, append, upload, and import content while following documented IMA API parameters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dayofyear/ima-skill-ref) <br>
-- [IMA homepage](https://ima.qq.com) <br>
-- [IMA OpenAPI credentials](https://ima.qq.com/agent-interface) <br>
-- [Knowledge base API reference](knowledge-base/references/api.md) <br>
-- [Notes API reference](notes/references/api.md) <br>
-- [Permissions and security notes](PERMISSIONS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires IMA_OPENAPI_CLIENTID and IMA_OPENAPI_APIKEY, or matching files under ~/.config/ima.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The generic Node API helper can send IMA API credentials to arbitrary URLs when an untrusted absolute path is supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the module-specific helpers or allow only relative IMA OpenAPI paths under ima.qq.com before running the generic helper.
+
+Risk: The file-upload workflow handles temporary COS credentials and may expose them through command-line arguments, logs, or predictable temporary files.
+
+Mitigation: Use the skill only in a trusted environment, prefer environment variables for long-lived IMA credentials, avoid logging COS secrets, clean temporary credential files, and rotate credentials after any untrusted run.
+
+Risk: Append and knowledge-base add workflows can modify user notes or knowledge-base contents.
+
+Mitigation: Confirm the target note, knowledge base, folder, and duplicate-name handling before executing write or upload commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dayofyear/skills/ima-skill-ref)
+- [IMA homepage](https://ima.qq.com)
+- [IMA OpenAPI credential page](https://ima.qq.com/agent-interface)
+- [IMA notes API reference](notes/references/api.md)
+- [IMA knowledge-base API reference](knowledge-base/references/api.md)
+- [Permission and credential notes](PERMISSIONS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets and optional JSON API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires IMA_OPENAPI_CLIENTID and IMA_OPENAPI_APIKEY environment variables or ~/.config/ima credential files.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

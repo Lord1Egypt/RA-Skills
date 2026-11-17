@@ -1,45 +1,59 @@
-## Description: <br>
-Send letters, PDFs, postcards, faxes, registered mail, or query account credit through the PixelLetter HTTPS interface. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send letters, PDFs, postcards, faxes, or query PixelLetter account credit via the PixelLetter HTTPS API with automated physical mail dispatch.
 
-## Publisher: <br>
-[bone187](https://clawhub.ai/user/bone187) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bone187](https://clawhub.ai/user/bone187)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent prepare, test, and submit PixelLetter letter, PDF, fax, registered-mail, and account-credit requests through the PixelLetter HTTPS API. It is most useful for automated correspondence workflows where real dispatch is gated by explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Production sends can dispatch real postal mail or faxes and incur PixelLetter charges. <br>
-Mitigation: Default to dry-run or test mode and require explicit confirmation of the recipient, document or text, options, and dispatch intent before using production mode. <br>
-Risk: PixelLetter account credentials could be exposed through logs, commits, screenshots, or shared examples. <br>
-Mitigation: Use environment variables or secret injection, avoid storing credentials in skill files, and do not include credentials in logs or shared artifacts. <br>
-Risk: A PixelLetter success code means the request was accepted by the API, not that physical delivery is complete. <br>
-Mitigation: Treat code 100 as acceptance only and rely on PixelLetter's later email confirmation for final send status. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent prepare, dry-run, and, after explicit confirmation, send PixelLetter letters, PDFs, faxes, registered mail, or account-balance requests.
 
-## Reference(s): <br>
-- [PixelLetter HTTPS API Notes](references/api.md) <br>
-- [PixelLetter](https://www.pixelletter.de) <br>
-- [PixelLetter XML Endpoint](https://www.pixelletter.de/xml/index.php) <br>
-- [PixelLetter Error Messages](https://www.pixelletter.de/docs/error_messages.php) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls, text, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands; the bundled CLI returns sanitized XML for dry-runs and JSON summaries for API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Real dispatch requires PixelLetter credentials, account credit, production mode, explicit confirmation, and PIXELLETTER_ALLOW_REAL_SEND=true.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, release metadata) <br>
+Risk: An endpoint override can redirect PixelLetter credentials and documents away from the default PixelLetter service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default PixelLetter endpoint and do not set PIXELLETTER_ENDPOINT unless the destination has been audited.
+
+Risk: Production sends can spend account credit and dispatch real postal mail or faxes.
+
+Mitigation: Use dry-run or test mode first, then require explicit confirmation of recipient, document, options, cost intent, --production, --confirm-real-send, and PIXELLETTER_ALLOW_REAL_SEND=true before any real send.
+
+Risk: Dry-run or raw output can expose private correspondence details even when credentials are redacted.
+
+Mitigation: Avoid sharing command output, logs, screenshots, or examples that contain recipient addresses, document text, transaction details, or raw API responses.
+
+## Reference(s):
+
+- [PixelLetter HTTPS API Notes](references/api.md)
+- [PixelLetter](https://www.pixelletter.de)
+- [PixelLetter Error Messages](https://www.pixelletter.de/docs/error_messages.php)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call an external HTTPS API; dry-run prints sanitized XML and production sends require explicit confirmation flags.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

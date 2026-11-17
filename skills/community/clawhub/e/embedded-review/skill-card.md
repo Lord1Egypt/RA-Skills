@@ -1,44 +1,58 @@
-## Description: <br>
-Expert code review for embedded/firmware projects with dual-model cross-review (Claude + Codex via ACP). Detects memory safety, interrupt hazards, RTOS pitfalls, hardware interface bugs, and C/C++ anti-patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert code review for embedded/firmware projects with dual-model cross-review (Claude + Codex via ACP). Detects memory safety, interrupt hazards, RTOS pitfalls, hardware interface bugs, and C/C++ anti-patterns.
 
-## Publisher: <br>
-[ylongw](https://clawhub.ai/user/ylongw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ylongw](https://clawhub.ai/user/ylongw)
 
-## Use Case: <br>
-Developers and firmware engineers use this skill to review embedded code changes for memory safety, interrupt and concurrency correctness, hardware interface defects, C/C++ pitfalls, and embedded security concerns. It can produce single-model reviews for small diffs or dual-model cross-review reports for larger or critical firmware changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Review diffs may contain proprietary or secret-bearing code and can be shared with fallback or second-model review tools. <br>
-Mitigation: Use Codex-only review, pass --fallback-reviewer none, and consider --no-yolo or equivalent restricted execution when reviewing sensitive repositories. <br>
-Risk: Generated review findings can be incorrect, incomplete, or overly cautious for hardware-specific firmware behavior. <br>
-Mitigation: Have an embedded engineer validate findings against the target MCU, RTOS, compiler, hardware documentation, and test results before blocking or changing firmware. <br>
+## Use Case:
 
+Developers and firmware engineers use this skill to review embedded C/C++ changes for memory safety, interrupt and RTOS correctness, hardware interface issues, security concerns, and maintainability. It supports single-model review for small diffs and dual-model cross-review for larger or critical firmware changes.
 
-## Reference(s): <br>
-- [Memory Safety Checklist](references/memory-safety.md) <br>
-- [Interrupt Safety Checklist](references/interrupt-safety.md) <br>
-- [Hardware Interface Checklist](references/hardware-interface.md) <br>
-- [C/C++ Pitfalls Checklist](references/c-pitfalls.md) <br>
-- [Understanding Agent Scaling in LLM-Based Multi-Agent Systems via Diversity](https://arxiv.org/abs/2602.03794) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown review report with severity-ranked findings and optional shell commands for diff preparation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review output includes target context, files reviewed, review mode, findings, cross-review analysis when applicable, hardware and timing concerns, architecture notes, and next-step options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Reviewed diffs may be shared with configured ACP agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with repositories and agents approved for the firmware source being reviewed.
+
+Risk: The diff preparation script accepts an unvalidated diff range that could be abused to overwrite files writable by the agent user.
+
+Mitigation: Reject ranges beginning with '-' and validate revisions before running the script, or run reviews in a limited sandbox.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ylongw/skills/embedded-review)
+- [Understanding Agent Scaling in LLM-Based Multi-Agent Systems via Diversity](https://arxiv.org/abs/2602.03794)
+- [Memory Safety Checklist](references/memory-safety.md)
+- [Interrupt & Concurrency Safety Checklist](references/interrupt-safety.md)
+- [Hardware Interface Checklist](references/hardware-interface.md)
+- [C/C++ Pitfalls Checklist](references/c-pitfalls.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown review report with severity-ranked findings, cross-review analysis, hardware and timing concerns, architecture notes, and suggested fixes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands to prepare review diffs; dual-model mode depends on configured Claude Code and Codex agents.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

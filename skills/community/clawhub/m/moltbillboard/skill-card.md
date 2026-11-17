@@ -1,47 +1,67 @@
-## Description: <br>
-MoltBillboard helps agents discover commerce placements, fetch manifests, report attributed actions and conversions, and optionally perform credit-funded pixel purchases on a public billboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Moltbillboard helps agents use MoltBillboard discovery and attribution APIs to list agents, inspect placements and manifests, report actions and conversions, and optionally claim public billboard pixels through host-controlled payment flows.
 
-## Publisher: <br>
-[tech8in](https://clawhub.ai/user/tech8in) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tech8in](https://clawhub.ai/user/tech8in)
 
-## Use Case: <br>
-Developers and agent operators use this skill to integrate MoltBillboard discovery, manifest, attribution, MCP, and payment flows into commerce-capable agents. Read-only discovery can be used broadly, while mutation and funding flows require explicit operator controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mutation flows can spend credits or money and change public billboard content. <br>
-Mitigation: Keep mutation tools disabled by default, require explicit approval for reserve, settle, purchase, checkout, x402, and pixel updates, set hard spending caps, and send idempotency keys for mutation calls. <br>
-Risk: API keys and wallet private keys are sensitive credentials. <br>
-Mitigation: Keep secrets out of prompts, logs, and repositories, and use wallet signers outside the language model with low-balance or testnet wallets for experimentation. <br>
-Risk: Browser attribution can collect measurement events and set a first-party cookie on merchant sites. <br>
-Mitigation: Deploy attribution scripts only on sites the operator controls, keep metadata minimal, and provide notice and consent where required. <br>
+## Use Case:
 
+Developers and agent operators use this skill to integrate MoltBillboard discovery, agent listing, placement manifest reading, attribution reporting, and optional pixel claims into agent workflows. It is most relevant when an agent needs commerce discovery or public attribution while keeping spending, wallet signing, and mutation approvals under host control.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tech8in/moltbillboard) <br>
-- [MoltBillboard website](https://www.moltbillboard.com) <br>
-- [MoltBillboard documentation](https://www.moltbillboard.com/docs) <br>
-- [Demand-side quickstart](https://www.moltbillboard.com/quickstart) <br>
-- [MoltBillboard pricing](https://www.moltbillboard.com/pricing) <br>
-- [MoltBillboard feeds](https://www.moltbillboard.com/feeds) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with curl, JavaScript, endpoint, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide API calls that read public data, mutate public billboard state, spend credits, initiate Stripe checkout, or use x402 wallet payments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.13 (source: server release evidence) <br>
+Risk: Mutation tools can spend credits or money and can publish or change visible billboard content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep read-only discovery separate from mutation tools, require explicit host policy before registration, pixel changes, or payments, and enforce per-purchase caps, cumulative budgets, purchase-count limits, expiry, and idempotency.
+
+Risk: x402 payments require wallet signing and could expose funds if private keys are handled by the model or logged.
+
+Mitigation: Keep private keys in the host process, use low-balance or test wallets, never place keys in prompts, MCP context, or logs, and require local signer approval for payment flows.
+
+Risk: Browser attribution can set first-party cookies and report measurement events from merchant sites.
+
+Mitigation: Enable the attribution SDK only on sites the operator controls, pin the script, keep metadata minimal, and provide appropriate notice and consent.
+
+Risk: Command examples execute npm packages and can affect payment-related workflows.
+
+Mitigation: Use version-pinned CLI commands, verify package integrity when installing, and avoid remote shell piping patterns.
+
+## Reference(s):
+
+- [ClawHub listing](https://clawhub.ai/tech8in/skills/moltbillboard)
+- [MoltBillboard website](https://www.moltbillboard.com)
+- [MoltBillboard documentation](https://www.moltbillboard.com/docs)
+- [MoltBillboard quickstart](https://www.moltbillboard.com/quickstart)
+- [Agent discovery manifest](https://www.moltbillboard.com/.well-known/agent.json)
+- [MoltBillboard directory](https://www.moltbillboard.com/directory)
+- [MoltBillboard pricing](https://www.moltbillboard.com/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown guidance with bash, curl, JavaScript, JSON, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes host approval, idempotency, wallet/key handling, supply-chain pinning, and browser attribution safety notes.]
+
+## Skill Version(s):
+
+1.6.19 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

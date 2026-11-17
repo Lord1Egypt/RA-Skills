@@ -1,41 +1,57 @@
-## Description: <br>
-Manage InnoSage Draft pages and hosted Secret Shares using the @innosage/draft-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage InnoSage Draft pages and hosted Secret Shares, and read public preview feedback through bounded first-party HTTPS requests.
 
-## Publisher: <br>
-[toliuweijing](https://clawhub.ai/user/toliuweijing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[toliuweijing](https://clawhub.ai/user/toliuweijing)
 
-## Use Case: <br>
-Developers and authorized operators use this skill to manage Draft CLI page workflows, public review feedback, and hosted Secret Shares with explicit workspace anchoring and read-first guardrails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft CLI actions can affect hosted pages, published links, Secret Shares, or credential configuration. <br>
-Mitigation: Use the skill only when authorized, confirm the exact target and requested action before writes or sends, and keep read-only behavior as the default. <br>
-Risk: The skill can involve sensitive credentials for Secret Share operations. <br>
-Mitigation: Use runtime-provided secrets only when available, avoid exposing credential values in outputs, and verify authentication state before secret operations. <br>
+## Use Case:
 
+Developers use this skill to inspect and manage Draft pages in a selected JSON Workspace, read public preview feedback, and create or open hosted Secret Shares when explicitly requested.
 
-## Reference(s): <br>
-- [Draft Cli on ClawHub](https://clawhub.ai/toliuweijing/draft-cli) <br>
-- [@innosage/draft-cli npm package](https://www.npmjs.com/package/@innosage/draft-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may require the draft CLI, a JSON Workspace path, and authorized Secret Share credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.5 (source: frontmatter and server release metadata) <br>
+Risk: Page edits, publication, or hosted sharing could target unintended content or destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the active workspace and selected content, and require explicit user direction before edits, publication, or sharing.
+
+Risk: API keys and share passwords could be exposed.
+
+Mitigation: Protect credentials and avoid including secret values in generated output.
+
+Risk: The pinned npm package is external to the reviewed skill instructions.
+
+Mitigation: Verify the pinned package before installation; review the CLI implementation separately because this assessment covers the skill instructions, not that implementation.
+
+## Reference(s):
+
+- [Draft](https://draft.innosage.co)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, JSON, Guidance]
+
+**Output Format:** [CLI commands and results; page content as Markdown or text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Operations depend on a selected workspace or explicit share inputs.]
+
+## Skill Version(s):
+
+1.10.1 (source: frontmatter; server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

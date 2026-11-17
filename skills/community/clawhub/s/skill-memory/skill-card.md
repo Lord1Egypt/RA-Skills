@@ -1,43 +1,51 @@
-## Description: <br>
-Self-learning task-to-skill routing table that records skill choices and updates preset parameters based on usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Memory routes tasks to preferred skills using a self-updating local mapping of task types, parameters, scenarios, and usage counts.
 
-## Publisher: <br>
-[systiger](https://clawhub.ai/user/systiger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[systiger](https://clawhub.ai/user/systiger)
 
-## Use Case: <br>
-Developers and agent operators use this skill to look up preferred skills and preset parameters for recurring task types, then record or update mappings as usage changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task details and parameters may be saved into the local memory file, including sensitive context if supplied by a user. <br>
-Mitigation: Avoid storing secrets or private task details in scenarios or parameters, and review references/memory.json periodically. <br>
-Risk: Stored mappings can influence future skill choices without clear opt-in or cleanup controls. <br>
-Mitigation: Install only when self-updating skill routing is intended, and manually remove stale or unwanted entries from the memory file. <br>
-Risk: The screenshot preset connects to an existing Chrome CDP session. <br>
-Mitigation: Use a dedicated browser profile when applying the Chrome CDP screenshot preset. <br>
+## Use Case:
 
+Developers and agent operators use this skill to look up preferred skills and preset parameters for recurring tasks, then record or update routing entries when task scenarios change.
 
-## Reference(s): <br>
-- [Skill Memory Release Page](https://clawhub.ai/systiger/skill-memory) <br>
-- [memory.json](artifact/references/memory.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Updates a local memory JSON file when the bundled script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Task details, parameters, scenarios, timestamps, and usage counts can be saved across sessions without clear opt-in, redaction, retention, or deletion controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when local skill-routing memory is desired; avoid secrets and sensitive free-form text in memory fields; inspect and clear references/memory.json when needed.
+
+## Reference(s):
+
+- [Skill Memory reference data](references/memory.json)
+- [ClawHub skill page](https://clawhub.ai/systiger/skills/skill-memory)
+- [Publisher profile](https://clawhub.ai/user/systiger)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with JSON examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist task types, parameters, scenarios, timestamps, and usage counts in references/memory.json.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

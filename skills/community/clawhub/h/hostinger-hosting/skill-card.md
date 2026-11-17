@@ -1,45 +1,60 @@
-## Description: <br>
-Hostinger API integration via managed credentials for inspecting domains, DNS records, VPS instances, websites, subscriptions, and hosting account data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hostinger API integration via managed credentials for inspecting domains, DNS records, VPS instances, websites, subscriptions, and hosting account data.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers and site operators use this skill to query and manage Hostinger hosting resources through ClawLink-managed credentials. It supports account discovery, DNS and domain workflows, website and VPS inspection, and confirmed account-changing actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Connecting a Hostinger account through ClawLink grants access to account resources and managed credentials. <br>
-Mitigation: Install only when comfortable with the ClawLink connection model and verify the Hostinger connection before using account tools. <br>
-Risk: DNS, VPS, website, domain, subscription, or billing-related changes can affect live services and account resources. <br>
-Mitigation: Review previews carefully and require explicit user confirmation before any account-changing action. <br>
-Risk: Tool availability can vary with the connected Hostinger account and live ClawLink catalog. <br>
-Mitigation: List integrations and tools first, treat the returned catalog as authoritative, and use tool descriptions before unfamiliar or ambiguous calls. <br>
+## Use Case:
 
+Developers and site operators use this skill in OpenClaw to inspect and manage Hostinger domains, DNS, VPS instances, websites, subscriptions, and account information through a connected Hostinger account.
 
-## Reference(s): <br>
-- [Hostinger API Documentation](https://developers.hostinger.com/) <br>
-- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=hostinger-hosting) <br>
-- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the live Hostinger tool catalog as the source of truth and requires previews plus explicit confirmation for write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill asks users to install and allowlist an unpinned third-party credential-broker plugin.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the ClawLink plugin publisher, version, and permissions before installation.
+
+Risk: A connected Hostinger account can expose domains, DNS, VPS, website, subscription, billing, and account data to the integration.
+
+Mitigation: Only connect Hostinger accounts whose resources and account data are acceptable to expose to this integration.
+
+Risk: DNS, hosting, domain, and VPS write operations can have high-impact service effects.
+
+Mitigation: Use preview or describe steps where available and confirm every write action before execution.
+
+## Reference(s):
+
+- [ClawHub Hostinger Skill](https://clawhub.ai/hith3sh/skills/hostinger-hosting)
+- [Hostinger API Documentation](https://developers.hostinger.com/)
+- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=hostinger-hosting)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose authenticated Hostinger read and write operations through ClawLink; write operations require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

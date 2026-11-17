@@ -1,42 +1,59 @@
-## Description: <br>
-Image to Markdown - extract text from images (PNG, JPG, WebP) to Markdown with OCR. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image to Markdown - extract text from images (PNG, JPG, WebP) to Markdown with OCR. Use when reading text from screenshots, photos, scanned pages, or any image file.
 
-## Publisher: <br>
-[tanis90](https://clawhub.ai/user/tanis90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanis90](https://clawhub.ai/user/tanis90)
 
-## Use Case: <br>
-Developers, agents, and other users use Img2md to extract text from screenshots, photos, scanned pages, local image files, or image URLs and return the result as Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images are uploaded to MinerU's cloud OCR service for processing, which may expose confidential screenshots, documents, IDs, or private business images. <br>
-Mitigation: Use the skill only with images approved for cloud processing, and avoid confidential or regulated content unless that processing is acceptable for the use case. <br>
-Risk: OCR output may be incomplete or inaccurate, especially for low-quality images, complex layouts, or language settings that do not match the source. <br>
-Mitigation: Review the extracted Markdown against the source image and use the CLI language hint or higher-precision MinerU extraction flow when accuracy requirements are higher. <br>
+## Use Case:
 
+Developers and external users use this skill to extract text from screenshots, photos, scanned pages, and other image files into Markdown using the MinerU Open API CLI.
 
-## Reference(s): <br>
-- [ClawHub Img2md skill page](https://clawhub.ai/tanis90/img2md) <br>
-- [MinerU](https://mineru.net) <br>
-- [MinerU CLI ecosystem](https://mineru.net/ecosystem?tab=cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses mineru-open-api for OCR; selected images may be uploaded to MinerU's cloud OCR service and are limited to 10MB.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.json release.version) <br>
+Risk: Images are uploaded to MinerU's cloud OCR service for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill for highly sensitive images unless the cloud processing and retention behavior meet the user's data handling requirements.
+
+Risk: The skill requires installing the mineru-open-api CLI from a package registry or Go module source.
+
+Mitigation: Install from trusted registries, pin or review the package version where possible, and scan the dependency before deployment.
+
+Risk: OCR output can be incomplete or incorrect, especially for low-quality images or mismatched language settings.
+
+Mitigation: Review extracted Markdown against the source image and pass an explicit language hint when the default is not appropriate.
+
+## Reference(s):
+
+- [Img2md on ClawHub](https://clawhub.ai/tanis90/skills/img2md)
+- [MinerU](https://mineru.net)
+- [MinerU CLI](https://mineru.net/ecosystem?tab=cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [OCR output depends on image quality, language hints, the 10MB image limit, and MinerU cloud API availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

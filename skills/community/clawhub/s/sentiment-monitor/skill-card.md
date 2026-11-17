@@ -1,40 +1,57 @@
-## Description: <br>
-Collects publicly available web information about public-facing entities, analyzes sentiment, and generates self-contained HTML reports with timelines, risks, and recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Public opinion monitoring and structured report generation that collects publicly available web information about celebrities, TV shows, or brands, performs sentiment analysis, and generates responsive HTML reports.
 
-## Publisher: <br>
-[wubinghuang2019-source](https://clawhub.ai/user/wubinghuang2019-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wubinghuang2019-source](https://clawhub.ai/user/wubinghuang2019-source)
 
-## Use Case: <br>
-External users and analysts use this skill to monitor public sentiment around celebrities, shows, brands, or products and generate evidence-based HTML reports from public web sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Exact social or platform metrics may be unavailable from public web sources. <br>
-Mitigation: Report only metrics that are explicitly visible in public sources and label missing metrics as unavailable. <br>
-Risk: Sentiment reports can mislead users if based on thin, one-sided, or outdated public information. <br>
-Mitigation: Use multiple public sources, present multiple viewpoints for controversial events, and keep recommendations tied to cited evidence. <br>
+## Use Case:
 
+External users and agents use this skill to monitor public sentiment for public-facing entities and produce an evidence-based HTML report with sentiment distribution, event timelines, risk assessment, and recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wubinghuang2019-source/sentiment-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Self-contained HTML report with embedded CSS] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports should use public sources only, avoid fabricated metrics, and label unavailable data clearly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release evidence) <br>
+Risk: The skill searches public web content and writes a local HTML report.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target entity, time range, and desired report generation before invocation; use only publicly visible sources.
+
+Risk: Public web sources may not expose precise platform metrics such as views, followers, or engagement counts.
+
+Mitigation: Report only explicitly displayed metrics and label missing values as Data Unavailable instead of estimating them.
+
+Risk: The default report template uses Chinese locale HTML conventions.
+
+Mitigation: Adjust the report language and locale when the user requests a different audience or format.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wubinghuang2019-source/skills/sentiment-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Self-contained HTML report with embedded CSS, plus agent guidance for public web research and report delivery.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires web search, web fetch, and local file writing tools; reports missing public metrics as Data Unavailable.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

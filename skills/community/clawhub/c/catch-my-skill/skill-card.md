@@ -1,40 +1,53 @@
-## Description: <br>
-Automatically checks version differences between local and online skills, with ClawHub/GitHub support and recurring update checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Catch My Skill helps OpenClaw users track local skill versions against ClawHub versions and report when tracked skills are behind.
 
-## Publisher: <br>
-[russellfei](https://clawhub.ai/user/russellfei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[russellfei](https://clawhub.ai/user/russellfei)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to track installed skills, compare local versions against online ClawHub or GitHub versions, and identify skills that may need updates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The update path can run shell commands and install remote code into the local skills workspace. <br>
-Mitigation: Review the target skill name, publisher, and package source before using the update command. <br>
-Risk: Recurring version checks may be configured through a cron entry. <br>
-Mitigation: Confirm whether any scheduled job was added and disable it if recurring background checks are not wanted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/russellfei/catch-my-skill) <br>
-- [GitHub repository link mentioned in README](https://github.com/russellfei/catch-my-skill) <br>
+## Use Case:
 
+OpenClaw users and skill maintainers use this skill to initialize a tracked list of local skills, compare local versions with ClawHub versions, and identify skills that may need updates.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text status reports with JSON tracking files and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local and online skill tracking data to JSON files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The update command can install mutable remote skill code and has an unvalidated shell-command path.
+
+Mitigation: Use read-only check features unless the update path is fixed; verify update sources before installing remote skill code.
+
+Risk: Recurring checks may run automatically if a cron job is enabled without clear operator consent.
+
+Mitigation: Enable scheduled runs only with explicit opt-in and provide a clear way to remove or disable the cron job.
+
+## Reference(s):
+
+- [Catch My Skill on ClawHub](https://clawhub.ai/russellfei/skills/catch-my-skill)
+- [russellfei ClawHub profile](https://clawhub.ai/user/russellfei)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text status reports with command examples and JSON state files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains local and online skill-version lists in JSON files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

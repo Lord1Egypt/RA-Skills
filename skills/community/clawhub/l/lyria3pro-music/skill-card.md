@@ -1,40 +1,51 @@
-## Description: <br>
-Free AI music generator powered by Google's Lyria 3 Pro model. Create full tracks from text prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free AI music generator powered by Google's Lyria 3 Pro model. Create full tracks from text prompts.
 
-## Publisher: <br>
-[walex8925](https://clawhub.ai/user/walex8925) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[walex8925](https://clawhub.ai/user/walex8925)
 
-## Use Case: <br>
-External creators, podcasters, game developers, content marketers, and musicians use this skill for guidance to an external text-to-music service that generates downloadable music tracks from prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The linked external website is the primary trust boundary for generated music prompts and downloads. <br>
-Mitigation: Review the provider's privacy and licensing terms before use, and avoid submitting sensitive, private, or copyrighted material unless the service terms are acceptable. <br>
+## Use Case:
 
+External creators, podcasters, game developers, marketers, and musicians use this skill to find and use a text-to-music service for generating downloadable music tracks from prompts.
 
-## Reference(s): <br>
-- [Lyria 3 Pro website](https://www.dh3-seedream.com) <br>
-- [ClawHub skill page](https://clawhub.ai/walex8925/lyria3pro-music) <br>
-- [Publisher profile](https://clawhub.ai/user/walex8925) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No local code execution or installation; directs users to an external website.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Prompts and generated music content may be shared with an external website.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the linked service's terms and privacy practices before using sensitive prompts or generated content.
+
+## Reference(s):
+
+- [Lyria 3 Pro Website](https://www.dh3-seedream.com)
+- [ClawHub Skill Page](https://clawhub.ai/walex8925/skills/lyria3pro-music)
+- [Publisher Profile](https://clawhub.ai/user/walex8925)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance with links and step-by-step usage instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Directs the agent to an external music generation website; it does not request local execution, credentials, or persistent access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

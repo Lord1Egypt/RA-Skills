@@ -1,40 +1,53 @@
-## Description: <br>
-Use this skill when an emergency manager, exercise planner, or incident commander needs to produce a HSEEP-aligned After-Action Report and Improvement Plan (AAR/IP) from evaluator notes, hotwash observations, and participant feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Emergency managers, exercise planners, and incident commanders use this skill to draft HSEEP-aligned After-Action Reports and Improvement Plans from evaluator notes, hotwash observations, and participant feedback.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Emergency managers, exercise planners, lead evaluators, healthcare-coalition staff, and incident commanders use this skill to draft HSEEP-aligned AAR/IP packets from exercise or incident evidence. It structures intake, ratings, analysis, lessons learned, and SMART corrective actions while keeping the packet in draft status for human sign-off. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AAR/IP drafting may involve sensitive exercise, incident, law-enforcement, health, or participant-identifying details. <br>
-Mitigation: Provide only information your organization has approved for agent handling; omit classified, LES, PHI, and identifying participant details unless approved. <br>
-Risk: Unsupported ratings or corrective actions could misstate operational performance or assign work to an organization that has not accepted ownership. <br>
-Mitigation: Keep the output in draft status and require exercise-director, lead-evaluator, sponsor, or incident-commander review before distribution or sign-off. <br>
+## Use Case:
 
+Emergency-management staff, exercise evaluators, healthcare-coalition staff, and incident commanders use this skill to assemble draft AAR/IP packets for exercises or real-world incidents. It supports evidence intake, Core-Capability ratings, SMART corrective actions, lessons learned, and review-ready appendices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/emergency-after-action-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown draft report packet with tables and structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft AAR/IP content for human review and sign-off; it does not publish or distribute the report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server evidence and changelog, released 2026-05-28) <br>
+Risk: A report may contain sensitive, classified, PHI, law-enforcement-sensitive, or unnecessary personal information supplied during drafting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the report sensitivity level before use and avoid pasting classified, PHI, or unnecessary personal details into the session.
+
+Risk: Generated ratings, findings, and corrective actions may be mistaken for approved conclusions.
+
+Mitigation: Treat all ratings, findings, and corrective actions as draft material requiring sponsor, exercise-director, or incident-commander review and sign-off before distribution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/archlab-space/skills/emergency-after-action-report)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown draft AAR/IP packet with structured tables and appendices]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces draft material requiring sponsor, exercise-director, or incident-commander review before distribution.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence and changelog, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

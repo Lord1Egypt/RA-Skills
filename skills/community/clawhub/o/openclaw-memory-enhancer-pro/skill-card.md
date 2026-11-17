@@ -1,44 +1,63 @@
-## Description: <br>
-Memory Enhancer Pro helps OpenClaw agents search, summarize, classify, clean up, and optimize local memory files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Enhancer Pro helps OpenClaw users search, summarize, classify, and optimize local AI memory files with token analysis and scheduled maintenance utilities.
 
-## Publisher: <br>
-[williamwg2025](https://clawhub.ai/user/williamwg2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[williamwg2025](https://clawhub.ai/user/williamwg2025)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to manage local agent memory, inspect token usage, generate memory-related suggestions, and optionally run scheduled cleanup or optimization tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads sensitive local OpenClaw memory, session, user, soul, and agent files. <br>
-Mitigation: Install and run it only in workspaces where those local files are appropriate for memory analysis, and review outputs before sharing them. <br>
-Risk: Cleanup and scheduled optimization flows can write logs or configuration and may delete older memory files when destructive modes are enabled. <br>
-Mitigation: Run analysis or dry-run modes first, back up memory files, and use destructive execution only after confirming the target path and retention window. <br>
-Risk: Security evidence reports confusing hardcoded paths that can write outside the Pro skill folder if installed under a different directory name. <br>
-Mitigation: Verify the installed path and update hardcoded memory-enhancer paths before enabling schedules or write operations. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to inspect local memory files, find prior context, summarize current session state, classify memory content, and review token-optimization suggestions. It is most appropriate when the user accepts local file reads and writes and explicitly reviews cleanup or scheduled task behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/williamwg2025/openclaw-memory-enhancer-pro) <br>
-- [README_EN.md](artifact/README_EN.md) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text, Markdown memory content, and JSON configuration or statistics files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local OpenClaw memory files and scheduler configuration may affect what the scripts read, write, or report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata; artifact frontmatter states 2.0.0) <br>
+Risk: The skill can read local OpenClaw memory plus USER.md, SOUL.md, and AGENTS.md metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scripts before installation and avoid storing sensitive information in files the skill inspects.
+
+Risk: The skill can write token statistics, logs, and scheduled-task configuration.
+
+Mitigation: Run analysis manually first, inspect generated files, and enable scheduled tasks only after confirming the behavior.
+
+Risk: The cleanup behavior can delete old date-named memory files when explicitly executed.
+
+Mitigation: Keep backups of ~/.openclaw/, use dry-run style review where available, and avoid negative or untrusted --days values.
+
+Risk: The advertised Pro semantic search and compression claims may overstate the implementation.
+
+Mitigation: Treat search, classification, and token savings as heuristic output and validate important results before relying on them.
+
+## Reference(s):
+
+- [Memory Enhancer Pro on ClawHub](https://clawhub.ai/williamwg2025/skills/openclaw-memory-enhancer-pro)
+- [README_EN.md](README_EN.md)
+- [README.md](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Terminal text and Markdown guidance with JSON configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local file analysis may produce token statistics, optimization suggestions, schedule settings, and cleanup status.]
+
+## Skill Version(s):
+
+0.1.5 (source: ClawHub release metadata; packaged SKILL.md frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Use when preparing a Skill folder for public release to SkillHub, ClawHub, or another agent-skill marketplace, especially before publishing third-party installable skills, scripts, references, metadata, or examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when preparing a Skill folder for public release to SkillHub, ClawHub, or another agent-skill marketplace, especially before publishing third-party installable skills, scripts, references, metadata, or examples.
 
-## Publisher: <br>
-[debtvc2022](https://clawhub.ai/user/debtvc2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[debtvc2022](https://clawhub.ai/user/debtvc2022)
 
-## Use Case: <br>
-Developers and skill publishers use this skill to audit agent skill folders before public marketplace release. It checks structure, discovery metadata, safety, scripts, links, and packaging, then reports a READY, READY_WITH_WARNINGS, or BLOCKED decision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The auditor reads files in the candidate skill folder, which may include sensitive or private content if pointed at the wrong directory. <br>
-Mitigation: Run it only against skill folders intended for review or publication, and review generated findings before sharing them. <br>
-Risk: Python compile checks may create normal bytecode cache files while inspecting scripts. <br>
-Mitigation: Run the audit in a disposable copy or clean generated __pycache__ files after the review if the package must stay unchanged. <br>
+## Use Case:
 
+Developers and maintainers use this skill to audit agent skill folders before public marketplace release, checking structure, discovery metadata, safety, packaging, and release readiness.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/debtvc2022/skillhub-publish-auditor) <br>
-- [release-checklist.md](references/release-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, JSON, shell commands] <br>
-**Output Format:** [Markdown or JSON audit report with file-level findings and a release decision] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are labeled blocker, warn, or info; final decisions are READY, READY_WITH_WARNINGS, or BLOCKED.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Security evidence reports a suspicious verdict because the bundled scanner can read outside the chosen skill folder through symlinks and can silently skip scans in some common paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; avoid running it on untrusted skill archives that may contain symlinks or under excluded directory names such as build or dist.
+
+Risk: Security evidence says scans may be incomplete when no files are scanned or when path containment is not enforced.
+
+Mitigation: Prefer a patched version that rejects symlinks, enforces resolved-path containment, and reports when no files were scanned.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/debtvc2022/skills/skillhub-publish-auditor)
+- [release-checklist.md](references/release-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown or JSON release audit report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Ends with a READY, READY_WITH_WARNINGS, or BLOCKED release decision.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

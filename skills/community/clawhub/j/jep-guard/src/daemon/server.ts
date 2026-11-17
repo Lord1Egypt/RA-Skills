@@ -1,118 +1,113 @@
 import net from 'net';
 import path from 'path';
-import os from 'os';
 import fs from 'fs';
-import { JEPCore } from '../core/jep-core';
-import { SkillRegistryService } from './registry';
-import { PolicyEngineService } from './policy';
-import { CausalGateService } from './gate';
-import { CausalRouterService } from './router';
-import { ReputationEngineService } from './reputation';
-import { AuditStreamService } from './audit';
-import { ExtensionLoaderService } from '../extensions/loader';
+import {randomBytes} from 'crypto';
+import {JEPCore} from '../core/jep-core';
+import {canonicalize} from '../core/canonical';
+import {SkillRegistryService} from './registry';
+import {PolicyEngineService} from './policy';
+import {CausalGateService} from './gate';
+import {ReputationEngineService} from './reputation';
+import {AuditStreamService} from './audit';
+import {ExtensionLoaderService} from '../extensions/loader';
 
 export class GuardDaemon {
-  public socketPath: string;
-  private server?: net.Server;
-  private core: JEPCore;
-  private registry: SkillRegistryService;
-  private policy: PolicyEngineService;
-  private reputation: ReputationEngineService;
-  private audit: AuditStreamService;
-  private extensions: ExtensionLoaderService;
-  private gate: CausalGateService;
-  private router: CausalRouterService;
-
-  constructor(private mode: string) {
-    this.socketPath = path.join(os.tmpdir(), 'jep-guard.sock');
-    this.core = new JEPCore('jep-guard-daemon');
-    this.registry = new SkillRegistryService();
-    this.policy = new PolicyEngineService();
-    this.reputation = new ReputationEngineService();
-    this.audit = new AuditStreamService();
-    this.extensions = new ExtensionLoaderService({
-      core: this.core as any,
-      registry: this.registry,
-      policy: this.policy,
-      reputation: this.reputation,
-      audit: this.audit
-    });
-    this.gate = new CausalGateService(this.core, this.registry, this.policy, this.extensions);
-    this.router = new CausalRouterService(this.core, this.gate);
+  public socketPath:string;
+  private server?:net.Server;
+  private core:JEPCore;
+  private registry:SkillRegistryService;
+  private audit:AuditStreamService;
+  private gate:CausalGateService;
+  private grants=new Map<string,string>();
+  private connections=new Set<net.Socket>();
+  private listening=false;
+  constructor(private mode:string) {
+    if(mode!=='full')throw new Error('Daemon requires explicit full mode');
+    const {dir,secureDir,readPrivate}=require('../../transport');
+    const folder=dir();secureDir(folder);
+    this.socketPath=path.join(folder,'guard.sock');
+    const keyfile=path.join(folder,'daemon-seed');
+    if(!fs.existsSync(keyfile))fs.writeFileSync(keyfile,randomBytes(32).toString('base64'),{mode:0o600,flag:'wx'});
+    const seed=Buffer.from(readPrivate(keyfile).trim(),'base64');
+    this.core=new JEPCore('jep-guard-daemon',seed);
+    const publicfile=path.join(folder,'daemon-publickey');
+    if(fs.existsSync(publicfile)) {
+      if(readPrivate(publicfile).trim()!==this.core.publicKey)throw new Error('Daemon key pin mismatch');
+    } else fs.writeFileSync(publicfile,this.core.publicKey,{mode:0o600,flag:'wx'});
+    this.registry=new SkillRegistryService(folder);
+    this.audit=new AuditStreamService(folder);
+    const policy=new PolicyEngineService(path.join(folder,'policy.json'));
+    const extensions=new ExtensionLoaderService({core:this.core,registry:this.registry,policy,reputation:new ReputationEngineService(),audit:this.audit});
+    this.gate=new CausalGateService(this.core,this.registry,policy,extensions);
   }
-
-  async start(): Promise<void> {
-    await this.extensions.loadBuiltins();
-
-    this.server = net.createServer((socket) => {
-      socket.on('data', async (data) => {
+  async start():Promise<void> {
+    // Never unlink someone else's/live socket automatically. Operator removes stale sockets explicitly.
+    if(fs.existsSync(this.socketPath))throw new Error('Socket already exists; check for a running daemon');
+    this.server=net.createServer(socket=>{
+      if(this.connections.size>=64){socket.destroy();return;}
+      this.connections.add(socket);
+      socket.on('close',()=>this.connections.delete(socket));
+      socket.on('error',()=>socket.destroy());
+      socket.setTimeout(5000,()=>socket.destroy());
+      const challenge=randomBytes(32).toString('hex');
+      socket.write(JSON.stringify({challenge})+'\n');
+      let buffer=Buffer.alloc(0),handled=false;
+      socket.on('data',async chunk=>{
+        if(handled)return;
+        buffer=Buffer.concat([buffer,chunk]);
+        if(buffer.length>65536){handled=true;socket.destroy();return;}
+        const newline=buffer.indexOf(10);if(newline<0)return;
+        handled=true;
         try {
-          const req = JSON.parse(data.toString());
-          const result = await this.handleRequest(req);
-          socket.write(JSON.stringify(result));
-          socket.end();
-        } catch (err) {
-          socket.write(JSON.stringify({ error: err instanceof Error ? err.message : 'unknown' }));
-          socket.end();
-        }
+          if(newline!==buffer.length-1)throw new Error('One request per connection');
+          const {sig,...req}=JSON.parse(buffer.subarray(0,newline).toString('utf8'));
+          if(req.challenge!==challenge || !req.payload || typeof req.payload!=='object' || Array.isArray(req.payload) || !this.registry.verifySignature(req.skill,canonicalize(req),sig))throw new Error('Unauthenticated request');
+          const result=await this.handleRequest(req);
+          socket.end(JSON.stringify(result)+'\n');
+        } catch(err) {socket.end(JSON.stringify({error:err instanceof Error?err.message:'Request rejected'})+'\n');}
       });
     });
-
-    // Remove old socket
-    if (fs.existsSync(this.socketPath)) {
-      fs.unlinkSync(this.socketPath);
-    }
-
-    this.server.listen(this.socketPath);
-    fs.chmodSync(this.socketPath, 0o600);
-
-    console.log(`[JEP Guard] Daemon listening on ${this.socketPath}`);
+    await new Promise<void>((resolve,reject)=>{
+      this.server!.once('error',reject);
+      this.server!.listen(this.socketPath,()=>{
+        try {fs.chmodSync(this.socketPath,0o600);this.listening=true;resolve();}catch(e){this.server!.close();reject(e);}
+      });
+    });
   }
-
-  stop(): void {
+  stop():void {
+    for(const socket of this.connections)socket.destroy();
     this.server?.close();
-    if (fs.existsSync(this.socketPath)) {
-      fs.unlinkSync(this.socketPath);
-    }
+    if(this.listening && fs.existsSync(this.socketPath))fs.unlinkSync(this.socketPath);
+    this.listening=false;
   }
-
-  private async handleRequest(req: any): Promise<any> {
-    switch (req.method) {
+  private async handleRequest(req:any):Promise<any> {
+    switch(req.method) {
       case 'REGISTER_SKILL':
-        const skill = this.registry.register(req.payload);
-        return { success: true, skill_id: skill.skill_id, status: 'registered' };
-
-      case 'JUDGE':
-        return this.gate.process({
-          requester: req.skill,
-          action: req.payload.action,
-          target: req.payload.target || '',
-          type: 'system_call',
-          context: req.payload.context
-        });
-
-      case 'DELEGATE':
-        return this.router.route({
-          from: req.skill,
-          to: req.payload.target,
-          scope: req.payload.scope,
-          payload: req.payload.payload
-        });
-
+        if(req.payload.name!==req.skill)throw new Error('Identity mismatch');
+        return {success:true,skill_id:this.registry.register(req.payload).skill_id};
+      case 'JUDGE': {
+        if(typeof req.payload.action!=='string'||typeof req.payload.target!=='string')throw new Error('Action and target are required');
+        const identity=this.registry.get(req.skill)!;
+        if(!identity.capabilities.includes(req.payload.action))throw new Error('Action is outside assigned capabilities');
+        const result=await this.gate.process({requester:req.skill,action:req.payload.action,target:req.payload.target,type:'system_call',context:req.payload.context});
+        if(result.event)await this.audit.emit(result.event);
+        if(result.action==='allow')this.grants.set(result.event!.nonce,req.skill);
+        return result;
+      }
       case 'VERIFY':
-        const vEvent = this.core.createVerify(req.payload, req.skill);
-        await this.audit.emit(vEvent);
-        this.reputation.recordEvent(req.skill, vEvent);
-        return { success: true, event: vEvent };
-
-      case 'TERMINATE':
-        const tEvent = this.core.createTerminate(req.payload, req.skill);
-        await this.audit.emit(tEvent);
-        this.reputation.recordEvent(req.skill, tEvent);
-        return { success: true, event: tEvent };
-
-      default:
-        return { error: 'Unknown method' };
+      case 'TERMINATE': {
+        const target=req.payload.target_event;
+        if(typeof target!=='string'||this.grants.get(target)!==req.skill)throw new Error('No active owned grant');
+        // Consume before asynchronous audit to prevent duplicate completion races.
+        this.grants.delete(target);
+        const payload={...req.payload,requester:req.skill,source:'authenticated_client_report'};
+        const event=req.method==='VERIFY'?this.core.createVerify(payload,undefined,[target]):this.core.createTerminate(payload,undefined,[target]);
+        await this.audit.emit(event);
+        this.core.updateStatus(target,'completed');
+        return {success:true,event};
+      }
+      case 'DELEGATE': throw new Error('Authenticated receiver transport is required; legacy cross-skill routing is disabled');
+      default: throw new Error('Unknown method');
     }
   }
 }

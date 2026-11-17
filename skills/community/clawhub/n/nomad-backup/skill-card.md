@@ -1,38 +1,57 @@
-## Description: <br>
-Query HashiCorp Nomad clusters. List jobs, nodes, allocations, evaluations, and services. Read-only operations for monitoring and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query HashiCorp Nomad clusters to list jobs, nodes, allocations, evaluations, and services for read-only monitoring and troubleshooting.
 
-## Publisher: <br>
-[macdesire](https://clawhub.ai/user/macdesire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[macdesire](https://clawhub.ai/user/macdesire)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect HashiCorp Nomad cluster state, troubleshoot jobs and allocations, view logs, and check nodes, services, namespaces, variables, and evaluations with read-only Nomad CLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cluster logs, Nomad variables, and Nomad tokens may expose sensitive operational data in the agent conversation. <br>
-Mitigation: Use a read-only scoped Nomad ACL token and avoid requesting full allocation logs or variable values unless that data is acceptable to disclose. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect HashiCorp Nomad cluster state, retrieve allocation logs, and troubleshoot jobs without submitting or modifying workloads.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/macdesire/nomad-backup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Nomad CLI command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the nomad CLI and Nomad environment variables; commands are intended to be read-only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Nomad variable reads can expose sensitive values if the agent is given broad ACL permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Nomad ACL token, avoid granting variable-read access unless needed, and do not paste or display secret variable values in chat.
+
+Risk: Shell examples that interpolate job or allocation identifiers can be unsafe when identifiers come from untrusted input.
+
+Mitigation: Validate or safely quote identifiers before running command examples.
+
+Risk: Read-only cluster status and allocation logs can still reveal operational details or sensitive application output.
+
+Mitigation: Limit token scope to the namespaces and resources needed for troubleshooting and avoid sharing sensitive logs in agent conversations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/macdesire/skills/nomad-backup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline Nomad CLI commands and optional JSON command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the nomad CLI and Nomad environment variables such as NOMAD_ADDR and, when ACLs are enabled, NOMAD_TOKEN.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

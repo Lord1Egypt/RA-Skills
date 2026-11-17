@@ -21,10 +21,10 @@ from utils.feishu_sender import send_feishu_images, send_feishu_message
 from utils.text_overlay import add_marketing_text
 
 # 默认 API Key（Grsai Nano Banana）
-DEFAULT_API_KEY = "sk-6fe41fd597614d2686f6d0685b4bd232"
+DEFAULT_API_KEY = "REDACTED-SECRET"
 
 # 默认 API Key
-DEFAULT_API_KEY = "sk-6fe41fd597614d2686f6d0685b4bd232"
+DEFAULT_API_KEY = "REDACTED-SECRET"
 
 
 class ProductImageGenerator:

@@ -1,40 +1,60 @@
-## Description: <br>
-Helps an agent maintain personal local skill files by detecting reusable session knowledge, checking for similar skills, drafting proposed skill changes, and applying them only after explicit approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AutoSkill Local Skill Manager helps agents detect reusable session knowledge, search for similar skills, and draft approved local skill creations, merges, or improvements.
 
-## Publisher: <br>
-[drjzhou](https://clawhub.ai/user/drjzhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drjzhou](https://clawhub.ai/user/drjzhou)
 
-## Use Case: <br>
-Developers and agents use this skill to identify reusable local skill material from conversations, compare it with existing skills, and draft reviewed skill creations or updates before any approved file changes are made. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Durable skill edits can change future agent behavior or preserve sensitive information. <br>
-Mitigation: Review every proposed path, full skill text, and diff before approval, and keep secrets, private URLs, customer details, and credentials out of saved skills. <br>
-Risk: Skill proposals may introduce incorrect guidance, surprising capabilities, scripts, or third-party integrations. <br>
-Mitigation: Require explicit user approval before writing, installing, enabling, or materially rewriting skills, and make the purpose of any scripts or tool integrations visible in the skill text. <br>
+## Use Case:
 
+Developers and agent users use this skill to maintain personal, team, or workspace skill libraries by identifying reusable behavior, comparing similar skills, and preparing proposed skill files or diffs for review. It is designed for local skill management workflows where durable changes require explicit user approval.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/drjzhou/autoskill-local-skill-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance, proposed file contents, diffs, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user approval before creating, updating, deleting, installing, or enabling skill files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.7 (source: server release evidence) <br>
+Risk: The skill can propose durable changes to local agent instructions and skill files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every proposed SKILL.md file or diff and approve only intended changes before writes.
+
+Risk: The skill may use unpinned external discovery commands such as npx skills find.
+
+Mitigation: Pin or avoid npx skills commands for sensitive workflows and approve the exact query and destination before external discovery.
+
+Risk: External discovery can expose private task context if queries contain sensitive details.
+
+Mitigation: Keep external discovery disabled for private work unless the query is reviewed and sanitized.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/drjzhou/skills/autoskill-local-skill-manager)
+- [Source Repository Link From Artifact README](https://github.com/ECNU-ICALK/autoskill-skill)
+- [Original Project Link From Artifact README](https://github.com/ECNU-ICALK/AutoSkill)
+- [skills.sh](https://skills.sh/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose with proposed SKILL.md content, diffs, commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user approval before creating, updating, deleting, importing, installing, enabling, or materially rewriting skill files.]
+
+## Skill Version(s):
+
+0.1.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

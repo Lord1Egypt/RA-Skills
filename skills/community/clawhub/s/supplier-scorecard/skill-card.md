@@ -1,46 +1,57 @@
-## Description: <br>
-Track and score supplier reliability, quality consistency, lead time accuracy, and communication to make sourcing decisions based on evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and score supplier reliability, quality consistency, lead time accuracy, and communication to make sourcing decisions based on evidence.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce operators and sourcing teams use this skill to compare suppliers for the same products, build quarterly supplier reviews, decide when to switch or dual-source, and negotiate from documented supplier performance evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Supplier scorecards may include private business records from purchase orders, emails, chat logs, inspections, costs, and customer defect reports. <br>
-Mitigation: Use redacted or minimal excerpts, follow company confidentiality rules, and avoid sharing sensitive supplier or customer details that are not needed for the scoring task. <br>
-Risk: Recommendations can influence supplier switching, purchasing, dual-sourcing, or negotiation decisions. <br>
-Mitigation: Keep final sourcing, purchasing, and negotiation decisions under human review, and verify scorecard evidence before acting. <br>
-Risk: Incomplete or estimated evidence can produce misleading scores. <br>
-Mitigation: Flag reconstructed or estimated inputs, require each score to cite log evidence, and use the checklist before finalizing a scorecard. <br>
+## Use Case:
 
+External ecommerce operators and sourcing teams use this skill to build supplier scorecards from order history, quality records, lead-time data, cost information, and communication evidence. It supports supplier comparisons, dual-sourcing decisions, switching reviews, negotiation planning, and quarterly supplier review processes.
 
-## Reference(s): <br>
-- [Supplier Scorecard on ClawHub](https://clawhub.ai/leooooooow/supplier-scorecard) <br>
-- [Output Template](artifact/output-template.md) <br>
-- [Scoring Rubrics](artifact/scoring-rubrics.md) <br>
-- [Sourcing Playbook](artifact/sourcing-playbook.md) <br>
-- [Scorecard Quality Checklist](artifact/scorecard-quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown scorecards, comparison tables, recommendations, checklists, and action plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided supplier order, quality, lead-time, communication, and cost evidence; final purchasing and switching decisions remain under human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Supplier scorecards may include sensitive order records, emails, chat exports, quality data, and supplier commercial terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the business records needed for the scorecard and remove unrelated sensitive information before using the skill.
+
+Risk: Scorecard outputs can affect supplier negotiations, sourcing decisions, or supplier-facing communications.
+
+Mitigation: Review scores, evidence citations, and recommendations before sending scorecards to suppliers or changing sourcing plans.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/supplier-scorecard)
+- [Output Template](artifact/output-template.md)
+- [Scoring Rubrics](artifact/scoring-rubrics.md)
+- [Sourcing Playbook](artifact/sourcing-playbook.md)
+- [Supplier Scorecard Quality Checklist](artifact/scorecard-quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown scorecards, comparison tables, evidence logs, recommendations, and action plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses weighted 1-10 scoring across quality consistency, reliability, lead time accuracy, communication, and cost competitiveness.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

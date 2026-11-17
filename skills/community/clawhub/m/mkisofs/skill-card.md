@@ -1,44 +1,52 @@
-## Description: <br>
-Create and manage ISO 9660 images using mkisofs, genisoimage, or xorriso for standard, bootable, UEFI, hybrid, and multi-boot ISO creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage ISO 9660 images using mkisofs, genisoimage, or xorriso for standard, bootable, UEFI, hybrid, and multi-boot ISO creation.
 
-## Publisher: <br>
-[weidongkl](https://clawhub.ai/user/weidongkl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weidongkl](https://clawhub.ai/user/weidongkl)
 
-## Use Case: <br>
-Developers and system engineers use this skill to generate command guidance for creating, inspecting, mounting, extracting, modifying, and validating ISO images, including bootable BIOS, UEFI, hybrid, and multi-boot media. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated package installation, mount, extract, overwrite, add, or remove commands can change the local system or ISO contents if run without review. <br>
-Mitigation: Require explicit approval before executing those operations, and inspect each generated command before running it. <br>
-Risk: Incorrect source, mount, extraction, or output paths can overwrite files or operate on the wrong data. <br>
-Mitigation: Confirm all paths and prefer temporary working directories before running ISO creation or modification commands. <br>
+## Use Case:
 
+Developers and build engineers use this skill to ask an agent for ISO image creation, boot configuration, image inspection, mounting, extraction, modification, and verification guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weidongkl/mkisofs) <br>
-- [mkisofs manual](https://linux.die.net/man/8/mkisofs) <br>
-- [xorriso documentation](https://www.gnu.org/software/xorriso/) <br>
-- [ISOLINUX documentation](https://wiki.syslinux.org/wiki/index.php/ISOLINUX) <br>
-- [El Torito CD-ROM boot specification](https://en.wikipedia.org/wiki/El_Torito_(CD-ROM_standard)) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and package.json) <br>
+Risk: Generated file, mount, and image-modification commands can write to unintended paths or alter ISO contents if run without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review output paths and target files before execution, prefer a test directory, and use read-only mounts unless modification is intentional.
+
+## Reference(s):
+
+- [mkisofs Manual](https://linux.die.net/man/8/mkisofs)
+- [xorriso Documentation](https://www.gnu.org/software/xorriso/)
+- [ISOLINUX Documentation](https://wiki.syslinux.org/wiki/index.php/ISOLINUX)
+- [El Torito Specification](https://en.wikipedia.org/wiki/El_Torito_(CD-ROM_standard))
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples, configuration snippets, and command-reference tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese/English content; users should review output paths, mount targets, and image-modification commands before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence release metadata and package.json; artifact/SKILL.md changelog lists v1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

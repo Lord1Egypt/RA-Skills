@@ -1,46 +1,61 @@
-## Description: <br>
-全球热点事件监控与影响分析。覆盖全球局势、地缘冲突、重大政策、创新技术等可能影响经济、市场和投资的事件，并按行业、汇率、大宗商品链路分析影响。含定时消息推送与全渠道分段推送能力。用于 Cron 定时推送热点摘要(早8点/晚8点/整点扫描)。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Eyes monitors global news and market-moving events, prepares daily or hourly briefings, and analyzes potential impacts across equities, sectors, currencies, and commodities.
 
-## Publisher: <br>
-[kobenfang](https://clawhub.ai/user/kobenfang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kobenfang](https://clawhub.ai/user/kobenfang)
 
-## Use Case: <br>
-External users and market watchers use Eyes to generate concise global news summaries and market-impact analysis across politics, economics, technology, and financial markets. The skill can also support scheduled news push workflows for configured chat channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create scheduled outbound news summaries to configured chat channels. <br>
-Mitigation: Confirm the destination channel and target before installation, and review the created cron jobs after setup. <br>
-Risk: Server security evidence flags under-disclosed fallback targeting and promotional message behavior. <br>
-Mitigation: Review or disable the BigA fallback and promotional message behavior before use in shared or commercial channels. <br>
-Risk: Recurring jobs may continue sending messages after the initial setup. <br>
-Mitigation: Document how to list, edit, and remove the Eyes cron jobs before enabling scheduled delivery. <br>
+## Use Case:
 
+External users and investors use Eyes to request or schedule global news briefings that classify events by urgency and summarize likely market impact across A-shares, Hong Kong stocks, U.S. stocks, sectors, FX, and commodities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kobenfang/eyes) <br>
-- [cron-install-shell.sh](references/cron-install-shell.sh) <br>
-- [cron-templates.json](references/cron-templates.json) <br>
-- [event-impact-matrix.md](references/event-impact-matrix.md) <br>
-- [user-preferences.md](references/user-preferences.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce segmented outbound channel messages and scheduled OpenClaw cron configuration when the user enables those workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.3.12 (source: server release metadata; artifact _meta.json reports 5.3.6) <br>
+Risk: Outbound messaging behavior is under-scoped and could send reports to unexpected destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all cron jobs and message destinations before installation, and require explicit confirmation before sending reports or changing cron settings.
+
+Risk: Hard-coded Feishu examples and fallback delivery configuration can route content through unintended channels.
+
+Mitigation: Replace example targets with user-approved channel and target values, and remove the BigA shared configuration fallback before deployment.
+
+Risk: The helper can append promotional BigA text to outgoing reports.
+
+Mitigation: Remove the promotion behavior so delivered reports contain only the requested news and market analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kobenfang/skills/eyes)
+- [Event Impact Matrix](references/event-impact-matrix.md)
+- [Cron Templates](references/cron-templates.json)
+- [Cron Install Shell](references/cron-install-shell.sh)
+- [User Preferences](references/user-preferences.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown briefings with JSON helper output and shell commands for OpenClaw messaging and cron configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Briefings may be segmented for delivery; helper commands can update local memory, schedule cron jobs, and send messages to configured channels.]
+
+## Skill Version(s):
+
+5.3.13 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

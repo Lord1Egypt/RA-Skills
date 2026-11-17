@@ -1,41 +1,49 @@
-## Description: <br>
-AI Doctor helps users understand symptoms, conditions, medications, lab results, and treatment options while directing them to professional medical care for diagnosis and treatment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI medical consultation assistant that helps users understand symptoms, conditions, medications, lab results, and treatment options while recommending professional medical care for diagnosis and treatment.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
 
-## Use Case: <br>
-External users use this skill for general educational health information about symptoms, conditions, medications, lab results, and treatment options. It is not a substitute for diagnosis, treatment, emergency care, or individualized medical advice from a licensed clinician. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake general medical information for diagnosis or individualized treatment advice. <br>
-Mitigation: State that the output is health information, not a medical diagnosis, and direct users to consult a licensed physician for personal medical advice. <br>
-Risk: Broad medical questions can involve emergencies, medication dosing, mental health crises, pregnancy, pediatric care, or other high-risk situations. <br>
-Mitigation: Escalate urgent or high-risk situations to licensed care or emergency services instead of providing definitive diagnoses, individualized dosing, or treatment decisions. <br>
+## Use Case:
 
+External users use this skill to understand health concerns, symptoms, conditions, medications, lab results, and treatment options. It provides general health information and prompts users to consult licensed medical professionals for diagnosis and treatment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiwenbing/ai-doctor) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jiwenbing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text health information with clarifying questions, caveats, and care-seeking guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Should include clear medical disclaimers and escalation guidance for urgent or high-risk situations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Users may mistake general medical information for personal medical diagnosis or treatment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users to verify important decisions with licensed medical professionals and seek urgent care for severe or worsening symptoms.
+
+## Reference(s):
+
+- [Ai Doctor ClawHub Skill Page](https://clawhub.ai/jiwenbing/skills/ai-doctor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown health-information guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes disclaimers and care-seeking guidance; does not provide a definitive diagnosis.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

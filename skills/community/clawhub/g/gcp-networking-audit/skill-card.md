@@ -1,42 +1,54 @@
-## Description: <br>
-GCP VPC Network audit covering global VPC design, firewall rule priority evaluation with hierarchical policies, Cloud NAT egress analysis, Cloud Interconnect and Shared VPC connectivity, Cloud Router BGP validation, and resource optimization using read-only gcloud CLI commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GCP VPC Network audit covering global VPC design, firewall rule priority evaluation with hierarchical policies, Cloud NAT egress analysis, Cloud Interconnect and Shared VPC connectivity, Cloud Router BGP validation, and resource optimization using read-only gcloud CLI commands.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Developers, cloud engineers, security teams, and auditors use this skill to review GCP VPC architecture, firewall posture, connectivity, routing, Cloud NAT, and optimization findings with read-only gcloud commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit may expose sensitive infrastructure details from GCP networking configuration. <br>
-Mitigation: Run it only with authorized read-only GCP access and treat generated findings, command output, project IDs, network names, routes, and firewall details as sensitive. <br>
-Risk: Commands may run against the wrong active gcloud account or project. <br>
-Mitigation: Confirm the active gcloud account and project before execution, and prefer a least-privilege read-only account. <br>
+## Use Case:
 
+Developers, cloud engineers, and security engineers use this skill to audit GCP VPC architecture, firewall rules, Cloud NAT, hybrid connectivity, Shared VPC, and Cloud Router posture. It guides read-only gcloud inspection and helps produce security, compliance, troubleshooting, and optimization findings.
 
-## Reference(s): <br>
-- [GCP gcloud CLI Reference - VPC Network Audit Commands](references/cli-reference.md) <br>
-- [GCP VPC Network Architecture Reference](references/vpc-architecture.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/vahagn-madatyan/gcp-networking-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with inline read-only gcloud command blocks and audit report structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires authenticated gcloud access and appropriate read permissions for the target GCP project, organization, or Shared VPC scope.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and skill frontmatter) <br>
+Risk: Audit output may expose sensitive network, IAM, project, organization, or Shared VPC configuration details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill with least-privilege read-only access, confirm the target scope before executing commands, and handle collected output as sensitive operational data.
+
+Risk: The skill depends on the active gcloud account and project context, so reviewing the wrong scope can produce misleading findings.
+
+Mitigation: Verify the active account, project, organization, and Shared VPC host or service project context before running the audit commands.
+
+## Reference(s):
+
+- [GCP gcloud CLI Reference - VPC Network Audit Commands](references/cli-reference.md)
+- [GCP VPC Network Architecture Reference](references/vpc-architecture.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown audit guidance with read-only gcloud command snippets and a findings report template]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires authenticated gcloud access to the selected GCP project, organization, or Shared VPC scope; commands are read-only.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

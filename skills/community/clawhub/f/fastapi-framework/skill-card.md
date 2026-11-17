@@ -1,44 +1,57 @@
-## Description: <br>
-FastAPI helps developers build modern Python web APIs with routing, validation, generated OpenAPI documentation, async support, dependency injection, and security patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FastAPI - 高性能 Python Web API 框架.
 
-## Publisher: <br>
-[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage)
 
-## Use Case: <br>
-Developers and engineers use this skill to create, test, troubleshoot, and prepare FastAPI applications for deployment. It guides agents through project setup, route and model generation, authentication, database integration, CORS, testing, and production server configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may propose environment-changing actions such as package installs, virtual environment creation, dependency updates, server starts, or Docker commands. <br>
-Mitigation: Review and approve these actions before execution, especially in shared, production, or externally exposed environments. <br>
-Risk: Authentication and configuration examples include sample secrets, JWT flows, CORS settings, bind addresses, and public response models that may be unsafe if copied directly to production. <br>
-Mitigation: Replace sample secrets, restrict CORS origins and network bind addresses, validate authentication code, and ensure sensitive fields are excluded from public schemas before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to build, structure, test, troubleshoot, and deploy FastAPI Web APIs with Pydantic models, routing, dependency injection, authentication, database integration, and interactive API documentation.
 
-## Reference(s): <br>
-- [FastAPI homepage](https://fastapi.tiangolo.com) <br>
-- [FastAPI tutorial](https://fastapi.tiangolo.com/tutorial/) <br>
-- [FastAPI on PyPI](https://pypi.org/project/fastapi/) <br>
-- [ClawHub skill page](https://clawhub.ai/cn-big-cabbage/fastapi-framework) <br>
-- [Publisher profile](https://clawhub.ai/user/cn-big-cabbage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python, shell, TOML, and Docker snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose package installs, virtual environment setup, server start commands, Docker commands, dependency changes, authentication snippets, CORS settings, database integration, and deployment configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill may prompt an agent to install packages, change pip configuration, run Docker, or bind services publicly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before environment changes, Docker execution, pip configuration changes, or public network binding.
+
+Risk: Production-style authentication examples may contain sample tokens, JWT keys, database credentials, or .env values.
+
+Mitigation: Replace all sample secrets with unique values from an approved secret source and review authentication code before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cn-big-cabbage/skills/fastapi-framework)
+- [FastAPI homepage](https://fastapi.tiangolo.com)
+- [FastAPI tutorial](https://fastapi.tiangolo.com/tutorial/)
+- [FastAPI GitHub repository](https://github.com/tiangolo/fastapi)
+- [FastAPI PyPI package](https://pypi.org/project/fastapi/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with Python, TOML, Dockerfile, and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces project structure guidance, FastAPI code examples, installation commands, configuration snippets, tests, and troubleshooting steps.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Guides agents to plan braided rag-rug projects from scrap fabric by assessing materials, calculating strip and braid requirements, scheduling steps, tracking tests, and producing templates while humans perform the physical craft work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when you need thick, durable, washable, insulating floor coverings, doormats, or bed pads made from scrap fabric or old clothing and commercial rugs or mats are unreliable or unavailable.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users and agents use this skill to plan durable braided rag rugs, doormats, bed pads, and related textile-recycling projects from old clothing or fabric scraps. The agent handles material assessment, calculations, schedules, progress tracking, and reusable templates while the user performs all cutting, braiding, coiling, stitching, and safety decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-supplied photos, inventory files, or local project folders may contain personal or household information. <br>
-Mitigation: Provide only photos, inventory files, and folders that are appropriate for the craft workflow, and review any saved progress files before sharing them. <br>
-Risk: The workflow involves sharp cutting tools, long fabric strips, and repetitive hand work that can cause cuts, tangles, or strain if handled carelessly. <br>
-Mitigation: Follow the skill's safety prompts for cutting tools, flat work surfaces, breaks, child supervision, and stopping when wrist or back strain appears. <br>
-Risk: Incorrect material estimates or stitch spacing can waste fabric or produce a rug that buckles, loosens, or wears poorly. <br>
-Mitigation: Start with the recommended sample coil, review material calculations and photo checkpoints, and perform the load and traffic tests before relying on the rug. <br>
+## Use Case:
 
+External users use this skill to plan durable braided rag rugs from old clothing or scrap fabric. The agent helps identify suitable fabrics, calculate material needs, schedule work, track progress, and produce pattern, inventory, and barter templates while the human performs all physical crafting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/braided-rag-rug-making-basics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown plans, checklists, schedules, progress logs, and reusable templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include project inventory and progress files when the agent has filesystem access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The install command is not version-pinned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a reviewed or version-pinned ClawHub CLI invocation before installing.
+
+Risk: The skill may store rug photos, inventory details, progress logs, templates, and reminders in local files.
+
+Mitigation: Run it in a low-privilege environment and choose storage locations appropriate for the sensitivity of those files.
+
+Risk: Physical rug-making steps involve sharp tools, repetitive motion, and material failure hazards.
+
+Mitigation: Keep all tearing, cutting, braiding, stitching, and safety decisions under human control, use the stated safety checks, and test small sample coils before larger rugs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/braided-rag-rug-making-basics)
+- [ClawHub publisher profile](https://clawhub.ai/user/howtousehumans)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown with forms, schedules, checklists, templates, and inline shell command text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update user-chosen local files for rug photos, inventory details, progress logs, templates, and reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

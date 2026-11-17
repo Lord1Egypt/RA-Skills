@@ -1,48 +1,64 @@
-## Description: <br>
-Automates installation and configuration of a Trojan proxy client on Linux, including proxychains4 command proxying and Google Chrome apt source setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs and configures a Trojan proxy client on Linux, including proxychains4 setup and Chrome APT source configuration.
 
-## Publisher: <br>
-[salebender249-del](https://clawhub.ai/user/salebender249-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[salebender249-del](https://clawhub.ai/user/salebender249-del)
 
-## Use Case: <br>
-External users and developers use this skill to install a Trojan client, configure local SOCKS5/proxychains access, and manage the service on Ubuntu/Debian Linux systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer requires root access and makes broad system, network, and package-source changes. <br>
-Mitigation: Review install.sh first and run it only on a machine where granting root access to a proxy installer is acceptable. <br>
-Risk: TLS verification may be disabled in the Trojan client configuration. <br>
-Mitigation: Verify the Trojan release and server identity yourself, and avoid disabling TLS verification unless the operational risk is understood. <br>
-Risk: Binding the local proxy beyond loopback can expose proxy access to the local network. <br>
-Mitigation: Bind the local proxy to 127.0.0.1 unless LAN access is explicitly intended. <br>
-Risk: Proxy credentials and autostart settings can persist sensitive network access. <br>
-Mitigation: Protect the Trojan password in config.json and enable autostart only when the proxy should run after every reboot. <br>
+## Use Case:
 
+Developers and system administrators use this skill to prepare an Ubuntu or Debian Linux host for Trojan proxy client usage, including package installation, local proxy routing through proxychains4, and browser setup guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/salebender249-del/trojan-setup) <br>
-- [Trojan GitHub](https://github.com/trojan-gfw/trojan) <br>
-- [Proxychains-ng](https://github.com/rofl0r/proxychains-ng) <br>
-- [Google Chrome](https://www.google.com/chrome/) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes privileged Linux installation, service-management, proxy, and configuration instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The installer performs root-level system changes, including package installation, file writes under system directories, and service setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install.sh before running it and back up existing Chrome APT and proxychains configuration.
+
+Risk: The Trojan binary download is not pinned to a checksum or verified signature in the artifact.
+
+Mitigation: Verify the downloaded Trojan release with a pinned checksum or signature before installation.
+
+Risk: The documented default proxy configuration exposes the local listener on 0.0.0.0 and disables TLS certificate and hostname verification.
+
+Mitigation: Bind the proxy listener to 127.0.0.1 unless LAN exposure is intentional, and enable TLS certificate and hostname verification where possible.
+
+Risk: Enabling the Trojan systemd service can make proxy behavior persistent across reboots.
+
+Mitigation: Inspect the service unit and its privileges before running systemctl enable.
+
+## Reference(s):
+
+- [Trojan GitHub](https://github.com/trojan-gfw/trojan)
+- [Proxychains-ng](https://github.com/rofl0r/proxychains-ng)
+- [Google Chrome](https://www.google.com/chrome/)
+- [ClawHub Skill Page](https://clawhub.ai/salebender249-del/skills/trojan-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes privileged Linux installation and service-management commands that require review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

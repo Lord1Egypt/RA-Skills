@@ -1,0 +1,43 @@
+{
+  "mcp": {
+    "servers": {
+      "seiche": {
+        "url": "https://api.seiche.info/mcp",
+        "transport": "streamable-http",
+        "toolFilter": {
+          "include": [
+            "data_health",
+            "funding_stress_now",
+            "money_market_context",
+            "market_workbench",
+            "gift_city_context",
+            "gold_inventory_carry"
+          ]
+        }
+      },
+      "liquilens": {
+        "url": "https://api.liquilens.in/mcp",
+        "transport": "streamable-http",
+        "toolFilter": {
+          "include": [
+            "banking_specialisation_coverage",
+            "bank_asset_quality_review",
+            "institution_review_packet",
+            "universe_search"
+          ]
+        }
+      },
+      "undertow": {
+        "url": "https://api.seiche.info/undertow/mcp",
+        "transport": "streamable-http",
+        "toolFilter": {
+          "include": [
+            "exit_cost",
+            "venue_concentration",
+            "gold_cash_realisation"
+          ]
+        }
+      }
+    }
+  }
+}

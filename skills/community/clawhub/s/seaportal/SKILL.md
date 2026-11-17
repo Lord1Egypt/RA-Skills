@@ -23,7 +23,7 @@ CLI-first read-only web fetcher. Use the `seaportal` command. **No JavaScript ex
 ## Core Commands
 
 ```bash
-seaportal <url>                              # Markdown + frontmatter (also writes renders/seaportal/*.md, *.json)
+seaportal <url>                              # Markdown + frontmatter to stdout (--save-dir <dir> to also write files)
 seaportal --json <url>                       # Full Result struct as JSON
 seaportal --xml <url>                        # TEI-Lite XML (teiHeader metadata + text/body content)
 seaportal --snapshot <url>                   # Accessibility tree as JSON
@@ -61,6 +61,9 @@ seaportal --query="compound interest" <url>  # BM25-rank H2/H3 sections by relev
 seaportal --query=... --top-n=3 <url>        # Keep only the top-N most relevant sections in rankedSections
 seaportal --query=... --top-n=3 --filter-by-query <url>  # Replace Content with concatenated top-N sections
 seaportal --split-out=dir/ --split-bytes=32768 <url>  # Shard output across multiple files; print manifest (path\tindex/of\tbytes) to stdout
+seaportal scrape <url> --preview             # Map a site's tree: 1 sample per URL pattern + counts (see "Scraping a whole site")
+seaportal scrape <url> --recent-days 7       # Scrape only sitemap URLs modified in the last 7 days (required for big news sites)
+seaportal scrape <url> --include-patterns '/blog/*' --output md  # Expand one branch into a Markdown digest
 seaportal --version
 ```
 
@@ -70,7 +73,9 @@ The default verb (no subcommand) is URL extraction — `seaportal <url>` behaves
 
 - `seaportal sitemap <url>` — fetch a sitemap.xml, recurse into nested `<sitemapindex>` references, decompress `.gz`, and print one URL per line. Flags: `--json` (emit JSON array of `{loc,lastmod,changefreq,priority}` entries), `--max-urls N` (default 50000), `--max-depth N` (default 5), `--allow-internal` (permit trusted private/internal hosts). Example: `seaportal sitemap https://example.com/sitemap.xml --json`.
 - `seaportal feed <url>` — fetch and parse RSS 2.0, Atom 1.0, or JSON Feed 1.x into a unified `{title, link, published, summary, author, guid}` shape (format sniffed from the root element / first byte). Default output is one TSV line per item (`published\ttitle\tlink`). Flags: `--json` (emit JSON array), `--max-items N` (default 200), `--allow-internal` (permit trusted private/internal hosts). Example: `seaportal feed https://example.com/feed.xml --json`.
-- `seaportal mcp` — run as an MCP (Model Context Protocol) server over JSON-RPC 2.0 line-delimited stdio. Exposes four tools — `fetch_url`, `fetch_snapshot`, `parse_sitemap`, `parse_feed` — each routing to the library entry point of the same shape. No flags; configuration flows through MCP tool arguments. See **MCP integration** below.
+- `seaportal scrape <url>` — scrape a whole site: discover URLs (robots.txt + sitemap, or a bounded homepage crawl when there is no sitemap), cluster them into path patterns, sample within a budget, and fetch + extract each page concurrently. See **Scraping a whole site** below. Key flags: `--preview` (map the site tree cheaply — 1 sample per pattern with counts), `--recent-days N` (bound sitemap discovery to the last N days — **required for large news sites**), `--max-pages N` (default 50), `--max-per-pattern N` (default 8), `--full` (fetch all discovered pages, no sampling), `--include-patterns` / `--exclude-patterns` (comma-separated globs), `--output json|md|directory` (+ `--out-dir` for directory), `--allow-internal`.
+- `seaportal snapshot <url>` — print the accessibility-tree snapshot for a URL (the real subcommand form of `--snapshot`; see **Thin Markdown? Try the snapshot**). Flags: `--filter interactive`, `--format json|compact`, `--max-tokens N`.
+- `seaportal mcp` — run as an MCP (Model Context Protocol) server over JSON-RPC 2.0 line-delimited stdio. Exposes five tools — `fetch_url`, `fetch_snapshot`, `parse_sitemap`, `parse_feed`, `scrape_site` — each routing to the library entry point of the same shape. No flags; configuration flows through MCP tool arguments. See **MCP integration** below.
 - `seaportal help` — usage summary including subcommands.
 
 ## MCP integration
@@ -88,7 +93,7 @@ Register seaportal as an MCP server in your editor (Claude Desktop / Claude Code
 }
 ```
 
-Tools exposed: `fetch_url` (`{url, dedupe?, fast?, with_links?, with_images?, with_tables?, with_comments?, max_tokens?}`), `fetch_snapshot` (`{url, filter?, max_tokens?, allow_internal?}`), `parse_sitemap` (`{url, max_depth?, max_urls?, allow_internal?}`), `parse_feed` (`{url, max_items?, allow_internal?}`). Each returns its library result as a single JSON text content block.
+Tools exposed: `fetch_url` (`{url, dedupe?, fast?, with_links?, with_images?, with_tables?, with_comments?, max_tokens?}`), `fetch_snapshot` (`{url, filter?, max_tokens?, allow_internal?}`), `parse_sitemap` (`{url, max_depth?, max_urls?, allow_internal?}`), `parse_feed` (`{url, max_items?, allow_internal?}`), `scrape_site` (`{base_url, max_pages?, max_per_pattern?, include_patterns?, exclude_patterns?, allow_internal?}`). Each returns its library result as a single JSON text content block.
 
 ## User-Agent presets
 
@@ -201,6 +206,20 @@ pinchtab fetch https://example.com | seaportal --base-url https://example.com --
 
 There is no session, no click, no form submit — every navigation is a fresh HTTP GET. To "click" a link you re-invoke seaportal on its `href`.
 
+## Scraping a whole site
+
+`seaportal scrape <url>` handles multi-page sites in one shot: it discovers URLs (robots.txt `Sitemap:` directives + the conventional `/sitemap.xml`, recursing sitemap-indexes; or a bounded homepage crawl when there is no sitemap), groups them into path patterns like `/blog/*/*` , samples within a budget, then fetches and extracts every sampled page concurrently.
+
+**Preview first, then expand.** Don't blind-scrape a large site — you'll fetch the wrong pages and waste budget. Map the tree first:
+
+1. **Preview the tree**: `seaportal scrape https://site.com --preview`. This takes 1 representative sample per URL pattern and reports a per-group count (`sampled 1 of 87`), so you see the shape of the site — which sections exist and how big each is — for the price of a handful of fetches. `--preview` implies recent-only (last 7 days) and never does a full fetch.
+2. **Read the page groups**: each group is a path pattern with a count. Pick the branch(es) you actually want (e.g. `/economia/*/*/*/news/*` had 112 URLs).
+3. **Expand the chosen branch**: `seaportal scrape https://site.com --include-patterns '/economia/*' --recent-days 7 --max-per-pattern 20`. Use `--exclude-patterns` to prune noise, `--full` to take everything in the filtered set.
+
+**Large news / archive sites need `--recent-days`.** Sites like repubblica.it publish a sitemap *index* of monthly `.gz` archives spanning years — hundreds of thousands of URLs. Flattening all of it is prohibitive. `--recent-days N` skips any child sitemap (and any `<url>`) whose `<lastmod>` is older than N days, so discovery only walks recent partitions. Without it, discovery of such a site can run for minutes. `--preview` sets a 7-day window by default; pass `--recent-days N` explicitly to widen or narrow it (undated entries are always kept).
+
+Output: `--output json` (default; `site`, `pageGroups[]` with counts, `pages[]`, `summary`), `--output md` (a readable digest — the page-group list is the site map), or `--output directory --out-dir DIR` (one `.md` per page plus `result.json`). Scrape is **secure-by-default** — to scrape a private/internal host add `--allow-internal` *after* the `scrape` subcommand.
+
 ## Choosing output format
 
 | Goal | Command |
@@ -249,7 +268,7 @@ For search URLs specifically, `--probe-search` short-circuits CNN/DDG-style JS s
 
 ## Output side-effects
 
-The default Markdown mode (no flag) **also writes two files** under `./renders/seaportal/<domain>_<timestamp>.{md,json}` from the working directory. If running from a directory where that's unwanted, use `--json` or `--snapshot` instead — those only print to stdout.
+All modes print to stdout only by default. Pass `--save-dir <dir>` to also write the rendered Markdown and JSON to `<dir>/<domain>_<timestamp>.{md,json}`.
 
 ## TEI-Lite XML output (`--xml`)
 

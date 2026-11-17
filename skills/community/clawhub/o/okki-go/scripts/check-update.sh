@@ -1,5 +1,5 @@
 #!/bin/bash
-# Okki Go version check script (macOS/Linux)
+# OKKI Go version check script (macOS/Linux)
 # Usage: bash scripts/check-update.sh
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

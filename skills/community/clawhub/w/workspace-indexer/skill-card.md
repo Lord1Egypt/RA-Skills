@@ -1,42 +1,55 @@
-## Description: <br>
-Automatically scans an OpenClaw workspace and maintains a WORKSPACE_INDEX.md with directory purposes, running status, memory references, and search keywords. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically maintains a workspace directory index using memory search, directory scanning, runtime status checks, and concise directory-level summaries.
 
-## Publisher: <br>
-[Harukaon](https://clawhub.ai/user/Harukaon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[harukaon](https://clawhub.ai/user/harukaon)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to keep a concise directory-level inventory of a workspace, including what each directory is for, whether it appears active, and which memory files or keywords help locate related context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The generated workspace index may contain private project names, memory references, ports, container IDs, and cleanup or status notes. <br>
-Mitigation: Install only in workspaces you are comfortable indexing, and review WORKSPACE_INDEX.md before committing or sharing it. <br>
-Risk: Daily HEARTBEAT maintenance can update the index on a recurring basis. <br>
-Mitigation: Enable daily maintenance only when recurring automatic updates are desired, and periodically inspect the generated changes. <br>
+## Use Case:
 
+Developers and agent users use this skill to create and refresh WORKSPACE_INDEX.md for an OpenClaw workspace, capturing directory purpose, running status, related memories, and search keywords without deep project-file analysis.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/Harukaon/workspace-indexer) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown file named WORKSPACE_INDEX.md with directory-level descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include project names, memory references, running service details, ports, container IDs, and cleanup or status notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and skill.json) <br>
+Risk: The skill combines persistent memory search, shell execution, runtime discovery, recurring automation, and workspace writes without enough scoping or confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer manual use or enforce clear workspace-scope limits, confirmation, and overwrite checks before enabling scheduled runs.
+
+Risk: The generated workspace index may expose memory references, workspace structure, running services, containers, or cleanup status.
+
+Mitigation: Review and redact WORKSPACE_INDEX.md before committing, syncing, or sharing it outside the workspace.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harukaon/skills/workspace-indexer)
+- [Publisher Profile](https://clawhub.ai/user/harukaon)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown file with directory-level summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes WORKSPACE_INDEX.md and may include workspace purpose, runtime status, related memory files, and search keywords.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

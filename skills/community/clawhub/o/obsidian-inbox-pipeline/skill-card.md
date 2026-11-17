@@ -1,45 +1,56 @@
-## Description: <br>
-Automates collection, structuring, search, review, and optional notification workflows for writing external content into an Obsidian inbox. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates collection from AI news, economic radar, travel reports, RSS, and articles into a structured Obsidian inbox, with optional Telegram/Feishu notifications and cron scheduling.
 
-## Publisher: <br>
-[hunanjsd](https://clawhub.ai/user/hunanjsd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[hunanjsd](https://clawhub.ai/user/hunanjsd)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and knowledge workers use this skill to automate capture, search, and review of an Obsidian inbox from external information sources. It also supports scheduled runs and optional notification delivery for routine knowledge collection workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can read and write Obsidian vault files, so broad path settings may affect unintended notes.
+
+Mitigation: Run it under a dedicated low-privilege account and restrict OBSIDIAN_VAULT_PATH and OBSIDIAN_INBOX_DIR to the intended vault and inbox directory.
+
+Risk: Optional Telegram and Feishu delivery can send captured content outside the local vault.
+
+Mitigation: Secure the notification credentials, configure them only when external sending is intended, and leave them unset to disable those channels.
+
+Risk: The daily pipeline can invoke neighboring radar scripts and uses predictable temporary file paths.
+
+Mitigation: Review before installing from cron, avoid untrusted radar_type values, and replace predictable /tmp files with private temporary directories before unattended use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to capture external feeds, articles, and radar outputs into an Obsidian vault, then search or review the resulting inbox notes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and write sensitive Obsidian vault content. <br>
-Mitigation: Review the configured vault path and run capture or review commands with dry-run or test content before pointing the skill at a personal or production vault. <br>
-Risk: The daily pipeline can run code from sibling radar skills outside the reviewed artifact. <br>
-Mitigation: Inspect and approve each referenced radar skill before enabling cron or daily automation. <br>
-Risk: Optional Telegram and Feishu integrations can send vault-derived content to external services. <br>
-Mitigation: Enable notification credentials only after confirming what content will be sent and which recipient IDs are configured. <br>
-Risk: Optional index rebuilding can execute a vault-local Node.js script. <br>
-Mitigation: Review the vault's rebuild_index.mjs script before enabling automated index rebuilds. <br>
+**Output Format:** [Markdown files and terminal text output with shell command examples and environment configuration.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hunanjsd/obsidian-inbox-pipeline) <br>
-- [Publisher profile](https://clawhub.ai/user/hunanjsd) <br>
+**Other Properties Related to Output:** [Writes to configured Obsidian vault paths and can optionally send text through Telegram or Feishu when credentials are configured.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown notes, Markdown reports, command-line text, shell commands, and environment-variable configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes Markdown files into an Obsidian vault and can optionally send Telegram or Feishu notifications when configured.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

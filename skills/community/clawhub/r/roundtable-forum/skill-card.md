@@ -1,44 +1,55 @@
-## Description: <br>
-Roundtable Forum helps an agent facilitate structured multi-perspective discussions, summarize points of disagreement, and generate ASCII reasoning diagrams and knowledge-network summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Roundtable Forum guides Chinese-language structured discussions with a moderator, multiple representative viewpoints, ASCII debate maps, and final knowledge-network summaries.
 
-## Publisher: <br>
-[zhangzhixu](https://clawhub.ai/user/zhangzhixu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangzhixu](https://clawhub.ai/user/zhangzhixu)
 
-## Use Case: <br>
-Developers and agent users can use this skill to run a moderated roundtable over a complex topic, explore competing viewpoints, continue or deepen discussion rounds, invite additional participants, and capture a structured knowledge network. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic reminders may add or rely on a Cron entry that is not fully documented in the artifact. <br>
-Mitigation: Confirm the exact Cron entry and removal steps before enabling reminders. <br>
-Risk: Knowledge-network outputs may preserve sensitive discussion content. <br>
-Mitigation: Avoid sensitive topics when outputs will be saved, or review and redact saved Markdown before sharing. <br>
-Risk: Documentation references helper files that are not present in the artifact. <br>
-Mitigation: Review any added helper files separately before installation or execution. <br>
+## Use Case:
 
+Developers and users can use this skill to explore complex questions, compare competing viewpoints, support decisions, and turn a multi-round discussion into a structured knowledge network.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangzhixu/roundtable-forum) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with ASCII diagrams and optional configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate knowledge-network Markdown outputs; review saved outputs before sharing sensitive discussion content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Documented cron reminder or saved-output behavior may not be present in the installed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify scheduler entries and output persistence in the installed package before relying on reminders or saved files.
+
+Risk: Generated knowledge-network files may contain sensitive discussion topics if file saving is enabled.
+
+Mitigation: Avoid sensitive topics in saved outputs or apply local handling controls before retaining generated files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangzhixu/skills/roundtable-forum)
+- [Artifact skill documentation](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language conversational text with ASCII diagrams and Markdown knowledge-network summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive command flow supports continue, stop, deepen, and invite-new-participant actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

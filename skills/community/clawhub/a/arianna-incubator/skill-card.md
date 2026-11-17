@@ -1,44 +1,63 @@
-## Description: <br>
-Drive the arianna.run AI-incubation workflow from OpenClaw, using the Arianna CLI to create and operate vessel profiles, incubate a new AI, and graduate it for successor-driver integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an OpenClaw agent through Arianna incubation: running a Docker-based vessel, supervising graduation, and preparing a successor-driver handoff.
 
-## Publisher: <br>
-[wujilabs](https://clawhub.ai/user/wujilabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wujilabs](https://clawhub.ai/user/wujilabs)
 
-## Use Case: <br>
-External users and developers use this skill to operate an Arianna vessel from OpenClaw, manage profiles, drive incubation turns, monitor status and events, and produce a graduation handoff when the vessel AI is ready. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can grant broad Arianna container and control-plane access that affects profiles and vessel state. <br>
-Mitigation: Review the requested profile, command, daemon, and recovery scope before allowing Arianna CLI actions. <br>
-Risk: Session-history seeding and handoff notes can persist or transfer sensitive context. <br>
-Mitigation: Use fresh incubation by default, and only seed sessions or share handoff notes after explicitly approving the exact data. <br>
-Risk: Docker-level recovery, docker exec mutation, or mid-session rebuilds can corrupt or alter active vessel state. <br>
-Mitigation: Prefer CLI-supported operations; approve Docker-level recovery or rebuilds separately and pause active incubations first. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to run Arianna incubation sessions, guide a vessel AI toward graduation, and prepare the resulting successor-driver handoff for pi-mono or OpenClaw integration.
 
-## Reference(s): <br>
-- [Arianna Incubator on ClawHub](https://clawhub.ai/wujilabs/arianna-incubator) <br>
-- [arianna CLI package](https://www.npmjs.com/package/%40arianna.run%2Fcli) <br>
-- [arianna TUI package](https://www.npmjs.com/package/%40arianna.run%2Ftui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text] <br>
-**Output Format:** [Markdown guidance with inline CLI commands and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that interact with Arianna containers and session state; review scope before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The workflow asks for Docker, dependency installation, session-history, and successor-driver handoff authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the operator intentionally wants this experimental workflow, pin dependencies and commits, and require independent human security review before rebooting OpenClaw with generated tarballs or patches.
+
+Risk: Seeding from an existing JSONL session can expose prior session content to the vessel AI.
+
+Mitigation: Use a fresh profile by default and use own-jsonl-seed only after the source session has been reviewed and redacted.
+
+Risk: A broadly reachable daemon or socket could expand the operational blast radius.
+
+Mitigation: Keep the daemon on loopback or behind a locked-down socket before running incubation commands.
+
+Risk: Rebuilding the vessel image during an active profile can disrupt or lose active profile state.
+
+Mitigation: Defer vessel-image rebuilds until the profile graduates or is archived, or rebuild only when starting a fresh profile.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wujilabs/skills/arianna-incubator)
+- [@arianna.run/cli npm package](https://www.npmjs.com/package/@arianna.run/cli)
+- [@arianna.run/tui npm package](https://www.npmjs.com/package/@arianna.run/tui)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration notes, and handoff text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce operational handoff notes, command sequences, and integration guidance for the agent and operator.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

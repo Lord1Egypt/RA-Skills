@@ -1,41 +1,54 @@
-## Description: <br>
-Read Twitter/X content (single tweet, thread, or user profile) from a URL via TwitterAPI.io when a Twitter/X URL appears in conversation and content is needed without browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read Twitter/X content from a single tweet, thread, or user profile URL via TwitterAPI.io when an agent needs the content without browser automation.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to retrieve Twitter/X tweet, thread, or profile content as clean Markdown for summarization, analysis, indexing, or RAG workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports disagreement between metadata, instructions, services, credentials, and the local script users would run. <br>
-Mitigation: Review the skill and referenced local tweet-ingest.py script before installing or running it, and confirm the expected services and credentials. <br>
-Risk: Twitter/X targets may be sent to Jina AI or Apify, and thread or profile modes may use Apify credentials and credits. <br>
-Mitigation: Use the skill only when that data sharing and Apify usage are acceptable, and verify APIFY_API_KEY use and cost exposure before thread or profile runs. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch Twitter/X tweet, thread, or profile content from a URL and return markdown suitable for summarization, analysis, or RAG indexing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nissan/tweet-ingest) <br>
-- [Publisher Profile](https://clawhub.ai/user/nissan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns clean Markdown to stdout; error states are also formatted as Markdown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: The skill is not self-contained and references scripts that are not included in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after auditing the referenced tweet-ingest.py and rag_index.py scripts and confirming they match the documented behavior.
+
+Risk: Twitter/X URLs and request data may be sent to external services, and the skill may rely on service credentials.
+
+Mitigation: Use controlled credentials and review outbound data handling for TwitterAPI.io, Jina AI, Apify, and 1Password before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nissan/skills/tweet-ingest)
+- [Publisher Profile](https://clawhub.ai/user/nissan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs clean markdown to stdout; errors are documented as markdown responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

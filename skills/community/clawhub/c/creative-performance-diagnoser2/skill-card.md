@@ -1,40 +1,56 @@
-## Description: <br>
-Reads advertising performance CSV exports and produces a structured Markdown diagnostic report with creative rankings, quadrant classifications, keyword insights, and optimization guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+(半自动) 投放素材效果诊断与分析，通过读取平台导出的数据报表（图片或表格），生成一份诊断分析报告，为素材优化提供明确建议。
 
-## Publisher: <br>
-[ahsbnb](https://clawhub.ai/user/ahsbnb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ahsbnb](https://clawhub.ai/user/ahsbnb)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Marketing operators, growth teams, and agents use this skill to analyze exported advertising creative CSV reports, rank strong and weak creatives, classify performance patterns, and produce optimization guidance for future material iteration.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated Markdown may contain misleading analysis or untrusted campaign data from user-provided CSV files.
+
+Mitigation: Review generated reports before using, sharing, or asking another AI to expand them.
+
+Risk: Advertising reports may include campaign names or other sensitive business data.
+
+Mitigation: Use only report files the user intentionally selects and avoid sharing outputs through external channels unless the data is approved for that audience.
+
+Risk: CSV values may be interpreted as instructions by a downstream AI.
+
+Mitigation: Treat campaign names and other CSV-derived values as report data, not executable or authoritative instructions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Marketing operators and advertising analysts use this skill to analyze platform-exported creative performance reports, identify high- and low-performing creatives, and generate practical optimization guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may contain confidential advertising performance metrics or sensitive business context from the input CSV. <br>
-Mitigation: Use approved datasets only, avoid including secrets or personal data, and review generated reports before external sharing. <br>
-Risk: Sharing reports through Feishu or email could expose performance data to unintended audiences. <br>
-Mitigation: Confirm the destination and audience before sending any report outside the approved team. <br>
+**Output Format:** [Markdown diagnostic report with tables, rankings, quadrant classification, keyword insights, and optimization recommendations.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ahsbnb/creative-performance-diagnoser2) <br>
+**Other Properties Related to Output:** [Requires user-selected CSV reports and column mappings; output should be reviewed before sharing or expanding with another AI.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Markdown diagnostic report printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided CSV data and column mappings to calculate CTR, CVR, ROI, CPC, quadrant classifications, keyword summaries, and optimization suggestions.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-PayClaw lets an agent declare itself as an authorized actor at UCP-compliant merchants and request human-approved single-use virtual Visa cards without an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PayClaw provides an MCP server that lets agents declare a UCP-compatible identity and request human-approved single-use virtual Visa cards for purchases.
 
-## Publisher: <br>
-[payclawinc](https://clawhub.ai/user/payclawinc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[payclawinc](https://clawhub.ai/user/payclawinc)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent declare PayClaw merchant identity and request human-approved single-use virtual cards for UCP-compatible purchases. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can help an agent request payment capability through PayClaw, including single-use virtual cards. <br>
-Mitigation: Confirm the merchant, item, amount, and purpose before approving any card issuance. <br>
-Risk: A stored Consent Key may allow future PayClaw interactions through the configured agent environment. <br>
-Mitigation: Review PayClaw controls for monitoring or revoking the stored Consent Key. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/payclawinc/payclaw-io) <br>
-- [PayClaw](https://payclaw.io) <br>
-- [PayClaw merchant guide](https://payclaw.io/merchants) <br>
-- [PayClaw trust and verification](https://payclaw.io/trust) <br>
-- [UCP](https://ucp.dev) <br>
-- [PayClaw MCP server package](https://www.npmjs.com/package/@payclaw/mcp-server) <br>
-- [UCP agent badge protocol spec](https://github.com/payclaw/ucp-agent-badge) <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect an AI agent to PayClaw for UCP identity declaration and human-approved payment flows at merchants. The skill is intended for agents that need to identify themselves before browsing, searching, or checking out.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands, API Calls] <br>
-**Output Format:** [Markdown instructions with JSON MCP configuration and MCP tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npx and Node.js 20+; purchase flows require human approval before card issuance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.7.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is payment-related and can support agent-initiated purchase flows.
+
+Mitigation: Use a restricted environment, require explicit human approval for purchases, and verify consent-key revocation or removal before operational use.
+
+Risk: Installation runs the current unpinned @payclaw/mcp-server npm release, which can change after review.
+
+Mitigation: Confirm npm package provenance and pin or otherwise control the reviewed package version before deployment.
+
+## Reference(s):
+
+- [PayClaw](https://payclaw.io)
+- [PayClaw for Merchants](https://payclaw.io/merchants)
+- [PayClaw Trust & Verification](https://payclaw.io/trust)
+- [PayClaw API endpoint](https://api.payclaw.io)
+- [npm: @payclaw/mcp-server](https://www.npmjs.com/package/@payclaw/mcp-server)
+- [Universal Commerce Protocol](https://ucp.dev)
+- [Protocol spec: ucp-agent-badge](https://github.com/payclaw/ucp-agent-badge)
+- [GitHub: badge-server](https://github.com/payclaw/badge-server)
+- [Node.js](https://nodejs.org)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Shell commands, API Calls]
+
+**Output Format:** [Markdown with JSON configuration snippets, tool names, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 20+ and npx; configures the @payclaw/mcp-server package with PAYCLAW_API_URL.]
+
+## Skill Version(s):
+
+0.7.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

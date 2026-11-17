@@ -1,44 +1,59 @@
-## Description: <br>
-Provides Binance spot and futures account queries and trading workflows, including balances, positions, orders, stop-loss and take-profit commands, and PnL checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Binance Pro helps agents work with Binance account and market operations, including balances, prices, futures positions, spot and futures orders, stop-loss and take-profit orders, and PnL checks.
 
-## Publisher: <br>
-[hybrid1labs](https://clawhub.ai/user/hybrid1labs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hybrid1labs](https://clawhub.ai/user/hybrid1labs)
 
-## Use Case: <br>
-External users and agents use this skill to inspect Binance account state, retrieve prices, and prepare or execute spot and futures trading actions through Binance APIs. It is intended for users who deliberately want an agent-assisted Binance workflow and can review financial actions before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place live Binance futures orders, close positions, change exposure, and set stop-loss or take-profit orders, including leveraged trades with real funds. <br>
-Mitigation: Require separate human confirmation before any order, cancellation, leverage change, stop-loss, take-profit, or position close; prefer testnet or read-only credentials unless live trading is explicitly required. <br>
-Risk: Binance API keys and secrets are needed for authenticated requests and could expose account access if copied into chats, logs, files, or command output. <br>
-Mitigation: Use restricted, revocable Binance API keys with withdrawals disabled, apply IP restrictions where possible, and keep credentials out of shared prompts, screenshots, logs, and repository files. <br>
-Risk: The artifact declares broad automatic activation and the security summary notes no enforced confirmation safeguards. <br>
-Mitigation: Invoke the skill only when Binance account access is intended, disable broad auto-invocation where possible, and review generated commands and parameters before execution. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent through Binance account queries and trading workflows. It is intended for users who intentionally want an agent-accessible Binance helper for balances, positions, prices, orders, stop-loss and take-profit operations, and related portfolio tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hybrid1labs/binance-pro-hybrid) <br>
-- [Binance API documentation](https://binance-docs.github.io/apidocs/) <br>
-- [Binance testnet](https://testnet.binance.vision/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash, JSON, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Binance API credentials from environment variables or ~/.openclaw/credentials/binance.json and can call live Binance APIs when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact/_meta.json) <br>
+Risk: The skill can execute real Binance spot and futures trading actions, including leveraged orders and position changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Binance API key with withdrawals disabled, minimal permissions, IP restrictions, and explicit confirmation or dry-run safeguards before allowing funded trading actions.
+
+Risk: The skill asks users to provide powerful Binance API credentials through environment variables or a local credentials file.
+
+Mitigation: Store credentials securely, restrict file permissions, avoid sharing keys in prompts or logs, and rotate keys if they may have been exposed.
+
+Risk: Incorrect symbols, quantities, leverage, or stop prices can create unintended financial exposure.
+
+Mitigation: Review symbol, side, quantity, leverage, and risk controls before execution, and test workflows on Binance Testnet before using real funds.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hybrid1labs/skills/binance-pro-hybrid)
+- [Binance API Documentation](https://binance-docs.github.io/apidocs/)
+- [Binance Testnet](https://testnet.binance.vision/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and an accompanying Python CLI script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Binance API credentials. Documented shell examples require curl and jq; the Python CLI uses Binance REST API endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,62 @@
-## Description: <br>
-RLM-style long-context controller that treats inputs as external context, slices/peeks/searches, and spawns recursive subcalls with strict safety limits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RLM-style long-context controller that treats inputs as external context, slices/peeks/searches, and spawns recursive subcalls with strict safety limits.
 
-## Publisher: <br>
-[Skywyze](https://clawhub.ai/user/Skywyze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[skywyze](https://clawhub.ai/user/skywyze)
 
-## Use Case: <br>
-Developers and engineers use RLM Controller to analyze very large documents, logs, datasets, or repositories by storing inputs externally, slicing and searching context, spawning bounded sub-agent work, and aggregating findings with traceability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled helper scripts can write analysis artifacts and spawn sub-agent sessions. <br>
-Mitigation: Install only when that behavior fits the deployment threat model, and keep executions within the documented policy limits. <br>
-Risk: Generated prompts, logs, and traces may include sensitive content from the analyzed inputs. <br>
-Mitigation: Keep redaction enabled for sensitive repositories or logs, and review generated prompts and logs before sharing them. <br>
-Risk: Using cleanup with CLEAN_RETENTION=0 removes retained RLM scratch artifacts. <br>
-Mitigation: Review retention settings and ignore rules before cleanup when run artifacts need to be preserved. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze large documents, dense logs, datasets, and repositories that exceed normal context limits by storing inputs externally, planning bounded slices, spawning sub-agent analysis, and aggregating structured results.
 
-## Reference(s): <br>
-- [RLM Controller on ClawHub](https://clawhub.ai/Skywyze/rlm-controller) <br>
-- [Publisher profile: Skywyze](https://clawhub.ai/user/Skywyze) <br>
-- [OpenClaw framework](https://github.com/Skywyze/openclaw) <br>
-- [Security documentation](docs/security.md) <br>
-- [Policy and limits](docs/policy.md) <br>
-- [Workflow documentation](docs/flows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces plans, spawn manifests, toolcall JSON, logs, summaries, and cleanup commands for bounded long-context workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill can run bundled helper scripts and spawn sub-agent sessions, and evidence.security notes that autonomous exec and session spawning are part of the risk profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a controlled workspace, review generated toolcalls before execution, and enable disableModelInvocation when explicit confirmation is required.
+
+Risk: The skill writes full input copies and generated prompts to disk, while redaction has stated limits.
+
+Mitigation: Avoid sensitive inputs unless the redaction behavior is acceptable for the workload, and run cleanup after use when temporary artifacts should not persist.
+
+Risk: The cleanup flow can delete matching scratch files when CLEAN_RETENTION=0 is used.
+
+Mitigation: Review cleanup retention and ignore rules before running cleanup in workspaces that contain artifacts worth preserving.
+
+## Reference(s):
+
+- [RLM Controller on ClawHub](https://clawhub.ai/skywyze/skills/rlm-controller)
+- [OpenClaw](https://github.com/Skywyze/openclaw)
+- [Getting Started Guide](docs/flows.md)
+- [Security Model](docs/security.md)
+- [Policy Reference](docs/policy.md)
+- [Security Checklist](docs/security_checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON manifests, plain-text summaries, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write context copies, prompts, plans, spawn manifests, logs, and summaries to workspace scratch paths during operation.]
+
+## Skill Version(s):
+
+1.2.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

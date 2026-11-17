@@ -1,42 +1,54 @@
-## Description: <br>
-系统思维技能，让 AI 具备分析复杂系统的能力. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to analyze complex systems using systems-thinking concepts such as feedback loops, system patterns, leverage points, and simulation-oriented reasoning.
 
-## Publisher: <br>
-[1580021414-afk](https://clawhub.ai/user/1580021414-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1580021414-afk](https://clawhub.ai/user/1580021414-afk)
 
-## Use Case: <br>
-Agents use this skill to analyze complex systems with systems-thinking concepts such as feedback loops, system archetypes, stock-and-flow structure, and leverage points. It is useful for educational analysis, problem framing, and generating structured recommendations for complex situations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Systems-thinking recommendations may shape decisions even when the underlying situation is incomplete or uncertain. <br>
-Mitigation: Use the output as an analytical aid and review recommendations with relevant domain context before acting on them. <br>
-Risk: The artifact includes illustrative code and configuration examples that could be mistaken for tested implementation code. <br>
-Mitigation: Treat snippets as examples only; review, adapt, and test any implementation separately before use. <br>
-Risk: The skill should not require tool access, credentials, persistence, or background execution. <br>
-Mitigation: Install it as an instructional analysis framework and avoid granting additional privileges solely for this skill. <br>
+## Use Case:
 
+External users and agent developers use this skill to apply systems thinking to complex problems, including identifying causal loops, recurring system patterns, leverage points, and recommendation paths. It is especially relevant when an agent needs conceptual analysis rather than direct tool execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1580021414-afk/xiaoqian-systems-thinking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, code, configuration] <br>
-**Output Format:** [Markdown with structured analysis, tables, diagrams, and optional code or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tool access, credentials, persistence, or background execution required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and metadata) <br>
+Risk: The skill is primarily Chinese-language conceptual material, which may limit review accuracy for non-Chinese readers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a Chinese-capable reviewer or translation during evaluation and deployment review.
+
+Risk: The artifact includes illustrative TypeScript, Python, JavaScript, and JSON examples that are not presented as tested executable components.
+
+Mitigation: Treat examples as design guidance and review, test, and adapt any code before use in an agent or production workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1580021414-afk/skills/xiaoqian-systems-thinking)
+- [《系统之美》 - Donella Meadows](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with illustrative code and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily Chinese-language conceptual guidance; code examples are illustrative and should be reviewed before reuse.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and metadata.openclaw.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

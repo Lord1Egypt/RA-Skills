@@ -1,47 +1,54 @@
-## Description: <br>
-Agent Fact Check Verify helps AI agents extract verifiable claims, cross-check public sources, and return neutral fact-check conclusions without exposing internal scoring details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through multi-source fact checking of user claims using official, media, fact-checking, and social sources, then returns a concise verdict with supporting links.
 
-## Publisher: <br>
-[NHZallen](https://clawhub.ai/user/NHZallen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nhzallen](https://clawhub.ai/user/nhzallen)
 
-## Use Case: <br>
-Developers and external-facing AI agents use this skill to verify user claims against public sources and compose neutral, integrated fact-check responses with related links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private messages, confidential drafts, secrets, or sensitive allegations may be exposed to external search or social-media providers during verification. <br>
-Mitigation: Use this skill for public fact-checking workflows and avoid submitting private or confidential text unless external searches are acceptable. <br>
-Risk: Optional X or Reddit CLI credentials and cookies could be mishandled in shared environments. <br>
-Mitigation: Configure optional social-media credentials deliberately, use low-privilege accounts, store cookies with restricted permissions, and avoid committing them. <br>
-Risk: Public-source verification can miss paywalled, private, closed-community, or newly changed information. <br>
-Mitigation: Prioritize official and primary sources, cross-check independent sources, and keep the public-information limitation visible in final responses. <br>
+## Use Case:
 
+External users and agent builders use this skill when they need an agent to verify public claims, summarize the true state of affairs, and provide a small set of supporting links. It is especially suited to Traditional Chinese fact-checking workflows that require neutral conclusions and explicit uncertainty handling.
 
-## Reference(s): <br>
-- [Agent Fact Check Verify on ClawHub](https://clawhub.ai/NHZallen/agent-fact-check-verify) <br>
-- [Source Policy](references/source-policy.md) <br>
-- [Internal Scoring Rubric](references/scoring-rubric.md) <br>
-- [English README](docs/README.en.md) <br>
-- [twitter-cli](https://github.com/jackwener/twitter-cli) <br>
-- [rdt-cli](https://github.com/jackwener/rdt-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown responses with related links, plus JSON intermediate files and shell command examples for extract, score, and compose workflows.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Final responses use a fixed four-part structure and up to five related links; internal scores are not exposed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata and artifact metadata) <br>
+Risk: The skill may perform multiple web and social-source searches, which can depend on current public availability and account-specific access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where that search posture is acceptable, review unavailable helper-file requirements for the environment, and avoid authenticated social CLIs unless the account context is understood.
+
+Risk: Fact-checking results may miss unpublished, unavailable, or paywalled evidence.
+
+Mitigation: Retain the required limitation notice and have users treat conclusions as based on publicly available information.
+
+## Reference(s):
+
+- [Server-resolved GitHub provenance](https://github.com/NHZallen/agent-fact-check-verify)
+- [ClawHub skill page](https://clawhub.ai/nhzallen/skills/agent-fact-check-verify)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with four fixed sections and up to five reference links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public-source evidence, with a required limitation notice for unavailable or paywalled information.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

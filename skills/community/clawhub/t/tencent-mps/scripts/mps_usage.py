@@ -45,7 +45,6 @@
 """
 
 import sys
-from mps_auto_upgrade import check_sdk_version
 import os
 import json
 import argparse
@@ -54,6 +53,7 @@ from datetime import datetime, timedelta, timezone
 # ── 加载环境变量（与其他脚本统一）──
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, _SCRIPT_DIR)
+from mps_auto_upgrade import check_sdk_version
 try:
     from mps_load_env import ensure_env_loaded as _ensure_env_loaded
     _LOAD_ENV_AVAILABLE = True
@@ -99,11 +99,11 @@ TYPE_NAMES = {
 
 
 def get_credentials():
-    """从环境变量获取腾讯云凭证。若缺失则尝试从系统文件自动加载后重试。"""
+    """从环境变量获取腾讯云凭证。若缺失则尝试从 dotenv 文件自动加载后重试。"""
     secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID", "")
     secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
     if not secret_id or not secret_key:
-        # 尝试从系统环境变量文件自动加载
+        # 凭证可能写在 ~/.env 等 dotenv 文件中而未导出，先尝试加载再重试
         if _LOAD_ENV_AVAILABLE:
             print("[load_env] 环境变量未设置，尝试从系统文件自动加载...", file=sys.stderr)
             _ensure_env_loaded(verbose=True)
@@ -115,8 +115,8 @@ def get_credentials():
                 _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
             else:
                 print(
-                    "\n❌ 请配置环境变量 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY。\n"
-                    "请在 /etc/environment、~/.profile 等文件中添加这些变量。\n",
+                    "\n错误：TENCENTCLOUD_SECRET_ID / TENCENTCLOUD_SECRET_KEY 未设置。\n"
+                    "请在 ~/.env、~/.bashrc、~/.profile 或 <SKILL_DIR>/.env 中添加这些变量。\n",
                     file=sys.stderr,
                 )
             sys.exit(1)
@@ -143,9 +143,18 @@ def query_usage(
     返回原始 API 响应数据
     raise_on_error=True 时抛出异常而非 sys.exit（用于批量容错场景）
     """
+    if dry_run:
+        print("[dry-run] 请求参数:")
+        print(f"  StartTime: {to_iso8601(start_time)}")
+        print(f"  EndTime:   {to_iso8601(end_time)}")
+        print(f"  Types:     {types or '默认(Transcode)'}")
+        print(f"  Regions:   {regions or '[ap-guangzhou]'}")
+        return {}
+
     cred = get_credentials()
     http_profile = HttpProfile()
     http_profile.endpoint = os.environ.get("TENCENTCLOUD_MPS_ENDPOINT", "mps.tencentcloudapi.com")
+    http_profile.reqMethod = "POST"
     client_profile = ClientProfile()
     client_profile.httpProfile = http_profile
     client = mps_client.MpsClient(cred, region, client_profile)
@@ -158,14 +167,6 @@ def query_usage(
         req.Types = types
     if regions:
         req.ProcessRegions = regions
-
-    if dry_run:
-        print("[dry-run] 请求参数:")
-        print(f"  StartTime: {req.StartTime}")
-        print(f"  EndTime:   {req.EndTime}")
-        print(f"  Types:     {types or '默认(Transcode)'}")
-        print(f"  Regions:   {regions or '[ap-guangzhou]'}")
-        return {}
 
     try:
         resp = client.DescribeUsageData(req)

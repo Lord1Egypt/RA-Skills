@@ -1,40 +1,51 @@
-## Description: <br>
-Combine two or more PDFs into a single document. Supports URLs, base64, multipart uploads, and custom metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Combine two or more PDFs into a single document. Supports URLs, base64, multipart uploads, and custom metadata.
 
-## Publisher: <br>
-[rishabhdugar](https://clawhub.ai/user/rishabhdugar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rishabhdugar](https://clawhub.ai/user/rishabhdugar)
 
-## Use Case: <br>
-Developers and external users use this skill to merge invoices, reports, contracts, chapters, or document packets into a single PDF through the pdfapihub.com API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDFs, PDF URLs, optional metadata, and the API key are sent to pdfapihub.com. <br>
-Mitigation: Use only with documents and credentials approved for that external provider, and avoid confidential, regulated, or internal-only documents unless provider handling terms are approved. <br>
+## Use Case:
 
+External users and developers use this skill to combine invoices, reports, contracts, chapters, or other PDF packets into one document through the pdfapihub.com merge API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rishabhdugar/merge-pdfs) <br>
-- [PDF API Hub Documentation](https://pdfapihub.com/docs) <br>
-- [PDF API Hub](https://pdfapihub.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Files, Configuration Instructions, Guidance] <br>
-**Output Format:** [JSON API request and response; merged PDF returned as a URL, file, or base64 depending on output mode.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a CLIENT-API-KEY header; supports URL, base64, and multipart PDF inputs with documented page, file-count, file-size, and timeout limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: PDFs, source URLs, optional metadata, and the CLIENT-API-KEY value are sent to pdfapihub.com for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only documents approved for third-party processing, and avoid confidential, regulated, or internal-only documents unless that processing has been approved for the use case.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rishabhdugar/skills/merge-pdfs)
+- [PDF API Hub Documentation](https://pdfapihub.com/docs)
+- [PDF API Hub](https://pdfapihub.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Files, Configuration instructions, Shell commands, Guidance]
+
+**Output Format:** [JSON API request and response examples, with optional merged PDF URL, file, or base64 output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a CLIENT-API-KEY header; accepts 2-25 PDF inputs as URLs, base64 data, or multipart files, with optional output filename and PDF metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

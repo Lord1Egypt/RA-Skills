@@ -1,38 +1,53 @@
-## Description: <br>
-Helps agents draft YouTube, TikTok, and Instagram Reels video scripts with hooks, platform-specific structure, and calls to action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates video script drafts for YouTube, TikTok, and Instagram Reels with hooks, platform-specific structure, and calls to action.
 
-## Publisher: <br>
-[cofi295](https://clawhub.ai/user/cofi295) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cofi295](https://clawhub.ai/user/cofi295)
 
-## Use Case: <br>
-Content creators, marketers, and agents use this skill to draft short-form and long-form social video scripts, including opening hooks, body structure, and CTAs for YouTube, TikTok, and Instagram Reels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill advertises an off-platform paid Pro version with external file delivery, including Python scripts that are not part of the reviewed artifact. <br>
-Mitigation: Use the included script-writing guidance normally, but verify the seller before paying and inspect any separately delivered files before opening or running them. <br>
+## Use Case:
 
+External creators and marketing teams use this skill to draft social video scripts with hooks, platform-specific structure, and CTAs for YouTube, TikTok, and Instagram Reels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cofi295/video-script-maker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text video scripts with hooks, body copy, timing cues, and calls to action] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output is produced by the published skill artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may generate marketing scripts for sensitive or regulated topics, including supplements, where unsupported claims can create compliance risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated claims with qualified human, legal, or compliance reviewers and verify factual or regulated statements before publication.
+
+Risk: The artifact includes an off-platform paid Pro upsell via Telegram.
+
+Mitigation: Treat external purchase and contact paths as outside the validated markdown-only skill artifact and review them before engaging or sharing information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cofi295/skills/video-script-maker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain-text video script drafts and prompt guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; generated scripts should be reviewed for accuracy, claims, and suitability before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

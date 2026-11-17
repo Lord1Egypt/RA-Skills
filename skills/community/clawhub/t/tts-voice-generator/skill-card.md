@@ -1,45 +1,54 @@
-## Description: <br>
-Tts Voice Generator helps an agent browse voices, upload custom voice samples, generate speech from text, and check asynchronous task status through Datamass. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts text into speech with selectable or uploaded custom voices through the Datamass TTS service.
 
-## Publisher: <br>
-[seanfeng1234](https://clawhub.ai/user/seanfeng1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seanfeng1234](https://clawhub.ai/user/seanfeng1234)
 
-## Use Case: <br>
-Developers and end users use this skill to turn supplied text into speech, choose or upload a voice sample, and retrieve task results from the Datamass TTS service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text, transcripts, voice samples, and selected local audio files may be sent to Datamass. <br>
-Mitigation: Use the skill only with content and voices you have permission to share, and avoid sensitive recordings or third-party voices without consent. <br>
-Risk: The skill uses a stored Datamass API key. <br>
-Mitigation: Use a dedicated scoped API key for this service, protect the local configuration file, and rotate or revoke the key if it may be exposed. <br>
-Risk: Custom voices may persist without strong confirmation of deletion controls. <br>
-Mitigation: Confirm retention and deletion options before uploading personal or third-party voice samples. <br>
-Risk: Speech generation can consume paid Datamass credits. <br>
-Mitigation: Confirm account balance and expected usage cost before submitting generation jobs. <br>
+## Use Case:
 
+Agent users use this skill to browse available voices, select or upload a reference voice, submit text-to-speech generation jobs, and check task status for generated audio URLs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/seanfeng1234/tts-voice-generator) <br>
-- [Datamass](https://www.datamass.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text responses and JSON-like result objects containing voice lists, task IDs, task status, or audio URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Datamass API key and may send text, transcripts, voice samples, and selected local audio files to Datamass.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server-resolved release metadata) <br>
+Risk: The skill can send TTS text, voice samples, voice metadata, and API-key-authenticated requests to a remote Datamass endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only if the Datamass service is trusted, avoid sensitive content, and verify the configured endpoint is the intended HTTPS Datamass host.
+
+Risk: Audio uploads and paid generation may proceed with insufficient local validation or confirmation.
+
+Mitigation: Validate audio file type and path, and require explicit confirmation before uploads or paid generation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seanfeng1234/skills/tts-voice-generator)
+- [Datamass service](https://www.datamass.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, API calls, configuration, guidance]
+
+**Output Format:** [JSON-like dictionaries and human-readable status text with generated audio URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Datamass API key in ~/.openclaw/config.json; submits asynchronous TTS jobs and may return time-limited audio URLs.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

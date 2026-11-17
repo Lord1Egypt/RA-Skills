@@ -1,45 +1,64 @@
-## Description: <br>
-TrainClaw queries China Railway 12306 for tickets, route stops, and transfer plans without login, with filters for train type, time, and duration. <br>
+## Description:
 
-This skill is for research and development only. <br>
+TrainClaw helps agents query China Railway 12306 for tickets, route stops, and transfer plans with train-type, time-window, and duration filters plus text, JSON, or CSV output.
 
-## Publisher: <br>
-[AI4MSE](https://clawhub.ai/user/AI4MSE) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai4mse](https://clawhub.ai/user/ai4mse)
 
-## Use Case: <br>
-Developers and external users use this skill to run explicit China rail ticket, route-stop, and transfer lookups through a Python CLI and return results to an agent or user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Route, date, and station details may be sent to China Railway 12306 endpoints during lookups. <br>
-Mitigation: Use only for explicit ticket, train-stop, or transfer queries, and avoid submitting sensitive travel details unless the user accepts the network lookup. <br>
-Risk: Station data is cached locally and lookup results depend on 12306 availability and recommendation logic. <br>
-Mitigation: Treat schedules, seats, prices, and transfer plans as lookup results to verify before travel decisions; refresh or clear cached station data if stale data is suspected. <br>
-Risk: Broad trigger wording could run lookups when the user only mentions rail travel casually. <br>
-Mitigation: Ask for confirmation before executing network calls unless the request clearly asks for ticket, stop, or transfer information. <br>
+## Use Case:
 
+External users and developers use TrainClaw to look up China rail availability, train stops, and transfer plans from 12306 without account credentials. It is useful when an agent needs to answer rail itinerary questions or return rail data in human-readable or structured formats.
 
-## Reference(s): <br>
-- [ClawHub TrainClaw Release](https://clawhub.ai/AI4MSE/trainclaw) <br>
-- [TrainClaw Skill Instructions](artifact/SKILL_EN.md) <br>
-- [TrainClaw README](artifact/README_ENG.md) <br>
-- [China Railway 12306](https://www.12306.cn/index/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, JSON, CSV, Guidance] <br>
-**Output Format:** [Plain text, JSON, or CSV query results with shell-command invocation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Errors are written to stderr, data to stdout, and station data may be cached locally for repeated lookups.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.7 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill contacts 12306 services with the routes and dates requested by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for China rail lookup and avoid submitting route/date queries that should remain private.
+
+Risk: Verbose logs or shared outputs may reveal rail query details.
+
+Mitigation: Avoid sharing verbose logs and review outputs before forwarding them outside the execution environment.
+
+Risk: The release has ordinary dependency hardening gaps.
+
+Mitigation: Install dependencies in an isolated environment and pin the requests dependency when stronger reproducibility is required.
+
+Risk: Broad trigger wording may cause the skill to run for ambiguous travel prompts.
+
+Mitigation: Confirm the user wants a China rail lookup before running commands when the request is ambiguous.
+
+## Reference(s):
+
+- [TrainClaw ClawHub page](https://clawhub.ai/ai4mse/skills/trainclaw)
+- [AI4MSE publisher profile](https://clawhub.ai/user/ai4mse)
+- [China Railway 12306](https://www.12306.cn/index/)
+- [12306 query service](https://kyfw.12306.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and text, JSON, or CSV command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Ticket queries can emit text, JSON, or CSV; route and transfer queries can emit text or JSON.]
+
+## Skill Version(s):
+
+0.0.7 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

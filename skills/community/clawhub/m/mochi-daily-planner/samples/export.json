@@ -1,0 +1,7 @@
+{
+  "action": "export",
+  "date": "2026-10-24",
+  "start": "09:00",
+  "breakMinutes": 5,
+  "requestId": "demo-export-unique"
+}

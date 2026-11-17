@@ -1,0 +1,8 @@
+{
+  "name": "proxylane-web-evidence",
+  "path": "proxylane-web-evidence/SKILL.md",
+  "description": "Bounded source-specific web observation collection through a supplied ProxyLane connection; raw evidence and semantic identity checks for captions, comments, AI citations, XHS notes and product offers.",
+  "resolver_triggers": ["collect verifiable web evidence with ProxyLane", "fetch YouTube transcripts through my proxy for RAG", "collect a bounded YouTube comments sample with source links", "capture Google AI citations for a regional comparison", "collect Xiaohongshu note evidence through my existing MCP", "observe this identified product price through ProxyLane"],
+  "negative_routes": ["configure or purchase a proxy", "general web research or market sizing", "summarize a supplied video", "publish a social comment", "create an XHS login session", "call a paid managed Instagram/TikTok API", "ingest evidence into the Brain"],
+  "owner_action": "Add at the actual resolver/manifest owner after review; do not edit global registries from this standalone candidate. Routing evaluations are planned after cross-modal gate."
+}

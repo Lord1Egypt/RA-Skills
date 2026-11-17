@@ -1,42 +1,57 @@
-## Description: <br>
-Analyzes disk usage across Windows, macOS, and Linux, generates an interactive HTML report, and proposes tiered cleanup commands without automatically deleting files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans Windows, macOS, and Linux storage usage, classifies cleanup candidates into three tiers, and generates an interactive HTML report with copyable cleanup commands.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users and developers use this skill to inventory local disk usage, identify large files and development artifacts, and decide which cleanup commands to review and run manually. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated inventory reports can expose local usernames, hostnames, and file paths. <br>
-Mitigation: Keep reports local by default, and sanitize sensitive paths or host details before sharing them. <br>
-Risk: Generated cleanup commands and the optional cleaner script can remove files, including irreversible deletion paths. <br>
-Mitigation: Review every target path before execution, prefer recycle-bin or trash actions, and keep backups for important data. <br>
-Risk: The server security review marked the release suspicious because broad local inventory and deletion tooling are not fully scoped by the safety language. <br>
-Mitigation: Install only in environments where broad local scanning is acceptable and restrict use to trusted users who understand the cleanup commands. <br>
+## Use Case:
 
+External users and developers use this skill when a local machine is low on disk space to inventory system, user, and development storage, review large or old files, and decide which cleanup commands to run manually.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/bettermen/storage-clean) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; scanner output includes JSON data and an interactive HTML report.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and psutil; generated reports may contain local usernames, hostnames, and file paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated reports can expose sensitive local file paths and storage inventories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated reports as sensitive local files; avoid sharing them unless paths and inventory details have been reviewed or redacted.
+
+Risk: Copy-paste cleanup commands and bundled deletion tooling can remove local files if used on the wrong target.
+
+Mitigation: Review the exact target paths before running cleaner.py or any copied rm, Remove-Item, sudo, or Docker prune command.
+
+Risk: Cleanup suggestions may classify files as safe or confirm-first even when the user still needs them.
+
+Mitigation: Prefer opening and inspecting directories or files first, and keep backups for important user data before deleting anything.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/storage-clean)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Files, Shell commands, Guidance]
+
+**Output Format:** [Terminal text plus generated JSON and interactive HTML reports with copyable shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scanner writes local reports under reports/ and does not automatically delete files; generated reports contain detailed local file paths.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

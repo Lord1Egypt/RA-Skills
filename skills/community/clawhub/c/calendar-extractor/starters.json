@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "title": "Calendar",
+  "icon": "calendar",
+  "starters": [
+    {
+      "id": "cal-today",
+      "label": "What meetings did I mention today?",
+      "prompt": "today's meetings",
+      "source": "recordings",
+      "requires": ["has_recording"],
+      "order": 10
+    }
+  ]
+}

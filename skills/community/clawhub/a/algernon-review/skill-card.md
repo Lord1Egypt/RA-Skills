@@ -1,40 +1,52 @@
-## Description: <br>
-Runs FSRS-4.5 review sessions for OpenAlgernon cards, including binary flashcards, AI-evaluated open-ended answers, automatic scheduling, promotions, correction cards, and session logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FSRS-4.5 flashcard review session for OpenAlgernon that handles flashcards, dissertative cards, argumentative cards, AI evaluation of open-ended answers, FSRS scheduling, N1/N2/N3 promotion, and correction card generation.
 
-## Publisher: <br>
-[AntonioVFranco](https://clawhub.ai/user/AntonioVFranco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[antoniovfranco](https://clawhub.ai/user/antoniovfranco)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and learners using OpenAlgernon use this skill to run due-card review sessions, grade open-ended answers, update spaced-repetition scheduling, generate correction cards, and summarize review progress.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Raw SQLite instructions that include user, slug, ID, or AI-generated text may alter the local study database in unintended ways.
+
+Mitigation: Review before installing, use parameterized SQLite operations, validate slugs and IDs, and escape generated text safely.
+
+Risk: The skill appends review-session details to a local conversation log, which may expose study activity or sensitive material metadata.
+
+Mitigation: Document the logging behavior clearly and make the conversation-log append optional when study data is sensitive.
+
+## Reference(s):
 
 
-## Use Case: <br>
-OpenAlgernon users use this skill to review due study cards, receive feedback on free-text answers, and update their local spaced-repetition schedule. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill updates the local OpenAlgernon study database and appends review activity to local session logs. <br>
-Mitigation: Back up or periodically clean ~/.openalgernon data when study topics are sensitive, and run the skill only where local database changes are expected. <br>
-Risk: Generated correction or promotion cards may preserve inaccurate feedback from an open-ended review. <br>
-Mitigation: Review generated correction and promotion cards before relying on them in future study sessions. <br>
+**Output Format:** [Markdown with interactive prompts, feedback text, and inline SQLite shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AntonioVFranco/algernon-review) <br>
+**Other Properties Related to Output:** [Produces review-session summaries and may propose local SQLite updates and conversation-log appends.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown conversation output with inline SQLite and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local OpenAlgernon SQLite study data and append local session logs.] <br>
+1.0.0 (source: SKILL.md frontmatter and release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

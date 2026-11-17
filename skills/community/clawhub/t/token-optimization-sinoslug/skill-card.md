@@ -1,41 +1,58 @@
-## Description: <br>
-Reduces unnecessary token usage by guiding concise replies, trimmed logs and tool outputs, and current-state token accounting practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reduces unnecessary token usage with a current-state workflow for concise replies, trimmed logs, filtered tool outputs, and scripted token statistics.
 
-## Publisher: <br>
-[sinoslug](https://clawhub.ai/user/sinoslug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sinoslug](https://clawhub.ai/user/sinoslug)
 
-## Use Case: <br>
-Developers and assistant operators use this skill to keep responses concise, trim logs and tool outputs before reasoning, and apply the current token accounting flow without adding speculative optimizations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The token statistics command references a local token-show.py script that is not packaged in the reviewed artifact. <br>
-Mitigation: Inspect the local token-show.py script in the deployment environment before relying on its statistics. <br>
-Risk: Overly aggressive trimming of replies, logs, or tool outputs could remove context needed to preserve answer quality. <br>
-Mitigation: Keep the skill's current-state guardrails: answer concisely, but retain necessary evidence and avoid unimplemented optimization tactics. <br>
+## Use Case:
 
+Developers and agent operators use this skill to standardize current token-saving behavior across assistants while preserving answer quality. It is intended for requests to reduce prompt or context bloat, trim log and tool-output usage, and explain the active optimization workflow.
 
-## Reference(s): <br>
-- [Current Token Optimization Spec](references/current-spec.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sinoslug/token-optimization-sinoslug) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with optional inline shell command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Current-state only; avoids speculative or not-yet-implemented tactics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The workflow references an unbundled local token-show.py script path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the local script path and script contents before using the token statistics step, or use a release that bundles and verifies the script.
+
+Risk: The workflow can write behavior changes into persistent memory files.
+
+Mitigation: Require explicit user approval before updating memory files and review the proposed changes before persistence.
+
+Risk: Aggressive token reduction can omit useful context or evidence.
+
+Mitigation: Keep concise answers focused on the conclusion plus necessary evidence, and expand when the task requires detail or traceability.
+
+## Reference(s):
+
+- [Current Token Optimization Specification](references/current-spec.md)
+- [ClawHub Skill Page](https://clawhub.ai/sinoslug/skills/token-optimization-sinoslug)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with concise prose and inline shell commands when token statistics are requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should avoid redundant background, avoid full raw logs or large JSON dumps, and cite references/current-spec.md when explaining the optimization plan.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-中国天气预报查询 - 基于中国天气网(weather.com.cn)获取7天天气预报和生活指数数据。纯 Python 实现，无需 API Key。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中国天气预报查询基于中国天气网(weather.com.cn)获取7天天气预报和生活指数数据，纯 Python 实现且无需 API Key。
 
-## Publisher: <br>
-[hoopan007](https://clawhub.ai/user/hoopan007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hoopan007](https://clawhub.ai/user/hoopan007)
 
-## Use Case: <br>
-External users and agents use this skill to answer China-focused weather questions, including 7-day forecasts and daily life index guidance for supported Chinese cities. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends queried city names to weather.com.cn and depends on that external service for weather data. <br>
-Mitigation: Use it only for intended Chinese city weather lookups and avoid submitting sensitive or unrelated query text. <br>
-Risk: Weather data may be delayed or unavailable if weather.com.cn changes, is unreachable, or returns incomplete data. <br>
-Mitigation: Treat results as informational guidance and verify important weather-sensitive decisions with an authoritative source. <br>
-Risk: The skill is intended to run a bundled local Python script. <br>
-Mitigation: Approve only the expected python3 weather lookup commands and do not approve unrelated shell commands under this skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hoopan007/weather-china) <br>
-- [中国天气网](https://www.weather.com.cn) <br>
+## Use Case:
 
+External users and agents use this skill to answer China-focused weather questions, including today's weather, rain expectations, weekly forecasts, umbrella needs, and clothing guidance for supported Chinese cities.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text weather summaries or structured JSON from a local Python command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and network access to weather.com.cn; no API key is required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill runs a Python script through exec and makes live HTTPS requests to China Weather services.
+
+Mitigation: Review the command before execution and run it only in environments where outbound access to those services is expected.
+
+Risk: Weather results depend on live China Weather service availability and may be delayed.
+
+Mitigation: Use the output as best-effort weather guidance and verify critical decisions against an authoritative forecast source.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hoopan007/skills/weather-china)
+- [China Weather](https://www.weather.com.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Formatted text or JSON weather forecast output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes city name, city code, query time, data source, 7-day forecast, and life indices when available.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

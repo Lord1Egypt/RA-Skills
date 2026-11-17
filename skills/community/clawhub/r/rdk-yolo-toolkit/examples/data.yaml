@@ -1,0 +1,12 @@
+# YOLO 数据集配置模板
+# 用法：把这个 yaml 放在 dataset/ 目录里，改 path 和 names 即可
+
+path: /home/user/project/dataset    # ⚠️ 必须是绝对路径，相对路径远端跑训练会找不到图
+train: images/train                  # 训练集（相对 path）
+val: images/val                      # 验证集 20~50 张即可，必须有标注
+
+# 类别名（编号 0 开始连续，行数必须 = HobotDnn class_num）
+names:
+  0: park
+  1: qrcode
+  2: obstacle

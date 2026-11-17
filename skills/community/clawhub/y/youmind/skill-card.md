@@ -1,39 +1,59 @@
-## Description: <br>
-This skill should be used when interacting with the YouMind API to manage content such as boards, crafts, notes, picks, and materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill should be used when interacting with the YouMind API to manage content such as boards, crafts, notes, picks, and materials.
 
-## Publisher: <br>
-[p697](https://clawhub.ai/user/p697) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[p697](https://clawhub.ai/user/p697)
 
-## Use Case: <br>
-Developers and agents use this skill to discover YouMind API endpoints, inspect request schemas, and execute authenticated YouMind CLI calls for boards, crafts, notes, picks, and materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a YouMind API key and can make authenticated changes to account content. <br>
-Mitigation: Set YOUMIND_API_KEY through a secure environment or secret manager, avoid command-line API keys, and review YouMind API calls before allowing content changes. <br>
+## Use Case:
 
+External developers and agent users use this skill to discover YouMind API endpoints, inspect request schemas, and run authenticated YouMind CLI calls for boards, crafts, notes, picks, and materials.
 
-## Reference(s): <br>
-- [YouMind API key settings](https://youmind.com/settings/api-keys) <br>
-- [YouMind API endpoint](https://youmind.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses YOUMIND_API_KEY or --api-key for authenticated CLI calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: frontmatter and server release evidence) <br>
+Risk: A global npm install can execute package installation logic from the @youmind-ai/cli package source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted package source and avoid elevated privileges during installation.
+
+Risk: Passing a real API key directly with --api-key can expose credentials through shell history or process metadata.
+
+Mitigation: Use YOUMIND_API_KEY or another protected secret mechanism instead of putting real keys in commands.
+
+Risk: Authenticated YouMind API calls may create or modify user content.
+
+Mitigation: Inspect endpoint schemas and review potentially destructive calls before allowing an agent to execute them.
+
+## Reference(s):
+
+- [YouMind API key settings](https://youmind.com/settings/api-keys)
+- [YouMind default API endpoint](https://youmind.com)
+- [YouMind ClawHub skill page](https://clawhub.ai/p697/skills/youmind)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include YouMind CLI command sequences and authenticated API call guidance.]
+
+## Skill Version(s):
+
+3.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

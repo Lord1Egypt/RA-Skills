@@ -9,28 +9,29 @@ Start with public Zeko docs, not internal repo assumptions.
 
 ## User docs
 
-- Getting started: `https://docs.zeko.io/users/guides/getting-started`
+- Getting started: `https://docs.zeko.io/users/getting-started`
 - Sending tokens: `https://docs.zeko.io/users/guides/sending-tokens`
-- Interacting with a dapp: `https://docs.zeko.io/users/guides/interacting-with-a-dapp`
-- Using the bridge: `https://docs.zeko.io/users/guides/using-zeko-bridge`
+- Interacting with a dapp: `https://docs.zeko.io/users/guides/dapp`
+- Using the bridge: `https://docs.zeko.io/users/guides/zeko-bridge`
 
 ## Builder docs
 
 - Developer getting started: `https://docs.zeko.io/developers/getting-started`
 - Bridge CLI: `https://docs.zeko.io/developers/tools/bridge-cli`
-- Bridge SDK: `https://docs.zeko.io/developers/guides/bridge-sdk`
-- Faucet CLI: `https://docs.zeko.io/developers/guides/faucet-cli`
+- Bridge SDK: `https://docs.zeko.io/developers/tools/bridge-sdk`
+- Faucet CLI: `https://docs.zeko.io/developers/tools/faucet-cli`
 - Custom network and wallet config: `https://docs.zeko.io/developers/guides/custom-network`
 
 ## Protocol and operator docs
 
 - Core concepts: `https://docs.zeko.io/architecture/zeko-core-concepts`
-- Sequencer: `https://docs.zeko.io/operators/guides/sequencer`
+- Sequencer: `https://docs.zeko.io/operators/getting-started`
 - DA layer: `https://docs.zeko.io/operators/guides/da-layer`
 
 ## Routing
 
-- Need an unattended bridge command that can run with a local key: read `references/30-bridge-and-faucet.md`.
+- Need an Ethereum bridge flow: start with `https://docs.zeko.io/users/guides/zeko-bridge`.
+- Need an explicitly requested legacy bridge command with a local key: read `references/30-bridge-and-faucet.md`.
 - Need exact endpoints or something runnable right now: read `references/40-endpoints-and-curl.md`.
 - Need bridge or faucet workflow guidance: read `references/30-bridge-and-faucet.md`.
 - Need zkApp or contract guidance: read `references/50-build-on-zeko.md`.

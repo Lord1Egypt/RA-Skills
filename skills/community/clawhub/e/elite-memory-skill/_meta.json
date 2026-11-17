@@ -1,6 +1,16 @@
 {
-  "ownerId": "kn7731w9fckqrsmy3ns3y230zn82pf4a",
-  "slug": "elite-memory-skill",
-  "version": "1.0.1",
-  "publishedAt": 1773211771843
+  "name": "elite-memory",
+  "version": "1.0.0",
+  "description": "终极 AI 记忆系统 - WAL 协议 + GitHub 自动同步 + 飞书通知",
+  "author": "renguanjie",
+  "license": "MIT",
+  "homepage": "https://github.com/renguanjie/ai-memory",
+  "clawdbot": {
+    "emoji": "🧠",
+    "requires": {
+      "bins": ["git", "node"],
+      "env": ["FEISHU_USER_ID"]
+    },
+    "primaryEnv": "FEISHU_USER_ID"
+  }
 }

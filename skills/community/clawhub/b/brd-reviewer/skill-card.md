@@ -1,43 +1,58 @@
-## Description: <br>
-Reviews Business Requirements Documents in DOCX format by extracting paragraph-level context, drafting clarification questions, and producing a reviewed Word document with comments and tracked changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review Business Requirements Documents in `.docx` format by reading the existing BRD, extracting paragraph-level context, drafting clarification questions for unclear statements, and producing a final Word document that combines comments and tracked changes.
 
-## Publisher: <br>
-[ChipmunkRPA](https://clawhub.ai/user/ChipmunkRPA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chipmunkrpa](https://clawhub.ai/user/chipmunkrpa)
 
-## Use Case: <br>
-Business analysts, product owners, and implementation teams use this skill to review BRD DOCX files for ambiguity, incomplete requirements, inconsistent wording, and missing acceptance criteria before stakeholder review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: BRD contents may contain confidential business information that is copied into the review JSON and reviewed DOCX outputs. <br>
-Mitigation: Process only documents approved for local handling, choose output folders deliberately, and protect or delete review JSON files that contain sensitive text. <br>
-Risk: Generated questions or replacement wording may misstate business intent or add requirements that stakeholders have not approved. <br>
-Mitigation: Review all comments and tracked changes with the document owner before accepting revisions or relying on the updated BRD. <br>
-Risk: Running the bundled pipeline from an unintended location or with unintended paths could write review artifacts somewhere unexpected. <br>
-Mitigation: Run the script from the intended skill directory, consider a virtual environment for dependencies, and verify input and output paths before materializing the reviewed document. <br>
+## Use Case:
 
+Business analysts, product owners, and implementation teams use this skill to review BRD Word documents for ambiguity, missing acceptance criteria, undefined actors, dependencies, and unclear business rules. The skill supports a Word-native review workflow that produces reviewer comments, tracked replacement wording, and a structured paragraph review JSON file.
 
-## Reference(s): <br>
-- [Review JSON Schema](references/review-json-schema.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ChipmunkRPA/brd-reviewer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [DOCX and JSON files with supplemental text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces <name>.review.json and <name>.reviewed.docx beside the source BRD unless another output path is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Input BRDs, review JSON, and reviewed DOCX files may contain confidential business content and proposed edits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on BRDs intended for local processing and review generated .review.json and .reviewed.docx files before sharing.
+
+Risk: Dependency behavior can vary across Python environments when versions are not pinned.
+
+Mitigation: Install dependencies in an isolated virtual environment and pin versions for repeatable deployments.
+
+Risk: Documents with heavy tables or special layout may require visual confirmation after comments and tracked revisions are applied.
+
+Mitigation: Inspect the reviewed DOCX in Word or a document-rendering workflow before delivery when layout fidelity matters.
+
+## Reference(s):
+
+- [Review JSON Schema](references/review-json-schema.md)
+- [ClawHub Skill Page](https://clawhub.ai/chipmunkrpa/skills/brd-reviewer)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands, structured review JSON, and reviewed DOCX file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces <name>.review.json and <name>.reviewed.docx beside the source BRD unless another output path is requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

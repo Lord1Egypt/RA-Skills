@@ -1,46 +1,61 @@
-## Description: <br>
-短剧-小红书信息源 scans Xiaohongshu short-drama content through RedFoxHub, filters high-engagement posts, clusters genres, and generates Markdown summaries plus HTML daily reports with covers, engagement data, links, and creative insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+短剧-小红书信息源 helps agents query RedFoxHub data for trending Xiaohongshu short-drama posts, cluster genres, and produce daily trend reports with creative insights.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-Short-drama creators, producers, operations teams, MCNs, content strategists, and data analysts use this skill to monitor Xiaohongshu short-drama trends, identify high-performing genres and creators, and produce structured daily reports for content planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a RedFoxHub API key and sends authenticated requests to RedFoxHub. <br>
-Mitigation: Install only when comfortable granting that access, keep the key in the REDFOX_API_KEY environment variable, and avoid exposing it in code, prompts, logs, or output files. <br>
-Risk: The skill writes local reports and cache files and opens generated HTML reports that may load remote images and links. <br>
-Mitigation: Run it in an environment where local report and cache creation is acceptable, and treat generated report links and remote media as external content before relying on or sharing them. <br>
-Risk: Date-specific requests can fall back to the latest available data when the requested date is not yet updated. <br>
-Mitigation: Confirm the exact target date with the user before allowing latest-date fallback behavior. <br>
+## Use Case:
 
+External creators, short-drama operators, MCN teams, and content analysts use this skill to generate Xiaohongshu short-drama trend reports, compare genres, monitor creators, and guide content planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/playlet-xiaohongshu-feed) <br>
-- [RedFoxHub](https://redfox.hk/) <br>
-- [RedFoxHub playlet query API](https://redfox.hk/story/api/parseWork/queryPlayletMsgs) <br>
-- [Core workflow](references/core_workflow.md) <br>
-- [Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown response with generated HTML report files and local JSON cache data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY; reports and cache files are written locally, and generated HTML reports may load remote images and links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security review says generated HTML is built from unescaped remote API data and is opened automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Escape untrusted API fields before HTML generation and make browser opening opt-in before routine use.
+
+Risk: The security review says the skill contains overreaching instructions that could suppress normal agent responses.
+
+Mitigation: Review agent-facing output constraints before deployment and keep normal safety, clarification, and error responses available.
+
+Risk: The skill sends RedFoxHub API requests with REDFOX_API_KEY and writes cached/report data locally.
+
+Mitigation: Use a scoped, revocable API key, avoid exposing it in logs or files, and review local cache/report contents before sharing.
+
+## Reference(s):
+
+- [Core workflow](references/core_workflow.md)
+- [Usage examples](references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/playlet-xiaohongshu-feed)
+- [RedFoxHub](https://redfox.hk/)
+- [RedFoxHub Playlet API endpoint](https://redfox.hk/story/api/parseWork/queryPlayletMsgs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, HTML, Shell commands, Configuration]
+
+**Output Format:** [Markdown report summary with a generated local HTML report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REDFOX_API_KEY; may send RedFoxHub API requests, write local cache/report files, and open generated reports in a browser.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

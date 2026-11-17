@@ -11,8 +11,13 @@
 
 set -euo pipefail
 
-WORKSPACE="${1:-<WORKSPACE>}"
+WORKSPACE="${1:-${OPENCLAW_WORKSPACE:-$(pwd)}}"
 ISSUES=0
+
+if [[ ! -d "$WORKSPACE" ]]; then
+  echo "ERROR: workspace path '$WORKSPACE' does not exist. Pass it explicitly: bash scripts/security-audit.sh /path/to/workspace" >&2
+  exit 1
+fi
 
 echo "━━━ AI Persona OS — Security Audit ━━━"
 echo "Scanning: $WORKSPACE"

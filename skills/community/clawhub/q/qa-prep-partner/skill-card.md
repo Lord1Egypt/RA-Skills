@@ -1,40 +1,50 @@
-## Description: <br>
-Predict challenging questions for presentations and prepare responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Predict challenging questions for presentations and prepare responses.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Researchers, presenters, and technical teams use this skill to generate likely presentation Q&A prompts and structured response frameworks from a topic or abstract. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read a user-supplied abstract path when invoked locally. <br>
-Mitigation: Only pass abstracts or file paths that are intended for local processing, as recommended by the security guidance. <br>
-Risk: Generated Q&A prompts and response frameworks may be incomplete or not tailored enough for a specific presentation. <br>
-Mitigation: Review and adapt the generated questions and frameworks before using them in live preparation. <br>
+## Use Case:
 
+External users and developers use this skill to prepare for presentation Q&A by generating likely questions, response frameworks, and key points for a topic or abstract.
 
-## Reference(s): <br>
-- [Q&A Prep Partner ClawHub release](https://clawhub.ai/aipoch-ai/qa-prep-partner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text containing predicted questions, response frameworks, and key points] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with no additional Python packages required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The abstract input can be interpreted as a local file path, which may expose file contents if a sensitive path is supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only abstract text or intentional workspace-local file paths until path validation and clearer input separation are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/qa-prep-partner)
+- [ClawHub publisher profile](https://clawhub.ai/user/aipoch-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain text Q&A preparation guide]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Question selection is randomized; no extra Python packages are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

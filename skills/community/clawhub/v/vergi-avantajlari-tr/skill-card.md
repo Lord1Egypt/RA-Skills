@@ -1,44 +1,52 @@
-## Description: <br>
-Provides Turkish business-tax reference guidance on deductible expenses, foreign service tax obligations, Ar-Ge and technopark incentives, and tax-planning practices for companies in Turkey. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Turkish-language guidance for companies in Turkey on tax advantages, deductible business expenses, overseas service taxation, Ar-Ge incentives, teknopark advantages, and tax planning strategies.
 
-## Publisher: <br>
-[ayhanagirgol](https://clawhub.ai/user/ayhanagirgol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayhanagirgol](https://clawhub.ai/user/ayhanagirgol)
 
-## Use Case: <br>
-Business operators, accountants, and agents supporting companies in Turkey use this skill to answer common questions about deductible business expenses, overseas service invoices, KDV/stopaj obligations, Ar-Ge incentives, technopark advantages, and compliant tax planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Turkey <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tax guidance can be outdated or incomplete for company-specific filings and optimization choices. <br>
-Mitigation: Use the skill as a general reference and verify important filings, deadlines, deductions, incentives, and company-specific decisions with a licensed Turkish accountant or tax advisor. <br>
-Risk: Misclassifying personal expenses, undocumented expenses, or overseas service invoices can create penalty exposure. <br>
-Mitigation: Confirm that expenses are business-related, documented in the company name, and reviewed with an accountant before relying on deductions or KDV/stopaj treatment. <br>
+## Use Case:
 
+External users and business operators use this skill to understand Turkey-specific corporate tax deductions, overseas service VAT and withholding considerations, Ar-Ge and teknopark advantages, and practical tax planning checkpoints.
 
-## Reference(s): <br>
-- [Skill release page](https://clawhub.ai/ayhanagirgol/vergi-avantajlari-tr) <br>
-- [Publisher profile](https://clawhub.ai/user/ayhanagirgol) <br>
-- [Vergiden Dusulebilecek Giderler](references/gider_kalemleri.md) <br>
-- [Vergi Planlama Stratejileri ve Yaygin Hatalar](references/vergi_planlama.md) <br>
-- [Yurtdisi Hizmet Alimi - Vergi Yukumlulukleri](references/yurtdisi_hizmetler.md) <br>
+### Deployment Geography for Use:
 
+Turkey
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or conversational text with reference-backed tax guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only reference output; no code execution, credential access, persistence, or external tool use is indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Tax rates, deadlines, and applicability may change or vary by company circumstances.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat responses as general Turkey-specific tax guidance and verify current requirements with an accountant or official source before relying on them.
+
+## Reference(s):
+
+- [Skill Page](https://clawhub.ai/ayhanagirgol/skills/vergi-avantajlari-tr)
+- [Vergiden Dusulebilecek Giderler](references/gider_kalemleri.md)
+- [Vergi Planlama Stratejileri ve Yaygin Hatalar](references/vergi_planlama.md)
+- [Yurtdisi Hizmet Alimi - Vergi Yukumlulukleri](references/yurtdisi_hizmetler.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no executable behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,60 @@
-## Description: <br>
-Voice-to-voice AI assistant using Gemini Live API for natural spoken conversations with Google's Gemini models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Voice-to-voice AI assistant using Gemini Live API for spoken AI conversations powered by Google's Gemini models.
 
-## Publisher: <br>
-[AliMostafaRadwan](https://clawhub.ai/user/AliMostafaRadwan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alimostafaradwan](https://clawhub.ai/user/alimostafaradwan)
 
-## Use Case: <br>
-External users and developers use this skill to send text or voice prompts to Google's Gemini models and receive spoken responses for natural AI conversations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Typed or spoken conversation content can be sent to Google Gemini for processing. <br>
-Mitigation: Install only when users are comfortable providing a Gemini API key and having conversation content processed by Google Gemini. <br>
-Risk: Broad WhatsApp text triggers may invoke the assistant in chats that contain private or sensitive information. <br>
-Mitigation: Narrow the configured triggers or require explicit opt-in before use in sensitive chats. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AliMostafaRadwan/gemini-voice-assistant) <br>
+## Use Case:
 
+External users and developers use this skill to send text or trusted audio input to Google's Gemini service and receive a spoken assistant response.
 
-## Skill Output: <br>
-**Output Type(s):** [text, audio, JSON] <br>
-**Output Format:** [JSON response containing a message field with an audio media path when voice output is available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GEMINI_API_KEY and may write temporary OGG audio output under /tmp.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill.json and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad WhatsApp text and audio triggers may send unintended messages or recordings to Google's Gemini service.
+
+Mitigation: Narrow triggers to explicit commands and use the skill only where users expect selected text or audio to be processed by Gemini.
+
+Risk: The skill can process arbitrary local audio paths supplied to the handler.
+
+Mitigation: Restrict audio_path inputs to trusted uploaded files and reject paths outside the approved upload area.
+
+Risk: Predictable /tmp voice output paths can be unsafe in shared or multi-user environments.
+
+Mitigation: Use unique temporary output paths with appropriate permissions and clean up generated audio files after use.
+
+Risk: Voice recordings may contain sensitive information.
+
+Mitigation: Avoid sensitive recordings and confirm users are comfortable sending selected audio to Google's Gemini service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alimostafaradwan/skills/gemini-voice-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, audio]
+
+**Output Format:** [JSON object with a message string containing a media path to an OGG voice response, or an error message.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GEMINI_API_KEY and may write OGG output files under /tmp.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

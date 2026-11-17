@@ -1,41 +1,52 @@
-## Description: <br>
-Call GET /api/v1/google/trends/trending-now for Google SERP Trends Trending Now through Just Serp API with geo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/v1/google/trends/trending-now for Google SERP Trends Trending Now through Just Serp API with geo.
 
-## Publisher: <br>
-[justserpapi](https://clawhub.ai/user/justserpapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justserpapi](https://clawhub.ai/user/justserpapi)
 
-## Use Case: <br>
-External developers, analysts, and editorial teams use this skill to request current Google Trends Trending Now data for a geographic region and optional time window or language through Just Serp API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security review marked this release suspicious and recommends installing only when the publisher is trusted. <br>
-Mitigation: Install only if you trust justserpapi, review the command before execution, and limit use to explicit user-provided endpoint parameters. <br>
-Risk: The skill requires a Just Serp API key and sends requests to api.justserpapi.com. <br>
-Mitigation: Provide the key through JUST_SERP_API_KEY or the helper's --api-key argument, avoid exposing key values in chat or logs, and rotate credentials if disclosure is suspected. <br>
+## Use Case:
 
+Developers and agents use this skill to call the Just Serp API Google Trends Trending Now endpoint for region-scoped breaking-trend monitoring and editorial planning.
 
-## Reference(s): <br>
-- [Just Serp API](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_trends_trending_now&utm_content=project_link) <br>
-- [Just Serp API Docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_trends_trending_now&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with raw JSON API response when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node and JUST_SERP_API_KEY; required query parameter is geo, with optional hours and language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The Just Serp API key can be exposed through local process command lines when passed with --api-key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in API-key-sensitive environments, prefer a release that reads JUST_SERP_API_KEY directly from the environment, and rotate the key if command logging or process monitoring may have captured it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justserpapi/skills/justserpapi-google-trends-trending-now)
+- [Just Serp API](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_trends_trending_now&utm_content=project_link)
+- [Just Serp API Docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_trends_trending_now&utm_content=project_link)
+- [Just Serp API Base URL](https://api.justserpapi.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_SERP_API_KEY and a geo query parameter; optional hours and language query parameters are supported.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

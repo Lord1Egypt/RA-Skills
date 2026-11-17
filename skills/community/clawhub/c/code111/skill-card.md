@@ -1,44 +1,56 @@
-## Description: <br>
-Comprehensive code review assistant that analyzes code quality, identifies bugs, suggests improvements, and ensures adherence to best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive code review assistant that analyzes code quality, identifies bugs, suggests improvements, and ensures adherence to best practices.
 
-## Publisher: <br>
-[GuoShamin](https://clawhub.ai/user/GuoShamin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guoshamin](https://clawhub.ai/user/guoshamin)
 
-## Use Case: <br>
-Developers and engineers use this skill to review pull requests, audit code quality, identify security and performance issues, and produce actionable review feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may suggest Bash commands or review steps that execute project code, modify files, or contact external services. <br>
-Mitigation: Review commands before running them and use the skill only with repositories the user is comfortable letting an assistant inspect. <br>
-Risk: Review feedback can be incomplete or misleading when repository context, tests, or project standards are missing. <br>
-Mitigation: Treat findings as review assistance and confirm material issues against the codebase, tests, and team standards before acting. <br>
+## Use Case:
 
+Developers and engineers use this skill to review pull requests, audit code quality, find security and performance issues, and produce actionable review feedback.
 
-## Reference(s): <br>
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/) <br>
-- [Clean Code Principles](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882) <br>
-- [Google Style Guides](https://google.github.io/styleguide/) <br>
-- [Effective Code Review](https://google.github.io/eng-practices/review/) <br>
-- [ClawHub skill page](https://clawhub.ai/GuoShamin/code111) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown review comments with code examples and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include severity-grouped findings, file and line references, suggested fixes, and test or documentation recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: The skill allows Bash during code review, so command use may affect the workspace if an agent chooses to run commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply normal workspace command safeguards and user oversight, and review proposed commands before execution.
+
+Risk: Code review feedback may be incomplete or misleading if treated as a substitute for human review.
+
+Mitigation: Use the skill to support review, then verify findings, suggested fixes, and risk severity before acting on them.
+
+## Reference(s):
+
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
+- [Clean Code Principles](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)
+- [Google Style Guides](https://google.github.io/styleguide/)
+- [Effective Code Review](https://google.github.io/eng-practices/review/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown review feedback with code examples and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prioritized findings, file and line references, suggested fixes, and test coverage notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

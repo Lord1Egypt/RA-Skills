@@ -11,6 +11,7 @@ def get_keyword_info(
     include_expo_words: bool = True,
     include_hot_words: bool = True,
     custom_keywords: str = None,
+    login_id: str = None,
 ) -> dict:
     """
     获取标题优化所需的全部关键词数据
@@ -40,6 +41,7 @@ def get_keyword_info(
         f"/api/{TOOL_CODE}/1.0.0",
         body,
         timeout=30,
+        login_id=login_id,
     )
 
     if not isinstance(data, dict):

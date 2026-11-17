@@ -1,0 +1,7 @@
+interface:
+  display_name: "Versatile Map Maker"
+  short_description: "Create editable data and boundary maps"
+  default_prompt: "Use $versatile-map-maker to create an editable SVG map from my data and region geometry."
+
+policy:
+  allow_implicit_invocation: true

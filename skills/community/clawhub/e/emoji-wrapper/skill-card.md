@@ -1,41 +1,53 @@
-## Description: <br>
-Wrapper skill for local-auto-emoji - intercepts messages with [markers] and sends emoji images <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wrapper skill for local-auto-emoji that intercepts messages with bracketed markers and sends emoji images.
 
-## Publisher: <br>
-[wdkmail](https://clawhub.ai/user/wdkmail) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wdkmail](https://clawhub.ai/user/wdkmail)
 
-## Use Case: <br>
-OpenClaw users use this skill to process bracketed emoji markers in chat messages and return the corresponding text and emoji image responses. It is useful when a local-auto-emoji installation and emoji pack should be exposed through a wrapper skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically processes chat message text for bracketed emoji markers. <br>
-Mitigation: Install it only when automatic marker replacement is desired for the target OpenClaw environment. <br>
-Risk: The wrapper imports and runs the separate local-auto-emoji skill. <br>
-Mitigation: Review and trust local-auto-emoji before deployment, and confirm its emoji pack behavior matches the intended use. <br>
+## Use Case:
 
+External users and developers use this skill in OpenClaw conversations to convert bracketed emoji markers into processed text plus emoji image responses through an installed local-auto-emoji dependency.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wdkmail/emoji-wrapper) <br>
-- [Publisher Profile](https://clawhub.ai/user/wdkmail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Media instructions, Configuration] <br>
-**Output Format:** [Text responses with MEDIA image instructions and YAML configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local-auto-emoji to be installed and working; uses fallback static emojis when no generated emoji pack is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, release evidence, artifact metadata) <br>
+Risk: The wrapper processes every incoming message through an unverified local-auto-emoji dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only in conversations where that message inspection is acceptable, and use a reviewed or pinned local-auto-emoji installation.
+
+Risk: Marker-free or sensitive chats may still be inspected by the wrapper and dependency.
+
+Mitigation: Avoid enabling the skill in sensitive chats unless the implementation is updated to skip marker-free messages before dependency processing.
+
+## Reference(s):
+
+- [Emoji Wrapper ClawHub page](https://clawhub.ai/wdkmail/skills/emoji-wrapper)
+
+## Skill Output:
+
+**Output Type(s):** [text, media instructions]
+
+**Output Format:** [OpenClaw messages containing processed text and MEDIA image instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local-auto-emoji and a generated emoji pack or fallback static emojis.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

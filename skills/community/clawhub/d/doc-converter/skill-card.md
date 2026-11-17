@@ -1,39 +1,49 @@
-## Description: <br>
-Converts document files (.pdf, .docx, .xlsx, .pptx) to Markdown using the `markitdown` command. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts document files (.pdf, .docx, .xlsx, .pptx) to Markdown using the `markitdown` command.
 
-## Publisher: <br>
-[ytyytt520](https://clawhub.ai/user/ytyytt520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[you-transcend](https://clawhub.ai/user/you-transcend)
 
-## Use Case: <br>
-Developers, engineers, and other agent users use this skill to convert user-selected PDF, DOCX, XLSX, and PPTX files into Markdown text for reading, summarization, or downstream processing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Converted document contents may be exposed in the agent conversation. <br>
-Mitigation: Use the skill only on documents whose contents are intended to be shared with the agent session. <br>
-Risk: The skill depends on the local `markitdown` command and inherits trust from that installed converter. <br>
-Mitigation: Install and run it only in environments where the local converter is trusted, and review converted output before relying on it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ytyytt520/doc-converter) <br>
+## Use Case:
 
+Developers and agents use this skill to convert supported local documents into Markdown text for reading, summarization, or downstream text workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text produced by a local document conversion command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill expects an input file path and relies on the local `markitdown` command.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The converter reads the contents of the provided local document, which may include confidential information.
+
+Mitigation: Use it only on files whose contents are appropriate for local conversion with `markitdown`.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/you-transcend/skills/doc-converter)
+- [Publisher profile](https://clawhub.ai/user/you-transcend)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [Markdown text produced from a local document conversion command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads a user-provided local document file and emits converted Markdown text.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

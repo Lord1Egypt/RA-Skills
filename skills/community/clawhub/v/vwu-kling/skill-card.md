@@ -1,43 +1,55 @@
-## Description: <br>
-Access seven Kling models on vwu.ai through an OpenAI-compatible chat completions endpoint using API key authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access seven Kling models on vwu.ai through an OpenAI-compatible chat completions shell helper.
 
-## Publisher: <br>
-[a3273283](https://clawhub.ai/user/a3273283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a3273283](https://clawhub.ai/user/a3273283)
 
-## Use Case: <br>
-Developers and agent users use this skill to send prompts to selected vwu.ai Kling models from a shell workflow or agent session. It is suited for text-style chat completion calls that require a vwu.ai API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts are sent to vwu.ai or to the endpoint configured through VWU_BASE_URL. <br>
-Mitigation: Use the default endpoint unless a replacement endpoint is explicitly trusted, and avoid sending secrets or sensitive data in prompts. <br>
-Risk: The skill requires an API key for authenticated requests. <br>
-Mitigation: Use a dedicated, revocable VWU_API_KEY and rotate or revoke it if it is exposed. <br>
-Risk: The shell wrapper depends on local command-line tools. <br>
-Mitigation: Confirm zsh, curl, and jq are installed before relying on the skill in an agent workflow. <br>
+## Use Case:
 
+Developers and agents use this skill to call vwu.ai Kling models for chat completion requests with a configured VWU_API_KEY.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/a3273283/vwu-kling) <br>
-- [vwu.ai](https://vwu.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text API responses and Markdown guidance with shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VWU_API_KEY; VWU_BASE_URL may be set to an explicitly trusted replacement endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts and the VWU_API_KEY bearer token can be sent to another host if VWU_BASE_URL is changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep VWU_BASE_URL at the default vwu.ai endpoint unless the replacement endpoint is fully trusted, and rotate the API key if it may have been used with an untrusted endpoint.
+
+Risk: The security verdict is suspicious because the endpoint override behavior can redirect sensitive requests.
+
+Mitigation: Review before installing, use a scoped and revocable API key, and deploy only where sending prompts to vwu.ai is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/a3273283/skills/vwu-kling)
+- [Publisher profile](https://clawhub.ai/user/a3273283)
+- [vwu.ai](https://vwu.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VWU_API_KEY; supports an optional VWU_BASE_URL endpoint override.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

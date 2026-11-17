@@ -1,40 +1,63 @@
-## Description: <br>
-Test API endpoints and document responses. Define tests in plain English, run them, get formatted results. Agent-driven Postman alternative. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Test API endpoints and document responses. Define tests in plain English, run them, get formatted results. Agent-driven Postman alternative.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and API engineers use this skill to define API tests in plain English, run user-configured HTTP requests, chain response values between tests, and produce documented test results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends real HTTP requests to endpoints configured by the user, including mutating methods such as POST, PUT, PATCH, and DELETE. <br>
-Mitigation: Prefer staging or test accounts, review mutating tests before running them against production, and confirm endpoint targets before execution. <br>
-Risk: Test headers and bodies may contain secrets, personal data, or production credentials. <br>
-Mitigation: Avoid real secrets or personal data unless necessary, use scoped test credentials, and keep sensitive values out of reusable examples and reports. <br>
+## Use Case:
 
+Developers and API testers use this skill to define endpoint tests in plain English, execute them against configured environments, and produce documented API test results.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/TheShadowRose/openclaw-api-tester) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown, YAML examples, JavaScript code, and structured API test results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can summarize pass/fail counts, response times, per-test checks, and generated reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: The skill can send arbitrary API requests from the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run tests against sandbox or staging endpoints and review target URLs, headers, and methods before execution.
+
+Risk: State-changing requests can alter or delete data when run with production access.
+
+Mitigation: Avoid production credentials unless necessary and require review before running POST, PUT, PATCH, or DELETE tests.
+
+Risk: Generated reports or stored response bodies may contain sensitive API data.
+
+Mitigation: Redact secrets and sensitive response fields before sharing reports, and keep local outputs in an appropriate secured location.
+
+Risk: Tests supplied by untrusted files or prompts can target unintended hosts or include unsafe headers.
+
+Mitigation: Inspect test definitions, base URLs, request bodies, and headers before allowing the agent to run them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/openclaw-api-tester)
+- [Publisher profile](https://clawhub.ai/user/theshadowrose)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries, JSON result objects, generated API documentation, and optional HTML, JSON, or Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include HTTP status codes, response times, pass/fail summaries, response bodies, and generated API documentation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

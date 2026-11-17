@@ -1,6 +1,45 @@
 {
-  "ownerId": "kn74dnrg2ctyd3hyzpmx63v4kh84cc1e",
-  "slug": "automd-viz",
+  "name": "automd-viz",
   "version": "1.0.0",
-  "publishedAt": 1775739480912
+  "description": "Publication-quality visualization for molecular dynamics simulations. Generate journal-ready figures with Nature/Science/Cell styles.",
+  "author": "Xuan Guo <xguo608@connect.hkust-gz.edu.cn>",
+  "license": "MIT",
+  "repository": "https://github.com/Billwanttobetop/automd-viz",
+  "keywords": [
+    "molecular-dynamics",
+    "visualization",
+    "publication",
+    "gromacs",
+    "pymol",
+    "matplotlib",
+    "scientific-figures"
+  ],
+  "category": "visualization",
+  "tags": [
+    "md",
+    "visualization",
+    "publication",
+    "figures",
+    "pymol",
+    "matplotlib"
+  ],
+  "metadata": {
+    "openclaw": {
+      "minVersion": "2026.1.0",
+      "entrypoint": "automd-viz.sh",
+      "shell": "bash"
+    }
+  },
+  "dependencies": {
+    "python": ">=3.7",
+    "numpy": "*",
+    "matplotlib": "*",
+    "seaborn": "*"
+  },
+  "optionalDependencies": {
+    "pymol": "*",
+    "scikit-learn": "*",
+    "umap-learn": "*",
+    "MDAnalysis": "*"
+  }
 }

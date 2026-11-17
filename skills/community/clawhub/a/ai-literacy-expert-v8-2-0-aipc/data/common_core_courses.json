@@ -1,0 +1,339 @@
+{
+  "_meta": {
+    "name": "common_core_courses",
+    "version": "8.2.0-aipc",
+    "module": "module-h-bnbu-sai",
+    "section": "5+N 公共核心课",
+    "last_updated": "2026-08-24"
+  },
+  "description": "5 项目 × 公共核心课 AI 必修 / 选修（共 21 门）",
+  "courses": {
+    "CM+N": {
+      "required_credits": "9-12",
+      "courses": [
+        {
+          "code": "GD2013",
+          "name_zh": "创意媒体数据结构与算法",
+          "name_en": "Data Structure and Algorithms for Creative Media",
+          "credits": "0 或 3",
+          "note": "CM+GD 方向计 0 学分；CM+AIM/MAD 方向计 3 学分"
+        },
+        {
+          "code": "MAD1013",
+          "name_zh": "艺术与设计 JavaScript",
+          "name_en": "JavaScript for Art and Design",
+          "credits": 3
+        },
+        {
+          "code": "GD2073",
+          "name_zh": "视觉文化 Python",
+          "name_en": "Python for Visual Culture",
+          "credits": 3
+        },
+        {
+          "code": "GD3103",
+          "name_zh": "艺术生 AI",
+          "name_en": "AI for Art Students",
+          "credits": 3,
+          "ai_focus": true
+        }
+      ],
+      "elective_courses": [
+        {
+          "code": "GD3113",
+          "name_zh": "创意数据可视化",
+          "name_en": "Creative Data Visualisation",
+          "credits": 3,
+          "ai_focus": true
+        },
+        {
+          "code": "AIM3193",
+          "name_zh": "媒体生成式 AI 工作流",
+          "name_en": "Generative AI Workflow for Media",
+          "credits": 3,
+          "ai_focus": true
+        },
+        {
+          "code": "AIM3123",
+          "name_zh": "文化与创意数据科学",
+          "name_en": "Data Science for Culture and Creativity",
+          "credits": 3,
+          "ai_focus": true
+        }
+      ]
+    },
+    "DGC+N": {
+      "required_credits": 12,
+      "courses": [
+        {
+          "code": "DSS2043",
+          "name_zh": "非理科学生机器学习数学",
+          "name_en": "Machine Learning and AI Mathematics for Non-Science Students",
+          "credits": 3,
+          "ai_focus": true
+        },
+        {
+          "code": "DGCX3003",
+          "name_zh": "创意过程与跨媒体 AI 工具",
+          "name_en": "AI Tools for Creative Process and Transmedia",
+          "credits": 3,
+          "ai_focus": true
+        },
+        {
+          "code": "COMM3123",
+          "name_zh": "人文社科数字研究",
+          "name_en": "Digital Data Research for Humanities and Social Sciences",
+          "credits": 3,
+          "ai_focus": true
+        },
+        {
+          "code": "TBC",
+          "name_zh": "FYP II（毕业项目 II）",
+          "name_en": "FYP II",
+          "credits": 3
+        }
+      ],
+      "elective_courses": [
+        {
+          "code": "GLD2053",
+          "name_zh": "全球数字化转型：AI、物联网与区块链",
+          "name_en": "Global Digital Transformation: AI, IoT and Blockchain",
+          "credits": 3,
+          "ai_focus": true
+        },
+        {
+          "code": "MCOM4103",
+          "name_zh": "AI 与新闻业",
+          "name_en": "AI and Journalism",
+          "credits": 3,
+          "ai_focus": true
+        },
+        {
+          "code": "MCOM4093",
+          "name_zh": "技术文化",
+          "name_en": "Technoculture",
+          "credits": 3
+        },
+        {
+          "code": "PRA4073",
+          "name_zh": "大数据与广告",
+          "name_en": "Big Data and Advertising",
+          "credits": 3,
+          "ai_focus": true
+        },
+        {
+          "code": "PRA4083",
+          "name_zh": "人机交互",
+          "name_en": "Human Computer Interaction with AI",
+          "credits": 3,
+          "ai_focus": true
+        },
+        {
+          "code": "DIS3063",
+          "name_zh": "AI 与计算机辅助翻译",
+          "name_en": "AI and Computer-Aided Translation",
+          "credits": 3,
+          "ai_focus": true
+        },
+        {
+          "code": "TDH3013",
+          "name_zh": "数字叙事与故事讲述",
+          "name_en": "AI-Driven Digital Narratives and Storytelling",
+          "credits": 3,
+          "ai_focus": true
+        },
+        {
+          "code": "TDH4013",
+          "name_zh": "数字文本分析与可视化",
+          "name_en": "Digital Text Data Analysis and Visualization",
+          "credits": 3,
+          "ai_focus": true
+        },
+        {
+          "code": "DGCX3013",
+          "name_zh": "算法文化",
+          "name_en": "AI Algorithmic Culture",
+          "credits": 3,
+          "ai_focus": true
+        }
+      ]
+    },
+    "IBL+N": {
+      "required_credits": "9-15",
+      "courses": [
+        {
+          "code": "BA2003",
+          "name_zh": "人工智能与深度学习",
+          "name_en": "AI and Deep Learning",
+          "credits": 3,
+          "ai_focus": true
+        },
+        {
+          "code": "DMM3003",
+          "name_zh": "AI、数据科学与管理",
+          "name_en": "AI, Data Science and Management",
+          "credits": 3,
+          "ai_focus": true
+        },
+        {
+          "code": "ECON3123",
+          "name_zh": "经济与金融微积分",
+          "name_en": "Calculus for Economics and Finance",
+          "credits": 3
+        },
+        {
+          "code": "ECON3113",
+          "name_zh": "经济与金融线性代数",
+          "name_en": "Linear Algebra for Economics and Finance",
+          "credits": 3
+        },
+        {
+          "code": "EBIS3033",
+          "name_zh": "商业应用编程",
+          "name_en": "Python Programming for Business Applications",
+          "credits": 3,
+          "ai_focus": true
+        },
+        {
+          "code": "BUS4073",
+          "name_zh": "BBA 项目 I",
+          "name_en": "BBA Project I",
+          "credits": 3
+        }
+      ]
+    },
+    "Math+N": {
+      "required_credits": 24,
+      "courses": [
+        {
+          "code": "MATH1053",
+          "name_zh": "线性代数 I",
+          "name_en": "Linear Algebra I",
+          "credits": 3
+        },
+        {
+          "code": "MATH1073",
+          "name_zh": "微积分 I",
+          "name_en": "Calculus I",
+          "credits": 3
+        },
+        {
+          "code": "MATH1063",
+          "name_zh": "线性代数 II",
+          "name_en": "Linear Algebra II",
+          "credits": 3
+        },
+        {
+          "code": "MATH1083",
+          "name_zh": "微积分 II",
+          "name_en": "Calculus II",
+          "credits": 3
+        },
+        {
+          "code": "COMP1023",
+          "name_zh": "C 语言编程基础",
+          "name_en": "Foundations of C Programming",
+          "credits": 3
+        },
+        {
+          "code": "STAT2063",
+          "name_zh": "概率论",
+          "name_en": "Probability Theory",
+          "credits": 3
+        },
+        {
+          "code": "MATH4123",
+          "name_zh": "毕业项目 I",
+          "name_en": "Final Year Project I",
+          "credits": 3
+        },
+        {
+          "code": "MATH4163",
+          "name_zh": "毕业项目 II",
+          "name_en": "Final Year Project II",
+          "credits": 3
+        }
+      ],
+      "elective_courses_zero_credit": [
+        {
+          "code": "AI3003",
+          "name_zh": "神经网络与深度学习",
+          "name_en": "AI Neural Networks and Deep Learning",
+          "credits": 0,
+          "ai_focus": true
+        },
+        {
+          "code": "COMP4163",
+          "name_zh": "神经网络与深度学习",
+          "name_en": "AI Neural Networks and Deep Learning",
+          "credits": 0,
+          "ai_focus": true
+        },
+        {
+          "code": "AI3133",
+          "name_zh": "自然语言处理",
+          "name_en": "Natural Language Processing with AI",
+          "credits": 0,
+          "ai_focus": true
+        },
+        {
+          "code": "STAT3033",
+          "name_zh": "贝叶斯统计",
+          "name_en": "Bayesian Statistics and Data",
+          "credits": 0,
+          "ai_focus": true
+        },
+        {
+          "code": "STAT4073",
+          "name_zh": "数据挖掘",
+          "name_en": "Data Mining",
+          "credits": 0,
+          "ai_focus": true
+        }
+      ]
+    },
+    "IST+N": {
+      "required_credits": 15,
+      "courses": [
+        {
+          "code": "MATH1123",
+          "name_zh": "理工科微积分",
+          "name_en": "Calculus for Science and Engineering",
+          "credits": 3
+        },
+        {
+          "code": "AI1003",
+          "name_zh": "Python 编程",
+          "name_en": "Python Programming",
+          "credits": 3,
+          "ai_focus": true
+        },
+        {
+          "code": "AI2033",
+          "name_zh": "概率与统计",
+          "name_en": "Probability, Statistics and Data",
+          "credits": 3,
+          "ai_focus": true
+        },
+        {
+          "code": "AI2013",
+          "name_zh": "人工智能导论",
+          "name_en": "Introduction to AI",
+          "credits": 3,
+          "ai_focus": true
+        },
+        {
+          "code": "AI4005",
+          "name_zh": "毕业项目 II",
+          "name_en": "Final Year Project II",
+          "credits": 3
+        }
+      ]
+    }
+  },
+  "summary": {
+    "total_ai_required_courses": 14,
+    "total_ai_elective_courses": 7,
+    "total_ai_focus_courses": 21
+  }
+}

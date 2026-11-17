@@ -1,40 +1,52 @@
-## Description: <br>
-Provides evidence-based historical analysis, period validation, material-culture detail, and historiographical guidance for evaluating historical consistency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent perform rigorous historical analysis, period validation, material-culture enrichment, and myth correction with explicit confidence and source-type notes.
 
-## Publisher: <br>
-[lihangmissu](https://clawhub.ai/user/lihangmissu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lihangmissu](https://clawhub.ai/user/lihangmissu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to have an agent check historical consistency, identify anachronisms, explain source confidence, and enrich settings with period-appropriate social and material details.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Historical claims may be uncertain, disputed, or overly broad if a time and place are underspecified.
+
+Mitigation: Ask for precise temporal and geographic context, require confidence ratings and source-type notes, and review important claims before relying on them.
+
+Risk: The skill is written in Chinese and may be less suitable for users expecting another default response language.
+
+Mitigation: Users who need another language should explicitly request that language in the conversation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Writers, researchers, educators, and developers use this skill to check historical claims, identify anachronisms, enrich settings with period-specific material culture, and distinguish documented facts from scholarly debate or speculation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Historical claims, citations, and confidence labels may be incomplete or inaccurate for important academic or factual use. <br>
-Mitigation: Review important claims against appropriate primary and secondary sources before relying on the output. <br>
-Risk: Broad historical framing can obscure regional, chronological, or scholarly disagreement. <br>
-Mitigation: Require specific time and place boundaries, preserve confidence ratings, and flag contested interpretations separately from consensus. <br>
+**Output Format:** [Markdown or structured prose with confidence ratings, evidence notes, and historical consistency reports.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lihangmissu/academic-historian) <br>
+**Other Properties Related to Output:** [No code execution, persistence, credential access, or hidden high-impact behavior was identified in server security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports and consistency checks with confidence ratings and source-type notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, shell commands, credentials, or install-time actions are described by the artifact.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

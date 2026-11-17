@@ -1,41 +1,57 @@
-## Description: <br>
-Voice Mode lets an agent convert Telegram text replies into Chinese voice messages with edge-tts when voice mode is enabled. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts an agent's Telegram text replies into Chinese voice messages when voice mode is enabled.
 
-## Publisher: <br>
-[yl11023](https://clawhub.ai/user/yl11023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yl11023](https://clawhub.ai/user/yl11023)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add Telegram voice-message delivery after normal text replies. It is intended for environments where edge-tts, Telegram bot access, and the voice-mode toggle file are deliberately configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release hardcodes a Telegram bot token, chat ID, and local path that could send reply content to an unintended account. <br>
-Mitigation: Replace the token, chat ID, and path with controlled configuration before use, and rotate the exposed bot token. <br>
-Risk: The included daemon can run as a long-lived Telegram polling process when invoked. <br>
-Mitigation: Run the daemon only when that behavior is intended and the Telegram bot and chat are fully controlled. <br>
+## Use Case:
 
+Agents operating in Telegram use this skill to add optional spoken replies after normal text responses. It is intended for users who want a toggleable voice mode backed by edge-tts and Telegram voice-message delivery.
 
-## Reference(s): <br>
-- [Voice Mode on ClawHub](https://clawhub.ai/yl11023/voice-mode) <br>
-- [yl11023 publisher profile](https://clawhub.ai/user/yl11023) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown instructions with inline PowerShell and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a .voice-mode toggle file, generate an MP3 voice file, and send Telegram voice messages when configured and enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact hard-codes a Telegram bot token and recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove embedded credentials, rotate the exposed token, and require per-chat configuration before use.
+
+Risk: Enabled replies may be converted to audio and sent automatically to a fixed Telegram chat.
+
+Mitigation: Require explicit user confirmation for each configured chat and make voice mode opt-in.
+
+Risk: TTS text is passed into command execution for audio generation.
+
+Mitigation: Avoid shell-string interpolation for user-visible text and keep dependencies pinned in a controlled environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yl11023/skills/voice-mode)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline PowerShell and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger audio/mpeg Telegram voice messages after text replies when voice mode is enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

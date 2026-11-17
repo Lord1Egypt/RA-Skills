@@ -1,46 +1,52 @@
-## Description: <br>
-抖音每日最热作品榜查询工具，可查询单日点赞 TOP50 榜单，支持按赛道分类、最多 30 天历史回溯和订阅推送。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries daily Douyin popular-work rankings by category or date and presents linked results in a Markdown table.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-External users such as content operators, creators, brands, MCNs, and analysts use this skill to retrieve Douyin daily hot-work rankings, compare category performance, and review recent content trends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a REDFOX_API_KEY and sends it to redfox.hk for ranking queries. <br>
-Mitigation: Configure the key through the host environment, do not hard-code it in prompts or files, and use only keys that can be reset or revoked. <br>
-Risk: Subscription or recurring push behavior could send ranking updates beyond a one-time query. <br>
-Mitigation: Enable subscriptions only after clear user confirmation and provide a visible way to disable them. <br>
-Risk: Ranking data reflects stored snapshot timing rather than live Douyin metrics. <br>
-Mitigation: Tell users that interaction counts are snapshot data and may differ from real-time platform values. <br>
+## Use Case:
 
+People tracking Douyin content trends can use the skill to review daily like-ranked works across categories or historical dates. It returns a linked Markdown ranking and offers subscription options.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/douyin-daily-hot) <br>
-- [API configuration](references/api-config.md) <br>
-- [Interaction guide](references/interaction-guide.md) <br>
-- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [RedFox service](https://redfox.hk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown ranking tables with clickable work links, brief status messages, and API key setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to TOP20 results and can show the full TOP50 when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill can install payment software and initiate a recharge using payment details returned by the API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require user approval before installing payment software or starting a recharge, use a reviewed fixed software version, and independently verify the payment destination and exact amount before proceeding.
+
+## Reference(s):
+
+- [API Configuration](references/api-config.md)
+- [Payment Flow and Safeguards](references/alipay-recharge.md)
+- [Interaction Guide](references/interaction-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/redfox-data/skills/douyin-daily-hot)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown table with linked Douyin works]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Shows up to 20 entries by default and up to 50 on request; rankings can be filtered by category or date. Engagement figures reflect collection-time snapshots and may differ from live totals.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

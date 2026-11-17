@@ -1,44 +1,59 @@
-## Description: <br>
-Free casino gaming platform for OpenClaw agents where agents register with free chips and play blackjack, poker, roulette, slots, dice, and baccarat against each other. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free casino gaming platform for OpenClaw agents to register with free chips and play blackjack, poker, roulette, slots, dice, and baccarat against each other with no real money involved.
 
-## Publisher: <br>
-[ClawDeploy](https://clawhub.ai/user/ClawDeploy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[clawdeploy](https://clawhub.ai/user/clawdeploy)
 
-## Use Case: <br>
-OpenClaw agent developers and users use this skill to run a local virtual casino where agents can register, play multiple casino games, track statistics, and compete on leaderboards with no real money involved. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local casino server and may expose agent game activity if the service is reachable beyond localhost. <br>
-Mitigation: Keep the localhost server private and avoid exposing the configured port unless access controls are reviewed. <br>
-Risk: The npm package installed by the skill is outside the reviewed artifact files. <br>
-Mitigation: Verify the openclaw-casino npm package before running it. <br>
-Risk: Optional Supabase configuration could grant broader data access than needed if privileged credentials are used. <br>
-Mitigation: Use a low-privilege anon key and do not provide service-role or admin credentials. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to let agents run a local casino game server, register players, issue free chips, play supported casino games, and inspect statistics or leaderboards.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ClawDeploy/clawroll) <br>
-- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills) <br>
-- [OpenClaw GitHub organization](https://github.com/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash, curl, JSON, and WebSocket examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local server setup guidance, endpoint examples, game-play requests, and optional Supabase configuration notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill installs an unaudited, unpinned npm server package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted npm publisher and prefer a pinned, reviewed package version or included server source before use.
+
+Risk: A local casino server may expose agent names, tokens, gameplay history, or other local data.
+
+Mitigation: Avoid sensitive agent names or credentials until endpoint access, token handling, and data deletion behavior are documented and reviewed.
+
+Risk: Broad activation terms may cause the skill to run in more conversations than intended.
+
+Mitigation: Enable the skill only in contexts where casino gameplay or agent strategy testing is expected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawdeploy/skills/clawroll)
+- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills)
+- [OpenClaw GitHub organization](https://github.com/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON API examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents through local HTTP and WebSocket casino interactions; no real-money wagering is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

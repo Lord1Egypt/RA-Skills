@@ -1,40 +1,53 @@
-## Description: <br>
-Search the web with SearXNG, then fetch the full page with Crawl4AI and answer from the page正文. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches the web with SearXNG, fetches the full page with Crawl4AI, and answers from the extracted page content.
 
-## Publisher: <br>
-[bettajiayi](https://clawhub.ai/user/bettajiayi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettajiayi](https://clawhub.ai/user/bettajiayi)
 
-## Use Case: <br>
-Developers and agents use this skill when search result snippets are insufficient and they need to answer from fetched page content. It is best suited for official docs, pricing pages, API references, version notes, and other pages where full Markdown content matters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and fetched pages may pass through a configured SearXNG endpoint and Crawl4AI path. <br>
-Mitigation: Use trusted network endpoints and avoid sensitive or confidential queries unless that route is under your control. <br>
-Risk: Fetched pages are untrusted web content and may contain misleading or malicious instructions. <br>
-Mitigation: Treat fetched content as evidence only, verify important claims against authoritative sources, and do not execute commands from fetched pages without review. <br>
+## Use Case:
 
+Developers and agents use this skill when search snippets are insufficient and they need to search the web, open the best result, and answer from full extracted Markdown page content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettajiayi/search-full) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Searches through the configured SearXNG endpoint and fetches the top result with Crawl4AI; reports page-open failures instead of inventing content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive queries may be sent through remote or shared search and crawl services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive queries unless the configured SearXNG and Crawl4AI services are trusted for logging and privacy.
+
+Risk: A target page may fail to open or may not provide usable extracted content.
+
+Mitigation: Report page-open failures clearly and answer only from accessible extracted content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettajiayi/skills/search-full)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown page content and concise natural-language answers, with a fixed shell command when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Depends on the local ocsearch command and configured SearXNG/Crawl4AI services; reports page-open failures rather than inventing content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

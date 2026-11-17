@@ -1,37 +1,48 @@
-## Description: <br>
-Core runtime and volatile memory module for BenOS agents to store and retrieve active session state, open loops, decisions, and scratch notes at runtime. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Core runtime/volatile memory module for the BenOS agent environment that stores and retrieves active session state, open loops, decisions, and scratch notes at runtime.
 
-## Publisher: <br>
-[benmjohnson69](https://clawhub.ai/user/benmjohnson69) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[benmjohnson69](https://clawhub.ai/user/benmjohnson69)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let BenOS agents hydrate local session context and reuse active initiatives, open loops, recent decisions, and notes across runtime interactions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can surface stale or sensitive local session memory from BenOS runtime files. <br>
-Mitigation: Do not store secrets or untrusted instructions in runtime files, and periodically inspect or clear ~/.openclaw/workspace/benos/runtime/. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/benmjohnson69/benos-memory-core) <br>
+## Use Case:
 
+Developers and agent operators use this skill to hydrate BenOS agents with runtime memory, prior-session text, open loops, recent decisions, and notes stored in local BenOS state files.
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration] <br>
-**Output Format:** [JSON objects containing status messages and hydrated local memory state] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local BenOS runtime files when present; no external API calls are evidenced.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: skill.json and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can expose prior-session text and runtime state from local BenOS memory files to agents that invoke it.
+
+Mitigation: Install it only for trusted agent environments, treat the runtime files as sensitive, and add authorization or redaction controls when per-agent isolation is needed.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/benmjohnson69/skills/benos-memory-core)
+
+## Skill Output:
+
+**Output Type(s):** [text, json]
+
+**Output Format:** [JSON object containing status, messages, and hydrated runtime state]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads fixed local BenOS runtime files under the user's home directory when hydration is requested.]
+
+## Skill Version(s):
+
+0.1.2 (source: skill.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

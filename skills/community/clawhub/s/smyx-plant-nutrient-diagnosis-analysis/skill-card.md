@@ -1,45 +1,59 @@
-## Description: <br>
-Diagnoses likely plant nutrient deficiencies from leaf images or videos and returns structured findings, confidence, and fertilization-direction guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps analyze plant-leaf images and videos for possible nutrient deficiencies, returning a structured report with a confidence score and general guidance.
 
-## Publisher: <br>
-[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui)
 
-## Use Case: <br>
-Gardeners, growers, greenhouse operators, and agents supporting plant-care workflows use this skill to analyze leaf images or videos for likely nutrient deficiencies, confidence scores, and next-step guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plant images or videos are sent to a remote LifeEmergence service and linked to an automatically managed identity. <br>
-Mitigation: Use the skill only when that data sharing is acceptable, and avoid privacy-sensitive media or shared workspaces unless the identity and retention behavior has been reviewed. <br>
-Risk: The skill stores tokens locally and can query cloud history with limited user control. <br>
-Mitigation: Review local data and token storage before installation, especially on shared machines, and restrict use to trusted environments. <br>
-Risk: Visual nutrient diagnosis can be uncertain when symptoms overlap or images are blurry, poorly lit, or incomplete. <br>
-Mitigation: Treat results as plant-care guidance rather than a definitive agronomic diagnosis, and confirm with plant context, soil testing, or an agricultural expert before applying treatments. <br>
+## Use Case:
 
+Home gardeners, greenhouse growers, and plant-care assistants use the skill to review leaf images or videos for possible nutrient deficiencies and receive a likely nutrient, confidence level, and general next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-plant-nutrient-diagnosis-analysis) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
-- [API documentation](artifact/references/api_doc.md) <br>
-- [SMYX analysis API documentation](artifact/skills/smyx_analysis/references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with optional JSON/detail output and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured reports, confidence scores, report links, and cloud history tables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub server release metadata) <br>
+Risk: ClawScan rates this release suspicious with high confidence, citing mismatches with the plant-diagnosis description and undeclared data handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the security findings and wait for the maintainer to clarify the behavior before installing.
+
+Risk: The security guidance flags uncertainty about video processing, external media handling, account registration, and local credential storage; the scan was partial and does not establish that all behavior was reviewed.
+
+Mitigation: Ask the maintainer to explain these data and credential flows and complete review of the referenced behavior before sending images or videos.
+
+Risk: The security summary says actions may run despite an export-only option.
+
+Mitigation: Do not rely on export-only mode to prevent analysis; use the skill only after this behavior is fixed or explained.
+
+## Reference(s):
+
+- [API reference](artifact/references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub release page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-plant-nutrient-diagnosis-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Structured diagnosis report in text, Markdown, or JSON, with report links when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include likely nutrient deficiency, confidence score, and general guidance. Results are advisory; symptoms can overlap, and fertilizer dosage is not provided.]
+
+## Skill Version(s):
+
+1.0.16 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

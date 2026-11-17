@@ -1,43 +1,58 @@
-## Description: <br>
-Grafana Inspector automates Grafana dashboard inspections with API data collection, dashboard discovery, health scoring, and JSON or Markdown reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Grafana inspection skill for API-based dashboard checks, batch dashboard discovery, alert and datasource review, and JSON or Markdown report generation.
 
-## Publisher: <br>
-[diluke1600](https://clawhub.ai/user/diluke1600) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diluke1600](https://clawhub.ai/user/diluke1600)
 
-## Use Case: <br>
-Developers, SREs, and platform operators use this skill to inspect Grafana dashboards, alerts, and data sources in batch and generate operational review reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Grafana credentials and may read them from local configuration. <br>
-Mitigation: Use a least-privileged Viewer token, avoid storing long-lived secrets in config.json, and prefer an approved secrets workflow. <br>
-Risk: One inspection script disables HTTPS certificate verification. <br>
-Mitigation: Review or fix the TLS setting before installation; enable certificate verification or configure a trusted internal certificate authority. <br>
-Risk: Auto-discovery and generated reports can expose internal monitoring details. <br>
-Mitigation: Set the Grafana URL and dashboard scope explicitly, limit discovery, and keep reports out of shared or version-controlled directories. <br>
+## Use Case:
 
+Developers and SRE teams use this skill to inspect Grafana dashboards, alerts, and data sources, then produce operational health reports. It is suited for configured Grafana environments where reports and credentials can be stored securely.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diluke1600/grafana-inspector) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, JSON inspection results, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports may include Grafana URLs, dashboard metadata, alert summaries, data source health, and operational findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Grafana API tokens or username/password credentials may be exposed or granted broader access than needed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a read-only, narrowly scoped Grafana API token, avoid username/password credentials when possible, and protect configuration and generated report files.
+
+Risk: A bundled inspection script disables TLS certificate verification while sending Grafana credentials.
+
+Mitigation: Fix or avoid scripts/inspection_report.py until TLS verification is enabled and trusted certificates are configured.
+
+Risk: Documentation overstates browser screenshot and Feishu reporting capabilities relative to the security summary.
+
+Mitigation: Treat the release as producing API-based JSON and Markdown reports unless additional behavior is independently validated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diluke1600/skills/grafana-inspector)
+- [Publisher profile](https://clawhub.ai/user/diluke1600)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, JSON, markdown]
+
+**Output Format:** [Text guidance plus generated JSON and Markdown report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Grafana URL and preferably a read-only Grafana API token.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

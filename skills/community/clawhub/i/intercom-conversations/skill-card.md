@@ -1,42 +1,54 @@
-## Description: <br>
-Reads Intercom conversations by listing, finding, or searching them with JSON input and output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read Intercom conversations by listing, finding, or searching them through Intercom's Conversations API.
 
-## Publisher: <br>
-[duyeng](https://clawhub.ai/user/duyeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[duyeng](https://clawhub.ai/user/duyeng)
 
-## Use Case: <br>
-Developers and support operations agents use this skill to retrieve Intercom support conversations for read-only lookup, triage, and customer context review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose customer support conversations to the agent context. <br>
-Mitigation: Install it only for agents permitted to view Intercom conversations and treat returned content as customer-sensitive. <br>
-Risk: A broad Intercom token could grant more conversation access than the intended workflow requires. <br>
-Mitigation: Use the narrowest available read-only Intercom access token and avoid broad workspace tokens. <br>
+## Use Case:
 
+Developers and support operations teams use this skill to let an agent retrieve Intercom conversation lists, individual conversations, or search results for support analysis and workflow assistance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/duyeng/intercom-conversations) <br>
-- [OpenAPI contract](artifact/openapi.yaml) <br>
-- [Skill usage documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API Calls, Guidance] <br>
-**Output Format:** [JSON objects with ok/action status, conversation data, pagination cursors, or structured errors] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires INTERCOM_ACCESS_TOKEN and returns Intercom conversation content that may be customer-sensitive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: clawhub.skill.json, package.json, openapi.yaml, server release evidence) <br>
+Risk: Intercom conversations may contain customer or support data that becomes part of agent context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Intercom token and limit prompts to the conversation data needed for the task.
+
+Risk: Dependency drift can reduce reproducibility because the package declares a semver range for intercom-client.
+
+Mitigation: Install with a lockfile or exact vetted dependency version before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duyeng/skills/intercom-conversations)
+- [OpenAPI contract](artifact/openapi.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, API data]
+
+**Output Format:** [JSON object with ok/action fields and conversation, conversations, pagination, or error details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Intercom conversation data; errors return ok: false with error details and may include supported actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, package.json, clawhub.skill.json, OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

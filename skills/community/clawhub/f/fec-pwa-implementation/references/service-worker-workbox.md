@@ -1,6 +1,6 @@
-# Service Worker、Workbox 与更新流
+# Service Worker, Workbox and update flow
 
-## 注册 Service Worker
+## Register Service Worker
 
 ```ts
 export function registerServiceWorker() {
@@ -23,16 +23,16 @@ export function registerServiceWorker() {
 }
 ```
 
-## 缓存策略
+## Caching strategy
 
-| 策略 | 适用 | 注意 |
+| Policy | Applicable | Note |
 | --- | --- | --- |
-| `CacheFirst` | 带 hash 的图片、字体、CSS/JS | 必须设置过期策略 |
-| `NetworkFirst` | 页面导航、低风险 GET API | 网络失败才降级缓存 |
-| `StaleWhileRevalidate` | 字体、头像、低风险静态数据 | 用户会先看到旧数据 |
-| `NetworkOnly` | 登录、支付、权限、写操作 | 不进入 SW 缓存 |
+| `CacheFirst` | Images, fonts, CSS/JS with hash | Expiration policy must be set |
+| `NetworkFirst` | Page navigation, low-risk GET API | Downgrade cache only when network fails |
+| `StaleWhileRevalidate` | Fonts, avatars, low-risk static data | Users will see old data first |
+| `NetworkOnly` | Login, payment, permissions, write operations | Do not enter SW cache |
 
-## Vite 集成
+## Vite integration
 
 ```ts
 import { VitePWA } from "vite-plugin-pwa";
@@ -61,8 +61,8 @@ export default defineConfig({
 });
 ```
 
-## 离线与更新
+## Offline and Updates
 
-- 为未缓存页面准备 `/offline.html`，不要让用户只看到浏览器错误页。
-- 更新提示应说明“新版本已可用”，由用户确认刷新。
-- 调试时使用 DevTools Application 面板，必要时清理旧 Service Worker 和 Cache Storage。
+- Prepare `/offline.html` for uncached pages, don't let users only see browser error pages.
+- The update prompt should state "New version is available" and it is up to the user to confirm the refresh.
+- Use the DevTools Application panel when debugging and clean up old Service Workers and Cache Storage if necessary.

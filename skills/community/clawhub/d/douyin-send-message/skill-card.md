@@ -1,42 +1,57 @@
-## Description: <br>
-在抖音网页版发送私信消息。当用户想发送抖音私信、提醒续火花、或者提到“抖音发消息”、“发抖音私信”、“douyin send message”时触发，支持独立使用或配合人物关系管理技能使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+在抖音网页版发送私信消息，当用户想发送抖音私信、提醒续火花、或者提到“抖音发消息”、“发抖音私信”或“douyin send message”时触发，并支持独立使用或配合人物关系管理技能使用。
 
-## Publisher: <br>
-[calvin-dean](https://clawhub.ai/user/calvin-dean) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[calvin-dean](https://clawhub.ai/user/calvin-dean)
 
-## Use Case: <br>
-External users and agents use this skill to send a Douyin private message to a named contact from Douyin Web. It can use a manually supplied Douyin nickname or a nickname resolved by an optional person-relation-manager skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send Douyin messages from a logged-in browser session without a final confirmation. <br>
-Mitigation: Require the agent to confirm the exact recipient and message before sending. <br>
-Risk: The automation can expose or use an existing browser profile during message sending. <br>
-Mitigation: Use only a dedicated Douyin automation browser profile and avoid sensitive messages. <br>
-Risk: The optional person-relation-manager install changes the dependency set for the workflow. <br>
-Mitigation: Treat that install as a separate dependency decision and review it before use. <br>
+## Use Case:
 
+External users and agents use this skill to send Douyin Web private messages to a specified contact, either from a directly supplied Douyin nickname or after resolving a nickname through a relationship-management skill.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/calvin-dean/skills/douyin-send-message) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands] <br>
-**Output Format:** [Markdown instructions with inline JavaScript, browser actions, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Takes a contact name and message content; browser automation may act in a logged-in Douyin session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release evidence) <br>
+Risk: The skill can operate through a live logged-in Douyin account and send a private message without an explicit final confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual confirmation of the sending account, recipient, and exact message content immediately before dispatch.
+
+Risk: The bundled script hard-codes a local browser profile path and writes screenshots that may expose private messages or account state.
+
+Mitigation: Replace local profile paths before use, avoid running the bundled script as-is, and disable or securely handle screenshots containing private conversation data.
+
+Risk: The workflow may suggest dynamically installing a related relationship-management skill.
+
+Mitigation: Prefer a manually supplied Douyin display name or verify and pin any related dependency before installation.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/calvin-dean/skills/douyin-send-message)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code]
+
+**Output Format:** [Markdown instructions with inline JavaScript and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a logged-in Douyin Web session and manual confirmation before sending messages.]
+
+## Skill Version(s):
+
+2.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

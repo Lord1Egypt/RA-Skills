@@ -1,44 +1,54 @@
-## Description: <br>
-Help AI understand a user's cognitive style, output preferences, and value orientation so it can generate deliverables that better match what they actually want. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent guide users through a questionnaire and synthesize cognitive style, output preferences, value orientation, and collaboration protocol into reusable Markdown profile files.
 
-## Publisher: <br>
-[Lakendocean](https://clawhub.ai/user/Lakendocean) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lakendocean](https://clawhub.ai/user/lakendocean)
 
-## Use Case: <br>
-External users and developers use this skill to turn questionnaire answers and messy preference descriptions into reusable agent-readable collaboration profiles. It helps produce stable AI_USER_PROFILE.md, USER.md, WORKSTYLE.md, or COLLAB_PROTOCOL.md files for future AI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated profiles can contain private workplace details or sensitive personal preferences if the user provides them. <br>
-Mitigation: Review generated Markdown before saving, sharing, or reusing it with future agents, and omit sensitive details that should not persist. <br>
-Risk: A partial or contradictory questionnaire session can produce an incomplete collaboration profile. <br>
-Mitigation: Mark unresolved items in Known Unknowns and run a conflict-calibration round before treating the profile as stable. <br>
+## Use Case:
 
+External users and developers use this skill to turn repeated prompting preferences or messy self-descriptions into an agent-readable collaboration profile for OpenClaw or other agents.
 
-## Reference(s): <br>
-- [questionnaire-v1.md](references/questionnaire-v1.md) <br>
-- [inference-rules.md](references/inference-rules.md) <br>
-- [output-schema.md](references/output-schema.md) <br>
-- [templates.md](references/templates.md) <br>
-- [examples.md](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown profile files with structured headings and concise prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce a single AI_USER_PROFILE.md or split USER.md, WORKSTYLE.md, and COLLAB_PROTOCOL.md outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Generated profiles may carry personal work preferences, values, and collaboration rules into future agent sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the profile before reuse and avoid including private details that should not be carried across AI sessions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lakendocean/skills/agent-collaboration-profile-builder)
+- [Questionnaire v1](references/questionnaire-v1.md)
+- [Inference Rules](references/inference-rules.md)
+- [Output Schema](references/output-schema.md)
+- [Templates](references/templates.md)
+- [Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown profile files, usually AI_USER_PROFILE.md with optional USER.md, WORKSTYLE.md, and COLLAB_PROTOCOL.md variants]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include partial profiles with Known Unknowns when the questionnaire is incomplete.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

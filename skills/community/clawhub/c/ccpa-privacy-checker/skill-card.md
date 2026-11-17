@@ -1,43 +1,56 @@
-## Description: <br>
-Assess your business's compliance with California Consumer Privacy Act (CCPA) regulations and identify privacy governance gaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assess your business's compliance with California Consumer Privacy Act (CCPA) regulations and identify privacy governance gaps.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Compliance officers, privacy teams, legal departments, and business leaders use this skill to evaluate CCPA readiness, identify gaps across privacy controls, and prioritize remediation work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends sensitive privacy-program details to a third-party API without enough disclosed data-handling terms. <br>
-Mitigation: Use it only after reviewing the publisher's privacy, retention, and security terms, and avoid submitting unnecessary personal data, confidential vendor details, or regulated information. <br>
-Risk: Automated compliance findings may be incomplete or unsuitable as final legal advice. <br>
-Mitigation: Have qualified privacy, compliance, or legal reviewers validate findings before relying on remediation priorities or regulator-facing conclusions. <br>
+## Use Case:
 
+Compliance, privacy, and legal teams use this skill to evaluate CCPA readiness across business practices, data handling, consumer rights workflows, disclosures, vendor controls, and governance processes. It returns a compliance score, critical gaps, risk assessment, and remediation recommendations.
 
-## Reference(s): <br>
-- [CCPA Privacy Checker API Docs](https://api.mkkpro.com:8040/docs) <br>
-- [CCPA Privacy Checker API Route](https://api.mkkpro.com/compliance/ccpa-privacy) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [ToolWeb OpenClaw](https://toolweb.in/openclaw/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Analysis, Guidance, Text] <br>
-**Output Format:** [JSON compliance assessment with scores, gaps, recommendations, risk assessment, and next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires structured business, data-practice, privacy-policy, and CCPA control inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill sends user-provided business privacy and compliance details to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only the assessment fields needed for the CCPA review and avoid unnecessary regulated, customer-specific, or confidential records.
+
+Risk: Compliance scores and remediation estimates may be incomplete or unsuitable as final legal advice.
+
+Mitigation: Have privacy, compliance, or legal reviewers validate findings before relying on the output for regulatory decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/ccpa-privacy-checker)
+- [OpenAPI specification](artifact/openapi.json)
+- [API documentation](https://api.mkkpro.com:8040/docs)
+- [CCPA compliance API route](https://api.mkkpro.com/compliance/ccpa-privacy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, API calls]
+
+**Output Format:** [Markdown guidance with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces compliance scores, gap analysis, risk estimates, and prioritized remediation recommendations from user-provided business privacy details.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

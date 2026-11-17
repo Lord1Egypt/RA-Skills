@@ -1,44 +1,59 @@
-## Description: <br>
-Resume Context retrieves coding session briefings and developer notes through the resume CLI, with Redis caching for returned session output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Resume Context helps OpenClaw answer questions about coding sessions, recent development work, and project notes by running the resume CLI and returning Redis-cached briefing output.
 
-## Publisher: <br>
-[nickleodoen](https://clawhub.ai/user/nickleodoen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nickleodoen](https://clawhub.ai/user/nickleodoen)
 
-## Use Case: <br>
-Developers use this skill to catch up on recent coding sessions, project briefings, and developer notes for a named project. It is intended for agents that can run the resume CLI bridge and return the resulting session summary to the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read sensitive developer-session data from local project history. <br>
-Mitigation: Install only for trusted workspaces, avoid capturing secrets in resume sessions, and provide explicit project names or paths before invoking it. <br>
-Risk: Session briefings may be processed through the user's configured resume LLM workflow. <br>
-Mitigation: Use an approved LLM provider configuration and review session notes for sensitive content before relying on generated briefings. <br>
-Risk: Raw briefing output may be cached in Redis. <br>
-Mitigation: Use a private authenticated Redis database and keep the cache TTL short or disable caching where sensitive projects are involved. <br>
+## Use Case:
 
+Developers and technical users use this skill to retrieve plain-English session briefings and project notes for local coding projects from resume CLI data. It is intended for OpenClaw environments with the resume CLI, Node.js, and a Redis connection configured.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nickleodoen/resume-context) <br>
-- [resume CLI](https://github.com/nickleodoen/resume) <br>
-- [Redis Cloud](https://cloud.redis.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON envelope containing an output string; user-facing content may be plain text or Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Redis caching when available and returns cached status metadata with cached responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Persistent command capture can expose sensitive development activity from local coding sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the resume shell hook before enabling it and use the skill only for repositories where session tracking is acceptable.
+
+Risk: Developer-session output may flow through an LLM provider and Redis cache.
+
+Mitigation: Avoid putting secrets in shell commands, prefer TLS Redis, and do not use the skill with sensitive repositories unless that data flow is acceptable.
+
+Risk: The bridge executes a local resume binary and uses broad local project paths.
+
+Mitigation: Install a trusted pinned resume version and verify RESUME_BIN and project paths before deployment.
+
+## Reference(s):
+
+- [ClawHub Resume Context Skill Page](https://clawhub.ai/nickleodoen/skills/resume-context)
+- [resume CLI GitHub Repository](https://github.com/nickleodoen/resume)
+- [Redis Cloud](https://cloud.redis.io/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from the bridge with an output field containing plain-English briefing or notes text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cache status, TTL, source command, and project path.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

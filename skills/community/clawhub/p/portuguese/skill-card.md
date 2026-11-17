@@ -1,37 +1,47 @@
-## Description: <br>
-Write Portuguese that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Portuguese that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and developers use this skill to draft or revise Portuguese text so it reads naturally for Brazilian or European Portuguese contexts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated Portuguese may use the wrong dialect, regional expression, or tone for the target audience. <br>
-Mitigation: Specify Brazilian or European Portuguese, region, and formality before use, then review the final text with the intended audience in mind. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/portuguese) <br>
+## Use Case:
+
+External users and developers use this skill to make Portuguese writing sound more natural, casual, and regionally consistent for Brazil or Portugal.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can produce overly informal or regionally mismatched Portuguese when country, region, or formality expectations are unspecified.
+
+Mitigation: Specify Brazil or Portugal, the target region, and the desired formality level before using output in user-facing copy; review high-impact text with a fluent speaker.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Text or Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output may vary by requested Portuguese variant, region, and formality.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Natural-language Portuguese text or Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, network access, persistence, or sensitive data handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

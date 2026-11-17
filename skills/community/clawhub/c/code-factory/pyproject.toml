@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "code-factory"
+version = "1.0.0"
+description = "代码交付工厂 —— 将自然语言需求自动转化为可交付的完整项目资产"
+requires-python = ">=3.10"
+readme = "SKILL.md"
+license = {text = "MIT"}
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short --strict-markers"
+
+[tool.setuptools.packages.find]
+include = ["contracts*", "layers*", "layers.step_handlers*", "middlewares*", "templates*", "learnings*"]

@@ -1,0 +1,135 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "report-cluster.schema.json",
+  "title": "Report Clusters (Stage 0 grouping)",
+  "description": "Grouping result of the report inventory along three axes: business domain, time alignment, metric overlap. Unclustered reports are kept, never dropped.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "client_scope", "team_version",
+    "run_id",
+    "inventory_sha256",
+    "issued_at",
+    "merge_rules",
+    "cluster_count",
+    "clusters",
+    "unclustered"
+  ],
+  "properties": {
+    "schema_version": { "const": "2.0" },
+    "artifact_type": { "const": "report_clusters" },
+    "contract_name": { "const": "omni-ecom.report-clusters" },
+    "contract_version": { "const": "2.0" },
+    "created_by_team_version": { "type": "string", "minLength": 1 },
+    "client_scope": { "type": "string", "minLength": 1 },
+    "team_version": { "type": "string", "minLength": 1 },
+    "legacy_compatibility": { "const": { "read_only_import": ["omni-ecom.report-clusters@1.0"], "current_analysis_authority": false } },
+    "run_id": { "type": "string", "minLength": 8 },
+    "inventory_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "issued_at": { "type": "string", "minLength": 8 },
+    "merge_rules": {
+      "type": "object",
+      "required": ["domain_axis", "time_axis", "metric_axis", "tie_break"],
+      "properties": {
+        "domain_axis": { "type": "string", "minLength": 4 },
+        "time_axis": { "type": "string", "minLength": 4 },
+        "metric_axis": { "type": "string", "minLength": 4 },
+        "tie_break": { "type": "string", "minLength": 4 },
+        "overlap_threshold": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "cluster_count": { "type": "integer", "minimum": 0 },
+    "clusters": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/cluster" }
+    },
+    "unclustered": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/unclustered_entry" }
+    }
+  },
+  "definitions": {
+    "cluster": {
+      "type": "object",
+      "required": [
+        "cluster_id",
+        "domain",
+        "label",
+        "members",
+        "merge_basis",
+        "time_scope",
+        "metrics",
+        "sufficiency"
+      ],
+      "properties": {
+        "cluster_id": { "type": "string", "pattern": "^C[0-9]{2}$" },
+        "domain": {
+          "enum": ["transaction", "traffic", "content_live", "advertising", "service", "market", "asset", "product", "finance", "unclassified"]
+        },
+        "label": { "type": "string", "minLength": 1 },
+        "members": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "pattern": "^R[0-9]{3}$" }
+        },
+        "merge_basis": {
+          "type": "object",
+          "required": ["domain", "time_alignment", "metric_overlap"],
+          "properties": {
+            "domain": { "type": "string", "minLength": 1 },
+            "time_alignment": {
+              "type": "object",
+              "required": ["aligned", "action"],
+              "properties": {
+                "aligned": { "type": "boolean" },
+                "action": { "type": "string", "minLength": 1 },
+                "overlap_ratio": { "type": "number", "minimum": 0, "maximum": 1 }
+              }
+            },
+            "metric_overlap": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "time_scope": {
+          "type": "object",
+          "required": ["start", "end", "granularity", "aligned"],
+          "properties": {
+            "start": { "type": ["string", "null"] },
+            "end": { "type": ["string", "null"] },
+            "granularity": { "type": "string" },
+            "aligned": { "type": "boolean" }
+          }
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["standard_name", "primary_report_id"],
+            "properties": {
+              "standard_name": { "type": "string" },
+              "unit": { "type": "string" },
+              "primary_report_id": { "type": "string", "pattern": "^R[0-9]{3}$" },
+              "corroborating_report_ids": {
+                "type": "array",
+                "items": { "type": "string", "pattern": "^R[0-9]{3}$" }
+              },
+              "tolerance_pct": { "type": "number", "minimum": 0 },
+              "cross_check_rule": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "sufficiency": { "enum": ["sufficient", "partial", "insufficient"] },
+        "sufficiency_reason": { "type": "string" }
+      }
+    },
+    "unclustered_entry": {
+      "type": "object",
+      "required": ["report_id", "reason", "planned_placement"],
+      "properties": {
+        "report_id": { "type": "string", "pattern": "^R[0-9]{3}$" },
+        "file_name": { "type": "string" },
+        "reason": { "type": "string", "minLength": 1 },
+        "planned_placement": { "const": "independent_observation_chapter" }
+      }
+    }
+  }
+}

@@ -1,45 +1,55 @@
-## Description: <br>
-Provides Git and CNB Open API workflows for cloning, committing, pushing, branch management, Merge Request management, pipeline triggering, and build-result lookup on CNB. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CNB 云原生构建平台的 Git 操作技能。使用 git 和 CNB Open API 进行代码克隆、提交、推送、分支管理、Merge Request 管理、流水线触发、流水线结果读取等操作。首次使用需收集用户的 Git 用户名和邮箱信息。
 
-## Publisher: <br>
-[twksos](https://clawhub.ai/user/twksos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twksos](https://clawhub.ai/user/twksos)
 
-## Use Case: <br>
-Developers and DevOps engineers use this skill to operate CNB repositories and pipelines through Git commands and CNB Open API calls. It helps configure required tokens, Git identity, Merge Requests, reviews, labels, reviewers, pipeline triggers, and build-result inspection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides repository write operations such as pushes, merges, reviews, labels, reviewers, and pipeline triggers. <br>
-Mitigation: Use least-privilege CNB tokens and require explicit approval after verifying the owner, repository, branch, Merge Request, and build identifiers. <br>
-Risk: CNB credentials and Git identity settings can be mishandled if stored in source-controlled files or exposed in command history or logs. <br>
-Mitigation: Inject sensitive tokens through secrets, keep /workspace/.env out of commits, avoid printing tokens, and rotate credentials regularly. <br>
-Risk: Pipeline triggers and retries can start privileged CI/CD work in the wrong repository, branch, or event context. <br>
-Mitigation: Confirm pipeline target details before triggering or retrying builds, and avoid sensitive operations from untrusted event contexts. <br>
+## Use Case:
 
+Developers and DevOps engineers use this skill to operate CNB repositories with Git and CNB Open API, including cloning, committing, pushing, branch management, merge request work, and pipeline actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twksos/cnb-cool-git) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/twksos) <br>
-- [CNB API endpoint](https://api.cnb.cool) <br>
-- [CNB repository host](https://cnb.cool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API Calls, Guidance] <br>
-**Output Format:** [Markdown guidance with environment-variable tables, Git commands, and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CNB Git and API tokens plus Git user name and email; outputs operational guidance rather than executing commands itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: CNB Git and API tokens may grant write, merge, or pipeline permissions and can be exposed if embedded in clone URLs or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege, expiring tokens, inject them as secrets, avoid token-bearing clone URLs when possible, inspect remotes after use, and rotate any token previously used in a URL.
+
+Risk: The skill provides commands for merge request and pipeline actions that can change repository state.
+
+Mitigation: Review generated commands before execution and restrict token permissions to the specific repository actions required.
+
+## Reference(s):
+
+- [CNB API service endpoint](https://api.cnb.cool)
+- [ClawHub skill page](https://clawhub.ai/twksos/skills/cnb-cool-git)
+- [Publisher profile](https://clawhub.ai/user/twksos)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline shell commands and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference required CNB Git and API token secrets plus non-sensitive Git user environment variables.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

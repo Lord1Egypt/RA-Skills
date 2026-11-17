@@ -1,43 +1,53 @@
-## Description: <br>
-Analyzes 3D mesh files (STL) to calculate geometric properties (volume, components) and extract attribute data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes 3D mesh files (STL) to calculate geometric properties, identify connected components, and extract STL attribute data.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect STL mesh files, isolate the largest connected component from noisy scans, calculate mesh volume, and extract binary STL attribute data such as material IDs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs third-party Python locally against user-provided STL files. <br>
-Mitigation: Install and run it only in environments where local third-party Python execution is acceptable, and provide only STL files intentionally selected for analysis. <br>
-Risk: Volume values use the STL coordinate units cubed, so mass calculations can be wrong if coordinate units are assumed. <br>
-Mitigation: Verify the STL coordinate units and use density data in matching units before multiplying volume by density. <br>
-Risk: The documented import path may not match every Codex or OpenClaw installation. <br>
-Mitigation: Adjust the local scripts path for the target agent environment before importing MeshAnalyzer. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze STL meshes from 3D scans, isolate the largest connected component, compute volume, and read material or color attribute IDs for downstream calculations such as mass estimation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wu-uk/3d-scan-calc-mesh-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/wu-uk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Python module usage guidance and dictionary-like analysis results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The analyzer returns main_part_volume, main_part_material_id, and total_components for the largest connected component.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Malformed, adversarial, or extremely large STL files could stall or exhaust resources during local parsing and connected-component analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill with external CPU and memory limits and avoid direct processing of untrusted or oversized mesh files.
+
+Risk: Mass or dimensional conclusions can be wrong if users assume coordinate units or mix incompatible density units.
+
+Mitigation: Confirm the STL coordinate system and use density data expressed in matching units before calculating mass.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wu-uk/skills/3d-scan-calc-mesh-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Guidance]
+
+**Output Format:** [Python module usage guidance and dictionary-style analysis results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports largest-component volume, material attribute ID, and component count; volume remains in the STL coordinate units cubed.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

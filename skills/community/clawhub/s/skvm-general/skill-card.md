@@ -1,45 +1,57 @@
-## Description: <br>
-Guides an agent through skvm CLI workflows for profiling models, AOT-compiling skills, running skill-assisted tasks, benchmarking, and managing compiled proposals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drive the skvm CLI to profile models, AOT-compile skills, run skill-assisted tasks, run benchmarks, and manage compiled proposals.
 
-## Publisher: <br>
-[lec77](https://clawhub.ai/user/lec77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lec77](https://clawhub.ai/user/lec77)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate skvm for model profiling, skill compilation, single-task runs, benchmarking, and proposal review. It is intended for agents helping users run or inspect skvm workflows without inventing unsupported CLI flags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to use sensitive model API credentials for LLM-calling skvm commands. <br>
-Mitigation: Use a limited API key where possible and require the agent to stop and ask when the required key is unset. <br>
-Risk: Profiling or benchmarking multiple models can incur meaningful API cost. <br>
-Mitigation: Require explicit confirmation before multi-model profile or bench runs and quote the model count back to the user. <br>
-Risk: Accepting skvm proposals can overwrite or deploy skill files. <br>
-Mitigation: Only run proposal acceptance after the user explicitly asks to deploy, and otherwise limit proposal handling to list, show, reject, or cancel actions. <br>
-Risk: The skvm installer is an external shell installer referenced by the skill. <br>
-Mitigation: Tell users to review the installer themselves before running it; do not install skvm automatically. <br>
+## Use Case:
 
+Developers and engineers use this skill to operate skvm for model profiling, skill compilation, benchmark runs, ad-hoc skill-assisted tasks, and compiled proposal management.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lec77/skvm-general) <br>
-- [SkillVM installer](https://skillvm.ai/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prerequisite checks, command invocations, environment variable guidance, and user-confirmation prompts for costly or file-overwriting operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: The skill references a remote shell installer that can execute unreviewed code if run blindly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when skvm and its publisher are trusted; prefer a verified release, checksum, or signature validation, and review before execution.
+
+Risk: Profiling, compilation, benchmark, and run commands can consume API keys and incur LLM usage costs.
+
+Mitigation: Check API keys only for commands that call an LLM, and require explicit confirmation before expensive multi-model or multi-task runs.
+
+Risk: Accepting compiled or optimized proposals can overwrite skill files.
+
+Mitigation: Review proposal contents first and run proposal acceptance only after explicit deployment confirmation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lec77/skills/skvm-general)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request explicit confirmation before expensive profiling or benchmarking, and before accepting proposals that modify skill files.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

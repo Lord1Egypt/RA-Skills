@@ -1,41 +1,59 @@
-## Description: <br>
-Lets an OpenClaw assistant call a locally installed agent-browser CLI to fetch a URL, extract the page title and Markdown content, and return structured JSON for summarization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Awublack Openclaw Agent Browser lets an OpenClaw assistant call a locally installed agent-browser CLI to fetch a web page and return its title and extracted content as structured JSON.
 
-## Publisher: <br>
-[awublack](https://clawhub.ai/user/awublack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[awublack](https://clawhub.ai/user/awublack)
 
-## Use Case: <br>
-External users and developers use this skill to let an OpenClaw assistant retrieve webpage text through a locally installed browser CLI and summarize the extracted page content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: URL input can be passed into a shell command unsafely. <br>
-Mitigation: Avoid untrusted or unusual URLs until the implementation uses safe argument passing such as spawn or execFile and validates http/https URLs. <br>
-Risk: The documentation overstates privacy and safety for a tool that fetches remote webpages through a separate npm package. <br>
-Mitigation: Review the maintainer, the agent-browser package, and outbound network behavior before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to let an OpenClaw assistant retrieve web page titles and page content through a local browser CLI for summarization or analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/awublack/awublack-openclaw-agent-browser) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON] <br>
-**Output Format:** [Structured JSON containing the URL, page title, extracted Markdown content, and summary text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Node.js and agent-browser CLI availability; URL handling should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill invokes a local browser command and the security evidence calls for argument-safe subprocess execution and URL validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before use, restrict inputs to trusted URLs, and update the script to validate URLs and pass arguments without shell interpolation.
+
+Risk: The documentation claims fully local processing, while browser access still involves external network requests to the requested sites.
+
+Mitigation: Treat use as network activity and avoid sensitive URLs until external network exposure is documented and reviewed.
+
+Risk: The skill depends on an unpinned global agent-browser installation.
+
+Mitigation: Pin or vendor the browser dependency and verify the package source before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/awublack/skills/awublack-openclaw-agent-browser)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Structured JSON containing success, url, title, content, and summary fields; content is extracted from Markdown CLI output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and a locally installed agent-browser CLI; the browser command is time-limited by the script.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

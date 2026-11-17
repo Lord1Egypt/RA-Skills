@@ -1,47 +1,58 @@
-## Description: <br>
-Tracks public hot topics across major Chinese social and content platforms, removes noisy or promotional items, and ranks the default Top 10 by discussion, reach, sharing, emotion, contention, timeliness, and cross-platform coverage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hot Tracker scans and ranks current hot topics across Chinese social platforms, de-duplicates noisy posts, and returns an objective Top 10 trend list with scoring and source context.
 
-## Publisher: <br>
-[e2e5g](https://clawhub.ai/user/e2e5g) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[e2e5g](https://clawhub.ai/user/e2e5g)
 
-## Use Case: <br>
-External users, content teams, and analysts use this skill to monitor public trend data, cluster related topics, down-rank low-value noise, and produce neutral hot-topic rankings or trend reports for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live public trend data can be stale, incomplete, platform-skewed, or unavailable in the execution environment. <br>
-Mitigation: Name the platforms and time window when precision matters, prefer offline snapshots when needed, and label whether results come from live collection or local data. <br>
-Risk: Trend summaries and content-alert templates may influence publishing decisions before the facts or platform rules are checked. <br>
-Mitigation: Require human fact-checking, source review, and platform compliance review before using rankings or alerts for publication. <br>
-Risk: Private sessions, cookies, or credentials would increase exposure if supplied to a live scraping workflow. <br>
-Mitigation: Use only public data sources and do not provide private sessions, cookies, API keys, or account credentials. <br>
+## Use Case:
 
+External users and content analysts use this skill to monitor cross-platform Chinese social trends, rank topics by discussion, reach, sharing, freshness, emotion, and controversy, and understand why topics are trending without adopting a position.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/e2e5g/hot-tracker) <br>
-- [Objective hot-topic analysis framework](artifact/references/analysis-framework.md) <br>
-- [Platform behavior rules and compliance checks](artifact/references/compliance-rules.md) <br>
-- [Data format specification](artifact/references/data-format.md) <br>
-- [Hot-topic Top10 output template](artifact/references/output-template.md) <br>
-- [Timeliness analysis framework](artifact/references/timeliness-framework.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports and rankings, with optional JSON-like structured fields and Python-assisted analysis outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output is a neutral Top10 ranking with scores, platform coverage, confidence, reasons for popularity, noise notes, and representative sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill is designed to run automatically for broad hot-topic prompts and may use network access when available.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit prompts to constrain platforms, time windows, or topic scope when tighter boundaries are required.
+
+Risk: Trend outputs and bundled content templates can influence publication decisions and may include source, copyright, advertising, AIGC, or platform-compliance risk.
+
+Mitigation: Verify representative sources and review copyright, advertising, AIGC labeling, and platform compliance before publishing content based on the output.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/e2e5g/skills/hot-tracker)
+- [Analysis Framework](references/analysis-framework.md)
+- [Data Format Specification](references/data-format.md)
+- [Output Template](references/output-template.md)
+- [Timeliness Framework](references/timeliness-framework.md)
+- [Compliance Rules](references/compliance-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, code, shell commands, guidance]
+
+**Output Format:** [Markdown trend reports and JSON ranking outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output is a Top 10 hot-topic ranking with scores, noise notes, neutrality notes, confidence, and representative sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

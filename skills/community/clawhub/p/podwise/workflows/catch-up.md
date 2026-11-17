@@ -4,7 +4,7 @@ Use this skill to process a backlog of new podcast episodes in one pass. It comb
 
 ## Goals
 
-1. Verify that `podwise` is installed and configured.
+1. Verify the Podwise MCP connection.
 2. Load `taste.md` if it exists, to personalize triage priority.
 3. Fetch unlistened episodes from followed podcasts for the past 7 days.
 4. Triage each episode: assign a priority tier based on the user's interests.
@@ -14,12 +14,7 @@ Use this skill to process a backlog of new podcast episodes in one pass. It comb
 
 ## Step 1: Check the Environment
 
-```bash
-podwise --help
-podwise config show
-```
-
-If `podwise` is not installed or the API key is missing, stop and follow [references/installation.md](references/installation.md) before continuing.
+Call `get_me`. If the Podwise tools are unavailable or return an authentication error, stop and follow [../references/installation.md](../references/installation.md) before continuing.
 
 ## Step 2: Load the Listener Taste
 
@@ -30,20 +25,17 @@ Look for `taste.md` in the current working directory.
 
 ## Step 3: Fetch New Episodes
 
-```bash
-# Recent episodes from followed podcasts
-podwise list episodes --json --latest 7
-```
+Call `list_followed_episodes` with `days: 7`.
 
-Parse each entry for: podcast name, episode title, publication date, episode URL, isRead status, and any available duration or category metadata.
+Parse each entry for: podcast name, episode title, publication date, episode seq, and read status.
 
 **Filtering logic:**
 
-1. From `list episodes`, filter to only episodes where `isRead == false`.
+1. Keep only episodes where read status is false.
 2. Sort by publication date (newest first).
 3. Display all remaining episodes in the digest (no top-N limit).
 
-If the user specified a different window, adjust `--latest N` accordingly.
+If the user specified a different window, adjust `days` accordingly (max 30).
 
 ## Step 4: Triage the Episodes
 
@@ -62,14 +54,9 @@ If no `taste.md` is loaded, assign all episodes to Tier 2 and note that personal
 
 ## Step 5: Fetch AI Outputs for Tier 1 Episodes
 
-For each Tier 1 episode, run:
+For each Tier 1 episode, call `get_episode_summary` with the episode's `seq`.
 
-```bash
-podwise get summary {episode-url}
-podwise get highlights {episode-url}
-```
-
-If `get` fails because the episode is not yet processed, include it in the digest with its title, podcast name, and a note: "not yet processed — [Open episode]({url})". Ask the user whether they want to process it before fetching the summary.
+If it fails because the episode is not processed, include it in the digest with its title, podcast name, and a note: "not yet processed — [Open episode]({url})". Ask the user whether they want to process it before fetching the summary. Only call `process_episode` after explicit confirmation — it consumes AI processing credits.
 
 ## Step 6: Present the Catch-Up Digest
 
@@ -86,7 +73,7 @@ _{N} episodes across {M} shows still in your backlog_
 #### 🎯 Must Clear ({count})
 
 **{Episode Title}** · {Podcast Name} · {date}
-> {2–3 sentence summary derived from `get summary` output}
+> {2–3 sentence summary derived from `get_episode_summary` output}
 
 Key highlights:
 - {highlight 1}
@@ -117,35 +104,21 @@ After the digest, ask: *"Would you like to go deeper on any of these, or save an
 
 **Go deeper on a specific episode:**
 
-```bash
-podwise get summary {episode-url}
-podwise get highlights {episode-url}
-```
-
-**For full artifacts:**
-
-```bash
-podwise get qa {episode-url}
-podwise get chapters {episode-url}
-podwise get mindmap {episode-url}
-podwise get keywords {episode-url}
-```
+- `get_episode_summary` with the episode `seq` (includes chapters, highlights, Q&A, keywords, and mind map).
 
 **Transcript** (token-intensive — request only when you need a specific quote or full record):
 
-```bash
-podwise get transcript {episode-url}
-```
+- `get_episode_transcript` with the episode `seq` (paginate with `limit` / `offset`).
 
-**Save to PKM:** Guide the user to use `episode-notes` for the specific episode URL.
+**Save to PKM:** guide the user to the `episode-notes` workflow for the specific episode, or call `send_episode` / `export_episode_markdown`.
 
-Always confirm before running `process`.
+Always confirm before calling `process_episode`.
 
 ## Common Failure Cases
 
-- If `podwise list episodes --latest 7` returns empty, tell the user their followed podcasts have no new episodes this week and suggest expanding the window to `--latest 14` if they want to check further back.
+- If `list_followed_episodes` returns empty, tell the user their followed podcasts have no new episodes this week and suggest expanding `days` to 14 if they want to check further back.
 - If the combined result after filtering is fewer than 5 episodes, inform the user that their backlog is already clear — their followed podcasts have no unlistened episodes in this window.
-- If `get summary` or `get highlights` fails because an episode is not processed, include it in the digest with its title, podcast name, and "not yet processed" — give the user the episode URL and ask if they want to process it before fetching the summary.
+- If `get_episode_summary` fails because an episode is not processed, include it in the digest with its title, podcast name, and "not yet processed" — give the user the episode link and ask if they want to process it before fetching the summary.
 - If the user has no followed podcasts, stop and ask them to follow some shows in Podwise before running catch-up.
 - If `taste.md` is missing, note at the top of the digest: *"Run `refine-taste` to get personalised triage."*
 

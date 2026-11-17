@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "dataset_kind": "synthetic_fixture",
+  "pages": [
+    {
+      "url": "https://example.test/page",
+      "html": "html/page.html",
+      "state": "provided",
+      "http_status": 200,
+      "source_kind": "saved_html",
+      "captured_at": "2026-10-27T12:00:00+08:00"
+    },
+    {
+      "url": "https://example.test/unavailable",
+      "state": "fetch_failed",
+      "reason": "Fixture only; no saved response"
+    }
+  ]
+}

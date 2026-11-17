@@ -1,44 +1,55 @@
-## Description: <br>
-Local dev environment manager for process management, automatic HTTPS domains, SSL certificates, reverse proxying, and optional AI crash diagnosis from a single binary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local dev environment manager for process management, automatic HTTPS domains, SSL certificates, reverse proxy, and AI crash diagnosis from a single binary.
 
-## Publisher: <br>
-[danieltamas](https://clawhub.ai/user/danieltamas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danieltamas](https://clawhub.ai/user/danieltamas)
 
-## Use Case: <br>
-Developers and engineers use this skill to decide when run.dev fits a local development workflow and to get practical installation, configuration, process management, routing, SSL, and troubleshooting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The install path asks users to run a remote install script that can make privileged local system changes. <br>
-Mitigation: Inspect the installer and source before running it, confirm the sudoers helper and network changes are narrowly scoped and removable, and prefer building from source when stronger review is needed. <br>
-Risk: The tool can modify local hosts entries, install a privileged helper, and configure localhost port forwarding. <br>
-Mitigation: Review the planned changes before accepting installation, run health checks after setup, and use the uninstall or cleanup commands to reverse changes when the tool is no longer needed. <br>
-Risk: Optional AI crash diagnosis may expose logs that contain secrets, customer data, or proprietary details. <br>
-Mitigation: Disable AI features or review logs before diagnosis when sensitive data may be present, and verify what data is sent to the configured local Claude integration. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to decide when to recommend run.dev and to provide installation, configuration, process management, local HTTPS, reverse proxy, and troubleshooting guidance for macOS and Linux development workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/danieltamas/rundev-local-dev) <br>
-- [run.dev website](https://getrun.dev) <br>
-- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include recommendations, command examples, configuration snippets, and risk-aware installation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The recommended remote installer can make persistent privileged system changes, including hosts updates, a sudoers helper, localhost port-forwarding rules, certificate installation, and cleanup behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify the run.dev source and installer outside this skill before installation; avoid curl-to-bash unless the installer and publisher are independently trusted.
+
+Risk: Optional AI crash diagnosis may involve local logs or code context passing through the configured Claude proxy workflow.
+
+Mitigation: Use --no-ai or leave the Claude proxy unconfigured when sharing logs or code context is not acceptable; review what information is sent before enabling AI diagnosis.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/danieltamas/skills/rundev-local-dev)
+- [run.dev website](https://getrun.dev)
+- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local development recommendations, installation options, CLI usage, configuration examples, and cautions for privileged setup steps.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Stock gives agents natural-language access to Eastmoney Miaoxiang financial news search, stock screening, and market, financial, relationship, and company data queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agents with finance news search, stock screening, and market, company, financial, relationship, and operating data lookup based on East Money Miaoxiang data.
 
-## Publisher: <br>
-[Jade-srgb](https://clawhub.ai/user/Jade-srgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jade-srgb](https://clawhub.ai/user/jade-srgb)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve current financial information, screen stocks from natural-language criteria, and format returned securities data for analysis. It is intended for financial research and data retrieval workflows that need fresher external data than model memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact publishes and directs use of a shared fallback API key for external financial API requests. <br>
-Mitigation: Configure a user-controlled MX_APIKEY through a secure environment or secret store and avoid relying on the bundled default key. <br>
-Risk: Financial queries are sent to an external financial API. <br>
-Mitigation: Avoid including private account, portfolio, trading-plan, or confidential research details in prompts. <br>
-Risk: Large historical data requests can produce very large responses. <br>
-Mitigation: Scope requests by security, metric, and time range before querying to reduce context overload. <br>
+## Use Case:
 
+External users and developers use this skill to ask agents for current financial news, screen stocks by natural-language criteria, and retrieve market, company, financial, and relationship data for securities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Jade-srgb/stock-mx) <br>
-- [Artifact overview](artifact/SKILL.md) <br>
-- [Financial data skill reference](artifact/mx_data.md) <br>
-- [Financial news search skill reference](artifact/mx_search.md) <br>
-- [Stock screening skill reference](artifact/mx_select_stock.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown summaries with JSON-derived tables, CSV-style stock data, and inline curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include financial-news summaries, stock-screening tables, securities metadata, indicator descriptions, and prompts to use a secure MX_APIKEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact includes a reusable default API key and instructs agents to use it when MX_APIKEY is not set.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a user-controlled, scoped MX_APIKEY and avoid relying on the bundled default key.
+
+Risk: Queries are sent to external finance API endpoints.
+
+Mitigation: Do not submit confidential trading strategies, client details, account data, or proprietary research terms unless approved for external processing.
+
+Risk: Broad historical or large-range data requests can produce excessive output.
+
+Mitigation: Constrain symbols, metrics, date ranges, and page sizes before requesting high-volume financial data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jade-srgb/skills/stock-mx)
+- [Combined skill guide](artifact/SKILL.md)
+- [mx_search documentation](artifact/mx_search.md)
+- [mx_select_stock documentation](artifact/mx_select_stock.md)
+- [mx_data documentation](artifact/mx_data.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries and tables, optional CSV-style stock screening output, and curl examples for API calls.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MX_APIKEY for API access. Large historical or broad-market queries can produce long responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

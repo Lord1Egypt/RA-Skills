@@ -1,41 +1,58 @@
-## Description: <br>
-Provides lightweight summaries of public Haokan short video and short drama page information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides aggregated summaries and updates of public short videos, short dramas, and trending lists from Haokan video pages based on keywords or topics.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Developers, analysts, and content operations users use this skill to summarize public Haokan video pages, short drama directories, and trending-list entries for internal analysis and alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill could be used on private or session-only content outside its intended public-page scope. <br>
-Mitigation: Keep use limited to public Haokan pages and do not provide private account, credential, cookie, or session information. <br>
-Risk: Bulk collection, downloads, or attempts to bypass platform controls could violate platform rules. <br>
-Mitigation: Avoid downloads, interface reverse engineering, and bulk scraping; keep request frequency controlled and use human review for dynamically rendered pages. <br>
+## Use Case:
 
+Developers and analysts use this skill to organize lightweight summaries of public Haokan short-video, short-drama, and ranking pages for internal analysis and alerts.
 
-## Reference(s): <br>
-- [Haokan homepage](https://haokan.baidu.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/haokan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries and guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries are limited to public page information and should not include downloads, bulk scraping, or private account/session data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill could be used on private, login-only, or restricted content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit use to public Haokan pages and avoid collecting private or access-controlled data.
+
+Risk: Automated collection could exceed platform expectations or trigger anti-abuse controls.
+
+Mitigation: Keep request frequency low, avoid batch scraping, and follow the skill guidance against downloads, API calls, and bulk collection.
+
+Risk: Summaries of public video metrics or rankings may be incomplete or stale.
+
+Mitigation: Treat outputs as lightweight analysis aids and verify important conclusions against the source page.
+
+## Reference(s):
+
+- [Haokan Video](https://haokan.baidu.com/)
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/haokan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries and structured guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be based on public page information and avoid downloads, API calls, login-only data, or bulk collection.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

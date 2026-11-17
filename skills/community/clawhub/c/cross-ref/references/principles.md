@@ -33,6 +33,20 @@ principle wins.
 - Better to miss a link than to create a false one.
 - An unposted comment costs nothing. A wrong comment erodes trust.
 
+## Duplicate resolution
+
+When two PRs address the same problem:
+
+- **Pick the better solution.** Compare implementation quality: which approach
+  is simpler, more efficient, and more correct? The better PR is the canonical
+  one. The other should be closed with credit.
+- **Older PR wins ties.** If both solutions are roughly equivalent in quality,
+  the PR that was opened first is canonical. First-mover deserves the merge.
+- **Don't compare apples to oranges.** If the approaches are structurally
+  different — different architectures, different trade-offs, incomparable
+  scopes — don't force a pick. Suggest the authors coordinate and let the
+  maintainer decide. Mark as `manual_review_required`.
+
 ## Reversibility
 
 - Comments can't be undone. Every comment should include a path to

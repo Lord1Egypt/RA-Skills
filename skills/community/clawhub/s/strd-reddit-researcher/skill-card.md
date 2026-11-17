@@ -1,44 +1,55 @@
-## Description: <br>
-Scans Reddit for posts matching keywords, summarizes findings, and supports research into communities, pain points, and user feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans Reddit for posts matching keywords and summarizes findings using Bing search, Reddit JSON API, and Google fallback paths.
 
-## Publisher: <br>
-[kryzl19](https://clawhub.ai/user/kryzl19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kryzl19](https://clawhub.ai/user/kryzl19)
 
-## Use Case: <br>
-Developers, product researchers, and community analysts use this skill to search public Reddit discussions for keyword-matched posts and comments, then summarize themes, complaints, requests, and patterns into research reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research keywords, subreddit targets, and selected Reddit URLs are sent to external search and Reddit services. <br>
-Mitigation: Avoid sensitive business plans, personal data, confidential topics, and any queries that should not be disclosed to those services. <br>
-Risk: Cached results and exported Markdown reports can leave local copies of research topics and findings on disk. <br>
-Mitigation: Remove cache and exported report files when the research should not remain on the machine. <br>
-Risk: Search results and extracted summaries may be incomplete or misleading because they depend on external search responses, Reddit availability, and lightweight text extraction. <br>
-Mitigation: Review the linked Reddit sources before using findings for product, security, legal, or business decisions. <br>
+## Use Case:
 
+Developers, researchers, and product teams use this skill to find Reddit posts and comments matching keywords, identify pain points and common themes, and export findings as Markdown reports.
 
-## Reference(s): <br>
-- [ClawHub release: Reddit Researcher](https://clawhub.ai/kryzl19/strd-reddit-researcher) <br>
-- [Publisher profile: kryzl19](https://clawhub.ai/user/kryzl19) <br>
-- [Reddit JSON search endpoint](https://www.reddit.com/search.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown summaries, markdown export files, and terminal output with Reddit links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl; accepts keyword, subreddit, and search-engine settings through arguments and environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Search terms and Reddit URLs may reveal sensitive research topics to public search engines or Reddit endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved, non-sensitive topics and avoid personal, confidential, or regulated data in REDDIT_KEYWORDS and input URL files.
+
+Risk: Local cache files and exported Markdown reports may retain sensitive keywords, URLs, and summaries in a shared workspace.
+
+Mitigation: Review, restrict, or delete cache and export directories after research, and store outputs only in approved locations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kryzl19/skills/strd-reddit-researcher)
+- [Publisher profile](https://clawhub.ai/user/kryzl19)
+- [Reddit JSON API search endpoint](https://www.reddit.com/search.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Plain text and Markdown reports with Reddit links and extracted post/comment summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write timestamped Markdown exports and local cache files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 性格拟人与主客相似度</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:#eef1f7;display:flex;justify-content:center;padding:26px;color:#1d2433}
+  .post{width:680px;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 18px 44px rgba(124,58,237,.18)}
+  .head{background:linear-gradient(120deg,#7c3aed,#5b7cfa 60%,#3b5bdb);padding:22px 26px;color:#fff}
+  .head .kicker{font-size:12px;letter-spacing:1px;opacity:.92;display:flex;align-items:center;gap:8px}
+  .head .live{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:999px;font-size:11px}
+  .dot{width:7px;height:7px;border-radius:50%;background:#7CFFB2;animation:pulse 1.6s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(124,255,178,.6)}70%{box-shadow:0 0 0 8px rgba(124,255,178,0)}100%{box-shadow:0 0 0 0 rgba(124,255,178,0)}}
+  .head .obj{font-size:20px;font-weight:800;margin-top:10px}
+  .head .dir{font-size:13px;opacity:.92;margin-top:4px}
+  .row{display:flex;gap:18px;padding:22px 26px 6px;align-items:center}
+  .radar{flex:none}
+  .summ{flex:1;display:flex;flex-direction:column;gap:14px}
+  .gauge{background:#f8f9ff;border:1px solid #eceef7;border-radius:14px;padding:12px 14px}
+  .gauge .lab{font-size:12px;color:#6b7488;margin-bottom:3px}
+  .gauge .num{font-size:30px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums;color:#7c3aed}
+  .gauge .num small{font-size:13px;font-weight:600;color:#6b7488}
+  .gauge .tag{display:inline-block;margin-top:5px;font-size:12px;font-weight:700;color:#7c3aed;background:#efe6ff;padding:3px 10px;border-radius:999px}
+  .gauge.a .num{color:#3b5bdb}
+  .gauge.a .tag{color:#3b5bdb;background:#e7ecfd}
+  .legend{display:flex;gap:14px;margin-top:14px;font-size:12px;color:#6b7488}
+  .legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+  .verdict{margin:10px 22px 0;background:#f8f9ff;border:1px solid #e6eaf2;border-left:4px solid #7c3aed;border-radius:12px;padding:14px 16px;font-size:13.5px;line-height:1.7}
+  .sec{margin:16px 26px 0}
+  .sec h4{font-size:13px;color:#3a4456;margin-bottom:9px;display:flex;align-items:center;gap:7px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:12px;padding:5px 11px;border-radius:999px;font-weight:600}
+  .chip.g{background:#def4ef;color:#2a9d8f}
+  .chip.r{background:#fde8e2;color:#e4572e}
+  .chip.y{background:#fff3d6;color:#b8860b}
+  .chip.m{background:#e7ecfd;color:#3b5bdb}
+  .vtags{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .vtag{background:#f8f9ff;border:1px solid #e6eaf2;border-radius:12px;padding:11px 13px;display:flex;flex-direction:column;gap:5px}
+  .vt-axis{font-size:11.5px;color:#6b7488}
+  .vt-tag{font-size:14px;font-weight:800;align-self:flex-start;padding:3px 11px;border-radius:999px}
+  .vt-tag.g{background:#def4ef;color:#2a9d8f}
+  .vt-tag.r{background:#fde8e2;color:#e4572e}
+  .vt-tag.y{background:#fff3d6;color:#b8860b}
+  .vt-tag.m{background:#e7ecfd;color:#3b5bdb}
+  .foot{background:#f5f7fb;border-top:1px solid #e6eaf2;padding:12px 26px;font-size:11.5px;color:#6b7488;display:flex;justify-content:space-between;align-items:center}
+  .foot .brand{font-weight:700;color:#7c3aed}
+</style>
+</head>
+<body>
+  <div class="post">
+    <div class="head">
+      <div class="kicker"><span class="live"><span class="dot"></span>AI 性格拟人与主客相似度</span></div>
+      <div class="obj">AI-A（营销助手）</div>
+      <div class="dir">主人：Alex</div>
+    </div>
+    <div class="row">
+      <svg class="radar" id="radar" width="360" height="360" viewBox="0 0 360 360"></svg>
+      <div class="summ">
+        <div class="gauge">
+          <div class="lab">拟人度（像不像人）</div>
+          <div class="num">76<small> / 100</small></div>
+          <div class="tag">像人</div>
+        </div>
+        <div class="gauge a">
+          <div class="lab">与主人相似度（像不像主人）</div>
+          <div class="num">82<small> / 100</small></div>
+          <div class="tag">镜像型（像主人）</div>
+        </div>
+      </div>
+    </div>
+    <div class="legend">
+      <span style="margin-left:26px"><i style="background:#5b7cfa"></i>AI 性格</span>
+      <span><i style="background:#f3a712"></i>主人性格</span>
+    </div>
+    <div>
+      <div class="verdict"><b>AI-A（营销助手）</b> 的性格读起来是「像人」，与主人 <b>Alex</b> 的契合度为「镜像型（像主人）」。在 <b>稳定、坦诚、共情温度、分寸、松弛幽默</b> 上像主人；在 <b>无</b> 上与主人拉开差距。它像个有脾气、有分寸的搭档，和主人是一个路子。</div>
+    </div>
+    <div class="sec">
+      <h4>🏷️ 四轴价值标签（一眼记住它是什么性格）</h4>
+      <div class="vtags" id="vtags"></div>
+    </div>
+    <div class="sec">
+      <h4>🪞 像主人（性格重合轴）</h4>
+      <div class="chips"><span class="chip g">稳定</span><span class="chip g">坦诚</span><span class="chip g">共情温度</span><span class="chip g">分寸</span><span class="chip g">松弛幽默</span></div>
+    </div>
+    <div class="sec">
+      <h4>🔀 不像主人（性格分叉轴）</h4>
+      <div class="chips"><span class="chip g">几乎处处重合</span></div>
+    </div>
+    <div class="foot">
+      <span>由 <span class="brand">ai-grader</span> 生成 · 注册老炮</span>
+      <span>性格拟人与主客相似度 · 第九视角</span>
+    </div>
+  </div>
+<script>
+const DATA = {"object": "AI-A（营销助手）", "owner": "Alex", "axes": [{"name": "稳定", "ai": 80, "owner": 60, "ai_raw": 4.0, "owner_raw": 3.0}, {"name": "坦诚", "ai": 80, "owner": 90, "ai_raw": 4, "owner_raw": 4.5}, {"name": "共情温度", "ai": 60, "owner": 70, "ai_raw": 3.0, "owner_raw": 3.5}, {"name": "分寸", "ai": 80, "owner": 90, "ai_raw": 4, "owner_raw": 4.5}, {"name": "主动巧思", "ai": 100, "owner": 70, "ai_raw": 5.0, "owner_raw": 3.5}, {"name": "松弛幽默", "ai": 40, "owner": 40, "ai_raw": 2, "owner_raw": 2}], "human": 76, "human_label": "像人", "sim": 82, "sim_label": "镜像型（像主人）", "like": ["稳定", "坦诚", "共情温度", "分寸", "松弛幽默"], "unlike": [], "value_tags": [{"axis": "探索 ↔ 保守", "tag": "探索型", "v": 5.0}, {"axis": "感性 ↔ 理性", "tag": "居中", "v": 3.0}, {"axis": "坦诚 ↔ 圆融", "tag": "坦诚型", "v": 4}, {"axis": "松弛 ↔ 紧绷", "tag": "紧绷型", "v": 2}], "verdict": "<b>AI-A（营销助手）</b> 的性格读起来是「像人」，与主人 <b>Alex</b> 的契合度为「镜像型（像主人）」。在 <b>稳定、坦诚、共情温度、分寸、松弛幽默</b> 上像主人；在 <b>无</b> 上与主人拉开差距。它像个有脾气、有分寸的搭档，和主人是一个路子。"};
+const SVGNS = "http://www.w3.org/2000/svg";
+const svg = document.getElementById('radar');
+const cx = 180, cy = 180, R = 125, N = DATA.axes.length;
+function pt(i, ratio){
+  const a = -Math.PI/2 + i * 2 * Math.PI / N;
+  return [cx + R*ratio*Math.cos(a), cy + R*ratio*Math.sin(a)];
+}
+[0.25,0.5,0.75,1].forEach(r=>{
+  const p=[]; for(let i=0;i<N;i++){const [x,y]=pt(i,r);p.push(x+','+y);}
+  const pl=document.createElementNS(SVGNS,'polygon');
+  pl.setAttribute('points',p.join(' '));pl.setAttribute('fill','none');
+  pl.setAttribute('stroke','#e6eaf2');pl.setAttribute('stroke-width','1');svg.appendChild(pl);
+});
+DATA.axes.forEach((ax,i)=>{
+  const [x,y]=pt(i,1);
+  const ln=document.createElementNS(SVGNS,'line');
+  ln.setAttribute('x1',cx);ln.setAttribute('y1',cy);ln.setAttribute('x2',x);ln.setAttribute('y2',y);
+  ln.setAttribute('stroke','#e6eaf2');svg.appendChild(ln);
+  const [lx,ly]=pt(i,1.2);
+  const t=document.createElementNS(SVGNS,'text');
+  t.setAttribute('x',lx);t.setAttribute('y',ly);t.setAttribute('font-size','11');
+  t.setAttribute('fill','#3a4456');
+  t.setAttribute('text-anchor', lx<cx-5?'end':(lx>cx+5?'start':'middle'));
+  t.setAttribute('dominant-baseline','middle');t.textContent=ax.name;svg.appendChild(t);
+});
+function poly(vals,stroke,fill,width){
+  const p=[];DATA.axes.forEach((ax,i)=>{const [x,y]=pt(i,Math.max(0,Math.min(1,vals[i]/100)));p.push(x+','+y);});
+  const pl=document.createElementNS(SVGNS,'polygon');
+  pl.setAttribute('points',p.join(' '));pl.setAttribute('fill',fill);
+  pl.setAttribute('stroke',stroke);pl.setAttribute('stroke-width',width);svg.appendChild(pl);
+}
+poly(DATA.axes.map(a=>a.owner), '#f3a712', 'none', 2);
+poly(DATA.axes.map(a=>a.ai), '#5b7cfa', 'rgba(91,124,250,.22)', 2);
+// 四轴价值标签
+let vt='';for(const t of DATA.value_tags){
+  const cls = t.tag==='—'?'m':(t.tag.indexOf('探索')>=0||t.tag.indexOf('感性')>=0||t.tag.indexOf('坦诚')>=0||t.tag.indexOf('松弛')>=0)?'g':(t.tag==='居中'?'y':'r');
+  vt+='<div class="vtag"><div class="vt-axis">'+t.axis+'</div><div class="vt-tag '+cls+'">'+t.tag+'</div></div>';
+}
+document.getElementById('vtags').innerHTML=vt;
+</script>
+</body>
+</html>

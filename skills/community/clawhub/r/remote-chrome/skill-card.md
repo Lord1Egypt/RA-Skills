@@ -1,44 +1,59 @@
-## Description: <br>
-Launch, stop, restart, or check the status of a remote Chrome browser service using Xvfb, x11vnc, and noVNC for GUI access through a web browser or VNC client. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launch, stop, restart, or check the status of a remote Chrome browser service using Xvfb, x11vnc, and noVNC.
 
-## Publisher: <br>
-[kelvinschen](https://clawhub.ai/user/kelvinschen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kelvinschen](https://clawhub.ai/user/kelvinschen)
 
-## Use Case: <br>
-Developers and engineers use this skill to run and manage a remotely accessible Chrome GUI for browser testing, visual inspection, or agent-assisted browser automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes a live browser session through VNC and noVNC access. <br>
-Mitigation: Use it only when a remotely controllable Chrome session is intentional, keep access on localhost or behind SSH tunnels, VPNs, or strict firewall allowlists, and stop the service when finished. <br>
-Risk: The noVNC URL and VNC password grant access to the browser session if shared. <br>
-Mitigation: Treat generated URLs, passwords, status output, and screenshots as secrets and avoid posting or logging them in shared locations. <br>
-Risk: Chrome remote debugging access can allow control of the browser session. <br>
-Mitigation: Keep the debugging port off the public internet and restrict access to trusted local or tunneled connections. <br>
+## Use Case:
 
+Developers and engineers use this skill to start, stop, restart, and inspect a remotely accessible Chrome GUI for browser automation, visual verification, and debugging through noVNC, VNC, and Chrome DevTools.
 
-## Reference(s): <br>
-- [Installation Guide](references/installation.md) <br>
-- [Output Format Examples](references/output-examples.md) <br>
-- [Configuration Reference](references/configuration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and service access details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational commands and status details for local shell execution; running the scripts may expose access URLs and credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Remote Chrome, VNC, and noVNC access can expose browser control if ports 5900, 6080, or 9222 are reachable from untrusted networks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only on isolated or trusted hosts, prefer localhost binding, and use SSH or VPN tunneling instead of exposing these ports publicly.
+
+Risk: The start and status flows can print VNC passwords and noVNC URLs that grant browser access.
+
+Mitigation: Treat generated passwords and URLs as secrets and avoid sharing terminal output or logs that contain them.
+
+Risk: The security guidance identifies password storage and process cleanup as areas needing hardening before elevated use.
+
+Mitigation: Avoid running the scripts as root and review password handling and service cleanup behavior before deployment.
+
+## Reference(s):
+
+- [Installation Guide](references/installation.md)
+- [Configuration Reference](references/configuration.md)
+- [Output Format Examples](references/output-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and terminal output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes generated noVNC/VNC access details, VNC password output, process status, memory usage, open tabs, and service control guidance when the scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

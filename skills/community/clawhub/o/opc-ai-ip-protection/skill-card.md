@@ -1,43 +1,61 @@
-## Description: <br>
-将AI技术成果纳入法律保护框架，建立归属链，为Skill/Agent商业化奠定法律基础。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将AI技术成果纳入法律保护框架，建立归属链，为Skill/Agent商业化奠定法律基础。
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-Entrepreneurs, Skill builders, and Agent developers use this skill to map AI assets to Chinese intellectual-property protection routes, assess gaps, and produce prioritized protection actions and ledger entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives high-impact legal filing guidance that could lead users to rely on outdated requirements or sign inaccurate declarations. <br>
-Mitigation: Treat outputs as a checklist, verify current requirements with official authorities or qualified IP counsel, and do not sign any statement that is not true for the user's materials. <br>
-Risk: Using the skill for filings may involve identity documents, source code, business records, or dataset samples. <br>
-Mitigation: Tightly control access to sensitive materials and redact or minimize documents and samples before sharing or submission. <br>
+## Use Case:
 
+External users and developers use this skill to assess intellectual-property status for AI skills, agents, knowledge bases, brands, and related assets, then produce prioritized protection actions and ledger entries.
 
-## Reference(s): <br>
-- [传统IP与AI资产映射表](references/传统IP与AI资产映射表.md) <br>
-- [2026软著新规合规指南](references/2026软著新规合规指南.md) <br>
-- [IP申请操作手册](references/IP申请操作手册.md) <br>
-- [IP资产台账模板](references/IP资产台账模板.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown assessment with IP status, risk level, prioritized actions, and follow-up date] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include checklist-style filing steps, materials lists, and IP ledger fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release metadata and SKILL.md frontmatter) <br>
+Risk: The skill gives high-stakes intellectual-property filing guidance that could cause a user to submit inaccurate or misleading legal materials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify all filing requirements with the relevant authority or qualified counsel before acting on the guidance.
+
+Risk: The skill discusses no-AI and originality certifications for software copyright submissions.
+
+Mitigation: Do not sign any no-AI or originality certification unless it is true for the submitted materials.
+
+Risk: The skill can produce or organize IP ledgers, certificate numbers, source-code references, and knowledge-base identifiers.
+
+Mitigation: Store generated ledgers and related identifiers only in access-controlled locations.
+
+## Reference(s):
+
+- [2026软著新规合规指南](references/2026软著新规合规指南.md)
+- [IP申请操作手册](references/IP申请操作手册.md)
+- [IP资产台账模板](references/IP资产台账模板.md)
+- [传统IP与AI资产映射表](references/传统IP与AI资产映射表.md)
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/opc-ai-ip-protection)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown assessment with prioritized actions and ledger-style fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include current IP status, risk level, recommended actions, and follow-up timing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

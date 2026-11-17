@@ -1,6 +1,88 @@
 {
-  "ownerId": "kn791bxpmse6nv4nqy8skgg2n182b5t2",
-  "slug": "health-mate",
-  "version": "1.5.4",
-  "publishedAt": 1775048958924
+    "name":  "health-mate",
+    "display_name":  "Health-Mate",
+    "type":  "python/app",
+    "version":  "1.5.4",
+    "description":  "Health-Mate is an executable OpenClaw health-management skill with Chinese, English, and Japanese report flows, local Markdown parsing, strict memory-write templates for LLM output, and daily/weekly/monthly PDF generation. It supports explicit report routing through report_preferences.population_branch, uses activity heatmaps plus lifestyle insight charts for balanced or fat-loss users, keeps hospital-and-doctor planning for disease modes, and sanitizes local-LLM stdout before AI commentary is embedded into pushed text or PDF content. SECURITY DISCLOSURE: 1. MEMORY_DIR must be explicitly set; there is no implicit fallback path. 2. The shell runners and direct Python entry points read the project-local config/.env when it exists, and the setup wizard can create a commented project-local template if the file is missing; users should keep only the keys they intend the skill to read. 3. Shell runners use NVM_DIR / CRON_PATH for cron-friendly PATH setup, while the Python local-LLM resolver uses OPENCLAW_BIN when provided. 4. Outbound network requests occur only when webhook or Tavily credentials are configured, or when runtime font download is explicitly enabled. 5. Before upgrades or reinstalls, users should back up config/user_config.json and config/.env because some platform workflows may reset local configuration files.",
+    "author":  "tankeito",
+    "email":  "tqd354@gmail.com",
+    "license":  "MIT",
+    "homepage":  "https://github.com/tankeito/Health-Mate",
+    "repository":  "https://github.com/tankeito/Health-Mate.git",
+    "source":  "https://github.com/tankeito/Health-Mate",
+    "openclaw_version":  "\u003e=2024.1.0",
+    "python_version":  "\u003e=3.8",
+    "install":  "pip install -r requirements.txt",
+    "dependencies":  [
+                         "reportlab\u003e=4.0.0",
+                         "pillow\u003e=10.0.0",
+                         "matplotlib\u003e=3.0.0"
+                     ],
+    "capabilities":  [
+                         "file_read",
+                         "file_write",
+                         "pdf_generation",
+                         "http_request"
+                     ],
+    "env":  {
+                "MEMORY_DIR":  "Required. Explicitly set this to the Markdown health-memory directory the skill should read.",
+                "NVM_DIR":  "Optional. Node.js NVM directory used by the shell runners for scheduled execution.",
+                "CRON_PATH":  "Optional. Cron-safe PATH value used by the shell runners so openclaw and system commands can be found.",
+                "OPENCLAW_BIN":  "Optional. Absolute path to the local openclaw binary used by the Python local-LLM resolver.",
+                "HEALTH_MATE_LANG":  "Optional. Force the output locale such as zh-CN, en-US, or ja-JP.",
+                "TAVILY_API_KEY":  "Optional. Enables Tavily-assisted fallback guidance and monthly hospital lookup hints.",
+                "DINGTALK_WEBHOOK":  "Optional. Enables DingTalk delivery.",
+                "FEISHU_WEBHOOK":  "Optional. Enables Feishu delivery.",
+                "TELEGRAM_BOT_TOKEN":  "Optional. Enables Telegram delivery when TELEGRAM_CHAT_ID is also configured.",
+                "TELEGRAM_CHAT_ID":  "Optional. Required only for Telegram delivery.",
+                "LOG_FILE":  "Optional. Overrides the shell-runner log file path; if omitted, each runner uses its own file under logs/.",
+                "REPORT_WEB_DIR":  "Optional. Local directory where generated PDFs can be copied for public serving.",
+                "REPORT_BASE_URL":  "Optional. Public base URL used to build downloadable PDF links.",
+                "ALLOW_RUNTIME_FONT_DOWNLOAD":  "Optional. Disabled by default. Set to true only if you explicitly allow runtime fallback download of NotoSansSC-VF.ttf."
+            },
+    "commands":  [
+                     {
+                         "trigger":  "/health",
+                         "description":  "Generate the localized daily Health-Mate report.",
+                         "usage":  "/health [date]",
+                         "example":  "/health 2026-03-20"
+                     },
+                     {
+                         "trigger":  "/health summary",
+                         "description":  "Generate the localized weekly Health-Mate report.",
+                         "usage":  "/health summary [date]",
+                         "example":  "/health summary 2026-03-20"
+                     },
+                     {
+                         "trigger":  "/health month",
+                         "description":  "Generate the localized monthly Health-Mate report.",
+                         "usage":  "/health month [date]",
+                         "example":  "/health month 2026-03-20"
+                     }
+                 ],
+    "features":  [
+                     "Executable local Python scripts and shell runners, not an instruction-only prompt bundle",
+                     "Chinese/English/Japanese parsing, prompts, and report generation with strict recorder-style memory templates",
+                     "Localized daily, weekly, and monthly PDF reports with branch-aware weekly/monthly heatmaps, a monthly healthy-day donut chart, paired weekly trend charts, and monthly specialty charts",
+                     "Residence-aware monthly medical follow-up guidance and grouped hospital-and-doctor suggestions for disease-management modes",
+                     "Explicit population_branch routing in user_config plus condition-aware monthly split: balanced/fat-loss modes switch to lifestyle insight charts, activity heatmaps, screening suggestions, and hospital-lookup bypass",
+                     "Custom scoring modules and additional monitoring sections including medication and lab-style modules",
+                     "Optional outbound network behavior limited to Tavily, webhook delivery, and explicit opt-in font download",
+                     "Sanitized local-LLM stdout before embedding AI commentary into text pushes and PDF reports",
+                     "English-compatible rendering fallback when the bundled Chinese or Japanese font is unavailable",
+                     "Upload-safe env reference embedded in config/user_config.example.json, plus a verified wizard-generated commented project-local config/.env template when missing",
+                     "Upgrade-sensitive local config flow; users should back up config/user_config.json and config/.env before reinstalling or upgrading"
+                 ],
+    "tags":  [
+                 "health",
+                 "wellness",
+                 "diet",
+                 "hydration",
+                 "fitness",
+                 "openclaw",
+                 "bilingual",
+                 "pdf",
+                 "webhook",
+                 "local-files"
+             ]
 }

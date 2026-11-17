@@ -1,41 +1,58 @@
-## Description: <br>
-Generates personalized vaccination reminder checklists and natural-language summaries from a resident's age, vaccination history, and special health conditions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates personalized vaccination reminder lists from resident age, vaccination history, and special health conditions, returning JSON and a natural-language summary based on China's national immunization plan.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Community health and township clinic public health staff use this skill to produce resident-specific vaccination reminder checklists and summaries from age, vaccination records, and special health conditions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends health and vaccination records to a remote Hivoice/internal medical model endpoint, and the code does not perform de-identification itself. <br>
-Mitigation: Use only when operators are authorized to send the selected records, remove direct identifiers before submission, and treat any saved output as sensitive medical data. <br>
-Risk: Vaccination guidance may be incomplete, region-specific, or inappropriate for a resident's clinical circumstances. <br>
-Mitigation: Have public health staff and the responsible vaccination clinician review the output against current local immunization rules and the resident's medical history before action. <br>
+## Use Case:
 
+Community health service staff and township clinic public health workers use this skill to identify overdue vaccinations, upcoming vaccinations, non-mandatory recommendations, contraindication prompts, and pre-visit precautions for residents. The generated reminder is advisory and should be reviewed by a vaccination clinician before action.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-vaccination-reminder) <br>
-- [Hivoice medical model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Structured JSON followed by a natural-language summary; optionally saved to a UTF-8 text file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an appkey for the configured remote medical model endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Resident vaccination and health information, together with an API key, may be sent to a configurable remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use de-identified inputs, keep the trusted HTTPS API endpoint unless operating a controlled replacement, and review before running with real resident data.
+
+Risk: Saved outputs may contain sensitive medical information.
+
+Mitigation: Treat saved output as sensitive health data and avoid writing production records unless storage controls are in place.
+
+Risk: Vaccination recommendations can vary by region, records completeness, and patient-specific contraindications.
+
+Mitigation: Use the reminder as a public-health workflow aid and require clinician review before final vaccination decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-vaccination-reminder)
+- [Configured medical model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, text, guidance]
+
+**Output Format:** [JSON object followed by a natural-language summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can print to stdout or save to a file; consumes UTF-8 text or JSON resident vaccination input.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

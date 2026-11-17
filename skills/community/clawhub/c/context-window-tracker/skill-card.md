@@ -1,42 +1,60 @@
-## Description: <br>
-Tracks and reports OpenClaw context window usage with a breakdown of token consumption, remaining capacity, and estimated turns left. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and report OpenClaw context window usage, including token totals, remaining capacity, usage trends, and a breakdown of session, prompt, and reasoning-token contributors.
 
-## Publisher: <br>
-[99rebels](https://clawhub.ai/user/99rebels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[99rebels](https://clawhub.ai/user/99rebels)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect current session context usage, understand what is consuming tokens, and decide whether there is enough room to continue a task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw session metadata and transcripts to report context usage. <br>
-Mitigation: Use it only in trusted ClawHub or OpenClaw environments, and avoid exposing reports that contain sensitive session-derived details. <br>
-Risk: Some counts are estimates, including per-file system prompt breakdowns, turns remaining, and thinking token handling for some providers. <br>
-Mitigation: Treat the report as operational guidance rather than an exact accounting record, and rely on provider or platform billing records for authoritative cost review. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to check how much context window remains in the current session, understand what is consuming tokens, and decide whether a compact or detailed usage report is needed.
 
-## Reference(s): <br>
-- [Context Window Tracker Homepage](https://github.com/99rebels/context-window-tracker) <br>
-- [Data Sources](references/data-sources.md) <br>
-- [Thinking / Reasoning Tokens](references/thinking-tokens.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text with compact and detailed context reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Compact mode reports usage percentage, remaining turns, and cache data; detailed mode adds token breakdowns, trends, session statistics, and thinking status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Risk: The local helper reads OpenClaw session metadata and transcript files to calculate token usage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local session-file access is acceptable, and review the security summary and source before use.
+
+Risk: Auto-check mode can maintain a persistent local message counter and periodically append context reports.
+
+Mitigation: Keep auto-check disabled unless explicitly requested, and disable it when periodic context reports are no longer needed.
+
+Risk: Some detailed fields are estimates rather than provider-exact counts.
+
+Mitigation: Treat per-file prompt breakdowns, turns remaining, and thinking-token status as estimates; rely on total token usage for context-window fullness.
+
+## Reference(s):
+
+- [Data Sources](references/data-sources.md)
+- [Thinking / Reasoning Tokens](references/thinking-tokens.md)
+- [Project homepage](https://github.com/99rebels/context-window-tracker)
+- [ClawHub skill page](https://clawhub.ai/99rebels/skills/context-window-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Compact text status line or detailed Markdown report with command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include exact provider token totals where available and estimated breakdowns for prompt components, turns remaining, and thinking-token status.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

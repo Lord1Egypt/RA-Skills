@@ -1,43 +1,67 @@
-## Description: <br>
-Scrape Reddit stock pages and use DeepSeek AI with Yahoo Finance data to analyze which stock has the highest 1-week return potential. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapes Reddit stock forums, fetches market data, and uses DeepSeek to produce short-term stock-pick analysis.
 
-## Publisher: <br>
-[altusrossouw](https://clawhub.ai/user/altusrossouw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[altusrossouw](https://clawhub.ai/user/altusrossouw)
 
-## Use Case: <br>
-External users and developers use this skill to combine public Reddit stock discussion, Yahoo Finance market data, and DeepSeek analysis into short-term stock-pick analysis. It supports CLI and FastAPI web app workflows, including optional European exchange equivalents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends public Reddit and Yahoo Finance-derived market data to DeepSeek using the user's API key. <br>
-Mitigation: Run it only where DeepSeek processing is acceptable, protect DEEPSEEK_API_KEY as a sensitive credential, and avoid adding private portfolio or personal financial data to prompts. <br>
-Risk: The output can look like actionable investment guidance even though it is AI-generated short-term market analysis. <br>
-Mitigation: Treat results as educational analysis rather than financial advice, and require independent review before making investment decisions. <br>
-Risk: Dependency versions are broad in requirements.txt, which can make runtime behavior change over time. <br>
-Mitigation: Use a pinned or locked dependency environment before running the skill in sensitive or production-like environments. <br>
+## Use Case:
 
+External users and developers use this skill to summarize Reddit stock sentiment, combine it with Yahoo Finance market data, and generate AI-assisted stock-pick analysis for the next week. The output is entertainment or research input and should not be treated as financial advice.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/AltusRossouw/reddit-stonks) <br>
-- [ClawHub skill page](https://clawhub.ai/altusrossouw/reddit-stonks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style analysis in CLI output or server-sent web app responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include stock data tables, top pick, runner-up, wildcard, risk factors, confidence score, and optional European exchange equivalents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The web app can expose an unauthenticated analysis endpoint that may spend the user's DeepSeek API credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy behind authentication, rate limits, and monitoring; avoid public exposure unless these controls are in place.
+
+Risk: The skill sends Reddit and market-analysis context to DeepSeek and fetches data from Yahoo Finance.
+
+Mitigation: Install only when this data sharing is acceptable and avoid including private or regulated information in analysis prompts.
+
+Risk: The web UI may render untrusted AI or market data unsafely.
+
+Mitigation: Sanitize rendered HTML and review UI handling before exposing web mode to other users.
+
+Risk: Generated stock picks can be inaccurate or misleading.
+
+Mitigation: Treat outputs as entertainment or research input only, retain the financial disclaimer, and require human review before any investment decision.
+
+Risk: Dependencies are specified with lower bounds rather than pinned versions.
+
+Mitigation: Pin and review dependencies in production deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/altusrossouw/skills/reddit-stonks)
+- [Project homepage from ClawHub metadata](https://github.com/AltusRossouw/reddit-stonks)
+- [DeepSeek API endpoint used by the skill](https://api.deepseek.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown analysis with stock tables, ranked picks, risk notes, confidence score, and optional European ticker equivalents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI and web modes require DEEPSEEK_API_KEY; web mode streams results over server-sent events.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence; artifact frontmatter says 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

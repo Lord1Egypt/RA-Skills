@@ -1,53 +1,67 @@
-## Description: <br>
-Generate and process speech, music, video, and images using MiniMax AI with voice cloning, custom voices, multi-scene video, and FFmpeg-based media tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and processes speech, music, video, and images using MiniMax APIs and FFmpeg-based media tools.
 
-## Publisher: <br>
-[yhlorra](https://clawhub.ai/user/yhlorra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yhlorra](https://clawhub.ai/user/yhlorra)
 
-## Use Case: <br>
-Developers and content teams use this skill to call MiniMax APIs for text-to-speech, voice cloning, music generation, image generation, video generation, and media processing workflows from an agent session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, lyrics, images, videos, and voice samples are sent to MiniMax services. <br>
-Mitigation: Avoid confidential or sensitive content unless the user has reviewed the data-sharing implications and MiniMax service terms. <br>
-Risk: Voice cloning and face-reference workflows can be misused without consent. <br>
-Mitigation: Use only voice samples and face references where the user has appropriate permission and a legitimate use case. <br>
-Risk: The skill relies on a MiniMax API key and user-selected API host. <br>
-Mitigation: Store the API key in a safer secret store or temporary environment and keep MINIMAX_API_HOST set only to documented MiniMax endpoints. <br>
-Risk: Generated output paths may overwrite existing files. <br>
-Mitigation: Choose output paths deliberately, keep generated assets under minimax-output/, and review files before reuse or publication. <br>
+## Use Case:
 
+Developers and agents use this skill to plan and run MiniMax media generation workflows for TTS, voice cloning, music, image, video, long-form video, templates, and local media processing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yhlorra/yh-minimax-multimodal-toolkit) <br>
-- [MiniMax Multimodal Toolkit](SKILL.md) <br>
-- [TTS Guide](references/tts-guide.md) <br>
-- [TTS Voice Catalog](references/tts-voice-catalog.md) <br>
-- [MiniMax Music Generation API](references/music-api.md) <br>
-- [MiniMax Image Generation API](references/image-api.md) <br>
-- [MiniMax Video Generation API](references/video-api.md) <br>
-- [Video Prompt Guide](references/video-prompt-guide.md) <br>
-- [MiniMax image generation documentation](https://platform.minimaxi.com/docs/api-reference/image-generation-t2i) <br>
-- [MiniMax music generation documentation](https://platform.minimaxi.com/docs/api-reference/music-generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with inline bash commands and generated media files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated assets are directed to minimax-output/ and may include audio, image, video, JSON, and intermediate media files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Scripts can send MiniMax API keys and uploaded media to a nonstandard API host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set MINIMAX_API_HOST only to https://api.minimaxi.com or https://api.minimax.io, inspect project .env files before use, and avoid optional API tests or generation scripts when the host is nonstandard.
+
+Risk: Generation workflows require a MiniMax API key in the local environment or .env files.
+
+Mitigation: Use an appropriate MiniMax key, avoid sharing .env files, and rotate the key if the scripts were run with an unexpected host.
+
+Risk: Prompts and local media files may be uploaded to MiniMax API endpoints during generation or voice cloning.
+
+Mitigation: Confirm the selected endpoint and avoid uploading confidential, restricted, or unapproved media unless the account and region are approved for that use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yhlorra/skills/yh-minimax-multimodal-toolkit)
+- [MiniMax China Platform](https://platform.minimaxi.com)
+- [MiniMax Global Platform](https://platform.minimax.io)
+- [MiniMax Image Generation API](https://platform.minimaxi.com/docs/api-reference/image-generation-t2i)
+- [MiniMax Image-to-Image API](https://platform.minimaxi.com/docs/api-reference/image-generation-i2i)
+- [Image API Reference](references/image-api.md)
+- [Music API Reference](references/music-api.md)
+- [TTS Guide](references/tts-guide.md)
+- [TTS Voice Catalog](references/tts-voice-catalog.md)
+- [Video API Reference](references/video-api.md)
+- [Video Prompt Writing Guide](references/video-prompt-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands, JSON snippets, and generated media file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated media is saved under minimax-output/; API calls require MINIMAX_API_HOST and MINIMAX_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

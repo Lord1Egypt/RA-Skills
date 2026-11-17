@@ -1,40 +1,49 @@
-## Description: <br>
-Deep Research Mode coordinates 10-50 specialized agents to discuss, challenge, decide, and produce detailed research reports for difficult scientific research questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Research Mode coordinates 10-50 specialized agents to analyze difficult research questions, challenge assumptions, make collective decisions, and produce detailed research reports.
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jirboy](https://clawhub.ai/user/jirboy)
 
-## Use Case: <br>
-Researchers, developers, and technical teams use this skill to structure long-running, multi-agent analysis of complex research questions and produce staged research artifacts and a final detailed report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can trigger expensive, long-running multi-agent research sessions. <br>
-Mitigation: Invoke it explicitly, confirm before launching large runs, and set practical limits for agent count, runtime, model choice, and budget. <br>
-Risk: Separately obtained helper scripts referenced by the skill may affect the runtime behavior if used. <br>
-Mitigation: Review and scan any helper scripts before deployment or execution. <br>
+## Use Case:
 
+Researchers, analysts, and developers use this skill when a complex research question needs staged problem definition, literature review, methodology design, critique, decision-making, execution, and long-form reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jirboy/deep-research-mode) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research reports, progress summaries, review notes, decision reports, and task assignments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce long-form reports and intermediate process documents; users should set practical agent, runtime, model, and budget limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow can consume substantial time and tokens because it is designed for long multi-agent research runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set the research question, maximum agents, maximum duration, model budget, and preferred language before use; reserve it for complex research tasks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jirboy/skills/deep-research-mode)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research reports and progress summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce long research reports, intermediate process documents, and progress tracking.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

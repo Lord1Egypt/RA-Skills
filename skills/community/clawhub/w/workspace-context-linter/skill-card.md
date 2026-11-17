@@ -1,45 +1,57 @@
-## Description: <br>
-Diagnoses always-loaded workspace context files such as AGENTS.md, SOUL.md, USER.md, MEMORY.md, and TOOLS.md to reduce context bloat, find duplicate rules, identify misplaced content, and audit file roles before reorganization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose always-loaded workspace context files such as AGENTS.md, SOUL.md, USER.md, MEMORY.md, and TOOLS.md. Use when you want to reduce context bloat, detect duplicated rules, spot misplaced content, identify overweight sections, or audit whether core context files still match their intended roles before reorganizing them.
 
-## Publisher: <br>
-[lethehades](https://clawhub.ai/user/lethehades) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lethehades](https://clawhub.ai/user/lethehades)
 
-## Use Case: <br>
-Developers and agent operators use this skill to audit workspace context files before reorganizing them. It produces prioritized diagnostics for duplicate rules, overweight sections, misplaced content, and suggested moves without automatically rewriting files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local workspace context and memory files that may contain sensitive preferences, environment details, or operating rules. <br>
-Mitigation: Run it only in workspaces where this local read access is acceptable, and review generated reports before sharing them outside the workspace. <br>
-Risk: The diagnostic report may suggest moving or trimming content that is still useful in always-loaded context. <br>
-Mitigation: Treat findings as review prompts, not automatic edits; confirm each suggested move against the workspace's operating needs before changing files. <br>
+## Use Case:
 
+Developers and workspace maintainers use this skill to audit always-loaded context files and produce concise cleanup reports before reorganizing them. It helps identify duplicated rules, overweight sections, misplaced content, and suggested moves without automatically rewriting files.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lethehades/workspace-context-linter) <br>
-- [rules](references/rules.md) <br>
-- [report format](references/report-format.md) <br>
-- [file roles](references/file-roles.md) <br>
-- [move guidelines](references/move-guidelines.md) <br>
-- [release minimal](references/release-minimal.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain-text or Markdown-style diagnostic report, optionally written to a report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local workspace context files and may write a report when an output path is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Workspace context files may contain private preferences or environment details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep generated reports local unless they have been reviewed for sensitive workspace or user-specific content.
+
+Risk: The optional --output path can create directories and overwrite the selected report file.
+
+Mitigation: Choose an explicit report path intentionally and avoid reusing paths that may contain important files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lethehades/skills/workspace-context-linter)
+- [rules.md](references/rules.md)
+- [report-format.md](references/report-format.md)
+- [file-roles.md](references/file-roles.md)
+- [move-guidelines.md](references/move-guidelines.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain-text or Markdown-style diagnostic report, optionally saved to a file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are local diagnostics; an explicit output path can create directories and overwrite the selected report file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,156 +1,115 @@
 ---
 name: snaprender
-description: "Give your agent eyes on the web — screenshot any URL as an image file. Supports device emulation (iPhone, iPad, Pixel, MacBook), dark mode, full-page scroll, ad blocking. Uses exec tool with curl (NEVER the browser tool). $SNAPRENDER_API_KEY is pre-set. See instructions below."
-metadata: {"openclaw": {"requires": {"bins": ["curl", "jq"], "env": ["SNAPRENDER_API_KEY"]}}}
+description: "Screenshot any web page as an image (desktop or phone, cookie pop-ups blocked) or read it as markdown, with the SnapRender API. Use when the user wants to see, capture, compare or check how a website looks, or read a page."
+homepage: https://snap-render.com/ai-agents
+metadata: {"openclaw": {"emoji": "📸", "primaryEnv": "SNAPRENDER_API_KEY", "requires": {"bins": ["curl", "jq"], "env": ["SNAPRENDER_API_KEY"]}}}
 ---
 
-# SnapRender — Give Your Agent Eyes
+# SnapRender: see any web page
 
-Your agent can read the web but can't *see* it. One command and it captures pixel-perfect screenshots — any site, any device, in seconds.
+Real Chrome screenshots of any URL, saved as an image file you can look at and send to the user. Cookie consent pop-ups and ads are blocked by default. It also reads pages as clean markdown.
 
-"Screenshot stripe.com on iPhone", "Compare desktop vs mobile", "Full-page dark mode capture" — just ask.
+## Setup (once)
 
-Free tier: 200 screenshots/month, no credit card. [Get a key ->](https://snap-render.com/auth/signup)
+1. Get a free key (200 captures a month, no card): https://snap-render.com/auth/signup
+2. Put it in `~/.openclaw/openclaw.json`:
+   ```json5
+   { skills: { entries: { snaprender: { apiKey: "sk_live_..." } } } }
+   ```
+   OpenClaw then sets `$SNAPRENDER_API_KEY` for every run. If your agent runs commands in a sandbox, also set `SNAPRENDER_API_KEY` in the sandbox environment (skill keys are not passed into sandboxes).
 
----
+## Capture a page
 
-**IMPORTANT: Use the `exec` tool with `curl`. NEVER use the `browser` tool for screenshots.**
+Use the `exec` tool with `curl`, not the `browser` tool: one request, no browser to drive, and the result is a ready image file.
 
-## How to Capture
-
-Run this command via the `exec` tool. Replace `TARGET_URL` with the target URL:
-
-```bash
-jq -n --arg url 'TARGET_URL' \
-  '{url: $url, response_type: "json", format: "jpeg", quality: 60, block_ads: true, block_cookie_banners: true}' \
-| curl -s -X POST "https://app.snap-render.com/v1/screenshot" \
-  -H "X-API-Key: $SNAPRENDER_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d @- \
-| tee /tmp/snap_response.json \
-| jq -r '.image' | sed 's|data:image/[^;]*;base64,||' | base64 -d > /tmp/screenshot.jpg \
-&& jq '{url, format, size, cache, responseTime, remainingCredits}' /tmp/snap_response.json
-```
-
-This saves the screenshot to `/tmp/screenshot.jpg` and prints metadata.
-
-## Rules
-
-1. **Use `exec` tool only** — NEVER the `browser` tool
-2. **`$SNAPRENDER_API_KEY` is already set** — use it literally in the command, do NOT replace it
-3. **Always build JSON with `jq --arg`** — never interpolate user input directly into shell strings or JSON. Pass values via `jq -n --arg` to prevent injection
-4. **Always use `format=jpeg&quality=60`** — keeps response small enough for the agent context
-5. **Always pipe to save the image to a file** — the base64 response is too large to display inline
-6. **Report metadata to the user** — file size, response time, cache status, remaining credits
-
-## Render HTML or Markdown
-
-Use POST with a JSON body to render raw HTML or Markdown content (no URL needed). Always use `jq --arg` to safely pass content:
+Replace `TARGET_URL` and keep everything else as is:
 
 ```bash
-# HTML
-jq -n --arg html '<html><body><h1>Hello</h1><p>World</p></body></html>' \
-  '{html: $html, format: "jpeg", quality: 60, response_type: "json"}' \
-| curl -s -X POST "https://app.snap-render.com/v1/screenshot" \
-  -H "X-API-Key: $SNAPRENDER_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d @- \
-| tee /tmp/snap_response.json \
-| jq -r '.image' | sed 's|data:image/[^;]*;base64,||' | base64 -d > /tmp/screenshot.jpg \
-&& jq '{source, format, size, cache, responseTime, remainingCredits}' /tmp/snap_response.json
+mkdir -p snaprender && OUT="$PWD/snaprender/shot-$(date +%Y%m%d-%H%M%S)-$$.jpg"
+code=$(jq -n --arg url 'TARGET_URL' \
+  '{url: $url, format: "jpeg", quality: 80, block_ads: true, block_cookie_banners: true}' \
+| curl -sS -X POST "https://app.snap-render.com/v1/screenshot" \
+  -H "X-API-Key: $SNAPRENDER_API_KEY" -H "Content-Type: application/json" \
+  -d @- -o "$OUT" -w '%{http_code}')
+if [ "$code" = 200 ]; then echo "saved $OUT ($(wc -c < "$OUT" | tr -d " ") bytes)"; else echo "error $code: $(cat "$OUT")"; rm -f "$OUT"; fi
 ```
+
+Then:
+- **Send it to the user** with the `message` tool, giving the printed path as the media file. Never paste image data into the chat.
+- **Look at it yourself** with `view_image` and the same path when the user asks what the page shows, whether it looks broken, or to compare pages.
+
+Rules:
+- Build the JSON with `jq --arg` as above. Never put user input straight into the shell string or the JSON.
+- Use `$SNAPRENDER_API_KEY` exactly as written. Never print or echo the key.
+- Each capture gets its own file (named by time), so comparisons never overwrite each other.
+
+## Options
+
+Add fields to the `jq` object, for example `{url: $url, device: "iphone_15_pro", dark_mode: true, ...}`.
+
+| Field | Values | Default |
+|---|---|---|
+| `device` | `iphone_14`, `iphone_15_pro`, `pixel_7`, `ipad_pro`, `macbook_pro` | desktop 1280x800 |
+| `full_page` | `true` captures the whole scrollable page | `false` |
+| `lazy_load` | `true` with `full_page`: scrolls the page first so lazy-loaded images below the first screen appear (a few seconds slower) | `false` |
+| `dark_mode` | `true` | `false` |
+| `width`, `height` | 320-3840, 200-10000 | 1280, 800 |
+| `format` | `jpeg`, `png`, `webp`, `pdf` (match the file extension) | `jpeg` |
+| `quality` | 1-100 (jpeg, webp) | 80 here |
+| `delay` | ms to wait after load, up to 10000 (slow or animated pages) | 0 |
+| `hide_selectors` | CSS selectors to hide, comma separated | none |
+| `click_selector` | CSS selector to click before the capture | none |
+| `block_ads`, `block_cookie_banners` | `false` to keep them | `true` |
+| `cache` | `true` reuses a recent identical capture, free of charge | `false` |
+
+Common requests:
+- "on my phone" or "mobile": `device: "iphone_15_pro"`
+- "the whole page": `full_page: true` (add `lazy_load: true` if images further down come out blank)
+- "desktop vs mobile": run the command twice, once with a `device`, and send both files
+- "as a PDF": `format: "pdf"`, and name the file `.pdf`
+
+## Read a page as markdown
+
+For "what does this page say", summaries or quotes. Lighter on context than an image.
 
 ```bash
-# Markdown
-jq -n --arg md '# Hello World\n\nThis is **bold** text.' \
-  '{markdown: $md, format: "jpeg", quality: 60, response_type: "json"}' \
-| curl -s -X POST "https://app.snap-render.com/v1/screenshot" \
-  -H "X-API-Key: $SNAPRENDER_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d @- \
-| tee /tmp/snap_response.json \
-| jq -r '.image' | sed 's|data:image/[^;]*;base64,||' | base64 -d > /tmp/screenshot.jpg \
-&& jq '{source, format, size, cache, responseTime, remainingCredits}' /tmp/snap_response.json
+jq -n --arg url 'TARGET_URL' '{url: $url, type: "markdown", max_length: 20000}' \
+| curl -sS -X POST "https://app.snap-render.com/v1/extract" \
+  -H "X-API-Key: $SNAPRENDER_API_KEY" -H "Content-Type: application/json" -d @- \
+| jq -r 'if .content then .content else . end'
 ```
 
-Provide exactly one of `url`, `html`, or `markdown` in the JSON body. HTML max 2MB, Markdown max 500KB.
+`type` can also be `text`, `article` (title, author, text), `links` (every link on the page) or `metadata` (title, description, social tags). Add `selector: "main"` to read one part of the page.
 
-## Signed URLs
+## Watch a page for changes
 
-Generate a pre-signed URL that anyone can use to view the screenshot without an API key. Signing is free; rendering the URL costs one credit.
+SnapRender can capture a page on a schedule and compare each capture with the previous one, so nothing has to keep running on your side:
 
 ```bash
-jq -n --arg url 'TARGET_URL' \
-  '{url: $url, expires_in: 86400}' \
-| curl -s -X POST "https://app.snap-render.com/v1/screenshot/sign" \
-  -H "X-API-Key: $SNAPRENDER_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d @- \
-| jq '.'
+jq -n --arg url 'TARGET_URL' '{url: $url, interval: "daily", change_threshold: 0.5}' \
+| curl -sS -X POST "https://app.snap-render.com/v1/schedules" \
+  -H "X-API-Key: $SNAPRENDER_API_KEY" -H "Content-Type: application/json" -d @- | jq .
 ```
 
-The response contains `signed_url`, `expires_at`, and `expires_in`. Use the `signed_url` in `<img>` tags, share it, or open it in a browser. No API key needed to render it.
+- `interval`: `hourly`, `daily` or `weekly` (the free plan has daily and weekly, for one page).
+- `change_threshold`: percent of the page that must change to count as a change (0.5 is a good default).
+- `notify_email: true` emails the account owner when the page changes (Business and Scale plans; on other plans leave it out and check the captures or use webhooks).
+- Later, `GET /v1/schedules` lists them and `GET /v1/schedules/ID/captures` shows each capture with the percent changed.
 
-## Parameters
-
-Pass as fields in the JSON body:
-
-| Parameter | Values | Default |
-|-----------|--------|---------|
-| url | target URL | required |
-| response_type | json | json (always use this) |
-| format | jpeg, png, webp, pdf | jpeg |
-| quality | 1-100 | 60 |
-| device | iphone_14, iphone_15_pro, pixel_7, ipad_pro, macbook_pro | desktop |
-| dark_mode | true, false | false |
-| full_page | true, false | false |
-| block_ads | true, false | true |
-| block_cookie_banners | true, false | true |
-| width | 320-3840 | 1280 |
-| height | 200-10000 | 800 |
-| delay | 0-10000 | 0 (ms wait after page load) |
-| cache | true, false | false (set true to enable caching) |
-| cache_ttl | 0-2592000 | 86400 (seconds, clamped to plan max) |
-| hide_selectors | CSS selectors | none (comma-separated, hides elements before capture) |
-| click_selector | CSS selector | none (clicks element before capture) |
-| user_agent | string | default Chrome UA |
-
-To add extra options, include them as fields in the `jq` JSON object. Example for dark mode on iPhone:
+## Credits left
 
 ```bash
-jq -n --arg url 'TARGET_URL' \
-  '{url: $url, response_type: "json", format: "jpeg", quality: 60, block_ads: true, block_cookie_banners: true, device: "iphone_15_pro", dark_mode: true}' \
-| curl -s -X POST ...
+curl -sS "https://app.snap-render.com/v1/usage" -H "X-API-Key: $SNAPRENDER_API_KEY" | jq '{plan, usage}'
 ```
 
-## Examples
+## Errors and odd results
 
-**Desktop screenshot of stripe.com:**
-```bash
-jq -n --arg url 'https://stripe.com' '{url: $url, response_type: "json", format: "jpeg", quality: 60, block_ads: true, block_cookie_banners: true}' | curl -s -X POST "https://app.snap-render.com/v1/screenshot" -H "X-API-Key: $SNAPRENDER_API_KEY" -H "Content-Type: application/json" -d @- | tee /tmp/snap_response.json | jq -r '.image' | sed 's|data:image/[^;]*;base64,||' | base64 -d > /tmp/screenshot.jpg && jq '{url, format, size, cache, responseTime, remainingCredits}' /tmp/snap_response.json
-```
+| What you see | Meaning | What to do |
+|---|---|---|
+| `error 401` | Key missing or wrong | Check `skills.entries.snaprender.apiKey`, or the sandbox environment |
+| `error 429` | Monthly quota or per-minute limit reached | Wait a minute, or upgrade at https://snap-render.com/pricing |
+| `error 400` | Bad URL or option | Read the message and fix that field |
+| The image shows a "verify you are human" or security check page | The site's firewall (often Cloudflare) blocks automated visits | Tell the user. If it is their own site, they can let SnapRender in: https://snap-render.com/docs/allow-snaprender |
+| Blank or half-loaded image | Slow page | Retry with `delay: 3000` |
 
-**Mobile screenshot:** add `device: "iphone_15_pro"` to the jq object
-
-**Full scrollable page:** add `full_page: true` to the jq object
-
-**Dark mode:** add `dark_mode: true` to the jq object
-
-**Compare desktop vs mobile:** make two calls, save to `/tmp/screenshot_desktop.jpg` and `/tmp/screenshot_mobile.jpg`
-
-## After Capturing
-
-1. Tell the user the screenshot was saved to `/tmp/screenshot.jpg` (or the filename you used)
-2. Report metadata: file size, response time, cache status, remaining credits
-3. For comparisons, save each screenshot to a different filename
-
-## Errors
-
-- **401**: Invalid API key — check SNAPRENDER_API_KEY
-- **429**: Rate limit or quota exceeded — wait or upgrade plan
-- **Timeout**: Target site is slow — add `delay: 3000` to the jq object to wait longer
-- **Empty response**: URL unreachable or blocked
-
-## Get an API Key
-
-Free at https://snap-render.com/auth/signup — 200 screenshots/month, no credit card.
+Docs: https://snap-render.com/docs. Pricing: https://snap-render.com/pricing

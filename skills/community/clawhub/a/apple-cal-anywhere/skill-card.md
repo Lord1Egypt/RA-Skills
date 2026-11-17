@@ -1,47 +1,64 @@
-## Description: <br>
-Apple Cal Anywhere lets an agent manage iCloud Calendar over CalDAV, including event CRUD, multi-calendar queries, managed attachments, and free/busy lookups on macOS, Linux, and Windows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apple Cal Anywhere lets agents manage iCloud Calendar across macOS, Linux, and Windows via CalDAV, including event CRUD, multi-calendar queries, managed attachments, and free/busy lookups.
 
-## Publisher: <br>
-[xushen-ma](https://clawhub.ai/user/xushen-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xushen-ma](https://clawhub.ai/user/xushen-ma)
 
-## Use Case: <br>
-Developers and agent users use this skill to connect an agent to iCloud Calendar so it can list, create, update, and delete events, manage attachments, and check availability after the user provides iCloud credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and change iCloud Calendar data when credentials are provided. <br>
-Mitigation: Install it only for intended calendar-management use and review create, update, delete, and attach commands before running them. <br>
-Risk: The Apple app-specific password could be exposed if stored in shared shell profiles or logs. <br>
-Mitigation: Use an Apple app-specific password and prefer a private environment or keyring storage for APPLECAL_PASSWORD. <br>
-Risk: Attachment commands can upload local files to calendar events. <br>
-Mitigation: Use APPLECAL_ATTACH_DIR to limit uploads to a safe folder and rely on the skill's extension and sensitive-path checks. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent inspect and manage Apple Calendar data, create, update, and delete events, upload managed attachments, and check availability through the bundled CalDAV CLI.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xushen-ma/apple-cal-anywhere) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
-- [Apple app-specific password portal](https://appleid.apple.com) <br>
-- [RFC 4791 CalDAV](https://www.rfc-editor.org/rfc/rfc4791) <br>
-- [RFC 8607 Calendar Managed Attachments](https://www.rfc-editor.org/rfc/rfc8607) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with bash examples; CLI commands return JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, requests, an iCloud account with Calendar enabled, and APPLECAL_PASSWORD or a supported keyring credential.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and scripts/applecal.py __version__) <br>
+Risk: The skill can read and modify specified iCloud calendars using app-specific credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an Apple app-specific password, prefer Python keyring or macOS Keychain storage, and install only when calendar read/write access is acceptable.
+
+Risk: Persisting APPLECAL_PASSWORD in shell profiles or committed files can expose calendar credentials.
+
+Mitigation: Avoid committing or broadly persisting APPLECAL_PASSWORD; use a credential store where possible and rotate the app-specific password if exposed.
+
+Risk: Attachment commands upload local files to calendar events.
+
+Mitigation: Use the built-in extension allowlist and sensitive-path blocking, and set APPLECAL_ATTACH_DIR to restrict uploads to an approved directory.
+
+Risk: Runtime dependencies may change behavior if installed without version control.
+
+Mitigation: Install dependencies in a locked virtual environment when deploying the skill in a managed environment.
+
+## Reference(s):
+
+- [Apple Cal Anywhere on ClawHub](https://clawhub.ai/xushen-ma/skills/apple-cal-anywhere)
+- [Publisher profile](https://clawhub.ai/user/xushen-ma)
+- [Project homepage](https://github.com/xushen-ma/apple-cal-anywhere)
+- [Apple app-specific passwords](https://appleid.apple.com)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration instructions]
+
+**Output Format:** [JSON responses from CLI commands, with Markdown setup and usage examples in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, requests, an iCloud account with Calendar enabled, and APPLECAL_PASSWORD, Python keyring, or macOS Keychain authentication.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence, _meta.json, and scripts/applecal.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

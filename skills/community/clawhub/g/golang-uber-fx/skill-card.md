@@ -1,47 +1,61 @@
-## Description: <br>
-Golang application framework guidance for using uber-go/fx, covering fx.New, providers, invokes, modules, lifecycle hooks, annotations, decorators, supply/replace patterns, structured logging, and signal-aware Run(). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents working on Go services that use go.uber.org/fx for application wiring, lifecycle hooks, modules, annotations, logging, testing, and related fx patterns.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and engineers use this skill when adopting or maintaining Go services that use uber-go/fx for dependency injection, lifecycle hooks, module composition, logging, testing, and graceful shutdown patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can edit repository files and run Go or git commands, so generated changes or command suggestions may affect a codebase. <br>
-Mitigation: Review diffs and command output before accepting changes or applying command recommendations. <br>
-Risk: The skill can query external documentation tools, which could expose sensitive or proprietary snippets if they are included in lookup prompts. <br>
-Mitigation: Avoid sending secrets, credentials, or proprietary code through external lookups; keep queries focused on public uber-go/fx documentation. <br>
+## Use Case:
 
+Developers and engineering agents use this skill when building, adopting, or refactoring Go services with uber-go/fx. It helps produce guidance, Go snippets, test patterns, and tool-aware recommendations for dependency graphs, lifecycle hooks, modules, annotations, logging, and graceful startup or shutdown.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samber/golang-uber-fx) <br>
-- [Publisher project homepage](https://github.com/samber/cc-skills-golang) <br>
-- [pkg.go.dev/go.uber.org/fx](https://pkg.go.dev/go.uber.org/fx) <br>
-- [uber-go/fx documentation](https://uber-go.github.io/fx/) <br>
-- [uber-go/fx GitHub repository](https://github.com/uber-go/fx) <br>
-- [Advanced — uber-go/fx](references/advanced.md) <br>
-- [Recipes — uber-go/fx](references/recipes.md) <br>
-- [Testing with uber-go/fx](references/testing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Go and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include repository edits, Go command suggestions, git command suggestions, and external documentation lookups when the coding agent is allowed to use those tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill requests broader agent powers than its Go fx guidance usually needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review requested permissions before installation and restrict remote Git actions, outbound fetching, and delegated agents unless explicitly needed.
+
+Risk: Suggested dependency or wiring changes can affect go.mod, go.sum, or service startup and shutdown behavior.
+
+Mitigation: Pin and review go.uber.org/fx dependency changes, validate the fx graph in tests, and review lifecycle hooks before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samber/skills/golang-uber-fx)
+- [Publisher profile](https://clawhub.ai/user/samber)
+- [Skill homepage](https://github.com/samber/cc-skills-golang)
+- [go.uber.org/fx package documentation](https://pkg.go.dev/go.uber.org/fx)
+- [Uber Fx documentation](https://uber-go.github.io/fx/)
+- [Uber Fx GitHub repository](https://github.com/uber-go/fx)
+- [Advanced uber-go/fx reference](artifact/references/advanced.md)
+- [uber-go/fx recipes](artifact/references/recipes.md)
+- [Testing with uber-go/fx](artifact/references/testing.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with Go code examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend Go tooling and documentation lookup when available; does not produce standalone artifacts unless the agent applies its guidance.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

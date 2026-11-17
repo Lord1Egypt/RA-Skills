@@ -1,0 +1,6 @@
+#!/bin/sh
+case "$1" in
+  --help) echo "good-cli 1.0"; echo; echo "Usage: good-cli <command> [options]"; echo; echo "Commands:"; echo "  build    build stuff"; echo "  deploy   deploy it"; echo; echo "Options:"; echo "  -v       verbose"; exit 0 ;;
+  -h) exit 3 ;;
+  *) exit 0 ;;
+esac

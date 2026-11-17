@@ -1,0 +1,7 @@
+interface:
+  display_name: "Handoff"
+  short_description: "Continue or inspect a handoff task"
+  default_prompt: "Use $handoff-installer to continue the current handoff task."
+
+policy:
+  allow_implicit_invocation: true

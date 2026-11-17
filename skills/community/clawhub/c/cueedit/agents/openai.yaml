@@ -1,0 +1,12 @@
+interface:
+  display_name: "CueEdit"
+  short_description: "Instagram reels, comment replies and auto DMs"
+  brand_color: "#6C5CE7"
+  default_prompt: "Show my latest Instagram posts and any comments I haven't answered yet."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "cueedit"
+      description: "CueEdit MCP server (Instagram + Facebook Pages)"
+      transport: "streamable_http"
+      url: "https://www.cueedit.io/api/mcp/mcp"

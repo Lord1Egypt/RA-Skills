@@ -1,0 +1,7 @@
+{
+    "tool_name": "group_by_code",
+    "name": "起始市值分组",
+    "code": "mcap = d['总市值'].ffill().bfill()\nmcap0 = mcap.iloc[[0]].reindex(index=mcap.index).ffill()\nout = row_rank(mcap0)",
+    "bins": 10,
+    "direction": "y"
+}

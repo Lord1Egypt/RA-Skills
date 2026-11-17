@@ -1,46 +1,60 @@
-## Description: <br>
-帮招聘 HR 快速汇总面试反馈、生成候选人推进话术、整理 Offer 材料并回写跟进记录。 / Help recruiting teams debrief interviews, draft candidate follow-ups, prepare offer materials, and update trackers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮招聘 HR 快速汇总面试反馈、生成候选人推进话术、整理 Offer 材料并回写跟进记录。 / Help recruiting teams debrief interviews, draft candidate follow-ups, prepare offer materials, and update trackers.
 
-## Publisher: <br>
-[ashley-aihr](https://clawhub.ai/user/ashley-aihr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ashley-aihr](https://clawhub.ai/user/ashley-aihr)
 
-## Use Case: <br>
-Recruiters, HRBPs, and recruiting operations teams use this skill to turn messy recruiting inputs into interview debriefs, screening recommendations, candidate messages, offer-prep summaries, and tracker updates. It is especially oriented toward China internet-company recruiting workflows where HR needs concise decisions and reusable records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recruiting inputs and generated DOCX, CSV, and JSON outputs may contain confidential HR records. <br>
-Mitigation: Install only when authorized to process recruiting data, use a private output directory, and treat all generated files as confidential. <br>
-Risk: Generated recommendations, tracker rows, and candidate messages may affect hiring decisions or candidate communications. <br>
-Mitigation: Have an HR owner review and approve all recommendations, record updates, and candidate-facing messages before use. <br>
-Risk: Local file generation can overwrite same-name files in the selected output directory. <br>
-Mitigation: Check the output directory and same-name files before generating DOCX, CSV, or JSON artifacts. <br>
+## Use Case:
 
+Recruiters, HRBPs, and hiring teams use this skill to turn messy interview feedback, JD and resume inputs, and offer-prep details into recruiting decisions, candidate messages, and tracker-ready records for China-focused hiring workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ashley-aihr/cn-recruiting-workflow) <br>
-- [Publisher profile](https://clawhub.ai/user/ashley-aihr) <br>
-- [Project homepage](https://github.com/Ashley-AIHR/hrskill) <br>
-- [Real User Scenario](references/real-user-scenario.md) <br>
-- [Recruiting Fields Reference](references/recruiting-fields.md) <br>
+### Deployment Geography for Use:
 
+Global, with Mainland China recruiting context
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and structured recruiting records, with optional DOCX, CSV, and JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include normalized_data, decision_summary, missing_information, next_action, message_draft, record_update, and compliance_warning_if_any.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: frontmatter and release evidence) <br>
+Risk: Sensitive recruiting records may be written to disk in generated DOCX, CSV, and JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with recruiting data the operator is authorized to process, choose a controlled output directory, and redact salary or interview details when they are not needed.
+
+Risk: Generated CSV files may preserve spreadsheet formulas from candidate data.
+
+Mitigation: Sanitize CSV output or add formula-injection hardening before opening generated CSV files in spreadsheet tools.
+
+Risk: Recruiting recommendations may affect hiring decisions when inputs are incomplete or inconsistent.
+
+Mitigation: Review the recommendation, missing-information fields, and candidate-facing drafts before using them in a live recruiting workflow.
+
+## Reference(s):
+
+- [Real User Scenario](references/real-user-scenario.md)
+- [Recruiting Fields Reference](references/recruiting-fields.md)
+- [ClawHub skill page](https://clawhub.ai/ashley-aihr/skills/cn-recruiting-workflow)
+- [Project homepage](https://github.com/Ashley-AIHR/hrskill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Structured Markdown or text, plus optional DOCX, CSV, and JSON files generated from local JSON inputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The packaged scripts can produce interview debrief memos, candidate messages, tracker CSV rows, resume-screening notes, and JSON workflow summaries.]
+
+## Skill Version(s):
+
+0.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Eval Skills is a framework-agnostic toolkit for discovering, scaffolding, selecting, evaluating, and reporting on AI agent skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Eval Skills is a framework-agnostic toolkit for discovering, scaffolding, selecting, evaluating, and reporting on AI agent skills.
 
-## Publisher: <br>
-[isLinXu](https://clawhub.ai/user/isLinXu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[islinxu](https://clawhub.ai/user/islinxu)
 
-## Use Case: <br>
-Developers and engineers use this skill to evaluate individual AI skills, compare candidates on shared benchmarks, enforce CI/CD quality gates, and generate human-readable evaluation reports before production use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Normal use can execute local or remote skill code and custom scorer code with under-scoped trust boundaries. <br>
-Mitigation: Run evaluations in an isolated workspace, prefer Docker sandboxing with controlled network egress, and review skill entrypoints and custom scorer paths before execution. <br>
-Risk: HTTP, MCP, or LLM endpoints used during evaluation may receive benchmark data or other local inputs. <br>
-Mitigation: Avoid exposing broad API keys or secrets and treat configured endpoints as external data recipients. <br>
+## Use Case:
 
+Developers and engineers use this skill to evaluate individual AI skills before deployment, compare candidate skills on shared benchmarks, enforce CI/CD quality gates, and generate evaluation reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/isLinXu/eval-skills) <br>
-- [README](artifact/README.md) <br>
-- [CI/CD integration guide](artifact/docs/guides/ci-cd-integration.md) <br>
-- [Quick start guide](artifact/docs/guides/quickstart.md) <br>
-- [Custom benchmark guide](artifact/docs/guides/custom-benchmark.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Markdown, JSON] <br>
-**Output Format:** [Markdown guidance with CLI commands and configuration snippets; evaluation reports can be JSON, Markdown, HTML, CSV, or diff output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports benchmark selection, evaluation thresholds, report output directories, and optional persistent result storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release metadata; artifact frontmatter/package metadata says 0.1.0) <br>
+Risk: Evaluated local skills, MCP stdio servers, and custom scorer files may run with more host access than expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use Docker mode on a hardened runner without sensitive credentials, and treat evaluated code and custom scorers as trusted code unless strong isolation is enforced.
+
+Risk: Untrusted benchmarks that reference custom scorer files can introduce code execution risk.
+
+Mitigation: Avoid untrusted benchmarks with customScorerPath, and do not run third-party skills on workstations or CI accounts with broad secrets.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/islinxu/skills/eval-skills)
+- [README](README.md)
+- [Quick Start Guide](docs/guides/quickstart.md)
+- [Creating a Custom Skill](docs/guides/create-skill.md)
+- [Creating a Custom Benchmark](docs/guides/custom-benchmark.md)
+- [CI/CD Integration](docs/guides/ci-cd-integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce JSON, Markdown, HTML, CSV, and diff report files when used through its evaluation CLI.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

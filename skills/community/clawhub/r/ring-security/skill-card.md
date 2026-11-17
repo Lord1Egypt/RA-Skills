@@ -1,40 +1,50 @@
-## Description: <br>
-Reference tool for life — covers intro, quickstart, patterns and more. Quick lookup for Ring Security concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for life - covers intro, quickstart, patterns and more. Quick lookup for Ring Security concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve quick Ring Security reference guidance, including introductory concepts, quickstart steps, security considerations, debugging, performance, migration, and cheat sheet material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes an executable shell script. <br>
-Mitigation: Review the script before running it; server security evidence indicates the inspected script only prints embedded documentation and does not request sensitive access or make system changes. <br>
-Risk: The embedded Ring Security reference guidance may be generic or incomplete for a specific environment. <br>
-Mitigation: Validate the guidance against the target environment's security requirements before applying it. <br>
+## Use Case:
 
+External users and developers use this skill as a quick reference for Ring Security concepts, quickstart material, implementation patterns, troubleshooting, performance, security considerations, migration guidance, and cheat-sheet output.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain-text reference documentation with Markdown structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands print embedded documentation via heredoc; no API keys, credentials, network access, or external API calls are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill provides generic reference documentation rather than a deeply specialized Ring Security integration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as quick-reference guidance and review it against authoritative Ring Security requirements before using it for operational decisions.
+
+## Reference(s):
+
+- [Ring Security on ClawHub](https://clawhub.ai/bytesagain-lab/skills/ring-security)
+- [BytesAgain](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain-text reference documentation with Markdown headings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API keys, privileged access, network access, persistence, or destructive behavior are indicated by the security evidence.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release evidence and SKILL.md frontmatter; script declares 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

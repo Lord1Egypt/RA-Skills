@@ -1,40 +1,58 @@
-## Description: <br>
-小红书笔记批量下载。通过已登录 Chrome 的 DevTools Protocol 自动化下载小红书笔记（图片+文字）到本地。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书笔记批量下载。通过已登录 Chrome 的 DevTools Protocol 自动化下载小红书笔记（图片+文字）到本地。
 
-## Publisher: <br>
-[weilixiong](https://clawhub.ai/user/weilixiong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weilixiong](https://clawhub.ai/user/weilixiong)
 
-## Use Case: <br>
-External users and developers use this skill to generate guidance, configuration values, shell commands, and a Python script for downloading text and images from selected Xiaohongshu account notes into local folders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated workflow controls a logged-in Xiaohongshu Chrome tab through a locally enabled DevTools Protocol debugging session. <br>
-Mitigation: Use a separate Chrome profile, keep remote debugging bound to localhost, enable it only while using the skill, and close Chrome afterward. <br>
-Risk: The generated script saves note text and images to a local output folder. <br>
-Mitigation: Choose a dedicated output folder and download only content you are authorized to keep. <br>
+## Use Case:
 
+External users and developers use this skill to prepare and run a Python-based workflow that downloads Xiaohongshu note text and images from a logged-in Chrome browser session into local folders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weilixiong/xhs-download) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local file and folder output when the generated Python script is run by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: The skill controls a logged-in Chrome tab through CDP, which grants automation access to the browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Chrome profile for Xiaohongshu, keep remote debugging bound to localhost, and close unrelated sensitive tabs before running the script.
+
+Risk: Note folder names are derived from note titles and can write outside the intended save folder if path components are not contained.
+
+Mitigation: Sanitize note folder names and verify every output path stays under SAVE_DIR before creating folders or writing files.
+
+Risk: Large batch downloads can fail or be rate-limited during repeated page navigation and media requests.
+
+Mitigation: Run downloads in smaller batches and increase waits or scroll counts only after checking that the target account content is loading as expected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weilixiong/skills/xhs-download)
+- [Xiaohongshu website](https://www.xiaohongshu.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated script downloads note text and images into one folder per note when executed by the user.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

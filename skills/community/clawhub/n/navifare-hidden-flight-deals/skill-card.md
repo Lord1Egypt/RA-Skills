@@ -1,48 +1,64 @@
-## Description: <br>
-Find hidden flight deals by comparing prices across 10+ booking sites when users share flight prices from booking sites or upload flight screenshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find hidden flight deals by comparing prices across 10+ booking sites when users share flight prices, booking-site screenshots, or requests to validate whether a round-trip fare is a good deal.
 
-## Publisher: <br>
-[simonenavifare](https://clawhub.ai/user/simonenavifare) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simonenavifare](https://clawhub.ai/user/simonenavifare)
 
-## Use Case: <br>
-Travelers and travel-support agents use this skill to double-check round-trip flight prices, compare real-time offers across booking providers, and return ranked booking options with savings calculations. It is intended for pre-booking itinerary validation, not automatic ticket purchase. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Flight itinerary details are sent to the remote Navifare MCP service for price comparison. <br>
-Mitigation: Use the skill only when sharing route, date, time, passenger-count, class, price, and currency details with Navifare is acceptable. <br>
-Risk: Screenshots from booking sites may include passenger names, booking references, loyalty numbers, passport details, or payment information. <br>
-Mitigation: Redact screenshots or extract only itinerary details before sending data to the Navifare MCP tools. <br>
-Risk: The optional local npm setup uses a Gemini API key. <br>
-Mitigation: Protect the API key, pin or review the package source, and prefer the hosted MCP endpoint when that matches the deployment policy. <br>
+## Use Case:
 
+Travelers and travel-support agents use this skill to double-check round-trip flight prices before purchase, compare live options across booking providers, and present ranked booking links with savings calculations.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/simonenavifare/navifare-hidden-flight-deals) <br>
-- [Publisher site](https://navifare.com) <br>
-- [Navifare MCP documentation](https://www.navifare.com/mcp) <br>
-- [Navifare MCP repository](https://github.com/navifare/navifare-mcp) <br>
-- [Airport code reference](references/AIRPORTS.md) <br>
-- [Airline code reference](references/AIRLINES.md) <br>
-- [Usage examples](references/EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown summaries with comparison tables, booking links, savings calculations, and setup snippets when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns advisory results only; booking is completed by the user on provider sites.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence) <br>
+Risk: The skill sends pre-booking flight itinerary details to Navifare for price comparison.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for itinerary, price, passenger-count, and class details needed for comparison; avoid passenger names, booking references, loyalty numbers, passport data, and payment details.
+
+Risk: Optional local npm setup introduces normal package and API-key supply-chain exposure.
+
+Mitigation: Prefer the hosted MCP endpoint when appropriate; if running locally, pin package versions where possible and use a dedicated low-quota Gemini API key.
+
+Risk: Returned booking links point to third-party provider sites.
+
+Mitigation: Verify the destination domain and fare details before entering personal or payment information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/simonenavifare/skills/navifare-hidden-flight-deals)
+- [Publisher profile](https://clawhub.ai/user/simonenavifare)
+- [Navifare website](https://navifare.com)
+- [Navifare MCP documentation](https://www.navifare.com/mcp)
+- [Repository metadata](https://github.com/navifare/navifare-mcp)
+- [Airport code reference](artifact/references/AIRPORTS.md)
+- [Airline code reference](artifact/references/AIRLINES.md)
+- [Usage examples](artifact/references/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown summaries, comparison tables, configuration snippets, and booking-link guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are based on real-time provider checks and may include third-party booking URLs whose prices can change after the search.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

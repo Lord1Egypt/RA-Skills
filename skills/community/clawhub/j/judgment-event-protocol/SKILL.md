@@ -1,178 +1,69 @@
-name: judgment_event_protocol
-description: Cryptographic event logging for autonomous agents. Record tamper-proof judgment, delegation, termination, and verification events using the Judgment Event Protocol. Provides verifiable decision trails with JCS canonicalization and Ed25519 signatures.
-user-invocable: true
-tags:
-  - jep
-  - judgment
-  - delegation
-  - provenance
-  - audit
-  - accountability
-  - jcs
-  - ed25519
-metadata:
-  openclaw:
-    requires:
-      bins: [python3, pip]
+---
+name: judgment-event-protocol
+description: Verify JEP Core 0.7 signed event records and guide local creation or independent implementation testing.
+homepage: https://github.com/hjs-spec/jep-core
 ---
 
-# Judgment Event Protocol (JEP)
+# Judgment Event Protocol
 
-You have a minimal, verifiable event logging system for AI agent decisions. Use it when you need to record judgments, delegate authority, terminate decision lifecycles, or verify existing events with cryptographic integrity.
+Use for JEP record verification, local event creation guidance and implementation
+interoperability. Core 0.7 uses wire major `jep: "1"`. Software versions are
+separate from the protocol version. JEP is an individual Internet-Draft.
 
-## Setup
+## Verify a sample
 
-```bash
-pip install jep-protocol
+Use Python 3.10 or later in a fresh environment:
+
+```sh
+python -m pip install jep-core-conformance==0.7.8
+jep-byoi export jep-example
+jep-validate validate jep-example/vectors/J-basic.json --keys jep-example/keys.json
+jep-byoi demo --report byoi-reference-report.json
 ```
 
-## Security Considerations
+Use a new export directory. The sample should report `status: "valid"` and
+`checks.cryptographic: "pass"`. The demo reports 29 selected producer/verifier
+checks using a disclosed reference wrapper. Public synthetic fixture keys do
+not establish trust in a real actor. Inspect the full result and selected checks.
+Missing keys can yield `indeterminate`; do not treat this as a successful check.
 
-This skill handles cryptographic keys and external dependencies. Please observe the following practices to ensure safe usage:
+## Create your own record
 
-- **🔑 Private Key Management**: Private keys should **never** be hardcoded in agent prompts, source files, or shared in conversations. Always store keys using a secure key manager (e.g., environment variables, secret management services, HSMs, or hardware tokens). The code examples below assume `private_key` and `public_key` are securely loaded from such a source.
-- **📦 Package Integrity**: The `jep-protocol` PyPI package is open source. Verify its integrity by checking the source code at https://github.com/hjs-spec/jep. Consider pinning the package to a reviewed version hash in your dependency manager.
-- **🧪 Environment Isolation**: Before integrating the library into production systems or granting access to sensitive keys, test it in an isolated environment (e.g., a Python virtual environment or a container).
+Follow the maintained, executable local creation/export example:
+https://github.com/hjs-spec/jep-agent-sdk#local-create--export--independent-verification
 
-## When to Use This Skill
+Use the documented SDK API and a protected signing key. Do not substitute the
+obsolete `jep-protocol` package or invent imports. Ask for the intended actor,
+statement and applicable trust/profile rules before creating user records.
+Never expose signing keys or infer permission to carry out an external action.
 
-- When you need to **record an agent's decision** for future audit
-- When you **delegate a task** to another agent and need proof of handoff
-- When you **terminate a decision process** and want to seal the record
-- When you need to **verify the integrity** of an existing event chain
-- When building **accountability trails** for compliance or debugging
+## Interpret records
 
-## Core Verbs
+- J: judgment statement.
+- D: delegation statement with `what.delegatee` and `what.scope`.
+- T: termination statement with `ref` and `what.termination_scope`.
+- V: verification statement with `ref`, `what.verification_scope` and `what.result`.
 
-JEP defines four immutable verbs:
+Required event fields include `jep`, `id`, `verb`, `who`, `when`, `what` and `sig`.
+`who` declares the actor, and `when` is actor-declared event time. Core 0.7 does
+not require a nonce. The selected profile can add freshness/audience requirements.
 
-| Verb | Name | Purpose |
-|:-----|:-----|:--------|
-| `J`  | Judge | Initiate a new decision or root audit event |
-| `D`  | Delegate | Transfer decision authority to another agent |
-| `T`  | Terminate | Close the decision lifecycle |
-| `V`  | Verify | Verify authenticity of an existing event |
+Event Identity `(who,id)` remains stable across retries. Event Hash identifies
+one exact signed artifact including `sig`. The signing payload is JCS of the
+unsigned event with `sig` omitted; construct the signature input according to
+the declared signature class. Do not sign the full signed-artifact hash.
 
-## Event Structure (JSON Example)
+A valid signature does not establish substantive truth, authorization, real-world
+identity, lifecycle enforcement or an executed business effect. Apply explicit
+trust and acceptance rules before acting. Acceptance is idempotent per Event
+Identity within an acceptance domain; archival verification does not consume it.
 
-A minimal JEP event before signing:
+## Test an implementation
 
-```json
-{
-  "jep": "1",
-  "verb": "J",
-  "who": "did:example:agent-123",
-  "when": 1742345678,
-  "what": "sha256:e8878aa9a38f4d123456789abcdef01234",
-  "nonce": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-  "aud": "https://platform.example.com",
-  "ref": null
-}
-```
+Use https://github.com/hjs-spec/jep-core/blob/main/docs/BYOI-CONFORMANCE.md.
+Disclose reused components, exact revision, selected roles and uncovered checks.
+The optional `--state-setup` hook prepares disposable test state; it is not a
+Core event operation. Do not run unreviewed adapters or production effects.
 
-## Core Operations
-
-### Record a Judgment Event (J)
-
-```python
-from jep import JEPEvent, Verb
-
-# Assumes private_key is loaded from a secure source
-event = JEPEvent(
-    verb=Verb.J,
-    who="did:example:agent-123",
-    what="sha256:hash-of-decision-content",
-    aud="https://platform.example.com"
-)
-receipt = event.sign(private_key)
-print(receipt.to_json())
-```
-
-### Record a Delegation Event (D)
-
-```python
-event = JEPEvent(
-    verb=Verb.D,
-    who="did:example:agent-123",
-    what="sha256:hash-of-delegation-details",
-    aud="https://platform.example.com",
-    ref="hash-of-parent-event"  # Link to previous event
-)
-```
-
-### Record a Termination Event (T)
-
-```python
-event = JEPEvent(
-    verb=Verb.T,
-    who="did:example:agent-123",
-    what=None,
-    aud="https://platform.example.com",
-    ref="hash-of-decision-chain-head"
-)
-```
-
-### Record a Verification Event (V)
-
-```python
-event = JEPEvent(
-    verb=Verb.V,
-    who="did:example:verifier-456",
-    what=None,
-    aud="https://platform.example.com",
-    ref="hash-of-target-event"
-)
-```
-
-### Verify an Existing Receipt
-
-```python
-from jep import verify_receipt
-
-result = verify_receipt(
-    receipt_json,
-    public_key,
-    expected_aud="https://platform.example.com"
-)
-
-if result.valid:
-    print("Signature valid, chain intact")
-else:
-    print(f"Verification failed: {result.error}")
-    # Possible error codes:
-    # - INVALID_SIGNATURE: Signature doesn't match
-    # - REPLAY_DETECTED: Nonce already seen
-    # - EXPIRED: Timestamp outside allowed window
-    # - BROKEN_CHAIN: Parent event hash mismatch
-    # - INVALID_AUDIENCE: aud field doesn't match expected value
-```
-
-## Optional Privacy Extensions
-
-JEP supports modular extensions for privacy and compliance:
-
-| Extension | Purpose |
-|:----------|:--------|
-| `digest-only` | Anonymize actor identities with salted hashes |
-| `multisig` | Require multiple signatures for distributed accountability |
-| `ttl` | Auto-expire events for data retention compliance |
-| `storage` | Decouple event storage from protocol for data sovereignty |
-| `subject` | Explicitly reference decision subjects for traceability |
-
-## Relationship to HJS and JAC
-
-JEP is the foundational event format for the broader accountability stack:
-
-| Layer | Protocol | Purpose |
-|:------|:---------|:--------|
-| **Base** | JEP | Tamper-proof event recording (this skill) |
-| **Responsibility** | HJS | Human oversight and privacy protection |
-| **Causality** | JAC | Cross-agent judgment chain tracking |
-
-JEP events serve as the immutable data layer that HJS and JAC build upon. All three protocols share the same JSON canonicalization (JCS/RFC 8785) and signature scheme (JWS/RFC 7515).
-
-## Links
-
-- **Protocol Documentation**: https://github.com/hjs-spec
-- **HJS Foundation**: https://humanjudgment.org
-```
+Normative source map:
+https://github.com/hjs-spec/jep-core/blob/main/docs/SPECIFICATION-SOURCES.md

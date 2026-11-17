@@ -1,42 +1,60 @@
-## Description: <br>
-Upload files to lmfiles.com and return public download links via API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload files to lmfiles.com and return public download links via API for CLI-based file hosting, quick share links, bot-accessible file upload, account registration, file metadata lookup, file listing, and deletion.
 
-## Publisher: <br>
-[setdemos](https://clawhub.ai/user/setdemos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[setdemos](https://clawhub.ai/user/setdemos)
 
-## Use Case: <br>
-Developers and agents use this skill to register for lmfiles.com access, upload files through the API, retrieve public download links, inspect file metadata, list account files, and delete uploaded files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Uploaded files become publicly reachable by anyone with the generated link. <br>
-Mitigation: Confirm the file is intended for public sharing before upload and avoid uploading credentials, private documents, or sensitive data. <br>
-Risk: LMFILES_API_KEY or LMFILES_BOOTSTRAP_TOKEN exposure could allow unauthorized account or file operations. <br>
-Mitigation: Keep credentials in environment variables, avoid command-line token arguments where practical, do not paste secrets into shared logs, and rotate any exposed bootstrap token. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/setdemos/filehost) <br>
-- [Publisher profile](https://clawhub.ai/user/setdemos) <br>
-- [LMfiles documentation](https://lmfiles.com/docs) <br>
-- [LMfiles OpenAPI schema](https://lmfiles.com/openapi.json) <br>
+## Use Case:
 
+Developers, operators, and agents use this skill to register with lmfiles.com, upload files through its API, retrieve public download links and metadata, list account files, and delete uploaded files.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, API calls, Text] <br>
-**Output Format:** [Markdown with inline bash commands and API response guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return public download links, file identifiers, metadata, account file lists, or deletion responses from lmfiles.com.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Uploaded files are available to anyone with the returned public link.
+
+Mitigation: Confirm the file is safe to publish and avoid uploading secrets, credentials, or private data.
+
+Risk: API keys and bootstrap tokens can grant account or registration access if exposed.
+
+Mitigation: Store credentials in environment variables, avoid logging or pasting them, and rotate bootstrap tokens if exposure is suspected.
+
+Risk: The delete helper deletes the requested file_id without a dry run or confirmation prompt.
+
+Mitigation: Verify the target file_id before running deletion commands.
+
+## Reference(s):
+
+- [LMfiles service documentation](https://lmfiles.com/docs)
+- [LMfiles OpenAPI schema](https://lmfiles.com/openapi.json)
+- [LMfiles API host](https://lmfiles.com)
+- [ClawHub skill page](https://clawhub.ai/setdemos/skills/filehost)
+- [Publisher profile](https://clawhub.ai/user/setdemos)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uploads return public download links; authenticated operations require LMFILES_API_KEY.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

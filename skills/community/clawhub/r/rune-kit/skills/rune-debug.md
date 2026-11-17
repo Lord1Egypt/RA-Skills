@@ -1,6 +1,6 @@
 # rune-debug
 
-> Rune L2 Skill | development | model: tier:mid
+> Rune L2 Skill | development | model: tier:heavy
 
 
 # debug
@@ -287,7 +287,7 @@ Track fix attempts in the Debug Report. If this is attempt N>1 for the same symp
 
 ### 3+ Fixes as Architectural Signal
 
-> From superpowers (obra/superpowers, 84k★): "Each fix revealing new problems elsewhere = structural issue, not a bug hunt."
+Each fix revealing new problems elsewhere is a structural issue, not a bug hunt.
 
 When 3+ **distinct** fixes fail (not retries of the same fix), STOP treating it as a bug:
 
@@ -491,7 +491,7 @@ chain_metadata:
 **Scope guardrail**: Do not apply code changes or expand investigation beyond the locked scope directory unless explicitly delegated by the parent agent.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

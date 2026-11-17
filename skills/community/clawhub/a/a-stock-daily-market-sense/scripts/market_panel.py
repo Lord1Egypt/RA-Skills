@@ -10,6 +10,9 @@ investment recommendations. The model using the skill performs interpretation.
 from __future__ import annotations
 
 import argparse
+import contextlib
+from html.parser import HTMLParser
+import io
 import json
 import os
 import sys
@@ -35,14 +38,34 @@ except ImportError:  # pragma: no cover - optional runtime dependency
     ak = None
 
 try:
+    import baostock as bs
+except ImportError:  # pragma: no cover - optional runtime dependency
+    bs = None
+
+try:
     import requests
 except ImportError:  # pragma: no cover - optional runtime dependency
     requests = None
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+_BUNDLED_SHARED = SCRIPT_DIR / "_shared"
+_DEV_SHARED = SCRIPT_DIR.parents[2] / "shared" / "data"
+sys.path.insert(0, str(_BUNDLED_SHARED if _BUNDLED_SHARED.exists() else _DEV_SHARED))
+from db_core import BACKEND, Backend
+from db_adapter import (
+    read_frame,
+    write_frame,
+    read_dataset,
+    write_dataset,
+    read_market_history,
+    write_market_history,
+)
 
 
 DEFAULT_DAILY_FIELDS = (
     "ts_code,trade_date,open,high,low,close,pre_close,change,pct_chg,vol,amount"
 )
+DEFAULT_ADJ_FACTOR_FIELDS = "ts_code,trade_date,adj_factor"
 DEFAULT_BASIC_FIELDS = (
     "ts_code,trade_date,turnover_rate,turnover_rate_f,volume_ratio,pe,pb,total_mv,circ_mv"
 )
@@ -50,16 +73,106 @@ DEFAULT_STOCK_FIELDS = "ts_code,name,market,list_date"
 DEFAULT_INDEX_FIELDS = "ts_code,trade_date,open,high,low,close,pre_close,change,pct_chg,vol,amount"
 SKILL_ROOT = Path(__file__).resolve().parents[1]
 CACHE_ROOT = SKILL_ROOT / "data" / "cache"
-REFERENCE_ROOT = SKILL_ROOT / "reference"
+REFERENCE_ROOT = SKILL_ROOT / "references"
 DEFAULT_MARKET_HISTORY_CSV = REFERENCE_ROOT / "market_data.csv"
+DEFAULT_MARKET_HISTORY_JSON = REFERENCE_ROOT / "market_data.json"
+MARKET_HISTORY_COLUMNS = [
+    "日期",
+    "上涨",
+    "涨停",
+    "下跌",
+    "跌停",
+    "平盘",
+    "活跃度",
+    "情绪值",
+    "成交额",
+    "融资净买入",
+    "全市场换手率",
+]
+MARKET_ACTIVITY_COLUMNS = ["上涨", "涨停", "下跌", "跌停", "平盘", "活跃度", "情绪值", "成交额"]
+CORRUPTED_MARKET_TURNOVER_COLUMNS = {"?????", "??????"}
+MARKET_HISTORY_DB_COLUMNS = {
+    "日期": "date",
+    "上涨": "rise",
+    "涨停": "limit_up",
+    "下跌": "fall",
+    "跌停": "limit_down",
+    "平盘": "flat",
+    "活跃度": "activity",
+    "情绪值": "sentiment",
+    "成交额": "amount",
+    "融资净买入": "margin_net_buy",
+    "全市场换手率": "turnover_rate",
+}
 
 MARKET_TREND_INDEXES = {
     "shanghai": {"name": "上证指数", "ts_code": "000001.SH"},
     "chinext": {"name": "创业板指数", "ts_code": "399006.SZ"},
+    "star50": {"name": "科创50", "ts_code": "000688.SH"},
 }
-MARKET_HISTORY_PRIMARY_SOURCE = "akshare.stock_market_activity_legu"
-MARKET_HISTORY_SUPPLEMENT_SOURCE = "tushare.daily"
+MARKET_STYLE_INDEXES = {
+    "mega_cap": {"name": "超大盘", "bs_code": "sh.000043", "style_role": "容量大盘"},
+    "csi300": {"name": "沪深300", "bs_code": "sh.000300", "style_role": "容量中枢"},
+    "csi500": {"name": "中证500", "bs_code": "sh.000905", "style_role": "中盘代表"},
+    "csi1000": {"name": "中证1000", "bs_code": "sh.000852", "style_role": "小盘代表"},
+    "guozheng2000": {
+        "name": "国证2000",
+        "bs_code": "sz.399303",
+        "style_role": "微盘代理",
+        "proxy_note": "Baostock 指数字典未见直接的微盘指数，默认用国证2000代理小微盘风格。",
+    },
+    "csi_dividend": {"name": "中证红利", "bs_code": "sh.000922", "style_role": "红利防守"},
+    "csi300_growth": {"name": "300成长", "bs_code": "sh.000918", "style_role": "成长"},
+    "csi300_value": {"name": "300价值", "bs_code": "sh.000919", "style_role": "价值"},
+}
+INDEX_REGISTRY = tuple(
+    [
+        {
+            "key": key,
+            "name": config.get("name"),
+            "source": "tushare",
+            "roles": ["trend"],
+            "ts_code": config.get("ts_code"),
+        }
+        for key, config in MARKET_TREND_INDEXES.items()
+    ]
+    + [
+        {
+            "key": key,
+            "name": config.get("name"),
+            "source": "baostock",
+            "roles": ["style"],
+            "bs_code": config.get("bs_code"),
+        }
+        for key, config in MARKET_STYLE_INDEXES.items()
+    ]
+)
+BAOSTOCK_STYLE_FIELDS = "date,code,open,high,low,close,preclose,volume,amount,pctChg"
+BAOSTOCK_STYLE_SOURCE_URL = "https://www.baostock.com/mainContent?file=dataExplain.md"
+DEFAULT_INDEX_KLINE_DAYS = 120
+MARKET_HISTORY_PRIMARY_SOURCE = "tushare.daily+sentiment_calc"
+MARKET_HISTORY_SUPPLEMENT_SOURCE = "tushare.daily,daily_basic,margin(T-1)"
+MARKET_HISTORY_SOHU_SOURCE = "sohu.zdt_history"
+SOHU_LIMIT_HISTORY_URL = "https://q.stock.sohu.com/cn/zdt.shtml"
 JRJ_LIMIT_UP_URL = "https://gateway.jrj.com/quot-dc/zdt/v1/record"
+SOHU_LIMIT_HISTORY_CACHE: Dict[str, Dict[str, Dict[str, Any]]] = {}
+
+
+class StageTimer:
+    """Sequential stage timer for build_panel observability."""
+
+    def __init__(self) -> None:
+        self.timings: Dict[str, float] = {}
+        self._start = time.perf_counter()
+        self._last = self._start
+
+    def mark(self, name: str) -> None:
+        now = time.perf_counter()
+        self.timings[name] = round(now - self._last, 3)
+        self._last = now
+
+    def total(self) -> float:
+        return round(time.perf_counter() - self._start, 3)
 
 
 def get_tushare_token() -> str:
@@ -95,7 +208,7 @@ def normalize_date(value: Optional[str]) -> str:
     if not value:
         return datetime.now().strftime("%Y%m%d")
     raw = str(value).strip()
-    for fmt in ("%Y%m%d", "%Y-%m-%d"):
+    for fmt in ("%Y%m%d", "%Y-%m-%d", "%Y/%m/%d"):
         try:
             return datetime.strptime(raw, fmt).strftime("%Y%m%d")
         except ValueError:
@@ -104,7 +217,7 @@ def normalize_date(value: Optional[str]) -> str:
 
 
 def ymd_to_dt(value: str) -> datetime:
-    return datetime.strptime(value, "%Y%m%d")
+    return datetime.strptime(normalize_date(value), "%Y%m%d")
 
 
 def dataframe_to_records(df: Optional[pd.DataFrame]) -> List[Dict[str, Any]]:
@@ -129,6 +242,9 @@ def cache_dataset_file(endpoint: str, key: str) -> Path:
 
 
 def read_cached_dataset(endpoint: str, key: str, fields: Optional[str] = None) -> Optional[pd.DataFrame]:
+    if BACKEND == Backend.POSTGRESQL:
+        return read_dataset(endpoint, key, fields)
+
     path = cache_dataset_file(endpoint, key)
     if not path.exists():
         return None
@@ -147,6 +263,10 @@ def read_cached_dataset(endpoint: str, key: str, fields: Optional[str] = None) -
 
 
 def write_cached_dataset(endpoint: str, key: str, df: pd.DataFrame) -> None:
+    if BACKEND == Backend.POSTGRESQL:
+        write_dataset(endpoint, key, df)
+        return
+
     path = cache_dataset_file(endpoint, key)
     try:
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -159,15 +279,19 @@ def date_range_filter(df: pd.DataFrame, column: str, start_date: str, end_date: 
     if df is None or df.empty or column not in df.columns:
         return pd.DataFrame()
     out = df.copy()
-    out[column] = out[column].astype(str)
-    return out.loc[(out[column] >= start_date) & (out[column] <= end_date)].copy()
+    normalized_dates = out[column].apply(lambda value: normalize_date(value) if not pd.isna(value) else "")
+    out[column] = normalized_dates
+    return out.loc[(normalized_dates >= start_date) & (normalized_dates <= end_date)].copy()
 
 
 def missing_edge_ranges(df: pd.DataFrame, column: str, start_date: str, end_date: str) -> List[Tuple[str, str]]:
     if df is None or df.empty or column not in df.columns:
         return [(start_date, end_date)]
 
-    dates = df[column].astype(str)
+    dates = df[column].apply(lambda value: normalize_date(value) if not pd.isna(value) else "")
+    dates = dates.loc[dates != ""]
+    if dates.empty:
+        return [(start_date, end_date)]
     cached_min = dates.min()
     cached_max = dates.max()
     ranges: List[Tuple[str, str]] = []
@@ -179,6 +303,9 @@ def missing_edge_ranges(df: pd.DataFrame, column: str, start_date: str, end_date
 
 
 def read_cached_frame(endpoint: str, trade_date: str, fields: str) -> Optional[pd.DataFrame]:
+    if BACKEND == Backend.POSTGRESQL:
+        return read_frame(endpoint, trade_date, fields)
+
     path = cache_file(endpoint, trade_date)
     if not path.exists():
         return None
@@ -196,6 +323,10 @@ def read_cached_frame(endpoint: str, trade_date: str, fields: str) -> Optional[p
 
 
 def write_cached_frame(endpoint: str, trade_date: str, df: pd.DataFrame) -> None:
+    if BACKEND == Backend.POSTGRESQL:
+        write_frame(endpoint, trade_date, df)
+        return
+
     path = cache_file(endpoint, trade_date)
     try:
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -213,6 +344,8 @@ def safe_float(value: Any) -> Optional[float]:
 def nullable_value(value: Any) -> Any:
     if value is None or pd.isna(value):
         return None
+    if hasattr(value, "item"):
+        return value.item()
     return value
 
 
@@ -312,15 +445,37 @@ def fetch_by_trade_dates(
 ) -> pd.DataFrame:
     frames: List[pd.DataFrame] = []
     api = getattr(pro, endpoint)
-    dates = list(trade_dates)
+    dates = [str(date) for date in trade_dates]
     misses: List[str] = []
-    for trade_date in dates:
-        if cache_enabled and not refresh_cache:
-            cached = read_cached_frame(endpoint, trade_date, fields)
-            if cached is not None:
+    if cache_enabled and not refresh_cache and BACKEND == Backend.POSTGRESQL and dates:
+        # One range query instead of one SELECT per trade date.
+        cached_dates: Set[str] = set()
+        try:
+            cached = read_dataset(
+                endpoint,
+                "",
+                fields,
+                date_column="trade_date",
+                start_date=min(dates),
+                end_date=max(dates),
+            )
+        except Exception as exc:
+            print(f"[warn] {endpoint} range read failed: {exc}", file=sys.stderr)
+            cached = None
+        if cached is not None and not cached.empty:
+            cached = cached.loc[cached["trade_date"].astype(str).isin(set(dates))]
+            if not cached.empty:
                 frames.append(cached)
-                continue
-        misses.append(trade_date)
+                cached_dates = set(cached["trade_date"].astype(str).unique())
+        misses = [trade_date for trade_date in dates if trade_date not in cached_dates]
+    else:
+        for trade_date in dates:
+            if cache_enabled and not refresh_cache:
+                cached = read_cached_frame(endpoint, trade_date, fields)
+                if cached is not None:
+                    frames.append(cached)
+                    continue
+            misses.append(trade_date)
 
     def fetch_one(trade_date: str) -> pd.DataFrame:
         try:
@@ -353,7 +508,100 @@ def fetch_by_trade_dates(
                     frames.append(df)
     if not frames:
         return pd.DataFrame()
-    return pd.concat(frames, ignore_index=True).drop_duplicates()
+    merged = pd.concat(frames, ignore_index=True)
+    if {"ts_code", "trade_date"}.issubset(merged.columns):
+        return merged.drop_duplicates(subset=["ts_code", "trade_date"], keep="last")
+    return merged.drop_duplicates()
+
+
+def fetch_adj_factors_by_trade_dates(
+    pro,
+    trade_dates: Iterable[str],
+    sleep_seconds: float,
+    cache_enabled: bool = True,
+    refresh_cache: bool = False,
+    max_workers: int = 1,
+) -> pd.DataFrame:
+    """Fetch Tushare adj_factor rows for qfq adjustment, PG-cached like daily."""
+    df = fetch_by_trade_dates(
+        pro,
+        "adj_factor",
+        trade_dates,
+        DEFAULT_ADJ_FACTOR_FIELDS,
+        sleep_seconds,
+        cache_enabled=cache_enabled,
+        refresh_cache=refresh_cache,
+        max_workers=max_workers,
+    )
+    if df is None or df.empty:
+        return pd.DataFrame(columns=split_fields(DEFAULT_ADJ_FACTOR_FIELDS))
+    df = df.copy()
+    df["trade_date"] = df["trade_date"].astype(str)
+    df["ts_code"] = df["ts_code"].astype(str)
+    df["adj_factor"] = pd.to_numeric(df["adj_factor"], errors="coerce")
+    return df.drop_duplicates(subset=["ts_code", "trade_date"], keep="last")
+
+
+def apply_qfq_adjustment(daily: pd.DataFrame, adj_factors: pd.DataFrame, target_date: str) -> Tuple[pd.DataFrame, Dict[str, Any]]:
+    """Return daily rows with OHLC prices adjusted to target-date qfq basis."""
+    metadata: Dict[str, Any] = {
+        "price_adjustment": "qfq",
+        "method": "Tushare daily OHLC * adj_factor / latest_adj_factor_by_ts_code_on_or_before_target_date",
+        "target_date": target_date,
+        "adjusted": False,
+    }
+    if daily is None or daily.empty:
+        metadata["reason"] = "daily is empty"
+        return daily, metadata
+    if adj_factors is None or adj_factors.empty:
+        metadata["reason"] = "adj_factor is empty"
+        return daily, metadata
+
+    df = daily.copy()
+    df["ts_code"] = df["ts_code"].astype(str)
+    df["trade_date"] = df["trade_date"].astype(str)
+    adj = adj_factors.copy()
+    adj["ts_code"] = adj["ts_code"].astype(str)
+    adj["trade_date"] = adj["trade_date"].astype(str)
+    adj["adj_factor"] = pd.to_numeric(adj["adj_factor"], errors="coerce")
+    adj = adj.dropna(subset=["ts_code", "trade_date", "adj_factor"])
+    adj = adj.loc[adj["trade_date"] <= target_date].copy()
+    if adj.empty:
+        metadata["reason"] = "no adj_factor rows on or before target date"
+        return daily, metadata
+
+    latest = (
+        adj.sort_values(["ts_code", "trade_date"])
+        .groupby("ts_code", as_index=False)
+        .tail(1)[["ts_code", "adj_factor"]]
+        .rename(columns={"adj_factor": "base_adj_factor"})
+    )
+    merged = df.merge(adj[["ts_code", "trade_date", "adj_factor"]], on=["ts_code", "trade_date"], how="left")
+    merged = merged.merge(latest, on="ts_code", how="left")
+    merged["qfq_factor"] = merged["adj_factor"] / merged["base_adj_factor"]
+    valid_mask = merged["qfq_factor"].notna() & (merged["qfq_factor"] > 0)
+
+    price_columns = [col for col in ("open", "high", "low", "close") if col in merged.columns]
+    for column in price_columns:
+        merged[column] = pd.to_numeric(merged[column], errors="coerce")
+        merged.loc[valid_mask, column] = merged.loc[valid_mask, column] * merged.loc[valid_mask, "qfq_factor"]
+
+    merged = merged.sort_values(["ts_code", "trade_date"]).reset_index(drop=True)
+    if "close" in merged.columns:
+        grouped_close = merged.groupby("ts_code")["close"]
+        merged["pre_close"] = grouped_close.shift(1)
+        merged["change"] = merged["close"] - merged["pre_close"]
+        merged["pct_chg"] = (merged["close"] / merged["pre_close"] - 1.0) * 100.0
+
+    metadata.update({
+        "adjusted": True,
+        "daily_rows": int(len(merged)),
+        "adj_factor_rows": int(len(adj)),
+        "adjusted_rows": int(valid_mask.sum()),
+        "unadjusted_rows": int((~valid_mask).sum()),
+        "adjusted_code_count": int(merged.loc[valid_mask, "ts_code"].nunique()),
+    })
+    return merged, metadata
 
 
 def fetch_stock_basic(
@@ -453,7 +701,6 @@ def add_numeric_features(daily: pd.DataFrame) -> pd.DataFrame:
     df["close_to_high"] = df["close"] / df["high"].replace(0, pd.NA)
     df["amount_ma20_prev"] = grouped["amount"].transform(lambda s: s.shift(1).rolling(20, min_periods=5).mean())
     df["amount_ratio_20d"] = df["amount"] / df["amount_ma20_prev"]
-    # New: 15-day previous-mean ratio for the strict low-position spike rule (3x over the 10-15d baseline).
     df["amount_ma15_prev"] = grouped["amount"].transform(lambda s: s.shift(1).rolling(15, min_periods=10).mean())
     df["amount_ratio_15d"] = df["amount"] / df["amount_ma15_prev"]
     df["high_60d"] = grouped["high"].transform(lambda s: s.rolling(60, min_periods=20).max())
@@ -465,10 +712,17 @@ def add_numeric_features(daily: pd.DataFrame) -> pd.DataFrame:
     df["sustained_volume_days_5"] = grouped["amount_ratio_20d"].transform(
         lambda s: s.gt(1.5).rolling(5, min_periods=1).sum()
     )
-    # New: rolling 10-day coefficient of variation of close, used as the "走平/波动收敛" signal in low-position rule B.
     df["close_cv_10d"] = grouped["close"].transform(
         lambda s: s.rolling(10, min_periods=8).std() / s.rolling(10, min_periods=8).mean()
     )
+    # 折扣启动（discount-relaunch）量能特征：调整期缩量 → 当日重新放量。
+    # 前高折扣（前高之后最低价 / 前高收盘价）改由 attach_discount_after_high 按多日序列另算。
+    df["amount_ma5_prev"] = grouped["amount"].transform(
+        lambda s: s.shift(1).rolling(5, min_periods=3).mean()
+    )
+    df["pre_volume_contraction_ratio"] = df["amount_ma5_prev"] / df["amount_ma20_prev"]
+    df["amount_vs_prev5_ratio"] = df["amount"] / df["amount_ma5_prev"]
+    df["pre_ret_5d"] = (grouped["close"].transform(lambda s: s.shift(1) / s.shift(6)) - 1.0) * 100.0
     return df
 
 
@@ -546,6 +800,20 @@ def merge_optional(panel: pd.DataFrame, other: pd.DataFrame, on: List[str]) -> p
     return panel.merge(other, on=on, how="left")
 
 
+def count_limit_hits(frame: pd.DataFrame) -> Tuple[int, int, str]:
+    """Count limit-up/down rows, preferring exact board-rule flags.
+
+    Frames that merged compute_limit_flags carry is_limit_up/is_limit_down;
+    without them fall back to the ±9.8% pct_chg approximation.
+    """
+    if {"is_limit_up", "is_limit_down"}.issubset(frame.columns):
+        up = int(frame["is_limit_up"].fillna(False).astype(bool).sum())
+        down = int(frame["is_limit_down"].fillna(False).astype(bool).sum())
+        return up, down, "board_rule_price_match"
+    pct = pd.to_numeric(frame["pct_chg"], errors="coerce") if "pct_chg" in frame.columns else pd.Series(dtype=float)
+    return int((pct >= 9.8).sum()), int((pct <= -9.8).sum()), "pct_chg_approx"
+
+
 def build_market_temperature(panel: pd.DataFrame, index_summary: Dict[str, Optional[float]]) -> Dict[str, Any]:
     total = int(len(panel))
     up = int((panel["pct_chg"] > 0).sum())
@@ -555,6 +823,7 @@ def build_market_temperature(panel: pd.DataFrame, index_summary: Dict[str, Optio
     up_amount = float(panel.loc[panel["pct_chg"] > 0, "amount"].sum(skipna=True))
     down_amount = float(panel.loc[panel["pct_chg"] < 0, "amount"].sum(skipna=True))
     top50_amount = float(panel.nlargest(min(50, total), "amount")["amount"].sum(skipna=True)) if total else 0.0
+    limit_up_count, limit_down_count, limit_detection = count_limit_hits(panel)
 
     return {
         "stock_count": total,
@@ -567,8 +836,9 @@ def build_market_temperature(panel: pd.DataFrame, index_summary: Dict[str, Optio
         "up_gt_5_count": int((panel["pct_chg"] >= 5).sum()),
         "down_lt_minus_3_count": int((panel["pct_chg"] <= -3).sum()),
         "down_lt_minus_5_count": int((panel["pct_chg"] <= -5).sum()),
-        "limit_up_approx_count": int((panel["pct_chg"] >= 9.8).sum()),
-        "limit_down_approx_count": int((panel["pct_chg"] <= -9.8).sum()),
+        "limit_up_count": limit_up_count,
+        "limit_down_count": limit_down_count,
+        "limit_detection": limit_detection,
         "total_amount": round(total_amount, 2),
         "total_amount_100m_yuan": round(total_amount / 100000, 2),
         "amount_unit": "thousand_yuan",
@@ -611,8 +881,49 @@ def calculate_market_turnover_rate(daily: pd.DataFrame, daily_basic: pd.DataFram
     return round(turnover_rate, 4), None
 
 
+def fetch_margin_net_buy(
+    pro,
+    target_date: str,
+    cache_enabled: bool = True,
+    refresh_cache: bool = False,
+) -> Tuple[Optional[float], Optional[str]]:
+    """Return market-wide financing net buy (rzmre - rzche), in yuan."""
+    fields = "trade_date,exchange_id,rzmre,rzche"
+    if cache_enabled and not refresh_cache:
+        cached = read_cached_frame("margin", target_date, fields)
+        if cached is not None:
+            margin = cached
+        else:
+            margin = None
+    else:
+        margin = None
+
+    try:
+        if margin is None:
+            margin = pro.margin(trade_date=target_date, fields=fields)
+            if margin is not None and not margin.empty and cache_enabled:
+                write_cached_frame("margin", target_date, margin)
+    except Exception as exc:
+        return None, f"tushare margin failed for {target_date}: {exc}"
+
+    if margin is None or margin.empty:
+        return None, f"tushare margin returned no data for {target_date}"
+    if "rzmre" not in margin.columns or "rzche" not in margin.columns:
+        return None, "tushare margin missing rzmre/rzche columns"
+
+    buy = pd.to_numeric(margin["rzmre"], errors="coerce")
+    repay = pd.to_numeric(margin["rzche"], errors="coerce")
+    net_buy = (buy - repay).sum(min_count=1)
+    if pd.isna(net_buy):
+        return None, "tushare margin rzmre/rzche has no numeric values"
+    return round(float(net_buy), 2), None
+
+
 def format_history_date(trade_date: str) -> str:
-    return datetime.strptime(str(trade_date), "%Y%m%d").strftime("%Y/%m/%d")
+    normalized = history_date_to_trade_date(trade_date)
+    if not normalized:
+        return str(trade_date)
+    return datetime.strptime(normalized, "%Y%m%d").strftime("%Y/%m/%d")
 
 
 def history_date_to_trade_date(value: Any) -> Optional[str]:
@@ -631,6 +942,214 @@ def is_blank_value(value: object) -> bool:
     return str(value).strip() == ""
 
 
+def safe_int(value: Any) -> Optional[int]:
+    """Safely convert a value to int, returning None on failure."""
+    if is_blank_value(value):
+        return None
+    try:
+        return int(float(str(value).strip()))
+    except (ValueError, TypeError):
+        return None
+
+
+LIMIT_PCT_MAIN = 0.10
+LIMIT_PCT_MAIN_ST = 0.05
+LIMIT_PCT_GROWTH = 0.20
+LIMIT_PCT_BSE = 0.30
+
+
+def classify_limit_pct(ts_code: Any, name: Any, market: Any) -> float:
+    """Return the price-limit percentage for one stock by board rules.
+
+    主板 ±10%（ST/*ST ±5%）；创业板/科创板 ±20%（含 ST）；北交所 ±30%。
+    B 股按主板规则处理。新股上市初期的无涨跌幅阶段无需特判：那些交易日的
+    收盘价不会落在按本限幅计算出的涨跌停价上，自然不会被计入。
+    """
+    code = str(ts_code or "")
+    market_text = str(market or "")
+    if code.endswith(".BJ") or market_text == "北交所":
+        return LIMIT_PCT_BSE
+    if market_text in ("创业板", "科创板") or code.startswith(("300", "301", "302", "688", "689")):
+        return LIMIT_PCT_GROWTH
+    if "ST" in str(name or "").upper():
+        return LIMIT_PCT_MAIN_ST
+    return LIMIT_PCT_MAIN
+
+
+def exchange_round_to_fen(prices: pd.Series) -> pd.Series:
+    """涨跌停价按交易所口径四舍五入到分（half-up；epsilon 抵消二进制浮点误差）。"""
+    return (prices * 100 + 0.5 + 1e-7) // 1 / 100
+
+
+def compute_limit_flags(daily: pd.DataFrame, stock_basic: pd.DataFrame) -> pd.DataFrame:
+    """Exact per-(ts_code, trade_date) limit-up/down flags from raw daily bars.
+
+    交易所规则：涨/跌停价 = 前收盘 ×(1±板块限幅) 四舍五入到分，收盘价等于该价
+    即收盘封板（不含盘中触板回落）。必须用未复权的 close/pre_close——qfq 重标
+    价格后分位比对即失效，所以本函数要在 apply_qfq_adjustment 之前调用。
+    """
+    columns = ["ts_code", "trade_date", "limit_pct", "is_limit_up", "is_limit_down"]
+    if daily is None or daily.empty or not {"close", "pre_close"}.issubset(daily.columns):
+        return pd.DataFrame(columns=columns)
+
+    df = daily[["ts_code", "trade_date", "close", "pre_close"]].copy()
+    df["ts_code"] = df["ts_code"].astype(str)
+    df["trade_date"] = df["trade_date"].astype(str)
+    for column in ("close", "pre_close"):
+        df[column] = pd.to_numeric(df[column], errors="coerce")
+
+    name_map: Dict[str, str] = {}
+    market_map: Dict[str, str] = {}
+    if stock_basic is not None and not stock_basic.empty and "ts_code" in stock_basic.columns:
+        basics = stock_basic.copy()
+        basics["ts_code"] = basics["ts_code"].astype(str)
+        if "name" in basics.columns:
+            name_map = dict(zip(basics["ts_code"], basics["name"].fillna("")))
+        if "market" in basics.columns:
+            market_map = dict(zip(basics["ts_code"], basics["market"].fillna("")))
+
+    codes = df["ts_code"]
+    names = codes.map(name_map).fillna("").astype(str)
+    markets = codes.map(market_map).fillna("").astype(str)
+
+    # 向量化限幅映射，覆写顺序与 classify_limit_pct 的判定优先级一致：
+    # 默认主板 10% → ST 5% → 创业/科创 20%（含 ST）→ 北交所 30%。
+    limit_pct = pd.Series(LIMIT_PCT_MAIN, index=df.index)
+    limit_pct[names.str.upper().str.contains("ST", na=False)] = LIMIT_PCT_MAIN_ST
+    growth = markets.isin(["创业板", "科创板"]) | codes.str.startswith(("300", "301", "302", "688", "689"))
+    limit_pct[growth] = LIMIT_PCT_GROWTH
+    limit_pct[codes.str.endswith(".BJ") | markets.eq("北交所")] = LIMIT_PCT_BSE
+    df["limit_pct"] = limit_pct
+
+    up_price = exchange_round_to_fen(df["pre_close"] * (1 + limit_pct))
+    down_price = exchange_round_to_fen(df["pre_close"] * (1 - limit_pct))
+    valid = df["close"].notna() & df["pre_close"].notna() & (df["pre_close"] > 0)
+    df["is_limit_up"] = valid & (df["close"] - up_price).abs().lt(0.001)
+    df["is_limit_down"] = valid & (df["close"] - down_price).abs().lt(0.001)
+
+    # 主板 ST 双档判定：退市整理期等特殊阶段的 ST 股执行 10% 而非 5%
+    # （实测 20260609 的 *ST阳光/*ST太和 收盘精确封在 10% 档）。受 5% 限制
+    # 的股票价格物理上到不了 10% 档价，所以补判 10% 档不会误伤正常 ST。
+    st_main = limit_pct.eq(LIMIT_PCT_MAIN_ST)
+    if st_main.any():
+        alt_up = exchange_round_to_fen(df["pre_close"] * (1 + LIMIT_PCT_MAIN))
+        alt_down = exchange_round_to_fen(df["pre_close"] * (1 - LIMIT_PCT_MAIN))
+        df["is_limit_up"] = df["is_limit_up"] | (valid & st_main & (df["close"] - alt_up).abs().lt(0.001))
+        df["is_limit_down"] = df["is_limit_down"] | (valid & st_main & (df["close"] - alt_down).abs().lt(0.001))
+    return df[columns]
+
+
+def calc_market_sentiment(
+    up: int,
+    down: int,
+    flat: int,
+    limit_up: int,
+    limit_down: int,
+    zt_weight: float = 1.5,
+    dt_weight: float = 3.0,
+) -> float:
+    """Calculate market sentiment value with limit-up/down weighting.
+
+    Based on regression fitting against 88 historical records from
+    legulegu.com.  MAE≈0.85, R²≈0.996.
+
+    Logic:
+      - Normal up/down have weight 1.0
+      - Limit-up gets extra weight (default 1.5x) reflecting strong
+        buying attack intent.
+      - Limit-down gets even higher weight (default 3.0x) reflecting
+        panic contagion (loss aversion in behavioral finance).
+
+    Args:
+        up: Number of rising stocks (including limit-up).
+        down: Number of falling stocks (including limit-down).
+        flat: Number of flat stocks.
+        limit_up: Number of limit-up stocks.
+        limit_down: Number of limit-down stocks.
+        zt_weight: Weight multiplier for limit-up vs normal up.
+        dt_weight: Weight multiplier for limit-down vs normal down.
+
+    Returns:
+        Sentiment value in range 0~100.
+    """
+    normal_up = up - limit_up
+    normal_down = down - limit_down
+
+    weighted_up = normal_up + limit_up * zt_weight
+    weighted_down = normal_down + limit_down * dt_weight
+
+    denom = weighted_up + weighted_down + flat
+    if denom == 0:
+        return 50.0
+
+    sentiment = weighted_up / denom * 100
+    return float(max(0.0, min(100.0, sentiment)))
+
+
+def compute_market_activity_from_daily(
+    daily: pd.DataFrame, target_date: str, limit_flags: Optional[pd.DataFrame] = None
+) -> Tuple[Dict[str, Any], List[str], Dict[str, Any]]:
+    """Compute market activity from Tushare daily data (no external web scraping).
+
+    Up/down/flat counts come from pct_chg sign; limit-up/down counts use the
+    exact board-rule flags when provided, falling back to the ±9.8% pct_chg
+    approximation only when flags are unavailable.
+    """
+    detail: Dict[str, Any] = {
+        "source": "tushare.daily",
+        "available": False,
+        "fallback_reason": None,
+    }
+
+    if daily is None or daily.empty:
+        detail["fallback_reason"] = "daily data is empty"
+        return {}, [], detail
+
+    day_df = daily.loc[daily["trade_date"].astype(str) == str(target_date)].copy()
+    if day_df.empty:
+        detail["fallback_reason"] = f"daily data missing target date {target_date}"
+        return {}, [], detail
+
+    day_df["pct_chg"] = pd.to_numeric(day_df["pct_chg"], errors="coerce")
+    day_df["amount"] = pd.to_numeric(day_df["amount"], errors="coerce")
+
+    total = int(len(day_df))
+    up = int((day_df["pct_chg"] > 0).sum())
+    down = int((day_df["pct_chg"] < 0).sum())
+    flat = total - up - down
+    flags_day = (
+        limit_flags.loc[limit_flags["trade_date"].astype(str) == str(target_date)]
+        if limit_flags is not None and not limit_flags.empty
+        else None
+    )
+    if flags_day is not None and not flags_day.empty:
+        limit_up = int(flags_day["is_limit_up"].sum())
+        limit_down = int(flags_day["is_limit_down"].sum())
+        detail["limit_detection"] = "board_rule_price_match"
+    else:
+        limit_up = int((day_df["pct_chg"] >= 9.8).sum())
+        limit_down = int((day_df["pct_chg"] <= -9.8).sum())
+        detail["limit_detection"] = "pct_chg_approx"
+    total_amount = float(day_df["amount"].sum(skipna=True))
+
+    sentiment = calc_market_sentiment(up, down, flat, limit_up, limit_down)
+
+    row: Dict[str, Any] = {
+        "日期": format_history_date(target_date),
+        "上涨": up,
+        "涨停": limit_up,
+        "下跌": down,
+        "跌停": limit_down,
+        "平盘": flat,
+        "活跃度": round(sentiment, 2),
+        "情绪值": round(sentiment, 2),
+        "成交额": round(total_amount, 3) if total_amount > 0 else "",
+    }
+    columns = list(row.keys())
+    detail["available"] = True
+    return row, columns, detail
+
+
 def should_fill_turnover(existing_value: object, new_value: object) -> bool:
     if is_blank_value(new_value):
         return False
@@ -646,90 +1165,336 @@ def should_fill_turnover(existing_value: object, new_value: object) -> bool:
     return pd.isna(existing_amount) or float(existing_amount) <= 0
 
 
+def normalize_market_history_columns(df: pd.DataFrame) -> pd.DataFrame:
+    """Repair known historical CSV header issues before upserting rows."""
+    if df is None or df.empty:
+        return df
+
+    out = df.copy()
+    if "日期" not in out.columns:
+        fixed = list(out.columns)
+        if fixed:
+            fixed[0] = "日期"
+            out.columns = fixed
+
+    for bad_col in CORRUPTED_MARKET_TURNOVER_COLUMNS:
+        if bad_col not in out.columns:
+            continue
+        if "全市场换手率" not in out.columns:
+            out = out.rename(columns={bad_col: "全市场换手率"})
+            continue
+        out["全市场换手率"] = out["全市场换手率"].where(
+            ~out["全市场换手率"].apply(is_blank_value),
+            out[bad_col],
+        )
+        out = out.drop(columns=[bad_col])
+
+    return out
+
+
+def order_market_history_columns(columns: Iterable[str]) -> List[str]:
+    seen = set()
+    ordered: List[str] = []
+    for col in MARKET_HISTORY_COLUMNS:
+        if col in columns and col not in seen:
+            ordered.append(col)
+            seen.add(col)
+    for col in columns:
+        if col not in seen and col not in CORRUPTED_MARKET_TURNOVER_COLUMNS:
+            ordered.append(col)
+            seen.add(col)
+    return ordered
+
+
+def sort_market_history_df(df: pd.DataFrame) -> pd.DataFrame:
+    if df is None or df.empty or "日期" not in df.columns:
+        return df
+    out = df.copy()
+    out["_sort_date"] = out["日期"].apply(history_date_to_trade_date)
+    out = out.sort_values("_sort_date", ascending=False, na_position="last").drop(columns=["_sort_date"])
+    return out.reset_index(drop=True)
+
+
+def market_history_json_path(csv_path: Path = DEFAULT_MARKET_HISTORY_CSV) -> Path:
+    if csv_path == DEFAULT_MARKET_HISTORY_CSV:
+        return DEFAULT_MARKET_HISTORY_JSON
+    return csv_path.with_suffix(".json")
+
+
+def skill_relative_path(path: Path) -> str:
+    try:
+        return path.resolve().relative_to(SKILL_ROOT).as_posix()
+    except ValueError:
+        return str(path)
+
+
+def clean_market_history_value(column: str, value: Any) -> Any:
+    if column == "日期":
+        return "" if is_blank_value(value) else str(value)
+    return parse_market_history_number(value)
+
+
+def write_market_history_json(
+    csv_path: Path = DEFAULT_MARKET_HISTORY_CSV,
+    json_path: Optional[Path] = None,
+) -> Path:
+    """Write a clean JSON derivative of references/market_data.csv for HTML charts."""
+    if json_path is None:
+        json_path = market_history_json_path(csv_path)
+
+    if BACKEND == Backend.POSTGRESQL:
+        db_to_skill_columns = {
+            "date": "日期",
+            "rise": "上涨",
+            "limit_up": "涨停",
+            "fall": "下跌",
+            "limit_down": "跌停",
+            "flat": "平盘",
+            "activity": "活跃度",
+            "sentiment": "情绪值",
+            "amount": "成交额",
+            "margin_net_buy": "融资净买入",
+            "turnover_rate": "全市场换手率",
+        }
+        raw = read_market_history()
+        if raw is not None and not raw.empty:
+            raw = raw.rename(columns=db_to_skill_columns)
+        elif csv_path.exists():
+            raw = pd.read_csv(csv_path, encoding="utf-8-sig")
+    elif csv_path.exists():
+        raw = pd.read_csv(csv_path, encoding="utf-8-sig")
+    else:
+        raw = pd.DataFrame()
+
+    raw = normalize_market_history_columns(raw)
+    if raw is None or raw.empty or "日期" not in raw.columns:
+        payload = {
+            "metadata": {
+                "source_csv": skill_relative_path(csv_path),
+                "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "sort": "trade_date_ascending",
+            },
+            "columns": [],
+            "records": [],
+            "series": {},
+            "quality": {
+                "records_available": 0,
+                "has_120_records": False,
+                "missing_trade_date_rows": 0,
+            },
+        }
+        json_path.parent.mkdir(parents=True, exist_ok=True)
+        json_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+        return json_path
+
+    df = raw.copy()
+    df["_trade_date"] = df["日期"].apply(history_date_to_trade_date)
+    df = df.sort_values("_trade_date", ascending=True, na_position="last").reset_index(drop=True)
+    columns = [col for col in df.columns if col != "_trade_date"]
+
+    records: List[Dict[str, Any]] = []
+    numeric_columns: List[str] = []
+    for column in columns:
+        if column == "日期":
+            continue
+        cleaned_values = [clean_market_history_value(column, value) for value in df[column].tolist()]
+        if any(value is not None for value in cleaned_values):
+            numeric_columns.append(column)
+
+    for _, row in df.iterrows():
+        record: Dict[str, Any] = {
+            "日期": clean_market_history_value("日期", row.get("日期")),
+            "trade_date": row.get("_trade_date") or None,
+        }
+        for column in columns:
+            if column == "日期":
+                continue
+            record[column] = clean_market_history_value(column, row.get(column))
+        records.append(record)
+
+    series: Dict[str, List[Dict[str, Any]]] = {}
+    for column in numeric_columns:
+        points: List[Dict[str, Any]] = []
+        for record in records:
+            points.append({
+                "trade_date": record.get("trade_date"),
+                "date": record.get("日期"),
+                "value": record.get(column),
+            })
+        series[column] = points
+
+    valid_trade_dates = [record.get("trade_date") for record in records if record.get("trade_date")]
+    payload = {
+        "metadata": {
+            "source_csv": skill_relative_path(csv_path),
+            "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "sort": "trade_date_ascending",
+            "window_start": valid_trade_dates[0] if valid_trade_dates else None,
+            "window_end": valid_trade_dates[-1] if valid_trade_dates else None,
+        },
+        "columns": columns,
+        "records": records,
+        "series": series,
+        "quality": {
+            "records_available": len(records),
+            "has_120_records": len(records) >= 120,
+            "missing_trade_date_rows": sum(1 for record in records if not record.get("trade_date")),
+            "numeric_columns": numeric_columns,
+        },
+    }
+    json_path.parent.mkdir(parents=True, exist_ok=True)
+    json_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    return json_path
+
+
+def read_market_history_trade_dates(csv_path: Path = DEFAULT_MARKET_HISTORY_CSV) -> Set[str]:
+    """Return normalized trade dates already present in market history."""
+    raw = load_market_history_df(csv_path)
+    if raw is None or raw.empty or "日期" not in raw.columns:
+        return set()
+
+    return {
+        trade_date
+        for trade_date in raw["日期"].apply(history_date_to_trade_date).tolist()
+        if trade_date
+    }
+
+
+def load_market_history_df(csv_path: Path = DEFAULT_MARKET_HISTORY_CSV) -> pd.DataFrame:
+    """Load market history in skill-column shape from DB or CSV."""
+    if BACKEND == Backend.POSTGRESQL:
+        raw = read_market_history()
+        if raw is not None and not raw.empty:
+            raw = raw.rename(columns={value: key for key, value in MARKET_HISTORY_DB_COLUMNS.items()})
+    elif csv_path.exists():
+        raw = pd.read_csv(csv_path, encoding="utf-8-sig")
+    else:
+        raw = pd.DataFrame()
+
+    raw = normalize_market_history_columns(raw)
+    if raw is None or raw.empty:
+        return pd.DataFrame()
+
+    if "日期" in raw.columns:
+        raw["日期"] = raw["日期"].apply(
+            lambda value: format_history_date(history_date_to_trade_date(value))
+            if history_date_to_trade_date(value)
+            else value
+        )
+    return raw
+
+
+def should_update_market_history_field(column: str, current_value: object, new_value: object) -> bool:
+    if column == "成交额":
+        return should_fill_turnover(current_value, new_value)
+    if column == "全市场换手率":
+        return should_fill_positive_numeric(current_value, new_value)
+    if column in {"情绪值", "融资净买入"}:
+        return should_update_numeric(current_value, new_value)
+    if column in {"涨停", "跌停", "上涨", "下跌", "平盘"}:
+        return should_update_count(current_value, new_value)
+    return is_blank_value(current_value) and not is_blank_value(new_value)
+
+
+def merge_market_history_row(df: pd.DataFrame, row: Dict[str, Any], columns: List[str]) -> pd.DataFrame:
+    """Merge one market-history row into an already-loaded history frame."""
+    ordered_columns = order_market_history_columns(list(dict.fromkeys(columns + list(row.keys()))))
+    if df is None or df.empty:
+        return sort_market_history_df(pd.DataFrame([row], columns=ordered_columns))
+
+    current_columns = order_market_history_columns(
+        list(df.columns) + [col for col in ordered_columns if col in MARKET_HISTORY_COLUMNS]
+    )
+    row = {key: value for key, value in row.items() if key in current_columns}
+
+    for col in current_columns:
+        if col not in df.columns:
+            df[col] = ""
+    df = df.reindex(columns=current_columns).copy()
+
+    target_date = row.get("日期")
+    existing_dates = df["日期"].apply(history_date_to_trade_date)
+    target_key = history_date_to_trade_date(target_date)
+    matches = df.index[existing_dates == target_key] if target_key else df.index[df["日期"] == target_date]
+    if len(matches) > 0:
+        idx = matches[0]
+        for col, new_value in row.items():
+            if col == "日期":
+                continue
+            if should_update_market_history_field(col, df.at[idx, col], new_value):
+                df.at[idx, col] = new_value
+        return sort_market_history_df(df)
+
+    final_columns = order_market_history_columns(list(df.columns) + [col for col in ordered_columns if col not in df.columns])
+    new_row = pd.DataFrame([row], columns=final_columns)
+    return sort_market_history_df(pd.concat([new_row, df.reindex(columns=final_columns)], ignore_index=True))
+
+
+def verify_market_history_dates_in_frame(df: pd.DataFrame, target_dates: Iterable[Any]) -> None:
+    if df is None or df.empty or "日期" not in df.columns:
+        raise RuntimeError("market history write verification failed: 日期 column missing")
+    existing_dates = set(df["日期"].apply(history_date_to_trade_date).dropna().tolist())
+    missing = [
+        str(target_date)
+        for target_date in target_dates
+        if history_date_to_trade_date(target_date) not in existing_dates
+    ]
+    if missing:
+        raise RuntimeError(f"market history write verification failed: missing dates {','.join(missing)}")
+
+
+def write_market_history_df(df: pd.DataFrame, csv_path: Path = DEFAULT_MARKET_HISTORY_CSV) -> None:
+    """Persist a full market-history frame once, then refresh derived JSON once."""
+    final_df = sort_market_history_df(df)
+    if BACKEND == Backend.POSTGRESQL:
+        db_df = pd.DataFrame()
+        for source_column, db_column in MARKET_HISTORY_DB_COLUMNS.items():
+            if source_column not in final_df.columns:
+                continue
+            if source_column == "日期":
+                db_df[db_column] = final_df[source_column].apply(
+                    lambda value: (
+                        datetime.strptime(history_date_to_trade_date(value), "%Y%m%d").strftime("%Y-%m-%d")
+                        if history_date_to_trade_date(value)
+                        else None
+                    )
+                )
+            else:
+                db_df[db_column] = final_df[source_column].apply(lambda value: clean_market_history_value(source_column, value))
+        if not db_df.empty and "date" in db_df.columns:
+            db_df = db_df.dropna(subset=["date"])
+            write_market_history(db_df)
+            write_market_history_json(csv_path)
+        return
+
+    csv_path.parent.mkdir(parents=True, exist_ok=True)
+    final_df.to_csv(csv_path, index=False, encoding="utf-8-sig")
+    write_market_history_json(csv_path)
+
+
+def upsert_market_history_rows(
+    rows: List[Tuple[Dict[str, Any], List[str]]],
+    csv_path: Path = DEFAULT_MARKET_HISTORY_CSV,
+) -> None:
+    """Write multiple market-history rows with one load/save/JSON refresh."""
+    if not rows:
+        return
+    df = load_market_history_df(csv_path)
+    target_dates: List[Any] = []
+    for row, columns in rows:
+        target_dates.append(row.get("日期"))
+        df = merge_market_history_row(df, row, columns)
+    verify_market_history_dates_in_frame(df, target_dates)
+    write_market_history_df(df, csv_path)
+
+
 def upsert_market_history_row(
     row: Dict[str, Any],
     columns: List[str],
     csv_path: Path = DEFAULT_MARKET_HISTORY_CSV,
 ) -> None:
     """Write one market-history row while preserving existing non-empty values."""
-    csv_path.parent.mkdir(parents=True, exist_ok=True)
-    ordered_columns = list(dict.fromkeys(columns + list(row.keys())))
-
-    if csv_path.exists():
-        df = pd.read_csv(csv_path, encoding="utf-8-sig")
-        if "日期" not in df.columns:
-            if len(df.columns) == len(ordered_columns):
-                df.columns = ordered_columns
-            else:
-                fixed = list(df.columns)
-                if fixed:
-                    fixed[0] = "日期"
-                    df.columns = fixed
-
-        for col in ordered_columns:
-            if col not in df.columns:
-                df[col] = ""
-
-        target_date = row.get("日期")
-        existing_dates = df["日期"].apply(history_date_to_trade_date)
-        target_key = history_date_to_trade_date(target_date)
-        matches = df.index[existing_dates == target_key] if target_key else df.index[df["日期"] == target_date]
-        if len(matches) > 0:
-            idx = matches[0]
-            for col, new_value in row.items():
-                if col == "日期":
-                    continue
-                current_value = df.at[idx, col]
-                if col == "成交额":
-                    if should_fill_turnover(current_value, new_value):
-                        df.at[idx, col] = new_value
-                    continue
-                if col == "全市场换手率":
-                    if should_fill_positive_numeric(current_value, new_value):
-                        df.at[idx, col] = new_value
-                    continue
-                if is_blank_value(current_value) and not is_blank_value(new_value):
-                    df.at[idx, col] = new_value
-            df.to_csv(csv_path, index=False, encoding="utf-8-sig")
-            return
-
-        final_columns = list(df.columns) + [col for col in ordered_columns if col not in df.columns]
-        new_row = pd.DataFrame([row], columns=final_columns)
-        df = pd.concat([new_row, df.reindex(columns=final_columns)], ignore_index=True)
-        df.to_csv(csv_path, index=False, encoding="utf-8-sig")
-        return
-
-    pd.DataFrame([row], columns=ordered_columns).to_csv(csv_path, index=False, encoding="utf-8-sig")
-
-
-def fetch_tushare_market_snapshot_from_daily(
-    daily: pd.DataFrame,
-    target_date: str,
-) -> Tuple[Optional[float], Optional[int], Optional[int], Optional[int]]:
-    if daily is None or daily.empty or "trade_date" not in daily.columns:
-        return None, None, None, None
-
-    day = daily.loc[daily["trade_date"].astype(str) == str(target_date)].copy()
-    if day.empty:
-        return None, None, None, None
-
-    total_amount = None
-    if "amount" in day.columns:
-        amount_series = pd.to_numeric(day["amount"], errors="coerce")
-        amount_sum = amount_series.sum(min_count=1)
-        if pd.notna(amount_sum) and float(amount_sum) > 0:
-            total_amount = float(amount_sum)
-
-    up_count = None
-    down_count = None
-    flat_count = None
-    if "pct_chg" in day.columns:
-        pct_series = pd.to_numeric(day["pct_chg"], errors="coerce")
-        up_count = int((pct_series > 0).sum())
-        down_count = int((pct_series < 0).sum())
-        flat_count = int((pct_series == 0).sum())
-
-    return total_amount, up_count, down_count, flat_count
+    upsert_market_history_rows([(row, columns)], csv_path=csv_path)
 
 
 def should_fill_positive_numeric(existing_value: object, new_value: object) -> bool:
@@ -747,70 +1512,227 @@ def should_fill_positive_numeric(existing_value: object, new_value: object) -> b
     return pd.isna(existing_numeric) or float(existing_numeric) <= 0
 
 
-def fetch_akshare_market_history_row(target_date: str) -> Tuple[Dict[str, Any], List[str], Dict[str, Any]]:
+def should_update_count(existing_value: object, new_value: object) -> bool:
+    if is_blank_value(new_value):
+        return False
+    new_numeric = pd.to_numeric(pd.Series([new_value]), errors="coerce").iloc[0]
+    if pd.isna(new_numeric) or float(new_numeric) < 0:
+        return False
+    if is_blank_value(existing_value):
+        return True
+    existing_numeric = pd.to_numeric(pd.Series([existing_value]), errors="coerce").iloc[0]
+    return pd.isna(existing_numeric) or int(existing_numeric) != int(new_numeric)
+
+
+def should_update_numeric(existing_value: object, new_value: object) -> bool:
+    if is_blank_value(new_value):
+        return False
+    new_numeric = parse_market_history_number(new_value)
+    if new_numeric is None:
+        return False
+    if is_blank_value(existing_value):
+        return True
+    existing_numeric = parse_market_history_number(existing_value)
+    return existing_numeric is None or float(existing_numeric) != float(new_numeric)
+
+
+class SimpleTableParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self.in_table = False
+        self.in_row = False
+        self.in_cell = False
+        self.cell_parts: List[str] = []
+        self.current_row: List[str] = []
+        self.rows: List[List[str]] = []
+
+    def handle_starttag(self, tag: str, attrs: List[Tuple[str, Optional[str]]]) -> None:
+        if tag == "table":
+            self.in_table = True
+        elif self.in_table and tag == "tr":
+            self.in_row = True
+            self.current_row = []
+        elif self.in_row and tag in {"td", "th"}:
+            self.in_cell = True
+            self.cell_parts = []
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag in {"td", "th"} and self.in_cell:
+            self.current_row.append("".join(self.cell_parts).strip())
+            self.in_cell = False
+            self.cell_parts = []
+        elif tag == "tr" and self.in_row:
+            if self.current_row:
+                self.rows.append(self.current_row)
+            self.in_row = False
+            self.current_row = []
+        elif tag == "table":
+            self.in_table = False
+
+    def handle_data(self, data: str) -> None:
+        if self.in_cell:
+            self.cell_parts.append(data)
+
+
+def parse_market_history_number(value: Any) -> Optional[float]:
+    if is_blank_value(value):
+        return None
+    text = str(value).strip().replace(",", "").replace("%", "")
+    if text in {"--", "-", "—"}:
+        return None
+    try:
+        return float(text)
+    except ValueError:
+        return None
+
+
+def fetch_sohu_market_history_rows(year: str) -> Tuple[Dict[str, Dict[str, Any]], Dict[str, Any]]:
     detail: Dict[str, Any] = {
-        "primary_source": MARKET_HISTORY_PRIMARY_SOURCE,
-        "primary_trade_date": None,
-        "primary_available": False,
+        "source": MARKET_HISTORY_SOHU_SOURCE,
+        "url": SOHU_LIMIT_HISTORY_URL,
+        "available": False,
         "fallback_reason": None,
     }
-    if ak is None:
-        detail["fallback_reason"] = "akshare is not installed"
-        return {}, [], detail
+    if requests is None:
+        detail["fallback_reason"] = "requests is not installed"
+        return {}, detail
 
     try:
-        market_data = ak.stock_market_activity_legu()
+        response = requests.get(
+            SOHU_LIMIT_HISTORY_URL,
+            headers={"User-Agent": "Mozilla/5.0"},
+            timeout=20,
+        )
+        response.raise_for_status()
     except Exception as exc:
-        detail["fallback_reason"] = f"akshare stock_market_activity_legu failed: {exc}"
-        return {}, [], detail
+        detail["fallback_reason"] = f"sohu zdt history request failed: {exc}"
+        return {}, detail
 
-    if market_data is None or market_data.empty or "item" not in market_data.columns or "value" not in market_data.columns:
-        detail["fallback_reason"] = "akshare stock_market_activity_legu returned empty or invalid data"
-        return {}, [], detail
+    text = response.content.decode("utf-8", errors="replace")
+    parser = SimpleTableParser()
+    parser.feed(text)
 
-    stat_date = None
-    if "统计日期" in market_data["item"].astype(str).values:
-        raw_date = market_data.loc[market_data["item"].astype(str) == "统计日期", "value"].values[0]
-        parsed = pd.to_datetime(raw_date, errors="coerce")
-        if pd.notna(parsed):
-            stat_date = parsed.strftime("%Y/%m/%d")
-
-    if not stat_date:
-        detail["fallback_reason"] = "akshare data missing 统计日期"
-        return {}, [], detail
-
-    stat_trade_date = history_date_to_trade_date(stat_date)
-    detail["primary_trade_date"] = stat_trade_date
-    if stat_trade_date != target_date:
-        detail["fallback_reason"] = f"akshare stat date {stat_trade_date} does not match target date {target_date}"
-        return {}, [], detail
-
-    row: Dict[str, Any] = {"日期": stat_date}
-    columns = ["日期"]
-    for _, item_row in market_data.iterrows():
-        item = str(item_row.get("item", "")).strip()
-        if not item or item == "统计日期":
+    rows: Dict[str, Dict[str, Any]] = {}
+    for cells in parser.rows:
+        if len(cells) < 14 or "/" not in cells[0]:
             continue
-        row[item] = item_row.get("value")
-        columns.append(item)
-        if len(columns) >= 12:
-            break
 
-    detail["primary_available"] = any(not is_blank_value(value) for key, value in row.items() if key != "日期")
-    if not detail["primary_available"]:
-        detail["fallback_reason"] = "akshare data contains no market activity fields"
+        values = [parse_market_history_number(cell) for cell in cells]
+        amount_100m_yuan = values[4]
+        up_count = sum(v for v in [values[5], values[8], values[11]] if v is not None)
+        flat_count = sum(v for v in [values[6], values[9], values[12]] if v is not None)
+        down_count = sum(v for v in [values[7], values[10], values[13]] if v is not None)
+        trade_date = history_date_to_trade_date(f"{year}/{cells[0]}")
+        if not trade_date:
+            continue
+        rows[trade_date] = {
+            "日期": f"{year}/{cells[0]}",
+            "上涨": int(up_count),
+            "涨停": int(values[1]) if values[1] is not None else "",
+            "下跌": int(down_count),
+            "跌停": int(values[2]) if values[2] is not None else "",
+            "平盘": int(flat_count),
+            "成交额": round(float(amount_100m_yuan) * 100000, 3) if amount_100m_yuan is not None else "",
+        }
+
+    if rows:
+        detail["available"] = True
+        detail["row_count"] = len(rows)
+    else:
+        detail["fallback_reason"] = "sohu zdt history table has no usable rows"
+    return rows, detail
+
+
+def fetch_sohu_market_history_row(target_date: str) -> Tuple[Dict[str, Any], List[str], Dict[str, Any]]:
+    detail: Dict[str, Any] = {
+        "source": MARKET_HISTORY_SOHU_SOURCE,
+        "url": SOHU_LIMIT_HISTORY_URL,
+        "available": False,
+        "fallback_reason": None,
+    }
+    year = str(target_date)[:4]
+    if year not in SOHU_LIMIT_HISTORY_CACHE:
+        rows, detail = fetch_sohu_market_history_rows(year)
+        if not detail.get("available"):
+            return {}, [], detail
+        SOHU_LIMIT_HISTORY_CACHE[year] = rows
+
+    row = SOHU_LIMIT_HISTORY_CACHE[year].get(target_date, {})
+    if not row:
+        detail["fallback_reason"] = f"sohu zdt history missing target date {target_date}"
         return {}, [], detail
-    return row, columns, detail
+
+    detail["available"] = True
+    detail["matched_date"] = target_date
+    return row, list(row.keys()), detail
+
+
+def fill_missing_market_activity(
+    row: Dict[str, Any],
+    columns: List[str],
+    fallback_row: Dict[str, Any],
+    fallback_columns: List[str],
+) -> Tuple[Dict[str, Any], List[str], List[str]]:
+    filled: List[str] = []
+    if not fallback_row:
+        return row, columns, filled
+
+    if not row:
+        row = {"日期": fallback_row.get("日期")}
+        columns = ["日期"]
+
+    for key in MARKET_ACTIVITY_COLUMNS:
+        if key not in fallback_row:
+            continue
+        if key not in row or is_blank_value(row.get(key)):
+            row[key] = fallback_row[key]
+            filled.append(key)
+
+    columns = list(dict.fromkeys(columns + [col for col in fallback_columns if col in row]))
+    return row, columns, filled
 
 
 def update_market_history(
     target_date: str,
     daily: pd.DataFrame,
     daily_basic: Optional[pd.DataFrame] = None,
+    margin_net_buy: Optional[float] = None,
+    margin_net_buy_reason: Optional[str] = None,
+    margin_net_buy_trade_date: Optional[str] = None,
     csv_path: Path = DEFAULT_MARKET_HISTORY_CSV,
+    defer_write: bool = False,
+    limit_flags: Optional[pd.DataFrame] = None,
 ) -> Dict[str, Any]:
-    row, columns, detail = fetch_akshare_market_history_row(target_date)
-    total_amount, up_count, down_count, flat_count = fetch_tushare_market_snapshot_from_daily(daily, target_date)
+    # Primary: compute from Tushare daily data (no external web scraping)
+    row, columns, detail = compute_market_activity_from_daily(daily, target_date, limit_flags=limit_flags)
+
+    # Fallback: sohu zdt history when Tushare daily is unavailable
+    needs_sohu = not detail.get("available")
+    sohu_row: Dict[str, Any] = {}
+    sohu_columns: List[str] = []
+    sohu_detail: Dict[str, Any] = {"available": False, "fallback_reason": "not needed"}
+    sohu_filled_fields: List[str] = []
+    if needs_sohu:
+        sohu_row, sohu_columns, sohu_detail = fetch_sohu_market_history_row(target_date)
+        row, columns, sohu_filled_fields = fill_missing_market_activity(row, columns, sohu_row, sohu_columns)
+
+    # If sohu has counts but no sentiment, compute it with V4 formula
+    if sohu_detail.get("available") and (
+        is_blank_value(row.get("情绪值")) or is_blank_value(row.get("活跃度"))
+    ):
+        up_val = safe_int(row.get("上涨"))
+        down_val = safe_int(row.get("下跌"))
+        flat_val = safe_int(row.get("平盘"))
+        if up_val is not None and down_val is not None and flat_val is not None:
+            limit_up_val = safe_int(row.get("涨停")) or 0
+            limit_down_val = safe_int(row.get("跌停")) or 0
+            sentiment = calc_market_sentiment(up_val, down_val, flat_val, limit_up_val, limit_down_val)
+            row["情绪值"] = round(sentiment, 2)
+            row["活跃度"] = round(sentiment, 2)
+            for key in ("情绪值", "活跃度"):
+                if key not in columns:
+                    columns.append(key)
+
     market_turnover_rate, market_turnover_reason = calculate_market_turnover_rate(
         daily,
         daily_basic if daily_basic is not None else pd.DataFrame(),
@@ -822,29 +1744,15 @@ def update_market_history(
         row = {"日期": format_history_date(target_date)}
         columns = ["日期"]
 
-    row["成交额"] = total_amount if total_amount is not None else row.get("成交额", "")
-    if ("成交额" not in columns):
-        columns.append("成交额")
-
-    if ("上涨" not in row or is_blank_value(row.get("上涨"))) and up_count is not None:
-        row["上涨"] = up_count
-    if "上涨" not in columns:
-        columns.append("上涨")
-
-    if ("下跌" not in row or is_blank_value(row.get("下跌"))) and down_count is not None:
-        row["下跌"] = down_count
-    if "下跌" not in columns:
-        columns.append("下跌")
-
-    if ("平盘" not in row or is_blank_value(row.get("平盘"))) and flat_count is not None:
-        row["平盘"] = flat_count
-    if "平盘" not in columns:
-        columns.append("平盘")
-
     if market_turnover_rate is not None:
         row["全市场换手率"] = market_turnover_rate
     if "全市场换手率" not in columns:
         columns.append("全市场换手率")
+
+    if margin_net_buy is not None:
+        row["融资净买入"] = margin_net_buy
+    if "融资净买入" not in columns:
+        columns.append("融资净买入")
 
     confirmed_values = {
         key: value for key, value in row.items() if key != "日期" and not is_blank_value(value)
@@ -853,17 +1761,33 @@ def update_market_history(
         "updated": False,
         "trade_date": target_date,
         "path": str(csv_path),
+        "json_path": str(market_history_json_path(csv_path)),
         "primary_source": MARKET_HISTORY_PRIMARY_SOURCE,
+        "sohu_source": MARKET_HISTORY_SOHU_SOURCE,
         "supplement_source": MARKET_HISTORY_SUPPLEMENT_SOURCE,
-        "primary_trade_date": detail.get("primary_trade_date"),
+        "primary_trade_date": target_date,
+        "sohu_available": bool(sohu_detail.get("available")),
+        "sohu_fallback_reason": sohu_detail.get("fallback_reason"),
+        "sohu_filled_fields": sohu_filled_fields,
+        "limit_detection": detail.get("limit_detection"),
         "fallback_reason": fallback_reason,
         "market_turnover_rate": market_turnover_rate,
         "market_turnover_rate_unit": "percent",
         "market_turnover_rate_reason": market_turnover_reason,
+        "margin_net_buy": margin_net_buy,
+        "margin_net_buy_unit": "yuan",
+        "margin_net_buy_trade_date": margin_net_buy_trade_date,
+        "margin_net_buy_reason": margin_net_buy_reason,
         "fields": sorted(confirmed_values.keys()),
     }
     if not confirmed_values:
-        result["fallback_reason"] = fallback_reason or "no confirmed market history fields from akshare or tushare.daily"
+        result["fallback_reason"] = fallback_reason or "no confirmed market history fields from tushare.daily or sohu"
+        return result
+
+    if defer_write:
+        result["updated"] = True
+        result["_market_history_row"] = row
+        result["_market_history_columns"] = columns
         return result
 
     try:
@@ -874,6 +1798,126 @@ def update_market_history(
 
     result["updated"] = True
     return result
+
+
+def market_history_backfill_dates(
+    target_date: str,
+    trade_dates: Iterable[str],
+    existing_dates: Set[str],
+) -> List[str]:
+    """Find missing market-history rows between the previous stored date and target."""
+    ordered_dates = sorted({str(date) for date in trade_dates if str(date) <= target_date})
+    if not ordered_dates:
+        return [target_date]
+
+    previous_existing = max((date for date in existing_dates if date < target_date), default=None)
+    if previous_existing:
+        candidates = [date for date in ordered_dates if previous_existing < date <= target_date]
+    else:
+        candidates = [target_date]
+
+    dates = [date for date in candidates if date not in existing_dates or date == target_date]
+    if target_date not in dates:
+        dates.append(target_date)
+    return sorted(set(dates))
+
+
+def update_market_history_window(
+    target_date: str,
+    trade_dates: Iterable[str],
+    daily: pd.DataFrame,
+    daily_basic: Optional[pd.DataFrame] = None,
+    pro: Any = None,
+    cache_enabled: bool = True,
+    refresh_cache: bool = False,
+    margin_net_buy: Optional[float] = None,
+    margin_net_buy_reason: Optional[str] = None,
+    margin_net_buy_trade_date: Optional[str] = None,
+    csv_path: Path = DEFAULT_MARKET_HISTORY_CSV,
+    limit_flags: Optional[pd.DataFrame] = None,
+) -> Dict[str, Any]:
+    """Update target day and fill recent market-history gaps visible in charts."""
+    ordered_trade_dates = sorted({str(date) for date in trade_dates if str(date) <= target_date})
+    previous_by_date = {
+        date: ordered_trade_dates[idx - 1] if idx > 0 else None
+        for idx, date in enumerate(ordered_trade_dates)
+    }
+
+    try:
+        existing_dates = read_market_history_trade_dates(csv_path)
+        dates_to_update = market_history_backfill_dates(target_date, ordered_trade_dates, existing_dates)
+    except Exception as exc:
+        dates_to_update = [target_date]
+        backfill_error = f"failed to inspect existing market history: {exc}"
+    else:
+        backfill_error = None
+
+    target_result: Optional[Dict[str, Any]] = None
+    backfill_updates: List[Dict[str, Any]] = []
+    pending_rows: List[Tuple[Dict[str, Any], List[str]]] = []
+    for trade_date in dates_to_update:
+        if trade_date == target_date:
+            row_margin = margin_net_buy
+            row_margin_reason = margin_net_buy_reason
+            row_margin_trade_date = margin_net_buy_trade_date
+        else:
+            row_margin = None
+            row_margin_reason = "not requested for backfill"
+            row_margin_trade_date = previous_by_date.get(trade_date)
+            if pro is not None and row_margin_trade_date:
+                row_margin, row_margin_reason = fetch_margin_net_buy(
+                    pro,
+                    row_margin_trade_date,
+                    cache_enabled=cache_enabled,
+                    refresh_cache=refresh_cache,
+                )
+
+        result = update_market_history(
+            trade_date,
+            daily,
+            daily_basic,
+            margin_net_buy=row_margin,
+            margin_net_buy_reason=row_margin_reason,
+            margin_net_buy_trade_date=row_margin_trade_date,
+            csv_path=csv_path,
+            defer_write=True,
+            limit_flags=limit_flags,
+        )
+        pending_row = result.pop("_market_history_row", None)
+        pending_columns = result.pop("_market_history_columns", None)
+        if pending_row is not None and pending_columns is not None:
+            pending_rows.append((pending_row, pending_columns))
+        if trade_date == target_date:
+            target_result = result
+        else:
+            backfill_updates.append(result)
+
+    try:
+        upsert_market_history_rows(pending_rows, csv_path=csv_path)
+    except Exception as exc:
+        message = f"failed to update market history csv: {exc}"
+        if target_result is not None:
+            target_result["updated"] = False
+            target_result["fallback_reason"] = message
+        for item in backfill_updates:
+            if item.get("updated"):
+                item["updated"] = False
+                item["fallback_reason"] = message
+
+    if target_result is None:
+        target_result = {
+            "updated": False,
+            "trade_date": target_date,
+            "path": str(csv_path),
+            "json_path": str(market_history_json_path(csv_path)),
+            "fallback_reason": "target date was not updated",
+        }
+
+    target_result["backfill_trade_dates"] = [item.get("trade_date") for item in backfill_updates]
+    target_result["backfill_updates"] = backfill_updates
+    if backfill_error:
+        target_result["backfill_reason"] = backfill_error
+    return target_result
 
 
 def build_limit_stats(limit_df: pd.DataFrame) -> Dict[str, Any]:
@@ -901,8 +1945,8 @@ def compare_scalar(current: Any, previous: Any) -> Dict[str, Any]:
         if previous_float != 0:
             change_pct = round(change / previous_float * 100.0, 2)
     return {
-        "current": current,
-        "previous": previous,
+        "current": nullable_value(current),
+        "previous": nullable_value(previous),
         "change": change,
         "change_pct": change_pct,
     }
@@ -919,8 +1963,8 @@ def build_temperature_comparison(current: Dict[str, Any], previous: Dict[str, An
         "up_gt_5_count",
         "down_lt_minus_3_count",
         "down_lt_minus_5_count",
-        "limit_up_approx_count",
-        "limit_down_approx_count",
+        "limit_up_count",
+        "limit_down_count",
         "total_amount_100m_yuan",
         "up_amount_ratio",
         "down_amount_ratio",
@@ -948,8 +1992,14 @@ def build_amount_concentration(
     df["trade_date"] = df["trade_date"].astype(str)
     df["amount"] = pd.to_numeric(df["amount"], errors="coerce")
 
+    # Slice the full-market frame once per date instead of re-scanning all
+    # rows for every ratio request (current + previous + 10-day series).
+    frames_by_date: Dict[str, pd.DataFrame] = {str(date): frame for date, frame in df.groupby("trade_date")}
+
     def ratios_for_date(trade_date: str) -> Dict[str, Any]:
-        day = df.loc[df["trade_date"] == trade_date].copy()
+        day = frames_by_date.get(str(trade_date))
+        if day is None:
+            day = df.iloc[0:0]
         total = float(day["amount"].sum(skipna=True))
         result: Dict[str, Any] = {
             "trade_date": trade_date,
@@ -964,7 +2014,7 @@ def build_amount_concentration(
     previous = ratios_for_date(previous_trade_date) if previous_trade_date else {}
 
     series: List[Dict[str, Any]] = []
-    for trade_date in sorted(df["trade_date"].unique())[-10:]:
+    for trade_date in sorted(frames_by_date.keys())[-10:]:
         series.append(ratios_for_date(trade_date))
 
     top50_values = [item.get("top50_amount_ratio") for item in series if item.get("top50_amount_ratio") is not None]
@@ -980,7 +2030,7 @@ def build_amount_concentration(
         "series_length": len(series),
     }
 
-    day = df.loc[df["trade_date"] == target_date].copy()
+    day = frames_by_date.get(str(target_date), df.iloc[0:0]).copy()
     top_amount_samples = day.nlargest(min(20, len(day)), "amount")
     if sample_features is not None and not sample_features.empty and not top_amount_samples.empty:
         enriched = sample_features.copy()
@@ -1112,16 +2162,37 @@ def build_level(label: str, value: Any) -> Dict[str, Any]:
     return {"label": label, "value": round_optional(value, 2)}
 
 
-def build_index_trend_summary(index_daily: pd.DataFrame, index_name: str, ts_code: str, target_date: str, trend_days: int) -> Dict[str, Any]:
-    if index_daily is None or index_daily.empty:
-        return {
-            "available": False,
-            "name": index_name,
-            "ts_code": ts_code,
-            "reason": "index_daily returned no data",
-        }
+def _unavailable_index_summary(
+    name: Any,
+    code_field: str,
+    code_value: Any,
+    reason: str,
+    extra: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    result = {
+        "available": False,
+        "name": name,
+        code_field: code_value,
+        "reason": reason,
+    }
+    if extra:
+        result.update(extra)
+    return result
 
-    df = index_daily.copy()
+
+def _prepare_index_summary_frames(
+    daily: pd.DataFrame,
+    target_date: str,
+    trend_days: int,
+    kline_days: Optional[int] = None,
+    with_series: bool = False,
+) -> Tuple[Optional[pd.DataFrame], Optional[pd.DataFrame], str]:
+    if daily is None or daily.empty:
+        return None, None, "index_daily returned no data"
+
+    df = daily.copy()
+    if "trade_date" not in df.columns:
+        return None, None, "trade_date column missing"
     df["trade_date"] = df["trade_date"].astype(str)
     numeric_cols = ["open", "high", "low", "close", "pre_close", "change", "pct_chg", "vol", "amount"]
     for column in numeric_cols:
@@ -1130,33 +2201,63 @@ def build_index_trend_summary(index_daily: pd.DataFrame, index_name: str, ts_cod
     df = df.loc[df["trade_date"] <= target_date].sort_values("trade_date")
     df = df.dropna(subset=["close"])
     if df.empty:
-        return {
-            "available": False,
-            "name": index_name,
-            "ts_code": ts_code,
-            "reason": "no rows on or before target date",
-        }
+        return None, None, "no rows on or before target date"
 
-    df = df.tail(max(int(trend_days), 60))
+    series_df = df[["trade_date", "close"]].copy() if with_series else None
+    safe_trend_days = max(20, int(trend_days))
+    windows = [safe_trend_days, 60]
+    if kline_days is not None:
+        windows.append(max(20, int(kline_days)))
+    df = df.tail(max(windows)).copy()
+
     for period in (1, 5, 20, 60):
         df[f"ret_{period}d"] = pct_return(df["close"], period)
     for period in (5, 20, 60):
         df[f"ma{period}"] = df["close"].rolling(period, min_periods=max(3, period // 2)).mean()
 
     liquidity_col = "amount" if "amount" in df.columns and df["amount"].notna().any() else "vol"
+    df.attrs["liquidity_col"] = liquidity_col
     if liquidity_col in df.columns:
-        df["liquidity_ma5_prev"] = df[liquidity_col].shift(1).rolling(5, min_periods=3).mean()
-        df["liquidity_ma20_prev"] = df[liquidity_col].shift(1).rolling(20, min_periods=5).mean()
+        df["liquidity_ma5_prev"] = df[liquidity_col].shift(1).rolling(5, min_periods=3).mean().replace(0, pd.NA)
+        df["liquidity_ma20_prev"] = df[liquidity_col].shift(1).rolling(20, min_periods=5).mean().replace(0, pd.NA)
         df["liquidity_ratio_5d"] = df[liquidity_col] / df["liquidity_ma5_prev"]
         df["liquidity_ratio_20d"] = df[liquidity_col] / df["liquidity_ma20_prev"]
     else:
         df["liquidity_ratio_5d"] = None
         df["liquidity_ratio_20d"] = None
+    df["amount_ratio_20d"] = df["liquidity_ratio_20d"] if liquidity_col == "amount" else None
 
     df["high_20d"] = df["high"].rolling(20, min_periods=5).max() if "high" in df.columns else None
     df["low_20d"] = df["low"].rolling(20, min_periods=5).min() if "low" in df.columns else None
     df["high_60d"] = df["high"].rolling(60, min_periods=20).max() if "high" in df.columns else None
     df["low_60d"] = df["low"].rolling(60, min_periods=20).min() if "low" in df.columns else None
+    return df, series_df, ""
+
+
+def _build_close_series(df: pd.DataFrame, days: int = 90) -> Dict[str, Any]:
+    records = df[["trade_date", "close"]].copy()
+    records["close"] = pd.to_numeric(records["close"], errors="coerce")
+    records = records.dropna(subset=["close"]).sort_values("trade_date").tail(max(1, int(days)))
+    records["close"] = records["close"].round(2)
+    return {
+        "days": int(days),
+        "records": records.astype(object).where(pd.notnull(records), None).to_dict(orient="records"),
+    }
+
+
+def build_index_trend_summary(
+    index_daily: pd.DataFrame,
+    index_name: str,
+    ts_code: str,
+    target_date: str,
+    trend_days: int,
+    kline_days: int = DEFAULT_INDEX_KLINE_DAYS,
+) -> Dict[str, Any]:
+    safe_trend_days = max(20, int(trend_days))
+    safe_kline_days = max(20, int(kline_days))
+    df, _, reason = _prepare_index_summary_frames(index_daily, target_date, safe_trend_days, safe_kline_days)
+    if df is None:
+        return _unavailable_index_summary(index_name, "ts_code", ts_code, reason)
 
     latest = df.iloc[-1]
     ma5 = latest.get("ma5")
@@ -1170,7 +2271,7 @@ def build_index_trend_summary(index_daily: pd.DataFrame, index_name: str, ts_cod
         for col in ["trade_date", "open", "high", "low", "close", "pct_chg", "vol", "amount"]
         if col in df.columns
     ]
-    kline_records = df[kline_cols].tail(int(trend_days)).copy()
+    kline_records = df[kline_cols].tail(safe_kline_days).copy()
     for column in kline_cols:
         if column != "trade_date":
             kline_records[column] = pd.to_numeric(kline_records[column], errors="coerce").round(4)
@@ -1183,7 +2284,9 @@ def build_index_trend_summary(index_daily: pd.DataFrame, index_name: str, ts_cod
         "window_start": str(df["trade_date"].iloc[0]),
         "window_end": str(df["trade_date"].iloc[-1]),
         "records_loaded": int(len(df)),
-        "kline_days": int(min(int(trend_days), len(kline_records))),
+        "trend_days": int(min(safe_trend_days, len(df))),
+        "kline_days": int(min(safe_kline_days, len(kline_records))),
+        "kline_days_requested": int(safe_kline_days),
         "latest": {
             "close": round_optional(close, 2),
             "pct_chg": round_optional(ret_1d, 2),
@@ -1207,7 +2310,7 @@ def build_index_trend_summary(index_daily: pd.DataFrame, index_name: str, ts_cod
             "ma_alignment_hint": classify_ma_alignment(close, ma5, ma20, ma60),
         },
         "volume_price": {
-            "liquidity_field": liquidity_col if liquidity_col in df.columns else None,
+            "liquidity_field": df.attrs.get("liquidity_col"),
             "liquidity_ratio_5d": round_optional(latest.get("liquidity_ratio_5d"), 2),
             "liquidity_ratio_20d": round_optional(latest.get("liquidity_ratio_20d"), 2),
             "price_volume_state_hint": classify_price_volume_state(ret_1d, latest.get("liquidity_ratio_20d")),
@@ -1236,6 +2339,509 @@ def build_index_trend_summary(index_daily: pd.DataFrame, index_name: str, ts_cod
             ],
         },
         "kline_records": kline_records.astype(object).where(pd.notnull(kline_records), None).to_dict(orient="records"),
+    }
+
+
+def ymd_to_dash_date(value: str) -> str:
+    return ymd_to_dt(value).strftime("%Y-%m-%d")
+
+
+def baostock_result_to_frame(result: Any) -> pd.DataFrame:
+    if result is None:
+        return pd.DataFrame()
+    if hasattr(result, "get_data"):
+        try:
+            return result.get_data()
+        except Exception:
+            pass
+
+    fields = [field.strip() for field in BAOSTOCK_STYLE_FIELDS.split(",")]
+    rows: List[List[Any]] = []
+    try:
+        while result.error_code == "0" and result.next():
+            rows.append(result.get_row_data())
+    except Exception:
+        return pd.DataFrame()
+    return pd.DataFrame(rows, columns=fields)
+
+
+def normalize_baostock_trade_date(value: Any) -> str:
+    if value is None or pd.isna(value):
+        return ""
+    raw = str(value).strip()
+    if not raw:
+        return ""
+    try:
+        return normalize_date(raw)
+    except ValueError:
+        return ""
+
+
+def standardize_baostock_index_daily(raw: pd.DataFrame, config: Dict[str, Any]) -> pd.DataFrame:
+    if raw is None or raw.empty:
+        return pd.DataFrame()
+
+    df = raw.copy()
+    df = df.rename(columns={
+        "date": "trade_date",
+        "code": "bs_code",
+        "preclose": "pre_close",
+        "volume": "vol",
+        "pctChg": "pct_chg",
+    })
+    if "trade_date" not in df.columns:
+        return pd.DataFrame()
+
+    df["trade_date"] = df["trade_date"].apply(normalize_baostock_trade_date)
+    df = df.loc[df["trade_date"] != ""].copy()
+    df["bs_code"] = config.get("bs_code")
+    df["name"] = config.get("name")
+    for column in ["open", "high", "low", "close", "pre_close", "pct_chg", "vol", "amount"]:
+        if column in df.columns:
+            df[column] = parse_numeric_text_series(df[column])
+    return df.sort_values("trade_date").reset_index(drop=True)
+
+
+def build_market_style_index_summary(
+    standardized: pd.DataFrame,
+    config: Dict[str, Any],
+    target_date: str,
+    trend_days: int,
+) -> Dict[str, Any]:
+    """Summarize one style index from a standardized daily frame.
+
+    `standardized` must already carry trade_date (YYYYMMDD strings) plus the
+    usual OHLC/pct_chg/amount columns — either fresh from
+    standardize_baostock_index_daily or read back from the PG cache.
+    """
+    extra = {
+        "style_role": config.get("style_role"),
+        "proxy_note": config.get("proxy_note"),
+    }
+    safe_trend_days = max(20, int(trend_days))
+    df, series_df, reason = _prepare_index_summary_frames(standardized, target_date, safe_trend_days, with_series=True)
+    if df is None or series_df is None:
+        if standardized is None or standardized.empty:
+            reason = "baostock returned no data"
+        return _unavailable_index_summary(config.get("name"), "bs_code", config.get("bs_code"), reason, extra)
+
+    latest = df.iloc[-1]
+    close = latest.get("close")
+    ma20 = latest.get("ma20")
+    ma60 = latest.get("ma60")
+    pct_chg = latest.get("pct_chg") if pd.notna(latest.get("pct_chg")) else latest.get("ret_1d")
+    amount = latest.get("amount") if "amount" in df.columns else None
+
+    return {
+        "available": True,
+        "name": config.get("name"),
+        "bs_code": config.get("bs_code"),
+        "style_role": config.get("style_role"),
+        "proxy_note": config.get("proxy_note"),
+        "trade_date": str(latest.get("trade_date")),
+        "window_start": str(df["trade_date"].iloc[0]),
+        "window_end": str(df["trade_date"].iloc[-1]),
+        "records_loaded": int(len(df)),
+        "latest": {
+            "close": round_optional(close, 2),
+            "pct_chg": round_optional(pct_chg, 2),
+            "amount": round_optional(amount, 2),
+            "amount_100m_yuan": round_optional(amount / 100000000, 2) if amount is not None and pd.notna(amount) else None,
+        },
+        "returns": {
+            "ret_1d": round_optional(pct_chg, 2),
+            "ret_5d": round_optional(latest.get("ret_5d"), 2),
+            "ret_20d": round_optional(latest.get("ret_20d"), 2),
+            "ret_60d": round_optional(latest.get("ret_60d"), 2),
+        },
+        "moving_averages": {
+            "ma20": round_optional(ma20, 2),
+            "ma60": round_optional(ma60, 2),
+            "close_vs_ma20_pct": pct_change_optional(close, ma20),
+            "close_vs_ma60_pct": pct_change_optional(close, ma60),
+        },
+        "volume_price": {
+            "amount_unit": "yuan",
+            "amount_ratio_20d": round_optional(latest.get("amount_ratio_20d"), 2),
+            "price_volume_state_hint": classify_price_volume_state(pct_chg, latest.get("amount_ratio_20d")),
+        },
+        "trend_stage_hint": classify_index_trend_stage(
+            close,
+            ma20,
+            ma60,
+            latest.get("ret_20d"),
+            latest.get("ret_60d"),
+        ),
+        "series": _build_close_series(series_df, days=90),
+    }
+
+
+def market_style_return(style: Dict[str, Any], key: str, field: str) -> Optional[float]:
+    item = ((style.get("indices") or {}).get(key) or {})
+    value = ((item.get("returns") or {}).get(field))
+    return safe_float(value)
+
+
+def build_style_spread(style: Dict[str, Any], label: str, left_key: str, right_key: str) -> Dict[str, Any]:
+    indices = style.get("indices") or {}
+    left = indices.get(left_key) or {}
+    right = indices.get(right_key) or {}
+    left_5d = market_style_return(style, left_key, "ret_5d")
+    right_5d = market_style_return(style, right_key, "ret_5d")
+    left_20d = market_style_return(style, left_key, "ret_20d")
+    right_20d = market_style_return(style, right_key, "ret_20d")
+    return {
+        "label": label,
+        "left_key": left_key,
+        "left_name": left.get("name"),
+        "right_key": right_key,
+        "right_name": right.get("name"),
+        "ret_5d_diff": round(left_5d - right_5d, 2) if left_5d is not None and right_5d is not None else None,
+        "ret_20d_diff": round(left_20d - right_20d, 2) if left_20d is not None and right_20d is not None else None,
+    }
+
+
+def build_market_style_summary(index_summaries: Dict[str, Dict[str, Any]], target_date: str, start_date: str) -> Dict[str, Any]:
+    available_count = sum(1 for item in index_summaries.values() if item.get("available"))
+    style: Dict[str, Any] = {
+        "available": available_count > 0,
+        "source": "baostock.query_history_k_data_plus",
+        "source_reference": BAOSTOCK_STYLE_SOURCE_URL,
+        "trade_date": target_date,
+        "window_start": start_date,
+        "window_end": target_date,
+        "indices": index_summaries,
+        "included_indices": list(MARKET_STYLE_INDEXES.keys()),
+        "proxy_notes": {
+            key: config["proxy_note"]
+            for key, config in MARKET_STYLE_INDEXES.items()
+            if config.get("proxy_note")
+        },
+        "missing": [
+            {
+                "key": key,
+                "name": item.get("name"),
+                "reason": item.get("reason"),
+            }
+            for key, item in index_summaries.items()
+            if not item.get("available")
+        ],
+    }
+    if not style["available"]:
+        style["reason"] = "no Baostock style index data available"
+        style["spreads"] = []
+        return style
+
+    style["spreads"] = [
+        build_style_spread(style, "微盘代理相对沪深300", "guozheng2000", "csi300"),
+        build_style_spread(style, "中证1000相对沪深300", "csi1000", "csi300"),
+        build_style_spread(style, "中证500相对沪深300", "csi500", "csi300"),
+        build_style_spread(style, "中证红利相对300成长", "csi_dividend", "csi300_growth"),
+        build_style_spread(style, "300成长相对300价值", "csi300_growth", "csi300_value"),
+        build_style_spread(style, "超大盘相对国证2000", "mega_cap", "guozheng2000"),
+    ]
+    return style
+
+
+def build_unavailable_market_style(reason: str, target_date: str, start_date: str) -> Dict[str, Any]:
+    return {
+        "available": False,
+        "source": "baostock.query_history_k_data_plus",
+        "source_reference": BAOSTOCK_STYLE_SOURCE_URL,
+        "trade_date": target_date,
+        "window_start": start_date,
+        "window_end": target_date,
+        "included_indices": list(MARKET_STYLE_INDEXES.keys()),
+        "indices": {
+            key: {
+                "available": False,
+                "name": config.get("name"),
+                "bs_code": config.get("bs_code"),
+                "style_role": config.get("style_role"),
+                "proxy_note": config.get("proxy_note"),
+                "reason": reason,
+            }
+            for key, config in MARKET_STYLE_INDEXES.items()
+        },
+        "spreads": [],
+        "reason": reason,
+    }
+
+
+STYLE_INDEX_CACHE_FIELDS = "ts_code,trade_date,open,high,low,close,pre_close,pct_chg,amount"
+
+
+def read_cached_style_index(bs_code: str) -> Optional[pd.DataFrame]:
+    try:
+        return read_cached_dataset("index_daily", bs_code, STYLE_INDEX_CACHE_FIELDS)
+    except Exception as exc:
+        print(f"[warn] style index cache read failed for {bs_code}: {exc}", file=sys.stderr)
+        return None
+
+
+def query_baostock_style_range(config: Dict[str, Any], fetch_start: str, fetch_end: str) -> pd.DataFrame:
+    """Fetch and standardize one Baostock style-index range. Caller owns the session."""
+    result = bs.query_history_k_data_plus(
+        config["bs_code"],
+        BAOSTOCK_STYLE_FIELDS,
+        start_date=ymd_to_dash_date(fetch_start),
+        end_date=ymd_to_dash_date(fetch_end),
+        frequency="d",
+        adjustflag="3",
+    )
+    if getattr(result, "error_code", "0") != "0":
+        reason = getattr(result, "error_msg", "") or getattr(result, "error_code", "unknown")
+        raise RuntimeError(f"baostock query failed: {reason}")
+    return standardize_baostock_index_daily(baostock_result_to_frame(result), config)
+
+
+def fetch_market_style_from_baostock(
+    target_date: str,
+    start_date: str,
+    trend_days: int,
+    cache_enabled: bool = True,
+    refresh_cache: bool = False,
+) -> Dict[str, Any]:
+    """Build style-index summaries, serving history from the PG cache.
+
+    Baostock is only dialled for edge ranges the stock_index_daily cache does
+    not cover (keyed by bs_code), with a single login session for all indexes.
+    When Baostock is unavailable the cached window still yields summaries.
+    """
+    cache_fields = split_fields(STYLE_INDEX_CACHE_FIELDS)
+    frames: Dict[str, pd.DataFrame] = {}
+    fetch_plan: Dict[str, List[Tuple[str, str]]] = {}
+    for key, config in MARKET_STYLE_INDEXES.items():
+        cached = None if refresh_cache or not cache_enabled else read_cached_style_index(config["bs_code"])
+        if cached is not None and not cached.empty:
+            cached = cached.copy()
+            cached["trade_date"] = cached["trade_date"].astype(str)
+            frames[key] = cached
+            ranges = missing_edge_ranges(cached, "trade_date", start_date, target_date)
+        else:
+            ranges = [(start_date, target_date)]
+        if ranges:
+            fetch_plan[key] = ranges
+
+    fetch_errors: Dict[str, str] = {}
+    if fetch_plan:
+        login_error: Optional[str] = None
+        if bs is None:
+            login_error = "missing optional dependency: baostock"
+        else:
+            try:
+                with contextlib.redirect_stdout(io.StringIO()):
+                    login = bs.login()
+                if getattr(login, "error_code", "0") != "0":
+                    login_error = getattr(login, "error_msg", "") or getattr(login, "error_code", "unknown")
+                    login_error = f"baostock login failed: {login_error}"
+            except Exception as exc:
+                login_error = f"baostock login failed: {exc}"
+
+        if login_error:
+            fetch_errors = {key: login_error for key in fetch_plan}
+        else:
+            try:
+                for key, ranges in fetch_plan.items():
+                    config = MARKET_STYLE_INDEXES[key]
+                    fetched: List[pd.DataFrame] = []
+                    for fetch_start, fetch_end in ranges:
+                        try:
+                            frame = query_baostock_style_range(config, fetch_start, fetch_end)
+                        except Exception as exc:
+                            fetch_errors[key] = str(exc)
+                            continue
+                        if not frame.empty:
+                            fetched.append(frame)
+                        time.sleep(0.05)
+                    if not fetched:
+                        continue
+                    addition = pd.concat(fetched, ignore_index=True)
+                    addition["ts_code"] = config["bs_code"]
+                    keep = [column for column in cache_fields if column in addition.columns]
+                    addition = addition[keep]
+                    merged = pd.concat([frames[key][keep], addition], ignore_index=True) if key in frames else addition
+                    merged = (
+                        merged.drop_duplicates(subset=["trade_date"], keep="last")
+                        .sort_values("trade_date")
+                        .reset_index(drop=True)
+                    )
+                    frames[key] = merged
+                    if cache_enabled:
+                        try:
+                            write_cached_dataset("index_daily", config["bs_code"], merged)
+                        except Exception as exc:
+                            print(f"[warn] style index cache write failed for {config['bs_code']}: {exc}", file=sys.stderr)
+            finally:
+                try:
+                    with contextlib.redirect_stdout(io.StringIO()):
+                        bs.logout()
+                except Exception:
+                    pass
+
+    summaries: Dict[str, Dict[str, Any]] = {}
+    for key, config in MARKET_STYLE_INDEXES.items():
+        df = frames.get(key)
+        if df is None or df.empty:
+            summaries[key] = {
+                "available": False,
+                "name": config.get("name"),
+                "bs_code": config.get("bs_code"),
+                "style_role": config.get("style_role"),
+                "proxy_note": config.get("proxy_note"),
+                "reason": fetch_errors.get(key, "baostock returned no data"),
+            }
+            continue
+        summary = build_market_style_index_summary(df, config, target_date, trend_days)
+        if key in fetch_errors:
+            summary["fetch_warning"] = f"served from cache; latest fetch failed: {fetch_errors[key]}"
+        summaries[key] = summary
+
+    style = build_market_style_summary(summaries, target_date, start_date)
+    style["source"] = "baostock.query_history_k_data_plus + stock_index_daily cache"
+    return style
+
+
+def collect_stock_kline_targets(*payloads: Dict[str, Any]) -> List[Dict[str, Any]]:
+    targets: List[Dict[str, Any]] = []
+    by_code: Dict[str, Dict[str, Any]] = {}
+
+    def add_record(record: Dict[str, Any]) -> None:
+        ts_code = str(record.get("ts_code") or "").strip()
+        if not ts_code:
+            return
+        name = str(record.get("name") or "").strip()
+        if ts_code in by_code:
+            if name:
+                aliases = by_code[ts_code].setdefault("aliases", [])
+                if name not in aliases:
+                    aliases.append(name)
+            return
+        target = {
+            "ts_code": ts_code,
+            "name": name or None,
+            "aliases": [name] if name else [],
+        }
+        by_code[ts_code] = target
+        targets.append(target)
+
+    for payload in payloads:
+        if not isinstance(payload, dict):
+            continue
+        records = payload.get("candidates")
+        if isinstance(records, list):
+            for record in records:
+                if isinstance(record, dict):
+                    add_record(record)
+        groups = payload.get("groups")
+        if isinstance(groups, dict):
+            for group in groups.values():
+                group_records = group.get("candidates") if isinstance(group, dict) else None
+                if isinstance(group_records, list):
+                    for record in group_records:
+                        if isinstance(record, dict):
+                            add_record(record)
+    return targets
+
+
+def build_stock_kline_records(
+    daily: pd.DataFrame,
+    stock_basic: pd.DataFrame,
+    targets: List[Dict[str, Any]],
+    target_date: str,
+    kline_days: int = DEFAULT_INDEX_KLINE_DAYS,
+) -> Dict[str, Any]:
+    safe_kline_days = max(20, int(kline_days))
+    empty_payload = {
+        "metadata": {
+            "target_date": target_date,
+            "kline_days_requested": safe_kline_days,
+            "stock_count": 0,
+            "price_adjustment": "qfq",
+        },
+        "by_ts_code": {},
+        "name_to_ts_code": {},
+    }
+    if daily is None or daily.empty or not targets:
+        return empty_payload
+
+    name_lookup: Dict[str, str] = {}
+    if stock_basic is not None and not stock_basic.empty and {"ts_code", "name"}.issubset(stock_basic.columns):
+        pairs = stock_basic[["ts_code", "name"]].dropna()
+        name_lookup = {
+            str(ts_code): str(name)
+            for ts_code, name in zip(pairs["ts_code"], pairs["name"])
+            if str(ts_code or "").strip()
+        }
+
+    requested_names: Dict[str, str] = {}
+    name_to_ts_code: Dict[str, str] = {}
+    selected_codes: List[str] = []
+    seen: Set[str] = set()
+    for target in targets:
+        ts_code = str(target.get("ts_code") or "").strip()
+        if not ts_code or ts_code in seen:
+            continue
+        seen.add(ts_code)
+        selected_codes.append(ts_code)
+        name = str(target.get("name") or name_lookup.get(ts_code) or "").strip()
+        if name:
+            requested_names[ts_code] = name
+        for alias in target.get("aliases") or []:
+            alias_text = str(alias or "").strip()
+            if alias_text:
+                name_to_ts_code[alias_text] = ts_code
+    if not selected_codes:
+        return empty_payload
+
+    df = daily.copy()
+    df["ts_code"] = df["ts_code"].astype(str)
+    df = df.loc[df["ts_code"].isin(selected_codes)]
+    if df.empty:
+        return empty_payload
+
+    df = df.copy()
+    df["trade_date"] = df["trade_date"].astype(str)
+    df = df.loc[(df["trade_date"] != "") & (df["trade_date"] <= target_date)].copy()
+    numeric_cols = ["open", "high", "low", "close", "pct_chg", "vol", "amount"]
+    for column in numeric_cols:
+        if column in df.columns:
+            df[column] = pd.to_numeric(df[column], errors="coerce").round(4)
+
+    by_ts_code: Dict[str, Any] = {}
+    kline_cols = [col for col in ["trade_date", "open", "high", "low", "close", "pct_chg", "vol", "amount"] if col in df.columns]
+    frames_by_code: Dict[str, pd.DataFrame] = {str(code): frame for code, frame in df.groupby("ts_code")}
+    for ts_code in selected_codes:
+        sub = frames_by_code.get(ts_code)
+        if sub is None:
+            continue
+        sub = sub.sort_values("trade_date").dropna(subset=["close"])
+        if sub.empty:
+            continue
+        kline_records = sub[kline_cols].tail(safe_kline_days).copy()
+        name = requested_names.get(ts_code) or name_lookup.get(ts_code) or ts_code
+        by_ts_code[ts_code] = {
+            "available": True,
+            "name": name,
+            "ts_code": ts_code,
+            "trade_date": str(sub["trade_date"].iloc[-1]),
+            "price_adjustment": "qfq",
+            "kline_days": int(len(kline_records)),
+            "kline_days_requested": int(safe_kline_days),
+            "records": kline_records.astype(object).where(pd.notnull(kline_records), None).to_dict(orient="records"),
+        }
+        if name:
+            name_to_ts_code[name] = ts_code
+
+    return {
+        "metadata": {
+            "target_date": target_date,
+            "kline_days_requested": safe_kline_days,
+            "stock_count": int(len(by_ts_code)),
+            "price_adjustment": "qfq",
+        },
+        "by_ts_code": by_ts_code,
+        "name_to_ts_code": name_to_ts_code,
     }
 
 
@@ -1371,27 +2977,52 @@ def classify_breadth_temperature(up_ratio: Any) -> Optional[str]:
 
 def build_sentiment_trend(target_date: str, trend_days: int) -> Dict[str, Any]:
     csv_path = DEFAULT_MARKET_HISTORY_CSV
-    if not csv_path.exists():
-        return {
-            "available": False,
-            "source": str(csv_path),
-            "reason": "reference/market_data.csv not found",
-        }
+    source = "market_history" if BACKEND == Backend.POSTGRESQL else str(csv_path)
+    if BACKEND == Backend.POSTGRESQL:
+        try:
+            raw = read_market_history()
+        except Exception as exc:
+            return {
+                "available": False,
+                "source": source,
+                "reason": f"failed to read market_history table: {exc}",
+            }
+        if raw is not None and not raw.empty:
+            raw = raw.rename(columns={
+                "date": "日期",
+                "rise": "上涨",
+                "limit_up": "涨停",
+                "fall": "下跌",
+                "limit_down": "跌停",
+                "flat": "平盘",
+                "activity": "活跃度",
+                "sentiment": "情绪值",
+                "amount": "成交额",
+                "margin_net_buy": "融资净买入",
+                "turnover_rate": "全市场换手率",
+            })
+    else:
+        if not csv_path.exists():
+            return {
+                "available": False,
+                "source": source,
+                "reason": "references/market_data.csv not found",
+            }
 
-    try:
-        raw = pd.read_csv(csv_path, encoding="utf-8-sig")
-    except Exception as exc:
-        return {
-            "available": False,
-            "source": str(csv_path),
-            "reason": f"failed to read market_data.csv: {exc}",
-        }
+        try:
+            raw = pd.read_csv(csv_path, encoding="utf-8-sig")
+        except Exception as exc:
+            return {
+                "available": False,
+                "source": source,
+                "reason": f"failed to read market_data.csv: {exc}",
+            }
 
     if raw is None or raw.empty or "日期" not in raw.columns:
         return {
             "available": False,
-            "source": str(csv_path),
-            "reason": "market_data.csv is empty or missing 日期 column",
+            "source": source,
+            "reason": "market_history is empty or missing 日期 column",
         }
 
     df = raw.copy()
@@ -1402,11 +3033,11 @@ def build_sentiment_trend(target_date: str, trend_days: int) -> Dict[str, Any]:
     if df.empty:
         return {
             "available": False,
-            "source": str(csv_path),
+            "source": source,
             "reason": "no sentiment rows on or before target date",
         }
 
-    expected_columns = ["上涨", "下跌", "平盘", "涨停", "跌停", "活跃度", "成交额", "全市场换手率"]
+    expected_columns = ["上涨", "下跌", "平盘", "涨停", "跌停", "活跃度", "情绪值", "成交额", "全市场换手率"]
     for column in expected_columns:
         if column in df.columns:
             df[column] = parse_numeric_text_series(df[column])
@@ -1447,6 +3078,7 @@ def build_sentiment_trend(target_date: str, trend_days: int) -> Dict[str, Any]:
             "涨停",
             "跌停",
             "活跃度",
+            "情绪值",
             "成交额",
             "amount_trillion_yuan",
             "market_turnover_rate",
@@ -1462,7 +3094,7 @@ def build_sentiment_trend(target_date: str, trend_days: int) -> Dict[str, Any]:
 
     return {
         "available": True,
-        "source": str(csv_path),
+        "source": source,
         "trade_date": str(latest.get("trade_date")),
         "matches_target_date": str(latest.get("trade_date")) == target_date,
         "window_start": str(df["trade_date"].iloc[0]),
@@ -1474,6 +3106,7 @@ def build_sentiment_trend(target_date: str, trend_days: int) -> Dict[str, Any]:
             "limit_up_count": round_optional(latest.get("涨停"), 0),
             "limit_down_count": round_optional(latest.get("跌停"), 0),
             "activity": round_optional(latest.get("活跃度"), 2),
+            "sentiment_value": round_optional(latest.get("情绪值"), 2),
             "amount": round_optional(latest.get("成交额"), 4),
             "amount_trillion_yuan": round_optional(latest.get("amount_trillion_yuan"), 2),
             "market_turnover_rate": round_optional(latest.get("market_turnover_rate"), 4) if "market_turnover_rate" in df.columns else None,
@@ -1538,11 +3171,17 @@ def build_market_trend(
     target_date: str,
     trade_dates: List[str],
     trend_days: int,
+    index_kline_days: int = DEFAULT_INDEX_KLINE_DAYS,
     cache_enabled: bool = True,
     refresh_cache: bool = False,
 ) -> Dict[str, Any]:
     safe_trend_days = max(20, int(trend_days))
-    start_date = trade_dates[0] if trade_dates else target_date
+    safe_index_kline_days = max(20, int(index_kline_days))
+    trend_start_date = trade_dates[0] if trade_dates else target_date
+    kline_start_date = (
+        ymd_to_dt(target_date) - timedelta(days=max(safe_index_kline_days * 3, 260))
+    ).strftime("%Y%m%d")
+    start_date = min(trend_start_date, kline_start_date)
     indices: Dict[str, Any] = {}
     for key, config in MARKET_TREND_INDEXES.items():
         index_daily = fetch_index_daily(
@@ -1559,17 +3198,29 @@ def build_market_trend(
             ts_code=config["ts_code"],
             target_date=target_date,
             trend_days=safe_trend_days,
+            kline_days=safe_index_kline_days,
         )
+
+    market_style = fetch_market_style_from_baostock(
+        target_date=target_date,
+        start_date=start_date,
+        trend_days=safe_trend_days,
+        cache_enabled=cache_enabled,
+        refresh_cache=refresh_cache,
+    )
 
     return {
         "metadata": {
             "trend_days_requested": safe_trend_days,
+            "index_kline_days_requested": safe_index_kline_days,
             "index_start_date": start_date,
             "index_end_date": target_date,
             "sentiment_source": str(DEFAULT_MARKET_HISTORY_CSV),
             "included_indices": list(MARKET_TREND_INDEXES.keys()),
+            "market_style_source": market_style.get("source"),
         },
         "indices": indices,
+        "market_style": market_style,
         "sentiment": build_sentiment_trend(target_date, safe_trend_days),
     }
 
@@ -1589,13 +3240,19 @@ def candidate_columns() -> List[str]:
         "rel_ret_5d",
         "rel_ret_10d",
         "amount",
+        "amount_100m_yuan",
         "amount_ratio_20d",
         "sustained_volume_days_5",
         "turnover_rate",
         "volume_ratio",
         "total_mv",
+        "total_mv_100m_yuan",
+        "circ_mv",
+        "circ_mv_100m_yuan",
         "drawdown_120_high",
         "close_position_120d",
+        "close_to_high",
+        "elasticity_hint_score",
     ]
 
 
@@ -1606,83 +3263,64 @@ def clean_candidates(df: pd.DataFrame, limit: int) -> List[Dict[str, Any]]:
     out = df[cols].head(limit).copy()
     if "amount" in out.columns:
         out["amount_100m_yuan"] = pd.to_numeric(out["amount"], errors="coerce") / 100000
-    numeric_cols = [c for c in out.columns if c not in {"ts_code", "name", "market", "trade_date"}]
+    if "total_mv" in out.columns:
+        out["total_mv_100m_yuan"] = pd.to_numeric(out["total_mv"], errors="coerce") / 10000
+    if "circ_mv" in out.columns:
+        out["circ_mv_100m_yuan"] = pd.to_numeric(out["circ_mv"], errors="coerce") / 10000
+    non_numeric_cols = {
+        "ts_code",
+        "name",
+        "market",
+        "trade_date",
+    }
+    numeric_cols = [c for c in out.columns if c not in non_numeric_cols]
     for col in numeric_cols:
         out[col] = pd.to_numeric(out[col], errors="coerce").round(4)
     out = out.astype(object).where(pd.notnull(out), None)
     return out.to_dict(orient="records")
 
 
-def build_candidates(panel: pd.DataFrame, sample_limit: int) -> Dict[str, Any]:
-    liquid = panel.loc[panel["amount"].fillna(0) > 0].copy()
-    if liquid.empty:
-        return {
-            "strong_samples": [],
-            "weak_samples": [],
-            "low_position_volume_samples": [],
-            "divergence_samples": {"up_against_index": [], "down_against_index": []},
-        }
+def clamp(value: Optional[float], lower: float, upper: float) -> float:
+    if value is None:
+        return lower
+    return max(lower, min(upper, float(value)))
 
-    numeric_inputs = [
-        "pct_chg",
-        "ret_3d",
-        "ret_5d",
-        "ret_10d",
-        "amount",
-        "amount_ratio_20d",
-        "sustained_volume_days_5",
-        "rel_ret_5d",
-        "drawdown_120_high",
-        "close_position_120d",
-    ]
-    for column in numeric_inputs:
-        if column in liquid.columns:
-            liquid[column] = pd.to_numeric(liquid[column], errors="coerce")
 
-    liquid["strong_score"] = (
-        liquid["pct_chg"].fillna(0)
-        + liquid["ret_3d"].fillna(0) * 0.4
-        + liquid["ret_5d"].fillna(0) * 0.4
-        + liquid["amount_ratio_20d"].fillna(1).clip(upper=5) * 1.5
-        + liquid["rel_ret_5d"].fillna(0) * 0.4
-    )
-    liquid["weak_score"] = (
-        liquid["pct_chg"].fillna(0)
-        + liquid["ret_3d"].fillna(0) * 0.4
-        + liquid["ret_5d"].fillna(0) * 0.4
-        + liquid["rel_ret_5d"].fillna(0) * 0.4
-    )
+def calculate_elasticity_hint_score(record: Dict[str, Any]) -> Optional[float]:
+    """Deterministic trading-activity hint; the model still decides final roles."""
+    amount_ratio = safe_float(record.get("amount_ratio_20d"))
+    turnover = safe_float(record.get("turnover_rate"))
+    volume_ratio = safe_float(record.get("volume_ratio"))
+    ret_5d = safe_float(record.get("ret_5d"))
+    rel_ret_5d = safe_float(record.get("rel_ret_5d"))
+    total_mv = safe_float(record.get("total_mv_100m_yuan"))
+    close_to_high = safe_float(record.get("close_to_high"))
 
-    strong = liquid.sort_values(["strong_score", "amount"], ascending=[False, False])
-    weak = liquid.sort_values(["weak_score", "amount"], ascending=[True, False])
+    score = 0.0
+    score += clamp(amount_ratio, 0.0, 5.0) * 1.2
+    score += clamp(volume_ratio, 0.0, 5.0) * 0.6
+    score += clamp(turnover, 0.0, 20.0) * 0.18
+    score += clamp(ret_5d, 0.0, 30.0) * 0.10
+    score += clamp(rel_ret_5d, 0.0, 30.0) * 0.12
+    if close_to_high is not None:
+        score += clamp((close_to_high - 0.90) * 20.0, 0.0, 2.0)
+    if total_mv is not None:
+        if total_mv <= 80:
+            score += 2.0
+        elif total_mv <= 200:
+            score += 1.5
+        elif total_mv <= 500:
+            score += 1.0
+        elif total_mv <= 1000:
+            score += 0.4
+    return round(score, 2)
 
-    low_volume = liquid.loc[
-        (liquid["drawdown_120_high"].fillna(0) <= -20)
-        & (liquid["close_position_120d"].fillna(1) <= 0.35)
-        & (liquid["amount_ratio_20d"].fillna(0) >= 1.8)
-        & (liquid["ret_3d"].fillna(-999) > 0)
-    ].sort_values(["sustained_volume_days_5", "amount_ratio_20d", "ret_5d"], ascending=[False, False, False])
 
-    up_against = liquid.loc[
-        (liquid["ret_5d"].fillna(-999) > 0)
-        & (liquid["rel_ret_5d"].fillna(-999) >= 5)
-        & (liquid["amount_ratio_20d"].fillna(0) >= 1.0)
-    ].sort_values(["rel_ret_5d", "ret_5d", "amount"], ascending=[False, False, False])
-
-    down_against = liquid.loc[
-        (liquid["ret_5d"].fillna(999) < 0)
-        & (liquid["rel_ret_5d"].fillna(999) <= -5)
-    ].sort_values(["rel_ret_5d", "ret_5d", "amount"], ascending=[True, True, False])
-
-    return {
-        "strong_samples": clean_candidates(strong, sample_limit),
-        "weak_samples": clean_candidates(weak, sample_limit),
-        "low_position_volume_samples": clean_candidates(low_volume, sample_limit),
-        "divergence_samples": {
-            "up_against_index": clean_candidates(up_against, sample_limit),
-            "down_against_index": clean_candidates(down_against, sample_limit),
-        },
-    }
+def add_elasticity_hint_scores(records: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    scored = [dict(record) for record in records]
+    for record in scored:
+        record["elasticity_hint_score"] = calculate_elasticity_hint_score(record)
+    return scored
 
 
 def build_money_effect_samples(
@@ -1720,7 +3358,12 @@ def build_money_effect_samples(
                 "sort_by": "成交额降序",
             },
             "candidates": [],
-            "summary": {"candidate_count": 0},
+            "summary": {
+                "candidate_count": 0,
+                "qualified_before_limit_count": 0,
+                "market_total_amount_100m_yuan": None,
+                "candidate_amount_share_of_market_pct": None,
+            },
         }
 
     # daily.amount unit is thousand yuan: 1亿元 = 100000 千元
@@ -1731,10 +3374,14 @@ def build_money_effect_samples(
         if column in df.columns:
             df[column] = pd.to_numeric(df[column], errors="coerce")
 
+    market_total_amount_100m = float(df["amount"].fillna(0).clip(lower=0).sum() / 100000)
+
     qualified = df.loc[
         (df["pct_chg"].fillna(-999) >= pct_chg_threshold)
         & (df["amount"].fillna(0) >= amount_threshold_thousand_yuan)
     ].copy()
+
+    qualified_before_limit_count = int(len(qualified))
 
     if qualified.empty:
         return {
@@ -1748,7 +3395,12 @@ def build_money_effect_samples(
             "candidates": [],
             "summary": {
                 "candidate_count": 0,
+                "qualified_before_limit_count": 0,
                 "total_amount_100m_yuan": 0.0,
+                "market_total_amount_100m_yuan": round(market_total_amount_100m, 2),
+                "candidate_amount_share_of_market_pct": (
+                    0.0 if market_total_amount_100m > 0 else None
+                ),
             },
         }
 
@@ -1765,7 +3417,14 @@ def build_money_effect_samples(
 
     summary = {
         "candidate_count": int(len(qualified)),
+        "qualified_before_limit_count": qualified_before_limit_count,
         "total_amount_100m_yuan": round(total_amount_100m, 2),
+        "market_total_amount_100m_yuan": round(market_total_amount_100m, 2),
+        "candidate_amount_share_of_market_pct": (
+            round(total_amount_100m / market_total_amount_100m * 100, 2)
+            if market_total_amount_100m > 0
+            else None
+        ),
         "median_pct_chg": round(float(qualified["pct_chg"].median()), 2),
         "max_pct_chg": round(float(qualified["pct_chg"].max()), 2),
         "min_pct_chg": round(float(qualified["pct_chg"].min()), 2),
@@ -1773,8 +3432,8 @@ def build_money_effect_samples(
         "median_ret_5d": _safe_median("ret_5d"),
         "median_rel_ret_5d": _safe_median("rel_ret_5d"),
         "median_amount_ratio_20d": _safe_median("amount_ratio_20d"),
-        "limit_up_approx_count": int((qualified["pct_chg"] >= 9.8).sum()),
     }
+    summary["limit_up_count"], _, summary["limit_detection"] = count_limit_hits(qualified)
 
     return {
         "available": True,
@@ -1785,7 +3444,7 @@ def build_money_effect_samples(
             "sort_by": "成交额降序",
             "amount_unit_note": "Tushare daily 的 amount 单位为千元，脚本内部已按亿元阈值换算。",
         },
-        "candidates": clean_candidates(qualified, sample_limit),
+        "candidates": add_elasticity_hint_scores(clean_candidates(qualified, sample_limit)),
         "summary": summary,
     }
 
@@ -1878,8 +3537,8 @@ def build_volume_decline_samples(
         "max_amount_ratio_20d": round(float(qualified["amount_ratio_20d"].max()), 2),
         "median_ret_5d": _safe_median("ret_5d"),
         "median_drawdown_120_high": _safe_median("drawdown_120_high"),
-        "limit_down_approx_count": int((qualified["pct_chg"] <= -9.8).sum()),
     }
+    _, summary["limit_down_count"], summary["limit_detection"] = count_limit_hits(qualified)
 
     # Inject decline_intensity into the candidate dict so downstream rendering can use it.
     base_records = clean_candidates(qualified, sample_limit)
@@ -1902,47 +3561,14 @@ def build_volume_decline_samples(
     }
 
 
-def build_low_position_volume_anomaly_samples(
-    features: pd.DataFrame,
-    target_date: str,
-    drawdown_min_abs: float,
-    close_position_max: float,
-    cv_max: float,
-    spike_volume_ratio_min: float,
-    spike_pct_chg_min: float,
-    lookback_days: int,
-    sustain_volume_ratio_min: float,
-    quiet_volume_ratio_max: float,
+def build_capacity_up_samples(
+    panel: pd.DataFrame,
+    market_cap_threshold_100m_yuan: float,
+    amount_threshold_100m_yuan: float,
+    pct_chg_threshold: float,
     sample_limit: int,
 ) -> Dict[str, Any]:
-    """
-    Low-position volume anomaly samples — three categorized scenarios.
-
-    "Low position" (either A or B is enough):
-      A. Close position in the 120d range <= close_position_max (default 0.20),
-         i.e. near the historical bottom of the monthly range.
-      B. Drawdown from 120d high <= -drawdown_min_abs (default 35%) AND the most
-         recent 10 close prices are flat enough: close_cv_10d <= cv_max (default 3%).
-
-    "Volume spike" trigger day requires:
-      - amount_ratio_15d >= spike_volume_ratio_min (default 3.0)
-      - pct_chg          >= spike_pct_chg_min       (default 7.0)
-
-    Three scenarios based on where the trigger day falls relative to D and what
-    the volume / price did afterwards:
-
-      starter      — trigger day == D (today is the spike day).
-      sustain      — trigger day is within [D-lookback_days, D-1] AND every
-                     post-trigger day has amount >= trigger amount * sustain_volume_ratio_min
-                     AND close at D >= open of trigger day. Interpretation: 换手吃筹.
-      quiet        — trigger day is within [D-lookback_days, D-1] AND median amount
-                     of the most recent 3 days is <= trigger amount * quiet_volume_ratio_max
-                     AND close at D >= 0.95 * close of trigger day. Interpretation: 缩量企稳.
-
-    Stocks may match multiple scenarios; we tag each candidate with its primary
-    scenario by priority: starter > sustain > quiet.
-    """
-    if features is None or features.empty:
+    if panel is None or panel.empty:
         return {
             "available": False,
             "filter_criteria": {},
@@ -1950,350 +3576,379 @@ def build_low_position_volume_anomaly_samples(
             "summary": {"candidate_count": 0},
         }
 
-    df = features.copy()
-    df["trade_date"] = df["trade_date"].astype(str)
+    df = panel.copy()
     for column in (
-        "open", "high", "low", "close", "pct_chg", "amount",
-        "amount_ratio_15d", "amount_ratio_20d",
-        "drawdown_120_high", "close_position_120d", "close_cv_10d",
-        "close_ma5", "prev_high_10d", "close_to_high", "history_days",
+        "pct_chg", "amount", "total_mv", "circ_mv", "close",
+        "turnover_rate", "turnover_rate_f", "volume_ratio",
     ):
         if column in df.columns:
             df[column] = pd.to_numeric(df[column], errors="coerce")
 
-    # Resolve the trade dates around target.
-    all_dates = sorted(df["trade_date"].unique())
-    if target_date not in all_dates:
-        return {
-            "available": False,
-            "filter_criteria": {},
-            "candidates": [],
-            "summary": {"candidate_count": 0},
-        }
-    target_idx = all_dates.index(target_date)
-    lookback_start_idx = max(0, target_idx - lookback_days)
-    window_dates = all_dates[lookback_start_idx : target_idx + 1]
-    if not window_dates:
-        return {
-            "available": False,
-            "filter_criteria": {},
-            "candidates": [],
-            "summary": {"candidate_count": 0},
-        }
+    names = df["name"].fillna("").astype(str) if "name" in df.columns else pd.Series("", index=df.index)
+    markets = df["market"].fillna("").astype(str) if "market" in df.columns else pd.Series("", index=df.index)
+    ts_codes = df["ts_code"].fillna("").astype(str)
+    total_mv_100m = df["total_mv"] / 10000 if "total_mv" in df.columns else pd.Series(float("nan"), index=df.index)
+    amount_100m = df["amount"] / 100000 if "amount" in df.columns else pd.Series(float("nan"), index=df.index)
 
-    window_df = df.loc[df["trade_date"].isin(window_dates)].copy()
+    qualified = df.loc[
+        (total_mv_100m > market_cap_threshold_100m_yuan)
+        & (amount_100m > amount_threshold_100m_yuan)
+        & (df["pct_chg"].fillna(-999) > pct_chg_threshold)
+        & ~markets.eq("北交所")
+        & ~ts_codes.str.endswith(".BJ")
+        & ~names.str.upper().str.contains("ST", na=False)
+    ].copy()
 
-    # Compute "low position" qualifier on each row inside the window:
-    # A: close_position_120d <= close_position_max
-    # B: drawdown_120_high <= -drawdown_min_abs AND close_cv_10d <= cv_max
-    window_df["is_low_A"] = window_df["close_position_120d"].fillna(1.0) <= close_position_max
-    window_df["is_low_B"] = (
-        (window_df["drawdown_120_high"].fillna(0) <= -drawdown_min_abs)
-        & (window_df["close_cv_10d"].fillna(1.0) <= cv_max)
-    )
-    window_df["is_low_position"] = window_df["is_low_A"] | window_df["is_low_B"]
-
-    names = window_df["name"].fillna("") if "name" in window_df.columns else pd.Series("", index=window_df.index)
-    is_special_or_new = names.str.startswith(("ST", "*ST", "退", "C"))
-    is_mature = window_df["history_days"].fillna(0) >= 60
-    has_1y_amount = window_df["amount"].fillna(0) >= 100000
-
-    # Observation pool: current broad coverage rule.
-    window_df["is_observation_trigger"] = (
-        window_df["is_low_position"]
-        & (window_df["amount_ratio_15d"].fillna(0) >= spike_volume_ratio_min)
-        & (window_df["pct_chg"].fillna(-999) >= spike_pct_chg_min)
-    )
-
-    # High-quality pool A: deep drawdown + strong thrust.
-    window_df["is_high_quality_A"] = (
-        (window_df["drawdown_120_high"].fillna(0) <= -45.0)
-        & (window_df["amount_ratio_15d"].fillna(0) >= 2.5)
-        & (window_df["pct_chg"].fillna(-999) >= 10.0)
-        & has_1y_amount
-        & is_mature
-        & ~is_special_or_new
-    )
-
-    # High-quality pool B: broader low zone + strong momentum quality.
-    window_df["is_high_quality_B"] = (
-        (window_df["close_position_120d"].fillna(1.0) <= 0.35)
-        & (window_df["drawdown_120_high"].fillna(0) <= -20.0)
-        & (window_df["amount_ratio_15d"].fillna(0) >= 3.0)
-        & (window_df["pct_chg"].fillna(-999) >= 15.0)
-        & has_1y_amount
-        & is_mature
-        & ~is_special_or_new
-        & (window_df["close"].fillna(0) >= window_df["prev_high_10d"].fillna(float("inf")))
-        & (window_df["close_to_high"].fillna(0) >= 0.95)
-    )
-
-    # Trigger day can enter through the observation pool or either high-quality pool.
-    window_df["is_spike_trigger"] = (
-        window_df["is_observation_trigger"]
-        | window_df["is_high_quality_A"]
-        | window_df["is_high_quality_B"]
-    )
-
-    # Build per-stock series indexed by trade_date.
-    candidates: List[Dict[str, Any]] = []
-    target_rows = window_df.loc[window_df["trade_date"] == target_date].set_index("ts_code")
-    triggered_codes = window_df.loc[window_df["is_spike_trigger"], "ts_code"].dropna().unique()
-    if len(triggered_codes) == 0:
+    if qualified.empty:
         return {
             "available": True,
             "filter_criteria": {
-                "low_position_rule": (
-                    f"A: close_position_120d <= {close_position_max}; "
-                    f"B: drawdown_120_high <= -{drawdown_min_abs}% AND close_cv_10d <= {cv_max}"
-                ),
-                "spike_trigger": (
-                    f"amount_ratio_15d >= {spike_volume_ratio_min} AND pct_chg >= {spike_pct_chg_min}"
-                ),
-                "post_trigger_display_rule": "days_since_trigger == 0 OR today_close >= today_close_ma5",
-                "lookback_days_for_trigger": lookback_days,
-                "sustain_post_volume_ratio_min": sustain_volume_ratio_min,
-                "quiet_post_volume_ratio_max": quiet_volume_ratio_max,
+                "total_mv_100m_yuan_min_exclusive": market_cap_threshold_100m_yuan,
+                "amount_100m_yuan_min_exclusive": amount_threshold_100m_yuan,
+                "pct_chg_min_exclusive": pct_chg_threshold,
+                "exclude": "北交所/.BJ；ST/*ST",
                 "sample_limit": sample_limit,
+                "sort_by": "涨幅降序，其次成交额降序",
             },
             "candidates": [],
-            "summary": {
-                "candidate_count": 0,
-                "starter_count": 0,
-                "sustain_count": 0,
-                "quiet_count": 0,
-                "undetermined_count": 0,
-                "quality_A_count": 0,
-                "quality_B_count": 0,
-                "quality_A_plus_B_count": 0,
-                "quality_C_count": 0,
-                "high_quality_A_count": 0,
-                "high_quality_B_count": 0,
-            },
+            "summary": {"candidate_count": 0},
         }
 
-    grouped = window_df.loc[window_df["ts_code"].isin(triggered_codes)].groupby("ts_code", group_keys=False)
-    for ts_code, sub in grouped:
-        sub = sub.sort_values("trade_date").reset_index(drop=True)
-        if sub.empty or sub["is_spike_trigger"].sum() == 0:
-            continue
+    qualified["amount_100m_yuan"] = qualified["amount"] / 100000
+    qualified["total_mv_100m_yuan"] = qualified["total_mv"] / 10000
+    if "circ_mv" in qualified.columns:
+        qualified["circ_mv_100m_yuan"] = qualified["circ_mv"] / 10000
+    else:
+        qualified["circ_mv_100m_yuan"] = None
 
-        # Find the most recent trigger day inside the window.
-        trigger_rows = sub.loc[sub["is_spike_trigger"]]
-        if trigger_rows.empty:
-            continue
-        trigger_row = trigger_rows.iloc[-1]
-        trigger_date = str(trigger_row["trade_date"])
-        trigger_idx_in_window = sub.index[sub["trade_date"] == trigger_date].tolist()
-        if not trigger_idx_in_window:
-            continue
-        t_idx = trigger_idx_in_window[-1]
-        days_since_trigger = (len(sub) - 1) - t_idx  # 0 means trigger == today
+    qualified = qualified.sort_values(["pct_chg", "amount"], ascending=[False, False]).head(sample_limit)
 
-        target_row = target_rows.loc[ts_code] if ts_code in target_rows.index else None
-        if target_row is None:
-            continue
-
-        target_close = float(target_row.get("close") or 0)
-        target_close_ma5 = target_row.get("close_ma5")
-        if days_since_trigger > 0:
-            if pd.isna(target_close_ma5) or target_close < float(target_close_ma5):
-                continue
-
-        scenario = None
-        sustain_ratio = None
-        quiet_ratio = None
-        post_trigger_days = sub.iloc[t_idx + 1 :]
-
-        if days_since_trigger == 0:
-            scenario = "starter"
-        else:
-            trigger_amount = float(trigger_row.get("amount") or 0)
-            trigger_open = float(trigger_row.get("open") or 0)
-            trigger_close = float(trigger_row.get("close") or 0)
-
-            # Sustain check: every post-trigger day's amount >= trigger * sustain_ratio_min,
-            #                AND target close >= trigger open (price has not collapsed).
-            if not post_trigger_days.empty and trigger_amount > 0:
-                post_amounts = pd.to_numeric(post_trigger_days["amount"], errors="coerce").dropna()
-                if not post_amounts.empty:
-                    min_post_ratio = float(post_amounts.min() / trigger_amount)
-                    sustain_ratio = round(min_post_ratio, 4)
-                    if (
-                        min_post_ratio >= sustain_volume_ratio_min
-                        and target_close >= trigger_open
-                    ):
-                        scenario = "sustain"
-
-            # Quiet check: median of last 3 days' amount <= trigger * quiet_ratio_max,
-            #              AND target close >= 0.95 * trigger close (price has not broken down).
-            if scenario is None and trigger_amount > 0 and trigger_close > 0:
-                tail = pd.to_numeric(post_trigger_days["amount"].tail(3), errors="coerce").dropna()
-                if not tail.empty:
-                    median_post_ratio = float(tail.median() / trigger_amount)
-                    quiet_ratio = round(median_post_ratio, 4)
-                    if (
-                        median_post_ratio <= quiet_volume_ratio_max
-                        and target_close >= 0.95 * trigger_close
-                    ):
-                        scenario = "quiet"
-
-        if scenario is None:
-            # Triggered in window but post-trigger behavior matched neither sustain nor quiet:
-            # treat as 分歧型 / undetermined; still surface for completeness.
-            scenario = "undetermined"
-
-        matched_models: List[str] = []
-        if bool(trigger_row.get("is_high_quality_A")):
-            matched_models.append("high_quality_A_deep_drawdown_thrust")
-        if bool(trigger_row.get("is_high_quality_B")):
-            matched_models.append("high_quality_B_broad_momentum_quality")
-        matched_model_labels = [
-            {
-                "high_quality_A_deep_drawdown_thrust": "高质量A：深回撤强启动",
-                "high_quality_B_broad_momentum_quality": "高质量B：宽低位强动量质量",
-            }.get(model, model)
-            for model in matched_models
-        ]
-        quality_tier = "+".join(["A" if "high_quality_A_deep_drawdown_thrust" in matched_models else "",
-                                 "B" if "high_quality_B_broad_momentum_quality" in matched_models else ""]).strip("+")
-        if not quality_tier:
-            quality_tier = "C"
-        scenario_label = {
-            "starter": "启动型",
-            "sustain": "持续换手型",
-            "quiet": "缩量企稳型",
-            "undetermined": "分歧型",
-        }.get(scenario, scenario)
-
+    candidates: List[Dict[str, Any]] = []
+    for _, row in qualified.iterrows():
+        amount = safe_float(row.get("amount"))
+        total_mv = safe_float(row.get("total_mv"))
+        circ_mv = safe_float(row.get("circ_mv"))
         candidates.append({
-            "ts_code": ts_code,
-            "name": nullable_value(target_row.get("name")),
-            "market": nullable_value(target_row.get("market")),
-            "scenario": scenario,
-            "scenario_label": scenario_label,
-            "quality_tier": quality_tier,
-            "matched_models": matched_models,
-            "matched_model_labels": matched_model_labels,
-            "observation_pool": bool(trigger_row.get("is_observation_trigger")),
-            "trigger_date": trigger_date,
-            "days_since_trigger": int(days_since_trigger),
-            "trigger_pct_chg": round(float(trigger_row.get("pct_chg") or 0), 2),
-            "trigger_amount_ratio_15d": round(float(trigger_row.get("amount_ratio_15d") or 0), 2),
-            "trigger_amount_100m_yuan": round(float(trigger_row.get("amount") or 0) / 100000, 2),
-            "trigger_drawdown_120_high": round(float(trigger_row.get("drawdown_120_high") or 0), 2),
-            "trigger_close_position_120d": (
-                round(float(trigger_row.get("close_position_120d")), 4)
-                if pd.notna(trigger_row.get("close_position_120d"))
-                else None
-            ),
-            "trigger_close_to_high": (
-                round(float(trigger_row.get("close_to_high")), 4)
-                if pd.notna(trigger_row.get("close_to_high"))
-                else None
-            ),
-            "trigger_break_prev_high_10d": bool(
-                pd.notna(trigger_row.get("prev_high_10d"))
-                and float(trigger_row.get("close") or 0) >= float(trigger_row.get("prev_high_10d"))
-            ),
-            "history_days": (
-                int(trigger_row.get("history_days"))
-                if pd.notna(trigger_row.get("history_days"))
-                else None
-            ),
-            "trigger_low_track": "+".join(
-                track for track, matched in (
-                    ("A", bool(trigger_row.get("is_low_A"))),
-                    ("B", bool(trigger_row.get("is_low_B"))),
-                )
-                if matched
-            ) or "HQ",
-            "post_trigger_min_volume_ratio": sustain_ratio,
-            "post_trigger_recent3_volume_ratio": quiet_ratio,
-            "today_close": round(float(target_row.get("close") or 0), 2),
-            "today_close_ma5": (
-                round(float(target_close_ma5), 2)
-                if pd.notna(target_close_ma5)
-                else None
-            ),
-            "today_above_ma5": (
-                bool(target_close >= float(target_close_ma5))
-                if pd.notna(target_close_ma5)
-                else None
-            ),
-            "today_pct_chg": round(float(target_row.get("pct_chg") or 0), 2),
-            "today_amount_100m_yuan": round(float(target_row.get("amount") or 0) / 100000, 2),
-            "today_drawdown_120_high": round(float(target_row.get("drawdown_120_high") or 0), 2),
-            "today_close_position_120d": (
-                round(float(target_row.get("close_position_120d")), 4)
-                if pd.notna(target_row.get("close_position_120d"))
-                else None
-            ),
+            "ts_code": nullable_value(row.get("ts_code")),
+            "name": nullable_value(row.get("name")),
+            "market": nullable_value(row.get("market")),
+            "pct_chg": round_optional(row.get("pct_chg"), 2),
+            "amount_100m_yuan": round_optional(amount / 100000, 2) if amount is not None else None,
+            "total_mv_100m_yuan": round_optional(total_mv / 10000, 2) if total_mv is not None else None,
+            "circ_mv_100m_yuan": round_optional(circ_mv / 10000, 2) if circ_mv is not None else None,
+            "close": round_optional(row.get("close"), 2),
+            "turnover_rate": round_optional(row.get("turnover_rate"), 2),
+            "volume_ratio": round_optional(row.get("volume_ratio"), 2),
+            "trigger_reason": "当天总市值 > 70 亿、成交额 > 5 亿、涨幅 > 8%，且排除北交所与 ST",
         })
-
-    # Sort: high-quality pools first, then starter/sustain/quiet/undetermined.
-    scenario_priority = {"starter": 0, "sustain": 1, "quiet": 2, "undetermined": 3}
-    quality_priority = {"A+B": 0, "A": 0, "B": 1, "C": 2}
-    candidates.sort(key=lambda r: (
-        quality_priority.get(r["quality_tier"], 99),
-        scenario_priority.get(r["scenario"], 99),
-        -float(r.get("trigger_amount_ratio_15d") or 0),
-        -float(r.get("trigger_pct_chg") or 0),
-    ))
-    candidates = candidates[:sample_limit]
-
-    counts: Dict[str, int] = {"starter": 0, "sustain": 0, "quiet": 0, "undetermined": 0}
-    quality_counts: Dict[str, int] = {"A": 0, "B": 0, "A+B": 0, "C": 0}
-    model_counts: Dict[str, int] = {
-        "high_quality_A_deep_drawdown_thrust": 0,
-        "high_quality_B_broad_momentum_quality": 0,
-    }
-    for c in candidates:
-        counts[c["scenario"]] = counts.get(c["scenario"], 0) + 1
-        quality_counts[c["quality_tier"]] = quality_counts.get(c["quality_tier"], 0) + 1
-        for model in c.get("matched_models") or []:
-            model_counts[model] = model_counts.get(model, 0) + 1
 
     return {
         "available": True,
         "filter_criteria": {
-            "low_position_rule_A": f"120日价格分位 <= {close_position_max}",
-            "low_position_rule_B": (
-                f"距120日高点回撤 <= -{drawdown_min_abs}% 且 10日收盘价变异系数 <= {cv_max}"
-            ),
-            "spike_volume_ratio_min": spike_volume_ratio_min,
-            "spike_pct_chg_min": spike_pct_chg_min,
-            "high_quality_pool_A": (
-                "距120日高点回撤 <= -45%，15日放量倍数 >= 2.5，"
-                "当日涨幅 >= 10%，成交额 >= 1亿，历史交易天数 >= 60，"
-                "且排除 ST/*ST/退/C 新股"
-            ),
-            "high_quality_pool_B": (
-                "120日价格分位 <= 0.35，距120日高点回撤 <= -20%，"
-                "15日放量倍数 >= 3.0，当日涨幅 >= 15%，成交额 >= 1亿，"
-                "收盘价突破前10日高点，收盘/最高 >= 0.95，"
-                "历史交易天数 >= 60，且排除 ST/*ST/退/C 新股"
-            ),
-            "post_trigger_display_rule": "触发日为今日，或今日收盘价仍站在5日均线上方",
-            "lookback_days_for_trigger": lookback_days,
-            "sustain_post_volume_ratio_min": sustain_volume_ratio_min,
-            "quiet_post_volume_ratio_max": quiet_volume_ratio_max,
+            "total_mv_100m_yuan_min_exclusive": market_cap_threshold_100m_yuan,
+            "amount_100m_yuan_min_exclusive": amount_threshold_100m_yuan,
+            "pct_chg_min_exclusive": pct_chg_threshold,
+            "exclude": "北交所/.BJ；ST/*ST",
             "sample_limit": sample_limit,
-            "sort_priority": "质量层级 A/A+B > B > C；同层级内按 启动型 > 持续换手型 > 缩量企稳型 > 分歧型 排序",
+            "sort_by": "涨幅降序，其次成交额降序",
+            "amount_unit_note": "Tushare daily 的 amount 单位为千元，脚本内部已按亿元阈值换算。",
+            "market_cap_unit_note": "Tushare daily_basic 的 total_mv 单位为万元，脚本内部已按亿元阈值换算。",
         },
         "candidates": candidates,
         "summary": {
             "candidate_count": len(candidates),
-            "starter_count": counts.get("starter", 0),
-            "sustain_count": counts.get("sustain", 0),
-            "quiet_count": counts.get("quiet", 0),
-            "undetermined_count": counts.get("undetermined", 0),
-            "quality_A_count": quality_counts.get("A", 0),
-            "quality_B_count": quality_counts.get("B", 0),
-            "quality_A_plus_B_count": quality_counts.get("A+B", 0),
-            "quality_C_count": quality_counts.get("C", 0),
-            "high_quality_A_count": model_counts.get("high_quality_A_deep_drawdown_thrust", 0),
-            "high_quality_B_count": model_counts.get("high_quality_B_broad_momentum_quality", 0),
+            "total_amount_100m_yuan": round(sum(float(item.get("amount_100m_yuan") or 0) for item in candidates), 2),
+            "median_pct_chg": round_optional(qualified["pct_chg"].median(), 2),
+            "max_pct_chg": round_optional(qualified["pct_chg"].max(), 2),
+            "median_total_mv_100m_yuan": round_optional(qualified["total_mv_100m_yuan"].median(), 2),
+        },
+    }
+
+
+def attach_discount_after_high(
+    features: pd.DataFrame,
+    target_date: str,
+    lookback: int,
+) -> Dict[str, Dict[str, Any]]:
+    """为每只候选股算"前高之后的回撤折扣"。
+
+    口径（用户定义）：
+      - 前高：最近 lookback 个交易日窗口内（含今日）**收盘价**最高的那一天，
+        取其收盘价为基准（前高收盘价）。若收盘最高日就是今日（今日创窗口内收盘新高），
+        则没有"前高之后"，该股不计入。
+      - 折扣 discount_after_high = 前高之后（前高日次日起至今日）出现的**最低价 low**
+        的最小值 / 前高收盘价。也就是从前高算起最深跌到了前高的几成。
+      - post_low_date / low_to_target_days：该最低点的日期，以及它距大涨日的交易日数
+        （供"最低点须在大涨日前 N 日内"的新鲜度过滤使用）。
+      - close_vs_prev_high：今日收盘 / 前高收盘价，仅作参考（反映现价是否仍在折价位）。
+      - monthly_ma10 / monthly_above_ma10：月线 10 月均线（月末收盘的 10 月 SMA）及
+        当前月收盘是否站上它，用作长期趋势过滤；月数不足 10 个则为 None。
+
+    需要每只股的多日 close/low 序列，故输入 features（候选股多日特征帧），
+    每只股返回 target 日对应的一组折扣证据。历史不足 lookback 个交易日者跳过
+    （次新股/长期停牌/缓存缺口——不构成完整的 200 日前高，不冒充折扣）。
+    """
+    result: Dict[str, Dict[str, Any]] = {}
+    if features is None or features.empty or "trade_date" not in features.columns:
+        return result
+
+    df = features.copy()
+    df["trade_date"] = df["trade_date"].astype(str)
+    for col in ("close", "low"):
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors="coerce")
+    df = df.loc[df["trade_date"] <= str(target_date)]
+    if df.empty or "close" not in df.columns or "low" not in df.columns:
+        return result
+
+    for ts_code, sub in df.groupby("ts_code"):
+        sub = sub.sort_values("trade_date")
+        recent = sub.tail(lookback)
+        # 必须有完整的 lookback 个交易日，"最近200日前高"才成立；历史不足者（次新股、
+        # 长期停牌、缓存/接口缺口）直接跳过，避免用更短窗口冒充 200 日折扣。
+        if len(recent) < lookback:
+            continue
+        closes = recent["close"].dropna()
+        if closes.empty:
+            continue
+        ph_pos = closes.idxmax()
+        ph_date = str(recent.loc[ph_pos, "trade_date"])
+        ph_close = safe_float(recent.loc[ph_pos, "close"])
+        if ph_close is None or ph_close <= 0 or ph_date >= str(target_date):
+            continue  # 前高即今日（窗口内收盘新高）→ 无回撤可言，跳过
+        post = recent.loc[recent["trade_date"] > ph_date].copy()
+        post["low"] = pd.to_numeric(post["low"], errors="coerce")
+        post = post.dropna(subset=["low"])
+        if post.empty:
+            continue
+        pl_idx = post["low"].idxmin()
+        pl_date = str(post.loc[pl_idx, "trade_date"])
+        post_low = safe_float(post.loc[pl_idx, "low"])
+        if post_low is None or post_low <= 0:
+            continue
+        # 回撤最低点距大涨日的交易日数：在该股已加载的交易日序列里按位置相减。
+        recent_dates = recent["trade_date"].tolist()
+        last_date = recent_dates[-1]  # ≤ target 的最近交易日（活跃股即 target 当日）
+        low_to_target_days = recent_dates.index(last_date) - recent_dates.index(pl_date)
+        target_rows = sub.loc[sub["trade_date"] == str(target_date)]
+        target_close = safe_float(target_rows["close"].iloc[-1]) if not target_rows.empty else None
+        # 月线 10 月均线趋势过滤：把日线收盘按自然月取月末收盘，算 10 月 SMA，
+        # 看当前月收盘（= target 日收盘，当月最新）是否站在 10 月线之上。用 to_period
+        # 分组而非 resample("ME")，跨 pandas 版本稳。月数不足 10 个则判 None（不可评估）。
+        monthly_ma10 = None
+        monthly_above_ma10 = None
+        mser = sub.dropna(subset=["close"]).copy()
+        mser["_period"] = pd.to_datetime(mser["trade_date"], format="%Y%m%d", errors="coerce").dt.to_period("M")
+        mser = mser.dropna(subset=["_period"])
+        if not mser.empty:
+            month_close = mser.groupby("_period")["close"].last()
+            if len(month_close) >= 10:
+                ma10_val = safe_float(month_close.rolling(10).mean().iloc[-1])
+                latest_month_close = safe_float(month_close.iloc[-1])
+                if ma10_val is not None and ma10_val > 0 and latest_month_close is not None:
+                    monthly_ma10 = round(ma10_val, 2)
+                    monthly_above_ma10 = bool(latest_month_close >= ma10_val)
+        result[str(ts_code)] = {
+            "prev_high_close": round(ph_close, 2),
+            "prev_high_date": ph_date,
+            "post_low": round(post_low, 2),
+            "post_low_date": pl_date,
+            "low_to_target_days": int(low_to_target_days),
+            "discount_after_high": round(post_low / ph_close, 4),
+            "close_vs_prev_high": round(target_close / ph_close, 4) if target_close else None,
+            "monthly_ma10": monthly_ma10,
+            "monthly_above_ma10": monthly_above_ma10,
+        }
+    return result
+
+
+def build_discount_relaunch_samples(
+    panel: pd.DataFrame,
+    market_cap_threshold_100m_yuan: float,
+    amount_threshold_100m_yuan: float,
+    pct_chg_threshold: float,
+    discount_min: float,
+    discount_max: float,
+    pre_contraction_max: float,
+    volume_expansion_min: float,
+    high_lookback: int,
+    low_recency_days: int,
+    sample_limit: int,
+) -> Dict[str, Any]:
+    """折扣启动：自前高深度回撤过、调整期缩量、当日重新放量的中大盘上涨股。
+
+    硬性过滤（需同时满足）：
+      - 总市值 > market_cap_threshold_100m_yuan（默认 80 亿）
+      - 成交额 > amount_threshold_100m_yuan（默认 5 亿）
+      - 当日涨幅 > pct_chg_threshold（默认 7%）
+      - 前高折扣 discount_after_high = 前高之后最低价 / 前高收盘价，落在
+        (discount_min, discount_max) 折价带（默认 0.6~0.85，即自前高最深回撤 15%~40%）。
+        前高 = 最近 high_lookback 个交易日（默认 200）收盘价最高日，详见
+        attach_discount_after_high；折扣与下面的新鲜度列需由调用方预先附到 panel 上。
+      - 最低点新鲜度：回撤最低点距大涨日 low_to_target_days 在 1~low_recency_days 个交易日内
+        （默认 5）——即"刚砸出近期最低就放量反包"，排除几周/几个月前的旧坑。
+      - 调整期缩量：今日前 5 日均额 / 前 20 日均额 <= pre_contraction_max（默认 0.9）
+      - 当日重新放量：amount_vs_prev5_ratio >= volume_expansion_min（默认 2.0），
+        即当日量相对最近 5 日缩量期的倍数（不用 20 日均量，避免被前期放量潮抬高基准）
+      - 长期趋势：monthly_above_ma10 为真——当前月收盘站在月线 10 月均线之上
+        （月末收盘的 10 月 SMA），过滤掉长期趋势已破的折价股；月数不足 10 个无法评估者剔除
+      - 排除北交所 / .BJ 与 ST/*ST；前高需可计算（历史不足者剔除）
+
+    排序按成交额降序——放量启动背后的资金体量优先。折扣深度、现价相对前高位置
+    （close_vs_prev_high）、缩量比、放量倍数一并输出为证据，强弱与"是否真正调整
+    充分、现在是否仍折价"由模型判断，脚本不编码排序意见。
+    """
+    filter_criteria = {
+        "total_mv_100m_yuan_min_exclusive": market_cap_threshold_100m_yuan,
+        "amount_100m_yuan_min_exclusive": amount_threshold_100m_yuan,
+        "pct_chg_min_exclusive": pct_chg_threshold,
+        "discount_after_high_band_exclusive": [discount_min, discount_max],
+        "low_to_target_days_max_inclusive": low_recency_days,
+        "pre_volume_contraction_ratio_max_inclusive": pre_contraction_max,
+        "amount_vs_prev5_ratio_min_inclusive": volume_expansion_min,
+        "monthly_above_ma10_required": True,
+        "discount_def": f"前高之后最低价 / 前高收盘价；前高=最近{high_lookback}个交易日收盘价最高日；最低点须在大涨日前{low_recency_days}个交易日内",
+        "volume_def": "放量=当日量 / 前5日均额（amount_vs_prev5_ratio），不用20日均量",
+        "trend_def": "当前月收盘 ≥ 月线10月均线（月末收盘的10月SMA）",
+        "exclude": "北交所/.BJ；ST/*ST；前高不可计算（历史不足或今日即收盘新高）；月线在10月线之下或月数不足",
+        "sample_limit": sample_limit,
+        "sort_by": "成交额降序，其次涨幅降序",
+        "amount_unit_note": "Tushare daily 的 amount 单位为千元，脚本内部已按亿元阈值换算。",
+        "market_cap_unit_note": "Tushare daily_basic 的 total_mv 单位为万元，脚本内部已按亿元阈值换算。",
+    }
+    if panel is None or panel.empty:
+        return {
+            "available": False,
+            "filter_criteria": filter_criteria,
+            "candidates": [],
+            "summary": {"candidate_count": 0},
+        }
+
+    df = panel.copy()
+    for column in (
+        "pct_chg", "amount", "total_mv", "circ_mv", "close",
+        "turnover_rate", "turnover_rate_f", "volume_ratio",
+        "prev_high_close", "post_low", "discount_after_high", "close_vs_prev_high",
+        "low_to_target_days", "monthly_ma10", "amount_ratio_20d", "pre_volume_contraction_ratio",
+        "amount_vs_prev5_ratio", "pre_ret_5d", "ret_5d", "ret_20d",
+        "drawdown_120_high", "close_position_120d",
+    ):
+        if column in df.columns:
+            df[column] = pd.to_numeric(df[column], errors="coerce")
+
+    names = df["name"].fillna("").astype(str) if "name" in df.columns else pd.Series("", index=df.index)
+    markets = df["market"].fillna("").astype(str) if "market" in df.columns else pd.Series("", index=df.index)
+    ts_codes = df["ts_code"].fillna("").astype(str)
+    total_mv_100m = df["total_mv"] / 10000 if "total_mv" in df.columns else pd.Series(float("nan"), index=df.index)
+    amount_100m = df["amount"] / 100000 if "amount" in df.columns else pd.Series(float("nan"), index=df.index)
+
+    discount = (
+        df["discount_after_high"] if "discount_after_high" in df.columns
+        else pd.Series(float("nan"), index=df.index)
+    )
+    discount = pd.to_numeric(discount, errors="coerce")
+    contraction = (
+        df["pre_volume_contraction_ratio"] if "pre_volume_contraction_ratio" in df.columns
+        else pd.Series(float("nan"), index=df.index)
+    )
+    # 放量基准改为相对最近 5 日缩量期（amount_vs_prev5_ratio），不用 20 日均量。
+    expansion = (
+        df["amount_vs_prev5_ratio"] if "amount_vs_prev5_ratio" in df.columns
+        else pd.Series(float("nan"), index=df.index)
+    )
+    recency = (
+        df["low_to_target_days"] if "low_to_target_days" in df.columns
+        else pd.Series(float("nan"), index=df.index)
+    )
+    # 月线在10月线之上：缺失/None（月数不足、无法评估）按 False 处理 → 剔除。
+    above_ma10 = (
+        df["monthly_above_ma10"].map(lambda v: v is True)
+        if "monthly_above_ma10" in df.columns
+        else pd.Series(False, index=df.index)
+    )
+
+    qualified = df.loc[
+        (total_mv_100m > market_cap_threshold_100m_yuan)
+        & (amount_100m > amount_threshold_100m_yuan)
+        & (df["pct_chg"].fillna(-999) > pct_chg_threshold)
+        & (discount > discount_min)
+        & (discount < discount_max)
+        & (recency.fillna(99999) >= 1)
+        & (recency.fillna(99999) <= low_recency_days)
+        & (contraction.fillna(999) <= pre_contraction_max)
+        & (expansion.fillna(-999) >= volume_expansion_min)
+        & above_ma10
+        & ~markets.eq("北交所")
+        & ~ts_codes.str.endswith(".BJ")
+        & ~names.str.upper().str.contains("ST", na=False)
+    ].copy()
+
+    if qualified.empty:
+        return {
+            "available": True,
+            "filter_criteria": filter_criteria,
+            "candidates": [],
+            "summary": {"candidate_count": 0},
+        }
+
+    qualified = qualified.sort_values(["amount", "pct_chg"], ascending=[False, False]).head(sample_limit)
+
+    trigger_reason = (
+        f"总市值>{market_cap_threshold_100m_yuan:g}亿、成交额>{amount_threshold_100m_yuan:g}亿、"
+        f"涨幅>{pct_chg_threshold:g}%；自前高（最近{high_lookback}日收盘最高）最深回撤后折扣落在"
+        f"{discount_min:g}~{discount_max:g}，且该最低点在大涨日前{low_recency_days:g}个交易日内（刚砸坑就反包）；"
+        f"前5日均额≤前20日均额×{pre_contraction_max:g}（调整缩量），当日量≥前5日均额×{volume_expansion_min:g}"
+        f"（相对缩量期重新放量）；且当前月收盘站上月线10月均线（长期趋势未破）；排除北交所与ST"
+    )
+
+    candidates: List[Dict[str, Any]] = []
+    for _, row in qualified.iterrows():
+        amount = safe_float(row.get("amount"))
+        total_mv = safe_float(row.get("total_mv"))
+        circ_mv = safe_float(row.get("circ_mv"))
+        candidates.append({
+            "ts_code": nullable_value(row.get("ts_code")),
+            "name": nullable_value(row.get("name")),
+            "market": nullable_value(row.get("market")),
+            "pct_chg": round_optional(row.get("pct_chg"), 2),
+            "amount_100m_yuan": round_optional(amount / 100000, 2) if amount is not None else None,
+            "total_mv_100m_yuan": round_optional(total_mv / 10000, 2) if total_mv is not None else None,
+            "circ_mv_100m_yuan": round_optional(circ_mv / 10000, 2) if circ_mv is not None else None,
+            "close": round_optional(row.get("close"), 2),
+            "prev_high_close": round_optional(row.get("prev_high_close"), 2),
+            "prev_high_date": nullable_value(row.get("prev_high_date")),
+            "post_low": round_optional(row.get("post_low"), 2),
+            "post_low_date": nullable_value(row.get("post_low_date")),
+            "low_to_target_days": (int(row.get("low_to_target_days")) if pd.notna(row.get("low_to_target_days")) else None),
+            "discount_after_high": round_optional(row.get("discount_after_high"), 4),
+            "close_vs_prev_high": round_optional(row.get("close_vs_prev_high"), 4),
+            "monthly_ma10": round_optional(row.get("monthly_ma10"), 2),
+            "monthly_above_ma10": (bool(row.get("monthly_above_ma10")) if row.get("monthly_above_ma10") is not None and pd.notna(row.get("monthly_above_ma10")) else None),
+            "close_position_120d": round_optional(row.get("close_position_120d"), 4),
+            "amount_ratio_20d": round_optional(row.get("amount_ratio_20d"), 2),
+            "pre_volume_contraction_ratio": round_optional(row.get("pre_volume_contraction_ratio"), 2),
+            "amount_vs_prev5_ratio": round_optional(row.get("amount_vs_prev5_ratio"), 2),
+            "pre_ret_5d": round_optional(row.get("pre_ret_5d"), 2),
+            "ret_5d": round_optional(row.get("ret_5d"), 2),
+            "ret_20d": round_optional(row.get("ret_20d"), 2),
+            "turnover_rate": round_optional(row.get("turnover_rate"), 2),
+            "volume_ratio": round_optional(row.get("volume_ratio"), 2),
+            "trigger_reason": trigger_reason,
+        })
+
+    return {
+        "available": True,
+        "filter_criteria": filter_criteria,
+        "candidates": candidates,
+        "summary": {
+            "candidate_count": len(candidates),
+            "total_amount_100m_yuan": round(sum(float(item.get("amount_100m_yuan") or 0) for item in candidates), 2),
+            "median_pct_chg": round_optional(qualified["pct_chg"].median(), 2),
+            "median_discount_after_high": round_optional(qualified["discount_after_high"].median(), 4),
+            "median_total_mv_100m_yuan": (
+                round_optional((qualified["total_mv"] / 10000).median(), 2)
+                if "total_mv" in qualified.columns else None
+            ),
         },
     }
 
@@ -2365,134 +4020,294 @@ def fetch_jrj_limit_up_records(trade_date: str) -> Tuple[List[Dict[str, Any]], O
     return records, None
 
 
-def build_star_monthly_breakout_samples(
+def fetch_stock_monthly(
+    pro,
+    ts_codes: List[str],
+    start_date: str,
+    end_date: str,
+    max_workers: int = 8,
+) -> Dict[str, pd.DataFrame]:
+    """拉取一组个股的前复权月线行情，用于月线平台突破组的多年底部测算。
+
+    本地 PG / 缓存只覆盖约一年日线，看不到多年底部，必须单拉月线。用 ts.pro_bar(adj='qfq',
+    freq='M') 取**前复权**月 K——与生产日线统一的前复权口径一致，避免「现价(qfq) 比 多年箱体
+    上沿(raw)」的口径错配（含分红/送转的票尤其要紧）。月线一行一月、体量极小，只在预筛幸存集
+    （默认 ≤80 只）上拉取，并发受限、单只失败即跳过。返回 {ts_code: 月线 DataFrame}；pro 不可用
+    或全部失败时返回空字典，由调用方降级处理。
+    """
+    out: Dict[str, pd.DataFrame] = {}
+    codes = [str(code).strip() for code in ts_codes if str(code).strip()]
+    if pro is None or not codes:
+        return out
+
+    def _one(code: str):
+        try:
+            df = ts.pro_bar(
+                ts_code=code,
+                api=pro,
+                asset="E",
+                freq="M",
+                adj="qfq",
+                start_date=start_date,
+                end_date=end_date,
+            )
+            return code, df
+        except Exception:
+            return code, None
+
+    with ThreadPoolExecutor(max_workers=max(1, min(max_workers, len(codes)))) as executor:
+        for code, df in executor.map(_one, codes):
+            if df is not None and not getattr(df, "empty", True):
+                out[code] = df
+    return out
+
+
+def build_monthly_base_breakout_samples(
     features: pd.DataFrame,
     target_date: str,
     sample_limit: int,
+    pro=None,
+    monthly_lookback_months: int = 84,
+    up_threshold: float = 7.0,
+    breakout_tol: float = 0.02,
+    min_base_months: int = 3,
+    max_survivors: int = 150,
 ) -> Dict[str, Any]:
-    if features is None or features.empty:
-        return {
-            "available": False,
-            "filter_criteria": {},
-            "candidates": [],
-            "summary": {"candidate_count": 0},
+    """全市场月线平台突破（替代原科创板月线突破）。
+
+    形态参照雅克科技：多年月线横盘后，当天放量大涨、日线收盘第一次站上多年箱体上沿。要点：
+
+      - 全市场（排除北交所 / .BJ 与 ST/*ST），不再限定科创板；
+      - **当天大涨 + 当天突破**：当日涨幅 ≥ up_threshold（默认 7%），且**昨收 ≤ 箱体上沿 < 今收**
+        （今天日线收盘第一次站上箱体上沿），当天下跌或早已站上箱体之上的不算；
+      - **横盘长优先、短期也要**：箱体上沿 pivot = 完整月线（回看约 monthly_lookback_months 个月）
+        最高价，横盘月数 base_length_months（pivot 成形月 → 当月）≥ min_base_months（默认 3，避免
+        次新乱入）即可入选，再按横盘月数降序——多年长底排在前、12 个月内的短底也保留。
+
+    两阶段：阶段一在已加载窗口（约一年日线）上做廉价预筛（当日涨幅 ≥ up_threshold、非北交/ST、
+    日线历史够长），按当日成交额取前 max_survivors 只；阶段二对幸存集单拉 Tushare 前复权月 K，
+    测算多年箱体上沿 pivot 与横盘月数、确认昨收在 pivot 下、今收在 pivot 上。pro 不可用时本组降级
+    为 available=false 并给原因。脚本只给确定性量价证据与月线序列，是否落在 2-3 星主线、归因与取舍
+    由模型在写作时叠加（见 module5 方法论）。
+    """
+    filter_criteria = {
+        "universe": "全市场，排除北交所 / .BJ 与 ST/*ST",
+        "big_up_day": f"当日涨幅 ≥ {up_threshold}%（当天大涨）",
+        "breakout_today": f"昨收 < 箱体上沿 pivot 且 今收 ≥ pivot×(1-{breakout_tol})（昨天没站上多年高、今天放量大涨收在上沿一线以上；下沿单边容差 {breakout_tol:.0%}，上沿敞开；当天下跌或早已在 pivot 之上的不算）",
+        "monthly_base": f"箱体上沿 pivot = 完整月线最高价（回看约 {monthly_lookback_months} 个月、不含当月）",
+        "min_base_months": f"横盘月数 base_length_months（pivot 成形月 → 当月）≥ {min_base_months}（短期突破也保留、按横盘月数降序）",
+        "prefilter": f"阶段一窗口预筛：当日涨幅 ≥ {up_threshold}%、日线历史 ≥ 120 日；按当日成交额取前 {max_survivors} 只再拉月线",
+        "sort_by": "横盘月数 base_length_months 降序（横盘越长越好），其次当日成交额降序",
+        "sample_limit": sample_limit,
+        "reference_shape": "雅克科技 002409.SZ：多年月线箱体后，当天放量大涨站上箱体上沿",
+        "data_source": "多年箱体来自 Tushare 前复权月 K（ts.pro_bar adj=qfq freq=M，本地仅约一年日线）；昨收/今收取已加载前复权日线，口径统一",
+    }
+
+    def _result(available: bool, candidates=None, series=None, monthly_map=None, reason=None) -> Dict[str, Any]:
+        candidates = candidates or []
+        series = series or {}
+        payload = {
+            "available": available,
+            "filter_criteria": filter_criteria,
+            "candidates": candidates,
+            "monthly_series_by_ts_code": series,
+            "summary": {
+                "candidate_count": len(candidates),
+                "survivors_fetched": len(monthly_map or {}),
+                "total_amount_100m_yuan": round(sum(float(c.get("amount_100m_yuan") or 0) for c in candidates), 2),
+                "max_base_length_months": max((int(c.get("base_length_months") or 0) for c in candidates), default=0),
+            },
+            "model_overlay": "本组只给技术形态命中；可操作性需模型叠加——仅当个股落在当日 ★★/★★★ 主线内才算主线级信号，否则记为「形态命中但暂不在主线」。",
         }
+        if reason:
+            payload["reason"] = reason
+        return payload
+
+    if features is None or features.empty or "trade_date" not in features.columns:
+        return _result(False, reason="无候选日线特征帧")
 
     df = features.copy()
     df["trade_date"] = df["trade_date"].astype(str)
-    for column in (
-        "open", "high", "low", "close", "pct_chg", "amount",
-        "ret_5d", "ret_20d", "amount_ratio_20d", "history_days",
-        "prev_high_120d", "close_position_120d", "drawdown_120_high",
-        "close_ma20", "close_ma60",
-    ):
+    for column in ("open", "high", "low", "close", "pct_chg", "amount", "vol", "history_days", "amount_ratio_20d"):
         if column in df.columns:
             df[column] = pd.to_numeric(df[column], errors="coerce")
-
-    target_rows = df.loc[df["trade_date"] == target_date].copy()
+    df = df.loc[df["trade_date"] <= str(target_date)]
+    target_rows = df.loc[df["trade_date"] == str(target_date)].copy()
     if target_rows.empty:
-        return {
-            "available": True,
-            "filter_criteria": {},
-            "candidates": [],
-            "summary": {"candidate_count": 0},
-        }
+        return _result(True)
 
-    market = target_rows["market"].fillna("").astype(str) if "market" in target_rows.columns else pd.Series("", index=target_rows.index)
-    ts_codes = target_rows["ts_code"].fillna("").astype(str)
-    target_rows = target_rows.loc[market.eq("科创板") | ts_codes.str.startswith(("688", "689"))].copy()
+    # 阶段一：全市场预筛（排除北交/ST、**当天大涨** ≥ up_threshold、日线历史够长），按当日成交额取前 N 只。
+    names = target_rows["name"].fillna("").astype(str) if "name" in target_rows.columns else pd.Series("", index=target_rows.index)
+    markets = target_rows["market"].fillna("").astype(str) if "market" in target_rows.columns else pd.Series("", index=target_rows.index)
+    codes_ser = target_rows["ts_code"].fillna("").astype(str)
+    keep = (
+        ~markets.eq("北交所")
+        & ~codes_ser.str.endswith(".BJ")
+        & ~names.str.upper().str.contains("ST", na=False)
+    )
+    target_rows = target_rows.loc[keep].copy()
+    if target_rows.empty:
+        return _result(True)
 
+    prelim: List[Dict[str, Any]] = []
+    for _, row in target_rows.iterrows():
+        code = str(row.get("ts_code") or "")
+        close = safe_float(row.get("close"))
+        pct = safe_float(row.get("pct_chg"))
+        hist = safe_float(row.get("history_days"))
+        amount = safe_float(row.get("amount"))
+        if not code or close is None or pct is None:
+            continue
+        if pct < up_threshold:  # 当天大涨
+            continue
+        if hist is not None and hist < 120:
+            continue
+        prelim.append({"ts_code": code, "amount": amount or 0.0, "row": row})
+    if not prelim:
+        return _result(True)
+    prelim.sort(key=lambda item: -float(item["amount"]))
+    prelim = prelim[:max_survivors]
+
+    if pro is None:
+        return _result(False, reason="缺少 Tushare pro：无法拉取月线确认多年底部，本组跳过")
+
+    start_dt = (ymd_to_dt(str(target_date)) - timedelta(days=(monthly_lookback_months + 2) * 31)).strftime("%Y%m%d")
+    monthly_map = fetch_stock_monthly(pro, [item["ts_code"] for item in prelim], start_dt, str(target_date))
+    if not monthly_map:
+        return _result(False, reason="Tushare 月线拉取失败或为空，本组跳过")
+
+    cur_month = pd.Period(pd.to_datetime(str(target_date)), freq="M")
     candidates: List[Dict[str, Any]] = []
-    grouped = df.loc[df["ts_code"].isin(target_rows["ts_code"])].groupby("ts_code", group_keys=False)
-    current_month = pd.Period(pd.to_datetime(target_date), freq="M")
+    series_by_code: Dict[str, Dict[str, Any]] = {}
 
-    for ts_code, sub in grouped:
-        sub = sub.sort_values("trade_date").reset_index(drop=True)
-        target_match = sub.loc[sub["trade_date"] == target_date]
-        if target_match.empty:
+    for item in prelim:
+        code = item["ts_code"]
+        row = item["row"]
+        mdf = monthly_map.get(code)
+        if mdf is None or mdf.empty:
             continue
-        target_row = target_match.iloc[-1]
-        history_days = safe_float(target_row.get("history_days")) or 0
-        prev_high_120d = safe_float(target_row.get("prev_high_120d"))
-        close = safe_float(target_row.get("close"))
-        if history_days < 120 or close is None or prev_high_120d is None or close < prev_high_120d:
-            continue
-
-        dated = sub.copy()
-        dated["_month"] = pd.to_datetime(dated["trade_date"]).dt.to_period("M")
-        current_month_rows = dated.loc[dated["_month"] == current_month]
-        previous_month_rows = dated.loc[dated["_month"] < current_month]
-        if current_month_rows.empty or previous_month_rows.empty:
-            continue
-        previous_month_high = safe_float(previous_month_rows["high"].max())
-        current_month_high = safe_float(current_month_rows["high"].max())
-        if previous_month_high is None or close <= previous_month_high:
+        mdf = mdf.copy()
+        mdf["trade_date"] = mdf["trade_date"].astype(str)
+        for col in ("open", "high", "low", "close", "vol"):
+            if col in mdf.columns:
+                mdf[col] = pd.to_numeric(mdf[col], errors="coerce")
+        mdf["_month"] = pd.to_datetime(mdf["trade_date"], format="%Y%m%d", errors="coerce").dt.to_period("M")
+        mdf = mdf.dropna(subset=["_month", "close", "high"]).sort_values("_month")
+        # 接口里的当前月（可能不完整）丢弃，当前月统一用已加载日线合成。
+        completed = mdf.loc[mdf["_month"] < cur_month]
+        if len(completed) < min_base_months:
             continue
 
-        previous_rows = sub.loc[sub["trade_date"] < target_date]
-        prior_row = previous_rows.iloc[-1] if not previous_rows.empty else None
-        high_trend_excluded = False
-        if prior_row is not None:
-            prior_close = safe_float(prior_row.get("close"))
-            prior_ma20 = safe_float(prior_row.get("close_ma20"))
-            prior_ma60 = safe_float(prior_row.get("close_ma60"))
-            prior_position = safe_float(prior_row.get("close_position_120d"))
-            prior_ret20 = safe_float(prior_row.get("ret_20d"))
-            high_trend_excluded = bool(
-                prior_close is not None
-                and prior_ma20 is not None
-                and prior_ma60 is not None
-                and prior_position is not None
-                and prior_ret20 is not None
-                and prior_close > prior_ma20 > prior_ma60
-                and prior_position >= 0.70
-                and prior_ret20 > 20.0
-            )
-        if high_trend_excluded:
+        # 当前月 bar：用已加载日线本自然月（截至 target）合成。
+        cur_daily = df.loc[df["ts_code"] == code].copy()
+        cur_daily["_month"] = pd.to_datetime(cur_daily["trade_date"], format="%Y%m%d", errors="coerce").dt.to_period("M")
+        cur_daily = cur_daily.loc[cur_daily["_month"] == cur_month].sort_values("trade_date")
+        cur_close = safe_float(row.get("close"))
+        if cur_close is None and not cur_daily.empty:
+            cur_close = safe_float(cur_daily["close"].iloc[-1])
+        if cur_close is None:
+            continue
+        cur_high = safe_float(cur_daily["high"].max()) if not cur_daily.empty else cur_close
+        cur_low = safe_float(cur_daily["low"].min()) if not cur_daily.empty else cur_close
+        cur_open = safe_float(cur_daily["open"].iloc[0]) if not cur_daily.empty else cur_close
+        # 当前月成交量用日线本月累加；Tushare 月线(pro_bar freq=M) 的 vol 以「股」计，日线 vol 以
+        # 「手」计，差 100 倍，这里换算到「股」与月线 bar 同口径（既为画图，也保证仅当前月突破时
+        # vol_expansion 不被低估 100 倍）。
+        cur_vol = (
+            safe_float(cur_daily["vol"].sum()) * 100
+            if ("vol" in cur_daily.columns and not cur_daily.empty)
+            else None
+        )
+
+        # 多年箱体上沿 pivot = 完整月线（不含当月）最高价；pivot_month = 该高点所在月。
+        pivot = safe_float(completed["high"].max())
+        if pivot is None or pivot <= 0:
+            continue
+        pivot_month = completed.loc[completed["high"].idxmax(), "_month"]
+
+        # 当天突破：昨收还在多年箱体上沿之下（昨天没站上多年高），今天放量大涨、收在上沿一线以上
+        # （今收 ≥ 上沿×(1-breakout_tol)）。容差是单边的、只管下沿：雅克这类长底突破常是「大涨日收在
+        # 前高一线、次日才收上去」，0 容差会因毫厘漏掉；上沿保持敞开——果断收上箱体的强突破照收，而
+        # 「早已冲到箱体上方/已翻倍」的票由「昨收 < 上沿」这条天然挡掉，不需要上限。
+        prev_rows = df.loc[(df["ts_code"] == code) & (df["trade_date"] < str(target_date))]
+        prev_close = (
+            safe_float(prev_rows.sort_values("trade_date")["close"].iloc[-1])
+            if not prev_rows.empty else None
+        )
+        if prev_close is None:
+            continue
+        if not (prev_close < pivot and cur_close >= pivot * (1.0 - breakout_tol)):
             continue
 
-        amount = safe_float(target_row.get("amount"))
+        # 横盘月数：pivot 成形月 → 当月；短期也保留（≥ min_base_months），长底靠排序排前面。
+        base_length_months = (cur_month - pivot_month).n
+        if base_length_months < min_base_months:
+            continue
+
+        amount = safe_float(row.get("amount"))
+        amount_ratio_20d = round_optional(row.get("amount_ratio_20d"), 2)
+        # 今收可能略低于上沿（在 breakout_tol 容差内）；措辞要分清「站上」与「收在一线（仍略低）」，
+        # 不能一律说成「站上」。close_vs_pivot_pct 已能反映正负，trigger_reason 也据实描述。
+        stand_label = "站上" if cur_close >= pivot else f"收在一线（容差 {breakout_tol:.0%} 内、仍略低于上沿）"
         candidates.append({
-            "ts_code": ts_code,
-            "name": nullable_value(target_row.get("name")),
-            "market": nullable_value(target_row.get("market")),
-            "pct_chg": round_optional(target_row.get("pct_chg"), 2),
+            "ts_code": code,
+            "name": nullable_value(row.get("name")),
+            "market": nullable_value(row.get("market")),
+            "pct_chg": round_optional(row.get("pct_chg"), 2),
             "amount_100m_yuan": round_optional(amount / 100000, 2) if amount is not None else None,
-            "close": round_optional(close, 2),
-            "prev_high_120d": round_optional(prev_high_120d, 2),
-            "close_vs_prev_high_120d_pct": pct_change_optional(close, prev_high_120d),
-            "previous_complete_month_high": round_optional(previous_month_high, 2),
-            "current_month_high": round_optional(current_month_high, 2),
-            "close_vs_previous_month_high_pct": pct_change_optional(close, previous_month_high),
-            "ret_5d": round_optional(target_row.get("ret_5d"), 2),
-            "ret_20d": round_optional(target_row.get("ret_20d"), 2),
-            "amount_ratio_20d": round_optional(target_row.get("amount_ratio_20d"), 2),
-            "drawdown_120_high": round_optional(target_row.get("drawdown_120_high"), 2),
-            "close_position_120d": round_optional(target_row.get("close_position_120d"), 4),
-            "trigger_reason": "科创板；今日收盘突破前120日高点；真实自然月K突破此前完整月份高点；未落入高位趋势排除条件",
+            "close": round_optional(cur_close, 2),
+            "prev_close": round_optional(prev_close, 2),
+            "base_top_pivot": round_optional(pivot, 2),
+            "base_length_months": int(base_length_months),
+            "base_start_month": str(pivot_month),
+            "breakout_month": str(cur_month),
+            "close_vs_pivot_pct": pct_change_optional(cur_close, pivot),
+            "amount_ratio_20d": amount_ratio_20d,
+            "monthly_history_count": int(len(completed) + 1),
+            "trigger_reason": (
+                f"全市场；当天涨 {round_optional(row.get('pct_chg'), 2)}%"
+                + (f"、放量 {amount_ratio_20d}×20日均量" if amount_ratio_20d is not None else "")
+                + f"；今收 {round(cur_close, 2)} 当天第一次{stand_label}多年箱体上沿 {round(pivot, 2)}"
+                f"（昨收 {round(prev_close, 2)} 仍在上沿之下），横盘约 {int(base_length_months)} 个月"
+            ),
         })
 
-    candidates.sort(key=lambda item: (
-        -float(item.get("amount_100m_yuan") or 0),
-        -float(item.get("close_vs_previous_month_high_pct") or 0),
+        # 月线序列（供 HTML 月线图：底部箱体阴影 + pivot 线 + 突破月）。
+        chart_rows: List[Dict[str, Any]] = []
+        for _, mrow in completed.iterrows():
+            chart_rows.append({
+                "trade_date": str(mrow.get("trade_date")),
+                "open": round_optional(mrow.get("open"), 2),
+                "high": round_optional(mrow.get("high"), 2),
+                "low": round_optional(mrow.get("low"), 2),
+                "close": round_optional(mrow.get("close"), 2),
+                "vol": round_optional(mrow.get("vol"), 2),
+            })
+        chart_rows.append({
+            "trade_date": str(target_date),
+            "open": round_optional(cur_open, 2),
+            "high": round_optional(cur_high, 2),
+            "low": round_optional(cur_low, 2),
+            "close": round_optional(cur_close, 2),
+            "vol": round_optional(cur_vol, 2),
+        })
+        series_by_code[code] = {
+            "name": nullable_value(row.get("name")),
+            "ts_code": code,
+            "base_top_pivot": round_optional(pivot, 2),
+            "base_start_month": str(pivot_month),
+            "breakout_month": str(cur_month),
+            "records": chart_rows[-monthly_lookback_months:],
+        }
+
+    candidates.sort(key=lambda it: (
+        -int(it.get("base_length_months") or 0),
+        -float(it.get("amount_100m_yuan") or 0),
     ))
     candidates = candidates[:sample_limit]
-    return {
-        "available": True,
-        "filter_criteria": {
-            "market": "科创板，或 ts_code 以 688/689 开头",
-            "new_high": "今日收盘价突破前 120 个交易日最高价",
-            "monthly_breakout": "当前自然月最新收盘价突破此前完整自然月最高价",
-            "exclude_high_trend": "剔除前一日已处于 close > MA20 > MA60、120日位置 >= 0.70、近20日涨幅 > 20% 的高位趋势样本",
-            "sample_limit": sample_limit,
-            "sort_by": "成交额（亿元）降序，其次月线突破幅度降序",
-        },
-        "candidates": candidates,
-        "summary": {
-            "candidate_count": len(candidates),
-            "total_amount_100m_yuan": round(sum(float(item.get("amount_100m_yuan") or 0) for item in candidates), 2),
-        },
-    }
+    kept_codes = {c["ts_code"] for c in candidates}
+    series_by_code = {k: v for k, v in series_by_code.items() if k in kept_codes}
+    return _result(True, candidates=candidates, series=series_by_code, monthly_map=monthly_map)
 
 
 def build_early_limit_up_1030_samples(
@@ -2516,8 +4331,15 @@ def build_early_limit_up_1030_samples(
             "summary": {"candidate_count": 0},
         }
 
-    panel_by_ts = {str(row.get("ts_code")): row for _, row in panel.iterrows()} if panel is not None and not panel.empty else {}
-    basic_by_ts = {str(row.get("ts_code")): row for _, row in basic.iterrows()} if basic is not None and not basic.empty else {}
+    def frame_by_ts_code(df: Optional[pd.DataFrame]) -> Dict[str, Dict[str, Any]]:
+        if df is None or df.empty or "ts_code" not in df.columns:
+            return {}
+        indexed = df.copy()
+        indexed["ts_code"] = indexed["ts_code"].astype(str)
+        return indexed.set_index("ts_code", drop=False).to_dict(orient="index")
+
+    panel_by_ts = frame_by_ts_code(panel)
+    basic_by_ts = frame_by_ts_code(basic)
 
     candidates: List[Dict[str, Any]] = []
     for record in records:
@@ -2591,9 +4413,10 @@ def build_early_limit_up_1030_samples(
 
 def build_feature_group_overlaps(groups: Dict[str, Dict[str, Any]]) -> List[Dict[str, Any]]:
     labels = {
-        "low_position_anomaly": "低位异动",
-        "star_120_high_monthly_breakout": "科创板月线突破",
+        "capacity_up": "容量上涨",
+        "monthly_base_breakout": "全市场月线平台突破",
         "early_limit_up_1030": "10:30前涨停",
+        "discount_relaunch": "折扣启动",
     }
     by_code: Dict[str, Dict[str, Any]] = {}
     for group_key, payload in groups.items():
@@ -2629,25 +4452,71 @@ def build_feature_group_overlaps(groups: Dict[str, Dict[str, Any]]) -> List[Dict
 
 
 def build_feature_group_analysis_samples(
-    low_position_anomaly: Dict[str, Any],
     features: pd.DataFrame,
     panel: pd.DataFrame,
     basic: pd.DataFrame,
+    candidate_panel: pd.DataFrame,
     target_date: str,
     sample_limit: int,
+    capacity_market_cap_threshold_100m_yuan: float,
+    capacity_amount_threshold_100m_yuan: float,
+    capacity_pct_chg_threshold: float,
+    discount_market_cap_threshold_100m_yuan: float,
+    discount_amount_threshold_100m_yuan: float,
+    discount_pct_chg_threshold: float,
+    discount_min: float,
+    discount_max: float,
+    discount_pre_contraction_max: float,
+    discount_volume_expansion_min: float,
+    discount_high_lookback: int,
+    discount_low_recency_days: int,
+    pro=None,
+    full_market_features: Optional[pd.DataFrame] = None,
 ) -> Dict[str, Any]:
-    low_group = {
-        "available": low_position_anomaly.get("available", False),
-        "filter_criteria": low_position_anomaly.get("filter_criteria"),
-        "summary": low_position_anomaly.get("summary"),
-        "candidates": low_position_anomaly.get("candidates", []),
-    }
-    star_group = build_star_monthly_breakout_samples(features, target_date, sample_limit)
+    capacity_group = build_capacity_up_samples(
+        panel,
+        market_cap_threshold_100m_yuan=capacity_market_cap_threshold_100m_yuan,
+        amount_threshold_100m_yuan=capacity_amount_threshold_100m_yuan,
+        pct_chg_threshold=capacity_pct_chg_threshold,
+        sample_limit=sample_limit,
+    )
+    # 月线平台突破要真·全市场：用全市场多日帧 screening_features 做「当天大涨」预筛，而不是
+    # 候选池 features（后者偏向容量/折扣/科创口径，会漏掉低换手的非科创长底突破）。其余组仍用
+    # 候选池。无全市场帧时回退到 features。
+    monthly_group = build_monthly_base_breakout_samples(
+        full_market_features if full_market_features is not None and not full_market_features.empty else features,
+        target_date, sample_limit, pro=pro,
+    )
     early_group = build_early_limit_up_1030_samples(target_date, panel, basic, sample_limit)
+    # 折扣启动需要 candidate_panel（候选池目标日切片，带 daily_basic 市值与量能特征），
+    # 折扣本身（前高之后最低价 / 前高收盘价）按多日序列在 features 上另算后附到该切片。
+    discount_panel = candidate_panel
+    if candidate_panel is not None and not candidate_panel.empty:
+        disc_map = attach_discount_after_high(features, target_date, discount_high_lookback)
+        discount_panel = candidate_panel.copy()
+        keys = discount_panel["ts_code"].astype(str)
+        for field in ("prev_high_close", "prev_high_date", "post_low", "post_low_date",
+                      "low_to_target_days", "discount_after_high", "close_vs_prev_high",
+                      "monthly_ma10", "monthly_above_ma10"):
+            discount_panel[field] = keys.map(lambda code, f=field: (disc_map.get(code) or {}).get(f))
+    discount_group = build_discount_relaunch_samples(
+        discount_panel,
+        market_cap_threshold_100m_yuan=discount_market_cap_threshold_100m_yuan,
+        amount_threshold_100m_yuan=discount_amount_threshold_100m_yuan,
+        pct_chg_threshold=discount_pct_chg_threshold,
+        discount_min=discount_min,
+        discount_max=discount_max,
+        pre_contraction_max=discount_pre_contraction_max,
+        volume_expansion_min=discount_volume_expansion_min,
+        high_lookback=discount_high_lookback,
+        low_recency_days=discount_low_recency_days,
+        sample_limit=sample_limit,
+    )
     groups = {
-        "low_position_anomaly": low_group,
-        "star_120_high_monthly_breakout": star_group,
+        "capacity_up": capacity_group,
+        "monthly_base_breakout": monthly_group,
         "early_limit_up_1030": early_group,
+        "discount_relaunch": discount_group,
     }
     overlaps = build_feature_group_overlaps(groups)
     return {
@@ -2655,133 +4524,16 @@ def build_feature_group_analysis_samples(
         "groups": groups,
         "overlap_hits": overlaps,
         "summary": {
-            "low_position_anomaly_count": len(low_group.get("candidates") or []),
-            "star_120_high_monthly_breakout_count": len(star_group.get("candidates") or []),
+            "capacity_up_count": len(capacity_group.get("candidates") or []),
+            "monthly_base_breakout_count": len(monthly_group.get("candidates") or []),
             "early_limit_up_1030_count": len(early_group.get("candidates") or []),
+            "discount_relaunch_count": len(discount_group.get("candidates") or []),
             "overlap_hit_count": len(overlaps),
         },
         "model_responsibility": "脚本只提供分组命中和确定性量价证据；交叉命中上涨归因由模型基于证据包撰写，不在脚本中调用 LLM。",
     }
 
 
-def build_resilient_against_index_samples(
-    panel: pd.DataFrame,
-    index_summary: Dict[str, Optional[float]],
-    index_5d_max: float,
-    index_10d_max: float,
-    rel_ret_5d_min: float,
-    ret_5d_min: float,
-    amount_threshold_100m_yuan: float,
-    sample_limit: int,
-) -> Dict[str, Any]:
-    """
-    "该弱不弱就是强" — find resilient stocks that hold up while the index is weak.
-
-    Skips entirely when index environment is not weak: produces empty candidates
-    with a reason field. The model should not list bearish-divergence stocks.
-
-    Index weakness gate (either is enough):
-      - index_ret_5d  <= index_5d_max  (default -2.0)
-      - index_ret_10d <= index_10d_max (default -3.0)
-
-    Candidate filters (all must pass):
-      - rel_ret_5d >= rel_ret_5d_min  (default 5.0pct relative outperformance)
-      - ret_5d     >= ret_5d_min      (default 0.0, absolute return positive)
-      - amount     >= amount_threshold (default 1亿, ensures real participation)
-
-    Sort: rel_ret_5d desc, then ret_5d desc.
-    """
-    index_ret_5d = index_summary.get("index_ret_5d") if index_summary else None
-    index_ret_10d = index_summary.get("index_ret_10d") if index_summary else None
-
-    weak_environment = False
-    weakness_reasons: List[str] = []
-    if index_ret_5d is not None and index_ret_5d <= index_5d_max:
-        weak_environment = True
-        weakness_reasons.append(f"指数5日涨跌幅={index_ret_5d} <= {index_5d_max}")
-    if index_ret_10d is not None and index_ret_10d <= index_10d_max:
-        weak_environment = True
-        weakness_reasons.append(f"指数10日涨跌幅={index_ret_10d} <= {index_10d_max}")
-
-    base = {
-        "filter_criteria": {
-            "index_5d_max": index_5d_max,
-            "index_10d_max": index_10d_max,
-            "rel_ret_5d_min": rel_ret_5d_min,
-            "ret_5d_min": ret_5d_min,
-            "amount_threshold_100m_yuan": amount_threshold_100m_yuan,
-            "sample_limit": sample_limit,
-            "philosophy": "该弱不弱就是强：只列弱指数环境中的抗跌/逆势上涨候选，不列逆势下跌。",
-        },
-        "index_environment": {
-            "index_ret_5d": index_ret_5d,
-            "index_ret_10d": index_ret_10d,
-            "is_weak": weak_environment,
-            "weakness_reasons": weakness_reasons,
-        },
-    }
-
-    if not weak_environment:
-        return {
-            **base,
-            "available": True,
-            "candidates": [],
-            "summary": {
-                "candidate_count": 0,
-                "skipped_reason": "指数未达到当前弱势门槛，抗跌股筛选按规则跳过。",
-            },
-        }
-
-    if panel is None or panel.empty:
-        return {
-            **base,
-            "available": False,
-            "candidates": [],
-            "summary": {"candidate_count": 0},
-        }
-
-    amount_threshold_thousand_yuan = amount_threshold_100m_yuan * 100000
-    df = panel.copy()
-    for column in ("ret_5d", "rel_ret_5d", "amount", "pct_chg", "amount_ratio_20d", "drawdown_120_high"):
-        if column in df.columns:
-            df[column] = pd.to_numeric(df[column], errors="coerce")
-
-    qualified = df.loc[
-        (df["rel_ret_5d"].fillna(-999) >= rel_ret_5d_min)
-        & (df["ret_5d"].fillna(-999) >= ret_5d_min)
-        & (df["amount"].fillna(0) >= amount_threshold_thousand_yuan)
-    ].copy()
-
-    if qualified.empty:
-        return {
-            **base,
-            "available": True,
-            "candidates": [],
-            "summary": {"candidate_count": 0},
-        }
-
-    qualified = qualified.sort_values(
-        ["rel_ret_5d", "ret_5d", "amount"], ascending=[False, False, False]
-    ).head(sample_limit)
-
-    summary = {
-        "candidate_count": int(len(qualified)),
-        "median_rel_ret_5d": round(float(qualified["rel_ret_5d"].median()), 2),
-        "max_rel_ret_5d": round(float(qualified["rel_ret_5d"].max()), 2),
-        "median_ret_5d": round(float(qualified["ret_5d"].median()), 2),
-        "median_amount_ratio_20d": (
-            round(float(qualified["amount_ratio_20d"].median()), 2)
-            if "amount_ratio_20d" in qualified.columns
-            else None
-        ),
-    }
-
-    return {
-        **base,
-        "available": True,
-        "candidates": clean_candidates(qualified, sample_limit),
-        "summary": summary,
-    }
 
 
 def compact_record(record: Dict[str, Any], fields: List[str]) -> Dict[str, Any]:
@@ -2804,11 +4556,48 @@ def compact_records(records: List[Dict[str, Any]], fields: List[str], limit: int
 def compact_index_trend(index: Dict[str, Any]) -> Dict[str, Any]:
     return {
         "name": index.get("name"),
+        "ts_code": index.get("ts_code"),
         "latest": index.get("latest"),
         "returns": index.get("returns"),
         "moving_averages": index.get("moving_averages"),
         "volume_price": index.get("volume_price"),
         "levels": index.get("levels"),
+        "trend_stage_hint": index.get("trend_stage_hint"),
+    }
+
+
+def compact_market_style_index(index: Dict[str, Any]) -> Dict[str, Any]:
+    return {
+        "available": index.get("available"),
+        "name": index.get("name"),
+        "bs_code": index.get("bs_code"),
+        "style_role": index.get("style_role"),
+        "proxy_note": index.get("proxy_note"),
+        "latest": index.get("latest"),
+        "returns": index.get("returns"),
+        "moving_averages": index.get("moving_averages"),
+        "volume_price": index.get("volume_price"),
+        "trend_stage_hint": index.get("trend_stage_hint"),
+        "reason": index.get("reason"),
+    }
+
+
+def compact_market_style(style: Dict[str, Any]) -> Dict[str, Any]:
+    if not isinstance(style, dict):
+        return {}
+    return {
+        "available": style.get("available"),
+        "source": style.get("source"),
+        "source_reference": style.get("source_reference"),
+        "trade_date": style.get("trade_date"),
+        "proxy_notes": style.get("proxy_notes"),
+        "indices": {
+            key: compact_market_style_index(value)
+            for key, value in (style.get("indices") or {}).items()
+        },
+        "spreads": style.get("spreads"),
+        "missing": style.get("missing"),
+        "reason": style.get("reason"),
     }
 
 
@@ -2816,7 +4605,7 @@ def build_report_context(
     evidence: Dict[str, Any],
     money_limit: int = 80,
     decline_limit: int = 20,
-    low_limit: int = 20,
+    feature_limit: int = 20,
     amount_limit: int = 20,
 ) -> Dict[str, Any]:
     money_fields = [
@@ -2830,52 +4619,44 @@ def build_report_context(
         "rel_ret_5d",
         "amount_ratio_20d",
         "sustained_volume_days_5",
+        "turnover_rate",
+        "volume_ratio",
         "close_position_120d",
         "drawdown_120_high",
+        "close_to_high",
+        "total_mv_100m_yuan",
+        "circ_mv_100m_yuan",
+        "elasticity_hint_score",
     ]
     decline_fields = money_fields + ["decline_intensity"]
-    low_fields = [
+    capacity_fields = [
         "ts_code",
         "name",
         "market",
-        "scenario",
-        "scenario_label",
-        "quality_tier",
-        "matched_models",
-        "matched_model_labels",
-        "trigger_date",
-        "days_since_trigger",
-        "trigger_pct_chg",
-        "trigger_amount_ratio_15d",
-        "trigger_amount_100m_yuan",
-        "trigger_low_track",
-        "trigger_drawdown_120_high",
-        "trigger_close_position_120d",
-        "trigger_close_to_high",
-        "trigger_break_prev_high_10d",
-        "post_trigger_min_volume_ratio",
-        "post_trigger_recent3_volume_ratio",
-        "today_close",
-        "today_close_ma5",
-        "today_amount_100m_yuan",
+        "pct_chg",
+        "amount_100m_yuan",
+        "total_mv_100m_yuan",
+        "circ_mv_100m_yuan",
+        "close",
+        "turnover_rate",
+        "volume_ratio",
+        "trigger_reason",
     ]
-    star_fields = [
+    monthly_base_fields = [
         "ts_code",
         "name",
         "market",
         "pct_chg",
         "amount_100m_yuan",
         "close",
-        "prev_high_120d",
-        "close_vs_prev_high_120d_pct",
-        "previous_complete_month_high",
-        "current_month_high",
-        "close_vs_previous_month_high_pct",
-        "ret_5d",
-        "ret_20d",
+        "prev_close",
+        "base_top_pivot",
+        "base_length_months",
+        "base_start_month",
+        "breakout_month",
+        "close_vs_pivot_pct",
         "amount_ratio_20d",
-        "drawdown_120_high",
-        "close_position_120d",
+        "monthly_history_count",
         "trigger_reason",
     ]
     early_limit_fields = [
@@ -2890,6 +4671,35 @@ def build_report_context(
         "amount_100m_yuan",
         "close",
         "open_times",
+        "trigger_reason",
+    ]
+    discount_fields = [
+        "ts_code",
+        "name",
+        "market",
+        "pct_chg",
+        "amount_100m_yuan",
+        "total_mv_100m_yuan",
+        "circ_mv_100m_yuan",
+        "close",
+        "prev_high_close",
+        "prev_high_date",
+        "post_low",
+        "post_low_date",
+        "low_to_target_days",
+        "discount_after_high",
+        "close_vs_prev_high",
+        "monthly_ma10",
+        "monthly_above_ma10",
+        "close_position_120d",
+        "amount_ratio_20d",
+        "pre_volume_contraction_ratio",
+        "amount_vs_prev5_ratio",
+        "pre_ret_5d",
+        "ret_5d",
+        "ret_20d",
+        "turnover_rate",
+        "volume_ratio",
         "trigger_reason",
     ]
     overlap_fields = [
@@ -2932,6 +4742,7 @@ def build_report_context(
                     key: compact_index_trend(value)
                     for key, value in (market_trend.get("indices") or {}).items()
                 },
+                "market_style": compact_market_style(market_trend.get("market_style") or {}),
             },
         },
         "amount_concentration": {
@@ -2954,8 +4765,8 @@ def build_report_context(
                     money_fields,
                     money_limit,
                 ),
-                "sorting": "按成交额（亿元）降序",
-                "model_responsibility": "由模型按业务事实归纳主题；不要使用预设行业标签，也不要把该辅助字段当作机械分类器。",
+                "sorting": "按成交额（亿元）降序；elasticity_hint_score 只辅助识别主线内弹性股，不改写候选池排序。",
+                "model_responsibility": "由模型按业务事实归纳主题作为内部判定步骤，报告不输出单独主题分组陈列表；只在 ★★/★★★ 主线内区分领导股与弹性股。不要使用预设行业标签，也不要把弹性提示分当作机械分类器。",
             },
         },
         "volume_decline": {
@@ -2967,35 +4778,29 @@ def build_report_context(
                 decline_limit,
             ),
         },
-        "low_position_volume_anomaly": {
-            "filter_criteria": (evidence.get("low_position_volume_anomaly_samples") or {}).get("filter_criteria"),
-            "summary": (evidence.get("low_position_volume_anomaly_samples") or {}).get("summary"),
-            "candidates": compact_records(
-                (evidence.get("low_position_volume_anomaly_samples") or {}).get("candidates", []),
-                low_fields,
-                low_limit,
-            ),
-        },
         "feature_group_analysis": {
             "summary": feature_groups.get("summary"),
             "model_responsibility": feature_groups.get("model_responsibility"),
             "groups": {
-                "low_position_anomaly": {
-                    "filter_criteria": (feature_group_payload.get("low_position_anomaly") or {}).get("filter_criteria"),
-                    "summary": (feature_group_payload.get("low_position_anomaly") or {}).get("summary"),
+                "capacity_up": {
+                    "filter_criteria": (feature_group_payload.get("capacity_up") or {}).get("filter_criteria"),
+                    "summary": (feature_group_payload.get("capacity_up") or {}).get("summary"),
                     "candidates": compact_records(
-                        (feature_group_payload.get("low_position_anomaly") or {}).get("candidates", []),
-                        low_fields,
-                        low_limit,
+                        (feature_group_payload.get("capacity_up") or {}).get("candidates", []),
+                        capacity_fields,
+                        feature_limit,
                     ),
                 },
-                "star_120_high_monthly_breakout": {
-                    "filter_criteria": (feature_group_payload.get("star_120_high_monthly_breakout") or {}).get("filter_criteria"),
-                    "summary": (feature_group_payload.get("star_120_high_monthly_breakout") or {}).get("summary"),
+                "monthly_base_breakout": {
+                    "available": (feature_group_payload.get("monthly_base_breakout") or {}).get("available"),
+                    "reason": (feature_group_payload.get("monthly_base_breakout") or {}).get("reason"),
+                    "model_overlay": (feature_group_payload.get("monthly_base_breakout") or {}).get("model_overlay"),
+                    "filter_criteria": (feature_group_payload.get("monthly_base_breakout") or {}).get("filter_criteria"),
+                    "summary": (feature_group_payload.get("monthly_base_breakout") or {}).get("summary"),
                     "candidates": compact_records(
-                        (feature_group_payload.get("star_120_high_monthly_breakout") or {}).get("candidates", []),
-                        star_fields,
-                        low_limit,
+                        (feature_group_payload.get("monthly_base_breakout") or {}).get("candidates", []),
+                        monthly_base_fields,
+                        feature_limit,
                     ),
                 },
                 "early_limit_up_1030": {
@@ -3007,25 +4812,25 @@ def build_report_context(
                     "candidates": compact_records(
                         (feature_group_payload.get("early_limit_up_1030") or {}).get("candidates", []),
                         early_limit_fields,
-                        low_limit,
+                        feature_limit,
+                    ),
+                },
+                "discount_relaunch": {
+                    "filter_criteria": (feature_group_payload.get("discount_relaunch") or {}).get("filter_criteria"),
+                    "summary": (feature_group_payload.get("discount_relaunch") or {}).get("summary"),
+                    "candidates": compact_records(
+                        (feature_group_payload.get("discount_relaunch") or {}).get("candidates", []),
+                        discount_fields,
+                        feature_limit,
                     ),
                 },
             },
-            "overlap_hits": compact_records(feature_groups.get("overlap_hits", []), overlap_fields, low_limit),
-        },
-        "resilient_against_index": {
-            "index_environment": (evidence.get("resilient_against_index_samples") or {}).get("index_environment"),
-            "summary": (evidence.get("resilient_against_index_samples") or {}).get("summary"),
-            "candidates": compact_records(
-                (evidence.get("resilient_against_index_samples") or {}).get("candidates", []),
-                money_fields,
-                decline_limit,
-            ),
+            "overlap_hits": compact_records(feature_groups.get("overlap_hits", []), overlap_fields, feature_limit),
         },
         "reporting_notes": [
             "本上下文是面向模型的轻量辅助包，不是完整证据归档。",
             "最终主线名称和评级仍由模型依据业务事实与 skill 规则判断。",
-            "自动化路径有意省略外部收盘综述校验。",
+            "自动化路径有意省略外部收盘综述校验；模块 3 先完成临时成员映射和确定性统计，由模型锁星后才单独执行催化搜索。",
         ],
     }
 
@@ -3040,11 +4845,12 @@ def collect_candidate_codes(
     """Collect the full-market coarse-screen universe before expensive features."""
     if panel is None or panel.empty:
         empty: Set[str] = set()
-        return {"m2": empty, "m3": empty, "m4": empty, "m5": empty, "m6": empty}
+        return {"m2": empty, "m3": empty, "m4": empty, "m5": empty}
 
     amount_money = args.money_amount_threshold * 100000
     amount_decline = args.decline_amount_threshold * 100000
-    amount_resilient = args.resilient_amount_threshold * 100000
+    amount_capacity = args.capacity_amount_threshold * 100000
+    market_cap_capacity = args.capacity_market_cap_threshold * 10000
 
     m2_codes = set(panel.nlargest(min(20, len(panel)), "amount")["ts_code"].dropna().astype(str))
     m3_codes = set(
@@ -3063,11 +4869,33 @@ def collect_candidate_codes(
         ].dropna().astype(str)
     )
 
-    low_window = trade_dates[-(max(0, int(args.low_lookback_days)) + 1):]
-    m5_codes = set(
-        screening_features.loc[
-            (screening_features["trade_date"].astype(str).isin(low_window))
-            & (pd.to_numeric(screening_features["pct_chg"], errors="coerce").fillna(-999) >= args.low_spike_pct_chg),
+    panel_market = panel["market"].fillna("").astype(str) if "market" in panel.columns else pd.Series("", index=panel.index)
+    panel_names = panel["name"].fillna("").astype(str) if "name" in panel.columns else pd.Series("", index=panel.index)
+    panel_ts_codes = panel["ts_code"].fillna("").astype(str)
+    panel_total_mv = panel["total_mv"] if "total_mv" in panel.columns else pd.Series(0, index=panel.index)
+    capacity_codes = set(
+        panel.loc[
+            (pd.to_numeric(panel["pct_chg"], errors="coerce").fillna(-999) > args.capacity_pct_threshold)
+            & (pd.to_numeric(panel["amount"], errors="coerce").fillna(0) > amount_capacity)
+            & (pd.to_numeric(panel_total_mv, errors="coerce").fillna(0) > market_cap_capacity)
+            & ~panel_market.eq("北交所")
+            & ~panel_ts_codes.str.endswith(".BJ")
+            & ~panel_names.str.upper().str.contains("ST", na=False),
+            "ts_code",
+        ].dropna().astype(str)
+    )
+    # 折扣启动的粗筛只用 panel 现成的硬阈值（涨幅/成交额/市值），把候选股的完整历史
+    # 拉进 features；前高折扣与缩量→放量等多日条件在 build_discount_relaunch_samples 精筛。
+    amount_discount = args.discount_amount_threshold * 100000
+    market_cap_discount = args.discount_market_cap_threshold * 10000
+    discount_codes = set(
+        panel.loc[
+            (pd.to_numeric(panel["pct_chg"], errors="coerce").fillna(-999) > args.discount_pct_threshold)
+            & (pd.to_numeric(panel["amount"], errors="coerce").fillna(0) > amount_discount)
+            & (pd.to_numeric(panel_total_mv, errors="coerce").fillna(0) > market_cap_discount)
+            & ~panel_market.eq("北交所")
+            & ~panel_ts_codes.str.endswith(".BJ")
+            & ~panel_names.str.upper().str.contains("ST", na=False),
             "ts_code",
         ].dropna().astype(str)
     )
@@ -3083,32 +4911,13 @@ def collect_candidate_codes(
             "ts_code",
         ].dropna().astype(str)
     )
-    m5_codes = m5_codes | star_codes
-
-    index_ret_5d = index_summary.get("index_ret_5d") if index_summary else None
-    index_ret_10d = index_summary.get("index_ret_10d") if index_summary else None
-    weak_environment = (
-        (index_ret_5d is not None and index_ret_5d <= args.resilient_index_5d_max)
-        or (index_ret_10d is not None and index_ret_10d <= args.resilient_index_10d_max)
-    )
-    if weak_environment:
-        m6_codes = set(
-            panel.loc[
-                (pd.to_numeric(panel["ret_5d"], errors="coerce").fillna(-999) >= args.resilient_abs_ret_min)
-                & (pd.to_numeric(panel["rel_ret_5d"], errors="coerce").fillna(-999) >= args.resilient_rel_ret_min)
-                & (pd.to_numeric(panel["amount"], errors="coerce").fillna(0) >= amount_resilient),
-                "ts_code",
-            ].dropna().astype(str)
-        )
-    else:
-        m6_codes = set()
+    m5_codes = capacity_codes | star_codes | discount_codes
 
     return {
         "m2": m2_codes,
         "m3": m3_codes,
         "m4": m4_codes,
         "m5": m5_codes,
-        "m6": m6_codes,
     }
 
 
@@ -3151,14 +4960,14 @@ def build_module_contexts(evidence: Dict[str, Any]) -> Dict[str, Any]:
         "meta": {
             "metadata": metadata,
             "subagent_contract": {
-                "module1_market_trend": ["module1_market_trend.json", "reference/methodology/module1_trend.md", "reference/template/section1.md", "盘面趋势"],
-                "module2_concentration": ["module2_concentration.json", "reference/methodology/module2_concentration.md", "reference/template/section2.md", "成交额集中度"],
-                "module3_money_effect": ["module3_money_effect.json", "reference/methodology/module3_money_effect.md", "reference/template/section3.md", "赚钱效应与上涨主线"],
-                "module4_decline": ["module4_decline.json", "reference/methodology/module4_decline.md", "reference/template/section4.md", "爆量下跌风险"],
-                "module5_feature_groups": ["module5_feature_groups.json", "reference/methodology/module5_feature_groups.md", "reference/template/section5.md", "特征分组分析"],
-                "module6_resilient": ["module6_resilient.json", "reference/methodology/module6_resilient.md", "reference/template/section6.md", "抗跌股"],
+                "module1_market_trend": ["module1_market_trend.json", "references/methodology/module1_trend.md", "references/template/section1.md", "盘面趋势"],
+                "module2_concentration": ["module2_concentration.json", "references/methodology/module2_concentration.md", "references/template/section2.md", "成交额集中度"],
+                "module3_money_effect": ["module3_money_effect.json", "references/methodology/module3_money_effect.md", "module3_theme_map.json", "首轮只做临时主题与成员映射，stars 写 null，不写最终正文"],
+                "module3_money_effect_second_stage": [["module3_theme_map.json", "module3_theme_stats.json", "module3_enrichment_pack.json"], "references/methodology/catalyst_subline_mining.md", "references/template/section3.md", "统计后由模型锁星；星级锁定后补催化与细分线路，再写最终模块 3"],
+                "module4_decline": ["module4_decline.json", "references/methodology/module4_decline.md", "references/template/section4.md", "爆量下跌风险"],
+                "module5_feature_groups": ["module5_feature_groups.json", "references/methodology/module5_feature_groups.md", "references/template/section5.md", "特征分组分析"],
             },
-            "aggregation_inputs": ["assembled_checks.json", "reference/methodology/output_discipline.md"],
+            "aggregation_inputs": ["assembled_checks.json", "references/methodology/output_discipline.md"],
         },
         "module1_market_trend": {
             "metadata": metadata,
@@ -3182,29 +4991,32 @@ def build_module_contexts(evidence: Dict[str, Any]) -> Dict[str, Any]:
             "metadata": metadata,
             "feature_group_analysis": context.get("feature_group_analysis"),
         },
-        "module6_resilient": {
-            "metadata": metadata,
-            "resilient_against_index": context.get("resilient_against_index"),
-        },
         "assembled_checks": build_assembled_checks(evidence),
     }
 
 
 def build_panel(args: argparse.Namespace) -> Dict[str, Any]:
+    timer = StageTimer()
     pro = get_pro()
     asof = normalize_date(args.asof)
     cache_enabled = not bool(args.no_cache)
     fetch_workers = max(1, int(getattr(args, "fetch_workers", 1) or 1))
+    # 折扣启动的"前高"需要回看 discount_high_lookback 个交易日，月线10月均线还需 ~11 个
+    # 自然月（≈230 交易日）的历史，所以实际加载窗口取二者上界并留余量（+50）。其他模块只用
+    # 近端数据，多出的历史不改变其结果，仅让候选股的多日特征帧更长。
+    effective_lookback = max(args.lookback, int(getattr(args, "discount_high_lookback", 0) or 0) + 50)
     target_date, trade_dates = fetch_trade_dates(
         pro,
         asof,
-        args.lookback,
+        effective_lookback,
         args.offset,
         args.allow_future,
         cache_enabled=cache_enabled,
         refresh_cache=args.refresh_cache,
     )
     previous_trade_date = trade_dates[-2] if len(trade_dates) >= 2 else None
+    margin_trade_date = previous_trade_date or target_date
+    timer.mark("trade_calendar")
 
     with ThreadPoolExecutor(max_workers=min(fetch_workers, 5)) as executor:
         daily_future = executor.submit(
@@ -3217,6 +5029,15 @@ def build_panel(args: argparse.Namespace) -> Dict[str, Any]:
             cache_enabled,
             args.refresh_cache,
             fetch_workers,
+        )
+        adj_factor_future = executor.submit(
+            fetch_adj_factors_by_trade_dates,
+            pro,
+            trade_dates,
+            args.sleep,
+            cache_enabled,
+            args.refresh_cache,
+            min(fetch_workers, 3),
         )
         basic_future = executor.submit(
             fetch_by_trade_dates,
@@ -3244,26 +5065,76 @@ def build_panel(args: argparse.Namespace) -> Dict[str, Any]:
             cache_enabled=cache_enabled,
             refresh_cache=args.refresh_cache,
         )
+        margin_future = executor.submit(
+            fetch_margin_net_buy,
+            pro,
+            margin_trade_date,
+            cache_enabled,
+            args.refresh_cache,
+        )
 
         daily = daily_future.result()
+        adj_factors = adj_factor_future.result()
         basic = basic_future.result()
         stock_basic = stock_basic_future.result()
         index_daily = index_daily_future.result()
+        margin_net_buy, margin_net_buy_reason = margin_future.result()
+    timer.mark("fetch_parallel")
 
     if daily.empty:
         raise RuntimeError("daily returned no data for the requested window.")
 
-    market_history_update = update_market_history(target_date, daily, basic)
-    market_trend = build_market_trend(
+    requested_dates = set(trade_dates)
+    loaded_daily_dates = set(daily["trade_date"].astype(str).unique())
+    loaded_adj_dates = (
+        set(adj_factors["trade_date"].astype(str).unique()) if adj_factors is not None and not adj_factors.empty else set()
+    )
+    fetch_gaps = {
+        "daily": sorted(requested_dates - loaded_daily_dates),
+        "adj_factor": sorted(requested_dates - loaded_adj_dates),
+        "daily_basic": [] if basic is not None and not basic.empty else [target_date],
+        "index_daily": [] if index_daily is not None and not index_daily.empty else [target_date],
+    }
+
+    # 板制涨跌停判定必须在 qfq 之前用未复权价格做分位比对。
+    limit_flags = compute_limit_flags(daily, stock_basic)
+    daily, price_adjustment = apply_qfq_adjustment(daily, adj_factors, target_date)
+    timer.mark("qfq_adjustment")
+
+    market_history_update = update_market_history_window(
+        target_date,
+        trade_dates,
+        daily,
+        basic,
+        pro=pro,
+        cache_enabled=cache_enabled,
+        refresh_cache=args.refresh_cache,
+        margin_net_buy=margin_net_buy,
+        margin_net_buy_reason=margin_net_buy_reason,
+        margin_net_buy_trade_date=margin_trade_date,
+        limit_flags=limit_flags,
+    )
+    timer.mark("market_history_update")
+
+    # market_trend is network-bound (Tushare index klines + Baostock styles) and
+    # independent of the pandas stages below, so it runs concurrently. It must
+    # start after update_market_history_window: its sentiment block reads the
+    # market_history rows written there.
+    market_trend_executor = ThreadPoolExecutor(max_workers=1)
+    market_trend_started = time.perf_counter()
+    market_trend_future = market_trend_executor.submit(
+        build_market_trend,
         pro,
         target_date,
         trade_dates,
         args.market_trend_days,
+        args.index_kline_days,
         cache_enabled,
         args.refresh_cache,
     )
 
     screening_features = add_screening_features(daily)
+    timer.mark("screening_features")
     panel = screening_features.loc[screening_features["trade_date"] == target_date].copy()
     if panel.empty:
         raise RuntimeError(f"No daily rows for resolved trade date {target_date}.")
@@ -3274,6 +5145,10 @@ def build_panel(args: argparse.Namespace) -> Dict[str, Any]:
     )
 
     panel = merge_optional(panel, basic, ["ts_code", "trade_date"])
+    limit_flag_columns = limit_flags[["ts_code", "trade_date", "is_limit_up", "is_limit_down"]] if not limit_flags.empty else pd.DataFrame()
+    panel = merge_optional(panel, limit_flag_columns, ["ts_code", "trade_date"])
+    if not previous_panel.empty:
+        previous_panel = merge_optional(previous_panel, limit_flag_columns, ["ts_code", "trade_date"])
 
     if not stock_basic.empty:
         panel = panel.merge(stock_basic, on="ts_code", how="left")
@@ -3315,7 +5190,9 @@ def build_panel(args: argparse.Namespace) -> Dict[str, Any]:
     )
     candidate_panel = merge_optional(candidate_panel, basic, ["ts_code", "trade_date"])
     if not candidate_panel.empty:
+        candidate_panel = merge_optional(candidate_panel, limit_flag_columns, ["ts_code", "trade_date"])
         candidate_panel, _ = add_index_features(candidate_panel, index_daily)
+    timer.mark("candidate_features")
 
     limit_df = pd.DataFrame()
     previous_limit_df = pd.DataFrame()
@@ -3346,38 +5223,61 @@ def build_panel(args: argparse.Namespace) -> Dict[str, Any]:
         amount_threshold_100m_yuan=args.decline_amount_threshold,
         sample_limit=args.decline_sample_limit,
     )
-    low_position_anomaly = build_low_position_volume_anomaly_samples(
-        features,
-        target_date=target_date,
-        drawdown_min_abs=args.low_drawdown_min,
-        close_position_max=args.low_close_position_max,
-        cv_max=args.low_cv_max,
-        spike_volume_ratio_min=args.low_spike_volume_ratio,
-        spike_pct_chg_min=args.low_spike_pct_chg,
-        lookback_days=args.low_lookback_days,
-        sustain_volume_ratio_min=args.low_sustain_ratio,
-        quiet_volume_ratio_max=args.low_quiet_ratio,
-        sample_limit=args.low_sample_limit,
-    )
     feature_group_analysis = build_feature_group_analysis_samples(
-        low_position_anomaly=low_position_anomaly,
         features=features,
         panel=panel,
         basic=basic,
+        candidate_panel=candidate_panel,
         target_date=target_date,
-        sample_limit=args.low_sample_limit,
+        sample_limit=args.feature_sample_limit,
+        capacity_market_cap_threshold_100m_yuan=args.capacity_market_cap_threshold,
+        capacity_amount_threshold_100m_yuan=args.capacity_amount_threshold,
+        capacity_pct_chg_threshold=args.capacity_pct_threshold,
+        discount_market_cap_threshold_100m_yuan=args.discount_market_cap_threshold,
+        discount_amount_threshold_100m_yuan=args.discount_amount_threshold,
+        discount_pct_chg_threshold=args.discount_pct_threshold,
+        discount_min=args.discount_min,
+        discount_max=args.discount_max,
+        discount_pre_contraction_max=args.discount_pre_contraction_max,
+        discount_volume_expansion_min=args.discount_volume_expansion_min,
+        discount_high_lookback=args.discount_high_lookback,
+        discount_low_recency_days=args.discount_low_recency_days,
+        pro=pro,
+        full_market_features=screening_features,
     )
-    resilient = build_resilient_against_index_samples(
-        candidate_panel,
-        index_summary=index_summary,
-        index_5d_max=args.resilient_index_5d_max,
-        index_10d_max=args.resilient_index_10d_max,
-        rel_ret_5d_min=args.resilient_rel_ret_min,
-        ret_5d_min=args.resilient_abs_ret_min,
-        amount_threshold_100m_yuan=args.resilient_amount_threshold,
-        sample_limit=args.resilient_sample_limit,
+    timer.mark("modules")
+    stock_kline_records = build_stock_kline_records(
+        daily=daily,
+        stock_basic=stock_basic,
+        targets=collect_stock_kline_targets(money_effect, feature_group_analysis),
+        target_date=target_date,
+        kline_days=args.index_kline_days,
     )
+    # 月线平台突破组：把月线序列（多年箱体 + pivot + 突破月）注入 kline 展示层供 HTML 月线图，
+    # 同时从证据里弹出，避免几十行月线大数组污染模型读取的 evidence 主体。
+    monthly_breakout_group = (feature_group_analysis.get("groups") or {}).get("monthly_base_breakout") or {}
+    monthly_series = (
+        monthly_breakout_group.pop("monthly_series_by_ts_code", {})
+        if isinstance(monthly_breakout_group, dict) else {}
+    )
+    if monthly_series:
+        stock_kline_records["monthly"] = {
+            "by_ts_code": monthly_series,
+            "name_to_ts_code": {
+                (item.get("name") or code): code
+                for code, item in monthly_series.items()
+                if isinstance(item, dict)
+            },
+        }
+    timer.mark("stock_klines")
 
+    try:
+        market_trend = market_trend_future.result()
+    finally:
+        market_trend_executor.shutdown(wait=False)
+    timer.mark("market_trend_join_wait")
+    timer.timings["market_trend_concurrent"] = round(time.perf_counter() - market_trend_started, 3)
+    timer.timings["total"] = timer.total()
     return {
         "metadata": {
             "asof_input": asof,
@@ -3386,6 +5286,7 @@ def build_panel(args: argparse.Namespace) -> Dict[str, Any]:
             "offset": args.offset,
             "lookback_trade_days_requested": args.lookback,
             "lookback_trade_days_loaded": len(trade_dates),
+            "index_kline_days": int(args.index_kline_days),
             "window_start": trade_dates[0] if trade_dates else None,
             "window_end": target_date,
             "index": args.index,
@@ -3396,11 +5297,14 @@ def build_panel(args: argparse.Namespace) -> Dict[str, Any]:
             "candidate_code_counts_by_module": {
                 key: int(len(value)) for key, value in candidate_code_groups.items()
             },
+            "price_adjustment": price_adjustment,
             "cache_enabled": cache_enabled,
             "cache_root": str(CACHE_ROOT),
-            "cached_endpoints": ["daily", "daily_basic", "stock_basic", "trade_cal", "index_daily"] if cache_enabled else [],
+            "cached_endpoints": ["daily", "daily_basic", "margin", "stock_basic", "trade_cal", "index_daily", "adj_factor"] if cache_enabled else [],
             "fetch_workers": fetch_workers,
             "future_data_allowed": bool(args.allow_future),
+            "stage_timings_seconds": timer.timings,
+            "fetch_gaps": fetch_gaps,
             "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         },
         "market_temperature": market_temperature,
@@ -3427,21 +5331,21 @@ def build_panel(args: argparse.Namespace) -> Dict[str, Any]:
         ),
         "money_effect_samples": money_effect,
         "volume_decline_samples": volume_decline,
-        "low_position_volume_anomaly_samples": low_position_anomaly,
         "feature_group_analysis_samples": feature_group_analysis,
-        "resilient_against_index_samples": resilient,
+        "stock_kline_records": stock_kline_records,
         "notes": [
             "脚本有意不做主题归纳。",
             "不要把市场、行业或概念标签作为预设分组规则；主题应由模型基于证据和业务事实归纳。",
             "Tushare daily 的 amount 单位为千元；total_amount_100m_yuan 已换算为亿元。",
-            "limit_up_approx_count 和 limit_down_approx_count 是基于日涨跌幅阈值的近似统计。官方 limit_list_d 默认跳过以避免限流，需要时使用 --with-limit。",
-            "market_trend 只作为模块 1 证据：上证指数、创业板指数，以及 reference/market_data.csv 的情绪趋势。",
+            "limit_up_count / limit_down_count 默认按板制规则精确判定：未复权前收盘 ×(1±板块限幅) 四舍五入到分后与收盘价比对（主板10%、ST 5%、创业/科创20%、北交所30%），limit_detection=board_rule_price_match；flags 不可用时退回 ±9.8% 近似（pct_chg_approx）。判定口径为收盘封板，不含盘中触板回落；官方 limit_list_d 仍可用 --with-limit 拉取对照。",
+            "market_trend 只作为模块 1 证据：上证指数、创业板指数、科创50、Baostock 风格代理指数，以及 references/market_data.csv 的情绪趋势。",
             "amount_concentration 只衡量成交额集中度，不分配主题或行业。",
+            "个股价格序列统一使用前复权口径：Tushare daily OHLC * adj_factor / 目标日前最新 adj_factor；成交额和成交量仍为原始口径。",
+            "指数 K 线来自 Tushare index_daily，不涉及个股复权口径。",
+            "市场风格代理指数来自 Baostock query_history_k_data_plus；amount 原始单位为元，amount_100m_yuan 已换算为亿元。Baostock 指数字典未见直接微盘指数，默认用国证2000代理小微盘风格。",
             "money_effect_samples 按涨幅和成交额阈值筛选，并按成交额排序，是每日赚钱效应和上涨主线分析的标准候选池。",
             "volume_decline_samples 按涨跌幅、20日放量倍数和成交额阈值筛选，并按爆量下跌强度（20日放量倍数 * 跌幅绝对值）排序。",
-            "low_position_volume_anomaly_samples 使用严格规则（3倍放量、涨幅7%以上、深回撤或底部区域），并分类为启动型、持续换手型、缩量企稳型和分歧型。",
-            "feature_group_analysis_samples 是模块 5 的新证据包：低位异动、科创板120日新高且真实月K突破、10:30前涨停三组分别输出，并提供 overlap_hits 供模型做交叉命中上涨归因。",
-            "resilient_against_index_samples 只在弱指数环境输出（该弱不弱就是强），不输出逆势下跌股票。",
+            "feature_group_analysis_samples 是模块 5 的证据包：容量上涨、科创板120日新高且真实月K突破、10:30前涨停、折扣启动四组分别输出，并提供 overlap_hits 供模型做交叉命中上涨归因。折扣启动=市值>80亿、成交额>5亿、涨幅>7%、自前高（最近200日收盘最高）回撤折扣（前高之后最低价/前高收盘）落在0.6~0.85、且该最低点在大涨日前5个交易日内、调整缩量后当日相对前5日均额重新放量(≥2倍)、且当前月收盘站上月线10月均线。",
         ],
     }
 
@@ -3459,6 +5363,8 @@ def build_arg_parser() -> argparse.ArgumentParser:
     panel.add_argument("--sample-limit", type=int, default=40, help="Max rows in each candidate sample.")
     panel.add_argument("--market-trend-days", type=int, default=90,
                        help="Module 1 market-trend window in trading/history rows (default 90).")
+    panel.add_argument("--index-kline-days", type=int, default=DEFAULT_INDEX_KLINE_DAYS,
+                       help="Trading-day window for Shanghai/ChiNext HTML candlestick data (default 120).")
     panel.add_argument("--sleep", type=float, default=0.12, help="Sleep seconds between API calls.")
     panel.add_argument("--fetch-workers", type=int, default=6,
                        help="Max worker threads for cache/API fetching. Use 1 for serial debugging.")
@@ -3485,39 +5391,35 @@ def build_arg_parser() -> argparse.ArgumentParser:
     panel.add_argument("--decline-sample-limit", type=int, default=60,
                        help="Volume-decline pool: max rows after sorting (default 60).")
 
-    # Low-position volume anomaly (低位放量异动) — module 5 feature-group subgroup.
-    panel.add_argument("--low-drawdown-min", type=float, default=35.0,
-                       help="Low-position pool rule B: minimum |drawdown_120_high| in percent (default 35.0).")
-    panel.add_argument("--low-close-position-max", type=float, default=0.20,
-                       help="Low-position pool rule A: maximum close_position_120d (default 0.20).")
-    panel.add_argument("--low-cv-max", type=float, default=0.03,
-                       help="Low-position pool rule B: maximum 10-day close coefficient of variation, the 走平 signal (default 0.03).")
-    panel.add_argument("--low-spike-volume-ratio", type=float, default=3.0,
-                       help="Low-position pool: minimum amount_ratio_15d for the spike trigger day (default 3.0).")
-    panel.add_argument("--low-spike-pct-chg", type=float, default=7.0,
-                       help="Low-position pool: minimum pct_chg in percent on the spike trigger day (default 7.0).")
-    panel.add_argument("--low-lookback-days", type=int, default=5,
-                       help="Low-position pool: how many trading days to look back for the trigger day (default 5).")
-    panel.add_argument("--low-sustain-ratio", type=float, default=0.7,
-                       help="Sustain scenario: every post-trigger day's amount must be >= sustain_ratio * trigger amount (default 0.7).")
-    panel.add_argument("--low-quiet-ratio", type=float, default=0.5,
-                       help="Quiet scenario: median of last 3 post-trigger days' amount must be <= quiet_ratio * trigger amount (default 0.5).")
-    panel.add_argument("--low-sample-limit", type=int, default=60,
-                       help="Low-position pool: max rows after sorting (default 60).")
+    # Capacity-up (容量上涨) — module 5 feature-group subgroup.
+    panel.add_argument("--capacity-market-cap-threshold", type=float, default=70.0,
+                       help="Capacity-up pool: minimum total market cap in 100m yuan, exclusive (default 70.0 == 70亿).")
+    panel.add_argument("--capacity-amount-threshold", type=float, default=5.0,
+                       help="Capacity-up pool: minimum amount in 100m yuan, exclusive (default 5.0 == 5亿).")
+    panel.add_argument("--capacity-pct-threshold", type=float, default=8.0,
+                       help="Capacity-up pool: minimum pct_chg in percent, exclusive (default 8.0).")
+    panel.add_argument("--feature-sample-limit", type=int, default=60,
+                       help="Module 5 feature-group max rows per subgroup (default 60).")
 
-    # Resilient-against-index (该弱不弱就是强) — module 6.
-    panel.add_argument("--resilient-index-5d-max", type=float, default=-2.0,
-                       help="Resilient pool: index 5d return must be <= this to count as weak environment (default -2.0).")
-    panel.add_argument("--resilient-index-10d-max", type=float, default=-3.0,
-                       help="Resilient pool: index 10d return must be <= this to count as weak environment (default -3.0).")
-    panel.add_argument("--resilient-rel-ret-min", type=float, default=5.0,
-                       help="Resilient pool: minimum 5d relative outperformance vs index in pct (default 5.0).")
-    panel.add_argument("--resilient-abs-ret-min", type=float, default=0.0,
-                       help="Resilient pool: minimum 5d absolute return in pct (default 0.0).")
-    panel.add_argument("--resilient-amount-threshold", type=float, default=1.0,
-                       help="Resilient pool: minimum amount in 100m yuan (default 1.0 == 1亿).")
-    panel.add_argument("--resilient-sample-limit", type=int, default=40,
-                       help="Resilient pool: max rows after sorting (default 40).")
+    # Discount-relaunch (折扣启动) — module 5 feature-group subgroup.
+    panel.add_argument("--discount-market-cap-threshold", type=float, default=80.0,
+                       help="Discount-relaunch pool: minimum total market cap in 100m yuan, exclusive (default 80.0 == 80亿).")
+    panel.add_argument("--discount-amount-threshold", type=float, default=5.0,
+                       help="Discount-relaunch pool: minimum amount in 100m yuan, exclusive (default 5.0 == 5亿).")
+    panel.add_argument("--discount-pct-threshold", type=float, default=7.0,
+                       help="Discount-relaunch pool: minimum pct_chg in percent, exclusive (default 7.0).")
+    panel.add_argument("--discount-min", type=float, default=0.6,
+                       help="Discount-relaunch pool: lower bound of close/prev-120d-high discount band, exclusive (default 0.6).")
+    panel.add_argument("--discount-max", type=float, default=0.85,
+                       help="Discount-relaunch pool: upper bound of close/prev-120d-high discount band, exclusive (default 0.85).")
+    panel.add_argument("--discount-pre-contraction-max", type=float, default=0.9,
+                       help="Discount-relaunch pool: max prior-5d/prior-20d amount ratio for the adjustment-phase volume contraction (default 0.9).")
+    panel.add_argument("--discount-volume-expansion-min", type=float, default=2.0,
+                       help="Discount-relaunch pool: min amount_vs_prev5_ratio (today's amount vs the prior-5-day contraction-period average) for the relaunch-day volume expansion (default 2.0).")
+    panel.add_argument("--discount-high-lookback", type=int, default=200,
+                       help="Discount-relaunch pool: trading-day window for the prior high (close-based) used by the discount = post-high-low / prior-high-close (default 200).")
+    panel.add_argument("--discount-low-recency-days", type=int, default=5,
+                       help="Discount-relaunch pool: the post-high low must occur within this many trading days before the big-up day (default 5).")
 
     return parser
 

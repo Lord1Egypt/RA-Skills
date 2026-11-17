@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7d289fg9rr68tv3e36nb5ajh84d2w5",
-  "slug": "yq-find-skills",
-  "version": "1.0.0",
-  "publishedAt": 1779584562406
+  "author": "MiniMax Agent",
+  "created_at": "2026-03-22T17:28:38Z",
+  "id": 379368722162634,
+  "name": "yq-find-skills",
+  "platform": "minimax",
+  "skill_id": 159,
+  "skill_type": "native",
+  "updated_at": 1774172497104,
+  "version": "3.6.8"
 }

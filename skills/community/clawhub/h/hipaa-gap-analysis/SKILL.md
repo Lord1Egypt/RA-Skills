@@ -1,8 +1,11 @@
 ---
-name: hipaa-gap-analysis
-description: Assess compliance documents against HIPAA Security Rule and Privacy Rule requirements. Produces structured findings with evidence, gap descriptions, and remediation recommendations.
-argument-hint: Paste or attach your compliance document (security policy, procedures manual, etc.) for analysis
-allowed-tools: Read, Glob, Grep, WebFetch
+name: "hipaa-gap-analysis"
+description: "Assess compliance documents against HIPAA Security Rule and Privacy Rule requirements. Produces structured findings with evidence, gap descriptions, and remediation recommendations."
+argument-hint: "Paste or attach your compliance document (security policy, procedures manual, etc.) for analysis"
+allowed-tools: "Read, Glob, Grep, WebFetch"
+version: "1.1"
+author: "Rote Compliance"
+license: "Apache-2.0"
 ---
 
 # HIPAA Gap Analysis

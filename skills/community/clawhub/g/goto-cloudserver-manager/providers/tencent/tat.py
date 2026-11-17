@@ -56,7 +56,12 @@ class TencentTAT:
         from tencentcloud.tat.v20201028 import models as tat_models
         client = self._get_client(region)
         req = tat_models.DescribeInvocationTasksRequest()
-        req.InvocationId = invocation_id
+        # DescribeInvocationTasksRequest 没有 InvocationId 字段（只有 InvocationTaskIds/Filters），
+        # 必须用 Filters + "invocation-id" 过滤键按执行活动 ID 查任务，否则请求里不会带任何过滤条件。
+        invocation_filter = tat_models.Filter()
+        invocation_filter.Name = "invocation-id"
+        invocation_filter.Values = [invocation_id]
+        req.Filters = [invocation_filter]
         response = client.DescribeInvocationTasks(req)
         tasks = response.InvocationTaskSet or []
         if not tasks:

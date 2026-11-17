@@ -1,41 +1,54 @@
-## Description: <br>
-Transform technical insights into full 40-50 minute TED-style talks with concrete examples and Q&A. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform technical insights into full 40-50 minute TED-style talks with concrete examples and Q&A.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-Employees, external users, developers, and technical communicators use this skill to turn a supplied topic or current conversation context into a full TED-style talk with a narrative arc, concrete examples, broader implications, and Q&A preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated talk drafts may include private or sensitive details from the supplied input or current conversation context. <br>
-Mitigation: Avoid invoking the skill in sensitive conversations unless those details are intended for the draft, and review output before sharing externally. <br>
-Risk: Insufficient or vague context can produce shallow, generic, or misleading presentation content. <br>
-Mitigation: Provide concrete examples, decisions, outcomes, and a clear narrative arc, or ask clarifying questions before generating the talk. <br>
+## Use Case:
 
+External users, speakers, educators, and technical teams use this skill to turn supplied context or an active conversation into a full TED-style talk with a narrative arc, concrete examples, and Q&A preparation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/leegitw/ted-talk) <br>
-- [TED Talk skill homepage](https://github.com/live-neon/skills/tree/main/creative/ted-talk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured talk sections and Q&A preparation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a long-form 40-50 minute talk draft to the invoking agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and ClawHub release metadata) <br>
+Risk: Generated talks may include sensitive details from the current conversation or user-supplied context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with context that is appropriate to include in a talk, and review the generated Markdown before sharing it externally.
+
+Risk: A long-form talk can overstate or reshape the user's intended message if the provided context is thin.
+
+Mitigation: Provide concrete source details and review the narrative arc, examples, and Q&A responses for accuracy before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leegitw/skills/ted-talk)
+- [Publisher Profile](https://clawhub.ai/user/leegitw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a long-form talk outline and script sections, including audience objections and responses.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

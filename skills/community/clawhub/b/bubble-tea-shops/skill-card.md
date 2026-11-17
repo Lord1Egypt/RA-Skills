@@ -1,41 +1,52 @@
-## Description: <br>
-Find nearby bubble tea shops. Invoke when user asks for boba near me. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby bubble tea shops. Invoke when user asks for boba near me.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agent builders use this skill to answer nearby boba or bubble tea searches from an authorized location or city, returning a consistent point-of-interest list with optional filters for open status, rating, price, and keywords.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Nearby search requires sharing a user location with the host app or its location provider.
+
+Mitigation: Request user authorization before querying and avoid retaining precise coordinates; confirm the host app follows the stated privacy expectation.
+
+Risk: Invalid locations, excessive radius, provider outages, or rate limits can prevent a complete nearby-shop response.
+
+Mitigation: Validate coordinates, enforce radius and result limits, and surface clear errors such as INVALID_LOCATION, RADIUS_TOO_LARGE, PROVIDER_UNAVAILABLE, and RATE_LIMITED.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to find nearby bubble tea shops from an authorized location or city query. It standardizes point-of-interest results and supports filters such as open status, rating, price level, and keywords. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Nearby search can reveal a user's precise location when latitude and longitude are supplied. <br>
-Mitigation: Ask for location permission, prefer an approximate location when exact coordinates are not needed, and avoid retaining precise coordinates. <br>
-Risk: Cached location-based search results can preserve sensitive movement or neighborhood context. <br>
-Mitigation: Keep any cache short-lived, scope it to the bubble tea search purpose, and discard it after it is no longer needed. <br>
+**Output Format:** [Standardized point-of-interest list or concise natural-language response]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikeclaw007/bubble-tea-shops) <br>
-- [Publisher profile](https://clawhub.ai/user/mikeclaw007) <br>
+**Other Properties Related to Output:** [Requires an authorized location, optional radius and limit bounds, and optional filters such as open_now, min_rating, price_level, and keywords.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text point-of-interest list with validation and provider error messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results use a fixed bubble-tea-shops category and may include shop details filtered by radius, open status, rating, price level, keywords, and result limit.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

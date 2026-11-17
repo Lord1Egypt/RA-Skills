@@ -1,16 +1,16 @@
 # SCH\_Primitive class
 
-原理图 &amp; 符号 / 图元类
+Schematic &amp; symbol / primitive class
 
 ## Signature
 
 ```typescript
-declare class SCH_Primitive 
+class SCH_Primitive
 ```
 
 ## Remarks
 
-图元的统一操作
+Unified operations on primitives
 
 ## Methods
 
@@ -18,58 +18,57 @@ declare class SCH_Primitive
 
 Method
 
-
 </th><th>
 
 Modifiers
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [getPrimitiveByPrimitiveId(id)](./SCH_Primitive.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-获取指定 ID 的图元的所有属性
-
+Get all properties of the primitive with the specified ID
 
 </td></tr>
 <tr><td>
 
 [getPrimitivesBBox(primitiveIds)](./SCH_Primitive.md)
 
+</td><td>
 
 </td><td>
 
+**_(BETA)_** Get The BBox of the primitive
+
+</td></tr>
+<tr><td>
+
+[getPrimitivesByPrimitiveId(ids)](./SCH_Primitive.md)
 
 </td><td>
 
-**_(BETA)_** 获取图元的 BBox
+</td><td>
 
+**_(BETA)_** Get all properties of the primitives with the specified IDs
 
 </td></tr>
 <tr><td>
 
 [getPrimitiveTypeByPrimitiveId(id)](./SCH_Primitive.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取指定 ID 的图元的图元类型
-
+**_(BETA)_** Get the primitive type of the primitive with the specified ID
 
 </td></tr>
 </tbody></table>
@@ -82,12 +81,12 @@ Description
 
 # SCH\_Primitive.getPrimitiveByPrimitiveId() method
 
-获取指定 ID 的图元的所有属性
+Get all properties of the primitive with the specified ID
 
 ## Signature
 
 ```typescript
-getPrimitiveByPrimitiveId(id: string): Promise<ISCH_Primitive | undefined>;
+function getPrimitiveByPrimitiveId(id: string): Promise<ISCH_Primitive | undefined>;
 ```
 
 ## Parameters
@@ -96,43 +95,54 @@ getPrimitiveByPrimitiveId(id: string): Promise<ISCH_Primitive | undefined>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 id
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-图元 ID
-
+Primitive ID
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;[ISCH\_Primitive](../interfaces/ISCH_Primitive.md) \| undefined&gt;
 
-图元的所有属性
+All properties of the primitive
+
+## Example
+
+```javascript
+// 1. 创建一个测试矩形作为查询目标（SCH 坐标单位 10mil）
+const rect = await eda.sch_PrimitiveRectangle.create(1000, 1000, 200, 100);
+const id = rect.getState_PrimitiveId();
+
+// 2. 用图元 ID 反查，返回该图元的完整属性对象（图元实例）
+const primitive = await eda.sch_Primitive.getPrimitiveByPrimitiveId(id);
+
+// 3. 清理测试图元（查询类需要清理）
+await eda.sch_PrimitiveRectangle.delete([id]);
+
+console.log('primitiveType:', primitive.getState_PrimitiveType());
+console.log('width:', primitive.getState_Width());
+console.log('height:', primitive.getState_Height());
+console.log('id match:', primitive.getState_PrimitiveId() === id);
+```
 
 ### getprimitivesbbox
 
@@ -140,17 +150,14 @@ Promise&lt;[ISCH\_Primitive](../interfaces/ISCH_Primitive.md) \| undefined&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取图元的 BBox
+Get The BBox of the primitive
 
 ## Signature
 
 ```typescript
-getPrimitivesBBox(primitiveIds: Array<string | ISCH_Primitive>): Promise<{
-        minX: number;
-        minY: number;
-        maxX: number;
-        maxY: number;
-    } | undefined>;
+function getPrimitivesBBox(
+	primitiveIds: Array<string | ISCH_Primitive>,
+): Promise<{ minX: number; minY: number; maxX: number; maxY: number } | undefined>;
 ```
 
 ## Parameters
@@ -159,43 +166,110 @@ getPrimitivesBBox(primitiveIds: Array<string | ISCH_Primitive>): Promise<{
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 primitiveIds
 
-
 </td><td>
 
 Array&lt;string \| [ISCH\_Primitive](../interfaces/ISCH_Primitive.md)<!-- -->&gt;
 
-
 </td><td>
 
-图元 ID 数组或图元对象数组
-
+Array of Primitive ID array or primitive objects
 
 </td></tr>
 </tbody></table>
 
+## Returns
 
+Promise&lt;{ minX: number; minY: number; maxX: number; maxY: number } \| undefined&gt;
+
+The BBox of the primitive. If the primitive does not exist or has no BBox, `undefined` will be returned
+
+## Example
+
+```javascript
+// 1. 创建两个测试矩形：左上角（1000,1000）尺寸 200x100，左上角（1600,1400）尺寸 150x80
+const rect1 = await eda.sch_PrimitiveRectangle.create(1000, 1000, 200, 100);
+const rect2 = await eda.sch_PrimitiveRectangle.create(1600, 1400, 150, 80);
+
+// 2. 计算两个矩形整体的 BBox（传图元 ID 数组，也支持直接传图元对象数组）
+const bbox = await eda.sch_Primitive.getPrimitivesBBox([
+	rect1.getState_PrimitiveId(),
+	rect2.getState_PrimitiveId(),
+]);
+
+// 3. 清理测试图元（查询类需要清理）
+await eda.sch_PrimitiveRectangle.delete([
+	rect1.getState_PrimitiveId(),
+	rect2.getState_PrimitiveId(),
+]);
+
+console.log('minX:', bbox.minX);
+console.log('minY:', bbox.minY);
+console.log('maxX:', bbox.maxX);
+console.log('maxY:', bbox.maxY);
+```
+
+### getprimitivesbyprimitiveid
+
+# SCH\_Primitive.getPrimitivesByPrimitiveId() method
+
+> This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
+
+Get all properties of the primitives with the specified IDs
+
+## Signature
+
+```typescript
+function getPrimitivesByPrimitiveId(ids: Array<string>): Promise<Array<ISCH_Primitive>>;
+```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+</th><th>
+
+Type
+
+</th><th>
+
+Description
+
+</th></tr></thead>
+<tbody><tr><td>
+
+ids
+
+</td><td>
+
+Array&lt;string&gt;
+
+</td><td>
+
+Primitive ID array
+
+</td></tr>
+</tbody></table>
 
 ## Returns
 
-Promise&lt;{ minX: number; minY: number; maxX: number; maxY: number; } \| undefined&gt;
+Promise&lt;Array&lt;[ISCH\_Primitive](../interfaces/ISCH_Primitive.md)<!-- -->&gt;&gt;
 
-图元的 BBox，如若图元不存在或没有 BBox，将会返回 `undefined` 的结果
+All properties of all primitives
 
 ### getprimitivetypebyprimitiveid
 
@@ -203,12 +277,12 @@ Promise&lt;{ minX: number; minY: number; maxX: number; maxY: number; } \| undefi
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取指定 ID 的图元的图元类型
+Get the primitive type of the primitive with the specified ID
 
 ## Signature
 
 ```typescript
-getPrimitiveTypeByPrimitiveId(id: string): Promise<ESCH_PrimitiveType | undefined>;
+function getPrimitiveTypeByPrimitiveId(id: string): Promise<ESCH_PrimitiveType | undefined>;
 ```
 
 ## Parameters
@@ -217,40 +291,47 @@ getPrimitiveTypeByPrimitiveId(id: string): Promise<ESCH_PrimitiveType | undefine
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 id
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-图元 ID
-
+Primitive ID
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;[ESCH\_PrimitiveType](../enums/ESCH_PrimitiveType.md) \| undefined&gt;
 
-图元类型
+Primitive type
+
+## Example
+
+```javascript
+// 1. 创建一条测试导线作为查询目标（SCH 坐标单位 10mil）
+const wire = await eda.sch_PrimitiveWire.create([1000, 1000, 1400, 1000], 'SIG_A');
+
+// 2. 用图元 ID 查询类型
+const type = await eda.sch_Primitive.getPrimitiveTypeByPrimitiveId(wire.getState_PrimitiveId());
+
+// 3. 清理测试图元（查询类需要清理）
+await eda.sch_PrimitiveWire.delete([wire.getState_PrimitiveId()]);
+
+console.log('primitiveType:', type);
+```

@@ -1,38 +1,49 @@
-## Description: <br>
-Get accurate system time in various formats and timezones. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gets system time information in multiple formats and timezones, including ISO 8601, Unix timestamps, human-readable dates, and timezone conversions.
 
-## Publisher: <br>
-[xiaoxianceng874-cyber](https://clawhub.ai/user/xiaoxianceng874-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoxianceng874-cyber](https://clawhub.ai/user/xiaoxianceng874-cyber)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to retrieve local or UTC system time, produce common timestamp formats, and convert time display across named timezones. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask an agent to run standard local time commands, and command behavior can vary by operating system, timezone database, and locale. <br>
-Mitigation: Review generated commands before execution and prefer explicit timezone identifiers and output formats when exact timestamps matter. <br>
+## Use Case:
 
+Developers and other agent users use this skill to answer requests for the current time, date, timestamps, and timezone conversions, and to provide practical command-line or Python examples for those tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaoxianceng874-cyber/hengheng-system-time) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown with inline bash and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No network access, credential handling, persistence, or data modification is indicated by the server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Time and timezone results can be inaccurate if the host system clock or timezone database is misconfigured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the host clock, NTP synchronization, and timezone database before relying on results for high-accuracy or audited workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaoxianceng874-cyber/skills/hengheng-system-time)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Time answers depend on the host system clock and timezone database.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

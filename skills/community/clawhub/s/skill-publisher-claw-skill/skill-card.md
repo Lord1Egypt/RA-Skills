@@ -1,48 +1,63 @@
-## Description: <br>
-Prepare Claw skills for public release by auditing structure, security, portability, documentation, testing, git hygiene, and metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prepare Claw skills for public release by auditing security, portability, documentation, testing, git hygiene, and metadata before publication.
 
-## Publisher: <br>
-[acastellana](https://clawhub.ai/user/acastellana) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[acastellana](https://clawhub.ai/user/acastellana)
 
-## Use Case: <br>
-Developers and maintainers use this skill to prepare Claw skills for public release, including audits for structure, secrets, portability, documentation quality, testing readiness, git hygiene, and metadata completeness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The publish workflow can commit and push an entire skill directory to GitHub. <br>
-Mitigation: Run it only in a dedicated clean skill directory, inspect git status and git diff before publishing, and confirm the active GitHub account and repository visibility. <br>
-Risk: Built-in secret checks are limited and may not cover every file type or historical commit. <br>
-Mitigation: Run a full secret scan across all file types and review git history before pushing. <br>
-Risk: Force mode can skip confirmation prompts during publishing. <br>
-Mitigation: Avoid --force unless the target directory, git remote, and changes have already been manually reviewed. <br>
+## Use Case:
 
+Developers and skill publishers use this agent skill to prepare Claw skills for public release by running structured checks, applying common fixes, scaffolding new skill projects, and managing release documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/acastellana/skill-publisher-claw-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/acastellana) <br>
-- [GitHub Issues](https://github.com/acastellana/skill-publisher-claw-skill/issues) <br>
-- [Claw Docs](https://docs.clawd.bot) <br>
-- [Versioning guide](docs/versioning.md) <br>
-- [Deprecation process](docs/deprecation.md) <br>
-- [README quality guide](docs/readme-quality.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and generated or modified skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run local shell scripts that inspect or modify skill directories and git state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: Local shell scripts can edit files, initialize git repositories, commit changes, and push to GitHub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target directory and git status before running publish, fix, or scaffold workflows; avoid --force and --auto unless the resulting changes are expected.
+
+Risk: Secret scans can print matched lines to the terminal or CI logs.
+
+Mitigation: Run scans only in trusted workspaces, redact findings before logging, and patch CI usage to avoid exposing sensitive values.
+
+Risk: External link validation can make network requests to URLs found in skill files.
+
+Mitigation: Skip --external for untrusted skills or run external checks in a network-isolated environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/acastellana/skills/skill-publisher-claw-skill)
+- [README](artifact/README.md)
+- [Versioning Guide](artifact/docs/versioning.md)
+- [Deprecation Process](artifact/docs/deprecation.md)
+- [README Quality Guide](artifact/docs/readme-quality.md)
+- [GitHub Issues](https://github.com/acastellana/skill-publisher-claw-skill/issues)
+- [Claw Docs](https://docs.clawd.bot)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with bash commands, shell scripts, templates, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or run local publishing, auditing, scaffolding, link validation, and git workflow commands when the agent is allowed to execute shell scripts.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

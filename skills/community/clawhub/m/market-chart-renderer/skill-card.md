@@ -1,44 +1,56 @@
-## Description: <br>
-Renders Chinese market charts from standardized bars data with moving averages, MACD indicators, ECharts templates, and HTML, PNG, or JSON export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Renders Chinese market charts from standardized bars data with moving averages, MACD indicators, and HTML, PNG, or JSON export.
 
-## Publisher: <br>
-[forevershu](https://clawhub.ai/user/forevershu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[forevershu](https://clawhub.ai/user/forevershu)
 
-## Use Case: <br>
-Developers and analysts use this skill to generate Chinese futures market chart artifacts from standardized bar data for review, reporting, or downstream agent workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated market chart files are written under output/generated/images. <br>
-Mitigation: Run the skill in a workspace where that output path is expected and review generated HTML, PNG, and JSON files before sharing them. <br>
-Risk: PNG export launches a local Chrome or Chromium binary for headless screenshots. <br>
-Mitigation: Use a trusted browser installation and use the no-PNG mode when browser-based rendering is not acceptable. <br>
-Risk: Generated HTML loads ECharts from a CDN. <br>
-Mitigation: Open generated HTML only in environments where CDN loading is permitted, or adapt deployment to use a reviewed local ECharts asset. <br>
-Risk: Market data comes from a separate AkShare-based dependency. <br>
-Mitigation: Review the AkShare data dependency and source suitability before relying on the rendered market data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/forevershu/market-chart-renderer) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/forevershu) <br>
+## Use Case:
 
+Developers and analysts use this skill to generate Chinese market chart artifacts from standardized bars data for market review, reporting, or downstream agent workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated HTML, PNG, and JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes generated chart artifacts under output/generated/images and can skip PNG export when Chrome or Chromium is unavailable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated files may be written outside the documented output folder when unsafe output stem values are used.
+
+Mitigation: Use trusted output stem values only and add path containment before relying on generated files in shared or production workspaces.
+
+Risk: Generated charts execute mutable remote JavaScript.
+
+Mitigation: Pin or vendor the ECharts dependency and review generated HTML before relying on chart exports.
+
+Risk: The security verdict requires review before installation.
+
+Mitigation: Review the skill before installing and use it only in workspaces where generated files are acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/forevershu/skills/market-chart-renderer)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Shell commands, Guidance]
+
+**Output Format:** [HTML, PNG, and JSON files plus JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default exports are written under output/generated/images.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

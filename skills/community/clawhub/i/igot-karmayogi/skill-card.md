@@ -1,48 +1,56 @@
-## Description: <br>
-Automates the iGOT Karmayogi portal using OpenClaw's managed browser to help a logged-in user enroll in courses, play course videos, complete assessments, download certificates, and track progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates the iGOT Karmayogi portal with an OpenClaw-managed Playwright browser for course enrollment, video playback, assessments, progress tracking, and certificate downloads.
 
-## Publisher: <br>
-[koppakanagaharsha-lang](https://clawhub.ai/user/koppakanagaharsha-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[koppakanagaharsha-lang](https://clawhub.ai/user/koppakanagaharsha-lang)
 
-## Use Case: <br>
-Employees and learners who use iGOT Karmayogi can use this skill to operate their training portal session end to end, including assigned coursework, progress tracking, assessments, and certificate download. It is intended for supervised automation of an existing authenticated account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-India <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a logged-in iGOT account end to end, including course enrollment, video playback, assessment submission, and certificate download. <br>
-Mitigation: Use it only when that level of account automation is intended, keep the browser session supervised, and stop the run if it performs an unexpected action. <br>
-Risk: Automated coursework or assessment completion may conflict with platform, employer, or program rules. <br>
-Mitigation: Review the applicable iGOT, employer, or training-program rules before using the skill for assigned courses or assessments. <br>
-Risk: The skill may retain session data, progress state, or learning-history context in the browser profile and workspace state file. <br>
-Mitigation: Clear the saved state and browser profile after use if persistent login state or learning-history data should not remain on the machine. <br>
-Risk: Shell-based browser fallbacks can increase local execution risk if the environment is not trusted. <br>
-Mitigation: Prefer the managed browser path and use shell fallbacks only in a trusted local environment. <br>
+## Use Case:
 
+Learners and account holders use this skill to automate iGOT Karmayogi coursework in an authenticated browser session, including enrollment, course playback, assessment submission, progress checks, and certificate download.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/koppakanagaharsha-lang/igot-karmayogi) <br>
-- [Publisher profile](https://clawhub.ai/user/koppakanagaharsha-lang) <br>
-- [iGOT Karmayogi portal](https://portal.igotkarmayogi.gov.in/page/home) <br>
-- [Course IDs reference](references/course-ids.md) <br>
-- [Selectors reference](references/selectors.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Operational browser actions with concise user status messages and local state JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save course certificates as PDF files and persist progress state in the user's OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill can autonomously operate an authenticated iGOT account, including enrolling in courses and submitting assessments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this automation is explicitly wanted and permitted by the relevant organization; prefer requiring confirmation before enrollment and assessment submission.
+
+Risk: The skill persists session state and can resume account actions with limited user control.
+
+Mitigation: Avoid shared machines and review state, session, certificate download, and resume behavior before deployment.
+
+## Reference(s):
+
+- [iGOT Portal Selectors Reference](artifact/references/selectors.md)
+- [iGOT Known Course IDs](artifact/references/course-ids.md)
+- [iGOT Karmayogi Portal](https://portal.igotkarmayogi.gov.in/page/home)
+- [ClawHub Skill Page](https://clawhub.ai/koppakanagaharsha-lang/skills/igot-karmayogi)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown instructions with browser actions and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local state and download certificate PDFs during agent execution.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

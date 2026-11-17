@@ -1,41 +1,49 @@
-## Description: <br>
-Fetch and generate structured reports on fastest-growing repositories, newly popular projects, and hot GitHub topic tags using the github-discover CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches GitHub repository and topic data with the github-discover CLI and helps generate structured trending reports about fast-growing repositories, newly popular projects, and hot topic tags.
 
-## Publisher: <br>
-[coderyi](https://clawhub.ai/user/coderyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coderyi](https://clawhub.ai/user/coderyi)
 
-## Use Case: <br>
-Developers and technical analysts use this skill to run github-discover, combine real-time GitHub Search API data, and produce a concise Markdown report on repository growth, newly popular projects, and active topic tags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the third-party github-discover npm package. <br>
-Mitigation: Install it only when the package is trusted, and pin or review the package version when supply-chain reproducibility matters. <br>
-Risk: Generated reports contact GitHub and depend on GitHub Search API freshness and indexing behavior. <br>
-Mitigation: Treat results as time-sensitive GitHub Search API output, and note that the growth score is estimated rather than official GitHub Trending data. <br>
+## Use Case:
 
+Developers and technical analysts use this skill to generate concise GitHub trending reports that compare growth velocity, newly popular repositories, and active technology topics.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/coderyi/github-trending-report) <br>
-- [Publisher Profile](https://clawhub.ai/user/coderyi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Analysis, Guidance] <br>
-**Output Format:** [Markdown report with repository lists, topic summaries, and optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON-derived repository metadata, links, star counts, primary languages, and short trend analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Installing an unpinned global npm package can change the tool behavior over time and may introduce package provenance risk in sensitive environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned version or project-local installation of github-discover, and review the npm package provenance before running it where sensitive files or credentials are present.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coderyi/skills/github-trending-report)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with inline shell commands and JSON-derived findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include repository links, star counts, growth estimates, language filters, topic summaries, and short trend analysis.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

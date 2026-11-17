@@ -1,40 +1,53 @@
-## Description: <br>
-Provides top 3 surf spots in a region ranked by wave height, wind direction, and wind speed using Surfline data and a defined scoring rubric. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides the top 3 surf spots in a selected region by gathering public Surfline forecast data and ranking valid spots with a defined wave and wind scoring rubric.
 
-## Publisher: <br>
-[wertopter](https://clawhub.ai/user/wertopter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wertopter](https://clawhub.ai/user/wertopter)
 
-## Use Case: <br>
-Surfers and surf-planning agents use this skill to compare supported regions or supplied Surfline spot IDs and choose the best surf spots for a forecast window. The agent runs the bundled data-collection script, scores all valid spots, and returns the top three with concise scoring explanations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a bundled local Python script that makes network requests to Surfline using the selected region or spot IDs. <br>
-Mitigation: Install only if this Surfline data sharing and local script execution are acceptable for the intended environment. <br>
-Risk: Surf conditions and API responses can change, so ranked recommendations may be stale or incomplete. <br>
-Mitigation: Use current forecast windows, review excluded or failed spots, and avoid inventing missing data. <br>
+## Use Case:
 
+Surfers, trip planners, and surf-focused agents use this skill to compare surf spots in a supported region or supplied Surfline spot list and return a concise top-3 recommendation with scoring rationale.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wertopter/surf-spot-finder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with ranked results and scoring explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run a local Python data-collection script that can emit JSON or text from Surfline forecast data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Using the skill contacts Surfline public services, and custom spot IDs supplied by a user are sent to Surfline.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users when an external Surfline lookup is required and avoid submitting sensitive or nonpublic identifiers as custom spot IDs.
+
+Risk: Results depend on Surfline service availability and returned forecast data for the selected region or spot IDs.
+
+Mitigation: Report fetch failures or exclusions clearly and treat the ranking as forecast-based guidance rather than a guarantee of local surf conditions.
+
+## Reference(s):
+
+- [Surf Forecast Agent on ClawHub](https://clawhub.ai/wertopter/skills/surf-spot-finder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown ranking with scored recommendations and supporting forecast values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns up to three valid spots, excludes failed or missing forecast data, and names the top recommendation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,135 @@
+{
+  "_template_meta": {
+    "name": "action-card-template",
+    "type": "action",
+    "description": "行动类卡片模板（行动清单 + 一键复制提示词 + 耗时统计）",
+    "header_template": "green",
+    "color_scheme": "green 系邻近色环（green-50 + yellow-50 + grey-50）",
+    "usage": "适合行动清单、TODO 提醒、任务分配"
+  },
+  "schema": "2.0",
+  "config": {
+    "wide_screen_mode": true,
+    "update_multi": true
+  },
+  "header": {
+    "title": {
+      "tag": "plain_text",
+      "content": "{{YYYYMMDD}}-行动清单-{{X即时}}-{{Y中期}}-{{Z长期}}"
+    },
+    "subtitle": {
+      "tag": "plain_text",
+      "content": "{{YYYY-MM-DD}} · 一键复制就能行动"
+    },
+    "template": "green"
+  },
+  "body": {
+    "direction": "vertical",
+    "padding": "16px 16px 16px 16px",
+    "elements": [
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "green-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "green-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "### 🎯 {{N}} 个行动卡片\n\n#### Action 1【即时行动】{{标题1}}\n\n#### Action 2【中期行动】{{标题2}}\n\n#### Action 3【长期行动】{{标题3}}"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "grey-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "grey-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "### ⏱️ 行动理由 + 耗时\n\n- **Action 1 理由**：{{理由1}}\n  ⏱️ 预计耗时：{{耗时1}}\n- **Action 2 理由**：{{理由2}}\n  ⏱️ 预计耗时：{{耗时2}}\n- **Action 3 理由**：{{理由3}}\n  ⏱️ 预计耗时：{{耗时3}}\n\n**总耗时**：{{总耗时}}"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "yellow-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "yellow-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "### 🚀 Action 1 一键复制提示词\n\n```\n{{可复制提示词内容}}\n```\n\n📋 复制上方提示词到 {{TRAE / 任意 Agent}} 新会话即可执行"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "button",
+        "text": {
+          "tag": "plain_text",
+          "content": "📋 复制 Action 1 提示词"
+        },
+        "type": "default",
+        "width": "fill",
+        "behaviors": [
+          {
+            "type": "open_url",
+            "default_url": "https://example.com/action-prompt"
+          }
+        ]
+      },
+      {
+        "tag": "button",
+        "text": {
+          "tag": "plain_text",
+          "content": "📄 查看完整行动清单"
+        },
+        "type": "primary",
+        "width": "fill",
+        "behaviors": [
+          {
+            "type": "open_url",
+            "default_url": "{{文档URL}}"
+          }
+        ]
+      },
+      {
+        "tag": "markdown",
+        "content": "> 🤖 {{来源标识}} · {{触发时间}} 自动生成 · {{行动总数}} 个行动"
+      }
+    ]
+  }
+}

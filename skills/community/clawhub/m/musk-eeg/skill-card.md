@@ -1,42 +1,59 @@
-## Description: <br>
-Musk-EEG helps an agent answer EEG and neuroscience questions by searching a local SQLite knowledge base and presenting sourced educational summaries in an Elon Musk-inspired style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides EEG and neuroscience answers by retrieving from a local SQLite Wikipedia-derived knowledge base and presenting concise, sourced explanations in an Elon Musk-inspired first-principles voice.
 
-## Publisher: <br>
-[yhongm](https://clawhub.ai/user/yhongm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yhongm](https://clawhub.ai/user/yhongm)
 
-## Use Case: <br>
-Developers and agent users can use this skill to retrieve EEG, brain-wave, sleep, seizure, BCI, and neuroscience reference material from a local database and turn it into cited explanatory answers. It is best suited for educational summaries and technical exploration, not diagnosis, treatment, or clinical decision-making. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides medical-adjacent neuroscience answers in a stylized celebrity voice, which could make educational summaries sound more authoritative than they are. <br>
-Mitigation: Treat answers as educational only, verify cited sources, and do not use the output for diagnosis, treatment, or clinical decisions. <br>
-Risk: The local search script unpacks and reads a supplied database ZIP from the skill data folder. <br>
-Mitigation: Use only a trusted database ZIP or extracted database file and verify the source before first use. <br>
+## Use Case:
 
+External users and developers use this skill to answer EEG, brain-wave, sleep, epilepsy, BCI, and neuroscience questions with cited knowledge-base snippets and persona-styled explanatory guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yhongm/musk-eeg) <br>
-- [Musk-EEG homepage](https://github.com/yhongm/Musk-EEG) <br>
-- [Electroencephalography reference](https://en.wikipedia.org/wiki/Electroencephalography) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text with cited source labels and optional shell commands for local database lookup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local Python SQLite search script and requires a trusted EEG database ZIP or extracted database file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: ClawHub release metadata; artifact frontmatter says 1.0.3) <br>
+Risk: The skill depends on an external neuroscience database that was not included in the server review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only install the database from a trusted release source and review it before deployment.
+
+Risk: The skill covers medical-adjacent and mental-health-adjacent topics.
+
+Mitigation: Treat outputs as educational summaries and require qualified professional review for diagnosis, treatment, or care decisions.
+
+Risk: The fixed forceful persona can make uncertain neuroscience claims sound more confident than they are.
+
+Mitigation: Require explicit uncertainty language and source labels for substantive claims, especially on clinical or emerging-science topics.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yhongm/skills/musk-eeg)
+- [Musk-EEG homepage metadata](https://github.com/yhongm/Musk-EEG)
+- [Electroencephalography reference](https://en.wikipedia.org/wiki/Electroencephalography)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with cited source labels and occasional inline shell commands for database search workflow.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers are intended as educational summaries, not medical or mental-health advice.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

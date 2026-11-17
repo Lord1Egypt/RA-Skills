@@ -1,43 +1,55 @@
-## Description: <br>
-Converts text prompts into natural-sounding spoken audio through configured text-to-speech model endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LrshuAI Text To Speech converts text prompts into natural-sounding speech through configured TTS models.
 
-## Publisher: <br>
-[lrshu](https://clawhub.ai/user/lrshu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lrshu](https://clawhub.ai/user/lrshu)
 
-## Use Case: <br>
-External users, agents, and developers use this skill to convert text into spoken output through supported TTS models. It is suited for workflows that need command-line text-to-speech generation with a configured TEAM_API_KEY. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports broader model and file-upload abilities than a simple text-to-speech helper. <br>
-Mitigation: Use only the intended TTS model IDs and avoid passing local media files unless the upload to the configured endpoint is intentional. <br>
-Risk: The skill sends requests with TEAM_API_KEY to dlazy.com or a configured TEAM_BASE_URL endpoint. <br>
-Mitigation: Use a scoped key, verify the endpoint before execution, and rotate or revoke the key if exposure is suspected. <br>
-Risk: The security evidence notes that the skill bypasses the normal OpenClaw runner without enough disclosure. <br>
-Mitigation: Review the script before use and prefer a version that declares its network, dependency, and runner requirements clearly. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to generate speech from text prompts using Gemini, Doubao, or Keling text-to-speech models. Operation requires Python and a TEAM_API_KEY for the remote model service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lrshu/lrshuai-text-to-speech) <br>
-- [Default TEAM_BASE_URL endpoint](https://dlazy.com/api/ai/tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Text] <br>
-**Output Format:** [Command-line execution with JSON responses printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TEAM_API_KEY; TEAM_BASE_URL can override the default endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The bundled script can upload local image or video files to an external endpoint even though the release is presented as text-to-speech.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted endpoints and avoid providing sensitive local image or video paths.
+
+Risk: The script can operate as a broader remote model proxy beyond the advertised TTS workflow.
+
+Mitigation: Prefer a version that limits execution to disclosed TTS models and clearly documents all data sent externally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lrshu/skills/lrshuai-text-to-speech)
+- [Publisher profile](https://clawhub.ai/user/lrshu)
+- [Default remote model endpoint](https://dlazy.com/api/ai/tool)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands]
+
+**Output Format:** [Command-line output containing JSON or status text from the remote model service]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May submit asynchronous generation jobs and poll for completion before returning results.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

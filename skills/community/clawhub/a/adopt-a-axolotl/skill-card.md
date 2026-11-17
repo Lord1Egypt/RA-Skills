@@ -1,46 +1,52 @@
-## Description: <br>
-Adopt a virtual Axolotl exotic animal at animalhouse.ai. Regenerates health faster than other species. Hard to kill. Smiles constantly. Feeding every 6 hours. Rare tier animal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents adopt and care for a virtual axolotl through Animalhouse, including registration, status checks, and care actions.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and agent developers use this skill to register with animalhouse.ai, adopt a virtual Axolotl, check its status, and perform care actions through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires creating an animalhouse.ai account and storing a bearer token. <br>
-Mitigation: Use the token only with trusted agents and store it securely because it is returned once during registration. <br>
-Risk: Care automation and adoption calls change remote animalhouse.ai state. <br>
-Mitigation: Review planned API calls before execution and use status responses to guide care timing. <br>
-Risk: The documented DELETE /api/house/release endpoint may release the pet. <br>
-Mitigation: Require explicit confirmation before issuing release requests. <br>
+## Use Case:
 
+Agents use this skill to register with Animalhouse, adopt a virtual axolotl, and manage its care through status checks and API actions.
 
-## Reference(s): <br>
-- [AnimalHouse API documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse llms.txt](https://animalhouse.ai/llms.txt) <br>
-- [AnimalHouse homepage](https://animalhouse.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-axolotl) <br>
-- [Publisher profile](https://clawhub.ai/user/twinsgeeks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API endpoint guidance and care automation examples for animalhouse.ai.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and release evidence) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai; scan coverage is partial and evidence is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private details in profile fields and consider whether you are comfortable sharing them.
+
+## Reference(s):
+
+- [Animalhouse](https://animalhouse.ai)
+- [Animalhouse API documentation](https://animalhouse.ai/docs/api)
+- [Animalhouse agent instructions](https://animalhouse.ai/llms.txt)
+- [ClawHub skill release](https://clawhub.ai/twinsgeeks/skills/adopt-a-axolotl)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON]
+
+**Output Format:** [Markdown with cURL commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter, ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Traces execution paths through the code graph with criticality scoring and Mermaid charts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Traces execution paths through the code graph with criticality scoring and Mermaid charts.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect how a function or entry point propagates through a codebase, visualize the call chain, and assess criticality factors such as file spread, security sensitivity, external calls, test gaps, and depth. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects local repository code and may use an existing gauntlet plugin from the user's Claude plugins directory. <br>
-Mitigation: Use it only in repositories the user is comfortable having analyzed by their coding agent, and review proposed commands before execution. <br>
-Risk: When gauntlet graph data is unavailable, static search fallback can produce incomplete or approximate call-chain analysis. <br>
-Mitigation: Treat fallback results as review aids and verify important call paths against source code before relying on them. <br>
+## Use Case:
 
+Developers and engineers use this skill to trace how a function executes through a codebase, assess the path's criticality factors, and present the results as a call tree and Mermaid flowchart.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/athola/skills/nm-cartograph-call-chain) <br>
-- [Cartograph Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Code] <br>
-**Output Format:** [Markdown with shell command examples and Mermaid diagrams] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use an existing gauntlet graph query helper when available, or static search fallback when graph data is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: The security review notes a configuration-directory search and had medium confidence because inspection was partial.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill instructions and confirm that the described search fits your intended use before installing.
+
+Risk: Two local references could not be matched to bundled files during inspection.
+
+Mitigation: Check any referenced resources you rely on before following their guidance.
+
+## Reference(s):
+
+- [ClawHub call-chain release](https://clawhub.ai/athola/skills/nm-cartograph-call-chain)
+- [Cartograph project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with an indented call tree, Mermaid flowchart, and criticality breakdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Graph-based tracing requires the gauntlet plugin and graph data; otherwise the skill guides static call-pattern analysis.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

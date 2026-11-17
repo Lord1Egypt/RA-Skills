@@ -1,51 +1,80 @@
-## Description: <br>
-本技能通过调用灵伴智能的AI影视工场（DramaAIStudio）平台的多项能力，辅助AI短剧创作者更方便地参与创作，具体包括：项目的创建与管理，剧本的上传与自动分析，资产（角色、场景、道具）的智能提取与图像生成，分镜脚本生成与管理、分镜视频生成等。本技能还支持创建项目的定时巡检任务，将项目的关键节点完成情况即时地通知给创作者，完成生成、查看、评论、反馈和优化的创作闭环。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DramaAIStudio（AI影视工场） helps short-drama creators manage projects, upload and analyze scripts, extract and generate visual assets, build storyboards, generate storyboard videos, and monitor final asset or video changes through authenticated iDrama APIs.
 
-## Publisher: <br>
-[hobinson](https://clawhub.ai/user/hobinson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hobinson](https://clawhub.ai/user/hobinson)
 
-## Use Case: <br>
-External creators and production teams use this skill to operate DramaAIStudio workflows from an agent, including short-drama project setup, script upload and analysis, asset extraction and generation, storyboard management, video generation, and review feedback. The skill can also create scheduled monitoring tasks for project asset and storyboard-video changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an iDrama API token and can store credentials or state locally. <br>
-Mitigation: Prefer host-managed secrets, avoid persisting tokens in .env unless explicitly needed, and restrict any stored token file to the current user. <br>
-Risk: Recurring monitoring jobs can repeatedly access project media and report returned image or video URLs. <br>
-Mitigation: Enable scheduled monitoring only for needed projects, review scheduled jobs regularly, and treat media URLs as sensitive links. <br>
-Risk: Persistent agent rules and local state can influence later agent behavior. <br>
-Mitigation: Review the installed rules and session_state.json before use, especially when switching projects or sharing an environment. <br>
+## Use Case:
 
+External creators and production teams use this skill to coordinate AI short-drama creation workflows, including project setup, script ingestion, asset extraction, image generation, storyboard generation, video generation, comments, and review loops. Agents can also propose OpenClaw Cron monitoring jobs that report changes in final asset candidates and selected storyboard videos.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hobinson/drama-ai-studio) <br>
-- [Publisher profile](https://clawhub.ai/user/hobinson) <br>
-- [iDrama API token page](https://idrama.lingban.cn/api-token) <br>
-- [iDrama API base URL](https://idrama.lingban.cn/) <br>
-- [Drama project APIs](artifact/references/ref-4-1-get-openapi-drama-list.md) <br>
-- [Script upload and analysis APIs](artifact/references/ref-5-2-post-openapi-drama-play-id-scripts-upload.md) <br>
-- [Asset image generation API](artifact/references/ref-6-6-post-openapi-drama-play-id-assets-asset-type-asset-id-generate-image.md) <br>
-- [Storyboard prompt optimization API](artifact/references/ref-7-5-post-openapi-drama-play-id-storyboard-episode-no-shots-shot-id-optimize-prompt.md) <br>
-- [Storyboard video generation task API](artifact/references/ref-8-1-post-openapi-drama-play-id-storyboard-video-episodes-episode-no-shots-shot-id-tasks.md) <br>
-- [Server-resolved provenance](unavailable: No server-resolved GitHub import provenance is stored for this version.) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration, Code, Markdown] <br>
-**Output Format:** [Markdown guidance with HTTP request details, JSON examples, shell commands, and Python script invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires IDRAMA_TOKEN for authenticated iDrama API access; may update local project state and scheduled monitoring snapshots.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks agents to persist operating rules in agent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review memory changes before installation and keep the rules scoped to DramaAIStudio workflows.
+
+Risk: The skill can store or reuse an iDrama token through environment variables, a local .env file, or command-line arguments.
+
+Mitigation: Prefer host-managed secrets, avoid echoing full tokens, and only persist tokens after explicit user approval.
+
+Risk: The skill can create recurring authenticated monitoring jobs.
+
+Mitigation: Inspect every OpenClaw Cron command, schedule, destination, and embedded token reference before approving it.
+
+Risk: The skill includes write-back and delete operations for scripts, assets, comments, storyboard shots, and selected videos.
+
+Mitigation: Confirm user intent before mutating or deleting project content and verify the target project, episode, asset, shot, or task identifier.
+
+Risk: The skill supports an API base URL setting used by its snapshot scripts.
+
+Mitigation: Use only the official iDrama base URL unless an administrator has explicitly approved another endpoint.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hobinson/skills/drama-ai-studio)
+- [iDrama service](https://idrama.lingban.cn/)
+- [iDrama API token page](https://idrama.lingban.cn/api-token)
+- [Skill source overview](artifact/SKILL.md)
+- [Token API reference](artifact/references/ref-2-2-idrama-token.md)
+- [Project management API reference](artifact/references/ref-4-1-get-openapi-drama-list.md)
+- [Script upload API reference](artifact/references/ref-5-2-post-openapi-drama-play-id-scripts-upload.md)
+- [Script analysis API reference](artifact/references/ref-5-5-post-openapi-drama-play-id-scripts-analyze.md)
+- [Asset list API reference](artifact/references/ref-6-1-get-openapi-drama-play-id-assets-list.md)
+- [Asset prompt helper API reference](artifact/references/ref-6-5-post-openapi-drama-play-id-assets-prompt-helper-generate.md)
+- [Asset image generation API reference](artifact/references/ref-6-6-post-openapi-drama-play-id-assets-asset-type-asset-id-generate-image.md)
+- [Storyboard analysis API reference](artifact/references/ref-7-2-post-openapi-drama-play-id-storyboard-episode-no-analyze.md)
+- [Storyboard prompt optimization API reference](artifact/references/ref-7-5-post-openapi-drama-play-id-storyboard-episode-no-shots-shot-id-optimize-prompt.md)
+- [Storyboard video task API reference](artifact/references/ref-8-1-post-openapi-drama-play-id-storyboard-video-episodes-episode-no-shots-shot-id-tasks.md)
+- [Storyboard selected videos API reference](artifact/references/ref-8-4-get-openapi-drama-play-id-storyboard-video-episodes-episode-no-selected-videos.md)
+- [Storyboard video comments API reference](artifact/references/ref-8-5-get-openapi-drama-play-id-storyboard-video-video-comments.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTTP API instructions, JSON examples, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce authenticated API requests, OpenClaw Cron command proposals, and local JSON snapshot files when users approve those workflows.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

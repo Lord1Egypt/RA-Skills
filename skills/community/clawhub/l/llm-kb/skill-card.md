@@ -1,43 +1,58 @@
-## Description: <br>
-Create and maintain LLM-powered personal knowledge bases that ingest sources, answer questions, and maintain an Obsidian-compatible vault over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage LLM-powered personal knowledge bases using Karpathy's wiki method.
 
-## Publisher: <br>
-[gavinchengcool](https://clawhub.ai/user/gavinchengcool) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gavinchengcool](https://clawhub.ai/user/gavinchengcool)
 
-## Use Case: <br>
-Developers, researchers, and knowledge workers use this skill to create persistent Markdown wiki vaults, ingest URLs, files, or pasted text, query organized content, and generate saved summaries, comparisons, guides, and analyses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates a persistent local vault and stores raw source copies under raw/inbox/. <br>
-Mitigation: Choose the vault location deliberately and avoid adding secrets or sensitive documents unless retaining raw local copies is intended. <br>
-Risk: The skill can ingest URLs, local files, and pasted text into the knowledge base. <br>
-Mitigation: Approve sources before ingestion and review generated source cards, concept pages, and entity pages for accuracy. <br>
-Risk: Generated wiki content may contain uncertain or outdated claims. <br>
-Mitigation: Keep important claims tied to source pages, mark uncertainty explicitly, and use the LINT operation to find stale, missing, or broken content. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to create and maintain Obsidian-compatible markdown vaults for ingesting sources, organizing concepts and entities, answering questions from saved notes, and preserving useful outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gavinchengcool/llm-kb) <br>
-- [Skill source](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown wiki pages, JSON configuration snippets, shell command guidance, and concise status reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and maintains a local Obsidian-compatible vault with raw source captures, source cards, concept pages, entity pages, outputs, and an activity log.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill creates persistent project files and can copy local files into a vault.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit commands, review source paths before ingestion, avoid sensitive local paths, and keep output paths constrained to the intended vault.
+
+Risk: The skill can fetch URLs and ingest web content into the knowledge base.
+
+Mitigation: Review each URL before ingestion and treat fetched content as untrusted source material until summarized and verified.
+
+Risk: The security summary flags broad triggers and unsafe URL or file ingestion instructions as requiring careful review before installation.
+
+Mitigation: Review the skill before deployment and require safe argument handling instead of literal shell interpolation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gavinchengcool/skills/llm-kb)
+- [ClawHub publisher profile](https://clawhub.ai/user/gavinchengcool)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates plain markdown vault files, Obsidian configuration files, source cards, concept pages, entity pages, output pages, and activity logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

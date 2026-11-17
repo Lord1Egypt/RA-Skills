@@ -1,45 +1,61 @@
-## Description: <br>
-舆情监测智能体V2 gathers daily technology and company news across AI, compute, collaboration tools, HarmonyOS, and 彩讯股份, scores items, generates analysis, creates an H5 report, and sends it to Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+舆情监测智能体V2.0 helps an agent search daily technology news across AI, compute, collaboration tools, HarmonyOS, and 彩讯股份, score and filter the items, generate an H5 report, and push the report to Feishu.
 
-## Publisher: <br>
-[mia-liu842](https://clawhub.ai/user/mia-liu842) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mia-liu842](https://clawhub.ai/user/mia-liu842)
 
-## Use Case: <br>
-Employees and analysts use this skill to collect daily technology news, score and filter items, summarize industry trends, produce company-focused analysis, and share a Feishu-ready report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Web-sourced text and links are assembled into an HTML report without clear safeguards around sanitization or link validation. <br>
-Mitigation: Review generated reports before sharing, escape web-sourced text, and validate links before generating the H5 report. <br>
-Risk: The skill can send stock-related analysis and web-sourced news to Feishu. <br>
-Mitigation: Confirm the Feishu recipient and review the report, especially company and stock-related analysis, before sending. <br>
-Risk: The report generator uses a fixed local output path. <br>
-Mitigation: Make the output path configurable and check the target location before writing the HTML report. <br>
+## Use Case:
 
+External users and operations teams can use this skill to monitor Chinese technology and company news, prioritize higher-signal items, and prepare a concise daily report for Feishu distribution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mia-liu842/news-agent-v2-0) <br>
-- [Configuration](artifact/config.md) <br>
-- [Scoring rules](artifact/scoring.md) <br>
-- [Output rules](artifact/output_rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Guidance] <br>
-**Output Format:** [Markdown summary plus generated HTML report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Filters news below a 60-point score and includes title, original link, summary, score, and source for each retained item.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can automatically send generated reports to Feishu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fixed or approved Feishu destination and preview the report before sending.
+
+Risk: The generated report may include financial or stock-related recommendations.
+
+Mitigation: Treat financial recommendations as draft analysis that requires human review before business or investment use.
+
+Risk: The HTML report generator handles untrusted news content unsafely.
+
+Mitigation: Escape HTML content and validate output filenames before using the generator with untrusted news data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mia-liu842/skills/news-agent-v2-0)
+- [Skill instructions](artifact/SKILL.md)
+- [News source configuration](artifact/config.md)
+- [Scoring rules](artifact/scoring.md)
+- [Output rules](artifact/output_rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, HTML files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown report text, generated HTML/H5 report file, and Feishu message content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [News items are expected to include title, source link, summary, score, and source; displayed items are filtered at a 60-point threshold and sorted by score.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

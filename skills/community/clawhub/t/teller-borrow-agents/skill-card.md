@@ -1,43 +1,62 @@
-## Description: <br>
-Expose the Teller delta-neutral and lending Model Context Protocol server so agents can fetch opportunities, borrow terms, and on-chain transaction builders for Teller. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expose the Teller delta-neutral + lending Model Context Protocol server so agents can fetch opportunities, borrow terms, and on-chain transaction builders for Teller.
 
-## Publisher: <br>
-[rbcp18](https://clawhub.ai/user/rbcp18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[rbcp18](https://clawhub.ai/user/rbcp18)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install and run a Teller MCP server that exposes lending pool discovery, wallet-specific borrow terms, loan lookup, and unsigned borrow or repay transaction payloads. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Borrow and repay tools produce unsigned blockchain transaction payloads that could move funds if signed without review. <br>
-Mitigation: Treat generated transactions as proposals and verify wallet, chain, pool, token addresses, amounts, approvals, loan terms, and API endpoint before signing. <br>
-Risk: The skill fetches financial data from the configured Teller API endpoint, so stale or incorrect endpoint configuration can affect downstream decisions. <br>
-Mitigation: Use the default production endpoint unless intentionally testing, and review returned pool, APR, collateral, and loan data before acting on it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rbcp18/teller-borrow-agents) <br>
-- [Teller Delta-Neutral API reference](https://registry.scalar.com/@teller/apis/delta-neutral/latest) <br>
-- [Delta-neutral API cheat sheet](references/delta-neutral-api.md) <br>
-- [Teller MCP server README](scripts/tellermcp-server/README.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to install, run, or update a Teller MCP server that exposes delta-neutral opportunity discovery, borrow pool lookup, wallet-specific loan terms, and borrow or repay transaction builders.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, shell commands, MCP tool responses, and structured JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [MCP tools return a short text summary plus structuredContent.payload containing Teller API data or unsigned transaction payloads.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.3 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Borrow and repay builders can return ready-to-submit blockchain transactions that may move assets or create loan obligations if signed without review.
+
+Mitigation: Require explicit human approval and independently verify the chain, destination contracts, calldata, amounts, allowances, and native value before any wallet signs or submits a transaction.
+
+Risk: Using an untrusted or misconfigured Teller API endpoint can expose agents to incorrect transaction data.
+
+Mitigation: Run the skill only against a trusted Teller API endpoint and review any TELLER_API_BASE_URL override before use.
+
+Risk: Wallet addresses and loan IDs are sensitive financial metadata.
+
+Mitigation: Limit where these values are logged, displayed, or shared, and avoid sending them to unnecessary agent tools or services.
+
+Risk: Dependencies may need constraint or update review before production use.
+
+Mitigation: Review, update, or pin the Node dependencies before deploying the MCP server in production.
+
+## Reference(s):
+
+- [Teller Delta-Neutral + Lending API Cheat Sheet](references/delta-neutral-api.md)
+- [Teller Delta-Neutral API](https://registry.scalar.com/@teller/apis/delta-neutral/latest)
+- [ClawHub Skill Page](https://clawhub.ai/rbcp18/skills/teller-borrow-agents)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and MCP tool responses containing text summaries plus structured JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [MCP tools can return ready-to-submit borrow and repay transaction data from a configured Teller API endpoint.]
+
+## Skill Version(s):
+
+0.2.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

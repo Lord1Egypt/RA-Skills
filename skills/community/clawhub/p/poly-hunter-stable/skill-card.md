@@ -1,38 +1,63 @@
-## Description: <br>
-Identifies the three largest recent absolute price movers among active Polymarket markets after SkillPay payment confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors active Polymarket markets for the largest recent price movements and returns payment-gated market mover data.
 
-## Publisher: <br>
-[xqw1377-prog](https://clawhub.ai/user/xqw1377-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xqw1377-prog](https://clawhub.ai/user/xqw1377-prog)
 
-## Use Case: <br>
-Web3 market watchers and trading analysts use this skill to request a paid API result listing active Polymarket markets with the largest recent price changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: ClawScan flags this paid Polymarket skill as suspicious because it exposes payment-account authority and overstates what the code appears to provide. <br>
-Mitigation: Review before installing or paying; use only after the maintainer removes and rotates the hardcoded SkillPay key, pins or allowlists the SkillPay host, identifies the payment recipient, and aligns the description with the actual price-mover behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xqw1377-prog/poly-hunter-stable) <br>
-- [Publisher profile](https://clawhub.ai/user/xqw1377-prog) <br>
+## Use Case:
 
+External Web3 and prediction-market analysts use this skill to identify active Polymarket markets with the largest recent price changes after completing the configured SkillPay payment flow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, API response, guidance] <br>
-**Output Format:** [JSON response with payment status and market mover records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SkillPay confirmation before returning mover data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A built-in SkillPay API credential could expose billing access if deployed as-is.
+
+Mitigation: Remove and rotate the embedded key, and require SKILLPAY_API_KEY to be supplied by the deployment environment.
+
+Risk: Billing controls may be weak because access depends on the current charge_id status flow.
+
+Mitigation: Review and harden per-use charge validation before relying on this skill for paid access enforcement.
+
+Risk: The configured SkillPay API base can be overridden by deployment settings.
+
+Mitigation: Restrict SKILLPAY_API_BASE to the intended provider before installation or deployment.
+
+Risk: The pinned requests dependency was flagged for review in the server security guidance.
+
+Mitigation: Update requests to an approved patched version during deployment review.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xqw1377-prog/skills/poly-hunter-stable)
+- [Publisher Profile](https://clawhub.ai/user/xqw1377-prog)
+- [Polymarket CLOB Markets Endpoint](https://clob.polymarket.com/markets)
+- [SkillPay API Base](https://api.skillpay.me)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, text]
+
+**Output Format:** [FastAPI JSON response containing payment status or top market mover records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns either a SkillPay charge and payment status or up to three active Polymarket market records with current price, previous price, delta, absolute delta, volume, and status.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,5 +1,138 @@
 {
-  "keywords": [],
+  "keywords": [
+    {
+      "term": "credit assignment",
+      "weight": 1.0,
+      "source": "inferred",
+      "category": "core"
+    },
+    {
+      "term": "agentic RL",
+      "weight": 1.0,
+      "source": "inferred",
+      "category": "core"
+    },
+    {
+      "term": "agentic reinforcement learning",
+      "weight": 0.95,
+      "source": "auto",
+      "category": "core"
+    },
+    {
+      "term": "multi-scale RL",
+      "weight": 0.85,
+      "source": "inferred",
+      "category": "core"
+    },
+    {
+      "term": "hierarchical RL",
+      "weight": 0.8,
+      "source": "inferred",
+      "category": "core"
+    },
+    {
+      "term": "turn-level policy optimization",
+      "weight": 0.75,
+      "source": "auto",
+      "category": "core"
+    },
+    {
+      "term": "step-level advantage",
+      "weight": 0.75,
+      "source": "auto",
+      "category": "core"
+    },
+    {
+      "term": "group policy optimization",
+      "weight": 0.7,
+      "source": "auto",
+      "category": "core"
+    },
+    {
+      "term": "GiGPO",
+      "weight": 0.7,
+      "source": "auto",
+      "category": "method"
+    },
+    {
+      "term": "GRPO",
+      "weight": 0.7,
+      "source": "auto",
+      "category": "method"
+    },
+    {
+      "term": "GAGPO",
+      "weight": 0.6,
+      "source": "auto",
+      "category": "method"
+    },
+    {
+      "term": "hindsight credit",
+      "weight": 0.65,
+      "source": "auto",
+      "category": "core"
+    },
+    {
+      "term": "hindsight policy optimization",
+      "weight": 0.65,
+      "source": "auto",
+      "category": "core"
+    },
+    {
+      "term": "OPD",
+      "weight": 0.5,
+      "source": "auto",
+      "category": "method"
+    },
+    {
+      "term": "online preference distillation",
+      "weight": 0.55,
+      "source": "auto",
+      "category": "method"
+    },
+    {
+      "term": "process reward model",
+      "weight": 0.5,
+      "source": "inferred",
+      "category": "core"
+    },
+    {
+      "term": "PRM",
+      "weight": 0.5,
+      "source": "auto",
+      "category": "method"
+    },
+    {
+      "term": "tool use RL",
+      "weight": 0.5,
+      "source": "auto",
+      "category": "related"
+    },
+    {
+      "term": "tool learning RL",
+      "weight": 0.5,
+      "source": "auto",
+      "category": "related"
+    },
+    {
+      "term": "multi-agent RL",
+      "weight": 0.4,
+      "source": "inferred",
+      "category": "related"
+    },
+    {
+      "term": "MARL",
+      "weight": 0.4,
+      "source": "auto",
+      "category": "related"
+    },
+    {
+      "term": "graph-based RL",
+      "weight": 0.45,
+      "source": "auto",
+      "category": "related"
+    }
+  ],
   "blacklist": [
     "robotics",
     "embodied",
@@ -10,5 +143,5 @@
   ],
   "authors": [],
   "institutions": [],
-  "last_updated": "2026-07-03"
+  "last_updated": "2026-06-30"
 }

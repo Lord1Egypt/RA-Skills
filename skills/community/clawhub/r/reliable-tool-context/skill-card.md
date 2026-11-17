@@ -1,42 +1,58 @@
-## Description: <br>
-Build reliable tool context from command output using artifacts and compact reproducible code queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build reliable tool context from command output using artifacts and compact reproducible code queries.
 
-## Publisher: <br>
-[zmaciel](https://clawhub.ai/user/zmaciel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zmaciel](https://clawhub.ai/user/zmaciel)
 
-## Use Case: <br>
-Developers and engineers use this skill when command output will be analyzed by an agent and correctness, pagination handling, reproducibility, redaction discipline, or auditability matter. It guides the agent to capture output once, query artifacts with explicit root paths, and return compact answers instead of copying raw payloads into context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Captured command output can include secrets or sensitive production data. <br>
-Mitigation: Avoid capturing secrets or sensitive production data, and use the skill only when queryable artifacts are appropriate for the environment. <br>
-Risk: Broad artifact queries can include more context than needed for the current task. <br>
-Mitigation: Prefer single-artifact scope first and widen scope only when cross-artifact analysis is required. <br>
-Risk: The workflow depends on the third-party sift-gateway package and on the underlying commands selected by the user or agent. <br>
-Mitigation: Install only if the package is trusted, and review underlying commands before running them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Reliable Tool Context on ClawHub](https://clawhub.ai/zmaciel/reliable-tool-context) <br>
-- [OpenClaw skill homepage](https://github.com/lourencomaciel/sift-gateway/tree/main/docs/openclaw) <br>
+## Use Case:
 
+Developers and agent operators use this skill when model-facing CLI output needs to be captured once, queried reproducibly, and summarized compactly for model decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with shell commands and compact Python query snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance favors aggregate or top-20 query results, explicit pagination completeness checks, and avoiding raw captured payloads in model context.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on the third-party sift-gateway CLI package.
+
+Mitigation: Review the upstream package before installation and pin a known-good version for controlled environments.
+
+Risk: Captured command output may contain sensitive or unrelated private data.
+
+Mitigation: Avoid sending secrets through the gateway unless intended, keep only artifact identifiers and short summaries in model context, and use focused code queries for details.
+
+Risk: Paginated or schema-ambiguous command output can lead to incomplete or misleading model conclusions.
+
+Mitigation: Continue pagination when instructed by response metadata, use the resolved root path or schema metadata, and avoid first-item schema shortcuts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zmaciel/skills/reliable-tool-context)
+- [OpenClaw integration source](https://github.com/lourencomaciel/sift-gateway/tree/main/docs/openclaw)
+- [OpenClaw skill documentation](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs emphasize compact summaries, aggregates, or top <= 20 rows rather than full captured payloads.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

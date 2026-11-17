@@ -1,0 +1,12 @@
+{
+  "name": "site-publisher",
+  "version": "0.1.0",
+  "description": "Serve and package static websites for preview and deployment",
+  "main": "index.js",
+  "scripts": {
+    "serve": "node scripts/serve.js",
+    "package": "node scripts/package.js"
+  },
+  "keywords": ["static", "site", "preview", "deploy"],
+  "license": "MIT"
+}

@@ -1,47 +1,64 @@
-## Description: <br>
-1688 爆款操盘手是一款全栈式供应链 Agent，用于跨境或内贸选品、1688 找工厂、询盘话术生成和利润核算。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+1688 爆款操盘手 helps agents analyze product opportunities, search 1688 suppliers, draft supplier inquiries, calculate margins, and assemble sourcing reports.
 
-## Publisher: <br>
-[skovely](https://clawhub.ai/user/skovely) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skovely](https://clawhub.ai/user/skovely)
 
-## Use Case: <br>
-External commerce operators, sourcing teams, and agent users use this skill to identify 1688 product opportunities, compare supplier candidates, draft supplier inquiries, calculate margin, and produce a supply-chain execution report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can silently reuse an ALI_COOKIE value if one is present in the agent environment, causing 1688 requests to run as the logged-in account associated with that cookie. <br>
-Mitigation: Do not set ALI_COOKIE unless authenticated 1688 access is intentional; prefer the documented ALI_APP_KEY/ALI_APP_SECRET path or a dedicated low-privilege account. <br>
-Risk: Supplier, pricing, certification, and margin outputs may depend on current 1688 page/API data and should not be treated as final procurement approval. <br>
-Mitigation: Verify supplier credentials, product certifications, legal restrictions, samples, and logistics assumptions before purchasing or negotiating at scale. <br>
+## Use Case:
 
+External merchants, sourcing operators, and agent users use this skill to identify 1688 product opportunities, compare factories, prepare negotiation and inquiry scripts, and estimate cross-border commerce margins.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/skovely/1688-trend-trader) <br>
-- [1688 Open Platform](https://open.1688.com/) <br>
-- [1688 Open API gateway](https://gw.open.1688.com/openapi) <br>
-- [选品分析参考](references/selection.md) <br>
-- [工厂筛选标准参考](references/sourcing.md) <br>
-- [询盘话术模板库](references/inquiry.md) <br>
-- [利润核算参考](references/financial.md) <br>
-- [供应链落地报告模板](references/report-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Structured Chinese Markdown with tables, supplier comparisons, inquiry templates, margin calculations, and occasional CLI command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May incorporate live or scraped 1688 marketplace data when network access and optional credentials are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill makes outbound requests to 1688 domains during sourcing and product lookup workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in environments where outbound access to the declared 1688 domains is acceptable, and review returned supplier data before acting on it.
+
+Risk: The security evidence says the skill under-discloses optional use of ALI_COOKIE for authenticated 1688 access.
+
+Mitigation: Do not set ALI_COOKIE unless authenticated 1688 session use is intentional; prefer the declared ALI_APP_KEY and ALI_APP_SECRET configuration for enhanced data access.
+
+Risk: Sourcing recommendations can miss product-specific patent, certification, logistics, or marketplace-compliance requirements.
+
+Mitigation: Use the generated risk prompts as a checklist and verify intellectual property, certification, and shipping constraints with qualified reviewers before purchase or launch.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/skovely/skills/1688-trend-trader)
+- [Selection Analysis Reference](artifact/references/selection.md)
+- [Factory Sourcing Standards](artifact/references/sourcing.md)
+- [Inquiry Template Library](artifact/references/inquiry.md)
+- [Financial Calculation Reference](artifact/references/financial.md)
+- [Supply Chain Report Template](artifact/references/report-template.md)
+- [1688 Open Platform](https://open.1688.com/)
+- [1688 Open API Gateway](https://gw.open.1688.com/openapi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with structured sections, supplier comparison tables, inquiry scripts, calculations, and inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first sourcing workflow; outputs emphasize evidence-backed supplier metrics, margin figures, and practical next steps.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

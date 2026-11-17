@@ -1,41 +1,56 @@
-## Description: <br>
-PDF to Markdown converter - extract text, tables and formulas from PDF files to clean Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PDF to Markdown converter - extract text, tables and formulas from PDF files to clean Markdown.
 
-## Publisher: <br>
-[tanis90](https://clawhub.ai/user/tanis90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanis90](https://clawhub.ai/user/tanis90)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to convert local PDFs or PDF URLs into Markdown for extraction, parsing, summarization, or downstream document analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected PDFs or PDF URLs are sent to MinerU for processing. <br>
-Mitigation: Do not use this skill for confidential, regulated, or private documents unless MinerU's data handling is acceptable for the use case. <br>
+## Use Case:
 
+Developers, engineers, and external users use this skill to convert local PDF files or PDF URLs into Markdown for extraction, summarization, parsing, and analysis workflows.
 
-## Reference(s): <br>
-- [Pdf2md on ClawHub](https://clawhub.ai/tanis90/pdf2md) <br>
-- [MinerU](https://mineru.net) <br>
-- [MinerU CLI](https://mineru.net/ecosystem?tab=cli) <br>
-- [MinerU GitHub Repository](https://github.com/opendatalab/MinerU) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and converted Markdown content from PDFs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Quick extraction is limited to 10MB or 20 pages per document; images, tables, and formulas may be represented with placeholders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local PDFs may be uploaded to MinerU's external API during conversion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential, regulated, privileged, or personal documents unless disclosure to the external service is authorized; use a local-only converter for sensitive files.
+
+Risk: The required CLI is installed from mutable third-party package sources.
+
+Mitigation: Pin and review a specific CLI version before use in controlled environments.
+
+## Reference(s):
+
+- [ClawHub Pdf2md Skill Page](https://clawhub.ai/tanis90/skills/pdf2md)
+- [MinerU](https://mineru.net)
+- [MinerU CLI](https://mineru.net/ecosystem?tab=cli)
+- [OpenDataLab MinerU](https://github.com/opendatalab/MinerU)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown output may include placeholders for images, tables, or formulas; quick mode is limited to 10MB and 20 pages per document.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

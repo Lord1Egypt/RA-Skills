@@ -188,7 +188,7 @@ class TestRunTestsFormatting:
         )
 
         result = subprocess.run(
-            [sys.executable, str(PROJECT_ROOT / "scripts" / "run_tests.py"), "--report-only"],
+            [sys.executable, str(PROJECT_ROOT / "tests" / "run_tests.py"), "--report-only"],
             cwd=str(PROJECT_ROOT),
             capture_output=True,
             text=True,

@@ -1,43 +1,64 @@
-## Description: <br>
-Drafts, formats, reviews, and publishes 小红书 (Xiaohongshu/RED) posts, including cover image generation and browser-based publishing with manual fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts Xiaohongshu/RED posts, generates cover images, routes drafts for user review, and publishes approved posts through browser automation or a manual fallback.
 
-## Publisher: <br>
-[yuf1011](https://clawhub.ai/user/yuf1011) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yuf1011](https://clawhub.ai/user/yuf1011)
 
-## Use Case: <br>
-Creators, marketers, and operators use this skill to prepare Xiaohongshu posts, generate 1080x1440 cover images, obtain review approval, and publish through a logged-in browser session or manual copy-paste fallback. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish content from a logged-in Xiaohongshu creator session. <br>
-Mitigation: Review the title, body, tags, and cover image before approving publication, and require explicit approval before each publish action. <br>
-Risk: Scheduled use could publish posts without timely human review if configured too broadly. <br>
-Mitigation: Keep scheduled jobs limited to draft-and-review workflows unless each post is intentionally authorized. <br>
-Risk: Generated cover images may be written to local paths selected by the user or agent. <br>
-Mitigation: Save generated covers only to ordinary working directories and avoid sensitive or system paths. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuf1011/xiaohongshu-publisher) <br>
-- [Content guide](artifact/references/content-guide.md) <br>
-- [Browser publishing guide](artifact/references/browser-publish.md) <br>
+## Use Case:
 
+External creators, marketers, and operators use this skill to draft Xiaohongshu content, generate a 1080x1440 PNG cover, review the proposed post, and publish it after explicit approval. It can also package the content for manual posting when browser automation is unavailable.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown draft text, browser publishing guidance, shell commands, and PNG cover image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates 1080x1440 PNG cover images and requires explicit user approval before publication.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated covers include OpenClaw branding by default, which may be unclear to users or unsuitable for a given post.
+
+Mitigation: Review the generated cover before publishing and override the badge text when the brand label should be changed or removed.
+
+Risk: Scheduled posting guidance could affect a live Xiaohongshu account without timely human oversight.
+
+Mitigation: Keep scheduled runs draft-only and require explicit user approval before any browser-based publish action.
+
+Risk: The skill needs access to a logged-in Xiaohongshu creator session and browser automation may fail or encounter an expired login.
+
+Mitigation: Use only an account the agent is authorized to access, verify login state before publishing, and fall back to manual posting when automation is unavailable.
+
+Risk: The cover-generation script depends on Pillow and local CJK fonts.
+
+Mitigation: Run it in an isolated Python environment with Pillow installed and verify required CJK fonts before relying on generated assets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuf1011/skills/xiaohongshu-publisher)
+- [Publisher profile](https://clawhub.ai/user/yuf1011)
+- [Xiaohongshu creator publishing portal](https://creator.xiaohongshu.com/publish/publish)
+- [Browser Publishing Guide](references/browser-publish.md)
+- [Xiaohongshu Content Guide](references/content-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown draft text with shell commands, browser automation guidance, and PNG cover image file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates a 1080x1440 PNG cover image and may produce manual copy-paste publishing instructions when automation is unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

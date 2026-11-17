@@ -1,46 +1,61 @@
-## Description: <br>
-Import products from Shopify, Amazon, Etsy, or CSV into a Mobazha store. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Import products from Shopify, Amazon, Etsy, or CSV into a Mobazha store. Use when the user wants to migrate or copy listings from another platform.
 
-## Publisher: <br>
-[fengzie](https://clawhub.ai/user/fengzie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fengzie](https://clawhub.ai/user/fengzie)
 
-## Use Case: <br>
-Store operators and developers use this skill to migrate or copy product listings from Shopify, Amazon, Etsy, WooCommerce, or CSV into a Mobazha store. It helps prepare import JSON, package product images, configure shipping profiles, and choose between bulk import and individual listing creation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be used on catalogs or product content the user is not authorized to migrate. <br>
-Mitigation: Use it only for the user's own Mobazha store and product catalogs they own or are authorized to move. <br>
-Risk: Downloading product images from supplied URLs can fetch unexpected private-network, oversized, or excessive media. <br>
-Mitigation: Review source URLs before download, avoid localhost and private-network links, set practical size and count limits, and delete temporary ZIP and media files after import. <br>
-Risk: Imported product data such as prices, shipping profiles, and product descriptions can be stale or inaccurate. <br>
-Mitigation: Review generated import JSON before upload, verify pricing and shipping data, and confirm that physical goods include valid shipping profiles. <br>
+## Use Case:
 
+Developers and store operators use this skill to migrate or copy product listings from Shopify, Amazon, Etsy, WooCommerce, or CSV sources into a Mobazha store.
 
-## Reference(s): <br>
-- [Mobazha Product Import on ClawHub](https://clawhub.ai/fengzie/mobazha-product-import) <br>
-- [Universal field mapping](references/mapping.md) <br>
-- [Shopify data export reference](references/shopify-api.md) <br>
-- [Amazon product scraping reference](references/amazon-scrape.md) <br>
-- [Shopify Products API](https://shopify.dev/docs/api/admin-rest/current/resources/product) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration guidance, API calls] <br>
-**Output Format:** [Markdown guidance with JSON payloads, API examples, shell commands, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Mobazha import JSON, image filename mappings, ZIP packaging guidance, and progress-oriented migration steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Example scraping and API code could send requests or credentials to unintended sites if copied without validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use CSV exports or official APIs where possible, keep tokens least-privileged, and validate all destination hosts before making API or pagination requests.
+
+Risk: Amazon product and image download guidance can fetch external URLs into local import packages.
+
+Mitigation: Fetch only known public product and image URLs, respect robots.txt and rate limits, and write downloads into a controlled local directory.
+
+Risk: Imported listings may contain incorrect pricing, shipping, or product data after transformation.
+
+Mitigation: Review transformed listings before upload, verify prices and shipping profiles, and prefer the bulk import flow for consistent validation.
+
+## Reference(s):
+
+- [Mobazha Product Import Skill](https://clawhub.ai/fengzie/skills/mobazha-product-import)
+- [Shopify Data Export Reference](references/shopify-api.md)
+- [Amazon Product Scraping Reference](references/amazon-scrape.md)
+- [Universal Field Mapping: External Platforms to Mobazha](references/mapping.md)
+- [Shopify Products API](https://shopify.dev/docs/api/admin-rest/current/resources/product)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON, Python, and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include import JSON schemas, API request examples, field mappings, and migration steps.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

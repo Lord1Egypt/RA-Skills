@@ -17,7 +17,7 @@ from pathlib import Path
 from datetime import datetime
 import urllib.request, urllib.error, os
 
-API_KEY  = os.environ.get("VEO_API_KEY", "AIzaSyDmN9-L3Y6q9fFIZY5OiH4E0_1t0wIbVjI")
+API_KEY  = os.environ.get("VEO_API_KEY", "REDACTED-SECRET")
 API_BASE = "https://generativelanguage.googleapis.com/v1beta"
 MODEL    = "veo-3.1-generate-preview"
 OUT_DIR  = Path("~/clawd/output/flowcutpro/hotel-commercial").expanduser()

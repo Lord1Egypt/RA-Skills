@@ -1,0 +1,44 @@
+{
+  "_comment": "A saved trip intake, in the shape scripts/serve_trip_intake.py writes, used to compute the hard-constraint roster the shortlist fixture is held to. Kept here rather than pointing at a real workspace file so the suite does not depend on one developer's ~/Travel Buddy.",
+  "profile_version": "1.0",
+  "mode": "discovery",
+  "intake_status": "complete",
+  "trip_geography": {
+    "scope": "no_new_visa_needed",
+    "entry_assessment_required": false
+  },
+  "trip_purpose": "leisure",
+  "origin": {
+    "home_city": "Fixture Origin City",
+    "country": "Fixture Country",
+    "max_one_way_travel_time": "no more than 10 hours",
+    "connection_tolerance": "direct preferred, one connection acceptable"
+  },
+  "travel_window": {
+    "start_date": "2027-02-12",
+    "end_date": "2027-02-16",
+    "duration_nights": 4
+  },
+  "party": {
+    "traveler_count": 1,
+    "composition": "solo",
+    "mobility_or_access_needs": ["avoid long walks"]
+  },
+  "budget": {
+    "calculation_basis": "per_person",
+    "hard_cap_amount": 750,
+    "currency": "EUR",
+    "included_categories": ["flight", "accommodation"]
+  },
+  "destination_scope": {
+    "state": "continent",
+    "named_places": ["Fixture Continent"],
+    "excluded_places": ["Fixture Forbidden Isle"]
+  },
+  "feasibility": {
+    "climate_preferences": ["avoid frequent rain", "prefer mild warmth"],
+    "dietary_or_religious_needs": [],
+    "residence_status": "member_state_residence_permit",
+    "visa_tolerance": "no_new_visa_needed"
+  }
+}

@@ -1,41 +1,53 @@
-## Description: <br>
-Registers the Shazam skill to organize public music-platform pages, membership details, content entry points, and copyright information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes public Shazam website information covering membership details, public charts, music entry points, and copyright guidance.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users and agents use this skill to summarize and organize publicly visible Shazam information, including membership benefits, public charts, playlists, music entry points, help content, and copyright notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide personal account data, private playlists, or other non-public music information outside the intended public-information scope. <br>
-Mitigation: Do not provide personal account data or private playlists; use the skill only for public Shazam pages and publicly visible platform information. <br>
-Risk: Music availability, playlists, charts, membership details, and copyright information can vary by region or change over time. <br>
-Mitigation: Prefer official public Shazam pages and include the applicable region, source link, and update context when summarizing this information. <br>
+## Use Case:
 
+External users and agents use this skill to summarize public Shazam pages, compare membership or subscription information, collect public chart and playlist links, and extract support or copyright information.
 
-## Reference(s): <br>
-- [Shazam homepage](https://www.shazam.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/shazam) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text summaries, lists, and comparison tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focused on publicly visible information only; no code execution, credentials, private playlists, or account data requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Pricing, availability, chart entries, playlist links, and region-specific music rights can change quickly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current details directly from public Shazam pages before relying on the output.
+
+Risk: Requests may ask for private account data, account sharing, copyright bypasses, API access, or non-public content.
+
+Mitigation: Keep use limited to public Shazam information and decline requests involving private data, account misuse, rights bypasses, or non-public content.
+
+## Reference(s):
+
+- [Shazam homepage](https://www.shazam.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries, comparison tables, and link lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses publicly visible information only; outputs should note applicable region when copyright or availability differs by location.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

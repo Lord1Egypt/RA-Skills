@@ -1,0 +1,88 @@
+{
+  "skill_name": "huawei-cloud-cdm-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "ListClusters 操作与参数（语法）",
+      "command": "hcloud CDM ListClusters --cli-region={region} --help",
+      "expected": "KooCLI prints the ListClusters help (path param project_id; NO query parameters — official API fact)",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "ShowClusterDetail 操作与参数（语法）",
+      "command": "hcloud CDM ShowClusterDetail --cli-region={region} --help",
+      "expected": "KooCLI prints the ShowClusterDetail help (required --cluster_id)",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "集群列表真实只读查询（live）",
+      "command": "hcloud CDM ListClusters --cli-region={region}",
+      "expected": "Returns the cluster list JSON ({\"clusters\": [...]}) or an explicit 403 permission envelope",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-04",
+      "name": "脚本表格输出（默认 ListClusters）",
+      "command": "python3 scripts/list_cdm_clusters.py --region {region} --format table",
+      "expected": "Aligned table with id/name/status/status_meaning/version/instance_count/instances columns (or an explicit permission/empty message)",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-05",
+      "name": "名称/状态筛选（客户端）",
+      "command": "python3 scripts/list_cdm_clusters.py --name cdm --status 200",
+      "expected": "Only matching clusters are listed; no match prints the friendly empty message with the active filters",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-06",
+      "name": "集群详情视图（ShowClusterDetail）",
+      "command": "python3 scripts/list_cdm_clusters.py --cluster-id <uuid>",
+      "expected": "Field/value detail table incl. per-instance status/IPs",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-07",
+      "name": "脚本导出 JSON / Markdown / CSV",
+      "command": "python3 scripts/list_cdm_clusters.py --format json --output /tmp/cdm_clusters_{region}.json",
+      "expected": "Writes a JSON file and prints the path",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-08",
+      "name": "写意图守卫拦截",
+      "command": "python3 scripts/list_cdm_clusters.py --create-cluster",
+      "expected": "Exit 1, [错误] 检测到写操作意图 ... 已被守卫拦截, no command executed",
+      "type": "guard",
+      "executor": "script"
+    },
+    {
+      "id": "TC-09",
+      "name": "参数帮助（脚本）",
+      "command": "python3 scripts/list_cdm_clusters.py --help",
+      "expected": "argparse help printed, exit 0",
+      "type": "syntax",
+      "executor": "script"
+    },
+    {
+      "id": "TC-10",
+      "name": "离线单元测试",
+      "command": "python3 -m unittest discover -s tests",
+      "expected": "All offline unit tests pass (mocked hcloud): guard / resolve / command build / JSON+envelope / filters / normalize / SDK fallback / renderers / atomic export / fake-binary e2e / --help",
+      "type": "unit",
+      "executor": "script"
+    }
+  ],
+  "env_vars_required": ["以 HUAWEI/HW/HWC/CLOUD_SDK 开头的环境变量中匹配 AK/SK 的键值对"],
+  "notes": "只读操作（CDM ListClusters / ShowClusterDetail，均为 GET），无集群创建/删除/重启/扩容风险；导出文件仅在本机生成，绝不写回云端。CLI 主路径使用 hcloud CDM（经 skill-quality-cli 包裹）；SDK 回退使用 huaweicloudsdkcdm v1（BasicCredentials，project_id 可由 SDK 经 IAM 自动解析）；SDK 缺失时运行 scripts/ensure_env.py 自动安装。写意图守卫拦截变更意图，其行为由离线单元测试（TC-10）覆盖。ListClusters 需要 IAM 权限 cdm:cluster:list，ShowClusterDetail 需要 cdm:cluster:get；缺权限时脚本给出明确的权限错误提示。真实只读验证由 QA 带外执行。"
+}

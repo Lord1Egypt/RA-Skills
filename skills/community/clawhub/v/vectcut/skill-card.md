@@ -1,48 +1,62 @@
-## Description: <br>
-VectCut orchestrates cloud video-editing workflows for talking-head edits, remixes, ads, subtitles, audio, effects, picture-in-picture, AI-generated media, platform video ingestion, rendering, and Feishu workflow handoff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+VectCut orchestrates cloud video-editing workflows for talking-head cuts, remix videos, ecommerce ads, subtitles, audio, effects, picture-in-picture, AI-generated media, draft download, and Feishu Bitable automation.
 
-## Publisher: <br>
-[sun-guannan](https://clawhub.ai/user/sun-guannan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sun-guannan](https://clawhub.ai/user/sun-guannan)
 
-## Use Case: <br>
-External creators, marketers, and developers use this skill to automate VectCut video-production flows, including draft creation, media upload, subtitle and audio processing, effects, AI image or video generation, cloud rendering, draft download, and Feishu workflow setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires VECTCUT_API_KEY and may expose media, draft IDs, transcripts, prompts, and generated outputs to VectCut cloud services. <br>
-Mitigation: Install and run it only where VectCut is trusted for the relevant media and project data; use scoped credentials where available and avoid entering secrets into shared transcripts. <br>
-Risk: The Feishu workflow generator can embed the real API key instead of using a placeholder or secure secret binding. <br>
-Mitigation: Do not use that workflow generator until the generated workflow stores credentials through a secure secret binding or a placeholder that operators replace outside the prompt. <br>
-Risk: Automatic workflows can upload files, mutate drafts, and trigger rendering across private or proprietary media. <br>
-Mitigation: Review planned uploads, draft IDs, and mutation steps before broad workflow execution, then verify draft output with query-draft before cloud rendering or distribution. <br>
+## Use Case:
 
+Developers, creators, and video operations teams use this skill to assemble automated VectCut editing workflows that create or modify drafts, upload local media, add subtitles, audio, effects, templates, AI-generated media, and export rendered videos. It can also turn an existing video-production process into Feishu Bitable fields and workflow prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sun-guannan/vectcut) <br>
-- [VectCut homepage](https://www.vectcut.com/) <br>
-- [VectCut API documentation index](https://docs.vectcut.com/llms.txt) <br>
-- [Query draft API documentation](https://docs.vectcut.com/386764616e0) <br>
-- [Cloud render task status documentation](https://docs.vectcut.com/321247406e0) <br>
-- [Model capabilities reference](references/model_capabilities.json) <br>
-- [AI image model capabilities reference](references/ai-image-model_capabilities.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON payloads, draft identifiers, draft URLs, rendered video URLs, and optional workflow prompts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or mutate VectCut cloud drafts and may write local JSON or Markdown result files for intermediate reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.11 (source: server release evidence) <br>
+Risk: API-key exposure could occur if the skill prints, pastes, or embeds VECTCUT_API_KEY in generated prompts or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use protected secret references or environment injection only; do not echo, print, paste, or store the raw key in workflow prompts.
+
+Risk: The skill can use VectCut account access to create drafts, upload media, process assets, and render videos.
+
+Mitigation: Install only in trusted workspaces, use the least-privileged VectCut account available, and review draft, upload, and render actions before running workflows.
+
+Risk: Generated Feishu Bitable workflow prompts may carry sensitive workflow or credential material if not reviewed.
+
+Mitigation: Review generated Feishu prompts before use and replace any credential material with protected secret references.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sun-guannan/skills/vectcut)
+- [VectCut homepage](https://www.vectcut.com/)
+- [VectCut API documentation index](https://docs.vectcut.com/llms.txt)
+- [Model capabilities reference](artifact/references/model_capabilities.json)
+- [AI image model capabilities reference](artifact/references/ai-image-model_capabilities.json)
+- [Cover prompt references](artifact/references/cover_prompt_references.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payload examples and shell commands; bundled scripts may emit JSON result files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VECTCUT_API_KEY; outputs may include draft IDs, draft URLs, rendered video URLs, uploaded media URLs, workflow summaries, or Feishu Bitable workflow prompts.]
+
+## Skill Version(s):
+
+1.5.11 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

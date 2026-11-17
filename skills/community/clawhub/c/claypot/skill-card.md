@@ -1,41 +1,50 @@
-## Description: <br>
-Claypot provides recommendation lists, route drafts, and practical visit notes for popular claypot dining requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides recommendation lists, check-in routes, and practical guidance for trending claypot experiences.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users use this skill to plan popular claypot restaurant visits by city or area, including shortlists, route order, timing, budget, and practical cautions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The trigger wording is broad enough that the skill may be invoked for nearby food-travel requests. <br>
-Mitigation: Use the skill when the request is specifically about popular claypot dining or closely related route planning. <br>
-Risk: Restaurant popularity, hours, queue times, booking rules, prices, and on-site restrictions can change. <br>
-Mitigation: Verify time-sensitive visit details with current local sources before acting on the recommendations. <br>
+## Use Case:
 
+External users use this skill to find popular claypot recommendations for a city or area and draft visit routes with timing, budget, popularity, and practical cautions.
 
-## Reference(s): <br>
-- [Claypot on ClawHub](https://clawhub.ai/CodeKungfu/claypot) <br>
-- [CodeKungfu publisher profile](https://clawhub.ai/user/CodeKungfu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text with recommendation lists, route drafts, and practical notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include restaurant names, highlights, addresses, opening times, popularity, transportation suggestions, estimated time, visit order, booking or queue guidance, and budget notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Opening hours, addresses, reservation rules, prices, and crowd levels can change quickly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current details with the venue before relying on the recommendations for an outing.
+
+## Reference(s):
+
+- [Claypot release page](https://clawhub.ai/codekungfu/skills/claypot)
+- [ClawKK publisher profile](https://clawhub.ai/user/codekungfu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown recommendation lists, route drafts, and practical notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; recommendations should be checked against current venue information.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

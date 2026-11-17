@@ -1,41 +1,53 @@
-## Description: <br>
-自媒体运营全能助手 helps agents provide one-stop Chinese social media operations guidance for Xiaohongshu, WeChat public accounts, Douyin, and private traffic workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自媒体运营全能助手 — 小红书、公众号、抖音、私域流量一站式运营指南。当你需要写爆款文案、规划内容日历、分析数据、制定涨粉策略时使用。
 
-## Publisher: <br>
-[jiangtaoid](https://clawhub.ai/user/jiangtaoid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangtaoid](https://clawhub.ai/user/jiangtaoid)
 
-## Use Case: <br>
-External creators, marketers, and account operators use this skill to draft social media copy, plan content calendars, analyze account metrics, and choose growth strategies across Chinese social platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes an optional custom-service contact path that may move business discussion outside the agent workflow. <br>
-Mitigation: Treat the custom-service contact as optional third-party promotion and avoid sharing sensitive business, customer, account, or credential data unless the user intentionally chooses to contact the publisher. <br>
-Risk: Marketing strategy guidance can be incomplete or poorly suited to a specific brand, platform policy, or audience. <br>
-Mitigation: Review generated plans, copy, and posting schedules against brand standards, platform rules, and current campaign goals before publishing. <br>
+## Use Case:
 
+External creators, marketers, and small business operators use this skill to plan and improve Chinese-language social-media content across Xiaohongshu, WeChat public accounts, Douyin, and private-domain channels. It helps produce copywriting templates, content calendars, account metric analysis guidance, growth strategy, and conversion playbooks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiangtaoid/social-media-operator) <br>
-- [Publisher profile](https://clawhub.ai/user/jiangtaoid) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with prompt templates, checklists, strategy outlines, tables, and workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code execution, credentials, installs, or system access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Generated marketing advice or content strategy could be inaccurate, misleading, or unsuitable for a specific brand, platform rule, or campaign context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated copy, calendars, and strategy recommendations before publishing or using them in a commercial workflow.
+
+Risk: The skill includes author contact information for custom services.
+
+Mitigation: Review third-party contact details against organizational policy before distribution or deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiangtaoid/skills/social-media-operator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with platform-specific content templates, scripts, calendars, and strategy guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language social-media operations guidance; no code execution, credential collection, or data access is described by the security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

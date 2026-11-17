@@ -1,39 +1,54 @@
-## Description: <br>
-Use when exploring beer styles, pairing beer with food, calculating ABV for homebrew, finding craft beer recommendations, or learning tasting techniques. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when exploring beer styles, pairing beer with food, calculating ABV for homebrew, finding craft beer recommendations, or learning tasting techniques.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External users and hobbyists use this skill to explore beer styles, choose food pairings, calculate homebrew ABV, follow tasting frameworks, and find craft beer or gear recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Homebrew recipes and priming guidance can be unsafe if used without complete brewing safety practices. <br>
-Mitigation: Use a complete brewing safety source before brewing; sanitize thoroughly, confirm fermentation is complete, measure priming sugar precisely, and use pressure-rated bottles. <br>
+## Use Case:
 
+External users and developers use this skill as a lightweight beer reference for style lookup, food pairing, homebrew ABV calculation, tasting notes, beginner recipes, and gear recommendations.
 
-## Reference(s): <br>
-- [Beer on ClawHub](https://clawhub.ai/xueyetianya/beer) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text with command examples, reference guidance, and calculated values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with bash 4+; no API keys detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence and skill frontmatter) <br>
+Risk: Homebrewing and alcohol guidance may be unsafe or unlawful if applied without local context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should independently verify local alcohol laws, legal drinking age requirements, sanitation practices, safe fermentation and bottling procedures, and responsible alcohol handling.
+
+Risk: The ABV command may behave unpredictably when given untrusted or non-numeric gravity values.
+
+Mitigation: Use numeric original-gravity and final-gravity inputs only until input validation is added.
+
+## Reference(s):
+
+- [Beer skill page](https://clawhub.ai/xueyetianya/skills/beer)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Terminal stdout text with structured sections and ABV calculation output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash 4+; ABV calculations depend on bc.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

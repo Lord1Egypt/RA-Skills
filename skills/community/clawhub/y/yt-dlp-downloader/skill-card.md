@@ -1,41 +1,54 @@
-## Description: <br>
-Downloads and merges online videos from Bilibili, Douyin, and YouTube when the user provides a video URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads and merges online videos from Bilibili, Douyin, or YouTube when the user provides a complete video URL.
 
-## Publisher: <br>
-[roykingw](https://clawhub.ai/user/roykingw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roykingw](https://clawhub.ai/user/roykingw)
 
-## Use Case: <br>
-External users and developers can use this skill to invoke a local video-downloader script for a supplied video URL and receive the script's status output. The skill may save downloaded MP4 files to the local Downloads folder. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically install or upgrade local software through package managers. <br>
-Mitigation: Review before installing, run in a contained environment where possible, or preinstall yt-dlp and ffmpeg manually. <br>
-Risk: The skill downloads content from a user-provided URL and saves output to the local Downloads folder. <br>
-Mitigation: Use only trusted URLs and confirm that local download storage and content rights are appropriate before execution. <br>
+## Use Case:
 
+External users and developers can use this skill to ask an agent to download a supported online video URL, merge the media to MP4, and report the script result.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/roykingw/yt-dlp-downloader) <br>
-- [Publisher profile](https://clawhub.ai/user/roykingw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [Plain text command output and local MP4 files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script accepts one video URL and may run for up to 10 minutes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: A normal download request can run local commands and automatically install unpinned software on the host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install yt-dlp and ffmpeg ahead of time from trusted sources, pin dependency versions where possible, and require approval before any host package or Python environment changes.
+
+Risk: The skill downloads media into the user's Downloads folder.
+
+Mitigation: Run it only with trusted URLs, validate that the URL is intended for download, and execute in a constrained environment when handling unfamiliar links.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/roykingw/skills/yt-dlp-downloader)
+- [ClawHub publisher profile](https://clawhub.ai/user/roykingw)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files]
+
+**Output Format:** [Plain text script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads are saved as MP4 files in the user's Downloads folder when execution succeeds.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

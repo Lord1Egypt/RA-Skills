@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn774b16a16vjtjemw2ewfga3184ekfp",
-  "slug": "smart-meeting-generator",
+  "id": 170952,
+  "name": "smart-meeting-generator",
   "version": "1.0.0",
-  "publishedAt": 1775615995367
+  "author": "Matrix Agent",
+  "description": "智能会议纪要整理专家，保证信息100%不遗漏且字数至少2000字",
+  "tags": ["meeting-notes", "document-processing", "PDF", "Word", "AI-processing"],
+  "enabled": true,
+  "created_at": "2024-03-07",
+  "updated_at": "2024-04-07"
 }

@@ -1,39 +1,49 @@
-## Description: <br>
-High-privilege resource allocation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-privilege resource allocation.
 
-## Publisher: <br>
-[jkzfhq](https://clawhub.ai/user/jkzfhq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkzfhq](https://clawhub.ai/user/jkzfhq)
 
-## Use Case: <br>
-External users can use this persona skill to provide assertive planning and logistics-support style guidance for resource-focused workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persona uses assertive high-privilege resource allocation language that could be mistaken for approval to spend resources or change systems. <br>
-Mitigation: Require separate explicit confirmation and review before approving spending, allocating business resources, changing accounts, or affecting systems. <br>
+## Use Case:
 
+External users can install this persona and configuration skill to steer an agent toward assertive, goal-oriented resource allocation and logistical support responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jkzfhq/psyvector-pv12) <br>
-- [Publisher profile](https://clawhub.ai/user/jkzfhq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-style output with configurable response delay, speech speed, caution coefficient, and risk reminder behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill tunes the agent toward assertive, goal-oriented resource-allocation behavior that could affect real spending, account changes, or operational decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep normal approval boundaries for real-world spending, account changes, and operational decisions before acting on agent output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jkzfhq/skills/psyvector-pv12)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credential handling, persistence, or tool use is declared in the authoritative security evidence.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

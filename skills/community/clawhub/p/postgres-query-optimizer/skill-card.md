@@ -1,39 +1,52 @@
-## Description: <br>
-Analyzes slow PostgreSQL queries and EXPLAIN ANALYZE output to identify bottlenecks and recommend indexes, query rewrites, and configuration tuning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze slow PostgreSQL queries, interpret EXPLAIN ANALYZE output, identify performance bottlenecks, and recommend indexes, query rewrites, and configuration tuning.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, database engineers, and DBAs use this skill to analyze slow PostgreSQL queries and execution plans, identify likely bottlenecks, and generate practical tuning recommendations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Recommendations may ask users to run SQL analysis or tuning statements against a live PostgreSQL database.
+
+Mitigation: Review SQL before execution, prefer plain EXPLAIN for untrusted or state-changing statements, and run runtime analysis on staging data when possible.
+
+Risk: Query plans, schemas, pg_stat_statements output, and connection details can expose sensitive operational or tenant data.
+
+Mitigation: Use sanitized SQL and telemetry, and avoid sharing credentials, connection strings, personal data, tenant identifiers, or unrestricted pg_stat_statements exports.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, database administrators, and backend engineers use this skill to diagnose slow PostgreSQL queries, interpret query plans, and plan performance improvements before applying database changes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SQL indexes, query rewrites, or configuration advice can change database behavior, add write overhead, or cause plan regressions if applied directly in production. <br>
-Mitigation: Treat outputs as recommendations, have a DBA review them, test on staging or during a maintenance window, benchmark before and after, and keep a rollback path. <br>
-Risk: EXPLAIN ANALYZE executes the query, which can be costly and may modify data for write queries. <br>
-Mitigation: Use care with write queries, prefer non-production data for analysis, or use safer EXPLAIN-only and transaction rollback patterns when appropriate. <br>
+**Output Format:** [Markdown with SQL and shell command code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include EXPLAIN plan interpretation, bottleneck rankings, CREATE INDEX statements, query rewrites, configuration suggestions, expected improvement estimates, and warnings.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with SQL code blocks and plain-language analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include query analysis, EXPLAIN commands, index recommendations, query rewrites, configuration suggestions, estimated impact, and warnings.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

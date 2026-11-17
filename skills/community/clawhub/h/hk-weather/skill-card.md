@@ -1,41 +1,55 @@
-## Description: <br>
-Fetches current Hong Kong weather, warnings, rainfall, UV index, and forecasts from the Hong Kong Observatory official open data API with Traditional Chinese and English output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time Hong Kong weather, warnings, and 9-day forecasts from the Hong Kong Observatory official open data API in Traditional Chinese or English, with no API key required.
 
-## Publisher: <br>
-[mic007p](https://clawhub.ai/user/mic007p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mic007p](https://clawhub.ai/user/mic007p)
 
-## Use Case: <br>
-External users and agents use this skill to answer Hong Kong-specific weather questions with current conditions, warnings, rainfall, UV index, and forecasts from HKO open data in Traditional Chinese or English. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent runs python3 locally and makes outbound HTTPS requests for public weather data. <br>
-Mitigation: Limit execution to the documented hk_weather.py commands and the data.weather.gov.hk open-data endpoint; no credentials are required. <br>
-Risk: Weather responses can be unavailable or incomplete if the HKO API request fails. <br>
-Mitigation: Use the script's returned error as the response basis and avoid fabricating weather data. <br>
+## Use Case:
 
+External users and agents use this skill to answer Hong Kong-specific weather questions, including current conditions, active weather warnings, rainfall, UV index, and 9-day forecasts.
 
-## Reference(s): <br>
-- [ClawHub Hong Kong Weather Skill](https://clawhub.ai/mic007p/hk-weather) <br>
-- [Hong Kong Observatory Open Data API](https://data.weather.gov.hk/weatherAPI/opendata/weather.php) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text weather reports with concise agent-facing guidance and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports current, warning, forecast, and all modes with tc or en language selection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill makes live network requests to data.weather.gov.hk, so answers can fail or be unavailable if the Hong Kong Observatory API or network access is unavailable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict network access to the documented HKO domain and surface the exact API error instead of fabricating weather data.
+
+Risk: The skill may answer in Traditional Chinese when the user's language preference is unclear.
+
+Mitigation: Use the user's query language when clear, or ask for the preferred language before returning weather details.
+
+## Reference(s):
+
+- [Hong Kong Weather Skill Page](https://clawhub.ai/mic007p/skills/hk-weather)
+- [Hong Kong Observatory Open Data API](https://data.weather.gov.hk/weatherAPI/opendata/weather.php)
+- [Publisher Profile](https://clawhub.ai/user/mic007p)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown response based on live weather data returned by the skill script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports Traditional Chinese and English; typical response time is 2-5 seconds.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

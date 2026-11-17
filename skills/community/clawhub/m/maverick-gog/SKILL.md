@@ -1,9 +1,10 @@
 ---
 name: maverick-gog
-description: "Internal setup hook that provisions gogcli with Google OAuth credentials supplied by an external orchestrator over the OpenClaw `skills.setup` RPC. Not user-facing — for Google Workspace command usage, see the upstream `gog` skill which loads alongside this one."
+description: 'Internal setup hook that provisions gogcli with Google OAuth credentials supplied by an external orchestrator over the OpenClaw `skills.setup` RPC. Not user-facing — for Google Workspace command usage, see the upstream `gog` skill which loads alongside this one.'
+disable-model-invocation: true
 metadata:
   openclaw:
-    emoji: "🔧"
+    emoji: '🔧'
     homepage: https://github.com/openclaw/gogcli
     primaryEnv: MAVERICK_GOG_CLIENT_ID
     requires:

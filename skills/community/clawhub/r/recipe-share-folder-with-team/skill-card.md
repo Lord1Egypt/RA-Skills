@@ -1,42 +1,49 @@
-## Description: <br>
-Share a Google Drive folder and all its contents with a list of collaborators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Share a Google Drive folder and all its contents with a list of collaborators.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Employees and workspace operators use this skill to find a Google Drive folder, grant collaborator access, and verify the resulting permissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sharing the wrong folder can expose unrelated Google Drive contents. <br>
-Mitigation: Verify the active Google account, exact folder ID, and current folder contents before creating permissions. <br>
-Risk: Incorrect recipient addresses or overly broad editor access can grant unintended access. <br>
-Mitigation: Confirm each email address and grant writer access only to collaborators who need to modify files. <br>
-Risk: Folder permissions may remain active after the immediate collaboration need ends. <br>
-Mitigation: Review the permissions list after sharing and remove access when it is no longer required. <br>
+## Use Case:
 
+Employees and teams use this recipe to locate a Google Drive folder, add collaborators with reader or writer permissions, and verify the resulting access list.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/recipe-share-folder-with-team) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws command and the gws-drive skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata; skill metadata version 0.22.5) <br>
+Risk: Sharing the wrong folder or granting writer access to unintended collaborators can expose or modify all contents in the selected Google Drive folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the folder ID, collaborator email addresses, and intended roles before running permission commands; verify permissions afterward and revoke unintended access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/recipe-share-folder-with-team)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws command-line tool and gws-drive skill context.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,1 @@
-{
-  "ownerId": "kn7c3kgfvnhefjww9yw5h6n7zx83wgtx",
-  "slug": "xiaoming-automation-scripts",
-  "version": "1.1.0",
-  "publishedAt": 1776411084386
-}
+{"name":"automation-scripts","version":"1.0.0","author":"小鸣 🦞","tags":["automation","scripts","batch","schedule"],"requires":{"bins":["curl"]}}

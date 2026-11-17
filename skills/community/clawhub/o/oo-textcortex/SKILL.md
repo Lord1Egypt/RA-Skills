@@ -1,11 +1,11 @@
 ---
 name: oo-textcortex
-description: "TextCortex (textcortex.com). Use this skill for ANY TextCortex request — reading, creating, and updating data. Whenever a task involves TextCortex, use this skill instead of calling the API directly."
+description: "TextCortex (textcortex.com). Use this skill for ANY TextCortex request — searching and reading data. Whenever a task involves TextCortex, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "TextCortex"
   author: "OOMOL"
-  version: "1.0.2"
+  version: "1.0.7"
   services: ["textcortex"]
   icon: "https://static.oomol.com/logo/third-party/textcortex.svg"
 ---
@@ -37,7 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `create_chat_completion` — Create a non-streaming OpenAI-compatible chat completion with TextCortex. [write]
+- `create_chat_completion` — Create a non-streaming OpenAI-compatible chat completion with TextCortex.
 - `list_models` — List TextCortex models available to the API key.
 - `retrieve_model` — Retrieve metadata for one TextCortex model by model id.
 
@@ -70,11 +70,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — TextCortex is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=textcortex
+  https://console.oomol.com/connections/textcortex
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - TextCortex homepage: https://textcortex.com/
+- API documentation: https://docs.textcortex.com/api

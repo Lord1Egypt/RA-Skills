@@ -1,43 +1,62 @@
-## Description: <br>
-Secure credential manager using AES-256 (Fernet) encryption. Stores, retrieves, and rotates secrets using a mandatory Master Key. Use for managing API keys, database credentials, and other sensitive tokens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secure credential manager using AES-256 (Fernet) encryption. Stores, retrieves, and rotates secrets using a mandatory Master Key. Use for managing API keys, database credentials, and other sensitive tokens.
 
-## Publisher: <br>
-[1999AZZAR](https://clawhub.ai/user/1999AZZAR) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1999azzar](https://clawhub.ai/user/1999azzar)
 
-## Use Case: <br>
-Developers and agent operators use this skill to store, retrieve, list, and rotate local credentials such as API keys, database credentials, and sensitive tokens through a command-line vault. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Passwords can be passed as command-line arguments when storing credentials. <br>
-Mitigation: Do not enter high-value passwords through shared shells, CI jobs, or logged terminals; use the vault only in private, controlled sessions. <br>
-Risk: The master key controls all vault read and write operations. <br>
-Mitigation: Protect MEMA_VAULT_MASTER_KEY, avoid storing it in plaintext, and rotate secrets if the environment variable or shell environment may have been exposed. <br>
-Risk: Encrypted credentials and unencrypted metadata are stored in a local workspace database. <br>
-Mitigation: Restrict filesystem access to the skill data directory and assume service names, usernames, and metadata may be visible to anyone who can read the local database. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1999AZZAR/mema-vault) <br>
-- [Publisher profile](https://clawhub.ai/user/1999AZZAR) <br>
-- [Security Policy: Mema Vault](references/security-policy.md) <br>
+## Use Case:
 
+Developers and operators use this skill to store, retrieve, and list local credentials through a command-line vault protected by a required master key.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Command-line text output with masked secrets by default] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MEMA_VAULT_MASTER_KEY and the Python cryptography package; --show can print raw secrets when explicitly requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.9 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The scanner characterizes the package as a prototype-style local vault with under-scoped secret handling.
+
+Mitigation: Use it only in private workspaces, avoid high-value credentials until the package is fixed, and review the implementation before deployment.
+
+Risk: Passwords passed as command-line arguments may be exposed through shell history or process listings.
+
+Mitigation: Avoid entering real passwords directly on the command line; prefer a safer secret input path before production use.
+
+Risk: Service names, usernames, and metadata are treated as non-encrypted local data.
+
+Mitigation: Do not store sensitive context in service names, usernames, or metadata, and keep the workspace private.
+
+Risk: Vault access depends on the strength and handling of MEMA_VAULT_MASTER_KEY.
+
+Mitigation: Use a strong master key, inject it through a secure environment mechanism, and never store it in plaintext on disk.
+
+## Reference(s):
+
+- [Mema Vault security policy](references/security-policy.md)
+- [Mema Vault ClawHub release page](https://clawhub.ai/1999azzar/skills/mema-vault)
+- [Publisher profile](https://clawhub.ai/user/1999azzar)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include masked credential values by default; raw secrets can be displayed only when the --show flag is used.]
+
+## Skill Version(s):
+
+1.1.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

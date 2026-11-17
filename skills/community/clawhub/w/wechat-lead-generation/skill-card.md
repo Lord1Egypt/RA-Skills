@@ -1,45 +1,59 @@
-## Description: <br>
-微信潜在客户抓取、分析与自动回复营销自动化技能 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates WeChat lead capture, intent analysis, scoring, and optional personalized reply draft generation.
 
-## Publisher: <br>
-[ling-qian](https://clawhub.ai/user/ling-qian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ling-qian](https://clawhub.ai/user/ling-qian)
 
-## Use Case: <br>
-Sales, marketing, and community operations users can use this skill to identify WeChat contacts or conversations that may represent leads, score them, and draft follow-up messages for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process identifiable WeChat conversation data without adequate consent or user-control safeguards. <br>
-Mitigation: Complete a privacy and compliance review before installation, and only process conversations when authorization is documented. <br>
-Risk: Real WeChat cookies and scheduled scans could broaden collection beyond intended contacts or conversations. <br>
-Mitigation: Do not connect a real WeChat cookie or enable scheduled scanning until the approved scope, access controls, and deletion process are in place. <br>
-Risk: Raw messages, names, and lead profiles can be retained in output files or agentmemory. <br>
-Mitigation: Avoid storing raw messages or names where possible, restrict output access, and define how to delete generated files and clear agentmemory entries. <br>
-Risk: Auto-reply behavior can send marketing follow-ups before human review. <br>
-Mitigation: Keep auto-reply disabled by default and review generated reply drafts before any message is sent. <br>
+## Use Case:
 
+Sales, community operations, and marketing users use this skill to identify potential leads from WeChat conversations, score intent signals, and prepare follow-up reports or reply drafts for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ling-qian/wechat-lead-generation) <br>
-- [ClawDIS homepage](https://github.com/ling-qian/openclaw-skills/tree/main/wechat-lead-generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON profile artifacts, Markdown reply drafts, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May store lead profiles and chat-derived details in local output files and agentmemory when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill profiles WeChat contacts and can persist private message data, contact names, inferred interests, scores, and message excerpts in local reports and long-term memory records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when authorized to process the relevant conversations; protect generated reports and memory records; avoid enabling memory or broad collection permissions until consent, redaction, retention, and deletion controls are clear.
+
+Risk: Automatically generated replies could be sent based on incomplete or incorrect lead inferences.
+
+Mitigation: Keep auto-reply disabled by default and use the generated replies as drafts for human review before sending.
+
+Risk: A WeChat cookie or login state used for real collection is a session secret.
+
+Mitigation: Store WeChat credentials securely, limit access to the runtime environment, and avoid sharing or committing session material.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ling-qian/skills/wechat-lead-generation)
+- [Publisher Profile](https://clawhub.ai/user/ling-qian)
+- [Project Homepage](https://github.com/ling-qian/openclaw-skills/tree/main/wechat-lead-generation)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, json, text, guidance, configuration]
+
+**Output Format:** [Markdown reports, JSON profile artifacts, reply draft text, and optional memory records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include contact names, message excerpts, inferred interests, lead scores, and suggested replies.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, changelog, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

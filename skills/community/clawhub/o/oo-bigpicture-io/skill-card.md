@@ -1,44 +1,51 @@
-## Description: <br>
-BigPicture.io (bigpicture.io). Use this skill for ANY BigPicture.io request - searching and reading data. Whenever a task involves BigPicture.io, use this skill instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search BigPicture.io for company profiles by domain name or IP address.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to query BigPicture.io company intelligence from an OOMOL-connected account, including company lookup by domain and company identification from IPv4 or IPv6 addresses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on OOMOL-connected BigPicture.io credentials handled server-side. <br>
-Mitigation: Confirm trust in OOMOL and BigPicture.io before installation and use only the intended connected account. <br>
-Risk: First-time setup includes optional pipe-to-shell installer commands for the oo CLI. <br>
-Mitigation: Review OOMOL's install guide or installer script before running the installer, especially in managed environments. <br>
-Risk: Connector payloads can drift if the live BigPicture.io action schema changes. <br>
-Mitigation: Fetch the live connector schema before each action and build payloads to match the current contract. <br>
+## Use Case:
 
+External users and developers use this skill to look up company profiles associated with a domain name or IP address in BigPicture.io.
 
-## Reference(s): <br>
-- [BigPicture.io homepage](https://bigpicture.io) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before execution and returns BigPicture.io results through the oo CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Setup executes downloaded code that has not been verified, and the reviewed artifact does not disclose all broader agent changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and explicitly approve CLI installation, and prefer a verified, pinned release. Set OO_SKILLS_SYNC_DISABLED=1 if you do not want other agent skills installed or synchronized.
+
+## Reference(s):
+
+- [BigPicture.io API documentation](https://docs.bigpicture.io/api/)
+- [BigPicture.io](https://bigpicture.io)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Structured data, Text]
+
+**Output Format:** [Company profile results with concise text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only lookups by domain name or IP address.]
+
+## Skill Version(s):
+
+1.0.5 (source: evidence.json release.version and metadata.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

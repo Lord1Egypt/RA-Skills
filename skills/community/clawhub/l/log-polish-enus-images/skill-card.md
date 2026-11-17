@@ -1,39 +1,54 @@
-## Description: <br>
-Polish a technical blog draft into an 1000-1200 word, 4-5 section en-US article, preserve technical terms/code, and generate consistent hero + per-section image prompts when the user asks to polish and translate a blog with images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polish a technical blog draft into an 1000-1200 word, 4-5 section en-US article, preserve technical terms/code, and generate consistent hero + per-section image prompts when the user asks to polish and translate a blog with images.
 
-## Publisher: <br>
-[j3ffyang](https://clawhub.ai/user/j3ffyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[j3ffyang](https://clawhub.ai/user/j3ffyang)
 
-## Use Case: <br>
-Developers, technical writers, and external users can use this skill to polish a local technical blog draft into an en-US article package and prepare coordinated hero and section image prompts. Review is needed before publishing because the security evidence reports that the workflow may produce placeholder or incomplete blog content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence reports that the workflow may write canned placeholder content instead of reliably polishing the supplied draft. <br>
-Mitigation: Review generated Markdown against the original draft before publishing, and treat the output as a draft until a human confirms accuracy and completeness. <br>
-Risk: The skill reads from a local draft path and writes generated files to a local output directory. <br>
-Mitigation: Keep draftPath and outputDir pointed at non-sensitive locations and inspect outputs before sharing them. <br>
+## Use Case:
 
+Developers, technical writers, and content teams use this skill to turn a draft technical blog into a polished en-US Markdown article with coordinated hero and per-section image prompts.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, structured JSON fields, image prompt text, and shell workflow output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes polished markdown and intended image filenames to a local output directory; image files are only produced when an image-generation tool is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The security scan describes the implementation as a rough template generator rather than a trustworthy publish-ready editor or actual image generator.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the polished article and image prompts before publication, and treat returned image paths as intended filenames unless an image-generation tool actually creates the files.
+
+Risk: The skill reads a configured draft file and writes timestamped Markdown output to the configured output directory.
+
+Mitigation: Install and run it only when those local file reads and writes are acceptable for the selected draft and output directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/j3ffyang/skills/log-polish-enus-images)
+- [Publisher profile](https://clawhub.ai/user/j3ffyang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration]
+
+**Output Format:** [JSON object with a polished Markdown path, intended image paths, and single-line image prompt strings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes timestamped output under the configured contentPolished directory and may return intended image filenames when images are not generated.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

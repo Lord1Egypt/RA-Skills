@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn75bttgps7n2rt3h0nwjbbrjd8193x4",
+  "name": "stock_data",
+  "version": "1.3.0",
+  "description": "Fetch comprehensive stock data from Simplywall.st",
+  "author": "OpenClaw Community",
+  "installedAt": 1771750000000,
+  "registry": "https://clawhub.ai",
   "slug": "stock-data-skill",
-  "version": "2.0.0",
-  "publishedAt": 1773964540438
+  "changelog": "v1.3.0 - Switch to direct HTTP fetch (no API key required), reliable data extraction from SimplyWall.st"
 }

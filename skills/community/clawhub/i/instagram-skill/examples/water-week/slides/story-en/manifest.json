@@ -1,0 +1,17 @@
+{
+  "slides": 1,
+  "size": "1080x1920",
+  "ratio": "9:16",
+  "files": [
+    {
+      "path": "slide-01.jpg",
+      "bytes": 116266,
+      "type": "text",
+      "alt": "Story: how much of Earth's water is river? Picture all of it in a 1-liter bottle. Answer on our feed in an hour.",
+      "text": "How much of Earth's water is river? Picture all of it in a 1-liter bottle. Guess, then see the answer on our feed in an hour."
+    }
+  ],
+  "contactSheet": "contact-sheet.png",
+  "coverGrid": "cover-grid.png",
+  "warnings": []
+}

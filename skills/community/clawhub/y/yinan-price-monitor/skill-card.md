@@ -1,41 +1,57 @@
-## Description: <br>
-Monitor website prices, inventory, and content changes using browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor website prices, inventory, and content changes using browser automation.
 
-## Publisher: <br>
-[yinanping-CPU](https://clawhub.ai/user/yinanping-CPU) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yinanping-cpu](https://clawhub.ai/user/yinanping-cpu)
 
-## Use Case: <br>
-Developers, operators, and commerce teams use this skill to check product pages, monitor competitor or inventory changes, and keep local price history for alerts or review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill opens user-listed webpages and may be scheduled to revisit them. <br>
-Mitigation: Review the product CSV before running, use only sites you are authorized to access, and configure schedules and request pacing deliberately. <br>
-Risk: Price-history files can retain product URLs, prices, timestamps, and inventory observations. <br>
-Mitigation: Store generated history logs in an appropriate location and protect or delete retained files according to the user's data handling needs. <br>
-Risk: Future email, Discord, or webhook alert configuration could send monitored data outside local files. <br>
-Mitigation: Manually review alert destinations, credentials, and payload contents before enabling any external notification channel. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yinanping-CPU/yinan-price-monitor) <br>
+## Use Case:
 
+Developers, operators, and commerce teams use this skill to check product prices, stock status, and web content changes across monitored sites. It supports single-product checks, CSV-based multi-product monitoring, price history logging, and alert review.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and CSV file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included script writes local price-history CSV files when run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: CSV-supplied URLs can cause browser automation to open arbitrary destinations, including local or private resources.
+
+Mitigation: Use only product lists you control, review URLs before execution, and restrict monitoring to trusted public retailer domains.
+
+Risk: Generated CSV history can be unsafe to open in spreadsheet software if formula evaluation is enabled.
+
+Mitigation: Inspect or sanitize CSV output before spreadsheet use, and avoid enabling formula evaluation for generated files.
+
+Risk: External alert channels can disclose monitored URLs and price data to third-party services.
+
+Mitigation: Configure email or webhook alerts only when sharing the monitored data with that service is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yinanping-cpu/skills/yinan-price-monitor)
+- [Publisher profile](https://clawhub.ai/user/yinanping-cpu)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with bash examples; CSV history files and console text from the monitoring script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce price-history.csv entries with timestamp, product name, URL, price, and status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

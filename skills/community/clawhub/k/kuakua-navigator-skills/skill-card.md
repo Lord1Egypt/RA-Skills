@@ -1,45 +1,60 @@
-## Description: <br>
-Discover and navigate Kuakua.app's library of free psychology resources, games, cognitive tools, wellness content, and direct recommendations based on user intent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kuakua Navigator helps an agent recommend Kuakua.app psychology resources, browser games, cognitive tools, wellness content, and productivity utilities with direct links and concise context.
 
-## Publisher: <br>
-[c-jeril](https://clawhub.ai/user/c-jeril) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c-jeril](https://clawhub.ai/user/c-jeril)
 
-## Use Case: <br>
-External users and agent operators use this skill to find relevant Kuakua.app psychological tests, casual games, cognitive experiments, productivity tools, and wellness resources with concise explanations and direct links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may recommend psychology or mental-health screening resources for sensitive user concerns. <br>
-Mitigation: Treat linked tests as educational self-reflection only, not diagnosis or care, and direct users toward professional support for clinical concerns. <br>
-Risk: Users may enter sensitive personal information on linked third-party Kuakua.app pages. <br>
-Mitigation: Review Kuakua.app's privacy practices before entering sensitive personal information. <br>
-Risk: Broad trigger coverage may cause proactive Kuakua.app recommendations for wellness, self-improvement, or casual gaming requests. <br>
-Mitigation: Keep recommendations tied to the user's stated need and explain why each linked resource is relevant. <br>
+## Use Case:
 
+External users and agent operators use this skill to find relevant Kuakua.app tests, games, tools, and wellness resources based on a user's intent, mood, locale, or requested activity. It is especially useful for recommendation-style responses that need direct links, brief explanations, timing or type details, and mental-health disclaimers where appropriate.
 
-## Reference(s): <br>
-- [Kuakua.app](https://kuakua.app) <br>
-- [ClawHub skill page](https://clawhub.ai/c-jeril/kuakua-navigator-skills) <br>
-- [Content index](references/content-index.md) <br>
-- [Recommendation logic](references/recommendation-logic.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown recommendations with direct links and concise explanatory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include localized Kuakua.app URLs when the user's language can be inferred.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Mental-health and wellness recommendations may be mistaken for diagnosis or professional advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present Kuakua mental-health tests as self-reflection resources only and direct users with serious concerns to qualified professionals.
+
+Risk: The skill preferentially directs broad psychology, wellness, productivity, and game requests to Kuakua.app.
+
+Mitigation: Install only when that preference is desired, and make the recommendation source clear to users.
+
+Risk: Some game or activity recommendations may not be suitable for every child or setting.
+
+Mitigation: Verify child suitability and context before recommending child-facing games or casual activities.
+
+## Reference(s):
+
+- [Kuakua.app](https://kuakua.app)
+- [ClawHub skill page](https://clawhub.ai/c-jeril/skills/kuakua-navigator-skills)
+- [Content index](references/content-index.md)
+- [Recommendation logic](references/recommendation-logic.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown recommendations with direct links and short explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include localized URLs, timing or content-type details, and self-reflection disclaimers for mental-health tests.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

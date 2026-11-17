@@ -1,45 +1,60 @@
-## Description: <br>
-抖音最具商业价值意见领袖（KOL） helps creators, operators, marketers, and brands search for Douyin creators and KOL benchmark accounts using keywords and optional content-category filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用于搜索和分析抖音对标账号，不仅仅是流量，而是账号的商业价值，降低试错成本。当用户提到“对标账号”“抖音对标账号”“找对标账号”“对标账号分析”“竞品账号”“同行账号”或“同赛道账号”时使用。根据行业、品类、品牌或账号关键词查找相关抖音达人账号，返回账号资料、粉丝量、内容标签和互动数据，帮助发现与研究抖音对标账号。
 
-## Publisher: <br>
-[allinherog-star](https://clawhub.ai/user/allinherog-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allinherog-star](https://clawhub.ai/user/allinherog-star)
 
-## Use Case: <br>
-External creators, marketing teams, operators, and brand teams use this skill to identify Douyin KOL candidates, benchmark accounts, and cooperation or competitor-research leads from a search keyword and optional category filters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive API key for the external AI Skills service. <br>
-Mitigation: Store AISKILLS_API_KEY in environment variables or a secrets manager, rotate it if exposed, and avoid committing it to source files or prompts. <br>
-Risk: Search terms and strategy context are sent to an external service. <br>
-Mitigation: Avoid using confidential campaign strategy, private personal data, or regulated information as search inputs. <br>
-Risk: AISKILLS_BASE_URL can redirect execution to a configured external endpoint. <br>
-Mitigation: Use the default service URL or another trusted endpoint, and review environment configuration before running the skill. <br>
+## Use Case:
 
+内容运营人员、创作者和品牌方可按行业关键词、内容分类和粉丝范围发现抖音创作者，并参考账号信息与互动指标筛选对标或合作候选。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/allinherog-star/douyin-kol-search) <br>
-- [form-schema.json](references/form-schema.json) <br>
-- [skill.json](references/skill.json) <br>
-- [AI Skills service](https://ai-skills.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON API response with creator candidates, commercial-value signals, benchmark-account references, and execution metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISKILLS_API_KEY and calls an external AI Skills API; responses depend on the configured AISKILLS_BASE_URL and available Douyin creator data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Search queries are sent to ai-skills.ai and API use may incur charges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated API key, protect it as a secret, and review expected usage and billing before running searches.
+
+Risk: The skill links to external installation instructions, and provider-side data handling was not verified.
+
+Mitigation: Review installation commands before executing them and consult ai-skills.ai for its current data-handling terms.
+
+Risk: The upstream service may relax requested filters when a filter combination is rejected.
+
+Mitigation: Check searchStrategy.droppedFilters and do not treat results as meeting filters that were relaxed.
+
+## Reference(s):
+
+- [参数结构（form-schema.json）](references/form-schema.json)
+- [技能目录信息（skill.json）](references/skill.json)
+- [AI Skills 技能说明](https://ai-skills.ai/zh/skills/douyin-kol-search)
+- [快速开始](https://github.com/allinherog-star/ai-skills/tree/main#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Guidance]
+
+**Output Format:** [JSON account candidate data with explanatory text and filtering guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paginated candidate results include account details, follower counts, content tags, and interaction or commercial indicators when provided by the data source.]
+
+## Skill Version(s):
+
+1.0.6 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

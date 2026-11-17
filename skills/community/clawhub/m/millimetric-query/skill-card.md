@@ -1,41 +1,54 @@
-## Description: <br>
-Query Millimetric analytics for top sources, aggregate stats, raw events, and Facebook social-vs-paid splits from the command line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Millimetric analytics - top sources, aggregate stats, raw events, and the Facebook social-vs-paid split.
 
-## Publisher: <br>
-[soybelli](https://clawhub.ai/user/soybelli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soybelli](https://clawhub.ai/user/soybelli)
 
-## Use Case: <br>
-Developers, operators, and analytics users use this skill to assemble read-only Millimetric API queries for traffic sources, aggregate metrics, raw event debugging, and paid-versus-organic attribution checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Millimetric read key, and exposing that key in shared prompts, shell history, or logs could grant access to analytics data. <br>
-Mitigation: Use a least-privilege read-only rk_live key, avoid echoing it in shared logs, and rotate the key if it is exposed. <br>
-Risk: Raw event queries can expose privacy-sensitive user or anonymous activity. <br>
-Mitigation: Prefer aggregate queries when possible and query raw user or anonymous IDs only for authorized debugging or support work. <br>
+## Use Case:
 
+Developers, operators, and analytics users use this skill to generate read-only curl and jq workflows for querying Millimetric traffic sources, aggregate metrics, and raw event data from the command line.
 
-## Reference(s): <br>
-- [Millimetric API homepage](https://api.millimetric.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/soybelli/millimetric-query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MILLIMETRIC_RK plus curl and jq; Millimetric API responses are JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Raw event and per-user analytics queries can expose sensitive behavioral data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with authorization for the Millimetric workspace, prefer aggregate reports when possible, and avoid sharing outputs that include user identifiers or activity timelines.
+
+Risk: A read key grants access to Millimetric analytics data for the associated workspace.
+
+Mitigation: Keep MILLIMETRIC_RK in the local environment, do not paste it into shared outputs, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [Millimetric API](https://api.millimetric.ai)
+- [ClawHub Skill Page](https://clawhub.ai/soybelli/skills/millimetric-query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces read-only analytics query recipes that require MILLIMETRIC_RK, curl, and jq.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

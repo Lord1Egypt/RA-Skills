@@ -1,41 +1,58 @@
-## Description: <br>
-Use OpenSearch vector search edition via the Python SDK (ha3engine) to push documents and run HA/SQL searches for RAG and vector retrieval pipelines in Claude Code/Codex. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use OpenSearch vector search edition via the Python SDK (ha3engine) to push documents and run HA/SQL searches for RAG and vector retrieval pipelines.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure Alibaba Cloud OpenSearch vector search workflows, push documents, and run HA/SQL searches for RAG or vector retrieval pipelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses cloud credentials and the quickstart configures the OpenSearch SDK with HTTP. <br>
-Mitigation: Use least-privilege credentials and require HTTPS/TLS before running examples. <br>
-Risk: The quickstart pushes sample documents to the configured remote OpenSearch index. <br>
-Mitigation: Run first against a non-production datasource with explicit parameters and confirm the mutation scope before using production data. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure Alibaba Cloud OpenSearch vector search workflows, push documents, and run HA or SQL-style searches. It is suited to RAG and vector retrieval pipelines that need SDK-oriented guidance and quickstart commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cinience/alicloud-ai-search-opensearch) <br>
-- [Artifact source list](artifact/references/sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API response summaries and saved evidence under output/alicloud-ai-search-opensearch/ when run by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The quickstart configures the OpenSearch SDK with plaintext HTTP while using username and password credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Change the SDK configuration to HTTPS before use and avoid sending credentials over plaintext connections.
+
+Risk: The quickstart performs mutating document push operations.
+
+Mitigation: Run a minimal read-only query first, use least-privilege credentials, and avoid production data until writes are explicitly approved.
+
+Risk: The SDK dependency is installed directly in setup examples without a reviewed pinned requirements file.
+
+Mitigation: Pin the SDK dependency in a reviewed requirements file before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/alicloud-ai-search-opensearch)
+- [Artifact source list](artifact/references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and bash code blocks, configuration notes, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to produce command outputs and API response summaries under output/alicloud-ai-search-opensearch/.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

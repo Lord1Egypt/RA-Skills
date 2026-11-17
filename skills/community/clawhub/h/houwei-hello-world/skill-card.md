@@ -1,40 +1,50 @@
-## Description: <br>
-Houwei Hello World replies to configured trigger phrases with a sync-success message, current device placeholder, and version for testing ClawHub cross-device synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Houwei Hello World is a personal ClawHub sync-test skill that confirms cross-device synchronization and serves as a simple custom skill template.
 
-## Publisher: <br>
-[houwei302-code](https://clawhub.ai/user/houwei302-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[houwei302-code](https://clawhub.ai/user/houwei302-code)
 
-## Use Case: <br>
-Developers and individual ClawHub users use this skill to verify that skill synchronization works across devices and as a starter template for simple trigger-response skill development. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic trigger phrases may activate the skill unintentionally. <br>
-Mitigation: Narrow or customize the trigger phrases when accidental activation would be disruptive. <br>
-Risk: The response may reveal the current device name through the host-name placeholder. <br>
-Mitigation: Remove the device-name placeholder before use in contexts where device names should stay private. <br>
+## Use Case:
 
+External users and developers use this skill to verify that ClawHub skill synchronization works across devices and to study a minimal custom skill structure. When triggered, it returns a confirmation message with the current device name and skill version.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/houwei302-code/houwei-hello-world) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Triggered by configured phrases; includes a host-name placeholder and version string.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact version section) <br>
+Risk: A trigger phrase may disclose the current device name in the skill's reply.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where sharing the current device name with the active user or session is acceptable, and review trigger phrases before broad deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/houwei302-code/skills/houwei-hello-world)
+- [Publisher Profile](https://clawhub.ai/user/houwei302-code)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text confirmation message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes the current device name and skill version when a trigger phrase is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

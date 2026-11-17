@@ -1,43 +1,58 @@
-## Description: <br>
-Aky Public Opinion helps agents draft Chinese public opinion and sentiment analysis reports with structured risk assessment, communication data analysis, and actionable recommendations for government and enterprise contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional-grade Chinese social media sentiment analysis report writer for government and enterprise use.
 
-## Publisher: <br>
-[wangfromchu-ai](https://clawhub.ai/user/wangfromchu-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangfromchu-ai](https://clawhub.ai/user/wangfromchu-ai)
 
-## Use Case: <br>
-Analysts, communications staff, and institutional users can use this skill to prepare formal Chinese reports on social media and news events, including rapid assessments, special reports, research reports, retrospectives, monthly summaries, and sensitive event analyses. The skill is intended to organize supplied event details, gather current context when URLs or background are needed, and produce evidence-based Markdown reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an agent to gather current web context and produce formal public opinion risk analysis, so weak or incomplete source data may lead to misleading conclusions. <br>
-Mitigation: Require users to provide event basics, timelines, actors, and communication data, and review all cited facts and recommendations before use. <br>
-Risk: Generated reports may influence institutional communication or response decisions. <br>
-Mitigation: Have qualified reviewers check tone, factual grounding, legal citations, and operational recommendations before distribution. <br>
-Risk: Use in an environment with active account credentials could affect the wrong project or account if external helper commands are run nearby. <br>
-Mitigation: Follow the scanner guidance: install only in a trusted development environment and review commands and active GitHub, ClawHub, or Convex credentials before use. <br>
+## Use Case:
 
+Government, enterprise, and institutional users use this skill to draft Chinese-language public opinion and sentiment analysis reports for social media or news events, including risk assessments, communication-data analysis, and actionable countermeasures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangfromchu-ai/aky-public-opinion) <br>
-- [Report type templates and formatting standards](artifact/references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown reports in Chinese with structured sections, citations, risk assessments, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report length and section structure vary by selected report type.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill strongly defaults to Chinese formal institutional report conventions, which may be unsuitable for English, bilingual, or informal analysis requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended language, audience, and tone before using the generated report when the user needs a style outside the documented default.
+
+Risk: Public-opinion reports can be misleading if incident facts, communication metrics, or source timestamps are incomplete or stale.
+
+Mitigation: Require source attribution and dated communication data, separate confirmed facts from assumptions, and review conclusions before operational use.
+
+Risk: The skill is intended for sensitive public-opinion and risk-assessment contexts where overly specific locations or actors may increase privacy or escalation risk.
+
+Mitigation: Follow the artifact guidance to anonymize location references where appropriate and have sensitive reports reviewed by a responsible human decision-maker.
+
+## Reference(s):
+
+- [Report Type Templates & Formatting Standards](references/templates.md)
+- [Aky Public Opinion on ClawHub](https://clawhub.ai/wangfromchu-ai/skills/aky-public-opinion)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown Chinese-language public opinion analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Formal Chinese official-document style; report length and structure vary by selected report type.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

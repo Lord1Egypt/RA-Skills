@@ -1,6 +1,6 @@
 # Technical SEO — Pre-Migration Playbook
 
-Referenced from [SKILL.md](https://github.com/aaron-he-zhu/seo-geo-claude-skills/blob/main/optimize/technical-seo-checker/SKILL.md). Use when the user is planning a migration (platform, domain, URL structure, or framework change) and needs an audit + risk assessment before the change ships.
+Referenced from [SKILL.md](../SKILL.md). Use when the user is planning a migration (platform, domain, URL structure, or framework change) and needs an audit + risk assessment before the change ships.
 
 ---
 
@@ -18,7 +18,7 @@ Referenced from [SKILL.md](https://github.com/aaron-he-zhu/seo-geo-claude-skills
 
 ### Stage 1 — Freeze current state (baseline snapshot)
 
-Capture in `memory/audits/pre-migration-YYYY-MM-DD.md`:
+Capture in `memory/seo-geo/tune/technical-seo-checker/pre-migration-YYYY-MM-DD.md`:
 
 1. **URL inventory**
    - Full crawl via `~~web crawler` MCP or Screaming Frog / Sitebulb export
@@ -73,7 +73,7 @@ Rules:
 - No loops (never `A → B → A`)
 - HIGH-VALUE URLs (Stage 1 flagged) verified manually
 
-Save to `memory/audits/redirect-map-YYYY-MM-DD.csv`.
+Save to `memory/seo-geo/tune/technical-seo-checker/redirect-map-YYYY-MM-DD.csv`.
 
 ### Stage 4 — Staging QA
 
@@ -101,9 +101,9 @@ Save to `memory/audits/redirect-map-YYYY-MM-DD.csv`.
 
 Deliverables:
 
-- `memory/audits/post-migration-T+1-YYYY-MM-DD.md`
-- `memory/audits/post-migration-T+7-YYYY-MM-DD.md`
-- `memory/audits/post-migration-T+30-YYYY-MM-DD.md`
+- `memory/seo-geo/tune/technical-seo-checker/post-migration-T+1-YYYY-MM-DD.md`
+- `memory/seo-geo/tune/technical-seo-checker/post-migration-T+7-YYYY-MM-DD.md`
+- `memory/seo-geo/tune/technical-seo-checker/post-migration-T+30-YYYY-MM-DD.md`
 
 ## Handoff
 
@@ -112,7 +112,7 @@ Deliverables:
 - **Key Findings / Output**: baseline snapshot refs + risk map + redirect map + QA checklist
 - **Evidence**: crawl counts, ranking CSV path, redirect CSV path, Core Web Vitals before/after (if staging ready)
 - **Open Loops**: HIGH-VALUE URLs pending redirect confirmation, schema not validated for templates X/Y, rollback trigger thresholds not yet agreed with engineering
-- **Recommended Next Skill**: `content-refresher` if template rewrite surfaced content-quality gaps; `schema-markup-generator` if new templates need schema authored; otherwise `rank-tracker` for post-launch monitoring
+- **Recommended Next Skill**: `content-writer` if template rewrite surfaced content-quality gaps; `serp-markup-builder` if new templates need schema authored; otherwise `rank-tracker` for post-launch monitoring
 
 ## Red-flag patterns (STOP — do not ship until fixed)
 

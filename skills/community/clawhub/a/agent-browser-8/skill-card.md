@@ -1,48 +1,63 @@
-## Description: <br>
-Browser automation CLI for AI agents. Use when the user needs to interact with websites, including navigating pages, filling forms, clicking buttons, taking screenshots, extracting data, testing web apps, or automating any browser task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Browser guides AI agents in using the agent-browser CLI to navigate websites, interact with page elements, capture screenshots or PDFs, extract data, and test web apps.
 
-## Publisher: <br>
-[hayasam](https://clawhub.ai/user/hayasam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hayasam](https://clawhub.ai/user/hayasam)
 
-## Use Case: <br>
-Developers and agents use this skill to automate browser workflows such as navigation, form completion, screenshots, data extraction, authentication flows, web app testing, and capture workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad control over websites, including authenticated sessions. <br>
-Mitigation: Use dedicated browser profiles or test accounts, enable domain allowlists and content boundaries, and require explicit approval for consequential actions. <br>
-Risk: Saved browser state can include session tokens or credentials. <br>
-Mitigation: Avoid importing a main Chrome session; encrypt saved state when used, keep state files out of version control, and delete them when no longer needed. <br>
-Risk: The skill depends on an external browser automation CLI. <br>
-Mitigation: Pin and verify the `agent-browser` CLI before use, and install it only in environments where browser automation is intended. <br>
+## Use Case:
 
+Developers and AI-agent operators use this skill when an agent needs controlled browser automation for web interaction, data capture, authenticated workflows, or web app testing.
 
-## Reference(s): <br>
-- [Authentication Patterns](references/authentication.md) <br>
-- [Command Reference](references/commands.md) <br>
-- [Profiling](references/profiling.md) <br>
-- [Proxy Support](references/proxy-support.md) <br>
-- [Session Management](references/session-management.md) <br>
-- [Snapshot and Refs](references/snapshot-refs.md) <br>
-- [Video Recording](references/video-recording.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and shell-script templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce screenshots, PDFs, text captures, HAR files, browser state files, and other local artifacts when the suggested browser commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill enables strong browser control, including navigation and element interaction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated disposable browser profile and enable domain allowlists, content boundaries, output limits, and a restrictive action policy before use.
+
+Risk: Browser state files and captured artifacts can contain session tokens, credentials, or sensitive page content.
+
+Mitigation: Avoid normal Chrome profiles, treat saved state, screenshots, recordings, HARs, PDFs, and traces as sensitive, and encrypt or delete authentication state promptly.
+
+Risk: Floating npx or latest installs can run an unpinned external CLI version.
+
+Mitigation: Use a pinned, verified agent-browser version for deployments.
+
+## Reference(s):
+
+- [Authentication Patterns](references/authentication.md)
+- [Command Reference](references/commands.md)
+- [Profiling](references/profiling.md)
+- [Proxy Support](references/proxy-support.md)
+- [Session Management](references/session-management.md)
+- [Snapshot and Refs](references/snapshot-refs.md)
+- [Video Recording](references/video-recording.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and reusable shell script templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct an agent to produce browser captures such as screenshots, PDFs, HAR files, traces, recordings, extracted text, and session state files.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

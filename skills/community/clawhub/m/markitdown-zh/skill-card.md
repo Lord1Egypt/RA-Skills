@@ -1,40 +1,58 @@
-## Description: <br>
-使用微软 markitdown 库将多种文档格式（PDF、DOCX、PPTX、XLSX、XLS、CSV、JSON、TXT、EPUB、HTML等）转换为 Markdown，支持批量转换、保留格式和图片提取。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用微软 markitdown 库将多种文档格式（PDF、DOCX、PPTX、XLSX、XLS、CSV、JSON、TXT、EPUB、HTML等）转换为 Markdown，并支持批量转换和图片提取。
 
-## Publisher: <br>
-[mapleshadow](https://clawhub.ai/user/mapleshadow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mapleshadow](https://clawhub.ai/user/mapleshadow)
 
-## Use Case: <br>
-Developers, document-maintenance teams, and agent users use this skill to convert PDFs, Office files, spreadsheets, HTML, text files, and ebooks into Markdown, either one file at a time or in batches. It can also extract document images into a selected local output directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency installation and optional system package commands can modify the runtime environment. <br>
-Mitigation: Install MarkItDown in a virtual environment or with pipx, and run sudo package-install commands only when intentionally modifying the system. <br>
-Risk: Batch conversion and image extraction create Markdown and image files and may overwrite same-named outputs. <br>
-Mitigation: Use a dedicated output folder and review output paths before running conversion or extraction scripts. <br>
+## Use Case:
 
+Developers and document-processing users use this skill to convert individual files or folders of PDFs, Office documents, spreadsheets, text files, ebooks, and HTML into Markdown. It can also help extract document images when the underlying MarkItDown conversion result exposes them.
 
-## Reference(s): <br>
-- [Microsoft MarkItDown](https://github.com/microsoft/markitdown) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; scripts produce Markdown files and extracted image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local file outputs may be created or overwritten at the selected output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Installing MarkItDown with optional dependencies or system packages may add software the user has not reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment or pipx under the user account, pin dependency versions where possible, and review package installation commands before running them.
+
+Risk: Batch conversion recursively reads files from the input directory.
+
+Mitigation: Point batch conversion only at folders containing documents intended for conversion.
+
+Risk: Converted Markdown and extracted images can contain sensitive content from the source documents.
+
+Mitigation: Write outputs to an approved location and handle generated files according to the same data controls as the source documents.
+
+## Reference(s):
+
+- [Microsoft MarkItDown](https://github.com/microsoft/markitdown)
+- [ClawHub skill page](https://clawhub.ai/mapleshadow/skills/markitdown-zh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; scripts produce Markdown files and extracted image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.10+ and the MarkItDown package; optional system dependencies may be needed for some formats.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Colorizes plain text logs in the terminal by highlighting timestamps and log levels for easier debugging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Logfmt colorizes plain text logs in a terminal by highlighting common timestamps and log levels for easier debugging.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to inspect local, piped, or streamed plaintext logs with highlighted timestamps and severity levels.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Raw log control characters may be printed to the terminal when processing hostile or attacker-controlled logs.
+
+Mitigation: Use the skill for trusted local logs, or add terminal escape sanitization before using it with untrusted log streams.
+
+Risk: README examples call python logfmt.py while the packaged artifact is named tool.py.
+
+Mitigation: Invoke the packaged script name or install it under the intended command name before relying on the examples.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to inspect local log files, piped command output, or stdin with terminal highlighting for common timestamps and log levels. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Code, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Logs can contain sensitive data that may be exposed to anyone viewing the terminal session. <br>
-Mitigation: Only display logs that are appropriate for the current terminal environment and audience. <br>
-Risk: Command examples may refer to a different script name than the packaged artifact. <br>
-Mitigation: Use the packaged filename, such as tool.py, when running the reviewed artifact. <br>
+**Output Format:** [Markdown with inline bash examples and Python CLI code references]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Logfmt release page](https://clawhub.ai/albionaiinc-del/logfmt) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/albionaiinc-del) <br>
+**Other Properties Related to Output:** [Produces local terminal output with ANSI color codes; no network output is described.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and ANSI-colored terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads from a file path or stdin and writes formatted lines to stdout; no network transmission or storage is described in the security evidence.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

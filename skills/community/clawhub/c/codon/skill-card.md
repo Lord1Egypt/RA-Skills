@@ -1,41 +1,53 @@
-## Description: <br>
-Codon organizes agent memory as a navigable, zero-dependency filesystem where each item gets a human-readable numbered address such as 10.03-client-name.md. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize agent memory as a navigable filesystem where each memory receives a numbered address, with zero dependencies and human-readable markdown storage.
 
-## Publisher: <br>
-[pauldub](https://clawhub.ai/user/pauldub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pauldub](https://clawhub.ai/user/pauldub)
 
-## Use Case: <br>
-Developers and agent users use Codon to organize persistent workspace memory as local Markdown files with numbered addresses, indexes, and a fixed taxonomy for people, projects, resources, and work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local memory files may contain secrets or sensitive personal or business data. <br>
-Mitigation: Review the MEMORY directory periodically and avoid storing secrets or sensitive data unless local Markdown storage is acceptable. <br>
-Risk: The initializer writes a MEMORY directory and index files into the workspace. <br>
-Mitigation: Run initialization only in the intended workspace and inspect the created files after setup. <br>
+## Use Case:
 
+Developers and agent users use Codon to initialize and maintain a local markdown memory system with stable numbered locations for people, projects, resources, and work notes.
 
-## Reference(s): <br>
-- [Codon homepage](https://github.com/pauldub/codon) <br>
-- [ClawHub skill page](https://clawhub.ai/pauldub/codon) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and local Markdown file conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and maintains a workspace MEMORY directory with category folders and index Markdown files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Durable markdown memory files under MEMORY may contain private notes or client information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in protected workspaces, review MEMORY contents, consider adding MEMORY to .gitignore for private notes, and avoid storing secrets or sensitive client data.
+
+Risk: Initialization writes local directories and index files into the workspace.
+
+Mitigation: Run initialization only in workspaces where Codon's memory taxonomy is desired and review the generated files before committing them.
+
+## Reference(s):
+
+- [Codon homepage](https://github.com/pauldub/codon)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and local markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local MEMORY directories and index files; no network access, API keys, databases, or embeddings are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, created 2026-03-24)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

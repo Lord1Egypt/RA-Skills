@@ -1,0 +1,28 @@
+{
+  "name": "Skill Vetter Plus",
+  "version": "2.0.0",
+  "description": "Security scanner for AI agent skills with 9 built-in detection signatures. Identifies hardcoded secrets, unsafe execution patterns, and prompt injection language. Returns results in under 50ms.",
+  "author": "CertainLogic",
+  "license": "MIT",
+  "category": "security",
+  "tags": ["security", "scanner", "safety-check", "vetting", "audit", "pre-install"],
+  "entry": {
+    "cli": "scripts/vetter.py"
+  },
+  "commands": [
+    {
+      "name": "scan",
+      "description": "Scan a skill directory for security issues",
+      "args": [
+        {
+          "name": "path",
+          "type": "string",
+          "required": true,
+          "description": "Path to skill directory"
+        }
+      ]
+    }
+  ],
+  "repository": "https://github.com/CertainLogicAI/skill-vetter-plus",
+  "homepage": "https://certainlogic.ai/products/skill-vetter-plus"
+}

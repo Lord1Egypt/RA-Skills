@@ -1,44 +1,56 @@
-## Description: <br>
-SkillScout helps agents find and evaluate OpenClaw AI skills using a curated catalog with trust scores and security review summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and evaluate OpenClaw AI skills by trust score and security reviews before installation or recommendation.
 
-## Publisher: <br>
-[nashbot67](https://clawhub.ai/user/nashbot67) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nashbot67](https://clawhub.ai/user/nashbot67)
 
-## Use Case: <br>
-Developers and agent operators use SkillScout before installing or recommending OpenClaw skills, especially when comparing skills by purpose, trust score, permissions, and review notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat SkillScout ratings as an authoritative security gate. <br>
-Mitigation: Use the catalog as a discovery aid and manually verify each recommended skill before installation. <br>
-Risk: Safe-rated entries can still involve network access, credentials, execution, or file writes. <br>
-Mitigation: Review permissions, source behavior, and install instructions for each selected skill, especially before use in sensitive environments. <br>
-Risk: Review helper scripts may be unsafe for untrusted or oddly formatted skill names until temporary-file handling and input validation are hardened. <br>
-Mitigation: Avoid running those scripts on untrusted inputs; prefer read-only manual review or isolated execution until hardened. <br>
+## Use Case:
 
+Developers, agents, and reviewers use SkillScout to search a curated catalog of OpenClaw skills, compare trust scores, and inspect security review details before installing or recommending a skill.
 
-## Reference(s): <br>
-- [ClawHub SkillScout listing](https://clawhub.ai/nashbot67/skillscout) <br>
-- [SkillScout catalog](https://nashbot67.github.io/skillscout) <br>
-- [SkillScout skills API](https://nashbot67.github.io/skillscout/data/skills.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and JSON-style text returned through command-line examples or MCP tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Trust scores, ratings, permissions, install commands, categories, and review summaries may be included when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and package.json) <br>
+Risk: Skill recommendations rely on mutable remote or registry content, so catalog entries and trust scores may become stale or poisoned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat SkillScout as a screening aid, require user confirmation before installing recommended skills, and independently review original sources for high-risk use.
+
+Risk: Validation gaps in the review or publishing process could affect which recommendations users or agents trust.
+
+Mitigation: Prefer pinned MCP and package versions, verify review details before acting on them, and avoid automatic installation based only on catalog status.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nashbot67/skills/skillscout)
+- [Publisher Profile](https://clawhub.ai/user/nashbot67)
+- [SkillScout Catalog](https://nashbot67.github.io/skillscout)
+- [SkillScout Catalog API](https://nashbot67.github.io/skillscout/data/skills.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands and catalog entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Catalog results may include trust scores, ratings, categories, authors, descriptions, install commands, and review links.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

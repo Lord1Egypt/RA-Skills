@@ -1,3 +1,4 @@
+<!-- Locale: China / Sanya Yazhou. Reference language: Chinese; respond in the language requested by the user. Historical reference data; verify current official sources before applying policy terms. -->
 # 崖州区 招商评估框架与背景调查标准
 > 来源：崖州区政府产业规划、崖州湾科技城管理局公开信息 | 更新日期：2026年4月
 
@@ -107,3 +108,4 @@
 5. **与崖州区的关联**：该行业企业在崖州区发展的优势（政策/地理/资源/配套）
 6. **潜在挑战**：与国内其他园区相比，崖州区的竞争劣势
 7. **重点目标企业**：建议优先招引的3-5家企业名单及理由
+

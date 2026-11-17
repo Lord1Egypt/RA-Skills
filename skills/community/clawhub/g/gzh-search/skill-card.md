@@ -1,42 +1,59 @@
-## Description: <br>
-公众号搜索爬虫 searches WeChat public-account articles by keyword, shows ranked terminal results, exports CSV files, and can generate an interactive HTML report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches WeChat public account articles by keyword, ranks recent results, displays a terminal table, and exports CSV and interactive HTML reports.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-External users, analysts, content strategists, and researchers use this skill to search recent WeChat public-account articles for market topics, competitor content, trend tracking, source discovery, and report-ready exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML reports may expose the user's RedFox API key. <br>
-Mitigation: Use a dedicated low-limit key, avoid sharing or syncing generated HTML files, prefer --csv-only when an HTML report is unnecessary, and rotate the key if a report was shared. <br>
-Risk: The skill runs a local API proxy while serving the report. <br>
-Mitigation: Keep the local server bound to localhost, stop it when finished, and avoid running it on shared or untrusted machines. <br>
+## Use Case:
 
+External users, content researchers, creators, and competitive analysts use this skill to search recent WeChat public account articles, inspect popularity signals, and export results for content research or trend analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/gzh-search) <br>
-- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [RedFox WeChat article search API endpoint](https://redfox.hk/story/api/gzhData/searchArticle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, CSV, HTML] <br>
-**Output Format:** [Terminal text with CSV files and optional interactive HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a RedFox API key; generated HTML reports may embed the API key and use a local API proxy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The local report server can expose API-backed search access more broadly than users may expect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer csv-only or no-open mode when possible, stop the local server promptly after viewing the report, and add proxy authentication or origin checks before broader deployment.
+
+Risk: RedFox API keys may be misused if they are hardcoded, logged, or retained longer than needed.
+
+Mitigation: Use a revocable RedFox API key, verify its scope and validity period, and keep the key out of code, prompts, logs, and generated output files.
+
+Risk: Search terms are sent to the RedFox API and may reveal sensitive research or internal topics.
+
+Mitigation: Avoid sensitive internal search terms and review the API provider's terms and data handling expectations before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/gzh-search)
+- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub)
+- [RedFoxHub](https://redfox.hk?source=clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, markdown]
+
+**Output Format:** [Terminal text plus UTF-8 CSV files and interactive HTML reports; usage guidance may include Markdown and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a RedFox API key through REDFOX_API_KEY, a CLI flag, or a local config file; supports count, sort, output directory, csv-only, no-open, and port options.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

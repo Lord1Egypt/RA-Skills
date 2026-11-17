@@ -1,43 +1,49 @@
-## Description: <br>
-Adoption Suppression analyzes adoption paths to identify growth friction, distrust vectors, dropoff points, and minimum fixes for improving conversion resilience. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adoption resistance simulation engine. Agent Smith models the forces that suppress growth, increase friction, reduce trust, and prevent $NEURONS from converting awareness into participation.
 
-## Publisher: <br>
-[mzfshark](https://clawhub.ai/user/mzfshark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzfshark](https://clawhub.ai/user/mzfshark)
 
-## Use Case: <br>
-Product, growth, community, and governance teams use this skill to stress-test onboarding, funnel, landing page, call-to-action, and participation flows. It produces a structured analysis of suppression vectors, dropoff points, trust failures, and targeted fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad triggers and adversarial framing may cause the skill to be invoked when a neutral product review would be more appropriate. <br>
-Mitigation: Invoke it deliberately for adoption-friction analysis and review recommendations before applying them to product or community workflows. <br>
-Risk: Inputs may contain sensitive user logs, customer feedback, or confidential business data. <br>
-Mitigation: Provide only information intended for analysis, or redact sensitive personal and confidential details before use. <br>
-Risk: Findings could be misused to suppress participation rather than harden adoption paths. <br>
-Mitigation: Use recommendations to reduce friction, improve clarity, and strengthen trust, consistent with the skill safety note against sabotaging real users or communities. <br>
+## Use Case:
 
+Developers, product teams, and community operators use this skill to analyze adoption paths, identify friction and trust barriers, predict dropoff points, and select minimum viable fixes for onboarding or participation flows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mzfshark/adoption-suppression) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mzfshark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis report with suppression vectors, dropoff analysis, risk scores, minimum fixes, and a verdict label.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or external tool access is described by the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill may frame general funnel-analysis requests around adoption friction and resistance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrower triggers or pair the output with neutral marketing analytics when a balanced funnel review is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mzfshark/skills/adoption-suppression)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with ranked findings, scores, recommended fixes, and a verdict label]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes adoption path summary, top suppression vectors, highest-risk dropoff point, trust collapse point, cognitive load estimate, conversion fragility score, minimum fixes, and Smith verdict.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, skill.yml, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

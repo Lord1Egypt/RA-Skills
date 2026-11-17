@@ -1,38 +1,51 @@
-## Description: <br>
-Guide philosophical inquiry from first questions to scholarly debate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide philosophical inquiry from first questions to scholarly debate.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users, students, researchers, and teachers use this skill to guide philosophical inquiry, adapt discussion depth, structure arguments, and frame contested questions with appropriate precision. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Philosophical guidance can oversimplify contested debates or mismatch the learner's level. <br>
-Mitigation: Review outputs for accuracy, framing, and teaching fit before relying on them in formal instruction or scholarly work. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/philosophy) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
+
+Employees and external users use this skill to guide philosophical discussion, teaching, and analysis across beginner, student, researcher, and teacher contexts. It helps agents ask clarifying questions, structure arguments, distinguish descriptive from normative claims, and acknowledge live debates.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Philosophical positions may be presented as settled when the underlying debates remain contested.
+
+Mitigation: Have the agent clarify the question, distinguish opinion from argument, and acknowledge live debates before presenting conclusions.
+
+Risk: Users may over-rely on the skill for authoritative teaching or scholarly framing.
+
+Mitigation: Use the skill to shape discussion style and argument structure, and review outputs for accuracy and appropriate level before formal use.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Adapts explanations to beginner, student, researcher, or teacher contexts.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, external integrations, data access, or persistence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,67 @@
-## Description: <br>
-Searches WeChat Official Account hot articles by keyword, ranks results by relevance, heat, and timeliness, and returns recommendations for content trend research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches RedFox-backed WeChat Official Account hot articles by keyword and helps agents present ranked trend results, topic-expansion hints, and subscription setup guidance.
 
-## Publisher: <br>
-[yuanyi-github](https://clawhub.ai/user/yuanyi-github) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuanyi-github](https://clawhub.ai/user/yuanyi-github)
 
-## Use Case: <br>
-External content creators, WeChat operators, self-media teams, and brand teams use this skill to find recent high-read WeChat articles, compare trend signals, and plan content topics or scheduled tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documentation reportedly includes a live-looking API key. <br>
-Mitigation: Install only after the publisher removes the exposed key, rotates it, replaces it with a placeholder, and documents secure credential supply. <br>
-Risk: Recurring push or subscription behavior may create ongoing tracking or unexpected notifications. <br>
-Mitigation: Require explicit opt-in, visible schedules, rate limits, and easy cancellation before use. <br>
-Risk: Debug mode may expose real or sensitive API responses. <br>
-Mitigation: Avoid debug mode with real data unless output is redacted. <br>
+## Use Case:
 
+Content creators, WeChat operators, brand teams, and agents use this skill to search recent WeChat Official Account articles with 5,000+ reads, compare ranking signals, and produce concise trend summaries. It can also guide setup for RedFox API credentials and recurring article subscription prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuanyi-github/wechat-search-redfox) <br>
-- [RedFoxHub API key setup](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [WeChat trend data format reference](references/gzh_trend_data_format.md) <br>
-- [RedFox hot article API endpoint](https://redfox.hk/story/api/gzh/search/hotArticle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown tables and prompts, JSON stdout, optional HTML report files, and shell commands for running the Python script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY; article data is limited to the provider's recent indexed WeChat articles and may not be real-time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Search terms and date ranges are sent to RedFox.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for queries that are appropriate to share with RedFox, and disclose this data flow to users before operation.
+
+Risk: The skill requires a RedFox API key in the agent environment.
+
+Mitigation: Store REDFOX_API_KEY in managed environment configuration, avoid hard-coding or logging it, and rotate or revoke it if exposure is suspected.
+
+Risk: The skill pushes users toward recurring calendar subscriptions.
+
+Mitigation: Create subscriptions only after explicit user confirmation and make the keyword, date range, cadence, and cancellation path clear.
+
+Risk: Optional HTML reports have unsafe escaping and link handling according to the security evidence.
+
+Mitigation: Prefer JSON or Markdown output and avoid the optional HTML report until the rendering path is fixed and reviewed.
+
+Risk: The security summary reports an undisclosed promotional message.
+
+Mitigation: Review generated responses before deployment and remove or clearly disclose promotional content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuanyi-github/skills/wechat-search-redfox)
+- [RedFoxHub API key settings](https://redfox.hk/settings/api-keys?source=clawhub)
+- [WeChat trend data format reference](artifact/references/gzh_trend_data_format.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown tables and prose for the agent response; JSON from the helper script; optional HTML report file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REDFOX_API_KEY and sends search terms plus date ranges to RedFox. Optional HTML output should be avoided until escaping and link handling are fixed.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

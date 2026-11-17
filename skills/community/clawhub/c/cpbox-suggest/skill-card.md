@@ -1,44 +1,60 @@
-## Description: <br>
-Provides query autocomplete suggestions, including optional rich entity details, through the cpbox Suggest API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+USE FOR query autocomplete/suggestions. Fast (<100ms). Returns suggested queries as user types. Supports rich suggestions with entity info. Typo-resilient.
 
-## Publisher: <br>
-[sprintmint](https://clawhub.ai/user/sprintmint) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sprintmint](https://clawhub.ai/user/sprintmint)
 
-## Use Case: <br>
-Developers and agents use this skill to add search-as-you-type suggestions, query refinement for retrieval workflows, entity preview detection, and typo-tolerant query completion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic x402 pay-per-use calls can spend funds without clear cost or approval limits. <br>
-Mitigation: Review the payment helper, configure spending or approval controls, and enable automatic paid calls only for expected autocomplete traffic. <br>
-Risk: Autocomplete queries may contain sensitive or confidential text. <br>
-Mitigation: Use the skill only for explicit search-query suggestion workflows and avoid sending private, regulated, or confidential queries. <br>
-Risk: The skill depends on external cpbox, cppay, and x402-payment services. <br>
-Mitigation: Verify the API provider, facilitator, and payment helper before use and monitor responses before relying on them in production. <br>
+## Use Case:
 
+Developers and agents use this skill to call a paid CPBox autocomplete endpoint for search-as-you-type suggestions, RAG query refinement, entity detection, and typo-tolerant query cleanup.
 
-## Reference(s): <br>
-- [cpbox API provider](https://www.cpbox.io) <br>
-- [cpbox Suggest endpoint](https://www.cpbox.io/api/x402/suggest) <br>
-- [cppay facilitator](https://www.cppay.finance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with HTTP, bash, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documents a JSON API response containing query suggestions and optional rich entity fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Automatic x402 payment calls can spend funds when the helper signs and retries paid requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet or explicit payment limits before enabling automatic payment.
+
+Risk: The unpinned npx payment helper may execute a package version that has not been reviewed.
+
+Mitigation: Pin and review the x402 helper package version and run it in a restricted environment.
+
+Risk: Autocomplete query text is sent to a paid third-party service.
+
+Mitigation: Avoid sending sensitive queries unless the data-sharing and retention terms are acceptable for the use case.
+
+## Reference(s):
+
+- [CPBox Suggest API endpoint](https://www.cpbox.io/api/x402/suggest)
+- [CPBox service](https://www.cpbox.io)
+- [CPay facilitator](https://www.cppay.finance)
+- [x402 payment setup](https://github.com/springmint/cpbox-skills#prerequisites)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, Configuration]
+
+**Output Format:** [Markdown with HTTP, bash, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces paid autocomplete request guidance and describes JSON suggestion responses; rich responses may include entity metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

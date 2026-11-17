@@ -1,40 +1,54 @@
-## Description: <br>
-Generate lottery numbers and check results. Use when picking numbers for draws. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate lottery numbers and check results. Use when picking numbers for draws.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-External users can use this skill to generate random lottery number picks for generic draws, Powerball, and Mega Millions, compare entered numbers with winning numbers, and view local history or statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shell commands may read or create local files for lottery history. <br>
-Mitigation: Review commands before execution and run them in an environment where ~/.local/share/lottery/ access is acceptable. <br>
-Risk: Lottery number generation is random helper output and does not improve the odds of winning. <br>
-Mitigation: Treat generated numbers as convenience output only and verify any draw results against official lottery sources. <br>
+## Use Case:
 
+External users and agents use this skill to generate lottery number picks for common draw formats and to run simple check, history, and stats commands.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local shell execution and may read lottery history from ~/.local/share/lottery/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated picks or command output may be mistaken for verified lottery validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify lottery picks and results, and treat check, history, and stats output as convenience output only.
+
+Risk: The skill uses a local data directory for lottery-related state.
+
+Mitigation: Review ~/.local/share/lottery/ before sharing the environment or relying on history and stats output.
+
+## Reference(s):
+
+- [Lottery on ClawHub](https://clawhub.ai/bytesagain-lab/skills/lottery)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown command examples and plain text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may read local lottery data under ~/.local/share/lottery/.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

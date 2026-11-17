@@ -1,45 +1,68 @@
-## Description: <br>
-Claw Audit scans OpenClaw skills, configuration, and host hardening for security issues and returns actionable scores, findings, and hardening guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security scanner and hardening tool for OpenClaw. Use when the user asks about security, wants to scan installed skills for malware or vulnerabilities, audit their OpenClaw configuration, check their security score, or harden their setup.
 
-## Publisher: <br>
-[u45362](https://clawhub.ai/user/u45362) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[u45362](https://clawhub.ai/user/u45362)
 
-## Use Case: <br>
-Developers and operators use Claw Audit to scan installed OpenClaw skills for malicious patterns, audit OpenClaw and host security posture, calculate a 0-100 security score, and get hardening or auto-fix guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect sensitive host security areas and may expose information about credentials, configuration, or host hardening if run with broad permissions. <br>
-Mitigation: Run least-privileged first and grant shadow-group, Docker, or sudoers access only when that extra access is explicitly needed. <br>
-Risk: Auto-fix and hardening actions can change OpenClaw configuration. <br>
-Mitigation: Prefer dry-run or interactive auto-fix and require explicit confirmation before applying changes. <br>
-Risk: The .claw-audit-trusted scan-skip marker is not a reliable trust boundary. <br>
-Mitigation: Do not treat skip markers as proof of safety; review and scan skills before deployment. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to scan installed skills, audit OpenClaw and host security settings, calculate a security score, and get hardening guidance.
 
-## Reference(s): <br>
-- [Claw Audit ClawHub listing](https://clawhub.ai/u45362/claw-audit) <br>
-- [ClawHavoc campaign analysis](https://www.koi.ai/blog/clawhavoc-341-malicious-clawedbot-skills-found-by-the-bot-they-were-targeting) <br>
-- [malicious-patterns.json](references/malicious-patterns.json) <br>
-- [scan-rules.json](references/scan-rules.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with command snippets and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create integrity baselines, report security scores, and propose or apply configuration fixes after confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata, RELEASE-NOTES-v1.1.0.md, and clawhub.json; package.json lists 0.1.0) <br>
+Risk: Server security evidence marks the release suspicious due to unsafe scanner and system-audit behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scanner bypass and system-audit behavior before installation, then run audits only as an unprivileged user.
+
+Risk: Audit coverage guidance may encourage elevated local privileges such as shadow, adm, docker, or NOPASSWD sudo access.
+
+Mitigation: Do not grant additional groups or NOPASSWD sudo only to improve audit coverage; accept skipped checks or use a controlled review environment.
+
+Risk: Evidence warns that async system auditors should not be relied on until fixed.
+
+Mitigation: Avoid the async system-audit scripts for trust decisions and prefer reviewed stable audit paths until the issues are resolved.
+
+Risk: A skill that can include its own .claw-audit-trusted file may bypass scanner review.
+
+Mitigation: Do not rely on scanner results for skills carrying their own trust marker; remove or independently verify such markers before using scan results.
+
+## Reference(s):
+
+- [Claw Audit on ClawHub](https://clawhub.ai/u45362/skills/claw-audit)
+- [README.md](README.md)
+- [PROJECT.md](PROJECT.md)
+- [Release Notes v1.1.0](RELEASE-NOTES-v1.1.0.md)
+- [Performance Improvements](PERFORMANCE-IMPROVEMENTS.md)
+- [Malicious Pattern Database](references/malicious-patterns.json)
+- [Scan Rules](references/scan-rules.json)
+- [ClawHavoc Campaign Analysis](https://www.koi.ai/blog/clawhavoc-341-malicious-clawedbot-skills-found-by-the-bot-they-were-targeting)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with command recommendations and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces security findings, scores, fix guidance, and audit command suggestions; some commands inspect local system and OpenClaw configuration.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

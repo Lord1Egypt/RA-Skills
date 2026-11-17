@@ -1,43 +1,62 @@
-## Description: <br>
-Meeting Transcriber provides Chinese real-time meeting speech transcription with FunASR, timestamped transcript files, environment checks, and Conda setup guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meeting Transcriber helps an agent start and manage real-time Chinese meeting transcription with FunASR, including environment checks, transcript saving, and meeting-record file access.
 
-## Publisher: <br>
-[chinapjs](https://clawhub.ai/user/chinapjs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chinapjs](https://clawhub.ai/user/chinapjs)
 
-## Use Case: <br>
-Meeting participants, facilitators, and OpenClaw users use this skill on a Windows workstation to start and stop Chinese speech transcription, check the local audio and Conda environment, and manage saved meeting transcript files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the actual recording and transcription runs through an external local script that is not included in the package. <br>
-Mitigation: Install only after reviewing and trusting the local D:/dev/python/voiceFunAsr/vocie_mic_fixed_gbk.py script and confirming it matches the intended transcription workflow. <br>
-Risk: The artifact uses hard-coded Windows, Conda, and project-directory paths. <br>
-Mitigation: Run the environment check before use and verify the audioProject Conda environment, microphone access, and configured meeting_records directory on the target workstation. <br>
-Risk: The skill records meeting audio and saves transcripts locally. <br>
-Mitigation: Obtain participant consent before recording, confirm where transcript files are saved, and stop the spawned transcription process or window when the meeting ends. <br>
+## Use Case:
 
+Employees, meeting facilitators, and developers can use this skill to run local Chinese speech-to-text transcription during meetings, save timestamped transcripts, and inspect or open recent meeting records.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/chinapjs/pengjschina-meeting-transcriber) <br>
-- [FunASR project](https://github.com/alibaba-damo-academy/FunASR) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text command responses with transcript file paths; generated meeting records are text files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill starts local transcription processes and manages meeting record files under the configured Windows project directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill depends on an external local transcription script at D:/dev/python/voiceFunAsr/vocie_mic_fixed_gbk.py that was not included in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after inspecting that script and confirming it matches the intended transcription workflow.
+
+Risk: The skill records microphone audio and creates meeting transcript files, which can expose participant speech and sensitive meeting content.
+
+Mitigation: Obtain participant consent before recording and store generated transcripts according to the organization's data handling policy.
+
+Risk: Environment setup can install or depend on local Conda packages whose versions are not pinned in the artifact.
+
+Mitigation: Pin and review dependencies in the audioProject environment before using the skill in production workflows.
+
+Risk: The stop command terminates processes whose command line contains the transcription-script substring, which may affect unrelated processes.
+
+Mitigation: Review running processes before using the stop command or narrow process matching in the local deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chinapjs/skills/pengjschina-meeting-transcriber)
+- [FunASR project](https://github.com/alibaba-damo-academy/FunASR)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown-style command guidance with transcript file references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Starts and stops local microphone transcription, checks the Conda environment, and lists or opens timestamped meeting transcript files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

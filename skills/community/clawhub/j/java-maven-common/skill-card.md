@@ -1,41 +1,58 @@
-## Description: <br>
-Common input handling for Java Maven project review workflows that unpack ZIP archives or clone GitLab repositories, normalize the project root, and identify Maven modules before deeper review or analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Common input handling for Java Maven project review workflows. Use when a Java Maven project arrives as a ZIP archive or a GitLab repository URL and you need to unpack, clone, normalize the project root, and identify Maven modules before deeper review or analysis.
 
-## Publisher: <br>
-[mrliugangqiang](https://clawhub.ai/user/mrliugangqiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrliugangqiang](https://clawhub.ai/user/mrliugangqiang)
 
-## Use Case: <br>
-Developers and engineers use this skill as a shared intake layer for Java Maven review workflows when project source arrives as a ZIP archive or GitLab repository URL. It prepares a normalized project root and Maven module summary for downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unsafe work or JSON output paths can cause local files to be deleted or overwritten. <br>
-Mitigation: Run the helper only with disposable temporary work directories and non-critical JSON output paths. <br>
-Risk: Untrusted ZIP archives or cloned repositories can introduce unsafe project contents into the local workspace. <br>
-Mitigation: Unpack or clone into isolated temporary directories and scan inputs before downstream review. <br>
-Risk: Repository URLs can expose credentials if credential-bearing URLs are supplied. <br>
-Mitigation: Use user-authorized SSH access and avoid credential-bearing repository URLs. <br>
+## Use Case:
 
+Developers and engineers use this skill to prepare Java Maven projects from ZIP archives or GitLab repository URLs for downstream review. It normalizes the project root, identifies Maven modules, and produces a standardized project-ingest summary.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration] <br>
-**Output Format:** [JSON summary and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces project intake metadata including input mode, normalized root path, project name, Maven module list, module count, and scan-limited status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The helper script can delete a caller-selected work directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only disposable temp workspace paths for --work and review the resolved path before execution.
+
+Risk: ZIP archives and repository URLs are untrusted inputs.
+
+Mitigation: Apply size limits, isolate temporary workspaces, use approved GitLab sources, and require explicit user authorization before cloning.
+
+Risk: The script does not enforce all documented GitLab and temp-directory limits.
+
+Mitigation: Have calling workflows validate repository source, SSH authorization, and workspace location before invoking the helper.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrliugangqiang/skills/java-maven-common)
+- [Publisher profile](https://clawhub.ai/user/mrliugangqiang)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON summary with concise agent guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The JSON summary includes input mode, normalized root path, project name, Maven module list, module count, and scan-limitation status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

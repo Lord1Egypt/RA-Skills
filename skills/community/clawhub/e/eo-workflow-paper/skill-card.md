@@ -1,42 +1,52 @@
-## Description: <br>
-EO Workflow: Paper helps agents guide academic paper work from literature research through methodology design, IMRAD drafting, formatting, originality checks, and revision. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic paper workflow for literature research, methodology design, IMRAD drafting, review, formatting guidance, and plagiarism-control guidance.
 
-## Publisher: <br>
-[467718584](https://clawhub.ai/user/467718584) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[467718584](https://clawhub.ai/user/467718584)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External researchers, students, and academic writers use this skill to plan and draft academic papers, including literature review, methodology, IMRAD sections, revision, and target-format checks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated literature claims, citations, plagiarism checks, and journal-format advice may be incomplete or incorrect.
+
+Mitigation: Treat generated paper content and citation guidance as draft material and independently verify sources, plagiarism results, and journal requirements before use.
+
+Risk: Optional cross-session memory could retain unpublished research details or advisor and journal preferences.
+
+Mitigation: Avoid enabling EO memory for sensitive unpublished research unless users understand how to inspect and delete stored data.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Researchers, students, and academic writers use this skill to structure literature review, methodology design, paper drafting, and revision workflows for an academic paper topic. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated citations, source selections, or research claims may be incomplete or inaccurate. <br>
-Mitigation: Verify all sources, citations, and claims against trusted academic databases before submission. <br>
-Risk: AI-assisted academic drafting can create originality, authorship, or policy compliance issues. <br>
-Mitigation: Follow institutional and journal rules on AI-assisted writing, run originality checks, and keep human authors responsible for final content. <br>
-Risk: Optional memory or RAG integrations may store or reuse research context. <br>
-Mitigation: Enable those integrations only for research material the user is comfortable storing or reusing. <br>
+**Output Format:** [Markdown academic-writing workflow guidance with structured sections and command-style invocation examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/467718584/eo-workflow-paper) <br>
+**Other Properties Related to Output:** [Chinese-language workflow; no install commands or required binaries are declared.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured research notes, paper sections, and review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include literature lists, research plans, IMRAD paper drafts, formatting notes, and revision guidance.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

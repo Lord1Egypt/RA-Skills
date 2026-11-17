@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn76d84e5yshb7jz8b8c9b3gjh82px78",
-  "slug": "gv-caller",
-  "version": "1.0.1",
-  "publishedAt": 1774215785318
+  "name": "gv-caller",
+  "version": "1.0.0",
+  "description": "Google Voice automated dialer with AI voice injection.",
+  "author": "OpenClaw Assistant",
+  "tags": ["voip", "google-voice", "calling", "automation"],
+  "entry": "bin/call.sh"
 }

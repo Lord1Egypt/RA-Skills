@@ -1,38 +1,56 @@
-## Description: <br>
-Organizes desktop files on macOS, Linux, and Windows by backing up the desktop and moving files or folders into configured destinations based on type, name, and folder rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes desktop files by backing up the desktop, categorizing files and folders with configurable rules, moving them into target folders, and reporting results across macOS, Linux, and Windows.
 
-## Publisher: <br>
-[hujxhed](https://clawhub.ai/user/hujxhed) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hujxhed](https://clawhub.ai/user/hujxhed)
 
-## Use Case: <br>
-Employees and external users use this skill to safely clean up a cluttered desktop by previewing files, creating a timestamped backup, moving items according to configured rules, and reporting the result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move many desktop files and top-level folders without a clear approval gate. <br>
-Mitigation: Require a dry run or explicit confirmation that lists every file and folder to be moved before executing commands, and verify the timestamped backup completed successfully. <br>
+## Use Case:
 
+External users and desktop support agents use this skill to organize desktop files on macOS, Linux, and Windows. It provides a backup-first workflow, configurable categorization rules, conflict handling, and a post-operation report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hujxhed/desktop-organizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and PowerShell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a file movement plan, backup location, categorized move commands, and a post-operation report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Bulk desktop reorganization can move many local files and folders without a clear confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run a dry run first and require explicit user confirmation before any move operation.
+
+Risk: A backup command that exits without verifying copied content may not guarantee recovery if copying fails.
+
+Mitigation: Verify the backup directory and a restore path before moving files, and keep the backup until the user confirms the result.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hujxhed/skills/desktop-organizer)
+- [ClawHub publisher profile](https://clawhub.ai/user/hujxhed)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with bash and PowerShell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces file-move plans, backup commands, conflict-handling guidance, and organization reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

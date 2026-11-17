@@ -1,39 +1,54 @@
-## Description: <br>
-提供历代陶瓷、书画钱币鉴赏知识、在线鉴定入口及捡漏攻略。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供历代陶瓷、书画钱币鉴赏知识、在线鉴定入口及捡漏攻略。
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users can use this skill for antique collecting guidance, including ceramics, paintings, calligraphy, coins, appraisal entry points, local discovery filters, and visit-planning details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides loose antique appraisal and visit-planning guidance, including real-time queue, reservation, hours, parking, and navigation details that may be inaccurate or stale. <br>
-Mitigation: Verify appraisal conclusions and any real-time venue information through trusted sources before making purchases, travel plans, or reservations. <br>
-Risk: Location-based filtering can require sharing precise location information. <br>
-Mitigation: Share only the minimum location detail needed for the task and avoid sensitive addresses unless necessary. <br>
+## Use Case:
 
+External users can ask the agent for antique collecting and appraisal-oriented guidance, including ceramics, calligraphy, paintings, coins, online appraisal entry points, and deal-finding tips. The artifact also directs the agent to return location-based venue details such as distance, social popularity, queue status, reservations, parking, navigation, community photos, visit notes, and avoidance checklists.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include location-aware filtering suggestions, venue details, appraisal guidance, community notes, and cautionary checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The public antique-appraisal purpose does not match the artifact's location and venue-discovery behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill instructions before installation and confirm the intended behavior matches the deployment use case.
+
+Risk: Location-based outputs such as navigation, queue status, reservations, and parking details may be stale or inaccurate.
+
+Mitigation: Ask the agent to verify time-sensitive venue information with current sources before acting on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/antique)
+- [ClawHub publisher profile](https://clawhub.ai/user/mike47512)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Markdown or conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include appraisal-oriented guidance and venue-discovery details such as queue, reservation, parking, navigation, community images, visit notes, and avoidance checklists.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Recite helps an agent scan receipts, invoices, images, and PDFs with the Recite Vision API, rename files by extracted date and vendor, and maintain a local bookkeeping CSV. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recite processes receipt images and PDFs with the Recite Vision API, renames files by extracted date and vendor data, and records transaction details in a CSV ledger.
 
-## Publisher: <br>
-[rivradev](https://clawhub.ai/user/rivradev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[rivradev](https://clawhub.ai/user/rivradev)
 
-## Use Case: <br>
-Developers, agents, and bookkeeping users can use this skill to process a folder of receipt or invoice files, extract transaction details, rename the originals, and append structured records to a CSV ledger. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Receipt and invoice contents are uploaded to the Recite API for extraction. <br>
-Mitigation: Use this skill only when the user trusts the Recite API with the files being processed and has consent to upload that content. <br>
-Risk: The skill automatically renames local files and writes a bookkeeping CSV. <br>
-Mitigation: Run it on copies or backups first, use a dedicated target directory, and review the resulting filenames and CSV before relying on them. <br>
-Risk: API keys and local configuration are required for operation. <br>
-Mitigation: Protect the Recite API key, avoid committing configuration files, and revoke or rotate the key if it is exposed. <br>
+## Use Case:
 
+External users and developers use Recite to process folders of receipts or invoices, extract transaction fields through the Recite API, rename source files, and maintain a bookkeeping CSV for expense and tax workflows.
 
-## Reference(s): <br>
-- [Recite on ClawHub](https://clawhub.ai/rivradev/recite) <br>
-- [Recite API key settings](https://recite.rivra.dev/settings/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Text] <br>
-**Output Format:** [Terminal status text plus renamed receipt files and a CSV ledger] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes bookkeeping_transactions.CSV in the target directory and may rename supported image or PDF files after API extraction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Receipt and invoice contents are sent to the Recite remote API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this data transfer is acceptable, use a restricted receipt folder, and keep backups before processing files.
+
+Risk: The skill uses extracted API data to rename files and populate a spreadsheet-compatible CSV.
+
+Mitigation: Review generated filenames and treat the CSV as untrusted before opening it in spreadsheet software.
+
+Risk: The skill requires a Recite API key stored in an environment variable or local configuration file.
+
+Mitigation: Prefer an environment variable or protected secret store and avoid committing local configuration containing the API key.
+
+## Reference(s):
+
+- [Recite skill page](https://clawhub.ai/rivradev/skills/recite)
+- [rivradev publisher profile](https://clawhub.ai/user/rivradev)
+- [Recite API key settings](https://recite.rivra.dev/settings/api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with shell commands; script execution writes renamed files and a CSV ledger.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates bookkeeping_transactions.CSV in the target folder and renames processed receipt, invoice, and PDF files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

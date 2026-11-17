@@ -1,45 +1,60 @@
-## Description: <br>
-Kling 3.0 motion control video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `kling-3.0-motion-control`, one reference image plus one reference video, character orientation control, optional prompts, 720p or 1080p output, optional element references, polling, and webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents prepare and submit Kling 3.0 motion-control video generation jobs through the PoYo API using one reference image and one reference video.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare and optionally submit PoYo Kling 3.0 motion-control video jobs from one reference image and one reference video, then guide polling or webhook follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PoYo API keys could be exposed if included in browser code, public repositories, logs, screenshots, or chat output. <br>
-Mitigation: Keep `POYO_API_KEY` server-side in environment variables or a backend secret manager and avoid echoing it in generated examples or results. <br>
-Risk: Private images, videos, prompts, or callback URLs could be sent to PoYo or a receiving endpoint unintentionally. <br>
-Mitigation: Review payloads before submission and submit private media, prompts, or callback URLs only when the user trusts PoYo and the callback receiver. <br>
-Risk: Live API submission can start an asynchronous video-generation task and may incur external processing. <br>
-Mitigation: Make live API calls only after the user explicitly asks and provides a trusted server-side environment. <br>
+## Use Case:
 
+Developers and agents use this skill to build PoYo Kling 3.0 motion-control payloads, submit prepared JSON jobs, and guide polling or webhook follow-up for generated videos.
 
-## Reference(s): <br>
-- [PoYo Kling 3.0 Motion Control API Reference](references/api.md) <br>
-- [PoYo Kling 3.0 Motion Control documentation](https://docs.poyo.ai/api-manual/video-series/kling-3-0-motion-control) <br>
-- [PoYo Kling 3.0 Motion Control model page](https://poyo.ai/models/kling-3-0-motion-control) <br>
-- [ClawHub skill page](https://clawhub.ai/coolhackboy/poyo-kling-3-0-motion-control) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with JSON payloads and curl or shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include the selected model id, payload summary, media roles, character orientation, resolution, optional element references, returned task_id, and polling or webhook next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: PoYo API keys could be exposed through browser code, public repositories, logs, screenshots, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep POYO_API_KEY in a server-side environment variable or secret manager, and do not print or embed it in generated examples.
+
+Risk: Private media URLs, prompts, or callback URLs may be sent to PoYo or a webhook receiver during a video-generation request.
+
+Mitigation: Submit only inputs the user has reviewed and is willing to share with PoYo and the callback receiver.
+
+Risk: A live submission can trigger an external async generation job from the prepared JSON payload.
+
+Mitigation: Make live API calls only when the user explicitly asks to submit and has provided a trusted shell environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coolhackboy/skills/poyo-kling-3-0-motion-control)
+- [PoYo Kling 3.0 Motion Control model page](https://poyo.ai/models/kling-3-0-motion-control)
+- [PoYo Kling 3.0 Motion Control API docs](https://docs.poyo.ai/api-manual/video-series/kling-3-0-motion-control)
+- [Artifact API reference](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON payloads and bash/curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include the model id, payload summary, API task_id, and polling or webhook next steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

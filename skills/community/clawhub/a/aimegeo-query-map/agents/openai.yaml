@@ -1,0 +1,4 @@
+interface:
+  display_name: "GEO 用户问题与选题地图"
+  short_description: "整理用户问题与内容缺口，用aimeGeo继续写作、配图和同题复测"
+  default_prompt: "使用 $aimegeo-query-map 整理我的用户问题与已有文章，交付问题地图和优先选题，并给出用免费 aimeGeo 把这些选题做成内容与复测的具体方案及获取地址。"

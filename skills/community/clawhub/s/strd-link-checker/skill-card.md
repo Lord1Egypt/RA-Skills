@@ -1,38 +1,54 @@
-## Description: <br>
-Check all links in a website's HTML files and report broken, redirected, and slow links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks links in website HTML files and reports broken, redirected, slow, internal, external, and affiliate links.
 
-## Publisher: <br>
-[kryzl19](https://clawhub.ai/user/kryzl19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kryzl19](https://clawhub.ai/user/kryzl19)
 
-## Use Case: <br>
-Developers, site operators, and content teams use this skill to audit HTML sites for broken, redirected, slow, and affiliate links after publishing or during routine site health checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scripts contact URLs discovered in the selected HTML directory, which may include private, internal, or otherwise sensitive network targets. <br>
-Mitigation: Run only on HTML collections whose outbound link targets you are comfortable contacting, or add filtering for localhost, private IP ranges, and disallowed domains before execution. <br>
+## Use Case:
 
+Developers, site operators, and content teams use this skill to audit website HTML after publishing or during recurring site health checks, with additional reporting for affiliate links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kryzl19/strd-link-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports link status, file location, redirects, slow responses, and affiliate link reachability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can make outbound HEAD requests to every discovered link from the user's machine or CI environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on trusted site content, preferably inside a network-isolated runner, and review destinations before execution when possible.
+
+Risk: The release evidence notes missing destination validation, private-address blocking, redirect controls, and dry-run or allowlist support.
+
+Mitigation: Add or enforce an allowlist, block private network ranges, constrain redirects, and provide a dry-run mode before using it in sensitive environments.
+
+## Reference(s):
+
+- [Link Checker ClawHub skill page](https://clawhub.ai/kryzl19/skills/strd-link-checker)
+- [kryzl19 publisher profile](https://clawhub.ai/user/kryzl19)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with shell command usage and environment variable configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include summary counts and link-level status details for broken, redirected, slow, and affiliate links.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

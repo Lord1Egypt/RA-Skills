@@ -1,0 +1,3 @@
+interface:
+  display_name: "Strategic Reading"
+  short_description: "Read a source through the lens of a specific problem. Produces an applied playbook, not a summary."

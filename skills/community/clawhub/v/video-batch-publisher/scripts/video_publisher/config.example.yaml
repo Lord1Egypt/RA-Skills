@@ -1,0 +1,47 @@
+system:
+  default_type: "custom"
+  publish_time_format: "%Y-%m-%d %H:%M"
+  browser:
+    engine: "chromium"
+    headless: false
+    user_data_dir: "./browser_cache"
+    timeout: 60000
+    # 调试模式：发布完成后是否保留浏览器进程（默认 false=自动关闭）
+    # 排查问题时临时设 true，便于手动查看页面
+    debug_keep_browser: false
+
+# ---------- 内容类型配置 ----------
+# list 写法：每个类型一项，可自由增删（复制一个 - key 块即可加新类型，无需改代码）
+#   key        : 内部标识（命令行/代码用，建议英文唯一）
+#   type_name  : GUI 下拉显示名
+#   collection : 发布时归入的「合集」名称（抖音/B站/视频号支持；留空=不指定合集）
+#   ai_label   : 是否勾选「AI生成内容」声明（true/false；关=false 则不勾选，按平台 UI 勾选）
+#   excel_path : 该类型对应的 Excel 视频列表
+#   input_dir / output_dir : 视频输入 / 输出目录
+#   covers     : 封面文件名（可选）
+content_types:
+  - key: "custom"
+    type_name: "自定义内容"
+    collection: "我的合集"
+    ai_label: true
+    input_dir: "./videos/custom"
+    output_dir: "./output/custom"
+    excel_path: "./videos/custom/视频列表.xlsx"
+    covers:
+      horizontal: "0_cover_350.png"
+      vertical: "0_cover_300.png"
+
+platforms:
+  快手: true
+  视频号: true
+  抖音: true
+  B站: true
+
+# Excel 待发布过滤（通用版默认关闭：不要求完成标记列，适配纯本地用户）
+# 若你接了自家流水线，把下面两项改成 true 即可恢复"双列 ✓ 才发布"
+# draft_finished_column / video_finished_column 可改成你 Excel 里的实际列名
+excel:
+  require_draft_finished: false
+  require_video_finished: false
+  draft_finished_column: "视频草稿"
+  video_finished_column: "视频完成"

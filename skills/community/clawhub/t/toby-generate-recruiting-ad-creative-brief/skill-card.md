@@ -1,40 +1,55 @@
-## Description: <br>
-Create targeted recruiting ad briefs outlining visuals, hooks, goals, and constraints for paid campaign planning by recruiters and talent teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan campaign visuals and hooks for recruiting promotions for paid campaign planning by recruiters, hiring managers, and talent teams.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Recruiters, hiring managers, and talent teams use this skill to draft paid recruiting campaign creative briefs with audience, goal, visual, hook, and constraint guidance. Generated content should be reviewed before campaign use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated recruiting content may include biased language, employment-law-sensitive claims, factual errors, or brand misalignment. <br>
-Mitigation: Review outputs for bias, legal and policy fit, factual accuracy, and brand fit before using them in recruiting campaigns. <br>
-Risk: The declared Bash and Read permissions are broader than the documented creative-brief workflow requires. <br>
-Mitigation: Install only from the resolved publisher profile and review requested tool use before allowing filesystem reads or shell commands. <br>
+## Use Case:
 
+Recruiters, hiring managers, and talent teams use this skill to draft concise creative briefs for paid recruiting campaigns, including audience, goals, visual direction, hooks, constraints, and review needs.
 
-## Reference(s): <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/generate-recruiting-ad-creative-brief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include campaign visuals, hooks, goals, constraints, and review notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests shell and file-read permissions that are not clearly justified by its recruiting brief generation purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and remove or restrict Bash and Read permissions unless there is a clear local need.
+
+Risk: Generated employment-related campaign content can be inaccurate or biased if used without review.
+
+Mitigation: Require human review for accuracy, fairness, and bias before using generated recruiting material in hiring campaigns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-recruiting-ad-creative-brief)
+- [SkillBoss skill page](https://www.skillboss.co/skills/generate-recruiting-ad-creative-brief)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown recruiting ad creative brief]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include campaign visuals, hooks, goals, constraints, and human review guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

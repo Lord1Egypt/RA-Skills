@@ -4,6 +4,22 @@ All notable changes to this skill will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this skill adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] — 2026-09-28
+
+Privacy and triggering fixes from ClawHub's security audit.
+
+### Added
+- **Privacy and Data Handling** section in SKILL.md and README.md: what's stored, that it stays local and unencrypted, and how to see or delete it
+- First-use notice: the assistant tells the user what will be saved, and where, before creating `college-data.json`
+- Data-minimization rules: first names only, and no FSA IDs, passwords, tax returns, account numbers, or detailed household finances
+- Delete commands for one student ("delete Emma's data") or the whole tracker, with a one-time offer to clear a student's record after decisions are final
+- `metadata.openclaw.requires.config` declaring `college-data.json`
+- `.clawhubignore` so the `evals/` folder isn't published
+
+### Changed
+- Narrowed the `description` so the skill activates when the user wants to set up or update a specific student's tracker, not on any mention of college, the SAT/ACT, FAFSA, or scholarships
+- `version` in frontmatter is now unquoted, matching the other skills in the catalog
+
 ## [1.0.1] — 2026-05-13
 
 ### Changed

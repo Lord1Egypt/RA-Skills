@@ -1,40 +1,53 @@
-## Description: <br>
-指导用户通过多 AI 协作进行观点校验、分段写作、一致性检查和润色，提升报告、方案、发言稿等工作材料的质量。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+指导用户用多 AI 协作进行材料写作，通过思想对齐、批判性脑暴、分段成稿、一致性检查和润色来提升报告、方案、PPT 文案和发言稿质量。
 
-## Publisher: <br>
-[yanfenliu9014-spec](https://clawhub.ai/user/yanfenliu9014-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yanfenliu9014-spec](https://clawhub.ai/user/yanfenliu9014-spec)
 
-## Use Case: <br>
-知识工作者、团队负责人和内容撰写者可用此技能组织高要求材料的写作流程，让 AI 承担批判、补充、分段起草和润色辅助，同时保留人的观点判断。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may lead users to paste drafts, business context, or research material into other AI or search tools. <br>
-Mitigation: Use only approved tools for sensitive material and avoid sharing confidential content outside authorized systems. <br>
-Risk: AI critiques, outlines, or polished drafts may still contain inaccurate, unsupported, or misaligned reasoning. <br>
-Mitigation: Keep human review as the final authority for facts, logic, tone, and business decisions before using the material. <br>
+## Use Case:
 
+Employees, external users, writers, analysts, and managers use this Chinese-language skill to plan and refine work materials with multiple AI assistants while keeping human judgment in control. It is suited to reports, proposals, PPT text, speeches, and other documents that need clear goals, stronger reasoning, and consistent language.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yanfenliu9014-spec/ai-writing-craft) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown prose with step-by-step workflow guidance and prompt templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, files, shell commands, or configuration are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is guidance-only and does not perform actions or validate facts by itself.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a writing workflow aid, keep human review in control, and verify factual claims and source material before publishing or sharing outputs.
+
+Risk: It is written for Chinese-language material drafting and may route broad Chinese requests about writing with AI.
+
+Mitigation: Apply it to Chinese writing workflow tasks and choose a more specific skill for unrelated research, automation, or non-writing requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yanfenliu9014-spec/skills/ai-writing-craft)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown]
+
+**Output Format:** [Markdown guidance with Chinese prompt templates and workflow steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance-only writing workflow; no code execution, persistence, hidden data access, or privileged actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

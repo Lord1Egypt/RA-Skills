@@ -1,44 +1,51 @@
-## Description: <br>
-Interact with SiYuan notes via direct HTTP API for reading, writing, searching, and managing SiYuan blocks, documents, notebooks, attributes, assets, and SQL queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with SiYuan notes via direct HTTP API for reading, writing, searching, managing blocks and documents, handling assets, and executing SQL queries.
 
-## Publisher: <br>
-[eloklam](https://clawhub.ai/user/eloklam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eloklam](https://clawhub.ai/user/eloklam)
 
-## Use Case: <br>
-Developers and agents use this skill to interact with a SiYuan note database through authenticated local or trusted-server HTTP API calls. It supports note search and retrieval, markdown export, SELECT-only SQL queries, direct API calls, and guarded block insert, update, and delete operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses SIYUAN_TOKEN to make authenticated calls that can read and modify a SiYuan note database. <br>
-Mitigation: Use a trusted SiYuan server, keep SIYUAN_BASE on localhost unless remote access is intentional, and scope operational review around any command that can write, delete, export, or run broad SQL. <br>
-Risk: The raw call command can reach arbitrary SiYuan API paths except for explicitly blocked notebook-management endpoints. <br>
-Mitigation: Avoid raw call unless the endpoint and request body are known, and require explicit confirmation before invoking non-read API paths. <br>
-Risk: Search and SQL commands can expose note content to the agent. <br>
-Mitigation: Run SELECT queries only for the minimum needed scope and review requested search terms, notebook IDs, and result limits before execution. <br>
+## Use Case:
 
+Developers and agent users use this skill to search, read, export, and manage SiYuan notes through an authenticated HTTP API, including SELECT SQL queries and guarded write operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eloklam/siyuan-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/eloklam) <br>
-- [SiYuan](https://ld246.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIYUAN_TOKEN and optionally SIYUAN_BASE for the target SiYuan server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.6 (source: server-resolved release metadata) <br>
+Risk: The skill grants broad SiYuan API authority through SIYUAN_TOKEN, and its generic direct API command can weaken documented safety controls around SQL and writes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a local loopback SIYUAN_BASE when possible, avoid untrusted or plaintext remote hosts, protect SIYUAN_TOKEN, and review generic API calls before execution.
+
+## Reference(s):
+
+- [Siyuan Agent on ClawHub](https://clawhub.ai/eloklam/skills/siyuan-agent)
+- [eloklam ClawHub profile](https://clawhub.ai/user/eloklam)
+- [SiYuan](https://ld246.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [JSON API responses, Markdown exports, and shell command invocations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIYUAN_TOKEN; SIYUAN_BASE defaults to local loopback unless configured.]
+
+## Skill Version(s):
+
+2.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

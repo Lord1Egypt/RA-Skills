@@ -1,39 +1,51 @@
-## Description: <br>
-Provides current time for IANA timezones or IP addresses, lists IANA timezone strings, and converts datetimes between timezones. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides current time for IANA timezones or IP-based geolocation, lists IANA timezone strings, and converts datetimes between timezones.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-Developers and agents use this skill to answer timezone questions, list valid IANA timezone identifiers, resolve current time from IP geolocation, and convert meeting times between timezones through the Pipeworx timezone MCP endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Timezone queries and optional IP-based lookup are sent to the disclosed Pipeworx MCP endpoint. <br>
-Mitigation: Use the skill only where sending timezone queries to gateway.pipeworx.io is acceptable, and avoid IP-based lookup for sensitive users or environments. <br>
+## Use Case:
 
+Developers and agents use this skill to answer timezone questions, convert meeting times, enumerate valid IANA timezone identifiers, and perform IP-based timezone lookups.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/b-gutman/pipeworx-timezone) <br>
-- [Pipeworx timezone MCP endpoint](https://gateway.pipeworx.io/timezone/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use an external Pipeworx MCP endpoint; IP-based lookup can involve processing an IP address.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: IP-based timezone lookup sends the queried IP address to gateway.pipeworx.io.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use timezone-name lookup or conversion for sensitive cases; only use IP lookup with addresses you are comfortable sharing with the service.
+
+## Reference(s):
+
+- [Pipeworx Timezone Skill](https://clawhub.ai/b-gutman/skills/pipeworx-timezone)
+- [Publisher Profile](https://clawhub.ai/user/b-gutman)
+- [Timezone MCP endpoint](https://gateway.pipeworx.io/timezone/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Text responses, Markdown examples, and JSON MCP configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Timezone outputs can include datetimes, UTC offsets, offset differences, and IANA timezone identifiers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

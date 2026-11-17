@@ -1,0 +1,88 @@
+{
+  "skill_name": "huawei-cloud-rms-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "ListAllResources 操作与参数（语法）",
+      "command": "hcloud RMS ListAllResources --cli-region={region} --help",
+      "expected": "KooCLI prints the ListAllResources help (params: --domain_id / --region_id / --ep_id / --type / --id / --name / --tags.N / --limit / --marker)",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "ListResources 操作与参数（语法）",
+      "command": "hcloud RMS ListResources --cli-region={region} --help",
+      "expected": "KooCLI prints the ListResources help (required --provider and --type)",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "ListProviders 操作与参数（语法）",
+      "command": "hcloud RMS ListProviders --cli-region={region} --help",
+      "expected": "KooCLI prints the ListProviders help (params: --offset / --limit / --track / --X-Language)",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-04",
+      "name": "ListRegions 操作与参数（语法）",
+      "command": "hcloud RMS ListRegions --cli-region={region} --help",
+      "expected": "KooCLI prints the ListRegions help",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-05",
+      "name": "区域目录真实只读查询（live）",
+      "command": "hcloud RMS ListRegions --cli-region={region}",
+      "expected": "Returns the RMS region catalog JSON (value[region_id, display_name])",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-06",
+      "name": "云服务目录真实只读查询（live）",
+      "command": "hcloud RMS ListProviders --cli-region={region} --limit=1 --offset=1",
+      "expected": "Returns one resource provider with its resource_types",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-07",
+      "name": "脚本表格输出（默认 ListAllResources）",
+      "command": "python3 scripts/list_rms_resources.py --region {region} --format table",
+      "expected": "Aligned table with id/name/provider/type/region_id columns (or an explicit permission/empty message)",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-08",
+      "name": "脚本导出 JSON / Markdown / CSV",
+      "command": "python3 scripts/list_rms_resources.py --list-regions --format json --output /tmp/rms_regions_{region}.json",
+      "expected": "Writes a JSON file and prints the path",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-09",
+      "name": "参数帮助（脚本）",
+      "command": "python3 scripts/list_rms_resources.py --help",
+      "expected": "argparse help printed, exit 0",
+      "type": "syntax",
+      "executor": "script"
+    },
+    {
+      "id": "TC-10",
+      "name": "离线单元测试",
+      "command": "python3 -m unittest discover -s tests",
+      "expected": "All offline unit tests pass (mocked hcloud): guard / resolve / command build / JSON+envelope / paging / SDK fallback / renderers / atomic export",
+      "type": "unit",
+      "executor": "script"
+    }
+  ],
+  "env_vars_required": ["以 HUAWEI/HW/HWC 开头的环境变量中匹配 AK/SK 的键值对"],
+  "notes": "只读操作（RMS ListAllResources / ListResources / ListProviders / ListRegions，全部 GET），无资源创建/修改/删除风险；导出文件仅在本机生成，绝不写回云端。CLI 主路径使用 hcloud RMS（经 skill-quality-cli 包裹）；SDK 回退使用 huaweicloudsdkrms v1（GlobalCredentials）；SDK 缺失时运行 scripts/ensure_env.py 自动安装。写意图守卫拦截变更意图，其行为由离线单元测试（TC-10）覆盖。ListAllResources 需要 IAM 权限 rms:resources:list；缺该权限时脚本给出明确的权限错误提示。真实只读验证由 QA 带外执行。"
+}

@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7163qdzzbfzmhwwgy5tdeefh82ckex",
-  "slug": "playwright-scraper",
+  "name": "playwright-scraper",
   "version": "1.0.0",
-  "publishedAt": 1772761294752
+  "type": "mcp-server",
+  "entrypoint": "index.js",
+  "runtime": "node",
+  "description": "基于 Playwright 的反机器人保护爬虫技能"
 }

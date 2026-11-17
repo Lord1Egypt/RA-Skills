@@ -1,48 +1,58 @@
-## Description: <br>
-Swiss-knife for AI agents with 50+ models for image generation, video generation, text-to-speech, speech-to-text, music, chat, web search, document parsing, email, and SMS, plus smart routing for cost savings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skillboss is a Swiss-knife for AI agents, offering 50+ models for image generation, video generation, text-to-speech, speech-to-text, music, chat, web search, document parsing, email, and SMS with smart routing for cost saving.
 
-## Publisher: <br>
-[MarjorieBroad](https://clawhub.ai/user/MarjorieBroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-External users and developers use Skillboss to route agent tasks through SkillBoss for chat, image, video, audio, search, scraping, document processing, email, and SMS workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task data is sent through SkillBoss and downstream providers. <br>
-Mitigation: Avoid secrets or regulated data unless approved for those services, and review prompts before sending. <br>
-Risk: Model calls, scraping, email, SMS, and profile lookup actions may incur costs or affect third parties. <br>
-Mitigation: Use a scoped or low-budget API key, monitor usage, and confirm recipients or targets before running those actions. <br>
+## Use Case:
 
+Developers and agent operators use Skillboss to route model requests across chat, image, video, audio, search, scraping, document processing, email, SMS, embeddings, and presentation services through a Node-based command interface.
 
-## Reference(s): <br>
-- [Skillboss ClawHub listing](https://clawhub.ai/MarjorieBroad/skillboss-4) <br>
-- [MarjorieBroad publisher profile](https://clawhub.ai/user/MarjorieBroad) <br>
-- [SkillBoss website](https://www.skillboss.co) <br>
-- [Chat Models](artifact/chat-models.md) <br>
-- [Image Models](artifact/image-models.md) <br>
-- [Video Models](artifact/video-models.md) <br>
-- [Audio Models](artifact/audio-models.md) <br>
-- [Search and Scraping Models](artifact/search-models.md) <br>
-- [Tool Models](artifact/tools-models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Media URLs] <br>
-**Output Format:** [Plain text, JSON, or URLs printed by the Node command wrapper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and SKILLBOSS_API_KEY; external provider calls may incur costs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts, files, audio, and generated content may be routed to external model or processing providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review data sensitivity before use, avoid private or regulated inputs unless approved, and document which provider routes are acceptable.
+
+Risk: Email, SMS, OTP, and batch messaging actions can contact external recipients.
+
+Mitigation: Require explicit user approval for recipient lists, message content, and any email, SMS, OTP, or batch messaging invocation.
+
+Risk: The skill depends on SKILLBOSS_API_KEY for remote API access.
+
+Mitigation: Store the key in an approved secret store or environment variable, restrict access to trusted agents, and avoid exposing the key in logs or shared transcripts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/marjoriebroad/skills/skillboss-4)
+- [SkillBoss Website](https://www.skillboss.co)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Console text, JSON, generated media URLs, Markdown, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and SKILLBOSS_API_KEY; media results are returned as URLs for optional download.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

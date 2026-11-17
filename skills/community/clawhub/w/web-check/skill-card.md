@@ -1,41 +1,54 @@
-## Description: <br>
-Reference tool for devtools \u2014 covers intro, quickstart, patterns and more. Quick lookup for Web Check concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that covers intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance for Web Check concepts and practices.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill as a local reference helper for Web Check concepts, quickstart material, implementation patterns, debugging, performance, security, migration, and cheat-sheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A future version could request credentials, network access, file changes, or account actions outside the reviewed behavior. <br>
-Mitigation: Treat those changes as out of scope for this review and reassess security before installing or using the new version. <br>
-Risk: Static reference guidance may be incomplete or unsuitable for a specific environment. <br>
-Mitigation: Review the guidance against current project requirements and test any operational changes before applying them. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick local reference for Web Check concepts, common workflows, troubleshooting, performance practices, security considerations, and migration checklists.
 
-## Reference(s): <br>
-- [Web Check on ClawHub](https://clawhub.ai/xueyetianya/web-check) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local output via heredoc; no external API calls, credentials, or network access described in the reviewed artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The release evidence describes this as a generic reference script rather than a full web-check implementation, so users may overestimate its operational coverage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as reference guidance and verify any procedure against the project-specific tooling, environment, and authoritative documentation before applying it.
+
+Risk: The security guidance notes that generic documentation text mentions credentials even though the skill itself does not require or access them.
+
+Mitigation: Do not provide secrets to the skill; follow local credential-handling policy and review credential-related guidance before use.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [Web Check on ClawHub](https://clawhub.ai/xueyetianya/skills/web-check)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown-style headings and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local heredoc output only; no external API calls, credentials, network access, or persistent system changes are described by the security evidence.]
+
+## Skill Version(s):
+
+2.0.2 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-NLP Text Analyzer supports Chinese and English tokenization, sentiment analysis, keyword extraction, text classification, summarization, word frequency analysis, and similarity checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Chinese and English text with tokenization, sentiment analysis, keyword extraction, summarization, word-frequency statistics, basic named-entity recognition, text classification, and similarity scoring.
 
-## Publisher: <br>
-[kaiyuelv](https://clawhub.ai/user/kaiyuelv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuelv](https://clawhub.ai/user/kaiyuelv)
 
-## Use Case: <br>
-Developers and agents use this skill to analyze Chinese and English text for tokenization, sentiment, keywords, summaries, word frequencies, basic classification, and text similarity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unpinned Python dependencies may resolve to different package versions at install time. <br>
-Mitigation: Pin exact dependency versions or install from a reviewed lockfile in stricter environments. <br>
-Risk: Sentiment, summary, keyword, classification, and similarity outputs are heuristic and may be inaccurate for ambiguous, domain-specific, or mixed-language text. <br>
-Mitigation: Review analysis outputs before using them for decisions and validate behavior against representative text samples. <br>
+## Use Case:
 
+Developers and agents use this skill to analyze Chinese and English text for tokenization, sentiment, keywords, summaries, word frequencies, basic classification, and similarity checks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kaiyuelv/nlp-text-analyzer) <br>
-- [Homepage](https://github.com/kaiyuelv/nlp-text-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and structured analysis results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results can include token lists, sentiment scores, keyword-weight pairs, summaries, word-frequency maps, classification scores, and similarity scores.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Python NLP dependencies are version-ranged and resolved from current package indexes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or lock jieba, snownlp, and textblob before reproducible or production use.
+
+Risk: The included basic_usage.py example has a syntax error.
+
+Mitigation: Correct the unterminated triple-quoted string before running examples; the core analyzer module compiles separately.
+
+## Reference(s):
+
+- [NLP Text Analyzer repository](https://github.com/kaiyuelv/nlp-text-analyzer)
+- [ClawHub skill page](https://clawhub.ai/kaiyuelv/skills/nlp-text-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, guidance]
+
+**Output Format:** [Markdown guidance and Python data structures containing analysis results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local Python NLP processing; results depend on jieba, SnowNLP, and TextBlob behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

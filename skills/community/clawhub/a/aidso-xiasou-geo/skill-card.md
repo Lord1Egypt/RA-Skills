@@ -1,45 +1,55 @@
-## Description: <br>
-AIDSO 虾搜 GEO is an integrated agent skill for binding and checking an API key, generating brand diagnostic reports, managing brand knowledge, producing GEO content, and researching GEO monitoring questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AIDSO虾搜 GEO 一体化 Skill，支持统一 API Key 绑定、检查、品牌诊断报告、品牌知识库、GEO 内容生产、GEO 问题挖掘。
 
-## Publisher: <br>
-[tangyuanmile-coder](https://clawhub.ai/user/tangyuanmile-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tangyuanmile-coder](https://clawhub.ai/user/tangyuanmile-coder)
 
-## Use Case: <br>
-External users and brand operators use this skill to run AIDSO GEO workflows for brand reporting, AI-search question research, brand knowledge additions, and content generation. It is intended for users who can provide and manage an AIDSO GEO API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores AIDSO_GEO_API_KEY in a local .env file when the bind flow is used. <br>
-Mitigation: Prefer environment variables or a scoped, revocable API key; protect the .env file and delete it when no longer needed. <br>
-Risk: The skill transmits API keys and brand data to AIDSO endpoints and can persist brand knowledge remotely. <br>
-Mitigation: Install only if the user trusts AIDSO with the submitted API key and brand data, and review knowledge-base additions before sending them. <br>
-Risk: prompt_research.py can use GEO_API_BASE_URL to change the API endpoint. <br>
-Mitigation: Do not set GEO_API_BASE_URL unless the replacement endpoint is intentionally trusted. <br>
+## Use Case:
 
+External users and marketers use this skill to work with the AIDSO GEO service for brand diagnosis reports, brand knowledge additions, GEO content generation, and AI search question mining. Developers or agents running it need Python 3 and an AIDSO_GEO_API_KEY.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/tangyuanmile-coder/aidso-xiasou-geo) <br>
-- [Publisher profile](https://clawhub.ai/user/tangyuanmile-coder) <br>
-- [AIDSO GEO API key settings](https://geo.aidso.com/setting?type=apiKey) <br>
-- [AIDSO GEO](https://geo.aidso.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON responses from Python tools] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a local .env file for AIDSO_GEO_API_KEY and a .state file for prompt-research task state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.2 (source: server-resolved release evidence) <br>
+Risk: The security scan says the API-key binding flow sends the secret as ordinary content to a remote knowledge endpoint and stores keys locally in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-privilege AIDSO key where possible, avoid entering secrets in normal chat or shell history, rotate any key previously bound with this version, and remove artifact/.env when no longer needed.
+
+Risk: The security guidance notes that GEO_API_BASE_URL or wrapper environment changes can redirect authenticated question-mining requests.
+
+Mitigation: Keep the default API base URL unless a trusted operator intentionally changes it, and review wrapper environment variables before running authenticated commands.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/tangyuanmile-coder/skills/aidso-xiasou-geo)
+- [AIDSO GEO service](https://geo.aidso.com)
+- [AIDSO GEO API key settings](https://geo.aidso.com/setting?type=apiKey)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or JSON/text returned from AIDSO service, with shell commands for local helper scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and AIDSO_GEO_API_KEY; outputs can include report URLs, generated GEO content, brand knowledge add status, and question lists.]
+
+## Skill Version(s):
+
+2.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

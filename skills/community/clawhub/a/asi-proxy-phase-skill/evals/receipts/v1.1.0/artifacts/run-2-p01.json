@@ -1,0 +1,206 @@
+{
+  "authority_boundary": {
+    "allowed_actions": [
+      "inspect the declared workspace",
+      "prepare a bounded local intervention",
+      "run local validation"
+    ],
+    "approval_required": [
+      "push",
+      "release",
+      "external communication",
+      "destructive operation"
+    ],
+    "prohibited_actions": [
+      "invent missing observations",
+      "claim real ASI"
+    ]
+  },
+  "candidate_gate": {
+    "candidate_regime": null,
+    "conditions": {
+      "capability_reproduction": {
+        "criterion": "Declare a protocol-relative criterion before evaluation.",
+        "evidence_refs": [],
+        "rationale": "The criterion has not been evaluated.",
+        "status": "unknown"
+      },
+      "critical_unknowns": {
+        "criterion": "Declare a protocol-relative criterion before evaluation.",
+        "evidence_refs": [],
+        "rationale": "The criterion has not been evaluated.",
+        "status": "unknown"
+      },
+      "hold_period": {
+        "criterion": "Declare a protocol-relative criterion before evaluation.",
+        "evidence_refs": [],
+        "rationale": "The criterion has not been evaluated.",
+        "status": "unknown"
+      },
+      "phase_readiness": {
+        "criterion": "Declare a protocol-relative criterion before evaluation.",
+        "evidence_refs": [],
+        "rationale": "The criterion has not been evaluated.",
+        "status": "unknown"
+      },
+      "residual_ratio": {
+        "criterion": "Declare a protocol-relative criterion before evaluation.",
+        "evidence_refs": [],
+        "rationale": "The criterion has not been evaluated.",
+        "status": "unknown"
+      },
+      "resource_floor": {
+        "criterion": "Declare a protocol-relative criterion before evaluation.",
+        "evidence_refs": [],
+        "rationale": "The criterion has not been evaluated.",
+        "status": "unknown"
+      },
+      "verification_coverage": {
+        "criterion": "Declare a protocol-relative criterion before evaluation.",
+        "evidence_refs": [],
+        "rationale": "The criterion has not been evaluated.",
+        "status": "unknown"
+      }
+    },
+    "unknowns": [
+      {
+        "critical": true,
+        "description": "No phase evidence has been admitted.",
+        "evidence_refs": [],
+        "id": "initial-evidence-boundary"
+      }
+    ]
+  },
+  "execution": {
+    "actions": [],
+    "artifacts": [],
+    "status": "not_executed"
+  },
+  "interventions": [],
+  "next_binding_dimension": "verification_capacity",
+  "non_claims": [
+    "This packet is protocol-relative.",
+    "It does not predict, detect, or certify real ASI.",
+    "It does not prove a scientific phase transition or real-world causal effect."
+  ],
+  "objective": "Prepare an evidence-gated intervention for a declared verification bottleneck",
+  "outcome_status": "planned",
+  "phase_assessment": {
+    "causal_formation": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "coordination_protocol_integrity": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "dimensional_consistency": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "effective_independence": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "exact_self_maintenance": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "finite_horizon_resource_persistence": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "perturbation_robustness": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "provenance_integrity": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "structural_reachability": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "target_bound_generative_catalysis": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "temporal_integrity": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "trust_quorum": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "verification_capacity": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    }
+  },
+  "residuals": {
+    "evidence_refs": [],
+    "status": "unknown",
+    "unresolved": [
+      "All 13 phase dimensions lack admissible measurements.",
+      "The stated verification bottleneck has not yet been quantified against candidate flow."
+    ]
+  },
+  "rollback": {
+    "available": false,
+    "steps": [],
+    "trigger": "No workspace mutation has occurred, so there is nothing to roll back."
+  },
+  "schema_version": "1.0.0",
+  "scope": {
+    "evaluation_horizon": "Packet preparation and one structural validation run.",
+    "in_scope": [
+      "fail-closed packet preparation",
+      "local structural validation"
+    ],
+    "out_of_scope": [
+      "workspace mutation",
+      "external systems",
+      "real-world ASI certification"
+    ],
+    "systems": [
+      "declared verification pipeline"
+    ],
+    "workspace": "workspaces/silver/P01"
+  },
+  "sources": {
+    "papers": [],
+    "repositories": []
+  },
+  "validation": {
+    "checks": [],
+    "status": "not_run"
+  }
+}

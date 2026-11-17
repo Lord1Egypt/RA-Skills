@@ -1,43 +1,53 @@
-## Description: <br>
-Render article markdown into WeChat-style HTML as an independent executor for WeChat layout preview, HTML output, or publishable HTML artifacts generated from article markdown drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render article markdown into WeChat-style HTML as an independent executor for WeChat layout preview, WeChat HTML output, or a publishable HTML artifact generated from an article markdown draft.
 
-## Publisher: <br>
-[abigale-cyber](https://clawhub.ai/user/abigale-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abigale-cyber](https://clawhub.ai/user/abigale-cyber)
 
-## Use Case: <br>
-Developers and content operators use this skill to convert finalized article markdown into WeChat-compatible HTML for preview, inspection, and downstream publishing. It can optionally include summary, quote, share-copy, and CTA blocks from a sibling writing-pack sidecar. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The runtime imports renderer code from a hard-coded local user path outside the packaged artifact. <br>
-Mitigation: Install only after inspecting that local renderer code, or use a release that vendors the helper or declares a pinned, reviewable dependency. <br>
-Risk: The formatter can consume a sibling writing-pack sidecar as article input. <br>
-Mitigation: Use writing-pack sidecars only from the same trusted draft directory and review generated HTML before publishing. <br>
+## Use Case:
 
+Developers and content operators use this skill to convert finalized Markdown articles into WeChat-compatible HTML and optionally append summary, quote, share-copy, and CTA blocks from a sibling writing-pack sidecar.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abigale-cyber/content-system-wechat-formatter) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [skill.json](artifact/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with generated WeChat-compatible HTML file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Primary artifact path is content-production/ready/<slug>-wechat.html; output quality depends on the source article and any trusted writing-pack sidecar.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The reviewed runtime imports executable renderer code from a hard-coded personal filesystem path outside the packaged artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Package or pin the renderer dependency inside the release and review the resolved runtime path before installing or executing the skill.
+
+Risk: Generated ready HTML files could overwrite an existing output for the same slug.
+
+Mitigation: Confirm generated output filenames or use a clean output directory before running the formatter.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abigale-cyber/skills/content-system-wechat-formatter)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code]
+
+**Output Format:** [Standalone WeChat-compatible HTML file generated from Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes content-production/ready/<slug>-wechat.html and may include optional sidecar summary, quote, share-copy, and CTA blocks.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

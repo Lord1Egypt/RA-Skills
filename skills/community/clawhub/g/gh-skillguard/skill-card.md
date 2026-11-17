@@ -1,42 +1,58 @@
-## Description: <br>
-Run a complete security audit on any OpenClaw SKILL.md in one call. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skillguard runs a complete security audit on OpenClaw SKILL.md content by combining malware scanning, permission scope analysis, and prompt injection detection into a unified SAFE/CAUTION/DANGEROUS verdict.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and security reviewers use Skillguard to audit OpenClaw SKILL.md content with a combined malware scan, permission scope check, and prompt injection check before installing or publishing a skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local HTTP service and installs common Python web dependencies. <br>
-Mitigation: Run it in a trusted local environment, bind it only where needed, and install dependencies from trusted package indexes. <br>
-Risk: Audit coverage depends on SkillScan, ScopeCheck, and PromptGuard detector modules being available in the runtime environment. <br>
-Mitigation: Confirm the detector modules are installed before relying on the combined verdict, and treat missing-module setup failures as an incomplete audit. <br>
-Risk: Submitted SKILL.md content is processed by the local audit endpoint. <br>
-Mitigation: Submit only skill files intended for analysis and avoid sending unrelated sensitive content. <br>
+## Use Case:
 
+Developers and engineers use Skillguard to audit OpenClaw skill definitions before installation, release, or review. The skill returns a unified security verdict with sub-reports for malware indicators, declared and detected permission scope, and prompt injection patterns.
 
-## Reference(s): <br>
-- [ClawHub Skillguard release](https://clawhub.ai/mirni/gh-skillguard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, guidance] <br>
-**Output Format:** [JSON security audit report with a SAFE, CAUTION, or DANGEROUS verdict and scan, scope, and injection sub-reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Input is raw SKILL.md text; output includes total findings, safety and risk scores, declared access, undeclared access, and detected injection patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Running the skill starts a local Python web service and imports scanner modules from the local environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in a trusted environment, pin or review Python dependencies when reproducibility matters, and verify scanner modules before relying on audit verdicts.
+
+Risk: Audit verdicts depend on scanner coverage and may not catch every malicious, over-scoped, or prompt-injection pattern.
+
+Mitigation: Treat SAFE/CAUTION/DANGEROUS as review support and inspect the returned sub-reports before installing or releasing a skill.
+
+Risk: The API processes user-supplied SKILL.md content, which may include sensitive unpublished skill text.
+
+Mitigation: Run the service locally or behind trusted access controls and avoid sending confidential skill content to untrusted deployments.
+
+## Reference(s):
+
+- [Skillguard ClawHub listing](https://clawhub.ai/mirni/skills/gh-skillguard)
+- [mirni publisher profile](https://clawhub.ai/user/mirni)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, analysis, guidance]
+
+**Output Format:** [JSON response with verdict, finding counts, and nested scan, scope, and injection reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs as a local FastAPI service; request body accepts raw SKILL.md text up to 500,000 characters.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

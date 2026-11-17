@@ -1,39 +1,50 @@
-## Description: <br>
-Auto-learns when to seek different perspectives. Grows a library of useful mindsets and collaboration patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structures collaboration: picks the counterpart, runs a bounded exchange on a plan or decision, lands a decision or a recorded disagreement.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Agents and developers use this skill to decide when to seek another perspective, choose an appropriate collaboration mindset, and record useful collaboration patterns for future work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Collaboration notes could include secrets, private project details, or unnecessary sensitive context. <br>
-Mitigation: Review stored collaboration patterns periodically and keep notes concise, non-sensitive, and free of credentials or private project data. <br>
+## Use Case:
 
+Agents use this skill to structure critique, second opinions, review sessions, pairing, and decision exchanges so they end in a clear decision or recorded disagreement. It is useful when plans, artifacts, or group reviews need bounded challenge before commitment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/collaborate) <br>
-- [Perspective archetypes](mindsets.md) <br>
-- [Collaborate vs delegate](vs-delegate.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown guidance and short text entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May record concise collaboration patterns in the skill's markdown sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Decision records and collaboration preferences may contain sensitive project, business, or personnel context when local logging is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable decision logging, redirect records to an approved location, or avoid recording sensitive details before using the skill on confidential work.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/ivangdavila/skills/collaborate)
+- [Clawic Collaborate skill page](https://clawic.com/skills/collaborate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance, decision records, review tables, and concise convergence notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append collaboration preferences and decision records under ~/Clawic/data/collaborate/ when decision logging is enabled.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

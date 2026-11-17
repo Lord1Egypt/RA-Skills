@@ -21,7 +21,7 @@ class MiniMaxClient:
         # 从环境变量或直接传入获取 API key
         self.api_key = api_key or os.environ.get(
             "MINIMAX_API_KEY",
-            "sk-cp-M0p_jtAWxZ_IKwoeQaLbJh4V43L85PmtyjlLjmIZIDduuL4e_fFRSlXSWzL7GOCWJPu4lN-O4Dt9cLbLFMZVzxLUgKSq0NGgtn6ABKj4K-73boMA0ehpjxo"
+            "REDACTED-SECRET"
         )
         self.api_host = api_host or os.environ.get(
             "MINIMAX_API_HOST",

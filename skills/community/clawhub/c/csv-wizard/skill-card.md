@@ -1,39 +1,54 @@
-## Description: <br>
-Interactive CSV data cleaning CLI that supports automatic type inference, missing-value handling, duplicate detection, and cleaned CSV export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive CSV data-cleaning CLI support for type inference, missing-value handling, duplicate detection, column-name standardization, and CSV export.
 
-## Publisher: <br>
-[antonia-sz](https://clawhub.ai/user/antonia-sz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antonia-sz](https://clawhub.ai/user/antonia-sz)
 
-## Use Case: <br>
-Developers, data practitioners, and external users use CSV Wizard to inspect CSV files, clean missing values and duplicates, standardize column names, and write cleaned CSV outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cleaning options can remove rows, change values, or overwrite cleaned dataset outputs if used carelessly. <br>
-Mitigation: Keep original CSV files backed up, prefer writing to a new output file, and review lossy options such as dropping rows, filling missing values, and removing duplicates before running them on important data. <br>
+## Use Case:
 
+Developers, data analysts, and operations teams use this skill to inspect CSV files, preview dataset shape, clean missing values, remove duplicates, standardize columns, and export cleaned CSV files.
 
-## Reference(s): <br>
-- [CSV Wizard on ClawHub](https://clawhub.ai/antonia-sz/csv-wizard) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with CLI command examples and CSV file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include dataset summaries, previews, cleaning recommendations, and cleaned CSV files written to a user-selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and target metadata) <br>
+Risk: CSV-cleaning options can change datasets by dropping rows, filling missing values, deduplicating records, or standardizing column names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill on copies of important CSV files and review previews, summaries, and output diffs before using cleaned data downstream.
+
+Risk: The inspected artifact declares a CLI entrypoint but does not include the referenced executable.
+
+Mitigation: Confirm that the installer supplies the executable or provide an equivalent implementation before relying on the skill operationally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/antonia-sz/skills/csv-wizard)
+- [ClawHub publisher profile](https://clawhub.ai/user/antonia-sz)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Analysis, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and CSV file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May modify tabular data by dropping rows, filling missing values, deduplicating records, standardizing names, and exporting cleaned CSV files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter: 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,57 @@
-## Description: <br>
-Monitor system processes, resource usage, and performance metrics with real-time terminal dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor system processes, resource usage, and performance metrics with real-time terminal dashboard.
 
-## Publisher: <br>
-[Derick001](https://clawhub.ai/user/Derick001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[derick001](https://clawhub.ai/user/derick001)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect local CPU, memory, disk, network, and process activity from a terminal, including one-time JSON snapshots for scripting and integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Terminal and JSON output may reveal local users, running applications, service names, PIDs, and system layout. <br>
-Mitigation: Keep exports local, avoid sharing monitoring output publicly, and install psutil from a trusted package source. <br>
+## Use Case:
 
+Developers and system operators use this skill to inspect local CPU, memory, disk, network, and process activity from a terminal, either as a live dashboard or as one-shot text or JSON snapshots for scripting.
 
-## Reference(s): <br>
-- [Process Monitor Dashboard README](README.md) <br>
-- [Process Monitor Dashboard on ClawHub](https://clawhub.ai/Derick001/process-monitor-dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; CLI commands return terminal text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local system metrics only; dashboard refresh interval is configurable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Process names and usernames displayed in the terminal can expose sensitive local activity on shared systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on machines where displaying local process and user information is acceptable.
+
+Risk: Installing dependencies from an untrusted source can introduce supply-chain risk.
+
+Mitigation: Install psutil from a trusted package source, preferably in a virtual environment or through the operating system package manager.
+
+Risk: Very short refresh intervals can add avoidable CPU overhead.
+
+Mitigation: Use the documented 1-10 second refresh interval range and increase the interval when monitoring overhead matters.
+
+## Reference(s):
+
+- [Process Monitor Dashboard on ClawHub](https://clawhub.ai/derick001/skills/process-monitor-dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Terminal text tables and JSON objects, with shell command examples in Markdown documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports live dashboard output, one-shot snapshots, top-process listings, process monitoring, system statistics, and threshold alerts.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

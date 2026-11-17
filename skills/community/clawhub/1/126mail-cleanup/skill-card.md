@@ -1,43 +1,60 @@
-## Description: <br>
-Use this skill when the user wants to clean up, back up, or optimize their 126.com (NetEase) email account, including local backup, spam or subscription bulk deletion, and large attachment stripping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user wants to clean up, back up, or optimize their 126.com (NetEase) email account, including local backup, spam and subscription cleanup, and large attachment stripping.
 
-## Publisher: <br>
-[yinghaojia](https://clawhub.ai/user/yinghaojia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinghaojia](https://clawhub.ai/user/yinghaojia)
 
-## Use Case: <br>
-External users and developers use this skill to manage NetEase 126.com mailboxes through an agent-guided workflow for backup, classification, cleanup, and storage reduction. It is intended for users who can provide 126.com IMAP authorization credentials and review proposed destructive mailbox changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a 126.com mailbox and can change or delete email during the cleanup and attachment-stripping workflows. <br>
-Mitigation: Use a revocable IMAP authorization code, keep backups in a private location, review previews carefully, and revoke or rotate the authorization code after cleanup. <br>
-Risk: Attachment stripping and bulk cleanup are destructive operations if the user confirms the proposed changes. <br>
-Mitigation: Complete and verify local backups before destructive phases, use staging copies where available, and confirm deletion or stripping targets before execution. <br>
+## Use Case:
 
+External users with NetEase 126.com mailboxes use this skill to back up email locally, classify bulk senders, review cleanup candidates, delete unwanted mail, and reduce server storage used by large attachments.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yinghaojia/126mail-cleanup) <br>
-- [Publisher profile](https://clawhub.ai/user/yinghaojia) <br>
-- [126.com mail service](https://mail.126.com) <br>
-- [Support issues](https://github.com/jimmyclaw/126mail-cleanup/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, JSON, Files] <br>
-**Output Format:** [Markdown guidance with inline commands and local JSON or email backup files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and 126.com IMAP credentials supplied through MAIL126_ADDRESS and MAIL126_AUTH_CODE.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, clawhub.json, server release metadata) <br>
+Risk: The skill requires full IMAP access to the user's 126.com mailbox.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a 126 IMAP authorization code rather than the login password, store it securely, and revoke it when mailbox cleanup is complete.
+
+Risk: Cleanup or attachment stripping can permanently remove email, including unrelated messages already marked deleted if EXPUNGE is applied broadly.
+
+Mitigation: Create and verify a full local backup first, require explicit approval for destructive steps, and restrict expunge operations to approved UID sets or use Trash/staging for manual deletion.
+
+Risk: Local backups and downloaded attachments may contain sensitive mailbox data.
+
+Mitigation: Save backups only to a trusted local directory with appropriate access controls and delete temporary progress or export files when no longer needed.
+
+## Reference(s):
+
+- [126 Mail Cleanup on ClawHub](https://clawhub.ai/yinghaojia/skills/126mail-cleanup)
+- [yinghaojia ClawHub publisher profile](https://clawhub.ai/user/yinghaojia)
+- [NetEase 126 Mail](https://mail.126.com)
+- [Support issues](https://github.com/jimmyclaw/126mail-cleanup/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with command examples, configuration values, and procedural checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to create local backup, metadata, classification, and progress files during mailbox operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, SKILL.md frontmatter, package.json, clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

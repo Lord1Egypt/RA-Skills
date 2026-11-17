@@ -1,42 +1,59 @@
-## Description: <br>
-Uses Tencent Ads Miaowen's AI Q&A API to answer Tencent Ads, WeChat Ads, Moments Ads, Video Account Ads, and WeChat Store marketing questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the Tencent Ads Miaowen AI Q&A API to answer Tencent Ads, WeChat Ads, Moments Ads, Video Accounts Ads, and WeChat Store marketing questions across account setup, qualification review, campaign creation, targeting, bidding, audit rules, creative requirements, reporting, and compliance handling.
 
-## Publisher: <br>
-[yishuang07](https://clawhub.ai/user/yishuang07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yishuang07](https://clawhub.ai/user/yishuang07)
 
-## Use Case: <br>
-Marketing operators, account managers, and agents use this skill to ask Tencent Ads platform questions about account setup, payments, qualifications, campaign creation, targeting, bidding, review rules, materials, reports, and policy issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Miaowen/Tencent Ads API token, and exposing the token could affect the user's account or API access. <br>
-Mitigation: Configure the token locally, keep the token file private, avoid sharing the full token in chat or logs, and revoke or delete it when it is no longer needed. <br>
-Risk: Questions are sent to the Tencent Ads Miaowen API and may contain sensitive business, campaign, account, or personal information. <br>
-Mitigation: Redact confidential details and avoid sending personal data, account secrets, or sensitive business information in prompts. <br>
+## Use Case:
 
+External users and advertising operators use this skill to ask Tencent Ads business, platform, account, campaign setup, and compliance questions. The skill runs shell scripts that manage a Miaowen API token locally and call Tencent's Miaowen API for answers.
 
-## Reference(s): <br>
-- [Tencent Ads Miaowen](https://miaowen.qq.com/) <br>
-- [Tencent Ads Miaowen Chat API](https://ad.qq.com/ai/gw/ai_customer_service/v1/open_api/chat) <br>
-- [ClawHub skill page](https://clawhub.ai/yishuang07/tencentads-miaowen-qa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided Miaowen API token stored locally before API-backed answers can be retrieved.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Credential exposure from pasting a real Miaowen API token into an AI chat or placing it directly on a command line.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a local secret-entry method when possible, prefer least-privilege or revocable tokens, and avoid sharing the full token in chat transcripts, logs, or command history.
+
+Risk: The skill stores the Miaowen access token as plaintext in the user's home directory.
+
+Mitigation: Review the local token file before use, keep permissions restricted to the current user, and rotate or delete the token when it is no longer needed.
+
+Risk: User questions are sent to Tencent's Miaowen API and may contain confidential advertising or business information.
+
+Mitigation: Do not submit sensitive account, customer, campaign, or business data unless the user accepts that it will be sent to Tencent's API.
+
+## Reference(s):
+
+- [Miaowen official site](https://miaowen.qq.com/)
+- [Tencent Ads Miaowen chat API endpoint](https://ad.qq.com/ai/gw/ai_customer_service/v1/open_api/chat)
+- [ClawHub skill page](https://clawhub.ai/yishuang07/skills/tencentads-miaowen-qa)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash, curl, a local Miaowen access token, and network access to Tencent's API.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

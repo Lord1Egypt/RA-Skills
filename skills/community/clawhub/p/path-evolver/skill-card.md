@@ -1,44 +1,60 @@
-## Description: <br>
-Tracks skill success rates, discovers better tools, and prompts users to choose when better options are found. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Path Evolver tracks skill success rates, discovers better tools, and prompts the user before changing tool choices.
 
-## Publisher: <br>
-[wyzlove](https://clawhub.ai/user/wyzlove) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wyzlove](https://clawhub.ai/user/wyzlove)
 
-## Use Case: <br>
-Developers and agent users use Path Evolver to record successful execution paths, track skill success rates, and receive suggestions for alternative tools when a task type is new, a tool fails, cached knowledge expires, or the user asks for recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local workflow cache may contain task parameters or other sensitive operational context. <br>
-Mitigation: Avoid storing secrets or detailed prompts in task parameters, and review the local cache before using the skill with sensitive work. <br>
-Risk: ClawHub or GitHub searches can disclose task categories to external services. <br>
-Mitigation: Send only sanitized task types, not user prompts or task parameters, and avoid network search for highly sensitive workflows. <br>
-Risk: Tool recommendations may be incorrect, stale, or unsuitable for a specific workflow. <br>
-Mitigation: Keep user confirmation in the loop and review or scan recommended skills before deployment. <br>
+## Use Case:
 
+Developers and agent users use Path Evolver to track tool success across repeated tasks, cache effective paths, and discover alternative skills while keeping tool changes under user control.
 
-## Reference(s): <br>
-- [Path Evolver ClawHub Page](https://clawhub.ai/wyzlove/path-evolver) <br>
-- [Design Decisions](references/design-decisions.md) <br>
-- [Workflow Cache Template](assets/workflow-cache-template.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe local cache updates, success-rate summaries, and user-facing tool recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The local workflow cache may contain task-related metadata or parameters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or clear ~/.openclaw/workspace/.path-evolver/workflow-cache.json periodically and avoid caching sensitive parameters.
+
+Risk: Discovery searches contact ClawHub and GitHub with task-type information.
+
+Mitigation: Send only the task category, not user input or task parameters, and confirm network use is acceptable for the environment.
+
+Risk: Suggested tool changes may be incorrect or unsuitable for a specific workflow.
+
+Mitigation: Review recommendations manually before changing tool priority or adopting an alternative skill.
+
+## Reference(s):
+
+- [Path Evolver on ClawHub](https://clawhub.ai/wyzlove/skills/path-evolver)
+- [Design decisions](references/design-decisions.md)
+- [Declared ClawHub endpoint](https://clawhub.ai)
+- [Declared GitHub API endpoint](https://api.github.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a local workflow cache at ~/.openclaw/workspace/.path-evolver/workflow-cache.json.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

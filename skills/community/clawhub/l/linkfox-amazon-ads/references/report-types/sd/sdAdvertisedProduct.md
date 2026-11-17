@@ -1,0 +1,141 @@
+---
+reportTypeId: sdAdvertisedProduct
+adProduct: SPONSORED_DISPLAY
+officialDocUrl: https://advertising.amazon.com/API/docs/en-us/guides/reporting/v3/report-types/advertised-product
+timeUnit: [SUMMARY, DAILY]
+groupBy: [advertiser]
+format: [GZIP_JSON]
+filters: []
+dateRange:
+  maxSpanDays: 31
+  dataRetentionDays: 65
+---
+
+# SD 已推广商品（Advertised Product）
+
+已推广商品报表包含作为 Sponsored Display 广告系列一部分进行推广的商品的绩效数据。
+
+## 配置
+
+| 配置项 | 取值 |
+|---|---|
+| reportTypeId | sdAdvertisedProduct |
+| 最大日期范围 | 31 天 |
+| 数据保留期 | 65 天 |
+| timeUnit | SUMMARY 或 DAILY |
+| groupBy | advertiser |
+| format | GZIP_JSON |
+
+## 基础指标
+
+| 字段 |
+|------|
+| addToCart |
+| addToCartRate |
+| addToCartViews |
+| addToCartClicks |
+| adGroupId |
+| adGroupName |
+| adId |
+| addToList |
+| addToListFromClicks |
+| qualifiedBorrows |
+| royaltyQualifiedBorrows |
+| addToListFromViews |
+| qualifiedBorrowsFromClicks |
+| qualifiedBorrowsFromViews |
+| royaltyQualifiedBorrowsFromClicks |
+| royaltyQualifiedBorrowsFromViews |
+| bidOptimization |
+| brandedSearches |
+| brandedSearchesClicks |
+| brandedSearchesViews |
+| brandedSearchRate |
+| campaignBudgetCurrencyCode |
+| campaignId |
+| campaignName |
+| clicks |
+| cost |
+| cumulativeReach |
+| date |
+| detailPageViews |
+| detailPageViewsClicks |
+| eCPAddToCart |
+| eCPBrandSearch |
+| endDate |
+| impressions |
+| impressionsFrequencyAverage |
+| impressionsViews |
+| kindleEditionNormalizedPagesRead |
+| kindleEditionNormalizedPagesReadFromClicks |
+| kindleEditionNormalizedPagesReadFromViews |
+| kindleEditionNormalizedPagesRoyalties |
+| kindleEditionNormalizedPagesRoyaltiesFromClicks |
+| kindleEditionNormalizedPagesRoyaltiesFromViews |
+| newToBrandDetailPageViewClicks |
+| newToBrandDetailPageViewRate |
+| newToBrandDetailPageViews |
+| newToBrandDetailPageViewViews |
+| newToBrandECPDetailPageView |
+| newToBrandPurchases |
+| newToBrandPurchasesClicks |
+| newToBrandSales |
+| newToBrandSalesClicks |
+| newToBrandUnitsSold |
+| newToBrandUnitsSoldClicks |
+| promotedAsin |
+| promotedSku |
+| purchases |
+| purchasesClicks |
+| purchasesPromotedClicks |
+| sales |
+| salesClicks |
+| salesPromotedClicks |
+| startDate |
+| unitsSold |
+| unitsSoldClicks |
+| videoCompleteViews |
+| videoFirstQuartileViews |
+| videoMidpointViews |
+| videoThirdQuartileViews |
+| videoUnmutes |
+| viewabilityRate |
+| viewClickThroughRate |
+
+## 按 advertiser 分组
+
+**额外指标**：无
+
+**过滤器**：无
+
+## 调用示例
+
+### 已推广商品汇总报表
+
+```bash
+curl --location --request POST 'https://advertising-api.amazon.com/reporting/reports' \
+--header 'Content-Type: application/vnd.createasyncreportrequest.v3+json' \
+--header 'Amazon-Advertising-API-ClientId: amzn1.application-oa2-client.xxxxxxxx' \
+--header 'Amazon-Advertising-API-Scope: xxxxxxx' \
+--header 'Authorization: Bearer Atza|xxxxxxxxxxxxx' \
+--data-raw '{
+    "name": "SD advertised product report 3/5-3/10",
+    "startDate": "2025-03-05",
+    "endDate": "2025-03-10",
+    "configuration": {
+        "adProduct": "SPONSORED_DISPLAY",
+        "groupBy": ["advertiser"],
+        "columns": [
+            "impressions",
+            "clicks",
+            "cost",
+            "campaignId",
+            "newToBrandSalesClicks",
+            "detailPageViews"
+        ],
+        "reportTypeId": "sdAdvertisedProduct",
+        "timeUnit": "SUMMARY",
+        "format": "GZIP_JSON"
+    }
+}'
+```

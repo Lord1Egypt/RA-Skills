@@ -1,40 +1,53 @@
-## Description: <br>
-Create, maintain, and use incident response runbooks for production outages, including triage, stakeholder communication, and post-incident review support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, maintain, and execute detailed incident response runbooks to guide triage, communication, and post-incident reviews for production outages.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers, SREs, and incident responders use this skill to create runbook templates, guide outage triage, draft incident communications, and produce post-incident reviews for production systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested diagnostic commands or incident communications could be incorrect or unsuitable during an active outage. <br>
-Mitigation: Review commands, status updates, and stakeholder messages before using them in production incident response. <br>
-Risk: Incident descriptions, timelines, and historical outage details can contain sensitive operational information. <br>
-Mitigation: Share only incident context the operator is comfortable having the agent process, and redact secrets or sensitive customer-impact details. <br>
+## Use Case:
 
+Developers, site reliability engineers, and on-call responders use this skill to create incident runbooks, triage outages, draft stakeholder communications, and prepare post-incident reviews for production systems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/incident-response-runbook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown runbooks, response prompts, communication drafts, and optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included local script can print a Markdown runbook or write it to a user-specified output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated diagnostic, rollback, or communication steps may be inaccurate or unsuitable for a live production incident.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt generated steps before production use, especially commands that affect deployments, traffic, data stores, or public communications.
+
+Risk: Incident descriptions, timelines, logs, or runbook prompts may contain secrets or sensitive operational details.
+
+Mitigation: Use only approved environments for sensitive incident data and remove secrets before providing prompts or generated materials to an agent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/incident-response-runbook)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown runbooks with checklists, command examples, communication templates, and post-incident review sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script can write a generated Markdown runbook to a user-specified output path.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

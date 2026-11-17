@@ -1,43 +1,55 @@
-## Description: <br>
-Output sanitization for agent responses - prevents accidental secret leaks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Output sanitization for agent responses - prevents accidental secret leaks.
 
-## Publisher: <br>
-[arc-claw-bot](https://clawhub.ai/user/arc-claw-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[arc-claw-bot](https://clawhub.ai/user/arc-claw-bot)
 
-## Use Case: <br>
-Developers and agent operators use Arc Shield to scan outbound agent messages for accidentally exposed secrets, tokens, keys, passwords, and PII before sending to external channels. It supports strict blocking, redaction, and reporting workflows for command-line and OpenClaw-style integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The server security review reports that an advertised strict blocking path can still print the sensitive message it claims to block. <br>
-Mitigation: Do not rely on strict mode alone as a blocking sanitizer in outbound pipelines; use redaction or discard and verify stdout before connecting the tool to external senders. <br>
-Risk: Secret detection is pattern-based and may miss new or context-dependent secret formats. <br>
-Mitigation: Keep patterns current, test custom patterns before deployment, and pair the filter with agent instructions that avoid including secrets in responses. <br>
+## Use Case:
 
+Developers and agent operators use this skill to scan, redact, report on, or block outbound agent messages that may contain secrets, tokens, credentials, or PII before they are sent to external channels.
 
-## Reference(s): <br>
-- [Arc Shield ClawHub listing](https://clawhub.ai/arc-claw-bot/arc-shield) <br>
-- [README](artifact/README.md) <br>
-- [Quick Reference](artifact/QUICKREF.md) <br>
-- [Installation Guide](artifact/INSTALLATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text, Markdown guidance, shell snippets, sanitized text, and optional JSON reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local command-line filters can pass through, block, redact, or report on scanned outbound content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Advertised leak-prevention controls are unreliable and may expose secrets during scanning or reporting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as experimental, avoid routing real secrets through report mode, and verify strict and redaction behavior before using it on external messages.
+
+Risk: Pattern and entropy scanning can miss new secret formats or produce false positives.
+
+Mitigation: Maintain custom patterns, run the included tests after changes, and keep agent-side instructions that prevent secrets from being emitted in the first place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arc-claw-bot/skills/arc-shield)
+- [README](artifact/README.md)
+- [Quick reference](artifact/QUICKREF.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text streams, stderr reports, JSON reports, and Markdown guidance with shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can pass through, redact, report on, or block output; Python-based scanning adds entropy checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

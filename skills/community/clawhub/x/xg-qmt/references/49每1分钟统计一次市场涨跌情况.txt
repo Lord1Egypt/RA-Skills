@@ -1,0 +1,26 @@
+'''
+49每1分钟统计一次市场涨跌情况
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+# coding:gbk
+import datetime as dt
+def on_timer(ContextInfo):
+    ls = globals().get("stock_list")
+    now_time = dt.datetime.now().strftime("%Y%m%d %H:%M:%S")
+    # 取tick数据
+    ticks = ContextInfo.get_full_tick(ls)
+    
+    # 涨跌统计,并去除停牌股
+    profit_ls = [i for i in ticks if ticks[i]["lastPrice"] > ticks[i]["lastClose"] and ticks[i]["openInt"] != 1]
+    loss_ls = [i for i in ticks if ticks[i]["lastPrice"] < ticks[i]["lastClose"] and ticks[i]["openInt"] != 1]
+    print(f"{now_time}: 涨家数{len(profit_ls)}; 跌家数{len(loss_ls)}")
+
+def init(ContextInfo):
+    globals()["stock_list"] = get_stock_list_in_sector("沪深京A股")
+    # 自2023-12-31 23:59:59后每60s运行一次on_timer
+    tid=ContextInfo.schedule_run(on_timer,'20231231235959',3,dt.timedelta(seconds=60),'my_timer')
+    # 取消任务组为"my_timer"的任务
+    # # ContextInfo.cancel_schedule_run('my_timer')
+
+    # 关于schedule_run函数的用法请阅读文档http://dict.thinktrader.net/innerApi/system_function.html?id=7zqjlm#contextinfo-schedule-run-%E8%AE%BE%E7%BD%AE%E5%AE%9A%E6%97%B6%E5%99%A8
+    

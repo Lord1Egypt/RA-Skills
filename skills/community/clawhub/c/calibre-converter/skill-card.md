@@ -1,46 +1,65 @@
-## Description: <br>
-Calibre Converter helps an agent request conversion of books or documents already registered in Calibre by identifying the item, confirming the target format, and calling a local calibre-openclaw-server API to convert, register, and report the result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calibre Converter helps an agent identify a registered Calibre book or document and request conversion to another ebook or document format through calibre-openclaw-server.
 
-## Publisher: <br>
-[carlosdelfino](https://clawhub.ai/user/carlosdelfino) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carlosdelfino](https://clawhub.ai/user/carlosdelfino)
 
-## Use Case: <br>
-Developers and users operating a Calibre-based library use this skill to ask an agent to convert a uniquely identified ebook or document into a requested format and return the conversion status, generated format, and registered output path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes a broader local Calibre gateway that can mutate the library, index content, and manage downloads. <br>
-Mitigation: Install only when those gateway capabilities are intended, review configuration before use, and keep destructive or automated features disabled unless needed. <br>
-Risk: Network-facing features and third-party integrations can expose content metadata, files, or API keys if configured loosely. <br>
-Mitigation: Bind the service to localhost, require a strong API key, avoid putting API keys in URLs, and enable VirusTotal, OpenLibrary, direct download, or network binding features only after accepting their privacy and network exposure. <br>
-Risk: Format conversion, especially PDF to EPUB, can produce layout, table-of-contents, or page-break issues. <br>
-Mitigation: Review converted files in Calibre or a compatible reader before relying on the output. <br>
+## Use Case:
 
+Developers and Calibre library administrators use this skill to convert books already registered in a local Calibre catalog, choose target formats such as EPUB, AZW3, MOBI, PDF, DOCX, or TXT, and report the server-returned conversion result to the user.
 
-## Reference(s): <br>
-- [Calibre Converter skill page](https://clawhub.ai/carlosdelfino/calibre-converter) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Calibre gateway README](artifact/calibre-openclaw-gateway/README.md) <br>
-- [OpenLibrary](https://openlibrary.org) <br>
-- [VirusTotal](https://www.virustotal.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional JSON API payloads and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May report server-returned status, title, source format, target format, registered output path, and conversion errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The bundled gateway has broad access to a local Calibre library and persistent server behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when you intend to administer a local Calibre gateway, keep it bound to loopback, and require a strong API key.
+
+Risk: Network exposure and credential-handling weaknesses could increase the impact of unauthorized access.
+
+Mitigation: Avoid exposing the service on a network and review dashboard API-key storage, query transport, and network binding settings before broader use.
+
+Risk: Download and file path behavior may broaden local file and remote content handling beyond simple conversion.
+
+Mitigation: Patch or disable arbitrary download URLs and manual server file paths unless they are required and reviewed.
+
+Risk: Unpinned dependencies can change behavior or introduce supply-chain risk.
+
+Mitigation: Pin and review dependencies before production or multi-user deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/carlosdelfino/skills/calibre-converter)
+- [Server-Resolved Publisher Profile](https://clawhub.ai/user/carlosdelfino)
+- [SKILL.md](artifact/SKILL.md)
+- [calibre-openclaw-gateway README](artifact/calibre-openclaw-gateway/README.md)
+- [Calibre Converter Client](artifact/scripts/calibre_converter_client.py)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown prose with optional shell commands and JSON conversion results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Conversion requests depend on a reachable calibre-openclaw-server and may include book identifiers, target format, optional source format, and force flag.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

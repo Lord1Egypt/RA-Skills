@@ -1,0 +1,2119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProjectHub — Material Design 3</title>
+<style>
+  /* ========================================
+     Google Material Design 3 — Project Management Dashboard
+     Font: Roboto
+     Grid: 8dp
+     Color: Primary Purple #6750A4
+     Principles: Material Metaphor, Bold Graphics, Meaningful Motion
+     ======================================== */
+
+  :root {
+    --primary: #6750A4;
+    --on-primary: #FFFFFF;
+    --primary-container: #EADDFF;
+    --on-primary-container: #21005D;
+    --secondary: #625B71;
+    --secondary-container: #E8DEF8;
+    --on-secondary-container: #1D192B;
+    --tertiary: #7D5260;
+    --tertiary-container: #FFD8E4;
+    --surface: #FFFBFE;
+    --on-surface: #1C1B1F;
+    --surface-variant: #E7E0EC;
+    --on-surface-variant: #49454F;
+    --bg: #FFFBFE;
+    --error: #B3261E;
+    --error-container: #F9DEDC;
+    --outline: #79747E;
+    --outline-variant: #CAC4D0;
+    --surface-container-low: #F7F2FA;
+    --surface-container: #F3EDF7;
+    --surface-container-high: #ECE6F0;
+    --surface-container-highest: #E6E0E9;
+    --elevation-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.14);
+    --elevation-2: 0 2px 4px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.14);
+    --elevation-3: 0 3px 6px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.14);
+    --elevation-4: 0 4px 8px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.14);
+    --elevation-5: 0 6px 12px rgba(0,0,0,0.12), 0 3px 6px rgba(0,0,0,0.14);
+    --font: Roboto, "Noto Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+    --space-xs: 4px; --space-sm: 8px; --space-md: 16px; --space-lg: 24px; --space-xl: 32px; --space-xxl: 48px; --space-xxxl: 64px;
+    --r-xs: 4px; --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --r-xl: 28px; --r-full: 9999px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font);
+    font-size: 16px; line-height: 24px;
+    color: var(--on-surface);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden; height: 100vh;
+  }
+
+  /* ========================================
+     App Shell
+     ======================================== */
+  .app-shell { display: flex; height: 100vh; }
+
+  /* ========================================
+     Navigation Drawer (Modal)
+     ======================================== */
+  .drawer-overlay {
+    display: none;
+  }
+  .drawer {
+    width: 280px; background: var(--surface);
+    display: flex; flex-direction: column; flex-shrink: 0;
+    border-right: 1px solid var(--outline-variant);
+  }
+  .drawer-header {
+    padding: var(--space-lg) var(--space-md) var(--space-sm);
+  }
+  .drawer-header .logo {
+    display: flex; align-items: center; gap: var(--space-sm);
+    font-size: 22px; font-weight: 400; line-height: 28px;
+  }
+  .drawer-header .logo-icon {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--primary); display: inline-block;
+  }
+
+  .drawer-nav {
+    flex: 1; overflow-y: auto; padding: var(--space-xs) 0;
+  }
+  .drawer-section {
+    font-size: 14px; font-weight: 500; color: var(--on-surface-variant);
+    letter-spacing: 0.1px; line-height: 20px;
+    padding: var(--space-sm) var(--space-md) var(--space-xs);
+  }
+  .drawer-item {
+    display: flex; align-items: center;
+    padding: 0 var(--space-md); height: 48px;
+    border-radius: 0 var(--r-xl) var(--r-xl) 0;
+    gap: var(--space-md); cursor: pointer;
+    font-size: 16px; font-weight: 400; color: var(--on-surface);
+    transition: background 150ms;
+  }
+  .drawer-item:hover { background: rgba(28,27,31,0.08); }
+  .drawer-item.active {
+    background: var(--secondary-container);
+    color: var(--on-secondary-container);
+  }
+  .drawer-item-icon {
+    width: 24px; height: 24px; border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .drawer-item-badge {
+    margin-left: auto;
+    background: var(--error); color: var(--on-error);
+    font-size: 11px; font-weight: 500;
+    min-width: 16px; height: 16px; padding: 0 4px;
+    border-radius: var(--r-full);
+    display: flex; align-items: center; justify-content: center;
+    letter-spacing: 0.5px;
+  }
+
+  .drawer-footer {
+    padding: var(--space-sm); border-top: 1px solid var(--outline-variant);
+  }
+  .drawer-user {
+    display: flex; align-items: center; gap: var(--space-md);
+    padding: var(--space-sm) var(--space-md); height: 56px;
+    border-radius: var(--r-full); cursor: pointer;
+    transition: background 150ms;
+  }
+  .drawer-user:hover { background: rgba(28,27,31,0.08); }
+  .drawer-user-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--primary-container); color: var(--on-primary-container);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 500; flex-shrink: 0;
+  }
+  .drawer-user-info { flex: 1; min-width: 0; }
+  .drawer-user-name { font-size: 16px; font-weight: 500; line-height: 24px; letter-spacing: 0.15px; }
+  .drawer-user-role { font-size: 14px; color: var(--on-surface-variant); line-height: 20px; letter-spacing: 0.25px; }
+
+  /* ========================================
+     Main Area
+     ======================================== */
+  .main-area { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
+  /* ========================================
+     Top App Bar (Small)
+     ======================================== */
+  .top-app-bar {
+    height: 64px; background: var(--surface);
+    display: flex; align-items: center;
+    padding: 0 var(--space-md); gap: var(--space-xs);
+    flex-shrink: 0;
+  }
+  .top-app-bar .menu-btn {
+    width: 48px; height: 48px; border-radius: 50%;
+    border: none; background: transparent;
+    cursor: pointer; display: none;
+    align-items: center; justify-content: center;
+    font-size: 20px; color: var(--on-surface);
+  }
+  .top-app-bar .menu-btn:hover { background: rgba(28,27,31,0.08); }
+  .top-app-bar-title {
+    flex: 1; font-size: 22px; font-weight: 400; line-height: 28px;
+  }
+  .top-app-bar-actions { display: flex; gap: var(--space-xs); }
+  .top-app-bar-btn {
+    width: 48px; height: 48px; border-radius: 50%;
+    border: none; background: transparent; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; color: var(--on-surface);
+    transition: background 150ms;
+  }
+  .top-app-bar-btn:hover { background: rgba(28,27,31,0.08); }
+  .top-app-bar-btn.fab-like {
+    width: 40px; height: 40px;
+    background: var(--primary-container); color: var(--on-primary-container);
+    border-radius: var(--r-lg); box-shadow: var(--elevation-1);
+    font-size: 18px;
+  }
+  .top-app-bar-btn.fab-like:hover { background: #D8CCE8; box-shadow: var(--elevation-2); }
+
+  /* ========================================
+     Content
+     ======================================== */
+  .content { flex: 1; overflow-y: auto; padding: var(--space-xl) var(--space-lg); }
+
+  /* ========================================
+     Page Header
+     ======================================== */
+  .page-header { margin-bottom: var(--space-xxl); }
+  .page-header h1 { font-size: 32px; font-weight: 400; line-height: 40px; margin-bottom: var(--space-xs); }
+  .page-header p { font-size: 14px; color: var(--on-surface-variant); line-height: 20px; letter-spacing: 0.25px; }
+
+  /* ========================================
+     Stat Cards
+     ======================================== */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--space-md);
+    margin-bottom: var(--space-xxl);
+  }
+  .stat-card {
+    background: var(--surface-container-low);
+    border-radius: var(--r-md);
+    padding: var(--space-md);
+    box-shadow: var(--elevation-1);
+    transition: box-shadow 200ms, background 200ms;
+  }
+  .stat-card:hover { box-shadow: var(--elevation-2); background: var(--surface-container); }
+  .stat-card-label { font-size: 14px; color: var(--on-surface-variant); letter-spacing: 0.25px; margin-bottom: var(--space-xs); }
+  .stat-card-value { font-size: 32px; font-weight: 400; line-height: 40px; }
+  .stat-card-change { font-size: 14px; margin-top: var(--space-xs); letter-spacing: 0.25px; }
+  .stat-card-change.up { color: #4CAF50; }
+  .stat-card-change.down { color: var(--error); }
+  .stat-card-bar {
+    margin-top: var(--space-sm);
+    height: 4px; background: var(--surface-variant);
+    border-radius: 2px; overflow: hidden;
+  }
+  .stat-card-bar-fill { height: 100%; border-radius: 2px; }
+
+  /* ========================================
+     Section
+     ======================================== */
+  .section-block { margin-bottom: var(--space-xxl); }
+  .section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: var(--space-md);
+  }
+  .section-header h2 { font-size: 22px; font-weight: 400; line-height: 28px; }
+
+  /* ========================================
+     Tabs (Material Tabs)
+     ======================================== */
+  .mat-tabs {
+    display: flex; border-bottom: 1px solid var(--outline-variant);
+    margin-bottom: var(--space-lg);
+  }
+  .mat-tab {
+    flex: 1; padding: var(--space-md);
+    font-size: 14px; font-weight: 500;
+    letter-spacing: 0.1px;
+    border: none; background: transparent; cursor: pointer;
+    font-family: var(--font); color: var(--on-surface-variant);
+    position: relative; text-align: center;
+    transition: color 200ms;
+  }
+  .mat-tab.active { color: var(--primary); }
+  .mat-tab.active::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px; background: var(--primary);
+    border-radius: 3px 3px 0 0;
+  }
+  .mat-tab:hover:not(.active) { background: rgba(28,27,31,0.08); }
+
+  /* ========================================
+     List (Material List)
+     ======================================== */
+  .mat-list {
+    background: var(--surface); border-radius: var(--r-md);
+    overflow: hidden;
+  }
+  .mat-list-item {
+    display: flex; align-items: center;
+    padding: 0 var(--space-md); min-height: 64px;
+    gap: var(--space-md); cursor: pointer;
+    transition: background 150ms;
+  }
+  .mat-list-item:hover { background: rgba(28,27,31,0.08); }
+  .mat-list-item + .mat-list-item { border-top: 1px solid var(--outline-variant); }
+
+  .ml-leading {
+    width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 16px; font-weight: 500;
+  }
+  .ml-content { flex: 1; min-width: 0; }
+  .ml-headline { font-size: 16px; font-weight: 400; line-height: 24px; letter-spacing: 0.5px; }
+  .ml-supporting { font-size: 14px; color: var(--on-surface-variant); line-height: 20px; letter-spacing: 0.25px; }
+  .ml-trailing { text-align: right; flex-shrink: 0; }
+  .ml-tag {
+    font-size: 12px; font-weight: 500;
+    padding: 2px 8px; border-radius: var(--r-full);
+    letter-spacing: 0.5px;
+  }
+  .ml-tag.active { background: var(--primary-container); color: var(--on-primary-container); }
+  .ml-tag.muted { background: var(--surface-container-high); color: var(--on-surface-variant); }
+  .ml-tag.done { background: #E8F5E9; color: #2E7D32; }
+  .ml-date { font-size: 12px; color: var(--on-surface-variant); margin-top: 2px; letter-spacing: 0.4px; }
+
+  /* ========================================
+     Card Grid
+     ======================================== */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-md);
+  }
+  .mat-card {
+    background: var(--surface-container-low);
+    border-radius: var(--r-md);
+    padding: var(--space-md);
+    box-shadow: var(--elevation-1);
+    transition: box-shadow 200ms, background 200ms;
+  }
+  .mat-card:hover { box-shadow: var(--elevation-2); background: var(--surface-container); }
+  .mat-card-title { font-size: 16px; font-weight: 500; line-height: 24px; letter-spacing: 0.15px; margin-bottom: var(--space-sm); }
+  .mat-card-body { font-size: 14px; line-height: 20px; color: var(--on-surface-variant); letter-spacing: 0.25px; margin-bottom: var(--space-sm); }
+  .mat-card-meta { font-size: 12px; color: var(--on-surface-variant); letter-spacing: 0.4px; margin-bottom: var(--space-sm); }
+  .mat-card-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: var(--space-sm); border-top: 1px solid var(--outline-variant);
+  }
+  .mat-card-avatars { display: flex; }
+  .mat-card-avatars span {
+    width: 24px; height: 24px; border-radius: 50%;
+    border: 2px solid var(--surface-container-low); margin-left: -6px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 10px; font-weight: 500;
+  }
+  .mat-card-avatars span:first-child { margin-left: 0; }
+
+  /* ========================================
+     Data Table (Material Data Table)
+     ======================================== */
+  .data-table-wrap {
+    background: var(--surface); border-radius: var(--r-md);
+    overflow: hidden; box-shadow: var(--elevation-1);
+  }
+  .data-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 14px; line-height: 20px; letter-spacing: 0.25px;
+  }
+  .data-table th {
+    text-align: left; padding: var(--space-md);
+    font-size: 14px; font-weight: 500; color: var(--on-surface);
+    background: var(--surface); border-bottom: 1px solid var(--outline-variant);
+  }
+  .data-table td {
+    padding: var(--space-md);
+    border-bottom: 1px solid var(--outline-variant);
+    color: var(--on-surface);
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: rgba(28,27,31,0.08); }
+  .data-table .t-status {
+    display: inline-block; font-size: 12px; font-weight: 500;
+    padding: 2px 8px; border-radius: var(--r-full); letter-spacing: 0.5px;
+  }
+  .data-table .t-status.active { background: var(--primary-container); color: var(--on-primary-container); }
+  .data-table .t-status.busy { background: var(--tertiary-container); color: var(--tertiary); }
+  .data-table .t-status.away { background: var(--surface-container-high); color: var(--on-surface-variant); }
+
+  /* ========================================
+     Chips
+     ======================================== */
+  .chip-group {
+    display: flex; gap: var(--space-sm); flex-wrap: wrap;
+    margin-bottom: var(--space-md);
+  }
+  .chip {
+    height: 32px; padding: 0 var(--space-md);
+    background: var(--surface-container-low); border: 1px solid var(--outline);
+    border-radius: var(--r-full);
+    font-size: 14px; font-weight: 500; letter-spacing: 0.1px;
+    color: var(--on-surface); cursor: pointer;
+    display: inline-flex; align-items: center; gap: var(--space-sm);
+    font-family: var(--font);
+    transition: background 150ms;
+  }
+  .chip:hover { background: rgba(28,27,31,0.08); }
+  .chip.selected { background: var(--secondary-container); border-color: var(--secondary-container); color: var(--on-secondary-container); }
+
+  /* ========================================
+     FAB
+     ======================================== */
+  .fab {
+    position: fixed; bottom: var(--space-lg); right: var(--space-lg);
+    width: 56px; height: 56px;
+    background: var(--primary-container); color: var(--on-primary-container);
+    border: none; border-radius: var(--r-lg);
+    box-shadow: var(--elevation-3);
+    cursor: pointer; font-size: 24px;
+    display: flex; align-items: center; justify-content: center;
+    transition: box-shadow 200ms, background 200ms;
+    z-index: 50;
+  }
+  .fab:hover { box-shadow: var(--elevation-4); background: #D8CCE8; }
+
+  /* ========================================
+     Dialog (Material 3)
+     ======================================== */
+  .dialog-overlay {
+    position: fixed; inset: 0; background: rgba(28,27,31,0.32);
+    z-index: 100; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 250ms;
+  }
+  .dialog-overlay.open { opacity: 1; pointer-events: auto; }
+  .dialog {
+    background: var(--surface-container-high);
+    border-radius: var(--r-xl);
+    padding: var(--space-lg); min-width: 360px; max-width: 480px;
+    width: 90%;
+  }
+  .dialog-headline { font-size: 24px; font-weight: 400; line-height: 32px; margin-bottom: var(--space-md); }
+  .dialog-field { margin-bottom: var(--space-md); }
+  .dialog-field label {
+    display: block; font-size: 14px; font-weight: 500;
+    color: var(--on-surface-variant); margin-bottom: var(--space-xs);
+    letter-spacing: 0.1px;
+  }
+  .dialog-field input, .dialog-field select, .dialog-field textarea {
+    width: 100%; height: 56px;
+    background: transparent; border: 1px solid var(--outline);
+    border-radius: var(--r-sm); padding: 0 var(--space-md);
+    font: 400 16px/24px var(--font); color: var(--on-surface);
+    outline: none;
+  }
+  .dialog-field input:focus, .dialog-field select:focus, .dialog-field textarea:focus {
+    border-color: var(--primary); border-width: 2px;
+  }
+  .dialog-field textarea { height: 80px; padding: var(--space-md); resize: vertical; }
+  .dialog-actions {
+    display: flex; justify-content: flex-end; gap: var(--space-sm);
+    margin-top: var(--space-lg);
+  }
+
+  /* ========================================
+     Snackbar
+     ======================================== */
+  .snackbar {
+    position: fixed; bottom: 80px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--on-surface); color: var(--surface);
+    font-size: 14px; padding: var(--space-sm) var(--space-md);
+    border-radius: var(--r-sm); z-index: 200;
+    opacity: 0; pointer-events: none;
+    transition: opacity 250ms, transform 250ms;
+    display: flex; align-items: center; gap: var(--space-sm);
+    box-shadow: var(--elevation-3);
+  }
+  .snackbar.show { opacity: 1; pointer-events: auto; }
+  .snackbar button {
+    background: none; border: none; color: var(--primary-container);
+    font-size: 14px; font-weight: 500; cursor: pointer;
+    font-family: var(--font); letter-spacing: 0.1px;
+  }
+
+  /* ========================================
+     Select Component
+     ======================================== */
+  .mat-select {
+    position: relative; width: 100%; height: 56px;
+    background: transparent; border: 1px solid var(--outline);
+    border-radius: var(--r-sm); padding: 0 var(--space-md);
+    font: 400 16px/24px var(--font); color: var(--on-surface);
+    cursor: pointer; user-select: none;
+    display: flex; align-items: center;
+  }
+  .mat-select:hover { border-color: var(--on-surface); }
+  .mat-select:focus, .mat-select.open { border-color: var(--primary); border-width: 2px; padding: 0 calc(var(--space-md) - 1px); outline: none; }
+  .mat-select-trigger {
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%; height: 100%;
+  }
+  .mat-select-value { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mat-select-arrow {
+    transition: transform 200ms ease;
+  }
+  .mat-select.open .mat-select-arrow { transform: rotate(180deg); }
+  .mat-select-options {
+    position: absolute; top: calc(100% + 4px); left: 0; right: 0;
+    background: var(--surface-container); border-radius: var(--r-sm);
+    padding: var(--space-sm) 0; box-shadow: var(--elevation-2);
+    z-index: 110; display: none; max-height: 200px; overflow-y: auto;
+  }
+  .mat-select.open .mat-select-options { display: block; }
+  .mat-select-option {
+    height: 48px; padding: 0 var(--space-md);
+    display: flex; align-items: center;
+    font: 400 16px/24px var(--font); color: var(--on-surface);
+    cursor: pointer;
+  }
+  .mat-select-option:hover { background: rgba(28, 27, 31, 0.08); }
+  .mat-select-option.selected { background: rgba(28, 27, 31, 0.12); color: var(--primary); }
+
+  /* ========================================
+     Scrollbar
+     ======================================== */
+  .content::-webkit-scrollbar, .drawer-nav::-webkit-scrollbar { width: 6px; }
+  .content::-webkit-scrollbar-track, .drawer-nav::-webkit-scrollbar-track { background: transparent; }
+  .content::-webkit-scrollbar-thumb, .drawer-nav::-webkit-scrollbar-thumb { background: var(--outline-variant); border-radius: 3px; }
+
+  /* ========================================
+     Responsive
+     ======================================== */
+  @media (max-width: 768px) {
+    .drawer { display: none; }
+    .top-app-bar .menu-btn { display: flex; }
+    .content { padding: var(--space-md); }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .card-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ========================================
+     Missing Components — 21 M3 Components
+     ======================================== */
+
+  /* --- Component Section Container --- */
+  .comp-section {
+    margin-bottom: var(--space-xxl);
+    background: var(--surface);
+    border-radius: var(--r-md);
+    padding: var(--space-lg);
+    box-shadow: var(--elevation-1);
+  }
+  .comp-section h3 {
+    font-size: 18px; font-weight: 500; line-height: 24px;
+    margin-bottom: var(--space-md);
+    color: var(--on-surface);
+    letter-spacing: 0.15px;
+  }
+
+  /* --- 1. Autocomplete --- */
+  .autocomplete-wrap { position: relative; max-width: 360px; }
+  .autocomplete-wrap input {
+    width: 100%; height: 56px;
+    background: transparent; border: 1px solid var(--outline);
+    border-radius: var(--r-sm); padding: 0 var(--space-md);
+    font: 400 16px/24px var(--font); color: var(--on-surface);
+    outline: none;
+  }
+  .autocomplete-wrap input:focus { border-color: var(--primary); border-width: 2px; }
+  .autocomplete-dropdown {
+    display: none; position: absolute; top: 60px; left: 0; right: 0;
+    background: var(--surface-container-high);
+    border-radius: var(--r-sm); box-shadow: var(--elevation-3);
+    z-index: 10; overflow: hidden;
+  }
+  .autocomplete-dropdown.show { display: block; }
+  .autocomplete-option {
+    padding: 12px var(--space-md); cursor: pointer;
+    font-size: 14px; color: var(--on-surface);
+    transition: background 150ms;
+  }
+  .autocomplete-option:hover { background: rgba(28,27,31,0.08); }
+  .autocomplete-option.highlighted { background: rgba(103,80,164,0.12); }
+
+  /* --- 2. NumberInput --- */
+  .number-input-group {
+    display: inline-flex; align-items: center;
+    border: 1px solid var(--outline); border-radius: var(--r-sm);
+    overflow: hidden; height: 48px;
+  }
+  .number-input-group button {
+    width: 48px; height: 48px; border: none; background: transparent;
+    font-size: 20px; color: var(--on-surface); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 150ms;
+    font-family: var(--font);
+  }
+  .number-input-group button:hover { background: rgba(28,27,31,0.08); }
+  .number-input-group button:active { background: rgba(28,27,31,0.12); }
+  .number-input-group input {
+    width: 64px; height: 48px; text-align: center;
+    border: none; border-left: 1px solid var(--outline);
+    border-right: 1px solid var(--outline);
+    font: 400 16px/24px var(--font); color: var(--on-surface);
+    outline: none; background: transparent;
+  }
+  .number-input-group input::-webkit-outer-spin-button,
+  .number-input-group input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+  /* --- 3. Upload --- */
+  .upload-area {
+    border: 2px dashed var(--outline); border-radius: var(--r-md);
+    padding: var(--space-xl); text-align: center;
+    cursor: pointer; transition: border-color 200ms, background 200ms;
+  }
+  .upload-area:hover { border-color: var(--primary); background: rgba(103,80,164,0.04); }
+  .upload-area.dragover { border-color: var(--primary); background: rgba(103,80,164,0.08); }
+  .upload-area-text { font-size: 14px; color: var(--on-surface-variant); }
+  .upload-area-text span { color: var(--primary); font-weight: 500; }
+  .upload-file-list { margin-top: var(--space-md); }
+  .upload-file-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--surface-container-low);
+    border-radius: var(--r-sm); margin-bottom: var(--space-xs);
+    font-size: 14px;
+  }
+  .upload-file-item button {
+    width: 32px; height: 32px; border-radius: 50%; border: none;
+    background: transparent; cursor: pointer; font-size: 16px;
+    color: var(--error); transition: background 150ms;
+  }
+  .upload-file-item button:hover { background: rgba(179,38,30,0.08); }
+
+  /* --- 4. Notification --- */
+  .notification-panel {
+    display: none; position: fixed; top: 64px; right: var(--space-md);
+    width: 360px; max-height: 480px; overflow-y: auto;
+    background: var(--surface-container-high);
+    border-radius: var(--r-md); box-shadow: var(--elevation-4);
+    z-index: 150; padding: var(--space-xs);
+  }
+  .notification-panel.show { display: block; }
+  .notification-item {
+    padding: var(--space-md); border-radius: var(--r-sm);
+    cursor: pointer; transition: background 150ms;
+    border-bottom: 1px solid var(--outline-variant);
+  }
+  .notification-item:last-child { border-bottom: none; }
+  .notification-item:hover { background: rgba(28,27,31,0.08); }
+  .notification-item-title { font-size: 14px; font-weight: 500; }
+  .notification-item-desc { font-size: 12px; color: var(--on-surface-variant); margin-top: 2px; }
+  .notification-item-time { font-size: 11px; color: var(--on-surface-variant); margin-top: 4px; }
+  .notification-badge {
+    position: absolute; top: 6px; right: 6px;
+    width: 8px; height: 8px; border-radius: 50%; background: var(--error);
+  }
+
+  /* --- 5. Alert/Banner --- */
+  .alert {
+    display: flex; align-items: flex-start; gap: var(--space-md);
+    padding: var(--space-md); border-radius: var(--r-md);
+    font-size: 14px; line-height: 20px; margin-bottom: var(--space-md);
+  }
+  .alert-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .alert-content { flex: 1; }
+  .alert-close {
+    width: 32px; height: 32px; border-radius: 50%; border: none;
+    background: transparent; cursor: pointer; font-size: 16px;
+    flex-shrink: 0; color: inherit; transition: background 150ms;
+  }
+  .alert-close:hover { background: rgba(28,27,31,0.08); }
+  .alert-info { background: #E8F0FE; color: #1967D2; border-left: 4px solid #1967D2; }
+  .alert-success { background: #E8F5E9; color: #2E7D32; border-left: 4px solid #2E7D32; }
+  .alert-warning { background: #FFF3E0; color: #E65100; border-left: 4px solid #E65100; }
+  .alert-error { background: var(--error-container); color: var(--error); border-left: 4px solid var(--error); }
+
+  /* --- 6. Skeleton --- */
+  .skeleton-card {
+    background: var(--surface-container-low);
+    border-radius: var(--r-md); padding: var(--space-md);
+    box-shadow: var(--elevation-1);
+  }
+  .skeleton-line {
+    height: 16px; background: var(--surface-container-high);
+    border-radius: var(--r-xs); margin-bottom: var(--space-sm);
+    position: relative; overflow: hidden;
+  }
+  .skeleton-line::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%);
+    animation: skeleton-shimmer 1.5s infinite;
+  }
+  .skeleton-line.w-75 { width: 75%; }
+  .skeleton-line.w-50 { width: 50%; }
+  .skeleton-line.w-25 { width: 25%; }
+  .skeleton-line.h-24 { height: 24px; }
+  .skeleton-line.h-48 { height: 48px; border-radius: var(--r-sm); }
+  .skeleton-circle {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--surface-container-high); position: relative; overflow: hidden;
+  }
+  .skeleton-circle::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%);
+    animation: skeleton-shimmer 1.5s infinite;
+  }
+  @keyframes skeleton-shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  /* --- 7. Pagination --- */
+  .pagination {
+    display: flex; align-items: center; gap: var(--space-xs);
+  }
+  .pagination-btn {
+    min-width: 40px; height: 40px; border-radius: var(--r-full);
+    border: none; background: transparent; cursor: pointer;
+    font-size: 14px; font-weight: 500; color: var(--on-surface);
+    display: flex; align-items: center; justify-content: center;
+    transition: background 150ms; font-family: var(--font);
+  }
+  .pagination-btn:hover { background: rgba(28,27,31,0.08); }
+  .pagination-btn:active { background: rgba(28,27,31,0.12); }
+  .pagination-btn.active {
+    background: var(--primary); color: var(--on-primary);
+  }
+  .pagination-btn:disabled { color: var(--on-surface-variant); opacity: 0.38; pointer-events: none; }
+
+  /* --- 8. Stepper --- */
+  .stepper {
+    display: flex; align-items: center;
+  }
+  .stepper-step {
+    display: flex; align-items: center; gap: var(--space-sm);
+    position: relative;
+  }
+  .stepper-circle {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 500; flex-shrink: 0;
+    transition: background 200ms;
+  }
+  .stepper-circle.done { background: var(--primary); color: var(--on-primary); }
+  .stepper-circle.current {
+    background: var(--primary-container); color: var(--on-primary-container);
+    box-shadow: 0 0 0 3px rgba(103,80,164,0.2);
+  }
+  .stepper-circle.pending {
+    background: var(--surface-container-high); color: var(--on-surface-variant);
+  }
+  .stepper-label {
+    font-size: 14px; color: var(--on-surface); white-space: nowrap;
+  }
+  .stepper-label.pending-label { color: var(--on-surface-variant); }
+  .stepper-line {
+    width: 48px; height: 2px; background: var(--outline-variant);
+    margin: 0 var(--space-sm); flex-shrink: 0;
+  }
+  .stepper-line.done { background: var(--primary); }
+
+  /* --- 9. Bottom Sheet --- */
+  .sheet-overlay {
+    position: fixed; inset: 0; background: rgba(28,27,31,0.32);
+    z-index: 100; opacity: 0; pointer-events: none;
+    transition: opacity 250ms;
+  }
+  .sheet-overlay.open { opacity: 1; pointer-events: auto; }
+  .sheet-panel {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: var(--surface-container-high);
+    border-radius: var(--r-xl) var(--r-xl) 0 0;
+    padding: var(--space-md); z-index: 101;
+    transform: translateY(100%); transition: transform 300ms ease;
+    max-height: 70vh; overflow-y: auto;
+  }
+  .sheet-panel.open { transform: translateY(0); }
+  .sheet-handle {
+    width: 32px; height: 4px; background: var(--outline-variant);
+    border-radius: 2px; margin: 0 auto var(--space-md);
+  }
+  .sheet-item {
+    display: flex; align-items: center; gap: var(--space-md);
+    padding: var(--space-md); border-radius: var(--r-sm);
+    cursor: pointer; font-size: 16px; transition: background 150ms;
+    min-height: 48px;
+  }
+  .sheet-item:hover { background: rgba(28,27,31,0.08); }
+
+  /* --- 10. Accordion --- */
+  .accordion {
+    background: var(--surface); border-radius: var(--r-md);
+    overflow: hidden; box-shadow: var(--elevation-1);
+  }
+  .accordion-item { border-bottom: 1px solid var(--outline-variant); }
+  .accordion-item:last-child { border-bottom: none; }
+  .accordion-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: var(--space-md); cursor: pointer;
+    font-size: 16px; font-weight: 400;
+    min-height: 48px; transition: background 150ms;
+  }
+  .accordion-header:hover { background: rgba(28,27,31,0.08); }
+  .accordion-icon {
+    font-size: 20px; color: var(--on-surface-variant);
+    transition: transform 300ms;
+  }
+  .accordion-item.open .accordion-icon { transform: rotate(180deg); }
+  .accordion-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height 300ms ease;
+  }
+  .accordion-body-inner {
+    padding: 0 var(--space-md) var(--space-md);
+    font-size: 14px; line-height: 20px; color: var(--on-surface-variant);
+  }
+
+  /* --- 11. Carousel --- */
+  .carousel {
+    position: relative; overflow: hidden;
+    border-radius: var(--r-md);
+    background: var(--surface-container-low);
+  }
+  .carousel-track {
+    display: flex; transition: transform 400ms ease;
+  }
+  .carousel-slide {
+    min-width: 100%; padding: var(--space-xxl) var(--space-xl);
+    text-align: center; display: flex; align-items: center;
+    justify-content: center; min-height: 200px;
+    font-size: 24px; font-weight: 400;
+  }
+  .carousel-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 40px; height: 40px; border-radius: 50%;
+    border: none; background: var(--surface-container-high);
+    cursor: pointer; font-size: 18px; color: var(--on-surface);
+    box-shadow: var(--elevation-2); transition: background 150ms;
+    z-index: 5;
+  }
+  .carousel-btn:hover { background: var(--surface-container-highest); }
+  .carousel-prev { left: var(--space-md); }
+  .carousel-next { right: var(--space-md); }
+  .carousel-dots {
+    display: flex; justify-content: center; gap: var(--space-sm);
+    padding: var(--space-md);
+  }
+  .carousel-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    border: none; background: var(--outline-variant);
+    cursor: pointer; transition: background 200ms;
+  }
+  .carousel-dot.active { background: var(--primary); width: 24px; border-radius: var(--r-full); }
+
+  /* --- 12. Timeline --- */
+  .timeline { padding-left: var(--space-lg); position: relative; }
+  .timeline::before {
+    content: ''; position: absolute; left: 11px; top: 0; bottom: 0;
+    width: 2px; background: var(--outline-variant);
+  }
+  .timeline-item {
+    position: relative; padding-left: var(--space-xl);
+    padding-bottom: var(--space-lg);
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-dot {
+    position: absolute; left: 2px; top: 2px;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--primary); border: 3px solid var(--surface);
+    z-index: 1;
+  }
+  .timeline-dot.past { background: var(--outline-variant); }
+  .timeline-content h4 { font-size: 16px; font-weight: 500; margin-bottom: 2px; }
+  .timeline-content p { font-size: 14px; color: var(--on-surface-variant); }
+  .timeline-content .time { font-size: 12px; color: var(--on-surface-variant); margin-top: 4px; }
+
+  /* --- 13. Tree --- */
+  .tree { font-size: 14px; }
+  .tree-node { user-select: none; }
+  .tree-node-toggle {
+    display: flex; align-items: center; gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-sm); cursor: pointer;
+    border-radius: var(--r-sm); transition: background 150ms;
+    min-height: 40px;
+  }
+  .tree-node-toggle:hover { background: rgba(28,27,31,0.08); }
+  .tree-arrow {
+    font-size: 12px; color: var(--on-surface-variant);
+    transition: transform 200ms; width: 20px; text-align: center;
+  }
+  .tree-node.open > .tree-node-toggle .tree-arrow { transform: rotate(90deg); }
+  .tree-children {
+    display: none; padding-left: var(--space-xl);
+  }
+  .tree-node.open > .tree-children { display: block; }
+  .tree-icon {
+    width: 24px; height: 24px; border-radius: var(--r-xs);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+
+  /* --- 14. Divider --- */
+  .mat-divider {
+    border: none; border-top: 1px solid var(--outline-variant);
+    margin: var(--space-md) 0;
+  }
+  .mat-divider.inset { margin-left: var(--space-lg); }
+
+  /* --- 15. Space / Stack --- */
+  .mat-space-h {
+    display: flex; align-items: center;
+  }
+  .mat-space-h.xs { gap: var(--space-xs); }
+  .mat-space-h.sm { gap: var(--space-sm); }
+  .mat-space-h.md { gap: var(--space-md); }
+  .mat-space-h.lg { gap: var(--space-lg); }
+  .mat-space-h.xl { gap: var(--space-xl); }
+
+  .mat-space-v {
+    display: flex; flex-direction: column;
+  }
+  .mat-space-v.xs { gap: var(--space-xs); }
+  .mat-space-v.sm { gap: var(--space-sm); }
+  .mat-space-v.md { gap: var(--space-md); }
+  .mat-space-v.lg { gap: var(--space-lg); }
+  .mat-space-v.xl { gap: var(--space-xl); }
+
+  /* --- 16. AspectRatio --- */
+  .aspect-ratio {
+    position: relative; width: 100%;
+    border-radius: var(--r-md); overflow: hidden;
+    background: var(--surface-container-low);
+  }
+  .aspect-ratio.ar-16-9 { padding-bottom: 56.25%; }
+  .aspect-ratio.ar-4-3 { padding-bottom: 75%; }
+  .aspect-ratio.ar-1-1 { padding-bottom: 100%; }
+  .aspect-ratio-content {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; color: var(--on-surface-variant);
+  }
+
+  /* --- 17. Popover --- */
+  .popover-anchor { position: relative; display: inline-block; }
+  .popover-panel {
+    display: none; position: absolute; bottom: calc(100% + 8px); left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface-container-high);
+    border-radius: var(--r-md); box-shadow: var(--elevation-4);
+    padding: var(--space-xs); z-index: 50; min-width: 160px;
+  }
+  .popover-panel.show { display: block; }
+  .popover-item {
+    display: flex; align-items: center; gap: var(--space-sm);
+    padding: 12px var(--space-md); border-radius: var(--r-sm);
+    cursor: pointer; font-size: 14px; transition: background 150ms;
+    white-space: nowrap;
+  }
+  .popover-item:hover { background: rgba(28,27,31,0.08); }
+
+  /* --- 18. SearchBar --- */
+  .search-bar {
+    display: flex; align-items: center;
+    height: 56px; max-width: 480px;
+    background: var(--surface-container-high);
+    border-radius: var(--r-xl); padding: 0 var(--space-xs);
+    box-shadow: var(--elevation-1);
+    transition: box-shadow 200ms;
+  }
+  .search-bar:focus-within { box-shadow: var(--elevation-2); }
+  .search-bar input {
+    flex: 1; height: 100%; border: none; outline: none;
+    background: transparent; font: 400 16px/24px var(--font);
+    color: var(--on-surface); padding: 0 var(--space-md);
+  }
+  .search-bar input::placeholder { color: var(--on-surface-variant); }
+  .search-bar-btn {
+    width: 48px; height: 48px; border-radius: 50%;
+    border: none; background: transparent; cursor: pointer;
+    font-size: 20px; color: var(--on-surface);
+    display: flex; align-items: center; justify-content: center;
+    transition: background 150ms;
+  }
+  .search-bar-btn:hover { background: rgba(28,27,31,0.08); }
+
+  /* --- 19. Rating --- */
+  .rating {
+    display: flex; gap: var(--space-xs);
+  }
+  .rating-star {
+    font-size: 32px; cursor: pointer; color: var(--outline-variant);
+    transition: color 150ms, transform 150ms;
+    user-select: none; background: none; border: none;
+    line-height: 1; font-family: var(--font);
+  }
+  .rating-star:hover { transform: scale(1.15); }
+  .rating-star.filled { color: #FFC107; }
+  .rating-value { font-size: 14px; color: var(--on-surface-variant); margin-top: var(--space-xs); }
+
+  /* --- 20. ColorPicker --- */
+  .color-picker {
+    display: flex; flex-direction: column; gap: var(--space-md);
+  }
+  .color-grid {
+    display: grid; grid-template-columns: repeat(8, 1fr);
+    gap: var(--space-sm); max-width: 360px;
+  }
+  .color-swatch {
+    aspect-ratio: 1; border-radius: var(--r-full);
+    cursor: pointer; border: 2px solid transparent;
+    transition: border-color 150ms, transform 150ms;
+  }
+  .color-swatch:hover { transform: scale(1.1); }
+  .color-swatch.selected { border-color: var(--on-surface); transform: scale(1.1); }
+  .color-hex-input {
+    display: flex; align-items: center; gap: var(--space-sm);
+  }
+  .color-hex-input input {
+    height: 40px; width: 120px;
+    border: 1px solid var(--outline); border-radius: var(--r-sm);
+    padding: 0 var(--space-md); font: 400 14px/20px var(--font);
+    color: var(--on-surface); outline: none;
+  }
+  .color-hex-input input:focus { border-color: var(--primary); border-width: 2px; }
+  .color-preview {
+    width: 40px; height: 40px; border-radius: var(--r-full);
+    border: 2px solid var(--outline);
+  }
+
+  /* --- 21. Calendar --- */
+  .calendar {
+    background: var(--surface); border-radius: var(--r-md);
+    overflow: hidden; box-shadow: var(--elevation-1);
+    max-width: 360px;
+  }
+  .calendar-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: var(--space-md);
+    background: var(--primary); color: var(--on-primary);
+  }
+  .calendar-header h4 { font-size: 16px; font-weight: 500; }
+  .calendar-header button {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: none; background: transparent; cursor: pointer;
+    color: var(--on-primary); font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 150ms;
+  }
+  .calendar-header button:hover { background: rgba(255,255,255,0.12); }
+  .calendar-weekdays {
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    text-align: center; padding: var(--space-sm) var(--space-sm) 0;
+    font-size: 12px; color: var(--on-surface-variant);
+    font-weight: 500;
+  }
+  .calendar-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    gap: 2px; padding: var(--space-sm);
+  }
+  .calendar-day {
+    aspect-ratio: 1; display: flex; align-items: center;
+    justify-content: center; font-size: 14px;
+    border-radius: var(--r-full); cursor: pointer;
+    border: none; background: transparent; color: var(--on-surface);
+    font-family: var(--font); transition: background 150ms;
+  }
+  .calendar-day:hover { background: rgba(28,27,31,0.08); }
+  .calendar-day.today { background: var(--primary-container); color: var(--on-primary-container); font-weight: 500; }
+  .calendar-day.other-month { color: var(--outline-variant); }
+  .calendar-day:active { background: rgba(28,27,31,0.12); }
+</style>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Drawer -->
+    <aside class="drawer">
+      <div class="drawer-header">
+        <div class="logo"><span class="logo-icon"></span> ProjectHub</div>
+      </div>
+      <nav class="drawer-nav">
+        <div class="drawer-section">Navigation</div>
+        <div class="drawer-item active">
+          <div class="drawer-item-icon" style="background:var(--primary)"></div>
+          Overview
+        </div>
+        <div class="drawer-item">
+          <div class="drawer-item-icon" style="background:var(--tertiary)"></div>
+          My Tasks
+          <span class="drawer-item-badge">5</span>
+        </div>
+        <div class="drawer-item">
+          <div class="drawer-item-icon" style="background:var(--secondary)"></div>
+          Projects
+        </div>
+        <div class="drawer-item">
+          <div class="drawer-item-icon" style="background:#4CAF50"></div>
+          Team
+        </div>
+        <div class="drawer-item">
+          <div class="drawer-item-icon" style="background:var(--outline)"></div>
+          Calendar
+        </div>
+
+        <div class="drawer-section">Projects</div>
+        <div class="drawer-item"><div class="drawer-item-icon" style="background:var(--primary-container)"></div>Design System</div>
+        <div class="drawer-item"><div class="drawer-item-icon" style="background:var(--primary-container)"></div>Mobile App</div>
+        <div class="drawer-item"><div class="drawer-item-icon" style="background:var(--primary-container)"></div>Backend Refactor</div>
+
+        <div class="drawer-section">Favorites</div>
+        <div class="drawer-item"><div class="drawer-item-icon" style="background:var(--tertiary-container)"></div>Docs</div>
+        <div class="drawer-item"><div class="drawer-item-icon" style="background:var(--tertiary-container)"></div>Designs</div>
+      </nav>
+      <div class="drawer-footer">
+        <div class="drawer-user">
+          <div class="drawer-user-avatar">Z</div>
+          <div class="drawer-user-info">
+            <div class="drawer-user-name">Zhang San</div>
+            <div class="drawer-user-role">Product Designer</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="main-area">
+      <!-- Top App Bar -->
+      <header class="top-app-bar">
+        <button class="menu-btn" onclick="alert('Mobile navigation drawer — use Drawer component in production')">&#9776;</button>
+        <span class="top-app-bar-title">Dashboard</span>
+        <div class="top-app-bar-actions">
+          <button class="top-app-bar-btn">&#128276;</button>
+          <button class="top-app-bar-btn">&#9881;</button>
+          <button class="top-app-bar-btn fab-like" onclick="openDialog()">+</button>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <div class="content">
+        <!-- Page Header -->
+        <div class="page-header">
+          <h1>Dashboard</h1>
+          <p>Welcome back, Zhang San. Here is your project overview.</p>
+        </div>
+
+        <!-- Chips -->
+        <div class="chip-group">
+          <span class="chip selected">All Projects</span>
+          <span class="chip">Design System</span>
+          <span class="chip">Mobile App</span>
+          <span class="chip">Backend Refactor</span>
+          <span class="chip">+ Add Filter</span>
+        </div>
+
+        <!-- Stat Cards -->
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-card-label">Active Projects</div>
+            <div class="stat-card-value">12</div>
+            <div class="stat-card-change up">&#9650; +2 vs last month</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-label">Ongoing Tasks</div>
+            <div class="stat-card-value">48</div>
+            <div class="stat-card-change down">&#9660; -3 vs last month</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-label">Completed This Week</div>
+            <div class="stat-card-value">23</div>
+            <div class="stat-card-change up">&#9650; +8 vs last week</div>
+            <div class="stat-card-bar">
+              <div class="stat-card-bar-fill" style="width:65%;background:#4CAF50"></div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-label">Team Efficiency</div>
+            <div class="stat-card-value">87%</div>
+            <div class="stat-card-change up">&#9650; +5% vs last month</div>
+            <div class="stat-card-bar">
+              <div class="stat-card-bar-fill" style="width:87%;background:var(--primary)"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs + Recent Tasks -->
+        <div class="section-block">
+          <div class="section-header">
+            <h2>Recent Tasks</h2>
+          </div>
+          <div class="mat-tabs">
+            <button class="mat-tab active">All</button>
+            <button class="mat-tab">To Do</button>
+            <button class="mat-tab">In Progress</button>
+            <button class="mat-tab">Done</button>
+          </div>
+          <div class="mat-list">
+            <div class="mat-list-item">
+              <div class="ml-leading" style="background:var(--primary)">D</div>
+              <div class="ml-content">
+                <div class="ml-headline">Design System Component Docs</div>
+                <div class="ml-supporting">Due 2026-06-15 · High Priority</div>
+              </div>
+              <div class="ml-trailing">
+                <div class="ml-tag active">In Progress</div>
+                <div class="ml-date">75%</div>
+              </div>
+            </div>
+            <div class="mat-list-item">
+              <div class="ml-leading" style="background:var(--tertiary)">M</div>
+              <div class="ml-content">
+                <div class="ml-headline">Mobile Login Flow Refactor</div>
+                <div class="ml-supporting">Due 2026-06-20 · Medium Priority</div>
+              </div>
+              <div class="ml-trailing">
+                <div class="ml-tag active">In Progress</div>
+                <div class="ml-date">40%</div>
+              </div>
+            </div>
+            <div class="mat-list-item">
+              <div class="ml-leading" style="background:#4CAF50">A</div>
+              <div class="ml-content">
+                <div class="ml-headline">API Performance Optimization</div>
+                <div class="ml-supporting">Due 2026-06-10 · High Priority</div>
+              </div>
+              <div class="ml-trailing">
+                <div class="ml-tag muted">To Do</div>
+              </div>
+            </div>
+            <div class="mat-list-item">
+              <div class="ml-leading" style="background:#FF7043">S</div>
+              <div class="ml-content">
+                <div class="ml-headline">User Feedback Analysis</div>
+                <div class="ml-supporting">Due 2026-06-08</div>
+              </div>
+              <div class="ml-trailing">
+                <div class="ml-tag done">Done</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Cards -->
+        <div class="section-block">
+          <div class="section-header">
+            <h2>Ongoing Projects</h2>
+          </div>
+          <div class="card-grid">
+            <div class="mat-card">
+              <div class="mat-card-title">Design System 2.0</div>
+              <div class="mat-card-body">Unify component library, design tokens, and documentation site for web and mobile.</div>
+              <div class="mat-card-meta">Due 2026-07-01</div>
+              <div class="mat-card-footer">
+                <div class="mat-card-avatars">
+                  <span style="background:var(--primary)">Z</span>
+                  <span style="background:var(--tertiary)">L</span>
+                  <span style="background:#4CAF50">W</span>
+                </div>
+                <span class="ml-tag active">65%</span>
+              </div>
+            </div>
+            <div class="mat-card">
+              <div class="mat-card-title">Mobile App v3</div>
+              <div class="mat-card-body">New UI architecture, offline mode, and performance optimization.</div>
+              <div class="mat-card-meta">Due 2026-08-15</div>
+              <div class="mat-card-footer">
+                <div class="mat-card-avatars">
+                  <span style="background:var(--error)">C</span>
+                  <span style="background:var(--secondary)">X</span>
+                </div>
+                <span class="ml-tag active">40%</span>
+              </div>
+            </div>
+            <div class="mat-card">
+              <div class="mat-card-title">Admin System Refactor</div>
+              <div class="mat-card-body">Migrate to new framework, optimize data loading and permission management.</div>
+              <div class="mat-card-meta">Due 2026-09-01</div>
+              <div class="mat-card-footer">
+                <div class="mat-card-avatars">
+                  <span style="background:var(--tertiary)">M</span>
+                  <span style="background:var(--primary)">Z</span>
+                  <span style="background:var(--outline)">F</span>
+                </div>
+                <span class="ml-tag muted">25%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Table -->
+        <div class="section-block">
+          <div class="section-header">
+            <h2>Team Members</h2>
+          </div>
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Role</th>
+                  <th>Ongoing Tasks</th>
+                  <th>Completion Rate</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Zhang San</td>
+                  <td>Product Designer</td>
+                  <td>4</td>
+                  <td>87%</td>
+                  <td><span class="t-status active">Active</span></td>
+                </tr>
+                <tr>
+                  <td>Li Si</td>
+                  <td>Frontend Engineer</td>
+                  <td>3</td>
+                  <td>72%</td>
+                  <td><span class="t-status active">Active</span></td>
+                </tr>
+                <tr>
+                  <td>Wang Wu</td>
+                  <td>Backend Engineer</td>
+                  <td>5</td>
+                  <td>60%</td>
+                  <td><span class="t-status busy">Busy</span></td>
+                </tr>
+                <tr>
+                  <td>Chen Liu</td>
+                  <td>UI Designer</td>
+                  <td>2</td>
+                  <td>95%</td>
+                  <td><span class="t-status active">Active</span></td>
+                </tr>
+                <tr>
+                  <td>Zhao Qi</td>
+                  <td>Test Engineer</td>
+                  <td>1</td>
+                  <td>0%</td>
+                  <td><span class="t-status away">On Leave</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ========================================
+             21 Missing M3 Components
+             ======================================== -->
+
+        <!-- 1. Autocomplete -->
+        <div class="comp-section">
+          <h3>Autocomplete</h3>
+          <div class="autocomplete-wrap" id="autocomplete1">
+            <input type="text" placeholder="Search cities..." autocomplete="off"
+                   onfocus="toggleAutocomplete('ac1',true)"
+                   oninput="filterAutocomplete('ac1')">
+            <div class="autocomplete-dropdown" id="ac1">
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. NumberInput -->
+        <div class="comp-section">
+          <h3>NumberInput</h3>
+          <div class="number-input-group">
+            <button onclick="stepNumber('num1',-1)">&minus;</button>
+            <input type="number" id="num1" value="0" min="0" max="100" readonly>
+            <button onclick="stepNumber('num1',1)">+</button>
+          </div>
+        </div>
+
+        <!-- 3. Upload -->
+        <div class="comp-section">
+          <h3>Upload</h3>
+          <div class="upload-area" id="uploadArea"
+               onclick="document.getElementById('uploadInput').click()"
+               ondragover="event.preventDefault();this.classList.add('dragover')"
+               ondragleave="this.classList.remove('dragover')"
+               ondrop="handleDrop(event)">
+            <div class="upload-area-text">Drag files here, or <span>click to upload</span></div>
+            <input type="file" id="uploadInput" multiple hidden onchange="handleFiles(this.files)">
+          </div>
+          <div class="upload-file-list" id="uploadFileList"></div>
+        </div>
+
+        <!-- 4. Notification -->
+        <div class="comp-section">
+          <h3>Notification Panel</h3>
+          <div style="position:relative;display:inline-block">
+            <button class="top-app-bar-btn" onclick="toggleNotification()" style="position:relative">
+              &#128276;
+              <span class="notification-badge" style="display:none" id="notifBadge"></span>
+            </button>
+            <div class="notification-panel" id="notifPanel">
+              <div class="notification-item">
+                <div class="notification-item-title">Task Assigned</div>
+                <div class="notification-item-desc">Zhang San assigned "Design System Docs" to you</div>
+                <div class="notification-item-time">2 minutes ago</div>
+              </div>
+              <div class="notification-item">
+                <div class="notification-item-title">Comment Mention</div>
+                <div class="notification-item-desc">Li Si mentioned you in "API Refactor"</div>
+                <div class="notification-item-time">1 hour ago</div>
+              </div>
+              <div class="notification-item">
+                <div class="notification-item-title">Project Deadline</div>
+                <div class="notification-item-desc">"Mobile App v3" is due tomorrow</div>
+                <div class="notification-item-time">3 hours ago</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Alert / Banner -->
+        <div class="comp-section">
+          <h3>Alert / Banner</h3>
+          <div class="mat-space-v md">
+            <div class="alert alert-info">
+              <span class="alert-icon">&#8505;</span>
+              <div class="alert-content"><strong>Info:</strong> System maintenance scheduled tonight 02:00-04:00.</div>
+              <button class="alert-close" onclick="this.parentElement.remove()">&times;</button>
+            </div>
+            <div class="alert alert-success">
+              <span class="alert-icon">&#10003;</span>
+              <div class="alert-content"><strong>Success:</strong> Task has been created and assigned to team members.</div>
+              <button class="alert-close" onclick="this.parentElement.remove()">&times;</button>
+            </div>
+            <div class="alert alert-warning">
+              <span class="alert-icon">&#9888;</span>
+              <div class="alert-content"><strong>Warning:</strong> Storage is 85% full, please clean up promptly.</div>
+              <button class="alert-close" onclick="this.parentElement.remove()">&times;</button>
+            </div>
+            <div class="alert alert-error">
+              <span class="alert-icon">&#10007;</span>
+              <div class="alert-content"><strong>Error:</strong> Unable to sync data, please check your network connection.</div>
+              <button class="alert-close" onclick="this.parentElement.remove()">&times;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Skeleton -->
+        <div class="comp-section">
+          <h3>Skeleton</h3>
+          <div class="card-grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr))">
+            <div class="skeleton-card">
+              <div class="mat-space-h sm" style="margin-bottom:var(--space-md)">
+                <div class="skeleton-circle"></div>
+                <div style="flex:1" class="mat-space-v xs">
+                  <div class="skeleton-line w-50"></div>
+                  <div class="skeleton-line w-75"></div>
+                </div>
+              </div>
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line w-75"></div>
+              <div class="skeleton-line h-48" style="margin-top:var(--space-md)"></div>
+            </div>
+            <div class="skeleton-card">
+              <div class="skeleton-line h-24 w-50" style="margin-bottom:var(--space-md)"></div>
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line w-50"></div>
+              <div class="skeleton-line w-75" style="margin-bottom:var(--space-md)"></div>
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line w-25"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Pagination -->
+        <div class="comp-section">
+          <h3>Pagination</h3>
+          <div class="pagination" id="pagination1">
+          </div>
+        </div>
+
+        <!-- 8. Stepper -->
+        <div class="comp-section">
+          <h3>Stepper</h3>
+          <div class="stepper">
+            <div class="stepper-step">
+              <div class="stepper-circle done">&#10003;</div>
+              <span class="stepper-label">Requirements</span>
+            </div>
+            <div class="stepper-line done"></div>
+            <div class="stepper-step">
+              <div class="stepper-circle done">&#10003;</div>
+              <span class="stepper-label">UI Design</span>
+            </div>
+            <div class="stepper-line done"></div>
+            <div class="stepper-step">
+              <div class="stepper-circle current">3</div>
+              <span class="stepper-label">Development</span>
+            </div>
+            <div class="stepper-line"></div>
+            <div class="stepper-step">
+              <div class="stepper-circle pending">4</div>
+              <span class="stepper-label pending-label">Testing</span>
+            </div>
+            <div class="stepper-line"></div>
+            <div class="stepper-step">
+              <div class="stepper-circle pending">5</div>
+              <span class="stepper-label pending-label">Launch</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. Bottom Sheet -->
+        <div class="comp-section">
+          <h3>Sheet / ActionSheet</h3>
+          <button class="chip selected" onclick="openSheet()" style="cursor:pointer">Open Bottom Sheet</button>
+        </div>
+
+        <!-- 10. Accordion -->
+        <div class="comp-section">
+          <h3>Accordion</h3>
+          <div class="accordion">
+            <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>Design System 2.0 — Progress Update</span>
+                <span class="accordion-icon">&#9660;</span>
+              </div>
+              <div class="accordion-body">
+                <div class="accordion-body-inner">
+                  Component library is 80% complete, documentation site under construction. Final review of Button, Input, and Dialog components expected next week.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>Mobile App v3 — Technical Proposal</span>
+                <span class="accordion-icon">&#9660;</span>
+              </div>
+              <div class="accordion-body">
+                <div class="accordion-body-inner">
+                  Using React Native new architecture, offline-first strategy, with SQLite local cache. First-screen load time target &lt; 1.5s.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>Backend Refactor — Data Migration Plan</span>
+                <span class="accordion-icon">&#9660;</span>
+              </div>
+              <div class="accordion-body">
+                <div class="accordion-body-inner">
+                  Three phases: 1) Dual-write verification 2) Gradual traffic cutover 3) Legacy system shutdown. Full migration expected by early September.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11. Carousel -->
+        <div class="comp-section">
+          <h3>Carousel</h3>
+          <div class="carousel" id="carousel1">
+            <div class="carousel-track" id="carouselTrack">
+              <div class="carousel-slide" style="background:var(--primary-container);color:var(--on-primary-container)">
+                Design System 2.0 — Component Library Launch
+              </div>
+              <div class="carousel-slide" style="background:var(--tertiary-container);color:var(--tertiary)">
+                Mobile App v3 — 40% Performance Boost
+              </div>
+              <div class="carousel-slide" style="background:var(--secondary-container);color:var(--on-secondary-container)">
+                Backend Refactor — New Architecture
+              </div>
+            </div>
+            <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1)">&#9664;</button>
+            <button class="carousel-btn carousel-next" onclick="moveCarousel(1)">&#9654;</button>
+            <div class="carousel-dots" id="carouselDots"></div>
+          </div>
+        </div>
+
+        <!-- 12. Timeline -->
+        <div class="comp-section">
+          <h3>Timeline</h3>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot past"></div>
+              <div class="timeline-content">
+                <h4>Project Kickoff</h4>
+                <p>Design System 2.0 project formally initiated</p>
+                <div class="time">2026-05-01</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot past"></div>
+              <div class="timeline-content">
+                <h4>Design Review</h4>
+                <p>Completed all component design reviews</p>
+                <div class="time">2026-05-20</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>Development</h4>
+                <p>Component library in development, 65% complete</p>
+                <div class="time">2026-06-01 — In Progress</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot past" style="background:var(--outline-variant)"></div>
+              <div class="timeline-content">
+                <h4>Launch</h4>
+                <p>Full rollout planned</p>
+                <div class="time">2026-07-01</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 13. Tree -->
+        <div class="comp-section">
+          <h3>Tree</h3>
+          <div class="tree">
+            <div class="tree-node open">
+              <div class="tree-node-toggle" onclick="toggleTreeNode(this)">
+                <span class="tree-arrow">&#9654;</span>
+                <span class="tree-icon" style="background:var(--primary-container)">&#128193;</span>
+                <span>src/</span>
+              </div>
+              <div class="tree-children">
+                <div class="tree-node">
+                  <div class="tree-node-toggle" onclick="toggleTreeNode(this)">
+                    <span class="tree-arrow">&#9654;</span>
+                    <span class="tree-icon" style="background:var(--primary-container)">&#128193;</span>
+                    <span>components/</span>
+                  </div>
+                  <div class="tree-children">
+                    <div class="tree-node-toggle">
+                      <span class="tree-arrow" style="visibility:hidden">&#9654;</span>
+                      <span class="tree-icon" style="background:var(--tertiary-container)">&#128196;</span>
+                      <span>Button.tsx</span>
+                    </div>
+                    <div class="tree-node-toggle">
+                      <span class="tree-arrow" style="visibility:hidden">&#9654;</span>
+                      <span class="tree-icon" style="background:var(--tertiary-container)">&#128196;</span>
+                      <span>Dialog.tsx</span>
+                    </div>
+                    <div class="tree-node-toggle">
+                      <span class="tree-arrow" style="visibility:hidden">&#9654;</span>
+                      <span class="tree-icon" style="background:var(--tertiary-container)">&#128196;</span>
+                      <span>Input.tsx</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tree-node-toggle">
+                  <span class="tree-arrow" style="visibility:hidden">&#9654;</span>
+                  <span class="tree-icon" style="background:var(--tertiary-container)">&#128196;</span>
+                  <span>index.ts</span>
+                </div>
+                <div class="tree-node-toggle">
+                  <span class="tree-arrow" style="visibility:hidden">&#9654;</span>
+                  <span class="tree-icon" style="background:var(--tertiary-container)">&#128196;</span>
+                  <span>App.tsx</span>
+                </div>
+              </div>
+            </div>
+            <div class="tree-node">
+              <div class="tree-node-toggle" onclick="toggleTreeNode(this)">
+                <span class="tree-arrow">&#9654;</span>
+                <span class="tree-icon" style="background:var(--primary-container)">&#128193;</span>
+                <span>public/</span>
+              </div>
+              <div class="tree-children">
+                <div class="tree-node-toggle">
+                  <span class="tree-arrow" style="visibility:hidden">&#9654;</span>
+                  <span class="tree-icon" style="background:var(--tertiary-container)">&#128196;</span>
+                  <span>index.html</span>
+                </div>
+                <div class="tree-node-toggle">
+                  <span class="tree-arrow" style="visibility:hidden">&#9654;</span>
+                  <span class="tree-icon" style="background:var(--tertiary-container)">&#128196;</span>
+                  <span>favicon.ico</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 14. Divider -->
+        <div class="comp-section">
+          <h3>Divider</h3>
+          <div class="mat-space-v sm">
+            <div style="padding:var(--space-sm) 0;font-size:14px">Content area above</div>
+            <hr class="mat-divider">
+            <div style="padding:var(--space-sm) 0;font-size:14px">Content area below</div>
+            <hr class="mat-divider inset">
+            <div style="padding:var(--space-sm) 0;font-size:14px;color:var(--on-surface-variant)">Inset divider</div>
+          </div>
+        </div>
+
+        <!-- 15. Space / Stack -->
+        <div class="comp-section">
+          <h3>Space / Stack</h3>
+          <div class="mat-space-v md">
+            <div style="font-size:14px;font-weight:500">Horizontal spacing (sm):</div>
+            <div class="mat-space-h sm">
+              <span class="chip">Tag 1</span>
+              <span class="chip">Tag 2</span>
+              <span class="chip">Tag 3</span>
+            </div>
+            <div style="font-size:14px;font-weight:500;margin-top:var(--space-sm)">Vertical spacing (md):</div>
+            <div class="mat-space-v md">
+              <div style="padding:var(--space-sm) var(--space-md);background:var(--surface-container-low);border-radius:var(--r-sm);font-size:14px">Item 1</div>
+              <div style="padding:var(--space-sm) var(--space-md);background:var(--surface-container-low);border-radius:var(--r-sm);font-size:14px">Item 2</div>
+              <div style="padding:var(--space-sm) var(--space-md);background:var(--surface-container-low);border-radius:var(--r-sm);font-size:14px">Item 3</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 16. AspectRatio -->
+        <div class="comp-section">
+          <h3>AspectRatio</h3>
+          <div class="card-grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">
+            <div>
+              <div style="font-size:14px;margin-bottom:var(--space-sm);color:var(--on-surface-variant)">16:9</div>
+              <div class="aspect-ratio ar-16-9">
+                <div class="aspect-ratio-content">16:9 Container</div>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:14px;margin-bottom:var(--space-sm);color:var(--on-surface-variant)">4:3</div>
+              <div class="aspect-ratio ar-4-3">
+                <div class="aspect-ratio-content">4:3 Container</div>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:14px;margin-bottom:var(--space-sm);color:var(--on-surface-variant)">1:1</div>
+              <div class="aspect-ratio ar-1-1">
+                <div class="aspect-ratio-content">1:1 Container</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 17. Popover -->
+        <div class="comp-section">
+          <h3>Popover</h3>
+          <div class="popover-anchor">
+            <button class="chip selected" onclick="togglePopover('popover1')" style="cursor:pointer">Click to Open Popover</button>
+            <div class="popover-panel" id="popover1">
+              <div class="popover-item">&#9998; Edit</div>
+              <div class="popover-item">&#128203; Copy</div>
+              <div class="popover-item">&#128206; Share</div>
+              <hr class="mat-divider" style="margin:4px 0">
+              <div class="popover-item" style="color:var(--error)">&#128465; Delete</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 18. SearchBar -->
+        <div class="comp-section">
+          <h3>SearchBar</h3>
+          <div class="search-bar">
+            <button class="search-bar-btn">&#128269;</button>
+            <input type="text" placeholder="Search projects, tasks, or docs...">
+            <button class="search-bar-btn" onclick="this.previousElementSibling.value=''" style="font-size:16px">&#10005;</button>
+          </div>
+        </div>
+
+        <!-- 19. Rating -->
+        <div class="comp-section">
+          <h3>Rating</h3>
+          <div class="rating" id="rating1" data-value="0">
+            <button class="rating-star" onclick="setRating('rating1',1,this)">&#9733;</button>
+            <button class="rating-star" onclick="setRating('rating1',2,this)">&#9733;</button>
+            <button class="rating-star" onclick="setRating('rating1',3,this)">&#9733;</button>
+            <button class="rating-star" onclick="setRating('rating1',4,this)">&#9733;</button>
+            <button class="rating-star" onclick="setRating('rating1',5,this)">&#9733;</button>
+          </div>
+          <div class="rating-value" id="rating1Value">Not rated</div>
+        </div>
+
+        <!-- 20. ColorPicker -->
+        <div class="comp-section">
+          <h3>ColorPicker</h3>
+          <div class="color-picker">
+            <div class="color-grid" id="colorGrid">
+            </div>
+            <div class="color-hex-input">
+              <div class="color-preview" id="colorPreview" style="background:#6750A4"></div>
+              <input type="text" id="colorHex" value="#6750A4" maxlength="7"
+                     oninput="updateColorFromHex(this.value)">
+            </div>
+          </div>
+        </div>
+
+        <!-- 21. Calendar -->
+        <div class="comp-section">
+          <h3>Calendar</h3>
+          <div class="calendar" id="calendar1">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FAB -->
+  <button class="fab" onclick="openDialog()">+</button>
+
+  <!-- Dialog -->
+  <div class="dialog-overlay" id="dialog" onclick="if(event.target===this)closeDialog()">
+    <div class="dialog">
+      <div class="dialog-headline">New Task</div>
+      <div class="dialog-field">
+        <label>Task Name</label>
+        <input type="text" placeholder="Enter task name">
+      </div>
+      <div class="dialog-field">
+        <label>Project</label>
+        <div class="mat-select" id="dialog-select" onclick="toggleMatSelect(this)">
+          <div class="mat-select-trigger">
+            <span class="mat-select-value">Design System 2.0</span>
+            <svg class="mat-select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px; color: var(--on-surface-variant); transition: transform 200ms ease;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="mat-select-options">
+            <div class="mat-select-option selected" data-value="Design System 2.0" onclick="selectMatOption(this, 'dialog-select')">Design System 2.0</div>
+            <div class="mat-select-option" data-value="Mobile App v3" onclick="selectMatOption(this, 'dialog-select')">Mobile App v3</div>
+            <div class="mat-select-option" data-value="Admin System Refactor" onclick="selectMatOption(this, 'dialog-select')">Admin System Refactor</div>
+          </div>
+        </div>
+      </div>
+      <div class="dialog-field">
+        <label>Due Date</label>
+        <input type="date" value="2026-06-15">
+      </div>
+      <div class="dialog-field">
+        <label>Description</label>
+        <textarea placeholder="Enter task description..."></textarea>
+      </div>
+      <div class="dialog-actions">
+        <button class="top-app-bar-btn fab-like" style="width:auto;height:40px;padding:0 var(--space-lg);font-size:14px;border-radius:var(--r-full)" onclick="closeDialog()">Cancel</button>
+        <button class="top-app-bar-btn fab-like" style="width:auto;height:40px;padding:0 var(--space-lg);font-size:14px;background:var(--primary);color:var(--on-primary);border-radius:var(--r-full)" onclick="closeDialog();showSnackbar()">Create Task</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Snackbar -->
+  <div class="snackbar" id="snackbar">
+    Task created
+    <button onclick="hideSnackbar()">Undo</button>
+  </div>
+
+  <script>
+    function openDialog() { document.getElementById('dialog').classList.add('open'); }
+    function closeDialog() { document.getElementById('dialog').classList.remove('open'); }
+    function showSnackbar() {
+      const s = document.getElementById('snackbar');
+      s.classList.add('show');
+      setTimeout(() => s.classList.remove('show'), 4000);
+    }
+    function hideSnackbar() { document.getElementById('snackbar').classList.remove('show'); }
+
+    // ---- Select Component ----
+    function toggleMatSelect(el) {
+      const options = el.querySelector('.mat-select-options');
+      const isOpen = options.classList.toggle('open');
+      el.classList.toggle('open', isOpen);
+      if (isOpen) {
+        document.querySelectorAll('.mat-select.open').forEach(s => {
+          if (s !== el) {
+            s.classList.remove('open');
+            s.querySelector('.mat-select-options').classList.remove('open');
+          }
+        });
+      }
+    }
+    function selectMatOption(optEl, selectId) {
+      const select = document.getElementById(selectId);
+      select.querySelectorAll('.mat-select-option').forEach(o => o.classList.remove('selected'));
+      optEl.classList.add('selected');
+      select.querySelector('.mat-select-value').textContent = optEl.dataset.value;
+      select.classList.remove('open');
+      select.querySelector('.mat-select-options').classList.remove('open');
+    }
+    document.addEventListener('click', e => {
+      document.querySelectorAll('.mat-select.open').forEach(s => {
+        if (!s.contains(e.target)) {
+          s.classList.remove('open');
+          s.querySelector('.mat-select-options').classList.remove('open');
+        }
+      });
+    });
+
+    // ===== 21 Missing Components JavaScript =====
+
+    // --- 1. Autocomplete ---
+    const autocompleteData = ['Beijing','Shanghai','Guangzhou','Shenzhen','Hangzhou','Chengdu','Wuhan','Nanjing','Xi\'an','Chongqing','Changsha','Suzhou','Tianjin','Qingdao','Dalian','Xiamen','Ningbo','Zhengzhou','Jinan','Fuzhou'];
+    function toggleAutocomplete(id, show) {
+      document.getElementById(id).classList.toggle('show', show);
+    }
+    function filterAutocomplete(id) {
+      const input = document.getElementById('autocomplete1').querySelector('input');
+      const dropdown = document.getElementById(id);
+      const val = input.value.toLowerCase();
+      const filtered = autocompleteData.filter(c => c.toLowerCase().includes(val));
+      dropdown.innerHTML = filtered.map(c =>
+        `<div class="autocomplete-option" onclick="selectAutocomplete('${c}')">${c}</div>`
+      ).join('');
+      dropdown.classList.toggle('show', val.length > 0 && filtered.length > 0);
+    }
+    function selectAutocomplete(val) {
+      document.getElementById('autocomplete1').querySelector('input').value = val;
+      document.getElementById('ac1').classList.remove('show');
+    }
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.autocomplete-wrap')) document.getElementById('ac1').classList.remove('show');
+    });
+
+    // --- 2. NumberInput ---
+    function stepNumber(id, delta) {
+      const el = document.getElementById(id);
+      let v = parseInt(el.value) || 0;
+      v = Math.max(parseInt(el.min) || 0, Math.min(parseInt(el.max) || 100, v + delta));
+      el.value = v;
+    }
+
+    // --- 3. Upload ---
+    const uploadedFiles = [];
+    function handleFiles(files) {
+      for (const f of files) {
+        uploadedFiles.push({ name: f.name, size: f.size });
+      }
+      renderUploadList();
+    }
+    function handleDrop(e) {
+      e.preventDefault();
+      e.currentTarget.classList.remove('dragover');
+      if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files);
+    }
+    function removeUploadFile(idx) {
+      uploadedFiles.splice(idx, 1);
+      renderUploadList();
+    }
+    function renderUploadList() {
+      const list = document.getElementById('uploadFileList');
+      list.innerHTML = uploadedFiles.map((f, i) =>
+        `<div class="upload-file-item">
+          <span>${f.name} (${(f.size/1024).toFixed(1)} KB)</span>
+          <button onclick="removeUploadFile(${i})">&times;</button>
+        </div>`
+      ).join('');
+    }
+
+    // --- 4. Notification ---
+    function toggleNotification() {
+      const panel = document.getElementById('notifPanel');
+      panel.classList.toggle('show');
+    }
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.top-app-bar-btn') && !e.target.closest('#notifPanel')) {
+        document.getElementById('notifPanel').classList.remove('show');
+      }
+    });
+
+    // --- 5. Alert (inline onclick handles close) ---
+
+    // --- 6. Skeleton (pure CSS animation) ---
+
+    // --- 7. Pagination ---
+    let paginationPage = 1;
+    const paginationTotal = 8;
+    function renderPagination() {
+      const container = document.getElementById('pagination1');
+      let html = `<button class="pagination-btn" onclick="goToPage(${paginationPage-1})" ${paginationPage===1?'disabled':''}>&#9664;</button>`;
+      for (let i = 1; i <= paginationTotal; i++) {
+        html += `<button class="pagination-btn ${i===paginationPage?'active':''}" onclick="goToPage(${i})">${i}</button>`;
+      }
+      html += `<button class="pagination-btn" onclick="goToPage(${paginationPage+1})" ${paginationPage===paginationTotal?'disabled':''}>&#9654;</button>`;
+      container.innerHTML = html;
+    }
+    function goToPage(n) {
+      if (n < 1 || n > paginationTotal) return;
+      paginationPage = n;
+      renderPagination();
+    }
+    renderPagination();
+
+    // --- 8. Stepper (static display) ---
+
+    // --- 9. Bottom Sheet ---
+    function openSheet() {
+      if (!document.getElementById('sheetOverlay')) {
+        const overlay = document.createElement('div');
+        overlay.className = 'sheet-overlay';
+        overlay.id = 'sheetOverlay';
+        overlay.onclick = closeSheet;
+        const panel = document.createElement('div');
+        panel.className = 'sheet-panel';
+        panel.innerHTML = `<div class="sheet-handle"></div>
+          <div class="sheet-item">&#128196; New Document</div>
+          <div class="sheet-item">&#128193; New Folder</div>
+          <div class="sheet-item">&#128247; Take Photo</div>
+          <div class="sheet-item">&#128444; Choose from Gallery</div>
+          <hr class="mat-divider" style="margin:var(--space-xs) 0">
+          <div class="sheet-item" onclick="closeSheet()">Cancel</div>`;
+        overlay.appendChild(panel);
+        document.body.appendChild(overlay);
+        requestAnimationFrame(() => { overlay.classList.add('open'); panel.classList.add('open'); });
+      } else {
+        const overlay = document.getElementById('sheetOverlay');
+        overlay.classList.add('open');
+        overlay.querySelector('.sheet-panel').classList.add('open');
+      }
+    }
+    function closeSheet() {
+      const overlay = document.getElementById('sheetOverlay');
+      if (!overlay) return;
+      overlay.querySelector('.sheet-panel').classList.remove('open');
+      overlay.classList.remove('open');
+    }
+
+    // --- 10. Accordion ---
+    function toggleAccordion(header) {
+      const item = header.parentElement;
+      const isOpen = item.classList.contains('open');
+      item.classList.toggle('open');
+      const body = item.querySelector('.accordion-body');
+      if (!isOpen) {
+        body.style.maxHeight = body.scrollHeight + 'px';
+      } else {
+        body.style.maxHeight = '0';
+      }
+    }
+
+    // --- 11. Carousel ---
+    let carouselIndex = 0;
+    const carouselTotal = 3;
+    function renderCarousel() {
+      document.getElementById('carouselTrack').style.transform = `translateX(-${carouselIndex * 100}%)`;
+      const dots = document.getElementById('carouselDots');
+      let html = '';
+      for (let i = 0; i < carouselTotal; i++) {
+        html += `<button class="carousel-dot ${i===carouselIndex?'active':''}" onclick="goToCarousel(${i})"></button>`;
+      }
+      dots.innerHTML = html;
+    }
+    function moveCarousel(dir) {
+      carouselIndex = (carouselIndex + dir + carouselTotal) % carouselTotal;
+      renderCarousel();
+    }
+    function goToCarousel(n) { carouselIndex = n; renderCarousel(); }
+    renderCarousel();
+
+    // --- 12. Timeline (static display) ---
+
+    // --- 13. Tree ---
+    function toggleTreeNode(toggle) {
+      const node = toggle.parentElement;
+      node.classList.toggle('open');
+    }
+
+    // --- 14-16. Divider, Space, AspectRatio (pure CSS, no JS) ---
+
+    // --- 17. Popover ---
+    function togglePopover(id) {
+      const panel = document.getElementById(id);
+      panel.classList.toggle('show');
+    }
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.popover-anchor')) {
+        document.querySelectorAll('.popover-panel.show').forEach(p => p.classList.remove('show'));
+      }
+    });
+
+    // --- 18. SearchBar (inline onclick clear) ---
+
+    // --- 19. Rating ---
+    function setRating(id, val, btn) {
+      const container = document.getElementById(id);
+      container.setAttribute('data-value', val);
+      const stars = container.querySelectorAll('.rating-star');
+      stars.forEach((s, i) => s.classList.toggle('filled', i < val));
+      const label = document.getElementById(id + 'Value');
+      const texts = ['Not rated', 'Very poor', 'Poor', 'Average', 'Good', 'Excellent'];
+      label.textContent = val > 0 ? `${val} stars — ${texts[val]}` : 'Not rated';
+    }
+
+    // --- 20. ColorPicker ---
+    const colorPalette = ['#6750A4','#625B71','#7D5260','#B3261E','#E65100','#F57C00','#FFC107','#4CAF50','#2196F3','#1976D2','#9C27B0','#E91E63','#795548','#607D8B','#37474F','#000000'];
+    function renderColorGrid() {
+      const grid = document.getElementById('colorGrid');
+      grid.innerHTML = colorPalette.map(c =>
+        `<div class="color-swatch" style="background:${c}" onclick="selectColor('${c}')" data-color="${c}"></div>`
+      ).join('');
+      selectColor('#6750A4');
+    }
+    function selectColor(hex) {
+      document.getElementById('colorHex').value = hex;
+      document.getElementById('colorPreview').style.background = hex;
+      document.querySelectorAll('.color-swatch').forEach(s => s.classList.toggle('selected', s.dataset.color === hex));
+    }
+    function updateColorFromHex(val) {
+      if (/^#[0-9a-fA-F]{6}$/.test(val)) {
+        document.getElementById('colorPreview').style.background = val;
+        document.querySelectorAll('.color-swatch').forEach(s => s.classList.toggle('selected', s.dataset.color === val));
+      }
+    }
+    renderColorGrid();
+
+    // --- 21. Calendar ---
+    let calYear = 2026, calMonth = 6;
+    const calWeekdays = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    function renderCalendar() {
+      const container = document.getElementById('calendar1');
+      const today = new Date(2026, 5, 8); // June 8, 2026
+      const firstDay = new Date(calYear, calMonth - 1, 1);
+      const lastDay = new Date(calYear, calMonth, 0);
+      const startDayOfWeek = firstDay.getDay();
+      const daysInMonth = lastDay.getDate();
+
+      let html = `<div class="calendar-header">
+        <button onclick="changeMonth(-1)">&#9664;</button>
+        <h4>${calYear}.${calMonth}</h4>
+        <button onclick="changeMonth(1)">&#9654;</button>
+      </div>`;
+      html += `<div class="calendar-weekdays">${calWeekdays.map(d => `<div>${d}</div>`).join('')}</div>`;
+      html += `<div class="calendar-grid">`;
+
+      // Prev month days
+      const prevMonthLastDay = new Date(calYear, calMonth - 1, 0).getDate();
+      for (let i = startDayOfWeek - 1; i >= 0; i--) {
+        html += `<div class="calendar-day other-month">${prevMonthLastDay - i}</div>`;
+      }
+      // Current month days
+      for (let d = 1; d <= daysInMonth; d++) {
+        const isToday = (d === today.getDate() && calYear === 2026 && calMonth === 6);
+        html += `<div class="calendar-day ${isToday?'today':''}">${d}</div>`;
+      }
+      // Next month padding
+      const totalCells = startDayOfWeek + daysInMonth;
+      const remaining = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+      for (let d = 1; d <= remaining; d++) {
+        html += `<div class="calendar-day other-month">${d}</div>`;
+      }
+      html += `</div>`;
+      container.innerHTML = html;
+    }
+    function changeMonth(delta) {
+      calMonth += delta;
+      if (calMonth > 12) { calMonth = 1; calYear++; }
+      if (calMonth < 1) { calMonth = 12; calYear--; }
+      renderCalendar();
+    }
+    renderCalendar();
+  </script>
+</body>
+</html>

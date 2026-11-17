@@ -1,39 +1,50 @@
-## Description: <br>
-Analyzes epidemiology, biostatistics, and public-health academic papers with structured explanations of study design, statistical methods, results, limitations, and table layouts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured, in-depth analysis of epidemiology, biostatistics, and public health academic papers, including term explanations, method interpretation, results analysis, and table layout extraction.
 
-## Publisher: <br>
-[chircken891](https://clawhub.ai/user/chircken891) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chircken891](https://clawhub.ai/user/chircken891)
 
-## Use Case: <br>
-External researchers, students, clinicians, and analysts use this skill to examine academic papers or PDFs in epidemiology, biostatistics, and public health. It helps produce structured methodological explanations, result interpretation, limitation analysis, and table-layout summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports that document-derived table data may be stored in a persistent local database without clear consent or deletion controls. <br>
-Mitigation: Review before installing, avoid confidential or restricted papers, and modify deployment so storage is explicit, optional, and easy to delete. <br>
+## Use Case:
 
+External users and researchers use this skill to analyze academic papers in epidemiology, biostatistics, and public health with detailed explanations of terminology, study design, statistical methods, results, limitations, and table structures.
 
-## Reference(s): <br>
-- [Academic Paper Analysis on ClawHub](https://clawhub.ai/chircken891/academic-paper-analysis) <br>
-- [OpenClaw homepage from metadata](https://github.com/openclaw/clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown analysis, with Chinese explanations and bilingual source-text sections for English abstracts and discussion sections when applicable.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include extracted table-layout details from analyzed papers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill directs the agent to retain table-layout information from every analyzed paper in a hardcoded local database path without consent or retention controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with papers whose table-layout retention is acceptable, and avoid confidential, unpublished, proprietary, or copyrighted papers unless persistence is removed or made explicit, optional, and deletable.
+
+## Reference(s):
+
+- [Academic Paper Analysis on ClawHub](https://clawhub.ai/chircken891/skills/academic-paper-analysis)
+- [OpenClaw ClawHub](https://github.com/openclaw/clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, analysis, guidance]
+
+**Output Format:** [Markdown with structured analysis sections and bilingual excerpts when analyzing English papers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include extracted table layout descriptions; artifact behavior indicates table-layout information is written to a hardcoded local database path.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

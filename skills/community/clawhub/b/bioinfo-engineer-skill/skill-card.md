@@ -1,41 +1,62 @@
-## Description: <br>
-Guides agents through bioinformatics engineering workflows with environment management, secrets isolation, Git and DVC versioning, relative paths, and reusable pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides best-practice bioinformatics engineering guidance for conda environment management, secrets isolation, Git and DVC data versioning, relative paths, and reusable pipelines.
 
-## Publisher: <br>
-[biociao](https://clawhub.ai/user/biociao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[biociao](https://clawhub.ai/user/biociao)
 
-## Use Case: <br>
-Bioinformatics developers and analysis teams use this skill to plan, review, and standardize reproducible analysis projects. It helps agents produce environment setup guidance, Git and DVC workflows, pipeline templates, report structures, and security-conscious handling of project paths and credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example credential-loading and logging patterns could expose secrets if copied directly into real projects. <br>
-Mitigation: Use scoped credential loading, keep .env files out of Git, and redact sensitive values before writing logs. <br>
-Risk: DVC remote configuration and data push commands can move sensitive bioinformatics data to unintended storage. <br>
-Mitigation: Review DVC remote targets, access controls, and data sensitivity before running dvc push. <br>
-Risk: Generated workflow commands may modify local environments, Git state, or project data. <br>
-Mitigation: Review proposed commands before execution and run them in project-specific environments with version control or backups. <br>
+## Use Case:
 
+Developers and bioinformatics engineers use this skill to plan, scaffold, document, and audit reproducible bioinformatics workflows. It guides agents toward established ecosystem tools, project-root-relative paths, Git and DVC versioning, quality checks, and reusable Snakemake, WDL, or DVC pipelines.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose project files such as environment manifests, pipeline definitions, reports, and Git/DVC commands for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes templates that load `.env` files with `source .env`, which can execute shell content if the file is not trusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a non-executing dotenv parser for secrets and review any generated shell template before running it.
+
+Risk: The skill describes automatic inspection of shell profile files to find conda or mamba configuration.
+
+Mitigation: Inspect shell profiles only after explicit user consent and limit reads to the configuration needed for the active task.
+
+Risk: Generated logs may contain sensitive paths, sample identifiers, or credentials if redaction is incomplete.
+
+Mitigation: Treat logs as sensitive until reviewed, apply secret filtering, and avoid logging credentials or identifiable sample data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/biociao/skills/bioinfo-engineer-skill)
+- [Bioconda](https://bioconda.github.io/)
+- [DVC documentation](https://dvc.org/doc)
+- [Snakemake documentation](https://snakemake.readthedocs.io/)
+- [Nextflow documentation](https://www.nextflow.io/docs/latest/index.html)
+- [BioContainers](https://quay.io/organization/biocontainers)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell, YAML, Python, R, and workflow snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes project templates, checklists, command examples, and reproducibility guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

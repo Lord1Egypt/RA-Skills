@@ -1,43 +1,54 @@
-## Description: <br>
-Evaluate Clawdbot skills for quality, reliability, and publish-readiness using a multi-framework rubric (ISO 25010, OpenSSF, Shneiderman, agent-specific heuristics). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates Clawdbot skills for quality, reliability, and publish-readiness using automated structural checks plus a 25-criterion rubric based on ISO 25010, OpenSSF, Shneiderman, and agent-specific heuristics.
 
-## Publisher: <br>
-[Terwox](https://clawhub.ai/user/Terwox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[terwox](https://clawhub.ai/user/terwox)
 
-## Use Case: <br>
-Developers, maintainers, and reviewers use this skill to assess Clawdbot skills before publishing by combining automated structural checks with a 25-criteria manual rubric. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The evaluator reads local skill folders selected by the user. <br>
-Mitigation: Run it only against skill folders you intend to inspect. <br>
-Risk: Generated EVAL.md content can influence publishing decisions. <br>
-Mitigation: Review any generated evaluation before publishing or relying on its recommendations. <br>
-Risk: Optional pip or npx tools may introduce third-party package risk. <br>
-Mitigation: Install or run optional tools only in an environment where those packages are trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill Evaluation Rubric](artifact/references/rubric.md) <br>
-- [Evaluation Template](artifact/assets/EVAL-TEMPLATE.md) <br>
-- [SkillLens](https://www.npmjs.com/package/skilllens) <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to evaluate Clawdbot skills before publishing. It combines automated structural checks, a manual 25-criterion rubric, and an evaluation template for publish-readiness reviews.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with command examples, optional JSON output, and an evaluation template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces automated structural check results and supports manual scoring into EVAL.md.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The evaluator reads local skill directories, so overly broad scan targets can expose unrelated local files to the review process.
+
+Mitigation: Run it only against the intended skill directory and avoid providing credentials or unrelated workspace paths during audits.
+
+Risk: Required or optional third-party tooling can change behavior when dependency versions are not pinned.
+
+Mitigation: Pin PyYAML and any optional SkillLens version in the audit environment before repeatable or commercial release checks.
+
+## Reference(s):
+
+- [Skill Evaluation Rubric](references/rubric.md)
+- [Evaluation Template](assets/EVAL-TEMPLATE.md)
+- [SkillLens](https://www.npmjs.com/package/skilllens)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with command examples, an evaluation template, and optional JSON from eval-skill.py]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces automated pass/warn/fail checks and supports manual scoring across 25 rubric criteria.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

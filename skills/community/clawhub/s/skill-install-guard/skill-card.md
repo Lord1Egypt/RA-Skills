@@ -1,40 +1,49 @@
-## Description: <br>
-Reviews requested skill installations before they proceed, produces a safety report, and requires explicit user confirmation before allowing installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Install Guard intercepts skill installation requests, runs a skill-vetter security review, reports the result, and requires explicit user confirmation before installation.
 
-## Publisher: <br>
-[dongyulin89](https://clawhub.ai/user/dongyulin89) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongyulin89](https://clawhub.ai/user/dongyulin89)
 
-## Use Case: <br>
-Developers and agent users use this skill as a review workflow before installing or updating other skills from ClawHub, URLs, or local sources. It helps pause installation, request a security review, summarize risk, and require explicit confirmation before any install command runs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is an instruction-only guardrail and does not provide a hard security boundary. <br>
-Mitigation: Use it as a checklist workflow and still review the target skill, its source, and requested actions before confirming installation. <br>
-Risk: Optional install-history logging can retain install decisions and source details. <br>
-Mitigation: Enable memory logging only when retaining those details is acceptable for the workspace. <br>
+## Use Case:
 
+Developers and agent users use this skill to add a security review checkpoint before installing or updating skills from ClawHub, URLs, or local sources. It is intended to produce a safety report and require explicit approval before any install command runs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dongyulin89/skill-install-guard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown safety review with inline shell commands and confirmation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include optional memory-log entries when install history is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and artifact/_meta.json) <br>
+Risk: The security evidence reports that the skill can still authorize installation from vague confirmations such as continue or OK.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit confirmation phrase that names the exact skill being installed, especially for URL installs, updates, or failed reviews.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dongyulin89/skills/skill-install-guard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown safety review report with optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user confirmation before installation commands are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

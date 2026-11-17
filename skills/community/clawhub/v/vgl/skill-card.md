@@ -1,41 +1,55 @@
-## Description: <br>
-Vgl helps agents produce structured VGL JSON that explicitly controls object placement, lighting, camera settings, composition, color scheme, and style for Bria FIBO image workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vgl helps agents write structured VGL JSON prompts for Bria FIBO models with explicit controls for image content, composition, lighting, camera settings, style, text rendering, and edit instructions.
 
-## Publisher: <br>
-[galbria](https://clawhub.ai/user/galbria) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[galbria](https://clawhub.ai/user/galbria)
 
-## Use Case: <br>
-Developers and creative operators use this skill to convert natural-language image requests, edits, masked edits, captions, or refinements into structured VGL JSON for controllable Bria FIBO image generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated image prompts can include sensitive appearance attributes or misleading descriptions of people. <br>
-Mitigation: Review generated VGL JSON before use and include sensitive appearance attributes only when they are necessary for the requested image. <br>
-Risk: The skill documents a Bria API example that relies on an API key. <br>
-Mitigation: Keep API keys in environment variables and do not paste credentials into prompts, generated JSON, or shared artifacts. <br>
+## Use Case:
 
+Developers, designers, and image-generation agents use this skill to convert natural-language image requests, image edits, masked edits, captions, or refinements into deterministic VGL JSON for Bria FIBO structured prompts.
 
-## Reference(s): <br>
-- [VGL Output Schema Reference](references/schema-reference.md) <br>
-- [Bria image generation API endpoint](https://engine.prod.bria-api.com/v2/image/generate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Guidance] <br>
-**Output Format:** [Single valid JSON object following the VGL schema] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes required visual-description fields for generation, edit, masked edit, caption, and refinement modes; no shell execution or automatic API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release metadata) <br>
+Risk: Prompt contents may be sent to Bria when the generated VGL JSON is used with the disclosed API example.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user intends to share prompt contents with Bria and use API keys only in environments they control.
+
+Risk: Generated image prompts can encode unintended subject attributes, text, or edit scope if accepted without review.
+
+Mitigation: Review the VGL JSON before using it for image generation or editing, especially object details, text_render, and edit_instruction.
+
+## Reference(s):
+
+- [VGL Output Schema Reference](references/schema-reference.md)
+- [Bria image generation API endpoint](https://engine.prod.bria-api.com/v2/image/generate)
+- [ClawHub skill page](https://clawhub.ai/galbria/skills/vgl)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [JSON object matching the VGL structured_prompt schema, with concise Markdown guidance when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes object, background, lighting, aesthetics, camera, style, text_render, and edit_instruction fields.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

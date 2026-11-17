@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "notes": "中文场景预设包：把「画风 + 语气 + 版式 + 中文对白纪律」四个决定一次配好，用户不必逐个选。bundle 只提供默认值，panel plan 里显式写的 style_id / tone 仍然优先。compile_prompt.py --bundle <bundle_id> 会自动套用，并可用 --tone / --style 覆盖。",
+  "default_bundle_id": "diary-strip",
+  "bundles": [
+    {
+      "bundle_id": "diary-strip",
+      "display_name": "日记条漫",
+      "legacy_name_zh": "日记条漫",
+      "style_id": "slice-of-life-color",
+      "tone_id": "warm-healing",
+      "visual_form": "comic",
+      "format": "vertical strip, 3-4 panels, 3:4",
+      "panel_count": 4,
+      "typography_rules": {
+        "bubble_max_chars": 16,
+        "panel_max_chars": 40,
+        "caption_style": "第一人称旁白，置于格角，不超过两行",
+        "note": "中文单行气泡超过 16 字在手机上会折行成三行，压缩画面"
+      },
+      "story_rules": [
+        "一格一件事，四格走「今天发生了什么 → 我的反应 → 一个转折 → 明天怎么想」",
+        "允许没有结论；结尾可以留一个具体的明天动作",
+        "不写鸡汤总结句"
+      ],
+      "use_cases": ["日常记录", "学习打卡", "情绪切片"]
+    },
+    {
+      "bundle_id": "knowledge-picturebook",
+      "display_name": "知识绘本",
+      "legacy_name_zh": "知识绘本",
+      "style_id": "watercolor-picture-book",
+      "tone_id": "calm-documentary",
+      "visual_form": "picture-book",
+      "format": "mixed text and image, 3 panels, 4:3",
+      "panel_count": 3,
+      "typography_rules": {
+        "bubble_max_chars": 20,
+        "panel_max_chars": 60,
+        "caption_style": "说明性短句，允许出现一个关键词加粗/放大",
+        "note": "一格只承载一个概念，概念名必须出现在画面内而不是只在旁白里"
+      },
+      "story_rules": [
+        "三格 = 现象 / 机制 / 怎么用",
+        "每格配一句人话类比，类比必须是生活里见过的东西",
+        "不堆术语；术语出现必须紧跟一句白话"
+      ],
+      "use_cases": ["原理科普", "概念解释", "教学卡片"]
+    },
+    {
+      "bundle_id": "family-quad",
+      "display_name": "亲子四格",
+      "legacy_name_zh": "亲子四格",
+      "style_id": "naive-crayon-sketch",
+      "tone_id": "playful-snark",
+      "visual_form": "comic",
+      "format": "2x2 quad, 1:1",
+      "panel_count": 4,
+      "typography_rules": {
+        "bubble_max_chars": 12,
+        "panel_max_chars": 30,
+        "caption_style": "孩子的话用短句、允许错别字；大人的话用完整句",
+        "note": "四格里至少一格只有表情没有说话，节奏才不吵"
+      },
+      "story_rules": [
+        "起承转合：大人的预设 → 孩子的反问 → 大人的卡壳 → 一个新的共识",
+        "笑点来自孩子的逻辑，不来自贬低大人",
+        "不塑造完美父母，也不制造育儿焦虑"
+      ],
+      "use_cases": ["亲子日常", "教育感悟", "家庭记录"]
+    },
+    {
+      "bundle_id": "poetry-strip",
+      "display_name": "诗词条漫",
+      "legacy_name_zh": "诗词条漫",
+      "style_id": "gongbi-comic",
+      "tone_id": "lyrical",
+      "visual_form": "comic",
+      "format": "vertical strip, 3 panels, 3:4",
+      "panel_count": 3,
+      "typography_rules": {
+        "bubble_max_chars": 14,
+        "panel_max_chars": 36,
+        "caption_style": "诗句原句竖排或独立一行，字号大于对白；作者与出处小字附在句末",
+        "note": "原句必须核对通行版，异文以精读库为准，不臆改"
+      },
+      "story_rules": [
+        "三格 = 现代场景 / 诗句被想起 / 古今叠印",
+        "古诗只做引用不做改写；对白是现代口语，形成落差",
+        "不在画面里塞解释性考据"
+      ],
+      "use_cases": ["诗词配图", "节气内容", "文化类笔记"]
+    }
+  ]
+}

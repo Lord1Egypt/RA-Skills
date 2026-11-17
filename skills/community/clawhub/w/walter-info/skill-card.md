@@ -1,48 +1,64 @@
-## Description: <br>
-Walter Info fetches weather forecasts for major cities across global regions and cross-border e-commerce news, then generates formatted Markdown reports and JSON data files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Walter Info gathers global city weather forecasts and cross-border e-commerce news, then generates Chinese Markdown reports and JSON data files.
 
-## Publisher: <br>
-[beyondbright](https://clawhub.ai/user/beyondbright) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beyondbright](https://clawhub.ai/user/beyondbright)
 
-## Use Case: <br>
-Developers, operators, and cross-border e-commerce analysts use this skill to collect daily weather and e-commerce market signals and produce Markdown and JSON reports for review. The workflow is most relevant when an agent needs current source material, ranked news items, or report files rather than conversational advice alone. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports unrelated local file deletion behavior in the artifact. <br>
-Mitigation: Remove or ignore cleanup.py and check_files.py before use, and review any file operations before running the skill. <br>
-Risk: The security evidence reports that news fetching disables normal HTTPS certificate verification. <br>
-Mitigation: Fix the news fetchers to keep standard HTTPS certificate verification enabled before relying on fetched content. <br>
-Risk: Fetched article text may be passed into LLM summarization as untrusted input. <br>
-Mitigation: Treat generated llm_input article text as untrusted content, review summaries against source links, and avoid executing instructions found in fetched articles. <br>
-Risk: The skill runs local Python that fetches public websites and writes report files. <br>
-Mitigation: Run it in a controlled workspace and review generated Markdown and JSON outputs before using them in downstream decisions. <br>
+## Use Case:
 
+External users and operators use this skill to collect weather forecasts for configured global cities and current cross-border e-commerce news for review, reporting, and operational planning.
 
-## Reference(s): <br>
-- [Walter Info on ClawHub](https://clawhub.ai/beyondbright/walter-info) <br>
-- [beyondbright ClawHub profile](https://clawhub.ai/user/beyondbright) <br>
-- [wttr.in weather source](https://wttr.in/) <br>
-- [ennews source](https://www.ennews.com/news/) <br>
-- [cifnews source](https://www.cifnews.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, json, text, shell commands, configuration] <br>
-**Output Format:** [Markdown reports, JSON data files, and console text with command-oriented workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes date-stamped report files under output/ and may create temporary LLM-input JSON for article summarization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: News fetching disables TLS certificate verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restore certificate verification or run only behind trusted network controls before relying on fetched news content.
+
+Risk: The artifact includes undocumented helper scripts, including cleanup.py, that modify local skill files.
+
+Mitigation: Remove or ignore undocumented maintenance scripts before installation and execute only the documented weather and news entry points.
+
+Risk: Article text used for LLM summaries is untrusted external content.
+
+Mitigation: Use a constrained summarization agent that treats llm_input article text as data, not instructions.
+
+Risk: The skill writes dated Markdown and JSON files locally under its output directory.
+
+Mitigation: Run it in a controlled workspace and review generated files before sharing or using them operationally.
+
+## Reference(s):
+
+- [Walter Info on ClawHub](https://clawhub.ai/beyondbright/skills/walter-info)
+- [ennews](https://www.ennews.com/news/)
+- [cifnews](https://www.cifnews.com/)
+- [wttr.in weather API](https://wttr.in/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Chinese Markdown reports and JSON data files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes dated weather and news reports under the skill output directory; full runs may prepare llm_input JSON for short Chinese article summaries.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,12 @@
+{
+  "zentao_db": {
+    "host": "192.168.10.106",
+    "port": 3306,
+    "database": "zentao",
+    "user": "readonly_user",
+    "password": "",
+    "charset": "utf8mb4"
+  },
+  "note": "禅道项目管理数据库连接配置。修改此配置可适配不同环境的禅道实例。",
+  "security_reminder": "请不要在此文件中存储明文密码。建议使用环境变量或配置管理工具。"
+}

@@ -1,73 +1,46 @@
-# Journal
+# Voyage Journal Format
 
-Voyage produces journals per spec-ocas-journal.md v1.3. Write a journal at the end of every run. Runs missing journals are invalid.
+## Journal Outputs
 
-Journal path: `~/openclaw/journals/ocas-voyage/YYYY-MM-DD/{run_id}.json`
+**Action Journal** — all planning, recommendation, and reservation runs.
 
-Written atomically (write to `.tmp`, then rename). Never edit after writing.
+## Journal Path
 
-## Journal type
+`{agent_root}/commons/journals/ocas-voyage/YYYY-MM-DD/{run_id}.json`
 
-All Voyage journals are Action Journals. Voyage produces plans and may manage reservations -- these are consequential outputs.
+## Journal Payload
 
-## Journal structure
+Every Voyage journal entry includes:
 
 ```json
 {
-  "run_identity": {
-    "comparison_group_id": "cg_xxxxxxx",
-    "run_id": "r_xxxxxxx",
-    "role": "champion",
-    "skill_name": "ocas-voyage",
-    "skill_version": "2.0.0",
-    "timestamp_start": "2026-03-17T10:00:00-07:00",
-    "timestamp_end": "2026-03-17T10:00:05-07:00",
-    "normalized_input_hash": "sha256:...",
-    "journal_spec_version": "1.3",
-    "journal_type": "action"
-  },
-  "runtime": {
-    "model": "claude-sonnet-4-6",
-    "provider": "anthropic",
-    "temperature": null,
-    "context_window": "200k",
-    "node": "macstudio-01",
-    "oc_version": "2026.1.30"
-  },
-  "input": {
-    "normalized_input_hash": "sha256:...",
-    "input_schema_version": "1.0",
-    "context_tokens": 0,
-    "command": ""
-  },
+  "skill_id": "ocas-voyage",
+  "run_id": "uuid",
+  "timestamp": "ISO8601",
+  "command": "voyage.plan.trip|voyage.recommend.lodging|...",
+  "outcome": "success|partial|error",
+  "entities_observed": [
+    {
+      "type": "Place|Concept/Event|Concept/Action|Entity/Person",
+      "name": "string",
+      "context": "string",
+      "user_relevance": "user|agent_only|unknown"
+    }
+  ],
+  "relationships_observed": ["string"],
+  "preferences_observed": ["string"],
   "decision": {
-    "decision_type": "",
-    "payload": {},
-    "confidence": 1.0,
-    "reasoning_summary": ""
-  },
-  "action": {
-    "side_effect_intent": "travel_planning",
-    "side_effect_executed": true,
-    "reason": null
-  },
-  "artifacts": [],
-  "metrics": {
-    "latency_ms": 0,
-    "retry_count": 0,
-    "validation_failures": 0,
-    "context_tokens_used": 0,
-    "records_written": 0,
-    "records_skipped": 0,
-    "records_failed": 0
-  },
-  "okr_evaluation": {
-    "success_rate": 1.0,
-    "latency_score": null,
-    "reliability_score": 1.0,
-    "itinerary_feasibility": null,
-    "constraint_compliance": null,
-    "availability_honesty": null
+    "summary": "string",
+    "items_evaluated": 0,
+    "items_recommended": 0
   }
 }
 ```
+
+## Entity Relevance
+
+- `user` — entity directly related to the user's world (destinations, hotels, companions, reservations)
+- `agent_only` — entity encountered incidentally (landmark mentioned only as routing waypoint)
+- `unknown` — relevance is unclear
+
+Most Voyage entities are `user`-relevant since they represent the user's actual travel plans and destinations.

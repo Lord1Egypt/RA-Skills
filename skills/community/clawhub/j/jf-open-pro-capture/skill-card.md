@@ -1,44 +1,59 @@
-## Description: <br>
-Captures current images or thumbnails from one or more JFTech devices, manages device tokens, and can download captures locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures real-time or thumbnail images from one or more JFTech devices, manages device tokens, and can optionally download captured images locally.
 
-## Publisher: <br>
-[jftech](https://clawhub.ai/user/jftech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jftech](https://clawhub.ai/user/jftech)
 
-## Use Case: <br>
-Developers and device operators with JFTech Open Platform credentials use this skill to capture real-time images or thumbnails from single devices or batches of devices, including multi-channel devices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China Mainland, Asia, Europe, and North America through configured JFTech regional API endpoints. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: JFTech app secrets, device tokens, or device passwords could expose device access if handled insecurely. <br>
-Mitigation: Install only from the trusted publisher, store secrets in protected environment or secret-management systems, and avoid passing device passwords on the command line. <br>
-Risk: Captured image URLs and downloaded files may contain sensitive visual data. <br>
-Mitigation: Use restricted output directories, define a retention plan, and avoid sharing temporary capture URLs. <br>
-Risk: Requests may be sent to an unintended API endpoint if the regional endpoint is misconfigured. <br>
-Mitigation: Use only known JFTech regional endpoints and verify JF_ENDPOINT before running capture commands. <br>
+## Use Case:
 
+Developers and camera operations teams use this skill to request single-device or batch cloud snapshots from JFTech-connected devices, then consume returned image URLs or saved image files for operational review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jftech/jf-open-pro-capture) <br>
-- [JFTech Open Platform](https://developer.jftech.com) <br>
-- [JFTech cloud capture pricing](https://aops.jftech.com/#/pricing?lang=zh&tab=MEDIA_PROCESSING) <br>
+### Deployment Geography for Use:
 
+China, Asia, Europe, and North America
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with Python CLI commands; script execution can print text or JSON and optionally write image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include 24-hour image URLs and downloaded camera images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and skill frontmatter) <br>
+Risk: Camera credentials, app secrets, device tokens, and returned image URLs may be exposed through command-line arguments, shell history, logs, or shared output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer environment variables or a secrets manager, avoid passing real device passwords on the command line, and treat token values, image URLs, and captured files as sensitive.
+
+Risk: A weakly scoped API endpoint setting could send requests outside the intended JFTech service region.
+
+Mitigation: Set JF_ENDPOINT only to the documented JFTech API domains: api-cn.jftechws.com, api-as.jftechws.com, api-eu.jftechws.com, or api-na.jftechws.com.
+
+Risk: Downloaded images may be written unexpectedly on shared or privileged machines.
+
+Mitigation: Avoid --download on shared or privileged machines until endpoint, URL, size, and filename validation are improved; when downloading, use a controlled output directory and review retention requirements.
+
+## Reference(s):
+
+- [JFTech Open Platform documentation](https://docs.jftech.com)
+- [JFTech cloud snapshot pricing](https://aops.jftech.com/#/pricing?lang=zh&tab=MEDIA_PROCESSING)
+- [ClawHub skill page](https://clawhub.ai/jftech/skills/jf-open-pro-capture)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, files]
+
+**Output Format:** [Plain text status messages or JSON objects; optional downloaded image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JFTech API credentials and online, bound devices; returned image URLs and device tokens are documented as valid for 24 hours.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

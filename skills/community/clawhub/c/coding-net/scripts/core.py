@@ -1,4 +1,4 @@
-"""Coding 开放平台 Open API — 基础设施（HTTP 客户端、Token 解析）。"""
+"""Coding Open API — infrastructure (HTTP client, token resolution)."""
 
 from __future__ import annotations
 
@@ -15,18 +15,18 @@ logger = logging.getLogger(__name__)
 
 BASE_URL = "https://e.coding.net/open-api/"
 DEFAULT_TIMEOUT = 30
-# token 值请 export CODING_TOKEN=...，勿把密钥写进代码
+# Set the token via `export CODING_TOKEN=...` — never hardcode secrets in code.
 TOKEN_ENV = "CODING_TOKEN"
-# 默认项目名称
+# Default project name
 DEFAULT_PROJECT_NAME_ENV = "CODING_DEFAULT_PROJECT_NAME"
 DEFAULT_PROJECT_NAME: str | None = None
-# DescribeIssueList 的 ITERATION 条件所用迭代 Code 的默认来源
+# Default source for the iteration Code used in DescribeIssueList's ITERATION condition
 DEFAULT_ITERATION_ENV = "CODING_DEFAULT_ITERATION_CODE"
 DEFAULT_ITERATION_CODE: int | None = None
 
 
 class CodingAPIError(Exception):
-    """Coding API 调用失败（HTTP、JSON 或响应结构异常）。"""
+    """A Coding API call failed (HTTP error, invalid JSON, or malformed response)."""
 
 
 def _resolve_project_name(project_name: str | None) -> str:
@@ -38,7 +38,7 @@ def _resolve_project_name(project_name: str | None) -> str:
     if DEFAULT_PROJECT_NAME is not None and DEFAULT_PROJECT_NAME.strip():
         return DEFAULT_PROJECT_NAME.strip()
     raise ValueError(
-        f"未提供项目名称：请传 project_name=...，或设置环境变量 {DEFAULT_PROJECT_NAME_ENV}",
+        f"No project name provided: pass project_name=..., or set the environment variable {DEFAULT_PROJECT_NAME_ENV}",
     )
 
 
@@ -49,7 +49,7 @@ def _resolve_token(token: str | None) -> str:
     if env:
         return env
     raise ValueError(
-        f"未提供 token：请传 token=...，或设置环境变量 {TOKEN_ENV}",
+        f"No token provided: pass token=..., or set the environment variable {TOKEN_ENV}",
     )
 
 
@@ -60,7 +60,7 @@ def _request(
     *,
     timeout: int = DEFAULT_TIMEOUT,
 ) -> dict[str, Any]:
-    """向 Coding Open API 发送 POST 请求，返回解析后的 JSON 对象。"""
+    """Send a POST request to the Coding Open API and return the parsed JSON object."""
     query = urlencode({"Action": action, "action": action})
     url = f"{BASE_URL}?{query}"
     data = json.dumps(body, ensure_ascii=False).encode("utf-8")
@@ -83,13 +83,13 @@ def _request(
             raw = e.read()
         except Exception:
             raw = b""
-        logger.error("Coding API HTTP 错误: %s\n%s", e, traceback.format_exc())
+        logger.error("Coding API HTTP error: %s\n%s", e, traceback.format_exc())
         raise CodingAPIError(f"HTTP {e.code}: {e.reason}") from e
     except URLError as e:
-        logger.error("Coding API 网络错误: %s\n%s", e, traceback.format_exc())
-        raise CodingAPIError(f"请求失败: {e.reason}") from e
+        logger.error("Coding API network error: %s\n%s", e, traceback.format_exc())
+        raise CodingAPIError(f"Request failed: {e.reason}") from e
     except Exception:
-        logger.error("Coding API 请求异常\n%s", traceback.format_exc())
+        logger.error("Coding API request exception\n%s", traceback.format_exc())
         raise
 
     try:
@@ -97,26 +97,26 @@ def _request(
         parsed: dict[str, Any] = json.loads(text)
     except json.JSONDecodeError:
         logger.error(
-            "Coding API 响应非 JSON\n%s\nbody 片段: %s",
+            "Coding API response is not valid JSON\n%s\nbody excerpt: %s",
             traceback.format_exc(),
             raw[:500],
         )
-        raise CodingAPIError("响应不是合法 JSON") from None
+        raise CodingAPIError("Response is not valid JSON") from None
 
     if status and not (200 <= status < 300):
-        logger.error("Coding API 非成功状态: status=%s body=%s", status, parsed)
-        raise CodingAPIError(f"HTTP 状态异常: {status}")
+        logger.error("Coding API returned a non-success status: status=%s body=%s", status, parsed)
+        raise CodingAPIError(f"Unexpected HTTP status: {status}")
 
     if "Response" not in parsed:
         err = parsed.get("Error") or parsed.get("error") or parsed
-        logger.error("Coding API 响应缺少 Response: %s", err)
-        raise CodingAPIError(f"响应缺少 Response 字段: {err}")
+        logger.error("Coding API response is missing Response: %s", err)
+        raise CodingAPIError(f"Response is missing the 'Response' field: {err}")
 
     return parsed
 
 
 def get_team_info(*, token: str | None = None, timeout: int = DEFAULT_TIMEOUT) -> dict[str, Any]:
-    """返回团队基本信息（Name, TeamHost 等），用于验证 token 有效性。"""
+    """Return basic team info (Name, TeamHost, etc.), used to validate that the token is valid."""
     t = _resolve_token(token)
     parsed = _request("DescribeTeam", {}, t, timeout=timeout)
     return parsed.get("Response", {}).get("Data", {})
@@ -128,13 +128,13 @@ def bootstrap(
     token: str | None = None,
 ) -> dict[str, Any]:
     """
-    启动引导：验证 token 并（可选）验证项目、返回迭代列表。
+    Bootstrap: validate the token and (optionally) validate the project, returning the iteration list.
 
-    返回 {"team": {"name": str, "host": str}, "iterations": [...], "error": str | None}
+    Returns {"team": {"name": str, "host": str}, "iterations": [...], "error": str | None}
 
-    使用场景：
-    - bootstrap() — 仅验 token，确认团队
-    - bootstrap("biaopin-swiftagent") — 同时验项目并返回迭代列表，供用户选择
+    Usage:
+    - bootstrap() — validates only the token, confirming the team
+    - bootstrap("biaopin-swiftagent") — also validates the project and returns the iteration list for the user to choose from
     """
     result: dict[str, Any] = {"team": None, "iterations": [], "error": None}
     try:
@@ -146,11 +146,11 @@ def bootstrap(
     try:
         team = get_team_info(token=t)
     except Exception as e:
-        result["error"] = f"Token 无效或无法访问团队信息: {e}"
+        result["error"] = f"Token is invalid or team info could not be fetched: {e}"
         return result
 
     if not team or "Name" not in team:
-        result["error"] = "Token 无效：无法获取团队信息"
+        result["error"] = "Token is invalid: could not fetch team info"
         return result
 
     result["team"] = {"name": team.get("Name"), "host": team.get("TeamHost")}
@@ -161,11 +161,11 @@ def bootstrap(
             parsed = _request("DescribeIterationList", {"ProjectName": pn}, t)
             err = parsed.get("Response", {}).get("Error")
             if err:
-                result["error"] = f"项目 '{pn}' 不存在或无权限: {err.get('Message')}"
+                result["error"] = f"Project '{pn}' does not exist or is not accessible: {err.get('Message')}"
             else:
                 items = parsed.get("Response", {}).get("Data", {}).get("List") or []
                 result["iterations"] = [{"code": it["Code"], "name": it["Name"]} for it in items]
         except Exception as e:
-            result["error"] = f"查询迭代失败: {e}"
+            result["error"] = f"Failed to query iterations: {e}"
 
     return result

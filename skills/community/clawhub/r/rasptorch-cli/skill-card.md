@@ -1,42 +1,54 @@
-## Description: <br>
-Use the rasptorch CLI to create tensors, inspect Vulkan (GPU) availability, build models, and run training. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate rasptorch (NumPy deep learning library) via its agent-native CLI, consuming JSON output. Supports tensors, model creation (mlp, cnn, cv, jev, gru, transformer, linear), training, save/load, and UI/chat modes.
 
-## Publisher: <br>
-[joshua-ludolf](https://clawhub.ai/user/joshua-ludolf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joshua-ludolf](https://clawhub.ai/user/joshua-ludolf)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate rasptorch from an OpenClaw agent, preferring JSON CLI output while creating tensors, checking Vulkan availability, managing models, and running approved training workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The rasptorch binary or Python package runs outside the skill artifact. <br>
-Mitigation: Install or invoke rasptorch only from a trusted local binary or package before using the skill. <br>
-Risk: Training, model save/load operations, and Streamlit UI mode can consume resources, write files, or run for a long time. <br>
-Mitigation: Require explicit user approval before starting training, saving or loading model files, or launching long-running UI/chat modes. <br>
-Risk: Large tensor shapes or forced GPU execution can create avoidable compute pressure or fail when Vulkan is unavailable. <br>
-Mitigation: Use small tensor shapes by default and prefer --device auto unless the user explicitly requests CPU or GPU behavior. <br>
+## Use Case:
 
+Developers and engineers use this skill to create and manage tensors and neural network models, inspect runtime capabilities, and run model workflows through rasptorch's CLI while consuming structured JSON output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/joshua-ludolf/rasptorch-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown with inline bash commands and JSON-output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should prefer --json and explicit --device selection; file writes, training, Streamlit UI, and interactive chat require user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security scan rated the skill benign with medium confidence because one scan was partial and could not resolve three references.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the referenced material and the commands before installation, especially before running training or file-writing operations.
+
+Risk: Model training can use significant compute, and save/load commands write files.
+
+Mitigation: Use small workloads by default and review the target path before saving or loading model files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joshua-ludolf/skills/rasptorch-cli)
+- [Publisher profile](https://clawhub.ai/user/joshua-ludolf)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [Structured JSON from rasptorch CLI commands, with Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI model operations are stateful within a session; UI and chat modes can run long-lived processes.]
+
+## Skill Version(s):
+
+2.1.0 (source: server-resolved ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

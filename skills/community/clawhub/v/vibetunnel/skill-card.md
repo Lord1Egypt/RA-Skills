@@ -1,40 +1,53 @@
-## Description: <br>
-Manage VibeTunnel terminal sessions. Create, list, monitor, and control terminal sessions visible in the VibeTunnel web dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage VibeTunnel terminal sessions. Create, list, monitor, and control terminal sessions visible in the VibeTunnel web dashboard.
 
-## Publisher: <br>
-[basher83](https://clawhub.ai/user/basher83) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[basher83](https://clawhub.ai/user/basher83)
 
-## Use Case: <br>
-Developers and operators use this skill to manage VibeTunnel terminal sessions through REST API commands, including creating sessions, listing status, sending input, resizing terminals, and deleting sessions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send input to terminal sessions, so commands may reveal credentials, change files, or perform destructive actions if used carelessly. <br>
-Mitigation: Keep VT_URL pointed at a trusted local or controlled VibeTunnel server, review command text before sending it, and avoid credential-revealing or destructive shell input unless explicitly intended. <br>
-Risk: Terminal sessions can continue running after the immediate task is complete. <br>
-Mitigation: Review active sessions and clean up long-running or exited sessions when they are no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [VibeTunnel project homepage](https://github.com/AugmentedMomentum/vibetunnel) <br>
-- [ClawHub skill page](https://clawhub.ai/basher83/vibetunnel) <br>
+## Use Case:
 
+Developers and operators use this skill to manage VibeTunnel terminal sessions through REST API examples for creating, listing, monitoring, resizing, sending input to, and deleting sessions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl and jq command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses VT_URL to select the VibeTunnel server; examples assume a trusted local or controlled endpoint.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can let an agent control VibeTunnel terminal sessions, including sending commands and deleting sessions.
+
+Mitigation: Keep VT_URL pointed at a trusted VibeTunnel server, review commands before sending them, and use delete or cleanup examples carefully because they remove session state.
+
+Risk: The skill depends on the VibeTunnel npm package and local command-line tools.
+
+Mitigation: In stricter environments, pin or independently verify the npm package and confirm required binaries are installed before use.
+
+## Reference(s):
+
+- [VibeTunnel project](https://github.com/AugmentedMomentum/vibetunnel)
+- [ClawHub VibeTunnel skill](https://clawhub.ai/basher83/skills/vibetunnel)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VibeTunnel, curl, and jq; uses VT_URL to select the trusted VibeTunnel server.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

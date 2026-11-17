@@ -1,40 +1,71 @@
-## Description: <br>
-Provision, secure, and manage virtual private servers with practical hosting guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through VPS selection, provisioning, access recovery, backups, resizing, networking, incidents, migrations, cost review, and safe teardown for rented virtual private servers.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and infrastructure operators use this skill to plan, secure, and manage VPS hosting workflows, including initial setup, SSH hardening, firewalls, monitoring, backups, networking, and cost controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applying VPS guidance directly to production infrastructure can change SSH access, firewall exposure, backups, reboots, or deletion behavior. <br>
-Mitigation: Review proposed SSH, firewall, backup, reboot, and deletion steps before applying them to production servers. <br>
-Risk: Incorrect ordering of access-hardening steps can lock administrators out of a server. <br>
-Mitigation: Test SSH key access and provider console access before disabling password or root login, and allow the active SSH port before enabling firewall rules. <br>
+## Use Case:
 
+Developers, operators, and technical users use this skill to plan and operate rented virtual private servers, including provider choice, first boot, access recovery, security posture, backups, resizing, migrations, incidents, and cost control.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/vps) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with prose, checklists, and command-oriented recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only skill; no executable code or automatic server actions are bundled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill may maintain local infrastructure records under ~/Clawic/data, including shared server, domain, and finance inventories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed file writes before accepting them, especially changes to shared inventories and spend records.
+
+Risk: Real VPS operations can be destructive or irreversible, including rebuilds, destroys, disk growth, address release, and snapshot deletion.
+
+Mitigation: Require explicit confirmation, a stated blast radius, and a fallback path before executing those actions.
+
+Risk: Raw secrets such as private keys, provider API tokens, root passwords, and backup passphrases could be exposed if pasted or saved directly.
+
+Mitigation: Store only secret pointers such as keychain, password-manager, environment-variable, or file references.
+
+Risk: Provider-account compromise can affect servers and provider-held snapshots.
+
+Mitigation: Use provider-account 2FA, scoped and rotated API tokens, offline recovery codes, and backups restorable outside the provider account.
+
+## Reference(s):
+
+- [ClawHub VPS Skill Page](https://clawhub.ai/ivangdavila/skills/vps)
+- [Clawic VPS Skill Page](https://clawic.com/skills/vps)
+- [VPS Skill Definition](artifact/SKILL.md)
+- [Access and Recovery Guidance](artifact/access.md)
+- [Backups and Restore Guidance](artifact/backups.md)
+- [Firewall Guidance](artifact/firewall.md)
+- [Security and Abuse Response Guidance](artifact/security.md)
+- [Provisioning Guidance](artifact/provisioning.md)
+- [Migration and Teardown Guidance](artifact/migration.md)
+- [Operations Guidance](artifact/operations.md)
+- [Cost Guidance](artifact/costs.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command snippets, configuration paths, and runbook or inventory update instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local Clawic data file updates and requires explicit confirmation before destructive or irreversible infrastructure actions.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

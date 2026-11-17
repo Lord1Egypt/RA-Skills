@@ -1,46 +1,60 @@
-## Description: <br>
-Convert academic papers or notes into Chinese academic Beamer slides using a seven-phase local pipeline with pluggable agent execution and LaTeX compilation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert academic papers or notes into Chinese academic Beamer slides using a seven-phase local pipeline with pluggable agent execution and LaTeX compilation.
 
-## Publisher: <br>
-[ccmxigua](https://clawhub.ai/user/ccmxigua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ccmxigua](https://clawhub.ai/user/ccmxigua)
 
-## Use Case: <br>
-Developers and researchers use this skill to convert academic papers or structured notes into Chinese Beamer slide packages with phase prompts, local validation gates, and optional agent or LaTeX execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Markdown image URLs can trigger outbound downloads during asset preparation. <br>
-Mitigation: Use --skip-assets for untrusted documents or when outbound network requests are not acceptable, and review asset_manifest.json before using localized figures. <br>
-Risk: Configured agent and LaTeX commands can execute local tools in the output workspace. <br>
-Mitigation: Use --no-agent for prompt-only runs, review --agent-cmd and --latex-cmd before execution, and run the pipeline in a controlled workspace. <br>
-Risk: Generated decks may include source paper text or figures with redistribution limits. <br>
-Mitigation: Publish generated decks only when the user has rights to redistribute the source content and figures. <br>
+## Use Case:
 
+Developers and academic users use this skill to turn paper Markdown or structured notes into a local Beamer slide package with analysis, slide planning, equation and notation coverage, LaTeX source, and optional PDF output.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ccmxigua/beamer-pipeline-public) <br>
-- [Beamer Pipeline Public skill documentation](artifact/SKILL.md) <br>
-- [Beamer Pipeline Public architecture notes](artifact/references/beamer-pipeline-code-explanation.md) <br>
-- [Upstream design notes](artifact/references/UPSTREAM_DESIGN_NOTES.md) <br>
-- [Beamer generation contract](artifact/templates/beamer_contract.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown prompts, JSON state files, LaTeX source, PDF output when compilation succeeds, logs, and generated workspace files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a local output workspace; may invoke configured local agents or LaTeX tools; can download Markdown image URLs unless --skip-assets is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: server release metadata and package.json) <br>
+Risk: The skill can fetch remote images referenced in input Markdown during asset preparation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it on trusted papers or in a sandboxed environment, or use --skip-assets for untrusted Markdown.
+
+Risk: Default agent execution and recovery behavior can access local OpenClaw configuration, sessions, or prior task outputs.
+
+Mitigation: Prefer --no-agent or an explicit --agent-cmd workflow until ~/.openclaw access and output-directory access are reviewed and constrained.
+
+Risk: Automatically generated academic decks may contain incorrect or incomplete equation coverage, notation definitions, translations, or rendered slide content.
+
+Mitigation: Use the included validation gates and review analysis.json, slides.json, main.tex, and main.pdf before publishing or presenting the deck.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ccmxigua/skills/beamer-pipeline-public)
+- [Beamer Pipeline Public Architecture Notes](artifact/references/beamer-pipeline-code-explanation.md)
+- [Upstream Design Notes](artifact/references/UPSTREAM_DESIGN_NOTES.md)
+- [Beamer Generation Contract](artifact/templates/beamer_contract.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prompts and contracts, JSON artifacts, LaTeX source, optional PDF output, and CLI text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes files into a user-selected output directory; may invoke a configured agent command and LaTeX compiler.]
+
+## Skill Version(s):
+
+0.3.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

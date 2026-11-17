@@ -1,40 +1,65 @@
-## Description: <br>
-Control Roku devices via CLI for discovery, remote control, app launching, search, and HTTP bridge mode for real-time control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Roku devices via CLI. Discovery, remote control, app launching, search, and HTTP bridge mode for real-time control.
 
-## Publisher: <br>
-[gumadeiras](https://clawhub.ai/user/gumadeiras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gumadeiras](https://clawhub.ai/user/gumadeiras)
 
-## Use Case: <br>
-Developers and agents use this skill to discover same-network Roku devices, issue remote-control commands, launch apps, search content, and configure CLI or HTTP bridge control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Telegram and local pipe control paths can issue Roku commands without clear access controls. <br>
-Mitigation: Use a strong unique bridge token, keep the bridge bound to localhost or a trusted network, and run Telegram or pipe listeners only when remote control is intentional and user access is restricted. <br>
+## Use Case:
 
+External users and developers use this skill to discover Roku devices on a local network, send remote-control commands, launch apps, enter text, inspect device status, and configure bridge-style control workflows.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/gumadeiras/roku) <br>
-- [Source repository](https://github.com/gumadeiras/roku-cli) <br>
-- [python-roku dependency](https://github.com/jcarbaugh/python-roku) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include CLI commands, HTTP request examples, and bridge configuration values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: The skill can send real remote-control commands to Roku devices on the local network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with Roku devices you own or administer, and confirm the target host or saved alias before sending commands.
+
+Risk: The release includes Telegram remote-control code that can route button callbacks into a local Roku daemon.
+
+Mitigation: Protect the Telegram bot token, restrict who can interact with the bot, and disable the Telegram path when it is not needed.
+
+Risk: Bridge-style control can expose Roku commands through a local HTTP service if configured carelessly.
+
+Mitigation: Bind the bridge to localhost, use a strong bearer token, and avoid exposing the bridge port to untrusted networks.
+
+Risk: Installation metadata uses an unpinned third-party npm package.
+
+Mitigation: Review and pin the package version in controlled deployments before installing.
+
+## Reference(s):
+
+- [ClawHub Roku skill page](https://clawhub.ai/gumadeiras/skills/roku)
+- [Publisher profile](https://clawhub.ai/user/gumadeiras)
+- [Declared Roku CLI repository](https://github.com/gumadeiras/roku-cli)
+- [python-roku library](https://github.com/jcarbaugh/python-roku)
+- [npm package @gumadeiras/roku](https://www.npmjs.com/package/@gumadeiras/roku)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local network addresses, Roku command names, bridge tokens supplied by the user, and service-management commands.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

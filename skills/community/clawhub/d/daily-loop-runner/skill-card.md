@@ -1,42 +1,49 @@
-## Description: <br>
-Run one controlled daily project loop for a single active project. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run one controlled daily project loop for a single active project. Use on: scheduled daily runs, planner-initiated project steps, resuming a project after cleanup, user requests for active project advancement. Triggered when a project needs to advance by one meaningful step per day.
 
-## Publisher: <br>
-[sunbinnju-star](https://clawhub.ai/user/sunbinnju-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunbinnju-star](https://clawhub.ai/user/sunbinnju-star)
 
-## Use Case: <br>
-Developers, planners, and project operators use this skill to advance one active project by one meaningful daily step while preserving project state, decisions, and the next action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can update project records and daily logs. <br>
-Mitigation: Use it only when project writeback is intended, and review project_card_updates and writeback_payload before relying on saved state. <br>
-Risk: The selected downstream agent or tool could take the project in the wrong direction if the task input is too broad or stale. <br>
-Mitigation: Review selected_agent and task_input for sensitive projects, and keep each run limited to one bottleneck and one main action. <br>
-Risk: Incomplete project state can make the daily run unsafe to continue. <br>
-Mitigation: Require the project card, recent daily logs, and open questions before execution; stop with safe_to_proceed=false when state is missing. <br>
+## Use Case:
 
+Developers, project operators, and agent workflows use this skill to advance one active project by one meaningful daily step, select the current bottleneck, dispatch focused work, and record structured writeback for the next loop.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunbinnju-star/daily-loop-runner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Structured text with JSON-like fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes today_objective, selected_agent, task_input, execution_summary, findings, decisions, next_action, project_card_updates, writeback_payload, and safe_to_proceed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Incorrect or incomplete project state can cause the loop to choose the wrong bottleneck or write inaccurate project updates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the active project card, latest weekly review, recent daily logs, and open questions are current before running the skill; stop with safe_to_proceed=false when required state is missing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunbinnju-star/skills/daily-loop-runner)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Structured JSON-compatible object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes the daily objective, selected agent, task input, expected output, execution summary, findings, decisions, next action, project card updates, writeback payload, and safe-to-proceed status.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

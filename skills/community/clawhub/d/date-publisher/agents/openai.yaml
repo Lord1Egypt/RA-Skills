@@ -1,0 +1,4 @@
+interface:
+  display_name: "Date Publisher"
+  short_description: "Prepare and publish an approved public dating profile safely"
+  default_prompt: "Use $date-publisher only to prepare approved public dating-profile drafts; do not create accounts or post without my confirmation."

@@ -1,48 +1,55 @@
-## Description: <br>
-Generates compliant, ready-to-use marketing campaigns and patient communication sequences for chiropractic and physical therapy practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates compliant marketing campaigns and patient communication sequences for chiropractic and physical therapy practices.
 
-## Publisher: <br>
-[gitflopez](https://clawhub.ai/user/gitflopez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitflopez](https://clawhub.ai/user/gitflopez)
 
-## Use Case: <br>
-Chiropractors, physical therapists, sports medicine clinics, rehab centers, and related healthcare practices use this skill to draft patient acquisition campaigns, retention outreach, specialty marketing materials, and content calendars with healthcare advertising compliance guardrails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated outreach could be used without documented opt-in or another valid basis for contacting patients. <br>
-Mitigation: Confirm consent or another valid contact basis before sending email, SMS, phone, or advertising sequences. <br>
-Risk: Marketing copy for healthcare services may require review under HIPAA, TCPA, CAN-SPAM, FTC, state board, and platform rules. <br>
-Mitigation: Have outputs reviewed by qualified staff or counsel before publication or patient outreach, and avoid entering unnecessary patient details. <br>
+## Use Case:
 
+Practice owners, clinic staff, and marketing teams use this skill to draft new-patient campaigns, patient retention outreach, specialty marketing materials, and content calendars for chiropractic and physical therapy clinics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gitflopez/chiropractic-pt-marketing-kit) <br>
-- [Publisher profile](https://clawhub.ai/user/gitflopez) <br>
-- [README](artifact/README.md) <br>
-- [Skill source](artifact/SKILL.md) <br>
-- [New patient acquisition prompt](artifact/prompts/prompt_1_new_patient_acquisition.md) <br>
-- [Patient retention prompt](artifact/prompts/prompt_2_patient_retention.md) <br>
-- [Specialty marketing prompt](artifact/prompts/prompt_3_specialty_marketing.md) <br>
-- [Content calendar prompt](artifact/prompts/prompt_4_content_calendar.md) <br>
-- [Worked example](artifact/examples/align_recover_henderson.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prompt outputs containing marketing copy, outreach scripts, content calendars, checklists, and compliance notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; users provide practice details, specialties, location, offers, and consent-sensitive outreach context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json, ClawHub release evidence) <br>
+Risk: Healthcare marketing materials may be sent through channels where consent, opt-out status, or practice-specific rules have not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm documented consent for each channel, suppress opt-outs, and review final SMS, email, review request, reactivation, newsletter, and referral materials before sending.
+
+Risk: Generated marketing copy may require state-board, HIPAA, FTC, ACA, or APTA review before public use.
+
+Mitigation: Have final materials reviewed against the relevant state and practice rules, especially for health claims, testimonials, and patient communications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gitflopez/skills/chiropractic-pt-marketing-kit)
+- [README](README.md)
+- [Skill source](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown documents containing marketing copy, outreach scripts, content calendars, and occasional JSON-LD snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed before use for consent, opt-out handling, healthcare advertising rules, and local practice requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,46 @@
 {
-  "ownerId": "kn74z3avewbr8njdnrcghkyh6n8402ty",
-  "slug": "ocr-tool",
+  "name": "ocr-tool",
   "version": "1.0.0",
-  "publishedAt": 1775056123924
+  "description": "OCR (Optical Character Recognition) tool using Tesseract for extracting text from images",
+  "author": "OpenClaw",
+  "license": "MIT",
+  "keywords": ["ocr", "tesseract", "image", "text-extraction", "chinese", "financial"],
+  "openclaw": {
+    "skill": true,
+    "category": "tools",
+    "emoji": "🔍",
+    "requires": {
+      "bins": ["tesseract"]
+    },
+    "install": [
+      {
+        "id": "choco",
+        "kind": "choco",
+        "package": "tesseract",
+        "bins": ["tesseract"],
+        "label": "Install Tesseract OCR (choco)"
+      },
+      {
+        "id": "winget",
+        "kind": "winget",
+        "package": "UB-Mannheim.Tesseract",
+        "bins": ["tesseract"],
+        "label": "Install Tesseract OCR (winget)"
+      },
+      {
+        "id": "apt",
+        "kind": "apt",
+        "package": "tesseract-ocr",
+        "bins": ["tesseract"],
+        "label": "Install Tesseract OCR (apt)"
+      },
+      {
+        "id": "brew",
+        "kind": "brew",
+        "package": "tesseract",
+        "bins": ["tesseract"],
+        "label": "Install Tesseract OCR (brew)"
+      }
+    ]
+  }
 }

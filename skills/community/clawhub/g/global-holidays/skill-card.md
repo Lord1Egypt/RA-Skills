@@ -1,40 +1,52 @@
-## Description: <br>
-Global Holidays helps agents check, generate, and work with public holidays for countries, subdivisions, date ranges, business-day workflows, and explicitly provided custom holiday dates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in checking, generating, and combining public holiday calendars for countries and subdivisions with the Python holidays package.
 
-## Publisher: <br>
-[yting27](https://clawhub.ai/user/yting27) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yting27](https://clawhub.ai/user/yting27)
 
-## Use Case: <br>
-Agents and users use this skill to answer public holiday questions, list holidays by country or subdivision, find holidays in date ranges, support business-day calculations, and merge official holidays with user-provided custom dates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Unpinned package installation can change holiday data or behavior over time. <br>
-Mitigation: Use a virtual environment and pin the holidays package version when reproducible behavior is required. <br>
-Risk: Custom holiday JSON loading can read a local file path supplied during use. <br>
-Mitigation: Only load custom holiday files when the user explicitly provides the path, and verify the file exists before reading it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Global Holidays on ClawHub](https://clawhub.ai/yting27/global-holidays) <br>
-- [holidays Python package](https://pypi.org/project/holidays/) <br>
+## Use Case:
 
+Developers and agent users use this skill to answer public-holiday questions, generate holiday calendars, filter date ranges by government-designated holidays, and combine official dates with user-provided custom holidays.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with Python and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and pip with the holidays package installed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing Python packages into an active interpreter can alter the environment or conflict with system packages.
+
+Mitigation: Use a dedicated virtual environment and prefer a reviewed, pinned holidays package version.
+
+Risk: Custom holiday files can expose unintended local paths or untrusted file contents if loaded without user intent.
+
+Mitigation: Load custom holiday files only when the user explicitly provides the path, verify the file exists, and skip custom dates when no path is provided.
+
+## Reference(s):
+
+- [ClawHub Global Holidays skill page](https://clawhub.ai/yting27/skills/global-holidays)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include holiday names, date lists, package installation commands, and user-provided custom holiday merge guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

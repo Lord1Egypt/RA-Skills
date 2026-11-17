@@ -1,41 +1,52 @@
-## Description: <br>
-CLI tool to fetch trending news and hot topics from 66 sources across 44 platforms, returning structured news items with titles, URLs, and metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI tool to fetch trending news and hot topics from 66 sources across 44 platforms, returning structured news items with titles, URLs, and metadata.
 
-## Publisher: <br>
-[sorrycc](https://clawhub.ai/user/sorrycc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sorrycc](https://clawhub.ai/user/sorrycc)
 
-## Use Case: <br>
-Developers and agents use newsnow to list available news sources and fetch current trending topics from social, technology, finance, and general news platforms. It is useful when a workflow needs readable headlines or JSON news records for downstream processing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill executes an external newsnow npm CLI package. <br>
-Mitigation: Before installing or invoking it, verify that the newsnow npm package is the intended package, preferably pinned to a known version. <br>
-Risk: The Product Hunt source can require PRODUCTHUNT_API_TOKEN. <br>
-Mitigation: Only set the token when Product Hunt results are needed, keep it out of logs and prompts, and use the least-privileged token available. <br>
-Risk: Some news sources may be blocked, unavailable, or inaccessible from certain regions. <br>
-Mitigation: Handle failed or empty source responses explicitly and select alternative sources when a platform is unavailable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sorrycc/newsnow) <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to list available news sources and fetch trending items from selected platforms, including machine-readable JSON for downstream processing.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce structured JSON news records with id, title, url, pubDate, and extra metadata when invoked with --json.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can run an unpinned npm CLI through npx, so executed code may change after review.
+
+Mitigation: Prefer a pinned, preinstalled, reviewed newsnow binary before deployment.
+
+Risk: PRODUCTHUNT_API_TOKEN may be exposed to the CLI environment when using the Product Hunt source.
+
+Mitigation: Provide the token only for Product Hunt requests and scope it according to internal credential handling policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sorrycc/skills/newsnow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; the invoked CLI can return JSON news data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require npm installation and PRODUCTHUNT_API_TOKEN for the Product Hunt source.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

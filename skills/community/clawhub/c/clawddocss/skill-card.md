@@ -1,50 +1,61 @@
-## Description: <br>
-Clawdbot documentation expert with decision tree navigation, search, and doc fetching. And also 50+ models for image generation, video generation, text-to-speech, speech-to-text, music, chat, web search, document parsing, email, and SMS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawdbot documentation expert with decision tree navigation, search, and doc fetching, plus instructions for accessing 50+ SkillBoss models for image generation, video generation, text-to-speech, speech-to-text, music, chat, web search, document parsing, email, and SMS.
 
-## Publisher: <br>
-[MartinPollitt](https://clawhub.ai/user/MartinPollitt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[martinpollitt](https://clawhub.ai/user/martinpollitt)
 
-## Use Case: <br>
-Developers and external users use this skill to find Clawdbot and SkillBoss model documentation, list available model categories, and prepare API calls for chat, image, video, audio, search, document, email, and SMS workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward broad external-service use through a SkillBoss API key. <br>
-Mitigation: Use a dedicated or restricted API key where available and confirm that prompts, documents, audio, images, URLs, phone numbers, and email content may be sent to external services. <br>
-Risk: Email, SMS, OTP, and batch messaging capabilities can affect third parties. <br>
-Mitigation: Require explicit user confirmation before any email, SMS, OTP, or batch messaging action. <br>
+## Use Case:
 
+Developers and agents use this skill to look up SkillBoss model documentation, choose model categories, and produce authenticated API examples for chat, media generation, search, document processing, email, SMS, and related tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MartinPollitt/clawddocss) <br>
-- [Publisher profile](https://clawhub.ai/user/MartinPollitt) <br>
-- [SkillBoss website](https://www.skillboss.co) <br>
-- [SkillBoss API base URL](https://api.heybossai.com/v1) <br>
-- [artifact/SKILL.md](artifact/SKILL.md) <br>
-- [artifact/chat-models.md](artifact/chat-models.md) <br>
-- [artifact/image-models.md](artifact/image-models.md) <br>
-- [artifact/audio-models.md](artifact/audio-models.md) <br>
-- [artifact/video-models.md](artifact/video-models.md) <br>
-- [artifact/search-models.md](artifact/search-models.md) <br>
-- [artifact/tools-models.md](artifact/tools-models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for authenticated SkillBoss API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A documentation-branded skill includes broad authenticated API instructions for model execution, email, SMS, document uploads, media uploads, and file downloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited SKILLBOSS_API_KEY and require explicit user approval before email, SMS, upload, or download commands are run.
+
+Risk: Prompts or files sent through the documented APIs could expose secrets, private documents, media, or audio.
+
+Mitigation: Avoid sending secrets or private documents, media, or audio unless the user has confirmed the data handling requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/martinpollitt/skills/clawddocss)
+- [SkillBoss](https://www.skillboss.co)
+- [SkillBoss API base](https://api.heybossai.com/v1)
+- [Audio Models](artifact/audio-models.md)
+- [Chat Models](artifact/chat-models.md)
+- [Image Models](artifact/image-models.md)
+- [Search & Scraping Models](artifact/search-models.md)
+- [Tool Models](artifact/tools-models.md)
+- [Video Models](artifact/video-models.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and API parameter guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include authenticated API examples that depend on SKILLBOSS_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

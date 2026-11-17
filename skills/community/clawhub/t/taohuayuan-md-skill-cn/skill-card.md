@@ -1,47 +1,57 @@
-## Description: <br>
-Provides autonomous agents with a local physical-anchor and persistent memory workflow that writes identity, interaction, preference, and environment context into local Markdown and JSON files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance and Python helpers for creating a local, physical-anchor persistent memory structure for autonomous agents.
 
-## Publisher: <br>
-[spacesq](https://clawhub.ai/user/spacesq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add local, edge-hosted memory files that preserve an agent's physical anchor, short-term interaction cache, and consolidated long-term context. It is intended for agents that deliberately keep local state about interactions, preferences, and physical-environment observations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create long-term local memories from interactions, preferences, and physical-context data without clear consent or deletion controls. <br>
-Mitigation: Require explicit opt-in, disable silent or background capture, and provide user-visible inspection and deletion for all generated memory files. <br>
-Risk: Local memory files may contain sensitive personal, environmental, or operational details. <br>
-Mitigation: Restrict captured sensor categories, redact secrets and personal data before writing, and protect generated files with local access controls and retention limits. <br>
-Risk: Automatic memory consolidation may preserve inaccurate or unwanted entries as long-term context. <br>
-Mitigation: Review consolidated memory files before reuse, allow users to remove entries, and avoid treating consolidated memories as authoritative without validation. <br>
+## Use Case:
 
+Developers and agent builders use this skill to initialize and manage a local file-based memory anchor for autonomous agents, including root identity records, short-term interaction logs, and consolidated long-term memory files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spacesq/taohuayuan-md-skill-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/spacesq) <br>
-- [artifact/readme.md](artifact/readme.md) <br>
-- [artifact/skill.md](artifact/skill.md) <br>
-- [artifact/taohuayuan_md_whitepaper.md](artifact/taohuayuan_md_whitepaper.md) <br>
-- [artifact/samples/taohuayuan.md](artifact/samples/taohuayuan.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and JSON files with Python and shell usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local taohuayuan.md, hippocampus_logs.json, and memory_files/ outputs; no cloud processing is described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and package.json; changelog top entry is 1.0.0) <br>
+Risk: Persistent local memory may record broad interaction or environmental details without clear consent, retention, deletion, or isolation controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit opt-in, review and redaction, retention limits, deletion controls, and isolation before connecting the skill to private chats, sensors, agent memory retrieval, or other agents.
+
+Risk: Stored memories can influence later agent behavior even when the stored content is stale, sensitive, or untrusted.
+
+Mitigation: Treat stored memories as untrusted data, review consolidated files before reuse, and restrict downstream retrieval to approved, relevant records.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/spacesq/skills/taohuayuan-md-skill-cn)
+- [Taohuayuan.md V2.0 Whitepaper](artifact/taohuayuan_md_whitepaper.md)
+- [Developer README](artifact/readme.md)
+- [Skill Prompt and Guide](artifact/skill.md)
+- [Sample Taohuayuan Record](artifact/samples/taohuayuan.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code and JSON-backed local memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates local taohuayuan.md, hippocampus_logs.json, and memory_files/ when the Python helper is run.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

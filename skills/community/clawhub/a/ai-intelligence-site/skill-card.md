@@ -1,41 +1,54 @@
-## Description: <br>
-Automates creation, updates, and deployment of AI competitor intelligence sites to GitHub Pages across global, Chinese, skills, news, and model sub-sites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates creation, daily refresh, traffic-tier analysis, and GitHub Pages deployment for AI intelligence and competitor-analysis sites.
 
-## Publisher: <br>
-[griffithkk3-del](https://clawhub.ai/user/griffithkk3-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[griffithkk3-del](https://clawhub.ai/user/griffithkk3-del)
 
-## Use Case: <br>
-Developers and site maintainers use this skill to generate and refresh GitHub Pages-based AI competitor intelligence directories with search-discovered site data, traffic tiers, trends, and insights. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled update script contains an embedded Serper API key fallback. <br>
-Mitigation: Remove and rotate the embedded key, require a user-provided SERPER_API_KEY, and avoid publishing or scheduling until the credential path is reviewed. <br>
-Risk: The skill can automatically publish generated changes to GitHub without an explicit review step. <br>
-Mitigation: Run it first in a test repository, inspect generated files and git diffs before pushing, and enable daily scheduling only after branch protections or another review path are in place. <br>
+## Use Case:
 
+Developers and site operators use this skill to maintain AI competitor intelligence pages by discovering sites, refreshing traffic data, organizing tiers and trends, and publishing updates to GitHub Pages.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/griffithkk3-del/ai-intelligence-site) <br>
-- [Serper Search API endpoint](https://google.serper.dev/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands plus generated site and JSON data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or replace site data files and publish changes to a configured GitHub repository.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The release evidence reports an embedded Serper API key, which can expose credentials if reused.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove and rotate the embedded key, and require SERPER_API_KEY from a protected secret store.
+
+Risk: The release evidence reports automatic GitHub publishing with broad local change capture.
+
+Mitigation: Run only in a dedicated repository with limited Git credentials, add a dry-run or confirmation step before publishing, and replace broad Git adds with an allowlist of generated data files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/griffithkk3-del/skills/ai-intelligence-site)
+- [Serper Search API Endpoint](https://google.serper.dev/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON data files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces competitor records, traffic tiers, trend arrays, insights, and deployment guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

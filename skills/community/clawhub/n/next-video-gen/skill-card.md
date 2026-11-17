@@ -1,48 +1,63 @@
-## Description: <br>
-Next Video Gen helps AI coding agents generate images and videos through the Volcengine Ark API, including text-to-image, text-to-video, image-to-video, and video-to-video workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Next Video Gen enables AI coding agents to generate images and short videos from text, images, or source videos through Volcengine Ark Seedance models.
 
-## Publisher: <br>
-[vennduan](https://clawhub.ai/user/vennduan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[vennduan](https://clawhub.ai/user/vennduan)
 
-## Use Case: <br>
-Developers and agent users use this skill to turn natural-language prompts and optional image, video, or audio references into generated media through Volcengine Ark models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive Volcengine Ark API key. <br>
-Mitigation: Use a limited-scope API key and avoid persisting it in shell startup files unless plaintext storage is acceptable. <br>
-Risk: Prompts and media URLs are sent to Volcengine Ark for generation. <br>
-Mitigation: Avoid private, regulated, or otherwise sensitive content when using this skill. <br>
-Risk: The security summary flags weak guardrails and an overbroad authenticated request helper. <br>
-Mitigation: Prefer the fixed generation scripts for normal use and review requests before execution. <br>
+## Use Case:
 
+Developers and external users use this skill with AI coding agents to generate images and short videos, animate reference images, transform video inputs, and save generated media locally through Volcengine Ark APIs.
 
-## Reference(s): <br>
-- [Next Video Gen ClawHub Page](https://clawhub.ai/vennduan/next-video-gen) <br>
-- [Project Homepage](https://github.com/vennduan/next-video-gen) <br>
-- [API Parameters](references/api-params.md) <br>
-- [Volcengine Ark Console](https://console.volcengine.com/ark) <br>
-- [Doubao Seedream 5.0 Model](https://console.volcengine.com/ark/model_detail?Id=doubao-seedream-5-0-260128) <br>
-- [Doubao Seedance 1.5 Pro Model](https://console.volcengine.com/ark/model_detail?Id=doubao-seedance-1-5-pro-251215) <br>
-- [Doubao Seedance 2.0 Model](https://console.volcengine.com/ark/model_detail?Id=doubao-seedance-2-0-260128) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated media links or local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include image URLs, video URLs, local saved file paths, resolution, aspect ratio, duration, audio status, and elapsed generation time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: ClawHub release evidence) <br>
+Risk: The bundled legacy shell script has a URL interpolation flaw when handling untrusted video or audio URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the Node implementation and avoid running scripts/seedance-gen.sh with untrusted media URLs until the flaw is fixed.
+
+Risk: The authenticated HTTP helper is not restricted to Volcengine Ark hosts.
+
+Mitigation: Restrict authenticated requests to HTTPS Volcengine Ark endpoints before attaching DOUBAO_API_KEY.
+
+Risk: Prompts and media URLs are sent to Volcengine, and generated files are saved locally by default.
+
+Mitigation: Use a scoped API key, avoid sensitive prompts or media URLs, and review the configured local output directory.
+
+## Reference(s):
+
+- [Next Video Gen ClawHub listing](https://clawhub.ai/vennduan/skills/next-video-gen)
+- [Next Video Gen repository homepage](https://github.com/vennduan/next-video-gen)
+- [API parameter reference](references/api-params.md)
+- [Volcengine Ark console](https://console.volcengine.com/ark)
+- [Doubao Seedream text-to-image model](https://console.volcengine.com/ark/model_detail?Id=doubao-seedream-5-0-260128)
+- [Doubao Seedance 1.5 Pro video model](https://console.volcengine.com/ark/model_detail?Id=doubao-seedance-1-5-pro-251215)
+- [Doubao Seedance 2.0 video model](https://console.volcengine.com/ark/model_detail?Id=doubao-seedance-2-0-260128)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Structured status text with local file paths, media specifications, and temporary media URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DOUBAO_API_KEY; generated media is saved locally by default and online links are temporary.]
+
+## Skill Version(s):
+
+1.0.6 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

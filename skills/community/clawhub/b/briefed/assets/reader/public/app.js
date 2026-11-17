@@ -173,7 +173,7 @@ function buildCard(story) {
       });
       // Fetch body after modal opens
       try {
-        const r = await fetch(`/api/story/${story.id}`);
+        const r = await fetch(`/api/story/${encodeURIComponent(story.id)}`);
         const data = await r.json();
         setModalBody(data.body || '');
       } catch {
@@ -365,8 +365,15 @@ function openEmailModal({ storyId, source, headline, body, gmailUrl, note }) {
           </div>
           <button class="modal-close" aria-label="Close">✕</button>
         </div>
+        <div class="modal-images-bar" hidden>
+          <span>Remote images blocked so senders can't track when you read.</span>
+          <span class="modal-images-actions">
+            <button class="modal-images-load">Load images</button>
+            <button class="modal-images-always">Always</button>
+          </span>
+        </div>
         <div class="modal-body-wrap">
-          <iframe class="modal-frame" sandbox="allow-same-origin allow-popups allow-popups-to-escape-sandbox" title="Email content"></iframe>
+          <iframe class="modal-frame" sandbox="allow-popups allow-popups-to-escape-sandbox" referrerpolicy="no-referrer" title="Email content"></iframe>
         </div>
         <div class="modal-footer">
           <div class="modal-vote-row">
@@ -387,7 +394,13 @@ function openEmailModal({ storyId, source, headline, body, gmailUrl, note }) {
     modal.querySelector('.modal-close').addEventListener('click', closeEmailModal);
     modal.querySelector('.modal-backdrop').addEventListener('click', closeEmailModal);
     modalFrame = modal.querySelector('.modal-frame');
+    modal.querySelector('.modal-images-load').addEventListener('click', () => renderModalBody(true));
+    modal.querySelector('.modal-images-always').addEventListener('click', () => {
+      try { localStorage.setItem(LOAD_IMAGES_KEY, '1'); } catch {}
+      renderModalBody(true);
+    });
   }
+  modal.querySelector('.modal-images-bar').hidden = true;
 
   // Populate
   modal.querySelector('.modal-source').textContent = source || '';
@@ -490,10 +503,28 @@ function closeEmailModal() {
   }
 }
 
+// Email HTML is untrusted. It renders in a sandboxed iframe (no scripts,
+// opaque origin) with its own CSP. Remote images, fonts and stylesheets are
+// blocked by default because senders use them as read-tracking beacons.
+const LOAD_IMAGES_KEY = 'briefed.loadImages';
+const REMOTE_RESOURCE_RE = /(?:src|background)\s*=\s*["']?\s*(?:https?:)?\/\/|url\(\s*["']?\s*(?:https?:)?\/\//i;
+let modalHtml = '';
+
 function setModalBody(html) {
+  modalHtml = html || '';
+  let alwaysLoad = false;
+  try { alwaysLoad = localStorage.getItem(LOAD_IMAGES_KEY) === '1'; } catch {}
+  renderModalBody(alwaysLoad);
+}
+
+function renderModalBody(allowRemoteImages) {
   if (!modalFrame) return;
+  const imgSrc = allowRemoteImages ? 'data: cid: https: http:' : 'data: cid:';
   const wrapped = [
     '<html><head>',
+    `<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${imgSrc}; style-src 'unsafe-inline'; font-src data:">`,
+    '<meta name="referrer" content="no-referrer">',
+    '<base target="_blank">',
     '<meta name="viewport" content="width=device-width,initial-scale=1">',
     '<style>',
     '* { box-sizing: border-box; }',
@@ -502,21 +533,12 @@ function setModalBody(html) {
     'table { max-width: 100% !important; }',
     '</style>',
     '</head><body>',
-    html,
+    modalHtml,
     '</body></html>',
   ].join('');
 
-  modalFrame.onload = function() {
-    try {
-      const doc = modalFrame.contentDocument;
-      if (!doc) return;
-      // Force every link to open in new tab (external browser)
-      doc.querySelectorAll('a[href]').forEach(function(a) {
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
-      });
-    } catch(e) {}
-  };
+  const bar = document.querySelector('#email-modal .modal-images-bar');
+  if (bar) bar.hidden = allowRemoteImages || !REMOTE_RESOURCE_RE.test(modalHtml);
 
   modalFrame.srcdoc = wrapped;
 }

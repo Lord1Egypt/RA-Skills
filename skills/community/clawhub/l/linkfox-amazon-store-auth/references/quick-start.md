@@ -77,9 +77,9 @@ Authorization: Bearer <your-token>
 
 如果看到店铺信息，说明授权成功！
 
-## 使用授权令牌
+## 使用授权状态
 
-### 获取访问令牌
+### 查询授权状态
 
 **调用接口**:
 ```bash
@@ -98,20 +98,25 @@ Authorization: Bearer <your-token>
 {
   "sellerId": "A1234567890",
   "region": "NA",
-  "accessToken": "Atza|IwEBIA...",
-  "refreshToken": "Atzr|IwEBIJ...",
-  "tokenType": "bearer",
-  "expiresIn": "3600"
+  "authRecordId": 123,
+  "status": "ACTIVE",
+  "tokenExpiresAt": 3600,
+  "message": "授权信息已后台化管理，token 不再经由 Agent 返回"
 }
 ```
 
-### 使用访问令牌调用卖家开放接口
+### 调用卖家开放接口
 
-使用返回的 `accessToken` 作为请求头：
+下游业务不要读取 raw token。直接调用 `/spApi/developerProxy`，并传入同一个 `sellerId` + `region`：
 
 ```bash
-GET https://<endpoint>/orders/v0/orders
-x-amz-access-token: Atza|IwEBIA...
+POST /spApi/developerProxy
+{
+  "sellerId": "A1234567890",
+  "region": "NA",
+  "path": "orders/v0/orders",
+  "method": "GET"
+}
 ```
 
 ## 令牌管理
@@ -123,9 +128,10 @@ x-amz-access-token: Atza|IwEBIA...
 
 ### 检查令牌是否即将过期
 
-从 `/spApi/storeTokens` 响应中获取 `expiresIn` 值：
-- 如果小于 300 秒（5分钟），建议立即刷新
-- 如果大于 300 秒，可以继续使用
+从 `/spApi/storeTokens` 响应中查看 `status` / `tokenExpiresAt` / `message`：
+- `ACTIVE`：可继续通过 `developerProxy` 调用
+- `EXPIRED` 或调用返回 token 失效：调用 `/spApi/refreshToken` 刷新
+- 当前用户连接已解绑时，需重新授权后才能使用该连接；解绑接口不将共享授权标记为 REVOKED
 
 ### 刷新过期令牌
 
@@ -145,15 +151,16 @@ Authorization: Bearer <your-token>
 ```json
 {
   "authRecordId": 123,
-  "accessToken": "Atza|IwEBIA...(新令牌)",
-  "refreshToken": "Atzr|IwEBIJ...",
-  "tokenType": "bearer",
-  "expiresIn": "3600",
-  "message": "刷新成功并已更新数据库"
+  "success": true,
+  "message": "刷新成功并已更新数据库，token 已后台化管理"
 }
 ```
 
-刷新后，使用新的 `accessToken` 进行后续 API 调用。
+刷新后，继续通过 `/spApi/developerProxy` 传 `sellerId` + `region` 调用业务接口。
+
+### 本地取消/解绑授权
+
+按 [SKILL.md 场景 5](../SKILL.md#scenario-5-cancel-local-authorization) 确定目标与范围后执行；参数及示例见 [API §5](api.md#5-cancel-authorization)。
 
 ## 多店铺管理
 
@@ -211,17 +218,17 @@ POST /spApi/storeTokens
 
 ### 场景 1: 定时任务调用卖家开放接口
 
-1. 从数据库或缓存中读取 `accessToken`
-2. 检查是否过期（根据上次更新时间 + expiresIn）
-3. 如果过期，调用 `/spApi/refreshToken` 刷新
-4. 使用新令牌调用卖家开放接口
+1. 任务保存或接收 `sellerId` + `region`
+2. 通过 `/spApi/developerProxy` 调用卖家开放接口
+3. 如返回 token 失效，调用 `/spApi/refreshToken` 刷新
+4. 使用相同 `sellerId` + `region` 重试一次
 
 ### 场景 2: 多店铺数据同步
 
 1. 调用 `/spApi/authorizedStores` 获取所有店铺
 2. 遍历店铺列表
-3. 为每个店铺获取令牌 (`/spApi/storeTokens`)
-4. 并行调用卖家开放接口获取数据
+3. 可选调用 `/spApi/storeTokens` 确认状态
+4. 用每个店铺的 `sellerId` + `region` 调 `developerProxy`
 
 ### 场景 3: 用户重新授权
 
@@ -231,6 +238,12 @@ POST /spApi/storeTokens
 2. 调用卖家开放接口 会返回 401 Unauthorized
 3. 需要用户重新授权（重复获取授权链接的流程）
 4. 系统会自动更新数据库中的令牌
+
+### 场景 4: 用户取消本地授权
+
+1. 先用 `/spApi/authorizedStores` 确认要解绑的店铺
+2. 调用 `/spApi/cancelAuthorization`
+3. 告知用户 LinkFox 已不再使用该授权；如需 Amazon 侧彻底撤销，请到 Seller Central 授权管理页手动 Disable authorization
 
 ## 故障排查
 

@@ -1,42 +1,59 @@
-## Description: <br>
-Manage etcd key-value store operations including list, get, put, and delete with safety checks and backup-oriented workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage etcd key-value store operations including list, get, put, and delete with safety checks and backup-oriented workflows.
 
-## Publisher: <br>
-[fpbear](https://clawhub.ai/user/fpbear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fpbear](https://clawhub.ai/user/fpbear)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect and modify etcd key-value data across development, test, and production environments while following read-first and backup-before-change practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can directly change or delete important etcd data. <br>
-Mitigation: Use read-only or non-production credentials by default, keep independent backups and audit logs, and require separate human confirmation for put, delete, or lease revoke operations. <br>
-Risk: The release overstates safety controls relative to the direct write and delete behavior exposed through etcdctl. <br>
-Mitigation: Treat built-in checks as guidance, not an access-control boundary; enforce production safeguards through credentials, reviews, and operational change controls outside the skill. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect and manage etcd configuration and distributed-system state across dev, test, and production environments. It is most appropriate when the user can supply an authorized etcd endpoint and review proposed write or delete operations before execution.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fpbear/etcd-manager) <br>
-- [etcd command reference](references/etcd_commands.md) <br>
-- [etcd safety guidelines](references/safety_guidelines.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include etcd key names, current values, proposed new values, deletion backups, status summaries, and risk notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can guide agents to read, write, or delete etcd keys using credentials available in the current environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted endpoints and credentials, restrict key prefixes where possible, and require human review before put or delete operations.
+
+Risk: The artifact describes backup, confirmation, production-safety, and audit controls more strongly than the helper scripts can enforce by themselves.
+
+Mitigation: Add external backup, confirmation, allowlist, and audit mechanisms before using the skill on production or shared clusters.
+
+Risk: The connection test script creates and deletes a test key on the supplied etcd endpoint.
+
+Mitigation: Run connection tests only against disposable or explicitly approved clusters.
+
+## Reference(s):
+
+- [etcd Commands Reference](references/etcd_commands.md)
+- [etcd Safety Guidelines](references/safety_guidelines.md)
+- [ClawHub Skill Page](https://clawhub.ai/fpbear/skills/etcd-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and structured operation summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include current values, proposed new values, deletion backups, endpoint details, and risk notes for user review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

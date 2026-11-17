@@ -16,7 +16,7 @@ OUT = Path.home() / f".openclaw/workspace/cfc_raw_data/cleaned_{TODAY}"
 # ─── MiniMax M2.7 VLM OCR ────────────────────────────────────────────
 MINIMAX_KEY = os.environ.get(
     "MINIMAX_API_KEY",
-    "sk-cp-CT_VXVxvL9Eu71Wnp5NjLO6RatHKPker4laUs67t24Cmhk56xEOSyeU5-pHkjxJkLiFCvK8_AA7QY0g3MBAPWkzXRl1AnZiQBjPdvOCSRVQq4GDWElDPEUY",
+    "REDACTED-SECRET",
 )
 MINIMAX_TEXT_URL = "https://api.minimax.chat/v1/text/chatcompletion_v2"
 MINIMAX_VLM_URL = "https://api.minimax.chat/v1/coding_plan/vlm"

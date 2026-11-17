@@ -1,0 +1,37 @@
+slug: novel-synopsis-pack-cn
+name: novel-synopsis-pack-cn
+display_name: 小说投稿梗概包
+version: 1.0.1
+short_description: 将完整小说素材整理为三档投稿梗概与可复制的人物关系摘要
+description: 根据覆盖结局的完整故事概要、逐章摘要和投稿长度要求，整理300、800、1500字三档投稿梗概与人物关系摘要，保留关键因果、角色选择和结局，并分别标注实际字数；缺少章节或结局时先指出需补充的资料。
+repository: https://github.com/xxjrq/novel-synopsis-pack-cn
+license: MIT-0
+tags:
+  - 小说投稿
+  - 梗概写作
+  - 编辑资料
+  - 中文创作
+triggers:
+  - 小说投稿梗概
+  - 300字梗概
+  - 人物关系摘要
+  - 章节摘要整理
+entrypoint: SKILL.md
+self_test: python3 scripts/self_test.py
+files:
+  - SKILL.md
+  - manifest.yaml
+  - agents/openai.yaml
+  - scripts/self_test.py
+  - README.md
+  - README.en.md
+  - LICENSE
+  - sources.md
+  - fixtures/forward-success.md
+  - fixtures/forward-failure.md
+  - fixtures/success.json
+  - fixtures/failure-missing-fields.json
+  - icon-512.png
+  - assets/icon-512.png
+  - assets/promo-1600x900.png
+icon: icon-512.png

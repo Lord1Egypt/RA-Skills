@@ -1,43 +1,60 @@
-## Description: <br>
-Scenario-focused Sparki skill for presenter-led and talking-head edits while using the latest official Sparki setup, API-key, and upload workflow guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scenario-focused Sparki skill for presenter-led and talking-head edits while using official Sparki setup, API-key, and upload workflow guidance.
 
-## Publisher: <br>
-[fischerlam](https://clawhub.ai/user/fischerlam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fischerlam](https://clawhub.ai/user/fischerlam)
 
-## Use Case: <br>
-External users and agents use this skill to prepare talking-head, presenter, interview, tutorial, founder, and explainer videos for clearer pacing and presentation through Sparki. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected videos are uploaded to Sparki's cloud service for processing. <br>
-Mitigation: Use the skill only with videos that are acceptable to upload to Sparki, and confirm the intended upload method before running commands. <br>
-Risk: The Sparki API key can be saved in the local OpenClaw config directory. <br>
-Mitigation: Prefer the SPARKI_API_KEY environment variable when a saved key is not desired, and keep the OpenClaw config directory private. <br>
+## Use Case:
 
+External users and creators use this skill to guide Sparki workflows for tightening presenter videos, direct-to-camera footage, interviews, tutorials, founder videos, and explainers.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fischerlam/talking-head-editor) <br>
-- [Publisher Profile](https://clawhub.ai/user/fischerlam) <br>
-- [Sparki Homepage](https://sparki.io) <br>
-- [Sparki Telegram Upload](https://t.me/Sparki_AI_bot/upload) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and prompt templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides the agent to use Sparki CLI workflows for prompt-driven talking-head video edits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: frontmatter and server release evidence) <br>
+Risk: The skill can store a Sparki API key and use it for future requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer environment-based secret handling or restrictive config-file permissions for the API key.
+
+Risk: A persisted custom service endpoint could receive future uploads.
+
+Mitigation: Avoid using --base-url unless the endpoint is fully trusted.
+
+Risk: Selected videos and prompts are sent to Sparki for processing.
+
+Mitigation: Use the skill only when the user intends to send the selected media and prompt content to Sparki.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fischerlam/skills/talking-head-editor)
+- [Sparki Homepage](https://sparki.io)
+- [Sparki Telegram Upload](https://t.me/Sparki_AI_bot/upload)
+- [Sparki API Endpoint](https://agent-api.sparki.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides use of local file paths or Telegram Mini App uploads; generated video assets are produced by Sparki outside the skill.]
+
+## Skill Version(s):
+
+1.0.12 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

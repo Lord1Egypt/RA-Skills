@@ -1,41 +1,54 @@
-## Description: <br>
-帮助创业者、产品经理和商业分析师用九模块商业模式画布、单元经济模型、竞争护城河分析和MVP验证计划梳理并验证商业想法。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps entrepreneurs, product managers, and business analysts structure and validate business ideas with a nine-part Business Model Canvas, unit economics, competitive moat analysis, benchmark cases, and MVP validation planning.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-External users such as founders, product managers, and business analysts use this skill to turn a business idea into a complete business model canvas, identify assumptions, estimate unit economics, assess competitive moats, and plan MVP validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated business benchmarks, LTV/CAC estimates, and competitor comparisons may be inaccurate or unsuitable for a specific market. <br>
-Mitigation: Treat them as planning aids and validate assumptions with current market data, customer interviews, and financial review before making business decisions. <br>
-Risk: The skill is designed to output Chinese-language analysis, which may limit review by teams that do not read Chinese. <br>
-Mitigation: Have a Chinese-reading reviewer or trusted translation workflow review the output before relying on it in broader planning. <br>
+## Use Case:
 
+External users can use this Chinese-language skill to turn a product or startup idea into a structured business model canvas, identify assumptions and risks, estimate unit economics, and plan MVP validation. It is most relevant for entrepreneurship, product strategy, and business analysis workflows.
 
-## Reference(s): <br>
-- [商业模式画布 详细参考](references/details.md) <br>
-- [ClawHub skill page](https://clawhub.ai/qqyougitcom/qqyougit-business-model-canvas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Chinese Markdown with structured tables and concise narrative sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include a nine-module canvas, business model label, assumptions with validation plans, unit-economics estimates, optimization suggestions, moat analysis, and benchmark cases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Business model and unit economics outputs may rely on estimates or benchmark assumptions that are not specific to the user's market.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the assumptions, replace estimates with current business data where available, and validate high-risk assumptions through MVP experiments before making business decisions.
+
+Risk: The skill is designed to answer in Chinese, which may limit review quality for teams that do not read Chinese.
+
+Mitigation: Use reviewers who can evaluate Chinese-language business analysis or request a translated output before approval.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qqyougitcom/skills/qqyougit-business-model-canvas)
+- [商业模式画布 详细参考](artifact/references/details.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables, structured analysis, estimates, and validation plans in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, persistence, hidden access, or sensitive data handling identified in server security evidence.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata; artifact frontmatter: 1.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

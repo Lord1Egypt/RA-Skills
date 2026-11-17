@@ -1,0 +1,57 @@
+{
+	"name": "@nowledge/openclaw-nowledge-mem",
+	"displayName": "Nowledge Mem for OpenClaw",
+	"version": "0.8.34",
+	"type": "module",
+	"description": "Nowledge Mem memory plugin for OpenClaw, local-first personal knowledge base",
+	"author": {
+		"name": "Nowledge Labs",
+		"email": "hello@nowledge-labs.ai",
+		"url": "https://nowledge-labs.ai"
+	},
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/nowledge-co/community.git",
+		"directory": "nowledge-mem-openclaw-plugin"
+	},
+	"files": [
+		"src",
+		"skills",
+		"README.md",
+		"CHANGELOG.md",
+		"CLAUDE.md",
+		"SKILL.md",
+		"openclaw.plugin.json"
+	],
+	"openclaw": {
+		"extensions": [
+			"./src/index.js"
+		],
+		"install": {
+			"clawhubSpec": "clawhub:nowledge-mem",
+			"npmSpec": "@nowledge/openclaw-nowledge-mem",
+			"defaultChoice": "clawhub"
+		},
+		"compat": {
+			"pluginApi": ">=2026.5.3"
+		},
+		"build": {
+			"openclawVersion": "2026.8.1"
+		},
+		"release": {
+			"publishToClawHub": true,
+			"publishToNpm": true
+		}
+	},
+	"main": "src/index.js",
+	"scripts": {
+		"test": "node --test tests/*.test.mjs",
+		"validate": "node scripts/validate-plugin.mjs",
+		"lint": "biome check .",
+		"format": "biome format --write ."
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.0"
+	}
+}

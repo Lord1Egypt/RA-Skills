@@ -1,42 +1,57 @@
-## Description: <br>
-Give ClawBot access to your team's entire coding history. Muse connects your past sessions, team knowledge, and project context, so ClawBot can help design features, mediate team discussions, and work autonomously across your codebase. Deploy at tribeclaw.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give ClawBot access to your team's entire coding history. Muse connects your past sessions, team knowledge, and project context so ClawBot can help design features, mediate team discussions, and work autonomously across your codebase.
 
-## Publisher: <br>
-[alexander-morris](https://clawhub.ai/user/alexander-morris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alexander-morris](https://clawhub.ai/user/alexander-morris)
 
-## Use Case: <br>
-Developers and engineering teams use Muse to query past coding sessions, manage team knowledge, inspect project history, and coordinate agent workflows through the tribe CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Muse requests broad access to coding history, telemetry, knowledge-base sync, imports, and autonomous-agent features. <br>
-Mitigation: Install it only when that level of access is intended, review the provider's privacy and retention terms, and avoid syncing secrets, regulated data, or proprietary code unless approved. <br>
-Risk: Search, sync, import, and force-sync commands can expose more session history or project context than intended. <br>
-Mitigation: Scope commands to specific projects or time ranges where possible, check telemetry status before use, and disable telemetry when collection is not intended. <br>
-Risk: MUSE and CIRCUIT beta commands can spawn or manage autonomous agents that act across a codebase. <br>
-Mitigation: Review agent goals and outputs before applying changes, monitor active sessions, and stop agents that are mis-scoped or no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Muse on ClawHub](https://clawhub.ai/alexander-morris/muse) <br>
-- [TribeClaw](https://tribeclaw.com) <br>
+## Use Case:
 
+Developers and engineering teams use Muse to search AI coding sessions, manage project knowledge, inspect session artifacts, and coordinate Tribe/Muse autonomous-agent workflows through the tribe CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tribe CLI commands and JSON-oriented examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the tribe CLI, authentication with tribe login, and beta mode for MUSE and CIRCUIT commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill relies on a third-party CLI that may access sensitive coding history, telemetry, knowledge-base data, and autonomous-agent workflows.
+
+Mitigation: Use only with repositories and team history you are authorized to expose to Tribe/Muse, and review Tribe/Muse data handling before installation.
+
+Risk: Authentication and sync behavior can broaden access to local or team development data.
+
+Mitigation: Use a least-privilege account, confirm telemetry and sync settings, and avoid auto or force-sync modes in sensitive workspaces.
+
+Risk: The npm package @_xtribe/cli is installed and trusted before running skill workflows.
+
+Mitigation: Pin or otherwise verify the package before installation and review the skill before deployment.
+
+## Reference(s):
+
+- [Muse Skill Page](https://clawhub.ai/alexander-morris/skills/muse)
+- [TribeClaw Deployment Site](https://tribeclaw.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes optional JSON-formatted CLI outputs when users run tribe commands with --format json.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

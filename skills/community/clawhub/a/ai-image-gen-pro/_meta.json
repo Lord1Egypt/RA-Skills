@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7dxr58ktjh28y80xrgmypzg582wtg5",
-  "slug": "ai-image-gen-pro",
+  "name": "ai-image-generation",
+  "displayName": "AI 图片生成工具",
   "version": "1.0.0",
-  "publishedAt": 1775185837222
+  "slug": "ai-image-gen-pro",
+  "description": "AI 图片生成工具，支持 FLUX、Gemini、Grok 等 50+ 模型，文生图、图生图、LoRA",
+  "author": "@bingze00000",
+  "license": "MIT",
+  "tags": ["ai", "image", "flux", "gemini", "grok", "text-to-image", "generation"],
+  "pricing": {
+    "type": "paid",
+    "amount": 29,
+    "currency": "CNY"
+  },
+  "requirements": ["requests"],
+  "category": "media"
 }

@@ -1,6 +1,6 @@
 {
   "name": "bid-collection",
-  "description": "Tender & Procurement Lead Collection Skill — 24/7 automated monitoring of public tender/procurement notices, intelligently filtering high-value leads matching your business",
+  "description": "招投标商机采集 — 监控全网公开招投标信息，按业务赛道智能筛选高价值商机。仅采集公开信息，不读取用户敏感配置；scan/monitor/add-source 会发起出站 HTTP 请求，monitor 会创建 cron 任务，结果写入本地 leads-output/bid/。",
   "version": "1.0.0",
   "skills": ["bid-collection"]
 }

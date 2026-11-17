@@ -1,41 +1,60 @@
-## Description: <br>
-Control Linux desktop applications through X11/GNOME window management, input simulation, UI hierarchy inspection, and screenshots using xdotool, wmctrl, dogtail, and scrot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control the Linux desktop GUI using xdotool, wmctrl, and dogtail for non-browser application interaction, mouse and keyboard input simulation, window management, UI hierarchy inspection, and screenshot capture on X11/GNOME.
 
-## Publisher: <br>
-[dreamtraveler13](https://clawhub.ai/user/dreamtraveler13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dreamtraveler13](https://clawhub.ai/user/dreamtraveler13)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent interact with non-browser Linux GUI applications, including focusing windows, clicking, typing, pressing keys, inspecting accessible UI trees, and capturing screenshots for visual tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Desktop automation can click, type, or press keys in the wrong window. <br>
-Mitigation: List and confirm windows before acting, activate only the intended target window, and review planned input actions before execution. <br>
-Risk: Screenshots and UI inspection can expose passwords, private data, or unrelated sensitive windows. <br>
-Mitigation: Close or hide unrelated sensitive windows and avoid visible credentials or private data before taking screenshots or dumping UI trees. <br>
-Risk: Restarting applications to enable accessibility can disrupt active sessions. <br>
-Mitigation: Use accessibility restart steps only when needed, target the intended application, and confirm before terminating or relaunching an app. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dreamtraveler13/guicountrol) <br>
+## Use Case:
 
+Developers and automation agents use this skill to operate Linux desktop applications by focusing windows, sending keyboard and mouse input, inspecting accessible UI trees, and capturing screenshots when text-based inspection is insufficient.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Text, Files] <br>
-**Output Format:** [Markdown with inline shell commands and text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create screenshot files and text UI-tree dumps when invoked.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and release changelog) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: GUI controls can click, type, focus, move windows, and otherwise act broadly on the live desktop session.
+
+Mitigation: Use only in desktop sessions where broad GUI control is acceptable, verify target windows before acting, and keep important work saved before running automation.
+
+Risk: The screenshot helper can be abused through unsafe filename handling.
+
+Mitigation: Patch or avoid the screenshot helper until it validates filenames and passes an end-of-options marker to scrot.
+
+Risk: Untrusted action arguments could drive unintended desktop input or window changes.
+
+Mitigation: Avoid using untrusted text as action arguments and review commands before execution.
+
+Risk: The accessibility workflow suggests pkill instructions that can terminate running applications.
+
+Mitigation: Save work and confirm the target process before following pkill-based accessibility instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dreamtraveler13/skills/guicountrol)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and script references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include desktop automation commands that act on the live GUI session.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

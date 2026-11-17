@@ -1,46 +1,54 @@
-## Description: <br>
-Analyzes Huawei Cloud CCE Kubernetes service topology to trace Service, Ingress, Pod, and Node propagation paths and upstream and downstream blast radius. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huawei Cloud CCE service topology dependency impact analysis skill that traces Service/Ingress/Pod/Node propagation paths and upstream/downstream blast radius.
 
-## Publisher: <br>
-[pintudeyudi](https://clawhub.ai/user/pintudeyudi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pintudeyudi](https://clawhub.ai/user/pintudeyudi)
 
-## Use Case: <br>
-Developers and SREs operating Huawei Cloud CCE clusters use this skill to map service dependencies, estimate incident blast radius, and generate evidence-backed impact reports for handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read sensitive Huawei Cloud and Kubernetes cluster data when given credentials. <br>
-Mitigation: Use tightly scoped read-only credentials and avoid exposing broad production credentials. <br>
-Risk: The server security review reports that bundled actions can perform live cloud or Kubernetes changes despite the read-only skill description. <br>
-Mitigation: Review available actions before installation and do not enable confirm=true actions unless live infrastructure changes are intended. <br>
-Risk: Report output paths could be misused to write files in unintended locations. <br>
-Mitigation: Use explicit, controlled report paths and review generated files before relying on them. <br>
+## Use Case:
 
+Developers and cloud operations engineers use this skill to analyze Huawei Cloud CCE incidents, map Kubernetes Service/Ingress/Pod/Node propagation paths, estimate blast radius, and produce evidence-backed impact reports with confidence limits.
 
-## Reference(s): <br>
-- [Workflow pipeline and scoring rules](references/workflow.md) <br>
-- [Output structure specification](references/output-schema.md) <br>
-- [Read-only boundaries and handoff rules](references/risk-rules.md) <br>
-- [Huawei Cloud CCE Documentation](https://support.huaweicloud.com/cce/index.html) <br>
-- [Huawei Cloud Python SDK Documentation](https://support.huaweicloud.com/api-cce/cce_02_0113.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON results and Markdown impact reports with evidence tables and topology details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save an optional report file when requested; requires scoped Huawei Cloud credentials and CCE cluster identifiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence; artifact _meta.json reports 0.1.0) <br>
+Risk: The skill presents itself as read-only impact analysis, but its bundled dispatcher exposes destructive CCE and Kubernetes operations plus risky credential handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review this skill before installing. Use only narrowly scoped read-only Huawei Cloud IAM and Kubernetes RBAC credentials, and do not expose production write-capable credentials to its dispatcher unless the package is changed to remove or block all mutation and secret-export actions.
+
+## Reference(s):
+
+- [Workflow pipeline and scoring rules](references/workflow.md)
+- [Read-only boundaries and handoff rules](references/risk-rules.md)
+- [Output structure specification](references/output-schema.md)
+- [Huawei Cloud CCE Documentation](https://support.huaweicloud.com/cce/index.html)
+- [Huawei Cloud Python SDK Documentation](https://support.huaweicloud.com/api-cce/cce_02_0113.html)
+- [ClawHub skill page](https://clawhub.ai/pintudeyudi/skills/huawei-cloud-cce-dependency-impact-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON results with Markdown impact reports, evidence tables, propagation paths, Mermaid topology, and confidence limits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include report_markdown and an optional report_file path from the dependency impact analysis action]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

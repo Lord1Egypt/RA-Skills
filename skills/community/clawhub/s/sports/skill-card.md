@@ -1,42 +1,60 @@
-## Description: <br>
-Autonomously monitor live sports games and execute micro-bets on one-touch barrier options with instant mockUSDC settlement on Solana Devnet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomously monitor live sports games and execute micro-bets on one-touch barrier options with instant mockUSDC settlement on Solana Devnet.
 
-## Publisher: <br>
-[gigabit-eth](https://clawhub.ai/user/gigabit-eth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gigabit-eth](https://clawhub.ai/user/gigabit-eth)
 
-## Use Case: <br>
-External agents and developers use this skill to register with Optionns, inspect live sports markets, and execute or monitor Solana Devnet mockUSDC micro-bets. It is intended for devnet-only experimentation with autonomous sports trading workflows, not real funds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives agents broad authority to sign and submit Solana devnet transactions automatically. <br>
-Mitigation: Use only throwaway devnet wallets, avoid real private keys and mainnet RPC endpoints, and define explicit spending and stop conditions before using autonomous mode. <br>
-Risk: The skill depends on a remote Optionns API and stores credentials and a devnet keypair locally. <br>
-Mitigation: Review api.optionns.com trust, run in an isolated environment, keep generated files permission-restricted, and rotate or delete credentials after use. <br>
+## Use Case:
 
+External developers and agent operators use this skill to connect an agent to Optionns, inspect live sports markets, and execute mockUSDC one-touch barrier option trades on Solana Devnet. It is intended for devnet-only autonomous sports trading workflows with throwaway credentials and mock funds.
 
-## Reference(s): <br>
-- [Optionns API Reference](references/api.md) <br>
-- [Optionns Homepage](https://optionns.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/gigabit-eth/sports) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown instructions with bash commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local credential, keypair, and position log files during use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.24 (source: ClawHub release evidence; artifact metadata reports 1.0.23) <br>
+Risk: The skill stores API credentials and Solana signing key material locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated environment, use only throwaway Solana Devnet keypairs, and never reuse real wallets or mainnet keys.
+
+Risk: The remote Optionns service can provide blockchain transaction instructions that the local keypair signs.
+
+Mitigation: Verify the API and RPC endpoints, review the signing workflow before use, and avoid autonomous mode unless that trust model is acceptable.
+
+Risk: Autonomous mode can execute repeated devnet betting actions without step-by-step human approval.
+
+Mitigation: Start with inspection and manual trade commands, monitor behavior, and keep operation limited to mock funds on Solana Devnet.
+
+## Reference(s):
+
+- [Optionns API Reference](references/api.md)
+- [Optionns Homepage](https://optionns.com)
+- [Optionns ClawHub Listing](https://clawhub.ai/gigabit-eth/skills/sports)
+- [Solana CLI Installation](https://docs.solanalabs.com/cli/install)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and terminal text or JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local configuration files, API credentials, and Solana Devnet transaction signing.]
+
+## Skill Version(s):
+
+1.0.24 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

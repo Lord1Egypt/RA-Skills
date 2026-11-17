@@ -25,7 +25,9 @@ Sources that give local time:
 Input:  "2026-03-30T19:05:00Z"  (UTC)
 Step 1: Recognize the Z suffix = UTC
 Step 2: Run now.py or use pytz/zoneinfo to convert
-Output: "3:05 PM ET" (US Eastern, UTC-4 in DST)
+Output: Convert to user's configured timezone (e.g. "3:05 PM ET" for US Eastern, 
+        "8:05 PM BST" for UK, "4:05 AM JST" for Japan)
+        NEVER assume Eastern — use the timezone from tz_config.json
 ```
 
 ### Pattern 2: User says "remind me at 3pm"
@@ -43,11 +45,11 @@ Local time: 9:00 AM ET (UTC-4)
 Report as: "Good morning, 9:00 AM ET"
 ```
 
-## DST Rules (US Eastern — Mario's timezone)
+## DST Rules (US Eastern)
 
 - Standard time (EST): UTC-5  (Nov first Sunday → Mar second Sunday)
 - Daylight time (EDT): UTC-4  (Mar second Sunday → Nov first Sunday)
-- Mario's timezone: `America/New_York` handles DST automatically via IANA database
+- `America/New_York` handles DST automatically via IANA database
 
 **Never hardcode UTC-5 for Eastern.** Always use `America/New_York` and let the library handle DST.
 

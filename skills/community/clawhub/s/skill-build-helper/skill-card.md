@@ -1,41 +1,49 @@
-## Description: <br>
-Create or optimize an OpenClaw skill. Use when the user wants to build a new skill, improve an existing one, review a SKILL.md, or prepare a skill for ClawHub publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create or optimize an OpenClaw skill. Use when the user wants to build a new skill, improve an existing one, review a SKILL.md, or prepare a skill for ClawHub publishing.
 
-## Publisher: <br>
-[spideystreet](https://clawhub.ai/user/spideystreet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[spideystreet](https://clawhub.ai/user/spideystreet)
 
-## Use Case: <br>
-Developers and skill authors use this skill to create new OpenClaw skills, improve existing SKILL.md files, and prepare skill packages for ClawHub publishing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated or edited skill files can persist locally and influence future agent behavior. <br>
-Mitigation: Review generated SKILL.md and README changes before approval, then scan the skill before deployment. <br>
-Risk: Proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Use the bundled checklist and review proposed changes before applying them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Pre-Publish Quality Checklist](references/checklist.md) <br>
-- [Frontmatter & Metadata Reference](references/frontmatter-spec.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/spideystreet/skill-build-helper) <br>
+## Use Case:
 
+Developers and skill authors use this skill to create, improve, review, and prepare OpenClaw skills for ClawHub publishing.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with checklists, tables, and inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or apply local skill file edits after user confirmation; requires jq when reading OpenClaw metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and changelog) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated or edited skill instructions can affect future agent behavior.
+
+Mitigation: Review any generated SKILL.md carefully and scan the skill before publishing or enabling it.
+
+## Reference(s):
+
+- [Pre-Publish Quality Checklist](references/checklist.md)
+- [Frontmatter & Metadata Reference](references/frontmatter-spec.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and checklist-style review output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or edit SKILL.md, README.md, and skill reference files after user confirmation. Requires jq.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

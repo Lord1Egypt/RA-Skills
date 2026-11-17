@@ -1,24 +1,25 @@
 ---
 name: self-improving-meta
-description: "Injects meta self-improvement reminder during agent bootstrap"
+description: "Optional OpenClaw session-start reminder to log infrastructure issues. Log-only. Does not edit files."
 metadata: {"openclaw":{"emoji":"🔧","events":["agent:bootstrap"]}}
 ---
 
 # Meta Self-Improvement Hook
 
-Injects a reminder to evaluate agent infrastructure learnings during agent bootstrap.
+Optional OpenClaw reminder. Default skill behavior is still log-only. Enable this hook only if you want a session-start reminder in main sessions.
+
+This OpenClaw hook is **not matcher-gated**. Unlike Claude Code / Codex hooks (explicit meta signals), `agent:bootstrap` runs at session start for the main agent. That is why it is opt-in and must stay workspace-local.
 
 ## What It Does
 
 - Fires on `agent:bootstrap` (before workspace files are injected)
-- Adds a meta-specific reminder block to check `.learnings/` for infrastructure entries
-- Prompts the agent to log prompt file issues, hook failures, skill activation problems, rule conflicts, context bloat, and memory staleness
-- Skips subagent sessions to avoid noise
-- Reminder-only behavior: does not modify files or call network resources
+- Injects a **log-only** reminder to consider `.learnings/` entries
+- Skips subagent sessions
+- Does not modify files, extract skills, send messages, or call the network
 
 ## Reminder Content
 
-The hook injects reminders to log to the appropriate file based on what occurred:
+Log only. Do not rewrite `AGENTS.md`, `SOUL.md`, `TOOLS.md`, `MEMORY.md`, hooks, or skills from this reminder.
 
 | Trigger | Target File | Category |
 |---------|-------------|----------|
@@ -32,8 +33,9 @@ The hook injects reminders to log to the appropriate file based on what occurred
 
 ## Configuration
 
-No configuration needed. Enable with:
+Keep the hook in **this workspace**. Do not install into `~/.openclaw/hooks/`.
 
 ```bash
-openclaw hooks enable self-improving-meta
+mkdir -p .openclaw/hooks
+cp -r hooks/openclaw .openclaw/hooks/self-improving-meta
 ```

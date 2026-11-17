@@ -1,41 +1,56 @@
-## Description: <br>
-MiniMax MCP tools provide web search and image understanding through MiniMax Coding Plan for agents that need current information or image analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax MCP tools - Web search and image understanding via MiniMax Coding Plan.
 
-## Publisher: <br>
-[russellfei](https://clawhub.ai/user/russellfei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[russellfei](https://clawhub.ai/user/russellfei)
 
-## Use Case: <br>
-Developers and agent users use this skill to call MiniMax MCP tools for web search, current-information retrieval, and image understanding from an OpenClaw-compatible agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The setup documentation uses installer commands that fetch and execute remote uv install scripts. <br>
-Mitigation: Review setup commands before installation and prefer installing uv through a trusted package manager or verified installer. <br>
-Risk: The wrapper loads variables from ~/.openclaw/.env and passes the process environment to the MCP child process. <br>
-Mitigation: Store the MiniMax API key with restrictive file permissions and avoid placing unrelated secrets in ~/.openclaw/.env. <br>
+## Use Case:
 
+Developers and agents use this skill to call MiniMax Coding Plan MCP tools for current web search and image understanding when a MiniMax API key is available.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/russellfei/minimax-mcp-call) <br>
-- [MiniMax Platform](https://platform.minimaxi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [Command-line output and JSON responses from MiniMax MCP tools] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MINIMAX_API_KEY and a Node.js/uv runtime.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The security review reports risky installation and runtime patterns that can execute third-party code locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, trust the MiniMax and uv sources, and pin or review the minimax-coding-plan-mcp package before allowing it to run.
+
+Risk: The wrapper loads variables from ~/.openclaw/.env, which may expose unrelated secrets if that file contains more than the MiniMax configuration.
+
+Mitigation: Keep only required MiniMax variables in ~/.openclaw/.env, avoid unrelated secrets there, and set restrictive file permissions.
+
+## Reference(s):
+
+- [MiniMax Platform](https://platform.minimaxi.com)
+- [MiniMax API Host](https://api.minimaxi.com)
+- [ClawHub Skill Page](https://clawhub.ai/russellfei/skills/minimax-mcp-call)
+- [Publisher Profile](https://clawhub.ai/user/russellfei)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Terminal text and JSON responses from MCP tool calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MINIMAX_API_KEY, Node.js 18+, uv, and the minimax-coding-plan-mcp package.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

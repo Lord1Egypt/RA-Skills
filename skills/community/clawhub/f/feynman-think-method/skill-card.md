@@ -1,43 +1,57 @@
-## Description: <br>
-Helps agents guide Chinese-first Feynman-style learning conversations that simplify complex concepts, expose blind spots, and rebuild understanding through first-principles questions and analogies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the Feynman learning method and physics-based questioning to help users explain complex concepts, find gaps in their understanding, and build first-principles insight.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Learners, researchers, and knowledge workers use this skill to test whether they truly understand a concept, simplify explanations, identify knowledge gaps, and reason from first principles. It is primarily intended for Chinese-language learning support while preserving English technical terms where useful. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad learning prompts when a narrower method is intended. <br>
-Mitigation: Invoke it explicitly for Feynman-style explanation, blind-spot discovery, or first-principles questioning tasks. <br>
-Risk: The skill may default to Chinese when another response language is expected. <br>
-Mitigation: Specify the desired language in the user prompt or agent configuration. <br>
-Risk: Educational reasoning about time-sensitive AI, finance, or industry topics can become stale or incomplete. <br>
-Mitigation: Treat those sections as learning prompts and verify factual or investment-relevant claims against current authoritative sources. <br>
+## Use Case:
 
+Learners, researchers, and people diagnosing problems use the skill to explain a concept simply, locate gaps through questioning, and refine their understanding with analogies and self-checks. It produces working explanations and learning prompts rather than factual or professional conclusions.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/gechengling/skills/feynman-think-method) <br>
-- [Publisher profile](https://clawhub.ai/user/gechengling) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-first responses with English technical terms preserved when useful; no code execution or file output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata and artifact metadata) <br>
+Risk: The skill may default to Chinese, which may not suit every user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Request the preferred output language when needed.
+
+Risk: Examples may involve sensitive health, financial, client, or business information.
+
+Mitigation: Share only the minimum necessary context and remove identifying or confidential details.
+
+Risk: Time-sensitive market, policy, or regulatory statements in the material may be outdated or unverified.
+
+Mitigation: Check dates, figures, and rules against current primary or official sources before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/feynman-think-method)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Primarily Chinese Markdown with structured steps, questions, analogies, and checklists.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft learning material for user review; no external actions are performed.]
+
+## Skill Version(s):
+
+2.1.4 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

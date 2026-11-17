@@ -1,41 +1,55 @@
-## Description: <br>
-Smart Commit helps an agent analyze code changes and draft Conventional Commits messages, pull request descriptions, release notes, and change-impact summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Commit helps agents analyze code diffs or change descriptions to draft Conventional Commits messages, PR or MR descriptions, release notes, and change-impact assessments.
 
-## Publisher: <br>
-[caingao](https://clawhub.ai/user/caingao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caingao](https://clawhub.ai/user/caingao)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn diffs, change descriptions, or commit lists into clear commit messages, PR or MR descriptions, release notes, and risk-aware change summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may choose an unintended language or analyze the wrong repository context if the request is vague. <br>
-Mitigation: Provide the relevant diff or commit range explicitly and specify the desired output language when it matters. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn repository diffs, commit history, or change descriptions into clear commit messages, PR descriptions, release notes, and risk-aware change summaries.
 
-## Reference(s): <br>
-- [Smart Commit on ClawHub](https://clawhub.ai/caingao/ai-smart-commit) <br>
-- [Publisher profile](https://clawhub.ai/user/caingao) <br>
-- [Conventional Commits](https://www.conventionalcommits.org/) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text commit, pull request, release note, and change analysis drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output language follows the project context or explicit user request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: Repository diffs and git history may include private code or secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit prompts, review the text before sharing, and avoid exposing sensitive diffs to untrusted systems.
+
+Risk: Generated commit, PR, or release-note text may misstate the intent, scope, or risk of a change.
+
+Mitigation: Review generated output against the actual diff and project conventions before committing or publishing it.
+
+## Reference(s):
+
+- [Smart Commit on ClawHub](https://clawhub.ai/caingao/skills/ai-smart-commit)
+- [OpenClaw](https://openclaw.ai)
+- [Conventional Commits](https://www.conventionalcommits.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text with optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May adapt language to the repository or user request and may include multiple commit-message options in quick mode.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

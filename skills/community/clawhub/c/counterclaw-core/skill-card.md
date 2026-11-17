@@ -1,44 +1,56 @@
-## Description: <br>
-Defensive interceptor for prompt injection and basic PII masking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Defensive interceptor for prompt injection and basic PII masking.
 
-## Publisher: <br>
-[nickconstantinou](https://clawhub.ai/user/nickconstantinou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nickconstantinou](https://clawhub.ai/user/nickconstantinou)
 
-## Use Case: <br>
-Developers and agent operators use Counterclaw Core to screen agent inputs for common prompt injection patterns and check outputs for basic PII before messages or email content are sent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The protected email path can send through Gmail and depends on local credentials and gog CLI configuration. <br>
-Mitigation: Verify CounterClaw imports correctly, test the helper with dry-run first, and use a dedicated or least-privilege Gmail account before allowing sends. <br>
-Risk: Violations are logged persistently into OpenClaw memory. <br>
-Mitigation: Install only when local logging to ~/.openclaw/memory/ is acceptable, and review stored logs according to the user's data handling policy. <br>
-Risk: PII checks are basic and should not be treated as complete automatic redaction. <br>
-Mitigation: Review outbound content before sending and do not rely on the scanner as the sole control for sensitive text. <br>
+## Use Case:
 
+Developers and agent builders use Counterclaw Core to scan inbound text for common prompt-injection patterns and outbound text for basic PII before an agent acts or sends messages. It is suited to defensive middleware and optional protected email workflows.
 
-## Reference(s): <br>
-- [Counterclaw Core on ClawHub](https://clawhub.ai/nickconstantinou/counterclaw-core) <br>
-- [CounterClaw Core repository](https://github.com/nickconstantinou/counterclaw-core) <br>
-- [counterclaw-core on PyPI](https://pypi.org/project/counterclaw-core/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Python dictionaries, CLI text, Markdown instructions, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Core scanning is offline; optional email helper behavior depends on local gog CLI configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: ClawHub release metadata) <br>
+Risk: Blocked or sensitive user content may be written to local OpenClaw memory logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy only where local audit logging is acceptable, keep log storage access-controlled, or disable violation logging/use a separate audit log for untrusted input.
+
+Risk: Optional Gmail sending can transmit PII when bypass flags are used or when protection is unavailable.
+
+Mitigation: Use a dedicated Gmail account, verify the gog dependency and account setup, test dry-run behavior, and avoid --allow-unsafe unless sending PII is intentional.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nickconstantinou/skills/counterclaw-core)
+- [Publisher profile](https://clawhub.ai/user/nickconstantinou)
+- [Project homepage](https://github.com/nickconstantinou/counterclaw-core)
+- [Python package page](https://pypi.org/project/counterclaw-core/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Python dictionary results, Markdown audit logs, and shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Core scanning is offline; optional email sending depends on gog and network access.]
+
+## Skill Version(s):
+
+1.1.1 (source: ClawHub release evidence; artifact metadata lists 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

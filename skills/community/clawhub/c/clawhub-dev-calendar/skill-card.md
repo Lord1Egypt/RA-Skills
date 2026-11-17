@@ -1,42 +1,51 @@
-## Description: <br>
-Create detailed ClawHub skill development calendars with milestones, Saskatchewan holidays, America/Regina timezone, and export to ICS, PDF, HTML, or visuals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create detailed ClawHub skill development calendars with milestones, Saskatchewan holidays, America/Regina timezone, and export to ICS, PDF, HTML, or visuals.
 
-## Publisher: <br>
-[skunnyo](https://clawhub.ai/user/skunnyo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skunnyo](https://clawhub.ai/user/skunnyo)
 
-## Use Case: <br>
-Developers and skill builders use this skill to plan ClawHub/OpenClaw development work, create milestone schedules, and generate calendar artifacts for project delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated calendar files may include client-sensitive schedule or delivery details. <br>
-Mitigation: Review generated files before sharing or importing them, and store outputs only in intended workspace paths. <br>
-Risk: Default Saskatchewan holidays, America/Regina timezone, milestone durations, and service-rate text may not match every project. <br>
-Mitigation: Confirm project inputs, dates, timezone assumptions, holidays, and rate text before using the calendar with clients. <br>
+## Use Case:
 
+Developers and skill authors use this skill to plan ClawHub/OpenClaw skill development timelines, client delivery schedules, and calendar exports for project milestones.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/skunnyo/clawhub-dev-calendar) <br>
-- [ClawHub Skill Development Milestones](references/dev_milestones.md) <br>
-- [Saskatchewan holidays data](references/sask_holidays.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with JSON project configuration and generated calendar files such as ICS, HTML, PDF, PNG, or text calendars.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated calendars may include Saskatchewan statutory holidays, America/Regina timezone assumptions, milestone durations, and default service-rate text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Generated ICS files may contain unsafe or malformed calendar text when created from untrusted project JSON.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted project data, review generated .ics content before importing or sharing it, and update the generator to escape ICS text fields and use opaque UIDs when handling untrusted input.
+
+## Reference(s):
+
+- [ClawHub Dev Calendar release page](https://clawhub.ai/skunnyo/skills/clawhub-dev-calendar)
+- [ClawHub Skill Development Milestones](references/dev_milestones.md)
+- [Saskatchewan statutory holidays](references/sask_holidays.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON project configuration, and generated calendar files such as ICS, HTML, PDF, PNG, or text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated ICS calendars include project milestones and Saskatchewan statutory holidays; generated content should be reviewed before importing or sharing.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

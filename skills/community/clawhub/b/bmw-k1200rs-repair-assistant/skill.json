@@ -1,0 +1,23 @@
+{
+  "name": "bmw-k1200rs-repair-assistant",
+  "displayName": "BMW K1200RS Repair Assistant",
+  "version": "1.0.0",
+  "description": "AI-guided BMW K1200RS repair triage and manual-backed mechanic workflow.",
+  "license": "MIT",
+  "keywords": [
+    "bmw",
+    "k1200rs",
+    "motorcycle",
+    "repair",
+    "diagnostics",
+    "maintenance"
+  ],
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "icon.png",
+    "references/manual-policy.md",
+    "agents/openai.yaml"
+  ]
+}

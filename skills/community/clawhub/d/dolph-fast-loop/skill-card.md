@@ -1,43 +1,65 @@
-## Description: <br>
-Trades Polymarket 5-minute and 15-minute crypto fast markets using CEX price momentum signals through the Simmer API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade Polymarket BTC 5-minute and 15-minute fast markets using CEX price momentum signals via Simmer API.
 
-## Publisher: <br>
-[richducat](https://clawhub.ai/user/richducat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richducat](https://clawhub.ai/user/richducat)
 
-## Use Case: <br>
-Agents and operators use this skill to configure, simulate, and optionally run automated Polymarket fast-market trades based on CEX crypto momentum signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute unattended real-money Polymarket trades using wallet credentials. <br>
-Mitigation: Run dry-run first, use a dedicated low-balance wallet, keep live trading disabled until reviewed, and set strict per-trade and daily budget limits. <br>
-Risk: Fast markets can resolve before stop-loss or take-profit monitoring can act. <br>
-Mitigation: Do not rely on automated risk monitors for 5-minute or 15-minute positions; size trades for full-loss exposure and monitor live runs closely. <br>
-Risk: The skill requires Simmer API access and live trading depends on private wallet key handling. <br>
-Mitigation: Store credentials only in environment or secret storage, verify the Simmer SDK and publisher context, and avoid exposing keys in prompts, logs, or config files. <br>
+## Use Case:
 
+External developers and trading agents use this skill to configure, simulate, and run automated Polymarket fast-market trading from crypto momentum signals. It is intended for users who understand prediction-market trading risk and can review strategy settings before live execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/richducat/dolph-fast-loop) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/richducat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Python/configuration file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes dry-run and live-trading guidance, environment variable setup, tunable parameters, and CLI usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Live mode can spend real USDC, use wallet credentials, and cancel orders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run dry-run first, use an isolated wallet with limited USDC, and avoid sharing broad environment credentials with unrelated tools.
+
+Risk: The advertised minimum-time-between-trades safety control is not enforced.
+
+Mitigation: Do not rely on that setting before live use; enforce cadence externally and review scheduling, budget, and position-size limits.
+
+Risk: The skill depends on simmer-sdk for live trading behavior.
+
+Mitigation: Pin and review simmer-sdk before live use.
+
+Risk: Fast-market positions can resolve before ordinary stop-loss or take-profit monitoring can act.
+
+Mitigation: Size positions conservatively and do not rely on automated stop-losses for 5-minute or 15-minute markets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/richducat/skills/dolph-fast-loop)
+- [ClawHub publisher profile](https://clawhub.ai/user/richducat)
+- [Polymarket CLOB API endpoint](https://clob.polymarket.com)
+- [Polymarket Gamma API endpoint](https://gamma-api.polymarket.com/markets)
+- [Binance klines API endpoint](https://api.binance.com/api/v3/klines)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown setup guidance with shell commands; CLI text summaries and optional automaton JSON reports during runs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default mode is dry-run; live mode may place Polymarket trades when explicitly enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

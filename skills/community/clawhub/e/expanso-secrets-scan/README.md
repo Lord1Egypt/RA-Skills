@@ -64,7 +64,7 @@ curl -X POST http://localhost:8080/scan \
 ### Input
 ```javascript
 const config = {
-  apiKey: "sk-proj-abc123def456ghi789",
+  apiKey: "REDACTED-SECRET",
   database: {
     password: "supersecret123!"
   },

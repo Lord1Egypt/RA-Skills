@@ -1,0 +1,11 @@
+# swarmArena dependencies.
+#
+# Paper and approval modes are stdlib-only: install NOTHING.
+# lighter-sdk is required only for live / autonomous_live modes (order signing
+# uses the native signer bundled with the package).
+#
+# PINNED to a git commit, not PyPI: the PyPI builds bundle an older native
+# signer whose market-index validation predates the current venue market map
+# (SignCreateOrder rejects live perp market ids with "MarketIndex is not
+# valid"). The pinned commit is the verified lighter-python main HEAD.
+lighter-sdk @ git+https://github.com/elliottech/lighter-python.git@7d27964428220696861768260d68ad5d8f94438c

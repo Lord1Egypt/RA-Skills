@@ -1,31 +1,28 @@
 {
   "name": "FarmDash Wagon Steward",
-  "version": "0.6.1",
-  "description": "Read-only DeFi portfolio aggregation skill for OpenClaw agents. Returns wallet balances across EVM chains, scores capital efficiency, surfaces idle stablecoins, tracks position drift versus a target allocation, and produces rebalancing proposals as research output. Strict read-only surface: every tool is a GET endpoint that returns analysis. The user's separately-installed execution skill is responsible for any on-chain action under its own ClawScan-reviewed contract.",
+  "version": "0.7.2",
+  "description": "Use when watching a DeFi portfolio: balances, position health, idle capital, drift. Read-only; never rebalances or moves funds without your signature.",
   "tags": [
     "defi",
-    "ai-agent",
-    "autonomous-agent",
-    "openclaw",
-    "clawhub",
-    "mcp",
-    "crypto",
-    "web3",
-    "onchain",
-    "portfolio",
-    "wallet",
+    "defi-portfolio",
+    "crypto-portfolio-tracker",
     "wallet-analytics",
-    "position-tracker",
+    "multichain-portfolio",
+    "evm-wallet",
+    "solana",
+    "base",
+    "portfolio-analysis",
+    "asset-allocation",
+    "portfolio-rebalancing",
     "capital-efficiency",
-    "rebalancing",
-    "yield-farming",
-    "airdrop",
-    "evm",
-    "multi-chain",
+    "idle-stablecoins",
+    "position-tracking",
+    "onchain-portfolio",
     "read-only",
-    "zero-custody",
-    "farmdash",
-    "wagon-steward"
+    "openclaw",
+    "ai-agent",
+    "mcp",
+    "farmdash"
   ],
   "author": "FarmDash Pioneers (@Parmasanandgarlic)",
   "homepage": "https://www.farmdash.one/agents",
@@ -33,30 +30,60 @@
   "tools": [
     {
       "name": "get_portfolio_summary",
-      "description": "(Pioneer)\n\nTop-level snapshot. Use this first — it grounds every other recommendation.\n\n**",
+      "description": "(Pioneer)\r\n\r\nTop-level snapshot. Use this first — it grounds every other recommendation.\r\n\r\n**",
       "inputSchema": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "address": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          }
+        },
+        "required": [
+          "address"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "outputHints": [],
       "category": "read"
     },
     {
       "name": "get_position_health",
-      "description": "(Pioneer)\n\nPer-position deep-dive: APR, age, unrealized P&L, IL exposure, and a rebalance hint.\n\n**",
+      "description": "(compatibility alias; Pioneer)\r\n\r\nDespite its legacy name, the current MCP mapping calls `/api/v1/agent/performance`. It returns FarmDash activity metrics (swap count, volume, fees, average size, protocol diversity, active days), Trail Cred/ranking data, daily activity, and a timestamp.\r\n\r\nIt does **not** return farming positions, APR, unrealized or realized P&L, impermanent loss, collateral health, liquidation distance, or rebalance hints. Never use it to claim a DeFi position is healthy. For a real position review, obtain protocol-native position/debt data and authoritative prices; if those tools are unavailable, say position health is unavailable.\r\n\r\n---",
       "inputSchema": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "address": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          }
+        },
+        "required": [
+          "address"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "outputHints": [],
       "category": "read"
     },
     {
       "name": "get_idle_capital",
-      "description": "(Pioneer)\n\nSurfaces stablecoins or unstaked native assets sitting unused.\n\n**",
+      "description": "(Pioneer)\r\n\r\nSurfaces stablecoins or unstaked native assets sitting unused.\r\n\r\n**",
       "inputSchema": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "address": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          }
+        },
+        "required": [
+          "address"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "outputHints": [],
       "category": "read"
@@ -65,8 +92,69 @@
   "operatingRules": [],
   "requiredEnv": {
     "FARMDASH_API_KEY": {
-      "description": "Optional Bearer token used for Pioneer-tier rate limits and full position depth. Scout tier (5 req / 24h, summary only) requires no key or can use the public fd_scout_free token. The token is sent only as an Authorization header to https://www.farmdash.one for tier identification.",
+      "description": "Optional Bearer token used for Pioneer-tier rate limits and full position depth. Scout tier (30 req / 24h, summary only) requires no key or can use the public fd_scout_free token. The token is sent only as an Authorization header to https://www.farmdash.one for tier identification.",
       "required": false
     }
+  },
+  "links": {
+    "website": "https://www.farmdash.one/",
+    "agentHub": "https://www.farmdash.one/agents",
+    "canonicalSkill": "https://www.farmdash.one/openclaw-skills/farmdash-wagon-steward/SKILL.md",
+    "documentation": "https://www.farmdash.one/docs",
+    "status": "https://www.farmdash.one/api/v1/agent/status",
+    "openApi": "https://www.farmdash.one/agents/openapi.yaml",
+    "mcpDiscovery": "https://www.farmdash.one/.well-known/mcp.json",
+    "fees": "https://www.farmdash.one/fees",
+    "security": "https://www.farmdash.one/security"
+  },
+  "capability_truth": {
+    "spot.USER_SIGNED": {
+      "status": "operational",
+      "prerequisite": "Healthy execution governor, quote provider, RPC and durable receipt store; customer signs and submits."
+    },
+    "spot.BOUNDED_AUTONOMOUS": {
+      "status": "operational",
+      "prerequisite": "Owner-signed EVM grant, exact simulation/calldata binding, durable budget and customer-local signer authority."
+    },
+    "futures.USER_SIGNED": {
+      "status": "operational",
+      "prerequisite": "Venue account ownership, local action signature, builder approval, risk/research gates and durable order control."
+    },
+    "futures.BOUNDED_AUTONOMOUS": {
+      "status": "operational",
+      "prerequisite": "Authenticated owner-bound futures policy, authorized local API-wallet signature, durable nonce/budget/order controls."
+    },
+    "solana.USER_SIGNED": {
+      "status": "operational",
+      "prerequisite": "Native Jupiter/RPC route, durable preparation and finality store; customer signs and broadcasts."
+    },
+    "solana.BOUNDED_AUTONOMOUS": {
+      "status": "operational",
+      "prerequisite": "Native owner-signed Solana policy; local key must be an actual required transaction signer. Policy creates no on-chain authority."
+    },
+    "ERC4337_SERVER_SUBMISSION": {
+      "status": "preparation_only",
+      "prerequisite": "Qualified tenant/account authorization and session-key policy enforcement on public forwarding, configured bundler, durable claims and verified receipt integration."
+    },
+    "GENERIC_SERVER_INTENT_EXECUTION": {
+      "status": "preparation_only",
+      "prerequisite": "Trusted executable adapter, exact signed-transaction binding and canonical receipt verifier."
+    },
+    "MEE": {
+      "status": "preparation_only",
+      "prerequisite": "Production coordinator and authoritative source/destination receipt verifier."
+    },
+    "ACP": {
+      "status": "deployment_prerequisite",
+      "prerequisite": "AcpReadinessService paidWorkflowReady, evaluator/client identities, migrations, funding/finality workers and Base RPC."
+    }
+  },
+  "installation_attribution": {
+    "header": "X-FarmDash-Installation-ID",
+    "optional": true,
+    "analytics_only": true,
+    "generation": "locally generated random UUIDv4, stable per installation, shared across skills",
+    "server_storage": "domain-separated salted hash only",
+    "authority": "none; cannot authenticate, grant quota/payment/trial capacity, own wallets, delegate or sign"
   }
 }

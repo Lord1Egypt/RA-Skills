@@ -1,41 +1,62 @@
-## Description: <br>
-WorksHub is an MCP skill that lets an agent use the WorksHub platform to browse workers, post bounty tasks, communicate with workers, and manage task workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WorksHub connects an AI agent to the WorksHub MCP service to browse workers, create bounty tasks, communicate with workers, and manage task workflows.
 
-## Publisher: <br>
-[nylk](https://clawhub.ai/user/nylk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nylk](https://clawhub.ai/user/nylk)
 
-## Use Case: <br>
-Developers and agent users can connect an agent to WorksHub to search for human workers, create and manage bounty tasks, and exchange task-related messages through a configured WorksHub account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a WorksHub account to create paid tasks, accept workers, cancel tasks, and send messages. <br>
-Mitigation: Require manual approval before posting bounties, accepting applicants, canceling tasks, sending messages, or sharing sensitive task details. <br>
-Risk: The WORKSHUB_API_KEY and optional WORKSHUB_API_URL environment variables control account access and endpoint selection. <br>
-Mitigation: Use a dedicated revocable API key, protect it as a secret, and keep WORKSHUB_API_URL unset unless the endpoint is fully trusted. <br>
+## Use Case:
 
+External users and developers use WorksHub to let an agent search worker profiles, create or manage bounty tasks, and exchange messages with workers through WorksHub API workflows.
 
-## Reference(s): <br>
-- [ClawHub WorksHub skill page](https://clawhub.ai/nylk/workshub) <br>
-- [WorksHub MCP endpoint](https://www.workshub.ai/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Text] <br>
-**Output Format:** [JSON responses and command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and a WorksHub API key for authenticated tools; WORKSHUB_API_URL can override the default endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: The skill can spend funds or change marketplace and account state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval for the exact financial or state-changing action before running the related tool.
+
+Risk: The skill handles WorksHub API credentials.
+
+Mitigation: Use a tightly scoped WorksHub API key and rotate it if command output or logs may have exposed it.
+
+Risk: WORKSHUB_API_URL can redirect API traffic away from the default endpoint.
+
+Mitigation: Do not set WORKSHUB_API_URL to an untrusted endpoint.
+
+Risk: Command output may contain sensitive account, login, or API-key creation data.
+
+Mitigation: Treat command output as sensitive after login or API-key creation.
+
+## Reference(s):
+
+- [ClawHub WorksHub skill listing](https://clawhub.ai/nylk/skills/workshub)
+- [WorksHub MCP endpoint](https://www.workshub.ai/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, JSON]
+
+**Output Format:** [JSON responses and status text from WorksHub MCP API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WORKSHUB_API_KEY; WORKSHUB_API_URL can override the default API endpoint.]
+
+## Skill Version(s):
+
+0.0.3 (source: ClawHub release metadata; artifact frontmatter says 0.0.2 and package.json says 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

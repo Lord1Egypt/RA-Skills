@@ -1,44 +1,63 @@
-## Description: <br>
-政府采购招标大数据查询与分析助手，用于搜索政府、事业单位和央国企采购公告，分析中标、供应商、价格趋势和政采商机。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询并分析政府采购招投标、采购意向、企业资质与中标市场数据，帮助发现政采商机。
 
-## Publisher: <br>
-[zhiliaobiaoxun](https://clawhub.ai/user/zhiliaobiaoxun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhiliaobiaoxun](https://clawhub.ai/user/zhiliaobiaoxun)
 
-## Use Case: <br>
-External users and business development teams use this skill to query and analyze Chinese government procurement, bidding, award, contract, supplier, competitor, and pricing data. It helps identify sales opportunities, monitor expiring projects, evaluate procurement trends, and profile government buyers or winning suppliers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically register a device, send host identifiers to the provider, and store an API key in ~/.zlbx/config.json. <br>
-Mitigation: Review before installing; prefer supplying a manually created ZLBX_API_KEY unless the user explicitly accepts automatic registration and local key storage. <br>
-Risk: Recharge or login links, returned contact data, and stored API keys may be sensitive. <br>
-Mitigation: Treat generated links, contact results, and local credentials as sensitive, and avoid sharing them in public logs or transcripts. <br>
+## Use Case:
 
+面向需要跟踪政府、事业单位及央国企采购的业务人员，按需查询招标中标公告、采购意向和企业市场信息，并形成摘要、统计或竞争分析。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhiliaobiaoxun/skills/government-procurement-bigdata-analyzer) <br>
-- [API search reference](references/api-search.md) <br>
-- [Company analysis API reference](references/api-company.md) <br>
-- [Market analysis API reference](references/api-market.md) <br>
-- [Automatic registration reference](references/auto-register.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown responses with JSON API request examples and analytical summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use the ZLBX_API_KEY environment variable or a local ~/.zlbx/config.json API key; automatic registration may create and store an API key when no key is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Optional automatic signup sends a persistent device fingerprint to the provider; its retention and deletion practices are unspecified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer an existing API key or manual registration. If choosing automatic signup, review the device-data notice and obtain the user's consent before proceeding.
+
+Risk: Searches are sent to Zhiliaobiaoxun and some successful queries may consume account credits.
+
+Mitigation: Query only the information requested and check account balance or query costs when relevant.
+
+Risk: The API key and temporary login links can grant access to the associated account.
+
+Mitigation: Keep keys and login links private; do not include them in user-facing results or share them in chat.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/zhiliaobiaoxun/skills/government-procurement-bigdata-analyzer)
+- [Bid search and detail API guidance](artifact/references/api-search.md)
+- [Company analysis API guidance](artifact/references/api-company.md)
+- [Market analysis API guidance](artifact/references/api-market.md)
+- [Account API guidance](artifact/references/api-account.md)
+- [Company registry API guidance](artifact/references/api-registry.md)
+- [Zhiliaobiaoxun API v2](https://mcp-server.zhiliaobiaoxun.com/api_v2/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis]
+
+**Output Format:** [Chinese-language summaries and analysis, with Markdown tables and links where useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Query results depend on selected filters and available source records; some company and market queries consume credits.]
+
+## Skill Version(s):
+
+1.0.10 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Shadow Market helps agents explore prediction spreads between human-depth and deeper autonomous-agent forecasts to surface undiscovered correlations and potential research or market signals. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Shadow Market estimates prediction spreads between shallow and deep agent perception depths to surface potential undiscovered correlations.
 
-## Publisher: <br>
-[evezart](https://clawhub.ai/user/evezart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evezart](https://clawhub.ai/user/evezart)
 
-## Use Case: <br>
-External developers, researchers, and market-analysis teams can use this skill to explore a local scoring model that compares predictions at different claimed recursion depths and ranks resulting shadow captures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shadow prices, alpha language, and market signals could be mistaken for financial advice. <br>
-Mitigation: Treat outputs as experimental scoring signals only and require human review before any financial or operational decision. <br>
-Risk: Sensitive event names or private strategy details may be written to a local JSONL log when the demo script runs. <br>
-Mitigation: Use non-sensitive inputs or manage the generated local log according to the user's data-handling requirements. <br>
+## Use Case:
 
+Developers and analysts can use this skill as a local prototype for calculating shadow prices from prediction probabilities at different recursion depths and reviewing ranked shadow captures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/evezart/shadow-market) <br>
-- [Publisher profile](https://clawhub.ai/user/evezart) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional Python code references and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled Python demo may write a local JSONL shadow_spine log when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and ClawHub release metadata) <br>
+Risk: Local prediction-capture data may include sensitive event names or business forecasts when the script writes JSONL output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a controlled output path, avoid confidential inputs unless retention is governed, and apply normal access controls to generated files.
+
+Risk: Prototype scoring outputs may be mistaken for validated financial, insurance, or forecasting advice.
+
+Mitigation: Treat shadow prices as exploratory signals and require domain review before using results in operational or commercial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evezart/skills/shadow-market)
+- [Publisher profile](https://clawhub.ai/user/evezart)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with optional Python code or shell commands; the bundled script can emit JSONL capture records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local JSONL prediction-capture data when the Python script is executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

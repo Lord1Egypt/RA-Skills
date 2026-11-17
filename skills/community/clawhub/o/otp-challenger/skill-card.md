@@ -1,47 +1,64 @@
-## Description: <br>
-Enable agents and skills to challenge users for fresh two-factor authentication proof (TOTP or YubiKey) before executing sensitive actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents and skills to challenge users for fresh two-factor authentication proof with TOTP or YubiKey before sensitive actions.
 
-## Publisher: <br>
-[ryancnelson](https://clawhub.ai/user/ryancnelson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ryancnelson](https://clawhub.ai/user/ryancnelson)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to require fresh identity proof before deployments, financial actions, data exports, administrative changes, or other approval-gated operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a security gate with review-worthy bypass capabilities, including utilities that can produce current TOTP codes. <br>
-Mitigation: Remove or restrict get-current-code.sh and the totp.mjs current command before using the skill for real approval gates. <br>
-Risk: Plaintext OTP secrets in config files or shell profiles can weaken the verification model if the host or agent environment is compromised. <br>
-Mitigation: Store OTP and YubiKey secrets in a dedicated secret manager and restrict local filesystem permissions. <br>
-Risk: The default verification lifetime may be too long for highly sensitive workflows. <br>
-Mitigation: Shorten OTP_INTERVAL_HOURS and expire verification state regularly for sensitive approvals. <br>
-Risk: OTP_FAILURE_HOOK can execute arbitrary commands on verification failure events. <br>
-Mitigation: Enable OTP_FAILURE_HOOK only with a trusted, fixed script controlled by the operator. <br>
-Risk: YubiKey mode sends validation requests to Yubico Cloud. <br>
-Mitigation: Review the external validation data flow before enabling YubiKey mode in regulated or offline environments. <br>
+## Use Case:
 
+Developers and operators use this skill to add TOTP or YubiKey checks before sensitive agent actions such as deployments, financial operations, data access, admin changes, and change-control workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryancnelson/otp-challenger) <br>
-- [Project homepage](https://github.com/ryancnelson/otp-challenger) <br>
-- [Yubico OTP documentation](https://developers.yubico.com/OTP/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text status messages and Markdown documentation with bash and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns shell exit codes, records local verification state, and may call Yubico Cloud when YubiKey mode is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The security model is too broad for high-risk actions when used as strong per-action approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind verification to a specific user, session, and action before relying on it for deployments, payments, admin changes, or secret release.
+
+Risk: OTP seeds and YubiKey credentials can be exposed if stored in broad environment files or shell profiles.
+
+Mitigation: Store secrets in a dedicated secrets manager or tightly scoped configuration, and avoid broad shell-profile exports.
+
+Risk: OTP_FAILURE_HOOK can execute arbitrary shell commands on verification failures.
+
+Mitigation: Leave OTP_FAILURE_HOOK unset unless the hook target is tightly controlled and reviewed.
+
+Risk: Reusable verification windows can remain valid beyond a single sensitive action.
+
+Mitigation: Shorten or constrain the verification window for high-risk workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryancnelson/skills/otp-challenger)
+- [Project homepage from ClawHub metadata](https://github.com/ryancnelson/otp-challenger)
+- [RFC 6238 TOTP specification](https://tools.ietf.org/html/rfc6238)
+- [Yubico OTP documentation](https://developers.yubico.com/OTP/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text status messages, Markdown guidance, shell command examples, and configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Verification state may be recorded as local timestamp data; generated TOTP setup can include QR-code output when qrencode is installed.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

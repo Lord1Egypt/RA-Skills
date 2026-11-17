@@ -1,44 +1,57 @@
-## Description: <br>
-Calls ZingAPI's creative-list endpoint to search ad creatives, materials, delivery records, advertisers, and recent creatives by industry, country or region, platform, keyword, creative type, AI tags, time range, and sort order. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls the ZingAPI creative-list interface to search ad creatives and materials by industry, country or region, channel, keyword, creative type, AI tags, time range, and sorting criteria.
 
-## Publisher: <br>
-[zingfront-ad](https://clawhub.ai/user/zingfront-ad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zingfront-ad](https://clawhub.ai/user/zingfront-ad)
 
-## Use Case: <br>
-Developers and marketing analysts use this skill to turn natural-language ad creative search requests into signed ZingAPI creative-list calls and concise result summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ZingAPI credentials can be exposed if users paste environment values, dry-run output, or logs into shared channels. <br>
-Mitigation: Configure credentials only through environment variables and avoid sharing dry-run headers, logs, or chat transcripts that may contain credential-derived request metadata. <br>
-Risk: The skill sends signed requests to an external ZingAPI production endpoint and may consume account quota. <br>
-Mitigation: Use the dry-run mode to inspect request bodies before sending, and run live queries only with an intended ZingAPI customer account. <br>
+## Use Case:
 
+Developers and external users use this skill to convert natural-language ad creative search requests into signed ZingAPI creative-list calls and receive concise creative summaries or raw API responses.
 
-## Reference(s): <br>
-- [ZingAPI creative-list endpoint](https://openapi.dataideaglobal.com/zingapi/v1/creative/list/{customer_name}) <br>
-- [Parameters](references/parameters.md) <br>
-- [Input Mapping](references/input-mapping.md) <br>
-- [Response Fields](references/response-fields.md) <br>
-- [Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output is a grouped summary; raw JSON is available on request. The skill requires ZingAPI credentials in environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires ZingAPI credentials to sign production API requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store ZINGAPI credentials in protected environment variables or a secret manager, avoid passing secrets on the command line, and never include secret values in replies, logs, errors, or shared dry-run output.
+
+Risk: Raw request bodies can send broad or unintended ad creative queries to the ZingAPI service.
+
+Mitigation: Review generated JSON request bodies before sending them, especially when using full-control body mode instead of the script's typed parameters.
+
+## Reference(s):
+
+- [ZingAPI creative-list endpoint](https://openapi.dataideaglobal.com/zingapi/v1/creative/list/{customer_name})
+- [Parameter reference](references/parameters.md)
+- [Input mapping](references/input-mapping.md)
+- [Response fields](references/response-fields.md)
+- [Usage examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, JSON]
+
+**Output Format:** [Markdown summaries with inline shell commands and optional raw JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output groups ad creative results by advertiser, material, placement, metrics, copy, links, game tags, AI material tags, and key raw fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

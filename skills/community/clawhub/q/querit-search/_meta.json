@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7e2qpzpnbq1c3ahyyjj1m7a580ej8r",
+  "owner": "interskh",
   "slug": "querit-search",
-  "version": "0.1.0",
-  "publishedAt": 1770126707822
+  "displayName": "Querit Search",
+  "latest": {
+    "version": "1.0.0"
+  },
+  "history": []
 }

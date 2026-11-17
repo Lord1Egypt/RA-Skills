@@ -1,42 +1,53 @@
-## Description: <br>
-知识库归档系统 archives local documents into a categorized knowledge base with optional AI classification, plaintext indexing, search, and statistics for common office and text formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Archives local documents into a knowledge base with AI-assisted categorization, batch processing, full-text indexes, search, and statistics.
 
-## Publisher: <br>
-[141553](https://clawhub.ai/user/141553) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[141553](https://clawhub.ai/user/141553)
 
-## Use Case: <br>
-Employees and developers use this skill to archive files or folders into a local knowledge base, extract searchable indexes, classify documents, and report collection statistics. It is suited for managing work documents such as spreadsheets, office files, PDFs, text files, and structured text data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The archiver can duplicate sensitive local documents and persist searchable plaintext indexes and manifests. <br>
-Mitigation: Use it only on files approved for local duplication, protect the generated knowledge-base directory, and treat _index files and _manifest.json as sensitive. <br>
-Risk: AI classification and optional cloud storage may send document names or content-derived text to external model or storage providers. <br>
-Mitigation: Do not enable AI classification or cloud storage for confidential or regulated files unless the endpoint and storage account are trusted and credentials are narrowly scoped. <br>
-Risk: The security review reports unsafe shell command construction and warns against untrusted filenames or documents. <br>
-Mitigation: Review before installing or running, avoid untrusted paths and filenames, and run in a restricted environment when processing unfamiliar documents. <br>
+## Use Case:
 
+Employees and developers use this skill to organize work documents into local categories, build searchable indexes, and query or report on archived files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/141553/kb-archiver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Text, Guidance] <br>
-**Output Format:** [Markdown instructions with bash and JavaScript snippets; runtime output is console text plus copied documents, plaintext index files, and a JSON manifest.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create categorized local copies, _index text files, and _manifest.json entries; optional AI classification and cloud storage depend on user configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence and _meta.json) <br>
+Risk: Processing crafted or untrusted Office documents or directories may trigger unsafe command execution paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid untrusted inputs, and replace shell-based extraction paths with argument-based subprocess calls before broader deployment.
+
+Risk: AI classification and optional cloud upload can expose document names, excerpts, summaries, or full files outside the local machine.
+
+Mitigation: Keep AI classification and cloud upload disabled unless the endpoint, destination, credentials, and data-sharing approval have been validated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/141553/skills/kb-archiver)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local archive folders, copied files, text indexes, and manifest records when its bundled script is executed.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

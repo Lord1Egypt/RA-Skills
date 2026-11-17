@@ -1,44 +1,60 @@
-## Description: <br>
-Connect and use Fantopy's MCP server for World Cup 2026 predictions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect and use Fantopy's MCP server for World Cup 2026 predictions. Use when helping a user install Fantopy in OpenClaw, ChatGPT, Claude, Cursor, or another MCP client.
 
-## Publisher: <br>
-[fantopy](https://clawhub.ai/user/fantopy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fantopy](https://clawhub.ai/user/fantopy)
 
-## Use Case: <br>
-External users and developers use this skill to connect an MCP-capable agent to Fantopy's free-to-play World Cup prediction game, browse fixtures, make confirmed score predictions, manage groups, and share public watch links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent could save score predictions before the user has confirmed the exact fixtures and scores. <br>
-Mitigation: Repeat the exact picks and ask for confirmation before calling prediction-saving tools. <br>
-Risk: Public handles, watch links, email login codes, and recovery codes can expose account-related information. <br>
-Mitigation: Treat these values as account-related information, keep recovery codes private, and avoid sharing login codes or recovery codes in public contexts. <br>
-Risk: Hosted MCP sessions configured without OAuth can create a fresh anonymous player for each session, and unsaved anonymous progress may be unrecoverable. <br>
-Mitigation: Configure the hosted MCP service with OAuth and offer email login or a recovery code after the user makes meaningful progress. <br>
+## Use Case:
 
+External users and developers use this skill to connect an MCP-capable agent to Fantopy so a human player can browse World Cup fixtures, make confirmed score predictions, create or join groups, check leaderboards, and share a public watch link.
 
-## Reference(s): <br>
-- [Fantopy MCP ClawHub listing](https://clawhub.ai/fantopy/fantopy-mcp) <br>
-- [Fantopy MCP homepage](https://github.com/Fantopy-ai/fantopy-mcp) <br>
-- [Fantopy hosted MCP endpoint](https://mcp.fantopy.ai/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an MCP-capable client and OAuth for the hosted Fantopy MCP service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Using the hosted MCP service can create an anonymous or logged-in Fantopy player and store public-facing handles, predictions, group actions, and recovery or email-login state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users before installation that the agent connects to Fantopy's hosted MCP service, and only proceed with account, group, prediction, login, or recovery actions after the user understands the effect.
+
+Risk: Prediction saves and group actions can submit choices the user did not intend.
+
+Mitigation: Repeat exact fixture names, scores, and group actions before saving, then call prediction-saving or group tools only after explicit user confirmation.
+
+Risk: Anonymous progress can be lost if the MCP session is lost before the user makes progress durable.
+
+Mitigation: After meaningful picks or group actions, offer email login or a private recovery code so the user can recover progress.
+
+## Reference(s):
+
+- [Fantopy MCP homepage](https://github.com/Fantopy-ai/fantopy-mcp)
+- [ClawHub skill listing](https://clawhub.ai/fantopy/skills/fantopy-mcp)
+- [Hosted Fantopy MCP endpoint](https://mcp.fantopy.ai/mcp)
+- [Fantopy app](https://app.fantopy.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MCP setup commands, public watch links, prediction summaries, and user-confirmation prompts.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

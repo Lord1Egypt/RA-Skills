@@ -1,41 +1,58 @@
-## Description: <br>
-Check and improve creator briefs before sending to influencers. Use when your brief is unclear, too long, or likely to cause revision loops. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Check and improve creator briefs before sending to influencers. Use when your brief is unclear, too long, or likely to cause revision loops.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Creator operations teams use this skill to review product briefs for TikTok creators or UGC partners, identify unclear or conflicting requirements, and rewrite the brief into a concise creator-friendly version. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Creator briefs may contain product claims, legal restrictions, paid partnership requirements, or brand-specific rules that need human confirmation. <br>
-Mitigation: Review the final wording before sending and confirm claims, legal terms, partnership disclosures, and brand rules against the source brief. <br>
-Risk: Pasting creator briefs into an agent can expose campaign or product details to that agent session. <br>
-Mitigation: Use the skill only with briefs you are comfortable sharing in the active agent environment. <br>
+## Use Case:
 
+Creator operations teams and marketers use this skill to review creator or influencer briefs for missing, conflicting, unclear, or over-restrictive requirements and rewrite them into concise, copy-ready briefs.
 
-## Reference(s): <br>
-- [Creator Brief Checker on ClawHub](https://clawhub.ai/Leooooooow/creator-brief-checker) <br>
-- [Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with four sections: brief health check, risk points, improved brief, and one-line clarification] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, shell commands, credential requests, persistence, or external access are requested by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may paste confidential product, campaign, creator relationship, or launch details into the prompt.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or generalize sensitive details before use and follow internal data-handling rules for creator and campaign information.
+
+Risk: A rewritten brief may omit or soften required product claims, legal terms, restrictions, or delivery rules.
+
+Mitigation: Review the improved brief against approved product facts, must-say points, restrictions, and delivery requirements before sending it to creators.
+
+Risk: Commercial use may require separate permission because the artifact license text states CC BY-NC-SA 4.0 with separate paid commercial licensing.
+
+Mitigation: Confirm the authoritative license terms and obtain any required commercial permission before commercial deployment.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/creator-brief-checker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown sections containing a brief health check, risk points, a copy-ready improved brief, and a one-line clarification]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only output; no files, shell commands, or API calls are requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

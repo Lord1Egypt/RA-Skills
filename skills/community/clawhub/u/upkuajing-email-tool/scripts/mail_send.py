@@ -62,19 +62,21 @@ def send_email(
         return {"success": False, "error": "缺少必填参数：emails（收件人邮箱列表）"}
 
     # 发起请求
-    response = make_request('/mail/send', params, api_key=api_key)
+    response = make_request('/agent/mail/send', params, api_key=api_key)
 
     # 处理响应
     if response.get('code') == 0:
         return {
             "success": True,
-            "data": response.get('data', {})
+            "data": response.get('data', {}),
+            "requestId": response.get('requestId')
         }
     else:
         return {
             "success": False,
             "error_code": response.get('code'),
-            "error_msg": response.get('msg', '未知错误')
+            "error_msg": response.get('msg', '未知错误'),
+            "requestId": response.get('requestId')
         }
 
 
@@ -146,9 +148,14 @@ def main():
 
     # 输出结果
     if result.get('success'):
-        print_json_output(result.get('data', {}))
+        output_data = result.get('data', {})
+        if isinstance(output_data, dict) and result.get('requestId'):
+            output_data['requestId'] = result.get('requestId')
+        print_json_output(output_data)
     else:
         print(f"发送失败：{result.get('error_msg', result.get('error'))}", file=sys.stderr)
+        if result.get('requestId'):
+            print(f"requestId：{result.get('requestId')}", file=sys.stderr)
         sys.exit(1)
 
 

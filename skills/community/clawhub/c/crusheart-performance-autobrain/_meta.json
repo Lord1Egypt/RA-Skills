@@ -1,6 +1,22 @@
 {
-  "ownerId": "kn7e5j7b19171hzg1z3h0typqn8692vx",
-  "slug": "crusheart-performance-autobrain",
+  "ownerId": "crusheart",
+  "slug": "Crusheart-AutoBrain-Turbo",
   "version": "6.3.1",
-  "publishedAt": 1779965775083
+  "frameworkVersion": "2.0",
+  "publishedAt": 1778342400000,
+  "name": "灵枢AutoBrain",
+  "description": "Plugin+skill hybrid pack for OpenClaw: long-term memory, anti-hallucination, self-evolution, workflow orchestration, daily maintenance, memory/skill auto-scan, version check. Exclusive slot + compat layer.",
+  "tags": [
+    "memory",
+    "self-evolution",
+    "anti-hallucination",
+    "workflow",
+    "orchestrator",
+    "plugin",
+    "health-check",
+    "engine",
+    "skill-scan",
+    "memory-scan",
+    "config-reader"
+  ]
 }

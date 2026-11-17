@@ -1,40 +1,54 @@
-## Description: <br>
-Search and analyze your own session logs (older/parent conversations) using jq. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and analyze your own session logs (older/parent conversations) using jq.
 
-## Publisher: <br>
-[1yihui](https://clawhub.ai/user/1yihui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1yihui](https://clawhub.ai/user/1yihui)
 
-## Use Case: <br>
-Developers and support engineers use this skill to locate and summarize prior OpenClaw conversations stored as local JSONL session logs when a user asks about older or parent chats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can surface sensitive local conversation history from OpenClaw session logs. <br>
-Mitigation: Use narrow searches, inspect excerpts before sharing, and avoid displaying secrets or unrelated private history. <br>
-Risk: Command examples read local session files and rely on the correct agent ID and session path. <br>
-Mitigation: Verify the target agent and session directory before running searches. <br>
+## Use Case:
 
+Developers and agents use this skill to locate, inspect, and summarize prior OpenClaw session transcripts when a user asks about older conversations or missing historical context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1yihui/yihui-session-logs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with jq, rg, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local access to OpenClaw session logs and jq; rg is used for text search.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can give an agent broad access to historical conversation logs that may include secrets or personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for a specific session, date, or phrase before searching, and avoid returning raw transcript text unless it is necessary and appropriate.
+
+Risk: Historical transcript inspection can expose more context than the user intended to share in the current task.
+
+Mitigation: Limit searches to the requested scope and summarize relevant findings instead of dumping complete conversations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1yihui/skills/yihui-session-logs)
+- [Publisher profile](https://clawhub.ai/user/1yihui)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local session JSONL files and requires jq and ripgrep for the documented command examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

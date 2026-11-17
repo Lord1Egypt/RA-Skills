@@ -1,44 +1,54 @@
-## Description: <br>
-Package directories into distributable bundles with manifests. Use when creating release packages, verifying contents, or generating checksums. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Package directories into distributable bundles with manifests for release packaging, content verification, and checksum generation.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and release engineers use this skill to package directories, inspect bundle contents, verify checksums, and prepare distributable archives. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The extract command unpacks tar.gz archives into a local directory. <br>
-Mitigation: Extract only trusted bundles, choose a scratch destination, and inspect archive contents before unpacking into important paths. <br>
-Risk: Documented command examples may not match the shell script's positional argument handling. <br>
-Mitigation: Test each command on disposable sample directories before using it for release packaging. <br>
-Risk: Create, extract, and data-directory initialization write files on the local filesystem. <br>
-Mitigation: Run the skill only on intended directories and review generated archives, manifests, and checksum files before distribution. <br>
+## Use Case:
 
+Developers and release engineers use this skill to create, inspect, verify, size, and extract directory bundles with manifests and checksums.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/bundle) <br>
-- [Publisher profile](https://clawhub.ai/user/xueyetianya) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and generated archive, manifest, and checksum files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands operate on local directories and tar.gz bundles.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Unsafe argument handling can cause unintended file operations, including destructive behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands before execution and avoid using the skill on important directories until argument handling is fixed.
+
+Risk: Archive extraction may be unsafe for untrusted bundles until extraction validates archive paths.
+
+Mitigation: Extract only trusted bundles, prefer empty temporary directories, and inspect archive contents before extraction.
+
+## Reference(s):
+
+- [Bundle ClawHub Skill Page](https://clawhub.ai/xueyetianya/skills/bundle)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples; script commands produce tar archives, checksum files, manifests, listings, and status text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands operate on local paths and may read or write bundle archives, checksum files, extracted files, and ~/.local/share/bundle.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

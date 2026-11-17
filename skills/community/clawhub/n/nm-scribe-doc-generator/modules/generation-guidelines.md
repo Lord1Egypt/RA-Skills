@@ -100,7 +100,7 @@ Set `SCRIBE_STRICT=1` to treat warnings as errors."
 
 ## Trade-off Discussions
 
-Include reasoning, not just conclusions:
+Include the reasoning behind conclusions:
 
 ```markdown
 BAD: "We recommend Redis for caching."
@@ -109,6 +109,12 @@ GOOD: "We chose Redis over Memcached for its sorted sets,
 which power the leaderboard. Memcached would use less memory
 but require additional application logic."
 ```
+
+Give reasoning where a reader weighs a choice. A consequence
+appended to every fact ("the index was stale, so the lookup
+missed") is narration. Delete it when the reader can infer it, or
+follow the rewrite order in `Skill(scribe:slop-detector)` module
+`structural-patterns.md`, section "Consequence Tail".
 
 ## Ending Patterns
 

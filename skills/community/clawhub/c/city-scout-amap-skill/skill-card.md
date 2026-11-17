@@ -1,44 +1,54 @@
-## Description: <br>
-城市踏勘官 CityScout turns a city area, task goal, and time budget into an actionable field survey route, observation checklist, risk notes, photo guidance, and a short reporting summary for urban renewal, site selection, tourism route review, street vitality assessment, and related place-based work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+城市踏勘官 CityScout：把城市片区、任务目标和时间预算转成可执行的踏勘路线、观察清单、风险点和汇报摘要。适用于城市更新、商业选址、文旅动线、街区活力评估等需要地图能力和现场判断结合的任务。
 
-## Publisher: <br>
-[kue0000](https://clawhub.ai/user/kue0000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kue0000](https://clawhub.ai/user/kue0000)
 
-## Use Case: <br>
-External users, planners, consultants, researchers, and field teams use this skill to convert location-based urban tasks into practical site-visit plans. It is intended for fieldwork planning around urban renewal, commercial location scouting, cultural tourism routes, street vitality, community services, and night safety checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Location and task details may be sent to Amap or another map provider when API access is used. <br>
-Mitigation: Share only appropriate fieldwork details with the map provider and account for the provider's data handling terms before use. <br>
-Risk: Generated routes or POI evidence may be incomplete, stale, or mock data when live API access is unavailable. <br>
-Mitigation: Verify routes, stops, weather, and POI details with authoritative map data before fieldwork, submission, or business decisions. <br>
+## Use Case:
 
+External users such as urban researchers, planners, consultants, and commercial location teams use this skill to turn a city area, fieldwork goal, time budget, and travel mode into an actionable site-visit route, observation checklist, risk notes, photo plan, and short reporting summary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kue0000/city-scout-amap-skill) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Example prompt](artifact/examples/example_prompt.md) <br>
-- [Example output](artifact/examples/example_output.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Analysis, API Calls] <br>
-**Output Format:** [Markdown with structured sections and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ordered route stops, observation checklists, risk and opportunity notes, photo guidance, a three-sentence summary, and data that must be verified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Location queries may be sent to Amap when the skill is used with real API access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review location-data handling requirements before enabling live API access and avoid sending sensitive site, user, or client information unless authorized.
+
+Risk: Routes generated without API access may be mock or demo plans.
+
+Mitigation: Verify route feasibility, POI details, weather, and safety assumptions with authoritative map data before submission or fieldwork.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kue0000/skills/city-scout-amap-skill)
+- [Publisher profile](https://clawhub.ai/user/kue0000)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with route tables, checklists, risk notes, and summary text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May label routes as demo plans when live Amap API access is unavailable; real fieldwork outputs should distinguish evidence, inference, and uncertainty.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

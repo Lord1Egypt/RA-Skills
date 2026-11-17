@@ -1,39 +1,53 @@
-## Description: <br>
-Attachment Inject helps agents inject dynamic content as attachment-style context instead of embedding it directly in the system prompt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dynamic attachment injection adds changing agent and skill context as attachments instead of embedding it directly in the system prompt.
 
-## Publisher: <br>
-[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source)
 
-## Use Case: <br>
-Developers and agent maintainers use this skill to reduce prompt bloat and preserve prompt caching by loading or injecting dynamic skill, agent, and memory context only when needed. It provides patterns for on-demand reads, lightweight registry files, and placeholder-based injection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes reading local agent and skill files and generating registry content, which can expose or propagate private workspace information if pointed at the wrong paths. <br>
-Mitigation: Review the target paths and generated registry output before use, and keep reads limited to intended workspace files. <br>
-Risk: Registry entries or dynamic injection placeholders can become stale or misleading if generated from incomplete or untrusted metadata. <br>
-Mitigation: Regenerate registries from trusted skill and agent definitions and review concise descriptions before injecting them into prompts. <br>
+## Use Case:
 
+Developers and engineers use this skill to manage dynamic agent, skill, and memory context through lightweight registries and on-demand reads without repeatedly changing the system prompt.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can influence how agents and skills are discovered, summarized, and injected into context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review workspace paths before use, prefer allowlists or explicit approval for registry generation, and scan the skill before deployment.
+
+Risk: Broad read/write behavior can modify context files such as registries or AGENTS.md placeholders.
+
+Mitigation: Review generated file changes before accepting them and limit writes to the intended agent, skill, or memory registry locations.
+
+## Reference(s):
+
+- [ClawHub release: Attachment Inject](https://clawhub.ai/wangxiaofei860208-source/skills/attachment-inject)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to create lightweight registry files and dynamic injection placeholders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,64 @@
-## Description: <br>
-Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools in Python (FastMCP) or Node/TypeScript (MCP SDK).
 
-## Publisher: <br>
-[uniquevme](https://clawhub.ai/user/uniquevme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[uniquevme](https://clawhub.ai/user/uniquevme)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, implement, test, and evaluate MCP servers for external APIs or services in TypeScript or Python. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Evaluation scripts can connect to MCP servers and invoke their tools, including tools that may be write-capable. <br>
-Mitigation: Run evaluations only against trusted local or test MCP servers with least-privilege credentials and non-sensitive data. <br>
-Risk: Evaluation reports may capture prompts, tool outputs, and feedback from the connected server. <br>
-Mitigation: Review saved reports before sharing or storing them, and avoid using sensitive production data during evaluation. <br>
-Risk: Generated MCP implementation guidance may still require project-specific security review before deployment. <br>
-Mitigation: Review authentication, tool annotations, error handling, and write-capable operations before deploying an MCP server built from this guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MCP Best Practices](reference/mcp_best_practices.md) <br>
-- [Node/TypeScript MCP Server Implementation Guide](reference/node_mcp_server.md) <br>
-- [Python MCP Server Implementation Guide](reference/python_mcp_server.md) <br>
-- [MCP Server Evaluation Guide](reference/evaluation.md) <br>
-- [Model Context Protocol Sitemap](https://modelcontextprotocol.io/sitemap.xml) <br>
-- [Model Context Protocol Draft Specification](https://modelcontextprotocol.io/specification/draft.md) <br>
-- [Model Context Protocol TypeScript SDK](https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md) <br>
-- [Model Context Protocol Python SDK](https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/main/README.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to design, implement, test, and evaluate MCP servers that expose external services through well-scoped tools.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with code snippets, shell commands, XML examples, and configuration patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes optional evaluation scripts that can connect to MCP servers over stdio, SSE, or streamable HTTP.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The evaluation harness can send unredacted MCP tool schemas, questions, inputs, outputs, summaries, and errors to Anthropic.
+
+Mitigation: Run evaluations only with disposable or least-privileged environments and avoid production servers, broad-scope credentials, private datasets, or sensitive tool outputs unless that disclosure is acceptable.
+
+Risk: The evaluation harness can call any exposed MCP tool and does not enforce read-only limits itself.
+
+Mitigation: Evaluate against servers configured with non-destructive tools, scoped credentials, and test data; independently confirm tool permissions before running the harness.
+
+Risk: Copied HTTP, file-resource, or dependency examples may be incomplete for a production deployment.
+
+Mitigation: Pin dependencies and harden authentication, authorization, input validation, DNS rebinding protection, and resource access before deploying derived servers.
+
+## Reference(s):
+
+- [MCP Server Development Guide](artifact/SKILL.md)
+- [MCP Server Best Practices](artifact/reference/mcp_best_practices.md)
+- [Node/TypeScript MCP Server Implementation Guide](artifact/reference/node_mcp_server.md)
+- [Python MCP Server Implementation Guide](artifact/reference/python_mcp_server.md)
+- [MCP Server Evaluation Guide](artifact/reference/evaluation.md)
+- [MCP Protocol Sitemap](https://modelcontextprotocol.io/sitemap.xml)
+- [MCP Draft Specification](https://modelcontextprotocol.io/specification/draft.md)
+- [Model Context Protocol TypeScript SDK README](https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md)
+- [Model Context Protocol Python SDK README](https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/main/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code blocks, command examples, configuration snippets, and XML evaluation examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed before use, especially generated MCP server code, authentication handling, and evaluation runs.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Read and edit Markdown notes on your personal computer via SSH tunnel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and edit Markdown notes on your personal computer via SSH tunnel.
 
-## Publisher: <br>
-[logancyang](https://clawhub.ai/user/logancyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[logancyang](https://clawhub.ai/user/logancyang)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent inspect, read, create, and append Markdown notes in a personal vault through a preconfigured SSH tunnel. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read or write sensitive personal vault notes through SSH. <br>
-Mitigation: Install only when the user trusts the remote vault host, keep the forced-command SSH restriction in place, and confirm user intent before reading or writing notes. <br>
-Risk: A web-digest workflow may place content from untrusted external links into the vault. <br>
-Mitigation: Browse or summarize external sources into the vault only when the user explicitly requests that workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/logancyang/headless-vault-cli) <br>
-- [Headless Vault CLI setup instructions](https://github.com/logancyang/headless-vault-cli) <br>
+## Use Case:
 
+External users and developers use this skill to list, read, create, and append Markdown notes in a personal vault through a preconfigured SSH tunnel.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands operate through SSH and return JSON for vault operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.6 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: SSH command construction can turn untrusted configuration into local command execution.
+
+Mitigation: Review before installing; validate username, host, and port values, avoid unquoted SSH examples, and use safer argv handling before trusting it with a personal notes vault.
+
+Risk: The skill accesses a personal notes vault over an SSH tunnel.
+
+Mitigation: Use the documented forced-command SSH restriction, vault sandboxing, strict host key checking, and non-destructive create/append workflow before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/logancyang/skills/headless-vault-cli)
+- [Headless Vault CLI setup instructions](https://github.com/logancyang/headless-vault-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ssh and VAULT_SSH_USER; VAULT_SSH_PORT and VAULT_SSH_HOST are optional.]
+
+## Skill Version(s):
+
+1.2.6 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

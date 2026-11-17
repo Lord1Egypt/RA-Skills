@@ -1,49 +1,71 @@
-## Description: <br>
-历史价格参谋 helps users decide whether to book now or wait by checking current flight and hotel prices, comparing nearby dates, estimating price level and trend, and returning a clear buy-or-wait recommendation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+历史价格参谋 helps users decide whether to book or wait by combining FlyAI travel price searches with pricing-pattern analysis to assess flight and hotel price levels, compare nearby dates, predict likely trends, and give a buy-or-wait recommendation.
 
-## Publisher: <br>
-[hello-ahang](https://clawhub.ai/user/hello-ahang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hello-ahang](https://clawhub.ai/user/hello-ahang)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to evaluate whether a quoted flight or hotel price is favorable, compare nearby dates, and receive a booking recommendation with confidence and rationale. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow asks the agent to install or upgrade a global FlyAI CLI package, and its fallback mentions sudo. <br>
-Mitigation: Review the FlyAI CLI source and package before installation, avoid sudo where possible, and prefer a user-scoped Node environment such as nvm. <br>
-Risk: The workflow includes a NODE_TLS_REJECT_UNAUTHORIZED=0 workaround for certificate errors. <br>
-Mitigation: Do not bypass TLS verification; fix certificate or network issues before running FlyAI commands. <br>
-Risk: Personalization may store travel preferences in memory or ~/.flyai/user-profile.md. <br>
-Mitigation: Ask before saving preferences and periodically review, edit, or delete stored travel profile data. <br>
-Risk: Travel price predictions and booking recommendations can be wrong or become stale. <br>
-Mitigation: Show confidence and uncertainty, verify live prices before purchase, and avoid presenting predictions as guarantees. <br>
+## Use Case:
 
+External travel users and travel-planning agents use this skill to evaluate whether current flight or hotel prices are favorable and whether they should book immediately or wait. It is intended for price-level assessment, nearby-date comparison, trend reasoning, and concise booking guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hello-ahang/flyai-price-advisor) <br>
-- [Workflow](reference/workflow.md) <br>
-- [User profile storage](reference/user-profile-storage.md) <br>
-- [Flight search reference](reference/search-flight.md) <br>
-- [Hotel search reference](reference/search-hotel.md) <br>
-- [Examples](reference/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with price analysis, confidence labels, FlyAI command usage, and booking links when available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include current prices, nearby-date comparisons, buy-or-wait recommendations, confidence estimates, and user-profile preference handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The artifact documents global CLI installation and an elevated sudo fallback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid sudo installs, and prefer a scoped or user-managed Node environment with a trusted FlyAI CLI version.
+
+Risk: The artifact documents disabling TLS certificate verification for SSL failures.
+
+Mitigation: Resolve certificate or network trust issues directly and do not run FlyAI commands with TLS verification disabled.
+
+Risk: Search results can include booking URLs returned by external travel services.
+
+Mitigation: Treat booking links as untrusted until the destination is visible, verified, and acceptable to the user.
+
+Risk: Optional saved travel profiles can contain personal travel preferences, family details, budget ranges, and history.
+
+Mitigation: Enable profile storage only with user consent, keep storage scoped, and provide clear deletion or update controls.
+
+## Reference(s):
+
+- [Workflow](reference/workflow.md)
+- [Flight Search Reference](reference/search-flight.md)
+- [Hotel Search Reference](reference/search-hotel.md)
+- [Marriott Hotel Search Reference](reference/search-marriott-hotel.md)
+- [Marriott Package Search Reference](reference/search-marriott-package.md)
+- [POI Search Reference](reference/search-poi.md)
+- [Train Search Reference](reference/search-train.md)
+- [AI Search Reference](reference/ai-search.md)
+- [Keyword Search Reference](reference/keyword-search.md)
+- [User Profile Storage](reference/user-profile-storage.md)
+- [Examples](reference/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown price assessment with FlyAI command usage, trend rationale, confidence level, and booking links when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include user preference notes, price comparisons, confidence estimates, and booking URLs returned by travel search results.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,48 @@
-## Description: <br>
-Build fast, accessible, and SEO-friendly websites with modern best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build fast, accessible, and SEO-friendly websites with modern best practices.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and agents use this skill as website-building guidance for performance, mobile responsiveness, accessibility, semantic HTML, CSS structure, and launch readiness. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Website recommendations may be incomplete or mismatched to a specific project, browser target, or accessibility requirement. <br>
-Mitigation: Review the guidance against project requirements and verify results with accessibility, performance, and cross-device testing before release. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/website) <br>
+## Use Case:
 
+Developers and site builders use this skill to guide agents toward performant, accessible, SEO-friendly website implementations and launch checks.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with inline HTML and CSS examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no code execution, credential access, data transfer, or persistence is indicated by the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Non-English or multilingual sites may be generated with an incorrect HTML language value.
+
+Mitigation: Set the HTML language attribute to the actual page language and verify it during accessibility review.
+
+## Reference(s):
+
+- [ClawHub Website skill page](https://clawhub.ai/ivangdavila/skills/website)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with code-oriented website best practices]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; security evidence reports no hidden execution or data access behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

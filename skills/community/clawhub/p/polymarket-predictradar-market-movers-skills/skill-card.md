@@ -1,43 +1,54 @@
-## Description: <br>
-Detects significant Polymarket probability movements over configurable time windows, explains possible causes with current news, and helps users manage local movement alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polymarket market probability movement detection that scans prediction-market probability fluctuations, explains likely movement causes, and helps users manage movement alerts.
 
-## Publisher: <br>
-[cnica](https://clawhub.ai/user/cnica) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cnica](https://clawhub.ai/user/cnica)
 
-## Use Case: <br>
-External users and analysts use this skill to identify active Polymarket prediction markets with large recent probability changes, investigate possible news-driven causes, and configure movement alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Movement analysis depends on the separate polymarket-data-layer skill and current market data availability. <br>
-Mitigation: Review the polymarket-data-layer skill before installation and report unavailable data explicitly instead of fabricating market results. <br>
-Risk: Alert settings persist locally in scripts/state/alerts.json and may expose monitoring preferences in shared environments. <br>
-Mitigation: Review, edit, disable, or delete alert records as needed, and avoid sensitive notes in shared workspaces. <br>
-Risk: Possible-cause explanations can be speculative when no relevant current news source is found. <br>
-Mitigation: Cite source links when available and label unsourced explanations as AI speculation and unverified. <br>
+## Use Case:
 
+External users and analysts use this skill to find Polymarket markets with large recent probability changes, review possible news drivers, and create or manage saved movement-alert settings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cnica/polymarket-predictradar-market-movers-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/cnica) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown movement leaderboards, alert confirmations, and concise explanatory guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local alert configuration in scripts/state/alerts.json; market results depend on the separate polymarket-data-layer skill and current data availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill queries Polymarket-related data and uses web search to explain market moves.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm users are comfortable with those data lookups before installation, and cite source links or mark explanations as unverified speculation when no relevant source is found.
+
+Risk: Alert settings are stored locally in the skill directory.
+
+Mitigation: Treat saved alerts as user preferences and run checks only when the host agent explicitly performs alert-check behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cnica/skills/polymarket-predictradar-market-movers-skills)
+- [Publisher profile](https://clawhub.ai/user/cnica)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown movement leaderboards, alert confirmations, and alert summaries with links when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local alert configuration records and cited source links for market-movement explanations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

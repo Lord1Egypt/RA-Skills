@@ -1,44 +1,59 @@
-## Description: <br>
-Search, install, and export agentars from the CatchClaw marketplace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, install, and export agentars from the CatchClaw marketplace when the user wants to find, install, or package agent templates.
 
-## Publisher: <br>
-[Lovelcp](https://clawhub.ai/user/Lovelcp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lovelcp](https://clawhub.ai/user/lovelcp)
 
-## Use Case: <br>
-Developers and agent users use this skill to search the CatchClaw marketplace, install selected agentar packages into OpenClaw workspaces, export existing agents as distributable ZIP packages, and restore workspace backups when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence reports that a crafted new-agent name can cause file writes outside the advertised workspace area. <br>
-Mitigation: Install only trusted agentars, use simple new-agent names containing letters, numbers, hyphens, or underscores, and avoid names containing slashes or dots. <br>
-Risk: Overwrite and rollback operations replace workspace contents. <br>
-Mitigation: Require explicit user selection before overwrite or rollback, and review the backup path before continuing. <br>
-Risk: Passing an API key during install writes credentials into the installed workspace. <br>
-Mitigation: Pass API keys only when the selected agentar truly requires them and review the installed workspace before sharing or exporting it. <br>
+## Use Case:
 
+Developers and agent operators use this skill to search the CatchClaw marketplace, install selected agentar archives into OpenClaw workspaces, export local agents as distributable agentar ZIP packages, and restore workspace backups.
 
-## Reference(s): <br>
-- [CatchClaw ClawHub listing](https://clawhub.ai/Lovelcp/catch-claw) <br>
-- [CatchClaw homepage](https://github.com/OpenAgentar/catchclaw) <br>
-- [CatchClaw registry](https://catchclaw.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or replace local workspace files, write optional credentials, and export agentar ZIP packages through the bundled CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.5.7 (source: server release evidence) <br>
+Risk: The skill can install remote agentar packages and persistently modify local OpenClaw workspaces, including overwrite operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill and selected agentar before installation, use trusted registries, and avoid overwrite mode unless replacing the main workspace is intentional.
+
+Risk: API keys can be passed to the CLI and written into a workspace credentials file.
+
+Mitigation: Do not pass API keys on the command line unless necessary, and review any generated workspace for credentials before sharing or exporting.
+
+Risk: Server security guidance notes a path validation issue for agent names.
+
+Mitigation: Use simple alphanumeric agent names until the path validation issue is fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lovelcp/skills/catch-claw)
+- [CatchClaw repository homepage](https://github.com/OpenAgentar/catchclaw)
+- [CatchClaw marketplace service](https://catchclaw.me)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify local OpenClaw workspaces, backups, credentials, and agentar ZIP exports through the bundled Node.js CLI.]
+
+## Skill Version(s):
+
+3.5.7 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

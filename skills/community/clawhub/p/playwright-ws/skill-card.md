@@ -1,45 +1,55 @@
-## Description: <br>
-Browser automation via remote Playwright WebSocket server for screenshots, PDFs and testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation via remote Playwright WebSocket server for screenshots, PDFs and testing.
 
-## Publisher: <br>
-[first-it-consulting](https://clawhub.ai/user/first-it-consulting) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[first-it-consulting](https://clawhub.ai/user/first-it-consulting)
 
-## Use Case: <br>
-Developers and engineers use this skill to drive a trusted remote Playwright browser for screenshots, PDF export, and test execution without installing browsers locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The configured remote Playwright server can observe requested URLs, page contents, cookies available to the browser session, screenshots, PDFs, and test activity. <br>
-Mitigation: Use only a Playwright WebSocket server that the user controls or fully trusts, and avoid sensitive or authenticated sites unless the server is authorized to process that data. <br>
-Risk: The PLAYWRIGHT_WS endpoint may reveal private infrastructure or credentials if printed in logs or shared with an agent transcript. <br>
-Mitigation: Keep the endpoint in environment configuration, do not echo its value, and rely on the release's redaction behavior for test output. <br>
-Risk: Browser automation against live sites can capture or trigger unintended page behavior if targets and selectors are not reviewed. <br>
-Mitigation: Review target URLs, selectors, and test commands before execution, especially when running against production or third-party services. <br>
+## Use Case:
 
+Developers and test engineers use the skill to automate browser checks through a trusted remote Playwright server, capture screenshots, export PDFs, and run Playwright tests.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/first-it-consulting/playwright-ws) <br>
-- [Selector Strategies](references/selectors.md) <br>
-- [API Reference](references/api-reference.md) <br>
-- [Playwright Documentation](https://playwright.dev/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [PNG screenshots, PDF files, and terminal output from Node and Playwright commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and a PLAYWRIGHT_WS endpoint for a trusted remote Playwright server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: package.json, CHANGELOG, server release metadata) <br>
+Risk: The configured WebSocket server can observe requested URLs, page contents, screenshots, and test interactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a server you control or fully trust, restrict access to its browser-control endpoint, and avoid routing sensitive sites or content through it.
+
+Risk: The security assessment is suspicious and partial; it raises concern about an access boundary in the Docker example and could not fully interpret several components.
+
+Mitigation: Review and pin dependency versions, and restrict the browser-control endpoint to trusted access before installing or using the skill.
+
+## Reference(s):
+
+- [Playwright API Reference](references/api-reference.md)
+- [Selector Strategies](references/selectors.md)
+- [Playwright Documentation](https://playwright.dev/)
+
+## Skill Output:
+
+**Output Type(s):** [Images, PDF documents, Test results]
+
+**Output Format:** [PNG or JPEG screenshots, PDF files, and Playwright test output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Screenshots and PDFs are saved to requested paths; test output is reported by Playwright.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

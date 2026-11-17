@@ -1,44 +1,53 @@
-## Description: <br>
-Checks email breach exposure and password strength, then generates security score reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks password strength, HIBP password exposure via k-anonymity, and SSL certificate health, then prints a security score report.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Individuals, developers, and security teams use this skill to check whether an email or password appears in known breach data, review password strength, scan for exposed secrets, and generate concise security reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles email addresses and passwords during security checks. <br>
-Mitigation: Use interactive prompts or test passwords, avoid passing real passwords on the command line, and install only when sending email addresses to HIBP is acceptable. <br>
-Risk: Enterprise OSINT, phishing-simulation, and secret-scanning workflows may expose or process sensitive organizational findings. <br>
-Mitigation: Run those workflows only with explicit organizational authorization and handle generated findings as sensitive security data. <br>
-Risk: Privacy expectations may be unclear for breach and password checks. <br>
-Mitigation: Review the skill's HIBP data flows and local password-check behavior before using it with real accounts or credentials. <br>
+## Use Case:
 
+Developers and security-conscious users use this skill to run local password strength checks, query HIBP for password exposure using a SHA-1 prefix, and inspect SSL certificate status from a CLI.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/freedompixels/security-health-check) <br>
-- [Have I Been Pwned API](https://haveibeenpwned.com/API/v3) <br>
-- [Pwned Passwords API](https://haveibeenpwned.com/API/v3#PwnedPasswords) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Plain text and JSON reports with command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include security scores, breach summaries, password-strength assessments, masked secret findings, and remediation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.4 (source: server-resolved release metadata) <br>
+Risk: Password checks send a SHA-1 prefix derived from the password to HIBP, while some CLI wording emphasizes local-only password analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose the HIBP prefix lookup before password checks and avoid using this mode in strict offline-only environments.
+
+Risk: Passwords can be provided as CLI arguments, which may expose sensitive values through shell history or local process inspection.
+
+Mitigation: Use only test or non-sensitive passwords in shared environments, clear shell history after use, or adapt the workflow to prompt for secrets securely.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/security-health-check)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [CLI text report and Markdown-style command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Password checks may contact HIBP with a SHA-1 prefix; SSL checks contact the target host.]
+
+## Skill Version(s):
+
+2.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

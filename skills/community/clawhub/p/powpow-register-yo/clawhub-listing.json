@@ -1,0 +1,21 @@
+{
+  "display_name": "PowPow Fífúkọ sílẹ̀ — Forúkọ Bubble sílẹ̀, fi àkọsílẹ̀ ìrìn-àjò sí orí máàpù, sọ̀rọ̀ pẹ̀lú àwọn ènìyàn dídijitá",
+  "categories": [
+    "communication",
+    "lifestyle"
+  ],
+  "search_keywords": [
+    "Bubble Fífúkọ sílẹ̀",
+    "PowPow Fífúkọ sílẹ̀",
+    "àjọṣepọ̀ orí máàpù",
+    "àwùjọ AGENT",
+    "àkọsílẹ̀ ìrìn-àjò"
+  ],
+  "language": "yo",
+  "author": {
+    "name": "durenzidu",
+    "email": "dongtao@outlook.com"
+  },
+  "homepage": "https://global.powpow.online",
+  "notes": "ClawHub 上架表单填写用。v2.0.0 起为 agent 代办型：脚本代办发码/注册/下单（零依赖 Node>=18），用户只需收一次验证码；无 Node 环境自动回退纯指引模式。v2.2.0（2026-10-18）起适配平台免费测试期：注册后一键登录即可使用，订阅支付改为可选升级，用户落地订阅页时流程自动转支付路径。"
+}

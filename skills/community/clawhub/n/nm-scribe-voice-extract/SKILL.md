@@ -1,7 +1,7 @@
 ---
 name: voice-extract
 description: Extracts a user's writing voice from text samples via SICO comparative analysis
-version: 1.9.8
+version: 1.10.3
 triggers:
   - voice
   - extraction
@@ -14,12 +14,18 @@ source: claude-night-market
 source_plugin: scribe
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/scribe](https://github.com/athola/claude-night-market/tree/master/plugins/scribe). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/scribe](https://github.com/athola/claude-night-market/tree/master/plugins/scribe). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Voice Extraction Skill
 
 Extract a user's writing voice through SICO comparative analysis.
+
+## When NOT To Use
+
+- Writing text in a profile that already exists (use
+  `scribe:voice-generate`)
+- Refining a profile from edits (use `scribe:voice-learn`)
 
 ## Method: Comparative Feature Extraction
 
@@ -28,6 +34,10 @@ Phase 1: feed the model user writing samples alongside its own
 default output on the same topics. The model describes what the
 user does differently. This produces voice descriptions that
 encode implicit structural patterns no metrics can capture.
+
+The papers and reports behind these choices, and what each one
+changed in the extraction passes, are in `modules/research-basis.md`.
+Read it before changing what the passes ask for.
 
 ## Key Principles (from research)
 
@@ -46,13 +56,26 @@ encode implicit structural patterns no metrics can capture.
 4. **Pressure test for specificity**: If extraction output
    sounds generic ("uses varied sentence lengths"), run pass 2
    and force specificity. Good output reads like followable
-   instructions, not a book report.
+   instructions.
 
-5. **Use Opus for extraction**: More nuanced feature
+5. **Use Opus or larger for extraction**: Finer-grained feature
    descriptions, especially for registers where subtle tonal
-   shifts matter.
+   shifts matter. When this session runs Sonnet or Haiku, run
+   Steps 2-4 as one dispatch:
 
-## Required TodoWrite Items
+   ```
+   Agent(general-purpose):
+     - model: opus
+     - prompt: {Steps 2-4 of this skill, and $PROFILE_DIR/samples}
+   ```
+
+   The subagent writes the baselines too, because Text B must be
+   the extracting model's own default. It sees nothing from this
+   conversation and reads the samples from disk. Sample intake
+   and the user's confirmation stay in this session. On an Opus
+   or Fable session, run the steps inline.
+
+## Required Progress Items
 
 1. `voice-extract:samples-collected` - Writing samples gathered
 2. `voice-extract:samples-anonymized` - Labels stripped, numbered
@@ -230,9 +253,9 @@ extraction output.
 
 ## Exit Criteria
 
-- Profile directory exists with manifest
-- extraction.md contains specific, followable voice description
-- Default register created
-- No generic phrases in extraction output
-- User has reviewed and confirmed the extraction captures
+- [ ] Profile directory exists with manifest
+- [ ] extraction.md contains specific, followable voice description
+- [ ] Default register created
+- [ ] No generic phrases in extraction output
+- [ ] User has reviewed and confirmed the extraction captures
   their voice

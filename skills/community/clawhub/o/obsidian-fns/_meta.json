@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn726r01pr98qvskp3n5za22ss83p87v",
-  "slug": "obsidian-fns",
+  "name": "obsidian-fns",
   "version": "0.3.0",
-  "publishedAt": 1774630798420
+  "description": "Control a remote Obsidian vault through Fast Note Sync for reading, searching, writing, and appending notes"
 }

@@ -1,0 +1,11 @@
+interface:
+  display_name: "Onimi Pages Publish"
+  short_description: "Save, check, and publish Onimi Pages or Slides."
+  default_prompt: "Publish the selected Onimi Page or Slides draft through browser-authorized Remote MCP, run the publication checks, activate only the approved fixed revision, and report its actual status and access."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "onimi-pages"
+      description: "Onimi Pages publishing tools with browser OAuth authorization."
+      transport: "streamable_http"
+      url: "https://onimi.ai/mcp"

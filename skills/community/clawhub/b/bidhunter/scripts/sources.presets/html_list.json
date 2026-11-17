@@ -1,0 +1,15 @@
+{
+  "_note": "HTML 列表页型平台适配模板。json/rss 都拿不到时的兜底方案：直接从列表页正则抽取链接。",
+  "_when": "适用于只有静态列表页、无 API 也无 RSS 的平台",
+  "_steps": [
+    "1. 打开目标平台的公告列表页，复制完整 URL（含地区/分类参数）",
+    "2. 若列表页分页，把页码参数替换成 {DATE} 之外的固定值，或每类一个源",
+    "3. 本 skill 会自动抽取标题含 招标/采购/投标/竞谈/询价 的链接，无需配选择器",
+    "4. 若抽取结果噪音大，说明该页结构复杂，建议改用 json 模式"
+  ],
+  "_compliance": "同 json_api.json —— 确认 robots 与版权，控制频率，不要高频轮询。",
+
+  "name": "my_platform_html",
+  "mode": "html",
+  "url": "https://YOUR-DOMAIN/notice/list?category=bid"
+}

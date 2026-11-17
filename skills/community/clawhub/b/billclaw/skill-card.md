@@ -1,47 +1,57 @@
-## Description: <br>
-This skill should be used when managing financial data, syncing bank transactions via Plaid/GoCardless, fetching bills from Gmail, or exporting to Beancount/Ledger formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides OpenClaw users in syncing bank transactions, fetching Gmail bills, and exporting financial records to Beancount or Ledger.
 
-## Publisher: <br>
-[xBinKai](https://clawhub.ai/user/xBinKai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xbinkai](https://clawhub.ai/user/xbinkai)
 
-## Use Case: <br>
-OpenClaw users use BillClaw to manage local financial records, sync bank transactions through Plaid or GoCardless, fetch bills from Gmail, and export accounting data to Beancount or Ledger formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with bank data integrations described for US/Canada and Europe. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: BillClaw handles sensitive bank and Gmail-related data. <br>
-Mitigation: Grant only the Plaid, GoCardless, or Gmail access needed for the intended workflow. <br>
-Risk: Local financial data may remain in ~/.firela/billclaw/. <br>
-Mitigation: Protect the local data directory and delete it when the data is no longer needed. <br>
-Risk: High-trust financial workflows depend on the installed @firela packages. <br>
-Mitigation: Verify npm package and source provenance before using the skill for sensitive financial records. <br>
+## Use Case:
 
+OpenClaw users can connect financial and email accounts to collect transactions and bills, then export records for personal accounting. Bank and email integrations require separate packages and user-provided credentials.
 
-## Reference(s): <br>
-- [BillClaw ClawHub page](https://clawhub.ai/xBinKai/billclaw) <br>
-- [BillClaw documentation and source](https://github.com/fire-la/billclaw) <br>
-- [@firela/billclaw-openclaw npm package](https://www.npmjs.com/package/@firela/billclaw-openclaw) <br>
-- [@firela npm organization](https://www.npmjs.com/org/firela) <br>
-- [Plaid Dashboard](https://dashboard.plaid.com/) <br>
-- [Google Cloud API credentials](https://console.cloud.google.com/apis/credentials) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill produces user-directed setup, sync, status, and export guidance for BillClaw integrations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.5 (source: server release metadata) <br>
+Risk: Local-only privacy claims may obscure provider processing of bank transactions and email-derived data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review Plaid, GoCardless, and Gmail permissions and data practices before connecting accounts.
+
+Risk: Installing third-party packages and configuring credentials can expose sensitive financial or email data.
+
+Mitigation: Review the npm packages before installation, enable only needed integrations, and safeguard credentials.
+
+## Reference(s):
+
+- [BillClaw on ClawHub](https://clawhub.ai/xbinkai/skills/billclaw)
+- [OpenClaw plugin package](https://www.npmjs.com/package/@firela/billclaw-openclaw)
+- [Optional CLI package](https://www.npmjs.com/package/@firela/billclaw-cli)
+- [Optional OAuth server package](https://www.npmjs.com/package/@firela/billclaw-connect)
+- [Project documentation linked in the skill](https://github.com/fire-la/firela-bot)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown text with command and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accounting exports and local records are created by separately installed BillClaw packages.]
+
+## Skill Version(s):
+
+0.8.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

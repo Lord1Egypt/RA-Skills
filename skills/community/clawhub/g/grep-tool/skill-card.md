@@ -1,38 +1,54 @@
-## Description: <br>
-Search text files for lines matching a pattern using regular expressions. Use for log analysis, code searching, and data filtering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search text files for lines matching a pattern using regular expressions.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers, operators, and analysts use this skill to search local text, logs, source files, and piped input for regular-expression matches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recursive searches can display contents from any readable file under the selected directory. <br>
-Mitigation: Run searches only against intended files or directories, and avoid broad private folders unless disclosure of matching lines is acceptable. <br>
+## Use Case:
 
+Developers, operators, and analysts use this skill to search local text files, logs, source code, and filtered data for lines that match regular-expression patterns.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dinghaibin/grep-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command output and Markdown usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include matching lines, line numbers, counts, filenames, context lines, or error messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads files and directories supplied by the user, which can expose local file contents to the running agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on files or directories that are intended for inspection, and avoid pointing it at sensitive paths.
+
+Risk: Large directory trees, large files, or complex regular expressions can create availability issues.
+
+Mitigation: Limit search scope, avoid huge untrusted directories and complex untrusted regex patterns, and prefer narrower file targets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/grep-tool)
+- [Publisher profile](https://clawhub.ai/user/dinghaibin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text search results with Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search output may include matching lines, line numbers, counts, filenames, context lines, or ANSI highlighting depending on selected options.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

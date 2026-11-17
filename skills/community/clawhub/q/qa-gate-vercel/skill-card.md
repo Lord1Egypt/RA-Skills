@@ -1,43 +1,56 @@
-## Description: <br>
-Pre-production validation gate for Vercel/Supabase/Firebase stacks that generates test plans, executes validation suites, checks APIs, UI flows, toast behavior, LLM output quality, and produces go/no-go reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-production validation gate for Vercel, Supabase, and Firebase stacks that generates test plans, runs validation suites, checks APIs, UI, toast behavior, LLM output quality, and produces go/no-go reports.
 
-## Publisher: <br>
-[guifav](https://clawhub.ai/user/guifav) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[guifav](https://clawhub.ai/user/guifav)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and release engineers use this skill before production deployment to plan and run QA validation for Vercel, Supabase, and Firebase applications. It helps validate API routes, server actions, auth flows, UI behavior, toast notifications, LLM-powered features, database integrity, and deployment readiness.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: QA prompts and model outputs may be sent to OpenRouter for LLM-as-judge evaluation.
+
+Mitigation: Use test accounts and non-production data, avoid sensitive prompts, and ensure OPENROUTER_API_KEY is scoped for validation use.
+
+Risk: npx-based test tooling may run dependencies in the project environment.
+
+Mitigation: Prefer preinstalled or pinned test dependencies and review generated commands before execution.
+
+Risk: Validation workflows reference Vercel and Supabase tokens and service endpoints.
+
+Mitigation: Scope Vercel and Supabase credentials minimally, use test environments, and redact secrets from generated reports.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and release engineers use this skill as a pre-production validation gate for web applications on Vercel with Supabase or Firebase integrations. It helps them discover validation surfaces, generate and run QA checks, and summarize release readiness in a go/no-go report. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated validations can access provider APIs and network services using supplied tokens. <br>
-Mitigation: Use staging systems, test accounts, and least-privilege credentials; review the generated test plan before execution. <br>
-Risk: Reports or generated tests could expose sensitive operational details if production data or privileged credentials are supplied. <br>
-Mitigation: Avoid production data and service-role credentials unless the operator intentionally accepts that risk; redact secrets from reports. <br>
-Risk: LLM-as-judge checks consume OpenRouter credentials and may send test prompts or outputs to an external API. <br>
-Mitigation: Run rule-based checks first and provide only non-sensitive evaluation content to LLM-as-judge workflows. <br>
+**Output Format:** [Markdown, JSON, TypeScript test files, and shell command sequences]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Qa Gate Vercel on ClawHub](https://clawhub.ai/guifav/qa-gate-vercel) <br>
-- [OpenClaw Skills Repository](https://github.com/guifav/openclaw-skills) <br>
+**Other Properties Related to Output:** [Produces qa-reports and qa-tests artifacts; generated validations may call OpenRouter, Vercel, and Supabase services when configured.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON and Markdown reports, generated test files, configuration snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes QA artifacts under qa-reports/ and qa-tests/ when executed by an agent] <br>
+0.1.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

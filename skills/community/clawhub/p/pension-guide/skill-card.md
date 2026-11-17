@@ -1,47 +1,56 @@
-## Description: <br>
-Korean-language pension and retirement-planning skill that routes common National Pension, IRP, pension savings, severance pay, basic pension, FIRE, and retirement simulation requests into concise guidance and estimate outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+한국 국민연금, 퇴직금, 기초연금, IRP/연금저축, FIRE 질문을 분류하고 추정 계산과 안내 리포트를 생성합니다.
 
-## Publisher: <br>
-[sw326](https://clawhub.ai/user/sw326) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sw326](https://clawhub.ai/user/sw326)
 
-## Use Case: <br>
-Korean-speaking users use this skill to estimate retirement-related amounts, compare pension account options, understand Korean pension systems, and identify when official government or pension sources should be checked. It is intended for informational planning support, not investment, legal, tax, or individualized financial advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce retirement, pension, severance, and tax-related estimates that may be outdated or incorrect for a user's specific situation. <br>
-Mitigation: Treat outputs as estimates and verify current amounts, eligibility, and rules with official NPS, My Pension, government, or qualified professional sources before acting. <br>
-Risk: Users may share sensitive identity, income, asset, or login information while seeking personalized pension estimates. <br>
-Mitigation: Do not provide full resident-registration numbers, passwords, login sessions, or unnecessary income and asset details; approve any external lookup before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sw326/pension-guide) <br>
-- [Intent router](references/intent_router.md) <br>
-- [Output templates](references/output_templates.md) <br>
-- [Source tiers](references/source_tiers.md) <br>
-- [National Pension Service](https://www.nps.or.kr) <br>
-- [My Pension](https://csa.nps.or.kr) <br>
-- [Financial Supervisory Service](https://www.fss.or.kr) <br>
-- [Ministry of Employment and Labor](https://www.moel.go.kr) <br>
-- [Korean Law Information Center](https://www.law.go.kr) <br>
+## Use Case:
 
+External users and agents use this skill to triage Korean pension and retirement-planning questions, estimate pension or severance-pay amounts, compare IRP and pension-savings tax effects, and produce informational planning guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Calculations, Shell commands] <br>
-**Output Format:** [Markdown with tables, concise explanations, estimate summaries, and occasional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes mandatory informational disclaimers and directs users to official sources for exact pension amounts and current rules.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+South Korea
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes guidance that could lead users to pass personal identifiers into a shell command.
+
+Mitigation: Do not enter resident registration numbers or similar personal identifiers into shell commands; use official authenticated pension portals for exact personal estimates.
+
+Risk: Pension, tax, and retirement calculations may be estimates or become outdated.
+
+Mitigation: Treat calculations as informational planning estimates, verify current values with official sources, and do not treat responses as financial advice.
+
+## Reference(s):
+
+- [Intent Router](references/intent_router.md)
+- [Output Templates](references/output_templates.md)
+- [Source Tiers](references/source_tiers.md)
+- [National Pension Service](https://www.nps.or.kr)
+- [내연금](https://csa.nps.or.kr)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reports with tables, estimates, disclaimers, and occasional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Flash responses are capped at 40 lines; deep-dive outputs are used for retirement simulation, IRP comparison, FIRE, severance pay, and pension-guide requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

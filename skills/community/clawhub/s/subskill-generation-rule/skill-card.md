@@ -1,37 +1,48 @@
-## Description: <br>
-Defines file placement rules for evolving skills by directing generated artifacts to data/, feature scripts to subskills/<feature>/, and optional feature guidance to local SKILL.md files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Define and enforce project organization rules for generating subskills by placing generated artifacts under data/, feature scripts under subskills/<feature>/, and optional per-feature SKILL.md files inside feature folders.
 
-## Publisher: <br>
-[kenera](https://clawhub.ai/user/kenera) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kenera](https://clawhub.ai/user/kenera)
 
-## Use Case: <br>
-Developers and skill maintainers use this rule skill to keep generated subskill code, recommendation artifacts, and feature-specific instructions organized as a skill evolves. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence where future generated scripts and subskills are placed. <br>
-Mitigation: Review and scan generated scripts or subskills separately before running or publishing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kenera/subskill-generation-rule) <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to keep frequently iterated skills organized by separating generated result artifacts, feature scripts, and optional feature-specific instructions into predictable folders.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration] <br>
-**Output Format:** [Markdown guidance with directory layout examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; provides organizational rules for future skill updates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The prescribed data/ and subskills/<feature>/ layout may conflict with an existing project's established organization.
+
+Mitigation: Review the convention before applying it and adapt the folder placement when the project already uses a different maintainable layout.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kenera/skills/subskill-generation-rule)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration]
+
+**Output Format:** [Markdown instructions with directory layout examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; the skill provides file-placement conventions for future skill work.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

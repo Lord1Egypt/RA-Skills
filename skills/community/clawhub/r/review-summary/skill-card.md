@@ -1,42 +1,55 @@
-## Description: <br>
-Generate a 4-sheet Excel review summary from Guanglianda export data for budget review projects, with automatic classification of review line items into seven standard adjustment categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a four-sheet Excel review summary from Guanglianda export data for budget review projects, with automatic classification into seven review adjustment categories.
 
-## Publisher: <br>
-[lialia691691-alt](https://clawhub.ai/user/lialia691691-alt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lialia691691-alt](https://clawhub.ai/user/lialia691691-alt)
 
-## Use Case: <br>
-Budget review practitioners and developer-assistant users use this skill to turn Guanglianda review export folders into a structured Excel review package. It is intended for workflows that need review drafts, summary tables, source-row mappings, and categorized adjustment detail sheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated review-line classification can misclassify items whose reasons are implicit, mixed, or outside the keyword rules. <br>
-Mitigation: Review the generated category mappings, especially material-price, quota-subitem, base-adjustment, and high-value other entries, before relying on the workbook. <br>
-Risk: The skill processes local Excel exports and produces a workbook that may influence budget review decisions. <br>
-Mitigation: Use intended project data only, review commands before execution, and validate generated totals and classifications against the source exports. <br>
+## Use Case:
 
+External budget review teams use this skill to turn Guanglianda export folders into an Excel review package for project budget audit summaries and adjustment detail review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lialia691691-alt/review-summary) <br>
-- [Classification rules](references/classification.md) <br>
-- [Template structure](references/template_structure.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Excel workbook plus concise command and review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a four-sheet .xlsx review package covering review draft, summary, source-row mapping, and adjustment details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Source spreadsheet text may include formulas that remain active in the generated workbook.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted source spreadsheets and review generated workbooks before sharing or opening in sensitive environments.
+
+Risk: Keyword-based automatic classification can place budget adjustments in the wrong review category.
+
+Mitigation: Review classification results, especially high-value Other entries and material-price items with quota or subitem language, then correct the classification inputs or rerun the workflow.
+
+## Reference(s):
+
+- [Classification Rules](references/classification.md)
+- [Template Structure](references/template_structure.md)
+- [ClawHub Skill Page](https://clawhub.ai/lialia691691-alt/skills/review-summary)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Excel workbook (.xlsx) plus terminal summary text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a four-sheet workbook from required Guanglianda export spreadsheets and optional project, company, notes, and building-area arguments.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

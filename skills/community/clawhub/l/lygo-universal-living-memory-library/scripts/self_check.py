@@ -16,13 +16,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REQ = [
-    ROOT / 'SKILL.md',
-    ROOT / 'references' / 'canon.json',
-    ROOT / 'references' / 'library_spec.md',
-    ROOT / 'references' / 'core_files_index.json',
-    ROOT / 'references' / 'audit_protocol.md',
-    ROOT / 'references' / 'compression_protocol.md',
-    ROOT / 'scripts' / 'audit_library.py',
+    ROOT / "SKILL.md",
+    ROOT / "references" / "canon.json",
+    ROOT / "references" / "library_spec.md",
+    ROOT / "references" / "core_files_index.json",
+    ROOT / "references" / "audit_protocol.md",
+    ROOT / "references" / "compression_protocol.md",
+    ROOT / "references" / "SECURITY.md",
+    ROOT / "references" / "AGENT_CONTRACT.md",
+    ROOT / "scripts" / "audit_library.py",
+    ROOT / "scripts" / "compress_master.py",
 ]
 
 missing = [str(p) for p in REQ if not p.exists()]
@@ -33,8 +36,13 @@ if missing:
     raise SystemExit(3)
 
 canon = json.loads((ROOT / 'references' / 'canon.json').read_text(encoding='utf-8'))
-if canon.get('skill') != 'LYGO_UNIVERSAL_LIVING_MEMORY_LIBRARY':
-    print('BAD_CANON: skill mismatch')
+if canon.get("skill") != "LYGO_UNIVERSAL_LIVING_MEMORY_LIBRARY":
+    print("BAD_CANON: skill mismatch")
     raise SystemExit(2)
 
-print('OK')
+idx = json.loads((ROOT / "references" / "core_files_index.json").read_text(encoding="utf-8"))
+if idx.get("version") != "v1.2":
+    print("BAD_INDEX: expected v1.2")
+    raise SystemExit(2)
+
+print("OK lygo-universal-living-memory-library v1.2")

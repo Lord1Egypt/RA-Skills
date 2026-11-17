@@ -1,37 +1,52 @@
-## Description: <br>
-Training principles, pacing strategy, injury prevention, and race preparation for runners. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Training principles, pacing strategy, injury prevention, and race preparation for runners.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and agents use this skill to answer running training questions about pacing, workouts, injury prevention, race preparation, nutrition timing, heart-rate zones, and common mistakes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Running guidance could be mistaken for personalized medical or coaching advice. <br>
-Mitigation: Present the skill as general education and direct users with pain, medical conditions, medication concerns, heat risk, or race-specific goals to qualified professionals. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/running) <br>
+## Use Case:
 
+External runners and training-focused users can use this skill for general guidance on running training, pacing, injury prevention, race preparation, nutrition timing, and heart-rate zone planning.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational running education; not personalized medical or coaching advice.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Fitness guidance may be inappropriate for users with injuries, medical conditions, pregnancy, cardiovascular risk, or major training changes.
+
+Mitigation: Consult a qualified professional before using the guidance in those situations and stop exercising if concerning symptoms occur.
+
+Risk: General training advice may not match a user's health history, current fitness, or running experience.
+
+Mitigation: Adapt plans conservatively to individual training history and treat the skill's guidance as general running advice.
+
+## Reference(s):
+
+- [Running Skill Page](https://clawhub.ai/ivangdavila/skills/running)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

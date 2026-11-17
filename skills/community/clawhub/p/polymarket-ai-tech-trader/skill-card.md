@@ -1,43 +1,57 @@
-## Description: <br>
-Trades Polymarket prediction markets on AI model releases, tech IPOs, product launches, GPU infrastructure milestones, and AI regulation events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades Polymarket prediction markets on AI model releases, tech IPOs, product launches, GPU infrastructure milestones, and AI regulation events.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and developers use this skill as an advanced Polymarket trading template for AI and technology prediction markets. It discovers relevant markets, applies configurable position controls, and defaults to simulated trading unless live execution is explicitly enabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real Polymarket trades when live mode is enabled. <br>
-Mitigation: Keep the skill in paper mode first, use a least-privileged SIMMER_API_KEY, and enable live mode only after reviewing the strategy logic and portfolio exposure controls. <br>
-Risk: Advertised strategy and risk controls may be broader than the code enforces. <br>
-Mitigation: Review the dependency version, market-selection behavior, and configured thresholds before enabling live trading, cron, or automaton runs. <br>
-Risk: The required SIMMER_API_KEY is a sensitive trading credential. <br>
-Mitigation: Store the credential privately and avoid placing a live-capable key in environments where automated code can call live execution. <br>
+## Use Case:
 
+External users can use this skill to operate an AI and technology themed Polymarket trading agent that discovers relevant markets, evaluates probability thresholds, and runs paper trades by default or live trades when explicitly enabled.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-ai-tech-trader) <br>
-- [Publisher profile](https://clawhub.ai/user/diagnostikon) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Console status text with trade decisions, setup commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY and supports tunable trading thresholds, position sizing, spread limits, and position caps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata; artifact metadata also lists 1.0 in SKILL.md and 0.0.2 in clawhub.json) <br>
+Risk: Live mode can place real Polymarket trades.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper mode first, require deliberate live-mode activation, and do not expose a live-capable SIMMER_API_KEY to unattended automation.
+
+Risk: Documented trading limits are not fully enforced.
+
+Mitigation: Review or fix the volume and position-limit checks before live trading, and keep trading tunables conservative.
+
+Risk: SIMMER_API_KEY grants trading authority.
+
+Mitigation: Use a narrowly scoped key and keep it out of source files, shared logs, and untrusted runtime environments.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/diagnostikon/skills/polymarket-ai-tech-trader)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text status output with paper or live trading actions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY and configurable SIMMER_* trading parameters.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,49 @@
-## Description: <br>
-DaoReview reviews .docx, .txt, and .md documents in Chinese, scoring structure, content quality, formatting, logic, and actionability while suggesting improvements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DaoReview reviews .docx, .txt, and .md documents in Chinese and scores them across structure, content quality, formatting, logic, and actionability.
 
-## Publisher: <br>
-[douglasliu](https://clawhub.ai/user/douglasliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[douglasliu](https://clawhub.ai/user/douglasliu)
 
-## Use Case: <br>
-Chinese-speaking users use this skill to inspect uploaded or referenced documents and receive an objective review report with a score, strengths, issues, and concrete improvement suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads the contents of user-provided documents, which may expose confidential, regulated, or sensitive information during review. <br>
-Mitigation: Use it only with documents appropriate for the agent environment, and avoid sensitive files unless that review is authorized. <br>
-Risk: Document extraction may run local commands such as pandoc, docx2txt, unzip, sed, or cat against user-supplied paths. <br>
-Mitigation: Review file paths before extraction and run the skill in an environment where local file access is acceptable. <br>
+## Use Case:
 
+External users and developers use DaoReview to ask an agent to inspect uploaded or local documents and return an objective Chinese review report with scores, strengths, problems, and improvement suggestions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report in Chinese, with shell commands used when extracting document text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scores documents out of 100 across five weighted review dimensions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses shell command templates to read document paths, which could execute unintended commands if an untrusted path is crafted maliciously.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted filenames and documents, and prefer safe file-reading APIs or argument-array execution before handling untrusted uploads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/douglasliu/skills/dao-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Chinese Markdown document review report with a score, strengths, issues, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports .docx, .txt, and .md inputs; replies in Chinese.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

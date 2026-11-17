@@ -1,0 +1,22 @@
+{
+  "name": "free-media-gen",
+  "version": "1.1.0",
+  "description": "免费文生图/文生视频：直连 Agnes、商汤 SenseNova、硅基流动 Kolors 等第三方免费模型，绕过混元 ImageGen、出图无水印。Free text-to-image & text-to-video: directly calls free third-party models (Agnes, SenseNova, SiliconFlow Kolors); bypasses Hunyuan ImageGen, no watermark.",
+  "requires": {
+    "env": [],
+    "bins": [
+      "python3"
+    ],
+    "config": [
+      "~/.workbuddy/models.json",
+      "<skill_dir>/config.json"
+    ]
+  },
+  "tags": [
+    "workbuddy",
+    "free-media-gen",
+    "image-generation",
+    "text-to-video",
+    "free-api"
+  ]
+}

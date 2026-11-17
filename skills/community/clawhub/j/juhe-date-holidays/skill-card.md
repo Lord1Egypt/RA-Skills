@@ -1,43 +1,59 @@
-## Description: <br>
-This skill helps agents query Juhe Data for date-specific holiday status, adjusted workdays, weekday, lunar calendar, and almanac details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Juhe holiday schedule data for a specified date, including holiday or make-up workday status, weekday, lunar calendar details, and almanac notes.
 
-## Publisher: <br>
-[juhemcp](https://clawhub.ai/user/juhemcp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juhemcp](https://clawhub.ai/user/juhemcp)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to answer whether a requested date is a holiday or adjusted workday and to return related lunar-calendar and almanac information from Juhe Data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with content focused on China holiday and lunar-calendar data. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a required Juhe API key in ways that could expose it, including command-line key passing and a local scripts/.env file. <br>
-Mitigation: Prefer a protected JUHE_DATE_HOLIDAY_KEY environment variable, avoid command-line key passing, and do not commit scripts/.env. <br>
-Risk: The artifact uses Juhe's HTTP calendar endpoint for API calls. <br>
-Mitigation: Check whether Juhe supports an HTTPS version of the endpoint before using the included script in sensitive environments. <br>
+## Use Case:
 
+Developers and agents use this skill to answer user questions about Chinese holiday schedules, make-up workdays, weekdays, lunar dates, and almanac details for a supplied date.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juhemcp/juhe-date-holidays) <br>
-- [Juhe holiday API documentation](https://www.juhe.cn/docs/api/id/606) <br>
-- [Juhe Data](https://www.juhe.cn) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/juhemcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown guidance, shell commands, formatted text, and JSON API results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a Juhe API key supplied through JUHE_DATE_HOLIDAY_KEY, scripts/.env, or the --key command-line option.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The documented Juhe endpoint uses HTTP, which can expose the Juhe API key in transit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only after changing or confirming the endpoint to HTTPS, and rotate any Juhe key previously used through the HTTP endpoint.
+
+Risk: Passing the API key with --key or storing it in scripts/.env can expose credentials through shell history, files, or version control.
+
+Mitigation: Prefer JUHE_DATE_HOLIDAY_KEY from the environment; keep any .env file out of version control and restrict file permissions.
+
+Risk: Holiday queries send the requested date to Juhe.
+
+Mitigation: Use the skill only when sending those date queries to Juhe is acceptable for the intended workflow.
+
+## Reference(s):
+
+- [Juhe Holiday Schedule API documentation](https://www.juhe.cn/docs/api/id/606)
+- [Juhe data platform](https://www.juhe.cn)
+- [ClawHub skill page](https://clawhub.ai/juhemcp/skills/juhe-date-holidays)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON query results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a JUHE_DATE_HOLIDAY_KEY credential; queried dates are sent to Juhe.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

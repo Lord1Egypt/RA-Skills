@@ -1,4 +1,4 @@
-# 前端状态管理
+# Front-end status management
 
 Frontend state ownership, store selection, URL/server/form/local state boundaries, persistence handoff, and safe state refactoring.
 
@@ -6,12 +6,12 @@ Frontend state ownership, store selection, URL/server/form/local state boundarie
 
 - ID: `fec-state-management`
 - Category: `implementation-capability`
-- Version: `2.5.0`
+- Version: `2.9.0`
 - Source: `skills/fec-state-management/SKILL.md`
 
 ## Description
 
-Use when choosing, implementing, reviewing, or refactoring frontend state ownership across React, Vue, Next.js, Nuxt, URL state, server state, form state, browser persistence, or global stores. Prefer narrower skills for TanStack Query cache details, browser storage persistence, or form validation internals; Chinese triggers include 状态管理, 状态归属, store 选型.
+Use when choosing, implementing, reviewing, or refactoring frontend state ownership across React, Vue, Next.js, Nuxt, URL state, server state, form state, browser persistence, or global stores. Prefer narrower skills for TanStack Query cache details, browser storage persistence, or form validation internals; Chinese triggers include state management, state ownership, store selection.
 
 ## Usage
 

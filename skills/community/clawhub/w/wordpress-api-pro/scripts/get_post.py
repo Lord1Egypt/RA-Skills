@@ -2,7 +2,7 @@
 """Get WordPress post via REST API"""
 import argparse, json, os, sys, urllib.request
 from base64 import b64encode
-from security import warn_insecure_wp_url
+from security import require_secure_wp_url, urlopen_authenticated
 
 parser = argparse.ArgumentParser(description='Get WordPress post')
 parser.add_argument('--url', default=os.getenv('WP_URL'))
@@ -14,7 +14,7 @@ args = parser.parse_args()
 if not all([args.url, args.username, args.app_password]):
     print(json.dumps({"error": "Missing credentials"}), file=sys.stderr)
     sys.exit(1)
-warn_insecure_wp_url(args.url)
+require_secure_wp_url(args.url)
 
 api_url = f"{args.url.rstrip('/')}/wp-json/wp/v2/posts/{args.post_id}"
 credentials = f"{args.username}:{args.app_password}".encode('utf-8')
@@ -24,7 +24,7 @@ request = urllib.request.Request(api_url)
 request.add_header('Authorization', f'Basic {auth_header}')
 
 try:
-    with urllib.request.urlopen(request) as response:
+    with urlopen_authenticated(request) as response:
         result = json.loads(response.read().decode('utf-8'))
         print(json.dumps(result, indent=2))
 except Exception as e:

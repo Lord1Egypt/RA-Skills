@@ -1,41 +1,56 @@
-## Description: <br>
-Structured plan management for OpenClaw Agent's tasks and execution workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured plan management for OpenClaw Agent's tasks and execution workflows.
 
-## Publisher: <br>
-[wx528](https://clawhub.ai/user/wx528) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wx528](https://clawhub.ai/user/wx528)
 
-## Use Case: <br>
-Agents and developers use this skill to create, track, and maintain Markdown execution plans for complex or multi-step OpenClaw tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated plans may contain incorrect, incomplete, or stale execution steps. <br>
-Mitigation: Review generated plans before executing any listed steps. <br>
-Risk: Plan documents may accidentally capture secrets or sensitive credentials. <br>
-Mitigation: Avoid placing secrets or sensitive credentials in plan documents. <br>
+## Use Case:
 
+Developers and agents use this skill to create, track, and break down multi-step OpenClaw Agent execution plans into Markdown planning files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wx528/agent-plan-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/wx528) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown planning files with tables, checklists, and optional tool sequences] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are lightweight workspace documents; the artifact contains no executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Generated plans may include sensitive task details, URLs, or implementation notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated planning files before sharing or committing them.
+
+Risk: Planning guidance may become incorrect if task status or implementation steps are not kept current.
+
+Mitigation: Update statuses, checkboxes, and last-updated metadata as execution progresses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wx528/skills/agent-plan-manager)
+- [plans-overview.md template](artifact/templates/plans-overview.md)
+- [detailed-plan.md template](artifact/templates/detailed-plan.md)
+- [index.md template](artifact/templates/index.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, guidance, configuration]
+
+**Output Format:** [Markdown planning documents and concise procedural guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates workspace planning files; no credentials, background execution, or broad system access are requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

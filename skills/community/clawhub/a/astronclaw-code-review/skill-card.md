@@ -1,44 +1,58 @@
-## Description: <br>
-Astronclaw Code Review analyzes code quality, security, and performance issues and generates review reports with recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Astronclaw Code Review helps agents review JavaScript and TypeScript code for quality, security, and performance issues and generate review reports.
 
-## Publisher: <br>
-[shixiangyu2](https://clawhub.ai/user/shixiangyu2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shixiangyu2](https://clawhub.ai/user/shixiangyu2)
 
-## Use Case: <br>
-Developers use this skill to review JavaScript and TypeScript code for quality, security, and performance concerns, then turn the findings into actionable reports. It supports focused scans as well as combined review workflows for local project files or supplied code snippets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read arbitrary local file paths when a filePath argument is supplied. <br>
-Mitigation: Use it only on intended workspace files and avoid home directories, secret files, and regulated or proprietary code unless workspace path restrictions are added. <br>
-Risk: The security review says the AI-provider behavior is overstated and underexplained. <br>
-Mitigation: Treat recommendations as local or mock heuristic output unless the publisher documents a real provider integration, what code is sent off-device, and how to disable it. <br>
-Risk: The authoritative security verdict is suspicious, although the scan does not identify clear malicious behavior. <br>
-Mitigation: Review the skill before installing and run it first in a controlled workspace with non-sensitive test code. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to scan source code, identify maintainability, security, and performance findings, receive remediation guidance, and produce review reports in common formats.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shixiangyu2/astronclaw-code-review) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Manifest](artifact/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [JSON review results and Markdown, HTML, or JSON reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes issue summaries, scores, prioritized recommendations, and optional detailed findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, skill.json) <br>
+Risk: The skill accepts file paths and can read local files selected through tool arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a sandboxed or workspace-scoped runtime and restrict file paths to the intended project; prefer direct code input for untrusted workflows.
+
+Risk: Generated HTML reports may include unescaped content from analyzed code or findings.
+
+Mitigation: Use Markdown or JSON reports for untrusted code, or open HTML only after output escaping is fixed and the report is reviewed in a trusted environment.
+
+Risk: AI-assisted analysis may send code or metadata to an external provider when enabled.
+
+Mitigation: Confirm provider configuration and data handling before enabling external analysis, and disable AI recommendations for sensitive repositories unless approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shixiangyu2/skills/astronclaw-code-review)
+- [AstronClaw platform](https://astronclaw.iflytek.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Structured tool results and review reports in Markdown, HTML, or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports configurable review depth, optional security and performance analysis, and optional AI-assisted recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence, skill.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

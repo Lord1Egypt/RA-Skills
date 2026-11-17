@@ -1,41 +1,65 @@
-## Description: <br>
-Picoclaw security posture skill with advisory awareness, configuration drift detection, and supply-chain verification guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Picoclaw security posture skill with advisory awareness, configuration drift detection, and supply-chain verification guidance.
 
-## Publisher: <br>
-[davida-ps](https://clawhub.ai/user/davida-ps) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0-or-later <br>
+## Publisher:
 
+[davida-ps](https://clawhub.ai/user/davida-ps)
 
-## Use Case: <br>
-Developers and security operators use this skill to assess Picoclaw gateway posture, check advisory feed state, detect configuration drift, and verify release artifacts before trusting deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0-or-later
 
-## Known Risks and Mitigations: <br>
-Risk: Generated profiles and reports can expose local paths, file metadata, hashes, and secret-marker counts. <br>
-Mitigation: Review --watch, --artifact, --config, and --output paths before running the skill and store generated outputs under the intended Picoclaw security directory. <br>
-Risk: Unsigned advisory or checksum modes reduce assurance and are not suitable for normal production verification. <br>
-Mitigation: Use signed advisory feeds and detached signature verification by default; reserve unsigned modes for short, documented troubleshooting windows. <br>
+## Use Case:
 
+Developers and operators use this skill to review Picoclaw gateway security posture, compare local configuration drift, check Picoclaw-relevant advisories, and verify release artifacts before deployment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davida-ps/picoclaw-security-guardian) <br>
-- [ClawSec homepage](https://clawsec.prompt.security) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON-producing Node.js scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Profile and verification outputs can include local paths, file sizes, modes, hashes, and secret-marker counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: frontmatter, skill.json, CHANGELOG, server release metadata) <br>
+Risk: Generated profile and drift reports can expose sensitive operational details such as local paths, file hashes, file modes, and security-marker counts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated reports as sensitive operational records and keep them in restricted Picoclaw security storage.
+
+Risk: Standalone installs can be unsafe if release artifacts are trusted before source and signing checks complete.
+
+Mitigation: Verify the release source, pinned signing key, checksum manifest, archive hash, and detached signature before extracting or installing artifacts.
+
+Risk: Unsigned or unverified advisory feed state can weaken advisory results.
+
+Mitigation: Use verified feed state for normal operation and reserve unsigned advisory mode for short, documented emergency or offline windows.
+
+Risk: The skill is scoped to Picoclaw environments and may not reflect different gateway or wrapper trust boundaries.
+
+Mitigation: Use it only for Picoclaw deployments and review third-party wrappers or adjacent gateway components separately.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/davida-ps/skills/picoclaw-security-guardian)
+- [ClawSec Homepage](https://clawsec.prompt.security)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+- [CHANGELOG.md](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON profile, drift, advisory, and supply-chain verification results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [On-demand outputs may include local paths, file hashes, file modes, advisory records, and security-marker counts.]
+
+## Skill Version(s):
+
+0.0.3 (source: SKILL.md frontmatter, skill.json, CHANGELOG, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

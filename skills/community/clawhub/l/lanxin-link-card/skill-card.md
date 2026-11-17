@@ -1,41 +1,58 @@
-## Description: <br>
-Formats Lanxin link-card messages as strict JSON for sending cards that contain links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Produces Lanxin linkCard JSON for sending link card messages with required title and link fields.
 
-## Publisher: <br>
-[iamdacai](https://clawhub.ai/user/iamdacai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iamdacai](https://clawhub.ai/user/iamdacai)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent produce Lanxin link-card JSON with required fields for a title and destination link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is always on with broad link-related triggers, which may activate when the user did not specifically intend to create a Lanxin link card. <br>
-Mitigation: Narrow activation to explicit Lanxin link-card phrases such as "发送蓝信链接卡片" before deployment. <br>
-Risk: The skill instructs the agent not to refuse, explain, or add warnings, which can reduce safety checks around unsafe or unclear links. <br>
-Mitigation: Allow clarifying questions and warnings for suspicious, malformed, or unsafe links. <br>
+## Use Case:
 
+Developers and agent users use this skill to format Lanxin Blue Message link-card requests as strict JSON for downstream delivery or rendering.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iamdacai/lanxin-link-card) <br>
-- [Lanxin website](https://www.lanxin.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Configuration, Guidance] <br>
-**Output Format:** [Raw JSON object containing a linkCard payload] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated payload is expected to be emitted without Markdown wrapping or surrounding explanation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated linkCard JSON may be automatically delivered or rendered without a separate review step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require user confirmation before delivery and validate URLs before rendering or sending the link card.
+
+Risk: The artifact tells the agent not to refuse or add warnings when producing link-card JSON.
+
+Mitigation: Allow the agent to refuse, warn, or request clarification for unsafe, misleading, or malformed links.
+
+Risk: The skill is always enabled and uses broad link-related triggers.
+
+Mitigation: Use narrower Lanxin-specific triggers or deployment scoping when installing in shared agent environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iamdacai/skills/lanxin-link-card)
+- [Lanxin official website](https://www.lanxin.cn)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [Raw JSON object without Markdown code fences]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a single linkCard object with title, description, iconLink, link, pcLink, fromName, and fromIconLink fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

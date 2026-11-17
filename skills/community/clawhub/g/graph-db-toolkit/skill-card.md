@@ -1,42 +1,59 @@
-## Description: <br>
-Graph database toolkit for Neo4j and Cypher-based graph analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Graph database toolkit for Neo4j and Cypher-based graph analytics.
 
-## Publisher: <br>
-[kaiyuelv](https://clawhub.ai/user/kaiyuelv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuelv](https://clawhub.ai/user/kaiyuelv)
 
-## Use Case: <br>
-Developers and data engineers use this skill to design Neo4j graph schemas, build Cypher queries, run CRUD operations, and apply graph analytics to knowledge graphs, relationship analysis, recommendation systems, and network workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Database-write or destructive graph operations could modify or delete Neo4j data. <br>
-Mitigation: Use least-privileged database credentials and test or back up databases before running destructive operations. <br>
-Risk: Untrusted input in labels, field names, WHERE clauses, or raw Cypher strings could lead to unsafe queries. <br>
-Mitigation: Review generated Cypher and avoid passing untrusted user input directly into query structure or raw Cypher strings. <br>
+## Use Case:
 
+Developers and engineers use this skill to work with Neo4j graph databases, build Cypher queries, perform CRUD operations, and run graph analytics for knowledge graphs, relationship analysis, recommendations, and traversal tasks.
 
-## Reference(s): <br>
-- [Graph DB Toolkit on ClawHub](https://clawhub.ai/kaiyuelv/graph-db-toolkit) <br>
-- [Cypher Cheatsheet](references/cypher_cheatsheet.md) <br>
-- [Neo4j Design Patterns](references/neo4j_patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and Cypher code snippets, shell commands, and configuration notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose database-write or destructive Cypher operations that require review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The toolkit can write to Neo4j databases and includes full-delete behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privileged Neo4j account and install the skill only for databases the agent is allowed to read and modify.
+
+Risk: Example credentials and raw Cypher interfaces can be misused if copied into sensitive environments.
+
+Mitigation: Change example passwords before use and treat raw Cypher or query-builder inputs as trusted-code interfaces rather than user-provided text.
+
+Risk: Production data could be damaged if destructive helpers are available without guardrails.
+
+Mitigation: Avoid production data until delete_all() is removed, guarded, or otherwise restricted by operational controls.
+
+## Reference(s):
+
+- [Cypher Cheatsheet](references/cypher_cheatsheet.md)
+- [Neo4j Design Patterns](references/neo4j_patterns.md)
+- [Graph DB Toolkit on ClawHub](https://clawhub.ai/kaiyuelv/skills/graph-db-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline Python, Cypher, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Neo4j connection guidance, generated Cypher queries, Python code snippets, graph analytics results, and configuration advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

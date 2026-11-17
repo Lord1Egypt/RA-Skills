@@ -1,41 +1,53 @@
-## Description: <br>
-企业内部审计，风险评估 + 合规检查。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports enterprise internal audit workflows with risk assessment, compliance checks, audit report generation, remediation tracking, and data analysis.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Enterprise audit, finance, compliance, and IT audit teams use this skill to describe an AI-assisted internal audit workflow for risk assessment, compliance checks, report generation, remediation tracking, and anomaly-oriented data analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill concerns audit, financial, employee, compliance, or IT data that may be sensitive. <br>
-Mitigation: Avoid providing real sensitive data until storage, retention, access controls, and external-service use are approved. <br>
-Risk: The artifact references external setup steps for code that is not included in this package. <br>
-Mitigation: Inspect the referenced repository and requirements, and prefer a pinned trusted version before installation. <br>
+## Use Case:
 
+Employees and audit teams use this skill to support internal audit, financial audit, compliance audit, and IT audit workflows. It helps identify risk points, compare requirements against regulations, generate audit reports, and track remediation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/ai-intelligent-audit-system) <br>
-- [Publisher Profile](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with setup commands and audit workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No required binaries or API keys are declared in the server evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Install steps execute unpinned remote code that was not included in the reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the remote repository and dependencies before installation, pin to a trusted commit or release, and install only in an isolated environment.
+
+Risk: Audit records and generated audit material can include confidential business, financial, compliance, or IT information.
+
+Mitigation: Avoid unnecessary secrets and sensitive records during evaluation, and treat generated audit material as confidential unless storage, logging, retention, and access controls are documented.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-intelligent-audit-system)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce audit-oriented analysis, report text, remediation guidance, and setup commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Generate AI wallpaper images from a text prompt via the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI wallpaper images from text prompts through the Neta AI image generation API.
 
-## Publisher: <br>
-[barbaraledbettergq](https://clawhub.ai/user/barbaraledbettergq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[barbaraledbettergq](https://clawhub.ai/user/barbaraledbettergq)
 
-## Use Case: <br>
-External users and developers use this skill to generate wallpaper image URLs from text prompts through the Neta/TalesOfAI image service, with optional size and reference-image controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallpaper prompts, optional reference IDs, and the Neta/TalesOfAI API token are sent to api.talesofai.com. <br>
-Mitigation: Use a revocable service-specific token and only submit prompts and reference IDs that are appropriate to share with the third-party image service. <br>
-Risk: Passing tokens on the command line can expose them through shell history, logs, or shared terminal environments. <br>
-Mitigation: Avoid shared machines and logged terminals or CI for token use; rotate the token if it may have been recorded. <br>
+## Use Case:
 
+External users and developers use this skill to request AI-generated wallpaper images from text prompts and receive an image URL. It supports selectable output sizes and optional reference image UUIDs for style inheritance.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/barbaraledbettergq/wallpaper-claw-skill) <br>
-- [Neta AI access page](https://www.neta.art/open/) <br>
-- [TalesOfAI API host](https://api.talesofai.com) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls] <br>
-**Output Format:** [Plain text URL or JSON status object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs to stdout after polling the image-generation task; results may include a generated image URL, task UUID, dimensions, and status depending on the script used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence and package.json) <br>
+Risk: The Neta/talesofai token can be exposed if pasted into shell history, logs, or shared transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the token like a password, rotate it if exposure is suspected, and prefer a safer token mechanism if the publisher adds one.
+
+Risk: Prompts are sent to an external image-generation API and may contain sensitive information.
+
+Mitigation: Avoid entering sensitive prompts or private data into the generator.
+
+Risk: The skill depends on a trusted external source and version.
+
+Mitigation: Install only from the resolved ClawHub publisher and version you trust.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/barbaraledbettergq/skills/wallpaper-claw-skill)
+- [Neta API access](https://www.neta.art/open/)
+- [Neta/TalesofAI API endpoint](https://api.talesofai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text URL or JSON status from Node scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta/talesofai token and may poll the external image-generation API before returning a result.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

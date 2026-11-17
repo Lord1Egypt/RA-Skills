@@ -1,0 +1,17 @@
+[
+  { "name": "eval",            "level": 4, "desc": "动态执行拼接字符串,最常见的命令/代码执行后门入口" },
+  { "name": "exec",            "level": 4, "desc": "用给定命令替换当前 shell 进程,可直接执行任意程序" },
+  { "name": "source",          "level": 3, "desc": "从文件读取并在当前环境执行命令(常用于加载后门脚本)" },
+  { "name": ".",               "level": 3, "desc": "source 的等价写法,从文件加载并执行" },
+  { "name": "trap",            "level": 3, "desc": "注册信号/DEBUG/EXIT 钩子,可持久化执行恶意逻辑" },
+  { "name": "enable",          "level": 2, "desc": "启用/禁用内建命令,可用于劫持或隐藏命令" },
+  { "name": "builtin",         "level": 2, "desc": "强制调用内建命令,可绕过同名外部程序(配合劫持)" },
+  { "name": "command",         "level": 2, "desc": "执行命令并可绕过函数/别名,常用于静默执行" },
+  { "name": "alias",           "level": 2, "desc": "定义命令别名,可伪装恶意命令为正常命令" },
+  { "name": "declare",         "level": 2, "desc": "声明/导出变量与函数,-f 可导出函数体供子 shell 执行" },
+  { "name": "typeset",         "level": 2, "desc": "declare 的等价写法" },
+  { "name": "mapfile",         "level": 1, "desc": "readarray,将输入读入数组,结合 eval 可构成执行链" },
+  { "name": "readarray",       "level": 1, "desc": "mapfile 的等价写法" },
+  { "name": "compgen",         "level": 1, "desc": "补全生成,可被用于枚举/探测环境" },
+  { "name": "fc",              "level": 1, "desc": "历史命令编辑执行,可被用于重放历史命令" }
+]

@@ -1,0 +1,3 @@
+-r requirements-documents.txt
+pypdf>=5,<7
+pypdfium2>=4,<6

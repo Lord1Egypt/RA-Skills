@@ -1,38 +1,58 @@
-## Description: <br>
-Execute DeFi skills on Ethereum, Sui, Solana, and 10+ chains via Arsenal for swaps, lending, liquidity, portfolio queries, and other blockchain operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute DeFi skills on Ethereum, Sui, Solana, and 10+ chains via Arsenal for swaps, lending, liquidity, portfolio queries, and blockchain operations.
 
-## Publisher: <br>
-[sumplus-real](https://clawhub.ai/user/sumplus-real) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sumplus-real](https://clawhub.ai/user/sumplus-real)
 
-## Use Case: <br>
-Developers and agent operators use this skill to discover Arsenal execution skills and prepare DeFi API calls for quotes, transaction building, lending, liquidity, balances, and portfolio workflows across supported chains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Arsenal homepage](https://arsenal.sumplus.xyz) <br>
-- [ClawHub skill page](https://clawhub.ai/sumplus-real/sumplus-arsenal) <br>
+External developers and agent operators use this skill to route DeFi requests through Arsenal's discovery and execution API across supported EVM, Sui, Solana, and cross-chain protocols.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown with API examples, shell commands, and JSON response shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ARSENAL_API_KEY. Review chain, contract, recipient, approval amount, token amounts, slippage, and minimum output before signing any wallet transaction.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Remote-generated DeFi transaction payloads can cause irreversible asset transfers, approvals, or other high-impact blockchain actions.
+
+Mitigation: Require the user to inspect wallet transaction details, including recipients, approvals, token amounts, chain, contract addresses, and persistent allowances before signing.
+
+Risk: Quotes or skill descriptions may not fully validate the final transaction payload.
+
+Mitigation: Do not treat quotes as authorization to sign; obtain explicit confirmation after presenting quote details and before building or submitting a transaction.
+
+Risk: API key creation and use creates an account-management dependency on Arsenal/Sumplus.
+
+Mitigation: Treat API key creation as an explicit user-approved account action and require ARSENAL_API_KEY to be supplied through the environment.
+
+## Reference(s):
+
+- [Arsenal homepage](https://arsenal.sumplus.xyz)
+- [ClawHub skill page](https://clawhub.ai/sumplus-real/skills/sumplus-arsenal)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ARSENAL_API_KEY and user review before wallet signing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

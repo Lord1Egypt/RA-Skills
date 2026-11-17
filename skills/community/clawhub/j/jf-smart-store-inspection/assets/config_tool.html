@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>AI巡检区域配置工具</title>
+<style>
+  :root {
+    --bg: #f5f7fa; --card: #fff; --border: #e5e9f0; --text: #1f2937;
+    --text-sub: #6b7280; --primary: #2563eb; --green: #059669; --red: #dc2626;
+    --amber: #d97706; --radius: 8px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Segoe UI", system-ui, sans-serif;
+    background: var(--bg); color: var(--text); padding: 16px;
+  }
+  .wrap { max-width: 1240px; margin: 0 auto; }
+  header { margin-bottom: 12px; }
+  header h1 { font-size: 20px; }
+  header .meta { color: var(--text-sub); font-size: 12px; margin-top: 4px; }
+  .layout { display: grid; grid-template-columns: 1fr 340px; gap: 16px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
+  .canvas-box { position: relative; background: #000; border-radius: 6px; overflow: hidden; }
+  #cv { display: block; max-width: 100%; cursor: crosshair; }
+  .toolbar { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+  button, select, input[type="text"], input[type="number"] {
+    font-family: inherit; font-size: 13px; padding: 6px 12px;
+    border: 1px solid var(--border); border-radius: 6px; background: #fff; cursor: pointer;
+  }
+  button.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+  button.danger  { background: var(--red); color: #fff; border-color: var(--red); }
+  button.success { background: var(--green); color: #fff; border-color: var(--green); }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  h3 { font-size: 14px; margin-bottom: 10px; }
+  .field { margin-bottom: 10px; }
+  .field label { display: block; font-size: 12px; color: var(--text-sub); margin-bottom: 4px; }
+  .field input[type="text"], .field input[type="number"], .field select { width: 100%; cursor: text; }
+  .poly-list { max-height: 220px; overflow-y: auto; border: 1px solid var(--border); border-radius: 6px; padding: 6px; margin-bottom: 10px; }
+  .poly-item { display: flex; align-items: center; gap: 6px; padding: 4px 6px; border-radius: 4px; font-size: 12px; }
+  .poly-item.active { background: #eff6ff; }
+  .poly-item .swatch { width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; }
+  .poly-item .name { flex: 1; }
+  .poly-item .actions button { padding: 2px 8px; font-size: 11px; }
+  pre.output { background: #0f172a; color: #e2e8f0; padding: 10px; border-radius: 6px;
+               font-size: 11px; max-height: 240px; overflow: auto; white-space: pre-wrap; word-break: break-all; }
+  .hint { font-size: 12px; color: var(--text-sub); line-height: 1.6; margin-bottom: 10px; }
+  .hint b { color: var(--text); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>AI 巡检区域配置工具</h1>
+    <div class="meta">
+      设备ID: <span id="devId">-</span> | 设备SN: <span id="devSn">-</span> |
+      坐标系: 8192 × 8192 (相对)
+    </div>
+  </header>
+
+  <div class="layout">
+    <div class="card">
+      <div class="toolbar">
+        <button id="btnAddPoly" class="primary">+ 新增区域</button>
+        <button id="btnUndo">撤销顶点</button>
+        <button id="btnClosePoly" class="success">闭合当前区域</button>
+        <button id="btnClear" class="danger">清空全部</button>
+        <span style="margin-left: auto; font-size: 12px; color: var(--text-sub);">
+          左键点击画面放置顶点；点击"闭合当前区域"完成一个多边形
+        </span>
+      </div>
+      <div class="canvas-box">
+        <canvas id="cv"></canvas>
+      </div>
+      <div class="hint" style="margin-top: 10px;">
+        <b>说明：</b>AI 巡检 <code>includeAreas</code> 用于指定算法感兴趣的正向检测区域。
+        若留空则默认整幅画面。可添加多个多边形（每个至少 3 个顶点）。
+        输出为 8192 相对坐标 JSON 字符串，可直接用于 <code>create-plan --include-areas</code>
+        或 <code>--from-file</code> 中的 <code>includeAreas</code> 字段。
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>区域列表</h3>
+      <div class="poly-list" id="polyList"></div>
+
+      <h3>计划参数（可选，导出到 JSON）</h3>
+      <div class="field">
+        <label>patrolName (计划名称)</label>
+        <input type="text" id="fPatrolName" placeholder="如：门店离岗巡检">
+      </div>
+      <div class="field">
+        <label>algorithmId (算法ID，从 list-algorithms 获取)</label>
+        <input type="text" id="fAlgorithmId" placeholder="如：1001">
+      </div>
+      <div class="field">
+        <label>threshold (置信度 0.01~0.99)</label>
+        <input type="text" id="fThreshold" placeholder="0.85" value="0.85">
+      </div>
+      <div class="field">
+        <label>timeType (0=每天 1=每周 2=每月)</label>
+        <select id="fTimeType">
+          <option value="0">0 - 每天</option>
+          <option value="1">1 - 每周</option>
+          <option value="2">2 - 每月</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>timeCycle (日=0, 周=1-7 逗号分隔, 月=1-31 逗号分隔)</label>
+        <input type="text" id="fTimeCycle" value="0">
+      </div>
+      <div class="field">
+        <label>detailTime (HH:MM-HH:MM, 最多5段)</label>
+        <input type="text" id="fDetailTime" placeholder="09:00-10:00,13:00-17:00" value="09:00-18:00">
+      </div>
+      <div class="field">
+        <label>step (抽帧频率, 可选)</label>
+        <input type="number" id="fStep" placeholder="5">
+      </div>
+      <div class="field">
+        <label>durationTime (持续时长秒, 可选)</label>
+        <input type="number" id="fDuration" placeholder="60">
+      </div>
+      <div class="field">
+        <label>mosaic (马赛克: face,plate,human 逗号分隔, 可选)</label>
+        <input type="text" id="fMosaic" placeholder="face">
+      </div>
+
+      <div class="toolbar">
+        <button id="btnGen" class="primary">生成配置 JSON</button>
+        <button id="btnDownload" class="success" disabled>下载 plan_config.json</button>
+      </div>
+
+      <h3>输出预览</h3>
+      <pre class="output" id="output">（点击"生成配置 JSON"）</pre>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const SNAP = window.__SNAPSHOT_BASE64__ || null;
+  const DEV_ID = window.__DEVICE_ID__ || "";
+  const DEV_SN = window.__DEVICE_SN__ || "";
+  document.getElementById('devId').textContent = DEV_ID || '(未设置)';
+  document.getElementById('devSn').textContent = DEV_SN || '(未设置)';
+
+  const cv = document.getElementById('cv');
+  const ctx = cv.getContext('2d');
+  const COLORS = ['#2563eb','#059669','#d97706','#dc2626','#7c3aed','#0891b2','#db2777','#65a30d'];
+  const SIZE = 8192; // relative coordinate space
+
+  let img = new Image();
+  let imgW = 1280, imgH = 720;
+  let polys = [];       // [{name, color, points:[{X,Y}], closed:bool}]
+  let activeIdx = -1;
+
+  function loadSnapshot() {
+    if (!SNAP) {
+      // Draw a placeholder
+      cv.width = imgW; cv.height = imgH;
+      ctx.fillStyle = '#1e293b'; ctx.fillRect(0,0,imgW,imgH);
+      ctx.fillStyle = '#94a3b8'; ctx.font = '20px sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText('未提供快照，将按 16:9 空白画布绘制', imgW/2, imgH/2);
+      return;
+    }
+    img.onload = function(){
+      imgW = img.naturalWidth; imgH = img.naturalHeight;
+      cv.width = imgW; cv.height = imgH;
+      redraw();
+    };
+    img.src = SNAP;
+  }
+
+  function redraw() {
+    if (SNAP && img.complete && img.naturalWidth) {
+      ctx.drawImage(img, 0, 0, imgW, imgH);
+    } else if (!SNAP) {
+      ctx.fillStyle = '#1e293b'; ctx.fillRect(0,0,imgW,imgH);
+    }
+    polys.forEach((p, i) => {
+      ctx.strokeStyle = p.color; ctx.lineWidth = 3; ctx.fillStyle = p.color + '33';
+      ctx.beginPath();
+      p.points.forEach((pt, j) => {
+        const x = pt.X / SIZE * imgW, y = pt.Y / SIZE * imgH;
+        if (j === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      });
+      if (p.closed && p.points.length > 2) {
+        ctx.closePath(); ctx.fill();
+      }
+      ctx.stroke();
+      // vertices
+      p.points.forEach((pt, j) => {
+        const x = pt.X / SIZE * imgW, y = pt.Y / SIZE * imgH;
+        ctx.fillStyle = p.color; ctx.beginPath();
+        ctx.arc(x, y, 5, 0, Math.PI*2); ctx.fill();
+        ctx.fillStyle = '#fff'; ctx.font = 'bold 10px sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText(String(j+1), x, y+3);
+      });
+      // label
+      if (p.points.length) {
+        const x = p.points[0].X / SIZE * imgW, y = p.points[0].Y / SIZE * imgH;
+        ctx.fillStyle = p.color; ctx.fillRect(x+8, y-20, ctx.measureText(p.name).width+16, 18);
+        ctx.fillStyle = '#fff'; ctx.font = 'bold 12px sans-serif'; ctx.textAlign = 'left';
+        ctx.fillText(p.name, x+16, y-7);
+      }
+      if (i === activeIdx) {
+        ctx.strokeStyle = '#fff'; ctx.lineWidth = 1; ctx.setLineDash([4,4]);
+        ctx.strokeRect(2, 2, imgW-4, imgH-4); ctx.setLineDash([]);
+      }
+    });
+  }
+
+  function renderList() {
+    const box = document.getElementById('polyList');
+    if (!polys.length) { box.innerHTML = '<div style="color:#94a3b8;font-size:12px;padding:8px;">（尚无区域，点击"+ 新增区域"开始）</div>'; return; }
+    box.innerHTML = polys.map((p, i) => `
+      <div class="poly-item ${i===activeIdx?'active':''}" data-idx="${i}">
+        <span class="swatch" style="background:${p.color}"></span>
+        <span class="name">${p.name} (${p.points.length}顶点${p.closed?', 已闭合':''})</span>
+        <span class="actions">
+          <button data-act="activate" data-idx="${i}">选中</button>
+          <button data-act="rename" data-idx="${i}">改名</button>
+          <button data-act="delete" data-idx="${i}">删</button>
+        </span>
+      </div>`).join('');
+    box.querySelectorAll('button').forEach(b => b.addEventListener('click', onListBtn));
+  }
+
+  function onListBtn(e) {
+    const act = e.target.dataset.act; const idx = parseInt(e.target.dataset.idx);
+    if (act === 'activate') { activeIdx = idx; }
+    else if (act === 'delete') { polys.splice(idx, 1); activeIdx = polys.length ? Math.max(0, idx-1) : -1; }
+    else if (act === 'rename') {
+      const nn = prompt('区域名称：', polys[idx].name);
+      if (nn) polys[idx].name = nn;
+    }
+    renderList(); redraw();
+  }
+
+  document.getElementById('btnAddPoly').addEventListener('click', () => {
+    const idx = polys.length;
+    polys.push({
+      name: 'area' + (idx+1),
+      color: COLORS[idx % COLORS.length],
+      points: [], closed: false
+    });
+    activeIdx = idx;
+    renderList(); redraw();
+  });
+
+  document.getElementById('btnUndo').addEventListener('click', () => {
+    if (activeIdx < 0 || !polys[activeIdx]) return;
+    polys[activeIdx].points.pop();
+    renderList(); redraw();
+  });
+
+  document.getElementById('btnClosePoly').addEventListener('click', () => {
+    if (activeIdx < 0 || !polys[activeIdx]) return;
+    if (polys[activeIdx].points.length < 3) { alert('至少需要 3 个顶点才能闭合'); return; }
+    polys[activeIdx].closed = true;
+    renderList(); redraw();
+  });
+
+  document.getElementById('btnClear').addEventListener('click', () => {
+    if (!confirm('确认清空所有区域？')) return;
+    polys = []; activeIdx = -1; renderList(); redraw();
+  });
+
+  cv.addEventListener('click', (e) => {
+    if (activeIdx < 0 || !polys[activeIdx]) { alert('请先点击"+ 新增区域"'); return; }
+    if (polys[activeIdx].closed) { alert('当前区域已闭合，请新增或选中其他区域'); return; }
+    const rect = cv.getBoundingClientRect();
+    const scaleX = imgW / rect.width, scaleY = imgH / rect.height;
+    const px = (e.clientX - rect.left) * scaleX;
+    const py = (e.clientY - rect.top)  * scaleY;
+    const X = Math.round(px / imgW * SIZE);
+    const Y = Math.round(py / imgH * SIZE);
+    polys[activeIdx].points.push({X, Y});
+    renderList(); redraw();
+  });
+
+  function buildOutput() {
+    const closed = polys.filter(p => p.closed && p.points.length >= 3);
+    if (!closed.length) { alert('请至少绘制并闭合一个区域（点击"闭合当前区域"）'); return null; }
+    const includeAreas = closed.map(p => ({ name: p.name, points: p.points }));
+    const plan = {};
+    const pn = document.getElementById('fPatrolName').value.trim();
+    const ai = document.getElementById('fAlgorithmId').value.trim();
+    const th = document.getElementById('fThreshold').value.trim();
+    const tt = document.getElementById('fTimeType').value;
+    const tc = document.getElementById('fTimeCycle').value.trim();
+    const dt = document.getElementById('fDetailTime').value.trim();
+    const st = document.getElementById('fStep').value.trim();
+    const du = document.getElementById('fDuration').value.trim();
+    const mo = document.getElementById('fMosaic').value.trim();
+    if (pn) plan.patrolName = pn;
+    if (ai) plan.algorithmId = ai;
+    if (th) plan.threshold = th;
+    if (tt !== '') plan.timeType = parseInt(tt);
+    if (tc) plan.timeCycle = tc;
+    if (dt) plan.detailTime = dt;
+    if (st) plan.step = parseInt(st);
+    if (du) plan.durationTime = parseInt(du);
+    if (mo) plan.mosaic = mo;
+    if (DEV_ID) plan.patrolRange = DEV_ID;
+    plan.includeAreas = JSON.stringify(includeAreas);
+    return plan;
+  }
+
+  let lastJson = null;
+  document.getElementById('btnGen').addEventListener('click', () => {
+    const plan = buildOutput(); if (!plan) return;
+    lastJson = JSON.stringify(plan, null, 2);
+    document.getElementById('output').textContent = lastJson;
+    document.getElementById('btnDownload').disabled = false;
+  });
+
+  document.getElementById('btnDownload').addEventListener('click', () => {
+    if (!lastJson) return;
+    const blob = new Blob([lastJson], {type: 'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'plan_config.json';
+    document.body.appendChild(a); a.click();
+    setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 100);
+  });
+
+  loadSnapshot();
+  renderList();
+})();
+</script>
+</body>
+</html>

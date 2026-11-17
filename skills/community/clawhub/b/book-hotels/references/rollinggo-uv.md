@@ -6,11 +6,12 @@
 ## 目录
 
 1. [运行方式](#运行方式)
-2. [API Key 配置](#api-key-配置)
-3. [命令说明](#命令说明)
-4. [端到端工作流](#端到端工作流)
-5. [问题排查](#问题排查)
-6. [本地开发](#本地开发)
+2. [版本新鲜度](#版本新鲜度)
+3. [API Key 配置](#api-key-配置)
+4. [命令说明](#命令说明)
+5. [端到端工作流](#端到端工作流)
+6. [问题排查](#问题排查)
+7. [本地开发](#本地开发)
 
 ---
 
@@ -19,10 +20,11 @@
 ### 临时执行（uvx — 无需安装）
 
 > 注意：包名和命令名都叫 `rollinggo`，所以需要 `--from` 语法。
+> 显式使用 `rollinggo@latest`，让 uv 解析当前最新发布版本。
 
 ```bash
-uvx --from rollinggo rollinggo --help
-uvx --from rollinggo rollinggo search-hotels \
+uvx --refresh --from rollinggo@latest rollinggo --help
+uvx --refresh --from rollinggo@latest rollinggo search-hotels \
   --origin-query "查找东京迪士尼附近的酒店" \
   --place "东京迪士尼" --place-type "<查看 --help 获取合法值>"
 ```
@@ -30,7 +32,8 @@ uvx --from rollinggo rollinggo search-hotels \
 ### 安装为工具（适合长期高频使用）
 
 ```bash
-uv tool install rollinggo
+uv tool install rollinggo@latest
+uv tool upgrade rollinggo@latest
 rollinggo --help
 
 # 如果安装后终端找不到命令：
@@ -46,26 +49,46 @@ uv run --directory rollinggo-uv rollinggo search-hotels --help
 
 ---
 
-## API Key 配置
+## 版本新鲜度
 
-解析顺序：`--api-key` 参数 → `AIGOHOTEL_API_KEY` 环境变量。
+本参考默认规则：每次执行都使用 PyPI 最新发布版本。命令模式如下：
 
 ```bash
-# PowerShell
-$env:AIGOHOTEL_API_KEY="YOUR_API_KEY"
+uvx --refresh --from rollinggo@latest rollinggo <子命令> ...
+```
 
+如果使用已安装工具，先升级再运行：
+
+```bash
+uv tool upgrade rollinggo@latest
+```
+
+---
+
+## API Key 配置
+
+解析顺序：`--api-key` 参数 → `RollingGo_API_KEY` 环境变量。
+
+```bash
 # Bash / zsh
-export AIGOHOTEL_API_KEY="YOUR_API_KEY"
+export RollingGo_API_KEY="YOUR_API_KEY"
+
+# PowerShell
+$env:RollingGo_API_KEY="YOUR_API_KEY"
 
 # 单条命令临时指定
 rollinggo hotel-tags --api-key YOUR_API_KEY
 ```
 
-申请 Key：https://mcp.agentichotel.cn/apply
+宿主经常丢失 `RollingGo_API_KEY` 时，见 [claw-host-env.md](claw-host-env.md)。
+
+申请 Key：https://rollinggo.store/apply
 
 ---
 
 ## 命令说明
+
+为了便于阅读，下面示例默认使用已安装的 `rollinggo` 命令。本参考的“最新版默认前缀”为 `uvx --refresh --from rollinggo@latest rollinggo`。
 
 ### `search-hotels`
 
@@ -123,7 +146,7 @@ rollinggo hotel-tags
 rollinggo hotel-tags --api-key YOUR_API_KEY
 
 # 免安装临时执行
-uvx --from rollinggo rollinggo hotel-tags
+uvx --refresh --from rollinggo@latest rollinggo hotel-tags
 ```
 
 返回的标签字符串需**原样**使用于 `--preferred-tag` / `--required-tag` / `--excluded-tag` 参数中。
@@ -165,8 +188,8 @@ rollinggo search-hotels \
 
 ## 问题排查
 
-- **`rollinggo: command not found`：** 使用 `uvx --from rollinggo rollinggo ...` 或 `uv tool install rollinggo && uv tool update-shell`
-- **缺少 API Key 报错：** 传入 `--api-key` 或设置 `AIGOHOTEL_API_KEY` 环境变量
+- **`rollinggo: command not found`：** 使用 `uvx --refresh --from rollinggo@latest rollinggo ...` 或 `uv tool install rollinggo@latest && uv tool update-shell`
+- **缺少 API Key 报错：** 传入 `--api-key`、设置 `RollingGo_API_KEY`，或者如果你跑在任何 claw 风格宿主里，就按 [claw-host-env.md](claw-host-env.md) 把同一个 key 注入到那个宿主的配置层
 - **退出码 `2`（参数校验失败）：** 加 `--help` 重新运行，检查必填参数、日期格式、`--child-count` 与 `--child-age` 数量是否一致
 - **没有返回任何酒店：** 移除 `--star-ratings` → 增大 `--size` 或 `--distance-in-meter` → 移除标签筛选
 - **`hotel-detail` 无房型返回：** 这是正常业务结果，不是错误；尝试换其他酒店、换日期或调整入住人数

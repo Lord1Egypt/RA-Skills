@@ -1,42 +1,53 @@
-## Description: <br>
-输入短视频脚本，自动预测爆款概率（钩子分析/节奏/情绪曲线/优化建议）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+输入短视频脚本，自动预测爆款概率（钩子分析/节奏/情绪曲线/优化建议）
 
-## Publisher: <br>
-[amaxclaw](https://clawhub.ai/user/amaxclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amaxclaw](https://clawhub.ai/user/amaxclaw)
 
-## Use Case: <br>
-Short-video creators and MCN teams use this skill to assess scripts for viral potential, including hook strength, pacing, emotion curve, platform compliance warnings, and optimization guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Commercial
 
-## Known Risks and Mitigations: <br>
-Risk: The viral score is heuristic and may be mistaken for a guaranteed prediction. <br>
-Mitigation: Present the score as advisory, keep the disclaimer visible, and validate important publishing decisions with platform analytics or A/B testing. <br>
-Risk: Pricing and terms metadata are not perfectly consistent across the release evidence and artifact files. <br>
-Mitigation: Confirm the current commercial terms and license before purchase, redistribution, or production rollout. <br>
+## Use Case:
 
+External short-video creators and MCN teams use this skill to score script viral potential, analyze hooks, pacing, and emotion curve, and get optimization guidance before publishing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amaxclaw/viral-video-predictor) <br>
-- [README.md](artifact/README.md) <br>
-- [manifest.json](artifact/manifest.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Structured JSON-style analysis with scores, warnings, recommendations, and examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a viral score, hook analysis, pacing analysis, emotion-curve guidance, banned-word warnings, optimization tips, similar examples, and a disclaimer that results are not guaranteed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Viral probability scores may be mistaken for guaranteed performance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat scores as heuristic content advice, validate changes with A/B testing, and avoid presenting predictions as guaranteed views or revenue.
+
+Risk: Optimization guidance may not fully satisfy platform-specific content rules.
+
+Mitigation: Review final scripts against the target platform's current community and advertising policies before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amaxclaw/skills/viral-video-predictor)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Structured JSON-like analysis with scores, warnings, and recommendation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a heuristic viral score, hook analysis, pacing analysis, emotion-curve guidance, optimization tips, and similar-case references.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release.version, manifest.json, README.md, SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

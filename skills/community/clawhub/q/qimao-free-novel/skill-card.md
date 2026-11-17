@@ -1,40 +1,55 @@
-## Description: <br>
-Provides organized access to Qimao Free Novel's public book categories, membership details, help topics, and official activity information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides organized access to Qimao Free Novel's public book categories, membership details, help topics, and official activity information.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External users and agents use this skill to organize and summarize public Qimao Free Novel pages, including book categories, rankings, membership information, help topics, activity pages, FAQs, and copyright notices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill could be asked to handle private account details or non-public user activity. <br>
-Mitigation: Use it only with public Qimao pages and do not provide personal bookshelf, reading history, purchase history, credentials, or other private account data. <br>
-Risk: The skill could be misused to request piracy, account sharing, packet capture, or bypass guidance. <br>
-Mitigation: Keep outputs to public product information and refuse piracy, membership sharing, interface bypass, and similar circumvention requests. <br>
+## Use Case:
 
+External users and agents use this skill to organize public Qimao Free Novel pages into category lists, membership and help summaries, activity notes, FAQ details, and copyright information while avoiding private account data.
 
-## Reference(s): <br>
-- [Qimao Free Novel official site](https://www.qimao.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries, tables, and link lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should note regional or time-sensitive context when relevant and stay limited to public information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Membership benefits, download limits, content availability, and activity details can vary by region or change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify time- or region-dependent terms against the live official Qimao pages before relying on them.
+
+Risk: Requests could drift toward piracy, account sharing, API bypass, or private account data.
+
+Mitigation: Keep outputs limited to publicly visible official information and refuse piracy, credential, account-sharing, scraping bypass, or private-data assistance.
+
+## Reference(s):
+
+- [Qimao official homepage](https://www.qimao.com/)
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/qimao-free-novel)
+- [Publisher profile](https://clawhub.ai/user/codenova58)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focused on public Qimao information; outputs should note regional and time context for membership, content, or activity terms.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

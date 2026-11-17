@@ -1,48 +1,60 @@
-## Description: <br>
-Turing Pyramid provides local, stateful action prioritization for AI agents using configurable needs, time-based decay, tension scoring, execution-gate tracking, optional continuity scripts, and an opt-in watchdog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prioritized action selection for AI agents with 10 needs, tension scoring, execution-gate tracking, optional continuity scripts, and an opt-in watchdog for local stateful prioritization inside an isolated WORKSPACE.
 
-## Publisher: <br>
-[tensusds](https://clawhub.ai/user/tensusds) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tensusds](https://clawhub.ai/user/tensusds)
 
-## Use Case: <br>
-Developers and agent stewards use Turing Pyramid to give an agent a local heartbeat action selector that proposes what to do next, tracks completion evidence, and maintains optional continuity state inside an isolated workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can suggest public posting, messaging, web-search, or publishing actions that an auto-executing agent might carry out with its own tools. <br>
-Mitigation: Review assets/needs-config.json before use, set unwanted external or social actions to weight 0, and require separate human approval for posting, messaging, deleting, reorganizing, purchasing, or publishing. <br>
-Risk: The skill is stateful and reads or writes files under WORKSPACE, so a broad workspace can expose sensitive files to scans and state updates. <br>
-Mitigation: Install it only in an isolated WORKSPACE that does not contain credentials, private material, home directories, or system folders. <br>
-Risk: Continuity and watchdog deployment can create persistent background behavior, and opt-in watchdog settings can kill skill processes or clean temporary files. <br>
-Mitigation: Start with interactive or heartbeat-only use, review daemon and watchdog scripts before cron deployment, run as a non-root user, and keep allow_kill and allow_cleanup disabled unless explicitly needed. <br>
-Risk: Optional external-model scanning can call an inference API if enabled and configured with credentials. <br>
-Mitigation: Leave external-model scanning disabled unless a steward has documented the credential source, endpoint, and approval path. <br>
+## Use Case:
 
+Developers and agent operators use this skill to give an agent a local, stateful prioritization loop that turns decaying needs and workspace signals into concrete next-action suggestions. It is intended for isolated workspaces where the operator can review action lists, persistence settings, and optional watchdog behavior before enabling deeper automation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tensusds/turing-pyramid) <br>
-- [Tuning Guide](references/TUNING.md) <br>
-- [Architecture](references/architecture.md) <br>
-- [Deliberation Protocol](docs/DELIBERATION-PROTOCOL.md) <br>
-- [Continuation Design](docs/CONTINUATION-DESIGN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown/plain text guidance with shell commands and JSON-backed state/configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces action suggestions, gate status, audit/state files, follow-up records, and optional MINDSTATE.md continuity snapshots inside WORKSPACE.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.34.10 (source: target metadata, release metadata, _meta.json, CHANGELOG, SKILL.md footer) <br>
+Risk: The default action list can prompt credential or vault audits and external posting, messaging, feed, notification, or service actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review assets/needs-config.json before use and set weight: 0 for those action categories unless they are explicitly approved for the agent.
+
+Risk: The skill reads and writes inside WORKSPACE, so a broad or sensitive WORKSPACE can expose private files to local scans and audit outputs.
+
+Mitigation: Install it only in an isolated WORKSPACE that does not contain credentials, home-directory content, or unrelated sensitive material.
+
+Risk: Heartbeat and cron integration add persistence, and watchdog cleanup or process termination can affect local skill state when opt-in controls are enabled.
+
+Mitigation: Treat heartbeat and cron setup as opt-in persistence; keep allow_kill and allow_cleanup disabled until the watchdog behavior has been reviewed.
+
+## Reference(s):
+
+- [Turing Pyramid ClawHub Page](https://clawhub.ai/tensusds/skills/turing-pyramid)
+- [Architecture Reference](references/architecture.md)
+- [Tuning Guide](references/TUNING.md)
+- [Changelog](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text and Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs local action suggestions, status summaries, and follow-up commands; state and audit files are written inside WORKSPACE.]
+
+## Skill Version(s):
+
+1.34.10 (source: release evidence, _meta.json, CHANGELOG, and skill footer)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

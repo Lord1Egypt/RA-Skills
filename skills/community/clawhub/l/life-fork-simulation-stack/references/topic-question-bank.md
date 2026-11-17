@@ -1,5 +1,13 @@
 # 高频主题追问库
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
+## 追问前的隐私提示
+
+首次询问家庭、财务、健康或身份情况前，先说：“只需描述相关处境，可用化名、年龄段和大致范围，也可跳过任何问题。请避免发送证件号码、账号密码、精确住址、病历原件或第三人的私人记录。”
+
+敏感信息均可省略，不要求材料原件。已有信息足够时直接复盘。默认不额外保存个人资料、检索其他报告或写入长期记忆；聊天留存由宿主服务控制，无法承诺零留存或删除。用户需要导出时，仅保存明确授权的当前报告，并提醒其留意文件中的个人经历。
+
 用于在 2-3 轮问答中快速建立用户画像。每次只选最相关的 3 个问题。
 
 ## 城市迁移：北京 / 上海 / 深圳 / 回老家

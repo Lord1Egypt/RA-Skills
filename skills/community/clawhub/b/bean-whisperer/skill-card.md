@@ -1,50 +1,66 @@
-## Description: <br>
-Generates, uploads, and manages espresso brew profiles for GaggiMate Pro on Rancilio Silvia from bean details or taste feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, explain, manage, and optionally deploy espresso brew profiles for GaggiMate Pro and compatible machines based on coffee bean details and taste feedback.
 
-## Publisher: <br>
-[zsiddique](https://clawhub.ai/user/zsiddique) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zsiddique](https://clawhub.ai/user/zsiddique)
 
-## Use Case: <br>
-External home espresso users and agent operators use Bean Whisperer to identify bean characteristics, select or generate a GaggiMate profile, review it, and optionally deploy or manage it on a connected machine. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change persistent machine settings by uploading, selecting, favoriting, or deleting GaggiMate profiles. <br>
-Mitigation: Require explicit user confirmation before push, select, favorite, or delete actions, and keep a local export of important profiles before changes. <br>
-Risk: Discord profile search may require a credential that could be exposed if stored carelessly. <br>
-Mitigation: Use the narrowest Discord credential possible and avoid storing a personal token in plaintext. <br>
-Risk: Downloaded or generated espresso profile JSON may be a poor fit for the specific bean or machine setup. <br>
-Mitigation: Review the JSON, temperature, dose, ratio, pressure or flow phases, and stop conditions with the user before uploading it. <br>
+## Use Case:
 
+External users and home espresso developers use this skill to turn bean photos, bean names, or shot-taste feedback into machine-ready GaggiMate profile JSON and profile-management commands.
 
-## Reference(s): <br>
-- [Bean Whisperer ClawHub listing](https://clawhub.ai/zsiddique/bean-whisperer) <br>
-- [Lance Hedrick methodology](references/lance-hedrick-methodology.md) <br>
-- [LLM barista persona](references/barista-persona.md) <br>
-- [Espresso knowledge base](references/espresso-knowledge.md) <br>
-- [Profile JSON schema](references/profile-schema.json) <br>
-- [GaggiMate WebSocket API](references/websocket-api.md) <br>
-- [GaggiMate profile documentation](https://docs.gaggimate.eu/docs/profiles/) <br>
-- [GaggiMate firmware](https://github.com/jniebuhr/gaggimate) <br>
-- [Lance Hedrick channel](https://www.youtube.com/@LanceHedrick) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON profile files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate, modify, list, export, upload, select, favorite, or delete GaggiMate profiles when the user approves the action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: Untrusted community profiles may contain unsuitable temperature, pressure, flow, duration, or stop values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually inspect and adjust every downloaded profile before saving, selecting, or pushing it to a machine.
+
+Risk: Profile push, select, favorite, or delete commands can alter machine state or remove profiles.
+
+Mitigation: Confirm the exact profile ID and intended action before running profile-management commands, and export or back up important profiles first.
+
+Risk: Discord profile search requires a credential.
+
+Mitigation: Provide a Discord credential only when necessary, keep it out of prompts and logs, and remove or rotate it when access is no longer needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zsiddique/skills/bean-whisperer)
+- [Lance Hedrick Methodology](references/lance-hedrick-methodology.md)
+- [LLM Barista Persona](references/barista-persona.md)
+- [Espresso Knowledge Base](references/espresso-knowledge.md)
+- [Profile JSON Schema](references/profile-schema.json)
+- [GaggiMate WebSocket API](references/websocket-api.md)
+- [GaggiMate](https://gaggimate.eu/)
+- [Lance Hedrick](https://www.youtube.com/@LanceHedrick)
+- [GaggiMate Profile Docs](https://docs.gaggimate.eu/docs/profiles/)
+- [GaggiMate Firmware](https://github.com/jniebuhr/gaggimate)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown explanations with JSON profile files and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce machine profile JSON, profile-management commands, and parameter guidance for review before deployment.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

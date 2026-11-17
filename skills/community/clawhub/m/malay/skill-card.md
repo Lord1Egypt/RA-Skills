@@ -1,38 +1,47 @@
-## Description: <br>
-Write Malay that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Malay that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and employees use this skill to make Malay writing sound casual, human, and more Malaysian, especially when informal rojak-style phrasing is appropriate. It should be reviewed when formal Malay, Indonesian usage, or professional register is required. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally pushes generated Malay toward casual Malaysian rojak-style language, which may be inappropriate for formal Malay, Indonesian usage, or professional contexts. <br>
-Mitigation: Review generated text against the intended audience and register, and request formal Malay or Indonesian wording explicitly when needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/malay) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
+
+External users and writers use this skill to make Malay text sound more natural, casual, and human-facing, especially for Malaysian Malay with appropriate register, particles, and English mixing.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill defaults to casual Malaysian Malay, which may be inappropriate for Indonesian Malay or formal contexts.
+
+Mitigation: Specify Indonesian Malay, formal baku Malay, or another target register when that is required.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language Malay writing guidance and rewritten text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, installation steps, data access, or persistence are described in the release security evidence.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text writing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to casual Malaysian Malay unless the user specifies Indonesian Malay or a formal register.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

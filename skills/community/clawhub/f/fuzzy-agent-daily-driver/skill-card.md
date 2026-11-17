@@ -1,44 +1,54 @@
-## Description: <br>
-The 6 core workflows every OpenClaw agent uses every day: recall, spawn, schedule, research, delegate, and monitor-update. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The 6 core workflows every OpenClaw agent uses every day: recall, spawn, schedule, research, delegate, and monitor-update.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-Developers and agent builders use this skill as a daily-driver workflow reference for memory recall, subagent spawning, scheduling, research, delegation, and progress monitoring in OpenClaw-style agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Memory notes and workspace files may capture sensitive details if used carelessly. <br>
-Mitigation: Keep secrets out of MEMORY.md, USER.md, TOOLS.md, and daily notes; review what is written before preserving it. <br>
-Risk: Scheduled jobs, spawned sessions, and background processes can keep acting after the initial turn. <br>
-Mitigation: Review cron jobs, spawned sessions, and running processes regularly, and remove jobs that are no longer needed. <br>
-Risk: Web lookups and outbound messages may expose sensitive topics or send updates to the wrong audience. <br>
-Mitigation: Require confirmation before sensitive web searches or external channel messages. <br>
+## Use Case:
 
+Developers and agent builders use this skill as a pattern reference for daily OpenClaw workflows, including memory recall, background work, scheduled tasks, research, delegation, and session updates.
 
-## Reference(s): <br>
-- [Memory Patterns](references/memory-patterns.md) <br>
-- [Session Patterns](references/session-patterns.md) <br>
-- [ClawHub release page](https://clawhub.ai/fuzzyb33s/fuzzy-agent-daily-driver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline JavaScript-style tool-call examples, checklists, and reference tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow reference; no executable scripts or detected credential variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill encourages routine long-term memory access and updates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply local rules for consent, memory minimization, and limiting sensitive memory use to appropriate sessions.
+
+Risk: The skill describes background execution, scheduled jobs, delegation, and external messaging.
+
+Mitigation: Require user approval for external messages, review command safety before execution, and clean up cron jobs or long-running sessions when they are no longer needed.
+
+## Reference(s):
+
+- [Memory Patterns](references/memory-patterns.md)
+- [Session Patterns](references/session-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JavaScript-style tool call examples, checklists, and reference tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides reusable workflow patterns rather than executable automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

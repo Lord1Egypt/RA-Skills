@@ -1,41 +1,53 @@
-## Description: <br>
-Book massage services through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Massage helps users find massage services and book appointments through Lokuli's MCP server.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users use this skill to search for massage services, check provider availability, and create a booking through Lokuli when they are ready to provide contact details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A booking may be created with the wrong provider, service, appointment time, or contact details. <br>
-Mitigation: Confirm the provider, service, appointment time, and contact details with the user before creating a booking. <br>
-Risk: The booking flow requests personal contact information. <br>
-Mitigation: Only provide personal information the user is comfortable sharing with Lokuli or the selected massage provider. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
-- [ClawHub release page](https://clawhub.ai/edwardrodriguez703-design/book-massage) <br>
-- [Publisher profile](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+## Use Case:
 
+External users use this skill to search for massage providers, check availability, and create bookings through Lokuli's MCP service.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance] <br>
-**Output Format:** [Text with JSON-RPC tool call parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces booking workflow guidance and MCP tool-call arguments for search, availability checks, and booking creation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Searches and bookings are sent to Lokuli's external MCP service.
+
+Mitigation: Tell users when an external service is being used and confirm they want to continue before sending booking requests.
+
+Risk: Completing a booking may share personal contact details and appointment selections.
+
+Mitigation: Confirm customer name, email, phone number, selected provider, service, and time slot before submitting a booking.
+
+## Reference(s):
+
+- [Book Massage ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/skills/book-massage)
+- [Lokuli MCP SSE endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, JSON]
+
+**Output Format:** [Markdown with JSON-RPC examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Lokuli MCP search, check_availability, and create_booking calls; booking may require customer contact details.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

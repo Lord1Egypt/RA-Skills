@@ -1,39 +1,51 @@
-## Description: <br>
-Retrieves relevant wiki, Feishu, or uploaded documents for knowledge-base query tasks by narrowing candidates with filenames and file contents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI agent for wiki retriever tasks.
 
-## Publisher: <br>
-[urrrich](https://clawhub.ai/user/urrrich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[urrrich](https://clawhub.ai/user/urrrich)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve the most relevant knowledge-base or uploaded documents for a user's query. It is intended to submit a focused set of matching files, capped at 10 documents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may expose private or unrelated documents if it is run in a workspace containing sensitive files outside the intended retrieval scope. <br>
-Mitigation: Install and run it only where the agent may inspect the relevant wiki, Feishu, or uploaded documents, and keep unrelated confidential files out of scope. <br>
-Risk: File-reading code could access unintended local files if Python use is not constrained to declared uploads. <br>
-Mitigation: Limit Python file access to files listed in the runtime upload_files parameter and use the uploaded filenames directly. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/urrrich/wiki-retriever) <br>
+## Use Case:
+
+External users and agents use this skill to identify the most relevant wiki or uploaded documents for a knowledge-base query, narrowing candidates by file names and then confirming relevance by reading file contents before submission.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may inspect wiki and user-uploaded files in a workspace containing sensitive uploads.
+
+Mitigation: Use it only for intended document retrieval tasks and review the workspace contents before activation when sensitive files may be present.
+
+Risk: Broad retrieval requests can produce too many candidate documents or include irrelevant files.
+
+Mitigation: Narrow results by reading document contents, limit final submissions to 10 documents, and ask the user for clarification when the scope remains too broad.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text guidance with selected attached files submitted through the runtime tool] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Final retrieved document set is limited to a maximum of 10 files.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [guidance, tool calls, files]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with selected attached files submitted through the retrieval workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Submits at most 10 finally selected documents and asks for clarification when the scope cannot be narrowed below that limit.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

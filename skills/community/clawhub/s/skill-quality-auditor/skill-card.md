@@ -1,45 +1,61 @@
-## Description: <br>
-Evaluate and score AgentSkills on design, content, security, and usability, producing a detailed numeric scorecard with improvement suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate and score AgentSkills on design, content, security, and usability, producing a detailed numeric scorecard with improvement suggestions.
 
-## Publisher: <br>
-[ann0501](https://clawhub.ai/user/ann0501) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ann0501](https://clawhub.ai/user/ann0501)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to audit AgentSkills before release or revision. It produces a rubric-based pass or revise report with dimension scores, cited findings, and improvement suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reviewing an overly broad path may expose unrelated local files to the agent during the audit. <br>
-Mitigation: Provide the exact skill folder as the review target, not a repository root or home directory. <br>
-Risk: Rubric-based findings may miss context or produce incorrect revision guidance for a specific release policy. <br>
-Mitigation: Have a maintainer review the scorecard and confirm cited issues before changing or rejecting a skill. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to audit AgentSkill packages before release. It produces a four-dimension quality scorecard with pass-or-revise guidance and concrete improvement suggestions.
 
-## Reference(s): <br>
-- [Skill release page](https://clawhub.ai/ann0501/skill-quality-auditor) <br>
-- [Weight Adjustment by Skill Type](references/weight-adjustment.md) <br>
-- [D1: Design Quality](references/design-quality.md) <br>
-- [D2: Content Quality](references/content-quality.md) <br>
-- [D3: Security](references/security.md) <br>
-- [D4: Usability](references/usability.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown scorecard with numeric ratings and remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes pass or revise verdict, weighted dimension scores, cited findings, highlights, and improvement criteria.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads the contents of the skill package being reviewed, so sensitive files in that package may enter the review context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Point it only at intended skill directories and remove secrets or unrelated private files before review.
+
+Risk: The default report examples are Chinese-formatted, which may not match every reviewer or release workflow.
+
+Mitigation: Specify the desired report language or adapt the output template before using the result with another audience.
+
+Risk: Rubric-based quality findings may miss project-specific policy, legal, or release requirements.
+
+Mitigation: Use the scorecard as release-review input alongside human review and the platform's security evidence.
+
+## Reference(s):
+
+- [Weight Adjustment](references/weight-adjustment.md)
+- [Design Quality](references/design-quality.md)
+- [Content Quality](references/content-quality.md)
+- [Security](references/security.md)
+- [Usability](references/usability.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style scorecard with numeric ratings and improvement suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default report examples are Chinese-formatted unless the user requests another output language.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

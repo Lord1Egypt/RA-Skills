@@ -1,44 +1,58 @@
-## Description: <br>
-Alibaba International Station weekly business report analysis skill. Retrieves store weekly report data via browser session, validates, and presents structured diagnostics with on-demand deep report access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alibaba International Station weekly business report analysis skill. Retrieves store weekly report data via browser session, validates, and presents structured diagnostics with on-demand deep report access.
 
-## Publisher: <br>
-[simoncai519](https://clawhub.ai/user/simoncai519) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simoncai519](https://clawhub.ai/user/simoncai519)
 
-## Use Case: <br>
-External Alibaba International Station sellers and e-commerce operators use this skill to retrieve weekly store-report data through an authenticated browser session, validate the response, and receive structured diagnostics with on-demand follow-up analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads private Alibaba International Station business reports from the currently logged-in browser account. <br>
-Mitigation: Use a limited browser profile or limited account, confirm each fetch explicitly, and avoid accounts containing data that should not be exposed to the agent session. <br>
-Risk: Detailed report retrieval can expose broader account data than the initial summary. <br>
-Mitigation: Fetch the full report only after summary validation succeeds and keep follow-up analysis limited to explicit user questions. <br>
-Risk: Repeated or automated requests may trigger throttling, system-busy responses, or unreliable report access. <br>
-Mitigation: Limit report API calls to at most once per minute per user and stop or retry gently when Alibaba returns unavailable responses. <br>
+## Use Case:
 
+External sellers and e-commerce operators use this skill to retrieve Alibaba International Station weekly store reports, review store metrics, diagnostics, and merchant tasks, and ask follow-up questions about detailed report data.
 
-## Reference(s): <br>
-- [Workflow details](references/workflow.md) <br>
-- [ClawHub skill page](https://clawhub.ai/simoncai519/alibaba-store-analysis) <br>
-- [Alibaba International Station dashboard](https://i.alibaba.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Markdown with tables, bullet lists, report links, and concise follow-up answers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the current authenticated Alibaba browser session; retrieves summary data first and detailed report data only after validation succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can expose private Alibaba store analytics, report tokens, merchant tasks, and business diagnostics in the agent conversation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with Alibaba accounts whose business metrics may be shown to the agent, and avoid using it on sensitive accounts unless that disclosure is acceptable.
+
+Risk: The workflow depends on the user's logged-in Alibaba browser session to retrieve report data.
+
+Mitigation: Confirm the active Alibaba account before running the skill and stop if the browser is logged in to the wrong account.
+
+Risk: Missing or unavailable Alibaba report data can lead to incomplete analysis.
+
+Mitigation: Use the skill's validation and fallback behavior; provide screenshots or key metrics manually when the weekly report system has no data.
+
+## Reference(s):
+
+- [Workflow details](references/workflow.md)
+- [ClawHub skill page](https://clawhub.ai/simoncai519/skills/alibaba-store-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with metric tables, diagnostic summaries, task bullet lists, report links, and concise answers to follow-up questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the user's authenticated Alibaba browser session and avoids proactively dumping the full report JSON after retrieval.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

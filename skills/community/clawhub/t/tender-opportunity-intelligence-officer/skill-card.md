@@ -1,44 +1,60 @@
-## Description: <br>
-An agent skill for procurement opportunity intelligence, expiring-project discovery, competitor tracking, company analysis, and market research using Zhiliaobiaoxun tender data APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助用户发现临期续约商机、分析竞争对手、定位潜在客户和供应商，并监控招投标动态。
 
-## Publisher: <br>
-[zhiliaobiaoxun](https://clawhub.ai/user/zhiliaobiaoxun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhiliaobiaoxun](https://clawhub.ai/user/zhiliaobiaoxun)
 
-## Use Case: <br>
-Sales, business development, channel, and market-intelligence teams use this skill to find near-term tender opportunities, track competitor wins, identify potential customers or bidders, and analyze procurement trends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can register a device with an external service when no API key is configured, sending device-identifying metadata during first use. <br>
-Mitigation: Prefer manually creating an account and setting ZLBX_API_KEY before use; use the automatic registration path only after accepting the device-binding behavior. <br>
-Risk: The skill can write an API key to ~/.zlbx/config.json for later reuse. <br>
-Mitigation: Protect the local configuration file, avoid sharing it, and remove or rotate the stored key if the environment is shared or no longer trusted. <br>
+## Use Case:
 
+销售、投标和市场情报团队可用它检索招投标公告、识别续约机会、分析企业及竞对，并梳理采购市场趋势。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhiliaobiaoxun/skills/tender-opportunity-intelligence-officer) <br>
-- [Bid search API reference](references/api-search.md) <br>
-- [Company analysis API reference](references/api-company.md) <br>
-- [Market analysis API reference](references/api-market.md) <br>
-- [Automatic registration flow](references/auto-register.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with API-backed tender intelligence, JSON request and response snippets, and concise operational guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or write a local API-key configuration file and call external Zhiliaobiaoxun APIs when no user-provided API key is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Searches send company names and query criteria to Zhiliaobiaoxun and can consume account credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use focused queries, check account balance and consumption when needed, and avoid fetching unrelated company data.
+
+Risk: Optional trial registration may use a device hash, and the skill stores an API key and can return login links.
+
+Mitigation: Use an existing API key when available, review and approve the registration consent prompt before proceeding, and keep saved credentials and generated links private.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/zhiliaobiaoxun/skills/tender-opportunity-intelligence-officer)
+- [招投标搜索 API 指南](references/api-search.md)
+- [企业分析 API 指南](references/api-company.md)
+- [市场分析 API 指南](references/api-market.md)
+- [工商数据口径与解读边界](references/api-registry.md)
+- [账户查询 API 指南](references/api-account.md)
+- [API Key 自动注册与授权说明](references/auto-register.md)
+- [知了标讯 Skill 文档](https://ai.zhiliaobiaoxun.com/docs/skill)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, Markdown]
+
+**Output Format:** [Markdown summaries and result tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings depend on the selected search criteria and available account credits.]
+
+## Skill Version(s):
+
+1.0.10 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

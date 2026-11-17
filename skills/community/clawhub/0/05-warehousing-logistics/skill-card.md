@@ -1,40 +1,54 @@
-## Description: <br>
-A community group-buying warehousing and logistics skill pack covering delivery-mode selection, warehouse and distribution design, timeliness management, cost control, SOPs, calculators, and exception-handling templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance for community group-buying warehousing and logistics fulfillment, covering delivery mode selection, warehouse-distribution design, timeliness management, cost control, and practical tools.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Platform operations leads and logistics managers use this skill to plan and assess warehouse-to-group-leader fulfillment, including delivery models, cold-chain controls, routing efficiency, cost break-even, and exception handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Operational recommendations may be applied to real customer, order, routing, lease, refund, recall, or vendor decisions without adequate review. <br>
-Mitigation: Use the skill as planning guidance only; require human approval before route changes, warehouse leases, refunds, recalls, or vendor decisions. <br>
-Risk: Customer-level, address, phone, or order-level data could be exposed if copied into third-party tools while applying the guidance. <br>
-Mitigation: Avoid entering unnecessary customer, address, phone, or order-level data into third-party tools; use aggregated or anonymized operational data where possible. <br>
+## Use Case:
 
+Platform operations managers and logistics professionals use this skill to plan and evaluate community group-buying warehouse-to-group-leader fulfillment, including delivery models, site selection, cost control, timeliness monitoring, exception handling, and supporting calculators.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/05-warehousing-logistics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with Python code blocks and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local calculator examples and planning templates; no hidden install-time or runtime access reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Benchmark costs, logistics formulas, and operational thresholds may not match the user's market, season, vendor contracts, or delivery density.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate formulas and benchmark numbers against current local operating data before making financial, staffing, routing, or warehouse decisions.
+
+Risk: Embedded calculator examples can produce estimates that depend heavily on user-provided assumptions.
+
+Mitigation: Review calculator inputs, assumptions, and outputs with operations or finance owners before using them for production planning.
+
+## Reference(s):
+
+- [Artifact skill definition](artifact/SKILL.md)
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/05-warehousing-logistics)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Text]
+
+**Output Format:** [Markdown guidance with embedded Python calculator examples and operational templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language operational playbook with formulas, checklists, SOPs, and exception-handling scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

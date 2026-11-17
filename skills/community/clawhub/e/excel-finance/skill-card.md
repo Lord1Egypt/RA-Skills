@@ -1,43 +1,58 @@
-## Description: <br>
-Excel Finance helps agents provide Excel financial model templates and automated financial reporting guidance. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Presents Excel finance model templates and sample automation workflows for financial statements, forecasts, and sensitivity analysis.
 
-## Publisher: <br>
-[alsoforever](https://clawhub.ai/user/alsoforever) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alsoforever](https://clawhub.ai/user/alsoforever)
 
-## Use Case: <br>
-Finance, data analysis, and reporting users can use this skill to draft Excel-oriented financial models, report templates, forecasts, and sensitivity-analysis workflows. It is best treated as a lightweight helper for examples and planning rather than a verified workbook generator. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may assume this version creates production-ready Excel workbooks even though the security guidance describes it as a lightweight demo or placeholder. <br>
-Mitigation: Verify that any generated workbook exists and contains the expected formulas, data, and sheets before using it for financial decisions. <br>
-Risk: Spreadsheet output paths could overwrite important files if a future version writes files using broad or ambiguous paths. <br>
-Mitigation: Choose explicit output paths, keep backups of important spreadsheets, and review file writes before running the skill in a work directory. <br>
+## Use Case:
 
+External users and finance practitioners can ask an agent for finance-model template guidance, sample report workflows, and sensitivity-analysis examples. Because the security review says the bundled code only prints canned messages, users should verify any claimed workbook output before relying on it.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alsoforever/excel-finance) <br>
-- [Excel financial model tutorial](https://aigogoai.com/knowledge/excel-models) <br>
-- [Financial forecasting methods](https://aigogoai.com/knowledge/financial-forecasting) <br>
-- [Sensitivity analysis guide](https://aigogoai.com/knowledge/sensitivity-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with Python code examples and terminal text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script prints model, report, and sensitivity-analysis status messages and example output paths; this version should be verified before relying on generated spreadsheet files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill may report successful workbook or report generation without creating actual Excel files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that expected output files exist and contain usable worksheets before relying on the result.
+
+Risk: Users may treat canned financial assumptions or valuation figures as calculated analysis.
+
+Mitigation: Review all assumptions, formulas, and source data independently before using outputs in financial decisions.
+
+## Reference(s):
+
+- [ClawHub Excel Finance Skill](https://clawhub.ai/alsoforever/skills/excel-finance)
+- [Publisher profile: alsoforever](https://clawhub.ai/user/alsoforever)
+- [AIGoGo homepage](https://aigogoai.com)
+- [Excel finance model tutorial](https://aigogoai.com/knowledge/excel-models)
+- [Financial forecasting methods](https://aigogoai.com/knowledge/financial-forecasting)
+- [Sensitivity analysis guide](https://aigogoai.com/knowledge/sensitivity-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Text]
+
+**Output Format:** [Markdown guidance with Python examples and terminal output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bundled Python script prints canned finance-model, report, and sensitivity-analysis messages and does not create workbook files.]
+
+## Skill Version(s):
+
+1.0.0 (source: target metadata, release evidence, frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,49 @@
-## Description: <br>
-中文社交媒体内容生成器。一键生成适合掘金/知乎/公众号/小红书的文章、标题、摘要。支持热点追踪、SEO优化。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中文社交媒体内容生成器。一键生成适合掘金/知乎/公众号/小红书的文章、标题、摘要。支持热点追踪、SEO优化。
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-External Chinese content creators and developers use this skill to draft articles, titles, summaries, outlines, and topic ideas for Juejin, Zhihu, WeChat Official Accounts, and Xiaohongshu. It also supports headline optimization and trending-topic discovery for social media planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Article topics, titles, or other entered content may be sent to DeepSeek when API-backed generation or title optimization is used. <br>
-Mitigation: Avoid confidential business plans, client names, personal data, unpublished sensitive work, or other restricted content unless that use is acceptable under the operator's data-handling rules. <br>
-Risk: Trending-topic results can come from live platform APIs or fallback sample data, so they may be stale or incomplete. <br>
-Mitigation: Review topics before publication and verify time-sensitive claims against the target platform or another current source. <br>
+## Use Case:
 
+Chinese content creators and developers use this skill to draft platform-specific Chinese articles, titles, summaries, tags, trend ideas, and headline suggestions for Juejin, Zhihu, WeChat Official Accounts, and Xiaohongshu.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yang1002378395-cmyk/chinese-content-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Console text and Markdown-style content suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated content depends on user-provided topics or titles and, when configured, DeepSeek API responses; trending output may include live Juejin data or fallback sample topics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Prompts, titles, and generated content requests may be sent to DeepSeek, and trend lookup may contact Juejin.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated DeepSeek API key with limited billing exposure, avoid submitting sensitive content, and install a pinned skill version rather than @latest.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/chinese-content-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Console text and Markdown-style content outlines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require a DEEPSEEK_API_KEY and may contact DeepSeek and Juejin APIs during use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

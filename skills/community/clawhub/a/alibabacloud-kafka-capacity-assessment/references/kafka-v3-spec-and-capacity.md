@@ -128,7 +128,7 @@ In the formulas below, `F` = reserved capacity (MB/s), `//` = integer division (
 
 ## 5. Disk Cleanup Policy
 
-**Serverless instances** always delete messages according to the user-configured TTL; no disk-utilization-triggered forced cleanup applies. Disk cleanup policy is not a concern, but watch for abnormally rising disk utilization that may cause messages to expire earlier than expected.
+**Serverless instances** always delete messages according to the user-configured TTL; no diREDACTED-SECRET forced cleanup applies. Disk cleanup policy is not a concern, but watch for abnormally rising disk utilization that may cause messages to expire earlier than expected.
 
 ---
 

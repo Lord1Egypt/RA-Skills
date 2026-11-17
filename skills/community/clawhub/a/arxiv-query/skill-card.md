@@ -1,40 +1,54 @@
-## Description: <br>
-Search and summarize papers from ArXiv when the user asks for the latest research, specific topics on ArXiv, or a daily summary of AI papers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and summarize papers from ArXiv. Use when the user asks for the latest research, specific topics on ArXiv, or a daily summary of AI papers.
 
-## Publisher: <br>
-[codekungfu](https://clawhub.ai/user/codekungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Developers, researchers, and research-focused teams use this skill to search ArXiv by keyword, author, or category, summarize paper abstracts, and keep a local research log of discussed papers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries are sent to ArXiv, which may expose sensitive or confidential research interests. <br>
-Mitigation: Use non-confidential queries unless the user is comfortable sending the terms to ArXiv. <br>
-Risk: Discussed paper details are saved locally in memory/RESEARCH_LOG.md. <br>
-Mitigation: Review, redact, or delete the research log before sharing the workspace or using the skill with confidential research. <br>
+## Use Case:
 
+Developers, researchers, and other users can use this skill to search ArXiv by keyword, author, or category, summarize abstracts, and keep a research log of discussed papers.
 
-## Reference(s): <br>
-- [ArXiv API query endpoint](https://export.arxiv.org/api/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands] <br>
-**Output Format:** [Markdown summaries with shell command usage and local research-log entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May query the ArXiv API and append summarized paper details to memory/RESEARCH_LOG.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can automatically append discussed paper details to memory/RESEARCH_LOG.md, creating a long-term research log that may include sensitive or proprietary topics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review, edit, or disable the research log before use, and avoid sensitive or proprietary queries when persistent memory cannot be controlled.
+
+Risk: Saved paper titles, abstracts, and summaries are external research data and may be incomplete, misleading, or stale.
+
+Mitigation: Treat saved research notes as untrusted reference data and verify important claims against the source paper before acting on them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codekungfu/skills/arxiv-query)
+- [ArXiv API Query Endpoint](https://export.arxiv.org/api/query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown research summaries with optional shell commands and saved log entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append discussed paper titles, authors, dates, links, and summaries to memory/RESEARCH_LOG.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

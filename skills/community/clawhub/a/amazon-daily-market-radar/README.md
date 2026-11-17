@@ -1,4 +1,4 @@
-# Amazon Daily Market Radar — APIClaw Agent Skill
+# Amazon Daily Market Radar — ZooData Agent Skill
 
 > Set it. Forget it. Get alerted when it matters.
 
@@ -16,26 +16,37 @@ Automated daily monitoring and alert system for Amazon sellers. Tracks your ASIN
 ## Install
 
 ```bash
-npx skills add SerendipityOneInc/APIClaw-Skills
+npx skills add SerendipityOneInc/ZooData-Skills
 ```
 
 Select **Amazon Daily Market Radar** when prompted.
 
 ## API Key Setup
 
-1. Get a free key at [apiclaw.io/api-keys](https://apiclaw.io/en/api-keys) — 1,000 free credits, no credit card
+1. Get a free key at [zoodata.ai/api-keys](https://zoodata.ai/en/api-keys) — 1,000 free credits, no credit card
 2. Set the environment variable:
    ```bash
-   export APICLAW_API_KEY='hms_live_xxxxxx'
+   export ZOODATA_API_KEY='hms_live_xxxxxx'
    ```
+
+## Data & Privacy
+
+- Each run sends your tracked ASINs, competitor ASINs, keywords, category paths, and marketplace/date/numeric filters to the ZooData API (`api.zoodata.ai`). Because this skill is designed for scheduled, unattended execution, that transmission recurs on every scheduled run.
+- Nothing else is transmitted: no budget, seller-account, or free-text profile data leaves your machine.
+- Local state: `watchlist.json` and the `last-run.json` baseline under the skill's `data/` folder persist between runs for day-over-day comparison. Delete the folder anytime to reset monitoring and remove the retained data.
+- Baselines and scheduled runs are only established on your explicit request — never from a vague or merely related question — and recurring monitoring always requires your explicit opt-in. Every API call consumes account credits.
 
 ## Example Prompts
 
-- *"Set up daily monitoring for my ASINs: B0XXXXXXXX, B0YYYYYYYY"*
+The skill activates on explicit monitoring requests like these — it does not
+self-trigger on vague update questions, and recurring monitoring always
+requires your explicit opt-in:
+
+- *"Set up daily market monitoring for my ASINs: B0XXXXXXXX, B0YYYYYYYY"*
 - *"Set up daily market monitoring for keyword 'yoga mat', track these 3 ASINs"*
-- *"What changed in my market since yesterday?"*
+- *"Run my daily market radar — what changed since yesterday?"*
 - *"Run a daily radar check on my tracked products"*
-- *"Any updates on my competitors?"*
+- *"Run the daily radar and report competitor changes"*
 
 ## What You Get
 
@@ -72,4 +83,4 @@ Select **Amazon Daily Market Radar** when prompted.
 
 ## Powered By
 
-[APIClaw](https://apiclaw.io) — The data infrastructure built for agents. 200M+ Amazon products, 1B+ reviews, real-time signals.
+[ZooData](https://zoodata.ai) — The data infrastructure built for agents. 200M+ Amazon products, 1B+ reviews, real-time signals.

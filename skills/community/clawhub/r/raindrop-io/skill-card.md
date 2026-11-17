@@ -1,38 +1,52 @@
-## Description: <br>
-Raindrop Io is an unfinished placeholder for a future Raindrop.io bookmark-management skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage, organize, and access bookmarks and saved webpages using Raindrop.io integration for content collection and retrieval.
 
-## Publisher: <br>
-[beto621](https://clawhub.ai/user/beto621) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[beto621](https://clawhub.ai/user/beto621)
 
-## Use Case: <br>
-Developers and agent users would use this skill to manage, organize, and retrieve Raindrop.io bookmarks once the workflow is completed. The current release is placeholder documentation and does not yet document account actions, token handling, or concrete bookmark operations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact is an unfinished placeholder and may not help manage Raindrop.io bookmarks yet. <br>
-Mitigation: Install only with that limitation in mind and wait for completed workflow documentation before relying on account actions. <br>
-Risk: Future Raindrop.io account workflows may require sensitive tokens or credentials. <br>
-Mitigation: Do not provide Raindrop.io tokens until a completed version clearly documents access requirements and handling expectations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and developers would use this skill to manage and retrieve Raindrop.io bookmarks from an agent. The published artifact is placeholder documentation and does not yet define a real workflow, trigger conditions, or integration boundaries.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or sensitive access behavior is documented in the current artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The artifact is placeholder documentation and does not define a usable Raindrop.io workflow or boundaries.
+
+Mitigation: Complete the description, trigger conditions, workflow, and boundaries before relying on the skill.
+
+Risk: Users may assume the skill performs a tested Raindrop.io integration even though no executable behavior or API handling is present.
+
+Mitigation: Treat the release as documentation-only until concrete integration steps are added and reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/beto621/skills/raindrop-io)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable outputs are defined in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

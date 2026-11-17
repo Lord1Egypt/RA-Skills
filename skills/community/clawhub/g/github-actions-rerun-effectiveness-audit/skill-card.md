@@ -1,42 +1,53 @@
-## Description: <br>
-Audit GitHub Actions rerun dependency and success-after-rerun effectiveness to highlight workflows wasting CI time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit GitHub Actions rerun dependency and success-after-rerun effectiveness to highlight workflows wasting CI time.
 
-## Publisher: <br>
-[daniellummis](https://clawhub.ai/user/daniellummis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daniellummis](https://clawhub.ai/user/daniellummis)
 
-## Use Case: <br>
-Developers and CI maintainers use this skill to audit GitHub Actions run exports, quantify rerun dependency and recovery effectiveness, and optionally gate CI when critical rerun patterns appear. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: GitHub Actions exports and generated reports may include repository names, actors, branches, commit SHAs, and run URLs. <br>
-Mitigation: Treat reports as internal CI metadata and share them only with authorized users. <br>
-Risk: A broad RUN_GLOB can include unintended GitHub Actions export files. <br>
-Mitigation: Scope RUN_GLOB to the intended export directory before running the audit. <br>
-Risk: The skill can analyze CI data the operator is not authorized to review if supplied with those exports. <br>
-Mitigation: Use the skill only with GitHub Actions exports the operator is allowed to analyze. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daniellummis/github-actions-rerun-effectiveness-audit) <br>
-- [Publisher profile](https://clawhub.ai/user/daniellummis) <br>
+## Use Case:
 
+Developers and CI engineers use this skill to audit exported GitHub Actions run data for workflows that frequently require reruns, recover poorly after reruns, or spend extra CI minutes on ineffective rerun attempts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with bash examples; runtime reports are text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text mode prints summary and ranked workflow groups; JSON mode prints summary, ranked groups, all groups, and critical groups.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads every local JSON file matched by RUN_GLOB and can include selected GitHub Actions run metadata in its report.
+
+Mitigation: Keep RUN_GLOB scoped to the intended CI export directory and review generated reports before sharing them.
+
+Risk: When FAIL_ON_CRITICAL=1, critical rerun metrics can cause the command to exit with status 1.
+
+Mitigation: Tune the warning and critical thresholds for the repository before enabling the fail gate in CI.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daniellummis/skills/github-actions-rerun-effectiveness-audit)
+- [Publisher profile](https://clawhub.ai/user/daniellummis)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Text report or JSON report with summary, ranked workflow groups, and critical groups.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May exit with status 1 when FAIL_ON_CRITICAL=1 and critical workflow groups are found.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

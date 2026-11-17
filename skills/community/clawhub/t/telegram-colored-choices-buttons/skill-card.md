@@ -1,45 +1,59 @@
-## Description: <br>
-Automatically colors Telegram bot choice buttons as default, destructive, or secondary based on action criticality and reversibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically colors Telegram bot choice buttons as default, destructive, or secondary based on action criticality and reversibility.
 
-## Publisher: <br>
-[dandysuper](https://clawhub.ai/user/dandysuper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dandysuper](https://clawhub.ai/user/dandysuper)
 
-## Use Case: <br>
-Developers building Telegram or Openclaw bot flows use this skill to classify choice buttons and generate inline or reply keyboard payloads whose visual style reflects recommended, low-priority, or high-stakes actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bot tokens may be exposed or misused if copied into shared files or logs. <br>
-Mitigation: Keep BOT_TOKEN private, prefer environment variables or a local .env file, and use a test bot token while evaluating the skill. <br>
-Risk: The setup script writes scaffold files into the selected project directory and can overwrite files with the same names. <br>
-Mitigation: Run setup in a fresh directory or review the target path before execution. <br>
-Risk: Unpinned Python dependencies can change behavior over time. <br>
-Mitigation: Pin dependency versions before production use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dandysuper/telegram-colored-choices-buttons) <br>
-- [Publisher profile](https://clawhub.ai/user/dandysuper) <br>
-- [Telegram Bot API](https://core.telegram.org/bots/api) <br>
-- [Telegram Bot API changelog](https://core.telegram.org/bots/api-changelog) <br>
-- [Telegram blog announcement](https://telegram.org/blog/crafting-android-design-and-more) <br>
+## Use Case:
 
+Developers building Telegram bots use this skill to classify multi-choice buttons by consequence and generate button payloads or helper code with appropriate default, destructive, and secondary styling.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON, Python, and Bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes helper behavior that can call the Telegram Bot API and a setup script that scaffolds local bot project files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bot tokens can be exposed if passed through shell history, process lists, logs, or committed environment files.
+
+Mitigation: Provide BOT_TOKEN through protected environment handling, keep .env out of version control, and avoid printing or storing secrets in shared logs.
+
+Risk: Generated dependency constraints allow newer package versions, which can change behavior over time.
+
+Mitigation: Pin dependency versions before production use and review updates during maintenance.
+
+Risk: The helper scripts can send Telegram test messages to the configured chat.
+
+Mitigation: Confirm the bot token and chat ID before execution, and test in a dedicated chat before using production channels.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/dandysuper/skills/telegram-colored-choices-buttons)
+- [Telegram Bot API](https://core.telegram.org/bots/api)
+- [Telegram Bot API Changelog](https://core.telegram.org/bots/api-changelog)
+- [Telegram Blog Announcement](https://telegram.org/blog/crafting-android-design-and-more)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON, Python, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May scaffold a Telegram bot project with a .env template, requirements file, and Python helper module.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Remind Me creates, lists, and cancels channel-scoped one-time or recurring reminders, using timezone-aware scheduling to deliver reminders back to the originating chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, list, and cancel channel-scoped reminders and cron jobs with automatic channel, chat, and timezone handling.
 
-## Publisher: <br>
-[youpele52](https://clawhub.ai/user/youpele52) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youpele52](https://clawhub.ai/user/youpele52)
 
-## Use Case: <br>
-External users and agents use this skill to schedule, review, and cancel chat-based reminders or recurring jobs after confirming reminder content, schedule, delivery context, and timezone. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The cancel feature can delete reminders without verifying they belong to the current chat. <br>
-Mitigation: List reminders for the current channel and chat first, verify the reminder tag, and cancel only a matching scoped job. <br>
-Risk: Shared or multi-chat environments can expose reminders to unintended cancellation if channel context is not enforced. <br>
-Mitigation: Require channel and chat context for all cancel operations and prefer job IDs obtained from the scoped reminder list. <br>
-Risk: The skill may read USER.md for timezone and may update it when a timezone is missing. <br>
-Mitigation: Read only the timezone field needed for scheduling and update USER.md only after explicit user consent. <br>
+## Use Case:
 
+External users and developers use this skill to create, inspect, and cancel reminders or recurring cron jobs from chat while preserving the originating channel and timezone context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/youpele52/remind-me-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/youpele52) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command invocations and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses channel and chat scoping tags plus timezone labels in reminder descriptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Cancellation by name or ID can remove reminders without verifying they belong to the current chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require channel and chat ownership checks before cancellation, especially in shared or multi-chat OpenClaw environments.
+
+Risk: Timezone preferences may be read from or saved to USER.md.
+
+Mitigation: Disclose timezone handling to users and confirm before saving a new timezone preference.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/youpele52/skills/remind-me-pro)
+- [Publisher Profile](https://clawhub.ai/user/youpele52)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces chat-facing reminder confirmations, reminder lists, cancellation results, and OpenClaw cron commands.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

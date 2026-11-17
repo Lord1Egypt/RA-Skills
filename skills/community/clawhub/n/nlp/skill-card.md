@@ -1,41 +1,58 @@
-## Description: <br>
-Process text with NLP for tokenization, sentiment analysis, entity extraction, summarization, and similarity measurement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Processes text for tokenization, sentiment analysis, entity extraction, summarization, similarity scoring, and classification.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and analysts use this skill to run local command-line text processing tasks, including quick document analysis, sentiment checks, entity extraction, summaries, similarity scoring, and keyword-based classification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running local shell tooling on chosen text or files can expose file contents through terminal output, including extracted emails, URLs, names, or other document details. <br>
-Mitigation: Use non-sensitive inputs when possible and handle generated output according to the applicable data handling policy. <br>
-Risk: Heuristic NLP results such as sentiment, summaries, classifications, and entity extraction can be incomplete or inaccurate. <br>
-Mitigation: Treat outputs as quick analysis aids and review important results before relying on them. <br>
+## Use Case:
 
+Developers and agents use this skill to perform local command-line text analysis on supplied text or files, including word counts, simple sentiment, entity extraction, extractive summaries, similarity scores, and keyword classification.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xueyetianya/nlp) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads inline text, files, or stdin and writes results to stdout/stderr; stateless.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.4.2 (source: server release metadata) <br>
+Risk: The server security summary reports that one summarization option can be abused to run arbitrary shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and run only in a constrained environment until --ratio validates numeric input and passes it to AWK as data.
+
+Risk: The server security guidance says JSON output should be treated as untrusted until proper escaping is implemented.
+
+Mitigation: Do not pipe --json output into trusted automation without independent validation or escaping.
+
+Risk: The server security guidance warns against feeding confidential or regulated documents unless local processing is approved.
+
+Mitigation: Use only approved local-processing environments for sensitive documents and avoid supplying confidential text otherwise.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/nlp)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text or JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are written to stdout or stderr; the skill is documented as stateless and processes provided text, files, or stdin locally.]
+
+## Skill Version(s):
+
+3.4.2 (source: server release metadata; artifact frontmatter says 3.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

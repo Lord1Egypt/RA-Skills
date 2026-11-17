@@ -1,45 +1,66 @@
-## Description: <br>
-Create interactive Telegram messages with inline buttons through the OpenClaw CLI for selections, confirmation dialogs, workflow menus, quick actions, callback handling, and message editing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create interactive Telegram messages with inline buttons using OpenClaw CLI for selections, confirmations, workflow menus, quick actions, callback handling, and message editing.
 
-## Publisher: <br>
-[NetanelRotem](https://clawhub.ai/user/NetanelRotem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanelrotem](https://clawhub.ai/user/netanelrotem)
 
-## Use Case: <br>
-Developers and automation operators use this skill to create Telegram inline-button interactions, including selection menus, confirmations, quick actions, callback acknowledgement, and message edits after a button is selected. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Telegram bot token can authorize message sending and editing in chats where the bot is present. <br>
-Mitigation: Keep the token out of git, prefer environment variables or secure OpenClaw configuration, rotate exposed tokens, and restrict the bot to chats you control. <br>
-Risk: Helper scripts send or edit Telegram messages using the target chat ID and message content supplied by the user. <br>
-Mitigation: Review scripts before running them and double-check chat IDs, message text, and example placeholders before using the skill in a live workspace. <br>
+## Use Case:
 
+Developers and automation builders use this skill to create Telegram bot messages with inline buttons, validate button JSON, and edit messages after callbacks to keep chat workflows clear.
 
-## Reference(s): <br>
-- [Telegram Interactive Buttons Reference](references/REFERENCE.md) <br>
-- [Setup Guide](SETUP.md) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [Telegram Bot API](https://core.telegram.org/bots/api) <br>
-- [BotFather](https://t.me/BotFather) <br>
-- [ClawHub Skill Page](https://clawhub.ai/NetanelRotem/telegram-interactive-buttons) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands, JSON snippets, and helper script references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OpenClaw, bash, and a Telegram bot token; python3 is optional for button JSON validation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Risk: Telegram bot tokens can grant message access for chats where the bot is installed if they are exposed through config files, shell history, or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the token in environment variables or secure configuration, keep it out of committed files and logs, and rotate tokens if exposure is suspected.
+
+Risk: Commands can send or edit messages in the wrong Telegram chat if placeholder chat IDs or targets are not replaced carefully.
+
+Mitigation: Use only bots and chats you control, verify the `telegram:CHAT_ID` target before running examples, and keep separate bots for development and production.
+
+Risk: Malformed or oversized button JSON can fail at send time or produce poor mobile usability.
+
+Mitigation: Validate button JSON before sending, keep standard menus to one to three buttons per row, and respect Telegram's documented eight-per-row and 100-total button limits.
+
+Risk: The backup/delete example describes a simulated message flow and could be mistaken for proof that file operations happened.
+
+Mitigation: Treat example confirmation messages as Telegram interaction demos, and implement and verify any real file operation outside this skill before claiming completion.
+
+## Reference(s):
+
+- [Telegram Interactive Buttons ClawHub page](https://clawhub.ai/netanelrotem/skills/telegram-interactive-buttons)
+- [Complete reference](references/REFERENCE.md)
+- [Setup guide](SETUP.md)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [Telegram Bot API](https://core.telegram.org/bots/api)
+- [BotFather](https://t.me/BotFather)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON button examples, and helper-script guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Telegram inline-button layouts and OpenClaw command patterns; requires OpenClaw, bash, Telegram bot configuration, and optional Python validation.]
+
+## Skill Version(s):
+
+1.1.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

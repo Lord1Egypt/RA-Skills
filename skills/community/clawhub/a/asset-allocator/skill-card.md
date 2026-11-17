@@ -1,43 +1,53 @@
-## Description: <br>
-根据生命周期、风险偏好、投资目标和资产规模，生成资产配置、基金配置、定投和再平衡建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+资产配置师 helps agents draft lifecycle-based asset allocation plans, periodic investment schedules, and rebalancing guidance.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users and agents use this skill to produce educational asset-allocation plans, including risk assessment, lifecycle allocation ratios, periodic investment plans, and rebalancing guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat educational allocation output as personalized financial, tax, or legal advice. <br>
-Mitigation: Present outputs as educational guidance, avoid collecting unnecessary personal financial details, and independently verify investment and tax implications before acting. <br>
-Risk: The optional Python calculator runs locally and may be executed without review. <br>
-Mitigation: Review the script before running it and execute it only in an environment where local script execution is acceptable. <br>
+## Use Case:
 
+External users and agents use this skill to create educational asset allocation examples based on age, risk tolerance, investment horizon, available assets, periodic investing, and rebalancing rules.
 
-## Reference(s): <br>
-- [Allocation Theory](references/allocation-theory.md) <br>
-- [Rebalance Calculator](calculators/rebalance-calculator.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lj22503/asset-allocator) <br>
-- [Publisher Profile](https://clawhub.ai/user/lj22503) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown guidance with optional JSON-style structures, tables, formulas, and local Python calculator output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces educational allocation and rebalancing content; it is not a substitute for professional financial, tax, or legal advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can produce actionable investment plans, including fund names, percentages, automatic-investing suggestions, and rebalancing instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational examples only and require independent review for math, taxes, fees, jurisdiction, liquidity needs, loss tolerance, and suitability.
+
+Risk: The calculator can recommend allocating more money than the user has.
+
+Mitigation: Check that total allocation amounts do not exceed available assets before using any generated plan.
+
+## Reference(s):
+
+- [资产配置参考](references/allocation-theory.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown guidance with tables, examples, JSON-like structures, and optional Python calculator output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational investment-planning output may include fund names, allocation percentages, rebalancing actions, and periodic investment amounts.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

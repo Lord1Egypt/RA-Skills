@@ -1,39 +1,54 @@
-## Description: <br>
-企业数据治理，数据质量 + 数据安全。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports enterprise data governance workflows covering data quality checks, permission management, standards, lineage tracking, and asset cataloging.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Data platform, governance, and security teams use this skill to guide enterprise data governance work across data quality checks, permission controls, standards, lineage, and asset cataloging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill artifact includes install steps that clone and run code from an external repository. <br>
-Mitigation: Review the external repository, requirements.txt, and app.py before running it or connecting real enterprise data sources. <br>
+## Use Case:
 
+Developers and enterprise data teams use this skill to evaluate or install an AI data governance system for data quality, access control, data standards, lineage tracking, and asset cataloging.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/yang1002378395-cmyk/ai-data-governance) <br>
-- [Installation repository referenced by skill artifact](https://github.com/openclaw-skills/ai-intelligent-data-governance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with feature lists, pricing notes, and bash install commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No packaged executable behavior in the skill artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, skill.json, and release evidence) <br>
+Risk: Install steps run unpinned code from an external GitHub repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the repository and dependencies before installing, pin to a known commit, and run in an isolated least-privilege environment.
+
+Risk: Documentation is too vague for sensitive enterprise data use.
+
+Mitigation: Do not connect production, regulated, or sensitive data sources until data handling, permissions, logging, and change behavior are clear.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-data-governance)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include installation commands for an external repository; no required local binaries are declared in metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, server release, artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

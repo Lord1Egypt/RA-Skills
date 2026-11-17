@@ -1,42 +1,61 @@
-## Description: <br>
-Real Estate Showing Brief helps real estate agents prepare reviewable showing briefs from buyer needs, property details, and viewing schedules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a structured pre-showing brief for real estate visits, covering buyer profile, property focus areas, route and timing notes, on-site questions, risks, and post-showing records.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Real estate agents and client-facing teams use this skill to organize buyer profiles, property-specific concerns, showing routes, on-site questions, and post-showing notes before a property visit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Showing briefs may include personal or sensitive buyer and client details. <br>
-Mitigation: Use only necessary input, avoid unnecessary sensitive data, and redact client details when possible. <br>
-Risk: Generated notes can be misleading if property facts are missing, stale, or incorrect. <br>
-Mitigation: Review the draft before use, keep missing facts in the to-confirm section, and do not treat the output as a formal legal disclosure. <br>
-Risk: The bundled helper script can inspect directories when pointed at a directory, which may surface unrelated local file information. <br>
-Mitigation: Run it only on intended buyer or property input files, choose output paths carefully, and do not repurpose it as a general directory or secret scanner. <br>
+## Use Case:
 
+External real estate agents and client-facing property teams use this skill to turn buyer requirements, listing details, and showing schedules into a reviewable Markdown brief before a property visit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/real-estate-showing-brief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown brief, with optional JSON output from the local script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reviewable drafts generated from user-supplied inputs; the local script can write results to a chosen output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Input may include buyer, listing, schedule, or other sensitive materials beyond what is needed for the showing brief.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the buyer, listing, and schedule information needed for the brief, and redact unrelated sensitive information before use.
+
+Risk: A showing brief can become misleading if missing listing or disclosure information is filled in without support.
+
+Mitigation: List missing information as items to confirm, avoid fabricating property facts, and verify important details against formal disclosures.
+
+Risk: Unused generic audit modes in the local script broaden the apparent behavior of an otherwise focused structured-brief skill.
+
+Mitigation: Use the skill for structured real-estate showing briefs, avoid broad project directories as input, and document or remove inactive audit modes in a future release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/real-estate-showing-brief)
+- [README](artifact/README.md)
+- [Structured brief specification](artifact/resources/spec.json)
+- [Output template](artifact/resources/template.md)
+- [Example output](artifact/examples/example-output.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Structured Markdown, with optional JSON output when run through the local script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a reviewable draft, highlights missing information, and avoids adding facts beyond the provided local input.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,109 +1,52 @@
-# People and Culture
+# People — Executives, Performance, Culture, Comp
 
-## CEO Time Allocation
+Roughly half a CEO's time goes to people: hiring, coaching, culture, and exits. Treat that as a target to defend against calendar drift, not a measured law — and treat the exec team as the only team you actually manage.
 
-50% of CEO time goes to people. This is not overhead — it IS the job.
+## Culture Is a Set of Decisions, Not a Document
 
-| Activity | Cadence | Purpose |
-|----------|---------|---------|
-| 1:1s with directs | Weekly | Alignment, coaching, blockers |
-| Skip levels | Monthly | Ground truth, culture pulse |
-| Recruiting | 20% of time | Pipeline never stops |
-| Culture work | Ongoing | Modeling, reinforcing, correcting |
+Culture is what you tolerate, reward, and punish. The five levers, all of which the CEO controls at the top:
 
-## Culture Definition
+- **Who you hire** (the values filter) · **who you fire** (enforcement) · **who you promote** (the loudest signal, because it shows what actually gets rewarded) · **what you celebrate** (visibility) · **what you ignore** (erosion).
 
-Culture is not what you say. It's what you tolerate, reward, and punish.
+Culture debt compounds like technical debt: one tolerated bad hire teaches the team the values are decorative, and the next correction costs ten times more. The diagnostic question is always the same — whose behavior are you currently excusing because of their numbers? (SKILL.md rule 7)
 
-**Culture levers:**
-- Who you hire (values filter)
-- Who you fire (values enforcement)
-- Who you promote (values reward)
-- What you celebrate (values visibility)
-- What you ignore (values erosion)
+Values are only useful when they cost something. A value that never caused you to reject a good candidate or exit a strong performer is a poster.
 
-### Culture Debt
+## Hiring Executives
 
-Like technical debt, culture debt compounds:
-- One bad hire tolerated → team learns you don't mean it
-- One missed value → threshold lowers
-- Clean it fast or pay exponentially later
+1. **Scorecard before search**: mission of the role, 3-5 measurable outcomes for the first year, competencies, and the values it must embody. Written outcomes, not activity lists — "get to a repeatable enterprise motion with 6 reference customers" beats "build the sales org".
+2. **Hire for the next 12-18 months of scale, one stage ahead — not two.** The exec who ran a 5,000-person org usually cannot run your 50-person one; they will try to build the machine they are used to before there is anything to run (→ SKILL.md Quick Reference: scaling).
+3. **Source**: portfolio and investor referrals plus your own network beat cold search; a retained recruiter widens the funnel and costs a percentage of first-year compensation. Your board should be producing candidates — ask each director for three names.
+4. **Interview for evidence, not narrative**: ask for a specific instance, then drill into what they personally did, what the numbers were before and after, and who else would confirm it. Strong operators get more specific under pressure; weak ones get more abstract.
+5. **Backchannel references before final rounds**, from people not on their list, including people who reported to them. After the team falls in love, references get rationalized away.
+6. **The CEO closes personally.** The close is where an exec decides whether you are worth the risk of their next five years.
 
-## Hiring Framework
+**Red flags**: cannot name a failure as their own; blames prior teams; claims outcomes without naming who did the work; asks no hard questions about your business (a strong exec is diligencing you too); negotiates title harder than scope.
 
-### Scorecard Method
+**The 90-day check on your own hire**: is the team better than before they arrived, and are they making decisions you would not have to make? If the answer is no at 90 days, it is usually no at 180.
 
-Before searching, define:
-1. **Mission** — Why this role exists
-2. **Outcomes** — 3-5 measurable results in first year
-3. **Competencies** — Skills and behaviors needed
-4. **Culture fit** — Which values this role must embody
+## Performance and Managing Out
 
-### Interview Structure
+Annual reviews are too late for a CEO's direct reports; the weekly 1:1 is the calibration mechanism, and no feedback should ever be new information in a review.
 
-| Stage | Focus | Who |
-|-------|-------|-----|
-| Screen | Competency basics, motivation | Recruiter |
-| Deep dive | Past performance, specifics | Hiring manager |
-| Culture | Values alignment, work style | Cross-functional |
-| Reference | Verify claims, uncover risks | Hiring manager |
-| Close | Sell opportunity, negotiate | CEO (for execs) |
+| Category | Share of team (typical) | Action |
+|----------|------------------------|--------|
+| Top performers | 10-20% | Stretch scope, retain deliberately, pay above band |
+| Strong performers | 60-70% | Coach, clear path, keep engaged |
+| Underperformers | 10-20% | Decide within a quarter: role change or exit |
 
-### Reference Calls
+Act when there is a pattern of misses (not one bad quarter), a values violation regardless of performance, the role has outgrown the person despite genuine effort, or trust is broken. The tell you have already decided: you are managing around them instead of through them.
 
-Never skip. Always call people NOT on their list.
+Then act within days of deciding. Every week of lingering costs credibility with the team, who saw it before you did. Generous terms, clean exit, dignity preserved publicly, and a specific fix to your hiring criteria so you do not repeat it (exec-exit mechanics → SKILL.md Quick Reference: ceo-operating-system; a reduction rather than a performance exit → layoffs).
 
-**Questions that reveal:**
-- "If you were hiring for X role, would you hire this person?" (direct)
-- "What would their peers say about working with them?" (team fit)
-- "Where did they struggle?" (growth areas)
-- "Would you work with them again?" (ultimate test)
+The exec you inherit or hire wrong costs 6-12 months of a function. That is the real price to weigh against the discomfort of the conversation.
 
-## Performance Management
+## Compensation
 
-### Continuous Feedback
-
-Annual reviews are too late. Weekly calibration prevents surprises.
-
-**1:1 structure:**
-1. What's working? (2 min)
-2. What's blocked? (5 min)
-3. Where do you need help? (5 min)
-4. Feedback from me (3 min)
-5. Anything else? (5 min)
-
-### Performance Categories
-
-| Category | % of Team | Action |
-|----------|-----------|--------|
-| Top performers | 10-20% | Stretch, retain, reward |
-| Strong performers | 60-70% | Develop, coach, clear path |
-| Underperformers | 10-20% | PIP or exit, don't wait |
-
-### Managing Out
-
-When to act:
-- Pattern of misses, not one bad quarter
-- Values violation, regardless of performance
-- Role outgrew person, despite effort
-- Trust broken
-
-How to act:
-- Decide, then act fast — lingering destroys morale
-- Generous terms, clean exit
-- Protect their dignity publicly
-- Learn and adjust hiring criteria
-
-## Compensation Philosophy
-
-### Principles
-
-1. **Pay market or above** — Cheap hires are expensive mistakes
-2. **Internal equity matters** — Resentment kills teams
-3. **Equity is alignment** — Skin in the game
-4. **Transparency builds trust** — Explain the system
-
-### Equity Guidelines
+- Pay at market or above for the roles that compound; cheap senior hires are the most expensive mistake in this file.
+- Internal equity beats external benchmarking when they conflict — resentment between peers destroys more value than a slightly high offer.
+- Bands, written, with the logic explainable. People will compare, always; the only choice is whether your explanation exists before the comparison happens.
+- Equity ranges by stage (convention; adjust for role criticality and candidate strength):
 
 | Stage | Exec | Senior IC | IC |
 |-------|------|-----------|-----|
@@ -111,58 +54,23 @@ How to act:
 | Series A | 0.5-1% | 0.1-0.25% | 0.01-0.05% |
 | Series B+ | 0.1-0.5% | 0.025-0.1% | 0.005-0.025% |
 
-*Ranges vary by role criticality and candidate strength.*
-
-## Organizational Design
-
-### Spans and Layers
-
-- Ideal span: 5-8 direct reports
-- More layers = slower communication
-- Fewer layers = overwhelmed managers
-
-### When to Add a Layer
-
-| Signal | Meaning |
-|--------|---------|
-| Manager has 10+ directs | Span too wide |
-| Decisions take weeks | Communication bottleneck |
-| Manager in meetings all day | No time for work |
-| Team morale dropping | People feel unseen |
-
-### Reorgs
-
-Reorg when:
-- Strategy changed and org doesn't match
-- Clear bottleneck everyone feels
-- Growth forced it (doubled headcount)
-
-Never reorg to:
-- Avoid a hard conversation
-- Accommodate one person
-- Look busy
+- Explain equity honestly: strike price, current 409A, what it is worth at three exit scenarios including zero, the 90-day exercise window and what it will cost them (→ SKILL.md Quick Reference: governance). Founders who oversell equity create the bitterest alumni.
+- Counteroffers to retain: they work for about six months and teach the whole team the mechanism for a raise. Fix the cause instead — usually scope, manager, or a band you never revisited.
 
 ## Executive Team Dynamics
 
-### Signs of Healthy Exec Team
+**Healthy**: debate hard then commit fully; solve across functions rather than defending them; name each other's blind spots; the company outranks the function.
 
-- Debate ideas fiercely, commit fully
-- Solve problems together, not in silos
-- Call out each other's blind spots
-- Put company above function
-- Laugh together sometimes
+**Dysfunctional**: the real meeting happens after the meeting; misses get attributed to other teams; the CEO is the tiebreaker for everything; silence in the room and politics outside; execs competing for your attention rather than for outcomes.
 
-### Signs of Dysfunction
+- The CEO speaks last in debate and first in the announcement. Speaking first collapses the discussion into agreement with you (→ SKILL.md Quick Reference: decisions).
+- Never let an exec win by escalating to you what they should resolve with a peer. Send it back once, with a deadline, and only decide it if they return together.
+- Quarterly offsite without laptops. The point is the conversation the weekly meeting has no room for.
+- Founders without a functional role are the most common source of exec dysfunction: an unassigned founder becomes a floating opinion that undermines the person who does own the domain (→ SKILL.md Quick Reference: cofounders).
 
-- Side conversations after meetings
-- Blame other teams for misses
-- CEO as tiebreaker for everything
-- Silence in meetings, politics outside
-- Competing for CEO attention
+## Organization Design
 
-### Building Trust
-
-- Quarterly offsite (no laptops, real talk)
-- Vulnerability from the top
-- Shared wins and losses
-- No favorites, no backchannels
+- Span: 5-8 direct reports for managers of ICs, 4-6 for managers of managers (what breaks at each headcount threshold → SKILL.md Quick Reference: scaling).
+- Reorg when strategy changed and the org no longer matches it, when a bottleneck everyone feels has a structural cause, or when growth genuinely forced it. Never to avoid a hard conversation, to accommodate one person, or to look decisive.
+- Announce a reorg with the new decision rights, not just the new boxes. People care about who decides what, and a chart without that is a rumor generator (→ SKILL.md Quick Reference: communication).
+- Reorg cost is a full quarter of partial productivity. Two in a year and the org stops investing in any structure at all.

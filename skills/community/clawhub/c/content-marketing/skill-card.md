@@ -1,44 +1,57 @@
-## Description: <br>
-Plan, create, and distribute content with editorial calendars, funnel strategy, and repurposing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan, create, and distribute content with editorial calendars, funnel strategy, and repurposing workflows.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to plan content strategy, maintain editorial calendars, align content to funnel stages, generate and repurpose content ideas, and document brand voice preferences. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can optionally store content strategy, brand voice, calendar, and draft notes locally. <br>
-Mitigation: Ask for explicit user consent before creating ~/content-marketing/, explain what will be stored, and delete that folder if the user wants to remove saved data. <br>
-Risk: Persistent local notes may retain brand or strategy information beyond a one-off ideation session. <br>
-Mitigation: Decline storage for one-off work and continue with non-persistent ideation, planning, and drafting guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Content Marketing on ClawHub](https://clawhub.ai/ivangdavila/content-marketing) <br>
-- [Content Marketing homepage](https://clawic.com/skills/content-marketing) <br>
-- [setup.md](artifact/setup.md) <br>
-- [funnels.md](artifact/funnels.md) <br>
-- [repurposing.md](artifact/repurposing.md) <br>
-- [memory-template.md](artifact/memory-template.md) <br>
+## Use Case:
 
+External users and content teams use this skill to plan content strategy, maintain editorial calendars, align content to funnel stages, and repurpose pillar pieces across channels.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration instructions, Files] <br>
-**Output Format:** [Markdown with optional local file and folder creation instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May optionally create and update local content strategy notes under ~/content-marketing/ only after user consent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can maintain local content strategy, voice preferences, calendar entries, and content ideas under ~/content-marketing/.
+
+Mitigation: Create or use the local folder only after explicit user consent, and delete ~/content-marketing/ to remove saved content-marketing memory.
+
+Risk: The skill's advice may shape public-facing marketing content and could be incorrect, off-brand, or poorly aligned to funnel goals.
+
+Mitigation: Review generated plans, drafts, and distribution guidance before publication.
+
+## Reference(s):
+
+- [Content Marketing Skill Page](https://clawhub.ai/ivangdavila/skills/content-marketing)
+- [Content Marketing Homepage](https://clawic.com/skills/content-marketing)
+- [Setup](artifact/setup.md)
+- [Funnel Strategy](artifact/funnels.md)
+- [Repurposing Workflows](artifact/repurposing.md)
+- [Memory Template](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown and plain text guidance with optional local file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local files under ~/content-marketing/ only with user consent.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

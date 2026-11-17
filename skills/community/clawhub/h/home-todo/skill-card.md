@@ -1,39 +1,57 @@
-## Description: <br>
-Checks a local home-todo file and reminds the user about unfinished household tasks whenever they send a Dashboard webchat message. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Home Todo checks a local home todo file and appends reminders for incomplete tasks when the user sends Dashboard webchat messages.
 
-## Publisher: <br>
-[CyberRaccoonX](https://clawhub.ai/user/CyberRaccoonX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberraccoonx](https://clawhub.ai/user/cyberraccoonx)
 
-## Use Case: <br>
-External users use this skill to maintain lightweight household reminders and have unfinished home tasks surfaced automatically in Dashboard conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent household reminders may expose sensitive personal or household details during Dashboard conversations. <br>
-Mitigation: Avoid storing sensitive details in ~/.openclaw/workspace/.home-todos.md and periodically review or clear the file when persistent reminder memory is not desired. <br>
+## Use Case:
 
+Individual ClawHub users use this skill to record home-related tasks and receive reminders when interacting through Dashboard webchat.
 
-## Reference(s): <br>
-- [Home Todo on ClawHub](https://clawhub.ai/CyberRaccoonX/home-todo) <br>
-- [CyberRaccoonX publisher profile](https://clawhub.ai/user/CyberRaccoonX) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reminder text appended to agent responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May also guide updates to the local ~/.openclaw/workspace/.home-todos.md todo file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Home todo reminders may be added to every Dashboard response.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this always-on reminder behavior is desired, and review generated responses before relying on them.
+
+Risk: Home todo items may contain sensitive personal details stored in a local markdown file.
+
+Mitigation: Avoid storing sensitive details and periodically review or delete ~/.openclaw/workspace/.home-todos.md.
+
+Risk: Matching home todo statements from connected channels may be saved locally.
+
+Mitigation: Review connected-channel usage and remove unwanted captured items from the local todo file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyberraccoonx/skills/home-todo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reminder text appended to agent responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and update ~/.openclaw/workspace/.home-todos.md for local todo tracking.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn7342ass2vhr4pmqmnq8e6n5d838633",
-  "slug": "gongwen-writer",
+  "name": "gongwen-writer",
   "version": "1.4.0",
-  "publishedAt": 1774176794622
+  "description": "政府公文格式文档生成器",
+  "author": "小王",
+  "created": "2026-03-22",
+  "updated": "2026-03-22T18:50:00+08:00",
+  "features": [
+    "支持6种输入格式：.md .txt .docx .pdf .html .rtf",
+    "自动应用24条公文格式规范",
+    "页码奇偶页不同位置（complex field + evenAndOddHeaders）",
+    "中英文混合字体自动处理",
+    "自动去除加粗、#号、开头-字符",
+    "二级标题自动中文数字编号",
+    "标题自动识别与句号清理",
+    "空行严格控制（仅三处允许）"
+  ]
 }

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "packageRules": [
+    {
+      "description": "Keep deepmerge outside GHSA-gcqx-w48m-w2h4's affected range until a patched release is available.",
+      "matchManagers": ["npm"],
+      "matchPackageNames": ["deepmerge"],
+      "allowedVersions": "<4.2.0 || >4.3.1"
+    }
+  ]
+}

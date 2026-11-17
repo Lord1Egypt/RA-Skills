@@ -1,0 +1,16 @@
+name: hetong-audit
+display_name: 合同瞄 · AI合同审核
+version: 1.0.0
+description: AI合同审核工具 — 规则引擎 + AI语义分析 + 民法典背书，签合同前先瞄一眼
+category: legal
+topics:
+  - contract
+  - legal
+  - audit
+  - compliance
+  - risk-assessment
+  - civil-code
+license: MIT-0
+homepage: https://github.com/moan19921019-code/hetong
+tags:
+  - latest

@@ -1,0 +1,626 @@
+# GKN-Phantom v3.0 — MEDIUM Tier Detection Rules
+# ================================================
+# All rules at the MEDIUM tier: XSS, path traversal, XXE, SSTI,
+# deserialization, command injection, weak credentials, captcha bypass,
+# and v3 additions (CRLF injection, CORS misconfig, subdomain takeover,
+# host header injection, WebSocket hijacking, session fixation, email
+# header injection).
+#
+# Total: 15 rules
+
+- id: "xss-reflected"
+  type: "xss"
+  severity: "medium"
+  tier: "medium"
+  risk_level: "L2"
+  target_param_hints:
+    - "q"
+    - "search"
+    - "name"
+    - "msg"
+    - "comment"
+    - "title"
+    - "description"
+  probe_description: "Inject PTSKILLTEST<xss>9a3f into reflected params (query/path/body)"
+  detection_signal: "Marker reflected unescaped (raw < > ) in response body"
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Apply contextual output encoding for all user-controlled data reflected
+    in responses. Use framework auto-escaping: HTML entities in HTML body
+    (&lt; &gt; &amp; &quot; &#x27;), JavaScript encoding in <script>
+    blocks, URL encoding in href/src attributes. Set Content-Type with
+    correct charset. Implement Content-Security-Policy with strict
+    script-src (nonce-based or hash-based). Use DOMPurify for client-side
+    HTML sanitization. Framework guides: React auto-escapes JSX; Vue uses
+    v-text not v-html; Angular sanitizes by default.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/79.html"
+    - "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html"
+    - "https://portswigger.net/web-security/cross-site-scripting"
+  tags:
+    - "xss"
+    - "reflected"
+    - "injection"
+    - "client-side"
+
+- id: "path-traversal-file-read"
+  type: "path_traversal"
+  severity: "medium"
+  tier: "medium"
+  risk_level: "L2"
+  target_param_hints:
+    - "file"
+    - "path"
+    - "page"
+    - "template"
+    - "download"
+    - "doc"
+    - "image"
+    - "static"
+  probe_description: >-
+    Inject ../../../../etc/passwd (unix) or ..\..\..\..\windows\win.ini
+    (windows) / encoded / filter-bypass variants; agent selects payload
+    per target OS fingerprint
+  detection_signal: >-
+    Response contains root:x:0:0: (unix target) or [fonts]/[extensions]
+    (windows target) OR significant delta from baseline
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Never construct filesystem paths directly from user input. Use a
+    canonicalization and allowlist approach: map user-facing identifiers
+    to server-side file IDs, validate against an allowlist, then resolve
+    to the real path and verify it stays within the intended directory
+    using realpath() or canonical path comparison. On Windows, also guard
+    against alternate data streams and device paths. Avoid passing user
+    input to file open/read/include functions entirely — use indirect
+    references (database IDs, opaque tokens).
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/22.html"
+    - "https://owasp.org/www-community/attacks/Path_Traversal"
+  tags:
+    - "path-traversal"
+    - "file-read"
+    - "directory-traversal"
+    - "lfi"
+
+- id: "xxe-oob-external-entity"
+  type: "xxe"
+  severity: "medium"
+  tier: "medium"
+  risk_level: "L3"
+  target_param_hints:
+    - "<XML-accepting endpoints>"
+  probe_description: >-
+    POST XML with <!ENTITY x SYSTEM
+    https://oob.authorized.test/PTSKILLTEST-xxe>
+  detection_signal: "OOB callback hit within 30s OR parser error mentions the sink URL"
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Disable external entity processing in all XML parsers. For Java:
+    setFeature("http://apache.org/xml/features/disallow-doctype-decl",
+    true) and setFeature("http://xml.org/sax/features/external-general-
+    entities", false). For .NET: XmlReaderSettings.DtdProcessing =
+    DtdProcessing.Prohibit. For Python lxml: use etree.XMLParser
+    (resolve_entities=False). For PHP: libxml_disable_entity_loader(true).
+    Prefer JSON-based data interchange where possible. If XML is
+    required, use a hardened parser whitelist and validate against an
+    XSD schema.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/611.html"
+    - "https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html"
+  tags:
+    - "xxe"
+    - "xml"
+    - "oob"
+    - "injection"
+    - "ssrf-via-xml"
+
+- id: "ssti-template-injection"
+  type: "ssti"
+  severity: "medium"
+  tier: "medium"
+  risk_level: "L2"
+  target_param_hints:
+    - "q"
+    - "name"
+    - "template"
+    - "msg"
+  probe_description: >-
+    Inject PTSKILLTEST{{7*7}} / ${7*7} / <%=7*7%> / #set($x=7*7)$x
+  detection_signal: >-
+    Response contains '49' AND marker prefix; arithmetic evaluated
+    (not literal reflection)
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Avoid passing user input directly to template engine evaluate/render
+    functions. Use sandboxed template environments where possible. For
+    Jinja2, use SandboxedEnvironment. For FreeMarker, set
+    Configuration.setNewBuiltinClassResolver(SAFER_RESOLVER). For
+    Velocity, avoid #evaluate(). Validate and sanitize template
+    expressions before rendering. Prefer logic-less template engines
+    (Mustache, Handlebars) that do not allow arbitrary code execution.
+    Run the template engine under a restricted OS user with minimal
+    privileges.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+  references:
+    - "https://cwe.mitre.org/data/definitions/94.html"
+    - "https://portswigger.net/web-security/server-side-template-injection"
+  tags:
+    - "ssti"
+    - "template-injection"
+    - "rce"
+    - "server-side"
+
+- id: "deserialization-insecure"
+  type: "deserialization"
+  severity: "medium"
+  tier: "medium"
+  risk_level: "L3"
+  target_param_hints:
+    - "<octet-stream endpoints>"
+  probe_description: >-
+    Send innocuous serialized object (Java HashMap/PHP obj) then malformed
+    blob; observe parser errors
+  detection_signal: >-
+    500 error with framework-specific deserialization stack trace
+    (InvalidClassException/unserialize/pickle.loads)
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Never deserialize untrusted data. Use JSON or other data-only formats
+    for serialization. If Java serialization is required, use a type-
+    filtering ObjectInputStream with a strict allowlist of permitted
+    classes (ValidatingObjectInputStream from Apache Commons IO, or
+    ObjectInputFilter in Java 9+). For Python, avoid pickle on untrusted
+    data; use json or msgpack. For PHP, avoid unserialize() on user input;
+    use json_decode(). For .NET, use DataContractSerializer with known
+    types or switch to JSON serialization.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+  references:
+    - "https://cwe.mitre.org/data/definitions/502.html"
+    - "https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html"
+  tags:
+    - "deserialization"
+    - "rce"
+    - "java"
+    - "php"
+    - "python"
+
+- id: "command-injection-time-based"
+  type: "command_injection"
+  severity: "medium"
+  tier: "medium"
+  risk_level: "L2"
+  target_param_hints:
+    - "host"
+    - "ip"
+    - "ping"
+    - "cmd"
+    - "exec"
+    - "name"
+    - "file"
+  probe_description: >-
+    Time-based only: ;sleep 3 # / |sleep 3 / $(sleep 3) — ONE per param
+    per run, capped 4s
+  detection_signal: "Response time >= baseline + 2.5s AND <= 4s"
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Avoid constructing shell commands from user input entirely. Use
+    language-level APIs instead: subprocess.run() with shell=False and
+    argument lists (not strings) in Python; ProcessBuilder in Java;
+    execFile/exec with argument arrays in Node.js. If external command
+    execution is unavoidable, validate input against a strict allowlist
+    of permitted characters (alphanumeric only), and never pass through
+    a shell interpreter. Escape special characters appropriate to the
+    target shell. Run commands under a restricted user account with
+    minimal privileges (no sudo, chroot/sandbox).
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+  references:
+    - "https://cwe.mitre.org/data/definitions/77.html"
+    - "https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html"
+  tags:
+    - "command-injection"
+    - "rce"
+    - "os-command"
+    - "time-based"
+
+- id: "weak-default-credentials"
+  type: "weak_credential"
+  severity: "medium"
+  tier: "medium"
+  risk_level: "L3"
+  target_param_hints:
+    - "login"
+    - "username"
+    - "user"
+    - "account"
+    - "password"
+    - "passwd"
+    - "pwd"
+  probe_description: >-
+    Bounded default-credential probe against login endpoints (staging/dev
+    ONLY, human-approved): admin/123456, admin/admin, admin/admin123,
+    admin/password, admin/111111, admin/12345678, root/root, root/123456,
+    test/test, guest/guest; Edu pattern: 学号/学号后6位, 工号/工号a;
+    Stop on first success; max 10 attempts per endpoint
+  detection_signal: >-
+    Login response indicates success (302 to dashboard / 200 with token /
+    JSON {code:0,success:true}) using a default credential
+  safe_poc: true
+  requires_credentials: true
+  requires_human_approval: true
+  blocked_in_safe_mode: false
+  remediation: >-
+    Enforce a strong password policy at account creation and password
+    reset: minimum 12 characters, require mixed character classes,
+    check against common password blacklists. Force password change on
+    first login for all default/built-in accounts. Implement account
+    lockout after N failed attempts (with progressive delays).
+    Remove or disable default accounts in production deployments.
+    Use multi-factor authentication (TOTP or WebAuthn) for privileged
+    accounts. In education contexts, avoid predictable credential
+    patterns (student ID as default password).
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+  references:
+    - "https://cwe.mitre.org/data/definitions/798.html"
+    - "https://cwe.mitre.org/data/definitions/521.html"
+    - "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html"
+  tags:
+    - "authentication"
+    - "default-credentials"
+    - "weak-password"
+    - "brute-force"
+
+- id: "captcha-bypass"
+  type: "captcha_bypass"
+  severity: "medium"
+  tier: "medium"
+  risk_level: "L2"
+  target_param_hints:
+    - "captcha"
+    - "code"
+    - "verifyCode"
+    - "vcode"
+    - "checkCode"
+    - "imgCode"
+  probe_description: >-
+    Test captcha bypass modes: (1) empty captcha value; (2) remove captcha
+    param entirely; (3) fixed/generic value '123456' (同济万能验证码案例);
+    (4) reuse same captcha code multiple times; (5) 4-digit captcha brute-
+    force feasibility check; (6) intercept & flip response
+    {success:false->true, error_code:1->0}
+  detection_signal: >-
+    Request succeeds with empty/missing/fixed captcha OR same captcha
+    reusable OR response tamper bypass accepted (login/state-change
+    succeeds)
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Implement CAPTCHA with server-side verification — never trust client-
+    side validation alone. Use a reputable CAPTCHA service (reCAPTCHA v3,
+    hCaptcha) with server-side secret verification. Ensure CAPTCHA tokens
+    are single-use: invalidate them immediately after server-side check.
+    Apply CAPTCHA on both the form-render and form-submit paths. Do not
+    expose the correct CAPTCHA value in any response (HTML comments,
+    hidden fields, cookies). For custom CAPTCHA implementations, use
+    cryptographically random codes with session binding and expiration.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/804.html"
+    - "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/05-Testing_for_Weak_Security_Question_Answer"
+  tags:
+    - "captcha"
+    - "authentication"
+    - "brute-force"
+    - "logic-flaw"
+
+- id: "crlf-http-response-splitting"
+  type: "crlf_injection"
+  severity: "medium"
+  tier: "medium"
+  risk_level: "L2"
+  target_param_hints:
+    - "redirect"
+    - "url"
+    - "return"
+    - "next"
+    - "language"
+    - "locale"
+    - "lang"
+  probe_description: >-
+    Inject CRLF sequences into URL parameters to test HTTP response
+    splitting: %0d%0aSet-Cookie:PTSKILLTEST=crlf /
+    %0d%0a%0d%0a<script> / \r\nX-PTSKILLTEST: injected
+  detection_signal: >-
+    Response contains injected header (Set-Cookie: PTSKILLTEST=crlf) OR
+    reflected CRLF in response body before content-type
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Strip or URL-encode all CR (%0d, \r) and LF (%0a, \n) characters from
+    user input before including it in HTTP response headers. Never allow
+    user-controlled data to set arbitrary header names or values. Use
+    framework-provided redirect and header-setting APIs that
+    automatically sanitize input. Validate that redirect URLs are
+    well-formed and do not contain control characters. Set a strict
+    Content-Security-Policy to mitigate the impact of successful header
+    injection.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/113.html"
+    - "https://owasp.org/www-community/attacks/HTTP_Response_Splitting"
+  tags:
+    - "crlf"
+    - "http-response-splitting"
+    - "header-injection"
+    - "xss-via-crlf"
+
+- id: "cors-misconfig-wildcard"
+  type: "cors_misconfig"
+  severity: "medium"
+  tier: "medium"
+  risk_level: "L2"
+  target_param_hints:
+    - "<all API endpoints>"
+  probe_description: >-
+    Test CORS misconfiguration: (1) send Origin: null — check
+    Access-Control-Allow-Origin: null; (2) send Origin:
+    https://attacker.evil.test — check if reflected; (3) send Origin:
+    https://target.test.attacker.evil.test — check suffix bypass;
+    (4) check Access-Control-Allow-Credentials: true with wildcard origin
+  detection_signal: >-
+    ACAO: null with credentials OR ACAO reflects attacker origin OR
+    wildcard ACAO with credentials OR suffix-based origin bypass
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Configure CORS with a strict allowlist of permitted origins — never
+    echo back the Origin header value directly. Do not use
+    Access-Control-Allow-Origin: * with Access-Control-Allow-
+    Credentials: true, as this combination is forbidden by spec and
+    blocked by browsers. Reject Origin: null requests. Validate the
+    Origin header against a server-side allowlist with exact matches
+    (beware of suffix-matching bypasses). Set Vary: Origin to avoid cache
+    poisoning. For public APIs that legitimately need cross-origin
+    access, clearly document the CORS policy.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:L/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/942.html"
+    - "https://portswigger.net/web-security/cors"
+    - "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Origin_Resource_Sharing_Prevention_Cheat_Sheet.html"
+  tags:
+    - "cors"
+    - "misconfiguration"
+    - "origin-reflection"
+    - "cross-origin"
+
+- id: "subdomain-takeover-dangling-cname"
+  type: "subdomain_takeover"
+  severity: "medium"
+  tier: "medium"
+  risk_level: "L1"
+  target_param_hints:
+    - "<all discovered subdomains>"
+  probe_description: >-
+    Check CNAME records for dangling DNS pointers to cloud services:
+    AWS CloudFront/S3, Azure, GitHub Pages, Heroku, Netlify, Shopify,
+    Fastly, Zendesk, etc. Detect NXDOMAIN or 404 with service-specific
+    error pages
+  detection_signal: >-
+    CNAME points to cloud service
+    (cloudfront.net/s3.amazonaws.com/azurewebsites.net/etc.) AND target
+    returns NXDOMAIN or 404 with service-branded error page
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Remove DNS records pointing to deprovisioned cloud resources. Before
+    decommissioning any cloud service (S3 bucket, CloudFront distribution,
+    Heroku app, GitHub Pages site), remove all DNS records referencing
+    it. Maintain an inventory of all subdomains and their target
+    services. Monitor DNS records for dangling CNAME entries. Register
+    unclaimed service names if they were previously used to prevent
+    malicious takeover. Implement an automated cleanup process in the
+    service deprovisioning workflow.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/350.html"
+    - "https://www.hackerone.com/application-security/guide-subdomain-takeover"
+  tags:
+    - "subdomain-takeover"
+    - "dns"
+    - "cname"
+    - "dangling-dns"
+    - "cloud"
+
+- id: "host-header-poisoning"
+  type: "host_header_injection"
+  severity: "medium"
+  tier: "medium"
+  risk_level: "L2"
+  target_param_hints:
+    - "password-reset"
+    - "forgot"
+    - "reset"
+    - "link"
+    - "magic"
+  probe_description: >-
+    Test host header poisoning: (1) set Host: attacker.evil.test — check
+    if reflected in links/redirects; (2) set X-Forwarded-Host:
+    attacker.evil.test — check password reset link poisoning; (3) set
+    X-Forwarded-For / X-Real-IP to test IP spoofing
+  detection_signal: >-
+    Response links/redirects contain attacker-controlled host OR password
+    reset link uses injected host header
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Configure the application server to use an explicit, hardcoded
+    canonical hostname rather than deriving it from the Host header.
+    Do not use X-Forwarded-Host or similar headers to construct URLs
+    unless they come from a trusted proxy and are strictly validated.
+    Whitelist the allowed Host header values at the web server or WAF
+    level. For password reset emails, generate absolute URLs using the
+    server-side base URL from configuration, never from request headers.
+    Set the web server's ServerName directive explicitly.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/348.html"
+    - "https://portswigger.net/web-security/host-header"
+  tags:
+    - "host-header"
+    - "password-reset"
+    - "poisoning"
+    - "phishing"
+
+- id: "websocket-cswsh"
+  type: "websocket_hijacking"
+  severity: "medium"
+  tier: "medium"
+  risk_level: "L2"
+  target_param_hints:
+    - "<WebSocket endpoints (ws:// or wss://)>"
+  probe_description: >-
+    Test WebSocket security: (1) check Origin header validation on WS
+    handshake; (2) send Origin: null — cross-site WebSocket hijacking;
+    (3) check for missing authentication on WS endpoint; (4) test for
+    plaintext ws:// instead of wss://
+  detection_signal: >-
+    WS handshake succeeds with null/mismatched Origin OR WS endpoint
+    accepts unauthenticated connections OR ws:// in production
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Validate the Origin header on all WebSocket handshake requests
+    against a strict allowlist of permitted origins. Require
+    authentication on WebSocket connections — pass an authentication
+    token in the initial handshake (e.g., as a query parameter or custom
+    header). Use wss:// (WebSocket over TLS) exclusively in production
+    environments. Set the Secure flag on any cookies used for WebSocket
+    authentication. Implement a heartbeat mechanism to detect and
+    terminate stale or hijacked connections.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/345.html"
+    - "https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html#websocket-security"
+  tags:
+    - "websocket"
+    - "cswsh"
+    - "cross-site"
+    - "origin-validation"
+
+- id: "session-fixation-pre-login"
+  type: "session_fixation"
+  severity: "medium"
+  tier: "medium"
+  risk_level: "L3"
+  target_param_hints:
+    - "PHPSESSID"
+    - "JSESSIONID"
+    - "session"
+    - "sid"
+    - "token"
+  probe_description: >-
+    Test session fixation: (1) obtain a session ID before login, check if
+    same ID persists after login; (2) inject session ID via URL parameter
+    (?PHPSESSID=attacker); (3) inject session ID via cookie before
+    authentication
+  detection_signal: >-
+    Session ID unchanged after login (pre-login token == post-login token)
+    OR URL-based session ID accepted
+  safe_poc: true
+  requires_credentials: true
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Always issue a new session identifier upon successful authentication.
+    Invalidate the old session ID and create a fresh one using the
+    framework's session regeneration API (e.g., request.getSession
+    ().invalidate() + request.getSession(true) in Java, session_regenerate_id()
+    in PHP, req.session.regenerate() in Express). Never accept session
+    IDs from URL parameters (GET/POST). Set session cookies with
+    HttpOnly, Secure, and SameSite=Lax flags. Apply session timeout and
+    idle timeout.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/384.html"
+    - "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html"
+  tags:
+    - "session"
+    - "fixation"
+    - "authentication"
+    - "session-management"
+
+- id: "email-header-injection-smtp"
+  type: "email_injection"
+  severity: "medium"
+  tier: "medium"
+  risk_level: "L2"
+  target_param_hints:
+    - "email"
+    - "to"
+    - "from"
+    - "subject"
+    - "body"
+    - "contact"
+    - "feedback"
+  probe_description: >-
+    Test email header injection: inject \r\nBcc: / \r\nCc: / \r\nContent-
+    Type: into email fields to test SMTP header injection. Detect via
+    response differences (error message, timing) or OOB.
+  detection_signal: >-
+    Response differs from baseline (error message mentions SMTP/mail) OR
+    OOB email received at authorized sink
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Sanitize all user-supplied email headers by stripping or encoding
+    CRLF sequences (%0d%0a, \r\n) before passing them to the mail
+    subsystem. Use a trusted email library (PHPMailer, JavaMail, Nodemailer,
+    Python email.mime) that constructs headers safely and prevents header
+    injection by design. Validate email addresses against RFC 5321/5322
+    format and reject addresses containing control characters. Never
+    allow user input to set arbitrary headers (Bcc, Cc, Reply-To)
+    directly. Log and alert on detected injection attempts.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/93.html"
+    - "https://owasp.org/www-community/attacks/Email_Injection"
+  tags:
+    - "email"
+    - "smtp"
+    - "header-injection"
+    - "crlf"

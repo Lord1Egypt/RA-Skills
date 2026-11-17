@@ -1,0 +1,242 @@
+{
+  "version": "2.4.0",
+  "source_id": "cnipa",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:00:39.569Z",
+  "entry": {
+    "url": "https://www.cnipa.gov.cn/",
+    "final_url": "https://www.cnipa.gov.cn/",
+    "title": "国家知识产权局",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:00:39.569Z",
+    "identity": {
+      "declared_name": "国家知识产权局",
+      "hostname": "www.cnipa.gov.cn",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "专利检索",
+        "href": "https://pss-system.cponline.cnipa.gov.cn/",
+        "target": "_blank"
+      },
+      {
+        "text": "地理标志产品检索",
+        "href": "https://ggfw.cnipa.gov.cn/dlbzsq/dbQuery",
+        "target": "_blank"
+      },
+      {
+        "text": "专用标志使用企业检索",
+        "href": "https://ggfw.cnipa.gov.cn/dlbzsq/zybzqyQuery",
+        "target": "_blank"
+      },
+      {
+        "text": "以集体商标、证明商标注册的地理标志检索",
+        "href": "https://sbj.cnipa.gov.cn/sbj/sbcx/",
+        "target": "_blank"
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "请输入您要搜索的内容",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "q",
+      "id": "q",
+      "css": "#q",
+      "role": null,
+      "form_action": "https://www.cnipa.gov.cn/jsearchfront/search.do",
+      "locator": {
+        "css": "#q"
+      },
+      "observed_url": "https://www.cnipa.gov.cn/",
+      "observed_at": "2026-10-09T09:00:38.617Z"
+    },
+    {
+      "tag": "input",
+      "type": "submit",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://www.cnipa.gov.cn/jsearchfront/search.do",
+      "locator": null,
+      "observed_url": "https://www.cnipa.gov.cn/",
+      "observed_at": "2026-10-09T09:00:38.617Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "cnipa:pdf-inspection",
+      "source_id": "cnipa",
+      "task_kind": "pdf-inspection",
+      "status": "entry_observed",
+      "parameters": [
+        "document_title_or_identifier",
+        "edition_or_language",
+        "body_page_or_pdf_page",
+        "target_section"
+      ],
+      "instructions": [
+        "使用本题书名、标识符、语言和版次定位记录，确认正文页码与PDF物理页码的偏移后读取目标页；只在页面/全文确实可读时取证。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.cnipa.gov.cn/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "请输入您要搜索的内容",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "q",
+          "id": "q",
+          "css": "#q",
+          "role": null,
+          "form_action": "https://www.cnipa.gov.cn/jsearchfront/search.do",
+          "locator": {
+            "css": "#q"
+          },
+          "observed_url": "https://www.cnipa.gov.cn/",
+          "observed_at": "2026-10-09T09:00:38.617Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    },
+    {
+      "id": "cnipa:record-lookup",
+      "source_id": "cnipa",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.cnipa.gov.cn/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "请输入您要搜索的内容",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "q",
+          "id": "q",
+          "css": "#q",
+          "role": null,
+          "form_action": "https://www.cnipa.gov.cn/jsearchfront/search.do",
+          "locator": {
+            "css": "#q"
+          },
+          "observed_url": "https://www.cnipa.gov.cn/",
+          "observed_at": "2026-10-09T09:00:38.617Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "cnipa",
+    "quiz_entries": [],
+    "example_ids": [
+      "2025-M12-Q1",
+      "2026-M12-Q1",
+      "PT1-Q1"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:00:39.569Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/cnipa-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/cnipa-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

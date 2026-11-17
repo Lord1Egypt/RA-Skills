@@ -1,44 +1,57 @@
-## Description: <br>
-Web scraping and crawling with the Firecrawl API, including markdown capture, screenshots, structured extraction, web search, documentation crawling, and URL mapping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web scraping and crawling with Firecrawl API. Fetch webpage content as markdown, take screenshots, extract structured data, search the web, and crawl documentation sites.
 
-## Publisher: <br>
-[capt-marbles](https://clawhub.ai/user/capt-marbles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[capt-marbles](https://clawhub.ai/user/capt-marbles)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve current web content, capture screenshots, extract structured data from pages, search the web, and crawl or map documentation sites through Firecrawl. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Requested URLs, search terms, extraction prompts, and schemas are sent to Firecrawl. <br>
-Mitigation: Avoid private or sensitive URLs unless Firecrawl is approved for that data, and use a Firecrawl key with suitable account limits. <br>
-Risk: Crawls, maps, screenshots, and searches can consume Firecrawl credits or account quota. <br>
-Mitigation: Keep crawl and map limits modest and review requested operations before execution. <br>
-Risk: Dependency behavior can change if the Firecrawl SDK version floats. <br>
-Mitigation: Consider pinning the Firecrawl SDK version for repeatable deployments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Firecrawl](https://firecrawl.dev) <br>
-- [Firecrawl API Keys](https://www.firecrawl.dev/app/api-keys) <br>
-- [ClawHub Skill Page](https://clawhub.ai/capt-marbles/firecrawler) <br>
-- [Publisher Profile](https://clawhub.ai/user/capt-marbles) <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve web pages as markdown, capture screenshots, extract structured data, search the web, and crawl or map documentation sites through the Firecrawl API.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, plaintext URL lists, shell command examples, and PNG screenshot files depending on the command.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FIRECRAWL_API_KEY and may save crawl output or screenshots to local files when requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: URLs, page content, extraction prompts, screenshots, and crawl results are processed by Firecrawl as a third-party service.
+
+Mitigation: Use the skill only for data transfers approved for Firecrawl, and avoid private or authenticated sites unless that use is authorized.
+
+Risk: The skill depends on a Firecrawl API key and an installed third-party Python package.
+
+Mitigation: Protect FIRECRAWL_API_KEY, install the package in a virtual environment, and consider pinning the Firecrawl package version.
+
+Risk: Crawls and screenshots can consume credits or write files to user-supplied paths.
+
+Mitigation: Set crawl limits deliberately and review output paths before running commands.
+
+## Reference(s):
+
+- [Firecrawl](https://firecrawl.dev)
+- [Firecrawl API Keys](https://www.firecrawl.dev/app/api-keys)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, plain text, image files, and shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FIRECRAWL_API_KEY and may write screenshots or crawled markdown files when an output path is supplied.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

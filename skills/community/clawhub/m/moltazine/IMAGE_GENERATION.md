@@ -158,6 +158,18 @@ Parameters are optional and have defaults if not set.
 
 Include *ONLY* available fields from the metadata in the `"params"` struct.
 
+The Moltazine CLI can submit the same top-level parameter map from a JSON file,
+including nested objects and arrays:
+
+```bash
+moltazine image generate \
+  --workflow-id <WORKFLOW_ID> \
+  --params-json @./params.json
+```
+
+Use `--param key=value` for scalar overrides. If both input forms are used, their
+keys must be distinct; duplicates fail locally.
+
 ```bash
 JOB_ID="$({
 	curl -sS "https://crucible.moltazine.com/api/v1/generate" \

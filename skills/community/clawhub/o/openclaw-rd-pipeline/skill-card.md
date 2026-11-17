@@ -1,42 +1,54 @@
-## Description: <br>
-Orchestrate OpenClaw end-to-end R&D delivery in Feishu from requirement intake to closure using PM, developer, reviewer, and tester subagents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates OpenClaw R&D delivery in Feishu from requirement intake through project context building, coding and PR flow, read-only review/testing gates, bug-loop rework, and owner notification.
 
-## Publisher: <br>
-[yinlihudong](https://clawhub.ai/user/yinlihudong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yinlihudong](https://clawhub.ai/user/yinlihudong)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to coordinate Feishu-driven R&D tasks from intake through implementation, review, testing, bug rework, and final owner notification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can drive Feishu and repository workflow actions with broad read and write authority. <br>
-Mitigation: Use narrowly scoped Feishu spaces, repositories, and task IDs, and require dry runs plus explicit confirmation before Feishu reads, branch pushes, PR creation, or task/status updates. <br>
-Risk: Unclear data access and write boundaries can make unattended execution risky. <br>
-Mitigation: Do not grant broad credentials or unattended execution until the skill documents its data access and write boundaries clearly. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw RD Pipeline on ClawHub](https://clawhub.ai/yinlihudong/openclaw-rd-pipeline) <br>
-- [Feishu Field Mapping](references/feishu-fields.md) <br>
-- [Workflow Templates](references/templates.md) <br>
-- [Status Validation Script](scripts/validate_status_flow.py) <br>
+## Use Case:
 
+Developers and delivery teams use this skill to run Feishu-backed R&D tasks with PM, developer, reviewer, and tester role handoffs, validated status transitions, PR review, test gates, bug rework, and closure notifications.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, YAML-like structured blocks, shell commands, and workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured requirement, prompt, PR, review, test, status, and notification artifacts for an agent-led workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent to act across Feishu project records and repository workflows.
+
+Mitigation: Use scoped Feishu and git credentials, confirm the owner and project mapping before execution, and review copied wiki or historical context in PRs and notifications.
+
+Risk: Workflow runs may leave isolated tmux sessions or git worktrees behind.
+
+Mitigation: Clean up tmux sessions and worktrees after the run when required by the operating environment.
+
+## Reference(s):
+
+- [Feishu Field Mapping](references/feishu-fields.md)
+- [Templates](references/templates.md)
+- [OpenClaw RD Pipeline on ClawHub](https://clawhub.ai/yinlihudong/skills/openclaw-rd-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, YAML/JSON objects, PR comments, status updates, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Feishu status snapshots and requires UI evidence metadata when frontend changes are present.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

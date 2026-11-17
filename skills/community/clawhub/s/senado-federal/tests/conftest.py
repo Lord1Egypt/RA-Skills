@@ -1,4 +1,5 @@
 """Configuração do pytest para testes do senado_client."""
+
 import pytest
 
 
@@ -14,7 +15,7 @@ def mock_senado_response():
                             "CodigoParlamentar": "5012",
                             "NomeParlamentar": "Renan Calheiros",
                             "SiglaPartidoParlamentar": "MDB",
-                            "UfParlamentar": "AL"
+                            "UfParlamentar": "AL",
                         }
                     }
                 ]
@@ -35,7 +36,7 @@ def mock_materia_response():
                         "SiglaSubtipoMateria": "PL",
                         "NumeroMateria": "1234",
                         "AnoMateria": "2026",
-                        "EmentaMateria": "Dispõe sobre..."
+                        "EmentaMateria": "Dispõe sobre...",
                     }
                 ]
             }

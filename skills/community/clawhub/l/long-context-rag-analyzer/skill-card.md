@@ -1,40 +1,53 @@
-## Description: <br>
-Analyze and optimize retrieval-augmented generation pipelines for 100K-2M token documents using hybrid search, chunking, reasoning, and structured reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a methodology for analyzing long documents and improving retrieval-augmented generation pipelines through chunking, hybrid search, retrieval evaluation, and multi-document reasoning.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Developers, analysts, legal professionals, and researchers use this skill to design, evaluate, and improve long-context RAG workflows for large document collections, including financial reports, legal contracts, research papers, and regulatory filings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential financial or legal documents could be exposed if embeddings or model calls are sent to third-party providers without review. <br>
-Mitigation: Decide whether embeddings and model calls must stay local before using the skill with confidential documents. <br>
-Risk: High-stakes RAG outputs can be misleading if generated without source grounding. <br>
-Mitigation: Require citations, page references, and confidence signals for financial, legal, or regulatory answers. <br>
+## Use Case:
 
+Developers, analysts, researchers, and legal professionals use it as a methodology reference to plan and evaluate long-document RAG workflows, including chunking, hybrid search, citation practices, and structured reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/skills/long-context-rag-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration, shell commands] <br>
-**Output Format:** [Markdown with tables, structured reports, configuration snippets, and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include citations, confidence scores, retrieval metrics, action plans, and export recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: frontmatter and release evidence) <br>
+Risk: Security inspection was partial: the manifest was malformed, a local reference was unresolved, and no component was fully inspected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the unresolved reference and manifest-dependent behavior before installing; the benign verdict does not establish that the release is risk-free.
+
+Risk: The guidance addresses documents that may contain sensitive customer, financial, health, or internal information.
+
+Mitigation: Minimize the document set and redact or aggregate sensitive fields before indexing; review the complete report before saving or sending it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/long-context-rag-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown, Configuration, Code]
+
+**Output Format:** [Structured Markdown reports and guidance, with illustrative code and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include citations and confidence annotations where source material supports them; verify outputs against original documents before relying on them.]
+
+## Skill Version(s):
+
+3.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,49 @@
-## Description: <br>
-Security scanner for OpenClaw agent skills that audits skills for dangerous patterns, vulnerable dependencies, and suspicious behavior before installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security auditing for OpenClaw agent skills that scans for dangerous patterns, vulnerable dependencies, and suspicious behaviors before installation.
 
-## Publisher: <br>
-[jonathanliu811026](https://clawhub.ai/user/jonathanliu811026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jonathanliu811026](https://clawhub.ai/user/jonathanliu811026)
 
-## Use Case: <br>
-Developers and ClawHub users use this skill to review OpenClaw agent skills before installation and to receive security verdicts and risk breakdowns through CLI or API workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The usage examples run npx skillguard-audit, which can download and execute external npm package code. <br>
-Mitigation: Confirm the npm package is the intended package, pin a trusted version when possible, and run the audit in a sandbox for higher-risk reviews. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to audit OpenClaw agent skills before installation, including checks for dangerous code patterns, filesystem risks, network vulnerabilities, suspicious shell commands, and vulnerable dependencies.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jonathanliu811026/skill-guard-security) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON report examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe CLI use, API use, and SAFE/CAUTION/DANGEROUS verdict outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill instructs users to run the external npm package `skillguard-audit`, so the reviewed artifact does not fully define the code that will execute.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and reviewed package version with a lockfile-backed install, and run audits in an isolated environment without unnecessary credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jonathanliu811026/skills/skill-guard-security)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON report examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces audit verdicts such as SAFE, CAUTION, or DANGEROUS with risk details for reviewed skills.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

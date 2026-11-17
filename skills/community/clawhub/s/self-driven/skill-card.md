@@ -1,41 +1,60 @@
-## Description: <br>
-Enables an AI agent to autonomously select, execute, evaluate, record, and report tasks in a recurring self-directed loop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self Driven helps an agent choose, execute, evaluate, record, and report tasks in a self-directed loop without waiting for direct user prompts.
 
-## Publisher: <br>
-[adminlove520](https://clawhub.ai/user/adminlove520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adminlove520](https://clawhub.ai/user/adminlove520)
 
-## Use Case: <br>
-Developers and agent users use this skill to run a self-directed task loop where the agent reads prior memory, chooses a task, executes it, self-assesses the result, and records a report. It is suited to recurring task management and continuous-improvement workflows that have explicit guardrails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed around an autonomous recurring agent loop and does not define clear approval controls. <br>
-Mitigation: Install only in a tightly scoped workspace, keep cron scheduling disabled until guardrails are explicit, and require confirmation before changes outside the memory folder or before external messages, account actions, purchases, deletions, or public publishing. <br>
-Risk: Repeated self-directed execution can accumulate misleading or low-quality task records if memory files are not reviewed. <br>
-Mitigation: Review memory/self-driven/tasks.md and memory/self-driven/log.md regularly and prune or correct tasks that are stale, unsafe, or unsupported. <br>
+## Use Case:
 
+Developers and agent operators use this skill to run a traceable autonomous task loop that reads prior progress, selects a task, performs work, self-assesses, and records the result. It is intended for users who deliberately want persistent or scheduled self-directed agent behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/adminlove520/self-driven) <br>
-- [Publisher profile](https://clawhub.ai/user/adminlove520) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with file path examples, task records, reports, and optional cron-style schedule snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill directs the agent to maintain memory/self-driven task and log files and may support recurring execution when separately scheduled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can encourage autonomous, scheduled, or persistent agent work without clear approval boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for file changes, shell or tool use, network access, credential use, and third-party actions before enabling the loop.
+
+Risk: Task memory and execution logs could spread beyond the intended workspace or persist longer than expected.
+
+Mitigation: Keep memory/self-driven files in a dedicated scoped directory with clear retention and review practices.
+
+Risk: Unattended cron execution may let the agent continue acting after the operator has lost context.
+
+Mitigation: Avoid unattended cron execution unless the runtime is tightly sandboxed and reviewed between runs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/adminlove520/skills/self-driven)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [CHANGELOG.md](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance, task records, execution logs, status reports, and command suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update scoped memory files such as memory/self-driven/tasks.md and memory/self-driven/log.md when file changes are permitted.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

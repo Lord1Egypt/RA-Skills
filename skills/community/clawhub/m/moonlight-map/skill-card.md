@@ -1,41 +1,57 @@
-## Description: <br>
-把忘不掉的那个人的碎片记忆整理成一份月光档案。重点是理解、命名、归档，不做角色扮演。主输出是月光图谱+未寄出的信。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+把忘不掉的那个人的碎片记忆整理成一份月光档案。重点是理解、命名、归档，不做角色扮演。主输出是月光图谱+未寄出的信。
 
-## Publisher: <br>
-[happle940](https://clawhub.ai/user/happle940) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[happle940](https://clawhub.ai/user/happle940)
 
-## Use Case: <br>
-External users use this skill for structured journaling about a person they cannot stop remembering, turning fragmented memories and idealization into a Moonlight Map dossier and optional unsent letter. It is for reflection and emotional organization, not role-play, pursuit planning, diagnosis, therapy, or crisis support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat structured emotional reflection as therapy or crisis support. <br>
-Mitigation: Frame the skill as journaling, pause normal flow for self-harm or extreme distress, and direct users to friends, family, or professional support. <br>
-Risk: Relationship memories can include identifying details or encourage rumination about another person. <br>
-Mitigation: Use aliases by default, avoid asking for real names or contact details, separate facts from projections, and avoid advice that promotes repeated contact or monitoring. <br>
+## Use Case:
 
+External users use this skill for Chinese-first reflective journaling about a past person or unresolved relationship memory. It helps organize memory fragments into a Moonlight Dossier and optional unsent letter while avoiding roleplay, imagined responses, psychological diagnosis, and encouragement of pursuit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/happle940/moonlight-map) <br>
-- [Source artifact: SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured dossier text and an optional unsent letter] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual zh-CN/en reflection flow with explicit boundaries against impersonation, diagnosis, stalking encouragement, and unnecessary identifying information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Users may treat reflective relationship journaling as therapy, crisis support, or psychological diagnosis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as reflective organization only, preserve the documented crisis boundary, and direct users experiencing self-harm risk or loss of self-protection to real-world support.
+
+Risk: Users may share identifying details about themselves or the person being discussed.
+
+Mitigation: Use aliases by default and avoid requesting names, contact details, addresses, workplaces, schools, or other identifying information unless truly necessary.
+
+Risk: The workflow could intensify rumination, fantasy, or unwanted pursuit if it invents the other person's feelings or encourages contact.
+
+Mitigation: Do not roleplay the other person, do not infer their thoughts, label fact versus projection, and keep contact-related guidance conservative.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/happle940/skills/moonlight-map)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown structured as reflective prompts, a Moonlight Dossier, and an optional unsent letter]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first conversational output with English title metadata; no code execution, shell commands, external tools, or persistence are indicated by the evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

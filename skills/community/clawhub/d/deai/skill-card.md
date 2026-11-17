@@ -1,41 +1,57 @@
-## Description: <br>
-DeAI improves AI-drafted text so it reads more naturally by removing filler phrases, restructuring rhythm, and marking places where the user should add personal voice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeAI improves AI-drafted text so it sounds more naturally human by removing filler phrases, restructuring rhythm, and adding review markers for the user's own voice, experience, and specifics across Chinese, English, Japanese, and Korean.
 
-## Publisher: <br>
-[adsorgcn](https://clawhub.ai/user/adsorgcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adsorgcn](https://clawhub.ai/user/adsorgcn)
 
-## Use Case: <br>
-Writers, marketers, developers, and other external users paste AI-drafted text for DeAI to remove generic wording, reshape flow, and mark where the user should add personal voice before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Edited text could be used without required disclosure or in contexts with academic or platform rules for AI-assisted writing. <br>
-Mitigation: Review the edited output before use and follow applicable disclosure, academic integrity, and platform policies. <br>
-Risk: Review markers may be mistaken for final prose. <br>
-Mitigation: Replace or remove all personal-voice, experience, and number markers before publishing or sharing the text. <br>
+## Use Case:
 
+Writers, editors, and content teams use this skill to revise AI-drafted copy into a more natural voice while preserving human review over colloquial language, personal experience, and factual specifics.
 
-## Reference(s): <br>
-- [DeAI on ClawHub](https://clawhub.ai/adsorgcn/deai) <br>
-- [I-Lang homepage](https://ilang.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Edited text with inline review markers and a brief completion summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review markers identify where users should add colloquial expressions, personal experience, or specific numbers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: frontmatter and server release metadata) <br>
+Risk: Users may treat substantial rewriting as simple annotation and overlook authorship or disclosure requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all edits before use and follow applicable academic, workplace, and platform disclosure rules for AI-assisted writing.
+
+Risk: Rewriting can change tone, emphasis, or meaning in pasted drafts.
+
+Mitigation: Compare the edited output against the original draft before publishing, and replace review markers with the user's own expressions and verified specifics.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adsorgcn/skills/deai)
+- [Publisher profile](https://clawhub.ai/user/adsorgcn)
+- [I-Lang homepage](https://ilang.ai)
+- [AutoCode](https://github.com/ilang-ai/autocode)
+- [OpenClaw Skills](https://github.com/ilang-ai/ilang-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with inline review markers and a brief edit summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The output is same-language edited prose and may include user-review markers for colloquial voice, personal experience, and specific numbers.]
+
+## Skill Version(s):
+
+1.1.4 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

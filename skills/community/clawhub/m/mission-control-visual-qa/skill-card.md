@@ -1,38 +1,56 @@
-## Description: <br>
-Run Mission Control visual QA over SSH using Puppeteer screenshots and basic DOM checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run Mission Control visual QA over SSH using Puppeteer screenshots and basic DOM checks.
 
-## Publisher: <br>
-[Highlander89](https://clawhub.ai/user/Highlander89) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[highlander89](https://clawhub.ai/user/highlander89)
 
-## Use Case: <br>
-Developers and operations teams use this skill to run authorized visual checks against Mission Control pages from a configured remote host. It captures screenshots and reports basic page structure checks for each supplied URL. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill runs code on a configured SSH host. <br>
-Mitigation: Use only a trusted remote host and review the SSH target and URLs before running visual checks. <br>
-Risk: Screenshots may capture internal, authenticated, or personal data. <br>
-Mitigation: Treat saved screenshots as sensitive output and avoid URLs that include secrets in query strings. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers, QA engineers, and operators use this skill to run authorized visual checks for Mission Control pages on a controlled remote host. It captures screenshots and reports basic DOM checks for supplied URLs.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples; runtime output includes PNG screenshots and a JSON summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a trusted SSH target with Node.js, Chromium, and Puppeteer available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.6 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill runs commands on a remote machine over SSH.
+
+Mitigation: Use a dedicated low-privilege remote account and restrict SSH access to approved Mission Control hosts.
+
+Risk: The runner opens user-supplied URLs.
+
+Mitigation: Run it only against authorized Mission Control pages and avoid attacker-controlled URLs.
+
+Risk: Screenshots and summaries may contain sensitive operational UI data.
+
+Mitigation: Keep OUTPUT_DIR and REMOTE_RUN_DIR fixed to controlled paths and handle generated artifacts as sensitive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/highlander89/skills/mission-control-visual-qa)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance for the agent; runtime output is PNG screenshots and a JSON summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured SSH target plus Puppeteer and Chromium on the remote host.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

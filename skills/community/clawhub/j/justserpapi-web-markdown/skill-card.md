@@ -1,44 +1,56 @@
-## Description: <br>
-Call GET /api/v1/web/markdown for Web Crawling Markdown through Just Serp API with url. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/v1/web/markdown for Web Crawling Markdown through Just Serp API with url.
 
-## Publisher: <br>
-[justserpapi](https://clawhub.ai/user/justserpapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justserpapi](https://clawhub.ai/user/justserpapi)
 
-## Use Case: <br>
-Developers and agents use this skill to submit a webpage URL to Just Serp API and receive crawl output suitable for readable extraction, documentation workflows, and LLM input. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive Just Serp API credential. <br>
-Mitigation: Provide the key through JUST_SERP_API_KEY or the helper's API-key argument, and do not paste key values into chat messages, screenshots, or logs. <br>
-Risk: Requested URLs are sent to a third-party API service and may disclose private, signed, account-specific, localhost, or internal-network URLs. <br>
-Mitigation: Avoid submitting sensitive URLs unless the provider's data-handling terms and the user's authorization have been reviewed. <br>
-Risk: API failures, invalid credentials, insufficient credits, or upstream service errors can prevent successful crawling. <br>
-Mitigation: Surface the operation ID, status, and backend payload so the user can distinguish parameter, quota, authentication, and provider-side issues. <br>
+## Use Case:
 
+Developers and agents use this skill to crawl a supplied webpage URL through Just Serp API and receive readable Markdown for extraction, documentation workflows, or LLM input.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justserpapi/justserpapi-web-markdown) <br>
-- [Just Serp API](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_web_markdown&utm_content=project_link) <br>
-- [Just Serp API Docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_web_markdown&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with raw JSON from the API helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_SERP_API_KEY and a user-provided URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Submitted URLs are sent to a third-party crawler.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with URLs that are appropriate to disclose to Just Serp API; avoid private, internal, authenticated, or sensitive links.
+
+Risk: The helper accepts the API key as a command-line argument.
+
+Mitigation: Prefer execution patterns that read JUST_SERP_API_KEY directly from the environment and avoid exposing secrets in shell history, process listings, chat, screenshots, or logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justserpapi/skills/justserpapi-web-markdown)
+- [Just Serp API project site](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_web_markdown&utm_content=project_link)
+- [Just Serp API documentation](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_web_markdown&utm_content=project_link)
+- [Just Serp API base URL](https://api.justserpapi.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summary with optional raw JSON response from the API helper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a JUST_SERP_API_KEY environment value and a target url parameter.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

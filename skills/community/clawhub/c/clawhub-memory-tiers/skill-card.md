@@ -1,42 +1,57 @@
-## Description: <br>
-Clawhub Memory Tiers gives OpenClaw agents startup context through self-updating L0 and L1 markdown memory files so they can resume recent work without re-reading larger history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawhub Memory Tiers helps OpenClaw agents maintain concise L0/L1 workspace memory so each activation starts with current state, recent context, active tasks, and blockers.
 
-## Publisher: <br>
-[DirtyRootsStudio](https://clawhub.ai/user/DirtyRootsStudio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dirtyrootsstudio](https://clawhub.ai/user/dirtyrootsstudio)
 
-## Use Case: <br>
-Developers and operators use this skill to add lightweight persistent memory to OpenClaw agents through L0.md and L1.md files. It helps agents resume work with current focus, recent activity, active tasks, key state, and blockers without re-reading larger history on every activation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent L0.md and L1.md files may retain secrets, credentials, private personal data, or untrusted instructions that future agent runs rely on. <br>
-Mitigation: Keep memory files free of secrets and private data, avoid storing untrusted instructions, and review the files periodically. <br>
-Risk: Outdated or inaccurate memory entries can steer later agent runs toward stale priorities, stale blockers, or incorrect state. <br>
-Mitigation: Update L0.md and L1.md before every activation ends, keep L1 to the most recent seven days, and remove resolved blockers promptly. <br>
-Risk: Shared memory files can cause task collisions or incorrect cross-agent state in multi-agent setups. <br>
-Mitigation: Give each agent its own L0.md and L1.md, and let orchestrators read other agents' memory files without writing to them. <br>
+## Use Case:
 
+Developers and operators managing OpenClaw agents use this skill to add and maintain concise workspace memory files that reduce startup context reconstruction and support multi-agent status checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DirtyRootsStudio/clawhub-memory-tiers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown instructions and templates for agent memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and maintains local L0.md and L1.md memory files in each agent workspace; no network or external API access is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Persistent workspace memory may retain secrets, sensitive personal data, or operational details if users place them in L0.md or L1.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep memory files scoped to operational context, avoid storing secrets or sensitive personal data, and review the files before sharing or publishing a workspace.
+
+Risk: Shared or stale memory files can mislead agents, cause task collisions, or preserve resolved blockers as active state.
+
+Mitigation: Give each agent its own L0.md and L1.md, keep L0 to four current lines, cap L1 to recent context, and remove resolved blockers during each end-of-run update.
+
+Risk: Editing SOUL.md changes how the agent reads and writes persistent context.
+
+Mitigation: Review the SOUL.md additions before installation and confirm the agent is expected to maintain persistent workspace memory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dirtyrootsstudio/skills/clawhub-memory-tiers)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with L0.md, L1.md, and SOUL.md snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workspace memory templates and operating guidance; no code, network calls, or external APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,60 @@
-## Description: <br>
-Habit Tracker Pro turns an AI agent into a conversational accountability partner for daily habits with check-ins, streak tracking, pattern analysis, exports, dashboard widgets, and local cross-tool sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Habit Tracker Pro turns an AI agent into a conversational accountability partner that tracks habits, logs check-ins, manages streaks, analyzes patterns, and supports local cross-tool sync.
 
-## Publisher: <br>
-[nollio](https://clawhub.ai/user/nollio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nollio](https://clawhub.ai/user/nollio)
 
-## Use Case: <br>
-External users and agent developers use this skill to configure conversational habit tracking, daily check-ins, streak summaries, weekly reports, local exports, and lightweight dashboard views for personal routines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Habit names, completion records, skip reasons, notes, and pattern analysis can reveal sensitive health, sleep, work, or routine information. <br>
-Mitigation: Review the data stored under ~/.normieclaw/habit-tracker-pro/ before use, avoid entering sensitive freeform notes, and delete local data or exports when they are no longer needed. <br>
-Risk: Recurring automated check-ins may expose private routine details through the configured chat channel. <br>
-Mitigation: Use only trusted chat channels and hosting environments, and disable or adjust check-in schedules if the channel is shared or monitored. <br>
-Risk: Cross-tool sync can share habit completion data with other local NormieClaw tools. <br>
-Mitigation: Enable integrations only when needed, confirm which tools can read or write habit data, and disable sync paths that are not required. <br>
-Risk: Export scripts create CSV and markdown files that may duplicate personal habit data. <br>
-Mitigation: Store exports in a protected location, share them cautiously, and remove exported files separately from the main data directory when deleting records. <br>
+## Use Case:
 
+External users and agent operators use this skill to configure conversational habit tracking, daily check-ins, streak tracking, habit stacking, pattern analysis, local exports, and dashboard views for personal routines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nollio/normieclaw-habit-tracker-pro) <br>
-- [README](artifact/README.md) <br>
-- [Security considerations](artifact/SECURITY.md) <br>
-- [Dashboard specification](artifact/dashboard-kit/DASHBOARD-SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples, shell commands, local files, CSV exports, and markdown reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local habit data under ~/.normieclaw/habit-tracker-pro/ and optional CSV/markdown exports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Habit names, completions, notes, skip reasons, timestamps, streaks, and inferred patterns may reveal sensitive routine or wellness information stored in local plaintext files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this local storage model is acceptable, restrict access to the machine and data directory, and periodically export or delete old data.
+
+Risk: Cross-tool sync can share habit completion data with other local NormieClaw tools.
+
+Mitigation: Review cross-tool sync settings before enabling them and connect only tools that are trusted to read or write habit status.
+
+Risk: Daily check-ins and habit notes can pass through the user's configured chat channel.
+
+Mitigation: Use chat channels whose privacy and retention settings are appropriate for personal behavioral data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nollio/skills/normieclaw-habit-tracker-pro)
+- [README](README.md)
+- [Security Considerations](SECURITY.md)
+- [Dashboard Specification](dashboard-kit/DASHBOARD-SPEC.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON schemas, shell commands, configuration files, and local report/export text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local habit data files, CSV and markdown exports, weekly summaries, dashboard configuration, and conversational habit-management guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

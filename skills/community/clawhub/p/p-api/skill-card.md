@@ -1,46 +1,57 @@
-## Description: <br>
-Automate WhatsApp messaging, interactive content, instance and group management, catalogs, and webhooks through the P-API service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+P-API - WhatsApp API helps agents automate WhatsApp messaging, interactive content, instance and group management, product catalogs, integrations, and webhooks through the P-API service.
 
-## Publisher: <br>
-[rafacpti23](https://clawhub.ai/user/rafacpti23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rafacpti23](https://clawhub.ai/user/rafacpti23)
 
-## Use Case: <br>
-Developers and automation teams use this skill to configure an agent for WhatsApp messaging, interactive messages, instance lifecycle tasks, group and catalog management, and webhook or integration setup through P-API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The connected API key may allow an agent to send real WhatsApp messages. <br>
-Mitigation: Use a limited-scope API key and require explicit approval before sending messages. <br>
-Risk: Instance deletion, group changes, and catalog edits can alter service state. <br>
-Mitigation: Test against a non-production instance first and require explicit approval for destructive or administrative actions. <br>
-Risk: Webhook and integration setup can forward conversation events to external systems. <br>
-Mitigation: Use trusted HTTPS endpoints, verify the destination owner, and restrict forwarded event types to what is needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [P-API ClawHub listing](https://clawhub.ai/rafacpti23/p-api) <br>
-- [P-API official website](https://papi.api.br) <br>
-- [Interactive message reference](references/interactive.md) <br>
-- [Group management reference](references/groups.md) <br>
-- [Catalog reference](references/catalog.md) <br>
-- [Integration reference](references/integrations.md) <br>
+## Use Case:
 
+Developers and operators use this skill to configure and call P-API endpoints for WhatsApp automation, including sending media messages, creating instances, managing groups and catalogs, and connecting webhooks or integrations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with endpoint examples, JSON request bodies, and curl snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; live actions require a user-supplied P-API base URL, API key, and instance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.1 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Powerful messaging and account-management actions can send messages, remove instances, alter groups, update catalogs, or connect outbound event streams.
+
+Mitigation: Use least-privilege, instance-scoped API keys and require explicit confirmation for recipients, group changes, destructive deletes, catalog changes, and webhook or WebSocket destinations.
+
+Risk: Weak credential-handling guidance can expose API keys or message/account data.
+
+Mitigation: Avoid storing real keys in repositories or agent-readable Markdown, use trusted HTTPS/WSS endpoints, and enable only the event types needed for the deployment.
+
+## Reference(s):
+
+- [P-API official website](https://papi.api.br)
+- [Mundo Automatik](https://mundoautomatik.com/)
+- [Interactive messages reference](references/interactive.md)
+- [Groups reference](references/groups.md)
+- [Product catalog reference](references/catalog.md)
+- [Integrations reference](references/integrations.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API Calls, JSON]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes endpoint paths, request headers, request bodies, and operational cautions for WhatsApp automation.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

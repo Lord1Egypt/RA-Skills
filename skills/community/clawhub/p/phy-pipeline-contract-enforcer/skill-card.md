@@ -1,42 +1,51 @@
-## Description: <br>
-Data pipeline contract enforcer that defines expected schemas at pipeline stage boundaries and validates samples against those contracts to catch schema drift before production. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data pipeline contract enforcer that defines expected schemas at pipeline stage boundaries and validates actual data samples against those contracts to catch schema drift before production.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and data engineers use this skill to generate data contracts, validate pipeline outputs, compare old and new samples for schema drift, and produce fix guidance before promoting data between stages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may analyze pipeline samples or selected directories that contain unrelated sensitive data. <br>
-Mitigation: Limit inputs to the specific sample, contract, or pipeline folder needed for the audit and exclude unrelated sensitive files. <br>
-Risk: Generated shell, Python, YAML, or dbt guidance could be incorrect for the user's exact pipeline. <br>
-Mitigation: Review generated commands and configuration before running or applying them in development, CI, or production. <br>
+## Use Case:
 
+Developers and data engineers use this skill to generate, validate, diff, and audit data pipeline contracts across dbt models, DataFrames, Kafka or REST payloads, and CSV or JSON files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-pipeline-contract-enforcer) <br>
-- [Publisher profile](https://clawhub.ai/user/PHY041) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline YAML, Python, and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include contract reports, generated YAML contracts, drift summaries, fix priorities, and dbt test snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server evidence and frontmatter) <br>
+Risk: A documented CSV helper may handle filenames unsafely, allowing a malicious filename to influence generated Python code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted local pipeline files, pass file paths as arguments rather than embedding them into Python source, and sandbox agent execution when processing untrusted filenames.
+
+## Reference(s):
+
+- [Canlah AI homepage](https://canlah.ai)
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-pipeline-contract-enforcer)
+- [Publisher profile](https://clawhub.ai/user/phy041)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with inline code blocks, YAML contract examples, shell commands, and concise CI/CD status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include generated contract drafts, validation findings, drift summaries, fix priorities, and dbt test snippets.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

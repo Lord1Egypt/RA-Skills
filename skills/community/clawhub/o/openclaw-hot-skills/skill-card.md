@@ -1,39 +1,53 @@
-## Description: <br>
-Discover trending, must-have, and topic-specific high-value skills from ClawHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover trending, must-have, and topic-specific high-value skills from ClawHub.
 
-## Publisher: <br>
-[tengj](https://clawhub.ai/user/tengj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tengj](https://clawhub.ai/user/tengj)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to find, compare, and decide whether to install popular or topic-specific ClawHub skills. It supports curated ranked lists, local installed-status checks, and a review-before-install workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the local clawhub CLI and may contact ClawHub for rankings and local installed-skill status. <br>
-Mitigation: Install only when ClawHub skill-discovery assistance is desired, trust the clawhub CLI dependency, and review any recommended skill separately before confirming installation. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to discover trending, must-have, and topic-specific ClawHub skills, compare candidates, see local installation status, and decide what to inspect or install next.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tengj/openclaw-hot-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/tengj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown ranked lists with concise recommendations and command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ClawHub links, popularity metrics, installed status, and install or review next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: release metadata) <br>
+Risk: The skill may install or invoke the `clawhub` CLI, query the ClawHub registry, and list locally installed skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the ClawHub CLI source and version in sensitive environments before use.
+
+Risk: Recommended skills may carry separate security or permission risks if installed without review.
+
+Mitigation: Inspect and scan each recommended skill before allowing installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tengj/skills/openclaw-hot-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown shortlist with ranked items, ClawHub links, installation status, and recommended next actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Matches the user's language and may include CLI-backed popularity metrics when available.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

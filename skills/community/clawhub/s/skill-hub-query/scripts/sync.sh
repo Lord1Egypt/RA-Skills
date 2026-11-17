@@ -62,7 +62,7 @@ full_sync() {
   echo "[sync] Full sync starting (typically 5-15s)..." >&2
 
   local tmp_all
-  tmp_all="$(mktemp)"
+  tmp_all="$(shq_mktemp)"
   _SYNC_TMP_FILES+=("$tmp_all")
   echo '{}' > "$tmp_all"
 

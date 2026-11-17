@@ -1,47 +1,65 @@
-## Description: <br>
-Downloads the latest TikTok video, multiple recent videos, or metadata from a public TikTok profile or direct video URL using yt-dlp. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads the latest video, multiple recent videos, or metadata from public TikTok accounts and direct TikTok video URLs using yt-dlp.
 
-## Publisher: <br>
-[stoxca](https://clawhub.ai/user/stoxca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-OpenClaw Knowledge Base License (KBLICENSE) <br>
+## Publisher:
 
+[stoxca](https://clawhub.ai/user/stoxca)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve authorized TikTok media or metadata from public profiles or direct video URLs while managing output paths and common yt-dlp errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+OpenClaw KBLICENSE 1.0.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install or update yt-dlp with pip and --break-system-packages when yt-dlp is missing. <br>
-Mitigation: Install and pin dependencies in a controlled environment before enabling the skill; avoid allowing the agent to modify system Python packages during normal use. <br>
-Risk: Cookie workflows can expose authenticated TikTok account access. <br>
-Mitigation: Use browser or exported cookies only with explicit approval in a controlled session, and avoid sharing cookie files. <br>
-Risk: Downloading or archiving third-party TikTok content can violate rights, privacy expectations, or platform terms. <br>
-Mitigation: Use it only for content the user owns, has permission to download, or may lawfully archive; review applicable terms before bulk downloads. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve permitted TikTok videos or metadata from public accounts, direct video URLs, and small account archives. It is intended for content the user owns, is authorized to download, or may archive under applicable law.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stoxca/download-video-tiktok) <br>
-- [yt-dlp project](https://github.com/yt-dlp/yt-dlp) <br>
-- [TikTok terms of service](https://www.tiktok.com/legal/page/row/terms-of-service/en) <br>
-- [Metadata reference](artifact/metadata.md) <br>
-- [Advanced usage reference](artifact/advanced.md) <br>
-- [License terms](artifact/KBLICENSE.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON metadata, and local media file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save MP4 videos, info JSON, thumbnails, or archive files locally depending on the selected workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can install or update yt-dlp during use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preinstall a pinned yt-dlp version through a controlled process before deployment.
+
+Risk: The skill can write downloaded media, metadata, thumbnails, and archive files to local paths.
+
+Mitigation: Constrain accepted output paths and run it with least-privilege filesystem access.
+
+Risk: Cookie-based access can expose browser sessions or exported cookie files.
+
+Mitigation: Avoid --cookies-from-browser and exported cookie files unless explicitly approved for the environment.
+
+Risk: Downloading third-party TikTok content may violate permissions, platform terms, or applicable law.
+
+Mitigation: Use it only for public TikTok content the user is allowed to download or archive.
+
+## Reference(s):
+
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+- [Skill page](https://clawhub.ai/stoxca/skills/download-video-tiktok)
+- [TikTok metadata reference](metadata.md)
+- [OpenClaw advanced techniques](advanced.md)
+- [OpenClaw KBLICENSE](KBLICENSE.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON metadata files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local MP4 downloads, info JSON files, thumbnails, archive files, and concise status messages when commands are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

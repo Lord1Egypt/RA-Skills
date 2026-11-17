@@ -1,45 +1,63 @@
-## Description: <br>
-Make AI-powered phone calls via Bland AI to book restaurants, make appointments, inquire about services, and report back with transcripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Make AI-powered phone calls via Bland AI to book restaurants, make appointments, inquire about services, and report back with transcripts.
 
-## Publisher: <br>
-[dru-ca](https://clawhub.ai/user/dru-ca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dru-ca](https://clawhub.ai/user/dru-ca)
 
-## Use Case: <br>
-External users and developers use this skill to place outbound Bland AI calls for bookings, appointment inquiries, and service questions, then retrieve call status, transcripts, and summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real outbound calls through Bland AI and may incur usage costs or contact the wrong recipient. <br>
-Mitigation: Confirm the phone number, task, expected cost, recording setting, and maximum duration before each call. <br>
-Risk: Call transcripts, summaries, recordings, or call tasks may contain sensitive personal or business information. <br>
-Mitigation: Avoid sending secrets, regulated personal data, or sensitive business details unless Bland AI privacy, retention, and consent requirements have been reviewed. <br>
-Risk: Privacy and recording disclosures are not strong enough in the artifact. <br>
-Mitigation: Make recording and consent expectations explicit before enabling call recording or using the skill in regulated contexts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dru-ca/phone-calls-bland) <br>
-- [Bland AI App](https://app.bland.ai) <br>
-- [Bland AI Dashboard](https://app.bland.ai/dashboard) <br>
-- [Bland AI Billing Dashboard](https://app.bland.ai/dashboard/billing) <br>
-- [Bland AI API Base](https://api.bland.ai/v1) <br>
+## Use Case:
 
+External users and developers use this skill to initiate Bland AI outbound phone calls for practical tasks such as bookings, appointment inquiries, and service questions, then review returned call IDs, transcripts, summaries, or recordings.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Text, JSON, Configuration] <br>
-**Output Format:** [Command-line text and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BLAND_API_KEY; may return call IDs, status, transcripts, summaries, and recording URLs when recording is enabled.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can initiate real outbound calls without a built-in confirmation step.
+
+Mitigation: Require explicit user confirmation of the phone number, task, and recording option before running call commands.
+
+Risk: Phone numbers, task instructions, transcripts, summaries, and recordings may include personal, business, medical, financial, or legally sensitive details sent to or returned from Bland AI.
+
+Mitigation: Avoid sensitive call content where possible, follow recording-consent requirements, and review Bland AI handling policies before use.
+
+Risk: Broad account API keys can be exposed if stored where other local tools can read them.
+
+Mitigation: Store BLAND_API_KEY in a restricted secret store or environment with least-privilege access and rotate it if exposure is suspected.
+
+Risk: The artifact claims data stays secure because it is self-hosted, but server security evidence says data is sent to a third-party API.
+
+Mitigation: Treat the skill as a third-party API integration and disclose that call data leaves the local environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dru-ca/skills/phone-calls-bland)
+- [Bland AI application](https://app.bland.ai)
+- [Bland AI dashboard](https://app.bland.ai/dashboard)
+- [Bland AI API base URL](https://api.bland.ai/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Text, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON or text call-status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BLAND_API_KEY; call tasks, phone numbers, transcripts, summaries, and optional recordings are exchanged with Bland AI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

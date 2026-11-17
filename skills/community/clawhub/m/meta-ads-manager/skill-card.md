@@ -1,39 +1,51 @@
-## Description: <br>
-Manage and analyze Meta (Facebook/Instagram) ad campaigns, including performance reporting, audience and creative analysis, budget optimization, and confirmed campaign, ad set, or ad changes through Meta Marketing API access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and analyze Meta (Facebook/Instagram) Ads campaigns, including performance metrics, ad spend, ROAS, CPA, CTR, audience breakdowns, creative analysis, budget optimization, and approved campaign, ad set, or ad changes.
 
-## Publisher: <br>
-[aiddun](https://clawhub.ai/user/aiddun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aiddun](https://clawhub.ai/user/aiddun)
 
-## Use Case: <br>
-External advertisers, marketers, and agency operators use this skill to inspect connected Meta ad accounts, summarize campaign performance, diagnose audiences and creatives, optimize budgets, and perform explicitly confirmed campaign management changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Authenticated Meta ad account access can expose campaign, spend, and performance data from connected accounts. <br>
-Mitigation: Install only after trusting the Metacog OAuth connection and connect only the Meta ad accounts the agent should inspect or manage. <br>
-Risk: Confirmed write actions can change campaigns, ad sets, ads, or budgets. <br>
-Mitigation: Approve write actions only when the exact account, target object, current value, new value, and rollback path are clear. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aiddun/meta-ads-manager) <br>
+## Use Case:
+
+External advertisers, marketers, and agency operators use this skill to analyze Meta ad performance, audit campaigns, compare audiences and creatives, and prepare budget or campaign changes for user approval.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Approved write actions can affect live Meta campaigns, budgets, ads, or paused and deleted objects.
+
+Mitigation: Show the exact campaign, ad set, or ad field that will change, including current and proposed values, and require explicit user approval before any write.
+
+Risk: The skill can inspect connected Meta ad accounts and performance data.
+
+Mitigation: Install only when the agent should access those accounts, and return concise summaries limited to the data needed for the user's task.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, API Calls] <br>
-**Output Format:** [Markdown summaries and tables, with API-backed readouts and explicitly confirmed write actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses concise aggregated outputs, capped ranked lists, formatted metrics, and persisted context for follow-up ad account analysis.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown responses with tables, concise recommendations, and JSON-serializable tool outputs when calling Meta Ads tools.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should keep account data concise, aggregate metrics before returning them, cap ranked lists, format currency and percentages, and require explicit user approval before writes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

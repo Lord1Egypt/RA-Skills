@@ -6,12 +6,13 @@ from _const import TOOL_CODE
 from _errors import ParamError, ServiceError
 
 
-def optimize_title(item_id: int) -> dict:
+def optimize_title(item_id: int, login_id: str = None) -> dict:
     """
     基于规则和统计的标题优化（方式A）
 
     Args:
         item_id: 商品ID
+        login_id: 可选，目标店铺的 loginId，用于多店铺场景
 
     Returns:
         优化结果，包含 old_title, new_title, optimize_reason, new_title_words, other_words
@@ -26,6 +27,7 @@ def optimize_title(item_id: int) -> dict:
             "item_id": item_id,
         },
         timeout=30,
+        login_id=login_id,
     )
 
     if not isinstance(data, dict):

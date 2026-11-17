@@ -1,40 +1,53 @@
-## Description: <br>
-Provides structured guidance for forecasting load, headroom, and scaling plans before big launches or cost reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Forecasting load, headroom, and scaling plans. Use before big launches or cost reviews.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-Developers, operators, and technical planners use this skill to structure capacity planning around growth assumptions, headroom, bottlenecks, verification, and operational follow-through. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Capacity recommendations may influence infrastructure, cost, or rollout decisions without measured operational validation. <br>
-Mitigation: Review recommendations against current telemetry, load tests, cost targets, and rollout constraints before applying changes. <br>
-Risk: Incomplete environment, scale, deadline, or ownership context can lead to overly broad capacity guidance. <br>
-Mitigation: Ask targeted questions for missing context and keep goals, constraints, trade-offs, verification steps, and operational owners explicit. <br>
+## Use Case:
 
+Developers, SREs, platform engineers, and technical leads use this skill to structure capacity-planning conversations around load forecasts, headroom, bottlenecks, validation, and operational follow-through before launches or cost reviews.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikeclaw007/capacity) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown text with staged planning guidance, checklists, trade-offs, and validation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; recommendations depend on user-provided capacity context and should be reviewed before infrastructure, cost, or rollout changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Capacity guidance can be misleading when growth assumptions, seasonality, telemetry, or service constraints are incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate assumptions against current metrics, load tests, forecasts, and stakeholder constraints before committing to scaling or cost decisions.
+
+Risk: Recommendations may influence infrastructure or operational changes even though the skill does not execute tests, modify systems, or access environments.
+
+Mitigation: Require human review, staged rollout plans, monitoring, rollback points, and change approval before applying recommendations to production systems.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mikeclaw007/skills/capacity)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

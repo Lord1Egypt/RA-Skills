@@ -1,42 +1,63 @@
-## Description: <br>
-Tracks top Polymarket whale wallets, monitors leaderboard positions, and identifies high-conviction market signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks top Polymarket whale wallets, reports leaderboard and open-position data, and highlights high-conviction market signals.
 
-## Publisher: <br>
-[themsquared](https://clawhub.ai/user/themsquared) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[themsquared](https://clawhub.ai/user/themsquared)
 
-## Use Case: <br>
-External users and developers use this skill to inspect Polymarket leaderboard wallets, review open positions, and identify possible high-conviction market signals for research before making their own trading decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script contacts Polymarket API endpoints and may send any wallet addresses a user queries. <br>
-Mitigation: Install and run it only if that API contact is acceptable for the user's environment and wallet-address privacy expectations. <br>
-Risk: The output is market research and may be incomplete, stale, or unsuitable as trading advice. <br>
-Mitigation: Review the underlying markets and positions independently before acting, and do not treat the report as an automated trading system. <br>
+## Use Case:
 
+External users and developers use this skill to run a Python-based Polymarket monitoring report for top monthly earners, open positions, recent trades, and consensus signals. The output should be treated as advisory market information, not automated trading execution.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/themsquared/polymarket-whale-tracker-pro) <br>
-- [Polymarket Data API](https://data-api.polymarket.com) <br>
-- [Polymarket Gamma API](https://gamma-api.polymarket.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text report with wallet addresses, profile links, open-position tables, and recent-trade summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run once, watch for periodic refreshes, or inspect a specific wallet address.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: The skill presents trading signals and position recommendations from external market APIs that may be incomplete, stale, or unsuitable for a user's risk profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as advisory information and require human review before making trading decisions.
+
+Risk: The artifact depends on an unpinned third-party Python package.
+
+Mitigation: Install in a virtual environment and review or pin the dependency before operational use.
+
+Risk: Remote market text is printed to the terminal, including in watch mode.
+
+Mitigation: Avoid terminals that permit risky control-sequence behavior unless remote text is sanitized before display.
+
+Risk: The documentation advertises JSON output for automation, while the reviewed script does not define a JSON CLI option.
+
+Mitigation: Verify the CLI behavior in a test environment before relying on JSON automation workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/themsquared/skills/polymarket-whale-tracker-pro)
+- [Polymarket Data API endpoint](https://data-api.polymarket.com)
+- [Polymarket Gamma API endpoint](https://gamma-api.polymarket.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Terminal text report with documented JSON mode for automation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes leaderboard, wallet address, watch, and minimum position size modes; watch mode refreshes every five minutes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

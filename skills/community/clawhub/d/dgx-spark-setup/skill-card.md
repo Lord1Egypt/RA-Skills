@@ -1,47 +1,58 @@
-## Description: <br>
-Set up and maintain an NVIDIA DGX Spark (GB10 Blackwell, 128GB unified memory) as a local LLM inference server running vLLM + LiteLLM + OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and maintain an NVIDIA DGX Spark (GB10 Blackwell, 128GB unified memory) as a local LLM inference server running vLLM + LiteLLM + OpenClaw.
 
-## Publisher: <br>
-[jimmy-hernandez](https://clawhub.ai/user/jimmy-hernandez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimmy-hernandez](https://clawhub.ai/user/jimmy-hernandez)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure a DGX Spark as a private local LLM inference server with vLLM, LiteLLM, OpenClaw, and Tailscale access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running vLLM with trusted remote model code can execute model-provided code. <br>
-Mitigation: Use trusted model files and review the model source before enabling trust-remote-code. <br>
-Risk: Installer commands fetched with curl can change over time or install unexpected software. <br>
-Mitigation: Review installer scripts before execution and run them only from trusted sources. <br>
-Risk: LiteLLM auto-start and Tailscale enrollment expose a persistent model-serving endpoint. <br>
-Mitigation: Confirm the service should auto-start, use strong LiteLLM virtual keys, and approve only the intended machine in Tailscale. <br>
+## Use Case:
 
+Developers and engineers use this skill to install, configure, and troubleshoot a DGX Spark as a private local LLM inference server with vLLM, LiteLLM routing, OpenClaw client configuration, and Tailscale remote access.
 
-## Reference(s): <br>
-- [LiteLLM config template](references/litellm-config-template.yaml) <br>
-- [DGX Spark vLLM Troubleshooting](references/troubleshooting.md) <br>
-- [Triton repository](https://github.com/triton-lang/triton.git) <br>
-- [vLLM repository](https://github.com/vllm-project/vllm.git) <br>
-- [PyTorch CUDA 13.0 package index](https://download.pytorch.org/whl/cu130) <br>
-- [Tailscale installer](https://tailscale.com/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and YAML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup commands, configuration snippets, and troubleshooting guidance for the DGX Spark model-serving stack.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The guide asks users to install packages and run external installers or source builds, which can introduce supply-chain risk or create a broken Python environment if artifacts drift.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt commands before installing, prefer verified package-manager installs or pinned artifacts, pin Python dependency versions, and verify model code before using trusted-code loading.
+
+Risk: The setup exposes a persistent inference service through LiteLLM and Tailscale, which can allow unintended access if keys, devices, or network scope are too broad.
+
+Mitigation: Run services under least privilege and restrict Tailscale and LiteLLM access to intended users and devices.
+
+## Reference(s):
+
+- [LiteLLM Config Template](references/litellm-config-template.yaml)
+- [DGX Spark vLLM Troubleshooting](references/troubleshooting.md)
+- [Triton GitHub Repository](https://github.com/triton-lang/triton.git)
+- [vLLM GitHub Repository](https://github.com/vllm-project/vllm.git)
+- [PyTorch CUDA 13.0 Package Index](https://download.pytorch.org/whl/cu130)
+- [Tailscale Install Script](https://tailscale.com/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and YAML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup, verification, service configuration, client configuration, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

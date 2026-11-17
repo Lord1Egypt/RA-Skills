@@ -1,40 +1,52 @@
-## Description: <br>
-Use when the task is to stitch multiple vertically scrolling iPhone screenshots into a single long image with the local screenshot-stitcher CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the task is to stitch multiple vertically scrolling iPhone screenshots into a single long image with the local screenshot-stitcher CLI.
 
-## Publisher: <br>
-[mate-matt](https://clawhub.ai/user/mate-matt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mate-matt](https://clawhub.ai/user/mate-matt)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to combine ordered, vertically scrolling iPhone screenshots into one long local image and choose crop or margin flags when defaults are insufficient.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill recommends installing an unpinned PyPI CLI package.
+
+Mitigation: Install the CLI in a dedicated virtual environment and prefer a pinned, reviewed package version.
+
+Risk: Screenshots may contain sensitive information exposed to local tooling in the active Python environment.
+
+Mitigation: Only process screenshots that are appropriate for that local environment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill to combine ordered, same-width vertically scrolling iPhone screenshots into one long local image and to choose crop or edge-margin flags when the default CLI command is not enough. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
 
-## Known Risks and Mitigations: <br>
-Risk: Installing or running a third-party Python package can execute code in the user's Python environment. <br>
-Mitigation: Install only in a trusted or isolated Python environment, preferably a virtual environment. <br>
-Risk: The fallback `python3 main.py` path can run untrusted source code if used from an unknown checkout. <br>
-Mitigation: Use the fallback only from a checkout the user trusts. <br>
+**Output Format:** [Markdown with inline shell commands and generated image file paths]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mate-matt/screenshot-stitcher) <br>
+**Other Properties Related to Output:** [The skill produces local CLI instructions and reports the stitched output path plus low-confidence overlap notes when present.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, files, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated image file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports the stitched output path and any low-confidence overlap warnings produced by the CLI.] <br>
+0.1.1 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Analyze a user's existing insurance coverage to identify gaps, overlaps, and under-insurance risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze a user's existing insurance coverage to identify gaps, overlaps, and under-insurance risks. Use when users want to review whether they have adequate protection across health, life, property, and liability insurance.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to review an insurance portfolio after life changes or coverage questions, identify uninsured or under-insured risks, and prioritize improvements across health, life, property, and liability insurance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may ask for sensitive policy, income, asset, liability, and household details while reviewing insurance coverage.
+
+Mitigation: Share only necessary details, use approximate figures when sufficient, avoid unnecessary identifiers, and ask the agent not to retain or reuse the information outside the coverage review.
+
+Risk: Coverage recommendations may be incomplete or unsuitable for a user's jurisdiction, insurer, or personal risk profile.
+
+Mitigation: Treat the output as a structured review aid and confirm important coverage decisions with qualified insurance, legal, or financial professionals.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and their assisting agents use this skill to review health, life, property, and liability insurance coverage after life changes or when checking for gaps, overlaps, and under-insurance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask for sensitive financial, household, and insurance information. <br>
-Mitigation: Share only the minimum needed, prefer ranges or summaries, and avoid identifiers, account numbers, full policy documents, login details, or session information. <br>
-Risk: Coverage recommendations can be incomplete if the user provides partial policy or personal context. <br>
-Mitigation: Treat outputs as review guidance, verify details against current policy documents, and consult a qualified insurance professional for binding coverage decisions. <br>
+**Output Format:** [Markdown or text guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include prioritized insurance coverage recommendations based on user-provided policy, income, asset, liability, and household details.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prioritized coverage review observations and recommendations based on user-provided policy and personal context.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

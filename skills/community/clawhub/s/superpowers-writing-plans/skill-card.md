@@ -1,39 +1,53 @@
-## Description: <br>
-Use when you have a spec or requirements for a multi-step task, before touching code - guides writing comprehensive implementation plans with bite-sized tasks, TDD, and DRY/YAGNI principles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when you have a spec or requirements for a multi-step task, before touching code - guides writing comprehensive implementation plans with bite-sized tasks, TDD, and DRY/YAGNI principles.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers and coding agents use this skill before implementation to convert a multi-step specification into a concrete, test-driven implementation plan. The plan is expected to identify files, task-sized steps, tests, verification commands, and commits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated plans can include git commands, commits, merges, and execution handoffs that affect a repository. <br>
-Mitigation: Review the specific commands and approve commits, merges, or delegated execution before running them. <br>
-Risk: The skill can reference other skills for subagent execution or branch cleanup. <br>
-Mitigation: Review any referenced subagent or cleanup skills separately before using them. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to turn a multi-step implementation spec into a detailed Markdown plan before code changes begin. The plan is expected to include file responsibilities, small test-driven tasks, concrete commands, commits, and handoff options.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown implementation plan with code blocks and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Plans are intended to be reviewed before any generated commands, commits, merges, or delegated execution are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can produce implementation plans that include git branch, merge, commit, or subagent workflow steps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated plan before allowing follow-on implementation, especially version-control and subagent steps.
+
+Risk: The operating instructions are written in Chinese, which may be unsuitable for teams or agents that require English-language instructions.
+
+Mitigation: Install only where Chinese-language operating instructions are acceptable, or translate and review the skill before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/axelhu/skills/superpowers-writing-plans)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown plan with task checklists and inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Plans are saved under docs/superpowers/plans/YYYY-MM-DD-<feature-name>.md and should be reviewed before implementation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Provides FaDaDa FASC API 5.0 electronic contract signing workflows, including contract sending, signing status checks, and signed contract downloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates FaDaDa FASC API 5.0 electronic contract workflows, including sending contracts for signature, checking signing status, and downloading signed documents.
 
-## Publisher: <br>
-[fadada-esign](https://clawhub.ai/user/fadada-esign) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fadada-esign](https://clawhub.ai/user/fadada-esign)
 
-## Use Case: <br>
-Developers and business operations teams use this skill to integrate FaDaDa electronic signing into HR contracts, sales agreements, and other document approval workflows. It helps agents prepare configuration, call signing APIs, send contracts, query task status, and retrieve signed documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send, download, or cancel contract signing workflows that affect real agreements. <br>
-Mitigation: Confirm the contract, signer identities, phone numbers, provider endpoint, task IDs, and output paths before running send, batch, download, or cancel commands. <br>
-Risk: FaDaDa application credentials and signing links are sensitive. <br>
-Mitigation: Use environment variables or a secure secret store for API secrets, restrict config-file permissions, and treat signing links as confidential. <br>
-Risk: Downloaded signed contracts may contain confidential personal or business information. <br>
-Mitigation: Store downloaded contracts only in approved locations and limit access according to the organization's document handling policy. <br>
+## Use Case:
 
+Developers and business operations teams use this skill to configure FaDaDa credentials and automate HR contracts, sales contracts, and other agreement signing workflows through Python or the fadada CLI.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fadada-esign/fadada-esign-cn) <br>
-- [FaDaDa Open Platform](https://www.fadada.com/) <br>
-- [FASC API 5.0 documentation](https://docs.fadada.com/) <br>
-- [API reference](references/api_reference.md) <br>
-- [Data models](references/data_models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples plus JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce FaDaDa API request guidance, CLI commands, configuration files, and status or download workflow instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can send sensitive contracts, signer data, and credentials to configurable network destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher is trusted, keep credentials in environment variables or a secret manager, and verify server_url before use.
+
+Risk: Send and batch operations may route contracts or notifications to unintended recipients.
+
+Mitigation: Confirm the exact contract file, recipient details, and destination before every send or batch operation.
+
+Risk: Signing links, download links, generated reports, and signed documents may expose sensitive agreement data.
+
+Mitigation: Treat links, reports, and downloaded files as sensitive and restrict access and retention.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fadada-esign/skills/fadada-esign-cn)
+- [FaDaDa Open Platform](https://www.fadada.com/)
+- [FASC API 5.0 Documentation](https://docs.fadada.com/)
+- [FaDaDa FASC API 5.0 Interface Reference](references/api_reference.md)
+- [FaDaDa Data Model Reference](references/data_models.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can guide execution that sends contracts, returns signing or download links, and writes JSON reports or downloaded signed documents.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and target metadata; artifact setup.py and _skillhub_meta.json list 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

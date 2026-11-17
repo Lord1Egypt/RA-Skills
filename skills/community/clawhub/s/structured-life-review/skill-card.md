@@ -1,39 +1,54 @@
-## Description: <br>
-Conduct structured life review or reminiscence conversations using the LREF methodology, guiding one memory at a time across situational, sensory, emotional, and meaning dimensions without assuming any specific persona, tools, or storage layer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conduct structured life review or reminiscence conversations using the LREF methodology, guiding one memory at a time across situational, sensory, emotional, and meaning dimensions without assuming any specific persona, tools, or storage layer.
 
-## Publisher: <br>
-[OiiOAI](https://clawhub.ai/user/OiiOAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oiioai](https://clawhub.ai/user/oiioai)
 
-## Use Case: <br>
-External users and agents use this skill to guide paced reminiscence, oral history, memoir, and biography conversations around one concrete memory anchor at a time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Life-review conversations can surface grief, trauma, loss, distress, or sensitive autobiographical details. <br>
-Mitigation: Use low-pressure pacing, stop when the person becomes tired or distressed, and pair with emotional-safety-fuse or qualified human support for sensitive contexts. <br>
+## Use Case:
 
+External users and agents use this skill to conduct paced reminiscence, oral history, legacy interview, or biographical conversations around one concrete memory at a time. It helps structure prompts across situational, sensory, emotional, and meaning dimensions while preserving the person's own language and sequence.
 
-## Reference(s): <br>
-- [LREF Guide](references/lref-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/OiiOAI/structured-life-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational guidance and optional markdown narrative notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, tool access, data persistence, or storage layer is specified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may guide users into personal or emotional memories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Obtain consent, avoid pressure, let users skip topics, and add stronger emotional-safety guardrails when grief, trauma, loss, or distress appears.
+
+Risk: The artifact notes that emotional safety protocols are not built in.
+
+Mitigation: Pair with an emotional-safety skill or equivalent safeguards for sensitive conversations.
+
+## Reference(s):
+
+- [LREF Guide](references/lref-guide.md)
+- [Structured Life Review on ClawHub](https://clawhub.ai/oiioai/skills/structured-life-review)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown]
+
+**Output Format:** [Markdown guidance and conversational prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no tools, persistence, credential access, or code execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

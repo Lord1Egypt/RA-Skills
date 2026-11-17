@@ -1,0 +1,8 @@
+# speed.mp4: 49 words via faster-whisper (small), language en
+# Fix mistakes in fixes.json (see references/proofreading.md), never in this file.
+L1 [00:00.0-00:05.7] We won't have a lot of time to talk because we'll be cruising over the ground station at 17,500 miles an hour.
+L2 [00:06.2-00:07.9] That's 25 times the speed of sound.
+L3 [00:08.5-00:13.2] So we'll actually only have about 9 or 10 minutes of good radio contact from the horizon to the horizon.
+
+# Unsure words (confidence under 0.6): check these first
+#  00:09.9 9 (0.56)

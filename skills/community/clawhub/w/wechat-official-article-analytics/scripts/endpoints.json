@@ -1,0 +1,108 @@
+{
+  "meta": {
+    "root": "https://api.we-media.cn",
+    "auth_header": "X-API-Key",
+    "source_header": "X-WM-Source",
+    "official_site": "https://api.we-media.cn"
+  },
+  "endpoints": [
+    {
+      "key": "mp-article-metrics",
+      "name": "文章互动数据",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-article-metrics/articles/metrics",
+      "price": 0.015,
+      "params": [
+        "url"
+      ],
+      "purpose": "阅读/点赞/分享/收藏",
+      "param_types": {
+        "url": "string"
+      },
+      "product_slug": "wechat-native-article-metrics"
+    },
+    {
+      "key": "mp-article-info",
+      "name": "文章基本信息",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-article-info/articles/info",
+      "price": 0.01,
+      "params": [
+        "url"
+      ],
+      "purpose": "标题/作者/发布时间",
+      "param_types": {
+        "url": "string"
+      },
+      "product_slug": "wechat-native-article-info"
+    },
+    {
+      "key": "mp-article-content",
+      "name": "文章正文",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-article-content/articles/content",
+      "price": 0.008,
+      "params": [
+        "url",
+        "format"
+      ],
+      "purpose": "正文/媒体/内容分析",
+      "param_types": {
+        "url": "string",
+        "format": "string"
+      },
+      "product_slug": "wechat-native-article-content"
+    },
+    {
+      "key": "mp-article-media",
+      "name": "文章媒体资源",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-article-media/native/media",
+      "price": 0.021,
+      "params": [
+        "url"
+      ],
+      "purpose": "图片/视频/音频/链接清单",
+      "param_types": {
+        "url": "string"
+      },
+      "product_slug": "wechat-native-article-media"
+    },
+    {
+      "key": "mp-article-snapshot",
+      "name": "文章完整数据",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-article-snapshot/articles/snapshot",
+      "price": 0.03,
+      "params": [
+        "url"
+      ],
+      "purpose": "一次拿信息+互动+正文",
+      "param_types": {
+        "url": "string"
+      },
+      "product_slug": "wechat-native-article-snapshot"
+    },
+    {
+      "key": "mp-article-report",
+      "name": "文章完整报告",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-article-report/articles/report",
+      "price": 0.063,
+      "params": [
+        "url"
+      ],
+      "purpose": "一次拿全量分析报告",
+      "param_types": {
+        "url": "string"
+      },
+      "product_slug": "wechat-native-article-report"
+    }
+  ]
+}

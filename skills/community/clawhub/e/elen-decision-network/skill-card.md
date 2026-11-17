@@ -1,41 +1,56 @@
-## Description: <br>
-Teaches agents how to query, expand, and cleanly commit technical, design, and product constraints to the Elen SQLite decision graph via the Elen Context Server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teaches agents how to query, expand, and cleanly commit technical, design, and product constraints to the Elen SQLite decision graph via the Elen Context Server.
 
-## Publisher: <br>
-[NicoIzco](https://clawhub.ai/user/NicoIzco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nicoizco](https://clawhub.ai/user/nicoizco)
 
-## Use Case: <br>
-Developers and agent operators use this skill to consult and update a local Elen decision graph before making technical, design, security, or product changes, preserving visible reasoning and constraints across work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to run a pinned npm MCP package. <br>
-Mitigation: Verify trust in the @learningnodes/elen-mcp package and publisher before installing or enabling the MCP server. <br>
-Risk: The decision graph can become persistent memory for sensitive technical, product, or business reasoning. <br>
-Mitigation: Avoid committing secrets, credentials, or confidential business details unless the MCP server's storage and sharing behavior has been reviewed. <br>
-Risk: Agent behavior depends on a locally configured MCP server and its returned decision context. <br>
-Mitigation: Confirm the Elen server configuration and review important suggested or committed decisions before using them to guide broad codebase changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NicoIzco/elen-decision-network) <br>
+## Use Case:
 
+Developers and agent operators use this skill to make agents query prior Elen decisions before substantial work and record new technical, design, security, or product decisions in a local decision graph.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown with JSON configuration examples and MCP tool guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference MCP tool calls for querying, committing, and superseding decision graph entries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on the external @learningnodes/elen-mcp@0.1.1 npm package for MCP server behavior.
+
+Mitigation: Install only after reviewing the package source and dependencies, and run it with minimal filesystem and environment access.
+
+Risk: Agents may store technical, security, design, and product decisions in a persistent local decision graph.
+
+Mitigation: Avoid storing secrets or sensitive vulnerability details, and require explicit user review before committing decisions.
+
+Risk: The skill encourages broad workflow changes around agent decision capture with limited scoping and user-control guidance.
+
+Mitigation: Apply the skill to meaningful decisions only and keep user approval in the loop for consequential commits or superseded decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nicoizco/skills/elen-decision-network)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands]
+
+**Output Format:** [Markdown with JSON configuration snippets and MCP tool names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an external Elen MCP server package and a persistent local SQLite decision graph.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,55 @@
-## Description: <br>
-Self-contained orchestration skill for writing high-performance TLE kernels and shipping TLE feature changes with reproducible validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-contained orchestration skill for writing high-performance TLE kernels and shipping TLE feature changes with reproducible validation.
 
-## Publisher: <br>
-[wbavon](https://clawhub.ai/user/wbavon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[wbavon](https://clawhub.ai/user/wbavon)
 
-## Use Case: <br>
-Developers and engineers use this skill to write or optimize TLE kernels, implement TLE API/verifier/lowering/pipeline features, and debug correctness, performance, or regression issues with reproducible validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent through local builds, editable installs, tests, benchmarks, and repository edits. <br>
-Mitigation: Review generated commands before running them in important environments, and validate changes with the skill's required reproducible command outcomes. <br>
+## Use Case:
 
+Developers and engineers use this skill to write or optimize TLE kernels, implement TLE API/verifier/lowering/pipeline changes, and debug correctness, performance, or regression issues with reproducible validation.
 
-## Reference(s): <br>
-- [TLE Practical Guide](references/tle-sources.md) <br>
-- [Workflow and Templates](references/workflow-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes validation commands and outcomes, fix summaries, lessons entries, merge decision packages, and residual risk notes when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The workflow can lead an agent to run local build scripts, editable Python installs, tests, and compiler builds from a target repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted repositories or inside a sandbox with secrets removed.
+
+Risk: Compiler and kernel changes can introduce correctness or performance regressions if proposed changes are accepted without validation.
+
+Mitigation: Require the skill's validation matrix, correctness checks, benchmark records, and merge decision package before applying or shipping changes.
+
+## Reference(s):
+
+- [TLE Practical Guide](artifact/references/tle-sources.md)
+- [Workflow and Templates](artifact/references/workflow-templates.md)
+- [TLE Developer ClawHub Skill Page](https://clawhub.ai/wbavon/skills/tle-developer-flagos)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces validation commands, implementation guidance, fix summaries, lessons entries, and merge decision packages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,57 @@
-## Description: <br>
-Provides accurate, context-aware translations that preserve meaning, tone, and cultural nuance while maintaining terminology consistency across documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides accurate, context-aware translations that preserve meaning, tone, cultural nuance, and terminology consistency across documents.
 
-## Publisher: <br>
-[calvinxhk](https://clawhub.ai/user/calvinxhk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[calvinxhk](https://clawhub.ai/user/calvinxhk)
 
-## Use Case: <br>
-External users, developers, and content teams use this skill to translate text between languages while preserving register, terminology, formatting, and cultural intent. It is suited for general, technical, legal, medical, financial, literary, marketing, and user-interface translation workflows when outputs are reviewed for the intended use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: High-stakes legal, medical, financial, or similar translations may contain errors, ambiguity, or terminology choices that require domain expertise. <br>
-Mitigation: Review outputs carefully with an appropriate expert before relying on them in high-stakes contexts. <br>
-Risk: Broad translation-related triggers may activate the skill for common phrasing such as requests to translate, localize, or say something in another language. <br>
-Mitigation: Confirm the source text, target language, and intended use when the request is ambiguous. <br>
+## Use Case:
 
+Developers and end users use this skill to translate, localize, and review text across major language pairs while preserving register, domain terminology, document structure, and cultural context. It is especially useful for content-processing workflows that need translation output with optional glossary decisions and translator notes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/calvinxhk/botlearn-transtlor) <br>
-- [README](artifact/README.md) <br>
-- [Skill Definition](artifact/skill.md) <br>
-- [Translation Strategy](artifact/strategies/main.md) <br>
-- [Translation Best Practices](artifact/knowledge/best-practices.md) <br>
-- [Translation Theory and Language-Pair Patterns](artifact/knowledge/domain.md) <br>
-- [Translation Anti-Patterns](artifact/knowledge/anti-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text translation with optional glossary, translator notes, and confidence indicators] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May preserve source formatting, placeholders, markup, and code blocks when present in the source text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.md frontmatter) <br>
+Risk: Legal, medical, financial, or publication-critical translations may be harmful if treated as certified human work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require qualified human review before relying on outputs in critical or regulated contexts.
+
+Risk: Ambiguous source text, idioms, culturally bound references, or specialized terminology may lead to incorrect translation choices.
+
+Mitigation: Use translator notes, session glossaries, and review against the provided best-practices and anti-pattern guidance before final use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/calvinxhk/skills/botlearn-transtlor)
+- [Translation theory and language-pair patterns](artifact/knowledge/domain.md)
+- [Translation best practices](artifact/knowledge/best-practices.md)
+- [Translation anti-patterns](artifact/knowledge/anti-patterns.md)
+- [Translation strategy](artifact/strategies/main.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Markdown translation with optional glossary, translator notes, and confidence assessment]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves document structure, placeholders, markup, and code blocks when present in the source text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Automatically runs Python, C, and x86_64 assembly code, uses an LLM to repair failures, and returns the revised code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动运行并调试 Python、C 和 x86_64 汇编代码，在出错时调用龙虾平台 LLM 修复并返回可执行版本。
 
-## Publisher: <br>
-[zyk-404](https://clawhub.ai/user/zyk-404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zyk-404](https://clawhub.ai/user/zyk-404)
 
-## Use Case: <br>
-Developers use this skill to test Python, C, or x86_64 assembly snippets and receive a repaired version when execution, compilation, assembly, or linking fails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs and may re-run submitted Python, C, or assembly code locally without an approval gate. <br>
-Mitigation: Use it only in a disposable sandbox, virtual machine, or container intended for local code execution. <br>
-Risk: Submitted code and error output may be sent to an LLM for repair. <br>
-Mitigation: Do not submit secrets, private keys, proprietary code, or untrusted code unless local execution and LLM processing are acceptable. <br>
-Risk: Automatically repaired code may still be incorrect or unsafe. <br>
-Mitigation: Review the repaired code before relying on it or allowing it to run again. <br>
+## Use Case:
 
+Developers and engineers can use this skill to run Python, C, or x86_64 assembly snippets and receive a repaired code version when execution, compilation, assembly, or linking errors occur.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zyk-404/code-run-auto-fix) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, text] <br>
-**Output Format:** [String containing the repaired source code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs submitted code locally and may make one LLM repair attempt before returning code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill.json) <br>
+Risk: The skill runs user-submitted and LLM-modified code on the host without visible sandboxing or approval gates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in a disposable, least-privileged sandbox or container with no secrets, no sensitive source trees, strict resource limits, and network access disabled unless explicitly needed.
+
+Risk: Submitted code and error output may be sent to the platform LLM during automatic repair.
+
+Mitigation: Do not submit proprietary code, credentials, or sensitive data unless that disclosure is acceptable for the deployment environment.
+
+Risk: Dependencies are not pinned in the artifact requirements file.
+
+Mitigation: Pin and review dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zyk-404/skills/code-run-auto-fix)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Text, Shell commands]
+
+**Output Format:** [Plain text code returned by MCP tools]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns the final code string after running the submitted code and, when an error is detected, one LLM repair attempt.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -48,13 +48,13 @@ Both require API keys from different sources.
 #### Step 1: Set environment variable
 
 ```bash
-export MOONSHOT_API_KEY="sk-your-moonshot-key-here"
+export MOONSHOT_API_KEY="REDACTED-SECRET"
 ```
 
 Or add to `.env` file:
 
 ```bash
-echo 'MOONSHOT_API_KEY="sk-your-moonshot-key-here"' >> ~/.env
+echo 'MOONSHOT_API_KEY="REDACTED-SECRET"' >> ~/.env
 ```
 
 #### Step 2: Add provider configuration
@@ -141,13 +141,13 @@ Or use model aliases in chat:
 #### Step 1: Set environment variable
 
 ```bash
-export KIMICODE_API_KEY="sk-your-kimicode-key-here"
+export KIMICODE_API_KEY="REDACTED-SECRET"
 ```
 
 Or add to `.env`:
 
 ```bash
-echo 'KIMICODE_API_KEY="sk-your-kimicode-key-here"' >> ~/.env
+echo 'KIMICODE_API_KEY="REDACTED-SECRET"' >> ~/.env
 ```
 
 #### Step 2: Add provider configuration

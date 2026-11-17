@@ -1,40 +1,56 @@
-## Description: <br>
-Resume Tailor helps agents customize resumes and generate cover letters from a user's resume, target job description, and preferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Customizes resumes and generates cover letters based on a specific job description, helping users prepare targeted job application materials.
 
-## Publisher: <br>
-[suntianchong](https://clawhub.ai/user/suntianchong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suntianchong](https://clawhub.ai/user/suntianchong)
 
-## Use Case: <br>
-Job seekers and career-support agents use this skill to turn a general resume and a specific job description into a tailored application package. It produces a gap analysis, rewritten resume, cover letter, and brief interview preparation tips while avoiding fabricated experience. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated resumes or cover letters may include inaccurate, overstated, or regionally inappropriate application details if the source materials are incomplete. <br>
-Mitigation: Review every claim before use, provide only information the user is comfortable sharing with the agent, and verify regional resume conventions before adding sensitive personal details. <br>
+## Use Case:
 
+External users and job seekers use this skill to tailor a resume and cover letter to a specific job description, including gap analysis, keyword alignment, and role-specific application guidance.
 
-## Reference(s): <br>
-- [ATS Optimization & Keyword Matching Guide](references/ats-keywords.md) <br>
-- [Cover Letter Examples by Industry](references/cover-letter-examples.md) <br>
-- [Regional CV/Resume Format Guide](references/regional-cv-formats.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a brief gap analysis, tailored resume, cover letter, and optional interview tips from user-provided resume and job-description materials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Users may provide sensitive personal information in resumes or job application materials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact details not needed for tailoring, such as full home address, government identifiers, birth date, and other sensitive personal information.
+
+Risk: Regional CV guidance may not fit every employer or local hiring practice.
+
+Mitigation: Treat regional format guidance as employer-specific context and confirm requirements for the target role before submitting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/suntianchong/skills/resume-tailor)
+- [ATS Optimization & Keyword Matching Guide](references/ats-keywords.md)
+- [Cover Letter Examples by Industry](references/cover-letter-examples.md)
+- [Regional CV/Resume Format Guide](references/regional-cv-formats.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a gap analysis, tailored resume, cover letter, and brief interview preparation tips.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Complete maintenance system for OpenClaw with unified architecture, filesystem governance, and cross-platform design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete maintenance system for OpenClaw with unified architecture, filesystem governance, and cross-platform design.
 
-## Publisher: <br>
-[jazzqi](https://clawhub.ai/user/jazzqi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jazzqi](https://clawhub.ai/user/jazzqi)
 
-## Use Case: <br>
-Developers and operators use this skill to plan OpenClaw maintenance workflows, including monitoring, cleanup, log management, health checks, backup, rollback, and service recovery tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to run maintenance scripts that can create recurring jobs, change files and logs, restore backups, and restart services. <br>
-Mitigation: Inspect the repository and installer scripts at the exact version you intend to run, confirm the planned cron, file, log, service, backup, and .learnings changes, and verify rollback steps before setup or emergency recovery. <br>
-Risk: Automated cleanup or recovery could affect system state if used without environment-specific review. <br>
-Mitigation: Use test, dry-run, status, or report-only modes where available, then monitor the first scheduled runs and disable the automation if behavior is unexpected. <br>
+## Use Case:
 
+Developers and operators use this skill to plan and run OpenClaw maintenance workflows, including monitoring, cleanup, log management, health checks, backup, and rollback guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jazzqi/system-maintenance-test) <br>
-- [Project homepage](https://github.com/jazzqi/openclaw-system-maintenance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review proposed commands and configuration changes before running them in a target environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The skill describes one-click setup and scheduled maintenance actions that may affect cron jobs, cleanup paths, backups, service restarts, and webhooks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the exact scripts from a pinned commit or signed release, confirm configured paths and scheduled jobs, and run dry-run, test, or status commands before enabling automation.
+
+Risk: Automated recovery and service-control commands can disrupt a running OpenClaw environment if used without review.
+
+Mitigation: Test in a non-production environment first, verify backup and rollback behavior, and require operator review before force or restore commands are used.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jazzqi/skills/system-maintenance-test)
+- [Project homepage](https://github.com/jazzqi/openclaw-system-maintenance)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes maintenance schedules, command references, setup guidance, and operational checks.]
+
+## Skill Version(s):
+
+1.3.2 (source: ClawHub release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

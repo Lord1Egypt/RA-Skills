@@ -1,47 +1,62 @@
-## Description: <br>
-Power Electronics helps agents solve AC-DC, DC-AC, DC-DC, and AC-AC power-electronics problems with topology selection, formulas, local calculation scripts, and Simulink guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language power-electronics assistant for AC-DC, DC-AC, DC-DC, and AC-AC conversion analysis, local calculator checks, component-stress estimates, and Simulink setup guidance.
 
-## Publisher: <br>
-[shanyinghao](https://clawhub.ai/user/shanyinghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shanyinghao](https://clawhub.ai/user/shanyinghao)
 
-## Use Case: <br>
-Developers and power-electronics engineers use this skill to classify converter questions, calculate topology parameters and device stresses, cross-check formulas with local scripts, and prepare Simulink guidance for common AC-DC, DC-AC, DC-DC, and AC-AC designs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation keywords may cause the skill to engage on general power-electronics terms such as QR, rectification, or inversion. <br>
-Mitigation: Confirm the user's converter type and requested task before applying formulas, scripts, or topology-specific guidance. <br>
-Risk: Local calculation scripts can produce misleading engineering outputs when inputs or operating assumptions are wrong. <br>
-Mitigation: Review script parameters and compare results against the documented formulas and expected operating mode before relying on them. <br>
-Risk: The artifact includes optional publishing and token setup instructions that are only relevant to skill publishers. <br>
-Mitigation: Follow publishing steps only when releasing the skill yourself, and keep any ClawHub or GitHub credentials out of shared logs and artifacts. <br>
+## Use Case:
 
+Developers and engineers use this skill to select power-conversion topologies, calculate operating points and device stress, compare hand calculations with local Python calculator output, and prepare Simulink or Simscape simulation guidance.
 
-## Reference(s): <br>
-- [Four Power Conversions Overview](artifact/references/four-conversions.md) <br>
-- [Power Electronics Formula Reference](artifact/references/formulas.md) <br>
-- [Topology Selection Guide](artifact/references/topologies.md) <br>
-- [Advanced Topics: PFC, Flyback, LLC, and Magnetics](artifact/references/advanced.md) <br>
-- [Worked Examples](artifact/references/examples.md) <br>
-- [Simulink and Simscape Templates](artifact/references/simulink-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON snippets and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include calculated converter values, topology notes, device-stress summaries, engineering cautions, and Simulink setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may provide engineering estimates that are unsuitable as final design authority for real power-electronics hardware.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently validate calculations, simulations, component ratings, thermal margins, and safety requirements before applying results to hardware.
+
+Risk: The skill requests broad read, write, and bash tool permissions for local reference lookup and calculator execution.
+
+Mitigation: Review the requested actions before execution and keep script use limited to the local calculator workflows described by the artifact.
+
+Risk: Simulation guidance can be mistaken for measured waveform data.
+
+Mitigation: Treat Simulink sections as setup guidance and compare any generated waveforms against hand calculations, expected operating ranges, and measured or simulated results.
+
+## Reference(s):
+
+- [Four Conversions Overview](references/four-conversions.md)
+- [Formula Reference](references/formulas.md)
+- [Topology Selection](references/topologies.md)
+- [Advanced Topics](references/advanced.md)
+- [Worked Examples](references/examples.md)
+- [Simulink and Simscape Templates](references/simulink-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown explanations with inline bash commands and JSON calculator results from local scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Calculator outputs are engineering estimates and should be independently validated before real hardware use.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

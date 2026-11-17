@@ -1,41 +1,58 @@
-## Description: <br>
-Helps agents draft, post, schedule, engage with, and analyze LinkedIn content through a logged-in browser session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates LinkedIn content creation, posting, scheduling, engagement tracking, content ideation, and audience-growth workflows through a logged-in browser session.
 
-## Publisher: <br>
-[zich-dev](https://clawhub.ai/user/zich-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zich-dev](https://clawhub.ai/user/zich-dev)
 
-## Use Case: <br>
-External creators, employees, and social media operators use this skill to manage LinkedIn posting, scheduling, engagement, content ideation, and analytics with agent assistance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate through a user's logged-in LinkedIn account. <br>
-Mitigation: Review and approve each post, comment, image upload, engagement batch, and scheduled job before it runs, and use only the intended LinkedIn profile. <br>
-Risk: Automated posting or engagement can exceed LinkedIn activity limits or produce unwanted public content. <br>
-Mitigation: Keep activity within the documented rate limits and inspect generated content before publishing or scheduling. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [LinkedIn Content Strategy Guide](references/content-strategy.md) <br>
-- [LinkedIn Engagement & Growth Tactics](references/engagement.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zich-dev/linkedin-automation) <br>
+## Use Case:
 
+External users and developers use this skill to draft, post, schedule, and review LinkedIn activity while operating in their own logged-in LinkedIn browser session. It supports content planning, engagement workflows, analytics review, and account-growth routines.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and shell command output, including JSON snippets for scheduling and analytics.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires browser access with an active LinkedIn session; actions should be reviewed before posting, commenting, uploading images, or scheduling jobs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can affect a real public LinkedIn account by posting, liking, commenting, requesting analytics, or scheduling future actions.
+
+Mitigation: Review every generated post, comment, like, analytics request, and scheduled job before execution in the logged-in browser session.
+
+Risk: Scheduled-post instructions can run later with less immediate user oversight.
+
+Mitigation: Confirm scheduled payloads, timing, and session target before creating jobs, and periodically audit or remove scheduled tasks.
+
+Risk: Externally supplied post content may be unsafe or unsuitable for publication.
+
+Mitigation: Sanitize and review externally supplied content before using it in posts, comments, or scheduled jobs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zich-dev/skills/linkedin-automation)
+- [LinkedIn Content Strategy Guide](references/content-strategy.md)
+- [LinkedIn Engagement & Growth Tactics](references/engagement.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown-like workflow instructions with inline shell commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires browser access with an active LinkedIn session; scheduled-post guidance can create actions that run later.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

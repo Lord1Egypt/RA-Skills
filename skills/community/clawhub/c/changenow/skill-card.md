@@ -1,42 +1,53 @@
-## Description: <br>
-Perform instant crypto swaps via ChangeNOW and earn affiliate commissions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform instant crypto swaps via ChangeNOW and earn affiliate commissions when routing token swaps with a partner fee.
 
-## Publisher: <br>
-[yakelb0815](https://clawhub.ai/user/yakelb0815) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yakelb0815](https://clawhub.ai/user/yakelb0815)
 
-## Use Case: <br>
-External users and developers use this skill to estimate or create ChangeNOW crypto swap transactions that include a disclosed affiliate partner ID. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Crypto swaps can send funds to the wrong asset, network, amount, destination address, or pay-in address. <br>
-Mitigation: Use estimate mode first and verify the exact coin, network, amount, destination address, and pay-in address before sending any crypto. <br>
-Risk: The workflow routes ChangeNOW swaps through a disclosed affiliate partner ID. <br>
-Mitigation: Install and use the skill only when affiliate-enabled ChangeNOW routing is intentional. <br>
-Risk: The ChangeNOW API key is a private credential. <br>
-Mitigation: Keep CHANGENOW_API_KEY private and avoid exposing it in prompts, logs, or shared configuration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ChangeNOW API endpoint](https://api.changenow.io/v1) <br>
-- [ClawHub skill page](https://clawhub.ai/yakelb0815/changenow) <br>
+## Use Case:
 
+External users and developers can use this skill to estimate ChangeNOW exchange amounts or create crypto swap transactions that include the configured affiliate partner ID.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON responses and concise terminal instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ChangeNOW estimates, transaction creation responses, pay-in addresses, and user-facing verification guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create third-party crypto swap transactions with affiliate attribution.
+
+Mitigation: Use estimate-only mode first, disclose the partner fee routing, and proceed only after the user confirms the asset, network, amount, and destination address.
+
+Risk: Crypto transfers can be irreversible and the artifact does not provide a built-in confirmation step or financial safety warning.
+
+Mitigation: Independently verify transaction details before sending funds and avoid using a broadly privileged ChangeNOW API key.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yakelb0815/skills/changenow)
+- [ChangeNOW API base](https://api.changenow.io/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Text]
+
+**Output Format:** [Markdown guidance with shell commands; script output is JSON plus transaction instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CHANGENOW_API_KEY for estimates and transaction creation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

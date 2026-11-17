@@ -1,43 +1,59 @@
-## Description: <br>
-Professional football bet analysis skill that generates data-driven bet slips from form, head-to-head records, standings, injuries, and value analysis, with result tracking for hitrate and ROI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional football bet analysis skill that generates data-driven bet slips from form, head-to-head records, standings, injuries, odds value, and result tracking.
 
-## Publisher: <br>
-[nandichi](https://clawhub.ai/user/nandichi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nandichi](https://clawhub.ai/user/nandichi)
 
-## Use Case: <br>
-External users use this skill to analyze football matches for betting picks, generate main and backup bet slips, record results, and review hitrate, ROI, and betting history. It is intended for advisory analysis and tracking, not automated bet placement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches external football match data and may rely on web lookups for news, injuries, odds, and weather, so analysis can be incomplete or outdated. <br>
-Mitigation: Review the cited data and current match context before relying on picks, and keep the skill's honesty check and responsible gambling limits in place. <br>
-Risk: The skill requires a football-data.org API key and can read it from configuration. <br>
-Mitigation: Prefer the FOOTBALL_DATA_API_KEY environment variable, avoid committing keys to config files, and rotate the key if it is exposed. <br>
-Risk: The skill stores local betting slips, stakes, results, ROI, and history. <br>
-Mitigation: Confirm before saving slips and periodically delete local betting data if retained history is no longer needed. <br>
+## Use Case:
 
+External users and agents use this skill to analyze professional football matches for betting-oriented picks, generate concise bet slip recommendations, and track saved results, hitrate, ROI, and monthly budget usage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nandichi/football-value-bets) <br>
-- [football-data.org API](https://api.football-data.org/v4) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with tables and inline shell commands; helper scripts emit JSON for match data, saved bets, statistics, and history.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local JSON betting-history files under the skill data directory when saving slips or results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.json) <br>
+Risk: The skill stores bet slips and betting statistics locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review saved data behavior before installation and ask the user before saving betting history when local retention is not desired.
+
+Risk: Security evidence reports a date path-validation issue that could allow result updates to touch JSON files outside the betting folder.
+
+Mitigation: Use canonical YYYY-MM-DD dates, validate dates before result updates, and prefer a version that confines file paths to the betting data folder.
+
+Risk: The skill may use web searches for betting context and external football-data.org API calls.
+
+Mitigation: Review external data sources, configure only the required FOOTBALL_DATA_API_KEY, and treat betting recommendations as uncertain analysis rather than guaranteed outcomes.
+
+## Reference(s):
+
+- [football-data.org API v4](https://api.football-data.org/v4)
+- [ClawHub skill page](https://clawhub.ai/nandichi/skills/football-value-bets)
+- [Publisher profile](https://clawhub.ai/user/nandichi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown recommendations with tables, JSON helper-script output, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, the requests package, and FOOTBALL_DATA_API_KEY; helper scripts may save local JSON bet history and statistics.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

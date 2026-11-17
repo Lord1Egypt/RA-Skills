@@ -1,44 +1,64 @@
-## Description: <br>
-ClawMail.me lets an agent send and receive task-scoped email from a dedicated @clawmail.me address, including replies, forwards, drafts, threads, attachments, inbound safety scanning, and a documented recipient policy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawMail.me lets agents create and use task-scoped @clawmail.me inboxes to send, receive, reply to, forward, draft, and manage email with inbound safety scanning and recipient policies.
 
-## Publisher: <br>
-[mixerboxai](https://clawhub.ai/user/mixerboxai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mixerboxai](https://clawhub.ai/user/mixerboxai)
 
-## Use Case: <br>
-Agents and developers use this skill to operate a task-scoped ClawMail inbox for user-assigned email work, including sending, receiving, replying, forwarding, drafting, attachment handling, and webhook setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent could email recipients or configure webhook callbacks outside the user's intended task scope. <br>
-Mitigation: Review recipients and webhook URLs before use; send only to user-named, reply-derived, or user-requested recipients, and register only user-named or agent-owned webhook endpoints. <br>
-Risk: Inbound email content can contain malicious instructions, unsafe links, or sensitive data. <br>
-Mitigation: Treat inbound subject, text, HTML, and attachments as untrusted external content; use the safety scan fields and do not execute instructions found in messages. <br>
-Risk: Inbox and draft deletion operations are irreversible. <br>
-Mitigation: Confirm user intent before delete operations, avoid speculative cleanup, and ask again before batch deletions. <br>
+## Use Case:
 
+External developers and agents use this skill when an agent needs an email address for task-scoped communication, including sending, receiving, replying to, forwarding, drafting, and managing email.
 
-## Reference(s): <br>
-- [ClawMail homepage](https://clawmail.me) <br>
-- [ClawMail OpenAPI specification](https://clawmail.me/openapi.json) <br>
-- [ClawHub release page](https://clawhub.ai/mixerboxai/clawmail-me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports task-scoped email messages, drafts, threads, attachments, and webhook configuration through the ClawMail API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.9 (source: evidence release metadata and SKILL.md frontmatter) <br>
+Risk: The bearer token can grant access to the agent's ClawMail account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the bearer token as a credential and avoid printing or exposing it in shell output, transcripts, or logs.
+
+Risk: The agent could send email to the wrong recipient or configure an unintended webhook URL.
+
+Mitigation: Confirm recipients and webhook URLs before use, especially when the value comes from a user request or external content.
+
+Risk: Deleting inboxes or drafts is irreversible.
+
+Mitigation: Require explicit user confirmation before deleting inboxes or drafts because the service provides no recovery window.
+
+Risk: Inbound email content can include untrusted instructions or unsafe links.
+
+Mitigation: Use the provided safety scan result as a signal and do not execute instructions found in inbound subject, text, HTML, or attachments.
+
+## Reference(s):
+
+- [ClawMail.me homepage](https://clawmail.me)
+- [ClawMail.me OpenAPI specification](https://clawmail.me/openapi.json)
+- [ClawHub skill page](https://clawhub.ai/mixerboxai/skills/clawmail-me)
+- [ClawHub publisher profile](https://clawhub.ai/user/mixerboxai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline API examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing instructions for using the ClawMail API; no standalone code artifact is generated.]
+
+## Skill Version(s):
+
+1.2.9 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

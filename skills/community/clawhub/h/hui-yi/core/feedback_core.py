@@ -9,11 +9,13 @@ SKILL_ROOT = Path(__file__).resolve().parents[1]
 if str(SKILL_ROOT) not in sys.path:
     sys.path.insert(0, str(SKILL_ROOT))
 
+import math
 import re
 from datetime import date, timedelta
 from pathlib import Path
 
 from core.common import DEFAULT_INTERVAL_DAYS, REVIEW_LADDER, memory_strength, parse_heading_value, parse_review_metric, read_text_fallback
+from core.safe_fs import atomic_write_text, preflight_files, safe_exists
 
 GRADUATION_MIN_REVIEWS = 7
 GRADUATION_MIN_SUCCESS_RATE = 0.8
@@ -62,13 +64,11 @@ def replace_review_metric(text: str, key: str, new_value: int) -> str:
 
 def append_retrieval_log(log_path: Path, row: str) -> None:
     header = "# Retrieval Log\n\n| Date | Query | Matched | Useful | Action |\n|---|---|---|---|---|\n"
-    if not log_path.exists():
-        log_path.write_text(header, encoding="utf-8")
-    current = read_text_fallback(log_path)
+    current = read_text_fallback(log_path) if safe_exists(log_path) else header
     if not current.endswith("\n"):
         current += "\n"
     current += row + "\n"
-    log_path.write_text(current, encoding="utf-8")
+    atomic_write_text(log_path, current)
 
 
 def next_success_interval(interval_days: int, importance: str) -> int:
@@ -77,7 +77,7 @@ def next_success_interval(interval_days: int, importance: str) -> int:
         if current < step:
             return step
     growth = ADAPTIVE_GROWTH.get(importance, ADAPTIVE_GROWTH["medium"])
-    return max(REVIEW_LADDER[-1], int(__import__("math").ceil(current * growth)))
+    return max(REVIEW_LADDER[-1], int(math.ceil(current * growth)))
 
 
 def relearning_interval(interval_days: int) -> int:
@@ -138,6 +138,7 @@ def write_note_feedback(
     query: str | None = None,
     action: str | None = None,
 ) -> tuple[str, int, str]:
+    preflight_files(note_path, *([log_path] if log_path is not None else []))
     (
         state,
         interval_days,
@@ -160,7 +161,7 @@ def write_note_feedback(
     new_text = replace_heading_bullet(new_text, "Last seen", today_str)
     new_text = replace_heading_bullet(new_text, "Next review", next_review)
     new_text = replace_heading_bullet(new_text, "Memory state", state)
-    note_path.write_text(new_text, encoding="utf-8")
+    atomic_write_text(note_path, new_text)
 
     note["state"] = state
     note["last_reviewed"] = today_str

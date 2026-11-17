@@ -1,41 +1,57 @@
-## Description: <br>
-openclaw-smartpi helps an agent guide SmartPi users through device binding, QR-code setup, device management, connection troubleshooting, and 9002 timeout diagnosis in local OpenClaw environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SmartPi device binding, QR-code setup, device management, and troubleshooting for connection failures, 9002 timeouts, and unresponsive SmartPi devices.
 
-## Publisher: <br>
-[fengseven777](https://clawhub.ai/user/fengseven777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fengseven777](https://clawhub.ai/user/fengseven777)
 
-## Use Case: <br>
-Use this skill when a user needs help installing or enabling the openclaw-smartpi plugin, binding a SmartPi device, listing or removing SmartPi devices, checking connection status, reviewing Gateway logs, or diagnosing SmartPi no-response and 9002 timeout issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-No deployment geography restriction is stated in the release evidence; use in local OpenClaw environments where SmartPi and the OpenClaw CLI are available. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to run local OpenClaw commands that install plugins, restart the Gateway, remove SmartPi devices, or change configuration. <br>
-Mitigation: Require explicit user confirmation before state-changing actions and explain the expected impact before proceeding. <br>
-Risk: SmartPi connection or timeout status can be misdiagnosed if the agent relies on assumptions instead of local evidence. <br>
-Mitigation: Use OpenClaw command output and Gateway log keywords such as WebSocket connected, WebSocket disconnected, cannot resolve agentId, and AI response timeout before stating a conclusion. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to bind and manage SmartPi devices, check plugin and Gateway status, and diagnose connection, routing, and AI response timeout issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fengseven777/skills/smartpi) <br>
-- [Publisher profile](https://clawhub.ai/user/fengseven777) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Concise troubleshooting steps, command suggestions, status summaries, and configuration snippets.] <br>
-**Output Parameters:** [SmartPi device state, OpenClaw CLI output, Gateway log keywords, device identifiers, and user confirmations for state-changing actions.] <br>
-**Other Properties Related to Output:** [The skill instructs the agent to base status on observed command output or logs and to pause for confirmation before installing plugins, deleting devices, restarting the Gateway, or changing configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 <br>
+Risk: Installing or repairing the OpenClaw SmartPi plugin can change the local environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the plugin source, publisher, and version before approving installation or repair.
+
+Risk: Device removal, configuration changes, and Gateway restart can alter local state or interrupt service.
+
+Mitigation: Proceed only after explicit user confirmation and only when the action matches the requested SmartPi task.
+
+Risk: Incorrect channel configuration can break message routing for SmartPi or other channels.
+
+Mitigation: Read the full configuration first, preserve existing channel entries, and verify that channels.openclaw-smartpi matches the plugin channel id.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fengseven777/skills/smartpi)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, status summaries, and next-step recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local-first troubleshooting; state-changing actions require user confirmation.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

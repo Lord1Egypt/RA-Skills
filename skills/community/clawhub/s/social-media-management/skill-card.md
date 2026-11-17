@@ -1,45 +1,54 @@
-## Description: <br>
-B2B social media and content management guidance with daily workflows, batching systems, content calendars, and platform-specific strategies across Sales Tech, HR Tech, Fintech, and Ops Tech. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+B2B content writing with daily workflows and batching systems across Sales, HR, Fintech, and Ops Tech.
 
-## Publisher: <br>
-[shashwatgtm](https://clawhub.ai/user/shashwatgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shashwatgtm](https://clawhub.ai/user/shashwatgtm)
 
-## Use Case: <br>
-External marketers, founders, and content teams use this skill to plan, draft, adapt, and review B2B SaaS social posts and thought-leadership content across major social and long-form channels. It is especially oriented toward industry-specific workflows for Sales Tech, HR Tech, Fintech, and Ops Tech teams. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated public posts may include incorrect claims, unsupported statistics, or regulated-industry language. <br>
-Mitigation: Review and fact-check all content before publishing, with legal or compliance review for fintech and other regulated contexts. <br>
-Risk: Drafts may expose customer, employee, or internal business details if sensitive examples are provided. <br>
-Mitigation: Use anonymized inputs and remove confidential details before sharing or publishing. <br>
-Risk: Industry, geography, and tone recommendations may not match every brand, market, or approval workflow. <br>
-Mitigation: Adapt outputs to current brand guidelines, local market norms, and the organization's review process. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shashwatgtm/social-media-management) <br>
-- [Publisher Profile](https://clawhub.ai/user/shashwatgtm) <br>
-- [Metadata Homepage](https://github.com/shashwatgtm) <br>
-- [Skill README](artifact/README.md) <br>
-- [Skill Source](artifact/SKILL.md) <br>
+## Use Case:
 
+External marketers, founders, and content teams use this skill to plan, draft, batch, repurpose, and review B2B SaaS social media and thought leadership content across major publishing channels.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style prose, checklists, templates, calendars, and workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; the skill does not execute code, require credentials, or publish content automatically.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Drafted posts may include unverified claims, statistics, regulatory commentary, customer references, or legal and compliance-sensitive statements.
+
+Mitigation: Review and fact-check content before publishing, and route regulated-industry or sensitive posts through legal or compliance review.
+
+Risk: Market-style guidance and platform timing advice may not fit a specific brand, geography, audience, or current platform behavior.
+
+Mitigation: Treat recommendations as starting points and adapt them to current brand guidelines, local requirements, and measured performance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shashwatgtm/skills/social-media-management)
+- [Publisher profile](https://clawhub.ai/user/shashwatgtm)
+- [Publisher homepage](https://github.com/shashwatgtm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and structured prose with templates, checklists, schedules, and example prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, credential access, hidden network behavior, or automatic publishing capability was identified in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

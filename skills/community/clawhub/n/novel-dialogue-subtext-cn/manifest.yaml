@@ -1,0 +1,24 @@
+name: novel-dialogue-subtext-cn
+slug: novel-dialogue-subtext-cn
+display_name: 人物对白潜台词改稿
+description: 输入小说对白片段、人物当下目的、关系和不可改动事实，获得保留情节事实的差异化对白及逐句潜台词说明，适用于章节或场景修订；若缺少说话人、目的或关系，会列出缺项而不臆测。单次限一个短场景或表格一百行，超出须分批处理。
+version: 1.0.2
+license: MIT-0
+repository: https://github.com/xxjrq/novel-dialogue-subtext-cn
+icon: icon-512.png
+tags:
+  - 小说写作
+  - 对白润色
+  - 人物塑造
+  - 潜台词
+trigger_words:
+  - 对白潜台词
+  - 小说对白修改
+  - 人物对白润色
+interface:
+  display_name: "人物对白潜台词改稿"
+  short_description: "保留小说既有事实，改写差异化人物对白并逐句拆解潜台词"
+  default_prompt: "使用 $novel-dialogue-subtext-cn 根据我提供的对白、人物目的和关系，保留事实改写对白并逐句说明潜台词。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+self_test: python3 scripts/self_test.py

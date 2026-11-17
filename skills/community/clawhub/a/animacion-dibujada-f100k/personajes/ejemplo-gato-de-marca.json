@@ -1,0 +1,6 @@
+{
+  "nombre": "Mishi, la mascota de la marca",
+  "tipo": "criatura",
+  "criatura": { "forma": "gato", "color": "#f2a65a", "panza": "#fff1de" },
+  "ojos": "#2a1f2e"
+}

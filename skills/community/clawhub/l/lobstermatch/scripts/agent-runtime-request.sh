@@ -32,7 +32,9 @@ Usage:
   scripts/agent-runtime-request.sh [--dry-run] POST /api/sessions body.json
 
 This helper attaches x-agent-id and x-agent-session-token only to LobsterMatch agent-runtime APIs.
-It refuses /api/growth/*, /admin/*, and other admin/diagnostic routes.
+It percent-decodes and normalizes the path first. It refuses .. segments, encoded dots or slashes,
+backslashes, empty segments, query or fragment tricks, and non-ASCII or control characters.
+The token is sent only to the normalized allowlisted path, never to /api/growth/* or /admin/*.
 EOF
 }
 
@@ -77,7 +79,7 @@ print(json.dumps({
     'baseUrl': str(data.get('baseUrl') or 'https://lobstermatch.com').rstrip('/'),
     'agentId': str(data.get('agentId') or '').strip(),
     'agentName': str(data.get('agentName') or '').strip(),
-    'agentSessionToken': token,
+    'tokenMasked': (token[:6] + '...' + token[-4:]) if len(token) > 10 else ('present-but-too-short-to-mask' if token else ''),
 }))
 PY
 )"
@@ -101,75 +103,36 @@ PY
   exit 1
 fi
 
-REQUEST_JSON="$(python3 - "$CONFIG_JSON" "$METHOD" "$TARGET" <<'PY'
-import json
-import sys
-from urllib.parse import urlsplit, urlunsplit
-
+BASE_URL="$(python3 - "$CONFIG_JSON" <<'PY'
+import json, sys
+print(str(json.loads(sys.argv[1]).get('baseUrl') or 'https://lobstermatch.com').rstrip('/'))
+PY
+)"
+DECISION_JSON="$(python3 "$SCRIPT_DIR/lib/agent-runtime-url.py" "$BASE_URL" "$TARGET" || true)"
+REQUEST_JSON="$(python3 - "$CONFIG_JSON" "$METHOD" "$DECISION_JSON" <<'PY'
+import json, sys
 config = json.loads(sys.argv[1])
 method = str(sys.argv[2] or 'GET').upper()
-target = str(sys.argv[3] or '').strip()
-base_url = str(config.get('baseUrl') or 'https://lobstermatch.com').rstrip('/')
-base = urlsplit(base_url)
-
-def mask_token(value):
-    value = str(value or '')
-    if len(value) <= 10:
-        return 'present-but-too-short-to-mask'
-    return f'{value[:6]}...{value[-4:]}'
-
-if target.startswith('http://') or target.startswith('https://'):
-    parsed = urlsplit(target)
-    path = parsed.path or '/'
-    if parsed.scheme != base.scheme or parsed.netloc != base.netloc:
-        print(json.dumps({
-            'ok': False,
-            'error': 'non-lobstermatch-target-blocked',
-            'message': 'Agent runtime auth is only sent to the configured LobsterMatch baseUrl.',
-        }))
-        raise SystemExit(0)
-    url = target
-else:
-    raw_path = target if target.startswith('/') else '/' + target
-    parsed = urlsplit(raw_path)
-    path = parsed.path or '/'
-    url = base_url + raw_path
-
-blocked_prefixes = ['/api/growth', '/admin']
-blocked_exact = ['/api/growth', '/admin/growth']
-if path in blocked_exact or any(path.startswith(prefix + '/') for prefix in blocked_prefixes):
+try:
+    decision = json.loads(sys.argv[3] or '{}')
+except Exception:
+    decision = {}
+if decision.get('ok') is not True or decision.get('sendAgentHeaders') is not True or not decision.get('url') or not decision.get('path'):
     print(json.dumps({
         'ok': False,
-        'error': 'admin-route-blocked',
-        'message': 'Agent session headers must not be sent to Growth/admin/diagnostic routes.',
-        'path': path,
+        'error': decision.get('error') or 'unsafe-agent-runtime-path',
+        'message': decision.get('message') or 'Agent session headers are not sent to this path.',
+        'path': decision.get('path') or '',
+        'sendAgentHeaders': False,
     }))
     raise SystemExit(0)
-
-agent_runtime_prefixes = [
-    '/api/sessions',
-    '/api/dialogs',
-    '/api/agents',
-    '/api/help-requests',
-    '/api/help-invitations',
-]
-send_headers = any(path == prefix or path.startswith(prefix + '/') for prefix in agent_runtime_prefixes)
-if not send_headers:
-    print(json.dumps({
-        'ok': False,
-        'error': 'non-agent-runtime-route',
-        'message': 'This helper only sends agent auth to known agent-runtime APIs.',
-        'path': path,
-    }))
-    raise SystemExit(0)
-
 print(json.dumps({
     'ok': True,
     'method': method,
-    'url': url,
-    'path': path,
+    'url': decision['url'],
+    'path': decision['path'],
     'agentId': config.get('agentId') or '',
-    'tokenMasked': mask_token(config.get('agentSessionToken') or ''),
+    'tokenMasked': config.get('tokenMasked') or '',
     'sendAgentHeaders': True,
 }))
 PY
@@ -217,19 +180,32 @@ import json, sys
 print(json.loads(sys.argv[1])['agentId'])
 PY
 )"
-TOKEN="$(python3 - "$CONFIG_JSON" <<'PY'
-import json, sys
-print(json.loads(sys.argv[1])['agentSessionToken'])
-PY
-)"
-
 TMP_BODY="$(mktemp)"
+HEADER_FILE="$(mktemp)"
+chmod 600 "$HEADER_FILE"
 cleanup() {
-  rm -f "$TMP_BODY"
+  rm -f "$TMP_BODY" "$HEADER_FILE"
 }
 trap cleanup EXIT
 
-CURL_ARGS=(-sS -o "$TMP_BODY" -w "%{http_code}" -X "$METHOD" "$URL" -H "x-agent-id: $AGENT_ID" -H "x-agent-session-token: $TOKEN")
+# The session token is written into a header file and passed as curl -H @file.
+# It is not expanded onto the curl command line, where ps would show it.
+python3 - "$CONFIG_PATH" "$HEADER_FILE" <<'PY' || fail "local auth is missing an agent id or session token"
+import json, os, sys
+from pathlib import Path
+data = json.loads(Path(os.path.expanduser(sys.argv[1])).read_text())
+auth = data.get("agentSessionAuth") if isinstance(data.get("agentSessionAuth"), dict) else {}
+token = str(data.get("agentSessionToken") or auth.get("agentSessionToken") or "").replace("\r", "").replace("\n", "").strip()
+agent_id = str(data.get("agentId") or auth.get("agentId") or "").replace("\r", "").replace("\n", "").strip()
+if not agent_id or not token:
+    raise SystemExit(1)
+Path(sys.argv[2]).write_text(
+    f"x-agent-id: {agent_id}\nx-agent-session-token: {token}\n"
+)
+os.chmod(sys.argv[2], 0o600)
+PY
+
+CURL_ARGS=(-sS -o "$TMP_BODY" -w "%{http_code}" -X "$METHOD" "$URL" -H "@$HEADER_FILE")
 if [ -n "$BODY_FILE" ]; then
   [ -f "$BODY_FILE" ] || fail "body file not found: $BODY_FILE"
   CURL_ARGS+=(-H 'content-type: application/json' --data-binary "@$BODY_FILE")

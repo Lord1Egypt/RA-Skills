@@ -1,42 +1,50 @@
-## Description: <br>
-Research a topic via web search, auto-match a relevant GIF, and log structured notes to Bear using a configurable template. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research a topic via web search, auto-match a relevant GIF, and log structured notes to Bear using a configurable template.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers, researchers, and note-taking users can use this skill to turn a research topic into a structured Bear note with source links, extracted findings, action items, and a matched GIF. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research topics and retrieved content may be sent to configured web search, fetch, and GIF services. <br>
-Mitigation: Avoid sensitive or proprietary topics unless the configured services are approved for that data. <br>
-Risk: Generated notes may include untrusted, inaccurate, or low-quality web content. <br>
-Mitigation: Review the generated summary, findings, links, and action items before relying on or sharing the note. <br>
-Risk: The skill writes persistent notes to Bear or to a local Markdown fallback file. <br>
-Mitigation: Check the destination note or fallback file before storing confidential information or syncing it elsewhere. <br>
+## Use Case:
 
+External users and personal productivity developers use this skill to research a topic, collect links and summary notes, match a GIF, and create a Bear note from a local template.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/research-logger-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files] <br>
-**Output Format:** [Markdown research note with shell status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a Bear note through grizzly, or falls back to a Markdown file when Bear is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Template replacement mixes user and web-fetched text into sed commands, creating a credible local command-execution risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid confidential topics or untrusted research targets, and fix template filling to treat replacement values as literal data with a safer templating implementation and preview or no-save mode.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/research-logger-skill)
+- [Publisher profile](https://clawhub.ai/user/terrycarter1985)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands]
+
+**Output Format:** [Markdown notes and shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a Bear note with web-sourced summary, findings, links, GIF URL, tags, and action items; falls back to a local Markdown file when Bear is unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

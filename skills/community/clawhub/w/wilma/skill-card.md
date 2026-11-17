@@ -1,42 +1,58 @@
-## Description: <br>
-Access Finland's Wilma school system from AI agents. Fetch schedules, homework, exams, grades, attendance/lesson notes (merkinnät), messages, and news via the wilma CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Finland's Wilma school system from AI agents, for parents (and students with their own login). Fetch schedules, homework, exams, grades and the gradebook, lesson notes (merkinnät) and absence summaries, messages with replies, news, printouts and linked news resources — through the WilmAI MCP tools (`wilma_*`) when connected, or the wilma CLI. Start with a summary, drill into messages and news, and fetch linked attachments. Requires wilma-cli 2.0+.
 
-## Publisher: <br>
-[aikarjal](https://clawhub.ai/user/aikarjal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aikarjal](https://clawhub.ai/user/aikarjal)
 
-## Use Case: <br>
-Parents, guardians, and authorized school-account users use this skill through an agent to retrieve Wilma schedules, homework, exams, grades, attendance notes, messages, and news as concise briefings or targeted lookups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive student data from Wilma and relies on stored login material in a local Wilma configuration file. <br>
-Mitigation: Install only when the user trusts @wilm-ai/wilma-cli, protect the Wilma configuration file, and avoid sharing or logging TOTP secrets. <br>
-Risk: Broad queries such as --all-students can retrieve more student data than intended. <br>
-Mitigation: Prefer explicit --student and date filters, and use --all-students only when broad access is intended. <br>
+## Use Case:
 
+Parents and guardians, or students using their own Wilma login, use the skill to review school schedules, assignments, grades, lesson notes, messages, news, and related documents. It can turn those records into concise, actionable summaries.
 
-## Reference(s): <br>
-- [ClawHub Wilma listing](https://clawhub.ai/aikarjal/wilma) <br>
-- [Wilma CLI GitHub link](https://github.com/aikarjal/wilmai) <br>
-- [Wilma CLI website](https://wilm.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON-oriented CLI usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prefers non-interactive CLI commands with --json output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and server evidence) <br>
+Risk: The skill can retrieve sensitive school records, including grades, absences, lesson notes, messages, and contact information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a Wilma account authorized for the intended student, select only the records needed, and check that contact access is appropriate for the task.
+
+Risk: Wilma credentials may be saved in a local configuration file, and the skill relies on installing the Wilma CLI.
+
+Mitigation: Review the CLI installation source and protect the saved login or agent secret settings. Follow the skill's keychain guidance only on an interactive personal computer; keep file-based credentials on unattended servers.
+
+Risk: The security review was partial because one referenced local path was unresolved.
+
+Mitigation: Review the complete release contents and confirm the referenced files are present before installation.
+
+## Reference(s):
+
+- [WilmAI website](https://wilm.ai)
+- [WilmAI project repository (linked by the skill)](https://github.com/aikarjal/wilmai)
+
+## Skill Output:
+
+**Output Type(s):** [JSON data, Text summaries, Guidance]
+
+**Output Format:** [Structured Wilma records with concise text or Markdown summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Available records depend on the connected Wilma accounts, selected student, and information provided by the school.]
+
+## Skill Version(s):
+
+2.5.0 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

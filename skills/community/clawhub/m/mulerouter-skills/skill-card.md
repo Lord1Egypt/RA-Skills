@@ -1,41 +1,60 @@
-## Description: <br>
-Generates and edits images and videos through MuleRouter or MuleRun multimodal APIs, covering text-to-image, image-to-image, text-to-video, image-to-video, VACE video editing, and keyframe interpolation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images and videos using MuleRouter or MuleRun multimodal APIs for text-to-image, image-to-image, text-to-video, image-to-video, and video editing workflows.
 
-## Publisher: <br>
-[Misaka43fd](https://clawhub.ai/user/Misaka43fd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[misaka43fd](https://clawhub.ai/user/misaka43fd)
 
-## Use Case: <br>
-Developers and agents use this skill to configure MuleRouter or MuleRun credentials, inspect supported model parameters, and run CLI scripts that generate, edit, or transform images and videos. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image URLs, and local image files supplied as image inputs are sent to MuleRouter, MuleRun, or the configured base URL. <br>
-Mitigation: Use non-sensitive prompts and media, avoid confidential local file paths, and review what will be sent before running generation or editing commands. <br>
-Risk: A custom endpoint configuration can send API keys and request payloads to an unintended service. <br>
-Mitigation: Verify MULEROUTER_BASE_URL or MULEROUTER_SITE before use and use a dedicated API key for this skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MuleRouter API Reference](references/REFERENCE.md) <br>
-- [Model Reference](references/MODELS.md) <br>
-- [Mulerouter ClawHub listing](https://clawhub.ai/Misaka43fd/mulerouter-skills) <br>
+## Use Case:
 
+Developers and creative automation users use this skill to configure MuleRouter or MuleRun API access, inspect supported model parameters, and run image or video generation and editing tasks from an agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, text, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands; CLI scripts return plain text or JSON containing task status and generated media URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce image or video result URLs after asynchronous task polling.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata; pyproject.toml declares 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, media inputs, and the MuleRouter API key are sent to MuleRouter, MuleRun, or a configured custom endpoint.
+
+Mitigation: Use the skill only in trusted workspaces, keep API keys out of source control, and avoid custom base URLs unless you control the endpoint.
+
+Risk: Local image path handling can upload explicit files to the configured API service.
+
+Mitigation: Pass only intentional, non-sensitive image files and review image paths before execution.
+
+Risk: A local .env file can influence API credentials or endpoint selection.
+
+Mitigation: Run the skill from an expected directory and avoid directories containing untrusted .env files.
+
+## Reference(s):
+
+- [MuleRouter Skill page](https://clawhub.ai/misaka43fd/skills/mulerouter-skills)
+- [MuleRouter API Reference](references/REFERENCE.md)
+- [Model Reference](references/MODELS.md)
+- [MuleRouter API endpoint](https://api.mulerouter.ai)
+- [MuleRun API endpoint](https://api.mulerun.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with CLI commands, configuration examples, task status text, and optional JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated media is returned as image or video URLs from asynchronous API tasks.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

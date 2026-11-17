@@ -1,0 +1,12 @@
+@startuml
+title 订单服务 · 组件图
+package "订单域" {
+  [订单控制器] as ctrl
+  [订单服务] as svc
+  [订单仓储] as repo
+}
+database "订单库" as db
+ctrl --> svc : 调用
+svc --> repo : 读写
+repo --> db : JDBC
+@enduml

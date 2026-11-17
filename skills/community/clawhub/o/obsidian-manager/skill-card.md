@@ -1,40 +1,54 @@
-## Description: <br>
-Obsidian Manager helps agents create, search, link, and organize local Obsidian research notes through the integrated knowledge entry point. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Obsidian Manager helps agents create and search local Obsidian Markdown notes, while preserving compatibility for workflows that have moved to the knowledge entry point.
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jirboy](https://clawhub.ai/user/jirboy)
 
-## Use Case: <br>
-Developers, researchers, and agent operators use this skill to manage local Obsidian-based research notes, including note creation, full-text search, and knowledge-link workflows. The artifact documents this release as a compatibility layer that forwards users toward the unified knowledge skill entry point. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads from and writes to a local Obsidian research vault, so a misconfigured vault path can expose or alter unintended Markdown collections. <br>
-Mitigation: Before use, verify that the research vault path points only to notes the agent is allowed to read and modify. <br>
-Risk: Note titles and direction values are used to form local file paths, which can be brittle if values contain absolute paths or path traversal segments. <br>
-Mitigation: Avoid note titles or direction values containing path traversal such as ../ or absolute paths, and review generated file paths before overwriting existing notes. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to let an agent manage a local Obsidian research vault by creating templated notes and searching Markdown note content. It is also a compatibility layer for older obsidian commands after migration to the knowledge obsidian workflow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jirboy/obsidian-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown notes, text search results, and optional JSON search output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and searches local Markdown files under a configured research vault path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The scripts can read or write Markdown files outside the intended research vault if path inputs are not constrained.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted local Obsidian vault, avoid absolute paths and '..' in title or direction arguments, and prefer an allowlist of vault subdirectories before execution.
+
+Risk: Local note creation may overwrite an existing Markdown note when a user confirms the overwrite prompt.
+
+Mitigation: Review the target note path before confirming overwrite prompts and keep backups or version control for the vault.
+
+## Reference(s):
+
+- [Obsidian Manager on ClawHub](https://clawhub.ai/jirboy/skills/obsidian-manager)
+- [Publisher profile: jirboy](https://clawhub.ai/user/jirboy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text with optional JSON search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or read local Markdown files in an Obsidian research vault.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

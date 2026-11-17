@@ -1,41 +1,54 @@
-## Description: <br>
-Debunk（事实核查） helps agents fact-check links, images, videos, or text and produce structured verification reports and social reply drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+事实核查与辟谣工具。当用户提供链接/图片/视频/文字要求事实核查时触发。覆盖两类场景：自查信息真伪，或核查别人分享的内容并生成回复。
 
-## Publisher: <br>
-[tino-chen](https://clawhub.ai/user/tino-chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tino-chen](https://clawhub.ai/user/tino-chen)
 
-## Use Case: <br>
-External users and agents use this skill to verify factual claims in shared content, summarize source-backed findings, and draft responses for personal or social contexts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reply-writing guidance may soften or obscure corrections when a claim is materially false. <br>
-Mitigation: Review and edit generated replies so false claims are corrected clearly and supported by cited sources. <br>
-Risk: The skill may fetch external web pages through browser automation for anti-scraping sites. <br>
-Mitigation: Use the bundled private-address blocking, avoid untrusted internal URLs, and review fetched content before relying on it. <br>
+## Use Case:
 
+External users and agents use this skill to check claims from links, screenshots, videos, or pasted text and produce a structured fact-check report. When social context is present, it also drafts a reply that communicates corrections in a chosen tone.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tino-chen/debunk) <br>
-- [Skill guide](https://tino-chen.github.io/notes/workflows/debunk.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown fact-check report with plain-text reply drafts and inline shell commands when URL extraction is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on web search, web fetch, Playwright URL extraction, OCR, or video-analysis tools depending on the user input and configured environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence) <br>
+Risk: A local browser may be launched against user-provided URLs, and the security summary flags under-scoped SSRF protections.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill on untrusted links in cloud, corporate, or private-network environments unless network egress blocks metadata services and internal or private addresses.
+
+Risk: The security summary flags covert or evasive persuasion patterns in the social reply guidance.
+
+Mitigation: Review generated replies for transparency and prefer direct corrections that do not hide known falsehoods or manipulate the recipient.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tino-chen/skills/debunk)
+- [Workflow guide](https://tino-chen.github.io/notes/workflows/debunk.html)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, guidance]
+
+**Output Format:** [Markdown fact-check report plus plain-text reply templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires cited sources for each checked claim; social replies are typically 200-400 Chinese characters.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

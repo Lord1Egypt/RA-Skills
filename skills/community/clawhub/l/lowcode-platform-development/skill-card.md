@@ -1,40 +1,53 @@
-## Description: <br>
-Automates the creation of required development roles, scaffolds the project structure, and generates code for a low-code development platform with Vue2 + ElementUI front-end and Java (Spring Boot) back-end. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates the creation of required development roles, scaffolds the project structure, and generates code for a low-code development platform with Vue2 + ElementUI front-end and Java (Spring Boot) back-end.
 
-## Publisher: <br>
-[mmyg11](https://clawhub.ai/user/mmyg11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mmyg11](https://clawhub.ai/user/mmyg11)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold a low-code platform with a Vue2 + ElementUI frontend, Spring Boot backend, role documentation, deployment configuration, and next-step implementation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scaffolds and setup commands may write files, install dependencies, build projects, or initialize local repository state. <br>
-Mitigation: Review the planned file changes and commands before running the skill on sensitive or existing projects. <br>
-Risk: The artifact references a generation script and starter templates, but the supplied evidence includes placeholder template READMEs rather than complete frontend and backend template files. <br>
-Mitigation: Confirm required scripts and production-ready template files are present before relying on the generated platform as a working application. <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold a low-code platform from scratch, including a Vue2 + ElementUI front end, a Spring Boot back end, role documentation, deployment configuration, and next-step implementation guidance.
 
-## Reference(s): <br>
-- [Architecture Overview for Low-Code Platform](references/architecture.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown summaries with generated project files, shell command guidance, and configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local repository writes, dependency installation steps, build commands, and manual follow-up actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The referenced PowerShell generator script and real starter templates are not present in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify or supply the missing generator script and concrete Vue2 and Spring Boot templates before installing or executing the skill.
+
+Risk: The intended setup may run npm and Maven commands that download dependencies and execute package build hooks.
+
+Mitigation: Choose the target directory deliberately and approve dependency installation and build commands only after reviewing the generated project inputs.
+
+## Reference(s):
+
+- [Architecture Overview for Low-Code Platform](references/architecture.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown summary with generated project files, code, configuration, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scaffolds a local Vue2 and Spring Boot project structure and reports manual follow-up actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

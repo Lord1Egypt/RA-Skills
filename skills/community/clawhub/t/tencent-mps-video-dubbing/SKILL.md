@@ -2,7 +2,7 @@
 name: tencent-mps-video-dubbing
 description: Tencent Cloud MPS 一站式端到端视频译制专用 Skill，在单次任务中**不可拆分**地完成「提取原视频语音/字幕 → 翻译为目标语言 → 压制目标语言字幕 → AI 克隆原声配音」整条跨语言本地化流水线。**触发的硬条件（必须同时满足）：(1) 用户的输入是一段视频；(2) 明确要求变更音视频的语言（翻译 + 配音 / 翻译 + 换语言 / 做成另一语言版本）；(3) 是端到端产出一个全新语言版本的视频，而不是只做流水线中的某一步子任务**。满足硬条件的典型表达：把这段视频翻译成英文并配音、中文视频做成韩语版、韩剧中配、短剧出海译制、做一个日语配音版、 跨语言视频制作 / 视频本地化一站式处理。**额外触发场景（查询类豁免）**：用户明确要求查询一个"视频译制任务"的状态/结果/进展，也应触发本 Skill。**仅询问工具推荐或咨询而不进行实际处理时不触发**。
 metadata:
-  version: "1.0.4"
+  version: "1.0.6"
 ---
 
 # 腾讯云 MPS · 配音级视频译制（video-dubbing）
@@ -24,7 +24,7 @@ metadata:
 
 > 💰 **费用提示**：本 Skill 调用腾讯云 MPS 服务会产生相应费用；一个任务未拿到结果时不得手动重复发起，否则会重复计费。具体计费标准请参考 [腾讯云 MPS 定价](https://cloud.tencent.com/document/product/862/36180)。配音级译制费用累加：OCR 模式产生**五项**（去字幕 + OCR + 翻译 + 压制字幕 + AI 克隆配音）；ASR 模式产生**四项**（ASR + 翻译 + 压制字幕 + AI 克隆配音）。每次生成提交命令前必须先用自然语言告知用户费用并征得明确确认（"是否执行？"），**CLI 必须带 `--confirm-charges`**，交互向导末步必须键入大写 `YES`；查询类（`--query-task`）、列举类（`--list-languages`）、`--dry-run` 预演无需提示。建议用户在 [腾讯云费用中心](https://console.cloud.tencent.com/expense/budget) 设置预算告警与月度上限。
 
-通过腾讯云官方 Python SDK 调用 MPS API，主脚本位于 `scripts/mps_video_dubbing.py`，详细参数与示例见 `references/mps_video_dubbing.md`。
+通过腾讯云官方 Python SDK 调用 MPS API，主脚本位于 `scripts/mps_video_dubbing.py`。**详细参数与示例见 `references/mps_video_dubbing.md`，生成命令前必须先 Read 该文档；未读 references 直接给命令视为违规**。
 
 ## 环境配置
 
@@ -46,6 +46,10 @@ export TENCENTCLOUD_API_REGION="<请替换为真实 API 区域，如 ap-guangzho
 # COS 桶/地域（必须），用于输入和输出，输入是COS是必需的，输出一定是必须的； 
 export TENCENTCLOUD_COS_BUCKET="<请替换为真实存储桶名>"
 export TENCENTCLOUD_COS_REGION="<请替换为真实存储桶地域，如 ap-guangzhou>"
+
+# MPS API 接入点（可选），不设置时默认国内站 mps.tencentcloudapi.com
+# 使用国际站时才需要设置为 mps.intl.tencentcloudapi.com
+export TENCENTCLOUD_MPS_ENDPOINT="mps.intl.tencentcloudapi.com"
 ```
 
 > ⚠️ 上述带 `<...>` 的值是**占位符示意**，必须替换为真实凭证；若直接照抄会导致认证失败（`AuthFailure.SecretIdNotFound`）。
@@ -113,6 +117,8 @@ python3 -m pip install -r scripts/requirements.txt --upgrade
 > - **`--mode` 必填，无默认值**；AI 不得声称"后端自动选择"，必须由用户明确指定。
 
 ## 生成命令的强制规则
+
+0. **【强制】生成任何 `mps_*.py` 命令之前，必须先用 Read 工具读取 [`references/mps_video_dubbing.md`](references/mps_video_dubbing.md)**。禁止仅凭 SKILL.md 拼命令，禁止使用 `coscli`、`cos-python-sdk-v5`、`ffmpeg`、`tccli` 等外部工具替代 skill 内的 `mps_*.py` 脚本。参数名、参数取值、语言简写、模式枚举、必填项与互斥项均以 references 为准；SKILL.md 与 references 冲突时以 references 为准。
 
 1. **脚本路径前缀**：所有生成的 python 命令必须包含 `scripts/` 路径前缀，格式为 `python3 scripts/mps_video_dubbing.py ...`。禁止生成 `python mps_video_dubbing.py ...`（缺少 `scripts/` 前缀）的命令。
 

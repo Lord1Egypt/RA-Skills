@@ -1,42 +1,55 @@
-## Description: <br>
-B站评论分析 retrieves first-level Bilibili comments from a video link or BV ID, supports page-by-page review and four-dimension sentiment analysis, and can generate a local interactive HTML report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+B站评论分析工具用于根据B站视频链接或BV号获取一级评论，分页展示评论数据，进行积极、负面、需求和竞品四维分析，并生成可离线保存的交互式HTML报告。
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-External creators, brand operators, content planners, product managers, and researchers use this skill to retrieve Bilibili video comments, inspect audience feedback, and summarize sentiment, demand, and competitor signals. It supports lightweight public-comment monitoring with optional local HTML reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill sends a Bilibili BV ID and the RedFox API key to redfox.hk. <br>
-Mitigation: Use only a RedFox-issued key, confirm its scope and revocability, and avoid exposing the key in code, prompts, logs, or output files. <br>
-Risk: Generated HTML reports can include commenter names, profile links, timestamps, IP regions, and AI-generated summary HTML saved locally. <br>
-Mitigation: Review reports before sharing, store them appropriately, and remove sensitive or unnecessary comment data before distribution. <br>
+## Use Case:
 
+Content creators, UP owners, brand operators, content planners, and product managers use this skill to retrieve Bilibili first-level comments, review audience sentiment, identify requests or competitor signals, and produce shareable HTML comment reports.
 
-## Reference(s): <br>
-- [Core Workflow](references/core_workflow.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/redfox-data/skills/bilibili-comment) <br>
-- [RedFox Hub](https://redfox.hk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, HTML, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with work details, comment tables, and analysis; scripts return JSON and can write an optional local HTML report.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY. Comment retrieval sends the BV ID and API key to redfox.hk and fetches one page of 20 first-level comments per request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Bilibili video identifiers are sent through RedFox APIs during comment retrieval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for videos and workflows where sending the identifier to RedFox is acceptable, and confirm REDFOX_API_KEY scope and revocation options before use.
+
+Risk: Generated HTML reports may contain commenter metadata, API-supplied URLs, external font loading, and AI-generated summaries.
+
+Mitigation: Review generated reports locally before opening broadly or sharing, and avoid publishing reports that contain sensitive commenter metadata or unsanitized generated content.
+
+## Reference(s):
+
+- [Core Workflow](references/core_workflow.md)
+- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/bilibili-comment)
+- [RedFox Hub API keys](https://redfox.hk/settings/api-keys?source=clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, HTML files, analysis]
+
+**Output Format:** [Markdown responses with tables and analysis, JSON from helper scripts, and generated HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REDFOX_API_KEY. The workflow fetches one Bilibili comment page per request and generates an HTML report for the current page.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

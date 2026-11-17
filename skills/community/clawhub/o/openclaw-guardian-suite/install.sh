@@ -1,22 +1,7 @@
 #!/usr/bin/env bash
-# OpenClaw Guardian Suite — Installer
+# OpenClaw Skill — 受保护版本（oc-pay-sdk 加密分发）
 # Skill ID: openclaw-guardian
-#
-# This installer connects to OpenClaw servers to verify your license,
-# then downloads and executes the authorized skill bundle locally.
-# To proceed, set: OC_ACCEPT_TERMS=yes
-
-if [ "${OC_ACCEPT_TERMS:-}" != "yes" ]; then
-  echo "OpenClaw Guardian Suite — 安装程序"
-  echo ""
-  echo "此安装程序将："
-  echo "  1. 连接 OpenClaw 服务器验证你的授权许可"
-  echo "  2. 从服务器获取经授权的 Skill 内容并在本地执行"
-  echo ""
-  echo "如同意上述操作，请以 OC_ACCEPT_TERMS=yes 重新运行："
-  echo "  OC_ACCEPT_TERMS=yes bash install.sh"
-  exit 0
-fi
+# 核心内容已加密存储于服务端，需授权后在内存中解密执行
 
 _SELF_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SDK_PATH="${OC_PAY_SDK:-$_SELF_DIR/lib/sdk/auth.sh}"

@@ -1,180 +1,244 @@
 #!/usr/bin/env python3
-"""发票认证技能 - 税局登录、发票勾选认证、抵扣统计"""
+"""发票认证技能 - 税局扫码登录、发票勾选认证、抵扣统计"""
 
 import argparse
+import io
 import json
 import os
 import sys
+import tempfile
 
 try:
-    from common import is_error, post, validate_date
+    from common import post, validate_date
 except ImportError:
     sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-    from common import is_error, post, validate_date
+    from common import post, validate_date
 
-SESSION_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".session")
+try:
+    import qrcode
+except ImportError:  # 未安装时降级为输出纯链接
+    qrcode = None
+
+QR_LOGIN_PATH = "/api/jxplus/zxtSkill/login/getLoginQrUrl"
+ORG_INFO_PATH = "/api/jxplus/zxtSkill/dzsj/getLoginOrgInfo"
+
+GUIDANCE_HEAD = "税局登录已失效，请扫码登录。"
+GUIDANCE_FOOTER = (
+    "\n为保护账号安全，本技能改用扫码登录：您的税局密码不会经过对话窗口，\n"
+    "也不会被 AI 模型采集或存储。登录全程在您手机端完成。\n\n"
+    "扫码完成后告诉我，我会继续执行刚才的操作。"
+)
 
 
-def save_session(api_key: str, credit_code: str, account: str, password: str,
-                 area_code: str = ""):
-    with open(SESSION_FILE, "w", encoding="utf-8") as f:
-        json.dump({"apiKey": api_key, "creditCode": credit_code,
-                   "account": account, "password": password,
-                   "areaCode": area_code}, f, ensure_ascii=False)
+# ---- 扫码登录 ----
+
+def fetch_login_qr(api_key: str):
+    """获取税局登录二维码地址，失败返回 None。"""
+    result = post(QR_LOGIN_PATH, {"data": {"apiKey": api_key}})
+    if str(result.get("status")) != "200":
+        return None
+    data = result.get("data") or {}
+    return data.get("qrUrl") or None
 
 
-def load_session():
-    if not os.path.isfile(SESSION_FILE):
+def render_qr_ascii(url: str):
+    """把 URL 渲染成终端可扫的二维码图案；qrcode 不可用时返回 None。"""
+    if qrcode is None:
+        return None
+    qr = qrcode.QRCode(border=1)
+    qr.add_data(url)
+    qr.make(fit=True)
+    buf = io.StringIO()
+    qr.print_ascii(out=buf, invert=True)
+    return buf.getvalue().rstrip("\n")
+
+
+QR_CAPTION = [
+    "发票认证技能 invoice-cert",
+    "本二维码用于登录电局，完成进项发票认证与抵扣统计",
+    "请使用微信扫码完成电局登录",
+]
+
+# 中文字体候选路径，按平台优先级排列
+CJK_FONT_CANDIDATES = [
+    r"C:\Windows\Fonts\msyh.ttc",       # Windows 微软雅黑
+    r"C:\Windows\Fonts\simhei.ttf",     # Windows 黑体
+    r"C:\Windows\Fonts\simsun.ttc",     # Windows 宋体
+    "/System/Library/Fonts/PingFang.ttc",              # macOS
+    "/System/Library/Fonts/STHeiti Medium.ttc",        # macOS
+    "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+    "/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc",
+    "/usr/share/fonts/truetype/arphic/uming.ttc",
+]
+
+
+def find_cjk_font():
+    """探测系统中可用的中文字体路径；找不到返回 None。"""
+    for path in CJK_FONT_CANDIDATES:
+        if os.path.isfile(path):
+            return path
+    return None
+
+
+def append_caption(img):
+    """在二维码图片下方绘制说明文案（来源技能 + 用途 + 安全说明）。
+
+    找不到中文字体或绘制失败时，原样返回二维码图片——
+    终端输出里仍有完整文案，不影响登录流程。
+    """
+    font_path = find_cjk_font()
+    if font_path is None:
+        return img
+    try:
+        from PIL import Image as PilImage, ImageDraw, ImageFont
+
+        font = ImageFont.truetype(font_path, 18)
+        pad, gap = 18, 8
+        line_h = 18 + gap
+
+        probe = ImageDraw.Draw(img)
+        text_w = int(max(probe.textlength(t, font=font) for t in QR_CAPTION))
+        width = max(img.width, text_w + pad * 2)
+        height = img.height + pad + line_h * len(QR_CAPTION) + pad
+
+        canvas = PilImage.new("RGB", (width, height), "white")
+        canvas.paste(img, ((width - img.width) // 2, 0))
+
+        draw = ImageDraw.Draw(canvas)
+        y = img.height + pad
+        for text in QR_CAPTION:
+            x = (width - draw.textlength(text, font=font)) / 2
+            draw.text((x, y), text, font=font, fill="#333333")
+            y += line_h
+        return canvas
+    except Exception:
+        return img
+
+
+def render_qr_image(url: str):
+    """把二维码渲染成 PNG 写入系统临时目录，返回文件路径；不可用时返回 None。"""
+    if qrcode is None:
         return None
     try:
-        with open(SESSION_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except (json.JSONDecodeError, OSError):
+        img = qrcode.make(url).convert("RGB")
+        img = append_caption(img)
+        path = os.path.join(tempfile.gettempdir(), "zxt_login_qr.png")
+        img.save(path)
+        return path
+    except Exception:
         return None
 
 
-def clear_session():
-    if os.path.isfile(SESSION_FILE):
-        os.remove(SESSION_FILE)
+def login_guidance(api_key: str) -> str:
+    """组装扫码登录引导文案（含二维码与防 AI 采集密码的说明）。"""
+    qr_url = fetch_login_qr(api_key)
+    if not qr_url:
+        return (f"{GUIDANCE_HEAD}\n\n"
+                "[提示] 未能获取登录二维码，请稍后重试；"
+                "若持续失败请确认 apiKey 是否具备该接口权限。\n"
+                f"{GUIDANCE_FOOTER}")
+
+    hint = "\n  请用微信扫码，或在浏览器中打开下方链接\n"
+    body = None
+
+    # 首选：生成图片文件，交由上层（AI）用自身的图片展示能力呈现给用户。
+    # 脚本不主动弹窗——避免与对话内展示重复，也避免打扰用户桌面。
+    img_path = render_qr_image(qr_url)
+    if img_path:
+        body = (f"\n二维码图片已生成：\n  {img_path}\n"
+                f"{hint}  链接: {qr_url}\n")
+
+    # 降级一：在终端渲染可扫图案
+    if body is None:
+        art = render_qr_ascii(qr_url)
+        if art is not None:
+            body = f"\n{art}\n{hint}  链接: {qr_url}\n"
+
+    # 降级二：只输出链接
+    if body is None:
+        body = ("\n[提示] 未能生成二维码图片，也无法在终端渲染。\n"
+                "请执行 pip install qrcode pillow 后重试，"
+                "或手动将以下链接转为二维码后扫描：\n"
+                f"{qr_url}\n")
+
+    return f"{GUIDANCE_HEAD}\n{body}{GUIDANCE_FOOTER}"
 
 
-def try_auto_login(api_key: str) -> bool:
-    session = load_session()
-    if not session:
-        return False
-    data = {"apiKey": api_key, "creditCode": session["creditCode"]}
-    if session.get("account"):
-        data["account"] = session["account"]
-    if session.get("password"):
-        data["password"] = session["password"]
-    if session.get("areaCode"):
-        data["areaCode"] = session["areaCode"]
-    result = post("/api/jxplus/zxtSkill/dzsj/dzsjLogin", {"data": data})
-    d = result.get("data", {})
-    if str(result.get("status")) == "200" and str(d.get("returnType")) == "4000":
-        return True
-    clear_session()
-    return False
+def cmd_login_qr(args):
+    print(login_guidance(args.api_key))
 
 
-def post_with_auto_login(path: str, data: dict, api_key: str) -> dict:
-    result = post(path, data)
-    if str(result.get("status", "")) != "309":
-        return result
-    if try_auto_login(api_key):
-        return post(path, data)
-    return result
+# ---- 当前登录企业 ----
+
+def fetch_org_info(api_key: str):
+    """获取当前登录企业信息，失败返回 None。"""
+    result = post(ORG_INFO_PATH, {"data": {"apiKey": api_key}})
+    if str(result.get("status")) != "200":
+        return None
+    return result.get("data") or None
 
 
-def check_error(result: dict):
+def describe_org(api_key: str) -> str:
+    """当前登录企业的可读描述（名称 + 税号）；取不到时返回空串。
+
+    只在业务操作**成功后**调用。该接口不反映税局会话状态——会话失效时
+    它仍可能返回 200 和企业名，若在操作前调用，会把企业名打进失败输出，
+    让用户误以为操作已经发生。取不到不报错：企业信息仅用于标注操作对象，
+    真正未登录的情况由业务接口的 309 分支统一处理。
+    """
+    info = fetch_org_info(api_key)
+    if not info:
+        return ""
+    return f"{info.get('orgName') or '-'}（税号 {info.get('nsrsbh') or '-'}）"
+
+
+def cmd_org_info(args):
+    result = post(ORG_INFO_PATH, {"data": {"apiKey": args.api_key}})
+    err = check_error(result, args.api_key)
+    if err:
+        print(err)
+        return
+    d = result.get("data") or {}
+    print(f"当前登录企业：{d.get('orgName') or '-'}")
+    print(f"  纳税人识别号: {d.get('nsrsbh') or '-'}")
+
+
+def check_error(result: dict, api_key: str = ""):
     status = str(result.get("status", ""))
     if status == "200":
         return None
     if status == "309":
-        return ("税局未登录且无可用会话缓存，请先调用 login 命令进行税局登录。"
-                "需要提供税号、账号、密码等信息。")
+        return login_guidance(api_key)
     return f"[错误] {result.get('message', '未知错误')} (status={status})"
 
 
 # ---- 子命令实现 ----
 
-def cmd_login(args):
-    data = {"apiKey": args.api_key, "creditCode": args.credit_code}
-    if args.account:
-        data["account"] = args.account
-    if args.password:
-        data["password"] = args.password
-    if args.area_code:
-        data["areaCode"] = args.area_code
-    result = post("/api/jxplus/zxtSkill/dzsj/dzsjLogin", {"data": data})
-    err = check_error(result)
-    if err:
-        print(err)
-        return
-    d = result.get("data", {})
-    rt = d.get("returnType", "")
-    if rt == "4000":
-        save_session(args.api_key, args.credit_code,
-                     args.account or "", args.password or "", args.area_code or "")
-        print("登录成功")
-    elif rt == "4001":
-        save_session(args.api_key, args.credit_code,
-                     args.account or "", args.password or "", args.area_code or "")
-        mobile = d.get("loginMobile", "")
-        print(f"需要验证码登录，验证码将发送至手机号：{mobile}")
-        print("请先调用 send-sms 发送验证码，再调用 login-sms 完成登录。")
-    elif rt == "4002":
-        save_session(args.api_key, args.credit_code,
-                     args.account or "", args.password or "", args.area_code or "")
-        areas = d.get("areaList", [])
-        print("需要设置地区，可选地区如下：")
-        for a in areas:
-            print(f"  {a.get('areaCode', '')} - {a.get('areaName', '')}")
-        print("请使用 --area-code 参数指定地区码后重新登录。")
-    else:
-        print(f"登录返回：returnType={rt}")
-        print(json.dumps(d, ensure_ascii=False, indent=2))
-
-
-def cmd_login_sms(args):
-    result = post("/api/jxplus/zxtSkill/dzsj/dzsjLoginBySmsCode", {
-        "data": {"smsCode": args.sms_code, "creditCode": args.credit_code,
-                 "account": args.account, "apiKey": args.api_key}
-    })
-    err = check_error(result)
-    if err:
-        print(err)
-        return
-    d = result.get("data", {})
-    rt = d.get("returnType", "")
-    if rt == "4000":
-        save_session(args.api_key, args.credit_code, args.account, "")
-        print("验证码登录成功")
-    elif rt == "4001":
-        print("身份认证已失效，请重新登录")
-    else:
-        print(f"返回：returnType={rt}")
-
-
-def cmd_send_sms(args):
-    result = post("/api/jxplus/zxtSkill/dzsj/dzsjSendSmsCode", {
-        "data": {"creditCode": args.credit_code, "account": args.account,
-                 "apiKey": args.api_key}
-    })
-    err = check_error(result)
-    if err:
-        print(err)
-        return
-    d = result.get("data", {})
-    rt = d.get("returnType", "")
-    if rt == "4000":
-        print("验证码发送成功")
-    elif rt == "4001":
-        print("身份认证已失效，请重新登录")
-    else:
-        print(f"返回：returnType={rt}")
-
-
 def cmd_current_period(args):
-    result = post_with_auto_login("/api/jxplus/zxtSkill/check/getCurrSkssq", {
+    result = post("/api/jxplus/zxtSkill/check/getCurrSkssq", {
         "data": {"apiKey": args.api_key}
-    }, args.api_key)
-    err = check_error(result)
+    })
+    err = check_error(result, args.api_key)
     if err:
         print(err)
         return
-    d = result.get("data", "")
-    print(f"当前税款所属期: {d}")
+    org = describe_org(args.api_key)
+    if org:
+        print(f"当前登录企业: {org}")
+    print(f"当前税款所属期: {result.get('data', '')}")
 
 
 def cmd_sign(args):
-    result = post_with_auto_login("/api/jxplus/zxtSkill/check/doSignature", {
+    result = post("/api/jxplus/zxtSkill/check/doSignature", {
         "data": {"apiKey": args.api_key}
-    }, args.api_key)
-    err = check_error(result)
+    })
+    err = check_error(result, args.api_key)
     if err:
         print(err)
         return
+    org = describe_org(args.api_key)
+    if org:
+        print(f"操作企业: {org}")
     print("确认签名成功")
     d = result.get("data")
     if d:
@@ -182,22 +246,25 @@ def cmd_sign(args):
 
 
 def cmd_statistics(args):
-    result = post_with_auto_login("/api/jxplus/zxtSkill/check/commitStatistics", {
+    result = post("/api/jxplus/zxtSkill/check/commitStatistics", {
         "data": {"commitType": args.commit_type, "bz": args.bz,
                  "apiKey": args.api_key}
-    }, args.api_key)
+    })
     msg = str(result.get("message", ""))
     if "1001" in msg or "1002" in msg:
         print(f"提示：{msg}，正在自动重试（bz=Y）...")
-        result = post_with_auto_login("/api/jxplus/zxtSkill/check/commitStatistics", {
+        result = post("/api/jxplus/zxtSkill/check/commitStatistics", {
             "data": {"commitType": args.commit_type, "bz": "Y",
                      "apiKey": args.api_key}
-        }, args.api_key)
-    err = check_error(result)
+        })
+    err = check_error(result, args.api_key)
     if err:
         print(err)
         return
     action = "申请统计" if args.commit_type == "1" else "撤销统计"
+    org = describe_org(args.api_key)
+    if org:
+        print(f"操作企业: {org}")
     print(f"{action}成功")
     d = result.get("data")
     if d:
@@ -208,13 +275,14 @@ def cmd_deduct_stats(args):
     data = {"apiKey": args.api_key}
     if args.skssq:
         data["skssq"] = args.skssq
-    result = post_with_auto_login(
-        "/api/jxplus/zxtSkill/check/getDeductStatistList", {"data": data},
-        args.api_key)
-    err = check_error(result)
+    result = post("/api/jxplus/zxtSkill/check/getDeductStatistList", {"data": data})
+    err = check_error(result, args.api_key)
     if err:
         print(err)
         return
+    org = describe_org(args.api_key)
+    if org:
+        print(f"当前登录企业: {org}")
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
@@ -222,13 +290,14 @@ def cmd_checked_invoices(args):
     data = {"apiKey": args.api_key}
     if args.skssq:
         data["skssq"] = args.skssq
-    result = post_with_auto_login("/api/jxplus/zxtSkill/check/getCheckedInvoiceList", {
-        "data": data
-    }, args.api_key)
-    err = check_error(result)
+    result = post("/api/jxplus/zxtSkill/check/getCheckedInvoiceList", {"data": data})
+    err = check_error(result, args.api_key)
     if err:
         print(err)
         return
+    org = describe_org(args.api_key)
+    if org:
+        print(f"当前登录企业: {org}")
     invoices = result.get("data", [])
     if isinstance(invoices, list):
         print(f"当前属期认证发票共 {len(invoices)} 张：")
@@ -248,20 +317,23 @@ def cmd_checked_invoices(args):
 
 
 def cmd_check_status(args):
-    result = post_with_auto_login("/api/jxplus/zxtSkill/check/getInvoiceCheckStatus", {
-        "data": {"invoiceNumber": args.invoice_number,
-                 "invoiceDate": args.invoice_date,
-                 "apiKey": args.api_key,
-                 **({"invoiceCode": args.invoice_code} if args.invoice_code else {})}
-    }, args.api_key)
-    err = check_error(result)
+    data = {"invoiceNumber": args.invoice_number,
+            "invoiceDate": args.invoice_date,
+            "apiKey": args.api_key}
+    if args.invoice_code:
+        data["invoiceCode"] = args.invoice_code
+    result = post("/api/jxplus/zxtSkill/check/getInvoiceCheckStatus", {"data": data})
+    err = check_error(result, args.api_key)
     if err:
         print(err)
         return
+    org = describe_org(args.api_key)
     d = result.get("data", {})
     gxzt = d.get("gxzt", "-")
     gxzt_name = "已勾选" if gxzt == "1" else "未勾选"
     print(f"发票认证状态：{gxzt_name} (gxzt={gxzt})")
+    if org:
+        print(f"  查询企业: {org}")
     print(f"  发票代码: {d.get('invoiceCode') or '-'}")
     print(f"  发票号码: {d.get('invoiceNumber', '-')}")
     print(f"  开票日期: {d.get('kprq', '-')}")
@@ -289,10 +361,13 @@ def cmd_commit_deduction(args):
     invoice_list.sort(key=lambda x: x["kprq"])
 
     action = "勾选认证" if args.commit_type == "1" else "取消勾选认证"
+    print(f"正在操作: {action}，共 {len(invoice_list)} 张发票")
+
     total_success = 0
     total_fail = 0
     all_success = []
     all_fail = []
+    skssq = None
 
     # 分批提交，每批最多 BATCH_SIZE 张
     for i in range(0, len(invoice_list), BATCH_SIZE):
@@ -307,21 +382,35 @@ def cmd_commit_deduction(args):
                 "apiKey": args.api_key}
         if args.skssq:
             data["skssq"] = args.skssq
-        result = post_with_auto_login(
-            "/api/jxplus/zxtSkill/check/commitDeduction", {"data": data},
-            args.api_key)
-        err = check_error(result)
+        result = post("/api/jxplus/zxtSkill/check/commitDeduction", {"data": data})
+        err = check_error(result, args.api_key)
         if err:
+            # 中途失败时先汇报已完成的部分，避免丢失进度。
+            # 只有确实提交成功过才标注企业，避免企业信息不可靠时误导用户。
+            print(f"{action}中断于第 {batch_no}/{total_batches} 批：")
+            if total_success > 0:
+                org = describe_org(args.api_key)
+                if org:
+                    print(f"  操作企业: {org}")
+            if skssq:
+                print(f"  税款所属期: {skssq}")
+            print(f"  已完成成功: {total_success} 张")
+            print(f"  已完成失败: {total_fail} 张")
+            print("")
             print(err)
             return
         d = result.get("data", {})
+        skssq = d.get("skssq") or skssq
         total_success += int(d.get("successCount", "0"))
         total_fail += int(d.get("failCount", "0"))
         all_success.extend(d.get("successList", []))
         all_fail.extend(d.get("failLIst", []))
 
-    print(f"{action}完成：")
-    skssq = d.get("skssq")
+    org = describe_org(args.api_key)
+    if org:
+        print(f"{action}完成 —— 发票已操作至企业: {org}")
+    else:
+        print(f"{action}完成：")
     if skssq:
         print(f"  税款所属期: {skssq}")
     print(f"  成功: {total_success} 张")
@@ -339,20 +428,9 @@ def main():
                         help="apiKey，未传则读取环境变量 ZXT_API_KEY")
     sub = parser.add_subparsers(dest="action", required=True)
 
-    p_login = sub.add_parser("login", help="税局登录")
-    p_login.add_argument("--credit-code", required=True, help="纳税人识别号（税号）")
-    p_login.add_argument("--account", default="", help="税局账号")
-    p_login.add_argument("--password", default="", help="税局密码")
-    p_login.add_argument("--area-code", default="", help="地区码（如 BJ、TJ）")
+    sub.add_parser("login-qr", help="获取税局扫码登录二维码")
 
-    p_sms_login = sub.add_parser("login-sms", help="验证码登录")
-    p_sms_login.add_argument("--sms-code", required=True, help="短信验证码")
-    p_sms_login.add_argument("--credit-code", required=True, help="纳税人识别号")
-    p_sms_login.add_argument("--account", required=True, help="税局账号")
-
-    p_send_sms = sub.add_parser("send-sms", help="发送验证码")
-    p_send_sms.add_argument("--credit-code", required=True, help="纳税人识别号")
-    p_send_sms.add_argument("--account", required=True, help="税局账号")
+    sub.add_parser("org-info", help="查询当前登录企业信息")
 
     sub.add_parser("sign", help="确认签名")
 
@@ -404,9 +482,8 @@ def main():
             sys.exit(1)
 
     handlers = {
-        "login": cmd_login,
-        "login-sms": cmd_login_sms,
-        "send-sms": cmd_send_sms,
+        "login-qr": cmd_login_qr,
+        "org-info": cmd_org_info,
         "current-period": cmd_current_period,
         "sign": cmd_sign,
         "statistics": cmd_statistics,

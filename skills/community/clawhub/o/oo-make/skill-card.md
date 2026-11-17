@@ -1,42 +1,55 @@
-## Description: <br>
-Make (make.com). Use this skill for any Make request involving reading, creating, updating, or deleting data through a connected Make account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Make.com scenarios and account data through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate a connected Make account: inspect authorization and scenarios, list teams, activate or deactivate scenarios, run scenarios once, and review recent usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use an OOMOL-connected Make account to read account and scenario information and perform scenario operations. <br>
-Mitigation: Install only when agents may use that connected Make account, and review requested scenario operations before execution. <br>
-Risk: Scenario activation, deactivation, and one-time runs can trigger downstream actions in other services. <br>
-Mitigation: Confirm the target scenario, payload, and intended effect with the user before write or destructive actions. <br>
+## Use Case:
 
+Developers and users with a connected Make account use this skill to inspect account and scenario details, run scenarios, and manage scenario activation through Make actions.
 
-## Reference(s): <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Make](https://www.make.com) <br>
-- [ClawHub skill listing](https://clawhub.ai/oomol/skills/oo-make) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent responses should inspect live connector schemas before constructing JSON payloads and should request confirmation before write or destructive scenario actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Setup directs the agent to execute downloaded CLI installers whose complete effects were unavailable for inspection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, prefer a verified release, and review or disable automatic agent-skill synchronization.
+
+Risk: Connected Make credentials and requested permissions can expose or change account data.
+
+Mitigation: Connect only the permissions needed and retain confirmation for scenario changes and runs.
+
+## Reference(s):
+
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Make API documentation](https://developers.make.com/api-documentation/getting-started/api-structure)
+- [Make](https://www.make.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live action schemas to shape JSON payloads; changes to Make state require confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

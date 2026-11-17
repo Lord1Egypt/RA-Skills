@@ -1,41 +1,58 @@
-## Description: <br>
-A Meituan travel assistant skill for travel inspiration, itinerary planning, hotel and transport search, attraction tickets, vacation products, and transaction-oriented travel recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+mt-travel-ai helps agents handle travel planning and booking-related requests using Meituan travel supply for hotels, transport, attraction tickets, vacation products, and itinerary recommendations.
 
-## Publisher: <br>
-[qy-zhang](https://clawhub.ai/user/qy-zhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qy-zhang](https://clawhub.ai/user/qy-zhang)
 
-## Use Case: <br>
-External users use this skill to ask for domestic travel ideas, route options, hotels, train or flight information, attraction tickets, and vacation packages through Meituan travel supply. The skill guides token setup, calls the Meituan travel CLI, and returns the CLI result as complete Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to provide a sensitive Meituan API token and stores it locally in plaintext. <br>
-Mitigation: Configure the token outside chat in a protected environment or credential store when possible, avoid printing secrets in conversation, and rotate any token that has already been shared. <br>
-Risk: The skill depends on the Meituan travel CLI and sends travel queries to Meituan services. <br>
-Mitigation: Install and use the skill only if you trust the Meituan CLI and are comfortable with the external service handling the query and token. <br>
+## Use Case:
 
+External users and travel-service agents can use this skill to answer travel requests, plan itineraries, find hotels, query flights or trains, and surface attraction tickets or vacation packages. The artifact limits use away from passport, visa, overseas-destination, and non-travel Meituan requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qy-zhang/mt-travel-ai) <br>
-- [Meituan developer token page](https://developer.meituan.com/zh/v2/dev/token) <br>
+### Deployment Geography for Use:
 
+Global, with behavior focused on Meituan-supported travel inventory.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and preserved links or images from the Meituan CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include travel product names, prices, ratings, distances, images, and booking links returned by the Meituan CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: A Meituan developer token may be exposed in the chat transcript or saved in plaintext local configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secure secret-entry and storage mechanism, avoid sharing real tokens in chat where possible, and rotate any token that may have been exposed.
+
+Risk: The skill installs a globally available npm CLI without a pinned version.
+
+Mitigation: Use a version-pinned or sandboxed CLI installation and review package provenance before enabling it for production use.
+
+Risk: Travel outputs may be incomplete, stale, or unsuitable for a user's constraints if returned CLI data is accepted without review.
+
+Mitigation: Review returned travel details, prices, links, and availability before booking or presenting them as final recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qy-zhang/skills/mt-travel-ai)
+- [Meituan developer token page](https://developer.meituan.com/zh/v2/dev/token)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown travel responses with links, images, prices, ratings, and inline shell or configuration commands when setup is required.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may preserve CLI-returned Markdown details verbatim and may include user prompts for missing city, query, or credential setup.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

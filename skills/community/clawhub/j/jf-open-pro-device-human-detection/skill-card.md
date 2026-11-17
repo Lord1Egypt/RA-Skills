@@ -1,43 +1,58 @@
-## Description: <br>
-Controls JFTech device human detection and PTZ human tracking settings through JFTech OpenAPI commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to query and update JFTech device human detection and PTZ human tracking settings through the JFTech OpenAPI.
 
-## Publisher: <br>
-[jftech](https://clawhub.ai/user/jftech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jftech](https://clawhub.ai/user/jftech)
 
-## Use Case: <br>
-Developers and device administrators use this skill to inspect and change human detection, sensitivity, PTZ tracking, tracking sensitivity, and return-time settings on authorized JFTech camera devices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China Mainland (CN), Asia (AS), Europe (EU), and North America (NA) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change live camera human-detection and tracking behavior. <br>
-Mitigation: Use it only with JFTech devices you own or are authorized to administer, and check current settings before running any set action. <br>
-Risk: The skill sends signed device-management requests to an environment-selected host. <br>
-Mitigation: Set JF_ENDPOINT only to an official JFTech regional host. <br>
-Risk: JF_APP_SECRET and JF_DEVICE_TOKEN authorize device-management operations. <br>
-Mitigation: Protect and rotate JF_APP_SECRET and JF_DEVICE_TOKEN. <br>
+## Use Case:
 
+External developers and device operators use this skill to inspect and change human detection alerts, detection sensitivity, PTZ human tracking, tracking sensitivity, and return-time behavior on compatible JFTech devices.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jftech/jf-open-pro-device-human-detection) <br>
-- [JFTech Open Platform documentation](https://docs.jftech.com) <br>
+### Deployment Geography for Use:
 
+China Mainland, Asia, Europe, and North America, matching the regional JFTech API endpoints listed in the skill metadata.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API Calls, Guidance] <br>
-**Output Format:** [Markdown documentation and Python command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JFTech OpenAPI credentials, a device token, an authorized device serial number, and the selected regional endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: Signed requests containing sensitive device credentials can be sent to an endpoint selected through JF_ENDPOINT.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep JF_ENDPOINT unset or set it only to an official JFTech regional host, and run the skill only in a controlled runtime.
+
+Risk: Set actions can change detection alerts, sensitivity, tracking, and return-time behavior on a security device.
+
+Mitigation: Review the target device, channel, action, and requested values before execution, and restrict use to operators authorized to change device security settings.
+
+Risk: The skill requires JF_APP_SECRET and JF_DEVICE_TOKEN to perform signed device API calls.
+
+Mitigation: Provide credentials through protected environment variables, avoid logging or sharing them, and rotate them if exposure is suspected.
+
+## Reference(s):
+
+- [JFTech Open Platform documentation](https://docs.jftech.com)
+- [ClawHub skill page](https://clawhub.ai/jftech/skills/jf-open-pro-device-human-detection)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and text CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JFTech OpenAPI credentials and a device token; set actions can change device detection and tracking settings.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

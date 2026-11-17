@@ -1,46 +1,61 @@
-## Description: <br>
-Analyzes software projects and generates a structured Markdown documentation system using Intent, Contract, and Constraint tracks, intelligent grouping, template derivation, and an 18-dimension completeness check. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes software projects and generates structured Markdown documentation systems using Intent, Contract, and Constraint tracks, intelligent grouping, template derivation, and completeness self-checks.
 
-## Publisher: <br>
-[leonardo-lb](https://clawhub.ai/user/leonardo-lb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leonardo-lb](https://clawhub.ai/user/leonardo-lb)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to create or redesign a repository documentation system, including project analysis, document grouping, Markdown templates, entry files, and completeness checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a repository and writes documentation, so generated files may contain incorrect project assumptions or stale technical details. <br>
-Mitigation: Run it on a clean branch and review generated documentation before committing or relying on it. <br>
-Risk: The workflow can copy a helper shell script into the target project. <br>
-Mitigation: Review the copied md-sections.sh script and any generated shell commands before execution or commit. <br>
-Risk: Optional field research may expose private project context if used on sensitive repositories. <br>
-Mitigation: Decline optional web research when working with private code, confidential architecture, or sensitive documentation. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to create or redesign repository documentation systems, including project analysis, document grouping, Markdown templates, entry files, and completeness checks.
 
-## Reference(s): <br>
-- [Three Track Philosophy](references/three-track-philosophy.md) <br>
-- [Grouping Detection](references/grouping-detection.md) <br>
-- [Template Derivation](references/template-derivation.md) <br>
-- [Completeness Checklist](references/completeness-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/leonardo-lb/doc-system-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown documentation files with analysis summaries, self-check reports, and shell command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update repository documentation, entry files, and a copied md-sections.sh helper script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can persist future agent-reading rules in generated entry files, including strong prohibition language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated AGENTS.md or equivalent files before accepting them, and remove or soften highest-priority prohibition language that conflicts with local governance.
+
+Risk: The bundled md-sections.sh helper has a confirmed command-execution flaw when automation passes untrusted --line values.
+
+Mitigation: Harden or replace md-sections.sh before using it with untrusted inputs, and require approval before copying it into scripts/.
+
+Risk: Repository-wide documentation generation may create or modify central documentation and helper-script locations.
+
+Mitigation: Run the skill in a reviewable working tree and require approval before modifying AGENTS.md, docs/, or scripts/.
+
+## Reference(s):
+
+- [Doc System Generator on ClawHub](https://clawhub.ai/leonardo-lb/skills/doc-system-generator)
+- [Grouping Detection](references/grouping-detection.md)
+- [Template Derivation](references/template-derivation.md)
+- [Three-Track Philosophy](references/three-track-philosophy.md)
+- [Completeness Checklist](references/completeness-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown documentation, JSON project profiles, self-check reports, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates repository documentation structure and can copy a Markdown section helper script into a target project's scripts directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

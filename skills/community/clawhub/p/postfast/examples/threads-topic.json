@@ -1,0 +1,13 @@
+{
+  "posts": [
+    {
+      "content": "Five things we learned shipping a public API in 30 days.",
+      "mediaItems": [],
+      "scheduledAt": "2026-06-15T09:00:00.000Z",
+      "socialMediaId": "YOUR_THREADS_ACCOUNT_ID"
+    }
+  ],
+  "controls": {
+    "threadsTopicTag": "Startups"
+  }
+}

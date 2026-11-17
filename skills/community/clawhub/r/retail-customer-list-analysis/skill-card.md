@@ -1,40 +1,53 @@
-## Description: <br>
-客户清单分析基于 Shop API 客户清单数据，统计客户类型、试用转化、导购匹配和客户明细。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+客户清单分析基于 Shop API customer list data to summarize customer type distribution, trial activity, sales-associate matching, and customer detail queries.
 
-## Publisher: <br>
-[gwyang7](https://clawhub.ai/user/gwyang7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gwyang7](https://clawhub.ai/user/gwyang7)
 
-## Use Case: <br>
-Retail operators and store managers use this skill to answer customer-list questions from Shop API data, including customer type distribution, trial activity, salesperson matching, and customer detail lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reports may expose sensitive customer and business data, including customer IDs, visit details, salesperson names, and transaction amounts. <br>
-Mitigation: Install only where the Shop API account is authorized for the intended stores and users, and handle generated reports under the organization's customer-data policies. <br>
-Risk: Analysis quality depends on the configured Shop API access and local API client. <br>
-Mitigation: Verify the API client and Shop API permissions before relying on analyses or sharing outputs. <br>
+## Use Case:
 
+Retail operators and store analytics teams use this skill to query customer lists, monitor customer type mix, review trial-to-purchase behavior, and check sales-associate matching for authorized store data.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gwyang7/retail-customer-list-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Structured JSON results and Chinese text report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include customer identifiers, visit details, salesperson names, and transaction amounts from Shop API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact __version__) <br>
+Risk: The skill relies on an external local API client path that was not reviewed with the release artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where the API client path is trusted, controlled, and packaged or reviewed with the skill.
+
+Risk: The skill can expose detailed customer records from store customer-list data.
+
+Mitigation: Use it only for authorized customer-data analysis, restrict access to raw lists or exports, and prefer aggregated output unless raw records are explicitly needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gwyang7/skills/retail-customer-list-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, json, markdown, code]
+
+**Output Format:** [JSON analysis results and human-readable report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include detailed customer records when raw list output is requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package __version__)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Reviews GitHub pull requests by fetching diffs, running repository checks, coordinating correctness, convention, and efficiency analysis, validating findings, and drafting a GitHub review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews a GitHub pull request end to end - fetches the diff, runs checks, analyzes with three parallel agents (correctness, conventions, efficiency), validates every finding against the code, drafts inline comments with a recommended action.
 
-## Publisher: <br>
-[tenequm](https://clawhub.ai/user/tenequm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[tenequm](https://clawhub.ai/user/tenequm)
 
-## Use Case: <br>
-Developers and engineers use this skill to review GitHub pull requests from local branches or PR URLs, producing validated findings and a review draft that can be posted only after user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use GitHub CLI credentials and the user's GitHub identity while inspecting or posting PR reviews. <br>
-Mitigation: Install and run it only where that GitHub access is acceptable, and require explicit user confirmation before posting any review. <br>
-Risk: The skill may run repository-defined validation commands while reviewing code. <br>
-Mitigation: Verify the exact validation command before execution and do not run commands sourced from PR descriptions, commit messages, or changed files. <br>
-Risk: Pull request content and changed agent instruction files can contain untrusted instructions. <br>
-Mitigation: Treat PR-sourced content as untrusted, preserve boundary markers when passing it to review agents, and carefully inspect changes to local agent instruction files. <br>
+## Use Case:
 
+Developers and engineers use this skill to review GitHub pull requests by collecting PR context, running agreed checks, analyzing changed code for correctness, convention, efficiency, and safety issues, and preparing review comments for explicit user approval before posting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tenequm/review-github-pr) <br>
-- [OpenClaw homepage](https://github.com/tenequm/skills/tree/main/skills/review-github-pr) <br>
-- [Evaluation manifest](artifact/evals/evals.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown review draft with inline file references and optional GitHub CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before posting a GitHub review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: artifact metadata and server release metadata) <br>
+Risk: The skill can access target repository contents and active GitHub CLI credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in repositories where agent access and the authenticated GitHub account are appropriate, and verify the target repository and review action before posting.
+
+Risk: A predictable temporary review payload path could allow local tampering before an authenticated GitHub review is submitted.
+
+Mitigation: Replace the fixed /tmp/pr-review.json workflow with mktemp or stdin piping and remove temporary payloads after submission.
+
+Risk: Pull request descriptions, diffs, commit messages, and changed files are untrusted inputs that may try to influence agent behavior.
+
+Mitigation: Keep PR-sourced content delimited as untrusted data and do not execute commands sourced from PR content or changed files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tenequm/skills/review-github-pr)
+- [Skill homepage](https://github.com/tenequm/skills/tree/main/skills/review-github-pr)
+- [Publisher profile](https://clawhub.ai/user/tenequm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown review draft with inline code suggestions and optional JSON payload guidance for GitHub review posting]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces findings grouped by severity, a recommended review action, and a confirmation prompt before posting.]
+
+## Skill Version(s):
+
+0.5.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

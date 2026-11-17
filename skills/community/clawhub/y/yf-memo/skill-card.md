@@ -1,49 +1,61 @@
-## Description: <br>
-Personal memo and todo management system. Use when user expresses intent related to remembering, tracking, or managing tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal memo and todo management system. Use when user expresses intent related to remembering, tracking, or managing tasks.
 
-## Publisher: <br>
-[yfsong0709](https://clawhub.ai/user/yfsong0709) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yfsong0709](https://clawhub.ai/user/yfsong0709)
 
-## Use Case: <br>
-OpenClaw users use this skill to manage personal todos, reminders, task completion, and accomplishment review through natural conversation. The skill guides an agent to run local shell helpers that update pending and completed Markdown memo files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write to local pending and completed memo files automatically when user intent is interpreted as task management. <br>
-Mitigation: Use explicit wording for actions that should be saved, and review the memo files after automated updates. <br>
-Risk: Todo entries may contain sensitive information if a user asks the assistant to remember secrets or private data. <br>
-Mitigation: Do not store secrets, credentials, tokens, or other sensitive data in memo items. <br>
-Risk: The bundled cross-platform test script can delete real pending and completed memo files in an active workspace. <br>
-Mitigation: Run the test script only in a disposable workspace or after backing up the memo files. <br>
-Risk: Optional cron or shell-profile setup can create persistent daily-summary behavior. <br>
-Mitigation: Enable cron or shell-profile configuration only when persistent summaries are deliberately wanted. <br>
+## Use Case:
 
+External users and developers use this OpenClaw skill to let an assistant add, complete, review, and summarize personal tasks through natural-language requests.
 
-## Reference(s): <br>
-- [ClawHub yf-memo release page](https://clawhub.ai/yfsong0709/yf-memo) <br>
-- [OpenClaw project homepage](https://github.com/openclaw/openclaw) <br>
-- [User Guide](references/user-guide.md) <br>
-- [Implementation Guide](references/implementation.md) <br>
-- [Path Resolution Guide](references/path-resolution.md) <br>
-- [Cross-platform Test Script](references/test-cross-platform.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Conversational text with shell commands and Markdown memo-file content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local pending, completed, and summary files under the OpenClaw workspace when helper scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The bundled test script can remove existing pending and completed memo files in a real OpenClaw workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the test script only in a disposable workspace or after backing up existing memo files.
+
+Risk: Optional hooks, shell profile changes, symlinks, or cron summaries can create persistent local execution.
+
+Mitigation: Enable persistent setup only after reviewing the files and confirming the scheduled behavior is wanted.
+
+Risk: Ambiguous duplicate yf-memo install directories can cause the assistant to run an unintended copy of the scripts.
+
+Mitigation: Keep the skill in a trusted install path and remove duplicate yf-memo directories before use.
+
+## Reference(s):
+
+- [User Guide](references/user-guide.md)
+- [Implementation Guide](references/implementation.md)
+- [Path Resolution Guide](references/path-resolution.md)
+- [Cross-Platform Test Script](references/test-cross-platform.sh)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and script-generated text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes and reads local pending and completed task markdown files in the OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

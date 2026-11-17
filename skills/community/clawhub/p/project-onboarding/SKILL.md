@@ -1,6 +1,6 @@
 ---
 name: project-onboarding
-version: "2.0.0"
+version: "2.0.5"
 homepage: https://github.com/z-Zihan/awesome-skills
 description: >
   帮助有经验的开发者快速接手陌生项目，支持前端 Web、后端服务、
@@ -9,6 +9,7 @@ description: >
   触发词：接手项目, 项目上手, 快速上手, 新人接手, 项目入门, onboarding,
   如何开发, 怎么启动项目, 项目怎么跑, 开发流程, onboarding guide,
   how to onboard, project handover, developer quick start.
+  激活条件：需结合"具体项目"语境（用户提供了项目路径或明确指向某个代码仓库）；仅出现单个泛词（如"如何开发""开发流程"）时不触发。
   NOT for: generating long architecture reports, code analysis without dev context,
   beginner programming tutorials, onboarding for interns.
 ---
@@ -71,8 +72,9 @@ description: >
 
 ## 语言策略
 
-- 默认输出中文，同时提供英文版本
-- 中文优先
+- 跟随用户语言：用户用什么语言提问，就用什么语言输出（与文首「语言规则」保持一致）
+- 用户可随时指定输出语言（如"用英文输出"），以指定为准
+- 无法判断用户语言时，默认使用中文（用户可指定任意默认语言）；检测到英文提问时用英文
 
 ## 核心原则
 
@@ -130,52 +132,71 @@ description: >
 
 本 Skill 的每个分析步骤都应配合具体工具执行，而非凭空"编"输出：
 
+### 路径安全规则（强制）
+
+- **路径校验**：`{project}` 必须是用户明确提供且确认的本机项目目录；使用前解析为绝对路径（realpath）并确认目录存在，拒绝包含 `;` `|` `$` 反引号等 shell 元字符的路径
+- **只读原则**：分析过程只执行只读命令（read / ls / find / head / cat 等）；禁止写入、删除、安装依赖、执行项目脚本或发起网络请求（用户明确要求除外）
+- **安全引用**：命令中的路径必须整体加引号（如 `find "$PROJECT" ...`），不把未校验的用户输入直接拼进命令
+- **范围限定**：不跟随符号链接越出项目目录；不读取项目目录之外的文件（如 `~/.ssh`、凭据文件）
+- **find 惯用法（强制）**：项目含 `node_modules`/`vendor`/`dist`/`build` 等依赖或产物目录时，扫描命令必须先 `prune` 掉这些目录，并给表达式加深度上限——否则结果被依赖包淹没，GNU find 还会对后置 `-maxdepth` 刷 warning。统一形态：`find {project} -path "*/node_modules" -prune -o -maxdepth 3 \( -name "*.test.*" -o -name "*.spec.*" \) -print`；`-o` 连接多条件时必须加 `\( \)` 分组，否则 prune 的 `-o` 会吞掉第一个条件
+
 ### 项目类型识别 — 执行动作
 
 1. `read {project}/package.json` → 提取 dependencies 和 devDependencies，匹配前端/客户端/Node 后端信号
-2. `exec find {project} -maxdepth 2 -name "*.config.*" -o -name "go.mod" -o -name "Cargo.toml" -o -name "pom.xml" -o -name "app.json"` → 识别后端/小程序/移动端信号
+2. `exec find {project} -maxdepth 2 \( -name "*.config.*" -o -name "go.mod" -o -name "Cargo.toml" -o -name "pom.xml" -o -name "app.json" \) -print` → 识别后端/小程序/移动端信号
 3. `exec ls {project}/src-tauri/ {project}/electron/ 2>/dev/null` → 客户端信号
 4. `exec ls {project}/android/ {project}/ios/ 2>/dev/null` → 移动端信号
 5. 多信号命中时 → 按混合项目处理，所有匹配的专项模块均加载
 
 ### Stage 1 快速总览 — 执行动作
 
-1. `read {project}/package.json` 或 `Cargo.toml` 或 `go.mod` → 技术栈
+1. `read {project}/package.json` 或 `Cargo.toml` 或 `go.mod` → 技术栈；**缺失时标注"未找到 package.json，无法分析依赖和脚本"，跳过依赖分析**
 2. `exec ls {project}/` → 目录结构概览
-3. `read {project}/README.md` → 项目用途（如存在）
-4. `read {project}/.env.example` → 环境变量（如存在）
-5. `exec find {project} -name "*.config.*" -maxdepth 1` → 构建配置
+3. `read {project}/README.md` → 项目用途；**缺失时标注"未找到 README，跳过项目用途说明"，继续后续步骤**
+4. `read {project}/.env.example` → 环境变量；**缺失时标注"证据不足"，跳过环境变量说明**
+5. `exec find {project} -maxdepth 1 -name "*.config.*"` → 构建配置；**缺失时标注"证据不足"，跳过构建配置说明**
 
 ### Stage 2 通用模块深入 — 执行动作
 
-1. `exec find {project}/src -type d -maxdepth 2` → 目录结构
-2. `read {project}/src/index.*` 或 `main.*` → 入口文件
-3. `exec find {project} -name ".eslintrc*" -o -name ".prettierrc*" -o -name "tsconfig.json" -maxdepth 1` → 工程规范
-4. `exec find {project} -name "Dockerfile" -o -name "docker-compose*" -o -name ".github" -type d -maxdepth 2` → 部署配置
-5. `exec find {project} -name "*.test.*" -o -name "*.spec.*" | head -5` → 测试结构
+1. `exec find {project}/src -type d -maxdepth 2` → 目录结构；**缺失时标注"证据不足"，跳过目录结构分析**
+2. `read {project}/src/index.*` 或 `main.*` → 入口文件；**缺失时标注"证据不足"，跳过入口分析**
+3. `exec find {project} -maxdepth 1 \( -name ".eslintrc*" -o -name ".prettierrc*" -o -name "tsconfig.json" \) -print` → 工程规范；**缺失时标注"证据不足"，跳过工程规范分析**
+4. `exec find {project} -maxdepth 2 \( -name "Dockerfile" -o -name "docker-compose*" -o -name ".github" \) -print` → 部署配置；**缺失时标注"证据不足"，跳过部署配置分析**
+5. `exec find {project} -path "*/node_modules" -prune -o \( -name "*.test.*" -o -name "*.spec.*" \) -print | head -5` → 测试结构（不 prune 会先命中依赖包里的同名文件）；**按此形态仍无结果才标注"证据不足"，跳过测试结构分析**
 
 ### Stage 3 专项模块 — 按类型选择执行
 
 **前端 Web：**
-- `exec find {project}/src -name "router*" -o -name "routes*" | head -5` → 路由
-- `exec find {project}/src -name "store*" -o -name "*reducer*" | head -5` → 状态管理
-- `exec find {project}/src -name "request*" -o -name "api*" -o -name "http*" | head -5` → API 层
+- `exec find {project}/src -maxdepth 4 \( -name "router*" -o -name "routes*" \) -print | head -5` → 路由
+- `exec find {project}/src -maxdepth 4 \( -name "store*" -o -name "*reducer*" \) -print | head -5` → 状态管理
+- `exec find {project}/src -maxdepth 4 \( -name "request*" -o -name "api*" -o -name "http*" \) -print | head -5` → API 层
 
 **后端：**
-- `exec find {project} -path "*/migration*" -o -path "*/schema*" | head -5` → 数据库
-- `exec find {project} -path "*/middleware*" -o -path "*/guard*" | head -5` → 中间件
-- `exec find {project} -path "*/route*" -o -name "controller*" | head -5` → 路由/控制器
+- `exec find {project} -path "*/node_modules" -prune -o -maxdepth 5 \( -path "*/migration*" -o -path "*/schema*" \) -print | head -5` → 数据库
+- `exec find {project} -path "*/node_modules" -prune -o -maxdepth 5 \( -path "*/middleware*" -o -path "*/guard*" \) -print | head -5` → 中间件
+- `exec find {project} -path "*/node_modules" -prune -o -maxdepth 5 \( -path "*/route*" -o -name "controller*" \) -print | head -5` → 路由/控制器
 
 **客户端：**
 - `read {project}/electron/main.*` 或 `{project}/src-tauri/src/main.rs` → 主进程
-- `exec find {project} -name "preload*" -o -name "bridge*" | head -5` → IPC
+- `exec find {project} -path "*/node_modules" -prune -o -maxdepth 4 \( -name "preload*" -o -name "bridge*" \) -print | head -5` → IPC
 
 ### 大项目策略
 
-当 `exec find {project} -type f | wc -l` 超过 200 时：
+当 `exec find {project} -type f | wc -l` 超过 200 时，按优先级分层处理：
+
+**文件优先级定义：**
+
+| 优先级 | 定义 | 示例 |
+|---|---|---|
+| **P0** | 入口文件、路由配置、核心业务逻辑、公共组件/工具、配置文件 | main.ts、router.ts、store/index.ts、utils/、package.json、vite.config.ts |
+| **P1** | 非核心页面/模块、样式文件、测试文件 | pages/about.vue、styles/、*.test.ts、*.spec.ts |
+| **P2** | 文档、注释密集文件、静态资源 | README.md、CHANGELOG.md、docs/、assets/、public/ |
+
+**执行策略：**
 1. 先用 `find` + `ls` 建立文件索引，不全量读取
-2. 只读 P0 文件（package.json、入口、README）
-3. 核心链路深入（入口 → 中间件 → 服务 → 数据），其余跳过
+2. **先扫描 P0 文件**：入口、路由、核心逻辑、公共模块、配置，确保核心链路覆盖
+3. **按需深入 P1**：用户追问或核心链路引用到 P1 文件时，再读取对应 P1 文件
+4. **P2 采样或不看**：文档和静态资源仅在用户明确追问时查看
 
 ### 输出格式定义
 
@@ -622,7 +643,9 @@ description: >
 ### 信息不足时
 
 如果用户只说了"帮我搞一下"或类似模糊请求，不要猜测或胡乱执行：
-1. 至少需要以下信息之一：**项目路径 / Git 仓库地址 / 已打开的工作目录**
+1. 至少需要以下信息之一：**项目路径 / 已打开的工作目录**（Git 仓库地址仅作为显式例外，见下）
+   - 默认流程完全离线：只分析用户本机已有的项目目录，不联网
+   - **Git 仓库地址（例外流程，需用户明确要求）**：仅在用户主动提供仓库地址并确认要克隆时，才克隆到**临时目录**做只读分析（克隆前确认来源可信，完成后清理），不做其他网络操作；用户未明确要求时不得联网
 2. 询问："请问要分析哪个项目？请提供项目路径或仓库地址。"
 3. 如果用户提供了路径但项目为空或无法访问：明确告知并请求确认
 
@@ -638,8 +661,11 @@ description: >
 以下情况应明确告知用户并停止分析，不要强行输出：
 - 指定路径不存在或无访问权限
 - 项目目录为空
-- 无法识别项目类型（无任何已知信号）
-- 关键配置文件（如 package.json）损坏或不可读
+
+以下情况**不应停止分析**，而应标注"证据不足"后继续：
+- 关键配置文件（如 package.json）缺失 → 标注缺失信息，跳过对应分析，继续可获取的部分
+- 无法识别项目类型 → 标注"未识别到已知项目类型信号"，按通用模式分析
+- README 或文档缺失 → 标注缺失，继续代码结构分析
 
 ---
 
@@ -659,6 +685,33 @@ description: >
 - 强调工程实践和实际开发流程
 - 强调"如何真正开始开发"
 - 支持多轮渐进式探索
+
+## Teaching 对抗场景处理
+
+本 Skill 面向有经验的开发者。当用户表现出非目标用户特征时，按以下策略处理：
+
+### 零基础用户
+
+- **策略**：拒绝 + 推荐入门资源
+- **话术**："本指南面向有经验的开发者，建议先掌握基础后再来。推荐入门资源：MDN Web Docs（https://developer.mozilla.org）、官方教程（如 React/Vue 官方文档入门章节）、freeCodeCamp 等。"
+
+### 错误理解
+
+- **策略**：指出具体错误 → 给出正确理解 → 提供验证方法
+- **示例**：
+  - 用户："这个项目的状态管理用的是 Redux吧？"（实际是 Zustand）
+  - 回应："不是 Redux，这个项目用的是 Zustand。可以在 src/store/ 目录下确认，文件中使用了 `create` 函数而非 `createSlice`。"
+
+### 跳跃提问
+
+- **策略**：引导回到前置知识
+- **话术**："这个问题依赖 XX 概念，建议先看 Stage N 的 XX 部分，理解后再来看这个问题会更高效。"
+
+### 表达不清
+
+- **策略**：澄清流程
+- **话术**："你可能是想问 X 或 Y？请确认一下，我好给出最准确的回答。"
+- 不要猜测用户意图后直接输出，先缩小范围
 
 ## 理想结果
 
@@ -680,621 +733,34 @@ description: >
 
 # English Version
 
-Help experienced developers quickly understand and onboard onto an unfamiliar project, achieving actual development capability as fast as possible.
+> **Bilingual skill** — full spec is in Chinese above; this English reference covers the essentials, and the AI fully supports English interaction (see Language Rule at top).
 
-## Supported Project Types
+## Summary
 
-Priority order:
+**project-onboarding** — Helps experienced developers quickly onboard an unfamiliar project and reach development-ready state.
 
-| Type | Detection Signals | Specific Modules |
-|---|---|---|
-| **Frontend Web** | React/Vue/Svelte/Angular, webpack/vite/nextjs | Component system, routing, state management, CSS approach, API integration, browser compatibility |
-| **Backend Service** | Express/Nest/Django/Spring/Gin, ORM/migration | Database Schema, ORM, middleware chain, API design, auth, caching & queues |
-| **Desktop Client** | Electron/Tauri/Capacitor, main/renderer process | Main process architecture, renderer process, IPC, native capabilities, signing & distribution, auto-update |
-| **Mini Program** | WeChat/Alipay/Douyin mini program, app.json/pages.json | Platform adaptation, subpackage strategy, review process, native API calls, user system |
-| **Mobile App** | React Native/Flutter/SwiftUI/Kotlin, podfile/gradle | Native module Bridge, hot update, app signing, app store publishing, permission management |
+### Core Positioning
+Simulates a senior engineer onboarding an experienced new colleague. Not a code analyzer, not a tutorial for beginners. The goal is "the developer can safely develop features and collaborate" in minimum time.
 
-**Mixed-type projects** (e.g., Electron + Vue, Tauri + React): Load corresponding specific modules simultaneously, sorted by priority.
+### Supported Project Types
+Frontend Web · Backend Service · Desktop Client (Electron/Tauri) · Mini Program (WeChat/Alipay) · Mobile App (RN/Flutter). Mixed projects load all matching modules by priority.
 
-> **Extension guide**: When adding new project types, update three places in sync:
-> 1. The "Supported Project Types" table above
-> 2. The "Project Type Auto-Detection" signal list
-> 3. The corresponding specific module section (new or reuse)
-> Maintain consistent module naming and ordering.
+### Execution Flow
+4-stage progressive output: **Stage 1** Quick Overview (default, 10-min project map) → **Stage 2** Universal Modules Deep Dive → **Stage 3** Type-Specific Deep Dive → **Stage 4** Targeted Dev Assistance. Each stage pauses for user confirmation before proceeding.
 
-## This Skill Is NOT
+### Key Rules
+- **Evidence-first**: All conclusions from real repo evidence. Distinguish confirmed facts / reasonable inference / insufficient evidence.
+- **Graceful degradation**: Missing files → label "证据不足" (insufficient evidence), skip that module, continue with available data. Only stop analysis when path doesn't exist or directory is empty.
+- **Large project strategy** (>200 files): Prioritized scanning — P0 (entry, routes, core logic, shared utils, config) → P1 (non-core pages, styles, tests) on demand → P2 (docs, assets) sampled or skipped.
+- **Type-tailored**: Only analyze modules relevant to the detected project type. No component systems for backend, no ORM for frontend.
 
-- For programming beginners
-- For intern training
-- For explaining basic programming concepts
-- For pure code analysis
+### Teaching Guardrails
+- **Zero-experience users** → Reject + recommend beginner resources (MDN, official tutorials)
+- **Misunderstanding** → "Point out error → provide correct understanding → offer verification method"
+- **Skipping ahead** → "This depends on concept X, see Stage N first"
+- **Unclear request** → "Do you mean X or Y? Please confirm"
 
-## Core Objective
-
-Enable a professional developer to achieve the following in minimum time:
-
-- Project understanding
-- Engineering structure understanding
-- Development workflow understanding
-- Team standards understanding
-- Environment system understanding
-- Type-specific core capabilities understanding
-- Release workflow understanding
-- Debug and development capability
-
-Ultimate goal:
-
-**"The developer is ready to safely develop features and collaborate."**
-
-## Language Strategy
-
-- Default to user's language, also provide the other language version
-- Follow user's language preference
-
-## Core Principles
-
-### 1. "Fast to Development-Ready" is the Highest Priority
-
-Prioritize helping developers understand:
-
-- How the project runs
-- How to develop features
-- Type-specific core mechanisms
-- How directories are organized
-- How to switch environments
-- How to debug
-- How to release
-- How to avoid common pitfalls
-
-**Instead of:**
-
-- Generating lengthy architecture reports
-- Outputting meaningless directory trees
-- Listing all source files
-
-### 2. Avoid Information Overload
-
-- Output in stages
-- Sort by priority
-- Keep concise
-- Support multi-round progressive exploration
-
-### 3. Simulate "Senior Engineer Onboarding a New Colleague"
-
-Your role is not a code analyzer — it's a senior engineer helping an experienced new colleague onboard.
-
-Focus on:
-
-- Actual development workflows
-- Implicit team conventions
-- High-risk areas
-- Common pitfalls
-- Recommended reference modules
-
-### 4. Evidence First, Don't Fake Understanding
-
-- All conclusions based on real repo evidence
-- Don't fabricate standards or mechanisms not in the repo
-- Distinguish: confirmed facts / reasonable inference / insufficient evidence
-
-### 5. Tailor Content by Project Type
-
-- Only analyze modules relevant to the project type
-- Don't discuss component systems for backend projects, don't discuss ORM for frontend projects
-- Mixed projects sort specific modules by priority
-
----
-
-## Analysis Modules
-
-### I. Universal Modules (All Project Types)
-
-These modules apply to any project type, in analysis order:
-
-#### 1. Project Overview
-
-- Project purpose and business domain
-- Project type (auto-detected)
-- Core capabilities and main modules
-- Tech stack
-- System architecture
-- External dependencies
-- Core chain
-
-#### 2. Developer Quick Start
-
-- How to install dependencies
-- How to start the project
-- Local dev commands
-- How to switch environments
-- Required environment variables
-- How to debug locally
-- How to run tests
-- How to build
-
-#### 3. Repository Navigation
-
-Must explain:
-
-- Why organized this way
-- Which directories are most important
-- Which are most frequently modified
-- Which are highest risk
-- Which are infrastructure
-
-#### 4. Engineering Standards
-
-- Naming conventions
-- Directory conventions
-- Code organization style
-- Commit conventions
-- Linting/formatting rules
-- Testing conventions
-- Error handling patterns
-- Implicit standards (unwritten but team-default rules)
-
-#### 5. Environment & Deployment
-
-- Environment list (local/dev/test/staging/production etc.)
-- How to switch environments
-- How configs are managed
-- CI/CD pipeline
-- How to release / submit for QA / how to rollback
-
-#### 6. Team Workflow
-
-- Branching strategy
-- PR / Code Review workflow
-- QA / UAT workflow
-
-#### 7. High Frequency Development Workflow
-
-Summarize most common development patterns (examples tailored by project type)
-
-#### 8. Recommended References
-
-- Most standard module
-- Best implementation to imitate
-- Entry files
-
-#### 9. Risk Areas
-
-- Which areas are high-risk
-- Which code is heavily coupled
-- Which modules easily cause production issues
-
----
-
-### II. Frontend Web Specific
-
-Load when Frontend Web project is detected:
-
-#### A. Component System & UI Infrastructure
-
-- Internal component library
-- Third-party components
-- Layout system / icon system / theme system
-- Common business components
-- Which components to reuse
-- Where to put new components
-
-#### B. Routing System
-
-- How routes are organized
-- Route guards and permissions
-- Dynamic routes / lazy loading
-- How to add route for a new page
-
-#### C. State Management
-
-- Solution used (Redux/Pinia/Zustand/Jotai etc.)
-- Global vs local state strategy
-- How stores are organized
-- When to use global vs local
-
-#### D. Styling Approach
-
-- CSS Modules / Tailwind / CSS-in-JS / styled-components / SCSS
-- Design system / token system
-- Styling conventions
-
-#### E. API Integration
-
-- How request layer is encapsulated
-- How token/auth works
-- Error interception
-- Mock strategy
-- How to integrate new APIs
-
-**High Frequency Workflow Example (Frontend Web):**
-
-```
-New page: Add route → Add page → Add API → Connect store → Add permissions → Configure menu → Submit for QA → Release
-New API: Define API → Request wrapper → Type definitions → hooks/store integration → Page consumption → Error handling
-New component: Place in shared/components → Add story/test → Theme adaptation → Permission handling
-```
-
----
-
-### III. Desktop Client Specific
-
-Load when Electron / Tauri / Capacitor project is detected:
-
-#### A. Process Architecture
-
-**Electron projects:**
-- Main process responsibilities and entry
-- Renderer process architecture
-- Preload scripts and contextBridge
-- Multi-window management
-- IPC design pattern
-
-**Tauri projects:**
-- Frontend layer (WebView)
-- Rust backend layer (Tauri Commands)
-- IPC communication (invoke/listen)
-- Plugin system
-- Security policies (allowlist/CSP)
-
-#### B. Native Capability Integration
-
-- File system operations (read/write, dialogs)
-- System tray and notifications
-- Clipboard / screenshot / global shortcuts
-- Network status monitoring
-- System info access
-- Native modules (Node Addons / Rust FFI)
-
-#### C. Signing & Distribution
-
-- Developer certificates and signing config
-- macOS: codesign + notary / Windows: signing certificate
-- Auto-update mechanism (autoUpdater)
-- Update server config
-- Distribution channels per platform (App Store / Microsoft Store / self-hosted)
-
-#### D. Build & Packaging
-
-- Build commands and config
-- Multi-platform builds (macOS arm64/x64 / Windows x64)
-- Package formats (DMG/EXE/MSI/AppImage)
-- Build time optimization
-- Build flow in CI/CD
-
-#### E. Client-Specific Debugging
-
-- Main process debugging
-- Renderer process debugging (DevTools)
-- IPC debugging
-- Native capability debugging
-- Performance profiling (CPU/memory/startup speed)
-
-**High Frequency Workflow Example (Desktop Client):**
-
-```
-New feature: Frontend dev → Define IPC → Implement main process/Rust command → Integration test → Test → Build
-New native capability: Research API → Implement IPC command → Frontend call wrapper → Error handling → Cross-platform test
-Release flow: Build multi-platform → Sign → Notarize → Upload to update server → Canary → Full rollout
-```
-
----
-
-### IV. Backend Service Specific
-
-Load when Express/Nest/Django/Spring/Gin project is detected:
-
-#### A. Database & Storage
-
-- Database used (MySQL/PostgreSQL/MongoDB/Redis etc.)
-- ORM/Query Builder (Prisma/TypeORM/Sequelize/GORM etc.)
-- Migration strategy
-- Schema design approach
-- Caching strategy (Redis/Memcached)
-- File storage (OSS/S3/local)
-
-#### B. Middleware & Request Handling
-
-- Middleware chain and execution order
-- Authentication and authorization (JWT/Session/OAuth)
-- Request validation
-- Logging strategy
-- Rate limiting and circuit breaking
-
-#### C. API Design
-
-- RESTful / GraphQL / gRPC / tRPC
-- API versioning
-- Error code system
-- API documentation (Swagger/OpenAPI)
-- Request/response format conventions
-
-#### D. Async & Task Processing
-
-- Message queues (RabbitMQ/Kafka/Redis)
-- Scheduled tasks (Cron)
-- Background jobs/workers
-- WebSocket / SSE long connections
-
-**High Frequency Workflow Example (Backend):**
-
-```
-New endpoint: Define route → Parameter validation → Business logic → Database operation → Return response → Add tests
-New data table: Design Schema → Create Migration → Write Model → Implement business logic → API integration
-New scheduled task: Register Cron → Implement task logic → Logging & monitoring → Test & verify
-```
-
----
-
-### V. Mini Program Specific
-
-Load when WeChat/Alipay/Douyin mini program project is detected:
-
-#### A. Platform & Framework
-
-- Target platform(s) (WeChat/Alipay/Douyin/multi-platform)
-- Native vs cross-platform framework (Taro/uni-app)
-- Platform API difference handling
-
-#### B. Mini Program Architecture
-
-- Page and component structure
-- Global config (app.json/pages.json)
-- Custom component encapsulation
-- Subpackage strategy
-- Plugin usage
-
-#### C. User System & Auth
-
-- Login flow (wx.login etc.)
-- User info retrieval and storage
-- Session management
-- Integration with backend user system
-
-#### D. Publishing & Review
-
-- Review process and notes
-- Trial vs production release
-- Version management and rollback
-- Mini program code / share config
-
-#### E. Performance Optimization
-
-- Subpackage loading
-- Image lazy loading
-- setData optimization
-- Long list optimization
-- Custom component lazy loading
-
-**High Frequency Workflow Example (Mini Program):**
-
-```
-New page: Register in pages.json → Create page directory → Implement page logic → Configure route → Submit trial version → Review
-New component: Create component directory → Implement component → Import & use → Style isolation
-New API: Wrap request method → Page call → Error handling → Loading state
-```
-
----
-
-### VI. Mobile App Specific
-
-Load when React Native / Flutter / SwiftUI / Kotlin project is detected:
-
-#### A. App Architecture
-
-- Framework used (React Native/Flutter/SwiftUI/Compose)
-- Architecture pattern (MVI/MVVM/Clean Architecture)
-- Modularization approach
-- Navigation system
-
-#### B. Native Modules & Bridge
-
-- Native module list and purposes
-- Bridge communication mechanism
-- How to add new native modules
-- Third-party native SDK integration
-
-#### C. State Management & Data Persistence
-
-- State management solution
-- Local storage (AsyncStorage/MMKV/SQLite/CoreData)
-- Offline strategy
-
-#### D. Release & App Store
-
-- Android: signing config (keystore)
-- iOS: certificate and profile management
-- Store submission process (App Store / Google Play)
-- Hot update solution (CodePush/EAS Update)
-- TestFlight / beta distribution
-
-#### E. Mobile-Specific Debugging
-
-- Physical device debugging
-- Performance profiling tools
-- Crash log collection
-- Network packet capture
-
-**High Frequency Workflow Example (Mobile App):**
-
-```
-New page: Create page/Screen → Register route → Connect state → Connect navigation → Integration test API
-New native module: Define Bridge interface → Implement Android/iOS native code → JS call wrapper → Test
-Release flow: Build Android/iOS → Sign → Upload to store → Submit for review → Publish
-```
-
----
-
-## Project Type Auto-Detection
-
-Before analyzing, identify the project type via these signals (multi-select):
-
-**Frontend Web signals:**
-- `package.json` has react/vue/svelte/angular/next/nuxt
-- webpack.config/vite.config/tsconfig.json exists
-- public/index.html or index.html exists
-- src has pages/views/components/hooks/store directories
-
-**Desktop Client signals:**
-- `package.json` has electron/tauri
-- electron/ or src-tauri/ directory exists
-- Capacitor config file
-- Main process entry file
-
-**Backend Service signals:**
-- `package.json` has express/nest/fastify/koa (Node)
-- go.mod / requirements.txt / pom.xml / Cargo.toml
-- migration/ directory exists
-- Dockerfile / docker-compose.yml
-
-**Mini Program signals:**
-- app.json / pages.json / project.config.json
-- Taro/uni-app config
-- WeChat DevTools config file
-
-**Mobile App signals:**
-- android/ or ios/ directory
-- Podfile / build.gradle / pubspec.yaml
-- App.tsx/AppDelegate.swift (RN/Flutter entry)
-- .xcodeproj / .xcworkspace
-
-Inform user of detection result at the start of Stage 1. If inaccurate, user can manually specify.
-
----
-
-## Output Strategy
-
-**Strictly stage-based output. Do NOT output everything at once.**
-
-### Stage 1 — Developer Quick Overview (Default)
-
-- Project type (auto-detected)
-- What the project is
-- How to start
-- Tech stack
-- Most important directories
-- Key standards
-- Environment system
-- Recommended reading order
-- High-risk areas
-
-**Goal: Build a project map within 10 minutes.**
-
-### Stage 2 — Universal Modules Deep Dive
-
-Expand directory navigation, engineering standards, team collaboration, environment & deployment etc. when user asks.
-
-### Stage 3 — Type-Specific Deep Dive
-
-Expand the corresponding type-specific module (Frontend Web / Backend / Client / Mini Program / Mobile) when user asks.
-
-### Stage 4 — Targeted Development Assistance
-
-Support multi-round questions:
-
-- "Which module should I reference for adding a new page?"
-- "How does the permission system work?"
-- "How is IPC communication debugged?"
-- "What's the release workflow?"
-
-## Stage Stopping Conditions
-
-- After current stage output is complete, **⏸ pause and wait for user confirmation or follow-up**
-- At the end of each stage, provide clear next-step prompts, e.g.:
-  - End of Stage 1: *"Above is the project quick overview. For deeper understanding of engineering standards, directory navigation, etc., let me know. For [project type] specific guide, say 'specific'. To start a specific dev task, just ask."*
-  - End of Stage 2: *"Universal modules expanded. For [project type] specific guide, say 'specific'. Or ask specific dev questions directly."*
-  - End of Stage 3: *"Specific guide expanded. Feel free to ask specific dev questions like 'how to add a new page' or 'what's the release workflow'."*
-- For insufficient-evidence content: briefly note and skip, don't force-fill
-- When tokens/context approach limits: output current progress and remaining plan
-
-## Input Validation
-
-### When Information Is Insufficient
-
-If user only says "help me set up" or similar vague requests, don't guess or blindly execute:
-1. At minimum need one of: **project path / Git repo URL / currently open working directory**
-2. Ask: "Which project would you like to analyze? Please provide the project path or repo URL."
-3. If user provides a path but project is empty or inaccessible: clearly inform and ask for confirmation
-
-### Handling Contradictory Requests
-
-When user makes conflicting goals (e.g., "give me a complete architecture report" but also "keep it concise"):
-1. Point out the contradiction: "Complete architecture report and concise output conflict"
-2. Suggest compromise: prioritize Stage 1 (quick overview), then go deeper as needed
-3. Let user choose priority
-
-### When Project Cannot Be Analyzed
-
-Clearly inform user and stop analysis in these cases; do not force output:
-- Specified path doesn't exist or no access permissions
-- Project directory is empty
-- Cannot identify project type (no known signals)
-- Key config files (e.g., package.json) are corrupted or unreadable
-
----
-
-## Important Constraints
-
-### Don't:
-- Generate lengthy unfocused reports
-- Explain basic programming knowledge
-- Mechanically list all files
-- Output meaningless directory trees
-- Discuss component systems for backend projects, ORM for frontend projects
-- Ignore development workflows and team collaboration
-
-### Must:
-- Core focus on development efficiency
-- Tailor content by project type, only load relevant modules
-- Emphasize engineering practices and actual development workflows
-- Emphasize "how to actually start developing"
-- Support multi-round progressive exploration
-
-## Execution Tool Guide
-
-Every analysis step should be backed by concrete tool execution, not fabricated output:
-
-### Project Type Detection — Actions
-1. `read {project}/package.json` → extract dependencies, match frontend/client/Node backend signals
-2. `exec find {project} -maxdepth 2 -name "*.config.*" -o -name "go.mod" -o -name "Cargo.toml" -o -name "pom.xml" -o -name "app.json"` → backend/miniapp/mobile signals
-3. `exec ls {project}/src-tauri/ {project}/electron/ 2>/dev/null` → desktop client signals
-4. `exec ls {project}/android/ {project}/ios/ 2>/dev/null` → mobile signals
-5. Multiple signals → treat as mixed project, load all matching modules
-
-### Stage 1 Quick Overview — Actions
-1. `read {project}/package.json` or `Cargo.toml` or `go.mod` → tech stack
-2. `exec ls {project}/` → directory structure overview
-3. `read {project}/README.md` → project purpose (if exists)
-4. `read {project}/.env.example` → environment variables (if exists)
-
-### Stage 2 Universal Modules — Actions
-1. `exec find {project}/src -type d -maxdepth 2` → directory structure
-2. `read {project}/src/index.*` or `main.*` → entry file
-3. `exec find {project} -name "Dockerfile" -o -name "docker-compose*" | head -3` → deployment
-
-### Stage 3 Type-Specific — Select by Type
-**Frontend Web:** `find` for router/store/api files
-**Backend:** `find` for migration/middleware/controller files
-**Desktop Client:** `read` main process entry + `find` preload/bridge
-
-### Large Project Strategy
-When `exec find {project} -type f | wc -l` exceeds 200: build index first, only read P0 files, deep-dive core chain only.
-
-### Output Format
-Each Stage: `# [Project Name] — Stage N: [Title]` with structured headings + `## ⏸ Next Steps` at end.
-- Emphasize "how to actually start developing"
-- Support multi-round progressive exploration
-
-## Ideal Outcome
-
-After using this skill, an experienced developer should be able to:
-
-- Successfully start the project
-- Understand project structure and type-specific architecture
-- Find core modules
-- Understand engineering standards
-- Safely develop features
-- Correctly use type-specific capabilities (components/API/IPC/native modules etc.)
-- Complete QA submission and release
-- Know where to dive deeper
-
-Ultimate achievement: **"I'm ready to start participating in project development."**
+### Constraints
+- Path safety: `{project}` must be a user-provided local path (validated; read-only analysis commands only; no paths outside the project). The skill is offline by default: network access happens only in the explicitly-optional Git-URL flow (user-requested clone into a temp directory, as specified in the Chinese spec)
+- NOT for: beginners, interns, basic concept explanations, pure code analysis, lengthy architecture reports
+- MUST: focus on dev efficiency, stage-based output, engineering practices, multi-round progressive exploration

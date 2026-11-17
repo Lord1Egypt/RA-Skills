@@ -1,38 +1,52 @@
-## Description: <br>
-Calibrate assistant personality to voice, boundaries, and audience context. Use when handling personality work that needs repeatable steps, quality gates, and practical outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calibrate assistant personality to voice, boundaries, and audience context. Use when handling personality work that needs repeatable steps, quality gates, and practical outputs.
 
-## Publisher: <br>
-[xammarie](https://clawhub.ai/user/xammarie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xammarie](https://clawhub.ai/user/xammarie)
 
-## Use Case: <br>
-External users use this skill to turn persona and style-calibration work into repeatable, evidence-backed plans with clear quality gates, risk checks, and implementation-ready next actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated plans, checklists, or commands could be incorrect or misleading for a specific operational context. <br>
-Mitigation: Review the evidence, assumptions, and any generated commands before acting, and prefer reversible changes for risky operations. <br>
-Risk: Persona-calibration work may involve sensitive logs, proprietary documents, or operational details. <br>
-Mitigation: Limit shared inputs to necessary context and review outputs before using them with sensitive or proprietary material. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and developers use this skill to turn personality or style-calibration work into a repeatable workflow with measurable criteria, checkpoints, quality gates, risks, and next actions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with summaries, ranked findings, action plans, risks, mitigations, checklists, and commands where useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include explicit assumptions, tradeoffs, owners, ETAs, fallback paths, and acceptance checks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may be invoked for broad planning-style requests beyond narrow personality calibration.
+
+Mitigation: Review generated recommendations against the stated outcome, constraints, evidence, assumptions, tradeoffs, and quality gates before use.
+
+Risk: Persona or style recommendations may rely on incomplete audience, voice, or boundary information.
+
+Mitigation: Define success and failure criteria up front, use available artifacts as evidence, and validate the final action plan with the relevant owner.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xammarie/skills/jarvis-persona-style-calibrator-01)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with concise summaries, ranked findings, action plans, risk mitigations, checklists, and commands where useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended to be implementation-ready and evidence-backed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

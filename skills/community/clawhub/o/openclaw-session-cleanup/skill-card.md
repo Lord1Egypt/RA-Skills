@@ -1,51 +1,67 @@
-## Description: <br>
-Diagnoses and stabilizes long-running OpenClaw deployments affected by stale sessions, unreaped agents, browser-control timeouts, gateway websocket 1006 closures, and memory pressure on small VPS hosts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose and stabilize long-running OpenClaw deployments that accumulate stale sessions, unreaped agents, browser-control timeouts, gateway websocket 1006 closures, or memory pressure on small VPS hosts.
 
-## Publisher: <br>
-[NeoCh3n](https://clawhub.ai/user/NeoCh3n) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[neoch3n](https://clawhub.ai/user/neoch3n)
 
-## Use Case: <br>
-Developers and operators use this skill to diagnose high OpenClaw session and agent counts, recover from gateway or browser-control instability, and apply conservative runtime limits on small hosts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes real host-changing cleanup and automation commands. <br>
-Mitigation: Run commands deliberately after reviewing the affected OpenClaw instance and host configuration. <br>
-Risk: Remote shell installation can hide script behavior at execution time. <br>
-Mitigation: Prefer cloning or downloading the artifact and inspecting scripts before running them instead of piping remote content directly to bash. <br>
-Risk: `openclaw sessions clear` can terminate active production work. <br>
-Mitigation: Use session pruning first and clear sessions only after confirming that active sessions can be safely ended. <br>
-Risk: Cron cleanup, watchdog restarts, and swap changes can affect long-running services and disk usage. <br>
-Mitigation: Enable those changes only when persistent background cleanup, possible gateway restarts, and additional disk allocation are acceptable. <br>
+## Use Case:
 
+Developers and operators use this skill to diagnose stale OpenClaw sessions, gateway instability, browser-control timeouts, and memory pressure on small long-running hosts. It guides cleanup, runtime limit tuning, recurring prune jobs, watchdog setup, and related operational safeguards.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/NeoCh3n/openclaw-session-cleanup) <br>
-- [Publisher Profile](https://clawhub.ai/user/NeoCh3n) <br>
-- [Project Homepage](https://github.com/NeoCh3n/openclaw-session-cleanup-skill) <br>
-- [OpenClaw Skills Documentation](https://docs.openclaw.ai/tools/skills) <br>
-- [OpenClaw Creating Skills Documentation](https://docs.openclaw.ai/tools/creating-skills) <br>
-- [OpenClaw ClawHub Documentation](https://docs.openclaw.ai/tools/clawhub) <br>
-- [Detailed Runbook](docs/openclaw.session_cleanup_v1.md) <br>
-- [Runtime Template](templates/openclaw.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash, cron, systemd, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installer guidance may rely on remote shell execution that is not pinned to a reviewed release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer ClawHub installation or a pinned, reviewed release, and inspect installer content before running it.
+
+Risk: Automation can create persistent cron or watchdog behavior on the host.
+
+Mitigation: Enable recurring prune jobs and watchdog timers only after reviewing the commands and accepting the persistent host changes.
+
+Risk: Watchdog setup may require privileged system service changes.
+
+Mitigation: Do not run installers as root unless required, and review systemd unit installation paths and permissions before enabling services.
+
+Risk: Session clear, gateway restart, swap setup, or watchdog actions may interrupt active OpenClaw work.
+
+Mitigation: Use prune and runtime-limit changes first, schedule disruptive actions deliberately, and confirm recovery with OpenClaw status checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neoch3n/skills/openclaw-session-cleanup)
+- [Project homepage](https://github.com/NeoCh3n/openclaw-session-cleanup-skill)
+- [OpenClaw Skills documentation](https://docs.openclaw.ai/tools/skills)
+- [OpenClaw Creating Skills documentation](https://docs.openclaw.ai/tools/creating-skills)
+- [OpenClaw ClawHub documentation](https://docs.openclaw.ai/tools/clawhub)
+- [OpenClaw session cleanup runbook](docs/openclaw.session_cleanup_v1.md)
+- [OpenClaw runtime template](templates/openclaw.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose cron, systemd, swap, and OpenClaw session cleanup actions; review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,187 @@
+meta:
+  sources:
+    - https://wiki.plateupgame.com/appliances
+    - https://wiki.plateupgame.com/appliances/UpgradeTree
+    - https://wiki.plateupgame.com/Automation
+    - https://wiki.plateupgame.com/gameplay/Research
+    - https://www.plateupgame.com/updates/1-5-0-heat/
+  retrieved: 2026-11-05
+  game_version: 1.5.x
+  null_policy: "null means no verified value was collected; do not guess."
+
+upgrade_paths:
+  linear:
+    Plates: [Auto Plater]
+    Oven: [Microwave]
+    Prep Station: [Frozen Prep Station]
+    Dumbwaiter: [Teleporter]
+    Ordering Terminal: [Specials Terminal]
+  cyclic:
+    Research Desk: [Blueprint Desk, Discount Desk, Copying Desk]
+    Counter: [Freezer, Workstation]
+    Hob: [Safety Hob, Danger Hob]
+    Danger Hob: [Safety Hob]
+    Dining Table: [Table - Fancy Cloth, Bar Table]
+    Bar Table: [Table - Simple Cloth]
+    Table - Simple Cloth: [Metal Table]
+    Metal Table: [Table - Fancy Cloth]
+    Bin: [Compactor Bin, Composter Bin]
+    Composter Bin: [Expanded Bin]
+    Expanded Bin: [Compactor Bin]
+    Sink: [Power Sink, Wash Basin]
+    Wash Basin: [Dish Washer]
+    Dish Washer: [Soaking Sink]
+    Soaking Sink: [Power Sink]
+    Conveyor: [Grabber]
+    Grabber: [Smart Grabber, Grabber - Rotating]
+    Grabber - Rotating: [Smart Grabber]
+    Mixer: [Rapid Mixer, Heated Mixer]
+    Heated Mixer: [Conveyor Mixer]
+    Conveyor Mixer: [Rapid Mixer]
+    Mop: [Fast Mop, Robot Mop]
+    Lasting Mop: [Robot Buffer, Robot Mop]
+    Portioner: [Combiner]
+    Combiner: [Portioner]
+    Buffet: [Buffet - Heated, Buffet - Platter]
+    Buffet - Platter: [Buffet - Heated]
+
+appliances:
+  - {id: Hob, zh: 炉子, category: cooking, cost: 20, process: cooking, speed: 1x, burn_behavior: can_burn_food}
+  - {id: Starter Hob, zh: 初始炉, category: cooking, cost: null, process: cooking, speed: 0.75x, burn_behavior: cannot_burn_food}
+  - {id: Safety Hob, zh: 安全炉, category: cooking, cost: 60, upgrade_from: Hob, speed: 0.75x, burn_behavior: cannot_burn_food}
+  - {id: Danger Hob, zh: 危险炉, category: cooking, cost: 60, upgrade_from: Hob, speed: 2x, burn_behavior: burns_food_faster}
+  - {id: Oven, zh: 烤箱, category: cooking, cost: null, upgrade_to: [Microwave], interactions: [manual_open_close]}
+  - {id: Microwave, zh: 微波炉, category: cooking, cost: null, upgrade_from: Oven, interactions: [manual_open_close]}
+  - {id: Counter, zh: 操作台, category: kitchen, cost: 20, upgrade_to: [Freezer, Workstation]}
+  - {id: Freezer, zh: 冷冻台, category: kitchen, cost: null, upgrade_from: Counter, function: preserves_prepared_items}
+  - {id: Workstation, zh: 工作台, category: kitchen, cost: null, upgrade_from: Counter, function: prep_surface}
+  - {id: Prep Station, zh: 备餐台, category: kitchen, cost: null, upgrade_to: [Frozen Prep Station]}
+  - {id: Frozen Prep Station, zh: 冷冻备餐台, category: kitchen, cost: null, upgrade_from: Prep Station, function: preserves_prepared_items}
+  - {id: Sink, zh: 水槽, category: cleaning, cost: 20, upgrade_to: [Power Sink, Wash Basin]}
+  - {id: Power Sink, zh: 强力水槽, category: cleaning, cost: 60, upgrade_from: Sink, function: faster_manual_washing}
+  - {id: Wash Basin, zh: 洗涤盆, category: cleaning, cost: 60, upgrade_from: Sink, function: washes_multiple_dishes}
+  - {id: Dish Washer, zh: 洗碗机, category: cleaning, cost: null, upgrade_from: Wash Basin, function: automated_washing}
+  - {id: Soaking Sink, zh: 浸泡水槽, category: cleaning, cost: null, upgrade_from: Dish Washer, function: batch_washing}
+  - {id: Mop, zh: 拖把, category: cleaning, cost: null, upgrade_to: [Fast Mop, Robot Mop]}
+  - {id: Fast Mop, zh: 快速拖把, category: cleaning, cost: null, upgrade_from: Mop, function: faster_manual_cleaning}
+  - {id: Robot Mop, zh: 机器人拖把, category: cleaning, cost: null, upgrade_from: [Mop, Lasting Mop], function: autonomous_mess_cleaning}
+  - {id: Floor Buffer, zh: 地板抛光机, category: cleaning, cost: null, function: creates_buff_floor, cannot_clean_messes: true}
+  - {id: Robot Buffer, zh: 机器人抛光机, category: cleaning, cost: null, function: creates_or_refreshes_buff_floor, cannot_clean_messes: true}
+  - {id: Conveyor, zh: 传送带, category: automation, cost: 20, function: push_only}
+  - {id: Grabber, zh: 抓取器, category: automation, cost: 60, upgrade_from: Conveyor, function: pull_and_push}
+  - {id: Smart Grabber, zh: 智能抓取器, category: automation, cost: 60, upgrade_from: Grabber, function: filtered_pull_and_push, training: exact_item_match, can_interrupt_process: true}
+  - {id: Grabber - Rotating, zh: 旋转抓取器, category: automation, cost: 60, upgrade_from: Grabber, function: pull_and_push, direction_control: [input_during_preparation, output_during_service]}
+  - {id: Mixer, zh: 搅拌机, category: automation, cost: 60, function: chop_and_knead, speed: 0.5x}
+  - {id: Rapid Mixer, zh: 快速搅拌机, category: automation, cost: 60, upgrade_from: Mixer, function: chop_and_knead, speed: 0.75x}
+  - {id: Heated Mixer, zh: 加热搅拌机, category: automation, cost: 60, upgrade_from: Mixer, function: [chop, knead, cook], burn_behavior: cannot_burn_food}
+  - {id: Conveyor Mixer, zh: 传送搅拌机, category: automation, cost: 120, upgrade_from: Mixer, function: chop_and_knead_then_push}
+  - {id: Dumbwaiter, zh: 上菜电梯, category: automation, cost: 60, upgrade_to: [Teleporter], interactions: [requires_open_state, shared_single_item]}
+  - {id: Teleporter, zh: 传送器, category: automation, cost: 1250, upgrade_from: Dumbwaiter, function: paired_item_transport}
+  - {id: Auto Plater, zh: 自动摆盘机, category: automation, cost: null, upgrade_from: Plates, function: plates_food_automatically}
+  - {id: Portioner, zh: 分份器, category: automation, cost: null, upgrade_to: [Combiner], function: portions_items}
+  - {id: Combiner, zh: 合成器, category: automation, cost: null, upgrade_from: Portioner, function: combines_items}
+  - {id: Research Desk, zh: 研究桌, category: research, cost: null, upgrade_to: [Blueprint Desk, Discount Desk, Copying Desk], requires: "adjacent Blueprint Cabinet, same room"}
+  - {id: Discount Desk, zh: 折扣桌, category: research, cost: null, function: "halves blueprint cost, rounded up, minimum 1", daily_limit: once_per_cabinet}
+  - {id: Copying Desk, zh: 复制桌, category: research, cost: null, function: duplicates_blueprint, daily_limit: once_per_cabinet, copy_can_be_recopied: false}
+  - {id: Blueprint Desk, zh: 蓝图桌, category: research, cost: null, function: locks_blueprint_for_next_shop, cabinet_required: false}
+  - {id: Blueprint Cabinet, zh: 蓝图柜, category: research, cost: null, function: stores_blueprints}
+  - {id: Booking Desk, zh: 预约桌, category: service, cost: null, function: advances_customer_timeline}
+  - {id: Ordering Terminal, zh: 点单终端, category: service, cost: null, upgrade_to: [Specials Terminal], function: remote_order_taking}
+  - {id: Specials Terminal, zh: 特供终端, category: service, cost: null, upgrade_from: Ordering Terminal, function: changes_customer_orders}
+  - {id: Gas Limiter, zh: 限气阀, category: cooking, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Gas Override, zh: 燃气超控, category: cooking, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Starter Bin, zh: 初始垃圾桶, category: kitchen, cost: 0, capacity: 2, function: manual_disposal, upgrade_from: null, upgrade_to: null, source_page: "https://wiki.plateupgame.com/appliances/Bin", attributes_status: partial_verified}
+  - {id: Bin, zh: 垃圾桶, category: kitchen, cost: 20, capacity: 5, function: manual_disposal, upgrade_from: null, upgrade_to: [Compactor Bin, Composter Bin], source_page: "https://wiki.plateupgame.com/appliances/Bin", attributes_status: partial_verified}
+  - {id: Compactor Bin, zh: 压缩垃圾桶, category: kitchen, cost: 20, capacity: 1, function: automatically_discards_contents, cycle_seconds: 10, upgrade_from: Bin, upgrade_to: null, source_page: "https://wiki.plateupgame.com/appliances/Bin", attributes_status: partial_verified}
+  - {id: Composter Bin, zh: 堆肥垃圾桶, category: kitchen, cost: 20, capacity: 5, function: burns_discarded_bag_on_cooking_appliance, burn_seconds: 2, upgrade_from: Bin, upgrade_to: [Expanded Bin], source_page: "https://wiki.plateupgame.com/appliances/Bin", attributes_status: partial_verified}
+  - {id: Expanded Bin, zh: 扩容垃圾桶, category: kitchen, cost: 20, capacity: 10, function: manual_disposal, upgrade_from: Composter Bin, upgrade_to: [Compactor Bin], source_page: "https://wiki.plateupgame.com/appliances/Bin", attributes_status: partial_verified}
+  - {id: Kitchen Floor Protector, zh: 厨房地垫, category: kitchen, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Rolling Pin, zh: 擀面杖, category: kitchen, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Sharp Knife, zh: 快刀, category: kitchen, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Dining Table, zh: 餐桌, category: dining, cost: 0, seats: 4, combinable: true, upgrade_from: null, upgrade_to: [Table - Fancy Cloth, Bar Table], source_page: "https://wiki.plateupgame.com/appliances/DiningTable", attributes_status: partial_verified}
+  - {id: Bar Table, zh: 吧台桌, category: dining, cost: 5, seats: 1, combinable: false, upgrade_from: Dining Table, upgrade_to: [Table - Simple Cloth], source_page: "https://wiki.plateupgame.com/appliances/BarTable", attributes_status: partial_verified}
+  - {id: Metal Table, zh: 金属桌, category: dining, cost: 60, seats: 4, function: customers_may_skip_side_dishes, effect: reduces_patience_loss_while_waiting_for_service_or_delivery, upgrade_from: Table - Simple Cloth, upgrade_to: [Table - Fancy Cloth], source_page: "https://wiki.plateupgame.com/appliances/MetalTable", attributes_status: partial_verified}
+  - {id: Table - Simple Cloth, zh: 简布桌, category: dining, cost: 60, seats: 2, function: shared_meal, thinking_time_modifier: 200%, upgrade_from: Bar Table, upgrade_to: [Metal Table], source_page: "https://wiki.plateupgame.com/appliances/SimpleTable", attributes_status: partial_verified}
+  - {id: Table - Fancy Cloth, zh: 华丽布桌, category: dining, cost: 60, seats: 4, payment_modifier: 50%, upgrade_from: [Dining Table, Metal Table], upgrade_to: null, source_page: "https://wiki.plateupgame.com/appliances/FancyTable", attributes_status: partial_verified}
+  - {id: Breadsticks, zh: 面包棒, category: dining, cost: 20, daily_quantity: 4, function: increases_thinking_and_delivery_patience, effect: provides_additional_income, source_page: "https://wiki.plateupgame.com/appliances/Breadsticks", attributes_status: partial_verified}
+  - {id: Candle Box, zh: 蜡烛盒, category: dining, cost: 20, source_page: "https://wiki.plateupgame.com/appliances/CandleBox", attributes_status: partial_verified}
+  - {id: Napkins, zh: 餐巾, category: dining, cost: 60, daily_quantity: 12, function: prevents_customer_messes, source_page: "https://wiki.plateupgame.com/appliances/Napkins", attributes_status: partial_verified}
+  - {id: Sharp Cutlery, zh: 锋利餐具, category: dining, cost: 60, daily_quantity: 8, eating_time_modifier: -50%, source_page: "https://wiki.plateupgame.com/appliances/SharpCutlery", attributes_status: partial_verified}
+  - {id: Specials Menu, zh: “今日特供”菜单, category: dining, cost: 60, source_page: "https://wiki.plateupgame.com/appliances/SpecialsMenu", attributes_status: partial_verified}
+  - {id: Leftover Bags, zh: 打包袋, category: dining, cost: 60, source_page: "https://wiki.plateupgame.com/appliances/LeftoverBags", attributes_status: partial_verified}
+  - {id: Supplies, zh: 物资架, category: dining, cost: 60, source_page: "https://wiki.plateupgame.com/appliances/Supplies", attributes_status: partial_verified}
+  - {id: Tray Stand, zh: 托盘架, category: dining, cost: 60, source_page: "https://wiki.plateupgame.com/appliances/TrayStand", attributes_status: partial_verified}
+  - {id: Coffee Table, zh: 咖啡桌, category: dining, cost: 40, seats: 4, function: provides_waiting_tables_phase, source_page: "https://wiki.plateupgame.com/appliances/CoffeeTable", attributes_status: partial_verified}
+  - {id: Hosting Stand, zh: 招待站, category: dining, cost: 60, capacity_groups: 1, source_page: "https://wiki.plateupgame.com/appliances/HostingStand", attributes_status: partial_verified}
+  - {id: Flower Pot, zh: 花盆, category: dining, cost: 60, source_page: "https://wiki.plateupgame.com/appliances/FlowerPot", attributes_status: partial_verified}
+  - {id: Buffet, zh: 自助餐台, category: dining, cost: null, function: null, upgrade_from: null, upgrade_to: [Buffet - Heated, Buffet - Platter], attributes_status: name_only}
+  - {id: Buffet - Heated, zh: 加热自助餐台, category: dining, cost: null, function: null, upgrade_from: [Buffet, Buffet - Platter], upgrade_to: null, attributes_status: name_only}
+  - {id: Buffet - Platter, zh: 拼盘自助餐台, category: dining, cost: null, function: null, upgrade_from: Buffet, upgrade_to: [Buffet - Heated], attributes_status: name_only}
+  - {id: Starter Sink, zh: 初始水槽, category: cleaning, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Lasting Mop, zh: 持久拖把, category: cleaning, cost: null, function: null, upgrade_from: null, upgrade_to: [Robot Buffer, Robot Mop], attributes_status: name_only}
+  - {id: Dish Rack, zh: 餐具架, category: cleaning, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Scrubbing Brush, zh: 刷子, category: cleaning, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Clipboard Stand, zh: 剪贴板架, category: research, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Trainers, zh: 运动鞋, category: footwear, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Wellies, zh: 雨靴, category: footwear, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Work Boots, zh: 工作靴, category: footwear, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Display Stand, zh: 展示架, category: service_and_misc, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Fire Extinguisher, zh: 灭火器, category: service_and_misc, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Extra Life, zh: 额外生命, category: service_and_misc, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Upgrade Kit, zh: 升级工具包, category: service_and_misc, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Starter Plates, zh: 初始盘子, category: general_equipment, cost: null, function: null, upgrade_from: null, upgrade_to: [Auto Plater], attributes_status: name_only}
+  - {id: Plates, zh: 盘子, category: general_equipment, cost: null, function: null, upgrade_from: Starter Plates, upgrade_to: [Auto Plater], attributes_status: name_only}
+  - {id: Pot Stack, zh: 锅具组, category: general_equipment, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Serving Boards, zh: 上菜板, category: general_equipment, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Coffee Machine, zh: 咖啡机, category: recipe_specific_equipment, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Ice Dispenser, zh: 制冰机, category: recipe_specific_equipment, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Milk Steamer, zh: 牛奶蒸汽机, category: recipe_specific_equipment, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Woks, zh: 炒锅, category: recipe_specific_equipment, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Lasagne Tray, zh: 千层面烤盘, category: recipe_specific_equipment, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Taco Trays, zh: 塔可托盘, category: recipe_specific_equipment, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Mixing Bowl, zh: 搅拌碗, category: recipe_specific_equipment, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Cake Tin, zh: 蛋糕模具, category: recipe_specific_equipment, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Brownie Tray, zh: 布朗尼烤盘, category: recipe_specific_equipment, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Cookie Tray, zh: 饼干烤盘, category: recipe_specific_equipment, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Cupcake Tray, zh: 纸杯蛋糕烤盘, category: recipe_specific_equipment, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+  - {id: Doughnut Tray, zh: 甜甜圈烤盘, category: recipe_specific_equipment, cost: null, function: null, upgrade_from: null, upgrade_to: null, attributes_status: name_only}
+
+general_rules:
+  - "Only unpurchased upgradable blueprints can be researched; purchased/placed appliances cannot be upgraded."
+  - "Research, Discount, and Copying desks apply during Customer Phase to blueprints stored in adjacent cabinets in the same room."
+  - "Each desk effect can be applied once per cabinet per day; multiple desk types may affect the same cabinet on the same day."
+  - "Teleporter pairs transport items placed or pushed onto either endpoint."
+  - "Smart Grabber filters exact items and can interrupt a process only when its output remains unblocked."
+  - "A Safety Hob is recommended for burnable foods in automation; Danger Hob is faster for non-burnable food."
+  - "Buffet customers may wait for an unfinished order or when another customer takes their requested item (PlateUp! 1.5 update)."
+
+catalog_by_category:
+  cooking: [Starter Hob, Hob, Safety Hob, Danger Hob, Oven, Microwave, Gas Limiter, Gas Override]
+  kitchen: [Starter Bin, Bin, Compactor Bin, Composter Bin, Expanded Bin, Counter, Freezer, Workstation, Prep Station, Frozen Prep Station, Kitchen Floor Protector, Rolling Pin, Sharp Knife]
+  dining: [Dining Table, Bar Table, Metal Table, Table - Simple Cloth, Table - Fancy Cloth, Breadsticks, Candle Box, Napkins, Sharp Cutlery, Specials Menu, Leftover Bags, Supplies, Tray Stand, Coffee Table, Hosting Stand, Flower Pot, Buffet, Buffet - Heated, Buffet - Platter]
+  cleaning: [Starter Sink, Sink, Soaking Sink, Power Sink, Wash Basin, Dish Washer, Mop, Lasting Mop, Fast Mop, Robot Mop, Floor Buffer, Robot Buffer, Dish Rack, Scrubbing Brush]
+  automation: [Conveyor, Grabber, Smart Grabber, Grabber - Rotating, Combiner, Portioner, Mixer, Conveyor Mixer, Heated Mixer, Rapid Mixer, Dumbwaiter, Teleporter, Auto Plater]
+  research: [Blueprint Cabinet, Research Desk, Blueprint Desk, Copying Desk, Discount Desk, Clipboard Stand]
+  footwear: [Trainers, Wellies, Work Boots]
+  service_and_misc: [Booking Desk, Display Stand, Dumbwaiter, Teleporter, Fire Extinguisher, Ordering Terminal, Specials Terminal, Extra Life, Upgrade Kit]
+  general_equipment: [Starter Plates, Plates, Auto Plater, Pot Stack, Serving Boards]
+  recipe_specific_equipment: [Coffee Machine, Ice Dispenser, Milk Steamer, Woks, Lasagne Tray, Taco Trays, Mixing Bowl, Cake Tin, Brownie Tray, Cookie Tray, Cupcake Tray, Doughnut Tray]
+
+automation_interactions:
+  Conveyor: "pushes held items only; cannot pull from adjacent surfaces"
+  Grabber: "pulls from an adjacent surface when idle and pushes held items toward output"
+  Smart Grabber: "pulls only an exact trained item; item pushed onto it can retrain it; can interrupt processing when output is clear"
+  Grabber - Rotating: "input direction set in Preparation Phase; output direction switched in Customer Phase or Practice Mode"
+  Dumbwaiter: "must be open for other appliances to interact; all dumbwaiters share one item"
+  Teleporter: "operates in numbered pairs; interacting appliances can affect items before teleportation"
+  Auto Plater: "interacts immediately before an item on a Teleporter is sent"
+  Portioner: "can hold an item on a Teleporter during portioning"
+  Combiner: "single Combiner/Teleporter interactions can work; multiple Combiners on one Teleporter are unreliable per wiki guide"
+
+research_rules:
+  adjacency: "A Research/Discount/Copying Desk must be within one of the eight neighboring tiles of a Blueprint Cabinet; both must share the same room."
+  phase_order: ["Store eligible blueprint during Preparation Phase", "Use desk during Customer Phase", "Retrieve or buy result next Preparation Phase"]
+  research_selection: "All possible upgrades for a base appliance have equal chance unless the wiki states otherwise."
+  discount: "Halves current blueprint cost rounded up; repeated discounts stop at 1 coin; survives later upgrade."
+  copying: "Cabinet can hold original plus one copy; a copy cannot be copied again, but may be upgraded, discounted, or rerolled."
+  daily_use: "Each desk can affect each cabinet at most once per day."

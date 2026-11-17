@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "dataset_kind": "simulated",
+  "note": "无效输入样例：缺少 citations 键，必须拒绝，不能默认填成空列表。",
+  "brand": {
+    "name": "青禾工具",
+    "aliases": [
+      "青禾",
+      "Qinghe Tools"
+    ],
+    "domains": [
+      "example.com"
+    ],
+    "include_subdomains": true
+  },
+  "platforms": [
+    "demo-platform"
+  ],
+  "queries": [
+    {
+      "id": "q1",
+      "text": "青禾工具是什么，适合谁使用？",
+      "category": "品牌",
+      "priority": "critical",
+      "expected_native_citation": true
+    },
+    {
+      "id": "q2",
+      "text": "小团队有哪些知识整理工具？",
+      "category": "品类"
+    },
+    {
+      "id": "q3",
+      "text": "青禾工具和速记表有哪些区别？",
+      "category": "比较"
+    },
+    {
+      "id": "q4",
+      "text": "怎样整理多人协作的会议记录？",
+      "category": "场景"
+    },
+    {
+      "id": "q5",
+      "text": "青禾工具的价格信息在哪里看？",
+      "category": "价格",
+      "priority": "high"
+    },
+    {
+      "id": "q6",
+      "text": "选知识整理工具时要核对哪些限制？",
+      "category": "限制"
+    }
+  ],
+  "runs": [
+    {
+      "id": "before",
+      "started_at": "2026-10-01T09:00:00+08:00",
+      "records": [
+        {
+          "platform": "demo-platform",
+          "query_id": "q1",
+          "query": "青禾工具是什么，适合谁使用？",
+          "status": "simulated",
+          "collected_at": "2026-10-01T09:00:00+08:00",
+          "source": {
+            "kind": "simulation",
+            "executor": "offline-fixture",
+            "reference": "fixture:before/q1"
+          },
+          "conditions": {
+            "model": "demo-model",
+            "search_mode": "demo-search",
+            "context": "fresh"
+          },
+          "answer": "青禾工具是本样例中的虚构知识整理产品，可在示例说明页查看功能。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,38 +1,53 @@
-## Description: <br>
-Deep MLOps workflow-reproducible training, experiment tracking, packaging, deployment, monitoring (drift, performance), governance, and rollback for ML. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep MLOps workflow for reproducible training, experiment tracking, packaging, deployment, monitoring, governance, and rollback when shipping models to production or hardening ML pipelines.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawkk](https://clawhub.ai/user/clawkk)
 
-## Use Case: <br>
-Developers and ML engineers use this skill to plan and review production ML workflows, including reproducible training, experiment tracking, packaging, deployment, monitoring, governance, and rollback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may be applied to regulated ML systems or sensitive data without enough domain-specific review. <br>
-Mitigation: Apply production, compliance, and privacy review before using the guidance for regulated systems or workflows involving sensitive data. <br>
+## Use Case:
 
+Developers and ML engineers use this skill to structure production MLOps work across risk classification, reproducible data and training, deployment, monitoring, governance, and rollback.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawkk/ml-ops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown checklist and workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, released 2026-03-25) <br>
+Risk: Production ML workflow guidance may conflict with organizational requirements for PII, compliance, deployment approval, or rollback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review those recommendations against internal policies before using them for production decisions.
+
+Risk: General MLOps checklists can miss system-specific constraints such as regulated decision risk, training-serving skew, or fairness slice requirements.
+
+Mitigation: Adapt the workflow to the model's risk tier, data controls, monitoring signals, and required approval path.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/clawkk/skills/ml-ops)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance and checklist text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, installation hooks, or hidden authority requests are described in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

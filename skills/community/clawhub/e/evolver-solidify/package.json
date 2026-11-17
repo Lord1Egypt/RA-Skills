@@ -1,0 +1,9 @@
+{
+  "name": "evolver-solidify",
+  "version": "1.0.0",
+  "description": "Run evolver cycles, execute plans, and solidify successful mutations for Hub publication.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node scripts/validate-suite.js"
+  }
+}

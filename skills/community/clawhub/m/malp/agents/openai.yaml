@@ -1,0 +1,4 @@
+interface:
+  display_name: "M*A*L*P"
+  short_description: "Scout and maintain project-local context"
+  default_prompt: "Use $malp to find the best project context for this task."

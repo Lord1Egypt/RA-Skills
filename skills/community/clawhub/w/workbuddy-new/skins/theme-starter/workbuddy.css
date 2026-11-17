@@ -1,0 +1,65 @@
+/* WorkBuddy Dream Skin — theme-starter（中性起点，复制后改配色即可）
+ * 作用域 html.dream-host-workbuddy，仅覆盖 WorkBuddy 主要界面，移除 host 类即还原。
+ * 改 --st-* 变量即可换肤；需要背景图时把 --dream-hero 设成本地图（apply 注入）。
+ */
+:root.dream-host-workbuddy {
+  --st-ink: #2b2b33;
+  --st-muted: #6b6b78;
+  --st-accent: #5b8def;
+  --st-surface: rgba(255, 255, 255, 0.92);
+  --st-surface-strong: #ffffff;
+  --st-sidebar: rgba(244, 246, 250, 0.94);
+  --st-line: rgba(40, 40, 60, 0.16);
+  --st-shadow: rgba(30, 30, 50, 0.12);
+}
+
+html.dream-host-workbuddy,
+html.dream-host-workbuddy body,
+html.dream-host-workbuddy #root,
+html.dream-host-workbuddy .teams-container {
+  background: var(--st-surface) !important;
+  color: var(--st-ink) !important;
+}
+
+html.dream-host-workbuddy .conversation-sidebar,
+html.dream-host-workbuddy .conversation-list {
+  background: var(--st-sidebar) !important;
+  border-right: 1px solid var(--st-line) !important;
+  color: var(--st-ink) !important;
+  backdrop-filter: blur(16px);
+}
+html.dream-host-workbuddy .conversation-sidebar :is(a, button, div, p, span) { color: var(--st-ink) !important; }
+
+html.dream-host-workbuddy .conversation-list-tab-button.active,
+html.dream-host-workbuddy .conversation-agent-card[aria-selected="true"] {
+  background: rgba(91, 141, 239, 0.18) !important;
+  border-color: var(--st-line) !important;
+}
+
+html.dream-host-workbuddy .wb-home-header {
+  background: var(--st-surface-strong) !important;
+  border: 1px solid var(--st-line) !important;
+  border-radius: 24px !important;
+  color: var(--st-ink) !important;
+  box-shadow: 0 12px 30px var(--st-shadow) !important;
+}
+html.dream-host-workbuddy .wb-home-header__title::before { content: "主题标题"; }
+html.dream-host-workbuddy .wb-home-header__subtitle::before { content: "一句话副标题"; }
+
+html.dream-host-workbuddy .wb-scene-tabs__pill--active {
+  background: var(--st-accent) !important; color: #fff !important;
+}
+html.dream-host-workbuddy .quick-actions__item {
+  border: 1px solid var(--st-line) !important; border-radius: 12px;
+  background: var(--st-surface) !important; color: var(--st-ink) !important;
+}
+
+html.dream-host-workbuddy .wb-home-composer__input-slot > section,
+html.dream-host-workbuddy .chat-container:not(.chat-container--welcome) section:has([role="textbox"][contenteditable="true"]) {
+  border: 1px solid var(--st-line) !important; border-radius: 22px;
+  background: var(--st-surface-strong) !important; color: var(--st-ink) !important;
+  box-shadow: 0 12px 28px var(--st-shadow) !important;
+}
+
+html.dream-host-workbuddy a, html.dream-host-workbuddy .text-link { color: var(--st-accent) !important; }
+html.dream-host-workbuddy * { scrollbar-color: rgba(91,141,239,0.4) transparent; }

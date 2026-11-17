@@ -1,0 +1,135 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_expert_save",
+    "description": "Create or partially update a team expert. Omit expert.id when creating; when updating, pass an existing expert.id and only the fields to change. Unspecified fields are preserved by the server. Returns the expert ID.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "expert": {
+          "type": "object",
+          "description": "Expert base configuration. Creation requires name/avatar. Updating requires id and only the fields that should change. companyId/createAccountId/updateAccountId/createTime/updateTime are set by the backend; do not pass them.",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Expert ID. Omit when creating; pass an existing expert ID when updating."
+            },
+            "key": {
+              "type": "string",
+              "description": "Expert identifier. Recommended when creating; include during update only when the user explicitly asks to change it."
+            },
+            "name": {
+              "type": "string",
+              "description": "Expert name, required, up to 128 characters."
+            },
+            "description": {
+              "type": "string",
+              "description": "Expert responsibility description. This will ultimately become the prompt used by the AI expert, so write it as a clear, complete, and executable expert prompt covering the expert role, scope of responsibility, working style, boundaries, and output requirements."
+            },
+            "defaultInitPrompt": {
+              "type": "string",
+              "description": "Default welcome message, up to 1024 characters. This is the first message proactively sent by the AI expert when the user opens the conversation; it is not a question prefilled in the user's input box."
+            },
+            "quickPrompts": {
+              "type": "array",
+              "description": "Quick prompt list.",
+              "items": {
+                "type": "string"
+              }
+            },
+            "knowledgeBaseList": {
+              "type": "array",
+              "description": "IDs of team knowledge-base folders the expert may use. IDs must come from _company_knowledgebase_list. During update, omit this field to preserve bindings. An empty array clears bindings the current account is allowed to manage; hidden existing bindings are preserved by the server.",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            },
+            "avatar": {
+              "type": "string",
+              "description": "Avatar, required. Use an avatar URL or an Element UI icon class. Common icons: el-icon-user-solid, el-icon-user, el-icon-s-custom, el-icon-s-management, el-icon-s-data, el-icon-data-analysis, el-icon-s-opportunity, el-icon-s-marketing, el-icon-s-cooperation, el-icon-s-tools, el-icon-setting, el-icon-chat-dot-round, el-icon-message, el-icon-document, el-icon-folder, el-icon-search, el-icon-edit, el-icon-view, el-icon-star-on, el-icon-warning, el-icon-question, el-icon-info, el-icon-success. More icons: https://element.eleme.cn/#/en-US/component/icon."
+            },
+            "icon": {
+              "type": "string",
+              "description": "Icon, optional."
+            },
+            "iconColor": {
+              "type": "string",
+              "description": "Icon color, optional, for example #4f40ef."
+            },
+            "status": {
+              "type": "string",
+              "description": "Expert status. Use draft by default; use enabled only when the user explicitly asks to enable it.",
+              "enum": ["draft", "enabled", "disabled"]
+            },
+            "workMode": {
+              "type": "string",
+              "description": "Work mode. Default is singleAgent.",
+              "enum": ["singleAgent", "multiAgent"]
+            },
+            "aiModelKey": {
+              "type": "string",
+              "description": "AI model key. You may call _company_get_ai_model_list first. Optional."
+            },
+            "agentSettingJson": {
+              "type": "string",
+              "description": "Agent setting JSON string, optional. Do not fill it unless explicitly needed."
+            }
+          },
+          "anyOf": [
+            { "required": ["id"] },
+            { "required": ["name", "avatar"] }
+          ]
+        },
+        "skillList": {
+          "type": "array",
+          "description": "Skills bound to the expert. During update, omit this field to preserve current bindings; an empty array clears all bindings. When changing Skills, start from the complete list returned by _company_expert_get and preserve metadata such as id, appDefineId, enable, and configJson for unchanged bindings. Do not fabricate skillId or skillKey.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Expert-Skill binding ID. Reuse the queried value for retained bindings; omit it for new bindings."
+              },
+              "skillId": {
+                "type": "string",
+                "description": "Skill ID, required. Must come from a real existing Skill; do not fabricate it."
+              },
+              "skillKey": {
+                "type": "string",
+                "description": "Skill key, compatibility field, optional."
+              },
+              "skillName": {
+                "type": "string",
+                "description": "Skill name, optional."
+              },
+              "skillScope": {
+                "type": "string",
+                "description": "Skill scope. Default is app.",
+                "enum": ["system", "company", "app", "personal"]
+              },
+              "appId": {
+                "type": "string",
+                "description": "App ID when skillScope=app."
+              },
+              "appDefineId": {
+                "type": "string",
+                "description": "App definition ID. Reuse the queried value for retained app-scoped bindings."
+              },
+              "enable": {
+                "type": "boolean",
+                "description": "Whether the Skill binding is enabled. Reuse the queried value for retained bindings."
+              },
+              "configJson": {
+                "type": "string",
+                "description": "Skill binding configuration JSON. Reuse the queried value for retained bindings."
+              }
+            },
+            "required": ["skillId"]
+          }
+        }
+      },
+      "required": ["expert"]
+    }
+  }
+}

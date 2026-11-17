@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.4.0] - 2026-08-31
+
+### Fixed
+- Removed `package.json`. It declared an npm package that was never published and had no `main`, dependencies, or scripts. ClawHub CLI 0.22+ refuses to publish any folder containing a `package.json` as a skill.
+- Corrected actor price from $0.007 to $0.01 per result (pay per event). Apify API and store sheet on 2026-08-31 list $10.00 / 1,000 results.
+- `fetch_transcript.py`: cost lines now print $0.01 instead of $0.007 (lines were understating spend by 30%).
+- `fetch_transcript.py`: `--lang` was accepted and silently dropped for the default actor. It now warns on stderr and names the two actors that do support a language input.
+- Corrected Free-tier video count: $5 / $0.01 = 500 videos per month, not 714.
+- Replaced the removed `kind: pip` installer with a manual `python3 -m pip install requests` step. OpenClaw 2.0 installer kinds are brew, node, go, uv, and download.
+- Documented that `--lang` is not an input field on `topaz_sharingan/youtube-transcript-scraper-1` and the default-actor path does not send it.
+- Pointed the README actor link at https://apify.com/topaz_sharingan/youtube-transcript-scraper-1 (it previously linked to `karamelo/youtube-transcripts`).
+
 ## [1.3.3] - 2026-03-31
 
 ### Fixed

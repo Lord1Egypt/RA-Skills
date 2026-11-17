@@ -1,0 +1,21 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_bpmn_query_instance_info",
+		"description": "Query the detail of a workflow process instance, including current tasks, activity history and comments.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"moduleId": {
+					"type": "string",
+					"description": "The workflow module ID."
+				},
+				"instanceId": {
+					"type": "string",
+					"description": "The process instance ID."
+				}
+			},
+			"required": ["moduleId", "instanceId"]
+		}
+	}
+}

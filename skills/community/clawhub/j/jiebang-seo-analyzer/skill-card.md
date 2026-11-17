@@ -1,44 +1,59 @@
-## Description: <br>
-Extracts webpage metadata and runs SEO health checks for a supplied public URL, including title, description, Open Graph and Twitter Card data, canonical links, scores, and optimization suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+网站SEO分析与元数据提取工具，可提取网页标题、描述、关键词、Open Graph、Twitter Card、canonical 等元信息，并执行SEO健康检查与优化建议生成。
 
-## Publisher: <br>
-[jiebang-tools](https://clawhub.ai/user/jiebang-tools) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiebang-tools](https://clawhub.ai/user/jiebang-tools)
 
-## Use Case: <br>
-External users, developers, and website operators use this skill to inspect public webpages for SEO metadata and practical optimization issues. It is suited for extracting page tags, checking common SEO health signals, and returning structured suggestions for improvement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-supplied URLs are sent to the third-party jiebang.site service. <br>
-Mitigation: Use the skill only with public URLs that are acceptable to share with that service, and avoid internal, private, authenticated, or token-containing URLs. <br>
-Risk: The skill uses an admin-labeled credential for requests to the remote service. <br>
-Mitigation: Replace the credential with a narrowly scoped read-only token before deployment. <br>
-Risk: The third-party URL processing boundary is not clearly disclosed in the artifact text. <br>
-Mitigation: Disclose that submitted URLs are processed by jiebang.site before users rely on the skill. <br>
+## Use Case:
 
+External users, developers, and SEO practitioners use this skill to analyze public webpages, extract page metadata, evaluate SEO health, and receive optimization guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiebang-tools/jiebang-seo-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/jiebang-tools) <br>
-- [Jiebang service endpoint](https://www.jiebang.site) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON responses containing extracted metadata, SEO scores, checks, issue messages, and suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on the remote service response and the accessibility of the submitted URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill forwards full user-provided URLs to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public webpages whose full URL, including path and query string, can safely be shared with www.jiebang.site.
+
+Risk: Private dashboards, signed links, reset links, authenticated pages, internal hostnames, or URLs containing tokens could expose sensitive information.
+
+Mitigation: Do not submit sensitive, internal, authenticated, or token-bearing URLs.
+
+Risk: The security evidence reports use of an admin-style credential.
+
+Mitigation: Review before installing; the publisher should document external processing and replace the admin-style credential with a narrower API token.
+
+## Reference(s):
+
+- [捷帮SEO分析 ClawHub release](https://clawhub.ai/jiebang-tools/skills/jiebang-seo-analyzer)
+- [jiebang-tools publisher profile](https://clawhub.ai/user/jiebang-tools)
+- [Jiebang SEO service](https://www.jiebang.site)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Structured JSON with metadata fields, SEO checks, scores, issues, and suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the target webpage, network availability, and the external SEO service.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

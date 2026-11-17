@@ -1,40 +1,57 @@
-## Description: <br>
-System Load Monitor helps agents check local CPU and memory usage, pause work when configured thresholds are exceeded, and resume after load recovers on constrained servers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+System Load Monitor checks CPU and memory usage, recommends pausing or continuing work based on configured thresholds, and supports safer task pacing on low-resource servers.
 
-## Publisher: <br>
-[hifengzy](https://clawhub.ai/user/hifengzy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hifengzy](https://clawhub.ai/user/hifengzy)
 
-## Use Case: <br>
-Developers and operators use this skill to check local CPU and memory pressure before or during resource-intensive work, then pause, batch, or resume tasks based on the reported status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: JSON status output may expose local process usernames and command lines. <br>
-Mitigation: Keep checker output within the local environment unless the operator is comfortable sharing those process details. <br>
-Risk: Alerting through Feishu or another external service can send operational details outside the environment. <br>
-Mitigation: Require explicit approval before sending alerts to external services. <br>
+## Use Case:
 
+Developers and operators use this skill to check CPU and memory pressure before resource-intensive work, pause when configured thresholds are exceeded, and resume after load recovers. It is intended for low-resource servers and long-running tasks that need periodic load checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hifengzy/system-load-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python code patterns, and JSON status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled checker can emit process usernames and command lines in JSON output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Process listings can expose full command lines, including tokens, passwords, URLs, or private paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat JSON output and logs as sensitive, and redact or restrict process command output before sharing or storing it.
+
+Risk: The skill can advise continuing when load checks fail or return incomplete metrics.
+
+Mitigation: Review results before using the skill as an automatic task controller, and add explicit confirmation plus safer error handling for production workflows.
+
+Risk: Running load checks on shared, production, or privileged servers can reveal operational details.
+
+Mitigation: Review before installation in those environments and run with the least access needed for the monitoring task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hifengzy/skills/system-load-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python code patterns, status codes, and optional JSON output from the load-checking script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The load-checking script reports status, CPU and memory metrics, top processes, thresholds, and a CONTINUE or PAUSE recommendation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

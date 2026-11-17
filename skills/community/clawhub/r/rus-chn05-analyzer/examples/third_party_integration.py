@@ -141,7 +141,7 @@ class ThirdPartyBoneAgeClient:
 
 
 def generate_report(data: dict, sex: str) -> str:
-    """根据API返回数据生成中文诊断报告"""
+    """根据API返回数据生成中文测评报告"""
     if not data:
         return "骨龄识别失败，无法生成报告"
 
@@ -185,7 +185,7 @@ def generate_report(data: dict, sex: str) -> str:
 
     report += f"""
 ━━━━━━━━━━ 免责声明 ━━━━━━━━━━
-本报告由AI辅助分析生成，仅供参考，不构成医疗诊断。
+本报告由AI辅助分析生成，仅供参考，不能作为医疗依据。
 骨龄评估存在约+/-1岁的正常观察误差。
 如有异常，请前往正规医疗机构儿科内分泌科就诊。
 {'='*50}

@@ -1,44 +1,55 @@
-## Description: <br>
-Generates short anthropomorphic animal makeup transformation videos, from bare-faced starting frames to polished beauty looks, using confirmed prompts and WeryAI video-generation parameters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+生成拟人动物化妆变身短视频，帮助用户用一句话创建素颜到精致妆容的快节奏反差视频。
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-Content creators and agent users use this skill to plan and run short vertical makeup-transformation video generations for anthropomorphic animal characters. The skill helps gather makeup style, character, and contrast preferences, confirms parameters before execution, and calls the WeryAI CLI workflow when approved. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image URLs, or image inputs may be sent to WeryAI during generation. <br>
-Mitigation: Use the skill only with inputs appropriate for WeryAI processing and review WERYAI_BASE_URL before execution. <br>
-Risk: Generation requests can consume WeryAI account credits. <br>
-Mitigation: Confirm model, duration, aspect ratio, prompt, and audio settings before submitting generation jobs. <br>
-Risk: The CLI requires an API key for models, generation, and status checks. <br>
-Mitigation: Use a dedicated WERYAI_API_KEY where possible and avoid sharing it in prompts, logs, or generated content. <br>
+## Use Case:
 
+External creators and developers use this skill to prepare and run WeryAI video-generation prompts for anthropomorphic animal makeup transformation clips and detailed makeup-step videos.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zoucdr/makeup-transform-video) <br>
-- [WeryAI API base URL](https://api.weryai.com) <br>
-- [WeryAI model registry](https://api-growth-agent.weryai.com/growthai/v1/video/models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with parameter tables, inline shell commands, and JSON CLI responses containing task status and generated video URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and WERYAI_API_KEY; generation may use WeryAI account credits and may send prompts, image URLs, or image inputs to WeryAI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The bundled helper can perform broader WeryAI video-generation actions than the makeup-specific workflow describes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated prompts and JSON parameters before execution, and restrict use to the intended makeup transformation or makeup-step workflows.
+
+Risk: The skill sends prompts and optional image URLs to WeryAI remote endpoints using WERYAI_API_KEY.
+
+Mitigation: Use a scoped API key where possible, avoid sensitive prompts or private image URLs, and confirm that remote processing is acceptable for the intended use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zoucdr/skills/makeup-transform-video)
+- [WeryAI Video API](https://api.weryai.com)
+- [WeryAI Models API](https://api-growth-agent.weryai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON parameters and Node.js shell commands; the helper script returns JSON status and video URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and WERYAI_API_KEY; can submit, poll, check status, list models, or dry-run WeryAI video requests.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

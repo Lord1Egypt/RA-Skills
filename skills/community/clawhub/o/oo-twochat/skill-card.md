@@ -1,44 +1,55 @@
-## Description: <br>
-This skill lets an agent operate 2Chat through an OOMOL-connected account using the oo CLI, including listing contacts and webhooks, checking API usage, validating API keys, and creating contacts with confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the connected 2Chat account to inspect account information and create contacts.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent perform 2Chat account operations through their connected OOMOL account, including contact lookup, webhook review, API usage checks, and contact creation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Read actions may expose contacts, webhooks, usage, and account details to the agent session. <br>
-Mitigation: Install only when the agent should be allowed to operate the connected 2Chat account, and review the need for each read action before exposing account data. <br>
-Risk: The contact-creation action can change 2Chat data. <br>
-Mitigation: Require confirmation of the exact payload and expected effect before running write actions. <br>
-Risk: Initial setup depends on the OOMOL CLI installer and account connection. <br>
-Mitigation: Verify the OOMOL CLI installer and account connection before authorizing the agent to use the skill. <br>
+## Use Case:
 
+External users and developers use this skill to inspect a connected 2Chat account, review usage and webhooks, validate its API key, and create contacts.
 
-## Reference(s): <br>
-- [2Chat ClawHub listing](https://clawhub.ai/oomol/oo-twochat) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [2Chat homepage](https://2chat.co) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live 2Chat connector schemas and requires confirmation before write actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: Setup directs the agent to run downloaded software without a separate approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install the CLI separately, require approval for future software installation, and check its automatic skill synchronization settings.
+
+Risk: OOMOL mediates access to the connected 2Chat account, and the downloaded installers and runtime were not audited.
+
+Mitigation: Understand the account access path before use; rely on the skill's explicit confirmation safeguards for account writes.
+
+## Reference(s):
+
+- [2Chat](https://2chat.co)
+- [2Chat API documentation](https://developers.2chat.co/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance, JSON, Shell commands]
+
+**Output Format:** [Structured account data and Markdown guidance with JSON payloads and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Account data depends on the connected 2Chat account; contact creation changes account data after confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

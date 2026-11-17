@@ -1,38 +1,49 @@
-## Description: <br>
-Perform mathematical calculations and unit conversions for arithmetic expressions, scientific functions, and common unit categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform mathematical calculations and unit conversions. Use when the user needs to calculate expressions, convert units (length, mass, temperature, volume, area, time), or solve math problems. Supports basic arithmetic (+, -, *, /, %, ^), scientific functions (sin, cos, tan, log, sqrt, etc.), and common unit conversions.
 
-## Publisher: <br>
-[wushengbing](https://clawhub.ai/user/wushengbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wushengbing](https://clawhub.ai/user/wushengbing)
 
-## Use Case: <br>
-Developers and agents use this skill to calculate mathematical expressions and convert common units from local command-line inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The calculator uses a restricted Python eval-based expression evaluator and is not designed for adversarial or extremely large expressions. <br>
-Mitigation: Use it for ordinary calculations and unit conversions, and avoid untrusted, adversarial, or resource-intensive expressions. <br>
+## Use Case:
 
+Developers and agents use this skill to calculate arithmetic or scientific expressions and convert common units for length, mass, volume, area, time, and temperature.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wushengbing/wentianxe-calculator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [JSON command output and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Calculation results include either a result value or an error message; unit conversions include a category when successful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Very large expressions could consume local CPU or memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use expression length, complexity, numeric magnitude, timeout, and memory limits before exposing the skill to untrusted users or public automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wushengbing/skills/wentianxe-calculator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; calculator script commands output JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Calculator responses include result, category, or error fields when using the bundled command-line script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

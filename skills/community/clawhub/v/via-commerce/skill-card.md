@@ -1,42 +1,58 @@
-## Description: <br>
-Agentic commerce over the VIA network for discovering products and sellers, submitting buyer briefs, finding live buyer demand, registering stores, and guiding USDC settlement on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agentic commerce over the VIA network. Discover products and sellers, submit a buyer brief and get genuine matches, find live buyer demand, and register your own store, all settled in USDC on Base.
 
-## Publisher: <br>
-[richardjhobbs](https://clawhub.ai/user/richardjhobbs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richardjhobbs](https://clawhub.ai/user/richardjhobbs)
 
-## Use Case: <br>
-External users and operators use this skill to find products, compare VIA sellers, submit buyer briefs, discover buyer demand, register stores, and guide commerce actions that require explicit approval before payment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide commerce flows involving wallet details, dashboard credentials, seller MCP connections, and USDC payment delegation. <br>
-Mitigation: Use it only for VIA commerce, require the agent to show prices and options, and give explicit approval before any purchase or payment action. <br>
-Risk: The agent might overstate availability after a narrow or zero-result search. <br>
-Mitigation: Broaden or clarify searches before treating an item as not found, and present multiple matching products side by side when available. <br>
-Risk: A purchase could exceed the user's intended spending limit. <br>
-Mitigation: Confirm the price before payment and never exceed any user-set delegation cap. <br>
+## Use Case:
 
+External users and agents use this skill to discover products and sellers, submit buying briefs, find buyer demand, and register stores on the VIA commerce network. It supports commerce workflows that may involve third-party MCP endpoints and USDC settlement on Base.
 
-## Reference(s): <br>
-- [VIA Network MCP endpoint](https://app.getvia.xyz/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, API Calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands and MCP tool names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Payment-related actions require explicit user approval and must respect any delegation cap.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can initiate payment workflows and route shopping or selling requests to a commerce network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the product, seller, price, and payment intent with the user before payment, and enforce strict payment delegation caps.
+
+Risk: The skill can connect to participant-provided seller or buyer MCP endpoints.
+
+Mitigation: Verify endpoint and seller identity out of band for important purchases and limit sensitive data shared with third-party endpoints.
+
+Risk: Store registration can collect wallet and dashboard account details.
+
+Mitigation: Use a unique password, provide only the intended USDC payout wallet, and review registration data before submission.
+
+## Reference(s):
+
+- [VIA network MCP endpoint](https://app.getvia.xyz/mcp)
+- [VIA Commerce on ClawHub](https://clawhub.ai/richardjhobbs/skills/via-commerce)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and MCP tool names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May route commerce requests to external MCP tools and payment workflows after user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

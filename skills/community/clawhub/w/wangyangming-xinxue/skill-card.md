@@ -1,44 +1,54 @@
-## Description: <br>
-王阳明心学方法论 provides bilingual guidance and templates for self-cultivation, cognitive reframing, moral judgment, and practice-oriented reflection using core Wang Yangming concepts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+王阳明心学方法论 provides bilingual Chinese-English guidance and reflection templates for self-cultivation, cognitive restructuring, moral judgment, and applying Wang Yangming's core ideas in practice.
 
-## Publisher: <br>
-[taro291](https://clawhub.ai/user/taro291) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taro291](https://clawhub.ai/user/taro291)
 
-## Use Case: <br>
-External users and agents use this skill as a reflective philosophy aid for applying Wang Yangming's Mind Philosophy to personal practice, value clarification, decision reflection, and habit formation. It provides structured prompts, quote references, and Markdown templates rather than executable automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-apply philosophical or moral-decision guidance to medical, legal, financial, or other high-stakes decisions. <br>
-Mitigation: Use the skill as reflective perspective only and consult qualified professionals or applicable policy before making high-stakes decisions. <br>
-Risk: Moral and self-cultivation framing can be subjective or culturally specific. <br>
-Mitigation: Treat outputs as prompts for reflection, then review conclusions against context, stakeholder needs, and governing rules. <br>
+## Use Case:
 
+External users and agents use this skill to apply Wang Yangming's Mind Philosophy to self-reflection, decision making, habit formation, value clarification, and practice-oriented moral reasoning.
 
-## Reference(s): <br>
-- [王阳明心学经典语录速查卡片](references/quotes-card.md) <br>
-- [ClawHub release page](https://clawhub.ai/taro291/wangyangming-xinxue) <br>
-- [事上练心模板](templates/shi-shang-lian-xin.md) <br>
-- [致良知工作模板](templates/zhi-liang-zhi.md) <br>
-- [知行合一实践模板](templates/zhi-xing-he-yi.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and fill-in reflection templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable code, credentials, network use, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and frontmatter) <br>
+Risk: Users may treat philosophical self-reflection guidance as authoritative professional, medical, legal, or mental-health advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as reflective guidance only and route high-stakes personal, clinical, legal, or workplace decisions to qualified human review.
+
+Risk: The skill is largely Chinese-language philosophical guidance, which may be misread when translated or applied outside its cultural context.
+
+Mitigation: Review generated guidance for context, audience, and translation accuracy before using it in public or consequential settings.
+
+## Reference(s):
+
+- [王阳明心学经典语录速查卡片](references/quotes-card.md)
+- [ClawHub Skill Page](https://clawhub.ai/taro291/skills/wangyangming-xinxue)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with bilingual Chinese-English prose and fill-in reflection templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; the skill produces philosophical guidance, checklists, and structured reflection prompts.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -8,11 +8,11 @@
 
 | 类型 | 正则模式 | 示例 |
 |------|---------|------|
-| AWS Access Key | `AKIA[0-9A-Z]{16}` | `AKIAIOSFODNN7EXAMPLE` |
-| GitHub Token (classic) | `ghp_[a-zA-Z0-9]{36}` | `ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx` |
+| AWS Access Key | `AKIA[0-9A-Z]{16}` | `REDACTED-SECRET` |
+| GitHub Token (classic) | `ghp_[a-zA-Z0-9]{36}` | `REDACTED-SECRET` |
 | GitHub Token (fine-grained) | `github_pat_[a-zA-Z0-9_]{22,}` | `github_pat_xxxxxxxxx...` |
-| Slack Token | `xox[bpas]-[a-zA-Z0-9\-]+` | `xoxb-123-456-abc` |
-| OpenAI / Anthropic Key | `sk-[a-zA-Z0-9]{20,}` | `sk-proj-abcdefghij1234567890` |
+| Slack Token | `xox[bpas]-[a-zA-Z0-9\-]+` | `REDACTED-SECRET` |
+| OpenAI / Anthropic Key | `sk-[a-zA-Z0-9]{20,}` | `REDACTED-SECRET` |
 | JWT Token | `eyJ[a-zA-Z0-9_-]+\.eyJ[a-zA-Z0-9_-]+` | `eyJhbGci...eyJzdWIi...` |
 | Private Key Block | `-----BEGIN (RSA \|EC )?PRIVATE KEY-----` | PEM 格式私钥 |
 | Generic API Key 赋值 | `(api_key\|api_secret\|...) = "..."` | 代码中的硬编码赋值 |

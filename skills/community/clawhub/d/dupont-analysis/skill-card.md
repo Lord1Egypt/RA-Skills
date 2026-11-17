@@ -1,41 +1,58 @@
-## Description: <br>
-Decompose Return on Equity into component ratios to identify performance drivers. Use for financial analysis, performance benchmarking, and identifying improvement opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decompose Return on Equity into component ratios to identify performance drivers for financial analysis, performance benchmarking, and improvement opportunities.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linuszz](https://clawhub.ai/user/linuszz)
 
-## Use Case: <br>
-Financial analysts, investors, and business operators use this skill to break ROE into margin, asset turnover, leverage, tax, and interest drivers for benchmarking and improvement planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial conclusions may be misleading when source statements, peer benchmarks, or one-time adjustments are incomplete or stale. <br>
-Mitigation: Review the underlying financial data, normalize unusual items, and compare results against appropriate industry peers before relying on recommendations. <br>
-Risk: High leverage can increase ROE while also increasing financial risk. <br>
-Mitigation: Evaluate leverage-driven ROE improvements alongside debt levels, interest coverage, and business volatility. <br>
+## Use Case:
 
+Financial analysts, investors, and finance teams use this skill to decompose ROE into margin, asset turnover, leverage, and extended DuPont drivers for benchmarking and performance improvement analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linuszz/dupont-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/linuszz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown financial analysis with ratio tables, decomposition formulas, driver assessment, peer comparison, and improvement recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Depends on user-provided financial statements, benchmarks, and peer context; does not retrieve or verify market data on its own.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Incorrect, incomplete, or mismatched financial inputs can produce misleading DuPont ratios and driver conclusions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify source financial statements, use consistent reporting periods, and recalculate key ratios before relying on the analysis.
+
+Risk: Analytical commentary could be mistaken for authoritative investment advice.
+
+Mitigation: Treat the output as decision support and require qualified financial review before making investment, lending, or capital-structure decisions.
+
+Risk: ROE improvements driven by leverage may obscure increased financial risk.
+
+Mitigation: Review debt levels, interest coverage, volatility, and peer capital structures alongside the DuPont decomposition.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linuszz/skills/dupont-analysis)
+- [Publisher profile](https://clawhub.ai/user/linuszz)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown financial analysis with tables, ratio formulas, driver commentary, peer comparison, and improvement recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided financial statements, benchmark data, and peer context; does not fetch or verify financial data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

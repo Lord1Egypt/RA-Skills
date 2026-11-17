@@ -1,41 +1,54 @@
-## Description: <br>
-Automates spec-driven development workflows with commands for drafting specs, planning tasks, and executing implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates a spec-driven development workflow with commands to draft specs, plan tasks, and execute implementation.
 
-## Publisher: <br>
-[soponcd](https://clawhub.ai/user/soponcd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soponcd](https://clawhub.ai/user/soponcd)
 
-## Use Case: <br>
-Developers and engineers use this skill to draft feature specs, convert spec task breakdowns into a project task list, and execute implementation work from trusted spec files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify project files and run a fixed local test script when invoked. <br>
-Mitigation: Use version control, run it only on trusted specs, and review diffs and test output before committing changes. <br>
-Risk: Planning commands can append milestones and renumber task identifiers in specs/tasks.md. <br>
-Mitigation: Review task-list changes and task numbering after /spec-plan and /spec-execute before accepting the update. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to manage a spec-driven workflow: drafting feature specifications, converting approved specs into tracked tasks, and executing implementation work against those specs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/soponcd/spec-developer) <br>
-- [Skill homepage](https://github.com/soponcd/timeflow-skills/tree/main/teams/skills/spec-developer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with repository file edits and shell command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update spec files, task lists, implementation files, tests, and task status markers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The execution workflow can modify project planning files, code, tests, and implementation status.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated specs and task updates before execution, and inspect code changes and test results before accepting them.
+
+Risk: The skill may run the repository's native test script during implementation.
+
+Mitigation: Run it only in repositories where invoking the native test command is expected and safe for the local environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/soponcd/skills/spec-developer)
+- [Skill homepage](https://github.com/soponcd/timeflow-skills/tree/main/teams/skills/spec-developer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with command examples, generated spec files, task-list updates, code changes, tests, and shell command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify repository planning files, implementation code, tests, and status markers as part of the requested spec workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

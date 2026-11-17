@@ -1,43 +1,58 @@
-## Description: <br>
-配置多个 OpenClaw Agent 使用独立飞书机器人，支持免配对直接聊天，自动重启生效并提供状态摘要。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+为多个 OpenClaw Agent 配置独立的飞书机器人，支持免配对直接聊天模式。
 
-## Publisher: <br>
-[gitxuzhefeng](https://clawhub.ai/user/gitxuzhefeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitxuzhefeng](https://clawhub.ai/user/gitxuzhefeng)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to configure multiple agents with separate Feishu bot credentials, enable direct DM and group chat access, apply the Gateway configuration, and verify service status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill collects Feishu App Secrets and uses them to update live Gateway configuration. <br>
-Mitigation: Treat App Secrets as sensitive, avoid shared transcripts or logs, and rotate any secret that may have been exposed. <br>
-Risk: Open DM and group policies allow users to chat with the configured bots without pairing. <br>
-Mitigation: Confirm that open DM and group access is acceptable before applying the configuration. <br>
-Risk: Applying the configuration restarts the OpenClaw Gateway. <br>
-Mitigation: Apply changes during an acceptable maintenance window and verify Gateway status after the restart. <br>
+## Use Case:
 
+Developers and operators use this skill to configure multiple OpenClaw agents with separate Feishu bot credentials, apply the gateway configuration, verify service status, and return a concise setup summary.
 
-## Reference(s): <br>
-- [OpenClaw Feishu Documentation](https://docs.openclaw.ai/channels/feishu.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/gitxuzhefeng/feishu-multi-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration snippets, shell commands, and a status summary table.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu App IDs and App Secrets plus permission to update live OpenClaw Gateway Feishu settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence and artifact metadata) <br>
+Risk: Open direct-message and group access can allow reachable Feishu users or groups to talk to connected agents without pairing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this posture only intentionally; prefer allowlists or pairing where possible and restrict each connected agent's tools.
+
+Risk: Feishu App Secrets are collected and written into persistent gateway configuration.
+
+Mitigation: Protect App Secrets, avoid logging or sharing them, and confirm the exact configuration patch before applying it.
+
+Risk: Persistent gateway changes trigger a restart and may affect existing bot connectivity.
+
+Mitigation: Keep rollback instructions available and verify service health with openclaw gateway status after applying the patch.
+
+## Reference(s):
+
+- [OpenClaw Feishu documentation](https://docs.openclaw.ai/channels/feishu.md)
+- [ClawHub skill page](https://clawhub.ai/gitxuzhefeng/skills/feishu-multi-bot)
+
+## Skill Output:
+
+**Output Type(s):** [Configuration, Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown with JSON configuration and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Handles Feishu App IDs and App Secrets; output should avoid exposing secrets in logs or public summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.yaml, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

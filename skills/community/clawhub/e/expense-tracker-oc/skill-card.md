@@ -1,37 +1,52 @@
-## Description: <br>
-简单易用的个人支出追踪和预算管理工具。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+简单易用的个人支出追踪和预算管理工具。
 
-## Publisher: <br>
-[huangjingzhi07](https://clawhub.ai/user/huangjingzhi07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[huangjingzhi07](https://clawhub.ai/user/huangjingzhi07)
 
-## Use Case: <br>
-Personal users use this skill to record expenses, review spending by date or category, set monthly budgets, monitor budget progress, and generate monthly spending reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Spending history and budget settings may include sensitive personal financial details stored in local JSON files. <br>
-Mitigation: Use the skill only for financial details appropriate to store on the current device, especially on shared systems, and review or delete expenses.json and budget.json when no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangjingzhi07/expense-tracker-oc) <br>
+## Use Case:
 
+个人用户可用此技能记录支出、查看按日期或类别汇总的消费统计、设置月度预算，并生成月度支出报表。
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, configuration] <br>
-**Output Format:** [Markdown or plain text responses with local JSON data files for expenses and budget settings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update expenses.json and budget.json on the local device.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Expense and budget details may be stored in local JSON files on the machine where the skill runs.
+
+Mitigation: Use the skill on trusted machines and review or delete expenses.json and budget.json when handling shared environments.
+
+Risk: Broad Chinese finance phrases may activate the skill when the user is discussing finances generally.
+
+Mitigation: Confirm the intended tracking or budget action before recording expenses or changing budget data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangjingzhi07/skills/expense-tracker-oc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Natural-language responses with local JSON-backed expense and budget records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use expenses.json for expense records and budget.json for budget settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,62 @@
-## Description: <br>
-Finds OpenTable restaurant options and produces reservation deep links for user-confirmed booking handoff without submitting reservations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds OpenTable restaurant options and creates reservation deep links for user-confirmed booking handoff.
 
-## Publisher: <br>
-[mikehe123](https://clawhub.ai/user/mikehe123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikehe123](https://clawhub.ai/user/mikehe123)
 
-## Use Case: <br>
-External users and agents use this skill to search OpenTable by location, date, time, party size, and cuisine, then return a concise restaurant list or booking deep link. The user completes any reservation directly in OpenTable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The troubleshooting guidance can change a global browser SSRF allowlist and restart the OpenClaw gateway. <br>
-Mitigation: Require administrator review before running that command, and prefer explicit preconfiguration of OpenTable browser access. <br>
-Risk: Restaurant booking intent could be mistaken for permission to complete a reservation. <br>
-Mitigation: Keep the skill limited to OpenTable deep links and require the user to confirm any reservation in their own OpenTable session. <br>
+## Use Case:
 
+External users and agent operators use this skill to search OpenTable availability by location, cuisine, date, time, and party size, or to build a direct booking link for a named restaurant. The user completes any reservation in OpenTable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikehe123/opentable-reservations) <br>
-- [OpenTable](https://www.opentable.com/) <br>
-- [README](artifact/README.md) <br>
-- [Benchmark](artifact/BENCHMARK.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with JSON-producing helper commands and OpenTable URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns compact restaurant lists, error guidance, or reservation handoff links; the skill does not complete bookings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill works through an attached Chrome profile and may inspect active browser pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated or low-risk browser profile and avoid saved payment methods when running the skill.
+
+Risk: The release has under-scoped navigation and persistent browser configuration recovery concerns.
+
+Mitigation: Review before installing and only approve SSRF allowlist changes or profile resets when the operational impact is understood.
+
+Risk: Booking deep links may point to stale, unavailable, or incorrect reservation details because direct booking link construction does not verify live availability.
+
+Mitigation: Have the user review restaurant, time, party size, and payment terms in OpenTable before confirming.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikehe123/skills/opentable-reservations)
+- [OpenTable](https://www.opentable.com/)
+- [README.md](artifact/README.md)
+- [BENCHMARK.md](artifact/BENCHMARK.md)
+- [SKILL.md](artifact/SKILL.md)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payloads and OpenTable URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces restaurant summaries and booking deep links; does not submit reservations.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

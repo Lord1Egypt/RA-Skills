@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn79s6s4n5qvd0qjwrn3bt0pts81y47b",
-  "slug": "smart-router-omni",
+  "skill_id": 1711930753,
   "version": "2.0.0",
-  "publishedAt": 1775045136691
+  "author": "龙虾",
+  "tags": ["router", "smart-routing", "multi-skill", "automation", "openclaw"],
+  "created_at": "2026-04-01",
+  "license": "proprietary",
+  "source_code_available": false
 }

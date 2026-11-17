@@ -1,0 +1,185 @@
+'''
+39读取两融数据查询
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+get_assure_contract-获取两融担保标的明细
+用法： get_assure_contract(accId)
+
+释义： 获取信用账户担保合约明细
+
+参数：
+
+accId：信用账户
+返回： list，list 中放的是 StkSubjects，通过 dir(pythonobj) 可返回某个对象的属性列表。
+
+示例：
+
+python
+
+
+def show_data(data):
+    tdata = {}
+    for ar in dir(data):
+        if ar[:2] != 'm_':continue
+        try:
+            tdata[ar] = data.__getattribute__(ar)
+        except:
+            tdata[ar] = '<CanNotConvert>'
+    return tdata
+
+def handlebar(ContextInfo): 
+    obj = get_assure_contract('6000000248')
+    for i in obj[:3]:
+		print(show_data(i))
+
+
+"""
+{'m_dAssureRatio': 0.0, # 担保品折算比例
+'m_dFinRatio': 0.8, # 融资保证金比例
+'m_dSloRatio': 1.0,  # 融券保证金比例
+'m_eAssureStatus': 50,  # 是否可做担保
+'m_eCreditFundCtl': 50, # 融资交易控制
+'m_eCreditStkCtl': 50, # 融券交易控制
+'m_eFinStatus': 48, # 融资状态
+'m_eSloStatus': 48, # 融券状态
+'m_nPlatformID': 10064,  # 平台号
+'m_strAccountID': '95000857',  # 资金账号
+'m_strBrokerID': '003', # 经纪公司编号
+'m_strBrokerName': '光大证券信用',  # 证券公司
+'m_strExchangeID': 'SH', # 交易所
+'m_strInstrumentID':'510150' # 证券代码
+"""
+        
+get_enable_short_contract-获取可融券明细
+提示
+
+注:由于字段m_dSloRatio、m_dSloStatus提供来源和取担保品明细(get_assure_contract)重复，字段在2021年9月移除，后续用担保品明细接口获取,具体见 担保标的对象字段说明
+
+用法： get_enable_short_contract(accId)
+
+释义： 获取信用账户当前可融券的明细
+
+参数：
+
+accId：信用账户
+返回： list，list 中放的是 CreditSloEnableAmount，通过 dir(pythonobj) 可返回某个对象的属性列表。
+
+示例：
+
+python
+
+
+def show_data(data):
+    tdata = {}
+    for ar in dir(data):
+        if ar[:2] != 'm_':continue
+        try:
+            tdata[ar] = data.__getattribute__(ar)
+        except:
+            tdata[ar] = '<CanNotConvert>'
+    return tdata
+
+def handlebar(ContextInfo):
+    obj = get_enable_short_contract('6000000248')
+    for i in obj[:3]:
+		print(show_data(i))
+
+"""
+Rerutn:
+
+{'m_eQuerySloType': 48, # 查询类型
+'m_nEnableAmount': 0,  # 融券可融数量
+'m_nPlatformID': 10064,  # 平台号
+'m_strAccountID': '95000857',  # 资金账号
+'m_strBrokerID': '003',  # 经纪公司编号
+'m_strBrokerName': '光大证券信用',  # 证券公司
+'m_strExchangeID': 'SH', # 标的市场
+'m_strInstrumentID': '688321' # 证券代码
+}
+
+"""
+
+query_credit_account - 查询信用账户明细
+注意
+
+本函数一次最多查询200只股票的两融最大下单量，且同时只能有一个查询,如果前面的查询正在进行中,后面的查询将会提前返回。本函数从服务器查询数据,建议平均查询时间间隔180s一次,不可频繁调用。
+该函数必须配合credit_account_callback回调才能使用，关于此回调的说明请看credit_account_callback
+callback返回的对象是CCreditAccountDetail
+调用query_credit_account，该接口的查询结果将会推送给credit_account_callback，所以程序里需要按照函数参数实现函数credit_account_callback,callback返回的对象是CCreditAccountDetail
+
+用法： query_credit_account(accountId,seq,ContextInfo)
+释义： 查询信用账户明细。本函数只能有一个查询，如果前面的查询正在进行中，后面的查询将会提前返回。
+
+参数：
+
+accountId：string，查询的两融账号
+
+seq：int，查询序列号，建议输入唯一值以便对应结果回调
+
+示例：
+
+python返回值
+
+#coding:gbk
+
+
+import time
+
+def init(ContextInfo):
+	ContextInfo.accid='200133'
+	
+def handlebar(ContextInfo):
+	if ContextInfo.is_last_bar():
+		query_credit_account(ContextInfo.accid,int(time.time()),ContextInfo)
+# 该函数必须配合credit_account_callback回调才能使用
+def credit_account_callback(ContextInfo,seq,result):
+	print(seq)
+	print(f":维持担保比例:{result.m_dPerAssurescaleValue:.2f},总负债:{result.m_dTotalDebt:.2f}")
+
+回调示例 见query_credit_account
+
+query_credit_opvolume - 查询两融最大可下单量
+注意
+
+本函数一次最多查询200只股票的两融最大下单量，且同时只能有一个查询,如果前面的查询正在进行中,后面的查询将会提前返回。本函数从服务器查询数据,建议平均查询时间间隔180s一次,不可频繁调用。
+该函数必须配合credit_opvolume_callback回调才能使用,关于此回调的说明请看credit_account_callback
+调用query_credit_opvolume，该接口的查询结果将会推送给credit_opvolume_callback，所以必须配合credit_opvolume_callback回调才能使用
+
+用法： query_credit_opvolume(accountId,stockCode,opType,prType,price,seq,ContextInfo)
+
+释义： 查询两融最大可下单量。
+
+参数：
+
+accountId:查询的两融账号
+stockCode:需要查询的股票代码,stockCode为List的类型,可以查询多只股票
+opType:两融下单类型,同passorder的下单类型
+prType:报单价格类型,同passorder的报价类型
+seq:查询序列号,int型，建议输入唯一值以便对应结果回调
+price:报价(非限价单可以填任意值),如果stockCode为List类型,报价也需要为长度相同的List
+ContextInfo:ContextInfo类
+示例：
+
+python返回值
+
+#coding:gbk
+
+import time
+
+def init(ContextInfo):
+	ContextInfo.accid='200133'
+	
+def handlebar(ContextInfo):
+	if ContextInfo.is_last_bar():
+        #查询accid账号担保品买入600000,SH限价10元的最大可下单量
+		query_credit_opvolume(ContextInfo.accid,'600000.SH',33,11,10,int(time.time()),C) # 查询两融最大可下单量。
+		time.sleep(0.5)
+        #查询accid账号担保品买入600000,SH限价10元,000001.SZ担保品买入限价20元的最大可下单量
+		query_credit_opvolume(ContextInfo.accid,["600000.SH","000001.SZ"],33,11,[10,20],int(time.time()),C) # 查询两融最大可下单量。
+
+# 该函数必须配合credit_opvolume_callback回调才能使用
+def credit_opvolume_callback(ContextInfo,accid,seq,ret,result):
+	print(seq)
+	print(f'查询结果:{ret}') # 正常返回:1,正在查询中-1,输入账号非法:-2,输入查询参数非法:-3,超时等服务器返回报错:-4
+	print(result)
+

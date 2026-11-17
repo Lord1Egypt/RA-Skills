@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7dxr58ktjh28y80xrgmypzg582wtg5",
-  "slug": "auto-article-writer",
+  "name": "auto-article-writer",
+  "displayName": "自媒体文章自动生成器",
   "version": "1.0.0",
-  "publishedAt": 1774691201600
+  "slug": "auto-article-writer",
+  "description": "AI 自媒体文章生成工具，支持公众号/知乎/小红书/头条等平台",
+  "author": "@bingze00000",
+  "license": "MIT",
+  "tags": ["article", "ai", "writing", "wechat", "zhihu", "xiaohongshu", "content", "auto"],
+  "pricing": {
+    "type": "paid",
+    "amount": 29,
+    "currency": "CNY"
+  },
+  "requirements": ["openai"],
+  "category": "content"
 }

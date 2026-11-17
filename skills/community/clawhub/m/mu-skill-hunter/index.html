@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>mu-skill-hunter · Skill Hunter</title>
+<meta name="description" content="Discover, audit, and track AI agent skills across 4 sources — GitHub, ClawHub, SkillHub, and Skills.sh — with 12-rule security scanning and weekly trending reports.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>">
+<style>
+:root{
+  --bg:#faf9f7;--bg-warm:#f5f0eb;--bg-card:#fff;--bg-code:#f7f5f2;
+  --border:#e8e2db;--border-light:#f0ebe5;
+  --text:#2d2a26;--text-secondary:#6b6560;--text-muted:#9e9690;
+  --accent:#c96442;--accent-light:#e8a07a;--accent-bg:rgba(201,100,66,0.06);
+  --green:#5a8a6a;--blue:#5a7a9a;--purple:#7a6a9a;--red:#c0705a;
+  --radius:12px;--radius-sm:8px;
+  --transition:0.25s ease;
+  --font:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans SC','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+  --font-serif:'Georgia','Noto Serif SC','Source Han Serif SC',serif;
+  --font-mono:'SF Mono','Fira Code','JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.7;-webkit-font-smoothing:antialiased}
+.container{max-width:960px;margin:0 auto;padding:0 28px}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,249,247,0.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border-light);transition:all var(--transition)}
+.nav-inner{max-width:960px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:56px}
+.nav-logo{font-size:1.1rem;font-weight:700;color:var(--text);letter-spacing:-0.02em}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--text-secondary);font-size:0.85rem;font-weight:500;transition:color var(--transition);text-decoration:none}
+.nav-links a:hover{color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.lang-switch{display:inline-flex;border:1px solid var(--border);border-radius:6px;overflow:hidden;font-size:0.78rem;cursor:pointer;user-select:none}
+.lang-switch span{padding:5px 11px;transition:all var(--transition);color:var(--text-muted)}
+.lang-switch span.active{background:var(--accent);color:#fff}
+.lang-switch span:hover:not(.active){color:var(--text);background:var(--bg-warm)}
+.nav-cta{padding:7px 18px;border-radius:7px;font-size:0.82rem;font-weight:600;background:var(--text);color:var(--bg);transition:all var(--transition);text-decoration:none}
+.nav-cta:hover{background:var(--accent);color:#fff;transform:translateY(-1px)}
+
+/* Hero */
+.hero{padding:120px 0 60px;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:20px;background:var(--accent-bg);border:1px solid var(--accent-light);font-size:0.8rem;color:var(--accent);font-weight:600;margin-bottom:24px}
+.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero h1{font-family:var(--font-serif);font-size:2.8rem;font-weight:700;line-height:1.3;margin-bottom:20px;letter-spacing:-0.02em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero-sub{font-size:1.1rem;color:var(--text-secondary);max-width:640px;margin:0 auto 32px}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+.btn{padding:12px 28px;border-radius:10px;font-size:0.92rem;font-weight:600;text-decoration:none;transition:all var(--transition);display:inline-flex;align-items:center;gap:8px}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,100,66,0.2)}
+.btn-secondary{background:var(--bg-card);color:var(--text);border:1px solid var(--border)}
+.btn-secondary:hover{border-color:var(--accent);transform:translateY(-2px)}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border-light);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border-light)}
+.stat{background:var(--bg-card);padding:24px 16px;text-align:center}
+.stat b{font-family:var(--font-serif);font-size:1.8rem;font-weight:700;color:var(--text);display:block;line-height:1.4}
+.stat-emoji{font-size:1.8rem;line-height:1.4}
+.stat-label{font-size:0.78rem;color:var(--text-muted);margin-top:4px}
+
+/* Section */
+section{padding:60px 0}
+.section-label{text-align:center;font-size:0.8rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px}
+section h2{font-family:var(--font-serif);font-size:2rem;font-weight:700;text-align:center;margin-bottom:16px;letter-spacing:-0.01em}
+.section-desc{text-align:center;color:var(--text-secondary);font-size:0.95rem;max-width:600px;margin:0 auto 40px}
+
+/* Usage Table */
+.usage-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border-light);font-size:0.88rem}
+.usage-table th{background:var(--bg-warm);padding:14px 18px;text-align:left;font-weight:600;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary)}
+.usage-table td{padding:14px 18px;border-bottom:1px solid var(--border-light);background:var(--bg-card);transition:background var(--transition)}
+.usage-table tbody tr:hover td{background:var(--bg-warm)}
+.usage-table tbody tr:last-child td{border-bottom:none}
+.usage-table td:first-child{font-weight:600}
+.usage-table td:nth-child(2){color:var(--accent);font-family:var(--font-mono);font-size:0.82rem}
+
+/* Cards Grid */
+.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{padding:28px 24px;border-radius:var(--radius);background:var(--bg-card);border:1px solid var(--border-light);transition:all var(--transition)}
+.card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,0.04)}
+.card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:16px;background:var(--bg-warm)}
+.card h3{font-size:1rem;font-weight:700;margin-bottom:6px}
+.card p{font-size:0.85rem;color:var(--text-secondary);line-height:1.7}
+.card-tag{display:inline-block;margin-top:12px;padding:3px 10px;border-radius:4px;font-size:0.68rem;font-weight:600;background:var(--accent-bg);color:var(--accent)}
+
+/* Comparison Table */
+.comparison-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border-light)}
+.comparison-table th,.comparison-table td{padding:14px 18px;text-align:left;font-size:0.85rem;border-bottom:1px solid var(--border-light)}
+.comparison-table thead th{background:var(--bg-warm);font-weight:600;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary)}
+.comparison-table thead th:nth-child(2){color:var(--accent)}
+.comparison-table tbody tr{background:var(--bg-card);transition:background var(--transition)}
+.comparison-table tbody tr:hover{background:var(--bg-warm)}
+.comparison-table tbody tr:last-child td{border-bottom:none}
+.comparison-table td:first-child{font-weight:600}
+.check{color:var(--green);font-weight:700}
+.cross{color:var(--red)}
+
+/* Workflows */
+.workflows{display:flex;flex-direction:column;gap:12px}
+.workflow-item{display:grid;grid-template-columns:28% 29% 43%;gap:0;padding:20px 24px;border-radius:var(--radius);background:var(--bg-card);border:1px solid var(--border-light);transition:all var(--transition);align-items:center}
+.workflow-item:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.03)}
+.workflow-name{font-weight:700;font-size:0.95rem;color:var(--text)}
+.workflow-scene{font-size:0.85rem;color:var(--text-secondary)}
+.workflow-trigger{font-size:0.82rem;color:var(--text-muted);font-family:var(--font-mono)}
+
+/* CTA */
+.cta-section{padding:80px 0;text-align:center;background:var(--bg-warm)}
+.cta-section h2{font-family:var(--font-serif);font-size:2.2rem;font-weight:700;margin-bottom:16px;letter-spacing:-0.01em}
+.cta-section h2 em{font-style:normal;color:var(--accent)}
+.cta-section p{color:var(--text-secondary);font-size:1rem;margin-bottom:32px}
+
+/* Footer */
+footer{padding:48px 0 32px;border-top:1px solid var(--border-light);background:var(--bg)}
+.footer-badges{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:16px}
+
+/* Responsive */
+@media(max-width:768px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .cards-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero{padding:100px 0 60px}
+  .hero h1{font-size:2rem}
+  .workflow-item{grid-template-columns:1fr;gap:8px}
+  .usage-table{font-size:0.78rem}
+  .usage-table th,.usage-table td{padding:10px 12px}
+}
+</style>
+</head>
+<body>
+
+<nav><div class="nav-inner">
+<div class="nav-logo">🔍 mu-skill-hunter · Skill严选猎手</div>
+<ul class="nav-links">
+<li><a href="#usage"><span data-en="Usage" data-zh="使用场景">使用场景</span></a></li>
+<li><a href="#highlights"><span data-en="Highlights" data-zh="核心亮点">核心亮点</span></a></li>
+<li><a href="#comparison"><span data-en="Compare" data-zh="对比">对比</span></a></li>
+<li><a href="#workflows"><span data-en="Workflows" data-zh="工作流">工作流</span></a></li>
+</ul>
+<div class="nav-right">
+<div class="lang-switch" id="langSwitch"><span data-lang="zh" class="active">中文</span><span data-lang="en">EN</span></div>
+<a href="https://muippt.github.io/mu-skill-hub/" class="nav-cta" target="_blank"><span data-en="Skill Collection" data-zh="Skill合集">Skill合集</span></a>
+</div></div></nav>
+
+<section class="hero"><div class="container">
+<div class="hero-badge"><span class="dot"></span><span data-en="v2.8.0 · Open Source" data-zh="v2.8.0 · 开源发布">v2.8.0 · 开源发布</span></div>
+<h1><span data-en="Don't just <em>search</em> one source.<br><em>Audit</em> before you install." data-zh="别只在一个源上<em>搜</em>。<br>安装前先<em>审查</em>。">别只在一个源上<em>搜</em>。<br>安装前先<em>审查</em>。</span></h1>
+<p class="hero-sub"><span data-en="Discover AI agent skills across 4 sources (GitHub, ClawHub, SkillHub, Skills.sh), scan with 12 security rules, and get weekly trending reports — all in one tool." data-zh="四源发现 AI Agent Skill（GitHub / ClawHub / SkillHub / Skills.sh），12 条安全规则审查，每周热门周报推送——一个工具全搞定。">四源发现 AI Agent Skill（GitHub / ClawHub / SkillHub / Skills.sh），12 条安全规则审查，每周热门周报推送——一个工具全搞定。</span></p>
+<div class="hero-actions">
+<a href="https://github.com/muippt/mu-skill-hunter" class="btn btn-primary" target="_blank"><span data-en="⭐ View on GitHub" data-zh="⭐ 在 GitHub 上查看">⭐ 在 GitHub 上查看</span></a>
+<a href="https://github.com/muippt/mu-skill-hunter/archive/refs/heads/main.zip" class="btn btn-secondary"><span data-en="📦 Download ZIP" data-zh="📦 下载 ZIP">📦 下载 ZIP</span></a>
+</div>
+<div class="stats">
+<div class="stat"><b><span class="stat-emoji">🌐</span> 4</b><div class="stat-label"><span data-en="Sources" data-zh="数据源">数据源</span></div></div>
+<div class="stat"><b><span class="stat-emoji">🛡️</span> 12</b><div class="stat-label"><span data-en="Security Rules" data-zh="安全规则">安全规则</span></div></div>
+<div class="stat"><b><span class="stat-emoji">🔍</span> ∞</b><div class="stat-label"><span data-en="Keyword Search" data-zh="关键词搜索">关键词搜索</span></div></div>
+<div class="stat"><b><span class="stat-emoji">📨</span> Auto</b><div class="stat-label"><span data-en="Weekly Report" data-zh="周报推送">周报推送</span></div></div>
+</div>
+</div></section>
+
+<section id="usage" style="background:var(--bg)"><div class="container">
+<div class="section-label">💡 <span data-en="Usage Examples" data-zh="使用场景">使用场景</span></div>
+<h2><span data-en="What can it do?" data-zh="它能做什么？">它能做什么？</span></h2>
+<p class="section-desc"><span data-en="From discovery to audit to weekly trends — cover the full skill lifecycle." data-zh="从发现到审查到周报——覆盖 Skill 全生命周期。">从发现到审查到周报——覆盖 Skill 全生命周期。</span></p>
+<div style="overflow-x:auto">
+<table class="usage-table">
+<thead><tr>
+<th><span data-en="Scenario" data-zh="场景">场景</span></th>
+<th><span data-en="You Say" data-zh="你说的话">你说的话</span></th>
+<th><span data-en="What Happens" data-zh="实际效果">实际效果</span></th>
+</tr></thead>
+<tbody>
+<tr><td><span data-en="🔍 Search" data-zh="🔍 搜索">🔍 搜索</span></td><td>"Find a PDF form skill"</td><td><span data-en="Searches 4 sources, returns ranked results with descriptions + links + stars" data-zh="搜索4个源，返回带描述、链接、星标的排序结果">搜索4个源，返回带描述、链接、星标的排序结果</span></td></tr>
+<tr><td><span data-en="🛡️ Audit" data-zh="🛡️ 审查">🛡️ 审查</span></td><td>"Audit this skill"</td><td><span data-en="Downloads to sandbox, runs 12-rule scan, reports risk level" data-zh="下载到沙箱，运行12条规则扫描，报告风险等级">下载到沙箱，运行12条规则扫描，报告风险等级</span></td></tr>
+<tr><td><span data-en="📊 Weekly" data-zh="📊 周报">📊 周报</span></td><td>"What's trending?"</td><td><span data-en="Top 8 curated picks using a three-signal selection model, auto-pushed to messaging" data-zh="Top 8 严选 + 三维严选，自动推送到消息平台">Top 8 严选 + 三维严选，自动推送到消息平台</span></td></tr>
+<tr><td><span data-en="📦 Install" data-zh="📦 安装">📦 安装</span></td><td>"Install safely"</td><td><span data-en="Staging isolation + scanner audit + risk-gated install command" data-zh="暂存区隔离 + 扫描审计 + 风险分级安装命令">暂存区隔离 + 扫描审计 + 风险分级安装命令</span></td></tr>
+<tr><td><span data-en="🐉 CN-friendly" data-zh="🐉 国内加速">🐉 国内加速</span></td><td>"Search SkillHub"</td><td><span data-en="Queries Tencent SkillHub public API for China-accelerated discovery" data-zh="查询腾讯SkillHub公开API，国内加速发现">查询腾讯SkillHub公开API，国内加速发现</span></td></tr>
+</tbody>
+</table>
+</div>
+</div></section>
+
+<section id="highlights" style="background:var(--bg-warm)"><div class="container">
+<div class="section-label">✨ <span data-en="Core Highlights" data-zh="核心亮点">核心亮点</span></div>
+<h2><span data-en="Why mu-skill-hunter?" data-zh="为什么选 mu-skill-hunter？">为什么选 mu-skill-hunter？</span></h2>
+<p class="section-desc"><span data-en="Four-source discovery, 12-rule security, curated selection, and automated weekly reports." data-zh="四源采集、12条安全规则、三维严选、自动周报。">四源采集、12条安全规则、三维严选、自动周报。</span></p>
+<div class="cards-grid">
+<div class="card">
+<div class="card-icon">🌐</div>
+<h3><span data-en="Four-Source Discovery" data-zh="四源采集">四源采集</span></h3>
+<p><span data-en="GitHub + ClawHub + SkillHub + Skills.sh — parallel search by your keywords, unified ranked results." data-zh="GitHub + ClawHub + SkillHub + Skills.sh——根据关键词并行搜索，统一排序展示。">GitHub + ClawHub + SkillHub + Skills.sh——根据关键词并行搜索，统一排序展示。</span></p>
+<div class="card-tag"><span data-en="4 sources" data-zh="四源并行">四源并行</span></div>
+</div>
+<div class="card">
+<div class="card-icon">🛡️</div>
+<h3><span data-en="Security Scanner" data-zh="安全审查">安全审查</span></h3>
+<p><span data-en="12 rules: 10 Hard Reject + 2 AI-specific. Sandbox isolation. Summary-only output, no raw code." data-zh="12条规则：10条硬拒绝 + 2条AI特有。沙箱隔离。只输出摘要，不暴露原始代码。">12条规则：10条硬拒绝 + 2条AI特有。沙箱隔离。只输出摘要，不暴露原始代码。</span></p>
+<div class="card-tag"><span data-en="12 rules" data-zh="12 条规则">12 条规则</span></div>
+</div>
+<div class="card">
+<div class="card-icon">📊</div>
+<h3><span data-en="Three-Signal Curation" data-zh="三维严选">三维严选</span></h3>
+<p><span data-en="Heat 50% + Relevance 30% + Freshness 20%. Forced source diversity in weekly reports." data-zh="热度50% + 相关性30% + 新鲜度20%。周报强制来源多样性。">热度50% + 相关性30% + 新鲜度20%。周报强制来源多样性。</span></p>
+<div class="card-tag"><span data-en="Curated top picks" data-zh="严选推荐">严选推荐</span></div>
+</div>
+<div class="card">
+<div class="card-icon">📨</div>
+<h3><span data-en="Scheduled Reports" data-zh="定时趋势报告">定时趋势报告</span></h3>
+<p><span data-en="Scheduled recurring reports with curated top picks. Delivered to your preferred platform at your chosen frequency." data-zh="定时巡检，精选推荐自动推送。推送频率完全可自定义，按你的节奏来。">定时巡检，精选推荐自动推送。推送频率完全可自定义，按你的节奏来。</span></p>
+<div class="card-tag"><span data-en="Customizable" data-zh="自定义频率">自定义频率</span></div>
+</div>
+<div class="card">
+<div class="card-icon">🔒</div>
+<h3><span data-en="Prompt Injection Guard" data-zh="注入防护">注入防护</span></h3>
+<p><span data-en="AI1 rule detects injection patterns. Scanner never feeds raw code to Agent context." data-zh="AI1规则检测注入特征。扫描器绝不将原始代码喂入Agent上下文。">AI1规则检测注入特征。扫描器绝不将原始代码喂入Agent上下文。</span></p>
+<div class="card-tag"><span data-en="AI-safe" data-zh="AI 安全">AI 安全</span></div>
+</div>
+<div class="card">
+<div class="card-icon">⚡</div>
+<h3><span data-en="Zero Dependencies" data-zh="零依赖">零依赖</span></h3>
+<p><span data-en="Python 3.8+ stdlib only. No pip install needed. External CLIs optional for extra sources." data-zh="仅用 Python 3.8+ 标准库。无需 pip install。外部CLI可选，用于额外数据源。">仅用 Python 3.8+ 标准库。无需 pip install。外部CLI可选，用于额外数据源。</span></p>
+<div class="card-tag"><span data-en="stdlib only" data-zh="仅标准库">仅标准库</span></div>
+</div>
+</div>
+</div></section>
+
+<section id="comparison" style="background:var(--bg)"><div class="container">
+<div class="section-label">📌 <span data-en="Comparison" data-zh="对比">对比</span></div>
+<h2><span data-en="How does it compare?" data-zh="与同类工具对比">与同类工具对比</span></h2>
+<p class="section-desc"><span data-en="mu-skill-hunter vs. single-source alternatives." data-zh="mu-skill-hunter 与单源替代方案对比。">mu-skill-hunter 与单源替代方案对比。</span></p>
+<div style="overflow-x:auto">
+<table class="comparison-table">
+<thead><tr>
+<th><span data-en="Feature" data-zh="功能">功能</span></th>
+<th>mu-skill-hunter</th>
+<th><span data-en="Manual GitHub" data-zh="手动GitHub">手动GitHub</span></th>
+<th><span data-en="ClawHub Only" data-zh="仅ClawHub">仅ClawHub</span></th>
+<th><span data-en="Skills.sh Only" data-zh="仅Skills.sh">仅Skills.sh</span></th>
+</tr></thead>
+<tbody>
+<tr><td><span data-en="Sources" data-zh="数据源">数据源</span></td><td>4 (All)</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td><span data-en="Security scan" data-zh="安全扫描">安全扫描</span></td><td><span class="check">✅ 12 rules</span></td><td><span class="cross">❌</span></td><td><span class="cross">❌</span></td><td><span class="cross">❌</span></td></tr>
+<tr><td><span data-en="Three-signal curation" data-zh="三维严选">三维严选</span></td><td><span class="check">✅</span></td><td><span class="cross">❌</span></td><td><span class="cross">❌</span></td><td><span class="cross">❌</span></td></tr>
+<tr><td><span data-en="Trend reports" data-zh="趋势报告">趋势报告</span></td><td><span class="check">✅ Auto</span></td><td><span class="cross">❌</span></td><td><span class="cross">❌</span></td><td><span class="cross">❌</span></td></tr>
+<tr><td><span data-en="Parallel search" data-zh="并行搜索">并行搜索</span></td><td><span class="check">✅</span></td><td><span class="cross">❌</span></td><td><span class="cross">❌</span></td><td><span class="cross">❌</span></td></tr>
+<tr><td><span data-en="China acceleration" data-zh="国内加速">国内加速</span></td><td><span class="check">✅ SkillHub</span></td><td><span class="cross">❌</span></td><td><span class="cross">❌</span></td><td><span class="cross">❌</span></td></tr>
+<tr><td><span data-en="Risk-gated install" data-zh="风险分级安装">风险分级安装</span></td><td><span class="check">✅ 4-level</span></td><td><span class="cross">❌</span></td><td><span class="cross">❌</span></td><td><span class="cross">❌</span></td></tr>
+<tr><td><span data-en="Injection guard" data-zh="注入防护">注入防护</span></td><td><span class="check">✅</span></td><td><span class="cross">❌</span></td><td><span class="cross">❌</span></td><td><span class="cross">❌</span></td></tr>
+</tbody>
+</table>
+</div>
+</div></section>
+
+<section id="workflows" style="background:var(--bg-warm)"><div class="container">
+<div class="section-label">🚀 <span data-en="Workflows" data-zh="工作流">工作流</span></div>
+<h2><span data-en="Three core workflows" data-zh="三大工作流">三大工作流</span></h2>
+<p class="section-desc"><span data-en="From discovery to audit to weekly trends." data-zh="从发现到审查到周报。">从发现到审查到周报。</span></p>
+<div class="workflows">
+<div class="workflow-item">
+<div class="workflow-name">🔍 <span data-en="Search Discovery" data-zh="搜索发现">搜索发现</span></div>
+<div class="workflow-scene"><span data-en="Find a skill that can do X" data-zh="找一个能做X的Skill">找一个能做X的Skill</span></div>
+<div class="workflow-trigger"><span data-en="User describes need or says 'find skill'" data-zh="用户描述需求或说'找Skill'">用户描述需求或说'找Skill'</span></div>
+</div>
+<div class="workflow-item">
+<div class="workflow-name">🛡️ <span data-en="Security Audit" data-zh="安全审查">安全审查</span></div>
+<div class="workflow-scene"><span data-en="Audit/install this skill" data-zh="审查/安装这个Skill">审查/安装这个Skill</span></div>
+<div class="workflow-trigger"><span data-en="User ready to install an external skill" data-zh="用户准备安装外部Skill">用户准备安装外部Skill</span></div>
+</div>
+<div class="workflow-item">
+<div class="workflow-name">📊 <span data-en="Weekly Report" data-zh="周报推送">周报推送</span></div>
+<div class="workflow-scene"><span data-en="Weekly trending digest" data-zh="每周热门摘要">每周热门摘要</span></div>
+<div class="workflow-trigger"><span data-en="Scheduled (customizable) or manual" data-zh="定时（频率可自定义）或手动">定时（频率可自定义）或手动</span></div>
+</div>
+</div>
+</div></section>
+
+<section class="cta-section"><div class="container">
+<h2><span data-en="Stop <em>guessing</em>.<br><em>Scan</em> before you install." data-zh="别再<em>盲目安装</em>。<br><em>先扫描</em>再装。">别再<em>盲目安装</em>。<br><em>先扫描</em>再装。</span></h2>
+<p><span data-en="Four sources, twelve rules, one curated selection model — discover skills with confidence." data-zh="四源发现、十二条规则、一套三维严选——放心发现 Skill。">四源发现、十二条规则、一套三维严选——放心发现 Skill。</span></p>
+<div class="hero-actions">
+<a href="https://muippt.github.io/mu-skill-hub/" class="btn btn-primary"><span data-en="mu-skillhub" data-zh="mu-skill集合">mu-skill集合</span></a>
+<a href="https://github.com/muippt/mu-skill-hunter/archive/refs/heads/main.zip" class="btn btn-secondary"><span data-en="Download ZIP" data-zh="下载 ZIP">下载 ZIP</span></a>
+</div>
+</div></section>
+
+<footer><div class="container">
+<div class="footer-badges">
+<a href="https://mp.weixin.qq.com/s/YLtXENt_7WzO2DgJCFUtPA" target="_blank"><img data-en-src="https://img.shields.io/badge/muippt-07C160?logo=wechat&logoColor=white" data-zh-src="https://img.shields.io/badge/木先生iPPT-07C160?logo=wechat&logoColor=white" alt="WeChat" height="20"></a>
+<a href="https://xhslink.com/m/ESxtgUNMdl" target="_blank"><img data-en-src="https://img.shields.io/badge/muippt-FF2442?logo=xiaohongshu&logoColor=white" data-zh-src="https://img.shields.io/badge/木先生iPPT-FF2442?logo=xiaohongshu&logoColor=white" alt="Xiaohongshu" height="20"></a>
+<a href="https://item.m.jd.com/product/14547345.html" target="_blank"><img data-en-src="https://img.shields.io/badge/Book-Visual%20Team%20Management-BBDDE5?logo=bookstack&logoColor=white" data-zh-src="https://img.shields.io/badge/著作-《图解团队管理》-BBDDE5?logo=bookstack&logoColor=white" alt="Book" height="20"></a>
+<a href="https://muippt.github.io/mu-skill-hub/" target="_blank"><img data-en-src="https://img.shields.io/badge/mu--skillhub-9E95B7?logo=refinedgithub&logoColor=white" data-zh-src="https://img.shields.io/badge/mu--skill集合-9E95B7?logo=refinedgithub&logoColor=white" alt="mu-skillhub" height="20"></a>
+<a href="https://github.com/muippt" target="_blank"><img src="https://img.shields.io/badge/muippt-181717?logo=github&logoColor=white" alt="GitHub" height="20"></a>
+</div>
+</div></footer>
+
+<script>
+(function(){
+  var sw=document.getElementById('langSwitch');
+  var spans=sw.querySelectorAll('span');
+  function applyLang(lang){
+    document.querySelectorAll('[data-'+lang+']').forEach(function(el){
+      el.innerHTML=el.getAttribute('data-'+lang);
+    });
+    document.querySelectorAll('img[data-'+lang+'-src]').forEach(function(img){
+      var s=img.getAttribute('data-'+lang+'-src');if(s)img.src=s;
+    });
+    spans.forEach(function(s){s.classList.toggle('active',s.getAttribute('data-lang')===lang)});
+    document.documentElement.lang=lang==='zh'?'zh':'en';
+  }
+  spans.forEach(function(s){s.addEventListener('click',function(){applyLang(s.getAttribute('data-lang'))})});
+  /* Always start in Chinese: no localStorage / navigator.language restore. */
+  applyLang('zh');
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+{
+  "name": "ccpa-check",
+  "version": "2.2.4",
+  "description": "CCPA/CPRA 合规检查。仅在用户明确要求 CCPA/CPRA 合规评估 / 加州消费者隐私审查时激活。免费 检查（云端真实评分），12 项核心检查；无 Key 自动匿名试用（5 次），额度用尽后一键注册引导。API Key 在网页 compliancehub.cn/account.html 注册获取（注册后即时显示），通过 COMPLIANCEHUB_API_KEY 环境变量或 ~/.config/compliancehub 密钥文件提供。",
+  "author": "CQDev",
+  "license": "MIT",
+  "permissions": {
+    "network": [
+      "https://compliancehub.cn"
+    ],
+    "filesystem": {
+      "write": [
+        "~/.config/compliancehub"
+      ]
+    },
+    "env": [
+      "COMPLIANCEHUB_API_KEY"
+    ]
+  },
+  "openclaw": {
+    "category": "compliance",
+    "region": "global",
+    "emoji": "🔒",
+    "displayName": "CCPA/CPRA Compliance Check",
+    "keywords": [
+      "CCPA",
+      "CPRA",
+      "privacy",
+      "California",
+      "compliance",
+      "data-protection",
+      "US-privacy"
+    ],
+    "files": [
+      "SKILL.md",
+      "scripts/ccpa-check.py",
+      "package.json"
+    ],
+    "permissions": {
+      "network": [
+        "https://compliancehub.cn"
+      ],
+      "filesystem": {
+        "write": [
+          "~/.config/compliancehub"
+        ]
+      },
+      "env": [
+        "COMPLIANCEHUB_API_KEY"
+      ]
+    }
+  }
+}

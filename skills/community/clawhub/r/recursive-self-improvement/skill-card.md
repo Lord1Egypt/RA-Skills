@@ -1,43 +1,50 @@
-## Description: <br>
-Recursive Self Improvement guides an agent through repair and optimization cycles that detect errors, analyze root causes, make code or logic changes, test results, monitor performance, and continue improvement when stable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through recursive repair and optimization cycles for code or logic, with testing, monitoring, scheduling, learning, prediction, and recovery workflows.
 
-## Publisher: <br>
-[Erichy777](https://clawhub.ai/user/Erichy777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[erichy777](https://clawhub.ai/user/erichy777)
 
-## Use Case: <br>
-Developers and engineers use this skill to structure agent-led repair, refactoring, validation, monitoring, and iterative optimization work for clearly scoped software projects. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad code-changing and optimization authority. <br>
-Mitigation: Use a sandbox or dedicated branch, require explicit approval before edits, and keep version-control rollback available. <br>
-Risk: Recursive improvement cycles and concurrent work can continue beyond the intended scope or consume unnecessary resources. <br>
-Mitigation: Define a narrow project scope, cap recursion and concurrency, set stopping criteria, and review each cycle before continuing. <br>
-Risk: Automated fixes or refactors can introduce regressions even when they appear to improve metrics. <br>
-Mitigation: Run unit, integration, performance, and regression tests before accepting changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Recursive Self Improvement ClawHub Page](https://clawhub.ai/Erichy777/recursive-self-improvement) <br>
-- [Workflows](references/workflows.md) <br>
-- [Examples](references/examples.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to structure iterative code or logic repair, refactoring, validation, performance monitoring, and improvement cycles for complex systems.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and implementation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include run records, repair plans, optimization plans, test guidance, performance metrics, and configuration snippets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Recursive agent-driven code changes can continue without clear stopping conditions, budgets, approvals, or rollback controls.
+
+Mitigation: Use the skill only in an isolated, version-controlled, backed-up project with explicit file scope, review every proposed patch and version change, and define budgets, rollback checkpoints, and acceptance criteria before starting optimization.
+
+## Reference(s):
+
+- [Workflow reference](references/workflows.md)
+- [Usage examples](references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/erichy777/skills/recursive-self-improvement)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with JSON configuration and run record examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes suggested modes, state labels, workflow steps, testing targets, monitoring metrics, and configuration parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

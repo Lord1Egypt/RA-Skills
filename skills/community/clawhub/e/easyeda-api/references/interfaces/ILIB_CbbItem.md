@@ -1,11 +1,11 @@
 # ILIB\_CbbItem interface
 
-复用模块属性
+Reuse block property
 
 ## Signature
 
 ```typescript
-interface ILIB_CbbItem 
+interface ILIB_CbbItem
 ```
 
 ## Properties
@@ -14,156 +14,124 @@ interface ILIB_CbbItem
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [boards](./ILIB_CbbItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 Array&lt;[IDMT\_BoardItem](./IDMT_BoardItem.md)<!-- -->&gt;
 
-
 </td><td>
 
-下属板子
-
+Subordinate boards
 
 </td></tr>
 <tr><td>
 
 [classification?](./ILIB_CbbItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 [ILIB\_ClassificationIndex](./ILIB_ClassificationIndex.md) \| Array&lt;string&gt;
 
-
 </td><td>
 
-_(Optional)_ 分类
-
+_(Optional)_ Classification
 
 </td></tr>
 <tr><td>
 
 [description?](./ILIB_CbbItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 描述
-
+_(Optional)_ Description
 
 </td></tr>
 <tr><td>
 
 [libraryType](./ILIB_CbbItem.md)
 
-
 </td><td>
 
 `readonly`
-
 
 </td><td>
 
 [ELIB\_LibraryType.CBB](../enums/ELIB_LibraryType.md)
 
-
 </td><td>
 
-库类型
-
+Library type
 
 </td></tr>
 <tr><td>
 
 [libraryUuid](./ILIB_CbbItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-所属库 UUID
-
+UUID of the library it belongs to
 
 </td></tr>
 <tr><td>
 
 [name](./ILIB_CbbItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-复用模块名称
-
+Reuse block name
 
 </td></tr>
 <tr><td>
 
 [uuid](./ILIB_CbbItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-复用模块 UUID
-
+Reuse block UUID
 
 </td></tr>
 </tbody></table>
@@ -176,7 +144,7 @@ string
 
 # ILIB\_CbbItem.boards property
 
-下属板子
+Subordinate boards
 
 ## Signature
 
@@ -188,7 +156,7 @@ boards: Array<IDMT_BoardItem>;
 
 # ILIB\_CbbItem.classification property
 
-分类
+Classification
 
 ## Signature
 
@@ -200,7 +168,7 @@ classification?: ILIB_ClassificationIndex | Array<string>;
 
 # ILIB\_CbbItem.description property
 
-描述
+Description
 
 ## Signature
 
@@ -212,7 +180,7 @@ description?: string;
 
 # ILIB\_CbbItem.libraryType property
 
-库类型
+Library type
 
 ## Signature
 
@@ -224,7 +192,7 @@ readonly libraryType: ELIB_LibraryType.CBB;
 
 # ILIB\_CbbItem.libraryUuid property
 
-所属库 UUID
+UUID of the library it belongs to
 
 ## Signature
 
@@ -236,7 +204,7 @@ libraryUuid: string;
 
 # ILIB\_CbbItem.name property
 
-复用模块名称
+Reuse block name
 
 ## Signature
 
@@ -248,7 +216,7 @@ name: string;
 
 # ILIB\_CbbItem.uuid property
 
-复用模块 UUID
+Reuse block UUID
 
 ## Signature
 

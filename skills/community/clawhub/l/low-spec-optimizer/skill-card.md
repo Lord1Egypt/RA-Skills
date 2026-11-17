@@ -1,40 +1,53 @@
-## Description: <br>
-Helps agents optimize OpenClaw on low-resource machines by checking system load, cleaning stale sessions and caches, and recommending lightweight configuration settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize OpenClaw performance on machines with limited resources (4GB RAM or less, old CPUs). Use when (1) user mentions slow performance, high RAM usage, or system lag, (2) running on Raspberry Pi, old laptops, or budget VPS, (3) proactively during heartbeats to check system health, (4) before spawning multiple subagents on low-resource machines. Provides resource monitoring, automatic cleanup, session management, and configuration recommendations for constrained environments.
 
-## Publisher: <br>
-[lunaviva211-sketch](https://clawhub.ai/user/lunaviva211-sketch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lunaviva211-sketch](https://clawhub.ai/user/lunaviva211-sketch)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to monitor constrained machines, decide when to reduce workload, clean stale local state, and apply lower-resource configuration recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cleanup actions can remove local sessions, caches, and broader system state than a user may expect. <br>
-Mitigation: Run cleanup with --dry-run first, review the listed targets, and use --aggressive only when intentionally clearing npm, pip, and journal data. <br>
-Risk: The cleanup script uses hard-coded /home/nvi paths and includes stale-session cleanup logic that may not match every installation. <br>
-Mitigation: Adjust paths for the target environment and test cleanup on non-critical session history before relying on it for important OpenClaw data. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor constrained OpenClaw environments, clean stale local sessions and caches, and choose lighter configuration settings before running heavy agent work.
 
-## Reference(s): <br>
-- [Low-Spec Configuration Guide](references/config-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Resource checker script emits JSON system metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The cleanup helper can delete local session, trash, browser profile, package-cache, and journal data beyond the narrow resource-optimization task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the dry-run mode first, review every target path, and avoid aggressive cleanup unless the user explicitly wants package-cache and journal cleanup.
+
+Risk: Running cleanup with elevated privileges could widen the deletion impact.
+
+Mitigation: Use normal user privileges by default and require explicit user confirmation before any elevated cleanup action.
+
+## Reference(s):
+
+- [Low-Spec Configuration Guide](references/config-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to run local shell scripts that report resource usage or clean selected local cache and session paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

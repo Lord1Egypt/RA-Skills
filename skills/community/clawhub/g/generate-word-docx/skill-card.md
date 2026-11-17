@@ -1,40 +1,53 @@
-## Description: <br>
-Creates Word (.docx) documents from a structured content list with headings, paragraphs, quotes, alignment, bold text, and color formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create professional Word (.docx) documents from a user-provided content list with styled headings, paragraphs, colors, alignment, and formatting.
 
-## Publisher: <br>
-[sereinZhi](https://clawhub.ai/user/sereinZhi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sereinzhi](https://clawhub.ai/user/sereinzhi)
 
-## Use Case: <br>
-Agents use this skill when a user wants supplied text, reports, summaries, or formal document content converted into a local Word document with basic styling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may automatically install the unpinned python-docx dependency with pip. <br>
-Mitigation: In controlled environments, pre-install a reviewed and pinned python-docx version before using the skill. <br>
-Risk: The skill writes user-provided content to a local .docx file. <br>
-Mitigation: Choose the output filename and location deliberately, especially for sensitive content. <br>
+## Use Case:
 
+Developers and agents use this skill to convert user-provided outlines, reports, letters, summaries, and other structured content into formatted Word documents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sereinZhi/generate-word-docx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Python function calls and structured JSON-like paragraph objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local .docx file and may invoke pip to install python-docx if the dependency is missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The helper automatically installs an unpinned python-docx package when the dependency is missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an environment where automatic package installation is acceptable, or preinstall a pinned python-docx version and review dependency changes.
+
+Risk: The helper can write .docx output to caller-chosen file paths.
+
+Mitigation: Use a dedicated output directory and avoid sensitive, absolute, or arbitrary filenames unless reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sereinzhi/skills/generate-word-docx)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Shell commands]
+
+**Output Format:** [Word (.docx) document with console status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a .docx file from a list of paragraph objects with optional style, alignment, bold, and color fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

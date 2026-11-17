@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn73w1n1kp2bn6kx7zpr1a5yxs82rfgs",
   "slug": "multi-search-aggregator",
+  "name": "Multi-Search Aggregator",
   "version": "1.0.0",
-  "publishedAt": 1774489726509
+  "description": "多搜索聚合器 - 一次搜索调用多个引擎（Tavily、Brave、Perplexity），结果统一返回",
+  "author": "智云助手",
+  "tags": ["search", "aggregator", "tavily", "brave", "perplexity", "ai"],
+  "homepage": "",
+  "license": "MIT"
 }

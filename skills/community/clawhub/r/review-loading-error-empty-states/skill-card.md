@@ -1,41 +1,55 @@
-## Description: <br>
-Check loading, error, empty, partial, and retry states for a UI surface. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check loading, error, empty, partial, and retry states for a UI surface.
 
-## Publisher: <br>
-[ritual](https://clawhub.ai/user/ritual) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ritual](https://clawhub.ai/user/ritual)
 
-## Use Case: <br>
-Developers and coding agents use this skill to review UI surfaces for loading, error, empty, partial-data, slow-network, and retry behavior, then confirm handled states or report explicit gaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional Ritual Cloud setup may install npm tooling or connect the workspace to an external cloud service. <br>
-Mitigation: Use the local checklist workflow by default and require explicit user approval before running npm install commands or initializing Ritual Cloud. <br>
-Risk: Optional knowledge capture can create repository note files. <br>
-Mitigation: Offer OKF note creation only when reusable knowledge is found and write files only after the user approves the exact action. <br>
+## Use Case:
 
+Developers and engineers use this skill to review UI surfaces for handled loading, error, empty, partial-data, slow-network, and retry states before release.
 
-## Reference(s): <br>
-- [Ritual homepage](https://ritual.work) <br>
-- [Open Knowledge Format overview](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with optional code edits, shell commands, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce optional OKF notes only with user approval; optional Ritual Cloud setup requires explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Optional knowledge-note creation can add durable project documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Create knowledge notes only after explicit user approval and keep them small, sourced, and reviewable.
+
+Risk: The optional Ritual Cloud upgrade suggests a global npm CLI installation.
+
+Mitigation: Review and pin the Ritual CLI package before installation, or use the local-only workflow when cloud context is unnecessary.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ritual/skills/review-loading-error-empty-states)
+- [Publisher profile](https://clawhub.ai/user/ritual)
+- [Ritual homepage](https://ritual.work)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with optional code, shell command, and configuration edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include explicit gap reports and optional knowledge-note proposals when reusable project knowledge is found.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

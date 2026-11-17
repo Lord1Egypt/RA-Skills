@@ -1,42 +1,54 @@
-## Description: <br>
-Defragment and optimize agent memory files by cleaning duplicates, merging similar entries, archiving stale content, and ensuring proper tiering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Defragments and optimizes agent memory files by identifying duplicate entries, stale content, tiering issues, and formatting problems.
 
-## Publisher: <br>
-[klemenska](https://clawhub.ai/user/klemenska) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[klemenska](https://clawhub.ai/user/klemenska)
 
-## Use Case: <br>
-Developers and agent operators use this skill to inspect, plan, and apply cleanup for local agent memory markdown files so duplicate, stale, or overlarge entries can be reviewed and reorganized. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read local agent memory markdown and create backup copies from broad home-directory paths. <br>
-Mitigation: Run it only against a known memory directory with an explicit --path, and remove .defrag_backup copies after confirming they are no longer needed. <br>
-Risk: Execution behavior is less scoped and less accurate than advertised. <br>
-Mitigation: Run --plan or --dry-run first, inspect the generated plan manually, and run verify_memory.py after any execution. <br>
-Risk: Memory files and backups may contain sensitive personal or operational information. <br>
-Mitigation: Limit access to generated plans and backups, review them before sharing, and delete sensitive backup copies when retention is no longer required. <br>
+## Use Case:
 
+Developers and agent operators use this skill to inspect agent memory files, generate cleanup plans, create backups, and verify basic memory file integrity during maintenance.
 
-## Reference(s): <br>
-- [Memory Defragmentation Rules](references/rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Console reports and Markdown defragmentation plans with shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create backup copies and plan files when execution or plan modes are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The execute path can report archive or compact actions even though the scanned implementation only creates backups and prints status.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat --execute as an analyzer and backup path unless the implementation is fixed; review the plan and manually verify file changes before relying on cleanup results.
+
+Risk: Backup copies may contain sensitive agent memory and identity state.
+
+Mitigation: Restrict access to .defrag_backup contents and remove backup copies after the recovery window when they are no longer needed.
+
+## Reference(s):
+
+- [Memory Defragmentation Rules](references/rules.md)
+- [ClawHub skill page](https://clawhub.ai/klemenska/skills/memory-defragmenter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown plan plus terminal text reports and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create defragment-plan.md and .defrag_backup copies when the bundled scripts are run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

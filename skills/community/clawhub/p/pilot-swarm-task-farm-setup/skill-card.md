@@ -1,43 +1,62 @@
-## Description: <br>
-Deploy a self-organizing Pilot Protocol compute swarm with five agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys a self-organizing five-agent compute swarm with leader, worker, and monitor roles for distributed task execution.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to configure a five-agent Pilot Protocol task farm with one leader, three workers, and one monitor, including required skills, hostnames, manifests, trust handshakes, and example message flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Peer trust handshakes can authorize the wrong host if identities are not checked before setup. <br>
-Mitigation: Verify each leader, worker, and monitor peer before running handshake commands. <br>
-Risk: Port 1002 carries task assignments, results, and worker metrics between swarm nodes. <br>
-Mitigation: Restrict port 1002 to trusted networks and hosts you control. <br>
-Risk: Slack alerts can expose operational details if the bridge is misconfigured. <br>
-Mitigation: Review the installed pilot-slack-bridge settings before sending alerts to Slack. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure a distributed task farm with a leader, three workers, and a monitor for map-reduce style work distribution and swarm health tracking.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-swarm-task-farm-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON manifest templates and bash command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Assumes pilotctl, clawhub, the pilot-protocol skill, and a running daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill installs multiple companion skills that affect leader, worker, and monitor behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify each companion skill before installation.
+
+Risk: The setup creates persistent agent trust relationships through handshakes.
+
+Mitigation: Confirm peer identities before handshaking and know how to revoke trust entries.
+
+Risk: Swarm communication and Slack alerting can expose task or health data if destinations are too broad.
+
+Mitigation: Restrict port 1002 access and validate Slack destinations before deployment.
+
+Risk: The setup writes a persistent manifest under ~/.pilot.
+
+Mitigation: Use only on hosts you control and document how to remove the ~/.pilot manifest during rollback.
+
+## Reference(s):
+
+- [Pilot Protocol Homepage](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-swarm-task-farm-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes role-specific setup steps, manifest templates, handshake commands, and data-flow examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

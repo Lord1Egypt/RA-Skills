@@ -1,43 +1,58 @@
-## Description: <br>
-Read and parse XML from construction systems - P6 schedules, BSDD exports, IFC-XML, COBie-XML. Convert to pandas DataFrames. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and parse XML from construction systems - P6 schedules, BSDD exports, IFC-XML, COBie-XML. Convert to pandas DataFrames.
 
-## Publisher: <br>
-[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction)
 
-## Use Case: <br>
-Developers, construction data analysts, and project controls teams use this skill to parse XML exports from construction systems and turn elements from P6, IFC-XML, COBie-XML, and BSDD sources into structured pandas DataFrames for analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local construction data files supplied by the user. <br>
-Mitigation: Install and use it only when local file access is intended, and provide only trusted project files. <br>
-Risk: Untrusted or unusually large XML inputs can create ordinary parsing reliability and resource-use risk. <br>
-Mitigation: Keep XML inputs trusted and reasonably sized, validate inputs before parsing, and report parsing errors clearly. <br>
-Risk: Documentation mentions CSV, Excel, and JSON handling beyond the primary XML parsing scope. <br>
-Mitigation: Verify non-XML export or conversion behavior before relying on it in a workflow. <br>
+## Use Case:
 
+Construction data practitioners and developers use this skill to parse XML exports from P6 schedules, IFC-XML, COBie-XML, and buildingSMART Data Dictionary into structured tables for analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/datadrivenconstruction/xml-reader) <br>
-- [Publisher homepage](https://datadrivenconstruction.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with Python code examples and structured tables when applicable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May suggest Excel, CSV, or JSON export options when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: The skill requires filesystem access to construction data files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant access only to intended project files and review file paths before parsing.
+
+Risk: Very large or deeply nested XML inputs can create parser-hardening and reliability issues.
+
+Mitigation: Use trusted XML inputs where possible and validate file size and nesting depth before processing.
+
+Risk: CSV, Excel, and JSON support is mentioned as informal output handling rather than explicit parser behavior.
+
+Mitigation: Treat non-XML formats and exports as convenience outputs that require user review before relying on them.
+
+## Reference(s):
+
+- [Data Driven Construction Homepage](https://datadrivenconstruction.io)
+- [ClawHub Skill Page](https://clawhub.ai/datadrivenconstruction/skills/xml-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with Python code examples and structured tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May present parsed XML elements as pandas DataFrame-style tables and suggest CSV, Excel, or JSON exports.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

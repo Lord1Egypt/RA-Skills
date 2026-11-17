@@ -1,37 +1,52 @@
-## Description: <br>
-Strategy for solving constraint optimization problems on spatial maps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Strategy for solving constraint optimization problems on spatial maps. Use when you need to place items on a grid/map to maximize some objective while satisfying constraints.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wu-uk](https://clawhub.ai/user/wu-uk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, analysts, and strategy-focused agents use this skill to reason about grid or map placement problems by pruning invalid tiles, ranking high-value candidates, and applying anchor-based local search.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The strategy may influence an agent to produce suboptimal or incorrect placement guidance if scoring functions, hard constraints, or adjacency effects are modeled poorly.
+
+Mitigation: Validate final placements against all constraints and review the scoring assumptions before using the guidance for a decision.
+
+Risk: The artifact includes illustrative Python pseudocode that is intended as an algorithm sketch, not production-ready software.
+
+Mitigation: Treat code blocks as examples and adapt them with tests, input validation, and domain-specific constraint checks before execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, analysts, and strategy-focused users use this skill to plan grid or map placements that maximize an objective while satisfying terrain, range, adjacency, and other hard constraints. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, code]
 
-## Known Risks and Mitigations: <br>
-Risk: Heuristic placement guidance can produce suboptimal or invalid recommendations if map constraints, scoring rules, or adjacency interactions are modeled incorrectly. <br>
-Mitigation: Validate every proposed solution against all hard constraints and compare results against the domain-specific scoring function before relying on the recommendation. <br>
+**Output Format:** [Markdown guidance with illustrative Python pseudocode]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces reasoning strategy and algorithm structure; it does not execute code or access external systems.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Code] <br>
-**Output Format:** [Markdown with Python pseudocode] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides a three-phase heuristic strategy covering pruning, tile scoring, anchor-point search, greedy expansion, local search, and final constraint validation.] <br>
+0.1.0 (source: release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

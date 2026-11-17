@@ -1,40 +1,58 @@
-## Description: <br>
-Monitors cryptocurrency funding-rate and basis-arbitrage signals for ETH perpetual contracts across exchanges such as Gate.io, Binance, and OKX, then returns buy, watch, or risk signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors ETH crypto arbitrage signals by checking funding rates and basis opportunities across exchanges, then produces a Chinese-language buy, wait, or risk signal report.
 
-## Publisher: <br>
-[pcy891](https://clawhub.ai/user/pcy891) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pcy891](https://clawhub.ai/user/pcy891)
 
-## Use Case: <br>
-External users and crypto analysts use this skill to request arbitrage-monitoring reports for ETH funding rates, estimated annualized yield, exchange comparisons, and risk signals. The output is research-oriented market analysis and does not execute trades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trading-signal reports may be acted on as financial advice or with stale market data. <br>
-Mitigation: Treat outputs as research only; verify live exchange data, fees, position sizing, and account risk before taking any action. <br>
-Risk: The skill could be invoked for general crypto discussion where arbitrage monitoring is not intended. <br>
-Mitigation: Use it only for explicit funding-rate, arbitrage, or exchange-rate monitoring requests. <br>
+## Use Case:
 
+External users and agents use this skill to gather live ETH funding-rate and arbitrage context and summarize potential spot-perpetual or cross-exchange opportunities. It is intended as a monitoring and signal-reporting aid, not as a substitute for independent financial analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pcy891/crypto-arbitrage-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with exchange comparison tables, ratings, strategy notes, and risk reminders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses current market-search summaries when available; does not request credentials, persist data, or execute trades.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact version note) <br>
+Risk: The skill can produce actionable crypto trading recommendations from broad arbitrage or funding-rate prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output only as a monitoring aid and require independent review before any trading decision.
+
+Risk: The evidence security summary identifies a material annualized-return error in the template example.
+
+Mitigation: Recalculate annualized returns from live funding rates and verify fees, slippage, and timestamps before relying on reported yields.
+
+Risk: Funding rates and spreads can change quickly and may reverse before settlement.
+
+Mitigation: Verify current exchange data immediately before opening or closing positions and monitor for negative funding-rate changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pcy891/skills/crypto-arbitrage-monitor)
+- [Publisher profile](https://clawhub.ai/user/pcy891)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with exchange funding-rate table, overall rating, strategy guidance, timing note, and risk warnings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output; relies on current market data searches and requires independent verification of rates, fees, slippage, timestamps, and annualized-return math.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version note)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

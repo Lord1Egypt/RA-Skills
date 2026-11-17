@@ -1,0 +1,6 @@
+interface:
+  display_name: "Project Quality Governance"
+  short_description: "Govern specs, change logs, and quality checks"
+  default_prompt: "Use $project-quality-governance to structure and validate engineering quality documentation."
+policy:
+  allow_implicit_invocation: true

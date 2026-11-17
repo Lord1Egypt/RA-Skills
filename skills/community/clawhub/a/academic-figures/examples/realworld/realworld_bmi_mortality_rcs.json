@@ -1,0 +1,71 @@
+{
+ "_chart_type": "rcs",
+ "_command": "python3 scripts/gen_figure.py -t rcs -d examples/realworld/realworld_bmi_mortality_rcs.json -o rcs_bmi.png --cjk --pub-ready",
+ "_note": "场景：BMI-全因死亡限制性立方样条（模拟 Cox 比例风险模型 4 结样条输出；n=12000 队列文献常见量级）。U 形曲线：低 BMI 段 HR 升高（反向因果常见讨论点）、23.5 附近最低、≥27.5 后单调上升且 CI 下限>1（显著）。与亚组森林图/敏感性分析构成暴露-结局非线性报告三件套。",
+ "points": [
+  {
+   "value": 15.0,
+   "est": 1.78,
+   "ci_lo": 1.25,
+   "ci_hi": 2.54
+  },
+  {
+   "value": 17.5,
+   "est": 1.4,
+   "ci_lo": 1.1,
+   "ci_hi": 1.78
+  },
+  {
+   "value": 20.0,
+   "est": 1.15,
+   "ci_lo": 0.98,
+   "ci_hi": 1.35
+  },
+  {
+   "value": 22.0,
+   "est": 1.02,
+   "ci_lo": 0.92,
+   "ci_hi": 1.13
+  },
+  {
+   "value": 23.5,
+   "est": 1.0,
+   "ci_lo": 0.92,
+   "ci_hi": 1.09
+  },
+  {
+   "value": 25.0,
+   "est": 1.03,
+   "ci_lo": 0.96,
+   "ci_hi": 1.11
+  },
+  {
+   "value": 27.5,
+   "est": 1.15,
+   "ci_lo": 1.05,
+   "ci_hi": 1.26
+  },
+  {
+   "value": 30.0,
+   "est": 1.32,
+   "ci_lo": 1.16,
+   "ci_hi": 1.5
+  },
+  {
+   "value": 33.0,
+   "est": 1.55,
+   "ci_lo": 1.29,
+   "ci_hi": 1.86
+  },
+  {
+   "value": 36.0,
+   "est": 1.83,
+   "ci_lo": 1.44,
+   "ci_hi": 2.33
+  }
+ ],
+ "ref": 23.5,
+ "log_y": true,
+ "x_label": "BMI（kg/m²）",
+ "y_label": "全因死亡 HR（对数轴）"
+}

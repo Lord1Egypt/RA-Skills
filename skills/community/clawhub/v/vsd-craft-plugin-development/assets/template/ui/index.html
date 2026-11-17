@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Counter Settings</title>
+  <style>
+    body { background: #252525; color: #eee; font: 14px system-ui, sans-serif; margin: 16px; }
+    label { display: block; margin: 16px 0 8px; }
+    input, button { font: inherit; padding: 8px; }
+    input { width: 5em; }
+    p { line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <p id="status" role="status">Open from VSD Craft to connect.</p>
+  <label for="step">Step per operation (1-100)</label>
+  <input id="step" type="number" min="1" max="100" step="1" value="1" disabled>
+  <button id="save" type="button" disabled>Save</button>
+  <p>Press and release a key to increment. Turn a knob to increase or decrease; press and release it to reset to 0.</p>
+  <p>The value resets when the app restarts or the action becomes hidden, such as when switching pages. The step setting is saved.</p>
+  <script src="inspector.js"></script>
+</body>
+</html>

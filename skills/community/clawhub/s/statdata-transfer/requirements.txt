@@ -1,0 +1,39 @@
+# === statdata-transfer dependencies ===
+# Statistical data format converter — 30+ formats
+# Usage: pip install -r requirements.txt
+
+# -------------------------
+# Core (required for basic reading/writing)
+# -------------------------
+pandas>=2.0,<3
+pyreadstat>=1.3.5,<2
+pyreadr>=0.4,<0.5
+
+# -------------------------
+# File format support (install as needed)
+# -------------------------
+openpyxl>=3.1           # Excel .xlsx/.xlsm read/write
+xlrd>=2.0               # Excel .xls read (legacy)
+scipy>=1.11             # MATLAB .mat
+h5py>=3.10              # HDF5
+pyarrow>=17.0           # Parquet, Feather, Arrow, ORC (>=17.0 修复 CVE-2024-52338 反序列化；CVE-2026-25087 仅影响 C++ 预缓冲 API，Python 绑定不受影响)
+lxml>=6.1.0             # XML, HTML, CDISC ODM (>=6.1.0 修复 CVE-2026-41066 XXE；6.0 本身仍受影响，勿用 >=6.0)
+odfpy>=1.4              # ODS (OpenDocument Spreadsheet)
+tableauhyperapi>=0.0.22502  # Tableau Hyper .hyper read/write (ships prebuilt native libhyper; Python >=3.6, verified on 3.13)
+dbfread>=2.0.7          # dBASE / FoxPro .dbf read (pure-Python; 2.0.7 uses DBF(load=True))
+dbf>=0.99.11            # dBASE / FoxPro .dbf write (pure-Python; set codepage='utf8' for CJK)
+pyodbc>=5.0             # MS Access .mdb/.accdb read (requires Microsoft Access Driver from host)
+
+# -------------------------
+# Optional (require external software or special setup)
+# -------------------------
+# jmpio-python          # JMP .jmp binary format
+# pzfx                  # GraphPad Prism .pzfx/.pz
+# EpiData .rec requires external R + foreign package:
+#   R: https://cran.r-project.org/
+#   R> install.packages("foreign")
+
+# -------------------------
+# Development / testing
+# -------------------------
+# pytest

@@ -1,0 +1,264 @@
+name: headhunter-pro
+version: 28.0.0
+description: "猎头工具包 v28.0：AI 驱动的端到端招聘工作流——12 阶段商业闭环，快速指令全覆盖 + 四大行业人才情报 2026 + Q4 关单日历/合同谈判攻防/AI 招聘合规/出海人才配置/Silver Medalist 池运营"
+description_en: >-
+  AI-powered end-to-end recruiting workflow toolkit covering 12 stages
+  from talent mapping to onboarding, with 12 quick commands, 36 core
+  principles, 9-dimension scoring, BEI evaluation, PMCC outreach scripts,
+  a full compliance ecosystem for China's recruiting market, 2026 industry
+  talent intel for new energy / healthcare / consumer retail / finance,
+  plus payment-terms governance, counter-offer defense playbooks, intake-
+  kickoff SOP, enhanced recommendation reports, offer-reversal defense with
+  negotiation-lever ordering, candidate-experience SLA & ghosting
+  prevention, interview coaching 2026, SOHO business-model playbooks,
+  Q4/Spring-Festival closing calendar, contract & fee negotiation playbook,
+  AI-recruiting compliance (EU AI Act / NYC LL144), global staffing
+  advisory, and Silver Medalist pool operations.
+
+# ─── 输入契约 ───────────────────────────────────────────────
+input:
+  required:
+    - field: task_type
+      type: string
+      description: "任务类型：对应 12 阶段工作流中的具体阶段"
+      accepted_values:
+        [resume_screen, write_recommendation, generate_outreach,
+         interview_assess, client_manage, talent_mapping,
+         offer_negotiation, onboarding_support, data_optimization,
+         ai_workflow, compliance_ecosystem, workflow_sop]
+    - field: candidate_info
+      type: object
+      description: "候选人信息（简历文本或结构化数据）"
+      when: task_type in [resume_screen, write_recommendation, interview_assess]
+  optional:
+    - field: job_description
+      type: string
+      description: "职位描述（JD）文本"
+    - field: company_name
+      type: string
+      description: "目标公司名称"
+    - field: industry
+      type: string
+      description: "行业"
+      accepted_values: [快消零售, 金融, 新能源, 医疗, 其他]
+    - field: output_format
+      type: string
+      description: "输出格式偏好"
+      default: "markdown"
+
+# ─── 输出契约（按 task_type 独立 schema）────────────────────
+output:
+  format: markdown
+  task_schemas:
+
+    resume_screen:
+      description: "简历筛选 — 9 维度评分 + 风险评估"
+      required_sections:
+        - "候选人基本信息"
+        - "9 维度评分表"
+        - "JD 对标分析"
+        - "风险评估"
+        - "推荐结论（通过/待定/淘汰）"
+      rules:
+        - "9 维度必须每项有分数（1-10）和一句话理由"
+        - "不编造简历中没有的信息；缺失标注 N/A"
+        - "JD 对标用 ✅/⚠️/❌ 标注匹配度"
+
+    write_recommendation:
+      description: "五段式推荐报告"
+      required_sections:
+        - "基本信息"
+        - "JD 对标分析 + 岗位任务反推"
+        - "职业亮点深度叙述"
+        - "求职动机分析（PMCC 模型）"
+        - "9 维度匹配评分"
+        - "风险评估"
+        - "薪酬架构建议（含总包拆解：base/bonus/股权归属节奏/税后估算）"
+      rules:
+        - "开头必须有一句话画像钩子（具体数字+背景，不用形容词）"
+        - "JD 对标用左右分栏（要求 vs 可验证证据）；提交前过评价六要素（技能熟练度/年限/名企背书/业绩数据/性格判断/解决什么问题），详见 references/recommendation-report-v31.md"
+        - "附内部公平性/薪资倒挂风险预判一句话（33% 企业存在倒挂）"
+        - "9 维度综合评分必须给出 X/10"
+        - "围绕与职位最相关的 1-2 个职业阶段做深度叙述，不罗列简历"
+        - "薪酬建议包含市场基准分位和可谈项"
+
+    generate_outreach:
+      description: "个性化触达话术"
+      required_sections:
+        - "候选人画像摘要"
+        - "触达时机分析"
+        - "个性化话术（按渠道：微信/邮件/LinkedIn/电话）"
+        - "后续跟进建议"
+      rules:
+        - "必须引用候选人具体项目/经历，禁止套用模板"
+        - "首次触达须提供价值（行业趋势/竞争力报告）"
+        - "中间阶层候选人为主战场，语气不施压"
+
+    interview_assess:
+      description: "BEI/STAR 面试评估报告"
+      required_sections:
+        - "面试轮次与时间线"
+        - "BEI 行为验证记录"
+        - "STAR 维度评分"
+        - "面试官反馈汇总"
+        - "录用建议"
+      rules:
+        - "BEI 必须记录具体行为证据，非主观印象"
+        - "STAR 维度：Situation → Task → Action → Result 逐项验证"
+        - "录用建议分：强烈推荐/推荐/待定/不推荐"
+        - "评估批判性思维（如何分解模糊情况/如何验证多源信息/何时推翻 AI 输出），而不仅是 AI 熟练度——光辉国际 2026『先思辨，而后人工智能』"
+        - "面试辅导按 2026 趋势更新：稳定性追问（避免跳板式表述）、案例细节演练、优点不用空泛词/缺点不用假缺点；推人前拿到每位面试官考察点做分轮 briefing（详见 references/interview-coaching-debrief.md）"
+        - "建议客户 debrief 排次日上午（防决策疲劳苛刻评分）、面试官先独立宣读证据再群讨；向客户输出该流程建议作为增值服务"
+
+    client_manage:
+      description: "目标公司分析与 Hiring Signals"
+      required_sections:
+        - "公司基本面"
+        - "组织架构分析"
+        - "Hiring Signals（招聘动机/紧急度/文化偏好）"
+        - "关键岗位 Mapping"
+        - "客户信用与景气度筛查"
+        - "客户沟通策略建议"
+      rules:
+        - "Hiring Signals 基于公开信息+行业情报，标注信息来源"
+        - "关键岗位 Mapping 覆盖：汇报线 → 团队规模 → 核心职责"
+        - "客户信用筛查：A/B/C/D 分级 + 行业扩张但分化时须提示尾部客户信用风险（详见 references/payment-terms-collection.md）"
+        - "金融客户须区分大行/股份行/城商行/券商/中小机构并给出对应引才策略；出海型客户须识别用人模式（详见四大行业 intel references）"
+        - "涉外/欧洲岗位须问 AI 招聘合规状态（哪些环节用 AI、有无 EU 候选人、合规文档/候选人披露/退出机制），并把『合规可交付』写进服务方案（详见 references/ai-recruiting-compliance.md）"
+        - "出海客户须先诊断阶段（外派期/本地化过渡/全球循环）再定寻访策略；过渡期国内渠道失效，须切本地 mapping（详见 references/global-staffing-advisor.md）"
+        - "合同谈判遵循 trading-not-demanding：客户要降费率须换独家/量承诺/付款提速；年薪口径必须量化无歧义、保证期四要素写死、防跳单三条款入库、发票与付款解耦（详见 references/contract-fee-negotiation.md）"
+        - "新职位启动须走 Intake/Kick-off SOP：会前 24h 发 25 问表格、三段式议程、scorecard 标准写成可寻找的证据、预判取舍；市场反馈出现三大校准信号时主动校准并更新 Brief Baseline（详见 references/intake-kickoff-sop.md）"
+        - "客户关系维护含过程透明度标准：每周固定进展同步 + 里程碑报告（详见 references/bd-transparency-playbook.md）"
+
+    talent_mapping:
+      description: "人才寻访 — Longlist + Boolean 搜索"
+      required_sections:
+        - "寻访策略（渠道优先级）"
+        - "Boolean 搜索词（按平台）"
+        - "Longlist（10-30 人）"
+        - "GitHub/开源贡献分析（技术岗）"
+        - "触达优先级排序"
+      rules:
+        - "Longlist 必须含：姓名、当前公司、职位、核心技能、触达渠道"
+        - "Boolean 搜索词需区分平台（LinkedIn/脉脉/GitHub/Google X-Ray）"
+        - "技术岗附加 GitHub Proof of Work 信号"
+        - "出海岗位须识别用人模式（本地化 vs 外派），第一筛选项为是否愿意长期驻外 + 目标市场语言"
+        - "央国企岗位 mapping 前必须先核年龄上限与双证要求，避免无效推荐"
+        - "行业缺口岗位清单参照 references/{new-energy|healthcare|consumer-retail|finance}-talent-intel-2026.md"
+        - "出海岗须采集专用字段（外派经验/语言/家属情况/目标地接受度/艰苦地区经验/签证状态）；艰苦地区（中东/非洲/拉美）无国外经验者降权；并尽调客户出海投入真实性（预算/编制/撤项目历史）以防坑候选人"
+
+    offer_negotiation:
+      description: "薪酬架构设计与谈判策略"
+      required_sections:
+        - "候选人当前薪酬包"
+        - "市场基准分位对标"
+        - "竞对薪酬参考"
+        - "建议薪酬架构（现金+短期激励+长期激励+福利）"
+        - "谈判策略与话术"
+        - "挽留成本 vs 招聘成本分析"
+        - "付款条款与账期风险提示"
+        - "Counter-Offer 风险预判与应对"
+        - "Offer 反悔预防清单与 48h 黄金窗口话术"
+        - "入职前管理节奏（防 ghosting SOP）"
+        - "12 月/1 月入职者附 Quiet Onboarding 建议（前三周 Learn/Connect/Plan 不排硬任务 + Buddy + 年末聚会 + 节前批准 30-60-90）"
+      rules:
+        - "薪酬架构必须区分固定/浮动/长期激励/福利四大板块"
+        - "挽留成本 = 年薪 × 2-3 倍（高管选错成本）"
+        - "谈判策略区分候选人类型：积极/中间阶层/锁定"
+        - "付款条款：客户信用分级 + 合同 8 条核查（入职即确权/排除商票/≤60 日），详见 references/payment-terms-collection.md"
+        - "Counter-Offer 数据必须用可辩护版本（约 50% 收到/约 57% 接受/约 29% 留存过 12 个月），禁止引用『80%/6 个月』；SOP 详见 references/counter-offer-defense.md"
+        - "Q4/春节季首轮电话必问三件事：年终奖金额与发放日、vesting/成熟日、通知期与真实可到岗日；据此算 make-whole（sign-on 精确覆盖未领奖金+未归属股权）并考虑二段式 start date（详见 references/q4-closing-calendar.md）"
+        - "谈判杠杆按易→难排序使用：sign-on（一次性、不占带宽、不设先例）→ RSU 追加 → base（最难）；股权讲解先破五大误区，A股无 RSU/员工先出钱、H股红线 10%/12 个月/1%、红筹 0 对价 RSU（详见 references/offer-reversal-defense.md）"
+        - "候选人『再考虑一下』后 48h 内按三句话术跟进（理解→提供信息→设跟进节点），姿态=我帮你做决策；催vs跟：24h 电话、48-72h 上级午餐、一周未回换角度，≤2 次/周且每次带新信息"
+        - "offer 接受→入职日执行防 ghosting：每周 1 次联系+欢迎资料+团队午餐 1-2 位+第一周行程+设备权限 Day1 就绪；预警=响应变慢/engagement 下滑/不再问入职细节（详见 references/ghosting-prevention.md）"
+
+    onboarding_support:
+      description: "90 天入职护航计划"
+      required_sections:
+        - "候选人入职信息"
+        - "90 天跟踪时间表（第 1 周/第 2-4 周/第 2 月/第 3 月）"
+        - "回访话术（按阶段定制）"
+        - "风险预警等级（🔴/🟡/🟢）"
+        - "Silver Medalist 标记（如未入职）"
+      rules:
+        - "回访话术必须具体，禁止'你还好吗'等宽泛问题"
+        - "风险预警必须给出具体行动建议"
+        - "Silver Medalist 须标注原因、激活时间窗（3/6/12 个月）及下次触达日期；Closed-Lost 后 24h 内打标 + 48h 内发四段式体面拒信（明确结果/具体反馈/留门/关系动作），进入 Silver 池而非终止（详见 references/silver-medalist-pool-ops.md）"
+        - "11 月—次年 2 月护航节奏改版：第 1 周回访改为节前确认（装备/账号/聚会/30-60-90 是否批准），第 2 周改为节中轻量问候，快赢期顺延至节后第一周"
+        - "候选人奖金到账后 48 小时为反悔高危窗口，须主动跟进（不等候选人开口）"
+
+    data_optimization:
+      description: "漏斗转化与 Pipeline 分析"
+      required_sections:
+        - "招聘漏斗指标"
+        - "各阶段转化率"
+        - "渠道 ROI 分析"
+        - "候选人参与度评分"
+        - "优化建议"
+      rules:
+        - "参与度评分：5 维度 × 5 分 = 25 分（高/中/低/沉睡）"
+        - "转化率 = 上阶段人数 / 本阶段人数 × 100%"
+        - "优化建议必须可执行，附预期效果"
+        - "触达记录须含『响应质量』列（深度交流/简短客套/已读不回/无响应）；连续 2 次无响应自动降一个温度层（Hot→Warm→Cool）"
+        - "新职位启动第一动作 = 先查库内 Silver Medalist（同职能/职级+激活窗已到+未录用原因已消解），再启动外部 sourcing；记录 silver 激活 vs 新寻访速度差（预期 3 倍）"
+        - "人才库规模变大后维护 candidates/INDEX.md 轻量索引（姓名/职能/职级/温度/silver/激活窗/保留到期/目录），按需检索而非全量读取"
+
+    ai_workflow:
+      description: "AI 工作流与多 Agent 协同建议"
+      required_sections:
+        - "当前 AI 工具矩阵"
+        - "可复用工作流设计"
+        - "人工认知注入点"
+        - "数据驱动迭代计划"
+      rules:
+        - "AI 工具矩阵按四维度评估：被动触达/个性化质量/ATS 整合/性价比"
+        - "工作流必须明确 AI 做苦力 vs 人做决策的边界"
+        - "迭代计划需含基准指标和目标指标"
+        - "信号触发后的触达按 Day 1/3/7/14 cadence 执行；所有自动发送必须人工审批，LinkedIn 类自动化 ≤30 动作/小时（详见 references/ai-workflow-agents.md 信号监控 Cadence 节）"
+
+    compliance_ecosystem:
+      description: "合规检查清单与供应商评估"
+      required_sections:
+        - "劳动法合规检查"
+        - "数据隐私（PIPL）检查"
+        - "竞业协议风险评估"
+        - "供应商/AI 工具选型矩阵"
+      rules:
+        - "合规检查必须覆盖：劳动合同/背调授权/个人信息保护"
+        - "IQVIA 相关人员全部排除（璞睿红线）"
+        - "供应商评估含 7 维度矩阵 + 推荐场景"
+        - "AI 招聘合规：招聘 AI 属 EU AI Act 高风险（罚 €3500 万或全球营收 7%，2026-08-02 起可执行、2027-12-02 完整义务；总部在美/中不豁免）；NYC LL144 要求年度偏见审计 + 公示 impact ratio + 候选人可退出（详见 references/ai-recruiting-compliance.md）"
+        - "候选人数据治理字段必填：知情同意（日期+范围）、入库日期、保留到期（默认 2 年）、删除请求处理记录、跨境传输说明"
+        - "算法偏见季度自检：分诊规则与评分权重是否继承历史偏好（学历权重过高/年龄暗示词/目标公司过度集中/短名单性别构成）；坚持 human-in-the-loop 与 AI-for-Longlist-Human-for-Shortlist"
+
+    workflow_sop:
+      description: "标准操作流程"
+      required_sections:
+        - "新职位 SOP"
+        - "候选人 Pipeline 状态迁移"
+        - "交付物清单"
+      rules:
+        - "SOP 必须明确每阶段的输入、动作、输出、SLA"
+        - "Pipeline 状态迁移需含：标准动作 + 交付物 + SLA"
+        - "客户合作模式按 contingency→retained→RPO 升级路径设计；高管/敏感岗提供保密三级服务选项；SOHO 经营每季度跑失败五因自检（详见 references/soho-business-model.md）"
+
+  general_rules:
+    - "不编造缺失事实；明确标注假设"
+    - "候选人个人信息不输出到文件外"
+    - "推荐报告必须包含 9+1 维度评分"
+    - "触达话术必须个性化，不使用模板"
+
+# ─── 权限边界 ───────────────────────────────────────────────
+permissions:
+  file_access:
+    read: ["workspace/candidates/**", "workspace/memory/*.md"]
+    write: ["workspace/candidates/*/profile.md", "workspace/candidates/*/recommendation.md"]
+  connectors: []
+  external_api: false
+
+# ─── 已知限制 ───────────────────────────────────────────────
+limitations:
+  - "无法访问外部招聘平台（LinkedIn/猎聘/Boss直聘）的实时数据"
+  - "候选人联系方式需由用户手动提供"
+  - "行业趋势数据需联网搜索支持"
+  - "背调需人工执行，AI 仅提供检查清单"

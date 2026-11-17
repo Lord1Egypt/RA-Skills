@@ -1,45 +1,57 @@
-## Description: <br>
-Prepare for US medical licensing exams with progress tracking, weak area analysis, question bank management, and residency match planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prepare for US medical licensing exams with progress tracking, weak area analysis, question bank management, and residency match planning.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External learners preparing for USMLE Step 1, Step 2 CK, or Step 3 use this skill to plan study schedules, track question-bank and assessment progress, identify weak areas, and align score goals with residency plans. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide users to save exam dates, scores, residency goals, wrong-answer notes, and wellbeing information locally. <br>
-Mitigation: Decide what study and wellbeing data is appropriate to store, and review or delete the ~/usmle/ folder when privacy matters on the device. <br>
-Risk: Study plans, score estimates, and residency targeting guidance may be inaccurate or may not reflect current official exam or match requirements. <br>
-Mitigation: Treat generated plans and interpretations as study support, and confirm exam requirements, score reporting, ECFMG pathways, and residency expectations with official sources or qualified advisors. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [USMLE ClawHub release page](https://clawhub.ai/ivangdavila/usmle) <br>
-- [Exam structure and scoring](exam-config.md) <br>
-- [Progress tracking system](tracking.md) <br>
-- [Study methods and resources](study-methods.md) <br>
-- [Residency targeting](targets.md) <br>
-- [User type adaptations](user-types.md) <br>
-- [Stress management and wellbeing](wellbeing.md) <br>
+## Use Case:
 
+Medical students, international medical graduates, retakers, and supporters use this skill to plan USMLE preparation, track progress, analyze weak areas, manage question-bank work, and align Step goals with residency targets.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with local study-tracking file suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May suggest saving exam dates, scores, study sessions, wrong-answer notes, goals, and wellbeing details under ~/usmle/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may create and maintain local USMLE records under ~/usmle/ that include exam dates, goals, scores, study logs, question bank progress, assessments, and feedback.
+
+Mitigation: Confirm that local persistence is acceptable before using tracking features, especially on shared or managed computers, and periodically delete or move ~/usmle/ when the records are no longer needed.
+
+Risk: Study, score, and residency planning guidance can influence high-stakes exam and career decisions.
+
+Mitigation: Use the skill as planning support and verify exam requirements, score interpretation, application timing, and wellbeing concerns with official program resources or qualified advisors before acting.
+
+## Reference(s):
+
+- [USMLE Exam Structure](artifact/exam-config.md)
+- [Progress Tracking System](artifact/tracking.md)
+- [Study Methods and Resources](artifact/study-methods.md)
+- [Stress Management and Wellbeing](artifact/wellbeing.md)
+- [Residency Targeting](artifact/targets.md)
+- [User Type Adaptations](artifact/user-types.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with study plans, progress summaries, tracking templates, and structured recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose and maintain local study records under ~/usmle/ when the user asks for tracking.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

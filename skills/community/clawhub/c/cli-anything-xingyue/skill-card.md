@@ -1,45 +1,59 @@
-## Description: <br>
-Cli Anything helps agents generate, install, refine, and validate command-line interfaces for existing software so those tools can be controlled through shell commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cli Anything helps agents generate, install, refine, validate, and use command-line interfaces for software by using the CLI-Anything workflow.
 
-## Publisher: <br>
-[YIKAI123456](https://clawhub.ai/user/YIKAI123456) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yikai123456](https://clawhub.ai/user/yikai123456)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install prebuilt CLI harnesses or guide CLI generation for software such as GIMP, Blender, LibreOffice, and OBS so an agent can invoke those tools through shell commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch changing GitHub code and update CLI-Anything content under the user's home directory. <br>
-Mitigation: Install only when the upstream CLI-Anything repository is trusted, review fetched code before use, and prefer an isolated workspace for evaluation. <br>
-Risk: The skill can install generated or upstream Python harness packages into the user's environment with pip. <br>
-Mitigation: Review harness contents before /cli-install, use a virtual environment or container, and uninstall generated packages when no longer needed. <br>
-Risk: Generated CLIs may act on local software, files, or project repositories. <br>
-Mitigation: Avoid running the skill on untrusted repositories and review generated commands and outputs before applying them to important files. <br>
+## Use Case:
 
+Developers and agent operators use this skill to list available generated CLIs, install prebuilt CLI harnesses, and guide CLI generation, refinement, and validation for target software.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/YIKAI123456/cli-anything-xingyue) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/YIKAI123456) <br>
-- [CLI-Anything Project Referenced by Skill](https://github.com/HKUDS/CLI-Anything) <br>
-- [CLI-Anything Documentation Referenced by Skill](https://github.com/HKUDS/CLI-Anything/blob/main/README_CN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide or invoke git and pip workflows, and may generate or install CLI harness files in the user's environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill can clone or update mutable upstream code into the user's home directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream code and prefer a pinned, reviewed revision before relying on cloned or updated content.
+
+Risk: The skill can install Python packages from generated or downloaded harness directories with pip.
+
+Mitigation: Inspect each agent-harness before installation and install inside an isolated Python environment.
+
+Risk: Generated CLIs may control local software or produce incorrect behavior if the harness is incomplete.
+
+Mitigation: Run the provided validation flow and manually test generated commands against non-sensitive sample projects before broader use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yikai123456/skills/cli-anything-xingyue)
+- [CLI-Anything Repository](https://github.com/HKUDS/CLI-Anything)
+- [CLI-Anything Chinese README](https://github.com/HKUDS/CLI-Anything/blob/main/README_CN.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text with shell commands, JSON-capable CLI examples, and file-oriented validation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include commands for cloning upstream code, installing generated harnesses with pip, and validating agent-harness directory structure.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

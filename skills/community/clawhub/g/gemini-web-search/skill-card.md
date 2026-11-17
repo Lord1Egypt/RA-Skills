@@ -1,36 +1,52 @@
-## Description: <br>
-Uses Gemini CLI to perform web search and fact-finding and return concise, sourced summaries for up-to-date information requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Gemini CLI (@google/gemini-cli) to do web search and fact-finding, then return a concise sourced summary for up-to-date information requests.
 
-## Publisher: <br>
-[fengjiajie](https://clawhub.ai/user/fengjiajie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fengjiajie](https://clawhub.ai/user/fengjiajie)
 
-## Use Case: <br>
-Developers and agents use this skill to ask Gemini CLI for current web research, source links, market or event context, and concise fact-finding summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fengjiajie/gemini-web-search) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with sourced bullets and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a locally configured Gemini CLI. Review Gemini account or API credentials before use, prefer the bundled helper script, and avoid pasting untrusted text into raw shell command templates.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Developers and agent users use this skill when they need current web search, news triage, source links, or fact-finding summaries produced through Gemini CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Prompt text passed through the bundled shell wrapper may be interpreted as local shell syntax.
+
+Mitigation: Avoid the wrapper until it is changed to pass Gemini arguments without shell interpretation; review command execution before use.
+
+Risk: Web-search prompts or Gemini CLI activity may use an existing local Gemini login or session.
+
+Mitigation: Use only non-sensitive prompts and confirm the active Gemini account/session before running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fengjiajie/skills/gemini-web-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with concise bullets, links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces sourced summaries and may provide Gemini CLI prompts or troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

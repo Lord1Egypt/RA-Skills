@@ -1,8 +1,18 @@
 ---
 name: stocktoday
-description: A股 / 港股 / 美股 / 基金 / 期货 / 期权 / 债券 / 宏观 数据研究技能. 提供 235+ 个数据接口, 后端走 StockToday 自定义加速 (https://tushare.citydata.club/), 接口命名跟 tushare 100% 兼容. 适用于把"看走势 / 查财报 / 比较公司 / 看板块 / 看资金流 / 梳理公告新闻 / 看宏观 / 拉数据导出"这类请求, 转成可执行的金融数据获取 / 清洗 / 对比 / 筛选 / 导出流程.
+slug: stocktoday
+displayName: Stocktoday Data
+summary: A股 / 港股 / 美股 / 基金 / 期货 / 期权 / 债券 / 宏观 数据研究技能, 275 个接口, tushare 协议兼容.
+description: A股 / 港股 / 美股 / 基金 / 期货 / 期权 / 债券 / 宏观 数据研究技能. 提供 275 个数据接口, 后端走 StockToday 自定义加速 (https://tushare.citydata.club/), 接口命名跟 tushare 100% 兼容. 适用于把"看走势 / 查财报 / 比较公司 / 看板块 / 看资金流 / 梳理公告新闻 / 看宏观 / 拉数据导出"这类请求, 转成可执行的金融数据获取 / 清洗 / 对比 / 筛选 / 导出流程.
 author: stocktoday.pro
-version: 2.0.2
+version: 2.3.0
+license: MIT
+tags:
+  - finance
+  - 股票
+  - 金融数据
+  - tushare
+  - 量化
 requirements:
   python: 3.7+
   packages:
@@ -18,7 +28,7 @@ requirements:
 
 # stocktoday
 
-StockToday 自有数据研究技能, 提供 235+ 个数据接口, 后端走 StockToday 自定义加速 (`https://tushare.citydata.club/`). 接口命名跟 tushare 100% 兼容, LLM 用标准 tushare 写法即可调用.
+StockToday 自有数据研究技能, 提供 275 个数据接口, 后端走 StockToday 自定义加速 (`https://tushare.citydata.club/`). 接口命名跟 tushare 100% 兼容, LLM 用标准 tushare 写法即可调用.
 
 ## 🚀 首次使用 (必读, 3 步)
 
@@ -40,6 +50,11 @@ export TUSHARE_TOKEN="your_token_here"
 ```bash
 TUSHARE_TOKEN=your_token python <skill_dir>/scripts/proxy_demo.py
 ```
+
+> Windows 控制台默认 GBK 编码, 直接跑可能报 `UnicodeEncodeError`. 加 `PYTHONIOENCODING=utf-8` 即可:
+> ```bash
+> PYTHONIOENCODING=utf-8 TUSHARE_TOKEN=your_token python <skill_dir>/scripts/proxy_demo.py
+> ```
 
 5 个 demo 全通 (茅台日线 / 财务指标 / 白酒对比 / 资金流 / 板块) = 装好 ✅.
 
@@ -75,7 +90,7 @@ print(df.head())
 
 ## 🧭 任务驱动 (从自然语言到接口)
 
-> **核心原则**: 用户说人话时, 先**判断任务类型** → **选推荐接口** → **套默认参数**, 不要从 235 个接口里瞎挑.
+> **核心原则**: 用户说人话时, 先**判断任务类型** → **选推荐接口** → **套默认参数**, 不要从 275 个接口里瞎挑.
 > 下方 10 大任务路由覆盖 95% 真实请求.
 
 ### 自然语言触发 (这些说法直接进 skill)
@@ -135,7 +150,7 @@ print(df.head())
 
 ### ⭐ 29 个核心接口 (覆盖 80% 任务)
 
-> 优先从这 29 个里选, 其它 200+ 接口按需翻 `references/数据接口.md`.
+> 优先从这 29 个里选, 其它 250+ 接口按需翻 `references/数据接口.md`.
 
 | 分类 | 接口 |
 |---|---|
@@ -415,9 +430,9 @@ ann = pro.anns_d(ts_code=ts_code, start_date="20260101", end_date="20260618")
 
 ## 🛠️ 工具列表 (按分类)
 
-> 完整 235 个工具,按 23 个分类列出。**所有 schema 含 `type` / `required` / `pattern` / `enum` / `default`**, 详见 [references/数据接口.md](./references/数据接口.md).
+> 完整 275 个工具,按 24 个分类列出。**所有 schema 含 `type` / `required` / `pattern` / `enum` / `default`**, 详见 [references/数据接口.md](./references/数据接口.md).
 
-### 股票-基础数据 (18)
+### 股票-基础数据 (20)
 | 工具 | 说明 |
 |---|---|
 | `stock_basic` | **查股票列表**: list_status='L' 上市 / 'D' 退市 / 'P' 暂停 |
@@ -432,9 +447,9 @@ ann = pro.anns_d(ts_code=ts_code, start_date="20260101", end_date="20260618")
 | `bak_basic` | 备用基础数据 |
 | `bse_mapping` | 北交所新旧代码对照 |
 | `stock_hsgt` | 沪深港通股票列表 (需 ts_code 或 trade_date) |
-| ... | 还有 6 个,见 references/数据接口.md |
+| ... | 还有 8 个,见 references/数据接口.md |
 
-### 股票-行情数据 (21)
+### 股票-行情数据 (24)
 | 工具 | 说明 | 必填 |
 |---|---|---|
 | `daily` | 日线行情 | ts_code + (trade_date \| start_date+end_date) |
@@ -454,7 +469,7 @@ ann = pro.anns_d(ts_code=ts_code, start_date="20260101", end_date="20260618")
 | `bak_daily` | 备用每日行情 | trade_date |
 | `stk_mins` | 股票历史分钟 | ts_code + freq='1min'~'60min' **小写** |
 | `idx_mins` | 指数历史分钟 (必传 ts_code + freq) | ts_code + freq |
-| ... | 还有 4 个,见 references/数据接口.md |
+| ... | 还有 7 个,见 references/数据接口.md |
 
 ### 股票-财务数据 (17)
 | 工具 | 说明 | 必填 |
@@ -489,7 +504,7 @@ ann = pro.anns_d(ts_code=ts_code, start_date="20260101", end_date="20260618")
 | `moneyflow_mkt_dc` | 东方财富市场资金流 (trade_date) |
 | `moneyflow_cnt_ths` | 同花顺概念资金流 (trade_date) |
 
-### 指数数据 (22)
+### 指数数据 (23)
 | 工具 | 说明 |
 |---|---|
 | `index_basic` | 指数基本信息 (market='SSE'/'SZSE'/'BSE') |
@@ -503,7 +518,7 @@ ann = pro.anns_d(ts_code=ts_code, start_date="20260101", end_date="20260618")
 | `ci_daily` | 中证指数日线 |
 | `sw_daily` | 申万指数日线 |
 | `idx_factor_pro` | 指数因子 (PE/PB/动量) |
-| ... | 还有 11 个,见 references/数据接口.md |
+| ... | 还有 12 个,见 references/数据接口.md |
 
 ### 打板专题 (16)
 | 工具 | 说明 |
@@ -517,7 +532,6 @@ ann = pro.anns_d(ts_code=ts_code, start_date="20260101", end_date="20260618")
 | `dc_member` | 东财成分股 (trade_date) |
 | `dc_hot` | 东财热榜 (trade_date) |
 | `kpl_list` | 开盘啦榜单 (trade_date) |
-| `kpl_concept` | 开盘啦概念 (trade_date) |
 | `kpl_concept_cons` | 开盘啦概念成分 (trade_date) |
 | `limit_list_d` | 涨跌停明细 (trade_date) |
 | `limit_list_ths` | 同花顺涨跌停榜单 (trade_date) |
@@ -562,10 +576,9 @@ ann = pro.anns_d(ts_code=ts_code, start_date="20260101", end_date="20260618")
 | 环境变量 | 默认 | 说明 |
 |---|---|---|
 | `TUSHARE_TOKEN` | (无) | **必填**, 你的 API token |
-| `TUSHARE_GATEWAY` | `https://tushare.citydata.club/` | 自定义后端地址 |
-| `TUSHARE_GATEWAY_BACKUP1` | `http://111.229.164.2:8083/` | 备用 gateway 1 |
-| `TUSHARE_GATEWAY_BACKUP2` | `http://124.223.112.152:6331/` | 备用 gateway 2 |
-| `TUSHARE_GATEWAY_BACKUP3` | `http://110.42.211.9:9900/` | 备用 gateway 3 |
+| `TUSHARE_GATEWAY` | `https://tushare.citydata.club/` | 自定义后端地址. **必须是 https**, 且主机名在白名单 (`tushare.citydata.club`) 内 —— 明文 HTTP 或非白名单主机会把 API token 导向不可信端点, 因此脚本会直接拒绝 |
+| `TUSHARE_GATEWAY_BACKUP2` | (无) | 自备**备用直连地址** (主站 DNS/线路异常时兜底). 需配合 `TUSHARE_GATEWAY_ALLOW_INSECURE=1` 才会生效; 明文 HTTP 下 token 与数据**不加密**, 仅应急, 用完切回 https 主站 |
+| `TUSHARE_GATEWAY_ALLOW_INSECURE` | (无) | 设为 `1` 才允许 http:// 明文 gateway (默认拒绝) |
 
 ## 🆘 故障排查
 
@@ -573,6 +586,7 @@ ann = pro.anns_d(ts_code=ts_code, start_date="20260101", end_date="20260618")
 |---|---|---|
 | `ImportError: No module named 'tushare'` | 依赖没装 | `pip install tushare pandas` |
 | `TOKEN无效` | token 错/失效/被封 | 调 `token_info` 自查 |
+| `UnicodeEncodeError: 'gbk' codec can't encode` | Windows 默认控制台是 GBK, 打印 emoji 崩 | `PYTHONIOENCODING=utf-8 python scripts/proxy_demo.py` (脚本已内置兜底, 若仍报错请换带 emoji 的终端) |
 | 调工具超时 | 网络问题 / gateway 全挂 | 检查 `tushare.citydata.club` 通不通 |
 | 频繁返 `请求超限20000次` | token 当日额度用完 | 明日 0 点重置, 或换 token |
 | 问"今天"返空 | 今天休市 (周末/节假日) | 改问"最近一个交易日" |
@@ -583,6 +597,7 @@ ann = pro.anns_d(ts_code=ts_code, start_date="20260101", end_date="20260618")
 - ClawHub: `stocktoday-py` skill 页面
 - 项目目录: `D:\office\stocktoday-data\`
 - 完整接口文档: [references/数据接口.md](./references/数据接口.md)
+- 接口使用提示 (日期格式/src 大小写/VIP 接口/数据时效): [references/接口使用提示.md](./references/接口使用提示.md)
 - 实战示例: [scripts/proxy_demo.py](./scripts/proxy_demo.py), [scripts/finance_demo.py](./scripts/finance_demo.py), [scripts/sector_demo.py](./scripts/sector_demo.py)
 
 ## License

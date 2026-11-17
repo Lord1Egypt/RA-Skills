@@ -1,0 +1,1 @@
+Copy samples into the active agent workspace before running. Use input.json for an initial record, then export.json with the returned ID where requested. CSV examples are fictional; import.json imports the supplied CSV. Replace requestId for a new operation. For reminders, obtain a real scheduler job and receipt first; the sample prepares a request without creating a timer.

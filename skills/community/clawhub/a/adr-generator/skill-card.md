@@ -1,41 +1,52 @@
-## Description: <br>
-Architecture Decision Record generator that analyzes codebases and documents technical decisions with context, alternatives, and consequences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Architecture Decision Record generator - analyze codebases and document technical decisions with context, alternatives, and consequences.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to create Architecture Decision Records for significant technical choices, including framework selection, API contracts, tool adoption, and trade-off decisions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Command placeholders such as keywords, package names, and imports may be unsafe if pasted directly into a shell.
+
+Mitigation: Treat placeholder values as untrusted input; pass them as separate command arguments or quote them safely.
+
+Risk: Retrospective ADRs can miss or overstate the original alternatives and rationale.
+
+Mitigation: Have decision owners review the generated context, alternatives, and consequences before accepting the ADR.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering teams use this skill to draft Architecture Decision Records from codebase analysis or project discussions, capturing context, alternatives, decisions, consequences, and references for review. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ADRs may include sensitive repository history, internal documentation, names, or business context. <br>
-Mitigation: Review and redact ADRs before committing, publishing, or sharing them outside the intended audience. <br>
-Risk: Generated decision records may overstate rationale when historical evidence is incomplete. <br>
-Mitigation: Have project maintainers verify the context, alternatives, deciders, and consequences before accepting the ADR. <br>
+**Output Format:** [Markdown ADR content with optional shell command snippets for repository analysis]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/charlie-morrison/adr-generator) <br>
-- [Skill source: SKILL.md](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [Uses the Michael Nygard ADR structure and suggests conventional docs/adr file organization.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with ADR templates and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed ADR file paths, sequential numbering guidance, and review-ready decision records.] <br>
+1.0.1 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

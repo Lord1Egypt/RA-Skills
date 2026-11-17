@@ -1,42 +1,54 @@
-## Description: <br>
-Headless browser automation CLI optimized for AI agents with accessibility tree snapshots and ref-based element selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Headless browser automation CLI optimized for AI agents with accessibility tree snapshots and ref-based element selection.
 
-## Publisher: <br>
-[alexbingquanxu-cpu](https://clawhub.ai/user/alexbingquanxu-cpu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexbingquanxu-cpu](https://clawhub.ai/user/alexbingquanxu-cpu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to drive browser workflows through the external agent-browser CLI, using accessibility snapshots and ref-based element selection for deterministic navigation, interaction, extraction, and session handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved browser state, cookies, localStorage, and authentication files can expose account access. <br>
-Mitigation: Treat saved state as credentials, avoid printing or sharing it, and do not commit saved state files. <br>
-Risk: Browser automation can perform account-impacting actions such as purchases, public posts, settings changes, or production changes. <br>
-Mitigation: Use test or least-privileged accounts and manually review sensitive actions before execution. <br>
-Risk: The skill depends on an external agent-browser CLI. <br>
-Mitigation: Install and use the CLI only when the publisher and package source are trusted. <br>
+## Use Case:
 
+Developers and AI agents use this skill to automate browser workflows through the agent-browser CLI, including navigation, ref-based interaction, information retrieval, session isolation, state persistence, screenshots, PDFs, and network control.
 
-## Reference(s): <br>
-- [agent-browser CLI](https://github.com/vercel-labs/agent-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, markdown] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance assumes the external agent-browser CLI is installed and may lead the agent to create browser state, screenshots, or PDF files when those commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill relies on installing and running the third-party agent-browser npm package as a global CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting the package source and reviewing it under the adopting team's dependency policy.
+
+Risk: Saved browser state, cookies, and localStorage can contain credentials or session secrets.
+
+Mitigation: Treat state and storage outputs like passwords: keep them out of source control and logs, restrict file permissions, and use isolated sessions for sensitive accounts.
+
+## Reference(s):
+
+- [agent-browser CLI repository](https://github.com/vercel-labs/agent-browser)
+- [ClawHub skill page](https://clawhub.ai/alexbingquanxu-cpu/skills/agent-browser-custom)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes command-oriented guidance for browser automation, isolated sessions, saved state, cookies, localStorage, screenshots, PDFs, and network controls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

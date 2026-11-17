@@ -1,44 +1,59 @@
-## Description: <br>
-Shadows Security Scanner guides agents through a seven-phase security audit covering reconnaissance, dependency checks, application and API review, hardening, secrets verification, and reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+7-phase security audit pipeline: reconnaissance, dependency scan, application tests, API security, hardening check, OWASP verification, and report generation for use before production deployments or after incidents.
 
-## Publisher: <br>
-[NakedoShadow](https://clawhub.ai/user/NakedoShadow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nakedoshadow](https://clawhub.ai/user/nakedoshadow)
 
-## Use Case: <br>
-Developers, security reviewers, and release engineers use this skill to run an evidence-based repository security audit before production deployments, after incidents, or when sensitive code paths change. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects repository source files, dependency manifests, and git history, so generated reports may expose sensitive project details or secret-like values. <br>
-Mitigation: Run it only on intended repositories in a secure terminal and review reports before sharing them. <br>
-Risk: Dependency audit phases may contact external vulnerability databases, and HTTP header checks may make an outbound request when a target URL is provided. <br>
-Mitigation: Confirm that network access is acceptable for the environment and only provide target URLs that are in scope for the audit. <br>
-Risk: Pattern-based checks can produce false positives or miss vulnerabilities outside the documented signatures. <br>
-Mitigation: Treat findings as review inputs and complement them with dedicated SAST, SCA, DAST, and secrets-scanning tools where appropriate. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to run a structured repository security audit, inspect dependencies and application risks, verify hardening, check for exposed secrets, and produce an actionable Markdown report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NakedoShadow/shadows-security-scanner) <br>
-- [Publisher profile](https://clawhub.ai/user/NakedoShadow) <br>
-- [ClawHub homepage from skill metadata](https://clawhub.ai/NakedoShadow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown security audit report with command output summaries and findings tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only workflow; reports may include file paths, command output, vulnerability identifiers, and secret-like matches from the inspected repository.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and artifact/SKILL.md) <br>
+Risk: The scan reads source files and git history, and reports may display discovered secret-like values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run reports in a private terminal and redact sensitive findings before sharing output.
+
+Risk: Dependency audit tools and the optional HTTP header check can make outbound network requests.
+
+Mitigation: Run those checks only where network access is approved, and provide a target URL only for systems you intend to check.
+
+Risk: Pattern-based checks can miss vulnerabilities or flag harmless examples.
+
+Mitigation: Treat results as review input and confirm findings with focused manual review or dedicated SAST, SCA, DAST, and secrets-scanning tools.
+
+## Reference(s):
+
+- [Shadows Security Scanner on ClawHub](https://clawhub.ai/nakedoshadow/skills/shadows-security-scanner)
+- [NakedoShadow publisher profile](https://clawhub.ai/user/nakedoshadow)
+- [ClawHub metadata homepage](https://clawhub.ai/NakedoShadow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown security audit report with command output summaries, findings, vulnerability tables, hardening status, and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only audit flow; dependency scanners and optional HTTP header checks may make outbound requests when those phases are run.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

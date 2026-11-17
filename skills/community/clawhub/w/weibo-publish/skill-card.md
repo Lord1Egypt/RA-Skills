@@ -1,44 +1,58 @@
-## Description: <br>
-Publish text and image posts to Weibo through m.weibo.cn using browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish text and image posts to Weibo (m.weibo.cn) using browser automation, including text-only posts, image posts, and automated publishing workflows that use an existing browser login session.
 
-## Publisher: <br>
-[noah-1106](https://clawhub.ai/user/noah-1106) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noah-1106](https://clawhub.ai/user/noah-1106)
 
-## Use Case: <br>
-Agents and users use this skill to publish text-only or image posts to Weibo from an existing authenticated browser session and verify the result on the profile page. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish public content from an authenticated Weibo account. <br>
-Mitigation: Before sending, confirm the active account, exact post text, attached images, and final Send action. <br>
-Risk: Cleanup commands can remove shared temporary or browser media files if used too broadly. <br>
-Mitigation: Limit cleanup to files created for the current post and review any broad deletion command before execution. <br>
-Risk: The compose page may stay open after publishing, creating a chance of accidental duplicate posts. <br>
-Mitigation: Verify the latest post on the profile page, then close the compose tab before considering the workflow complete. <br>
+## Use Case:
 
+Developers and operators use this skill to publish text and image content to a logged-in Weibo account through browser automation while verifying the published post afterward.
 
-## Reference(s): <br>
-- [Workflow Examples](references/workflow-examples.md) <br>
-- [Weibo mobile compose page](https://m.weibo.cn/compose) <br>
-- [Weibo mobile site](https://m.weibo.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, browser automation commands] <br>
-**Output Format:** [Markdown with browser automation steps and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an existing Weibo login session, manual post verification, and cleanup of temporary upload files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can post publicly through the currently logged-in Weibo browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for the intended Weibo account and require explicit approval before the agent clicks send.
+
+Risk: The skill includes cleanup commands that may be unsafe if run with wildcard or placeholder paths.
+
+Mitigation: Delete only verified temporary upload files with exact paths, and avoid broad cleanup commands.
+
+Risk: The compose page may remain open after publishing and can create accidental duplicate-post risk.
+
+Mitigation: Verify the latest post on the personal page after publishing, then close the compose tab.
+
+## Reference(s):
+
+- [Workflow Examples](references/workflow-examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/noah-1106/skills/weibo-publish)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code]
+
+**Output Format:** [Markdown instructions with browser automation examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an existing Weibo browser login session, manual verification after posting, and known temporary upload file paths for cleanup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

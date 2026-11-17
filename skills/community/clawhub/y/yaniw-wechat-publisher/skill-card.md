@@ -1,50 +1,66 @@
-## Description: <br>
-Helps an agent manage multiple WeChat public accounts, generate article content and cover images, and create WeChat draft posts with user confirmations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage multiple WeChat Official Accounts, generate account-specific article drafts, create cover images, and publish approved content to WeChat drafts.
 
-## Publisher: <br>
-[zgedu-new](https://clawhub.ai/user/zgedu-new) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zgedu-new](https://clawhub.ai/user/zgedu-new)
 
-## Use Case: <br>
-External users and developers use this skill to prepare and manage WeChat public-account posts across multiple accounts, including account selection, article drafting, cover generation, and draft publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use real WeChat account credentials and create WeChat public-account drafts. <br>
-Mitigation: Use environment variables for credentials, keep AppSecret values out of shared folders and version control, verify the active account before each run, and require an explicit final command before uploading covers or creating drafts. <br>
-Risk: Broad prompts may produce incorrect, unintended, or unsuitable content for a public-account draft. <br>
-Mitigation: Review generated article text and cover choices before proceeding, and preserve the skill's confirmation steps before any upload or draft creation. <br>
-Risk: Publishing can fail or expose operational details when WeChat credentials or IP whitelist settings are incorrect. <br>
-Mitigation: Configure credentials and IP allowlisting before use, test account connectivity, and rely on redacted error handling instead of sharing raw credential values. <br>
+## Use Case:
 
+External users and developers use this skill to operate one or more WeChat Official Accounts by drafting posts, selecting cover styles, managing account configuration, and publishing approved drafts through the WeChat API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zgedu-new/yaniw-wechat-publisher) <br>
-- [README](README.md) <br>
-- [User Guide](USER_GUIDE.md) <br>
-- [Configuration Guide](CONFIGURATION.md) <br>
-- [Workflow Guide](references/workflow_guide.md) <br>
-- [Article Format](references/article_format.md) <br>
-- [Cover Styles](references/cover_styles.md) <br>
-- [Configuration Template](references/config.template.json) <br>
-- [WeChat Public Platform](https://mp.weixin.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, JSON configuration examples, shell commands, generated article Markdown, cover assets, and publish logs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create local article files, cover HTML/PNG files, publish logs, and WeChat draft entries when configured with valid account credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and changelog, released 2026-03-12) <br>
+Risk: The skill handles WeChat publishing credentials and the evidence security summary flags a credential-like AppSecret in the documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review credential handling before installation, replace any credential-like example with unmistakably invalid placeholders, and rotate the value if it was ever real.
+
+Risk: The security guidance flags access-token previews and missing support files for documented environment-variable workflows.
+
+Mitigation: Stop printing access-token previews, add the documented .env.example and .gitignore files when relying on them, and provide credentials only in an isolated environment.
+
+Risk: The skill can upload media and create WeChat drafts for configured accounts.
+
+Mitigation: Provide only credentials for accounts the agent is intended to publish drafts for, and retain the documented user-confirmation steps before publishing.
+
+Risk: The security guidance notes unpinned Python dependencies.
+
+Mitigation: Pin and review dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zgedu-new/skills/yaniw-wechat-publisher)
+- [WeChat Official Accounts Platform](https://mp.weixin.qq.com)
+- [Workflow guide](references/workflow_guide.md)
+- [Article format](references/article_format.md)
+- [Cover styles](references/cover_styles.md)
+- [Configuration template](references/config.template.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown article drafts, HTML and PNG cover assets, JSON configuration and logs, shell commands, and concise status messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before content approval, cover selection, and publishing.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and changelog, released 2026-03-12)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

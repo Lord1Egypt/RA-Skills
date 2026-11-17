@@ -1,43 +1,58 @@
-## Description: <br>
-查询阿里平台（淘宝/天猫）商品详情，支持商品ID或链接输入，返回详情数据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询阿里平台（淘宝/天猫）商品详情，支持商品ID或链接输入，返回详情数据
 
-## Publisher: <br>
-[yjcia](https://clawhub.ai/user/yjcia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yjcia](https://clawhub.ai/user/yjcia)
 
-## Use Case: <br>
-External users and agents use this skill to look up Taobao or Tmall product details from a product ID or product link. The skill is useful when a workflow needs item title, price, sales, images, SKU, shop, or related product attributes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product IDs are sent to the EarlyData API for lookup. <br>
-Mitigation: Use the skill only when sharing Taobao/Tmall product IDs with EarlyData is acceptable for the workflow. <br>
-Risk: Responses are unnormalized third-party API output and may depend on provider availability or data handling. <br>
-Mitigation: Review returned product details before using them in downstream decisions, and handle lookup failures or unavailable data gracefully. <br>
+## Use Case:
 
+External users and agents use this skill to look up Taobao/Tmall product details from a product ID or product link and return the result in Markdown. It is useful for product inspection workflows that need item details such as title, price, sales, images, SKU, and shop information.
 
-## Reference(s): <br>
-- [API Reference](references/api_reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yjcia/taobao-detail-query) <br>
-- [Publisher Profile](https://clawhub.ai/user/yjcia) <br>
-- [EarlyData Detail API Endpoint](https://mi.earlydata.com/detail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls] <br>
-**Output Format:** [Markdown-formatted text containing product detail data or an error message.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Taobao/Tmall product ID or product link; sends the product ID to EarlyData for lookup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Product IDs are sent to EarlyData over HTTPS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Query only product IDs or links that are appropriate to share with the third-party API provider.
+
+Risk: Responses and errors are primarily in Chinese.
+
+Mitigation: Use this skill where Chinese-language output is acceptable, or translate the result before relying on it.
+
+Risk: The third-party API can return missing-product, rate-limit, network, or malformed-response errors.
+
+Mitigation: Surface the returned failure reason to the user and verify important product information before acting on it.
+
+## Reference(s):
+
+- [API Reference](references/api_reference.md)
+- [EarlyData Detail API Endpoint](https://mi.earlydata.com/detail)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Markdown-formatted text containing product detail data or Chinese error messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a Taobao/Tmall item ID and API version 6.0; no credentials are requested by the artifact.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

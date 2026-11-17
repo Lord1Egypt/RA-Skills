@@ -1,45 +1,63 @@
-## Description: <br>
-Analyze NetEase Cloud Music playlists, profile listening taste, and recommend non-repeated songs with playable Bilibili links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a user's NetEase Cloud Music playlist and recommends non-repeated songs with free Bilibili links.
 
-## Publisher: <br>
-[geekfoxcharlie](https://clawhub.ai/user/geekfoxcharlie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geekfoxcharlie](https://clawhub.ai/user/geekfoxcharlie)
 
-## Use Case: <br>
-External users use this skill to turn a NetEase Cloud Music playlist into a daily taste profile and music recommendation list. It helps avoid repeat recommendations by checking local history before producing a new list. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Playlist-derived data is sent to NetEase Cloud Music and Bilibili while fetching playlist contents and searching for playable links. <br>
-Mitigation: Use the skill only with playlists and searches the user is comfortable sharing with those services. <br>
-Risk: Recommendation history is stored locally in clear text under the user's OpenClaw workspace. <br>
-Mitigation: Avoid using the skill for sensitive listening data, and delete the local history files when retention is no longer needed. <br>
-Risk: Optional exports to Notion, HTML, or text files can save recommendation data outside the immediate chat response. <br>
-Mitigation: Use optional exports only when the user explicitly wants the recommendations saved elsewhere. <br>
+## Use Case:
 
+External users and agents use this skill to analyze a NetEase Cloud Music playlist, infer listening preferences, and produce a daily list of song recommendations with Bilibili links while avoiding prior recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/geekfoxcharlie/music-recommender) <br>
-- [Publisher profile](https://clawhub.ai/user/geekfoxcharlie) <br>
-- [NetEase Cloud Music playlist API](https://music.163.com/api/v6/playlist/detail?id=<ID>&n=1000) <br>
-- [Bilibili search API](https://api.bilibili.com/x/web-interface/search/all/v2?keyword=<query>) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown-style recommendation list with song names, short group headings, and Bilibili URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may also read and write local JSON history files to enforce once-per-day recommendations and avoid repeated songs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Command examples include user-controlled playlist IDs, artist names, and song titles.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate playlist IDs as numeric, avoid shell interpolation for search values, and execute helpers with argument arrays.
+
+Risk: Playlist IDs and search terms are sent to NetEase Cloud Music and Bilibili.
+
+Mitigation: Tell users before external lookups and avoid submitting private or sensitive playlist/search data.
+
+Risk: Recommendation history is stored in the OpenClaw workspace.
+
+Mitigation: Review retention expectations and clear or protect the history directory when recommendations should not persist.
+
+Risk: The workflow writes playlist data to a predictable /tmp path.
+
+Mitigation: Use a secure temporary file or workspace-scoped path instead of predictable /tmp filenames.
+
+## Reference(s):
+
+- [Music Recommender on ClawHub](https://clawhub.ai/geekfoxcharlie/skills/music-recommender)
+- [NetEase Cloud Music playlist endpoint](https://music.163.com/api/v6/playlist/detail?id=<ID>&n=1000)
+- [Bilibili search endpoint](https://api.bilibili.com/x/web-interface/search/all/v2?keyword=<query>)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Plain text or Markdown recommendations with song names and standalone Bilibili URLs; helper scripts emit JSON, pipe-delimited search results, and local history files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default recommendation count is 10 songs; recommendations are intended to be generated once per day and de-duplicated against local history.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,118 @@
+{
+  "current_architecture": {
+    "data": "pandas DataFrame",
+    "metadata": "BaseMeta TypedDict (~28 fields)",
+    "column_report": "ColumnInfo TypedDict (12 fields)",
+    "return_type": "StatFileResult = dict[str, Any] with keys: dataframe, metadata, warnings, column_report",
+    "multi_object_pattern": "read_all_*() returns dict[str, StatFileResult]"
+  },
+  "formats_analysis": {
+    "sas7bcat": {
+      "description": "SAS 目录文件，存储格式定义（值标签）",
+      "data_structure": "无数据，只有元数据（格式定义）",
+      "metadata_fields": [
+        "value_labels",
+        "variable_value_labels",
+        "variable_to_label"
+      ],
+      "current_architecture_sufficient": true,
+      "notes": "pyreadstat 已支持读取 .sas7bcat，返回 value_labels dict",
+      "architecture_extension_needed": false
+    },
+    "jmp": {
+      "description": "SAS JMP 数据文件，可包含多个数据表、脚本、分析结果",
+      "data_structure": "可包含多个数据表（Data Table），每个表是一个 DataFrame",
+      "metadata_fields": [
+        "variable_labels",
+        "value_labels",
+        "column_properties (formulas, ranges)"
+      ],
+      "current_architecture_sufficient": false,
+      "notes": "JMP 文件可包含多个数据表，需要 read_all_jmp_tables() 模式；列属性（公式、范围）需要扩展 ColumnInfo",
+      "architecture_extension_needed": true,
+      "extension_details": [
+        "ColumnInfo 需要扩展：formula (str), range (dict), column_property (dict)",
+        "需要添加 JmpMeta 类，包含 tables list、scripts list、analysis list",
+        "需要添加 read_all_jmp_tables() 函数"
+      ]
+    },
+    "minitab": {
+      "description": "Minitab 工作簿文件，可包含多个工作表（Worksheet）",
+      "data_structure": "可包含多个工作表，每个工作表是一个 DataFrame",
+      "metadata_fields": [
+        "variable_labels",
+        "worksheet_names",
+        "formulas"
+      ],
+      "current_architecture_sufficient": false,
+      "notes": "Minitab 工作簿可包含多个工作表，需要 read_all_minitab_worksheets() 模式",
+      "architecture_extension_needed": true,
+      "extension_details": [
+        "需要添加 MinitabMeta 类，包含 worksheets list、active_worksheet str",
+        "需要添加 read_all_minitab_worksheets() 函数",
+        "ColumnInfo 可能需要扩展：formula (str)"
+      ]
+    },
+    "prism": {
+      "description": "GraphPad Prism 项目文件，包含数据表、结果表、图形",
+      "data_structure": "包含数据表（DataFrame）、结果表（DataFrame）、图形（无法转为 DataFrame）",
+      "metadata_fields": [
+        "data_tables",
+        "results_tables",
+        "graphs_info"
+      ],
+      "current_architecture_sufficient": false,
+      "notes": "Prism 文件包含数据表和结果表，两者都是 DataFrame；图形无法保存为 DataFrame",
+      "architecture_extension_needed": true,
+      "extension_details": [
+        "需要添加 PrismMeta 类，包含 data_tables list、results_tables list、graphs_info list",
+        "StatFileResult 需要扩展，或采用 read_all_prism_tables() 模式",
+        "当前架构只能保存数据表，结果表和图形信息会丢失"
+      ]
+    },
+    "jamovi": {
+      "description": "jamovi 项目文件，包含数据、分析结果、设置",
+      "data_structure": "包含数据（CSV）、分析结果（JSON）",
+      "metadata_fields": [
+        "variable_labels",
+        "value_labels",
+        "analysis_results"
+      ],
+      "current_architecture_sufficient": false,
+      "notes": "jamovi 文件是 ZIP，包含 data.csv 和 analysis.json；分析结果无法保存为 DataFrame",
+      "architecture_extension_needed": true,
+      "extension_details": [
+        "需要添加 JamoviMeta 类，包含 analysis_results dict、analysis_settings dict",
+        "当前架构可以保存数据部分，但分析结果会丢失"
+      ]
+    },
+    "epidata": {
+      "description": "EpiData 数据文件，流行病学调查常用",
+      "data_structure": "单个数据表（DataFrame）",
+      "metadata_fields": [
+        "variable_labels",
+        "value_labels",
+        "data_types"
+      ],
+      "current_architecture_sufficient": true,
+      "notes": "EpiData 文件结构与 SPSS .sav 类似，当前架构可以 100% 保存",
+      "architecture_extension_needed": false
+    },
+    "eviews": {
+      "description": "EViews 工作文件，包含序列（Series）、组（Group）、方程（Equation）",
+      "data_structure": "包含多个序列，可组成 Group（DataFrame）；方程无法转为 DataFrame",
+      "metadata_fields": [
+        "series_names",
+        "groups",
+        "equations"
+      ],
+      "current_architecture_sufficient": false,
+      "notes": "EViews .wf2 是 JSON 格式，可解析；但方程、系数等分析结果无法保存为 DataFrame",
+      "architecture_extension_needed": true,
+      "extension_details": [
+        "需要添加 EviewsMeta 类，包含 series list、groups list、equations list",
+        "当前架构可以保存 Group 为 DataFrame，但方程信息会丢失"
+      ]
+    }
+  }
+}

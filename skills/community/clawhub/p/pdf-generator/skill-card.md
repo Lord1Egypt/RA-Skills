@@ -1,46 +1,60 @@
-## Description: <br>
-Generate professional PDFs from Markdown, HTML, data, or code. Reports, invoices, contracts, and documents with best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional PDFs from Markdown, HTML, data, or code for reports, invoices, contracts, and documents with best practices.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, engineers, and document authors use this skill for guidance on generating PDFs from Markdown, HTML, JSON, templates, or code. It helps choose tools, structure documents, apply print CSS, and adapt reference patterns for reports, invoices, contracts, resumes, forms, and batch workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Copied PDF generation examples can overwrite important files or write output to unintended locations. <br>
-Mitigation: Run copied examples only on intended documents, keep output paths inside a known project folder, and work on copies of important PDFs. <br>
-Risk: Invoices, contracts, resumes, forms, and generated PDFs can contain sensitive local data. <br>
-Mitigation: Treat source and output documents as sensitive, avoid unnecessary sharing, and keep generated files in controlled project folders. <br>
-Risk: Generated PDFs may have formatting, pagination, font, image, or metadata issues if examples are adapted without review. <br>
-Mitigation: Validate file size, open the PDF, verify page count, check fonts and images, and confirm document metadata before relying on the output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/pdf-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Project homepage](https://clawic.com/skills/pdf-generator) <br>
-- [PDF tools guide](artifact/tools.md) <br>
-- [Document templates](artifact/templates.md) <br>
-- [Advanced PDF operations](artifact/advanced.md) <br>
+## Use Case:
 
+Developers and agents use this skill to choose PDF-generation tools and produce implementation patterns for reports, invoices, contracts, forms, and batch document workflows from Markdown, HTML, data, or code.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python, CSS, HTML, and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only reference patterns; the skill does not execute code, generate files, make network requests, or access files directly.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sample PDF-output paths could overwrite important files or write to unintended locations when copied into real applications.
+
+Mitigation: Write outputs only to user-chosen directories, validate destination paths, sanitize filenames, and check before overwriting existing files.
+
+Risk: HTML templating examples can be unsafe when populated with untrusted user data.
+
+Mitigation: Escape untrusted data, use a safe templating library, and review generated HTML before PDF conversion.
+
+Risk: PDF rendering tools such as WeasyPrint may fetch local or remote resources if inputs are not restricted.
+
+Mitigation: Restrict resource fetching and only render trusted or pre-sanitized HTML and assets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/pdf-generator)
+- [Skill homepage](https://clawic.com/skills/pdf-generator)
+- [PDF Tools - Selection Guide](artifact/tools.md)
+- [Document Templates](artifact/templates.md)
+- [Advanced PDF Operations](artifact/advanced.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with Python, HTML, CSS, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reference-only guidance; the skill does not execute code, create files, make network requests, or access system files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

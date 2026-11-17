@@ -1,42 +1,49 @@
-## Description: <br>
-智能报告生成器自动分析数据并生成专业报告，支持日报、周报、月报和分析报告，并可输出到飞书文档或本地文件。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能报告生成器 analyzes data sources and generates professional daily, weekly, monthly, or analytical reports for Feishu documents or local files.
 
-## Publisher: <br>
-[LiJie298](https://clawhub.ai/user/LiJie298) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lijie298](https://clawhub.ai/user/lijie298)
 
-## Use Case: <br>
-Business users, analysts, and operations teams use this skill to turn Feishu tables, files, JSON data, or database query results into daily, weekly, monthly, or analytic reports for review and sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process business data and create persistent reports in local files or Feishu documents. <br>
-Mitigation: Review the data source, generated report, destination, recipients, and sharing scope before writing or sending any report. <br>
-Risk: Automatic sending to Feishu can expose sensitive report contents if destination controls are not checked per use. <br>
-Mitigation: Keep automatic sending disabled by default and use least-privilege Feishu and database access. <br>
+## Use Case:
 
+Business analysts, operations teams, and agents use this skill to turn structured data sources into Chinese-language daily, weekly, monthly, or analytical reports for local files or Feishu documents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LiJie298/smart-reporter) <br>
-- [Daily report template](templates/daily.md) <br>
-- [Weekly report template](templates/weekly.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration guidance] <br>
-**Output Format:** [Generated reports as Markdown, HTML, PDF, or Feishu documents, with template-driven report sections.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report contents depend on the selected data source, report type, time range, and output destination.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Default Feishu output with auto-send enabled could publish sensitive business reports without clear per-run review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable auto-send or require preview and explicit approval before sending reports, especially when source data may contain confidential sales, KPI, task, customer, or internal business information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lijie298/skills/smart-reporter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown report templates and human-readable report guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can target Feishu documents or local report files when configured by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

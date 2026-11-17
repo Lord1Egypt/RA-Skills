@@ -1,40 +1,53 @@
-## Description: <br>
-Distill successful workflows into reusable skills with quality gates, including novelty, success, reuse potential, grounding, IP boundary checks, trigger discipline, and pre-publish vetting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Distill completed multi-step workflows into reusable skills using quality gates for novelty, success, reuse potential, grounding, IP boundaries, trigger discipline, and pre-publish review.
 
-## Publisher: <br>
-[christianye](https://clawhub.ai/user/christianye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[christianye](https://clawhub.ai/user/christianye)
 
-## Use Case: <br>
-Developers and agent operators use this skill after completing complex multi-step work to decide whether to create, update, stage, or skip a reusable skill. It guides extraction, generalization, quality checks, IP review, and public registry preparation for SKILL.md-style releases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or updated skill content can introduce incorrect or misleading guidance if accepted without review. <br>
-Mitigation: Review generated SKILL.md, memory notes, and registry entries before relying on them or publishing them. <br>
-Risk: Automatic distillation can create local files in workflows where file creation should require an explicit command. <br>
-Mitigation: Avoid enabling automatic distillation in those workflows, or require explicit user confirmation before writing files. <br>
+## Use Case:
 
+Developers and agent operators use this skill after complex tasks to decide whether a successful workflow should become a reusable skill, a memory note, or a lessons-learned entry.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/christianye/auto-skill-distiller) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with example SKILL.md frontmatter and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or update SKILL.md content, memory notes, registry entries, and review checklists for human validation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill may create or update persistent skills and memory notes without a clear pre-write approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before any SKILL.md, registry, or memory write.
+
+Risk: Generated skill content may include private data or prompt-injection text before publication.
+
+Mitigation: Review generated content for private data and prompt-injection text before using or publishing it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/christianye/skills/auto-skill-distiller)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with example code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose SKILL.md content, registry notes, memory entries, and pre-publish checks; users should approve writes before enabling automatic persistence.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

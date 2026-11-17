@@ -1,45 +1,61 @@
-## Description: <br>
-Automatically publishes content to Toutiao as micro-posts or articles, including AI-recommended inline images, free licensed cover images, and browser-driven publishing steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates publishing Toutiao micro-posts and articles through browser-driven title entry, body injection, image and cover selection, declaration settings, preview, and publish steps.
 
-## Publisher: <br>
-[axdlee](https://clawhub.ai/user/axdlee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[axdlee](https://clawhub.ai/user/axdlee)
 
-## Use Case: <br>
-Content creators, operators, and developers use this skill to prepare and publish Toutiao micro-posts or articles through browser automation. It supports title entry, rich-text content injection, image selection, declaration settings, preview, and live publishing from a logged-in Toutiao account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit live posts from a logged-in Toutiao account without a mandatory final approval gate. <br>
-Mitigation: Use a dedicated browser profile or test account, review title, body, image, and declaration choices before publishing, and avoid one-shot publishing until a draft-only mode or mandatory final confirmation is available. <br>
-Risk: Broad trigger phrases can cause the agent to enter a publishing workflow when the user's intent is ambiguous. <br>
-Mitigation: Require explicit user confirmation before opening the publishing page or clicking preview and publish actions. <br>
+## Use Case:
 
+External content creators and automation developers use this skill to prepare and publish Toutiao micro-posts or articles from an agent session, including text injection, image recommendations, cover selection, platform declarations, and final publishing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/axdlee/toutiao-publish) <br>
-- [Publisher profile](https://clawhub.ai/user/axdlee) <br>
-- [README](README.md) <br>
-- [Release notes](RELEASE-NOTES.md) <br>
-- [Search help](SEARCH-HELP.md) <br>
-- [Toutiao creator publishing page](https://mp.toutiao.com/profile_v4/graphic/publish) <br>
+### Deployment Geography for Use:
 
+Global, subject to Toutiao account availability and applicable platform rules.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell and browser automation snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute browser automation that changes account state by publishing live content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.1.0 (source: SKILL.md frontmatter and ClawHub release evidence) <br>
+Risk: The skill can automatically publish content to a real logged-in Toutiao account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a disposable or intended Toutiao account, stop at draft or preview where possible, and require a human review before final publication.
+
+Risk: The skill uses browser JavaScript injection patterns for article content.
+
+Mitigation: Do not feed it untrusted article HTML or unsanitized generated content; review and sanitize content before injection.
+
+Risk: The release security verdict is suspicious.
+
+Mitigation: Review the skill carefully before installation and run it in an isolated browser profile with access limited to the intended Toutiao workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/axdlee/skills/toutiao-publish)
+- [Publisher Profile](https://clawhub.ai/user/axdlee)
+- [Publisher GitHub Profile](https://github.com/axdlee)
+- [Toutiao Creator Portal](https://mp.toutiao.com)
+- [Verified Published Toutiao Article](https://www.toutiao.com/item/7613329346194850310/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline browser automation commands, JavaScript snippets, and shell scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an authenticated Toutiao account and a browser automation environment with current page snapshots.]
+
+## Skill Version(s):
+
+6.1.0 (source: server release metadata and SKILL.md frontmatter; package.json lists 6.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

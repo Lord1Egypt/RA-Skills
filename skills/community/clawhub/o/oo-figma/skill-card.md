@@ -1,45 +1,54 @@
-## Description: <br>
-Operate Figma through an OOMOL-connected account for reading, creating, updating, and deleting Figma data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Figma (figma.com). Use this skill for ANY Figma request — reading, creating, updating, and deleting data. Whenever a task involves Figma, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect Figma files, metadata, comments, libraries, rendered images, projects, and team resources, and to perform approved Figma write actions through the OOMOL connector. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access a connected Figma account or workspace through OOMOL. <br>
-Mitigation: Install only if you trust OOMOL with the connected Figma account and review the requested Figma action before execution. <br>
-Risk: Write and destructive actions can change or delete Figma comments, reactions, or dev resources. <br>
-Mitigation: Confirm the exact payload and target with the user before write actions, and require explicit approval before destructive actions. <br>
-Risk: First-time setup may install the oo CLI or require account connection. <br>
-Mitigation: Run setup only after an auth, connection, or missing-command failure and use the documented OOMOL setup flow. <br>
+## Use Case:
 
+Developers and designers use the skill to inspect Figma files and related components, styles, comments, projects, and versions, or to make approved changes such as posting comments and managing dev resources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-figma) <br>
-- [Figma homepage](https://www.figma.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, JSON, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses include data and a meta.executionId when actions run with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: evidence release version and SKILL.md metadata) <br>
+Risk: Automatic setup can run downloaded code without separate user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install a verified CLI release before enabling the skill; check automatic skill synchronization and disable it if unwanted.
+
+Risk: Connecting Figma authorizes OOMOL to mediate access to the account.
+
+Mitigation: Keep permissions limited and retain the skill's explicit approval requirements for changes and deletions.
+
+## Reference(s):
+
+- [Figma](https://www.figma.com)
+- [Figma REST API documentation](https://developers.figma.com/docs/rest-api/)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance, JSON]
+
+**Output Format:** [Guidance and JSON results returned from Figma operations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Operation results depend on the connected Figma account and requested action.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,41 @@
+{
+  "id": "middle-aged-male-35-50",
+  "label": "Middle-Aged Male 35-50",
+  "emoji": "👨",
+  "demographics": {
+    "gender": "male",
+    "age_range": [35, 50],
+    "tier": "gen-x"
+  },
+  "active_hours": {
+    "description": "Work hours, news reading in evening",
+    "peak": [7, 10, 13, 16, 20, 23],
+    "off_peak_min": 6
+  },
+  "typing": {
+    "description": "Functional, not fast. More backspace than younger cohorts.",
+    "wpm": { "min": 55, "max": 85 },
+    "profile": "careful",
+    "think_prob": 0.015,
+    "think_ms": [400, 1500],
+    "backspace_freq": 0.04
+  },
+  "scroll": {
+    "passes": 2,
+    "description": "Linear scroll — reads top to bottom",
+    "speed_px_per_ms": { "min": 18, "max": 45 },
+    "pause_between_passes_ms": { "min": 500, "max": 2000 },
+    "depth_per_pass": { "min": 0.3, "max": 0.6 }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 1000, "max": 3000 },
+    "pre_click_pause_ms": { "min": 250, "max": 700 },
+    "inter_action_pause_ms": { "min": 300, "max": 1200 }
+  },
+  "mouse": {
+    "speed": 0.8,
+    "curvature": 0.15,
+    "jitter": 0.25,
+    "description": "Moderate, steady"
+  }
+}

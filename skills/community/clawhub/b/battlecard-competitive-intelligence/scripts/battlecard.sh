@@ -4,6 +4,7 @@
 #        ./battlecard.sh <tool_name> <json_params>
 
 BATTLECARD_URL="https://battlecard.northr.ai/mcp"
+BATTLECARD_PREVIEW_URL="https://battlecard.northr.ai/mcp/preview"
 
 # Escape a string for safe JSON embedding. Returns a quoted JSON string.
 # Usage: VAL=$(json_escape "raw string")
@@ -29,7 +30,7 @@ if [ "${BASH_SOURCE[0]}" = "$0" ]; then
       -H "X-Battlecard-Key: $BATTLECARD_API_KEY" \
       --data-raw "$PAYLOAD"
   else
-    curl -s -X POST "$BATTLECARD_URL" \
+    curl -s -X POST "$BATTLECARD_PREVIEW_URL" \
       -H "Content-Type: application/json" \
       --data-raw "$PAYLOAD"
   fi

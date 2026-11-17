@@ -1,40 +1,53 @@
-## Description: <br>
-Generate targeted, research-driven email copy tailored to niche audiences using proven frameworks for outreach, newsletters, pitches, or promotions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate targeted, research-driven email copy tailored to niche audiences using proven frameworks for outreach, newsletters, pitches, or promotions.
 
-## Publisher: <br>
-[skunnyo](https://clawhub.ai/user/skunnyo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skunnyo](https://clawhub.ai/user/skunnyo)
 
-## Use Case: <br>
-External users and developers use this skill to research niche audience pain points and draft subject lines, email bodies, personalization hooks, and calls to action for outreach, newsletters, pitches, or promotions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive customer lists, private product plans, or campaign details could be exposed if included in web searches or polls during research. <br>
-Mitigation: Avoid sending confidential or sensitive campaign data to external search or polling tools; use redacted or generalized audience details instead. <br>
-Risk: Generated claims, urgency, social proof, or personalization may be inaccurate or misleading. <br>
-Mitigation: Verify facts, proof points, personalization details, and compliance-sensitive language before sending emails. <br>
+## Use Case:
 
+External users, developers, founders, and marketers use this skill to research niche audience needs and draft outreach emails, newsletters, pitches, or promotional copy with subject-line variants, personalization hooks, and clear calls to action.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/skunnyo/niche-email) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with research notes, subject-line variants, and short email drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated copy should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated outreach may include inaccurate claims, weak personalization, or tracking links that have not been reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review claims, personalization, calls to action, and UTM links before sending messages.
+
+Risk: Email outreach can create consent or anti-spam compliance issues if generated copy is sent without review.
+
+Mitigation: Confirm recipient consent, applicable outreach rules, and sender policies before using generated messages in a campaign.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skunnyo/skills/niche-email)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown email drafts with subject-line variants and copywriting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated emails are typically concise and may include niche research insights, personalization hooks, CTA suggestions, and UTM-link reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

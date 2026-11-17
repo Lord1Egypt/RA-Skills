@@ -1,42 +1,56 @@
-## Description: <br>
-Extracts embedded video URLs from WeChat official account articles and downloads the videos locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts and downloads embedded videos from WeChat official account articles by opening an article page, locating the video player, extracting the video URL, and downloading the file locally.
 
-## Publisher: <br>
-[wenjie0112](https://clawhub.ai/user/wenjie0112) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wenjie0112](https://clawhub.ai/user/wenjie0112)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve videos from WeChat official account articles when they provide an article URL and are authorized to save the content locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill opens user-provided WeChat article links, extracts media URLs, and saves files locally. <br>
-Mitigation: Use it only with trusted article URLs and content the user is authorized to download. <br>
-Risk: Ambiguous download requests can cause files to be saved in unintended names or directories. <br>
-Mitigation: Confirm unclear requests and choose safe output filenames and directories before running the download. <br>
+## Use Case:
 
+External users and developers use this skill to download videos embedded in trusted WeChat official account articles for offline viewing, archiving, or authorized personal study.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/wenjie0112/wechat-video-downloader) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw GitHub repository](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and local video files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads video files to a user-selected or generated local filename.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: URL and output-file handling are broader than expected for strict WeChat-only video downloading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted mp.weixin.qq.com article links and avoid absolute or traversal output paths.
+
+Risk: The downloader may follow redirects or write outside an intended workspace if inputs are not constrained.
+
+Mitigation: Prefer a patched version that restricts allowed hosts, blocks private-network targets and redirects, confines downloads to a dedicated folder, and refuses overwrites by default.
+
+## Reference(s):
+
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [OpenClaw GitHub](https://github.com/openclaw/openclaw)
+- [ClawHub Skill Page](https://clawhub.ai/wenjie0112/skills/wechat-video-downloader)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/wenjie0112)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and local download status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write downloaded video files to the current working directory or to a requested output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

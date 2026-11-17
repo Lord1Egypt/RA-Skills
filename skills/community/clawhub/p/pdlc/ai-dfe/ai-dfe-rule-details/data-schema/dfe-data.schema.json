@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aiflc.dev/pdlc/ai-dfe/dfe-data.schema.json",
+  "title": "AI-DFE Data — Self Report",
+  "description": "The shape AI-DFE produces for itself (dfe-data.json).",
+  "type": "object",
+  "required": ["$schemaVersion", "$generatedBy", "$generatedOn", "$family", "$package", "data"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "$schemaVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "$generatedBy": { "type": "string", "const": "AI-DFE" },
+    "$generatedOn": { "type": "string", "format": "date-time" },
+    "$family": { "type": "string" },
+    "$package": { "type": "string", "const": "AI-DFE" },
+    "data": {
+      "type": "object",
+      "required": ["status", "isMaster", "packages", "demands", "counts"],
+      "properties": {
+        "status": { "type": "string", "enum": ["complete", "active"] },
+        "isMaster": { "type": "boolean" },
+        "masterFamily": { "type": ["string", "null"] },
+        "lastFullPass": { "type": ["string", "null"], "format": "date-time" },
+        "packages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["package", "status"],
+            "properties": {
+              "package": { "type": "string" },
+              "schemaVersion": { "type": ["string", "null"] },
+              "outputFile": { "type": ["string", "null"] },
+              "lastGenerated": { "type": ["string", "null"], "format": "date-time" },
+              "status": { "type": "string", "enum": ["fresh", "stale", "not-run", "no-interface", "orphan"] }
+            }
+          }
+        },
+        "demands": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "outputFile"],
+            "properties": {
+              "name": { "type": "string" },
+              "consumer": { "type": ["string", "null"] },
+              "outputFile": { "type": "string" },
+              "lastGenerated": { "type": ["string", "null"], "format": "date-time" }
+            }
+          }
+        },
+        "counts": {
+          "type": "object",
+          "required": ["packagesDiscovered", "dataFiles", "demands", "historySnapshots"],
+          "properties": {
+            "packagesDiscovered": { "type": "integer", "minimum": 0 },
+            "dataFiles": { "type": "integer", "minimum": 0 },
+            "demands": { "type": "integer", "minimum": 0 },
+            "historySnapshots": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    }
+  }
+}

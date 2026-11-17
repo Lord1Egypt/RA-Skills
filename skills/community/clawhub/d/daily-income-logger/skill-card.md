@@ -1,41 +1,54 @@
-## Description: <br>
-Daily Income Logger helps agents record income from multiple platforms, summarize daily earnings, analyze weekly or monthly trends, and export CSV/JSON reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Income Logger helps agents record daily income from multiple platforms, summarize daily earnings, analyze weekly or monthly trends, and export reports as CSV or JSON.
 
-## Publisher: <br>
-[mesiyoq965-sudo](https://clawhub.ai/user/mesiyoq965-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mesiyoq965-sudo](https://clawhub.ai/user/mesiyoq965-sudo)
 
-## Use Case: <br>
-Creators, freelancers, and operators use this skill to log daily platform income locally, review current totals, and generate weekly or monthly trend summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive income records may be stored as plaintext local JSON or exported as plaintext CSV/JSON. <br>
-Mitigation: Use only on trusted devices, restrict file permissions, avoid shared or synced folders when inappropriate, or place the data under encrypted storage. <br>
-Risk: The record command writes through a temporary tmp.json file in the current working directory. <br>
-Mitigation: Run it from a trusted directory or adapt the temporary file path to a protected location under the logger data directory before use. <br>
+## Use Case:
 
+External users and creators can use this skill to keep local records of daily platform income, review short-term earnings trends, and generate exportable income reports.
 
-## Reference(s): <br>
-- [Daily Income Logger on ClawHub](https://clawhub.ai/mesiyoq965-sudo/daily-income-logger) <br>
-- [Publisher profile](https://clawhub.ai/user/mesiyoq965-sudo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores income records locally as plaintext JSON and can export plaintext CSV/JSON reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, SKILL.md) <br>
+Risk: Income records are stored locally as plaintext JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted machines, restrict file and directory permissions to the owner, and avoid sharing or committing the generated data files.
+
+Risk: The sample update command uses a fixed tmp.json path and does not include locking.
+
+Mitigation: Harden the command before repeated or shared use by using a unique temporary file, atomic replacement, and a lock around updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mesiyoq965-sudo/skills/daily-income-logger)
+- [Publisher profile](https://clawhub.ai/user/mesiyoq965-sudo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local-file workflow guidance for income records stored under ~/.daily-income-logger.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact/package.json, artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

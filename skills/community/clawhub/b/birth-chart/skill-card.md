@@ -1,39 +1,52 @@
-## Description: <br>
-Generates comprehensive astrological birth charts from personal birth data and supports multiple languages for cultural accessibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates comprehensive astrological birth charts from personal birth data and supports multiple languages for cultural accessibility.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Astrology practitioners, wellness teams, lifestyle platforms, and developers use this skill to call a birth-chart API that generates natal chart details and interpretations from a person's birth information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends personal birth details, including name, birth date, birth time, and birth location, to an external astrology API provider. <br>
-Mitigation: Use the skill only with appropriate consent, avoid submitting sensitive third-party details, and review the provider's privacy and deletion practices before use. <br>
+## Use Case:
 
+External astrology practitioners, wellness teams, lifestyle platforms, and app developers use this skill to generate natal birth-chart data, planetary placements, house placements, and multilingual astrological interpretations from personal birth information.
 
-## Reference(s): <br>
-- [Birth Chart API endpoint](https://api.mkkpro.com/lifestyle/birth-chart) <br>
-- [Birth Chart API docs](https://api.mkkpro.com:8032/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON, Guidance] <br>
-**Output Format:** [JSON responses with astrological chart data and interpretation text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires name, birth date, birth time, and birth location; language is optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill sends a person's full name, exact birth date, birth time, and birth location to an external service without clear privacy or retention disclosures.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this data sharing is acceptable; use a nickname or pseudonym if permitted and review the provider's privacy, logging, retention, and deletion practices before submitting real personal data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/birth-chart)
+- [Birth Chart API Docs](https://api.mkkpro.com:8032/docs)
+- [Birth Chart Kong Route](https://api.mkkpro.com/lifestyle/birth-chart)
+- [ToolWeb](https://toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON API responses with astrological chart fields and text interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include personal identification details, birth data, planetary positions, house placements, supported language data, and chart interpretation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

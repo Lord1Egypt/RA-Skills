@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 单 ASIN 运营周报"
+  short_description: "汇总单个商品变化、评论信号和本周待办"
+  default_prompt: "使用 $amazon-weekly-operator 为一个已订阅 Amazon ASIN 生成运营周报和行动优先级。"

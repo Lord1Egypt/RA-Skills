@@ -1,46 +1,58 @@
-## Description: <br>
-Generates and pushes daily news briefings for a configured domain, using recent search results and sending structured Markdown summaries through WeCom, Feishu, or webhook channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A general daily news briefing skill that searches recent news for a configured domain, organizes it into a fixed Markdown report, and sends it through WeCom, Feishu, or Webhook channels.
 
-## Publisher: <br>
-[shoyee94](https://clawhub.ai/user/shoyee94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shoyee94](https://clawhub.ai/user/shoyee94)
 
-## Use Case: <br>
-External users and developers use this skill to configure automated daily news reports for a chosen topic and send them to workplace chat or webhook destinations. It is suited for recurring domain monitoring where generated summaries and outbound delivery are acceptable after local configuration review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Interactive setup can place raw user-provided values into an executable Python config file. <br>
-Mitigation: Review generated config.py before execution, especially webhook headers, URLs, receiver IDs, and cron values. <br>
-Risk: The workflow can send full generated reports to external chat or webhook destinations. <br>
-Mitigation: Use only trusted destinations and verify that report contents are appropriate for the target channel before unattended use. <br>
-Risk: OAuth, Authorization, receiver IDs, and webhook values may be sensitive. <br>
-Mitigation: Store credentials securely, avoid sharing config.py, and rotate tokens if they are exposed. <br>
-Risk: Cron scheduling enables repeated unattended outbound sends. <br>
-Mitigation: Enable cron only for intended recurring delivery and monitor initial runs for correctness. <br>
+## Use Case:
 
+External users and developers use this skill to generate concise daily Markdown news reports for a chosen topic and push them to enterprise messaging or webhook destinations. It supports interactive or manual configuration of the news domain, delivery channel, recipients, source preferences, and schedule.
 
-## Reference(s): <br>
-- [Configuration Guide](references/config.md) <br>
-- [Daily Briefing Format](references/format.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/shoyee94/daily-news-push) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown briefings, Python configuration files, JSON-like channel payloads, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can send full generated reports to configured WeCom, Feishu, or webhook destinations and can be scheduled with cron.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: User-entered configuration can be written into executable Python config files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated config.py before running the skill, avoid pasting configuration values from untrusted sources, and prefer manually creating a minimal safe config for sensitive deployments.
+
+Risk: Webhook delivery can send report content to unrestricted external destinations.
+
+Mitigation: Restrict webhook URLs to trusted HTTPS endpoints, avoid sensitive report content, and review webhook headers and destinations before enabling scheduled runs.
+
+Risk: The documented cron setup can repeatedly execute the configured push workflow.
+
+Mitigation: Verify the cron expression and script path before installation, and enable scheduled execution only after testing the configuration manually.
+
+## Reference(s):
+
+- [Configuration Reference](references/config.md)
+- [Daily Report Format Reference](references/format.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report text with setup commands and Python configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a scheduled daily briefing and delivery-channel payloads for WeCom, Feishu, or Webhook.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

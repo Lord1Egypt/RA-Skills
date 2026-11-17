@@ -1,41 +1,58 @@
-## Description: <br>
-Provides a manual interface for a reading-assistant system intended to support queries, report generation, and assisted reading, but the current implementation is a placeholder. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reading Assistant provides a manual interface for reading assistance workflows, including result lookup, report generation, and support for an associated automated system.
 
-## Publisher: <br>
-[pagoda111king](https://clawhub.ai/user/pagoda111king) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pagoda111king](https://clawhub.ai/user/pagoda111king)
 
-## Use Case: <br>
-Developers and ClawHub users can invoke this skill as a manual entry point for a reading-assistant workflow. In this release, users should treat it as a placeholder interface rather than a complete assistant. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may expect functional reading assistance, querying, or report generation even though this release is essentially a placeholder. <br>
-Mitigation: Install only with that limitation understood, and do not rely on it for real reading-assistant workflows until the publisher ships an implemented version. <br>
-Risk: The artifact contains purchase and license terms that may differ from the server license evidence. <br>
-Mitigation: Confirm the applicable license and commercial terms before deployment or redistribution. <br>
+## Use Case:
 
+Readers, operators, or developers using the associated Cloud Shrimp system can manually request reading assistance, retrieve results, and generate reports. The current release appears unfinished, so users should verify behavior before relying on it for real reading workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pagoda111king/cloud-shrimp-reading-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/pagoda111king) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Current implementation returns a simple readiness message and does not yet perform substantive reading-assistant work.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and package.json) <br>
+Risk: The release appears unfinished and may not implement the advertised reading-assistant behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the artifact and test the manual invocation path before relying on it for user-facing reading assistance.
+
+Risk: Most user-facing documentation is in Chinese and contains placeholders.
+
+Mitigation: Translate and complete the documentation before deployment for users who cannot read Chinese.
+
+Risk: The artifact has conflicting license signals.
+
+Mitigation: Confirm the applicable license or commercial terms before redistribution or production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pagoda111king/skills/cloud-shrimp-reading-assistant)
+- [Publisher profile](https://clawhub.ai/user/pagoda111king)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text guidance; the current executable returns a simple JSON status object.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact is a stub and does not yet implement concrete reading-assistant behavior.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

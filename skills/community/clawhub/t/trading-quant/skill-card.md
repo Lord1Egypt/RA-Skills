@@ -1,47 +1,61 @@
-## Description: <br>
-Trading Quant fetches real-time A-share, US stock, Hong Kong stock, and precious-metals market data and produces multi-factor analysis using technical, capital-flow, fundamental, news, and sentiment signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trading Quant helps agents fetch real-time market data and produce multi-factor analysis for A-shares, US stocks, Hong Kong stocks, precious metals, capital flows, market anomalies, and global market overviews.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve public market data, compare multi-source quotes, review capital-flow and anomaly signals, and generate structured trading-analysis outputs. Its outputs are analysis aids and are not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound calls to public financial-data and news providers. <br>
-Mitigation: Run it only in environments where these network calls are acceptable, and review provider access, rate limits, and data-use terms before production use. <br>
-Risk: Market scores, sentiment, and signals can be incomplete, delayed, or misleading. <br>
-Mitigation: Treat outputs as analysis aids rather than investment advice, and require human review before making trading or portfolio decisions. <br>
-Risk: The skill writes local market-data caches, including temporary cache files. <br>
-Mitigation: Use a private application cache directory, restrict filesystem permissions, and clear caches according to data-retention requirements. <br>
-Risk: Unpinned or optional dependencies may change behavior over time. <br>
-Mitigation: Pin and review dependencies in deployment environments, then rerun security and functional checks after updates. <br>
+## Use Case:
 
+Developers and analysts use this skill to route agent requests through quantitative market-data tools, including stock quotes, scoring, capital-flow checks, limit-up/down scans, and global market summaries. Outputs are for data display and analysis only, not investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lanyasheng/trading-quant) <br>
-- [Publisher profile](https://clawhub.ai/user/lanyasheng) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and command output, with JSON-like structured market-analysis results from the bundled CLI tools] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may reflect live public financial-data providers and local cache state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: The skill calls public finance and news websites, so queried symbols and analysis timing may be exposed to third-party services and affected by their availability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in an isolated Python environment, and review outbound network access before use.
+
+Risk: The skill writes local market-data caches that may retain queried symbols, snapshots, and derived market state.
+
+Mitigation: Store caches only in approved workspaces and clear them when local retention is not desired.
+
+Risk: Optional sentiment model warm-up or downloads may retrieve mutable HuggingFace artifacts.
+
+Mitigation: Avoid optional sentiment model warm-up and downloads unless HuggingFace network access and model provenance are approved.
+
+Risk: Financial analysis output may be mistaken for investment advice.
+
+Mitigation: Use the output as data analysis only and require human review before any trading or investment decision.
+
+## Reference(s):
+
+- [Trading Quant ClawHub skill page](https://clawhub.ai/lanyasheng/skills/trading-quant)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [JSON responses and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Market-data freshness depends on public data sources and local caches.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

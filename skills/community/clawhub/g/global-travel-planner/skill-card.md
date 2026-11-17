@@ -1,40 +1,53 @@
-## Description: <br>
-Global Travel Planner helps agents create personalized travel itineraries with route maps, weather, local activity recommendations, budget estimates, and PDF-ready trip plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Global Travel Planner helps create personalized travel itineraries with route-map prompts, weather and local activity research, tiered budget estimates, Google Maps direction links, and PDF-ready trip plans.
 
-## Publisher: <br>
-[wt865143010](https://clawhub.ai/user/wt865143010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wt865143010](https://clawhub.ai/user/wt865143010)
 
-## Use Case: <br>
-Travelers, travel advisors, and agent users use this skill to plan multi-day trips, compare budget tiers, collect destination context, and produce polished itinerary materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel details such as opening hours, ticket prices, weather, events, and transport options can change quickly. <br>
-Mitigation: Verify time-sensitive itinerary details against current official or local sources before booking or traveling. <br>
-Risk: The skill may help use external mapping, image generation, PDF generation, or search services. <br>
-Mitigation: Review any generated links, prompts, files, or service actions before sharing them, and keep service credentials scoped to the minimum needed. <br>
+## Use Case:
 
+External users and agents use this skill to gather trip requirements, research destinations, assemble daily itineraries, estimate budgets across travel styles, and produce map-enhanced, PDF-ready travel plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wt865143010/global-travel-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown travel plans with route-map prompts, Google Maps direction links, budget tables, and PDF-ready itinerary sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated map prompts, daily itinerary sections, weather and activity summaries, accommodation and dining recommendations, packing lists, and budget estimates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Travel plans may contain outdated or incorrect costs, opening hours, visa requirements, weather details, reservations, or activity availability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and confirm critical travel details with authoritative providers before booking or traveling.
+
+Risk: Trip planning can involve sensitive personal details such as travel dates, destination plans, budget, accommodations, and special requirements.
+
+Mitigation: Share only the details needed for itinerary planning and avoid unnecessary sensitive personal information.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wt865143010/skills/global-travel-planner)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text, Files]
+
+**Output Format:** [Markdown itinerary content with budget tables, map-generation prompts, direction links, and PDF-ready travel-plan sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include route-map image prompts, Google Maps direction URLs, weather and activity summaries, accommodation and dining suggestions, packing lists, and budget estimates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

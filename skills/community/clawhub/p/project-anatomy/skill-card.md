@@ -1,40 +1,57 @@
-## Description: <br>
-文件快速扫描通过生成项目文件索引，让 AI 在打开文件前了解内容并减少重复读取和 token 消耗。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+文件快速扫描通过生成精简项目索引，帮助 AI 在不打开每个文件的情况下判断内容并减少重复读取带来的 token 消耗。
 
-## Publisher: <br>
-[adchina2025](https://clawhub.ai/user/adchina2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adchina2025](https://clawhub.ai/user/adchina2025)
 
-## Use Case: <br>
-Developers and agent users use this skill to create compact Markdown indexes of project files so an agent can decide which files need direct reading. It also supports a specialized expense-directory scan and optional recent Downloads filename checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local file indexes may summarize private source files, notes, invoices, or recent Downloads filenames. <br>
-Mitigation: Run the skill only on intended folders, configure excludes for secrets or private notes, and review generated .anatomy.md files before sharing them with an agent. <br>
-Risk: The optional Downloads scan can surface recent local file names that may be sensitive. <br>
-Mitigation: Use --scan-downloads only when recent Downloads filenames should be included in the index. <br>
+## Use Case:
 
+Developers and agent users use this skill to scan local project directories and produce compact Markdown indexes that help decide which files need to be read. It can also summarize reimbursement directories and optionally flag recent Downloads files when that scan is explicitly requested.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/adchina2025/project-anatomy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown file index with CLI status text and optional YAML configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes .anatomy.md and a companion cache file; compact, summary, and table formats are supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata and skill.json) <br>
+Risk: The skill can scan local project files and write an index that future agent sessions may rely on, including text from untrusted files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on projects you are comfortable indexing locally and inspect the generated .anatomy.md before relying on it for agent context.
+
+Risk: Startup auto-refresh can rescan stale indexes in repositories that may not be trusted.
+
+Mitigation: Avoid startup auto-refresh on untrusted repositories; run manual scans with explicit excludes, depth limits, and output paths when review is needed.
+
+Risk: The optional Downloads scan can include recent personal Downloads metadata in the generated index.
+
+Mitigation: Do not use --scan-downloads unless recent personal Downloads metadata is intended to be included.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adchina2025/skills/project-anatomy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown index files and terminal text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes .anatomy.md by default and may write a companion .cache.json for incremental scans; optional Downloads metadata is included only when --scan-downloads is used.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

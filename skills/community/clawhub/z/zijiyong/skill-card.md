@@ -1,44 +1,63 @@
-## Description: <br>
-Guides an agent through Web of Science literature search, Shenzhen University library access, paper screening, abstract extraction, and Feishu Base writeback using local lark-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through Web of Science literature search, Shenzhen University library access, paper screening, abstract extraction, JCR quartile lookup, and Feishu Base writeback through local lark-cli.
 
-## Publisher: <br>
-[samadhifire](https://clawhub.ai/user/samadhifire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samadhifire](https://clawhub.ai/user/samadhifire)
 
-## Use Case: <br>
-Developers, research assistants, and academic users use this skill to run a structured WoS-to-Feishu workflow: confirm search scope, collect and screen literature, extract key fields, and write records into a specified Feishu multidimensional table. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can use authenticated WoS/SZU and Feishu access. <br>
-Mitigation: Use only authorized accounts, keep passwords and verification codes runtime-only, and pause for the user at SMS, captcha, or other multi-step authentication. <br>
-Risk: Feishu writeback could update the wrong Base, subtable, fields, or records. <br>
-Mitigation: Confirm the exact Base link, target subtable, field schema, and append/update/overwrite behavior before any writeback. <br>
-Risk: The artifact includes a default SZU username for a local workflow. <br>
-Mitigation: Review the default username before use and do not persist passwords, verification codes, or other credentials. <br>
+## Use Case:
 
+Developers, researchers, and academic assistants use this skill to collect Web of Science literature for a topic, screen and enrich the results, and write structured paper records into a Feishu multidimensional table.
 
-## Reference(s): <br>
-- [WOS to Feishu execution playbook](artifact/references/playbook.md) <br>
-- [Shenzhen University Web of Science entry](https://www.lib.szu.edu.cn/er?key=web+of+science) <br>
-- [ClawHub skill page](https://clawhub.ai/samadhifire/zijiyong) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell and PowerShell commands plus structured Feishu field templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide Feishu Base field definitions, record writeback, and verification steps; credentials and write targets require runtime user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The artifact includes a default Shenzhen University username, which may expose an institution-specific identifier.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the embedded username before release and require users to provide any account identifier at runtime.
+
+Risk: The workflow can reach institutional login pages and authentication challenges.
+
+Mitigation: Require explicit user confirmation before login, pause for SMS codes, captchas, or other verification steps, and never persist passwords, codes, session tokens, or credentials.
+
+Risk: The workflow can create, update, or upsert Feishu Base records through lark-cli.
+
+Mitigation: Confirm the exact Feishu Base link, target table, field changes, and writeback mode before running lark-cli, then read back sample records and counts after writing.
+
+Risk: Broad WoS trigger terms could start a workflow that touches external services and data stores.
+
+Mitigation: Ask the documented preflight questions and wait for user confirmation before browser automation, institutional access, or Feishu writeback.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/samadhifire/skills/zijiyong)
+- [Execution Playbook](references/playbook.md)
+- [Shenzhen University Web of Science Library Route](https://www.lib.szu.edu.cn/er?key=web+of+science)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured field recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Feishu Base field definitions, record payload guidance, search-query plans, screening criteria, and verification steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

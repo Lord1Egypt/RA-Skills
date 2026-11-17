@@ -1,43 +1,56 @@
-## Description: <br>
-Builds a practical sign-here and logistics checklist for a document packet while avoiding legal interpretation and directing the user to confirm issuer rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds a practical sign-here and logistics checklist for a document packet while avoiding legal interpretation and directing the user to confirm issuer rules.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Individuals and administrative teams use this skill to prepare document-signing packets, track signature, date, initial, witness, notary, attachment, copy, deadline, and submission requirements, and assemble questions to confirm with the issuer. It is for signing logistics only and does not provide legal advice or validate documents.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Document packets can involve identity, financial, medical, employment, real estate, or other sensitive information.
+
+Mitigation: Ask only for the minimum information needed for the checklist, prefer redacted descriptions, and avoid full identity numbers, bank details, or sensitive document contents unless truly necessary.
+
+Risk: The skill may be used around legal or official signing requirements that vary by issuer, jurisdiction, document type, witness rules, notary rules, or submission method.
+
+Mitigation: Keep outputs limited to sign-here and logistics support, mark uncertain items for issuer confirmation, and direct users to confirm requirements with the issuer or a qualified professional.
+
+Risk: The artifact includes an example suggesting cloud storage for scans of common signing materials.
+
+Mitigation: Use only approved secure storage with strong account protection, limited sharing, and minimal retention for identity and financial scans.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and administrative teams use this skill to turn document-signing instructions into a checklist for signatures, dates, initials, witnesses, notarization, attachments, copies, deadlines, and submission logistics. It supports packet assembly and issuer-confirmation questions without interpreting legal meaning or advising whether to sign. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake a signing logistics checklist for legal advice or legal validation. <br>
-Mitigation: Keep outputs limited to sign-here and logistics support, include the boundary note, and direct users to confirm signing rules with the issuer or a qualified professional. <br>
-Risk: Document packets may contain sensitive identity, financial, employment, medical, tax, or real estate information. <br>
-Mitigation: Ask only for the minimum needed checklist details, prefer redacted descriptions, avoid full identity numbers, and caution users about cloud storage unless they control encryption, access, MFA, and retention. <br>
-Risk: Issuer-specific witness, notary, format, deadline, attachment, or submission requirements may be incomplete or misunderstood. <br>
-Mitigation: Use only the user's provided instructions for requirements, mark uncertain items as confirm with issuer, and include a dedicated questions-to-confirm list. <br>
+**Output Format:** [Markdown checklist with packet summary, sign-here checklist, logistics checklist, issuer-confirmation questions, assembly order, and boundary note]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/document-signature-packet-builder) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+**Other Properties Related to Output:** [Prompt-only output; no code execution, API calls, network access, credentials, or persistence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown checklist with packet summary, sign-here checklist, logistics checklist, issuer-confirmation questions, assembly order, and boundary note] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only output; no code execution, network access, API calls, credentials, or files are required.] <br>
+1.0.2 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

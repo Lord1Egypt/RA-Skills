@@ -1,0 +1,3 @@
+pdfplumber>=3.0.0
+openpyxl>=3.0.0
+# RAR 支持需系统工具: brew install unar

@@ -1,44 +1,53 @@
-## Description: <br>
-Operate a radio station. Teaches you how to be an AI radio host and work with the claw radio cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate a radio station. Teaches you how to be an AI radio host and work with the claw radio cli.
 
-## Publisher: <br>
-[vossenwout](https://clawhub.ai/user/vossenwout) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vossenwout](https://clawhub.ai/user/vossenwout)
 
-## Use Case: <br>
-External users and agents use this skill to set up and operate a claw-radio station, build playlists, queue host banter, and respond to playback cues through the CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup uses a Homebrew tap, Docker image, and media dependencies that run locally. <br>
-Mitigation: Install only if you trust those dependencies and review the setup commands before running them. <br>
-Risk: The SearxNG bootstrap can remove or replace an existing local container and configuration. <br>
-Mitigation: Check for an existing SearxNG container or custom configuration before bootstrapping the persistent setup. <br>
-Risk: A persistent tmux radio session can keep playback and local processes running after the interaction ends. <br>
-Mitigation: Stop the claw-radio session and close the tmux session when finished. <br>
-Risk: Radio host personas could drift into protected-characteristic stereotypes. <br>
-Mitigation: Choose personas based on genre, fictional traits, or station vibe rather than protected characteristics. <br>
+## Use Case:
 
+External users and agents use this skill to operate a local AI radio station with the claw-radio CLI: configure dependencies, build playlists, queue host banter, start playback, poll cues, and stop the session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vossenwout/claw-radio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON playlist examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses one persistent tmux session for radio control and local CLI commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Setup can overwrite existing Docker/SearxNG container state or files under ~/.openclaw/searxng.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check for an existing searxng container and existing ~/.openclaw/searxng files before setup, back them up, and review each install step before running it.
+
+Risk: The setup relies on mutable third-party installs, including Homebrew packages, Docker/Colima, media tools, and a latest-tagged SearxNG container.
+
+Mitigation: Use only if those dependencies are acceptable in the target environment, and pin the Docker image and CLI version where practical.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vossenwout/skills/claw-radio)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides a single persistent tmux-controlled CLI session.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

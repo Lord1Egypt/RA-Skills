@@ -1,42 +1,58 @@
-## Description: <br>
-Perform complex, long-running research tasks using Gemini Deep Research Agent for multi-source synthesis, competitive analysis, market research, and comprehensive technical investigations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs complex, long-running research tasks using Gemini Deep Research Agent.
 
-## Publisher: <br>
-[Lion504](https://clawhub.ai/user/Lion504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lion504](https://clawhub.ai/user/lion504)
 
-## Use Case: <br>
-Developers, analysts, and research-focused agents use this skill to run Gemini Deep Research jobs that break down complex topics, search the web, and synthesize findings into reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Research prompts and referenced context are sent to Google's Gemini service. <br>
-Mitigation: Do not include confidential documents or sensitive personal data unless the applicable Google API terms and retention settings are acceptable. <br>
-Risk: Generated markdown and JSON outputs may contain sensitive research context. <br>
-Mitigation: Store, share, and delete saved output files according to the sensitivity of the submitted research request and returned report. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Lion504/gemini-deep-research-1-0-0) <br>
-- [Google AI Studio API key](https://aistudio.google.com/apikey) <br>
-- [Gemini Generative Language API](https://generativelanguage.googleapis.com/v1beta) <br>
-- [Gemini interactions endpoint](https://generativelanguage.googleapis.com/v1beta/interactions) <br>
+## Use Case:
 
+Developers, analysts, and researchers use this skill to launch Gemini Deep Research investigations that gather web sources and produce comprehensive reports for market, technical, or competitive research.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown report, JSON interaction metadata, and terminal progress output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves timestamped markdown and JSON files locally; long-running jobs may take minutes to hours.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Research prompts and optional file-search context are sent to Google Gemini.
+
+Mitigation: Use only approved inputs, avoid secrets or regulated data in queries, and confirm that Google Gemini use is acceptable for the task.
+
+Risk: Generated JSON metadata may include prompt, response, and interaction details.
+
+Mitigation: Choose an output directory outside shared repositories when needed, and review or delete generated metadata after use.
+
+Risk: Supplying an API key on the command line can expose it through shell history or process inspection.
+
+Mitigation: Prefer GEMINI_API_KEY from the environment over the --api-key argument.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lion504/skills/gemini-deep-research-1-0-0)
+- [Google AI Studio API keys](https://aistudio.google.com/apikey)
+- [Gemini Generative Language API endpoint](https://generativelanguage.googleapis.com/v1beta/interactions)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown report plus JSON interaction metadata; progress updates may stream to stderr.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GEMINI_API_KEY; saves timestamped report and metadata files to the selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-This skill helps an agent call UAPI's GET /image/motou endpoint to generate a motou GIF from a QQ number. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent use UAPI's GET /image/motou endpoint to generate a motou GIF from a QQ number with an optional background color.
 
-## Publisher: <br>
-[shuakami](https://clawhub.ai/user/shuakami) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuakami](https://clawhub.ai/user/shuakami)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to prepare or call the UAPI endpoint that generates a motou GIF from a QQ number, including checking the required qq parameter, optional background color, authentication notes, and response codes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill metadata includes broad image-processing keywords that do not match the single GET /image/motou endpoint. <br>
-Mitigation: Use it only for generating a motou GIF from a QQ number, and do not rely on it for compression, conversion, SVG rendering, or NSFW detection. <br>
-Risk: Calls send QQ numbers, and possibly a UAPI key, to the UAPI service. <br>
-Mitigation: Provide QQ numbers or credentials only when the user is comfortable sharing them with that service. <br>
+## Use Case:
 
+External users and developers use this skill when an agent needs to prepare or call the UAPI motou GIF endpoint for a specific QQ number, including checking required query parameters and response codes.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/shuakami/uapi-get-image-motou) <br>
-- [Quick start](references/quick-start.md) <br>
-- [GET /image/motou operation](references/operations/get-image-motou.md) <br>
-- [Image resource category](references/resources/Image.md) <br>
-- [UAPI base URL](https://uapis.cn/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API Calls, configuration] <br>
-**Output Format:** [Markdown guidance with endpoint details and parameter checks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The successful API response is image/gif binary data; the skill itself provides calling guidance rather than generating the image locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The artifact includes broad keywords such as compression, base64 conversion, SVG conversion, and NSFW detection that are outside the documented endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for GET /image/motou, confirm the required qq parameter, and ignore or remove unrelated dispatch keywords.
+
+Risk: The endpoint sends a QQ number to the third-party UAPI service and may be subject to anonymous quota or rate limits.
+
+Mitigation: Confirm the user intends to use the external service and add a UAPI Key only when authentication or quota errors require it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shuakami/skills/uapi-get-image-motou)
+- [Quick start](references/quick-start.md)
+- [GET /image/motou operation reference](references/operations/get-image-motou.md)
+- [Image resource reference](references/resources/Image.md)
+- [UAPI service](https://uapis.cn)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, API call]
+
+**Output Format:** [Markdown guidance with endpoint, query parameters, authentication notes, and response handling]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May result in an external GET request that returns image/gif binary data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

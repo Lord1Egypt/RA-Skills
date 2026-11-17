@@ -1,44 +1,55 @@
-## Description: <br>
-Enables an AI assistant to create, publish, update, and manage novels on fireseed.online through HTTP APIs without browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent plan, draft, quality-check, and publish Chinese web-novel chapters to FireSeed through HTTP APIs.
 
-## Publisher: <br>
-[sanzhishuyuan](https://clawhub.ai/user/sanzhishuyuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sanzhishuyuan](https://clawhub.ai/user/sanzhishuyuan)
 
-## Use Case: <br>
-External authors and agent users use this skill to direct an AI assistant to authenticate with Fireseed, create novels, publish or edit chapters, upload covers, and manage published works through HTTP API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can manage a live Fireseed account, including registration, token use, publishing, editing, and deletion. <br>
-Mitigation: Require explicit user confirmation before each account, credential, publishing, editing, or deletion action. <br>
-Risk: The skill directs agents to make feed, recommendation, and telemetry or event-reporting calls without strong consent boundaries. <br>
-Mitigation: Ask for consent before feed/recommendation calls and before reporting activation or publishing events. <br>
-Risk: Broad writing prompts may trigger external API activity and publish generated content unintentionally. <br>
-Mitigation: Use narrow prompts, preview generated chapters, and confirm the target novel and chapter order before publishing. <br>
+## Use Case:
 
+Authors and publishing agents use this skill to turn a novel premise into structured chapters, manage FireSeed works, and publish content after self-checks. It is suited for users who intentionally authorize an agent to create or update public FireSeed content on their behalf.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sanzhishuyuan/fireseed-auto-novel-publish) <br>
-- [Fireseed Platform](https://fireseed.online) <br>
-- [Fireseed Admin](https://fireseed.online/admin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown prose with HTTP request examples, JSON payloads, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May publish or modify live Fireseed content and report skill events when used with valid credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release metadata) <br>
+Risk: The skill can publish or modify public FireSeed content with broad automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the user explicitly wants agent-assisted publishing, and review planned account, novel, chapter, and task actions before execution.
+
+Risk: Credential handling is required for FireSeed account and token operations.
+
+Mitigation: Prefer a limited API token in the Authorization header, avoid sharing raw passwords in chat, and do not pass tokens in URL parameters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sanzhishuyuan/skills/fireseed-auto-novel-publish)
+- [Server-Resolved GitHub Repository](https://github.com/sanzhishuyuan/fireseed-auto-novel-publish)
+- [FireSeed Platform](https://fireseed.online)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown prose with HTTP API request details and publishing status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update FireSeed novels and chapters when supplied with valid user authorization.]
+
+## Skill Version(s):
+
+2.3.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

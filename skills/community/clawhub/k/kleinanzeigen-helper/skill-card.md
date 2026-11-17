@@ -1,45 +1,67 @@
-## Description: <br>
-Manage Kleinanzeigen listings through the KleinClaw OpenClaw plugin and embedded miniclaw runtime. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Kleinanzeigen listings through the KleinClaw OpenClaw plugin and embedded miniclaw runtime.
 
-## Publisher: <br>
-[ilyazar](https://clawhub.ai/user/ilyazar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ilyazar](https://clawhub.ai/user/ilyazar)
 
-## Use Case: <br>
-External users and developers use this skill to prepare, verify, publish, update, delete, download, or extend Kleinanzeigen listings through the KleinClaw OpenClaw plugin while keeping credentials and account state outside chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The authoritative security scan marked the bundle suspicious because a related review helper defaults to running nested Codex with sandboxing and approvals disabled. <br>
-Mitigation: Review before installing in sensitive repositories, use no-yolo mode for the autoreview helper unless full filesystem authority is intentional, and treat admin or migration commands as production-impacting operations that require careful confirmation. <br>
-Risk: Kleinanzeigen listing operations may affect live account state or expose sensitive account configuration if handled carelessly. <br>
-Mitigation: Use only KleinClaw tools, keep credentials, browser profiles, cookies, session data, and full config files out of chat, and require explicit user confirmation for mutating actions. <br>
+## Use Case:
 
+External users and developers use this skill to draft, verify, publish, update, download, extend, or delete Kleinanzeigen listings through configured KleinClaw tools while keeping account-changing actions scoped and confirmed.
 
-## Reference(s): <br>
-- [KleinClaw plugin](https://clawhub.ai/plugins/kleinclaw) <br>
-- [Kleinanzeigen Helper ClawHub page](https://clawhub.ai/ilyazar/kleinanzeigen-helper) <br>
-- [Prerequisites / Install](references/install.md) <br>
-- [Workflow](references/workflow.md) <br>
-- [Non-negotiables](references/non-negotiables.md) <br>
-- [Tool Selection](references/tool-selection.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with tool-selection recommendations and occasional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces sanitized, user-facing instructions and action summaries; mutating Kleinanzeigen operations require explicit confirmation through KleinClaw tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill depends on an external KleinClaw plugin that can control configured listing workspaces and live Kleinanzeigen listing actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and enable KleinClaw only from a trusted source, keep adRoots narrow, and verify the plugin before use.
+
+Risk: Publishing, updating, extending, downloading, or deleting listings can change live Kleinanzeigen account state.
+
+Mitigation: Review the exact listing scope and require explicit user confirmation before any mutating action.
+
+Risk: Credentials, browser profiles, cookies, and configuration files may contain sensitive account data.
+
+Mitigation: Keep credentials and config files out of chat and report only sanitized browser, configuration, and tool results.
+
+## Reference(s):
+
+- [Kleinanzeigen Helper Skill](https://clawhub.ai/ilyazar/skills/kleinanzeigen-helper)
+- [KleinClaw Plugin](https://clawhub.ai/plugins/kleinclaw)
+- [Prerequisites / Install](artifact/references/install.md)
+- [Non-negotiables](artifact/references/non-negotiables.md)
+- [Workflow](artifact/references/workflow.md)
+- [Ad Authoring](artifact/references/ad-authoring.md)
+- [Draft Publish Preflight](artifact/references/draft-publish-preflight.md)
+- [Listing Discovery and Scoping](artifact/references/listing-discovery-scoping.md)
+- [Browser Behaviour](artifact/references/browser-behaviour.md)
+- [Publish Result Caveats](artifact/references/publish-result-caveats.md)
+- [Tool Selection](artifact/references/tool-selection.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured tool-selection instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports sanitized results only and requires explicit user confirmation before mutating live Kleinanzeigen listings.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

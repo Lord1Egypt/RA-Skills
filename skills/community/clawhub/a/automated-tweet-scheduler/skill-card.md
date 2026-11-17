@@ -1,38 +1,53 @@
-## Description: <br>
-Automates Twitter scheduling by helping users schedule tweets and threads, manage a content calendar, upload media, and review engagement analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Twitter/X post and thread scheduling, content calendar management, media handling, and engagement analytics.
 
-## Publisher: <br>
-[Katrina-jpg](https://clawhub.ai/user/Katrina-jpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[katrina-jpg](https://clawhub.ai/user/katrina-jpg)
 
-## Use Case: <br>
-Content creators, marketers, crypto influencers, and businesses use this skill to schedule posts, build threads, manage a posting calendar, attach media, and analyze engagement. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may need access to a social account and can affect public scheduled posts. <br>
-Mitigation: Use limited account permissions where possible, confirm that publishing and deletion actions require review, and inspect scheduled posts before they go live. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Katrina-jpg/automated-tweet-scheduler) <br>
-- [Publisher profile](https://clawhub.ai/user/Katrina-jpg) <br>
+## Use Case:
 
+External content creators, marketers, influencers, and businesses use this skill to plan, schedule, revise, and analyze Twitter/X posts, threads, and media campaigns.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown and structured scheduling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose scheduled social posts, thread plans, calendar views, media metadata, and engagement summaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may post public Twitter/X content or upload media through an account the user did not intend to authorize.
+
+Mitigation: Confirm the connected Twitter/X account and require approval for scheduled posts and media uploads before publication.
+
+Risk: Uploaded media, scheduled content, and engagement analytics may be stored by supporting services.
+
+Mitigation: Confirm storage locations, retention behavior, cancellation controls, and deletion procedures before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/katrina-jpg/skills/automated-tweet-scheduler)
+- [Publisher profile](https://clawhub.ai/user/katrina-jpg)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Configuration]
+
+**Output Format:** [Markdown and plain-text scheduling confirmations, calendar summaries, analytics summaries, and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference Twitter/X API v2, database storage, cloud media storage, and chat bot integrations as implementation options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

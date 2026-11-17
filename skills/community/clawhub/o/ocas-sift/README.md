@@ -1,62 +1,78 @@
-# 🔬 Sift
+# ⚙️ Sift
 
-Sift is the system's general research engine, retrieving and synthesizing information from the web across a tiered source hierarchy -- internal knowledge first, then free web search, then rate-limited semantic research providers for deep work. It evaluates source reliability through cross-source agreement scoring, extracts structured entities from retrieved content, and emits enrichment candidates to Chronicle so researched knowledge accumulates over time.
+  <img src="./assets/readme/hero.jpg" width="100%" alt="Sift">
+
+>-
+
+**Skill name:** `ocas-sift`
+**Version:** 2.9.3
+**Type:** 
+**Layer:** Execution
+**Author:** Indigo Karasu
 
 ---
 
-## Overview
+## 📖 Overview
 
-Sift is the default first stop for any question that requires going beyond what the agent already knows. It selects search depth automatically (quick answer, comparison, deep research, or document analysis), routes queries through a tiered source hierarchy from internal knowledge to semantic research providers, and evaluates reliability through cross-source agreement scoring. Extracted entities are emitted as enrichment candidates to Chronicle, so information researched once accumulates rather than disappearing after the session. Sift never performs person-focused OSINT -- those requests belong with Scout.
+>-
 
-## Commands
+---
 
-| Command | Description |
+## 🔧 Capabilities
+
+- `"user"` — the signal is relevant to the user's personal knowledge graph
+- `"agent_only"` — the signal is agent-initiated research with no demonstrated user connection
+- `sift.search` — execute a search query with automatic tier selection and query rewriting
+- `sift.research` — run a multi-source research session producing a structured research journal
+- `sift.verify` — fact-check a specific claim across multiple sources with consensus scoring
+- `sift.summarize` — summarize a document or URL with structured entity extraction
+- `sift.extract` — extract entities, claims, statistics, and relationships from content
+- `sift.thread.list` — list active research threads with entity overlap detection
+- `sift.status` — return current state: active threads, quota usage, source reputation summary
+- `sift.journal` — write journal for the current run; called at end of every run
+- `sift.update` — pull latest from GitHub source; preserves journals and data
+- `sift.fetch [url]` — extract clean Markdown content from a URL. Runs Scrapling first (fast HTTP for static sites, headless browser mode for JS-heavy sites); falls back to Jina Reader (`r.jina.ai/<url>`) if Scrapling output is below content threshold. Returns Markdown with structure preserved. Use for summarizing a specific page or document the user provides.
+- `sift.webwright` — execute an interactive web task using browser automation (Playwright driving the system Chrome). **Requires the `playwright` package** (`pip install playwright`); it uses the already-installed Chrome via `channel="chrome"`, so no browser download is needed. Write the plan, exploration screenshots, instrumented final_script.py, execution log, and self-verification into `{agent_root}/commons/data/ocas-sift/webwright/`. For form filling, multi-step flows, JS-heavy sites, interactive filtering, or any task where the browser is the workspace. Read `references/webwright-integration.md` before first use.
+
+---
+
+## 📊 Outputs
+
+See `SKILL.md` for outputs, journals, and persistence rules.
+
+---
+
+## 📄 Files
+
+| File | Purpose |
 |---|---|
-| `sift.search` | Execute a search query with automatic tier selection and query rewriting |
-| `sift.research` | Run a multi-source research session producing a structured research journal |
-| `sift.verify` | Fact-check a specific claim across multiple sources with consensus scoring |
-| `sift.summarize` | Summarize a document or URL with structured entity extraction |
-| `sift.extract` | Extract entities, claims, statistics, and relationships from content |
-| `sift.thread.list` | List active research threads with entity overlap detection |
-| `sift.status` | Active threads, quota usage, source reputation summary |
-| `sift.journal` | Write journal for the current run |
-| `sift.update` | Pull latest from GitHub source (preserves journals and data) |
+| `SKILL.md` | Skill definition |
+| `references/` | Supporting documentation |
+| `scripts/` | Helper scripts |
 
-## Setup
-
-`sift.init` runs automatically on first invocation and creates all required directories, config.json, and JSONL files. No manual setup is required. It also registers the `sift:update` cron job (midnight daily) for automatic self-updates.
-
-## Dependencies
-
-**OCAS Skills**
-- [Elephas](https://github.com/indigokarasu/elephas) -- receives Signal files for Chronicle promotion after every extraction
-- [Thread](https://github.com/indigokarasu/thread) -- may read recent browsing context for query rewriting (cooperative, not required)
-- [Weave](https://github.com/indigokarasu/weave) -- entity disambiguation
-
-**External**
-- Brave Search API, SearXNG, DuckDuckGo (Tier 2 -- default for all queries)
-- Exa, Tavily (Tier 3 -- deep research with sparse sources, quota-limited)
-
-## Scheduled Tasks
-
-| Job | Mechanism | Schedule | Command |
-|---|---|---|---|
-| `sift:update` | cron | `0 0 * * *` (midnight daily) | Self-update from GitHub source |
 
 ## Changelog
 
-### v2.3.0 -- March 27, 2026
-- Added `sift.update` command and midnight cron for automatic version-checked self-updates
+- [2.8.5] - 2026-04-12
+- Fixed
+- [2026-04-05] N2 MCP + URL content fetcher
+- Added
+- Changed
+- Validation
+- [2026-04-04] Spec Compliance Update
+- Changes
 
-### v2.2.0 -- March 22, 2026
-- Routing improvements
-
-### v2.1.0 -- March 22, 2026
-- Mandatory signal emission for extracted entities to Elephas
-- Initialization with storage setup
-
-### v2.0.0 -- March 18, 2026
-- Initial release as part of the unified OCAS skill suite
 ---
 
-*Sift is part of the [OpenClaw Agent Suite](https://github.com/indigokarasu) -- a collection of interconnected skills for personal intelligence, autonomous research, and continuous self-improvement. Each skill owns a narrow responsibility and communicates with others through structured signal files, shared journals, and Chronicle, a long-term knowledge graph that accumulates verified facts over time.*
+## 📚 Documentation
+
+Read `SKILL.md` for operational details, schemas, and validation rules.
+
+Read `references/` for detailed specifications and examples.
+
+
+---
+
+## 📄 License
+
+MIT License — see `LICENSE` for details.

@@ -1,44 +1,60 @@
-## Description: <br>
-Multi Agent Collaboration helps agents coordinate multi-agent work with typed memory retrieval, role-based coordination, evidence-focused verification, command safety checks, and cost observability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A multi-agent collaboration framework that adds typed memory retrieval, coordinator-led roles, evidence-based verification, command pre-execution safety checks, and cost/cache observability for agent projects.
 
-## Publisher: <br>
-[e2e5g](https://clawhub.ai/user/e2e5g) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[e2e5g](https://clawhub.ai/user/e2e5g)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add structured multi-agent collaboration, memory retrieval, verification, safety auditing, and cost tracking to agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory and personal or workflow profiling may retain sensitive context beyond a single task. <br>
-Mitigation: Review and restrict the memory directory, avoid entering secrets or sensitive personal details, and use a sandboxed or test namespace until retention and deletion behavior is clearly documented. <br>
-Risk: Broad social and content monitoring capabilities are present but not fully disclosed in the main description. <br>
-Mitigation: Review the included prompts and module documentation before deployment, and enable only the modules that are appropriate for the intended use case. <br>
+## Use Case:
 
+Developers and agent builders use this skill to structure multi-agent workflows with memory retrieval, defined collaboration roles, evidence-based acceptance checks, command safety review, and cost/cache tracking.
 
-## Reference(s): <br>
-- [Claude Grade Patterns](references/claude-grade-patterns.md) <br>
-- [Multi-Agent Workflow Design](references/workflow-design.md) <br>
-- [Module Data Flow](references/data-flow.md) <br>
-- [Claude Grade Runbook Template](assets/templates/claudegrade-runbook.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/e2e5g/multi-agent-collaboration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, JavaScript examples, JSON-like workflow data, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce persistent memory records, verification results, safety audit decisions, and cost or cache observations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and package.json) <br>
+Risk: Persistent memory can store user text and influence later agent runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the memory directory as sensitive, review stored memories regularly, and delete entries that should not persist.
+
+Risk: The safety pipeline provides limited pre-execution command checks and does not make commands safe by itself.
+
+Mitigation: Require separate human review before running generated or audited commands, especially installation, network, or destructive shell commands.
+
+Risk: ClawHub security evidence marks the release as suspicious pending review.
+
+Mitigation: Review and scan the skill before deployment, and install only when a local, memory-enabled collaboration framework is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/e2e5g/skills/multi-agent-collaboration)
+- [Claude Grade Patterns](references/claude-grade-patterns.md)
+- [Workflow Design](references/workflow-design.md)
+- [Data Flow](references/data-flow.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with code blocks, structured reports, and command audit results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include retrieved memory, verification status, safety audit results, and cost/cache observations.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

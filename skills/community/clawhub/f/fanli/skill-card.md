@@ -1,45 +1,64 @@
-## Description: <br>
-Fanli converts shopping links or Taobao command text into coupon or promotional purchase links, compares prices across supported Chinese shopping platforms, checks price history, and gives buying guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts shopping links or share codes into coupon-backed promotional links, compares prices across Taobao, Tmall, JD, Pinduoduo, Douyin, Vipshop, and Meituan, checks price history, and gives purchase guidance.
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
 
-## Use Case: <br>
-External agent users use this skill to evaluate shopping links, find available coupons or promotional purchase links, compare prices across Taobao, Tmall, JD, Pinduoduo, Douyin, Vipshop, and Meituan, and receive price-history-based buying guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an API key for a third-party shopping service. <br>
-Mitigation: Use a revocable, scoped API key and rotate or revoke it if the execution environment is shared or compromised. <br>
-Risk: Product links and shopping command text are sent to a third-party service for parsing and conversion. <br>
-Mitigation: Avoid submitting links that contain private account, session, or tracking tokens, and use the skill only when that external data flow is approved. <br>
-Risk: Converted purchase URLs may be promotional or affiliate-style links. <br>
-Mitigation: Treat generated purchase links as promotional, verify the final destination and price before buying, and disclose the promotional nature when relevant. <br>
+## Use Case:
 
+External shoppers and shopping-assistant agents use Fanli to turn product or Meituan links into coupon and promotional links, compare marketplace prices, inspect historical pricing, and produce a concise buy-or-wait recommendation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/fanli) <br>
-- [feima-lab Open Platform](https://platform.feima.ai/) <br>
-- [convert output template](references/convert-output.md) <br>
-- [compare-price output template](references/compare-price-output.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown shopping summaries and recommendations, with optional JSON or table command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FX_AI_API_KEY; sends product links to a third-party service; generated purchase URLs may be promotional or affiliate-style links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.2.2 (source: evidence release metadata and frontmatter) <br>
+Risk: Shopping links may contain account-specific or private parameters and are sent to a remote feima-lab/fenxianglife API for parsing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting private shopping URLs or account-specific parameters unless the user trusts the publisher and remote API.
+
+Risk: The server security summary flags use of an unpinned external helper with API-key access.
+
+Mitigation: Prefer a pinned, reviewed fx-base version and provide FX_AI_API_KEY only in environments where the publisher and helper are trusted.
+
+Risk: Generated purchase links, images, and prices come from a remote service and may be inaccurate or unsafe.
+
+Mitigation: Verify product details, destination URLs, and final prices on the merchant site before purchase.
+
+Risk: The server security summary flags an unsafe local script dispatch path.
+
+Mitigation: Run the skill in a constrained agent environment and review allowed script names before enabling execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/skills/fanli)
+- [feima-lab open platform](https://platform.feima.ai/)
+- [convert output template](references/convert-output.md)
+- [compare-price output template](references/compare-price-output.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown purchase cards and recommendations, with optional JSON or table output from local Node.js commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FX_AI_API_KEY and sends submitted shopping links or share codes to the feima-lab/fenxianglife API.]
+
+## Skill Version(s):
+
+4.2.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

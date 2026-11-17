@@ -1,40 +1,54 @@
-## Description: <br>
-Generates English prompts for Google Banana (Imagen series) text-to-image workflows, with Chinese explanations, negative prompts, and parameter suggestions for character, scene, storyboard, and concept art images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates English prompts for Google Banana (Imagen series) text-to-image workflows, including Chinese explanations, negative prompts, and parameter suggestions for character, scene, storyboard, and concept art images.
 
-## Publisher: <br>
-[elevenzhou](https://clawhub.ai/user/elevenzhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elevenzhou](https://clawhub.ai/user/elevenzhou)
 
-## Use Case: <br>
-External users and content creators use this skill to draft image-generation prompts for Google Banana or Imagen-style workflows, especially for character art, scenes, storyboards, and concept art. The skill structures prompts with subject, setting, style, lighting, composition, quality terms, negative prompts, and parameter suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may format some generic image-prompt requests for Banana or Imagen-style output and include Chinese explanations by default. <br>
-Mitigation: Review generated prompts for the target image model, audience, and language requirements before using them in a production workflow. <br>
+## Use Case:
 
+External creators, designers, and prompt writers use this skill to turn image-generation requests into structured Google Banana/Imagen prompts with reviewable Chinese explanations, negative prompts, and suggested image parameters.
 
-## Reference(s): <br>
-- [Banana Prompt Template and Examples](references/banana-prompt-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/elevenzhou/eleven-banana-prompt-generator) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/elevenzhou) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text containing an English image prompt, Chinese explanation, negative prompt, and parameter suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Chinese explanations by default and may format generic image-prompt requests for Banana or Imagen-style use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generic image-prompt requests may be routed into a Banana/Imagen-specific prompt format that does not match the user's intended model.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target image model when requests are ambiguous before applying Banana-specific structure or parameter suggestions.
+
+Risk: The skill returns English prompts with Chinese explanations, which may not match every user's review workflow.
+
+Mitigation: Ask users whether they want Chinese explanations preserved or adapted when language expectations are unclear.
+
+## Reference(s):
+
+- [Banana prompt template and examples](artifact/references/banana-prompt-template.md)
+- [ClawHub release page](https://clawhub.ai/elevenzhou/skills/eleven-banana-prompt-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown containing an English prompt, Chinese explanation, negative prompt, and parameter suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool execution or file output is evident; the agent returns prompt-writing guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

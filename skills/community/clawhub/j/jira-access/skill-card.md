@@ -1,43 +1,54 @@
-## Description: <br>
-Access a Jira workspace using provided email and API token credentials to list, create, comment on, and transition Jira issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access a Jira workspace (omeshkshatriya.atlassian.net) using provided email and API token to list, create, and transition issues.
 
-## Publisher: <br>
-[brajesh9373](https://clawhub.ai/user/brajesh9373) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brajesh9373](https://clawhub.ai/user/brajesh9373)
 
-## Use Case: <br>
-Developers and project teams use this skill to operate Jira issues from an agent session, including JQL searches, issue creation, status transitions, and comments. It is intended for users who intentionally want the agent connected to the configured Jira workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is configured around a specific Atlassian tenant and account email. <br>
-Mitigation: Install it only for that intended workspace, or edit the configuration examples before use so they point to the user's own Jira tenant and account. <br>
-Risk: The skill requires Jira API credentials. <br>
-Mitigation: Use a dedicated low-permission API token and store it in environment variables or a secret store rather than committing it or placing it in shell history. <br>
-Risk: The skill can create issues, transition statuses, and post comments in a live Jira workspace. <br>
-Mitigation: Require explicit user approval before running mutating commands such as create, transition, or comment. <br>
+## Use Case:
 
+Developers and Jira workspace operators use this skill to list Jira issues with JQL, create issues, transition issues, and add comments through an agent-driven command workflow.
 
-## Reference(s): <br>
-- [Jira REST API documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/) <br>
-- [ClawHub release page](https://clawhub.ai/brajesh9373/jira-access) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Jira environment variables and the Python requests dependency.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can change live Jira data through create, transition, and comment commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before running commands that create issues, transition issues, or add comments.
+
+Risk: The Jira API token is sent to the configured Jira domain, and the domain is not validated by the skill.
+
+Mitigation: Set JIRA_DOMAIN only to the intended Atlassian tenant, use a least-privileged Jira API token, and rotate any token that may have run with an untrusted domain.
+
+## Reference(s):
+
+- [Jira REST API documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/)
+- [ClawHub Jira Access skill page](https://clawhub.ai/brajesh9373/skills/jira-access)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JIRA_DOMAIN, JIRA_EMAIL, and JIRA_API_TOKEN environment variables; Jira write actions should require explicit user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

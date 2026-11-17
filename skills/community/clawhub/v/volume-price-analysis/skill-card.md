@@ -1,40 +1,53 @@
-## Description: <br>
-Helps an agent assess whether A-share price moves are supported by trading volume and identify potential bull traps or bear traps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Volume Price Analysis helps evaluate the authenticity of A-share price moves using trading volume signals.
 
-## Publisher: <br>
-[haohanyang92](https://clawhub.ai/user/haohanyang92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haohanyang92](https://clawhub.ai/user/haohanyang92)
 
-## Use Case: <br>
-External users and agents use this skill to analyze A-share trading scenarios where price direction should be checked against volume patterns before interpreting breakouts, reversals, or declines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock-market analysis may be mistaken for personalized financial advice. <br>
-Mitigation: Treat outputs as informational, review assumptions, and avoid acting solely on generated analysis. <br>
-Risk: Short prompts such as "能追吗" may activate the skill without enough trading context. <br>
-Mitigation: Confirm that the user is asking about stock volume-price analysis before applying the skill's rules. <br>
+## Use Case:
 
+External users and market analysts use this skill to structure educational A-share technical analysis around volume-confirmed breakouts, false rallies, bottom reversals, valid declines, and false breakdowns. Its outputs should be treated as market commentary rather than personalized financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haohanyang92/volume-price-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational stock-analysis guidance only; no trading execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can produce direct-sounding trading suggestions from simplified technical-analysis rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational market commentary, not personalized financial advice, and review conclusions against independent market context before acting.
+
+Risk: The skill may be invoked ambiguously when the user wants financial analysis beyond volume-price signals.
+
+Mitigation: Use clear prompts that ask specifically for volume-price analysis and provide the relevant price and volume context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haohanyang92/skills/volume-price-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown]
+
+**Output Format:** [Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides simplified technical-analysis signals based on user-supplied price and volume context.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence, released 2026-03-16)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,46 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_permission_update",
+    "description": "Update a custom application permission (AppPermissionDefine). Before calling, use _app_permission_list to get the real permission ID. updateFieldList declares fields to modify. If changing moduleId to a table module, pass the table key; the system stores the internal module ID.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "AppPermissionDefine object ID to update, from _app_permission_list.",
+          "minLength": 1
+        },
+        "updateFieldList": {
+          "type": "array",
+          "description": "Fields to update in this call. Only key, name, and remark are supported. Fields not listed here will not be changed.",
+          "items": {
+            "type": "string",
+            "enum": ["key", "name", "remark"]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "key": {
+          "type": "string",
+          "description": "Custom permission identifier. Takes effect only when updateFieldList contains key.",
+          "minLength": 1,
+          "maxLength": 50,
+          "pattern": "^[A-Za-z][A-Za-z0-9]*$"
+        },
+        "name": {
+          "type": "string",
+          "description": "Permission display name. Takes effect only when updateFieldList contains name.",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "remark": {
+          "type": "string",
+          "description": "Permission description. Takes effect only when updateFieldList contains remark.",
+          "maxLength": 200
+        }
+      },
+      "required": ["id", "updateFieldList"]
+    }
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "海力士2倍产品开盘估值"
+  short_description: "结合美韩实时价格、汇率与净值估算07709合理开盘价及风险"
+  default_prompt: "使用 $estimate-hynix-2x-open 结合SKHY、韩股000660、汇率和最新NAV估算07709今日合理开盘价。"

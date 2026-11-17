@@ -1,0 +1,47 @@
+{
+  "current_session": {
+    "incident_name": "CTF-IR-DEMO",
+    "mode": "ctf",
+    "flag_format": "flag{...}",
+    "scope": "pcap/logs",
+    "rules": "demo",
+    "severity": null,
+    "phase": "triage",
+    "start_time": "2026-04-29T03:18:46.757951+00:00",
+    "last_progress_time": "2026-04-29T03:18:46.757985+00:00",
+    "stakeholders": [],
+    "assets": [],
+    "notes": [],
+    "evidence": [
+      {
+        "ts": "2026-04-29T03:18:46.757977+00:00",
+        "path": "./evidence/demo.txt"
+      }
+    ],
+    "artifacts": [],
+    "attempts": [],
+    "actions": [],
+    "timeline": [],
+    "flags": [
+      {
+        "ts": "2026-04-29T03:18:46.757983+00:00",
+        "text": "Q1=flag{demo}"
+      }
+    ],
+    "iocs": {
+      "ip": [],
+      "domain": [],
+      "url": [],
+      "hash": [],
+      "process": [],
+      "file": [],
+      "registry": [],
+      "user": []
+    },
+    "containment": [],
+    "eradication": [],
+    "recovery": [],
+    "lessons_learned": [],
+    "next_steps": []
+  }
+}

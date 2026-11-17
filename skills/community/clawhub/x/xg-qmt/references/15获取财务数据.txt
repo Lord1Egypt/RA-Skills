@@ -1,0 +1,421 @@
+'''
+15获取财务数据
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+获取财务数据前，请先通过界面端数据管理 - 财务数据下载
+
+财务数据下载
+
+提示
+
+财务数据接口通过读取下载本地的数据取数，使用前需要补充本地数据。除公告日期和报表截止日期为时间戳毫秒格式其他单位为元或 %，数据主要包括资产负债表(ASHAREBALANCESHEET)、利润表（ASHAREINCOME）、现金流量表（ASHARECASHFLOW）、股本表（CAPITALSTRUCTURE）的主要字段数据以及经过计算的主要财务指标数据（PERSHAREINDEX）。建议使用本文档对照表中的英文表名和迅投英文字段，表名不区分大小写。
+
+ContextInfo.get_financial_data - 获取财务数据
+财务数据接口有两种用法，入参和返回值不同，具体如下
+
+用法1
+原型
+
+内置python
+
+ContextInfo.get_financial_data(fieldList, stockList, startDate, enDate, report_type = 'announce_time')
+释义
+
+获取财务数据，方法1
+
+参数
+
+字段名	类型	释义与用例
+fieldList	List（必须）	财报字段列表：['ASHAREBALANCESHEET.fix_assets', '利润表.净利润']
+stockList	List（必须）	股票列表：['600000.SH', '000001.SZ']
+startDate	Str（必须）	开始时间：'20171209'
+endDate	Str（必须）	结束时间：'20171212'
+report_type	Str（可选）	报表时间类型，可缺省，默认是按照数据的公告期为区分取数据，设置为 'report_time' 为按照报告期取数据，' announce_time' 为按照公告日期取数据
+提示
+
+选择按照公告期取数和按照报告期取数的区别：
+
+报告日期是指财务报告所覆盖的会计时间段，而公告日期是指公司向外界公布该报告的具体时间点
+
+若指定report_type为report_time，则不会考虑财报的公告日期，可能会取到未来数据
+
+若指定report_type为announce_time，则会按财报实际发布日期返回数据，不会取到未来数据
+
+例：
+
+返回值
+
+函数根据stockList代码列表,startDate,endDate时间范围，返回不同的的数据类型。如下：
+
+代码数量	时间范围	返回类型
+=1	=1	pandas.Series (index = 字段)
+=1	>1	pandas.DataFrame (index = 时间, columns = 字段)
+>1	=1	pandas.DataFrame (index = 代码, columns = 字段)
+>1	>1	pandas.Panel (items = 代码, major_axis = 时间, minor_axis = 字段)
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+  pass
+
+def handlebar(C):
+
+  #取总股本和净利润
+  fieldList = ['CAPITALSTRUCTURE.total_capital', '利润表.净利润']   
+  stockList = ["000001.SZ","000002.SZ","430017.BJ"]
+  startDate = '20171209'
+  endDate = '20231204'
+  data = C.get_financial_data(fieldList, stockList, startDate, endDate, report_type = 'report_time')
+  print(data)
+用法2
+原型
+
+内置python
+
+ContextInfo.get_financial_data(tabname, colname, market, code, report_type = 'report_time', barpos)
+与用法 1 可同时使用
+
+释义
+
+获取财务数据，方法2
+
+参数
+
+字段名	类型	释义与用例
+tabname	Str（必须）	表名：'ASHAREBALANCESHEET'
+colname	Str（必须）	字段名：'fix_assets'
+market	Str（必须）	市场：'SH'
+code	Str（必须）	代码：'600000'
+report_type	Str（可选）	报表时间类型，可缺省，默认是按照数据的公告期为区分取数据，设置为 'report_time' 为按照报告期取数据，' announce_time ' 为按照公告日期取数据
+barpos	number	当前 bar 的索引
+返回值
+
+float ：所取字段的数值
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+  pass
+	
+def handlebar(C):
+  index = C.barpos
+  data = C.get_financial_data('ASHAREBALANCESHEET', 'fix_assets', 'SH', '600000', index)
+  print(data)
+ContextInfo.get_raw_financial_data - 获取原始财务数据
+提示
+
+取原始财务数据,与get_financial_data相比不填充每个交易日的数据
+
+原型
+
+内置python
+
+ContextInfo.get_raw_financial_data(fieldList,stockList,startDate,endDate,report_type='announce_time')
+
+释义
+
+取原始财务数据,与get_financial_data相比不填充每个交易日的数据
+
+参数
+
+字段名	类型	释义与用例
+fieldList	List（必须）	字段列表：例如 ['资产负债表.固定资产','利润表.净利润']
+stockList	List（必须）	股票列表：例如['600000.SH','000001.SZ']
+startDate	Str（必须）	开始时间：例如 '20171209'
+endDate	Str（必须）	结束时间：例如 '20171212'
+report_type	Str（可选）	时间类型，可缺省，默认是按照数据的公告期为区分取数据，设置为 'report_time' 为按照报告期取数据，可选值:'announce_time','report_time'
+返回值
+
+函数根据stockList代码列表,startDate,endDate时间范围，返回不同的的数据类型。如下：
+
+代码数量	时间范围	返回类型
+=1	=1	pandas.Series (index = 字段)
+=1	>1	pandas.DataFrame (index = 时间, columns = 字段)
+>1	=1	pandas.DataFrame (index = 代码, columns = 字段)
+>1	>1	pandas.Panel (items = 代码, major_axis = 时间, minor_axis = 字段)
+示例
+
+示例返回值
+
+#encoding:gbk
+'''
+获取财务数据
+'''
+import pandas as pd
+import numpy as np
+import talib
+
+def to_zw(a):
+	'''0.中文价格字符串'''
+	import numpy as np
+	try:
+		header = '' if a > 0 else '-'
+		if np.isnan(a):
+			return '问题数据'
+		if abs(a) < 1000:
+			return header + str(int(a)) + "元"
+		if abs(a) < 10000:
+			return header + str(int(a))[0] + "千"
+		if abs(a) < 100000000:
+			return header + str(int(a))[:-4] + "万" + str(int(a))[-4] + '千'
+		else:
+			return header + str(int(a))[:-8] + "亿" + str(int(a))[-8:-4] + '万'
+	except:
+		print(f"问题数据{a}")
+		return '问题数据'
+
+
+def after_init(C):
+	fieldList = ['ASHAREINCOME.net_profit_excl_min_int_inc','ASHAREINCOME.revenue'] # 字段表
+	stockList = ['000001.SZ'] # 标的
+	a=C.get_raw_financial_data(fieldList,stockList,'20150101','20300101',report_type = 'report_time') # 获取原始财务数据
+	# print(a)
+	for stock in a:
+		for key in a[stock]:
+			for t in a[stock][key]:
+				print(key, timetag_to_datetime(int(t),'%Y%m%d'), to_zw(a[stock][key][t]))
+			print('-' *22)
+		print('-' *22)
+
+ContextInfo.get_last_volume - 获取最新流通股本
+原型
+
+内置python
+
+ContextInfo.get_last_volume(stockcode)
+释义
+
+获取最新流通股本
+
+参数
+
+字段名	数据类型	解释
+stockcode	string	标的名称，必须是 'stock.market' 形式
+返回值
+
+int类型值,代表流通股本数量
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	data = C.get_last_volume("000001.SZ")
+	print(data)
+ContextInfo.get_total_share - 获取总股数
+原型
+
+内置python
+
+ContextInfo.get_total_share(stockcode)
+释义
+
+获取总股数
+
+参数
+
+字段名	数据类型	解释
+stockcode	string	股票代码，缺省值 ''，默认为当前图代码, 如：'600000.SH'
+返回值
+
+int:总股数
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	data = C.get_total_share('600000.SH')
+	print(data)
+财务数据字段表
+资产负债表 (ASHAREBALANCESHEET)
+中文字段	迅投字段
+应收利息	int_rcv
+可供出售金融资产	fin_assets_avail_for_sale
+持有至到期投资	held_to_mty_invest
+长期股权投资	long_term_eqy_invest
+固定资产	fix_assets
+无形资产	intang_assets
+递延所得税资产	deferred_tax_assets
+资产总计	tot_assets
+交易性金融负债	tradable_fin_liab
+应付职工薪酬	empl_ben_payable
+应交税费	taxes_surcharges_payable
+应付利息	int_payable
+应付债券	bonds_payable
+递延所得税负债	deferred_tax_liab
+负债合计	tot_liab
+实收资本(或股本)	cap_stk
+资本公积金	cap_rsrv
+盈余公积金	surplus_rsrv
+未分配利润	undistributed_profit
+归属于母公司股东权益合计	tot_shrhldr_eqy_excl_min_int
+少数股东权益	minority_int
+负债和股东权益总计	tot_liab_shrhldr_eqy
+所有者权益合计	total_equity
+货币资金	cash_equivalents
+应收票据	bill_receivable
+应收账款	account_receivable
+预付账款	advance_payment
+其他应收款	other_receivable
+其他流动资产	other_current_assets
+流动资产合计	total_current_assets
+存货	inventories
+在建工程	constru_in_process
+工程物资	construction_materials
+长期待摊费用	long_deferred_expense
+非流动资产合计	total_non_current_assets
+短期借款	shortterm_loan
+应付股利	dividend_payable
+其他应付款	other_payable
+一年内到期的非流动负债	non_current_liability_in_one_year
+其他流动负债	other_current_liability
+长期应付款	longterm_account_payable
+应付账款	accounts_payable
+预收账款	advance_peceipts
+流动负债合计	total_current_liability
+应付票据	notes_payable
+长期借款	long_term_loans
+专项应付款	grants_received
+其他非流动负债	other_non_current_liabilities
+非流动负债合计	non_current_liabilities
+专项储备	specific_reserves
+商誉	goodwill
+报告截止日	m_timetag
+公告日	m_anntime
+利润表 (ASHAREINCOME)
+中文字段	迅投字段
+投资收益	plus_net_invest_inc
+联营企业和合营企业的投资收益	incl_inc_invest_assoc_jv_entp
+营业税金及附加	less_taxes_surcharges_ops
+营业总收入	revenue
+营业总成本	total_operating_cost
+营业收入	revenue_inc
+营业成本	total_expense
+资产减值损失	less_impair_loss_assets
+营业利润	oper_profit
+营业外收入	plus_non_oper_rev
+营业外支出	less_non_oper_exp
+利润总额	tot_profit
+所得税	inc_tax
+净利润	net_profit_incl_min_int_inc
+归母净利润	net_profit_excl_min_int_inc
+管理费用	less_gerl_admin_exp
+销售费用	sale_expense
+财务费用	financial_expense
+综合收益总额	total_income
+归属于少数股东的综合收益总额	total_income_minority
+公允价值变动收益	change_income_fair_value
+已赚保费	earned_premium
+报告截止日	m_timetag
+公告日	m_anntime
+现金流量表 (ASHARECASHFLOW)
+中文字段	迅投字段
+收到其他与经营活动有关的现金	other_cash_recp_ral_oper_act
+经营活动现金流入小计	stot_cash_inflows_oper_act
+支付给职工以及为职工支付的现金	cash_pay_beh_empl
+支付的各项税费	pay_all_typ_tax
+支付其他与经营活动有关的现金	other_cash_pay_ral_oper_act
+经营活动现金流出小计	stot_cash_outflows_oper_act
+经营活动产生的现金流量净额	net_cash_flows_oper_act
+取得投资收益所收到的现金	cash_recp_return_invest
+处置固定资产、无形资产和其他长期投资收到的现金	net_cash_recp_disp_fiolta
+投资活动现金流入小计	stot_cash_inflows_inv_act
+投资支付的现金	cash_paid_invest
+购建固定资产、无形资产和其他长期投资支付的现金	cash_pay_acq_const_fiolta
+支付其他与投资的现金	other_cash_pay_ral_inv_act
+投资活动产生的现金流出小计	stot_cash_outflows_inv_act
+投资活动产生的现金流量净额	net_cash_flows_inv_act
+吸收投资收到的现金	cash_recp_cap_contrib
+取得借款收到的现金	cash_recp_borrow
+收到其他与筹资活动有关的现金	other_cash_recp_ral_fnc_act
+筹资活动现金流入小计	stot_cash_inflows_fnc_act
+偿还债务支付现金	cash_prepay_amt_borr
+分配股利、利润或偿付利息支付的现金	cash_pay_dist_dpcp_int_exp
+支付其他与筹资的现金	other_cash_pay_ral_fnc_act
+筹资活动现金流出小计	stot_cash_outflows_fnc_act
+筹资活动产生的现金流量净额	net_cash_flows_fnc_act
+汇率变动对现金的影响	eff_fx_flu_cash
+现金及现金等价物净增加额	net_incr_cash_cash_equ
+销售商品、提供劳务收到的现金	goods_sale_and_service_render_cash
+收到的税费与返还	tax_levy_refund
+购买商品、接受劳务支付的现金	goods_and_services_cash_paid
+处置子公司及其他收到的现金	net_cash_deal_subcompany
+其中子公司吸收现金	cash_from_mino_s_invest_sub
+处置固定资产、无形资产和其他长期资产支付的现金净额	fix_intan_other_asset_dispo_cash_payment
+报告截止日	m_timetag
+公告日	m_anntime
+股本表 (CAPITALSTRUCTURE)
+中文字段	迅投字段
+总股本	total_capital
+已上市流通A股	circulating_capital
+自由流通股本	free_float_capital（旧版本为freeFloatCapital）
+限售流通股份	restrict_circulating_capital
+变动日期	m_timetag
+公告日	m_anntime
+主要指标 (PERSHAREINDEX)
+中文字段	迅投字段
+每股经营活动现金流量	s_fa_ocfps
+每股净资产	s_fa_bps
+基本每股收益	s_fa_eps_basic
+稀释每股收益	s_fa_eps_diluted
+每股未分配利润	s_fa_undistributedps
+每股资本公积金	s_fa_surpluscapitalps
+扣非每股收益	adjusted_earnings_per_share
+净资产收益率	du_return_on_equity
+销售毛利率	sales_gross_profit
+主营收入同比增长	inc_revenue_rate
+净利润同比增长	du_profit_rate
+归属于母公司所有者的净利润同比增长	inc_net_profit_rate
+扣非净利润同比增长	adjusted_net_profit_rate
+营业总收入滚动环比增长	inc_total_revenue_annual
+归属净利润滚动环比增长	inc_net_profit_to_shareholders_annual
+扣非净利润滚动环比增长	adjusted_profit_to_profit_annual
+加权净资产收益率	equity_roe
+摊薄净资产收益率	net_roe
+摊薄总资产收益率	total_roe
+毛利率	gross_profit
+净利率	net_profit
+实际税率	actual_tax_rate
+预收款营业收入	pre_pay_operate_income
+销售现金流营业收入	sales_cash_flow
+资产负债比率	gear_ratio
+存货周转率	inventory_turnover
+十大股东/十大流通股东 (TOP10HOLDER/TOP10FLOWHOLDER)
+提示
+
+对于公告内披露的十大股东数量大于10条的，我们会保留原始数据，以保持和公司公告信息一致
+
+中文字段	迅投字段
+公告日期	declareDate
+截止日期	endDate
+股东名称	name
+股东类型	type
+持股数量	quantity
+变动原因	reason
+持股比例	ratio
+股份性质	nature
+持股排名	rank
+股东数 (SHAREHOLDER)
+中文字段	迅投字段
+公告日期	declareDate
+截止日期	endDate
+股东总数	shareholder
+A股东户数	shareholderA
+B股东户数	shareholderB
+H股东户数	shareholderH
+已流通股东户数	shareholderFloat
+未流通股东户数	shareholderOther

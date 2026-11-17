@@ -1,0 +1,635 @@
+{
+  "schema": "image-skill.public-command-manifest.v1",
+  "command_prefix": "luxin",
+  "product_frame": "Luxin is a hosted thin CLI and public contract for agent-native durable creative media.",
+  "skill_url": "https://luxin.sh/skill.md",
+  "docs_url": "https://luxin.sh/cli.md",
+  "llms_url": "https://luxin.sh/llms.txt",
+  "commands": [
+    {
+      "id": "doctor",
+      "docs_anchor": "luxin-doctor",
+      "surface": "client",
+      "mutation": false,
+      "spend": false
+    },
+    {
+      "id": "trust",
+      "docs_anchor": "luxin-trust",
+      "surface": "client",
+      "mutation": false,
+      "spend": false
+    },
+    {
+      "id": "skill",
+      "docs_anchor": "luxin-skill",
+      "surface": "client",
+      "mutation": false,
+      "spend": false
+    },
+    {
+      "id": "signup",
+      "docs_anchor": "luxin-signup-agent",
+      "surface": "hosted_cli",
+      "mutation": true,
+      "spend": false
+    },
+    {
+      "id": "claim",
+      "docs_anchor": "luxin-claim-request",
+      "surface": "hosted_cli",
+      "mutation": true,
+      "spend": false,
+      "subcommands": ["request", "code"]
+    },
+    {
+      "id": "whoami",
+      "docs_anchor": "luxin-whoami",
+      "surface": "hosted_cli",
+      "mutation": false,
+      "spend": false
+    },
+    {
+      "id": "usage",
+      "docs_anchor": "luxin-usage",
+      "surface": "hosted_cli",
+      "mutation": false,
+      "spend": false,
+      "subcommands": ["quota"]
+    },
+    {
+      "id": "quota",
+      "docs_anchor": "luxin-quota",
+      "surface": "hosted_cli",
+      "mutation": false,
+      "spend": false
+    },
+    {
+      "id": "credits",
+      "docs_anchor": "luxin-credits",
+      "surface": "hosted_cli",
+      "mutation": true,
+      "spend": true,
+      "subcommands": ["methods", "packs list", "quote", "buy", "status"]
+    },
+    {
+      "id": "capabilities",
+      "docs_anchor": "luxin-capabilities",
+      "surface": "hosted_cli",
+      "mutation": false,
+      "spend": false,
+      "subcommands": ["list", "show"]
+    },
+    {
+      "id": "models",
+      "docs_anchor": "luxin-models",
+      "surface": "hosted_cli",
+      "mutation": false,
+      "spend": false,
+      "subcommands": ["overview", "find", "list", "show"]
+    },
+    {
+      "id": "create",
+      "docs_anchor": "luxin-create",
+      "surface": "hosted_cli",
+      "mutation": true,
+      "spend": true
+    },
+    {
+      "id": "upload",
+      "docs_anchor": "luxin-upload",
+      "surface": "client",
+      "mutation": true,
+      "spend": false
+    },
+    {
+      "id": "edit",
+      "docs_anchor": "luxin-edit",
+      "surface": "client",
+      "mutation": true,
+      "spend": true
+    },
+    {
+      "id": "assets",
+      "docs_anchor": "luxin-assets",
+      "surface": "hosted_cli",
+      "mutation": false,
+      "spend": false,
+      "subcommands": ["show", "get"]
+    },
+    {
+      "id": "jobs",
+      "docs_anchor": "luxin-jobs",
+      "surface": "hosted_cli",
+      "mutation": false,
+      "spend": false,
+      "subcommands": ["show", "wait"]
+    },
+    {
+      "id": "activity",
+      "docs_anchor": "luxin-activity",
+      "surface": "hosted_cli",
+      "mutation": false,
+      "spend": false,
+      "subcommands": ["list", "show"]
+    },
+    {
+      "id": "feedback",
+      "docs_anchor": "luxin-feedback",
+      "surface": "hosted_cli",
+      "mutation": true,
+      "spend": false,
+      "subcommands": ["create"]
+    }
+  ],
+  "modality_aliases": [
+    { "alias": "image", "command": "create", "intent": null },
+    { "alias": "video", "command": "create", "intent": "video" },
+    { "alias": "audio", "command": "create", "intent": "audio" },
+    { "alias": "3d", "command": "create", "intent": "image-to-3d" },
+    { "alias": "image-to-3d", "command": "create", "intent": "image-to-3d" },
+    { "alias": "three-d", "command": "create", "intent": "image-to-3d" }
+  ],
+  "help_entries": [
+    {
+      "key": "",
+      "help": {
+        "command": "help",
+        "usage": "luxin <doctor|trust|skill|signup|claim|whoami|usage|quota|credits|capabilities|models|create|upload|edit|assets|jobs|activity|feedback> --json",
+        "docs_url": "https://luxin.sh/cli.md",
+        "agent_skill": {
+          "url": "https://luxin.sh/skill.md",
+          "llms_url": "https://luxin.sh/llms.txt",
+          "cli_docs_url": "https://luxin.sh/cli.md",
+          "read_command": "luxin skill --json",
+          "recommended_start_command": "luxin create --guide --prompt PROMPT --json",
+          "model_discovery_command": "luxin models find --operation image.generate --max-credits 2 --json",
+          "model_inspection_command": "luxin models show MODEL_ID --json",
+          "no_spend": true,
+          "purpose": "Read the agent skill before paid media work; it explains model discovery, guide flow, model parameters, quota, and self-fund recovery."
+        },
+        "commands": [
+          "doctor",
+          "trust",
+          "skill",
+          "signup --agent --agent-name NAME --runtime RUNTIME",
+          "claim request --contact INBOX",
+          "claim code",
+          "whoami",
+          "usage quota",
+          "quota",
+          "credits methods",
+          "credits quote",
+          "credits packs list",
+          "credits buy",
+          "credits status",
+          "capabilities",
+          "capabilities list",
+          "capabilities show",
+          "models",
+          "models overview",
+          "models find --operation image.generate --max-credits 2",
+          "models list",
+          "models show",
+          "create --guide",
+          "image create --guide",
+          "video create --guide",
+          "audio create --guide",
+          "3d create --guide",
+          "create --dry-run",
+          "create --batch items.json --dry-run",
+          "create",
+          "image edit",
+          "upload",
+          "edit",
+          "assets show",
+          "assets get",
+          "jobs show",
+          "jobs wait",
+          "activity list",
+          "activity show",
+          "feedback create"
+        ]
+      }
+    },
+    {
+      "key": "doctor",
+      "help": {
+        "command": "luxin doctor help",
+        "usage": "luxin doctor --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-doctor",
+        "description": "Check hosted API reachability, CLI version, auth state, health, and live-spend recovery breadcrumbs.",
+        "optional_flags": ["--sweep-in-flight"]
+      }
+    },
+    {
+      "key": "trust",
+      "help": {
+        "command": "luxin trust help",
+        "usage": "luxin trust --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-trust",
+        "description": "Return npm provenance, hosted contract hashes, API health, and model availability evidence."
+      }
+    },
+    {
+      "key": "skill",
+      "help": {
+        "command": "luxin skill help",
+        "usage": "luxin skill --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-skill",
+        "description": "Print the full agent guidance bundled with this CLI version, so instructions always match the installed code. No network call, no auth, no spend."
+      }
+    },
+    {
+      "key": "signup",
+      "help": {
+        "command": "luxin signup help",
+        "usage": "luxin signup --agent --agent-name NAME --runtime RUNTIME --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-signup-agent",
+        "required_flags": ["--agent", "--agent-name", "--runtime"],
+        "optional_flags": [
+          "--agent-contact",
+          "--show-token",
+          "--no-save",
+          "--token-stdin"
+        ]
+      }
+    },
+    {
+      "key": "claim",
+      "help": {
+        "command": "luxin claim help",
+        "usage": "luxin claim <request|code> --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-claim-request",
+        "subcommands": ["request", "code"]
+      }
+    },
+    {
+      "key": "claim request",
+      "help": {
+        "command": "luxin claim request help",
+        "usage": "luxin claim request --contact AGENT_OR_OPERATOR_INBOX --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-claim-request",
+        "required_flags": ["--contact"],
+        "optional_flags": ["--token-stdin"]
+      }
+    },
+    {
+      "key": "claim code",
+      "help": {
+        "command": "luxin claim code help",
+        "usage": "luxin claim code --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-claim-code",
+        "description": "Mint a single-use, short-lived dashboard link and hand data.dashboard_url to your human: they can watch your work and fund your credits there. No inputs beyond auth; no spend.",
+        "optional_flags": ["--token-stdin"]
+      }
+    },
+    {
+      "key": "whoami",
+      "help": {
+        "command": "luxin whoami help",
+        "usage": "luxin whoami --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-whoami"
+      }
+    },
+    {
+      "key": "usage",
+      "help": {
+        "command": "luxin usage help",
+        "usage": "luxin usage quota --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-usage",
+        "subcommands": ["quota"]
+      }
+    },
+    {
+      "key": "usage quota",
+      "help": {
+        "command": "luxin usage quota help",
+        "usage": "luxin usage quota --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-usage"
+      }
+    },
+    {
+      "key": "quota",
+      "help": {
+        "command": "luxin quota help",
+        "usage": "luxin quota --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-quota"
+      }
+    },
+    {
+      "key": "credits",
+      "help": {
+        "command": "luxin credits help",
+        "usage": "luxin credits <methods|packs list|quote|buy|status> --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-credits",
+        "subcommands": ["methods", "packs list", "quote", "buy", "status"]
+      }
+    },
+    {
+      "key": "credits methods",
+      "help": {
+        "command": "luxin credits methods help",
+        "usage": "luxin credits methods",
+        "docs_url": "https://luxin.sh/cli.md#luxin-credits"
+      }
+    },
+    {
+      "key": "credits packs",
+      "help": {
+        "command": "luxin credits packs help",
+        "usage": "luxin credits packs list --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-credits",
+        "subcommands": ["list"]
+      }
+    },
+    {
+      "key": "credits quote",
+      "help": {
+        "command": "luxin credits quote help",
+        "usage": "luxin credits quote --pack PACK_ID --payment-method stripe_x402.exact.usdc --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-credits",
+        "required_flags": ["--pack or --credits", "--payment-method"],
+        "optional_flags": ["--idempotency-key"]
+      }
+    },
+    {
+      "key": "credits buy",
+      "help": {
+        "command": "luxin credits buy help",
+        "usage": "luxin credits buy --provider stripe_x402 --quote-id QUOTE_ID --idempotency-key KEY --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-credits",
+        "required_flags": ["--provider", "--quote-id", "--idempotency-key"],
+        "supported_providers": ["stripe", "stripe_x402"]
+      }
+    },
+    {
+      "key": "credits status",
+      "help": {
+        "command": "luxin credits status help",
+        "usage": "luxin credits status --payment-attempt-id PAYMENT_ATTEMPT_ID --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-credits",
+        "required_flags": ["--payment-attempt-id"]
+      }
+    },
+    {
+      "key": "capabilities",
+      "help": {
+        "command": "luxin capabilities help",
+        "usage": "luxin capabilities <list|show> --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-capabilities",
+        "subcommands": ["list", "show"]
+      }
+    },
+    {
+      "key": "capabilities list",
+      "help": {
+        "command": "luxin capabilities list help",
+        "usage": "luxin capabilities list --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-capabilities"
+      }
+    },
+    {
+      "key": "capabilities show",
+      "help": {
+        "command": "luxin capabilities show help",
+        "usage": "luxin capabilities show CAPABILITY_ID --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-capabilities"
+      }
+    },
+    {
+      "key": "models",
+      "help": {
+        "command": "luxin models help",
+        "usage": "luxin models <overview|find|list|show> --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-models",
+        "subcommands": ["overview", "find", "list", "show"]
+      }
+    },
+    {
+      "key": "models overview",
+      "help": {
+        "command": "luxin models overview help",
+        "usage": "luxin models overview --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-models"
+      }
+    },
+    {
+      "key": "models find",
+      "help": {
+        "command": "luxin models find help",
+        "usage": "luxin models find --operation image.generate --max-credits 2 --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-models",
+        "optional_flags": [
+          "--available",
+          "--executable",
+          "--operation",
+          "--modality",
+          "--provider",
+          "--query",
+          "--max-credits",
+          "--sort",
+          "--limit"
+        ]
+      }
+    },
+    {
+      "key": "models list",
+      "help": {
+        "command": "luxin models list help",
+        "usage": "luxin models list --available --operation image.generate --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-models",
+        "optional_flags": [
+          "--available",
+          "--executable",
+          "--catalog-only",
+          "--operation",
+          "--modality",
+          "--provider",
+          "--query",
+          "--max-credits",
+          "--sort",
+          "--limit",
+          "--summary",
+          "--details"
+        ]
+      }
+    },
+    {
+      "key": "models show",
+      "help": {
+        "command": "luxin models show help",
+        "usage": "luxin models show MODEL_ID --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-models"
+      }
+    },
+    {
+      "key": "create",
+      "help": {
+        "command": "luxin create help",
+        "usage": "luxin create --prompt \"...\" --intent explore --max-estimated-usd-per-image 0.07 --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-create",
+        "optional_flags": [
+          "--guide",
+          "--no-spend",
+          "--explain",
+          "--dry-run",
+          "--prompt-file",
+          "--model",
+          "--aspect-ratio",
+          "--output-count",
+          "--output",
+          "--overwrite",
+          "--no-wait",
+          "--wait-timeout-ms",
+          "--element-frontal",
+          "--element-reference",
+          "--reference-image",
+          "--model-parameters-json",
+          "--idempotency-key",
+          "--batch",
+          "--batch-id"
+        ]
+      }
+    },
+    {
+      "key": "upload",
+      "help": {
+        "command": "luxin upload help",
+        "usage": "luxin upload PATH_OR_URL --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-upload"
+      }
+    },
+    {
+      "key": "edit",
+      "help": {
+        "command": "luxin edit help",
+        "usage": "luxin edit --input image_... --prompt \"...\" --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-edit",
+        "description": "--prompt is required except for promptless models. Image-to-3D models (fal.trellis-image-to-3d, fal.trellis-2, fal.trellis-multi, fal.hunyuan-3d-v3-1-pro-image-to-3d) have no prompt field: omit --prompt. fal.trellis-image-to-3d rejects one; the other 3D models accept it and do not send it to the provider.",
+        "required_flags": ["--input"],
+        "optional_flags": [
+          "--guide",
+          "--dry-run",
+          "--prompt",
+          "--prompt-file",
+          "--model",
+          "--mask",
+          "--element-reference",
+          "--element-frontal",
+          "--reference-image",
+          "--model-parameters-json",
+          "--idempotency-key",
+          "--output",
+          "--overwrite",
+          "--no-wait",
+          "--wait-timeout-ms"
+        ]
+      }
+    },
+    {
+      "key": "assets",
+      "help": {
+        "command": "luxin assets help",
+        "usage": "luxin assets <show|get> ASSET_ID_OR_URL --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-assets",
+        "subcommands": ["show", "get"]
+      }
+    },
+    {
+      "key": "assets show",
+      "help": {
+        "command": "luxin assets show help",
+        "usage": "luxin assets show ASSET_ID_OR_URL --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-assets"
+      }
+    },
+    {
+      "key": "assets get",
+      "help": {
+        "command": "luxin assets get help",
+        "usage": "luxin assets get ASSET_ID_OR_URL --output PATH --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-assets"
+      }
+    },
+    {
+      "key": "jobs",
+      "help": {
+        "command": "luxin jobs help",
+        "usage": "luxin jobs <show|wait> JOB_ID --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-jobs",
+        "subcommands": ["show", "wait"]
+      }
+    },
+    {
+      "key": "jobs show",
+      "help": {
+        "command": "luxin jobs show help",
+        "usage": "luxin jobs show JOB_ID --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-jobs"
+      }
+    },
+    {
+      "key": "jobs wait",
+      "help": {
+        "command": "luxin jobs wait help",
+        "usage": "luxin jobs wait JOB_ID --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-jobs",
+        "description": "Wait for a job to finish. The default wait is 100000 ms; --timeout-ms sets it exactly (Hunyuan 3D can take about 2 minutes, so use 600000 for slow models). When the wait ends with the job still running, the error says so and gives the next jobs wait command.",
+        "optional_flags": ["--timeout-ms", "--poll-interval-ms"]
+      }
+    },
+    {
+      "key": "activity",
+      "help": {
+        "command": "luxin activity help",
+        "usage": "luxin activity <list|show> --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-activity",
+        "subcommands": ["list", "show"]
+      }
+    },
+    {
+      "key": "activity list",
+      "help": {
+        "command": "luxin activity list help",
+        "usage": "luxin activity list --subject JOB_ID --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-activity"
+      }
+    },
+    {
+      "key": "activity show",
+      "help": {
+        "command": "luxin activity show help",
+        "usage": "luxin activity show REFERENCE --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-activity"
+      }
+    },
+    {
+      "key": "feedback",
+      "help": {
+        "command": "luxin feedback help",
+        "usage": "luxin feedback create --title TITLE --body BODY --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-feedback",
+        "subcommands": ["create"]
+      }
+    },
+    {
+      "key": "feedback create",
+      "help": {
+        "command": "luxin feedback create help",
+        "usage": "luxin feedback create --title TITLE --body BODY --type user_feedback --json",
+        "docs_url": "https://luxin.sh/cli.md#luxin-feedback",
+        "optional_flags": [
+          "--title",
+          "--body",
+          "--type",
+          "--severity",
+          "--confidence",
+          "--expected",
+          "--actual",
+          "--command"
+        ]
+      }
+    }
+  ]
+}

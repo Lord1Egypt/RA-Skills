@@ -1,0 +1,11 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_permission_list",
+    "description": "Query all custom application permissions (AppPermissionDefine) in the current app. If a permission is bound to a table module, moduleId is returned as the table key instead of the internal module ID.",
+    "parameters": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+}

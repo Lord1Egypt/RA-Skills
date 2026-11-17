@@ -1,0 +1,54 @@
+version: 1
+sources:
+  legal-playbook:
+    description: Current approved legal positions and negotiation boundaries.
+    role: authoritative
+    scope: contracts, legal terms, approvals
+    use_for:
+      - current standard clauses
+      - prohibited positions
+      - approval requirements
+    avoid_for:
+      - proving what a specific historical customer accepted
+    freshness: current
+    target: legal-playbook
+
+  signed-contracts:
+    description: Historical executed customer agreements.
+    role: precedent
+    scope: contracts, negotiated clauses, accepted deviations
+    use_for:
+      - comparable negotiated clauses
+      - historical deviations
+      - negotiation precedent
+    avoid_for:
+      - inferring current policy or delegated authority
+    freshness: historical
+    target: signed-contracts
+
+  previous-offers:
+    description: Historical commercial and technical proposals.
+    role: precedent
+    scope: proposals, customer requirements, solution descriptions
+    use_for:
+      - similar requirements
+      - reusable structure and rationale
+      - prior solution patterns
+    avoid_for:
+      - current pricing
+      - copying customer-specific commitments
+    freshness: historical
+    target: previous-offers
+
+  product-reference:
+    description: Current approved product capabilities and limitations.
+    role: authoritative
+    scope: product claims, compatibility, technical capabilities
+    use_for:
+      - current product claims
+      - supported features
+      - current limitations
+    avoid_for:
+      - historical deal commitments
+    freshness: current
+    target: product-reference

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Obsidian Notes"
+  short_description: "Create reusable Obsidian notes"
+  default_prompt: "Use $obsidian-notes to turn this conversation into a structured Obsidian knowledge note."
+
+policy:
+  allow_implicit_invocation: true

@@ -3,6 +3,11 @@
 # Speech is Cheap (SIC) CLI Wrapper for OpenClaw
 # Documentation: https://docs.speechischeap.com
 
+if [ "$1" = "--x402" ]; then
+    shift
+    exec node "$(dirname "${BASH_SOURCE[0]}")/x402.mjs" "$@"
+fi
+
 API_BASE="https://api.speechischeap.com/v2"
 UPLOAD_BASE="https://upload.speechischeap.com/v2"
 

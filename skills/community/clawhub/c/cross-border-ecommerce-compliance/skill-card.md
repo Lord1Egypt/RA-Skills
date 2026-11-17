@@ -1,40 +1,55 @@
-## Description: <br>
-跨境电商产品合规速查根据用户提供的产品品类和目的地市场，查询内置 8 品类 x 8 市场数据库并输出认证、标签、包装、测试、限制物质、进口文件、平台要求和特殊注意事项的合规报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+跨境电商产品合规速查 is a Chinese-language agent skill that maps a product category and destination market to structured compliance requirements and an interactive HTML report.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External sellers, sourcing teams, and compliance operators use this skill to triage cross-border ecommerce requirements for supported product categories and destination markets. It is intended as starting-point guidance before confirmation with official regulators, platforms, testing labs, or qualified compliance professionals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with bundled coverage for the United States, European Union, United Kingdom, Japan, Australia, Canada, South Korea, and GCC markets. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compliance requirements may change and outputs may be incomplete or unsuitable for legal, regulatory, medical-device, food, cosmetics, or export decisions. <br>
-Mitigation: Treat outputs as starting-point guidance and confirm current requirements with official regulators, ecommerce platforms, accredited testing bodies, or qualified compliance professionals before acting. <br>
-Risk: A static 8-category by 8-market checklist may not capture product-specific edge cases, multi-category products, or platform-specific enforcement changes. <br>
-Mitigation: Clarify the product category, destination market, and selling platform, then review generated reports against current product specifications and official requirements. <br>
+## Use Case:
 
+External sellers, operators, and compliance reviewers use this skill to get preliminary cross-border ecommerce compliance checklists for supported product categories and destination markets. It helps organize certification, labeling, packaging, testing, restricted-substance, import-document, platform, and special-notice requirements before formal review.
 
-## Reference(s): <br>
-- [Compliance Database](references/compliance-database.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Guidance] <br>
-**Output Format:** [Chinese text summary plus interactive HTML report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bundled static compliance reference material and a static HTML report template.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Compliance requirements may be incomplete or outdated for a specific product, platform, or destination market.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated reports as preliminary guidance and verify current requirements with official regulators or a qualified compliance provider before export or sale.
+
+Risk: Generated HTML reports may include free-form product names or shared inputs.
+
+Mitigation: Escape inserted values or convert reports to a sanitized format before opening or distributing generated HTML.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/cross-border-ecommerce-compliance)
+- [跨境电商产品合规数据库](references/compliance-database.md)
+- [Interactive HTML report template](assets/report-template.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Chinese-language summary plus generated interactive HTML report content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are reference-based preliminary compliance guidance and should be verified against official regulators or qualified compliance providers.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

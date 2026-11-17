@@ -1,49 +1,62 @@
-## Description: <br>
-LDM OS installer and updater for installing, updating, and checking the status of local LDM OS environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LDM OS installer and updater for installing, updating, checking status, and diagnosing LDM OS across supported agent harnesses.
 
-## Publisher: <br>
-[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Dual License: MIT + AGPLv3 <br>
+## Publisher:
 
+[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks)
 
-## Use Case: <br>
-Developers and external users use this skill to guide an agent through checking whether LDM OS is installed, reviewing a dry run, installing or updating the CLI, and validating the local setup. It is intended for local AI infrastructure management across agent tools such as Claude Code, GPT-compatible workflows, and OpenClaw. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Dual License: MIT + AGPLv3
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make broad persistent changes to local AI tooling, hooks, MCP registrations, OpenClaw allowlists, background behavior, and files under ~/.ldm, ~/.claude, and ~/.openclaw. <br>
-Mitigation: Review the dry run before installation, confirm the exact files and registrations that will change, and install only on machines where LDM OS should manage the local AI environment. <br>
-Risk: This version can persist OP_SERVICE_ACCOUNT_TOKEN into the user's shell profile when 1Password service-account workflows are enabled. <br>
-Mitigation: Avoid enabling 1Password service-account token flows on sensitive machines unless the credential storage behavior has been reviewed and accepted. <br>
-Risk: The server security verdict is suspicious because the package has capabilities involving wallets, purchases, OAuth or sensitive credentials, and external posting. <br>
-Mitigation: Treat credential, payment, and posting workflows as privileged actions and require explicit user confirmation before running commands that enable or configure them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to install, update, inspect, and repair LDM OS installations. It helps agents explain planned changes, run dry runs, and manage local identity, memory, hooks, MCP configuration, and shared workspace services.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/parkertoddbrooks/wip-ldm-os) <br>
-- [Publisher Profile](https://clawhub.ai/user/parkertoddbrooks) <br>
-- [Project Homepage](https://github.com/wipcomputer/wip-ldm-os) <br>
-- [Install Prompt](https://wip.computer/install/wip-ldm-os.txt) <br>
-- [Product Overview](references/PRODUCT.md) <br>
-- [Command Reference](references/COMMANDS.md) <br>
-- [Interface Reference](references/INTERFACES.md) <br>
-- [Skills Catalog](references/SKILLS-CATALOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and status tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides dry-run-first installation and update workflows; may produce commands that modify local LDM OS, Claude Code, OpenClaw, MCP, hook, and shell-profile configuration after user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.84 (source: frontmatter, package.json, server release metadata) <br>
+Risk: The skill can guide persistent changes to local agent harnesses, shell startup behavior, crontab entries, MCP configuration, hooks, and local message or context handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the dry run before running init or install commands, then use ldm doctor to inspect and repair the resulting configuration.
+
+Risk: The release is flagged suspicious by the authoritative security evidence because it performs deep system-level agent management.
+
+Mitigation: Install only when the operator intentionally wants LDM OS to manage multiple AI harnesses at that level.
+
+Risk: Credential-backed integrations may depend on local secrets such as an OpenClaw service-account token.
+
+Mitigation: Check whether ~/.openclaw/secrets/op-sa-token exists before enabling flows that require those integrations.
+
+## Reference(s):
+
+- [LDM OS Homepage](https://github.com/wipcomputer/wip-ldm-os)
+- [LDM OS Install Document](https://wip.computer/install/wip-ldm-os.txt)
+- [npm Package](https://www.npmjs.com/package/@wipcomputer/wip-ldm-os)
+- [Technical Reference](TECHNICAL.md)
+- [Universal Installer](docs/universal-installer/README.md)
+- [Bridge](docs/bridge/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands should be presented with dry-run and consent checkpoints before installation changes are made.]
+
+## Skill Version(s):
+
+0.4.86 (source: release evidence, SKILL.md metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

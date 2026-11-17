@@ -1,38 +1,52 @@
-## Description: <br>
-Image format conversion, compression, and video-to-GIF conversion for PNG, JPG, WebP, GIF, BMP, TIFF, HEIC, AVIF, and video files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image format conversion, compression, and video-to-GIF conversion for PNG, JPG, WebP, GIF, BMP, TIFF, HEIC, and AVIF workflows.
 
-## Publisher: <br>
-[sunnyton](https://clawhub.ai/user/sunnyton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sunnyton](https://clawhub.ai/user/sunnyton)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, creators, and technical users use this skill to get concise command guidance for converting, compressing, resizing, and optimizing local image or video files.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Some example commands can overwrite files through force flags, in-place optimization, or matching input and output names.
+
+Mitigation: Write to a new filename or create a backup before running conversion or optimization commands.
+
+Risk: The skill gives command examples for local media tooling, so unsupported formats or missing tools can cause failed conversions.
+
+Mitigation: Verify required tools are installed and inspect the command parameters before execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, designers, and operators use this skill to choose command-line conversions and compression settings for common image formats and video-to-GIF workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated conversion commands may overwrite files, strip metadata, reduce quality, or fail when required external tools or codecs are unavailable. <br>
-Mitigation: Review commands before execution, keep backups of originals, verify tool availability, and test settings on non-critical files first. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunnyton/image-convert) <br>
+**Other Properties Related to Output:** [Commands are examples for local tools such as ffmpeg, sips, ImageMagick, gifsicle, pngquant, and optipng; users should review filenames and overwrite behavior before execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides command examples and parameter guidance for external tools such as ffmpeg, sips, ImageMagick, gifsicle, pngquant, and optipng.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

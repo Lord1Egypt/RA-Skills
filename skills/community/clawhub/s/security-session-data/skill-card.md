@@ -1,40 +1,52 @@
-## Description: <br>
-Security engineer skill for session configuration, area isolation, sensitive-state handling, and data-protection boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security engineer skill for session configuration, area isolation, sensitive-state handling, and data-protection boundaries.
 
-## Publisher: <br>
-[aiweline](https://clawhub.ai/user/aiweline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aiweline](https://clawhub.ai/user/aiweline)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to review session configuration, auth-area separation, sensitive-state handling, and session-backed data protection. It helps preserve frontend, backend, and request-boundary isolation while documenting validation evidence and residual risk.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Session or sensitive request state could leak across frontend, backend, or request boundaries if changes are applied without exercising the real auth flow.
+
+Mitigation: Validate login, logout, protected-path behavior, and state isolation across affected areas, then record any residual retention or migration risk.
+
+Risk: Direct raw session manipulation could bypass the framework isolation model.
+
+Mitigation: Use framework session factories, area config, and controlled config paths instead of direct global session access.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and security engineers use this skill to review session configuration, authentication-area separation, sensitive state handling, and data-protection boundaries in Weline framework work. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Session or configuration changes can accidentally leak frontend, backend, admin, or request-scoped state. <br>
-Mitigation: Confirm the affected area and sensitive boundary, use framework session abstractions and area configuration, and validate login, logout, and protected-path behavior across relevant areas. <br>
-Risk: Sensitive state can be exposed through ad hoc globals or direct raw session manipulation. <br>
-Mitigation: Avoid direct global state and raw session writes; route changes through controlled framework paths and document residual migration or retention risk. <br>
+**Output Format:** [Markdown guidance with code, shell command, and configuration recommendations when needed]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aiweline/security-session-data) <br>
+**Other Properties Related to Output:** [May include validation evidence, residual-risk notes, and collaboration status for high-risk session or data-protection changes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, code, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include validation evidence and residual-risk notes when session, authentication, or sensitive-state changes require them.] <br>
+1.1.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

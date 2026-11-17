@@ -1,42 +1,58 @@
-## Description: <br>
-Securely access and manage secrets using the 1Password CLI with a service account token for reading, writing, editing, and deleting items in a dedicated vault. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Securely access and manage secrets using the 1Password CLI with a Service Account token for reading, writing, and editing items in a dedicated vault.
 
-## Publisher: <br>
-[reiy-leo](https://clawhub.ai/user/reiy-leo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[reiy-leo](https://clawhub.ai/user/reiy-leo)
 
-## Use Case: <br>
-Developers and agents use this skill to operate the 1Password CLI with a narrowly scoped service account for vault and item workflows. It supports authentication checks, vault listing, and controlled secret read, create, edit, and delete operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives agents direct ability to read, create, edit, cache, and delete secrets through the 1Password CLI. <br>
-Mitigation: Use a dedicated service account with minimum vault permissions, avoid personal or production vaults, and require explicit approval before create, edit, or delete actions. <br>
-Risk: Secret values or service account tokens could be exposed in logs, console output, or cached results. <br>
-Mitigation: Do not print OP_SERVICE_ACCOUNT_TOKEN or retrieved secrets, avoid caching secret values, and rotate or revoke the service account token when work is complete. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure agents for 1Password CLI access through a narrowly scoped service account. It supports vault and item workflows such as authentication checks, listing vaults, reading items, creating secure notes, editing fields, and deleting items.
 
-## Reference(s): <br>
-- [1Password CLI get started](https://developer.1password.com/docs/cli/get-started) <br>
-- [1Password Developer Portal](https://developer.1password.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/reiy-leo/1password-cli-bak) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require OP_SERVICE_ACCOUNT_TOKEN and should avoid exposing token or secret values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Agents can read, create, edit, or delete secrets if the configured service account has broad vault permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped 1Password service account and a dedicated vault with only the permissions needed for the agent's task.
+
+Risk: Credential values may be exposed through command-line arguments, console output, cached results, or shared agent storage.
+
+Mitigation: Avoid putting real secrets in command-line arguments, do not print tokens or retrieved secrets unless explicitly required, and do not cache secrets in plaintext.
+
+Risk: Create, edit, and delete commands can accidentally change or remove credentials.
+
+Mitigation: Require explicit confirmation before mutating actions and specify the target vault to avoid ambiguous operations.
+
+## Reference(s):
+
+- [1Password CLI getting started](https://developer.1password.com/docs/cli/get-started)
+- [1Password Developer Portal](https://developer.1password.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes commands that may return JSON from the 1Password CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

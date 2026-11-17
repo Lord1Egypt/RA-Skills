@@ -1,42 +1,58 @@
-## Description: <br>
-Audit and score OpenClaw AgentSkills against structural compliance, quality standards, and OpenClaw-specific architecture patterns, producing a 0-100 score, A-F grade, dimensional breakdown, and actionable improvement recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Audit evaluates OpenClaw AgentSkills for structural compliance, quality standards, and OpenClaw-specific architecture patterns, producing scored audit reports with grades, dimensional breakdowns, and recommendations.
 
-## Publisher: <br>
-[haseo-ai](https://clawhub.ai/user/haseo-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haseo-ai](https://clawhub.ai/user/haseo-ai)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to evaluate OpenClaw AgentSkills for structural compliance, triggering quality, workflow design, sub-agent design, and conciseness. It produces bilingual audit reports with scores and prioritized recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit reports are saved locally by default and may retain secrets or private implementation details from audited skills. <br>
-Mitigation: Avoid auditing skills that contain secrets or private implementation details unless local retention under ~/.openclaw/workspace/skill-audit-reports is acceptable; review reports before sharing. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to audit OpenClaw AgentSkills, compare them against a six-dimension rubric, and receive prioritized improvement recommendations before release or review.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/haseo-ai/oc-skill-audit) <br>
-- [Scoring Rubric](artifact/references/scoring-rubric.md) <br>
-- [Scoring Rubric (Korean)](artifact/references/scoring-rubric.ko.md) <br>
-- [Scoring Rubric (Japanese)](artifact/references/scoring-rubric.ja.md) <br>
-- [Scoring Rubric (Chinese)](artifact/references/scoring-rubric.zh.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown audit report and response summary card] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces bilingual reports when appropriate and saves timestamped audit files under ~/.openclaw/workspace/skill-audit-reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Audited skill files may contain private instructions or sensitive local context that can be written into audit reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Audit only files you are authorized to review and clean the OpenClaw report directory when reports may contain private material.
+
+Risk: Audit scores and recommendations may be incomplete or misleading if the target skill files are missing, stale, or evaluated against an unsuitable rubric.
+
+Mitigation: Review the generated scorecard and recommendations before using them for release, deployment, or governance decisions.
+
+## Reference(s):
+
+- [Skill Audit on ClawHub](https://clawhub.ai/haseo-ai/skills/oc-skill-audit)
+- [haseo-ai Publisher Profile](https://clawhub.ai/user/haseo-ai)
+- [Scoring Rubric](references/scoring-rubric.md)
+- [Scoring Rubric Korean](references/scoring-rubric.ko.md)
+- [Scoring Rubric Japanese](references/scoring-rubric.ja.md)
+- [Scoring Rubric Chinese](references/scoring-rubric.zh.md)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance, files]
+
+**Output Format:** [Markdown audit report plus a concise response summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a 0-100 score, A-F grade, dimensional breakdown, bilingual report when applicable, and prioritized recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

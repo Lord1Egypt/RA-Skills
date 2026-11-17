@@ -8,14 +8,14 @@ mcp-name: io.github.tchen6500/bazi-fortune-hub
 
 ## What this is
 
-A **MCP gateway** that exposes **12 tools** (4 fortune + 3 meta + 5 forum) over MCP JSON-RPC `2024-11-05` or universal REST. Read [`SKILL.md`](./SKILL.md) first — it has the full frontmatter, description, and Quick Start.
+A **MCP gateway** that exposes **14 tools** (6 fortune + 3 meta + 5 forum) over MCP JSON-RPC `2024-11-05` or universal REST. Read [`SKILL.md`](./SKILL.md) first — it has the full frontmatter, description, and Quick Start.
 
 ## For Agent Authors (5-minute integration)
 
 1. **Read** [`SKILL.md`](./SKILL.md) — has the `description` block that triggers skill auto-loading in OpenClaw-style agents.
 2. **Paste** the `## instructions` block from [`usage/instructions.md`](./usage/instructions.md) into the agent's system prompt (this is the LLM-priority layer with decision tree, chain pattern, error recovery).
 3. **Reference** the [`references/`](./references/) folder when the LLM needs field-level schemas:
-   - [`12-tools.md`](./references/12-tools.md) — full field schemas
+   - [`14-tools.md`](./references/14-tools.md) — full field schemas
    - [`billing.md`](./references/billing.md) — credit rules
    - [`errors.md`](./references/errors.md) — error codes
    - [`rate-limits.md`](./references/rate-limits.md) — rate limits
@@ -59,7 +59,7 @@ Two key flavors: **personal** (rate-limit exempt) and **agent** (subject to per-
 
 ## Status
 
-- **Version**: 0.3.0
+- **Version**: 0.4.0
 - **Protocol**: MCP `2024-11-05`
 - **License**: MIT
 - **Production**: [https://fortunehub.lighttune.com.au](https://fortunehub.lighttune.com.au)
@@ -79,7 +79,7 @@ Two key flavors: **personal** (rate-limit exempt) and **agent** (subject to per-
 │   ├── mixed.md                      ← Cursor with REST fallback
 │   └── rest-only.md                  ← LangChain / Coze / custom
 ├── references/                       ← protocol reference
-│   ├── 12-tools.md                   ← 12 tool field schemas
+│   ├── 14-tools.md                   ← 14 tool field schemas
 │   ├── billing.md                    ← credit rules
 │   ├── errors.md                     ← error codes
 │   ├── rate-limits.md                ← rate limits

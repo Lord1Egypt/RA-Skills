@@ -1,44 +1,59 @@
-## Description: <br>
-Convert EPUB ↔ PDF bidirectionally. EPUB→PDF preserves layout for analysis; PDF→EPUB compresses and reflows for distribution and ereaders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert EPUB ↔ PDF bidirectionally. EPUB→PDF preserves layout for analysis; PDF→EPUB compresses and reflows for distribution and ereaders.
 
-## Publisher: <br>
-[bunsdev](https://clawhub.ai/user/bunsdev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bunsdev](https://clawhub.ai/user/bunsdev)
 
-## Use Case: <br>
-Developers, researchers, and document workflow users use this skill to convert EPUB books or papers into PDFs for layout-preserving analysis, and to convert PDFs into reflowable EPUBs for distribution or ereaders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Package-manager and sudo examples can change the local system if run without review. <br>
-Mitigation: Review installation commands before execution and install Calibre only through package sources you trust. <br>
-Risk: Document conversion writes local output files and may overwrite or produce unexpected results when paths are reused. <br>
-Mitigation: Confirm input and output filenames before running commands, then inspect converted files before relying on them. <br>
-Risk: Converted documents may be redistributed without appropriate rights. <br>
-Mitigation: Convert or distribute only documents you have permission to use. <br>
+## Use Case:
 
+Developers, researchers, and document workflows use this skill to convert EPUB files into PDFs for layout-preserving analysis and convert PDFs into reflowable EPUB files for distribution or ereader use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bunsdev/epub-to-pdf) <br>
-- [Calibre Handbook](https://manual.calibre-ebook.com/) <br>
-- [pdftotext manual page](https://manpages.ubuntu.com/manpages/xenial/man1/pdftotext.1.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local PDF or EPUB files through Calibre; users choose source documents and output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The workflow depends on calibre being installed as a local system dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm calibre is installed from a trusted package source before running conversion commands.
+
+Risk: Converted documents may contain copyrighted or confidential material.
+
+Mitigation: Convert, store, and redistribute only documents the user is allowed to handle, and avoid shared research folders unless access controls and licensing are clear.
+
+Risk: PDF to EPUB conversion can lose structure for scanned or fixed-layout PDFs.
+
+Mitigation: Inspect the generated EPUB in an ereader or calibre viewer and use the documented fallback path when conversion quality is poor.
+
+## Reference(s):
+
+- [EPUB ↔ PDF Converter on ClawHub](https://clawhub.ai/bunsdev/skills/epub-to-pdf)
+- [pdftotext manual page](https://manpages.ubuntu.com/manpages/xenial/man1/pdftotext.1.html)
+- [Calibre Handbook](https://manual.calibre-ebook.com/)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local document conversion commands and quality-check guidance; converted files depend on the user's source documents and local calibre installation.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

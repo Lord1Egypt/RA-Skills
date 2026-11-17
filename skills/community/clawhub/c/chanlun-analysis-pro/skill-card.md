@@ -1,40 +1,57 @@
-## Description: <br>
-Chanlun Analysis Pro helps agents produce Chanlun-style technical analysis for A-share indexes, individual stocks, and sectors, including fractals, strokes, line segments, central hubs, divergence, multi-timeframe structure, and buy/sell point research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chanlun-based A-share technical analysis, including chart-structure concepts, divergence, buy and sell point frameworks, multi-timeframe analysis, and Python examples.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Developers, analysts, and market-research agents use this skill to draft Chanlun technical-analysis reports, algorithm notes, Python examples, and trading-plan templates for educational research. Generated signals should not be treated as personalized financial advice, and market data should be independently verified before trading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/skills/chanlun-analysis-pro) <br>
-- [Chanlun algorithm Python reference](references/chanlun_algorithm_python.md) <br>
-- [Chanlun analysis templates](references/chanlun_analysis_templates.md) <br>
-- [Chanlun practice guide](references/chanlun_practice_guide.md) <br>
+A-share traders, Chanlun learners, and quantitative analysis developers use the skill to organize technical chart analysis, examine possible market structures and signal interpretations, and generate Python examples or analysis templates.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with Python snippets, shell commands, checklists, and structured trading-analysis templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Financial-risk guidance applies: treat generated buy/sell points, price zones, stop-losses, and position sizes as educational research rather than personalized investment advice.] <br>
+Global
 
-## Skill Version(s): <br>
-5.2.1 (source: server release and SKILL.md frontmatter) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The security assessment reports an unpinned installation command, potentially broad activation terms, and incomplete inspection coverage.
+
+Mitigation: Review the source and activation scope, and install only a trusted, reviewed exact release. The benign assessment is not a guarantee.
+
+Risk: Technical examples and buy or sell point interpretations may be incomplete or misleading when applied to changing market data.
+
+Mitigation: Check analyses against current, reliable price data and independent review before using them to inform a decision.
+
+## Reference(s):
+
+- [Chanlun Analysis Pro on ClawHub](https://clawhub.ai/gechengling/skills/chanlun-analysis-pro)
+- [Server-resolved GitHub provenance](https://github.com/gechengling/chanlun-analysis-pro)
+- [chanlun_algorithm_python.md](references/chanlun_algorithm_python.md)
+- [chanlun_analysis_templates.md](references/chanlun_analysis_templates.md)
+- [chanlun_practice_guide.md](references/chanlun_practice_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown analysis with optional tables, Python examples, and structured templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include chart-structure and buy or sell point interpretations.]
+
+## Skill Version(s):
+
+5.2.6 (source: server-resolved ClawHub release; artifact frontmatter says 5.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

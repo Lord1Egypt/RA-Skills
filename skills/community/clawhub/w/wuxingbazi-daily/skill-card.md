@@ -1,45 +1,57 @@
-## Description: <br>
-A traditional Chinese five-elements and Bazi astrology skill for calculating Wuxing attributes, interpreting birth-chart traits, generating daily fortune guidance, converting lunar dates, and optionally setting daily reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wuxingbazi Daily helps agents produce Chinese five-elements and Bazi-style astrology reports, daily fortune guidance, almanac-style auspicious and inauspicious suggestions, and lunar calendar conversions.
 
-## Publisher: <br>
-[timyljob2011-sudo](https://clawhub.ai/user/timyljob2011-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timyljob2011-sudo](https://clawhub.ai/user/timyljob2011-sudo)
 
-## Use Case: <br>
-External users interested in Chinese traditional almanac and astrology use this skill to calculate Bazi and Wuxing profiles from birth information, convert lunar dates, and receive daily fortune or reminder guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional daily reminder can create a recurring local cron task. <br>
-Mitigation: Only create the reminder after confirming the actual script path, the exact command being scheduled, and how to remove the task later. <br>
-Risk: Fortune, diet, body, wellness, and major-decision suggestions may be mistaken for professional advice. <br>
-Mitigation: Treat outputs as cultural entertainment and do not rely on them for medical, financial, legal, safety, or major life decisions. <br>
-Risk: The documentation references scripts under a scripts/ directory while the release artifact places script files at the root. <br>
-Mitigation: Verify file locations before running commands or scheduling reminders. <br>
+## Use Case:
 
+External users and agents use this skill to generate entertainment-oriented Chinese almanac and Bazi reports from birth-date inputs, convert between solar and lunar dates, and prepare daily fortune summaries or reminders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/timyljob2011-sudo/wuxingbazi-daily) <br>
-- [Nayin Table](artifact/nayin_table.md) <br>
-- [Wuxing Daily Correspondence](artifact/wuxing_daily.md) <br>
-- [Ziwei Stars](artifact/ziwei_stars.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style prose with command examples and plain-text fortune reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Bazi/Wuxing analysis, lunar-date conversion results, daily fortune ratings, auspicious/inauspicious suggestions, lucky elements, and optional cron reminder commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact docs list 1.0.0) <br>
+Risk: Persistent reminder setup may create a cron or scheduled task without sufficiently clear confirmation, containment, or removal instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval of the command, path, schedule, and removal method before creating any scheduled task.
+
+Risk: Astrology, health, investment, and decision-related suggestions may be mistaken for professional advice.
+
+Mitigation: Frame fortune, health, and investment-style guidance as entertainment and avoid presenting it as a basis for important decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/timyljob2011-sudo/skills/wuxingbazi-daily)
+- [README](artifact/README.md)
+- [Sixty Jiazi Nayin Five Elements Table](artifact/nayin_table.md)
+- [Five Elements Daily Correspondence Table](artifact/wuxing_daily.md)
+- [Zi Wei Dou Shu Major Stars Reference](artifact/ziwei_stars.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with command snippets and formatted astrology reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scheduled reminder setup guidance; users should approve any persistent scheduling command before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

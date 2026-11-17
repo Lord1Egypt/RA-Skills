@@ -9,12 +9,13 @@ description: >
   Default target: clawhub only. Use --target all for all three real hubs, or
   --target user-hook:./my-script.sh for custom destinations. Triggers on:
   publish skill, release skill, push to skill hub, ship skill to multiple hubs,
-  发布 skill, 上传到 clawhub, 发布到 skillhub.cn.
+  发布 skill, 上传到 clawhub, 发布到 skillhub.cn, package only, 打包不发布.
+version: 1.1.1
 ---
 
 # skill-release-plus
 
-**Version**: 1.0.3  
+**Version**: 1.1.1  
 **Author**: Evan Song <[github.com/Songhonglei](https://github.com/Songhonglei)>
 **Repo**: <https://github.com/Songhonglei/build-better-skills/tree/main/skills/skill-release-plus>
 **License**: MIT (this repo) — clawhub mirror auto-uses MIT-0 (platform-enforced)  
@@ -23,6 +24,40 @@ description: >
 Sign → Pack → Publish to **multiple skill hubs in one command**. Supports
 `clawhub.com`, `skillhub.cn` (Tencent Cloud), `GitHub Releases`, and any
 custom hub via a user-hook script.
+
+## What's new in 1.1.1
+
+- **Safety-net exclusion (hardcoded)**: credentials and key material
+  (`*.pem` / `*.key` / `id_rsa*` / `credentials.json` / `.env.*` /
+  `service-account*.json` etc.) are **never packaged**, regardless of
+  user `exclude.json` — user config can exclude more, but cannot re-include
+  safety-net files. Everything the safety net blocked is reported after
+  packaging, so you always know which sensitive files were left out of the
+  release.
+- **`sign.key` no longer ships in packages**: the filename (`.key`) tripped
+  hub-side secret scanners. Signing still works locally; the signature
+  artifact stays on the publishing machine.
+- **Symlinks are not followed** during staging/packaging — a link pointing
+  outside the skill dir can no longer pull external content (e.g. private
+  keys) into the package. Skipped links are reported.
+- See 1.1.0 notes below for sign-mode auto-detect and `--package-only`.
+
+### 1.1.0
+
+- **Sign mode auto-detect**: signing is now optional and automatic — publish
+  unsigned out-of-the-box (zero setup); drop a private key via
+  `--init-sign-key` and every publish signs automatically. Explicit
+  overrides: `--sign` (force) / `--no-sign` (force off).
+- **One file-set baseline for signing & packaging**: signing runs against a
+  clean staged copy of exactly what gets shipped, so `sign.key`'s
+  `content_hash` never drifts from the package content (the classic
+  "Tampering detected" false alarm is gone). Unsigned mode drops stale
+  `sign.key` files from source instead of shipping outdated signatures.
+- **`--package-only`**: build a deterministic, credential-free ZIP for
+  governance / controlled-release flows — strict version check against
+  SKILL.md frontmatter, symlink rejection, fixed timestamps and permission
+  bits, per-file sha256 manifest, package-level sha256. No network, no tokens,
+  no source mutation. Requires `--expected-version`.
 
 ---
 
@@ -47,6 +82,16 @@ python3 scripts/release.py --slug my-skill -m "test" --version 1.0.0 --dry-run
 
 # Inspect current exclude rules
 python3 scripts/release.py --show-exclude
+
+# Generate the signing private key (then every publish signs automatically)
+python3 scripts/release.py --init-sign-key
+
+# Publish without signing (force unsigned)
+python3 scripts/release.py --slug my-skill -m "v1" --version 1.0.0 --no-sign
+
+# Deterministic governance ZIP: no network, no tokens, no source mutation
+python3 scripts/release.py --package-only --slug my-skill \
+    --expected-version 1.0.0 --skill-dir ./my-skill
 ```
 
 ---
@@ -79,7 +124,7 @@ clawhub install skill-release-plus
 - Python 3.8+ (standard library only — `urllib`, `subprocess`, `tarfile`, `json`, `argparse`, `dataclasses`, `pathlib`)
 - `git` 2.x (for `github-release` target only)
 - `clawhub` CLI (for `clawhub` target only — auto-detected from `$PATH`)
-- `skill-sign` (optional — for content signing; skipped if not installed)
+- `skill-sign` (optional — v1.1.0 auto-detects: unsigned when absent, signed when a private key exists)
 - `PyYAML` (optional — improves SKILL.md frontmatter parsing for edge cases; stdlib fallback handles `description: "..."` single-line and `description: >` folded scalar without it)
 
 ---
@@ -185,7 +230,9 @@ Default `config/exclude.json` strips:
 usage: release.py [-h] [--slug SLUG] [--changelog CHANGELOG]
                   [--version VERSION] [--display-name DISPLAY_NAME]
                   [--skill-dir SKILL_DIR] [--target TARGET] [--dry-run]
-                  [--show-exclude] [--check]
+                  [--show-exclude] [--check] [--sign] [--no-sign]
+                  [--init-sign-key] [--package-only]
+                  [--expected-version EXPECTED_VERSION] [--output-dir OUTPUT_DIR]
 
 options:
   -h, --help            show this help message and exit
@@ -199,7 +246,36 @@ options:
   --dry-run             sign + pack but skip publish
   --show-exclude        print current exclude rules and exit
   --check               check token readiness for selected targets
+  --sign                force signing (requires an existing private key;
+                        run --init-sign-key first)
+  --no-sign             force unsigned publish (skip signing; package has
+                        no sign.key)
+  --init-sign-key       generate the signing private key
+                        (~/.openclaw/workspace/.sign-key) and exit
+  --package-only        build a deterministic unsigned ZIP only; no
+                        credentials, no network, no source mutation
+  --expected-version EXPECTED_VERSION
+                        required by --package-only; must exactly match the
+                        SKILL.md frontmatter version
+  --output-dir OUTPUT_DIR
+                        package output directory (default: ./output/skill-release)
 ```
+
+### Signing behavior (v1.1.0)
+
+| Situation | What happens |
+|---|---|
+| No private key (default for new users) | Publishes unsigned; zero setup needed |
+| Private key present (`--init-sign-key` created one) | Every publish signs automatically |
+| `--sign` | Forces signing; errors out if no usable key |
+| `--no-sign` | Forces unsigned, even with a key present |
+| Key file corrupt | Hard error (never silently downgrade); fix or delete it, or pass `--no-sign` |
+
+Signature integrity: signing runs against a clean staged copy that matches
+the shipped package exactly, so `content_hash` in `sign.key` always matches
+the files installers verify. In unsigned mode, any stale `sign.key` left in
+the source directory is dropped from the package (old signatures cover old
+content and only trigger false tampering alarms).
 
 Exit codes:
 - `0` — all targets succeeded

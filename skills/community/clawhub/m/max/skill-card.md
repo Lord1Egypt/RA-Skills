@@ -1,43 +1,54 @@
-## Description: <br>
-Max helps agents organize public Max video platform pages, content entry points, membership information, creator resources, and help information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Registers the Max skill to organize public video platform pages, content entry points, membership information, and creator information.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and content operations teams use this skill to summarize public Max pages, compare membership information, gather content-channel entry points, and extract creator or help-center guidance. It is scoped to public information and excludes account sharing, copyright bypass, billing, private viewing history, and other non-public account data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide private account, billing, viewing-history, or login information while asking about Max. <br>
-Mitigation: Use the skill only with publicly available pages and omit credentials, billing details, viewing history, and other private account information. <br>
-Risk: Membership offers, content libraries, and device or download rules can vary by market. <br>
-Mitigation: State the applicable market and source page when summarizing pricing, content availability, membership benefits, or device limits. <br>
-Risk: The skill could be misused to request account sharing, copyright bypass, backend access, or non-public platform data. <br>
-Mitigation: Keep outputs limited to public information and decline requests involving account sharing, copyright circumvention, backend privileges, or private data. <br>
+## Use Case:
 
+External users and agents use this skill to summarize public Max pages, including membership options, content channels, creator guidance, and help resources. It is limited to public information and excludes account sharing, copyright bypass, backend access, private account data, and other non-public content.
 
-## Reference(s): <br>
-- [Max homepage](https://www.max.com/) <br>
-- [ClawHub skill listing](https://clawhub.ai/CodeKungfu/max) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text summaries and comparison tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should identify the applicable market when content, pricing, or membership details vary by region.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Max plans, pricing, content libraries, and availability can vary by market or change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify public Max pages for the relevant market before relying on summaries or comparisons.
+
+Risk: A user could request private account details or bypass-related guidance outside the skill's stated boundary.
+
+Mitigation: Keep outputs limited to public information and decline requests involving account sharing, copyright bypass, backend access, or non-public account data.
+
+## Reference(s):
+
+- [Max homepage](https://www.max.com/)
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/max)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries, comparison tables, structured lists, and guidance text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should note market-specific variation in Max content libraries, plans, pricing, and availability.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,68 @@
-## Description: <br>
-Generate self-contained HTML dashboards and visual pages for architecture diagrams, flowcharts, KPI dashboards, data tables, diff reviews, plan reviews, project recaps, and other technical explanations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vizboard helps agents generate self-contained HTML dashboards and visual technical pages for architecture diagrams, flowcharts, KPI dashboards, data tables, diff reviews, plan reviews, and project recaps.
 
-## Publisher: <br>
-[redf426](https://clawhub.ai/user/redf426) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redf426](https://clawhub.ai/user/redf426)
 
-## Use Case: <br>
-Developers and technical teams use Vizboard to turn architecture, plan, diff, recap, dashboard, and table requests into responsive HTML visualizations for review and communication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect git history, prior-session context, and memory files while preparing visual reviews, which may expose more local context than expected. <br>
-Mitigation: Use it only in workspaces whose context can be reviewed by the agent, provide focused inputs, and avoid running it against sensitive repositories or memory stores. <br>
-Risk: The skill may save HTML under the home directory, copy files into the workspace, open a browser, modify verification targets, or load third-party network resources. <br>
-Mitigation: Review generated and modified files before relying on them, confirm file writes and browser launches, disable external image generation by default, and prefer bundled or local libraries for exported HTML. <br>
+## Use Case:
 
+Developers and technical teams use Vizboard to turn complex technical explanations, code reviews, plans, recaps, diagrams, dashboards, and tables into responsive HTML pages. The skill is suited for visualizing architecture, flow, project state, factual verification summaries, and comparison-heavy technical material.
 
-## Reference(s): <br>
-- [Vizboard on ClawHub](https://clawhub.ai/redf426/vizboard) <br>
-- [CSS Patterns](references/css-patterns.md) <br>
-- [Visualization Libraries](references/libraries.md) <br>
-- [Responsive Section Navigation](references/responsive-nav.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, files, guidance] <br>
-**Output Format:** [Self-contained HTML files with inline CSS and JavaScript, plus brief delivery text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated pages are intended to be responsive and may include Mermaid diagrams, tables, dashboards, or review summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Workflows may inspect repository history, local agent memory, prior conversation context, and changed files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on projects where that scope is acceptable, or require explicit approval before repository, memory, or conversation-history inspection.
+
+Risk: Generated reports are saved under ~/.agent/diagrams and can be copied into the workspace for delivery.
+
+Mitigation: Review generated HTML for sensitive content before sharing and clean generated artifacts after delivery.
+
+Risk: Some templates and references use external CDNs, Google Fonts, and optional surf/gemini image generation.
+
+Mitigation: Disable external CDN, font, and image-generation use for confidential, offline, or network-restricted deployments.
+
+Risk: The fact-check workflow can correct source documents in place.
+
+Mitigation: Require explicit user approval or version-control review before applying in-place edits.
+
+## Reference(s):
+
+- [Vizboard ClawHub Skill Page](https://clawhub.ai/redf426/skills/vizboard)
+- [CSS Patterns](references/css-patterns.md)
+- [External Libraries](references/libraries.md)
+- [Responsive Section Navigation](references/responsive-nav.md)
+- [Mermaid.js CDN](https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs)
+- [Mermaid ELK Layout CDN](https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk/dist/mermaid-layout-elk.esm.min.mjs)
+- [Chart.js CDN](https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js)
+- [Anime.js CDN](https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Self-contained HTML files with concise Markdown delivery notes and inline shell command snippets when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save generated HTML under ~/.agent/diagrams and copy files into the workspace for delivery; the fact-check workflow can edit target documents in place.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

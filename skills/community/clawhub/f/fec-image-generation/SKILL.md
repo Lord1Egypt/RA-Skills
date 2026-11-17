@@ -14,7 +14,7 @@ Generate or edit diagrams, visual assets, and image workflows, and perform revie
 1. Determine product type
    - When accuracy of text, structure, and connections is a priority, use Mermaid, SVG, HTML/CSS, canvas, or a graphics library to generate editable sources and then export as PNG.
    - Use HTML technical diagrams when the user needs a browser-ready single file with dark/light theme support for system blueprints, architecture, deployment topology, agent runtime, memory flow, before-after architecture, workflow, sequence, data-flow, lifecycle, runbook, state-machine, or PII/data-lineage diagrams.
-   - Use the HTML `workflow` route for process maps, approvals, automation runs, exception paths, and cyclical operating flows that need readable start/end, decision, actor, numbered-step, and summary treatment without requiring diagrams.net.
+   - Use the compatible HTML `workflow` route when Mermaid is unavailable or browser-specific lane/style delivery is required for process maps, approvals, automation runs, exception paths, and cyclical operating flows that need readable start/end, decision, actor, numbered-step, and summary treatment without requiring diagrams.net.
    - Use themed HTML technical diagrams when a system, agent, memory, data, or tool-call map needs semantic node shapes, flow-aware arrows, and a browser-ready source that can still be exported and QA-checked.
    - Use the interactive live diagram route when the user benefits from watching nodes and edges appear incrementally in a local browser, or when they want to drag, relabel, remove, zoom, and export a quick diagram during the session.
    - When aesthetics, texture, photos, illustrations, comics, product images or brand atmosphere are priorities, use image generation or editing tools, and then save the final assets to the project or report directory.
@@ -79,3 +79,33 @@ Generate or edit diagrams, visual assets, and image workflows, and perform revie
 ## Expected Output
 
 Produce editable source, final PNG or edited image with generated routes and QA results. Diagrams should be clearly structured, with uncensored labels and uncluttered connections; visual assets should match purpose, size, brand tone, and delivery path.
+
+
+## Technical diagram quality and tool routing
+
+Prefer locally installed Mermaid for standard sequence diagrams and flowcharts. Reuse fec-drawio-studio for architecture that needs long-term manual editing; local Graphviz is optional for dense topology. Record unavailable tools and fall back to the compatible JSON/HTML route without installation, downloads or CDN. Preserve complete text and every node/relationship; do not silently rearrange explicit sizes, coordinates or waypoints.
+
+```sh
+node skills/fec-image-generation/scripts/mermaid-render.mjs --input sequence.mmd --output sequence.svg --report sequence.render.json
+node skills/fec-image-generation/scripts/export-diagram.mjs --input diagram.html --format png --output diagram.png --theme light --scale 2 --manifest diagram.layout.json --output-manifest diagram.actual.json
+node skills/fec-image-generation/scripts/png-qa.mjs --png diagram.png --manifest diagram.actual.json --format json
+```
+
+Use the exported actual manifest for PNG QA. The source manifest has SVG coordinates and estimated bounds and cannot be reused unchanged at 2x. Browser export waits for fonts and measures real text bounds; standalone SVG embeds theme styles. Successful rendering, estimates and passing automation do not prove visual acceptance. Inspect the final PNG and record tool versions, theme, scale, repair rounds, unresolved issues and partial acceptance. Higher resolution cannot repair truncated text or layout collisions.
+
+Bundled internal modules and reproducible fixtures:
+- [mermaid-render.mjs](scripts/mermaid-render.mjs)
+- [diagram-layout.mjs](scripts/diagram-layout.mjs)
+- [diagram-browser.mjs](scripts/diagram-browser.mjs)
+- [quality examples](assets/quality-examples/README.md)
+- [sequence.json](assets/quality-examples/sequence.json)
+- [workflow.json](assets/quality-examples/workflow.json)
+- [architecture.json](assets/quality-examples/architecture.json)
+- [sequence.mmd](assets/quality-examples/sequence.mmd)
+- [workflow.mmd](assets/quality-examples/workflow.mmd)
+
+The built-in sequence route supports participants and ordered messages. Use Mermaid for activations, alt/loop/par fragments and complex async semantics; never silently simplify them into plain messages. Enable optional ELK only when the installed Mermaid version supports it, otherwise use its compatible default layout.
+
+- [invalid-explicit.json](assets/quality-examples/invalid-explicit.json)
+
+- [png-qa.mjs](scripts/png-qa.mjs)

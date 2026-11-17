@@ -1,40 +1,57 @@
-## Description: <br>
-Connect creator content outputs to practical business outcomes using a lightweight attribution model. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Connect creator content outputs to practical business outcomes using a lightweight attribution model.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Marketing teams, creator operators, and analysts use this skill to connect creator content performance to clicks, leads, sales, or GMV and decide what to scale, optimize, or pause. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Commercial use may require separate permission because the artifact states non-commercial CC BY-NC-SA 4.0 terms and a separate paid commercial license from Razestar. <br>
-Mitigation: Confirm commercial rights with the publisher or Razestar before using the skill in a commercial setting. <br>
-Risk: Attribution scores may overstate causality when data is sparse, synthetic, or low quality. <br>
-Mitigation: Treat results as directional, disclose formula and normalization assumptions, label synthetic outputs, and include the sample size or data-quality confidence note. <br>
+## Use Case:
 
+External teams and operators use this skill to review creator content performance, rank posts by directional business impact, and decide which content patterns to scale, optimize, or pause.
 
-## Reference(s): <br>
-- [Lightweight Impact Model](references/impact-model.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown attribution summary with ranked performers, action decisions, recommended content bets, and confidence notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a transparent 0-100 impact score and should label synthetic data clearly when real outcome data is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+Risk: Creator performance and business outcome exports may contain sensitive operational data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use aggregate or non-sensitive exports when possible, and review data before sharing it with an agent.
+
+Risk: Attribution scores may be mistaken for proof of causality.
+
+Mitigation: Treat the ranked outputs as directional evidence and include confidence notes for sample size and data quality.
+
+Risk: The included license limits commercial use without a separate Razestar license.
+
+Mitigation: Confirm commercial licensing rights before using the skill in a commercial workflow.
+
+## Reference(s):
+
+- [Lightweight Impact Model](references/impact-model.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with ranked lists, decision notes, and confidence guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided creator performance and outcome fields; can label outputs as synthetic when real data is unavailable.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

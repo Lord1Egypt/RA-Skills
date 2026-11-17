@@ -1,40 +1,53 @@
-## Description: <br>
-Convert a local video into an iPhone-compatible Live Photo package (.pvt) for Apple Photos, lock-screen wallpaper use, or Live Photo sharing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert a local video into an iPhone-compatible Live Photo package (.pvt) for Apple Photos, lock-screen wallpaper use, or Live Photo sharing.
 
-## Publisher: <br>
-[hekaiii](https://clawhub.ai/user/hekaiii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hekaiii](https://clawhub.ai/user/hekaiii)
 
-## Use Case: <br>
-Developers, creators, and other external users use this skill to convert short local videos into Apple Photos-importable Live Photo packages for iPhone wallpaper or sharing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may install or use local media tools such as ffmpeg, makelive, and pipx. <br>
-Mitigation: Review and approve dependency installation commands before running the skill. <br>
-Risk: Generated output files or a .pvt directory with the same base name may be overwritten or removed. <br>
-Mitigation: Run conversions in a dedicated output folder and choose a fresh base output path. <br>
+## Use Case:
 
+External users and developers use this skill to turn a local video into an Apple Photos-importable Live Photo package for sharing or iPhone lock-screen wallpaper workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hekaiii/live-photo-maker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with shell commands and generated local media file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce an optimized MP4, cover JPG, .pvt Live Photo package, and ZIP archive when run with local media tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Untrusted media tooling could affect the local system when the skill installs or runs ffmpeg, makelive, or pipx.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies only from trusted sources and verify the tools before processing user media.
+
+Risk: Existing .mp4, .jpg, .pvt, or .zip outputs using the same basename may be overwritten or removed.
+
+Mitigation: Use a fresh output basename or an empty output directory for each conversion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hekaiii/skills/live-photo-maker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local .pvt Live Photo packages and optional .zip archives for transfer.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

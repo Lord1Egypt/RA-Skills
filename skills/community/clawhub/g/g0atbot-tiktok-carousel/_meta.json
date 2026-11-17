@@ -1,0 +1,15 @@
+{
+  "name": "tiktok-carousel",
+  "description": "Generate viral TikTok photo carousels using AI. Uses proven 6-slide formula for maximum engagement with learning loop for continuous improvement.",
+  "price": 14,
+  "category": "content",
+  "tags": ["tiktok", "carousel", "viral", "social-media"],
+  "requires": {
+    "env": ["OPENAI_API_KEY", "TIKTOK_COOKIES"],
+    "bins": ["curl"]
+  },
+  "documentation": {
+    "setup_time": "10 minutes",
+    "difficulty": "beginner"
+  }
+}

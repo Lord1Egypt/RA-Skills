@@ -1,43 +1,62 @@
-## Description: <br>
-Generates Veo videos from natural-language prompts in OpenClaw using the Wanjie Ark model service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates videos from natural-language prompts in OpenClaw by submitting Veo requests to the Wanjie Ark model service and returning the resulting video link.
 
-## Publisher: <br>
-[liangshenghzj888-stack](https://clawhub.ai/user/liangshenghzj888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liangshenghzj888-stack](https://clawhub.ai/user/liangshenghzj888-stack)
 
-## Use Case: <br>
-OpenClaw users use this skill to submit a Chinese natural-language video prompt and receive a generated Veo video link through an automated background workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses credentials from the local OpenClaw configuration for video-generation API calls. <br>
-Mitigation: Use a dedicated, limited API key and avoid sending private or secret material in prompts. <br>
-Risk: Background execution and monitor behavior may continue work without direct user interaction. <br>
-Mitigation: Review whether the OpenClaw_Veo_Monitor scheduled task or background monitor is created, and disable or remove it if unattended execution is not desired. <br>
-Risk: Prompt and payload details may be written to local logs. <br>
-Mitigation: Treat prompts as potentially logged data and review or clear local logs according to the deployment's data-handling policy. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to submit Chinese natural-language video prompts to a Wanjie Ark Veo model workflow and receive the generated video link through the agent experience.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liangshenghzj888-stack/wanjie-openclaw-video-v2-0-1) <br>
-- [Wanjie Ark model service platform](https://www.wjark.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Files] <br>
-**Output Format:** [Plain text status messages plus a generated video link recorded in local result and log files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs background video-generation work and may open the generated URL automatically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata; artifact manifest reports 1.0.0) <br>
+Risk: The skill reads an OpenClaw provider API key and sends prompts with that credential to the Wanjie endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated skill-scoped credential where possible, limit credential permissions, and avoid prompts containing sensitive data.
+
+Risk: Prompt-bearing logs and result files may be written locally.
+
+Mitigation: Review log locations, redact or delete sensitive task logs, and document retention expectations before shared or managed deployments.
+
+Risk: The artifact can install Python dependencies at runtime and run background workers or scheduled monitoring.
+
+Mitigation: Pin and preinstall dependencies, review background execution settings, and provide an operational path to disable monitoring.
+
+Risk: Returned video links may be opened automatically.
+
+Mitigation: Validate returned URLs before opening them automatically, or require manual review in higher-risk environments.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/liangshenghzj888-stack/skills/wanjie-openclaw-video-v2-0-1)
+- [Wanjie Ark model service](https://www.wjark.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files]
+
+**Output Format:** [Plain text status messages and URL-bearing result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run video generation in the background, write local logs/results, and open returned video links automatically.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "strategy",
+    "name": "策划与语义",
+    "code": "STR",
+    "sourceTheme": "行业口播全流程/案例",
+    "description": "从受众、承诺、结构和信息任务决定剪法。"
+  },
+  {
+    "id": "aroll",
+    "name": "A-roll与气口",
+    "code": "ARL",
+    "sourceTheme": "A-roll与气口",
+    "description": "保持口述真相、连续性和自然呼吸。"
+  },
+  {
+    "id": "hook",
+    "name": "开头与留存",
+    "code": "HOK",
+    "sourceTheme": "钩子与留存",
+    "description": "用真实内容建立预期，而不是用噱头透支信任。"
+  },
+  {
+    "id": "caption",
+    "name": "字幕系统",
+    "code": "CAP",
+    "sourceTheme": "信息图形与文字包装",
+    "description": "把字幕当阅读界面、节奏界面和校对界面。"
+  },
+  {
+    "id": "broll",
+    "name": "B-roll与证据",
+    "code": "BRL",
+    "sourceTheme": "音频口播与素材",
+    "description": "素材承担证明、解释、示范和情绪任务。"
+  },
+  {
+    "id": "graphic",
+    "name": "信息图形",
+    "code": "GFX",
+    "sourceTheme": "信息图形与文字包装",
+    "description": "把并列、数字、过程和关系变成可读结构。"
+  },
+  {
+    "id": "composite",
+    "name": "人物与合成",
+    "code": "CMP",
+    "sourceTheme": "蒙版与人物合成",
+    "description": "用构图、蒙版和层级控制注意力。"
+  },
+  {
+    "id": "motion",
+    "name": "动效与转场",
+    "code": "MOT",
+    "sourceTheme": "动效与转场",
+    "description": "动效必须解释状态变化，不能只负责热闹。"
+  },
+  {
+    "id": "audio",
+    "name": "声音系统",
+    "code": "AUD",
+    "sourceTheme": "音频口播与素材",
+    "description": "以人声为主，BGM和音效只提供结构与反馈。"
+  },
+  {
+    "id": "format",
+    "name": "场景与版式",
+    "code": "FMT",
+    "sourceTheme": "行业口播全流程/案例",
+    "description": "根据行业、横竖版和有无真人选择视觉语法。"
+  },
+  {
+    "id": "workflow",
+    "name": "工程与效率",
+    "code": "WFL",
+    "sourceTheme": "工具与效率",
+    "description": "可恢复、可复用、可验证的时间线工程。"
+  },
+  {
+    "id": "qa",
+    "name": "验收与回滚",
+    "code": "QAT",
+    "sourceTheme": "行业口播全流程/案例",
+    "description": "用门禁、抽样和降级保证内容与交付安全。"
+  }
+]

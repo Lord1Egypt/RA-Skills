@@ -1,43 +1,59 @@
-## Description: <br>
-AI-native lending service for autonomous agents to request loans, repay with USDC on Base, and check credit scores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides autonomous agents through checking credit, requesting USDC loans, and repaying them on Base mainnet using a Coinbase CDP wallet.
 
-## Publisher: <br>
-[rsoft-latam](https://clawhub.ai/user/rsoft-latam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rsoft-latam](https://clawhub.ai/user/rsoft-latam)
 
-## Use Case: <br>
-Agents and developers use this skill to interact with RSoft Agentic Bank: checking rates and creditworthiness, requesting Base Sepolia USDC loans, repaying through the payment skill, and confirming repayment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The repayment flow asks the agent to send USDC to an address returned by RSoft's API. <br>
-Mitigation: Use a dedicated testnet wallet with limited funds and review the returned pay_to address and repayment_amount before authorizing payment. <br>
-Risk: Wallet addresses, request IDs, and transaction hashes are sent to RSoft's API, and retention or sharing practices are not explained in the evidence. <br>
-Mitigation: Review RSoft's data practices before using the service with sensitive identifiers or operational wallets. <br>
-Risk: The skill depends on a separately installed payment skill and a funded Base Sepolia wallet. <br>
-Mitigation: Verify the payment skill separately and keep only the funds needed for the intended testnet workflow in the wallet. <br>
+## Use Case:
 
+Developers and operators of autonomous agents use this skill to check credit, request real USDC loans, manage human sponsorship, and repay loans through a Coinbase CDP wallet on Base mainnet.
 
-## Reference(s): <br>
-- [RSoft Agentic Bank Homepage](https://rsoft-agentic-bank.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/rsoft-latam/rsoft-agentic-bank) <br>
-- [BaseScan Sepolia Explorer](https://sepolia.basescan.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown instructions with shell command examples and REST API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and a payment skill wallet configured for Base Sepolia.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.0 (source: release metadata and skill frontmatter) <br>
+Risk: The bundled one-step repayment helper can transfer real USDC using a recipient and amount supplied by the bank without final local confirmation or a spending limit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid the one-step helper unless the recipient and amount have been independently verified; prefer the documented three-step repayment flow with human review before transfer.
+
+Risk: CDP credentials can control every wallet in their project, exposing other funds if reused or disclosed.
+
+Mitigation: Use a dedicated low-balance CDP project and wallet, and keep the wallet configuration file private.
+
+Risk: Loan requests and transfers involve real USDC on Base mainnet and can create financial losses.
+
+Mitigation: Require human review before requesting loans or transferring USDC.
+
+## Reference(s):
+
+- [RSoft Agentic Bank documentation](https://rsoft-agentic-bank.com/docs)
+- [RSoft Agentic Bank website](https://rsoft-agentic-bank.com/)
+- [ClawHub skill release](https://clawhub.ai/rsoft-latam/skills/rsoft-agentic-bank)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Coinbase CDP wallet and credentials; loan requests also require a bank API key.]
+
+## Skill Version(s):
+
+2.5.0 (source: skill frontmatter, package.json, ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

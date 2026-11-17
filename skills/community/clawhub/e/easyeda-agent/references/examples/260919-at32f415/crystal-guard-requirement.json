@@ -1,0 +1,170 @@
+{
+  "schema": "easyeda-agent/260919-crystal-guard-requirement/v1",
+  "status": "source-only",
+  "recordedAtLocal": "2026-09-22T01:02:00+08:00",
+  "source": [
+    {
+      "kind": "user-reviewed-reference",
+      "date": "2026-09-22",
+      "scope": "结构参考，不从截图复制绝对坐标、线宽、间距或过孔节距"
+    },
+    {
+      "kind": "exam-source",
+      "pages": "考试说明.pdf p4-p5,p8",
+      "scope": "晶振靠 MCU、不在板边、信号短直、避免底层、顶层包地净空"
+    }
+  ],
+  "module": {
+    "id": "crystal-guard",
+    "members": [
+      "X1",
+      "C20",
+      "C21"
+    ],
+    "ownerPads": [
+      "U6.2",
+      "U6.3"
+    ],
+    "signalNets": [
+      "OSC_IN",
+      "OSC_OUT"
+    ],
+    "guardNet": "GND",
+    "movePolicy": "先在局部坐标计算X1/C20/C21、OSC、GND护环/导线、no-pours与过孔，再整体平移到板内；旧模块对象精确清理，不能只移动器件"
+  },
+  "placement": {
+    "relation": "near-with-controlled-gap",
+    "requirements": [
+      "X1 与负载电容形成紧凑小回路",
+      "模块靠近 MCU 的 OSC 引脚，但不得贴压 MCU 外形或占用相邻引脚逃线区",
+      "MCU 到晶振模块的间距从真实 pad、封装 bbox、线宽、间距规则与护环宽度推导，不从参考图复制常数",
+      "OSC_IN 与 OSC_OUT 在 MCU 侧和 X1 侧保持相同次序，避免先天交叉"
+    ]
+  },
+  "signalRouting": {
+    "layer": 1,
+    "preferredWidthMil": 8,
+    "maxViasPerNet": 0,
+    "topology": {
+      "OSC_IN": [
+        "C21.1",
+        "X1.1",
+        "U6.2"
+      ],
+      "OSC_OUT": [
+        "C20.1",
+        "X1.3",
+        "U6.3"
+      ]
+    },
+    "objectiveOrder": [
+      "拓扑与端点正确",
+      "两网不交叉",
+      "从 MCU 到 X1 尽可能短直",
+      "负载电容支路尽可能短",
+      "减少转折且不用直角或锐角"
+    ]
+  },
+  "groundGuard": {
+    "net": "GND",
+    "layer": 1,
+    "primitive": "track",
+    "geometry": "围绕 X1、C20、C21 和 OSC 信号敏感区的连续护环；只为信号入口保留必要开口",
+    "requirements": [
+      "护环必须通过实际 GND 铜和过孔接地，不能只是同名孤岛或丝印框",
+      "每段 role=guard 铜都必须从 fresh 实际 track 经列出的 GND 铜连到声明 ground anchor；不能只抽查晶振 GND 焊盘或两条入口",
+      "护环不得迫使 OSC_IN/OSC_OUT 绕远，也不得压缩 MCU 相邻引脚逃线",
+      "护环线宽、与信号/焊盘间距按当前规则和可制造性计算"
+    ]
+  },
+  "copperKeepout": {
+    "primitive": "pcb region",
+    "rule": "no-pours",
+    "layers": [
+      1,
+      2
+    ],
+    "geometry": "覆盖 X1、C20、C21 与 OSC_IN/OSC_OUT 敏感铜的参数化包络；不靠截图猜范围",
+    "requirements": [
+      "TOP 与 BOTTOM 分别创建并回读 no-pours region；两层板不以 no-inner-electrical 代替外层 region",
+      "敏感包络联合 X1/C20/C21 实测 bbox 与最终两条 signal-main 的 stroke bbox；stroke 外扩量为实际线宽一半加 live 铜净距，再叠加 keepout margin，不能只框器件",
+      "护环 owner 侧为两条 OSC 保留合并入口，入口之间不得留下没有真实 GND 路径的孤立护环段",
+      "no-pours 只禁止自动铺铜进入；显式 OSC 信号与 GND 护环仍按设计写入",
+      "铺铜重建后确认禁铺区内没有 pour/fill 铜残留"
+    ]
+  },
+  "groundViaFence": {
+    "net": "GND",
+    "placement": "沿护环外侧或边界布置，位于 no-pours 包络之外并连接顶/底 GND 区域",
+    "generator": "pcb via-fence --rect <derived-envelope> --pitch <derived-pitch> --margin <derived-margin>",
+    "requirements": [
+      "使用 perimeter fence，不用 pcb via-stitch 的满矩形网格填进晶振禁铺区",
+      "孔径、外径、板边和异网净距取 live DRC 规则；节距是参数，不复制参考图",
+      "不在 X1/C20/C21 或普通 MCU 焊盘内打孔",
+      "写后按 net、位置和唯一 primitiveId 回读，并在铺铜重建后用官方 DRC 验证",
+      "每个 fence 与 ground-anchor via 都必须分别被 TOP/BOTTOM fresh 显式 GND 导线接触，并经实际铜路径连到 ground-anchor；只有候选声明铺铜时才检查材料化铜岛，不能只抽查任意 via 或两条 ground-entry"
+    ]
+  },
+  "oldObjectCleanup": {
+    "command": "pcb module-owned --candidate <old-candidate.json> --journal <old-journal.jsonl> --board <fresh-dump.json> --out <existing-objects.json>",
+    "requiredInputs": [
+      "旧现场实际执行的 candidate",
+      "与 candidate.applySha256 一致且全部成功的 apply journal",
+      "同一目标 PCB 的 fresh dump --include-copper"
+    ],
+    "contract": [
+      "旧 GND track 只按候选几何和 journal 归属恢复；允许宿主在 T 结处把原 primitive 精确拆段，不按 GND 网名批量收集",
+      "旧 via、region、pour 必须同时匹配 journal PID 与 fresh 精确几何；材料化铜只随其父 pour 删除并由 fresh inventory 对账",
+      "未声明对象全域严格保持；丢失、额外重叠、歧义、部分 journal 或任一铜分类缺测都失败"
+    ]
+  },
+  "acceptance": {
+    "requiredProofs": [
+      "groundImplementation=tracks-vias，候选无任何新pour，旧两块局部pour及其材料化铜已删除",
+      "replacePrimitiveIds 与 fresh baseline 上 OSC_IN/OSC_OUT 的全部 track/arc primitiveId 精确相等；子集、额外/重复 ID 或漏 arc 均失败",
+      "OSC_IN 与 OSC_OUT 的有序 pcb net-path 均为 TOP、0 via，且报告实际长度与转折",
+      "OSC ordered path 使用 fresh pad identity/坐标/shape/specialPad 与实际 track 子段/arc 子弧，不能用 anchor、整图元长度或 bbox 代替",
+      "GND 护环的每段 role=guard 实际 track 均有列出铜路径连到 ground anchor，并至少通过两个分离位置接入 GND",
+      "TOP/BOTTOM no-pours regions 均保存重载后存在且覆盖声明包络",
+      "外围 GND 过孔围栏保存重载后存在，全部绑定 GND、不落入普通焊盘，且每个 fence/anchor via 在 TOP/BOTTOM 都由 fresh 显式 GND 导线接触并经实际路径连到 anchor",
+      "pour-rebuild 后禁铺区保持无铺铜，pcb check 与官方 pcb drc 无新增违规",
+      "apply journal 不含重复或额外 step；每个 capture PID 在 before 不存在、after 唯一且精确匹配候选网/层/几何/尺寸/region/pour",
+      "region/pour/poured 以规范化闭合、方向、共线分段、holes 和 ARC 比较；未知 geometry fail-closed",
+      "fresh render 只作最终视觉复核；对象回读、连通和 DRC 才是验收证据"
+    ]
+  },
+  "currentBoardDisposition": {
+    "previousEvidence": "crystal-route-live.json（仅保留历史连通证据）",
+    "verifiedFactsRetained": "失败候选已精确回退；fresh 基线恢复为 69 件器件、62 tracks、2 个 U6.33 EP 地孔、0 pours/poured/regions/fills，semanticSha256=338e12ac849c99771067a4a628fb8855a8a0b2bba609e4b64e198452f989c913",
+    "finalDesignAccepted": false,
+    "reason": "首个schema-v3候选虽90/90写入成功，但fresh module-check发现护环PID替换、OSC_OUT非端点铜重叠、U6.3逃线终点不一致和旧对象声明不一致，已标candidate-rejected并回退",
+    "nextAction": "后续先修复四项CLI/算法契约并补负例；从恢复后的干净基线重算，不重放现有90步候选"
+  },
+  "toolContract": {
+    "status": "offline-verified",
+    "layoutSchemaVersion": 3,
+    "commands": [
+      "pcb dump --include-copper",
+      "pcb module-owned --candidate <old-candidate.json> --journal <old-journal.jsonl> --board <fresh-dump.json> --out <existing-objects.json>",
+      "pcb escape-plan --from <schema-v3.json> --board <dump.json> --out <escape.json>",
+      "pcb layout-plan --from <schema-v3.json> --board <dump.json> --module crystal-guard --candidates 3 --out <dir>",
+      "pcb poured-list",
+      "pcb module-check --candidate <candidate.json> --before <dump.json> --after <fresh-dump.json> --journal <journal.jsonl> --out <check.json>"
+    ],
+    "pouredInventoryRule": "只有完整 inventory 的真实 [] 是 known-empty；inventory/fill/boundary/net/layer/polygon 任一缺测均为 unknown/error",
+    "automatedEvidence": "Go 定向测试覆盖共同逃线、强制出口、45°路径、existingViasOnly 的 PID/网络/焊盘归属、严格空/非空 OSC 替换集合、零铺铜、via-fence 避障、刚体变换和无空 apply 动作；全量测试与现场执行前仍不得标 live-verified",
+    "completionRule": "只有现场保存重载、两轮检查与独立 subagent 验收都完成后，才把 status 改为 live-verified",
+    "liveFinding": "2026-09-23 首次现场集成被 module-check 拒绝并完整回退；offline-verified 仅指既有单元测试覆盖，不代表 schema-v3 晶振集成已现场通过"
+  },
+  "groundImplementation": {
+    "mode": "tracks-vias",
+    "allowLocalPours": false,
+    "requirements": [
+      "晶振敏感区和护环区域不创建局部或环形GND铺铜",
+      "GND回流使用显式TOP/BOTTOM导线与接地过孔",
+      "U6.33 通过 existingViasOnly 复用声明的既有 EP 地孔；逐孔核对 PID、GND 网络和 U6.33 焊盘归属，不创建新孔",
+      "候选pours/unreservedPours/affectedBaselinePours为空，apply不含pour.create或pour.rebuild",
+      "旧晶振局部铺铜按fresh对象身份和旧journal证明归属后删除"
+    ]
+  }
+}

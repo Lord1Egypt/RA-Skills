@@ -1,41 +1,58 @@
-## Description: <br>
-General AI agent introspection debugging framework: auto capture errors, root cause analysis, automatic repair, fix verification, no manual intervention required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically captures runtime errors, analyzes root causes, generates and applies fixes, and verifies repairs without manual intervention.
 
-## Publisher: <br>
-[benxiao2026](https://clawhub.ai/user/benxiao2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[benxiao2026](https://clawhub.ai/user/benxiao2026)
 
-## Use Case: <br>
-Developers and agent operators use this skill to capture runtime errors, analyze likely root causes, propose or apply repairs, and verify whether an agent workflow recovered successfully. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic repair workflows can make host-level changes, including package installs, service restarts, cache deletion, and configuration edits. <br>
-Mitigation: Disable automatic fixes by default and require explicit review or confirmation before applying changes. <br>
-Risk: Captured error logs and tracebacks can contain sensitive data from the failing workflow. <br>
-Mitigation: Treat diagnostic logs as sensitive, restrict access, and avoid sharing them outside the trusted workspace. <br>
-Risk: Generated fixes can be incorrect or broader than intended. <br>
-Mitigation: Constrain repairs to the intended workspace, back up changed files, scan changes, and verify behavior before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to diagnose runtime failures, generate repair plans, apply fixes, and verify whether the agent workflow recovers.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python, shell, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose package installs, service restarts, cache deletion, config edits, and diagnostic logging depending on the repair path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automatic self-repair can make system-affecting changes without clear approval or working safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a sandbox until package installs, service restarts, deletion, and retry behavior require explicit approval.
+
+Risk: Package installation, service restart, and cache deletion behavior can destabilize the environment or remove useful state.
+
+Mitigation: Use package allowlists, backups, rollback steps, result checking, and avoid --break-system-packages before enabling automatic repair.
+
+Risk: Captured errors and repair logs can expose sensitive runtime context.
+
+Mitigation: Redact logs before sharing or persisting them and limit collection to information needed for diagnosis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/benxiao2026/skills/agent-self-repair)
+- [Publisher profile](https://clawhub.ai/user/benxiao2026)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks, shell commands, and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend or carry out repair actions such as retries, configuration edits, package installs, service restarts, and cache cleanup; use sandboxing and review for automatic changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version note)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

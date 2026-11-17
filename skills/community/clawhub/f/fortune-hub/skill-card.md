@@ -1,41 +1,54 @@
-## Description: <br>
-Fortune Hub routes broad fortune-telling requests to the appropriate astrology, numerology, tarot, I Ching, feng shui, or related skill while collecting reusable profile details in MEMORY.md. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes broad fortune-telling requests to an appropriate specialist skill, collects only the needed profile fields, and reuses a local MEMORY.md profile across supported domains.
 
-## Publisher: <br>
-[eamanc-lab](https://clawhub.ai/user/eamanc-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eamanc-lab](https://clawhub.ai/user/eamanc-lab)
 
-## Use Case: <br>
-External users use this skill when they want a fortune-telling or divination reading but have not chosen a specific domain. The agent helps select the domain, gathers only the missing profile details needed for that domain, and routes the user to the corresponding specialized skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may store privacy-sensitive birth and profile details such as birthday, birth time, birthplace, gender, and English full name in a local MEMORY.md file. <br>
-Mitigation: Install and use it only if local profile retention is acceptable; review, edit, or delete MEMORY.md when those details should not be retained. <br>
-Risk: Fortune-telling outputs can be mistaken for professional advice. <br>
-Mitigation: Treat outputs as entertainment or cultural reference only and do not rely on them for medical, legal, financial, relationship, or other consequential decisions. <br>
+## Use Case:
 
+External users invoke this skill when they want fortune-telling guidance but have not chosen a specific domain. The agent presents domain options, gathers the minimum required birth or question details, and routes the user to the corresponding specialist skill.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eamanc-lab/fortune-hub) <br>
-- [Project homepage](https://github.com/eamanc-lab/fortune-telling-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Files] <br>
-**Output Format:** [Markdown conversational guidance with optional local MEMORY.md profile updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update a local MEMORY.md profile containing birth and profile details for reuse by related fortune-telling skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: The skill may create or update a local plaintext MEMORY.md profile containing birth details, location, gender, and name data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when profile reuse is acceptable, avoid providing a legal or passport name unless necessary, request one-off use when appropriate, and inspect or delete MEMORY.md after use.
+
+Risk: Fortune-telling outputs could be mistaken for professional advice.
+
+Mitigation: Treat generated guidance as entertainment only and consult qualified professionals for medical, legal, financial, relationship, or other consequential decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eamanc-lab/skills/fortune-hub)
+- [Project homepage](https://github.com/eamanc-lab/fortune-telling-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with menus, prompts, routing instructions, and local MEMORY.md profile updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask follow-up questions and may create or update a local plaintext MEMORY.md profile.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

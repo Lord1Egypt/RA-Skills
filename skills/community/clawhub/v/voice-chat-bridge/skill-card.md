@@ -1,45 +1,64 @@
-## Description: <br>
-Enables agents to transcribe spoken audio, generate Edge TTS voice replies, and serve or share generated audio through local web or optional tunnel modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds bidirectional voice workflows for agents, including speech-to-text transcription, Edge TTS speech synthesis, generated MP3 output, and optional local or tunneled access.
 
-## Publisher: <br>
-[patrickgeek](https://clawhub.ai/user/patrickgeek) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[patrickgeek](https://clawhub.ai/user/patrickgeek)
 
-## Use Case: <br>
-Developers and assistant builders use this skill to add voice-first interaction to an agent workflow. It helps convert incoming audio to text, produce spoken replies, and return generated audio through local playback, a web server, or chat platform links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can capture or process spoken content and generate stored audio files. <br>
-Mitigation: Review the voice configuration before use, avoid sensitive speech in automated workflows, and delete generated voice files when they are no longer needed. <br>
-Risk: Optional tunnel modes can expose the local voice service and generated audio beyond the local machine. <br>
-Mitigation: Keep the skill in local mode unless public access is required, restrict tunnel configuration, and disable public tunnels when finished. <br>
-Risk: Interaction tracking such as habits.json may retain voice interaction behavior data. <br>
-Mitigation: Disable or remove interaction tracking that is not wanted and periodically review stored workspace files. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add voice input and spoken responses to assistant workflows. It is suited for local voice interaction, generated voice reply links, and integrations that can consume transcription text or MP3 output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/patrickgeek/voice-chat-bridge) <br>
-- [Edge TTS GitHub](https://github.com/rany2/edge-tts) <br>
-- [hear macOS speech recognition](https://github.com/sveinbjornt/hear) <br>
-- [Cloudflare Tunnel documentation](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and Python utility scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate MP3 voice files and local or public URLs according to the user's voice configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Generated audio can be exposed through unauthenticated local or tunneled HTTP endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the service bound to localhost by default, add authentication before external exposure, and avoid public tunnels for private audio.
+
+Risk: Generated MP3 files may contain sensitive conversation content and remain on disk.
+
+Mitigation: Store output in a controlled directory, delete old files routinely, and treat generated audio as sensitive data until removed.
+
+Risk: The documentation describes integrations and helper scripts that are not all present in the artifact.
+
+Mitigation: Verify shipped scripts and required integrations before relying on documented workflows in production.
+
+Risk: Setup guidance includes downloading or installing third-party executables and tunnel clients.
+
+Mitigation: Install dependencies from trusted sources, verify downloads where possible, and review network tools before enabling remote access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/patrickgeek/skills/voice-chat-bridge)
+- [Edge TTS](https://github.com/rany2/edge-tts)
+- [hear macOS speech recognition](https://github.com/sveinbjornt/hear)
+- [Cloudflare Tunnel documentation](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash, JSON, and Python examples; scripts output transcription text, generated MP3 files, file paths, and URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated MP3 files are retained locally until cleanup and may be served through a local HTTP endpoint or public tunnel when configured.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence.release.version and artifact/SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

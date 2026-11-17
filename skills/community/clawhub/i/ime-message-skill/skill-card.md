@@ -1,42 +1,58 @@
-## Description: <br>
-Rewrites recognized spoken or informal text into concise, natural chat-ready written messages, and translates only when the user explicitly requests a target language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill rewrites recognized input-method or voice-input text into concise, natural instant-message prose, and translates it only when the user explicitly requests a target language.
 
-## Publisher: <br>
-[Hei-MaoM](https://clawhub.ai/user/Hei-MaoM) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hei-maom](https://clawhub.ai/user/hei-maom)
 
-## Use Case: <br>
-External users and developers use this skill after IME or speech-recognition text is already available, to polish short chat messages before sending. It is intended for text cleanup and optional requested translation, not direct audio transcription. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User message text may be sent to an external model provider. <br>
-Mitigation: Use the skill only when the configured provider and retention policy are acceptable, and avoid passwords, secrets, sensitive private conversations, and medical, legal, or financial details. <br>
-Risk: Automatic rewriting can change tone or meaning before a message is sent. <br>
-Mitigation: Review the rewritten message before sending and keep a path to restore the original recognized text. <br>
+## Use Case:
 
+External users and developers use this skill after an input method or speech system has already produced text, so short chat messages can be cleaned up before sending. It is suited for polishing casual message text and optional user-requested translation, not for audio transcription.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Hei-MaoM/ime-message-skill) <br>
-- [Model API notes](references/api_cn.md) <br>
-- [Product integration notes](references/integration_cn.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text final message, with guidance for integration and configuration when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The default flow returns only the rewritten text and avoids exposing raw API JSON unless explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: User-provided message text is sent to the configured model service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid highly sensitive chats unless the deployment has appropriate privacy, logging, and retention controls.
+
+Risk: Managed environments may drift if the OpenAI SDK dependency is not pinned.
+
+Mitigation: Pin the SDK dependency in managed deployments and validate the configured endpoint before release.
+
+Risk: Rewritten text can preserve mistakes from the original recognized text or shift the intended tone.
+
+Mitigation: Return the rewrite to the input box for user review and keep an undo path to the original text.
+
+## Reference(s):
+
+- [Model API reference](references/api_cn.md)
+- [Product integration guidance](references/integration_cn.md)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text by default; JSON is available when the script is invoked with --json.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns only the final rewritten message by default and requires the caller to provide the model API token.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

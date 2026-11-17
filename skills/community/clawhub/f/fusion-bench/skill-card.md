@@ -1,43 +1,56 @@
-## Description: <br>
-Use FusionBench to run model fusion experiments, including benchmarks, new merging algorithms, fused model evaluation, and model pool management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use FusionBench to run model fusion experiments, including benchmarks, new merging algorithms, fused model evaluation, and model pool management.
 
-## Publisher: <br>
-[tanganke](https://clawhub.ai/user/tanganke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanganke](https://clawhub.ai/user/tanganke)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate the FusionBench framework for model fusion experiments, compare merging methods, evaluate fused models, and extend the framework with new algorithms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to install and run the external fusion-bench Python package. <br>
-Mitigation: Use an isolated virtual environment and review or pin the package version before running experiments. <br>
-Risk: Example workflows can download or cache models and consume significant local compute. <br>
-Mitigation: Confirm storage, network, and hardware capacity before running model fusion or evaluation commands. <br>
+## Use Case:
 
+Developers and engineers use this skill to operate FusionBench for model merging experiments, benchmark runs, method comparisons, and custom model fusion algorithm development.
 
-## Reference(s): <br>
-- [FusionBench ClawHub listing](https://clawhub.ai/tanganke/fusion-bench) <br>
-- [FusionBench project repository](https://code.tanganke.com/tanganke/fusion_bench) <br>
-- [FusionBench documentation](https://tanganke.github.io/fusion_bench/) <br>
-- [FusionBench paper](https://arxiv.org/abs/2406.03280) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash, Python, and YAML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose commands that install the external fusion-bench Python package and run local model fusion workloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill guides users to install an unpinned Python package and run model benchmark commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install FusionBench in a virtual environment or container, avoid administrator privileges for package installs, and pin or verify package versions when reproducibility or supply-chain control matters.
+
+Risk: Benchmark and model fusion workflows may download or cache model artifacts and can require meaningful compute resources.
+
+Mitigation: Review storage, network, and compute requirements before execution, and use isolated cache locations when running shared or sensitive workloads.
+
+## Reference(s):
+
+- [FusionBench repository](https://code.tanganke.com/tanganke/fusion_bench)
+- [FusionBench documentation](https://tanganke.github.io/fusion_bench/)
+- [FusionBench paper](https://arxiv.org/abs/2406.03280)
+- [ClawHub skill page](https://clawhub.ai/tanganke/skills/fusion-bench)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands, Python snippets, and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

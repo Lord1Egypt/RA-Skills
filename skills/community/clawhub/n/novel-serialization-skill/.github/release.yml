@@ -1,0 +1,38 @@
+# Release note sections, in the order they appear.
+# See https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes
+changelog:
+  exclude:
+    labels:
+      - skip-changelog
+      - duplicate
+      - invalid
+    authors:
+      - dependabot
+      - dependabot[bot]
+  categories:
+    - title: Breaking Changes
+      labels:
+        - breaking-change
+    - title: New Modules & Scripts
+      labels:
+        - enhancement
+        - feature
+        - script
+    - title: Bug Fixes
+      labels:
+        - bug
+    - title: Documentation
+      labels:
+        - documentation
+        - docs
+    - title: Licensing & Compliance
+      labels:
+        - license
+    - title: Housekeeping
+      labels:
+        - chore
+        - hygiene
+        - dependencies
+    - title: Other Changes
+      labels:
+        - "*"

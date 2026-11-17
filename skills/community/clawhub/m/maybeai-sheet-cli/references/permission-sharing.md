@@ -2,6 +2,20 @@
 
 Use this reference when the task is about spreadsheet visibility, public access, or user-specific sharing permissions rather than cell data editing.
 
+## Discover public sharing commands
+
+Do not use this reference as a command tree or flag contract. Confirm the
+installed public sharing surface before generating a command:
+
+```bash
+mbs --help
+mbs share --help
+mbs share <public-command> --help
+```
+
+Generate only commands shown by public root or nested `--help`. Do not
+generate hidden compatibility commands.
+
 ## Scope
 
 These APIs cover:
@@ -17,31 +31,44 @@ Only the sheet owner can change visibility, assign permissions, remove access, o
 
 ## Setup
 
-Examples below assume:
-
-```bash
-HOST="${BASE_URL:-https://play-be.omnimcp.ai}"
-TOKEN="${MAYBEAI_API_TOKEN:?Please set MAYBEAI_API_TOKEN}"
-SHEET_ID="<YOUR_SHEET_ID_OR_SHEET_URL>"
-EMAIL="<USER_EMAIL>"
-```
-
-`SHEET_ID` can be either:
+Targets can be either:
 
 - A raw document id such as `<YOUR_SHEET_ID>`
 - A Maybe Sheet URL such as `https://www.maybe.ai/docs/spreadsheets/d/<YOUR_SHEET_ID>`
 
-For sharing APIs, `sheet_id` accepts either form.
+Use `--doc-id` for raw document ids, or `--sheet-id` when you want to pass a raw
+document id or full Maybe Sheet URL directly.
 
-## Endpoints
+## CLI Commands
 
-### Update Sheet Visibility
+Use these commands for sharing tasks:
 
-```text
-POST /api/v1/share/sheet/visibility
+```bash
+# Query current authenticated user's effective permission
+mbs share permission --doc-id <YOUR_SHEET_ID>
+mbs share permission --sheet-id "<YOUR_SHEET_ID_OR_SHEET_URL>"
+
+# Public/private visibility
+mbs share visibility --doc-id <YOUR_SHEET_ID> --visibility public --public-permission viewer
+mbs share visibility --doc-id <YOUR_SHEET_ID> --visibility public --public-permission editor
+mbs share visibility --doc-id <YOUR_SHEET_ID> --visibility private
+
+# Grant read-only access for a MaybeAI user email
+mbs share grant --doc-id <YOUR_SHEET_ID> --email "<USER_EMAIL>" --permission viewer
+
+# Grant write/edit access for a MaybeAI user email
+mbs share grant --doc-id <YOUR_SHEET_ID> --email "<USER_EMAIL>" --permission editor
+
+# Remove email-specific access
+mbs share remove --doc-id <YOUR_SHEET_ID> --email "<USER_EMAIL>"
+mbs share list --doc-id <YOUR_SHEET_ID>
 ```
 
-Use this when the user asks to:
+Use `--gid <GID>` only when a backend workflow explicitly needs a narrower permission scope.
+
+## Usage Rules
+
+Use `share visibility` when the user asks to:
 
 - make a sheet public
 - make a sheet private
@@ -54,57 +81,7 @@ Payload rules:
 - `public_permission` is required only when `visibility` is `public`
 - `public_permission` must be `viewer` or `editor`
 
-Example: public viewer
-
-```json
-{
-  "sheet_id": "<YOUR_SHEET_ID_OR_SHEET_URL>",
-  "visibility": "public",
-  "public_permission": "viewer"
-}
-```
-
-Example: public editor
-
-```json
-{
-  "sheet_id": "<YOUR_SHEET_ID_OR_SHEET_URL>",
-  "visibility": "public",
-  "public_permission": "editor"
-}
-```
-
-Example: private
-
-```json
-{
-  "sheet_id": "<YOUR_SHEET_ID_OR_SHEET_URL>",
-  "visibility": "private"
-}
-```
-
-Typical response:
-
-```json
-{
-  "sheet_id": "<YOUR_SHEET_ID>",
-  "gid": null,
-  "access": "owner",
-  "can_view": true,
-  "can_edit": true,
-  "is_owner": true,
-  "visibility": "public",
-  "public_permission": "viewer"
-}
-```
-
-### Assign Permission To Email
-
-```text
-POST /api/v1/share/sheet/update-permission
-```
-
-Use this when the user asks to share a sheet with a named person or email.
+Use `share grant` when the user asks to share a sheet with a named person or email.
 
 Payload rules:
 
@@ -112,72 +89,7 @@ Payload rules:
 - `email` must belong to an existing MaybeAI user
 - `gid` may be `null`
 
-Example: assign viewer
-
-```json
-{
-  "sheet_id": "<YOUR_SHEET_ID_OR_SHEET_URL>",
-  "email": "<USER_EMAIL>",
-  "permission": "viewer",
-  "gid": null
-}
-```
-
-Example: assign editor
-
-```json
-{
-  "sheet_id": "<YOUR_SHEET_ID_OR_SHEET_URL>",
-  "email": "<USER_EMAIL>",
-  "permission": "editor",
-  "gid": null
-}
-```
-
-Typical response:
-
-```json
-{
-  "sheet_id": "<YOUR_SHEET_ID>",
-  "email": "<USER_EMAIL>",
-  "gid": null,
-  "permission": "editor",
-  "updated": true,
-  "removed": false
-}
-```
-
-### Query Current User Permission
-
-```text
-POST /api/v1/share/sheet/permission
-```
-
-Use this when the task is to confirm whether the current authenticated user can view or edit a given sheet.
-
-Example payload:
-
-```json
-{
-  "sheet_id": "<YOUR_SHEET_ID_OR_SHEET_URL>",
-  "gid": null
-}
-```
-
-Typical response:
-
-```json
-{
-  "sheet_id": "<YOUR_SHEET_ID>",
-  "gid": null,
-  "access": "editor",
-  "can_view": true,
-  "can_edit": true,
-  "is_owner": false,
-  "visibility": "private",
-  "public_permission": "viewer"
-}
-```
+Use `share permission` when the task is to confirm whether the current authenticated user can view or edit a given sheet.
 
 Possible `access` values:
 
@@ -188,54 +100,21 @@ editor
 owner
 ```
 
-### Remove Email Permission
-
-```text
-POST /api/v1/share/sheet/remove-access
-```
-
-Use this when the user asks to unshare a sheet from a specific email.
-
-Example payload:
-
-```json
-{
-  "sheet_id": "<YOUR_SHEET_ID_OR_SHEET_URL>",
-  "email": "<USER_EMAIL>",
-  "gid": null
-}
-```
-
-### List Current Sheet Shares
-
-```text
-POST /api/v1/share/sheet/list
-```
-
-Use this when the user asks who currently has access to a sheet.
-
-Example payload:
-
-```json
-{
-  "sheet_id": "<YOUR_SHEET_ID_OR_SHEET_URL>"
-}
-```
+Use `share remove` when the user asks to unshare a sheet from a specific email.
+Use `share list` when the user asks who currently has access to a sheet.
 
 ## Decision Rules
 
-- Use sharing APIs only for access control. Do not mix them up with worksheet edits, filters, formulas, or dashboard APIs.
+- Use sharing commands only for access control. Do not mix them up with worksheet edits, filters, formulas, or dashboard work.
 - Prefer passing the full Maybe Sheet URL when you already have it. Passing the raw document id is also valid.
 - Treat `gid` as `null` unless a narrower permission scope is explicitly required by the backend workflow.
 - If the user asks to "make it public", clarify whether they want public `viewer` or public `editor` access if that is not obvious from context.
 - If the caller is not the owner, visibility changes and permission mutations can fail even if the user can edit cells.
+- If `share visibility` returns 403 with an owner-only message such as "Only the sheet owner can update sheet visibility", classify it as `owner_permission_required` / `permission_skipped`. When `workbook inspect` already shows the requested public visibility and permission, this is a share warning, not a dashboard/render failure; otherwise the owner or service account must update visibility.
 
 ## Recommended Workflow
 
 1. Resolve the target sheet URL or document id.
-2. If needed, call `/api/v1/share/sheet/permission` first to confirm the current user's access.
-3. Apply one of:
-   - `/api/v1/share/sheet/visibility`
-   - `/api/v1/share/sheet/update-permission`
-   - `/api/v1/share/sheet/remove-access`
-4. If the user wants verification, call `/api/v1/share/sheet/permission` or `/api/v1/share/sheet/list`.
+2. If needed, run `mbs share permission` first to confirm the current user's access.
+3. Apply `mbs share visibility`, `mbs share grant`, or `mbs share remove`.
+4. If the user wants verification, run `mbs share permission` or `mbs share list`.

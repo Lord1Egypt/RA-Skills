@@ -1,46 +1,62 @@
-## Description: <br>
-Enrich LinkedIn profile URLs with mobile phone numbers and work/personal emails using Apify actors, merging results into unified output records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enrich LinkedIn profile URLs with mobile phone numbers and work or personal emails using Apify actors, then merge results into unified output records.
 
-## Publisher: <br>
-[hundevmode](https://clawhub.ai/user/hundevmode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hundevmode](https://clawhub.ai/user/hundevmode)
 
-## Use Case: <br>
-External users and developers use this skill to enrich authorized LinkedIn profile URL lists with emails and phone numbers, then export merged contact records for outbound, CRM, spreadsheet, or automation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Submitting LinkedIn profile URLs to Apify actors may disclose personal or contact data to third-party services. <br>
-Mitigation: Submit only profiles you are authorized to enrich, verify actor owners, pricing, and terms, and apply applicable privacy, anti-spam, and platform-compliance rules. <br>
-Risk: APIFY_TOKEN can grant access to Apify account resources. <br>
-Mitigation: Store the token in an environment variable or secret store, avoid hardcoding it in workflows, and rotate it if exposed. <br>
-Risk: Phone or personal-email enrichment may collect more data than needed for a workflow. <br>
-Mitigation: Disable phone or personal-email branches when they are not required, and start with small URL batches before larger runs. <br>
+## Use Case:
 
+External users, developers, sales operations teams, and agencies use this skill to enrich LinkedIn profile URL lists with email and mobile phone data for prospecting, CRM preparation, spreadsheets, and automation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hundevmode/linkedin-email-phone-apify) <br>
-- [Input contract](references/input-contract.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Apify phone actor X95BXRaFOqZ7rzjxM](https://console.apify.com/actors/X95BXRaFOqZ7rzjxM) <br>
-- [Apify email actor q3wko0Sbx6ZAAB2xf](https://console.apify.com/actors/q3wko0Sbx6ZAAB2xf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON result objects and Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires APIFY_TOKEN and user-provided LinkedIn profile URLs; email and phone enrichment branches can run together or independently.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends LinkedIn profile lists to Apify actors and enriches people with email and mobile phone data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with a lawful basis for contact enrichment, review applicable privacy obligations, and start with small URL batches.
+
+Risk: The Apify credential can be exposed if passed directly in shell commands.
+
+Mitigation: Prefer APIFY_TOKEN from a protected environment or secret manager, avoid --apify-token in shell history, and use a least-privilege Apify token when available.
+
+Risk: Inputs may require additional validation before enrichment.
+
+Mitigation: Validate that all submitted URLs are intended LinkedIn profile URLs before running the skill.
+
+## Reference(s):
+
+- [Input contract](artifact/references/input-contract.md)
+- [Troubleshooting](artifact/references/troubleshooting.md)
+- [Sample input](artifact/references/sample_input.json)
+- [Apify phone actor X95BXRaFOqZ7rzjxM](https://console.apify.com/actors/X95BXRaFOqZ7rzjxM)
+- [Apify email actor q3wko0Sbx6ZAAB2xf](https://console.apify.com/actors/q3wko0Sbx6ZAAB2xf)
+- [ClawHub skill page](https://clawhub.ai/hundevmode/skills/linkedin-email-phone-apify)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON records with concise Markdown command and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Merged rows include LinkedIn URL, identity fields, company or title fields, work email, personal emails, mobile phone, and email or phone presence flags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

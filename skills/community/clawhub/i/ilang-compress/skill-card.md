@@ -1,43 +1,52 @@
-## Description: <br>
-Compress natural language prompts into I-Lang — AI-native structured instructions. 40-65% token savings. Output is text notation only — review before passing to execution agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compress natural language prompts into I-Lang — AI-native structured instructions. Output is text notation only — review before passing to execution agents.
 
-## Publisher: <br>
-[adsorgcn](https://clawhub.ai/user/adsorgcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adsorgcn](https://clawhub.ai/user/adsorgcn)
 
-## Use Case: <br>
-Developers and agent users use this skill to convert natural-language prompts into compact I-Lang notation, usually to reduce token usage while preserving the intended task semantics. The output should be reviewed before it is passed to agents or tools that may interpret compressed verbs as executable instructions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compressed I-Lang output may contain verbs and resource references that a downstream execution agent could interpret as real file, network, or cloud operations. <br>
-Mitigation: Review compressed output before passing it to execution environments, and keep confirmation or dry-run controls enabled for agents that can act on the notation. <br>
-Risk: Prompt compression can omit nuance or make intent harder for a human reviewer to inspect. <br>
-Mitigation: Compare the compressed notation and its explanation against the source prompt before using it for high-impact or irreversible workflows. <br>
+## Use Case:
 
+Developers and external agent users use this skill to compress natural language prompts into compact I-Lang instruction notation while preserving intended operations for later review or agent handoff.
 
-## Reference(s): <br>
-- [I-Lang homepage](https://ilang.ai) <br>
-- [I-Lang dictionary](https://github.com/ilang-ai/ilang-dict) <br>
-- [I-Lang OpenClaw repository](https://github.com/ilang-ai/ilang-openclaw) <br>
-- [ClawHub skill page](https://clawhub.ai/adsorgcn/ilang-compress) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Text notation with a brief Markdown explanation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces compressed I-Lang expressions and explanatory text; examples report about 40-65% token savings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.2 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Command-like I-Lang notation may be acted on if passed to an agent or tool that interprets terms such as DEL, WRIT, SYNC, @LOCAL, @DRIVE, or @R2.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review compressed output before passing it to execution-capable agents, tools, or automation systems.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/adsorgcn/skills/ilang-compress)
+- [I-Lang Homepage](https://ilang.ai)
+- [I-Lang Specification](https://ilang.ai/spec/)
+- [I-Lang Dictionary](https://github.com/ilang-ai/ilang-dict)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [I-Lang text notation followed by a brief Markdown explanation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only output; command-like notation should be reviewed before use by execution-capable agents or automation.]
+
+## Skill Version(s):
+
+2.3.4 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-微信公众号调研 + 监控 + 报告推送。每个产品独立目录，互不影响。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+微信公众号调研 + 监控 + 报告推送。每个产品独立目录，互不影响。
 
-## Publisher: <br>
-[a1003916989-blip](https://clawhub.ai/user/a1003916989-blip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a1003916989-blip](https://clawhub.ai/user/a1003916989-blip)
 
-## Use Case: <br>
-Marketing, operations, and content teams use this skill to research relevant WeChat public accounts for a product, monitor selected official, competitor, media, and KOL accounts, and generate recurring content-monitoring reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an mptext API key for recurring WeChat public-account monitoring. <br>
-Mitigation: Configure MPTEXT_API_KEY as an environment variable, do not put the key in source files or shared workspace notes, and rotate it if the mptext login state expires. <br>
-Risk: Recurring scheduled monitoring and report pushing can distribute monitored account activity to an unexpected destination. <br>
-Mitigation: Confirm the selected public accounts, report delivery target, and schedule before enabling recurring pushes. <br>
-Risk: Product names are used to create local product folders and report paths. <br>
-Mitigation: Use simple product folder names and avoid path-like or ambiguous names. <br>
+## Use Case:
 
+Developers and marketing operators use this skill to research WeChat public accounts for a product, confirm monitored accounts, generate local account configuration, and produce recurring Markdown monitoring reports with content-topic suggestions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/a1003916989-blip/wechat-monitor) <br>
-- [mptext Service](https://down.mptext.top) <br>
-- [mptext Public API Base](https://down.mptext.top/api/public/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with account lists, monitoring summaries, topic analysis, shell commands, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses MPTEXT_API_KEY for mptext API access and stores per-product account lists and Markdown reports in separate product folders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles an mptext API credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set MPTEXT_API_KEY through an environment variable or secret manager and do not edit the script with a real key.
+
+Risk: Scheduled monitoring can repeatedly transmit account identifiers and retrieve article data from a third-party service.
+
+Mitigation: Review the scheduler, destination, transmitted data, and removal steps before enabling recurring runs.
+
+Risk: The script creates, reads, and deletes files in per-product directories using a command-line product name.
+
+Mitigation: Run it only with simple product names you control and review generated account and report paths before automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/a1003916989-blip/skills/wechat-monitor)
+- [mptext API base URL](https://down.mptext.top/api/public/v1)
+- [mptext service](https://down.mptext.top)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with inline shell commands and JSON configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes per-product account lists and dated Markdown reports under the skill workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

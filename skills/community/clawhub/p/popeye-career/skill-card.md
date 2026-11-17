@@ -1,43 +1,54 @@
-## Description: <br>
-Chinese-language career assistant for resume optimization, interview preparation, and workplace report writing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Popeye Career helps users optimize resumes, prepare for interviews, and draft workplace reports using Chinese prompt templates.
 
-## Publisher: <br>
-[jiangtaoid](https://clawhub.ai/user/jiangtaoid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangtaoid](https://clawhub.ai/user/jiangtaoid)
 
-## Use Case: <br>
-Job seekers and employees use this skill to improve resumes, prepare interview answers, and draft structured workplace reports in Chinese. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide sensitive personal or business information in resumes, interview background, or workplace reports. <br>
-Mitigation: Remove or mask phone numbers, email addresses, home addresses, ID numbers, compensation details, client names, and confidential business metrics before use. <br>
-Risk: Career-writing suggestions may be inaccurate, overstated, or unsuitable for a specific role or audience. <br>
-Mitigation: Review and edit generated resumes, interview answers, and reports before sharing them with employers, interviewers, managers, or clients. <br>
+## Use Case:
 
+Employees, job seekers, and workplace professionals use this skill to get structured Chinese-language assistance with resume revision, interview preparation, and work report drafting.
 
-## Reference(s): <br>
-- [Popeye Career on ClawHub](https://clawhub.ai/jiangtaoid/popeye-career) <br>
-- [Resume Optimization Module](modules/resume.md) <br>
-- [Interview Preparation Module](modules/interview.md) <br>
-- [Report Writing Module](modules/report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown responses in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are based on user-provided resume, interview, or workplace-report details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Generated resume, interview, or report text may contain private employment details or business information supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs before sending and avoid providing unnecessary sensitive personal, employer, or customer information.
+
+Risk: Common Chinese career requests may invoke the skill when the user asks for resume edits, interview preparation, or report writing.
+
+Mitigation: Confirm the requested task and intended audience before sharing private workplace content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiangtaoid/skills/popeye-career)
+- [ClawHub publisher profile](https://clawhub.ai/user/jiangtaoid)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language career and workplace writing assistance based on user-provided resume, interview, role, or report context.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,50 @@
-## Description: <br>
-Tendermint reference tool. Use when working with tendermint in blockchain contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tendermint reference tool. Use when working with tendermint in blockchain contexts.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and external users can use this skill to request static Tendermint-oriented reference sections, including overview, glossary, risks, regulations, strategies, and checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says this is a shallow static reference and may present generic finance or compliance text as Tendermint guidance. <br>
-Mitigation: Treat the output as a starting reference only, and verify Tendermint, validator, compliance, operational, and investment decisions against authoritative sources before acting. <br>
+## Use Case:
 
+Developers and blockchain practitioners use this skill for quick Tendermint-oriented reference material, command examples, checklists, and glossary-style guidance.
 
-## Reference(s): <br>
-- [BytesAgain](https://bytesagain.com) <br>
-- [ClawHub Tendermint release](https://clawhub.ai/bytesagain1/tendermint) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference content selected by command name.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The security review found that the Tendermint branding does not match the mostly generic finance and compliance content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated reference material before relying on it for Tendermint work, and prefer publisher updates that replace generic content with Tendermint-specific guidance.
+
+## Reference(s):
+
+- [ClawHub Tendermint skill page](https://clawhub.ai/bytesagain1/skills/tendermint)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown reference sections returned by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output; no API keys or external tool calls detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

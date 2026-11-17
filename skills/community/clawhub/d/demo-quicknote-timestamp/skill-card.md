@@ -1,40 +1,49 @@
-## Description: <br>
-Quickly append a timestamped note to a local markdown file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quickly append a timestamped note to a local markdown file.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers, employees, and external users can use this skill to quickly capture fleeting thoughts, observations, or reminders in a workspace markdown note without leaving the current workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Appending notes to a workspace markdown file can expose sensitive notes if the file is shared or committed. <br>
-Mitigation: Choose a non-sensitive target file and review version control status before sharing or committing notes. <br>
-Risk: The skill suggests shell redirection that modifies a local file. <br>
-Mitigation: Confirm the target path before running the append command. <br>
+## Use Case:
 
+External users, developers, and workspace-based agents use this skill to capture fleeting thoughts, observations, or reminders as timestamped entries in a local markdown note file.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/terrycarter1985/demo-quicknote-timestamp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces or appends timestamped note lines in a local markdown file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Vague note-taking requests may cause the agent to append to or create notes.md when the user expected another file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify the target file or ask the agent to confirm before writing when file choice matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/demo-quicknote-timestamp)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or appends an ISO-timestamped line in a local markdown note file, defaulting to notes.md when no target file is specified.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

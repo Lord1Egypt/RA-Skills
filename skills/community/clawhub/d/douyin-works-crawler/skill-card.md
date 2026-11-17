@@ -1,45 +1,60 @@
-## Description: <br>
-抖音作品爬取工具，输入抖音名称或抖音ID，输出抖音账号基础信息和近期作品内容列表（最多50条）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves Douyin account profile data and up to 50 recent works by nickname or Douyin ID, including engagement metrics, direct links, and a brief top-performing content analysis.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-Brands, MCN operators, content creators, and data analysts use this skill to retrieve recent Douyin account works and engagement summaries from RedFox APIs for monitoring, evaluation, content analysis, and report preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends Douyin names or IDs to RedFox APIs and consumes a RedFox API key or credits. <br>
-Mitigation: Install and use it only when RedFox data submission and API-key use are acceptable for the account being queried. <br>
-Risk: The command-line script prints the first characters of the configured API key. <br>
-Mitigation: Avoid running it in shared logs, screenshots, or recorded sessions until the partial API-key print is removed. <br>
-Risk: Nickname searches can return a fuzzy or unintended Douyin account. <br>
-Mitigation: Use precise Douyin IDs when querying accounts or submitting accounts for indexing. <br>
+## Use Case:
 
+External users such as brand marketers, MCN operators, Douyin creators, and data analysts use this skill to retrieve recent Douyin account works, compare engagement, and support content performance analysis.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/redfox-data/douyin-works-crawler) <br>
-- [Core workflow](references/core_workflow.md) <br>
-- [RedFoxHub API keys](https://redfox.hk/settings/api-keys?souce=github) <br>
-- [RedFox data platform](https://redfox.hk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, json, guidance] <br>
-**Output Format:** [Markdown report or JSON object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recent works are capped at 50 items; results may include account indexing guidance when no account is found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence.release.version, released 2026-06-11) <br>
+Risk: The skill sends Douyin account identifiers to RedFox and returns collected account and work data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data transfer and downstream use are lawful, appropriate for the use case, and consistent with applicable platform terms.
+
+Risk: Security evidence reports that the script prints an API-key prefix, which can expose credential material in shared logs.
+
+Mitigation: Avoid sharing execution logs and remove API-key prefix printing before deployment in shared or monitored environments.
+
+Risk: Security evidence reports an unrelated RedFox sales link in generated reports.
+
+Mitigation: Review generated output before distribution and remove sales-link content when it is not appropriate for the audience.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/douyin-works-crawler)
+- [Core workflow reference](references/core_workflow.md)
+- [RedFoxHub API key settings](https://redfox.hk/settings/api-keys?source=clawhub)
+- [RedFoxHub](https://redfox.hk?source=clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown report or JSON object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include account fields, up to 50 recent works, engagement metrics, direct links when available, and TOP 3 engagement analysis.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

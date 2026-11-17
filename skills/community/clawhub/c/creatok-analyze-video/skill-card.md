@@ -1,46 +1,58 @@
-## Description: <br>
-Use when analyzing a TikTok video or breaking down its script and structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes TikTok videos by collecting transcript, metadata, visual scene notes, and CreatOK suggestions so an agent can explain the script, storyboard, hook, metrics, and conversion structure.
 
-## Publisher: <br>
-[newt0n](https://clawhub.ai/user/newt0n) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newt0n](https://clawhub.ai/user/newt0n)
 
-## Use Case: <br>
-Creators, sellers, and content teams use this skill to analyze TikTok URLs, recover transcripts and visual notes, and produce a reusable breakdown of script, storyboard, metrics, hooks, and conversion logic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: TikTok URLs are sent to CreatOK for remote analysis. <br>
-Mitigation: Use a dedicated CreatOK API key and avoid submitting URLs whose analysis would expose sensitive or restricted information. <br>
-Risk: Returned transcripts, visual analysis, metadata, and results are written to local .artifacts folders. <br>
-Mitigation: Review and delete local artifacts after sensitive analyses. <br>
-Risk: The package includes broader remote task APIs in addition to the analyze workflow. <br>
-Mitigation: Review follow-up generation workflows before use and avoid invoking broader task APIs unless they are needed. <br>
+## Use Case:
 
+Creators, sellers, and developer-assisted content teams use this skill to analyze a TikTok URL, recover the original script and storyboard, and understand the video's hook, pacing, metrics, and conversion structure.
 
-## Reference(s): <br>
-- [CreatOK Analyze Video Skill Page](https://clawhub.ai/newt0n/creatok-analyze-video) <br>
-- [Common Rules](references/common-rules.md) <br>
-- [Agent Skills Contracts](references/contracts.md) <br>
-- [CreatOK API Keys](https://www.creatok.ai/app/workspace/api-keys) <br>
-- [CreatOK](https://www.creatok.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown analysis in the conversation plus local JSON artifacts under analyze-video/.artifacts/<run_id>.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a TikTok URL and CREATOK_API_KEY; stores transcript, visual analysis, metadata, and result artifacts locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The run ID may allow artifacts to be written outside the intended folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate or constrain run_id values before running the skill, and review generated artifact paths before trusting outputs.
+
+Risk: TikTok URLs and extracted content are sent to CreatOK for analysis.
+
+Mitigation: Use only trusted, non-sensitive videos when sharing content with the external analysis service is acceptable.
+
+Risk: Untrusted video or API text may influence the agent's final analysis.
+
+Mitigation: Keep clear prompt-injection boundaries around transcript, visual, and remote response text, and review final guidance before acting on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/newt0n/skills/creatok-analyze-video)
+- [CreatOK service](https://www.creatok.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown analysis supported by JSON artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes per-run artifacts including video details, transcript JSON and text, vision JSON, and outputs/result.json.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,55 @@
-## Description: <br>
-Searches recent content across major Chinese platforms and helps an agent generate source-linked research reports. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Searches recent content across Weibo, Xiaohongshu, Bilibili, Zhihu, Douyin, WeChat public accounts, Baidu, and Toutiao so agents can produce cited Chinese-platform research reports.
 
-## Publisher: <br>
-[jesseovo](https://clawhub.ai/user/jesseovo) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jesseovo](https://clawhub.ai/user/jesseovo)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to collect and compare recent public discussions from Chinese social, search, and media platforms, then produce cited research summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; content sources focus on Chinese platforms. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic session-start execution may run a local configuration check whenever a supported agent session starts. <br>
-Mitigation: Review or disable the SessionStart hook before use, especially in untrusted projects. <br>
-Risk: API keys, cookies, and local environment files may be used to access platform data sources. <br>
-Mitigation: Keep .env files private, use least-privilege credentials, and avoid high-privilege personal session cookies. <br>
-Risk: Crawler-style behavior can contact multiple external platforms and save research reports locally. <br>
-Mitigation: Install only where this behavior is expected and review generated local files before sharing them. <br>
+## Use Case:
 
+External users and developers use this skill to gather recent Chinese internet discussion, compare signals across platforms, and draft source-linked research reports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jesseovo/last30days-skill-cn) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jesseovo) <br>
-- [Original last30days skill reference](https://github.com/mvanhorn/last30days-skill) <br>
-- [MediaCrawler reference](https://github.com/NanmiCoder/MediaCrawler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [Compact terminal summaries, Markdown reports, JSON, context snippets, and local report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI can emit compact, json, md, context, or path output and can write report.md, report.json, and last30days.context.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The included startup hook can execute commands from a project-controlled env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not enable the startup hook until check-config.sh removes eval and allowlists accepted configuration keys.
+
+Risk: The skill performs web searches or scraping, uses optional platform credentials, and may write local reports or cookies.
+
+Mitigation: Use tightly scoped credentials, comply with platform terms, avoid sensitive personal data, and clear stored browser cookies when work is complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jesseovo/skills/last30days-skill-cn)
+- [MediaCrawler](https://github.com/NanmiCoder/MediaCrawler)
+- [Original last30days skill](https://github.com/mvanhorn/last30days-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Chinese research summaries and reports with optional compact, JSON, Markdown, context, or path output modes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write report.md, report.json, and last30days.context.md to a local output directory.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata; artifact frontmatter and plugin metadata list 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

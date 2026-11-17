@@ -1,38 +1,49 @@
-## Description: <br>
-Fast browser automation via the `agent-browser` CLI and OpenClaw `browser` tool for web research, form filling, navigation, and screenshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fast browser automation via `agent-browser` CLI + OpenClaw `browser` tool. Use for web research, form filling, navigation, and screenshotting.
 
-## Publisher: <br>
-[mikefaierberg-byte](https://clawhub.ai/user/mikefaierberg-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikefaierberg-byte](https://clawhub.ai/user/mikefaierberg-byte)
 
-## Use Case: <br>
-Agents and developers use this skill to control a browser for public web research, form filling, navigation, screenshots, and logged-in workflows when an appropriate browser profile is selected. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation can expose credentials or perform unintended account actions when reused with logged-in profiles or saved passwords. <br>
-Mitigation: Use a dedicated automation browser profile and test or least-privilege accounts; avoid saving real passwords in the main browser profile and require manual confirmation before submissions, purchases, posts, deletes, or account-setting changes. <br>
+## Use Case:
 
+Developers and agent operators use this skill to drive browser-based research, navigation, form interaction, screenshot capture, and logged-in workflow automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikefaierberg-byte/mikefaierberg-agent-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline tool and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct browser navigation, form interaction, tab management, and screenshot capture.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Browser automation may use logged-in sessions or stored website credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted workflows, avoid passing real passwords in command arguments, confirm which accounts and browser profiles may be used, and review how credentials are stored, redacted, and deleted before relying on the auth vault.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikefaierberg-byte/skills/mikefaierberg-agent-browser)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes browser tool calls, CLI command patterns, operating loop guidance, and credential-use cautions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

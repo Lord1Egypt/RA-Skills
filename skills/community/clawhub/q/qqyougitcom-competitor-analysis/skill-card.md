@@ -1,40 +1,54 @@
-## Description: <br>
-帮助用户拆解竞品的产品定位、功能差异、定价策略和用户口碑，并输出结构化分析报告、定位图谱、SWOT交叉策略和行动路线图。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+竞品分析助手 helps users analyze competitors' positioning, feature differences, pricing strategy, user sentiment, and market opportunities, then produce a structured Chinese competitor-analysis report with positioning maps, SWOT cross-strategies, and an action roadmap.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-External users, product managers, founders, marketers, and strategy teams use this skill to structure competitor research across product positioning, features, pricing, user sentiment, industry frameworks, opportunity gaps, and roadmap recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may trigger for broad business research or product-comparison prompts. <br>
-Mitigation: Installers should review whether that routing behavior is desirable for their agent before deployment. <br>
-Risk: Competitor-analysis outputs can contain incomplete or misleading business guidance if source data is stale or weak. <br>
-Mitigation: Require users to rely on public information, cite sources, mark data cutoff dates, and review recommendations before acting. <br>
+## Use Case:
 
+External business, product, and strategy users use this skill to compare direct, indirect, potential, and substitute competitors using public information. It is intended for Chinese competitor-analysis reports covering product positioning, pricing, user feedback, SWOT, opportunity gaps, and short-, medium-, and long-term actions.
 
-## Reference(s): <br>
-- [Competitor Analysis Details](references/details.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown structured report in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs a competitor analysis report with overview, competitor landscape, feature matrix, pricing comparison, sentiment analysis, positioning map, SWOT cross-strategies, opportunities, action roadmap, and monitoring metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata) <br>
+Risk: Competitor-analysis reports can become misleading when public sources are stale, incomplete, or uncited.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify cited sources, include data cutoff dates, and refresh key market, pricing, and user-sentiment evidence before using the report for business decisions.
+
+Risk: The skill defaults to Chinese output, which may not match every deployment audience.
+
+Mitigation: Override the output language when the target audience requires another language.
+
+## Reference(s):
+
+- [competitor-analysis detailed reference](references/details.md)
+- [ClawHub skill release page](https://clawhub.ai/qqyougitcom/skills/qqyougitcom-competitor-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese Markdown competitor-analysis report with tables, scoring matrices, positioning maps, SWOT cross-strategies, and action roadmap sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should cite public sources, mark data cutoff dates, and keep recommendations specific and actionable.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence; artifact frontmatter says 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

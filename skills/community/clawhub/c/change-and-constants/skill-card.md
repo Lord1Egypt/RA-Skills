@@ -1,45 +1,56 @@
-## Description: <br>
-Helps agents coach strategic decision makers through sorting what must adapt from what must remain constant when identity, values, or market conditions are in tension. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps teams distinguish strategic elements that must adapt from those that should remain constant by applying explicit tests.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Employees, external teams, and strategy facilitators use this skill to map strategic elements into must-change and must-stay-constant categories, with explicit reasoning, mechanisms, triggers, and owners. It is intended for identity-sensitive strategy discussions rather than purely operational vendor or tool choices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat strategic coaching output as authoritative advice for high-stakes legal, financial, governance, or executive decisions. <br>
-Mitigation: Use the skill as decision-support only and route high-stakes conclusions through qualified human review. <br>
-Risk: Incomplete or biased inputs can produce a misleading change-constants map. <br>
-Mitigation: Review the map with affected stakeholders, document assumptions, and validate triggers before acting. <br>
+## Use Case:
 
+Executives, strategy teams, and organizational leaders use the framework to decide what to adapt during change and what principles to preserve. It produces a reasoned map with adaptation steps, signals, owners, misclassifications, and unresolved tensions.
 
-## Reference(s): <br>
-- [Change and Constants Framework on ClawHub](https://clawhub.ai/deciqai/skills/change-and-constants) <br>
-- [Sources - change-and-constants](references/sources.md) <br>
-- [Method in Action: The U.S. Constitution's Design, 1787-Present](examples/us-constitution-design-1787-present.md) <br>
-- [Heraclitus - Stanford Encyclopedia of Philosophy](https://plato.stanford.edu/entries/heraclitus/) <br>
-- [Built to Last - HarperCollins](https://www.harpercollins.com/products/built-to-last-jim-collinsjerry-i-porras) <br>
-- [The Federalist Papers, No. 49 - Avalon Project](https://avalon.law.yale.edu/18th_century/fed49.asp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown coaching prompts and structured decision maps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces decision-support guidance; no code execution, credential access, persistence, or hidden behavior is indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Strategic recommendations may not fit the organization's circumstances.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the framework as a decision aid and review its recommendations before making business changes.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/deciqai/skills/change-and-constants)
+- [Change and Constants Framework guide](https://www.deciqai.com/c/change-and-constants)
+- [Sources — change-and-constants](references/sources.md)
+- [Method in Action: The U.S. Constitution's Design, 1787–Present](examples/us-constitution-design-1787-present.md)
+- [Heraclitus — Stanford Encyclopedia of Philosophy](https://plato.stanford.edu/entries/heraclitus/)
+- [Built to Last — HarperCollins](https://www.harpercollins.com/products/built-to-last-jim-collinsjerry-i-porras)
+- [The Federalist No. 49 — Avalon Project, Yale Law School](https://avalon.law.yale.edu/18th_century/fed49.asp)
+- [Machine-readable skill description](https://www.deciqai.com/s/change-and-constants.json)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown Change-Constants Map]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Organizes strategic elements by change or constancy, with rationale, adaptation mechanisms, triggers, owners, dangerous misclassifications, and tension points.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

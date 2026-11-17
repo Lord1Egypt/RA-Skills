@@ -1,41 +1,55 @@
-## Description: <br>
-Professional anti-giveup debugging protocol for coding tasks where the agent starts looping, deflecting to users, or trying to end early without evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional anti-giveup debugging protocol for coding tasks where the agent starts looping, deflecting to users, or trying to end early without evidence.
 
-## Publisher: <br>
-[Doraemon-Claw](https://clawhub.ai/user/Doraemon-Claw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[doraemon-claw](https://clawhub.ai/user/doraemon-claw)
 
-## Use Case: <br>
-Developers and coding agents use this skill during repeated debugging failures to enforce evidence-first diagnosis, bounded escalation, explicit verification, and clear blocked-state reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages persistent debugging and may lead an agent to run checks, propose changes, or continue work longer than expected. <br>
-Mitigation: Keep normal approval boundaries for production changes, secrets, network access, and commands that modify the environment; review proposed changes and validation results before relying on them. <br>
+## Use Case:
 
+Developers and coding agents use this skill during repeated task failures to keep debugging evidence-first, verify before claiming completion, and escalate only after bounded checkpoints. It is suited for coding workflows where weak root-cause analysis, vague environment blame, or premature stopping would create delivery risk.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/Doraemon-Claw/pua-debugging-pro) <br>
-- [Checklist & Report Templates](references/checklist-template.md) <br>
-- [Postmortem One-Pager](assets/postmortem-onepager.md) <br>
-- [Upstream Inspiration](https://github.com/tanweai/pua) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown progress updates, escalation reports, checklists, and recommended validation commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only workflow; no hidden code, persistence, or unusual permissions identified by the security review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill intentionally encourages continued debugging during repeated failures, which could waste effort if external access, secrets, or a business decision are actually required.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented stop conditions: complete the seven-point checklist, confirm the latest attempt produced no new diagnostic signal, and escalate only when the missing dependency is concrete.
+
+Risk: The artifact includes Chinese-language reusable templates that may not match an English-only team workflow.
+
+Mitigation: Review and localize the templates before deployment in teams that require English-only agent outputs.
+
+## Reference(s):
+
+- [Checklist & Report Templates](references/checklist-template.md)
+- [Postmortem One-Pager](assets/postmortem-onepager.md)
+- [ClawHub Skill Page](https://clawhub.ai/doraemon-claw/skills/pua-debugging-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance, checklists, progress updates, and bounded escalation reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bilingual reusable templates; no executable files or privileged actions are included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

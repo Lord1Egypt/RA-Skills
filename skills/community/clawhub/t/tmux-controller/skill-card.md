@@ -1,41 +1,57 @@
-## Description: <br>
-Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.
 
-## Publisher: <br>
-[BrennerSpear](https://clawhub.ai/user/BrennerSpear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brennerspear](https://clawhub.ai/user/brennerspear)
 
-## Use Case: <br>
-Developers and engineers use this skill when an agent needs to operate an interactive TTY workflow through tmux, including creating sessions, sending input, capturing pane output, and waiting for text patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill enables an agent to control tmux sessions, send shell input, and capture pane output, which can expose or act on sensitive terminal state. <br>
-Mitigation: Install only when tmux control is intended, avoid capturing panes with secrets, and run work in isolated worktrees or disposable projects when possible. <br>
-Risk: The skill examples normalize unattended coding-agent modes that bypass permission prompts. <br>
-Mitigation: Avoid permission-bypassing and full-auto examples unless unattended code and shell changes are explicitly acceptable. <br>
-Risk: Bulk cleanup commands can terminate multiple managed tmux sessions. <br>
-Mitigation: List `oc-*` sessions before running bulk cleanup and kill only the sessions intended for removal. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BrennerSpear/tmux-controller) <br>
+## Use Case:
 
+Developers and engineers use this skill to operate interactive terminal sessions through tmux, including launching, sending input to, and capturing output from pane-based CLI workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes tmux session naming, pane targeting, command-sending, output capture, polling, and cleanup guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill normalizes examples that run coding agents with approval or permission safeguards disabled.
+
+Mitigation: Use unattended or full-auto agent modes only in an isolated worktree or sandbox when that level of authority is intentional.
+
+Risk: The bundled tmux polling helper is identified by the security evidence as needing hardening for untrusted or generated arguments.
+
+Mitigation: Review and harden script argument handling before using the helper with untrusted inputs.
+
+Risk: tmux pane control can send commands into long-lived interactive sessions.
+
+Mitigation: Inspect the target session and command text before sending input, and prefer literal sends for user-provided command strings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brennerspear/skills/tmux-controller)
+- [Publisher profile](https://clawhub.ai/user/brennerspear)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires tmux on darwin or linux.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

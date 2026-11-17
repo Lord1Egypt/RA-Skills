@@ -1,44 +1,59 @@
-## Description: <br>
-SDD + Multica multi-agent development workflow for writing SDD specifications, creating and assigning Multica issues, planning dependency batches, monitoring progress, and recording completion updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through an SDD-first Multica workflow for feature work, including specification documents, squad and issue setup, dependency planning, progress monitoring, documentation updates, and git commits.
 
-## Publisher: <br>
-[denghuayuan](https://clawhub.ai/user/denghuayuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[denghuayuan](https://clawhub.ai/user/denghuayuan)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to run feature work through an SDD-first, TDD-oriented Multica workflow, from specification documents through issue creation, dependency planning, progress checks, and closeout documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may route ordinary feature-planning requests into the Multica SDD workflow. <br>
-Mitigation: Narrow the trigger wording or require explicit user confirmation before invoking the workflow for a new task. <br>
-Risk: The workflow includes state-changing actions such as creating or assigning Multica issues, editing specs, CLAUDE.md, and .multica/squad.md, and making git commits. <br>
-Mitigation: Review the affected files and commands before execution, and require confirmation before running Multica issue operations or git commits. <br>
-Risk: Some operational constraints are documented as project-specific and may not fit other repositories. <br>
-Mitigation: Replace the example constraints with the target repository's own AGENTS.md, constitution, test, and typecheck requirements before use. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to plan and execute feature work with specification-driven development and Multica issue coordination. It is intended for projects that want SDD records, TDD sequencing, task dependencies, review loops, and completion records kept in sync.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/denghuayuan/multica-sdd-workflow) <br>
-- [Issue Templates](artifact/issue-templates.md) <br>
-- [SDD Document Templates](artifact/sdd-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command snippets and reusable templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces SDD document structure, Multica issue descriptions, assignment commands, progress-check commands, and documentation update guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter states 2.0.0) <br>
+Risk: The workflow can change Multica project state, repository files, git history, and issue status.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human approval before mutation commands, issue assignment or updates, document edits, and git commits.
+
+Risk: The workflow reads operational values and commands from .multica/squad.md, including IDs, work directories, and test/typecheck commands.
+
+Mitigation: Treat .multica/squad.md as security-sensitive and verify every ID, path, and command before use.
+
+Risk: Configured test and typecheck commands may execute repository-provided commands.
+
+Mitigation: Inspect the configured commands in the target repository and run them only in a trusted workspace.
+
+## Reference(s):
+
+- [Skill artifact](artifact/SKILL.md)
+- [Issue templates](artifact/issue-templates.md)
+- [SDD document templates](artifact/sdd-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets, issue descriptions, and SDD document templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces repository-oriented workflow guidance and command snippets; command execution and mutations should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and release changelog state 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

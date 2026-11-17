@@ -10,7 +10,7 @@ x402 availability: not enabled for this product.
 
 Action slug: `list`
 
-Price: `20` credits
+Price: `3` credits
 
 List all files previously uploaded through this tool, sorted by most recent first. Returns upload history with CIDs, filenames, sizes, dates, and gateway URLs.
 

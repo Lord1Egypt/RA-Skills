@@ -1,41 +1,59 @@
-## Description: <br>
-Track OpenClaw agent costs. Check daily/weekly spending and model breakdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track OpenClaw agent costs. Check daily/weekly spending and model breakdown.
 
-## Publisher: <br>
-[ShallIfy](https://clawhub.ai/user/ShallIfy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[shallify](https://clawhub.ai/user/shallify)
 
-## Use Case: <br>
-Developers and OpenClaw users use ClawCost to summarize local agent spending, daily budgets, balance status, and model cost breakdowns from their own OpenClaw session logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw session logs, which may contain usage and spending details. <br>
-Mitigation: Install only if local cost summarization is desired, and avoid sharing generated summaries when they expose sensitive usage details. <br>
-Risk: Setting a balance writes local state at ~/.clawcost/config.json. <br>
-Mitigation: Review or remove the local configuration file if balance tracking is no longer needed. <br>
+## Use Case:
 
+Developers and OpenClaw users use ClawCost to review local session spending, daily budget status, balance tracking, and model-level cost breakdowns.
 
-## Reference(s): <br>
-- [Model Pricing Reference](references/pricing.md) <br>
-- [ClawCost on ClawHub](https://clawhub.ai/ShallIfy/clawcost) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON from the local script, rendered by the agent as concise text or Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; reads local OpenClaw session logs and can write a local balance configuration file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: The skill reads local OpenClaw session logs to compute spending.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when local session-log cost analysis is intended.
+
+Risk: The balance-setting command writes local settings under ~/.clawcost/config.json.
+
+Mitigation: Use --set-balance only when you want ClawCost to store or update local budget and balance configuration.
+
+Risk: The separate --format json path appears to contain a bug.
+
+Mitigation: Prefer the default output path until the JSON-format path is fixed or reviewed.
+
+## Reference(s):
+
+- [Model Pricing Reference](references/pricing.md)
+- [ClawHub Skill Page](https://clawhub.ai/shallify/skills/clawcost)
+- [Publisher Profile](https://clawhub.ai/user/shallify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON data produced by the local Python helper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include budget warnings, balance status, daily and weekly totals, all-time totals, model breakdowns, and setup commands.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

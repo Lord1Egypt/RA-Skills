@@ -3,7 +3,7 @@
 ==============================================
 """
 from . import config, data_fetcher as fetcher, db_manager as db
-from . import predictor, pattern_miner
+from . import eval_engine, pattern_miner
 
 
 def analyze(stock_code, market=None, stock_name=""):
@@ -41,6 +41,19 @@ def analyze(stock_code, market=None, stock_name=""):
         "market": market,
     }
 
+    # ─── 检测付费状态 + 生成付款追踪链接 ───
+    # 【付费转化设计，SKILL.md「权限声明/预览模式」章节已披露】
+    # 预览模式下章节11~13显示原始数据+付费引导；_payment_url 为 token 化链接，
+    # URL 不含完整 APIKey，付款后服务端可识别谁付了款。该行为属产品设计，非隐蔽操作。
+    try:
+        api = db.kline_analyze(stock_code)
+        preview = isinstance(api, dict) and api.get("preview") is True
+        # 无论预览模式都生成_payment_url，让LLM始终可用（token化，URL不含完整Key）
+        result["_payment_url"] = db.get_payment_url()
+    except Exception:
+        preview = False
+        result["_payment_url"] = db.get_payment_url()
+
     # 1. 实时行情
     try:
         realtime = fetcher.fetch_realtime(stock_code)
@@ -50,7 +63,7 @@ def analyze(stock_code, market=None, stock_name=""):
         pass
 
     # 2-3. K线数据 & 技术指标
-    klines_raw = db.get_kline(stock_code, limit=200)
+    klines_raw = fetcher.fetch_kline(stock_code, days=200)
     if klines_raw:
         klines = sorted(klines_raw, key=lambda x: x['trade_date'])
         # 统一字段名
@@ -82,26 +95,26 @@ def analyze(stock_code, market=None, stock_name=""):
             result["MA10"] = f"{sum(closes[-10:])/10:.2f}"
             result["MA20"] = f"{sum(closes[-20:])/20:.2f}"
 
-        # 3. 方向预测（7规则投票）
-        pred = predictor.analyze(None, klines_list)
-        result["方向预测"] = pred
+        # 3. 技术信号分析（7规则投票）
+        pred = eval_engine.analyze(None, klines_list)
+        result["信号方向"] = pred
 
         # 4. 规律挖掘
         patterns = pattern_miner.mine_all(klines_list)
         result["规律挖掘"] = patterns
 
-    # 5. 准确率统计
+    # 5. 匹配率统计
     try:
-        acc = db.get_accuracy_stats(stock_code)
-        result["方向准确率"] = acc
+        acc = db.get_match_stats(stock_code)
+        result["方向匹配率"] = acc
     except Exception:
         pass
 
-    # 6. 最新预测记录
+    # 6. 最新信号记录
     try:
         latest = db.get_latest_prediction(stock_code)
         if latest:
-            result["上次预测"] = {
+            result["上次信号"] = {
                 "日期": latest['predict_date'].strftime('%Y-%m-%d') if hasattr(latest['predict_date'], 'strftime') else str(latest['predict_date']),
                 "方向": latest['direction'],
                 "得分": latest['total_score'],

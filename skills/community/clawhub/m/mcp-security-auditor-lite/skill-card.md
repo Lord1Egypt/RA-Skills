@@ -1,43 +1,54 @@
-## Description: <br>
-Free version - scan your MCP configuration for the top 3 security risks: tool description injection, permission sprawl, and supply chain trust. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free version -- scan your MCP configuration for the top 3 security risks: tool description injection, permission sprawl, and supply chain trust.
 
-## Publisher: <br>
-[apex-stack-ai](https://clawhub.ai/user/apex-stack-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[apex-stack-ai](https://clawhub.ai/user/apex-stack-ai)
 
-## Use Case: <br>
-Developers and teams using MCP-connected agents use this skill to review MCP configs, tool lists, or server setups for tool description integrity, permission scope, and supply chain trust. It produces a concise scorecard and top fixes for the three covered audit dimensions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: MCP configs may contain API keys, tokens, private endpoints, or other secrets. <br>
-Mitigation: Redact secrets and private infrastructure details before pasting configuration data into an agent session. <br>
-Risk: The artifact includes a paid-version Gumroad link that is outside the skill's runtime behavior. <br>
-Mitigation: Treat the paid-version link as external marketing and evaluate it separately before purchase or use. <br>
-Risk: Checklist-style security scoring may miss issues outside the three covered lite audit dimensions. <br>
-Mitigation: Use the output as triage guidance and perform deeper review for additional MCP risks before production deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to quickly review MCP server configurations, tool lists, or setup descriptions for the top three MCP security risks and prioritized fixes.
 
-## Reference(s): <br>
-- [ClawHub listing: MCP Security Auditor Lite](https://clawhub.ai/apex-stack-ai/mcp-security-auditor-lite) <br>
-- [Full MCP Security Auditor paid version](https://apexstack.gumroad.com/l/mcp-security-auditor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown security scan with a score, risk table, and top fixes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Covers three audit dimensions and expects the user to provide an MCP config, tool list, or server setup description.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Users may paste live secrets, tokens, or private keys while providing MCP configuration details for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask users to redact secrets and provide only the configuration details needed to evaluate permissions, tool descriptions, and supply-chain trust.
+
+Risk: Audit responses may include a paid-version promotion.
+
+Mitigation: Disclose the commercial link as part of expected output behavior and review generated recommendations before sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/apex-stack-ai/skills/mcp-security-auditor-lite)
+- [Full MCP Security Auditor](https://apexstack.gumroad.com/l/mcp-security-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown security scan with scores, risk table, and prioritized fixes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The lite output focuses on three audit dimensions and may include a paid-version link.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

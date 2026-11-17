@@ -1,44 +1,58 @@
-## Description: <br>
-Generates bidding data analysis reports from Excel files, including AI project share, annual trends, institution rankings, charts, and Word report output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates bidding data analysis reports with AI project share analysis, annual trends, top institution rankings, and chart-backed Word report output.
 
-## Publisher: <br>
-[austin0208](https://clawhub.ai/user/austin0208) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[austin0208](https://clawhub.ai/user/austin0208)
 
-## Use Case: <br>
-Procurement analysts, developers, and operational teams use this skill to process bidding spreadsheets and generate reports on AI-related procurement activity, yearly trends, and leading institutions. It is suited for university bidding, government procurement, and enterprise procurement analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Procurement spreadsheets may contain sensitive or confidential data. <br>
-Mitigation: Run the skill locally in a controlled environment and review input files before processing or sharing generated reports. <br>
-Risk: Unpinned Python dependencies may change behavior over time. <br>
-Mitigation: Install in a virtual environment and lock dependency versions before production or sensitive-data use. <br>
-Risk: PDF output is described in the artifact, but the security guidance says not to rely on it unless the publisher adds support. <br>
-Mitigation: Use Word report output as the supported path and validate any PDF workflow separately before release use. <br>
+## Use Case:
 
+External users, developers, and procurement analysts use this skill to analyze Excel-based bidding data for AI-related project share, annual trends, and top institution rankings, then generate a Chinese-language Word report with embedded charts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/austin0208/bidding-analysis-report) <br>
-- [Project homepage](https://github.com/openclaw/bidding-analysis-report) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance, files] <br>
-**Output Format:** [Markdown guidance with Python and shell examples; generated artifacts include Word documents and PNG charts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a user-provided Excel workbook and creates local chart images plus a Word report; PDF output is mentioned by the artifact but not supported by the security review guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill processes procurement and business data from local Excel files and can leave generated PNG charts in the working directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it from a trusted private directory and review or remove generated chart files after report creation.
+
+Risk: Production use depends on Python packages installed from requirements.txt with broad version ranges.
+
+Mitigation: Install dependencies in an isolated environment and pin reviewed versions for production workflows.
+
+Risk: Documentation mentions PDF output, but the authoritative security guidance says not to rely on PDF output unless the implementation is updated.
+
+Mitigation: Use Word output for normal operation and validate any PDF support before depending on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/austin0208/skills/bidding-analysis-report)
+- [Project homepage](https://github.com/openclaw/bidding-analysis-report)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python API examples, shell command examples, generated Word documents, and PNG charts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads Excel input files and writes report and chart files to the local output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

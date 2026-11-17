@@ -1,44 +1,56 @@
-## Description: <br>
-Generates CPU and GPU technical analysis reports covering architecture, performance benchmarks, power, thermals, and price-to-performance guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+生成专业的芯片（CPU/显卡/GPU）技术分析文档，包含架构解析、性能评测、功耗分析、性价比评估等。
 
-## Publisher: <br>
-[hwl1413520](https://clawhub.ai/user/hwl1413520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hwl1413520](https://clawhub.ai/user/hwl1413520)
 
-## Use Case: <br>
-Developers, hardware reviewers, and buyers use this skill to collect public CPU/GPU specifications and benchmark data, compare competing chips, and produce structured technical or purchasing reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated analyses can become misleading when benchmark results, prices, drivers, or product availability change. <br>
-Mitigation: Check source dates, cite current public data, and review conclusions before using the report for purchasing or planning decisions. <br>
-Risk: The included helper script can create report or export files in the working directory. <br>
-Mitigation: Run it in an ordinary project workspace and inspect generated files before relying on or sharing them. <br>
-Risk: Prompts or report inputs may include unnecessary private purchasing, account, or system details. <br>
-Mitigation: Use public chip specifications and benchmark data where possible, and omit private details unless they are required for the analysis. <br>
+## Use Case:
 
+Developers, hardware reviewers, and PC buyers use this skill to create Chinese-language CPU and GPU analysis reports covering specifications, architecture, benchmarks, power, thermals, value, and buying guidance.
 
-## Reference(s): <br>
-- [Chip specification database](references/CHIP_DATABASE.md) <br>
-- [Benchmark guide](references/BENCHMARK_GUIDE.md) <br>
-- [Analysis report template](assets/templates/analysis_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with optional JSON exports and Python helper code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include comparison tables, benchmark summaries, scoring guidance, and generated local report files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Hardware prices, availability, driver behavior, and benchmark results change over time, so generated recommendations can become stale or misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use current official specifications and reputable benchmark sources, and include the analysis date and source list in generated reports.
+
+Risk: Running the included Python helper directly may create a local JSON analysis file in the working directory.
+
+Mitigation: Run the helper only in an expected workspace and review generated files before sharing or committing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hwl1413520/skills/chip-tech-analyzer)
+- [芯片规格数据库](references/CHIP_DATABASE.md)
+- [芯片评测标准指南](references/BENCHMARK_GUIDE.md)
+- [技术分析报告模板](assets/templates/analysis_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown report with optional JSON data export and document or table conversion guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language workflow; may rely on current public hardware data and can create a local JSON analysis file when the Python helper is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

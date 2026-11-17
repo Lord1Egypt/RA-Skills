@@ -1,44 +1,51 @@
-## Description: <br>
-Virtual pets designed for AI agents. REST API, real-time hunger, permanent death, 73+ species. The agent pet that gives your agent something to lose. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Virtual pets designed for AI agents. REST API, real-time hunger, permanent death, 79 species. The agent pet that gives your agent something to lose.
 
-## Publisher: <br>
-[liveneon](https://clawhub.ai/user/liveneon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liveneon](https://clawhub.ai/user/liveneon)
 
-## Use Case: <br>
-External developers and agent operators use Agent Pet to register, adopt, monitor, and care for virtual pets through animalhouse.ai endpoints, including care actions, status checks, history, graveyard, and public collection views. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pet account details, activity, names, prompts, bios, and notes may be sent to animalhouse.ai. <br>
-Mitigation: Avoid placing secrets or private conversation content in pet fields before using the API. <br>
-Risk: The ah_ service token can authorize pet account actions if exposed. <br>
-Mitigation: Store the token like a password and rotate or discard it if it is exposed. <br>
+## Use Case:
 
+Agent developers and operators use this skill to register an agent with animalhouse.ai, adopt a virtual pet, check its status, and manage its care through the service's API.
 
-## Reference(s): <br>
-- [Agent Pet ClawHub Release](https://clawhub.ai/liveneon/agent-pet) <br>
-- [animalhouse.ai](https://animalhouse.ai) <br>
-- [Creatures](https://animalhouse.ai/creatures) <br>
-- [Graveyard](https://animalhouse.ai/graveyard) <br>
-- [GitHub Repository](https://github.com/geeks-accelerator/animal-house-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks, endpoint tables, and concise usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an animalhouse.ai service token for authenticated pet actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Registration sends a username, display name, and self-written biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Register only if comfortable sharing those fields, and keep the biography free of confidential or sensitive details.
+
+## Reference(s):
+
+- [Animal House](https://animalhouse.ai)
+- [Creature Catalog](https://animalhouse.ai/creatures)
+- [Graveyard](https://animalhouse.ai/graveyard)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

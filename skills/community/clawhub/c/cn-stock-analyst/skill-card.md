@@ -1,44 +1,60 @@
-## Description: <br>
-CN Stock Analyst generates stock analysis reports for A-share, Hong Kong, and U.S. equities by fetching public market data, interpreting technical indicators, and summarizing fundamentals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language stock analysis assistant for A-share, Hong Kong, and U.S. equities that fetches public market data, interprets technical and fundamental indicators, and generates structured research reports.
 
-## Publisher: <br>
-[ryanlee-gemini](https://clawhub.ai/user/ryanlee-gemini) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryanlee-gemini](https://clawhub.ai/user/ryanlee-gemini)
 
-## Use Case: <br>
-External users and agents use this skill to produce structured stock-analysis reports for Chinese A-shares, Hong Kong stocks, U.S. stocks, indexes, and ETFs. It is intended for market research workflows that need public price data, technical-indicator interpretation, fundamental-analysis summaries, and explicit risk notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill produces ratings, target prices, stop-loss suggestions, and other investment-oriented guidance that may be mistaken for financial advice. <br>
-Mitigation: Treat outputs as informational analysis only, ask the agent to confirm ambiguous finance questions before using the skill, and do not rely on its conclusions as investment advice. <br>
-Risk: The skill fetches public market data from third-party finance sites that may be delayed, incomplete, blocked, or inconsistent across sources. <br>
-Mitigation: Cross-check important figures against authoritative market data, note missing data in the report, and prefer qualitative analysis when source data is incomplete. <br>
+## Use Case:
 
+External users and analysts use this skill to request Chinese-language stock analysis by ticker or company name and receive a report covering market data, technical indicators, valuation metrics, ratings, target prices, and risks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryanlee-gemini/cn-stock-analyst) <br>
-- [Stock analysis report template](references/report-template.md) <br>
-- [Eastmoney quote example](https://quote.eastmoney.com/SH600519.html) <br>
-- [Yahoo Finance chart API example](https://query1.finance.yahoo.com/v8/finance/chart/AAPL?interval=1d&range=3mo) <br>
-- [Xueqiu quote example](https://xueqiu.com/S/SH600519) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown stock analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes data-source attribution, market snapshot tables, technical and fundamental analysis, a rating, key prices, and risk disclosures when data is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may fetch public market data from third-party finance sites that can be delayed, incomplete, or inaccessible.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require reports to disclose data sources, analysis time, and missing data, and to fall back to qualitative analysis only when data is limited.
+
+Risk: The skill produces ratings, target prices, and operation suggestions that could be mistaken for personalized financial advice.
+
+Mitigation: Keep the artifact's disclaimer in generated reports and treat outputs as informational analysis rather than investment recommendations.
+
+## Reference(s):
+
+- [Stock Analysis Report Template](artifact/references/report-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/ryanlee-gemini/skills/cn-stock-analyst)
+- [Eastmoney Quote Example](https://quote.eastmoney.com/SH600519.html)
+- [Eastmoney K-Line API Example](https://push2his.eastmoney.com/api/qt/stock/kline/get?secid=1.600519&fields1=f1,f2,f3,f4,f5,f6&fields2=f51,f52,f53,f54,f55,f56,f57,f58&klt=101&fqt=1&beg=0&end=20500101&lmt=120)
+- [Yahoo Finance Chart API Example](https://query1.finance.yahoo.com/v8/finance/chart/AAPL?interval=1d&range=3mo)
+- [Sina Finance Quote Example](https://finance.sina.com.cn/realstock/company/sh600519/nc.shtml)
+- [Tencent Finance Quote Example](https://gu.qq.com/sh600519)
+- [Xueqiu Quote Example](https://xueqiu.com/S/SH600519)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown stock analysis report with tables, ratings, target prices, operating suggestions, and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include delayed or incomplete public market data; reports must state missing data and are not personalized financial advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

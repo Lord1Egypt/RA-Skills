@@ -1,41 +1,55 @@
-## Description: <br>
-Create study plans for exams with schedules and reminders. Use when adding tasks, planning reviews, tracking progress, prioritizing subjects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create study plans for exams with schedules and reminders. Use when adding tasks, planning reviews, tracking progress, prioritizing subjects.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-Students, exam candidates, and agents assisting them use this skill to create study schedules, review plans, prioritize subjects, track progress, and manage reminders for exam preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-entered study tasks and command history may be stored locally on the same machine. <br>
-Mitigation: Avoid sensitive personal details on shared or backed-up machines, and set the local data directory intentionally when needed. <br>
-Risk: Generated study schedules may be incomplete or unsuitable for a specific exam plan. <br>
-Mitigation: Review and adjust generated plans, deadlines, subjects, and reminders before relying on them. <br>
+## Use Case:
 
+External learners and study planners use this skill to generate Chinese-language exam preparation plans, daily study schedules, review intervals, pomodoro plans, and simple local task tracking.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/loutai0307-prog/bytesagain-study-plan) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with CLI command examples and text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI can store tasks and command history locally under the configured study-plan data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: Generated study schedules may be incomplete, unrealistic, or mismatched to the learner's actual exam requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated plans before relying on them and adjust study hours, subjects, milestones, and review intervals for the learner's curriculum and constraints.
+
+Risk: The local task logger stores simple study-plan data files under the configured data directory.
+
+Mitigation: Use the STUDY_PLAN_DIR setting when a specific storage location is required and review local data files before sharing or deleting the workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/skills/bytesagain-study-plan)
+- [Publisher profile](https://clawhub.ai/user/loutai0307-prog)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-like terminal text with schedules, checklists, reminders, and command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language study planning output; local task logger writes simple data files under the configured study-plan data directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

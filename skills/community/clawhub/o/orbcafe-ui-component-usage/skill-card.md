@@ -1,45 +1,62 @@
-## Description: <br>
-Route ORBCAFE UI requests to the correct module skill and enforce official examples-based integration baseline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Route ORBCAFE UI requests to the correct module skill and enforce official examples-based integration baseline.
 
-## Publisher: <br>
-[SHENRUIYANG](https://clawhub.ai/user/SHENRUIYANG) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenruiyang](https://clawhub.ai/user/shenruiyang)
 
-## Use Case: <br>
-Developers use this skill to classify ORBCAFE UI integration requests, choose the correct module skill, and produce minimal runnable guidance using public ORBCAFE UI APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may propose npm install, build, or startup commands for ORBCAFE UI integration. <br>
-Mitigation: Review package names and versions, and run commands only in the intended project. <br>
-Risk: The skill routes to companion ORBCAFE module skills whose behavior is outside this router's direct evidence. <br>
-Mitigation: Review companion module skills before using generated implementation guidance. <br>
+## Use Case:
 
+Developers and engineers use this skill to classify ORBCAFE UI requests, choose the right module skill, and produce minimal runnable integration guidance using public ORBCAFE APIs.
 
-## Reference(s): <br>
-- [ORBCAFE UI component usage release page](https://clawhub.ai/SHENRUIYANG/orbcafe-ui-component-usage) <br>
-- [Skill routing map](references/skill-routing-map.md) <br>
-- [Module contracts](references/module-contracts.md) <br>
-- [Module contracts JSON](references/module-contracts.json) <br>
-- [Integration baseline](references/integration-baseline.md) <br>
-- [Public export index](references/public-export-index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code and bash blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include a module decision, paste-ready code, data shape, verification steps, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: The skill may suggest npm dependencies and project startup commands that affect a local application environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the listed ORBCAFE UI and peer dependencies before installing them, and run commands in the intended project workspace.
+
+Risk: Broad routing keywords can select the wrong ORBCAFE module when a request is ambiguous.
+
+Mitigation: Confirm the selected module against the routing map and module contracts before applying generated code.
+
+Risk: Generated integration code can fail when it uses non-public imports or unsafe Next.js hydration patterns.
+
+Mitigation: Use only the public `orbcafe-ui` entry point and verify the integration with the provided startup, interaction, persistence, and hydration checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenruiyang/skills/orbcafe-ui-component-usage)
+- [Skill routing map](references/skill-routing-map.md)
+- [AI module contracts](references/module-contracts.md)
+- [Machine-readable module contracts](references/module-contracts.json)
+- [Integration baseline](references/integration-baseline.md)
+- [Public export index](references/public-export-index.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code blocks and verification checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes module decision, paste-ready public imports, data shape, verification steps, and troubleshooting steps.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

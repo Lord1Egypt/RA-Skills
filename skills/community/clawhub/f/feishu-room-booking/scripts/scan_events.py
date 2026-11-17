@@ -139,6 +139,7 @@ def is_all_day_event(event: dict) -> bool:
 
 
 SCAN_REASON_MESSAGES = {
+    "attendee_details_unavailable": (False, "无权读取参与人和会议室详情，已跳过以避免重复预订"),
     "self_not_accepted": (False, "当前用户尚未接受会议"),
     "self_status_missing": (False, "当前用户接受状态待确认"),
     "already_has_confirmed_room": (False, "已有会议室"),
@@ -148,10 +149,18 @@ SCAN_REASON_MESSAGES = {
 }
 
 
-PENDING_SCAN_REASONS = {"self_status_missing", "room_pending"}
+PENDING_SCAN_REASONS = {"attendee_details_unavailable", "self_status_missing", "room_pending"}
 
 
 def evaluate_scan_result(event: dict, user_id: str) -> dict[str, Any]:
+    if event.get("_enrich_error") or event.get("attendee_details_complete") is False:
+        return {
+            "should_book": False,
+            "verification_status": "pending",
+            "reason_code": "attendee_details_unavailable",
+            "reason": SCAN_REASON_MESSAGES["attendee_details_unavailable"][1],
+        }
+
     if is_all_day_event(event):
         return {
             "should_book": False,

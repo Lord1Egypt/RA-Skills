@@ -1,40 +1,55 @@
-## Description: <br>
-Generates three character reference images per character from a script's characters field using Seedream 4.0: full-body, close-up, and chibi cards for later storyboard consistency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates three Seedream 4.0 character reference images from a script's characters field: a full-body pose, a half-body close-up, and a chibi-style portrait for each character.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers and comic creators use this skill to turn structured character descriptions into consistent visual reference cards for downstream storyboarding. It requires an ARK_API_KEY for paid Volcengine Ark/Seedream image generation, and character details are sent to that provider. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/huo15-comic-character) <br>
-- [Volcengine Ark API endpoint](https://ark.cn-beijing.volces.com/api/v3) <br>
-- [Volcengine Seedance documentation](https://www.volcengine.com/docs/82379/1520757) <br>
-- [Volcengine TTS documentation](https://www.volcengine.com/docs/6561/97465) <br>
+Developers and creative production teams use this skill to create consistent character reference cards from structured character descriptions before generating comic or storyboard scenes.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Images, JSON, Shell commands, Guidance] <br>
-**Output Format:** [PNG image files plus manifest.json and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces full, close-up, and chibi images for each character and records paid generation cost through the bundled cost guard.] <br>
+Global
 
-## Skill Version(s): <br>
-0.1.0 (source: server evidence and frontmatter) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Character descriptions and prompts are sent to Volcengine Ark using ARK_API_KEY.
+
+Mitigation: Use only approved input data, keep ARK_API_KEY scoped and secret, and run the skill only in environments where this network transfer is acceptable.
+
+Risk: Security evidence flags unsafe path handling and under-disclosed file and network behavior.
+
+Mitigation: Review or patch path handling before using untrusted script.json files, constrain output directories, and limit network access in sensitive environments.
+
+## Reference(s):
+
+- [Volcengine Seedance documentation](https://www.volcengine.com/docs/82379/1520757)
+- [Volcengine TTS documentation](https://www.volcengine.com/docs/6561/97465)
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-comic-character)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; generated artifacts are PNG files and a JSON manifest.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses ARK_API_KEY from the environment and writes character images plus manifest.json to the selected output directory.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Helps learners build intuitive understanding of math concepts through everyday analogies, visual and geometric reasoning, stepwise decomposition, and comprehension checks before introducing formulas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助初中和高中学生通过生活类比、图解描述与逐步拆分理解数学概念及公式背后的原因。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Students, educators, and tutoring agents use this skill to explain math concepts, formula rationale, and geometry or spatial reasoning problems through intuition-first teaching. It is suited to conceptual help rather than direct answer-only computation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad math-help requests even when the user needs computation, exam-answer checking, or another tutoring workflow. <br>
-Mitigation: Use a more specific skill or instruction when the task is answer checking, calculation, or a different tutoring workflow. <br>
-Risk: The skill deliberately prioritizes concept intuition before formulas, which may be slower than direct answer delivery for time-sensitive use. <br>
-Mitigation: Ask explicitly for direct computation or formula-only help when conceptual tutoring is not desired. <br>
+## Use Case:
 
+面向初中和高中学生，在学生知道公式却不理解原因、概念易混或难以想象几何图形时，帮助其建立直觉并用自己的话复述理解。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qizhitang/xiaozhi-math-concept-explainer) <br>
-- [analogy-bank.md](references/analogy-bank.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured natural-language tutoring guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include analogies, guided questions, examples, counterexamples, application prompts, and understanding checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: ClawScan notes a contextualized, low-risk Unicode alert in the skill text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the text before installing if you want to assess the alert.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/qizhitang/skills/xiaozhi-math-concept-explainer)
+- [Analogy bank](artifact/references/analogy-bank.md)
+- [Middle school math concepts](artifact/references/math-hs1-concepts.md)
+- [High school compulsory math concepts](artifact/references/math-hs2-concepts.md)
+- [High school selective required math concepts](artifact/references/math-hs3-concepts.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [简体中文说明，包含生活类比、图解描述或分步讲解与追问]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [单条讲解不超过 120 字，追问最多 3 轮；讲解后请学生复述或举一个新例子。]
+
+## Skill Version(s):
+
+2.12.7 (source: server release metadata, SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

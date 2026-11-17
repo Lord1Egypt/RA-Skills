@@ -29,7 +29,7 @@ def main():
         "accessToken": "probe",
         "type": "probe",
     }
-    result = call_temu_api(PROXY_URL, probe_body, timeout=30, linkfox_params=params)
+    result = call_temu_api(PROXY_URL, probe_body, timeout=150, linkfox_params=params)
 
     if is_linkfox_auth_error(result):
         print(

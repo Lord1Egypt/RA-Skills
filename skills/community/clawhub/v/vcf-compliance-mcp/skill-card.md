@@ -1,42 +1,62 @@
-## Description: <br>
-An MCP server that interfaces with VMware Aria Operations to run regulatory compliance checks (ISO 27001, PCI DSS, CIS, etc.) against the VCF environment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An MCP server that interfaces with VMware Aria Operations to run regulatory compliance checks (ISO 27001, PCI DSS, CIS, etc.) against the VCF environment.
 
-## Publisher: <br>
-[kasture-rohit](https://clawhub.ai/user/kasture-rohit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kasture-rohit](https://clawhub.ai/user/kasture-rohit)
 
-## Use Case: <br>
-Developers, platform operators, and compliance teams use this MCP server to let an agent query VMware Aria Operations for VCF compliance alerts and summarize status for frameworks such as ISO, PCI, CIS, HIPAA, DISA, and FISMA. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an Aria Operations API token over certificate-unverified HTTPS. <br>
-Mitigation: Use a dedicated read-only, least-privilege token and enable certificate verification with a trusted CA bundle before relying on live results. <br>
-Risk: The skill can return simulated audit results when the live Aria Operations API call is unsuccessful. <br>
-Mitigation: Do not use simulated output as audit evidence; require clear live-data success before using reports for compliance decisions. <br>
-Risk: The runtime dependencies are not pinned to specific versions. <br>
-Mitigation: Pin and review dependency versions before deployment. <br>
+## Use Case:
 
+Developers and infrastructure security engineers use this skill to let an agent query VMware Aria Operations for VCF compliance alerts and summarize status against common regulatory benchmarks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kasture-rohit/vcf-compliance-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown returned by an MCP tool] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ARIA_OPS_HOST and ARIA_OPS_API_TOKEN; compliance standard input defaults to ISO.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Infrastructure API token misuse or overbroad access could expose sensitive environment data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped read-only Aria Operations token and rotate it according to the deployment owner's credential policy.
+
+Risk: TLS certificate verification is disabled in the artifact server code.
+
+Mitigation: Require normal TLS validation or configure a trusted CA bundle before production use.
+
+Risk: When live API checks fail, the tool can return simulated compliance findings that may be mistaken for real audit data.
+
+Mitigation: Remove the simulated fallback or clearly gate it behind an explicit test/demo mode before relying on outputs.
+
+Risk: Dependencies are unpinned.
+
+Mitigation: Pin and review dependency versions before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kasture-rohit/skills/vcf-compliance-mcp)
+- [Project homepage](https://github.com/kasture-rohit/vcf-openclaw-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text returned from an MCP tool call]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The compliance standard argument selects ISO, PCI, CIS, HIPAA, DISA, or FISMA.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

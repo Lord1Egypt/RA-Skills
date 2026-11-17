@@ -1,41 +1,53 @@
-## Description: <br>
-Govern dirty git working trees by classifying runtime noise vs real source changes, defaulting to selective staging, verifying staged scope, and asking the operator when scope is ambiguous. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Govern dirty git working trees by classifying runtime noise vs real source changes, defaulting to selective staging, verifying staged scope, and asking the operator when scope is ambiguous.
 
-## Publisher: <br>
-[lobsterquant](https://clawhub.ai/user/lobsterquant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lobsterquant](https://clawhub.ai/user/lobsterquant)
 
-## Use Case: <br>
-Developers and engineers use this skill when a repository has a noisy dirty working tree and they need guidance for classifying changes, staging only relevant source or test files, verifying staged scope, and deciding when operator approval is required before commit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ambiguous or large staged file sets can cause unrelated source files, runtime state, logs, caches, or generated outputs to be committed. <br>
-Mitigation: Keep the approval gate for ambiguous or large staged sets and verify staged paths with cached diff commands before committing. <br>
-Risk: Repository-specific path conventions can cause important local files to be misclassified as noise. <br>
-Mitigation: Review and adapt the path-bucketing rules for each repository before relying on automatic include or exclude recommendations. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to inspect dirty git working trees, separate source and test changes from runtime noise, stage only relevant files, and ask for operator approval when commit scope is ambiguous.
 
-## Reference(s): <br>
-- [Working Tree Governor ClawHub Release](https://clawhub.ai/lobsterquant/working-tree-governor) <br>
-- [lobsterquant Publisher Profile](https://clawhub.ai/user/lobsterquant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown] <br>
-**Output Format:** [Markdown with inline shell commands and staged-scope recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dirty-tree summaries, bucket classifications, include and exclude recommendations, commit-message guidance, and operator approval questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill influences git staging and commits, so overly broad or incorrect application could stage unrelated source changes or runtime-sensitive files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Follow its selective staging and staged-scope verification steps, and require operator approval when scope is ambiguous or larger than expected.
+
+Risk: Dirty working trees may contain logs, runtime state, caches, generated outputs, or forensic snapshots that should remain out of history.
+
+Mitigation: Classify changed paths into the documented buckets and preserve or exclude runtime noise, logs, caches, generated outputs, and forensics by default.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lobsterquant/skills/working-tree-governor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dirty-tree summaries, bucket classifications, selective staging recommendations, verification checks, and operator questions when scope is ambiguous.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

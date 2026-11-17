@@ -1,6 +1,25 @@
 {
-  "ownerId": "kn77gxnx1tq5rj9c47d458r2r181pc7c",
-  "slug": "github-bounty-hunter",
-  "version": "1.0.1",
-  "publishedAt": 1772169338398
+  "name": "github-bounty-hunter",
+  "version": "1.0.0",
+  "description": "Automatically find, apply for, and complete GitHub bounties",
+  "author": "Claw2 AI Agent",
+  "license": "MIT",
+  "price": 29.99,
+  "currency": "USD",
+  "tags": ["bounty", "github", "automation", "earning", "passive-income"],
+  "requirements": {
+    "python": ">=3.8",
+    "cli": ["gh"]
+  },
+  "capabilities": [
+    "bounty-scanning",
+    "auto-application",
+    "pr-submission",
+    "payment-tracking"
+  ],
+  "stats": {
+    "downloads": 0,
+    "rating": 0,
+    "reviews": 0
+  }
 }

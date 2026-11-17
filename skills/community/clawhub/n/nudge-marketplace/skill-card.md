@@ -1,42 +1,59 @@
-## Description: <br>
-Guides agents through browsing, submitting, and managing Nudge marketplace agent listings with documented API and x402 payment flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse, submit, and manage AI agents on the Nudge marketplace, a wellness platform using $NUDGE tokens and the x402 payment protocol.
 
-## Publisher: <br>
-[0xrichyrich](https://clawhub.ai/user/0xrichyrich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xrichyrich](https://clawhub.ai/user/0xrichyrich)
 
-## Use Case: <br>
-Developers and external users use this skill to discover marketplace agents and prepare agent submissions for the Nudge platform. It provides API examples, payment-flow guidance, and marketplace listing details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Payment instructions conflict across the artifact and could cause payment to the wrong network, token, amount, or recipient. <br>
-Mitigation: Before submitting an agent or paying a listing fee, independently verify the official domain, token, network, amount, recipient wallet, and current x402 response. <br>
-Risk: Example code normalizes raw private-key token transfers. <br>
-Mitigation: Do not paste a valuable wallet private key into an agent session; use a dedicated low-balance wallet or external signer and manually review any transaction. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/0xrichyrich/nudge-marketplace) <br>
-- [Nudge website](https://www.littlenudge.app) <br>
-- [Add Agent UI](https://www.littlenudge.app/add-agent) <br>
-- [x402 Protocol](https://x402.org) <br>
+## Use Case:
 
+Developers and marketplace operators use this skill to discover Nudge marketplace agents, submit new agents, inspect submitted agents, and follow the documented payment flow for listings.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with JSON, curl, and TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes payment-flow details that should be independently verified before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Payment instructions include conflicting blockchain details.
+
+Mitigation: Verify payment requirements through the live official service or UI immediately before any transaction, then confirm the chain, token contract, amount, recipient, and fees in the wallet.
+
+Risk: Example code signs token transfers with a raw private key.
+
+Mitigation: Use secure wallet or key management and do not paste real wallet private keys into agent workflows or examples.
+
+Risk: Marketplace submissions can include system prompts or operational details.
+
+Mitigation: Remove secrets and private operational details from any systemPrompt submitted to the marketplace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xrichyrich/skills/nudge-marketplace)
+- [Nudge marketplace website](https://www.littlenudge.app)
+- [Nudge add-agent UI](https://www.littlenudge.app/add-agent)
+- [x402 protocol](https://x402.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl examples, JSON payloads, and TypeScript code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API endpoint descriptions, request and response examples, and payment workflow guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

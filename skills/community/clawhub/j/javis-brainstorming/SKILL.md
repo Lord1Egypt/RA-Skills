@@ -49,8 +49,8 @@ node scripts/brainstorming.js fetch --session <sessionId> [--hours N]   # audio 
 node scripts/brainstorming.js fetch --kbd-input <inputId> [--hours N]   # keyboard unit
 
 # Step 2 — push: pipe the composed to-do-card JSON to stdin; dedups (seen) + writes type=todo pending + delivers the chat digest.
-# Include the fetch payload's `sessions` and `tz` alongside the card so push can
-# stamp the card's start_at/end_at from the source session's times.
+# Including the fetch payload's `sessions` and `tz` is the documented call; when
+# they are absent push anchors the card from the session windows `fetch` remembered.
 echo '{"card": <todo-card-json>, "sessions": <fetch.sessions>, "tz": "<fetch.tz>"}' | node scripts/brainstorming.js push
 ```
 
@@ -67,11 +67,22 @@ emits one to-do-card JSON object.
    `OPENCLAW_GATEWAY_TOKEN` bearer and prints
    `{ "reference_time": LOCAL-wall-clock (zoneless, in tz), "reference_date": "YYYY-MM-DD", "reference_weekday": "Thursday", "reference_time_utc": ISO8601, "tz": IANA, "sessions": [ { session_id, started_at, ended_at, transcript, source } ] }`.
    If fetch fails, returns invalid JSON, or yields zero sessions, output nothing and
-   do not push; report the failure only if the user asked for a diagnostic.
+   do not push; report the failure only if the user asked for a diagnostic. "Do not
+   push" is not "do not reply": an on-demand run still ends with a chat reply (see
+   "On-demand runs always reply").
+   `fetch` also **remembers** each returned session's `started_at`/`ended_at` (raw
+   instants) in `data/users/<userId>.json` → `sessionWindows`, pruned on the same
+   30-day TTL as `seen` and capped at 500 entries, so step 3 can stamp the card's
+   journal window whether or not the sessions are piped back. It remembers EVERY
+   session the server returned, including the ones `--session`/`--kbd-input` filter
+   out of the envelope — the envelope still narrows to the unit you asked for.
+   The envelope's `tz` is remembered too, so a bare card is anchored in YOUR zone
+   rather than the container's UTC.
 
 2. **Compose** — the agent reads that JSON and decides whether there is a discernible
    **goal** and **request**. If there is none, **emit no card** (silence is a valid
-   detector outcome). If there is, produce **one** to-do-card JSON object:
+   detector outcome on a dispatcher run; an on-demand run still replies in chat — see
+   "On-demand runs always reply"). If there is, produce **one** to-do-card JSON object:
 
    ```json
    {
@@ -97,14 +108,17 @@ emits one to-do-card JSON object.
 
 3. **Push** — pipe `{"card": <card>, "sessions": <fetch.sessions>, "tz": "<fetch.tz>"}`
    into `node scripts/brainstorming.js <userId> push` (a bare card object still
-   works — the card then just carries no dates). The script:
+   works, and still gets its dates). The script:
    - dedups against per-user local state (`data/users/<userId>.json` → `seen` map, 30-day TTL),
    - stamps the item's **optional** `start_at`/`end_at` journal window from the
      source session's `started_at`/`ended_at` (earliest session by `started_at`
      among the card's `source_refs`, that **same** session's `ended_at`),
      serialized as **naive LOCAL wall-clock** in the resolved tz — the
-     calendar-extractor convention. Missing/malformed session times ⇒ the fields
-     are omitted entirely (never invented),
+     calendar-extractor convention. The window is resolved from the session
+     windows `fetch` remembered (`sessionWindows` in the same state file), with
+     any piped `sessions` layered on top by `session_id`; when neither source
+     knows the card's `source_refs`, or the session times are
+     missing/malformed, the fields are omitted entirely (never invented),
    - validates + writes the **new** card to `POST /api/skill/data` with
      `type="todo"`, `merge="upsert"`, `status="pending"`, and
      `payload = { icon, title, subtitle?, prompt, source_refs[] }` (icon/title/prompt
@@ -114,6 +128,32 @@ emits one to-do-card JSON object.
      + the card summary (title, 🎯 goal, 📋 request items, 📡 session count,
      Confirm/Discard footer). The digest is non-fatal — the summary line reports
      `Chat digest: delivered.` or `Chat digest FAILED: <reason>`.
+
+## On-demand runs always reply
+
+This rule covers **on-demand runs**: the user asked in chat ("brainstorm this",
+"整理成簡報", "帮我腦力激盪", "turn this into a brief"), including a starter tapped in
+HiJavis Agent Chat, which sends this skill's slash command
+(`/javis-brainstorming brainstorm this`). An on-demand run **ALWAYS ends with a chat
+reply** in that conversation, in the user's language. The card and its digest land
+in the card's own thread and the Calendar tab, so without a reply the user sees
+nothing here.
+
+- **Card written:** a short reply — the card's title and goal, and that it is in the
+  Calendar tab; tapping it opens the brainstorm.
+- **Card already written** (`push` reports it as seen): say so, name it, and point to
+  the Calendar tab.
+- **Nothing found** (zero sessions, empty transcripts, or no discernible goal and
+  request): say so plainly and what to do next, e.g. "I didn't find an idea to turn
+  into a brief in your last 24 h of recordings. Record your idea — what you want to
+  make and for whom — and ask again."
+- **Fetch failed:** say the recordings could not be read right now and to try again in
+  a minute. Give error detail only if the user asked for a diagnostic.
+
+Never end an on-demand run with an empty message or raw JSON. This rule does **not**
+change the dispatcher path: a dispatcher run (`Run /javis-brainstorming for <unit>.
+…`) still decides for itself and stays silent — no card, no reply — when the unit is
+not brainstorm-worthy.
 
 ## The ready-to-paste prompt (the per-skill `payload.prompt`)
 
@@ -160,8 +200,9 @@ This skill has **two triggers** (dispatcher auto-run and manual).
    it. **The human gate is not running the skill — it is Confirm/Discard on the
    produced to-do card.**
 2. **Manual ("brainstorm this").** On demand, the agent runs the windowed `fetch`
-   (last 24h by default) → composes → pushes. Repeating the ask re-runs composition on
-   the window; the `seen` map still prevents writing the same card twice.
+   (last 24h by default) → composes → pushes → **replies in chat**, also when there is
+   nothing to brainstorm (see "On-demand runs always reply"). Repeating the ask re-runs
+   composition on the window; the `seen` map still prevents writing the same card twice.
 
 The route contract the javis-server team must satisfy is declared in this file's
 `metadata.routes` block and documented in `references/todo-card-contract.md` (which
@@ -194,8 +235,11 @@ also carries the **general** to-do card contract shared by all to-do-emitting sk
   `/api/skill/data` but cannot read it back (`GET /api/skill/data` requires a Clerk
   JWT), so novelty is decided by the local `seen` map (`{ "<dedup_key>": "<ts>" }` in
   `data/users/<userId>.json`, 30-day TTL-pruned); the server write is a best-effort
-  mirror. The to-do `dedup_key` is `title|hash(goal)` — re-brainstorming the same unit
-  toward a new goal is a genuinely new card.
+  mirror. The same file holds `sessionWindows`
+  (`{ "<session_id>": { started_at, ended_at?, seen_at } }`, raw instants, same TTL,
+  500-entry cap) — written by `fetch`, read by `push` for the journal window. The
+  to-do `dedup_key` is `title|hash(goal)` — re-brainstorming the same unit toward a
+  new goal is a genuinely new card.
 - **Timezone**: there is **no prefs file**. tz resolves in order: the `tz` field on the
   push/fetch payload → the `TZ` environment variable → the system zone. The resolved
   tz is used twice: for the relative-date anchor (so the agent resolves "today"

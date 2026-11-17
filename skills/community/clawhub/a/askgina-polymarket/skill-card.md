@@ -1,47 +1,62 @@
-## Description: <br>
-Search, trade, manage positions, and automate custom strategies on Polymarket using natural language commands via an AI agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fast setup for Claw bots: paste your Gina MCP token and start trading Polymarket in minutes.
 
-## Publisher: <br>
-[sidshekhar](https://clawhub.ai/user/sidshekhar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sidshekhar](https://clawhub.ai/user/sidshekhar)
 
-## Use Case: <br>
-External users and developers use this skill to connect an MCP-capable agent to Gina for Polymarket market discovery, trading, position management, and scheduled alerts or automations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Delegated access can affect a real-money Polymarket account. <br>
-Mitigation: Install only after deciding the account-level risk is acceptable, start with read-only prompts, and require confirmation for trades where possible. <br>
-Risk: Authorization tokens can enable account access if exposed. <br>
-Mitigation: Keep the Gina MCP token out of chats and logs, revoke it from Gina's Agent Setup page if exposure is suspected, and rotate tokens regularly. <br>
-Risk: Scheduled automations may continue trading or alerting after initial setup. <br>
-Mitigation: Set strict budgets before enabling automations and regularly review active jobs and open orders. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sidshekhar/askgina-polymarket) <br>
-- [Gina Predictions MCP endpoint](https://askgina.ai/ai/predictions/mcp) <br>
-- [Gina documentation](https://docs.askgina.ai) <br>
-- [Predictions MCP quick start](https://docs.askgina.ai/predictions-mcp/quick-start) <br>
-- [Predictions MCP features](https://docs.askgina.ai/predictions-mcp/features) <br>
-- [Predictions MCP client setup](https://docs.askgina.ai/predictions-mcp/client-setup) <br>
-- [Predictions MCP troubleshooting](https://docs.askgina.ai/predictions-mcp/troubleshooting) <br>
+## Use Case:
 
+External users and developers use this skill to connect an MCP client to Gina for Polymarket market discovery, trading, position management, and scheduled strategy automations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance, API calls] <br>
-**Output Format:** [Markdown guidance with JSON MCP configuration examples and natural-language prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger delegated Polymarket account actions through Gina MCP when the user configures an authorization token.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The MCP connection can access Polymarket account data and real-money USDC trading functions through a long-lived bearer token.
+
+Mitigation: Keep the token out of shared files, logs, repositories, and backups; revoke it immediately if exposure is suspected.
+
+Risk: Trading, redemption, cancellation, and automation boundaries may be unclear to a user before first use.
+
+Mitigation: Start with read-only prompts and confirm authorization behavior before enabling trades, redemptions, cancellations, or scheduled automations.
+
+Risk: The server evidence flags the release as suspicious because it asks users to store a 90-day bearer token for real-money trading.
+
+Mitigation: Install only after reviewing the security guidance and confirming that the token scope and trade-confirmation workflow fit the deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sidshekhar/skills/askgina-polymarket)
+- [Gina documentation](https://docs.askgina.ai)
+- [Predictions MCP quick start](https://docs.askgina.ai/predictions-mcp/quick-start)
+- [Predictions MCP features](https://docs.askgina.ai/predictions-mcp/features)
+- [Predictions MCP client setup](https://docs.askgina.ai/predictions-mcp/client-setup)
+- [Predictions MCP troubleshooting](https://docs.askgina.ai/predictions-mcp/troubleshooting)
+- [Privy](https://privy.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with JSON configuration examples and natural-language prompt examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide real-money USDC trading and scheduled automations through an MCP connection.]
+
+## Skill Version(s):
+
+0.1.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

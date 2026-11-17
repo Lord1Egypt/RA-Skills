@@ -1,43 +1,54 @@
-## Description: <br>
-Task Watchdog manages external task lock files and timeout monitoring for OpenClaw agents, keeping task status outside the agent context and using heartbeat and grace-period checks rather than immediate alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task Watchdog helps agents track task locks, heartbeat freshness, progress timestamps, completion, abandoned sessions, and archive cleanup using external lock files.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create, update, inspect, archive, and report OpenClaw task locks so interrupted or stalled tasks can be identified and resumed or cleaned up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shell scripts can reassign, update, archive, or delete local task records with weak ownership checks. <br>
-Mitigation: Review scripts before installation, use the skill only in trusted local environments, and add explicit caller identity checks before enabling shared or automated use. <br>
-Risk: Heartbeat and cleanup automation can change task state without interactive review. <br>
-Mitigation: Run scheduled scans conservatively, consider dry-run cleanup, and verify grace-period behavior before enabling cron automation. <br>
-Risk: Agent and task identifiers are used in local file paths and task records. <br>
-Mitigation: Apply stricter agent and task ID validation and atomic locking before using the scripts in a shared multi-agent workspace. <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep task state outside the agent context, update heartbeats and progress at key checkpoints, detect stalled or dead sessions, and archive completed or abandoned tasks.
 
-## Reference(s): <br>
-- [Task Watchdog detailed specification](references/spec.md) <br>
-- [ClawHub release page](https://clawhub.ai/axelhu/task-watchdog-axel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON, Markdown] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON lock-file records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local task lock files under the OpenClaw agent state directory and can be scheduled with cron.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Task records can be taken over, completed, moved, archived, or deleted without reliable ownership checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit use to a controlled single-user or trusted-agent environment until task and agent IDs are validated and explicit authorization is added for completion, takeover, archive, and cleanup operations.
+
+Risk: Missing identities, failed session-list checks, or fragile parsing can lead to unsafe task ownership decisions.
+
+Mitigation: Require agent and session identity, fail closed when session lookup is unavailable, and use structured JSON parsing before automated or multi-agent deployment.
+
+## Reference(s):
+
+- [Task Watchdog detailed specification](references/spec.md)
+- [ClawHub release page](https://clawhub.ai/axelhu/skills/task-watchdog-axel)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, JSON, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; scripts emit terminal text and optional JSON status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts maintain lock files under ~/.openclaw/agents/{agent_id}/locks/ when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,52 @@
-## Description: <br>
-Generate a GitHub standup summary covering the period since the last standup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a GitHub standup summary covering the period since the last standup.
 
-## Publisher: <br>
-[zerone0x](https://clawhub.ai/user/zerone0x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zerone0x](https://clawhub.ai/user/zerone0x)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to summarize merged pull requests and direct commits for standups, work summaries, and weekly updates across a repository or organization. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated summaries may include private repository names, pull request titles, commit messages, and links from the user's authenticated GitHub access. <br>
-Mitigation: Prefer repository-scoped summaries when possible, use organization scope only when intended, and review the generated text before sharing it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zerone0x/gh-standup) <br>
+## Use Case:
 
+Developers and engineers use this skill to summarize their GitHub work for standups, weekly updates, and similar status reports. It gathers merged pull requests and direct commits from a single repository or organization for a selected author and standup cadence.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Markdown standup summary with repository activity links and shell command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an authenticated GitHub CLI and Python 3.10+; supports repository or organization scope, standup days, and author filtering.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can use authenticated GitHub CLI access to inspect repository or organization activity.
+
+Mitigation: Run it only for repositories or organizations whose activity is appropriate to summarize, and prefer repository scope over organization scope when possible.
+
+Risk: Generated summaries can include PR titles and commit messages supplied by repository contributors.
+
+Mitigation: Review the generated standup text before posting or sharing it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zerone0x/skills/gh-standup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown standup summary with pull request and direct commit sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes author, repository scope, date range, pull request titles and URLs, commit SHAs, and commit messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

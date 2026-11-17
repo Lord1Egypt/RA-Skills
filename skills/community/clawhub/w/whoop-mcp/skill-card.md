@@ -1,44 +1,55 @@
-## Description: <br>
-Connect an MCP-compatible agent to local WHOOP recovery, sleep, strain, HRV, cycles, and workouts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect an MCP-compatible agent to local WHOOP recovery, sleep, strain, HRV, cycles, and workouts.
 
-## Publisher: <br>
-[davidmosiah](https://clawhub.ai/user/davidmosiah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidmosiah](https://clawhub.ai/user/davidmosiah)
 
-## Use Case: <br>
-Developers and MCP users use this skill to install, configure, and troubleshoot WHOOP MCP for agent access to WHOOP recovery, sleep, strain, HRV, cycles, and workout data while preserving explicit consent and privacy boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: WHOOP OAuth tokens and private wellness data may be exposed through local files, logs, or raw provider payloads. <br>
-Mitigation: Keep ~/.whoop-mcp token files private, do not print secrets or private user data, and prefer summarized results unless raw payloads are explicitly requested. <br>
-Risk: The skill depends on the third-party whoop-mcp-unofficial package and can connect an agent to live WHOOP data. <br>
-Mitigation: Install only if the package is trusted, run setup and authentication intentionally, review OAuth scopes, and prefer connection_status, manifest, doctor, privacy_audit, or dry-run surfaces before live provider calls. <br>
-Risk: WHOOP data can be mistaken for professional medical, legal, financial, or platform-policy advice. <br>
-Mitigation: Keep user consent explicit and present outputs as wellness-data assistance rather than professional advice. <br>
+## Use Case:
 
+External developers and agent users use this skill to install, configure, and troubleshoot a local WHOOP MCP connector while preserving privacy boundaries for health data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/davidmosiah/whoop-mcp) <br>
-- [WHOOP MCP Repository](https://github.com/davidmosiah/whoop-mcp) <br>
-- [WHOOP Connector Docs](https://wellness.delx.ai/connectors/whoop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include setup, authentication, privacy-boundary, and troubleshooting guidance for MCP-compatible clients.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill runs an unpinned npm MCP package that handles OAuth tokens and sensitive WHOOP health data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer a pinned and reviewed version of whoop-mcp-unofficial, and treat the WHOOP token directory and health summaries as sensitive.
+
+Risk: Promotional branding language could bias agent responses away from the user's immediate task.
+
+Mitigation: Ignore or remove promotional branding unless the user explicitly asks about maintainers or repositories.
+
+## Reference(s):
+
+- [ClawHub WHOOP MCP skill page](https://clawhub.ai/davidmosiah/skills/whoop-mcp)
+- [WHOOP MCP repository](https://github.com/davidmosiah/whoop-mcp)
+- [WHOOP connector documentation](https://wellness.delx.ai/connectors/whoop)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MCP client stdio configuration, setup checks, privacy guidance, and troubleshooting steps.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

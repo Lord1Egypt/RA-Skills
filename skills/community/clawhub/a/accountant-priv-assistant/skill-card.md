@@ -1,43 +1,58 @@
-## Description: <br>
-Personal finance assistant for AccountantPriv that queries Hapoalim, Isracard, and Max SQLite databases to answer questions about transactions, expenses, income, merchants, subscriptions, monthly summaries, and spending patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal finance assistant that queries local Hapoalim, Isracard, and Max SQLite databases to answer questions about transactions, merchants, subscriptions, monthly summaries, income, and spending patterns.
 
-## Publisher: <br>
-[sharon8811](https://clawhub.ai/user/sharon8811) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sharon8811](https://clawhub.ai/user/sharon8811)
 
-## Use Case: <br>
-External users use this skill to inspect their own AccountantPriv banking and credit card SQLite databases, locate merchant or subscription charges, summarize monthly finances, and analyze spending or income patterns. The skill is intended for direct personal-finance answers in Hebrew using local financial data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad SQL access to sensitive banking databases can expose detailed financial history. <br>
-Mitigation: Use only with the user's own AccountantPriv databases, prefer read-only database copies or read-only SQLite connections, and avoid persisting detailed financial history unless explicitly required. <br>
-Risk: Financial account numbers or transaction details may appear in documentation or outputs. <br>
-Mitigation: Remove real account numbers and sensitive transaction details before sharing documentation, logs, screenshots, or generated answers outside the user's trusted environment. <br>
-Risk: Monthly summaries can double count credit card activity when both bank card bills and individual card transactions are combined. <br>
-Mitigation: Follow the artifact guidance to use either aggregate bank card bills or detailed card expenses for a calculation, not both together. <br>
+## Use Case:
 
+Users with AccountantPriv SQLite exports use this skill to answer personal finance questions, locate recurring charges, summarize monthly income and expenses, and analyze spending patterns. The skill is intended for agents that can run local helper scripts against the user's finance databases and report concise findings.
 
-## Reference(s): <br>
-- [Database Schemas - AccountantPriv](references/schema.md) <br>
-- [ClawHub skill page](https://clawhub.ai/sharon8811/accountant-priv-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with shell commands and optional JSON or tabular script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run local Python helpers against SQLite databases and summarize sensitive financial records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can expose sensitive bank and credit card transaction data in agent outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for expected personal finance tasks, avoid sharing raw outputs externally, and mask account or card identifiers in documentation and responses.
+
+Risk: The raw SQL helper can run unrestricted database statements and may modify or damage finance databases.
+
+Mitigation: Make database access read-only or remove the raw SQL helper before routine use; prefer constrained merchant lookup and monthly summary tools.
+
+Risk: Monthly summaries may be misleading while the month/year parsing issue identified by security evidence remains unresolved.
+
+Mitigation: Verify requested month and year values against source transactions before relying on reported totals.
+
+## Reference(s):
+
+- [Database Schemas - AccountantPriv](references/schema.md)
+- [ClawHub skill page](https://clawhub.ai/sharon8811/skills/accountant-priv-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Analysis]
+
+**Output Format:** [Markdown or plain-text financial answers, with JSON output from helper scripts when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sensitive transaction details, dates, amounts, merchant names, account or card identifiers, and Hebrew-language responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

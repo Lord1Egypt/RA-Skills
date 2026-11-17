@@ -1,46 +1,57 @@
-## Description: <br>
-Virtual gene knockout simulation using foundation models to predict transcriptional changes. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Virtual gene knockout simulation using foundation models to predict transcriptional changes.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers and bioinformatics researchers use this skill to explore virtual gene knockout workflows for target screening, including simulated differential expression, pathway enrichment, target ranking, visualization reports, and wet-lab validation guide drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Simulated outputs may be mistaken for validated biological predictions. <br>
-Mitigation: Treat scores, differential expression tables, synergy calls, and wet-lab recommendations as exploratory until genuine model inference and independent validation are in place. <br>
-Risk: Biomedical inputs and generated results may be sensitive or proprietary. <br>
-Mitigation: Run the skill in an isolated Python environment and avoid sensitive biomedical inputs until dependencies and data handling have been reviewed. <br>
-Risk: The skill can influence wet-lab planning despite not being a validated scientific predictor. <br>
-Mitigation: Require domain expert review before using outputs for experimental prioritization or protocol design. <br>
+## Use Case:
 
+Bioinformatics developers and computational biology teams use this skill to run virtual gene knockout workflows, prioritize target genes, and generate simulated differential expression, pathway, ranking, visualization, and validation-planning outputs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aipoch-ai/in-silico-perturbation-oracle-1) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Geneformer configuration](artifact/configs/geneformer_config.yaml) <br>
-- [scGPT configuration](artifact/configs/scgpt_config.yaml) <br>
-- [Cell type mapping](artifact/configs/cell_type_mapping.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with shell commands and Python examples; runtime outputs include CSV, JSON, PNG, and TXT files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are written to a selected output directory and require independent scientific validation before use in experimental planning.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Simulated target rankings, p-values, pathway results, and validation guidance may be mistaken for validated biological findings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated biological results as simulated output and require independent scientific validation before using them for research, clinical, or wet lab decisions.
+
+Risk: The workflow executes Python code and installs scientific dependencies that may change behavior across environments.
+
+Mitigation: Install and run the skill in an isolated environment, pin dependencies before installation, and review generated files before sharing or acting on them.
+
+Risk: The artifact presents production-ready language while the implementation uses placeholder model inference and simulated statistics.
+
+Mitigation: Replace placeholder logic with verified model inference and validation datasets before relying on outputs for decision support.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/in-silico-perturbation-oracle-1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and Python workflow artifacts; when run, the script writes CSV, JSON, PNG, and text files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include differential expression tables, pathway enrichment data, target score rankings, visualization plots, combinatorial screening results, and optional wet lab validation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

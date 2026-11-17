@@ -1,44 +1,58 @@
-## Description: <br>
-Drug safety and medical information search for drug interactions, medication safety, contraindications, side effects, drug-alcohol interactions, drug-food interactions, traditional Chinese medicine safety, medication conflicts, and dosage concerns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drug safety and medical information search for medication interactions, contraindications, side effects, drug-alcohol and drug-food concerns, and traditional Chinese medicine safety.
 
-## Publisher: <br>
-[juneyaooo](https://clawhub.ai/user/juneyaooo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juneyaooo](https://clawhub.ai/user/juneyaooo)
 
-## Use Case: <br>
-External users and agent developers use this skill to search medical and drug safety sources before answering questions about medication interactions, contraindications, adverse reactions, and related safety concerns. It is designed to produce sourced informational responses with medical disclaimers rather than clinical advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive medical search terms may be sent to a hardcoded plain-HTTP search server. <br>
-Mitigation: Use only if comfortable with that disclosure path, or replace the endpoint with a trusted HTTPS search provider before use. <br>
-Risk: The optional DDInter workflow may run a local script that is not bundled or reviewed with this artifact. <br>
-Mitigation: Verify the local script source and behavior before allowing an agent to execute it. <br>
-Risk: Search results may be incomplete, outdated, or inappropriate as definitive medical advice. <br>
-Mitigation: Treat outputs as informational, preserve the medical disclaimer, and direct users to a doctor or pharmacist for specific care decisions. <br>
+## Use Case:
 
+External users and agents use this skill to search and summarize drug safety information before answering medication-related questions. It is intended for questions about interactions, contraindications, adverse effects, alcohol or food interactions, dosage concerns, and safety for special populations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/juneyaooo/medical-search) <br>
-- [Publisher Profile](https://clawhub.ai/user/juneyaooo) <br>
-- [SearXNG Search Endpoint Referenced by Skill](http://43.156.131.167:4000/search?q=QUERY&format=json&language=zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with referenced URLs, risk analysis, disclaimer text, and optional shell commands for search.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are expected to cite searched sources and state that results are informational rather than medical advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Sensitive health queries may be sent to a hard-coded plaintext external search server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only after trusting the server operator and obtaining user consent for external health-query transmission; prefer a trusted HTTPS search provider.
+
+Risk: Shell examples may be unsafe if query parameters are not encoded or handled carefully.
+
+Mitigation: URL-encode query parameters, avoid interpolating untrusted text into shell commands, and review commands before execution.
+
+Risk: Search results may be incomplete, outdated, or unsuitable as definitive medical advice.
+
+Mitigation: Treat results as untrusted references, include source URLs and the medical disclaimer, and direct users to a doctor or pharmacist for clinical decisions.
+
+## Reference(s):
+
+- [Medical Search Skill Page](https://clawhub.ai/juneyaooo/skills/medical-search)
+- [Configured SearXNG Medical Search Endpoint](http://43.156.131.167:4000/search?q=QUERY&format=json&language=zh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with a direct answer, searched findings, analysis, source URLs, and a medical disclaimer.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for the configured SearXNG search workflow; DDInter lookup is optional when available for Western drug interaction checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

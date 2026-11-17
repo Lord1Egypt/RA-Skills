@@ -1,45 +1,57 @@
-## Description: <br>
-Evaluates and compares privacy solution vendors with a weighted scorecard across functionality, architecture, automation, compliance, cost, and vendor stability criteria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate and compare privacy solution vendors with a weighted scorecard across 12 criteria.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Privacy, security, procurement, and compliance teams use this skill to compare privacy management vendors, structure RFP evaluations, and produce scorecards, recommendations, and executive summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The registry identity says Kubernetes Network Policy Generator, while the artifact implements a privacy vendor scorecard. <br>
-Mitigation: Install only if you intended to use the ToolWeb privacy-solution-scorecard, and verify the package identity before deployment. <br>
-Risk: The skill sends submitted business evaluation details to the ToolWeb API. <br>
-Mitigation: Review ToolWeb privacy and retention terms, and avoid submitting confidential procurement, vendor, budget, or compliance details unless your organization approves sharing them with ToolWeb. <br>
-Risk: The skill requires TOOLWEB_API_KEY and curl, so credentials, rate limits, or network access can block execution. <br>
-Mitigation: Use a dedicated ToolWeb API key, store it securely, and handle authentication, validation, and rate-limit errors as documented by the artifact. <br>
+## Use Case:
 
+Developers, security teams, privacy teams, and procurement evaluators use this skill to compare privacy management vendors, score platform proposals, and prepare recommendations for privacy tool selection.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/krishnakumarmahadevan-cmd/k8s-network-policy-generator) <br>
-- [ToolWeb API portal](https://portal.toolweb.in) <br>
-- [Privacy scorecard API endpoint](https://portal.toolweb.in/apis/compliance/privacy-scorecard) <br>
-- [ToolWeb platform](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with weighted score summaries, vendor comparison highlights, recommendations, executive summary text, and curl examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TOOLWEB_API_KEY and curl; submitted organization, vendor, budget, and compliance evaluation details are sent to the ToolWeb API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Scorecard inputs may include organization names, evaluator names, procurement details, budget ranges, and vendor assessments that are sent to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Omit confidential procurement details, regulated data, and direct personal identifiers unless the organization approves sharing them with ToolWeb.
+
+Risk: The generated vendor ranking and recommendations can influence privacy platform selection decisions.
+
+Mitigation: Review scores, assumptions, and recommendations with privacy, security, procurement, and legal stakeholders before relying on the output.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/k8s-network-policy-generator)
+- [ToolWeb API Portal](https://portal.toolweb.in)
+- [Privacy Scorecard API Endpoint](https://portal.toolweb.in/apis/compliance/privacy-scorecard)
+- [ToolWeb Platform](https://toolweb.in)
+- [OpenClaw Skills](https://toolweb.in/openclaw/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with scorecard summaries, comparison highlights, recommendations, and inline shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TOOLWEB_API_KEY and curl; scorecard inputs are sent to ToolWeb's API.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, README license section, and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

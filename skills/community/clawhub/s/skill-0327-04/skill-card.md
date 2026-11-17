@@ -1,41 +1,55 @@
-## Description: <br>
-Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube).
 
-## Publisher: <br>
-[yinwuzhe](https://clawhub.ai/user/yinwuzhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinwuzhe](https://clawhub.ai/user/yinwuzhe)
 
-## Use Case: <br>
-Developers and other agent users use this skill to summarize web pages, local files, PDFs, images, audio, and YouTube links through the summarize CLI. It is useful when an agent needs concise text or machine-readable summaries from user-selected sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: URLs, documents, media, or extracted text selected for summarization may be processed by configured external AI providers or fallback extraction services. <br>
-Mitigation: Use only approved providers for confidential, regulated, private, or customer data, and avoid submitting sensitive inputs unless organizational approval is in place. <br>
-Risk: API keys and ~/.summarize/config.json can route data to different providers or optional services. <br>
-Mitigation: Review configured API keys, selected model, and optional Firecrawl or Apify settings before using the skill in a controlled environment. <br>
+## Use Case:
 
+Developers and agent users use this skill to summarize URLs, local files, PDFs, images, audio, and YouTube links with the summarize CLI, including model and provider-key configuration.
 
-## Reference(s): <br>
-- [Summarize homepage](https://summarize.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/yinwuzhe/skill-0327-04) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash examples; summarize CLI output may be plain text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports user-selected length, maximum output tokens, extract-only mode, provider model selection, and optional Firecrawl or Apify fallbacks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill depends on a third-party Homebrew tap and the summarize CLI it installs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust the tap and CLI before installation, and pin or audit the installed dependency according to local policy.
+
+Risk: Files, URLs, and API keys passed to the CLI may be available to the CLI and configured AI or extraction providers.
+
+Mitigation: Avoid sending sensitive documents or credentials unless the chosen provider and extraction path are approved for that data.
+
+## Reference(s):
+
+- [Summarize homepage](https://summarize.sh)
+- [ClawHub skill page](https://clawhub.ai/yinwuzhe/skills/skill-0327-04)
+- [ClawHub publisher profile](https://clawhub.ai/user/yinwuzhe)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The wrapped CLI can emit machine-readable JSON and supports length, token-limit, extraction, Firecrawl, and YouTube options.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; artifact/_meta.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

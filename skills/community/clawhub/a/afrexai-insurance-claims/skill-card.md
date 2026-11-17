@@ -1,44 +1,55 @@
-## Description: <br>
-Processes insurance claims across property, liability, workers' compensation, auto, and professional indemnity by producing structured coverage, liability, reserve, fraud, subrogation, compliance, and settlement analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn raw insurance claim data into structured analysis with coverage mapping, liability scoring, reserve estimates, fraud red-flag detection, and settlement strategy.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Claims adjusters, insurance operations managers, risk managers, TPAs, and InsurTech teams use this skill to convert raw claim details into structured claim analysis, reserve recommendations, red flag review, and claim-handling next steps. <br>
-
-### Deployment Geography for Use: <br>
-United States and United Kingdom <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Claim inputs may contain sensitive personal, medical, financial, or legal information. <br>
-Mitigation: Provide only the minimum necessary facts and redact identifiers and unnecessary medical or financial details before using the skill. <br>
-Risk: Coverage, fraud, reserve, settlement, and deadline recommendations can be incorrect or jurisdiction-dependent. <br>
-Mitigation: Have qualified claims, legal, or compliance staff verify recommendations before acting on them. <br>
-Risk: Use in an unapproved environment could expose regulated claim data. <br>
-Mitigation: Install only in an agent environment approved for insurance or regulated claim data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AfrexAI AI Agent Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [AfrexAI Storefront](https://afrexai-cto.github.io/context-packs/) <br>
-- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+Claims adjusters, insurance operations managers, risk managers, TPAs, and InsurTech teams use this skill to triage and analyze property, liability, workers' compensation, auto, and professional indemnity claims.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown claim analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes executive summary, coverage analysis, liability score, reserve recommendation, red flags, action items, and settlement range.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+United States and United Kingdom jurisdictions
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Claim materials may contain sensitive personal, medical, financial, claim number, attorney-client, or work-product information.
+
+Mitigation: Redact information that is not strictly needed before using the skill, and handle claim files as sensitive.
+
+Risk: Generated claim analyses may affect reserves, settlement strategy, coverage positions, or compliance timelines.
+
+Mitigation: Have qualified claims, legal, or compliance reviewers validate outputs before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-insurance-claims)
+- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/)
+- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown claim analysis with structured sections, scores, estimates, checklists, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided claim details; outputs should be reviewed by qualified claims, legal, or compliance professionals before operational use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

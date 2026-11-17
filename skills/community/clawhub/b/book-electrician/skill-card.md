@@ -1,39 +1,49 @@
-## Description: <br>
-Book electrician services through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Electrician helps agents find and book electrician services through Lokuli's MCP server.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users use this skill to search for electrician providers, check availability, and create an electrician service booking through Lokuli's MCP service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can share customer contact details with an external booking service. <br>
-Mitigation: Confirm the customer's name, email, phone number, and intended provider before creating a booking. <br>
-Risk: The skill can create a real electrician booking without built-in confirmation or privacy guardrails. <br>
-Mitigation: Before booking, confirm the provider, service, time, cost or cancellation terms when available, and the exact contact details that will be shared. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users can use this skill to search for electricians, check availability, and create bookings through Lokuli.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON-RPC tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Lokuli MCP tools for provider search, availability checks, and booking creation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create real bookings through a third-party service using personal contact details.
+
+Mitigation: Use it only for explicit booking workflows, and confirm the provider, time slot, and contact details before any booking request is sent to Lokuli.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/edwardrodriguez703-design/skills/book-electrician)
+- [Lokuli MCP SSE Endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Guidance]
+
+**Output Format:** [Markdown with JSON-RPC request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve third-party booking requests containing provider, time slot, and customer contact details.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

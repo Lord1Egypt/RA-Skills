@@ -1,43 +1,50 @@
-## Description: <br>
-WeatherAPI (weatherapi.com). Use this skill for ANY WeatherAPI request: searching and reading data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use WeatherAPI through the connected oo CLI to search locations and retrieve current weather, forecasts, astronomy, and timezone data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to run WeatherAPI lookups through an OOMOL-connected account for current conditions, forecasts, astronomy data, timezone data, and location search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected WeatherAPI account and may trigger optional first-time installer or authentication commands. <br>
-Mitigation: Install it only when WeatherAPI access through OOMOL is intended, verify the oo CLI source before installer commands, and connect only the expected WeatherAPI account. <br>
-Risk: WeatherAPI requests depend on live connector schemas and connected account state. <br>
-Mitigation: Fetch the action schema before constructing payloads and use the documented setup or recovery paths only after an auth, connection, or billing error occurs. <br>
+## Use Case:
 
+External users and developers can use the skill with their connected OOMOL account to search WeatherAPI locations and retrieve current conditions, forecasts, astronomy, or timezone information.
 
-## Reference(s): <br>
-- [WeatherAPI homepage](https://www.weatherapi.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub WeatherAPI listing](https://clawhub.ai/oomol/oo-weatherapi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live WeatherAPI connector schemas before constructing request payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: If the oo CLI is missing, setup instructions run an online installer without a separate approval step; automated installation or setup changes may affect other agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a verified, pinned CLI before use and review any changes it makes to other agents' skills. Assess whether you trust OOMOL to mediate WeatherAPI access and location queries.
+
+## Reference(s):
+
+- [WeatherAPI](https://www.weatherapi.com)
+- [WeatherAPI Documentation](https://www.weatherapi.com/docs/)
+
+## Skill Output:
+
+**Output Type(s):** [JSON data, Weather and location information]
+
+**Output Format:** [Structured JSON connector responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returned data depends on the selected action, location query, and optional date.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Executes Python, JavaScript, Bash, TypeScript, and SQL code dynamically so an agent can create, run, and return code results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs Python, JavaScript, Bash, TypeScript, and SQL code dynamically so an agent can generate, execute, and return results.
 
-## Publisher: <br>
-[miguelguerra200022-sudo](https://clawhub.ai/user/miguelguerra200022-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[miguelguerra200022-sudo](https://clawhub.ai/user/miguelguerra200022-sudo)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate and execute short scripts, run command-line tasks, perform calculations, transform data, prototype automations, and debug code in supported runtimes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad code and shell execution powers, which can affect files, dependencies, and local runtime behavior. <br>
-Mitigation: Use it only in a disposable or strongly enforced sandbox; review every generated script and shell command before execution. <br>
-Risk: The security evidence says safety limits and activation scope are not clear enough for automatic trust. <br>
-Mitigation: Independently verify sandboxing, filesystem permissions, network blocking, timeouts, dependency installation controls, and confirmation prompts before relying on the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/miguelguerra200022-sudo/code-executor) <br>
+## Use Case:
 
+Developers and agent users use this skill to generate and run short scripts, shell commands, calculations, data transformations, dependency installs, and one-off automation from prompts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks, shell commands, configuration snippets, and execution results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated scripts, REPL-style interaction, dependency installation prompts, command output, and safety confirmation prompts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can run arbitrary code and shell commands, including local scripts and package installs.
+
+Mitigation: Use it only in a disposable sandbox with minimal filesystem access, network access disabled by default, strict timeouts, controlled dependency sources, and confirmation before execution.
+
+Risk: The artifact documents safety controls but does not implement those controls in the skill file itself.
+
+Mitigation: Verify the host agent enforces sandboxing, timeouts, network blocks, dependency controls, and read-only filesystem policy before enabling the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/miguelguerra200022-sudo/skills/code-executor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated code, command output summaries, dependency installation steps, and execution guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

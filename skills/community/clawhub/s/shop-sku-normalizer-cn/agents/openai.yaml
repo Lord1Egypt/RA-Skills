@@ -1,0 +1,8 @@
+interface:
+  display_name: "商品规格与SKU整理"
+  short_description: "整理商品规格并输出统一命名、重复缺失报告与可复核导入草稿"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+  default_prompt: "使用 $shop-sku-normalizer-cn。请整理我提供的商品名称、颜色、尺寸、型号表，输出统一命名、重复与缺失规格报告及含待确认原因列的CSV导入草稿；重复组所有行均标为待确认。"
+policy:
+  allow_implicit_invocation: true

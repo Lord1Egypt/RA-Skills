@@ -1,0 +1,49 @@
+{
+  "meta": {
+    "creado": "AAAA-MM-DD",
+    "ultima_corrida": null,
+    "umbral": {
+      "nichos_distintos": 2,
+      "segundo_nicho_de_otra_fuente": true
+    },
+    "estados": {
+      "candidato": "vista en 1 nicho, espera el 2º",
+      "publicado": "cruzó el umbral",
+      "descartado": "duplica el catálogo propio o no hay mecánica"
+    }
+  },
+  "mecanicas": [
+    {
+      "id": "vigilia-con-hora-en-pantalla-contra-un-rival",
+      "nombre": "Vigilia con la hora en pantalla contra un rival",
+      "tipo": "montaje",
+      "descripcion": "Plano fijo en un lugar público, un desconocido marcado con un círculo rojo y una premisa de duelo. La hora real va en pantalla y salta de un momento a otro mientras la postura se derrumba. El remate rompe el plano: vas a ver qué hacía el rival.",
+      "anatomia": [
+        "Plantea el duelo en el primer cuadro: círculo rojo sobre el rival y la premisa escrita.",
+        "Deja la cámara fija en el mismo encuadre todo el reto.",
+        "Pon la hora real en pantalla y salta entre momentos.",
+        "Añade rótulos cortos de tu estado físico.",
+        "Rompe el plano al final: acércate a ver qué hace el rival."
+      ],
+      "proposito": "viralizar",
+      "avistamientos": [
+        {
+          "shortcode": "XXXXXXXXXXX",
+          "cuenta": "@cuenta_ejemplo",
+          "nicho": "estudio / vida universitaria",
+          "vistas": 12253938,
+          "seguidores": 1530,
+          "ratio": 8009.1,
+          "fuente": "explorar",
+          "canal": "explorar",
+          "fecha": "AAAA-MM-DD"
+        }
+      ],
+      "nichos": [
+        "estudio / vida universitaria"
+      ],
+      "estado": "candidato",
+      "duplica": null
+    }
+  ]
+}

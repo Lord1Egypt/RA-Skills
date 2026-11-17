@@ -1,0 +1,115 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "TikTok关键词搜索 - API出参",
+    "description": "TikTok实时关键词搜索, API出参Schema详解",
+    "properties": {
+        "aweme_id": {
+            "type": "string",
+            "description": "TikTok视频ID"
+        },
+        "desc": {
+            "type": "string",
+            "description": "TikTok视频描述"
+        },
+        "create_time": {
+            "type": "number",
+            "description": "TikTok视频创建时间戳"
+        },
+        "author_id": {
+            "type": "string",
+            "description": "TikTok视频作者ID"
+        },
+        "author_uid": {
+            "type": "string",
+            "description": "TikTok视频作者UID"
+        },
+        "author_nickname": {
+            "type": "string",
+            "description": "TikTok视频作者昵称"
+        },
+        "author_avatar": {
+            "type": "string",
+            "description": "TikTok视频作者头像"
+        },
+        "author_sec_uid": {
+            "type": "string",
+            "description": "TikTok视频作者SEC_UID"
+        },
+        "author_follower_count": {
+            "type": "number",
+            "description": "TikTok视频作者粉丝数"
+        },
+        "author_following_count": {
+            "type": "number",
+            "description": "TikTok视频作者关注数"
+        },
+        "collect_count": {
+            "type": "number",
+            "description": "TikTok视频收藏数"
+        },
+        "comment_count": {
+            "type": "number",
+            "description": "TikTok视频评论数"
+        },
+        "digg_count": {
+            "type": "number",
+            "description": "TikTok视频点赞数"
+        },
+        "download_count": {
+            "type": "number",
+            "description": "TikTok视频下载数"
+        },
+        "forward_count": {
+            "type": "number",
+            "description": "TikTok视频转发数"
+        },
+        "play_count": {
+            "type": "number",
+            "description": "TikTok视频播放数"
+        },
+        "repost_count": {
+            "type": "number"
+        },
+        "share_count": {
+            "type": "number",
+            "description": "TikTok视频分享数"
+        },
+        "whatsapp_share_count": {
+            "type": "number",
+            "description": "TikTok视频WhatsApp分享数"
+        },
+        "share_url": {
+            "type": "string",
+            "description": "TikTok视频分享URL"
+        },
+        "dynamic_cover": {
+            "type": "string",
+            "description": "TikTok视频动态封面URL"
+        },
+        "play_addr": {
+            "type": "string",
+            "description": "视频播放地址、视频下载地址"
+        },
+        "duration": {
+            "type": "number",
+            "description": "TikTok视频时长"
+        },
+        "tags": {
+            "type": "array",
+            "description": "TikTok视频标签",
+            "items": {
+                "type": "string",
+                "description": "TikTok视频标签"
+            }
+        },
+        "suggest_words": {
+            "type": "array",
+            "description": "TikTok小蓝词",
+            "items": {
+                "type": "string",
+                "description": "TikTok小蓝词, 评论框顶端显示的建议词"
+            }
+        }
+    }
+}

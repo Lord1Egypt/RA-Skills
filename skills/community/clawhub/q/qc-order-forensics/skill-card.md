@@ -1,41 +1,60 @@
-## Description: <br>
-Forensic diagnosis engine for backtest order data: trade quality, ROI attribution, monthly cashflow, drawdown root-cause analysis, and LLM-readable reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Forensic diagnosis engine for backtest order data -- trade quality, ROI attribution, monthly cashflow, drawdown root-cause analysis, and LLM-readable reports.
 
-## Publisher: <br>
-[tltby12341](https://clawhub.ai/user/tltby12341) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tltby12341](https://clawhub.ai/user/tltby12341)
 
-## Use Case: <br>
-Developers and quantitative researchers use this skill after a QuantConnect backtest to diagnose why a strategy performed as it did and to produce an LLM-readable report for follow-up strategy analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may include confidential trading strategy and backtest details. <br>
-Mitigation: Review and redact reports before sharing them outside the intended audience. <br>
-Risk: Unpinned pandas or numpy versions can change analysis behavior over time. <br>
-Mitigation: Install in a clean Python environment and pin dependency versions when reproducible results are required. <br>
-Risk: Incorrect input columns or the wrong anchor equity symbol can produce misleading diagnostics. <br>
-Mitigation: Use the standard QuantConnect orders.csv export and set the equity symbol to match the strategy before relying on the report. <br>
+## Use Case:
 
+Developers and quantitative strategy researchers use this skill to analyze QuantConnect backtest order exports and understand trade quality, ROI attribution, monthly cashflow, yearly performance, and drawdown streaks. The generated report is intended to support follow-up strategy analysis by an agent or LLM.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Plain-text diagnostic report with Markdown-style sections and optional Python or shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Locally analyzes user-provided orders.csv and optional result.json files; no network, credential, persistence, or destructive behavior was identified by the provided security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Generated reports may carry untrusted prompt text from backtest exports into a downstream LLM workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted backtest exports and treat generated reports as untrusted content when passing them to another model.
+
+Risk: ROI, cashflow, yearly, and drawdown outputs may be materially misleading because the scanner identified sell-cashflow sign logic concerns.
+
+Mitigation: Do not rely on these calculations for decisions until the cashflow logic is fixed, reviewed, and tested against known expected results.
+
+Risk: Dependencies are specified with lower bounds rather than pinned reviewed versions.
+
+Mitigation: Install pandas and numpy from pinned, reviewed versions in a controlled environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tltby12341/skills/qc-order-forensics)
+- [Publisher profile](https://clawhub.ai/user/tltby12341)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Artifact forensic analysis script](artifact/forensics.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Plain-text diagnostic report with Markdown-compatible sections and optional Python or shell usage snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Consumes a standard QuantConnect orders.csv file and optionally a result.json file; reports should be treated as untrusted when passed to another LLM.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

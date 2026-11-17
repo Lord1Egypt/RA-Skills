@@ -1,42 +1,51 @@
-## Description: <br>
-The finest dad jokes on the internet - random, searchable, and groan-worthy from icanhazdadjoke.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The finest dad jokes on the internet - random, searchable, and groan-worthy from icanhazdadjoke.com.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-External users and developers use this skill to fetch random dad jokes, search jokes by keyword, or retrieve a specific joke for chatbots and messaging workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Joke searches and requests are sent to the Pipeworx gateway. <br>
-Mitigation: Treat joke terms and requests as data shared with the remote service and avoid sending sensitive content. <br>
-Risk: The setup uses npx mcp-remote, which can download code from npm during installation. <br>
-Mitigation: Review the MCP remote setup and package source before running it in a production environment. <br>
+## Use Case:
 
+External users and developers use this skill to fetch random, searchable, or ID-specific dad jokes for chatbots, conversation responses, and Slack or Discord bots.
 
-## Reference(s): <br>
-- [Pipeworx dadjokes homepage](https://pipeworx.io/packs/dadjokes) <br>
-- [Pipeworx dadjokes ClawHub page](https://clawhub.ai/brucegutman/pipeworx-dadjokes) <br>
-- [Pipeworx dadjokes MCP endpoint](https://gateway.pipeworx.io/dadjokes/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, shell commands] <br>
-**Output Format:** [Markdown with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns joke text or search results through a remote MCP endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The setup runs a remote MCP bridge through npm using an unpinned mcp-remote package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin mcp-remote to a reviewed exact version, run the MCP process with least privilege, and avoid exposing sensitive environment variables.
+
+## Reference(s):
+
+- [Pipeworx Dadjokes Homepage](https://pipeworx.io/packs/dadjokes)
+- [Pipeworx Dadjokes MCP Endpoint](https://gateway.pipeworx.io/dadjokes/mcp)
+- [ClawHub Skill Page](https://clawhub.ai/brucegutman/skills/pipeworx-dadjokes)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, API Calls, Shell commands, Configuration]
+
+**Output Format:** [Text jokes, JSON tool responses, and Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for the documented example and an MCP client configuration that launches mcp-remote.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

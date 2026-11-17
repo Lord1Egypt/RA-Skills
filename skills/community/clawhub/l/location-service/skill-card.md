@@ -1,43 +1,60 @@
-## Description: <br>
-Location Service helps agents geocode addresses and coordinates, parse Google Maps links, calculate distances, and prepare location inputs for weather lookups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Location Service helps agents convert between coordinates and addresses, calculate distances, parse Google Maps URLs, and prepare location inputs for weather queries.
 
-## Publisher: <br>
-[jakah2551](https://clawhub.ai/user/jakah2551) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jakah2551](https://clawhub.ai/user/jakah2551)
 
-## Use Case: <br>
-Agents, developers, and external users use this skill to turn addresses, coordinates, or Google Maps URLs into location data, distances, and weather-ready coordinates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Location inputs can include sensitive addresses, coordinates, or map links that are sent to third-party geocoding or URL-resolution services. <br>
-Mitigation: Use the skill only with location data you are comfortable sharing with those services. <br>
-Risk: Short Google Maps links can trigger unintended network requests during redirect resolution. <br>
-Mitigation: Avoid untrusted short links until exact allowed hostnames, HTTPS-only resolution, redirect limits, and private-network blocking are enforced. <br>
+## Use Case:
 
+Developers and agents use this skill to normalize addresses, coordinates, and Google Maps links for geocoding, distance calculation, and weather-location workflows.
 
-## Reference(s): <br>
-- [OpenStreetMap Nominatim API](references/nominatim_api.md) <br>
-- [Location Service Examples](references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jakah2551/location-service) <br>
-- [Publisher Profile](https://clawhub.ai/user/jakah2551) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown with command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include coordinates, addresses, distance values, weather-ready coordinate strings, or error messages from geocoding and URL parsing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Automatic Google Maps short-link resolution can make unsafe outbound requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing where internal services or sensitive network metadata are reachable; prefer a version that validates exact URL hostnames and restricts redirects.
+
+Risk: Location inputs may disclose home, workplace, or current-location details to external geocoding providers.
+
+Mitigation: Only submit location data that is acceptable to share with external providers.
+
+Risk: The dispatcher runs helper scripts from a fixed external path.
+
+Mitigation: Prefer a version that runs bundled helper scripts by relative path and review script paths before installation.
+
+## Reference(s):
+
+- [Location Service examples](artifact/references/examples.md)
+- [OpenStreetMap Nominatim API](artifact/references/nominatim_api.md)
+- [ClawHub skill page](https://clawhub.ai/jakah2551/skills/location-service)
+- [Publisher profile](https://clawhub.ai/user/jakah2551)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call external geocoding services; errors are returned as text diagnostics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

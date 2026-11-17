@@ -1,45 +1,59 @@
-## Description: <br>
-Backs up and restores OpenClaw workspace state, memory, cron jobs, agent folders, and configuration across macOS and Linux machines using Git and a private GitHub repository. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backup and restore OpenClaw workspace state and agents across machines using git.
 
-## Publisher: <br>
-[AnthonyFrancis](https://clawhub.ai/user/AnthonyFrancis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[anthonyfrancis](https://clawhub.ai/user/anthonyfrancis)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to checkpoint or restore personal workspace state, memory, cron jobs, and agent folders when migrating machines, recovering from data loss, or maintaining a private backup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill backs up and restores personal OpenClaw workspace, memory, agent, cron, and configuration data, so an incorrect repository or overly broad credential can expose sensitive state. <br>
-Mitigation: Use a private repository, narrowly scoped GitHub authentication, and confirm the exact workspace, agent, scheduler, and restore paths before backup or restore operations. <br>
-Risk: The quick install path pipes a remote GitHub installer into a shell. <br>
-Mitigation: Prefer the documented git-clone installation path or review the installer script before executing it. <br>
-Risk: Restore, reset, and scheduling commands can overwrite local state or add recurring user-level jobs. <br>
-Mitigation: Review checkpoint status, keep a current backup before restore or reset, and enable automatic scheduling only after confirming the intended frequency and platform scheduler. <br>
+## Use Case:
 
+External users and developers use this skill to back up, restore, migrate, and schedule recovery checkpoints for OpenClaw workspaces and agent folders across macOS and Linux systems.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AnthonyFrancis/openclaw-checkpoint) <br>
-- [OpenClaw Checkpoint GitHub Repository](https://github.com/AnthonyFrancis/openclaw-checkpoint) <br>
-- [OpenClaw Project](https://github.com/openclaw/openclaw) <br>
-- [Installation Guide](INSTALL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and command workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify OpenClaw workspace files, copied agent backups, Git commits, remote backup state, and user-level schedules when the documented commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The documented quick install and recovery flows pipe an unverified remote installer directly into a shell.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the clone-and-inspect installation path, review scripts before execution, and verify the remote repository before copying commands into a shell.
+
+Risk: Backups can include identity, memory, agent files, scripts, configuration, and scheduled-task definitions.
+
+Mitigation: Store checkpoints only in a private repository, keep credentials and tokens out of backups, and verify the generated ignore rules before the first backup.
+
+Risk: Backup and restore commands modify local workspace state, agent folders, git history, and optional user-level scheduling.
+
+Mitigation: Check status before restore, inspect the selected checkpoint, keep a separate copy of critical files, and disable scheduled backups when testing changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anthonyfrancis/skills/openclaw-checkpoint)
+- [OpenClaw Checkpoint Project Documentation](https://github.com/AnthonyFrancis/openclaw-checkpoint)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes platform-specific setup, backup, restore, scheduling, status, and recovery commands.]
+
+## Skill Version(s):
+
+1.0.5 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

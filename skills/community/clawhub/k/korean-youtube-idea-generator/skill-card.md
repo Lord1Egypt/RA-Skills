@@ -1,40 +1,53 @@
-## Description: <br>
-Generates Korean-market YouTube and TikTok content ideas, script structures, hashtags, and channel strategy guidance for creators targeting Korean audiences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Korean-market YouTube and TikTok content ideas, content briefs, script structures, and hashtag suggestions for channels targeting teen, 20s, and 30+ audiences.
 
-## Publisher: <br>
-[jochoonhwan](https://clawhub.ai/user/jochoonhwan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jochoonhwan](https://clawhub.ai/user/jochoonhwan)
 
-## Use Case: <br>
-Creators, marketers, and channel operators use this skill to generate Korean YouTube or TikTok ideas tailored by channel category, target age group, video format, and weekly content goals. It produces content briefs with viral hooks, script structure, hashtags, and growth tactics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce finance, tax, trend, or growth advice that is inaccurate or unsuitable for a specific creator or market. <br>
-Mitigation: Review factual claims and recommendations before relying on them, especially for finance, tax, growth, or time-sensitive trend decisions. <br>
-Risk: The skill is tailored to Korean YouTube and TikTok content patterns and may be less appropriate for other regions or languages. <br>
-Mitigation: Use a region-appropriate skill or explicitly tell the agent the intended market, language, and audience before generating ideas. <br>
+## Use Case:
 
+Creators, social media teams, and channel strategists use this skill to brainstorm Korea-focused Shorts, TikTok, and long-form video concepts tailored by channel category, target age, and video format.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jochoonhwan/korean-youtube-idea-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown content brief] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes target audience, video format, expected view range, viral elements, 60-second script structure, hashtag suggestions, and channel strategy guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Suggestions may be localized toward Korean audiences even when a request is broad.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to state the intended market and remove Korea-specific assumptions when the target audience is not Korea-focused.
+
+Risk: Trend claims, expected view ranges, and upload timing guidance may become stale or unsupported without current platform evidence.
+
+Mitigation: Review proposed topics and performance expectations against current channel analytics or platform trend data before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jochoonhwan/skills/korean-youtube-idea-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown content briefs with script outlines and hashtag suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tailored by channel/category, target age, and video format when provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

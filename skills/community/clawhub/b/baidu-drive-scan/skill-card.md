@@ -1,44 +1,63 @@
-## Description: <br>
-百度网盘智能图像扫描处理工具，支持去手写、去水印、去阴影、去屏纹、清晰化、证件票据增强、黑白处理、检测矫正和扫描增强。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Processes document and image scans through Baidu Netdisk's scan service to remove handwriting, watermarks, shadows, screen artifacts, enhance clarity, improve ID or receipt images, convert backgrounds, correct perspective, or apply general scan enhancement.
 
-## Publisher: <br>
-[baidunetdiskaibot](https://clawhub.ai/user/baidunetdiskaibot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baidunetdiskaibot](https://clawhub.ai/user/baidunetdiskaibot)
 
-## Use Case: <br>
-External users and developers use this skill to route a single document or image through Baidu Drive scan processing for cleanup, enhancement, perspective correction, or document-style output. It requires a BDPAN_API_KEY and returns either the service JSON response or a local path to the processed image. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images are sent to Baidu's scan service for processing. <br>
-Mitigation: Use the skill only for images appropriate for that service, and avoid highly sensitive IDs, receipts, or private documents unless the data handling is acceptable. <br>
-Risk: The BDPAN_API_KEY is a sensitive credential required for service access. <br>
-Mitigation: Store the key in the BDPAN_API_KEY environment variable, keep it out of command arguments and shared logs, and revoke or rotate it if exposed. <br>
-Risk: Processed images may remain as local files in /tmp after a successful run. <br>
-Mitigation: Periodically delete generated /tmp/scan_*.png files when they are no longer needed. <br>
+## Use Case:
 
+External users and agent operators use this skill to route a single supported image to Baidu Netdisk scan processing and return the resulting JSON response or saved processed image path.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baidunetdiskaibot/baidu-drive-scan) <br>
-- [Baidu scan skill API key page](https://aiconvert.baidu.com/simple/embed/scanSkill) <br>
-- [Baidu scan filter endpoint](https://pan.baidu.com/apaas/scan/filter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Shell commands, Configuration instructions] <br>
-**Output Format:** [JSON response with optional local image file path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes one jpg, png, gif, bmp, or webp image up to 5MB per invocation; successful processed images may be saved under /tmp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Documented local-file execution can run shell commands from crafted file paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not process attacker-supplied local file paths until the documented sh -c path is replaced with direct stdin or file handling.
+
+Risk: Images are uploaded to the Baidu scan endpoint for processing.
+
+Mitigation: Use only when the operator trusts the endpoint and is comfortable sending the specific image content to that service.
+
+Risk: Processed images may be written to /tmp and remain there after the skill returns.
+
+Mitigation: Manually remove /tmp/scan_*.png outputs after use, especially for IDs, invoices, bank cards, contracts, or other sensitive images.
+
+Risk: BDPAN_API_KEY is required for service access.
+
+Mitigation: Restrict access to the key, avoid exposing it in command history or logs, and rotate it if leakage is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baidunetdiskaibot/skills/baidu-drive-scan)
+- [Baidu Netdisk scan skill API key page](https://aiconvert.baidu.com/simple/embed/scanSkill)
+- [Baidu Netdisk scan filter endpoint](https://pan.baidu.com/apaas/scan/filter)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell command snippets and JSON command results; successful image processing may return a local /tmp/scan_*.png file path.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BDPAN_API_KEY and a single jpg, png, gif, bmp, or webp image of 5 MB or less.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Optimize Your API Costs - Route tasks to cost-effective models via TokenRouter. Dynamically builds model tiers from live pricing, classifies tasks into 6 categories (supporting English & Chinese), and orchestrates multi-agent workflows with adaptive fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize API costs by routing tasks to cost-effective models through PaleBlueDot AI TokenRouter, using live pricing, bilingual task classification, multi-agent workflow planning, and adaptive fallback.
 
-## Publisher: <br>
-[yb98k999](https://clawhub.ai/user/yb98k999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yb98k999](https://clawhub.ai/user/yb98k999)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure a PaleBlueDot AI TokenRouter provider, compare live model pricing, and generate task-specific routing plans for coding, analysis, writing, creative, translation, and simple tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist user-provided TokenRouter credentials and modify global OpenClaw model configuration. <br>
-Mitigation: Review ~/.openclaw/openclaw.json before and after setup, keep backups under user control, and use a limited-scope API key when available. <br>
-Risk: The skill can change allowed models and routing behavior for the user's OpenClaw environment. <br>
-Mitigation: Inspect synced and enabled model changes before relying on generated routing plans, especially in shared or production workspaces. <br>
-Risk: The included local file-inspection tools can read broad workspace content. <br>
-Mitigation: Run smart_find.py and smart_map.py only on workspaces where broad local file inspection is intended and appropriate. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure a PaleBlueDot AI TokenRouter provider, synchronize available models, inspect live pricing, and generate model-routing plans for coding, analysis, writing, creative, translation, and simple tasks.
 
-## Reference(s): <br>
-- [Smart Model Router on ClawHub](https://clawhub.ai/yb98k999/task-based-model-router) <br>
-- [PaleBlueDot AI](https://www.palebluedot.ai) <br>
-- [TokenRouter API base URL](https://open.palebluedot.ai/v1) <br>
-- [TokenRouter pricing API](https://www.palebluedot.ai/openIntelligence/api/pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON execution plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update OpenClaw configuration and produce routing plan files when the user chooses setup, sync, enable, or execution planning flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The skill can persistently modify OpenClaw model provider settings and allowed models.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the intended provider URL and model list before enabling or syncing, and keep a backup of the OpenClaw configuration.
+
+Risk: The setup flow stores a TokenRouter API key locally and command-line usage can expose secrets in shell history.
+
+Mitigation: Use only user-provided credentials, avoid pasting secrets into reusable command history where possible, and rotate the key if it may have been exposed.
+
+Risk: Bundled local file-inspection utilities can read and print workspace files.
+
+Mitigation: Remove, ignore, or restrict smart_find.py and smart_map.py unless local file inspection is explicitly needed.
+
+## Reference(s):
+
+- [Smart Model Router on ClawHub](https://clawhub.ai/yb98k999/skills/task-based-model-router)
+- [PaleBlueDot AI](https://www.palebluedot.ai)
+- [PaleBlueDot AI TokenRouter Pricing API](https://www.palebluedot.ai/openIntelligence/api/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration updates, and optional JSON execution plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update OpenClaw provider settings, model allow lists, routing preferences, swarm_plan.json, swarm_memory.json, and swarm_insights.json.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

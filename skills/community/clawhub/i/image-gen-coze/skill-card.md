@@ -1,43 +1,54 @@
-## Description: <br>
-Generates images through a configured Coze workflow from a single prompt, parses the returned image URL, and documents how an agent can save the generated image locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image Generation via Coze generates images from a single prompt using a configured Coze workflow with the Seedream 4.5 model, including parameter construction and result parsing.
 
-## Publisher: <br>
-[noah-1106](https://clawhub.ai/user/noah-1106) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noah-1106](https://clawhub.ai/user/noah-1106)
 
-## Use Case: <br>
-Developers and agents use this skill to generate images with a Coze workflow, including prompt submission, result parsing, and optional local image saving. It is suitable for workflows that need one prompt to produce an image URL or saved PNG output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill calls a configured Coze workflow through a dependency skill using an API key and base URL. <br>
-Mitigation: Confirm the workflow_id, base_url, API key, and coze-workflow dependency are trusted and intended before running. <br>
-Risk: Prompts may be sent to Coze and generated images may be saved in a local generated_images folder. <br>
-Mitigation: Avoid sensitive prompts, inspect generated outputs before sharing, and manage retained image files according to local policy. <br>
-Risk: The artifact documents a 30-second-per-request limit. <br>
-Mitigation: Add call interval checks or queueing before repeated generation requests. <br>
+## Use Case:
 
+Developers and external users use this skill to ask an agent to submit image prompts to a configured Coze workflow, parse the returned image URL, and optionally save generated images.
 
-## Reference(s): <br>
-- [Coze Homepage](https://www.coze.cn) <br>
-- [ClawHub Skill Page](https://clawhub.ai/noah-1106/image-gen-coze) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON and bash examples; runtime output is an image URL and optional PNG file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses one prompt per request, depends on coze-workflow v1.1.1+, and may save images under ./generated_images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: server release metadata) <br>
+Risk: Prompts and the Coze API token are used for external API calls to a configurable endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted Coze configuration source, pin the endpoint to an official HTTPS Coze domain, and protect the credential config file.
+
+Risk: Returned image URLs may be downloaded before validation.
+
+Mitigation: Validate returned image URLs before download or use, and save generated files only to expected workspace locations.
+
+## Reference(s):
+
+- [Coze Homepage](https://www.coze.cn)
+- [ClawHub Skill Page](https://clawhub.ai/noah-1106/skills/image-gen-coze)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration, shell command examples, image URLs, and generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a single text prompt, supports prompt-level aspect-ratio tags, and recommends a 30-second interval between requests.]
+
+## Skill Version(s):
+
+1.1.4 (source: server release metadata; artifact frontmatter lists 1.1.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

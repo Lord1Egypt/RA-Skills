@@ -1,41 +1,54 @@
-## Description: <br>
-Record broadcast FM stations from an RTL-SDR using a reliable IQ-capture workflow with offline WBFM demodulation, RDS station-name extraction, and automatic MP3 naming. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Records broadcast FM stations from an RTL-SDR with IQ capture, offline WBFM demodulation, RDS station-name extraction, and automatic MP3 naming.
 
-## Publisher: <br>
-[igrikxd](https://clawhub.ai/user/igrikxd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[igrikxd](https://clawhub.ai/user/igrikxd)
 
-## Use Case: <br>
-Developers and operators use this skill to scan broadcast FM with RTL-SDR hardware, decode RDS station names, record selected stations, and return MP3 files with station, frequency, and timestamp naming. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local SDR and media-processing commands and can save radio recordings and metadata to disk. <br>
-Mitigation: Use an explicit output directory, monitor disk use during long or multi-station recordings, and review generated MP3 and JSON files before sharing them. <br>
-Risk: RDS station naming depends on local tooling, especially redsea, and may fall back to UnknownStation when dependencies or signal quality are insufficient. <br>
-Mitigation: Run the documented check and staged decode workflow before recording, and inspect diagnostic JSON when station naming fails. <br>
+## Use Case:
 
+Developers and technical users use this skill to check RTL-SDR broadcast-FM readiness, scan stations, decode RDS station names, and record selected stations as named MP3 files.
 
-## Reference(s): <br>
-- [Pipeline Notes](references/pipeline-notes.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/igrikxd/rtl-sdr-fm-rds-recorder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON command output descriptions, and generated MP3 file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local MP3 recordings and JSON metadata through the referenced scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow can run a redsea binary from a predictable /tmp fallback path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted redsea installation from PATH or patch/remove the /tmp fallback before deployment.
+
+Risk: The scripts create MP3, JSON cache, scan summary, and debug files in the selected output directory.
+
+Mitigation: Run with an explicit output directory and avoid privileged execution.
+
+## Reference(s):
+
+- [Pipeline Notes](references/pipeline-notes.md)
+- [ClawHub Skill Page](https://clawhub.ai/igrikxd/skills/rtl-sdr-fm-rds-recorder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON command output, plain text file paths, MP3 audio files, and metadata/debug JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include scan summaries, RDS cache and debug JSON, MP3 recordings, and optional intermediate IQ/WAV files when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-Address Extractor helps agents extract, clean, standardize, and geocode Chinese address information from unstructured text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts, cleans, and standardizes Chinese address information from unstructured text, with optional AMap geocoding to return coordinates.
 
-## Publisher: <br>
-[zhouyouwen](https://clawhub.ai/user/zhouyouwen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouyouwen](https://clawhub.ai/user/zhouyouwen)
 
-## Use Case: <br>
-Developers and operations teams use this skill to turn customer records, order text, document notes, and logistics data into structured address components and optional map coordinates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real addresses can be personal or sensitive data, and optional geocoding sends address queries to AMap. <br>
-Mitigation: Run local parsing without an AMap API key when external geocoding is not required, and enable geocoding only with permission to send the address data to AMap. <br>
-Risk: Parsed or geocoded address results may be unsuitable for critical routing, delivery, or customer-record decisions without review. <br>
-Mitigation: Validate important standardized addresses and coordinate results before using them in production workflows. <br>
+## Use Case:
 
+Developers and operations teams use this skill to turn customer records, orders, documents, and other unstructured Chinese text into standardized address components and, when configured, geographic coordinates.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhouyouwen/address-extractor) <br>
-- [Address Extraction Reference](references/README.md) <br>
-- [Configuration Template](references/config_template.json) <br>
-- [Amap Open Platform](https://lbs.amap.com/) <br>
-- [Amap Geocoding API](https://restapi.amap.com/v3/geocode/geo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Code, API Calls, Configuration] <br>
-**Output Format:** [Python dictionary or JSON-like structured address data with optional coordinate fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coordinates are returned only when an Amap API key is configured and geocoding succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Geocoding can send sensitive customer, logistics, or personal address queries to AMap when an API key is configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the extractor without an AMap API key for sensitive data unless consent and policy approval allow external geocoding.
+
+Risk: Parsed or geocoded addresses may be inaccurate for important operational decisions.
+
+Mitigation: Review standardized addresses and coordinate results before using them for routing, delivery, customer records, or other consequential workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhouyouwen/skills/address-extractor)
+- [Address Extraction Reference](references/README.md)
+- [Configuration Template](references/config_template.json)
+- [AMap Open Platform](https://lbs.amap.com/)
+- [AMap Geocoding API Endpoint](https://restapi.amap.com/v3/geocode/geo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with Python snippets and JSON-like structured address results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include optional AMap geocoding output when an API key is configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

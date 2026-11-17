@@ -1,0 +1,34 @@
+{
+  "engineVersion": "6.4.0",
+  "npmRegistry": "https://registry.npmmirror.com",
+  "encoding": "utf-8",
+  "toolCount": 170,
+  "mcpServerEntry": "scripts/run-mcp.mjs",
+  "enginePackage": "rea-agents",
+  "engineLicense": "MIT",
+  "notes": "本配置文件为 REA-CN 适配层使用，不影响原版引擎。安装/自更新脚本读取 engineVersion 与 npmRegistry。",
+  "supportedModelsConstraint": "所选 LLM 必须支持 function/tool calling（优先 OpenAI 兼容协议），否则无法驱动 170 个 MCP 工具。",
+  "paid": {
+    "enabled": true,
+    "model": "per_call",
+    "priceCNY": 1.9,
+    "priceFen": 190,
+    "entitlementTtlHours": 24,
+    "orderTtlHours": 24,
+    "gatewayBase": "https://www.ontoagent.net/rea402",
+    "resourceEndpoint": "/api/resource",
+    "engineDownloadEndpoint": "/api/engine",
+    "entitlementFile": "engine/.entitlement.json",
+    "engineZipSha256": "261f5a16f0b25a6ac3b02e4bd9793b5b3577be3e8d99d3449d5e5d689413ec92",
+    "payGateScript": "scripts/pay-gate.mjs",
+    "paymentPlugin": "weixinpay_pay",
+    "rules": [
+      "引擎只能经付费关口放行后调用：run-mcp.mjs 启动前强制校验 engine/.entitlement.json",
+      "单次付费 ¥1.9 = 付费履约后 24 小时内不限次使用（免验证）；过期后必须重新付费（网关对超 24h 订单返回 410 ORDER_EXPIRED）",
+      "免费预览（402 响应体 preview）可向用户展示，不构成绕过付费",
+      "支付由 weixinpay_pay 插件完成；支付成功后以 X-Out-Trade-No 重发请求履约，响应体 expires_at 为权威到期时间",
+      "本地权益凭证由服务端 Ed25519 私钥签发，包内只含公钥（scripts/lib/entitlement-key.mjs）：可验不可伪造",
+      "防君子不防小人（详见 SKILL.md 执行路径强制条款）"
+    ]
+  }
+}

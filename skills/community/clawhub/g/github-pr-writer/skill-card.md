@@ -1,41 +1,54 @@
-## Description: <br>
-Writes clear, structured GitHub pull request descriptions using a standardized template populated from branch diffs or provided context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write clear, structured GitHub pull request descriptions using a standardized template.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Developers and engineers use this skill to draft or update GitHub pull request bodies with summaries, change descriptions, impact notes, and testing guidance before review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A generated PR body may disclose sensitive details present in diffs or commit messages. <br>
-Mitigation: Review and redact the generated PR description before posting it to GitHub. <br>
-Risk: GitHub CLI actions could target the wrong repository or branch if context is stale or ambiguous. <br>
-Mitigation: Confirm the target repository and branch before allowing any GitHub CLI action. <br>
+## Use Case:
 
+Developers and engineers use this skill to draft or update GitHub pull request descriptions from branch diffs, commit history, and provided change context.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/djc00p/github-pr-writer) <br>
-- [Pull Request Template](artifact/assets/pull_request_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown pull request description with optional shell commands for gathering diff context.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review the generated PR body before posting, especially when diffs or commit messages include sensitive details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill may inspect branch diffs and commit history, which can contain private implementation details or sensitive issue references.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated pull request description before publishing it, especially for private repositories.
+
+Risk: Generated pull request descriptions can omit important testing gaps, impact details, or breaking changes if the repository context is incomplete.
+
+Mitigation: Verify every section of the PR template against the actual code changes before sharing or submitting the description.
+
+## Reference(s):
+
+- [GitHub PR Writer on ClawHub](https://clawhub.ai/djc00p/skills/github-pr-writer)
+- [Pull Request Template](artifact/assets/pull_request_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown pull request description with optional shell commands for gathering repository context]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires git and GitHub CLI when collecting repository context from a local branch.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

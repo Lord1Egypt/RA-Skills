@@ -1,40 +1,53 @@
-## Description: <br>
-Helps an agent search playback links for films, anime, short dramas, variety shows, and update status, with optional casting to Xiaomi or Android TVs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用于追剧/追番的技能，为AI提供搜索影视播放地址的能力，并支持在小米电视上直接播放。当用户想搜索影视、动漫、短剧、综艺等节目信息或更新进度时使用此技能。
 
-## Publisher: <br>
-[al-one](https://clawhub.ai/user/al-one) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[al-one](https://clawhub.ai/user/al-one)
 
-## Use Case: <br>
-External users and agents use this skill to find media playback URLs and check updates for films, anime, short dramas, and variety shows. It can also guide authorized casting to configured Xiaomi or Android TVs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on external package runners through npx and uvx. <br>
-Mitigation: Install and run it only when you trust the upstream mcporter and mcp-vods packages. <br>
-Risk: Casting media is a real device-control action for a local TV. <br>
-Mitigation: Confirm the media URL and target TV IP, and use casting only with TVs you own or are authorized to control. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/al-one/mcp-vods) <br>
-- [Project homepage](https://github.com/aahl/mcp-vods) <br>
+## Use Case:
 
+External users and agents use this skill to search video, anime, short-drama, and variety-show sources, check update status, and prepare playback commands. When configured with local TV addresses, it can cast media URLs to Xiaomi TV or Android TV/TvBox devices.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include media search terms, page numbers, playback URLs, and optional TV IP configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill instructs agents to auto-download and run unpinned third-party packages.
+
+Mitigation: Use pinned, reviewed versions of `mcporter` and `mcp-vods`, and run them in a sandbox where practical.
+
+Risk: Searches and playback commands may expose viewing interests, media URLs, and local TV addresses.
+
+Mitigation: Use trusted networks and devices, avoid sensitive queries where privacy matters, and share local TV addresses only with tooling you trust.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/al-one/skills/mcp-vods)
+- [Project homepage](https://github.com/aahl/mcp-vods)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search and casting actions depend on external packages, source sites, local-network device configuration, and command execution by the host agent.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn793md79p7hf5f98k45wmxp1s81ynbj",
-  "slug": "tech-solution-generator",
+  "name": "tech-solution-generator",
   "version": "1.0.0",
-  "publishedAt": 1772367384742
+  "description": "技术方案文档自动生成器。根据需求自动生成完整的技术方案文档，包含架构设计、技术选型、风险评估、排期估算。",
+  "author": "imgolye",
+  "tags": ["tech", "solution", "architecture", "documentation", "design"],
+  "license": "MIT"
 }

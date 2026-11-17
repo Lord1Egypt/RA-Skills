@@ -1,0 +1,441 @@
+#!/usr/bin/env bash
+# juggle — read your Juggle (whyjuggle.com) FAMILY account from a shell with
+# curl + jq, without running juggle-mcp. Read-only: posting, accepting,
+# cancelling, messaging, favoriting and reviewing are confirm-gated tools in
+# the MCP and deliberately not here.
+#
+# Runs under bash (3.2+) and zsh. Needs curl and jq.
+#
+#   juggle login | status | logout
+#   juggle profile [--kids]
+#   juggle bookings [active|past|all]
+#   juggle booking <bookingId>
+#   juggle sitters [key=value ...]        e.g. keywords=infant 'services[]=petsitting'
+#   juggle favorites
+#   juggle sitter <profileId>
+#   juggle reviews <accountId> [limit] [offset]
+#   juggle conversations
+#   juggle conversation <conversationId> [limit]
+#   juggle payments [limit]
+#   juggle locations [state]              public, no sign-in
+#   juggle get <route> [key=value ...]    the raw {meta,user,data} page envelope
+#
+# Env: JUGGLE_EMAIL, JUGGLE_PASSWORD (login, and a single automatic re-login
+# when the saved session has expired), JUGGLE_SESSION_FILE (default
+# ~/.config/juggle/session — this skill's OWN cookie jar, 0600; never the MCP's
+# state), JUGGLE_BASE_URL (default https://whyjuggle.com; tests/stubs only).
+#
+# stdout = JSON only (pipe to jq); messages go to stderr. Exit codes:
+#   0 ok · 1 usage/setup · 2 could not reach the site · 4 upstream refused or
+#   answered something unexpected · 5 credentials missing or REJECTED (never
+#   retried) · 6 not signed in / session expired and could not be renewed
+#
+# NOTE: no variable here may be called `path` or `status` — both are special
+# parameters in zsh (`path` is tied to $PATH).
+
+set -eu
+set -o pipefail
+umask 077
+
+JUGGLE_BASE_URL=${JUGGLE_BASE_URL:-https://whyjuggle.com}
+JUGGLE_BASE_URL=${JUGGLE_BASE_URL%/}
+SESSION=${JUGGLE_SESSION_FILE:-$HOME/.config/juggle/session}
+UA='juggle-skill (+https://github.com/chrischall/juggle-mcp)'
+CODE=''
+FINAL_URL=''
+TMPJAR=''
+
+die() {
+  printf 'juggle: %s\n' "$2" >&2
+  exit "$1"
+}
+
+usage() {
+  sed -n '8,21p' "$JUGGLE_SELF" | sed 's/^# \{0,1\}//' >&2
+  exit 1
+}
+
+JUGGLE_SELF=$0
+command -v curl >/dev/null 2>&1 || die 1 'needs curl'
+command -v jq >/dev/null 2>&1 || die 1 'needs jq (brew install jq)'
+
+# The password is sent to this origin, so it must be https (loopback http is
+# allowed for a local stub). Redirects may only stay on the same scheme.
+case $JUGGLE_BASE_URL in
+  https://*) PROTO=https ;;
+  http://127.0.0.1 | http://127.0.0.1:* | http://localhost | http://localhost:*) PROTO=http ;;
+  *) die 1 "JUGGLE_BASE_URL must be https:// (got $JUGGLE_BASE_URL)" ;;
+esac
+
+BODY=$(mktemp "${TMPDIR:-/tmp}/juggle-body.XXXXXX")
+cleanup() {
+  rm -f -- "$BODY"
+  if [ -n "$TMPJAR" ]; then rm -f -- "$TMPJAR"; fi
+}
+trap cleanup EXIT
+trap 'exit 130' INT TERM
+
+is_uint() {
+  case $1 in '' | *[!0-9]*) return 1 ;; esac
+  return 0
+}
+
+have_creds() {
+  [ -n "${JUGGLE_EMAIL:-}" ] && [ -n "${JUGGLE_PASSWORD:-}" ]
+}
+
+# do_get <auth 1|0> <route> [key=value ...] — XHR GET (redirects followed on
+# the same scheme). Sets CODE and FINAL_URL; the body is in $BODY.
+do_get() {
+  local auth=$1 route=$2 n kv out
+  shift 2
+  n=$#
+  for kv in "$@"; do set -- "$@" --data-urlencode "$kv"; done
+  shift "$n"
+  if [ "$auth" = 1 ]; then set -- -b "$SESSION" -c "$SESSION" "$@"; fi
+  out=$(curl -sS -G -L --path-as-is --max-redirs 5 --proto "=$PROTO" --proto-redir "=$PROTO" --max-time 30 \
+    -A "$UA" -H 'X-Requested-With: XMLHttpRequest' -H 'Accept: application/json, text/plain, */*' -H 'X-Client: Website' \
+    -o "$BODY" -w '%{http_code} %{url_effective}' "$@" "$JUGGLE_BASE_URL$route") ||
+    die 2 "could not reach $JUGGLE_BASE_URL"
+  CODE=${out%% *}
+  FINAL_URL=${out#* }
+}
+
+# "Your session is gone" — by status and page IDENTITY, never by prose (message
+# bodies are other people's text): 401/419, landing on /log-in, the XHR
+# redirect envelope {redirect:true,url:"/log-in"} (what a stale-cookie read
+# actually gets, live 2026-11-03), or the login page served in place (XHR JSON
+# meta.page, or an HTML page's server-data).
+is_expired() {
+  case $CODE in 401 | 419) return 0 ;; esac
+  local u=${FINAL_URL%%\?*}
+  u=${u%/}
+  case $u in */log-in) return 0 ;; esac
+  case $CODE in
+    2??)
+      if jq -e 'type == "object" and .meta.page == "LogIn"' "$BODY" >/dev/null 2>&1; then return 0; fi
+      if jq -e 'type == "object" and .redirect == true and ((.url // "") | sub("^https?://[^/]+"; "") | sub("[?#].*$"; "") | rtrimstr("/")) == "/log-in"' "$BODY" >/dev/null 2>&1; then return 0; fi
+      if grep -q 'server-data="[^"]*&quot;page&quot;:&quot;LogIn&quot;' "$BODY" 2>/dev/null; then return 0; fi
+      ;;
+  esac
+  return 1
+}
+
+# page <route> [key=value ...] — a signed-in page read. With no session (or an
+# expired one) it signs in ONCE from JUGGLE_EMAIL/JUGGLE_PASSWORD and replays
+# ONCE; a rejected password exits 5 and is never re-posted.
+page() {
+  if [ ! -s "$SESSION" ]; then
+    have_creds || die 6 'not signed in — run: juggle login (with JUGGLE_EMAIL and JUGGLE_PASSWORD set)'
+    do_login >/dev/null
+  fi
+  do_get 1 "$@"
+  if is_expired; then
+    have_creds || die 6 'session expired — run: juggle login (with JUGGLE_EMAIL and JUGGLE_PASSWORD set)'
+    printf 'juggle: session expired — signing in again\n' >&2
+    do_login >/dev/null
+    do_get 1 "$@"
+    if is_expired; then die 6 'still signed out after a fresh sign-in'; fi
+  fi
+  check_envelope "$1"
+}
+
+check_envelope() {
+  case $CODE in
+    2??) ;;
+    404) die 4 "not found (HTTP 404) for $1 — check the id" ;;
+    403) die 4 "Juggle refused $1 for this account (HTTP 403)" ;;
+    429) die 4 'Juggle is rate-limiting (HTTP 429) — wait a minute' ;;
+    *) die 4 "HTTP $CODE for $1" ;;
+  esac
+  jq -e 'type == "object" and (.meta | type) == "object"' "$BODY" >/dev/null 2>&1 ||
+    die 4 "$1 did not answer with a page envelope (the route may have moved)"
+}
+
+do_login() {
+  have_creds || die 5 'set JUGGLE_EMAIL and JUGGLE_PASSWORD (your whyjuggle.com family sign-in)'
+  local dir out csrf
+  dir=$(dirname -- "$SESSION")
+  mkdir -p -- "$dir"
+  chmod 700 "$dir"
+  TMPJAR=$(mktemp "$SESSION.XXXXXX")
+
+  # 1. The sign-in page: session + XSRF cookies, and the CSRF token.
+  out=$(curl -sS --proto "=$PROTO" --max-time 30 -A "$UA" -H 'X-Requested-With: XMLHttpRequest' \
+    -H 'Accept: application/json, text/plain, */*' -H 'X-Client: Website' \
+    -c "$TMPJAR" -b "$TMPJAR" -o "$BODY" -w '%{http_code}' "$JUGGLE_BASE_URL/log-in") ||
+    die 2 "could not reach $JUGGLE_BASE_URL"
+  [ "$out" = 200 ] || die 4 "could not open the sign-in page (HTTP $out)"
+  csrf=$(jq -r 'if type == "object" then (.meta.csrfToken // empty) else empty end' "$BODY" 2>/dev/null || true)
+  if [ -z "$csrf" ]; then
+    csrf=$(sed -n 's/.*<meta name="csrf-token" content="\([^"]*\)".*/\1/p' "$BODY" | head -n 1)
+  fi
+  [ -n "$csrf" ] || die 4 'no CSRF token on the sign-in page (the page changed)'
+
+  # 2. POST the credentials. The JSON body is built by jq from the
+  #    environment and piped in, so the password never appears in argv.
+  out=$(jq -n '{email: env.JUGGLE_EMAIL, password: env.JUGGLE_PASSWORD}' |
+    curl -sS --proto "=$PROTO" --max-time 30 -A "$UA" -X POST \
+      -H 'X-Requested-With: XMLHttpRequest' -H 'Accept: application/json, text/plain, */*' -H 'X-Client: Website' \
+      -H 'Content-Type: application/json' -H "X-CSRF-TOKEN: $csrf" --data-binary @- \
+      -c "$TMPJAR" -b "$TMPJAR" -o "$BODY" -w '%{http_code}' "$JUGGLE_BASE_URL/log-in") ||
+    die 2 "could not reach $JUGGLE_BASE_URL"
+  case $out in
+    422) die 5 'Juggle rejected the email/password (not retried)' ;;
+    419) die 4 'Juggle refused the sign-in form (HTTP 419, stale CSRF token) — retry' ;;
+    429) die 4 'too many sign-in attempts (HTTP 429) — wait a few minutes' ;;
+    200)
+      if jq -e 'type == "object" and .error == true' "$BODY" >/dev/null 2>&1; then
+        die 5 'Juggle rejected the email/password (not retried)'
+      fi
+      ;;
+    3??) ;;
+    *) die 4 "sign-in failed (HTTP $out)" ;;
+  esac
+
+  # 3. Keep the jar, then confirm the session actually took.
+  mv -f -- "$TMPJAR" "$SESSION"
+  TMPJAR=''
+  chmod 600 "$SESSION"
+  do_get 1 /
+  if is_expired || ! jq -e '.user != null' "$BODY" >/dev/null 2>&1; then
+    rm -f -- "$SESSION"
+    die 4 'Juggle accepted the sign-in but the session did not stick'
+  fi
+  jq -c '{signedIn: true, type: .user.type, firstName: .user.firstName}' "$BODY"
+}
+
+# ------------------------------------------------------------------ commands
+
+# Shared jq helpers: option-list lookup ([{id,name}]) and integer cents → dollars.
+JQ_DEFS='
+def opt($list; $id): first(($list // [])[] | select((.id | tostring) == ($id | tostring)) | .name) // null;
+def usd: if type == "number" then . / 100 else null end;
+'
+
+out_jq() {
+  local filter=$1
+  shift
+  jq "$@" "$JQ_DEFS$filter" "$BODY"
+}
+
+cmd_status() {
+  if [ ! -s "$SESSION" ]; then
+    printf '{"signedIn":false}\n'
+    return 0
+  fi
+  do_get 1 /
+  if is_expired || ! jq -e '.user != null' "$BODY" >/dev/null 2>&1; then
+    printf '{"signedIn":false}\n'
+    return 0
+  fi
+  jq -c '{signedIn: true, type: .user.type, firstName: .user.firstName, unreadMessages: .user.numUnreadMsgs}' "$BODY"
+}
+
+cmd_logout() {
+  if [ -s "$SESSION" ]; then
+    do_get 1 /log-out || true
+  fi
+  rm -f -- "$SESSION"
+  printf '{"signedIn":false}\n'
+}
+
+# ALLOWLISTED: /my-profile also carries phone numbers, the emergency contact and
+# house instructions (door codes). Kids' details only with --kids.
+cmd_profile() {
+  local kids=false
+  case ${1:-} in --kids) kids=true ;; '') ;; *) usage ;; esac
+  page /my-profile
+  out_jq '.user as $u | .data as $d | ($d.profile // {}) as $p |
+  { accountId: $u.accountId, fullName: $d.fullName, email: $d.email,
+    serviceArea: opt($d.serviceAreas; $d.serviceAreaId),
+    isActive: $d.isActive, hasSubscription: $d.hasSubscription, unreadMessages: $u.numUnreadMsgs,
+    partnerName: $p.partner_name, neighborhood: $p.neighborhood, school: $p.school,
+    stats: { jobsPosted: $p.num_jobs_posted, jobsCompleted: $p.num_jobs_completed,
+             jobsCanceled: $p.num_jobs_canceled, rating: $p.rating },
+    addresses: [ ($d.addrs // [])[] | { id, streetAddr, city, state: (opt($d.states; .state) // .state), zipCode, primary } ],
+    numKids: (($d.kids // []) | length),
+    pets: [ ($d.pets // [])[] | { id, name, breed, age, type: (opt($d.petTypes; .type) // .type) } ],
+    numFriends: (($d.friends // []) | length) }
+  + (if $kids then { kids: [ ($d.kids // [])[] | { id, name, birthday, grade, school, hobbies, foods, allergies,
+      specialNeeds, gender: opt($d.genders; .gender) } ] } else {} end)' --argjson kids "$kids"
+}
+
+cmd_bookings() {
+  local which=${1:-active}
+  case $which in active | past | all) ;; *) usage ;; esac
+  page /bookings
+  out_jq '.data as $d |
+  [ ($d.bookings // [])[]
+    | select($which == "all" or (($which == "past") == ((.status // "") | IN("completed", "canceled", "declined", "expired", "archived")))) ]
+  | sort_by(.startDateTime)
+  | map({ bookingId: .id, status, statusLabel: (($d.bookingStatusesMap // {})[.status // ""] // null),
+          service: ((($d.serviceTypesMap // {})[.serviceType // .type // ""]) // .serviceType // .type),
+          start: .startDateTimeFormatted, startDateTime, sitter: .name, pendingApplications: .numPendingApplications }
+        + (if .reoccurringBookingId then { recurring: { seriesId: .reoccurringBookingId, days: .reoccurringDotws, until: .reoccurringUntilDate } } else {} end))' \
+    --arg which "$which"
+}
+
+cmd_booking() {
+  is_uint "${1:-}" || usage
+  page "/bookings/$1"
+  out_jq '.data as $d |
+  { bookingId: $d.bookingId, status: $d.status, displayStatus: $d.displayStatus, serviceType: $d.serviceType,
+    typeOfJob: $d.typeOfJob, start: { date: $d.startDate, time: $d.startTime }, end: { date: $d.endDate, time: $d.endTime },
+    isReoccurring: $d.isReoccurring, numKids: $d.numKids, kidInfo: $d.kidInfo, numPets: $d.numPets, petInfo: $d.petInfo,
+    specialInstructions: $d.specialInstructions, address: ($d.primaryAddrStr // $d.familyAddrStr),
+    numSitters: $d.numSitters, numBookedSitters: $d.numBookedSitters,
+    applicants: [ ($d.bookingRequests // [])[] | { accountId, profileId, name, rating, numJobsCompleted,
+      status: .bookingRequestStatus, requestedByYou: .requestSentFromFamily, isFavorite: (.isFavorited // .isFavorite),
+      hoursUntilExpires: .hoursUntilBookingRequestExpires } ],
+    bookedSitters: [ ($d.bookingSitters // [])[] | { accountId, profileId, userId, name, rating, numJobsCompleted,
+      phone: .sitterPhoneNum, canceled: .sitterCanceled } ],
+    payment: { total: $d.familyPaymentAmount,
+               breakdown: (($d.familyPaymentBreakdown // {}) | with_entries(select(.value != null and .value != ""))) },
+    can: { cancel: $d.canCancelBooking, edit: $d.canEdit, sendMessage: $d.canSendMsg } }'
+}
+
+SITTER_LIST='{ totalNumSitters: .data.totalNumSitters,
+  sitters: [ (.data.sitters // [])[] | { profileId: .id, accountId, name, location, rating, numJobsCompleted,
+    backgroundCheckCompleted, isFavorite, numFriends } ] }'
+
+cmd_sitters() {
+  local kv
+  for kv in "$@"; do
+    case $kv in *=*) ;; *) usage ;; esac
+  done
+  page /sitters numSitters=20 "$@"
+  out_jq "$SITTER_LIST"
+}
+
+cmd_favorites() {
+  page /sitters favorites=1 numSitters=200
+  out_jq "$SITTER_LIST"
+}
+
+# ALLOWLISTED: the sitter page's `profile` is the sitter's full row — phone,
+# birthdate, emergency contacts, conviction/maltreatment flags, facebook. None
+# of it is ever printed; there is deliberately no flag to get it.
+cmd_sitter() {
+  is_uint "${1:-}" || usage
+  page "/sitters/$1"
+  out_jq '.data as $d | ($d.profile // {}) as $p |
+  { profileId: $p.id, accountId: $d.accountId, userId: $d.userId, name: $d.name, rating: $p.rating,
+    numJobsCompleted: $d.numJobsCompleted, momApprovedSince: $d.momApprovedSince,
+    backgroundCheckCompleted: $d.backgroundCheckCompleted, isFavorite: $d.isFavorite, serviceAreaName: $d.serviceAreaName,
+    servicesOffered: $d.servicesOffered, childcareExperience: $d.childcareExperience, specialNeeds: $d.specialNeeds,
+    higherEducation: $d.higherEducation, canSendMsg: $d.canSendMsg,
+    profile: ($p | { bio, college, major, hometown, certifications, age_specific_experience, min_kid_age, max_kid_age,
+      babysits, petsits, homeschools, pet_experience, homework_subjects, will_help_with_homework,
+      valid_drivers_license, usable_vehicle_available }) }'
+}
+
+cmd_reviews() {
+  local limit=${2:-20} offset=${3:-0}
+  is_uint "${1:-}" && is_uint "$limit" && is_uint "$offset" || usage
+  page "/reviews/$1"
+  out_jq '.data as $d | ($d.reviews // []) as $r | [ $r[].rating | numbers ] as $n |
+  { reviewedName: $d.reviewedName, total: ($r | length),
+    averageRating: (if ($n | length) > 0 then ($n | add / length * 100 | round / 100) else null end),
+    offset: $off,
+    reviews: [ $r[$off:($off + $lim)][] | { date, name, rating, content, friend } ] }' \
+    --argjson lim "$limit" --argjson off "$offset"
+}
+
+cmd_conversations() {
+  page /messages
+  out_jq '[ (.data.conversations // [])[] | { conversationId: .id, name, lastMessage,
+    lastMessageAt: .messageCreatedAt, unread: .numUnreadMsgs } ]'
+}
+
+cmd_conversation() {
+  local limit=${2:-50}
+  is_uint "${1:-}" && is_uint "$limit" && [ "$limit" -gt 0 ] || usage
+  page "/messages/$1"
+  out_jq '.data as $d | ($d.messages // []) as $m |
+  { conversationId: $d.conversationId, isActive: $d.isActive, total: ($m | length),
+    messages: [ $m[-$lim:][] | { id, from: .name, mine: .myMessage, sentAt, type, content } ] }' \
+    --argjson lim "$limit"
+}
+
+# ALLOWLISTED: /payments carries a live Stripe SetupIntent client_secret, the
+# publishable key and payment-method ids. Amounts are integer cents → dollars.
+cmd_payments() {
+  local limit=${1:-20}
+  is_uint "$limit" || usage
+  page /payments
+  out_jq '.data as $d |
+  { serviceAreaName: $d.serviceAreaName, hasSubscription: $d.hasSubscription,
+    subscription: (if ($d.subscription | type) == "object" then ($d.subscription | { planId, type, currentPeriodEnd, endAt }) else null end),
+    baseRatesUsd: (($d.baseRates // {}) | map_values(usd)),
+    paymentMethods: [ ($d.paymentMethods // [])[] | (.card // {}) | { brand, last4, expMonth: .exp_month, expYear: .exp_year } ],
+    promoCodes: [ ($d.promoCodes // [])[] | { name, desc, remainingUsd: (.remainingAmt | usd), expiresOn } ],
+    transactionsTotal: (($d.transactions // []) | length),
+    transactions: [ ($d.transactions // [])[:$lim][] | { date: .transactionDatetime, type, totalUsd: (.total | usd),
+      tipUsd: (.tipAmount | usd), discountedUsd: (.discountedAmount | usd), bookingId, sitter: .sitterFullName } ] }' \
+    --argjson lim "$limit"
+}
+
+cmd_locations() {
+  do_get 0 /locations
+  check_envelope /locations
+  out_jq '[ (.data.states // {}) | to_entries[]
+    | select($state == "" or (.key | ascii_downcase) == ($state | ascii_downcase))
+    | .key as $s | (.value.locations // [])[]
+    | { state: $s, city,
+        details: ((.details // "") | gsub("<[^>]*>"; " ") | gsub("&nbsp;"; " ") | gsub("&amp;"; "&")
+                  | gsub("\\s+"; " ") | gsub(" (?<p>[:;,.])"; "\(.p)") | ltrimstr(" ") | rtrimstr(" ")) } ]' \
+    --arg state "${1:-}"
+}
+
+# The raw envelope, for routes the named commands do not cover. Refuses the
+# pages whose raw data carries private fields — use the allowlisted command.
+cmd_get() {
+  local route=${1:-} kv
+  [ -n "$route" ] || usage
+  shift
+  case $route in
+    /*) ;;
+    *) die 1 'route must start with / (e.g. /bookings)' ;;
+  esac
+  # Refuse anything curl or the server could normalise into a different path
+  # (dot segments, doubled slashes, percent-encoding, backslashes), so the
+  # path checked below is the path requested; do_get also sends --path-as-is.
+  case $route in
+    *\?* | *#*) die 1 'pass query parameters as key=value arguments, not in the route' ;;
+    *//* | */./* | */. | *..* | *%* | *\\*) die 1 'route must be a plain path: no //, dot segments, % encoding or backslashes' ;;
+    *[!A-Za-z0-9/_.-]*) die 1 'route must be a plain path: letters, digits, /, -, _ and . only' ;;
+  esac
+  # Matched lower-cased, so a case variant cannot slip past either.
+  case $(printf '%s' "$route" | tr '[:upper:]' '[:lower:]') in
+    /my-profile | /my-profile/*) die 1 'refused: raw /my-profile has phone numbers and door codes — use: juggle profile' ;;
+    /payments | /payments/*) die 1 'refused: raw /payments has a Stripe client secret — use: juggle payments' ;;
+    /sitters/[0-9]*) die 1 "refused: a raw sitter page has the sitter's private details — use: juggle sitter <profileId>" ;;
+  esac
+  for kv in "$@"; do
+    case $kv in *=*) ;; *) usage ;; esac
+  done
+  page "$route" "$@"
+  jq . "$BODY"
+}
+
+cmd=${1:-}
+[ $# -gt 0 ] && shift
+case $cmd in
+  login) do_login ;;
+  status) cmd_status ;;
+  logout) cmd_logout ;;
+  profile) cmd_profile "$@" ;;
+  bookings) cmd_bookings "$@" ;;
+  booking) cmd_booking "$@" ;;
+  sitters) cmd_sitters "$@" ;;
+  favorites) cmd_favorites ;;
+  sitter) cmd_sitter "$@" ;;
+  reviews) cmd_reviews "$@" ;;
+  conversations) cmd_conversations ;;
+  conversation) cmd_conversation "$@" ;;
+  payments) cmd_payments "$@" ;;
+  locations) cmd_locations "$@" ;;
+  get) cmd_get "$@" ;;
+  *) usage ;;
+esac

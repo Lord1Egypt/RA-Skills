@@ -1,41 +1,54 @@
-## Description: <br>
-Reference tool for devtools that covers Convert intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet material. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools — covers intro, quickstart, patterns and more. Quick lookup for Convert concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve concise Convert reference documentation for devtools workflows, including quickstart, troubleshooting, security, migration, and performance topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides generic reference documentation rather than an actual conversion utility. <br>
-Mitigation: Use the output as guidance only and verify any implementation steps against project-specific requirements before applying them. <br>
-Risk: Package materials show version mismatches between the server release, skill frontmatter, and script. <br>
-Mitigation: Treat the server release version as the published version and confirm bundled file versions during release review. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick local reference for Convert concepts, quickstart guidance, patterns, debugging, performance, security, migration, and cheatsheet topics in devtools workflows.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [Convert on ClawHub](https://clawhub.ai/bytesagain1/convert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain-text Markdown reference documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local output; no API keys, credentials, or network access are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server release evidence) <br>
+Risk: The executable script prints generic operational guidance that may not fit a user's actual environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the returned guidance against local requirements before applying it to real systems.
+
+Risk: The skill is published by a third party rather than NVIDIA.
+
+Mitigation: Install and use it only when the publisher and reference content are trusted.
+
+## Reference(s):
+
+- [Convert ClawHub Skill Page](https://clawhub.ai/bytesagain1/skills/convert)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Plain text and Markdown-style reference documentation emitted by shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API keys, credentials, network access, or persistent state are required according to artifact and security evidence.]
+
+## Skill Version(s):
+
+2.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

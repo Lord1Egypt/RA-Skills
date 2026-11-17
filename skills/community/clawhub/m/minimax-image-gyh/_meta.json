@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn760j8hvg3eze215091p55bx982drwk",
+  "ownerId": "gyh",
   "slug": "minimax-image-gyh",
   "version": "1.0.0",
-  "publishedAt": 1775964530963
+  "publishedAt": 1744394400000,
+  "name": "minimax-image",
+  "description": "MiniMax 图像生成技能（image-01），支持文生图。"
 }

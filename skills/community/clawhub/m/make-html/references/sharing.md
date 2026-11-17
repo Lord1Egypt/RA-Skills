@@ -1,71 +1,79 @@
 # Sharing HTML Artifacts
 
-Use PageDrop when the user asks for a hosted preview, shareable link, or cross-device review of a finished HTML artifact. PageDrop is an optional delivery path, not a replacement for local validation or the local file.
+Use Pagedrop when the user asks for a hosted preview, shareable link, cross-device review, or annotation feedback for a finished HTML artifact. Pagedrop serves a GitHub Gist through `pagedrop.ai`; it is an optional delivery path, not a replacement for local validation or the local file.
 
 ## Guardrails
 
-- Validate the local artifact before uploading it.
-- Upload only after the user asks for a hosted/shareable link or explicitly confirms third-party sharing.
-- Never upload credentials, secrets, tokens, private customer data, personal data, or internal-only material. Review source excerpts, comments, metadata, embedded data, and hidden UI before sharing.
-- Treat the generated URL as accessible to anyone who receives it. An expiring link is not a privacy boundary.
-- Treat password protection as defense in depth, not permission to upload sensitive material.
-- Keep the local `.html` file as the canonical artifact and fallback.
-- Do not add PageDrop scripts, SDKs, or remote dependencies to the artifact. The upload is a separate delivery step.
+- Validate the local artifact before publishing it.
+- Publish only after the user asks for a hosted/shareable link or explicitly confirms third-party sharing.
+- Never publish credentials, secrets, tokens, private customer data, personal data, or internal-only material. Review source excerpts, comments, metadata, embedded data, and hidden UI before sharing.
+- Treat secret Gists as unlisted, not private. Anyone with the Pagedrop or Gist URL can view the content.
+- Keep the local `.html` file as the canonical artifact.
+- Do not claim an expiry. A Pagedrop URL persists until its backing Gist is deleted.
 
-## Upload
+## Prerequisite
 
-From the skill directory, use the bundled dependency-free uploader:
-
-```bash
-node scripts/pagedrop-upload.mjs /absolute/path/to/artifact.html --ttl 1h
-```
-
-Supported TTLs:
-
-- `1h` for quick review; use this default when the user does not specify.
-- `1d` or `3d` for longer review windows.
-- `once` only when a single successful view is intended.
-
-Optional sharing controls:
+Pagedrop uses the authenticated GitHub CLI to create and update Gists:
 
 ```bash
-# Memorable URL: https://quarterly-review.pagedrop.io
-node scripts/pagedrop-upload.mjs artifact.html --ttl 1d --custom-path quarterly-review
-
-# Password protection: read the password from an environment variable
-node scripts/pagedrop-upload.mjs artifact.html --ttl 1d --password-env PAGEDROP_PASSWORD
-
-# Combine both controls
-node scripts/pagedrop-upload.mjs artifact.html --ttl 1d \
-  --custom-path quarterly-review \
-  --password-env PAGEDROP_PASSWORD
+gh auth status
 ```
 
-Use the controls deliberately:
+If `gh` is missing or unauthenticated, return the local artifact and report that hosted sharing needs an authenticated GitHub CLI.
 
-- Omit both controls by default.
-- Use `--custom-path` only when the user asks for a memorable/custom URL. Custom paths are easier to guess and may disclose project context.
-- Custom paths must be 3-63 lowercase letters, numbers, or hyphens, with no leading or trailing hyphen.
-- If a requested custom path is unavailable, do not silently fall back to a random URL. Offer another path or ask the user.
-- Use `--password-env` only when the user asks for password protection. The value names an environment variable containing the password; it is not the password itself.
-- Passwords must be 1-128 characters. Never put a password in command arguments, logs, the HTML, the filename, the custom path, or the URL.
-- If the user requests password protection without supplying a password, generate one locally and deliver it through an approved secure channel.
-- Suggest password protection when a memorable path needs access control, but do not add it silently.
+## Publish
 
-The script sends the HTML to `https://pagedrop.io/api/upload` and prints the returned URL. It requires Node.js and no API key. It intentionally uses Node's raw HTTPS client because PageDrop rejects browser-style `fetch` requests.
+From the skill directory, run the bundled publisher:
 
-If PageDrop rejects the content, rate-limits the request, or is unavailable, do not retry aggressively. Return the local artifact and report the upload failure.
+```bash
+node scripts/pagedrop-publish.mjs /absolute/path/to/artifact.html
+```
+
+The publisher:
+
+1. Validates the HTML file and GitHub CLI authentication.
+2. Creates a secret Gist with `#pagedrop` in its description.
+3. Prints the default `https://pagedrop.ai/g/USER/GIST_ID` URL.
+
+Use `--description "Quarterly review"` to set the Gist description. The publisher appends `#pagedrop` when it is missing.
+
+## Routes
+
+- `/g/USER/GIST_ID` is the default route. It serves the latest Gist revision and injects Pagedrop's revision and annotation UI.
+- `/g/USER/GIST_ID/SHA` pins a specific Gist revision. Use it when reviewers must see immutable content.
+- `/h/USER/GIST_ID` is the large-file fallback when `/g/` returns `503` or cannot inject the page. Publish with `--route h`; the HTML must already include this before `</body>`:
+
+```html
+<script src="https://pagedrop.ai/pagedrop.js"></script>
+```
+
+- `/s/TOKEN` is a controlled share link created from the Share button while signed in to Pagedrop. It can control annotation and revision visibility.
+
+Creating `/s/` links through `POST https://pagedrop.ai/api/share` requires a Pagedrop-authenticated session. A GitHub CLI token is not a Pagedrop API token. Do not call that API from an unattended agent unless the user explicitly provides an approved Pagedrop authentication mechanism.
+
+Do not invent custom domains, password protection, or TTL controls; those belonged to a different service.
+
+## Iterate
+
+Update the existing Gist instead of creating a new drop:
+
+```bash
+gh gist view GIST_ID --files
+gh gist edit GIST_ID -f GIST_FILENAME /absolute/path/to/artifact.html
+```
+
+GitHub preserves the revision history. The latest `/g/` route may cache for about five minutes; revision-pinned routes are immutable.
 
 ## Verify And Return
 
-Open the returned URL in a real browser when possible and confirm the title, primary content, and one meaningful interaction. A raw HTTP client may encounter a browser security checkpoint, so do not treat a failed `curl` preview as proof that the artifact itself is broken.
+Open the returned URL in a real browser when possible. Confirm the title, primary content, and one meaningful interaction. For `/g/`, also confirm the Pagedrop revision or annotation UI appears. For `/h/`, confirm the bootstrap script loads that UI.
 
 Return:
 
-- the PageDrop URL
-- the selected TTL or expiry window
-- whether a custom path or password protection was used
+- the `pagedrop.ai` URL
+- the Gist URL or ID
+- the route used and whether it is revision-pinned
 - the local artifact path
 - any hosted-preview verification gap
 
-Service references: `https://pagedrop.io/about` and `https://pagedrop.io/faq`.
+Service references: `https://pagedrop.ai` and `https://github.com/Martian-Engineering/pagedrop`.

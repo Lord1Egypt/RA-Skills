@@ -1,39 +1,56 @@
-## Description: <br>
-Search arxiv for latest papers by keyword and generate a structured daily report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches arXiv for latest papers by keyword and generates a structured daily report.
 
-## Publisher: <br>
-[adaxigua](https://clawhub.ai/user/adaxigua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[adaxigua](https://clawhub.ai/user/adaxigua)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, researchers, and technical readers use this skill to discover recent arXiv computer science papers by keyword and receive a concise Chinese briefing with selected takeaways.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The workflow depends on an arXiv-search helper skill and may not run as intended if that helper is unavailable.
+
+Mitigation: Confirm the helper skill is available before use or adapt the search step to another arXiv retrieval method.
+
+Risk: The default report language is Chinese, which may not fit every user or workflow.
+
+Mitigation: Request another output language explicitly or adjust the skill text before running the workflow.
+
+Risk: The skill selects one top paper per keyword, so relevant papers can be omitted from the final briefing.
+
+Mitigation: Review retrieved candidates when coverage matters and adjust keywords or selection criteria as needed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Researchers, developers, and technical readers use this skill to discover recent arXiv papers for selected keywords and receive concise Chinese briefings on the most relevant computer science papers. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Selected keywords are sent to arXiv search tooling, and the skill broadens discovery with one random keyword. <br>
-Mitigation: Review the displayed keyword list before search and avoid sensitive or private terms. <br>
-Risk: Generated paper summaries and relevance judgments can be incomplete or misleading. <br>
-Mitigation: Open and review the linked papers before relying on the briefing for research or implementation decisions. <br>
+**Output Format:** [Markdown-style Chinese briefing with paper titles, links, and five-question analysis]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Uses keywords supplied by the user or automation prompt and adds one random discovery keyword.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style Chinese briefing with paper titles, links, and concise analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Shows the final keyword list before searching and intentionally adds one random discovery keyword.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

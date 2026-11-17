@@ -1,16 +1,16 @@
-# 响应式布局模式
+# Responsive layout mode
 
-## 策略选择
+## Strategy selection
 
-| 场景 | 策略 |
+| Scenario | Strategy |
 | ---- | ---- |
-| 页面级结构 | 移动优先断点 |
-| 会被放进未知父容器的复用组件 | 容器查询 |
-| 卡片网格 | `repeat(auto-fit, minmax())`，并设置合理最小宽度 |
-| 数据表格 | 列优先级、横向滚动或移动端摘要行 |
-| 编辑器 / 画布 / dashboard | 稳定外壳 + 可滚动工作区 |
+| Page-level structure | Mobile-first breakpoints |
+| Reused components that will be put into unknown parent containers | Container query |
+| Card grid | `repeat(auto-fit, minmax())` and set a reasonable minimum width |
+| Data tables | Column priority, horizontal scrolling, or mobile summary rows |
+| Editor / canvas / dashboard | Stable shell + scrollable workspace |
 
-## CSS 模式
+## CSS Patterns
 
 ```css
 .card-grid {
@@ -32,28 +32,39 @@
 }
 ```
 
-当 grid/flex 子项包含长文本、表格、代码、图表或媒体时，给子项设置 `min-width: 0`。
+When grid/flex items contain long text, tables, code, charts, or media, set `min-width: 0` to the items.
 
-## 数据密集型界面
+## Data-intensive interface
 
-- 编码前先确定移动端列优先级。
-- 主标识、状态和主要操作保持可见。
-- 低优先级元数据移入详情行、抽屉或可展开面板。
-- 小屏仍要保留排序、筛选、分页和选择能力。
-- 虚拟滚动只解决 DOM 数量问题，不能解决信息层级问题。
+- Prioritize mobile columns before coding.
+- The main logo, status and main actions remain visible.
+- Low priority metadata moved to details row, drawer or expandable panel.
+- Small screens must still retain the ability to sort, filter, paging, and select.
+- Virtual scrolling only solves the problem of DOM quantity, but cannot solve the problem of information hierarchy.
+- The table can be partially scrolled horizontally, but the page as a whole should not have unintentional horizontal overflow.
 
-## 触控与视口检查
+## Responsive media
 
-- 空间允许时，交互目标至少 44x44px。
-- 移动端输入框字号避免低于 16px。
-- 固定底部栏和操作条必须考虑 `env(safe-area-inset-bottom)`。
-- 对话框和抽屉需要适配虚拟键盘导致的视口变化。
-- 只在 hover 时出现的内容必须提供点击、焦点或常驻可见替代方案。
+- Images and videos must have stable size, `aspect-ratio` or container constraints to avoid pushing the layout after loading.
+- Use `srcset`, `sizes` or `<picture>` when you need multi-size resources, and do not let the mobile client download desktop large images.
+- Non-first-screen images are lazy-loaded by default; first-screen main images are prioritized clearly based on frame capabilities.
+- Media cropping must retain the main information; do not crop key areas of products, people, or charts just to fill the card.
 
-## 验证清单
+## Touch and viewport inspection
 
-- 320-375px：页面级没有横向溢出。
-- 768px：布局切换后阅读顺序仍然合理。
-- 1024-1440px：内容宽度有约束，扫描路径清晰。
-- 长标签、翻译文本、数字以及 empty/error/loading 状态不会撑坏固定格式控件。
-- 横竖屏切换不会困住焦点或隐藏主操作。
+- Interactive targets should be at least 44x44px, space permitting.
+- Avoid lowering the font size of the mobile input box below 16px.
+- Fixed bottom bars and action bars must consider `env(safe-area-inset-bottom)`.
+- Dialog boxes and drawers need to adapt to viewport changes caused by the virtual keyboard.
+- Content that only appears on hover must provide click, focus, or permanently visible alternatives.
+- After switching between horizontal and vertical screens on iOS/Android, the main operation, focus position and scroll container should still be accessible.
+- Areas that require partial scrolling should have a clear maximum height and scrolling boundary to prevent the page and internal containers from competing for scrolling.
+
+## Verification list
+
+- 320-375px: No horizontal overflow at the page level.
+- 768px: The reading order is still reasonable after the layout is switched.
+- 1024-1440px: The content width is constrained and the scanning path is clear.
+- Long labels, translated text, numbers, and empty/error/loading states will not break fixed format controls.
+- Switching between horizontal and vertical screens will not trap focus or hide the main operation.
+- When the virtual keyboard pops up, the input box, submit button and error prompt are not blocked.

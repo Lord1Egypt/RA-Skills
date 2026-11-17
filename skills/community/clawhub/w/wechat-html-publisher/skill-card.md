@@ -1,45 +1,61 @@
-## Description: <br>
-Uploads HTML rich text directly to a WeChat Official Account draft box while preserving complete HTML formatting without Markdown conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes HTML rich text directly to the WeChat Official Account draft box while preserving inline formatting and uploading referenced images.
 
-## Publisher: <br>
-[zuo-wentao](https://clawhub.ai/user/zuo-wentao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zuo-wentao](https://clawhub.ai/user/zuo-wentao)
 
-## Use Case: <br>
-Developers and content operators use this skill to upload preformatted HTML articles, cover images, and referenced images into a WeChat Official Account draft for later review and publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses WeChat Official Account credentials and uploads selected HTML, cover images, and referenced images to WeChat. <br>
-Mitigation: Use only intended credentials, keep the app secret out of repositories and logs, and run the publisher only for content that is approved for upload. <br>
-Risk: HTML may include absolute local image paths or remote image URLs that will be processed during upload. <br>
-Mitigation: Review the HTML and referenced images before execution, and remove any unintended local paths or remote image sources. <br>
-Risk: The workflow creates a draft that still requires human content review before publication. <br>
-Mitigation: Check the generated draft in the WeChat Official Account backend before publishing. <br>
+## Use Case:
 
+Developers and content operators use this skill to prepare WeChat Official Account drafts from already-formatted HTML articles, including local or remote images and article metadata.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zuo-wentao/wechat-html-publisher) <br>
-- [WeChat Official Account API documentation](https://developers.weixin.qq.com/doc/offiaccount/) <br>
-- [WeChat Add Draft API](https://developers.weixin.qq.com/doc/offiaccount/Draft_Box/Add_draft.html) <br>
-- [WeChat Material Management API](https://developers.weixin.qq.com/doc/offiaccount/Asset_Management/New_temporary_materials.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python script usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces WeChat API calls that create a draft media_id when executed with valid credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: HTML image references may cause broad local file reads or arbitrary URL fetches before upload.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only on trusted HTML, restrict image paths to a dedicated asset folder, and block private or internal network URLs before publication.
+
+Risk: Article content, metadata, cover images, and embedded images are sent to WeChat.
+
+Mitigation: Preview the exact content and confirm that all included data is approved for upload to WeChat before running the publisher.
+
+Risk: Image type or size problems can cause failed uploads or unexpected draft content.
+
+Mitigation: Validate image formats and sizes before upload and review the generated WeChat draft before publication.
+
+## Reference(s):
+
+- [Wechat HTML Publisher on ClawHub](https://clawhub.ai/zuo-wentao/skills/wechat-html-publisher)
+- [ClawHub publisher profile: zuo-wentao](https://clawhub.ai/user/zuo-wentao)
+- [WeChat Official Account API documentation](https://developers.weixin.qq.com/doc/offiaccount/)
+- [WeChat draft add API](https://developers.weixin.qq.com/doc/offiaccount/Draft_Box/Add_draft.html)
+- [WeChat temporary material API](https://developers.weixin.qq.com/doc/offiaccount/Asset_Management/New_temporary_materials.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and Python command-line usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The runtime script sends HTML content, article metadata, covers, and embedded images to WeChat APIs and returns a draft media_id on success.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

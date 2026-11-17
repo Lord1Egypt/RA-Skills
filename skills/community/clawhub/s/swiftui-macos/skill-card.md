@@ -1,48 +1,60 @@
-## Description: <br>
-Expert guidance for writing, reviewing, and debugging macOS SwiftUI apps with runtime-level coverage of observation, concurrency, performance, and platform integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert SwiftUI guidance for macOS apps covering code writing and review with runtime-level understanding of observation, concurrency, performance, and platform integration.
 
-## Publisher: <br>
-[kageroumado](https://clawhub.ai/user/kageroumado) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kageroumado](https://clawhub.ai/user/kageroumado)
 
-## Use Case: <br>
-Developers and engineers use this skill when building or reviewing macOS SwiftUI projects, especially for observation behavior, strict concurrency, performance, AppKit bridging, state management, accessibility, and modern API choices. It is not intended for iOS/iPadOS-only SwiftUI, UIKit bridging, or basic Swift language questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The trigger text is broad and the guidance assumes macOS 26+, Swift 6.2, and strict concurrency. <br>
-Mitigation: Confirm the active project is a macOS SwiftUI project targeting those assumptions before applying generated advice. <br>
-Risk: The skill produces coding guidance and review suggestions that could be incorrect for a specific codebase. <br>
-Mitigation: Review proposed changes against project requirements and run normal build, test, and accessibility checks before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to build, review, debug, and architect macOS SwiftUI applications, especially around observation behavior, concurrency, performance, accessibility, data flow, and AppKit integration.
 
-## Reference(s): <br>
-- [SwiftUI macOS release page](https://clawhub.ai/kageroumado/swiftui-macos) <br>
-- [Accessibility](references/accessibility.md) <br>
-- [Modern API](references/api.md) <br>
-- [Swift Concurrency](references/concurrency.md) <br>
-- [Data Flow and State Management](references/data.md) <br>
-- [Observation](references/observation.md) <br>
-- [Performance](references/performance.md) <br>
-- [macOS Platform Patterns](references/platform.md) <br>
-- [Views](references/views.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown with Swift code examples and review findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference project files and line numbers when reviewing SwiftUI code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated guidance may be applied across many macOS SwiftUI tasks and can propose project changes involving dependencies or persistence-related app code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code and project changes before applying them, with extra attention to dependency additions and persistence behavior.
+
+Risk: The skill is targeted at macOS 26+ and Swift 6.2 with strict concurrency, so recommendations may not fit older SwiftUI projects.
+
+Mitigation: Confirm the target app's macOS, Swift, and concurrency settings before applying platform-specific recommendations.
+
+## Reference(s):
+
+- [Accessibility](references/accessibility.md)
+- [Modern API](references/api.md)
+- [Swift Concurrency](references/concurrency.md)
+- [Data Flow and State Management](references/data.md)
+- [Observation Tracking Discipline](references/observation.md)
+- [Performance](references/performance.md)
+- [macOS Platform Patterns](references/platform.md)
+- [View Composition and Animation](references/views.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown with Swift code examples and review findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file-specific review findings, prioritized summaries, and before/after Swift code fixes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

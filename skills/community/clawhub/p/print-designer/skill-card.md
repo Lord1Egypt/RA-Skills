@@ -1,40 +1,53 @@
-## Description: <br>
-AI印刷设计师 helps users generate print layout recommendations, CMYK color specifications, output format requirements, and prepress checklists for business cards, brochures, posters, packaging, stickers, and flyers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI印刷设计师 guides Chinese-language users through print layout planning, CMYK color specifications, print-ready file requirements, and preflight checklists for business cards, brochures, posters, packaging, stickers, and flyers.
 
-## Publisher: <br>
-[tlcyqj2023](https://clawhub.ai/user/tlcyqj2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tlcyqj2023](https://clawhub.ai/user/tlcyqj2023)
 
-## Use Case: <br>
-External users, print professionals, and design clients use this Chinese-language skill to collect print job parameters and produce practical layout, color, output, and prepress guidance before preparing production files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Print and prepress recommendations may not match a specific vendor's equipment, color profiles, materials, finishing tolerances, or job requirements. <br>
-Mitigation: Confirm exact print specifications, color profiles, and production requirements with the print vendor before sending files to production. <br>
-Risk: Generated layout specifications, CMYK values, or checklists can be incomplete for unusual products, brand standards, or production constraints. <br>
-Mitigation: Review the guidance against the user's source materials, brand requirements, vendor templates, and a production proof before final submission. <br>
+## Use Case:
 
+External users, print designers, and clients use this skill to collect print job parameters and produce Chinese-language layout guidance, CMYK recommendations, output format requirements, and preflight checks for common printed materials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tlcyqj2023/print-designer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with print design specification templates, layout suggestions, CMYK guidance, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language print and prepress guidance; does not create final design files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: General design requests could accidentally route to this specialized Chinese print-production skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation phrases when installing or routing the skill, as recommended by the security guidance.
+
+Risk: Print-production advice may be applied to final artwork without human review.
+
+Mitigation: Have a qualified designer or print vendor verify dimensions, CMYK values, bleed, font handling, and preflight checks before production.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tlcyqj2023/skills/print-designer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown text with structured design specification templates, layout recommendations, CMYK values, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language responses focused on print-production design; no executable code or tool calls are included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

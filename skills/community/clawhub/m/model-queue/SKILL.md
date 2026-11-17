@@ -1,5 +1,5 @@
 ---
-name: task-queue-by-model-source
+name: taREDACTED-SECRET
 description: >
   Multi-queue task orchestration system. Tasks are routed to queues by model source,
   with support for task dependencies, context passing, and failure handling.

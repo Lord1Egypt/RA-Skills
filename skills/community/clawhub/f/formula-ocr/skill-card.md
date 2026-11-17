@@ -1,43 +1,60 @@
-## Description: <br>
-OCR and recognize mathematical formulas from PDFs and images using MinerU, converting printed or handwritten equations into LaTeX or text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Formula Ocr helps agents OCR mathematical formulas from PDFs and images using MinerU and return editable LaTeX or text representations.
 
-## Publisher: <br>
-[mzlzyca](https://clawhub.ai/user/mzlzyca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzlzyca](https://clawhub.ai/user/mzlzyca)
 
-## Use Case: <br>
-Students, researchers, educators, developers, and other external users use this skill to digitize formula content from PDFs, scans, screenshots, or images into editable LaTeX or text through the MinerU CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Files or URLs processed with this skill may be shared with the external MinerU service. <br>
-Mitigation: Use a dedicated MinerU token where possible and avoid processing confidential documents or private/internal URLs unless MinerU's data handling is acceptable. <br>
-Risk: Formula OCR output can be incorrect or incomplete, especially for complex, scanned, or handwritten notation. <br>
-Mitigation: Review extracted formulas before relying on them in downstream analysis, publication, or code. <br>
+## Use Case:
 
+External users, students, researchers, educators, and developers use this skill to convert equation screenshots, scanned pages, PDFs, and image files into structured LaTeX or text.
 
-## Reference(s): <br>
-- [Formula Ocr on ClawHub](https://clawhub.ai/mzlzyca/formula-ocr) <br>
-- [MinerU](https://mineru.net) <br>
-- [MinerU Token Management](https://mineru.net/apiManage/token) <br>
-- [MinerU GitHub Repository](https://github.com/opendatalab/MinerU) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides use of mineru-open-api for PDFs and image files; extraction output may be sent to stdout or saved to an output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: release evidence) <br>
+Risk: Formula OCR requires the third-party MinerU CLI/service and may process submitted PDFs or images outside the local agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where MinerU processing is approved, and avoid confidential, regulated, or private documents unless external processing has been reviewed.
+
+Risk: The skill requires a MINERU_TOKEN for extraction and crawl operations.
+
+Mitigation: Scope the token to the process that needs it, avoid storing it in shared files, and rotate it according to the user's credential policy.
+
+Risk: Installing mineru-open-api with an unpinned package command can pick up future CLI changes.
+
+Mitigation: Prefer a pinned, reviewed CLI version for controlled deployments.
+
+## Reference(s):
+
+- [Formula Ocr ClawHub page](https://clawhub.ai/mzlzyca/skills/formula-ocr)
+- [MinerU homepage](https://mineru.net)
+- [MinerU token management](https://mineru.net/apiManage/token)
+- [MinerU GitHub repository](https://github.com/opendatalab/MinerU)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent guidance centers on using mineru-open-api; extracted OCR results are produced by the external MinerU CLI/service.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

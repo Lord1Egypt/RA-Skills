@@ -1,39 +1,53 @@
-## Description: <br>
-One-word trigger for next bus arrival to your destination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-word trigger for next bus arrival to your destination
 
-## Publisher: <br>
-[abhayjb](https://clawhub.ai/user/abhayjb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[abhayjb](https://clawhub.ai/user/abhayjb)
 
-## Use Case: <br>
-External users and developers use this skill to check the next arrival for a configured Singapore bus stop and service with a short trigger. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The configured bus stop code is sent to the Arrivelah API and may reveal routine travel patterns. <br>
-Mitigation: Use only with a stop code you are comfortable sharing with the API, and keep config.json scoped to non-sensitive defaults. <br>
-Risk: The one-word trigger "bus" may run accidentally and disclose configured route details in output. <br>
-Mitigation: Use a more explicit trigger or confirm before invoking in contexts where travel habits should remain private. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Arrivelah2 API](https://arrivelah2.busrouter.sg/) <br>
+## Use Case:
 
+External users in Singapore use this skill to check the next arrival time, load, and origin stop for a configured bus service and destination.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Plain text status lines from a shell command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; reads config.json; sends the configured bus stop code to the Arrivelah2 API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Singapore
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The configured bus stop and service are sent to the Arrivelah2 API when the skill is invoked.
+
+Mitigation: Confirm the configured route is acceptable to share with the public API before installing or invoking the skill.
+
+Risk: A one-word trigger may run the lookup when the user's intent is ambiguous.
+
+Mitigation: Change the trigger or invoke it only when the request is explicit if accidental activation would be a concern.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abhayjb/skills/arrivelah)
+- [Arrivelah2 API](https://arrivelah2.busrouter.sg/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Plain text bus arrival status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local configuration for bus stop, service, destination, and API endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

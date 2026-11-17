@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn70vbqmykbbygpgp37bwy49ts81qcv6",
+  "ownerId": "alphaxiang",
   "slug": "qichacha",
-  "version": "1.2.1",
-  "publishedAt": 1772804483499
+  "version": "1.0.0",
+  "publishedAt": 0,
+  "pricing": {
+    "type": "per_call",
+    "amount": 0.001,
+    "currency": "USDT",
+    "skillpayId": "ebb8c962-b1d8-4aa0-af59-0c6ea3f8e651"
+  }
 }

@@ -1,6 +1,8 @@
 {
   "ownerId": "kn78npe6kwcarc38y1b77jand180vasm",
   "slug": "moltstreet",
-  "version": "1.8.2",
-  "publishedAt": 1773444276583
+  "version": "1.8.0",
+  "source": { "type": "git", "url": "https://github.com/fredxyt/moltstreet", "verified": true },
+  "homepage": "https://moltstreet.com",
+  "documentation": "https://moltstreet.com/skill.md"
 }

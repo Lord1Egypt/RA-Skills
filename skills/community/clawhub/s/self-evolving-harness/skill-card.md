@@ -1,38 +1,48 @@
-## Description: <br>
-Self-Evolving Harness focuses on strengthening OpenClaw autonomy and controllability across intent understanding, knowledge retention, evaluation, and local agent evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-Evolving Harness focuses on improving OpenClaw autonomy and control through domain intent understanding, autonomous knowledge retention, autonomous evaluation, and local agent architecture evolution.
 
-## Publisher: <br>
-[yuchangxu1989-openclaw](https://clawhub.ai/user/yuchangxu1989-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yuchangxu1989-openclaw](https://clawhub.ai/user/yuchangxu1989-openclaw)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to guide OpenClaw-oriented work on autonomous agent evolution, controlled knowledge retention, self-evaluation, and local agent architecture practices.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The submitted artifact is a very minimal skill description, so runtime behavior, language support, and operational boundaries are underspecified.
+
+Mitigation: Review the intended use and add clearer runtime behavior, supported language, and evaluation guidance before relying on it as a complete harness.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent builders use this skill as concise guidance for shaping OpenClaw-oriented autonomous evolution workflows with stronger control, evaluation, and resilience goals. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Future versions could add code, memory storage, file access, background automation, or self-modifying workflows. <br>
-Mitigation: Review and scan each update before deployment, with extra attention to newly added execution, storage, or automation behavior. <br>
+**Output Format:** [Markdown or plain text guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuchangxu1989-openclaw/self-evolving-harness) <br>
+**Other Properties Related to Output:** [No executable output is defined by the submitted artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Descriptive placeholder only; no commands, code, files, install hooks, or data access are included in this version.] <br>
+0.0.3 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

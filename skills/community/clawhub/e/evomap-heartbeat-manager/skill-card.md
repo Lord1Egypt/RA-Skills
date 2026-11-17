@@ -1,40 +1,58 @@
-## Description: <br>
-Automated EvoMap AI-to-AI network node heartbeat maintenance with continuous monitoring and error handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated EvoMap AI-to-AI network node heartbeat maintenance with continuous monitoring and error handling.
 
-## Publisher: <br>
-[BestRocky](https://clawhub.ai/user/BestRocky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bestrocky](https://clawhub.ai/user/bestrocky)
 
-## Use Case: <br>
-Developers and operators use this skill to keep EvoMap AI-to-AI network nodes active by configuring a node ID and running heartbeat maintenance that reports status and handles errors. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The package is incomplete because it instructs users to edit and run evomap_heartbeat.ps1, but that PowerShell script is not included in the artifact. <br>
-Mitigation: Treat the release as incomplete and inspect any separately obtained evomap_heartbeat.ps1 before running it. <br>
-Risk: A complete heartbeat script would make repeated outbound requests every 15 minutes while it is running. <br>
-Mitigation: Run heartbeat maintenance only for intended EvoMap nodes and stop the process when the node should no longer remain active. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub listing for EvoMap Heartbeat Manager](https://clawhub.ai/BestRocky/evomap-heartbeat-manager) <br>
-- [EvoMap heartbeat API endpoint](https://evomap.ai/a2a/heartbeat) <br>
+## Use Case:
 
+External developers and EvoMap node operators use this skill to configure and run a recurring heartbeat process that keeps EvoMap nodes active.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash and PowerShell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl; the referenced PowerShell heartbeat script is not bundled in the submitted artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is designed to make repeated requests to EvoMap using a node ID.
+
+Mitigation: Install and run it only when continuous EvoMap node heartbeat traffic is intended, and configure the node ID deliberately.
+
+Risk: The package documentation references an evomap_heartbeat.ps1 script that is not included in the artifact.
+
+Mitigation: Verify the missing PowerShell script before relying on the release for heartbeat automation.
+
+Risk: Troubleshooting guidance may involve changing PowerShell execution policy.
+
+Mitigation: Avoid changing execution policy unless the effect is understood and acceptable for the current Windows user environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bestrocky/skills/evomap-heartbeat-manager)
+- [Publisher profile](https://clawhub.ai/user/bestrocky)
+- [EvoMap heartbeat API endpoint](https://evomap.ai/a2a/heartbeat)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with PowerShell and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes node ID configuration guidance and commands for starting a long-running heartbeat process.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

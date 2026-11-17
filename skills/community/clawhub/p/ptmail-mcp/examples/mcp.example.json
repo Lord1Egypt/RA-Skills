@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "ptmail": {
+      "command": "node",
+      "args": [
+        "REPLACE_WITH_OFFICIAL_RUNTIME_DIRECTORY/scripts/ptmail-mcp.js"
+      ]
+    }
+  }
+}

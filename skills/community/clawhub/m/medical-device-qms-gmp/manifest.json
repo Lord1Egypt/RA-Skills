@@ -1,0 +1,16 @@
+{
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "129dafa2c3484fd21fbf16b25168321b9a3aac89041b72edfb7f280c763e353b"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "2abc8217fc73f544e13858a694e65e994d1ae8ad94c988aa0bbb8ce499aecc87"
+    }
+  ],
+  "generated_utc": "2026-08-26T06:08:12Z",
+  "license": "MIT",
+  "manifest_sha256": "337e616c644ef3cdab04caaa0efeef3caa23931b9be32a2d942f9b8e8f9230a3",
+  "skill": "medical-device-qms-gmp"
+}

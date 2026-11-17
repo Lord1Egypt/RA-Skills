@@ -1162,7 +1162,7 @@ const mem = createMemory({ /* ... */ });
 
 // POST every store + decay event to a webhook
 const detach = webhookWritethrough(mem, {
-  url: 'https://hooks.slack.com/services/xxx',
+  url: 'REDACTED-SECRET',
   events: ['store', 'decay'],
   headers: { 'X-Custom': 'value' },
 });

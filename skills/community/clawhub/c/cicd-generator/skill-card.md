@@ -1,39 +1,57 @@
-## Description: <br>
-Generates GitHub Actions CI/CD workflows tailored to a project's detected stack, deployment target, and workflow preferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate GitHub Actions CI/CD pipelines tailored to the current project.
 
-## Publisher: <br>
-[llcsamih](https://clawhub.ai/user/llcsamih) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[llcsamih](https://clawhub.ai/user/llcsamih)
 
-## Use Case: <br>
-Developers and DevOps engineers use this skill to set up GitHub Actions CI/CD by detecting project stack details, asking for deployment preferences, and producing workflow files and secret checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated workflow changes can affect deployment behavior, production environments, SSH commands, and GitHub Secrets usage. <br>
-Mitigation: Review all generated .github/workflows changes before committing, especially deploy jobs, SSH commands, production environments, and configured GitHub Secrets. <br>
-Risk: The skill requires repository access and is intended to draft or edit GitHub Actions workflows. <br>
-Mitigation: Install it only when an agent should draft or edit CI/CD workflows, and grant only the repository access needed for that task. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect a repository, identify its stack, and generate GitHub Actions CI, Docker, and deployment workflows tailored to the project's scripts and deployment target.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML workflow definitions, shell command snippets, and configuration checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces repository-specific GitHub Actions workflow content and deploy guidance based on detected project files and user choices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated deployment workflows may use sensitive deployment credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each generated secret reference, scope tokens narrowly, and protect production environments with required reviewers before committing workflows.
+
+Risk: Some deployment templates use mutable or unpinned third-party tooling.
+
+Mitigation: Pin third-party actions to reviewed commit SHAs and pin deployment CLI versions or use locked project dependencies.
+
+Risk: VPS deployment examples may restart services with privileged commands.
+
+Mitigation: Avoid unrestricted sudo for deploy users and limit restart permissions to the specific service required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/llcsamih/skills/cicd-generator)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML workflow files and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create GitHub Actions workflow files and provide deployment secret checklists when used by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

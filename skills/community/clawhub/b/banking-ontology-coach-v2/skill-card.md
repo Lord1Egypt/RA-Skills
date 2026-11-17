@@ -1,45 +1,57 @@
-## Description: <br>
-A Chinese-language coaching skill that helps consultants produce structured banking ontology documents aligned to FIBO concepts, definitions, relationships, and source markings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language coaching skill that helps consultants collaboratively produce FIBO-aligned banking ontology documents covering concepts, definitions, relationships, and FIBO alignment.
 
-## Publisher: <br>
-[carriezhangrong](https://clawhub.ai/user/carriezhangrong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carriezhangrong](https://clawhub.ai/user/carriezhangrong)
 
-## Use Case: <br>
-Banking and financial-services consultants use this skill to scope a business domain, draft competency questions, align candidate concepts with FIBO, and produce a structured ontology deliverable for governance, regulatory, KYC/AML, risk, or data-management work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: FIBO mappings may rely on the bundled offline reference when official lookup is unavailable, and generated IRIs or coverage claims may require confirmation. <br>
-Mitigation: Review FIBO-aligned outputs against the official FIBO source before compliance, regulatory, or business use. <br>
-Risk: The skill is written for Chinese-language coaching and does not ask users to choose a preferred language. <br>
-Mitigation: Use it with Chinese-language users or add translation and subject-matter review for non-Chinese delivery contexts. <br>
+## Use Case:
 
+External consultants, business analysts, and data governance teams use this skill to structure banking or financial-domain concepts into a FIBO-aligned ontology deliverable. It is focused on banking and financial institution modeling scenarios such as KYC/AML, beneficial ownership, accounts, financial instruments, regulatory reporting, and risk exposure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/carriezhangrong/banking-ontology-coach-v2) <br>
-- [FIBO official viewer](https://spec.edmcouncil.org/fibo) <br>
-- [FIBO reference workflow](references/fibo-reference.md) <br>
-- [Offline FIBO core concepts](references/fibo-core-concepts.md) <br>
-- [Ontology concepts glossary](references/ontology-concepts.md) <br>
-- [Common ontology modeling mistakes](references/common-mistakes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown ontology documentation with tables, concept mappings, definitions, relationships, validation notes, and review guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-facing Chinese guidance and structured banking ontology deliverables; no executable code or credentials are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Offline FIBO mappings or IRIs may be incomplete or require confirmation before formal banking, regulatory, or governance use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify offline FIBO references against official FIBO sources before relying on the ontology in formal deliverables.
+
+Risk: The skill is designed for Chinese-language coaching and may not match a user's expected working language.
+
+Mitigation: Ask the agent to use another language explicitly when needed.
+
+## Reference(s):
+
+- [FIBO Reference](references/fibo-reference.md)
+- [FIBO Core Concepts](references/fibo-core-concepts.md)
+- [Ontology Concepts](references/ontology-concepts.md)
+- [Common Modeling Mistakes](references/common-mistakes.md)
+- [FIBO Official Viewer](https://spec.edmcouncil.org/fibo)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown with structured tables and concise coaching prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Chinese-language banking ontology documents and review guidance; offline FIBO mappings and IRIs require later verification against official sources.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

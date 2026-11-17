@@ -1,41 +1,54 @@
-## Description: <br>
-Diagnose and triage cron job failures by checking job states, identifying error patterns, prioritizing by criticality, and generating health reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose and triage cron job failures by checking job states, identifying error patterns, prioritizing failures by criticality, and generating health reports.
 
-## Publisher: <br>
-[geq1fan](https://clawhub.ai/user/geq1fan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[geq1fan](https://clawhub.ai/user/geq1fan)
 
-## Use Case: <br>
-Developers and system administrators use this skill to inspect cron configuration and recent cron logs, triage failed scheduled jobs, and produce a concise health report with suggested fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Cron diagnosis can expose operational details from crontabs, logs, and generated health reports. <br>
-Mitigation: Run it only on systems the user administers and review reports for sensitive operational information before sharing them. <br>
-Risk: Some troubleshooting commands may require elevated reads of system cron files or logs. <br>
-Mitigation: Approve sudo reads or manual script execution only when appropriate for the environment. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect cron jobs, investigate failed or missing scheduled-task executions, prioritize failures by operational impact, and produce a cron health report with suggested fixes.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/geq1fan/cron-doctor-clawra) <br>
-- [Publisher profile](https://clawhub.ai/user/geq1fan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with inline shell commands and triage recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a local cron health report under ~/workspace/reports when the user asks for diagnosis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The workflow can lead an agent to inspect system-wide cron files and logs with elevated access before clear user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with user-scoped diagnostics such as crontab -l, request explicit approval before using sudo or broad log access, and limit system-wide review to cases where it is necessary.
+
+Risk: Cron logs and generated reports can expose sensitive paths, usernames, command arguments, or secrets.
+
+Mitigation: Review and redact sensitive values before saving or sharing generated health reports.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/geq1fan/skills/cron-doctor-clawra)
+- [Publisher Profile](https://clawhub.ai/user/geq1fan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and a cron health report template]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a dated cron health report under ~/workspace/reports when the agent follows the skill workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter says 1.1.0 and artifact _meta.json says 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

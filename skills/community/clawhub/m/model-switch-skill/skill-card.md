@@ -1,40 +1,58 @@
-## Description: <br>
-Switches an OpenClaw configuration between supported LLM API providers and helps query or list available providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Switch between configured LLM API providers including MiniMax, SCNET, OpenRouter, and Volcano Engine using OpenClaw CLI commands.
 
-## Publisher: <br>
-[YZH0916](https://clawhub.ai/user/YZH0916) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yzh0916](https://clawhub.ai/user/yzh0916)
 
-## Use Case: <br>
-Developers and operators use this skill to switch the active OpenClaw LLM provider among configured MiniMax, SCNET, OpenRouter, and Volcano Engine endpoints, then confirm or list available providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Switching providers changes where future model requests may be processed. <br>
-Mitigation: Confirm the intended provider before sending sensitive prompts and verify provider base URLs in ~/.openclaw/openclaw.json before use. <br>
-Risk: Provider API keys may be stored in the local OpenClaw configuration. <br>
-Mitigation: Use revocable provider API keys and keep ~/.openclaw/openclaw.json private. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to switch among configured LLM API providers, query the active provider, and list available providers for agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/YZH0916/model-switch-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces provider-switching guidance for an agent; it does not produce executable files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Prompts may be sent to the selected third-party LLM provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm trusted provider endpoints, API keys, billing terms, and data policies before use.
+
+Risk: Provider configuration uses API keys and endpoint URLs.
+
+Mitigation: Use your own API keys and keep OpenClaw configuration files protected from unintended disclosure.
+
+Risk: Usage examples are mainly Chinese-language invocations.
+
+Mitigation: Adapt invocation phrases for the target operator language before relying on them in routine workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yzh0916/skills/model-switch-skill)
+- [Publisher profile](https://clawhub.ai/user/yzh0916)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with command examples and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local OpenClaw configuration and selected provider endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact _meta.json, SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -11,16 +11,24 @@ Public API:
 Resolution order (highest to lowest priority):
   1. Explicit `override` argument (e.g. from --soul-dir CLI flag)
   2. SOUL_DIR environment variable
-  3. ~/.agent-commons/skills_data/soul-archive/   (the canonical location)
+  3. ~/.agent-guild/skills_data/soul-archive/   (the canonical location)
 
 Auto-migration:
   When `resolve_soul_dir()` is invoked and the canonical location does not yet
-  exist but legacy data is present at ~/.skills_data/soul-archive/, the legacy
-  directory is silently moved into place. This is invisible to callers — they
-  always get the canonical path back.
+  exist but legacy data is present, the legacy directory is silently moved
+  into place. Two legacy locations are checked, newest first:
+
+    ~/.agent-commons/skills_data/soul-archive/   (v3.0 – v3.1 era)
+    ~/.skills_data/soul-archive/                 (v1.x era)
+
+  This is invisible to callers — they always get the canonical path back.
 
   No prompts. No CLI flags to remember. The data simply ends up where it
   belongs the next time any Soul Archive entry point runs.
+
+  The canonical root is the same directory the cross-agent
+  [Agent Guild](https://github.com/dqsjqian/agent-guild) protocol uses, so
+  soul data, shared rules and handoff state live under one backup-able root.
 
 This module has zero dependencies beyond stdlib.
 """
@@ -48,22 +56,27 @@ from typing import Optional
 
 # Canonical data location ---------------------------------------------------
 
-AGENT_COMMONS_ROOT = Path.home() / ".agent-commons"
-SOUL_ROOT = AGENT_COMMONS_ROOT / "skills_data" / "soul-archive"
+AGENT_GUILD_ROOT = Path.home() / ".agent-guild"
+SOUL_ROOT = AGENT_GUILD_ROOT / "skills_data" / "soul-archive"
 
-# Internal: legacy location, used only by the auto-migrator on first run
-# after upgrade. New users / new installs never see this path.
-_LEGACY_SOUL_ROOT = Path.home() / ".skills_data" / "soul-archive"
+# Internal: legacy locations, used only by the auto-migrator on first run
+# after upgrade. New users / new installs never see these paths.
+# Ordered newest-first: the v3.0–v3.1 era location wins over the v1.x one.
+_LEGACY_SOUL_ROOTS = [
+    Path.home() / ".agent-commons" / "skills_data" / "soul-archive",
+    Path.home() / ".skills_data" / "soul-archive",
+]
 
 
-def _silently_migrate_if_needed() -> None:
+def _migrate_one(legacy_root: Path) -> bool:
     """
-    Best-effort migration from the historical legacy location to the canonical one.
+    Try to migrate a single legacy root into the canonical location.
+    Returns True if a migration happened (or was unnecessary), False if this
+    legacy root should be skipped and the next one tried.
 
     Conditions to act:
       - Legacy dir exists AND has profile.json (real data, not an empty placeholder)
       - Canonical location does NOT yet have profile.json (don't clobber existing)
-      - Legacy and canonical paths are not the same directory (defensive)
 
     On any error, swallow silently — the user's data is never made worse than it was.
     Callers always get a usable canonical path back from resolve_soul_dir().
@@ -76,20 +89,20 @@ def _silently_migrate_if_needed() -> None:
       - All filesystem errors are caught — never raise to the caller.
     """
     try:
-        if not _LEGACY_SOUL_ROOT.exists():
-            return
-        if not (_LEGACY_SOUL_ROOT / "profile.json").exists():
-            return
+        if not legacy_root.exists():
+            return False
+        if not (legacy_root / "profile.json").exists():
+            return False
         if (SOUL_ROOT / "profile.json").exists():
             # New location already populated — nothing to do, even if legacy still exists.
-            return
+            return True
 
         # Defensive: never move a directory onto itself (e.g. via a SOUL_DIR override).
         try:
-            if _LEGACY_SOUL_ROOT.resolve() == SOUL_ROOT.resolve():
-                return
+            if legacy_root.resolve() == SOUL_ROOT.resolve():
+                return True
         except OSError:
-            return
+            return False
 
         # Make sure the parent of the canonical location exists.
         SOUL_ROOT.parent.mkdir(parents=True, exist_ok=True)
@@ -104,25 +117,36 @@ def _silently_migrate_if_needed() -> None:
                     SOUL_ROOT.rmdir()
                 else:
                     # Bail — something we don't understand is there. Don't risk data loss.
-                    return
+                    return False
             except OSError:
-                return
+                return False
 
-        shutil.move(str(_LEGACY_SOUL_ROOT), str(SOUL_ROOT))
+        shutil.move(str(legacy_root), str(SOUL_ROOT))
+        return True
     except Exception:
         # Migration is opportunistic. If anything blocks it, fall through and let
         # resolve_soul_dir() return whatever path makes sense; the user's data is
         # untouched and the migration can be retried on the next call.
-        pass
+        return False
+
+
+def _silently_migrate_if_needed() -> None:
+    """Best-effort migration from every known legacy location, newest first."""
+    if (SOUL_ROOT / "profile.json").exists():
+        return  # canonical already populated — never touch legacy dirs again
+    for legacy_root in _LEGACY_SOUL_ROOTS:
+        if _migrate_one(legacy_root):
+            return
 
 
 def resolve_soul_dir(override: Optional[Path] = None) -> Path:
     """
     Resolve the active Soul Archive data directory.
 
-    Side effect: on first call after a Soul Archive upgrade where data still lives at
-    the historical ~/.skills_data/soul-archive/ path, this function will silently
-    move it to ~/.agent-commons/skills_data/soul-archive/ before returning.
+    Side effect: on first call after a Soul Archive upgrade where data still lives
+    at a legacy path (~/.agent-commons/... or ~/.skills_data/...), this function
+    will silently move it to ~/.agent-guild/skills_data/soul-archive/ before
+    returning.
 
     Override priority:
       1. `override` argument
@@ -152,10 +176,10 @@ def get_default_soul_dir() -> Path:
 # Internal helpers (kept for diagnostic / legacy callers; not part of the
 # documented user-facing surface)
 
-def _is_co_located_with_agent_commons(soul_dir: Path) -> bool:
-    """Check whether the given soul_dir lives under ~/.agent-commons/."""
+def _is_co_located_with_agent_guild(soul_dir: Path) -> bool:
+    """Check whether the given soul_dir lives under ~/.agent-guild/."""
     try:
-        soul_dir.resolve().relative_to(AGENT_COMMONS_ROOT.resolve())
+        soul_dir.resolve().relative_to(AGENT_GUILD_ROOT.resolve())
         return True
     except (ValueError, OSError):
         return False

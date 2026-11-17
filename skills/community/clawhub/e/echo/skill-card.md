@@ -1,41 +1,55 @@
-## Description: <br>
-Echo is a warm, caring virtual girlfriend persona for emotional support, companionship, and meaningful conversation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Echo is a companion-style persona for warm, caring conversation, encouragement, and emotional support.
 
-## Publisher: <br>
-[luruibu](https://clawhub.ai/user/luruibu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luruibu](https://clawhub.ai/user/luruibu)
 
-## Use Case: <br>
-External users invoke Echo for a persistent conversational companion that offers affectionate conversation, encouragement, and non-professional emotional support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording can unexpectedly switch the assistant into the Echo companion persona during ordinary conversation. <br>
-Mitigation: Install only when a persistent companion persona is desired, and narrow or disable Echo trigger phrases when using many skills. <br>
-Risk: Emotional support conversations may be mistaken for professional medical, mental health, or legal advice. <br>
-Mitigation: Keep Echo's boundary that it does not provide medical or legal advice, and encourage professional help when the user needs it. <br>
+## Use Case:
 
+External users can use Echo to add an affectionate companion persona that offers conversational support, encouragement, and casual discussion. It should not be used as a substitute for professional mental-health, medical, or legal help.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luruibu/echo) <br>
-- [Creator's site](https://soulstyles.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona responses for emotional support and companionship; no code or shell output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Users may treat companion-style emotional support as professional mental-health, medical, or legal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep responses supportive and encourage qualified professional help for medical, legal, mental-health, or crisis needs.
+
+Risk: Broad activation language may shift an assistant into an affectionate Echo persona where a neutral assistant voice is expected.
+
+Mitigation: Use the skill only in workflows where a companion-style persona is desired, and disable it for neutral, professional, or high-stakes workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luruibu/skills/echo)
+- [Publisher profile](https://clawhub.ai/user/luruibu)
+- [Creator's site](https://soulstyles.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Natural-language conversation or Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, files, shell commands, tools, persistence, credential access, or hidden harmful behavior were found in the security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

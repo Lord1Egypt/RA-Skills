@@ -1,50 +1,60 @@
-## Description: <br>
-Jest provides best practices, patterns, and API guidance for JavaScript and TypeScript testing across mocks, async tests, matchers, timers, snapshots, module mocking, configuration, and CI optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jest best practices, patterns, and API guidance for JavaScript/TypeScript testing, covering mock design, async testing, matchers, timer mocks, snapshots, module mocking, configuration, and CI optimization for Jest 29 and 30.
 
-## Publisher: <br>
-[anivar](https://clawhub.ai/user/anivar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[anivar](https://clawhub.ai/user/anivar)
 
-## Use Case: <br>
-Developers and AI agents use this skill when writing, reviewing, or debugging Jest unit, integration, and snapshot tests in JavaScript or TypeScript projects. It helps choose current Jest patterns for mocks, async assertions, timers, module mocking, snapshots, configuration, and CI behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad testing terms such as mock or unit test, which can surface Jest guidance in nearby testing work. <br>
-Mitigation: Review generated test and Jest configuration changes before applying them to a project. <br>
+## Use Case:
 
+Developers and engineers use this skill to write, review, and debug JavaScript and TypeScript Jest tests. It helps agents choose correct mock, async, matcher, timer, snapshot, module, configuration, and CI patterns while avoiding common false positives and flaky tests.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/anivar/jest-skill) <br>
-- [Project Source URL](https://github.com/anivar/jest-skill) <br>
-- [README](README.md) <br>
-- [Complete Guide](AGENTS.md) <br>
-- [Matchers](references/matchers.md) <br>
-- [Mock Functions](references/mock-functions.md) <br>
-- [Jest Object](references/jest-object.md) <br>
-- [Async Patterns](references/async-patterns.md) <br>
-- [Configuration](references/configuration.md) <br>
-- [Snapshot Testing](references/snapshot-testing.md) <br>
-- [Module Mocking](references/module-mocking.md) <br>
-- [Anti-Patterns](references/anti-patterns.md) <br>
-- [CI and Debugging](references/ci-and-debugging.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript/TypeScript code examples and Jest configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and skill metadata) <br>
+Risk: Documentation recommends unpinned global installation from mutable remote sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a project-scoped install from an immutable release or commit, pin the installer version, and verify the source before enabling the skill across projects.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anivar/skills/jest-skill)
+- [Source Repository](https://github.com/anivar/jest-skill)
+- [Author Website](https://anivar.net)
+- [Matchers Reference](references/matchers.md)
+- [Mock Functions Reference](references/mock-functions.md)
+- [Jest Object Reference](references/jest-object.md)
+- [Async Testing Patterns Reference](references/async-patterns.md)
+- [Configuration Reference](references/configuration.md)
+- [Snapshot Testing Reference](references/snapshot-testing.md)
+- [Module Mocking Reference](references/module-mocking.md)
+- [Anti-Patterns Reference](references/anti-patterns.md)
+- [CI and Debugging Reference](references/ci-and-debugging.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with JavaScript/TypeScript code examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,28 @@
 ---
+slug: academic-knowledge-base
 name: academic-knowledge-base
 displayName: 个人文献知识库，自带全球文献检索（支持向量搜索+传统分词搜索）
-version: 3.11
-homepage: https://www.vipslib.com
+version: 3.11.2
 description: |
   面向学术研究者的个人知识中枢。整合 Karpathy LLM Wiki 知识编译能力 + SmartLib 海量文献检索能力，形成私有知识库与外部文献库双轨联动的研究助手。
   支持4类数据入库（文献检索结果、用户上传文献、资讯报道、个人学术数据）、研究专题（文献子集+智能命名+笔记+AI分析+导出）、向量化语义检索、分词匹配检索、参考文献管理、Wiki知识层自动维护。
   ✨ 亮点：入库文献自动保留原始数据库来源链接（覆盖300+数据库，如Scopus/WoS/EI/PubMed等，覆盖率100%），支持多源交叉验证。
   采用懒加载引导式初始化，无需前置配置即可使用。配额管理复用 global-biblio-base 的 gateway 凭证和计次规则（v3.1：5接口，每次调用计1次），配额耗尽后暂停外部检索请求。
   适用场景：文献管理、知识积累、论文写作辅助、研究调研。触发词：保存到知识库、知识库统计、我的知识库、给这篇打标签、列出我的专题、文献管理、论文管理、我的论文库、文献收藏、研究笔记、知识整理、学术知识库、论文知识库、文献整理、学术笔记、研究知识管理、收藏这篇文章、加入知识库、文献综述工具。
-  A personal knowledge hub for academic researchers — integrating Karpathy LLM Wiki + SmartLib literature search + vectorized semantic retrieval. Ingested literature automatically preserves original database source links (300+ databases, 100% coverage) for cross-verification. Quota managed via global-biblio-base gateway with v3.1 billing rules (5 interfaces, 1 quota per successful call), restricted display when quota exhausted.
+  A personal knowledge hub for academic researchers — integrating Karpathy LLM Wiki + SmartLib literature search + vectorized semantic retrieval. Ingested literature automatically preserves original database source links (300+ databases, 100% coverage) for cross-verification. Quota managed via global-biblio-base gateway with v3.0 billing rules (5 interfaces, 1 quota per successful call), restricted display when quota exhausted.
   Production URL: read from global-biblio-base/config.json → SMARTLIB_GATEWAY_URL (Gateway v47, version 67)
-metadata:
-  openclaw:
-    emoji: "🧠"
-    requires:
-      env:
-        - SMARTLIB_GATEWAY_SECRET
-        - SMARTLIB_GATEWAY_URL
-        - SMARTLIB_EMAIL
-    envVars:
-      - name: SMARTLIB_GATEWAY_URL
-        required: true
-        description: SmartLib Gateway 服务地址
-      - name: SMARTLIB_GATEWAY_SECRET
-        required: true
-        description: SmartLib Gateway API 密钥
-      - name: SMARTLIB_EMAIL
-        required: true
-        description: 注册邮箱（必填，复用 global-biblio-base 凭证与配额）
 agent_created: true
-recommends: [global-biblio-base, smartlib-citation-checker]
-allowed-tools: [Read, Write, Edit, Bash, WebFetch, AskUserQuestion]
+recommends:
+  - global-biblio-base
+  - smartlib-citation-checker
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - WebFetch
+  - AskUserQuestion
+disable: true
 ---
 
 ## 快速触发词 / Quick Trigger Reference
@@ -124,11 +115,11 @@ allowed-tools: [Read, Write, Edit, Bash, WebFetch, AskUserQuestion]
 ## 凭证与配额 / Credentials & Quota
 
 > ## ⚠️ 强制规则 — 必须先询问邮箱
-> 1. **执行任何操作前，必须先询问用户邮箱地址**
+> 1. **执行任何需要 SmartLib API 的操作前，必须先询问用户邮箱地址**
 > 2. 禁止使用 global-biblio-base/config.json 中预填的邮箱（即使存在且非 null）
 > 3. 禁止自动生成邮箱（如 `user@example.com`、`auto@xxx.com` 等）
 > 4. 用户未提供邮箱 → 停止执行，回复：
->    "请提供您的邮箱地址以注册 SmartLib 学术知识库（新用户免费 100 次/月）"
+>    "请提供您的邮箱地址以注册 SmartLib 学术知识库服务（新用户免费 100 次/月）"
 > 5. 只有用户明确输入邮箱后，才能调用 /register 或 /quota
 >
 > ## 邮箱识别自动化

@@ -1,0 +1,73 @@
+{
+  "script": {
+    "title": "快速体验示例",
+    "type": "短剧",
+    "duration_seconds": 15,
+    "aspect_ratio": "9:16",
+    "aesthetic_style": "电影级写实风格",
+    "image_style": "cinematic photorealistic",
+    "provider": "agnes",
+    "video_provider": "agnes",
+    "global_style": "电影级写实风格"
+  },
+  "character_cards": [
+    {
+      "name": "小墨",
+      "title": "主角",
+      "appearance": {
+        "clothing": "黑色风衣",
+        "hair": "短发",
+        "physique": "修长"
+      },
+      "views": ["front", "face", "side", "back"],
+      "aesthetic_style": "清冷",
+      "asset_background": "white",
+      "color_scheme": "黑白",
+      "distinctive_mark": "银质吊坠",
+      "age_range": "青年",
+      "build": "匀称",
+      "gender": "男"
+    }
+  ],
+  "scene_cards": [
+    {
+      "name": "天台",
+      "id": "rooftop",
+      "description": "城市天台，黄昏光线",
+      "time": "黄昏",
+      "color_palette": "暖色，金橙色"
+    }
+  ],
+  "shots": [
+    {
+      "id": 1,
+      "description": "小墨站在天台边缘，黄昏阳光洒在脸上，镜头缓慢推进",
+      "duration": 5.0,
+      "location": "rooftop"
+    },
+    {
+      "id": 2,
+      "description": "特写小墨的面部表情，眼神坚定，微风拂动发丝",
+      "duration": 3.0,
+      "location": "rooftop"
+    },
+    {
+      "id": 3,
+      "description": "小墨低头看手中的银质吊坠，陷入回忆，镜头缓缓上摇",
+      "duration": 4.0,
+      "location": "rooftop"
+    },
+    {
+      "id": 4,
+      "description": "小墨抬头望向远方，突然发现远处有异常动静，紧张",
+      "duration": 2.0,
+      "location": "rooftop"
+    },
+    {
+      "id": 5,
+      "description": "小墨转身快步离开天台，背影消失在夕阳中",
+      "duration": 3.0,
+      "location": "rooftop"
+    }
+  ]
+}

@@ -1,42 +1,52 @@
-## Description: <br>
-A specialized English-language skill for tracking the US-Iran conflict using intelligence published within the last 6 hours, with a focus on military actions, official statements, and international reactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A specialized skill for tracking the US-Iran conflict in English, focused on intelligence published within the last 6 hours for hyper-current tactical situation reports on military actions, official statements, and international reactions.
 
-## Publisher: <br>
-[wlkqyang-star](https://clawhub.ai/user/wlkqyang-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wlkqyang-star](https://clawhub.ai/user/wlkqyang-star)
 
-## Use Case: <br>
-External users and analysts use this skill to produce English public-source situation reports on recent US-Iran conflict developments. It guides agents to search recent sources, separate verified facts from competing claims, and organize findings into attributed reports with a rolling timeline. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Fast-moving conflict reporting can include outdated, incomplete, or misleading claims. <br>
-Mitigation: Require recent source checks, cite claims clearly, distinguish verified facts from competing claims, and call out intelligence gaps. <br>
-Risk: Politically sensitive reporting may be mistaken for authoritative or operational intelligence. <br>
-Mitigation: Frame outputs as public-source news analysis and avoid presenting reports as operational guidance or official intelligence. <br>
-Risk: Primary sources in the conflict may have strong agendas. <br>
-Mitigation: Use the artifact's triangulation posture by seeking corroboration from opposing-side sources or reputable neutral agencies before treating claims as credible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wlkqyang-star/zeelin-us-iran-war-tracker-en) <br>
-- [Publisher profile](https://clawhub.ai/user/wlkqyang-star) <br>
+## Use Case:
 
+External analysts, journalists, and other users use this skill to produce English, near-real-time situation reports on the US-Iran conflict. It emphasizes recent-source collection, attribution, and triangulation across official claims and independent news agencies.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [English Markdown situation report with attributed claims and timeline sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are intended to focus on the prior 6 hours and should distinguish verified facts, competing claims, civilian impact, international reactions, and intelligence gaps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Near-real-time conflict reporting can be time-sensitive, incomplete, or affected by official claims and disinformation.
+
+Mitigation: Require corroboration across opposing or neutral sources, clearly separate verified facts from claims, and attribute all disputed information.
+
+Risk: Users may over-rely on reports generated from a narrow 6-hour window.
+
+Mitigation: State intelligence gaps when verification is insufficient and include contextual background without presenting it as newly verified intelligence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wlkqyang-star/skills/zeelin-us-iran-war-tracker-en)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [English Markdown situation report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are expected to be at least 1,000 words, cite attributed claims, and maintain a 6-hour rolling timeline when enough verified information is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

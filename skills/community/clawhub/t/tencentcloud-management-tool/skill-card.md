@@ -1,53 +1,68 @@
-## Description: <br>
-Guides agents in managing Tencent Cloud resources with tccli, including CVM, Lighthouse, CBS, VPC, DNSPod, SSL, CAM, Monitor, TAT, and domain workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage Tencent Cloud resources through tccli, including CVM, Lighthouse, CBS, VPC, DNSPod, SSL, CAM, Monitor, TAT, and Domain workflows.
 
-## Publisher: <br>
-[cocofhu](https://clawhub.ai/user/cocofhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cocofhu](https://clawhub.ai/user/cocofhu)
 
-## Use Case: <br>
-Developers, operators, and cloud administrators use this skill to query, configure, inspect, and deploy Tencent Cloud resources through tccli-assisted workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to pass Tencent Cloud login token material through the agent and stores tccli credentials under the user's home directory. <br>
-Mitigation: Treat OAuth codes and tccli credential files as secrets, prefer least-privilege temporary credentials, and avoid sending login codes through chat when another secure path is available. <br>
-Risk: The skill covers high-impact cloud workflows such as paid resource creation, DNS changes, disk operations, and remote root commands. <br>
-Mitigation: Confirm every paid, destructive, DNS, disk-formatting, or root remote command before execution, and prefer read-only Describe or help commands before changing resources. <br>
-Risk: The authoritative security review describes the release as purpose-aligned but under-scoped for several high-impact cloud and credential-handling workflows. <br>
-Mitigation: Install only when the agent is intended to manage Tencent Cloud resources, review helper scripts before use, and constrain credentials to the minimum permissions needed for the task. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to inspect and manage Tencent Cloud resources, deploy Lighthouse applications, mount cloud disks, run security and health checks, and configure DNS, SSL, CAM, and monitoring workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cocofhu/tencentcloud-management-tool) <br>
-- [Tencent Cloud API Documentation](https://cloud.tencent.com/document/api) <br>
-- [TCCLI Official Documentation](https://cloud.tencent.com/document/product/440) <br>
-- [Tencent Cloud CAM Documentation](https://cloud.tencent.com/document/product/598) <br>
-- [Tencent Cloud Audit Documentation](https://cloud.tencent.com/document/product/629) <br>
-- [CVM Security Check](references/cvm-security-check.md) <br>
-- [Automated Resource Check](references/auto-check-resource.md) <br>
-- [Cloud Service Health Check](references/cloud-service-healthcheck.md) <br>
-- [Lighthouse Website Setup](references/lighthouse-website-setup.md) <br>
-- [CBS Bind to CVM](references/cbs-bindto-cvm.md) <br>
-- [Lighthouse OpenClaw Setup](references/lighthouse-openclaw-setup.md) <br>
-- [Lighthouse App Deploy](references/lighthouse-app-deploy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cloud API command suggestions that require user-provided credentials, regions, resource identifiers, and explicit confirmation for paid or destructive operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: ClawHub release evidence) <br>
+Risk: The skill can manage live Tencent Cloud resources and therefore may affect production infrastructure or billing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when Tencent Cloud management is expected, use a least-privilege cloud account, and require explicit confirmation for purchases, DNS changes, disk formatting, remote commands, and deletes.
+
+Risk: Credential material such as OAuth codes, SecretKeys, personal access tokens, passwords, or tccli credential files could be exposed during setup or operation.
+
+Mitigation: Avoid sending secrets through chat, prefer temporary OAuth credentials, restrict permissions on ~/.tccli credential files, and rotate credentials used with insecure flows.
+
+Risk: Deployment flows may involve installers, images, SSH access, and host configuration steps that need operator review.
+
+Mitigation: Prefer pinned installers and images, use SSH keys with host-key verification, and review generated commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cocofhu/skills/tencentcloud-management-tool)
+- [Tencent Cloud API documentation](https://cloud.tencent.com/document/api)
+- [TCCLI documentation](https://cloud.tencent.com/document/product/440)
+- [CAM permission documentation](https://cloud.tencent.com/document/product/598)
+- [CloudAudit documentation](https://cloud.tencent.com/document/product/629)
+- [auto-check-resource.md](references/auto-check-resource.md)
+- [cbs-bindto-cvm.md](references/cbs-bindto-cvm.md)
+- [cloud-service-healthcheck.md](references/cloud-service-healthcheck.md)
+- [cvm-security-check.md](references/cvm-security-check.md)
+- [lighthouse-app-deploy.md](references/lighthouse-app-deploy.md)
+- [lighthouse-openclaw-setup.md](references/lighthouse-openclaw-setup.md)
+- [lighthouse-website-setup.md](references/lighthouse-website-setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or execute tccli workflows that affect live Tencent Cloud resources; purchases, DNS changes, disk formatting, remote commands, and deletes require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

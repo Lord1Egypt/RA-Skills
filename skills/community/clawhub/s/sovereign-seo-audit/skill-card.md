@@ -1,41 +1,54 @@
-## Description: <br>
-Comprehensive SEO auditor that analyzes technical SEO, on-page optimization, content quality, site architecture, mobile readiness, schema markup, and backlink profile. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive SEO auditor that analyzes technical SEO, on-page optimization, content quality, and site architecture, then produces a scored report with prioritized fixes.
 
-## Publisher: <br>
-[ryudi84](https://clawhub.ai/user/ryudi84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ryudi84](https://clawhub.ai/user/ryudi84)
 
-## Use Case: <br>
-External site owners, marketers, content teams, and developers use this skill to audit websites, pages, content, or codebases for SEO gaps and turn findings into prioritized fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may suggest website checks, URL submissions, or content changes outside the user's intended scope. <br>
-Mitigation: Specify the exact site, page, repository, or content scope before use, and run audits only where the user has authorization. <br>
-Risk: Aggressive crawling or external submission steps could create operational or privacy issues. <br>
-Mitigation: Avoid aggressive crawling, and review generated IndexNow or Search Console submission steps before providing API keys or sending URLs externally. <br>
+## Use Case:
 
+External users, marketers, developers, and site owners use this skill to audit websites, codebases, HTML, or content for SEO issues and receive scored findings with prioritized fixes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryudi84/sovereign-seo-audit) <br>
-- [Publisher profile](https://clawhub.ai/user/ryudi84) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown audit report with scores, tables, checklists, prioritized action items, and optional code or configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include letter grades, category scores, severity labels, estimated effort, expected impact, and concrete fixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: External website checks and competitor analysis may involve network access to URLs the user provides.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Approve external checks deliberately and limit audits to owned, public, or otherwise authorized targets.
+
+Risk: Search engine submission workflows can expose staging, internal, confidential, or non-owned URLs.
+
+Mitigation: Do not submit staging, internal, confidential, or non-owned URLs to IndexNow, Search Console, or similar services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryudi84/skills/sovereign-seo-audit)
+- [Project homepage](https://github.com/ryudi84/sovereign-tools)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown audit reports with tables, findings, prioritized action plans, and occasional inline code or shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include letter grades, category scores, pass/warn/fail findings, estimated impact, and estimated effort.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

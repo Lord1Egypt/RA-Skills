@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "task": "拒绝未运行的数字查证被标成可引用事实。",
+  "claims": [
+    {
+      "id": "C4",
+      "text": "2025年中国云计算市场规模突破1.2万亿元。",
+      "kind": "industry_statistic",
+      "subject": "中国云计算市场"
+    }
+  ],
+  "sources": [
+    {
+      "id": "S4",
+      "title": "待查报告线索（不是已找到的报告）",
+      "publisher": "发布机构未核实",
+      "source_type": "other",
+      "relationship": "primary",
+      "url": "",
+      "input_ref": "",
+      "published_on": null,
+      "publication_date_note": "报告与发布日期均未核实。",
+      "period": "声称为2025年，尚未核实。",
+      "scope": "单位、统计定义、原始数据与报告身份均未核实。",
+      "locator": "尚未获取原始页面或附件",
+      "excerpt": "",
+      "access_status": "unrun",
+      "accessed_on": null,
+      "access_note": "仅保留旧范例的数字线索，未执行查证，不代表该报告存在。",
+      "trace": {
+        "status": "not_applicable",
+        "original_url": "",
+        "attempts": []
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "claim_id": "C4",
+      "source_id": "S4",
+      "support": "direct",
+      "use": "cite",
+      "reason": "错误示范：未经核实搬用数字。",
+      "citation_text": "中国云计算市场规模突破1.2万亿元。",
+      "next_step": ""
+    }
+  ]
+}

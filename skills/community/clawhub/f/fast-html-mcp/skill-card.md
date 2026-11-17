@@ -1,44 +1,56 @@
-## Description: <br>
-Generates, patches, reads, and compresses HTML pages for reports, dashboards, documents, invoices, and similar agent-facing outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, patch, read, and compress HTML pages for reports, dashboards, and docs with fast AI-agent speed and precise CSS selector updates.
 
-## Publisher: <br>
-[xdnaimino](https://clawhub.ai/user/xdnaimino) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-GPL-3.0-only <br>
+## Publisher:
 
+[xdnaimino](https://clawhub.ai/user/xdnaimino)
 
-## Use Case: <br>
-Developers and AI-agent users can use this MCP server to create, inspect, and update structured HTML outputs instead of relying on long Markdown responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server can create and modify local HTML files, so mistaken paths or prompts could affect files outside the intended workspace. <br>
-Mitigation: Run it in a dedicated workspace or temporary output folder, review target paths before approving edits, and avoid sensitive directories. <br>
-Risk: Email-oriented tools can turn generated HTML into content intended for sharing or delivery. <br>
-Mitigation: Review generated email content and confirm the intended use before using it with confidential or externally shared material. <br>
+## Use Case:
 
+Developers and AI-agent users use this MCP server to create, inspect, patch, and compress HTML reports, dashboards, docs, email-ready pages, and other structured pages instead of long markdown outputs.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/xdnaimino/fast-html-mcp) <br>
-- [README](references/README.md) <br>
-- [MCP server manifest](references/server.json) <br>
-- [Package metadata](references/package.json) <br>
-- [License](references/LICENSE) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [HTML files and compressed text responses, with Markdown examples and JSON MCP configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write or patch local HTML files and return token-efficient reads for inspection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: ClawHub release evidence) <br>
+Risk: The reviewed artifact tells users to run an unpinned external MCP package whose executable is not included in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a reconciled, exact npm version with a known reviewed package, and avoid dynamic npx resolution in MCP client startup.
+
+Risk: Generated HTML and email-ready output may be written or sent outside the expected location or workflow.
+
+Mitigation: Run the server with limited filesystem, environment, and network access, and do not process secrets or regulated data unless output destinations are understood.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xdnaimino/skills/fast-html-mcp)
+- [NPM package](https://www.npmjs.com/package/@aimino/opentalk2html-notmd)
+- [Bundled README](references/README.md)
+- [MCP server manifest](references/server.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and shell examples; generated agent artifacts are HTML pages or compressed HTML summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write, read, patch, format, preview, or compress HTML files through MCP tools.]
+
+## Skill Version(s):
+
+1.1.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

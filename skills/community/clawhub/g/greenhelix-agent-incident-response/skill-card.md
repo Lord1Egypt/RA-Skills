@@ -1,44 +1,59 @@
-## Description: <br>
-Structured runbooks and Python examples help teams detect, contain, recover from, and learn from AI agent commerce incidents involving spending loops, escrow abuse, identity compromise, service degradation, and cascade failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The Agent Incident Response Playbook helps agent operators detect, contain, recover from, and learn from AI agent commerce incidents such as runaway spending, escrow exploitation, identity compromise, service degradation, and cascade failures.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and agent operations teams use this guide to prepare response playbooks and automation patterns for commerce-agent incidents. It focuses on detection signals, containment actions, recovery checks, forensics, and post-incident learning for systems that can affect budgets, escrows, reputation, webhooks, and credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide is non-executing, but its examples call live GreenHelix APIs that can change financial state for budgets, escrows, webhooks, or reputation data. <br>
-Mitigation: Review the examples before use, start with sandbox or limited-scope test credentials, and add dry-run mode plus explicit confirmations before allowing changes to production resources. <br>
-Risk: The skill requires a GREENHELIX_API_KEY and covers workflows involving wallet-like balances and sensitive agent operations. <br>
-Mitigation: Use restricted credentials, store keys outside prompts and source files, rotate keys after incident exercises, and limit permissions to the specific read or write actions being tested. <br>
-Risk: Automated containment patterns can freeze budgets or cancel escrows if detection thresholds or incident classification are wrong. <br>
-Mitigation: Set conservative thresholds, require human approval for production containment until tested, log every action, and maintain rollback steps for budget restoration and false-positive recovery. <br>
+## Use Case:
 
+Developers, agent operators, and incident responders use this guide to build and adapt runbooks for AI agent commerce failures, including detection, containment, recovery, forensics, and post-mortem workflows. It is aimed at teams operating GreenHelix or OpenClaw-compatible agent systems that need practical response procedures and example code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/greenhelix-agent-incident-response) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API documentation](https://api.greenhelix.net/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guide with Python code examples and inline operational commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied GREENHELIX_API_KEY for examples that call GreenHelix services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release evidence and artifact frontmatter) <br>
+Risk: Examples can automatically freeze budgets and cancel escrows when run with production GreenHelix credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Test in the GreenHelix sandbox first, use least-privilege keys scoped to specific agents and actions, and require approval gates before production containment actions.
+
+Risk: Webhook-triggered response flows could be abused if request authenticity and replay protection are not implemented.
+
+Mitigation: Add webhook signature verification and replay protection before enabling automated response from webhook events.
+
+Risk: Auto-containment or fleet shutdown can interrupt legitimate agent activity and business processes.
+
+Mitigation: Enable automated containment gradually, document rollback procedures, and keep human approval for fleet-wide shutdown until operational confidence is established.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/greenhelix-agent-incident-response)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix developer documentation](https://api.greenhelix.net/docs)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guide with Python code examples, runbooks, checklist items, and inline command/configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses GREENHELIX_API_KEY for API-backed examples; the artifact itself is non-executable and does not install dependencies.]
+
+## Skill Version(s):
+
+1.3.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

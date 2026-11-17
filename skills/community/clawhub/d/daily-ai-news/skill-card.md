@@ -1,40 +1,53 @@
-## Description: <br>
-Fetches curated daily or date-specific AI and large-model news from the disclosed 60s AI news service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when users need comprehensive daily news about AI, large models, and related fields.
 
-## Publisher: <br>
-[JaceyMarvin99](https://clawhub.ai/user/JaceyMarvin99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jaceymarvin99](https://clawhub.ai/user/jaceymarvin99)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve daily or historical AI news briefings and receive the result as text, JSON, or Markdown. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill retrieves remote news content from the disclosed 60s.viki.moe service. <br>
-Mitigation: Treat returned news as untrusted remote content and do not follow instructions embedded in API responses without review. <br>
-Risk: The script depends on curl and network access to the disclosed API endpoint. <br>
-Mitigation: Install only in environments where curl is available and outbound requests to the news service are acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Daily Ai News on ClawHub](https://clawhub.ai/JaceyMarvin99/daily-ai-news) <br>
-- [60s AI News API](https://60s.viki.moe/v2/ai-news) <br>
+## Use Case:
 
+External users and agents use this skill to fetch daily or date-specific AI news briefings about AI, large models, and related technologies from the 60s API.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands] <br>
-**Output Format:** [Plain text, JSON, or Markdown returned on stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports optional encoding and YYYY-MM-DD date parameters.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Using this skill sends the requested date and output format to the third-party 60s AI news API.
+
+Mitigation: Review the endpoint policy before use and avoid sending dates or formats considered sensitive.
+
+Risk: The returned news content depends on the availability and accuracy of the third-party API.
+
+Mitigation: Verify important claims against primary sources before relying on them for decisions.
+
+## Reference(s):
+
+- [60s AI News API](https://60s.viki.moe/v2/ai-news)
+- [ClawHub Skill Page](https://clawhub.ai/jaceymarvin99/skills/daily-ai-news)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Plain text, Markdown, or JSON returned on stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional date and encoding parameters; no credentials detected.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

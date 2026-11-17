@@ -1,0 +1,583 @@
+# Paying — mode B, the streaming proxy, and mode A
+
+Three ways to pay. **Default to mode B.** Reach for the others only when its shape does not fit.
+
+| | Endpoint | Use when |
+| --- | --- | --- |
+| **Mode B — envelope** | `POST /api/v1/router/route` | Almost always. One call, JSON in, JSON out |
+| **Mode B — streaming** | `ALL /api/v1/router/proxy` | Large or streamed responses (SSE, downloads) |
+| **Mode A — credential** | `POST /api/v1/router/payments` | You must call the merchant yourself |
+
+All three need `Authorization: Bearer $NVM_API_KEY` and an `erc4337` `delegationId`.
+
+To learn what a mode-B call will cost before paying for it, [quote it](#quote) first.
+
+---
+
+## Mode B — `POST /api/v1/router/route`
+
+You describe the request; the Router probes the merchant, **auto-detects** the protocol from the
+402, pays, and relays the response. You never see the 402 and never handle a credential.
+
+```json
+{
+  "delegationId": "5e7481c3-e972-45bd-bdc5-a0b99c4de4a1",
+  "slug": "superhighway",
+  "path": "/search",
+  "method": "POST",
+  "headers": { "X-Merchant-Api-Key": "…" },
+  "body": { "query": "nevermined router" },
+  "requestId": "search-nevermined-router-v1"
+}
+```
+
+| Field | Required | Notes |
+| --- | --- | --- |
+| `delegationId` | **yes** | UUID. Must be an `erc4337` Delegation |
+| `url` | one of `url` or `slug` | Absolute `http(s)` URL for an off-catalog target |
+| `slug` | one of `url` or `slug` | Catalog slug; the Router keeps its upstream URL hidden |
+| `path` | no | Path segments appended to a slug target; do not put a query here |
+| `search` | no | Query string without `?` for a slug target; with a raw `url`, put the query in `url` |
+| `method` | no | `GET` · `POST` · `PUT` · `PATCH` · `DELETE`. Default `GET` |
+| `headers` | no | Forwarded to the merchant — put **its** auth here, never your `NVM_API_KEY` |
+| `body` | no | JSON, forwarded |
+| `protocol` | no | `x402`/`mpp`. **Advisory only** — see below |
+| `requireProtocol` | no | `x402`/`mpp`. **Binding** rail pin: pay only this rail; no fallback. An unavailable pin returns `409 BCK.ROUTER.0045` before signing, reserving or charging |
+| `validateRequestBody` | no | Opt-in body gate (default off). When `true`, a `body` that **provably** fails the endpoint's published request schema is refused `400 BCK.ROUTER.0046` before signing, reserving or charging. Only a proven mismatch refuses; a missing/unverifiable schema still pays — see below |
+| `requestId` | **yes** | Idempotency key. Non-empty, ≤ 256 chars |
+| `maxTotalCents` | no | Non-negative safe integer. Per-call ceiling on the fee-inclusive, whole-cent cap reserve; a larger quote returns `402 BCK.ROUTER.0018` before a charge or budget reserve. The Delegation cap remains the overall limit |
+| `quoteId` | no | API 1.55+: opaque 60-second binding returned by `/quote`. Send it with the quoted request unchanged to pay the sealed challenge and exact quoted total; `maxTotalCents` remains an independent ceiling |
+
+### `protocol` is advisory here, and the detected one wins
+
+On mode B the Router determines the protocol from the upstream 402 itself —
+`WWW-Authenticate: Payment` → `mpp`; `accepts` / `PAYMENT-REQUIRED` → `x402`. **The detected
+protocol is authoritative**: a wrong hint does not change what gets paid, and does not cause a
+failure. You can omit it entirely and send the same call for both rails.
+
+Unlike `protocol`, **`requireProtocol` binds the rail** (API v1.88.0+). If both rails are offered,
+the Router uses the pinned one; if it is unavailable, the call fails with `BCK.ROUTER.0045`.
+
+**Session deposits.** When `settlement.scheme` on a quote is `session`, the call also moves a deposit
+from the wallet into a payment channel, and that deposit can far exceed the price. The quote's
+`sessionDeposit` states it (`action`, `amount`, `approxCents`, `basis`, `idleCloseSeconds`), the
+network fee not included. It is locked, not spent, it is not charged to the delegation cap, and what
+the merchant does not take comes back when the channel closes. Tell the human before paying. A
+delegation created with `allowSessionPayments: false` is refused with `409 BCK.ROUTER.0047` when
+nothing else can pay the call; a service that also charges per call over Tempo is paid that way, and
+one that also offers x402 is paid there unless the call pins `requireProtocol: "mpp"`.
+Read `params.requireProtocol` and `params.offered`; an empty `offered` means neither rail can be
+parsed, so choose another service. Never silently remove the pin. `/quote` and commerce variants
+honour it too: quote and pay with the same value. A `quoteId` bound to another rail is refused
+with `BCK.ROUTER.0033`; quote again on the intended rail. Subscription payments also enforce the
+pin, and a subscription-credit quote prices the rail the pin names, so quote with it too. On streaming
+`/proxy` and `/svc` calls, send `X-Router-Require-Protocol: x402` (or `mpp`) instead of a body field.
+
+**`validateRequestBody` catches a bad body before you pay** (API v1.92.0+, default off). With it set,
+the Router checks your `body` against the endpoint's published request schema and, if the body
+*provably* fails it, refuses with `BCK.ROUTER.0046` before anything is signed, reserved or charged —
+so a call the merchant would certainly reject never costs you. It fails **open**: a missing, weak or
+unreadable schema, or any verdict short of a proven mismatch, still pays, so turning it on never
+blocks a call it cannot be sure about. `params.endpointPath` names the endpoint; fix the body to
+match its published `requestSchema`/`requestExample` (catalog service detail, or the Commerce MCP
+`get_service` result), or omit the flag. Honoured on the buffered pay routes `/route`,
+`/commerce/route` and `/router/subscription/route`, and the Commerce MCP `pay_service` forwards it to
+them; the streaming `/proxy` and `/svc` surfaces do not apply it.
+
+### Response
+
+```json
+{
+  "status": 200,
+  "body": { "…": "the paid resource" },
+  "paid": true,
+  "payment": {
+    "paymentId": "b1f9c2e4-…",
+    "settlement": {
+      "recipient": "0x209693Bc…", "amount": "1000", "asset": "USDC",
+      "network": "base", "approxCents": "1"
+    },
+    "fee": { "bps": 0, "amount": "0", "cents": "0", "capChargedCents": "1" },
+    "txHash": "0xfc8af37b…",
+    "status": "Settled"
+  }
+}
+```
+
+- `status` / `body` are the merchant's own, relayed unchanged. `body` is parsed JSON when the
+  merchant returned JSON, otherwise a string.
+- `paid: false` and **no `payment` block** means the merchant answered without asking for payment,
+  and nothing was charged. With a raw `url` the body is relayed. With a `slug` the body is
+  `null` (it could name the merchant's host), **except** for a follow-up read of a job you paid
+  for — see [Async services](#async-services-pay-then-poll). Handle this; not every call you
+  route is actually paid.
+- `settlement.approxCents` is the **merchant leg only**. What came off your cap is
+  `fee.capChargedCents` — see [the fee object](#the-fee-object) below. Trust either over any catalog
+  `priceLabel`.
+- `status: "Issued"` (rather than `Settled`) means the hop succeeded and you have your resource, but
+  the settlement anchor is still pending. Normal, not a failure — see `ledger.md`.
+
+<a id="async-services-pay-then-poll"></a>
+### Async services — pay, then poll
+
+Some catalog services answer a paid call with a job id and deliver the result later, on a **free**
+status/result endpoint (Tavily research is one). Poll that endpoint through the **same slug** with
+`/route`:
+
+```json
+{ "delegationId": "…", "slug": "tavily-api-mpp", "path": "/research", "method": "POST",
+  "body": { "input": "…" }, "requestId": "research-agent-payments-v1" }
+```
+```json
+{ "delegationId": "…", "slug": "tavily-api-mpp", "path": "/research/<request_id>",
+  "method": "GET", "requestId": "research-agent-payments-v1-poll-3" }
+```
+
+The poll comes back `paid: false` with the merchant's body, and nothing is charged. It is
+relayed only when all of these hold:
+
+- **you** have a `Settled` payment for that slug made within the follow-up window — one hour on
+  production, counted from the payment. A card (SPT) payment stays `Issued`, so it never unlocks a
+  follow-up;
+- the path is one the service declares as a follow-up, i.e. its job status/result path;
+- the merchant answers `2xx`.
+
+Outside those conditions the body is `null`. An unpaid call to a follow-up path, or a poll after
+the window, gets the status but not the body. The poll is a new request, so give each one its own
+`requestId`.
+
+<a id="wallet-authenticated-results"></a>
+#### Wallet-authenticated results (`auth: "siwx"`)
+
+Some async services (StableStudio, StableSocial, StablePhone) answer the poll with a `402` that asks
+for **no money** — a zero-amount MPP `tempo` charge and/or an x402 `sign-in-with-x` extension — to
+prove you are the wallet that paid. The Router answers it for you: it signs with **your own wallet**
+(MPP proof credential first, else an EIP-4361 SIWX message on Base / Base Sepolia), retries once,
+and relays the result with `paid: false`. No payment, fee or ledger row.
+
+- The catalog marks such an endpoint `auth: "siwx"` (service detail, MCP `get_service`) and lists
+  it as a **template**: `/api/jobs/{jobId}`, `/api/call/:id`. Fill the placeholder with the id your
+  paid call returned — a `path` still holding `{jobId}` or `:id` is `400 BCK.ROUTER.0001`.
+- Same gates as above (slug call, your `Settled` payment for that slug within the window), plus:
+  the payment must come from **your personal wallet**. A paid call to such a service funded by an
+  organization wallet or a card is refused with `400 BCK.ROUTER.0001` **before anything is
+  charged** — nobody could read its result.
+- Subscription credits pay only the reviewed self-contained endpoints of such a service (the paid
+  response is the whole result). Any other endpoint is `403 BCK.SUBSCRIPTION_ROUTER.0001` with
+  `params.reason: "wallet_bound"`, nothing reserved: pay it with the `delegationId` of a personal
+  crypto Delegation instead.
+- Challenge checks: realm/domain = the target host, SIWX `uri` = the exact URL, expiry at most
+  10 minutes away, allowlisted Tempo asset for MPP. Solana SIWX is not supported. Anything that
+  fails is `422 BCK.ROUTER.0035`, with nothing signed.
+- If you send your own `Authorization` (MPP) or `Sign-In-With-X` header, it is forwarded as is and
+  the Router does not sign.
+
+```json
+{ "delegationId": "…", "slug": "merit-systems-mpp-2", "path": "/api/generate/nano-banana/generate",
+  "method": "POST", "body": { "prompt": "…" }, "requestId": "lighthouse-image-v1" }
+```
+```json
+{ "delegationId": "…", "slug": "merit-systems-mpp-2", "path": "/api/jobs/<jobId>",
+  "method": "GET", "requestId": "lighthouse-image-v1-poll-1" }
+```
+
+<a id="the-fee-object"></a>
+### The `fee` object — read `capChargedCents`, not `approxCents`
+
+Nevermined charges its own routing fee on top of the merchant's price. Both modes return a **`fee`
+object next to `settlement`**, and it is **always present** — zeroed when no fee applied, so you
+never branch on its absence.
+
+| Field | Meaning |
+| --- | --- |
+| `bps` | The rate applied to this payment, in basis points over 10,000 (`200` = 2%). `0` = no fee |
+| `amount` | The fee in the settlement asset's **smallest unit** — same unit as `settlement.amount`. Reported in that unit rather than cents because cents are ceiling-rounded and cannot express a sub-cent fee |
+| `cents` | Cents the fee added to the cap reserve, i.e. `capChargedCents - settlement.approxCents` |
+| `capChargedCents` | **Total debited from the Delegation cap** for this payment — merchant leg + routing fee |
+| `capChargedMicros` | The same total, exact, in micros (1/10,000 of a cent). `capChargedCents` is this figure rounded **up** to a whole cent, and is what `maxTotalCents` is compared against |
+
+```
+capChargedCents  =  settlement.approxCents  +  fee.cents
+```
+
+**If you keep your own budget ledger, sum `fee.capChargedCents`, not `approxCents`.** Summing
+`approxCents` under-reports your spend by exactly the fee, and the drift compounds silently over a
+long run. With no fee configured the two are equal — which is why an agent that only ever ran against
+a zero-fee deployment will not notice until one has a rate set.
+
+<a id="reserve-not-final"></a>
+⚠️ **`capChargedCents` is what was reserved at MINT, and the fee half can come back.** On mode B, if
+the upstream does not answer `2xx`, the routing fee is released to your cap and the row goes
+`feeStatus: Released` — the **merchant** leg's reserve stays charged, by design. So a running total of
+`capChargedCents` *over*-reports on exactly those calls, by the fee. (A fee leg that could not be
+signed is released on **both** modes; only the merchant-hop trigger is mode-B's.)
+
+Which figure you want depends on the question:
+
+| You want | Read |
+| --- | --- |
+| What this call reserved, at the moment it was made | `fee.capChargedCents` on the response |
+| What you have actually spent, net of releases | `amountSpentCents` / `remainingBudgetCents` on `GET /api/v1/delegation/{id}` |
+| Whether a specific call's fee came back | `feeStatus` on its ledger row: **only** `Released` means refunded. `Failed` and an unadjudicated `Submitted` are both still charged (see `ledger.md`) |
+
+**The Delegation is the authority on spend; the response is the authority on what one call reserved.**
+Reconcile against the Delegation, not against your own sum, and the two agreeing is the check.
+
+The credential itself pays the **merchant only** — the fee never rides the merchant's authorization
+and settles as its own leg, signed separately from the same buyer wallet. So the wallet has to cover
+`settlement.amount` **plus** `fee.amount`, and the fee's settlement is tracked independently on the
+ledger (`feeStatus`, `feeTxHash`) rather than by the payment's own `status`. See `ledger.md`.
+
+### `requestId` — the rule that prevents double-spending
+
+Required on mode B **because the Router pays automatically**: a retry after a dropped connection
+must not buy the same thing twice. At most one payment is minted per `(caller, requestId)`; a
+duplicate returns `409 BCK.ROUTER.0002` carrying the **original** `paymentId`, which is usually what
+you actually wanted.
+
+**Use one stable id per logical purchase, reused across retries of that purchase.**
+
+- Same id on retry → `409 BCK.ROUTER.0002` with the original `paymentId`, **not the resource**. Safe — and never escape that 409 with a fresh id.
+- Fresh id on retry → buys again. Also safe, *if that is what you meant*.
+- From API version 1.48 (a key pinned at or above it), a same-id retry within 24 h returns the
+  retained paid result (or its `202` while it runs) instead of the 409, and a merchant slower than
+  45 s is answered `202 { paymentId, resultUrl, status: "Pending" }` — read it later from
+  `GET /api/v1/router/payments/{id}/result` (`404 BCK.ROUTER.0030` once expired). The 409 still
+  answers when nothing was kept (a `/proxy` · `/svc` response that already streamed to you), a
+  call that `Failed`, or an id reused for a different target. Keep the same id.
+
+Derive it from the work (`"search-nevermined-router-v1"`, a hash of the query, a task id). **A fresh
+`uuid4()` per HTTP attempt is how an agent double-spends** — it is the default reflex and it is
+wrong here.
+
+<a id="quote"></a>
+### Price it first — `POST /api/v1/router/quote`
+
+The unpaid half of mode B, on deployments running API 1.48 or later. Send the same body as `/route`
+**minus `requestId`, `maxTotalCents` and `protocol`** (they are stripped, not refused — a ceiling sent
+here does nothing); `delegationId` is optional. The Router makes the same unpaid request to the service that a payment would, reads the
+402, selects the payment option exactly as a payment would (MPP first, then x402), prices it with the
+routing fee — and stops. **Nothing is signed, no credential is minted, no payment is recorded and no
+budget is reserved.**
+
+```bash
+curl -sX POST "$NVM_API_URL/api/v1/router/quote" \
+  -H "Authorization: Bearer $NVM_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "delegationId": "'"$NVM_DELEGATION_ID"'",
+    "slug": "superhighway",
+    "path": "/search",
+    "method": "POST",
+    "body": { "query": "nevermined router" }
+  }'
+```
+
+```json
+{
+  "quoteId": "q1.opaque-authenticated-quote-token",
+  "expiresAt": "2026-09-29T12:01:00.000Z",
+  "paymentRequired": true,
+  "upstreamStatus": 402,
+  "optionSet": "delegation",
+  "delegationId": "5e7481c3-e972-45bd-bdc5-a0b99c4de4a1",
+  "protocol": "x402",
+  "x402Version": 2,
+  "settlement": {
+    "recipient": "0x209693Bc…", "amount": "50000", "asset": "USDC",
+    "network": "base", "approxCents": "5"
+  },
+  "fee": { "bps": 200, "amount": "1000", "cents": "1", "capChargedCents": "6", "capChargedMicros": "51000" }
+}
+```
+
+A $0.05 call with a 2% routing fee: the exact cap debit is `51000` micros (5.1¢), and
+`capChargedCents` rounds that **up** to `6`. On API 1.55+, the payment-required quote's opaque
+`quoteId` binds the exact request, Delegation, selected rail, merchant challenge and fee-inclusive
+amount for **60 seconds**, until `expiresAt`. Pay by sending that `quoteId` on `/route` with the
+quoted call unchanged and `maxTotalCents: 6`. The quote binding fixes the exact 5.1¢ total;
+`maxTotalCents` remains an independent whole-cent ceiling. An invalid/wrong-account id is
+`BCK.ROUTER.0029`, expiry is `0032`, and any request, Delegation, rail or amount mismatch is `0033` —
+nothing is reserved or charged. Re-quote if the call changes or the id expires.
+
+Clients pinned below API 1.55 receive neither `quoteId` nor `expiresAt`: `/route` probes again, and
+only `maxTotalCents` guards the new price. Its whole-cent resolution means the 5.1¢ quote paid with a
+ceiling of `6` accepts up to 6.00¢. (`settlement` carries no `scheme` on the x402 rail; it defaults to
+`exact`. Read `protocol` for the rail.)
+
+| Field | Meaning |
+| --- | --- |
+| `quoteId` · `expiresAt` | API 1.55+, on a payment-required quote: an opaque sealed binding and its ISO-8601 expiry, 60 seconds after issue |
+| `paymentRequired` | `false`: the service did not ask for payment for this request. Every priced field below is then absent |
+| `upstreamStatus` | The service's answer to the unpaid request — `402` when `paymentRequired` is true. Its body and headers are never returned |
+| `optionSet` | `delegation`: the `delegationId` you sent was priced — a card Delegation pays over MPP-stripe, an organization-wallet Delegation pays only in its own currency, a recipient allowlist is enforced. `deployment`: you sent none, so this is what a personal crypto Delegation would select |
+| `delegationId` | The Delegation priced, or `null` for `deployment` |
+| `protocol` · `x402Version` | The rail the payment would use, detected as on `/route` |
+| `settlement` · `fee` | The same objects `/route` returns under `payment` — see [the fee object](#the-fee-object) |
+
+**A quote is free of charge, not free of consequence:**
+
+- **It contacts the service.** The unpaid request is real, so a service that does not charge for it
+  performs it — take care quoting a method with side effects.
+- **It spends rate budget.** A quote counts against the same per-key and per-service rate limits as a
+  payment. Quote once per decision; do not poll it.
+- **It checks neither your remaining cap nor your wallet balance** — the payment still does
+  (`BCK.ROUTER.0003`, `BCK.ROUTER.0009`).
+
+It refuses what `/route` would refuse before paying (`400 BCK.ROUTER.0001`, `409 BCK.ROUTER.0014` for
+a raw URL on a cataloged host, `404 BCK.CATALOG.0001` for an unknown slug), and a read the price
+depends on can fail with `503 BCK.ROUTER.0028`, which is retryable with backoff.
+
+**OAuth `commerce` credential:** an OAuth-minted key is refused here (`403 BCK.OAUTH.0030`). A key
+from a `commerce` grant quotes on **`POST /api/v1/router/commerce/quote`** — same body, same answer;
+it ships in the first API release after 1.49 and answers `404` until your deployment has it —
+which prices the Delegation the grant is pinned to and so refuses a `delegationId`
+(`400 BCK.OAUTH.0034`). Pay the result on `POST /api/v1/router/commerce/route`. A plain key on the
+commerce route gets `403 BCK.OAUTH.0033`.
+
+---
+
+## Mode B streaming — `ALL /api/v1/router/proxy`
+
+Same engine, transparent transport: method, body and the standard request headers pass through and
+the response **streams** back. Use it for SSE, large downloads, or anything you do not want buffered into a JSON
+envelope. It is deliberately absent from the OpenAPI document — it is a raw any-method proxy driven
+by headers, with no fixed schema.
+
+Point your HTTP client at `/api/v1/router/proxy` and drive it with request headers:
+
+| Request header | Required | Purpose |
+| --- | --- | --- |
+| `X-Router-Target-Url` | **yes** | Absolute upstream URL |
+| `X-Router-Delegation-Id` | **yes** | Your `erc4337` Delegation |
+| `X-Router-Request-Id` | **yes** | Idempotency key — same rule as mode B |
+| `X-Router-Upstream-Authorization` | no | The **merchant's** auth, forwarded as its `Authorization` |
+| `X-Router-Require-Protocol` | no | `x402` or `mpp`; binding rail pin, refused with `409 BCK.ROUTER.0045` if unavailable; never falls back |
+| `X-Router-Forward-<name>` | no | Send `<name>: <value>` upstream (see below) |
+
+```bash
+curl -sN -X POST "$NVM_API_URL/api/v1/router/proxy" \
+  -H "Authorization: Bearer $NVM_API_KEY" \
+  -H "X-Router-Target-Url: https://service.example/stream" \
+  -H "X-Router-Delegation-Id: $NVM_DELEGATION_ID" \
+  -H "X-Router-Request-Id: stream-job-42" \
+  -H "Content-Type: application/json" \
+  -d '{"prompt":"…"}'
+```
+
+Payment metadata comes back in **response headers** rather than the body:
+
+| Response header | Meaning |
+| --- | --- |
+| `X-Router-Payment-Id` | The ledger record id |
+| `X-Router-Payment-Status` | `Issued` · `Settled` · `Failed` |
+| `X-Router-Tx-Hash` | Settlement hash, when the merchant reported one |
+
+Omitting `X-Router-Target-Url`, `X-Router-Delegation-Id` or `X-Router-Request-Id` is
+`400 BCK.ROUTER.0001`.
+
+`X-Router-*` headers are stripped in **both** directions — yours are not forwarded upstream, and any
+the merchant returns are removed before you see them. So a merchant cannot forge a payment signal
+that makes a free response look paid.
+
+### Which of your request headers reach the merchant
+
+`/proxy` replays your request off the wire, so the header map it sees is not only yours — every
+proxy in between appends its own, ours included. Those describe our infrastructure, so `/proxy`
+forwards an **allowlist** and drops the rest:
+
+```
+accept  accept-language  cache-control  content-language  content-type
+idempotency-key  if-match  if-modified-since  if-none-match  if-range
+if-unmodified-since  range  user-agent
+```
+
+`Cookie`, `Origin` and `Referer` are dropped too. If a merchant needs something else — an
+`X-Api-Key` rather than an `Authorization`, say — state its **value**, prefixed:
+
+```bash
+-H "X-Router-Forward-x-api-key: sk-merchant-key"      # → sends  x-api-key: sk-merchant-key
+```
+
+It carries the value rather than naming a header to replay, so it can never hand a merchant
+something *we* put on your request. One invariant covers the whole path: **nothing replayed off the
+wire is forwarded except the allowlist above.** The channel refuses `Authorization` (use
+`X-Router-Upstream-Authorization`), `X-Payment` / `Payment-Signature` (the Router pays through its
+ledger, not around it), hop-by-hop headers and re-entrant `X-Router-*` names.
+
+**`POST /route` applies no allowlist** — its `headers` are a JSON object you wrote, so it forwards
+everything you ask for. Reach for it when you need a header `/proxy` will not carry and you do not
+need streaming.
+
+**Drain the response.** The idle timer (30s default) is re-armed by your client consuming the
+stream, so a slow-but-healthy large transfer will not trip it — but an abandoned one will be killed,
+and the connection held open in the meantime counts against your concurrency limit.
+
+---
+
+## Paying with Nevermined credits — `POST /api/v1/router/subscription/route`
+
+A buyer with **Nevermined credits** can pay catalog services in credits instead of from a Delegation — free welcome credits (200,000 to a new account that signs up with a verified email, while the offer lasts, expiring 30 days later; no subscription and no card), **top-up packs** (1,000,000 never-expiring credits for USD 10 + tax, charged to the human's card when the credits run out, up to a monthly limit they set — the human turns top-ups on and sets that limit in the Nevermined App, but within it an agent may charge a pack itself over the API, no new approval: see [Topping up credits over the API](#topping-up-credits-over-the-api)) or a **Nevermined Subscription**'s monthly allowance. Despite its path, the route spends any of them, subscribed or not. Nevermined's treasury pays the merchant; credits follow each service's live price, with a 1-credit minimum (quote first for a request's exact credits). No Delegation, no wallet funding, no routing fee. Nevermined credits are not seller-plan credits: they are spent only through these routes. All of a buyer's credits are one balance, spent earliest expiry first (top-up credits never expire, so they go last).
+
+```bash
+curl -s -X POST "$NVM_API_URL/api/v1/router/subscription/route" \
+  -H "Authorization: Bearer $NVM_API_KEY" -H "Content-Type: application/json" \
+  -d '{"slug":"webscrape-pro","path":"scrape","method":"POST","body":{"url":"https://example.com"},"requestId":"scrape-1"}'
+# → { "status": 200, "body": {…}, "paid": true,
+#     "payment": { "paymentId": "…", "status": "Settled", "creditsCharged": 216, "creditsStatus": "Committed", … } }
+```
+
+- **Slug only.** `url` or `delegationId` → `400 BCK.SUBSCRIPTION_ROUTER.0005` (refused, not ignored). `requestId` is required, as on every mode-B call.
+- **Personal credits only.** Credits belong to a personal account; spend them with a personal API key. A call acting in an organization you're an active member of (`X-Current-Org-Id`, or that org's API key) → `402 …0002`, never your personal credits. Of OAuth-minted credentials, only a `commerce` connection the human allowed to spend their Nevermined credits is accepted (`BCK.OAUTH.0037` when not allowed, `0038` in an organization, `0030` for any other OAuth credential). Sandbox and Live hold separate credits.
+- **Price first, free:** `POST /api/v1/router/subscription/quote` `{slug, path, method, search, headers, body}` → `{ credits, paymentRequired, upstreamStatus }`: the exact credits of this request, since credits follow each service's live price with a 1-credit minimum. The merchant is sent the request unpaid, so send what you will call with. `paymentRequired: false` means it named no price (`credits: 0`, which does not make the call free). Send the quote's `credits` as `maxCredits` on the call (`X-Router-Max-Credits` on `/svc/<slug>`): a dearer call → `409 BCK.SUBSCRIPTION_ROUTER.0020`, nothing charged; above the most one call may cost → `409 …0019`, nothing charged. It does not check the treasury, and for a subscriber in good standing it does not check the credits left; without a subscription in good standing it refuses a call the spendable credits don't cover (`0002`; `0016` when only a frozen allowance would; `0015` under a dispute), unless an automatic top-up would cover it.
+- **Credits left:** `GET /api/v1/credits/balance` → `{ total, spendable, parts: [ { kind, credits, expiresAt, frozen } ], nextExpiry }` (digit strings) for every personal account, subscribed or not; `spendable` is what a personal key can pay with now. Where top-ups are available it also carries `topups` (`enabled`, `monthlyLimitUsd`, `maxMonthlyLimitUsd`, `boughtThisMonthUsd`, `packPriceUsd`, `paused`, `card`). Plain API key only (an OAuth credential → `403 BCK.OAUTH.0030`). A subscriber's plan and reset date: `GET /api/v1/router/subscription/balance`. Never count credits yourself.
+- **Credit counts follow your API version.** Credits were made 100 times smaller (a USD 20 subscription is 2,000,000 credits). A key pinned below 1.94 reads and sends the old size, which the API converts; send `Nevermined-Version: 1.94` to read the current size. The ARD reads ignore the key's pin and the welcome offer and plans reads take no key, so send the header there too: without it they answer as 1.0, in the old size, and the ARD reads show no endpoint payable with credits. Error `params` are always the current size.
+- **Only a merchant 2xx keeps the credits.** Anything else → credits `Reserved` then `Refunded`, and `body` is `null` (a streamed 2xx counts as delivered when its headers arrive; an undetermined call stays `Reserved` until reviewed). Read the final state from `GET /api/v1/router/payments?requestId=…` → `{ presence, payments: [ { fundingSource: "subscription", creditsCharged, creditsStatus, … } ] }` (`presence: "absent"` = nothing recorded for that id yet; percent-encode the id — see `ledger.md`).
+- **Rails:** x402 `exact` (USDC), MPP `tempo`, and MPP `evm` (an EIP-3009 USDC charge on Base, paid like x402) only — not MPP-stripe/SPT, and on a service that delivers results only to the paying wallet, only its reviewed self-contained endpoints: the rest → `403 …0001` `wallet_bound` (or `400 BCK.ROUTER.0001` "…only to the personal wallet that paid…", not a malformed request) — pay them from your own crypto Delegation.
+- **No spending limits beyond the credits.** The retired `BCK.SUBSCRIPTION_TREASURY.0004`–`0007` and `0014` are never returned; a call can still be refused when the treasury float is low (`503 …TREASURY.0003`, retryable — retry later).
+- **Refusals charge nothing and reserve nothing.** `402 …0002` nothing to pay with — no subscription in good standing and no (or too few) spendable credits, and no top-up that would cover it (subscribe, settle the invoice, or use a personal key; without a subscription in good standing, top-ups that are paused or at their limit land here too, with no `params.topUps` — tell the human) · `402 …0009` not enough credits (when the call tried a pack, `params.topUps`: `paused` — declined, needs authentication or its card can't pay · `limitReached` · `pending` — a pack may have been charged, retry in a moment · `unavailable` · `bought` — this call charged one that others spent, retry; `params.purchaseId` names it) · `402 …0015` every credit frozen by a card dispute · `402 …0016` only an allowance frozen by an overdue renewal would cover it (either can carry `params.topUps: "bought"` too: a pack was charged before the refusal — tell the human) · `403 …0001` endpoint not payable with credits (`params.reason`) · `409 …0004` the merchant's price can't be read in dollars (a malformed amount, or an asset that isn't a USD stablecoin) or, on an MPP session, `payee_unobserved` · `409 …0019` this request costs more credits than one call may (`params.credits`, `params.limit`): send a smaller request where the service prices by the request, or pay from your Delegation · `409 …0020` it costs more than the `maxCredits` you sent: quote again and decide · `503 …TREASURY.0003` treasury float low. `0001`/`0002`/`0015`/`0016` mean credits can't pay this call — pay it from your Delegation as usual (for `0001` `wallet_bound`, only your own crypto `erc4337` Delegation: a card or org one is refused too). After `0009`, `0004` or a treasury refusal, paying from a Delegation is a **new decision** — don't switch funding automatically.
+- **A charged pack is reported on the call.** With top-ups on **and a personal API key**, a call that ran out of credits charges one pack and goes ahead; its result (or `202`) carries `topUp: { credits, amountUsd }` (`amountUsd` before tax). The human's card was charged: tell them. A call made through an OAuth connection never charges a pack on its own — use the explicit top-up below.
+- Streaming: `ALL /api/v1/router/subscription/svc/{slug}/{path}` with `X-Router-Request-Id`; response headers `X-Router-Credits-Charged`, `X-Router-Credits-Status`, and `X-Router-Topup-Credits` / `X-Router-Topup-Amount-Usd` when the call charged a pack.
+
+### Topping up credits over the API
+
+The pack charged on a running call (above, `topUp`) is automatic. An agent can also refill its credits **before** a call, when a human has enrolled a card and set a monthly top-up limit — within that limit, no new approval. Turning top-ups on and setting the limit stay with the human in the App; charging a pack within it does not.
+
+- **Read the limit, free:** `GET /api/v1/credits/topups/pack` → `{ enabled, monthlyLimitUsd, maxMonthlyLimitUsd, boughtThisMonthUsd, packPriceUsd, paused }` — serves both credential kinds, charges nothing. (A plain API key can also read the `topups` block on `GET /api/v1/credits/balance`; an OAuth grant can't read balance.)
+- **Charge a pack:** `POST /api/v1/credits/topups/pack` with a `requestId` you choose (8–200 chars of `A–Z a–z 0–9 ._:-`) and `forCallCredits` (the credits the call you're about to make needs — from a quote or your plan's per-call cost). A pack is charged **only when your spendable credits are below `forCallCredits`**; when they already cover it, nothing is charged (`not_needed`).
+- **Idempotency.** Use a **new** `requestId` per top-up you intend; reuse the **same** one only to re-send a call that may not have completed — on any non-2xx other than a coded 4xx refusal (e.g. `BCK.OAUTH.0040`), or no response at all. A retry returns the pack already charged, never a second one. Even a coded pre-charge 4xx on a reused id can follow an earlier call that did charge — keep the id and check before starting a new top-up: with a plain API key, `GET /api/v1/credits/topups/purchases` lists the packs; an OAuth grant can't read it, so read `get_budget` on the Commerce MCP instead.
+- **`status`** (with `replayed`, `purchaseId`, `creditsAdded`, `monthlyLimitUsd`, `boughtThisMonthUsd`, `packPriceUsd`, `operatorUrl`, `message`):
+  - `bought` — a pack was charged; `creditsAdded` (a decimal string) is set on every `bought`, so only `replayed: false` means **this** call charged it — `replayed: true` means this id had already bought one, nothing new charged (use a new id next).
+  - `pending` — your pack is being charged and may already be; its credits land once confirmed. Don't start a new top-up; read the balance shortly, or re-send the **same** `requestId` to read the outcome.
+  - `busy` — another top-up is charging; **nothing charged for this request**; re-send the same id only if you still need one.
+  - `limit_reached` — this UTC month's limit is used up; nothing charged; don't retry until next month.
+  - `not_needed` — your credits already cover the call; nothing charged.
+  - `needs_attention` / `disabled` — a human must act (card declined, 3-D Secure, a dispute, unfinished setup, or an unconfirmed prior top-up): hand them `operatorUrl`, **never** attempt 3-D Secure yourself, and don't start a new top-up until they act — if the message says the outcome is unconfirmed, keep the **same** `requestId`.
+  - `unavailable` — nothing charged; retry with a **new** `requestId` (reusing this one keeps returning the same settled result).
+- **Auth.** Plain API key, or a `commerce` OAuth grant with **Let this assistant top up my Nevermined credits** ticked at consent (separate from the credit-spend box). A grant allowed to spend but not top up is refused here with `403 BCK.OAUTH.0040`; a top-up-only grant can't spend (`0041` on the stablecoin routes, `0037` on the credits route). A non-commerce OAuth credential → `0030`; an organization context → `0038`; top-ups not available to this account or deployment → `404 BCK.CREDIT_TOPUPS.0001`. The same capability is one `top_up_credits` tool on the Commerce MCP.
+
+## Mode A — `POST /api/v1/router/payments`
+
+The Router mints a signed credential; **you** call the merchant. Use it when the Router cannot be in
+the request path — you need the raw connection, an exotic transport, or the merchant rejects a
+relayed call.
+
+It is strictly more work: you make the unpaid call, hand over the challenge, attach the credential,
+re-send, and then close the ledger record yourself.
+
+### 1 · Provoke the 402
+
+Call the merchant with no payment. It answers `402` with its requirements:
+
+- **x402 v1** — in the JSON body: `{ "x402Version": 1, "accepts": [...] }`
+- **x402 v2** — base64 in the `PAYMENT-REQUIRED` **response header** (decode it to an object)
+- **MPP** — the raw `WWW-Authenticate: Payment …` header value
+
+### 2 · Mint the credential
+
+```json
+{
+  "delegationId": "5e7481c3-…",
+  "protocol": "x402",
+  "resourceUrl": "https://agent.example/paid",
+  "requestId": "order-1234",
+  "target": { "x402Version": 1, "accepts": [ /* verbatim from the 402 */ ] }
+}
+```
+
+| Field | Required | Notes |
+| --- | --- | --- |
+| `delegationId` | **yes** | |
+| `protocol` | **yes** | `x402` or `mpp`. **Not auto-detected here** — unlike mode B, you must get this right |
+| `target` | **yes** | x402 → `{ accepts, x402Version? }` (defaults to **2**; set `1` for x402-express). MPP → `{ challenge }`, the raw header value |
+| `resourceUrl` | no | Absolute URL, recorded on the ledger |
+| `requestId` | no | **Optional here**, unlike mode B — but [always pass a stable one](#mode-a-fee): it is the only thing that dedupes a retry, and without it a retry is minted **and charged the routing fee** a second time |
+| `maxTotalCents` | no | Non-negative safe integer. Per-call ceiling on the merchant price plus any collectable Router fee, rounded once to whole cents; the Delegation cap remains the overall limit |
+
+Pass `target` **verbatim** from the 402. Do not normalise, reorder or re-encode it.
+
+The response echoes the negotiated version, and `credential.name` follows from it — the request
+above is v1, so this one comes back v1 with the v1 header:
+
+```json
+{
+  "paymentId": "b1f9c2e4-…",
+  "protocol": "x402",
+  "x402Version": 1,
+  "credential": { "transport": "header", "name": "X-PAYMENT", "value": "eyJ4NDAy…" },
+  "settlement": { "recipient": "0x2096…", "amount": "1000", "asset": "USDC",
+                  "network": "base", "approxCents": "1" },
+  "fee": { "bps": 0, "amount": "0", "cents": "0", "capChargedCents": "1" },
+  "status": "Issued"
+}
+```
+
+Had you passed a v2 `target` (the default), the same call would return `"x402Version": 2` and
+`"name": "PAYMENT-SIGNATURE"`.
+
+<a id="mode-a-fee"></a>
+[The `fee` object](#the-fee-object) is on this response too — **zeroed in the sample above because
+that is a deployment with no rate configured**, not because mode A is free. ⚠️ **Mode A charges the
+routing fee on every call**, whether or not you pass a `requestId`.
+
+`requestId` does not change *whether* you are charged — it changes whether a **retry** is charged
+again. Reuse one stable id across every retry of the same purchase and the retry returns
+`409 BCK.ROUTER.0002` with the original `paymentId` instead of minting: one purchase, one fee. Omit it,
+or generate a fresh id per HTTP attempt, and the retry is a new purchase — a second credential and a
+second real fee transfer for one thing you meant to buy once.
+
+So derive the id from the work you are doing (`"search-nevermined-router-v1"`), not from `uuid4()` per
+attempt. Mode B requires one already and is unaffected.
+
+### 3 · Attach it and re-send
+
+Set an HTTP header named **`credential.name`** to **`credential.value`** on your original request
+and send it again. The value is opaque — attach it verbatim, do not modify it.
+
+| Protocol | `credential.name` |
+| --- | --- |
+| x402 v2 | `PAYMENT-SIGNATURE` |
+| x402 v1 | `X-PAYMENT` |
+| MPP | `Authorization` |
+
+Read the name off the response rather than hardcoding it — that is why the field exists.
+
+### 4 · Close the record
+
+The merchant returns a settlement reference: `PAYMENT-RESPONSE` / `X-PAYMENT-RESPONSE` (x402) or
+`Payment-Receipt` (MPP). Report the on-chain transaction hash it carries — `txHash` must be a
+`0x`-prefixed 32-byte hex hash, and card-rail records cannot be closed this way:
+
+```bash
+curl -sX POST "$NVM_API_URL/api/v1/router/payments/$PAYMENT_ID/settled" \
+  -H "Authorization: Bearer $NVM_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"txHash":"0xfc8af37b…"}'
+```
+
+Idempotent: re-reporting the **same** hash is a no-op. A **different** hash, or a record not in
+`Issued`, is rejected with `409 BCK.ROUTER.0005`. Not needed in mode B — `/route` and `/proxy` close
+the record themselves.
+
+### Mode A caveats
+
+- **Credentials expire.** The signed authorization has a validity window capped by the operator
+  (one hour by default). Mint it when you are about to use it — if it lapses, the budget stays
+  reserved and the record stays `Issued`.
+- **On MPP, prefer mode B.** The Router is not in the request path, so it never sees the
+  `Payment-Receipt`; closing the record means decoding the receipt yourself, which needs the MPP
+  codec you were trying to avoid.
+
+---
+
+## Passing the merchant's own auth
+
+Some services want payment *and* an account credential. Never put `NVM_API_KEY` in either slot:
+
+- mode B → `headers: { "Authorization": "Bearer <merchant-token>" }`
+- `/proxy` → `X-Router-Upstream-Authorization: Bearer <merchant-token>`
+
+Note that a service which answers **`401`/`403` instead of `402`** wants authentication, not
+payment. The Router cannot help — that service needs an account. See `discovery.md`.
+
+Identity disclosure is unsupported on subscription route calls. Any `revealBuyerIdentity` field (including `false` or `null`) or `X-Router-Reveal-Buyer-Identity` header is refused with `BCK.SUBSCRIPTION_ROUTER.0005` rather than silently ignored. Omit them on subscription routes.

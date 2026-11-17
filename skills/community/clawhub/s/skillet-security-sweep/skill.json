@@ -1,0 +1,8 @@
+{
+  "id": "security-sweep",
+  "version": "0.1.1",
+  "tests": [
+    "bash ../../../tests/lint-skills.sh security-sweep"
+  ],
+  "trust_level": "workspace"
+}

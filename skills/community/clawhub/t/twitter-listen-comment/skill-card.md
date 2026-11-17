@@ -1,42 +1,60 @@
-## Description: <br>
-Monitor one or more Twitter/X usernames via the 6551 API, generate a short humorous reply with `openclaw agent --json`, and submit the reply through an already logged-in Chrome X session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor one or more Twitter/X usernames via the 6551 API, generate a short humorous reply with `openclaw agent --json`, and submit the reply through an already logged-in Chrome X session.
 
-## Publisher: <br>
-[yugulugulu](https://clawhub.ai/user/yugulugulu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yugulugulu](https://clawhub.ai/user/yugulugulu)
 
-## Use Case: <br>
-Developers and automation operators use this skill to watch selected Twitter/X accounts, generate short replies, submit comments through a logged-in browser session, and send notification messages about detected tweets and submitted comments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish replies from a logged-in Twitter/X account without a clear manual approval or dry-run gate. <br>
-Mitigation: Use a test account first, verify watched users and notification targets, review external data flows, and require manual approval or dry-run mode before live posting. <br>
-Risk: Browser-driven posting depends on Chrome login state, Chrome Relay availability, and the current Twitter/X page state. <br>
-Mitigation: Confirm the browser session and relay connection before running, and monitor the generated notification and log output for failed or incomplete submissions. <br>
+## Use Case:
 
+Developers and operators use this skill to run a local workflow that watches configured Twitter/X usernames, generates brief replies, posts them through a logged-in Chrome session, and sends status notifications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yugulugulu/twitter-listen-comment) <br>
-- [Config reference](references/config.md) <br>
-- [Example configuration](references/config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runtime automation can send notifications and attempt browser-driven Twitter/X comments from the logged-in account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The skill can automatically post public X replies from a logged-in browser session using model-generated content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only accounts approved for this automation, add manual approval or dry-run behavior before posting, and review generated replies before enabling unattended operation.
+
+Risk: The workflow depends on an authenticated browser session and a Twitter API token.
+
+Mitigation: Use a dedicated Chrome profile with no unrelated logged-in sessions and protect the TWITTER_TOKEN environment variable.
+
+Risk: Tweet activity and posting status may be sensitive if routed to notification channels.
+
+Mitigation: Limit notification destinations to approved recipients and disable or restrict notifications when monitored activity is sensitive.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yugulugulu/skills/twitter-listen-comment)
+- [Config](references/config.md)
+- [Example configuration](references/config.example.json)
+- [6551 Twitter search API endpoint](https://ai.6551.io/open/twitter_search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON configuration and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local automation behavior that writes state and log files and may submit public X replies when executed.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

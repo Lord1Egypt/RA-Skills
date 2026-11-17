@@ -1,44 +1,60 @@
-## Description: <br>
-Helps e-commerce merchants mine utility-product reviews for concrete pain points and turn them into selection specs, product-improvement backlogs, QC checks, and validation steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps utility-product merchants turn customer reviews and complaints into structured pain labels, product selection specs, improvement backlogs, and validation steps.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-External e-commerce merchants use this skill to analyze customer and competitor reviews for necessity and utility products, identify recurring complaint patterns, and convert those patterns into actionable sourcing, product improvement, and validation decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review exports may contain personal or confidential customer information. <br>
-Mitigation: Remove or de-identify customer information before sharing generated summaries or using review data outside the intended analysis workflow. <br>
-Risk: Keyword-based bulk classification can miss context or merge complaints too broadly. <br>
-Mitigation: Use the script as a first-pass classifier only, then manually review, merge, and validate pain labels before making sourcing or product changes. <br>
-Risk: Complaint counts can overstate the scale of a problem if they are not checked against review volume and rating distribution. <br>
-Mitigation: Compare pain-label counts with total review volume, ratings, return reasons, and before/after metrics before prioritizing fixes. <br>
+## Use Case:
 
+External e-commerce merchants use this skill to analyze own or competitor reviews for utility products, identify recurring buyer pains, and convert them into sourcing requirements, product fixes, QC checks, and validation metrics.
 
-## Reference(s): <br>
-- [Pain Point Framework](references/pain_point_framework.md) <br>
-- [Review Mining Guide](references/review_mining_guide.md) <br>
-- [Rijoy](https://www.rijoy.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown tables and concise recommendations, with optional shell commands for bulk review classification and JSON or table output from the script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include pain summary tables, selection spec lists, improvement backlogs, QC checklists, validation metrics, and script-generated pain-label counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The broad review-analysis trigger may activate for adjacent tasks such as marketing copy, review-app setup, fashion or luxury positioning, or generic sentiment dashboards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redirect those requests to a more suitable workflow and use this skill only for actionable review mining and product decision tasks.
+
+Risk: Review data may include content the user is not allowed to process or platform data with collection restrictions.
+
+Mitigation: Use only review data the user is allowed to process, such as own exports, authorized tools, permitted public review access, or legal de-identified datasets.
+
+Risk: Complaint counts can overstate overall buyer dissatisfaction if rating distribution and review volume are not checked.
+
+Mitigation: Validate pain-label frequency against rating distribution, returns, and pre/post complaint rates before using recommendations for sourcing or product changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rijoyai/skills/necessity-pain-point-selection)
+- [Pain Point Framework](references/pain_point_framework.md)
+- [Review Mining Guide](references/review_mining_guide.md)
+- [Rijoy](https://www.rijoy.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with tables and optional inline shell commands; optional JSON or tabular summaries from the bulk review extractor.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask 5-8 scoping questions when review context is missing; bulk review analysis accepts CSV, TXT, or stdin review text.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,63 @@
-## Description: <br>
-Ultra-fast proof-of-concept and MVP development for new web apps, prototypes, or MVPs from scratch where speed matters over perfection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents rapidly build proof-of-concept web apps, prototypes, and MVPs using a Next.js 14, Supabase, Clerk, shadcn/ui, and Prisma stack.
 
-## Publisher: <br>
-[Bullkis1](https://clawhub.ai/user/Bullkis1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bullkis1](https://clawhub.ai/user/bullkis1)
 
-## Use Case: <br>
-Developers and builders use this skill to quickly scaffold and ship proof-of-concept web applications using a speed-first Next.js, Supabase, Clerk, shadcn/ui, and Prisma workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill recommends cloud services, analytics, feedback collection, and deployment defaults that may not fit every application's privacy or compliance needs. <br>
-Mitigation: Use test-scoped Supabase, Clerk, analytics, and Vercel projects; review package and deployment commands before running them; prefer preview deployments first; and strip or disable full-URL collection in feedback forms for sensitive apps. <br>
-Risk: Speed-first MVP guidance can omit edge cases, loading states, and error handling before the core flow is proven. <br>
-Mitigation: Review generated application code before production use and add missing validation, error handling, and security checks after the prototype validates the core hypothesis. <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold and ship fast MVPs or proof-of-concept web applications, focusing on a single core user flow, feedback collection, and deployment.
 
-## Reference(s): <br>
-- [Rapid Prototyper on ClawHub](https://clawhub.ai/Bullkis1/rapid-prototyper) <br>
-- [Stack Setup Reference](references/stack-setup.md) <br>
-- [Common Patterns](references/patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include application scaffolding steps, setup commands, boilerplate snippets, deployment guidance, analytics, and feedback collection patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may suggest unpinned package scaffolding and dependency installs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin package and CLI versions, review generated code, and inspect lockfiles before use.
+
+Risk: The skill may configure external services and push schema changes.
+
+Mitigation: Use non-production service projects while prototyping and review schema changes before applying them to shared or production databases.
+
+Risk: The skill may deploy prototypes publicly or to production targets.
+
+Mitigation: Confirm the deployment target and environment variables before publishing, and prefer preview deployments until the application has been reviewed.
+
+Risk: The skill encourages feedback collection that can capture user data.
+
+Mitigation: Add privacy safeguards, data minimization, server-side validation, and storage controls before collecting feedback from real users.
+
+## Reference(s):
+
+- [Stack Setup Reference](references/stack-setup.md)
+- [Common Patterns](references/patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/bullkis1/skills/rapid-prototyper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scaffold commands, application code patterns, environment variable guidance, deployment steps, and implementation recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

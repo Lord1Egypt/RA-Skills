@@ -1,44 +1,58 @@
-## Description: <br>
-Claw Web Fetch converts web pages, GitHub READMEs, and Reddit threads into normalized Markdown with metadata for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Thin OpenClaw and ClawHub wrapper for the published clawfetch npm CLI, used to fetch web pages, GitHub READMEs, and Reddit threads as markdown.
 
-## Publisher: <br>
-[ernestyu](https://clawhub.ai/user/ernestyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ernestyu](https://clawhub.ai/user/ernestyu)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch a single public HTTP or HTTPS URL and turn the page content into predictable Markdown for local knowledge-base ingestion, indexing, or downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and executes the published clawfetch npm package and its dependency tree. <br>
-Mitigation: Install only when the package and dependencies are trusted, and review the bootstrap step before deployment. <br>
-Risk: Fetched URLs can expose sensitive, authenticated, internal, or tokenized resources to the scraping process or optional backend. <br>
-Mitigation: Use the skill only for URLs the agent is intended to fetch, and avoid sensitive or internal URLs. <br>
-Risk: An optional FlareSolverr endpoint receives target URL content when configured. <br>
-Mitigation: Set FLARESOLVERR_URL only to a local or otherwise trusted service. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch web content, GitHub README pages, and Reddit threads as markdown for knowledge-base ingestion, source review, and compact reading.
 
-## Reference(s): <br>
-- [clawfetch homepage](https://github.com/ernestyu/clawfetch) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [ClawHub skill page](https://clawhub.ai/ernestyu/clawfetch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text] <br>
-**Output Format:** [Markdown with a metadata header] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Consumes one HTTP or HTTPS URL per invocation; Reddit output can be limited with max-comments, and Cloudflare-challenge handling can use a trusted FlareSolverr endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.8 (source: server release metadata, SKILL.md frontmatter, and manifest.yaml) <br>
+Risk: Setup downloads and runs npm code that is not fully pinned or reviewed with the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the published clawfetch npm package and its dependencies are trusted; prefer a pinned, lockfile-backed, integrity-verified install path for sensitive environments.
+
+Risk: Bootstrap and runtime setup require executing dependency installation steps.
+
+Mitigation: Run bootstrap and runtime installation in a low-privilege environment without sensitive credentials, then verify readiness with the CLI runtime check before fetching pages.
+
+Risk: Fetched web content can be untrusted, misleading, or unsuitable for direct knowledge-base ingestion.
+
+Mitigation: Review fetched markdown and source metadata before using it as evidence, training material, or operational guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ernestyu/skills/clawfetch)
+- [clawfetch homepage](https://github.com/ernestyu/clawfetch)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown output and setup guidance with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetch behavior depends on the installed clawfetch npm CLI, browser runtime readiness, network access, and optional FlareSolverr configuration.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata, SKILL.md frontmatter, manifest.yaml, bootstrap fallback)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

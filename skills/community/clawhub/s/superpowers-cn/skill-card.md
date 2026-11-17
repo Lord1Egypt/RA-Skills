@@ -1,41 +1,50 @@
-## Description: <br>
-A Chinese-first AI workflow framework that helps agents clarify requirements, plan work, execute step by step, and review results before delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Superpowers CN is a Chinese-language AI workflow skill that guides agents to clarify requirements, plan implementation, execute in steps, and review results before delivery.
 
-## Publisher: <br>
-[openxcn](https://clawhub.ai/user/openxcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openxcn](https://clawhub.ai/user/openxcn)
 
-## Use Case: <br>
-Developers and Chinese-speaking AI assistant users use this skill to structure coding and implementation requests through clarify, plan, execute, and review stages. It is most useful when a user wants the agent to confirm requirements and deliver work incrementally instead of immediately producing code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Chinese trigger phrases can activate the workflow in routine coding conversations. <br>
-Mitigation: Use explicit invocation or routing controls when available, and confirm the workflow should run before changing files or executing plans. <br>
-Risk: Generated plans and review reports may be incomplete or misleading for complex engineering tasks. <br>
-Mitigation: Require human review of proposed plans, run project tests or scanners where applicable, and verify outputs before delivery. <br>
+## Use Case:
 
+Developers and AI-agent users use this skill to structure Chinese-language coding and workflow requests through clarification, design review, task execution, and final quality checks. It is most useful when a task benefits from explicit scope alignment before implementation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openxcn/superpowers-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/openxcn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript helper outputs and structured task or review objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-first workflow responses covering clarification questions, design plans, task breakdowns, execution summaries, and review reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill may activate for common coding requests and add clarification steps for users who expected immediate implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when a Chinese-language planning workflow is desired, or narrow the activation triggers before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/openxcn/skills/superpowers-cn)
+- [Publisher Profile](https://clawhub.ai/user/openxcn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional JavaScript code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language workflow prompts, task lists, execution summaries, and review reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

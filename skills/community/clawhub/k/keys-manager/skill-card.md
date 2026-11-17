@@ -1,41 +1,61 @@
-## Description: <br>
-Manage API keys locally from the terminal using the `keys` CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage API keys and secrets locally from the terminal using the `keys` CLI, including storage, retrieval, search, import, export, `.env` file operations, profile isolation, and secure key workflows.
 
-## Publisher: <br>
-[stym06](https://clawhub.ai/user/stym06) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stym06](https://clawhub.ai/user/stym06)
 
-## Use Case: <br>
-Developers and agent users use this skill to store, retrieve, search, import, export, inject, audit, sync, and organize local API keys and secrets through the `keys` CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can help an agent reveal, export, sync, or delete credentials from a local secret store. <br>
-Mitigation: Use targeted retrieval or command-specific injection, confirm destructive actions, and avoid broad export or `.env` writes unless they are necessary. <br>
-Risk: `eval $(keys expose)` can place many secrets into the active shell environment. <br>
-Mitigation: Prefer `keys get <name>` for a single key or `keys inject` for one command, and avoid evaluating broad export output. <br>
-Risk: Non-macOS systems may allow lower-friction credential access, and sync operations transfer secrets across reachable networks. <br>
-Mitigation: Use the skill only on trusted machines and networks, verify the active profile and passphrase before sync, and audit key access when secrets are used. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stym06/keys-manager) <br>
+## Use Case:
 
+Developers and agents use this skill to manage local API keys and secrets with the `keys` CLI, including storing, retrieving, importing, exporting, injecting, auditing, profiling, and syncing secrets.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the external `keys` CLI binary.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.5.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill manages sensitive credentials and may print or expose secrets to terminal output.
+
+Mitigation: Review commands before execution, avoid `eval $(keys expose)`, and prefer masked or scoped retrieval workflows when possible.
+
+Risk: Generated `.env` files can persist secrets on disk or be committed accidentally.
+
+Mitigation: Protect generated `.env` files with restrictive file permissions and `.gitignore` entries.
+
+Risk: The skill depends on a third-party `keys` CLI that handles credentials.
+
+Mitigation: Install only a pinned, trusted version of the CLI before using this skill with real secrets.
+
+Risk: Secret sync can transfer credentials between machines over a local or reachable network.
+
+Mitigation: Sync secrets only between trusted machines on trusted networks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stym06/skills/keys-manager)
+- [Publisher profile](https://clawhub.ai/user/stym06)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands that read, write, print, export, inject, audit, or sync local secrets through the `keys` CLI.]
+
+## Skill Version(s):
+
+0.5.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

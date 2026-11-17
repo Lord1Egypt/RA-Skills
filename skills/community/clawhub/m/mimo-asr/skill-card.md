@@ -1,41 +1,58 @@
-## Description: <br>
-Transcribes audio to text with Xiaomi MiMo-V2.5-ASR through a public Gradio API, supporting Chinese, English, and automatic language detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiMo ASR transcribes audio to text through Xiaomi's public Gradio API, with automatic, Chinese, and English language modes and no local model or API key requirement.
 
-## Publisher: <br>
-[xcchenx345](https://clawhub.ai/user/xcchenx345) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xcchenx345](https://clawhub.ai/user/xcchenx345)
 
-## Use Case: <br>
-Developers and agent users use this skill to convert audio recordings into text transcripts, including Chinese, English, and auto-detected speech. It is useful when an agent needs to extract spoken content from common audio formats without running a local ASR model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audio is uploaded to a cloud Hugging Face/Gradio service for transcription. <br>
-Mitigation: Avoid confidential, regulated, or highly personal recordings unless the user understands the remote service's privacy and retention behavior. <br>
-Risk: The security review reports that the skill disables HTTPS certificate verification. <br>
-Mitigation: Use only after certificate verification is fixed, or limit use to non-sensitive recordings where that transport risk is acceptable. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to transcribe audio recordings, extract spoken dialogue, and save transcripts from common audio formats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xcchenx345/mimo-asr) <br>
-- [Xiaomi MiMo-V2.5-ASR Hugging Face Space](https://xiaomimimo-mimo-v2-5-asr.hf.space) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text transcript or Markdown guidance with inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write the transcript to a user-specified output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Audio is uploaded to an external Gradio/Hugging Face service for transcription.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with audio that may be shared with that service; avoid confidential, regulated, or private recordings unless data handling is reviewed.
+
+Risk: The API script disables HTTPS certificate verification.
+
+Mitigation: Enable TLS certificate verification before deployment and review outbound network traffic.
+
+Risk: Runtime dependencies are not pinned in a reviewed requirements file.
+
+Mitigation: Pin and review dependencies such as requests before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xcchenx345/skills/mimo-asr)
+- [MiMo-V2.5-ASR Hugging Face Space](https://xiaomimimo-mimo-v2-5-asr.hf.space)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Guidance]
+
+**Output Format:** [Plain text transcript, optionally written to a text file, with shell command examples in guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports auto, Chinese, and English language modes; requires an audio file and network access for the API workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

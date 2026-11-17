@@ -1,43 +1,62 @@
-## Description: <br>
-PC Assistant runs cross-platform PC health checks, captures detailed local system diagnostics, and provides actionable recommendations with optional cron scheduling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PC Assistant runs local PC healthcheck diagnostics across Linux, macOS, and Windows and produces system information with actionable recommendations.
 
-## Publisher: <br>
-[ningtoba](https://clawhub.ai/user/ningtoba) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ningtoba](https://clawhub.ai/user/ningtoba)
 
-## Use Case: <br>
-External users and developers use PC Assistant to run local Windows, macOS, Linux, or WSL diagnostics for storage, CPU, memory, network, services, software, hardware, and security-log checks, then review generated recommendations and reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Healthcheck reports may contain sensitive computer, account, network, package, SSH, and security-log details. <br>
-Mitigation: Store reports in a private directory with restrictive permissions and redact them before sharing. <br>
-Risk: Scheduled healthchecks can create historical records of sensitive local system state. <br>
-Mitigation: Enable scheduled runs only when historical tracking is needed and configure cleanup or retention limits. <br>
-Risk: The scheduler loads its configuration as shell code. <br>
-Mitigation: Keep the scheduler config file private, review it before use, and run the skill as a regular user. <br>
+## Use Case:
 
+Developers, operators, and end users use this skill to collect local system diagnostics, identify storage, memory, service, network, and security-log issues, and receive maintenance recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ningtoba/pc-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/ningtoba) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands; healthcheck runs produce text and JSON report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports can include sensitive system, account, network, package, SSH, and security-log details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.5 (source: server release metadata and install.yaml) <br>
+Risk: Healthcheck reports may contain sensitive local system details and are saved as plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run as a regular user, write reports to a private directory with restrictive permissions, and do not share generated reports publicly.
+
+Risk: Security-audit sections can collect environment, shell history, SSH, login, package, process, network, and log details.
+
+Mitigation: Review and redact reports before any transfer, avoid collecting sections that are not needed, and prefer publisher-provided opt-in or redacted modes before routine use.
+
+Risk: Scheduled runs can repeatedly inventory a host and store reports in default temporary locations.
+
+Mitigation: Configure a private output path, enable retention cleanup, and audit generated files after scheduled runs.
+
+Risk: The scheduler sources a shell configuration file before execution.
+
+Mitigation: Use only a trusted configuration file with limited variables, keep it writable only by the intended user, and inspect it before enabling cron execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ningtoba/skills/pc-assistant)
+- [Publisher profile](https://clawhub.ai/user/ningtoba)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Plaintext healthcheck reports, JSON summaries, and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are timestamped and may be written to configurable local output directories.]
+
+## Skill Version(s):
+
+1.2.5 (source: server release metadata and artifact install.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

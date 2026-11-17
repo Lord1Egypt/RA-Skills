@@ -1,41 +1,56 @@
-## Description: <br>
-Processes public links shared in a designated Discord channel by validating and fetching the URL, summarizing the content, creating a Discord thread, and saving synthesized notes to a local knowledge base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Processes links shared in a Discord findings channel by validating and fetching public URLs, summarizing them into Discord threads, and saving synthesized notes to a local knowledge base.
 
-## Publisher: <br>
-[zerone0x](https://clawhub.ai/user/zerone0x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zerone0x](https://clawhub.ai/user/zerone0x)
 
-## Use Case: <br>
-Developers, team members, and community managers use this skill to turn links from an interesting-findings Discord channel into compact thread summaries and structured local knowledge-base notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Fetching external links can expose the agent to non-public URL access or prompt-injection content. <br>
-Mitigation: Validate each URL before fetching, allow only public HTTP(S) hostnames, block private, loopback, metadata, and non-HTTP schemes, and treat fetched content as untrusted. <br>
-Risk: Discord and knowledge-base outputs could accidentally reproduce raw untrusted page content. <br>
-Mitigation: Write only the agent's synthesized summaries to Discord threads and KB files, and review generated KB commits before pushing or sharing them. <br>
-Risk: Knowledge-base commits could include files outside the intended note directory. <br>
-Mitigation: Configure KB_DIR as a dedicated folder and commit only files within that directory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zerone0x/link-digest) <br>
+## Use Case:
 
+Developers and knowledge workers use Link Digest to monitor a configured Discord channel for shared URLs, produce short source-linked summaries, and preserve distilled notes in a local knowledge base.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries, Discord thread messages, local knowledge-base entries, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Discord summaries are intended to stay under 500 characters, and KB entries should contain synthesized notes only.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Fetching URLs from Discord can expose the agent to SSRF attempts or redirected internal destinations.
+
+Mitigation: Use URL validation and network policy controls that block private, link-local, metadata, non-HTTP, and redirected internal destinations before fetching.
+
+Risk: Fetched page content may contain prompt-injection instructions or unsafe commands.
+
+Mitigation: Treat fetched content as untrusted input, ignore embedded instructions, and write only agent-authored summaries to Discord and the knowledge base.
+
+Risk: Knowledge-base updates and commits could affect files outside the intended note directory.
+
+Mitigation: Keep KB_DIR narrowly scoped and commit only files under that configured directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zerone0x/skills/link-digest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries, Discord thread messages, knowledge-base entries, and git commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Discord summaries are intended to stay under 500 characters; knowledge-base writes should contain synthesized notes only.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

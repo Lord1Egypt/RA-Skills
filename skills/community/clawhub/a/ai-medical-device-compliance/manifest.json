@@ -1,0 +1,76 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "AI医疗器械全球合规",
+  "version": "1.0.0",
+  "author": "注册老炮",
+  "year": "2026",
+  "timestamp_utc": "2026-08-27T15:56:13.430565+00:00",
+  "timestamp_local": "2026-08-27T23:56:13.430574",
+  "package_fingerprint_sha256": "de14a04ff8979e4b7c23943f82e51fd10fd853e98de3f57df1a1551d60b6b2cd",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "e8a66e30b55e997de5fca2cb78bbf2bdabd1a50bc739145dcac48e08b748843d"
+    },
+    {
+      "path": "SECURITY_AUDIT.md",
+      "sha256": "9d05839af3ceb30865a5142e09ea41b09cb3dc83f8028999d5d6c15f83a6481d"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "1de9bd4f936056587775dc3a1ff6ec5a4386dbbbb9669a12f55b6f585fa9ce67"
+    },
+    {
+      "path": "references/01-AI医械全景与定义.md",
+      "sha256": "aae48880e320e0d5a0d2af4a14ff981f0d8e3853e1ce1d692b784f3af4144d08"
+    },
+    {
+      "path": "references/02-美国FDA注册路径.md",
+      "sha256": "4524b9e1eef8ba9f4f037d6207e1fe719efbb3a65fd2c9fd7cc502c7444b8a79"
+    },
+    {
+      "path": "references/03-欧盟MDR与AIAct.md",
+      "sha256": "3343079c19a7834b39424cb84c3ac8b1dcf690ce9c2c1ed14d3a58ca2cfb4200"
+    },
+    {
+      "path": "references/04-中国NMPA注册路径.md",
+      "sha256": "bf39c683e8c3f09e58bb9ea1f0db97ca9c185b28cf4db65b6ef00fd0cfd383a4"
+    },
+    {
+      "path": "references/05-临床证据与数据要求.md",
+      "sha256": "0b42e7aea7b88079ca364467ace0015d6c3a22ca6863c50099e8f6e5fa816b63"
+    },
+    {
+      "path": "references/06-变更管理与全生命周期.md",
+      "sha256": "3ebe13d016b273eddab736ea73da4080d3929e402f94ade44c22afe7c72969f6"
+    },
+    {
+      "path": "references/07-三地对比与出海策略.md",
+      "sha256": "cd988fc8801301c41fbbd64a2786e9d539d4ddd534d322f3a66dcefb40db2494"
+    },
+    {
+      "path": "references/08-术语表与FAQ.md",
+      "sha256": "eb122b70edaf895a982bd65faa95a56e44f96698ad1d066684f5f6440d27f68f"
+    },
+    {
+      "path": "tools/ai_meddev_toolkit.py",
+      "sha256": "37d9b5fab3c2d54b93bc0c5ef8fbd83042022cf83f9e3731fc0aefd2171d8d24"
+    },
+    {
+      "path": "verify/ai_meddev_quality_test.py",
+      "sha256": "0ec72e6b36363547bf056495e69ec8d2d24629a161d4c510651be803a016d85a"
+    },
+    {
+      "path": "verify/gen_security_radar.py",
+      "sha256": "e23cc596911273a13b99c05f0ccaa39688da7e24d4168dfcac9e338a234e8128"
+    },
+    {
+      "path": "verify/security-radar.svg",
+      "sha256": "b1a4ec5cd6e2cf4d31b269b510ea5ff686200d2293a5a8124c015f43d1753542"
+    },
+    {
+      "path": "verify/security_results.json",
+      "sha256": "768c0c0613e3e0e2a3efcf601ec7884d4eef83bbca8727b06515d1522f56c9e8"
+    }
+  ]
+}

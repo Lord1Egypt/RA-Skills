@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>画作还原对比工作台</title>
+<!--
+  artwork-studio.html — html-code-painting 技能配套校验模板
+  用法：
+    1. 把 <原图BASE64> 替换为参照图的 base64（data:image/jpeg;base64,...）
+    2. 把 <作品HTML代码> 注释处整段替换为画作的全部内容
+       （建议直接嵌入完整 <div id="artwork">...</div>，SVG/Canvas 均可）
+    3. 打开本文件，用三种模式比对，记录偏差 -> 回改作品代码 -> 刷新复查
+-->
+<style>
+  :root{
+    --bg:#f5f2ec; --panel:#fffdf9; --line:#d8d2c4; --ink:#3a3730; --accent:#8b5a3c;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:14px/1.6 "Microsoft YaHei",system-ui,sans-serif}
+  header{padding:14px 20px;border-bottom:1px solid var(--line);background:var(--panel);
+         display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+  header h1{font-size:16px;margin:0;font-weight:600}
+  .mode-btn{border:1px solid var(--line);background:var(--panel);color:var(--ink);
+            padding:5px 14px;border-radius:999px;cursor:pointer;font-size:13px}
+  .mode-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  main{position:relative;margin:20px auto;max-width:min(1400px,96vw);
+       background:var(--panel);border:1px solid var(--line);border-radius:10px;
+       overflow:hidden;box-shadow:0 2px 10px rgba(60,50,30,.08)}
+  .frame{display:none;position:relative;width:100%}
+  .frame.active{display:block}
+
+  /* 模式A：并排 */
+  #sideBySide.active{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line)}
+  .cell{position:relative;background:#111;display:flex;align-items:center;justify-content:center}
+  .cell img,.cell .art-slot{max-width:100%;max-height:82vh;display:block}
+  .tag{position:absolute;top:10px;left:12px;background:rgba(0,0,0,.55);color:#eee;
+       font-size:12px;padding:2px 10px;border-radius:4px;z-index:5}
+
+  /* 模式B：滑动比对 */
+  #sliderWrap{cursor:ew-resize;user-select:none}
+  #sliderWrap img{width:100%;display:block}
+  #artOverlay{position:absolute;inset:0;overflow:hidden}
+  #artOverlay .art-slot{position:absolute;top:0;left:0;width:100%;}
+  #handle{position:absolute;top:0;bottom:0;width:3px;background:#fff;
+          box-shadow:0 0 6px rgba(0,0,0,.5);z-index:9}
+  #handle::after{content:"⇔";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+     background:#fff;color:#333;width:34px;height:34px;border-radius:50%;
+     display:flex;align-items:center;justify-content:center;font-size:15px;
+     box-shadow:0 1px 6px rgba(0,0,0,.4)}
+
+  /* 模式C：洋葱皮 */
+  #onionWrap.active{display:block}
+  #onionArt{transition:opacity .18s}
+  .onion-ctl{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
+    background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:8px;
+    padding:8px 16px;display:flex;gap:10px;align-items:center;z-index:9}
+  .onion-ctl input[type=range]{accent-color:var(--accent)}
+
+  /* 偏差记录 */
+  footer{max-width:min(1400px,96vw);margin:0 auto 40px;padding:0 4px}
+  textarea{width:100%;min-height:90px;border:1px solid var(--line);border-radius:8px;
+    background:var(--panel);color:var(--ink);padding:10px;font:inherit;resize:vertical}
+  .hint{color:#8a8271;font-size:12.5px;margin-top:6px}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🎨 画作还原对比工作台</h1>
+  <button class="mode-btn active" data-mode="sideBySide">并排比对</button>
+  <button class="mode-btn" data-mode="slider">滑动比对</button>
+  <button class="mode-btn" data-mode="onion">洋葱皮</button>
+</header>
+
+<main id="stage">
+  <!-- ======== 模式A 并排 ======== -->
+  <section class="frame active" id="sideBySide">
+    <div class="cell"><span class="tag">原作参照</span><img id="refImg" alt="参照图"></div>
+    <div class="cell"><span class="tag">代码作品</span><div class="art-slot" id="slotA"></div></div>
+  </section>
+
+  <!-- ======== 模式B 滑动 ======== -->
+  <section class="frame" id="sliderWrap">
+    <span class="tag">◀ 原作 | 作品 ▶ （拖动分割线）</span>
+    <img id="refImg2" alt="">
+    <div id="artOverlay"><div class="art-slot" id="slotB"></div></div>
+    <div id="handle"></div>
+  </section>
+
+  <!-- ======== 模式C 洋葱皮 ======== -->
+  <section class="frame" id="onionWrap">
+    <img id="refImg3" alt="" style="width:100%;display:block">
+    <div style="position:absolute;inset:0" >
+      <div class="art-slot" id="onionArt"></div>
+    </div>
+    <div class="onion-ctl">
+      <label>作品透明度</label>
+      <input type="range" min="0" max="100" value="60" oninput="document.getElementById('onionArt').style.opacity=this.value/100">
+      <span id="opVal">60%</span>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p><b>偏差记录</b>（对照后填写前三个最大偏差，回改作品后刷新复查）：</p>
+  <textarea placeholder="1) 天空明度偏高约10%，压暗高光色&#10;2) 主塔位置偏左约2格宽&#10;3) 水面缺少波光细节层"></textarea>
+  <p class="hint">提示：改动请回到作品源码修改，不要在此页打补丁；此页仅作校验。眯眼模式可在浏览器开发者工具里临时给 stage 加 filter:blur(4px)。</p>
+</footer>
+
+<script>
+/* ========== 1. 载入参照图 ==========
+   使用时把下面的 <原图BASE64> 替换掉。
+   也支持本地路径调试：file:///D:/path/to/ref.jpg */
+const REF_SRC = "<原图BASE64>";
+
+["refImg","refImg2","refImg3"].forEach(id=>{
+  document.getElementById(id).src = REF_SRC;
+});
+
+/* ========== 2. 载入作品 ==========
+   将 <作品HTML代码> 替换为你的画作 HTML 片段。
+   注意：滑条与洋葱皮需要作品的根元素宽度=100%（自适应），
+   根元素建议是固定宽高比的容器 div。 */
+const ARTWORK_HTML = `
+<作品HTML代码>
+`;
+["slotA","slotB"].forEach(id=>{
+  document.getElementById(id).innerHTML = ARTWORK_HTML;
+});
+document.getElementById("onionArt").innerHTML = ARTWORK_HTML;
+
+/* ========== 3. 模式切换 ========== */
+const frames = {sideBySide:1, slider:2, onion:3};
+document.querySelectorAll(".mode-btn").forEach(btn=>{
+  btn.onclick = ()=>{
+    document.querySelectorAll(".mode-btn").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    const m = btn.dataset.mode;
+    ["sideBySide","sliderWrap","onionWrap"].forEach((id,i)=>
+      document.getElementById(id).classList.toggle("active", frames[m]===i+1));
+    if(m==="slider") initSlider();
+  };
+});
+
+/* ========== 4. 滑动交互 ========== */
+function initSlider(){
+  const wrap=document.getElementById("sliderWrap"),
+        ov=document.getElementById("artOverlay"),
+        h=document.getElementById("handle");
+  let dragging=false;
+  const setX=cx=>{
+    const r=wrap.getBoundingClientRect();
+    const x=Math.max(0,Math.min(cx-r.left, r.width));
+    ov.style.clipPath=`inset(0 0 0 ${x}px)`;   // 右侧显示作品
+    h.style.left=x+"px";
+  };
+  wrap.onpointerdown=e=>{dragging=true;setX(e.clientX)};
+  window.onpointermove=e=>{if(dragging)setX(e.clientX)};
+  window.onpointerup=()=>dragging=false;
+  setX(wrap.getBoundingClientRect().width/2);
+}
+
+/* 洋葱皮透明度数值同步 */
+document.querySelector(".onion-ctl input").addEventListener("input",e=>{
+  document.getElementById("opVal").textContent = e.target.value+"%";
+});
+</script>
+</body>
+</html>

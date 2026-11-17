@@ -1,44 +1,53 @@
-## Description: <br>
-Fetches NetEase Cloud Music personalized daily recommendations and public chart songs, with SMS-code login and optional scheduled push output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Netease Music Pusher helps an agent fetch NetEase Cloud Music personalized daily recommendations and public chart song lists, with login, cookie reuse, formatted song details, and scheduling guidance.
 
-## Publisher: <br>
-[T-Evan](https://clawhub.ai/user/T-Evan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[t-evan](https://clawhub.ai/user/t-evan)
 
-## Use Case: <br>
-Developers and end users use this skill to log in to NetEase Cloud Music, retrieve personalized daily song recommendations or public charts, and format those results for manual or scheduled delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill saves reusable NetEase login cookies locally, which are sensitive account credentials. <br>
-Mitigation: Protect or delete /root/.openclaw/workspace/secrets/netease_cookies.json when needed and avoid sharing the workspace with untrusted users. <br>
-Risk: SMS login requires entering a phone number and verification code in the terminal. <br>
-Mitigation: Use the login flow only in a private terminal and avoid entering phone numbers or SMS codes in shared sessions. <br>
-Risk: A scheduled cron job can create recurring automated access to the NetEase account. <br>
-Mitigation: Add the cron job only when recurring account access is intended and review or remove it when no longer needed. <br>
+## Use Case:
 
+Agent operators use this skill to retrieve and format NetEase Cloud Music daily recommendations or public chart tracks for scheduled music updates. It is suited for personal or workspace automations that can handle account login state and service-specific network access.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/T-Evan/netease-music-pusher) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style instructions and formatted plain-text song recommendation output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or reuse a local NetEase cookie file for authenticated daily recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Reusable NetEase login cookies are persisted in secrets/netease_cookies.json and should be treated as password-equivalent session material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a private workspace, restrict access to the secrets directory, and delete the cookie file when it is no longer needed.
+
+Risk: Phone numbers and SMS verification codes may be entered as shell arguments, where they can be exposed through shell history or process logging.
+
+Mitigation: Avoid placing real phone numbers or SMS codes directly in persistent shell commands, saved scripts, shared logs, or automation records.
+
+## Reference(s):
+
+- [Netease Music Pusher on ClawHub](https://clawhub.ai/t-evan/skills/netease-music-pusher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style text with shell command snippets and formatted song-list output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include song titles, artists, albums, recommendation reasons, NetEase song links, login status messages, and cron configuration examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

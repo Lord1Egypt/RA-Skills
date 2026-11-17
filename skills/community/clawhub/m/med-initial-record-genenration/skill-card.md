@@ -1,47 +1,58 @@
-## Description: <br>
-Generates structured outpatient initial-visit medical record text from Chinese doctor-patient dialogue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured outpatient initial-visit medical record text from Chinese doctor-patient dialogue.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Clinicians, medical documentation teams, and developers can use this skill to convert Chinese doctor-patient dialogue, including ASR-style transcripts, into structured outpatient initial-visit record sections for physician review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical dialogue may contain patient identifiers and can be sent to an external service. <br>
-Mitigation: Run only when policy permits that transfer, remove patient identifiers before execution, and have a qualified clinician review the generated record. <br>
-Risk: The artifact describes de-identification, but the security evidence says the code does not enforce it. <br>
-Mitigation: Treat de-identification as the operator's responsibility and verify input redaction before invoking the skill. <br>
-Risk: Prepared dialogue can be written to disk when --save-prepared is used. <br>
-Mitigation: Avoid --save-prepared for sensitive data, or write only to an approved secure location with appropriate retention controls. <br>
-Risk: PDF, Office, and image inputs require local parsing or OCR tools. <br>
-Mitigation: Prefer trusted TXT or JSON inputs, and process document or image inputs only in a controlled environment. <br>
-Risk: The default timeout can wait indefinitely for the external service. <br>
-Mitigation: Set a finite --timeout value in automated or production workflows. <br>
+## Use Case:
 
+Healthcare users can use this skill to convert Chinese doctor-patient dialogue, including ASR transcripts or normalized document inputs, into a draft initial outpatient medical record for physician review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/med-initial-record-genenration) <br>
-- [Backend record-generation service](https://shangbao.yunzhisheng.cn/skills/record-gen/gen_record_by_diag_v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files] <br>
-**Output Format:** [UTF-8 plain text medical record saved to an output file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May also save normalized prepared dialogue when requested with --save-prepared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill sends full medical dialogue and diag_id values to an external service, and server security evidence says the implementation does not perform the de-identification promised in its documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when authorized to send the data to the external service, remove patient-identifying information before input, and require clinician review of the generated record.
+
+Risk: The optional --save-prepared mode can retain normalized medical dialogue as a plaintext intermediate file on disk.
+
+Mitigation: Avoid --save-prepared for sensitive cases unless retention is intentional and the output location is protected and cleaned up.
+
+Risk: Document and OCR preprocessing can parse untrusted PDF, office, spreadsheet, and image files with optional external tools.
+
+Mitigation: Run preprocessing for untrusted files in an isolated environment with only the required optional dependencies installed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/med-initial-record-genenration)
+- [Backend record generation API](https://shangbao.yunzhisheng.cn/skills/record-gen/gen_record_by_diag_v1)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [UTF-8 plain text with structured outpatient medical-record sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write the generated record to a user-specified output path.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

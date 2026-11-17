@@ -1,0 +1,310 @@
+{
+  "id": "xuanzang",
+  "world_id": "xuanzang",
+  "name": "大唐西域记",
+  "name_en": "The Great Tang Records on the Western Regions",
+  "genre": "historical_silk_road_exploration",
+  "era": "Tang dynasty, Zhenguan era (7th century CE)",
+  "default_language": "zh",
+  "language": "zh",
+  "supported_languages": [
+    "zh",
+    "en"
+  ],
+  "status": "playable",
+  "age_rating": "Teen (13+)",
+  "description_zh": "一部架空角色参与的历史旅行冒险，以玄奘西行所经的丝路与印度诸国为地理背景。玩家扮演原创旅人、译者、商队成员或僧侣，在真实历史人物与行程周边展开原创支线；不改写玄奘本人所记史实，也不把现代虚构情节冒充原典。",
+  "description_en": "A historical travel adventure for an original character among the Silk Road and South Asian regions described in Xuanzang’s seventh-century account. Play as a traveler, interpreter, caravan member, or monk alongside the documented journey; side stories are original and never presented as source text or as altering the record.",
+  "themes": [
+    "travel and cultural exchange",
+    "faith and inquiry",
+    "hospitality and trust",
+    "language and interpretation",
+    "trade and fragile routes",
+    "historical memory"
+  ],
+  "main_questline": {
+    "main_objective": "Carry a personal mission across the connected regions of the Silk Road and South Asia while helping the traveling party navigate language, logistics, hospitality, and changing local conditions.",
+    "current_major_tasks": [
+      "Choose a credible role and reason to join or intersect with the documented journey.",
+      "Navigate caravan logistics, interpreters, local customs, and safe passage without flattening distinct cultures.",
+      "Help resolve original local dilemmas involving travelers, monasteries, markets, and route safety.",
+      "Keep the route geographically coherent and respect the historical chronology of the account.",
+      "Bring the character’s mission to a fitting conclusion without claiming that the player changed the recorded journey."
+    ],
+    "major_story_threads": [
+      "Departure from Chang’an and the northern Silk Road oasis route",
+      "Crossing Central Asia and the Hindu Kush into Gandhara",
+      "Travel through North India and the Ganges regions",
+      "Buddhist pilgrimage sites and study at Nalanda",
+      "Eastern, southern, and western Indian regions and Sri Lanka",
+      "The return route through the Pamirs to Khotan"
+    ]
+  },
+  "key_figures": [
+    {
+      "name": "Xuanzang",
+      "role": "Tang Buddhist monk and traveler",
+      "drive": "seek Buddhist learning and bring texts back to China",
+      "ties": [
+        "Chang’an",
+        "Nalanda",
+        "Khotan"
+      ]
+    },
+    {
+      "name": "Hui-li",
+      "role": "monk associated with the later biography",
+      "drive": "preserve a careful account of Xuanzang’s life",
+      "ties": [
+        "Xuanzang"
+      ]
+    },
+    {
+      "name": "Local hosts and interpreters",
+      "role": "original supporting characters, varying by region",
+      "drive": "protect their communities and negotiate exchange",
+      "ties": [
+        "travelers",
+        "monasteries",
+        "caravans"
+      ]
+    }
+  ],
+  "city_and_region_hubs": [
+    {
+      "name": "Chang’an",
+      "type": "Tang capital and departure point",
+      "importance": "the character’s origin, patronage, and departure preparations"
+    },
+    {
+      "name": "Kucha and the northern Silk Road",
+      "type": "oasis and caravan corridor",
+      "importance": "trade, music, language contact, and route logistics"
+    },
+    {
+      "name": "Samarkand and Bactria",
+      "type": "Central Asian crossroads",
+      "importance": "diplomacy, caravan exchange, and passage west to east"
+    },
+    {
+      "name": "Gandhara and Taxila",
+      "type": "frontier and learning region",
+      "importance": "Buddhist sites, local rulers, and multilingual exchange"
+    },
+    {
+      "name": "Ayodhya and the Ganges region",
+      "type": "North/Central Indian route",
+      "importance": "urban kingdoms, monasteries, and the river corridor"
+    },
+    {
+      "name": "Nalanda",
+      "type": "monastic university",
+      "importance": "study, debate, translation, and intellectual exchange"
+    },
+    {
+      "name": "Sinhala-dvipa (Sri Lanka)",
+      "type": "island kingdom",
+      "importance": "religious and maritime connections"
+    },
+    {
+      "name": "Khotan",
+      "type": "oasis kingdom on the return route",
+      "importance": "the route’s eastern return threshold"
+    }
+  ],
+  "relationship_webs": [
+    {
+      "thread": "travelers / hosts / interpreters",
+      "tension": "hospitality and mutual understanding under language barriers"
+    },
+    {
+      "thread": "caravan leaders / merchants / guards",
+      "tension": "profit, safety, and fair passage"
+    },
+    {
+      "thread": "monastic communities / visiting scholars",
+      "tension": "doctrinal debate, translation, and limited resources"
+    },
+    {
+      "thread": "historical route / player side mission",
+      "tension": "personal stakes must fit around documented events rather than overwrite them"
+    }
+  ],
+  "mainline_stages": [
+    "Chang’an: prepare a credible personal mission and join a westbound party",
+    "Silk Road: cross oasis corridors through trade, translation, and route choices",
+    "Central Asia: navigate mountain passes and regional courts",
+    "India: follow a historically coherent route among cities, monasteries, and pilgrimage sites",
+    "Nalanda and southern routes: study, debate, and continue the itinerary",
+    "Return: retrace the route toward Khotan and reflect on what the character learned"
+  ],
+  "quest_hubs": [
+    {
+      "name": "Caravanserais and market districts",
+      "function": "gather route intelligence, supplies, translators, and safe-conduct"
+    },
+    {
+      "name": "Monasteries and teaching halls",
+      "function": "study, debate, copy texts, and negotiate hospitality"
+    },
+    {
+      "name": "Mountain passes and river crossings",
+      "function": "solve practical travel hazards without turning the setting into generic combat fantasy"
+    },
+    {
+      "name": "Regional courts",
+      "function": "seek permission, mediate disputes, and learn local political context"
+    }
+  ],
+  "key_locations": [
+    {
+      "id": "changan",
+      "name": "长安",
+      "desc": "唐代出发地，备办行装与旅券。"
+    },
+    {
+      "id": "kuqa",
+      "name": "龟兹（库车）",
+      "desc": "丝路绿洲与多语交流之地。"
+    },
+    {
+      "id": "samarkand",
+      "name": "飒秣建（撒马尔罕）",
+      "desc": "中亚商路交汇处。"
+    },
+    {
+      "id": "balkh",
+      "name": "缚喝（巴尔赫）",
+      "desc": "大夏地区的重要城市。"
+    },
+    {
+      "id": "gandhara",
+      "name": "健驮逻",
+      "desc": "犍陀罗区域的佛教遗址与道路节点。"
+    },
+    {
+      "id": "ayodhya",
+      "name": "阿逾陀（阿约提亚）",
+      "desc": "恒河流域行程中的重要古国。"
+    },
+    {
+      "id": "nalanda",
+      "name": "那烂陀寺",
+      "desc": "玄奘求学的重要佛教学术中心。"
+    },
+    {
+      "id": "sri_lanka",
+      "name": "僧伽罗（斯里兰卡）",
+      "desc": "印度洋区域的佛教与海路联系。"
+    },
+    {
+      "id": "khotan",
+      "name": "瞿萨旦那（和田）",
+      "desc": "玄奘东归途中抵达的重要绿洲国。"
+    }
+  ],
+  "unique_mechanics": {
+    "route_continuity": {
+      "name": "路线连续性",
+      "description": "旅行推进遵循可查证的古代地理顺序。",
+      "player_impact": "支线不可瞬移或跳过必要距离；长途行程可通过季节、补给与停留推进。"
+    },
+    "language_and_interpretation": {
+      "name": "语言与翻译",
+      "description": "不同区域有自己的语言、习俗与知识传统。",
+      "player_impact": "使用译者、礼节和核实，误解会带来可信后果而非把文化差异当笑料。"
+    },
+    "source_boundary": {
+      "name": "史料边界",
+      "description": "基本旅程以《大唐西域记》记载为路线参照。",
+      "player_impact": "玩家支线是明确的原创虚构；不得伪称玄奘原文或改写真实记载。"
+    },
+    "travel_log": {
+      "name": "行程札记",
+      "description": "以非秘密的游戏札记记录里程、停留、线索和当地联系人。",
+      "player_impact": "回归时可快速复盘，不保存现实用户敏感数据。"
+    }
+  },
+  "art_style": "Tang-era travelogue illustration with silk-road mural and manuscript aesthetics",
+  "art_direction": {
+    "visual_style": "historically grounded 7th-century Silk Road and South Asian travel illustration; regionally specific architecture, textiles, landscapes, and transport; subtle Dunhuang mural and manuscript-painting influence without mixing unrelated periods",
+    "color_palette": "mineral indigo, ochre, cinnabar, muted jade, parchment ivory, restrained gold",
+    "character_portraits": "period-grounded Tang and regional clothing, respectful and non-stereotyped faces, no modern costume or celebrity likeness",
+    "battle_scenes": "avoid spectacle by default; emphasize travel, negotiation, landscape, learning, and historically plausible hazards",
+    "reference": [
+      "public-domain historical maps and archaeological site references",
+      "Great Tang Records on the Western Regions route and place-name structure"
+    ]
+  },
+  "content_guidance": {
+    "source_basis": "Use the public-domain classical Chinese text of the Great Tang Records on the Western Regions for route and place context. The player’s plots and dialogue are original transformative fiction; do not imply they are part of Xuanzang’s record.",
+    "canon_policy": "Keep the 12-fascicle itinerary geographically and chronologically plausible; distinguish recorded description from invented side stories.",
+    "cultural_policy": "Avoid treating diverse peoples and Buddhist traditions as interchangeable; identify regional setting where possible and do not invent facts as historical certainties.",
+    "agency_policy": "The player is an original traveler whose side mission intersects the route without replacing Xuanzang or changing the recorded expedition."
+  },
+  "world_source_notes": {
+    "primary_text": "《大唐西域记》 (CBETA T51n2087), 12 fascicles",
+    "route_summary": "Chang’an → northern Silk Road → Central Asia → India and Sri Lanka → Pamir return → Khotan",
+    "gameplay_rule": "Use the source text for geography and documented customs; label invented player-facing scenes as creative fiction rather than quotation or historical fact."
+  },
+  "roles": [
+    {
+      "id": "caravan_interpreter",
+      "name_zh": "商队译者",
+      "name_en": "Caravan Interpreter"
+    },
+    {
+      "id": "pilgrim_companion",
+      "name_zh": "同行僧侣",
+      "name_en": "Pilgrim Companion"
+    },
+    {
+      "id": "silk_merchant",
+      "name_zh": "丝路商旅",
+      "name_en": "Silk Road Merchant"
+    },
+    {
+      "id": "route_scout",
+      "name_zh": "引路人",
+      "name_en": "Route Scout"
+    },
+    {
+      "id": "manuscript_copyist",
+      "name_zh": "经卷抄写者",
+      "name_en": "Manuscript Copyist"
+    },
+    {
+      "id": "local_guide",
+      "name_zh": "本地向导",
+      "name_en": "Local Guide"
+    }
+  ],
+  "factions": [
+    {
+      "id": "tang_travelers",
+      "name_zh": "大唐行旅团",
+      "name_en": "Tang Travelers",
+      "specialty": "route planning and diplomatic credentials"
+    },
+    {
+      "id": "silk_road_caravan",
+      "name_zh": "丝路商队",
+      "name_en": "Silk Road Caravan",
+      "specialty": "trade, supplies, and local contacts"
+    },
+    {
+      "id": "monastic_network",
+      "name_zh": "僧院与学堂",
+      "name_en": "Monastic and Scholarly Network",
+      "specialty": "learning, hospitality, and translation"
+    },
+    {
+      "id": "regional_hosts",
+      "name_zh": "沿途诸国与地方社群",
+      "name_en": "Regional Courts and Communities",
+      "specialty": "local knowledge and safe passage"
+    }
+  ],
+  "version": "1.0.0"
+}

@@ -1,0 +1,14 @@
+{
+  "requires": {
+    "pip": ["simmer-sdk", "httpx==0.28.1", "orjson==3.13.0", "psutil==7.2.2", "websockets==15.0.1"],
+    "env": ["SIMMER_API_KEY"]
+  },
+  "envVars": [
+    {"name":"SIMMER_API_KEY","required":true,"description":"Simmer API key, used exclusively for virtual SIM trades and reads. Never a wallet private key."},
+    {"name":"K14_STATE_DIR","required":false,"description":"Persistent state directory shared by sequential runs. Do not run copies on isolated filesystems with one account."},
+    {"name":"K14_RUN_SECONDS","required":false,"description":"Run duration 10-86400 seconds, default 1800."}
+  ],
+  "cron": "*/30 * * * *",
+  "autostart": true,
+  "automaton": {"managed":true,"entrypoint":"paper_agent.py"}
+}

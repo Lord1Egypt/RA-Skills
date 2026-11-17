@@ -1,0 +1,10 @@
+{
+  "ticker": "AAPL",
+  "form": "10-Q",
+  "filing_date": "2026-07-31",
+  "report_date": "2026-06-27",
+  "accession": "0000320193-26-000020",
+  "primary_doc_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000020/aapl-20260627.htm",
+  "text_file": "AAPL_10Q.txt",
+  "note": "Bundled cached filing for the offline --demo path. Re-fetch from the URL to refresh."
+}

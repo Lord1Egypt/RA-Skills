@@ -1,39 +1,52 @@
-## Description: <br>
-Provides debugging assistance for AI-generated code with pattern detection, common issue identification, and fix suggestions across multiple programming languages including C#/.NET Core and Visual Studio integration guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides debugging assistance for AI-generated code with pattern detection, common issue identification, and fix suggestions across multiple programming languages including C#/.NET Core and Visual Studio integration guidance.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to review AI-generated code for common quality, security, and debugging issues across JavaScript, TypeScript, Python, C#, and Java. It also provides fix suggestions, markdown reports, and Visual Studio or VS Code debugging configuration guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Quick-fix output may make incorrect or incomplete changes when applied to a real project.
+
+Mitigation: Review suggested fixes manually and run the project's normal tests, compiler, and code review before committing changes.
+
+Risk: Issue detection is simple regex-based guidance rather than a full compiler, linter, or security audit.
+
+Mitigation: Use it as an initial debugging aid and confirm findings with language-specific tooling and security scanners.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze AI-generated code for common quality, security, and debugging issues, then generate fix suggestions, IDE debugging guidance, debug configurations, and markdown reports. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [analysis, markdown, code, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Publisher provenance is limited for this release. <br>
-Mitigation: Review the source before using the skill with highly sensitive code. <br>
-Risk: Pattern-based analysis and automatic quick fixes can miss issues or change code in ways that still require engineering review. <br>
-Mitigation: Treat findings and quick-fix output as recommendations, and review diffs and generated configurations before applying them. <br>
+**Output Format:** [JSON-like analysis objects, markdown reports, code fix suggestions, and debugging configuration snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Outputs are generated from provided code strings and should be reviewed before applying changes to a project.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [JavaScript objects, configuration snippets, fix suggestions, and Markdown reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes severity counts, issue lists, language-specific guidance, quick-fix results, and Visual Studio or VS Code debug configuration data.] <br>
+1.0.0 (source: server release evidence, package.json, _meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version, artifact/package.json, artifact/_meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

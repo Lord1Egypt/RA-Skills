@@ -1,41 +1,52 @@
-## Description: <br>
-Automates trending topic discovery, AI content creation, scheduling, multi-platform posting, and performance tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates trending topic discovery, AI content creation, scheduling, and multi-platform social media posting with performance tracking and optimization.
 
-## Publisher: <br>
-[G0atfac3](https://clawhub.ai/user/G0atfac3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[g0atfac3](https://clawhub.ai/user/g0atfac3)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Content agencies, solo entrepreneurs, and marketing teams use this skill to research trends, generate social content, schedule posts, and track performance across social platforms.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Automated social posting can publish public content without documented per-post confirmation.
+
+Mitigation: Use draft-only workflows or manual review until per-post approval controls are documented.
+
+Risk: Connected AI and social-posting credentials may expose account, privacy, or rollback risk.
+
+Mitigation: Use scoped credentials and require documented account scope, rate limits, audit logs, deletion or rollback steps, and third-party data handling before production use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Marketing teams, content agencies, and solo entrepreneurs use this skill to research trends, draft social content, schedule posts, and coordinate publishing across social platforms. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can connect AI content generation with a social-posting provider and may grant posting authority without clear review safeguards. <br>
-Mitigation: Use test or low-risk accounts first, require manual review before posts are scheduled or published, and limit connected account permissions. <br>
-Risk: The skill depends on API keys for AI/content-generation services and Postiz. <br>
-Mitigation: Store keys in environment variables or a secret manager, rotate them regularly, and set provider spend and permission limits. <br>
+**Output Format:** [Markdown guidance with shell command examples and configuration file references]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/G0atfac3/g0atbot-content-machine) <br>
-- [Publisher Profile](https://clawhub.ai/user/G0atfac3) <br>
+**Other Properties Related to Output:** [May connect AI generation and social posting credentials when used with configured API keys.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration references, and Python automation behavior] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires content-generation and social-posting API credentials; generated posts may be scheduled or published through connected providers.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-Analyzes public Bilibili creator profiles, video performance, audience attributes, and viral content patterns for creators, brands, and MCN teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Bilibili creator profiles, video performance, audience demographics, viral content patterns, competitor activity, and topic ideas for creators, brands, and MCN organizations.
 
-## Publisher: <br>
-[275254cl-hash](https://clawhub.ai/user/275254cl-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[275254cl-hash](https://clawhub.ai/user/275254cl-hash)
 
-## Use Case: <br>
-External content creators, brands, and MCN teams use this skill to analyze public Bilibili creator, video, audience, and trending-content signals, then turn those insights into topic and competitive-monitoring guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Creator and audience analytics can be misused to identify private individuals or infer sensitive traits. <br>
-Mitigation: Limit use to public, aggregate insights and avoid identifying private people or making sensitive-trait inferences. <br>
-Risk: Competitor monitoring or automated Bilibili queries may violate platform rules or privacy expectations. <br>
-Mitigation: Use only allowed public data sources and respect Bilibili terms, rate limits, and consent expectations. <br>
-Risk: The skill may install requests and make network queries through Python or curl. <br>
-Mitigation: Review dependencies and commands before execution and run the workflow in a constrained environment. <br>
+## Use Case:
 
+External content creators, brand teams, and MCN operators use this skill to summarize public Bilibili creator and video metrics, compare competitors, inspect audience segments, and generate data-informed content ideas.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/275254cl-hash/bilibili-insight) <br>
-- [Publisher profile](https://clawhub.ai/user/275254cl-hash) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style analytical summaries with examples, recommendations, and public-data caveats.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference Python, curl, and the requests package for network-based public Bilibili analytics workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Audience demographic outputs may be estimates and could be misused to identify or target individual fans.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat demographic results as aggregate estimates, avoid individual-level profiling, and review recommendations before use in targeting decisions.
+
+Risk: The skill declares an unpinned Python dependency installation for requests.
+
+Mitigation: Install in an isolated environment and pin or review the dependency version before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/275254cl-hash/skills/bilibili-insight)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style analytical summaries with metrics, demographic estimates, comparisons, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include aggregate audience estimates and content strategy suggestions based on public Bilibili information.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

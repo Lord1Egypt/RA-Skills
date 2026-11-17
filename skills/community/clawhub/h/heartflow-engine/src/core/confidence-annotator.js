@@ -19,7 +19,16 @@
  *   - 统计系统扩展：errorCount / safeReplaceCount / truncationCount / oscillationWarnings
  *   - 防御性编程：防止无限循环和正则回溯
  */
-const { claimExtractor } = require('./claim-extractor');
+let claimExtractor;
+try {
+  ({ claimExtractor } = require('../reasoning/claim-extractor'));
+} catch (e) {
+  // claim-extractor 不在 src/core/ 目录，提供空实现兜底
+  claimExtractor = {
+    extractAll: () => [],
+    categorize: () => ({})
+  };
+}
 
 /** 单次处理的最大文本长度（超过自动截断头部） */
 const MAX_TEXT_LENGTH = 50000;
@@ -62,7 +71,7 @@ const confidenceAnnotator = {
   _safeText(text) {
     if (text == null) return '';
     if (typeof text !== 'string') {
-      try { return String(text); } catch (_) { return ''; }
+      try { return String(text); } catch (e) { console.warn('[ConfidenceAnnotator] 文本转换失败:', e.message); return ''; }
     }
     return text;
   },
@@ -87,7 +96,7 @@ const confidenceAnnotator = {
     if (claim == null) return '';
     if (typeof claim === 'string') return claim;
     if (typeof claim === 'object' && claim.value) return claim.value;
-    try { return String(claim); } catch (_) { return ''; }
+    try { return String(claim); } catch (e) { console.warn('[ConfidenceAnnotator] 声明值转换失败:', e.message); return ''; }
   },
 
   /**
@@ -615,6 +624,20 @@ const confidenceAnnotator = {
   },
 
   /** 风险分历史记录（用于震荡检测） */
+  /**
+   * annotate - 兼容 heartflow.js translator 调用约定
+   */
+  annotate(textOrConfig, source) {
+    try {
+      const text = typeof textOrConfig === 'string'
+        ? textOrConfig
+        : (textOrConfig?.text || textOrConfig?.input || String(textOrConfig));
+      return this.annotateText(text, 'medium');
+    } catch (e) {
+      return { confidence: 0.5, level: 'medium', error: e.message, source };
+    }
+  },
+
   _riskScoreHistory: []
 };
 

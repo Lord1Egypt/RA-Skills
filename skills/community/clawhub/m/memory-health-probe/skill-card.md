@@ -1,40 +1,58 @@
-## Description: <br>
-QMD memory system telemetry for measuring index health, BM25 retrieval quality, coverage maps, and trend analysis in a local QMD memory backend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QMD memory system telemetry for measuring index health, BM25 retrieval quality, coverage maps, and trend analysis.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Developers and engineers operating QMD and OpenClaw memory systems use this skill to run local diagnostics for retrieval quality, index freshness, gateway activity, and collection coverage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local memory diagnostics may reveal sensitive topics, source locations, and detailed retrieval snapshots. <br>
-Mitigation: Review or edit the hard-coded query list before running, use --dry-run first, and confirm that local snapshots and local Langfuse logging are acceptable in the target environment. <br>
-Risk: The probe is specific to a QMD and OpenClaw setup and can produce incomplete or misleading results outside that environment. <br>
-Mitigation: Install only where the expected qmd binary, OpenClaw gateway logs, and local telemetry services are present, then review results before acting on them. <br>
+## Use Case:
 
+Developers and operators running QMD memory backends use this skill to measure retrieval quality, index freshness, gateway events, and collection coverage. It helps diagnose degradation in local memory search before it affects agent workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nissan/memory-health-probe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and local diagnostic output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local QMD memory telemetry, JSON snapshots, trend summaries, and optional local Langfuse traces.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Probe results may include sensitive query telemetry, source URIs, and local gateway-log details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in dry-run mode first, review captured fields, and redact sensitive values before enabling persistence or local Langfuse reporting.
+
+Risk: Live mode writes local JSON snapshots and sends probe output to a local Langfuse service over HTTP with hardcoded local keys.
+
+Mitigation: Use live mode only when local telemetry storage and reporting are intended; prefer scoped credentials, HTTPS or safer local transport, and explicit opt-in for export.
+
+Risk: The script reads OpenClaw gateway logs that may contain operational or personal context.
+
+Mitigation: Limit execution to trusted local environments and review log access permissions before installing or scheduling the probe.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nissan/skills/memory-health-probe)
+- [ClawHub publisher profile](https://clawhub.ai/user/nissan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Analysis]
+
+**Output Format:** [Console text with locally stored JSON snapshots]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can print dry-run diagnostics, trend summaries, and live local Langfuse trace results when enabled.]
+
+## Skill Version(s):
+
+1.0.1 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

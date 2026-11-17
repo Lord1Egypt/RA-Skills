@@ -1,42 +1,54 @@
-## Description: <br>
-Explain and work with the CGCS2000 coordinate reference system for China geospatial workflows, including EPSG:4490 interpretation, projected CRS selection, Gauss-Kruger zoning, axis/unit checks, and comparison with WGS84, GCJ-02, and BD-09. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explain and work with the CGCS2000 coordinate reference system for China geospatial workflows, including EPSG:4490 interpretation, projected CRS selection, Gauss-Kruger zoning, axis/unit checks, and comparison with WGS84, GCJ-02, and BD-09.
 
-## Publisher: <br>
-[jvy](https://clawhub.ai/user/jvy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jvy](https://clawhub.ai/user/jvy)
 
-## Use Case: <br>
-External GIS users, surveyors, developers, and engineers use this skill to interpret CGCS2000 coordinates, choose between EPSG:4490 and projected CGCS2000 CRS variants, and avoid common China CRS mistakes before conversion or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect CRS assumptions can produce misleading survey, cadastral, engineering, or legal results. <br>
-Mitigation: Verify the official CRS, projection zone, coordinate units, axis order, and source coordinate system before relying on recommendations. <br>
-Risk: China map-app coordinates may be GCJ-02 or BD-09 rather than raw CGCS2000. <br>
-Mitigation: Confirm the acquisition source and offset system before labeling or transforming the coordinates as CGCS2000. <br>
+## Use Case:
 
+Developers, GIS analysts, surveyors, and mapping practitioners use this skill to interpret CGCS2000 coordinates, choose between EPSG:4490 and projected CGCS2000 CRS variants, compare China coordinate systems, and identify the right next step for validation or reprojection.
 
-## Reference(s): <br>
-- [CGCS2000 Reference](references/cgcs2000-reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jvy/cgcs2000) <br>
-- [Publisher profile](https://clawhub.ai/user/jvy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces CRS interpretation, validation questions, comparison notes, and recommended next steps; it does not execute file-based reprojection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Incorrectly assuming the source CRS, coordinate order, units, or projected zone can produce misleading CRS guidance or invalid reprojection choices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the declared source CRS, coordinate ranges, units, acquisition source, and required projected zone before using guidance for survey, legal, engineering, or production workflows.
+
+Risk: China map-app coordinates may be GCJ-02 or BD-09 rather than raw CGCS2000, and geographic degree coordinates are not suitable for direct measurement.
+
+Mitigation: Verify whether app coordinates use an offset system and choose an exact projected CGCS2000 CRS in meters when measurement, cadastral, engineering, or local analysis is required.
+
+## Reference(s):
+
+- [CGCS2000 Reference](references/cgcs2000-reference.md)
+- [ClawHub skill page](https://clawhub.ai/jvy/skills/cgcs2000)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Concise Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend a QGIS handoff for file-based reprojection, but the skill itself provides CRS interpretation and next-step guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

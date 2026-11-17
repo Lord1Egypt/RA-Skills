@@ -1,41 +1,51 @@
-## Description: <br>
-Gmail: Read a message and extract its body or headers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gmail: Read a message and extract its body or headers.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to read a specific Gmail message by ID and retrieve its body or selected headers through the local gws CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose Gmail message content from the account configured for the local gws CLI. <br>
-Mitigation: Confirm the intended Gmail account, OAuth scopes, and message ID before reading messages, and avoid highly sensitive messages unless access is necessary. <br>
-Risk: The skill depends on local gws CLI behavior and authentication state. <br>
-Mitigation: Install and use this skill only in environments where the local gws CLI and Google Workspace authentication setup are trusted. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent in reading a specific Gmail message by ID and extracting either the body or selected headers through the gws CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/gws-gmail-read) <br>
-- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and text or JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the local gws CLI and an authenticated Google Workspace setup; message output may include Gmail content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release evidence; skill metadata version 0.22.5) <br>
+Risk: Gmail message bodies and headers can contain sensitive personal or business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use this skill only when Gmail read access is intended, follow the shared gws authentication and security rules, and read only message IDs the user is authorized to inspect.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/gws-gmail-read)
+- [gws-shared](../gws-shared/SKILL.md)
+- [gws-gmail](../gws-gmail/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can request text or JSON output, optional message headers, HTML body output, and dry-run command preview.]
+
+## Skill Version(s):
+
+1.0.12 (source: ClawHub release metadata; SKILL.md metadata version 0.22.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

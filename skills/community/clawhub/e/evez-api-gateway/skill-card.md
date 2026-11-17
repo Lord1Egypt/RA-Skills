@@ -1,42 +1,55 @@
-## Description: <br>
-Connects agents to the EVEZ AI OpenAI-compatible API for routing LLM calls through EVEZ models with setup examples for API keys, base URLs, and Python usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to the EVEZ AI API, an OpenAI-compatible API for routing LLM calls through EVEZ models including evez-smart, evez-code, evez-fast, and evez-vision.
 
-## Publisher: <br>
-[evezart](https://clawhub.ai/user/evezart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evezart](https://clawhub.ai/user/evezart)
 
-## Use Case: <br>
-Developers and external users use this skill to configure agents or applications to call EVEZ AI models through an OpenAI-compatible endpoint, including chat, code, fast, and vision model examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an API key for an external AI service. <br>
-Mitigation: Use a dedicated EVEZ API key and keep it in environment variables or a managed secret store. <br>
-Risk: Prompts and image URLs are sent to the EVEZ service for processing. <br>
-Mitigation: Review the provider's privacy and billing terms and avoid sending secrets or regulated data unless external processing is acceptable. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure agents or applications to call EVEZ as an OpenAI-compatible API gateway for chat, code, fast-response, and vision model workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/evezart/evez-api-gateway) <br>
-- [EVEZ API endpoint](https://evez-api2.fly.dev/v1) <br>
-- [EVEZ API signup](https://evez-api2.fly.dev/signup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an EVEZ API key and sends prompts or image URLs to the EVEZ service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts, outputs, and image URLs may be routed through EVEZ's remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review EVEZ data handling and compliance terms before use, and avoid sending secrets, regulated data, private customer content, or internal image URLs unless approved.
+
+Risk: The skill configures remote API calls that depend on third-party service availability and behavior.
+
+Mitigation: Validate the target endpoint, API key handling, model behavior, and fallback requirements before using it in production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evezart/skills/evez-api-gateway)
+- [EVEZ OpenAI-compatible API endpoint](https://evez-api2.fly.dev/v1)
+- [EVEZ signup](https://evez-api2.fly.dev/signup)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with shell commands and Python code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API configuration values, model names, client wrapper guidance, and remote API call examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

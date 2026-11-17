@@ -1,39 +1,57 @@
-## Description: <br>
-Read, summarize, propose edits, and write back changes to Markdown todo files using line-stable bot markers without altering task identity or completing tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read, summarize, propose edits, and write back changes to Markdown todo files using line-stable bot markers without altering task identity or completing tasks.
 
-## Publisher: <br>
-[NitsujY](https://clawhub.ai/user/NitsujY) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nitsujy](https://clawhub.ai/user/nitsujy)
 
-## Use Case: <br>
-Developers and users of Markdown-first todo workflows use this skill to review changed todo files, prepare compact task summaries or suggestions, and write approved bot-marked outcomes back to Markdown while preserving file and task identity. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses persistent Google Drive credentials and broad Drive access to read and update Markdown files. <br>
-Mitigation: Use a dedicated Drive folder or account, verify the OAuth client and gog binary, keep Drive revision history or backups, and revoke or delete stored tokens when access is no longer needed. <br>
-Risk: Automated write-back could overwrite recent human edits or introduce unwanted task suggestions. <br>
-Mitigation: Start with dry runs or a small folder, review suggestions before apply mode, rely on the revision gate, and keep bot output confined to the dedicated bot-marked section. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NitsujY/todolist-md-clawdbot-copy) <br>
+## Use Case:
 
+Developers and todo-list users use this skill to review todolist-md Markdown files, generate summaries or suggested tasks, and write human-reviewable outcomes back with bot comment markers.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request and suggestion files, shell command examples, and bot-marked Markdown write-back patterns.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses stable HTML comment markers and line-stable edits; helper scripts can prepare LLM request JSON and apply suggestion JSON to Google Drive Markdown files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad Google Drive access may expose or modify Markdown files beyond the intended todo workflow.
+
+Mitigation: Use a dedicated Google account or reduced OAuth scope where possible, and keep sensitive Markdown files outside reviewed folders.
+
+Risk: Under-scoped write-back behavior could add suggestions to files that were not meant to be AI-reviewed.
+
+Mitigation: Enable per-file opt-in controls, validate target files before apply mode, and review every suggestions JSON before writing changes.
+
+Risk: Generated suggestions may be incorrect or may change task meaning if applied without review.
+
+Mitigation: Keep suggestions in bot-marked sections, use dry runs for review, and require explicit user confirmation before completing tasks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nitsujy/skills/todolist-md-clawdbot-copy)
+- [todolist-md project homepage](https://github.com/NitsujY/todolist-md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON request or suggestion files, and shell commands for helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes only bot-marked Markdown suggestions or review metadata when configured, and prepares compact task extracts for separate agent processing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

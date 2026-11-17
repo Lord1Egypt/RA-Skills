@@ -612,7 +612,7 @@ Slack Incoming Webhook을 사용합니다. [Slack Webhook 생성 가이드](http
 delivery:
   platform: "slack"
   slack:
-    webhook_url: "https://hooks.slack.com/services/T.../B.../..."
+    webhook_url: "REDACTED-SECRET.../B.../..."
 ```
 
 ### Telegram

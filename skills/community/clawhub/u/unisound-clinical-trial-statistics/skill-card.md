@@ -1,44 +1,61 @@
-## Description: <br>
-Supports pharmaceutical clinical trial statistics by preparing descriptive statistics, group comparisons, and AI-assisted Markdown interpretation from trial records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports clinical trial data statistics for pharmaceutical research by computing descriptive endpoint summaries, group comparisons, and AI-assisted interpretation.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Developers and clinical research teams use this skill to summarize grouped clinical trial endpoint data, compare group means, and produce structured JSON plus Markdown analysis notes for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process sensitive clinical trial data and sends trial summaries to an external LLM/API. <br>
-Mitigation: Use only data approved for that API, de-identify regulated or confidential trial materials where possible, and confirm organizational approval before processing protected data. <br>
-Risk: Broad document parsing for PDFs, legacy Office files, and images can expose the runtime to risky or malformed inputs. <br>
-Mitigation: Run converters in a sandboxed environment with file size, runtime, and network limits, and prefer structured JSON inputs when possible. <br>
-Risk: AI-generated clinical-trial interpretation may be incomplete or misleading if used as a formal statistical conclusion. <br>
-Mitigation: Treat the output as descriptive analysis support and require review by qualified statisticians or clinical reviewers before regulatory, clinical, or business use. <br>
+## Use Case:
 
+Developers and clinical analytics teams use this skill to prepare clinical trial records, calculate per-group descriptive statistics for endpoint fields, and generate a Markdown interpretation for review. It is intended as analysis support and does not replace a statistical analysis plan, registered statistician review, or regulatory submission analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-clinical-trial-statistics) <br>
-- [Statistical Analysis reference skill](https://agent-skills.md/skills/Jst-Well-Dan/Skill-Box/statistical-analysis) <br>
-- [Unisound-LLM publisher profile](https://clawhub.ai/user/unisound-llm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Analysis, Guidance] <br>
-**Output Format:** [UTF-8 JSON containing structured statistics and Markdown natural-language analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an appkey for the configured external medical LLM API; JSON-only inputs do not require optional document parsing tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Trial-derived data is sent to a remote medical-model endpoint for interpretation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when authorized to transmit the data, minimize or de-identify sensitive trial records before use, and trust the endpoint and credential handling.
+
+Risk: AI-generated clinical interpretation may be incomplete or misleading for regulated clinical decisions.
+
+Mitigation: Have a qualified statistician review the generated interpretation and rely on approved statistical analysis plans for formal analyses.
+
+Risk: Office, PDF, and image inputs require optional parsers or external tools and may expand the processing surface for untrusted files.
+
+Mitigation: Prefer JSON, CSV, or XLSX inputs from trusted sources and run preprocessing in a contained environment when handling documents or images.
+
+Risk: The skill can fall back to an external shared preprocessor when local preprocessing fails.
+
+Mitigation: Review the runtime environment and available shared preprocessor before deployment, or disable unsupported input types.
+
+## Reference(s):
+
+- [Source reference: Statistical Analysis skill](https://agent-skills.md/skills/Jst-Well-Dan/Skill-Box/statistical-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Analysis, Files]
+
+**Output Format:** [UTF-8 JSON containing structured statistics data and Markdown natural-language interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an app key for a remote medical model endpoint; optional preprocessing supports JSON, CSV, XLSX, XLS, TXT, Markdown, PDF, DOC, DOCX, and image inputs when dependencies are available.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

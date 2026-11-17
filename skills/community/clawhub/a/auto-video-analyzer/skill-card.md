@@ -1,42 +1,57 @@
-## Description: <br>
-Auto Video Analyzer extracts video key frames with FFmpeg and uses AI vision to produce structured video analysis reports on Windows, macOS, and Linux. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Video Analyzer helps an agent analyze video content by extracting key frames with FFmpeg and using AI vision to produce a structured report across Windows, macOS, and Linux.
 
-## Publisher: <br>
-[shishenbaiye](https://clawhub.ai/user/shishenbaiye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shishenbaiye](https://clawhub.ai/user/shishenbaiye)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to inspect local video files, extract representative frames, analyze visual content, and return a structured report. It also supports deeper sampling modes for detailed review and debugging of video behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: First use can automatically download and run unpinned GitHub shell scripts on the user's machine. <br>
-Mitigation: Review the helper scripts before use, pin them to a specific commit with checksums when possible, and require explicit confirmation before first download or execution. <br>
-Risk: Video frames and copied video files may contain sensitive content and can remain in workspace analysis directories. <br>
-Mitigation: Avoid sensitive videos unless the analysis location is understood, and clean generated tool and analysis directories after use. <br>
+## Use Case:
 
+Developers, creators, QA teams, and other external users can use this skill to summarize video content, inspect UI or gameplay recordings, and debug visible behavior by sampling frames and returning a structured visual analysis report.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shishenbaiye/auto-video-analyzer) <br>
-- [Source Repository](https://github.com/shishenbaiye/auto-video-analyzer) <br>
-- [Tool Scripts Directory](https://github.com/shishenbaiye/auto-video-analyzer/tree/main/tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with extracted-frame analysis and optional shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FFmpeg and may create temporary video-analysis files in the workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill downloads and runs GitHub-hosted scripts without version pinning or integrity checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the downloaded scripts before execution, prefer pinned release URLs, and verify file integrity when deploying in managed environments.
+
+Risk: Private or sensitive video frames may be extracted and analyzed.
+
+Mitigation: Use only videos approved for the target AI environment, remove sensitive content before analysis, and clean temporary analysis files after use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shishenbaiye/skills/auto-video-analyzer)
+- [GitHub Repository](https://github.com/shishenbaiye/auto-video-analyzer)
+- [Tool Scripts](https://github.com/shishenbaiye/auto-video-analyzer/tree/main/tools)
+- [GitHub Releases](https://github.com/shishenbaiye/auto-video-analyzer/releases)
+- [GitHub Issues](https://github.com/shishenbaiye/auto-video-analyzer/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown text with structured video analysis and inline shell commands when setup or execution steps are needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FFmpeg and platform-specific shell support; frame counts vary by analysis mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, skill metadata, README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

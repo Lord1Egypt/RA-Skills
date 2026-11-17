@@ -1,45 +1,55 @@
-## Description: <br>
-Generates Amap-backed city exploration guides with administrative areas, weather, commercial districts, food landmarks, attractions, transit hubs, and POI density analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amap City Explorer generates structured city exploration guides with administrative districts, live weather, commercial areas, food, attractions, transit hubs, and POI density analysis from Amap Web Service API data.
 
-## Publisher: <br>
-[770600682-cyber](https://clawhub.ai/user/770600682-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[770600682-cyber](https://clawhub.ai/user/770600682-cyber)
 
-## Use Case: <br>
-Travelers, business visitors, and city researchers use this skill to quickly understand a city, compare districts or cities, and produce structured trip-planning or scouting guidance from Amap data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an Amap API key and may consume quota during normal city, weather, and POI lookups. <br>
-Mitigation: Use a dedicated or restricted AMAP_API_KEY where possible and monitor quota usage. <br>
-Risk: City names, coordinates, and POI query terms are sent to Amap as part of normal operation. <br>
-Mitigation: Avoid entering sensitive personal locations or private itinerary details when using the skill. <br>
-Risk: Recommendations depend on third-party Amap data and may be incomplete, outdated, or unsuitable for a specific trip. <br>
-Mitigation: Review important travel, weather, venue, pricing, and transit details against current authoritative sources before acting. <br>
+## Use Case:
 
+External users, travelers, and business travelers use this skill to explore a city before a trip, compare neighborhoods or cities, and receive a concise guide based on Amap map, weather, POI, and transit data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/770600682-cyber/amap-city-explorer) <br>
-- [Amap Open Platform](https://lbs.amap.com) <br>
-- [Amap Web Service API documentation](https://lbs.amap.com/api/webservice/summary) <br>
-- [Amap Web Service API endpoint](https://restapi.amap.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown city guide with structured sections, tables, rankings, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses AMAP_API_KEY-backed Amap Web Service queries for city, weather, POI, food, attraction, and transit information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: City names and query coordinates may be sent to Amap together with the configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an API key intended for this purpose and invoke the skill only when a city exploration guide is needed.
+
+Risk: Travel, weather, POI, pricing, and popularity details can change or be incomplete in the external data source.
+
+Mitigation: Review important recommendations against current local sources before relying on them for travel or business decisions.
+
+## Reference(s):
+
+- [Amap Open Platform](https://lbs.amap.com)
+- [Amap Web Service API Documentation](https://lbs.amap.com/api/webservice/summary)
+- [ClawHub Skill Page](https://clawhub.ai/770600682-cyber/skills/amap-city-explorer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown city guide with sections, ranked lists, tables, and comparison summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AMAP_API_KEY; generated results depend on Amap Web Service API availability and returned data.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

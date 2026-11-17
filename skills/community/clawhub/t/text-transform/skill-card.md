@@ -1,40 +1,49 @@
-## Description: <br>
-Text transformation, regex, diff, format conversion, and JSON manipulation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Text transformation, regex, diff, format conversion, and JSON manipulation.
 
-## Publisher: <br>
-[CutTheMustard](https://clawhub.ai/user/CutTheMustard) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cutthemustard](https://clawhub.ai/user/cutthemustard)
 
-## Use Case: <br>
-Developers and agents use this skill to transform generated text, run regex and diff operations, convert Markdown or HTML, and parse or format JSON through a stateless text API. It is intended for agent-generated content unless the user explicitly asks to send their text. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sensitive or user-provided text could be sent to an external service without clear consent. <br>
-Mitigation: Use the skill on agent-generated content by default and only send user text after explicit user instruction. <br>
-Risk: External API availability, rate limits, or paid-tier costs can affect completion. <br>
-Mitigation: Confirm the service is appropriate for the task and account for the free-tier limit or x402 paid usage before repeated calls. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Text Transform service](https://text.agentutil.net) <br>
-- [ClawHub skill page](https://clawhub.ai/CutTheMustard/text-transform) <br>
+## Use Case:
 
+Developers and agents use this skill to transform text, run regex operations, compare line-level diffs, convert formats, and manipulate JSON through a disclosed external text-processing service.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [JSON API responses and transformed text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [External stateless API; ask before sending non-agent-generated text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Selected text is sent to an external text-processing service.
+
+Mitigation: Use the skill only for agent-generated content by default, and send user-provided, private, secret, or regulated text only after explicit user instruction.
+
+## Reference(s):
+
+- [Text Transform service homepage](https://text.agentutil.net)
+- [ClawHub skill page](https://clawhub.ai/cutthemustard/skills/text-transform)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with API request examples and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include transformed text, regex results, diffs, converted markup, JSON formatting results, counts, or service usage guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

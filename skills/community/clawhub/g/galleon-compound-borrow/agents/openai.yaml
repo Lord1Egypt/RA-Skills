@@ -1,0 +1,4 @@
+interface:
+  display_name: "Compound III borrowing"
+  short_description: "Compound III borrowing workflow and evidence"
+  default_prompt: "Use $galleon-compound-borrow to perform the requested protocol workflow and return its decision record."

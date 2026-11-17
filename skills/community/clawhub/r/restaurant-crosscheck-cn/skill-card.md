@@ -1,48 +1,62 @@
-## Description: <br>
-Cross-reference restaurant recommendations from Xiaohongshu and Dianping to validate restaurant quality and consistency for location-based dining and local-life queries. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Cross-reference restaurant recommendations from Xiaohongshu and Dianping by location and cuisine to compare ratings, engagement, matching confidence, and consistency scores.
 
-## Publisher: <br>
-[zhongrenfei1-hub](https://clawhub.ai/user/zhongrenfei1-hub) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhongrenfei1-hub](https://clawhub.ai/user/zhongrenfei1-hub)
 
-## Use Case: <br>
-External users and agents use this skill to compare restaurants or local-life venues across Dianping ratings and Xiaohongshu user posts, then produce ranked recommendations with confidence and consistency signals. It is most appropriate for personal research workflows that can tolerate scraping limitations, saved browser sessions, and manual review of low-confidence matches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill saves logged-in Dianping and Xiaohongshu browser sessions locally. <br>
-Mitigation: Use separate accounts where practical, avoid shared machines, and delete ~/.local/share/restaurant-crosscheck/sessions after use. <br>
-Risk: The skill scrapes sites that may restrict automation and may trigger access blocks or terms-of-service issues. <br>
-Mitigation: Review platform terms before use, keep usage to permitted personal research workflows, and prefer official or licensed data access for commercial use. <br>
-Risk: Setup and scraping scripts run local code and browser automation. <br>
-Mitigation: Inspect setup.sh and scripts before execution, install in a virtual environment, and run with least-privileged local accounts. <br>
-Risk: Restaurant matches and sentiment scores may be inaccurate because they rely on fuzzy matching, scraped data availability, and keyword heuristics. <br>
-Mitigation: Treat low-confidence or inconsistent results as candidates for manual review before making decisions. <br>
+## Use Case:
 
+Developers and external users can use this skill to investigate Chinese local-service and restaurant recommendations across Dianping and Xiaohongshu, especially when they want cross-platform consistency checks before making a dining or venue decision. Its real-data mode depends on authenticated browser sessions and third-party site access, so it is best suited for research and review workflows rather than unattended production use.
 
-## Reference(s): <br>
-- [Data Schema Documentation](references/data_schema.md) <br>
-- [Sentiment Analysis for Xiaohongshu Posts](references/sentiment_analysis.md) <br>
-- [API and Data Source Limitations](references/api_limitations.md) <br>
-- [Dianping](https://www.dianping.com) <br>
-- [Xiaohongshu](https://www.xiaohongshu.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-like ranked recommendations with platform comparison details, confidence scores, consistency labels, warnings, and setup or configuration commands when needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendation quality depends on current platform access, saved login sessions, scraping success, fuzzy matching, engagement heuristics, and sentiment keyword coverage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server-resolved release metadata) <br>
+Risk: Authenticated scraping uses logged-in browser sessions and stores session data locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated account or browser profile, keep the environment isolated, and delete ~/.local/share/restaurant-crosscheck/sessions after use or on shared machines.
+
+Risk: Third-party platform access may conflict with platform terms or trigger rate limits and account controls.
+
+Mitigation: Review Dianping and Xiaohongshu terms before use, keep requests limited, and prefer official or licensed data sources for commercial workflows.
+
+Risk: Installation and publishing guidance includes practices that need review before reuse.
+
+Mitigation: Inspect setup scripts before running them, install dependencies in a virtual environment, and avoid command-line token login examples.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhongrenfei1-hub/skills/restaurant-crosscheck-cn)
+- [Data schema documentation](artifact/references/data_schema.md)
+- [Sentiment analysis guide](artifact/references/sentiment_analysis.md)
+- [API and data source limitations](artifact/references/api_limitations.md)
+- [Dianping](https://www.dianping.com)
+- [Xiaohongshu](https://www.xiaohongshu.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration guidance]
+
+**Output Format:** [Markdown-style recommendation summaries, command examples, and optional JSON result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include ranked restaurant matches, platform-only results, ratings, review counts, engagement indicators, consistency levels, and confidence scores.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,58 @@
-## Description: <br>
-Manage Pi Agent as a sub-agent for complex coding tasks involving multiple files, extensive refactoring, code review, or systemic debugging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Pi Agent as a sub-agent for complex coding tasks involving multiple files, extensive refactoring, or systemic debugging.
 
-## Publisher: <br>
-[hybrid1labs](https://clawhub.ai/user/hybrid1labs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hybrid1labs](https://clawhub.ai/user/hybrid1labs)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to route complex coding work to Pi Agent, including multi-file feature work, refactoring, deeper code review, and debugging workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to install and run an external coding agent with broad project access and background execution. <br>
-Mitigation: Install only if the Pi CLI package is trusted; run it in an isolated branch, worktree, or container; avoid repositories with secrets; set timeouts; monitor background sessions; and review generated diffs before integration. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to route complex OpenClaw coding work to Pi Agent when a task spans many files, requires substantial refactoring, or needs systemic debugging.
 
-## Reference(s): <br>
-- [Pi Coding Specialist on ClawHub](https://clawhub.ai/hybrid1labs/pi-coding-specialist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent routing guidance, spawn commands, CLI installation and execution examples, and verification commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill directs users or agents to install and run a third-party coding agent globally, including background execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only if the Pi npm package is trusted; prefer a pinned, project-local or sandboxed installation.
+
+Risk: Delegated coding tasks can change project files with weak scoping.
+
+Mitigation: Require explicit user approval before long-running background tasks or changes to OpenClaw agent configuration, and review resulting changes before integration.
+
+Risk: Passing untrusted task text through shell command strings can create command-handling risk.
+
+Mitigation: Avoid passing untrusted task text through shell strings; quote and review prompts before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hybrid1labs/skills/pi-coding-specialist)
+- [ClawHub publisher profile](https://clawhub.ai/user/hybrid1labs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May delegate long-running coding tasks to a third-party Pi CLI process that can modify project files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

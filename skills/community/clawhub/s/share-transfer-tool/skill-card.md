@@ -1,41 +1,54 @@
-## Description: <br>
-Cloud Share Downloader helps an agent identify supported cloud share links, attempt retrieval, and return a new share link when transfer succeeds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cloud Share Downloader helps an agent detect supported cloud-share and short-video links, attempt automated retrieval, and return transfer guidance or a new share link.
 
-## Publisher: <br>
-[SxLiuYu](https://clawhub.ai/user/SxLiuYu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sxliuyu](https://clawhub.ai/user/sxliuyu)
 
-## Use Case: <br>
-External users provide a supported cloud drive or media share link so an agent can detect the service, attempt download or transfer handling, and provide a resulting share link or next-step guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask for cloud-drive session cookies or private share links. <br>
-Mitigation: Provide credentials only through a scoped authentication flow, confirm the destination account and share visibility, and avoid raw session cookies unless operationally necessary. <br>
-Risk: Automatic copying and re-sharing can expose private or licensed content without enough user control. <br>
-Mitigation: Require explicit confirmation before each transfer, disclose retention and deletion expectations, and review destination permissions before creating a new share link. <br>
+## Use Case:
 
+External users and agents use this skill to process supported cloud-storage or short-video share links, identify the provider, and receive automated download or transfer guidance. For providers requiring account authorization, the skill may ask for cloud-storage cookies.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/SxLiuYu/share-transfer-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/SxLiuYu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text status messages with optional command-line usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request cloud-drive cookies for services that require authenticated access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill may request reusable cloud-storage cookies that can act like account session credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not paste cloud-storage cookies into chat or agent workflows; prefer delegated authorization and review credential handling before use.
+
+Risk: Automated saving and re-sharing can copy content outside its original sharing context.
+
+Mitigation: Use only with non-sensitive content that the user is authorized to copy and re-share, and confirm storage, sharing, retention, and deletion behavior.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sxliuyu/skills/share-transfer-tool)
+- [Publisher Profile](https://clawhub.ai/user/sxliuyu)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text with JSON-like status objects and URLs when transfer succeeds]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request cloud-storage cookies for Baidu, Aliyun, or other providers that require account authorization.]
+
+## Skill Version(s):
+
+3.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

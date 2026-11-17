@@ -1,38 +1,53 @@
-## Description: <br>
-Reviews code by tracing data flow, state transitions, branch behavior, field semantics, and persistence consistency across related paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews code by tracing how data moves across state, branches, persistence, payloads, and downstream consumers.
 
-## Publisher: <br>
-[modeyapu](https://clawhub.ai/user/modeyapu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modeyapu](https://clawhub.ai/user/modeyapu)
 
-## Use Case: <br>
-Developers and code reviewers use this skill to reconstruct end-to-end data flows during code review, audits, and patch checks. It helps identify stale state, unsafe persistence timing, branch regressions, payload provenance issues, and downstream contract breaks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides the agent to inspect relevant code paths, which may expose workspace code to the review session. <br>
-Mitigation: Use it only in workspaces where agent code-reading for the requested review is acceptable. <br>
+## Use Case:
 
+Developers and engineers use this skill for data-flow-oriented code review, patch checks, and audits where correctness depends on field provenance, persistence timing, branch behavior, and downstream consumers.
 
-## Reference(s): <br>
-- [data-flow-review on ClawHub](https://clawhub.ai/modeyapu/data-flow-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown review findings and flow summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings-first output with severity, file references, triggering path or branch, and concrete data correctness risk.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill may require the agent to inspect sensitive application code paths during review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces where the agent is authorized to read the relevant code and keep findings within approved review channels.
+
+Risk: Review findings can be incomplete if the flow is not traced through branch outcomes, persistence boundaries, and downstream consumers.
+
+Mitigation: Require findings to cite the triggering path, branch scenario, affected data, and downstream consequence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/modeyapu/skills/data-flow-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown review findings, flow summaries, and audit guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings-first output with concrete file and line references when available.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

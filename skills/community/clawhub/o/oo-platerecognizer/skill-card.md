@@ -1,45 +1,55 @@
-## Description: <br>
-Plate Recognizer helps agents read license plates from images and retrieve Snapshot Cloud usage through an OOMOL-managed connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plate Recognizer (platerecognizer.com). Use this skill for ANY Plate Recognizer request — searching and reading data. Whenever a task involves Plate Recognizer, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate Plate Recognizer through an OOMOL-connected account, read plates from selected images, and check current-month Snapshot Cloud usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected Plate Recognizer account and sends selected vehicle images to Plate Recognizer Snapshot Cloud. <br>
-Mitigation: Install only when this data flow is acceptable, connect Plate Recognizer intentionally, and send only images the user has selected for recognition. <br>
-Risk: The setup path includes remote oo CLI installers and authenticated connector access. <br>
-Mitigation: Review the oo CLI install source before running remote installers and use setup steps only after auth, connection, or missing-CLI errors. <br>
-Risk: Future connector actions could write, delete, or modify data even though the current listed actions are read-oriented. <br>
-Mitigation: Fetch the live connector schema before execution and confirm any write or destructive action payload with the user. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve Plate Recognizer usage statistics and analyze an image for number-plate detections through a connected Plate Recognizer account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/oo-platerecognizer) <br>
-- [Plate Recognizer Homepage](https://platerecognizer.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON connector payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live OOMOL connector schemas before execution and returns Plate Recognizer action data with execution metadata when actions run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence metadata and release) <br>
+Risk: The fallback setup can execute remote installers that have not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the oo CLI and its installer before permitting setup, and check which agent skills the CLI installs or updates.
+
+Risk: Image recognition sends images to a remote service and may consume credits.
+
+Mitigation: Use images approved for remote processing and review usage and credit requirements before submitting them.
+
+## Reference(s):
+
+- [Plate Recognizer](https://platerecognizer.com)
+- [Snapshot API Reference](https://guides.platerecognizer.com/docs/snapshot/api-reference/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [JSON connector results with concise natural-language summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes current-month usage statistics or normalized number-plate detections from one image.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

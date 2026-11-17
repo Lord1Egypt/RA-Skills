@@ -1,39 +1,58 @@
-## Description: <br>
-Curates reader-facing appendix survey tables with concise layouts, citation-backed rows, and no invented facts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Curates reader-facing, citation-backed Markdown appendix tables for survey papers from in-scope evidence artifacts and existing BibTeX keys.
 
-## Publisher: <br>
-[WILLOSCAR](https://clawhub.ai/user/WILLOSCAR) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[willoscar](https://clawhub.ai/user/willoscar)
 
-## Use Case: <br>
-External users and developers use this skill to generate publishable appendix tables for survey or review work from existing evidence packs, anchor sheets, and citation keys. It is intended to produce compact Markdown tables suitable for downstream paper assembly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package includes broader research-pipeline files and runner code beyond the advertised appendix-table helper. <br>
-Mitigation: Review the bundled workflow files before deployment, use the documented local table-generation path, and run it only in a workspace where changes to outline/, output/, UNITS.csv, STATUS.md, and DECISIONS.md are acceptable. <br>
+## Use Case:
 
+Developers, research writers, and survey-paper contributors use this skill to turn existing C4 evidence artifacts into publishable appendix tables. It is intended for workspaces that already contain evidence packs, anchor sheets, and citation keys.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/WILLOSCAR/appendix-table-writer) <br>
-- [Table Cell Hygiene](references/table_cell_hygiene.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, files, guidance, shell commands] <br>
-**Output Format:** [Markdown appendix tables and a Markdown validation report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes outline/tables_appendix.md and output/TABLES_APPENDIX_REPORT.md when run against a workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 0.1.0) <br>
+Risk: Custom output paths can write outside the intended workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict --outputs to expected workspace-relative paths, run the skill in an isolated workspace, and review output locations before execution.
+
+Risk: Bundled workflow tooling is broader than the appendix-table task.
+
+Mitigation: Review or remove bundled pipeline, executor, and ideation tooling when only appendix-table generation is needed.
+
+Risk: Generated tables can misrepresent sources if upstream evidence or citation keys are incomplete.
+
+Mitigation: Require every row to cite keys present in citations/ref.bib and review table rows against the evidence packs and anchor sheet.
+
+## Reference(s):
+
+- [Appendix Table Writer on ClawHub](https://clawhub.ai/willoscar/skills/appendix-table-writer)
+- [Table Cell Hygiene](references/table_cell_hygiene.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, shell commands, guidance]
+
+**Output Format:** [Markdown appendix tables and a Markdown validation report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes outline/tables_appendix.md and output/TABLES_APPENDIX_REPORT.md in the target workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Baidunetdisk Skill lets an agent manage Baidu Netdisk files, including listing, searching, extracting share links, transferring shared files, creating directories, renaming, moving, and deleting files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baidunetdisk Skill lets an agent manage Baidu Netdisk files, including listing, searching, extracting share links, transferring shared files, creating folders, renaming, moving, and deleting files.
 
-## Publisher: <br>
-[lilei0311](https://clawhub.ai/user/lilei0311) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lilei0311](https://clawhub.ai/user/lilei0311)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent operate a Baidu Netdisk account for file discovery, share-link extraction, transfer, directory creation, and file-management tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles BDUSS and STOKEN values that act as full-account Baidu Netdisk session secrets. <br>
-Mitigation: Store credentials only in trusted environments, prefer environment variables over checked-in configuration, and rotate credentials if they may have been exposed. <br>
-Risk: The skill can create, move, rename, transfer, and delete cloud-storage content, and delete operations may not include a built-in confirmation step. <br>
-Mitigation: Require explicit user confirmation before transfer, create, move, rename, or delete actions, and treat delete requests as irreversible unless independently confirmed. <br>
+## Use Case:
 
+Developers and agents use this skill to operate a Baidu Netdisk account from OpenClaw workflows. It is intended for file discovery, share-link extraction, transfers into the user's netdisk, folder creation, and file management actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lilei0311/baidunetdisk) <br>
-- [Baidu Netdisk web application](https://pan.baidu.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill requires Baidu Netdisk BDUSS and STOKEN session credentials and may return account file metadata or operation status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata, artifact skill.json, artifact SKILL.md) <br>
+Risk: The skill requires BDUSS and STOKEN credentials that can provide full Baidu Netdisk account access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or a protected secret store instead of committing credentials to config.json, and prefer a low-value or test account when possible.
+
+Risk: The skill can delete, move, rename, transfer, and create files or directories without built-in confirmation safeguards.
+
+Mitigation: Require explicit user approval before destructive or account-changing actions, especially delete, move, rename, transfer, and directory creation.
+
+Risk: Broad invocation triggers could cause unintended account operations from general netdisk-related prompts.
+
+Mitigation: Narrow invocation triggers and review planned file operations before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lilei0311/skills/baidunetdisk)
+- [Baidu Netdisk web service](https://pan.baidu.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON command results and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Baidu Netdisk BDUSS and STOKEN credentials; command results include success flags, file metadata, messages, and error strings.]
+
+## Skill Version(s):
+
+1.0.2 (source: release metadata, skill.json, SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

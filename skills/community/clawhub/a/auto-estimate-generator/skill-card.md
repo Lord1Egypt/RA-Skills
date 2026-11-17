@@ -1,41 +1,58 @@
-## Description: <br>
-Automatically generate estimates from QTO data by applying pricing rules to BIM quantities for cost estimates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically generate estimates from QTO data. Apply pricing rules to BIM quantities for cost estimates.
 
-## Publisher: <br>
-[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction)
 
-## Use Case: <br>
-Construction estimators, BIM teams, and project engineers use this skill to convert BIM quantity takeoff data into structured cost estimates, summaries by category, and lists of unmatched items that need manual pricing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Estimate exports use filesystem access and could overwrite an existing project file if the output path is chosen carelessly. <br>
-Mitigation: Choose an explicit project output path and avoid filenames or folders where overwriting existing files would matter. <br>
-Risk: Incomplete or incorrect pricing rules can produce inaccurate cost estimates or leave QTO items unmapped. <br>
-Mitigation: Review unmatched items, verify pricing rules, and manually confirm estimates before using them for project decisions. <br>
+## Use Case:
 
+Construction estimators, project teams, and developers use this skill to turn BIM Quantity Takeoff data into structured cost estimates, category summaries, and lists of items that require manual pricing review.
 
-## Reference(s): <br>
-- [Data Driven Construction](https://datadrivenconstruction.io) <br>
-- [ClawHub Skill Page](https://clawhub.ai/datadrivenconstruction/auto-estimate-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown estimate tables, structured summaries, Python examples, configuration guidance, and optional Excel report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Flags QTO items with no matching pricing rule for manual review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: QTO inputs, pricing rules, and generated estimates may contain sensitive project or business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted project files and save exported workbooks only to approved project locations.
+
+Risk: Generated spreadsheets from untrusted QTO data may preserve formula-like text if the implementation is not hardened.
+
+Mitigation: Review generated workbooks before opening or sharing them, especially when source QTO data comes from an untrusted party.
+
+Risk: Incorrect pricing rules, missing mappings, or fuzzy matches can produce misleading estimate totals.
+
+Mitigation: Review unmatched items, match confidence, and applied pricing rules before using estimates for project decisions.
+
+## Reference(s):
+
+- [Data Driven Construction](https://datadrivenconstruction.io)
+- [ClawHub Skill Page](https://clawhub.ai/datadrivenconstruction/skills/auto-estimate-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown tables, structured estimate summaries, unmatched-item lists, and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cost totals, category summaries, mapping confidence, markup guidance, and spreadsheet export guidance.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

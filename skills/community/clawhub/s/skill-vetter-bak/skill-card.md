@@ -1,40 +1,54 @@
-## Description: <br>
-Security-first skill vetting for AI agents before installing skills from ClawHub, GitHub, or other sources, checking red flags, permission scope, and suspicious patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns.
 
-## Publisher: <br>
-[aysun168](https://clawhub.ai/user/aysun168) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aysun168](https://clawhub.ai/user/aysun168)
 
-## Use Case: <br>
-Developers, security reviewers, and agents use this skill to review third-party skills before installation and document red flags, required permissions, risk level, and installation verdicts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publisher and package identity may be confused because the artifact metadata slug differs from the release slug. <br>
-Mitigation: Confirm the ClawHub publisher aysun168, release page, and package slug before installing or relying on the skill. <br>
-Risk: The skill includes optional GitHub curl examples that contact external URLs when adapted and run. <br>
-Mitigation: Review and replace placeholders with trusted repositories only, and inspect responses before using fetched content. <br>
+## Use Case:
 
+Developers and agents use this skill before installing or running third-party skills to review source, scope permissions, classify risk, and document an installation verdict.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aysun168/skill-vetter-bak) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a structured skill vetting report with risk level, verdict, permissions, and red flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Vetting GitHub-hosted skills may prompt network requests to GitHub or raw file URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed commands and destination domains before execution, avoid sending credentials, and run checks from a least-privileged workspace.
+
+Risk: A checklist-based review can miss unsafe behavior if the reviewer skips files or accepts incomplete evidence.
+
+Mitigation: Review every artifact file, document unresolved questions, and require human approval for high-risk or credential-related findings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aysun168/skills/skill-vetter-bak)
+- [Publisher profile](https://clawhub.ai/user/aysun168)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown report with checklist-style fields and optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a single vetting report; may include proposed GitHub API curl commands for reviewer use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

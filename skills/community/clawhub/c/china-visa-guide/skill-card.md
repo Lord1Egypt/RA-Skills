@@ -1,40 +1,53 @@
-## Description: <br>
-Step-by-step visual guide for China visa applications with real case studies, detailed FAQs, port-specific information, and practical checklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides step-by-step China visa application guidance with visual workflows, case studies, FAQs, port-specific information, practical checklists, and rejection recovery strategies.
 
-## Publisher: <br>
-[1970168137](https://clawhub.ai/user/1970168137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1970168137](https://clawhub.ai/user/1970168137)
 
-## Use Case: <br>
-External travelers, business visitors, students, and workers use this skill to plan China visa applications, assemble supporting documents, compare visa routes, and recover from common application issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Visa rules, fees, eligibility, processing times, and port procedures can change after publication. <br>
-Mitigation: Verify current requirements with official embassy or visa-center sources before booking travel or submitting documents. <br>
-Risk: Visa applications may involve sensitive passport, financial, employment, and identity documents. <br>
-Mitigation: Store document copies only in secure locations controlled by the user and avoid sharing unnecessary personal information. <br>
+## Use Case:
 
+External travelers and business users use this skill to plan China visa applications, prepare documents, evaluate visa-free transit options, and recover from common rejection scenarios.
 
-## Reference(s): <br>
-- [China Visa Guide on ClawHub](https://clawhub.ai/1970168137/china-visa-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with workflows, checklists, FAQs, tables, and phrase references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational guidance only; users should verify current visa requirements with official embassy or visa-center sources before acting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Users may copy or store sensitive passport, visa, bank, employment, and travel records while following the document organization guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep only necessary copies, use encrypted storage or an encrypted vault, protect related accounts with MFA, avoid unencrypted email and public sharing links, and delete copies when no longer needed.
+
+Risk: Visa rules, timelines, port procedures, and eligibility criteria can change after the skill release.
+
+Mitigation: Verify current requirements and procedures with official embassy, consulate, CVASC, immigration, or port authority sources before submitting an application or traveling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1970168137/skills/china-visa-guide)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with workflow diagrams, FAQs, tables, checklists, and short phrase references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable guidance; users should verify current visa requirements with official sources before acting.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

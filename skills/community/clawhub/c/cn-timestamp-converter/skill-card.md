@@ -1,38 +1,49 @@
-## Description: <br>
-Converts Unix timestamps to readable dates using a local Python script with automatic second and millisecond timestamp handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Unix timestamps into UTC, local, and Chinese-readable date strings, automatically handling second- and millisecond-level inputs.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert Unix timestamps into UTC, local, and human-readable date formats during debugging, log review, and data inspection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The README includes unrelated promotional links outside the timestamp conversion workflow. <br>
-Mitigation: Use the local converter without opening those links unless the destination is trusted. <br>
+## Use Case:
 
+Developers use this skill during debugging and operations to convert Unix timestamps into readable UTC, local, and Chinese-formatted dates without external dependencies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-timestamp-converter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; the bundled script returns JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Python standard-library datetime conversion and does not require external dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.7 (source: server release evidence; artifact frontmatter says 1.2.1) <br>
+Risk: Chinese-language labels and local date formatting may be misread in workflows expecting English labels or UTC-only output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the expected locale and time zone before using converted timestamps in downstream decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/freedompixels/skills/cn-timestamp-converter)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON output and concise Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the Python standard library; accepts second- or millisecond-level Unix timestamps and defaults to the current time when no timestamp is provided.]
+
+## Skill Version(s):
+
+1.2.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

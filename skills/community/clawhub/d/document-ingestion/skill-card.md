@@ -1,42 +1,56 @@
-## Description: <br>
-Processes raw accounting source documents, including PDFs, CSVs, bank statements, invoices, receipts, 1099s, and payroll reports, into standardized transaction records for QuickBooks Online import. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Process raw accounting source documents such as PDFs, CSVs, bank statements, invoices, and receipts into standardized transaction records for QBO import.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External accounting operators and agent users use this skill to process document drops for month-end close into standardized QBO-ready transaction records. The skill helps categorize transactions, identify duplicates, flag exceptions, and prepare import-ready outputs for accounting review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive financial documents and QBO-related data.
+
+Mitigation: Run it only in trusted projects and keep QBO tokens and source financial documents in access-controlled locations.
+
+Risk: Dependency installation and optional OCR or QBO tooling can affect extraction quality and local environment exposure.
+
+Mitigation: Use a virtual environment or container, pin dependency versions where possible, and prefer --no-qbo-coa or --sandbox unless live QBO chart data is needed.
+
+Risk: Auto-categorization, duplicate detection, and OCR/PDF extraction can produce records that still require accounting review.
+
+Mitigation: Review the Exceptions, Duplicates, and confidence fields before importing generated CSVs into QBO.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Accounting operators and agents use this skill to batch-ingest client documents during month-end close, classify transactions, detect duplicates, flag exceptions, and prepare files for QuickBooks Online import. It is not intended for bank reconciliation, P&L variance analysis, single manual journal entries, or AR collections. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
 
-## Known Risks and Mitigations: <br>
-Risk: Live QuickBooks Online chart-of-accounts lookup may expose sensitive accounting metadata or use the wrong client account if credentials or consent are not confirmed. <br>
-Mitigation: Use --no-qbo-coa for offline processing until the correct QuickBooks account, credentials, and client consent are confirmed. <br>
-Risk: Generated import CSVs can introduce incorrect accounting records if duplicates, low-confidence categories, or extraction exceptions are imported without review. <br>
-Mitigation: Review the exceptions tab, duplicate flags, confidence scores, and import CSV before importing anything into QuickBooks Online. <br>
-Risk: PDF and image extraction can fail or require OCR tooling, which may leave receipt or scanned-document data incomplete. <br>
-Mitigation: Install the documented optional extraction tools where appropriate and manually review records flagged for failed PDF extraction or missing image OCR. <br>
+**Output Format:** [Markdown guidance with shell command examples and generated workbook/CSV file paths]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/document-ingestion) <br>
+**Other Properties Related to Output:** [Generated pipeline outputs include an Excel workbook, QBO import CSV, exception flags, duplicate flags, category confidence, and CDC cache metrics.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands, plus generated Excel workbook and CSV files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces DocIngestion_{slug}_{YYYYMMDD}.xlsx and DocIngestion_{slug}_{YYYYMMDD}_QBO_Import.csv; exceptions and low-confidence categorization require review before QBO import.] <br>
+1.0.2 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

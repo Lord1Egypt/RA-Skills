@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-flux-kontext
 description: Flux Kontext image generation and editing on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `flux-kontext-pro`, `flux-kontext-pro-edit`, `flux-kontext-max`, `flux-kontext-max-edit`, text-to-image, image editing, aspect ratio control, output format control, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/image-series/flux-kontext","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/flux-kontext","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Flux Kontext Image Generation and Editing
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/flux-kontext>
+- API docs: <https://docs.poyo.ai/api-manual/image-series/flux-kontext>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Flux Kontext image jobs on PoYo. It helps agents prepare text-to-image and single-image editing payloads, choose Pro or Max model ids, submit async tasks, and explain polling or webhook follow-up.
 

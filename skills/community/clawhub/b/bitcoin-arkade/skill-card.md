@@ -1,45 +1,62 @@
-## Description: <br>
-Guide for developing with the Arkade TypeScript SDK (@arkade-os/sdk): Bitcoin wallets, Lightning, smart contracts, and stablecoin swaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for developing with the Arkade TypeScript SDK (@arkade-os/sdk) \u2014 Bitcoin wallets, Lightning, smart contracts, and stablecoin swaps.
 
-## Publisher: <br>
-[tiero](https://clawhub.ai/user/tiero) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tiero](https://clawhub.ai/user/tiero)
 
-## Use Case: <br>
-Developers and engineers use this skill to build Arkade-based Bitcoin wallet applications, integrate Lightning payments, implement smart-contract patterns, and add stablecoin swap flows with the Arkade TypeScript SDK. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bitcoin, Lightning, and swap examples can affect real funds if used directly. <br>
-Mitigation: Use testnet or regtest and small trial amounts first, then require explicit confirmation of destination address, amount, network, fees, invoice details, token, chain, and swap quote before using real funds. <br>
-Risk: Wallet setup examples include private-key handling and external package or endpoint use. <br>
-Mitigation: Use secure key management, verify package names and endpoints, and avoid hardcoded private keys in production. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tiero/bitcoin-arkade) <br>
-- [Arkade Documentation](https://docs.arkadeos.com) <br>
-- [Arkade Technical Primer](https://docs.arkadeos.com/primer) <br>
-- [Arkade Wallet SDK v0.3](https://docs.arkadeos.com/wallets/v0.3/setup) <br>
-- [Arkade Smart Contracts](https://docs.arkadeos.com/contracts/overview) <br>
-- [Arkade Lightning Swaps](https://docs.arkadeos.com/contracts/lightning-swaps) <br>
-- [Arkade Skill GitHub Repository](https://github.com/arkade-os/skill) <br>
+## Use Case:
 
+Developers and engineers use this skill to build Arkade-based Bitcoin applications with wallet creation, VTXO balance and payment flows, onchain ramps, Lightning swaps, smart contracts, and BTC-to-stablecoin swap guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with TypeScript and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Arkade wallet, Lightning, stablecoin swap, smart contract, and network configuration examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes examples for irreversible Bitcoin, Lightning, and stablecoin transactions that may move real funds.
+
+Mitigation: Use testnet, signet, mutinynet, or regtest first, and require explicit amount, network, token, fee, and destination-address checks before authorizing any payment, offboard, or swap.
+
+Risk: Example code shows private-key and wallet setup patterns that could expose real credentials if copied directly.
+
+Mitigation: Never paste real private keys into example code; use secure key management and reviewed environment-specific secret handling.
+
+Risk: SDK, swap, and network dependencies can affect transaction behavior and fund safety.
+
+Mitigation: Pin and review dependency versions and verify provider endpoints before using the guidance in production.
+
+## Reference(s):
+
+- [Arkade documentation](https://docs.arkadeos.com)
+- [Arkade technical primer](https://docs.arkadeos.com/primer)
+- [Arkade Wallet SDK v0.3 setup](https://docs.arkadeos.com/wallets/v0.3/setup)
+- [Arkade smart contracts overview](https://docs.arkadeos.com/contracts/overview)
+- [Arkade Lightning swaps](https://docs.arkadeos.com/contracts/lightning-swaps)
+- [Arkade LLM-friendly documentation index](https://docs.arkadeos.com/llms.txt)
+- [ClawHub skill page](https://clawhub.ai/tiero/skills/bitcoin-arkade)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with TypeScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes financial transaction examples that require explicit review before use with real funds.]
+
+## Skill Version(s):
+
+0.2.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

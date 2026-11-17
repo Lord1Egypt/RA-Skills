@@ -1,40 +1,57 @@
-## Description: <br>
-Manage Proxmox VE nodes, VMs, and containers by listing hardware stats and resources, controlling power states, and managing snapshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Proxmox VE nodes, VMs, and containers. Can list hardware stats, resources, control power states (start, stop, reboot, shutdown), and manage snapshots (create, list, rollback, delete).
 
-## Publisher: <br>
-[robnew](https://clawhub.ai/user/robnew) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robnew](https://clawhub.ai/user/robnew)
 
-## Use Case: <br>
-Developers and infrastructure operators use this skill to monitor Proxmox VE clusters, inspect node and VM/container status, control VM/LXC power states, and manage snapshots through approved actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A broad Proxmox API token could allow cluster-wide infrastructure changes. <br>
-Mitigation: Install with a dedicated least-privilege Proxmox API token and prefer VM- or path-specific permissions over cluster-wide '/' access. <br>
-Risk: Power actions and snapshot rollback or deletion can interrupt services, discard changes, or remove recovery points. <br>
-Mitigation: Keep approval prompts enabled and verify the node, VM/container ID, action, and snapshot name before approving these operations. <br>
+## Use Case:
 
+Infrastructure operators, developers, and homelab administrators use this skill to inspect Proxmox VE cluster resources, monitor node health, manage VM and container power states, and manage snapshots through a configured API token.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/robnew/proxmox-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PVE_HOST, PVE_TOKEN_ID, and PVE_TOKEN_SECRET.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and artifact _meta.json) <br>
+Risk: A broadly scoped Proxmox API token could let the agent affect more nodes, VMs, containers, or snapshots than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Proxmox API token scoped only to the resources and permissions the agent should manage.
+
+Risk: Stop, shutdown, rollback, and snapshot deletion can interrupt services or remove recovery points.
+
+Mitigation: Require human approval for destructive operations and review the target node, resource kind, VMID, and snapshot name before execution.
+
+Risk: Unpinned Python dependencies can change behavior over time.
+
+Mitigation: Pin and audit proxmoxer and requests before installing this skill in stronger-control environments.
+
+## Reference(s):
+
+- [ClawHub Proxmox Management skill page](https://clawhub.ai/robnew/skills/proxmox-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON command results and concise agent-facing text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3, proxmoxer, requests, PVE_HOST, PVE_TOKEN_ID, and PVE_TOKEN_SECRET.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

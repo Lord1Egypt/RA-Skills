@@ -1,44 +1,60 @@
-## Description: <br>
-Analyzes fixed kitchen camera media to detect unattended stove-on conditions and return structured alerts, monitoring results, and report links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Using a fixed kitchen camera that captures the stove area, this skill analyzes kitchen video or images to detect human activity and stove flame or heat-source status, then reports possible unattended stove-left-on alerts.
 
-## Publisher: <br>
-[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui)
 
-## Use Case: <br>
-Caregivers, family members, smart-home operators, and elder-care staff use this skill to analyze stove-area kitchen images or videos for unattended flame or heat-source conditions and to review related cloud reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Kitchen images or videos may be sent to the LifeEmergence cloud service and associated with an automatically selected or created identity. <br>
-Mitigation: Obtain consent from people being monitored, avoid submitting unrelated sensitive files, and confirm cloud report deletion practices before use. <br>
-Risk: Backend tokens for cloud report access may be persisted in local SQLite data. <br>
-Mitigation: Restrict local file access and review how to delete local token data when deprovisioning the skill. <br>
-Risk: Automated visual detection can produce incorrect stove or occupancy alerts. <br>
-Mitigation: Treat alerts as assistive and verify urgent conditions before relying on operational actions such as valve shutdown. <br>
+## Use Case:
 
+External users, caregivers, smart-home operators, and care-facility staff can use this skill to analyze fixed kitchen-camera footage for unattended stove use and receive structured kitchen-safety monitoring results. It is intended as an auxiliary monitoring workflow for elder-care and kitchen-safety scenarios, with human confirmation expected for urgent alerts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-kitchen-stove-left-on-detection-analysis) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
-- [Kitchen stove left-on API reference](references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown text with structured JSON report content, alert status, report links, and CLI command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts local media file paths or public media URLs; history queries return cloud report lists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release; artifact frontmatter declares 1.0.4) <br>
+Risk: Kitchen camera footage, video URLs, and identifiers may be processed by remote services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm consent, backend endpoints, report retention, and data-handling controls before using the skill in homes or care settings.
+
+Risk: The skill can create or reuse persistent local identity and token state.
+
+Mitigation: Review token storage and identity lifecycle expectations before installation or deployment.
+
+Risk: Gas-valve automation or urgent alerts can affect physical safety workflows.
+
+Mitigation: Require human confirmation and validate automation controls before enabling any valve shutdown or emergency-response integration.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-kitchen-stove-left-on-detection-analysis)
+- [Kitchen Stove Left-On Detection API Reference](references/api_doc.md)
+- [Shared Analysis API Reference](skills/smyx_analysis/references/api_doc.md)
+- [Skill Demo](https://lifeemergence.com/sample.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and JSON-compatible structured analysis text, including detection results, alert level, recommendations, and report links when available.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May query remote analysis services and may write analysis output to a user-specified file.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata; artifact frontmatter reports 1.0.12)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

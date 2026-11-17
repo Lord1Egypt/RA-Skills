@@ -1,42 +1,58 @@
-## Description: <br>
-Global Travel Planner Public generates bilingual travel, visa, legal, cultural, safety, consular, itinerary, work, and study guidance for supported destinations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates bilingual Word travel and work planning reports with visa, legal, cultural, safety, consular, itinerary, work, and study guidance for supported destinations.
 
-## Publisher: <br>
-[xgs-520](https://clawhub.ai/user/xgs-520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xgs-520](https://clawhub.ai/user/xgs-520)
 
-## Use Case: <br>
-Travelers, students, workers, and planning agents can use this skill to prepare destination reports that combine travel logistics, visa context, local laws, culture, safety, consular assistance, work, and study information. It is best used as planning support that must be checked against official sources before travel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel, visa, legal, safety, and consular guidance may be stale, incomplete, or unsuitable for a specific traveler. <br>
-Mitigation: Verify important details with official government, embassy, immigration, transport, health, and local authority sources before relying on a generated report. <br>
-Risk: Chat-mode use may send destination queries to live web lookups and infer output language from the text entered. <br>
-Mitigation: Avoid entering sensitive personal information and review generated reports before sharing or using them for decisions. <br>
+## Use Case:
 
+Travelers, work or study planners, and agents use this skill to draft bilingual destination reports that combine itinerary planning with visa, local law, safety, consular, budget, communication, and cultural guidance. The generated reports should be treated as planning drafts and checked against official sources before travel.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xgs-520/global-travel-planner-public) <br>
-- [Publisher Profile](https://clawhub.ai/user/xgs-520) <br>
-- [README.md](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, files, shell commands] <br>
-**Output Format:** [Bilingual travel-planning guidance and Word (.docx) reports, with command-line examples for direct execution.] <br>
-**Output Parameters:** [Destination country code or natural-language destination request, with optional module names such as visa, safety, laws, culture, consular, travel, work, or study.] <br>
-**Other Properties Related to Output:** [The skill may infer the output language from user text and may use live web lookups in chat mode; generated travel, legal, visa, safety, and consular details should be verified with official sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.17.0 (source: server release evidence) <br>
+Risk: Generated travel reports may overstate freshness or all-nationality coverage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify visa, safety, legal, and emergency details with official government, embassy, immigration, and local authority sources before relying on the report.
+
+Risk: Consular guidance may be China-centered even when used by travelers of other nationalities.
+
+Mitigation: Confirm consular procedures, emergency hotlines, and embassy contacts for the traveler's actual nationality before distribution or use.
+
+Risk: Reports may include under-disclosed promotional or publisher-branded content, including a Huawei roaming recommendation.
+
+Mitigation: Review generated documents for promotional content and remove, relabel, or disclose it before sharing with end users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xgs-520/skills/global-travel-planner-public)
+- [Publisher profile](https://clawhub.ai/user/xgs-520)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Guidance, Shell commands]
+
+**Output Format:** [Word (.docx) report with bilingual text, plus command-line status text when run directly]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes generated reports to ./output/; travel, visa, safety, legal, and emergency details require official-source verification before use.]
+
+## Skill Version(s):
+
+1.17.0 (source: server release evidence, artifact/skill.json, and artifact/package.json; artifact/SKILL.md and script text contain older embedded version labels)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

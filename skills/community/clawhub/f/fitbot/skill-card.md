@@ -1,43 +1,58 @@
-## Description: <br>
-Fitbot provides personal fitness coaching for training, workouts, programs, progression, and accountability by onboarding users, building custom programs, coaching sessions, and adapting on the fly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal fitness coaching for training, workouts, programs, progression, and fitness accountability, including onboarding, custom program design, session coaching, and on-the-fly adaptation.
 
-## Publisher: <br>
-[conmeara](https://clawhub.ai/user/conmeara) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[conmeara](https://clawhub.ai/user/conmeara)
 
-## Use Case: <br>
-External users use Fitbot to create and maintain personalized fitness programs, log workouts, adapt sessions around constraints or pain, and receive accountability-oriented coaching. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores health-adjacent fitness profile data and workout history in local workspace files. <br>
-Mitigation: Confirm which files will be created or updated, avoid storing sensitive medical details, and review local records before relying on or sharing them. <br>
-Risk: The skill can suggest persistent reminder automation through cron or heartbeat setup. <br>
-Mitigation: Allow reminder automation only after reviewing the exact schedule, command, storage location, and removal steps. <br>
-Risk: Fitness coaching may adapt workouts around pain without enough clinical context. <br>
-Mitigation: Do not use the skill for diagnosis or clinical decisions; seek professional care for medical symptoms and review pain-related adjustments carefully. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Fitbot ClawHub page](https://clawhub.ai/conmeara/fitbot) <br>
-- [Fitbot Onboarding](references/onboarding.md) <br>
-- [Program Design Guide](references/program-design.md) <br>
+## Use Case:
 
+External users and personal coaching agents use Fitbot to gather fitness context, build custom training programs, coach sessions, maintain workout records, and adapt workouts around constraints, missed sessions, and pain without diagnosing medical conditions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown coaching guidance, workspace markdown files, and occasional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local fitness profile, program, and workout log files; may propose scheduled reminder setup when requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores fitness, injury, schedule, and motivation details as plaintext workspace files.
+
+Mitigation: Use it only in a private workspace and review, redact, or delete stored fitness files when they are no longer needed.
+
+Risk: Reminder automation can persist after setup if cron or heartbeat entries are created.
+
+Mitigation: Enable reminders only by explicit choice and confirm how to disable any cron or heartbeat entries before relying on them.
+
+Risk: Fitness adaptations around pain can be mistaken for medical guidance.
+
+Mitigation: Keep recommendations non-diagnostic, adapt training conservatively, and refer clinical symptoms or medical decisions to a qualified professional.
+
+## Reference(s):
+
+- [Fitbot Skill Page](https://clawhub.ai/conmeara/skills/fitbot)
+- [Fitbot Onboarding](references/onboarding.md)
+- [Program Design Guide](references/program-design.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown coaching responses with workspace Markdown files and occasional shell commands for setup or reminders]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local fitness profile, program, and workout log files; may propose reminder automation when explicitly requested.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata, released 2026-02-24)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

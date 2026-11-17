@@ -1,41 +1,53 @@
-## Description: <br>
-Recommends popular and high-quality Chinese RSS feeds from the top-rss-list project, with support for topic filtering, niche picks, OPML snippets, and feed-access troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommends popular and curated Chinese-language RSS feeds from the top-rss-list source using subscription ranking and selected feeds.
 
-## Publisher: <br>
-[weekend-project-space](https://clawhub.ai/user/weekend-project-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weekend-project-space](https://clawhub.ai/user/weekend-project-space)
 
-## Use Case: <br>
-External users and RSS readers use this skill to find Chinese RSS feeds by popularity, topic, or niche quality and to generate concise OPML snippets for feed-reader import. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger terms such as top, AI, or news may activate the skill when RSS recommendations were not intended. <br>
-Mitigation: Confirm the user's intent before providing a feed list when the request is ambiguous. <br>
-Risk: Feed rankings, availability, and links may become stale or unreachable. <br>
-Mitigation: Ask users to verify important feed links and treat generated OPML as a starting point for review before importing. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for concise Chinese RSS feed recommendations by popularity, topic, niche quality, or OPML export needs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weekend-project-space/top-rss-list) <br>
-- [top-rss-list project](https://github.com/weekend-project-space/top-rss-list) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown tables, numbered lists, and OPML XML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise bilingual Chinese and English recommendations; no files or commands are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad routing terms such as top or common topic names may trigger this skill unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review routing behavior before installation and scope activations to RSS recommendation requests.
+
+Risk: The skill may answer bilingually even when a user prefers one language.
+
+Mitigation: Set deployment or user instructions for single-language output when required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weekend-project-space/skills/top-rss-list)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown tables, numbered lists, and OPML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese and English output; concise and copyable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Model cap tables, dilution scenarios, and vesting schedules for startups. Use when planning fundraising, pricing options, or tracking equity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Model cap tables, dilution scenarios, and vesting schedules for startups.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers, founders, and startup operators can invoke this command-line skill when planning or recording equity-related scenarios, exports, and activity. Security evidence indicates the release should be reviewed before use for real cap table, financing, valuation, grant, or fundraising work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security review found that the script is advertised for startup equity modeling but mainly stores arbitrary command inputs in local plaintext logs instead of performing equity calculations. <br>
-Mitigation: Review the script before installation and do not rely on it for real cap table, financing, valuation, grant, or fundraising decisions unless the publisher provides verified equity-modeling logic. <br>
-Risk: Entered founder, employee, investor, valuation, grant, or fundraising details may be written to local plaintext logs under ~/.local/share/equity. <br>
-Mitigation: Avoid entering confidential equity data unless local plaintext storage is acceptable; manage access to the data directory and delete logs or exports when no longer needed. <br>
+## Use Case:
 
+Developers, founders, and operators can use this skill for startup equity planning tasks such as cap table modeling, dilution scenarios, vesting schedules, option pricing, and local record export.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain1/equity) <br>
-- [Publisher profile](https://clawhub.ai/user/bytesagain1) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text command output with optional JSON, CSV, or text exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local logs and exports under ~/.local/share/equity by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Sensitive cap-table, fundraising, compensation, or ownership data may be stored in plaintext local log files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not enter real sensitive equity data unless plaintext local storage is acceptable; use non-sensitive test data or a controlled data directory.
+
+Risk: The available security assessment says the skill presents as an equity calculator but mainly stores and searches arbitrary local input.
+
+Mitigation: Review behavior before relying on outputs for equity decisions, and confirm calculation, export, retention, and deletion behavior in a safe environment.
+
+## Reference(s):
+
+- [Equity Skill on ClawHub](https://clawhub.ai/bytesagain1/skills/equity)
+- [BytesAgain](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local plaintext log and export files under ~/.local/share/equity unless EQUITY_DIR changes the data directory.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

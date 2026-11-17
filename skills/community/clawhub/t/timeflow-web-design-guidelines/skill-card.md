@@ -1,40 +1,51 @@
-## Description: <br>
-Review UI code for Web Interface Guidelines compliance, including layout, typography, color, typesetting, accessibility, CSS debugging, and dashboard UI concerns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews UI code for Web Interface Guidelines compliance, including layout, typography, color, accessibility, UX, and CSS issues.
 
-## Publisher: <br>
-[soponcd](https://clawhub.ai/user/soponcd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soponcd](https://clawhub.ai/user/soponcd)
 
-## Use Case: <br>
-Developers and designers use this skill to audit UI files against web interface guidelines and receive concise findings for design, accessibility, and CSS issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote review guidance can change after installation, altering the skill's behavior without a new release. <br>
-Mitigation: Review the fetched guidance before relying on findings, or pin and vendor the review criteria locally. <br>
+## Use Case:
 
+Developers and designers use this skill to audit UI files or file patterns against Web Interface Guidelines and receive concise findings for design and accessibility review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/soponcd/timeflow-web-design-guidelines) <br>
-- [Skill homepage](https://github.com/soponcd/timeflow-skills/tree/main/teams/skills/web-design-guidelines) <br>
-- [Web Interface Guidelines source](https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown findings in file:line review format] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are based on the specified files or file pattern and the fetched guideline content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill relies on mutable remote guidelines that can change review behavior after installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a release that vendors the guidelines locally or pins the remote guidelines to a reviewed commit, and treat fetched content as reference material during review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/soponcd/skills/timeflow-web-design-guidelines)
+- [Skill homepage](https://github.com/soponcd/timeflow-skills/tree/main/teams/skills/web-design-guidelines)
+- [Web Interface Guidelines source](https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Concise Markdown findings, typically in file:line format]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask which files to review when no file or pattern is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

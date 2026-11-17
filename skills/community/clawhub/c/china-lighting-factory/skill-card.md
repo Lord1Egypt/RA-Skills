@@ -1,38 +1,54 @@
-## Description: <br>
-Provides international buyers with lighting-industry sourcing intelligence for China's LED, smart, outdoor, automotive, and specialty lighting manufacturing clusters, supply chains, and trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive lighting industry factory guide for international buyers, covering China's LED, smart, outdoor, automotive, and specialty lighting manufacturing clusters, supply chain structure, regional specializations, and industry trends.
 
-## Publisher: <br>
-[findhappy7](https://clawhub.ai/user/findhappy7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[findhappy7](https://clawhub.ai/user/findhappy7)
 
-## Use Case: <br>
-External buyers and sourcing teams use this skill to understand China's lighting manufacturing clusters, supply-chain structure, subsector trends, and supplier evaluation considerations before engaging vendors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a reference dataset and may not reflect current supplier status, certifications, prices, or market figures. <br>
-Mitigation: Verify suppliers, certifications, and market data independently before purchasing or contracting. <br>
+## Use Case:
 
+External buyers, sourcing teams, and developers use this skill to query China lighting manufacturing cluster intelligence, supply chain structure, subsector details, and supplier evaluation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/findhappy7/china-lighting-factory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, structured data] <br>
-**Output Format:** [Natural-language text or JSON-like structured responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only reference guidance based on bundled industry data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Market figures, industry trends, and supplier examples may be incomplete or stale for purchasing decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify figures and supplier leads against current official, industry, and commercial due-diligence sources before committing spend.
+
+Risk: Cluster-level sourcing guidance does not establish that any individual supplier is qualified, certified, or reliable.
+
+Mitigation: Use independent supplier checks, certification review, sample validation, factory audits, and contract controls before onboarding a vendor.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/findhappy7/skills/china-lighting-factory)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/findhappy7)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown guidance and structured Python return values from local lookup functions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static bundled data; no network access, persistence, credential handling, or hidden system changes reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

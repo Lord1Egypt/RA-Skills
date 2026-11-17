@@ -1,40 +1,58 @@
-## Description: <br>
-AI Band Manager skill for musicians. Use when handling any music industry task - venue booking outreach, social media content, release planning, setlist management, merch tracking, contract analysis, fan engagement, or tour logistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Band Manager skill that helps independent musicians and small to mid-level bands with booking outreach, social content, release planning, setlists, merch, contract review, fan engagement, and tour logistics.
 
-## Publisher: <br>
-[boris148](https://clawhub.ai/user/boris148) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boris148](https://clawhub.ai/user/boris148)
 
-## Use Case: <br>
-External musicians, small labels, and booking agents use this skill to plan and manage venue outreach, release campaigns, setlists, tour logistics, fan engagement, and contract-review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated posts, emails, SMS messages, calendar changes, or calls could create public commitments or reputational impact if executed without review. <br>
-Mitigation: Require explicit user approval before publishing content, sending outreach, changing calendars, or placing calls. <br>
-Risk: Fan lists, financial details, and contract documents may contain sensitive or legally significant information. <br>
-Mitigation: Share only necessary data with the agent and treat contract suggestions as triage rather than legal advice. <br>
+## Use Case:
 
+External musicians, small labels, and booking agents use this skill to plan and draft band-management work such as venue outreach, release campaigns, tour logistics, fan communications, and contract review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/boris148/musician-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown or plain text with plans, drafts, checklists, templates, and workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May draft externally visible content or operational recommendations that should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill may draft or initiate public posts, direct messages, emails, SMS, phone calls, calendar changes, or payment follow-ups without sufficient confirmation boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before any external communication, scheduling change, or payment-related follow-up is sent or executed.
+
+Risk: The skill may process sensitive contracts, fan lists, analytics, or communications without clear data-handling limits.
+
+Mitigation: Redact sensitive contract terms, personal fan data, and private communications unless the user has confirmed where the data will go and how it will be handled.
+
+Risk: The skill's broad band-management scope can produce incorrect business, legal, or promotional guidance.
+
+Mitigation: Treat outputs as drafts or decision support, and have qualified humans review contracts, budgets, payments, and external campaign materials before use.
+
+## Reference(s):
+
+- [Musician Manager ClawHub page](https://clawhub.ai/boris148/skills/musician-manager)
+- [Publisher profile](https://clawhub.ai/user/boris148)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration, Shell commands]
+
+**Output Format:** [Markdown and plain text with optional task plans, drafts, checklists, templates, and command suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include outreach drafts, social captions, release timelines, setlists, logistics notes, contract-review observations, and fan-engagement messaging.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

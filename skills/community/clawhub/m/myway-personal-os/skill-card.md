@@ -1,41 +1,53 @@
-## Description: <br>
-Set up Myway, a self-hosted personal AI home screen, using OpenClaw as the AI backend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up Myway, a self-hosted personal AI home screen, using OpenClaw as the AI backend.
 
-## Publisher: <br>
-[uchibeke](https://clawhub.ai/user/uchibeke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uchibeke](https://clawhub.ai/user/uchibeke)
 
-## Use Case: <br>
-Developers and self-hosting users use this skill to install, configure, and troubleshoot a local Myway dashboard connected to an OpenClaw gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup runs an npm package installer, which creates normal supply-chain exposure for users who require strict dependency control. <br>
-Mitigation: Review or pin the @uchibeke/myway package before installation when supply-chain risk matters. <br>
-Risk: The configured MYWAY_ROOT directory can expose local files through the dashboard if pointed at sensitive paths. <br>
-Mitigation: Use a limited directory such as a dedicated vault and avoid highly sensitive folders. <br>
-Risk: Troubleshooting may involve clearing port 48291, which could disrupt an unrelated local process. <br>
-Mitigation: Inspect the process using port 48291 before killing or restarting it. <br>
+## Use Case:
 
+Developers and self-hosting users use this skill to install, configure, and troubleshoot a local Myway dashboard connected to an existing OpenClaw gateway.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash and environment-variable code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup, verification, reconfiguration, background service, and troubleshooting guidance for a local Myway + OpenClaw installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: ClawHub release metadata) <br>
+Risk: The setup uses unpinned npx commands, so the executed package code may change between runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review @uchibeke/myway before use, prefer a pinned reviewed version, and run the install from a low-privilege or sandboxed account when possible.
+
+Risk: The setup can create files, configure a file-browser root, write local environment settings, and start a service.
+
+Mitigation: Confirm the install directory, file-browser root, OpenClaw gateway URL, port, and gateway token before running the command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uchibeke/skills/myway-personal-os)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and environment configuration code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.2.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

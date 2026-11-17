@@ -1,51 +1,62 @@
-## Description: <br>
-tick-md helps agents coordinate multi-agent work by creating, claiming, tracking, and syncing tasks in Git-backed TICK.md Markdown files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinate work across human and AI agents through Git-backed TICK.md task files, with CLI and MCP workflows for task status, claiming, comments, dependency tracking, and synchronization.
 
-## Publisher: <br>
-[gianni-dalerta](https://clawhub.ai/user/gianni-dalerta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gianni-dalerta](https://clawhub.ai/user/gianni-dalerta)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let AI agents maintain a shared project task ledger, coordinate work ownership, record progress, and inspect task dependencies through CLI or MCP workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify project task files such as TICK.md. <br>
-Mitigation: Keep task files under version control, review changes, and use validation/status commands before syncing. <br>
-Risk: Task comments or history may accidentally include sensitive information. <br>
-Mitigation: Avoid putting secrets, credentials, or private data in task comments and review task history before sharing. <br>
-Risk: MCP configuration edits can change what tools an agent may run. <br>
-Mitigation: Require explicit user approval before editing editor MCP configuration files and back up existing config first. <br>
-Risk: Remote push commands can publish local task history to a git remote. <br>
-Mitigation: Run pull/status workflows by default and require explicit user approval before tick sync --push or git push. <br>
-Risk: Delete, force delete, direct edit, import, and non-dry-run undo operations can remove or rewrite task state. <br>
-Mitigation: Preview destructive or bulk operations when possible and ask for confirmation before applying them. <br>
+## Use Case:
 
+Developers and agent operators use tick-md to coordinate project work across humans and AI agents by creating, claiming, updating, and reviewing tasks in TICK.md through shell commands or MCP tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gianni-dalerta/tick-md) <br>
-- [MCP tools reference](artifact/mcp-reference.md) <br>
-- [Installation guide](artifact/INSTALL.md) <br>
-- [tick-md npm package](https://npmjs.com/package/tick-md) <br>
-- [tick-mcp-server npm package](https://npmjs.com/package/tick-mcp-server) <br>
-- [tick-md documentation](https://tick-md.dev/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, MCP tool examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local TICK.md task files and suggest MCP configuration changes when the user approves those actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.3 (source: server release metadata, artifact skill.json, CHANGELOG) <br>
+Risk: The skill can change local task files while coordinating work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review task changes before relying on them, keep the MCP server scoped to the intended project, and confirm before delete, force-delete, direct status edits, or undo operations.
+
+Risk: The skill relies on globally installed npm tools and editor MCP configuration.
+
+Mitigation: Prefer pinned or locally reviewed versions of tick-md and tick-mcp-server, back up config files, and approve MCP config edits deliberately.
+
+Risk: Git synchronization can send project task data to a remote.
+
+Mitigation: Use pull-only sync by default and run tick sync --push or git push only after explicit user approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gianni-dalerta/skills/tick-md)
+- [GitHub repository](https://github.com/Purple-Horizons/tick-md)
+- [Installation guide](artifact/INSTALL.md)
+- [MCP tools reference](artifact/mcp-reference.md)
+- [tick-md npm package](https://npmjs.com/package/tick-md)
+- [tick-mcp-server npm package](https://npmjs.com/package/tick-mcp-server)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose with shell commands, JSON configuration, and MCP tool examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local TICK.md edits, MCP configuration changes, and git synchronization commands; remote pushes require explicit user approval.]
+
+## Skill Version(s):
+
+1.3.3 (source: evidence release, skill.json, CHANGELOG released 2026-02-18)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

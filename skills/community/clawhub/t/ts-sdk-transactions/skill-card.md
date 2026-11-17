@@ -1,41 +1,54 @@
-## Description: <br>
-How to build, sign, submit, and simulate transactions in @aptos-labs/ts-sdk, including standard, sponsored fee-payer, and multi-agent flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through building, signing, submitting, waiting for, and simulating standard, sponsored, and multi-agent Aptos transactions with @aptos-labs/ts-sdk.
 
-## Publisher: <br>
-[iskysun96](https://clawhub.ai/user/iskysun96) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iskysun96](https://clawhub.ai/user/iskysun96)
 
-## Use Case: <br>
-Developers use this skill for guidance on building, signing, submitting, waiting for, and simulating Aptos TypeScript SDK transactions. It covers common transaction lifecycle patterns, gas profiling, sponsored transactions, and multi-agent signing flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Transaction-signing examples may be adapted for real accounts, where incorrect network, signer, recipient, amount, payload, or fee payer values can cause unintended transactions. <br>
-Mitigation: Confirm all transaction details before use with real accounts and simulate important transactions before submitting them. <br>
-Risk: Private keys or seed phrases could be exposed if pasted into prompts, examples, or logs while applying the guidance. <br>
-Mitigation: Never include private keys or seed phrases in prompts, generated code snippets, logs, or shared debugging output. <br>
+## Use Case:
 
+Developers use this skill to generate Aptos TypeScript SDK transaction guidance and code examples for build, sign, submit, wait, simulation, fee-payer, and multi-agent flows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iskysun96/ts-sdk-transactions) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with TypeScript code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes transaction safety checks, common mistakes, and simulation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Transaction examples can be adapted to sign or submit transactions with real accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target network, module address, function, arguments, and signer accounts before signing or submitting, especially on mainnet.
+
+Risk: High-value or risky transactions may fail or consume unexpected gas if submitted without checking execution behavior first.
+
+Mitigation: Simulate critical flows first, inspect success, vm_status, and gas usage, and prefer testnet or devnet during development.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iskysun96/skills/ts-sdk-transactions)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown guidance with TypeScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

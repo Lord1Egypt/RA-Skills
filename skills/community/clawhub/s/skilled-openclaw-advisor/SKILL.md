@@ -4,7 +4,7 @@ description: >
   Query the local OpenClaw docs index for accurate answers about configuration,
   features, CLI commands, channels, providers, plugins, cron, sessions, agents,
   protocol, and troubleshooting. Faster and more accurate than relying on training
-  data for OpenClaw specifics. No external API calls, sub-10ms queries. Useful for:
+  data for OpenClaw specifics. Zero API calls, sub-10ms queries. Useful for:
   openclaw, configure, gateway, channel, cron, provider, plugin, session,
   heartbeat, protocol, skill, model, agent questions.
 metadata: {
@@ -12,7 +12,7 @@ metadata: {
     "emoji": "📚",
     "skillKey": "skilled-openclaw-advisor",
     "requires": {
-      "bins": ["python3", "openclaw"]
+      "bins": ["python3"]
     },
     "install": [
       {
@@ -29,7 +29,7 @@ metadata: {
 
 # OpenClaw Docs Intelligence
 
-Local FTS5 index of all OpenClaw documentation. No external API calls. Sub-10ms queries.
+Local FTS5 index of all OpenClaw documentation. Zero API calls. Sub-10ms queries.
 
 ## What This Skill Does
 

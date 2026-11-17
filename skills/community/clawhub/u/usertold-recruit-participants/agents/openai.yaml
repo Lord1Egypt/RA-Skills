@@ -1,0 +1,4 @@
+interface:
+  display_name: "Recruit UserTold Participants"
+  short_description: "Plan truthful participant recruitment"
+  default_prompt: "Use $usertold-recruit-participants to draft participant recruitment and canonical UserTold Study inputs."

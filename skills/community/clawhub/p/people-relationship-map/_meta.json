@@ -1,6 +1,20 @@
 {
-  "ownerId": "kn7edn21ngkwk1rrf87pshf3y98228d0",
-  "slug": "people-relationship-map",
+  "name": "people-relationship-map",
+  "description": "Personal CRM and relationship graph. Tracks people, connections, and context as Obsidian-friendly Markdown + JSON. Features auto-capture, querying, and weekly staleness digests.",
   "version": "0.1.0",
-  "publishedAt": 1772377925687
+  "author": "",
+  "license": "MIT",
+  "tags": ["people", "crm", "memory", "relationships", "obsidian", "graph"],
+  "triggers": [
+    "remember person",
+    "who do I know",
+    "who is connected",
+    "relationship map",
+    "add person",
+    "link people",
+    "stale relationships",
+    "people at company",
+    "tell me about person",
+    "meeting prep"
+  ]
 }

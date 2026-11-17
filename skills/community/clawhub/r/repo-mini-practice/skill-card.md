@@ -1,40 +1,56 @@
-## Description: <br>
-Use when a user wants to learn a GitHub or local codebase by understanding its implementation principles, creating a minimal runnable practice version, or turning source reading into hands-on exercises. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a user wants to learn a GitHub or local codebase by understanding its implementation principles, creating a minimal runnable practice version, or turning source reading into hands-on exercises.
 
-## Publisher: <br>
-[liuwei1125](https://clawhub.ai/user/liuwei1125) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[liuwei1125](https://clawhub.ai/user/liuwei1125)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to study a GitHub or local repository by rebuilding one core mechanism as a small runnable mini-practice project. It is suited for source-code learning, hands-on exercises, and minimal reproductions that preserve the original project principle while mocking external infrastructure.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill writes a learning project into the target repository, which could affect existing work if a mini-practice/ directory is already present.
+
+Mitigation: Inspect any existing mini-practice/ directory first and preserve user work before creating or updating files.
+
+Risk: The skill may generate bilingual Chinese and English README content by default, which can add more output than needed for some repositories or private material.
+
+Mitigation: Ask for a single documentation language when less output is preferred or when handling sensitive repository content.
+
+Risk: A minimal reproduction can omit external services or infrastructure that matter in the original repository.
+
+Mitigation: Document mocked or omitted components and verify the runnable demo or tests that exercise the preserved core logic.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to study a GitHub or local repository by rebuilding one core mechanism as a small runnable mini-practice project. It creates a focused learning artifact with source code, tests or demos, mocks where needed, and a bilingual learning guide by default. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated mini-practice files from private repositories may reveal implementation details if shared or committed without review. <br>
-Mitigation: Review generated files before sharing or committing them. <br>
-Risk: Running demos or tests from untrusted repositories can execute unsafe or unexpected commands. <br>
-Mitigation: Approve run and test commands carefully, especially for untrusted repositories. <br>
+**Output Format:** [Markdown guidance plus generated files and runnable commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuwei1125/repo-mini-practice) <br>
+**Other Properties Related to Output:** [Creates or updates a mini-practice/ directory with source, README, demo or tests, mocks or fixtures, and minimal configuration files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Repository files and Markdown guidance with reported verification commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates a mini-practice/ directory in the target repository and reports exact commands run and outcomes.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

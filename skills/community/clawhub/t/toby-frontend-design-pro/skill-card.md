@@ -1,39 +1,49 @@
-## Description: <br>
-Create distinctive, production-grade frontend interfaces with high design quality for web components, pages, and applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when building web components, pages, or applications. Generates creative, polished code that avoids generic AI aesthetics.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Developers and designers use this skill to guide agents toward polished web UI implementations with a deliberate visual direction, refined typography, color, layout, motion, and production-ready code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated frontend code may introduce unsafe dependencies, third-party assets, accessibility issues, or performance-heavy animations. <br>
-Mitigation: Review and test generated UI code before deployment, with particular attention to packages, CDN assets, fonts, animation cost, and accessibility. <br>
+## Use Case:
 
+Developers and designers use this skill when building web components, pages, or applications that need distinctive, production-grade frontend interfaces with a strong visual direction.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tobeyrebecca/toby-frontend-design-pro) <br>
-- [Publisher Profile](https://clawhub.ai/user/tobeyrebecca) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown with code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include frontend implementation guidance and working UI code in HTML, CSS, JavaScript, React, Vue, or related formats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill intentionally pushes bold frontend aesthetics that may conflict with brand, accessibility, or usability requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated interfaces against project design standards, accessibility checks, and user workflow needs before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-frontend-design-pro)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code]
+
+**Output Format:** [Markdown guidance with frontend code or code changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May influence typography, color, motion, layout, and visual-detail choices toward bold, distinctive aesthetics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,10 +1,10 @@
 ---
 name: kinema-task-management
 displayName: "Kinema's Task Management (daily report, active push, traceback)"
-version: 1.1.0
+version: 1.2.0
 description: |
   Kinema personal task tracking system. AI Agent maintains tasks as markdown files in workspace.
-  Trigger: User describes tasks, mentions "任务", "task", asks to create/update/archive/check tasks, uses `/mytask`, or receives task-related cron heartbeat.
+  Trigger: User describes tasks, mentions "任务", "task", asks to create/update/archive/check tasks, uses `/mytask`, or receives a task-related scheduled automation heartbeat.
 ---
 
 # Kinema's Task Management | Kinema 个人任务追踪系统
@@ -15,10 +15,10 @@ description: |
 
 ## ⚠️ Before First Use | 首次使用必读
 
-**首次使用此 skill 前，必须先读取 [ONBOARDING.md](ONBOARDING.md) 完成环境配置。**
+**首次使用此 skill 前，必须先读取 [references/ONBOARDING.md](references/ONBOARDING.md) 完成环境配置。**
 
-- **首次配置** → 读取 ONBOARDING.md 完成全部步骤
-- **环境不可用**（目录缺失、cron 未配置）→ 读取 ONBOARDING.md Troubleshooting 排查修复
+- **首次配置** → 读取 references/ONBOARDING.md 完成全部步骤
+- **环境不可用**（目录缺失、cron 未配置）→ 读取 references/ONBOARDING.md Troubleshooting 排查修复
 - **配置完成后** → 直接使用下方操作指南
 
 ---
@@ -380,7 +380,7 @@ Status: ▶ in_progress ○ pending ✓ done
 | 每日早报 | 09:01 | `kinema-tasks-daily-report` | 读取最近快照 + 当前 active 生成 diff + 报告，推送到对话 |
 | 写入快照 | 09:02 | `kinema-tasks-write-snapshot` | 扫描 active/ 生成快照写入 snapshots/YYYY-MM-DD.md |
 
-> 三个 cron 使用 `--session isolated` + `--channel` + `--to` + `--announce`，配置步骤详见 ONBOARDING.md Step 2（确定推送通道）和 Step 4（创建 cron 任务）。
+> 三个 cron 使用 `--session isolated` + `--channel` + `--to` + `--announce`，配置步骤详见 references/ONBOARDING.md Step 2（确定推送通道）和 Step 4（创建 cron 任务）。
 > 严格按顺序执行：归档检查 → 早报推送 → 写入快照
 
 ---

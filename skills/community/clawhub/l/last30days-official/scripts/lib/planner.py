@@ -86,16 +86,9 @@ def plan_query(
     provider: providers.ReasoningClient | None,
     model: str | None,
     context: str = "",
-    internal_subrun: bool = False,
 ) -> schema.QueryPlan:
     """Create a query plan. Comparison queries with extractable entities use a
-    deterministic plan; other intents prefer the configured reasoning provider.
-
-    internal_subrun: when True, suppress the LAW 7 "No --plan passed" stderr
-    warning. LAW 7 targets the hosting-reasoning-model path; competitor
-    fan-out sub-runs are engine-internal and the warning is a false positive
-    there. Default False preserves the warning on every user-facing invocation.
-    """
+    deterministic plan; other intents prefer the configured reasoning provider."""
     if _should_force_deterministic_plan(topic):
         return _fallback_plan(
             topic,
@@ -120,26 +113,6 @@ def plan_query(
                 topic, available_sources, requested_sources, depth,
                 note=f"fallback-plan (LLM error: {type(exc).__name__})",
             )
-    # No --plan was passed and no engine-internal provider is configured.
-    # The deterministic fallback path produces weaker plans than either the
-    # --plan path or the engine-internal LLM planner path. Surface this so
-    # the HOSTING reasoning model (Claude Code, Codex, Hermes, Gemini, etc.)
-    # realizes it is supposed to generate the plan itself and pass --plan.
-    # The word "provider" in engine messages refers to the engine's INTERNAL
-    # planner credentials - NOT a prerequisite the caller needs. If you are
-    # the hosting reasoning model, YOU are the provider. LAW 7 / 2026-04-19
-    # Hermes Agent Use Cases failure mode.
-    if not internal_subrun:
-        import sys
-        print(
-            "[Planner] No --plan passed. If you are the reasoning model hosting "
-            "this skill (Claude Code, Codex, Hermes, Gemini, or any agent runtime), "
-            "YOU ARE the planner: generate a JSON query plan yourself and pass it "
-            "via --plan. You do not need an API key or credentials; you ARE the "
-            "LLM. The deterministic fallback below is the headless/cron path only. "
-            "See LAW 7 in SKILL.md and Step 0.75 for the plan schema.",
-            file=sys.stderr,
-        )
     return _fallback_plan(topic, available_sources, requested_sources, depth)
 
 
@@ -178,7 +151,7 @@ Return JSON only with this shape:
 }}
 
 Rules:
-- emit 1 to 5 subqueries (how_to/opinion/product/breaking_news intents benefit from 4-5; factual/concept from 2)
+- emit 1 to 4 subqueries
 - every subquery must include both search_query and ranking_query
 - sources must be drawn from Available sources only
 - use cluster_mode=none for factual or many how-to queries
@@ -189,8 +162,6 @@ Rules:
 - preserve exact proper nouns and entity strings from the topic
 - NEVER include temporal phrases in search_query: no 'last 30 days', 'recent', month names, year numbers
 - NEVER include meta-research phrases: no 'news', 'updates', 'public appearances', 'latest developments'
-- INTENT-MODIFIER HANDLING: when the topic contains one of {{use cases, use case, workflows, workflow, examples, tutorial, tutorials, review, reviews, comparison, applications, in practice, production, production use, how i use}}, STRIP that phrase from every search_query (keep its meaning in ranking_query). Emit 4-5 paraphrased subqueries that each express the intent differently (e.g., 'production', 'workflow OR pipeline', 'review OR experience', 'vs COMPETITOR', 'community discussion'). Broad retrieval, narrow ranking. This was the 2026-04-19 Hermes Agent Use Cases failure mode: the planner echoed "hermes agent use cases" as a literal search string and returned near-zero results because nobody posts that exact phrase.
-- DO NOT quote the user's full topic verbatim in search_query. Quote only multi-word proper nouns like "Hermes Agent", "Claude Code", "Nous Research". Bare keywords OR'd together retrieve more than exact-phrase searches.
 - search_query should match how content is TITLED on platforms
 - GitHub (Issues/PRs) is best for engineering, developer tools, and open source topics: 'kanye west bully' not 'kanye west album news March 2026'
 """.strip()
@@ -233,7 +204,7 @@ def _sanitize_plan(
     source_weights = _normalize_weights(source_weights)
 
     subqueries: list[schema.SubQuery] = []
-    for index, subquery in enumerate((raw.get("subqueries") or [])[:_max_subqueries(intent_hint, topic)], start=1):
+    for index, subquery in enumerate((raw.get("subqueries") or [])[:_max_subqueries(intent_hint)], start=1):
         if not isinstance(subquery, dict):
             continue
         sources = [source for source in subquery.get("sources") or [] if source in source_weights]
@@ -411,22 +382,13 @@ def _fallback_plan(
             )
         )
 
-    # Intent-modifier fanout: when topic contains a phrase like "use cases",
-    # "workflows", "examples", "review" (see _INTENT_MODIFIER_PATTERNS),
-    # paraphrase the intent across 3 extra subqueries rather than echoing
-    # the literal phrase. Fixes 2026-04-19 Hermes Agent Use Cases failure.
-    # Excluded for comparison/prediction since those already have dedicated
-    # fanout (entity-per-subquery / odds).
-    if depth != "quick" and intent not in {"comparison", "prediction"} and _has_intent_modifier(topic):
-        subqueries.extend(_intent_modifier_subqueries(topic, core, base_search, source_weights))
-
     return schema.QueryPlan(
         intent=intent,
         freshness_mode=_default_freshness(intent),
         cluster_mode=_default_cluster_mode(intent),
         raw_topic=topic,
         subqueries=_normalize_subquery_weights(
-            _trim_subqueries_for_depth(subqueries[:_max_subqueries(intent, topic)], intent, depth, list(source_weights))
+            _trim_subqueries_for_depth(subqueries[:_max_subqueries(intent)], intent, depth, list(source_weights))
         ),
         source_weights=_normalize_weights(source_weights),
         notes=[note],
@@ -456,15 +418,7 @@ def _infer_intent(topic: str) -> str:
         return "concept"
     if re.search(r"\b(tournament|championship|playoffs|march madness|world cup|olympics|super bowl|final four|ceremony|awards|keynote)\b", text):
         return "breaking_news"
-    # Recency signals take priority when nothing more specific matched.
-    if re.search(r"\b(trending|this week|right now|today|this month)\b", text):
-        return "breaking_news"
-    # Default changed from "breaking_news" to "concept" on 2026-04-19 after
-    # the Hermes Agent Use Cases failure: unclassified topics were getting
-    # strict_recent freshness, which over-weighted the last 7 days and
-    # under-weighted older relevant material. "concept" defaults to
-    # evergreen_ok freshness, a safer posture for unknown topics.
-    return "concept"
+    return "breaking_news"
 
 
 def _default_freshness(intent: str) -> str:
@@ -510,26 +464,8 @@ def _default_source_weights(intent: str, sources: list[str]) -> dict[str, float]
 
 
 def _keyword_query(topic: str, core: str) -> str:
-    """Build a search_query string for the deterministic fallback.
-
-    Quote ONLY title-cased multi-word proper nouns ("Hermes Agent",
-    "Claude Code", "Nous Research") so platform search engines preserve the
-    name as a phrase. Hyphenated compounds and lowercase terms are left as
-    bare keywords, which broadens retrieval instead of narrowing it.
-
-    Prior behavior quoted the entire compound including the user's typed
-    topic, producing searches like `"Hermes Agent Actual Use Cases" hermes agent actual`
-    that returned near-zero matches on X and Reddit because nobody posts
-    that exact phrase. See 2026-04-19 Hermes Agent Use Cases failure.
-    """
     compounds = query.extract_compound_terms(topic)
-    # Only quote title-cased proper nouns (multi-word names). Hyphenated
-    # compounds go unquoted so platform tokenizers can split and match.
-    title_cased = [
-        term for term in compounds
-        if re.match(r"^(?:[A-Z][a-z]+\s+){1,}[A-Z][a-z]+$", term)
-    ]
-    quoted = " ".join(f'"{term}"' for term in title_cased[:2])
+    quoted = " ".join(f"\"{term}\"" for term in compounds[:2])
     keywords = [quoted.strip(), core.strip() or topic.strip()]
     return " ".join(part for part in keywords if part).strip()
 
@@ -577,84 +513,12 @@ def _should_force_deterministic_plan(topic: str) -> bool:
     return _infer_intent(topic) == "comparison" and len(_comparison_entities(topic)) >= 2
 
 
-_INTENT_MODIFIER_PATTERNS = (
-    "use cases", "use case", "workflows", "workflow",
-    "examples", "example", "tutorial", "tutorials",
-    "review", "reviews", "comparison", "applications",
-    "in practice", "production use", "production",
-    "how i use",
-)
-
-
-def _has_intent_modifier(topic: str) -> bool:
-    """Return True if the topic contains an intent modifier phrase.
-
-    See 2026-04-19 Hermes Agent Use Cases failure: a literal "Hermes Agent
-    use cases" search returns near-zero matches because nobody posts that
-    exact phrase. Intent modifiers should be stripped from search_query
-    and paraphrased across multiple subqueries.
-    """
-    text = topic.lower()
-    return any(pattern in text for pattern in _INTENT_MODIFIER_PATTERNS)
-
-
-def _intent_modifier_subqueries(
-    topic: str,
-    core: str,
-    base_search: str,
-    source_weights: dict[str, float],
-) -> list[schema.SubQuery]:
-    """Produce paraphrased subqueries for intent-modifier topics.
-
-    The deterministic fallback used to echo the user's literal phrase
-    (e.g., "hermes agent use cases") into every search_query. This helper
-    fans out 3 extra subqueries that each express the intent differently
-    so retrieval pulls a broader corpus for reranking.
-    """
-    entity = core or topic.strip()
-    sources = list(source_weights)
-    return [
-        schema.SubQuery(
-            label="workflows",
-            search_query=f"{entity} workflow pipeline",
-            ranking_query=f"What real-world workflows or pipelines are people running with {entity}?",
-            sources=sources,
-            weight=0.6,
-        ),
-        schema.SubQuery(
-            label="production",
-            search_query=f"{entity} production real-world",
-            ranking_query=f"What production deployments or real-world use cases of {entity} are people describing?",
-            sources=sources,
-            weight=0.55,
-        ),
-        schema.SubQuery(
-            label="experience",
-            search_query=f"{entity} experience review",
-            ranking_query=f"What hands-on experience reports or reviews of {entity} exist in the last 30 days?",
-            sources=sources,
-            weight=0.5,
-        ),
-    ]
-
-
-def _max_subqueries(intent: str, topic: str | None = None) -> int:
-    # how_to/opinion/product/breaking_news/prediction benefit from 4-5
-    # paraphrased subqueries when the topic carries an intent modifier
-    # (use cases, workflows, examples, review, etc.). See 2026-04-19
-    # Hermes Agent Use Cases failure: prior cap of 3 produced near-literal
-    # echoes of the topic instead of a paraphrase fanout.
+def _max_subqueries(intent: str) -> int:
     if intent == "comparison":
         return 4
-    # Intent-modifier topics get headroom for paraphrase fanout even when
-    # the intent itself is factual/concept. Without this, a "Hermes Agent
-    # use cases" query (classified "concept" after the 2026-04-19 default
-    # change) would be capped at 2 and drop the fanout.
-    if topic and _has_intent_modifier(topic):
-        return 5
     if intent in {"factual", "concept"}:
         return 2
-    return 5
+    return 3
 
 
 def _default_sources_for_intent(intent: str, available_sources: list[str]) -> list[str]:

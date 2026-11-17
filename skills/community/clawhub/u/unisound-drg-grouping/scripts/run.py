@@ -13,7 +13,7 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 DEFAULT_API_URL = "https://maas-api.hivoice.cn/v1/chat/completions"
-DEFAULT_MODEL = "u1-insuremed"
+DEFAULT_MODEL = "u2-med"
 DEFAULT_SYSTEM_PROMPT = (
     "你是医保与病案编码专家，熟悉 CHS-DRG 入组思路。用户会给出出院文书（或摘要）"
     "及若干 DRG 候选项（通常含 1 个正确项与迷惑项）。\n"

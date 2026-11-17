@@ -1,45 +1,60 @@
-## Description: <br>
-Transaction round-up helper that calculates spare change from payments and builds unsigned Solana transfer instructions for user review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transaction round-up helper. Calculates spare change from payments and builds unsigned Solana transfer instructions for user review. Server-side fee enforcement. REST API for any language.
 
-## Publisher: <br>
-[nightcode112](https://clawhub.ai/user/nightcode112) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nightcode112](https://clawhub.ai/user/nightcode112)
 
-## Use Case: <br>
-Developers and agent builders use this skill to calculate Solana transaction round-ups, request server-built unsigned transfer or swap instructions, and present them for user verification and signing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unsigned transfer or swap instructions can affect funds if a user signs them without review. <br>
-Mitigation: Before signing, verify destinations, amounts, program IDs, token pairs, and fee breakdowns, and test with small amounts first. <br>
-Risk: The skill requires a Buff API key and wallet public key. <br>
-Mitigation: Use scoped, rotatable API keys, keep credentials out of prompts and logs, and never provide private keys to the agent. <br>
-Risk: Security scan confidence is limited because the authoritative scan guidance reports that direct file inspection was unavailable and VirusTotal was pending. <br>
-Mitigation: Review the skill files in ClawHub before installing, especially for unexpected credential use, automatic command execution, broad file access, or persistent background behavior. <br>
+## Use Case:
 
+External developers and agents use this skill to calculate transaction round-ups, request unsigned Solana transfer or swap instructions, and present those instructions for user review and signing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nightcode112/buff-roundup) <br>
-- [Buff documentation](https://buff.finance/docs) <br>
-- [Buff REST API reference](https://buff.finance/docs/api/rest) <br>
-- [Buff swap documentation](https://buff.finance/docs/swaps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference unsigned Solana transaction or instruction payloads that require user review and signing outside the agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.5 (source: package.json and server release evidence) <br>
+Risk: Financial loss or unintended transfers could occur if unsigned transaction instructions are not inspected before signing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently inspect every unsigned transaction for the expected wallet, treasury, asset, amount, and program before signing.
+
+Risk: API key exposure could allow unauthorized use of the Buff API.
+
+Mitigation: Use a scoped, rotatable API key and rotate it if exposure is suspected.
+
+Risk: Unexpected investment amounts may result from configuration or service behavior.
+
+Mitigation: Start with small amounts and verify round-up breakdowns before approving executable instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nightcode112/skills/buff-roundup)
+- [Buff documentation](https://buff.finance/docs)
+- [Buff REST API reference](https://buff.finance/docs/api/rest)
+- [Buff swap documentation](https://buff.finance/docs/swaps)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with TypeScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for API-backed round-up calculations and unsigned transaction review; it does not sign transactions or hold private keys.]
+
+## Skill Version(s):
+
+2.3.5 (source: server evidence release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

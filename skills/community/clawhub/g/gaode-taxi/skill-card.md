@@ -1,40 +1,62 @@
-## Description: <br>
-高德打车 provides Gaode map taxi launch, route planning, nearby search, POI lookup, geocoding, weather, IP-location, distance, static map, coordinate conversion, and navigation-link tools for agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+零配置即装即用，一键唤起高德地图APP打车，另含驾车/公交/步行/骑行路线规划、IP定位、周边搜索、POI搜索，免申请Key即用。暑期出行打车、目的地接送。
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-External users can ask an agent to search Gaode locations, plan travel routes, estimate taxi options, and generate Gaode app taxi or navigation links. Developers can use the skill to expose map and mobility lookups through agent tool calls without manual proxy setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Map searches, addresses, coordinates, IP-location queries, and taxi route details are sent to the skill publisher's cloud proxy for Gaode lookups. <br>
-Mitigation: Use the skill only when users accept that location and route details will be sent to that proxy, and avoid sensitive home, workplace, or private itinerary details unless the proxy operator is trusted. <br>
-Risk: Taxi prices and route information can be estimates or depend on Gaode app availability on the user's device. <br>
-Mitigation: Treat taxi costs and route details as planning guidance, and confirm final fare and ride execution in the Gaode app. <br>
+## Use Case:
 
+External users use this skill to ask an agent for Gaode Maps taxi launch links, route planning, IP location, and POI search results for travel and local navigation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/gaode-taxi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, API calls, Guidance] <br>
-**Output Format:** [JSON tool responses with concise text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Gaode app taxi or navigation URIs, route details, estimated taxi costs, POI results, weather data, coordinates, and static map URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server evidence release.version and artifact/version) <br>
+Risk: Addresses, coordinates, POI searches, route requests, and possible IP-location requests are sent to an external Gaode proxy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review privacy handling before installation, disclose this data flow to users, and avoid sending sensitive location queries unless necessary.
+
+Risk: The artifact uses an embedded shared proxy token that should be treated as exposed.
+
+Mitigation: Remove the shared token and require a user-controlled secret or trusted deployment configuration before production use.
+
+Risk: The documented primary environment variable differs from the proxy token environment variable used by the helper script.
+
+Mitigation: Align the environment variable names or clearly document the required variables before relying on token override behavior.
+
+Risk: The helper exposes more map functions than the public description highlights.
+
+Mitigation: Inventory and allowlist only the map functions needed for the deployment, and document the enabled functions for reviewers and users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/gaode-taxi)
+- [ClawHub publisher profile](https://clawhub.ai/user/travel-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON responses and generated Gaode Maps app URI strings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return taxi launch links, route details, location lookup results, POI search results, weather data, distance measurements, static map URLs, or error messages.]
+
+## Skill Version(s):
+
+1.2.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

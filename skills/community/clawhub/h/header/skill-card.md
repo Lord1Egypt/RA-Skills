@@ -1,41 +1,50 @@
-## Description: <br>
-Header design reference for navigation patterns, sticky headers, responsive menus, and accessibility when designing website headers or implementing navigation components. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Header design reference for navigation patterns, sticky headers, responsive menus, accessibility, and implementation snippets.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Frontend developers and designers use this skill to choose and implement website header and navigation patterns, including sticky headers, responsive menus, semantic HTML, CSS patterns, and accessibility checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill commands runs a local shell script. <br>
-Mitigation: Review the script and command output before use; the security review found the script only prints design guidance and examples and does not access private data or change files. <br>
-Risk: Header design guidance may not fit every product, accessibility requirement, or browser-support target. <br>
-Mitigation: Review recommendations against the project UX, accessibility, and browser-support requirements before implementation. <br>
+## Use Case:
 
+Developers and designers use this skill as a quick reference when designing website headers, implementing navigation components, and checking responsive and accessibility patterns.
 
-## Reference(s): <br>
-- [Header on ClawHub](https://clawhub.ai/ckchzh/header) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code] <br>
-**Output Format:** [Plain text guidance with shell command examples and HTML, CSS, and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-specific reference sections for header patterns, sticky behavior, responsive menus, semantic HTML, CSS, accessibility, and examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: Copying generated HTML, CSS, or JavaScript snippets directly into production could introduce incorrect navigation behavior or accessibility gaps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review, test, and adapt snippets against the target site's layout, browser support, keyboard navigation, focus behavior, and accessibility requirements before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/header)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown-like terminal text with HTML, CSS, JavaScript, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output selected by command name; no credential, API, or network behavior is reported by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

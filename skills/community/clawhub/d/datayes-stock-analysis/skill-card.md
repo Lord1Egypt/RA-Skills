@@ -1,44 +1,56 @@
-## Description: <br>
-Datayes Stock Analysis helps agents produce structured single-stock research reports using Datayes market, financial, ownership, event, and technical-analysis data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language individual stock research reports using Datayes MCP data across company profile, market trends, business and financial analysis, valuation, fund flow, technical indicators, and a summarized conclusion.
 
-## Publisher: <br>
-[datayes](https://clawhub.ai/user/datayes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[datayes](https://clawhub.ai/user/datayes)
 
-## Use Case: <br>
-External users and agents use this skill to generate a structured stock research report for a named equity, covering company profile, price action, operations, valuation, capital flows, technical indicators, and a non-advisory conclusion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial outputs may be mistaken for personalized investment advice or may include buy/sell-style technical signals. <br>
-Mitigation: Treat the report as objective research only, keep the disclaimer, and require users to make independent investment decisions. <br>
-Risk: Market and financial data can be stale, incomplete, or unavailable for some securities or markets. <br>
-Mitigation: Follow the included data validation checklist, cite the data cutoff date, and mark unavailable or unsupported indicators clearly. <br>
+## Use Case:
 
+External users and analysts use this skill to request structured Chinese-language stock analysis reports for a named security. The skill gathers Datayes MCP market, company, financial, shareholder, and event data, validates the results, and presents informational analysis rather than investment advice.
 
-## Reference(s): <br>
-- [Datayes Stock Analysis ClawHub page](https://clawhub.ai/datayes/datayes-stock-analysis) <br>
-- [MCP tool list](references/mcp-tools.md) <br>
-- [Stock analysis data validation checklist](references/stock-analysis-data-validation.md) <br>
-- [Stock analysis framework](references/stock-analysis-framework.md) <br>
-- [Stock analysis report template](references/stock-analysis-report-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown stock analysis report with tables, data cutoff, and disclaimer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Datayes MCP tools; technical indicators are skipped for unsupported markets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Stock analysis output may be mistaken for personalized investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the report framed as informational analysis, retain the disclaimer, and require users to make independent investment decisions.
+
+Risk: Market and financial data can be stale, incomplete, or incorrect.
+
+Mitigation: Verify important figures independently, include data cutoff dates, and run the provided validation checklist before relying on the report.
+
+## Reference(s):
+
+- [MCP Tools](references/mcp-tools.md)
+- [Stock Analysis Data Validation](references/stock-analysis-data-validation.md)
+- [Stock Analysis Framework](references/stock-analysis-framework.md)
+- [Stock Analysis Report Template](references/stock-analysis-report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown stock analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes tabular metrics, a data cutoff date, validation checks, a summarized score, risk notes, follow-up focus areas, and a disclaimer that the report is not investment advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

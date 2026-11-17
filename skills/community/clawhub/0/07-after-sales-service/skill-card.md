@@ -1,41 +1,52 @@
-## Description: <br>
-Provides a community group-buying after-sales and customer-service playbook covering refunds, returns, complaint handling, service-system design, platform policy comparisons, and supporting tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language after-sales and customer-service skill package for community group-buying that covers refunds, returns, complaint handling, service team design, platform policy comparisons, and advisory tools.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Customer service leads, platform operations managers, and group leader operators use this skill to create after-sales SOPs, evaluate refund and complaint scenarios, monitor service KPIs, and coordinate after-sales issues with supply chain teams.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Advisory refund, penalty, blacklisting, delisting, or payment-freeze recommendations could be applied without adequate business review.
+
+Mitigation: Validate inputs and require human or business approval before applying operational, financial, supplier, or account-control decisions.
+
+Risk: The skill includes calculators and decision support that may not match a specific platform's current policies or local operating constraints.
+
+Mitigation: Use the outputs as guidance and verify them against the platform's approved after-sales policy before acting.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Community group-buying customer-service leads, platform operators, and group leader managers use this skill to design after-sales SOPs, handle refunds and returns, respond to complaints, compare platform policies, and use calculation or monitoring templates. It is operational guidance and should not be treated as autonomous approval for customer refunds, penalties, freezes, or blacklist decisions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Code]
 
-## Known Risks and Mitigations: <br>
-Risk: Refund amounts, commission deductions, supplier penalties, payment freezes, and blacklist recommendations may affect customers, operators, or suppliers if applied without authorization. <br>
-Mitigation: Require authorized human review and the platform's approved policy workflow before acting on any recommendation or calculation. <br>
-Risk: Customer-service workflows can expose customer personal data in prompts, transcripts, or agent memory. <br>
-Mitigation: Minimize, redact, or omit unnecessary personal data before using the skill, and follow the organization's privacy and retention rules. <br>
+**Output Format:** [Chinese-language Markdown with optional Python code snippets, checklists, SOPs, and scenario templates]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nic-yuan/07-after-sales-service) <br>
-- [Source skill file](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [Advisory outputs should be reviewed before refunds, penalties, delisting, payment freezes, or other business actions are applied.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown with operational playbooks, SOPs, checklists, tables, and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language after-sales guidance with calculation and monitoring templates; no hidden code or autonomous access reported by security evidence.] <br>
+1.0.0 (source: server release metadata and artifact frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

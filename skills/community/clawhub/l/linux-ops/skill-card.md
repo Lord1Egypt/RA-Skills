@@ -1,49 +1,58 @@
-## Description: <br>
-Linux operations quick reference for process management, log analysis, network diagnostics, performance monitoring, and user management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Linux Ops is a Chinese Linux operations quick reference for process management, log analysis, network diagnostics, performance monitoring, and user management.
 
-## Publisher: <br>
-[afine907](https://clawhub.ai/user/afine907) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afine907](https://clawhub.ai/user/afine907)
 
-## Use Case: <br>
-Developers, system administrators, and agents use this skill as a concise Linux operations cheat sheet when choosing commands for process control, log inspection, network checks, resource monitoring, file discovery, and user or permission management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The reference includes powerful administrative commands for service control, process termination, firewall changes, user deletion, and sudo configuration. <br>
-Mitigation: Review each command before use and require explicit approval before running commands that change system state, accounts, permissions, services, or firewall rules. <br>
-Risk: The packet capture examples can collect sensitive network traffic when run on broad interfaces or without filters. <br>
-Mitigation: Limit captures to approved interfaces, hosts, ports, and time windows, and handle any capture files as potentially sensitive data. <br>
-Risk: The passwordless sudo example can weaken host controls if copied without an operational need. <br>
-Mitigation: Avoid blanket NOPASSWD sudo rules unless they are explicitly approved and narrowly scoped for a controlled environment. <br>
+## Use Case:
 
+Developers, system administrators, and operations engineers use this skill as a concise Linux command reference for routine host inspection, troubleshooting, and administrative tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/afine907/linux-ops) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Process Management Reference](artifact/references/process.md) <br>
-- [System Resources Reference](artifact/references/system.md) <br>
-- [Network Diagnostics Reference](artifact/references/network.md) <br>
-- [Log Analysis Reference](artifact/references/logs.md) <br>
-- [User Permissions Reference](artifact/references/users.md) <br>
-- [Linux Command Line Cheat Sheet](https://cheatography.com/davechild/cheat-sheets/linux-command-line/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline Linux shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides reference commands only; it does not execute commands automatically or install code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Administrative command examples can change accounts, permissions, firewall state, services, packet captures, or sudo behavior on real systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before use, confirm the target host and resources, obtain explicit authorization, and apply least-privilege constraints.
+
+Risk: Examples such as passwordless sudo, recursive chmod/chown, user deletion, service stop/enable, and firewall changes may cause outages or weaken security if copied directly.
+
+Mitigation: Validate commands in a controlled environment first and prepare backups or rollback steps before running them on production systems.
+
+## Reference(s):
+
+- [Process Management](references/process.md)
+- [System Resources](references/system.md)
+- [Network Diagnostics](references/network.md)
+- [Log Analysis](references/logs.md)
+- [User Permissions](references/users.md)
+- [Linux Command Line Cheat Sheet](https://cheatography.com/davechild/cheat-sheets/linux-command-line/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language Linux operations quick reference.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

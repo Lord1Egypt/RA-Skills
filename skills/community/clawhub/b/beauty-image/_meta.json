@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn70bhxwnh4pw7p1tvwe37wdmn8239gd",
   "slug": "beauty-image",
   "version": "3.2.0",
-  "publishedAt": 1774099797615
+  "name": "Beauty Image V3",
+  "author": "圆规",
+  "repository": "https://github.com/xyva-yuangui/beauty-image",
+  "license": "MIT-0",
+  "description": "商业化AI图片生成: 40+场景模板, 30+风格词典, 智能意图识别, 结构化Prompt, 三引擎智能路由 (Wanx/Seedream4/Seedream5)"
 }

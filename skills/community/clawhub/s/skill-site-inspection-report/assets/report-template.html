@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{report_title}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: "Microsoft YaHei", "SimHei", "PingFang SC", sans-serif;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        .report-container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* 表头区 */
+        .report-header {
+            background: linear-gradient(135deg, #1a5276 0%, #2980b9 100%);
+            color: #fff;
+            padding: 25px 40px;
+            text-align: center;
+        }
+        
+        .company-name {
+            font-size: 16px;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .report-title {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .header-meta {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        
+        /* 通用区块 */
+        .section {
+            padding: 25px 40px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #1a5276;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #2980b9;
+            margin-bottom: 15px;
+        }
+        
+        /* 基本信息 */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px 40px;
+        }
+        
+        .info-item {
+            display: flex;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            color: #555;
+            min-width: 70px;
+        }
+        
+        /* 检查概况 */
+        .overview-text {
+            text-indent: 2em;
+            color: #444;
+        }
+        
+        /* 问题说明 */
+        .problem-category {
+            margin-bottom: 25px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .category-title {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            font-weight: bold;
+            color: #1a5276;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .category-content {
+            padding: 15px;
+        }
+        
+        .problem-item {
+            margin-bottom: 15px;
+            padding: 12px;
+            background: #fffbf0;
+            border-left: 3px solid #f0ad4e;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .problem-name {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 6px;
+        }
+        
+        .problem-desc {
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+        
+        .problem-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .problem-image {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+            background: #fff;
+        }
+        
+        .problem-image img {
+            max-width: 320px;
+            height: auto;
+            display: block;
+        }
+        
+        .image-label {
+            padding: 6px 10px;
+            background: #f5f5f5;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+        
+        /* 整改建议 */
+        .rectification-category {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #e8f4f8;
+            border-radius: 6px;
+        }
+        
+        .rectification-title {
+            font-weight: bold;
+            color: #1a5276;
+            margin-bottom: 10px;
+        }
+        
+        .rectification-item {
+            padding: 8px 0;
+            border-bottom: 1px dashed #ccc;
+            display: flex;
+        }
+        
+        .rectification-label {
+            font-weight: bold;
+            color: #555;
+            min-width: 70px;
+        }
+        
+        /* 检查结论 */
+        .conclusion-box {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 6px;
+            padding: 20px;
+        }
+        
+        .conclusion-text {
+            color: #155724;
+            text-indent: 2em;
+        }
+        
+        /* 签字区 */
+        .signature-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .signature-item {
+            text-align: center;
+        }
+        
+        .signature-label {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .signature-line {
+            border-bottom: 1px solid #333;
+            height: 30px;
+        }
+        
+        /* 页脚 */
+        .report-footer {
+            background: #f8f9fa;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* 打印优化 */
+        @media print {
+            body { background: #fff; }
+            .report-container { box-shadow: none; margin: 0; }
+            .problem-image img { max-width: 280px; }
+            .page-break { page-break-before: always; }
+        }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <!-- 表头 -->
+        <div class="report-header">
+            <div class="company-name">{company_name}</div>
+            <h1 class="report-title">{report_title}</h1>
+            <div class="header-meta">
+                <span>日期：{report_date}</span>
+                <span>编号：{report_number}</span>
+            </div>
+        </div>
+        
+        <!-- 基本信息 -->
+        <div class="section">
+            <h2 class="section-title">基本信息</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">检查类型：</span>
+                    <span class="info-value">{check_type}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">检查地点：</span>
+                    <span class="info-value">{check_location}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">检查时间：</span>
+                    <span class="info-value">{check_time}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">检查人员：</span>
+                    <span class="info-value">{check_personnel}</span>
+                </div>
+                <div class="info-item" style="grid-column: span 2;">
+                    <span class="info-label">检查对象：</span>
+                    <span class="info-value">{check_object}</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 检查概况 -->
+        <div class="section">
+            <h2 class="section-title">检查概况</h2>
+            <p class="overview-text">{check_overview}</p>
+        </div>
+        
+        <!-- 问题说明 -->
+        <div class="section">
+            <h2 class="section-title">问题说明</h2>
+            {problems_section}
+        </div>
+        
+        <!-- 整改建议 -->
+        <div class="section">
+            <h2 class="section-title">整改建议</h2>
+            {rectification_section}
+        </div>
+        
+        <!-- 检查结论 -->
+        <div class="section">
+            <h2 class="section-title">检查结论</h2>
+            <div class="conclusion-box">
+                <p class="conclusion-text">{conclusion_text}</p>
+            </div>
+        </div>
+        
+        <!-- 签字区 -->
+        <div class="section">
+            <div class="signature-section">
+                <div class="signature-item">
+                    <div class="signature-label">检查人员签字</div>
+                    <div class="signature-line"></div>
+                </div>
+                <div class="signature-item">
+                    <div class="signature-label">复核人员签字</div>
+                    <div class="signature-line"></div>
+                </div>
+                <div class="signature-item">
+                    <div class="signature-label">日期</div>
+                    <div class="signature-line"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 页脚 -->
+        <div class="report-footer">
+            <div>
+                <span>密级：内部</span>
+            </div>
+            <div>第 1 页</div>
+        </div>
+    </div>
+</body>
+</html>

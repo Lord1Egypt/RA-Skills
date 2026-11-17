@@ -1,48 +1,66 @@
-## Description: <br>
-Generates compliance-gated marketing content for auto body shops, collision repair centers, and paintless dent repair operators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates compliance-gated marketing content for auto body shops and collision repair centers, including campaigns, service pages, schema markup, reputation templates, ads, local SEO plans, outreach, and compliance audits.
 
-## Publisher: <br>
-[gitflopez](https://clawhub.ai/user/gitflopez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitflopez](https://clawhub.ai/user/gitflopez)
 
-## Use Case: <br>
-Auto body shop owners, collision repair marketers, and agencies use this skill to generate service pages, seasonal campaigns, reputation templates, referral outreach, local SEO assets, ad copy, and JSON-LD markup with collision-repair compliance checks built into the prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States, with Nevada and Clark County examples and compliance references <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Retargeting and ad templates may require privacy notices, cookie or pixel disclosures, consent handling, opt-out paths, and platform-compliant audience setup. <br>
-Mitigation: Confirm the shop's privacy policy, tracking disclosures, consent and opt-out process, and ad-platform audience settings before publishing campaigns. <br>
-Risk: Legal, certification, warranty, parts, insurance, and environmental marketing claims can be jurisdiction-specific or change over time. <br>
-Mitigation: Verify generated claims against current rules, shop records, platform policies, and counsel where appropriate before publication. <br>
-Risk: Generated ad plans and budget recommendations could influence spending decisions. <br>
-Mitigation: Require human approval before allocating budget, purchasing ads, launching campaigns, or making financial commitments. <br>
+## Use Case:
 
+Auto body shop owners, collision repair operators, and marketing agencies use this skill to draft locally focused marketing assets while checking claims about EPA paint compliance, I-CAR or OEM credentials, parts disclosure, insurance positioning, warranties, reviews, and advertising language.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gitflopez/auto-body-collision-repair-kit) <br>
-- [Publisher profile](https://clawhub.ai/user/gitflopez) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Prompt 01 - Seasonal Campaigns](artifact/prompts/01-seasonal-campaigns.md) <br>
-- [Prompt 02 - Service Pages + JSON-LD Schema](artifact/prompts/02-service-pages-schema.md) <br>
-- [Prompt 03 - Reputation Management & Referral Outreach](artifact/prompts/03-reputation-referral.md) <br>
-- [Prompt 04 - Digital Ads & Local SEO](artifact/prompts/04-digital-ads-local-seo.md) <br>
+### Deployment Geography for Use:
 
+Global, with strongest direct fit for Nevada and Las Vegas-area auto body marketing unless local requirements are reviewed.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown prompt outputs with ad copy, service-page copy, JSON-LD blocks, checklists, outreach templates, and compliance audit tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only prompt pack; users provide shop details, credentials, ratings, service area, warranty terms, DRP status, and ad budget before generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; package.json lists 1.0.0) <br>
+Risk: Generated copy may be mistaken for legal advice or reused outside its Nevada and Las Vegas-area compliance assumptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as marketing drafts and have jurisdiction-specific legal or compliance requirements reviewed before publication.
+
+Risk: Marketing claims can become misleading if shop inputs about certifications, VOC documentation, parts policies, ratings, DRP status, or warranties are inaccurate or stale.
+
+Mitigation: Verify shop-specific claims against current records and keep supporting documentation before publishing customer-facing copy.
+
+Risk: Review requests, SMS, email outreach, and public review responses can create privacy, consent, or endorsement-disclosure issues if sent without review.
+
+Mitigation: Confirm consent, unsubscribe handling, material-connection disclosures, and privacy redaction before sending reputation or outreach content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gitflopez/skills/auto-body-collision-repair-kit)
+- [Publisher profile](https://clawhub.ai/user/gitflopez)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+- [Prompt 01 - Seasonal Campaigns](artifact/prompts/01-seasonal-campaigns.md)
+- [Prompt 02 - Service Pages and Schema](artifact/prompts/02-service-pages-schema.md)
+- [Prompt 03 - Reputation and Referral](artifact/prompts/03-reputation-referral.md)
+- [Prompt 04 - Digital Ads and Local SEO](artifact/prompts/04-digital-ads-local-seo.md)
+- [I-CAR Gold Class lookup](https://collision.org/goldclass)
+- [Schema.org AutoRepair](https://schema.org/AutoRepair)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured campaign copy, service-page drafts, JSON-LD schema blocks, ad templates, outreach templates, checklists, and compliance audit tables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on shop-provided facts such as certifications, DRP status, warranty terms, ratings, service area, and local compliance requirements.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

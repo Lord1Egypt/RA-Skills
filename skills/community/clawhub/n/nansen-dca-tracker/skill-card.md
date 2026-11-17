@@ -1,40 +1,54 @@
-## Description: <br>
-Tracks Solana tokens that whales and smart-money wallets are dollar-cost averaging into, with commands for Jupiter DCA strategies and target token fundamentals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+What tokens are whales dollar-cost averaging into? Jupiter DCA strategies by smart money and target token fundamentals.
 
-## Publisher: <br>
-[nansen-devops](https://clawhub.ai/user/nansen-devops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nansen-devops](https://clawhub.ai/user/nansen-devops)
 
-## Use Case: <br>
-External developers and market researchers use this skill to query Nansen CLI data about Solana DCA activity, token fundamentals, and fund-flow signals for smart-money and whale wallets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on nansen-cli and a Nansen API key, so local command execution relies on a trusted CLI package and careful credential handling. <br>
-Mitigation: Install only if you trust the nansen-cli package and provide the API key through the documented NANSEN_API_KEY environment variable. <br>
-Risk: Generated nansen commands outside the documented research examples may query broader market data than intended. <br>
-Mitigation: Review each generated nansen command before approving execution. <br>
+## Use Case:
 
+External analysts and developers use this skill to review Solana Jupiter DCA activity attributed to smart money and investigate target tokens' fundamentals and flows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nansen-devops/nansen-dca-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires nansen-cli and NANSEN_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Research calls, including repeated calls in loops, may spend funds from the configured wallet when an eligible x402 payment challenge is accepted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review wallet authorization, payment policy, and spending limits before research; account for the possible cost of each call.
+
+Risk: Retrying after an authentication failure through anonymous access could enter a separate paid workflow.
+
+Mitigation: Stop on authentication or renewal failure, follow the CLI guidance, and use the documented account check when troubleshooting calls for it.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/nansen-devops/skills/nansen-dca-tracker)
+- [Nansen CLI browser login platform scope](https://github.com/nansen-ai/nansen-cli/blob/main/docs/browser-login.md#preview-platform-scope)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell commands and research findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Research calls may incur usage charges; findings depend on available Nansen data and account entitlements.]
+
+## Skill Version(s):
+
+0.1.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

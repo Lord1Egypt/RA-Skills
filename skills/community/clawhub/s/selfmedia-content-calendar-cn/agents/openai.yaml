@@ -1,0 +1,8 @@
+interface:
+  display_name: 两周内容日历
+  short_description: 将账号定位、现有素材与产能排成可执行的14天内容日历
+  default_prompt: 请根据我的账号定位、素材清单、产能和已确定主题，制作14天内容日历；缺少关键字段时先指出缺失项，不要编造。
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+policy:
+  allow_implicit_invocation: true

@@ -1,14 +1,15 @@
 {
   "name": "schedule-planner-cxf",
-  "version": "1.0.8",
-  "description": "全能出行管家 - 智能行程规划、交通比价。默认本地 output/ 输出，支持 --desktop/--open/--include-passenger 显式 opt-in 副作用。使用 npx tuniu 进行实时查询。",
+  "version": "1.0.13",
+  "description": "Travel price queries, local itinerary HTML and optional public platform homepage QR pages. No booking or payment operations.",
   "main": "scripts/generate-trip-page.js",
   "bin": {
     "schedule-planner": "scripts/generate-trip-page.js"
   },
   "scripts": {
     "generate-trip": "node scripts/generate-trip-page.js",
-    "start": "node scripts/generate-trip-page.js"
+    "start": "node scripts/generate-trip-page.js",
+    "test": "node --test tests/*.test.js"
   },
   "keywords": [
     "travel",
@@ -37,7 +38,7 @@
     "url": "https://github.com/cryptocxf/schedule-planner-cxf/issues"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=22.0.0"
   },
   "os": [
     "win32",
@@ -47,12 +48,18 @@
   "files": [
     "scripts/",
     "references/",
+    "examples/",
+    "tests/",
+    "query_trip.js",
     "SKILL.md",
     "README.md",
-    ".env.example",
-    "skill-card.md"
+    "skill-card.md",
+    "skills.json",
+    "package-lock.json",
+    ".npmrc"
   ],
   "dependencies": {
-    "qrcode": "1.5.4"
+    "qrcode": "1.5.4",
+    "tuniu-cli": "1.0.7"
   }
 }

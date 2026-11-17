@@ -1,46 +1,59 @@
-## Description: <br>
-Self-hosted agent to organize, search, and browse images and videos with auto-deduplication, full-text search, albums, favorites, and a responsive web gallery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-hosted agent for organizing, searching, and browsing local images and videos with deduplication, full-text search, albums, favorites, CLI tools, and a localhost web gallery.
 
-## Publisher: <br>
-[nuoguo](https://clawhub.ai/user/nuoguo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nuoguo](https://clawhub.ai/user/nuoguo)
 
-## Use Case: <br>
-Developers and local users use this skill to set up and operate a self-hosted media vault for importing, deduplicating, searching, organizing, and browsing images and videos on their own machine. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The gallery indexes private media and may store sensitive metadata such as precise photo locations. <br>
-Mitigation: Keep the vault and database local, restrict file permissions, and review stored metadata before sharing exports or backups. <br>
-Risk: The gallery can run without authentication if IMAGE_VAULT_TOKEN is not configured. <br>
-Mitigation: Run setup to generate a token, keep the .env file and terminal output private, and confirm the token is set before serving the gallery. <br>
-Risk: Binding IMAGE_VAULT_HOST to a public interface can expose the local gallery. <br>
-Mitigation: Keep the default localhost binding unless the deployment has hardened authentication and network controls. <br>
-Risk: The cleanup script deletes inbound files using an hours-based threshold. <br>
-Mitigation: Use --dry-run first, confirm the target directory, and set the threshold deliberately before deleting files. <br>
+## Use Case:
 
+Developers and self-hosting users use this skill to import, organize, search, and browse local image and video libraries through CLI tools and a localhost web gallery.
 
-## Reference(s): <br>
-- [Multimedia Manager ClawHub Release](https://clawhub.ai/nuoguo/multimedia-manager) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide local file operations, SQLite-backed media indexing, and optional JSON output from CLI search commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: release evidence and changelog, released 2026-03-17) <br>
+Risk: The web gallery and file-serving paths could expose files beyond user expectations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a strong IMAGE_VAULT_TOKEN, keep IMAGE_VAULT_HOST bound to 127.0.0.1, and treat original file paths as sensitive until auth and path-validation issues are fixed.
+
+Risk: Cleanup or deletion workflows could remove more files than intended.
+
+Mitigation: Do not run cleanup_inbound.py against arbitrary directories, review deletion targets before use, and keep backups of the local vault and SQLite database.
+
+Risk: Imported category, tag, GPS, and location metadata may be sensitive or unsafe to display.
+
+Mitigation: Avoid importing untrusted category or tag metadata and treat GPS/location metadata as sensitive until XSS and metadata-handling concerns are fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nuoguo/skills/multimedia-manager)
+- [Skill documentation](artifact/SKILL.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON-capable CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates local media files, thumbnails, SQLite metadata, albums, favorites, and localhost web gallery responses.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata and artifact CHANGELOG, released 2026-03-17)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

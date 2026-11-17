@@ -1,38 +1,58 @@
-## Description: <br>
-Bootstrap OpenClaw with Hippocampus memory under a branded, repeatable setup: workspace, agent ID, API key or bootstrap token, and MCP wiring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps users bootstrap OpenClaw with Hippocampus memory by setting up a workspace, agent ID, authentication, and MCP wiring.
 
-## Publisher: <br>
-[cezexPL](https://clawhub.ai/user/cezexPL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cezexpl](https://clawhub.ai/user/cezexpl)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect a new OpenClaw instance or workspace to Hippocampus memory with stable workspace, agent identity, gateway, and authentication settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The onboarding flow involves package execution, gateway configuration, local configuration writes, and credentials. <br>
-Mitigation: Verify the `hipokamp-mcp` package and gateway before setup, prefer scoped bootstrap tokens over long-lived API keys, and keep unrelated projects in separate Hippocampus workspaces. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to connect a new OpenClaw instance or workspace to Hippocampus memory, configure identity and authentication, and verify an initial store/search round trip.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cezexPL/hippocampus-openclaw-onboarding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only onboarding guidance; no generated files are emitted by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The setup flow asks users to run an unpinned external npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a verified official package or source, and prefer an exact pinned version before running setup.
+
+Risk: Bootstrap credentials or long-lived API keys could be exposed through shell history or reused across workspaces.
+
+Mitigation: Prefer a short-lived, single-use, scoped, and revocable bootstrap token, and avoid placing long-lived credentials in shell history.
+
+Risk: Local setup writes configuration under ~/.hipokamp/config.json, which may contain sensitive authentication material.
+
+Mitigation: Inspect the generated config file and its filesystem permissions after setup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cezexpl/skills/hippocampus-openclaw-onboarding)
+- [Publisher profile](https://clawhub.ai/user/cezexpl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with an inline shell command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup flow, credential handling guidance, and related package pointers.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

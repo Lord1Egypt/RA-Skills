@@ -1,39 +1,54 @@
-## Description: <br>
-Use this skill when the user wants to evaluate a new nanoparticle vaccine candidate, redesign a computational screening workflow, define gate criteria, or produce a Go/Hold/Kill decision. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user wants to evaluate a new nanoparticle vaccine candidate, redesign a computational screening workflow, define gate criteria, or produce a Go/Hold/Kill decision.
 
-## Publisher: <br>
-[barrett-cryptoDNA](https://clawhub.ai/user/barrett-cryptoDNA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[barrett-cryptodna](https://clawhub.ai/user/barrett-cryptodna)
 
-## Use Case: <br>
-Developers, computational biologists, and vaccine research teams use this skill to organize nanoparticle vaccine candidate screening, define gate criteria, and produce Go/Hold/Kill recommendations from structure, exposure, dynamics, and manufacturability evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill concerns vaccine design research and may produce planning recommendations that are inappropriate for direct real-world use without domain review. <br>
-Mitigation: Treat outputs as planning support only and require expert scientific, medical, biosafety, and compliance review before acting on them. <br>
-Risk: The artifact is instruction-only and does not execute tools, but its scientific workflow guidance may still be incomplete if user-supplied antigen, carrier, linker, host, or compute-budget details are missing. <br>
-Mitigation: Use the skill's missing information checklist and decision gates to collect required inputs, document uncertainty, and stop or hold candidates when evidence is insufficient. <br>
+## Use Case:
 
+Researchers, computational biologists, and agent developers use this skill to structure nanoparticle vaccine candidate review, define gated screening criteria, and produce Go/Hold/Kill decisions from structure, SASA, and molecular dynamics evidence.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with structured workflow sections and decision criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning support only; real-world vaccine design decisions require expert scientific, medical, biosafety, and compliance review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Go/Hold/Kill outputs for vaccine candidates may be mistaken for expert biological, biosafety, regulatory, or clinical review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the outputs as research planning support and require expert wet-lab, biosafety, regulatory, and clinical review before acting on candidate decisions.
+
+Risk: Users who cannot review Chinese-language workflow instructions may misunderstand the skill's scope or decision criteria.
+
+Mitigation: Install and use the skill only when the reviewing team is comfortable evaluating Chinese-language computational vaccine design guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/barrett-cryptodna/skills/vaccine-design-orchestrator)
+- [Publisher profile](https://clawhub.ai/user/barrett-cryptodna)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces structured research planning output with task definition, known information, key risks, recommended workflow, gate criteria, Go/Hold/Kill decision, and next-iteration recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

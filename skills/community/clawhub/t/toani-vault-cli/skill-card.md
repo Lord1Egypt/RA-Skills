@@ -1,43 +1,58 @@
-## Description: <br>
-Install, configure, and securely operate the Toani Vault CLI for login, health checks, credential metadata reads, and sandbox browser sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, configure, and securely operate the Toani Vault CLI for login, health checks, credential metadata reads, and sandbox browser sessions.
 
-## Publisher: <br>
-[toani](https://clawhub.ai/user/toani) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[toani](https://clawhub.ai/user/toani)
 
-## Use Case: <br>
-Developers and operators use this skill to install and verify the Toani Vault CLI, authenticate safely, inspect credential metadata, and run remote sandbox browser sessions while keeping token handling explicit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill supports workflows involving bearer tokens and credential-backed CLI operations. <br>
-Mitigation: Use placeholder values in examples, avoid logging or committing real tokens, and verify target URLs before credential-backed actions. <br>
-Risk: Remote sandbox browser sessions can remain active or act on unintended page state. <br>
-Mitigation: Inspect page state before secret-backed actions and terminate sandbox sessions when the task is complete. <br>
-Risk: The CLI may optionally install persistent Toani instructions for Claude or Codex during onboarding. <br>
-Mitigation: Decline optional skill installation unless persistent Toani instructions are desired in that agent environment. <br>
+## Use Case:
 
+Developers and coding agents use this skill to install and operate the Toani Vault CLI, validate authentication and configuration, inspect credential metadata, and manage remote sandbox browser sessions without exposing plaintext secrets.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/toani/toani-vault-cli) <br>
-- [Toani Vault CLI source](https://github.com/credbridge/credbridge/tree/main/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include CLI install commands, environment variable examples, smoke checks, credential metadata commands, and sandbox session commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.21 (source: artifact frontmatter and server release metadata) <br>
+Risk: The skill installs a mutable global npm CLI and handles authentication tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for intended Toani Vault use, trust or review the @toani/vault-cli package, prefer a pinned version when possible, avoid elevated npm installs, and use least-privilege tokens.
+
+Risk: Sandbox workflows can use credential-backed browser actions where accidental disclosure or long-lived sessions would increase exposure.
+
+Mitigation: Inspect page state before secret-backed fill steps, avoid passing secrets to script bindings, prefer safe readback operations after fills, and terminate sandbox sessions when finished.
+
+Risk: CLI command availability may drift across installed versions.
+
+Mitigation: Verify the installed command surface with toani --help and toani --version before relying on command groups or flags.
+
+## Reference(s):
+
+- [Toani Vault CLI source](https://github.com/credbridge/credbridge/tree/main/cli)
+- [ClawHub skill page](https://clawhub.ai/toani/skills/toani-vault-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CLI commands, environment variable names, JSON-output flags, and safety cautions for credential and sandbox workflows.]
+
+## Skill Version(s):
+
+0.0.21 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

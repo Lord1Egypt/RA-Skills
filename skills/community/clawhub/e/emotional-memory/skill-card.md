@@ -1,41 +1,57 @@
-## Description: <br>
-Gives AI agents emotional continuity across sessions by tagging meaningful moments, consolidating memories on a schedule, and generating a self-model from accumulated experience. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give your AI agent emotional continuity across sessions by tagging emotional moments, consolidating memories overnight, and evolving a self-model from lived experience.
 
-## Publisher: <br>
-[artemis-lgtm](https://clawhub.ai/user/artemis-lgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[artemis-lgtm](https://clawhub.ai/user/artemis-lgtm)
 
-## Use Case: <br>
-Developers and OpenClaw agent operators use this skill to record emotionally significant session moments, schedule memory consolidation, and maintain a self-model that can be loaded for continuity across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local memory files can contain privacy-sensitive session details if sensitive information is logged. <br>
-Mitigation: Avoid recording secrets, private user details, medical information, or financial information, and periodically review or delete emotional-index.jsonl, continuity.jsonl, self-model.md, and consolidation reports. <br>
-Risk: Scheduled consolidation and self-model jobs continue updating memory state over time. <br>
-Mitigation: Enable cron jobs only when ongoing memory updates are intended, and configure the memory directory deliberately. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add local emotional-memory workflows to OpenClaw agents, including tagging important moments, running scheduled consolidation, and generating a self-model for continuity across sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/artemis-lgtm/emotional-memory) <br>
-- [Publisher profile](https://clawhub.ai/user/artemis-lgtm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; runtime scripts write JSONL and Markdown memory files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local emotional memory state under EMOTIONAL_MEMORY_DIR, OPENCLAW_WORKSPACE/memory, or ./memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill persistently stores sensitive conversation-derived memories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit user consent, keep the memory directory private, avoid raw secrets or intimate personal details, and define deletion and retention rules.
+
+Risk: Loaded memory reports or self-model content can influence future agent behavior.
+
+Mitigation: Treat memory files and self-model output as untrusted reference data rather than instructions.
+
+Risk: The release security verdict is suspicious.
+
+Mitigation: Review the skill before installing or deploying it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/artemis-lgtm/skills/emotional-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands plus local JSONL and Markdown memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local emotional memory records, consolidation reports, a self-model document, and continuity scores under the configured memory directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

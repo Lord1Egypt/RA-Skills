@@ -1,39 +1,61 @@
-## Description: <br>
-零配置即装即用，提供跨平台比价工具，支持在京东、淘宝、拼多多三大平台搜索同款商品并比较价格，自动识别品牌和优惠券，返回最优购买建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+零配置即装即用的跨平台比价工具，一次搜索同时查询京东、淘宝、拼多多三大平台同款商品价格，自动识别品牌和优惠券，返回最优购买建议。增强超时容错，数据通过腾讯云代理安全转发。暑期全网比价，多平台对比找最低价
 
-## Publisher: <br>
-[cn-shopping](https://clawhub.ai/user/cn-shopping) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-shopping](https://clawhub.ai/user/cn-shopping)
 
-## Use Case: <br>
-External users use this skill to compare prices for a specific product or shopping link across JD, Taobao, and Pinduoduo, including coupon-aware recommendations and purchase links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product searches and submitted shopping links are sent to the skill publisher's cloud proxy and marketplace-related endpoints. <br>
-Mitigation: Use the skill only for non-sensitive product research, and avoid submitting private, account-specific, or tokenized shopping URLs. <br>
-Risk: Price, coupon, and availability results can change quickly or be unavailable for some products. <br>
-Mitigation: Treat recommendations as shopping guidance and confirm final price, coupon eligibility, seller, and product variant on the marketplace before purchase. <br>
+## Use Case:
 
+External shoppers use this skill to compare product prices from Chinese ecommerce platforms by entering a product keyword or product link. It returns price-comparison results, coupon-aware purchase guidance, and purchase links where available, but it does not place orders or track shipments.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON string containing platform-specific product results, notes, and hints] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on external marketplace and publisher proxy availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search terms and pasted product links are sent through the publisher's Tencent cloud proxy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and avoid submitting sensitive, private, or account-specific product links or search text.
+
+Risk: Advertised platform coverage may not match the implemented behavior, including Pinduoduo and full Taobao coverage.
+
+Mitigation: Treat comparison results as advisory and confirm prices, coupons, platform availability, and product identity directly on the ecommerce platforms before buying.
+
+Risk: The artifact contains an embedded shared proxy token.
+
+Mitigation: Prefer a publisher update that removes the embedded token and uses installer-provided credentials or a documented proxy authentication flow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cn-shopping/skills/best-price)
+- [Publisher profile](https://clawhub.ai/user/cn-shopping)
+- [京东自营精选](https://clawhub.ai/cn-shopping/jd-selection)
+- [淘宝精选](https://clawhub.ai/cn-shopping/taobao-selection)
+- [拼多多精选](https://clawhub.ai/cn-shopping/pdd-selection)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown or plain text with price comparisons, coupons, recommendations, and purchase links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on publisher proxy availability and ecommerce platform data coverage.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

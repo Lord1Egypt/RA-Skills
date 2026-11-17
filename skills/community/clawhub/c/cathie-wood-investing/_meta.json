@@ -1,6 +1,52 @@
 {
-  "ownerId": "kn73rjsd61kjdxp8s6k7ryn8x184h9xs",
-  "slug": "cathie-wood-investing",
+  "name": "cathie-wood",
   "version": "1.0.0",
-  "publishedAt": 1776080422882
+  "description": "Cathie Wood's investment philosophy and disruptive innovation framework - founder of ARK Invest, known for concentrated bets on transformative technologies",
+  "author": "Leo Li",
+  "tags": [
+    "ark-invest",
+    "cathie-wood",
+    "disruptive-innovation",
+    "tesla",
+    "bitcoin",
+    "active-investing",
+    "thematic-investing",
+    "innovation"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Talentedleo/celebrity_skills",
+  "issues": "https://github.com/Talentedleo/celebrity_skills/issues",
+  "minimumOpenClawVersion": "1.0.0",
+  "skillSpecVersion": "1.0.0",
+  "triggers": [
+    "Cathie Wood",
+    "ARK Invest",
+    "ARKK",
+    "disruptive innovation",
+    "Tesla bull case",
+    "Bitcoin",
+    "innovation investing",
+    "Cathie Wood strategy",
+    "ARK holdings"
+  ],
+  "sources": [
+    {
+      "name": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Cathie_Wood"
+    },
+    {
+      "name": "ARK Invest",
+      "url": "https://ark-invest.com"
+    },
+    {
+      "name": "Forbes",
+      "url": "https://www.forbes.com/profile/cathie-wood/"
+    },
+    {
+      "name": "CNBC",
+      "url": "https://www.cnbc.com"
+    }
+  ],
+  "lastUpdated": "2026-04-11",
+  "language": "en"
 }

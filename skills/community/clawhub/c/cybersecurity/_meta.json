@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "cybersecurity",
-  "version": "1.0.0",
-  "publishedAt": 1773690116790
+  "displayName": "Cybersecurity",
+  "latest": {
+    "version": "1.0.2",
+    "publishedAt": 1785140325478
+  },
+  "history": [
+    {
+      "version": "1.0.1",
+      "publishedAt": 1785112998130
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1773690116790
+    }
+  ]
 }

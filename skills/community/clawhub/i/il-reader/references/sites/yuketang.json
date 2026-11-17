@@ -1,0 +1,303 @@
+{
+  "version": "2.4.0",
+  "source_id": "yuketang",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:01:39.283Z",
+  "entry": {
+    "url": "https://www.yuketang.cn/",
+    "final_url": "https://www.yuketang.cn/",
+    "title": "雨课堂 - 免费的智慧教学解决方案",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:01:39.283Z",
+    "identity": {
+      "declared_name": "雨课堂",
+      "hostname": "www.yuketang.cn",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "帮助中心",
+        "href": "https://www.yuketang.cn/help",
+        "target": ""
+      },
+      {
+        "text": "清华大学开课首周，师生进入“雨课堂”26.4万人次\n2020年2月28日\n\n自2月17日清华大学启动“线上开课”以来，目前，全校新学期第一周教学工作已顺利完成，共涉及3923门次课程，共完成课程10635场次，通过雨课堂上课师生26.4万人次，总时长达39.5万小时。",
+        "href": "https://www.takefoto.cn/viewnews-2064054.html",
+        "target": "_blank"
+      },
+      {
+        "text": "清华大学开课首周，师生进入“雨课堂”26.4万人次\n2020年2月28日\n\n自2月17日清华大学启动“线上开课”以来，目前，全校新学期第一周教学工作已顺利完成，共涉及3923门次课程，共完成课程10635场次，通过雨课堂上课师生26.4万人次，总时长达39.5万小时。",
+        "href": "https://www.takefoto.cn/viewnews-2064054.html",
+        "target": "_blank"
+      },
+      {
+        "text": "清华大学开课首周，师生进入“雨课堂”26.4万人次\n2020年2月28日\n\n自2月17日清华大学启动“线上开课”以来，目前，全校新学期第一周教学工作已顺利完成，共涉及3923门次课程，共完成课程10635场次，通过雨课堂上课师生26.4万人次，总时长达39.5万小时。",
+        "href": "https://www.takefoto.cn/viewnews-2064054.html",
+        "target": "_blank"
+      },
+      {
+        "text": "帮助中心",
+        "href": "https://www.yuketang.cn/help",
+        "target": ""
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "div",
+      "type": null,
+      "text": "Previous slide",
+      "label": "",
+      "aria_label": "Previous slide",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Previous slide",
+        "exact": true
+      },
+      "observed_url": "https://www.yuketang.cn/",
+      "observed_at": "2026-10-09T09:01:39.203Z"
+    },
+    {
+      "tag": "div",
+      "type": null,
+      "text": "Next slide",
+      "label": "",
+      "aria_label": "Next slide",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Next slide",
+        "exact": true
+      },
+      "observed_url": "https://www.yuketang.cn/",
+      "observed_at": "2026-10-09T09:01:39.203Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "yuketang:product-capability",
+      "source_id": "yuketang",
+      "task_kind": "product-capability",
+      "status": "entry_observed",
+      "parameters": [
+        "product",
+        "client_platform",
+        "feature",
+        "menu_or_setting"
+      ],
+      "instructions": [
+        "先确认网页版/桌面版/插件的具体产品和版本，再打开本题功能菜单或官方帮助读取选项；不提交生成、付费或个人信息。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.yuketang.cn/",
+      "controls": [
+        {
+          "tag": "div",
+          "type": null,
+          "text": "Previous slide",
+          "label": "",
+          "aria_label": "Previous slide",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Previous slide",
+            "exact": true
+          },
+          "observed_url": "https://www.yuketang.cn/",
+          "observed_at": "2026-10-09T09:01:39.203Z"
+        },
+        {
+          "tag": "div",
+          "type": null,
+          "text": "Next slide",
+          "label": "",
+          "aria_label": "Next slide",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Next slide",
+            "exact": true
+          },
+          "observed_url": "https://www.yuketang.cn/",
+          "observed_at": "2026-10-09T09:01:39.203Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    },
+    {
+      "id": "yuketang:statistics-ranking",
+      "source_id": "yuketang",
+      "task_kind": "statistics-ranking",
+      "status": "entry_observed",
+      "parameters": [
+        "query_terms",
+        "fields",
+        "boolean_relation",
+        "match_mode",
+        "start_year",
+        "end_year",
+        "resource_type",
+        "fund",
+        "sort_field",
+        "sort_direction",
+        "rank_or_threshold"
+      ],
+      "instructions": [
+        "把本题条件逐一填入已观察字段或该库自己的专业语法；清除上题筛选；核对结果回显、资源类型、年份、匹配方式、排序及统计口径。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.yuketang.cn/",
+      "controls": [
+        {
+          "tag": "div",
+          "type": null,
+          "text": "Previous slide",
+          "label": "",
+          "aria_label": "Previous slide",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Previous slide",
+            "exact": true
+          },
+          "observed_url": "https://www.yuketang.cn/",
+          "observed_at": "2026-10-09T09:01:39.203Z"
+        },
+        {
+          "tag": "div",
+          "type": null,
+          "text": "Next slide",
+          "label": "",
+          "aria_label": "Next slide",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Next slide",
+            "exact": true
+          },
+          "observed_url": "https://www.yuketang.cn/",
+          "observed_at": "2026-10-09T09:01:39.203Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "yuketang",
+    "quiz_entries": [],
+    "example_ids": [
+      "2025-M39-Q1",
+      "2026-M39-Q1",
+      "KH-Q037",
+      "KH-Q061"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:01:39.283Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/yuketang-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/yuketang-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

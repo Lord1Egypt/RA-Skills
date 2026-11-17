@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Not sure where to go
+    url: https://github.com/JohnSmithfan/github-novel-serialization-skill/blob/main/SUPPORT.md
+    about: One table mapping each kind of question to the right place.
+  - name: Questions & Discussions
+    url: https://github.com/JohnSmithfan/github-novel-serialization-skill/discussions
+    about: Ask questions and discuss ideas. Open-ended questions belong here, not in issues.
+  - name: Subproject Playbook
+    url: https://github.com/JohnSmithfan/github-novel-serialization-skill/blob/main/references/subproject-playbook.md
+    about: Field-tested conventions for running a novel subproject. Read before proposing a process change.
+  - name: Security issue
+    url: https://github.com/JohnSmithfan/github-novel-serialization-skill/security/advisories/new
+    about: Report privately. Never open a public issue for a leaked credential.

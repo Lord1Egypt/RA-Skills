@@ -1,0 +1,14 @@
+interface:
+  display_name: "Ball Ranks Fantasy Sports"
+  short_description: "AI fantasy rankings and projections for NFL and NBA in your agent: weekly NFL start/sit boards by position (PPR, half-PPR, standard), season draft boards for both sports, and player projections. Read-only MCP + REST; Model Zero needs no API key."
+  icon_small: "./icon.png"
+  icon_large: "./icon.png"
+  default_prompt: "Use $ball-ranks to compare fantasy players with Ball Ranks AI rankings and projections: weekly NFL start/sit by position and scoring format, or season draft boards for football and basketball."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "ball-ranks"
+      description: "Ball Ranks AI fantasy football and basketball rankings and projections (read-only)"
+      transport: "streamable_http"
+      url: "https://ballranks.com/api/mcp"

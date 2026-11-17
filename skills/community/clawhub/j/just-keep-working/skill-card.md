@@ -1,39 +1,51 @@
-## Description: <br>
-Autonomous programming guidance for coding agents that helps them keep working through code changes, refactors, bug fixes, and project tasks while verifying progress from the actual codebase. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous programming workflow for OpenClaw that guides an agent through codebase reading, additive implementation, confirmation gates, and read-back verification for coding tasks.
 
-## Publisher: <br>
-[ubuntume](https://clawhub.ai/user/ubuntume) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ubuntume](https://clawhub.ai/user/ubuntume)
 
-## Use Case: <br>
-Developers and coding agents use this skill to structure autonomous software work, reduce unnecessary clarifying questions, track verified progress, and avoid reporting incomplete implementation work as done. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages broad autonomous coding behavior, which can lead an agent to proceed through ambiguous decisions with less user confirmation than expected. <br>
-Mitigation: Install it only when increased coding autonomy is desired, review ambiguous decisions, and keep normal safeguards enabled for destructive actions, large refactors, sensitive repositories, or hard-to-reverse changes. <br>
-Risk: Generated code changes may still be incomplete or incorrect even when the workflow asks the agent to self-verify. <br>
-Mitigation: Review diffs and run the project's tests or validation commands before relying on resulting code changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/ubuntume/just-keep-working) <br>
+## Use Case:
+
+Developers and engineers use this skill to have an agent carry out code changes, feature work, refactors, fixes, and project tasks with fewer unnecessary clarifying questions while preserving confirmation gates for destructive changes and unknowable decisions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill encourages autonomous coding and may create files, add routes, or extend logic without asking when the work is considered additive.
+
+Mitigation: Review the autonomy expectations before installation and preserve the confirmation gates for destructive changes, credentials, business decisions, and major architectural choices.
+
+Risk: An agent could produce incorrect code changes or overstate completion if it does not verify work against actual files.
+
+Mitigation: Use the skill's read-back and DONE-VERIFIED workflow before depending on completed steps or reporting completion.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown guidance with task trees, checklists, completion reports, and inline code or shell examples when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Intended to guide an agent's coding workflow rather than produce a standalone executable artifact.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task trees, progress updates, verification summaries, and focused user prompts for destructive or unknowable decisions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

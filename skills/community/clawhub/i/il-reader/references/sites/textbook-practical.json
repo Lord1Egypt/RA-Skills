@@ -1,0 +1,257 @@
+{
+  "version": "2.4.0",
+  "source_id": "textbook-practical",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:01:25.187Z",
+  "entry": {
+    "url": "https://www.cmpedu.com/books/book/5608760.htm",
+    "final_url": "https://www.cmpedu.com/books/book/5608760.htm",
+    "title": "文献信息检索实用教程 第4版——陈萍秀--机械工业出版社",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:01:25.187Z",
+    "identity": {
+      "declared_name": "《文献信息检索实用教程》第 4 版（陈萍秀）",
+      "hostname": "www.cmpedu.com",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "资源下载",
+        "href": "https://www.cmpedu.com/ziyuans/index.htm",
+        "target": ""
+      },
+      {
+        "text": "文献信息检索实用教程 第4版",
+        "href": "https://www.cmpedu.com/books/book/5608760.htm",
+        "target": ""
+      },
+      {
+        "text": "资源下载",
+        "href": "https://www.cmpedu.com/ziyuans/tolist.htm?BOOK_ID=5608760&HAS_SOURCE=1",
+        "target": ""
+      },
+      {
+        "text": "资源下载",
+        "href": "https://www.cmpedu.com/ziyuans/index.htm",
+        "target": ""
+      }
+    ],
+    "frames": [
+      {
+        "src": "https://www.cmpedu.com/books/book/5608760.htm",
+        "id": "",
+        "name": "frameName",
+        "title": ""
+      }
+    ]
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "请输入书名、ISBN、作者等关键字",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "请输入书名、ISBN、作者等关键字",
+      "name": "KEY",
+      "id": "__KEY2",
+      "css": "#__KEY2",
+      "role": null,
+      "form_action": "https://www.cmpedu.com/so.htm",
+      "locator": {
+        "css": "#__KEY2"
+      },
+      "observed_url": "https://www.cmpedu.com/books/book/5608760.htm",
+      "observed_at": "2026-10-09T09:01:24.665Z"
+    },
+    {
+      "tag": "input",
+      "type": "submit",
+      "text": "搜索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "__so2",
+      "css": "#__so2",
+      "role": null,
+      "form_action": "https://www.cmpedu.com/so.htm",
+      "locator": {
+        "css": "#__so2"
+      },
+      "observed_url": "https://www.cmpedu.com/books/book/5608760.htm",
+      "observed_at": "2026-10-09T09:01:24.665Z"
+    },
+    {
+      "tag": "textarea",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "INTRO_",
+      "css": "#INTRO_",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#INTRO_"
+      },
+      "observed_url": "https://www.cmpedu.com/books/book/5608760.htm",
+      "observed_at": "2026-10-09T09:01:24.665Z"
+    },
+    {
+      "tag": "input",
+      "type": "button",
+      "text": "发 表",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.cmpedu.com/books/book/5608760.htm",
+      "observed_at": "2026-10-09T09:01:24.665Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "textbook-practical:record-lookup",
+      "source_id": "textbook-practical",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.cmpedu.com/books/book/5608760.htm",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "请输入书名、ISBN、作者等关键字",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "请输入书名、ISBN、作者等关键字",
+          "name": "KEY",
+          "id": "__KEY2",
+          "css": "#__KEY2",
+          "role": null,
+          "form_action": "https://www.cmpedu.com/so.htm",
+          "locator": {
+            "css": "#__KEY2"
+          },
+          "observed_url": "https://www.cmpedu.com/books/book/5608760.htm",
+          "observed_at": "2026-10-09T09:01:24.665Z"
+        },
+        {
+          "tag": "input",
+          "type": "submit",
+          "text": "搜索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "__so2",
+          "css": "#__so2",
+          "role": null,
+          "form_action": "https://www.cmpedu.com/so.htm",
+          "locator": {
+            "css": "#__so2"
+          },
+          "observed_url": "https://www.cmpedu.com/books/book/5608760.htm",
+          "observed_at": "2026-10-09T09:01:24.665Z"
+        },
+        {
+          "tag": "textarea",
+          "type": null,
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "INTRO_",
+          "css": "#INTRO_",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#INTRO_"
+          },
+          "observed_url": "https://www.cmpedu.com/books/book/5608760.htm",
+          "observed_at": "2026-10-09T09:01:24.665Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "textbook-practical",
+    "quiz_entries": [],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:01:25.187Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/textbook-practical-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/textbook-practical-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

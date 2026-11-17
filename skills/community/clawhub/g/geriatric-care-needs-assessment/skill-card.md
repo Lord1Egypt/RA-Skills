@@ -1,42 +1,59 @@
-## Description: <br>
-Drafts a structured geriatric care needs assessment from eldercare intake information, covering functional status, cognitive and behavioral observations, safety, social supports, environment, and financial/legal status for licensed professional review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts a structured geriatric care needs assessment for older adult clients, covering functional status, cognitive and behavioral observations, safety, supports, environment, financial and legal status, and prioritized care recommendations for licensed professional review.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-External Aging Life Care Managers, geriatric care managers, licensed social workers, eldercare coordinators, and discharge planners use this skill to organize sensitive older-adult intake information into a draft assessment with prioritized care recommendations. The draft is intended for licensed professional review before sharing, implementation, service authorization, or billing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process sensitive medical, cognitive, safety, caregiver, legal, insurance, and financial information about older adults. <br>
-Mitigation: Use initials where possible, avoid Social Security numbers and account numbers, store outputs securely, and share only with confirmed client or authorized representative authorization. <br>
-Risk: Draft assessment content could be mistaken for a clinical diagnosis, service authorization, insurance evaluation, or mandatory Adult Protective Services report. <br>
-Mitigation: Keep the output labeled as a draft, require licensed ALCM or social worker review before use, and have the responsible professional file any required APS report directly. <br>
-Risk: Incorrect or incomplete intake information could lead to unsafe prioritization of care needs. <br>
-Mitigation: Collect information one question at a time, surface urgent safety concerns at the top of the draft, and review all recommendations before acting on them. <br>
+## Use Case:
 
+External care managers, licensed social workers, eldercare coordinators, and discharge planners use this skill to turn sensitive intake information into a draft multi-domain care needs assessment. The draft supports professional review before care planning, service authorization, sharing, or billing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/geriatric-care-needs-assessment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown draft assessment with tables and prioritized recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Labels output as a draft requiring licensed Aging Life Care Manager or social worker review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence and CHANGELOG, released 2026-05-30) <br>
+Risk: Assessment content may contain sensitive health and personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering unnecessary identifiers, store drafts securely, and confirm authorization before sharing assessment content.
+
+Risk: Draft recommendations could be mistaken for final clinical, care-planning, billing, or authorization decisions.
+
+Mitigation: Keep the output labeled as a draft and require review by a licensed Aging Life Care Manager or social worker before operational use.
+
+Risk: Elder abuse, neglect, or exploitation indicators may create mandatory reporting obligations.
+
+Mitigation: Surface urgent concerns clearly and remind the care manager that any required Adult Protective Services report must be filed directly under the applicable jurisdiction's rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/geriatric-care-needs-assessment)
+- [Artifact README](artifact/README.md)
+- [Artifact skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown draft assessment with tables, priority labels, urgent concern alerts, and licensed professional review block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output is labeled as a draft and requires licensed professional review before sharing, billing, service authorization, or care-plan use.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and changelog, released 2026-05-30)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

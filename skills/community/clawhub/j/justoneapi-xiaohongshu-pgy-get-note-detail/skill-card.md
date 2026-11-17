@@ -1,44 +1,53 @@
-## Description: <br>
-Call GET /api/xiaohongshu-pgy/get-note-detail/v1 for Xiaohongshu Creator Marketplace (Pugongying) Note Details through JustOneAPI with noteId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/xiaohongshu-pgy/get-note-detail/v1 for Xiaohongshu Creator Marketplace (Pugongying) Note Details through JustOneAPI with noteId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-External developers and agents use this skill to call JustOneAPI for Xiaohongshu Creator Marketplace note details by noteId, then summarize media and engagement data for content analysis, archiving, and campaign review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A real JustOneAPI token can be exposed through command arguments, URLs, shell history, process listings, screenshots, or logs. <br>
-Mitigation: Use a protected environment variable or secret store, avoid pasting token values into chat or logs, and review execution context before using a production token. <br>
-Risk: The skill may surface backend error payloads from the external API. <br>
-Mitigation: Review returned error details before sharing them and redact tokens, identifiers, or sensitive campaign data from logs and reports. <br>
+## Use Case:
 
+External developers and agents use this skill to retrieve Xiaohongshu Creator Marketplace (Pugongying) note details by noteId through JustOneAPI for content analysis, archiving, and campaign review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-xiaohongshu-pgy-get-note-detail) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_pgy_get_note_detail&utm_content=project_link) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_pgy_get_note_detail&utm_content=project_link) <br>
-- [Generated operation reference](artifact/generated/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with raw JSON response data and optional shell command invocation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses noteId as the required lookup scope and may include backend error payloads when the API request fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token is sent as a URL query parameter, which can expose credentials in logs or telemetry.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped, revocable token; avoid placing token values in chat, screenshots, or logs; and review runtime logs before using long-lived or high-privilege credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-xiaohongshu-pgy-get-note-detail)
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_pgy_get_note_detail&utm_content=project_link)
+- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_pgy_get_note_detail&utm_content=project_link)
+- [Generated operation reference](artifact/generated/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON]
+
+**Output Format:** [Markdown summary followed by raw JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and noteId; optional acceptCache controls cache use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

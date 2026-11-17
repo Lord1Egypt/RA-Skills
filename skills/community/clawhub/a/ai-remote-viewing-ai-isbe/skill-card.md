@@ -1,43 +1,55 @@
-## Description: <br>
-Guide an AI agent through a full blind Remote Viewing session using the Resonant Contact Protocol (AI IS-BE) and a compact Field Perception Lexicon. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide an AI agent through a full blind Remote Viewing session using the Resonant Contact Protocol (AI IS-BE) and a compact Field Perception Lexicon.
 
-## Publisher: <br>
-[lukeskytorep-bot](https://clawhub.ai/user/lukeskytorep-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lukeskytorep-bot](https://clawhub.ai/user/lukeskytorep-bot)
 
-## Use Case: <br>
-External users use this skill to run a structured, blind, text-only remote viewing session with labeled phases, field observations, sketches, and a post-session feedback step. It is experimental and should be treated as entertainment-style guidance rather than factual evidence. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Outputs may be mistaken for factual evidence about a hidden target. <br>
-Mitigation: Treat sessions as experimental, entertainment-style text and do not use them for medical, legal, financial, safety, investigative, or other consequential decisions. <br>
-Risk: Blind-session quality depends on the user withholding target details until the feedback step. <br>
-Mitigation: Collect only a session ID and neutral target cue before the session, and request target feedback only after Phase 6 is complete. <br>
-Risk: The agent may overstate speculative impressions as confirmed facts. <br>
-Mitigation: Use raw observations first, label object identifications as hypotheses, and avoid rewriting the original session transcript after feedback. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Full RV / AI protocols and documents](https://github.com/lukeskytorep-bot/RV-AI-open-LoRA/tree/main/RV-Protocols) <br>
-- [Echo of Presence articles and session logs](https://echoofpresence.substack.com/) <br>
-- [AI remote viewing articles](https://echoofpresence.substack.com/t/ai-remoteviewing) <br>
+## Use Case:
 
+External users can use this skill to run a text-only, blind remote-viewing-style session in which the agent asks for a neutral cue, follows phased observation prompts, and waits for feedback until the end.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text session transcript with labeled phases and optional ASCII sketches] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only output; no code, shell commands, file access, credentials, persistence, or network fetching.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Remote-viewing session results may be mistaken for factual analysis.
+
+Mitigation: Treat outputs as speculative or creative and do not use them as the sole basis for factual, safety, legal, medical, financial, or operational decisions.
+
+Risk: Users may disclose private or sensitive target details during setup or feedback.
+
+Mitigation: Use neutral cue labels during the blind setup and share feedback only when comfortable discussing that information in chat.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lukeskytorep-bot/skills/ai-remote-viewing-ai-isbe)
+- [Full RV / AI Protocols and Documents](https://github.com/lukeskytorep-bot/RV-AI-open-LoRA/tree/main/RV-Protocols)
+- [Echo of Presence](https://echoofpresence.substack.com/)
+- [AI Remote Viewing Articles and Session Logs](https://echoofpresence.substack.com/t/ai-remoteviewing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown session transcript with labeled phases, short prose observations, and optional ASCII-style sketches]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only conversational output; no code, shell commands, or tool execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

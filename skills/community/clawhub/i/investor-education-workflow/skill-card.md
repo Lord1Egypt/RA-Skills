@@ -1,46 +1,61 @@
-## Description: <br>
-Guides agents through investor-education content workflows that retrieve knowledge, supplement from official sources, translate concepts into plain language, check compliance constraints, route multi-format outputs, and feed results back into a knowledge base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Investor Education Workflow helps agents produce investor education content by retrieving maintained knowledge, supplementing with official sources when needed, translating concepts into plain language, marking output intent, and preparing reviewed content for reuse.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External advisors, content producers, and agent operators use this skill to turn investor-education requests into compliant plain-language explanations, articles, cards, scripts, and knowledge-base updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer-derived records may include raw conversations, account details, complaints, or suitability information. <br>
-Mitigation: Use only sanitized inputs unless explicit consent, compliance approval, retention rules, and deletion controls are in place. <br>
-Risk: Generated investor-education content may be published or pushed externally without sufficient review. <br>
-Mitigation: Require human approval for every WeChat publication, customer push, or externally distributed output. <br>
-Risk: Investor-facing education can become misleading if source material is stale or unsupported. <br>
-Mitigation: Use official sources where the workflow calls for search and require compliance review for investor-facing content. <br>
+## Use Case:
 
+External investor educators, advisers, and content teams use this skill to draft investor education explanations, articles, cards, voice scripts, video scripts, and WeChat-ready content. It is designed to convert prohibited product-specific or return-prediction requests into educational guidance rather than investment advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lj22503/investor-education-workflow) <br>
-- [Five Modules Knowledge Base](references/five-modules.md) <br>
-- [Four Experts Framework](references/four-experts.md) <br>
-- [LLM Wiki Architecture](references/llm-wiki.md) <br>
-- [Education Template](templates/education-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and structured workflow parameters with optional code or shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include intent, mold, audience, source annotations, compliance notes, and knowledge-base update metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and artifact/clawhub.yaml) <br>
+Risk: Broad command and write permissions could expose unrelated workspace files or secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a sandboxed workspace with no unrelated files or secrets exposed, and prefer a version that removes Bash/Exec and scopes Write to the investor-education knowledge directory.
+
+Risk: Customer questions and feedback may be stored in the reusable knowledge base.
+
+Mitigation: Require explicit consent before saving, redact personal or account-specific details, and review changes before they enter reusable knowledge.
+
+Risk: Investor education outputs could be mistaken for investment advice or drift into product recommendations.
+
+Mitigation: Use the skill's compliance conversion protocol for specific recommendations, guaranteed returns, short-term predictions, or delegated-management requests, and add clear investor-education disclaimers.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lj22503/skills/investor-education-workflow)
+- [Five Modules Knowledge Base](artifact/references/five-modules.md)
+- [Four Experts Framework](artifact/references/four-experts.md)
+- [LLM Wiki Architecture](artifact/references/llm-wiki.md)
+- [Investor Education Template](artifact/templates/education-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured YAML intent parameters and optional knowledge-base file updates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May prepare plain-language responses, long-form articles, card content, voice scripts, video scripts, WeChat-ready content, and reviewed knowledge-base entries.]
+
+## Skill Version(s):
+
+1.2.0 (source: evidence release and artifact/clawhub.yaml; artifact/SKILL.md frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Analyzes OpenClaw token usage and cost from local session logs, identifies high-cost patterns, and produces optimization recommendations and a Markdown cost report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes OpenClaw token usage and cost, identifies high-consumption patterns such as long conversations, frequent cron activity, and large context, and provides concrete optimization suggestions.
 
-## Publisher: <br>
-[dagangtj](https://clawhub.ai/user/dagangtj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dagangtj](https://clawhub.ai/user/dagangtj)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to review local model usage, token volume, and estimated cost, then decide where to reduce context size, change model selection, or adjust recurring jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The generated cost report can expose sensitive local usage details such as model choices, session identifiers, token volumes, and cost patterns. <br>
-Mitigation: Store and share the report as sensitive local data, and review it before moving it outside the OpenClaw workspace. <br>
-Risk: Optimization guidance may include cleanup, model-change, or cron commands that affect future OpenClaw behavior. <br>
-Mitigation: Review commands manually and run only the changes that match your intended workflow and retention policy. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze local OpenClaw usage logs, produce cost reports, and identify model, context, cron, and session-management changes that may reduce spend.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dagangtj/openclaw-cost-analyzer) <br>
-- [README](README.md) <br>
-- [Security Policy](SECURITY.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Console text and Markdown cost report with recommended shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local OpenClaw session logs and writes a local cost-analysis report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, CHANGELOG, server release metadata) <br>
+Risk: Local OpenClaw conversation or session logs may contain sensitive prompts, project details, or usage patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only when comfortable granting local read access to those logs, and review generated reports before sharing them.
+
+Risk: The full analysis command writes a cost report under the OpenClaw memory directory.
+
+Mitigation: Confirm the report destination and contents are appropriate for the workspace before relying on or distributing the output.
+
+Risk: Model-switching, cron, and cleanup examples can affect future workflow behavior if copied without review.
+
+Mitigation: Treat suggested commands as manual recommendations, review them before execution, and remove recurring cron jobs when they are no longer intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dagangtj/skills/openclaw-cost-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Console text and Markdown cost report with suggested shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a local cost-analysis-report.md file under the OpenClaw memory directory when the full analysis command is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, CHANGELOG, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

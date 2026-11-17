@@ -1,44 +1,55 @@
-## Description: <br>
-Reference tool for devtools - covers intro, quickstart, patterns and more. Quick lookup for Logscope concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that covers intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics for Logscope concepts and implementation patterns.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and engineers use Logscope to quickly retrieve concise reference guidance for intro, quickstart, implementation patterns, debugging, performance, security, migration, and cheat sheet topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The supplied security adjudication has low confidence because it says the artifact contents were not available for a full artifact-backed review. <br>
-Mitigation: Inspect the packaged skill files and install only when the publisher is trusted. <br>
-Risk: Reference guidance can become outdated or too generic for a specific Logscope environment. <br>
-Mitigation: Review the generated guidance against current project documentation before using it for operational decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill as an offline quick-reference helper for Logscope concepts, setup patterns, troubleshooting, performance, security, migration, and command cheatsheets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain1/logscope) <br>
-- [Publisher profile](https://clawhub.ai/user/bytesagain1) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [script.sh](artifact/scripts/script.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain-text reference documentation with markdown-style headings and lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, or network access are described by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: frontmatter and server release metadata) <br>
+Risk: The skill appears generic and has minor version and command-name inconsistencies, so users may mistake its static text for authoritative vendor documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as lightweight offline reference guidance and confirm operational details against authoritative Logscope project or vendor documentation before production use.
+
+Risk: The artifact script reports version 2.0.2 while the server release and SKILL.md frontmatter report version 2.0.3.
+
+Mitigation: Confirm the packaged command version during release validation and update the script version string if the 2.0.3 release is intended.
+
+## Reference(s):
+
+- [Logscope ClawHub Skill Page](https://clawhub.ai/bytesagain1/skills/logscope)
+- [BytesAgain Homepage](https://bytesagain.com)
+- [BytesAgain Publisher Profile](https://clawhub.ai/user/bytesagain1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown-style headings and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline heredoc output; no API keys, credentials, network access, or external API calls indicated by artifact and security evidence.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-Industry Diagnosis helps an agent research an industry or product category, apply a four-part strategy framework, and produce a structured Markdown diagnosis report for market-entry or strategy decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Industry Diagnosis is an OpenClaw agent skill that takes an industry or product category name, gathers market evidence, scores it with a four-dimension strategy framework, and generates an eight-section Markdown diagnosis report for strategic decision support.
 
-## Publisher: <br>
-[ysw-2025](https://clawhub.ai/user/ysw-2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ysw-2025](https://clawhub.ai/user/ysw-2025)
 
-## Use Case: <br>
-External users, entrepreneurs, brand operators, and investors use this skill to turn an industry or category prompt into an evidence-oriented strategic diagnosis with market size, trend, competition, differentiation, risk, and entry recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may include incorrect, stale, or weakly sourced market data. <br>
-Mitigation: Review report data and citations before relying on or sharing the output. <br>
-Risk: Generated reports include the publisher's promotional footer. <br>
-Mitigation: Check whether the footer is appropriate before distributing the report. <br>
-Risk: Broad industry-analysis prompts may trigger web research and report creation. <br>
-Mitigation: Install and use the skill only when that behavior is desired. <br>
+## Use Case:
 
+External users, founders, brand operators, investors, and chain-brand strategists use this skill to assess whether to enter an industry or category and how to shape market entry strategy. The skill produces structured market-capacity, trend, competition, differentiation, risk, and opportunity analysis in Markdown.
 
-## Reference(s): <br>
-- [Server-resolved GitHub provenance](https://github.com/ysw-2025/industry-diagnosis) <br>
-- [Publisher homepage](https://mp.weixin.qq.com/s/wKNvt5GS3JxPmRcpAMGdEg) <br>
-- [Methodology reference](references/methodology.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates an industry diagnosis report with eight structured sections and may include a publisher promotional footer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Generated reports append promotional material and a QR-code reference for 位道策划, which may be inappropriate for neutral or internal reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated reports before sharing and remove promotional footer content when neutrality or internal-use requirements apply.
+
+Risk: The skill relies on web searches and market-source synthesis, so strategic conclusions can be affected by stale, inconsistent, or unverifiable public data.
+
+Mitigation: Confirm key figures against recent independent sources and retain the skill requirement to mark unverifiable data as pending verification.
+
+## Reference(s):
+
+- [Server-resolved GitHub source](https://github.com/ysw-2025/industry-diagnosis)
+- [Project homepage](https://mp.weixin.qq.com/s/wKNvt5GS3JxPmRcpAMGdEg)
+- [Industry Diagnosis Methodology](references/methodology.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, files]
+
+**Output Format:** [Markdown report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates an eight-module industry diagnosis report and may write a file named for the analyzed industry and date when the agent has file access.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

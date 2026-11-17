@@ -1,42 +1,49 @@
-## Description: <br>
-Security analysis and vulnerability detection. Scans code for security issues, checks dependencies, and provides remediation advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security analysis and vulnerability detection for scanning code, checking dependencies, and providing remediation advice.
 
-## Publisher: <br>
-[michealxie001](https://clawhub.ai/user/michealxie001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michealxie001](https://clawhub.ai/user/michealxie001)
 
-## Use Case: <br>
-Developers and engineers use this skill to run local security checks for Python source files, dependency manifests, and possible secrets before release or CI handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner reads files under the directories selected by the user. <br>
-Mitigation: Run it only against directories you intend to inspect and avoid broad scans over unrelated sensitive workspaces. <br>
-Risk: Secret-detection output can expose sensitive findings in terminal or CI logs. <br>
-Mitigation: Restrict log access, avoid publishing scan output, and rotate any credentials reported by the scan. <br>
-Risk: Dependency checks are informational and do not replace a dedicated vulnerability audit. <br>
-Mitigation: Use a dependency auditing tool such as pip-audit or safety for authoritative vulnerability checks. <br>
+## Use Case:
 
+Developers and engineers use this skill to scan Python code for common security issues, check dependency files, and detect likely secrets before code is shared or integrated.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/michealxie001/openclaw-secscan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text console output with findings, CWE identifiers when available, and remediation guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include file paths, line numbers, masked secret matches, and suggested follow-up tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Secret-scanning output can disclose real credentials into terminal or CI logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on directories intended for scanning, avoid running secrets --dir . on workspaces with real credentials, do not publish or retain scanner output until redaction is fixed, and rotate any credentials printed by this version.
+
+## Reference(s):
+
+- [OpenClaw Security Scanner on ClawHub](https://clawhub.ai/michealxie001/skills/openclaw-secscan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and scanner result text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file paths, line numbers, severity labels, CWE identifiers, dependency-check suggestions, and secret-detection findings.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

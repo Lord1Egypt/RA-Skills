@@ -1,0 +1,69 @@
+part: SGM8903
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "SG Micro SGM8903 \u2014 Capless 3Vrms Stereo Line Driver"
+main_page: https://www.sg-micro.com/product/sgm8903
+datasheet_path_expected: datasheets/SGM890.pdf
+datasheet_source_url: https://www.sg-micro.com/rect/assets/499e5773-5bd6-49f3-bd1d-021af3649000/SGM890.pdf
+datasheet_source_note: sg-micro.com official datasheet (Rev. C.2, Dec 2016, 11 pages, 1.0 MB). Capless 3Vrms stereo line driver
+  with adjustable gain, 3.0-5.5V supply, TSSOP-14 package.
+created_at: '2026-06-27T20:39:00+08:00'
+specs:
+  package: TSSOP-14
+  topology: Capless stereo line driver (no output DC-blocking caps required)
+  function: 3Vrms pop/click-free stereo line driver with adjustable gain
+  electrical:
+    supply_voltage_v_min: 3.0
+    supply_voltage_v_max: 5.5
+    output_voltage_vrms_at_5v: 3.0
+    snr_db_typ: 114
+    voltage_noise_density_uvrms_typ: 5.5
+    thd_n_pct_at_1khz: 0.001
+    gain_range_v_per_v: "\xB11 to \xB110"
+    inputs: differential
+    shutdown_control: pop/click-free on/off
+    charge_pump: integrated (negative rail generation, no separate supply)
+  operating_temp_c_min: -40
+  operating_temp_c_max: 85
+  use_cases:
+  - LCD TV
+  - Set-Top Box
+  - Home Theater
+  - Blue-Ray DVD-Players
+  replacement_for:
+  - "SGM8902 (NRND \u2014 not recommended for new designs)"
+  compliance:
+    Pd-Free: true
+    RoHS: true
+    REACH: true
+    Green: true
+    MSL: MSL3
+  pricing_usd_volume_tiers:
+  - '1-24 units: $0.70/unit'
+  - '25-99 units: $0.60/unit'
+  - '100-249 units: $0.50/unit'
+  - '250-499 units: $0.40/unit'
+  - '500-999 units: $0.35/unit'
+  - '1000-9999 units: $0.26/unit'
+  lead_time_days:
+  - '3K-9K units: 14 days'
+  - '10K-99K units: 35 days'
+  - '100K-999K units: 70 days'
+  - '1000K+: 91 days'
+unverified: []
+notes:
+- Promoted from placeholder to verified on 2026-06-28 (datasheet). Enriched on 2026-06-30 with marketing-level data (use cases,
+  compliance, pricing, lead time) from sg-micro.com product page via Firecrawl.
+- 'Family differentiator vs SGM8902: SGM8903 is the recommended replacement for the NRND SGM8902. Both are capless line drivers;
+  SGM8903 has higher SNR (114 dB) and wider gain range.'
+- 'Use case: LCD TV, set-top box, home theater, Blue-Ray DVD players.'
+- 'Cross-reference: comparable to TI TPA2005D1 / Maxim MAX98304 in same tier.'
+- 'Verified 2026-07-01 via pdfplumber against SGM890.pdf: 12/13 spec fields matched (92%). Source: ti.com/lit/ds/symlink/<pn>.pdf
+  (vendor-direct download, no auth required).'
+extracted_at: '2026-06-30T09:50:00+08:00'
+extracted_from_pages:
+- 1
+- 2
+extraction_method: pdfplumber + Firecrawl product page enrichment
+extraction_source: references/semiconductor-vendor/SGMicro/firecrawl-snapshots/SGM8903_clean.md
+extraction_source_raw: references/semiconductor-vendor/SGMicro/firecrawl-snapshots/SGM8903_raw.md
+extraction_credits_used: 1

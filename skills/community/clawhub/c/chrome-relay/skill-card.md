@@ -1,42 +1,53 @@
-## Description: <br>
-Control the user's local Chrome browser through the OpenClaw Browser Relay extension for tab access, browser automation, screenshots, page reading, and interactions in existing logged-in sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control the user's local Chrome browser through the OpenClaw Browser Relay extension to automate selected tabs, read page content, and use existing logged-in browser sessions.
 
-## Publisher: <br>
-[meowlegemy-sudo](https://clawhub.ai/user/meowlegemy-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meowlegemy-sudo](https://clawhub.ai/user/meowlegemy-sudo)
 
-## Use Case: <br>
-Developers and operators use this skill when they intentionally want an agent to control selected local Chrome tabs, including reading page content, navigating, clicking, typing, and taking screenshots in existing browser sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can act inside selected Chrome tabs, including sites where the user is already signed in. <br>
-Mitigation: Install and use it only when browser control is intentional; keep the extension detached except when needed and attach only the intended tab. <br>
-Risk: The gateway token grants relay access and could be misused if exposed. <br>
-Mitigation: Treat the gateway token as a secret and verify token settings if the extension reports a mismatch. <br>
-Risk: Browser automation on sensitive sites can perform unintended actions in authenticated sessions. <br>
-Mitigation: Avoid sensitive sites unless necessary and review planned actions before allowing automation. <br>
+## Use Case:
 
+Developers and agent users use this skill when they want an agent to work with their local Chrome browser, including selected logged-in tabs, page snapshots, navigation, clicks, typing, and screenshots.
 
-## Reference(s): <br>
-- [Chrome Relay on ClawHub](https://clawhub.ai/meowlegemy-sudo/chrome-relay) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands and browser tool examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the Chrome Browser Relay extension, a gateway token, and an attached Chrome tab.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can let an agent read and act on attached Chrome tabs, including pages where the user is already signed in.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Attach only tabs the user explicitly wants the agent to control, avoid sensitive financial, admin, healthcare, or similar pages unless intended, and detach the extension when finished.
+
+Risk: Browser actions may target the wrong element when selectors are stale or unreliable.
+
+Mitigation: Refresh page snapshots before acting and prefer explicit JavaScript evaluation for complex interactions when aria-ref selectors time out.
+
+## Reference(s):
+
+- [Chrome Relay skill page](https://clawhub.ai/meowlegemy-sudo/skills/chrome-relay)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and browser tool examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance is intended for user-directed control of attached Chrome tabs through the OpenClaw Browser Relay extension.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

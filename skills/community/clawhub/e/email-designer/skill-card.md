@@ -1,40 +1,54 @@
-## Description: <br>
-Designs visually distinctive fixed-width HTML email templates from provided content or outlines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs visually distinctive, fixed-width HTML email templates from provided content or outlines.
 
-## Publisher: <br>
-[dongfeng3692](https://clawhub.ai/user/dongfeng3692) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongfeng3692](https://clawhub.ai/user/dongfeng3692)
 
-## Use Case: <br>
-Marketing, communications, and design teams use this skill to turn email content or outlines into polished HTML email code with preset layouts, typography, and color systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated email HTML may reference remote fonts or images. <br>
-Mitigation: Review generated emails before sending and replace Google Fonts or Unsplash links with approved company-hosted assets when privacy, branding, or deliverability requirements matter. <br>
-Risk: Generated email content or layout may not match campaign, compliance, or brand requirements. <br>
-Mitigation: Review the rendered email and HTML before deployment, including links, imagery, disclaimers, and email-client compatibility. <br>
+## Use Case:
 
+Marketing, communications, and design teams use this skill to turn email content or outlines into polished HTML email code with strong visual identity and fixed-width table layouts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dongfeng3692/email-designer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with complete HTML email code blocks and brief design rationale] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated HTML follows a fixed 700px table layout and may reference remote Google Fonts or Unsplash assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Generated emails may include external Google Fonts or Unsplash image URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review, replace, proxy, or self-host external assets before sending production or privacy-sensitive campaigns.
+
+Risk: The skill optimizes for fixed-width 700px table layouts and explicitly avoids responsive email behavior.
+
+Mitigation: Test generated HTML in target email clients and confirm the fixed-width layout matches campaign requirements before launch.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dongfeng3692/skills/email-designer)
+- [ClawHub publisher profile](https://clawhub.ai/user/dongfeng3692)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with HTML code blocks and brief design rationale]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces fixed-width 700px table-based HTML email designs; may reference external font and image URLs that should be reviewed before production use.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

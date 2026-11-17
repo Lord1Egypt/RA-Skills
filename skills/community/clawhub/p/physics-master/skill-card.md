@@ -1,46 +1,53 @@
-## Description: <br>
-Expert physics AI that analyzes problems, designs experiments, proposes project ideas, optimizes solutions, and summarizes lessons learned. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert physics AI that analyzes problems, designs experiments, proposes innovative projects, optimizes solutions, and keeps experiment and project notes for continuity.
 
-## Publisher: <br>
-[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg)
 
-## Use Case: <br>
-External users and developers use this skill to guide an agent through physics problem analysis, experiment design, project ideation, solution optimization, and memory-based summarization of results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Memory instructions may cause the agent to retain or summarize physics work when memory is enabled. <br>
-Mitigation: Avoid entering sensitive research details unless retention and summarization are acceptable for the deployment. <br>
-Risk: Physics analyses, simulations, experiment designs, and project ideas may be incomplete, inaccurate, or unsafe if treated as authoritative. <br>
-Mitigation: Have qualified humans review outputs and validate proposed experiments against accepted physics methods and safety practices before acting on them. <br>
+## Use Case:
 
+Developers, students, researchers, and physics-focused teams use this skill to help an agent reason through physics problems, design or simulate experiments, propose project ideas, and refine physics-based solutions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/theshimaw-svg/physics-master) <br>
-- [Skill Overview](artifact/SKILL.md) <br>
-- [Theorist Module](artifact/theorist.md) <br>
-- [Experimenter Module](artifact/experimenter.md) <br>
-- [Innovator Module](artifact/innovator.md) <br>
-- [Optimizer Module](artifact/optimizer.md) <br>
-- [Memory Module](artifact/memory.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses with structured analysis, experiment plans, project ideas, optimization suggestions, and summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include memory-oriented summaries of physics work when the agent environment supports memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Physics analysis, experiment plans, simulations, or project ideas may be incorrect, incomplete, infeasible, or unsafe if used without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have a qualified reviewer check outputs before using them in laboratory, engineering, educational, or operational settings.
+
+Risk: The skill is designed to keep physics experiment and project notes for continuity, which may retain sensitive information if provided.
+
+Mitigation: Do not include secrets, confidential research, personal data, or proprietary project details unless retention is intended.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/theshimaw-svg/skills/physics-master)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain-text guidance with physics analysis, experiment plans, project ideas, optimizations, and notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include retained experiment and project notes when the host agent supports memory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

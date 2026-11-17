@@ -1,48 +1,62 @@
-## Description: <br>
-Harbor Skills helps agents assist with Harbor registry administration, including projects, images, security scans, cleanup policies, CI/CD and GitOps integration, replication, storage, backups, recovery, and webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Harbor Skills helps agents manage Harbor container registries, including projects, images, vulnerability scanning, retention policies, CI/CD and GitOps integration, replication, storage, backup and recovery, webhooks, and compliance checks.
 
-## Publisher: <br>
-[qiutoo](https://clawhub.ai/user/qiutoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiutoo](https://clawhub.ai/user/qiutoo)
 
-## Use Case: <br>
-Developers, platform engineers, and operations teams use this skill to generate Harbor administration guidance, API calls, scripts, and configuration examples for registry operations, cleanup, compliance checks, robot accounts, backup and recovery, and automation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review identifies this as a real Harbor administration skill with production-impacting examples and weak guardrails. <br>
-Mitigation: Review every delete, garbage collection, replication, restore, webhook, GitOps, and account-management action before running it against a Harbor instance. <br>
-Risk: The skill requires sensitive Harbor credentials and includes examples that can expose or print tokens. <br>
-Mitigation: Use least-privilege robot accounts with expirations, avoid admin passwords and inline secrets, and treat scan reports, audit logs, backups, and webhook payloads as sensitive production data. <br>
-Risk: Cleanup, restore, and robot-account scripts can delete registry artifacts, alter credentials, or affect recovery state. <br>
-Mitigation: Run dry-run modes first, verify exclusions and backup coverage, require operator confirmation, and test recovery procedures before making destructive changes. <br>
+## Use Case:
 
+Developers, platform engineers, and registry administrators use this skill to operate Harbor registries and generate commands, checks, and configuration guidance for routine maintenance, security scanning, cleanup, automation, and recovery workflows.
 
-## Reference(s): <br>
-- [Harbor API v2.0 Reference](references/harbor-api.md) <br>
-- [Cleanup Policy](references/cleanup-policy.md) <br>
-- [Backup and Recovery](references/backup-recovery.md) <br>
-- [GitOps Integration](references/gitops.md) <br>
-- [Webhook](references/webhook.md) <br>
-- [Compliance](references/compliance.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/qiutoo/harbor-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with shell commands, API examples, Python snippets, JSON, YAML, and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include production-impacting Harbor API and Docker commands that require review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release evidence; artifact frontmatter reports 1.1.1) <br>
+Risk: High-impact registry, Kubernetes, credential, and recovery actions could affect production Harbor availability or integrity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require operator approval gates before deletion, garbage collection, restore, replication, or account-rotation actions.
+
+Risk: Broad or long-lived credentials could expose Harbor projects or images if mishandled.
+
+Mitigation: Use narrowly scoped robot credentials, avoid logging tokens, and rotate credentials on a defined schedule.
+
+Risk: Unverified hosts, certificates, manifests, or images could route automation to unsafe infrastructure.
+
+Mitigation: Require HTTPS and approved Harbor hosts, verify TLS certificates, and pin Kubernetes manifests and images.
+
+## Reference(s):
+
+- [Harbor API v2.0 Reference](references/harbor-api.md)
+- [Image Cleanup Policy](references/cleanup-policy.md)
+- [Webhook Event Guide](references/webhook.md)
+- [Backup and Recovery](references/backup-recovery.md)
+- [GitOps and Harbor Integration](references/gitops.md)
+- [Compliance Checks](references/compliance.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell, Python, JSON, and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate high-impact Harbor administration commands that require operator review before execution.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

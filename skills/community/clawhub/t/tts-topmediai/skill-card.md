@@ -1,42 +1,55 @@
-## Description: <br>
-TopMediai text-to-speech skill that supports API key entitlement checks, official and cloned voice listing, and text-to-speech generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TopMediai text-to-speech skill that supports API key entitlement checks, official and cloned voice listing, and text-to-speech generation.
 
-## Publisher: <br>
-[Topmediai](https://clawhub.ai/user/Topmediai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[topmediai](https://clawhub.ai/user/topmediai)
 
-## Use Case: <br>
-Developers and agents use this skill to check TopMediai API key entitlement, inspect available official and cloned voices, and request text-to-speech synthesis with a selected speaker and optional emotion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Synthesis text, selected voice data, and the TopMediai API key are sent to the configured TopMediai endpoint. <br>
-Mitigation: Use a dedicated API key where possible, keep the .env file private, avoid sensitive text, and leave TOPMEDIAI_BASE_URL set to the official service unless another endpoint is trusted. <br>
-Risk: Debug output can expose private request content when TOPMEDIAI_DEBUG is enabled. <br>
-Mitigation: Keep TOPMEDIAI_DEBUG disabled when processing private or sensitive content. <br>
+## Use Case:
 
+Developers and agents use this skill to check TopMediai API key entitlement, inspect available voices, and generate speech from text with a selected voice.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/Topmediai/tts-topmediai) <br>
-- [Topmediai publisher profile](https://clawhub.ai/user/Topmediai) <br>
-- [TopMediai API endpoint](https://api.topmediai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Text command responses containing JSON from TopMediai API operations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-to-speech requests require configured TopMediai API credentials and send synthesis text, speaker, and optional emotion to the configured endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill sends the configured API key and submitted text to the configured API host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher, keep TOPMEDIAI_BASE_URL set to https://api.topmediai.com unless a trusted test endpoint is intentionally used, and avoid submitting sensitive text unless approved for TopMediai processing.
+
+Risk: Dependencies are specified with minimum versions rather than pinned versions.
+
+Mitigation: Pin and review dependencies before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/topmediai/skills/tts-topmediai)
+- [TopMediai publisher profile](https://clawhub.ai/user/topmediai)
+- [TopMediai API base URL](https://api.topmediai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [JSON text returned by command execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TOPMEDIAI_API_KEY; TTS responses depend on the configured TopMediai API endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

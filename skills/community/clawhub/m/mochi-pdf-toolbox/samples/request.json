@@ -1,0 +1,12 @@
+{
+  "requestId": "pdf-example-001",
+  "action": "merge",
+  "documents": [
+    {
+      "file": "samples/first.pdf"
+    },
+    {
+      "file": "samples/second.pdf"
+    }
+  ]
+}

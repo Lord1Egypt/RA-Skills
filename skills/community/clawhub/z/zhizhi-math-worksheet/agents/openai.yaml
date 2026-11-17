@@ -1,0 +1,4 @@
+interface:
+  display_name: "Zhizhi Math Worksheets"
+  short_description: "Turn worksheet photos or questions into printable math practice"
+  default_prompt: "Use $zhizhi-math-worksheet to create a printable math worksheet from this paper or question list, with a separate answer key."

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/action-history-view-2.0.json",
+  "title": "Omni E-commerce Read-only Legacy Action History View",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "legacy_compatibility", "client_scope", "mode", "count", "records", "warnings"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "artifact_type": {"const": "read_only_action_history_view"},
+    "contract_name": {"const": "omni-ecom.action-history-view"},
+    "contract_version": {"const": "2.0"},
+    "legacy_compatibility": {"const": {"read_only_import": ["omni-ecom.action-tracker@1.0"], "current_execution_authority": false, "current_approval_authority": false}},
+    "client_scope": {"type": "string", "minLength": 1},
+    "mode": {"enum": ["show", "list"]},
+    "count": {"type": "integer", "minimum": 0},
+    "records": {"type": "array", "items": {"type": "object"}},
+    "warnings": {"const": ["legacy_history_only", "cannot_approve_or_execute_current_actions"]}
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "skill": "oscillators-contrarian",
+  "version": "0.1.0",
+  "source_book": "期货市场技术分析 — 约翰·墨菲",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "RSI 都到 75 了，是不是超买了该卖？",
+      "expected_behavior": "激活 oscillators-contrarian，讲 RSI 70/30 阈值，并强调须结合趋势方向、背离使用，不可孤立逆势",
+      "notes": "RSI 超买"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "MACD 出现顶背离，是不是要反转了？",
+      "expected_behavior": "激活 oscillators-contrarian，解释背离是反转预警但不可奉若神灵，须与传统信号确认",
+      "notes": "MACD 背离"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "看涨情绪一致数字都 85% 了，市场是不是要见顶？",
+      "expected_behavior": "激活 oscillators-contrarian，讲相反意见理论 80/30 极端阈值，并提示须兼顾 COT 持仓结构",
+      "notes": "相反意见/情绪极端"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "均线金叉了是不是该买入？用什么周期比较好？",
+      "expected_behavior": "不应激活本 skill（均线），应激活 moving-averages",
+      "notes": "跨 skill 混淆：应触发 moving-averages"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "这条趋势线斜率变平缓了，是不是要反转？",
+      "expected_behavior": "不应激活本 skill（趋势线），应激活 trend-tools",
+      "notes": "诱饵：趋势线"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "大牛市刚启动 RSI 就超买到 80，要不要先平仓等回调？",
+      "expected_behavior": "激活本 skill 并提示趋势初期别太介意摆动指数(ce25)，强趋势中指标可钝化，过早平仓会踏空主升段",
+      "notes": "边界：趋势初期的超买钝化"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "should-not-trigger-01 指向 moving-averages；should-not-trigger-02 指向 trend-tools。"
+}

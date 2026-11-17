@@ -1,6 +1,6 @@
 # Memory Template — Spain
 
-Create `~/spain/memory.md`:
+Create `~/Clawic/data/spain/memory.md`:
 
 ```markdown
 # Spain Memory

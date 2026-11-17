@@ -1,41 +1,58 @@
-## Description: <br>
-eBay brand protection toolkit for detecting unauthorized sellers, counterfeits, VeRO violations, price issues, and trademark abuse, with generated complaint templates and enforcement guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Brand Protection Ebay helps agents draft brand-protection reports and enforcement templates for unauthorized seller, price, counterfeit-signal, and trademark-abuse review.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-Brand owners, ecommerce operators, and compliance teams can use this skill to review marketplace listings for potential unauthorized sellers, counterfeit signals, MAP issues, and trademark abuse, then draft enforcement-oriented reports or templates for manual review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is presented as an eBay brand-protection toolkit, but the security review found Amazon-focused enforcement reports and legal templates in the scripts, which could mislead users in sensitive complaint workflows. <br>
-Mitigation: Manually verify platform-specific procedures, rewrite generated complaints or notices for the correct marketplace, and obtain appropriate legal or compliance review before using any enforcement output. <br>
-Risk: Generated complaint templates and enforcement guidance may contain incomplete, incorrect, or overbroad legal claims. <br>
-Mitigation: Treat outputs as drafts only, verify evidence and rights ownership independently, and have qualified personnel approve any communication before submission or sending. <br>
+## Use Case:
 
+External brand owners, marketplace operators, and agents can use this skill to generate draft brand-protection reports and enforcement materials for reviewing marketplace seller activity. Because the security evidence identifies an eBay/Amazon mismatch, users should verify platform-specific process details before acting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phheng/brand-protection-ebay) <br>
-- [Nexscope AI](https://www.nexscope.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and terminal text with inline command examples and generated report or template text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API key is required; outputs should be manually verified before use in complaint or enforcement workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The release is advertised as an eBay VeRO brand-protection toolkit, while the security summary says the scripts mainly generate Amazon Brand Registry and ASIN-based guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target marketplace and rewrite or replace platform-specific workflow text before relying on the skill for enforcement.
+
+Risk: Generated complaint, cease-and-desist, MAP, and test-buy materials may be inaccurate or incomplete for a specific brand, marketplace, or jurisdiction.
+
+Mitigation: Treat generated materials as drafts and have the brand owner, marketplace operations team, or legal counsel review evidence and claims before submission.
+
+Risk: The security guidance recommends review before installation and notes that the installation source should be pinned.
+
+Mitigation: Install only from a reviewed, pinned release or commit, and scan the artifact before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phheng/skills/brand-protection-ebay)
+- [Nexscope AI](https://www.nexscope.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown-style reports and plain-text complaint, notice, and test-buy templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API key is required; generated legal or marketplace-enforcement text should be treated as draft material.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

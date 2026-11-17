@@ -1,46 +1,58 @@
-## Description: <br>
-Extracts decisions, owners, deadlines, assumptions, and reversal conditions from meeting notes, chat excerpts, or project materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decision Ledger helps agents turn meeting notes, chats, or project materials into a reviewable ledger of decisions, owners, deadlines, assumptions, reversal conditions, and dependencies.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Employees, project leads, and governance reviewers use this skill to turn meeting notes, chat records, and document excerpts into reviewable decision ledgers for decision tracking, audit trails, and retrospectives. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ledgers may misstate or overstate decisions if the source material is incomplete or ambiguous. <br>
-Mitigation: Review the output before relying on it, and keep uncertain items in the explicit confirmation section. <br>
-Risk: Input meeting notes or project documents may contain personal or sensitive information. <br>
-Mitigation: Use local files you are authorized to process, prefer stdout or dry-run for sensitive material, and redact inputs before publication. <br>
-Risk: The helper can write output files when invoked with an output path. <br>
-Mitigation: Choose output locations deliberately and inspect the generated file before using it for governance, legal, or external publication decisions. <br>
+## Use Case:
 
+Employees, project leads, and governance reviewers use this skill to extract confirmed decisions, open questions, owners, deadlines, assumptions, reversal conditions, and follow-up dependencies from meeting notes, chats, or project documents. It is intended for reviewable decision tracking, not for inventing decisions or replacing legal audit.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/52YuanChangXing/decision-ledger) <br>
-- [Publisher Profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [README](README.md) <br>
-- [Output Template](resources/template.md) <br>
-- [Specification](resources/spec.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown or JSON decision ledger; optional local script can write the result to a file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured sections include confirmed decisions, items to confirm, owners and deadlines, assumptions, reversal conditions, and dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may produce incorrect or unsupported decision records if source notes are incomplete or ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output as a review draft, preserve explicit pending-confirmation items, and require human confirmation before acting on decisions or deadlines.
+
+Risk: Meeting notes or project materials may contain personal, confidential, or sensitive business information.
+
+Mitigation: Process only appropriate local inputs, redact sensitive content when needed, and avoid publishing or sending outputs without review.
+
+Risk: The bundled script includes inactive generic audit helpers that are outside the core decision-ledger workflow.
+
+Mitigation: Disclose this behavior to users and prefer a future release that removes or clearly documents those helper paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/decision-ledger)
+- [Publisher profile](https://clawhub.ai/user/52yuanchangxing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Structured Markdown, with optional JSON output from the local script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are review drafts and checklists derived from user-provided local input; missing information is surfaced as items to confirm.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,50 @@
-## Description: <br>
-Generates a complete UCloud pre-sales visit briefing for B2B cloud, AI, data, and overseas infrastructure scenarios, covering customer research, industry judgment, executive concerns, inferred needs and pain points, competitors, discovery questions, and initial solution hypotheses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a structured B2B cloud pre-sales visit brief for customer research, industry context, CXO priorities, inferred needs and pain points, competitor positioning, discovery questions, and initial solution hypotheses.
 
-## Publisher: <br>
-[lious68](https://clawhub.ai/user/lious68) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lious68](https://clawhub.ai/user/lious68)
 
-## Use Case: <br>
-Sales and pre-sales teams use this skill before first or strategic customer meetings to turn public customer information into a structured briefing, discovery questions, risks, and initial UCloud solution hypotheses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The briefing may include inferred customer needs, pain points, or solution opportunities that are not directly proven by public evidence. <br>
-Mitigation: Review each inference and confidence label before using the briefing with customers, and validate uncertain points during the meeting. <br>
-Risk: Customer or prospect materials may contain confidential or sensitive information. <br>
-Mitigation: Use public information by default and only provide confidential customer materials when authorized and covered by appropriate privacy controls. <br>
+## Use Case:
 
+Sales and pre-sales teams use this skill to prepare for first or strategic B2B cloud customer visits by turning public customer and industry information into a practical briefing, question list, competitor view, and initial solution hypotheses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lious68/ucloud-pre-sales-visit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown briefing with structured sections and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a target customer name and benefits from public website, known leads, desired UCloud offering, and visit objective inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter and server release evidence) <br>
+Risk: Public customer research and inferred needs may be incomplete, stale, or overconfident.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide a clear target customer and meeting goal, keep public facts separate from hypotheses, and verify inferred needs or pain points during the customer conversation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lious68/skills/ucloud-pre-sales-visit)
+- [ClawHub publisher profile](https://clawhub.ai/user/lious68)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown customer briefing with structured sections and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes confidence labels for inferred needs and pain points; prompts users to verify insufficient public information.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-Agentic Wallet exclusive trading competitions. Full lifecycle: discover, view rules, join, trade, check rank, and claim rewards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents guide users through Agentic Wallet trading competitions, including discovery, rule review, registration, leaderboard checks, and reward claiming.
 
-## Publisher: <br>
-[ok-james-01](https://clawhub.ai/user/ok-james-01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ok-james-01](https://clawhub.ai/user/ok-james-01)
 
-## Use Case: <br>
-External users with an Agentic Wallet use this skill to discover OKX trading competitions, review rules and prize pools, register, check status and rankings, and claim eligible on-chain rewards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Join, trade, and claim flows can submit irreversible blockchain transactions from a logged-in wallet. <br>
-Mitigation: Confirm the active wallet account, competition name, token contract, chain, amount, gas cost, and transaction intent before proceeding. <br>
-Risk: Reward claims and trades can fail because of eligibility, expired claim windows, insufficient gas, simulation errors, or network issues. <br>
-Mitigation: Check competition status before claiming, surface pre-check rejections without retrying, and only retry transient failures after the user reviews the failure details. <br>
-Risk: Exporting a wallet that is registered for a competition can affect eligibility. <br>
-Mitigation: Check competition user status before wallet export and continue only after the user explicitly confirms they understand the eligibility impact. <br>
+## Use Case:
 
+External users and agents use this skill to find OKX Agentic Wallet trading competitions, understand rules and prize pools, join eligible competitions, check rankings, and claim rewards through wallet-mediated flows.
 
-## Reference(s): <br>
-- [competition CLI Reference](references/cli-reference.md) <br>
-- [OKX Web3](https://web3.okx.com) <br>
-- [OKX Trading Competition Page](https://web3.okx.com/boost/trading-competition/{shortName}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown responses with tables, fixed status templates, transaction hashes, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initiate wallet-backed competition join, trade delegation, and reward claim flows when the user confirms the relevant action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.3 (source: server release metadata and artifact frontmatter) <br>
+Risk: Reward claiming can sign backend-provided blockchain transactions without documented validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before claiming rewards, verify the wallet, chain, recipient, amount, and transaction details through a trusted wallet or OKX interface.
+
+Risk: The skill may inspect other wallet accounts while checking competition participation or reward status.
+
+Mitigation: Install and use it only when account inspection is expected, and avoid exposing unrelated wallet accounts unless needed for the competition workflow.
+
+Risk: Competition reward claims require wallet-mediated authority and can broadcast transactions.
+
+Mitigation: Use the claim flow only after confirming eligibility and transaction details, and ensure the wallet has sufficient gas before proceeding.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ok-james-01/skills/okx-growth-competition)
+- [Publisher profile](https://clawhub.ai/user/ok-james-01)
+- [OKX Web3](https://web3.okx.com)
+- [Competition CLI Reference](references/cli-reference.md)
+- [Trading competition page pattern](https://web3.okx.com/boost/trading-competition/{shortName})
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, API calls]
+
+**Output Format:** [Markdown responses with command references and structured competition tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses fixed response templates for competition listing, details, registration, status, ranking, wallet export guard, and reward claiming.]
+
+## Skill Version(s):
+
+3.1.3 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Crawl From X manages a list of X/Twitter accounts, crawls recent posts through an OpenClaw browser session, and exports the results as Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crawls recent X/Twitter posts for configured users and exports Markdown, URL lists, and downloaded media for local review.
 
-## Publisher: <br>
-[flyingtimes](https://clawhub.ai/user/flyingtimes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[flyingtimes](https://clawhub.ai/user/flyingtimes)
 
-## Use Case: <br>
-Developers, analysts, and operators use this skill to track selected X/Twitter accounts, collect current posts and media, and turn them into local Markdown records for review or downstream summarization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an already logged-in X/Twitter browser session to read timelines and collect post identifiers. <br>
-Mitigation: Run it only with the intended browser profile, account, and authorization context, and confirm use is consistent with applicable X/Twitter terms and organizational policy. <br>
-Risk: Crawled social posts can contain untrusted text, including prompt-injection attempts or misleading claims. <br>
-Mitigation: Treat generated Markdown as untrusted input; review, quote, or sanitize it before feeding it to another AI agent or workflow. <br>
-Risk: The skill saves crawled Markdown and downloaded media files locally. <br>
-Mitigation: Store results in an appropriate local workspace, avoid publishing private captures unintentionally, and scan or review downloaded media before reuse. <br>
+## Use Case:
 
+External users and developers use this skill to manage watched X/Twitter accounts, crawl recent posts through OpenClaw Browser Relay, and archive the results as Markdown and text files with local media references.
 
-## Reference(s): <br>
-- [Crawl From X on ClawHub](https://clawhub.ai/flyingtimes/crawl-from-x) <br>
-- [OpenClaw Browser Relay Documentation](https://docs.openclaw.ai/guide/browser-relay) <br>
-- [OpenClaw Project](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown files, plain-text URL lists, and locally saved media files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local users.txt account list and writes timestamped results under results/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.7.0 (source: server release metadata) <br>
+Risk: Untrusted post content can cause the media downloader to request external URLs and write downloaded files locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an X-media host allowlist, block private IP ranges, validate redirects and content types, and set download size quotas before crawling untrusted accounts.
+
+Risk: Automated crawls depend on a logged-in X account and can run from the user's network context.
+
+Mitigation: Use a dedicated low-privilege X account and avoid scheduled crawls on sensitive networks.
+
+Risk: Exported Markdown contains untrusted social media content and media references.
+
+Mitigation: Treat generated Markdown as untrusted content and review it before rendering, sharing, or ingesting it into other systems.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/flyingtimes/skills/crawl-from-x)
+- [OpenClaw Browser Relay Documentation](https://docs.openclaw.ai/guide/browser-relay)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Configuration]
+
+**Output Format:** [Markdown and plain text files, plus command-line status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated result files can include post text, source URLs, interaction counts, and local paths to downloaded images or videos.]
+
+## Skill Version(s):
+
+2.7.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

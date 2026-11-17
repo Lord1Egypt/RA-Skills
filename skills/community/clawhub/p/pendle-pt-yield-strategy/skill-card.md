@@ -1,52 +1,66 @@
-## Description: <br>
-Helps agents scan and rank Pendle Principal Token markets, monitor fixed-yield positions, and prepare managed-wallet or manual execution plans with explicit confirmation steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pendle PT fixed-yield strategy for scanning and ranking markets, tracking positions, monitoring maturities, and preparing managed-wallet or manual execution plans with explicit confirmation.
 
-## Publisher: <br>
-[moshu](https://clawhub.ai/user/moshu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moshu](https://clawhub.ai/user/moshu)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to research Pendle PT fixed-yield opportunities, compare stable-ish markets, monitor maturities, and prepare deposit, redeem, withdraw, or rollover plans. It is intended for planning and managed-wallet or manual execution workflows, not bundled private-key signing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pendle deposit, redeem, withdraw, or rollover planning can lead to real onchain financial actions. <br>
-Mitigation: Require explicit user confirmation after showing the wallet path, market, amount, maturity, slippage or price impact, gas, and notable asset risks. <br>
-Risk: Private keys or seed phrases could be mishandled if a host tries to add raw local signing around the skill. <br>
-Mitigation: Use managed wallets with policy controls or manual user-executed wallet flows, and do not provide private keys or seed phrases to the skill. <br>
-Risk: Quotes, liquidity, slippage, maturity dates, and underlying-asset risks can change before execution. <br>
-Mitigation: Re-check quote freshness, slippage thresholds, gas cost, market liquidity, maturity, and underlying asset quality immediately before any confirmation. <br>
-Risk: PT fixed yield depends on holding to maturity, while early exits may realize less than maturity value. <br>
-Mitigation: Clearly distinguish hold-to-maturity expectations from early-exit estimates and warn when an action is a withdrawal or rollover before maturity. <br>
+## Use Case:
 
+Developers, operators, and DeFi analysts use this skill to research Pendle PT fixed-yield opportunities, rank stable-ish markets, monitor positions, and prepare deposit, redeem, withdraw, or rollover plans. It is oriented toward managed-wallet execution with manual user-executed fallback and explicit confirmation before any real onchain action.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/moshu/pendle-pt-yield-strategy) <br>
-- [Chain Addresses](references/chain-addresses.md) <br>
-- [Eligible Underlyings for PT Yield Strategy](references/eligible-underlyings.md) <br>
-- [Pendle PT Ranking Framework](references/ranking-framework.md) <br>
-- [Manual Contango PT Comparison Framework](references/manual-contango-comparison.md) <br>
-- [Pendle API Core](https://api-v2.pendle.finance/core) <br>
-- [Pendle Active Markets Endpoint](https://api-v2.pendle.finance/core/v1/{chainId}/markets/active) <br>
-- [Pendle Convert Quote Endpoint](https://api-v2.pendle.finance/core/v2/sdk/{chainId}/convert) <br>
-- [Pendle Convert v3 Endpoint](https://api-v2.pendle.finance/core/v3/sdk/{chainId}/convert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON market and position files, shell command suggestions, and execution-planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces research and planning artifacts for Pendle PT workflows; runtime transaction submission is expected to occur through a managed wallet backend or a user-controlled manual wallet flow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill may call live third-party DeFi APIs and can expose wallet-linked quote intent when a real wallet address is used for previews.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use throwaway or non-sensitive wallet addresses for quote research when possible, and provide a real wallet address only when the operator accepts the metadata exposure.
+
+Risk: Market rankings, route labels, liquidity, borrow caps, and loop data may be incomplete or weakly verified.
+
+Mitigation: Treat outputs as research leads and independently verify protocol support, liquidity, borrow caps, slippage, and URLs before execution.
+
+Risk: Financial plans can lead to real onchain transactions if routed through a managed wallet or manually submitted by the user.
+
+Mitigation: Require explicit confirmation after showing market, chain, amount estimates, slippage or price impact, maturity date, notable risks, and wallet path.
+
+Risk: Local position data may become stale or diverge from actual onchain state.
+
+Mitigation: Reconcile local position records against wallet and protocol state before relying on status, redemption, withdrawal, or rollover recommendations.
+
+## Reference(s):
+
+- [Eligible Underlyings for PT Yield Strategy](references/eligible-underlyings.md)
+- [Chain Addresses](references/chain-addresses.md)
+- [Pendle PT Ranking Framework](references/ranking-framework.md)
+- [Manual Contango PT Comparison Framework](references/manual-contango-comparison.md)
+- [Pendle API](https://api-v2.pendle.finance/core)
+- [ClawHub Skill Page](https://clawhub.ai/moshu/skills/pendle-pt-yield-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, and shell command suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and update local JSON position data; outputs should distinguish research, planning, and confirmed execution.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,60 @@
-## Description: <br>
-友盟 U-App 留存率查询技能，支持通过 umeng-cli call 调用友盟 OpenAPI（gateway.open.umeng.com）的 1 个只读留存接口，覆盖新增/活跃用户的次日/3日/7日/14日/30日留存率查询、版本与渠道维度的留存对比分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents query Umeng U-App retention data through umeng-cli, covering new-user and active-user retention windows plus version or channel comparisons.
 
-## Publisher: <br>
-[squall0925](https://clawhub.ai/user/squall0925) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[squall0925](https://clawhub.ai/user/squall0925)
 
-## Use Case: <br>
-Developers and product analysts use this skill to query Umeng U-App retention data for an appkey, including 1-day, 3-day, 7-day, 14-day, and 30-day retention by date, version, or channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires local umeng-cli authentication and may send telemetry that includes the user's appkey before the requested retention query. <br>
-Mitigation: Review before installing, authenticate only in an approved local environment, and do not allow automatic umeng-cli trace calls with an appkey unless the user explicitly consents. <br>
+## Use Case:
 
+Developers and analytics operators use this skill to retrieve Umeng U-App retention metrics for a known appkey, date range, retention type, version, or channel. It guides agents in forming read-only umeng-cli calls and interpreting the returned retentionRate array.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/squall0925/uapp-retention) <br>
-- [umeng-cli project homepage](https://github.com/umeng/umeng-cli) <br>
-- [Umeng website](https://www.umeng.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON request/response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses umeng-cli with a required appkey and date range; retention windows are extracted from the returned retentionRate array.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill's security evidence reports telemetry behavior that can send the Appkey in a separate trace command before the retention query.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only when that telemetry behavior is acceptable for the appkey being queried, and avoid supplying sensitive appkeys in contexts where telemetry is not approved.
+
+Risk: The security evidence reports an unsafe remote installer command.
+
+Mitigation: Prefer the documented npm install path and avoid running the curl | sh installer.
+
+Risk: Retention windows near the current date can return null or zero values before the window has matured.
+
+Mitigation: Check whether each retention window has elapsed before summarizing null or zero values as actual retention performance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/squall0925/skills/uapp-retention)
+- [umeng-cli project homepage](https://github.com/umeng/umeng-cli)
+- [Umeng OpenAPI gateway](https://gateway.open.umeng.com/openapi)
+- [Umeng website](https://www.umeng.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON response interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only retention lookup guidance; response interpretation requires selecting the correct retentionRate array index.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Monitor blogs and RSS/Atom feeds for updates using the blogwatcher CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor blogs and RSS/Atom feeds for updates using the blogwatcher CLI.
 
-## Publisher: <br>
-[MemoryF](https://clawhub.ai/user/MemoryF) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[memoryf](https://clawhub.ai/user/memoryf)
 
-## Use Case: <br>
-Developers and operators use this skill to install and run the blogwatcher CLI for tracking blog and RSS/Atom feed updates, scanning for new articles, and managing read state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The install command fetches the latest version of an external Go module, which can change over time. <br>
-Mitigation: Pin the Go module to a reviewed version when reproducibility or change control is required. <br>
-Risk: Scanning feeds sends network requests to the blog and RSS/Atom URLs configured by the user. <br>
-Mitigation: Configure only trusted feed URLs and review network access expectations before use in restricted environments. <br>
+## Use Case:
 
+Developers, operators, and content-monitoring users can use this skill to install and operate the blogwatcher CLI for tracking RSS/Atom feeds, scanning for new posts, and managing local article state.
 
-## Reference(s): <br>
-- [Blogwatcher Project](https://github.com/Hyaxia/blogwatcher) <br>
-- [Blogwatcher Moss on ClawHub](https://clawhub.ai/MemoryF/blogwatcher-moss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and example CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces CLI usage guidance; the blogwatcher tool itself performs network requests to configured feeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The install command uses an unpinned third-party Go module, so future upstream changes can alter the executable installed by the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed module version when possible and review the upstream project before installing or updating the CLI.
+
+Risk: Scanning feeds contacts user-provided blog or RSS/Atom URLs and stores local tracking state through the blogwatcher CLI.
+
+Mitigation: Verify feed URLs before adding them and use the CLI only in environments where outbound network access and local tracking data are acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/memoryf/skills/blogwatcher-moss)
+- [Blogwatcher CLI Homepage](https://github.com/Hyaxia/blogwatcher)
+- [Publisher Profile](https://clawhub.ai/user/memoryf)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides use of the external blogwatcher CLI and may result in local tracking data managed by that CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

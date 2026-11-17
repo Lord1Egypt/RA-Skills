@@ -1,45 +1,54 @@
-## Description: <br>
-Discover Japan like a local with concrete city tips, regional route planning, food context, and practical travel logistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover Japan like a local with concrete city tips, regional route planning, food context, and practical travel logistics.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to plan Japan trips, compare regions and routes, choose city bases, handle food and cultural expectations, and keep local trip preferences in memory. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Trip preferences and travel details may be saved in ~/japan/memory.md. <br>
-Mitigation: Avoid storing sensitive confirmation numbers or personal details in local memory unless local persistence is acceptable, and edit or delete the file when retention is no longer needed. <br>
-Risk: Travel guidance can become stale when transport, weather, closures, or reservations change. <br>
-Mitigation: Verify high-value bookings, route availability, emergency details, and weather-sensitive plans with current official sources before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/japan) <br>
-- [Skill Homepage](https://clawic.com/skills/japan) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Setup Guide](artifact/setup.md) <br>
-- [Trip Memory Template](artifact/memory-template.md) <br>
-- [Transport Guide](artifact/transport.md) <br>
-- [Emergencies and Safety Guide](artifact/emergencies.md) <br>
+## Use Case:
 
+External users planning travel to Japan use this skill to get city and regional recommendations, itinerary pacing, food and nightlife guidance, transport planning, and practical safety context. It can also maintain local trip preferences in ~/japan/memory.md when the user wants persistent trip context.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration instructions, Shell commands] <br>
-**Output Format:** [Markdown with occasional inline shell commands and local-memory updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local trip memory under ~/japan/ when configured.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local trip memory may retain personal trip details on shared machines.
+
+Mitigation: Avoid storing sensitive confirmation numbers, and ask the agent to show, edit, or delete ~/japan/memory.md when old trip context should not be reused.
+
+Risk: Travel logistics, bookings, weather, and operator conditions can change after guidance is produced.
+
+Mitigation: Verify high-value bookings, transport schedules, weather alerts, closures, and emergency information with current official or operator sources before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/japan)
+- [ClawHub publisher profile](https://clawhub.ai/user/ivangdavila)
+- [Skill homepage](https://clawic.com/skills/japan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and concise text with occasional shell commands for local memory setup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local trip memory at ~/japan/memory.md when the user wants persistent trip context.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

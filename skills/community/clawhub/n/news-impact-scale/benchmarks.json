@@ -1,0 +1,65 @@
+{
+  "_comment": "Auto-updated by the skill after each analysis. Do not edit manually.",
+  "locations": {
+    "China": {
+      "technology": [
+        {
+          "description": "Serbia joins WAICO as first state, May 2026",
+          "year": 2026,
+          "recoveryDays": null,
+          "recoveryDescription": "First mover advantage — Serbia leads membership",
+          "previousState": "Serbia not part of China-led AI governance framework",
+          "futureState": "Serbia expected to formally sign MOU when WAICO articles finalized",
+          "recoverySpeed": "fast"
+        },
+        {
+          "description": "BRI proposed 2013, formal launch 2015",
+          "year": 2015,
+          "recoveryDays": 730,
+          "recoveryDescription": "~2 years to formalize with 68 initial member countries",
+          "previousState": "Belt and Road Initiative proposed",
+          "futureState": "WAICO may take 1-2 years for formal multilateral establishment",
+          "recoverySpeed": "slow"
+        },
+        {
+          "description": "AIIB proposed 2013, MOU signed 2014",
+          "year": 2014,
+          "recoveryDays": 365,
+          "recoveryDescription": "~1 year to formalize founding members",
+          "previousState": "AIIB proposed by Xi Jinping",
+          "futureState": "WAICO expected to reach MOU stage by July 2026 (1 year from proposal)",
+          "recoverySpeed": "moderate"
+        }
+      ],
+      "political": [
+        {
+          "description": "Serbia joins WAICO as first state, May 2026",
+          "year": 2026,
+          "recoveryDays": null,
+          "recoveryDescription": "First mover advantage",
+          "previousState": "Serbia not in China-led AI governance",
+          "futureState": "Serbia to formally sign MOU when WAICO articles finalized (~July 2026)",
+          "recoverySpeed": "fast"
+        },
+        {
+          "description": "BRI proposed 2013, formal launch 2015",
+          "year": 2015,
+          "recoveryDays": 730,
+          "recoveryDescription": "~1.5 years to formalize with 68 countries",
+          "previousState": "BRI proposed by Xi",
+          "futureState": "WAICO may take 1-2 years for formal multilateral establishment",
+          "recoverySpeed": "slow"
+        },
+        {
+          "description": "AIIB proposed 2013, MOU signed 2014",
+          "year": 2014,
+          "recoveryDays": 365,
+          "recoveryDescription": "~1 year from proposal to formal founding MOU",
+          "previousState": "AIIB proposed by Xi Jinping",
+          "futureState": "WAICO expected at MOU stage within 1 year of proposal",
+          "recoverySpeed": "moderate"
+        }
+      ]
+    }
+  }
+}

@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn740wv2p94m2431cqmjr9msx9824gpc",
-  "slug": "insp-hr-knowledge",
+  "name": "insp-hr-knowledge",
   "version": "1.0.0",
-  "publishedAt": 1773651485702
+  "description": "INSP 公司 HR 知识库查询技能",
+  "author": "Jarvis",
+  "created": "2026-03-16",
+  "tags": ["hr", "insp", "knowledge-base", "入职", "考勤", "报销", "离职"],
+  "source": "internal",
+  "sourceDoc": "https://i1p42lnph7o.feishu.cn/docx/X1SxdSv7kohxdXxzTyJcXOFgneh"
 }

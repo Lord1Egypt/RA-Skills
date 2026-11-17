@@ -1,39 +1,52 @@
-## Description: <br>
-Validates documentation usability by spawning context-free agents to complete tasks using only the docs, identifying gaps for improvement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RTFM Testing helps agents evaluate whether documentation is usable by having a fresh tester attempt a task using only the provided docs and report specific gaps.
 
-## Publisher: <br>
-[zscole](https://clawhub.ai/user/zscole) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zscole](https://clawhub.ai/user/zscole)
 
-## Use Case: <br>
-Developers and documentation maintainers use this skill to test whether setup guides, READMEs, tutorials, and other docs are sufficient for a fresh agent to complete a task without outside context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may spawn a separate tester agent session to evaluate documentation. <br>
-Mitigation: Run it only on documentation intended for testing and review generated gap reports before acting on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zscole/rtfm-testing) <br>
-- [TESTER.md](artifact/TESTER.md) <br>
-- [GAPS.md](artifact/GAPS.md) <br>
+## Use Case:
 
+Developers and documentation maintainers use this skill to test READMEs, setup guides, tutorials, and other docs before publication or after major changes. It identifies missing steps, unclear assumptions, ordering problems, and other gaps that block a context-free agent from completing the documented task.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown gap reports and documentation quality summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports task attempted, provided documentation, execution log, gaps found, result, and summary.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Tester agents may follow unsafe instructions if pasted documentation is treated as trusted execution guidance.
+
+Mitigation: Review before installing and run tests only in a restricted, disposable tester environment with synthetic documentation and data.
+
+Risk: The skill asks users to spawn an unrestricted default agent without clear safety limits.
+
+Mitigation: Revise tester prompts so documentation is evaluated as untrusted content and unsafe commands are reported rather than executed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zscole/skills/rtfm-testing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown gap reports and structured testing instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

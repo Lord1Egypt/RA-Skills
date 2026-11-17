@@ -1,45 +1,52 @@
-## Description: <br>
-Access 537+ datasets from the City of Toronto open data portal, and search, fetch, and analyze city data on transit, traffic, housing, environment, and more via the CKAN API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access 537+ datasets from the City of Toronto open data portal. Search, fetch, and analyze city data on transit, traffic, housing, environment, and more via the CKAN API.
 
-## Publisher: <br>
-[raychanpmp](https://clawhub.ai/user/raychanpmp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raychanpmp](https://clawhub.ai/user/raychanpmp)
 
-## Use Case: <br>
-Developers, analysts, and civic data users can use this skill to discover City of Toronto datasets, inspect dataset metadata, and fetch public CKAN datastore records for analysis or export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a Python helper through Bash and contacts the public City of Toronto open data API. <br>
-Mitigation: Review the command before execution and use it only when network access to the public CKAN API is expected. <br>
-Risk: Fetched public datasets may be incomplete, changed, or unsuitable for a specific operational decision. <br>
-Mitigation: Check the returned dataset metadata and source portal context before relying on results. <br>
-Risk: The helper may store a small local catalog cache in the skill script directory. <br>
-Mitigation: Clear the cache if stale catalog data is suspected or if local workspace cleanliness is required. <br>
+## Use Case:
 
+Developers, analysts, and civic data users use this skill to search City of Toronto open datasets, inspect dataset metadata, and fetch CKAN datastore records for analysis.
 
-## Reference(s): <br>
-- [City of Toronto Open Data Portal](https://open.toronto.ca) <br>
-- [City of Toronto CKAN API](https://ckan0.cf.opendata.inter.prod-toronto.ca/api/3/action) <br>
-- [Popular Toronto Open Data Datasets](references/datasets.md) <br>
-- [ClawHub skill page](https://clawhub.ai/raychanpmp/toronto-opendata) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, CSV, shell commands, guidance] <br>
-**Output Format:** [Terminal output, JSON records, or CSV rows from public CKAN datasets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a local catalog cache under the skill script directory; no credentials are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Results depend on live City of Toronto CKAN responses and a temporary local cache, so data may be stale or unavailable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Refresh or clear the cache for time-sensitive work and verify important outputs against the City of Toronto Open Data Portal.
+
+## Reference(s):
+
+- [Popular & Useful Toronto Open Data Datasets](references/datasets.md)
+- [City of Toronto Open Data Portal](https://open.toronto.ca)
+- [City of Toronto CKAN API](https://ckan0.cf.opendata.inter.prod-toronto.ca/api/3/action)
+- [ClawHub skill page](https://clawhub.ai/raychanpmp/skills/toronto-opendata)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown with inline shell commands; fetched records may be JSON or CSV]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May query public CKAN endpoints and create a temporary local cache for dataset catalog results.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

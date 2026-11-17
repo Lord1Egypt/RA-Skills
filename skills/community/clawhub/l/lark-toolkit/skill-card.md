@@ -1,48 +1,66 @@
-## Description: <br>
-Comprehensive Lark/Feishu API skill for OpenClaw agents covering Lark operations through the claw-lark plugin, MCP tools, and direct Open API curl examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lark Toolkit guides OpenClaw agents through Lark/Feishu messaging, workspace operations, bot setup, MCP tools, and direct Open API calls.
 
-## Publisher: <br>
-[Pengxiao-Wang](https://clawhub.ai/user/Pengxiao-Wang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pengxiao-wang](https://clawhub.ai/user/pengxiao-wang)
 
-## Use Case: <br>
-Developers and workspace administrators use this skill to guide OpenClaw agents through Lark/Feishu messaging, group management, contacts, calendar, docs, bitable, wiki, OKR, task, webhook, bot setup, and troubleshooting workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents toward Lark/Feishu administration and workspace actions, including reading histories, sending messages, sharing documents, managing members, and modifying business data. <br>
-Mitigation: Use a dedicated low-privilege Lark app and require explicit approval before performing sensitive workspace actions. <br>
-Risk: The token helper and examples depend on user-provided App Secret values and temporary access tokens. <br>
-Mitigation: Protect App Secret and access tokens, keep ~/.openclaw/openclaw.json out of source control and logs, and avoid exposing credentials in prompts or command output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lark API Reference](references/api-reference.md) <br>
-- [Lark Bot Setup Playbook](references/bot-setup.md) <br>
-- [Lark MCP Tools](references/mcp-tools.md) <br>
-- [Lark API Permissions Reference](references/permissions.md) <br>
-- [Lark Troubleshooting](references/troubleshooting.md) <br>
-- [Webhook & Tunnel Setup](references/webhook-setup.md) <br>
-- [Lark Developer Console](https://open.larksuite.com/app) <br>
-- [Feishu Developer Console](https://open.feishu.cn/app) <br>
-- [Lark Open API Base](https://open.larksuite.com/open-apis/) <br>
-- [Feishu Open API Base](https://open.feishu.cn/open-apis/) <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect OpenClaw agents with Lark or Feishu workspaces for messaging, group management, contacts, calendars, docs, Bitable, OKR, tasks, webhooks, and direct Open API operations.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with inline shell, JSON, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API request examples, MCP tool invocations, permission checklists, and troubleshooting steps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide agents toward actions that use powerful Lark credentials and broad workspace permissions.
+
+Mitigation: Review and narrow Lark app permissions before use, and require explicit user confirmation before sending messages, sharing documents, adding members, or modifying calendars, tasks, Bitable records, OKRs, or other workspace data.
+
+Risk: The token helper obtains and prints tenant access tokens and can read credentials from a configurable OpenClaw config path.
+
+Mitigation: Prefer environment variables or a protected secret store, avoid logging printed tokens, and do not run scripts/get_token.sh where OPENCLAW_CONFIG can be influenced by untrusted input.
+
+Risk: Misconfigured webhooks, tunnels, or Lark permissions can cause missed events or unintended workspace access.
+
+Mitigation: Confirm the tenant platform, publish permission and event changes, verify webhook challenge handling, and test tunnel routing before relying on the integration.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pengxiao-wang/skills/lark-toolkit)
+- [Lark API Reference](references/api-reference.md)
+- [Lark Bot Setup Playbook](references/bot-setup.md)
+- [Lark MCP Tools](references/mcp-tools.md)
+- [Lark API Permissions Reference](references/permissions.md)
+- [Lark Troubleshooting](references/troubleshooting.md)
+- [Webhook & Tunnel Setup](references/webhook-setup.md)
+- [Lark Developer Console](https://open.larksuite.com/app)
+- [Feishu Developer Console](https://open.feishu.cn/app)
+- [Lark Open API Base](https://open.larksuite.com/open-apis/)
+- [Feishu Open API Base](https://open.feishu.cn/open-apis/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration snippets, and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes credential handling guidance, API endpoint examples, MCP tool invocations, webhook setup steps, and troubleshooting checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

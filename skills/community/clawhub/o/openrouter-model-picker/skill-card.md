@@ -1,44 +1,55 @@
-## Description: <br>
-Fetches OpenRouter models, presents an interactive picker, and applies selected primary, enabled, and fallback models to the user's OpenClaw configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenRouter Model Picker fetches OpenRouter models, presents a Canvas UI for filtering and selecting enabled models, and applies OpenClaw model configuration updates without a Gateway restart.
 
-## Publisher: <br>
-[ys727469926](https://clawhub.ai/user/ys727469926) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ys727469926](https://clawhub.ai/user/ys727469926)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to compare available OpenRouter models, select primary, fallback, and enabled models, and hot-apply those choices to local OpenClaw configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An unauthenticated localhost apply endpoint can persistently change OpenClaw model configuration while the picker server is running. <br>
-Mitigation: Install only if you trust the publisher, keep the picker running only while applying changes, review enabled models before applying, and stop the server or let the idle timeout expire after use. <br>
-Risk: The apply workflow can change the primary, fallback, and enabled OpenClaw models based on UI selections. <br>
-Mitigation: Review the selected primary, fallback, and enabled model lists before applying, or use the command-line fallback when explicit configuration changes are preferred. <br>
-Risk: The current security guidance recommends a stronger version with request protections. <br>
-Mitigation: Prefer a future version that adds a per-session token, origin checks, and server-side model allowlist validation. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to choose OpenRouter models, set primary and fallback models, and hot-update local OpenClaw configuration through a Canvas picker or CLI fallback.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ys727469926/openrouter-model-picker) <br>
-- [config-server reference](artifact/references/config-server.md) <br>
-- [OpenRouter model API](https://openrouter.ai/api/v1/models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and an interactive HTML picker.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May launch a temporary localhost service and apply OpenClaw model configuration changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The local configuration server can change enabled, primary, and fallback OpenClaw model settings without authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the picker only in a trusted local environment, avoid browsing untrusted sites while it is running, and prefer a version with a per-session token, strict origin checks, and server-side model validation.
+
+Risk: Applying a selection can permanently change which OpenClaw models are enabled.
+
+Mitigation: Review selected models before applying and use the picker or CLI fallback to restore intended settings if needed.
+
+## Reference(s):
+
+- [config_server.py Reference](artifact/references/config-server.md)
+- [OpenRouter Models API](https://openrouter.ai/api/v1/models)
+- [ClawHub Skill Page](https://clawhub.ai/ys727469926/skills/openrouter-model-picker)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown embed instructions with bash commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Updates local OpenClaw model settings and can render an interactive Canvas picker.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

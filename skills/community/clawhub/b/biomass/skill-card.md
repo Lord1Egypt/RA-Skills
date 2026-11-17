@@ -1,39 +1,50 @@
-## Description: <br>
-Biomass energy reference covering feedstock properties, combustion, gasification, pyrolysis, pelletization, emissions, and plant sizing calculations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Biomass energy reference for feedstock properties, combustion, gasification, pyrolysis, pelletization, emissions, and plant sizing.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers, energy analysts, and engineers use this skill as a quick reference when evaluating biomass feedstocks, comparing thermochemical conversion pathways, or estimating heating values, emissions controls, and plant sizing rules of thumb. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides technical biomass values and rules of thumb that could be inappropriate for safety-critical engineering decisions if used without review. <br>
-Mitigation: Treat outputs as reference material and independently verify calculations, standards, and design assumptions before operational use. <br>
+## Use Case:
 
+Developers, engineers, and energy practitioners use this skill as a quick reference when evaluating biomass resources, comparing conversion pathways, and estimating heating value or sizing considerations.
 
-## Reference(s): <br>
-- [ClawHub Biomass Skill Page](https://clawhub.ai/bytesagain1/biomass) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-oriented terminal text from Bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static educational reference output; no network, credential, persistence, or destructive behavior was reported by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Technical biomass values may be incomplete or unsuitable as authoritative engineering advice for regulated designs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as reference material and verify calculations, standards, emissions requirements, and design assumptions against authoritative engineering sources before use.
+
+## Reference(s):
+
+- [Biomass ClawHub release](https://clawhub.ai/bytesagain1/skills/biomass)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown and terminal text with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local reference output; no API keys, external tools, or network calls are indicated by the release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

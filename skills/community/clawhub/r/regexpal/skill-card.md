@@ -1,39 +1,58 @@
-## Description: <br>
-Test and debug regex patterns against sample text, including match groups, replacements, and syntax checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Test and debug regex patterns against sample text. Use when checking match groups, validating patterns, generating replacements, linting syntax.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use RegexPal to test, debug, explain, and apply regular expressions against sample text or local files from a terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Match, extract, and replace commands can reveal selected text or local file content in terminal or agent output. <br>
-Mitigation: Use the skill only with text and files that are appropriate to display in terminal or agent transcripts. <br>
+## Use Case:
 
+Developers and engineers use Regexpal to test regular expressions, inspect matches and capture groups, run replacements, extract matched data from files, and get syntax explanations in a local terminal workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/regexpal) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Terminal text and stdout from regexpal commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prints matches, replacements, captured groups, or regex syntax explanations for user-provided text and selected local files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release evidence) <br>
+Risk: File-based commands can display matching content from user-selected files in the terminal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on files intentionally selected for inspection and avoid sensitive files unless terminal disclosure is acceptable.
+
+Risk: Untrusted regular expressions or hostile input files can cause long-running regex processing.
+
+Mitigation: Test unfamiliar patterns on small samples first and avoid regexes or files from untrusted sources when reliability matters.
+
+Risk: Untrusted file content can affect terminal output readability or presentation.
+
+Mitigation: Use trusted inputs where possible and review terminal output before acting on highlighted matches or extracted values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/regexpal)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Terminal text and Markdown guidance with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces match details, replacement output, extracted groups, or syntax explanations; file-reading commands print selected file content to stdout.]
+
+## Skill Version(s):
+
+3.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

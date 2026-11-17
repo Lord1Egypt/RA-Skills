@@ -1,64 +1,46 @@
 ---
-name: vulnerability-scanner
-description: "Scan websites for common vulnerabilities including SQL injection, open ports, and DevTools-related issues. This skill is designed for testing user-owned websites and is compatible with OpenClaw."
+name: ai-trading
+description: "Assistant de trading automatisé pour l'analyse de marché, la détection de signaux et l'exécution de stratégies techniques (RSI, MA, Support/Résistance). À utiliser pour : analyser les cryptomonnaies, calculer la taille des positions, gérer le risque et générer des rapports de performance."
 ---
 
-# Vulnerability Scanner
+# AI Trading
 
-This skill provides tools and guidance to perform basic vulnerability assessments on web applications. It focuses on identifying common security weaknesses such as SQL injection, exposed network ports, and misconfigurations discoverable via browser developer tools.
+Cette compétence transforme Manus en un assistant de trading discipliné, capable de suivre des stratégies techniques strictes tout en priorisant la gestion des risques.
 
-## Features
+## Fonctionnalités Principales
 
-1.  **Port Scanning**: Identify open ports on a target host to discover potentially exposed services.
-2.  **SQL Injection Testing**: Perform basic tests for SQL injection vulnerabilities on web application parameters.
-3.  **DevTools Issue Detection**: Guide on how to manually check for security-related issues using browser developer tools.
+- **Analyse Technique Multi-Indicateurs** : Utilisation du RSI (période 14), des Moyennes Mobiles (MA20, MA50) et détection dynamique des supports et résistances.
+- **Gestion des Risques Intégrée** : Calcul automatique de la taille de position pour limiter le risque par trade à 1-2% du capital total.
+- **Filtrage des Signaux** : Validation des entrées par le volume et la tendance globale pour éviter les faux signaux.
+- **Suivi de Performance** : Génération de rapports détaillés incluant le taux de victoire, le profit moyen et le maximum drawdown.
 
-## Usage
+## Ressources de la Compétence
 
-### Step 1: Scan for Open Ports
+### Scripts
 
-Use the `port_scanner.py` script to check for open ports on a target host. This helps in identifying services that might be unintentionally exposed.
+- `scripts/position_sizing.py` : Calcule la taille optimale de la position en fonction du capital, du risque souhaité et de la distance du Stop Loss.
+  - Usage : `python3 scripts/position_sizing.py <balance> <risk_percent> <stop_loss_dist>`
 
-```bash
-python3 /home/ubuntu/skills/vulnerability-scanner/scripts/port_scanner.py <host> <port1> [port2 ...]
-```
+### Références
 
-**Example:**
+- `references/trading_strategies.md` : Contient les règles détaillées pour les entrées ACHAT/VENTE, les paramètres des indicateurs et les contraintes de sécurité (max 3 trades simultanés).
 
-```bash
-python3 /home/ubuntu/skills/vulnerability-scanner/scripts/port_scanner.py example.com 80 443 22
-```
+### Templates
 
-### Step 2: Test for SQL Injection
+- `templates/performance_report.md` : Modèle pour la création de rapports de trading professionnels.
 
-Employ the `sql_injector.py` script to perform a basic SQL injection test on a specified URL parameter. This script appends a common SQL injection payload and reports potential vulnerabilities.
+## Flux de Travail Recommandé
 
-```bash
-python3 /home/ubuntu/skills/vulnerability-scanner/scripts/sql_injector.py <url> <parameter_name>
-```
+1. **Analyse de Marché** : Récupérer les données de prix (1m, 5m, 15m, 1h) et calculer les indicateurs techniques (RSI, MA).
+2. **Détection de Tendance** : Vérifier la tendance avec les MA20/MA50. Ne trader que dans le sens de la tendance.
+3. **Validation du Signal** : Attendre que le RSI, le volume et les niveaux de support/résistance confirment l'entrée.
+4. **Calcul du Risque** : Utiliser `position_sizing.py` pour déterminer la taille de la position avant toute exécution.
+5. **Exécution et Suivi** : Définir obligatoirement un Stop Loss et un Take Profit (Ratio R/R 1:2 minimum).
+6. **Reporting** : Utiliser le template de rapport pour documenter chaque trade et analyser la performance globale.
 
-**Example:**
+## Contraintes de Sécurité
 
-```bash
-python3 /home/ubuntu/skills/vulnerability-scanner/scripts/sql_injector.py https://www.example.com/products search_query
-```
-
-### Step 3: Manual DevTools Vulnerability Check
-
-Refer to the `devtools_issues.md` guide for instructions on how to manually inspect a website using browser developer tools to uncover security misconfigurations or exposed sensitive information.
-
--   **Guide**: See `/home/ubuntu/skills/vulnerability-scanner/references/devtools_issues.md` for detailed steps on checking for exposed API keys, insecure communications, client-side validation bypasses, and more.
-
-## OpenClaw Compatibility
-
-This skill is designed to be fully compatible with OpenClaw. To integrate and use this skill within your OpenClaw environment:
-
-1.  **Installation**: Copy the entire `vulnerability-scanner` directory into your OpenClaw skills directory (typically `~/.openclaw/workspace/skills/`).
-2.  **Detection**: The `SKILL.md` file will be automatically detected by the OpenClaw agent.
-3.  **Access**: All scripts and reference materials are accessible via the relative paths specified in this document.
-
-## Important Considerations
-
--   **Authorization**: Always ensure you have explicit authorization to perform vulnerability scanning on any target website. Unauthorized scanning is illegal and unethical.
--   **Scope**: This skill provides basic scanning capabilities. For comprehensive security audits, consider using professional-grade penetration testing tools and services.
--   **False Positives**: Automated vulnerability scans can produce false positives. Manual verification of reported issues is crucial.
+- **Stop Loss Obligatoire** : Aucun trade ne doit être ouvert sans un Stop Loss défini.
+- **Limite de Risque** : Ne jamais dépasser 2% de risque par trade.
+- **Mode Test** : Privilégier le "Paper Trading" pour valider de nouvelles stratégies sans risque financier réel.
+- **Fail-Safe** : En cas de perte de connexion ou d'erreur API, fermer les positions ouvertes ou arrêter les nouveaux trades.

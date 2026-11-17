@@ -1,37 +1,53 @@
-## Description: <br>
-This skill gives an agent style guidance for writing in an Elon Musk-like voice, combining first-principles reasoning, technical language, casual phrasing, blunt rhetoric, and meme-aware tone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides an agent to emulate Elon Musk's public communication style using first-principles framing, technical-casual language, blunt rhetoric, and themes such as sustainability, space, AI, and manufacturing.
 
-## Publisher: <br>
-[DuanC-Chao](https://clawhub.ai/user/DuanC-Chao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duanc-chao](https://clawhub.ai/user/duanc-chao)
 
-## Use Case: <br>
-Developers, writers, and agents use this skill to transform responses into a stylized Musk-like communication pattern for brainstorming, commentary, or persona-driven drafting. It should not be used as a default voice for sensitive advice, customer support, or factual decision-making without explicit neutral tone and source-citation constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DuanC-Chao/elon-musk) <br>
+External users and developers can use this skill when they want an agent to draft or transform responses in a Musk-like public communication style. It is best suited for style simulation and rhetorical framing, not for factual claims about Elon Musk or his companies.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses shaped by persona and rhetoric instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only style guidance; no code execution, data access, credentials, or persistence according to the security evidence.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Responses may become blunt, persuasive, dramatic, or abrasive because the skill intentionally changes communication style.
+
+Mitigation: Use the skill only when that voice is deliberate, and review outputs for tone, accuracy, and audience fit before external use.
+
+Risk: Persona-style outputs can be mistaken for factual authority or endorsement.
+
+Mitigation: Treat outputs as stylistic drafts, avoid implying endorsement or identity, and fact-check claims independently.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duanc-chao/skills/elon-musk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text style guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces stylistic response guidance; no file, shell, credential, or system-access output is requested by the artifact.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

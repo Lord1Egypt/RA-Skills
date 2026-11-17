@@ -1,40 +1,53 @@
-## Description: <br>
-Determines whether today or a specified date is a working day in mainland China by querying holiday-cn yearly JSON from jsDelivr and applying holiday and makeup-workday rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Determine whether today or a given date is a working day in mainland China by querying holiday-cn yearly JSON from jsDelivr and applying holiday and makeup-workday rules.
 
-## Publisher: <br>
-[Sube-py](https://clawhub.ai/user/Sube-py) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sube-py](https://clawhub.ai/user/sube-py)
 
-## Use Case: <br>
-People and workflows that need China calendar checks use this skill to determine whether a current or specified date is a workday, holiday, or makeup workday and to return a clear reason with the data source. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Holiday and makeup-workday decisions depend on a third-party public holiday dataset. <br>
-Mitigation: For important scheduling, payroll, legal, or operational decisions, verify results against an official source. <br>
-Risk: The skill requires outbound access to fetch public holiday data. <br>
-Mitigation: Run it only in environments where the jsDelivr holiday data request is expected and allowed. <br>
+## Use Case:
 
+Developers, employees, and workflow agents use this skill to decide whether a mainland China date is a workday, including public holidays and makeup workdays.
 
-## Reference(s): <br>
-- [holiday-cn yearly JSON data](https://cdn.jsdelivr.net/gh/NateScarlet/holiday-cn@master/{year}.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON from a Python command, usually summarized in Markdown by the agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes queried date, is_workday boolean, reason, and data source URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Workday decisions depend on a public jsDelivr-hosted holiday dataset referenced through a mutable branch, so upstream changes or incorrect data can affect results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For important decisions, review the returned source URL and reason against an authoritative holiday calendar or pin and audit the dataset version before automation.
+
+Risk: Network failures or unavailable yearly data can prevent the helper from returning a workday result.
+
+Mitigation: Use timeout and retry settings appropriate for the workflow and handle command failure explicitly.
+
+## Reference(s):
+
+- [holiday-cn yearly data source](https://cdn.jsdelivr.net/gh/NateScarlet/holiday-cn@master/{year}.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON with date, is_workday, reason, and source URL.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Asia/Shanghai by default and accepts an optional YYYY-MM-DD date.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

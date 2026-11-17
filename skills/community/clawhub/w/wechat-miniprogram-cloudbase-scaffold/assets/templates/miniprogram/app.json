@@ -1,0 +1,27 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/group/group",
+    "pages/me/me"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#0F3D2E",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "__APP_TITLE__",
+    "backgroundColor": "#F5F3EE",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#0F3D2E",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      { "pagePath": "pages/index/index", "text": "打卡" },
+      { "pagePath": "pages/group/group", "text": "我的组" },
+      { "pagePath": "pages/me/me", "text": "我的" }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

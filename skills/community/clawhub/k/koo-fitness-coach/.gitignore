@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# 本地技能安装元数据（不属于技能本体）
+_user_meta.json
+_skillhub_meta.json
+_knot_meta.json
+_icon.png
+
+# 系统 / 编辑器
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# 打包产物
+*.zip

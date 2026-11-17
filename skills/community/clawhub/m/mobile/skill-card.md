@@ -1,37 +1,49 @@
-## Description: <br>
-Build mobile applications with proper lifecycle handling, offline support, and platform conventions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build mobile applications with proper lifecycle handling, offline support, and platform conventions.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill for mobile application guidance across lifecycle handling, permissions, offline behavior, performance, navigation, notifications, storage, accessibility, testing, and app store readiness. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Mobile-development guidance can be applied incorrectly for a project's platform, privacy, accessibility, or app store requirements. <br>
-Mitigation: Review the guidance against the target platform policies, project privacy model, accessibility requirements, and release checklist before applying it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/mobile) <br>
+## Use Case:
 
+Developers and engineers use this skill as practical guidance when building mobile applications that handle lifecycle events, permissions, offline behavior, performance, navigation, notifications, storage, input, accessibility, testing, and app store review expectations.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational mobile-development recommendations; no code execution, tool calls, or environment modification.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Mobile implementation choices around permissions, storage, notifications, background work, and cloud backup can affect privacy, platform review, and user trust.
+
+Mitigation: Review generated application code and platform configuration before release, especially permission prompts, secure storage, notification behavior, background tasks, and backup settings.
+
+## Reference(s):
+
+- [Mobile skill page](https://clawhub.ai/ivangdavila/skills/mobile)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown guidance checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Passive guidance only; no executable code or tool calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

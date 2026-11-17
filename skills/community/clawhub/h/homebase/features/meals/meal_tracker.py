@@ -19,7 +19,7 @@ import random
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Tuple
 
-from utils import write_json_atomic
+from utils import write_json_atomic, locked_file
 
 
 # ─── Constraint application ──────────────────────────────────────────────────
@@ -138,21 +138,25 @@ class MealTracker:
         The caller decides what to do with the off-catalog signal.
         """
         child = child.lower()
-        if child not in self.history:
-            self.history[child] = []
         entry = {
             "date":      date or datetime.now().strftime("%Y-%m-%d"),
             "meal_type": meal_type,
             "food":      food,
             "logged_at": datetime.now().isoformat(),
         }
-        self.history[child].append(entry)
-        # Trim to 30 days so the file doesn't grow forever
-        cutoff = (datetime.now() - timedelta(days=30)).strftime("%Y-%m-%d")
-        self.history[child] = [
-            e for e in self.history[child] if e.get("date", "") >= cutoff
-        ]
-        self._save_history()
+        # Locked across reload → mutate → save. One call per kid per meal slot
+        # is the documented usage, so several arrive together after a "what did
+        # they eat?" reply; without the lock the last writer wins and the rest
+        # of the meals silently vanish from history.
+        with locked_file(self.history_file):
+            self.history = self._load_json(self.history_file, default={})
+            self.history.setdefault(child, []).append(entry)
+            # Trim to 30 days so the file doesn't grow forever
+            cutoff = (datetime.now() - timedelta(days=30)).strftime("%Y-%m-%d")
+            self.history[child] = [
+                e for e in self.history[child] if e.get("date", "") >= cutoff
+            ]
+            self._save_history()
 
         slot = self._slot_alias(meal_type)
         in_catalog = self._is_in_catalog(child, slot, food)
@@ -340,17 +344,22 @@ class MealTracker:
             constraints    = list((kid.slot("lunch").get("constraints") or []))
 
             # Pick breakfast (avoid recent), then apply constraints to lunch
-            breakfast = self._pick_avoiding(
+            breakfast = self.pick_avoiding(
                 breakfast_pool, self.get_recent_meals(name, "breakfast", days=3)
             )
             effective_breakfast = breakfast if breakfast != "TBD" else None
+            # `had_eggs` folds into the same call: what the constraint checks
+            # is whether the breakfast in play contains "egg", and a logged
+            # egg breakfast today is exactly that. This used to be a second
+            # _apply_constraints call against a hardcoded "Scrambled eggs"
+            # that recomputed from lunch_pool_raw and discarded the first
+            # result — same answer, twice the code.
+            breakfast_for_constraints = (
+                "Scrambled eggs" if had_eggs else effective_breakfast
+            )
             lunch_pool = _apply_constraints(lunch_pool_raw, constraints,
-                                            effective_breakfast)
-            # If we have history of eggs at breakfast today, also enforce
-            if had_eggs:
-                lunch_pool = _apply_constraints(lunch_pool_raw, constraints,
-                                                "Scrambled eggs")
-            lunch = self._pick_avoiding(
+                                            breakfast_for_constraints)
+            lunch = self.pick_avoiding(
                 lunch_pool, self.get_recent_meals(name, "lunch", days=3)
             )
             side  = random.choice(sides_pool) if sides_pool else "Fruit"
@@ -375,8 +384,8 @@ class MealTracker:
         Shape::
 
             {
-              "monday":   {"amyra": {"breakfast": [...], "lunch": [...], "sides": [...]},
-                            "reyansh": {...}},
+              "monday":   {"ana": {"breakfast": [...], "lunch": [...], "sides": [...]},
+                            "ben": {...}},
               "tuesday":  {...},
               ...
             }
@@ -496,9 +505,15 @@ class MealTracker:
     # ── helpers ──────────────────────────────────────────────────────────────
 
     @staticmethod
-    def _pick_avoiding(options: List[str], used: List[str]) -> str:
+    def pick_avoiding(options: List[str], used: List[str]) -> str:
         if not options:
             return "TBD"
         used_norm = {MealTracker._normalize_meal(u) for u in used}
         fresh = [o for o in options if MealTracker._normalize_meal(o) not in used_norm]
         return random.choice(fresh if fresh else options)
+
+
+# Public alias for the one shared picker. weekly_meal_planner binds this across
+# a module boundary, and binding an underscore-prefixed member meant a rename
+# inside MealTracker would break an unrelated module with no signal.
+MealTracker._pick_avoiding = MealTracker.pick_avoiding

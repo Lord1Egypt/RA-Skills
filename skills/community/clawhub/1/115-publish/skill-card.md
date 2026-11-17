@@ -1,43 +1,60 @@
-## Description: <br>
-Provides conversational management for 115 cloud drive accounts, including QR login, file browsing and search, share transfer, offline downloads, file organization, storage checks, and cleanup advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages 115 cloud-drive accounts through QR login, file browsing, search, share saving, offline downloads, smart organization, storage queries, and cleanup advice.
 
-## Publisher: <br>
-[sukris](https://clawhub.ai/user/sukris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sukris](https://clawhub.ai/user/sukris)
 
-## Use Case: <br>
-External users and operators use this skill to manage a 115 cloud drive account through chat-driven commands for login, browsing, search, transfer, offline download, storage review, and organization tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles 115 account cookies and stores session material locally. <br>
-Mitigation: Install only from a trusted publisher, confirm cookies can be cleared, and avoid sharing logs or outputs that may contain account identifiers. <br>
-Risk: Network authentication and API calls can expose account activity to the 115 service and depend on correct TLS handling. <br>
-Mitigation: Review or patch TLS verification before use and restrict execution to trusted networks and machines. <br>
-Risk: Bulk file moves, deletes, recycle-bin clearing, share transfers, and offline-download cleanup can change or remove user data. <br>
-Mitigation: Require a preview, target-path check, and explicit user confirmation before any destructive or bulk operation. <br>
+## Use Case:
 
+External users and developers use this skill to manage 115 cloud-drive files through an agent, including login, browsing, search, share transfer, offline download, organization, and storage cleanup workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sukris/115-publish) <br>
-- [Publisher profile](https://clawhub.ai/user/sukris) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, files, configuration, guidance] <br>
-**Output Format:** [Markdown-style conversational responses with status summaries, prompts, and result lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send QR-code image data during login and may save encrypted account cookies on the user's machine.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and package.json) <br>
+Risk: The skill stores reusable 115 account session cookies locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a trusted local account and workspace, and review or patch credential handling before use.
+
+Risk: The skill can browse account metadata, create remote download tasks, move files, and perform delete or clear operations.
+
+Mitigation: Require explicit user confirmation for downloads, organization, deletion, and recycle-bin clearing.
+
+Risk: The security verdict is suspicious because account access and state-changing file actions have consent and security gaps.
+
+Mitigation: Perform manual review before installation and treat the skill as having broad access to the connected 115 account.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sukris/skills/115-publish)
+- [115 web service](https://115.com/)
+- [115 web API](https://webapi.115.com)
+- [115 passport API](https://passportapi.115.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and short text responses with account status, file lists, search results, task results, progress summaries, and cleanup recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include QR login image output and concise progress or confirmation prompts for account and file operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

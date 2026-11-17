@@ -1,44 +1,57 @@
-## Description: <br>
-Automatically logs into email accounts such as Gmail, Outlook, and QQ Mail to fetch messages and generate daily summaries, important-message checks, and digest reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically logs into email accounts (Gmail, Outlook, QQ Mail, etc.) and generates daily email summaries.
 
-## Publisher: <br>
-[lean-zhouchao](https://clawhub.ai/user/lean-zhouchao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lean-zhouchao](https://clawhub.ai/user/lean-zhouchao)
 
-## Use Case: <br>
-External users and developers use this skill to automate mailbox access with browser-use, collect recent email information, generate daily digest reports, and configure scheduled summary runs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for broad access to logged-in mailboxes and can run recurring background mailbox access. <br>
-Mitigation: Install only if broad mailbox automation is acceptable, and enable cron or launchd only when recurring access is intentional. <br>
-Risk: AI extraction may send email content outside the mailbox context depending on the configured provider. <br>
-Mitigation: Avoid AI extraction unless the data destination and retention behavior are understood. <br>
-Risk: Screenshots and logs may contain sensitive email information. <br>
-Mitigation: Delete screenshots and logs that are not needed and avoid storing sensitive mailbox content in retained files. <br>
-Risk: Password entry through automation examples can expose credentials in command history or logs. <br>
-Mitigation: Prefer reusing an already logged-in browser session and avoid entering passwords through scripted examples. <br>
+## Use Case:
 
+Users who need recurring mailbox digests can use this skill to open supported webmail sessions, review recent messages, produce concise summaries and statistics, and prepare daily email reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lean-zhouchao/email-daily-summary-zc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash, Python, JavaScript, XML, and report examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate mailbox summary text, screenshots, logs, browser automation commands, and cron or launchd configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill requires broad authenticated mailbox access and may expose sensitive message data through screenshots, logs, or generated summaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated browser profile or read-only mailbox account, avoid capturing unnecessary mailbox content, and treat all generated artifacts as sensitive.
+
+Risk: Manual login examples can encourage users to enter real credentials into shell-driven workflows.
+
+Mitigation: Prefer an existing browser session and avoid putting passwords or tokens in commands, scripts, or logs.
+
+Risk: Cron or launchd automation can run mailbox collection unattended.
+
+Mitigation: Enable schedules only after reviewing the command path, output locations, and disable procedure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lean-zhouchao/skills/email-daily-summary-zc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, Python, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce email summary reports, mailbox statistics, screenshots, logs, and scheduled-task configuration examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

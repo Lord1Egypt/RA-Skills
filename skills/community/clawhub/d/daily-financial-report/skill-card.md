@@ -1,41 +1,58 @@
-## Description: <br>
-采集市场和新闻数据，生成每日金融 Word 日报与 PPT 简报，并在完成后通过邮件发送。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+生成每日金融日报 orchestrates market and economic data collection, Word report generation, PPT briefing generation, and email delivery when the user asks for a daily financial report, today's report, or a morning brief.
 
-## Publisher: <br>
-[szrw1825](https://clawhub.ai/user/szrw1825) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[szrw1825](https://clawhub.ai/user/szrw1825)
 
-## Use Case: <br>
-Financial-reporting users and agents use this skill to orchestrate market data collection, Word report creation, PPT briefing creation, and email delivery for a daily financial report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A broad natural-language trigger can start a workflow that collects market/news data, creates files, and sends results externally by email. <br>
-Mitigation: Confirm the trigger intent, trusted local configuration, companion skills, and email recipients before running the skill. <br>
-Risk: The workflow depends on companion skills and local configuration paths that are outside this artifact. <br>
-Mitigation: Review the referenced companion skills and local config before deployment, especially data sources, output directories, Python interpreter settings, and mail delivery settings. <br>
+## Use Case:
 
+External users and developers use this skill to run a daily financial-report workflow that collects market, economic, policy, and company news data, then produces Word and PowerPoint outputs and sends them by email.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/szrw1825/daily-financial-report) <br>
-- [Publisher profile](https://clawhub.ai/user/szrw1825) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with referenced Python scripts and generated report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coordinates companion skills that produce JSON market data, Word documents, PPT briefings, logs, and outbound email.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow relies on unaudited local configuration and sibling skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in a controlled OpenClaw workspace after reviewing the external config path and every referenced sibling skill.
+
+Risk: The workflow automatically proceeds to an email-sending step.
+
+Mitigation: Require manual confirmation of recipients, attachments, and output paths before email delivery.
+
+Risk: Earlier report-generation stages may fail without stopping the email stage.
+
+Mitigation: Check stage return codes and generated artifacts before allowing the email step to run.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/szrw1825/skills/daily-financial-report)
+- [Publisher profile](https://clawhub.ai/user/szrw1825)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions]
+
+**Output Format:** [Word document, PowerPoint deck, JSON data file, log output, and email delivery status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workflow depends on local configuration, sibling skills, configured output paths, and email settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

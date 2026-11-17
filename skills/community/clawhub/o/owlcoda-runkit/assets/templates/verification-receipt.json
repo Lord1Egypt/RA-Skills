@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "OwlCodaRunKitVerificationReceiptV2",
+  "runId": "replace-with-run-id",
+  "receiptId": "replace-with-stable-receipt-id",
+  "status": "ready_for_verification",
+  "sourceFingerprint": "replace-with-canonical-source-fingerprint",
+  "verificationContextFingerprint": "replace-with-verification-context-fingerprint",
+  "selectedProfileIds": ["focused"],
+  "commandRuns": 0,
+  "commandReceipts": []
+}

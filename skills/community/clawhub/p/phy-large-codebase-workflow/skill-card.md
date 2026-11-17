@@ -1,43 +1,57 @@
-## Description: <br>
-Best practices for using Claude Code with large, multi-part codebases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Best practices for using Claude Code with large, multi-part codebases.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to manage Claude Code sessions in large repositories through codemaps, focused sessions, subagents, worktrees, and verification-oriented workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repo-editing, commit, push, and PR examples can lead to unintended repository changes if an agent executes them without review. <br>
-Mitigation: Use a disposable branch, inspect generated .claude files and codemaps for sensitive content, and require confirmation before commits, pushes, or PR creation. <br>
-Risk: Generated codemaps and workflow notes may include sensitive repository structure or implementation details. <br>
-Mitigation: Review generated codemaps and related documentation before sharing or committing them. <br>
+## Use Case:
 
+Developers and engineers use this skill to structure Claude Code work on large repositories, including codemap preparation, session planning, subagent use, worktree workflows, and verification habits.
 
-## Reference(s): <br>
-- [Canlah AI](https://canlah.ai) <br>
-- [Anthropic Claude Code Best Practices](https://www.anthropic.com/engineering/claude-code-best-practices) <br>
-- [Claude Code Best Practices Documentation](https://code.claude.com/docs/en/best-practices) <br>
-- [Claude Code Subagents Guide](https://code.claude.com/docs/en/sub-agents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands, directory examples, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only workflow guidance; no tools or credentials are configured by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill includes examples for batch edits, commits, pull requests, CI analysis, resume flows, and repository-wide Claude Code usage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run those commands only after deliberate review, especially in private repositories or when code should not be sent to an external Claude account.
+
+Risk: Following workflow advice without verification can still lead to incorrect code changes or misleading guidance being applied to a project.
+
+Mitigation: Review proposed changes, run project tests, and keep human approval around commands that modify files, commits, or release workflows.
+
+## Reference(s):
+
+- [Canlah AI](https://canlah.ai)
+- [Anthropic Best Practices](https://www.anthropic.com/engineering/claude-code-best-practices)
+- [Claude Code Best Practices](https://code.claude.com/docs/en/best-practices)
+- [Claude Code Subagents Guide](https://code.claude.com/docs/en/sub-agents)
+- [ClawHub Skill Page](https://clawhub.ai/phy041/skills/phy-large-codebase-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only workflow guidance; no tool calls or credentials are required by the skill itself.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

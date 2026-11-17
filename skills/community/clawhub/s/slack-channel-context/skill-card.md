@@ -1,43 +1,59 @@
-## Description: <br>
-Automatically loads Slack channel context files into session context for Slack channels and threads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically loads Slack channel context files (e.g., bebops.md, C0AK8SDFS4W.md) into session context for Slack channels and threads.
 
-## Publisher: <br>
-[hirebrianm](https://clawhub.ai/user/hirebrianm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hirebrianm](https://clawhub.ai/user/hirebrianm)
 
-## Use Case: <br>
-Developers and teams using OpenClaw with Slack use this skill to load channel-specific project context, rules, and recent activity into agent sessions when working in a Slack channel or thread. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Slack channel context files can contain private internal notes or personal data that may be added to an AI session. <br>
-Mitigation: Keep secrets, credentials, private personal data, and sensitive internal notes out of channel context files; review each context file before enabling it for a channel. <br>
-Risk: Automatic context loading and caching can add stale or unintended channel information to a session. <br>
-Mitigation: Use explicit per-channel allowlists, disable loading in threads when appropriate, and force reload after editing context files. <br>
+## Use Case:
 
+Developers and Slack-based agent users use this skill to automatically load channel-specific Markdown context for Slack channels and threads, including project notes, rules, and recent activity.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hirebrianm/slack-channel-context) <br>
-- [Context template](references/context-template.md) <br>
-- [Example channel context](examples/EXAMPLE_CHANNEL_CONTEXT.md) <br>
-- [Troubleshooting guide](TROUBLESHOOTING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [JSON result containing loaded Markdown context and status metadata, plus Markdown guidance in documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Loads channel context by channel ID before channel name, can skip threaded messages, and caches context reads for a configurable duration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Channel identifiers or names could resolve Markdown files outside the intended Slack context folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after strict channel identifier validation and resolved-path containment checks are in place; avoid untrusted channel_id or channel_name values until fixed.
+
+Risk: Automatically injected channel context can expose secrets or sensitive private data to an agent session.
+
+Mitigation: Keep context files free of secrets and sensitive private data, and enable the skill only in Slack channels where automatic context injection is intended.
+
+Risk: The server security verdict is suspicious.
+
+Mitigation: Review the skill before installing and follow the server security guidance for deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hirebrianm/skills/slack-channel-context)
+- [Channel context template](references/context-template.md)
+- [Example channel context](examples/EXAMPLE_CHANNEL_CONTEXT.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown context text with success status and channel metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns empty context when no channel-specific file exists; loaded context may be cached according to configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

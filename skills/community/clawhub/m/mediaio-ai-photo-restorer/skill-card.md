@@ -1,42 +1,60 @@
-## Description: <br>
-Restore damaged, old, and low-quality photos through Media.io OpenAPI by enhancing image quality, reducing scratches and noise, and colorizing black-and-white images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Restores damaged, old, and low-quality photos using Media.io OpenAPI photo enhancement, scratch and noise reduction, and black-and-white photo colorization.
 
-## Publisher: <br>
-[wondershare-boop](https://clawhub.ai/user/wondershare-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wondershare-boop](https://clawhub.ai/user/wondershare-boop)
 
-## Use Case: <br>
-Agents use this skill when a user has an authorized, publicly reachable image URL and wants Media.io to restore, enhance, or colorize the photo. The skill is also useful for checking available Media.io credits before submitting asynchronous restoration jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input photos and generated preview URLs may include personal or sensitive content processed by Media.io. <br>
-Mitigation: Only process images the user owns or is authorized to edit, and avoid highly sensitive photos unless Media.io processing and returned public preview URLs are acceptable. <br>
-Risk: The skill requires a Media.io API key and can consume Media.io credits. <br>
-Mitigation: Use a dedicated or revocable API key, avoid exposing it in logs or responses, and check available credits before starting generation. <br>
+## Use Case:
 
+External users and developers use this skill to submit authorized image URLs to Media.io, poll asynchronous restoration tasks, and return edited photo preview URLs. It is suited for workflows that need API-based photo enhancement rather than local file processing.
 
-## Reference(s): <br>
-- [Media.io API Documentation](https://platform.media.io/docs/) <br>
-- [Media.io Developer Portal](https://developer.media.io/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wondershare-boop/mediaio-ai-photo-restorer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown with cURL commands and JSON request or response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns asynchronous task IDs, polling guidance, status handling, and generated image preview URLs when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill sends user-authorized image URLs to Media.io for processing, which may expose sensitive photo content to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process only images the user owns or is authorized to process, and avoid sharing generated preview URLs when restored content is sensitive.
+
+Risk: The skill depends on a MEDIAIO_API_KEY and credit-based API calls.
+
+Mitigation: Keep API keys out of logs and responses, check credits before generation, and stop clearly when credits are insufficient.
+
+Risk: Restored or colorized images are edited synthetic media and may be mistaken for original or verified imagery.
+
+Mitigation: Present outputs as edited content and avoid implying identity verification or biometric certainty from generated images.
+
+## Reference(s):
+
+- [Media.io API documentation](https://platform.media.io/docs/)
+- [Media.io developer platform](https://developer.media.io/)
+- [ClawHub skill page](https://clawhub.ai/wondershare-boop/skills/mediaio-ai-photo-restorer)
+- [ClawHub publisher profile](https://clawhub.ai/user/wondershare-boop)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with cURL examples, JSON request and response contracts, and polling instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MEDIAIO_API_KEY and curl; generated results are returned as Media.io preview URLs after asynchronous task completion.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

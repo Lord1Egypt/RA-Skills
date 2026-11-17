@@ -1,42 +1,62 @@
-## Description: <br>
-Standalone advanced network diagnostics for OpenClaw to continuously test end-to-end connectivity from OpenClaw agent to Telegram Bot API and approximate delivery to a personal Telegram client. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standalone advanced network diagnostics for OpenClaw to continuously test end-to-end connectivity from OpenClaw agent to Telegram Bot API and approximate delivery to a personal Telegram client.
 
-## Publisher: <br>
-[h8kxrfp68z-lgtm](https://clawhub.ai/user/h8kxrfp68z-lgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[h8kxrfp68z-lgtm](https://clawhub.ai/user/h8kxrfp68z-lgtm)
 
-## Use Case: <br>
-Developers and operators use this skill to run continuous OpenClaw-to-Telegram connectivity checks, collect rotating JSON diagnostics, and investigate DNS, TCP/TLS, packet loss, latency, route, MTU, timeout, and Telegram rate-limit issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Telegram bot tokens, chat identifiers, and diagnostic logs may be exposed through validation output, runtime config files, or shared log files. <br>
-Mitigation: Use a dedicated Telegram test bot and chat, keep redaction enabled, protect config and log files, avoid sharing logs without masking identifiers, and avoid running validate-config on real credentials in logged terminals or CI. <br>
-Risk: Continuous probes can send Telegram messages and run local network tools repeatedly. <br>
-Mitigation: Review the configuration before starting the worker, keep intervals and retry settings conservative, and use the documented external-process mode for isolation from the main OpenClaw runtime. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/h8kxrfp68z-lgtm/openclaw-network-diagnostics) <br>
-- [Configuration example](references/config.example.json) <br>
-- [OpenClaw integration options](references/openclaw-integration.md) <br>
-- [AI log analysis workflow](references/ai-log-analysis.md) <br>
+## Use Case:
 
+Developers and operators use this skill to run an isolated OpenClaw-to-Telegram diagnostic worker for investigating latency spikes, packet loss, DNS instability, TCP/TLS failures, route changes, MTU shifts, retry behavior, timeout behavior, and Telegram rate limits.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration, rotating JSONL diagnostic logs, and JSON run summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a local Python diagnostic worker that can emit log files, summary files, and terminal status output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bot credentials or chat identifiers can be exposed through configuration, validation output, runtime configuration files, or logs.
+
+Mitigation: Use only controlled bot and chat credentials, keep redaction enabled, protect or minimize log files, and rotate the bot token if validation output or runtime config files may have exposed it.
+
+Risk: The worker sends live Telegram Bot API requests and diagnostic messages.
+
+Mitigation: Run it only against Telegram bots and chats you control, and keep telegram_api_host set to api.telegram.org unless another endpoint is intentionally trusted.
+
+Risk: The background mode can run as a persistent network worker.
+
+Mitigation: Prefer foreground mode for testing, verify pid-file lifecycle handling before background deployment, and stop the worker when diagnostics are complete.
+
+Risk: Proxy overrides can create plaintext runtime configuration behavior.
+
+Mitigation: Avoid --proxy until that behavior is fixed, or use it only in a controlled environment with protected runtime configuration files.
+
+## Reference(s):
+
+- [Configuration Example](artifact/references/config.example.json)
+- [OpenClaw Integration Options](artifact/references/openclaw-integration.md)
+- [AI Log Analysis](artifact/references/ai-log-analysis.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands, JSON configuration, and JSON/JSONL diagnostic artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The diagnostic worker can emit rotating JSONL logs and a summary JSON file.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

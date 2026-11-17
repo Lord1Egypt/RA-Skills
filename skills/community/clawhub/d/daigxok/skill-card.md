@@ -1,40 +1,54 @@
-## Description: <br>
-帮助教师使用三层目标和六步闭环框架设计、优化并复用高等数学多元函数微分学课时方案。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助教师为高等数学多元函数微分学设计新课、复习课和专题课，并用三层目标与六步闭环生成或优化可复用教案。
 
-## Publisher: <br>
-[daigxok](https://clawhub.ai/user/daigxok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daigxok](https://clawhub.ai/user/daigxok)
 
-## Use Case: <br>
-Educators and instructional designers use this skill to draft new lessons, review sessions, topic lessons, and reusable templates for multivariable differential calculus. It structures objectives, classroom activities, visualization tasks, transfer links, homework, and self-check assessment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional external hire or payment instructions could point users to an unverified tool, agent ID, or payment destination. <br>
-Mitigation: Verify the tool, agent ID, and payment destination through trusted channels before use, and never share wallet private keys or unrelated credentials. <br>
-Risk: Generated lesson designs may contain mathematical or pedagogical errors. <br>
-Mitigation: Review formulas, examples, exercises, and assessment criteria before using the material with students. <br>
+## Use Case:
 
+Teachers and instructional designers use this skill to create or refine Chinese-language lesson plans for multivariable calculus topics, including partial derivatives, differentials, gradients, extrema, and Lagrange multipliers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daigxok/daigxok) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown lesson-design guidance and reusable templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces lesson structures, role-dialogue prompts, exercises, visualization activities, homework tiers, and assessment checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill is designed for Chinese-language multivariable calculus lesson planning and may not directly fit other languages or curricula.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to translate, localize, or adapt the generated lesson plan before classroom use.
+
+Risk: Generated teaching materials can contain mathematical or pedagogical mistakes.
+
+Mitigation: Have a qualified instructor review examples, exercises, formulas, and assessment criteria before using them with students.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daigxok/skills/daigxok)
+- [Publisher profile](https://clawhub.ai/user/daigxok)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration instructions]
+
+**Output Format:** [Markdown lesson-design guidance and reusable teaching templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language teaching-design content with suggested classroom flow, exercises, visualization activities, and assessment checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

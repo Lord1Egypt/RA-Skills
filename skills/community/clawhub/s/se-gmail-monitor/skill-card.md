@@ -1,40 +1,56 @@
-## Description: <br>
-Monitors and manages configured Gmail accounts for inbox triage, urgent-message scanning, unread-count checks, and approved outbound email via IMAP/SMTP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor and manage Gmail accounts for inbox checks, email triage, urgent-message scanning, and user-approved sending over IMAP/SMTP.
 
-## Publisher: <br>
-[boris148](https://clawhub.ai/user/boris148) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[boris148](https://clawhub.ai/user/boris148)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees or agents use this skill to check configured Gmail inboxes, triage recent messages, flag urgent or security-related email, and prepare or send approved operational messages.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill has high-impact mailbox access and can send email from configured accounts.
+
+Mitigation: Require explicit user approval for every outbound email unless a narrow internal allowlist is implemented and enforced in code.
+
+Risk: Account selection and send behavior require review before use.
+
+Mitigation: Verify intended account names, lock configuration to Gmail IMAP/SMTP endpoints, and test account routing before operational use.
+
+Risk: The skill depends on a local Gmail credential configuration file.
+
+Mitigation: Protect the credential file with appropriate filesystem permissions and limit app-password access to the intended mailboxes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees and operators use this skill to inspect Gmail inboxes, identify urgent or security-related messages, and send approved operational email from configured accounts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, configuration guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read business Gmail inboxes and send email from configured accounts. <br>
-Mitigation: Use least-privilege Gmail accounts and app passwords, restrict access to the local configuration file, and require explicit user approval for every outbound email. <br>
-Risk: The release has broad and partly conflicting approval rules for sending email. <br>
-Mitigation: Disable unattended sending and treat heartbeat checks as read-only unless a user approves a specific recipient, subject, body, and sending account. <br>
+**Output Format:** [Markdown with inline shell commands and concise operational guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/boris148/se-gmail-monitor) <br>
+**Other Properties Related to Output:** [Outputs may include mailbox summaries, message metadata, search guidance, and user-approval reminders for outbound email.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and Python script usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured Gmail accounts and app passwords; outbound email should require explicit user approval.] <br>
+1.0.0 (source: frontmatter and release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

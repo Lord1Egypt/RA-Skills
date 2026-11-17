@@ -4,8 +4,8 @@
  *
  * 渲染引擎
  * --------
- *   mermaid  默认使用 beautiful-mermaid → SVG → rsvg-convert → PNG
- *            不支持的图表类型自动回退到 mmdc (Mermaid CLI)
+ *   mermaid  使用官方 mermaid (mmdc / Mermaid CLI) 渲染 .mmd → PNG
+ *            与 Markdown 预览（GitHub / VS Code 等）使用同一渲染器，样式一致
  *   svg      使用 rsvg-convert 渲染 .svg → .png
  *
  * 用法示例
@@ -26,264 +26,123 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-// Dynamic import to resolve from script's own directory
-const { renderMermaidSVG, THEMES } = await import('beautiful-mermaid')
+// ─── 内置主题（16 个）─────────────────────────────────────────────────────────
+// 主题颜色映射为 mermaid themeVariables（theme: 'base'），由官方渲染器应用。
 
-// ─── 自定义主题 ─────────────────────────────────────────────────────────────
-
-// 添加自定义主题：markdown-preview（浅色背景，简洁线条，系统字体）
-THEMES['markdown-preview'] = {
-  bg: '#ffffff',
-  fg: '#24292f',
-  line: '#d1d9e0',
-  accent: '#0969da',
-  muted: '#57606a',
-  surface: '#f6f8fa',
-  border: '#d1d9e0',
-}
-
-// ─── 常量 ─────────────────────────────────────────────────────────────────────
-
-const BM_SUPPORTED_PREFIXES = [
-  'graph', 'flowchart', 'statediagram', 'sequencediagram',
-  'classdiagram', 'erdiagram', 'xychart',
-]
-
-// ─── 曲线插值算法 ─────────────────────────────────────────────────────────────
-
-function pointsToCurvePath(points, curveType = 'basis') {
-  if (points.length < 2) return ''
-  
-  switch (curveType) {
-    case 'basis':
-      return basisCurve(points)
-    case 'monotoneX':
-      return monotoneXCurve(points)
-    case 'monotoneY':
-      return monotoneYCurve(points)
-    case 'stepBefore':
-      return stepBeforeCurve(points)
-    case 'stepAfter':
-      return stepAfterCurve(points)
-    default:
-      return basisCurve(points)
-  }
-}
-
-function basisCurve(points) {
-  const n = points.length
-  if (n < 2) return ''
-  if (n === 2) {
-    return `M${points[0].x},${points[0].y} L${points[1].x},${points[1].y}`
-  }
-  
-  let path = `M${points[0].x},${points[0].y}`
-  
-  for (let i = 0; i < n - 1; i++) {
-    const p0 = points[Math.max(0, i - 1)]
-    const p1 = points[i]
-    const p2 = points[i + 1]
-    const p3 = points[Math.min(n - 1, i + 2)]
-    
-    const cp1x = p1.x + (p2.x - p0.x) / 6
-    const cp1y = p1.y + (p2.y - p0.y) / 6
-    const cp2x = p2.x - (p3.x - p1.x) / 6
-    const cp2y = p2.y - (p3.y - p1.y) / 6
-    
-    path += ` C${cp1x},${cp1y} ${cp2x},${cp2y} ${p2.x},${p2.y}`
-  }
-  
-  return path
-}
-
-function monotoneXCurve(points) {
-  const n = points.length
-  if (n < 2) return ''
-  if (n === 2) {
-    return `M${points[0].x},${points[0].y} L${points[1].x},${points[1].y}`
-  }
-  
-  const tangents = []
-  for (let i = 0; i < n; i++) {
-    if (i === 0) {
-      tangents.push((points[1].y - points[0].y) / (points[1].x - points[0].x))
-    } else if (i === n - 1) {
-      tangents.push((points[n - 1].y - points[n - 2].y) / (points[n - 1].x - points[n - 2].x))
-    } else {
-      const d0 = (points[i].y - points[i - 1].y) / (points[i].x - points[i - 1].x)
-      const d1 = (points[i + 1].y - points[i].y) / (points[i + 1].x - points[i].x)
-      tangents.push((d0 + d1) / 2)
-    }
-  }
-  
-  let path = `M${points[0].x},${points[0].y}`
-  
-  for (let i = 0; i < n - 1; i++) {
-    const dx = points[i + 1].x - points[i].x
-    const cp1x = points[i].x + dx / 3
-    const cp1y = points[i].y + tangents[i] * dx / 3
-    const cp2x = points[i + 1].x - dx / 3
-    const cp2y = points[i + 1].y - tangents[i + 1] * dx / 3
-    
-    path += ` C${cp1x},${cp1y} ${cp2x},${cp2y} ${points[i + 1].x},${points[i + 1].y}`
-  }
-  
-  return path
-}
-
-function monotoneYCurve(points) {
-  const n = points.length
-  if (n < 2) return ''
-  if (n === 2) {
-    return `M${points[0].x},${points[0].y} L${points[1].x},${points[1].y}`
-  }
-  
-  const tangents = []
-  for (let i = 0; i < n; i++) {
-    if (i === 0) {
-      tangents.push((points[1].x - points[0].x) / (points[1].y - points[0].y))
-    } else if (i === n - 1) {
-      tangents.push((points[n - 1].x - points[n - 2].x) / (points[n - 1].y - points[n - 2].y))
-    } else {
-      const d0 = (points[i].x - points[i - 1].x) / (points[i].y - points[i - 1].y)
-      const d1 = (points[i + 1].x - points[i].x) / (points[i + 1].y - points[i].y)
-      tangents.push((d0 + d1) / 2)
-    }
-  }
-  
-  let path = `M${points[0].x},${points[0].y}`
-  
-  for (let i = 0; i < n - 1; i++) {
-    const dy = points[i + 1].y - points[i].y
-    const cp1x = points[i].x + tangents[i] * dy / 3
-    const cp1y = points[i].y + dy / 3
-    const cp2x = points[i + 1].x - tangents[i + 1] * dy / 3
-    const cp2y = points[i + 1].y - dy / 3
-    
-    path += ` C${cp1x},${cp1y} ${cp2x},${cp2y} ${points[i + 1].x},${points[i + 1].y}`
-  }
-  
-  return path
-}
-
-function stepBeforeCurve(points) {
-  const n = points.length
-  if (n < 2) return ''
-  if (n === 2) {
-    return `M${points[0].x},${points[0].y} L${points[1].x},${points[1].y}`
-  }
-  
-  let path = `M${points[0].x},${points[0].y}`
-  
-  for (let i = 0; i < n - 1; i++) {
-    const midY = (points[i].y + points[i + 1].y) / 2
-    path += ` L${points[i].x},${midY} L${points[i + 1].x},${midY}`
-  }
-  
-  path += ` L${points[n - 1].x},${points[n - 1].y}`
-  
-  return path
-}
-
-function stepAfterCurve(points) {
-  const n = points.length
-  if (n < 2) return ''
-  if (n === 2) {
-    return `M${points[0].x},${points[0].y} L${points[1].x},${points[1].y}`
-  }
-  
-  let path = `M${points[0].x},${points[0].y}`
-  
-  for (let i = 0; i < n - 1; i++) {
-    const midX = (points[i].x + points[i + 1].x) / 2
-    path += ` L${midX},${points[i].y} L${midX},${points[i + 1].y}`
-  }
-  
-  path += ` L${points[n - 1].x},${points[n - 1].y}`
-  
-  return path
-}
-
-// ─── SVG 曲线后处理 ─────────────────────────────────────────────────────────────
-
-function parseCurveConfig(mmdContent) {
-  const match = mmdContent.match(/%%\s*\{\s*init\s*:\s*\{\s*'flowchart'\s*:\s*\{\s*'curve'\s*:\s*'([^']+)'\s*\}\s*\}\s*\}\s*%%/)
-  
-  if (match) {
-    const curveType = match[1]
-    const validTypes = ['basis', 'monotoneX', 'monotoneY', 'stepBefore', 'stepAfter']
-    if (validTypes.includes(curveType)) {
-      return curveType
-    }
-  }
-  
-  return null
-}
-
-function parsePoints(pointsStr) {
-  const points = []
-  const pairs = pointsStr.trim().split(/\s+/)
-  
-  for (const pair of pairs) {
-    const [x, y] = pair.split(',').map(Number)
-    if (!isNaN(x) && !isNaN(y)) {
-      points.push({ x, y })
-    }
-  }
-  
-  return points
-}
-
-function convertPolylinesToCurves(svgString, curveType) {
-  const polylineRegex = /<polyline([^>]*)points="([^"]*)"([^>]*)\/>/g
-  
-  return svgString.replace(polylineRegex, (match, before, pointsStr, after) => {
-    const points = parsePoints(pointsStr)
-    
-    if (points.length < 2) {
-      return match
-    }
-    
-    const pathData = pointsToCurvePath(points, curveType)
-    
-    const attrs = (before + after).trim()
-    
-    return `<path ${attrs} d="${pathData}" />`
-  })
-}
-
-function applyCurveToSvg(svgString, mmdContent) {
-  const curveType = parseCurveConfig(mmdContent)
-  
-  if (!curveType) {
-    return svgString
-  }
-  
-  return convertPolylinesToCurves(svgString, curveType)
+const THEMES = {
+  'markdown-preview': {
+    bg: '#ffffff',
+    fg: '#24292f',
+    line: '#d1d9e0',
+    accent: '#0969da',
+    muted: '#57606a',
+    surface: '#f6f8fa',
+    border: '#d1d9e0',
+  },
+  'github-light': {
+    bg: '#ffffff',
+    fg: '#1f2328',
+    line: '#d1d9e0',
+    accent: '#0969da',
+    muted: '#59636e',
+  },
+  'github-dark': {
+    bg: '#0d1117',
+    fg: '#e6edf3',
+    line: '#3d444d',
+    accent: '#4493f8',
+    muted: '#9198a1',
+  },
+  'tokyo-night': {
+    bg: '#1a1b26',
+    fg: '#a9b1d6',
+    line: '#3d59a1',
+    accent: '#7aa2f7',
+    muted: '#565f89',
+  },
+  'tokyo-night-storm': {
+    bg: '#24283b',
+    fg: '#a9b1d6',
+    line: '#3d59a1',
+    accent: '#7aa2f7',
+    muted: '#565f89',
+  },
+  'tokyo-night-light': {
+    bg: '#d5d6db',
+    fg: '#343b58',
+    line: '#34548a',
+    accent: '#34548a',
+    muted: '#9699a3',
+  },
+  'catppuccin-mocha': {
+    bg: '#1e1e2e',
+    fg: '#cdd6f4',
+    line: '#585b70',
+    accent: '#cba6f7',
+    muted: '#6c7086',
+  },
+  'catppuccin-latte': {
+    bg: '#eff1f5',
+    fg: '#4c4f69',
+    line: '#9ca0b0',
+    accent: '#8839ef',
+    muted: '#9ca0b0',
+  },
+  'nord': {
+    bg: '#2e3440',
+    fg: '#d8dee9',
+    line: '#4c566a',
+    accent: '#88c0d0',
+    muted: '#616e88',
+  },
+  'nord-light': {
+    bg: '#eceff4',
+    fg: '#2e3440',
+    line: '#aab1c0',
+    accent: '#5e81ac',
+    muted: '#7b88a1',
+  },
+  'dracula': {
+    bg: '#282a36',
+    fg: '#f8f8f2',
+    line: '#6272a4',
+    accent: '#bd93f9',
+    muted: '#6272a4',
+  },
+  'one-dark': {
+    bg: '#282c34',
+    fg: '#abb2bf',
+    line: '#4b5263',
+    accent: '#c678dd',
+    muted: '#5c6370',
+  },
+  'solarized-light': {
+    bg: '#fdf6e3',
+    fg: '#657b83',
+    line: '#93a1a1',
+    accent: '#268bd2',
+    muted: '#93a1a1',
+  },
+  'solarized-dark': {
+    bg: '#002b36',
+    fg: '#839496',
+    line: '#586e75',
+    accent: '#268bd2',
+    muted: '#586e75',
+  },
+  'zinc-light': {
+    bg: '#FFFFFF',
+    fg: '#27272A',
+  },
+  'zinc-dark': {
+    bg: '#18181B',
+    fg: '#FAFAFA',
+  },
 }
 
 const AVAILABLE_THEMES = Object.keys(THEMES)
 
-const MMDC_THEME_MAP = {
-  'github-dark': 'dark',
-  'github-light': 'default',
-  'tokyo-night': 'dark',
-  'tokyo-night-storm': 'dark',
-  'tokyo-night-light': 'default',
-  'catppuccin-mocha': 'dark',
-  'catppuccin-latte': 'default',
-  'nord': 'dark',
-  'nord-light': 'default',
-  'dracula': 'dark',
-  'one-dark': 'dark',
-  'solarized-dark': 'dark',
-  'solarized-light': 'default',
-  'zinc-dark': 'dark',
-  'zinc-light': 'default',
-  'markdown-preview': 'default',
-}
-
-// ─── CSS 变量解析（rsvg-convert 不支持 var() 和 color-mix()）──────────────────
+// ─── 颜色工具 ─────────────────────────────────────────────────────────────────
 
 function hexToRgb(hex) {
   hex = hex.replace('#', '')
@@ -302,102 +161,52 @@ function mixColors(color1, pct1, color2) {
   return rgbToHex(r1*p+r2*(1-p), g1*p+g2*(1-p), b1*p+b2*(1-p))
 }
 
-function resolveSvgCssVars(svgString, themeColors, font) {
-  const vars = {
-    '--bg': themeColors.bg,
-    '--fg': themeColors.fg,
-    '--line': themeColors.line,
-    '--accent': themeColors.accent,
-    '--muted': themeColors.muted,
-    '--surface': themeColors.surface,
-    '--border': themeColors.border,
+// ─── Mermaid 配置生成（themeVariables 映射）───────────────────────────────────
+
+function buildMermaidConfig(theme, args) {
+  const bg = args.transparent ? 'transparent' : (args.bg || theme.bg)
+  const fg = theme.fg
+  const surface = theme.surface || mixColors(fg, 5, theme.bg)
+  const border = theme.border || theme.line || mixColors(fg, 25, theme.bg)
+  const line = theme.line || mixColors(fg, 35, theme.bg)
+  const accent = theme.accent || fg
+
+  return {
+    theme: 'base',
+    themeVariables: {
+      background: bg,
+      primaryColor: surface,
+      primaryTextColor: fg,
+      primaryBorderColor: border,
+      secondaryColor: mixColors(accent, 12, surface),
+      tertiaryColor: mixColors(fg, 8, theme.bg),
+      lineColor: line,
+      textColor: fg,
+      titleColor: fg,
+      nodeBorder: border,
+      clusterBkg: surface,
+      clusterBorder: border,
+      edgeLabelBackground: bg,
+      // 时序图
+      actorBkg: surface,
+      actorBorder: border,
+      actorTextColor: fg,
+      actorLineColor: line,
+      signalColor: line,
+      signalTextColor: fg,
+      noteBkgColor: mixColors(accent, 15, surface),
+      noteBorderColor: border,
+      noteTextColor: fg,
+      activationBorderColor: border,
+      activationBkgColor: mixColors(fg, 10, surface),
+      // 状态图 / 其他
+      labelColor: fg,
+      loopTextColor: fg,
+    },
   }
-
-  const bg = themeColors.bg
-  const fg = themeColors.fg
-
-  const derived = {
-    '--_text':         vars['--fg'],
-    '--_text-sec':     vars['--muted'] || mixColors(fg, 60, bg),
-    '--_text-muted':   vars['--muted'] || mixColors(fg, 40, bg),
-    '--_text-faint':   mixColors(fg, 25, bg),
-    '--_line':         vars['--line'] || mixColors(fg, 50, bg),
-    '--_arrow':        vars['--accent'] || mixColors(fg, 85, bg),
-    '--_node-fill':    vars['--surface'] || mixColors(fg, 3, bg),
-    '--_node-stroke':  vars['--border'] || mixColors(fg, 20, bg),
-    '--_group-fill':   bg,
-    '--_group-hdr':    mixColors(fg, 5, bg),
-    '--_inner-stroke': mixColors(fg, 12, bg),
-    '--_key-badge':    mixColors(fg, 10, bg),
-  }
-
-  const allVars = { ...vars, ...derived }
-
-  // Remove <style> block and @import (rsvg-convert can't use them)
-  let result = svgString.replace(/<style>[\s\S]*?<\/style>/, '')
-
-  // Replace inline style var() on <svg> tag — skip background when transparent
-  if (themeColors.transparent) {
-    result = result.replace(/style="[^"]*"/, '')
-  } else {
-    result = result.replace(/style="[^"]*"/, `style="background:${bg}"`)
-  }
-
-  // Replace all var(--xxx) and var(--xxx, fallback) in attributes
-  result = result.replace(/var\(([^)]+)\)/g, (match, inner) => {
-    const parts = inner.split(',').map(s => s.trim())
-    const varName = parts[0]
-    if (allVars[varName]) return allVars[varName]
-    // Handle fallback: var(--name, color-mix(...)) — use the derived value
-    if (parts.length > 1) {
-      const fallback = parts.slice(1).join(',').trim()
-      if (fallback.startsWith('color-mix')) {
-        // Parse: color-mix(in srgb, var(--fg) XX%, var(--bg))
-        const mixMatch = fallback.match(/color-mix\(in srgb,\s*var\(([^)]+)\)\s+(\d+)%,\s*var\(([^)]+)\)\)/)
-        if (mixMatch) {
-          const c1 = allVars[mixMatch[1]] || fg
-          const pct = parseInt(mixMatch[2])
-          const c2 = allVars[mixMatch[3]] || bg
-          return mixColors(c1, pct, c2)
-        }
-      }
-      return fallback
-    }
-    return match
-  })
-
-  // Resolve any remaining color-mix() that weren't inside var()
-  result = result.replace(/color-mix\(in srgb,\s*([^,]+?)\s+(\d+)%,\s*([^)]+)\)/g, (match, c1str, pct, c2str) => {
-    let c1 = c1str.trim()
-    let c2 = c2str.trim()
-    if (c1.startsWith('var(')) c1 = allVars[c1.slice(4,-1)] || fg
-    if (c2.startsWith('var(')) c2 = allVars[c2.slice(4,-1)] || bg
-    if (c1.startsWith('#') && c2.startsWith('#')) {
-      return mixColors(c1, parseInt(pct), c2)
-    }
-    return match
-  })
-
-  // Add font style inline (since @import was removed)
-  const fontFamily = font || "'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', 'Inter', -apple-system, system-ui, sans-serif"
-  const fontStyle = `<style>text { font-family: ${fontFamily}; }</style>`
-  result = result.replace('</defs>', `</defs>${fontStyle}`)
-
-  // Add background rect (rsvg-convert ignores CSS background property)
-  if (!themeColors.transparent) {
-    const vbMatch = result.match(/viewBox="([^"]+)"/)
-    if (vbMatch) {
-      const [x, y, w, h] = vbMatch[1].split(/\s+/).map(Number)
-      const bgRect = `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${bg}"/>`
-      // Insert right after <defs>...</defs><style>...</style>
-      result = result.replace(/<\/style>/, `</style>${bgRect}`)
-    }
-  }
-
-  return result
 }
 
-// ─── 缓存机制 ─────────────────────────────────────────────────────────────────
+// ─── 缓存机制（SVG 引擎）──────────────────────────────────────────────────────
 
 const CACHE_DIR = path.join(os.tmpdir(), 'code-to-diagram-cache')
 
@@ -433,7 +242,7 @@ function saveToCache(cacheKey, pngPath) {
   return cachePath
 }
 
-// ─── 尺寸自适应 ─────────────────────────────────────────────────────────────
+// ─── 尺寸自适应（SVG 引擎）────────────────────────────────────────────────────
 
 function estimateDiagramComplexity(svgString) {
   // 统计节点数量（通过常见的 SVG 元素）
@@ -445,7 +254,7 @@ function estimateDiagramComplexity(svgString) {
     /<path[\s>]/g,      // 路径节点
     /<text[\s>]/g,      // 文本节点
   ]
-  
+
   let nodeCount = 0
   for (const pattern of nodePatterns) {
     const matches = svgString.match(pattern)
@@ -453,13 +262,13 @@ function estimateDiagramComplexity(svgString) {
       nodeCount += matches.length
     }
   }
-  
+
   // 统计连线数量
   const edgePatterns = [
     /<line[\s>]/g,      // 直线
     /<polyline[\s>]/g,  // 折线
   ]
-  
+
   let edgeCount = 0
   for (const pattern of edgePatterns) {
     const matches = svgString.match(pattern)
@@ -467,13 +276,13 @@ function estimateDiagramComplexity(svgString) {
       edgeCount += matches.length
     }
   }
-  
+
   return { nodeCount, edgeCount, totalElements: nodeCount + edgeCount }
 }
 
 function calculateAdaptiveScale(complexity, baseWidth) {
   const { totalElements } = complexity
-  
+
   // 根据元素数量确定缩放因子
   // 简单图表 (< 15 元素): 8倍放大
   // 中等图表 (15-40 元素): 12倍放大
@@ -486,31 +295,14 @@ function calculateAdaptiveScale(complexity, baseWidth) {
   } else {
     scale = 16
   }
-  
+
   // 计算输出宽度，确保在合理范围内
   const outputWidth = Math.max(1200, Math.min(4800, Math.round(baseWidth * scale)))
-  
+
   return { scale, outputWidth }
 }
 
 // ─── 工具函数 ─────────────────────────────────────────────────────────────────
-
-function detectDiagramType(mmdContent) {
-  // 跳过 %% 开头的配置行（如 %%{ init: { ... } }）
-  const lines = mmdContent.trim().split('\n')
-  let firstLine = ''
-  for (const line of lines) {
-    const trimmed = line.trim()
-    if (!trimmed.startsWith('%%')) {
-      firstLine = trimmed
-      break
-    }
-  }
-  const typeToken = firstLine.replace(/\s.*/, '').toLowerCase()
-  // Handle stateDiagram-v2 → statediagram, xychart-beta → xychart
-  const normalized = typeToken.replace(/-v\d+$/, '').replace(/-beta$/, '')
-  return BM_SUPPORTED_PREFIXES.includes(normalized) ? normalized : null
-}
 
 function resolveMmdc() {
   try {
@@ -532,17 +324,21 @@ function resolveMmdc() {
 
 function writePuppeteerConfig() {
   const cfg = { args: ['--no-sandbox', '--disable-setuid-sandbox'] }
-  const file = path.join(os.tmpdir(), 'code_to_diagram_puppeteer.json')
+  const ts = Date.now()
+  const file = path.join(os.tmpdir(), `code_to_diagram_puppeteer_${ts}.json`)
   fs.writeFileSync(file, JSON.stringify(cfg))
   return file
 }
 
-function writeChineseFontCss() {
+function writeChineseFontCss(font) {
+  const fontFamily = font
+    ? `${font}, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', 'Inter', -apple-system, system-ui, sans-serif`
+    : `'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', 'Inter', -apple-system, system-ui, sans-serif`
   const css = `text, .label, .edgeLabel, .nodeLabel, .cluster-label {
-  font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', 'Hiragino Sans GB',
-               'WenQuanYi Micro Hei', 'Inter', -apple-system, system-ui, sans-serif !important;
+  font-family: ${fontFamily} !important;
 }`
-  const file = path.join(os.tmpdir(), 'code_to_diagram_chinese_font.css')
+  const ts = Date.now()
+  const file = path.join(os.tmpdir(), `code_to_diagram_chinese_font_${ts}.css`)
   fs.writeFileSync(file, css, 'utf-8')
   return file
 }
@@ -581,8 +377,6 @@ function parseArgs(argv) {
     name:        'diagram',
     outputDir:   null,
     theme:       'markdown-preview',
-    renderer:    'auto',     // 'auto' | 'beautiful-mermaid' | 'mmdc'
-    padding:     40,
     transparent: false,
     width:       2400,
     height:      4000,
@@ -593,6 +387,7 @@ function parseArgs(argv) {
     svgWidth:    1920,
     font:        null,
     noCache:     false,
+    noPng:       false,
   }
 
   let i = 2
@@ -608,8 +403,6 @@ function parseArgs(argv) {
       case '--name':       case '-n': args.name         = argv[++i]; break
       case '--output-dir': case '-o': args.outputDir    = argv[++i]; break
       case '--theme':      case '-t': args.theme        = argv[++i]; break
-      case '--renderer':              args.renderer     = argv[++i]; break
-      case '--padding':               args.padding      = parseInt(argv[++i], 10); break
       case '--transparent':           args.transparent  = true; break
       case '--width':      case '-W': args.width        = parseInt(argv[++i], 10); break
       case '--height':     case '-H': args.height       = parseInt(argv[++i], 10); break
@@ -620,6 +413,15 @@ function parseArgs(argv) {
       case '--svg-width':             args.svgWidth     = parseInt(argv[++i], 10); break
       case '--font':                  args.font         = argv[++i]; break
       case '--no-cache':              args.noCache      = true; break
+      case '--no-png':                args.noPng        = true; break
+      case '--renderer':
+        i++
+        console.warn('⚠️  --renderer 已废弃：Mermaid 引擎固定使用官方渲染器 (mmdc)，该参数被忽略。')
+        break
+      case '--padding':
+        i++
+        console.warn('⚠️  --padding 已废弃：官方渲染器 (mmdc) 不支持该参数，已被忽略。')
+        break
       case '--help':       case '-h': args.command      = 'help'; break
       default:
         console.error(`未知参数：${flag}`)
@@ -630,40 +432,7 @@ function parseArgs(argv) {
   return args
 }
 
-// ─── beautiful-mermaid 渲染 ─────────────────────────────────────────────────
-
-function renderWithBeautifulMermaid(mmdContent, args) {
-  const themeColors = THEMES[args.theme]
-  if (!themeColors) {
-    console.error(`❌  未知主题：${args.theme}`)
-    console.error(`    可用主题：${AVAILABLE_THEMES.join(', ')}`)
-    process.exit(1)
-  }
-
-  const options = {
-    ...themeColors,
-    padding: args.padding,
-    transparent: args.transparent,
-  }
-
-  if (args.bg) {
-    options.bg = args.bg
-  }
-
-  console.log(`🎨  使用 beautiful-mermaid 渲染，主题：${args.theme}`)
-  let svgString = renderMermaidSVG(mmdContent, options)
-
-  // 应用曲线转换（如果配置了曲线样式）
-  const curveType = parseCurveConfig(mmdContent)
-  if (curveType) {
-    console.log(`🌊  应用曲线样式：${curveType}`)
-    svgString = applyCurveToSvg(svgString, mmdContent)
-  }
-
-  // 解析 CSS 变量为实际颜色值（rsvg-convert 不支持 var()）
-  const resolvedSvg = resolveSvgCssVars(svgString, { ...themeColors, ...(args.bg ? { bg: args.bg } : {}) }, args.font)
-  return resolvedSvg
-}
+// ─── SVG → PNG（SVG 引擎，rsvg-convert）───────────────────────────────────────
 
 function svgToPng(svgString, pngPath, width, enableCache = true) {
   const rsvg = resolveRsvgConvert()
@@ -729,7 +498,7 @@ function svgToPng(svgString, pngPath, width, enableCache = true) {
   }
 }
 
-// ─── mmdc 回退渲染 ──────────────────────────────────────────────────────────
+// ─── mmdc 渲染（官方 mermaid）─────────────────────────────────────────────────
 
 function renderWithMmdc(inputMmdPath, pngPath, args) {
   let mmdc = resolveMmdc()
@@ -738,19 +507,31 @@ function renderWithMmdc(inputMmdPath, pngPath, args) {
     console.log('⚙️  未直接找到 mmdc，将通过 npx 调用 @mermaid-js/mermaid-cli …')
     useNpx = true
   } else {
-    console.log(`🔧  回退使用 mmdc：${mmdc}`)
+    console.log(`🔧  使用官方渲染器 mmdc：${mmdc}`)
   }
 
+  const theme = THEMES[args.theme]
+  if (!theme) {
+    console.error(`❌  未知主题：${args.theme}`)
+    console.error(`    可用主题：${AVAILABLE_THEMES.join(', ')}`)
+    process.exit(1)
+  }
+
+  // 主题颜色 → mermaid themeVariables（theme: 'base'），由官方渲染器应用
+  const mermaidConfig = buildMermaidConfig(theme, args)
+  const configFile = path.join(os.tmpdir(), `code_to_diagram_mermaid_config_${Date.now()}.json`)
+  fs.writeFileSync(configFile, JSON.stringify(mermaidConfig, null, 2))
+  console.log(`🎨  主题：${args.theme}（themeVariables 映射）`)
+
   const puppeteerCfg = writePuppeteerConfig()
-  const chineseFontCss = writeChineseFontCss()
-  const mmdcTheme = MMDC_THEME_MAP[args.theme] || 'dark'
-  const bgColor = args.bg || (mmdcTheme === 'dark' ? '#0d1117' : '#ffffff')
+  const chineseFontCss = writeChineseFontCss(args.font)
+  const bgColor = args.transparent ? 'transparent' : (args.bg || theme.bg)
 
   const mmdcArgs = [
     ...(useNpx ? ['mmdc'] : []),
     '-i', inputMmdPath,
     '-o', pngPath,
-    '-t', mmdcTheme,
+    '-c', configFile,
     '-b', bgColor,
     '-w', String(args.width),
     '-H', String(args.height),
@@ -760,12 +541,13 @@ function renderWithMmdc(inputMmdPath, pngPath, args) {
   ]
 
   const cmd = useNpx ? 'npx' : mmdc
-  console.log(`🎨  正在使用 mmdc 渲染 PNG …`)
+  console.log(`🎨  正在使用官方 mermaid 渲染 PNG …`)
 
   const result = spawnSync(cmd, mmdcArgs, { stdio: 'inherit', shell: false })
 
   try { fs.unlinkSync(puppeteerCfg) } catch (_) {}
   try { fs.unlinkSync(chineseFontCss) } catch (_) {}
+  try { fs.unlinkSync(configFile) } catch (_) {}
 
   if (result.status !== 0) {
     console.error(`❌  mmdc 退出码：${result.status}`)
@@ -780,8 +562,8 @@ function printHelp() {
 code-to-diagram Skill —— 从代码分析结果生成 PNG 图片
 
 渲染引擎：
-  mermaid  使用 beautiful-mermaid 渲染 .mmd → SVG → PNG（默认）
-           不支持的图表类型自动回退到 mmdc
+  mermaid  使用官方 mermaid (mmdc) 渲染 .mmd → PNG（默认）
+           与 Markdown 预览使用同一渲染器，样式一致
   svg      使用 rsvg-convert 渲染 .svg → .png
 
 用法：
@@ -793,19 +575,16 @@ code-to-diagram Skill —— 从代码分析结果生成 PNG 图片
   --name,       -n  <字符串>    输出文件基础名（默认：diagram）
   --output-dir, -o  <路径>      输出目录（默认：当前工作目录）
   --engine,     -e  <引擎>      mermaid | svg（默认：mermaid）
-  --no-cache                    禁用缓存，强制重新渲染
+  --no-cache                    禁用缓存，强制重新渲染（仅 SVG 引擎）
+  --no-png                      只生成 Markdown 文档，不生成 PNG 图片（仅 mermaid 引擎）
   --help,       -h              显示帮助信息
 
-Mermaid 引擎选项（beautiful-mermaid）：
+Mermaid 引擎选项（官方 mmdc 渲染）：
   --theme,      -t  <主题>      ${AVAILABLE_THEMES.join(' | ')}
-                                （默认：markdown-preview）
-  --renderer        <渲染器>    auto | beautiful-mermaid | mmdc（默认：auto）
-  --padding         <像素>      画布内边距（默认：40）
+                                （默认：markdown-preview，映射为 themeVariables）
   --transparent                 透明背景
   --bg,         -b  <颜色>      自定义背景色（覆盖主题）
-  --font            <字体>      自定义字体（默认：系统字体）
-
-mmdc 回退选项（仅当 renderer=mmdc 或自动回退时）：
+  --font        <字体>          自定义字体（默认：系统中文字体）
   --width,      -W  <像素>      画布宽度（默认：2400）
   --height,     -H  <像素>      画布高度（默认：4000）
   --scale,      -s  <倍数>      缩放系数（默认：3）
@@ -821,25 +600,40 @@ SVG 引擎选项：
         nord-light, solarized-light, zinc-light, markdown-preview
 
 示例：
-  # beautiful-mermaid 渲染（默认，自动缓存）
+  # 官方 mermaid 渲染（默认）
   node code_to_diagram.js render -f diagram.mmd -t tokyo-night -o ./output
 
-  # 强制使用 mmdc
-  node code_to_diagram.js render -f diagram.mmd --renderer mmdc -o ./output
+  # 透明背景
+  node code_to_diagram.js render -f diagram.mmd --transparent -o ./output
 
   # SVG 引擎
   node code_to_diagram.js render -e svg -f arch.svg --style dark-terminal -o ./output
 
-  # 禁用缓存，强制重新渲染
-  node code_to_diagram.js render -f diagram.mmd --no-cache -o ./output
+  # 只生成 Markdown 文档，不生成 PNG 图片
+  node code_to_diagram.js render -f diagram.mmd --no-png -o ./output
 
 特性说明：
-  - 尺寸自适应：根据图表元素数量自动调整输出尺寸（简单图表 8x，中等 12x，复杂 16x）
-  - 自动缓存：相同内容和参数的渲染结果会缓存，加速重复渲染
+  - 官方渲染：PNG 与 GitHub / VS Code 等 Markdown 预览使用同一 mermaid 渲染器
+  - 主题映射：16 个主题通过 themeVariables 应用，曲线等 init 配置原生支持
+  - SVG 引擎：根据图表元素数量自动调整输出尺寸（8x / 12x / 16x），结果自动缓存
   - 缓存位置：系统临时目录下的 code-to-diagram-cache 文件夹
+  - 渲染完成后自动删除输入的 .mmd 中间文件，只保留 .md 和 .png
 
 注意：此脚本仅生成 PNG 图片。Markdown 文档（包含代码逻辑解释和图表源码）由 Claude 生成。
 `)
+}
+
+function removeIntermediateMmd(inputMmdPath, cleanupMmd, args) {
+  if (!inputMmdPath) return
+  let removed = false
+  if (cleanupMmd) {
+    try { fs.unlinkSync(inputMmdPath); removed = true } catch (_) {}
+  } else if (args.file && inputMmdPath.endsWith('.mmd')) {
+    try { fs.unlinkSync(inputMmdPath); removed = true } catch (_) {}
+  }
+  if (removed) {
+    console.log(`🧹  已删除中间文件：${inputMmdPath}`)
+  }
 }
 
 async function cmdRender(args) {
@@ -873,41 +667,23 @@ async function cmdRender(args) {
 
   const pngPath = path.join(outputDir, `${args.name}.png`)
 
-  // 选择渲染器
-  const diagramType = detectDiagramType(mmdContent)
-  let useBM = false
+  // --no-png：只生成 Markdown 文档，跳过图片渲染
+  if (args.noPng) {
+    removeIntermediateMmd(inputMmdPath, cleanupMmd, args)
 
-  if (args.renderer === 'mmdc') {
-    useBM = false
-  } else if (args.renderer === 'beautiful-mermaid') {
-    useBM = true
-  } else {
-    // auto: 根据图表类型决定
-    useBM = diagramType !== null
+    const mdPath = path.join(outputDir, `${args.name}.md`)
+    const mdFileContent = '```mermaid\n' + mmdContent.trim() + '\n```\n'
+    fs.writeFileSync(mdPath, mdFileContent, 'utf-8')
+    console.log(`✅  Markdown 文档已保存：${mdPath}（--no-png，未生成图片）`)
+
+    console.log(JSON.stringify({ md: mdPath, png: null, engine: 'mermaid', theme: args.theme, renderer: 'mmdc' }))
+    return 0
   }
 
-  if (useBM) {
-    try {
-      const svgString = renderWithBeautifulMermaid(mmdContent, args)
-      svgToPng(svgString, pngPath, null, !args.noCache)
-    } catch (err) {
-      console.log(`⚠️  beautiful-mermaid 渲染失败，回退到 mmdc：${err.message}`)
-      useBM = false
-    }
-  }
+  // 官方 mermaid (mmdc) 渲染
+  renderWithMmdc(inputMmdPath, pngPath, args)
 
-  if (!useBM) {
-    if (!inputMmdPath) {
-      inputMmdPath = path.join(os.tmpdir(), `code_to_diagram_${Date.now()}.mmd`)
-      fs.writeFileSync(inputMmdPath, mmdContent, 'utf-8')
-      cleanupMmd = true
-    }
-    renderWithMmdc(inputMmdPath, pngPath, args)
-  }
-
-  if (cleanupMmd && inputMmdPath) {
-    try { fs.unlinkSync(inputMmdPath) } catch (_) {}
-  }
+  removeIntermediateMmd(inputMmdPath, cleanupMmd, args)
 
   if (!fs.existsSync(pngPath)) {
     console.error('❌  渲染完成但未找到 PNG 文件。')
@@ -924,8 +700,7 @@ async function cmdRender(args) {
   fs.writeFileSync(mdPath, mdFileContent, 'utf-8')
   console.log(`✅  Markdown 文档已保存：${mdPath}`)
 
-  const renderer = useBM ? 'beautiful-mermaid' : 'mmdc'
-  console.log(JSON.stringify({ md: mdPath, png: pngPath, engine: 'mermaid', theme: args.theme, renderer }))
+  console.log(JSON.stringify({ md: mdPath, png: pngPath, engine: 'mermaid', theme: args.theme, renderer: 'mmdc' }))
 
   return 0
 }

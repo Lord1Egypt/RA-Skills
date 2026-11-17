@@ -1,38 +1,53 @@
-## Description: <br>
-Reads grading rubrics, assignment requirements, or evaluation criteria, analyzes gaps in a current draft, and provides a score-improvement plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads grading standards, assignment requirements, or evaluation rubrics, analyzes gaps in a current draft, and produces a prioritized improvement plan.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Students, researchers, applicants, and other writers use this skill to compare drafts against rubrics or scoring criteria, identify missing high-value requirements, and prioritize revisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read whatever text is currently on the macOS clipboard when invoked. <br>
-Mitigation: Before use, copy only the rubric, assignment, or draft text intended for analysis and avoid running it while passwords, API keys, private notes, or unrelated confidential content are on the clipboard. <br>
+## Use Case:
 
+Students, instructors, researchers, and other writers use this skill to compare a draft against a rubric or scoring standard, identify missing high-value criteria, and plan revisions in priority order.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/rubric-gap-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with rubric analysis, gap findings, prioritized revision steps, and a clipboard-reading shell command when invoked.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads text from the macOS clipboard through node and pbpaste when the agent runs the bundled script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and CHANGELOG) <br>
+Risk: The skill reads local macOS clipboard contents on request, which may expose unrelated sensitive text if the clipboard contains passwords, tokens, private messages, or confidential material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before invocation, replace the clipboard contents with only the rubric, assignment, or draft text intended for analysis.
+
+Risk: The helper command depends on Node.js and macOS pbpaste, so it may fail or return no text in other environments.
+
+Mitigation: Confirm Node.js and pbpaste are available before use, or provide the rubric text directly to the agent instead of using the clipboard helper.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/rubric-gap-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with clipboard text bounded by plain-text markers when the helper command is used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and macOS pbpaste for clipboard reading.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

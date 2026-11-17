@@ -1,40 +1,53 @@
-## Description: <br>
-Set up OpenClaw multi-provider authentication with OpenAI Codex OAuth fallback profiles, profile import, fallback ordering, and optional cooldown-based model switching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up OpenClaw multi-provider auth with OpenAI Codex OAuth fallback profiles and automatic model switching.
 
-## Publisher: <br>
-[Markeljan](https://clawhub.ai/user/Markeljan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[markeljan](https://clawhub.ai/user/markeljan)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to configure multiple Codex OAuth profiles for rate-limit failover, add profile tokens through the Codex device-flow login, and optionally enable local cooldown-based model switching. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles OAuth access and refresh tokens and writes imported profiles to local OpenClaw auth configuration. <br>
-Mitigation: Install only when OpenClaw should reuse Codex OAuth sessions; keep auth-profiles.json and backup files private, out of git and logs, and remove stale backups when no longer needed. <br>
-Risk: The optional cron job can switch the active model without manual intervention. <br>
-Mitigation: Enable the cron job only when unattended model switching is desired, and review the configured profile order and cooldown behavior before enabling it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Config Templates](references/config-templates.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Markeljan/codex-multi-subscription-auth-fallbacks) <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to add multiple OpenAI Codex OAuth profiles, configure provider fallback order, and optionally enable local model cooldown switching.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides local auth-profile setup and optional cron configuration; generated commands and configuration should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill copies local Codex OAuth access and refresh tokens into OpenClaw's local auth profile store and leaves timestamped credential backups on disk.
+
+Mitigation: Use a non-production account where possible, keep auth-profiles.json and backup files out of logs and version control, restrict file permissions to the current user, and delete unneeded backups after confirming the import worked.
+
+Risk: The optional cron job can change the active model in the background.
+
+Mitigation: Enable the cron job only after testing profile fallback manually and confirming that recurring automatic model switching is desired.
+
+## Reference(s):
+
+- [Config Templates](references/config-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/markeljan/skills/codex-multi-subscription-auth-fallbacks)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local configuration changes and credential-profile updates when the bundled script is run by the user.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

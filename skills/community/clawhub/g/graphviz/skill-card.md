@@ -1,38 +1,54 @@
-## Description: <br>
-Generate SVG images from Graphviz DOT graphs using WebAssembly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate SVG images from Graphviz DOT graph descriptions using a WebAssembly Graphviz component.
 
-## Publisher: <br>
-[guyoung](https://clawhub.ai/user/guyoung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guyoung](https://clawhub.ai/user/guyoung)
 
-## Use Case: <br>
-Developers and agents use this skill to convert DOT graph descriptions into SVG diagrams without requiring a system Graphviz binary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on an externally downloaded GitHub-hosted WASM component. <br>
-Mitigation: Trust, verify, or pin the WASM file before use and keep execution inside the sandbox. <br>
+## Use Case:
 
+Developers and agents use this skill to convert DOT graph descriptions into display-ready SVG diagrams without requiring a local Graphviz binary.
 
-## Reference(s): <br>
-- [Graphviz WASM component](https://raw.githubusercontent.com/guyoung/wasm-sandbox-openclaw-skills/main/graphviz/files/graphviz_component.wasm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tool-call parameters and SVG output from the sandboxed renderer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns SVG generated from the DOT graph string passed to the WASM sandbox.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill downloads and runs an unverified WebAssembly file from a mutable third-party GitHub URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the WebAssembly component before installation and prefer a bundled or immutable component with a published SHA-256 or signature check.
+
+Risk: Broad activation could cause the skill to run outside explicit Graphviz or DOT-to-SVG requests.
+
+Mitigation: Limit use to clear Graphviz, DOT, SVG, flowchart, or DOT-to-SVG rendering requests.
+
+## Reference(s):
+
+- [ClawHub Graphviz Skill](https://clawhub.ai/guyoung/skills/graphviz)
+- [Graphviz WebAssembly Component URL](https://raw.githubusercontent.com/guyoung/wasm-sandbox-openclaw-skills/main/graphviz/files/graphviz_component.wasm)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Text]
+
+**Output Format:** [SVG XML]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The SVG is produced by the WebAssembly component on stdout from a DOT graph string argument.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

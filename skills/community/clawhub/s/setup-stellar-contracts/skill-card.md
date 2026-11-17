@@ -1,39 +1,52 @@
-## Description: <br>
-Set up a Stellar/Soroban smart contract project with OpenZeppelin Contracts for Stellar. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up a Stellar/Soroban smart contract project with OpenZeppelin Contracts for Stellar.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up Stellar/Soroban smart contract projects, install the Rust and Stellar CLI tooling, add OpenZeppelin Stellar crates, and follow common contract import and implementation patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup guidance includes remote installer scripts executed directly in a local shell. <br>
-Mitigation: Review each installer before execution, prefer official package-manager or pinned release installation paths, and verify checksums or signatures where available. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up Stellar/Soroban smart contract projects, add OpenZeppelin Contracts for Stellar dependencies, and follow project structure, import, build, and test conventions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/setup-stellar-contracts) <br>
-- [OpenZeppelin Stellar Contracts](https://github.com/OpenZeppelin/stellar-contracts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, TOML, and Rust code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Remote installer commands can execute unverified code in a user's shell.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Download installers first, inspect them, prefer pinned releases or package managers, and verify checksums or signatures before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/skills/setup-stellar-contracts)
+- [OpenZeppelin Stellar Contracts](https://github.com/OpenZeppelin/stellar-contracts)
+- [Stellar CLI installer](https://github.com/stellar/stellar-cli/raw/main/install.sh)
+- [Rustup installer](https://sh.rustup.rs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash, TOML, and Rust code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

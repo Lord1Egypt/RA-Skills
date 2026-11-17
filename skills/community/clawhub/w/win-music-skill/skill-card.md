@@ -1,40 +1,48 @@
-## Description: <br>
-Controls music playback on Windows by sending fixed play/pause, next-track, and previous-track hotkeys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls Windows music playback by issuing nircmd media shortcut commands.
 
-## Publisher: <br>
-[showx](https://clawhub.ai/user/showx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[showx](https://clawhub.ai/user/showx)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users or agents on Windows use this skill to handle explicit music playback requests, including next track, previous track, and play/pause.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill sends local keyboard shortcuts to the host, which may affect the active Windows session or focused application.
+
+Mitigation: Use only for explicit play, pause, next-track, or previous-track requests on hosts where nircmd media-key control is intended.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents can use this skill on a Windows machine to play or pause music and move to the next or previous track through NirCmd media hotkey commands. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Global Ctrl+Alt hotkeys may be handled by other applications or may not match the user's media setup. <br>
-Mitigation: Confirm the listed shortcuts are appropriate for the target Windows environment before allowing the agent to execute them. <br>
-Risk: The skill depends on NirCmd to send keyboard shortcuts. <br>
-Mitigation: Install NirCmd only from a trusted source and verify it before enabling this skill. <br>
+**Output Format:** [Markdown with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/showx/win-music-skill) <br>
+**Other Properties Related to Output:** [Commands target local Windows media playback through nircmd keyboard shortcuts.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline Windows command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands send fixed Ctrl+Alt media hotkeys through NirCmd.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

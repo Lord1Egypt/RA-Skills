@@ -64,7 +64,7 @@ python "scripts/content_filler.py" fill --template "data/output/template.html" -
 
 ```
 骨架 (Skeleton)
-├── 骨架结构 — N×M 网格、行列数、单元格合并(rowspan/colspan)、gap间距
+├── 骨架结构 — N×M 网格、行列数、单元格合并(rowspan/colspan)、gap 间距
 └── 骨架样式 — 底板背景/渐变/透明度、外阴影、外边框、圆角、内外边距
 
 模块 (Modules)  ← 模块模板 = {模块结构 + 模块样式} 预置组合
@@ -112,7 +112,7 @@ flex-center                text-block / text-img-right
       {"id": "merged", "row": 1, "col": 0, "colspan": 2, "rowspan": 2,
        "module": "composite:feature-panel", "style": {"background": "#f5f5f5"}},
       {"id": "custom", "row": 2, "col": 0, "colspan": 3,
-       "html": "<div data-field='custom'>自定义HTML内容</div>"}
+       "html": "<div data-field='custom'>自定义 HTML 内容</div>"}
     ]
   }
 }
@@ -133,7 +133,7 @@ flex-center                text-block / text-img-right
 |--------|------|------|------|
 | `harmony-app` | 刻在石头上 | 6×1 | App 推广毛玻璃卡片 |
 | `harmony-dual` | 灯球色盘 | 6×1 | 双端（应用+元服务）推广卡片 |
-| `calendar-dashboard` | 智能周历 | 5×3 | **完全交互式仪表板**：年份控制、周末规则、假日区间CRUD、补班管理、每周日历视图、总工日统计 |
+| `calendar-dashboard` | 智能周历 | 5×3 | **完全交互式仪表板**：年份控制、周末规则、假日区间 CRUD、补班管理、每周日历视图、总工日统计 |
 | `promo` | 原 promo 模板 | 3×3 | 活动宣传面板（卡片网格） |
 | `3x3-merge` | — | 3×3 | 单元格合并演示 |
 | `4x2-app-card` | — | 4×2 | 应用推广卡（左右分栏） |

@@ -1,44 +1,59 @@
-## Description: <br>
-Helps agents choose and operate Sparki video-editing workflows for vlogs, short clips, captions, resizing, highlights, and cloud-rendered video outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This Chinese Sparki navigation skill helps users choose the right Sparki video-editing skill and guides Sparki CLI setup, upload, editing, status, and download workflows.
 
-## Publisher: <br>
-[fischerlam](https://clawhub.ai/user/fischerlam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fischerlam](https://clawhub.ai/user/fischerlam)
 
-## Use Case: <br>
-External users and agent operators use this skill to choose a Sparki editing workflow, configure a Sparki API key, upload local or Telegram Mini App video assets, start cloud edits, check status, and retrieve rendered results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is presented as a chooser/navigation skill but includes a full cloud video-editing CLI with upload, edit, polling, and download behavior. <br>
-Mitigation: Install it only when a full Sparki cloud editing workflow is intended, and review commands before allowing video upload or task execution. <br>
-Risk: Local videos may be uploaded to Sparki cloud services for processing. <br>
-Mitigation: Use the skill only with videos that are appropriate to upload to Sparki, and confirm the target files before running upload or run commands. <br>
-Risk: The setup flow can store a Sparki API key in a local plaintext configuration file. <br>
-Mitigation: Prefer providing SPARKI_API_KEY from the environment when possible, and review or remove $HOME/.openclaw/config after setup if local key storage is not desired. <br>
+## Use Case:
 
+External users and agents use this skill to select a Sparki video-editing workflow, then operate the Sparki CLI for local or Telegram Mini App uploads, style-guided or prompt-driven edits, project status checks, and result downloads.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fischerlam/which-sparki-skill-zh) <br>
-- [Sparki homepage](https://sparki.io) <br>
-- [Sparki Telegram bot](https://t.me/Sparki_AI_bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May upload local video files to Sparki, poll cloud editing tasks, and download rendered video files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, pyproject.toml, release evidence) <br>
+Risk: Video files, filenames, editing prompts, and project metadata may be sent to Sparki for remote processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm user consent before upload, avoid private or business-sensitive videos unless the user accepts the exposure, and disclose that remote processing is part of the workflow.
+
+Risk: Credential and endpoint handling can expose a Sparki API key or direct traffic to an untrusted endpoint.
+
+Mitigation: Prefer SPARKI_API_KEY from the environment over saved local credentials, and use --base-url only when the endpoint is fully trusted.
+
+Risk: The skill can write configuration and downloaded video output under the user's OpenClaw directories.
+
+Mitigation: Review the configured output path before download and protect result URLs or files that may contain private edited content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fischerlam/skills/which-sparki-skill-zh)
+- [Sparki homepage](https://sparki.io)
+- [Sparki Telegram bot](https://t.me/Sparki_AI_bot)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured JSON CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce downloaded video files and short-lived result URLs when Sparki jobs complete.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, pyproject.toml, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

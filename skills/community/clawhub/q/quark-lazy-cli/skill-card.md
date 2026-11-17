@@ -1,50 +1,61 @@
-## Description: <br>
-Quark Lazy Cli helps agents use the qslazy CLI to inspect, repair, and update QAS-backed Quark cloud-drive media subscriptions with user authorization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quark Lazy Cli helps agents and advanced Python users maintain QAS-backed Quark cloud-drive TV and anime subscriptions by checking tasks, finding replacement resources, and updating or repairing missing episodes after user authorization.
 
-## Publisher: <br>
-[jesustoachild](https://clawhub.ai/user/jesustoachild) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jesustoachild](https://clawhub.ai/user/jesustoachild)
 
-## Use Case: <br>
-External users and developers use this skill with an agent to check QAS subscription status, choose candidate media resources, configure scheduled reports, and run authorized qslazy update commands for Quark cloud-drive subscriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires QAS connection details and tokens that can grant access to subscription state. <br>
-Mitigation: Use a limited QAS token where possible, keep the .env file local, and avoid exposing real tokens in prompts, logs, reports, or scheduled task text. <br>
-Risk: Update and cron commands can change Quark/QAS subscription configuration and transfer files. <br>
-Mitigation: Run status or list commands first, require explicit user authorization before update or cron changes, and prefer reviewing stdout before taking further action. <br>
-Risk: LLM advisor mode sends resource-selection context to the configured OpenAI-compatible endpoint. <br>
-Mitigation: Use code, human, or agent advisor mode unless the endpoint is trusted, and configure LLM credentials only for sessions that need that mode. <br>
-Risk: The bundle includes an unrelated local agent permission file. <br>
-Mitigation: Remove or ignore .claude/settings.local.json unless it is intentionally needed in the target agent environment. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to maintain QAS-backed Quark cloud-drive media subscriptions, inspect subscription status, plan scheduled checks, and run authorized update or repair workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jesustoachild/quark-lazy-cli) <br>
-- [Publisher Profile](https://clawhub.ai/user/jesustoachild) <br>
-- [Environment Variables](references/环境变量.md) <br>
-- [Advisor Modes](references/顾问模式.md) <br>
-- [OpenClaw Scheduled Tasks](references/OpenClaw定时任务.md) <br>
-- [Daily Reports](references/每日汇报.md) <br>
-- [Subscription Time Estimation](references/订阅时间估算.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, environment variable templates, and JSON decision snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or edit local configuration, report, cron, and advisor decision files when the user authorizes those actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.22 (source: pyproject.toml and server release metadata) <br>
+Risk: The skill handles powerful QAS and LLM credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted local or HTTPS QAS endpoints, rotate and limit tokens, and avoid exposing tokens in examples, logs, reports, or scheduled tasks.
+
+Risk: Sample automation includes unsafe transport or shell environment sourcing patterns.
+
+Mitigation: Review scripts before use and remove shell sourcing of .env from sample run scripts before adapting them for local automation.
+
+Risk: The artifact includes an unrelated Claude permission file.
+
+Mitigation: Remove .claude/settings.local.json unless that local Claude permission is intentionally required.
+
+## Reference(s):
+
+- [OpenClaw Scheduled Tasks](references/OpenClaw定时任务.md)
+- [Daily Reporting](references/每日汇报.md)
+- [Environment Variables](references/环境变量.md)
+- [Subscription Time Estimation](references/订阅时间估算.md)
+- [Advisor Mode](references/顾问模式.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce operational recommendations for QAS subscription checks and updates; update commands require explicit user authorization.]
+
+## Skill Version(s):
+
+0.1.22 (source: pyproject.toml and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

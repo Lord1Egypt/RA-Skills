@@ -1,49 +1,66 @@
-## Description: <br>
-Multi-Agent system for writing ultra-long feasibility study reports. Phase 0 Requirement Confirmation - Phase 1 Planner outputs outline - Phase 2 Batch parallel sub-Agent writing - Phase 2.5 Cross-chapter consistency review - Phase 3 Integrator assembles polished docx. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents plan, parallelize, review, and assemble long feasibility-study reports into polished DOCX outputs.
 
-## Publisher: <br>
-[jinqiu193](https://clawhub.ai/user/jinqiu193) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinqiu193](https://clawhub.ai/user/jinqiu193)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to plan, draft, review, and assemble long feasibility-study reports with multiple agent writing phases, chapter tracking, consistency checks, and formatted DOCX output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, modify, and overwrite local report state and generated files. <br>
-Mitigation: Run it in a dedicated work directory, configure output paths deliberately, and review generated files before replacing production documents. <br>
-Risk: The skill can spawn multi-agent writing workflows and invoke external Mermaid tooling. <br>
-Mitigation: Use trusted local environments, keep Mermaid and npx rendering disabled unless needed, and review tool execution before enabling optional rendering. <br>
-Risk: Optional Feishu or OpenClaw Weixin notifications may send information outside the local machine. <br>
-Mitigation: Keep notifications on the default log channel unless external sharing is intended and approved for the report material. <br>
-Risk: Reference materials may contain confidential content that is retained in local working files. <br>
-Mitigation: Avoid confidential source material unless local retention is acceptable and clear or isolate sensitive projects in controlled workspaces. <br>
+## Use Case:
 
+Developers and report-writing agents use this skill to gather requirements, build an outline, coordinate parallel chapter drafting, check cross-chapter consistency, and assemble long feasibility-study reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jinqiu193/lobsterai-report-agent) <br>
-- [Phase 0 requirement confirmation guide](references/phase0_guide.md) <br>
-- [Phase 1 planner guide](references/phase1_guide.md) <br>
-- [Phase 2 sub-agent writing guide](references/phase2_guide.md) <br>
-- [Markdown table format guide](references/table_format_guide.md) <br>
-- [Bug fix and rebuild guide](references/bug_fix_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; generated report artifacts are local DOCX, JSON, and text files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may create or modify local chapter state, report outputs, glossary files, tracker files, and notification logs according to its configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill can run external tooling, including Mermaid rendering through command-line tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and remove or disable the npx Mermaid fallback unless a verified Mermaid CLI is installed.
+
+Risk: The skill stores report reference material and generated working files.
+
+Mitigation: Use a dedicated workspace, set LOBAI_CHAPTERS_DIR and LOBAI_OUTPUT_DIR to controlled folders, and avoid sensitive reference material unless local retention is acceptable.
+
+Risk: Optional Feishu and WeChat notification integrations may send messages outside the local environment.
+
+Mitigation: Keep notifications on the default log channel unless Feishu or WeChat use is intentional.
+
+Risk: Automated sub-agent drafting can introduce incorrect or inconsistent report content.
+
+Mitigation: Review generated chapters and run the cross-chapter consistency check before relying on the assembled report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jinqiu193/skills/lobsterai-report-agent)
+- [Phase 0 guide](references/phase0_guide.md)
+- [Phase 1 guide](references/phase1_guide.md)
+- [Phase 2 guide](references/phase2_guide.md)
+- [Table format guide](references/table_format_guide.md)
+- [Bug fix guide](references/bug_fix_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with command snippets and generated report artifacts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write plan, glossary, chapter, reference, tracker, and DOCX files under configured report directories.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

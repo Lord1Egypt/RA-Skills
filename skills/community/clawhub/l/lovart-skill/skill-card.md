@@ -1,43 +1,58 @@
-## Description: <br>
-Generate images, videos, and audio or music through Lovart AI while managing Lovart projects, conversation threads, uploads, downloads, and generation settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images, videos, and audio or music with Lovart AI, and manage Lovart projects, threads, and settings.
 
-## Publisher: <br>
-[lovart-admin](https://clawhub.ai/user/lovart-admin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lovart-admin](https://clawhub.ai/user/lovart-admin)
 
-## Use Case: <br>
-External users and agents use this skill to send Lovart media-generation requests, manage Lovart projects and threads, upload reference files, and retrieve generated files through the provided command workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Lovart API credentials. <br>
-Mitigation: Install it only when Lovart access is intended, provide credentials through trusted environment variables, and rotate credentials if they may have been exposed. <br>
-Risk: The skill can reuse persistent Lovart project and thread state. <br>
-Mitigation: Review saved Lovart configuration and thread selections before generation or history actions, and use explicit Lovart wording for project or history requests. <br>
-Risk: The skill can upload local files and download generated artifacts from remote URLs. <br>
-Mitigation: Review files before upload and be cautious with arbitrary download URLs or generated artifact links from untrusted contexts. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to create visual or audio assets through Lovart, continue project threads, upload references, retrieve generated files, and manage Lovart project settings.
 
-## Reference(s): <br>
-- [ClawHub Lovart Skill](https://clawhub.ai/lovart-admin/lovart-skill) <br>
-- [Lovart Project Canvas](https://www.lovart.ai/canvas?projectId={project_id}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command invocations, JSON command output, and downloaded media files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Lovart API credentials and may save project and thread state locally for reuse.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: ClawHub release metadata) <br>
+Risk: Prompts, selected reference files, project or thread metadata, and generated artifacts are sent to Lovart.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content that is appropriate to process with Lovart, and avoid uploading private files unless that processing is intentional.
+
+Risk: The skill persists and reuses local project and thread state.
+
+Mitigation: Review or clear ~/.lovart/state.json and confirm the active project and thread before sensitive work.
+
+Risk: Endpoint or TLS settings can weaken connection safeguards.
+
+Mitigation: Keep LOVART_BASE_URL on the official endpoint and do not enable LOVART_INSECURE_SSL.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lovart-admin/skills/lovart-skill)
+- [Lovart project canvas](https://www.lovart.ai/canvas?projectId={project_id})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown responses with JSON command results, downloaded media file attachments, and Lovart project links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Lovart access credentials, persists local project and thread state, and can return images, videos, audio files, status details, warnings, and error messages.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

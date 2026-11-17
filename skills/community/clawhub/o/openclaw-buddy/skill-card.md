@@ -1,39 +1,53 @@
-## Description: <br>
-Generate a unique deterministic virtual pet buddy from a user identifier, including species, rarity, stats, cosmetics, personality text, and ASCII art. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a deterministic virtual pet buddy from a user identifier, including species, rarity, cosmetics, stats, ASCII art, and a personality line.
 
-## Publisher: <br>
-[kylinr](https://clawhub.ai/user/kylinr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kylinr](https://clawhub.ai/user/kylinr)
 
-## Use Case: <br>
-Developers and community agents use this skill to generate a deterministic virtual pet card for a user from a stable platform ID or custom seed. It is useful for chat-based identity, engagement, and lightweight personalization workflows where repeatable results matter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a stable platform user ID, such as a Feishu open_id or Discord/Telegram ID, as the deterministic seed. <br>
-Mitigation: Use a custom seed instead of a private identifier when privacy matters, and avoid generating buddies for other people without consent. <br>
+## Use Case:
 
+External users and community agents use this skill to generate a repeatable novelty virtual pet profile from the user's platform identifier or a provided string for chat sharing.
 
-## Reference(s): <br>
-- [OpenClaw Buddy Skill Page](https://clawhub.ai/kylinr/openclaw-buddy) <br>
-- [Publisher Profile](https://clawhub.ai/user/kylinr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown-ready text card on stdout with JSON data on stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deterministic output for the same seed; bilingual Chinese and English labels; ASCII art is best displayed in monospace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The usage instructions place a user-controlled identifier into a shell command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the Node script with a shell-free argument array and validate or restrict custom identifiers before execution.
+
+Risk: The skill can generate repeatable profiles for other people when supplied with their platform identifiers.
+
+Mitigation: Use the current user's identifier by default, disclose identifier use, and avoid third-party platform-ID lookups without consent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kylinr/skills/openclaw-buddy)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Formatted message text with companion JSON data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deterministic output for a given identifier; includes bilingual labels, ASCII art, rarity, cosmetics, stats, and a personality description.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

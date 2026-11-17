@@ -8,7 +8,7 @@
   </head>
   <script
     charset="utf-8"
-    src="https://map.qq.com/api/gljs?v=1.exp&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&libraries=visualization"
+    src="https://map.qq.com/api/gljs?v=1.exp&key={TMAP_JSAPI_KEY}&libraries=visualization"
   ></script>
   <style type="text/css">
     html,
@@ -44,14 +44,14 @@
         center: new TMap.LatLng(34.22379225102061, 108.39352326742096), //设置地图中心坐标
         zoom: 4,
           mapStyleId: "style8",
-          //设置底图样式
-          type: "vector", //设置底图为矢量底图
-          features: [
-            //设置矢量底图要素类型
-            "base",
-            "point",
-          ],
-        },
+          baseMap: { //设置底图样式
+            type: "vector", //设置底图为矢量底图
+            features: [
+              //设置矢量底图要素类型
+              "base",
+              "point",
+            ],
+          }
       });
       $.ajax({
         url:
@@ -76,23 +76,23 @@
           var area = new TMap.visualization.Area({
             styles: {
               //设置区域图样式
-              styel1: {
+              style1: {
                 fillColor: "#7DF4FF", //设置区域颜色
                 strokeColor: "#014080", //设置区域边线颜色
               },
-              styel2: {
+              style2: {
                 fillColor: "#17D5DC", //设置区域颜色
                 strokeColor: "#014080", //设置区域边线颜色
               },
-              styel3: {
+              style3: {
                 fillColor: "#0EB2E7", //设置区域颜色
                 strokeColor: "#014080", //设置区域边线颜色
               },
-              styel4: {
+              style4: {
                 fillColor: "#0896EF", //设置区域颜色
                 strokeColor: "#014080", //设置区域边线颜色
               },
-              styel5: {
+              style5: {
                 fillColor: "#017CF7", //设置区域颜色
                 strokeColor: "#014080", //设置区域边线颜色
               },

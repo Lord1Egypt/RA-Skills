@@ -1,0 +1,39 @@
+# output-schema-guard
+
+> 本文件是 AI 可读的技能索引（llms.txt 惯例）。AI 代理优先读 `SKILL.md`；人类看 `README.md`。
+
+## Purpose / 一句话定位
+
+Treat LLM output as untrusted input: schema-validate structured JSON before it reaches APIs, databases or forms, with failure diagnosis and repair guidance.
+
+当用户说『模型返回的JSON又崩了』『字段缺失对不上』『下游解析失败』『怎么强制LLM输出合规结构』，或要把 LLM 的 JSON/结构化输出接进代码（API/数据库/表单）时使用。把模型输出当『不可信外部输入』：用 schema 校验必填字段·类型·枚举，缺则给可执行的修复提示而非裸报错。理论根基：LGD 三律（有籍·有证·有门禁）。触发词：结构化输出、JSON校验、schema guard、输出格式、字段缺失、模型输出解析、function calling、tool output。
+
+## When to use / 什么时候用
+
+- 结构化输出
+- JSON校验
+- schema guard
+- 输出格式
+- 字段缺失
+- 模型输出解析
+- function calling
+- tool output。
+
+## Key files / 关键文件
+
+- [SKILL.md](SKILL.md) — 主说明书（frontmatter + 触发条件 + 执行步骤）
+- [README.md](README.md) — 人类总览
+- [LICENSE.md](LICENSE.md) — 分层许可（代码层 MIT／理论与文本保留权利）
+
+## Boundaries / 边界
+
+- 本技能只处理上面写的场景；不覆盖同领域其它技能的职责范围。
+- 输出不含未经验证的事实性断言；需要证据时给出出处。理论根基：LGD 三律（有籍 Recorded · 有证 Evidenced · 有门禁 Gated）。
+
+## Ecosystem / 生态入口
+
+- 生态总入口 / hub: https://zhaoxinghua09-cell.github.io/lgd-hub/
+- 理论正本 / theory: https://github.com/zhaoxinghua09-cell/LGD
+- 形式化论文 / paper: https://doi.org/10.5281/zenodo.22456647
+- 协议与参考实现 / protocol: https://github.com/zhaoxinghua09-cell/uibc-core
+- 全部已发布技能 / all skills: https://github.com/zhaoxinghua09-cell/agent-skills

@@ -1,39 +1,57 @@
-## Description: <br>
-Computer-vision platform guidance for image recognition, analysis, and generation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A computer vision platform for image recognition, analysis, and generation.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and teams can use this skill as guidance for computer-vision workflows including image classification, YOLO-style object detection, semantic segmentation, OCR, and image generation. The release text positions it for image recognition, security monitoring, medical imaging, and autonomous-driving contexts, which require additional review and controls before sensitive use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the skill directs users to run external code under unclear provenance. <br>
-Mitigation: Review the external repository and dependencies before installation, and run in an isolated environment until provenance and behavior are independently verified. <br>
-Risk: The security evidence flags broad computer-vision use cases that may involve sensitive data or high-impact decisions. <br>
-Mitigation: Limit use to low-risk image understanding or experimentation unless consent, sensitive-data handling, human review, and exclusions for medical, surveillance, and autonomous-driving decisions are in place. <br>
+## Use Case:
 
+Developers and external teams can use this skill to evaluate or operate a computer vision platform that supports image classification, object detection, segmentation, OCR, and image generation. The documented scenarios include image recognition, security monitoring, medical imaging, and autonomous driving workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill asks users to install and run unpinned external code for a broad computer vision platform.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a constrained environment after reviewing the referenced repository, pinning a specific commit, and verifying dependency integrity.
+
+Risk: The documented use cases include medical, surveillance, and driving-related decisions where incorrect output can create safety or compliance issues.
+
+Mitigation: Do not rely on skill outputs as the sole basis for medical, surveillance, or driving-related decisions; require domain review and appropriate operational controls.
+
+Risk: The evidence notes insufficient safety and data-handling detail for the computer vision platform.
+
+Mitigation: Review data handling, retention, and model behavior before deployment, especially for sensitive images or regulated environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-cv-platform)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference unpinned external code and dependencies; review security guidance before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

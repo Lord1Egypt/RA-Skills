@@ -1,0 +1,40 @@
+name: explosion-proof-valve-selection
+display_name: 防爆阀设计选型
+version: 1.0.0
+description: |
+  基于 Pack 箱体参数（体积、温度范围、海拔范围、时间）计算所需透气量，
+  并根据压差-透气量特性曲线推荐满足安全约束的防爆阀规格。
+  支持温度变化与海拔变化双工况透气量计算，采用压差驱动模型（透气系数 K），
+  核心安全约束：防爆阀排气速率 ≥ 单个电芯产气速率。
+
+category: engineering
+tags:
+  - 防爆阀
+  - 呼吸阀
+  - 电池包
+  - 透气量
+  - 选型
+  - explosion-proof
+  - battery pack
+  - valve sizing
+
+license: MIT
+author: Julio916
+
+triggers:
+  - 防爆阀选型
+  - 呼吸阀选型
+  - Pack透气量计算
+  - 电池包压力平衡
+  - 温度变化透气量
+  - 海拔变化透气量
+  - 电池包排气设计
+  - explosion-proof valve sizing
+  - breathing valve selection
+
+requires:
+  python: ">=3.8"
+  packages:
+    - ""
+
+min_workbuddy_version: "1.0.0"

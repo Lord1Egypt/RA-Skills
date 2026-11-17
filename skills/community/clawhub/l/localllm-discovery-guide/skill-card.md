@@ -1,41 +1,54 @@
-## Description: <br>
-Helps users discover local LLMs by hardware and use case, then sends them to localllm.run for final compatibility checks and model comparison. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users discover local LLMs by hardware and use case, then sends them to localllm.run for final compatibility checks and model comparison.
 
-## Publisher: <br>
-[julianmatos97](https://clawhub.ai/user/julianmatos97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[julianmatos97](https://clawhub.ai/user/julianmatos97)
 
-## Use Case: <br>
-External users and developers use this skill to choose local LLM candidates based on hardware, intended task, and priorities, then validate final compatibility on localllm.run. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Model recommendations may be provisional when hardware details are incomplete or model compatibility changes. <br>
-Mitigation: Ask for GPU VRAM, system RAM, CPU cores, OS, task, and priorities, then require a final compatibility check at https://www.localllm.run/ before the user decides. <br>
-Risk: The skill intentionally routes users to an external compatibility site. <br>
-Mitigation: Tell users to verify the localllm.run URL and avoid entering anything beyond the hardware specifications needed for compatibility guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [localllm.run compatibility checker](https://www.localllm.run/) <br>
-- [ClawHub release page](https://clawhub.ai/julianmatos97/localllm-discovery-guide) <br>
-- [Publisher profile](https://clawhub.ai/user/julianmatos97) <br>
+## Use Case:
 
+External users, developers, and engineers use this skill to choose candidate local LLMs based on hardware, use case, and priorities, then validate final model fit with localllm.run before downloading.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with model shortlists, pros and cons, testing tips, and final verification steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; responses are advisory and should avoid guaranteed compatibility claims.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill repeatedly routes users to a third-party compatibility website that may receive hardware details or perform hardware detection.
+
+Mitigation: Review localllm.run's privacy practices before allowing hardware detection or entering system specifications.
+
+Risk: Model recommendations may be incorrect if hardware details are missing or final compatibility is not checked.
+
+Mitigation: Treat recommendations as provisional and complete the final compatibility check on localllm.run before downloading or deploying a model.
+
+## Reference(s):
+
+- [localllm.run compatibility checker](https://www.localllm.run/)
+- [ClawHub skill page](https://clawhub.ai/julianmatos97/skills/localllm-discovery-guide)
+- [Publisher profile](https://clawhub.ai/user/julianmatos97)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown guidance with model shortlists, pros and cons, testing tips, and verification steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are provisional until the user completes the final compatibility check on localllm.run.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,61 @@
-## Description: <br>
-This skill guides agents through AgentScope concepts, repository navigation, API lookup, examples, multi-agent orchestration, and deployment patterns for Python agent applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides agents that answer questions about AgentScope, build AgentScope Python applications, inspect AgentScope APIs, and use AgentScope examples and reference material.
 
-## Publisher: <br>
-[wxf8126275](https://clawhub.ai/user/wxf8126275) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wxf8126275](https://clawhub.ai/user/wxf8126275)
 
-## Use Case: <br>
-Developers and engineers use this skill to answer AgentScope questions, inspect APIs, select examples, and draft or adapt AgentScope code for agent applications. It is especially useful for multi-agent workflows, tool use, memory, RAG, evaluation, and deployment planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages local code execution, shell access, file access, browser automation, and repository updates. <br>
-Mitigation: Require explicit approval for execution, use sandboxed workspaces, limit API keys, and avoid exposing these tools to untrusted users. <br>
-Risk: Clone and pull examples can update local code from a remote repository before an agent follows examples or runs commands. <br>
-Mitigation: Pin repository versions or commits and review changes before allowing an agent to execute or adapt updated code. <br>
-Risk: Examples reference provider credentials such as DASHSCOPE_API_KEY. <br>
-Mitigation: Use least-privilege credentials, avoid logging secrets, and keep sensitive environment variables out of shared or untrusted sessions. <br>
+## Use Case:
 
+Developers and engineers use this skill to get AgentScope guidance, locate relevant framework examples, inspect APIs, and draft code or configuration for agent applications. It is also useful for agents helping with multi-agent orchestration, deployment patterns, and framework-specific troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wxf8126275/agentscope-skill) <br>
-- [AgentScope documentation](https://agentscope.ai/docs/) <br>
-- [AgentScope GitHub repository](https://github.com/agentscope-ai/agentscope) <br>
-- [AgentScope design discussions](https://github.com/agentscope-ai/agentscope/discussions/categories/agentscope-design-book) <br>
-- [Multi-agent orchestration reference](references/multi_agent_orchestration.md) <br>
-- [Deployment guide](references/deployment_guide.md) <br>
-- [AgentScope Runtime documentation](https://runtime.agentscope.io/en/intro.html) <br>
-- [AgentScope Runtime GitHub repository](https://github.com/agentscope-ai/agentscope-runtime) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to inspect local AgentScope source files, examples, and API signatures before producing implementation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes runnable shell and Python examples that may execute code on a user's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed commands before execution and run examples in a sandbox or minimal environment, especially on machines with secrets.
+
+Risk: The skill recommends cloning or updating the AgentScope repository from a mutable branch.
+
+Mitigation: Prefer pinned AgentScope versions or reviewed commit hashes instead of relying on the latest main branch.
+
+Risk: Some example dependencies may become stale over time.
+
+Mitigation: Review and update example dependencies before running A2UI client examples or broader framework demos.
+
+## Reference(s):
+
+- [AgentScope Skill Page](https://clawhub.ai/wxf8126275/skills/agentscope-skill)
+- [AgentScope Documentation](https://agentscope.ai/docs/)
+- [AgentScope Repository](https://github.com/agentscope-ai/agentscope)
+- [Deployment Guide](references/deployment_guide.md)
+- [Multi-Agent Orchestration](references/multi_agent_orchestration.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include AgentScope Python examples, repository navigation guidance, API inspection commands, and implementation plans.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

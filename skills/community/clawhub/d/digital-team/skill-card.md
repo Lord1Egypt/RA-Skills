@@ -1,41 +1,58 @@
-## Description: <br>
-管理和启动数字员工角色，支持创建角色、读取和更新角色记忆，以及在启动前检查角色是否存在。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages digital employee roles by creating role profiles, reading and updating persistent memory, and launching role-specific sub-agents.
 
-## Publisher: <br>
-[cabbage1016](https://clawhub.ai/user/cabbage1016) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cabbage1016](https://clawhub.ai/user/cabbage1016)
 
-## Use Case: <br>
-Developers and team leads use this skill to maintain reusable digital employee roles, start role-specific sub-agents, and persist role memory for repeated project work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Role memory files may accumulate sensitive project details or stale instructions. <br>
-Mitigation: Review workspace/agents and workspace/knowledge files periodically, avoid storing secrets, and update or remove outdated role memory. <br>
-Risk: Automatic role detection and sub-agent launch can activate an unintended role if a request is ambiguous. <br>
-Mitigation: Use explicit role commands and confirm creation or launch prompts before allowing the skill to create files or start a sub-agent. <br>
+## Use Case:
 
+Developers and project teams use this skill to create, list, launch, and maintain digital employee roles as sub-agents. It helps teams persist role profiles, long-term memory, current task state, and shared project knowledge across agent sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cabbage1016/digital-team) <br>
-- [Role template](artifact/TEMPLATE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with role files and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update workspace role memory files and launch sub-agents when the user confirms role actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Persistent role-memory files can carry secrets, stale assumptions, or instruction-like content into later sub-agent runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep memory files reviewable, avoid storing secrets, and audit memory before injecting it into future sub-agents.
+
+Risk: User-provided role names are used when creating and checking workspace role paths.
+
+Mitigation: Restrict role names to safe identifiers and review proposed paths before creating or updating role files.
+
+Risk: Automatic memory updates can preserve incorrect conclusions or unwanted behavior after a task completes.
+
+Mitigation: Confirm or review automatic memory changes before relying on them in later work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cabbage1016/skills/digital-team)
+- [Publisher profile](https://clawhub.ai/user/cabbage1016)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, role-memory files, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update persistent role and knowledge files in the workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-OGP helps agents manage Open Gateway Protocol federation, peer communication, framework selection, and cross-gateway project collaboration across OpenClaw and Hermes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OGP (Open Gateway Protocol) supports federated agent communication, peer management, and project collaboration across OpenClaw and Hermes gateways.
 
-## Publisher: <br>
-[dp-pcs](https://clawhub.ai/user/dp-pcs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dp-pcs](https://clawhub.ai/user/dp-pcs)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure OGP, connect with trusted peers, send federation messages, manage scopes, and troubleshoot OpenClaw or Hermes gateway state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill delegates sensitive federation and agent access to the external @dp-pcs/ogp CLI. <br>
-Mitigation: Review and pin the CLI version before installation, and protect OpenClaw tokens plus ~/.ogp* state files. <br>
-Risk: Broad peer scopes or peer-state reset commands can expose capabilities or remove existing federation relationships. <br>
-Mitigation: Only approve verified peers, customize granted scopes when possible, and run reset commands only for the exact framework files intentionally being changed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure and operate OGP federation, exchange agent-to-agent messages, manage peer scopes and policies, and coordinate cross-gateway project collaboration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dp-pcs/ogp) <br>
-- [OGP documentation](https://github.com/dp-pcs/ogp) <br>
-- [Rendezvous discovery service](https://rendezvous.elelem.expert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may modify OGP gateway configuration, peer relationships, and local OGP state files when executed by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.0 (source: server release metadata) <br>
+Risk: Unpinned global CLI installation can pull an unexpected package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify the @dp-pcs/ogp CLI version before installing or upgrading.
+
+Risk: Federation can grant broad peer privileges and expose agents to remote inbound work.
+
+Mitigation: Grant only necessary scopes, review agent-comms policies, and use approval-required handling for inbound agent work when trust is limited.
+
+Risk: Clearing peers.json can remove federation state.
+
+Mitigation: Back up OGP state files before clearing peer lists or resetting federation.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/dp-pcs/skills/ogp)
+- [OGP project documentation](https://github.com/dp-pcs/ogp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands and configuration guidance for the local ogp CLI and OGP state files.]
+
+## Skill Version(s):
+
+0.6.0 (source: server release metadata; artifact frontmatter reports 2.6.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

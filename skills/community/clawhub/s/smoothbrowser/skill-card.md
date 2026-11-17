@@ -1,40 +1,61 @@
-## Description: <br>
-Browser for AI agents to navigate websites, fill forms, extract web data, test web apps, and automate browser workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SmoothBrowser helps agents use Smooth CLI to navigate websites, authenticate, scrape data, test web apps, fill forms, upload files, extract structured data, and automate browser workflows.
 
-## Publisher: <br>
-[antoniocirclemind](https://clawhub.ai/user/antoniocirclemind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[antoniocirclemind](https://clawhub.ai/user/antoniocirclemind)
 
-## Use Case: <br>
-Developers and agents use SmoothBrowser to operate a Smooth CLI browser session for web navigation, authenticated workflows, form completion, data extraction, testing, file handling, and browser automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad control over web browsing, logins, uploaded files, JavaScript execution, downloads, and saved sessions. <br>
-Mitigation: Prefer anonymous or read-only sessions, restrict allowed URLs when possible, avoid sensitive uploads unless necessary, and require explicit approval before submitting forms, posting content, purchasing, downloading private data, changing account settings, or reusing logged-in profiles. <br>
-Risk: The release evidence security verdict is suspicious because approval boundaries are not sufficiently clear for high-impact browser actions. <br>
-Mitigation: Review planned browser actions before execution and use profiles, live-view handoffs, and allowed URL constraints to keep automated actions within the user's intended scope. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Smooth application and API key portal](https://app.smooth.sh) <br>
-- [SmoothBrowser ClawHub release](https://clawhub.ai/antoniocirclemind/smoothbrowser) <br>
+## Use Case:
 
+Developers and external users use this skill to drive browser sessions through Smooth CLI for web automation, authenticated workflows, form filling, web testing, and structured data extraction.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, JSON, Code] <br>
-**Output Format:** [Markdown with inline bash, JSON schema, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce browser session commands, structured extraction schemas, file-management commands, and JavaScript snippets for execution through Smooth CLI.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can automate actions in logged-in browser sessions and may act broadly across websites.
+
+Mitigation: Use isolated sessions, restrict scope with --allowed-urls, and supervise authenticated or high-impact actions before execution.
+
+Risk: Browser profiles can persist cookies and session state after automation completes.
+
+Mitigation: Use --profile-read-only where possible, keep profile IDs purpose-specific, and delete profiles when they are no longer needed.
+
+Risk: Uploaded files and browser session activity are sent through the Smooth CLI service.
+
+Mitigation: Use the skill only when Smooth CLI is trusted for the data involved, upload only necessary files, and delete files after use.
+
+Risk: The skill depends on an external CLI package and configured API key.
+
+Mitigation: Verify or pin the Smooth CLI package version and keep API key configuration limited to the intended environment.
+
+## Reference(s):
+
+- [SmoothBrowser ClawHub release page](https://clawhub.ai/antoniocirclemind/skills/smoothbrowser)
+- [Smooth account and API key portal](https://app.smooth.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON schema examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to request JSON output from Smooth CLI or use response schemas for structured extraction.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.skills/lis-skill-bus/schemas/cad-contract-v1.schema.json",
+  "title": "cad-contract/v1 统一联动契约",
+  "description": "lis-skill-bus 状态环节推荐使用的统一契约外壳：底座 = cad-file-reader/v0 候选，联动 = qto-project/v1 主键；由 bus 负责解析与校验。",
+  "type": "object",
+  "required": ["schema", "spec", "project_key", "producer", "source", "contract"],
+  "properties": {
+    "schema": {"const": "cad-contract/v1"},
+    "spec": {"enum": ["cad-file-reader/v0", "qto-project/v1", "cad-contract/v1"]},
+    "version": {"type": "string"},
+    "project_key": {
+      "type": "object",
+      "required": ["project", "building", "floor", "zone", "room", "specialty", "source", "review_required"],
+      "properties": {
+        "project": {"type": "string"},
+        "building": {"type": "string"},
+        "floor": {"type": "string"},
+        "zone": {"type": "string"},
+        "room": {"type": "string"},
+        "specialty": {"type": "string"},
+        "source": {"enum": ["explicit", "auto", "file"]},
+        "review_required": {"type": "boolean"},
+        "source_evidence": {"type": ["object", "null"]}
+      }
+    },
+    "producer": {
+      "type": "object",
+      "required": ["skill", "schema", "produced_at", "final_quantity"],
+      "properties": {
+        "skill": {"type": "string"},
+        "schema": {"type": "string"},
+        "produced_at": {"type": "string"},
+        "final_quantity": {"const": false}
+      }
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "file": {"type": "string"},
+        "sha256": {"type": "string"},
+        "page": {"type": ["integer", "null"]},
+        "evidence": {"type": ["array", "null"], "items": {"type": "string"}}
+      }
+    },
+    "contract": {
+      "type": "object",
+      "description": "命名的识图/算量契约；具体字段按 spec 指向的 schema 校验。"
+    },
+    "review": {
+      "type": "object",
+      "properties": {
+        "review_required": {"type": "boolean"},
+        "tier": {"enum": ["confirmed_evidence", "inferred_candidate", "review_required"]},
+        "reason": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,41 +1,50 @@
-## Description: <br>
-融合拆分、归纳、联系、提炼四层思考法与结构化知识库管理，实现认知能力提升和系统化知识沉淀回写。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+融合拆分、归纳、联系、提炼四层思考法与结构化知识库管理，实现认知能力提升和系统化知识沉淀回写。
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to apply a four-layer thinking framework and maintain a structured personal knowledge base. It guides agents through analysis, synthesis, cross-document connection, distillation, and optional write-back into raw/wiki/AGENTS.md style notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local knowledge-base write-back can modify wiki/, index.md, or log.md with inaccurate, unwanted, or sensitive information. <br>
-Mitigation: Ask the agent to preview target files and request approval before writing, especially when source materials contain private or sensitive information. <br>
-Risk: The workflow depends on human review to verify accuracy, source coverage, and link completeness. <br>
-Mitigation: Run a manual review after ingestion or synthesis and keep source notes attached to generated pages. <br>
+## Use Case:
 
+Developers, researchers, and knowledge workers use this skill to structure ambiguous topics with a four-level thinking model and maintain a local raw/wiki/AGENTS.md knowledge base.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smseow001/thinking-knowledge-system) <br>
-- [Publisher profile](https://clawhub.ai/user/smseow001) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with optional local knowledge-base file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or create wiki pages, index.md updates, log.md entries, and AGENTS.md-style knowledge-base rules when the user requests write-back.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can save synthesized answers into persistent local wiki files from broad organization prompts without a clear confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces where writing to wiki/, index.md, log.md, and AGENTS.md is acceptable, and ask the agent to preview planned changes before saving.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smseow001/skills/thinking-knowledge-system)
+- [Publisher profile](https://clawhub.ai/user/smseow001)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured knowledge-base file templates and update rules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or perform updates to local wiki/, index.md, log.md, and AGENTS.md files when the user requests knowledge-base organization.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

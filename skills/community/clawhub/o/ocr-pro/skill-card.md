@@ -1,44 +1,60 @@
-## Description: <br>
-Ocr Pro helps agents extract text and layout-aware content from PDFs and images using MinerU, including VLM support for complex layouts, tables, figures, scans, photos, and screenshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ocr Pro guides agents through using MinerU's mineru-open-api CLI to extract text and structured content from PDFs and images, including complex layouts with OCR and VLM modes.
 
-## Publisher: <br>
-[mzlzyca](https://clawhub.ai/user/mzlzyca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzlzyca](https://clawhub.ai/user/mzlzyca)
 
-## Use Case: <br>
-Developers, analysts, and operations teams use Ocr Pro to extract text and layout-aware content from PDFs, scanned documents, screenshots, photos, and other images through MinerU. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documents or URLs may be processed by MinerU/OpenDataLab rather than locally. <br>
-Mitigation: Avoid confidential, regulated, internal, or customer documents unless the organization approves the service and its retention and privacy terms. <br>
-Risk: MINERU_TOKEN exposure could allow unauthorized use of the configured MinerU account. <br>
-Mitigation: Keep MINERU_TOKEN private, avoid committing it to files or logs, and rotate it if exposed. <br>
+## Use Case:
 
+Developers and agents use this skill to configure and run MinerU OCR for PDFs, scanned documents, screenshots, photos, and images that need accurate text extraction or layout-aware processing.
 
-## Reference(s): <br>
-- [Ocr Pro on ClawHub](https://clawhub.ai/mzlzyca/ocr-pro) <br>
-- [MinerU](https://mineru.net) <br>
-- [MinerU API Token Management](https://mineru.net/apiManage/token) <br>
-- [MinerU GitHub Repository](https://github.com/opendatalab/MinerU) <br>
-- [mineru-open-api Go Package](https://github.com/opendatalab/MinerU-Ecosystem/cli/mineru-open-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and OCR output paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write extracted OCR results to an output directory; token-based authentication is required with MINERU_TOKEN or mineru-open-api auth.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: release evidence) <br>
+Risk: The skill depends on MinerU/OpenDataLab and the mineru-open-api package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that dependency chain is trusted, and prefer pinned versions or an isolated environment.
+
+Risk: OCR processing may send documents to a third-party service.
+
+Mitigation: Do not process confidential documents unless third-party OCR processing has been approved.
+
+Risk: The skill requires a MinerU token for extraction.
+
+Mitigation: Store MINERU_TOKEN using the agent environment's secret-handling mechanism and avoid exposing it in logs or shared command history.
+
+## Reference(s):
+
+- [Ocr Pro on ClawHub](https://clawhub.ai/mzlzyca/skills/ocr-pro)
+- [MinerU Homepage](https://mineru.net)
+- [MinerU GitHub Repository](https://github.com/opendatalab/MinerU)
+- [MinerU Token Management](https://mineru.net/apiManage/token)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance centers on the mineru-open-api CLI, requires MINERU_TOKEN for extraction, and may direct output to stdout or files.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

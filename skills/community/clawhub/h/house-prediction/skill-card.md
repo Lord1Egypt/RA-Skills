@@ -1,40 +1,52 @@
-## Description: <br>
-结构化的房产市场分析预测系统，收集政策、成交量、土拍、经济数据，预测房价趋势并给出个性化买卖建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+结构化的房产市场分析预测系统，收集政策、成交量、土拍、经济数据，预测房价趋势并给出个性化买卖建议。
 
-## Publisher: <br>
-[aaronxx](https://clawhub.ai/user/aaronxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aaronxx](https://clawhub.ai/user/aaronxx)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to structure real-estate market research, compare policy, transaction, land auction, and macroeconomic signals, and produce housing trend analysis with buy, sell, hold, or rental considerations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Housing forecasts and timing suggestions could influence high-value property decisions.
+
+Mitigation: Treat outputs as informational analysis only and consult qualified real-estate, financial, or legal professionals before acting.
+
+Risk: Outdated or single-source market data could produce misleading recommendations.
+
+Mitigation: Verify data freshness and cross-check official and institutional sources before relying on the analysis.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to structure real-estate market research, compare current policy and market signals, forecast housing price trends, and produce informational buy, sell, hold, or rental guidance for a specified city and timeframe. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Real-estate recommendations may be misleading if market figures, policy changes, or city context are stale or incomplete. <br>
-Mitigation: Use a clear city, timeframe, and decision context, and verify key numbers against official or primary institutional sources before relying on the advice. <br>
-Risk: Buy, sell, or rental guidance could be mistaken for professional financial or legal advice. <br>
-Mitigation: Treat the output as informational market analysis and consult qualified local professionals before making high-stakes property decisions. <br>
+**Output Format:** [Markdown analysis with structured recommendations and risk notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aaronxx/house-prediction) <br>
+**Other Properties Related to Output:** [May require current web or official data sources before analysis.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown narrative with tables, trend analysis, recommendations, and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses current public web data when available; important figures and recommendations should be verified against primary sources.] <br>
+1.0.0 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

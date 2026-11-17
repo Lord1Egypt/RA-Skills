@@ -1,42 +1,56 @@
-## Description: <br>
-Pdf helps agents read, extract, transform, create, secure, OCR, and fill PDF files using documented Python libraries and command-line tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill whenever the user wants to do anything with PDF files, including reading or extracting text and tables, merging, splitting, rotating, watermarking, creating, filling, encrypting or decrypting, extracting images, and OCR on scanned PDFs.
 
-## Publisher: <br>
-[aredkuku](https://clawhub.ai/user/aredkuku) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[aredkuku](https://clawhub.ai/user/aredkuku)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to inspect, extract from, modify, generate, OCR, secure, and fill PDF documents. It is suited for local PDF processing workflows where outputs are reviewed before sharing or filing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide local actions that read, alter, decrypt, export, or OCR sensitive PDF documents. <br>
-Mitigation: Use it only on documents the user owns or is authorized to process, provide passwords only for authorized decryption, and review outputs before sharing them. <br>
-Risk: PDF edits, form fills, OCR, or coordinate-based annotations may be incomplete, misaligned, or misleading. <br>
-Mitigation: Keep backups, avoid in-place overwrites, use the included validation steps for form coordinates, and inspect generated PDFs before relying on them. <br>
+## Use Case:
 
+Developers, engineers, and agent operators use this skill to guide local PDF processing workflows such as extraction, conversion, form filling, document creation, encryption, and OCR.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aredkuku/pdf0616) <br>
-- [PDF form handling guide](artifact/forms.md) <br>
-- [PDF processing advanced reference](artifact/reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline code blocks, shell commands, JSON examples, and generated local PDF, image, or text files when scripts are run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local document processing may create derived PDFs, page images, extracted text, tables, or form-field JSON depending on the task.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: PDF processing commands and scripts may read sensitive local PDFs and create derived PDFs, images, JSON, or text files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on documents the user is authorized to process, keep outputs in an expected workspace, and review generated files before sharing them.
+
+Risk: Password removal, decryption, repair, or overwrite examples can affect protected or original documents.
+
+Mitigation: Use these commands only for documents the user owns or is authorized to unlock, and make backups before any repair or overwrite operation.
+
+## Reference(s):
+
+- [PDF Processing Guide](artifact/SKILL.md)
+- [PDF Form Filling Guide](artifact/forms.md)
+- [PDF Processing Advanced Reference](artifact/reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/aredkuku/skills/pdf0616)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python, JavaScript, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local PDF, image, JSON, and text files when its commands or scripts are run by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

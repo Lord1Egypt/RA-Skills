@@ -1,40 +1,53 @@
-## Description: <br>
-Extrabux海淘返利平台工具，中英双语界面，覆盖10000+海外商家，为全球华人提供购物现金返利服务。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extrabux海淘返利平台工具，中英双语界面，覆盖10000+海外商家，为全球华人提供购物现金返利服务。
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
 
-## Use Case: <br>
-External shoppers, especially Chinese-speaking cross-border shoppers, use this skill to structure Extrabux cashback checks for merchants, rebate rates, coupon codes, withdrawal methods, and cashback links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may propose shopping cashback details that affect purchase decisions. <br>
-Mitigation: Review merchant, rebate, coupon, withdrawal, and link details before relying on the generated result. <br>
-Risk: Using remote links or account-related cashback workflows can affect user accounts or rewards. <br>
-Mitigation: Have the agent show the exact target merchant and cashback link before opening or using it. <br>
+## Use Case:
 
+External shoppers and cashback users, especially global Chinese-speaking users, use this skill to query Extrabux merchant cashback, coupon availability, withdrawal methods, and cashback links during shopping.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/extrabux) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style text template for cashback query results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes merchant name, rebate rate, coupon code, withdrawal method, and cashback link fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Cashback rates, coupon validity, links, and withdrawal terms can change or be inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should verify current cashback rates, coupon terms, destination links, and withdrawal requirements with Extrabux or the merchant before relying on the output.
+
+Risk: The skill may surface commercial cashback information and links during relevant shopping or cashback queries.
+
+Mitigation: Install and use the skill only when cashback assistance is desired, and review links and terms before purchasing.
+
+## Reference(s):
+
+- [ClawHub skill page: Extrabux返利助手](https://clawhub.ai/fangshan101-coder/skills/extrabux)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style cashback query summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include merchant name, cashback rate, coupon code, withdrawal methods, and cashback link when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: evidence.release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

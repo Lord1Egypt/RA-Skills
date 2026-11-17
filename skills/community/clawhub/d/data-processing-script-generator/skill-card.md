@@ -1,41 +1,57 @@
-## Description: <br>
-Generates Python data-processing scripts from user-provided Excel templates and ERP export data to automate report creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Python data processing scripts from user-provided Excel templates and ERP export data, with guided confirmation of files, mappings, paths, naming, encoding, and Excel report constraints.
 
-## Publisher: <br>
-[yangxiao971208-star](https://clawhub.ai/user/yangxiao971208-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangxiao971208-star](https://clawhub.ai/user/yangxiao971208-star)
 
-## Use Case: <br>
-Developers, analysts, and operations users use this skill to turn confirmed spreadsheet templates, ERP exports, mappings, paths, and naming rules into runnable Python automation for recurring reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts may process sensitive business or personal spreadsheet data. <br>
-Mitigation: Provide only the files needed for the task and inspect samples for sensitive data before sharing them. <br>
-Risk: Generated Python code may write, overwrite, or delete local files if paths or logic are wrong. <br>
-Mitigation: Review generated scripts for file operations and test them first on copies or non-production data. <br>
-Risk: Incorrect paths, mappings, file names, or encoding assumptions can produce inaccurate reports. <br>
-Mitigation: Confirm paths, naming conventions, sheet mappings, processing rules, and encodings before running the script. <br>
+## Use Case:
 
+Business users, analysts, and developers use this skill to turn Excel report templates and ERP CSV or Excel exports into repeatable Python automation scripts for cleaning, mapping, calculating, and generating reports.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with Python code blocks and usage instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated scripts should use user-confirmed paths, mappings, naming rules, and encoding assumptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Excel or CSV samples may contain business data that is broader than needed for report-script generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the sample files, sheets, and columns needed to define the report workflow.
+
+Risk: Generated Python scripts may read or write local files using user-provided paths.
+
+Mitigation: Review generated scripts before running them and confirm all local paths and output locations.
+
+Risk: Incorrect mappings, encoding assumptions, or naming conventions can produce inaccurate reports.
+
+Mitigation: Confirm mappings, file naming, CSV encoding, and processing rules, then test the generated script before delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangxiao971208-star/skills/data-processing-script-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python code blocks and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated scripts should keep editable path variables near the top, try common CSV encodings, preserve Excel template formatting where possible, and include delivery instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

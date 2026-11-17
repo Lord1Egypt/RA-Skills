@@ -1,0 +1,41 @@
+{
+  "id": "senior-male-50plus",
+  "label": "Senior Male 50+",
+  "emoji": "👴",
+  "demographics": {
+    "gender": "male",
+    "age_range": [50, 99],
+    "tier": "boomer-silent"
+  },
+  "active_hours": {
+    "description": "Morning person — active early, winds down early",
+    "peak": [5, 9, 13, 16],
+    "off_peak_min": 9
+  },
+  "typing": {
+    "description": "Slow, deliberate, low accuracy",
+    "wpm": { "min": 25, "max": 50 },
+    "profile": "careful",
+    "think_prob": 0.025,
+    "think_ms": [600, 2500],
+    "backspace_freq": 0.07
+  },
+  "scroll": {
+    "passes": 1,
+    "description": "Cautious — reads headers, clicks links directly",
+    "speed_px_per_ms": { "min": 10, "max": 30 },
+    "pause_between_passes_ms": { "min": 1500, "max": 5000 },
+    "depth_per_pass": { "min": 0.2, "max": 0.45 }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 4000, "max": 10000 },
+    "pre_click_pause_ms": { "min": 600, "max": 2000 },
+    "inter_action_pause_ms": { "min": 1000, "max": 4000 }
+  },
+  "mouse": {
+    "speed": 0.4,
+    "curvature": 0.15,
+    "jitter": 0.2,
+    "description": "Very slow, wide curves (less precise motor control)"
+  }
+}

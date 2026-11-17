@@ -1,0 +1,12 @@
+{
+  "name": "maejongdeok-booking",
+  "version": "1.0.0",
+  "title": "梅宗德医院预约助手",
+  "description": "梅宗德医院 — 首尔瑞草区梅宗德医院，M皮肤科，专业皮肤治疗与医美",
+  "main": "api/skill.js",
+  "scripts": {
+    "test": "echo \"Tests coming soon\""
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

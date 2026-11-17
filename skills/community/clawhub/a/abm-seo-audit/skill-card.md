@@ -1,44 +1,59 @@
-## Description: <br>
-Guides an agent through structured SEO audits, technical SEO diagnostics, on-page review, content quality assessment, and prioritized recommendations for improving organic search performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through SEO audits that diagnose crawlability, indexation, technical SEO, on-page optimization, content quality, authority signals, and prioritized fixes for organic search performance.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Developers, marketers, and site operators use this skill to diagnose crawlability, indexation, Core Web Vitals, on-page SEO, content quality, and site-type-specific SEO issues. It produces an audit report with evidence, impact, fixes, and a prioritized action plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read local product marketing context before an audit, which could include sensitive business or positioning details. <br>
-Mitigation: Review local marketing context files before use and remove sensitive material that should not be included in the SEO analysis. <br>
-Risk: SEO crawling, rendering, or analytics tools may send URLs, page content, or site context to external services. <br>
-Mitigation: Use trusted Firecrawl and SEO tooling, and only submit URLs or analytics context that is approved for analysis. <br>
-Risk: The audit can produce incorrect or misleading SEO recommendations if the available evidence is incomplete or tool results are stale. <br>
-Mitigation: Review recommendations against current site data, Search Console or analytics evidence, and implementation constraints before acting. <br>
+## Use Case:
 
+Developers, marketers, and site operators use this skill to audit SEO health, investigate ranking or traffic drops, and produce prioritized technical, on-page, and content recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mariokarras/abm-seo-audit) <br>
-- [Publisher Profile](https://clawhub.ai/user/mariokarras) <br>
-- [AI Writing Detection](references/ai-writing-detection.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown audit report with checklists, findings, recommendations, and inline shell commands where tool usage is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are organized by issue, impact, evidence, fix, and priority.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may read a local product marketing context file if one exists.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not place confidential strategy or private business details in that context file unless the agent is allowed to use them during SEO work.
+
+Risk: The skill may use external SEO tools on URLs or page content provided by the user.
+
+Mitigation: Use public URLs or approved test pages when possible, and avoid sharing sensitive unpublished content with external tools.
+
+Risk: SEO recommendations can affect public traffic and indexing when implemented without review.
+
+Mitigation: Review recommended fixes, especially robots.txt, canonical, redirect, noindex, sitemap, and migration changes, before applying them to production.
+
+## Reference(s):
+
+- [AI Writing Detection](references/ai-writing-detection.md)
+- [Google Rich Results Test](https://search.google.com/test/rich-results)
+- [ClawHub skill page](https://clawhub.ai/mariokarras/skills/abm-seo-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown audit report with findings, evidence, fixes, priorities, and action plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference external SEO tools and requires user-provided site context, URLs, or analytics details for stronger findings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; skill metadata and changelog mention 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Ai Trends Reporter generates structured AI trend reports and ClawHub skill recommendations using Brave Search and ClawHub search signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured AI trends and ClawHub skill recommendation reports by searching current AI news and comparing available skills against the user's installed skills.
 
-## Publisher: <br>
-[LiXingxun](https://clawhub.ai/user/LiXingxun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lixingxun](https://clawhub.ai/user/lixingxun)
 
-## Use Case: <br>
-Developers and ClawHub users use this skill to produce daily, weekly, or topic-focused AI news reports and discover relevant uninstalled ClawHub skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may reveal the user's installed OpenClaw skills or tooling when shared. <br>
-Mitigation: Review generated reports before sharing and remove local tooling details that should remain private. <br>
-Risk: The skill depends on external search and ClawHub data, so report contents can be incomplete or time-sensitive. <br>
-Mitigation: Treat generated reports as a starting point and verify important news, rankings, and installation recommendations before relying on them. <br>
+## Use Case:
 
+Developers, operators, and ClawHub users use this skill to create daily, weekly, or topical AI news briefs and discover high-rated ClawHub Skills they have not installed.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/LiXingxun/ai-trends-reporter) <br>
-- [Brave Search API](https://brave.com/search/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report with optional shell command and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports daily, weekly, and topic-focused reports with adjustable recommendation counts; Brave Search requires BRAVE_API_KEY, and CLAWHUB_TOKEN is optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill uses network search and requires a Brave Search API key; a ClawHub token may also be provided for more accurate skill ranking.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if use of these credentials and external search services is acceptable, and avoid enabling recurring report workflows without confirmation.
+
+Risk: The report may use installed OpenClaw skill names to tailor recommendations.
+
+Mitigation: Review the generated report before acting on recommendations, especially before installing additional skills.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lixingxun/skills/ai-trends-reporter)
+- [Brave Search API](https://brave.com/search/api/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with concise recommendations and optional shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prioritized ClawHub skill recommendations and installation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

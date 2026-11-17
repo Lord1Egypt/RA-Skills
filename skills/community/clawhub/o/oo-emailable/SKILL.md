@@ -1,11 +1,11 @@
 ---
 name: oo-emailable
-description: "Emailable (emailable.com). Use this skill for ANY Emailable request — searching and reading data. Whenever a task involves Emailable, use this skill instead of calling the API directly."
+description: "Emailable (emailable.com). Use this skill for ANY Emailable request — reading, creating, and updating data. Whenever a task involves Emailable, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "Emailable"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["emailable"]
   icon: "https://static.oomol.com/logo/third-party/Emailable.svg"
 ---
@@ -39,7 +39,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 - `get_account_info` — Retrieve Emailable account information including owner email and available credits.
 - `get_batch_status` — Retrieve the latest Emailable status and results for an existing batch verification job.
-- `verify_batch_emails` — Create an Emailable batch verification job for a list of email addresses.
+- `verify_batch_emails` — Create an Emailable batch verification job for a list of email addresses. [write]
 - `verify_email` — Verify a single email address and return Emailable deliverability signals.
 
 ## Safety
@@ -71,11 +71,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Emailable is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=emailable
+  https://console.oomol.com/connections/emailable
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Emailable homepage: https://emailable.com/
+- API documentation: https://emailable.com/docs/api#authentication

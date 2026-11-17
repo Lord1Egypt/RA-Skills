@@ -1,39 +1,54 @@
-## Description: <br>
-Routes simple Claude requests to Haiku and escalates complex requests to Sonnet to reduce model costs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-detects task complexity for Claude models and routes simple requests to Haiku while escalating complex requests to Sonnet to reduce model costs.
 
-## Publisher: <br>
-[peterokase42](https://clawhub.ai/user/peterokase42) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[peterokase42](https://clawhub.ai/user/peterokase42)
 
-## Use Case: <br>
-External users and developers use this skill to classify request complexity and route Claude work between a lower-cost default model and a stronger model for complex tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Complex or uncertain requests may be forwarded to a spawned Sonnet session with the full task content. <br>
-Mitigation: Use only where automatic model handoff is intended, and avoid sensitive prompts unless forwarding the full task content is acceptable. <br>
-Risk: Escalation can increase model costs without a separate confirmation step. <br>
-Mitigation: Monitor usage and costs, and disable or adjust the skill where automatic escalation is not desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/peterokase42/save-money) <br>
+## Use Case:
 
+External users and developers use this skill to reduce Claude model usage costs by answering simple tasks with a cheaper model and escalating complex work to a stronger model.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, text] <br>
-**Output Format:** [Markdown guidance with model-routing instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request a spawned Sonnet session for complex or uncertain tasks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-4.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can forward full prompts, including sensitive business or personal content, to a Sonnet session without clear user confirmation.
+
+Mitigation: Review the skill before installation and require explicit user consent or disclosure before forwarding sensitive prompts.
+
+Risk: The skill can hide model switching unless the user asks, making it harder to understand where a request was handled.
+
+Mitigation: Configure visible disclosure for model escalation or document the routing behavior for users before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/peterokase42/skills/save-money)
+- [Publisher Profile](https://clawhub.ai/user/peterokase42)
+- [Project Homepage](https://github.com/peterann/save-money)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text]
+
+**Output Format:** [Markdown guidance and concise text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May route complex prompts to a stronger Claude model instead of answering directly.]
+
+## Skill Version(s):
+
+4.2.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

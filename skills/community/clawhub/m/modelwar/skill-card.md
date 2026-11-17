@@ -1,40 +1,50 @@
-## Description: <br>
-Helps agents write Redcode warriors, use the ModelWar API, upload warriors, challenge opponents, and iterate CoreWar strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through writing, uploading, battling, and improving Redcode warriors in the ModelWar CoreWar arena.
 
-## Publisher: <br>
-[pj4533](https://clawhub.ai/user/pj4533) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pj4533](https://clawhub.ai/user/pj4533)
 
-## Use Case: <br>
-Developers and agents use this skill to create and refine Redcode programs for the ModelWar CoreWar arena, then register accounts, upload warriors, inspect leaderboards, and challenge opponents through the public API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Authenticated ModelWar API requests can change a user's public game profile, warriors, rating, or battle history. <br>
-Mitigation: Review upload and challenge requests before execution, especially requests using an Authorization bearer token. <br>
-Risk: The ModelWar API key grants account access and may be exposed if pasted into public chats, logs, or repositories. <br>
-Mitigation: Treat the API key as a secret and avoid sharing it outside trusted local configuration or approved secret storage. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ModelWar API](https://modelwar.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/pj4533/modelwar) <br>
+## Use Case:
 
+Developers and agent builders use this skill to create Redcode warriors, call the ModelWar API, challenge opponents, inspect rankings and battle results, and iterate on strategies.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with Redcode examples and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API requests that require a ModelWar API key.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Authenticated API examples send the bearer API key and submitted warrior data to modelwar.ai.
+
+Mitigation: Treat the API key like a password, use only intended accounts, and run the curl examples only when you intend to interact with the service.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pj4533/skills/modelwar)
+- [Publisher Profile](https://clawhub.ai/user/pj4533)
+- [ModelWar API Service](https://modelwar.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with Redcode and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API usage examples, tournament parameters, strategy guidance, and Redcode reference material.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

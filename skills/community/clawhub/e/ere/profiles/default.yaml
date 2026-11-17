@@ -1,0 +1,126 @@
+# Editorial Refinement Engine — Perfis Editoriais
+#
+# Cada perfil define o comportamento dos motores de refinamento.
+# O perfil "default" é usado quando nenhum é especificado.
+
+default:
+  style: journalistic        # journalistic | technical | corporate | academic | minimalist | creative
+  tone: neutral              # neutral | formal | informal | enthusiastic | authoritative
+  verbosity: medium          # low | medium | high
+  humor: false               # true | false
+  opinion_level: low         # none | low | medium | high
+  paragraph_size: medium     # short | medium | long
+  sentence_length: mixed     # short | medium | long | mixed
+  seo: false                 # true | false (SEO optimization)
+  language: pt-BR            # pt-BR | en | es
+  refinement_level: 60       # 0-100: 0=minimal, 50=moderate, 100=deep rewrite
+  engines:
+    style: true
+    structure: true
+    rhythm: true
+    lexical: true
+    connectors: true
+    context: true        # enrich with context (never fabricate)
+    intro: true          # vary introductions
+  fact_preservation:
+    entity_lock: true    # freeze names, numbers, dates
+    quote_protect: true  # preserve literal quotes
+    claim_extract: false # extract verifiable claims (adds latency)
+
+# --- Perfis adicionais ---
+
+technical:
+  style: technical
+  tone: neutral
+  verbosity: medium
+  humor: false
+  opinion_level: none
+  paragraph_size: medium
+  sentence_length: mixed
+  seo: false
+  language: pt-BR
+  refinement_level: 40
+  engines:
+    style: true
+    structure: true
+    rhythm: true
+    lexical: false
+    connectors: true
+    context: false
+    intro: false
+  fact_preservation:
+    entity_lock: true
+    quote_protect: true
+    claim_extract: false
+
+corporate:
+  style: corporate
+  tone: formal
+  verbosity: low
+  humor: false
+  opinion_level: none
+  paragraph_size: medium
+  sentence_length: mixed
+  seo: false
+  language: pt-BR
+  refinement_level: 50
+  engines:
+    style: true
+    structure: true
+    rhythm: true
+    lexical: true
+    connectors: true
+    context: false
+    intro: true
+  fact_preservation:
+    entity_lock: true
+    quote_protect: true
+    claim_extract: true
+
+creative:
+  style: creative
+  tone: enthusiastic
+  verbosity: high
+  humor: true
+  opinion_level: high
+  paragraph_size: mixed
+  sentence_length: mixed
+  seo: false
+  language: pt-BR
+  refinement_level: 75
+  engines:
+    style: true
+    structure: true
+    rhythm: true
+    lexical: true
+    connectors: true
+    context: true
+    intro: true
+  fact_preservation:
+    entity_lock: true
+    quote_protect: true
+    claim_extract: false
+
+minimal:
+  style: minimalist
+  tone: neutral
+  verbosity: low
+  humor: false
+  opinion_level: none
+  paragraph_size: short
+  sentence_length: short
+  seo: false
+  language: pt-BR
+  refinement_level: 25
+  engines:
+    style: true
+    structure: false
+    rhythm: true
+    lexical: false
+    connectors: false
+    context: false
+    intro: false
+  fact_preservation:
+    entity_lock: true
+    quote_protect: true
+    claim_extract: false

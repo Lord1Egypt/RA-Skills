@@ -1,47 +1,61 @@
-## Description: <br>
-Identify songs from audio clips using AudD API and optionally queue them to Spotify. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Music Identify identifies songs from local audio clips with the AudD API, returns song details and Spotify links, can optionally queue matches to Spotify, and can recall prior identifications from its music log.
 
-## Publisher: <br>
-[playoffp](https://clawhub.ai/user/playoffp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[playoffp](https://clawhub.ai/user/playoffp)
 
-## Use Case: <br>
-External users and agent builders use this skill to identify songs from local audio clips, return artist and track details, optionally queue matches to Spotify, and recall prior identifications from a local music log. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chosen audio clips are sent to AudD for recognition. <br>
-Mitigation: Use only audio clips the user intends to submit to AudD and avoid sending sensitive private recordings. <br>
-Risk: Optional Spotify integration requires playback read/write OAuth access and local token storage. <br>
-Mitigation: Enable Spotify only when queueing is needed, keep credential and token files restricted to the user, and revoke access if no longer required. <br>
-Risk: The security review flagged the Spotify queue feature as review-needed until URI encoding and restrictive token-file permissions are fixed. <br>
-Mitigation: Review the Spotify scripts before deployment, confirm URI handling with representative track URIs, and enforce restrictive permissions on token files. <br>
-Risk: The local music log records identified songs and may reveal listening history. <br>
-Mitigation: Review, rotate, or delete the local music log when song history should not be retained. <br>
+## Use Case:
 
+External users and agent operators use this skill to identify music from local audio clips, return song metadata and Spotify links, optionally queue matched tracks to Spotify, and recall prior identifications.
 
-## Reference(s): <br>
-- [AudD API Reference](references/audd-api.md) <br>
-- [AudD](https://audd.io) <br>
-- [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) <br>
-- [ClawHub Release Page](https://clawhub.ai/playoffp/music-identify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with JSON script results and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include song title, artist, album, Spotify URL, queue status, not-found messages, errors, and local music-log entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: release evidence) <br>
+Risk: The server security summary reports a crafted-URI code execution flaw in the Spotify queue helper.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the Spotify queue feature until URI handling is fixed and reviewed.
+
+Risk: Spotify credentials, OAuth tokens, and the music log contain private data.
+
+Mitigation: Create credential and token files with mode 600, use a localhost OAuth callback with state validation, and treat the music log as private.
+
+Risk: Audio clips are uploaded to AudD for recognition.
+
+Mitigation: Only send audio clips that the user is comfortable uploading to AudD.
+
+## Reference(s):
+
+- [Music Identify ClawHub Skill Page](https://clawhub.ai/playoffp/skills/music-identify)
+- [AudD API Reference](references/audd-api.md)
+- [AudD API](https://api.audd.io/)
+- [AudD](https://audd.io)
+- [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [JSON from helper scripts and concise Markdown or plain-text responses for users.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append newline-delimited JSON identification records to memory/music-log.json and may call AudD and Spotify APIs when credentials are configured.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

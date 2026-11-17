@@ -20,7 +20,7 @@ import httpx
 JIN10_SERVER_URL = "https://mcp.jin10.com/mcp"
 JIN10_PROTOCOL_VERSION = "2025-11-25"
 # 金十公开 token，与 ch-topic-researcher 项目保持一致
-JIN10_AUTH_TOKEN = "sk-z3u1AKwr3BZeSlp2l6DGQIx2x_Hq9Emhb-XQsZ0Btes"
+JIN10_AUTH_TOKEN = "REDACTED-SECRET"
 
 
 class Jin10McpError(RuntimeError):

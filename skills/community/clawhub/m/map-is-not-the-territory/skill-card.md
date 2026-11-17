@@ -1,39 +1,57 @@
-## Description: <br>
-Helps an agent audit whether a metric, model, plan, process, or other abstraction still matches current reality before relying on it for decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a decision-coaching process for checking whether a metric, model, strategy, or process still reflects the reality it is meant to represent.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Employees and external users use this skill to audit metrics, models, strategy decks, org charts, and processes against direct observations before making decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may influence how an agent frames decisions about metrics, models, and plans, which could lead to misleading conclusions if treated as factual proof. <br>
-Mitigation: Use it as analytical coaching and verify cited examples, current facts, and high-stakes business conclusions with direct evidence and human review. <br>
+## Use Case:
 
+Employees and leaders use this decision-coaching skill to audit metrics, models, strategies, and processes against direct observations, identify omissions and outdated assumptions, and define calibration actions.
 
-## Reference(s): <br>
-- [Sources](references/sources.md) <br>
-- [McNamara and the Vietnam Kill-Ratio Map](examples/mcnamara-vietnam-kill-ratio-map.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown map-territory audit with coaching questions and checklist items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May pause at stepwise coaching prompts until the user provides a concrete case.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may treat decision-coaching recommendations as validated conclusions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a thinking aid and verify consequential recommendations.
+
+Risk: Real-use examples may expose confidential details.
+
+Mitigation: Avoid confidential details when recording real-use examples in the skill document.
+
+## Reference(s):
+
+- [Primary sources](artifact/references/sources.md)
+- [McNamara and the Vietnam Kill-Ratio Map](artifact/examples/mcnamara-vietnam-kill-ratio-map.md)
+- [AI Benchmarks as Maps of Capability (2024–2026)](artifact/examples/ai-benchmarks-vs-deployment-reality-2024-2026.md)
+- [ClawHub release](https://clawhub.ai/deciqai/skills/map-is-not-the-territory)
+- [deciqAI skill page](https://www.deciqai.com/c/map-is-not-the-territory)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown with a labeled Map-Territory Audit structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers the map, omissions, distortions, age, direct territory signals, decision, required updates, and update trigger.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

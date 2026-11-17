@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn73qdt8yqkct7c7nh45czrykx81ts33",
-  "slug": "dingtalk-group-saver",
+  "name": "dingtalk-group-saver",
   "version": "1.0.0",
-  "publishedAt": 1772434979851
+  "description": "当在钉钉群里被@时，自动保存群 ID 和群名字到 memory 中",
+  "author": "小牛马",
+  "license": "MIT",
+  "main": "index.js",
+  "tags": ["dingtalk", "group", "memory", "auto-save"],
+  "triggers": {
+    "channel": "dingtalk",
+    "event": "mention",
+    "context": "group"
+  }
 }

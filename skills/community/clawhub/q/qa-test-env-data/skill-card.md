@@ -1,41 +1,54 @@
-## Description: <br>
-Helps QA teams manage unstable or limited test environments, troubleshoot environment issues, and prepare test data with health checks and data-preparation checklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps QA teams plan and troubleshoot non-production test environments, manage configurations, and prepare and maintain test data.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA engineers and test leads use this skill to design and operate development, integration, and pre-release test environments, distinguish environment failures from code defects, and prepare sanitized test data for execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Environment-changing guidance could be applied to the wrong target or to production systems. <br>
-Mitigation: Confirm the exact non-production environment name or address and approval status before restarts, repairs, cleanup, or configuration changes. <br>
-Risk: Data cleanup or reset steps could remove needed test data or affect shared environments. <br>
-Mitigation: Use backups, dry runs, scoped batches, and team coordination before deletion, archival, or reset operations. <br>
-Risk: Suggested shell commands may not match the user's infrastructure or permissions. <br>
-Mitigation: Review and adapt commands before execution, and use them only in authorized QA test environments. <br>
+## Use Case:
 
+QA engineers and developers use this skill to check test-environment health, plan environment setup and maintenance, and prepare, mask, and clean up test data.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with checklists and suggested commands or configuration steps when appropriate] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review environment-changing or data-cleanup instructions before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and release evidence) <br>
+Risk: Environment changes or test-data cleanup could disrupt shared services or remove needed data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact authorized non-production target, backup, approval, rollback path and team coordination before changes; dry-run or test on a small scope first.
+
+Risk: The optional companion-skill installation uses an unpinned npx command.
+
+Mitigation: Install only from a trusted source and pin or verify the package and version before running the command.
+
+## Reference(s):
+
+- [Test data management reference](artifact/references/data-management.md)
+- [qa-test-env-data release on ClawHub](https://clawhub.ai/kokxi/skills/qa-test-env-data)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration guidance]
+
+**Output Format:** [Markdown checklists and environment-management guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes environment requirements, design, configuration and maintenance plans; environment configurations use ENV-XXXX identifiers.]
+
+## Skill Version(s):
+
+1.8.0 (source: skill frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

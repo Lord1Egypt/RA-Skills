@@ -1,53 +1,65 @@
-## Description: <br>
-Deconstructs psychology paper Results sections across common study designs using a study-profile-first workflow, adaptive A-I branch rules, source verification, causal-language guardrails, presentation guidance, and optional writer-transfer packets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paper Results Reverse Engineer helps agents deconstruct Results sections from psychology papers using study-profile-first classification, adaptive analysis branches, source verification, causal-language guardrails, and file-first Markdown reporting.
 
-## Publisher: <br>
-[bin77-chris](https://clawhub.ai/user/bin77-chris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bin77-chris](https://clawhub.ai/user/bin77-chris)
 
-## Use Case: <br>
-Researchers, students, analysts, and academic writers use this skill to inspect pasted Results text, PDF-derived excerpts, figure captions, tables, or screenshots from psychology papers and turn them into source-tagged Markdown analyses. It helps explain result structure, statistical reporting, figure narratives, interpretation boundaries, presentation scripts, and reusable writing patterns while preserving uncertainty where the paper evidence is incomplete. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to process user-selected PDFs and paper excerpts that may contain confidential or sensitive research material. <br>
-Mitigation: Use uploaded or clearly selected non-confidential PDFs where possible, confirm the intended source material before analysis, and avoid providing documents the agent should not inspect. <br>
-Risk: The skill relies on local PDF extraction and file-writing behavior, which can create Markdown outputs and temporary files on disk. <br>
-Mitigation: Review the output directory before execution, confirm where files will be written, and check cleanup behavior for long or phased analyses. <br>
-Risk: The security summary flags broad local PDF access and shell-based PDF extraction without strong user-control boundaries. <br>
-Mitigation: Run the skill only in a workspace where local file access is appropriate, limit inputs to explicitly chosen paper files, and review generated analysis before using it for decisions or publication. <br>
+## Use Case:
 
+Developers, researchers, and students use this skill to analyze psychology paper Results sections, uploaded PDFs, figure captions, screenshots, or partial excerpts. It produces structured reverse-engineering notes, figure and table explanations, evidence-boundary checks, presentation support, and optional writer-transfer guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bin77-chris/paper-results-reverse-engineer) <br>
-- [Prompt templates](references/prompt-templates.md) <br>
-- [Function labels](references/function-labels.md) <br>
-- [Examples](references/examples.md) <br>
-- [Execution constraints](docs/execution-constraints.md) <br>
-- [Source verification](docs/source-verification.md) <br>
-- [Causal language guardrails](docs/causal-language-guardrails.md) <br>
-- [Experimental, survey, RCT, developmental, psychometric, and neuroimaging branch rules](docs/branch-a-b-c-d-e-f.md) <br>
-- [Meta-analysis branch rules](docs/branch-g-meta-analysis.md) <br>
-- [Qualitative branch rules](docs/branch-h-qualitative.md) <br>
-- [Simulation branch rules](docs/branch-i-simulation.md) <br>
-- [Module H writer transfer packet specification](docs/module-h-spec.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown analysis files with source tags, tables, checklists, presentation scripts, and concise chat summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [File-first workflow; standard mode is the default, with quick and close-reading modes available when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.4 (source: frontmatter, changelog, server release metadata) <br>
+Risk: The security scan flags under-scoped local command and file-handling instructions for PDFs and temporary outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; prefer uploaded PDFs or pasted Results text, avoid arbitrary filesystem paths, and require shell-free or tightly reviewed PDF handling.
+
+Risk: PDF processing may read local files or leave temporary analysis artifacts.
+
+Mitigation: Use private per-run temporary files, sanitized filenames, confirmation before cleanup or deletion, and the artifact's file-first output and cleanup verification rules.
+
+Risk: Paper analysis can introduce unsupported claims, fabricated statistics, causal overclaims, or copied target-paper content.
+
+Mitigation: Apply source verification against the original paper text, causal-language guardrails, anti-template-contamination checks, and Module H limits that abstract writing patterns without copying original sentences or statistics.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bin77-chris/skills/paper-results-reverse-engineer)
+- [README](README.md)
+- [Changelog](CHANGELOG.md)
+- [Execution constraints](docs/execution-constraints.md)
+- [Source verification](docs/source-verification.md)
+- [Causal language guardrails](docs/causal-language-guardrails.md)
+- [Module H writer transfer specification](docs/module-h-spec.md)
+- [Prompt templates](references/prompt-templates.md)
+- [Function labels](references/function-labels.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [File-first Markdown analysis with concise chat summaries and optional inline command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports quick, standard, close-reading, and Module H writer-transfer modes; default output is a local Markdown file with path, core findings, self-check, and manual-review items summarized in chat.]
+
+## Skill Version(s):
+
+3.0.4 (source: frontmatter, CHANGELOG, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

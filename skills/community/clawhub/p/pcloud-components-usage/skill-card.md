@@ -1,49 +1,63 @@
-## Description: <br>
-Use when developer needs to install, use, or look up components from @pointcloud/pcloud-components npm package. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when developer needs to install, use, or look up components from @pointcloud/pcloud-components npm package.
 
-## Publisher: <br>
-[frank17008](https://clawhub.ai/user/frank17008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frank17008](https://clawhub.ai/user/frank17008)
 
-## Use Case: <br>
-Developers and engineers use this skill to install @pointcloud/pcloud-components, choose suitable React business components, and generate usage guidance or example code for Ant Design-based applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing an unintended or unpinned third-party package can introduce dependency risk. <br>
-Mitigation: Confirm the @pointcloud/pcloud-components package identity before installation and pin dependency versions with a lockfile. <br>
-Risk: Production CDN or iconfont script URLs can load code or assets outside the application's reviewed supply chain. <br>
-Mitigation: Avoid production CDN or iconfont script URLs unless the source is trusted, or self-host reviewed assets. <br>
-Risk: React or Ant Design version mismatch can cause integration failures. <br>
-Mitigation: Use the documented peer dependencies: React 18 and Ant Design 4.x-compatible packages. <br>
+## Use Case:
 
+Developers use this skill to install and apply the @pointcloud/pcloud-components React library, look up component APIs, and generate usage patterns for enterprise web interfaces.
 
-## Reference(s): <br>
-- [pcloud-components online documentation](https://frank17008.github.io/pcloud-components) <br>
-- [Component index](references/components-index.md) <br>
-- [Common patterns](references/patterns.md) <br>
-- [Create component guide](references/create-component.md) <br>
-- [DForm component documentation](references/docs/DForm.md) <br>
-- [DTable component documentation](references/docs/DTable.md) <br>
-- [CRUD component documentation](references/docs/CRUD.md) <br>
-- [Ant Design Form instance documentation](https://4x-ant-design.antgroup.com/components/form-cn/#FormInstance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash, JSX, TSX, and HTML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include package installation commands, peer dependency guidance, component API references, and React usage examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installing npm packages or using CDN assets can introduce supply-chain exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin package versions, keep a lockfile, review the npm package before use, and avoid production CDN usage unless assets are self-hosted or protected with integrity checks.
+
+Risk: Using incompatible React or Ant Design versions can cause integration failures.
+
+Mitigation: Use the documented peer dependencies and verify compatibility with React 18 and Ant Design 4.x before adopting generated examples.
+
+Risk: Some component documentation and sample UI text is in Chinese, which can lead to misunderstanding during implementation.
+
+Mitigation: Review translated labels, validation messages, and component descriptions before using generated code in user-facing interfaces.
+
+## Reference(s):
+
+- [pcloud-components online documentation](https://frank17008.github.io/pcloud-components)
+- [Component index](references/components-index.md)
+- [Common patterns](references/patterns.md)
+- [Create component guide](references/create-component.md)
+- [Ant Design Form API](https://4x-ant-design.antgroup.com/components/form-cn/#API)
+- [Ant Design ConfigProvider API](https://4x-ant-design.antgroup.com/components/config-provider-cn/#API)
+- [wordcloud2.js documentation](https://github.com/timdream/wordcloud2.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSX/TSX examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include package installation commands, peer dependency notes, import examples, component props, and usage patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

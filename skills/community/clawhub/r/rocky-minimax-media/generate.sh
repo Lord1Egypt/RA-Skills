@@ -2,7 +2,7 @@
 # MiniMax 媒体生成工具
 # 用法: ./generate.sh [image|video|tts|music] [参数...]
 
-API_KEY="sk-cp-T1RYgh5UDikLnm-KSp7O50eQTXBHjtlzGCEKciumMTO7wJwIL3gCB1DcHj1onVdqgw4C3MdUxthbhG1sRWSAPElJzMbiXDC_BydyutkrItnFnBqGEZeiohY"
+API_KEY="REDACTED-SECRET"
 BASE_URL="https://api.minimaxi.com"
 OUTPUT_DIR="/Users/rocky/Desktop"
 

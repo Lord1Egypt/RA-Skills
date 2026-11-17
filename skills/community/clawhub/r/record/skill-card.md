@@ -1,45 +1,59 @@
-## Description: <br>
-macOS CLI tool to record microphone audio, screen video or screenshots, and camera video or photos from the terminal with device listing and output control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+macOS CLI guidance for recording microphone audio, screen video or screenshots, and camera video or photos from the terminal with device listing and output controls.
 
-## Publisher: <br>
-[atacan](https://clawhub.ai/user/atacan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[atacan](https://clawhub.ai/user/atacan)
 
-## Use Case: <br>
-Developers, engineers, and terminal-based agents use this skill on macOS to capture short audio, screen, screenshot, webcam video, or photo artifacts while selecting devices, displays, windows, durations, and output paths. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive microphone, screen, and camera capture. <br>
-Mitigation: Confirm each recording request with the user, including what will be captured, the duration, and the output path. <br>
-Risk: The skill relies on a third-party Homebrew tap for installation. <br>
-Mitigation: Install only when the publisher and tap are trusted for the target environment. <br>
-Risk: Long or open-ended recording can capture more sensitive data than intended. <br>
-Mitigation: Prefer short explicit durations, window or region capture when possible, and revoke microphone, camera, or screen permissions when no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/atacan/record) <br>
-- [Publisher profile](https://clawhub.ai/user/atacan) <br>
-- [Audio command reference](references/audio.md) <br>
-- [Screen command reference](references/screen.md) <br>
-- [Camera command reference](references/camera.md) <br>
+## Use Case:
 
+Developers, operators, and AI agents on macOS use this skill to install and invoke the record CLI for consented microphone, screen, screenshot, webcam video, and photo capture from terminal workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and command option tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The described CLI can emit file paths or JSON to stdout; recordings and captures are written to user-selected or temporary file paths.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Microphone, camera, and screen capture can expose sensitive user or workspace information.
+
+Mitigation: Ask for explicit permission before every recording, screenshot, or camera photo, and confirm what will be captured and for how long.
+
+Risk: The skill asks users to install an unpinned third-party recording executable that may receive macOS privacy permissions.
+
+Mitigation: Review the publisher and Homebrew formula before installing, prefer a pinned reviewed release when available, and grant permissions only for the capture feature the user intends to use.
+
+Risk: Using --overwrite can replace an existing output file.
+
+Mitigation: Avoid --overwrite unless the user has explicitly confirmed the exact output path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/atacan/skills/record)
+- [Audio command reference](references/audio.md)
+- [Screen command reference](references/screen.md)
+- [Camera command reference](references/camera.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include commands that produce file paths or JSON output from the underlying CLI when executed.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

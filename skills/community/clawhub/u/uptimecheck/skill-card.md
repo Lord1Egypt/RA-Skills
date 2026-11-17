@@ -1,40 +1,54 @@
-## Description: <br>
-Check if URLs and API endpoints are up or down with response times and status codes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uptimecheck checks URLs and API endpoints for availability, response time, and HTTP status, with batch checks, optional JSONL history, and configurable timeouts.
 
-## Publisher: <br>
-[rogue-agent1](https://clawhub.ai/user/rogue-agent1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rogue-agent1](https://clawhub.ai/user/rogue-agent1)
 
-## Use Case: <br>
-Developers and operators use this skill to check URL and API endpoint availability, measure response time, review recent check history, and get CI-friendly exit codes for uptime checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes network requests to URLs supplied by the user. <br>
-Mitigation: Use it only with endpoints the user intends to contact, and avoid sensitive internal URL lists unless that monitoring is deliberate. <br>
-Risk: Saved history can include endpoint names, timestamps, status codes, and response times in the user's home directory. <br>
-Mitigation: Use --save only when local storage of this check history is acceptable. <br>
+## Use Case:
 
+Developers, site reliability engineers, and operations teams use this skill to check whether websites and API endpoints are responding and to capture response-time history for later review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rogue-agent1/uptimecheck) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text and JSON Lines history records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can print endpoint status, response time, summaries, and optional saved check history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill makes outbound network checks to user-provided URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for endpoints you are authorized to test and avoid URL lists from untrusted sources.
+
+Risk: Saved history can retain URLs containing sensitive query strings or private hostnames.
+
+Mitigation: Do not save checks for URLs that include API keys, signed parameters, session tokens, or internal hostnames.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rogue-agent1/skills/uptimecheck)
+- [Publisher profile](https://clawhub.ai/user/rogue-agent1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and text status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save optional local JSONL history under the user's home directory when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

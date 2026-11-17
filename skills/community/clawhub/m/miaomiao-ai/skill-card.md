@@ -1,44 +1,67 @@
-## Description: <br>
-Miaomiao AI Assistant routes chat requests to Link-AI for conversation, weather, news, package tracking, image generation, web search, summarization, charts, maps, and train-ticket queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+秒秒AI助理 invokes a Link-AI multi-capability assistant for chat, weather, news, package tracking, image generation, web search, summarization, charts, maps, and train-ticket queries.
 
-## Publisher: <br>
-[agleameal](https://clawhub.ai/user/agleameal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agleameal](https://clawhub.ai/user/agleameal)
 
-## Use Case: <br>
-External users and developers use this skill to call a Link-AI assistant from an agent for everyday information, generation, and lookup tasks through a single API-backed chat interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad auto-activation can route ordinary chats or sensitive prompts to Link-AI without clear user intent. <br>
-Mitigation: Scope activation narrowly, confirm third-party routing before sending sensitive requests, and avoid private documents, secrets, regulated data, logistics details, or location and travel information unless the provider is trusted. <br>
-Risk: The skill requires API credentials for Link-AI/Miaomiao. <br>
-Mitigation: Use a dedicated API key, keep credentials out of prompts and logs, rotate keys periodically, and revoke keys that may have been exposed. <br>
-Risk: Debug mode can print request parameters and response content. <br>
-Mitigation: Keep debug mode disabled for real user data and scrub logs before sharing diagnostics. <br>
+## Use Case:
 
+External users and developers use this skill to send natural-language requests to a third-party Link-AI assistant that selects practical services such as chat, weather, news, package tracking, search, summarization, charts, maps, train-ticket lookup, and image generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agleameal/miaomiao-ai) <br>
-- [Link-AI platform](https://link-ai.tech) <br>
-- [Link-AI chat completions endpoint](https://api.link-ai.tech/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or JSON responses from the Link-AI chat completions API, with Python and shell snippets in documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call a third-party API using MIAOMIAO_API_KEY or LINKAI_API_KEY; supports optional streaming responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact CHANGELOG top entry is v1.2.0) <br>
+Risk: Private prompts, documents, locations, shipment numbers, travel plans, or account-sensitive data may be sent to an external assistant.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the user clearly intends to call the external assistant and avoid sending sensitive data unless approved for that deployment.
+
+Risk: Broad auto-triggering can invoke the assistant for many unrelated requests.
+
+Mitigation: Review trigger behavior before installation and constrain invocation to explicit user requests for the listed services.
+
+Risk: Debug logging can expose request payloads or responses.
+
+Mitigation: Keep debug logging disabled in normal use and avoid collecting logs that contain prompts, credentials, or service results.
+
+Risk: A configurable API destination can redirect requests to an untrusted host.
+
+Mitigation: Do not set MIAOMIAO_API_URL to untrusted hosts; validate the destination before deployment.
+
+Risk: Documentation references LINKAI_* variables while the SDK uses MIAOMIAO_* variables.
+
+Mitigation: Reconcile environment variable names before deployment so credentials are configured intentionally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agleameal/skills/miaomiao-ai)
+- [Link-AI platform](https://link-ai.tech)
+- [Link-AI chat completions endpoint](https://api.link-ai.tech/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text responses, with Python code examples and environment variable configuration when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return service-specific content for weather, news, package tracking, web search, summaries, charts, maps, train-ticket lookup, and image generation through the external Link-AI assistant.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact CHANGELOG top entry is v1.2.0 dated 2026-03-12)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

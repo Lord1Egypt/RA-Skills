@@ -1,43 +1,62 @@
-## Description: <br>
-Zotero Scholar saves paper metadata, links, optional abstracts, tags, and AI-generated summaries into a user's Zotero library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Saves paper metadata, links, optional abstracts, summaries, tags, and arXiv PDFs to a user's Zotero library using configured Zotero credentials.
 
-## Publisher: <br>
-[Little-Cat1](https://clawhub.ai/user/Little-Cat1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[little-cat1](https://clawhub.ai/user/little-cat1)
 
-## Use Case: <br>
-Developers, researchers, and research assistants use this skill to add paper records, summaries, tags, and arXiv PDF attachments to a Zotero library from command-line inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Zotero API key that can add library items and attachments. <br>
-Mitigation: Use a minimally scoped Zotero key and install only if account writes are acceptable. <br>
-Risk: ZOTERO_CREDENTIALS contains sensitive account access material. <br>
-Mitigation: Keep ZOTERO_CREDENTIALS out of logs, shared terminals, screenshots, and committed files. <br>
-Risk: User-supplied URLs and AI-generated summaries are written into Zotero records. <br>
-Mitigation: Run the skill only with trusted paper URLs and reviewed summary text. <br>
+## Use Case:
 
+Developers, researchers, and research assistants use this skill to add scholarly paper records to Zotero from command-line inputs, including title, authors, URL, abstract, summary, and tags. It is useful for automating literature intake while preserving Zotero as the system of record.
 
-## Reference(s): <br>
-- [Zotero](https://www.zotero.org) <br>
-- [ClawHub release page](https://clawhub.ai/Little-Cat1/openclaw-zotero-scholar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv and ZOTERO_CREDENTIALS in userid:apiKey format; writes user-supplied paper information to Zotero through the Zotero API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: release evidence, created 2026-03-20) <br>
+Risk: The skill uses a Zotero API key that can create items, notes, and attachments in the configured library.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited Zotero key where possible and avoid sharing or committing ZOTERO_CREDENTIALS.
+
+Risk: The bundled script can modify the user's Zotero library by creating records, notes, and attachments.
+
+Mitigation: Review paper metadata and target credentials before execution, then verify created records in Zotero after running.
+
+Risk: PDF download and upload behavior relies on paper URLs with weak validation.
+
+Mitigation: Use trusted paper URLs and avoid passing untrusted or unexpected URLs to the script.
+
+Risk: The script resolves an unpinned pyzotero dependency at runtime.
+
+Mitigation: Pin and review dependencies before using the skill in a managed or production workflow.
+
+## Reference(s):
+
+- [Zotero](https://www.zotero.org)
+- [ClawHub release page](https://clawhub.ai/little-cat1/skills/openclaw-zotero-scholar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and Zotero library changes produced by the bundled script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv and ZOTERO_CREDENTIALS; can create Zotero items, notes, and attachments.]
+
+## Skill Version(s):
+
+0.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

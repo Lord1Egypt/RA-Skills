@@ -1,40 +1,57 @@
-## Description: <br>
-Helps agents guide users through managing the veteran proxy client, including subscription updates, node listing, SOCKS5 proxy start and stop commands, status checks, split-routing rules, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in managing the Veteran proxy client, including subscription updates, node listing, local SOCKS5 proxy start and stop commands, status checks, and split-routing rules.
 
-## Publisher: <br>
-[veteran-cli](https://clawhub.ai/user/veteran-cli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[veteran-cli](https://clawhub.ai/user/veteran-cli)
 
-## Use Case: <br>
-External users and developers use this skill when they need agent guidance for installing, configuring, operating, or troubleshooting the veteran proxy CLI for subscription-based proxy nodes and local SOCKS5/HTTP routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Proxy node operators or subscription providers may observe connection metadata and some traffic depending on encryption. <br>
-Mitigation: Verify the veteran CLI package and proxy node provider before use, and avoid sending sensitive credentials through untrusted nodes. <br>
-Risk: Proxy use may conflict with workplace, school, or regional policies. <br>
-Mitigation: Confirm that proxy use is permitted in the user's environment before configuring or starting the service. <br>
+## Use Case:
 
+Developers, operators, and external users use this skill to configure and troubleshoot the Veteran CLI when they need proxy access to network resources. It covers subscription setup, node selection, local proxy lifecycle commands, browser proxy settings, and split-routing rule configuration.
 
-## Reference(s): <br>
-- [Veteran Proxy ClawHub page](https://clawhub.ai/veteran-cli/veteran-proxy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proxy subscription, routing-rule, environment-variable, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and package.json) <br>
+Risk: The skill asks users to install and run a mutable third-party proxy client.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package source before installing, prefer pinned or verified installs, and avoid unreviewed global or npx execution in sensitive environments.
+
+Risk: Proxy subscription URLs may expose sensitive access information if placed in shared commands, shell history, or logs.
+
+Mitigation: Use trusted subscription providers, avoid real subscription URLs in reusable examples or shared logs, and handle VETERAN_SUB_URL as sensitive configuration.
+
+Risk: Starting a local proxy can redirect application traffic in ways users may not expect.
+
+Mitigation: Confirm which applications use 127.0.0.1 proxy settings, review split-routing rules before enabling them, and verify the stop command before starting background proxy instances.
+
+## Reference(s):
+
+- [Veteran Proxy ClawHub listing](https://clawhub.ai/veteran-cli/skills/veteran-proxy)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local proxy addresses, port numbers, environment variables, and routing-rule examples.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

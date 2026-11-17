@@ -1,39 +1,59 @@
-## Description: <br>
-Generate professional app icons for iOS, Android, and web apps instantly with AI using the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional app icons for iOS, Android, and web apps from text prompts using the Neta AI image generation API.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-Developers, startups, indie makers, and designers use this skill to generate polished app icon artwork from text prompts, with optional size selection and reference-image style inheritance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference image UUIDs, and the Neta API token are sent to the Neta/TalesOfAI service. <br>
-Mitigation: Use only approved prompts and reference assets, avoid confidential or regulated data, and provide tokens through the documented command-line flag only for approved use cases. <br>
+## Use Case:
 
+Developers, startups, indie makers, and designers use this skill to request app icon artwork from text descriptions, with optional size selection and reference-image style inheritance.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/blammectrappora/app-icon-generator) <br>
-- [Neta AI token access](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands] <br>
-**Output Format:** [Plain text image URL with command-line status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token; supports square, portrait, landscape, and tall image sizes plus an optional reference image UUID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: Prompts, optional reference UUIDs, and the Neta API token are sent to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive prompt content, use a disposable or limited-scope API token, and review the third-party service before production use.
+
+Risk: Passing the token on the command line can expose it through shell history, process listings, terminal scrollback, or logs.
+
+Mitigation: Use a token dedicated to this workflow, run on trusted systems, and clear shell history or logs that may capture command invocations.
+
+Risk: Installing with an unpinned npx command can execute package content from the resolved source path.
+
+Mitigation: Install only from trusted ClawHub/source paths, avoid administrator privileges, and pin or review the installed artifact before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blammectrappora/skills/app-icon-generator)
+- [Publisher profile](https://clawhub.ai/user/blammectrappora)
+- [Neta API token access](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text image URL with CLI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports square, portrait, landscape, and tall image dimensions; optional reference image UUID can guide style inheritance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

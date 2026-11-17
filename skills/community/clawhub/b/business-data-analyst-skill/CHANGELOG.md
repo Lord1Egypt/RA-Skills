@@ -2,6 +2,56 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.7.0] - 2026-09-29
+
+### Added
+
+- Added practical guidance for statistical inference and uncertainty, experiment and quasi-experiment design, KPI trees and guardrails, and resource-constrained option prioritization.
+- Integrated the new methods into the main skill routing and the end-to-end business decision framework.
+
+### Changed
+
+- Updated the README capability summary and bumped the project version to `1.7.0`.
+
+## [1.6.0] - 2026-09-24
+
+### Added
+
+- Added a modern, clearly attributed “Wei Liaozi” business analysis framework connecting decision definition, constraints, market comparison, segmentation, readiness, decision gates, execution, and validation.
+- Added variance bridge/PVM, unit economics and contribution margin, scenario and sensitivity, and Pareto/concentration guidance.
+- Expanded market research and business reporting guidance for source traceability, contextual freshness, decision implications, and evidence-based qualitative prioritization.
+
+### Changed
+
+- Clarified output selection, model routing, and research stopping criteria; removed universal source-age and mismatch thresholds.
+- Bumped the project version to `1.6.0` across `README.md`, `SKILL.md`, and `package.json`.
+
+## [1.5.0] - 2026-09-24
+
+### Added
+
+- Added `references/business-reporting.md` with guidance for executive summaries, KPI scorecards, driver analysis, WBR/MBR/QBR structures, action tracking, and report quality checks.
+- Integrated business reporting guidance into `SKILL.md` and added the reference to the README project overview.
+
+### Changed
+
+- Bumped the project version to `1.5.0` across `README.md`, `SKILL.md`, and `package.json`.
+
+## [1.4.0] - 2026-09-24
+
+### Added
+
+- Added Node.js built-in router tests for all analysis intents, tie handling, negative signals, and English keyword routing.
+- Added an `npm test` script and documented the package's host-provided data and search tool requirements.
+
+### Changed
+
+- Updated router documentation to describe the implemented input, scoring, priority, and output behavior.
+- Replaced machine-specific README and changelog links with repository-relative links.
+- Made intent priorities explicit and prevented overlapping phrases from inflating intent scores.
+- Rewrote the README with a clearer project overview, usage example, scenario table, repository structure, and capability boundaries.
+- Bumped the project version to `1.4.0` across `README.md`, `SKILL.md`, and `package.json`.
+
 ## [1.3.0] - 2026-06-12
 
 ### Added
@@ -40,9 +90,9 @@ All notable changes to this project will be documented in this file.
 - Added `src/router.js` for internal skill intent routing.
 - Added `src/index.js` as the public export entry for router utilities.
 - Added intent routing support for `growth_analysis`, `funnel_analysis`, `retention_analysis`, `revenue_analysis`, `efficiency_analysis`, and `business_diagnosis`.
-- Added [references/router-design.md](/d:/home/business-data-analyst-skill/references/router-design.md) to document the routing design and expected contract.
-- Added strategic, competitive, marketing, operational, and financial analysis model guidance to [SKILL.md](/d:/home/business-data-analyst-skill/SKILL.md) and [references/metric-playbook.md](/d:/home/business-data-analyst-skill/references/metric-playbook.md).
+- Added [references/router-design.md](references/router-design.md) to document the routing design and expected contract.
+- Added strategic, competitive, marketing, operational, and financial analysis model guidance to [SKILL.md](SKILL.md) and [references/metric-playbook.md](references/metric-playbook.md).
 
 ### Changed
 
-- Updated [README.md](/d:/home/business-data-analyst-skill/README.md) to document the new runtime routing layer and point change history to `CHANGELOG.md`.
+- Updated [README.md](README.md) to document the new runtime routing layer and point change history to `CHANGELOG.md`.

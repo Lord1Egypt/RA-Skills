@@ -1,48 +1,61 @@
-## Description: <br>
-Export GitHub starred repositories by category and sync them to a Notion database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Export GitHub starred repositories by category and sync them to a Notion database.
 
-## Publisher: <br>
-[nick-tsyen](https://clawhub.ai/user/nick-tsyen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nick-tsyen](https://clawhub.ai/user/nick-tsyen)
 
-## Use Case: <br>
-Developers and GitHub users use this skill to export starred repositories into categorized Markdown and synchronize that collection into a structured Notion database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Notion sync script sends a Notion token over requests with TLS certificate verification disabled. <br>
-Mitigation: Review and patch the sync script before use; avoid running the sync until TLS verification is enabled. <br>
-Risk: The Notion sync can archive or overwrite existing database entries during refresh. <br>
-Mitigation: Use a dedicated or backed-up Notion database, pass an explicit --parent-id, and confirm the target before syncing. <br>
-Risk: The sync relies on Notion workspace credentials and writes persistent local sync state. <br>
-Mitigation: Use a least-privilege Notion integration and keep generated state and exported data out of shared commits unless intended. <br>
+## Use Case:
 
+Developers and individual GitHub users use this skill to export starred repositories into Markdown and sync the exported list into a structured Notion database.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nick-tsyen/dataninja-github-stars-export) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/nick-tsyen) <br>
-- [Export GitHub Stars Script](references/export_stars.md) <br>
-- [Sync Stars to Notion DB](references/sync_stars.md) <br>
-- [GitHub CLI](https://cli.github.com/) <br>
-- [Notion Developers](https://developers.notion.com/) <br>
-- [jq](https://jqlang.github.io/jq/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell and Python command examples; generated artifacts include a Markdown export and Notion database rows.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires authenticated GitHub CLI, jq, requests, and NOTION_API_KEY; sync state is tracked in assets/.notion_sync_config.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The Notion sync can archive existing database rows when rerun against an existing database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against a dedicated test or backup database first, and add confirmation or dry-run safeguards before using it with valuable Notion data.
+
+Risk: The Notion API calls disable TLS certificate verification while using the Notion token.
+
+Mitigation: Remove verify=False and keep TLS verification enabled before providing a Notion integration token.
+
+Risk: The skill requires authenticated GitHub CLI access and a Notion integration token.
+
+Mitigation: Use least-privilege credentials, scope the Notion integration to a dedicated page or database, and revoke tokens after testing if they are no longer needed.
+
+## Reference(s):
+
+- [Exporting Stars](references/export_stars.md)
+- [Syncing to Notion](references/sync_stars.md)
+- [GitHub CLI](https://cli.github.com/)
+- [jq](https://jqlang.github.io/jq/)
+- [Notion Developers](https://developers.notion.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown files, shell commands, Python script execution, and local JSON sync state]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces assets/starred_lists.md and may create or update a Notion database when run with credentials.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

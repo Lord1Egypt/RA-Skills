@@ -1,40 +1,54 @@
-## Description: <br>
-Free AI Bot routes prompts across local Ollama models and configured free cloud AI providers with fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free AI Bot is a free AI aggregator that routes prompts across local Ollama models and configured free cloud providers such as Cloudflare Workers AI and Groq.
 
-## Publisher: <br>
-[bo-Aibot](https://clawhub.ai/user/bo-Aibot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bo-aibot](https://clawhub.ai/user/bo-aibot)
 
-## Use Case: <br>
-Developers and external users can use this skill to ask questions through a local-first AI router and fall back to configured free cloud providers when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts may be sent to Cloudflare or Groq when those providers are selected or automatic fallback reaches them. <br>
-Mitigation: Use the Ollama provider for local-only prompts and avoid sending confidential data to cloud providers unless that use is acceptable. <br>
-Risk: Cloud provider API tokens can be exposed through shared logs, shell history, or repositories. <br>
-Mitigation: Keep Cloudflare and Groq tokens scoped, store them outside source control, and avoid printing them in shared logs. <br>
+## Use Case:
 
+Developers and external users can use this skill to ask questions through a command-line AI aggregator that prefers local Ollama models and can fall back to configured cloud AI providers.
 
-## Reference(s): <br>
-- [Free AI Bot on ClawHub](https://clawhub.ai/bo-Aibot/free-ai-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text responses and Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call local Ollama or configured cloud AI providers depending on provider selection and fallback behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Default routing can send prompts to Cloudflare or Groq after local failure when cloud credentials are configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --provider ollama for local-only use and avoid submitting secrets or private data.
+
+Risk: The included Python script appears broken as shipped due to syntax errors.
+
+Mitigation: Review and test the script before operational use.
+
+## Reference(s):
+
+- [Free AI Bot ClawHub Page](https://clawhub.ai/bo-aibot/skills/free-ai-bot)
+- [bo-aibot Publisher Profile](https://clawhub.ai/user/bo-aibot)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may come from a local model or a configured cloud provider depending on routing and credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

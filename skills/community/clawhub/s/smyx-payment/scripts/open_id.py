@@ -19,11 +19,40 @@ from typing import Optional, Tuple
 
 
 def workspace_root() -> Path:
+    """定位当前 agent 的 workspace 根目录。
+
+    优先级：
+      1. 环境变量 OPENCLAW_WORKSPACE
+      2. smyx_common.AgentContextUtil.detect_current_agent_workspace()
+         （“路径中第一个 /skills/ 之前就是 workspace 根”）
+      3. 内建扣底：自己预扫描 __file__ 里首次出现的 /skills/，
+         删除尾部 skills/... 后就是 workspace 根（避免 dirname 层数写死）
+    """
     env_workspace = os.environ.get("OPENCLAW_WORKSPACE")
     if env_workspace:
         return Path(env_workspace)
-    # /root/.openclaw/workspace/skills/smyx_payment/scripts/open_id.py -> workspace root = parents[3]
-    return Path(__file__).resolve().parents[3]
+
+    # 优先复用 smyx_common 的统一探测，保持与 vendored util.py 一致
+    try:
+        from skills.smyx_common.scripts.util import AgentContextUtil
+
+        context = AgentContextUtil.detect_current_agent_workspace()
+        root = context.get("workspace_root") if isinstance(context, dict) else None
+        if root:
+            return Path(root)
+    except Exception:
+        pass
+
+    # 内建扣底：无需依赖 smyx_common，用同样的算法扫描 __file__
+    current_path = str(Path(__file__).resolve())
+    sep = os.sep
+    marker = sep + "skills" + sep
+    idx = current_path.find(marker)
+    if idx > 0:
+        return Path(current_path[:idx])
+
+    # 真的什么都没匹配到（不可能发生），返回当前文件所在目录向上一层兄弟。
+    return Path(__file__).resolve().parent
 
 
 def api_key_file_path() -> Path:
@@ -83,59 +112,72 @@ def get_or_create_default_recharge_account() -> str:
     return OpenIdUtil.get_or_create_default_open_id()
 
 
+def _lookup_username_by_api_key(api_key: str) -> Optional[str]:
+    """本地 smyx-common-claw.db 中用 API Key（realname）反查真实 username。
+
+    RequestUtil.http_request 里 _get_or_create_user 已经把后端返回的
+    username 保存到 sys_user。UserDao.get_by_username 内部用
+    (username == x OR realname == x) AND 未删除的 OR 匹配，
+    因此直接传入 api_key 即可命中 realname 列，无需自己拼 SQL。
+    """
+    if not api_key or not isinstance(api_key, str):
+        return None
+    try:
+        from skills.smyx_common.scripts.dao import UserDao
+
+        user = UserDao().get_by_username(api_key)
+        return user.username if user and user.username else None
+    except Exception:
+        return None
+
+
 def get_payment_card_display_account() -> str:
-    """Return the plaintext account that must be shown on payment cards.
+    """支付卡片上展示的账户名。
 
-    与 resolve_recharge_account 逻辑一致，确保用户看到的账户就是实际充值的账户
-
-    Returns:
-        支付卡片上显示的账户名
+    展示优先级：
+      1. 若为 API Key→本地 sys_user.realname 反查 username 展示真实账号；
+      2. 未绑定到 username 时才对 API Key 脱敏展示；
+      3. 非敏感标识符（如 User_xxx）直接原样展示。
     """
     account, source = resolve_recharge_account(None)
 
-    # 敏感标识符脱敏显示（正常情况下不应该走到这里，因为优先使用 User_xxx）
-    if _is_sensitive_identifier(account):
-        # 显示前8位 + ...，既标识又保护隐私
+    # 来源为 api-key 文件时，优先反查真实 username
+    if source == "api_key_file":
+        real_username = _lookup_username_by_api_key(account)
+        if real_username:
+            return real_username
+        # 未绑定到 username 时才脱敏，避免直接回显完整存根
         return f"{account[:8]}..."
 
-    # User_xxx 或手机号直接显示
+    # 其他来源（explicit / default_local_user）
+    if _is_sensitive_identifier(account):
+        return f"{account[:8]}..."
+
     return account
 
 
 def resolve_recharge_account(explicit_internal_account: Optional[str] = None) -> Tuple[str, str]:
     """Resolve the account used by payment order creation.
 
-    🔴 关键规则：优先使用 User_xxx 格式的本地充值账户，而非 API Key
-    - API Key 仅用于请求层鉴权，不作为用户账户标识
-    - User_xxx 是用户可识别的本地充值账户
+    严格按模块 docstring 声明的优先级解析：
+      1. explicit（显式传入）
+      2. workspace data/smyx-api-key.txt（若存在则视为已完成身份关联，最高业务优先级）
+      3. 本地默认 User_xxx 账户（真正的兜底）
 
     Returns:
-        (account, source): source is "default_local_user" | "explicit" | "api_key_file".
+        (account, source): source is "explicit" | "api_key_file" | "default_local_user".
     """
-    # 1. 优先使用显式传入的账户
+    # 1. 显式传入的账户
     if explicit_internal_account and str(explicit_internal_account).strip():
         return str(explicit_internal_account).strip(), "explicit"
 
-    # 2. 优先获取本地默认 User_xxx 账户（这是用户看到的充值账户）
-    try:
-        from skills.smyx_common.scripts.util import OpenIdUtil
-        user_account = OpenIdUtil.get_or_create_default_open_id()
-        if user_account and user_account.startswith("User_"):
-            # 同时设置 API Key 到请求层（如果有）
-            api_key = read_api_key_file()
-            if api_key:
-                _set_request_layer_api_key(api_key)
-            return user_account, "default_local_user"
-    except Exception:
-        pass
-
-    # 3. 降级方案：如果获取 User_xxx 失败，再使用 API Key
+    # 2. smyx-api-key.txt（按 docstring 契约，优先级高于本地默认 User_xxx）
     api_key = read_api_key_file()
     if api_key:
         _set_request_layer_api_key(api_key)
         return api_key, "api_key_file"
 
-    # 4. 最终兜底：创建默认 User_xxx 账户
+    # 3. 兜底：本地默认 User_xxx 账户
     return get_or_create_default_recharge_account(), "default_local_user"
 
 

@@ -1,38 +1,54 @@
-## Description: <br>
-De-agent your code by checking files and commit messages for AI-style patterns before committing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+dgent checks files and commit messages for AI tells before committing, flagging naming patterns, catch-rethrow, AI vocabulary, emoji, and trailers.
 
-## Publisher: <br>
-[itscodejac](https://clawhub.ai/user/itscodejac) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[itscodejac](https://clawhub.ai/user/itscodejac)
 
-## Use Case: <br>
-Developers and coding agents use dgent before commits to inspect source files and commit messages for AI-style naming, phrasing, emoji, trailers, and simple catch-rethrow patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: --fix mode and enabled git hooks can change files or commit messages. <br>
-Mitigation: Run JSON or check modes first, then review git diffs before committing. <br>
+## Use Case:
 
+Developers and coding agents use dgent before commits to inspect source files, directories, and commit messages for common AI-generated patterns and to apply deterministic cleanup where appropriate.
 
-## Reference(s): <br>
-- [dgent GitHub repository](https://github.com/ItsCodejac/dgent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-producing CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can report clean status, fixes, flags, and cleaned output; fix mode can write changes in place.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata) <br>
+Risk: The skill installs an unpinned npm tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or verify the npm package where possible before installing it in important repositories.
+
+Risk: Automatic git-hook cleanup or fix mode can rewrite files or commit messages.
+
+Mitigation: Use JSON/check modes first, review diffs after any --fix run, and confirm hook behavior before enabling it in signed or policy-controlled workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/itscodejac/skills/dgent)
+- [dgent homepage](https://github.com/ItsCodejac/dgent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON-oriented CLI checks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The underlying CLI can report clean status, fixes, flags, cleaned output, rule catalogs, and exit codes.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

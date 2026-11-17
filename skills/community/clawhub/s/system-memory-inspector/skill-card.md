@@ -1,39 +1,55 @@
-## Description: <br>
-The skill guides an agent through Linux system memory inspections by scanning all processes, recording memory snapshots, analyzing RSS growth trends, and producing leak-suspect reports with triage guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inspects Linux system memory by periodically scanning all processes, recording memory snapshots, analyzing growth trends, and reporting suspected memory leaks with investigation guidance.
 
-## Publisher: <br>
-[zhur0ng](https://clawhub.ai/user/zhur0ng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhur0ng](https://clawhub.ai/user/zhur0ng)
 
-## Use Case: <br>
-Developers, SREs, and operators use this skill to inspect Linux hosts for process-level memory growth, identify likely memory leaks, and generate follow-up investigation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated inspection workflows can persist system-wide process command lines that may contain secrets or sensitive arguments. <br>
-Mitigation: Use only on Linux hosts where system-wide process inspection is authorized, redact or remove command-line fields before scheduled use, and avoid sharing reports until command-line arguments have been checked for secrets. <br>
-Risk: Snapshots and reports stored under /var/log/memory-inspector may expose process inventory and operational details. <br>
-Mitigation: Restrict permissions on /var/log/memory-inspector, define retention and cleanup rules, and share generated reports only with authorized responders. <br>
+## Use Case:
 
+SREs, developers, and operations engineers use this skill to monitor Linux hosts for process-level memory growth, identify likely leak candidates, and generate a practical investigation report.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and plain-text inspection report examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets Linux hosts with ps, awk, sort, and uniq available; reports may include process command lines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Persistent all-process command-line capture can expose sensitive arguments or operational details on shared or production hosts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run with the least-privileged account that still provides useful visibility, redact or remove command-line capture where needed, and restrict report and snapshot permissions.
+
+Risk: Memory inspection snapshots are written under /var/log/memory-inspector and may be readable by users beyond the intended operators if permissions are left implicit.
+
+Mitigation: Set a restrictive umask such as 077 or create the log and trend directories with explicit 0700 directory and 0600 file permissions before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhur0ng/skills/system-memory-inspector)
+- [Publisher profile](https://clawhub.ai/user/zhur0ng)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill describes a local Linux inspection workflow and report output; generated reports may include process names, memory usage, growth rates, and captured command lines.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "confidence": {"direct_label": 0.95, "pattern_match": 0.78, "geometry_pattern": 0.86, "inferred": 0.5},
+  "view_rules": [
+    {"type": "site_plan", "patterns": ["总平面图", "总图", "总平面", "SITE PLAN", "GENERAL PLAN", "总平面布置图"]},
+    {"type": "vertical_plan", "patterns": ["竖向设计", "竖向图", "土方", "标高图", "VERTICAL", "竖向平面"]},
+    {"type": "utility_composite", "patterns": ["管线综合", "管线图", "市政综合", "UTILITY PLAN", "管线综合平面"]},
+    {"type": "road_plan", "patterns": ["道路平面", "道路布置", "路网", "ROAD PLAN"]},
+    {"type": "road_profile", "patterns": ["道路纵断", "纵断面", "横断面", "PROFILE", "CROSS SECTION"]},
+    {"type": "retaining_wall", "patterns": ["挡土墙", "挡墙", "护坡", "边坡", "RETAINING WALL", "RETAINING"]},
+    {"type": "landscape", "patterns": ["景观", "绿化", "铺装", "LANDSCAPE"]},
+    {"type": "parking", "patterns": ["停车", "停车场", "车位", "PARKING"]}
+  ],
+  "system_rules": [
+    {"system": "site", "patterns": ["场地", "总图", "红线", "用地", "SITE"]},
+    {"system": "vertical", "patterns": ["竖向", "土方", "标高", "挖方", "填方", "VERTICAL", "EARTHWORK"]},
+    {"system": "utility", "patterns": ["管线", "给水", "排水", "雨水", "污水", "燃气", "电力", "通信", "UTILITY"]},
+    {"system": "road", "patterns": ["道路", "车行道", "人行道", "路缘石", "ROAD"]},
+    {"system": "retaining_wall", "patterns": ["挡土墙", "挡墙", "护坡", "边坡", "RETAIN"]},
+    {"system": "landscape", "patterns": ["景观", "绿化", "铺装", "景观", "LANDSCAPE"]}
+  ],
+  "component_rules": [
+    {"category": "site_boundary", "system": "site", "patterns": ["红线", "用地界线", "场地边界", "BOUNDARY", "RED LINE"]},
+    {"category": "road", "system": "road", "patterns": ["道路", "车行道", "主路", "次路", "支路", "ROAD"]},
+    {"category": "pedestrian", "system": "road", "patterns": ["人行道", "步道", "便道", "WALK", "FOOTPATH"]},
+    {"category": "curb", "system": "road", "patterns": ["路缘石", "路沿", "CURB"]},
+    {"category": "parking", "system": "site", "patterns": ["停车位", "车库入口", "停车场", "PARKING"]},
+    {"category": "retaining_wall", "system": "retaining_wall", "patterns": ["挡土墙", "挡墙", "护坡", "边坡", "重力式", "悬臂式", "RETAIN"]},
+    {"category": "drainage", "system": "utility", "patterns": ["排水沟", "雨水口", "检查井", "集水井", "雨水箅", "DRAIN", "CULVERT"]},
+    {"category": "utility_pipe", "system": "utility", "patterns": ["给水管", "排水管", "雨水管", "污水管", "燃气管", "电力管", "通信管", "瓦斯管", "PIPE"]},
+    {"category": "elevation_point", "system": "vertical", "patterns": ["标高", "高程点", "ELEV", "BM"]},
+    {"category": "earthwork", "system": "vertical", "patterns": ["挖方", "填方", "土方量", "平衡", "EARTHWORK", "CUT", "FILL"]},
+    {"category": "landscape", "system": "landscape", "patterns": ["绿化", "树木", "灌木", "铺装", "景观", "PLANTING", "PAVING"]}
+  ],
+  "chainage_pattern": "(?<![0-9A-Z])(?:(?:K\\d+\\+\\d+(?:\\.\\d+)?)|(?:桩号)\\s*[-+]?\\s*\\d+(?:\\.\\d+)?)",
+  "coordinate_pattern": "(?<![0-9])(?:X\\s*[=:：]\\s*\\d+(?:\\.\\d+)?|Y\\s*[=:：]\\s*\\d+(?:\\.\\d+)?|N\\s*[=:：]\\s*\\d+(?:\\.\\d+)?|E\\s*[=:：]\\s*\\d+(?:\\.\\d+)?)",
+  "elevation_pattern": "(?<![0-9])(?:标高\\s*[-+]?\\s*\\d+(?:\\.\\d+)?|[-+]?\\d+\\.\\d{2,3}(?![0-9]))",
+  "scale_pattern": "1\\s*[:：]\\s*\\d{1,5}",
+  "unit_patterns": {"mm": ["单位\\s*[:：]?\\s*mm", "mm"], "m": ["单位\\s*[:：]?\\s*m"]},
+  "layer_rules": [
+    {"category": "site_boundary", "patterns": ["红线", "用地边界", "BOUNDARY"]},
+    {"category": "road", "patterns": ["道路", "ROAD", "车行"]},
+    {"category": "retaining_wall", "patterns": ["挡土墙", "护坡", "边坡", "RETAIN"]},
+    {"category": "utility_pipe", "patterns": ["给水", "排水", "雨水", "污水", "燃气", "PIPE"]},
+    {"category": "drainage", "patterns": ["检查井", "雨水口", "排水沟"]},
+    {"category": "elevation", "patterns": ["标高", "高程", "ELEV"]},
+    {"category": "landscape", "patterns": ["景观", "绿化", "铺装"]}
+  ]
+}

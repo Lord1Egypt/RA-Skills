@@ -1,43 +1,58 @@
-## Description: <br>
-Provides a quick, high-level overview of the market's current state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a quick, high-level overview of the market's current state.
 
-## Publisher: <br>
-[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai)
 
-## Use Case: <br>
-External users and agents use this skill for morning preparation, mid-day checks, pre-trade environment assessment, and market-risk review. It summarizes broad market trend, volatility, breadth, sentiment, sector rotation, and upcoming economic events without providing trade recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The market pulse can be mistaken for financial advice or a trade recommendation. <br>
-Mitigation: Treat the output as informational context only and require independent review before making trading or investment decisions. <br>
-Risk: The README references dependencies and a Python script that are not included in the submitted artifacts. <br>
-Mitigation: Confirm the required implementation files and dependency installation source before relying on automated execution. <br>
-Risk: Market data quality and freshness depend on internet access and third-party data availability. <br>
-Mitigation: Check data timestamps and source availability before using the summary for time-sensitive decisions. <br>
+## Use Case:
 
+External users and trading teams use this skill for morning preparation, mid-day checks, pre-trade market context, and risk monitoring based on broad market indicators. It produces informational market context and does not provide trade recommendations, stock picks, or predictions.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/clawdiri-ai/medici-investments-pulse-dv) <br>
-- [Publisher profile](https://clawhub.ai/user/clawdiri-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown market summary with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Market data depends on internet access and third-party yfinance/Yahoo Finance availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: Users may treat market pulse output as financial advice or automated trading guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present results as informational context only and require human review before any trading or risk decision.
+
+Risk: The README documents scripts/market_pulse.py, but that script was not present in the reviewed package.
+
+Mitigation: Verify the installed artifact includes the expected executable before relying on run instructions.
+
+Risk: Setup instructions use unpinned Python packages.
+
+Mitigation: Install in a virtual environment, avoid sudo or admin installation, and pin dependencies during operational deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/clawdiri-ai/skills/medici-investments-pulse-dv)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Natural-language market pulse summary in Markdown or plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational market context only; no bundled executable code was present in the release artifact reviewed.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

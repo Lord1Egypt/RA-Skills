@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://second-reality.local/scene_ir.schema.json",
+  "title": "Second Reality Scene IR",
+  "description": "逻辑层与像素层之间唯一的输入合同。frame = render(scene_ir)。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "world_id", "genesis_seed", "tick", "frame_index", "sub",
+    "source", "camera", "framing", "entities", "events", "delta"
+  ],
+  "properties": {
+    "schema": { "const": "second-reality.scene-ir/1" },
+    "world_id": { "type": "string", "minLength": 1 },
+    "genesis_seed": { "type": "integer" },
+    "tick": { "type": "integer", "minimum": 0 },
+    "frame_index": { "type": "integer", "minimum": 0 },
+    "sub": { "type": "integer", "minimum": 0 },
+    "source": {
+      "type": "object",
+      "required": ["content_digest"],
+      "properties": { "content_digest": { "type": "string" } },
+      "additionalProperties": false
+    },
+    "camera": {
+      "type": "object",
+      "required": ["mode", "origin", "zoom", "fov", "height"],
+      "properties": {
+        "mode": { "enum": ["static", "follow", "orbit", "aoi"] },
+        "origin": {
+          "type": "array", "minItems": 2, "maxItems": 2,
+          "items": { "type": "number" }
+        },
+        "target_soul": { "type": ["string", "null"] },
+        "zoom": { "type": "number", "exclusiveMinimum": 0 },
+        "fov": { "type": "number", "exclusiveMinimum": 0, "maximum": 180 },
+        "height": { "type": "number" }
+      },
+      "additionalProperties": false
+    },
+    "framing": {
+      "type": "object",
+      "required": ["aspect", "resolution", "fps"],
+      "properties": {
+        "aspect": { "type": "string" },
+        "resolution": {
+          "type": "array", "minItems": 2, "maxItems": 2,
+          "items": { "type": "integer", "minimum": 1 }
+        },
+        "fps": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "overlay": { "type": "object" },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "render_class", "position", "needs", "identity"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "kind": { "const": "soul" },
+          "render_class": {
+            "type": "string",
+            "enum": ["soul"],
+            "description": "实体类别绑定：R2 必须按此类别渲染，不得按生成模型先验改写。"
+          },
+          "position": {
+            "type": "array", "minItems": 3, "maxItems": 3,
+            "items": { "type": "number" }
+          },
+          "needs": {
+            "type": "object",
+            "additionalProperties": { "type": "number" }
+          },
+          "relationships": {
+            "type": "object",
+            "additionalProperties": { "type": "number" }
+          },
+          "identity": {
+            "type": "object",
+            "required": ["asset_hash", "embedding_digest", "palette"],
+            "properties": {
+              "asset_hash": { "type": ["string", "null"] },
+              "embedding_digest": { "type": ["string", "null"] },
+              "palette": {
+                "type": "array",
+                "items": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "order_seq": { "type": ["integer", "null"] },
+          "soul": { "type": ["string", "null"] },
+          "action": { "type": ["string", "null"] },
+          "pos": {
+            "type": "array", "minItems": 3, "maxItems": 3,
+            "items": { "type": "number" }
+          },
+          "interact": {
+            "type": "object",
+            "required": ["partner", "strength", "closeness"],
+            "properties": {
+              "partner": { "type": ["string", "null"] },
+              "strength": { "type": "number", "minimum": 0 },
+              "closeness": { "type": "number", "minimum": 0 }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "delta": { "type": "object" }
+  }
+}

@@ -1,41 +1,55 @@
-## Description: <br>
-Sends HTML emails through the Resend API using a configured sender plus recipient, subject, and HTML body inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send emails through the Resend API when a user wants to send an email, deliver a report by email, forward generated content to an inbox, or trigger an email notification.
 
-## Publisher: <br>
-[chjm-ai](https://clawhub.ai/user/chjm-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chjm-ai](https://clawhub.ai/user/chjm-ai)
 
-## Use Case: <br>
-Developers and agent users use this skill to send generated reports, summaries, HTML content, or lightweight notifications through a configured Resend account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Email can disclose private or sensitive information if the recipient, subject, or body is wrong. <br>
-Mitigation: Review recipients, subject, and body before sending, and send secrets or sensitive records only when authorized. <br>
-Risk: The skill requires a Resend API key capable of sending email from the configured sender. <br>
-Mitigation: Use a dedicated low-privilege Resend API key where possible, keep it in the environment or local .env file, and avoid committing credentials. <br>
+## Use Case:
 
+Developers and agent users use this skill to send formatted HTML email, deliver generated reports or summaries, and trigger lightweight notifications through a configured Resend account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chjm-ai/save-to-email) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Guidance, Text] <br>
-**Output Format:** [Markdown guidance with shell commands and command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RESEND_API_KEY, RESEND_FROM, curl, and python3; sends HTML content through Resend.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The agent can send user-provided content through the user's Resend account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the recipient, subject, and body before sending, especially when the message contains sensitive content.
+
+Risk: The skill depends on local Resend credentials and sender configuration.
+
+Mitigation: Keep the local .env file private, trusted, and unwritable by other users or processes.
+
+## Reference(s):
+
+- [README](README.md)
+- [Save To Email ClawHub Page](https://clawhub.ai/chjm-ai/skills/save-to-email)
+- [Resend Email API Endpoint](https://api.resend.com/emails)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and environment configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires RESEND_API_KEY, RESEND_FROM, curl, and python3; sends one HTML email per command invocation.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

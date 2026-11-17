@@ -1,41 +1,59 @@
-## Description: <br>
-Patterns and procedures for building AI agent workflows that survive real-world failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides patterns and JavaScript helpers for building multi-step agent workflows with checkpoints, retries, timeouts, dead letter handling, alerting, and single-instance locks.
 
-## Publisher: <br>
-[old-greggyboy](https://clawhub.ai/user/old-greggyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[old-greggyboy](https://clawhub.ai/user/old-greggyboy)
 
-## Use Case: <br>
-Developers and engineers use this skill to design multi-step automations, pipelines, and agent workflows with checkpoints, retries, locks, dead letter handling, and failure alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persisted workflow state, dead letter files, outputs, or lock files can expose secrets or collide with other runs if copied without path planning. <br>
-Mitigation: Choose dedicated state, DLQ, output, and lock paths before running or adapting the scripts, and avoid storing secrets in persisted files. <br>
-Risk: Failure alerts can send sensitive error text to Telegram or another external service. <br>
-Mitigation: Redact error messages and review alert destinations before enabling external alerting. <br>
+## Use Case:
 
+Developers and engineers use this skill to design resilient automations, pipelines, and agent loops that can resume after failures, avoid duplicate work, and surface failed items for review.
 
-## Reference(s): <br>
-- [Agent Workflow Failure Taxonomy](references/failure-taxonomy.md) <br>
-- [Durable Workflow on ClawHub](https://clawhub.ai/old-greggyboy/durable-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces workflow design patterns and reusable Node.js helper code for checkpointing, retries, locking, dead letter queues, and alerting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Bundled workflow scripts include file-locking and temporary-file weaknesses that may matter for business-critical or non-idempotent workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and harden lock and temporary-file creation before deployment, and keep state and lock files in a private directory.
+
+Risk: Workflow state, dead letter, and lock files can expose operational data if stored in shared or predictable locations.
+
+Mitigation: Configure state, dead letter, and lock paths to private directories with restrictive permissions.
+
+Risk: Failure alerts can expose raw exception details to Telegram or another external alert channel.
+
+Mitigation: Sanitize alert messages and avoid sending secrets, raw exception text, or sensitive workflow data to external channels.
+
+## Reference(s):
+
+- [Agent Workflow Failure Taxonomy](references/failure-taxonomy.md)
+- [ClawHub skill page](https://clawhub.ai/old-greggyboy/skills/durable-workflow)
+- [ClawHub publisher profile](https://clawhub.ai/user/old-greggyboy)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with JavaScript and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes reusable workflow and lock scripts for adaptation by the agent.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

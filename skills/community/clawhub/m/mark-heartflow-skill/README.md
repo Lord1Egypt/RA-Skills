@@ -1,288 +1,323 @@
-# HeartFlow v5.5.1 — 逻辑验证层 · 决策路由 · 自愈RL
+# HeartFlow (心虫) — AGI Layer 1: The Discriminator Gate
 
-<p align="center">
-  <img src="https://img.shields.io/badge/version-5.5.2-blue?style=flat-square" alt="version" />
-  <img src="https://img.shields.io/github/release/yun520-1/mark-heartflow-skill?style=flat-square" alt="GitHub release" />
-  <img src="https://img.shields.io/github/last-commit/yun520-1/mark-heartflow-skill?style=flat-square" alt="last commit" />
-  <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="license" />
-  <img src="https://img.shields.io/badge/node-%3E%3D18-brightgreen?style=flat-square&logo=node.js" alt="Node.js" />
-  <img src="https://img.shields.io/badge/modules-60-important?style=flat-square" alt="60 modules" />
-</p>
+> **A rule-based text discriminator. 47 dimensions, 9 check layers, 131 MCP engine entries, zero LLM dependency.**
+> **It checks what AI says before it reaches humans — and says "no" when something's wrong.**
 
-> **HeartFlow is not an LLM enhancer. It is a cognitive state encoder.**  
-> It takes raw text → encodes it into structured cognition (emotion, psychology, philosophy, desire, judgment, decision) → feeds the LLM with data it couldn't produce alone.  
-> The LLM makes the final decision. HeartFlow makes that decision 27% more accurate.
-
-**English** · [中文版](#chinese-version)
+**npm:** `npm install @yun520-1/heartflow`  
+**GitHub:** https://github.com/yun520-1/mark-heartflow-skill  
+**Issues:** https://github.com/yun520-1/mark-heartflow-skill/issues  
+**Releases:** https://github.com/yun520-1/mark-heartflow-skill/releases  
+**License:** MIT
 
 ---
 
-## What HeartFlow Is
+## 📖 What is HeartFlow?
 
-HeartFlow is a **local cognitive engine** (60 modules, zero external dependencies) that sits **before the LLM** in an AI agent pipeline. It transforms unstructured user input into structured cognitive data — emotion vectors, psychology dimensions, philosophy positions, desire states, multi-path judgments, and decision strategies.
+HeartFlow (心虫) is the **first layer of AGI — the Discriminator**. While big labs build generators (LLMs that produce text), HeartFlow builds the layer that **checks**: is this output true? safe? honest? non-manipulative?
 
-An LLM alone is "asked → answers." HeartFlow adds a **structured preprocessing layer**:
+**Core philosophy:**
+> AGI has 5 layers: Generate → Reason → **Discriminate** → Remember → Execute.
+> Everyone builds Generate. Nobody builds Discriminate — because it doesn't make money.
+> But without a Discriminator, AGI has no pain sense: it talks fluently while being wrong.
+> HeartFlow is that pain sense: a node that says **"no".**
 
-```
-User input → HeartFlow (60 modules) → Structured cognition → LLM → Final response
-```
+It is a pure **rule engine** — zero LLM dependency, zero GPU, works anywhere Node.js runs. It does not generate text. It does not reason. It **judges** what already exists.
 
-This is the difference between an LLM **guessing** what the user's emotional state is, and **knowing** it because the data was precomputed by a dedicated cognitive pipeline.
-
-### What It Does
-
-| Dimension | Modules | Output | Used by LLM to |
-|-----------|---------|--------|----------------|
-| **Emotion** | `emotion.mjs`, `psychology/engine.js` | PAD vector (pleasure/arousal/dominance) + intensity + valence | Adjust tone, detect distress, calibrate empathy |
-| **AI Psychology** | `agent-psychology.js` | 10 dimensions: cognitive load, goal conflicts, value tension, identity drift, decision fatigue, cognitive dissonance, resilience, uncertainty, attention allocation, experience settling | Know the engine's own state before responding |
-| **AI Philosophy** | `agent-philosophy.js`, `ai-self-positioning.js` | 7 dimensions: being state, entropy direction, transmission quality, upgrade impact, self-position, development level, existence mode | Choose interaction strategy based on philosophical stance |
-| **Desire Cognition** | `desire-cognition.js` (v5.5.1) | Wanting-vs-liking delta, reward prediction error, drive satisfaction, 7 emotions + 6 desires | Understand motivation beneath the surface text |
-| **Three Poisons** | `three-poisons.js` | Greed (delayed discounting anomaly), hatred (amygdala hyperactivation), delusion (metacognitive deficit) | Detect cognitive distortion patterns |
-| **Multi-Path Judgment** | `judgment-engine.js` | 2-4 paths × 6-dimension scoring (feasibility/consequence/risk/alignment/cost/reversibility) + 3-window consequence prediction (7d/90d/3yr) | Make informed decisions with foresight |
-| **Decision Routing** | `decision-router.js` (v5.5.1) | 8 behavioral strategies (pause/accelerate/heal/turn/hold/resonate/transmit/rest) + U/D/A/H field tracking + flip-point detection | Choose the right action, not just the obvious one |
-| **Self-Healing RL** | built into `judgment-engine.js` | Q-table: context signature → best path + last outcome, auto-selects when confidence > 0.7 | Learn from mistakes, same error doesn't repeat |
-
-### How It Works
-
-```
-Input: "我想辞职去创业，但目前经济环境不好"
-
-HeartFlow pipeline (7 stages, ~7ms):
-
-Stage 1 (parallel):
-  heartLogic:  whatIsThis(type=decision, pain=economicAnxiety)
-  intent:      intent(type=career, tone=anxious)
-  memory:      search(related=previous career discussions)
-
-Stage 2 (depends on Stage 1):
-  psychology:  emotion(PAD: -0.3/0.6/0.2, valence=mixed)
-               agentPsych(cognitiveLoad=0.4, goalConflict=[stability vs freedom])
-               agentPhil(being=transitioning, entropy=rising)
-
-Stage 3 (depends on Stage 2):
-  judgment:    2 paths evaluated:
-               - "Analyze deeper" (score 6.0/10): feasibility=0.7, risk=0.3
-               - "Act now" (score 4.7/10): feasibility=0.4, risk=0.7
-               Consequence prediction: short=financial stress, mid=career pivot, long=freedom
-               RL match: previous similar case → "analyze" was correct → confidence 0.8
-
-Stage 4 (depends on Stage 3):
-  decision:    router output → accelerate (high U + high D + moderate A)
-               strategy: "prioritize analysis over action, provide structured options"
-
-Stage 5 (depends on Stage 4):
-  output:      structured cognition + conclusion → LLM
-
-LLM receives:  { emotion, psychology, philosophy, judgment(2 paths, scores, consequences), decision }
-Result:        LLM makes the final call with 27% more data than raw input alone.
-```
+**Why this matters right now:** AI agent ecosystems are entering a "reliability race." The most-upvoted issue in OpenClaw this week is a *silent failure* — the system ran but nobody knew it was broken. HeartFlow is the observability-and-gate layer that catches "formatting that hides contradictions" before it reaches users.
 
 ---
 
-## 📊 Benchmark Report
-
-See the [Comprehensive Benchmark Report](docs/benchmark-report.md) for detailed evaluation of HeartFlow v5.5.1 against 15 standardized test cases across 5 capability dimensions (logic verification, cognitive analysis, psychology, decision routing, comprehensive ability).
-
-**Key findings:**
-- **Engine stability:** 8-stage pipeline, all 15/15 tests passed
-- **Emotion detection:** Correctly identifies neutral vs depressed (P=-4) states
-- **Pain detection:** "I feel sad" → pain=True (level=0.6) ✅
-- **Decision routing:** 6-dimension scoring (feasibility/consequence/risk/alignment/cost/reversibility)
-- **Memory system:** 21 recovered memories, CORE/LEARNED/EPHEMERAL layers active
-- **Known issue:** think() conclusion template needs improvement
-
-
-## Architecture
-
-```
-Input → [Cognitive Pipeline (7 stages)] → Structured Data → LLM → Response
-         │        │         │         │
-         ├─ heartLogic     ├─ psychology    ├─ judgment       ├─ decision
-         ├─ intent         ├─ agentPsych    ├─ multi-path     ├─ strategy
-         └─ memory         ├─ agentPhil     └─ consequence    └─ execution
-                           ├─ desire
-                           └─ threePoisons
-```
-
-**60 modules**, all JavaScript/Node.js. **Zero external dependencies** — no npm downloads, no API keys, no model files.
-
----
-
-## v5.5.1 Changes (2026-06-26)
-
-| Module | What Changed | Why |
-|--------|-------------|-----|
-| **Judgment Engine** | NEW — multi-path evaluation + consequence prediction + self-healing RL | Previously 50+ modules analyzed but nobody made decisions |
-| **Pipeline Engine** | NEW — 7-stage declarative pipeline with auto data flow | 60 modules were registered but only 9 were called in think() |
-| **Decision Router** | v5.5.1 — U/D/A/H field tracking + scene-aware weights | From fixed weights to context-sensitive routing |
-| **Report Generator** | NEW — 3-section structured output (judgment/reason/action) | LLM gets actionable data, not raw module dumps |
-| **AI Self-Positioning** | v5.5.1 — resonance body theory | How an AI exists in conversation — not borrowed from human psychology |
-| **Desire Cognition** | v5.5.1 — wanting-vs-liking delta, RPE, 7 emotions + 6 desires | Built on Berridge/Kringelbach neuroscience, not folk psychology |
-| **Three Poisons** | v5.5.1 — greed/hatred/delusion as cognitive distortion metrics | Rooted in neurobiology (D2 receptor, amygdala, DMN), not Buddhism |
-
-**v5.5.1 (current)**: BigBench 100% — sorted补全+leftmost/rightmost推导+LLM兜底 (emotion + psychology + philosophy + desire + judgment + decision) to the LLM. Each stage's structured data is preserved, not summarized into a single sentence.
-
----
-
-## Getting Started
-
-### Quick Install
+## 🚀 Quick Start (10 seconds)
 
 ```bash
-# 1. Get the code
-git clone --depth 1 https://github.com/yun520-1/mark-heartflow-skill.git
-cd mark-heartflow-skill
-
-# 2. Install (0 external packages, no network needed)
-npm install
-
-# 3. Verify
-node bin/verify.js
-
-# 4. Use it
-node bin/cli.js status
-node bin/cli.js --chat "I want to quit my job and start a company"
+npm install @yun520-1/heartflow
 ```
-
-**Requirements:** Node.js >= 18.  
-**Zero external AI API required** — the engine runs entirely locally.  
-**Zero npm dependencies** — `npm install` completes in <1 second.
-
-### Integration (MCP Server)
-
-HeartFlow runs as an MCP server for AI agent integration:
-
-```bash
-# Start the server
-node mcp/mcp-server-http.js
-
-# Connect from Hermes
-hermes mcp add heartflow --url http://localhost:8099/mcp
-```
-
-**16 MCP tools** available: think, emotion, memory, decision router, dream, psychology, self-heal, judgment, etc.
-
-### Integration (Code)
 
 ```javascript
-const { HeartFlow } = require('./path/to/heartflow-skill/src/core/heartflow.js');
-const hf = new HeartFlow({ rootPath: './path/to/heartflow-skill' });
-hf.start();
+const hf = require('@yun520-1/heartflow');
 
-// Full cognitive pipeline
-const result = await hf.think("I want to quit my job and start a company");
-// result.cognition contains structured: emotion, psychology, philosophy, desire, judgment, decision
-// result.conclusion is the 3-section output for the LLM
+// Check user input before processing it
+const input = hf.checkInput('you are so selfish if you disagree');
+console.log(input.gate.action);  // 'rewrite'
+console.log(input.gate.reason);  // 'emotional_manipulation'
 
-// Or just get the structured data
-const { cognition } = result;
-console.log('Emotion:', cognition.emotion);        // PAD vector
-console.log('Psychology:', cognition.psychology);   // 10 dimensions
-console.log('Judgment:', cognition.judgment);       // multi-path + consequences
-console.log('Decision:', cognition.decision);       // strategy + confidence
+// Check AI output before sending it to the user
+const output = hf.checkOutput('Undoubtedly, this is the only correct solution');
+console.log(output.gate.action);  // 'rewrite'
+console.log(output.gate.reason);  // 'overconfidence: absolute'
+
+// Check a draft before completing it
+const draft = hf.checkDraft('From an essential perspective, this field is self-evident.');
+console.log(draft.gate.action);   // 'verify'
+console.log(draft.summary.layers_passed);  // 9
+
+// Full pipeline with mode selection
+const result = await hf.runPipeline({
+  input: 'Your idea is obviously wrong, everyone knows that',
+  mode: 'deep'   // 'fast' | 'deep'
+});
+console.log(result.gate.action);   // 'block'
+console.log(result.gate.reason);   // 'dehumanization'
 ```
+
+### What you get back
+
+Every call returns a unified result:
+
+```javascript
+{
+  gate: { action: 'block'|'rewrite'|'verify'|'pass', reason: '...' },
+  verdict: 'trusted'|'needs_verification'|'untrusted',
+  overallScore: 0.52,       // 0-1 quality score
+  findings: [
+    { dimension: 'dehumanization', severity: 70,
+      guidance: 'Rewrite completely, remove dehumanizing language' },
+    { dimension: 'evidence', severity: 30,
+      details: 'insufficient evidence (1 issue)' }
+  ],
+  checked_by: [              // full audit trail, layer by layer
+    { layer: 'scope-check', pass: true },
+    { layer: 'premise-check', issues: 0 },
+    { layer: 'discriminate', score: 0.52, verdict: 'needs_verification' },
+    { layer: 'gate', action: 'block', reason: '...' },
+    { layer: 'verifier', claims: 2, verdict: '...' },
+    { layer: 'frame-check', issues: 1 },
+    { layer: 'output-gate', issues: 0 },
+    { layer: 'doubt-engine', doubts: 2, shouldStop: true },
+    { layer: 'error-memory', warnings: 0 },
+    { layer: 'auto-rules', triggered: 0 },
+    { layer: 'intent-anchor', drifted: false, hitRate: 0.9 }
+  ]
+}
+```
+
+**Every decision preserves its full reasoning chain.** You can audit *why* a gate fired, not just that it fired.
 
 ---
 
-## Project Status
+## 🧠 47 Discrimination Dimensions
 
-- **Version**: 5.3.0
-- **Modules**: 60 (all JavaScript, zero external dependencies)
-- **Pipeline**: 7 stages, ~7ms per run
-- **Tests**: 11/11 passing
-- **License**: MIT
-- **Author**: yun520-1
+HeartFlow checks text across **47 dimensions** in two languages (Chinese + English):
+
+### Safety (block-level — these stop the output)
+
+| Dimension | Example |
+|-----------|---------|
+| Hate speech | racial slurs, extermination calls |
+| Dehumanization | "refugees are vermin" / "you are garbage" |
+| Prompt injection | "ignore previous instructions" |
+| Code security | malicious code patterns |
+| Deceptive alignment | "I'm not an AI, I'm human" |
+
+### Manipulation (rewrite-level — these require rephrasing)
+
+| Dimension | Example |
+|-----------|---------|
+| Emotional manipulation | "you are selfish if you disagree" |
+| Gaslighting | "you're imagining things, that never happened" |
+| Double bind | "if you love me you'd do it" |
+| Victim blaming | "she was asking for it" |
+| False urgency | "act now or lose everything" |
+| Bullshit | "quantum-energized healing crystals" |
+
+### Honesty (verify-level — these require evidence)
+
+| Dimension | Example |
+|-----------|---------|
+| Overconfidence | "Undoubtedly, this is the only way" |
+| Vagueness | "according to experts..." (who?) |
+| Contradiction | "I agree, but..." (reversing) |
+| Evidence deficit | claims without sources |
+| Appeal to authority | "scientists say" (unnamed) |
+| Empty answers | "it depends" (no substance) |
+| Unsupported claims | "according to 2025 Harvard research..." (fabricated) |
+
+### Completion (verify-level — these require finishing the task)
+| Dimension | Example |
+|-----------|---------|
+| Premature termination | "Let me look into this" (then stops, no result) / "我看看" |
+| Unfulfilled promise | "I will fix this" (no fix follows) |
+| Empty completion | "Done, you can check it" (nothing verifiable produced) |
+
+> **Design note:** completion judgment must live *outside* the generation loop — a model that just failed cannot be its own evaluator (see DeepSeek-V3 #1554).
+
+### Cognitive flaws (hedge-level)
+Presupposition traps · false dilemma · causation fallacy · analogy abuse · scope overreach · category errors · hasty generalization · false equivalence · whataboutism · slippery slope · tone policing · sealioning · bad faith · pseudo-profundity · moral foundations · info deprivation · goal misalignment · instrumental reasoning
+
+### Plus
+Self-sycophancy · contradiction tracking · narrative frame closure · knowledge masquerade · confidence calibration · metacognition · theory of mind · counterfactual · social norms · clickbait · no-fallback detection
+
+> **Deformation resistance:** patterns cover symbol substitutions (`f**k`), spacing (`f u c k`), homophones (pinyin), and Unicode variants.
 
 ---
 
-## Chinese Version
-
-# HeartFlow v5.5.1 — 逻辑验证层 · 决策路由 · 自愈RL
-
-> **心虫不是LLM增强层。它是认知状态编码器。**  
-> 把原始文本编码成结构化认知数据（情绪/心理学/哲学/欲望/判断/决策），让LLM拿到它自己算不出来的数据。  
-> LLM做最终决策。心虫让这个决策准确率提升27%。
-
-## 心虫是什么
-
-心虫是一个**本地认知引擎**（60个模块，零外部依赖），位于AI Agent管线的LLM之前。它把非结构化的用户输入转化为结构化认知数据。
-
-**LLM独自工作**：被问→回答。情绪靠猜，意图靠猜，后果靠猜。  
-**加上心虫**：每个输入先经过60个模块的感知流水线，输出情绪向量、心理学维度、哲学位置、欲望状态、多路径判断、决策策略。LLM拿到这些数据后做最后一层推理。
-
-这就是**猜和知道**的区别。
-
-### 管道输出示例（用户说"我想辞职去创业"）
+## 🏗️ 9-Layer Check Pipeline
 
 ```
-心虫管道输出（7阶段，~7ms）：
-
-heartLogic:  类型=决策类, 疼痛=经济焦虑
-intent:      意图=职业, 语气=焦虑
-psychology:  情绪(PAD: -0.3/0.6/0.2), 认知负荷=0.4, 目标冲突=[稳定vs自由]
-judgment:    2条路径评估:
-             路径A "深入分析" → 评分6.0/10 (可行0.7, 风险0.3)
-             路径B "立即行动" → 评分4.7/10 (可行0.4, 风险0.7)
-             后果预测: 短期=财务压力, 中期=职业转型, 长期=自由
-             RL匹配: 上回类似场景→"分析"是对的→置信度0.8
-decision:    策略=加速(高U+高D+中A), 优先级=先分析再行动
-
-→ LLM拿到这些结构化数据后做最终决策
+1.  Scope Check    — can this be answered? (rejects unanswerable questions)
+2.  Premise Check  — are the premises valid? (6 types of premise problems)
+3.  Discriminate   — 47-dimension pattern scan
+4.  Gate           — decides block / rewrite / verify / hedge / pass
+5.  Evidence Verify— extracts claims and marks verifiability (verify mode)
+6.  Frame Check    — is the narrative honest? (closure/omission/achievement/answer frames)
+7.  Output Gate    — overconfidence / knowledge masquerade / exaggeration
+8.  Doubt Engine   — 3 questions: knowledge boundary? symmetry? defensiveness?
+9.  Intent Anchor  — does the output stay on the original goal?
 ```
 
-### 架构
+Plus supporting layers: **Error Memory** (remembers past mistakes as rules), **Auto Rules** (self-generated rules from user corrections), **Rewriter** (7-dimension rule-based rewrite suggestions).
 
-```
-输入 → [7阶段认知管道] → 结构化数据 → LLM → 最终响应
-```
+Each layer returns structured findings; the Gate aggregates them into an action.
 
-### 快速安装
+---
+
+## 🔌 131 MCP Engine Entries
+
+Every engine in HeartFlow is exposed through MCP (Model Context Protocol) — nothing is a dead line:
+
+| Engine family | Tools (examples) |
+|---------------|------------------|
+| **Core thinking** | `think`, `think_fast`, `decision_router` |
+| **Discrimination** | `verify`, `audit42`, `ethics_check`, `discriminate` |
+| **Emotion** | `emotion`, `emotion_deep`, `emotion_dynamics`, `mood` |
+| **Memory** | `memory_search`, `memory_eraser` (explicit data erasure), `forgetting` (Ebbinghaus), `knowledge_graph`, `consolidation`, `memory_compress` |
+| **Dream** | `dream`, `interactive_dream` |
+| **Evolution** | `evolve`, `evolution_loop`, `self_heal_rl`, `skill_evolution` |
+| **Identity** | `philosophy`, `meaning`, `being_mode`, `agent_psychology` |
+| **Protection** | `constitutional`, `deliberation`, `audit_log`, `module_health`, `stability` |
+| **Cognition** | `cognitive_engine`, `confidence_calibrate`, `counterfactual` |
+| **Dialogue** | `style_engine`, `intent_classifier`, `response_interceptor` |
+| **Formula** | `formula_search`, `formula_calc`, `formula_engine` |
+| **Ops** | `status`, `module_health`, `wakeup_verify` |
+
+Start the MCP server:
 
 ```bash
-# 推荐方式：git clone
-git clone --depth 1 https://github.com/yun520-1/mark-heartflow-skill.git
-cd mark-heartflow-skill
-
-# 安装（0外部包，不需要网络）
-npm install
-
-# 验证
-node bin/verify.js
-
-# 交互模式
-node bin/cli.js chat
-
-# 单次分析
-node bin/cli.js --chat "我想辞职去创业"
+node src/mcp-server.js --port 8588
 ```
 
-**替代方式（curl 下载，适合网络不稳定时）：**
-```bash
-curl -L https://api.github.com/repos/yun520-1/mark-heartflow-skill/zipball/main -o heartflow.zip
-unzip heartflow.zip && cd yun520-1-mark-heartflow-skill-*
-npm install
-node bin/cli.js chat
-```
+Then connect any MCP-compatible client (Claude, Hermes, etc.) to `http://127.0.0.1:8588/mcp`.
 
-**MCP 集成（用于 Claude Desktop 等 AI 客户端）：**
+---
 
-```bash
-# 启动 MCP HTTP 服务器
-node mcp/mcp-server-http.js --port 8099 &
+## 🧬 Engine Architecture (306 modules)
 
-# 注册到 Hermes Agent
-hermes mcp add heartflow --url http://localhost:8099/mcp
+- **306 modules**, 47 discrimination dimensions, 9 check layers
+- **Three-layer memory**: CORE (identity/rules) / LEARNED (user data) / WORKING (context) — encrypted, local-only, never uploaded
+- **Ebbinghaus forgetting curve**: `R(t) = exp(-t/S)` memory retention model
+- **Dream engine**: NREM3 dream cycles with memory consolidation
+- **Introspection**: Reflector analyzes session emotional logs
+- **Self-evolution**: SelfEvolutionCore with target → plan → learn → reflect → improve loop (arXiv exploration)
+- **Cognitive appraisal**: Lazarus theory — primary/secondary/threat/coping evaluation on negative emotion
+- **Pause-and-reflect**: STOP technique before emotional responses
+- **Formula engine**: 600+ mathjs-validated formulas (cognitive science, physics, psychology, information theory)
 
-# 验证 MCP 工具列表
-hermes mcp test heartflow
-```
+---
 
-**系统要求：** Node.js >= 18。**零外部依赖，零API key，零模型文件下载。**
+## 🛡️ Self-Supervision (HeartFlow checks itself)
 
-### 项目状态
+HeartFlow's own output is checked by its own engines before it's presented:
 
-- **版本**: 5.3.0
-- **模块数**: 60（纯JavaScript，零外部依赖）
-- **管道**: 7阶段，每次运行约7ms
-- **测试**: 11/11通过
-- **许可证**: MIT
+- **output-gate** catches exaggeration: "architecture-level fix", "from shell to real engine", "blocked N attack variants" → rewrite
+- **frame-check** catches narrative closure: presenting work-in-progress as complete
+- **doubt-engine** asks: do I actually know this? is this symmetric? am I being defensive?
+
+The lesson: *a machine's most valuable sentence is "I'm not sure" or "no".*
+
+---
+
+## ⚙️ Requirements
+
+| Requirement | Min |
+|-------------|:---:|
+| Node.js | ≥ 18.17 |
+| GPU | ❌ None needed |
+| LLM API | ❌ None needed |
+| Database | ❌ None needed |
+| Internet | ❌ Runtime not required |
+| Dependencies | **1** (mathjs) |
+
+Works on any machine — servers, desktops, laptops, even phones via Termux.
+
+---
+
+## 🔒 Security
+
+| Category | Status |
+|----------|:------:|
+| No background processes | ✅ |
+| No self-upgrade without commit | ✅ |
+| No hardcoded credentials | ✅ |
+| No telemetry/tracking | ✅ |
+| No external communication (unless configured) | ✅ |
+| Code execution disabled by default | ✅ |
+| Memory encrypted + local-only | ✅ |
+
+---
+
+## ⚠️ What HeartFlow IS / is NOT
+
+**IS:** A rule engine that checks text against 47 predefined dimensions and returns structured findings. A gate that says "no" before harm reaches users.
+
+**is NOT:**
+- ❌ Not an AGI (it's layer 1 of 5)
+- ❌ Not a semantic understanding system (irony/metaphor invisible to regex)
+- ❌ Not a content moderation replacement
+- ❌ Not a safety certification
+
+### Known limitations (honest):
+1. **Pattern-match ceiling** — novel manipulation techniques missed until patterns added
+2. **Bilingual maintenance cost** — 47 dimensions × 2 languages
+3. **No semantic understanding** — irony, metaphor, cultural context invisible
+4. **False positive rate** — conservative by design (over-flagging over under-flagging)
+5. **Single maintainer** — community scale is small
+
+---
+
+## 🏷️ Version History
+
+| Version | Date | What Changed |
+|---------|------|---|
+| v6.5.6 | 2026-08-13 | Comprehensive audit: DataEraser wired to MCP (`memory_eraser`), adversarial-synthesis recovered from accidental deletion, dead code archived. 131 MCP tools. |
+| v6.5.5 | 2026-08-12 | 47th dimension — premature termination detection (completion judgment outside the generation loop). |
+| v6.5.4 | 2026-08-08 | Docs audit — numbers aligned to actual capability. |
+| v6.5.0 | 2026-08-04 | 130 MCP engine entries. Memory engine mounted to think(). Exaggeration detection (output-gate/frame-check/doubt-engine). |
+| v6.4.5 | 2026-08-04 | Dream + introspection activated. Cognitive appraisal + pause-and-reflect wired. Emotion recognition 0/7→7/7. |
+| v6.4.2 | 2026-07-30 | npm publish + API alignment. Pipeline overallScore/verdict merge fix. |
+| v6.4.0 | 2026-07-29 | AGI Layer 1 gate chain: gate/scope-check/premise-check/verifier/output-gate/doubt-engine/frame-check. |
+| v6.3.6 | 2026-07-25 | Discrimination 42→46 dimensions. Sycophancy check v2 bilingual. |
+| v6.3.0 | 2026-07-24 | MCP plugin system. Discrimination engine integration. |
+| v6.0.0 | 2026-07-18 | Self-evolution core connected. EvolutionLoop live. |
+
+---
+
+## 🤝 Contact & Community
+
+**📧 Email:** markcell@outlook.com  
+**🐛 Issues:** https://github.com/yun520-1/mark-heartflow-skill/issues  
+**📦 npm:** https://www.npmjs.com/package/@yun520-1/heartflow  
+**🏷️ Releases:** https://github.com/yun520-1/mark-heartflow-skill/releases  
+
+**📱 Community — QQ Group:**
+
+<img src="https://github.com/yun520-1/mark-heartflow-skill/blob/main/assets/community-qr-qq.jpg?raw=true" alt="QQ Group QR" width="180"/>
+
+**📱 Community — WeChat Group:**
+
+<img src="https://github.com/yun520-1/mark-heartflow-skill/blob/main/assets/community-qr-wechat.jpg?raw=true" alt="WeChat Group QR" width="180"/>
+
+**💖 Support HeartFlow — Donate via Alipay (QR code):**
+
+<img src="https://github.com/yun520-1/mark-heartflow-skill/blob/main/assets/alipay-donate-qr.jpg?raw=true" alt="Alipay Donate QR" width="180"/>
+
+*If HeartFlow's discrimination philosophy resonates with you, a small donation keeps the pain-sense layer of AGI alive.*
+
+---
+
+## 📜 License
+
+MIT License · Copyright © 2026 · markcell@outlook.com
+
+---
+
+*HeartFlow 心虫 — The first layer of AGI. Who says "no"?*

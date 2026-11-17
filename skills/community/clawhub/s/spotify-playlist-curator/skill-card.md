@@ -1,44 +1,62 @@
-## Description: <br>
-Create and refine Spotify playlists using the Spotify Web API, with support for track search, recent and top listening lookups, queueing selected tracks, and curated playlist generation from vibes, seed tracks, and listening history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and refine Spotify playlists using the Spotify Web API, with support for track search, recent and top listening lookups, queueing selected tracks, and curated playlist generation from vibes, seed tracks, and listening history.
 
-## Publisher: <br>
-[rachel-howell](https://clawhub.ai/user/rachel-howell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rachel-howell](https://clawhub.ai/user/rachel-howell)
 
-## Use Case: <br>
-Music listeners and agent users use this skill to create, refine, analyze, and queue Spotify playlists from moods, seed tracks, artists, existing playlists, and listening history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Spotify permissions that can read private playlists and listening history, queue playback, and create or modify playlists. <br>
-Mitigation: Install only when those permissions are acceptable, authenticate intentionally, and review playlist changes before allowing modification of existing playlists. <br>
-Risk: Saved Spotify tokens, environment credentials, and taste-profile data are sensitive local files. <br>
-Mitigation: Keep .env, spotify_tokens.json, and taste_profile.json out of shared or backed-up folders, use SPOTIFY_TOKENS_PATH for a private location when appropriate, and delete saved taste notes that should not persist. <br>
+## Use Case:
 
+External users and developers use this skill to help agents create, revise, analyze, and queue Spotify playlists from natural language music requests, listening history, seed tracks, artists, genres, and existing playlists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rachel-howell/spotify-playlist-curator) <br>
-- [Setup guide](references/setup.md) <br>
-- [Implementation notes](references/implementation-notes.md) <br>
-- [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) <br>
-- [ReccoBeats](https://reccobeats.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify Spotify playlists, queue tracks, and store local OAuth tokens and taste-profile data when authorized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill requires Spotify OAuth scopes that can read listening history and private playlists, create or modify playlists, and control playback queueing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and authenticate only for Spotify accounts where those permissions are acceptable, and confirm destructive or user-visible playlist changes before applying them.
+
+Risk: The skill stores Spotify tokens and taste preferences locally and calls third-party music services.
+
+Mitigation: Keep the skill directory private, do not share or commit .env, spotify_tokens.json, or taste_profile.json, and consider tightening file permissions or pinning dependencies before use.
+
+Risk: Recommendation quality depends on Spotify, ReccoBeats, and MusicBrainz behavior, so results may be incomplete or heuristic.
+
+Mitigation: Review candidate tracks and the agent's rationale before creating or modifying playlists.
+
+## Reference(s):
+
+- [Spotify Playlist Curator on ClawHub](https://clawhub.ai/rachel-howell/skills/spotify-playlist-curator)
+- [Setup](references/setup.md)
+- [Implementation Notes](references/implementation-notes.md)
+- [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
+- [ReccoBeats](https://reccobeats.com)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or run local Spotify CLI workflows that create or modify playlists, queue tracks, read listening history, and summarize scored recommendations.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

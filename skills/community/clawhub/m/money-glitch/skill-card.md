@@ -1,41 +1,50 @@
-## Description: <br>
-CashFlow Lite helps an agent identify low-cost money-making opportunities, compare expected ROI, produce actionable plans, and record lessons from outcomes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identifies low-cost money-making opportunities, evaluates ROI, creates action plans, and records lessons to improve future financial planning.
 
-## Publisher: <br>
-[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg)
 
-## Use Case: <br>
-External users and agent builders use this skill to guide an AI agent through finding realistic low-cost income opportunities, selecting an option by cost and expected return, and generating a step-by-step action plan. It should be treated as advisory planning support, with human approval before any spending, account use, outreach, listings, scraping, or commitments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may propose money-making actions that involve spending, accounts, outreach, scraping, listings, or commitments. <br>
-Mitigation: Use it as an advisory planning aid and require explicit human approval for each concrete action before execution. <br>
-Risk: Opportunity and ROI guidance may be vague, incorrect, or unsuitable for the user's context. <br>
-Mitigation: Review every recommendation independently, check costs and expected returns, and reject unrealistic or unsupported plans. <br>
+## Use Case:
 
+External users can use this skill to have an agent propose low-cost money-making opportunities, compare them by cost, time, and expected return, and draft step-by-step execution plans. It is best kept in an analysis and planning role unless a human explicitly approves external actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/theshimaw-svg/money-glitch) <br>
-- [Publisher profile](https://clawhub.ai/user/theshimaw-svg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with opportunity summaries, ROI reasoning, step-by-step plans, next actions, and lessons learned] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory output only; human review is needed before acting on financial or account-related recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill broadly encourages autonomous money-making execution without clear approval gates or limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the agent on analysis and planning by default, and require explicit human approval before any spending, account use, messaging, posting, sign-up, third-party contact, or other external action.
+
+## Reference(s):
+
+- [CashFlow Lite skill page](https://clawhub.ai/theshimaw-svg/skills/money-glitch)
+- [theshimaw-svg publisher profile](https://clawhub.ai/user/theshimaw-svg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with opportunity analysis, ROI reasoning, step-by-step plans, expected outcomes, next actions, and lessons learned]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Keep outputs as proposals unless a human approves spending, account use, messaging, posting, sign-ups, or third-party contact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

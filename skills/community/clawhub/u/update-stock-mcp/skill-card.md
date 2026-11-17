@@ -1,43 +1,70 @@
-## Description: <br>
-Update Stock MCP runs a stdio MCP server that manages a local A-share DuckDB database, including database creation, full or incremental stock-data updates, and stock-price queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+UpdateStock MCP manages A-share DuckDB stock databases over stdio, including database creation, full or incremental data updates, stock-market data queries, and QuantAll-compatible database setup.
 
-## Publisher: <br>
-[mifochen](https://clawhub.ai/user/mifochen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mifochen](https://clawhub.ai/user/mifochen)
 
-## Use Case: <br>
-Developers, analysts, and agent operators use this skill to configure an UpdateStock MCP server, create or update a local DuckDB database for A-share market data, and query adjusted or unadjusted stock price records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; the data scope is focused on A-share market data. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Create and update tools make persistent local changes to DuckDB database files and full updates may run for a long time. <br>
-Mitigation: Use a dedicated DB_path, confirm before running create or update tools, and schedule full updates during idle periods. <br>
-Risk: The Tushare API token may be stored in API_tushare.txt or passed as a tool parameter. <br>
-Mitigation: Keep API_tushare.txt private, avoid committing or syncing it, and prefer a token with only the access needed for this workflow. <br>
-Risk: Update operations may contact Tushare or Baostock and depend on provider availability, account points, and network access. <br>
-Mitigation: Install only when provider access is expected, and choose the full or easy update path based on the available Tushare points. <br>
+## Use Case:
 
+Developers, quantitative analysts, and agent users use this skill to create and maintain local DuckDB databases for Chinese A-share market data, then query that data or prepare it for QuantAll analysis workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mifochen/update-stock-mcp) <br>
-- [Tushare registration](https://tushare.pro/register) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands, API Calls, Text] <br>
-**Output Format:** [Markdown instructions with shell snippets, MCP tool-call examples, and JSON-compatible tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The MCP tools can create and update local DuckDB files, read a local Tushare token file, contact Tushare or Baostock providers, and return stock records or status strings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact documentation labels the skill content as v1.1) <br>
+Risk: The scanner reports real security and control issues that should be reviewed before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only in an isolated environment until the issues have been reviewed.
+
+Risk: The Tushare token is stored in a local plaintext file.
+
+Mitigation: Keep the token out of shared folders and backups, and restrict file access to the user running the MCP server.
+
+Risk: The MCP server can expose or modify local DuckDB stock databases.
+
+Mitigation: Use a dedicated database path with least-privilege filesystem access and avoid exposing sensitive DuckDB files through the server.
+
+Risk: Starting QuantAll launches a local HTTP MCP service.
+
+Mitigation: Start QuantAll only when that local service is intended and trusted for the current session.
+
+Risk: Query inputs are not confirmed safe by the scanner guidance.
+
+Mitigation: Treat query inputs as unsafe until SQL construction has been fixed, and avoid connecting the tool to untrusted callers.
+
+Risk: Dependencies are specified with lower bounds rather than pinned versions.
+
+Mitigation: Prefer pinned dependencies in a virtual environment before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mifochen/skills/update-stock-mcp)
+- [Tushare registration](https://tushare.pro/register)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with MCP tool calls, JSON snippets, shell commands, and text or JSON tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local DuckDB databases and JSON configuration files when the MCP tools are executed.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata and release changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

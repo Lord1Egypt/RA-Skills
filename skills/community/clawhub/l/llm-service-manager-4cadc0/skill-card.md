@@ -1,43 +1,56 @@
-## Description: <br>
-从抖音视频学习: llm_service_manager — Obsidian数学使用方法-用callout manager打造清爽笔记 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从抖音视频学习: llm_service_manager — Obsidian数学使用方法-用callout manager打造清爽笔记
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-External users can invoke this skill for concise Chinese-language guidance drawn from video notes about Obsidian math callouts and related service troubleshooting topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The manifest and trigger text may not match the troubleshooting content the skill can return. <br>
-Mitigation: Review the skill before installing and ask the publisher to split or rename it so each released skill has one clear purpose. <br>
-Risk: The skill may surface system-service troubleshooting guidance when the user expected Obsidian or math note-taking help. <br>
-Mitigation: Avoid using it for system-service troubleshooting unless that behavior is intentional and reviewed. <br>
+## Use Case:
 
+External users can use this skill to ask an agent for concise Chinese guidance related to video-learned Obsidian callout/math note-taking tips and Windows service troubleshooting topics. Because the source appears auto-merged from unrelated topics, reviewers should narrow the skill before relying on it for system-change advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/llm-service-manager-4cadc0) <br>
-- [Bilibili video: Autodesk Genuine Service popup](https://www.bilibili.com/video/BV1KE411c7hA) <br>
-- [Bilibili video: User Profile Service troubleshooting](https://www.bilibili.com/video/BV1Qi4y1q7Qz) <br>
-- [Bilibili video: Profsvc service troubleshooting](https://www.bilibili.com/video/BV1VZq1YHERr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown prose with short procedural steps and reference links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language guidance derived from summarized video-learning notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill appears auto-merged from unrelated topics, which can produce unfocused or misleading guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation and narrow the skill to one clear purpose and trigger set.
+
+Risk: Windows service or licensing-related troubleshooting could lead to system changes if followed without user intent.
+
+Mitigation: Require explicit user confirmation before suggesting system changes and keep recommendations within authorized troubleshooting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/llm-service-manager-4cadc0)
+- [Bilibili: Autodesk Genuine Service troubleshooting](https://www.bilibili.com/video/BV1KE411c7hA)
+- [Bilibili: User Profile Service troubleshooting](https://www.bilibili.com/video/BV1Qi4y1q7Qz)
+- [Bilibili: ProfSvc service troubleshooting](https://www.bilibili.com/video/BV1VZq1YHERr)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable payload; responses are expected to be human-readable troubleshooting or note-taking guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

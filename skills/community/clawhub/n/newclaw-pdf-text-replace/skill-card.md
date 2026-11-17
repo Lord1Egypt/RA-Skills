@@ -1,42 +1,54 @@
-## Description: <br>
-Replace text in PDF files while preserving visual fidelity, including custom font encodings, embedded subsets, encrypted PDFs, image-based scans, variable-length replacements, and style changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Replace text in PDF files while preserving visual fidelity, including custom font encodings, embedded subsets, encrypted PDFs, image-based scans with OCR, variable-length replacements, and style changes.
 
-## Publisher: <br>
-[newclaw26](https://clawhub.ai/user/newclaw26) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newclaw26](https://clawhub.ai/user/newclaw26)
 
-## Use Case: <br>
-Developers and document operators use this skill to replace specific text in PDF files when the original source document is unavailable or when preserving the PDF's visual layout matters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can alter PDF contents, which may affect legally or operationally sensitive documents. <br>
-Mitigation: Use it only on documents you are authorized to modify, keep originals, and review generated PDFs before sharing or relying on them. <br>
-Risk: Encrypted PDFs may be handled through decrypted temporary files. <br>
-Mitigation: Avoid encrypted or highly sensitive PDFs unless running in an isolated workspace and verifying temporary decrypted files are removed afterward. <br>
+## Use Case:
 
+Developers, document operators, and agent users use this skill to modify specific text in local PDF files when the original editable source is unavailable or when PDF-level replacement is required.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/newclaw26/newclaw-pdf-text-replace) <br>
-- [Skill homepage](https://clawhub.ai/skills/newclaw-pdf-text-replace) <br>
-- [PDF Font CMap Encoding Guide](references/cmap-encoding-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce modified PDF files when its scripts are executed by the agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.4 (source: frontmatter and server release evidence) <br>
+Risk: Encrypted PDFs, passwords, or sensitive document excerpts may be exposed through local files or process arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a controlled local environment, avoid confidential documents unless approved, pass passwords through controlled workflows, and clean temporary files after processing.
+
+Risk: Password-protected PDFs may be written out decrypted unless explicitly re-encrypted.
+
+Mitigation: Review output files before sharing or storing them, and re-encrypt sensitive PDFs immediately when encryption must be preserved.
+
+## Reference(s):
+
+- [PDF Font CMap Encoding Guide](references/cmap-encoding-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/skills/newclaw-pdf-text-replace)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance, files]
+
+**Output Format:** [Markdown guidance with shell and Python examples; generated PDF files when executed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create modified PDF outputs and temporary local work files during OCR or encrypted-PDF handling.]
+
+## Skill Version(s):
+
+2.1.4 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

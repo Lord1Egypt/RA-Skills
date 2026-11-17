@@ -1,43 +1,53 @@
-## Description: <br>
-Publish content across TikTok, Instagram, YouTube, Facebook, LinkedIn, Vimeo, Vimeo OTT, and Mux. Manage team workflows, collaborate with your team, and track verified publish history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Media ownership and payment infrastructure over MCP. Publish a video to TikTok, Instagram, YouTube, Facebook, LinkedIn, Vimeo, Vimeo OTT, Mux and Farcaster in one launch, get an on-chain ownership record when it goes out, and search or buy media metadata per use over x402 or MPP.
 
-## Publisher: <br>
-[aquaflans](https://clawhub.ai/user/aquaflans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aquaflans](https://clawhub.ai/user/aquaflans)
 
-## Use Case: <br>
-Creators, teams, and agents use this skill to manage video publishing workflows, collaborate around content, connect platform credentials, publish or schedule launches, and inspect verified ownership, analytics, and revenue information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Some actions publish publicly, delete content or teams, send invitations, connect credentials, or trigger on-chain and paid operations. <br>
-Mitigation: Require explicit user confirmation for each high-impact invocation, including target account, platform, content, visibility, schedule, and cost. <br>
-Risk: The skill requires sensitive credentials, including JUBJUB_API_KEY and, for some workflows, OAuth, token, wallet, or payment credentials. <br>
-Mitigation: Share credentials only through secure authentication flows and review requested credential scopes before connecting accounts or payment rails. <br>
-Risk: Agent callers without an active subscription may incur per-action USDC charges for selected tools. <br>
-Mitigation: Surface the applicable price and payment rail before invoking priced tools, and use an active Creator or Studio session credential when the user expects subscription coverage. <br>
+## Use Case:
 
+Creators and teams use JubJub through an agent to publish and manage media across connected platforms, track ownership and performance, collaborate on content, and search or purchase catalogue items.
 
-## Reference(s): <br>
-- [JubJub Skill Page](https://clawhub.ai/aquaflans/jubjub) <br>
-- [JubJub API](https://api.jubjubapp.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown guidance with tool names, parameters, URLs, and API-call instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUBJUB_API_KEY and may require OAuth, platform tokens, wallet credentials, or payment credentials depending on the requested action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: The skill connects an agent to the external JubJub service using an API key or OAuth access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use credentials only for the intended account, store API keys securely, and connect only if you trust the service.
+
+Risk: Publishing, destructive, external-facing, paid, and on-chain actions can affect public content, relationships, or funds.
+
+Mitigation: Review the exact target, visibility, schedule, and quoted price where relevant, and confirm each high-impact action before it is performed.
+
+## Reference(s):
+
+- [JubJub MCP endpoint](https://api.jubjubapp.com/v2/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration instructions]
+
+**Output Format:** [Natural language responses and structured MCP tool requests/results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate publishing, account changes, or paid catalogue and on-chain actions after user confirmation.]
+
+## Skill Version(s):
+
+1.3.0 (source: server-resolved release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-腾讯财经实时行情接口，查询A股、港股、美股、期货、外汇、ETF的实时行情数据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+腾讯财经行情接口用于通过腾讯财经公开接口查询 A 股、港股、美股指数、期货、外汇和 ETF 的实时行情数据。
 
-## Publisher: <br>
-[ezio-xiang](https://clawhub.ai/user/ezio-xiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ezio-xiang](https://clawhub.ai/user/ezio-xiang)
 
-## Use Case: <br>
-Developers and agents use this skill to look up Tencent Finance market symbols and retrieve real-time quote fields for equities, indexes, commodities, foreign exchange, and ETFs. It supports interactive quote checks and simple automated quote snapshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requested symbols and request metadata are sent to Tencent's public quote endpoint. <br>
-Mitigation: Do not include secrets, private portfolio notes, or other sensitive context in query codes. <br>
-Risk: High-frequency polling may trigger endpoint throttling or IP blocking. <br>
-Mitigation: Use rate limiting and keep requests at least 100 ms apart as documented by the artifact. <br>
-Risk: Market quote data can be incomplete, delayed, or unsuitable for investment decisions. <br>
-Mitigation: Treat returned data as informational and verify it with authoritative market data before acting. <br>
+## Use Case:
 
+Developers, analysts, and agent builders use this skill to retrieve and format real-time market quote data for supported stock, index, commodity, forex, and ETF symbols. Outputs are suitable for interactive lookups or scheduled quote snapshots, but should be treated as informational rather than investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ezio-xiang/tencent-finance) <br>
-- [Tencent Finance quote endpoint](https://qt.gtimg.cn/q=) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples and plain-text quote output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs market quote fields for requested symbols; returned data should be treated as informational.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Ticker symbols or code lists are sent to Tencent's finance endpoint during quote retrieval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including personal portfolio notes, trading strategy text, or other sensitive context in ticker arguments.
+
+Risk: Returned market data may be incomplete, delayed, unavailable, or unsuitable as a basis for financial decisions.
+
+Mitigation: Treat returned quotes as informational only and verify important data against authoritative market-data sources before acting on it.
+
+Risk: High-frequency polling can trigger endpoint throttling or IP blocking.
+
+Mitigation: Keep requests at least 100 ms apart or use a more conservative rate limit for automated and cron-based retrieval.
+
+## Reference(s):
+
+- [Tencent Finance quote endpoint](https://qt.gtimg.cn/q=)
+- [ClawHub skill page](https://clawhub.ai/ezio-xiang/skills/tencent-finance)
+- [Publisher profile](https://clawhub.ai/user/ezio-xiang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with Python examples and command-line text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Queries Tencent's public finance endpoint and formats selected quote fields such as price, open, high, low, volume, turnover, PE, and percentage change.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

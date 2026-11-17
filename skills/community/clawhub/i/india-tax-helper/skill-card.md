@@ -1,48 +1,59 @@
-## Description: <br>
-India Tax Helper helps resident salaried individuals in India understand tax declarations, Form 12BB, Form 16, AIS/TIS/26AS, ITR filing, FD/RD taxation, loan deductions, and capital-gains basics with conservative, calculator-backed guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+India Tax Helper guides resident salaried taxpayers in India through employer declarations, tax filing documents, common interest and investment income, and conservative calculator-backed estimates when FY rules are verified.
 
-## Publisher: <br>
-[aritrocoder](https://clawhub.ai/user/aritrocoder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aritrocoder](https://clawhub.ai/user/aritrocoder)
 
-## Use Case: <br>
-Resident salaried individuals in India use this skill to understand payroll tax declarations, filing documents, tax lifecycle deadlines, common income add-ons, deduction questions, and approximate tax treatment. Agents use it to provide concise, conservative guidance and to run deterministic local calculators when numbers matter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-India <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat educational estimates as professional tax advice. <br>
-Mitigation: Present outputs as educational estimates and direct users to verify current FY rules with official Income Tax Department sources or a qualified tax professional before acting. <br>
-Risk: FY-specific rates, deadlines, forms, and filing rules can become stale. <br>
-Mitigation: Ground FY-sensitive answers against current official sources during use and fail closed when a key rule or date cannot be verified. <br>
-Risk: Some local tax calculations are simplified or incomplete, including surcharge and capital-gains edge cases. <br>
-Mitigation: Disclose assumptions, use deterministic calculators for estimates, and avoid confident conclusions when the calculator coverage or user facts are insufficient. <br>
+## Use Case:
 
+External resident salaried taxpayers in India use this skill to understand employer tax declarations, Form 12BB, Form 16, AIS/TIS/26AS, ITR filing, FD/RD taxation, loan-related deductions, capital gains basics, and approximate tax outcomes. The skill is intended to answer conservatively and fail closed when FY-specific rules, rates, dates, or source manifests cannot be verified.
 
-## Reference(s): <br>
-- [Overview](references/overview.md) <br>
-- [Source policy](references/source-policy.md) <br>
-- [Live grounding](references/live-grounding.md) <br>
-- [Forms map](references/forms-map.md) <br>
-- [Lifecycle calendar](references/lifecycle-calendar.md) <br>
-- [Answer patterns](references/answer-patterns.md) <br>
-- [ClawHub skill listing](https://clawhub.ai/aritrocoder/india-tax-helper) <br>
+### Deployment Geography for Use:
 
+India
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, shell commands] <br>
-**Output Format:** [Plain text guidance with optional shell commands for local deterministic calculators] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Calculators use JSON inputs and outputs internally; user-facing responses should stay concise and disclose uncertainty.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Tax-rule packaging and calculators may be inconsistent enough that users could over-rely on non-final estimates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as conceptual guidance, verify rates, deadlines, form applicability, and calculator results manually against official sources before relying on them.
+
+Risk: Missing FY rules, missing source manifests, or known calculation issues can make FY-sensitive tax estimates unreliable.
+
+Mitigation: Fail closed unless the relevant FY rules and sources are verified, and clearly scope any calculator output as approximate when known issues remain.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aritrocoder/skills/india-tax-helper)
+- [Skill Overview](references/overview.md)
+- [Source Policy](references/source-policy.md)
+- [Live Grounding](references/live-grounding.md)
+- [Forms Map](references/forms-map.md)
+- [Lifecycle Calendar](references/lifecycle-calendar.md)
+- [README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, shell commands]
+
+**Output Format:** [Plain text with optional JSON calculator inputs and outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses deterministic JSON-in/JSON-out calculators for estimates and should refuse confident FY-sensitive answers when verified rules are unavailable.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

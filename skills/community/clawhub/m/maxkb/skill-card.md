@@ -1,42 +1,54 @@
-## Description: <br>
-Queries published MaxKB agents for LLM selection, then routes a question to the chosen agent and returns the answer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries published MaxKB agents so an LLM can choose one, then sends a question to the selected agent and returns its answer.
 
-## Publisher: <br>
-[liuruibin](https://clawhub.ai/user/liuruibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuruibin](https://clawhub.ai/user/liuruibin)
 
-## Use Case: <br>
-Developers and agent builders use this skill to let a host LLM discover published MaxKB agents, choose the best match for a user question, and return that agent's response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User questions and selected prompts are sent to the configured MaxKB agent service. <br>
-Mitigation: Use only a trusted, approved MaxKB deployment and avoid sending secrets, regulated data, or private customer content unless that deployment is approved for the data. <br>
-Risk: The skill relies on MaxKB credentials or login details stored in the local environment. <br>
-Mitigation: Protect the .env file and prefer a dedicated least-privilege account or scoped token over broad admin credentials. <br>
-Risk: An untrusted or misconfigured MaxKB endpoint could expose credentials or return unreliable answers. <br>
-Mitigation: Configure a trusted HTTPS MaxKB endpoint and review the deployment configuration before use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route user questions to published MaxKB agents in a configured workspace and return the selected agent's answer.
 
-## Reference(s): <br>
-- [ClawHub MaxKB skill page](https://clawhub.ai/liuruibin/maxkb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, API Calls] <br>
-**Output Format:** [JSON strings containing published agent metadata or the selected agent answer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured MaxKB endpoint and credentials; user questions are sent to the configured MaxKB instance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Prompts and MaxKB credentials can be sent to an operator-configured endpoint that is not required to use HTTPS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS MaxKB endpoint, avoid non-loopback HTTP, protect the .env file, and use a least-privileged service account or scoped token.
+
+Risk: Questions routed through this skill are sent to the configured MaxKB server.
+
+Mitigation: Treat routed questions as data shared with that MaxKB deployment and avoid sending content that the server is not authorized to process.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liuruibin/skills/maxkb)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [JSON strings containing published agent metadata or the selected agent answer.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a single response for each invocation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

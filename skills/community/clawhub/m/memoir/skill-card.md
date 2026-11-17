@@ -1,39 +1,49 @@
-## Description: <br>
-Helps users write a life memoir by collecting personal stories through guided prompts over time and later organizing them into structured memoir drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memoir helps users collect personal life stories through guided questions and turn those memories into a structured Markdown memoir.
 
-## Publisher: <br>
-[aidalong](https://clawhub.ai/user/aidalong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aidalong](https://clawhub.ai/user/aidalong)
 
-## Use Case: <br>
-External users use this skill as a guided writing assistant to gather life-story memories, preserve dated notes, and turn collected material into a markdown memoir draft. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Personal memoir notes saved locally may contain sensitive details about the user or other people. <br>
-Mitigation: Review or delete saved entries that should not be retained, avoid recording sensitive details about other people without care, and restrict access to local backups and shared machines. <br>
+## Use Case:
 
+External users use this skill to capture autobiographical memories over multiple guided conversations and later organize them into a coherent memoir.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aidalong/memoir) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Conversational guidance plus markdown memory notes and memoir drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save dated local memory notes and a memoir draft under the skill workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata; artifact config.json reports 1.0.0) <br>
+Risk: The skill may save highly personal life-story content to local Markdown files without clear consent, deletion, or protection controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the storage location and autosave behavior before use, then review, redact, protect, or delete saved entries as needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aidalong/skills/memoir)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown memoir drafts, guided interview prompts, and local Markdown memory entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save collected memoir entries locally under memory/YYYY-MM-DD.md and drafts/memoir.md.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

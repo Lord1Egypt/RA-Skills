@@ -1,42 +1,63 @@
-## Description: <br>
-Generates stylized character portraits from an authorized image URL and prompt using Media.io OpenAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI images of girls, characters, and fictional personas using Media.io OpenAPI.
 
-## Publisher: <br>
-[wondershare-boop](https://clawhub.ai/user/wondershare-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wondershare-boop](https://clawhub.ai/user/wondershare-boop)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to check Media.io credits, submit a character-generation task from an authorized image URL and prompt, poll for completion, and return generated image URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts and image URLs to Media.io and may use account credits. <br>
-Mitigation: Use user-owned or authorized image URLs, avoid private or internal images unless they are safe to share with Media.io, check credits before generation, and monitor Media.io usage. <br>
-Risk: The skill depends on MEDIAIO_API_KEY for external API calls. <br>
-Mitigation: Store the key in the environment, avoid logging or returning raw API keys, and stop with a clear message on authentication or credit errors. <br>
+## Use Case:
 
+External users and developers use this skill to generate stylized character portraits from an authorized image URL and prompt through Media.io OpenAPI, including submitting a task, polling for completion, and returning generated image URLs.
 
-## Reference(s): <br>
-- [Media.io API documentation](https://platform.media.io/docs/) <br>
-- [Media.io developer portal](https://developer.media.io/) <br>
-- [ClawHub release page](https://clawhub.ai/wondershare-boop/mediaio-ai-character-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON and cURL examples; returns generated image URLs or clear status and error messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MEDIAIO_API_KEY and a Media.io-reachable authorized image URL; generation is asynchronous and may consume Media.io credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts and image URLs are sent to Media.io as the core generation workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive image URLs that the user owns or is authorized to process, and make clear that generation uses Media.io.
+
+Risk: The MEDIAIO_API_KEY could be exposed in logs, prompts, or shared transcripts.
+
+Mitigation: Keep the key in an environment variable and redact it from logs, command output, prompts, and responses.
+
+Risk: Generated character images could be mistaken for real identity evidence or unedited media.
+
+Mitigation: Present generated outputs as synthetic or edited content and avoid identity verification or biometric certainty claims.
+
+Risk: The Media.io API may fail due to authentication, validation, insufficient credits, failed tasks, or timeouts.
+
+Mitigation: Check credits before generation, validate image URL and prompt inputs, poll task status, and stop with a clear message on failed, timeout, or insufficient-credit responses.
+
+## Reference(s):
+
+- [Media.io API documentation](https://platform.media.io/docs/)
+- [Media.io developer portal](https://developer.media.io/)
+- [ClawHub skill page](https://clawhub.ai/wondershare-boop/skills/mediaio-ai-character-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with cURL examples and generated image URLs from API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MEDIAIO_API_KEY and user-authorized image URLs; generated image URLs are returned after asynchronous polling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

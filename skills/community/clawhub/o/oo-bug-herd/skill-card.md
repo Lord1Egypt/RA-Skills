@@ -1,42 +1,51 @@
-## Description: <br>
-BugHerd lets agents read, create, and update BugHerd organization, project, task, comment, and attachment data through OOMOL's BugHerd connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the BugHerd-connected oo CLI to read and manage BugHerd projects, tasks, comments, and attachments.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and teams managing BugHerd feedback use this skill to inspect organization, project, task, comment, and attachment data, and to create or update BugHerd records after confirming write payloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access BugHerd through connected account credentials and exposes organization, project, task, comment, and attachment data. <br>
-Mitigation: Install only for users who need BugHerd access, keep the OOMOL account connection scoped appropriately, and review returned data before sharing it outside the workspace. <br>
-Risk: Write actions can create or update BugHerd projects, tasks, comments, and URL-based attachments. <br>
-Mitigation: Confirm the exact target, payload, and intended effect with the user before running any action tagged as write or destructive. <br>
+## Use Case:
 
+Users with an OOMOL-connected BugHerd account can use this agent skill to inspect projects, tasks, comments, and attachments, and to create or update BugHerd records.
 
-## Reference(s): <br>
-- [BugHerd homepage](https://bugherd.com/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before action execution; write actions require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Setup instructions may execute downloaded installer code without separate approval or integrity checks; the installers and hosted connector implementation were not available for inspection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI and its automatic skill synchronization settings before enabling the skill. Connect only the intended BugHerd account and require confirmation for each write.
+
+## Reference(s):
+
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [BugHerd](https://bugherd.com/)
+- [BugHerd API documentation](https://docs.bugherd.com/api/)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [JSON responses and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some actions create or update BugHerd data and require user confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

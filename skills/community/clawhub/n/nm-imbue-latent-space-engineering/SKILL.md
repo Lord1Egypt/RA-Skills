@@ -1,7 +1,7 @@
 ---
 name: latent-space-engineering
 description: Shapes agent behavior via instruction framing and style transfer
-version: 1.9.8
+version: 1.10.3
 triggers:
   - prompt-engineering
   - agent-behavior
@@ -14,7 +14,7 @@ source: claude-night-market
 source_plugin: imbue
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/imbue](https://github.com/athola/claude-night-market/tree/master/plugins/imbue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/imbue](https://github.com/athola/claude-night-market/tree/master/plugins/imbue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Latent Space Engineering
@@ -64,6 +64,14 @@ incentives to increase rigor and thoroughness.
 
 **Load module**: `modules/competitive-review.md`
 
+### 4. Named Register Invocation
+
+Name a published standard to pull a whole writing register
+into output at a cost of one line. Cheaper than exemplar
+injection and coarser, with a known mid-session decay.
+
+**Load module**: `modules/named-register-invocation.md`
+
 ## Quick Reference
 
 | Technique | When | Module |
@@ -71,3 +79,30 @@ incentives to increase rigor and thoroughness.
 | Emotional framing | Any agent prompt | emotional-framing |
 | Style gene transfer | Code/doc generation | style-gene-transfer |
 | Competitive review | 3+ parallel reviewers | competitive-review |
+| Named register | Operator or procedural text | named-register-invocation |
+
+## Writing for the Delegate
+
+Framing shapes a delegate's output as much as it shapes a model's prose.
+Before dispatching, establish what model the delegate runs, what tools it
+has, and what project context it lacks, then write the prompt as a
+proposal rather than a procedure.
+
+See `modules/know-your-delegate.md`.
+
+## Exit Criteria
+
+- [ ] When a named register is invoked (for example ASD-STE100),
+  a deterministic check verifies the register held, per
+  `modules/named-register-invocation.md`
+- [ ] Dispatch prompts contain no threat-based language ("you must",
+  "don't fail", "or else"); replaced with calm, confident framing
+  per `modules/emotional-framing.md`
+- [ ] When generating code or docs to match an existing style, at
+  least one exemplar sample is injected into context before the
+  output is requested (style gene transfer applied)
+- [ ] When 3+ parallel review agents are dispatched, each agent
+  prompt includes a competitive framing element per
+  `modules/competitive-review.md`
+- [ ] The correct technique module is loaded for the task type;
+  irrelevant modules are not loaded (token efficiency maintained)

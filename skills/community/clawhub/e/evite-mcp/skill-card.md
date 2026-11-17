@@ -1,44 +1,63 @@
-## Description: <br>
-This skill connects an agent to an Evite MCP server to read and manage Evite events, guest lists, RSVPs, messages, and event authoring actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evite MCP helps an agent read and manage Evite events, invitations, guest lists, RSVPs, messages, and event creation or edits through an Evite MCP server.
 
-## Publisher: <br>
-[chrischall](https://clawhub.ai/user/chrischall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrischall](https://clawhub.ai/user/chrischall)
 
-## Use Case: <br>
-External users and developers use this skill when they intentionally want an agent to access their Evite account to inspect invitations, RSVP information, guest lists, messages, and host-side event workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording could cause generic invitation, RSVP, guest list, or party-hosting requests to route into an authenticated Evite tool. <br>
-Mitigation: Use the skill only for explicit Evite requests and confirm that the user intends Evite account access before invoking tools. <br>
-Risk: The skill can require sensitive Evite credentials or session cookies. <br>
-Mitigation: Prefer email and password authentication when appropriate, avoid raw session cookies unless necessary, and limit installation to environments where Evite account access is intended. <br>
-Risk: Write actions can message guests, send invites, edit events, cancel events, or change RSVP and guest data. <br>
-Mitigation: Review dry-run previews carefully and set confirm: true only after the requested action and affected event or guests are clear. <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to an Evite account, inspect events and guest activity, and perform confirm-gated actions such as RSVPing, messaging guests, and creating or editing events.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chrischall/evite-mcp) <br>
-- [Evite](https://www.evite.com) <br>
-- [evite-mcp npm package](https://www.npmjs.com/package/evite-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, API calls] <br>
-**Output Format:** [Markdown with JSON configuration and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require Evite credentials or session state and uses confirm-gated write actions with dry-run previews by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.2 (source: server release evidence) <br>
+Risk: The setup can give the MCP server access to an Evite account through a password or browser session cookie.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the package, use a unique Evite password, and avoid storing passwords or raw cookies in project files.
+
+Risk: The documented npx setup can run an unpinned package version.
+
+Mitigation: Use a pinned, reviewed package version before deployment.
+
+Risk: Fetchproxy can lift session cookies from a signed-in browser tab.
+
+Mitigation: Disable Fetchproxy unless it is explicitly needed.
+
+Risk: The MCP tools can modify events, guests, messages, invitations, and event status.
+
+Mitigation: Require careful confirmation for write actions such as messaging guests, editing events, sending invitations, or canceling events.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chrischall/skills/evite-mcp)
+- [Evite](https://www.evite.com)
+- [evite-mcp npm Package](https://www.npmjs.com/package/evite-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MCP setup guidance, environment variable names, tool recommendations, dry-run previews, and confirmation guidance for write actions.]
+
+## Skill Version(s):
+
+0.3.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

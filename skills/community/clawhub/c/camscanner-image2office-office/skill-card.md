@@ -1,40 +1,56 @@
-## Description: <br>
-Use CamScanner to recognize image content and convert it to editable Word (.docx) or Excel (.xlsx) files while handling tables, text, and complex layouts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CamScanner-Image2Office helps an agent convert user-selected images containing text, tables, or complex layouts into editable Word (.docx) or Excel (.xlsx) documents using CamScanner's service.
 
-## Publisher: <br>
-[camscanner-ai](https://clawhub.ai/user/camscanner-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[camscanner-ai](https://clawhub.ai/user/camscanner-ai)
 
-## Use Case: <br>
-External users, developers, and document-processing workflows use this skill to upload an image to CamScanner, convert it into an editable Word or Excel document, and download the resulting Office file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected image files are uploaded to CamScanner servers for OCR and conversion. <br>
-Mitigation: Use only with images you are comfortable sending to CamScanner, and avoid highly sensitive, regulated, or confidential documents unless CamScanner's privacy and retention terms have been reviewed and accepted. <br>
+## Use Case:
 
+External users and developers use this skill when they need OCR-based conversion from an image into an editable Office document. It is suited for images that contain text, tables, or complex layouts that should become Word or Excel files.
 
-## Reference(s): <br>
-- [CamScanner Homepage](https://www.camscanner.com) <br>
-- [CamScanner AI Tools API](https://ai-tools.camscanner.com) <br>
-- [ClawHub Release Page](https://clawhub.ai/camscanner-ai/camscanner-image2office-office) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Files] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow produces local .docx or .xlsx files after uploading selected image files to CamScanner's processing service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Selected images are sent to CamScanner's external OCR conversion service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid regulated, confidential, identity, financial, customer, or otherwise sensitive documents unless organizational policy permits that service.
+
+Risk: Converted files are written to a local path chosen during use.
+
+Mitigation: Choose output paths deliberately and verify the target directory and extension before downloading the result.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/camscanner-ai/skills/camscanner-image2office-office)
+- [CamScanner homepage](https://www.camscanner.com)
+- [CamScanner AI tools API base](https://ai-tools.camscanner.com)
+- [Publisher profile](https://clawhub.ai/user/camscanner-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Files, Guidance]
+
+**Output Format:** [Markdown with bash and JSON examples; downloaded .docx or .xlsx files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; sends selected images to CamScanner's external service and saves output to a user-chosen local path.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter lists 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

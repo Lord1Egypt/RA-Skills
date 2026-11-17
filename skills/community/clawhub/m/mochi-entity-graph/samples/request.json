@@ -1,0 +1,7 @@
+{
+  "action": "entity",
+  "id": "demo-project",
+  "type": "project",
+  "name": "Demo project",
+  "source": "User supplied demo"
+}

@@ -2,7 +2,7 @@
   "type": "function",
   "function": {
     "name": "_send_notification",
-    "description": "Send notification message.",
+    "description": "Send notification message. If the team has configured WeChat Work, Feishu, DingTalk, or other messaging platforms, the message will also be sent to the corresponding platform.",
     "parameters": {
       "type": "object",
       "properties": {

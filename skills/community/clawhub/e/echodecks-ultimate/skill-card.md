@@ -1,43 +1,59 @@
-## Description: <br>
-AI-powered flashcard management with automated podcast generation and spaced-repetition study tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered flashcard management with automated podcast generation and spaced-repetition study tools.
 
-## Publisher: <br>
-[drgeld](https://clawhub.ai/user/drgeld) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[drgeld](https://clawhub.ai/user/drgeld)
 
-## Use Case: <br>
-External learners and study-focused agents use this skill to manage EchoDecks flashcards, review due cards with spaced repetition, generate cards from topics or text, and create podcast summaries from study decks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an EchoDecks API key. <br>
-Mitigation: Treat ECHODECKS_API_KEY as a secret and provide it only in trusted agent environments. <br>
-Risk: Study material and account actions are sent to EchoDecks. <br>
-Mitigation: Install and use the skill only when EchoDecks is trusted with the study content and requested account actions. <br>
-Risk: Card and podcast generation can consume EchoDecks credits. <br>
-Mitigation: Confirm before running generation actions, especially podcast generation or bulk card creation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/drgeld/echodecks-ultimate) <br>
-- [EchoDecks](https://echodecks.app) <br>
-- [EchoDecks Settings](https://echodecks.app/settings) <br>
+## Use Case:
 
+External users and learners use this skill to let an agent manage EchoDecks flashcards, quiz due cards, submit spaced-repetition reviews, generate new cards from topics or text, and create study podcasts from deck content.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON API responses with concise text guidance and command-line examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ECHODECKS_API_KEY; card and podcast generation actions may consume EchoDecks credits.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends the EchoDecks API key, deck and card content, submitted text, review activity, podcast requests, and account metadata to a configured remote API.
+
+Mitigation: Install only if the EchoDecks provider is trusted, review the data being sent, and use a revocable, least-privilege API key if EchoDecks supports one.
+
+Risk: The configured API host is a hardcoded echodecks.com endpoint while the documented key source is echodecks.app.
+
+Mitigation: Confirm that echodecks.com is an official EchoDecks API host for keys obtained from echodecks.app before use.
+
+Risk: Card and podcast generation can consume EchoDecks credits.
+
+Mitigation: Confirm deck IDs and generation requests before running card or podcast generation actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/drgeld/skills/echodecks-ultimate)
+- [drgeld publisher profile](https://clawhub.ai/user/drgeld)
+- [EchoDecks](https://echodecks.app)
+- [EchoDecks settings](https://echodecks.app/settings)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON returned from EchoDecks API operations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ECHODECKS_API_KEY and can trigger remote EchoDecks API calls that create decks, generate cards, submit reviews, retrieve user stats, and generate podcasts.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

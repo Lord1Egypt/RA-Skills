@@ -1,47 +1,67 @@
-## Description: <br>
-Helps users identify repetitive work, choose workflow or RPA automation approaches, design process templates, and estimate automation ROI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents identify repetitive automation opportunities, choose workflow or RPA approaches, design process templates, and estimate ROI.
 
-## Publisher: <br>
-[laziobird](https://clawhub.ai/user/laziobird) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laziobird](https://clawhub.ai/user/laziobird)
 
-## Use Case: <br>
-Business users, operators, and developers use this skill to evaluate repetitive browser, file, and SaaS workflows, select an automation route, outline implementation steps, and prioritize work by ROI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automation workflows may involve credentials, OAuth tokens, saved login sessions, or sensitive local files. <br>
-Mitigation: Use scoped OAuth or secure secret storage, avoid pasting real passwords, API keys, or session cookies into chat, and review credential handling before use. <br>
-Risk: Browser automation can submit forms, change accounts, publish content, move money, make purchases, or interact with crypto-related workflows. <br>
-Mitigation: Require explicit human approval before high-impact actions and use the skill only on systems and data the user is authorized to automate. <br>
-Risk: Generated workflow steps or scripts may be brittle, incorrect, or unsafe when target sites, APIs, or business rules change. <br>
-Mitigation: Inspect generated scripts and workflow configurations before running them, test with non-production data first, and monitor logs for failures. <br>
+## Use Case:
 
+External users and developers use this skill to evaluate repetitive browser, file, and SaaS workflows, select a suitable automation route, and draft setup steps for workflow platforms or RPA.
 
-## Reference(s): <br>
-- [Automation Workflow Helper on ClawHub](https://clawhub.ai/laziobird/automation-workflow-helper) <br>
-- [Dify](https://dify.ai) <br>
-- [Coze](https://www.coze.com) <br>
-- [n8n](https://n8n.io) <br>
-- [OpenClaw RPA](https://clawhub.ai/laziobird/openclaw-rpa) <br>
-- [OpenClaw RPA GitHub Repository](https://github.com/laziobird/openclaw-rpa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with tables, checklists, formulas, example prompts, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ROI calculations, tool recommendations, workflow outlines, and RPA prompt templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Browser automation may operate on authenticated sessions or sensitive business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege automation accounts, isolate runs from personal browser profiles, and avoid entering passwords or MFA codes into chat prompts.
+
+Risk: The skill recommends saved login sessions and includes plaintext credential examples.
+
+Mitigation: Prefer OAuth or a secrets manager and review any generated automation before using it with internal systems.
+
+Risk: The skill points users to an unpinned third-party RPA package.
+
+Mitigation: Inspect and pin the referenced openclaw-rpa package before granting it access to internal systems or business data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/laziobird/skills/automation-workflow-helper)
+- [Dify](https://dify.ai)
+- [Dify GitHub Repository](https://github.com/langgenius/dify)
+- [Coze](https://www.coze.com)
+- [n8n](https://n8n.io)
+- [n8n GitHub Repository](https://github.com/n8n-io/n8n)
+- [OpenClaw RPA GitHub Repository](https://github.com/laziobird/openclaw-rpa)
+- [OpenClaw RPA on ClawHub](https://clawhub.ai/laziobird/openclaw-rpa)
+- [OpenClaw RPA Amazon Best Sellers Tutorial](https://github.com/laziobird/openclaw-rpa/blob/main/articles/scenario-amazon-bestsellers.en-US.md)
+- [OpenClaw RPA Airbnb Competitor Price Tracker Tutorial](https://github.com/laziobird/openclaw-rpa/blob/main/articles/scenario-airbnb-compare.en-US.md)
+- [OpenClaw RPA AP Reconciliation Tutorial](https://github.com/laziobird/openclaw-rpa/blob/main/articles/scenario-ap-reconciliation.en-US.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with workflow templates, comparison tables, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend browser automation, saved login sessions, and third-party workflow or RPA tools.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

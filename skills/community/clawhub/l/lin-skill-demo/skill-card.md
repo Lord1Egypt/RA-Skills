@@ -1,40 +1,52 @@
-## Description: <br>
-A paid-skill template that demonstrates license-key validation for publishing paid skills on ClawHub. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+A paid-skill demonstration template that shows how to require a license key before running ClawHub skill functionality.
 
-## Publisher: <br>
-[lintqiu](https://clawhub.ai/user/lintqiu) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lintqiu](https://clawhub.ai/user/lintqiu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and ClawHub skill publishers use this as a licensing demonstration/template for paid skills. It shows how to require the SKILL_LICENSE_KEY environment variable before running demo functionality.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The demo uses a hardcoded license hash and local hash comparison, which is not suitable for protecting real paid or sensitive functionality.
+
+Mitigation: Replace the demo check with a production entitlement design before using the pattern for a real paid release.
+
+Risk: Documentation and runtime messages are Chinese-only, which may limit reviewability and usability for some users.
+
+Mitigation: Provide localized or bilingual documentation and messages for the intended audience.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and skill publishers can use this demo to understand how a ClawHub skill can gate execution on a purchased license key configured through an environment variable. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled license check is a basic local example and is not production-grade licensing infrastructure. <br>
-Mitigation: Use only a license key intended for this skill, and replace the demo hash check with stronger signed or server-side verification before relying on it in production. <br>
-Risk: The skill will fail when SKILL_LICENSE_KEY is missing or invalid. <br>
-Mitigation: Configure a dedicated SKILL_LICENSE_KEY for this skill before use and avoid reusing unrelated credentials. <br>
+**Output Format:** [Plain text terminal output with environment-variable setup guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lintqiu/lin-skill-demo) <br>
+**Other Properties Related to Output:** [Requires SKILL_LICENSE_KEY to be set for the demo function to run successfully.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [Plain text status messages with JSON-like license-check output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILL_LICENSE_KEY; exits nonzero when the key is missing or invalid.] <br>
+1.0.1 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

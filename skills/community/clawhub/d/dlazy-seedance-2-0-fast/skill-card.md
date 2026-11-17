@@ -1,42 +1,56 @@
-## Description: <br>
-Fast version of ByteDance's Seedance 2.0. Generates videos faster with support for multi-modal references, first/last frame, and text-to-video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fast version of ByteDance's Seedance 2.0. Generates videos faster with support for multi-modal references, first/last frame, and text-to-video.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-External developers and agent users use this skill to invoke dLazy's Seedance 2.0 Fast video generation through the dLazy CLI, supplying prompts and optional image, video, audio, first-frame, or last-frame references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive dLazy API credentials for normal operation. <br>
-Mitigation: Review requested permissions before use, store the key with the dLazy CLI or DLAZY_API_KEY only as needed, and rotate or revoke organization keys when access should change. <br>
-Risk: Prompts and local media references supplied to the CLI may be sent to dLazy API and storage endpoints. <br>
-Mitigation: Avoid submitting sensitive media or confidential prompts unless the dLazy service terms and organization policy permit that workflow. <br>
+## Use Case:
 
+External developers and creators use this skill to generate short videos from text prompts and optional image, video, audio, or first/last-frame references.
 
-## Reference(s): <br>
-- [dLazy CLI source](https://github.com/dlazyai/cli) <br>
-- [@dlazy/cli npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy homepage](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Hosted media URLs] <br>
-**Output Format:** [JSON response from the dlazy CLI with generated output URLs or async task status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a dLazy API key. Local media paths passed as inputs may be uploaded to dLazy-hosted storage for generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The security review reports a purpose mismatch and incomplete scan coverage because some local references could not be resolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill commands and referenced material before use, especially if relying on video-generation behavior.
+
+Risk: Local image, video, or audio inputs are uploaded to dLazy media storage for processing.
+
+Mitigation: Only provide media you are permitted to share with the service.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-seedance-2-0-fast)
+- [dLazy CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy service](https://dlazy.com)
+- [CLI project information (listed in skill metadata)](https://github.com/dlazy-ai/cli)
+
+## Skill Output:
+
+**Output Type(s):** [Media files, JSON]
+
+**Output Format:** [JSON result metadata with hosted media URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated media URLs; duration and resolution can be configured.]
+
+## Skill Version(s):
+
+1.3.40 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

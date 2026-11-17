@@ -1,0 +1,135 @@
+# 分片：首次安装登录领钥（对应 references/api-auth.md）；路径项由 references/openapi.yaml 引用。
+# 本分片三个接口均无鉴权（security: []）——它们服务于「还没有密钥」的用户。
+OpenV1AuthAgreement:
+    get:
+      operationId: get_auth_agreement
+      summary: 登录前风险告知
+      description: |
+        取回必须向用户展示的风险告知。无需鉴权。
+        - highlights 必须原文展示给用户并取得明确同意。
+        - version 在登录时作为 agreementVersion 原样回传。
+      security: []
+      responses:
+        '200':
+          description: 风险告知
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '../openapi.yaml#/components/schemas/AuthAgreement'
+
+
+OpenV1AuthSmsSend:
+    post:
+      operationId: auth_send_code
+      summary: 发送登录/注册验证码
+      description: |
+        向用户手机号发送短信验证码。无需鉴权。
+        同一手机号 1 分钟只能发 1 条，单号单日与单 IP 每小时均有上限；触发限制时按 errorInfo 等待，不要循环重试。
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [mobileNum]
+              properties:
+                mobileNum:
+                  type: string
+                  pattern: '^\d{11}$'
+                  description: 11 位手机号
+                  example: "13800000000"
+      responses:
+        '200':
+          description: 发送结果
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          codeKey:
+                            type: string
+                            description: 验证码句柄；服务端已按手机号暂存，登录时无需回传
+                          maskedMobileNum:
+                            type: string
+                            example: "138****0000"
+                          expireMinutes:
+                            type: integer
+                            description: 验证码有效期（分钟）
+                          codeLength:
+                            type: integer
+                            example: 4
+                            description: >-
+                              验证码位数（纯数字）。按此长度向用户索取，不要自行猜测；
+                              该值由服务端按来源动态决定，以本字段为准，不要硬编码。
+                          nextStep:
+                            type: string
+
+
+OpenV1AuthLogin:
+    post:
+      operationId: auth_login
+      summary: 登录/注册并领取模拟盘 API Key
+      description: |
+        手机号 + 验证码登录；未注册的手机号会自动注册。无需鉴权。
+        - 只需 mobileNum + verifyCode：codeKey 由服务端按手机号暂存并自动取回。
+        - 登录成功会自动开通模拟盘账户，响应中的 simAccountReady / simAccountBalance 即为账户状态。
+        - 只签发**模拟盘**密钥；实盘权限必须由用户在 App 内校验 CTP 交易密码后开通。
+        - 已有可用的模拟盘密钥时直接复用（keyCreated=false）；forceRotate=true 才吊销重发。
+        - 返回的 apiKey 为完整密钥，禁止回显给用户或写入日志。
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [mobileNum, verifyCode]
+              properties:
+                mobileNum:
+                  type: string
+                  pattern: '^\d{11}$'
+                  example: "13800000000"
+                verifyCode:
+                  type: string
+                  pattern: '^\d{4,8}$'
+                  example: "1234"
+                  description: >-
+                    用户收到的短信验证码，位数以发码响应的 codeLength 为准（当前为 4 位）。
+                    必须按字符串原样上传，保留前导零，不要转成数字。
+                codeKey:
+                  type: string
+                  description: 不用传；服务端按手机号暂存并自动取回，仅特殊场景才显式指定
+                agreementVersion:
+                  type: string
+                  description: 用户已确认的风险告知版本号；首次登录必填
+                  example: sim-risk-1
+                name:
+                  type: string
+                  description: 密钥备注名，可选
+                forceRotate:
+                  type: boolean
+                  default: false
+                  description: true 时吊销原模拟盘密钥并重新签发，旧密钥立即失效
+      responses:
+        '200':
+          description: 登录结果与密钥
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '../openapi.yaml#/components/schemas/AuthLoginResult'

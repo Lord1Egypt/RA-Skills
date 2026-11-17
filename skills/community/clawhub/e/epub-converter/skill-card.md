@@ -1,43 +1,60 @@
-## Description: <br>
-Convert EPUB ebooks between Traditional and Simplified Chinese, including text content, metadata, table of contents repair, and a newly written EPUB output file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts EPUB ebooks between Traditional and Simplified Chinese, including text content, metadata, and table-of-contents repair.
 
-## Publisher: <br>
-[johnzhaoxiao](https://clawhub.ai/user/johnzhaoxiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnzhaoxiao](https://clawhub.ai/user/johnzhaoxiao)
 
-## Use Case: <br>
-External users and developers use this skill to convert Chinese-language EPUB files between Traditional and Simplified Chinese while preserving ebook structure and producing a converted EPUB file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review notes guidance involving DRM removal. <br>
-Mitigation: Use only on EPUB files the user is authorized to modify and avoid DRM-circumvention workflows. <br>
-Risk: The security review notes first-run installation of unpinned Python packages. <br>
-Mitigation: Preinstall or pin dependencies in a controlled environment before using the skill in production. <br>
+## Use Case:
 
+External users and developers use this skill to convert authorized Chinese EPUB ebooks between Traditional and Simplified Chinese while preserving the original file and producing a new EPUB.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/johnzhaoxiao/epub-converter) <br>
-- [OpenCC project](https://github.com/BYVoid/OpenCC) <br>
-- [ebooklib project](https://github.com/aerkalov/ebooklib) <br>
-- [EPUB specification](http://idpf.org/epub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [EPUB file output with Markdown and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a converted EPUB file; default output names add a Simplified or Traditional Chinese suffix unless an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact documentation) <br>
+Risk: First run may install unpinned Python packages into a persistent local virtual environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies from reviewed, pinned versions or run the conversion in an isolated environment before using it with valuable ebooks.
+
+Risk: Artifact guidance mentions removing DRM before conversion.
+
+Mitigation: Use the skill only with EPUB files the user is authorized to convert and avoid following DRM-removal guidance.
+
+Risk: Conversion can alter ebook text, metadata, or table-of-contents structure.
+
+Mitigation: Keep original EPUB files backed up and inspect converted output in an ebook reader before distribution or archival use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnzhaoxiao/skills/epub-converter)
+- [OpenCC project](https://github.com/BYVoid/OpenCC)
+- [ebooklib project](https://github.com/aerkalov/ebooklib)
+- [EPUB specification](http://idpf.org/epub)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and generated EPUB files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a new converted EPUB file and prints conversion status, output path, and file size comparison.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

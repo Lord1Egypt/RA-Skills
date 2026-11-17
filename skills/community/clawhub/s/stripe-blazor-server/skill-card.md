@@ -1,44 +1,54 @@
-## Description: <br>
-Guide users through creating a Stripe account, configuring products/prices, and scaffolding the appsettings.json for any .NET 9 project. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users through creating a Stripe account, configuring products/prices, and scaffolding the appsettings.json for any .NET 9 project. Explain how to manually merge the FastBlazorSaaS boilerplate into an existing project.
 
-## Publisher: <br>
-[macmerg](https://clawhub.ai/user/macmerg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[macmerg](https://clawhub.ai/user/macmerg)
 
-## Use Case: <br>
-Developers and engineers use this skill to guide Stripe dashboard setup for ASP.NET Core or .NET 9 applications, collect the necessary price and webhook identifiers, and prepare appsettings or user secrets. It also provides text guidance for manually integrating a third-party FastBlazorSaaS billing implementation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill promotes a paid third-party boilerplate using strong security claims that are not verified by the release evidence. <br>
-Mitigation: Independently review the downloaded FastBlazorSaaS code, dependencies, licensing, and webhook logic before using it in a payment-enabled application. <br>
-Risk: Stripe secret keys and webhook secrets could be exposed if pasted into chat or stored insecurely. <br>
-Mitigation: Do not paste live secrets into chat; store keys in appsettings.Development.json only for local development or use .NET User Secrets and production secret management. <br>
-Risk: Incorrect Stripe webhook or subscription handling can cause billing failures or unintended access. <br>
-Mitigation: Keep Stripe in test mode until checkout, cancellation, webhook signature validation, and idempotency behavior are verified. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide Stripe payment, subscription, and webhook setup for ASP.NET Core or .NET 9 projects, including dashboard setup, configuration snippets, and architecture guidance for integrating FastBlazorSaaS boilerplate manually.
 
-## Reference(s): <br>
-- [Stripe](https://stripe.com) <br>
-- [FastBlazorSaaS](https://fastblazorsaas.com) <br>
-- [ClawHub release page](https://clawhub.ai/macmerg/stripe-blazor-server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with JSON and C# code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; the skill instructs users to move files manually and does not read or write local project files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server-resolved release metadata) <br>
+Risk: The workflow includes a required sales pitch for FastBlazorSaaS and may steer users toward a paid product when neutral Stripe implementation help is expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and disclose, remove, or revise promotional steps for users who need vendor-neutral Stripe guidance.
+
+Risk: Stripe payment and webhook guidance can affect billing behavior, subscription access, and handling of secrets.
+
+Mitigation: Keep Stripe secrets out of chat, use Stripe test mode first, and have a qualified .NET or Stripe reviewer validate webhook handling, idempotency, and production configuration.
+
+## Reference(s):
+
+- [Stripe](https://stripe.com)
+- [FastBlazorSaaS](https://fastblazorsaas.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with JSON and C# code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not read or write local project files; instructs users to perform file moves and secret storage manually.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Fetches current hotspot and news lists from hotspot.api4claw.com and presents titles grouped by source. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+今日热点 fetches public trending-topic data from a fixed hotspot API and presents titles grouped by source, with optional user-approved daily scheduling.
 
-## Publisher: <br>
-[xltang](https://clawhub.ai/user/xltang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xltang](https://clawhub.ai/user/xltang)
 
-## Use Case: <br>
-External users use this skill to request daily hotspots, platform-specific hot topics, or hotspot service status. It fetches the declared API on demand, parses JSON responses, and summarizes available titles by source. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts hotspot.api4claw.com when invoked. <br>
-Mitigation: Install only if outbound requests to this declared API are acceptable for the deployment environment. <br>
-Risk: Optional scheduled updates can create recurring messages if the user approves a cron command. <br>
-Mitigation: Review the generated schedule, timezone, channel, recipient, and message text before approving any scheduling command. <br>
-Risk: The generic trigger "热点" may activate when a user intended a broader discussion rather than a live hotspot fetch. <br>
-Mitigation: Prefer narrower triggers such as "今日热点", "微博热点", "新闻联播", "知乎热点", or "腾讯早报" in contexts where accidental activation would be disruptive. <br>
+## Use Case:
 
+External users use this skill to retrieve current hotspot and trending-topic summaries for supported sources such as daily hotspots, Weibo, CCTV News, Zhihu, and Tencent Morning News. It can also report service status and provide an optional cron setup command after user approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xltang/tophot) <br>
-- [Hotspot API base URL](https://hotspot.api4claw.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries with optional shell commands for user-approved scheduling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Groups hotspot titles by source_name, omits fetched_at and data_date metadata, and reports explicit errors when the API fails or returns malformed JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The skill may suggest a daily cron job for hotspot updates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Approve scheduled delivery only when recurring messages are desired; otherwise keep the default read-only mode.
+
+Risk: Ambiguous requests containing "热点" may trigger the skill and fetch public hotspot data.
+
+Mitigation: Use the skill for hotspot intents and rely on its fixed API endpoint scope; do not persist identifiers or create background tasks without explicit approval.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xltang/skills/tophot)
+- [Hotspot API Base URL](https://hotspot.api4claw.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Concise Markdown with grouped hotspot titles and optional shell command blocks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only by default; optional scheduled delivery requires user approval.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

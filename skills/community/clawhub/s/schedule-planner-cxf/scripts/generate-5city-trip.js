@@ -1,187 +1,39 @@
-const { spawnSync } = require('child_process');
-const fs = require('fs');
-const path = require('path');
-
-const TUNIU_API_KEY = process.env.TUNIU_API_KEY || '';
-
-// 优先使用 npx tuniu（更受控的执行方式），降级才尝试本地全局 npm bin 路径
-function resolveTuniu() {
-  // 1. 尝试 npx（推荐，减少对用户 APPDATA/HOME 下可写路径的直接信任）
-  return { useNpx: true, cmd: 'npx', argsPrefix: ['tuniu'] };
-}
-
-const tuniuExec = resolveTuniu();
-
-function callTuniu(server, tool, params) {
-  const baseArgs = [...(tuniuExec.argsPrefix || []), 'call', server, tool, '-a', JSON.stringify(params)];
-  const spawnCmd = tuniuExec.useNpx ? 'npx' : 'node';
-  const spawnArgs = tuniuExec.useNpx ? baseArgs : [tuniuExec.bin, ...baseArgs];
-
-  const result = spawnSync(spawnCmd, spawnArgs, {
-    env: { ...process.env, TUNIU_API_KEY },
-    encoding: 'utf8',
-    stdio: ['pipe', 'pipe', 'pipe'],
-    timeout: 30000,
-    shell: false
-  });
-
-  try {
-    const parsed = JSON.parse(result.stdout);
-    if (parsed.result?.structuredContent?.result) {
-      return JSON.parse(parsed.result.structuredContent.result);
+'use strict';
+const { CSP, escapeHtml, readJson, writeOutput, object, array, text, number } = require('./lib/safety');
+function validateComparison(raw) {
+  object(raw, ['routes', 'hotels', 'mock', 'startDate'], 'comparison');
+  if (typeof raw.mock !== 'boolean') throw new Error('Comparison requires a mock flag.');
+  array(raw.routes, 'routes', 30); array(raw.hotels, 'hotels', 30);
+  const optionFields = ['trainNo', 'flightNo', 'airline', 'departureTime', 'arrivalTime', 'duration', 'price', 'seatType', 'departureAirport', 'arrivalAirport', 'hotelId', 'name', 'address', 'business', 'rating', 'starName', 'meal', 'refund', 'reviewCount'];
+  for (const row of [...raw.routes, ...raw.hotels]) {
+    const isRoute = raw.routes.includes(row);
+    object(row, isRoute ? ['type', 'from', 'to', 'date', 'options'] : ['city', 'checkIn', 'checkOut', 'options'], 'comparison row');
+    if (isRoute && !['train', 'flight'].includes(row.type)) throw new Error('Unsupported route type.');
+    for (const [key, value] of Object.entries(row)) if (key !== 'options') text(value, key, true);
+    array(row.options, 'options', 10);
+    for (const opt of row.options) {
+      object(opt, optionFields, 'option');
+      for (const [key, value] of Object.entries(opt)) {
+        if (value === undefined || (key === 'price' && value === null)) continue;
+        if (['price', 'rating', 'reviewCount'].includes(key)) number(value, key); else text(value, key);
+      }
     }
-    if (parsed.result?.content?.[0]?.text) {
-      return JSON.parse(parsed.result.content[0].text);
-    }
-    return parsed;
-  } catch (e) {
-    return null;
   }
-}
-
-// Query trains
-function queryTrain(from, to, date) {
-  console.log(`${from} -> ${to} (${date})`);
-  const result = callTuniu('train', 'searchLowestPriceTrain', {
-    departureCityName: from,
-    arrivalCityName: to,
-    departureDate: date
-  });
-
-  const trains = result?.data || [];
-  const gaotie = trains.filter(t => t.trainType === 'high-speed' || t.trainNum?.startsWith('G') || t.trainNum?.startsWith('D'));
-  return (gaotie.length > 0 ? gaotie : trains).slice(0, 3).map(t => ({
-    trainNo: t.trainNum,
-    departureTime: t.departureTime?.split(' ')[1] || t.departureTime,
-    arrivalTime: t.arrivalTime?.split(' ')[1] || t.arrivalTime,
-    duration: t.duration,
-    price: parseFloat(t.price?.edzPrice || t.price?.ydzPrice || t.price?.wzPrice || 0),
-    seatType: t.price?.edzPrice ? '二等座' : '硬座'
-  }));
-}
-
-// Query flights
-function queryFlight(from, to, date) {
-  console.log(`${from} -> ${to} (${date})`);
-  const result = callTuniu('flight', 'searchLowestPriceFlight', {
-    departureCityName: from,
-    arrivalCityName: to,
-    departureDate: date
-  });
-
-  const flights = result?.data || [];
-  return flights.slice(0, 3).map(f => ({
-    flightNo: f.flightNumber,
-    airline: f.airlineCompany,
-    departureTime: f.departureTime?.split(' ')[1] || f.departureTime,
-    arrivalTime: f.arrivalTime?.split(' ')[1] || f.arrivalTime,
-    duration: f.flyTime || f.totalDuration,
-    price: parseFloat(f.basePrice || 0),
-    departureAirport: f.departureAirport,
-    arrivalAirport: f.arrivalAirport
-  }));
-}
-
-// Query hotels
-function queryHotel(city, checkIn, checkOut) {
-  console.log(`Hotel: ${city} (${checkIn})`);
-  const result = callTuniu('hotel', 'tuniu_hotel_search', {
-    cityName: city,
-    checkIn: checkIn,
-    checkOut: checkOut,
-    pageNum: 1
-  });
-
-  const hotels = result?.hotels || [];
-  return hotels.slice(0, 3).map(h => ({
-    hotelId: String(h.hotelId),
-    name: h.hotelName,
-    address: h.address,
-    business: h.business,
-    price: h.lowestPrice,
-    rating: h.commentScore,
-    starName: h.starName,
-    meal: h.meal,
-    refund: h.refund
-  }));
-}
-
-// Main flow
-console.log('Starting 5-city business trip query...\n');
-
-const routes = [
-  { type: 'train', from: '杭州', to: '南京', date: '2026-05-04', options: [] },
-  { type: 'flight', from: '南京', to: '上海', date: '2026-05-05', options: [] },
-  { type: 'train', from: '上海', to: '苏州', date: '2026-05-06', options: [] },
-  { type: 'train', from: '苏州', to: '北京', date: '2026-05-07', options: [] },
-  { type: 'flight', from: '北京', to: '杭州', date: '2026-05-08', options: [] }
-];
-
-const hotels = [
-  { city: '南京', checkIn: '2026-05-04', checkOut: '2026-05-05', options: [] },
-  { city: '上海', checkIn: '2026-05-05', checkOut: '2026-05-06', options: [] },
-  { city: '苏州', checkIn: '2026-05-06', checkOut: '2026-05-07', options: [] },
-  { city: '北京', checkIn: '2026-05-07', checkOut: '2026-05-08', options: [] }
-];
-
-// Query routes
-routes.forEach(r => {
-  if (r.type === 'train') {
-    r.options = queryTrain(r.from, r.to, r.date);
-  } else {
-    r.options = queryFlight(r.from, r.to, r.date);
+  function escape(value) {
+    if (typeof value === 'string') return escapeHtml(value);
+    if (Array.isArray(value)) return value.map(escape);
+    if (value && typeof value === 'object') return Object.fromEntries(Object.entries(value).map(([k,v]) => [k,escape(v)]));
+    return value;
   }
-});
-
-// Query hotels
-hotels.forEach(h => {
-  h.options = queryHotel(h.city, h.checkIn, h.checkOut);
-});
-
-// === 输出目录（默认本地 output/，避免无提示写入 Desktop）===
-const args = process.argv.slice(2);
-const useDesktop = args.includes('--desktop');
-const shouldOpen = args.includes('--open');
-
-const baseDir = useDesktop
-  ? path.join(process.env.USERPROFILE || process.env.HOME || '.', 'Desktop')
-  : path.join(__dirname, '..', 'output');
-
-if (!fs.existsSync(baseDir)) {
-  fs.mkdirSync(baseDir, { recursive: true });
+  return escape(raw);
 }
-
-const data = { routes, hotels };
-
-// Save data
-const dataFile = path.join(baseDir, '5city-trip.json');
-fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
-console.log('\nData saved to:', dataFile);
-if (useDesktop) {
-  console.warn('⚠️  使用了 --desktop 选项，文件已写入用户桌面。请确保这是您期望的行为。');
+function main(args = process.argv.slice(2)) {
+  if (args.length !== 2 || args[0] !== '--input') throw new Error('Usage: node scripts/generate-5city-trip.js --input QUERY_RESULT.json');
+  const html = generateHTML(readJson(args[1]));
+  console.log('Comparison saved:', writeOutput(html, 'comparison'));
 }
-
-// Generate HTML
-const html = generateHTML(data);
-const htmlPath = path.join(baseDir, '5city-trip.html');
-fs.writeFileSync(htmlPath, html);
-console.log(`Trip page generated: ${htmlPath}`);
-
-// Open browser only when --open
-if (shouldOpen) {
-  const openResult = spawnSync('powershell', [
-    '-NoProfile', '-Command', 'Start-Process', htmlPath
-  ], { stdio: 'pipe', shell: false, timeout: 10000 });
-  if (openResult.error) {
-    console.log('Auto-open failed, please open manually:', htmlPath);
-  } else {
-    console.log('Opened in browser.');
-  }
-} else {
-  console.log('提示：添加 --open 参数可自动用浏览器打开生成的页面。');
-}
-
-function generateHTML(data) {
+function generateHTML(raw) {
+  const data = validateComparison(raw);
   const routesHtml = data.routes.map((r, i) => {
     const optionsHtml = r.options.map((opt, j) => `
       <tr class="option-row">
@@ -189,9 +41,9 @@ function generateHTML(data) {
         <td>${opt.departureTime}</td>
         <td>${opt.arrivalTime}</td>
         <td>${opt.duration}</td>
-        <td class="price">¥${opt.price}</td>
+        <td class="price">${opt.price == null ? '未知' : `¥${opt.price}`}</td>
         <td>${opt.seatType || ''}${opt.departureAirport ? `<br><small>${opt.departureAirport}→${opt.arrivalAirport}</small>` : ''}</td>
-        <td>${j === 0 ? '推荐' : ''}</td>
+        <td>${j === 0 ? '首个返回结果' : ''}</td>
       </tr>
     `).join('');
 
@@ -212,10 +64,10 @@ function generateHTML(data) {
         <td>${opt.name}</td>
         <td>${opt.business}</td>
         <td>${opt.starName}</td>
-        <td class="price">¥${opt.price}</td>
+        <td class="price">${opt.price == null ? '未知' : `¥${opt.price}`}</td>
         <td>${opt.rating}分</td>
         <td>${opt.meal} | ${opt.refund}</td>
-        <td>${j === 0 ? '推荐' : ''}</td>
+        <td>${j === 0 ? '首个返回结果' : ''}</td>
       </tr>
     `).join('');
 
@@ -234,6 +86,7 @@ function generateHTML(data) {
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
+  ${CSP}
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>5 城商务出差行程单</title>
   <style>
@@ -260,13 +113,9 @@ function generateHTML(data) {
 <body>
   <div class="container">
     <div class="header">
-      <h1>5 城商务出差行程单</h1>
-      <p>杭州 → 南京 → 上海 → 苏州 → 北京 → 杭州</p>
-      <div class="info">
-        <div class="info-item"><label>出发日期</label><value>2026-05-04</value></div>
-        <div class="info-item"><label>返回日期</label><value>2026-05-08</value></div>
-        <div class="info-item"><label>总天数</label><value>5 天 4 晚</value></div>
-      </div>
+      <h1>多城市行程比价</h1>
+      ${data.mock ? '<p>模拟数据 · 非实时报价</p>' : '<p>查询报价仅供参考，未预订</p>'}
+      <p>${data.routes.map(r => `${r.from} → ${r.to} (${r.date})`).join(' / ')}</p>
     </div>
 
     <div style="color: white; margin-bottom: 15px; font-size: 18px;">交通安排</div>
@@ -276,7 +125,7 @@ function generateHTML(data) {
     ${hotelsHtml}
 
     <div class="summary">
-      <h2>费用总计</h2>
+      <h2>已知报价小计（首个返回选项，未含缺失报价）</h2>
       <div class="summary-grid">
         <div class="summary-item" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
           <label>交通费用</label>
@@ -292,3 +141,7 @@ function generateHTML(data) {
 </body>
 </html>`;
 }
+if (require.main === module) {
+  try { main(); } catch { console.error('Comparison generation failed. Check input data and --input argument.'); process.exitCode = 1; }
+}
+module.exports = { generateHTML };

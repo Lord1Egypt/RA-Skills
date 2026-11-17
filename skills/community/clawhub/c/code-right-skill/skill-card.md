@@ -1,43 +1,54 @@
-## Description: <br>
-Code Right Skill creates software copyright application material generation tasks by sending a system name and notification email to softcraft.cloud, which prepares formatted documents, screenshots, ZIP packaging, and email delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Code-Right creates hosted software copyright application material generation tasks that produce formatted Word documents, browser screenshots, ZIP packages, and email download links from a system name and recipient email.
 
-## Publisher: <br>
-[ziyiyu](https://clawhub.ai/user/ziyiyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ziyiyu](https://clawhub.ai/user/ziyiyu)
 
-## Use Case: <br>
-External users and agent operators use this skill to start software copyright registration material generation for a named system and receive the completed package by email. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the software or system name, recipient email, generated documents, and any optional access token to softcraft.cloud. <br>
-Mitigation: Install and use the skill only when softcraft.cloud is trusted for those materials and credentials. <br>
-Risk: A mistyped notification email could expose confidential business or legal materials to the wrong recipient. <br>
-Mitigation: Confirm the destination email before creating a task, especially for confidential materials. <br>
-Risk: The workflow depends on the remote softcraft.cloud service being available. <br>
-Mitigation: Confirm softcraft.cloud is reachable before relying on the skill for time-sensitive document generation. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to submit a software system name and notification email for automated software copyright application material generation. The hosted workflow returns a task identifier and later sends generated materials to the requested recipient.
 
-## Reference(s): <br>
-- [Code Right Skill on ClawHub](https://clawhub.ai/ziyiyu/code-right-skill) <br>
-- [Softcraft Cloud](https://softcraft.cloud) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [JSON task creation response from a remote service, with generated Word documents and ZIP delivery handled by email.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a system name and notification email; an access token is optional for filtering and download authorization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata, target metadata, and skill frontmatter) <br>
+Risk: The skill sends the system name, recipient email, optional system description, and optional access token to softcraft.cloud for hosted processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if hosted processing is approved, avoid confidential system details unless permitted, and provide an access token only when authenticated filtering or protected downloads are needed.
+
+Risk: Generated material download details are sent to the supplied email address.
+
+Mitigation: Double-check the notification email before creating a task.
+
+## Reference(s):
+
+- [Code-Right homepage](https://softcraft.cloud)
+- [ClawHub skill page](https://clawhub.ai/ziyiyu/skills/code-right-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, JSON, Files]
+
+**Output Format:** [JSON task response with hosted document, screenshot, ZIP, and email delivery side effects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a system name and notification email; optional system description and access token may be provided.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

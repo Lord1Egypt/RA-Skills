@@ -1,41 +1,53 @@
-## Description: <br>
-Run LinkedIn advertising campaigns for B2B using guidance for Sponsored Content, Message Ads, Document Ads, Lead Gen Forms, professional targeting, bidding strategy, and optimization for high-LTV products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run LinkedIn advertising campaigns for B2B: Sponsored Content, Message Ads, Document Ads, and Lead Gen Forms, with guidance on professional targeting, bidding strategy, and optimization for high-LTV B2B products.
 
-## Publisher: <br>
-[adkit](https://clawhub.ai/user/adkit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adkit](https://clawhub.ai/user/adkit)
 
-## Use Case: <br>
-Marketing teams, founders, and growth operators use this skill to plan and tune B2B LinkedIn Ads campaigns around audience fit, ad format, funnel stage, bidding, and lead generation goals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketing recommendations could influence ad spend or campaign performance. <br>
-Mitigation: Validate recommendations against the user's own campaign data, budget, and conversion economics before acting on them. <br>
-Risk: Users may be tempted to share LinkedIn credentials, access tokens, customer lists, or private lead exports while discussing campaigns. <br>
-Mitigation: Do not share sensitive account credentials or private customer and lead data unless a future version clearly explains why they are needed and how they are handled. <br>
+## Use Case:
 
+Marketing operators, growth teams, and B2B founders use this skill to plan LinkedIn Ads campaigns, select targeting options, choose ad formats, and reason about budget-sensitive campaign structure.
 
-## Reference(s): <br>
-- [Adkit homepage](https://adkit.so) <br>
-- [ClawHub skill page](https://clawhub.ai/adkit/linkedin-ads-playbook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown or plain-text advisory response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; no code execution, account access, credentials, or persistent permissions requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Budget and performance claims may not match a user's market, offer, or current LinkedIn Ads platform behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate guidance against current platform policies and the user's own campaign data before committing spend.
+
+Risk: Overly narrow B2B targeting can reduce delivery or produce misleading campaign conclusions.
+
+Mitigation: Review audience size, delivery, and bid settings before scaling recommendations into production campaigns.
+
+## Reference(s):
+
+- [Adkit homepage](https://adkit.so)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory campaign strategy text; no tools, credentials, automation, or persistent access requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

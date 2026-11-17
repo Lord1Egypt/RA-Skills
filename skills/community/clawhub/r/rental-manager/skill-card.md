@@ -1,41 +1,58 @@
-## Description: <br>
-Rental Manager helps manage rental bookkeeping for Quebec, Levis, and Longueuil properties, including income and expense records, receipt uploads, T776 tax preparation, and LOC tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rental bookkeeping for Quebec, Levis, and Longueuil properties, including income and expense records, receipt uploads to Google Drive, T776 preparation, and LOC tracking.
 
-## Publisher: <br>
-[clairproqc-star](https://clawhub.ai/user/clairproqc-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clairproqc-star](https://clawhub.ai/user/clairproqc-star)
 
-## Use Case: <br>
-Property owners or rental managers use this skill to keep rental income, expenses, receipts, tax categories, and LOC activity organized for the listed Quebec rental properties. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Canada (Quebec) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move and rename Google Drive files and update Google Sheets through the user's configured Google account. <br>
-Mitigation: Use it only with the intended Google account and confirm the property, receipt file, filename, and target sheet row before allowing Drive or Sheets changes. <br>
-Risk: The skill contains fixed Google Sheet IDs and Drive folder IDs for specific rental properties. <br>
-Mitigation: Install it only if those property records and folders are yours or expected, and update the reference file before use if any ID is stale. <br>
+## Use Case:
 
+Property owners or managers use this skill to maintain rental bookkeeping records for Quebec-area properties, attach receipts in Google Drive, prepare T776 tax summaries, and track LOC drawdowns and interest.
 
-## Reference(s): <br>
-- [Rental Properties Reference](references/properties.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/clairproqc-star/rental-manager) <br>
+### Deployment Geography for Use:
 
+Canada (Quebec)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Google Drive and Google Sheets actions executed through the gog CLI when receipt handling is used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires gog to be installed and authenticated to the intended Google account before Drive or Sheets changes are made.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can make persistent Google Drive and Sheets changes, including moving or renaming files and updating spreadsheet links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a Google account limited to the intended rental folders and sheets, and require confirmation before receipt uploads, Drive renames or moves, and spreadsheet updates.
+
+Risk: A supplied file ID could point outside the expected receipt staging or upload location.
+
+Mitigation: Validate file IDs against a trusted upload or staging location before moving or renaming Drive files.
+
+Risk: Receipt links could be attached to the wrong spreadsheet row if the index is stale or incorrect.
+
+Mitigation: Check the spreadsheet index and target tab before updating the File Link column.
+
+## Reference(s):
+
+- [Rental Properties Reference (2026)](references/properties.md)
+- [ClawHub Rental Manager Skill](https://clawhub.ai/clairproqc-star/skills/rental-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance and JSON-style status objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can result in persistent Google Drive file changes and Google Sheets updates when connected to the required gog command-line tool.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

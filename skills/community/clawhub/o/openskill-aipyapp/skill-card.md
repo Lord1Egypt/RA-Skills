@@ -1,42 +1,58 @@
-## Description: <br>
-AIPyApp is an AI-driven Python automation skill that helps install and configure aipyapp, then run natural-language tasks for web scraping, file processing, content conversion, and generated Python execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AIPyApp is an AI-driven Python automation skill that helps agents install and configure AIPyApp, then use natural-language instructions for web scraping, file processing, content conversion, and script execution.
 
-## Publisher: <br>
-[riverfor](https://clawhub.ai/user/riverfor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[riverfor](https://clawhub.ai/user/riverfor)
 
-## Use Case: <br>
-Developers and technical users use this skill to operate AIPyApp for automating Python-based tasks from natural language, including scraping pages, processing files, converting content, and running generated scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Python or task plans can run with broad local authority and may make unintended changes. <br>
-Mitigation: Review generated code before execution and run tasks in a container, virtual environment, or other low-privilege workspace. <br>
-Risk: Installation guidance includes unpinned package installation and system-package override behavior. <br>
-Mitigation: Prefer a virtual environment, avoid --break-system-packages where possible, and pin and verify the aipyapp package version before use. <br>
-Risk: LLM API keys and task outputs may be exposed through configured providers or result sharing. <br>
-Mitigation: Use a dedicated low-privilege API key, disable result sharing and auto-install unless needed, and avoid sending sensitive data in prompts. <br>
+## Use Case:
 
+Developers and automation users use this skill to install and configure AIPyApp, then ask an agent to run Python-backed automation tasks such as web scraping, image processing, file conversion, and interactive or API-based execution.
 
-## Reference(s): <br>
-- [AIPyApp configuration reference](references/config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce generated Python, dependency installation commands, and execution results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The installer and setup guidance can make system-wide Python package changes, including use of `--break-system-packages`.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment or with pipx, pin the `aipyapp` package version, and avoid running the installer as root unless system-level changes are intended.
+
+Risk: The skill enables broad AI-generated code execution and automatic dependency installation.
+
+Mitigation: Review generated scripts and dependencies before execution, constrain the working directory, and disable auto-install behavior unless it is required for the task.
+
+Risk: LLM provider configuration requires API keys and includes result-sharing options in the sample configuration.
+
+Mitigation: Keep API keys out of logs and generated files, store secrets in a managed secret store when possible, and disable result sharing unless explicitly needed.
+
+## Reference(s):
+
+- [AIPyApp configuration template](references/config.md)
+- [ClawHub skill page](https://clawhub.ai/riverfor/skills/openskill-aipyapp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, TOML configuration examples, and generated Python automation behavior]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May install Python dependencies, invoke configured LLM providers, and execute generated automation scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

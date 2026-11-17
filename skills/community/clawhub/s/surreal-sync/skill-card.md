@@ -1,43 +1,58 @@
-## Description: <br>
-Data migration and synchronization to SurrealDB from MongoDB, PostgreSQL, MySQL, Neo4j, Kafka, and JSONL, including full and incremental CDC sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data migration and synchronization to SurrealDB from MongoDB, PostgreSQL, MySQL, Neo4j, Kafka, and JSONL. Full and incremental CDC sync. Part of the surreal-skills collection.
 
-## Publisher: <br>
-[24601](https://clawhub.ai/user/24601) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[24601](https://clawhub.ai/user/24601)
 
-## Use Case: <br>
-Developers and database engineers use this skill to plan and run migrations or synchronization jobs from common data systems into SurrealDB. It helps produce installation commands, source-specific CLI invocations, and configuration guidance for full sync and CDC workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Database migration commands can affect production data or copy sensitive records if used against the wrong source or target. <br>
-Mitigation: Test against staging first, use least-privilege migration accounts, and verify the selected source, target, namespace, and database before running commands. <br>
-Risk: Connection strings and database passwords may be exposed if pasted directly into shell history, logs, or shared prompts. <br>
-Mitigation: Use safer secret handling where the CLI supports it and avoid embedding real database passwords directly in shell commands. <br>
-Risk: The installed surreal-sync crate or upstream repository may differ from the reviewed skill release. <br>
-Mitigation: Verify the crate or upstream repository before installation and prefer a pinned trusted version. <br>
+## Use Case:
 
+Developers and data engineers use this skill to plan and run database migrations or ongoing CDC synchronization into SurrealDB from supported sources such as PostgreSQL, MongoDB, MySQL, Neo4j, Kafka, and JSONL.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/24601/surreal-sync) <br>
-- [surrealdb/surreal-sync upstream repository](https://github.com/surrealdb/surreal-sync) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include database connection strings, SurrealDB endpoint settings, namespace and database names, CDC setup notes, and staging-test guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: ClawHub release metadata; artifact frontmatter lists 1.0.4) <br>
+Risk: The skill can guide high-impact database synchronization or migration operations with weak operational guardrails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review plans before running them, test against non-production targets first, and use least-privileged database accounts.
+
+Risk: Examples may place credentials directly in shell commands or connect to non-local SurrealDB endpoints without transport protections.
+
+Mitigation: Avoid putting passwords directly in shell history and use TLS for non-local SurrealDB endpoints.
+
+Risk: The security verdict for this release is suspicious.
+
+Mitigation: Review before installing or using this skill in any real environment, and pin and verify the surreal-sync version.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/24601/skills/surreal-sync)
+- [Upstream repository reference](https://github.com/surrealdb/surreal-sync)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include database migration commands and operational setup guidance.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

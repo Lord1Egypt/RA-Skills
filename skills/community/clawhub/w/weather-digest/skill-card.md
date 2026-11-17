@@ -1,44 +1,61 @@
-## Description: <br>
-Generate daily Weather Intelligence Digest using NOAA/NWS data with customizable locations and alert monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate daily Weather Intelligence Digest using NOAA/NWS data with customizable locations and alert monitoring.
 
-## Publisher: <br>
-[dannyboy1241](https://clawhub.ai/user/dannyboy1241) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dannyboy1241](https://clawhub.ai/user/dannyboy1241)
 
-## Use Case: <br>
-External users, publishers, and automation builders use this skill to generate daily weather briefings for configured locations, including forecasts and active alert summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Dependency or environment drift can affect repeatable installs. <br>
-Mitigation: Install the skill in a virtual environment and pin or review the requests dependency before use. <br>
-Risk: Configured locations may reveal sensitive audience or operational context. <br>
-Mitigation: Keep config locations appropriate for the intended audience and avoid publishing private location sets. <br>
-Risk: Generated HTML may be republished beyond its original trust boundary. <br>
-Mitigation: HTML-escape or sanitize generated HTML before broad publication. <br>
-Risk: Automation recipes can send digests to unintended paths, recipients, or notification channels. <br>
-Mitigation: Review cron, LaunchAgent, heartbeat, and webhook paths and recipients before enabling automation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dannyboy1241/weather-digest) <br>
-- [NOAA/NWS API](https://api.weather.gov) <br>
+## Use Case:
 
+External users, developers, and operations teams use this skill to generate location-based weather briefings with forecasts and active alert summaries for publication, email, dashboards, or automation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, html, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, HTML, and JSON files with CLI usage and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3, pip, requests, a location configuration file, and network access to api.weather.gov.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Configured latitude and longitude values are sent to NOAA/NWS when forecasts and alerts are requested.
+
+Mitigation: Use only locations you are comfortable sharing with NOAA/NWS and avoid sensitive private coordinates.
+
+Risk: Optional Slack, heartbeat, cron, LaunchAgent, Things, and Reminders recipes can distribute weather output or run on a schedule.
+
+Mitigation: Enable automation only with user intent, review recipients and channels, and document how to disable scheduled jobs.
+
+Risk: Generated HTML may include dynamic weather fields from external data sources.
+
+Mitigation: Review or escape dynamic fields before publishing or embedding generated HTML.
+
+Risk: Unpinned Python dependency ranges can reduce install reproducibility over time.
+
+Mitigation: Use pinned dependencies or a lockfile for controlled deployments.
+
+## Reference(s):
+
+- [Weather Digest on ClawHub](https://clawhub.ai/dannyboy1241/skills/weather-digest)
+- [NOAA/NWS API](https://api.weather.gov)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, HTML, and JSON files with CLI setup and automation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3, pip, requests, and a JSON configuration containing location names with latitude and longitude.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

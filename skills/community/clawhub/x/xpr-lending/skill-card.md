@@ -1,43 +1,58 @@
-## Description: <br>
-Interact with LOAN Protocol on XPR Network to supply assets, borrow against collateral, redeem, repay loans, and claim LOAN token rewards on mainnet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with LOAN Protocol on XPR Network to supply assets, borrow against collateral, redeem, repay loans, and claim LOAN token rewards on mainnet.
 
-## Publisher: <br>
-[paulgnz](https://clawhub.ai/user/paulgnz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[paulgnz](https://clawhub.ai/user/paulgnz)
 
-## Use Case: <br>
-External users and developers use this skill to query LOAN Protocol markets and user positions, then prepare confirmed XPR Network lending actions such as supplying, borrowing, repaying, redeeming, withdrawing collateral, and claiming rewards. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can sign real XPR mainnet lending transactions using private-key environment variables. <br>
-Mitigation: Install only when the publisher and runtime are trusted, use a dedicated or limited-permission XPR account when possible, and do not provide XPR_PRIVATE_KEY or XPR_ACCOUNT unless signing is intended. <br>
-Risk: Borrowing, redeeming, or withdrawing collateral can increase liquidation risk or create financial loss. <br>
-Mitigation: Verify every market, token, amount, borrower, collateral position, utilization level, and liquidation buffer before setting confirmed=true. <br>
-Risk: The manifest does not declare the private-key environment variables needed for write operations. <br>
-Mitigation: Review runtime configuration before use and treat any request for XPR_PRIVATE_KEY, XPR_ACCOUNT, or XPR_PERMISSION as sensitive signing setup. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paulgnz/xpr-lending) <br>
-- [XPR mainnet RPC endpoint](https://xpr-mainnet-rpc.saltant.io) <br>
-- [Metal X LOAN stats API](https://identity.api.prod.metalx.com/v1/loan/stats) <br>
+## Use Case:
 
+External users and developers use this skill to inspect LOAN Protocol markets and positions, estimate APY or TVL, and prepare lending, borrowing, repayment, redemption, collateral, and reward-claim actions on XPR Network mainnet.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, API Calls, guidance] <br>
-**Output Format:** [Structured tool responses with transaction details, market data, balances, APY/TVL values, warnings, and error messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Write operations require confirmed=true and XPR signing credentials; read-only tools query mainnet RPC and Metal X API data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can sign XPR Network mainnet financial transactions using local account credentials.
+
+Mitigation: Install only in trusted agent environments, require explicit review before setting confirmed=true, and prefer a limited blockchain permission rather than a broad active key.
+
+Risk: Supplying, borrowing, redeeming, withdrawing collateral, repaying, and claiming rewards affect real mainnet assets.
+
+Mitigation: Review market, amount, account, permission, and transaction details before confirmation; keep borrowing well below collateral limits to reduce liquidation risk.
+
+Risk: Account lookups and market statistics rely on external RPC and API services.
+
+Mitigation: Treat external data as service-dependent, verify important financial figures against trusted sources, and account for availability or data freshness limits.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/paulgnz/skills/xpr-lending)
+- [XPR mainnet RPC endpoint](https://xpr-mainnet-rpc.saltant.io)
+- [Metal X loan stats API](https://identity.api.prod.metalx.com/v1/loan/stats)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON-like tool results with transaction details, market data, position summaries, APY or TVL data, and confirmation prompts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write operations require confirmed=true and use local XPR account credentials when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

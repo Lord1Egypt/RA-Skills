@@ -1,41 +1,57 @@
-## Description: <br>
-Hatsune Miku Monitor provides a desktop system monitor with an animated Hatsune Miku widget, live CPU, memory, disk, and temperature status, edge hiding, opacity controls, and a one-click cleanup action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hatsune Miku Monitor provides a desktop GTK system monitor with an animated character, system status panel, edge hiding, opacity control, and a one-click cleanup action.
 
-## Publisher: <br>
-[1173910773](https://clawhub.ai/user/1173910773) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1173910773](https://clawhub.ai/user/1173910773)
 
-## Use Case: <br>
-External users and developers use this skill to install and run a lightweight Linux desktop monitor with an animated Hatsune Miku floating widget. It is intended for local system visibility and optional manual cleanup actions, not unattended system administration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The one-click boost action can interrupt browser work, remove caches, change swap state, and delete recent system logs. <br>
-Mitigation: Use the cleanup button only as an intentional system-maintenance action after reviewing the behavior and saving active work. <br>
-Risk: Suggested NOPASSWD sudo rules would allow passwordless cache, swap, and journal operations. <br>
-Mitigation: Do not add passwordless sudo rules unless the user accepts those privileges and has reviewed the exact commands. <br>
+## Use Case:
 
+Developers and desktop users can use this skill to install and run a local animated system monitor that displays CPU, memory, disk, and temperature information. It also provides setup, dependency, GIF asset, and autostart guidance for the monitor.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1173910773/hatsune-miku-monitor) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/1173910773) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown installation and usage guidance with shell commands, Python script execution, and systemd configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local desktop-monitor setup and operating guidance; runtime behavior is implemented by the bundled GTK Python script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence, SKILL.md frontmatter, and package.json) <br>
+Risk: The one-click boost action can make disruptive local system changes, including altering cache or swap behavior, pruning logs, deleting user caches, or closing browser renderer processes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the cleanup behavior before use, keep monitoring read-only where possible, and require explicit confirmation before running cleanup actions.
+
+Risk: Passwordless sudoers setup for cleanup commands increases the impact of accidental or unwanted execution.
+
+Mitigation: Avoid the passwordless sudoers instructions unless the administrator has reviewed and accepted the exact commands and scope.
+
+Risk: Autostart configuration can run the desktop monitor and cleanup-capable UI automatically on login.
+
+Mitigation: Enable autostart only when the user intentionally wants persistent startup behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1173910773/skills/hatsune-miku-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with Python, shell, and systemd configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill includes local desktop-monitor scripts and setup guidance; no external API credentials are described in the evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

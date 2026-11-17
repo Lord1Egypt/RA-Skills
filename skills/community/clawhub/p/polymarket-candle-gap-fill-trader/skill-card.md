@@ -1,44 +1,59 @@
-## Description: <br>
-Trades gap-fill reversions on Polymarket 5-minute crypto interval markets using conviction-based position sizing scaled by gap magnitude. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades gap-fill reversions on Polymarket 5-minute crypto interval markets by detecting contradictory strong signals across consecutive intervals and sizing positions by gap magnitude.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-Developers and trading agents use this skill to evaluate and run a Polymarket strategy that looks for gap-fill reversions in BTC, ETH, SOL, and XRP 5-minute interval markets. It defaults to paper trading and requires explicit live mode before placing real Polymarket trades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real-money Polymarket trades. <br>
-Mitigation: Keep the skill in paper mode first and use --live only with position limits the user is willing to risk. <br>
-Risk: The skill requires SIMMER_API_KEY, a high-value trading credential. <br>
-Mitigation: Protect and scope the credential, and review access before deploying the skill. <br>
-Risk: Trading behavior depends on the simmer-sdk dependency and market data returned at runtime. <br>
-Mitigation: Review simmer-sdk and monitor paper-mode results before enabling live trading. <br>
+## Use Case:
 
+External developers and trading agents use this skill to identify gap-fill reversion opportunities in Polymarket 5-minute crypto interval markets and place paper or explicitly live trades through Simmer. It is intended for configurable automated trading workflows that require clear thresholds, position sizing, and execution-mode controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-candle-gap-fill-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown guidance with Python execution commands and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY and uses tunable risk parameters for position size, spread, volume, thresholds, and maximum open positions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: ClawHub release evidence) <br>
+Risk: Live execution can place real Polymarket trades, and the server security review warns that liquidity and total exposure limits may be weaker than documented.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in paper mode by default, avoid --live until reviewed, and add or verify server-side or account-wide position and exposure limits before funding live use.
+
+Risk: SIMMER_API_KEY grants trading authority and can expose funded accounts if over-permissioned.
+
+Mitigation: Use the smallest practical balance and permissions for the credential, rotate it if exposed, and keep it out of logs and shared artifacts.
+
+Risk: The skill depends on simmer-sdk for market access and trade execution behavior.
+
+Mitigation: Pin and review the simmer-sdk dependency before live deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-candle-gap-fill-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Console status text with configurable environment variables and trade API requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to paper trading; live Polymarket trading requires an explicit --live flag and SIMMER_API_KEY.]
+
+## Skill Version(s):
+
+0.0.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

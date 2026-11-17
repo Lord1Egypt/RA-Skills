@@ -1,50 +1,61 @@
-## Description: <br>
-根据论文主题、背景、前人研究、gap、方法和结果，按 Glasman-Deal《Science Research Writing》的四组件/十一句式模型生成、修改或注释研究论文 Introduction；支持英文稿、中文功能注释、段落提纲、已有引言修改和 §1.6 的 250-350 词短引言练习。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps researchers draft, revise, outline, or annotate academic paper introductions using Glasman-Deal's four-component, eleven-sentence model, with support for English drafts and Chinese functional annotations.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Researchers, students, and academic writers use this skill to draft, revise, outline, or diagnose research-paper introductions using the Glasman-Deal four-component introduction model. It supports full English drafts, Chinese functional annotations, paragraph-level plans, existing-draft revision, and short 250-350 word practice introductions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Full-generation requests may write English and Chinese Markdown draft files that contain user-provided research notes. <br>
-Mitigation: Use inline output or single-language output for sensitive work, and review generated files before sharing them. <br>
-Risk: Generated introductions may contain citation placeholders or exercise-only references that are not submission-ready. <br>
-Mitigation: Replace every placeholder with verified real references and confirm any exercise-only citations before academic use. <br>
-Risk: Contribution language can overstate novelty or significance if the user's evidence is incomplete. <br>
-Mitigation: Check contribution markers against actual results, benchmarks, and source evidence before submission. <br>
+## Use Case:
 
+Researchers, graduate students, and academic writers use this skill to plan, draft, revise, or diagnose research-paper introductions. It is especially suited to bilingual workflows that need English introduction text plus Chinese paragraph and sentence function annotations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/junwugit/paper-introduction-writer) <br>
-- [Model Structure](references/model-structure.md) <br>
-- [Output Format](references/output-format.md) <br>
-- [Templates](references/templates.md) <br>
-- [Language Toolkit](references/language-toolkit.md) <br>
-- [Gap Patterns](references/gap-patterns.md) <br>
-- [Writing Practice](references/writing-practice.md) <br>
-- [Writing Tips](references/writing-tips.md) <br>
-- [Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown drafts, annotated Markdown, outlines, diagnostics, or revision guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Full-generation requests may create introduction_en.md and introduction_zh.md; narrower requests can return inline drafts, outlines, diagnosis, or single-language output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A complete-generation task may create English and Chinese Markdown drafts in the current working directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For sensitive unpublished research or controlled workspaces, request inline-only output, a specific output path, or a single-language draft.
+
+Risk: Generated drafts can include citation placeholders or practice-only fake references when the user requests an exercise mode.
+
+Mitigation: Review and replace all citation placeholders before reuse, and do not use practice-only fake references in real submissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/junwugit/skills/paper-introduction-writer)
+- [Four-component model and eleven-sentence structure](references/model-structure.md)
+- [Output format specification](references/output-format.md)
+- [Discipline-specific introduction templates](references/templates.md)
+- [Worked examples](references/examples.md)
+- [Gap expression patterns](references/gap-patterns.md)
+- [Language toolkit](references/language-toolkit.md)
+- [Writing practice mode](references/writing-practice.md)
+- [Reader-friendly writing tips](references/writing-tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown drafts, paragraph outlines, revision notes, diagnostics, and Chinese functional annotations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [For full-generation tasks, the skill may write introduction_en.md and introduction_zh.md in the current working directory; for narrower requests, it can provide inline outlines, diagnostics, single-language drafts, or revision guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,62 @@
-## Description: <br>
-Giraffe Guard scans OpenClaw skill directories for supply chain attack patterns, malicious code, and suspicious behavior with context-aware detection and report output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Giraffe Guard scans OpenClaw skill directories for supply chain attack patterns, malicious code, and suspicious behavior using context-aware grep and Python AST analysis.
 
-## Publisher: <br>
-[lida408](https://clawhub.ai/user/lida408) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache License 2.0 <br>
+## Publisher:
 
+[lida408](https://clawhub.ai/user/lida408)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to scan OpenClaw skills before installation or during CI/CD checks, helping identify critical and warning-level supply chain risks before enabling a skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache License 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may include private source lines, secrets, or credential-like strings from scanned content. <br>
-Mitigation: Treat reports as sensitive artifacts, store them only in trusted locations, and redact findings before sharing outside the intended review group. <br>
-Risk: The scanner is intended to inspect local directories or repositories selected by the user, so scanning untrusted or unintended paths can expose irrelevant or sensitive files in findings. <br>
-Mitigation: Run it only on directories or repositories intended for review, and use skip-directory and whitelist options to keep scans scoped. <br>
-Risk: Detection results can require human judgment because security scanners may report patterns that are legitimate in context. <br>
-Mitigation: Review warnings and critical findings before acting, and document approved exceptions in a whitelist file. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to scan OpenClaw skills and related repositories before installation or in CI, producing findings that help them review potential supply chain risks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lida408/giraffe-guard) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/lida408) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, SARIF, Shell commands, Guidance] <br>
-**Output Format:** [Terminal text, JSON reports, SARIF reports, and Markdown guidance with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exit codes distinguish clean scans, warnings, and critical findings; optional verbose context, quiet mode, severity thresholds, skipped rules, skipped directories, and whitelist files affect report detail.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server release metadata and scripts/audit.sh VERSION) <br>
+Risk: The skill reads directories that users explicitly scan, including files that may contain secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on intended paths and handle generated findings as potentially sensitive because they can include file paths and matched content.
+
+Risk: SARIF output is not authoritative for CI gates until output encoding is fixed.
+
+Mitigation: Treat SARIF results as advisory and require human review or additional validation before using them to block or approve releases.
+
+Risk: Remote-looking targets such as git URLs, git@ addresses, or paths ending in .git can trigger a network clone during pre-install scanning.
+
+Mitigation: Use local directories when network access is not intended, and pass remote targets only when cloning is expected.
+
+Risk: The security verdict is suspicious, so a clean scanner result should not be the only release approval signal.
+
+Mitigation: Pair scanner output with manual review and trusted provenance checks before deploying scanned skills.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lida408/skills/giraffe-guard)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Terminal text, JSON reports, SARIF, and Markdown guidance with bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports severity thresholds, rule skipping, whitelist files, quiet mode, and exit codes for CI.]
+
+## Skill Version(s):
+
+3.1.0 (source: server release evidence and audit.sh VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

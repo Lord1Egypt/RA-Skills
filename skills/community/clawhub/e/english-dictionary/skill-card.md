@@ -1,38 +1,49 @@
-## Description: <br>
-查英语单词的释义、音标、变形、用法例句和搭配短语，参考欧路词典风格。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查英语单词的释义、音标、变形、用法例句和搭配短语，参考欧路词典风格
 
-## Publisher: <br>
-[xyhxyfx](https://clawhub.ai/user/xyhxyfx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xyhxyfx](https://clawhub.ai/user/xyhxyfx)
 
-## Use Case: <br>
-External users and language learners use this skill to look up English words, Chinese-to-English translations, word forms, collocations, example sentences, synonyms, antonyms, and usage comparisons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dictionary answers may contain inaccurate definitions, translations, pronunciations, examples, synonyms, antonyms, or usage distinctions when the underlying language evidence is uncertain. <br>
-Mitigation: State uncertainty, avoid inventing unsupported meanings, and verify important language guidance against trusted dictionary sources. <br>
+## Use Case:
 
+External users use this skill to ask an agent for English vocabulary help, including Chinese and English definitions, UK and US phonetics, word forms, collocations, example sentences with Chinese translations, and basic usage comparisons.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xyhxyfx/english-dictionary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style dictionary entries with bilingual definitions, phonetics, word forms, collocations, examples, and optional synonyms or antonyms] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Chinese translations for definitions and examples; uncertain meanings should be stated rather than invented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Definitions, examples, or usage notes may be inaccurate when generated without a trusted dictionary or corpus.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important vocabulary guidance against a trusted dictionary or corpus before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xyhxyfx/skills/english-dictionary)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown dictionary entry with Chinese and English explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes phonetics, parts of speech, word forms, collocations, translated examples, and optional synonyms or antonyms.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

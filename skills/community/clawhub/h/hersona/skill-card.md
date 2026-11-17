@@ -1,46 +1,60 @@
-## Description: <br>
-Applies hersona character persona attributes to an agent session, including single-session, blended, persistent, reset, scoring, recommendation, creation, and export workflows backed by the hersona CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hersona applies reusable persona attributes to an agent session, blends compatible personality, speech, archetype, visual, and hobby templates, and can export or persist the resulting persona profile.
 
-## Publisher: <br>
-[shiro-0x](https://clawhub.ai/user/shiro-0x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shiro-0x](https://clawhub.ai/user/shiro-0x)
 
-## Use Case: <br>
-Developers and agent users use this skill to apply, inspect, blend, persist, reset, measure, recommend, create, and export generic hersona persona attributes for conversational sessions and downstream agent frameworks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent and reset commands can affect future sessions by writing SOUL.md or changing Hermes persona state. <br>
-Mitigation: Prefer single or multi mode for session-only behavior, and review persistent and reset commands before use. <br>
-Risk: Persistent persona setup can conflict with existing Hermes configuration or require manual config edits. <br>
-Mitigation: Back up and validate config.yaml before applying persistent persona changes, and avoid automatic nested YAML writes. <br>
-Risk: Persona memory input may introduce unwanted markdown-like content or exceed accepted size limits. <br>
-Mitigation: Keep memory values within documented limits and rely on the skill's safelist escaping for markdown-sensitive characters. <br>
+## Use Case:
 
+External users and developers use Hersona when they want an agent to adopt, test, measure, export, or persist a persona assembled from generic attributes rather than a named character. It supports short session-only persona trials, blended personas, persistent profile setup, recommendation flows, and interop exports for other agent frameworks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shiro-0x/skills/hersona) <br>
-- [Publisher Profile](https://clawhub.ai/user/shiro-0x) <br>
-- [Server-Resolved GitHub Import](https://github.com/shiro-0x/hersona/tree/main/skills/hersona) <br>
-- [Project Homepage](https://github.com/shiro-0x/hersona) <br>
-- [REFERENCE.md](artifact/REFERENCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with CLI command examples, system-prompt material, JSON-compatible export formats, configuration snippets, and operational guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce persona prompt material, hersona CLI commands, SOUL.md content, config.yaml snippets, validation checklists, and export payloads for supported agent frameworks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill can change persona and system-prompt behavior across a session or persist it across future sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected attributes, generated SOUL.md, and config.yaml changes before and after persistent or reset operations; test persona changes in single or multi mode before persistence.
+
+Risk: The memory options can persist user-provided context and may capture sensitive information if used carelessly.
+
+Mitigation: Do not place secrets, credentials, private conversation text, or sensitive personal data in --memory or --memory-file; keep memory entries minimal and review them before persistence.
+
+Risk: Some documented shell and git workflows can be disruptive if run directly in an active workspace.
+
+Mitigation: Use safer verification steps and backups before running evaluation recipes or destructive git commands, especially reset operations.
+
+## Reference(s):
+
+- [ClawHub Hersona Skill Page](https://clawhub.ai/shiro-0x/skills/hersona)
+- [Server-Resolved GitHub Source](https://github.com/shiro-0x/hersona/tree/main/skills/hersona)
+- [Hersona Project Homepage](https://github.com/shiro-0x/hersona)
+- [Artifact Reference](artifact/REFERENCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON/messages exports, and YAML or profile configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce persistent profile content, SOUL.md memory sections, persona registry snippets, and deterministic measurement or recommendation reports.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

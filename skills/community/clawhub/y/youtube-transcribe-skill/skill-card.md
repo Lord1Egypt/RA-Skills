@@ -1,39 +1,52 @@
-## Description: <br>
-Extracts subtitles and transcripts from YouTube videos and saves them as local timestamped text files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract subtitles and transcripts from YouTube videos using yt-dlp first, with browser automation as a fallback.
 
-## Publisher: <br>
-[feiskyer](https://clawhub.ai/user/feiskyer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[feiskyer](https://clawhub.ai/user/feiskyer)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve captions for a supplied YouTube URL, first via yt-dlp and then through browser automation when a CLI transcript path is unavailable. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may access browser-authenticated YouTube context or session cookies during subtitle extraction. <br>
-Mitigation: Prefer a no-cookie transcript path for public videos and require explicit user approval before browser-cookie or browser-automation fallback is used. <br>
-Risk: The release has a suspicious security verdict due to unclear consent around browser session cookie use. <br>
-Mitigation: Review the skill before installation and use it only when browser-authenticated YouTube access is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/feiskyer/youtube-transcribe-skill) <br>
+## Use Case:
 
+Developers and agent users use this skill to extract timestamped YouTube subtitles or transcripts into a local text file for review, notes, accessibility workflows, or downstream content processing.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Timestamped transcript text file plus a concise completion report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves output in the current working directory and reports file path, subtitle language, and total line count.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may access browser cookies or an active browser session during transcript extraction.
+
+Mitigation: Run transcript extraction without browser cookies first; allow cookie access only after explicit confirmation, preferably from a dedicated browser profile.
+
+Risk: The skill writes transcript files into the current working directory.
+
+Mitigation: Run it from an intended workspace and review generated filenames before sharing or committing outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/feiskyer/skills/youtube-transcribe-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Timestamped transcript text saved as a .txt file, with a short completion report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports the output path, subtitle language, and total line count when extraction completes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

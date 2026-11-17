@@ -1,6 +1,1 @@
-{
-  "ownerId": "kn7c3kgfvnhefjww9yw5h6n7zx83wgtx",
-  "slug": "xiaoming-habit-tracker-pro",
-  "version": "1.0.0",
-  "publishedAt": 1776454164984
-}
+{"name":"habit-tracker-pro","version":"1.0.0","author":"小鸣 🦞","tags":["habit","tracker","productivity","self"],"requires":{"bins":["curl"]}}

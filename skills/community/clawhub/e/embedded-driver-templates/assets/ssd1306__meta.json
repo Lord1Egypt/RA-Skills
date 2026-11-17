@@ -1,0 +1,8 @@
+{
+  "name": "ssd1306",
+  "desc": "SSD1306 0.96寸 OLED 驱动（I2C，帧缓冲+页寻址纯函数分离）",
+  "version": "1.0.0",
+  "verified": "C 逻辑测试 12 项断言全通过（9 款合计 107 项 0 失败，gcc 16.2.0 -Wall -Wextra -O1 逐款零警告，2026-10-27 实跑）；未做上板实测",
+  "usage": "复制 ssd1306.h/ssd1306.c/ssd1306_port.h 进工程，port 层提供 I2C 命令/数据写（地址 0x3C）",
+  "common_pitfalls": "电荷泵未开→全黑；0xAF最后发；地址0x3C/0x3D；I2C 100kHz刷屏慢"
+}

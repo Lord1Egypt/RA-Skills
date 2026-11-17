@@ -1,43 +1,55 @@
-## Description: <br>
-Twitter API Alternative — Search 1B+ tweets with natural language queries, boolean filters, and one-click CSV exports up to 64K rows; look up profiles, find users by topic, and track conversations through Xpoz MCP without a Twitter developer account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Twitter API Alternative helps agents search large Twitter datasets with natural language queries, Boolean filters, profile lookup, conversation tracking, and CSV exports through Xpoz MCP.
 
-## Publisher: <br>
-[atyachin](https://clawhub.ai/user/atyachin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[atyachin](https://clawhub.ai/user/atyachin)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to search Twitter/X content, inspect profiles and relationships, track conversations, and export social data to CSV through Xpoz MCP. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an npm-installed MCP helper and network access to Xpoz's hosted MCP service. <br>
-Mitigation: Review the npm package provenance before installation and only enable the Xpoz MCP connection in environments where hosted social-data processing is acceptable. <br>
-Risk: Using the skill may send Xpoz-related queries, results, and an Xpoz API token to Xpoz's hosted service. <br>
-Mitigation: Use scoped or revocable credentials where possible and avoid sending data that should not leave the execution environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/atyachin/twitter-api-alternative) <br>
-- [Publisher profile](https://clawhub.ai/user/atyachin) <br>
-- [Xpoz](https://xpoz.ai) <br>
-- [xpoz-setup skill](https://clawhub.ai/skills/xpoz-setup) <br>
-- [xpoz-social-search skill](https://clawhub.ai/skills/xpoz-social-search) <br>
+## Use Case:
 
+External users, researchers, and developers use this skill to search Twitter social data, inspect profiles and interactions, and export CSV datasets without managing a Twitter developer account.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides use of mcporter commands against Xpoz MCP tools; search operations may return operation IDs and CSV download URLs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on the mcporter npm package, the Xpoz service, and the xpoz-setup authentication skill.
+
+Mitigation: Verify trust in those dependencies before installation and use approved environments for authenticated Xpoz access.
+
+Risk: Generated CSV download links can expose large social-media datasets that may be sensitive in lead generation or regulated research workflows.
+
+Mitigation: Limit sharing and retention of exported datasets, and handle download links as sensitive data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/atyachin/skills/twitter-api-alternative)
+- [Publisher profile](https://clawhub.ai/user/atyachin)
+- [Xpoz](https://xpoz.ai)
+- [xpoz-setup skill](https://clawhub.ai/skills/xpoz-setup)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to initiate Xpoz MCP searches and retrieve CSV export download links.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

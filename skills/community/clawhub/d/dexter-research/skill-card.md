@@ -1,44 +1,59 @@
-## Description: <br>
-Dexter Research helps an agent analyze China A-share stocks by collecting financial, price, capital-flow, and industry data, scoring company fundamentals, and preparing a structured research report with an optional Feishu summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dexter Research helps an agent analyze A-share listed companies by collecting stock data, financial indicators, capital-flow data, price history, and industry information, then producing scored research output and a Feishu-ready summary.
 
-## Publisher: <br>
-[qiushang555](https://clawhub.ai/user/qiushang555) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiushang555](https://clawhub.ai/user/qiushang555)
 
-## Use Case: <br>
-Users and agents use this skill when a request asks for China A-share company research, stock-code analysis, financial scoring, or a generated research summary. The output is useful for decision support, but the skill documentation states that scores are for reference only and are not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically send generated research summaries to Feishu, including to a fallback recipient if FEISHU_USER_OPEN_ID is not explicitly set. <br>
-Mitigation: Set FEISHU_USER_OPEN_ID to the intended recipient before use, or disable the Feishu send path when delivery is not wanted. <br>
-Risk: Feishu app credentials are required for delivery, and the documentation includes an example value resembling an app secret. <br>
-Mitigation: Use environment variables, keep Feishu app credentials least-privilege, and rotate any credential that resembles the documented example secret. <br>
-Risk: The skill calls external market-data services and writes a local report and log while running. <br>
-Mitigation: Run it only in an environment where those outbound calls and local files are acceptable, and review the generated report and log before relying on them. <br>
+## Use Case:
 
+Developers and analysts use this skill to generate structured A-share company research from a stock code or company name. The skill supports financial scoring, JSON report generation, and optional Feishu delivery for follow-up analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qiushang555/dexter-research) <br>
-- [Feishu message API endpoint used by the skill](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Tencent Finance K-line API endpoint used by the skill](https://web.ifzq.gtimg.cn/appstock/app/fqkline/get) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown-style guidance with shell commands, console text, a local JSON research report, and optional Feishu text delivery.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a local report and log; Feishu delivery depends on configured environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Reports may be sent to an unintended Feishu recipient because the script includes a hard-coded default recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicitly configured Feishu recipient before enabling message delivery, and disable sending when no recipient is configured.
+
+Risk: Documentation includes a realistic secret-like Feishu credential example.
+
+Mitigation: Remove or replace the published secret-like value and rotate it if it may have been real.
+
+Risk: Unpinned dependencies and network data collection can change runtime behavior over time.
+
+Mitigation: Pin dependency versions, review upstream data-source changes, and run the skill in an isolated workspace with restricted output paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiushang555/skills/dexter-research)
+- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Tencent Finance K-line API endpoint](https://web.ifzq.gtimg.cn/appstock/app/fqkline/get)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, code, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and generated JSON research data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The research script writes a JSON report and can send a text summary through Feishu when credentials are configured.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

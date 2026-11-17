@@ -1,41 +1,53 @@
-## Description: <br>
-Reviews AI-generated Java code for formatting consistency, naming, structure, comments, and style conventions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when reviewing AI-generated code for formatting consistency. Enforces naming, structure, comments, and style conventions. Optimized for Java.
 
-## Publisher: <br>
-[joeyliu1](https://clawhub.ai/user/joeyliu1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeyliu1](https://clawhub.ai/user/joeyliu1)
 
-## Use Case: <br>
-Developers and engineers use this skill to review AI-generated or modified Java code before committing, focusing on readability, consistency, maintainability, and Alibaba Java Development Manual style conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can broaden a formatting review into general Java code-quality review. <br>
-Mitigation: Keep use focused on style, naming, structure, comments, and maintainability unless the user explicitly requests broader review. <br>
-Risk: Suggested Maven, Gradle, static-analysis, or auto-format commands may execute project build scripts or rewrite Java files. <br>
-Mitigation: Require explicit approval before running build, scanner, or auto-format commands, and use the skill only in repositories the user trusts. <br>
+## Use Case:
 
+Developers and engineering reviewers use this skill after AI-generated Java code changes to check formatting, naming, comments, exception handling, logging, and related style conventions before commit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/joeyliu1/skills/java-code-format-review) <br>
-- [Publisher profile](https://clawhub.ai/user/joeyliu1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown review report with optional shell command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include severity-ranked findings, file and line references, statistics, and optional formatter commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: The skill can lead an agent to run repository build tools or formatter commands, including Maven, Gradle, Spotless, and google-java-format, before the target project has been reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run automated checks and auto-fix commands only in an isolated environment after reviewing the project, and require separate confirmation before applying fixes.
+
+Risk: Broad style guidance may produce recommendations that conflict with a repository's established formatting or static-analysis configuration.
+
+Mitigation: Use the repository's existing formatter and static-analysis configuration as the baseline, and treat the skill's default Java conventions as fallback guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joeyliu1/skills/java-code-format-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown review report with issue severities, file locations, suggested fixes, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The review report groups findings by P0, P1, and P2 severity and may include counts of detected issues.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

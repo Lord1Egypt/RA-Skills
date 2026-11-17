@@ -1,38 +1,53 @@
-## Description: <br>
-Helps an agent create Conventional Commits by analyzing git diffs, staging selected changes, and generating Chinese commit messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Oh My Git Commit helps agents analyze repository diffs, group staged changes, generate Chinese Conventional Commit messages, and run git commit.
 
-## Publisher: <br>
-[hoi-lau](https://clawhub.ai/user/hoi-lau) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hoi-lau](https://clawhub.ai/user/hoi-lau)
 
-## Use Case: <br>
-Developers and engineering agents use this skill when they need to turn local git changes into a Conventional Commit. It guides diff review, logical staging, and commit message drafting before creating the commit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can stage files and create commits, which may include secrets, unrelated files, or work in progress if changes are not reviewed. <br>
-Mitigation: Review git status and diffs before staging or committing, and confirm that no sensitive or unrelated files are included. <br>
+## Use Case:
 
+Developers use this skill when they want an agent to inspect git diffs, prepare logically grouped staging, and generate or run a Conventional Commit with a clear Chinese message.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hoi-lau/oh-my-git-commit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with Conventional Commit message text and optional git shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Chinese commit messages while keeping Conventional Commit type and scope labels in English.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad commit-related triggers and command execution can cause unintended repository changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show git status, the exact files to stage, and the final commit message before staging or committing.
+
+Risk: A commit workflow can accidentally include secrets or unrelated files if the staged path list is not reviewed.
+
+Mitigation: Review proposed staged files and exclude credentials, private keys, .env files, and unrelated changes before allowing git add or git commit.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hoi-lau/skills/oh-my-git-commit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with git command snippets and Conventional Commit message text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose staged file groups and a final commit message; execution can change repository state when approved.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

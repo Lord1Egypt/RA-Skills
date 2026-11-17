@@ -1,0 +1,190 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "report-inventory.schema.json",
+  "title": "Report Inventory (Stage 0 triage)",
+  "description": "Complete traversal result of every uploaded report before any expert collaboration. One entry per file, no file may be dropped.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "team_version",
+    "run_id",
+    "client_scope",
+    "issued_at",
+    "scanned_root",
+    "report_count",
+    "identification",
+    "reports"
+  ],
+  "properties": {
+    "schema_version": { "const": "2.0" },
+    "artifact_type": { "const": "report_inventory" },
+    "contract_name": { "const": "omni-ecom.report-inventory" },
+    "contract_version": { "const": "2.0" },
+    "created_by_team_version": { "type": "string", "minLength": 1 },
+    "team_version": { "type": "string", "minLength": 1 },
+    "legacy_compatibility": { "const": { "read_only_import": ["omni-ecom.report-inventory@1.0"], "current_analysis_authority": false } },
+    "run_id": { "type": "string", "minLength": 8 },
+    "client_scope": { "type": "string", "minLength": 1 },
+    "issued_at": { "type": "string", "minLength": 8 },
+    "scanned_root": { "type": "string", "minLength": 1 },
+    "report_count": { "type": "integer", "minimum": 0 },
+    "identification": {
+      "type": "object",
+      "required": ["mode", "type_taxonomy_version", "domain_taxonomy_version", "rule_hits", "model_hits", "unidentified"],
+      "properties": {
+        "mode": { "const": "rule_first_model_fallback" },
+        "type_taxonomy_version": { "type": "string" },
+        "domain_taxonomy_version": { "type": "string" },
+        "rule_hits": { "type": "integer", "minimum": 0 },
+        "model_hits": { "type": "integer", "minimum": 0 },
+        "unidentified": { "type": "integer", "minimum": 0 },
+        "low_confidence_ids": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "model_review_pending": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["report_id", "file_name", "candidate_types", "header_sample"],
+            "properties": {
+              "report_id": { "type": "string" },
+              "file_name": { "type": "string" },
+              "candidate_types": { "type": "array", "items": { "type": "string" } },
+              "header_sample": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    "reports": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/report_entry" }
+    }
+  },
+  "definitions": {
+    "report_entry": {
+      "type": "object",
+      "required": [
+        "report_id",
+        "file_name",
+        "file_path",
+        "report_type",
+        "domain",
+        "confidence",
+        "identified_by",
+        "identify_evidence",
+        "time_scope",
+        "granularity",
+        "metrics",
+        "dimensions",
+        "completeness",
+        "verdict"
+      ],
+      "properties": {
+        "report_id": { "type": "string", "pattern": "^R[0-9]{3}$" },
+        "file_name": { "type": "string", "minLength": 1 },
+        "file_path": { "type": "string", "minLength": 1 },
+        "file_ext": { "type": "string" },
+        "size_bytes": { "type": "integer", "minimum": 0 },
+        "platform": {
+          "enum": ["tmall", "jd", "douyin", "wxvideo", "xhs", "pdd", "youzan", "kuaishou", "amazon", "tiktok", "multi", "unknown"]
+        },
+        "report_type": {
+          "enum": [
+            "trade_sales",
+            "refund_aftersales",
+            "traffic",
+            "product",
+            "content",
+            "livestream",
+            "creator",
+            "advertising",
+            "customer_service",
+            "market_benchmark",
+            "member_fans",
+            "finance_profit",
+            "review_sentiment",
+            "inventory_supply",
+            "unidentified"
+          ]
+        },
+        "domain": {
+          "enum": ["transaction", "traffic", "content_live", "advertising", "service", "market", "asset", "product", "finance", "unclassified"]
+        },
+        "report_type_label": { "type": "string" },
+        "confidence": { "enum": ["high", "medium", "low"] },
+        "identified_by": { "enum": ["rule", "model", "manual"] },
+        "identify_evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "time_scope": {
+          "type": "object",
+          "required": ["start", "end", "has_explicit_time"],
+          "properties": {
+            "start": { "type": ["string", "null"] },
+            "end": { "type": ["string", "null"] },
+            "time_column": { "type": ["string", "null"] },
+            "has_explicit_time": { "type": "boolean" },
+            "note": { "type": "string" }
+          }
+        },
+        "granularity": {
+          "enum": ["daily", "weekly", "monthly", "quarterly", "session", "campaign", "snapshot", "transaction", "unknown"]
+        },
+        "row_count": { "type": "integer", "minimum": 0 },
+        "column_count": { "type": "integer", "minimum": 0 },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["raw_name", "standard_name"],
+            "properties": {
+              "raw_name": { "type": "string" },
+              "standard_name": { "type": "string" },
+              "unit": { "type": "string" },
+              "aggregation": { "enum": ["sum", "avg", "ratio", "count", "distinct_count", "last", "unknown"] },
+              "is_core": { "type": "boolean" }
+            }
+          }
+        },
+        "dimensions": { "type": "array", "items": { "type": "string" } },
+        "completeness": {
+          "type": "object",
+          "required": ["missing_rate", "has_total_row"],
+          "properties": {
+            "missing_rate": { "type": "number", "minimum": 0, "maximum": 1 },
+            "empty_columns": { "type": "integer", "minimum": 0 },
+            "has_total_row": { "type": "boolean" },
+            "notes": { "type": "string" }
+          }
+        },
+        "verdict": { "enum": ["analyzable", "partial", "insufficient"] },
+        "verdict_reason": { "type": "string" },
+        "analysis_potential": { "type": "array", "items": { "type": "string" } }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "verdict": { "const": "analyzable" } },
+            "required": ["verdict"]
+          },
+          "then": {
+            "properties": { "metrics": { "minItems": 1 } }
+          }
+        },
+        {
+          "if": {
+            "properties": { "verdict": { "enum": ["partial", "insufficient"] } },
+            "required": ["verdict"]
+          },
+          "then": {
+            "required": ["verdict_reason"]
+          }
+        }
+      ]
+    }
+  }
+}

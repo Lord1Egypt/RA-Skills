@@ -1,41 +1,51 @@
-## Description: <br>
-Guides agents through structured self-review and feedback processing after delivery or at review checkpoints, emphasizing fact-based critique and concrete correction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language structured self-review and feedback workflow for honest post-delivery criticism, evidence-based error analysis, and continuous correction.
 
-## Publisher: <br>
-[arg0](https://clawhub.ai/user/arg0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arg0](https://clawhub.ai/user/arg0)
 
-## Use Case: <br>
-Employees, developers, and teams use this skill to run structured self-review, process criticism, and turn findings from retrospectives or quality checks into concrete corrective actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses explicitly Chinese-language, Maoist-framed self-review methodology that may shape review and retrospective workflows. <br>
-Mitigation: Adopt it only where that framing fits team norms, and review generated feedback before using it in formal evaluations or team processes. <br>
-Risk: Broad review triggers could cause the skill to influence many quality, audit, or retrospective tasks. <br>
-Mitigation: Use clear invocation boundaries and confirm that the skill's critique framework is appropriate for the task before applying its recommendations. <br>
+## Use Case:
 
+External users and developers use this skill after delivery, at review checkpoints, or when recurring errors need structured correction. It helps an agent produce fact-based self-review, criticism intake, root-cause analysis, and follow-up improvement guidance.
 
-## Reference(s): <br>
-- [Original Texts](original-texts.md) <br>
-- [Review Checklist](review-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, data access, persistence, or hidden behavior indicated by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad trigger language may cause the skill to be applied during ordinary reviews where the user did not intend this specific self-criticism workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrower task instructions when installing or invoking the skill, and apply it only for explicit review, audit, retrospective, quality-check, correction, or post-delivery reflection workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arg0/skills/criticism-self-criticism)
+- [Original source quotations](artifact/original-texts.md)
+- [Review checklist](artifact/review-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and checklist text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only; no code execution, credential access, network behavior, or persistence is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

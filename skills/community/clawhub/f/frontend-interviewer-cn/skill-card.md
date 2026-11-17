@@ -1,49 +1,62 @@
-## Description: <br>
-Chinese frontend developer interview coach and question bank for practice, mock interviews, interview question generation, answer evaluation, and explanations across JavaScript, TypeScript, React, Vue, CSS, browser internals, engineering, networking/security, and algorithms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language frontend interview coach for practice questions, mock interviews, answer evaluation, and explanations across JavaScript, TypeScript, React, Vue, CSS, browser internals, engineering, networking/security, and algorithm topics.
 
-## Publisher: <br>
-[goldath](https://clawhub.ai/user/goldath) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goldath](https://clawhub.ai/user/goldath)
 
-## Use Case: <br>
-Chinese-speaking frontend developers use this skill to practice interview questions by level, run mock interviews with follow-up questions and scoring, and get concise explanations of frontend concepts. Interviewers can also use it to generate question sets and evaluate candidate answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad interview or explanation prompts and answer in Chinese by default. <br>
-Mitigation: Use it in Chinese frontend interview-preparation contexts, or explicitly request a different language or scope when needed. <br>
-Risk: Performance optimization coverage may be incomplete because the skill references a performance.md file that is not present in the artifact. <br>
-Mitigation: Review performance-related answers against an authoritative source before relying on them for interview scoring or study plans. <br>
+## Use Case:
 
+Chinese-speaking frontend developers use this skill to practice interview questions by level, run mock interviews with follow-up questions and scoring, and review concise explanations with code examples. Interviewers can also use it to generate question sets and evaluate candidate answers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goldath/frontend-interviewer-cn) <br>
-- [JavaScript interview reference](references/javascript.md) <br>
-- [TypeScript interview reference](references/typescript.md) <br>
-- [React interview reference](references/react.md) <br>
-- [Vue interview reference](references/vue.md) <br>
-- [CSS interview reference](references/css.md) <br>
-- [Browser internals interview reference](references/browser.md) <br>
-- [Frontend engineering interview reference](references/engineering.md) <br>
-- [Network and security interview reference](references/network.md) <br>
-- [Algorithm interview reference](references/algorithm.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with interview questions, scoring feedback, explanations, and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language responses by default; may include JavaScript, TypeScript, CSS, React, or Vue snippets] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad prompts such as explanation or comparison requests may activate the skill even when the user did not explicitly ask for interview coaching.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install or enable it only where Chinese-language frontend interview coaching is desired, and route broad frontend learning prompts deliberately.
+
+Risk: Performance optimization coverage may be incomplete because the skill references references/performance.md, but that file is absent from the package.
+
+Mitigation: Treat performance-specific answers as lower confidence and supplement them with reviewed performance material before using them for candidate assessment.
+
+## Reference(s):
+
+- [JavaScript question bank](references/javascript.md)
+- [TypeScript question bank](references/typescript.md)
+- [React question bank](references/react.md)
+- [Vue question bank](references/vue.md)
+- [CSS question bank](references/css.md)
+- [Browser internals question bank](references/browser.md)
+- [Engineering question bank](references/engineering.md)
+- [Networking and security question bank](references/network.md)
+- [Algorithm question bank](references/algorithm.md)
+- [ClawHub skill page](https://clawhub.ai/goldath/skills/frontend-interviewer-cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Chinese Markdown responses with interview questions, follow-up prompts, scoring feedback, explanations, and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses bundled topic notes and may ask clarifying questions before selecting difficulty level or topic focus.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

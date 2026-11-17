@@ -1,46 +1,63 @@
-## Description: <br>
-Control Flipper Zero hardware via USB serial or BLE for SubGHz, IR, NFC, RFID, BadUSB, GPIO, file system, screen capture, and input without Android or intermediary apps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls Flipper Zero hardware over USB serial or Bluetooth Low Energy for file, GPIO, screen, input, and radio workflows without an Android device.
 
-## Publisher: <br>
-[elvisexmachina](https://clawhub.ai/user/elvisexmachina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elvisexmachina](https://clawhub.ai/user/elvisexmachina)
 
-## Use Case: <br>
-Developers and hardware engineers use this skill to control an authorized Flipper Zero from an agent workflow for device inspection, storage operations, screen capture, input automation, GPIO, and permitted RF or infrared tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes privileged Flipper Zero actions including radio transmit, BadUSB, storage deletion, reboot or power controls, GPIO, and raw commands. <br>
-Mitigation: Require explicit human approval before those actions, review generated commands before execution, and run them only against owned or authorized hardware. <br>
-Risk: Radio and infrared operations can affect nearby devices or capture/transmit sensitive RF information. <br>
-Mitigation: Use receive and transmit functions only where legally permitted and operationally authorized; avoid transmit commands when authorization is unclear. <br>
-Risk: Screen capture and SubGHz watch commands may leave sensitive device or RF information in temporary PNG files. <br>
-Mitigation: Clean up generated /tmp screenshot files after use and avoid collecting screens that contain secrets or sensitive identifiers. <br>
-Risk: External CC1101 transmit operations can damage hardware if used without an antenna. <br>
-Mitigation: Attach an appropriate antenna before transmitting with an external CC1101 module and confirm module setup before enabling 5V GPIO or OTG power. <br>
+## Use Case:
 
+Developers, security researchers, and hardware operators use this skill to generate guidance and commands for controlling a physically connected or paired Flipper Zero during device management, screen capture, input automation, and supported radio workflows.
 
-## Reference(s): <br>
-- [ClawHub Flipper Zero release](https://clawhub.ai/elvisexmachina/flipper-zero) <br>
-- [Flipper Zero protobuf definitions](https://github.com/flipperdevices/flipperzero-protobuf) <br>
-- [V3SP3R reference project](https://github.com/elder-plinius/V3SP3R) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; command scripts return JSON and may write PNG screenshots.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some screenshot and watch commands write files under /tmp; command outputs can include device, storage, screen, GPIO, or RF information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill exposes high-impact device, radio, deletion, and power actions without enforced safety checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review delete, transmit, raw passthrough, GPIO power, reboot, screen capture, and navigation commands explicitly before execution.
+
+Risk: Untrusted text passed into command arguments could trigger unintended Flipper Zero actions.
+
+Mitigation: Avoid passing untrusted text as command input, and inspect generated command arguments before running them.
+
+Risk: Runtime dependencies are installed from package indexes during setup.
+
+Mitigation: Use a dedicated virtual environment and pin dependencies before setup when deploying in controlled environments.
+
+Risk: Radio and external module operations can affect nearby devices or connected hardware.
+
+Mitigation: Use radio transmit and GPIO power actions only with authorization and appropriate hardware precautions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/elvisexmachina/skills/flipper-zero)
+- [V3SP3R](https://github.com/elder-plinius/V3SP3R)
+- [Flipper Zero Protobuf Definitions](https://github.com/flipperdevices/flipperzero-protobuf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented command output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local Python scripts that interact with USB serial or BLE hardware.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-高考成绩分析+志愿填报指导智能体。根据考生高考成绩、位次、选科组合，提供精准的志愿填报方案。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+高考成绩分析和志愿填报指导智能体，根据考生分数、位次、选科组合和偏好提供院校专业推荐、冲稳保规划和风险提示。
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-Gaokao applicants and their families use this skill to analyze scores, ranking context, province-specific admissions mode, and preferences before drafting a ranked college and major application plan. It is advisory planning support and should be checked against official provincial examination authority and school admissions materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Admissions advice can be incorrect or outdated if score lines, ranks, admission rules, or school policies change. <br>
-Mitigation: Use the skill as planning support only and verify ranks, score lines, admission rules, and final choices with the relevant provincial examination authority and official school admissions materials. <br>
-Risk: Users may share more personal exam and preference details than needed for planning. <br>
-Mitigation: Share only the exam, province, subject, ranking, and preference details needed for the recommendation task. <br>
-Risk: A generated plan could be mistaken for a guaranteed admissions outcome. <br>
-Mitigation: Treat recommendations as advisory, avoid guaranteed-admission claims, and make final decisions using official admissions channels. <br>
+## Use Case:
 
+Students and parents use this skill to interpret Gaokao scores, province-specific admissions patterns, subject choices, and personal preferences when planning applications. It produces structured recommendations for target, match, and safety choices while reminding users to verify official provincial exam authority data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/smallkeyboy/gaokao-consultant) <br>
-- [各省高考模式参考](artifact/references/provinces-data.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown advisory report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include score diagnosis, reach-match-safety school planning, major selection cautions, and personalized application reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Admissions recommendations may be inaccurate if score lines, rankings, quotas, or provincial policies have changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current data and final decisions with the relevant provincial exam authority and official university admissions materials.
+
+Risk: Users may treat generated application plans as a guarantee of admission.
+
+Mitigation: Present results as planning support only and include clear risk notices that final admission outcomes are not guaranteed.
+
+Risk: The skill may ask for exam scores, province, subject choices, and preferences.
+
+Mitigation: Share only information needed for admissions planning and handle student details as sensitive personal education information.
+
+## Reference(s):
+
+- [各省高考模式参考](artifact/references/provinces-data.md)
+- [ClawHub skill page](https://clawhub.ai/smallkeyboy/skills/gaokao-consultant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown-style admissions planning report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes score diagnosis, target-match-safety planning, major selection guidance, personalized reminders, and explicit caveats that recommendations are planning support only.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

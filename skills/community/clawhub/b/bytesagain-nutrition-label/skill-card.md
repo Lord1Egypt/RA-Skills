@@ -1,39 +1,54 @@
-## Description: <br>
-Nutrition Label provides offline plain-text reference notes for introductory, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for life that provides quick Nutrition Label concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-External users and developers use this skill as a quick offline reference for Nutrition Label concepts and common operational guidance. It is suited for lookup-style documentation, not live data analysis or automated remediation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled content is generic reference guidance and may not match a user's specific environment or policy requirements. <br>
-Mitigation: Review the generated guidance before relying on it and apply the user's organization-specific safety, security, and compliance requirements. <br>
+## Use Case:
 
+External users and developers use this skill as a lightweight local reference for Nutrition Label concepts, commands, best practices, troubleshooting, migration, and security notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/bytesagain-nutrition-label) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Offline output only; no external API calls, credentials, or network access are described in the reviewed evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 4.0.1 and script reports 4.0.0) <br>
+Risk: The reference content is broad and generic, which may make it insufficient for a specific nutrition label workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the guidance against current authoritative standards and internal policies before relying on it.
+
+Risk: Version evidence differs between release metadata, SKILL.md, and the shell script.
+
+Mitigation: Confirm the intended published version before publication or operational use.
+
+## Reference(s):
+
+- [Nutrition Label Skill Page](https://clawhub.ai/loutai0307-prog/skills/bytesagain-nutrition-label)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown-style headings, lists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local shell helper; evidence indicates no API keys, credentials, network access, or external API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata; artifact frontmatter lists 4.0.1 and script lists 4.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

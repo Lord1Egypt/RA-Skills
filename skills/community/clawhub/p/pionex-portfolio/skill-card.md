@@ -1,41 +1,48 @@
-## Description: <br>
-Checks Pionex spot account balances and available funds using the Pionex CLI with user-provided API credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user asks for Pionex account balance, available funds, or how much USDT they have; it is read-only, requires API credentials, and should not be used for market data or placing/cancelling orders.
 
-## Publisher: <br>
-[pibrandon](https://clawhub.ai/user/pibrandon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[pibrandon](https://clawhub.ai/user/pibrandon)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to let an agent retrieve Pionex spot account balances, including available funds and currency-specific balances such as USDT.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill requires Pionex API credentials to retrieve account balances.
+
+Mitigation: Use read-only credentials where available and avoid granting trading permissions for this read-only balance lookup workflow.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to answer Pionex balance and available-funds questions, including account overviews and currency-specific balance checks such as USDT. The skill is limited to read-only account balance queries and routes market data or trading actions to other skills. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Pionex API credentials to read account balances. <br>
-Mitigation: Use credentials with the minimum permissions needed for balance queries and avoid enabling trading permissions unless a separate trusted workflow requires them. <br>
-Risk: The skill depends on the third-party Pionex npm package and CLI. <br>
-Mitigation: Install only if the publisher and package are trusted, and review the installed CLI before using it with account credentials. <br>
+**Output Format:** [Markdown with inline shell commands and JSON balance output references]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pibrandon/pionex-portfolio) <br>
-- [Publisher profile](https://clawhub.ai/user/pibrandon) <br>
+**Other Properties Related to Output:** [The underlying account balance command returns JSON for spot balances that the agent filters or summarizes for the user.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON balance output interpretation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the Pionex CLI and API credentials; account balance command output is JSON that may be filtered by currency.] <br>
+1.0.0 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

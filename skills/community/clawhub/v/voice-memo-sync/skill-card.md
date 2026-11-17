@@ -1,45 +1,65 @@
-## Description: <br>
-Sync, transcribe, and intelligently organize voice memos, audio/video files, and URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync, transcribe, and intelligently organize voice memos, audio/video files, and URLs.
 
-## Publisher: <br>
-[ying-wen](https://clawhub.ai/user/ying-wen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ying-wen](https://clawhub.ai/user/ying-wen)
 
-## Use Case: <br>
-OpenClaw users use this skill to process voice memos, recordings, videos, URLs, and transcript files into structured summaries, action items, Apple Notes, Reminders, and local memory records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect private recordings, videos, transcripts, and user context into local memory records. <br>
-Mitigation: Review configured scan paths before use, especially broad iCloud folders such as Downloads, and keep only intentional input directories enabled. <br>
-Risk: Processed transcripts and personalized analysis can be persisted into Apple Notes, Reminders, and local memory. <br>
-Mitigation: Use the skill only when persistent records are desired, and disable or review Apple Notes, Reminders, and personalized analysis settings before processing sensitive content. <br>
-Risk: Heartbeat auto-sync can repeatedly process newly discovered recordings without a per-file prompt. <br>
-Mitigation: Keep heartbeat auto-sync disabled unless recurring processing is intended, and audit the generated HEARTBEAT task and sync log when enabling it. <br>
+## Use Case:
 
+Developers and external users use this skill to turn Apple Voice Memos, local audio/video files, transcript files, and video URLs into structured transcripts, summaries, Apple Notes, reminders, and local memory records.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ying-wen/voice-memo-sync) <br>
-- [Voice Memo Sync README](artifact/README.md) <br>
-- [Voice Memo Sync Architecture](artifact/docs/ARCHITECTURE.md) <br>
-- [Apple Silicon](https://support.apple.com/en-us/116943) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown notes, transcript files, JSON source records, Apple Notes entries, Reminders tasks, and shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local-first processing by default; can create persistent local records and sync processed content to Apple Notes and Reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Private recordings and personal context may be copied into OpenClaw memory and used to generate notes or reminders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configuration before installation, keep auto-sync disabled unless recurring processing is intended, and process only recordings the user intentionally provides.
+
+Risk: Untrusted filenames, note content, transcript text, JSON or CSV fields, and remote URLs may flow into shell, AppleScript, or parser paths identified by the security evidence.
+
+Mitigation: Avoid untrusted inputs until the script injection issues are fixed; require confirmation before processing remote URLs or writing to iCloud-backed apps.
+
+Risk: The skill can write to Apple Notes and Reminders and can copy files from iCloud recording locations.
+
+Mitigation: Run with the least needed macOS permissions, review generated notes and reminders before relying on them, and limit configured sync paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ying-wen/skills/voice-memo-sync)
+- [Publisher profile](https://clawhub.ai/user/ying-wen)
+- [Skill homepage](https://github.com/ying-wen/voice-memo-sync)
+- [README.md](artifact/README.md)
+- [Architecture](artifact/docs/ARCHITECTURE.md)
+- [Sample output](artifact/examples/sample-output.md)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Apple macOS](https://www.apple.com/macos/)
+- [Apple Silicon support](https://support.apple.com/en-us/116943)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown notes and summaries, transcript text, JSON source metadata, shell command snippets, and YAML configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates local voice-memo memory files and can write Apple Notes or Reminders when configured.]
+
+## Skill Version(s):
+
+1.6.1 (source: server release, skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

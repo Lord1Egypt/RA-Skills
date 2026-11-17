@@ -1,44 +1,58 @@
-## Description: <br>
-Advanced RT-qPCR primer and probe design with specialized support for cross-species homology mapping and high-GC virus optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs RT-qPCR primers and TaqMan probes with support for cross-species homology mapping, high-GC templates, exon-junction checks, and 3' specificity review.
 
-## Publisher: <br>
-[zjuphD](https://clawhub.ai/user/zjuphD) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zjuphd](https://clawhub.ai/user/zjuphd)
 
-## Use Case: <br>
-External developers and laboratory users can use this skill to design candidate RT-qPCR primer and TaqMan probe sets for standard transcript assays, predicted transcripts with homolog junction mapping, high-GC viral templates, and optional off-target checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated primer/probe designs may be unsuitable for a specific laboratory assay or biological context. <br>
-Mitigation: Independently validate generated primer/probe designs before relying on them in lab work. <br>
-Risk: NCBI lookups may disclose accession targets to an external service. <br>
-Mitigation: Avoid submitting unpublished or sensitive accession information to NCBI when that disclosure matters. <br>
-Risk: The Python dependency is not pinned in the artifact. <br>
-Mitigation: Install the skill in a controlled Python environment and pin requests to a vetted current version before use. <br>
+## Use Case:
 
+Researchers and laboratory developers use this skill to generate candidate SYBR or TaqMan RT-qPCR assay designs from NCBI accessions or local FASTA sequences. It is aimed at standard transcript targets, predicted transcripts that may need homolog-based junction mapping, and high-GC viral templates.
 
-## Reference(s): <br>
-- [RT-qPCR Primer Design Guidelines](references/guidelines.md) <br>
-- [NCBI EFetch endpoint used for sequence and annotation lookups](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi) <br>
-- [ClawHub skill release page](https://clawhub.ai/zjuphD/bio-chat-qpcr-primer-designer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON-formatted assay candidates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces candidate primer/probe sequences, amplicon size, Tm, length, and gDNA-safety status for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Accession-based lookups contact NCBI, so queried accession identifiers may leave the local environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local FASTA input or run accession lookups only where external NCBI requests are acceptable.
+
+Risk: The Python dependency list includes requests without a version pin.
+
+Mitigation: Pin requests or use a reviewed lock file before installing in sensitive or reproducibility-critical environments.
+
+Risk: When exon junctions cannot be found or mapped, candidate designs can report gDNA safety as Unknown.
+
+Mitigation: Treat Unknown gDNA safety outputs as candidates requiring domain review before laboratory use.
+
+## Reference(s):
+
+- [RT-qPCR Primer Design Guidelines](artifact/references/guidelines.md)
+- [ClawHub skill page](https://clawhub.ai/zjuphd/skills/bio-chat-qpcr-primer-designer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON assay result objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces candidate primer/probe sets with amplicon size, Tm, length, and gDNA safety status.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

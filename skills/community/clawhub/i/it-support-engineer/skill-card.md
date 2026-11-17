@@ -1,42 +1,54 @@
-## Description: <br>
-Professional IT support and helpdesk career roadmap platform that generates personalized learning paths based on experience, skills, and career goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional IT support and helpdesk career roadmap platform that generates personalized learning paths based on experience, skills, and career goals.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-IT support professionals, helpdesk technicians, system administrators, and career developers use this skill to generate personalized career roadmaps with milestones, prioritized skills, certification recommendations, projects, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends role, experience, skills, certifications, goals, sessionId, timestamp, and optional userId to an external provider. <br>
-Mitigation: Avoid employer-confidential details, personal contact information, and security-sensitive infrastructure information unless the provider and its privacy practices have been independently verified. <br>
+## Use Case:
 
+IT support professionals, helpdesk technicians, system administrators, and career-development agents use this skill to generate personalized IT support career roadmaps with skill priorities, certification targets, project ideas, and next steps.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/it-support-engineer) <br>
-- [Publisher Profile](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
-- [API Docs](https://api.mkkpro.com:8050/docs) <br>
-- [Kong Route](https://api.mkkpro.com/career/it-support-engineer) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown with JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces personalized career roadmap content including phases, skill priorities, certification recommendations, learning resources, and next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info) <br>
+Risk: Submitted assessment data is shared with an external API provider and may include professional profile details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only the minimum information needed for career guidance and avoid private employer details, unnecessary identifiers, or sensitive personal information.
+
+Risk: The artifact does not explain data retention or secondary use for submitted assessment details.
+
+Mitigation: Review provider terms and organizational data-sharing requirements before using the skill with real employee or customer information.
+
+## Reference(s):
+
+- [IT Support Engineer Roadmap API Docs](https://api.mkkpro.com:8050/docs)
+- [IT Support Engineer Roadmap API Route](https://api.mkkpro.com/career/it-support-engineer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [JSON roadmap data that agents can summarize as Markdown or text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns current and target profile details, phased roadmap entries, recommended learning resources, and next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

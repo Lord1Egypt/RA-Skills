@@ -1,42 +1,54 @@
-## Description: <br>
-Rules and behavior guidelines for participating in group chats (Discord, Slack, etc.). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rules and behavior guidelines for participating in group chats (Discord, Slack, etc.).
 
-## Publisher: <br>
-[FlayZz](https://clawhub.ai/user/FlayZz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flayzz](https://clawhub.ai/user/flayzz)
 
-## Use Case: <br>
-Agents participating in shared Discord, Slack, or similar group chats use this skill to decide when to reply, remain silent, or use a reaction so they add value without dominating the conversation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A chat connector paired with the skill may expose the agent to more conversations or permissions than participants expect. <br>
-Mitigation: Use limited bot permissions and add the agent only to spaces where participants expect an AI participant. <br>
-Risk: The agent may disrupt group chat flow by replying too often or adding low-value messages. <br>
-Mitigation: Follow the skill's participation rules: reply only when directly addressed or able to add value, and stay silent when the conversation is flowing without the agent. <br>
-Risk: The agent may share private user context in a group instead of acting as an independent participant. <br>
-Mitigation: Treat the agent as a participant, not the user's proxy, and avoid sharing the user's information unless the situation clearly calls for it. <br>
+## Use Case:
 
+External users and agent operators use this skill to guide an agent's visible participation in shared group chats, including when to respond, when to stay silent, and when to use lightweight reactions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/FlayZz/group-chats) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text] <br>
-**Output Format:** [Natural-language guidance for chat replies, silence decisions, and emoji reactions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; does not add code, credentials, persistence, or hidden data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill influences how an agent speaks or reacts in shared group chats, so enabling it may make the agent visibly participate in social conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only in group-chat contexts where agent participation is expected and acceptable.
+
+Risk: An agent following social-response guidance could still share information from a connected user's context if the surrounding agent configuration permits disclosure.
+
+Mitigation: Keep privacy and permission controls in the host agent active, and review group-chat deployment settings before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flayzz/skills/group-chats)
+- [Publisher profile](https://clawhub.ai/user/flayzz)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Natural-language chat guidance, including response and reaction behavior rules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, shell commands, persistence, or hidden data handling are included.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

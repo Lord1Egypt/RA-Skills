@@ -1,7 +1,7 @@
 # LLM-Wiki Unified Agent Protocol
 
 > This document guides Claude Code, OpenClaw, and other AI Agents on how to use llm-wiki.
-> `AGENTS.md` and `CLAUDE.md` are intended to be hard links to the same unified protocol file. Update one content body only.
+> `AGENTS.md` is the canonical protocol file. `CLAUDE.md` must be a relative symbolic link to `AGENTS.md`; edit `AGENTS.md` only.
 > **All Agents operating in this project directory MUST read and understand `SKILL.md` before performing any task.**
 
 ## Design Philosophy
@@ -27,15 +27,21 @@ Use Protocol mode for ingest because it requires LLM judgment. The Agent must:
    - `collected`: user collection, Zotero import, or saved time if available.
    - `ingested`: llm-wiki processing date.
    - `date_precision`: `day`, `month`, `year`, or `unknown`.
-5. Extract key insights and decide whether to create a new page or update an existing concept page.
-6. Preserve `sources_meta` in frontmatter when source-level metadata is available.
-7. Add a `## 时间线` / `## Timeline` section for overview pages or multi-source pages where historical order matters.
-   - For papers, arXiv works, named methods, released systems, benchmark reports, or technical posts with a clear source date, show a compact visible date as a Markdown time anchor before the work name, e.g. `**[2024.02] FlashAttention V3**` or `**[2025.08] GRPO training discussion**`.
-   - If only a year is reliable, use `YYYY`; do not invent a month.
-   - Start `### 时间定位` / `### Temporal Position` with a blockquote summary using `> **时间范围**：...` and `> **阶段判断**：...` when the page has multiple dated nodes.
-   - Prefer readable lists over wide Markdown tables when the row contains wiki links or long relationship text. Tables must not force narrow columns to wrap wiki links into broken fragments.
-8. Run dynamic linking with `agent-bridge.py link` or `relink`, review diffs, and append safe backward updates.
-9. Update `wiki/index.md` and append `log.md`.
+5. Build a source content map before page drafting. Enumerate major topic units and source-supported mechanisms, equations, numerical evidence, comparisons, procedures, failure modes, trade-offs, decision rules, and open questions.
+6. Allocate every important unit to the target page, another existing page, a new independently reusable page, or an explicit omission reason. A fixed summary budget is not an omission reason.
+7. Select a page archetype and source-dependent headings. Required page invariants do not imply a fixed knowledge-body outline.
+8. Draft at the depth required to preserve the source's defining reasoning. Keep central formulas, causal chains, implementation details, version differences, and evidence context when they determine the source's value.
+9. Run coverage, depth, and batch-template-collapse reviews before setting `status: active`.
+10. Preserve `sources_meta`, add temporal structure when useful, run dynamic linking, update `wiki/index.md`, and append `log.md` only after the content reviews pass.
+
+The coverage review must account for each important source unit as included, allocated elsewhere, or intentionally omitted. The depth review must reject abstract-only paraphrases, unexplained method-name lists, comparisons without dimensions, unsupported generalization, and generic applicability statements. For batch ingest, compare drafts for suspiciously identical structure or length; investigate rather than automatically padding pages.
+
+When a timeline is useful:
+
+- For papers, arXiv works, named methods, released systems, benchmark reports, or technical posts with a clear source date, show a compact visible date as a Markdown time anchor before the work name, e.g. `**[2024.02] FlashAttention V3**` or `**[2025.08] GRPO training discussion**`.
+- If only a year is reliable, use `YYYY`; do not invent a month.
+- Start `### 时间定位` / `### Temporal Position` with a blockquote summary using `> **时间范围**：...` and `> **阶段判断**：...` when the page has multiple dated nodes.
+- Prefer readable lists over wide Markdown tables when the row contains wiki links or long relationship text. Tables must not force narrow columns to wrap wiki links into broken fragments.
 
 Never treat `created` / `updated` as publication dates. They are wiki maintenance dates only.
 
@@ -43,7 +49,7 @@ Never treat `created` / `updated` as publication dates. They are wiki maintenanc
 
 For wiki queries, first read `wiki/index.md`, then relevant pages and link neighbors. Use semantic query only as candidate discovery; synthesize from the actual page content and cite wiki pages with `[[PageName]]`. If a query produces a lasting new synthesis, ask or decide whether to archive it into wiki according to user intent.
 
-For questions that need source coverage, recent literature, annotations, or a specific paper, Zotero MCP may be used as a source-discovery layer. Zotero results are not the final answer; read metadata/fulltext/annotations, then synthesize with citations.
+For questions that need Zotero source coverage, recent literature, annotations, or a specific paper, follow [`docs/ZOTERO_MCP_INTEGRATION.md`](docs/ZOTERO_MCP_INTEGRATION.md). Zotero MCP is mandatory for discovery, reads, source access, metadata identity, and normal writes; the dedicated document is the single source of truth for the temporary, explicitly authorized Zotero 10 loopback write exception and every capability, ingest, write-back, and failure gate.
 
 ### Page Format Requirements
 
@@ -71,6 +77,29 @@ tags:
 status: "active"
 ---
 ```
+
+Page `status` is a maturity lifecycle: `seed` (stub from a fresh ingest) ->
+`developing` (being fleshed out) -> `mature` (covers its sources) -> `evergreen`
+(stable, maintained). `draft` (unreviewed) and `archived` (retired) remain valid;
+`active` is a legacy alias of `developing`. Depth lint analyzes pages from
+`developing` upward and reports a `lifecycle_mismatch` advisory when a
+`mature`/`evergreen` page is still shallow. Unknown status values are reported
+as `invalid_status`.
+
+Pages may additionally declare claim-level provenance in frontmatter:
+
+```yaml
+claims:
+  - text: "LoRA constrains the weight update to a low-rank product"
+    source: "sources/lora.pdf"     # must be declared in this page's sources/sources_meta
+    status: "accepted"             # accepted | provisional | contested | unsupported
+```
+
+Lint validates claims as advisory `claim_issues`: every claim needs
+text/source/status, the status must be in the vocabulary, and the source must
+be one the page itself declares. A `mature`/`evergreen` page with still
+contested or unsupported claims is flagged. Never fabricate claim sources or
+statuses — an absent claim list is always better than an invented one.
 
 Do not invent missing month/day values. If only the year is reliable, write the year and set `date_precision: "year"`.
 
@@ -103,6 +132,13 @@ In body text, prefer a human-scannable Markdown time anchor for dated works:
 - Do not write LLM-generated content into `sources/`.
 - Synchronize README language variants when user-facing behavior changes.
 - Use the project-managed Python environment (`.venv` or conda) for Python operations.
+- For every Zotero operation and Zotero-backed source, follow [`docs/ZOTERO_MCP_INTEGRATION.md`](docs/ZOTERO_MCP_INTEGRATION.md).
+- `wiki/*` and most `sources/*` are gitignored by default. Use `rg --no-ignore` for repository searches that must include user-managed knowledge/source files; a plain `rg` result is not a complete wiki inventory.
+
+### Release Artifact Verification
+
+- Run Python smoke checks inside a generated release directory with bytecode writes disabled: use `python -B ...` or set `PYTHONDONTWRITEBYTECODE=1`.
+- After smoke checks, verify both the expanded release directory and its archive contain no `__pycache__/` directories or `.pyc` files before recording checksums or publishing artifacts.
 
 ## Mandatory Pre-Flight Checklist
 
@@ -143,6 +179,11 @@ This produces a structured Markdown report telling you:
 
 ### Python Environment Rule
 
+Two environments exist for different purposes — do not conflate them:
+
+- **User distribution**: end users install the `llm-wiki` CLI via `uv tool install` (or `uvx`), which creates an isolated environment managed by uv. This is how the tool is **run in production**; it does not touch this repository's `.venv`.
+- **Development / testing**: work done **inside this repository** (running `agent-bridge.py`, pytest, editing code) uses the project's own virtual environment described below. Keep it; `uv tool` does not replace it.
+
 All Python operations in this project MUST use the project's own virtual environment:
 
 1. **If `.venv/` exists** in the project root → use `.venv/Scripts/python.exe` (Windows) or `.venv/bin/python` (Linux/macOS). Prefer `uv run python` when uv is available.
@@ -171,9 +212,20 @@ Every wiki task falls into exactly one of three categories. **The category deter
 | **A** | Embedding index | No | `agent-bridge.py index` | Skip semantic search |
 | **A** | Safe merge | No | `agent-bridge.py merge` | Manual edit with diff review |
 | **A** | Semantic query | No | `agent-bridge.py query --semantic` | Fallback to keyword listing |
+| **A** | Zotero sync plan | No | `agent-bridge.py zotero-plan` | Manually compare wiki provenance with MCP reads |
+| **A** | Zotero enrichment dry-run | No | `agent-bridge.py zotero-refresh` | Review provider results and the generated manifest |
+| **A** | Zotero collection ingest verification | No | `agent-bridge.py zotero-ingest-verify` | Manually audit allocation, provenance, and page invariants |
+| **C** | Zotero stale binding heal | Agent reviews | `agent-bridge.py zotero-heal` | Manually rebind frontmatter item keys |
+| **A** | Zotero alias render | No | `agent-bridge.py zotero-alias` | Hand-sanitize a source_alias string |
+| **C** | Apply safe Zotero enrichment | Agent reviews | `zotero-refresh --apply-safe` | Use MCP tools manually if the worker cannot verify write-back |
+| **C** | Authorized Zotero tag/relation write-back | Agent + user review | `agent-bridge.py zotero-writeback` | Use reviewed incremental MCP writes when the local exception is unavailable |
+| **C** | Controlled Zotero attachment relocation | Agent + user review | `agent-bridge.py zotero-relocate` | Review dry-run, require local authorization, and stop when the attachment API gate is unavailable |
 | **B** | Ingest material | **Yes** | Protocol mode (direct file ops) | N/A |
 | **B** | Query & synthesize | **Yes** | Protocol mode (direct file ops) | N/A |
 | **C** | Apply link results | **Agent judges** | `merge` (after reviewing diff) | Manual edit |
+| **C** | Atomic multi-file write | **Agent drafts, tool applies** | `agent-bridge.py apply-bundle` | Manual edits with no atomicity guarantee |
+| **A** | Inspect capability contracts | No | `agent-bridge.py capabilities` | Read `src/llm_wiki/capabilities.py` |
+| **A** | Recent activity context | No | `agent-bridge.py hot` | Read `wiki/hot.md` |
 
 **Category A**: Pure algorithm. No LLM intelligence needed. **Always use `agent-bridge.py`.**
 
@@ -249,7 +301,7 @@ python scripts/agent-bridge.py lint
 ```
 
 **Output sections**:
-- `## Summary` — count table for orphans, dead links, stale, empty pages, duplicate titles, non-canonical links, drafts
+- `## Summary` — count table for orphans, dead links, stale, empty pages, duplicate titles, non-canonical links, drafts, and shallow pages
 - `## Orphan Pages` — pages not referenced by any other
 - `## Dead Links` — `[[...]]` targets that are not real `wiki/*.md` file stems
 - `## Stale Pages` — >90 days since last update
@@ -257,8 +309,11 @@ python scripts/agent-bridge.py lint
 - `## Duplicate Titles` — multiple files declaring the same `# Title`
 - `## Non-Canonical Links` — wiki links whose target does not point to the real page file stem
 - `## Draft Pages`
+- `## Shallow Pages` — advisory, source-aware depth findings with knowledge size, structure, source volume, compression ratio, and reasons
 
-**Your action**: For dead links, create canonical page files or rewrite the link target to an existing file stem. For empty pages, fill them or remove duplicate shells. For duplicate titles, keep the canonical slug file (`Title-With-Spaces.md`) and merge or delete accidental variants. For non-canonical links, rewrite `[[Page Name]]` as `[[Page-Name|Page Name]]`. For orphans, consider adding backlinks from relevant pages.
+Depth lint excludes `Related Pages` / `相关页面`, `Sources` / `来源`, and `Changelog` / `变更日志`. It is warning-only: findings do not change the command exit behavior. `QRF` pages are skipped by default, and an intentionally concise page may use `lint_depth: skip` only after a coverage audit records why the warning is a false positive. Passing the heuristic never replaces source-unit coverage review, and Agents must not pad pages mechanically to satisfy thresholds.
+
+**Your action**: For dead links, create canonical page files or rewrite the link target to an existing file stem. For empty pages, fill them or remove duplicate shells. For duplicate titles, keep the canonical slug file (`Title-With-Spaces.md`) and merge or delete accidental variants. For non-canonical links, rewrite `[[Page Name]]` as `[[Page-Name|Page Name]]`. For orphans, consider adding backlinks from relevant pages. For shallow pages, inspect the allocated sources and restore missing mechanisms, evidence, comparisons, procedures, failure modes, and decision rules; do not add generic filler.
 
 ### 4. Status Overview
 
@@ -303,6 +358,67 @@ python scripts/agent-bridge.py merge --source "NewPage" --target "OldPage" \
 ```bash
 python scripts/agent-bridge.py index
 ```
+
+### 8. Zotero Sync and Metadata Plan
+
+**When**: Before post-ingest Zotero tag synchronization or a collection-level DOI/publication audit.
+
+1. Use Zotero MCP to create a minimal verified snapshot under ignored `temp/`.
+2. Run the read-only planner:
+
+```bash
+python scripts/agent-bridge.py zotero-plan --snapshot temp/zotero-snapshot.yaml \
+  --manifest-out temp/zotero-mutation-manifest.yaml
+```
+
+3. Review managed-tag additions, collection-equivalent removal candidates, DOI states, and preprint publication checks.
+4. Apply approved mutations through Zotero MCP by default. When the user has explicitly authorized the documented Zotero 10 loopback exception, promote only reviewed additions/relations into an `authorized-write` plan and use `zotero-writeback`; for attachment relocation, use the separately gated `zotero-relocate` workflow described in the canonical protocol; then re-read the write backend and pass the synchronization barrier.
+
+The planner never connects to Zotero and never mutates Zotero or wiki files. An omitted `doi` means unobserved; `doi: ""` means the Zotero DOI field was read and is missing. A `--manifest-out` target must stay under `temp/`; the emitted `mode: review-only` manifest is not an executable mutation script, and `remove_tags_review` / `relation_candidates_review` still require Agent and MCP review.
+
+For one-shot enrichment, run:
+
+```bash
+python scripts/agent-bridge.py zotero-refresh --collection-key A9VNJUPI \
+  --manifest-out temp/zotero-refresh.yaml
+```
+
+The refresh command reads Zotero only through the configured MCP server, uses Crossref/OpenAlex provider lookups, and stores its private freshness cache under ignored `var/`. It is dry-run by default. Before using `--apply-safe`, review the manifest; safe apply is limited to incremental `LLM-Wiki ...` Extra keys, `llm-wiki:*` status tags, and conservative DOI URL normalization. New DOI values, bibliographic identity changes, item-type migration, and preprint/published relations remain review-only.
+
+For collection ingest QA, keep a complete allocation ledger under ignored `temp/` and run:
+
+```bash
+python scripts/agent-bridge.py zotero-ingest-verify \
+  --snapshot temp/zotero-snapshot.yaml \
+  --allocation temp/zotero-allocation.yaml \
+  --report-out temp/zotero-ingest-report.yaml
+```
+
+The verifier checks snapshot/allocation counts, unique item keys and indices, omission reasons, non-omitted `sources_meta.zotero_item_key` coverage, duplicate provenance rows, YAML/frontmatter validity, page invariants, control characters, trailing whitespace, private path leakage, and advisory batch-template collapse.
+
+For stale binding repair — Zotero item merges, re-imports, or attachment conversions that leave a dangling `zotero_item_key` in wiki frontmatter — run:
+
+```bash
+python scripts/agent-bridge.py zotero-heal --snapshot temp/zotero-snapshot.yaml \
+  --manifest-out temp/zotero-heal.yaml
+```
+
+The healer is dry-run by default: it detects wiki-bound item keys absent from the snapshot and re-addresses them via DOI, then citation key, then normalized title (unique matches only). Review the manifest, then re-run with `--apply` to rewrite the affected pages' `sources_meta[].zotero_item_key` in place (file names never change) and append a `log.md` record. It never writes to Zotero. The candidate pool is limited to the snapshot's collection; unmatched keys need manual lookup.
+
+For an explicitly reviewed local write-back, copy only approved additions and Related pairs into a secret-free `mode: authorized-write` plan (see `docs/examples/zotero-write-plan.example.yaml`), then run audit, apply, and verify as separate phases:
+
+```bash
+python scripts/agent-bridge.py zotero-writeback --plan temp/zotero-write-plan.yaml \
+  --action audit --report-out temp/zotero-write-audit.yaml
+python scripts/agent-bridge.py zotero-writeback --plan temp/zotero-write-plan.yaml \
+  --action apply --memory-authorize --report-out temp/zotero-write-report.yaml
+python scripts/agent-bridge.py zotero-writeback --plan temp/zotero-write-plan.yaml \
+  --action verify --report-out temp/zotero-write-verify.yaml
+```
+
+This restricted path adds managed `llm-wiki:*` tags and ensures user-reviewed reciprocal Related pairs only. It preserves full existing tag objects, uses live server identity plus version guards, retries one HTTP 412 from fresh state, and requires GET-after-PATCH verification. It cannot edit metadata, change collections, write notes, or touch Trash. Tag removal is a scoped opt-in: a plan must set `policy.allow_managed_removals: true` and list each tag under an item's `reviewed_removals`, and only managed `llm-wiki:*` tags other than the protected `llm-wiki:ingested` and preserved tags may be removed (never unmanaged/user tags). Generate a whitelisted removal plan with `zotero-plan --removal-plan-out` (retired `llm-wiki:<page_stem>` binding tags only). With `--memory-authorize`, the API key is not serialized.
+
+For controlled attachment relocation, configure the managed root once in `config.yaml` under `zotero_relocation.root` instead of passing `--root` on every run; `config.yaml` is gitignored, so each machine keeps its own value, and `--root` remains only a one-off override. For cross-device sync, point `root` at a cloud-synced folder and use environment-variable interpolation to keep the path portable (for example `root: "${OneDrive}/zotero-attachments"`). When devices run different operating systems (for example Windows and Linux), absolute paths can never match: set `zotero_relocation.base_dir_relative: true` so the path written back to Zotero is the portable `attachments:<relative>` form, and point Zotero's Linked Attachment Base Directory at the synced root on each device. Remind the user that a stored→linked conversion may stop Zotero File Sync from managing the file bytes, so every device must be able to reach the same synced root.
 
 ---
 
@@ -366,6 +482,75 @@ Agent:
 3. Update log.md
 ```
 
+### Applying a Transaction Bundle (Atomic Ingest Writes)
+
+**When**: An ingest or maintenance step must write several files as one logical
+operation — typically a new page plus `wiki/index.md` plus `log.md`. Direct
+Protocol-mode writes can leave the knowledge base inconsistent if interrupted;
+a transaction bundle applies them atomically with rollback on failure.
+
+Manifest format (place under ignored `temp/`, e.g. `temp/tx-bundle.yaml`):
+
+```yaml
+ops:
+  - op: create                 # target must NOT exist
+    path: wiki/NewPage.md      # relative to project root
+    content_path: draft-NewPage.md   # draft file, relative to this manifest
+  - op: update                 # target must exist AND match expected_sha256
+    path: wiki/index.md
+    content_path: draft-index.md
+    expected_sha256: "a1b2..." # MUST be quoted; all-digit values unquoted are rejected
+```
+
+Workflow:
+
+```
+Agent:
+1. Read every file you will update; draft all new content under temp/
+2. Write temp/tx-bundle.yaml with the ops above
+3. Run: python scripts/agent-bridge.py apply-bundle temp/tx-bundle.yaml --dry-run
+   -> Per-op status table + unified diff; update ops report their current sha256
+4. Fill any missing expected_sha256 values from the dry-run output
+5. Review the diff carefully; if anything is wrong, fix drafts and dry-run again
+6. Run: python scripts/agent-bridge.py apply-bundle temp/tx-bundle.yaml
+   -> All ops verified, journaled, and written atomically; mid-apply failure
+      rolls every file back. Report the operation ID and changed paths.
+```
+
+Rules:
+
+- **Never apply without a reviewed dry-run.** The `expected_sha256` lock fails
+  closed if a file changed since you drafted it — re-read, re-draft, re-lock.
+- Journals live under `.backups/transactions/<tx-id>/` (gitignored); clean old
+  ones manually.
+- `create` refuses existing files; `update` refuses missing files and requires
+  `expected_sha256`. Destructive deletes are not supported — do them by hand.
+- Write paths are machine-enforced against the command's capability contract
+  (`wiki/`, `log.md` only). A bundle that targets `sources/` or code is rejected
+  before anything is written.
+- A successful apply also records one bounded entry in `wiki/hot.md` (newest
+  first, last 20 kept). `hot.md` is session-resume context, not a knowledge
+  page: it is excluded from page listings and lint. Print it with
+  `agent-bridge.py hot` — e.g. at session start when the user opts in.
+
+### Capability Contracts
+
+Every bridge command declares its write scope, network use, and dry-run support
+in `src/llm_wiki/capabilities.py`. `config.yaml` may **tighten** these contracts
+(disable a command, narrow a write scope) but never widen them:
+
+```yaml
+capabilities:
+  apply-bundle:
+    enabled: false          # disable a command entirely
+  merge:
+    write_scope: ["wiki/"]  # narrow only; widening is rejected
+```
+
+Run `python scripts/agent-bridge.py capabilities` to inspect the effective
+contracts. Disabled commands fail closed at dispatch; out-of-scope bundle
+writes are rejected before any file is touched.
+
 ---
 
 ## Execution Visibility: Logging
@@ -407,12 +592,17 @@ python -m src.llm_wiki --verbose link --source "X" --mode light
 |------|-----------|--------|
 | A | User manually placed a file | Read-only, do not modify |
 | B | User provided a URL/DOI and the file is not yet in `sources/` | Use network tools to fetch, verify non-empty and correct format, then write |
+| C | `54yyyu/zotero-mcp` provides a verified Zotero-managed file | Follow [`docs/ZOTERO_MCP_INTEGRATION.md`](docs/ZOTERO_MCP_INTEGRATION.md) |
 
 ### Absolute Prohibitions
 
 - **NEVER** save LLM-generated text, summaries, or speculative content as `.md`, `.txt`, or any format into `sources/`
 - **NEVER** claim "downloaded" and create files without actually executing a network request
 - **NEVER** "fall back" to generated content when fetching fails
+
+### Zotero-Linked Sources
+
+All Zotero source discovery, attachment access, private bindings, provenance fields, and write-back rules are defined in [`docs/ZOTERO_MCP_INTEGRATION.md`](docs/ZOTERO_MCP_INTEGRATION.md). Use only `54yyyu/zotero-mcp` for Zotero operations, except the temporary opt-in Zotero 10 loopback write paths (`zotero-refresh --write-backend local`, restricted `zotero-writeback`, and separately gated `zotero-relocate`) documented there.
 
 ### Standard Network Fetch Template
 
@@ -784,9 +974,15 @@ Read("sources/screenshot.jpg")
 **Dependency file location**: `src/requirements.txt`
 
 **Included dependencies**:
-- `click>=8.0.0` - CLI framework
 - `pyyaml>=6.0` - YAML parsing
 - `pymupdf>=1.25.0` - PDF processing (PyMuPDF, supports CJK fonts and complex layouts)
+- `numpy>=1.24.0` - Vector search / embedding math
+- `httpx>=0.27.0` - HTTP client (provider lookups, Zotero local API)
+- `mcp>=1.0.0` - Zotero MCP client transport
+- `openai>=1.0.0` - Embedding provider client
+- `pytest>=7.0.0` - Test framework
+
+The CLI itself is stdlib `argparse` (`src/llm_wiki/cli.py`); no external CLI framework is required.
 
 **Fallback dependencies** (only when PyMuPDF table extraction is poor):
 - `pdfplumber>=0.11.8` - PDF table extraction (secure version required for CVE-2025-64512)
@@ -970,8 +1166,9 @@ Agent:
 ### CLI Entry Points
 
 - **Module**: `src.llm_wiki`
-- **Main file**: `src/llm_wiki/commands.py`
+- **Main file**: `src/llm_wiki/cli.py` (stdlib `argparse`; no external CLI framework)
 - **Core logic**: `src/llm_wiki/core.py`
+- **Deterministic retrieval**: `src/llm_wiki/bm25.py` — dependency-free BM25Okapi with a mixed Chinese/English tokenizer (English words; Chinese unigrams + bigrams). It backs the content-relevance signal in both `link` and `query`, so retrieval quality never depends on embedding availability.
 - **Agent Bridge**: `scripts/agent-bridge.py`
 - **Logging**: `src/llm_wiki/agent_logger.py`
 
@@ -986,8 +1183,8 @@ Project includes auxiliary scripts (`scripts/`):
 ### Dependencies and Virtual Environment
 
 Dependency file: `src/requirements.txt`
-- `click` - Command line framework
 - `pyyaml` - YAML parsing
+- `pymupdf`, `numpy`, `httpx`, `mcp`, `openai` - runtime dependencies (see Dependency Management above)
 
 #### Check Dependencies (including virtual environment detection)
 
@@ -1033,13 +1230,13 @@ def check_dep(module_name, python_path=None):
 
 ### Relationship with CLAUDE.md
 
-- `CLAUDE.md`: Defines **user-visible** working protocol
-- `AGENTS.md`: Defines **Agent-internal** implementation strategy
-- `SKILL.md`: Machine-readable specification that **ALL Agents MUST read** before operating
+- `AGENTS.md`: Canonical unified protocol for user-visible behavior and Agent implementation strategy.
+- `CLAUDE.md`: Relative symbolic link to `AGENTS.md`; never maintain a second content body.
+- `SKILL.md`: Machine-readable operational specification that **ALL Agents MUST read** before operating.
 
-They are not contradictory: Protocol mode implements the semantics of CLAUDE.md; agent-bridge.py provides a unified interface for all algorithmic tasks.
+Edit `AGENTS.md` only. The symlink keeps Claude Code and other Agent entry points byte-identical.
 
 ---
 
-*Agent Guide Version: 1.4.1*
-*Last Updated: 2026-05-24*
+*Agent Guide Version: 1.6.0*
+*Last Updated: 2026-09-09*

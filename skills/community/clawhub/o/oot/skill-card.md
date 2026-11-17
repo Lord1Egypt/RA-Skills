@@ -1,48 +1,64 @@
-## Description: <br>
-Optimizer Openclaw Token helps OpenClaw users reduce token usage and API cost with context recommendations, model-routing guidance, heartbeat optimization, and local budget tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps OpenClaw users reduce token usage and API costs by recommending smaller context bundles, routing tasks to cheaper model tiers, optimizing heartbeat intervals, and tracking token budgets.
 
-## Publisher: <br>
-[cloud-dark](https://clawhub.ai/user/cloud-dark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cloud-dark](https://clawhub.ai/user/cloud-dark)
 
-## Use Case: <br>
-Developers and operators using OpenClaw use this skill to reduce token and API costs by selecting smaller context bundles, routing prompts to lower-cost models, optimizing heartbeat checks, and tracking daily usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence ongoing agent behavior through model selection, heartbeat behavior, and generated workspace guidance. <br>
-Mitigation: Review generated AGENTS.md and HEARTBEAT.md content before adopting it. <br>
-Risk: Heartbeat setup may overwrite an existing OpenClaw workspace HEARTBEAT.md file. <br>
-Mitigation: Back up the existing HEARTBEAT.md before installing the template. <br>
-Risk: The RTK companion documentation includes a curl-to-shell installer path. <br>
-Mitigation: Avoid that installer unless it has been separately verified; prefer a reviewed package-manager or source install path. <br>
-Risk: Token budget tracking is advisory and may not enforce real spending limits without additional integration. <br>
-Mitigation: Do not rely on token_tracker.py as hard budget enforcement. <br>
+## Use Case:
 
+Developers and operators using OpenClaw use this skill to control agent token spend, model selection, heartbeat behavior, and local budget visibility in routine and high-volume workflows.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/cloud-dark/oot) <br>
-- [Publisher profile](https://clawhub.ai/user/cloud-dark) <br>
-- [Project homepage from Claw metadata](https://github.com/Cloud-Dark/oot) <br>
-- [Provider strategy reference](references/PROVIDERS.md) <br>
-- [RTK companion workflow reference](references/RTK.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate local guidance files such as optimized AGENTS.md or HEARTBEAT.md drafts for review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release is marked suspicious because its documentation and wrapper include actions that may affect local workspace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the RTK companion instructions and workspace write behavior before installation, and back up any existing HEARTBEAT.md before using heartbeat-related commands.
+
+Risk: The RTK companion guidance includes a curl-to-shell installer path for an external tool.
+
+Mitigation: Avoid that installer unless you independently trust and verify it; prefer a reviewed package-manager or cargo install path when appropriate.
+
+Risk: Optional multi-provider configuration can require third-party API keys and networked model providers when manually applied.
+
+Mitigation: Apply those configuration examples only after reviewing the provider, credential, and network implications for the target environment.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/cloud-dark/skills/oot)
+- [Publisher profile](https://clawhub.ai/user/cloud-dark)
+- [Declared homepage](https://github.com/Cloud-Dark/oot)
+- [Alternative AI Providers & Models](references/PROVIDERS.md)
+- [RTK Integration Guide](references/RTK.md)
+- [Cronjob Model Selection Guide](assets/cronjob-model-guide.md)
+- [Token optimization config patches](assets/config-patches.json)
+- [Security Documentation](SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON recommendations, shell commands, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some usage paths generate local files or write local OpenClaw workspace state; optional provider configuration may require external credentials when manually applied.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and changelog report 1.4.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

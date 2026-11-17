@@ -1,39 +1,48 @@
-## Description: <br>
-Professional competitor market analyst that performs price trend analysis and competitor product comparison based on product information, outputting analysis reports with data visualizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional competitor market analyst that performs price trend analysis and competitor product comparison based on product information, outputting analysis reports with data visualizations.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[openlark](https://clawhub.ai/user/openlark)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Business, product, and market analysis users use this skill to compare products, analyze pricing trends, and prepare concise competitor analysis reports with charts and recommendations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Market prices, competitor claims, and market-share data gathered through search may be stale, incomplete, or unverifiable.
+
+Mitigation: Review cited sources before making business decisions and mark unsupported facts as "To be verified".
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, product teams, market analysts, and business operators use this skill to compare competitor products, analyze pricing trends, and produce objective competitor analysis reports with charts and recommendations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Public web or search results may contain stale, incomplete, or unverifiable prices, forecasts, and market-share claims. <br>
-Mitigation: Provide clear product, market, timeframe, and competitor context, and independently verify important market claims before using the report for business decisions. <br>
+**Output Format:** [Markdown analysis report with tables and Mermaid or ASCII charts]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/competitor-market-analyst) <br>
-- [OpenLark publisher profile](https://clawhub.ai/user/openlark) <br>
+**Other Properties Related to Output:** [May include sourced market facts, price comparisons, trend forecasts, and recommendations; unverifiable data should be marked "To be verified".]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports with tables and Mermaid or ASCII charts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include price trend analysis, competitor comparison tables, visualizations, conclusions, and recommendations; unverifiable data should be marked for verification.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

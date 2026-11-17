@@ -1,6 +1,18 @@
 {
   "ownerId": "kn7fdy4a8c71h0mj875sctvdk180tktj",
   "slug": "moss",
-  "version": "1.0.3",
-  "publishedAt": 1772780232033
+  "version": "1.0.0",
+  "publishedAt": 1770706075584,
+  "primaryCredential": "MOSS_PROJECT_KEY",
+  "requiredEnv": [
+    {
+      "name": "MOSS_PROJECT_ID",
+      "description": "Project identifier from the Moss Portal"
+    },
+    {
+      "name": "MOSS_PROJECT_KEY",
+      "description": "Project access key from the Moss Portal (treat as a secret)",
+      "secret": true
+    }
+  ]
 }

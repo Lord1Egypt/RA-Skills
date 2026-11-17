@@ -1,42 +1,58 @@
-## Description: <br>
-Helps users plan college entrance exam major choices and later career paths using a structured synthesis of Zhang Xuefeng and Wu Liang guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users choose Chinese gaokao majors and plan career paths using a decision framework based on Zhang Xuefeng and Wu Liang content.
 
-## Publisher: <br>
-[ryan1125](https://clawhub.ai/user/ryan1125) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan1125](https://clawhub.ai/user/ryan1125)
 
-## Use Case: <br>
-External users use this skill to evaluate Chinese gaokao major choices, career paths, graduate study, civil-service options, and employment tradeoffs based on personal constraints such as score, province, subject track, family background, location, and goals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may request sensitive personal background details to tailor admissions and career advice. <br>
-Mitigation: Avoid sharing identity numbers, account credentials, or unnecessary family details. <br>
-Risk: Admissions cutoffs, employment data, salary claims, and policy conditions can change over time. <br>
-Mitigation: Verify current score cutoffs, employment data, salary claims, and policy changes against official sources before making decisions. <br>
-Risk: The skill provides advisory planning help rather than official admissions or career authority. <br>
-Mitigation: Use the output as planning support and consult official admissions, education, and employer sources for decisions. <br>
+## Use Case:
 
+External users can use this skill to ask for Chinese gaokao major-selection, university-planning, postgraduate or civil-service direction, and early career-path guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryan1125/xue-feng-skill-publish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, analysis, markdown] <br>
-**Output Format:** [Markdown guidance with structured recommendations and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request sensitive personal background details for tailored advice; users should verify current admissions, employment, salary, and policy data against official sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.1 (source: frontmatter and release evidence) <br>
+Risk: The skill asks about sensitive personal attributes such as gender, family background, family resources, location preference, and political-review or criminal-record-related circumstances.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users these details are optional, request only the minimum context needed, and allow them to skip questions while still receiving general guidance.
+
+Risk: Education, admissions, labor-market, and policy data can become stale.
+
+Mitigation: Verify specific majors, salaries, admission policies, exam pathways, and industry trends with current-year sources before giving concrete recommendations.
+
+Risk: Major-selection and career advice can be misleading if treated as definitive.
+
+Mitigation: Frame recommendations as decision support and encourage users to check official admissions, employment, and policy sources before making decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryan1125/skills/xue-feng-skill-publish)
+- [ClawHub publisher profile](https://clawhub.ai/user/ryan1125)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown response text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for sensitive personal context and recommends current-year data checks before specific major or career advice.]
+
+## Skill Version(s):
+
+1.9.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

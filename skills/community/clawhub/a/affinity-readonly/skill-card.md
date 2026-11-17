@@ -1,41 +1,50 @@
-## Description: <br>
-Affinity Readonly fetches Affinity CRM companies, people, notes, opportunities, interactions, and relationship data through read-only API calls for analysis and memo preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read-only Affinity CRM access for analysis and memo preparation that fetches companies, people, notes, opportunities, interactions, or relationship data via API for summarized analysis without writes or API-key exposure.
 
-## Publisher: <br>
-[howdymarc](https://clawhub.ai/user/howdymarc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howdymarc](https://clawhub.ai/user/howdymarc)
 
-## Use Case: <br>
-Employees or developers use this skill to retrieve selected Affinity CRM records with GET-only API calls and summarize evidence for analysis or memo preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports a suspicious verdict for the bundle. <br>
-Mitigation: Install only after reviewing the skill package and confirming that the requested Affinity access is needed for the intended workflow. <br>
-Risk: The skill uses an Affinity API key to fetch CRM data. <br>
-Mitigation: Keep AFFINITY_API_KEY out of logs and prompts, use least-privilege credentials where available, and run only GET-only retrieval tasks unless policy is changed. <br>
+## Use Case:
 
+Developers and operators use this skill to retrieve Affinity CRM records for analysis-only workflows, including company, person, note, opportunity, interaction, and relationship summaries. It is intended for read-only memo preparation and evidence gathering without modifying CRM data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howdymarc/affinity-readonly) <br>
-- [Affinity API base endpoint](https://api.affinity.co) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and summarized API response evidence] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AFFINITY_API_KEY in the local environment; API responses may be formatted as JSON when jq is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The Affinity API key can be sent to an unintended host if AFFINITY_API_BASE is changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a read-only, least-privileged Affinity token; avoid setting AFFINITY_API_BASE except in controlled testing; prefer a trusted fixed API host or explicit allowlist; rotate the token if the base URL may have been manipulated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howdymarc/skills/affinity-readonly)
+- [Affinity API base URL](https://api.affinity.co)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with optional JSON API responses and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Affinity API access; requires AFFINITY_API_KEY in the local environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence, released 2026-03-13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

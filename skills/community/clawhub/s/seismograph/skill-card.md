@@ -1,39 +1,53 @@
-## Description: <br>
-Predicts the ripple effects of a proposed change before you make it by mapping how a modification propagates through code, tests, contracts, configuration, and downstream systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Seismograph helps developers forecast how a proposed code change may affect interfaces, dependents, tests, documentation, schemas, and downstream systems before implementation.
 
-## Publisher: <br>
-[jcools1977](https://clawhub.ai/user/jcools1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcools1977](https://clawhub.ai/user/jcools1977)
 
-## Use Case: <br>
-Developers and engineers use Seismograph before code changes and during PR review to map direct, indirect, and side-effect impacts across interfaces, tests, documentation, configuration, and downstream systems. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill analyzes repository content and may be invoked during ordinary engineering discussion because of its broad change-impact posture. <br>
-Mitigation: Use it on repositories you are comfortable letting an agent read, and scope requests to concrete proposed changes, interfaces, or pull requests. <br>
-Risk: Impact reports are advisory and may contain incorrect or overbroad recommendations. <br>
-Mitigation: Review the analysis before changing code, especially for public interfaces, schemas, wire formats, and downstream integrations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Seismograph on ClawHub](https://clawhub.ai/jcools1977/seismograph) <br>
+## Use Case:
 
+Developers and engineers use this skill before code changes or during pull request review to map direct, indirect, and side-effect impacts before implementation.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown] <br>
-**Output Format:** [Markdown report with structured impact analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory output; no API calls or external dependencies are indicated by the release evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may activate on broad or casual wording about a change being simple.
+
+Mitigation: Use it for concrete proposed changes, public interfaces, schemas, APIs, or pull request review rather than casual discussion.
+
+Risk: Impact analysis can miss dependencies or overstate downstream risk if the repository context is incomplete.
+
+Mitigation: Review the generated impact map against tests, documentation, contracts, and downstream ownership before acting on recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jcools1977/skills/seismograph)
+- [Publisher profile](https://clawhub.ai/user/jcools1977)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with structured impact analysis sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls or credentials are required according to server evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

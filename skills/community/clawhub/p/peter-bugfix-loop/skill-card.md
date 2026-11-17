@@ -1,38 +1,52 @@
-## Description: <br>
-Guides agents through a disciplined bug-fix loop that reproduces the issue, identifies root cause, applies a minimal fix, adds tests, and connects to Peter review, CI, and PR closure workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Peter Bugfix Loop is a Chinese-language workflow for driving a bug from report to merge-ready fix through reproduction, root-cause analysis, minimal repair, tests, and PR closure.
 
-## Publisher: <br>
-[chinasilva](https://clawhub.ai/user/chinasilva) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chinasilva](https://clawhub.ai/user/chinasilva)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to move a bug report from problem description to merge-ready fix with reproducible evidence, root-cause notes, minimal code changes, tests, and PR gate status. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide code changes, tests, commits, PRs, and reverts when the user only intended to discuss a bug. <br>
-Mitigation: Confirm intent before starting the full repair workflow and keep normal review controls in place. <br>
-Risk: Bug-fix guidance can lead to incorrect or overly broad changes if the issue is not reproduced first. <br>
-Mitigation: Require a minimal failing reproduction, make the smallest root-cause fix, add focused regression tests, and review gate results before closure. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineers use this skill to structure bug fixes from an initial problem report through reproducible evidence, root-cause analysis, a minimal code change, tests, and PR closure.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Code, Shell commands] <br>
-**Output Format:** [Structured Markdown bug-fix report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes bug card details, reproduction evidence, root cause, changed files, test results, gate status, PR status, and a closure conclusion.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow can ask an agent to make commits, open PRs, or revert changes in shared repositories.
+
+Mitigation: Confirm commit, PR, and revert actions before execution, and review the proposed diff and test results before merging.
+
+Risk: A bug fix made before reproducing the defect could mask the real root cause or introduce unrelated changes.
+
+Mitigation: Require a minimal failing test or reproducible CLI, HTTP, or UI command before making code changes, then keep the repair scoped to the identified cause.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chinasilva/skills/peter-bugfix-loop)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Shell commands, Code]
+
+**Output Format:** [Markdown bug-fix report with code, command, and status details as applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fixed report sections for bug card, reproduction, root cause, fix, tests, gates, and conclusion.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

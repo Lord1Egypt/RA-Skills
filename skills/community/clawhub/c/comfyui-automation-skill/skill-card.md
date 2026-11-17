@@ -1,42 +1,58 @@
-## Description: <br>
-Automates ComfyUI workflows by collecting required assets, executing tasks via the RunningHub API, and returning execution status and results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates ComfyUI workflow execution by collecting required inputs, calling RunningHub APIs, monitoring task status, and returning results.
 
-## Publisher: <br>
-[wuxiaosa86-cmd](https://clawhub.ai/user/wuxiaosa86-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuxiaosa86-cmd](https://clawhub.ai/user/wuxiaosa86-cmd)
 
-## Use Case: <br>
-Developers and operators use this skill to collect workflow inputs, upload required media, run ComfyUI workflows through RunningHub, and review task status and results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workflow prompts, node parameters, selected local media files, image URLs, optional webhook URLs, and the RunningHub API key may be sent to RunningHub. <br>
-Mitigation: Use only non-confidential inputs, review RunningHub privacy and retention terms, avoid regulated files unless approved, and provide only webhook endpoints you control. <br>
-Risk: Workflow execution can consume external service resources or run with unintended parameters. <br>
-Mitigation: Review workflow identifiers, selected nodes, collected materials, and execution confirmation prompts before running; test workflows in RunningHub when practical. <br>
+## Use Case:
 
+Developers and operators use this skill to run ComfyUI workflows through RunningHub by supplying a workflow ID or nickname, required media or prompt inputs, and optional webhook details. It is useful for image, video, audio, and multimodal workflow automation where task status and results need to be returned to the agent session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuxiaosa86-cmd/comfyui-automation-skill) <br>
-- [RunningHub](https://www.runninghub.cn) <br>
-- [Artifact README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or console text with JSON task responses and execution status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include RunningHub task IDs, status polling updates, uploaded file names, and final workflow result payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: RunningHub API keys are entered through an interactive prompt and may be exposed if terminal output is visible or shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, low-privilege RunningHub API key and rotate it if it was exposed during setup or use.
+
+Risk: The skill can upload user-provided local files to RunningHub without strong path scoping or a separate upload confirmation.
+
+Mitigation: Run the skill in a restricted working directory or sandbox and provide only intended, non-sensitive file paths.
+
+Risk: The skill depends on local Python dependencies and network access to RunningHub.
+
+Mitigation: Review and pin dependencies before installation, and allow network access only for the intended RunningHub workflow operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuxiaosa86-cmd/skills/comfyui-automation-skill)
+- [RunningHub](https://www.runninghub.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Console text with JSON task status and result payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workflow IDs, task IDs, status updates, uploaded file names, error messages, and RunningHub result data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact metadata reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

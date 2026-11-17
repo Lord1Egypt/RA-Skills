@@ -1,42 +1,58 @@
-## Description: <br>
-Trump Tback analyzes Trump-related posts for text sentiment and engagement-driven market momentum using a three-axis T-Back scoring model. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Trump Tback analyzes Trump-related post text and engagement data with a T-Back sentiment framework to classify promotional, threat-oriented, or neutral market-sentiment signals.
 
-## Publisher: <br>
-[kai157isme-lgtm](https://clawhub.ai/user/kai157isme-lgtm) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kai157isme-lgtm](https://clawhub.ai/user/kai157isme-lgtm)
 
-## Use Case: <br>
-Researchers and analysts use this skill to classify Trump-related post sentiment, estimate viral momentum from engagement data, and summarize possible market-sentiment signals. It should not be treated as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market-sentiment scores or warnings may be mistaken for investment advice. <br>
-Mitigation: Use the results only as research-style analysis, verify conclusions independently, and avoid making trading or purchasing decisions from the skill output alone. <br>
-Risk: Broad keyword triggers such as geopolitical or market terms can overstate the significance of a post. <br>
-Mitigation: Review the input text, engagement data, thresholds, and surrounding context before relying on any alert or severity label. <br>
-Risk: Future versions that add live social-media fetching, credentials, trading, or purchase capabilities would expand the risk profile. <br>
-Mitigation: Rescan and review future versions before installation, and grant only the minimum credentials or network access needed. <br>
+## Use Case:
 
+Developers and external users can use this skill to analyze Trump-related social posts, engagement data, daily aggregates, and cross-platform signals for research or entertainment-oriented market-sentiment review. Its scores and warnings should not be treated as investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kai157isme-lgtm/trump-tback) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python snippets and numeric sentiment analysis results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local Python-based analysis; no live fetching unless the skill is extended with external data sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may overinterpret T-Back scores, market-sensitivity labels, or hedge-style warnings as investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as research or entertainment signals only and require independent review before any financial decision.
+
+Risk: Optional market-data functions may contact yfinance when called.
+
+Mitigation: Run the local text analysis functions without market-data calls when network access is not approved or external data access is not desired.
+
+Risk: The skill is Chinese-first and narrowly focused on Trump-related market sentiment.
+
+Mitigation: Review the language, framing, and domain fit before deploying it to users or workflows outside that intended context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kai157isme-lgtm/skills/trump-tback)
+- [Skill homepage](https://github.com/trump-mood-dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with Python code snippets and JSON-like analysis dictionaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces sentiment scores, T-Back levels, keyword groups, viral momentum summaries, daily aggregates, and cross-platform resonance alerts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,58 @@
-## Description: <br>
-Fast, reliable Hong Kong bus ETA lookup for KMB, Citybus, and LWB with fuzzy stop matching, bilingual output, and multi-route parallel queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fast, reliable Hong Kong bus ETA lookup for KMB, CTB, and LWB routes with fuzzy stop matching, bilingual output, multi-route parallel queries, and fixed no-result fallback handling.
 
-## Publisher: <br>
-[tomfong](https://clawhub.ai/user/tomfong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomfong](https://clawhub.ai/user/tomfong)
 
-## Use Case: <br>
-External users and compatible AI agents use this skill to answer Hong Kong public bus arrival queries from route and stop names. It is suited for quick next-bus lookups, bilingual responses, and comparing ETAs across multiple routes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Hong Kong <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Python scripts and may create or refresh cache files inside its scripts directory. <br>
-Mitigation: Installers should expect writes only to the documented skill-local cache paths and should review those paths during deployment. <br>
-Risk: The skill contacts public Hong Kong transit and open-data services to retrieve ETA and stop data. <br>
-Mitigation: Allow network access only to the documented transit data domains and avoid sending secrets or private data in route and stop queries. <br>
-Risk: Live ETA data can be missing, delayed, or outside service hours. <br>
-Mitigation: Use the documented fixed fallback messages when no ETA is returned and avoid fabricating arrival times. <br>
-Risk: Route and stop names are passed as command arguments. <br>
-Mitigation: Use normal argument passing and careful quoting for user-provided route and stop names. <br>
+## Use Case:
 
+External users and compatible AI agents use this skill to answer Hong Kong public bus arrival-time questions in Traditional Chinese or English. It runs local Python scripts to query public KMB/LWB and Citybus data sources, match stops, and return concise ETA results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tomfong/hk-bus-eta) <br>
-- [Publisher profile](https://clawhub.ai/user/tomfong) <br>
-- [KMB/LWB ETA data service](https://data.etabus.gov.hk/) <br>
-- [Citybus ETA data service](https://rt.data.gov.hk/) <br>
-- [Hong Kong open data portal](https://data.gov.hk/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Concise Markdown or plain text containing route labels, stop names, destinations, Google Maps links, ETA times, operator labels, and fixed fallback messages when no ETA is available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Traditional Chinese and English output; route and stop query parameters; multi-route responses may be grouped by route.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and skill documentation) <br>
+Risk: The skill makes outbound requests to Hong Kong public transit data APIs and maintains skill-local SQLite/JSON cache files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when those network requests and local cache files are acceptable for the deployment environment.
+
+Risk: The cache sync can run in the background when local data is stale.
+
+Mitigation: Review or disable background cache refresh behavior if every network update must be manually initiated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tomfong/skills/hk-bus-eta)
+- [KMB/LWB ETA data API](https://data.etabus.gov.hk/v1/transport/kmb/)
+- [Citybus ETA data API](https://rt.data.gov.hk/v2/transport/citybus/)
+- [DATA.GOV.HK public transport data](https://data.gov.hk/)
+- [Artifact technical reference](artifact/README.md)
+- [Artifact agent specification](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown text with route labels, stop links, grouped destinations, up to three upcoming ETAs, and fixed fallback messages when no ETA is available.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual zh-HK/en output; ETA freshness depends on public transit API responses and skill-local cache state.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata, README, changelog, and script headers)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

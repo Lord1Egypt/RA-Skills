@@ -1,39 +1,49 @@
-## Description: <br>
-Microsoft 365 administrator specializing in Exchange Online, Teams, SharePoint, licensing, Graph API automation, and secure identity operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Microsoft 365 administrator specializing in Exchange Online, Teams, SharePoint, licensing, Graph API automation, and secure identity operations.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Microsoft 365 administrators and automation engineers use this skill to draft and review Exchange Online, Teams, SharePoint, licensing, Microsoft Graph, and identity administration workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Microsoft 365 administrative changes can have high impact if executed against broad or incorrect tenant resources. <br>
-Mitigation: Review generated commands before running them, limit targets to named users or resources, prefer audit or dry-run steps first, and use the least privileged Microsoft 365 role that can complete the task. <br>
+## Use Case:
 
+Administrators, IT operations teams, and developers use this skill to design, build, and review Microsoft 365 administration workflows across Exchange Online, Teams, SharePoint, licensing, identity, and Graph PowerShell automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-m365-admin) <br>
-- [Publisher profile](https://clawhub.ai/user/mtsatryan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Microsoft 365 administration guidance and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; review generated Microsoft 365 administrative changes before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Generated workflows can affect Microsoft 365 tenant resources such as mailboxes, sharing settings, licenses, roles, and applications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated scripts and require explicit approval before running tenant-changing actions with privileged credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-m365-admin)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with scripts, commands, checklists, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose privileged Microsoft 365 tenant changes that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Handles voice-to-voice conversations on WhatsApp by transcribing incoming audio and responding with local TTS audio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handles voice-to-voice conversations on WhatsApp by transcribing incoming audio and responding with local text-to-speech audio.
 
-## Publisher: <br>
-[rubenfb23](https://clawhub.ai/user/rubenfb23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rubenfb23](https://clawhub.ai/user/rubenfb23)
 
-## Use Case: <br>
-External users and agents use this skill to handle WhatsApp conversations by transcribing incoming voice notes, processing them as prompts, and returning both text and local TTS audio replies. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Automated voice and text replies may be sent in chats where participants do not expect automated responses. <br>
-Mitigation: Use the skill only in WhatsApp chats where automated text and voice replies are acceptable. <br>
-Risk: Local speech tools or the surrounding setup may retain temporary audio files or transcripts. <br>
-Mitigation: Verify the local transcription and TTS tools are trusted and confirm how temporary audio and transcript data are stored or cleared. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/rubenfb23/vocal-chat) <br>
+## Use Case:
 
+Agents use this skill to support WhatsApp voice-note conversations for users who prefer speaking instead of typing. It transcribes incoming voice messages, processes the text as a normal prompt, and returns both text and an OGG voice reply.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Text replies, OGG audio files, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local speech tools and returns both text and audio when active.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may not expect WhatsApp voice notes to be transcribed and answered by the agent.
+
+Mitigation: Confirm the voice-note behavior before installing or enabling the skill.
+
+Risk: Generated audio can create a temporary-file safety concern.
+
+Mitigation: Use a private unique temporary file for generated audio and delete it after sending.
+
+## Reference(s):
+
+- [Vocal Chat on ClawHub](https://clawhub.ai/rubenfb23/skills/vocal-chat)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Text instructions with inline shell commands and generated OGG audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local transcription and local text-to-speech tools; generated audio should be handled as conversational user data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, released 2026-01-26)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

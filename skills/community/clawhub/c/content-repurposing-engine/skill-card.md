@@ -1,41 +1,48 @@
-## Description: <br>
-Turn one source asset, such as a blog post, podcast, video, talk, notes, or idea, into platform-specific marketing drafts across 10+ formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn one piece of content into 10+ formats. Transform blog posts, podcasts, videos, or talks into tweets, LinkedIn posts, newsletters, carousels, and more.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Content creators, marketers, and founders use this skill to repurpose existing articles, transcripts, notes, talks, or ideas into social posts, newsletter copy, video scripts, outlines, email sequences, and other platform-native drafts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: User-provided source content may include confidential transcripts, unreleased plans, or proprietary marketing material. <br>
-Mitigation: Only provide content that is acceptable for model processing, and remove sensitive details before repurposing. <br>
-Risk: Generated marketing drafts may be inaccurate, off-brand, or unsuitable for a target platform or audience. <br>
-Mitigation: Review and edit outputs before publication, checking facts, claims, tone, calls to action, and platform fit. <br>
-Risk: The external context-pack link is optional marketing material and not part of the skill runtime. <br>
-Mitigation: Do not treat external packs as required runtime dependencies unless separately reviewed and approved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/content-repurposing-engine) <br>
+## Use Case:
 
+Content creators, marketers, and founders use this skill to convert a blog post, transcript, presentation notes, raw notes, or a single idea into platform-native social posts, newsletter copy, scripts, outlines, email sequences, podcast talking points, and YouTube metadata.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured platform-specific drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft marketing content across 10+ formats; outputs should be reviewed before publication.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad content transformation requests can expose confidential unpublished material if users paste it as source input.
+
+Mitigation: Avoid providing confidential unpublished material unless it is acceptable for that material to be rewritten into multiple public-facing formats.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/content-repurposing-engine)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text grouped by requested content formats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform-specific constraints such as tweet counts, character targets, slide text, subject lines, calls to action, and timestamps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

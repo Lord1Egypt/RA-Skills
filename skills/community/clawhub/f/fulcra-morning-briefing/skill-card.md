@@ -1,47 +1,65 @@
-## Description: <br>
-Compose a personalized morning briefing using Fulcra sleep, biometric, calendar, activity, and optional weather context, with tone and detail calibrated to how the user slept. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compose a personalized morning briefing using the latest fulcra-context skill for sleep, biometrics, calendar, activity, and weather context. Adapts tone and detail to how the human actually slept.
 
-## Publisher: <br>
-[arc-claw-bot](https://clawhub.ai/user/arc-claw-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arc-claw-bot](https://clawhub.ai/user/arc-claw-bot)
 
-## Use Case: <br>
-External users and their agents use this skill to collect recent Fulcra sleep, biometric, activity, calendar, and optional weather context, then compose a personalized morning briefing calibrated to sleep quality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Morning briefings can expose sensitive sleep, biometric, steps, location, and calendar details. <br>
-Mitigation: Deliver detailed briefings only to the intended user or an explicitly approved channel; keep group-chat summaries qualitative and minimal. <br>
-Risk: The optional cron workflow can write sensitive briefing JSON to /tmp. <br>
-Mitigation: Store scheduled output in a user-private path with restrictive permissions and a retention policy. <br>
-Risk: A briefing may be based on stale or incomplete Fulcra data. <br>
-Mitigation: Use freshness checks as signals and fetch the specific sleep, biometric, activity, calendar, and weather records before summarizing. <br>
+## Use Case:
 
+External users and their agents use this skill to collect Fulcra sleep, biometric, calendar, activity, and weather context and compose a morning briefing calibrated to sleep quality.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/arc-claw-bot/skills/fulcra-morning-briefing) <br>
-- [Fulcra Platform](https://fulcradynamics.com) <br>
-- [Fulcra Developer Docs](https://fulcradynamics.github.io/developer-docs/) <br>
-- [Context iOS App](https://apps.apple.com/app/id1633037434) <br>
-- [Fulcra Python Client](https://github.com/fulcradynamics/fulcra-api-python) <br>
-- [Fulcra Context MCP Server](https://github.com/fulcradynamics/fulcra-context-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown briefing prose with optional JSON collection output and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only Fulcra workflow; briefing length, tone, and detail vary with sleep quality.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.9 (source: server release evidence) <br>
+Risk: The workflow handles sensitive Fulcra health, activity, calendar, and location-derived context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this access is acceptable, run the workflow as an unprivileged user, and avoid sharing briefing details outside a trusted private channel.
+
+Risk: Shell-based collection and the FULCRA_CLI_COMMAND override can increase supply-chain or command execution risk.
+
+Mitigation: Pin the Fulcra CLI version where practical and avoid FULCRA_CLI_COMMAND unless the command path and arguments are fully controlled.
+
+Risk: Briefing output may persist sensitive data if written to shared temporary paths.
+
+Mitigation: Use a private 0700 directory instead of /tmp/briefing.json for stored briefing data.
+
+Risk: Weather lookup sends the configured location to wttr.in.
+
+Mitigation: Use only a location granularity the user is comfortable disclosing to that external weather service.
+
+## Reference(s):
+
+- [Fulcra Platform](https://fulcradynamics.com)
+- [Fulcra Developer Docs](https://docs.fulcradynamics.com)
+- [Fulcra Python Client](https://github.com/fulcradynamics/fulcra-api-python)
+- [Fulcra Context MCP Server](https://github.com/fulcradynamics/fulcra-context-mcp)
+- [Context iOS App](https://apps.apple.com/app/id1633037434)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown briefing guidance with shell commands and JSON collector output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Collector output includes sleep, heart rate, HRV, steps, calendar, weather, and compact data freshness fields.]
+
+## Skill Version(s):
+
+1.1.10 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,56 @@
-## Description: <br>
-Extract real restaurant insights from Dianping reviews: filter noise, detect fake reviews, build personalized dining guides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract real restaurant insights from Dianping reviews: filter noise, detect fake reviews, build personalized dining guides.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users and agents use this skill to analyze Dianping restaurant reviews, identify suspicious feedback, summarize genuine sentiment, rank restaurants against dining preferences, and produce dish-level ordering guides. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with practical coverage focused on mainland China where Dianping restaurant data is available. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included CLI uses sample data rather than live Dianping access. <br>
-Mitigation: Treat generated recommendations as examples unless the skill is connected to current, authorized review data. <br>
-Risk: Adapting the skill for live scraping could create terms-of-service, rate-limit, or privacy issues. <br>
-Mitigation: Keep collection read-only, avoid account credentials, respect Dianping rate limits and terms, and do not store precise location or reviewer data beyond the session. <br>
-Risk: Fake-review and sentiment scores can be wrong or incomplete when review samples are sparse, stale, or biased. <br>
-Mitigation: Show confidence warnings for limited data and use the results as dining guidance rather than authoritative claims about restaurants or reviewers. <br>
+## Use Case:
 
+External users and agents use this skill to analyze Dianping-oriented restaurant review evidence, identify suspicious feedback patterns, summarize genuine sentiment, rank restaurants for a dining context, and generate dish-level ordering or route guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/dianping-restaurant-guide) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
-- [Fake review detection signals](references/signals.json) <br>
-- [Input schema](schemas/input.schema.json) <br>
-- [Output schema](schemas/output.schema.json) <br>
-- [OpenClaw input schema URI](https://openclaw.dev/skills/dianping-restaurant-guide/input.schema.json) <br>
-- [OpenClaw output schema URI](https://openclaw.dev/skills/dianping-restaurant-guide/output.schema.json) <br>
+### Deployment Geography for Use:
 
+Mainland China primarily
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON reports with restaurant rankings, authenticity findings, sentiment summaries, ordering guides, and route plans.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include authenticity scores, suspicious-review signals, dining-profile rankings, dish recommendations, warnings, and budget estimates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, skill.json, server release metadata) <br>
+Risk: Users may assume live Dianping scraping and caching behavior is packaged or already reviewed for real public review data use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the packaged CLI as local and sample-data based; clarify data collection, caching, rate limiting, and terms-compliance requirements before connecting it to real Dianping data.
+
+Risk: Restaurant recommendations can be misleading when based on sample, stale, insufficient, or suspicious review evidence.
+
+Mitigation: Surface data source, staleness, review count, authenticity index, and warning signals in user-facing guidance before relying on recommendations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/dianping-restaurant-guide)
+- [Fake Review Detection Signals](references/signals.json)
+- [Input Schema](https://openclaw.dev/skills/dianping-restaurant-guide/input.schema.json)
+- [Output Schema](https://openclaw.dev/skills/dianping-restaurant-guide/output.schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Markdown-style prose and CLI text; schemas define JSON objects for authenticity reports, sentiment summaries, ranked results, ordering guides, and routes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Packaged CLI behavior is local and sample-data based; production use with real public review data should clarify data collection, caching, and compliance expectations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,51 +1,68 @@
-## Description: <br>
-ChatArt helps an agent generate videos, create images from text prompts, edit images, and replace characters in videos from natural-language requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when user wants to generate videos, create images from text prompts, edit existing images with AI, or replace characters in videos.
 
-## Publisher: <br>
-[chatart-ai](https://clawhub.ai/user/chatart-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[chatart-ai](https://clawhub.ai/user/chatart-ai)
 
-## Use Case: <br>
-External users and developers use ChatArt to create or edit images and videos, replace video characters, check credits, and retrieve generated media through an authenticated ChatArt account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles account credentials, device identity, uploads, and remote media fetching. <br>
-Mitigation: Review before installing, use only media approved for ChatArt processing, avoid internal or private URLs, and prefer a patched version that documents uploads clearly. <br>
-Risk: Login or account details may appear in agent logs until debug output is removed. <br>
-Mitigation: Use isolated credentials, redact auth responses and logs, and prefer a patched version that removes or masks sensitive debug output. <br>
-Risk: Account switching and logout behavior may confuse local credential deletion with remote device unbinding. <br>
-Mitigation: Review authentication behavior before deployment and use a version that separates local logout from remote device unbind. <br>
-Risk: Dependency versions are not fully pinned. <br>
-Mitigation: Pin and review dependency versions before production deployment. <br>
+## Use Case:
 
+External users and agent operators use this skill to create AI images, edit images, generate videos from text or reference media, replace characters in videos, and check ChatArt account usage through an authenticated ChatArt account.
 
-## Reference(s): <br>
-- [ChatArt Skill Page](https://clawhub.ai/chatart-ai/skills/chatart-skill) <br>
-- [ChatArt](https://www.chatartpro.com) <br>
-- [Auth Module](references/auth.md) <br>
-- [Video Generation Module](references/video_gen.md) <br>
-- [AI Image Module](references/ai_image.md) <br>
-- [Character Replace Module](references/video_mimic.md) <br>
-- [User Module](references/user.md) <br>
-- [Error Handling Guide](references/error_handling.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python command examples and generated media result links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May submit ChatArt generation tasks, poll for completion, upload approved local media, and return generated image or video links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Prompts and provided media may be sent to ChatArt cloud services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill with sensitive, regulated, or private media unless the deployment has approved ChatArt processing and data handling.
+
+Risk: Credentials are stored locally and security evidence reports credential logging.
+
+Mitigation: Review and remove credential logging before use with paid accounts or sensitive environments, and restrict access to local credential storage.
+
+Risk: The skill can download and re-upload arbitrary URLs.
+
+Mitigation: Limit use to trusted URLs and review generated network actions before processing private links or internal resources.
+
+Risk: The skill includes high-priority reply rules that may override normal agent communication policy.
+
+Mitigation: Review user-facing instruction rules before installation and keep platform safety, privacy, and disclosure requirements authoritative.
+
+## Reference(s):
+
+- [ChatArt Skill Page](https://clawhub.ai/chatart-ai/skills/chatart-skill)
+- [ChatArt Website](https://www.chatartpro.com)
+- [AI Image Module](references/ai_image.md)
+- [Video Generation Module](references/video_gen.md)
+- [Character Replace Module](references/video_mimic.md)
+- [Authentication](references/auth.md)
+- [User Account](references/user.md)
+- [Error Handling](references/error_handling.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples, status text, and generated media links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May submit prompts and user-provided media to ChatArt cloud services and may download generated media files when requested.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

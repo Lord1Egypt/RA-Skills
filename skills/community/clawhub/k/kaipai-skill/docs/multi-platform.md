@@ -2,19 +2,18 @@
 
 After processing, send the result image or video back on the user’s IM platform.
 
+Check `kaipai_ai.py capabilities` first. Only use the optional providers bundled in this
+package. With no provider, return the result URL or use the host message tool.
+
 ## Overview
 
 | Platform | Image result | Video result (`videoscreenclear`, `hdvideoallinone`) |
 |---|---|---|
-| Feishu | `feishu_send_image.py` | `feishu_send_video.py` — download to `.mp4`; use `--video-url` for a second text link; see [feishu-send-video.md](feishu-send-video.md) |
-| Telegram | `telegram_send_image.py` | `telegram_send_video.py` — `sendVideo` + optional `--video-url` text link; ~50 MB limit |
 | Discord | OpenClaw `message` + `filePath` | Same; use `.mp4`; ~25 MB — else send URL |
 | WhatsApp / Signal / other | `message` + `media` or URL | Same |
 
 | Platform | Mechanism (image) | Key parameters |
 |---|---|---|
-| Feishu | `feishu_send_image.py` | `--image <url_or_path>` `--to <oc_/ou_ id>` |
-| Telegram | `telegram_send_image.py` | `--image <url_or_path>` `--to <chat_id>` `--caption <optional>` |
 | Discord | OpenClaw `message` tool | `filePath=/tmp/result.jpg`; over ~25MB send a link |
 | WhatsApp / Signal / other | `message` with `media` | or send the result URL |
 

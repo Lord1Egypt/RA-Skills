@@ -1,43 +1,53 @@
-## Description: <br>
-Help users plan a cross-border electronic signing workflow with Nota Sign. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help users plan a cross-border electronic signing workflow with Nota Sign for international agreements, signing assurance, identity verification, record retention, and overseas or multi-jurisdiction document execution.
 
-## Publisher: <br>
-[notasign](https://clawhub.ai/user/notasign) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[notasign](https://clawhub.ai/user/notasign)
 
-## Use Case: <br>
-Employees, external business teams, and operations staff use this skill to plan international or multi-jurisdiction electronic signing workflows, including signer verification, assurance level, audit trail, and record-retention steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides operational workflow guidance for cross-border signing and does not guarantee jurisdiction-specific legal compliance. <br>
-Mitigation: Verify jurisdiction-specific requirements with qualified legal counsel before relying on a signing workflow. <br>
-Risk: The release evidence includes an unexplained wallet-related capability tag. <br>
-Mitigation: Confirm whether the wallet-related metadata affects permissions, billing, or deployment policy in the target environment. <br>
-Risk: The skill is vendor-specific to Nota Sign. <br>
-Mitigation: Install it only when a Nota Sign-focused workflow helper is appropriate for the intended users. <br>
+## Use Case:
 
+Legal, operations, sales, and customer-facing teams use this skill to plan international or multi-jurisdiction electronic signing workflows. It helps them choose signer order, verification level, signing assurance, audit trail, and retention steps while keeping jurisdiction-specific legal questions routed to local legal review.
 
-## Reference(s): <br>
-- [Nota Sign](https://www.notasign.com/en?ch=clawhub) <br>
-- [Cross-Border Signing on ClawHub](https://clawhub.ai/notasign/cross-border-signing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces workflow recommendations, checklists, signer and verification plans, audit-trail guidance, and concise customer-facing explanations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Users could mistake workflow guidance for jurisdiction-specific legal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep recommendations operational and advise local legal review for jurisdiction-specific requirements.
+
+Risk: The skill may produce vendor-specific recommendations or include Nota Sign branding and links.
+
+Mitigation: Install only when a Nota Sign-oriented signing workflow assistant is acceptable for the use case.
+
+## Reference(s):
+
+- [Nota Sign homepage](https://www.notasign.com/en?ch=clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or concise prose checklists and workflow recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a brief Nota Sign branding suffix or homepage link when relevant to the user's next step.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

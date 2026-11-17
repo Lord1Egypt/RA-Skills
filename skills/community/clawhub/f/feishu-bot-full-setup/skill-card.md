@@ -1,47 +1,63 @@
-## Description: <br>
-Creates a Feishu enterprise self-built bot and completes permission import, event subscriptions, card callbacks, version creation, and release submission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a Feishu enterprise self-built bot and completes permission import, event subscription, card callback setup, and version release.
 
-## Publisher: <br>
-[big-dust](https://clawhub.ai/user/big-dust) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[big-dust](https://clawhub.ai/user/big-dust)
 
-## Use Case: <br>
-Developers and operators use this skill to create Feishu enterprise self-built bots, configure permissions, event subscriptions, card callbacks, QR login handoff, version release, and return app credentials after setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad Feishu permissions. <br>
-Mitigation: Review the permission list before use and reduce requested scopes to the minimum needed for the bot. <br>
-Risk: The create flow returns app_secret in ordinary agent output. <br>
-Mitigation: Treat app_secret like a password, avoid logging or reposting it, and rotate it if exposed in chat or logs. <br>
-Risk: Setup can modify the local runtime by installing or using browser automation dependencies. <br>
-Mitigation: Run in an isolated machine or container and preinstall trusted dependencies where possible. <br>
-Risk: The workflow can create and submit a Feishu app release. <br>
-Mitigation: Confirm the intended publication impact and account permissions before running the create command. <br>
+## Use Case:
 
+Developers and automation operators use this skill to create a Feishu enterprise bot through an agent-guided workflow, including QR login, app creation, permission setup, event subscriptions, card callbacks, publishing, and retrieval of app credentials.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/big-dust/feishu-bot-full-setup) <br>
-- [Publisher profile](https://clawhub.ai/user/big-dust) <br>
-- [Default permissions list](artifact/references/permissions.md) <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with bash commands, environment variables, local QR PNG handling, and JSON result parsing] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The create flow returns app_id and app_secret when successful; the login QR code is written as a local PNG.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill automates Feishu developer actions from a logged-in session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only from an account and tenant authorized to create, configure, and publish Feishu applications, and review the resulting app before broad use.
+
+Risk: The default flow requests many high-impact Feishu permissions.
+
+Mitigation: Review references/permissions.md before use and prefer a reduced, opt-in permission set that matches the bot's actual purpose.
+
+Risk: The generated app_secret may be exposed through chat history or notifications.
+
+Mitigation: Treat app_id and app_secret as credentials, avoid persistent chat disclosure, store them in a secrets manager, and rotate the secret if exposed.
+
+Risk: Runtime setup can modify the Python or system environment and download dependencies.
+
+Mitigation: Run the skill in an isolated environment with pinned dependencies and trusted package and browser download sources.
+
+## Reference(s):
+
+- [Default permissions list](references/permissions.md)
+- [Feishu Open Platform](https://open.feishu.cn)
+- [ClawHub skill page](https://clawhub.ai/big-dust/skills/feishu-bot-full-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and a final JSON credential object from the create command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The create flow writes a local login QR PNG and returns app_id and app_secret on success.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Feishu Messaging 0 helps agents send Feishu messages, look up group IDs and members, create documents, and retry failed message workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Feishu Open Platform workflow for sending messages, finding group chats and members, uploading message images or files, and preparing Feishu resource-management API calls.
 
-## Publisher: <br>
-[xq-8](https://clawhub.ai/user/xq-8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xq-8](https://clawhub.ai/user/xq-8)
 
-## Use Case: <br>
-Employees and developers who use Feishu or Lark bots can use this skill to prepare API-based workflows for sending messages, uploading images or files, and finding group or member identifiers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Messages or uploads could be sent to the wrong recipient or with unintended content. <br>
-Mitigation: Explicitly confirm the recipient, message text, and exact file path before sending messages or uploading content. <br>
-Risk: Feishu/Lark app credentials and broad API scopes could expose workspace data if mishandled. <br>
-Mitigation: Protect the app secret and use least-privilege app scopes for the intended bot workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Feishu Open Platform API documentation](https://open.feishu.cn/document/server-docs/api-call-guide/server-api-list) <br>
-- [ClawHub skill page](https://clawhub.ai/xq-8/feishu-messaging-0) <br>
+## Use Case:
 
+Developers and operators use this skill to draft Feishu bot messaging workflows, locate chat or member identifiers, and send text, image, or file messages through the Feishu Open Platform API.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with Python code blocks and API permission notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Feishu/Lark recipient, file path, and credential placeholders for user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Messages, images, or files may be sent to unintended Feishu recipients if identifiers or content are not reviewed.
+
+Mitigation: Confirm recipients, message contents, and exact files before sending through the Feishu bot.
+
+Risk: Feishu APP_ID and APP_SECRET credentials can be exposed through insecure handling or verbose logs.
+
+Mitigation: Keep app credentials secure and avoid debug logging sensitive API responses in production.
+
+Risk: The release describes document creation, but the security guidance warns not to rely on that workflow without additional verification.
+
+Mitigation: Verify or add the document-creation workflow before using the skill for Feishu document operations.
+
+## Reference(s):
+
+- [Feishu Open Platform API Documentation](https://open.feishu.cn/document/server-docs/api-call-guide/server-api-list)
+- [ClawHub Skill Page](https://clawhub.ai/xq-8/skills/feishu-messaging-0)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, API Calls, Configuration]
+
+**Output Format:** [Markdown with Python code examples and Feishu API permission notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Feishu app credentials, bot permissions, recipient identifiers, and file paths before the examples can be used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

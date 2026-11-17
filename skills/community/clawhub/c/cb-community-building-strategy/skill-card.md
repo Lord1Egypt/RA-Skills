@@ -1,41 +1,53 @@
-## Description: <br>
-Design a community-building playbook for any overseas market — from platform selection and content calendar to engagement tactics and growth loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design a community-building playbook for any overseas market - from platform selection and content calendar to engagement tactics and growth loops.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External brand managers, community managers, marketing teams, and founders use this skill to plan market-specific community launches, revivals, and growth programs. It produces practical platform, content, engagement, growth, moderation, and KPI guidance for overseas communities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Community tactics may conflict with local laws, privacy expectations, platform rules, or cultural norms. <br>
-Mitigation: Validate launch plans with local legal, platform, and community-management reviewers before execution. <br>
-Risk: Aggressive engagement or growth mechanics may be perceived as spam or manipulation. <br>
-Mitigation: Use opt-in programs, respect platform terms of service, and track community health over time rather than optimizing only for short-term spikes. <br>
+## Use Case:
 
+Brand and community managers, marketing teams, and founders use this skill to plan market-specific international communities, including platform strategy, content calendars, engagement playbooks, moderation guidance, growth mechanics, and KPIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/cb-community-building-strategy) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown or structured text playbook] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform strategy, community personas, content calendars, engagement playbooks, growth mechanics, moderation guidance, and KPI dashboards.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence; artifact frontmatter and skill.json state 1.0.0, _meta.json states 1.0.3) <br>
+Risk: Community-building recommendations may conflict with local laws, platform terms, privacy rules, advertising rules, or cultural norms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate recommendations with local community managers and legal or policy reviewers before launch, especially for outreach, giveaways, moderation, and growth tactics.
+
+Risk: Growth and engagement tactics can become spammy or manipulative if applied without local context.
+
+Mitigation: Adapt tactics to platform policies and community expectations, and avoid spam or algorithm manipulation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/cb-community-building-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown strategy plan with structured sections, tables, templates, and KPI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces planning guidance only; no code execution, API calls, persistence, or hidden authority are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release metadata; artifact frontmatter reports v1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

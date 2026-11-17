@@ -1,37 +1,48 @@
-## Description: <br>
-Guides agents through building a numerical three-body movement simulator with Newtonian gravity, RK4 integration, and Python visualization guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive guide to architecting and implementing a numerical simulator for the three-body problem, covering the physics, mathematical formulation, and computational strategies required to model chaotic gravitational systems.
 
-## Publisher: <br>
-[DuanC-Chao](https://clawhub.ai/user/DuanC-Chao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[duanc-chao](https://clawhub.ai/user/duanc-chao)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, educators, and computational physics practitioners use this skill to design a Python-based three-body movement simulator with RK4 integration, trajectory storage, and visualization-ready outputs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Educational sample simulation code can become unstable or misleading if users choose inappropriate time steps or ignore near-collision behavior.
+
+Mitigation: Treat the Python snippets as reference material, monitor energy conservation, use known stable solutions for verification, and add normal scientific-computing safeguards before using the simulator for serious analysis.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, students, and computational-physics users use this skill to plan and implement a Python simulator for the three-body problem, including state representation, derivative calculation, RK4 integration, and result visualization. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, code, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Copied simulator code or chosen parameters can produce misleading trajectories if timestep, masses, or initial conditions are not validated. <br>
-Mitigation: Test with known solutions, monitor energy conservation, and review any generated code before relying on simulation results. <br>
+**Output Format:** [Markdown with Python code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces educational implementation guidance and sample Python snippets for numerical simulation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes numerical-method guidance; users must choose timestep, masses, and initial conditions.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

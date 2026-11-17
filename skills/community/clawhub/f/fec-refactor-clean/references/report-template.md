@@ -1,42 +1,42 @@
-# 重构清理报告模板
+# Refactor cleaning report template
 
 ```markdown
-# 重构清理报告
+# Refactor cleanup report
 
-> 生成时间: YYYY-MM-DD HH:mm
-> 清理范围: 文件 / 模块 / 依赖 / 路由 / 样式
+> Generation time: YYYY-MM-DD HH:mm
+> Cleanup scope: File/Module/Dependency/Route/Style
 
-## 基线验证
+## Baseline verification
 
-| 命令 | 清理前状态 | 清理后状态 | 备注 |
+| Command | Status before cleaning | Status after cleaning | Remarks |
 | --- | --- | --- | --- |
-| `npm run lint` | 失败 / 通过 / 未运行 | 失败 / 通过 / 未运行 | ... |
+| `npm run lint` | failed/passed/didn’t run | failed/passed/didn’t run | ... |
 
-## 候选项与证据
+## Candidates and evidence
 
-| 候选项 | 证据 | 风险分类 |
+| Candidates | Evidence | Risk Classification |
 | --- | --- | --- |
-| `path/to/file.ts` | 工具输出 / rg 搜索 / 类型检查 | SAFE / CAUTION / DANGER / UPGRADE |
+| `path/to/file.ts` | Tool output / rg search / type checking | SAFE / CAUTION / DANGER / UPGRADE |
 
-## 已清理项
+## Cleaned items
 
-- 删除或修改的文件、导出、样式、依赖或配置
-- 每项清理对应的证据
+- Deleted or modified files, exports, styles, dependencies or configurations
+-Evidence corresponding to each cleanup
 
-## 跳过原因
+## Skip reason
 
-- CAUTION / DANGER 项为什么没有自动处理
-- 需要人工确认、运行时验证或专项流程的内容
+- Why is the CAUTION / DANGER item not automatically processed?
+- Content that requires manual confirmation, runtime verification, or specialized processes
 
-## 验证命令
+## Verification command
 
-- 执行的 lint、type-check、test、build 或手工验证
-- 关键输出摘要
+- lint, type-check, test, build or manual verification performed
+- Summary of key outputs
 
-## 剩余风险
+## Residual risk
 
-- 动态引用、运行时模板、插件元数据或外部入口风险
-- 建议后续清理或依赖升级项
+- Dynamic references, runtime templates, plug-in metadata or external entry risks
+- Recommend subsequent cleaning or dependency upgrades
 ```
 
-清理完成后，将报告保存到 `reports/refactor-clean-YYYY-MM-DD-HHmmss.md`，并告知用户报告路径。
+After cleaning is completed, save the report to `reports/refactor-clean-YYYY-MM-DD-HHmmss.md` and inform the user of the report path.

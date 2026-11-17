@@ -1,0 +1,4 @@
+interface:
+  display_name: "ChatCut口播 · 马甲实战版"
+  short_description: "编排 ChatCut 官方能力，稳妥完成口播样片、整片扩展与验证"
+  default_prompt: "使用 $majia-chatcut-koubo 稳剪当前口播：先确定 Hosted 或 Desktop 并读取对应当前官方指令与项目，默认只做低风险口播清理、代表样片、音频平滑、基础字幕和验证；不要自动添加音乐、MG（动态图形）或 B-roll（补充画面），不要导出或发布；只改字幕或转写时不要顺带剪原声，模糊文字目标先澄清。"

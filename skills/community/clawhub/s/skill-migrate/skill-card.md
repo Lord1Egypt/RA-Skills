@@ -1,46 +1,57 @@
-## Description: <br>
-Skill Migrate converts WorkBuddy skills to OpenClaw and ClawHub format, checks common compliance requirements, and guides publishing to ClawHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Migrate helps agents convert WorkBuddy skill packages into OpenClaw/ClawHub-compatible skills, check required metadata and file constraints, and prepare ClawHub publishing commands.
 
-## Publisher: <br>
-[gongsunyanming](https://clawhub.ai/user/gongsunyanming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gongsunyanming](https://clawhub.ai/user/gongsunyanming)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to migrate WorkBuddy SKILL.md packages into OpenClaw and ClawHub-compatible skills, validate metadata and file constraints, and prepare or run ClawHub publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Converted skills may carry incorrect metadata, unsupported file types, or undeclared credential requirements. <br>
-Mitigation: Run the compliance checklist and review generated files before publishing. <br>
-Risk: Publishing or batch publishing can push incorrect content to ClawHub. <br>
-Mitigation: Confirm the ClawHub login identity, review changes skill by skill, and publish only after manual approval. <br>
-Risk: Long-lived ClawHub credentials could be exposed if pasted unnecessarily. <br>
-Mitigation: Use normal ClawHub login practices and avoid sharing long-lived tokens. <br>
+## Use Case:
 
+Developers and skill publishers use this skill to migrate WorkBuddy skills into OpenClaw/ClawHub format, validate publishing requirements, and prepare single-skill or batch releases.
 
-## Reference(s): <br>
-- [Skill Migrate on ClawHub](https://clawhub.ai/gongsunyanming/skill-migrate) <br>
-- [OpenClaw Skill Format](https://docs.openclaw.ai/clawhub/skill-format) <br>
-- [OpenClaw Skill Spec](references/openclaw-skill-spec.md) <br>
-- [Conversion Examples](references/conversion-examples.md) <br>
-- [Text File Extensions](references/text-file-extensions.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, converted skill files or snippets, and shell commands when publishing is requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include file edits and ClawHub CLI commands; review converted files before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: Converted packages may copy and publish scripts or sensitive configuration files with too little review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated packages before publishing, especially scripts and configuration files, and remove secrets such as .env files or tokens.
+
+Risk: Converted packages may use a fixed default author identity that does not match the intended publisher.
+
+Mitigation: Confirm the author metadata, slug, version, and file list before allowing ClawHub publish to run.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gongsunyanming/skills/skill-migrate)
+- [OpenClaw Skill Format Specification](artifact/references/openclaw-skill-spec.md)
+- [OpenClaw Skill Format Documentation](https://docs.openclaw.ai/clawhub/skill-format)
+- [ClawHub Text File Extensions Whitelist](artifact/references/text-file-extensions.txt)
+- [WorkBuddy to OpenClaw Conversion Examples](artifact/references/conversion-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated skill files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce validation reports, converted SKILL.md content, supporting text files, and ClawHub publish commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

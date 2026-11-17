@@ -1,40 +1,52 @@
-## Description: <br>
-Provides a structured six-dimension finance capability model for knowledge-base retrieval and talent assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language structured finance capability model across six finance dimensions for knowledge retrieval and talent assessment workflows.
 
-## Publisher: <br>
-[7679457979](https://clawhub.ai/user/7679457979) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[7679457979](https://clawhub.ai/user/7679457979)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, HR teams, and finance operations users can use this skill to generate a structured group finance capability model for AI knowledge bases, capability dictionaries, or talent evaluation systems.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad trigger words may cause the skill to be selected in general finance, HR, or capability-model conversations.
+
+Mitigation: Review whether the selected capability model fits the user's intended finance or talent assessment context before relying on the output.
+
+Risk: The generated capability model is a reference template and may not match a specific organization's controls, policies, or regulatory obligations.
+
+Mitigation: Have finance, HR, or compliance reviewers adapt the model before using it for formal assessments or operational decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Finance, HR, and talent-assessment users apply this skill to retrieve a structured group finance capability model and generate assessment-oriented capability details. It is suited for AI knowledge bases or evaluation systems that need consistent finance capability dimensions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, json, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger terms may activate the skill for general finance or talent-assessment requests. <br>
-Mitigation: Confirm the request calls for a structured finance capability model before applying the skill's JSON-style framing. <br>
-Risk: The structured capability model may be treated as definitive for a specific organization even though the artifact provides a general reference model. <br>
-Mitigation: Review and adapt the generated dimensions, tools, deliverables, and assessment questions against the organization's finance role requirements. <br>
+**Output Format:** [JSON with Chinese-language capability names, sub-capabilities, tools, deliverables, and assessment questions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/7679457979/finance-capability-model) <br>
+**Other Properties Related to Output:** [No input parameters; uses the six finance capability dimensions described by the skill.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [JSON-style structured finance capability model with capability dimensions, sub-capabilities, tools, deliverables, and assessment questions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No input parameters; directly uses six predefined finance capability dimensions.] <br>
+1.0.0 (source: server release metadata and artifact body)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/SKILL.md) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

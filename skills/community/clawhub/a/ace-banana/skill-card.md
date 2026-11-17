@@ -1,43 +1,59 @@
-## Description: <br>
-Generate and edit images using the AceData Nano Banana API. Supports models like nano-banana-2, custom aspect ratios (default 16:9), and resolutions (default 2K). Handles batch generation and image-to-image (edit) tasks with local files. Use when the user wants to generate or edit high-quality images via Nano Banana. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and edit images using the AceData Nano Banana API.
 
-## Publisher: <br>
-[xiyunnet](https://clawhub.ai/user/xiyunnet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiyunnet](https://clawhub.ai/user/xiyunnet)
 
-## Use Case: <br>
-Developers and creators use this skill to generate new images from prompts or edit existing images through the AceData Nano Banana API, with support for batch requests, model selection, aspect ratio, and resolution settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected images are sent to AceData for generation or editing. <br>
-Mitigation: Avoid using sensitive prompts or images unless the user is comfortable sharing them with AceData. <br>
-Risk: The skill can store the AceData API token in a local .env file for reuse. <br>
-Mitigation: Keep the .env file private and rotate or delete the API key if the skill directory is shared, backed up, or committed. <br>
+## Use Case:
 
+External users and developers use this skill to generate images from text prompts or edit existing images through AceData Nano Banana models.
 
-## Reference(s): <br>
-- [Nano Banana Images API Documentation](references/api_docs.md) <br>
-- [AceData Cloud Platform](https://platform.acedata.cloud) <br>
-- [AceData Nano Banana API Endpoint](https://api.acedata.cloud/nano-banana/images) <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiyunnet/ace-banana) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls, files, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; script output includes JSON responses and locally saved image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated or edited images are saved locally to a dated Desktop folder when the API request succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Prompts and selected images are sent to AceData for generation or editing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content appropriate for AceData processing and avoid sensitive prompts or images unless that transfer is acceptable.
+
+Risk: The skill may save an AceData API token in a plaintext .env file when entered through the prompt or --api_key.
+
+Mitigation: Prefer the ACEDATA_API_KEY environment variable and remove any generated .env file when finished.
+
+Risk: Generated image downloads rely on remote URLs returned by the API.
+
+Mitigation: Run the script in a contained environment with limited network and disk exposure.
+
+## Reference(s):
+
+- [Nano Banana Images API Documentation](references/api_docs.md)
+- [AceData Cloud Platform](https://platform.acedata.cloud)
+- [ClawHub Skill Page](https://clawhub.ai/xiyunnet/skills/ace-banana)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, API Calls, Files, JSON]
+
+**Output Format:** [Generated image files with console status text and JSON API response output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an AceData API key and network access; generated images are saved locally.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

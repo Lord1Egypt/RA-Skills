@@ -1,16 +1,16 @@
 # ISYS\_WindowEventListenerRemovableObject interface
 
-窗口事件监听可移除对象
+Window event listener can remove object
 
 ## Signature
 
 ```typescript
-interface ISYS_WindowEventListenerRemovableObject 
+interface ISYS_WindowEventListenerRemovableObject
 ```
 
 ## Remarks
 
-本对象从 [addEventListener](../classes/SYS_Window.md) 获取，并可用于移除创建的事件监听，仅需将其传入 [removeEventListener](../classes/SYS_Window.md)
+This object is obtained from [addEventListener](../classes/SYS_Window.md) and can be used to remove the created event listener by simply passing it to [removeEventListener](../classes/SYS_Window.md)
 
 ## Properties
 
@@ -18,74 +18,58 @@ interface ISYS_WindowEventListenerRemovableObject
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [listener](./ISYS_WindowEventListenerRemovableObject.md)
 
-
 </td><td>
-
 
 </td><td>
 
 (ev: any) =&gt; any
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 [options?](./ISYS_WindowEventListenerRemovableObject.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-\{ capture?: boolean; \}
-
+\{ capture?: boolean \}
 
 </td><td>
 
 _(Optional)_
-
 
 </td></tr>
 <tr><td>
 
 [type](./ISYS_WindowEventListenerRemovableObject.md)
 
-
 </td><td>
-
 
 </td><td>
 
 [ESYS\_WindowEventType](../enums/ESYS_WindowEventType.md)
 
-
 </td><td>
-
 
 </td></tr>
 </tbody></table>
@@ -111,9 +95,7 @@ listener: (ev: any) => any;
 ## Signature
 
 ```typescript
-options?: {
-        capture?: boolean;
-    };
+options?: { capture?: boolean };
 ```
 
 ### type

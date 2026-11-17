@@ -1,46 +1,59 @@
-## Description: <br>
-生成A股综合分析报告（深交所/上交所/北交所），包含K线技术指标图表、同行业对比、基本面分析、主营业务构成、技术面评分、催化剂与风险、短线/中线买卖建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+生成A股综合分析报告（深交所、上交所、北交所），包含K线技术指标图表、同行业对比、基本面分析、主营业务构成、技术面评分、催化剂与风险、短线和中线买卖建议。
 
-## Publisher: <br>
-[bwgao](https://clawhub.ai/user/bwgao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bwgao](https://clawhub.ai/user/bwgao)
 
-## Use Case: <br>
-External users and analysts use this skill to generate A-share stock analysis reports from a stock name or code, including technical charts, peer comparison, fundamentals, catalysts, risks, and short- and medium-term trading commentary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated buy/sell, target-price, and stop-loss commentary can be mistaken for personalized financial advice. <br>
-Mitigation: Treat the report as informational analysis only, verify data freshness and sources, and apply independent judgment before making investment decisions. <br>
-Risk: The skill runs Python scripts that fetch public market data and write local report files. <br>
-Mitigation: Review the scripts and requested commands before execution, run in an appropriate workspace, and avoid sharing unnecessary credentials. <br>
-Risk: Financial data may be incomplete if source fallbacks fail or market data is stale. <br>
-Mitigation: Check the generated data package, source notes, and analysis date before relying on the report. <br>
+## Use Case:
 
+External users and analysts use this skill through an agent to turn an A-share stock name or code into a structured market analysis workflow and generated local report. The workflow resolves stock codes, gathers market and fundamentals data, creates charts, and drafts a report following the bundled template.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bwgao/ashare-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/bwgao) <br>
-- [Report template](references/report_template.md) <br>
-- [Technical scoring reference](references/technical_scoring.md) <br>
-- [Peer selection rules](references/peer_selection_rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated JSON data, PNG charts, and a standalone HTML report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local report artifacts and may use an optional TUSHARE_TOKEN for financial data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated HTML reports may include untrusted market or news text without sufficient escaping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated reports as untrusted HTML, review them before opening or sharing, and add output escaping plus a restrictive content security policy before broader use.
+
+Risk: The data pipeline uses plaintext market-data endpoints and external provider requests.
+
+Mitigation: Run the skill in an isolated virtual environment or container, prefer HTTPS-capable data sources where available, and avoid exposing sensitive network or credential context.
+
+Risk: Optional TUSHARE_TOKEN-backed requests and stock queries are sent to external providers.
+
+Mitigation: Use a least-privilege token, avoid embedding secrets in prompts or reports, and disclose external data-provider access to users.
+
+## Reference(s):
+
+- [Peer Selection Rules](references/peer_selection_rules.md)
+- [Report Template](references/report_template.md)
+- [Technical Scoring](references/technical_scoring.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, plus generated JSON data, PNG charts, and standalone HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill is scoped to A-share equities and may contact external market-data providers, including optional TUSHARE_TOKEN-backed requests.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

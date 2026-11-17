@@ -1,45 +1,59 @@
-## Description: <br>
-Query Polymarket prediction markets - check odds, trending markets, search events, track prices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Polymarket prediction markets - check odds, trending markets, search events, track prices.
 
-## Publisher: <br>
-[leochan14](https://clawhub.ai/user/leochan14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leochan14](https://clawhub.ai/user/leochan14)
 
-## Use Case: <br>
-External users and agents use this skill to look up public Polymarket prediction market data, including trending markets, keyword searches, event details, categories, odds, volume, and end dates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search terms and request parameters are sent to Polymarket's public API. <br>
-Mitigation: Avoid entering private, sensitive, or embargoed research topics when querying markets. <br>
-Risk: The helper script depends on the Python requests package and external Polymarket API availability. <br>
-Mitigation: Install dependencies from trusted sources and treat API errors or stale market data as lookup failures rather than authoritative investment guidance. <br>
-Risk: The skill provides market information but does not implement trading, wallets, or authentication. <br>
-Mitigation: Use it for read-only research only and perform any trading-related actions outside this skill with separate review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Polymarket](https://polymarket.com) <br>
-- [Polymarket Gamma API](https://gamma-api.polymarket.com) <br>
-- [Polymarket Documentation](https://docs.polymarket.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/leochan14/polymarket-1-0-0) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/leochan14) <br>
+## Use Case:
 
+Developers and external users can use this skill to query public Polymarket prediction-market data, including trending markets, keyword searches, category views, event lookups, odds, volume, and end dates.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown-formatted command output with market summaries and optional raw JSON from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only public market lookup; normal operation sends query terms and request parameters to Polymarket's public API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search terms and lookup requests are sent to Polymarket's public Gamma API.
+
+Mitigation: Avoid submitting sensitive queries and review whether outbound requests to the Polymarket Gamma API are acceptable for the deployment environment.
+
+Risk: The skill may install or use the Python requests package.
+
+Mitigation: Review dependency installation policy and run the skill in an environment where Python package use is controlled.
+
+Risk: The artifact does not explicitly declare outbound network scope.
+
+Mitigation: Document and approve the required network destination before deployment.
+
+## Reference(s):
+
+- [Polymarket](https://polymarket.com)
+- [Polymarket Gamma API](https://gamma-api.polymarket.com)
+- [Polymarket Documentation](https://docs.polymarket.com)
+- [ClawHub Skill Page](https://clawhub.ai/leochan14/skills/polymarket-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-formatted market summaries and command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only public market data; results depend on Polymarket Gamma API availability and response content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

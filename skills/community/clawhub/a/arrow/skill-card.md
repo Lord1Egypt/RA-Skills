@@ -1,39 +1,58 @@
-## Description: <br>
-Apache Arrow in-memory columnar format reference covering zero-copy data exchange, columnar memory layout, pyarrow tables and compute, Arrow Flight RPC, Dataset API, ecosystem integrations, Gandiva, and ADBC database connectivity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apache Arrow in-memory columnar format reference. Zero-copy data exchange, columnar memory layout with validity bitmaps, pyarrow Table/RecordBatch/compute, Arrow Flight RPC for high-performance transfer, Dataset API with predicate pushdown, pandas/DuckDB/Polars/Spark integration, Gandiva LLVM compiler, and ADBC database connectivity.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and data engineers use this skill as a quick Apache Arrow reference for columnar memory concepts, pyarrow examples, Arrow Flight, datasets, interoperability, Gandiva, and ADBC. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example commands and code snippets may install packages, write local data files, start an Arrow Flight server, or connect to databases. <br>
-Mitigation: Review examples before running them and use disposable test data or a controlled environment for server, file-writing, and database examples. <br>
+## Use Case:
 
+Developers and data engineers use this skill as a concise Apache Arrow reference for columnar memory layout, pyarrow usage, Flight RPC examples, Dataset API patterns, integrations, Gandiva, and ADBC connectivity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/arrow) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown-style reference text with command-specific examples and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-based reference output for intro, format, python, flight, dataset, integration, gandiva, and ecosystem topics] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The security scan reports that a runnable Arrow Flight server example uses unsafe network defaults that could expose data if copied into a reachable environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Flight example before use, bind example services to localhost unless remote access is required, and add TLS plus authentication and authorization for reachable deployments.
+
+Risk: Example installation commands may install mutable latest dependency versions.
+
+Mitigation: Pin dependencies and review package versions before using the examples in production or shared environments.
+
+Risk: Unbounded example services can consume excessive upload or memory resources.
+
+Mitigation: Set upload and memory limits before adapting the examples for real workloads.
+
+## Reference(s):
+
+- [ClawHub Arrow skill page](https://clawhub.ai/bytesagain3/skills/arrow)
+- [Publisher homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown-formatted reference text with inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-selected reference sections for Apache Arrow topics]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

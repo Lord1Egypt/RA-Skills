@@ -1,42 +1,67 @@
-## Description: <br>
-Recognizes Chinese business-license images or scans through Laiye ADP and extracts key registration fields into structured JSON for business verification and system integration workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to use Laiye ADP to recognize Chinese business license documents and extract key fields into structured JSON.
 
-## Publisher: <br>
-[laiye-adp](https://clawhub.ai/user/laiye-adp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Commercial License Agreement <br>
+## Publisher:
 
+[laiye-adp](https://clawhub.ai/user/laiye-adp)
 
-## Use Case: <br>
-Business users, operations teams, and developers use this skill to configure the Laiye ADP CLI, submit Chinese business-license documents from local files, URLs, or base64 payloads, and consume extracted registration fields as JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Commercial License Agreement
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/laiye-adp/adp-business-license-recognition-and-extract) <br>
-- [Laiye ADP China Portal](https://adp.laiye.com/?utm_source=clawhub) <br>
-- [Laiye ADP Global Portal](https://adp-global.laiye.com/?utm_source=clawhub) <br>
-- [ADP CLI Releases](https://github.com/laiye-ai/adp-cli/releases) <br>
-- [ADP CLI User Guide](https://laiye-tech.feishu.cn/wiki/Hz3Vw1IQki3YQtk33gLcSdwSndc) <br>
-- [Open API User Guide](https://laiye-tech.feishu.cn/wiki/PO9Jw4cH3iV2ThkMPW2c539pnkc) <br>
+Business operations, compliance, and developer teams use this skill to extract structured company-registration fields from Chinese business licenses for qualification checks, onboarding, and business-system integration.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, json] <br>
-**Output Format:** [Markdown guidance with ADP CLI commands and structured JSON extraction results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Laiye ADP API key and uploads business-license documents to a third-party cloud processor; use a restricted key, avoid broad input folders, and prefer npm or verified release downloads.] <br>
+Global; the ADP service documentation describes separate China mainland and overseas endpoints.
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The release security summary flags remote-script installer commands such as curl-to-shell and PowerShell download-and-execute flows.
+
+Mitigation: Prefer the npm package or a signed release path, and review installer provenance before execution.
+
+Risk: Business licenses and extracted fields can contain organization identifiers, names, addresses, and other sensitive business or personal data.
+
+Mitigation: Confirm the organization permits uploading these documents to Laiye ADP, redact or limit logging where possible, and protect exported JSON files.
+
+Risk: The underlying ADP CLI includes broader custom-application and administration commands beyond the out-of-the-box business-license extraction workflow.
+
+Mitigation: Constrain agent usage to the documented OOTB business-license extraction commands unless an operator explicitly approves broader CLI actions.
+
+Risk: Extraction results may be incomplete or vary by endpoint, document quality, or returned field naming.
+
+Mitigation: Validate required fields downstream, preserve original returned JSON, and handle empty field arrays or missing confidence values.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/laiye-adp/skills/adp-business-license-recognition-and-extract)
+- [Laiye ADP China Mainland Portal](https://adp.laiye.com/?utm_source=clawhub)
+- [Laiye ADP Global Portal](https://adp-global.laiye.com/?utm_source=clawhub)
+- [ADP CLI User Guide](https://laiye-tech.feishu.cn/wiki/Hz3Vw1IQki3YQtk33gLcSdwSndc)
+- [Open API User Guide](https://laiye-tech.feishu.cn/wiki/PO9Jw4cH3iV2ThkMPW2c539pnkc)
+- [ADP Public Cloud Manual](https://laiye-tech.feishu.cn/wiki/UDYIwG42pisBbFkJI39ctpeKnWh)
+- [ADP CLI GitHub Releases](https://github.com/laiye-ai/adp-cli/releases)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured JSON result expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The ADP extraction command returns business-license fields as JSON and can export batch results to files.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

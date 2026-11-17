@@ -1,47 +1,62 @@
-## Description: <br>
-Generate static charts from tabular data by converting YAML chart specifications into ggsql SQL syntax based on Grammar of Graphics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate charts from tabular data using ggsql SQL syntax extension.
 
-## Publisher: <br>
-[fanzhidongyzby](https://clawhub.ai/user/fanzhidongyzby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fanzhidongyzby](https://clawhub.ai/user/fanzhidongyzby)
 
-## Use Case: <br>
-Developers and analysts use this skill to turn CSV, JSON, or SQL table data into ggsql chart queries for scatter plots, line charts, bar charts, histograms, boxplots, heatmaps, and related static visualizations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private or sensitive data may be exposed if users upload it to the ggsql WASM playground. <br>
-Mitigation: Use local ggsql-cli for private data and review datasets before using any web playground. <br>
-Risk: Future releases could add automatic uploads, remote rendering, or broader filesystem access that changes the risk profile. <br>
-Mitigation: Review security evidence for each new version before installation or deployment. <br>
-Risk: ggsql syntax is described by the artifact as alpha-stage and may evolve. <br>
-Mitigation: Validate generated SQL against the installed ggsql version and keep chart-generation templates aligned with current ggsql documentation. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to turn CSV, JSON, or SQL-table data into ggsql visualization queries and static charts without writing Python or R.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fanzhidongyzby/openclaw-ggsql) <br>
-- [ggsql official website](https://ggsql.org) <br>
-- [ggsql syntax documentation](https://ggsql.org/syntax/) <br>
-- [ggsql example gallery](https://ggsql.org/gallery/) <br>
-- [ggsql WASM playground](https://ggsql.org/wasm/) <br>
-- [ggsql upstream repository](https://github.com/posit-dev/ggsql) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML specifications, SQL snippets, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces ggsql chart queries and guidance for SVG or PNG chart generation; outputs are static rather than interactive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local package installs and generated SQL are code the user chooses to run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install ggsql tooling only from trusted package sources, pin versions where practical, and review generated SQL and file paths before execution.
+
+Risk: Using the web playground may expose uploaded datasets to an external service.
+
+Mitigation: Avoid uploading sensitive datasets to the playground unless that handling is acceptable; use local CLI execution for confidential data.
+
+Risk: ggsql syntax and behavior may change while the project is in alpha.
+
+Mitigation: Validate important chart queries against the current ggsql documentation or playground before relying on generated output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fanzhidongyzby/skills/openclaw-ggsql)
+- [ggsql official website](https://ggsql.org)
+- [ggsql syntax documentation](https://ggsql.org/syntax/)
+- [ggsql gallery](https://ggsql.org/gallery/)
+- [ggsql WASM playground](https://ggsql.org/wasm/)
+- [ggsql GitHub repository](https://github.com/posit-dev/ggsql)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with YAML, SQL, and shell command blocks; generated chart artifacts are SVG by default and PNG optionally when executed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces static chart specifications and execution guidance for ggsql; local execution depends on ggsql-cli or an external playground.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

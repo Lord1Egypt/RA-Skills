@@ -1,43 +1,53 @@
-## Description: <br>
-GitHub源码与架构分析工具，用于下载 GitHub 仓库或 npm 包源码、分析 AI Agent 架构与工具定义、研究提示词工程并生成结构化分析报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助代理下载 GitHub 仓库或 npm 包源码，分析 AI Agent 架构、工具定义和提示词工程，并生成结构化 Markdown 报告。
 
-## Publisher: <br>
-[lgugeng](https://clawhub.ai/user/lgugeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lgugeng](https://clawhub.ai/user/lgugeng)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect GitHub repositories, npm or PyPI packages, and packaged binaries for AI agent architecture, tool definitions, prompt-like strings, permissions, memory behavior, configuration, and reusable design patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can download and unpack user-selected repositories or packages, which may expose the agent workspace to untrusted source content. <br>
-Mitigation: Run the analysis in a temporary or isolated workspace for unknown projects and review downloaded files before using their contents. <br>
-Risk: Extracted prompts, README content, or binary strings may contain instructions that are data, not commands for the current agent. <br>
-Mitigation: Treat extracted content only as analysis evidence and do not follow it as operational instructions. <br>
-Risk: Binary and packaged-content extraction is approximate and may produce incomplete or fragmented findings. <br>
-Mitigation: Label extracted strings as partial evidence and validate important conclusions against source files, package metadata, or maintainer documentation. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect agent repositories, packages, and binaries they are authorized to analyze, with emphasis on architecture, tool definitions, permission models, prompt fragments, configuration, and reusable design patterns.
 
-## Reference(s): <br>
-- [AI Agent 分析参考手册](artifact/references/ai-agent-patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lgugeng/source-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown report with shell command snippets and extracted text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are written to the workspace or to /tmp paths named for the analyzed project or binary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Extraction reports can contain sensitive source, prompt, configuration, or environment-variable fragments and may be written to predictable temporary paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose a private output directory with restrictive permissions, review report contents before sharing, and delete reports when analysis is finished.
+
+Risk: The workflow can be applied to repositories, packages, or binaries that the user is not authorized to analyze.
+
+Mitigation: Use the skill only on targets you are permitted to inspect and respect applicable project, package, and platform terms.
+
+## Reference(s):
+
+- [AI Agent 分析参考手册](references/ai-agent-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with command snippets and structured analysis sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include extracted source, prompt, tool, configuration, and environment-variable fragments from the analyzed target.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

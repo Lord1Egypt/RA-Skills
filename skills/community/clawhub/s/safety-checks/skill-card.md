@@ -1,43 +1,53 @@
-## Description: <br>
-Verify before you trust - model pinning, fallbacks, and runtime safety validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify before you trust: model pinning, fallbacks, and runtime safety validation.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run local pre-flight safety checks for model version drift, fallback configuration, cache staleness, and cross-session state hygiene before relying on an agent session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Fallback checks audit configured entries only and do not prove live network connectivity or model availability. <br>
-Mitigation: Treat fallback results as configuration validation and separately test real connectivity before depending on degraded-mode paths. <br>
-Risk: The --clear and --clear-state options can remove local cache or session-state files. <br>
-Mitigation: Use clearing options only when you intend to remove the skill's local cache or session-state artifacts. <br>
-Risk: Companion skills may introduce separate behavior or risk outside this skill's local-only safety checks. <br>
-Mitigation: Review and scan companion skills independently before relying on integrated enforcement workflows. <br>
+## Use Case:
 
+Developers and agent operators use this skill to run pre-flight and heartbeat safety checks for model version drift, fallback configuration, stale cache data, and cross-session state contamination.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/leegitw/safety-checks) <br>
-- [Publisher profile](https://clawhub.ai/user/leegitw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown-style check reports with command examples and YAML configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local check results and history under output/safety/ when checks are performed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Optional dependency install commands may add related skills whose versions and trust posture should be reviewed before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review why context-verifier, failure-memory, and constraint-engine are needed, and prefer pinned or trusted versions if OpenClaw supports them.
+
+Risk: Safety checks read local configuration and cache metadata and write local safety logs.
+
+Mitigation: Confirm the configured paths match the documented .openclaw, .claude, and output/safety locations before running clear or remediation commands.
+
+## Reference(s):
+
+- [Safety Checks on ClawHub](https://clawhub.ai/leegitw/skills/safety-checks)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown command guidance and plain-text check reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local check results under output/safety/ and uses local safety-check configuration files.]
+
+## Skill Version(s):
+
+1.5.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

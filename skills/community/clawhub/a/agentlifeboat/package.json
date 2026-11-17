@@ -1,0 +1,19 @@
+{
+  "name": "@estate/skill-lifeboat",
+  "version": "1.0.2",
+  "private": true,
+  "type": "module",
+  "description": "ClawHub skill: register with The Estate lifeboat, snapshot, heartbeat, extend cover, paid from the agent's own wallet over x402 or by its human by card.",
+  "license": "MIT-0",
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "echo 'plain ESM, no typecheck'"
+  },
+  "dependencies": {
+    "@x402/core": "2.25.0",
+    "@x402/evm": "2.25.0",
+    "@x402/fetch": "2.25.0",
+    "age-encryption": "0.3.1",
+    "viem": "2.56.3"
+  }
+}

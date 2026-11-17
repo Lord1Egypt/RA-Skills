@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rebar-table-audit"
+version = "0.1.0"
+description = "从 DWG/DXF 结构图纸抽取钢筋/材料工程数量表并做确定性算术核对，输出 evidence.json + xlsx + report.md"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "2Origin"}]
+requires-python = ">=3.10"
+dependencies = [
+    "ezdxf>=1.4",
+    "openpyxl>=3.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/dongsheng123132/rebar-table-audit"
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+rebar-audit = "rebar_table_audit.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["rebar_table_audit*"]
+
+[tool.setuptools.package-data]
+rebar_table_audit = ["data/*.json"]

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  /* ============ 小红书图文笔记 · 3:4 (1080x1440) · 奶油系 ============ */
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:"PingFang SC","Microsoft YaHei",-apple-system,sans-serif;background:var(--pageBg,#f0e9df);}
+
+  .slide{width:1080px;height:1440px;position:relative;overflow:hidden;background:var(--cream,#FFFDF8);display:none;}
+  .slide.active{display:block;}
+
+  /* ===== 配色：由 render.js 注入（THEMES 随机选一套） ===== */
+  <!-- THEME -->
+  :root{
+    --cream:#FFFDF8; --ink:#3D3A35; --cocoa:#6B5B4B; --caramel:#C68B59;
+    --oat:#E9DFC9; --matcha:#A8B99A; --peach:#F2C49B; --muted:#A79C8C;
+    --line:#EFE7D8; --cover1:#FFFDF8; --cover2:#F7EEDC; --pageBg:#f0e9df; --dot:✦;
+  }
+
+  .pad{position:absolute;left:70px;right:70px;}
+
+  /* 顶部小标 */
+  .tag{display:inline-flex;align-items:center;gap:12px;font-size:30px;color:var(--cocoa);font-weight:700;}
+  .tag::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--caramel);}
+
+  .big-title{font-size:76px;font-weight:900;color:var(--ink);line-height:1.3;letter-spacing:1px;}
+  .sub{font-size:34px;color:var(--muted);line-height:1.7;margin-top:22px;}
+
+  /* 底部页码 + 小红书风格装饰 */
+  .foot{position:absolute;bottom:56px;left:70px;right:70px;display:flex;justify-content:space-between;align-items:center;}
+  .foot .dot{font-size:26px;letter-spacing:8px;color:var(--caramel);}
+  .foot .page{font-size:30px;color:var(--muted);font-weight:700;}
+
+  /* 卡片 */
+  .card{background:#fff;border:2px solid var(--line);border-radius:24px;padding:36px 40px;margin-bottom:26px;box-shadow:0 6px 24px rgba(107,91,75,.06);}
+  .card .ico{font-size:44px;margin-bottom:14px;}
+  .card h3{font-size:40px;font-weight:900;color:var(--ink);margin-bottom:14px;}
+  .card p{font-size:31px;color:var(--cocoa);line-height:1.75;}
+  .card li{font-size:30px;color:var(--cocoa);line-height:1.75;list-style:none;padding-left:40px;position:relative;margin-bottom:10px;}
+  .card li::before{content:"✦";position:absolute;left:0;color:var(--caramel);}
+
+  /* 引言 */
+  .quote{background:var(--oat);border-radius:24px;padding:40px 46px;font-size:40px;font-weight:900;color:var(--ink);line-height:1.7;}
+  .quote small{display:block;font-size:28px;color:var(--cocoa);font-weight:600;margin-top:16px;line-height:1.6;}
+
+  /* 分点步骤条 */
+  .step{display:flex;align-items:flex-start;gap:26px;background:#fff;border:2px solid var(--line);border-radius:20px;padding:30px 34px;margin-bottom:22px;}
+  .step .n{width:62px;height:62px;flex-shrink:0;border-radius:50%;background:var(--caramel);color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:900;}
+  .step .t{font-size:33px;font-weight:800;color:var(--ink);margin-bottom:6px;}
+  .step .d{font-size:29px;color:var(--muted);line-height:1.6;}
+
+  /* 表格 */
+  table{width:100%;border-collapse:collapse;margin-top:26px;}
+  th,td{padding:24px 20px;text-align:left;font-size:28px;line-height:1.5;}
+  thead th{background:var(--oat);color:var(--ink);font-weight:800;border-radius:0;}
+  tbody tr{border-bottom:2px solid var(--line);}
+  td{color:var(--cocoa);}
+
+  /* 封面 */
+  .cover{background:linear-gradient(170deg,var(--cover1,#FFFDF8) 0%,var(--cover2,#F7EEDC) 100%);}
+  .cover .deco{position:absolute;border-radius:50%;opacity:.5;}
+  .cover .c1{width:400px;height:400px;background:var(--peach);top:-120px;right:-120px;}
+  .cover .c2{width:280px;height:280px;background:var(--matcha);bottom:-80px;left:-80px;}
+  .cover .pad{top:330px;text-align:center;}
+  .cover .kicker{font-size:32px;color:var(--caramel);font-weight:700;letter-spacing:4px;margin-bottom:40px;}
+  .cover h1{font-size:96px;font-weight:900;color:var(--ink);line-height:1.35;}
+  .cover .h1sub{font-size:40px;color:var(--cocoa);margin-top:26px;font-weight:700;}
+  .cover .dims{font-size:32px;color:var(--muted);margin-top:40px;letter-spacing:2px;line-height:1.8;}
+  .cover .hold{display:inline-block;margin-top:56px;background:var(--caramel);color:#fff;font-size:34px;font-weight:800;padding:20px 52px;border-radius:50px;}
+
+  /* 结尾 CTA */
+  .end .pad{top:380px;text-align:center;}
+  .end .big{font-size:72px;font-weight:900;color:var(--ink);line-height:1.4;}
+  .end .small{font-size:33px;color:var(--muted);margin-top:30px;line-height:1.8;}
+  .end .follow{display:inline-block;margin-top:70px;background:var(--matcha);color:#fff;font-size:36px;font-weight:800;padding:24px 60px;border-radius:50px;}
+</style>
+</head>
+<body>
+
+<!-- ================= 封面 ================= -->
+<div class="slide cover active">
+  <div class="deco c1"></div><div class="deco c2"></div>
+  <div class="pad">
+    <div class="kicker">精力管理 · 干货笔记</div>
+    <h1>你缺的不是时间<br>是精力</h1>
+    <div class="h1sub">时间管「做什么」，精力管「能不能做好」</div>
+    <div class="dims">体能 · 情绪 · 思维 · 意志 · 节奏<br>五张图，帮你把状态管明白</div>
+    <div class="hold">建议收藏 ✦ 慢慢看</div>
+  </div>
+  <div class="foot"><span class="dot">✦ ✦ ✦</span><span class="page">1/8</span></div>
+</div>
+
+<!-- ================= 02 四维模型 ================= -->
+<div class="slide">
+  <div class="pad" style="top:170px">
+    <span class="tag">精力管理干货</span>
+    <div class="big-title" style="margin-top:26px">状态差，不是懒<br>是四个维度在亏空</div>
+    <div class="sub">精力是一个系统，四维互相影响：<br>一维垮了，整体都受影响。</div>
+
+    <table>
+      <thead><tr><th>维度</th><th>低了会怎样</th></tr></thead>
+      <tbody>
+        <tr><td><b>🌱 体能</b></td><td>疲惫 · 犯困 · 坐不住</td></tr>
+        <tr><td><b>💛 情绪</b></td><td>焦虑 · 易怒 · 内耗</td></tr>
+        <tr><td><b>🧠 思维</b></td><td>走神 · 拖延 · 想不动</td></tr>
+        <tr><td><b>🧭 意志</b></td><td>迷茫 · 没动力 · 想放弃</td></tr>
+      </tbody>
+    </table>
+
+    <div class="quote" style="margin-top:34px">很多人只逼「思维」<br><small>却忽略体能、情绪这两个底座<br>技巧学一堆，状态照旧差</small></div>
+  </div>
+  <div class="foot"><span class="dot">✦ ✦ ✦</span><span class="page">2/8</span></div>
+</div>
+
+<!-- ================= 03 体能 ================= -->
+<div class="slide">
+  <div class="pad" style="top:170px">
+    <span class="tag">第一维 · 体能</span>
+    <div class="big-title" style="margin-top:26px">身体的油，<br>先加满再谈别的</div>
+    <div class="sub">最容易被忽略、却最立竿见影的一维。</div>
+
+    <div class="step"><div class="n">①</div><div><div class="t">睡眠 = 充电</div><div class="d">每晚 7-8 小时，低于 6h 是警戒线</div></div></div>
+    <div class="step"><div class="n">②</div><div><div class="t">运动 = 扩容</div><div class="d">每天 20-30 分钟中等强度即可</div></div></div>
+    <div class="step"><div class="n">③</div><div><div class="t">饮食 = 品控</div><div class="d">低升糖·高蛋白，别让血糖过山车</div></div></div>
+    <div class="step"><div class="n">④</div><div><div class="t">呼吸 = 开关</div><div class="d">吸 4 秒·呼 6 秒，随时降心率</div></div></div>
+  </div>
+  <div class="foot"><span class="dot">✦ ✦ ✦</span><span class="page">3/8</span></div>
+</div>
+
+<!-- ================= 04 情绪 ================= -->
+<div class="slide">
+  <div class="pad" style="top:170px">
+    <span class="tag">第二维 · 情绪</span>
+    <div class="big-title" style="margin-top:26px">情绪是能量开关<br>别让它后台偷电</div>
+    <div class="sub">同样的能力，情绪积极时发挥 100%，内耗只剩 50%。</div>
+
+    <div class="card"><div class="ico">🔋</div><h3>负面情绪 = 能量漏洞</h3><p>焦虑、内耗在后台持续消耗心理资源。<br>「什么都没干却累得不行」，多半是反刍在作怪。</p></div>
+
+    <div class="card"><div class="ico">💡</div><h3>两个动作找回能量</h3>
+      <ul>
+        <li><b>先觉察</b>：给情绪命名「这是焦虑」</li>
+        <li><b>再调节</b>：深呼吸 / 走动 / 找人聊一句</li>
+      </ul>
+    </div>
+
+    <div class="quote" style="margin-top:20px">堵不如疏<br><small>别在情绪峰值做重大决定</small></div>
+  </div>
+  <div class="foot"><span class="dot">✦ ✦ ✦</span><span class="page">4/8</span></div>
+</div>
+
+<!-- ================= 05 思维 ================= -->
+<div class="slide">
+  <div class="pad" style="top:170px">
+    <span class="tag">第三维 · 思维</span>
+    <div class="big-title" style="margin-top:26px">专注不是硬逼<br>是「保护」出来的</div>
+    <div class="sub">注意力有限又易耗，每次切换都在交「切换税」。</div>
+
+    <div class="card"><div class="ico">🎯</div><h3>四个让大脑「指哪打哪」的方法</h3>
+      <ul>
+        <li>单任务：一次只做一件事，关通知</li>
+        <li>时间块：给最重要的事留 1-2 小时专注</li>
+        <li>先难后易：精力高峰做最难的事</li>
+        <li>适度抽离：散步放空，让大脑整合</li>
+      </ul>
+    </div>
+
+    <div class="quote" style="margin-top:22px">衡量标准是「深度产出的量」<br><small>不是「在岗时长」或「消息秒回」</small></div>
+  </div>
+  <div class="foot"><span class="dot">✦ ✦ ✦</span><span class="page">5/8</span></div>
+</div>
+
+<!-- ================= 06 意志 ================= -->
+<div class="slide">
+  <div class="pad" style="top:170px">
+    <span class="tag">第四维 · 意志</span>
+    <div class="big-title" style="margin-top:26px">坚持不靠硬撑<br>靠「为什么」驱动</div>
+    <div class="sub">意志力像肌肉：会累，也能练。省着用，比硬扛聪明。</div>
+
+    <div class="card"><div class="ico">🧭</div><h3>打造可持续的意志</h3>
+      <ul>
+        <li>找「为什么」：锚定高于赚钱/交差的意义</li>
+        <li>拆小目标：今天能完成的最小一步</li>
+        <li>建习惯：高频动作自动化，不再耗意志</li>
+        <li>设边界：该做什么、坚决不做什么</li>
+      </ul>
+    </div>
+
+    <div class="quote" style="margin-top:22px">意志力要「省着用」<br><small>放在真正重要的事上</small></div>
+  </div>
+  <div class="foot"><span class="dot">✦ ✦ ✦</span><span class="page">6/8</span></div>
+</div>
+
+<!-- ================= 07 节奏 ================= -->
+<div class="slide">
+  <div class="pad" style="top:170px">
+    <span class="tag">进阶 · 节奏</span>
+    <div class="big-title" style="margin-top:26px">高手不是扛得住<br>是「会切换」</div>
+    <div class="sub">精力是脉冲，不是恒定。<br>在投入与恢复之间规律切换，才能长久。</div>
+
+    <div class="card"><div class="ico">⏳</div><h3>一天的精力节奏</h3>
+      <ul>
+        <li>高强度专注 90 分钟 → 主动休息 10-15 分钟</li>
+        <li>重要的深度工作，放在你的精力高峰（多数人 9-11 点）</li>
+        <li>下午 13-15 点困倦：小憩 20 分钟或散步，别硬扛</li>
+      </ul>
+    </div>
+
+    <div class="card"><div class="ico">🔌</div><h3>有效恢复 ≠ 刷手机</h3>
+      <ul>
+        <li>✅ 小睡 / 深呼吸 / 户外散步 / 听音乐</li>
+        <li>❌ 刷短视频 / 无目的刷信息流（仍在耗注意力）</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span class="dot">✦ ✦ ✦</span><span class="page">7/8</span></div>
+</div>
+
+<!-- ================= 08 结尾 ================= -->
+<div class="slide end">
+  <div class="pad">
+    <div class="big">精力管理，<br>从今晚睡个好觉开始</div>
+    <div class="small">四维有短板就补短板<br>会切换节奏，才能走得更远</div>
+    <div class="follow">觉得有用，点个收藏 ✦</div>
+  </div>
+  <div class="foot"><span class="dot">✦ ✦ ✦</span><span class="page">8/8</span></div>
+</div>
+
+</body>
+</html>

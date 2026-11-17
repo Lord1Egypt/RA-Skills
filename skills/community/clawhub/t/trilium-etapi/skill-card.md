@@ -1,45 +1,61 @@
-## Description: <br>
-Use when interacting with a Trilium Notes server via the ETAPI REST API - creating, reading, updating, searching, or deleting notes, branches, attributes, attachments, day/week/month notes; obtaining auth tokens; or scripting Trilium operations from the shell. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when interacting with a Trilium Notes server via the ETAPI REST API for creating, reading, updating, searching, or deleting notes, branches, attributes, attachments, day/week/month notes, obtaining auth tokens, or scripting Trilium operations from the shell.
 
-## Publisher: <br>
-[yanickxia](https://clawhub.ai/user/yanickxia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yanickxia](https://clawhub.ai/user/yanickxia)
 
-## Use Case: <br>
-Developers and engineers use this skill to script Trilium Notes ETAPI workflows, including note management, search, export, import, backups, authentication, and shell-based integration debugging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ETAPI authentication tokens can grant access to notes and may appear in shell history, logs, or shared command output. <br>
-Mitigation: Treat ETAPI tokens like passwords, avoid sharing command logs containing tokens, and prefer environment variables or secret handling appropriate to the runtime. <br>
-Risk: Generated API commands may delete notes, overwrite note content, import data, export private content, or trigger backups. <br>
-Mitigation: Review destructive, import, export, overwrite, and backup commands before execution, and back up important notes before bulk changes. <br>
-Risk: Deleting the last branch of a Trilium note also deletes the note. <br>
-Mitigation: Check branch relationships before deleting branches, especially in cloned-note workflows. <br>
+## Use Case:
 
+Developers and operators use this skill to script authenticated Trilium ETAPI workflows, including note creation, metadata updates, search, import/export, backups, and integration debugging.
 
-## Reference(s): <br>
-- [Trilium ETAPI endpoint reference](api-reference.md) <br>
-- [trilium-py Python client](https://github.com/Nriver/trilium-py) <br>
-- [trilium-client Python package](https://pypi.org/project/trilium-client/) <br>
-- [trilium-api TypeScript package](https://www.npmjs.com/package/trilium-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Examples commonly use curl, jq, ETAPI paths, and environment variables such as TRILIUM_URL and TRILIUM_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: release evidence) <br>
+Risk: The skill documents authenticated ETAPI operations that can modify or delete Trilium notes, branches, attributes, and attachments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before destructive operations and verify the target IDs before issuing DELETE or overwrite commands.
+
+Risk: ETAPI tokens and passwords grant access to Trilium data if exposed.
+
+Mitigation: Treat TRILIUM_TOKEN and passwords as secrets, avoid logging them, and use HTTPS for remote servers.
+
+Risk: Export and backup workflows can expose note contents or write server-side backup files.
+
+Mitigation: Review export destinations, backup names, and access permissions before running export or backup commands.
+
+## Reference(s):
+
+- [Trilium ETAPI endpoint reference](api-reference.md)
+- [ClawHub skill page](https://clawhub.ai/yanickxia/skills/trilium-etapi)
+- [trilium-py client](https://github.com/Nriver/trilium-py)
+- [trilium-client Python package](https://pypi.org/project/trilium-client/)
+- [trilium-api TypeScript package](https://www.npmjs.com/package/trilium-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash, curl, jq, and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill provides examples and operational guidance; it does not directly execute ETAPI calls.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

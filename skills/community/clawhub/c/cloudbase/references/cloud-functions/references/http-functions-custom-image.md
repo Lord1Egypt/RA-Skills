@@ -17,6 +17,15 @@ Keep Custom Image HTTP Functions distinct from CloudRun containers — both use 
 
 Do not blend the two contracts.
 
+## CloudBase SDK credential gate
+
+Custom Image changes packaging, not the HTTP Function credential boundary. If the image calls CloudBase resources through `@cloudbase/node-sdk` or `@cloudbase/manager-node`, read `./http-function-credentials.md` before deployment.
+
+- Do not rely on the Event Function passwordless/default temporary credential path.
+- For `@cloudbase/node-sdk`, inject `CLOUDBASE_APIKEY` from a server API Key created through `manageAppAuth(action="createApiKey", keyType="api_key")`, or inject a Tencent Cloud key pair.
+- For `@cloudbase/manager-node`, inject a Tencent Cloud `SecretId` / `SecretKey` pair.
+- Keep credentials out of the Dockerfile, image layers, build arguments, source code, logs, and responses.
+
 ## End-to-end pipeline (6 steps)
 
 The link between the two stages is the TCR image address:
@@ -99,7 +108,7 @@ manageFunctions({
 | `imagePort` | — | Web Server: `9000` (default). Job-style image: `-1`. |
 | `containerImageAccelerate` | — | Image acceleration; enable for large images to cut cold-start time. |
 
-After deploy, confirm readiness with `queryFunctions(action="getFunctionDetail", functionName="my-scf-func")` and look for `Status=Active`. For public/browser access, create gateway access explicitly with `manageGateway(action="createAccess", type="HTTP")` and set the function security rule (anonymous login is disabled by default — see `http-functions.md`).
+After deploy, confirm readiness with `queryFunctions(action="getFunctionDetail", functionName="my-scf-func")` and look for `Status=Active`. If the tool result already contains `accessUrl` / `accessUrls`, prefer those links directly. If no URL is returned yet, create a Domain/Route explicitly with `manageGateway(action="createRoute", upstreamResourceType="WEB_SCF")` and set the function security rule (anonymous login is disabled by default — see `http-functions.md`).
 
 ## Source packaging (Stage A input)
 

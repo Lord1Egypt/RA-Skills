@@ -1,43 +1,60 @@
-## Description: <br>
-Data persistence patterns in Go covering raw SQL with sqlx/pgx, ORMs like Ent and GORM, connection pooling, migrations with golang-migrate, and transaction management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data persistence patterns in Go covering raw SQL with sqlx/pgx, ORMs like Ent and GORM, connection pooling, migrations with golang-migrate, and transaction management.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Go developers use this skill when implementing database access, designing repository layers, configuring connection pools, managing schema migrations, and coordinating transactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Migration examples can change a real database if applied to the wrong target or without review. <br>
-Mitigation: Confirm the target database URL, review both up and down migration files, and ensure backups or recovery plans exist before applying migrations. <br>
-Risk: Installing the golang-migrate CLI with an unpinned latest version can introduce unexpected tooling changes. <br>
-Mitigation: Pin the golang-migrate CLI version for repeatable local and CI/CD migration workflows. <br>
+## Use Case:
 
+Developers and engineers use this skill to design Go database access layers, configure database pools, manage schema migrations, and apply transaction patterns for application persistence.
 
-## Reference(s): <br>
-- [Connection Pooling in Go](artifact/references/connection-pooling.md) <br>
-- [Database Migrations with golang-migrate](artifact/references/migrations.md) <br>
-- [Transaction Management in Go](artifact/references/transactions.md) <br>
-- [ClawHub skill page](https://clawhub.ai/anderskev/go-data-persistence) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Go, SQL, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; review database-changing examples before applying them to real systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.1 (source: release evidence) <br>
+Risk: The skill is reference material and may include examples that look production-ready.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat examples as design guidance, then adapt and review them against the target application's correctness, reliability, and operational requirements before use.
+
+Risk: Transaction examples may be unsafe for payments, balances, inventory, credits, or other high-impact state changes if copied without review.
+
+Mitigation: Review or replace transaction logic for financial integrity, rollback behavior, cleanup paths, isolation level, and concurrency behavior before using it in high-impact workflows.
+
+Risk: Shell examples may install tools using floating versions.
+
+Mitigation: Pin CLI and dependency versions before installing or adding tools to project automation.
+
+## Reference(s):
+
+- [Connection Pooling in Go](references/connection-pooling.md)
+- [Database Migrations with golang-migrate](references/migrations.md)
+- [Transaction Management in Go](references/transactions.md)
+- [ClawHub Skill Page](https://clawhub.ai/anderskev/skills/go-data-persistence)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline Go, SQL, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+2.3.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

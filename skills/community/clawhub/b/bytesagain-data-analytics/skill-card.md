@@ -1,41 +1,58 @@
-## Description: <br>
-Analyze CSV files with statistical summaries, correlations, top-value rankings, trend charts, data quality reports, and pivot tables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze CSV files with statistical summaries, correlations, pivot tables, value rankings, trend charts, and data quality reports.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to quickly inspect CSV exports, check data quality, find correlations, rank column values, chart simple trends, and build small pivot summaries from the terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CSV summaries and top-value reports can expose sensitive values from the selected dataset in agent or terminal output. <br>
-Mitigation: Use the skill only on datasets whose summaries can be shared in the current agent session, or remove sensitive columns before analysis. <br>
-Risk: The skill runs a local bash/Python helper against files chosen by the user. <br>
-Mitigation: Install and run it only in a trusted local workspace, and inspect or constrain the input files when working with confidential data. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to explore local CSV exports, inspect data quality, compare numeric columns, summarize top values, and build quick pivot-style summaries from the terminal.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/loutai0307-prog/bytesagain-data-analytics) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text terminal reports with tabular summaries and ASCII charts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally on user-selected CSV files with bash and python3.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The helper reads local CSV files selected by the user, so sensitive dataset contents may be processed in the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on CSV files you intend the agent environment to inspect, and avoid using confidential exports unless the environment is approved for that data.
+
+Risk: The security evidence notes limited script quality, which could produce unreliable analysis for important decisions.
+
+Mitigation: Review command output before relying on it, and validate important statistics with a trusted analysis tool.
+
+Risk: The skill does not clearly declare its tool scope in the provided metadata.
+
+Mitigation: Confirm that bash and python3 execution are acceptable before installation or use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/skills/bytesagain-data-analytics)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on the selected CSV file, command, and column arguments; analysis runs locally through bash and python3.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

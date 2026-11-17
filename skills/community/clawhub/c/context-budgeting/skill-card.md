@@ -1,38 +1,47 @@
-## Description: <br>
-Manage and optimize OpenClaw context window usage via partitioning, pre-compression checkpointing, and information lifecycle management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and optimize OpenClaw context window usage via partitioning, pre-compression checkpointing, and information lifecycle management.
 
-## Publisher: <br>
-[SarielWang93](https://clawhub.ai/user/SarielWang93) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sarielwang93](https://clawhub.ai/user/sarielwang93)
 
-## Use Case: <br>
-Developers and OpenClaw agents use this skill to manage long-running sessions by partitioning context, preserving key decisions before compaction, and reducing context-related latency or information loss. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may change local OpenClaw memory or checkpoint state and run its bundled compaction script. <br>
-Mitigation: Review the checkpoint content and script before execution, and run it only in an intended OpenClaw workspace where local state changes are expected. <br>
-Risk: The bundled script targets a fixed local workspace path and invokes the OpenClaw CLI. <br>
-Mitigation: Confirm or adapt the workspace path before use, and verify the OpenClaw CLI command matches the active environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and agent operators use this skill to manage long-running OpenClaw sessions by partitioning context, checkpointing important state before compaction, and reducing the risk of losing task progress.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Persistent checkpoint memory could preserve copied commands, policy changes, credentials, or untrusted instructions.
+
+Mitigation: Review or constrain HOT_MEMORY.md updates so checkpoints contain only factual task state before relying on the skill.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide updates to HOT_MEMORY.md and execution of the bundled checkpoint script.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes checkpointing guidance and a helper shell script for OpenClaw context cleanup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

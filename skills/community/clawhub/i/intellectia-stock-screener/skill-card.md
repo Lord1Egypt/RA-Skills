@@ -1,40 +1,58 @@
-## Description: <br>
-Get stock screener list data from Intellectia API (no auth) and summarize results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get stock screener list data from Intellectia API (no auth) and summarize results.
 
-## Publisher: <br>
-[intellectiaAI](https://clawhub.ai/user/intellectiaAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[intellectiaai](https://clawhub.ai/user/intellectiaai)
 
-## Use Case: <br>
-External users and developers use this skill to fetch public Intellectia stock screener data, apply documented query filters, and summarize returned instruments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Stock screener filter values are sent to Intellectia's public API. <br>
-Mitigation: Review filter values before making requests and avoid sending confidential trading strategies or sensitive business criteria. <br>
-Risk: The Python example may require installing the third-party requests package. <br>
-Mitigation: Install dependencies in a controlled Python environment and follow normal package review practices. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/intellectiaAI/intellectia-stock-screener) <br>
-- [Intellectia Stock Screener API Endpoint](https://api.intellectia.ai/gateway/v1/stock/screener-list) <br>
+## Use Case:
 
+Developers and external agents use this skill to fetch Intellectia stock, ETF, or crypto screener rows and summarize market screener results from the documented API response.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline cURL and Python examples, plus summarized JSON API response data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No authentication is required; network calls send stock screener filters to Intellectia's API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill queries Intellectia's external API for stock screener data.
+
+Mitigation: Install only if external API access to Intellectia is acceptable for the target environment.
+
+Risk: The evidence notes an unpinned Python dependency on requests.
+
+Mitigation: Use an isolated Python environment and consider pinning requests before installation.
+
+Risk: Returned market predictions and probabilities may be mistaken for financial advice.
+
+Mitigation: Treat screener predictions as informational and apply independent financial review before making investment decisions.
+
+## Reference(s):
+
+- [Intellectia API Base URL](https://api.intellectia.ai)
+- [Stock Screener List Endpoint](https://api.intellectia.ai/gateway/v1/stock/screener-list)
+- [ClawHub Skill Page](https://clawhub.ai/intellectiaai/skills/intellectia-stock-screener)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON response examples, cURL commands, and Python code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documents API query parameters and response fields for stock screener data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

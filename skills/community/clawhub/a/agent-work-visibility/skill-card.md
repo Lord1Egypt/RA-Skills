@@ -1,45 +1,62 @@
-## Description: <br>
-Agent Work Visibility adds a progress and health-status visibility layer for long-running agent tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Work Visibility helps OpenClaw agents show progress, health, blockers, and user-input needs during long-running tasks.
 
-## Publisher: <br>
-[rachelw0212](https://clawhub.ai/user/rachelw0212) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rachelw0212](https://clawhub.ai/user/rachelw0212)
 
-## Use Case: <br>
-Developers and agent users use this skill to make long-running work visible by showing task phase, progress percentage, health status, blocker state, and user-intervention requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The activation script persistently edits SOUL.md or AGENTS.md and changes agent behavior in later sessions. <br>
-Mitigation: Review activate.js before running it, keep a backup of affected files, and use deactivate.js or remove the marked protocol block to roll back the change. <br>
-Risk: Snapshot history APIs can write task snapshots and reports to paths supplied by the caller. <br>
-Mitigation: Use trusted task IDs and output paths only, and do not expose snapshot-writing functions to untrusted input. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add visible progress tracking, blocker reporting, and user-intervention prompts to long-running OpenClaw tasks such as research, browser, API, and multi-step analysis workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rachelw0212/agent-work-visibility) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
-- [Agent Work Visibility MVP design](docs/agent_work_visibility_mvp.md) <br>
-- [Phase 2 integration design](docs/integration_phase2.md) <br>
-- [Phase 2 validation report](docs/validation_report_phase2.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown-style progress text and JSON task snapshots] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes progress bars, phase names, health indicators, blocker messages, elapsed time, and optional user input prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.5 (source: server release metadata and skill frontmatter) <br>
+Risk: Persistent activation changes workspace-wide agent behavior rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review activate.js before use, back up SOUL.md and AGENTS.md, confirm OPENCLAW_WORKSPACE targets the intended workspace, and use deactivate.js to remove the injected protocol when no longer needed.
+
+Risk: Local snapshot handling may be unsafe when task IDs or output paths come from untrusted inputs.
+
+Mitigation: Use trusted task identifiers and output paths only, and avoid exposing SnapshotHistoryManager to untrusted callers until path containment is fixed.
+
+Risk: Activation and snapshot files can leave persistent state in the workspace.
+
+Mitigation: Plan cleanup for .visibility-state*.json files and artifacts/phase2 snapshots during uninstall or environment reset.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rachelw0212/skills/agent-work-visibility)
+- [Publisher profile](https://clawhub.ai/user/rachelw0212)
+- [README](README.md)
+- [MVP design document](docs/agent_work_visibility_mvp.md)
+- [Phase 2 integration design](docs/integration_phase2.md)
+- [Phase 2 validation report](docs/validation_report_phase2.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Human-readable progress and status snapshots with CLI commands and markdown-style task updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write persistent workspace protocol text and local visibility snapshot files after manual activation.]
+
+## Skill Version(s):
+
+3.0.5 (source: server release metadata, skill.json, frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

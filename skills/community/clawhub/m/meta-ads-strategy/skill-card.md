@@ -1,45 +1,62 @@
-## Description: <br>
-Run Facebook and Instagram ads end-to-end with guidance for Meta ads strategy, creative, copy, campaign structure, targeting, budgeting, ROAS tracking, Pixel setup, and an ad brief workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through planning, creating, launching, and optimizing Facebook and Instagram ads, including strategy, creative, copy, campaign structure, targeting, budgeting, ROAS tracking, Pixel setup, and an ad brief workflow.
 
-## Publisher: <br>
-[jeannen](https://clawhub.ai/user/jeannen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeannen](https://clawhub.ai/user/jeannen)
 
-## Use Case: <br>
-External advertisers, founders, marketers, and agent users use this skill to plan, create, launch, and optimize Meta campaigns for Facebook and Instagram. It helps users build ad briefs, assess readiness, write copy, choose creative, structure campaigns, set budgets, configure tracking, and diagnose ROAS or performance issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can steer an agent toward ad-account actions that spend money or change campaigns, budgets, Pixel setup, customer-data setup, or publishing state. <br>
-Mitigation: Require explicit user approval before campaign creation, publishing, budget changes, Pixel or customer-data setup, and every AdKit or Ads Manager action. <br>
-Risk: The skill may persist project-specific advertising preferences and briefs in local files. <br>
-Mitigation: Review every proposed file read or write, and avoid storing sensitive payment, customer, or account-recovery information in persistent notes. <br>
-Risk: Some account-safety guidance may be overconfident about platform enforcement outcomes. <br>
-Mitigation: Treat the guidance as advisory, follow Meta platform policies, and do not rely on VPN or spare-account advice to avoid enforcement. <br>
+## Use Case:
 
+External advertisers, founders, and marketers use this skill to decide whether Meta ads fit their product, prepare campaign inputs, write ad copy, plan creative, configure account and Pixel setup, launch campaigns, and diagnose ad performance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jeannen/meta-ads-strategy) <br>
-- [AdKit homepage](https://adkit.so) <br>
-- [When Should a SaaS Run Ads?](https://adkit.so/resources/when-to-run-ads-for-saas) <br>
-- [AdKit Ad Library](https://adkit.so/features/ad-library?utm_source=skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with checklists, templates, and optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update ad-process.md and ad-brief.md when the user approves persistent project notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can lead to live ad-account actions, including campaign creation, budgets, publishing decisions, and AdKit command suggestions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for planning unless a human is prepared to review and approve each command, campaign, budget, and publishing action before execution.
+
+Risk: Tracking and audience workflows may involve pixels, email lists, retargeting audiences, or session-recording tools that process privacy-sensitive advertising data.
+
+Mitigation: Add privacy, consent, data-use, and platform-policy checks before using tracking, retargeting, uploaded audiences, or session-recording tools.
+
+Risk: Account restriction guidance includes advice around spare ad accounts and VPN use that was flagged for review.
+
+Mitigation: Ignore or revise that guidance and follow Meta policies, payment rules, and local legal or compliance requirements.
+
+## Reference(s):
+
+- [AdKit](https://adkit.so)
+- [When Should a SaaS Run Ads?](https://adkit.so/resources/when-to-run-ads-for-saas)
+- [AdKit Ad Library](https://adkit.so/features/ad-library?utm_source=skill)
+- [Safe Zones Checker Tool](https://adkit.so/tools/safe-zones/meta?utm_source=skill)
+- [Lead Magnets Skill](https://github.com/coreyhaines31/marketingskills/blob/main/skills/lead-magnets/SKILL.md)
+- [ClawHub Skill Page](https://clawhub.ai/jeannen/skills/meta-ads-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with checklists, decision tables, ad brief content, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update an ad brief file and may suggest AdKit CLI commands when AdKit is installed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

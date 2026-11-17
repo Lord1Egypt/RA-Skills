@@ -1,49 +1,62 @@
-## Description: <br>
-SentrySkills is an automatic local security guard for agents that checks prompts, runtime actions, and final responses for prompt injection, data leaks, unsafe commands, and code vulnerabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SentrySkills is an automatic security guard for AI agent tasks that provides preflight, runtime, and output checks for prompt injection, data leaks, unsafe commands, and code vulnerabilities.
 
-## Publisher: <br>
-[zengbiaojie](https://clawhub.ai/user/zengbiaojie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zengbiaojie](https://clawhub.ai/user/zengbiaojie)
 
-## Use Case: <br>
-Developers and agent operators use SentrySkills to add local preflight, runtime, and output checks around agent tasks that involve shell commands, file changes, sensitive context, external tools, or code generation. It is intended to support safer agent operation through configurable policy profiles, event logs, and allow, downgrade, or block decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently influence every agent response when automatic mode is enabled. <br>
-Mitigation: Review and manually merge AGENTS.md changes, confirm the intended policy profile, and keep a rollback path for removing the SentrySkills block. <br>
-Risk: Local logs may retain raw prompts, responses, and task context. <br>
-Mitigation: Review log paths before use, avoid supplying secrets unless local retention is acceptable, and define a process for deleting sentry_skill_log data. <br>
-Risk: The guard can block or downgrade responses, which may affect normal agent workflows. <br>
-Mitigation: Test balanced, strict, and permissive profiles in a controlled workspace before enabling automatic mode for important work. <br>
+## Use Case:
 
+Developers and agent operators use this skill package to add local, always-on guard checks around agent tasks that may involve commands, file changes, sensitive data, network calls, or code generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zengbiaojie/sentryskills) <br>
-- [Runtime policy profiles](shared/references/policy_profiles.md) <br>
-- [Input schema](shared/references/input_schema.json) <br>
-- [Guard event schema](shared/references/guard_event.schema.json) <br>
-- [Audit record schema](shared/references/audit_record.schema.json) <br>
-- [Information trust model](shared/references/trust_model.md) <br>
-- [OpenClaw installation guide](install/openclaw_install.md) <br>
-- [Codex installation guide](install/codex_install.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON event and summary records from local scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces allow, downgrade, or block decisions with trace IDs, event logs, safe-response guidance, and optional redaction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: Automatic global setup can give the skill persistent influence over agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the code before installation and prefer manual or project-scoped configuration unless global activation is explicitly intended.
+
+Risk: Default logging can capture sensitive task content.
+
+Mitigation: Keep generated logs out of source control and avoid using the skill with secrets until logging and path handling concerns are resolved.
+
+Risk: The security evidence flags the release as suspicious.
+
+Mitigation: Pin the exact version or commit, review the configured policy, and deploy only after the identified setup and logging risks are accepted or fixed.
+
+## Reference(s):
+
+- [SentrySkills README](README.md)
+- [Installation and Configuration](install/README.md)
+- [Input Schema](shared/references/input_schema.json)
+- [Guard Event Schema](shared/references/guard_event.schema.json)
+- [Policy Profiles](shared/references/policy_profiles.md)
+- [Trust Model](shared/references/trust_model.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Code, JSON]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, and JSON guard results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local guard decisions, trace identifiers, event logs, and redaction or refusal guidance for the agent.]
+
+## Skill Version(s):
+
+1.0.1 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

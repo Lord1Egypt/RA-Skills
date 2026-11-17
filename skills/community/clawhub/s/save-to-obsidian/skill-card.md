@@ -1,46 +1,59 @@
-## Description: <br>
-Saves markdown content to a remote Obsidian vault via SSH. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Saves markdown content to remote Obsidian vault via SSH.
 
-## Publisher: <br>
-[chunhualiao](https://clawhub.ai/user/chunhualiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chunhualiao](https://clawhub.ai/user/chunhualiao)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to save generated markdown notes into a configured remote Obsidian vault while keeping Obsidian-friendly formatting for diagrams, tables, links, and filenames. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected markdown content to a remote Obsidian vault over SSH. <br>
-Mitigation: Confirm that the configured host, vault path, and SSH key are under the user's control before use. <br>
-Risk: A matching destination filename may overwrite an existing note. <br>
-Mitigation: Choose filenames deliberately and confirm overwrite intent before saving important notes. <br>
-Risk: Broad SSH access could expose more remote filesystem access than the skill needs. <br>
-Mitigation: Use a restricted SSH account where possible and limit access to the intended vault location. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to save agent-generated Markdown notes to a remote Obsidian vault over SSH while applying Obsidian-friendly formatting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chunhualiao/save-to-obsidian) <br>
-- [Obsidian Markdown Guide](https://help.obsidian.md/Editing+and+formatting/Basic+formatting+syntax) <br>
-- [Mermaid Documentation](https://mermaid.js.org/) <br>
-- [Obsidian Mermaid Support](https://help.obsidian.md/Editing+and+formatting/Advanced+formatting+syntax#Diagram) <br>
-- [Artifact references](references/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files and terminal output from SSH copy commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves selected markdown content to a configured remote Obsidian vault path; filenames are sanitized and matching names may overwrite existing notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata, skill.yml, and changelog; SKILL.md frontmatter reports 1.0.0) <br>
+Risk: The SSH upload script can transfer arbitrary readable files to runtime-supplied destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated SSH key restricted to the intended vault, keep the vault destination fixed in trusted configuration, upload only staged Markdown files, and require confirmation before transfer or overwrite.
+
+Risk: A broad agent file-access context could expose sensitive local files if an unintended source path is uploaded.
+
+Mitigation: Limit source paths to temporary agent-created Markdown files and review the source file before invoking scp.
+
+Risk: Duplicate filenames may overwrite existing vault notes silently.
+
+Mitigation: Confirm overwrite intent or generate unique filenames before transfer.
+
+## Reference(s):
+
+- [Obsidian Markdown Guide](https://help.obsidian.md/Editing+and+formatting/Basic+formatting+syntax)
+- [Mermaid Documentation](https://mermaid.js.org/)
+- [Obsidian Mermaid Support](https://help.obsidian.md/Editing+and+formatting/Advanced+formatting+syntax#Diagram)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown notes with shell command invocations and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Transfers staged Markdown files with sanitized filenames to a configured remote vault via scp.]
+
+## Skill Version(s):
+
+1.1.0 (source: skill.yml, changelog, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

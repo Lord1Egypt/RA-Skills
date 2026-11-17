@@ -16,6 +16,6 @@ After completing this task, evaluate if agent infrastructure learnings emerged:
 - Could memory entries be pruned or updated?
 
 If yes: Log to .learnings/ using the self-improving-meta format.
-If infrastructure fix needed: Apply directly to the affected file.
+Do not edit AGENTS.md, SOUL.md, TOOLS.md, MEMORY.md, hooks, or skills unless the user explicitly asked in this session.
 </meta-improvement-reminder>
 EOF

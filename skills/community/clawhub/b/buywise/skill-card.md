@@ -1,47 +1,58 @@
-## Description: <br>
-BuyWise helps shoppers decide whether, where, and when to buy products by comparing prices, checking discount authenticity, summarizing reviews, recommending alternatives, and producing a Buy/Wait/Skip recommendation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BuyWise helps users compare shopping options, evaluate discounts, summarize reviews, identify alternatives, and decide whether to buy, wait, or skip a product.
 
-## Publisher: <br>
-[jiajiaoy](https://clawhub.ai/user/jiajiaoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiajiaoy](https://clawhub.ai/user/jiajiaoy)
 
-## Use Case: <br>
-External shoppers and shopping-assistant agents use BuyWise to research products before purchase, compare prices across global and Chinese marketplaces, evaluate reviews and discount history, and decide whether to buy now, wait, or skip. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product names, links, and shopping intent may be sent to public shopping, search, or review sites during research. <br>
-Mitigation: Avoid using sensitive product links or private purchase details, and review the public sites the agent plans to query before proceeding. <br>
-Risk: Prices, availability, discounts, and reviews can change quickly or be incomplete across marketplaces. <br>
-Mitigation: Verify final price, shipping, seller reputation, and return terms on the retailer site before purchasing. <br>
-Risk: The skill may suggest a CouponClaw coupon lookup after a purchase decision. <br>
-Mitigation: Require explicit user approval before running any separate CouponClaw step or additional coupon/cashback workflow. <br>
+## Use Case:
 
+External users and shopping-assistant agents use BuyWise for pre-purchase research, including price comparison, deal authenticity checks, review synthesis, alternative recommendations, and buy-timing guidance across global and Chinese shopping platforms.
 
-## Reference(s): <br>
-- [BuyWise on ClawHub](https://clawhub.ai/jiajiaoy/buywise) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [CamelCamelCamel](https://camelcamelcamel.com) <br>
-- [smzdm](https://search.smzdm.com) <br>
-- [Google Shopping](https://www.google.com/search?tbm=shop) <br>
-- [Bing Shopping](https://www.bing.com/shop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown shopping report with comparison tables, concise evidence summaries, command suggestions, and a Buy/Wait/Skip verdict] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Chinese or English output; prices and recommendations depend on public web data available at run time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.5 (source: package.json, release metadata) <br>
+Risk: The skill sends product queries to shopping and review websites as part of its intended function.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the product text before use and avoid entering private or sensitive purchase details.
+
+Risk: The skill may print CouponClaw shell commands using product text, which can be risky when product names contain quotes or shell symbols.
+
+Mitigation: Review generated commands before running them, especially when product names come from untrusted input.
+
+Risk: The security verdict is suspicious because promotional output and generated CouponClaw commands require review before installation.
+
+Mitigation: Review the skill before installing or deploying it, and explicitly request English output when Chinese output is not desired.
+
+## Reference(s):
+
+- [BuyWise ClawHub Skill Page](https://clawhub.ai/jiajiaoy/skills/buywise)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with comparison tables, verdicts, concise summaries, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate Chinese or English output depending on the selected language; price and review guidance depends on live public shopping and review sources.]
+
+## Skill Version(s):
+
+1.5.7 (source: package.json, _meta.json, and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

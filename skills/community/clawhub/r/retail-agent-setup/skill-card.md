@@ -1,54 +1,73 @@
-## Description: <br>
-Onboarding wizard for retail digital employee agents that guides businesses through a 12-step setup to configure a fully operational AI store assistant. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides retail businesses through a 12-step setup to configure a digital employee agent for store operations.
 
-## Publisher: <br>
-[fangwei-frank](https://clawhub.ai/user/fangwei-frank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangwei-frank](https://clawhub.ai/user/fangwei-frank)
 
-## Use Case: <br>
-Retail business owners, managers, and operations teams use this skill to configure a store assistant agent across systems inventory, data import, role selection, knowledge validation, channel setup, permissions, testing, launch, and ongoing improvement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup may touch live retail systems, channel credentials, and operational automation. <br>
-Mitigation: Use test or least-privilege API credentials, store secrets only as environment or secret-manager references, and confirm channel activation before launch. <br>
-Risk: Retail data imports can include customer PII or sensitive business records. <br>
-Mitigation: Avoid uploading raw customer PII, prefer anonymized aggregates or CRM references, and review what is saved in agent memory. <br>
-Risk: Launch and continuous-improvement steps can activate channels or scheduled jobs before the business is ready. <br>
-Mitigation: Use the built-in confirmation checkpoints, pre-launch test score, and explicit review of cron jobs and alert thresholds before going live. <br>
+## Use Case:
 
+Retail business owners, store managers, and implementation staff use this skill to set up a store AI assistant, connect retail data, choose roles and channels, configure permissions, test readiness, and establish post-launch improvement loops.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fangwei-frank/retail-agent-setup) <br>
-- [Step 01 - System Inventory](references/step-01-systems.md) <br>
-- [Step 02 - Data Infrastructure Assessment](references/step-02-data-infra.md) <br>
-- [Step 03 - Data Import and Auto-Structuring](references/step-03-data-import.md) <br>
-- [Step 04 - Role Selection](references/step-04-role-select.md) <br>
-- [Step 05 - Skills Configuration](references/step-05-skills-config.md) <br>
-- [Step 06 - Knowledge Base Validation](references/step-06-knowledge.md) <br>
-- [Step 07 - Digital Employee Persona](references/step-07-persona.md) <br>
-- [Step 08 - Channel Integration](references/step-08-channels.md) <br>
-- [Step 09 - Permissions and Escalation](references/step-09-permissions.md) <br>
-- [Step 10 - Pre-Launch Testing](references/step-10-test.md) <br>
-- [Step 11 - Launch and Handoff](references/step-11-handoff.md) <br>
-- [Step 12 - Continuous Improvement](references/step-12-iterate.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and optional Python script outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces step artifacts saved to agent memory and asks for confirmation before continuing between setup steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Live retail integrations may expose operational systems or credentials during setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sandbox or read-only API credentials where possible and avoid pasting raw secrets into chat.
+
+Risk: Imported customer, staff, or sales data may include sensitive or personal information.
+
+Mitigation: Avoid importing customer PII unless necessary and review uploaded data before adding it to the agent knowledge base.
+
+Risk: Persistent memory and knowledge-base edits can preserve incorrect, unauthorized, or sensitive content.
+
+Mitigation: Restrict knowledge edits to authenticated staff-only channels and review updates before live use.
+
+Risk: Recurring digests, alerts, and reports can continue sending operational information after setup.
+
+Mitigation: Create recurring jobs only with clear recipients, expiry, audit, and deletion controls.
+
+## Reference(s):
+
+- [Retail Agent Setup release page](https://clawhub.ai/fangwei-frank/skills/retail-agent-setup)
+- [Step 01 - System Inventory](references/step-01-systems.md)
+- [Step 02 - Data Infrastructure Assessment](references/step-02-data-infra.md)
+- [Step 03 - Data Import & Auto-Structuring](references/step-03-data-import.md)
+- [Step 04 - Role Selection](references/step-04-role-select.md)
+- [Step 05 - Skills Configuration](references/step-05-skills-config.md)
+- [Step 06 - Knowledge Base Validation](references/step-06-knowledge.md)
+- [Step 07 - Digital Employee Persona](references/step-07-persona.md)
+- [Step 08 - Channel Integration](references/step-08-channels.md)
+- [Step 09 - Permissions & Escalation](references/step-09-permissions.md)
+- [Step 10 - Pre-Launch Testing](references/step-10-test.md)
+- [Step 11 - Launch & Handoff](references/step-11-handoff.md)
+- [Step 12 - Continuous Improvement](references/step-12-iterate.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration snippets and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup artifacts such as system inventories, knowledge-base entries, role and persona configs, permission matrices, test reports, staff handoff materials, and recurring job definitions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -2,6 +2,9 @@
 
 > The painter who heard color and saw music — Kandinsky's abstraction is not the absence of meaning but its purest form, the moment when art stops depicting the world and starts being the world.
 
+> **Try it first →** [Live Demo — no account needed](https://inspiredhub.ai/demo)
+
+
 ## Overview
 | Property | Value |
 |----------|-------|
@@ -68,3 +71,23 @@ Brands that operate at the level of pure sensation — the brand that makes you 
 
 ---
 *Distilled by InspiredHub Taste Engine from 7 works in the collection, anchored by Composition VIII, Improvisation 28, and the theoretical writings of Concerning the Spiritual in Art.*
+
+---
+
+---
+
+## Explore on InspiredHub
+
+- **[See this public Taste Skill in practice](https://inspiredhub.ai/demo)** — a source-aware comparison using the public Skill.
+- **[Use this public Skill as an optional Personal Taste Brief reference](https://inspiredhub.ai/personal-taste-brief#clawhub/taste-kandinsky)** — add it only if you choose, then edit or remove it in your own working Brief.
+
+A public cultural Skill is not a diagnosis of your taste. Opening the Brief does not create a profile, save a draft, synchronize an agent, or send ClawHub account, installation, or download data to InspiredHub.
+
+*Powered by [InspiredHub](https://inspiredhub.ai/) — public cultural references and private, user-controlled working Briefs.*
+
+
+---
+
+Using this in a real project?
+We'd love to see what you're building.
+Drop us a note: contact@inspiredhub.ai

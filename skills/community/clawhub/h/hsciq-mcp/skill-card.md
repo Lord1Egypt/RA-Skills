@@ -1,44 +1,50 @@
-## Description: <br>
-HS Code Lookup for Chinese Products. Query customs codes, tariff rates, declaration elements, and regulatory requirements via HSCIQ MCP API. Create classification consultation requests with image upload for expert review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HS Code Lookup for 10 countries/regions (CN/JP/US/EU/VN/MY/BR/MX/ID/CA). Query customs codes, tariff rates, declaration elements, and regulatory requirements via HSCIQ MCP API. Search China customs announcements and ocean carrier notices. Create classification consultation requests with image upload for expert review.
 
-## Publisher: <br>
-[toucao](https://clawhub.ai/user/toucao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[toucao](https://clawhub.ai/user/toucao)
 
-## Use Case: <br>
-Developers, trade operators, and agents use this skill to query Chinese product HS codes, tariff details, declaration elements, regulatory requirements, CIQ data, hazardous-goods data, port information, and classification examples. It can also create and manage HSCIQ classification consultation records for expert review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an HSCIQ API key and sends selected product information to the HSCIQ service. <br>
-Mitigation: Install only when the operator is comfortable granting the skill that credential, and scope or rotate the API key according to the HSCIQ account policy. <br>
-Risk: The skill can create external consultation records, upload product images, and post discussion replies. <br>
-Mitigation: Require the agent to show the exact fields, files, and action before creating consultations, uploading images, or posting replies, then proceed only after explicit user approval. <br>
-Risk: Uploaded product images or consultation text may contain sensitive commercial information. <br>
-Mitigation: Review files and product details before submission and avoid sending confidential or regulated data unless the user has approved that disclosure. <br>
+## Use Case:
 
+External users and trade professionals can look up HS codes, tariff rates, declaration requirements, classification examples, customs announcements, and ocean carrier notices across the supported regions. They can also create and follow classification consultation requests for expert review.
 
-## Reference(s): <br>
-- [HSCIQ MCP API Documentation](https://www.hsciq.com/MCP/Docs) <br>
-- [HSCIQ Service](https://www.hsciq.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/toucao/hsciq-mcp) <br>
+### Deployment Geography for Use:
 
+Global (customs code coverage: CN, JP, US, EU, VN, MY, BR, MX, ID, and CA)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an HSCIQ API key; API calls can return customs-code data, consultation records, and discussion responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.7 (source: server release metadata, created 2026-05-12T15:38:51.532Z) <br>
+Risk: Product details and images may be sent for external expert review, and some activation phrases may be generic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the skill activates only in relevant customs or trade contexts, and require explicit user approval before sending product details or images for review.
+
+## Reference(s):
+
+- [HSCIQ MCP API documentation](https://www.hsciq.com/MCP/Docs)
+- [ClawHub hsciq-mcp release page](https://clawhub.ai/toucao/skills/hsciq-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Structured API results and concise text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+3.2.0 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

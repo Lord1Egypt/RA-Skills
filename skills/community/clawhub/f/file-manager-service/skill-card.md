@@ -1,41 +1,64 @@
-## Description: <br>
-File Manager Service starts and stops a local Flask file manager and provides web, CLI, and API access for browsing, uploading, downloading, editing, searching, and organizing files under the OpenClaw projects directory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+File Manager Service starts and controls a local file-management service for browsing, editing, uploading, downloading, searching, moving, deleting, and annotating files in an OpenClaw projects directory.
 
-## Publisher: <br>
-[lengyhua](https://clawhub.ai/user/lengyhua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lengyhua](https://clawhub.ai/user/lengyhua)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to manage project files through a local web interface, command-line helper, or HTTP API. It supports file browsing, text editing, upload and download, search, directory notes, and service lifecycle commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes powerful file-changing APIs with under-scoped network and upload protections. <br>
-Mitigation: Use it only in a trusted local environment, bind the service to 127.0.0.1, stop it when finished, and add authentication or request protection before broader use. <br>
-Risk: Uploaded or viewed HTML/SVG content and unsanitized upload filenames can create avoidable local-file or browser exposure. <br>
-Mitigation: Avoid opening untrusted HTML or SVG through the UI, sanitize upload filenames, validate final paths, and prefer a fixed version that pins or self-hosts browser dependencies. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to start a local web interface and CLI for managing files under ~/.openclaw/workspace/projects. It supports day-to-day project file browsing, editing, search, upload, download, directory notes, and service status operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lengyhua/file-manager-service) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, API calls, files, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON/API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May start a local web service and modify files under ~/.openclaw/workspace/projects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release metadata and package.json) <br>
+Risk: Unauthenticated file-management endpoints can read, write, upload, move, and delete project files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a trusted local environment and avoid shared or exposed networks until authentication and CSRF protection are added.
+
+Risk: The web service is reported to bind to all network interfaces.
+
+Mitigation: Bind the service to localhost before use on shared, VPN, container, or otherwise reachable networks.
+
+Risk: Security evidence reports upload path validation and web UI XSS issues.
+
+Mitigation: Fix path validation and sanitize rendered user-controlled content before using the service with untrusted files or notes.
+
+Risk: Dependency installation is documented with unpinned Flask and requests packages.
+
+Mitigation: Pin, vendor, or otherwise review dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lengyhua/skills/file-manager-service)
+- [Publisher Profile](https://clawhub.ai/user/lengyhua)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, endpoint descriptions, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May start or stop a background local web service and may perform file read, write, upload, download, move, and delete operations through CLI or HTTP endpoints.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release metadata, package.json, README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

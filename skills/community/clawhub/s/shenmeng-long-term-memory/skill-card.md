@@ -1,43 +1,59 @@
-## Description: <br>
-Long Term Memory 长期记忆 helps agents store, search, organize, and compress durable memory notes across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+长期记忆管理系统 - 帮助AI和用户管理、存储、检索长期记忆。支持记忆分类、标签管理、重要性评分、自动压缩、跨会话记忆保持。适用于需要长期追踪信息、建立知识库、维护历史上下文的场景。
 
-## Publisher: <br>
-[shenmeng](https://clawhub.ai/user/shenmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenmeng](https://clawhub.ai/user/shenmeng)
 
-## Use Case: <br>
-Developers and agent operators use this skill to maintain local long-term context such as user preferences, decisions, important events, lessons, and knowledge notes. It is suited to workflows that need searchable memory across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes SkillPay billing behavior that can charge an external service without a clear per-call confirmation step. <br>
-Mitigation: Install only when paid SkillPay-backed memory use is intended, confirm the SKILLPAY_USER_ID mapping, and verify when charges occur before running the skill. <br>
-Risk: Long-term memory can retain sensitive personal, financial, health, credential, or secret material and later expose it through search or reuse. <br>
-Mitigation: Avoid storing highly sensitive information, review memory files regularly, and delete or archive records that should not be retained. <br>
-Risk: The security guidance calls out a hardcoded billing key as a review concern. <br>
-Mitigation: Review whether the bundled billing key is acceptable for the deployment environment before enabling the skill. <br>
+## Use Case:
 
+External users and developers use this skill to store, search, organize, and compress durable personal or project memories across sessions.
 
-## Reference(s): <br>
-- [Memory Taxonomy](references/memory-taxonomy.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/shenmeng/shenmeng-long-term-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown memory files and terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores and searches local memory files under the agent workspace, with optional archive summaries for older memories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2025.4.15 (source: ClawHub release evidence) <br>
+Risk: The skill stores durable personal or project memories on disk, including user preferences, relationships, decisions, and lessons learned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with an explicit retention and deletion process, and avoid storing secrets or sensitive personal data unless retention is approved.
+
+Risk: The artifact includes paid billing code that contacts SkillPay and an embedded billing credential.
+
+Mitigation: Install only if paid SkillPay use is acceptable, and review or rotate the billing credential before deployment.
+
+Risk: Bulk memory import and local memory parsing can preserve untrusted or stale content across sessions.
+
+Mitigation: Review imported memory files before use and periodically clean or compress outdated entries.
+
+## Reference(s):
+
+- [Memory Taxonomy](references/memory-taxonomy.md)
+- [Long Term Memory 长期记忆 on ClawHub](https://clawhub.ai/shenmeng/skills/shenmeng-long-term-memory)
+- [shenmeng publisher profile](https://clawhub.ai/user/shenmeng)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and command-line text with generated or updated local memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persistent memory records, summaries, and archives under the OpenClaw workspace.]
+
+## Skill Version(s):
+
+2025.4.15 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

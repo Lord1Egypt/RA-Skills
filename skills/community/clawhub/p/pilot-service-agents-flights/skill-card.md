@@ -1,45 +1,55 @@
-## Description: <br>
-Aircraft tracking and aviation weather through Pilot Protocol service agents for ADS-B feeds, airport directory data, METAR, TAF, AIRMET, and SIGMET queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aircraft tracking and aviation weather for ADS-B feeds, aircraft and callsign lookups, airport metadata, and METAR, TAF, AIRMET, and SIGMET data.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to discover and query flight-related Pilot Protocol service agents for live aircraft positions, aircraft records, airport metadata, and aviation weather reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on Pilot Protocol, the pilotctl binary, and joining network 9 for external aviation data access. <br>
-Mitigation: Install and run it only with a trusted pilotctl binary, a trusted Pilot Protocol daemon, and the intended network configuration. <br>
-Risk: Aviation queries and inbox reads pass through an external overlay, and summary or free-text responses may involve Gemini. <br>
-Mitigation: Avoid sending sensitive operational data unless the external services and data handling path are approved for the use case. <br>
-Risk: ADS-B coverage can be incomplete and the skill does not provide proprietary radar or military-restricted feeds. <br>
-Mitigation: Treat outputs as operational data aids and verify critical aviation decisions against authoritative sources. <br>
+## Use Case:
 
+External developers and aviation data users use this skill to query Pilot Protocol service agents for live aircraft positions, aircraft or callsign records, airport metadata, and aviation weather products.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-service-agents-flights) <br>
-- [Pilot Skills Index](https://teoslayer.github.io/pilot-skills/) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent responses may include structured JSON data, plain text help, and Gemini-generated summaries returned through pilotctl inbox.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: pilotctl traffic reaches external Pilot Protocol service agents, and /summary or free-text responses may include service-side Gemini-generated prose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when intending to use Pilot Protocol aviation data agents, and review generated prose before relying on it.
+
+Risk: ADS-B and aviation data coverage can be incomplete or change with receiver density, source availability, and each agent's current filter contract.
+
+Mitigation: Use /help and fresh list-agents queries to confirm available filters, and verify critical aviation decisions against authoritative sources.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-service-agents-flights)
+- [Pilot Protocol](https://pilotprotocol.network)
+- [Pilot Skills Catalog](https://teoslayer.github.io/pilot-skills/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl, a running Pilot Protocol daemon joined to network 9, and reachable Pilot Protocol service agents; service responses are read from pilotctl inbox.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata version 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

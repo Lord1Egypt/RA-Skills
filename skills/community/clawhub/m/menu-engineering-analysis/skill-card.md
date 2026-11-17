@@ -1,42 +1,57 @@
-## Description: <br>
-Use this skill when a restaurant chef, GM, multi-unit operator, or culinary director needs a Kasavana-Smith menu-engineering analysis of one menu over a defined sales period. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides a Kasavana-Smith analysis of one restaurant menu over a defined sales period, classifying items by contribution margin and popularity and producing a draft operator review report with action recommendations and data-quality flags.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Restaurant chefs, general managers, culinary directors, and multi-unit operators use this skill to review one menu over a defined sales period, classify items by contribution margin and popularity, and prepare a draft action plan before pricing, recipe, or menu-layout changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process confidential restaurant economics, including item-level sales, costs, and vendor-sensitive inputs. <br>
-Mitigation: Provide only data the operator is comfortable sharing with the agent, and avoid reusing confidential item economics outside the requested draft report. <br>
-Risk: Menu price, recipe, removal, and reprint recommendations can affect guest perception, brand fit, supply continuity, and labor operations. <br>
-Mitigation: Treat the output as draft business advice and require operator review before making operational changes. <br>
+## Use Case:
 
+External restaurant chefs, GMs, multi-unit operators, and culinary directors use this skill to review one menu over a defined sales period before pricing, recipe, or menu-layout changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/menu-engineering-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/archlab-space) <br>
-- [Feedback and contributions](https://github.com/archlab-space/Open-Skill-Hub/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown draft report with tables, action playbooks, quick wins, data-quality flags, and open questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory output only; requires operator review before any price, recipe, or menu reprint action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: release evidence and CHANGELOG, released 2026-05-28) <br>
+Risk: Confidential menu, recipe-cost, vendor-term, or unit-sales data may be pasted into the agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved agent environments for sensitive restaurant data and keep pasted inputs limited to what is needed for the draft report.
+
+Risk: Draft recommendations could be mistaken for final pricing, recipe, or menu-layout decisions.
+
+Mitigation: Require operator review before changing prices, recipes, printed menus, POS records, or delivery-platform listings.
+
+Risk: Missing or implausible item-level inputs can produce misleading classifications.
+
+Mitigation: Apply the skill's data-quality gates, flag unresolved issues, and exclude incomplete items from classification until the operator confirms the data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/menu-engineering-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Draft Markdown report with calculation tables, data-quality flags, action playbook, quick wins, menu-design recommendations, and open questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory output that requires operator review before price, recipe, menu, POS, or delivery-platform changes.]
+
+## Skill Version(s):
+
+0.1.2 (source: server evidence release.version and artifact CHANGELOG.md, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

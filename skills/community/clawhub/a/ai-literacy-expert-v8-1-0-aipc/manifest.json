@@ -1,0 +1,611 @@
+{
+  "package": "ai-literacy-expert-v8.1.0-aipc",
+  "version": "8.1.0-aipc",
+  "skill_name": "ai-literacy-expert-v8.1.0-aipc",
+  "codename": "V8.1-AIPC 端云协同 + 全互动控件完整性门控",
+  "release_date": "20260822",
+  "build_timestamp": "2026-08-23T03:00:50Z",
+  "audit_grade": "A+ (local-ai-skill-authoring-main)",
+  "audit_rounds": 3,
+  "total_files": 85,
+  "total_bytes": 2243363,
+  "categories": {
+    "config": 5,
+    "docs": 46,
+    "entry_scripts": 4,
+    "python_scripts": 16,
+    "support": 4,
+    "python_tests": 9,
+    "manifest": 1
+  },
+  "version_changes": {
+    "v8_1_0_aipc": {
+      "date": "2026-08-22",
+      "new_features": [
+        "8 类 27 项 p5.js 互动控件完整性门控（test_p5js_interactive.py · 36 项）",
+        "5 维度架构选型说明（Single-Client 而非 Client-Server）",
+        "SKILL.md frontmatter name 与版本对齐（v7.3A → v8.1.0-aipc）",
+        "description 增加 10 项英文 triggers（lesson planning / curriculum design / ...）",
+        "端云 API 示例重写为真实签名（build_request + CostMonitor + EdgeCloudClient）"
+      ],
+      "audit_fixes_round1": [
+        "run.ps1 / install-env.ps1 $Root 路径 bug（避免多走一级父目录）",
+        "SKILL.md frontmatter name 字段 v7.3A → v8.1.0-aipc",
+        "meta.json name 字段 v7.3ms → v8.1.0-aipc"
+      ],
+      "audit_fixes_round2": [
+        "SKILL.md §3.4 EdgeCloudClient API 示例重写（移除错误 budget_usd 参数）",
+        "setup_text_model.py docstring 矛盾修正",
+        "run.ps1 / install-env.ps1 SYNOPSIS 注释 v7.3 残留清理",
+        "SKILL.md §4 文件计数 78 → 82 / scripts 15 → 17 / references 40 → 42",
+        "SKILL.md §3.2 子命令表加 --continue",
+        "SKILL.md §2.1 架构选型说明（5 维度决策表）",
+        "tests/__init__.py 描述由'套件说明'改为'unittest discover 包标识'"
+      ],
+      "audit_fixes_round3": [
+        "VERSION.txt name 字段 v7.3A → v8.1.0-aipc",
+        "CHANGELOG.md §8.1.0-aipc 描述'0 改动'修正为'CHANGED'",
+        "CHANGELOG.md §版本命名约定 表格 3 处错误（frontmatter / 目录名 / 文件计数 78）修正",
+        "README.md 整篇重写（V7.2 时代 → V8.1-AIPC）",
+        "README.md 删除 V7.2 Release Notes / V7.2 变更记录 / V7.2 Migration Guide 章节",
+        "README.md 快速索引'module-h/i'不存在文件引用修正",
+        "本 manifest.json 完整重生成（top-level + categories + SHA256）"
+      ]
+    },
+    "v8_0_0_aipc": {
+      "date": "2026-08-20",
+      "new_features": [
+        "p5.js 课件/游戏每个按钮 9 项功能完整性门控（test_p5js_buttons.py · 29 项）"
+      ]
+    },
+    "v7_4_0_aipc": {
+      "date": "2026-08-19",
+      "new_features": [
+        "work_summary.py - 每次工作后自动输出本地 vs 云端对比（V7-AIPC 标志功能）"
+      ]
+    }
+  },
+  "excluded": {
+    "dirs": [
+      ".git",
+      ".mypy_cache",
+      ".partial",
+      ".pytest_cache",
+      ".venv",
+      "__pycache__",
+      "bin",
+      "env",
+      "models",
+      "node_modules",
+      "venv",
+      "workspace"
+    ],
+    "file_suffixes": [
+      ".bak",
+      ".log",
+      ".old",
+      ".orig",
+      ".pyc",
+      ".pyo",
+      ".rej",
+      ".swp",
+      ".tmp"
+    ],
+    "file_names": [
+      ".DS_Store",
+      "Thumbs.db"
+    ]
+  },
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 301,
+      "category": "config",
+      "sha256": "cb3cbea399a447d60fd0d7c2e5005bf63b7e75d7feec4ae69b35db730104969d"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 33929,
+      "category": "docs",
+      "sha256": "4b5152e6047d6b8a3abdfe0cf13780baa1f340eb867a109ee8efa5c6cebec303"
+    },
+    {
+      "path": "README.md",
+      "bytes": 9161,
+      "category": "docs",
+      "sha256": "719ecabf369e15c9503847784edca49a4eb7de04dafd87b57e723658b17fb35d"
+    },
+    {
+      "path": "SKILL.md",
+      "bytes": 22328,
+      "category": "docs",
+      "sha256": "7d71e308bf6d03c7e10405044ef6bb53a54616c8b4acedfbeea478fddd70a002"
+    },
+    {
+      "path": "VERSION.txt",
+      "bytes": 1399,
+      "category": "config",
+      "sha256": "0ad64c70ae9a83ed382a272f67d16a542055418c83bff80888b0a207f3768fd5"
+    },
+    {
+      "path": "info.json",
+      "bytes": 959,
+      "category": "config",
+      "sha256": "9f02a14ffe3ab78e9890f9dfee629266ae5ef5c686eef0221649bd4b65a91efe"
+    },
+    {
+      "path": "install-env.ps1",
+      "bytes": 3075,
+      "category": "entry_scripts",
+      "sha256": "b4cd0c872f8d114eab89d17bf439e84d085576a439780e1b49a46de5d65bec7f"
+    },
+    {
+      "path": "install-env.sh",
+      "bytes": 2675,
+      "category": "entry_scripts",
+      "sha256": "ffc5a1fe202ed75584a1bf1996c9af4bb951e7b95c55214abefd97fd9b7066a9"
+    },
+    {
+      "path": "meta.json",
+      "bytes": 2177,
+      "category": "config",
+      "sha256": "8fe347a55082660a7898b1f568edbfb3309156faaf3b8a71654150eed9c9791d"
+    },
+    {
+      "path": "references/agent-tool-adaptation.md",
+      "bytes": 9992,
+      "category": "docs",
+      "sha256": "c8663560a9a19bd26575ee72ac124dbb2f4bef8c090f33a317572fafc3d692c6"
+    },
+    {
+      "path": "references/assessment-guide.md",
+      "bytes": 15098,
+      "category": "docs",
+      "sha256": "f59e0e085704049864d706fb7a4068aa9f96005c897953d91d71821de72447d5"
+    },
+    {
+      "path": "references/audit-report-v7.md",
+      "bytes": 5586,
+      "category": "docs",
+      "sha256": "07341fb8749c2e9d53be0ef1c4b02eb5cc19b0e13cc0c46369a1eed10f98f0ed"
+    },
+    {
+      "path": "references/audit-report.md",
+      "bytes": 5575,
+      "category": "docs",
+      "sha256": "b564b11454fa59f4f217e9fe43c1e9ad5dd2d08e63bacb3a69dc1ac5ea0bcfe0"
+    },
+    {
+      "path": "references/collaboration-guide.md",
+      "bytes": 13831,
+      "category": "docs",
+      "sha256": "64c993212610e3fae4e7df83cf4a818641301bfed1131f17cee178b7b0cb2bd7"
+    },
+    {
+      "path": "references/commercial-delivery-suite.md",
+      "bytes": 6951,
+      "category": "docs",
+      "sha256": "f4ac680ce071a931a1d1d5e1e235d8061c319850a68c7593a94e15ccb0a5609f"
+    },
+    {
+      "path": "references/commercial-production-standards-v4.md",
+      "bytes": 5787,
+      "category": "docs",
+      "sha256": "8e17c3430b19bf42ed097d3a9ab134e1d07b2f915939e54ed4d81bedf86376a3"
+    },
+    {
+      "path": "references/commercial-production-standards.md",
+      "bytes": 5787,
+      "category": "docs",
+      "sha256": "8e17c3430b19bf42ed097d3a9ab134e1d07b2f915939e54ed4d81bedf86376a3"
+    },
+    {
+      "path": "references/cost-optimization.md",
+      "bytes": 4959,
+      "category": "docs",
+      "sha256": "d982b9acbe6859b3956a774aef48e3a2cb9301e5b03f9aa2442daced4fa18a63"
+    },
+    {
+      "path": "references/deployment-guide.md",
+      "bytes": 46708,
+      "category": "docs",
+      "sha256": "67e82d476ada9abd29600e0a7f3bf1369062ebe943c7c53d09602ce37e1c22d2"
+    },
+    {
+      "path": "references/edge-cloud-architecture.md",
+      "bytes": 8072,
+      "category": "docs",
+      "sha256": "90ccd23cf12546c9f1d6e427dc758a38f9610f0d7d8efd206f84177988643710"
+    },
+    {
+      "path": "references/edge-cloud-protocol-schema.json",
+      "bytes": 10929,
+      "category": "docs",
+      "sha256": "5025adb2fe72dd84fc43322a8e084eb14c8106c9fce17407b29522f4b8cddf96"
+    },
+    {
+      "path": "references/edge-cloud-protocol.md",
+      "bytes": 14297,
+      "category": "docs",
+      "sha256": "cee31b2089ae89c7ba172a8c0991a8bf7dcd75db9af30a2b4ac27205ad568729"
+    },
+    {
+      "path": "references/interactive-lesson-builder-guide.md",
+      "bytes": 17269,
+      "category": "docs",
+      "sha256": "bfc4920a24b4cc37e8045ad428c09b693f69e4d5a6d8a3a5012d91ec06eb03d6"
+    },
+    {
+      "path": "references/kb-asset-index.md",
+      "bytes": 5846,
+      "category": "docs",
+      "sha256": "409523624b671ab0ccdfaf8307bc9649777dde8db365114baf2fd45c8b1dd78e"
+    },
+    {
+      "path": "references/lecture-script-professional-orientation.md",
+      "bytes": 8060,
+      "category": "docs",
+      "sha256": "7a17bb8186e2e5288a42b47850d6d13bfc619dc7d41b402ea14411eef2da1a8c"
+    },
+    {
+      "path": "references/lesson-prep-workflow.md",
+      "bytes": 13304,
+      "category": "docs",
+      "sha256": "a3678abaeafc6404d083d144a0a69ed5fb8324a99c9802367f1c1f5a1681b70d"
+    },
+    {
+      "path": "references/local-ai-quality-gate.md",
+      "bytes": 22055,
+      "category": "docs",
+      "sha256": "9b555d9cd5463113cc85bcfbfb7d2f831ba98f9e1637f64c20f1a0589ff654b9"
+    },
+    {
+      "path": "references/local-ai-toolbox.md",
+      "bytes": 12882,
+      "category": "docs",
+      "sha256": "86352e6efa98e37fec7100868150ecd4b1c559679625ed1a16641a17adadfbae"
+    },
+    {
+      "path": "references/local-asr-integration.md",
+      "bytes": 6151,
+      "category": "docs",
+      "sha256": "835849b8518a9fa857c83e642755feb5539f84b9138741806b3f0e954b8e93b8"
+    },
+    {
+      "path": "references/local-data-analysis.md",
+      "bytes": 11869,
+      "category": "docs",
+      "sha256": "2e53b7ff7a27d135ed2319962e7b7b231d97913d0a149d7cd48a7914ec9a5ec7"
+    },
+    {
+      "path": "references/local-ocr-integration.md",
+      "bytes": 5517,
+      "category": "docs",
+      "sha256": "454f51ac83ef1ced70c96ee86ba1c332ce6cd3cfcce59aa424a9b5a0f4848768"
+    },
+    {
+      "path": "references/local-rag-integration.md",
+      "bytes": 7598,
+      "category": "docs",
+      "sha256": "4e25a52a82f190f0760badacabb3a951f4f17976b76671add2c93ec5fcfb304f"
+    },
+    {
+      "path": "references/local-tts-integration.md",
+      "bytes": 5619,
+      "category": "docs",
+      "sha256": "7839c6a21c9ca977fa9faf74b475a1300ae5a286ba5b22f49eef67c2ad95cc9c"
+    },
+    {
+      "path": "references/module-a-cognition.md",
+      "bytes": 30967,
+      "category": "docs",
+      "sha256": "41c074b16de91fb10a733310ff3c74737877546b0cfab6ce9647f839edca067b"
+    },
+    {
+      "path": "references/module-b-tools.md",
+      "bytes": 3271,
+      "category": "docs",
+      "sha256": "19d16455aef312a463da609f8bca09934addc016c8b798bc7bc40e600e0f39dc"
+    },
+    {
+      "path": "references/module-c-methodology.md",
+      "bytes": 69528,
+      "category": "docs",
+      "sha256": "14088095ec7e6616c62ae806378729766181492b5685994f7086fef69acd4e6d"
+    },
+    {
+      "path": "references/module-d-practice.md",
+      "bytes": 21241,
+      "category": "docs",
+      "sha256": "c5fec2ada4701306b371f63d451e977a4a43df4d2ead40cae4b5736aadd33867"
+    },
+    {
+      "path": "references/module-e-professional.md",
+      "bytes": 9642,
+      "category": "docs",
+      "sha256": "ec6dfba23d0c2d9728076c092110a5390235bcc81241a33048f6f97b4fde2417"
+    },
+    {
+      "path": "references/module-f-safety-ethics.md",
+      "bytes": 26871,
+      "category": "docs",
+      "sha256": "7999ab5ce945459911b40f43eb626d1f567b8ce673657366f737fcf563d6ca66"
+    },
+    {
+      "path": "references/module-g-latest-developments.md",
+      "bytes": 26756,
+      "category": "docs",
+      "sha256": "66d6fa8fc531b3a05be9650118db5b415c5fd5e7e5f88b409682df901b3383ca"
+    },
+    {
+      "path": "references/npu-scheduling-guide.md",
+      "bytes": 6383,
+      "category": "docs",
+      "sha256": "9bfd4709492e3c08adc5e332329bacf05564ce56a9e83b8ab11e8d4c3d6e02e8"
+    },
+    {
+      "path": "references/offline-support-guide.md",
+      "bytes": 12558,
+      "category": "docs",
+      "sha256": "a48f13d7fb095457c1d8989031b157797df7e3ca175b982dcac1fde7b9887795"
+    },
+    {
+      "path": "references/openvino-optimization-guide.md",
+      "bytes": 9774,
+      "category": "docs",
+      "sha256": "37a4a505d58c8abdded62eb97fe088e270d3ffe8bfadf0c4b9e0a0c4c56995c3"
+    },
+    {
+      "path": "references/p5js-courseware-guide.md",
+      "bytes": 38468,
+      "category": "docs",
+      "sha256": "adb690e97c50729283bf54ad73a7380722b6cedc39ccd87fddfb60060334a4f7"
+    },
+    {
+      "path": "references/p5js-game-design-guide.md",
+      "bytes": 33940,
+      "category": "docs",
+      "sha256": "4142e43664f7068b4f669a008bedf9c96cff5a19520f0c7a3619f8c7fe80511c"
+    },
+    {
+      "path": "references/p5js-system-prompt.md",
+      "bytes": 19876,
+      "category": "docs",
+      "sha256": "42867d5e7424a81fa50b2ef840e9036523c0968ad1a983bc8c08fed7a69decda"
+    },
+    {
+      "path": "references/p5js-task-template.md",
+      "bytes": 1515,
+      "category": "docs",
+      "sha256": "ad7552434e4ef3fbd8f15352f74c03fe28ce338e2c735a7ac3996ea14cf4753f"
+    },
+    {
+      "path": "references/productivity-scenarios.md",
+      "bytes": 15949,
+      "category": "docs",
+      "sha256": "81867549a06d4eb6381883aefa4b79447a6c78ca2daafeaf59424a0363fc15cb"
+    },
+    {
+      "path": "references/recommendation-engine.md",
+      "bytes": 14354,
+      "category": "docs",
+      "sha256": "7db499a1836b6389be85495a5eb434c4aca0b2b4b03fb2f0b6a0041b67c084dc"
+    },
+    {
+      "path": "references/v7-quality-gate-20dim.md",
+      "bytes": 3889,
+      "category": "docs",
+      "sha256": "f407e4c889d28ee137539450e84f8f2ee0161d1a98b9ef5463249e1ab40db803"
+    },
+    {
+      "path": "references/zero-upload-privacy.md",
+      "bytes": 9585,
+      "category": "docs",
+      "sha256": "52dabbed2e2fd735a890a29796c26881604e27673e267e671d056313efd703a0"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 81,
+      "category": "config",
+      "sha256": "7c150f14d20bf37b7882edc99b19de1ca96f03c99151d60865aaf71ecf9e75fd"
+    },
+    {
+      "path": "run.ps1",
+      "bytes": 5135,
+      "category": "entry_scripts",
+      "sha256": "03e31cdc76ebf14693180d917048db0c944c964dd09f4ac4633f58ecbe7c8750"
+    },
+    {
+      "path": "run.sh",
+      "bytes": 5963,
+      "category": "entry_scripts",
+      "sha256": "22f4d8a4806ea1cb5d26e29235b2c411fb801ea356e0a1493690d878720c916b"
+    },
+    {
+      "path": "scripts/analyze_courseware.py",
+      "bytes": 19435,
+      "category": "python_scripts",
+      "sha256": "eba4ee4328f58fbe33bb526b1cd2dc5ebf99216266443dd4fd0786c4b077f304"
+    },
+    {
+      "path": "scripts/bootstrap.py",
+      "bytes": 5477,
+      "category": "python_scripts",
+      "sha256": "e3183b4b2f49821ee107c263eaa9509154a9a5b0b79e3237951eb47380507321"
+    },
+    {
+      "path": "scripts/check_platform.ps1",
+      "bytes": 6825,
+      "category": "support",
+      "sha256": "4872c34cea852ea2d0377c471d38799d722e3744ddb7b285f3a3837e90d2743d"
+    },
+    {
+      "path": "scripts/compose_lesson.py",
+      "bytes": 16603,
+      "category": "python_scripts",
+      "sha256": "8f30ea1a70cda938a4688bfc6bc94c04e0c36da3107ea1f404582c54be94d9b4"
+    },
+    {
+      "path": "scripts/cost_monitor.py",
+      "bytes": 8939,
+      "category": "python_scripts",
+      "sha256": "1c8340ebe817f4e17e6a001ab83d7c83e93d12ae405ee430c4638af9b524b149"
+    },
+    {
+      "path": "scripts/edge_cloud_dispatch.py",
+      "bytes": 35613,
+      "category": "python_scripts",
+      "sha256": "8e2c186655eceb0f6703902a38eda6e2271c07fbb5d5d5d9c8efbd66de6a72fe"
+    },
+    {
+      "path": "scripts/hardware_probe.py",
+      "bytes": 7070,
+      "category": "python_scripts",
+      "sha256": "3836525ee6a612c4e5ea5d7788d6e174a2d8694fe043ddc4300ea75efa9552a5"
+    },
+    {
+      "path": "scripts/lesson_plan_guard.py",
+      "bytes": 32767,
+      "category": "python_scripts",
+      "sha256": "63acd9a935b31d97180e0d2d6af38b579b79002c4083476a67918cfa22a654bd"
+    },
+    {
+      "path": "scripts/llm_cache.py",
+      "bytes": 8481,
+      "category": "python_scripts",
+      "sha256": "9253e595b50138c3680e72ab6ffe739502f8350d13dec7a236e7bcc1de9b7186"
+    },
+    {
+      "path": "scripts/log_util.py",
+      "bytes": 2755,
+      "category": "python_scripts",
+      "sha256": "5ede74939db6d2ef450c6f91a0ad74b757711f5ebf6cccecf53e133f491fe2ed"
+    },
+    {
+      "path": "scripts/pii_redactor.py",
+      "bytes": 12449,
+      "category": "python_scripts",
+      "sha256": "cdd85d6a2faf7f9d52e19c9cf74ef9016bd1010af06f2faf778564b75b7e7afb"
+    },
+    {
+      "path": "scripts/prepare_workspace.py",
+      "bytes": 7233,
+      "category": "python_scripts",
+      "sha256": "c3ab0142737a0020046b70ef7788649206b18c6e07714d4730e3bf6cc1d20dbb"
+    },
+    {
+      "path": "scripts/select_knowledge.py",
+      "bytes": 12629,
+      "category": "python_scripts",
+      "sha256": "72b3bafd6651ae60f09e2bbea66ff5fcca7259af8bb12bd58b8b183c7f367104"
+    },
+    {
+      "path": "scripts/setup_resources.py",
+      "bytes": 9049,
+      "category": "python_scripts",
+      "sha256": "d73fd711ad9924cbbc4e3d4e67ce479b738d74a4bb7e8890f1bd76aa2a60acc7"
+    },
+    {
+      "path": "scripts/setup_text_model.py",
+      "bytes": 15956,
+      "category": "python_scripts",
+      "sha256": "bf324ceb8cc92799f3d985596a787841e139fd1ecdd77538749f9db6a3f530d6"
+    },
+    {
+      "path": "scripts/skill_runtime.py",
+      "bytes": 5674,
+      "category": "python_scripts",
+      "sha256": "c7f39e827dda7532b53c0f34c258b04e157aaeb8cb87f42451428bb8a58f898b"
+    },
+    {
+      "path": "scripts/work_summary.py",
+      "bytes": 15795,
+      "category": "python_scripts",
+      "sha256": "5071bbe86f2bee21f8caf4c3cf53c1164954a719c26966e624b3ee45b39c9191"
+    },
+    {
+      "path": "support/cdn.txt",
+      "bytes": 51,
+      "category": "support",
+      "sha256": "07a3e6e5203b41a95dc266661e66643aa49c639cce3e8b4397001b91c410f646"
+    },
+    {
+      "path": "support/p5.min.js",
+      "bytes": 989034,
+      "category": "support",
+      "sha256": "35fc6f791abc198b3cb929474950c5e7354a6d1e429dd23b249573ce35c1bee9"
+    },
+    {
+      "path": "support/p5.sound.min.js",
+      "bytes": 200064,
+      "category": "support",
+      "sha256": "f067ef7cf80b3561327e7b14661ec980fbd34b2baf1e0a9d529a120132ba0107"
+    },
+    {
+      "path": "tests/__init__.py",
+      "bytes": 3805,
+      "category": "python_tests",
+      "sha256": "2b7ccdb139c6bc14ce32edfbbabaee06687e4101d26602034e3413abcfd9aa5d"
+    },
+    {
+      "path": "tests/test_all.py",
+      "bytes": 4419,
+      "category": "python_tests",
+      "sha256": "33663b56ffc9433ea0d5593e8eac4d37629e4503ed5d394d59e297356e086b6b"
+    },
+    {
+      "path": "tests/test_edge_cloud.py",
+      "bytes": 4116,
+      "category": "python_tests",
+      "sha256": "4d331fff4bce94e93fe81608b997b7567c8af203ad7adca7c04fb85bbc3ce842"
+    },
+    {
+      "path": "tests/test_guard_cost.py",
+      "bytes": 6568,
+      "category": "python_tests",
+      "sha256": "d0fd61c090355b2214afe1a6bf31d902cf961928ad93dadb13aa6bf2b04e66fe"
+    },
+    {
+      "path": "tests/test_p5js_buttons.py",
+      "bytes": 29301,
+      "category": "python_tests",
+      "sha256": "9d8929e012b3866eea620d758b68878ec3b5cb42721595e20097f030e8ee1694"
+    },
+    {
+      "path": "tests/test_p5js_interactive.py",
+      "bytes": 35242,
+      "category": "python_tests",
+      "sha256": "98d6c39fe61e7d70e324608b2c847af6b1dce8fde08620f58a4a3c840fad4160"
+    },
+    {
+      "path": "tests/test_pipeline.py",
+      "bytes": 5936,
+      "category": "python_tests",
+      "sha256": "71e783b4a7c870cdefbf6df5d5e235a3c2377e8512b3f4581242505a2280b458"
+    },
+    {
+      "path": "tests/test_v732_improvements.py",
+      "bytes": 15799,
+      "category": "python_tests",
+      "sha256": "006804be048e13ea78577d228a44e78f67a62a78cae2b5fbd3097b2abfdf3705"
+    },
+    {
+      "path": "tests/test_work_summary.py",
+      "bytes": 13750,
+      "category": "python_tests",
+      "sha256": "68eae1e903b062bb36d63efd23c404555e582fd6622cb09d8114c14f528881f1"
+    },
+    {
+      "path": "wheels/README.md",
+      "bytes": 1036,
+      "category": "docs",
+      "sha256": "9b61f38025453ffb4d696f017f1039d0b3e935808a9b4cd69d60e797655a0ce0"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 0,
+      "category": "manifest",
+      "sha256": "(regenerated)"
+    }
+  ]
+}

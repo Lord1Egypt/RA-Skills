@@ -1,40 +1,57 @@
-## Description: <br>
-Novel writing assistant for Chinese or English fiction that helps users plan, draft, continue, revise, and manage long-form stories with coherent plot, stable characters, worldbuilding, chapter outlines, and continuity tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Novel writing assistant for Chinese or English fiction that helps users write, plan, continue, revise, and manage long-form stories with coherent plot, stable characters, consistent worldbuilding, chapter outlines, continuity tracking, serialized drafting, and user-guided topic selection.
 
-## Publisher: <br>
-[fatelei](https://clawhub.ai/user/fatelei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fatelei](https://clawhub.ai/user/fatelei)
 
-## Use Case: <br>
-External users and writers use this skill to plan, draft, continue, and revise Chinese or English long-form fiction while tracking plot, character, timeline, worldbuilding, and unresolved threads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated plans or chapters can introduce continuity errors, unintended canon changes, or content outside the user's stated preferences. <br>
-Mitigation: Review the novel bible, chapter summaries, and continuity ledger before treating generated material as canonical. <br>
-Risk: Continuation requests with incomplete prior context can cause the agent to infer story state incorrectly. <br>
-Mitigation: Provide the latest outline, prior chapter summary, and continuity ledger, and ask the agent to identify assumptions before drafting. <br>
+## Use Case:
 
+External users and writers use this skill to develop fiction projects from premise selection through novel bible creation, chapter drafting, continuation, and revision while maintaining continuity across characters, timelines, worldbuilding, clues, and unresolved threads.
 
-## Reference(s): <br>
-- [Novel Writer Templates](references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown planning documents, prose drafts, and continuity updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to Chinese unless another language is requested; asks clarifying questions before long-form drafting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.yaml) <br>
+Risk: The skill defaults to Chinese output, which may surprise users expecting English.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask explicitly for English or another preferred language at the start of the writing task.
+
+Risk: Broad story-writing triggers may activate the skill for general writing requests.
+
+Mitigation: Use a narrower prompt that states the desired genre, scope, language, and whether the task is planning, drafting, continuation, or revision.
+
+Risk: Long-form fiction can drift from established facts, character states, or unresolved plot threads over time.
+
+Mitigation: Maintain and review the novel bible, chapter summaries, and continuity ledger before accepting new chapters or revisions.
+
+## Reference(s):
+
+- [Novel Writer Templates](references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown planning structures and prose text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese unless the user requests another language; planning outputs may use reusable topic, novel bible, chapter plan, and continuity templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

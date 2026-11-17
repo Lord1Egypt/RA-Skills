@@ -1,43 +1,54 @@
-## Description: <br>
-Helps plan practical lunch boxes for adults or children based on nutrition goals, ingredients, time, budget, storage, and reheating constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps plan practical lunch boxes for adults or children based on nutrition goals, ingredients, time, budget, storage, and reheating constraints.
 
-## Publisher: <br>
-[know-hub](https://clawhub.ai/user/know-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[know-hub](https://clawhub.ai/user/know-hub)
 
-## Use Case: <br>
-External users use this skill to generate practical lunchbox plans for adults, children, or families, including day-by-day meal ideas, shopping lists, substitutions, and batch prep suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lunchbox guidance may be unsuitable for allergies, medical diets, or individual nutrition needs. <br>
-Mitigation: Users should provide dietary constraints and verify recommendations against personal medical or allergy requirements. <br>
-Risk: Perishable foods may become unsafe when packed without adequate refrigeration or storage. <br>
-Mitigation: Review storage conditions and use appropriate refrigeration, insulated packing, or shelf-stable substitutions when needed. <br>
-Risk: Publisher provenance is unavailable for this release. <br>
-Mitigation: Confirm the server-resolved publisher profile and release metadata before relying on the claimed author or source. <br>
+## Use Case:
 
+External users use this skill to ask an agent for practical lunch box plans for adults, children, or families. It supports meal ideas, shopping lists, substitutions, and batch-prep suggestions while respecting stated nutrition goals, ingredients, budget, allergies, storage, and reheating constraints.
 
-## Reference(s): <br>
-- [Lunchbox Planner Skill Page](https://clawhub.ai/know-hub/lunchbox-planner) <br>
-- [know-hub Publisher Profile](https://clawhub.ai/user/know-hub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include lunchbox names, components, planning assumptions, shopping lists, batch prep steps, substitutions, and food storage cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Nutrition, allergy, and food-safety suggestions may be incomplete if the user omits important dietary constraints or storage conditions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask users to provide allergies, dietary limits, refrigeration, reheating, and timing constraints, and present food and nutrition advice as general guidance.
+
+Risk: Perishable lunch items may be unsafe if stored unrefrigerated or held too long.
+
+Mitigation: Prefer lunchbox options that match the user's storage conditions and flag when refrigeration, ice packs, separation, or same-day assembly is needed.
+
+## Reference(s):
+
+- [Lunchbox Planner on ClawHub](https://clawhub.ai/know-hub/skills/lunchbox-planner)
+- [know-hub Publisher Profile](https://clawhub.ai/user/know-hub)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include day-by-day lunch box plans, component lists, shopping lists, substitutions, and batch-prep suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

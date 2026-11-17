@@ -1,39 +1,55 @@
-## Description: <br>
-Helps agents integrate Schema.org structured data into websites for rich search results, better SEO, and improved communication with search engines by providing JSON-LD templates, generation scripts, and implementation patterns for common schema types. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents integrate Schema.org structured data into websites for rich search results, better SEO, and improved communication with search engines.
 
-## Publisher: <br>
-[kxrbx](https://clawhub.ai/user/kxrbx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kxrbx](https://clawhub.ai/user/kxrbx)
 
-## Use Case: <br>
-Developers and agents use this skill to generate, validate, and inject Schema.org JSON-LD for common website content types such as FAQ pages, articles, products, local businesses, events, and organizations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated JSON-LD or injected HTML can publish incorrect structured data or unsanitized content. <br>
-Mitigation: Review generated markup before deployment and pass only trusted or sanitized content to injectJSONLD. <br>
+## Use Case:
 
+Developers and agents use this skill to add Schema.org JSON-LD to web pages and produce structured data snippets for common site content such as FAQ pages, articles, products, local businesses, events, and organizations.
 
-## Reference(s): <br>
-- [Schema.org](https://schema.org) <br>
-- [ClawHub skill page](https://clawhub.ai/kxrbx/schemaorg-site-enhancer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript examples and JSON-LD strings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated JSON-LD should be reviewed before deployment, especially when injected into HTML.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: The HTML injection helper can create cross-site scripting exposure when JSON-LD contains untrusted user-supplied or CMS-supplied content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Escape script-breaking characters or parse and re-serialize JSON-LD safely before publishing generated HTML.
+
+Risk: Generated structured data can become inaccurate or misleading if page-specific inputs are incomplete or stale.
+
+Mitigation: Review generated schema content against the live page content before deployment.
+
+## Reference(s):
+
+- [Schema.org](https://schema.org)
+- [ClawHub skill page](https://clawhub.ai/kxrbx/skills/schemaorg-site-enhancer)
+- [Publisher profile](https://clawhub.ai/user/kxrbx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript, JSON-LD, and HTML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated JSON-LD should be reviewed before publishing when page content comes from users or a CMS.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter, package.json, ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

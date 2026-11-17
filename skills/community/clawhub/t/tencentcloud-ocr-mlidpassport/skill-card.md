@@ -1,39 +1,62 @@
-## Description: <br>
-Calls Tencent Cloud's MLIDPassportOCR API to extract passport fields, MRZ data, optional portrait crops, and international warning signals from passport images or image URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TencentCloud MLIDPassport OCR calls Tencent Cloud OCR to extract passport identity fields, MRZ and visual-zone details, optional portrait crops, and international warning signals from passport images supplied by URL or Base64.
 
-## Publisher: <br>
-[zt1314p-design](https://clawhub.ai/user/zt1314p-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zt1314p-design](https://clawhub.ai/user/zt1314p-design)
 
-## Use Case: <br>
-Developers and agents use this skill to run Tencent Cloud passport OCR on authorized passport images, extracting identity fields, MRZ information, and optional warning signals for document-processing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to Tencent Cloud OCR regional availability and user compliance requirements. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Passport images, image URLs, returned OCR fields, and optional portrait crops are sensitive data sent to Tencent Cloud OCR. <br>
-Mitigation: Use only documents you are authorized to process, avoid RetImage unless the portrait crop is required, and review Tencent Cloud data handling and retention terms before deployment. <br>
+## Use Case:
 
+Developers and external users use this skill to submit authorized passport images to Tencent Cloud OCR and receive structured passport data for downstream review or workflow automation. It is suited to passport information extraction, MRZ parsing, optional portrait crop return, and international warning checks where Tencent Cloud OCR credentials are available.
 
-## Reference(s): <br>
-- [Tencent Cloud MLIDPassportOCR API Documentation](https://cloud.tencent.com/document/api/866/37657) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zt1314p-design/tencentcloud-ocr-mlidpassport) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON API results and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can return extracted passport fields, MRZ data, warning codes, request IDs, and optional portrait image data when RetImage is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Passport images, image URLs, extracted identity fields, and optional portrait crops contain highly sensitive personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process only documents the user is authorized to handle, minimize retention of submitted images and returned fields, and avoid enabling portrait crop return unless it is required.
+
+Risk: The skill sends passport image data or image URLs to Tencent Cloud OCR for processing.
+
+Mitigation: Install and use it only when Tencent Cloud processing is intended and acceptable for the relevant privacy, compliance, and data residency requirements.
+
+Risk: Tencent Cloud credentials are required to call the OCR service.
+
+Mitigation: Use restricted Tencent Cloud keys, store them in environment variables, rotate them regularly, and avoid sharing credentials in prompts, logs, or files.
+
+Risk: The Tencent Cloud SDK dependency may change behavior if installed without version controls.
+
+Mitigation: Pin and review the SDK dependency in managed environments before production deployment.
+
+## Reference(s):
+
+- [Tencent Cloud MLIDPassportOCR API Documentation](https://cloud.tencent.com/document/api/866/37657)
+- [ClawHub skill page](https://clawhub.ai/zt1314p-design/skills/tencentcloud-ocr-mlidpassport)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON responses and concise command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Tencent Cloud OCR credentials and either an image URL or Base64 image input.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,10 @@
+{
+  "outline_path": "outline.md",
+  "output_dir": "writing-project",
+  "style": "fiction",
+  "target_length": 20000,
+  "chunk_size": 5000,
+  "length_unit": "words",
+  "execution_mode": "sequential",
+  "max_parallel": 4
+}

@@ -1,0 +1,14 @@
+{
+  "mcp": {
+    "servers": {
+      "iajus-pt": {
+        "auth": "oauth",
+        "oauth": {
+          "scope": "openid email offline_access"
+        },
+        "transport": "streamable-http",
+        "url": "https://pt.mcp.iajus.com.br/mcp"
+      }
+    }
+  }
+}

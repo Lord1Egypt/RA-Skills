@@ -1,0 +1,18 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:编辑式双栏文字(原型 7 内容区 · 满填 · 去 AI 味主力)
+  参数:
+    {{COL1}}  第一栏内容(段落,段间 <br><br>;每段 1 句粗体引导)
+    {{COL2}}  第二栏内容
+  用法: 放在页标题(action title,top:120)之下;top:340 起自然排到底;
+        阅读档可改 3 栏(复制栏 div,gap 改 60px,字号降 20px);
+        演讲档每 deck 至少 2 页编辑式页面
+  纪律: 零卡片、零 kicker、零图标;粗体引导句是唯一强调
+  ══════════════════════════════════════════════════════════════ -->
+<div style="position:absolute;left:100px;top:340px;width:1720px;display:flex;gap:80px;">
+  <div data-object="true" data-object-type="textbox" style="flex:1;">
+    <div style="font-size:24px;line-height:1.7;color:var(--text-primary);">{{COL1}}</div>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="flex:1;">
+    <div style="font-size:24px;line-height:1.7;color:var(--text-primary);">{{COL2}}</div>
+  </div>
+</div>

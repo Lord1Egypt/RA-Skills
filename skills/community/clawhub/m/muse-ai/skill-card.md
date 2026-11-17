@@ -1,46 +1,56 @@
-## Description: <br>
-Muse AI helps an agent guide users through conversational music creation, including original songs, lyrics, instrumentals, and background music generated through Muse API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Muse AI helps an agent guide users through conversational creation of original songs, instrumentals, BGM, lyrics, and arrangements using the Muse cloud service.
 
-## Publisher: <br>
-[a64307410](https://clawhub.ai/user/a64307410) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a64307410](https://clawhub.ai/user/a64307410)
 
-## Use Case: <br>
-External users and agents use this skill to create songs, lyrics, pure instrumentals, and BGM from conversational prompts. The skill manages Muse authentication, gathers generation preferences, submits music-generation requests, and returns generated song links and metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to paste a reusable Muse token into chat and stores it locally at ~/.muse/token. <br>
-Mitigation: Install only when the user trusts Muse, avoid pasting a token unless signing in is intended, and delete ~/.muse/token when local access should no longer be retained. <br>
-Risk: Prompts, lyrics, account status, a persistent device ID, and generation requests are sent to Muse's API. <br>
-Mitigation: Review the data being submitted before generation and avoid sending sensitive or confidential content. <br>
-Risk: Using install.sh with an arbitrary --path can lead uninstall or upgrade operations to recursively delete that target directory. <br>
-Mitigation: Use only verified installation paths and inspect custom --path values before install, upgrade, or uninstall. <br>
+## Use Case:
 
+External users use this skill in supported agent CLIs to create original songs, instrumentals, background music, and lyrics through a short guided conversation. Developers can install it as an AgentSkill-compatible music creation assistant.
 
-## Reference(s): <br>
-- [Muse registration page](https://skills.muse.top/) <br>
-- [Muse API endpoint](https://skill-api.muse.top) <br>
-- [Style catalog](references/style-catalog.md) <br>
-- [Registration guide](assets/register-guide.md) <br>
-- [ClawHub release page](https://clawhub.ai/a64307410/muse-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown conversation responses with inline shell commands and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated song metadata, audio URLs, cover URLs, credit status, progress messages, and authentication guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The Muse cloud service receives song prompts, account activity, a bearer token, and a persistent device-linked identifier.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this data handling is acceptable, treat Muse tokens as passwords, avoid sharing tokens in chats, and remove ~/.muse/token and ~/.muse/device_id when no longer using the skill.
+
+Risk: The release includes an installer command that clones and runs shell code.
+
+Mitigation: Inspect or pin the installer before allowing an agent to run it automatically.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/a64307410/skills/muse-ai)
+- [Muse registration page](https://skills.muse.top/)
+- [Register guide](assets/register-guide.md)
+- [Style catalog](references/style-catalog.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown chat responses with inline shell commands and JSON API results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include song metadata, audio links, cover links, authentication prompts, and progress updates.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

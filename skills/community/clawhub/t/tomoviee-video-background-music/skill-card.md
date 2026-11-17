@@ -1,45 +1,65 @@
-## Description: <br>
-Generate music tailored to video content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate music tailored to video content. Use when users request video_soundtrack operations or related tasks.
 
-## Publisher: <br>
-[wondershare-boop](https://clawhub.ai/user/wondershare-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wondershare-boop](https://clawhub.ai/user/wondershare-boop)
 
-## Use Case: <br>
-Developers and content teams use this skill to call Tomoviee/Wondershare video soundtrack workflows, submit a video URL with optional style guidance, and retrieve generated background music results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video URLs and prompts are sent to Tomoviee/Wondershare for external media processing. <br>
-Mitigation: Use public or non-sensitive media where possible and avoid submitting confidential prompts or private video URLs. <br>
-Risk: Generated Basic auth tokens can expose API credentials if copied into logs, shell history, or shared transcripts. <br>
-Mitigation: Handle tokens as secrets, avoid printing them in shared contexts, and rotate credentials if exposure is suspected. <br>
-Risk: Broad bundled reference documents may describe APIs outside this skill's video soundtrack workflow. <br>
-Mitigation: Treat the references as background and use this skill only for the Tomoviee video soundtrack API behavior described in the skill. <br>
+## Use Case:
 
+Developers and content automation users use this skill to generate background music matched to video content through Tomoviee video soundtrack operations.
 
-## Reference(s): <br>
-- [Tomoviee Developer Portal](https://www.tomoviee.ai/developers.html) <br>
-- [Tomoviee API Documentation](https://www.tomoviee.ai/doc/) <br>
-- [Tomoviee Audio Generation APIs](references/audio_apis.md) <br>
-- [Tomoviee Prompt Engineering Guide](references/prompt_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown guidance with Python and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow uses Tomoviee API credentials, submits external video URLs and prompts for processing, and polls asynchronous task results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Tomoviee API credentials may be exposed by the token generator command or generated Authorization headers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Tomoviee credentials, avoid printing or sharing generated tokens, and rotate credentials after testing.
+
+Risk: Private or regulated videos may be submitted to Tomoviee/Wondershare services.
+
+Mitigation: Submit only content approved for external processing and review Tomoviee/Wondershare data handling before use.
+
+Risk: Bundled reference docs cover broader Tomoviee APIs beyond video background music.
+
+Mitigation: Limit use to video soundtrack and tm_video_scoring workflows unless reviewers approve the additional APIs.
+
+Risk: Some examples refer to a soundtrack client file while the artifact includes a video scoring client script.
+
+Mitigation: Verify script names and imports in the installed artifact before running sample code.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wondershare-boop/skills/tomoviee-video-background-music)
+- [Tomoviee Developer Portal](https://www.tomoviee.ai/developers.html)
+- [Tomoviee API Documentation](https://www.tomoviee.ai/doc/)
+- [Tomoviee Audio Generation APIs](references/audio_apis.md)
+- [Tomoviee Prompt Engineering Guide](references/prompt_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Tomoviee API request payloads, authentication setup guidance, and async polling guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

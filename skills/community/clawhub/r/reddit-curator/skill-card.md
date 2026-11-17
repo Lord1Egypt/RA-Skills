@@ -1,45 +1,50 @@
-## Description: <br>
-Curates and summarizes top Reddit posts from chosen subreddits, applies filters for relevance, and prepares a daily digest for delivery through configured channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Curates and summarizes top Reddit posts from selected subreddits into a daily digest delivered through configured channels.
 
-## Publisher: <br>
-[geoffguides](https://clawhub.ai/user/geoffguides) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geoffguides](https://clawhub.ai/user/geoffguides)
 
-## Use Case: <br>
-External users and developers use this skill to monitor selected Reddit communities, filter posts by engagement or keywords, and receive concise digests without manually browsing each subreddit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for Reddit account credentials, including a password, which can grant account-level access if mishandled. <br>
-Mitigation: Do not provide Reddit password access unless the implementation and credential storage are trusted; confirm credential handling before installation. <br>
-Risk: The documentation conflicts on whether the skill is read-only while also describing saved-post syncing and other account-changing behavior. <br>
-Mitigation: Confirm account-changing features such as saved-post syncing are disabled by default, opt-in, and visible to the user before execution. <br>
-Risk: Scheduled delivery and stored configuration can continue sending digests or retaining preferences after the user expects the workflow to stop. <br>
-Mitigation: Confirm how scheduled delivery is paused or stopped and where delivery settings, subreddit lists, and credentials are stored. <br>
+## Use Case:
 
+External users and developers use this skill to configure Reddit digests, filter subreddit content by engagement or keywords, summarize selected posts, and deliver the results by Telegram, email, or Discord.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/geoffguides/reddit-curator) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
-- [Reddit app preferences](https://www.reddit.com/prefs/apps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown digest text with links, summary bullets, and configuration guidance for subreddit, schedule, delivery, and filter settings.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce delivery-ready digest content for Telegram, email, or Discord.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill documentation shows Reddit client secrets, usernames, and passwords in a plain JSON configuration while also claiming credentials are encrypted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment-backed secrets or OAuth tokens, restrict local file permissions, keep credential files out of version control, and rotate any credentials that were stored or shared in plaintext.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/geoffguides/skills/reddit-curator)
+- [ClawHub publisher profile](https://clawhub.ai/user/geoffguides)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, configuration, guidance]
+
+**Output Format:** [Markdown digest with configuration examples and delivery instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include subreddit lists, filter settings, post summaries, links, and delivery-channel formatting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

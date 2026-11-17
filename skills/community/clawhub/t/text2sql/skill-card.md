@@ -1,42 +1,59 @@
-## Description: <br>
-Supports generating SQL queries from natural language after configuring database or spreadsheet schema context and topic-specific YAML files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Support generating SQL queries through natural language; use when users need to configure Text-to-SQL database, manage data topics, or generate SQL with natural language questions.
 
-## Publisher: <br>
-[asksqlai](https://clawhub.ai/user/asksqlai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asksqlai](https://clawhub.ai/user/asksqlai)
 
-## Use Case: <br>
-Developers, data teams, and agent users use this skill to configure database or Excel-backed semantic context, create topic YAML files, and request SQL from natural-language questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Database schema details, sampled values or enum lists, natural-language questions, YAML topic files, and Excel workbook contents may be sent to the configured API provider. <br>
-Mitigation: Use least-privilege read-only database access, avoid regulated or production data, and install only when that data handling is acceptable. <br>
-Risk: Database credentials can be written to a local configuration file. <br>
-Mitigation: Protect generated output files, remove plaintext credentials when no longer needed, and rotate credentials after use when appropriate. <br>
-Risk: Generated SQL can be incorrect, incomplete, or too broad for the user's intent. <br>
-Mitigation: Review generated SQL before execution and test against non-production data or read-only environments first. <br>
+## Use Case:
 
+Developers and data teams use TEXT2SQL to configure database or Excel-backed semantic topics, inspect table structures, generate topic YAML files, and request SQL from natural-language questions.
 
-## Reference(s): <br>
-- [Open Semantic Interchange field specification](references/open_semantic_interchange_description.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, YAML, SQL] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON status files, YAML topic files, and SQL text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local output files for database configuration, table metadata, column metadata, and topic-specific semantic YAML.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can collect and upload database metadata, table samples, topic YAML, questions, or spreadsheet data to asksql.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege read-only database account, avoid confidential spreadsheets unless remote processing is accepted, and inspect or restrict what is sent to the remote service.
+
+Risk: Database passwords may be passed on the command line and saved in a local configuration file.
+
+Mitigation: Use temporary or scoped credentials, protect the output directory, and rotate credentials after use when handling sensitive environments.
+
+Risk: Generated SQL may be incorrect for the intended business question or unsafe to run without review.
+
+Mitigation: Review generated SQL before execution and run it first against non-production data or with read-only permissions.
+
+## Reference(s):
+
+- [Open Semantic Interchange field specification](references/open_semantic_interchange_description.md)
+- [AskSqlAI SQL API service](https://asksql.ai/)
+- [TEXT2SQL ClawHub release](https://clawhub.ai/asksqlai/skills/text2sql)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON status output, YAML configuration files, and SQL text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local output files for database configuration, table metadata, column metadata, and topic YAML; generated SQL is returned when the remote API call succeeds.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

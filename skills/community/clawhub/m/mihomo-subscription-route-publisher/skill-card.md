@@ -1,43 +1,59 @@
-## Description: <br>
-Updates Mihomo site routing rules from natural-language requests, rebuilds the published subscription, and verifies the live output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Update Mihomo site routing rules from natural-language requests, rebuild the published subscription, and verify the live output.
 
-## Publisher: <br>
-[grey0758](https://clawhub.ai/user/grey0758) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[grey0758](https://clawhub.ai/user/grey0758)
 
-## Use Case: <br>
-Developers and operators use this skill to turn requested domain or site routing changes into Mihomo rule edits, worker redeployments, subscription syncs, and live verification for rules.xiannai.me. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live routing changes can affect client-visible subscription behavior. <br>
-Mitigation: Require the agent to show exact file changes and get explicit approval before deploy, sync, restart, commit, or push actions. <br>
-Risk: Deployment and repository steps may involve Cloudflare or GitHub credentials. <br>
-Mitigation: Install and run the skill only in an environment where the operator controls the referenced Mihomo repository, rules.xiannai.me deployment, and related credentials; never reveal token values. <br>
-Risk: Repository state and live subscription output can diverge if publishing or sync fails. <br>
-Mitigation: Verify the live subscription endpoint with cache busting and report any pending action instead of declaring success. <br>
+## Use Case:
 
+Developers and authorized infrastructure operators use this skill to convert natural-language Mihomo routing requests into canonical route rule changes, worker publication, subscription sync, and live endpoint verification.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/grey0758/mihomo-subscription-route-publisher) <br>
-- [Mihomo subscription distribution layer](https://rules.xiannai.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown status response with the normalized routing request, changed files, publish status, live verification result, and any pending next action.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Mihomo configuration edits, shell commands, deployment steps, sync commands, and validation results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and CHANGELOG.md) <br>
+Risk: The skill can change live routing infrastructure and local Mihomo runtime state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only by authorized operators for the named repository, Cloudflare Worker, published subscription domain, and local runtime.
+
+Risk: Deploy, sync, runtime configuration, restart, commit, or push actions could publish unintended routing changes.
+
+Mitigation: Require human confirmation and review diffs before those actions are executed.
+
+Risk: A completed repository edit may still leave clients on stale subscription content.
+
+Mitigation: Verify the live published endpoint with cache busting before reporting completion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/grey0758/skills/mihomo-subscription-route-publisher)
+- [Publisher profile](https://clawhub.ai/user/grey0758)
+- [Published subscription domain](https://rules.xiannai.me)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown status summary with routing changes, command evidence, file changes, publish status, live verification, and next actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed Mihomo rule lines, edited configuration paths, validation commands, deployment commands, and live subscription verification results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

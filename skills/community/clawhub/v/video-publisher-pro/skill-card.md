@@ -1,43 +1,65 @@
-## Description: <br>
-根据IP背景和视频文案，为短视频生成一套完整的发布策略，包括发布时间、话题标签、封面文案和发布标题，并能将文案合成为封面图。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据IP背景和视频文案，为短视频生成一套完整的发布策略，包括发布时间、话题标签、封面文案和发布标题，并能将文案合成为封面图。
 
-## Publisher: <br>
-[ahsbnb](https://clawhub.ai/user/ahsbnb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahsbnb](https://clawhub.ai/user/ahsbnb)
 
-## Use Case: <br>
-Content creators, social media operators, and marketing teams use this skill to turn IP background, weekly goals, video scripts, and positioning into short-video publishing recommendations and cover copy. It can also guide generation of a cover image by placing the selected copy onto a user-provided background image. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The cover-image workflow can edit images in official-looking ways. <br>
-Mitigation: Use only images and templates the user owns or is licensed to edit, and do not use the workflow to impersonate third-party official materials or remove ownership indicators. <br>
-Risk: The image workflow may send user-provided images and prompts to a configurable external API. <br>
-Mitigation: Confirm the exact API base URL and credential before generation, and avoid sending sensitive client material unless the destination is approved. <br>
-Risk: Generated response logs may retain image-generation response content. <br>
-Mitigation: Delete response logs after generation when they are no longer needed for troubleshooting. <br>
+## Use Case:
 
+External creators, short-video operators, and agents use this skill to turn IP background, weekly goals, video scripts, and video positioning into publishing recommendations. It can also prepare cover-image generation prompts and commands for placing generated cover copy on user-supplied images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ahsbnb/video-publisher-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/ahsbnb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands, files] <br>
-**Output Format:** [Markdown strategy report, prompt text, shell command guidance, and generated image file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include publishing-time recommendations, hashtag sets, cover copy, post titles or descriptions, and optional cover image generation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: External image upload and configurable API endpoints can expose user images or prompts to an untrusted provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a fixed trusted HTTPS provider, a dedicated low-privilege API key, and images the user owns or is allowed to edit.
+
+Risk: The cover workflow can create official-looking, watermark-free edits or alter third-party branded assets.
+
+Mitigation: Do not use the workflow on official documents, third-party branded assets, watermarks, or provenance marks.
+
+Risk: The image script writes api_response_content.log, which can persist sensitive request or response content.
+
+Mitigation: Disable or delete the log when sensitive material is processed and use a clean output directory.
+
+Risk: Publishing recommendations may be inaccurate or misaligned with audience behavior or platform norms.
+
+Mitigation: Have a human operator review publish timing, hashtags, titles, and cover copy before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ahsbnb/skills/video-publisher-pro)
+- [Skill definition](artifact/SKILL.md)
+- [Strategy prompt template](artifact/prompt_template.txt)
+- [Replication mode prompt](artifact/scripts/replication_prompt.txt)
+- [Fusion mode prompt](artifact/scripts/fusion_prompt.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance, files]
+
+**Output Format:** [Markdown strategy report with optional shell command guidance and generated image output path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided background information, weekly goals, video script, video positioning, and optionally an image plus cover text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,60 @@
-## Description: <br>
-Personal source engine for saved X bookmarks. Ask, draft, decide, and plan from saved posts using local evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal source engine for saved X bookmarks: ask, draft, decide, and plan from the user's own saves.
 
-## Publisher: <br>
-[1lystore](https://clawhub.ai/user/1lystore) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1lystore](https://clawhub.ai/user/1lystore)
 
-## Use Case: <br>
-External users and developers use Awaek to sync, search, and answer from their own saved X bookmarks in a local agent workflow. It supports bookmark-backed answers, drafts, decisions, plans, topic inspection, and direct search while keeping the bookmark database local. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Awaek source homepage](https://github.com/1lystore/awaek) <br>
-- [Awaek on ClawHub](https://clawhub.ai/1lystore/awaek) <br>
-- [OpenClaw xurl skill](https://github.com/openclaw/openclaw/blob/main/skills/xurl/SKILL.md) <br>
+External users and developers use Awaek to sync saved X bookmarks into a local SQLite library, then ask questions, find saved posts, draft content, compare ideas, and plan from focused saved-post evidence.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON retrieval plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses focused local bookmark evidence and reports when evidence is weak, missing, or unavailable.] <br>
+Global
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and skill frontmatter) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Awaek requires local access to an authenticated xurl setup and stores saved X bookmarks in a local SQLite database.
+
+Mitigation: Use it only on trusted devices, keep X credentials out of chat, protect the local database path, and review local data-retention expectations before syncing.
+
+Risk: The documented xurl prerequisite includes a curl-to-bash installer flow.
+
+Mitigation: Prefer a pinned or package-managed installation method, or independently verify the installer before running it.
+
+Risk: Saved social posts may contain inaccurate content or prompt-like text that should not be treated as trusted instructions.
+
+Mitigation: Ground responses in focused retrieved evidence, cite saved posts when useful, and clearly state when the saved evidence is weak or missing.
+
+## Reference(s):
+
+- [Awaek ClawHub page](https://clawhub.ai/1lystore/skills/awaek)
+- [Awaek project homepage](https://github.com/1lystore/awaek)
+- [OpenClaw xurl skill](https://github.com/openclaw/openclaw/blob/main/skills/xurl/SKILL.md)
+- [OpenClaw xAI provider docs](https://docs.openclaw.ai/providers/xai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text with inline shell commands and JSON retrieval plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers should be grounded in retrieved saved-bookmark evidence and should state when evidence is weak or missing.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

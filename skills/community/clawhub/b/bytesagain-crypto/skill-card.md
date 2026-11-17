@@ -1,43 +1,60 @@
-## Description: <br>
-Provides real-time cryptocurrency prices, market scans, and technical indicators such as RSI, MACD, Bollinger Bands, EMA, and SMA using public market-data APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time crypto prices and technical indicators such as RSI, MACD, Bollinger Bands, EMA, and SMA using public Binance and CoinGecko market-data APIs.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External users and agent operators use this skill to retrieve public cryptocurrency market data, monitor common trading pairs, and calculate technical indicators for technical reference workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local shell script that makes public market-data requests to Binance and CoinGecko. <br>
-Mitigation: Install only when that network behavior is acceptable, and review the script before use. <br>
-Risk: A user-controlled pairs filter can be inserted into Python code. <br>
-Mitigation: Do not let untrusted prompts supply arbitrary command arguments until the pair-filter input handling is fixed. <br>
-Risk: The security summary says the documentation under-discloses some behavior. <br>
-Mitigation: Review behavior against the artifact before deployment, and do not provide wallet secrets, exchange credentials, or private financial data. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for cryptocurrency market prices, ticker statistics, candlestick data, common technical indicators, and multi-symbol scans from public market-data sources.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/bytesagain-crypto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text tables and short numeric indicator summaries, with shell command examples when invoked by an agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public Binance and CoinGecko market-data APIs; no API key is documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The security scan reports that one command can run arbitrary local code when given a crafted pair filter.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, and avoid running the pairs command with untrusted or generated filter text until the interpolation issue is fixed.
+
+Risk: Market data and indicator outputs are time-sensitive and may be incomplete or unavailable when public API calls fail.
+
+Mitigation: Treat outputs as technical reference data, verify important trading or financial decisions against authoritative sources, and handle failed API responses before relying on results.
+
+Risk: The release evidence notes that the advertised indicator count and no-ads claim are overstated.
+
+Mitigation: Present the skill as supporting the concrete indicators evidenced in the artifact, including RSI, MACD, Bollinger Bands, EMA, and SMA.
+
+## Reference(s):
+
+- [BytesAgain Homepage](https://bytesagain.com)
+- [ClawHub Skill Listing](https://clawhub.ai/xueyetianya/skills/bytesagain-crypto)
+- [Binance Public API](https://api.binance.com/api/v3)
+- [CoinGecko API](https://api.coingecko.com/api/v3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with shell command examples and tabular market-data output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call public external market-data APIs and return time-sensitive cryptocurrency prices or indicator values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

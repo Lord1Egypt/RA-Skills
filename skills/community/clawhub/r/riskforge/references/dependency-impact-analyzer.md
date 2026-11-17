@@ -165,7 +165,7 @@ output-format: json
 - 根据置信度决定是否需要修正
 - 低置信度风险需要重新分析
 
-详细校验规则请参考：`references/risk-backtracking-validator.md`
+详细校验规则请参考：`references/riREDACTED-SECRET.md`
 
 ## 注意事项
 1. 分析结果依赖于大模型的理解能力

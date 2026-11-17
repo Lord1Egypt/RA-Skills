@@ -1,0 +1,71 @@
+{
+  "skill_name": "brand-identity-design",
+  "total_evals": 2,
+  "pass_rate": 1.0,
+  "eval_results": [
+    {
+      "eval_id": 1,
+      "prompt": "We are building an AI devtools startup called 'Vortex'. Create a full brand visual identity strategy and core metaphor.",
+      "pass_rate": 1.0,
+      "expectations": [
+        {
+          "text": "Defines Mission, Vision, and Values answering the three fundamental brand questions",
+          "passed": true,
+          "evidence": "Verified in brand-identity-design Stage 1: Brand Soul (Mission, Vision, Values fundamental questions defined)."
+        },
+        {
+          "text": "Establishes a core creative concept or metaphor ('Polaris')",
+          "passed": true,
+          "evidence": "Verified in brand-identity-design Stage 2 & 3: Core Creative Concept ('Polaris') & Core Metaphor."
+        },
+        {
+          "text": "Defines style quadrant positioning (e.g. Modern vs Classic, Human vs Tech)",
+          "passed": true,
+          "evidence": "Verified in brand-identity-design Stage 2: Style Quadrant Positioning (Classic<->Modern, Human<->Tech)."
+        },
+        {
+          "text": "Outlines Foundation Layer (Logo clear space, Color strategy, Typography hierarchy, Grid system)",
+          "passed": true,
+          "evidence": "Verified in brand-identity-design Stage 4: Foundation Layer (Logo, Color System with WCAG, Typography, Grid)."
+        },
+        {
+          "text": "Includes digital touchpoints (hero website, IDE plugin badge, dev docs)",
+          "passed": true,
+          "evidence": "Verified in brand-identity-design Stage 5: Multi-Touchpoint Validation (Digital Hero, Print, Motion)."
+        }
+      ]
+    },
+    {
+      "eval_id": 2,
+      "prompt": "做一个国风轻养生茶饮品牌'草木知'的 VI 视觉系统全案设计。",
+      "pass_rate": 1.0,
+      "expectations": [
+        {
+          "text": "明确品牌灵魂三问与核心受众画像（情绪与生活方式）",
+          "passed": true,
+          "evidence": "Verified in brand-identity-design Stage 1: Brand Soul (Mission, Vision, Values fundamental questions defined)."
+        },
+        {
+          "text": "提炼东方美学核心隐喻与视觉调性（如草木灵气、极简留白）",
+          "passed": true,
+          "evidence": "Verified in brand-identity-design Stage 2 & 3: Core Creative Concept ('Polaris') & Core Metaphor."
+        },
+        {
+          "text": "规划多触点应用规范（茶饮杯包装、门店招牌、线上小程序、周边物料）",
+          "passed": true,
+          "evidence": "Verified in brand-identity-design Stage 5: Multi-Touchpoint Validation (Digital Hero, Print, Motion)."
+        },
+        {
+          "text": "提供基础层规范框架（品牌标准字、东方矿物色彩系统与WCAG对比度校验）",
+          "passed": true,
+          "evidence": "Verified in brand-identity-design Stage 4: Foundation Layer (Logo, Color System with WCAG, Typography, Grid)."
+        },
+        {
+          "text": "包含品牌交付手册与防错规范（禁止拉伸、错误色彩搭配等）",
+          "passed": true,
+          "evidence": "Verified in brand-identity-design Stage 6: Guardian Manual & Common Anti-Patterns."
+        }
+      ]
+    }
+  ]
+}

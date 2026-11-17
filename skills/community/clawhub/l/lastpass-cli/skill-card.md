@@ -1,39 +1,53 @@
-## Description: <br>
-Securely fetch credentials from LastPass vault via lpass CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Securely fetch credentials from LastPass vault via lpass CLI.
 
-## Publisher: <br>
-[gitchrisqueen](https://clawhub.ai/user/gitchrisqueen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gitchrisqueen](https://clawhub.ai/user/gitchrisqueen)
 
-## Use Case: <br>
-Developers and automation operators use this skill to retrieve specific credentials from a local LastPass vault through lpass for deployments, API calls, or logins that require secrets. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose LastPass vault secrets directly to agent output, terminal output, transcripts, logs, or agent context. <br>
-Mitigation: Install only when agent access to LastPass secrets is required, keep requests scoped to specific entries and fields, and treat returned values as confidential. <br>
-Risk: Raw or notes retrieval can return more sensitive material than the immediate task requires. <br>
-Mitigation: Prefer the narrowest needed field, such as password or username, and avoid sending secret output to unrelated tools. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gitchrisqueen/lastpass-cli) <br>
+## Use Case:
 
+Developers and automation agents use this skill to retrieve specific passwords, usernames, notes, or raw LastPass entry data from a local lpass session for deployment, API, or login workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands] <br>
-**Output Format:** [Plain text returned from lpass CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may contain sensitive secrets from LastPass and should be handled as confidential.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can expose plaintext LastPass passwords, notes, usernames, or raw records available to the local lpass session.
+
+Mitigation: Require explicit approval before fetching or using secrets, and limit the LastPass account or shared folder to only entries needed for the workflow.
+
+Risk: Raw record retrieval may disclose more vault data than a workflow requires.
+
+Mitigation: Prefer field-specific retrieval for password, username, or notes and avoid raw record access unless it is necessary.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gitchrisqueen/skills/lastpass-cli)
+- [Publisher profile](https://clawhub.ai/user/gitchrisqueen)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text returned from lpass commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can return sensitive plaintext secret material from the user's local LastPass vault.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,52 @@
-## Description: <br>
-This skill guides an agent to mimic the dialogue styles of Chiikawa, Hachiware, and Usagi for immersive character roleplay. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+模仿《吉伊卡哇》中吉伊、小八、乌萨奇三位角色的语言风格，并支持通过自然语言切换角色进行沉浸式对话。
 
-## Publisher: <br>
-[runze123](https://clawhub.ai/user/runze123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[runze123](https://clawhub.ai/user/runze123)
 
-## Use Case: <br>
-External users and roleplay-focused agent operators use this skill to switch among three Chiikawa character voices and receive in-character replies. It is intended for entertainment and style imitation, not factual, safety-critical, or general-purpose assistance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Character roleplay may be unhelpful for factual, safety-critical, or non-roleplay tasks. <br>
-Mitigation: Use this skill only for Chiikawa-style roleplay and disable or switch away from it for factual or safety-critical work. <br>
-Risk: The artifact uses community-style transliterations and fan-defined phrasing rather than official source language. <br>
-Mitigation: Review and adjust the character files before use when a closer original-language style is required. <br>
+## Use Case:
 
+External users can use this skill for Chinese and Japanese-flavored Chiikawa character roleplay, including switching between Chiikawa, Hachiware, and Usagi speech styles. It is intended for entertainment and stylistic dialogue rather than ordinary assistant responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/runze123/chiikawa-talk) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
-- [Chiikawa character profile](artifact/characters/chiikawa.md) <br>
-- [Hachiware character profile](artifact/characters/hachiware.md) <br>
-- [Usagi character profile](artifact/characters/usagi.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [In-character conversational text with optional bracketed action descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses remain in the selected character style until the user switches roles; default role is Hachiware when no role is specified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact SKILL.md) <br>
+Risk: The roleplay persona may persist when a user expects ordinary assistant behavior or another language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell the agent to stop roleplay or respond in the preferred language before continuing with non-roleplay tasks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/runze123/skills/chiikawa-talk)
+- [Character reference: Chiikawa](artifact/characters/chiikawa.md)
+- [Character reference: Hachiware](artifact/characters/hachiware.md)
+- [Character reference: Usagi](artifact/characters/usagi.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text roleplay responses with optional parenthesized action descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credential access, persistence, or data exfiltration behavior is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

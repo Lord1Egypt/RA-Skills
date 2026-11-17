@@ -1,43 +1,61 @@
-## Description: <br>
-Run LangChain AI pipelines locally with Ollama and a local model for coding, DevOps, chat, and document-grounded question answering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run LangChain AI pipelines locally and offline with Ollama and phi4-mini for coding, DevOps, chat, and document-grounded queries.
 
-## Publisher: <br>
-[manojrammurthy](https://clawhub.ai/user/manojrammurthy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[manojrammurthy](https://clawhub.ai/user/manojrammurthy)
 
-## Use Case: <br>
-Developers and agent users use this skill to run local LangChain/Ollama workflows for code generation, shell-command guidance, concise chat, and document-grounded answers without relying on a cloud model API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: DevOps mode can generate shell commands that may change the local system if executed blindly. <br>
-Mitigation: Review generated commands before running them, especially commands involving sudo, Docker, Nginx, package managers, or filesystem changes. <br>
-Risk: Unpinned LangChain and Ollama-related Python dependencies can change behavior over time. <br>
-Mitigation: Install in a virtual environment and pin dependency versions when reproducibility or dependency control matters. <br>
-Risk: Generated code, shell guidance, or document-grounded answers may be incomplete or incorrect. <br>
-Mitigation: Validate outputs against the target environment and source documents before using them in operational workflows. <br>
+## Use Case:
 
+Developers and engineers use this skill to run local LangChain and Ollama workflows for code generation, shell command guidance, chat, and document-grounded Q&A without cloud API keys.
 
-## Reference(s): <br>
-- [Openclaw Skill Langchain Local ClawHub Page](https://clawhub.ai/manojrammurthy/openclaw-skill-langchain-local) <br>
-- [Publisher Profile](https://clawhub.ai/user/manojrammurthy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text streamed from a local LangChain/Ollama chat model; responses may include code blocks, shell commands, or concise guidance depending on mode.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Ollama at localhost:11434 and uses phi4-mini by default; mode selects coding, devops, chat, or rag prompting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and target metadata) <br>
+Risk: Installing dependencies globally or with elevated privileges can broaden the impact of dependency or packaging issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the skill in a controlled virtual environment and avoid running pip with elevated privileges.
+
+Risk: Offline and privacy behavior depends on the local Ollama configuration and the model endpoint used.
+
+Mitigation: Verify that Ollama is configured to use only local models and local endpoints before processing sensitive prompts or documents.
+
+Risk: Unpinned LangChain and Ollama package versions can reduce reproducibility and supply-chain control.
+
+Mitigation: Pin and review dependency versions before deploying the skill in a managed or production environment.
+
+Risk: The documentation advertises a rag mode, but the interactive mode configuration does not list rag as a selectable mode.
+
+Mitigation: Review mode configuration before relying on document-grounded Q&A workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/manojrammurthy/skills/openclaw-skill-langchain-local)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text streamed from a local CLI, including code blocks or shell commands when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Mode selects coding, devops, chat, or rag; the local model defaults to phi4-mini.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

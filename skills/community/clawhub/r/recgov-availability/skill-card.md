@@ -1,42 +1,60 @@
-## Description: <br>
-Check campsite availability on Recreation.gov for federal campgrounds, including National Park Service, USDA Forest Service, BLM, and other federal sites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check campsite availability on recreation.gov for federal campgrounds, including National Parks, USFS, and BLM sites, using campground IDs from ridb-search or recreation.gov URLs.
 
-## Publisher: <br>
-[seanrea](https://clawhub.ai/user/seanrea) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[seanrea](https://clawhub.ai/user/seanrea)
 
-## Use Case: <br>
-Campers, travel planners, and agents use this skill to check federal campground availability across one or more Recreation.gov campground IDs, filter by site type and amenities, and return booking status for requested dates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Campground IDs, dates, and amenity filters are sent to Recreation.gov when checking availability. <br>
-Mitigation: Use only the search details needed for the campsite lookup and review Recreation.gov directly before making plans. <br>
-Risk: Availability changes quickly and returned results may no longer match the official booking state. <br>
-Mitigation: Confirm availability on the official Recreation.gov page before booking or relying on travel plans. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent check federal campground availability on Recreation.gov for specified campground IDs and dates, including filters for site type, amenities, and consecutive nights.
 
-## Reference(s): <br>
-- [Recreation.gov Availability API Notes](references/api-notes.md) <br>
-- [Recreation.gov](https://www.recreation.gov) <br>
-- [RIDB Portal](https://ridb.recreation.gov) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, JSON, Guidance] <br>
-**Output Format:** [Plain text status summaries or JSON arrays from the CLI, with optional Markdown guidance from the agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results include campground IDs, campground names, booking URLs, availability counts, status summaries, and optionally individual site ranges.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Availability changes constantly and may be stale by booking time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify availability on Recreation.gov before booking.
+
+Risk: Bulk searches or amenity filters can make extra Recreation.gov API calls.
+
+Mitigation: Use reasonable query volume and apply amenity filters selectively.
+
+Risk: The skill relies on public Recreation.gov endpoints that may change.
+
+Mitigation: Review API errors and confirm important results in the Recreation.gov site before acting on them.
+
+## Reference(s):
+
+- [Recreation.gov Availability API Notes](references/api-notes.md)
+- [Recreation.gov](https://www.recreation.gov)
+- [RIDB Portal](https://ridb.recreation.gov)
+- [ClawHub Skill Page](https://clawhub.ai/seanrea/skills/recgov-availability)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain-text status summaries or JSON, with shell commands for running the checker]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Recreation.gov booking URLs and campsite availability ranges; amenity filters may trigger extra per-site API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

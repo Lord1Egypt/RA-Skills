@@ -1,45 +1,59 @@
-## Description: <br>
-Wraps the YesApi 果创云 low-code platform APIs so an agent can manage form schemas and query, create, update, delete, and batch-change form data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a YesApi low-code platform wrapper for managing form schemas and performing CRUD and batch operations on form data.
 
-## Publisher: <br>
-[phalapi](https://clawhub.ai/user/phalapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phalapi](https://clawhub.ai/user/phalapi)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent work with a configured YesApi account for online database form schema management and data operations. It is intended for authenticated workflows that require querying, inserting, updating, deleting, or batch-modifying YesApi form records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make live authenticated changes or deletions in the configured YesApi account. <br>
-Mitigation: Use test or least-privileged credentials, verify YESAPI_DOMAIN before use, and avoid production data until destructive operations have explicit confirmation or dry-run previews. <br>
-Risk: Batch update and batch delete operations can affect multiple records. <br>
-Mitigation: Review the target model and where conditions before execution, and prefer small test queries before running batch changes. <br>
-Risk: The included test script performs live API operations when configured with real credentials. <br>
-Mitigation: Do not run test_yesapi.py against production credentials or production data. <br>
+## Use Case:
 
+Developers and agents use this skill to connect to YesApi, inspect or create form models, add fields, and query, insert, update, or delete records. It is suited to database-management workflows where the operator can provide scoped YesApi credentials and review data-changing actions.
 
-## Reference(s): <br>
-- [YesApi API homepage](https://api.yesapi.net/) <br>
-- [ClawHub skill page](https://clawhub.ai/phalapi/crawhub-skill-yesapi) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, API calls, configuration, guidance] <br>
-**Output Format:** [Python dictionaries, JSON-compatible API responses, Markdown usage guidance, and Python code interfaces] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires YESAPI_APP_KEY, YESAPI_DOMAIN, and YESAPI_SIGN environment variables; operations may make live authenticated changes to the configured YesApi account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence, released 2026-03-23) <br>
+Risk: The skill can create, update, batch-update, delete, or batch-delete live YesApi records and models.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege credentials, prefer a test account first, and require operator review before destructive or batch operations.
+
+Risk: Credentials may be sent to the configured YESAPI_DOMAIN.
+
+Mitigation: Keep YESAPI_DOMAIN pinned to the legitimate HTTPS YesApi endpoint unless the alternate target is fully trusted.
+
+Risk: The included comprehensive test script performs live create, update, and delete operations.
+
+Mitigation: Do not run test_yesapi.py against production data or credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phalapi/skills/crawhub-skill-yesapi)
+- [ClawHub publisher profile](https://clawhub.ai/user/phalapi)
+- [YesApi API endpoint](https://api.yesapi.net/)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown or text responses with JSON-like API result data, Python snippets, and shell commands when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires YESAPI_APP_KEY, YESAPI_DOMAIN, and YESAPI_SIGN environment configuration before live API use.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

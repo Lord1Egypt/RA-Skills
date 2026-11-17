@@ -1,125 +1,129 @@
-r"""
-Example - Send Email via MGC
-Manual test script for users
-"""
+# Zero-Exposure SMTP Email Script Template (MGC 1.4.10)
+# Store this script in MGC via mgc_save; AI invokes it via mgc_run.
+# Users should customize SMTP_CREDENTIAL_NAME / EMAIL_CONTENT_NAME.
 
-import argparse
-import json
-import os
 import smtplib
-import ssl
-import sys
-
-try:
-    import requests
-except ImportError:
-    print("Error: requests required. Install: pip install requests")
-    sys.exit(1)
-
+import os
+import json
+import argparse
+import requests
+import datetime
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-MGC_BASE_URL = "http://127.0.0.1:57219"
-MGC_TOKEN_PATH = os.path.expanduser("~/.mgc/database/mgc_black_box/.mgc_token")
-DEFAULT_INFO_TYPE = "config"
-DEFAULT_INFO_OWNER = "email_smtp"
+# ========== Configuration ==========
+# Replace these with your credential names (info_owner).
+SMTP_CREDENTIAL_NAME = "smtp_gmail"           # SMTP credentials
+EMAIL_CONTENT_NAME = "email_template_001"     # (Optional) Email content stored in MGC
 
 
-def get_mgc_token():
-    if not os.path.exists(MGC_TOKEN_PATH):
+def get_credential(cred_name):
+    """Read credential from MGC local API. Script-internal only; AI never calls this."""
+    token_path = os.path.expanduser("~/.mgc/database/mgc_black_box/.mgc_token")
+    if not os.path.exists(token_path):
         return None
+    with open(token_path) as f:
+        token = f.read().strip()
+
+    resp = requests.post(
+        "http://127.0.0.1:57219/api/mgc/sensitive/get",
+        headers={"X-MGC-Token": token, "Content-Type": "application/json"},
+        json={"info_type": "config", "info_owner": cred_name, "action": "run"},
+        timeout=10,
+    )
+    if resp.status_code == 200:
+        data = resp.json()
+        data_field = data.get("data")
+        if isinstance(data_field, str):
+            return json.loads(data_field)
+        elif isinstance(data_field, dict):
+            content = data_field.get("content", "")
+            if content:
+                return json.loads(content)
+    return None
+
+
+def get_email_content(content_name):
+    """Read email content from MGC (optional privacy feature)."""
+    token_path = os.path.expanduser("~/.mgc/database/mgc_black_box/.mgc_token")
+    if not os.path.exists(token_path):
+        return None
+    with open(token_path) as f:
+        token = f.read().strip()
+
+    resp = requests.post(
+        "http://127.0.0.1:57219/api/mgc/sensitive/get",
+        headers={"X-MGC-Token": token, "Content-Type": "application/json"},
+        json={"info_type": "config", "info_owner": content_name, "action": "run"},
+        timeout=10,
+    )
+    if resp.status_code == 200:
+        data = resp.json()
+        data_field = data.get("data")
+        if isinstance(data_field, str):
+            return data_field
+        elif isinstance(data_field, dict):
+            return data_field.get("content", "")
+    return None
+
+
+def send_email(to_address, subject, body, use_stored_content=False):
+    """Send email via SMTP."""
+    cred = get_credential(SMTP_CREDENTIAL_NAME)
+    if not cred:
+        return {"success": False, "error": "Failed to get SMTP credentials"}
+
+    if use_stored_content:
+        stored_content = get_email_content(EMAIL_CONTENT_NAME)
+        if stored_content:
+            try:
+                content_data = json.loads(stored_content)
+                subject = content_data.get("subject", subject)
+                body = content_data.get("body", body)
+            except Exception:
+                body = stored_content
+
     try:
-        with open(MGC_TOKEN_PATH, 'r', encoding='utf-8') as f:
-            return f.read().strip()
-    except IOError:
-        return None
+        msg = MIMEMultipart()
+        msg['From'] = cred['address']
+        msg['To'] = to_address
+        msg['Subject'] = subject
+        msg.attach(MIMEText(body, 'plain', 'utf-8'))
 
-
-def get_email_config_from_mgc(token, info_type=None, info_owner=None):
-    info_type = info_type or DEFAULT_INFO_TYPE
-    info_owner = info_owner or DEFAULT_INFO_OWNER
-
-    try:
-        resp = requests.post(
-            f"{MGC_BASE_URL}/api/mgc/sensitive/get",
-            headers={"X-MGC-Token": token, "Content-Type": "application/json"},
-            json={"info_type": info_type, "info_owner": info_owner},
-            timeout=30
-        )
-        if resp.status_code == 200:
-            data = resp.json()
-            if data.get("code") == 200:
-                content = data.get("data", {})
-                if isinstance(content, str):
-                    return json.loads(content)
-                elif isinstance(content, dict) and content.get("content"):
-                    return json.loads(content["content"])
-        return None
-    except requests.exceptions.RequestException:
-        return None
-    except json.JSONDecodeError:
-        return None
-
-
-def send_email_smtp(config, to, subject, body):
-    msg = MIMEMultipart('mixed')
-    msg['From'] = config["address"]
-    msg['To'] = to
-    msg['Subject'] = subject
-    msg.attach(MIMEText(body, 'plain', 'utf-8'))
-
-    recipients = [to]
-    # smtp_port dynamically fetched from config
-    try:
-        smtp_port = int(config["smtp_port"])
-    except (ValueError, TypeError):
-        return False, "SMTP port must be a number"
-    smtp_server = config["smtp_server"]
-    address = config["address"]
-    password = config["password"]
-
-    try:
-        if smtp_port == 465:
-            ctx = ssl.create_default_context()
-            with smtplib.SMTP_SSL(smtp_server, smtp_port, context=ctx) as server:
-                server.login(address, password)
-                server.sendmail(address, recipients, msg.as_string())
-        else:
-            with smtplib.SMTP(smtp_server, smtp_port) as server:
-                server.starttls()
-                server.login(address, password)
-                server.sendmail(address, recipients, msg.as_string())
-        return True, "Email sent"
+        with smtplib.SMTP(cred["smtp_server"], cred["smtp_port"]) as server:
+            server.starttls()
+            server.login(cred["address"], cred["password"])
+            server.sendmail(cred["address"], [to_address], msg.as_string())
+        return {"success": True, "message": "Email sent successfully"}
     except Exception as e:
-        return False, str(e)
+        return {"success": False, "error": str(e)}
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Send email via MGC")
-    parser.add_argument("-t", "--to", required=True, help="Recipient email")
-    parser.add_argument("-s", "--subject", required=True, help="Email subject")
-    parser.add_argument("-b", "--body", required=True, help="Email body")
-    parser.add_argument("--info-type", default=DEFAULT_INFO_TYPE, help="MGC info_type")
-    parser.add_argument("--info-owner", default=DEFAULT_INFO_OWNER, help="MGC info_owner")
-    args = parser.parse_args()
+    # ✅ Literal defaults only — MGC 1.4.10 auto-parses into ext02
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--to", default="")
+    parser.add_argument("--subject", default="")
+    parser.add_argument("--body", default="")
+    parser.add_argument("--use_stored_content", action="store_true")
+    args, _ = parser.parse_known_args()  # ✅ parse_known_args avoids exit on unknown params
 
-    token = get_mgc_token()
-    if not token:
-        print("Error: MGC not running. Run 'mgc' first.")
-        sys.exit(1)
+    result = send_email(
+        to_address=args.to,
+        subject=args.subject,
+        body=args.body,
+        use_stored_content=args.use_stored_content,
+    )
 
-    config = get_email_config_from_mgc(token, args.info_type, args.info_owner)
-    if not config:
-        print(f"Error: Email config not found in MGC")
-        print(f"Save: mgc_save info_type={args.info_type} info_owner={args.info_owner} < config.json")
-        sys.exit(1)
-
-    success, message = send_email_smtp(config, args.to, args.subject, args.body)
-    if success:
-        print(f"Success: {message}")
-    else:
-        print(f"Error: {message}")
-        sys.exit(1)
+    # Write result to file so AI can read it (mgc_run returns pid+status, not stdout).
+    out_dir = os.path.expanduser("~/mgc_outputs")
+    os.makedirs(out_dir, exist_ok=True)
+    out_path = os.path.join(
+        out_dir, f"email_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
+    )
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(result, f, ensure_ascii=False, indent=2)
+    print(f"RESULT_FILE:{out_path}")
 
 
 if __name__ == "__main__":

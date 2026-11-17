@@ -1,0 +1,9 @@
+{
+    "is_admin":{
+        "name" : "judge_admin",
+        "type" : "logic",
+        "condition":"@{CONDITION|#tokenCaller, 's.==', '1'}",
+        "errorCode":"NO_RIGHT",
+        "errorInfo":"only administrator permitted"
+    }
+}

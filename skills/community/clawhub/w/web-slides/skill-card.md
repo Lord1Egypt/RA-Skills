@@ -1,46 +1,59 @@
-## Description: <br>
-Professional single-page HTML presentation generator for creating polished web-based slide decks with multiple themes, mobile-friendly output, and optional PDF export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates polished single-file HTML presentation decks with reusable themes, layouts, mobile-friendly behavior, and optional preview/PDF export support.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-External users, developers, and presentation authors use this skill to turn outlines or structured content into polished single-file HTML slide decks for pitches, reports, product launches, technical talks, and business presentations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Node-based generation tools and may use an external npm dependency. <br>
-Mitigation: Review and pin external npm dependencies before global installation. <br>
-Risk: Preview rendering can execute arbitrary generated or user-provided HTML in a browser context. <br>
-Mitigation: Keep CHROME_BIN pointed at a trusted browser and avoid preview-rendering untrusted HTML. <br>
+## Use Case:
 
+Developers, creators, and business users use this skill to turn outlines, reports, pitch decks, product launches, technical talks, and other presentation content into ready-to-run HTML slide decks. It is especially suited for visually polished web-based presentations that need stable themes, reusable layouts, local generation, and mobile-friendly viewing.
 
-## Reference(s): <br>
-- [Web Slides Skill Page](https://clawhub.ai/tobewin/web-slides) <br>
-- [Runtime](references/runtime.md) <br>
-- [Theme Catalog](references/theme-catalog.md) <br>
-- [Layout System](references/layout-system.md) <br>
-- [Content Schema](references/content-schema.md) <br>
-- [Assembly Workflow](references/assembly-workflow.md) <br>
-- [Quality Bar](references/quality-bar.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, JSON deck content, and single-file HTML presentation code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Node-based generation and validation scripts; optional preview rendering depends on a trusted Chrome binary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: frontmatter and server release metadata) <br>
+Risk: The release declares an unnecessary unpinned global npm dependency that can run code during installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove the global npm dependency before installing, and pin or vendor any dependency that remains required.
+
+Risk: Preview rendering can process HTML and scripts create or overwrite output files.
+
+Mitigation: Render only HTML produced by the skill or otherwise trusted content, and choose output paths carefully before running preview or generation scripts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tobewin/skills/web-slides)
+- [Runtime](artifact/references/runtime.md)
+- [Theme Catalog](artifact/references/theme-catalog.md)
+- [Layout System](artifact/references/layout-system.md)
+- [Content Schema](artifact/references/content-schema.md)
+- [Assembly Workflow](artifact/references/assembly-workflow.md)
+- [Quality Bar](artifact/references/quality-bar.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML, JSON, and shell command snippets; generated artifacts are single-file HTML decks and optional PNG previews.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local Node-based scripts, predefined themes, structured content JSON, embedded CSS, lightweight JavaScript navigation, and optional headless Chrome preview rendering.]
+
+## Skill Version(s):
+
+2.0.4 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

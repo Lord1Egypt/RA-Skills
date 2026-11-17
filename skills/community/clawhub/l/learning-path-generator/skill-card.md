@@ -1,40 +1,53 @@
-## Description: <br>
-Generate personalized learning paths and curriculum for any skill or subject. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate personalized learning paths and curriculum for any skill or subject.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
 
-## Use Case: <br>
-Employees, external learners, and developers use this skill to turn a target subject, current proficiency, available time, and learning goals into a structured curriculum with phases, milestones, resources, and progress checkpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Learning plans and resource recommendations may be inaccurate, outdated, or unsuitable for a user's goals. <br>
-Mitigation: Review the generated curriculum and verify recommended courses, communities, paid resources, and milestones before relying on them. <br>
-Risk: Users may include unnecessary sensitive personal details when describing learning goals or constraints. <br>
-Mitigation: Provide only the information needed to customize the plan, such as subject, current level, timeframe, and available study hours. <br>
+## Use Case:
 
+External users, employees, and developers use this skill to create structured learning roadmaps for a chosen subject, proficiency target, timeframe, and weekly study commitment. It helps organize assessments, milestones, resource recommendations, and progress checkpoints.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/huajianjiu000/learning-path-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown learning plans with schedules, milestones, resource recommendations, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed by the user for fit, accuracy, and suitability before relying on recommended resources or schedules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Generated learning plans and resource recommendations may be inaccurate, outdated, or unsuitable for specialized, medical, legal, financial, or safety-critical subjects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations for factual accuracy, current relevance, and domain suitability before relying on them.
+
+Risk: The skill can be applied broadly across educational domains, which may lead to plans that do not match a learner's constraints, accessibility needs, or required prerequisites.
+
+Mitigation: Adapt generated milestones, pacing, prerequisites, and resources to the learner's actual background and available support.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huajianjiu000/skills/learning-path-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown learning path with structured sections, milestones, schedules, resource recommendations, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated plans should be reviewed for accuracy, suitability, and domain-specific risk before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

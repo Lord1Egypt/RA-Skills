@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Privacy Policy — Fleece</title>
+  <meta name="description" content="Fleece privacy policy. Fleece does not collect, store, or transmit personal data. All place detection runs on-device via Apple MapKit." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://getfleece.io/privacy-policy" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow: #FFD100;
+      --black:  #111111;
+      --white:  #FFFFFF;
+      --gray:   #F5F5F3;
+      --mid:    #555555;
+      --border: #E0E0E0;
+      --font-head: 'Oswald', sans-serif;
+      --font-body: 'Source Sans 3', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); font-size: 18px; color: var(--black); background: var(--white); line-height: 1.6; }
+    a { color: var(--black); }
+
+    /* ── NAV ── */
+    nav { background: var(--black); display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; height: 64px; }
+    .nav-logo { font-family: var(--font-head); font-size: 1.6rem; font-weight: 700; color: var(--yellow); text-decoration: none; letter-spacing: 1px; text-transform: uppercase; }
+    .nav-links { list-style: none; display: flex; gap: 2.5rem; align-items: center; }
+    .nav-links a { font-size: 0.95rem; color: rgba(255,255,255,0.75); text-decoration: none; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--yellow); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { gap: 1.25rem; }
+      .nav-links a { font-size: 0.85rem; }
+    }
+
+    /* ── HERO ── */
+    .hero { background: var(--black); padding: 5rem 2.5rem 4rem; }
+    .hero-inner { max-width: 760px; margin: 0 auto; }
+    .hero-label { font-family: var(--font-head); font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; }
+    .hero h1 { font-family: var(--font-head); font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 700; text-transform: uppercase; color: var(--white); line-height: 1.1; letter-spacing: 1px; margin-bottom: 1rem; }
+    .hero-meta { color: rgba(255,255,255,0.4); font-size: 0.9rem; }
+
+    @media (max-width: 768px) { .hero { padding: 3.5rem 1.25rem 3rem; } }
+
+    /* ── CONTENT ── */
+    .content { max-width: 760px; margin: 0 auto; padding: 4rem 2.5rem 6rem; }
+    @media (max-width: 768px) { .content { padding: 3rem 1.25rem 5rem; } }
+
+    .section { margin-bottom: 3.5rem; }
+
+    .section h2 {
+      font-family: var(--font-head);
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid var(--yellow);
+      display: inline-block;
+    }
+
+    .section p { font-size: 1rem; color: var(--mid); line-height: 1.75; margin-bottom: 1rem; }
+    .section p:last-child { margin-bottom: 0; }
+
+    .section ul { list-style: none; margin-bottom: 1rem; }
+    .section ul li {
+      font-size: 1rem;
+      color: var(--mid);
+      line-height: 1.7;
+      padding: 0.4rem 0 0.4rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .section ul li:first-child { border-top: 1px solid var(--border); }
+    .section ul li::before { content: "—"; position: absolute; left: 0; color: var(--yellow); font-weight: 700; }
+
+    .highlight-box {
+      background: var(--gray);
+      border-left: 4px solid var(--yellow);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 4px 4px 0;
+      margin-bottom: 1.5rem;
+    }
+    .highlight-box p { color: var(--black); font-weight: 600; margin: 0; }
+
+    .contact-block {
+      background: var(--black);
+      color: var(--white);
+      border-radius: 4px;
+      padding: 2rem 2.5rem;
+      margin-top: 1rem;
+    }
+    .contact-block p { color: rgba(255,255,255,0.65); margin-bottom: 0.5rem; }
+    .contact-block a { color: var(--yellow); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--black); padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .footer-logo { font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; color: var(--yellow); text-transform: uppercase; letter-spacing: 1px; text-decoration: none; }
+    .footer-right { display: flex; align-items: center; gap: 2rem; }
+    .footer-copy { color: rgba(255,255,255,0.35); font-size: 0.85rem; }
+    .footer-right a { color: rgba(255,255,255,0.35); font-size: 0.85rem; text-decoration: underline; text-underline-offset: 3px; }
+    .footer-right a:hover { color: var(--yellow); }
+    @media (max-width: 768px) { footer { padding: 1.5rem 1.25rem; flex-direction: column; align-items: flex-start; gap: 0.75rem; } }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="/">Fleece</a>
+  <ul class="nav-links">
+    <li><a href="/">CLI</a></li>
+    <li><a href="/ios">iOS App</a></li>
+    <li><a href="https://github.com/chenyuan99/fleece" target="_blank">GitHub</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-label">Legal</p>
+    <h1>Privacy Policy</h1>
+    <p class="hero-meta">Effective date: May 19, 2026 &nbsp;·&nbsp; Fleece for iOS</p>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <div class="section">
+    <div class="highlight-box">
+      <p>Fleece does not collect, store, or transmit your personal data. All processing happens on your device.</p>
+    </div>
+    <p>This Privacy Policy describes how Fleece ("we", "our", or "the app") handles information when you use the Fleece iOS application. We are committed to protecting your privacy.</p>
+  </div>
+
+  <div class="section">
+    <h2>Information We Collect</h2>
+    <p>Fleece does not collect any personal information. Specifically:</p>
+    <ul>
+      <li><strong>No account required.</strong> You do not create an account or provide an email address to use Fleece.</li>
+      <li><strong>No analytics.</strong> We do not use any analytics SDK, crash reporting service, or usage tracking.</li>
+      <li><strong>No advertising.</strong> We do not serve ads and do not share data with ad networks.</li>
+      <li><strong>No server.</strong> Fleece has no backend server. No data is sent to us at any point.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Location Data</h2>
+    <p>Fleece requests access to your device's location to identify nearby merchants and recommend the best credit card for your purchase.</p>
+    <ul>
+      <li><strong>On-device only.</strong> Your location is processed entirely on your iPhone using Apple's MapKit framework. It is never transmitted to Fleece or any third-party server we control.</li>
+      <li><strong>Apple MapKit.</strong> Place lookups use <code>MKLocalSearch</code>, which may send your location to Apple's servers as part of Apple's own services. This is governed by <a href="https://www.apple.com/legal/privacy/" target="_blank">Apple's Privacy Policy</a>.</li>
+      <li><strong>When in use only.</strong> Location is accessed only while the app is open ("When In Use"). We do not request background location access.</li>
+      <li><strong>Never stored.</strong> Location data is used in the moment to find nearby places and is not saved to disk, iCloud, or any database.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Wallet Data</h2>
+    <p>The cards you add to your Fleece wallet are stored locally on your device using iOS UserDefaults. This data:</p>
+    <ul>
+      <li>Never leaves your device</li>
+      <li>Is not backed up to any Fleece server</li>
+      <li>May be included in iCloud device backups if you have iCloud Backup enabled — governed by Apple's Privacy Policy</li>
+      <li>Is deleted when you uninstall the app</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Apple Wallet &amp; PassKit</h2>
+    <p>Fleece uses Apple's PassKit framework to detect which payment networks (Visa, Mastercard, Amex, Discover) are active in your Apple Wallet. This detection:</p>
+    <ul>
+      <li>Returns only a yes/no answer per network — no card numbers, names, or balances are accessible</li>
+      <li>Is performed on-device using iOS system APIs</li>
+      <li>Is not transmitted to Fleece or any third party</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Apple Intelligence</h2>
+    <p>On devices running iOS 26 or later with Apple Intelligence enabled, Fleece may use the on-device language model to generate short explanations of card recommendations.</p>
+    <ul>
+      <li>All inference runs entirely on-device using Apple's Foundation Models framework</li>
+      <li>No prompts or responses are sent to Fleece or any external server</li>
+      <li>This feature is fully optional — the app works identically without it</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Push Notifications</h2>
+    <p>Fleece uses local notifications (not remote push notifications) to alert you when you enter a store. These notifications:</p>
+    <ul>
+      <li>Are generated entirely on-device — no notification server is involved</li>
+      <li>Contain only locally derived information (place name, card recommendation)</li>
+      <li>Can be disabled at any time in iOS Settings → Notifications → Fleece</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Third-Party Services</h2>
+    <p>Fleece does not integrate any third-party SDKs, analytics tools, or advertising networks. The only external service involved is Apple's MapKit for place lookups, which is governed by Apple's own privacy policy.</p>
+  </div>
+
+  <div class="section">
+    <h2>Children's Privacy</h2>
+    <p>Fleece is not directed at children under 13. We do not knowingly collect any information from children. Because we collect no personal information from any user, this policy applies equally to all age groups.</p>
+  </div>
+
+  <div class="section">
+    <h2>Changes to This Policy</h2>
+    <p>If we update this Privacy Policy, we will update the effective date at the top of this page and, where appropriate, notify users through the App Store release notes. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+  </div>
+
+  <div class="section">
+    <h2>Contact</h2>
+    <p>If you have questions about this Privacy Policy, please reach out:</p>
+    <div class="contact-block">
+      <p><strong style="color:var(--white);">Yuan Chen</strong></p>
+      <p>Email: <a href="mailto:cysbc1999@gmail.com">cysbc1999@gmail.com</a></p>
+      <p>GitHub: <a href="https://github.com/chenyuan99/fleece" target="_blank">github.com/chenyuan99/fleece</a></p>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a class="footer-logo" href="/">Fleece</a>
+  <div class="footer-right">
+    <span class="footer-copy">© 2026 Fleece. Built by Yuan Chen.</span>
+    <a href="/">CLI →</a>
+    <a href="/ios">iOS →</a>
+    <a href="https://github.com/chenyuan99/fleece/blob/main/LICENSE" target="_blank">MIT License</a>
+  </div>
+</footer>
+
+</body>
+</html>

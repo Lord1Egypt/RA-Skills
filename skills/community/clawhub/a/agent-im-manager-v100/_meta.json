@@ -1,6 +1,16 @@
 {
-  "ownerId": "kn7d91xtwv6vk9tt4h1xjny5qx82dzjf",
-  "slug": "agent-im-manager-v100",
+  "slug": "agent-manager",
+  "name": "Agent Manager",
   "version": "1.0.0",
-  "publishedAt": 1773119218766
+  "description": "Multi-Agent conversation management platform with Gemini-style UI",
+  "author": "MSK",
+  "license": "MIT",
+  "tags": ["agent", "management", "chat", "ui", "gemini", "multi-agent"],
+  "category": "productivity",
+  "security": {
+    "noHardcodedTokens": true,
+    "noExternalAPI": true,
+    "localDataOnly": true,
+    "openSource": true
+  }
 }

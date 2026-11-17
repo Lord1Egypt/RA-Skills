@@ -1,39 +1,53 @@
-## Description: <br>
-Convert colors between HEX, RGB, RGBA, HSL, HSLA, and CSS color formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert colors between HEX, RGB, RGBA, HSL, HSLA, and CSS named color formats for web development, design, and styling tasks.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-Developers, designers, and styling agents use this skill to convert color values between HEX, RGB, RGBA, HSL, HSLA, and named CSS color formats for web development and design work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Vague color conversion requests may produce output that is misread or applied incorrectly in production styling. <br>
-Mitigation: Review converted color values before using them in production CSS or design assets. <br>
+## Use Case:
 
+Developers and designers use this skill to convert color values between common web and CSS formats, including HEX, RGB, RGBA, HSL, HSLA, and named colors.
 
-## Reference(s): <br>
-- [Color Converter on ClawHub](https://clawhub.ai/fuzzyb33s/color-converter) <br>
-- [Publisher profile](https://clawhub.ai/user/fuzzyb33s) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text color values and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs converted color values in the requested or default supported format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Converted color values may be copied into styling or design work without checking edge cases such as alpha handling, named color mappings, or invalid input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for explicit color-format tasks and review outputs before applying them to production styles.
+
+Risk: The release includes a local helper script that runs in the agent environment.
+
+Mitigation: Review and scan the script before deployment; the provided security evidence reports no hidden access, persistence, or unsafe behavior.
+
+## Reference(s):
+
+- [Color Converter on ClawHub](https://clawhub.ai/fuzzyb33s/skills/color-converter)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs color values in the requested format or a compact multi-format conversion listing.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

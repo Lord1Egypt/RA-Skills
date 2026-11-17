@@ -1,44 +1,59 @@
-## Description: <br>
-Query real-time and historical financial data across equities and crypto-prices, market moves, metrics, and trends for analysis, alerts, and reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query real-time and historical financial data across equities and crypto, including prices, market moves, metrics, and trends for analysis, alerts, and reporting.
 
-## Publisher: <br>
-[AIsaPay](https://clawhub.ai/user/AIsaPay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aisapay](https://clawhub.ai/user/aisapay)
 
-## Use Case: <br>
-External developers and agents use this skill to retrieve stock and cryptocurrency market data, financial statements, analyst estimates, insider trades, institutional ownership, SEC filings, interest rates, and screening results through the AISA API or bundled Python client. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the AISA API key and requested market symbols, date ranges, filters, and portfolio-style queries to a third-party AISA endpoint. <br>
-Mitigation: Use the skill only where sharing those requests with AISA is acceptable, store AISA_API_KEY as a secret, and avoid hardcoding or logging the key. <br>
-Risk: Market-data calls may consume paid credits. <br>
-Mitigation: Monitor usage costs and credits before using the skill in automated or high-volume workflows. <br>
-Risk: Submitted queries could reveal confidential trading strategies or private portfolio details. <br>
-Mitigation: Avoid sending sensitive strategies or private portfolio information unless third-party sharing has been approved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/AIsaPay/aisa-financial-data) <br>
-- [Publisher profile](https://clawhub.ai/user/AIsaPay) <br>
-- [AISA API reference](https://aisa.mintlify.app/api-reference/introduction) <br>
-- [OpenClaw homepage](https://openclaw.ai) <br>
+## Use Case:
 
+Developers, analysts, and agent builders use this skill to retrieve equity and cryptocurrency market data for portfolio monitoring, investment research, screening, alerts, and reporting.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; the bundled Python client prints JSON API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl or python3 and an AISA_API_KEY environment variable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The API bearer token could be exposed if authenticated Python client requests follow redirects to a different origin.
+
+Mitigation: Use a limited, rotatable API key and restrict network egress to the intended AIsa API host; the publisher should prevent authenticated cross-origin redirects.
+
+Risk: Financial queries and screener filters may contain sensitive portfolio, personal, or account-related information.
+
+Mitigation: Avoid sending sensitive personal or account data in query fields and review requests before execution.
+
+Risk: API usage may consume paid credits.
+
+Mitigation: Monitor credit usage and use scoped keys or account controls where available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aisapay/skills/aisa-financial-data)
+- [Publisher profile](https://clawhub.ai/user/aisapay)
+- [OpenClaw homepage](https://openclaw.ai)
+- [AIsa API Reference](https://aisa.mintlify.app/api-reference/introduction)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl and Python command examples, plus JSON responses from the API client.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, curl, and an AISA_API_KEY environment variable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

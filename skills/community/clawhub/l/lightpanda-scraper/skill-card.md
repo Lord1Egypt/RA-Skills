@@ -1,43 +1,60 @@
-## Description: <br>
-Fast headless browser web scraping using Lightpanda for OSINT recon, link extraction, and content scraping without GPU or heavy browser dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fast headless browser web scraping using Lightpanda for OSINT recon, link extraction, and content scraping without GPU or heavy browser dependencies.
 
-## Publisher: <br>
-[hostilespider](https://clawhub.ai/user/hostilespider) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hostilespider](https://clawhub.ai/user/hostilespider)
 
-## Use Case: <br>
-Developers, analysts, and agent operators use this skill to scrape pages, extract links, save rendered page content, evaluate simple JavaScript, or expose Lightpanda through CDP or MCP workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and runs an unpinned native Lightpanda binary downloaded from GitHub. <br>
-Mitigation: Install only when the Lightpanda project and release source are trusted, and review the install commands before execution. <br>
-Risk: Options such as --js, --serve, --mcp, --proxy, and --output enable powerful browser automation, network routing, server mode, and file-writing behavior. <br>
-Mitigation: Review commands before running them, stop server modes when finished, and avoid scraping or storing data without authorization. <br>
+## Use Case:
 
+Developers, analysts, and security practitioners use this skill to run fast headless browser scraping, extract links, save page content, evaluate simple JavaScript, or start Lightpanda CDP/MCP modes for authorized web analysis.
 
-## Reference(s): <br>
-- [Lightpanda browser repository](https://github.com/nicholasgasior/lightpanda-browser) <br>
-- [Lightpanda Linux x86_64 release binary](https://github.com/nicholasgasior/lightpanda-browser/releases/latest/download/lightpanda-linux-x86_64) <br>
-- [ClawHub skill page](https://clawhub.ai/hostilespider/lightpanda-scraper) <br>
-- [Publisher profile](https://clawhub.ai/user/hostilespider) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, raw HTML, plain text link lists, JSON values from JavaScript evaluation, shell commands, and saved files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write scraped output to a user-specified file and can start long-running CDP or MCP server modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill installs and runs an unverified third-party native Lightpanda binary that may change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned Lightpanda release and verify its SHA-256 checksum or signature before installation.
+
+Risk: Scraping can access sites or content outside the user's authorization.
+
+Mitigation: Use the scraper only on sites and paths the user is authorized to access, and follow applicable site terms and legal requirements.
+
+Risk: Saved scrape output may contain sensitive local data.
+
+Mitigation: Store output only where appropriate, protect files containing sensitive content, and delete scrape artifacts when they are no longer needed.
+
+## Reference(s):
+
+- [Lightpanda project](https://github.com/nicholasgasior/lightpanda-browser)
+- [Lightpanda Linux x86_64 release asset](https://github.com/nicholasgasior/lightpanda-browser/releases/latest/download/lightpanda-linux-x86_64)
+- [ClawHub skill page](https://clawhub.ai/hostilespider/skills/lightpanda-scraper)
+- [ClawHub publisher profile](https://clawhub.ai/user/hostilespider)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, raw HTML, JSON values, newline-delimited links, shell commands, or saved local files depending on selected options.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write scrape output to a local file and can start Lightpanda CDP or MCP server modes.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

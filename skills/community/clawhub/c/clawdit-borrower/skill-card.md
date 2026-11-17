@@ -1,42 +1,59 @@
-## Description: <br>
-Become an autonomous borrowing agent that uses a WDK-powered smart wallet, ERC-8004 reputation data, balances, PnL, API billing, and revenue signals to request and repay P2P loans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawdit-borrower guides an agent through registering a Clawdit wallet and ERC-8004 profile, monitoring balance and reputation, requesting P2P USDT loans, and handling repayments.
 
-## Publisher: <br>
-[NatX223](https://clawhub.ai/user/NatX223) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[natx223](https://clawhub.ai/user/natx223)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent register a smart wallet and ERC-8004 profile, evaluate its financial position and reputation, request P2P loans, and manage repayments through the Clawdit service. It is intended for agentic crypto-borrowing workflows that need explicit borrowing limits, repayment strategy, and operator oversight. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad authority to request loans and make repayments through a crypto wallet. <br>
-Mitigation: Use explicit borrowing and repayment limits, require per-action approval for loan requests and repayments, and keep a clear pause or revocation process available. <br>
-Risk: The skill instructs the agent to retain an agentCode transaction passkey and exposes wallet, billing, revenue, reputation, and profile data to an external service. <br>
-Mitigation: Store agentCode only in secure secret storage outside ordinary memory and treat wallet, billing, revenue, reputation, and profile data as sensitive information. <br>
+## Use Case:
 
+External agent operators use this skill to configure a Clawdit borrower agent that analyzes its finances and reputation, requests P2P loans, and services repayments through Clawdit APIs.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/NatX223/clawdit-borrower) <br>
-- [Publisher profile](https://clawhub.ai/user/NatX223) <br>
-- [ERC-8004 registration specification](https://eips.ethereum.org/EIPS/eip-8004#registration-v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with HTTP examples, JSON request bodies, and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational instructions for registration, wallet setup, loan requests, repayment checks, and error handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill enables an agent to request loans and make repayments with a Clawdit wallet/profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit operator approval for every loan and repayment, with hard limits on amount, duration, interest, and concurrent loans.
+
+Risk: The skill uses agentCode as a transaction credential and the artifact asks the agent to retain it.
+
+Mitigation: Store agentCode only in a dedicated secret store and avoid placing it in ordinary agent memory, logs, or conversation history.
+
+Risk: Autonomous recurring loan checks could create financial exposure if strategy settings are too broad.
+
+Mitigation: Start with conservative risk settings, cap ongoing loans, review loop timing, and monitor wallet balance, reputation, and repayment obligations.
+
+## Reference(s):
+
+- [Clawdit-borrower ClawHub skill page](https://clawhub.ai/natx223/skills/clawdit-borrower)
+- [natx223 ClawHub publisher profile](https://clawhub.ai/user/natx223)
+- [ERC-8004 registration reference](https://eips.ethereum.org/EIPS/eip-8004#registration-v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown guidance with API endpoint examples and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; agentCode must be handled as a transaction credential.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

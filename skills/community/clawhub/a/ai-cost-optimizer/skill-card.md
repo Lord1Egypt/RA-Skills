@@ -1,40 +1,58 @@
-## Description: <br>
-Ai Cost Optimizer helps an agent recommend lower-cost AI model choices, estimate savings, and provide OpenClaw configuration guidance based on a user's budget and task needs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Cost Optimizer helps users choose lower-cost AI models, estimate savings, and plan OpenClaw model configuration changes based on budget and task needs.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers, operators, and cost-conscious AI users use this skill to compare model costs, choose a model mix for their budget, estimate monthly savings, and receive practical OpenClaw configuration steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Model prices in the skill may become outdated and could lead to incorrect savings estimates or routing decisions. <br>
-Mitigation: Verify current provider pricing before changing production routing, budgets, or procurement plans. <br>
-Risk: Users may expose API keys if they provide credentials in ordinary chat while following configuration guidance. <br>
-Mitigation: Enter API keys only through the intended OpenClaw or provider configuration flow. <br>
+## Use Case:
 
+Developers, operators, and teams managing AI spend use this skill to compare model costs, estimate monthly savings, and receive configuration-oriented guidance for model selection and switching.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-cost-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown cost-optimization plan with model recommendations, savings estimates, and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided budget, task type, performance needs, and current model cost; live model pricing should be verified before production routing or budget changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.52 (source: server-resolved release metadata) <br>
+Risk: The skill may activate on broad AI cost phrases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether the response is relevant before applying any cost or configuration recommendation.
+
+Risk: The embedded model price table may become stale.
+
+Mitigation: Verify current provider pricing before using the estimates for purchasing, routing, or budgeting decisions.
+
+Risk: Users may be asked about BYOK or API key setup during configuration guidance.
+
+Mitigation: Do not share actual API keys in chat unless the workflow and environment are trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-cost-optimizer)
+- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown cost optimization plan with model recommendations, savings estimates, and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses stated pricing evidence dated 2026-03-12; current provider pricing should be verified before spending decisions.]
+
+## Skill Version(s):
+
+1.0.52 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

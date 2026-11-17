@@ -1,50 +1,62 @@
-## Description: <br>
-Crossborder Ecom Hub helps cross-border ecommerce sellers manage product sync, orders, inventory, pricing, reports, and Feishu Bitable updates across TikTok Shop, Amazon, Shopee, and Lazada. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crossborder Ecom Hub helps cross-border e-commerce sellers manage product sync, orders, inventory, pricing, reports, and Feishu Bitable updates across TikTok Shop, Amazon, Shopee, and Lazada.
 
-## Publisher: <br>
-[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte)
 
-## Use Case: <br>
-External ecommerce sellers and operators use this skill through a Node.js CLI to coordinate listings, orders, inventory, pricing recommendations, reports, and Feishu Bitable records across supported marketplaces. Use sandbox or least-privilege accounts before enabling bulk sync, inventory, or pricing actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace and Feishu credentials may grant access to valuable seller accounts or workspace data. <br>
-Mitigation: Use sandbox or least-privilege accounts first, store credentials with appropriate filesystem permissions, rotate secrets regularly, and restrict Feishu app and workspace sharing. <br>
-Risk: Bulk sync, inventory update, and pricing apply commands can change products, stock, or prices across multiple marketplaces. <br>
-Mitigation: Run preview or narrow-scope operations first, keep a rollback plan, and avoid production-wide apply commands until behavior is verified. <br>
-Risk: The artifact documents broad marketplace support while some platform API adapters are marked as TODO or mock behavior. <br>
-Mitigation: Validate each marketplace integration with non-production accounts and small datasets before relying on the skill for live operations. <br>
+## Use Case:
 
+External e-commerce sellers and operations teams use this skill to coordinate catalog, order, inventory, pricing, and reporting workflows across multiple marketplace platforms. It is intended for commercial marketplace operations where API credentials, business records, and external data uploads are reviewed before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lvjunjie-byte/crossborder-ecom-hub-lvjunjie) <br>
-- [README](artifact/README.md) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Example configuration](artifact/config.example.json) <br>
-- [TikTok Shop Open Platform](https://partner.tiktokshop.com/) <br>
-- [Amazon Selling Partner API](https://developer.amazon.com/sp-api) <br>
-- [Shopee Open Platform](https://open.shopee.com/) <br>
-- [Lazada Open Platform](https://open.lazada.com/) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, JSON, CSV] <br>
-**Output Format:** [CLI output, local configuration JSON, and optional exported JSON or CSV reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local marketplace and Feishu credentials, write local configuration under the user's home directory, and export reports to a user-selected path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence release.version and clawhub.json; package.json reports 1.0.0) <br>
+Risk: The skill handles marketplace API credentials and Feishu app credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege API keys, avoid passing secrets through command-line flags, and restrict permissions on ~/.crossborder-ecom/config.json.
+
+Risk: Bulk sync, inventory sync, and pricing apply commands can change platform records at operational scale.
+
+Mitigation: Run only after a dry-run, backup, and approval process confirms the target platforms, products, inventory records, and pricing strategy.
+
+Risk: Feishu upload and export commands can share or persist business data outside the source platforms.
+
+Mitigation: Confirm the destination Bitable, export path, access controls, and data classification before uploading or exporting records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lvjunjie-byte/skills/crossborder-ecom-hub-lvjunjie)
+- [TikTok Shop Open Platform](https://partner.tiktokshop.com/)
+- [Amazon Selling Partner API](https://developer.amazon.com/sp-api)
+- [Shopee Open Platform](https://open.shopee.com/)
+- [Lazada Open Platform](https://open.lazada.com/)
+- [Feishu Open Platform](https://open.feishu.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce CSV or JSON exports and upload selected business data to Feishu when the corresponding commands are executed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

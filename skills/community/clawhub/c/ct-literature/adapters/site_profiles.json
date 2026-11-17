@@ -1,0 +1,22 @@
+{
+  "_comment": "站点 PDF 解析 profile（数据文件）。规则知识人工归纳自 zotero/translators 仓库（仅参考其公开行为思路，未复制任何代码，无 AGPL 衍生）；实现见 pdf_download.py 的 _profile_for / _profile_for_doi / _resolve_landing_pdf（纯自研）。匹配顺序：① 按落地页域名（profiles 的键，支持子域）；② 域名不可用（如 open_access_url 为空）时按 DOI 前缀（doi_prefixes）。url_template 支持占位符 {doi}（裸 DOI）。未命中模板的站点走通用 landing 页解析（citation_pdf_url 等元标签 + PDF 锚点扫描）。",
+  "version": 2,
+  "updated": "2026-10-27",
+  "profiles": {
+    "frontiersin.org": {
+      "doi_prefixes": ["10.3389"],
+      "url_template": "https://www.frontiersin.org/articles/{doi}/pdf",
+      "note": "参考 Frontiers.js：PDF 恒为 {ARTICLE_BASEURL}/{doi}/pdf。该域在 _WAF_HOSTS，landing 页抓取大概率 403，故只用模板构造直链试一次。2026-10-27 实测：open_access_url 为空的 10.3389 条目（fimmu.2026.1961402 / fonc.2026.1923622）用此模板均返回 200 + %PDF，故 doi_prefixes 是必要匹配键。",
+      "landing_fetch": false
+    },
+    "europepmc.org": {
+      "doi_prefixes": [],
+      "note": "参考 Europe PMC.js：articleApi?query=...&resultType=core 返回 fullTextUrlList。ct-literature 已有 _epmc_lookup_pdf_url 原生通道（classify ①），此处无需模板，仅登记备注"
+    },
+    "www.mdpi.com": {
+      "doi_prefixes": ["10.3390"],
+      "landing_fetch": false,
+      "note": "MDPI 在 _ANTI_SCRAPE_HOSTS，无头客户端 landing 抓取会触发反爬。其 PDF 路径含 ISSN/卷/期，无法用纯 DOI 模板构造，故只登记 doi_prefixes 供识别、不设 url_template。若未来拿到直链可走 coze 服务端浏览器路径"
+    }
+  }
+}

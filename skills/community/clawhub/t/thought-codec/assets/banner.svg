@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="420" viewBox="0 0 1280 420" role="img" aria-labelledby="title desc">
+  <title id="title">ThoughtCodec Banner</title>
+  <desc id="desc">Flat engineering-style banner for ThoughtCodec with a negative-space codec aperture mark.</desc>
+  <rect width="1280" height="420" fill="#0f172a"/>
+  <g transform="translate(82 78)">
+    <rect width="112" height="112" rx="24" fill="#111827" stroke="#334155" stroke-width="2"/>
+    <g transform="scale(.21875)" fill="#67e8f9">
+      <path d="M128 112h256v72h-84l-44 40-44-40h-84z"/>
+      <path d="M128 400h256v-72h-84l-44-40-44 40h-84z"/>
+      <path d="M128 208 196 256l-68 48z"/>
+      <path d="M384 208 316 256l68 48z"/>
+    </g>
+    <path fill="#e0f2fe" d="M52 52h8v8h-8z"/>
+  </g>
+  <text x="230" y="132" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="800">ThoughtCodec</text>
+  <text x="232" y="184" fill="#67e8f9" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="600">思维编解码</text>
+  <text x="232" y="238" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="25">Compress experience into skills. Decompress intent into execution.</text>
+  <text x="232" y="283" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="21">A bilingual open-source skill library for Codex, Claude, and agentic AI workflows.</text>
+</svg>

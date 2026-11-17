@@ -1,0 +1,10 @@
+{
+  "version": "1.0.8",
+  "required_binaries": [
+    {
+      "name": "node",
+      "min_version": "14.0.0",
+      "reason": "纯 Node.js 实现（https/http/vm/zlib 内置模块，无第三方依赖）"
+    }
+  ]
+}

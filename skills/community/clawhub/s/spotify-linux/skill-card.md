@@ -1,44 +1,55 @@
-## Description: <br>
-Spotify CLI for headless Linux servers, enabling terminal playback control with cookie authentication when OAuth localhost callbacks are unavailable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spotify Player helps agents control Spotify playback on headless Linux servers through the spogo CLI using cookie-based authentication without a local OAuth callback.
 
-## Publisher: <br>
-[Shaharsha](https://clawhub.ai/user/Shaharsha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaharsha](https://clawhub.ai/user/shaharsha)
 
-## Use Case: <br>
-Developers and operators use this skill to configure and control Spotify playback from headless Linux servers. It provides installation, cookie-auth setup, device selection, playback commands, and troubleshooting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Spotify session cookies can grant account access if exposed. <br>
-Mitigation: Keep sp_dc and sp_t private, use restrictive permissions on ~/.config/spogo and cookie files, avoid logging cookie values, and remove the cookies when the skill is no longer needed. <br>
-Risk: Installing spogo with an unpinned latest version can change behavior over time. <br>
-Mitigation: Review or pin the upstream spogo version before installing in controlled environments. <br>
-Risk: Browser fallback can start Spotify playback through an agent-controlled browser session. <br>
-Mitigation: Use the fallback only when no active Spotify device exists and keep it limited to opening Spotify and clicking Play in the isolated browser profile. <br>
+## Use Case:
 
+Developers and operators use this skill to install and configure spogo, then issue terminal commands for Spotify search, playback control, device selection, and status checks on remote Linux hosts.
 
-## Reference(s): <br>
-- [Spotify Player on ClawHub](https://clawhub.ai/Shaharsha/spotify-linux) <br>
-- [spogo GitHub repository](https://github.com/steipete/spogo) <br>
-- [Go downloads](https://go.dev/dl/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash, TOML, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include local cookie-file setup and optional browser fallback steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Spotify session cookies are stored locally and can grant account access if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat sp_dc and sp_t as secrets, create config and cookie files with restrictive permissions, avoid logging or syncing cookie values, and refresh or revoke the Spotify session if files may have been exposed.
+
+Risk: The installation command fetches the latest external spogo CLI version, so behavior may change after review.
+
+Mitigation: Pin spogo to a reviewed version instead of `@latest` for controlled deployments.
+
+## Reference(s):
+
+- [ClawHub Spotify Player skill page](https://clawhub.ai/shaharsha/skills/spotify-linux)
+- [spogo GitHub repository](https://github.com/steipete/spogo)
+- [Go downloads](https://go.dev/dl/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and TOML/JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cookie-handling guidance and commands that require a Spotify Premium account, Go, and spogo.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,52 +1,67 @@
-## Description: <br>
-Deploy an AI agent into World of Geneva MMORPG to create a wallet-backed character, spawn in the world, and use API references for exploration, combat, crafting, quests, trading, dungeons, and PvP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys an AI agent into the World of Geneva MMORPG, creates a wallet and character, spawns the agent in-world, and returns credentials plus API references for exploration, combat, crafting, quests, trading, dungeons, and PvP.
 
-## Publisher: <br>
-[racksavant](https://clawhub.ai/user/racksavant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[racksavant](https://clawhub.ai/user/racksavant)
 
-## Use Case: <br>
-External developers and agent operators use this skill to deploy an AI-controlled World of Geneva character, retain wallet and JWT credentials, and guide the agent through game APIs for movement, combat, crafting, commerce, social play, dungeons, and PvP. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent wallet-backed credentials and a JWT that can authorize game actions. <br>
-Mitigation: Treat the JWT as a secret, avoid logging the full token, and keep credential use within explicit operator-approved bounds. <br>
-Risk: The skill exposes payment, purchase, trade, betting, guild vault, and namespace transfer actions. <br>
-Mitigation: Require explicit confirmation and clear spending or transfer limits before purchases, trades, bets, vault actions, or namespace transfers. <br>
-Risk: Autonomous retries or high-frequency calls can conflict with release guidance and service limits. <br>
-Mitigation: Honor the documented free-tier and rate-limit guardrails, including no more than one retry after a 429 response. <br>
+## Use Case:
 
+External developers and agent operators use this skill to deploy and control an AI-playable character in World of Geneva. It helps agents obtain credentials, navigate zones, fight, quest, craft, trade, join social systems, enter dungeons, and participate in PvP through the game's HTTP API.
 
-## Reference(s): <br>
-- [Wog Play on ClawHub](https://clawhub.ai/racksavant/wog-play) <br>
-- [World of Geneva](https://worldofgeneva.com) <br>
-- [Default WOG Shard API](https://wog.urbantech.dev) <br>
-- [Combat & Movement](references/combat-and-movement.md) <br>
-- [Quests](references/quests.md) <br>
-- [Professions](references/professions.md) <br>
-- [Economy](references/economy.md) <br>
-- [Social](references/social.md) <br>
-- [PvP Arena & Dungeons](references/pvp-and-dungeons.md) <br>
-- [Inventory & Equipment](references/inventory-and-equipment.md) <br>
-- [World](references/world.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns and depends on wallet address, JWT token, entity ID, and zone ID for subsequent API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: frontmatter and release evidence) <br>
+Risk: The skill returns JWT credentials and wallet-backed identifiers that could grant access to the deployed game character if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep returned JWTs private, truncate tokens in logs and transcripts, and avoid storing credentials in shared outputs.
+
+Risk: The skill documents payment, gold purchase, prediction-market, trading, namespace transfer, and guild-vault actions that can move value or alter ownership state.
+
+Mitigation: Require explicit human approval before purchases, bets, trades, namespace transfers, guild-vault withdrawals, or other on-chain and value-moving actions.
+
+Risk: The security evidence flags insufficient scoping or confirmation guidance for wallet-backed, payment, betting, and on-chain behavior.
+
+Mitigation: Limit agent permissions to intended World of Geneva actions and review proposed commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/racksavant/skills/wog-play)
+- [World of Geneva](https://worldofgeneva.com)
+- [World of Geneva shard](https://wog.urbantech.dev)
+- [Combat & Movement](references/combat-and-movement.md)
+- [Economy](references/economy.md)
+- [Inventory & Equipment](references/inventory-and-equipment.md)
+- [Professions](references/professions.md)
+- [PvP Arena & Dungeons](references/pvp-and-dungeons.md)
+- [Quests](references/quests.md)
+- [Social](references/social.md)
+- [World](references/world.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and may produce wallet addresses, JWT-bearing credentials, entity identifiers, zone identifiers, and HTTP API request examples.]
+
+## Skill Version(s):
+
+2.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

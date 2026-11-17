@@ -1,38 +1,53 @@
-## Description: <br>
-Provides utility micro-skills for EVM gas snapshots, transaction explanation, health checks, intel manifests, and delta update workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aegis Intel Stack provides pre- and post-execution utility micro-skills for EVM gas snapshots, transaction explanation, intel manifests, and delta update triggers.
 
-## Publisher: <br>
-[kankinku](https://clawhub.ai/user/kankinku) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kankinku](https://clawhub.ai/user/kankinku)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run or call a local Aegis utility stack for EVM gas, transaction, manifest, and delta update analysis workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs users to install dependencies, copy environment configuration, build code, and run a local Node.js service from an external aegis-suite checkout that is not included in the reviewed artifact. <br>
-Mitigation: Review package.json, lockfiles, npm scripts, environment requirements, and the local server implementation before running the commands, and execute them only in a trusted project. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kankinku/aegis-intel-stack) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers and agents can use this skill bundle to run local utility calls for EVM gas and transaction workflows, including health checks, gas snapshots, transaction explanation, manifest generation, and delta update triggers.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local run commands, API call examples, and generated documentation output paths.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs users to install dependencies and run package scripts in a referenced aegis-suite project that is not included in the artifact.
+
+Mitigation: Inspect the trusted project source and package scripts before running them, use a disposable local environment, and avoid placing real secrets in the copied .env unless the underlying project is trusted.
+
+Risk: Gas and transaction guidance can become inaccurate when network conditions or transaction context change.
+
+Mitigation: Treat outputs as advisory and verify current chain state, gas quotes, and transaction details before taking action.
+
+## Reference(s):
+
+- [Aegis Intel Stack on ClawHub](https://clawhub.ai/kankinku/skills/aegis-intel-stack)
+- [Publisher profile: kankinku](https://clawhub.ai/user/kankinku)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local utility-server workflow with API call examples and launch automation outputs.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

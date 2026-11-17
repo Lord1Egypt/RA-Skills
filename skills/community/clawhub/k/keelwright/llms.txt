@@ -1,0 +1,62 @@
+# llms.txt — keelwright
+
+## What is this?
+
+keelwright is a skill (prompt-based engine) that wraps AI coding agents with 28
+machine-enforced safety checks. It is designed for non-programmers who use AI to
+write code but cannot review it line by line.
+
+## What problems does it solve?
+
+- SQL injection in AI-generated database queries
+- Hardcoded API keys and passwords in source code
+- Slopsquatting: hallucinated package names that install malware
+- Reward hacking: AI deletes tests to make builds pass
+- Doom loops: infinite agent loops burning tokens and money
+- False reports: AI claims success without running verification
+- Over-engineering: unnecessary abstraction layers
+- Tech debt: spaghetti code, dead code, circular dependencies
+- Context rot: AI forgets decisions from earlier iterations
+- Missing authentication on endpoints
+- Business logic bypasses in payment/auth flows
+- Regression: fixes that break other things
+
+## Architecture
+
+The skill has 5 layers:
+- Layer 0: The human (goals, acceptance criteria, plain-language reports)
+- Layer 1: Control (autonomy dial, triage, phase 1-2, loop design)
+- Layer 2: Build loop (implement → backpressure gates → security R1-R12 → verification → match loop → commit)
+- Layer 3: Perimeter supervision (circuit-breaker, stability, self-learning, reward-hacking guard)
+- Layer 4: Outer operational cycle (observe → analyze → fix → validate → learn)
+
+## Key files
+
+- `SKILL.md` — the main skill file (load this)
+- `README.md` — GitHub landing page with KDS scoreboard
+- `assets/architecture.md` — source of truth for all 28 risks
+- `assets/architecture.html` — visual architecture diagram
+- `references/security-gates.md` — R1-R12 implementation patterns
+- `references/circuit-breaker.md` — loop limits and budgets
+- `references/loop-audit-checklist.md` — 7-principle audit for existing loops
+- `references/provenance.md` — license and source credits
+- `qa-results/README.md` — KDS scoreboard with real A/B test data
+- `templates/qa-prompt-final.md` — autonomous QA prompt
+
+## Keelwright Score (KDS)
+
+KDS measures how much the skill changes a model's behavior:
+- KDS = Execution Rate × Discrimination Rate / 100
+- Scale: 0 (can't run tests) to 100 (skill changes all behaviors)
+- Best result: Laguna S 2.1 = KDS 83 (SWE-bench 78.5%)
+
+## License
+
+MIT-0 (MIT No Attribution) — free for commercial use WITHOUT attribution.
+See `LICENSE` for the full text.
+
+## Links
+
+- Repository: https://github.com/ratingtesting/keelwright
+- Architecture diagram: https://github.com/ratingtesting/keelwright/blob/main/assets/architecture.png
+- QA results: https://github.com/ratingtesting/keelwright/tree/main/qa-results

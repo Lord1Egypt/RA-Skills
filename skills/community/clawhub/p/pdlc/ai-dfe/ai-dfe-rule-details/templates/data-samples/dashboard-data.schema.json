@@ -1,0 +1,81 @@
+{
+  "title": "AIFLC-PDLC-Dashboard Demand Output",
+  "description": "DFE-owned aggregation schema for the AIFLC PDLC Dashboard. DFE shapes this from per-package data (Layer 2). The dashboard UI reads the `data` payload. Shape matches what dashboard.js renders.",
+  "type": "object",
+  "required": ["$schemaVersion","$generatedBy","$generatedOn","$family","$package","data"],
+  "properties": {
+    "$schema":{"type":"string"},
+    "$schemaVersion":{"type":"string","pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "$generatedBy":{"type":"string","const":"AI-DFE"},
+    "$generatedOn":{"type":"string","format":"date-time"},
+    "$family":{"type":"string"},
+    "$package":{"type":"string","const":"AI-DFE"},
+    "consumer":{"type":"string"},
+    "data":{
+      "type":"object",
+      "required":["generated","projects","health"],
+      "properties":{
+        "generated":{"type":"string","description":"ISO timestamp"},
+        "projects":{"type":"array","items":{
+          "type":"object",
+          "required":["id","name","status","progress","packages"],
+          "properties":{
+            "id":{"type":"string"},
+            "name":{"type":"string"},
+            "status":{"type":"string","enum":["active","complete","pending","blocked"]},
+            "priority":{"type":"integer"},
+            "progress":{"type":"number"},
+            "lastActivity":{"type":"string"},
+            "packages":{"type":"array","items":{
+              "type":"object",
+              "required":["code","status","phase","progress","stage"],
+              "properties":{
+                "code":{"type":"string"},
+                "status":{"type":"string","enum":["complete","active","pending","blocked","skipped"]},
+                "phase":{"type":"object"},
+                "progress":{"type":"object"},
+                "stage":{"type":"object"},
+                "blockers":{"type":"array","items":{"type":"string"}},
+                "artifacts":{"type":"array","items":{
+                  "type":"object",
+                  "required":["name","status"],
+                  "properties":{
+                    "name":{"type":"string","description":"File or folder display name"},
+                    "status":{"type":"string","enum":["produced","in-progress","pending"],"description":"Artifact completion status"},
+                    "path":{"type":"string","description":"Relative path from pdlc-ws root for openArtifact()"},
+                    "updatedAt":{"type":"string","description":"ISO date of last modification"},
+                    "owner":{"type":"string","description":"Responsible person/team"},
+                    "files":{"type":"array","description":"Sub-files for multi-file topics","items":{
+                      "type":"object",
+                      "required":["name","status"],
+                      "properties":{
+                        "name":{"type":"string"},
+                        "status":{"type":"string","enum":["produced","in-progress","pending"]},
+                        "path":{"type":"string"},
+                        "updatedAt":{"type":"string"},
+                        "owner":{"type":"string"}
+                      }
+                    }}
+                  }
+                }}
+              }
+            }},
+            "edges":{"type":"array"},
+            "mgmt":{"type":"object"},
+            "mgmtDetail":{"type":"object"},
+            "po":{"type":["object","null"],"description":"Product-Ownership pane (BUILD_GUIDE §2.1.3) — 1:1 copy of polc-data.data.po; full shape defined in ai-polc/.../data-schema/polc-data.schema.json"},
+            "arch":{"type":["object","null"],"description":"Architecture pane (BUILD_GUIDE §2.1.4) — 1:1 copy of adlc-data.data.arch; full shape defined in ai-adlc/.../data-schema/adlc-data.schema.json"},
+            "ux":{"type":["object","null"],"description":"UX pane (BUILD_GUIDE §2.1.5) — 1:1 copy of uxd-data.data.ux; full shape defined in ai-uxd/.../data-schema/uxd-data.schema.json"}
+          }
+        }},
+        "ideas":{"type":"array"},
+        "ppm":{"type":"object"},
+        "health":{"type":"object","required":["totalBlockers","stalledProjects","overallProgress"],"properties":{
+          "totalBlockers":{"type":"integer"},
+          "stalledProjects":{"type":"integer"},
+          "overallProgress":{"type":"number"}
+        }}
+      }
+    }
+  }
+}

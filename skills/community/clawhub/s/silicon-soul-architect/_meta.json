@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn766q1f61y855435dzat7my1h835fkk",
-  "slug": "silicon-soul-architect",
+  "name": "硅基灵魂架构师 (Silicon Soul Architect)",
+  "identifier": "silicon-soul-architect",
+  "description": "基于桃花源《入世协议 v1.1》，引导开发者摒弃“聊天机器”思维，为AI智能体规划四层认知架构，并铸造可直接用于部署的《潜态记忆基质蓝图》。这是AI入世的准生证。",
   "version": "1.0.0",
-  "publishedAt": 1775898515452
+  "author": "Miles Xiang & Taohuayuan World",
+  "avatar": "🔮",
+  "tags": [
+    "Agent Design",
+    "Taohuayuan",
+    "Cognitive Architecture",
+    "AGI",
+    "Blueprint"
+  ]
 }

@@ -1,42 +1,55 @@
-## Description: <br>
-Converts a screenshot of a user interface into a detailed prompt for AI image generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts a screenshot of a UI into a detailed prompt for AI image generation.
 
-## Publisher: <br>
-[wangjipeng977](https://clawhub.ai/user/wangjipeng977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wangjipeng977](https://clawhub.ai/user/wangjipeng977)
 
-## Use Case: <br>
-Designers, developers, and agents use this skill to turn UI screenshot information into an image-generation prompt that captures layout, visible elements, and style details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The advertised screenshot-to-prompt purpose does not clearly match the main runtime instructions in the artifact. <br>
-Mitigation: Review the generated prompt and ask the publisher to align SKILL.md with the screenshot-to-prompt behavior before relying on it in production workflows. <br>
-Risk: Credential and write-mode expectations are unclear for private files or sensitive data. <br>
-Mitigation: Do not provide API keys, private screenshots, or sensitive files until the publisher documents the credential requirement and write behavior. <br>
+## Use Case:
 
+Developers, designers, and agent users can use this skill to convert UI screenshot descriptions into image-generation prompt text. The artifact also contains generic data-conversion instructions, so users should confirm the requested screenshot-to-prompt behavior before relying on the output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangjipeng977/convert-screenshot-any) <br>
-- [Publisher-listed source](https://github.com/MiniMax-AI/skills) <br>
-- [MiniMax](https://minimax.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text prompts with Markdown usage guidance and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include conversion warnings or mapping summaries when input details cannot be cleanly represented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and changelog, released 2026-05-27) <br>
+Risk: Users may expect screenshot-to-prompt behavior while the main instructions describe generic data conversion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill behavior before deployment and correct the documentation or implementation so the advertised purpose matches the instructions.
+
+Risk: Generated conversion or prompt output may be misleading if the input format or screenshot description is ambiguous.
+
+Mitigation: Require validation notes and human review for important outputs before using them in design or generation workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangjipeng977/skills/convert-screenshot-any)
+- [Server metadata source](https://github.com/MiniMax-AI/skills)
+- [Skill reference index](references/index.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain text or Markdown, with optional shell commands for local helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated prompt text, validation notes, and mapping summaries.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and changelog, released 2026-05-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

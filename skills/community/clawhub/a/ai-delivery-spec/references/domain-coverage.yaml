@@ -1,0 +1,481 @@
+schema_version: 5.1.1
+# Retrieval aliases only; a match never establishes project applicability.
+search_aliases:
+  台账: [ledger]
+  报销: [reimbursement, expense, expense claim, expense workflow]
+  里程: [mileage]
+  里程碑: [milestone]
+  活跃: [active customer, active enterprise, active user]
+  活跃客户: [active customer]
+  活跃企业: [active enterprise]
+  活跃用户: [active user]
+  合同: [contract]
+  商机: [opportunity, opportunities]
+  客户: [customer]
+  支付: [payment]
+  回款: [payment, collection]
+  审核: [review]
+  审批: [approval]
+  完成率: [completion rate, completion]
+  置信度: [confidence]
+  补考: [retake, resit]
+  高校: [university, college, campus]
+  学籍: [student status, enrollment]
+  教育数据: [education data]
+  数据分类分级: [data classification, classification, grading]
+  交通: [transport, traffic]
+  道路运输: [road transport]
+  继续教育: [continuing education]
+  培训档案: [training record, training, archive]
+  安全考核: [safety assessment, safety examination]
+  医院: [hospital]
+  电子病历: [electronic medical record, EMR]
+  病历: [medical record, EMR]
+  医疗数据: [health data, medical data]
+  医疗: [medical, clinical]
+  互认: [mutual recognition]
+  权限: [permission, access control]
+  审计: [audit]
+  隐私: [privacy]
+  个人信息: [personal information]
+  流程: [workflow]
+  办公: [office, OA]
+  报表: [report]
+  指标: [metric, indicator]
+  数据权威: [authority, source of truth]
+  分母: [denominator]
+  血缘: [lineage]
+  人工确认: [human confirmation, human approval, human gate, human-gate]
+  工具授权: [tool authorization, tool permission, tool credentials]
+  视频: [video]
+  转写: [transcription, transcript]
+  时间码: [timecode, time code, timestamp]
+generated_from: domain-pack metadata and evaluation evidence
+evaluation_index: maintainer/evals/domain-fixtures.yaml
+claim_policy:
+  rule: Domain assurance has explicit sourced, contract, behavioral, expert and audit levels.
+  practice_rule: Production practice proves real delivery use but does not promote reusable-pack maturity.
+  contract_tested_requires:
+    - sourced knowledge
+    - passed deterministic contract evaluation
+  behavior_validated_requires:
+    - contract-tested maturity
+    - passed fresh-agent behavioral evaluation
+  expert_reviewed_requires:
+    - behavior-validated maturity
+    - accountable expert review
+    - project-sampled scenarios
+  audited_requires:
+    - expert-reviewed requirements
+    - independent audit evidence
+  simulated_review_is_expert_review: false
+
+domains:
+  - domain_id: traffic
+    name: Traffic Safety and Road Transport SaaS
+    knowledge_file: references/domains/domain-traffic.md
+    applies_when: [road transport, traffic safety, regulator supervision, transport enterprise]
+    does_not_apply_when: [generic workflow with no transport object]
+    coverage:
+      knowledge: sourced
+      scenarios: project_sampled
+      contract_eval: passed
+      behavioral_eval: partial
+      expert_review: not_reviewed
+    maturity: contract_tested
+    practice_status: production_practiced
+    evidence:
+      - id: EV-DOM-TRAFFIC-PRACTICE
+        kind: owner_attestation
+        location: maintainer/evals/evidence/production-practice-attestation-2026-07-12.yaml
+        status: passed
+        owner: project and skill maintainer
+      - id: EV-DOM-TRAFFIC-SOURCES
+        kind: official_source
+        location: references/domains/domain-sources.yaml#KS-TRAFFIC-INSPECTION-2025
+        status: current
+        owner: domain maintainer
+      - id: EV-DOM-TRAFFIC-KNOWLEDGE
+        kind: project_sample
+        location: maintainer/examples/traffic-regulatory-change-v5
+        status: current
+        owner: domain maintainer
+      - id: EV-DOM-TRAFFIC-CONTRACT
+        kind: contract_eval
+        location: maintainer/evals/domain-fixtures.yaml#FX-TRAFFIC-RISK-CLOSE
+        status: passed
+        owner: domain maintainer
+      - id: EV-DOM-TRAFFIC-STAGE-SEMANTIC
+        kind: behavioral_eval
+        location: maintainer/evals/evidence/v553-domain-review.md
+        status: current
+        owner: independent agents and parent semantic reviewer
+    known_gaps:
+      - 2026-10-11 bounded synthetic stage review is not full generation, browser, expert or production validation; maturity remains contract_tested.
+      - National source coverage was refreshed through 2026-08-10, including separate current passenger and dangerous-goods safety-management baselines; provincial/local implementation, project procurement and customer source-system rules remain project-specific.
+      - Nine-industry depth has not been behaviorally evaluated.
+    last_verified_at: "2026-08-29T00:00:00+08:00"
+    maintainer: ai-delivery-spec maintainers
+    production_claim: prohibited
+
+  - domain_id: crm
+    name: CRM and Customer Response
+    knowledge_file: references/domains/domain-crm.md
+    applies_when: [lead, opportunity, customer, contract, payment, ticket, renewal]
+    does_not_apply_when: [generic contact list without customer lifecycle]
+    coverage:
+      knowledge: sourced
+      scenarios: mocked
+      contract_eval: passed
+      behavioral_eval: partial
+      expert_review: not_reviewed
+    maturity: contract_tested
+    practice_status: production_practiced
+    evidence:
+      - id: EV-DOM-CRM-PRACTICE
+        kind: owner_attestation
+        location: maintainer/evals/evidence/production-practice-attestation-2026-07-12.yaml
+        status: passed
+        owner: project and skill maintainer
+      - id: EV-DOM-CRM-SOURCES
+        kind: official_source
+        location: references/domains/domain-sources.yaml#KS-CRM-COMPLAINT-10002
+        status: current
+        owner: domain maintainer
+      - id: EV-DOM-CRM-KNOWLEDGE
+        kind: mock_scenario
+        location: maintainer/evals/domain-fixtures.yaml#FX-CRM-LEAD-REVENUE
+        status: current
+        owner: domain maintainer
+      - id: EV-DOM-CRM-CONTRACT
+        kind: contract_eval
+        location: maintainer/evals/domain-fixtures.yaml#FX-CRM-LEAD-REVENUE
+        status: passed
+        owner: domain maintainer
+      - id: EV-DOM-CRM-STAGE-SEMANTIC
+        kind: behavioral_eval
+        location: maintainer/evals/evidence/v553-domain-review.md
+        status: current
+        owner: independent agents and parent semantic reviewer
+    known_gaps:
+      - 2026-10-11 bounded synthetic stage review is not full generation, browser, expert or production validation; maturity remains contract_tested.
+      - CPQ, complex account hierarchy, customer success, and partner conflict need deeper evaluation.
+      - Current fixtures are evaluation inputs, not production evidence; Microsoft, Salesforce and HubSpot sources are vendor product patterns, not independent outcome proof.
+    last_verified_at: "2026-08-29T00:00:00+08:00"
+    maintainer: ai-delivery-spec maintainers
+    production_claim: prohibited
+
+  - domain_id: education-it
+    name: Education IT
+    knowledge_file: references/domains/domain-education-it.md
+    applies_when: [academic affairs, student affairs, course, training, learning, assessment]
+    does_not_apply_when: [generic content publishing with no learner lifecycle]
+    coverage:
+      knowledge: sourced
+      scenarios: project_sampled
+      contract_eval: passed
+      behavioral_eval: partial
+      expert_review: not_reviewed
+    maturity: contract_tested
+    practice_status: production_practiced
+    evidence:
+      - id: EV-DOM-EDU-PRACTICE
+        kind: owner_attestation
+        location: maintainer/evals/evidence/production-practice-attestation-2026-07-12.yaml
+        status: passed
+        owner: project and skill maintainer
+      - id: EV-DOM-EDU-SOURCES
+        kind: official_source
+        location: references/domains/domain-sources.yaml#KS-EDU-CLASSIFICATION-0661
+        status: current
+        owner: domain maintainer
+      - id: EV-DOM-EDU-KNOWLEDGE
+        kind: project_sample
+        location: maintainer/examples/publishing-learning-v5
+        status: current
+        owner: domain maintainer
+      - id: EV-DOM-EDU-CONTRACT
+        kind: contract_eval
+        location: maintainer/evals/domain-fixtures.yaml#FX-EDU-COURSE-VERSION
+        status: passed
+        owner: domain maintainer
+      - id: EV-DOM-EDUCATION-IT-STAGE-SEMANTIC
+        kind: behavioral_eval
+        location: maintainer/evals/evidence/v553-domain-review.md
+        status: current
+        owner: independent agents and parent semantic reviewer
+    known_gaps:
+      - 2026-10-11 bounded synthetic stage review is not full generation, browser, expert or production validation; maturity remains contract_tested.
+      - Current knowledge is higher-education heavy.
+      - Vocational education, enterprise training, one-book-one-code, channel authorization, and content rights require deeper coverage.
+      - The exact national term “AI教育三进战略” was not verified from a primary source and must remain an unknown until its issuer/document is supplied.
+    last_verified_at: "2026-08-29T00:00:00+08:00"
+    maintainer: ai-delivery-spec maintainers
+    production_claim: prohibited
+
+  - domain_id: oa
+    name: Collaborative Office and OA
+    knowledge_file: references/domains/domain-oa.md
+    applies_when: [approval, official document, meeting, supervision, office knowledge]
+    does_not_apply_when: [single approval action with no OA object or lifecycle]
+    coverage:
+      knowledge: sourced
+      scenarios: mocked
+      contract_eval: passed
+      behavioral_eval: partial
+      expert_review: not_reviewed
+    maturity: contract_tested
+    practice_status: knowledge_only
+    evidence:
+      - id: EV-DOM-OA-SOURCES
+        kind: official_source
+        location: references/domains/domain-sources.yaml#KS-OA-ESIGN
+        status: current
+        owner: domain maintainer
+      - id: EV-DOM-OA-OFFICIAL-DOC
+        kind: official_source
+        location: references/domains/domain-sources.yaml#KS-OA-OFFICIAL-DOC
+        status: current
+        owner: domain maintainer
+      - id: EV-DOM-OA-ARCHIVE
+        kind: official_source
+        location: references/domains/domain-sources.yaml#KS-OA-ARCHIVE-39362
+        status: current
+        owner: domain maintainer
+      - id: EV-DOM-OA-VENDOR-PATTERNS
+        kind: official_source
+        location: references/domains/domain-sources.yaml#KS-OA-WEAVER-WHITEPAPER
+        status: current
+        owner: domain maintainer
+      - id: EV-DOM-OA-OPEN-COMPONENTS
+        kind: official_source
+        location: references/domains/domain-sources.yaml#KS-OA-DINGTALK-OSS
+        status: current
+        owner: domain maintainer
+      - id: EV-DOM-OA-KNOWLEDGE
+        kind: mock_scenario
+        location: maintainer/evals/domain-fixtures.yaml#FX-OA-APPROVAL-RECALL
+        status: current
+        owner: domain maintainer
+      - id: EV-DOM-OA-CONTRACT
+        kind: contract_eval
+        location: maintainer/evals/domain-fixtures.yaml#FX-OA-APPROVAL-RECALL
+        status: passed
+        owner: domain maintainer
+      - id: EV-DOM-OA-STAGE-SEMANTIC
+        kind: behavioral_eval
+        location: maintainer/evals/evidence/v553-domain-review.md
+        status: current
+        owner: independent agents and parent semantic reviewer
+    known_gaps:
+      - 2026-10-11 bounded synthetic stage review is not full generation, browser, expert or production validation; maturity remains contract_tested.
+      - Vendor whitepapers and cases are product/scenario evidence, not independent outcome proof or project truth.
+      - DingTalk and Feishu public repositories validate exact SDK/demo/integration components only, not core-product open-source status.
+      - OA pack still needs fresh-agent behavioral runs and accountable OA practitioner review before behavior_validated or expert_reviewed promotion.
+      - The 2026 archive standard project guide is change-watch evidence, not a published standard.
+    last_verified_at: "2026-08-29T00:00:00+08:00"
+    maintainer: ai-delivery-spec maintainers
+    production_claim: prohibited
+
+  - domain_id: medical-hospital-it
+    name: Medical and Hospital IT
+    knowledge_file: references/domains/domain-medical-hospital-it.md
+    applies_when: [patient, encounter, medical record, order, report, clinical workflow]
+    does_not_apply_when: [generic appointment or CRM flow without clinical decisions]
+    coverage:
+      knowledge: sourced
+      scenarios: mocked
+      contract_eval: passed
+      behavioral_eval: partial
+      expert_review: not_reviewed
+    maturity: contract_tested
+    practice_status: knowledge_only
+    evidence:
+      - id: EV-DOM-MEDICAL-SOURCES
+        kind: official_source
+        location: references/domains/domain-sources.yaml#KS-MEDICAL-EMR-2025
+        status: current
+        owner: domain maintainer
+      - id: EV-DOM-MEDICAL-KNOWLEDGE
+        kind: mock_scenario
+        location: maintainer/evals/domain-fixtures.yaml#FX-MEDICAL-ORDER-CANCEL
+        status: current
+        owner: domain maintainer
+      - id: EV-DOM-MEDICAL-CONTRACT
+        kind: contract_eval
+        location: maintainer/evals/domain-fixtures.yaml#FX-MEDICAL-ORDER-CANCEL
+        status: passed
+        owner: domain maintainer
+      - id: EV-DOM-MEDICAL-HOSPITAL-IT-STAGE-SEMANTIC
+        kind: behavioral_eval
+        location: maintainer/evals/evidence/v553-domain-review.md
+        status: current
+        owner: independent agents and parent semantic reviewer
+    known_gaps:
+      - 2026-10-11 bounded synthetic stage review is not full generation, browser, expert or production validation; maturity remains contract_tested.
+      - High-risk clinical, legal, interoperability, privacy, and local-policy assertions require accountable review.
+      - No production claim is allowed from simulated scenarios.
+      - A consolidated “数智医院” evaluation transition has not been verified in a publicly accessible NHC replacement standard; preserve it as change watch only.
+    last_verified_at: "2026-08-29T00:00:00+08:00"
+    maintainer: ai-delivery-spec maintainers
+    production_claim: prohibited
+
+  - domain_id: data-product
+    name: AI and Data Product System
+    knowledge_file: references/domains/domain-data-mart.md
+    applies_when: [data registration, authorized operation, trusted data space, data product, high-quality dataset, data labeling, training data, evaluation data, preference data, data source, metric, lineage, semantic layer, BI, ChatBI, Data Agent]
+    does_not_apply_when: [simple transactional form with no governed data product]
+    coverage:
+      knowledge: sourced
+      scenarios: mocked
+      contract_eval: passed
+      behavioral_eval: partial
+      expert_review: not_reviewed
+    maturity: contract_tested
+    practice_status: production_practiced
+    evidence:
+      - id: EV-DOM-DATA-PRACTICE
+        kind: owner_attestation
+        location: maintainer/evals/evidence/production-practice-attestation-2026-07-12.yaml
+        status: passed
+        owner: project and skill maintainer
+      - id: EV-DOM-DATA-SOURCES
+        kind: official_source
+        location: references/domains/domain-sources.yaml#KS-DATA-PROPERTY-REGISTER-2026
+        status: current
+        owner: domain maintainer
+      - id: EV-DOM-DATA-KNOWLEDGE
+        kind: mock_scenario
+        location: references/domains/domain-data-mart.md
+        status: current
+        owner: domain maintainer
+      - id: EV-DOM-DATA-CONTRACT
+        kind: contract_eval
+        location: maintainer/evals/domain-fixtures.yaml#FX-DATA-METRIC-VERSION
+        status: passed
+        owner: domain maintainer
+      - id: EV-DOM-DATA-PRODUCT-STAGE-SEMANTIC
+        kind: behavioral_eval
+        location: maintainer/evals/evidence/v553-domain-review.md
+        status: current
+        owner: independent agents and parent semantic reviewer
+    known_gaps:
+      - 2026-10-11 bounded synthetic stage review is not full generation, browser, expert or production validation; maturity remains contract_tested.
+      - Formal provenance, digital-contract and OpenLineage mappings need executable examples.
+      - Regional implementation details, sector rules, price/settlement, accounting judgment and cross-border applicability remain project evidence.
+      - Fresh-agent behavior, data-domain expert review and production correctness are not proven by the expanded knowledge or static contracts.
+      - Official platform, typical-case and sandbox evidence describes implementation patterns, not universal architecture or outcome proof.
+    last_verified_at: "2026-08-29T00:00:00+08:00"
+    maintainer: ai-delivery-spec maintainers
+    production_claim: prohibited
+
+  - domain_id: ai-native
+    name: AI Native and Agentic Systems
+    knowledge_file: references/domains/domain-ai-native.md
+    applies_when: [agent, tool calling, model decision, AI writeback, memory, evaluation]
+    does_not_apply_when: [AI is only used to write documents or code]
+    coverage:
+      knowledge: sourced
+      scenarios: mocked
+      contract_eval: passed
+      behavioral_eval: partial
+      expert_review: not_reviewed
+    maturity: contract_tested
+    practice_status: production_practiced
+    evidence:
+      - id: EV-DOM-AI-PRACTICE
+        kind: owner_attestation
+        location: maintainer/evals/evidence/production-practice-attestation-2026-07-12.yaml
+        status: passed
+        owner: project and skill maintainer
+      - id: EV-DOM-AI-SOURCES
+        kind: official_source
+        location: references/domains/domain-sources.yaml#KS-AI-ISO-42001
+        status: current
+        owner: domain maintainer
+      - id: EV-DOM-AI-KNOWLEDGE
+        kind: mock_scenario
+        location: references/domains/domain-ai-native.md
+        status: current
+        owner: domain maintainer
+      - id: EV-DOM-AI-CONTRACT
+        kind: contract_eval
+        location: maintainer/evals/domain-fixtures.yaml#FX-AI-TOOL-DENIAL
+        status: passed
+        owner: domain maintainer
+      - id: EV-DOM-AI-NATIVE-STAGE-SEMANTIC
+        kind: behavioral_eval
+        location: maintainer/evals/evidence/v553-domain-review.md
+        status: current
+        owner: independent agents and parent semantic reviewer
+    known_gaps:
+      - 2026-10-11 bounded synthetic stage review is not full generation, browser, expert or production validation; maturity remains contract_tested.
+      - Agent delegation, identity, memory governance, prompt injection, red-team, GB/Z 185 profiles and MCP 2026-07-28 migration need executable evaluations.
+      - NIST initiatives and China agent-security standard projects are change-watch sources, not final binding standards.
+    last_verified_at: "2026-08-29T00:00:00+08:00"
+    maintainer: ai-delivery-spec maintainers
+    production_claim: prohibited
+
+  - domain_id: media-knowledge
+    name: Media Assets and Multimodal Knowledge
+    knowledge_file: references/domains/domain-media-knowledge.md
+    applies_when: [media asset, video archive, audio archive, live stream, multimodal knowledge, video search, moment retrieval, media RAG, AI clipping]
+    does_not_apply_when: [decorative media upload with no managed lifecycle or semantic retrieval]
+    coverage:
+      knowledge: sourced
+      scenarios: mocked
+      contract_eval: passed
+      behavioral_eval: partial
+      expert_review: not_reviewed
+    maturity: contract_tested
+    practice_status: knowledge_only
+    evidence:
+      - id: EV-DOM-MEDIA-SOURCES
+        kind: official_source
+        location: references/domains/domain-sources.yaml#KS-MEDIA-IPTC-VMH-1.7
+        status: current
+        owner: domain maintainer
+      - id: EV-DOM-MEDIA-KNOWLEDGE
+        kind: mock_scenario
+        location: references/domains/domain-media-knowledge.md
+        status: current
+        owner: domain maintainer
+      - id: EV-DOM-MEDIA-CONTRACT
+        kind: contract_eval
+        location: maintainer/evals/domain-fixtures.yaml#FX-MEDIA-MOMENT-AUTHORIZATION
+        status: passed
+        owner: domain maintainer
+      - id: EV-DOM-MEDIA-KNOWLEDGE-STAGE-SEMANTIC
+        kind: behavioral_eval
+        location: maintainer/evals/evidence/v553-domain-review.md
+        status: current
+        owner: independent agents and parent semantic reviewer
+    known_gaps:
+      - 2026-10-11 bounded synthetic stage review is not full generation, browser, expert or production validation; maturity remains contract_tested.
+      - Fresh-agent behavior and accountable media-archivist, rights and privacy expert review have not run.
+      - Project contracts, source systems, jurisdictions, languages, media corpus and downstream use remain project evidence.
+      - Vendor product patterns do not prove project recall, precision, localization, latency, cost, safety or production suitability.
+      - Static contracts do not prove preservation fidelity, legal rights, identity, authenticity or truth.
+    last_verified_at: "2026-08-29T00:00:00+08:00"
+    maintainer: ai-delivery-spec maintainers
+    production_claim: prohibited
+
+fallback:
+  mode: project_domain_capsule
+  rule: Missing a dedicated domain pack never blocks generic delivery.
+  generic_delivery_requires_capsule: false
+  required_outputs_apply_when: An optional machine-readable project domain capsule is selected; use only the relevant questions in ordinary generic delivery.
+  required_outputs:
+    - vocabulary
+    - entities
+    - state_machines
+    - workflows
+    - policies
+    - source_register
+    - unknowns
+    - scenario_fixtures
+  evidence_limit: Cross-industry mocks exercise general requirement reasoning; they do not create sourced sector knowledge, accountable expert coverage or regulatory applicability.
+  assertion_policy:
+    verified: attributable to an authoritative or accountable source
+    inferred: plausible but awaiting owner confirmation
+    unknown: missing information changes scope, safety, compliance, data, or acceptance

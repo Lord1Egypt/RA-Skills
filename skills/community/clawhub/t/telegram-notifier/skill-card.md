@@ -1,45 +1,59 @@
-## Description: <br>
-Send any agent report, alert, or message to a Telegram chat using your bot token. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send any agent report, alert, or message to a Telegram chat using your bot token; use it to deliver findings, briefings, security alerts, or task completions via Telegram with plain text or Markdown.
 
-## Publisher: <br>
-[infectit007](https://clawhub.ai/user/infectit007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[infectit007](https://clawhub.ai/user/infectit007)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to send findings, briefings, alerts, and task-completion messages to a configured Telegram chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent-generated reports may unintentionally send secrets or private information to the configured Telegram chat. <br>
-Mitigation: Review or redact sensitive report content before sending and use a dedicated bot and chat for these notifications. <br>
-Risk: A bot token can be misused if it is exposed in prompts, logs, or shared code snippets. <br>
-Mitigation: Keep TELEGRAM_BOT_TOKEN secret and provide it through the runtime environment rather than hard-coding it. <br>
-Risk: The cron example can create recurring outbound notifications if enabled unintentionally. <br>
-Mitigation: Add the cron schedule only when recurring notifications are intended and review the prompt before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to send selected agent reports, alerts, briefings, and task completion notices to a Telegram chat using a bot token and chat ID.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/infectit007/telegram-notifier) <br>
-- [Publisher Profile](https://clawhub.ai/user/infectit007) <br>
-- [Telegram BotFather](https://t.me/BotFather) <br>
-- [Telegram User Info Bot](https://t.me/userinfobot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with Python and bash snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Telegram messages are limited to 4096 characters; long reports should be truncated or split.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Agent output sent through this skill leaves the local environment and is delivered to Telegram.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only selected, non-sensitive summaries; do not send secrets, credentials, personal data, regulated data, or full security reports unless that disclosure is approved.
+
+Risk: Telegram bot tokens and chat IDs are required to send notifications.
+
+Mitigation: Keep TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in environment variables or a secret manager, and avoid placing them in prompts, source text, logs, or notification bodies.
+
+Risk: Long or unescaped Markdown messages may fail, truncate, or render incorrectly in Telegram.
+
+Mitigation: Keep messages within Telegram's documented message limit, split long reports when needed, and escape Markdown special characters or use HTML formatting for content with many symbols.
+
+## Reference(s):
+
+- [Telegram BotFather](https://t.me/BotFather)
+- [Telegram User Info Bot](https://t.me/userinfobot)
+- [Telegram Bot API sendMessage endpoint](https://api.telegram.org/bot{token}/sendMessage)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides ready-to-paste snippets for Telegram sendMessage calls, environment variable setup, cron scheduling, and error handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

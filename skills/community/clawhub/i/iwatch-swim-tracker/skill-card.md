@@ -1,43 +1,58 @@
-## Description: <br>
-Triggers on Apple Watch pool-swim workout screenshots or swim-related image messages, extracts distance, pace, heart-rate, and stroke data, stores records locally, and summarizes trends and training suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts structured Apple Watch pool-swim workout data from screenshots, saves local training records, and generates trend analysis and personalized swim-training guidance.
 
-## Publisher: <br>
-[zygzzp](https://clawhub.ai/user/zygzzp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zygzzp](https://clawhub.ai/user/zygzzp)
 
-## Use Case: <br>
-External users and agents use this skill to convert Apple Watch pool-swim screenshots into structured swim-training records, local workout history, and short trend reports for personal training review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles health-related fitness data and includes bundled workout records. <br>
-Mitigation: Clear bundled sample data before use and review where local swim history is stored. <br>
-Risk: Same-day workout records can be overwritten when screenshots are reprocessed. <br>
-Mitigation: Require explicit user confirmation before saving or replacing an existing date's record. <br>
-Risk: The skill trigger is broad for swim-related messages with images. <br>
-Mitigation: Confirm the image is an Apple Watch pool-swim workout screenshot before extracting or storing data. <br>
+## Use Case:
 
+External users and developers use this skill to turn Apple Watch pool-swim screenshots into structured workout history, recent trend comparisons, and concise training recommendations.
 
-## Reference(s): <br>
-- [Swimming Training Data Schema](references/data_schema.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zygzzp/iwatch-swim-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown report with JSON data passed to local Python scripts and JSON workout records saved on disk] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores per-date swim records under swim_data/YYYY/MM and can overwrite same-day records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog) <br>
+Risk: The skill stores personal swim workout and heart-rate history locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a workspace where local fitness data storage is acceptable, and avoid sharing generated history files unless intended.
+
+Risk: Weak date and path validation can allow JSON files to be read or written outside the intended swim_data folder.
+
+Mitigation: Review or strengthen date validation before using the skill with untrusted screenshots or direct JSON input.
+
+Risk: Same-day records are overwritten rather than versioned.
+
+Mitigation: Back up existing records or add versioning if preserving multiple same-day entries matters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zygzzp/skills/iwatch-swim-tracker)
+- [Swimming Workout Data Schema](artifact/references/data_schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown summary with structured JSON records, shell commands, and locally stored JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include personal workout metrics such as swim distance, pace, stroke distribution, calories, and heart-rate data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

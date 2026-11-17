@@ -1,0 +1,17 @@
+{
+  "name": "sgcfx-hongye-parse",
+  "display_name": "宏业计价文件解析导出",
+  "display_name_en": "Hongye SGCFX Cost File Parser",
+  "version": "2.0.2",
+  "author": "Lxb",
+  "license": "MIT",
+  "category": "data-analysis",
+  "description_zh": "免安装宏业软件，本地解包 .SGCFX 计价工程文件，导出分部分项清单、材料工料机汇总、费用六段式汇总表，支持送审/审核逐条核减对比，三层勾稽验算保证数据可信。",
+  "description_en": "Parse Hongye SGCFX cost files locally: BOQ, material summaries, six-segment fee breakdown, and submitted-vs-reviewed comparison with triple reconciliation.",
+  "examples": [
+    "把这个 SGCFX 文件导出成 Excel 清单",
+    "这份计价文件里材料用量是多少",
+    "对比送审版和审核版核减了多少"
+  ],
+  "minClientVersion": "1.0.0"
+}

@@ -1,44 +1,62 @@
-## Description: <br>
-Provides a structured ontology and rule-based reasoning framework for agent analysis, including confidence labels, user confirmation steps, and local ontology updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ontology Clawra Backup 20260319 151919 provides a Chinese-language ontology and rule-based reasoning workflow for structured knowledge-graph analysis, confidence labeling, and guarded local memory updates.
 
-## Publisher: <br>
-[wu-xiaochen](https://clawhub.ai/user/wu-xiaochen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-xiaochen](https://clawhub.ai/user/wu-xiaochen)
 
-## Use Case: <br>
-External users and developers use this skill to guide agent reasoning through ontology lookup, rule matching, explicit assumptions, and user-confirmed local knowledge updates. The bundled rules focus on structured selection and safety checks for gas regulation boxes and household combustible gas detectors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may persist local notes about decisions, preferences, or reasoning records. <br>
-Mitigation: Require the agent to preview proposed memory writes and obtain explicit approval before writing anything to local ontology storage. <br>
-Risk: The evidence flags inconsistent instructions about local-only behavior and private reasoning records. <br>
-Mitigation: Keep network-backed search or external sharing disabled unless the user explicitly approves a specific external action. <br>
+## Use Case:
 
+External users and agent developers can use this skill to guide Chinese-language ontology-backed reasoning when they need documented assumptions, confidence labels, and optional local ontology updates after confirmation. The bundled ontology examples focus on gas regulator box selection and household combustible gas detector selection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wu-xiaochen/ontology-clawra-backup-20260319-151919) <br>
-- [Publisher profile](https://clawhub.ai/user/wu-xiaochen) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [laws.yaml](artifact/laws.yaml) <br>
-- [rules.yaml](artifact/rules.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown or plain text guidance with structured rule references and confidence labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local ontology changes only after explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill tries to control all reasoning tasks, which can over-constrain unrelated work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for workflows that explicitly need this Chinese-language ontology method, and keep normal task instructions in control for unrelated work.
+
+Risk: The skill can persist conclusions into local ontology memory with unclear consent boundaries.
+
+Mitigation: Keep automatic learning disabled and require an explicit preview plus user confirmation before each write.
+
+Risk: Private reasoning records or ordinary conversations could be captured if the skill is used too broadly.
+
+Mitigation: Do not automatically record ordinary conversations, and do not sync private reasoning records to GitHub, ClawHub, or other external services.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wu-xiaochen/skills/ontology-clawra-backup-20260319-151919)
+- [SKILL.md](artifact/SKILL.md)
+- [Laws Ontology Data](artifact/laws.yaml)
+- [Rules Ontology Data](artifact/rules.yaml)
+- [Detector Laws Ontology Data](artifact/laws_detector.yaml)
+- [Detector Rules Ontology Data](artifact/rules_detector.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with confidence labels, structured reasoning steps, YAML examples, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local ontology-memory writes only after preview and explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

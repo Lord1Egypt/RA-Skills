@@ -1,45 +1,52 @@
-## Description: <br>
-Recognizes and resolves Chinese and English time expressions to exact dates and queries Chinese public holidays and weekends by date range. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fcalendar Skill recognizes Chinese and English time expressions, resolves them to exact calendar dates, and queries Chinese public holidays and normal weekends for a specified date range.
 
-## Publisher: <br>
-[youngfreefjs](https://clawhub.ai/user/youngfreefjs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youngfreefjs](https://clawhub.ai/user/youngfreefjs)
 
-## Use Case: <br>
-External users and developers use this skill to resolve relative time expressions in Chinese or English and to produce date-aware holiday and weekend summaries for scheduling conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing or running the referenced PyPI package executes local code. <br>
-Mitigation: Use a virtual environment, consider pinning the package version, and install only after reviewing the package to the level required for the deployment. <br>
-Risk: The trigger wording is broad enough to activate on casual weekday, holiday, or date mentions. <br>
-Mitigation: Configure activation only for user requests that need date resolution or holiday lookup. <br>
-Risk: Holiday schedules can change because official calendars and workday adjustments may be updated. <br>
-Mitigation: Use the skill output as calendar assistance and verify high-impact scheduling decisions against an authoritative holiday calendar. <br>
+## Use Case:
 
+Developers and agent builders use this skill to answer date, schedule, and holiday questions by invoking fcalendar and presenting resolved dates or holiday ranges. It is most relevant for Chinese and English time expressions and Chinese public holiday lookup.
 
-## Reference(s): <br>
-- [Fcalendar Skill on ClawHub](https://clawhub.ai/youngfreefjs/fcalendar-skill) <br>
-- [fcalendar PyPI package](https://pypi.org/project/fcalendar/) <br>
-- [Chinese Holidays and Solar Terms Reference](references/holidays.md) <br>
-- [Time Expression Types Reference](references/time-expressions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown responses derived from CLI JSON results, with shell command examples when setup or verification is needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI emits single-line JSON; agents should present returned result fields without semantic rewriting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The skill can trigger broad shell-based package checks and unpinned PyPI installation for common time mentions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer a pinned and reviewed fcalendar version in a virtual environment, and avoid auto-triggering the skill for casual date or weekday mentions.
+
+## Reference(s):
+
+- [Fcalendar package on PyPI](https://pypi.org/project/fcalendar/)
+- [Fcalendar source repository](https://github.com/youngfreefjs/fcalendar)
+- [Chinese Holidays and Solar Terms Reference](references/holidays.md)
+- [Time Expression Types Reference](references/time-expressions.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses derived from single-line JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill directs agents to preserve fcalendar CLI result semantics and avoid paraphrasing resolved dates or holiday results.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

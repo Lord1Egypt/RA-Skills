@@ -1,48 +1,61 @@
-## Description: <br>
-Best practices for Remotion - Video creation in React <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Best practices for Remotion - Video creation in React
 
-## Publisher: <br>
-[start-fish](https://clawhub.ai/user/start-fish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[start-fish](https://clawhub.ai/user/start-fish)
 
-## Use Case: <br>
-Developers and engineers use this skill for Remotion projects that create videos with React, including project setup, composition structure, media handling, timing, captions, audio, and animation patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples may use remote media URLs or external API resources. <br>
-Mitigation: Review remote URLs before use and only incorporate media that is trusted and properly licensed. <br>
-Risk: Voiceover examples require sensitive API credentials. <br>
-Mitigation: Keep API keys in environment variables or a secret manager and avoid committing credentials. <br>
-Risk: Generated audio or captions may be placed in public/static project folders. <br>
-Mitigation: Do not place sensitive generated media or captions in public asset folders without review. <br>
+## Use Case:
 
+Developers and video engineers use this skill when building Remotion projects in React, including composition setup, timeline animation, media handling, captions, audio workflows, fonts, transitions, maps, and render checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/start-fish/remotion-best-practice) <br>
-- [Remotion useWindowedAudioData documentation](https://www.remotion.dev/docs/use-windowed-audio-data) <br>
-- [Remotion visualizeAudio documentation](https://www.remotion.dev/docs/visualize-audio) <br>
-- [Remotion captions documentation](https://www.remotion.dev/docs/captions) <br>
-- [Remotion transcribe documentation](https://www.remotion.dev/docs/install-whisper-cpp/transcribe) <br>
-- [Remotion Tailwind documentation](https://www.remotion.dev/docs/tailwind) <br>
-- [Remotion WebGL options documentation](https://remotion.dev/docs/gl-options) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline TypeScript, TSX, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands for Remotion packages and guidance for credentials, remote media, and generated assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unpinned package commands and native download workflows may install unexpected versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before running them, prefer pinned versions and lockfiles, and run Whisper or native download workflows in a constrained project environment.
+
+Risk: API-key examples may lead users to expose credentials if secrets are pasted into chat or committed to code.
+
+Mitigation: Keep API keys in environment variables or a secret manager, and avoid sharing secrets in prompts, logs, or repositories.
+
+Risk: Remote media, data, and asset URLs can affect render reproducibility or privacy.
+
+Mitigation: Approve remote URLs explicitly and prefer local, pinned, or reviewed assets for production renders.
+
+## Reference(s):
+
+- [Remotion useWindowedAudioData documentation](https://www.remotion.dev/docs/use-windowed-audio-data)
+- [Remotion visualizeAudio documentation](https://www.remotion.dev/docs/visualize-audio)
+- [Remotion captions documentation](https://www.remotion.dev/docs/captions)
+- [Remotion install-whisper-cpp transcription documentation](https://www.remotion.dev/docs/install-whisper-cpp/transcribe)
+- [Remotion Tailwind documentation](https://www.remotion.dev/docs/tailwind)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with TypeScript, TSX, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes modular rule files for Remotion topics such as media, captions, timing, transitions, fonts, maps, and render validation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

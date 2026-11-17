@@ -1,45 +1,60 @@
-## Description: <br>
-Beauty Diagram helps agents use the `bd` CLI to render, export, share, or generate polished Mermaid and PlantUML diagrams as SVG, PNG, and hosted diagram links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to use the Beauty Diagram CLI to generate, beautify, export, share, and embed Mermaid or PlantUML diagrams as polished SVG or PNG outputs.
 
-## Publisher: <br>
-[levi840714](https://clawhub.ai/user/levi840714) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[levi840714](https://clawhub.ai/user/levi840714)
 
-## Use Case: <br>
-Developers, technical writers, and agents use this skill to convert Mermaid or PlantUML sources into polished diagram assets, create share links, embed diagrams in Markdown, and optionally generate Mermaid source from a text description. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The npm CLI sends diagram source or AI prompts to the external Beauty Diagram service. <br>
-Mitigation: Review source and prompt sensitivity before invoking the CLI, and use the workflow only when external processing is acceptable. <br>
-Risk: Share and embed workflows can create externally hosted diagram URLs and may edit Markdown files. <br>
-Mitigation: Prefer local SVG or PNG outputs for sensitive material, confirm share/embed intent before creating hosted URLs, and review repository diffs after Markdown edits. <br>
-Risk: Authenticated workflows require a Beauty Diagram API key and, for AI generation, an `ai:write` scope on a Pro or Premium plan. <br>
-Mitigation: Use the minimum required credential scope, avoid exposing tokens in command output or files, and surface authentication, plan, or quota errors directly to the user. <br>
+## Use Case:
 
+Developers, technical writers, and agents use this skill to turn Mermaid or PlantUML source into presentation-ready diagram files, share links, or Markdown embeds. It also guides optional text-to-diagram generation through the Beauty Diagram CLI when the user has the required plan and API scope.
 
-## Reference(s): <br>
-- [Beauty Diagram ClawHub release](https://clawhub.ai/levi840714/beauty-diagram) <br>
-- [Beauty Diagram website](https://www.beauty-diagram.com) <br>
-- [Beauty Diagram CLI on npm](https://www.npmjs.com/package/@beauty-diagram/cli) <br>
-- [Beauty Diagram API keys](https://www.beauty-diagram.com/account/api-keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated Mermaid, SVG, PNG, or hosted diagram URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write editable diagram source files, rendered image files, Markdown image references, or share/embed URLs depending on the requested workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.1 (source: frontmatter, package.json, changelog, ClawHub release) <br>
+Risk: The scripts invoke an unpinned npm CLI, so behavior could change when `npx @beauty-diagram/cli` resolves a newer package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or lock the `@beauty-diagram/cli` version before use and review package updates before adopting them.
+
+Risk: Share and share-embed workflows can publish diagrams to public external URLs.
+
+Mitigation: Ask for explicit approval before creating hosted URLs, and prefer local sidecar SVG output for private repositories or sensitive diagrams.
+
+Risk: Diagram sources or prompts are sent to Beauty Diagram when workflows call the public API.
+
+Mitigation: Use the skill only with content suitable for Beauty Diagram processing and run the CLI with least privilege in workspaces that may contain secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/levi840714/skills/beauty-diagram)
+- [Beauty Diagram site](https://www.beauty-diagram.com)
+- [Beauty Diagram CLI on npm](https://www.npmjs.com/package/@beauty-diagram/cli)
+- [Beauty Diagram API keys](https://www.beauty-diagram.com/account/api-keys)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Mermaid or PlantUML source, file paths, and generated SVG/PNG or share/embed URL references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local .mmd, .puml, .svg, or .png files and public Beauty Diagram share/embed URLs depending on the selected workflow.]
+
+## Skill Version(s):
+
+1.7.0 (source: ClawHub release, SKILL.md frontmatter, package.json; CHANGELOG top entry is 1.6.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

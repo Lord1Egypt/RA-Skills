@@ -1,42 +1,53 @@
-## Description: <br>
-Converts JPG or PNG images into round Android app icon PNGs across mdpi, hdpi, xhdpi, xxhdpi, and xxxhdpi densities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts JPG or PNG images into round Android app icons and generates mdpi, hdpi, xhdpi, xxhdpi, and xxxhdpi PNG outputs.
 
-## Publisher: <br>
-[starclimber](https://clawhub.ai/user/starclimber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[starclimber](https://clawhub.ai/user/starclimber)
 
-## Use Case: <br>
-Developers and app builders use this skill to turn a supplied JPG or PNG into Android launcher icon assets with round cropping and standard density variants. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad icon-related trigger phrases may invoke this skill when a different image task was intended. <br>
-Mitigation: Confirm the user wants Android app icon generation before running the icon conversion workflow. <br>
-Risk: Generated icons could be copied into the wrong Android project or replace existing launcher assets. <br>
-Mitigation: Ask the user which project or output directory to use, and review generated files before copying them into mipmap directories. <br>
+## Use Case:
 
+Developers and app teams use this skill to turn supplied JPG or PNG artwork into a complete Android mipmap icon set with circular masking and density-specific PNG files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/starclimber/skills/androidiconmaker) <br>
-- [Publisher profile](https://clawhub.ai/user/starclimber) <br>
-- [Project repository link from README](https://github.com/starclimber/android-icon-maker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance plus generated PNG files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates icon_mdpi.png, icon_hdpi.png, icon_xhdpi.png, icon_xxhdpi.png, and icon_xxxhdpi.png; default mdpi base size is 48 px.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Installing dependencies into the system Python environment can create package-management conflicts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Python virtual environment and avoid --break-system-packages unless a reviewer explicitly accepts that tradeoff.
+
+Risk: Writing generated icons into an existing Android project can replace files with the same generated icon filenames.
+
+Mitigation: Confirm the intended output directory before running the script, especially when targeting project mipmap directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/starclimber/skills/androidiconmaker)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated PNG files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces icon_mdpi.png, icon_hdpi.png, icon_xhdpi.png, icon_xxhdpi.png, and icon_xxxhdpi.png in the selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

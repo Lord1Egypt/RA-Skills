@@ -1,47 +1,60 @@
-## Description: <br>
-Coordinates Syft CLI based news workflows for profile building, personalized daily briefings, storyline trees, storyline backfill, and durable editorial guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates Syft CLI based news workflows for personalized daily news digests, profile artifacts, storyline trees, storyline backfills, and durable editorial preferences.
 
-## Publisher: <br>
-[solatrader](https://clawhub.ai/user/solatrader) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solatrader](https://clawhub.ai/user/solatrader)
 
-## Use Case: <br>
-External users and developers use this skill to route Syft CLI signals into reusable profile files, personalized news briefings, and relationship-first storyline timelines. It is intended for agent-assisted news curation workflows that use Syft following, top, and search results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores persistent local profile, briefing, storyline, and preference files derived from a user's Syft follows and searches. <br>
-Mitigation: Install only when that local persistence is acceptable, and review stored profile and preference files before reusing them in future workflows. <br>
-Risk: Profile summaries may include confident demographic, class, identity, political, personality, or lifestyle inferences from following data. <br>
-Mitigation: Treat profile summaries as editable editorial aids, verify sensitive inferences with the user, and avoid using those inferences for consequential decisions. <br>
-Risk: Personalized briefings and storyline trees can overfit to noisy Syft results or inferred interests. <br>
-Mitigation: Review generated briefings and storylines for source quality, coverage gaps, and unwanted preference assumptions before publication or reuse. <br>
+## Use Case:
 
+External users and developers use this skill to run Syft CLI centered news workflows that turn followed topics and search results into reusable profiles, personalized daily briefings, storyline timelines, backfills, and durable editorial guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/solatrader/syft-news) <br>
-- [Bundle README](README.md) <br>
-- [Workflow map](subskills/syft-news-pipeline/references/workflow-map.md) <br>
-- [Daily briefing reference](subskills/syft-news-pipeline/references/daily-briefing.md) <br>
-- [Profile summary reference](subskills/syft-news-pipeline/references/profile-summary.md) <br>
-- [Storyline tree reference](subskills/syft-news-pipeline/references/storyline-tree.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, optional HTML and JSON storyline artifacts, CLI commands, and concise user-facing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include persistent local profile, briefing, storyline, and preference files created from authenticated Syft CLI signals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The workflow asks users to install a global Syft CLI without pinning a verified package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and verified Syft CLI version where possible, and review where syft login stores credentials before running authenticated workflows.
+
+Risk: The workflow can create persistent profile artifacts with inferred interests and demographic guesses from following data.
+
+Mitigation: Generate profile summaries only with user consent, review or edit inferred profiles before reuse, and delete profiles or rulebooks that contain wrong, sensitive, or unwanted inferences.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/solatrader/skills/syft-news)
+- [Bundle README](README.md)
+- [Workflow Map](subskills/syft-news-pipeline/references/workflow-map.md)
+- [Profile Summary Route](subskills/syft-news-pipeline/references/profile-summary.md)
+- [Daily Briefing Route](subskills/syft-news-pipeline/references/daily-briefing.md)
+- [Storyline Tree Route](subskills/syft-news-pipeline/references/storyline-tree.md)
+- [Storyline Backfill Route](subskills/syft-news-pipeline/references/storyline-backfill.md)
+- [Guidance Rulebook Route](subskills/syft-news-pipeline/references/guidance-rulebook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, optional HTML and JSON artifacts, and inline Syft CLI shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Final user-facing deliverables default to Simplified Chinese unless the user asks otherwise.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

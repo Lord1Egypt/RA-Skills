@@ -1,11 +1,11 @@
 ---
 name: aholo-3dgs-reconstruction-global
-description: "Aholo OpenAPI v1 global 3D tasks (reconstruction/generation): upload, create (worldId), poll/status. Gateway api.aholo3d.com, /global/world/v1. Default one create per single intent; multiple creates allowed when user explicitly chooses separate 3DGS per video. Not for 2D."
+description: "Aholo OpenAPI v1 global 3D tasks (reconstruction/generation): upload, create (worldId), poll/status. Gateway api.aholo.ai, /global/world/v1. Default one create per single intent; multiple creates allowed when user explicitly chooses separate 3DGS per video. Not for 2D."
 ---
 
 # Aholo 3D Reconstruction Skill — Global (OpenAPI v1)
 
-> **Aholo global Open Platform** (`api.aholo3d.com`). Agent runs `aholo_reconstruct.py`; user sets `AHOLO_API_KEY` only.
+> **Aholo global Open Platform** (`api.aholo.ai`). Agent runs `aholo_reconstruct.py`; user sets `AHOLO_API_KEY` only.
 
 ## 1. When to use
 
@@ -19,14 +19,14 @@ description: "Aholo OpenAPI v1 global 3D tasks (reconstruction/generation): uplo
 
 | Item | Detail |
 |------|--------|
-| Env | `AHOLO_API_KEY` — [api-keys](https://labs.aholo3d.com/api-keys) |
+| Env | `AHOLO_API_KEY` — [api-keys](https://labs.aholo.ai/api-keys) |
 | Auth | `Authorization: <API Key>`, no `Bearer` |
 | Create header | `x-source: skills` → platform `OPEN_API_SKILL` |
-| Gateway | `https://api.aholo3d.com`; upload token `GET /global/asset/v1/token`; world tasks `/global/world/v1/*` |
-| Viewer | `https://studio.aholo3d.com/3dgs-model/{worldId}` |
+| Gateway | `https://api.aholo.ai`; upload token `GET /global/asset/v1/token`; world tasks `/global/world/v1/*` |
+| Viewer | `https://reality.aholo.ai/3dgs-model/{worldId}` |
 | Actions | `create` / `create-reconstruction` / `create-generation` / `status` / `poll` / `list` |
 | Create success | `WorldAsyncOperation` contains `worldId` only |
-| Credits `11003` | Say insufficient credits; link [www.aholo3d.com/pricing](https://www.aholo3d.com/pricing); no invented URLs; **no** `create*` retry for **same video / same intent** |
+| Credits `11003` | Say insufficient credits; link [www.aholo.ai/pricing](https://www.aholo.ai/pricing); no invented URLs; **no** `create*` retry for **same video / same intent** |
 
 **Missing API key:** Tell user to set env and reply **continue**; agent runs script — do not make manual `python` the main path.
 
@@ -100,7 +100,7 @@ B) Separate 3DGS per video — N worldIds (N tasks, processed one video at a tim
 
 ```text
 Task created, worldId: {worldId}
-View when ready: https://studio.aholo3d.com/3dgs-model/{worldId}
+View when ready: https://reality.aholo.ai/3dgs-model/{worldId}
 (Link may not be accessible until the task completes)
 
 Wait until complete?

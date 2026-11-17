@@ -1,43 +1,54 @@
-## Description: <br>
-A requirement gate checker for requirement completeness, acceptance criteria, and scope validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A requirement gate checker for requirement completeness, acceptance criteria, and scope validation.
 
-## Publisher: <br>
-[terr123123](https://clawhub.ai/user/terr123123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[terr123123](https://clawhub.ai/user/terr123123)
 
-## Use Case: <br>
-Developers, product managers, and reviewers use this skill before design or development to check whether requirements are complete, testable, measurable, and clearly scoped. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Requirement content may contain sensitive project details. <br>
-Mitigation: Run the checker in the approved local development environment and handle requirement inputs as project data. <br>
-Risk: Gate results may be treated as a final product decision even though they are quality signals. <br>
-Mitigation: Use the results to support human requirement review before blocking or approving design and development work. <br>
-Risk: Included tests create temporary JSON files during normal validation. <br>
-Mitigation: Run tests only in a normal development environment where temporary test files are acceptable. <br>
+## Use Case:
 
+Developers and product teams use this skill before requirement review or design handoff to check whether requirement objects have complete fields, measurable and testable acceptance criteria, and clear in-scope and out-of-scope boundaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terr123123/skills/requirement-gate) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Guidance] <br>
-**Output Format:** [Python objects with human-readable messages and JSON-serializable dictionaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns GateResult records with pass/fail status, scores, messages, and details for completeness, acceptance criteria, and scope checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter) <br>
+Risk: Documentation is primarily Chinese, which may lead to incorrect configuration or review expectations for teams that do not read Chinese.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or translate the documentation before deployment and confirm the configured thresholds match the intended requirement-review policy.
+
+Risk: Requirement gate results can be mistaken for final approval even though they only check structural completeness, measurable criteria, and scope boundaries.
+
+Mitigation: Use the results as an advisory pre-review signal and keep human requirement review as the approval authority.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terr123123/skills/requirement-gate)
+- [README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, guidance]
+
+**Output Format:** [Python objects and human-readable validation messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns per-check pass status, scores, messages, and details for completeness, acceptance criteria, and scope-boundary checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

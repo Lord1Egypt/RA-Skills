@@ -1,43 +1,58 @@
-## Description: <br>
-Controls the LX Music desktop app to search and play songs, manage playback and volume, read current status and lyrics, modify favorites or dislikes, and query local playlists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls the LX Music desktop app for music search, playback, playlists, volume, favorites, status, and lyrics, then reports command results in Markdown tables.
 
-## Publisher: <br>
-[ly14sh](https://clawhub.ai/user/ly14sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ly14sh](https://clawhub.ai/user/ly14sh)
 
-## Use Case: <br>
-LX Music desktop users use this skill to let an agent control local playback, search or play requested music, inspect currently playing status and lyrics, and work with local playlists through the bundled CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Playlist commands can pass user-controlled playlist IDs through shell command strings. <br>
-Mitigation: Avoid untrusted playlist IDs and prefer a version that replaces shell strings with argument-safe process calls. <br>
-Risk: The skill can control LX Music, read current song and lyrics, read local playlist names and songs, and modify favorites or dislike state. <br>
-Mitigation: Install only when this local control is acceptable, keep the LX Music API bound to localhost, and review actions before allowing playlist or library changes. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent control a local LX Music desktop client, search and play music, inspect status or lyrics, manage favorites, and query or play local playlists.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ly14sh/lx-music-assistant) <br>
-- [LX Music CLI Commands Reference](references/commands.md) <br>
-- [LX Music Open API Reference](references/open-api.md) <br>
-- [LX Music Scheme URL Reference](references/scheme-url.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown status reports and guidance with shell commands for the bundled Node.js and Python CLI tools] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs local LX Music control commands, reads player status and lyrics, and may read local playlist names and songs from the LX Music desktop database.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The bundled playlist code has a shell-command-injection risk when invoking Python with playlist IDs or custom database paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Fix the CLI to use non-shell process execution and pass playlist IDs and database paths as argument arrays before broad use.
+
+Risk: Installing the skill grants a local assistant control over LX Music playback, favorites, lyrics and status reads, and local playlist database access.
+
+Mitigation: Install only in trusted local environments and avoid passing untrusted playlist IDs or custom database paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ly14sh/skills/lx-music-assistant)
+- [LX Music CLI commands reference](artifact/references/commands.md)
+- [LX Music OpenAPI service](artifact/references/open-api.md)
+- [LX Music Scheme URL support](artifact/references/scheme-url.md)
+- [LX Music OpenAPI documentation](https://lxmusic.toside.cn/desktop/open-api)
+- [LX Music Scheme URL documentation](https://lxmusic.toside.cn/desktop/scheme-url)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown tables with inline command results and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured LX Music OpenAPI endpoint and may read the local LX Music playlist database.]
+
+## Skill Version(s):
+
+1.0.5 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

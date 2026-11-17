@@ -1,45 +1,59 @@
-## Description: <br>
-文旅B站信息源 searches Bilibili cultural-tourism videos, filters popular content by likes, clusters results by topic, and generates a polished HTML report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+文旅B站信息源 searches Bilibili for cultural tourism videos, ranks popular content by engagement, clusters results by topic, and generates a browsable HTML report.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-External content operators, tourism professionals, and tourism researchers use this skill to monitor Bilibili cultural-tourism hotspots, compare topic activity, and generate shareable HTML trend reports from RedFox data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional daily subscription path can create persistent scheduled jobs through LaunchAgents or crontab. <br>
-Mitigation: Prefer manual report generation or a user-managed scheduler unless the operator has reviewed and accepted the persistence behavior. <br>
-Risk: The optional subscription path can store a RedFox API key on disk without enough safeguards. <br>
-Mitigation: Use a revocable RedFox API key, avoid high-value credentials, and confirm key scope, expiration, and reset support before use. <br>
-Risk: Generated reports include data returned from an external service and may contain untrusted video metadata. <br>
-Mitigation: Review generated HTML reports before sharing and avoid treating report contents as verified facts without source validation. <br>
+## Use Case:
 
+External content operators, tourism marketers, and tourism researchers use this skill to monitor Bilibili cultural tourism trends, compare location-specific video activity, and generate category-level reports for planning or research.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/cultural-tourism-bilibili-feed) <br>
-- [Publisher profile](https://clawhub.ai/user/redfox-data) <br>
-- [RedFoxHub API keys](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [RedFoxHub](https://redfox.hk?source=github) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration instructions, Analysis] <br>
-**Output Format:** [Markdown summary with category counts plus an HTML report file and terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY; normal report generation writes an HTML file, and optional subscription can create scheduled jobs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The subscription feature creates persistent scheduled jobs and was flagged for unsafe command or XML handling and credential exposure risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid --subscribe until the scheduler code is fixed, and use a revocable RedFox API key through an environment variable.
+
+Risk: Generated HTML reports include remote API values and are opened automatically, so report content should be treated as untrusted web content.
+
+Mitigation: Open reports in a controlled browser context and avoid relying on generated links or embedded values without review.
+
+Risk: Untrusted keywords can affect API queries and scheduled job configuration.
+
+Mitigation: Use trusted, simple keywords and review generated commands or scheduled entries before reuse.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/redfox-data/skills/cultural-tourism-bilibili-feed)
+- [RedFox API Key Settings](https://redfox.hk/settings/api-keys?source=clawhub)
+- [RedFoxHub](https://redfox.hk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown conversation summary plus generated HTML report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a RedFox API key and the requests Python package; the HTML report includes category cards, cover images, engagement metrics, and outbound video links.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

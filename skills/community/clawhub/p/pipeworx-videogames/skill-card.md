@@ -1,41 +1,50 @@
-## Description: <br>
-Browse and search free-to-play PC and browser games by platform, category, and sort order using data from the FreeToGame database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse and search free-to-play PC and browser games by platform, category, and sort order using data from the FreeToGame database.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-Players, game scouts, and agents use this skill to browse free-to-play PC and browser games, retrieve detailed game profiles, and filter the catalog by platform, category, tags, popularity, or release date. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill queries an external MCP endpoint for game catalog data. <br>
-Mitigation: Use it only in environments where access to gateway.pipeworx.io is approved, and avoid sending sensitive information in game-search requests. <br>
-Risk: Game listings, release dates, publisher details, URLs, and system requirements may be incomplete or outdated. <br>
-Mitigation: Verify important game details against the linked game page or publisher before relying on them for decisions. <br>
+## Use Case:
 
+External users and developers use this skill to browse, filter, and retrieve detailed information about free-to-play PC and browser games through the Pipeworx videogames MCP gateway.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/b-gutman/pipeworx-videogames) <br>
-- [Pipeworx videogames MCP endpoint](https://gateway.pipeworx.io/videogames/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration] <br>
-**Output Format:** [MCP tool responses with game listings and details; setup is JSON configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports platform, category, sort order, dot-separated tag filters, and game ID lookup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Game search and lookup queries are sent to the Pipeworx-hosted videogames MCP gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm users are comfortable with the remote network dependency before enabling the skill.
+
+## Reference(s):
+
+- [Pipeworx videogames ClawHub listing](https://clawhub.ai/b-gutman/skills/pipeworx-videogames)
+- [Pipeworx videogames MCP gateway](https://gateway.pipeworx.io/videogames/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, configuration, shell commands]
+
+**Output Format:** [Markdown guidance with JSON MCP results and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a remote Pipeworx-hosted MCP gateway for game catalog search and lookup requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

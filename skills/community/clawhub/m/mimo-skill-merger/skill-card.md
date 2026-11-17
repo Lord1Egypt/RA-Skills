@@ -1,41 +1,50 @@
-## Description: <br>
-技能合并器帮助代理分析多个技能的重叠和互补能力，并按吸收型、融合型或编排型策略生成合并方案与变更报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-first skill-merging assistant that analyzes overlapping skill documents and drafts a consolidated skill using absorb, fusion, or orchestration strategies.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to consolidate overlapping agent skills into a unified or orchestrated workflow while preserving source capabilities and documenting the resulting changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Merged skill output can change future agent trigger conditions and workflow routing. <br>
-Mitigation: Review the generated merger report and scan any merged skill before using or publishing it. <br>
-Risk: A consolidation proposal could omit source capabilities or leave conflicts unresolved. <br>
-Mitigation: Use the required change comparison and boundary checks to confirm that all source skill capabilities remain covered. <br>
+## Use Case:
 
+Developers and agent builders use this skill to consolidate multiple overlapping skills into a clearer combined workflow while preserving source capabilities, trigger boundaries, and change comparisons.
 
-## Reference(s): <br>
-- [skill-merger detailed reference](references/details.md) <br>
-- [ClawHub skill page](https://clawhub.ai/qqyougitcom/mimo-skill-merger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Chinese Markdown merger report with proposed SKILL.md frontmatter and workflow sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a change comparison and should be reviewed before using or publishing merged skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: SKILL.md frontmatter and ClawHub release evidence) <br>
+Risk: Merged skill drafts can change trigger behavior or workflow semantics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the merged skill before saving or installing it, and scan any resulting skill package before deployment.
+
+## Reference(s):
+
+- [skill-merger detailed reference](references/details.md)
+- [ClawHub skill page](https://clawhub.ai/qqyougitcom/skills/mimo-skill-merger)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese Markdown skill merge report and drafted skill guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a merge report covering source skills, selected strategy, new skill name, and added, removed, or adjusted behavior.]
+
+## Skill Version(s):
+
+1.3.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

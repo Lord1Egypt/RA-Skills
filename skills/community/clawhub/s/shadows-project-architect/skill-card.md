@@ -1,42 +1,55 @@
-## Description: <br>
-Structured project planning - requirements analysis, architecture design, task breakdown, dependency mapping, milestone definition for new projects or major features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured project planning - requirements analysis, architecture design, task breakdown, dependency mapping, milestone definition; use when starting a new project or major feature.
 
-## Publisher: <br>
-[NakedoShadow](https://clawhub.ai/user/NakedoShadow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nakedoshadow](https://clawhub.ai/user/nakedoshadow)
 
-## Use Case: <br>
-Developers and project teams use this skill to turn early project or major feature ideas into requirements, architecture decisions, task breakdowns, dependency maps, milestones, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Planning output may contain incorrect assumptions, misleading architecture guidance, or task estimates that do not match the user's real constraints. <br>
-Mitigation: Review generated plans with project stakeholders before implementation, and verify requirements, architecture choices, dependencies, and milestones against the actual system context. <br>
-Risk: Broad trigger phrases such as planning, architecture, or system design may activate the skill for work that is already scoped or only needs a small fix. <br>
-Mitigation: Apply the skill when starting new projects or major features, and skip it for small bug fixes, single-file changes, or situations where a detailed plan already exists. <br>
+## Use Case:
 
+Developers and project teams use this skill to turn early project or major-feature ideas into structured requirements, architecture decisions, implementation tasks, dependency maps, milestones, and next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NakedoShadow/shadows-project-architect) <br>
-- [Publisher profile](https://clawhub.ai/user/NakedoShadow) <br>
-- [ClawHub homepage metadata](https://clawhub.ai/NakedoShadow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown project plan with requirements, architecture, task breakdown, critical path, milestones, risks, and next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory planning content only; no command execution, external tools, network calls, or file modifications are indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md body) <br>
+Risk: The skill may activate on broad planning language when the user only wants a quick answer or small implementation change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Decline or redirect the skill when the request is narrow, already specified, or does not need a full planning workflow.
+
+Risk: Planning output can be incorrect, over-scoped, or mismatched to unstated requirements.
+
+Mitigation: Review the generated plan with the user before implementation and confirm assumptions, constraints, dependencies, and milestones.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nakedoshadow/skills/shadows-project-architect)
+- [Publisher profile](https://clawhub.ai/user/nakedoshadow)
+- [Publisher homepage](https://clawhub.ai/NakedoShadow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown project plan with requirements, architecture notes, task breakdowns, dependency mapping, milestones, risks, and next steps.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only planning output; no commands, external tools, network access, or file modifications are required.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact body)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

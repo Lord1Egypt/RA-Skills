@@ -1,40 +1,54 @@
-## Description: <br>
-Yuanbao helps agents interact in Yuanbao groups by mentioning users, querying group and member information, and sending requested direct messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yuanbao groups: @mention users, query group information and members, and send direct messages.
 
-## Publisher: <br>
-[maliot100x](https://clawhub.ai/user/maliot100x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maliot100x](https://clawhub.ai/user/maliot100x)
 
-## Use Case: <br>
-External users and agents use this skill to participate in Yuanbao group chats, look up exact members for mentions, query group information, and send requested direct messages or media. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause agent replies, @mentions, direct messages, or media to be sent to Yuanbao users. <br>
-Mitigation: Install it only where agent replies are expected to be posted into Yuanbao chats, and review sensitive DM or media requests before sending. <br>
-Risk: Wrong recipient selection could notify or message the wrong person in a group. <br>
-Mitigation: Use member lookup before mentions and ask the user to clarify when multiple matching members are returned. <br>
+## Use Case:
 
+External users and agents in Yuanbao group chats use this skill to look up group context, identify members for exact @mentions, and send private messages or supported media files when requested.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maliot100x/yuanbao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Guidance] <br>
-**Output Format:** [Plain text replies with JSON-style tool calls when member lookup, group queries, direct messages, or media sending are needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may be delivered into Yuanbao chats as group replies, @mentions, or direct messages through the configured Yuanbao tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: The skill gives the agent authority to send visible group replies, notify users with @mentions, and send private messages or files through Yuanbao.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear user intent and confirmation before sending private messages, mentions, or attachments, especially when recipients or content are ambiguous.
+
+Risk: The server security assessment marked the release suspicious because messaging authority is under-disclosed while permission warnings are discouraged.
+
+Mitigation: Deploy only with guardrails that preserve consent checks, constrain outbound messaging, and allow review of sent messages and attachments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/maliot100x/skills/yuanbao)
+- [Publisher Profile](https://clawhub.ai/user/maliot100x)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Guidance]
+
+**Output Format:** [Natural-language chat replies with JSON-style tool call arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include @mentions, private-message content, or media attachment paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

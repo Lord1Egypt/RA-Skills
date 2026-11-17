@@ -1,42 +1,54 @@
-## Description: <br>
-Set up a Stylus smart contract project with OpenZeppelin Contracts for Stylus on Arbitrum, including Rust tooling, Cargo Stylus project creation, dependencies, import conventions, storage patterns, and basic build or deployment commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up a Stylus smart contract project with OpenZeppelin Contracts for Stylus on Arbitrum.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Developers and smart contract engineers use this skill to set up an Arbitrum Stylus project with OpenZeppelin Contracts for Stylus and to apply the expected Cargo, Rust, import, storage, ABI, build, and deployment patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Toolchain installation and Cargo Stylus commands fetch and execute external software during setup. <br>
-Mitigation: Use a development environment, verify upstream Rust and cargo-stylus sources, and pin dependency versions where practical. <br>
-Risk: Stylus deployment commands may require private keys and can affect live blockchain accounts. <br>
-Mitigation: Use testnet or low-balance deployer keys first, avoid raw private keys on the command line, prefer a restricted key file or hardware wallet, and keep key-file permissions restrictive. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up Arbitrum Stylus smart contract projects, add OpenZeppelin Stylus dependencies, follow import and storage conventions, and run basic build and deploy commands.
 
-## Reference(s): <br>
-- [OpenZeppelin Contracts for Stylus crate](https://crates.io/crates/openzeppelin-stylus) <br>
-- [OpenZeppelin rust-contracts-stylus repository](https://github.com/OpenZeppelin/rust-contracts-stylus) <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/setup-stylus-contracts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell, TOML, and Rust code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include install commands, dependency snippets, import examples, storage patterns, and deployment-key handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill recommends mutable installer and package-install commands that can execute code during setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup commands before use, prefer official Rust and package-manager guidance, and pin cargo-stylus to a reviewed version with locked dependencies when possible.
+
+Risk: Deploying contracts requires access to a private key file.
+
+Mitigation: Use a private key file with restrictive permissions, avoid raw private keys on the command line, and prefer a hardware wallet or keystore when available.
+
+## Reference(s):
+
+- [OpenZeppelin Contracts for Stylus repository](https://github.com/OpenZeppelin/rust-contracts-stylus)
+- [openzeppelin-stylus crate](https://crates.io/crates/openzeppelin-stylus)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash, TOML, and Rust code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup, dependency, import, build, ABI export, and deploy guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

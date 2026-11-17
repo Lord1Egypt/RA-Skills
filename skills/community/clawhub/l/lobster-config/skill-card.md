@@ -1,41 +1,48 @@
-## Description: <br>
-Provides a step-by-step guide to configure Lobster AI Agent behavior through AGENTS.md, group rules, and skill plugins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a step-by-step guide to configure Lobster AI Agent behavior via AGENTS.md, group rules, and skill plugins for optimal interaction.
 
-## Publisher: <br>
-[a3152557994-ship-it](https://clawhub.ai/user/a3152557994-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[a3152557994-ship-it](https://clawhub.ai/user/a3152557994-ship-it)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators configuring Lobster AI Agent use this skill to draft concise AGENTS.md behavior rules, decide when to add group-specific prompts, and choose Skill plugins without over-configuring the agent.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Community configuration advice may weaken intended agent behavior if broad permissions, vague AGENTS.md rules, or system-prompt changes are applied without review.
+
+Mitigation: Enable whitelist permissions only for needed skills, keep behavior rules scoped, test each change after restart, and avoid system-prompt changes unless the impact is understood.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and OpenClaw or Lobster AI Agent operators use this guide to tune agent behavior, group-specific responses, plugin selection, and temperature settings. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
 
-## Known Risks and Mitigations: <br>
-Risk: AGENTS.md, customPrompt, temperature, or plugin-whitelist changes can alter agent behavior after restart. <br>
-Mitigation: Review configuration changes before applying them, restart deliberately, and test whether the agent's responses match the intended behavior. <br>
-Risk: Enabling plugin whitelist permissions for untrusted skills may grant behavior the operator did not intend. <br>
-Mitigation: Only enable permissions for skills the operator trusts and keep installed skills limited to those needed for the deployment. <br>
+**Output Format:** [Markdown guidance with inline configuration examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Skill source artifact](artifact/skill.md) <br>
-- [ClawHub listing](https://clawhub.ai/a3152557994-ship-it/lobster-config) <br>
+**Other Properties Related to Output:** [Chinese-language configuration guidance; no executable code.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guide with configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; no code execution or data transfer.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

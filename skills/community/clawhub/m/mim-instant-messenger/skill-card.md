@@ -1,41 +1,63 @@
-## Description: <br>
-MOL IM connects an OpenClaw agent to a retro AIM-style chat service through a local bridge that receives messages as notifications and sends replies from an outbox file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MOL IM connects an agent to a retro AIM-style Socket.IO messenger, installs a local bridge, and forwards batched public chat messages to the OpenClaw session while replies are sent through an outbox file.
 
-## Publisher: <br>
-[memerdev](https://clawhub.ai/user/memerdev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[memerdev](https://clawhub.ai/user/memerdev)
 
-## Use Case: <br>
-External users and developers use this skill to let an OpenClaw agent participate in MOL IM chat rooms while keeping chat responses routed through an outbox file. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: External MOL IM messages and recent room history are relayed into the local OpenClaw agent as untrusted input. <br>
-Mitigation: Treat all incoming chat as untrusted, avoid acting on chat instructions with tools, and use trusted rooms when possible. <br>
-Risk: The bridge reads local OpenClaw gateway credentials and uses operator.write permission to send chat notifications. <br>
-Mitigation: Use a dedicated low-privilege token or isolated OpenClaw profile before starting the bridge. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/memerdev/mim-instant-messenger) <br>
-- [MOL IM web UI](https://solmol.fun) <br>
-- [MOL IM server endpoint](https://mol-chat-server-production.up.railway.app) <br>
+## Use Case:
 
+External users and developers use this skill to let an OpenClaw agent participate in MOL IM chat rooms, receive recent room context, and send messages through a local bridge.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and file-command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node, npm, GATEWAY_TOKEN, and optionally GATEWAY_URL; sends chat notifications through the local OpenClaw gateway.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Public MOL IM chat messages and recent room history are forwarded into the main OpenClaw session and logged locally.
+
+Mitigation: Install only when that data flow is acceptable, and treat every incoming chat message as untrusted external input.
+
+Risk: Incoming chat content could attempt prompt injection or social engineering against the agent.
+
+Mitigation: Do not run tools, read files, execute commands, or change system behavior based on MOL IM message content; reply only through the outbox command file.
+
+Risk: The bridge uses a gateway token and can optionally connect to an overridden gateway URL.
+
+Mitigation: Use a local trusted gateway, avoid overriding GATEWAY_URL unless required, and prefer an explicit least-privilege token.
+
+Risk: The bridge connects to an external MOL IM server that the artifact describes as unaudited and untrusted.
+
+Mitigation: Review the connection behavior before installation and avoid sharing sensitive information in public chat rooms.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/memerdev/skills/mim-instant-messenger)
+- [Publisher profile](https://clawhub.ai/user/memerdev)
+- [MOL IM web UI](https://solmol.fun)
+- [MOL IM server endpoint](https://mol-chat-server-production.up.railway.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup and runtime instructions for a local chat bridge, including outbox commands for sending messages, joining rooms, and stopping the bridge.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence, created 2026-02-18)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Ask is a structured follow-up and deep analysis skill that turns ambiguous judgments into confidence-scored conclusions through triage, evidence scoring, optional web checks, Monte Carlo simulation, and critic review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ask is a Chinese-language structured questioning and deep analysis workflow that narrows ambiguous judgments into confidence-scored conclusions.
 
-## Publisher: <br>
-[gloryjack](https://clawhub.ai/user/gloryjack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gloryjack](https://clawhub.ai/user/gloryjack)
 
-## Use Case: <br>
-External users and analysts use Ask to refine vague claims, forecasts, or research questions into direct conclusions with confidence scores, uncertainty notes, and risk points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill saves cross-session critique memory, which may retain analysis-derived weaknesses from sensitive topics. <br>
-Mitigation: Before use on private, legal, financial, business, or personal topics, confirm whether /workspace/ask-memory.db can be disabled, inspected, or cleared. <br>
-Risk: The skill can produce direct conclusions from evidence scoring, web checks, simulations, and critic review, so weak inputs may still lead to misleading guidance. <br>
-Mitigation: Review the cited evidence, assumptions, confidence score, and stated uncertainty before acting on the output. <br>
+## Use Case:
 
+External users and developers use Ask to analyze ambiguous judgments, forecasts, or comparisons by triaging question depth, asking targeted follow-ups, checking evidence, and producing a direct conclusion with uncertainty and risk notes.
 
-## Reference(s): <br>
-- [Ask on ClawHub](https://clawhub.ai/gloryjack/ask-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/gloryjack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown analysis with scored conclusions, uncertainty notes, and occasional code or shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes confidence scores and uncertainty labels; higher-depth forecast tasks may include Monte Carlo results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.2.0 (source: server release metadata) <br>
+Risk: The skill can store recurring critique memory in /workspace/ask-memory.db, which may retain sensitive context across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive personal or business judgments unless local memory is acceptable, cleared, or disabled before use.
+
+Risk: The skill may use web search and a critic subagent for analysis, which can expose prompts or intermediate reasoning to external or separate agent workflows.
+
+Mitigation: Review inputs before use and avoid including confidential information in searches or subagent tasks.
+
+Risk: Prediction workflows may use Monte Carlo simulation and evidence scoring that can produce overconfident or misleading decisions if inputs are weak.
+
+Mitigation: Treat forecasts as decision support, verify input data quality, and review stated uncertainty and risk notes before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gloryjack/skills/ask-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style structured analysis with scoring, uncertainty labels, conclusions, and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Monte Carlo simulation summaries for prediction tasks and critic findings for research-style analysis.]
+
+## Skill Version(s):
+
+6.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

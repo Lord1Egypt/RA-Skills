@@ -1,40 +1,57 @@
-## Description: <br>
-Western Blot troubleshooting guide with step-by-step solutions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Western Blot troubleshooting guide with step-by-step solutions
 
-## Publisher: <br>
-[Lyla0921](https://clawhub.ai/user/Lyla0921) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lyla0921](https://clawhub.ai/user/lyla0921)
 
-## Use Case: <br>
-Developers, lab personnel, and research teams use this skill to diagnose common Western Blot issues such as high background, no visible bands, multiple bands, and smearing, then receive likely causes and recommended troubleshooting steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Troubleshooting recommendations are general lab guidance and may not fit every Western Blot protocol or reagent system. <br>
-Mitigation: Review recommendations against the experiment protocol, reagent documentation, and local lab standards before changing procedures. <br>
-Risk: The skill is marked Draft and the documentation slightly overstates parameters and file access compared with the current script. <br>
-Mitigation: Validate current command-line behavior before relying on documented parameters or file handling claims. <br>
+## Use Case:
 
+Developers, lab scientists, and support agents use this skill to diagnose common Western Blot issues such as high background, missing bands, and unexpected bands, then return ranked causes and practical troubleshooting steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Lyla0921/wb-troubleshooter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, shell commands] <br>
-**Output Format:** [Plain text troubleshooting output and command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local command-line helper; no additional Python packages required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Scientific recommendations are generic Western Blot troubleshooting guidance and may not fit a specific protocol, reagent, or lab context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate suggested protocol changes against lab SOPs, reagent documentation, and qualified scientific review before use.
+
+Risk: The artifact is marked Draft and includes an unchecked security checklist.
+
+Mitigation: Complete the checklist, review the script before installation, and run it in a sandboxed workspace.
+
+Risk: Local execution can print or save troubleshooting outputs in the workspace.
+
+Mitigation: Avoid entering sensitive experimental identifiers and review generated files before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lyla0921/skills/wb-troubleshooter)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, shell commands]
+
+**Output Format:** [Plain text troubleshooting guidance and command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline local execution; no additional Python packages required.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

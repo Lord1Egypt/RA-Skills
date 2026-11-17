@@ -1,49 +1,67 @@
-## Description: <br>
-劳动法费用计算路由技能，根据用户问题自动分发到补偿金及赔偿金、加班工资、未休年休假补偿或工伤赔偿子技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+劳动法费用计算路由技能，根据用户问题自动分发到补偿金/赔偿金计算、加班工资计算、未休年休假补偿计算、工伤赔偿计算等子技能。
 
-## Publisher: <br>
-[coolalam](https://clawhub.ai/user/coolalam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolalam](https://clawhub.ai/user/coolalam)
 
-## Use Case: <br>
-Employees, legal practitioners, HR teams, and agents use this skill to route Chinese labor-law fee questions to calculators for work injury compensation, unused annual leave pay, overtime pay, and termination-related compensation or damages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses local Python scripts that can read JSON payload files, write Excel files to caller-specified paths, cache policy data, and call Delilegal policy APIs with an API key. <br>
-Mitigation: Run it in a dedicated sandbox or workspace, review generated file paths before execution, keep config.json protected, and avoid passing sensitive absolute-path @ files. <br>
-Risk: API credentials may be sent with persistent session metadata to policy API endpoints. <br>
-Mitigation: Use a scoped API key, rotate it if exposed, and do not override API endpoint environment variables unless the destination is trusted. <br>
-Risk: Labor-law calculations can be affected by incomplete facts, jurisdiction-specific policy data, and changing wage or compensation standards. <br>
-Mitigation: Verify input facts and cited policy data before relying on results, and treat outputs as calculation support rather than legal advice. <br>
+## Use Case:
 
+Employees, external users, and practitioners use this skill to estimate Chinese labor-law related payments for termination compensation, damages, overtime pay, unused annual leave, and work-injury compensation. The skill routes each scenario to a focused calculator and produces structured calculation details, legal basis notes, and practical caveats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/coolalam/labor-fee-calculator) <br>
-- [Delilegal API key portal](https://open.delilegal.com/personal/keys) <br>
-- [Compensation and damages formulas](compensation-damages-calculator/references/formulas.md) <br>
-- [Overtime pay formulas](overtime-pay-calculator/references/formulas.md) <br>
-- [Unused annual leave formulas](unused-annual-leave-calculator/references/formulas.md) <br>
-- [Unused annual leave law articles](unused-annual-leave-calculator/references/law_articles.md) <br>
-- [Work injury compensation formulas](work-injury-compensation-calculator/references/formulas.md) <br>
-- [Work injury retirement age reference](work-injury-compensation-calculator/references/retirement_age.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with calculation tables, legal basis notes, and optional shell commands or Excel export instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call bundled Python calculators, request policy data with an API key, and optionally write Excel files when the user asks for export.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill frontmatter and release evidence) <br>
+Risk: Caller-controlled output_path values can cause generated Excel files to be written outside the intended working area.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill with a low-privilege account and restrict export paths to a dedicated output directory.
+
+Risk: Caller-controlled @file payload paths can cause the calculators to read unintended local payload files.
+
+Mitigation: Only allow trusted payload files and review any file path arguments before execution.
+
+Risk: Configured policy API calls may transmit API credentials and a persistent session ID to policy endpoints.
+
+Mitigation: Keep config.json API keys narrowly scoped and use only trusted policy API URLs.
+
+Risk: Untrusted environment variables can redirect policy API requests to unintended endpoints.
+
+Mitigation: Do not allow untrusted users to set policy API URL environment variables in the runtime environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coolalam/skills/labor-fee-calculator)
+- [Compensation and damages formulas](artifact/compensation-damages-calculator/references/formulas.md)
+- [Overtime pay formulas](artifact/overtime-pay-calculator/references/formulas.md)
+- [Unused annual leave formulas](artifact/unused-annual-leave-calculator/references/formulas.md)
+- [Unused annual leave law articles](artifact/unused-annual-leave-calculator/references/law_articles.md)
+- [Work-injury compensation formulas](artifact/work-injury-compensation-calculator/references/formulas.md)
+- [Work-injury retirement age reference](artifact/work-injury-compensation-calculator/references/retirement_age.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown with calculation tables, legal basis notes, optional shell commands, and optional generated Excel files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call bundled Python calculators and configured policy APIs; Excel output is only produced when the user explicitly requests export.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

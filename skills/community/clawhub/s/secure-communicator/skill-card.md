@@ -1,41 +1,59 @@
-## Description: <br>
-Provides guidance and shell commands for encrypting or decrypting text and files with a local Node.js implementation of the Pieter Theijssen triple-layer XOR format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Encrypts and decrypts text or files with the Pieter Theijssen triple-layer XOR cipher and V1 Base64 output format.
 
-## Publisher: <br>
-[theijssenp](https://clawhub.ai/user/theijssenp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theijssenp](https://clawhub.ai/user/theijssenp)
 
-## Use Case: <br>
-Developers, operators, and other users can use this skill to generate commands and guidance for encrypting or decrypting local messages or files with a shared key file. It is not appropriate for high-value secrets where vetted cryptographic tooling is required. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports weak custom cryptography and incomplete safeguards for sensitive data. <br>
-Mitigation: Use this only after review; prefer vetted encryption tools such as age, OpenPGP, or libsodium-based tooling for confidential or high-value secrets. <br>
-Risk: Key files and decrypted outputs can expose sensitive content if stored or shared carelessly. <br>
-Mitigation: Manage key files out of band, protect local outputs, and avoid sending keys over the same channel as encrypted messages. <br>
+## Use Case:
 
+External users and developers can use this skill to generate key files and run text or file encryption and decryption compatible with the Theijssen cipher workflow. Review is required before using it for sensitive secrets because the security evidence flags the custom cipher claims as overstated.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/theijssenp/secure-communicator) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/theijssenp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Text, Files] <br>
-**Output Format:** [Markdown with inline bash commands and generated command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local files and requires node and openssl according to ClawHub metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The custom triple-layer XOR cipher may not provide the protection implied by the skill's sensitive-communication claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not rely on this skill for high-value secrets; prefer a standard authenticated-encryption tool for sensitive communications.
+
+Risk: Plaintext passed with the --text option can be captured in shell history or process metadata.
+
+Mitigation: Avoid command-line plaintext for sensitive data; use safer input handling or clear shell history according to local policy.
+
+Risk: The --output option writes to the requested path and may overwrite an existing file.
+
+Mitigation: Choose output paths deliberately and check for existing files before running encryption, decryption, or key generation commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/theijssenp/skills/secure-communicator)
+- [Theijssen encode_decode compatibility reference](https://github.com/theijssenp/encode_decode)
+- [Theijssen message_coder_decoder compatibility reference](https://github.com/theijssenp/message_coder_decoder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Guidance]
+
+**Output Format:** [Plain text, file output, and Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and openssl binaries according to ClawHub metadata.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

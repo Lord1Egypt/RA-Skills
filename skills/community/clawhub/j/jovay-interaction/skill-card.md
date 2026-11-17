@@ -1,40 +1,54 @@
-## Description: <br>
-Helps agents produce jovay-cli guidance and commands for wallet, token, contract, network, and bridge interactions on Jovay and Ethereum. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill for interacting with Jovay or Ethereum network using jovay-cli.
 
-## Publisher: <br>
-[ryogawan](https://clawhub.ai/user/ryogawan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryogawan](https://clawhub.ai/user/ryogawan)
 
-## Use Case: <br>
-Developers and blockchain operators use this skill to ask an agent for Jovay CLI commands for wallet setup, balance checks, transfers, approvals, contract calls, network switching, and ETH bridge operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet setup and transaction workflows can expose private keys or encryption passwords if users paste secrets directly into shell commands. <br>
-Mitigation: Use a dedicated low-balance wallet, avoid passing private keys or wallet passwords on the command line when possible, and enable encrypted wallet storage. <br>
-Risk: Commands using --broadcast can send irreversible blockchain transactions with the wrong network, recipient, contract, token, amount, gas, or spender. <br>
-Mitigation: Manually confirm every transaction parameter, verify the jovay-cli package provenance, and review each --broadcast command before execution. <br>
+## Use Case:
 
+Developers and blockchain operators use this skill to ask an agent for Jovay CLI commands and guidance for wallet management, transfers, bridge operations, contract calls, transaction inspection, and network configuration on Jovay or Ethereum.
 
-## Reference(s): <br>
-- [Jovay Network Information](https://docs.jovay.io/developer/network-information) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may include wallet, contract, bridge, network, and transaction parameters that require user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: ClawHub release metadata) <br>
+Risk: Wallet secrets or encryption keys can expose funds if pasted into chat, shell history, scripts, or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test wallets first, avoid sharing real private keys or wallet passwords with the agent, and prefer safer signing methods if jovay-cli supports them.
+
+Risk: Incorrect blockchain transaction parameters can move funds, approve spenders, or broadcast transactions on the wrong network.
+
+Mitigation: Verify every recipient, spender, contract, network, amount, value, and broadcast flag before running generated commands.
+
+## Reference(s):
+
+- [Jovay Network Information](https://docs.jovay.io/developer/network-information)
+- [ClawHub Skill Page](https://clawhub.ai/ryogawan/skills/jovay-interaction)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Jovay CLI command options, Wei unit conversions, bridge sequence guidance, and transaction safety reminders.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

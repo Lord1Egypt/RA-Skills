@@ -1,45 +1,58 @@
-## Description: <br>
-中文 AI 文本优化技能，支持多种 AI 模型（OpenAI/Anthropic/阿里），去除 AI 痕迹，保持专业性。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes Chinese AI-generated text into a more natural human writing style while preserving a professional tone.
 
-## Publisher: <br>
-[pengong101](https://clawhub.ai/user/pengong101) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pengong101](https://clawhub.ai/user/pengong101)
 
-## Use Case: <br>
-External users and developers can use this skill to rewrite AI-generated Chinese and English text into more natural styles, batch-process text files, and optimize code comments for selected programming languages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input text may be processed by configured third-party AI providers despite artifact documentation also claiming local processing. <br>
-Mitigation: Avoid confidential, regulated, or proprietary text unless third-party processing is intended and approved. <br>
-Risk: Batch processing can send or transform more files than intended if paths are broad. <br>
-Mitigation: Keep batch paths narrow and review selected input and output directories before running the skill. <br>
-Risk: Configured provider credentials may have more access than this task requires. <br>
-Mitigation: Use restricted API keys and rotate or revoke them after testing when appropriate. <br>
+## Use Case:
 
+External users and developers use this skill to rewrite Chinese AI-generated text for a more natural tone across professional, academic, business, blog, and casual styles. Review transformed text before using it in public, regulated, or high-stakes settings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pengong101/ai-humanizer-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/pengong101) <br>
-- [Documentation link listed in artifact](https://ai-humanizer-cn.readthedocs.io/) <br>
-- [Package link listed in artifact](https://pypi.org/project/ai-humanizer-cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; runtime output is rewritten text or code.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use configured API keys and batch paths when provider-backed processing is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The security evidence reports inconsistent documentation: the package appears to perform local text rewriting, while documentation asks for AI provider API keys and claims remote-model features.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not provide AI provider API keys or sensitive documents until the release reconciles local-only versus remote-provider behavior and removes unimplemented claims.
+
+Risk: Remote-model, batch, and bulk-processing behavior may not match the inspected code.
+
+Mitigation: Validate the installed code path on non-sensitive sample content before relying on those features in production workflows.
+
+Risk: Dependencies are not fully pinned or justified in the release evidence.
+
+Mitigation: Pin or justify dependencies before deployment, and review dependency changes during release intake.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pengong101/skills/ai-humanizer-cn)
+- [Publisher profile](https://clawhub.ai/user/pengong101)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Plain text, Markdown, or code-oriented rewrite suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed for tone, factual accuracy, and privacy before use with sensitive documents.]
+
+## Skill Version(s):
+
+5.0.0 (source: server release metadata and SKILL.md frontmatter, updated 2026-03-18)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

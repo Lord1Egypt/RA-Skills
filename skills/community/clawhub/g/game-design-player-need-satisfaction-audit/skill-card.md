@@ -1,40 +1,52 @@
-## Description: <br>
-Audit a game, feature, live-ops system, onboarding flow, progression loop, social feature, monetization flow, or return loop for player need satisfaction using Self-Determination Theory and the PENS lens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits a game, feature, live-ops system, onboarding flow, progression loop, social feature, monetization flow, or return loop for player need satisfaction using Self-Determination Theory and the PENS lens.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[stanestane](https://clawhub.ai/user/stanestane)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Game designers, product teams, and agents use this skill to audit whether a game design supports autonomy, competence, relatedness, and optional benevolence. It is intended for practical diagnosis of weak retention, shallow engagement, coercive loops, and targeted improvements to player need satisfaction.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can influence game-design review prompts and may be applied broadly to product decisions.
+
+Mitigation: Review generated audits with design, product, and research stakeholders before making roadmap or monetization changes.
+
+Risk: Advisory recommendations may be incomplete if the input omits player context, live metrics, or qualitative research.
+
+Mitigation: Pair the audit with concrete player evidence and clearly state assumptions about the target feature or loop.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Game designers, product teams, and live-ops reviewers use this skill to evaluate whether a game system satisfies autonomy, competence, relatedness, and optional benevolence needs. It is intended for design-facing audits of features, loops, onboarding, progression, social systems, monetization touchpoints, and retention mechanics. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The server security scan reports a suspicious verdict tied to maintainer-level repo automation and sandbox or approval bypass behavior. <br>
-Mitigation: Install only when that automation is expected, review the helper behavior before use, prefer --no-yolo or AUTOREVIEW_YOLO=0 where applicable, and run workflows only with intended authenticated accounts and explicit targets. <br>
-Risk: The skill can generate persuasive design recommendations that may be incorrect or may overstate what player need satisfaction evidence supports. <br>
-Mitigation: Treat the audit as design guidance, review conclusions against player research and telemetry, and have product or design owners approve changes before launch. <br>
+**Output Format:** [Markdown audit with tables, scored profiles, risk diagnosis, and numbered recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stanestane/game-design-player-need-satisfaction-audit) <br>
+**Other Properties Related to Output:** [Advisory output only; no code, tool calls, persistence, or sensitive access]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown audit with tables and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces need satisfaction profiles, need denial findings, mechanism maps, risk diagnosis, and improvement recommendations.] <br>
+1.0.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

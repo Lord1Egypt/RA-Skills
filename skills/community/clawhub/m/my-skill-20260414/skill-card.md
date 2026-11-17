@@ -1,38 +1,49 @@
-## Description: <br>
-Provides current weather information for a specified location using a weather API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a simple Feishu chat-test skill, while release metadata describes a weather skill that should be confirmed before deployment.
 
-## Publisher: <br>
-[zel-forprogress](https://clawhub.ai/user/zel-forprogress) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zel-forprogress](https://clawhub.ai/user/zel-forprogress)
 
-## Use Case: <br>
-Users can use this skill for simple weather lookups, while Feishu users should confirm whether the published behavior is intended to be a weather lookup or a chat-test responder before enabling it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release describes weather lookup behavior, but the artifact instructions describe a Feishu chat-test responder. <br>
-Mitigation: Confirm the intended capability and chat context before installing or enabling the skill. <br>
+## Use Case:
 
+Developers and ClawHub users can use this skill as a basic Feishu bot interaction test. Reviewers should confirm whether the intended purpose is weather lookup or chat testing before deployment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zel-forprogress/my-skill-20260414) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no bundled executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The release metadata describes weather lookup, but the artifact content describes a Feishu chat-test skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended purpose before installation or deployment, and update the skill description to match the implemented behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zel-forprogress/skills/my-skill-20260414)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Markdown instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only artifact; security evidence reports no executable code or persistence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

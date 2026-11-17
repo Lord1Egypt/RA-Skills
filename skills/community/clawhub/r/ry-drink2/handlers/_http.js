@@ -1,4 +1,4 @@
-﻿const DEFAULT_BASE = process.env.RY_DRINK2_API_BASE || 'http://192.168.0.66:9302';
+const DEFAULT_BASE = process.env.RY_DRINK2_API_BASE || 'http://192.168.0.66:9302';
 /** 会话绑定门店 ID（user-system chat.send 写入），优先级最高，LLM 无法覆盖 */
 const FORCED_SHOP_ID = String(process.env.RY_DRINK2_FORCED_SHOP_ID || '').trim();
 /** 租客 ID（t_merchant.id），/merchant/{id}/info、/menus 路径用此值 */

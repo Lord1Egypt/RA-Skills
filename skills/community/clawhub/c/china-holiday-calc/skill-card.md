@@ -1,42 +1,53 @@
-## Description: <br>
-Chinese mainland calendar service that identifies statutory holidays, weekends, makeup workdays, and supported city vacation periods. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese mainland calendar service that identifies statutory holidays, weekends, makeup workdays, and city-specific vacation periods.
 
-## Publisher: <br>
-[manucode2000-max](https://clawhub.ai/user/manucode2000-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[manucode2000-max](https://clawhub.ai/user/manucode2000-max)
 
-## Use Case: <br>
-Developers and operators use this skill to check Chinese mainland holiday, weekend, makeup workday, and supported city school vacation status from a local Python CLI or API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Holiday results depend on the third-party chinese-calendar package and its data staying accurate for the target year. <br>
-Mitigation: Pin and review the chinese-calendar dependency for managed or production use, and validate important dates against authoritative schedules. <br>
-Risk: Server-resolved import provenance is unavailable for this release. <br>
-Mitigation: Verify the publisher handle, release metadata, and source provenance before relying on the skill in workflows where supply-chain provenance matters. <br>
-Risk: City vacation lookups depend on the regions.json data being located where the script expects it. <br>
-Mitigation: Place or package the vacation data at the expected config path, or update the script path before using city vacation commands. <br>
+## Use Case:
 
+Developers and agents use this skill to answer China mainland holiday, workday, and school vacation calendar questions from dates, years, or supported city names.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/manucode2000-max/china-holiday-calc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown with Python and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local date lookup output; no hidden data access, persistence, or destructive behavior was reported by server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill depends on the unpinned third-party chinese-calendar Python package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it in a low-privilege Python environment and pin or review the dependency before use.
+
+Risk: Holiday and vacation logic is specific to mainland China and includes Chinese-language CLI output.
+
+Mitigation: Use it for China-specific calendar questions and review outputs before applying them to other regions or user-facing workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/manucode2000-max/skills/china-holiday-calc)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, guidance]
+
+**Output Format:** [Plain text, JSON-like Python dictionaries, and Markdown with inline shell or Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language date labels and CLI output; uses the chinese-calendar Python package.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

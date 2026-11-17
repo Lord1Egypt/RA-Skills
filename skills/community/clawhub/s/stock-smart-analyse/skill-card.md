@@ -1,39 +1,53 @@
-## Description: <br>
-12维股票智能分析评分模型。基于行业、头部玩家、市场环境、管理团队、市值规模、主营业务、收入、利润、分红、回购、机构持股、大股东增减持12个维度对股票进行综合评分。触发词：股票分析、选股评分、股票评分、智能选股。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+12维股票智能分析评分模型，基于行业、头部玩家、市场环境、管理团队、市值规模、主营业务、收入、利润、分红、回购、机构持股、大股东增减持12个维度对股票进行综合评分。
 
-## Publisher: <br>
-[frankxpj](https://clawhub.ai/user/frankxpj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frankxpj](https://clawhub.ai/user/frankxpj)
 
-## Use Case: <br>
-External users and developers use this skill to score a stock across 12 weighted business, market, and financial dimensions and generate a structured analysis report. The output is intended as informational decision support, not financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The stock ratings may be mistaken for financial advice. <br>
-Mitigation: Treat generated ratings as informational support and have a qualified reviewer validate data, assumptions, and investment decisions. <br>
-Risk: The --output option can overwrite the file path selected by the user. <br>
-Mitigation: Choose an explicit report path and check for existing files before writing output. <br>
+## Use Case:
 
+External users and developers use this skill to score a stock across 12 weighted business and market dimensions, then generate a Markdown or JSON report for comparison, portfolio review, and investment-decision support.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report or JSON data produced by a local Python scoring script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run interactively, read scores from a JSON file, and write a report to a user-selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated stock scores and buy, hold, or exit ratings could be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as a user-driven scoring aid, verify market and company data independently, and make investment decisions outside the skill.
+
+Risk: Broad stock-analysis requests may trigger the skill even when the user expects current market data.
+
+Mitigation: Confirm the requested scope and require current, independently sourced market data before relying on the report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/frankxpj/skills/stock-smart-analyse)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown report or JSON object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include weighted dimension scores, an overall rating, strengths, focus areas, and a timestamp.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

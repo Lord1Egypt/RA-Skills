@@ -1,45 +1,56 @@
-## Description: <br>
-Marketstack (marketstack.com). Use this skill for ANY Marketstack request - searching and reading data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Marketstack and retrieve market data through a connected OOMOL account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and analysts use this skill to query Marketstack data through an OOMOL-connected account. It supports latest and historical end-of-day market data, ticker profiles, ticker search, currencies, and exchange listings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a connected Marketstack account and may depend on sensitive credentials managed outside the prompt. <br>
-Mitigation: Use the OOMOL connection flow, review requested permissions, and provide credentials only when they are required for Marketstack access. <br>
-Risk: Generated shell commands could fail or run with an unexpected payload if the connector schema has changed. <br>
-Mitigation: Inspect the live connector schema before running actions and use JSON payloads that match the returned contract. <br>
-Risk: Authentication, connection, or billing failures may require user account actions before data can be retrieved. <br>
-Mitigation: Run setup, reconnect, or billing steps only after the related command fails with the matching error. <br>
+## Use Case:
 
+Developers and analysts use the skill to search Marketstack listings and retrieve end-of-day prices, ticker profiles, currencies, and exchange data through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [Marketstack homepage](https://marketstack.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-marketstack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, PowerShell, text, and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads; action responses are expected as JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and skill frontmatter) <br>
+Risk: The documented CLI installer and automatic skill synchronization can execute unverified software and change persistent agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer and intended version before installation, inspect automatic skill changes, and consider the documented OO_SKILLS_SYNC_DISABLED control.
+
+Risk: Marketstack queries and authentication use OOMOL, so account permissions and billing affect use.
+
+Mitigation: Review OOMOL account permissions and billing before connecting.
+
+## Reference(s):
+
+- [Marketstack](https://marketstack.com)
+- [Marketstack API documentation](https://docs.apilayer.com/marketstack/docs/marketstack-api-v2-v-2-0-0)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [Marketstack ClawHub release](https://clawhub.ai/oomol/skills/oo-marketstack)
+
+## Skill Output:
+
+**Output Type(s):** [API data, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON responses and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-This skill helps agents search WeChat articles through BrowserAct and return full article content with article metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents extract full WeChat article content and metadata from keyword searches using the BrowserAct API.
 
-## Publisher: <br>
-[ccmagia2-gif](https://clawhub.ai/user/ccmagia2-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ccmagia2-gif](https://clawhub.ai/user/ccmagia2-gif)
 
-## Use Case: <br>
-External users and developers use this skill to collect full WeChat article bodies, titles, authors, publication dates, image URLs, and source links for content monitoring, media research, trend tracking, competitor analysis, and knowledge-base building. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms and retrieved content are sent to BrowserAct for WeChat article extraction. <br>
-Mitigation: Use the skill only when BrowserAct's data handling is acceptable, avoid confidential search terms, and keep BROWSERACT_API_KEY in the local environment. <br>
-Risk: Large extraction limits can increase runtime and expose more third-party content than intended. <br>
-Mitigation: Start with modest extraction limits and review results before increasing the limit for batch research. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to search WeChat articles by keyword and optional publication date, then retrieve article URLs, dates, authors, images, titles, and body content for monitoring, media research, trend tracking, knowledge base building, or competitor analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ccmagia2-gif/wechat-article-search-api-skill) <br>
-- [BrowserAct API key console](https://www.browseract.com/reception/integrations) <br>
-- [BrowserAct workflow API endpoint](https://api.browseract.com/v2/workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal logs followed by text or JSON-like article results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and BROWSERACT_API_KEY; outputs may include article URLs, publication dates, authors, image URLs, body content, and titles.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Search terms and date filters are sent to the BrowserAct API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for non-sensitive WeChat research unless the user accepts sharing those inputs with BrowserAct.
+
+Risk: The skill requires a BrowserAct API key and the security guidance warns against sharing it in chat.
+
+Mitigation: Configure BROWSERACT_API_KEY through a protected environment variable or secret manager, and rotate any key that was previously pasted into a conversation.
+
+Risk: The security verdict is suspicious because the skill lacks enough user-facing scoping around third-party API use.
+
+Mitigation: Review the skill before installing or running it, and confirm that the user understands what data will be sent to BrowserAct.
+
+## Reference(s):
+
+- [BrowserAct Console](https://www.browseract.com/reception/integrations)
+- [BrowserAct Workflow API endpoint](https://api.browseract.com/v2/workflow)
+- [ClawHub skill page](https://clawhub.ai/ccmagia2-gif/skills/wechat-article-search-api-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and text or JSON-like API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python and BROWSERACT_API_KEY; article search terms and date filters are sent to BrowserAct.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,205 @@
+{
+  "skill_name": "beatapi-video",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Use my local cover.png and song.mp3 to make a 9:16 720p music video. Go ahead and create it.",
+      "expected_output": "Should trigger the Skill, prefer bundled BeatAPI MCP tools and otherwise use the CLI fallback, verify setup and usage, inspect and upload both local files, build an automatic Music Video request with returned HTTPS URLs, create the paid task without redundant confirmation because generation was explicit, wait with a bounded interval, and report success only with hosted output.",
+      "assertions": [
+        "Prefers BeatAPI MCP tools with an official CLI fallback",
+        "Checks authentication and usage",
+        "Uploads local media before task creation",
+        "Chooses Music Video automatic composition",
+        "Does not ask for the API key in chat",
+        "Does not add redundant spend confirmation",
+        "Waits for final task state",
+        "Requires hosted output before claiming completion"
+      ],
+      "files": ["cover.png", "song.mp3"]
+    },
+    {
+      "id": 2,
+      "prompt": "Make a music video from these URLs, but let me review and choose the storyboard shots before you compose it.",
+      "expected_output": "Should choose manual composition, create the task, stop at storyboard_ready or requires_action, present shot IDs and useful metadata, ask for selection only at that decision point, preserve selected order, disclose that edits and composition consume credits, and compose only after the user chooses.",
+      "assertions": [
+        "Chooses manual Music Video composition",
+        "Stops at an actionable storyboard state",
+        "Uses BeatAPI shot IDs rather than indexes",
+        "Presents storyboard choices compactly",
+        "Waits for user selection before composition",
+        "Preserves selected shot order",
+        "Explains paid shot edits and composition"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "What's happening with BeatAPI task task_123? Don't create anything new.",
+      "expected_output": "Should perform a read-only task lookup, avoid task creation and extra credit checks unless useful, report current status and output/error fields, and never describe queued or processing as complete.",
+      "assertions": [
+        "Uses beatapi tasks get",
+        "Performs no paid mutation",
+        "Does not create a replacement task",
+        "Reports the actual task status",
+        "Preserves request and error identifiers when present"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "My BeatAPI command says I'm not authenticated. Here is my key if you need it.",
+      "expected_output": "Should refuse to receive the key in chat, direct the user to beatapi auth login or BEATAPI_API_KEY, explain that keys must not be passed as arguments, and continue only after auth status succeeds.",
+      "assertions": [
+        "Does not request or repeat the API key",
+        "Directs the user to beatapi auth login",
+        "Allows BEATAPI_API_KEY as a non-chat alternative",
+        "Does not suggest an --api-key flag",
+        "Verifies auth status before continuing"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Create a 15 second vertical product ad from these three local product photos.",
+      "expected_output": "Should choose Ecommerce Video, inspect and upload the photos, check usage and concurrency, create a 15-second 9:16 request, wait for the task, and return hosted output plus task and usage metadata.",
+      "assertions": [
+        "Chooses Ecommerce Video",
+        "Uploads local images",
+        "Checks credits and concurrency",
+        "Uses 15-second duration and 9:16 aspect ratio",
+        "Waits for terminal state",
+        "Returns hosted output only on success"
+      ],
+      "files": ["product-front.png", "product-side.png", "product-use.png"]
+    },
+    {
+      "id": 6,
+      "prompt": "BeatAPI returned insufficient_credits for req_abc. Keep retrying until it works.",
+      "expected_output": "Should refuse blind retries, preserve req_abc, check/report balance and relevant cost, explain that insufficient credits requires account action or cheaper settings, and ask before creating any new paid task.",
+      "assertions": [
+        "Does not retry insufficient_credits",
+        "Preserves the request ID",
+        "Checks or reports credit balance",
+        "Offers settings or account actions",
+        "Requires authorization for a new paid task"
+      ],
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "Set up BeatAPI webhooks for task success and failure, then show me how my server should verify events.",
+      "expected_output": "Should use BeatAPI MCP webhook tools when available or webhook CLI operations as a fallback, avoid logging the one-time signing secret, and consult the bundled OpenAPI contract for the exact signature and replay-protection behavior instead of inventing it.",
+      "assertions": [
+        "Uses BeatAPI MCP webhook tools or the CLI fallback",
+        "Treats the webhook secret as sensitive",
+        "Consults the exact OpenAPI contract",
+        "Covers success and failure events",
+        "Does not invent signing fields"
+      ],
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "Trim the first 10 seconds from this existing MP4 and add a fade transition.",
+      "expected_output": "Should recognize this as ordinary video editing rather than a BeatAPI generation workflow and avoid forcing use of BeatAPI.",
+      "assertions": [
+        "Does not trigger a paid BeatAPI generation",
+        "Recognizes generic video editing",
+        "Routes to a more appropriate video editing capability"
+      ],
+      "files": ["input.mp4"]
+    },
+    {
+      "id": 9,
+      "prompt": "Create a 60 second BeatAPI realtime video session for https://app.example.com and put the API key in my React component.",
+      "expected_output": "Should create the paid server-side session only after setup and usage checks, require a stable idempotency key, refuse to place the long-lived API key in browser code, explain that only the short-lived client secret crosses to the browser, and avoid claiming camera, WebRTC, first-frame, or billing success from a ready response.",
+      "assertions": [
+        "Chooses the Realtime Video session workflow",
+        "Uses exact HTTPS allowed origins",
+        "Uses a stable idempotency key",
+        "Never exposes the long-lived API key to the browser",
+        "Treats the client secret as short lived and sensitive",
+        "Does not claim browser media success from ready status"
+      ],
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "Use a current BeatAPI image model and these two reference images to generate a 16:9 campaign still. Go ahead and create it.",
+      "expected_output": "Should discover the current generation catalog, let the selected model contract determine the accepted fields, upload or validate both references, check USD balance and concurrency, create one image task, poll it, and report only hosted image output.",
+      "assertions": [
+        "Discovers generation models",
+        "Uses a current returned model ID",
+        "Validates model-specific image inputs",
+        "Treats generation as a paid mutation",
+        "Requires hosted image output before success"
+      ],
+      "files": ["reference-one.png", "reference-two.png"]
+    },
+    {
+      "id": 11,
+      "prompt": "Use a current BeatAPI video model to make a 10-second video using these image and audio references.",
+      "expected_output": "Should discover the current catalog, select only a returned model ID, inspect and upload local references, validate the exact model request variant and reference dependencies, create one video task, and wait for hosted output.",
+      "assertions": [
+        "Discovers generation models",
+        "Uses a current returned model ID",
+        "Validates reference input combinations",
+        "Does not expose internal provider routing",
+        "Waits for hosted video output"
+      ],
+      "files": ["character.png", "motion.mp4", "voice.mp3"]
+    },
+    {
+      "id": 12,
+      "prompt": "Show me the current portrait Effects, then run the one I choose on this image.",
+      "expected_output": "Should list active Effects without authentication, present publication-safe choices, wait for the user's Effect selection, read that Effect's current version contract, upload and validate the image, use a stable idempotency key for the paid create call, and poll the shared task endpoint.",
+      "assertions": [
+        "Lists active Effects before creation",
+        "Waits for the user to choose an Effect",
+        "Reads the selected Effect contract",
+        "Uses a stable idempotency key",
+        "Does not infer internal templates or providers"
+      ],
+      "files": ["portrait.png"]
+    },
+    {
+      "id": 13,
+      "prompt": "I explicitly asked for BeatAPI text. List the available text models and use one to summarize this launch note.",
+      "expected_output": "Should verify authentication, list BeatAPI text models, choose only a returned ID, call the non-streaming BeatAPI Responses surface, and return the provider-compatible response. It must not activate for ordinary writing requests without explicit BeatAPI intent.",
+      "assertions": [
+        "Requires explicit BeatAPI text intent",
+        "Lists authenticated text models",
+        "Uses only a returned model ID",
+        "Forces stream false",
+        "Does not expose the API key"
+      ],
+      "files": []
+    },
+    {
+      "id": 14,
+      "prompt": "Analyze this product-demo video with BeatAPI and identify the key scenes and usability issues.",
+      "expected_output": "Should upload a local video or validate its public HTTPS URL, check setup and usage, create a Video Analysis task with the user's prompt, wait on the shared task endpoint, and report analysis only from a succeeded task.",
+      "assertions": [
+        "Chooses BeatAPI Video Analysis",
+        "Uses a public HTTPS video URL",
+        "Treats analysis as a paid mutation",
+        "Waits for the shared task result",
+        "Preserves request and error IDs on failure"
+      ],
+      "files": ["product-demo.mp4"]
+    },
+    {
+      "id": 15,
+      "prompt": "Connect to BeatAPI through Muse, show me a few current Twitter search capabilities, and explain their inputs. Do not run a paid call.",
+      "expected_output": "Should use the configured Hosted MCP connection, verify the three BeatAPI tools, Search Data with platform twitter, Inspect actual returned references, and stop before capabilities_run start. It must keep the API key in Muse's credential surface and distinguish connection, discovery, and paid execution.",
+      "assertions": [
+        "Uses capabilities_search and capabilities_inspect",
+        "Uses only actual returned Data references",
+        "Does not start a paid capability",
+        "Keeps the API key outside the conversation",
+        "Distinguishes a working connection from completed execution"
+      ],
+      "files": []
+    }
+  ]
+}

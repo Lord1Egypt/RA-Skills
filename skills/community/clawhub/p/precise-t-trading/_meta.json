@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn78kmemq2v76219wyznh49xpn846fvx",
-  "slug": "precise-t-trading",
-  "version": "1.0.4",
-  "publishedAt": 1775320218570
+  "name": "precise-t-trading",
+  "displayName": "精算做T系统",
+  "version": "1.0.0",
+  "description": "Professional T+0 intraday trading system with Bayesian inference, Kelly criterion, and VaR risk management",
+  "author": "Kemi (yang77160)",
+  "license": "MIT",
+  "tags": ["trading", "stocks", "quantitative", "A-share", "T+0", "risk-management"],
+  "installRequirements": {
+    "pip": ["numpy", "scipy", "requests", "colorama"]
+  },
+  "networkAccess": ["qt.gtimg.cn"],
+  "category": "finance"
 }

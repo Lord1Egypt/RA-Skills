@@ -1,0 +1,21 @@
+{
+  "name": "simpleerp-db-skill",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/check-prereqs.mjs",
+    "setup": "node scripts/setup.mjs",
+    "export-schema": "node scripts/export-tables-sql.mjs",
+    "sync-env": "node scripts/sync-db-env.mjs",
+    "sql": "node scripts/run-sql.mjs",
+    "sql:save": "node scripts/run-sql.mjs -o output/last-query.json",
+    "table-index": "node scripts/gen-table-index.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "oracledb": "^6.4.0"
+  }
+}

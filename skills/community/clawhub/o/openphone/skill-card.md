@@ -1,43 +1,58 @@
-## Description: <br>
-Manage business phone calls, SMS, and contacts via OpenPhone API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage business phone calls, SMS, and contacts through the OpenPhone API.
 
-## Publisher: <br>
-[dwhite-oss](https://clawhub.ai/user/dwhite-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dwhite-oss](https://clawhub.ai/user/dwhite-oss)
 
-## Use Case: <br>
-Employees, operators, and developers use this skill to guide agents through OpenPhone API tasks such as sending SMS messages, managing contacts, listing phone numbers, and reviewing call, voicemail, recording, and transcript data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OpenPhone API keys can authorize access to sensitive business phone, contact, message, call, voicemail, recording, or transcript data. <br>
-Mitigation: Store OPENPHONE_API_KEY as a secret, use the least-privileged key available, and avoid exposing it in prompts, logs, or shared command output. <br>
-Risk: Agent actions could send messages or create contacts with incorrect recipients, content, or fields. <br>
-Mitigation: Require explicit confirmation of recipients, message content, contact fields, phone number IDs, and record retrieval scope before executing API calls. <br>
-Risk: Repeated API requests can hit the documented 60 requests per minute guidance in the artifact. <br>
-Mitigation: Batch or throttle loops with delays and retry only after checking response status and user intent. <br>
+## Use Case:
 
+Developers and business operations users use this skill to draft OpenPhone API requests for listing phone numbers, contacts, messages, calls, recordings, voicemail, and for creating contacts or sending SMS/MMS with an authorized OpenPhone account.
 
-## Reference(s): <br>
-- [OpenPhone API v1](https://api.openphone.com/v1) <br>
-- [ClawHub OpenPhone release](https://clawhub.ai/dwhite-oss/openphone) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with curl examples and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OPENPHONE_API_KEY environment variable and OpenPhone account permissions for the requested API actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can help send real SMS/MMS messages and create or change contacts in an OpenPhone account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual confirmation before sending messages, creating contacts, or running bulk operations.
+
+Risk: The skill may expose or retrieve conversation history, call recordings, voicemail, and transcripts from an OpenPhone workspace.
+
+Mitigation: Use only with accounts and conversations approved by the workspace, and avoid regulated or highly confidential communications unless OpenPhone and internal policies allow that use.
+
+Risk: The artifact requires an OPENPHONE_API_KEY for API access.
+
+Mitigation: Store the API key in the environment or a secrets manager, avoid pasting it into prompts, logs, or shared files, and rotate it if exposed.
+
+## Reference(s):
+
+- [OpenPhone API base](https://api.openphone.com/v1)
+- [ClawHub skill page](https://clawhub.ai/dwhite-oss/skills/openphone)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an OPENPHONE_API_KEY environment variable and authorized OpenPhone workspace access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

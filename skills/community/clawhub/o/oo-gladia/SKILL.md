@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Gladia"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["gladia"]
   icon: "https://static.oomol.com/logo/third-party/gladia.svg"
 ---
@@ -42,7 +42,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_transcription` — Retrieve a Gladia pre-recorded transcription job by ID, including results when done.
 - `list_transcriptions` — List Gladia pre-recorded transcription jobs with optional pagination, date, status, and metadata filters.
 - `start_transcription` — Start an asynchronous Gladia pre-recorded transcription job from a public audio or video URL. [write]
-- `upload_file` — Upload an audio or video file up to 100 MiB to Gladia from a local file path, connector transit file, base64 content, or public URL. [write]
+- `upload_file` — Upload an audio or video file up to 100 MiB from connector transit storage to Gladia. [write]
 
 ## Safety
 
@@ -73,11 +73,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Gladia is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=gladia
+  https://console.oomol.com/connections/gladia
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Gladia homepage: https://app.gladia.io/
+- API documentation: https://docs.gladia.io/api-reference/authentication

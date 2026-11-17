@@ -1,0 +1,33 @@
+{
+  "mode": "form_submission_plan",
+  "sample": {
+    "fields": [
+      {
+        "name": "email",
+        "required": true
+      },
+      {
+        "name": "message",
+        "required": true
+      }
+    ],
+    "values": {
+      "email": "demo@example.com",
+      "message": "Fictional inquiry"
+    }
+  },
+  "expected": {
+    "readyForReview": true,
+    "submissionPerformed": false
+  },
+  "invalid": {
+    "fields": [
+      {
+        "name": "x"
+      },
+      {
+        "name": "x"
+      }
+    ]
+  }
+}

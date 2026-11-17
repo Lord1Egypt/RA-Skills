@@ -1,0 +1,21 @@
+#encoding:gbk  
+'''
+37撤单
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+import pandas as pd  
+def init(ContextInfo):  
+	ContextInfo.accountid= 'test'  
+def handlebar(ContextInfo):  
+	ID_list = get_ID(ContextInfo.accountid,'STOCK')  #查询所有委托号
+	print(ID_list)  
+	last_id = get_last_order_id(ContextInfo.accountid, 'stock', 'order')#获取最新委托号  
+	print('last_id',last_id)  
+	obj = get_value_by_order_id(last_id,ContextInfo.accountid, 'stock', 'order')#根据委托号获取委托信息  
+	print('委托号：',obj.m_strOrderSysID, '委托时间：',obj.m_strInsertTime)  
+def get_ID(accountid,datatype):  
+	id = []  
+	resultlist=get_trade_detail_data(accountid,datatype,"ORDER")  
+	for i in resultlist:  
+		id= i.m_strOrderSysID  
+	return id 

@@ -1,41 +1,51 @@
-## Description: <br>
-Maximize deep work with focus sessions, distraction logging, and productivity tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maximize deep work with focus sessions, distraction logging, and productivity tracking.
 
-## Publisher: <br>
-[jhillin8](https://clawhub.ai/user/jhillin8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhillin8](https://clawhub.ai/user/jhillin8)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to run focused work sessions, log distractions, review focus statistics, and adjust local environment settings for fewer interruptions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Environment controls may mute notifications, block sites, close or minimize apps, or adjust device settings in ways the user did not intend. <br>
-Mitigation: Set explicit boundaries before each session and require confirmation before muting, closing, blocking, or changing local settings. <br>
-Risk: Focus logs and distraction records may contain sensitive work habits, project names, or interruption details. <br>
-Mitigation: Keep logs local, tell users where they are stored, and provide a clear way to review and delete them. <br>
-Risk: Productivity summaries may be misleading if sessions or distractions are logged inconsistently. <br>
-Mitigation: Present summaries as personal tracking signals and encourage users to review patterns rather than treat them as precise performance measures. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jhillin8/focus-deep-work) <br>
+## Use Case:
+
+External users use this skill to run focus sessions, record distractions, and review local productivity summaries while writing, coding, designing, or doing other deep work.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may ask to mute notifications, block websites, close or minimize apps, or change brightness during a focus session.
+
+Mitigation: Require explicit user approval before any device-setting change and review the specific action before execution.
+
+Risk: Focus logs and productivity summaries may contain sensitive work patterns or project details.
+
+Mitigation: Keep session data local as described by the artifact and avoid uploading or syncing logs unless the user explicitly chooses to do so.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with focus-session prompts, summaries, and optional local environment-control instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local focus logs and may propose notification, app, site-blocking, brightness, or focus-music changes when permitted.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with focus-session steps and local tracking summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose permission-gated device-setting changes such as muting notifications, blocking apps or sites, and dimming brightness.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

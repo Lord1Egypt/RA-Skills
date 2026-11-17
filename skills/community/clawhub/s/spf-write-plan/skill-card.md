@@ -1,41 +1,59 @@
-## Description: <br>
-Use when you have a spec or requirements for a multi-step task, before touching code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when you have a spec or requirements for a multi-step task, before touching code.
 
-## Publisher: <br>
-[mok888](https://clawhub.ai/user/mok888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mok888](https://clawhub.ai/user/mok888)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn requirements into structured, test-driven implementation plans before changing code. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated implementation plans may contain incorrect paths, commands, or code guidance. <br>
-Mitigation: Review generated plans before using them for execution. <br>
-Risk: Planning files may expose sensitive project details if secrets are included in the request or saved plan. <br>
-Mitigation: Avoid including secrets in prompts, requirements, or planning files. <br>
-Risk: Large or risky changes planned in an active workspace can disrupt ongoing work. <br>
-Mitigation: Use an isolated worktree for substantial or high-risk changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mok888/spf-write-plan) <br>
+## Use Case:
 
+Developers and engineering agents use this skill to turn requirements into durable implementation plans with task breakdowns, file targets, test commands, and handoff guidance before coding begins.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown plan files with code blocks, shell commands, and handoff guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write implementation plans, task guides, and handoff notes for review before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may create or update visible planning files in a repository, especially under .superpower-with-files.
+
+Mitigation: Specify an output path when the default location is not desired and review generated planning files before keeping or sharing them.
+
+Risk: Generated plans can contain incorrect or misleading implementation guidance if the requirements or repository context are incomplete.
+
+Mitigation: Review plans before execution, then use normal code review, scanning, and test gates before applying changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mok888/skills/spf-write-plan)
+- [SKILL.md](artifact/SKILL.md)
+- [Python CLI template](artifact/templates/python-cli.md)
+- [Python FastAPI template](artifact/templates/python-fastapi.md)
+- [React component template](artifact/templates/react-component.md)
+- [Rust Axum template](artifact/templates/rust-axum.md)
+- [Rust CLI template](artifact/templates/rust-cli.md)
+- [Session handoff template](artifact/templates/handoff.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown implementation plans with code snippets, command blocks, task guides, and handoff notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces planning artifacts for review before execution; no code execution is part of the planning behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Send the same notification across email through Himalaya and iMessage through BlueBubbles with shared markdown formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends the same notification through email with Himalaya and iMessage with BlueBubbles using shared markdown formatting.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to send one user-provided notification through email and iMessage in the same workflow. It helps format the message consistently, send each configured channel, and report full or partial delivery failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real messages externally through configured email and iMessage channels. <br>
-Mitigation: Verify the email address, iMessage target, subject, message body, and selected channels before sending. <br>
-Risk: A partial failure can leave only one channel delivered. <br>
-Mitigation: Report which channels succeeded or failed and retry only the failed channel after confirming the target and content. <br>
-Risk: Notification bodies may disclose sensitive information to external recipients. <br>
-Mitigation: Review message content before delivery and avoid sending secrets, credentials, or unintended private details. <br>
+## Use Case:
 
+External users and developers use this skill when they need an agent to prepare and send a single notification across email and iMessage, with consistent formatting and per-channel success or failure reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/cross-channel-notify) <br>
-- [Channel Configuration](references/channels.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and formatted notification text for email and iMessage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Formats a full markdown email body and a compact plain-text iMessage body truncated to 2000 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.0.0 (source: server release metadata) <br>
+Risk: Crafted notification content could exploit the documented shell heredoc pattern and execute local commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix the email send workflow before routine use; pass message content through a safer API or temporary file path instead of interpolating untrusted text into shell input.
+
+Risk: Crafted subject or message content could create unintended email headers or alter delivered notification content.
+
+Mitigation: Validate recipient, subject, and body fields and use the mail client's structured message options when available.
+
+Risk: The skill sends message content to configured email and iMessage services.
+
+Mitigation: Use it only with trusted message text and intended recipients, and confirm channel configuration before sending.
+
+## Reference(s):
+
+- [Channel Configuration](references/channels.md)
+- [ClawHub Skill Page](https://clawhub.ai/terrycarter1985/skills/cross-channel-notify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown instructions with shell command examples and channel-specific message text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a full markdown email body and a compact iMessage body truncated to 2000 characters.]
+
+## Skill Version(s):
+
+9.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

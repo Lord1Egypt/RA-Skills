@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/candidate-runtime-acceptance-2.0.json",
+  "title": "Omni Ecom candidate runtime acceptance receipt",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "status", "run_id", "client_scope", "team_version", "collaboration_mode", "review_required", "expert_activity", "artifacts", "completed_at"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "artifact_type": {"const": "candidate_runtime_acceptance"},
+    "contract_name": {"const": "omni-ecom.candidate-runtime-acceptance"},
+    "contract_version": {"const": "2.0"},
+    "created_by_team_version": {"type": "string", "pattern": "^2\\.0\\.0-candidate\\.[1-9][0-9]*$"},
+    "legacy_compatibility": {"const": {"read_only_import": [], "current_completion_authority": false}},
+    "status": {"const": "candidate_pipeline_complete"},
+    "run_id": {"type": "string", "minLength": 1},
+    "client_scope": {"type": "string", "minLength": 1},
+    "team_version": {"type": "string", "pattern": "^2\\.0\\.0-candidate\\.[1-9][0-9]*$"},
+    "collaboration_mode": {"const": "comprehensive"},
+    "review_required": {"const": true},
+    "expert_activity": {"type": "array", "minItems": 6},
+    "artifacts": {"type": "array", "minItems": 5},
+    "completed_at": {"type": "string", "minLength": 1}
+  }
+}

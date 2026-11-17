@@ -1,41 +1,55 @@
-## Description: <br>
-Generates advertising copy for feed, search, social, brand, A/B testing, ROI, and platform-specific campaign workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates advertising copy for feed ads, search ads, social ads, brand messaging, A/B test variants, ROI calculations, and platform-specific ad formats.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External marketers, growth teams, and agents use this skill to draft and compare ad copy for Chinese and global platforms, generate brand and social variants, and calculate simple campaign ROI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may store raw user prompts in a local history file without clear notice. <br>
-Mitigation: Review before installing, avoid entering confidential campaign plans or client information, and clear or disable the local history log where possible. <br>
-Risk: Generated ad copy, ROI calculations, and campaign suggestions may be inaccurate or unsuitable for publication without review. <br>
-Mitigation: Have campaign owners review claims, numbers, targeting, and platform compliance before using outputs in live advertising. <br>
+## Use Case:
 
+Marketing teams, content creators, and agents use this skill to draft ad copy, compare A/B variants, estimate ROI scenarios, and adapt messaging for platforms such as Douyin, WeChat, Baidu, and Google Ads.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/ad-copywriter) <br>
-- [Advertising tips](tips.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown-style command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local scripts may write prompt history to the user's data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Confidential campaign, product, SEO, or unpublished marketing topics may be entered into the skill, and the package includes local history logging in an extra script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review inputs before use with confidential material, and avoid or sandbox the history-logging script unless local prompt storage is acceptable.
+
+Risk: Generated command output may include vendor promotional attribution that is unsuitable for customer-facing deliverables.
+
+Mitigation: Review generated copy and remove vendor attribution or contact text before publishing or sending deliverables.
+
+## Reference(s):
+
+- [Ad Copywriter skill page](https://clawhub.ai/ckchzh/skills/ad-copywriter)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [Advertising tips](tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style terminal text with generated copy, ROI summaries, testing suggestions, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local script output; no external API dependency is described in the artifact.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

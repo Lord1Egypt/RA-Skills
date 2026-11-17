@@ -1,44 +1,59 @@
-## Description: <br>
-User-invoked reflection for recording approved project learnings, generating evidence-based engineering retrospectives, and codifying recurring patterns into reusable skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+User-invoked reflection with three modes: Learn for approved project learnings, Retro for evidence-based engineering retrospectives, and Write Skill for codifying recurring patterns into reusable skills.
 
-## Publisher: <br>
-[kkenny0](https://clawhub.ai/user/kkenny0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kkenny0](https://clawhub.ai/user/kkenny0)
 
-## Use Case: <br>
-Developers and engineering teams use Taku Reflect to preserve user-approved project lessons, search, prune, and export those lessons, generate weekly retrospectives from git evidence, and turn recurring practices into reusable skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved learnings or retrospectives could include secrets or sensitive personal data if a user approves that content. <br>
-Mitigation: Review proposed entries before saving and avoid storing secrets or sensitive personal data in learnings. <br>
-Risk: Bootstrap changes to AGENTS.md or CLAUDE.md can affect how future agents consult local learnings. <br>
-Mitigation: Only approve bootstrap changes when future agents should consult the project-local learnings file. <br>
-Risk: Incorrect or low-quality learnings could mislead later planning or review work. <br>
-Mitigation: Use the skill's review, confidence, search, and prune flows to keep only useful user-approved entries. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to record user-approved project learnings, run git-backed retrospectives, and turn repeated practices into reusable agent skills.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/kkenny0/taku-reflect) <br>
-- [Retrospective Report Scaffold](references/retro-report.md) <br>
-- [Taku Write Skill - TDD for Documentation](references/writing-skills.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSONL records, shell commands, and generated local files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are project-local and require user approval before learnings, bootstrap changes, or skill-writing changes are saved.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Persistent project learnings can influence future agent sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Record, update, prune, or export learnings only after explicit user invocation and review proposed .taku, AGENTS.md, or CLAUDE.md changes before approval.
+
+Risk: Retrospectives may include contributor metadata and git-history-derived project details.
+
+Mitigation: Review retrospective output before saving or sharing it, especially when contributor names, emails, or sensitive project context appear.
+
+Risk: Skill-writing output can change reusable agent behavior.
+
+Mitigation: Require user confirmation before creating or editing skills, test the skill against pressure scenarios, and review generated skill files before deployment.
+
+## Reference(s):
+
+- [Retrospective Report Scaffold](references/retro-report.md)
+- [taku-write-skill - TDD for Documentation](references/writing-skills.md)
+- [Taku Reflect on ClawHub](https://clawhub.ai/kkenny0/skills/taku-reflect)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with optional JSONL records, shell command snippets, reports, and skill file guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update .taku files, retrospective reports, AGENTS.md or CLAUDE.md bootstrap blocks, or skill files only after user direction.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

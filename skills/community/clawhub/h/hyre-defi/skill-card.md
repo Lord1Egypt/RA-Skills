@@ -1,43 +1,58 @@
-## Description: <br>
-HYRE DeFi Intelligence helps agents query paid DeFi analytics for Solana and cross-chain token launches, wallet analytics, LP yields, trading signals, and related market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered DeFi intelligence for Solana and cross-chain workflows, including token launches, wallet analytics, LP yields, trading signals, and paid x402 USDC API requests.
 
-## Publisher: <br>
-[maliot100x](https://clawhub.ai/user/maliot100x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maliot100x](https://clawhub.ai/user/maliot100x)
 
-## Use Case: <br>
-External users and agents use this skill to request DeFi analytics and AI-generated signals for token launches, wallet analysis, liquidity pool yields, cross-chain USDC quotes, and natural-language DeFi questions. It is appropriate only for explicit analytics requests that may incur x402 USDC payments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Autonomous trading patterns could cause financial loss if an agent acts on signals without clear user approval. <br>
-Mitigation: Use the skill for explicit DeFi analytics requests only; do not allow it to place trades or run polling bots without separate trading safeguards, budgets, and manual approval controls. <br>
-Risk: Paid x402 USDC requests can incur costs. <br>
-Mitigation: Confirm each paid call before it is made and keep payment budgets under user control. <br>
-Risk: AI-generated DeFi signals and analytics may be incomplete or misleading. <br>
-Mitigation: Treat outputs as informational analysis and independently review the underlying data before making financial decisions. <br>
+## Use Case:
 
+External users and developers use this skill to request DeFi data and AI-generated market analysis for token discovery, wallet research, yield review, and cross-chain DeFi workflows.
 
-## Reference(s): <br>
-- [HYRE Agent homepage](https://hyreagent.fun) <br>
-- [ClawHub skill page](https://clawhub.ai/maliot100x/hyre-defi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown guidance with curl examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Paid x402 USDC requests to HYRE endpoints; responses include data, insight, signal, confidence, sources, and model_used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can lead to paid x402 requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before any paid request, repeated polling loop, or wallet-address submission.
+
+Risk: The artifact includes an automated trading pattern that could trigger token purchases from AI-generated signals.
+
+Mitigation: Use the skill only for user-directed DeFi data lookups and require explicit approval before buy, sell, or stop-loss actions.
+
+Risk: AI-generated market signals may be incorrect or misleading.
+
+Mitigation: Treat signals as informational analysis and require independent review before financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maliot100x/skills/hyre-defi)
+- [HYRE Agent homepage](https://hyreagent.fun)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with curl examples and JSON response descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe paid x402 USDC API calls and AI-generated trading signals.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

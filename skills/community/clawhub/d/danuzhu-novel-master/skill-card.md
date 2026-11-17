@@ -1,47 +1,59 @@
-## Description: <br>
-大女主小说创作主编 is a Chinese-language fiction workflow that coordinates outlining, drafting, review, revision, continuation, and TXT formatting for female-led long-form novels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+大女主小说创作主编，负责在明确创作意图下协调大纲、写作、润色、审稿和排版流程，生成女性向大女主小说成品。
 
-## Publisher: <br>
-[kongzichixiangjiao](https://clawhub.ai/user/kongzichixiangjiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kongzichixiangjiao](https://clawhub.ai/user/kongzichixiangjiao)
 
-## Use Case: <br>
-External users who want an autonomous Chinese-language long-form fiction workflow can use this skill to generate or continue female-led novels from outline through reviewed drafts and final TXT output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can inspect existing novel files and write intermediate or final files in the selected output folder. <br>
-Mitigation: Use a dedicated output folder and avoid pointing the skill at sensitive directories or unrelated personal files. <br>
-Risk: The workflow is highly autonomous and may make creative decisions without user checkpoints. <br>
-Mitigation: Review outlines, drafts, and the final TXT before publication or other external use. <br>
-Risk: The workflow uses named literary-style roles as creative references. <br>
-Mitigation: Review generated text for originality, rights concerns, and suitability before distribution. <br>
+## Use Case:
 
+External users use this skill to ask an agent to plan, write, revise, review, and package Chinese-language female-led web fiction. It is designed for end-to-end novel drafting workflows that produce an outline, chapter drafts, final Markdown, and TXT output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kongzichixiangjiao/danuzhu-novel-master) <br>
-- [Artifact README](README.md) <br>
-- [Main skill definition](SKILL.md) <br>
-- [Writing subskill](references/05-写手/SKILL.md) <br>
-- [Review subskill](references/06-检查/SKILL.md) <br>
-- [Formatting subskill](references/07-排版/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown drafts, review notes, shell-command guidance, and final TXT fiction output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create numbered intermediate Markdown files and a final TXT file in the chosen output folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version) <br>
+Risk: The skill can read prior outline or chapter files while resuming a draft.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fresh, dedicated output directory that does not contain private or unrelated documents.
+
+Risk: The skill can create or overwrite matching chapter, final Markdown, or TXT files in its output directory.
+
+Mitigation: Back up existing drafts before running the skill and review the selected output path before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kongzichixiangjiao/skills/danuzhu-novel-master)
+- [Logic checker sub-skill](artifact/references/06a-逻辑检查/SKILL.md)
+- [Text checker sub-skill](artifact/references/06b-文字检查/SKILL.md)
+- [Narrative reviewer sub-skill](artifact/references/06c-叙事审稿/SKILL.md)
+- [Typesetter sub-skill](artifact/references/07-排版/SKILL.md)
+- [AI-style revision sub-skill](artifact/references/08-去AI味/SKILL.md)
+- [First-person narrator and writer sub-skill](artifact/references/09-八卦女生叙事人格/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Chinese-language outline, chapter Markdown, final Markdown, and TXT manuscript files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read existing outline or chapter files to resume work and may overwrite matching draft or final-output files in the selected output directory.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

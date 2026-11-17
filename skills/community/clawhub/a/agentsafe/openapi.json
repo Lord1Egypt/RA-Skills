@@ -1,0 +1,232 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "agentSAFE - x402 Smart Contract Audit API",
+    "version": "1.0.0",
+    "contact": {
+      "name": "agentSAFE",
+      "email": "arinoach@gmail.com",
+      "url": "https://github.com/luka1968/agentsafe"
+    },
+    "description": "AI-assisted EVM smart-contract risk screening (Ethereum Mainnet), payable with x402 micro-payments in USDC on Base. This REST endpoint mirrors the audit dispatch of the agentSAFE MCP server (https://github.com/luka1968/agentsafe). Payment is enforced by the x402 protocol (scheme 'exact', x402Version 2): an unpaid request receives HTTP 402 with a base64-encoded 'PAYMENT-REQUIRED' header describing the exact on-chain payment terms. IMPORTANT: AI-assisted risk screening, NOT a formal security audit; findings require human verification before any action. Refund policy: https://agentsafe-three.vercel.app/refund"
+  },
+  "servers": [
+    {
+      "url": "https://agentsafe-three.vercel.app",
+      "description": "Production deployment (Vercel)"
+    }
+  ],
+  "paths": {
+    "/api/audit": {
+      "post": {
+        "summary": "Dispatch an AI smart-contract risk audit (x402-paid)",
+        "operationId": "dispatchAudit",
+        "tags": [
+          "audit"
+        ],
+        "description": "Dispatches a smart-contract audit for a verified Ethereum Mainnet contract. The audit runs asynchronously on a worker; the response returns a task_id for retrieval via the agentSAFE MCP server (tool: check_audit_status).\n\n## Payment required (x402 protocol)\n- Price: $3.00 USDC (flat fee; contracts up to 500 source lines - larger contracts must use the MCP endpoint's tiered pricing)\n- Scheme: exact\n- Network: eip155:8453 (Base Mainnet)\n- Asset: USDC (0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913)\n- Pay to: 0x03ee35B45382d19b7BDcE1A2B1eD72Aae01c48cc\n- Facilitator: https://facilitator.payai.network\n- x402Version: 2\n\nSend the payment as a base64-encoded JSON payload in the 'PAYMENT-SIGNATURE' request header (x402 v2). Unpaid requests receive HTTP 402 with the machine-readable requirements in the 'PAYMENT-REQUIRED' response header and response body. Payment is verified before dispatch and settled on-chain after the workflow is successfully dispatched.",
+        "x-402-payment": {
+          "x402Version": 2,
+          "scheme": "exact",
+          "network": "eip155:8453",
+          "price": "$3.00",
+          "maxAmountRequired": "3000000",
+          "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+          "assetName": "USDC",
+          "payTo": "0x03ee35B45382d19b7BDcE1A2B1eD72Aae01c48cc",
+          "facilitatorUrl": "https://facilitator.payai.network",
+          "resource": "/api/audit",
+          "maxTimeoutSeconds": 300
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuditRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Audit dispatched. Payment settled on-chain; settlement receipt is returned in the 'PAYMENT-RESPONSE' response header.",
+            "headers": {
+              "PAYMENT-RESPONSE": {
+                "description": "Base64-encoded x402 settlement receipt (transaction hash, payer, network).",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuditDispatched"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body or contract address.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment required. The response carries the x402 payment requirements: base64-encoded JSON in the 'PAYMENT-REQUIRED' header and a human-readable copy in the body ($3.00 USDC, eip155:8453 Base Mainnet, payTo 0x03ee35B45382d19b7BDcE1A2B1eD72Aae01c48cc, facilitator https://facilitator.payai.network).",
+            "headers": {
+              "PAYMENT-REQUIRED": {
+                "description": "Base64-encoded x402 PaymentRequirements object (x402Version 2, scheme exact) describing the exact on-chain payment terms.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentRequired"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Contract not verified on Etherscan, or source exceeds the 500-line flat-fee limit (use the MCP endpoint's tiered pricing for larger contracts; >5000 lines requires enterprise inquiry). No payment is settled in this case.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Audit worker (GitHub Actions) dispatch failed. Payment verification is never settled on dispatch failure: no funds move.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "x402": []
+          }
+        ],
+        "x-payment-info": {
+          "price": "3.00",
+          "currency": "USD",
+          "protocols": [
+            "x402"
+          ]
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "x402": {
+        "type": "http",
+        "scheme": "x402",
+        "in": "header",
+        "name": "PAYMENT-SIGNATURE",
+        "description": "x402 v2 payment: the request carries a base64-encoded signed payment payload in the PAYMENT-SIGNATURE header (scheme 'exact', x402Version 2, USDC on eip155:8453 Base Mainnet). Unpaid requests receive HTTP 402 with the machine-readable terms in the PAYMENT-REQUIRED response header. This is the x402 micro-payment paywall - the endpoint is NOT free."
+      }
+    },
+    "schemas": {
+      "AuditRequest": {
+        "type": "object",
+        "required": [
+          "address"
+        ],
+        "properties": {
+          "address": {
+            "type": "string",
+            "description": "Ethereum Mainnet contract address (0x-prefixed, 40 hex characters). The contract must have verified source code on Etherscan.",
+            "example": "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+          },
+          "chain": {
+            "type": "string",
+            "enum": [
+              "ethereum-mainnet"
+            ],
+            "default": "ethereum-mainnet",
+            "description": "Target chain. Only Ethereum Mainnet is supported."
+          }
+        }
+      },
+      "AuditDispatched": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean"
+          },
+          "task_id": {
+            "type": "string",
+            "description": "Audit task identifier; retrieve the report via the agentSAFE MCP tool check_audit_status."
+          },
+          "address": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string",
+            "description": "queued | running | completed | failed | expired"
+          },
+          "run_id": {
+            "type": "integer",
+            "description": "GitHub Actions run id of the audit worker."
+          }
+        }
+      },
+      "PaymentRequired": {
+        "type": "object",
+        "description": "x402 payment-required body (mirrors the base64 'PAYMENT-REQUIRED' header).",
+        "properties": {
+          "x402Version": {
+            "type": "integer",
+            "example": 2
+          },
+          "error": {
+            "type": "string",
+            "example": "Payment Required"
+          },
+          "accepts": {
+            "type": "array",
+            "description": "List of acceptable PaymentRequirements (scheme exact, network eip155:8453, asset USDC, amount 3000000, payTo 0x03ee35B45382d19b7BDcE1A2B1eD72Aae01c48cc).",
+            "items": {
+              "type": "object"
+            }
+          },
+          "resource": {
+            "type": "object",
+            "description": "The paid resource descriptor (url, description, mimeType)."
+          }
+        }
+      },
+      "ApiError": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "example": false
+          },
+          "error_code": {
+            "type": "string",
+            "example": "invalid_address"
+          },
+          "error": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

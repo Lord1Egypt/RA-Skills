@@ -1,41 +1,59 @@
-## Description: <br>
-Schedules Tesla charging on specified dates with target battery percentages and times while managing charge limits during and after sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Schedules Tesla charging on specified dates with target battery percentages and times, managing charge limits during and after sessions for battery health.
 
-## Publisher: <br>
-[thibautrey](https://clawhub.ai/user/thibautrey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thibautrey](https://clawhub.ai/user/thibautrey)
 
-## Use Case: <br>
-External Tesla owners and automation users use this skill to maintain a schedule file, calculate charge start times, and manage vehicle charge limits through recurring cron jobs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill controls Tesla account behavior on a recurring schedule. <br>
-Mitigation: Review the schedule file, credential handling, timezone assumptions, and cron disable procedure before enabling automation. <br>
-Risk: The security evidence reports a shell-based charge-start path and advises against using --auto-start until it is fixed or contained. <br>
-Mitigation: Avoid --auto-start and use review-gated manual or contained execution for charge-start behavior until that path is corrected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [API Reference - Tesla Smart Charge](references/api_reference.md) <br>
-- [Cron Integration - Tesla Smart Charge](references/cron_setup.md) <br>
-- [Tesla charge schedule example](references/tesla-charge-schedule-example.json) <br>
+## Use Case:
 
+External users and developers use this skill to schedule Tesla charging from a JSON plan, calculate charging start times, and manage charge limits before, during, and after planned sessions.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON schedule or plan files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local schedule, session-state, and charge-plan JSON files during operation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can run unattended Tesla account actions that change vehicle charge limits or start charging.
+
+Mitigation: Review the schedule and commands before enabling cron, and use the skill only where unattended Tesla account automation is acceptable.
+
+Risk: Security evidence reports a shell-command injection issue in the auto-start path.
+
+Mitigation: Do not enable --auto-start until the shell=True command path is fixed and reviewed.
+
+Risk: The skill depends on a separate tesla skill and passes account-related environment variables to subprocesses.
+
+Mitigation: Pin and verify the tesla dependency, configure credentials through the documented TESLA_EMAIL environment variable, and pass only required environment variables.
+
+## Reference(s):
+
+- [Tesla Smart Charge on ClawHub](https://clawhub.ai/thibautrey/skills/tesla-smart-charge)
+- [API Reference](references/api_reference.md)
+- [Cron Integration](references/cron_setup.md)
+- [Schedule File Template](references/tesla-charge-schedule-example.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or read JSON schedule, plan, and session-state files when the provided Python script is executed.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

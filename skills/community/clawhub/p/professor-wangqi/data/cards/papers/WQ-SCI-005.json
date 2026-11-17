@@ -1,0 +1,206 @@
+{
+  "card_id": "WQ-SCI-005",
+  "source_type": "paper",
+  "source_file": "13 Genome-Wide DNA Methylation Profiles of Phlegm-Dampness Constitution.pdf",
+  "title": "Genome-Wide DNA Methylation Profiles of Phlegm-Dampness Constitution",
+  "authors": [],
+  "year": 2018,
+  "journal": "Cell Physiol Biochem",
+  "language": "en",
+  "abstract": "Background/Aims: Metabolic diseases are leading health concerns in today’s global society. In traditional Chinese medicine (TCM), one body type studied is the phlegm-dampness constitution (PC), which predisposes individuals to complex metabolic disorders. Genomic studies have revealed the potential metabolic disorders and the molecular features of PC. The role of epigenetics in the regulation of PC, however, is unknown. Methods: We analyzed a genome-wide DNA methylation in 12 volunteers using Illumina Infinium Human Methylation450 BeadChip on peripheral blood mononuclear cells (PBMCs). Eight volunteers had PC and 4 had balanced constitutions. Results: Methylation data indicated a genome-scale hyper-methylation pattern in PC. We located 288 differentially methylated probes (DMPs). A total of 256 genes were mapped, and some of these were metabolic-related. SQSTM1, DLGAP2 and DAB1 indicated diabetes mellitus; HOXC4 and SMPD3, obesity; and GRWD1 and ATP10A, insulin resistance. According to Ingenuity Pathway Analysis (IPA), differentially methylated genes were abundant in multiple metabolic pathways. Conclusion: Our results suggest the potential risk for metabolic disorders in individuals with PC. We also explain the clinical characteristics of PC with DNA methylation features.",
+  "keywords": [
+    "Dna methylation",
+    "Peripheral blood mononuclear cells",
+    "Bioinformatics",
+    "Chinese medicine"
+  ],
+  "doi": "10.1159/000487976",
+  "research_focus": {
+    "constitution_type": [
+      "痰湿质"
+    ],
+    "disease": [
+      "肥胖",
+      "糖尿病"
+    ],
+    "topic": []
+  },
+  "methods": {
+    "sample_size": 12
+  },
+  "results": {},
+  "conclusions": "our present study explored the DNA methylation characteristics of PC for the first time. We identified the DMPs and the corresponding genes associated with obesity, diabetes DMPs. (A) summary of significant Canonical pathway analysis derived from ingenuity pathway analysis (IPA) for 288 DMPs. The upper gray part and the lower black part indicates the significant pathways for genes with hypomethylation and hypermethylation respectively. The y-axis displays the functional categories that are identified in the analyses. The x-axis demonstrates the significance which is the value of -log (P-value). (B) Net­ work visualization of metabolic related genes and Gene Ontology (GO) terms. The genes were mapped by the top DMPs that were selected by a Manhattan plot analysis. GO:0009057_macromolecule_catabolic_process GO:0044265_cellular_macromolecule_catabolic_process GO:0051252_regulation_of_RNA_metabolic_process GO:0030163_protein_catabolic_process GO:0051173_positive_regulation_of_nitrogen_compound_metabolic_process GO:0019941_modification_dependent_protein_catabolic_process GO:0044257_cellular_protein_catabolic_process GO:0045934_negative_regulation_of_nucleobase_nucleoside_nucleotide_and_nucleic_acid_metabolic_process GUCA1B ATP10A SMPD3 CTBP1 SQSTM1 FBXO9 GO:0051254_positive_regulation_of_RNA_metabolic_process GO:0006793_phosphorus_metabolic_process GO:0010604_positive_regulation_of_macromolecule_metabolic_process GO:0010605_negative_regulation_of_macromolecule_metabolic_process GO:0006796_phosphate_metabolic_process GO:0030823_regulation_of_cGMP_metabolic_process GO:0006163_purine_nucleotide_metabolic_process GO:0046034_ATP_metabolic_process GO:0009205_purine_ribonucleoside_triphosphate_metabolic_process GO:0009150_purine_ribonucleotide_metabolic_process GO:0030799_regulation_of_cyclic_nucleotide_metabolic_process GO:0009259_ribonucleotide_metabolic_process GO:0009141_nucleoside_triphosphate_metabolic_process GO:0009144_purine_nucleoside_triphosphate_metabolic_process GO:0009199_ribonucleoside_triphosphate_metabolic_process GO:0006140_regulation_of_nucleotide_metabolic_process GO:0006665_sphingolipid_metabolic_process GO:0051172_negative_regulation_of_nitrogen_compound_metabolic_process GO:0051253_negative_regulation_of_RNA_metabolic_process GO:0006644_phospholipid_metabolic_process GO:0006511_ubiquitin_dependent_protein_catabolic_process GO:0006684_sphingomyelin_metabolic_process GO:0045935_positive_regulation_of_nucleobase_nucleoside_nucleotide_and_nucleic_acid_metabolic_process GO:0019637_organophosphate_metabolic_process GO:0006643_membrane_lipid_metabolic_process GO:0043632_modification_dependent_macromolecule_catabolic_process GO:0051603_proteolysis_involved_in_cellular_protein_catabolic_process Metabolic Metabolic related genes GO terms A 0 1 2 3 Wnt/β-catenin Signaling Role of MAPK Signaling in the Pathogenesis of Influenza Glutamate Degradation III (via 4-aminobutyrate) D-glucuronate Degradation I Glutamate Dependent Acid Resistance Cytotoxic T Lymphocyte-mediated Apoptosis of Target Cells -log(p-value) 1.57 1.61 Depression 1.61 Biosynthesis I 1.62 Biosynthesis II 1.62 olesterol Biosynthesis 1.7 1.81 Oxide and Reactive Oxygen Species in Macrophages 1.82 ling 1.95 Metabolism 2.09 2.3 ation by Stathmin1 2.35 Signaling 2.46 2 Feedback in cAMP Signaling 3.54 0 1 2 3 4 CDK5 Signaling UVC-Induced MAPK Signaling Mechanisms of Viral Exit from Host Cells Lysine Degradation II Lysine Degradation V Hepatic Cholestasis Antigen Presentation Pathway Interferon Signaling Cell Cycle Regulation by BTG Family Proteins Phenylethylamine Degradation I Ceramide Signaling VDR/RXR Activation Synaptic Long Term Depression Tetrahydrobiopterin Biosynthesis I Tetrahydrobiopterin Biosynthesis II Superpathway of Cholesterol Biosynthesis p70S6K Signaling Production of Nitric Oxide and Reactive Oxygen Species in Macrophages Tight Junction Signaling Acyl Carrier Protein Metabolism HIPPO signaling Breast Cancer Regulation by Stathmin1 Dopamine Receptor Signaling Dopamine-DARPP32 Feedback in cAMP Signaling -log(p-value) B IPA Pathway Cell Physiol Biochem 2018;45:1999-2008 DOI: 10.1159/000487976 Published online: March 08, 2018 2006 Cellular Physiology and Biochemistry Cellular Physiology and Biochemistry © 2018 The Author(s). Published by S. Karger AG, Basel www.karger.com/cpb Yao et al.: DNA Methylation Profiles of PC mellitus, and other metabolic diseases. These results further support the existing research on molecular biological characteristics of PC. We also provide a possible approach for identifying metabolic disease-susceptible individuals in a healthy population, indicating the objective existence of the subtypes of the healthy population defined by TCM constitution. Apart from the influence of epigenetic mechanisms in the pathogenesis of multiple metabolic disorders [46-49], data from this study suggested that DNA methylation might also play a potential role in the pathological mechanism of PC, which is the incubating stage of multiple metabolic diseases. This study was supported by the grants from The State Key Program of National Natural Science Foundation of China (No. 81730112), and China Postdoctoral Science Foundation (No. 2017M610830). Disclosure Statement The authors declare no conflicts of interest.",
+  "knowledge_points": [
+    {
+      "category": "finding",
+      "content": "Background/Aims: Metabolic diseases are leading health concerns in today’s global society",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "Methods: We analyzed a genome-wide DNA methylation in 12 volunteers using Illumina Infinium Human Methylation450 BeadChip on peripheral blood mononuclear cells (PBMCs)",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "our present study explored the DNA methylation characteristics of PC for the first time",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "We identified the DMPs and the corresponding genes associated with obesity, diabetes DMPs. (A) summary of significant Canonical pathway analysis derived from ingenuity pathway analysis (IPA) for 288 DMPs",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "The upper gray part and the lower black part indicates the significant pathways for genes with hypomethylation and hypermethylation respectively",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "The y-axis displays the functional categories that are identified in the analyses",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "The x-axis demonstrates the significance which is the value of -log (P-value). (B) Net­ work visualization of metabolic related genes and Gene Ontology (GO) terms",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "The genes were mapped by the top DMPs that were selected by a Manhattan plot analysis",
+      "importance": "high",
+      "evidence_level": "B"
+    }
+  ],
+  "related_constitutions": [
+    "痰湿质"
+  ],
+  "related_diseases": [
+    "肥胖",
+    "糖尿病"
+  ],
+  "evidence_sentences": [
+    {
+      "sentence": "Background/Aims: Metabolic diseases are leading health concerns in today’s global society",
+      "section": "abstract",
+      "claim_type": "statement",
+      "page_num": 1
+    },
+    {
+      "sentence": "Methods: We analyzed a genome-wide DNA methylation in 12 volunteers using Illumina Infinium Human Methylation450 BeadChip on peripheral blood mononuclear cells (PBMCs)",
+      "section": "abstract",
+      "claim_type": "statement",
+      "page_num": 1
+    }
+  ],
+  "page_info": {
+    "total_pages": 10,
+    "sections": {
+      "abstract": {
+        "start": 1,
+        "end": 10
+      },
+      "introduction": {
+        "start": 1,
+        "end": 1
+      },
+      "methods": {
+        "start": 1,
+        "end": 2
+      },
+      "results": {
+        "start": 1,
+        "end": 3
+      },
+      "discussion": {
+        "start": 6,
+        "end": 6
+      },
+      "conclusion": {
+        "start": 1,
+        "end": 7
+      }
+    }
+  },
+  "created_at": "2026-04-25T09:39:10.452723",
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "doi": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "keywords": {
+      "confidence": 0.65,
+      "source": "migrated",
+      "level": "low",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "abstract": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "conclusions": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 1,
+    "fields": [
+      "doi",
+      "title",
+      "authors",
+      "journal",
+      "keywords"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "authors": 0.8,
+      "journal": 0.8,
+      "keywords": 0.8
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.424773",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.424779"
+  }
+}

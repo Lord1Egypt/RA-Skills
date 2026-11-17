@@ -2,12 +2,8 @@
 name: non-compete-contract-explainer
 description: >-
   Explain U.S. state-by-state (and select international) non-compete and
-  restrictive-covenant law — whether a non-compete is enforceable, blue-pencil
-  reformation, tolling, choice of law, independent-contractor reach, and recent
-  bans. Reads a bundled, source-cited snapshot per jurisdiction. Use when the
-  user says "non-compete," "noncompete contract," "restrictive covenant,"
-  "non-solicit," "garden leave," "covenant not to compete," "employment
-  agreement," asks "is my non-compete enforceable," or names a U.S. state.
+  restrictive-covenant law. Reads a bundled, source-cited snapshot per
+  jurisdiction.
 license: CC-BY-4.0
 compatibility: >-
   Works with any agent. Fully offline — content ships with the skill. An
@@ -15,7 +11,7 @@ compatibility: >-
   canonical URL.
 metadata:
   author: open-agreements
-  version: "0.1.0"
+  version: "0.2.0"
 catalog_group: Legal Explainers
 catalog_order: 10
 ---
@@ -23,7 +19,7 @@ catalog_order: 10
 # non-compete-contract-explainer
 
 Explain how a given jurisdiction treats non-competes and other restrictive
-covenants, using bundled, source-cited practice notes. This skill explains **what
+covenants, using bundled, source-cited practice guides. This skill explains **what
 the law says** — it does not give legal advice or tell a user whether their own
 contract is enforceable.
 
@@ -32,7 +28,9 @@ contract is enforceable.
 - This skill provides **general legal information only**. It is **not legal
   advice**, does not create an attorney-client relationship, and is not a
   substitute for a licensed attorney in the relevant jurisdiction.
-- Every bundled note is a **snapshot** with a `snapshotAsOf` date. Laws change.
+- Every bundled note records when it was packaged (`content_packaged_at`), how
+  far its law was checked (`law_checked_through`), and when review is next due
+  (`next_review_due`). Laws change.
   Always point the user to the canonical URL to confirm currency.
 - Do **not** render a verdict on the user's own agreement (see the
   personal-question rule below).
@@ -55,8 +53,10 @@ Use this skill when the user wants to understand restrictive-covenant law, e.g.:
    jurisdiction.
 2. **Read the one matching file.** Open `content/<slug>.md` — and only that file.
    Do not load other jurisdictions. (References stay one level deep.)
-3. **Lead with the snapshot date.** State the note's `snapshotAsOf` and
-   `lastReviewed`, and surface any baked `> [!WARNING]` staleness block verbatim.
+3. **Lead with the quality dates.** State `content_packaged_at`,
+   `law_checked_through`, `human_reviewed_at`, and `next_review_due`, and surface
+   any baked `> [!WARNING]` staleness block verbatim. A null
+   `human_reviewed_at` means no jurisdiction-level review timestamp was recorded.
 4. **Answer from the note.** Use the **At a glance** table for the bottom line,
    then the question sections for detail. **Cite the footnoted sources**
    (statutes, cases, commentary) when you state a rule. Stay neutral.
@@ -82,9 +82,26 @@ they can leave / join a competitor:
 
 The bundled jurisdictions are listed in `manifest.json` at this skill's root
 (each entry has
-`slug`, `jurisdiction`, `countryCode`, `snapshotAsOf`, `lastReviewed`, and a
+`slug`, `jurisdiction`, `countryCode`, the four quality dates, and a
 `stale` flag). Read that file to enumerate what's available before answering a
 "which states do you cover?" question.
+
+## Machine-readable twins
+
+Each bundled note is a point-in-time snapshot. The live canonical version on
+openagreements.org also publishes machine-readable twins you can fetch directly
+(a fixed URL only — never send the user's facts or contract text upstream):
+
+- **Practice guide** — append `.md` or `.json` to a guide's `canonicalUrl`
+  (e.g. `…/practice-guides/non-compete/us/texas.json`), or use the `/markdown`
+  and `/json` path aliases.
+- **50-state survey** — `…/surveys/non-compete/us.json` or `.csv` (spreadsheet
+  import). Surveys have no `/markdown` twin.
+- **Reviewer checklist** — `…/checklists/non-compete/us.json`.
+
+The full corpus is also browsable as plain markdown in the open-agreements repo
+under `legal-practice-library/` (`non-compete/`, `surveys/non-compete/`,
+`checklists/non-compete/`).
 
 ## See also
 
@@ -100,7 +117,7 @@ The bundled jurisdictions are listed in `manifest.json` at this skill's root
 
 ## Notes
 
-- Content is licensed **CC BY 4.0** (© UseJunior); each `content/<slug>.md`
+- Content is licensed **CC BY 4.0** (© openagreements.org); each `content/<slug>.md`
   carries its own attribution and canonical link.
 - This skill does **not** download or execute network code. The only network
   action is the optional, user-approved canonical-URL refresh in step 5.

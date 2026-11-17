@@ -1,0 +1,21 @@
+{
+ "example-orbit-crew-dragon.json": {
+  "campaign": "example-orbit-crew-dragon",
+  "posts": [
+   {
+    "post": "groundhog-tiktok",
+    "account": "TikTok",
+    "socialAccountId": "example-tiktok-1",
+    "platform": "TIKTOK",
+    "file": "clips/clip-01.mp4"
+   },
+   {
+    "post": "safe-path-reels",
+    "account": "Reels",
+    "socialAccountId": "example-instagram-1",
+    "platform": "INSTAGRAM",
+    "file": "clips/clip-02.mp4"
+   }
+  ]
+ }
+}

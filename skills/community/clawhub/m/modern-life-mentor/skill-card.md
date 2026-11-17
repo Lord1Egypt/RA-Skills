@@ -1,40 +1,54 @@
-## Description: <br>
-Modern Life Mentor is a reflective life-coaching skill that uses narrative, empowerment, constraint, compounding, and supply-side thinking frameworks to help users examine career, relationship, meaning, decision, and values questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language life mentor skill that uses narrative, empowerment, constraints, compounding advantage, and supply-side thinking frameworks to guide reflection on career, relationship, meaning, decision, and values questions.
 
-## Publisher: <br>
-[george351419-sys](https://clawhub.ai/user/george351419-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[george351419-sys](https://clawhub.ai/user/george351419-sys)
 
-## Use Case: <br>
-External users use this skill for reflective coaching around career confusion, relationship dilemmas, meaning exploration, difficult choices, and values clarification. It is intended to guide self-reflection and independent decision-making, not to replace professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat reflective life coaching as crisis support, therapy, medical, legal, financial, or other professional advice. <br>
-Mitigation: Use the skill only for philosophical or reflective coaching, and seek qualified human help for crisis situations or professional decisions. <br>
-Risk: Broad life-guidance frameworks may produce overgeneralized or culturally subjective advice. <br>
-Mitigation: Treat outputs as prompts for reflection, verify fit against the user's actual constraints, and avoid presenting the guidance as a definitive answer. <br>
+## Use Case:
 
+External users use this skill for Chinese-language reflective guidance on career uncertainty, relationship dilemmas, life meaning, difficult decisions, and value tradeoffs. It is intended to frame thinking and suggest actions, not to replace qualified professional advice.
 
-## Reference(s): <br>
-- [Modern Thinking Theory Framework](references/theory_framework.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tool calls, files, or shell commands are produced by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Users may treat reflective life, career, relationship, or values guidance as professional advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present responses as general perspective and direct users to qualified professional help for crisis, medical, legal, financial, or serious mental-health situations.
+
+Risk: Advice may overfit the skill's fixed theory frameworks instead of the user's full context.
+
+Mitigation: Ask clarifying questions, state assumptions, and encourage users to validate suggestions against their real constraints and support network.
+
+## Reference(s):
+
+- [Modern Thinking Theory Framework](references/theory_framework.md)
+- [ClawHub skill page](https://clawhub.ai/george351419-sys/skills/modern-life-mentor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language reflective guidance that cites the skill's theory frameworks and encourages independent thinking.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

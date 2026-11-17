@@ -52,7 +52,7 @@ crewai_team/
 # 访问：https://dashscope.console.aliyun.com/
 
 # 2. 设置环境变量
-export DASHSCOPE_API_KEY="sk-your-actual-key-here"
+export DASHSCOPE_API_KEY="REDACTED-SECRET"
 
 # 3. 测试
 cd ~/.openclaw/workspace/crewai_team

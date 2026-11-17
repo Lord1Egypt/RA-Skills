@@ -1,44 +1,51 @@
-## Description: <br>
-A CEO/executive-mode decision workflow for challenging premises, diagnosing problems, and producing definitive strategies for product, growth, market, technology, organization, and resource-allocation decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CEO/executive-mode strategic decision making for challenging premises, diagnosing problems, and designing definitive strategies across product, growth, market, technology, organization, and resource decisions.
 
-## Publisher: <br>
-[kaisersong](https://clawhub.ai/user/kaisersong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaisersong](https://clawhub.ai/user/kaisersong)
 
-## Use Case: <br>
-Founders, executives, product leaders, and strategy teams use this skill to pressure-test strategic choices, select an analysis mode, compare alternatives, assess risks, and produce a decision summary with implementation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local decision-history files may contain confidential strategic, hiring, financing, product, or market information. <br>
-Mitigation: Review or delete ~/.strategic-decisions as needed, and avoid using persistence-heavy modes for confidential work unless local storage is acceptable. <br>
-Risk: The optional office-hours handoff depends on a local office-hours skill outside this artifact. <br>
-Mitigation: Use the default jump-straight-in path unless the local office-hours skill is trusted and appropriate for the decision context. <br>
-Risk: Strategy recommendations can be incomplete or wrong if the provided facts, assumptions, or market signals are weak. <br>
-Mitigation: Require evidence for major claims, review recommendations with accountable stakeholders, and validate critical assumptions before execution. <br>
+## Use Case:
 
+Founders, executives, product leaders, and operators use this skill to structure high-stakes strategic decisions, test assumptions, compare alternatives, select a decision mode, and produce a decision summary with implementation plans and risk mitigations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kaisersong/kai-strategic-decision) <br>
-- [Cognitive Patterns](artifact/references/cognitive-patterns.md) <br>
-- [Decision Frameworks](artifact/references/decision-frameworks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown narrative with decision tables, interactive questions, shell command snippets, and optional persisted Markdown decision summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [AGGRESSIVE and SELECTIVE modes may create local Markdown decision records under ~/.strategic-decisions; the workflow also reads that folder to surface related prior decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server evidence release.version and SKILL.md frontmatter) <br>
+Risk: The skill can store confidential decision summaries as plaintext in ~/.strategic-decisions and search old records in later sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; consider requiring consent before reading or writing history, using a project-specific path, restricting file permissions, and adding deletion or retention controls.
+
+## Reference(s):
+
+- [Cognitive Patterns](artifact/references/cognitive-patterns.md)
+- [Decision Frameworks](artifact/references/decision-frameworks.md)
+- [ClawHub Skill Page](https://clawhub.ai/kaisersong/skills/kai-strategic-decision)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with structured decision summaries, questions, tables, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write decision summaries to ~/.strategic-decisions in some modes.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

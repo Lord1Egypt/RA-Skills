@@ -1,39 +1,54 @@
-## Description: <br>
-Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube).
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-Developers and external users use this skill to ask an agent to run the summarize CLI against URLs, local files, PDFs, images, audio, or YouTube links and return concise summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Summarizing local files, private URLs, regulated data, or sensitive media may send content to the selected model provider or optional extraction services. <br>
-Mitigation: Use only approved providers for sensitive content, avoid confidential inputs unless permitted, and disable Firecrawl or Apify fallbacks when those services should not receive content. <br>
+## Use Case:
 
+Developers and external users use this skill to summarize web URLs, PDFs, images, audio files, and YouTube links through the summarize CLI with configurable model and output settings.
 
-## Reference(s): <br>
-- [Summarize homepage](https://summarize.sh) <br>
-- [ClawHub skill listing](https://clawhub.ai/yuyonghao-123/yuyonghao-summarize) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; CLI output can be plain text or JSON when --json is used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports length controls, output token limits, model selection, API-key configuration, and optional Firecrawl or Apify extraction fallbacks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and package.json) <br>
+Risk: The skill installs and depends on an unpinned third-party CLI from a Homebrew tap.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing and trusting the Homebrew tap and summarize CLI package source.
+
+Risk: Files, URLs, media, and extracted content may be sent to selected model providers or optional extraction services.
+
+Mitigation: Avoid using the skill with secrets, regulated data, private documents, or confidential URLs unless those providers and services are approved for that data.
+
+## Reference(s):
+
+- [Summarize homepage](https://summarize.sh)
+- [ClawHub skill page](https://clawhub.ai/yuyonghao-123/skills/yuyonghao-summarize)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown or JSON summaries with optional inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports configurable summary length, token limits, model selection, extraction-only mode, and optional fallback extraction services.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

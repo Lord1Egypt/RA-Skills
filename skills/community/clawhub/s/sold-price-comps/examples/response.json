@@ -1,0 +1,37 @@
+{
+  "query": "Super Smash Bros Melee GameCube",
+  "provider": "eBay",
+  "count": 5,
+  "summary": {"median": 53.99, "low": 43.28, "high": 59.95, "n": 5},
+  "data_type": "active",
+  "comps": [
+    {
+      "title": "Super Smash Bros. Melee COMPLETE - NINTENDO Gamecube & Wii 828a",
+      "price": "58.49",
+      "currency": "USD",
+      "sold_date": null,
+      "condition": "Acceptable",
+      "source": "eBay (active)",
+      "url": "https://www.ebay.com/itm/800576860639"
+    },
+    {
+      "title": "Super Smash Bros. Melee NO MANUAL - NINTENDO Gamecube & Wii 828b",
+      "price": "53.99",
+      "currency": "USD",
+      "sold_date": null,
+      "condition": "Acceptable",
+      "source": "eBay (active)",
+      "url": "https://www.ebay.com/itm/800576928658"
+    },
+    {
+      "title": "Super Smash Bros. Melee Nintendo Gamecube - Game Only",
+      "price": "53.58",
+      "currency": "USD",
+      "sold_date": null,
+      "condition": "Acceptable",
+      "source": "eBay (active)",
+      "url": "https://www.ebay.com/itm/376823240402"
+    }
+  ],
+  "disclaimer": "Live comps from eBay. Active listings = asking prices; verify condition before relying on value."
+}

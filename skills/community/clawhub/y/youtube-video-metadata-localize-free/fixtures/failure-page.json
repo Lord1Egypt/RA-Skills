@@ -1,0 +1,11 @@
+{
+  "fixture_notice": "离线页面资料模拟；不是在线采集结果。",
+  "source_url": "https://www.youtube.com/watch?v=offline-unavailable",
+  "title": "GlowBake: Kitchen Light Review",
+  "chinese_audience": "中国大陆家居内容观众",
+  "description_visible": false,
+  "description_points": [],
+  "unresolved_terms": [
+    { "term": "GlowBake", "source_field": "title" }
+  ]
+}

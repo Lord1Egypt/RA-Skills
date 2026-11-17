@@ -1,52 +1,60 @@
-## Description: <br>
-Orchestrates multi-agent teams with defined roles, task lifecycles, handoff protocols, review workflows, and shared artifact conventions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates multi-agent teams with defined roles, task lifecycles, handoff protocols, and review workflows.
 
-## Publisher: <br>
-[abeltennyson](https://clawhub.ai/user/abeltennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up sustained teams of two or more agents, route work through explicit lifecycle states, coordinate handoffs, and enforce review gates before shipping artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys or other sensitive credentials could be exposed through prompts, shared folders, or agent handoff artifacts. <br>
-Mitigation: Keep credentials out of prompts and shared directories, use environment variables or a secrets manager, and review artifacts before sharing them with additional agents. <br>
-Risk: Shared workspaces can retain regulated or sensitive data beyond the intended task scope. <br>
-Mitigation: Limit shared artifacts to necessary task context, avoid regulated data in shared folders, and clean or archive shared directories according to the team's data handling policy. <br>
-Risk: Persistent agent instruction files can carry unsafe or stale operating rules into future tasks. <br>
-Mitigation: Review role and instruction files before use, especially after handoffs, escalations, or changes to team composition. <br>
-Risk: Scheduled agents can continue acting without clear oversight. <br>
-Mitigation: Assign an owner for every scheduled agent, document its scope and stop procedure, and periodically review whether the schedule is still needed. <br>
-Risk: Coordination guidance can produce incorrect process choices or missed quality gates if adopted without review. <br>
-Mitigation: Require human or independent reviewer approval for consequential workflow changes and scan skill content before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up sustained multi-agent workflows with clear roles, task states, handoffs, shared artifacts, and review gates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abeltennyson/abel-agent-team-orchestration) <br>
-- [Publisher profile](https://clawhub.ai/user/abeltennyson) <br>
-- [Communication](references/communication.md) <br>
-- [Patterns](references/patterns.md) <br>
-- [Task Lifecycle](references/task-lifecycle.md) <br>
-- [Team Setup](references/team-setup.md) <br>
-- [SkillBoss API Hub endpoint](https://api.heybossai.com/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions, Shell commands] <br>
-**Output Format:** [Markdown with templates, workflow checklists, and inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only playbook; no executable files are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Model prompts and task context may be routed through the SkillBoss API Hub, including proprietary code, customer data, credentials, or internal business context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where this third-party routing is approved, and define redaction, retention, approved endpoints, and data-handling boundaries before use.
+
+Risk: Recurring operations patterns can dispatch work or summarize team state on a schedule without clear operating boundaries.
+
+Mitigation: Define schedule limits, approved actions, escalation paths, and owner review before enabling recurring standups, dispatch, or health checks.
+
+Risk: Multi-agent handoffs can lose context or artifacts, leading to incomplete or incorrect work.
+
+Mitigation: Require exact output paths, handoff summaries, verification commands, known-issue notes, and reviewer approval before marking work done.
+
+## Reference(s):
+
+- [Team Setup](references/team-setup.md)
+- [Task Lifecycle](references/task-lifecycle.md)
+- [Communication](references/communication.md)
+- [Patterns](references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with templates, checklists, task flows, and inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce role definitions, spawn prompts, task-state templates, handoff checklists, review workflows, and operating procedures.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

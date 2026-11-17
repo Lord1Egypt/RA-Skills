@@ -1,42 +1,61 @@
-## Description: <br>
-Generates polished, conversion-focused client proposals for freelancers and agencies, including executive summary, scope, pricing tiers, and terms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates polished, conversion-focused client proposals for freelancers, consultants, and agencies, including executive summary, scope, pricing tiers, and terms.
 
-## Publisher: <br>
-[gitflopez](https://clawhub.ai/user/gitflopez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitflopez](https://clawhub.ai/user/gitflopez)
 
-## Use Case: <br>
-Freelancers, consultants, and agencies use this skill to turn service, client, project, timeline, and pricing inputs into client-ready proposal sections. It helps assemble executive summaries, scope of work, tiered pricing packages, and closing terms for service proposals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated proposals may include inaccurate factual claims, guarantees, popularity labels, urgency, or pricing terms. <br>
-Mitigation: Review each proposal before sending and adjust claims, guarantees, deadlines, and pricing to match the actual client agreement and legal requirements. <br>
-Risk: Client notes may contain confidential commercial or personal information. <br>
-Mitigation: Share only information the user is authorized to process, and use an appropriate secure channel for any done-for-you proposal service. <br>
+## Use Case:
 
+Freelancers, consultants, and small agencies use this skill to draft client-ready proposal sections from project, client, timeline, pricing, and service details. It helps produce executive summaries, scopes of work, tiered pricing packages, and closing terms in an editable format.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gitflopez/client-proposal-generator) <br>
-- [Skill overview](artifact/SKILL.md) <br>
-- [Worked Shopify proposal example](artifact/examples/web-designer-shopify.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown proposal sections with prose, bullets, tables, payment terms, and calls to action] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces four proposal sections: executive summary, scope of work, pricing packages, and terms/close.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, SKILL.md) <br>
+Risk: The README advertises an optional external done-for-you service that would require sending project notes to the author.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the local prompt templates for confidential proposals, or share client and project details externally only with appropriate consent and confidentiality controls.
+
+Risk: Generated pricing, payment terms, guarantees, and proposal claims may not match the user's business policies or client agreement requirements.
+
+Mitigation: Review and edit generated proposal sections before sending them to a client, especially financial terms, guarantees, timelines, and legal or contractual language.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gitflopez/skills/client-proposal-generator)
+- [Publisher Profile](https://clawhub.ai/user/gitflopez)
+- [README](artifact/README.md)
+- [Skill Instructions](artifact/SKILL.md)
+- [Executive Summary Prompt](artifact/prompts/executive-summary.md)
+- [Scope of Work Prompt](artifact/prompts/scope-of-work.md)
+- [Pricing and Packages Prompt](artifact/prompts/pricing-packages.md)
+- [Terms and Close Prompt](artifact/prompts/terms-close.md)
+- [Worked Shopify Proposal Example](artifact/examples/web-designer-shopify.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown proposal sections generated from prompt templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces editable proposal copy; users provide client, service, scope, timeline, pricing, and terms details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

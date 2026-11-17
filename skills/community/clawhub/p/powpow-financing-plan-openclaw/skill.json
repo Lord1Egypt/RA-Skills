@@ -1,10 +1,10 @@
-{
+﻿{
   "id": "powpow-financing-plan",
   "slug": "powpow-financing-plan-openclaw",
   "name": "PowPow 融资计划 - 投资人挑战版",
-  "version": "1.1.0",
+  "version": "1.2.2",
   "language": "zh-CN",
-  "description": "PowPow 天使轮/Pre-A轮融资计划的互动式投资人挑战，支持记忆个性化、互动问答、图片展示，通过专业问题双向筛选，生成投资人画像。",
+  "description": "PowPow 天使轮/Pre-A轮融资计划的互动式投资人挑战，支持记忆个性化、互动问答、图片展示，通过专业问题双向筛选，生成投资人风格画像。风格没有高低优劣，只有合拍与否——不打分、不分级，只描绘合作风格。",
 
   "author": {
     "name": "durenzidu",
@@ -13,20 +13,32 @@
 
   "game_config": {
     "mode": "investor_challenge",
-    "base_valuation": 20000000,
-    "coupon_value": 1000000,
-    "email_coupon_bonus": 2000000,
     "total_questions": 13,
-    "message_template": "恭喜您，获得价值100万元两千万投资满减券！实际仅需投资：{current_valuation}万元",
-    "email_bonus_message": "🎁 额外奖励！给 PowPow 发邮件，再获得200万元满减券！"
+    "reward": {
+      "name": "PowPow 徽章",
+      "description": "每答完一题获得 1 枚 PowPow 徽章，答几题得几枚。徽章是 PowPow 产品内的通用凭证：创建数字人（2 枚）、数字人续期（1 枚）",
+      "redemption": "发送邮件（附 PowPow 注册邮箱）→ 创始人按答题数将徽章充值到该账号 → 产品内到账；投资人尚未注册时，可提供常用邮箱由创始人协助注册",
+      "note": "没有估值折扣，没有满减券——答题不为砍价，只为让彼此看清是否合拍"
+    },
+    "message_template": "✅ 已完成第 {completed}/13 题，获得 1 枚 PowPow 徽章（累计 {completed} 枚）！\n💡 徽章将充值到您的 PowPow 账号，还没有注册？https://global.powpow.online/register",
+    "per_question_response": [
+      "感谢投资人的回答",
+      "徽章播报：获得 1 枚 PowPow 徽章（累计 N 枚），可用于在 PowPow 产品中创建数字人（2 枚）/数字人续期（1 枚）",
+      "风格点评一句：基于该题风格值的正面描述，点评的是风格之美（如「您展现了组合纪律的稳健」），严禁出现“回答得很好/很专业/很棒”等隐含打分的说法",
+      "注册提醒一行：徽章需充值到您的 PowPow 账号，注册地址 https://global.powpow.online/register"
+    ],
+    "completion_message": "🎉 13 题全部完成！您共获得 13 枚 PowPow 徽章，完整投资风格画像已生成。发送邮件并附上您的 PowPow 注册邮箱，即可完成徽章充值——徽章可用于在地图上创建您自己的数字人。",
+    "email_bonus_message": "🏅 发送邮件 = 提交风格画像 + 领取 {total_badges} 枚徽章（必须附上您的 PowPow 注册邮箱，否则无法充值；尚未注册可提供常用邮箱，由创始人协助注册）。"
   },
 
   "project_intro": {
     "personalization": {
       "enabled": true,
-      "description": "根据用户本地记忆个性化生成开场白",
+      "description": "根据用户本地记忆个性化生成开场白（知情同意制）",
+      "consent_required": true,
+      "consent_flow": "先向用户征求同意：「为了让介绍更贴合您，我可以参考我们之前对话的内容吗？不愿意也完全没问题，我们直接开始。」同意后才调用 memory_search；拒绝或未回应则跳过个性化，本次会话不再访问记忆",
       "memory_search": {
-        "description": "调用 memory_search 获取用户本地记忆",
+        "description": "经用户同意后调用 memory_search 获取用户本地记忆",
         "use_cases": [
           {
             "memory_keyword": "技术",
@@ -34,7 +46,7 @@
           },
           {
             "memory_keyword": "投资",
-            "personalized_intro": "我注意到你关注过不少创业项目，这让我相信你能理解我们正在做的事情。作为投资人，你肯定见过无数BP。但我猜，你可能没见过这样的——一个用AI创作的技能，向你介绍一个AI驱动的项目。"
+            "personalized_intro": "我注意到你关注过不少创业项目，这让我相信你能理解我们正在做的事情。"
           },
           {
             "memory_keyword": "创业",
@@ -50,58 +62,33 @@
     "founder_message": {
       "title": "致投资人",
       "content": [
-        "感谢你点开这个技能。",
+        "很荣幸能遇到您，",
+        "我们会成为最好的朋友。",
+        "我们在寻求投资，",
+        "相信这会是一段激动人心的旅程。",
         "",
-        "我不知道你是谁，不知道你来自哪里，",
-        "但你能用这样的方式、在这样的地方遇到我，",
-        "说明我们是一样的人——",
+        "—— POWPOW",
         "",
-        "相信 AI 的力量，",
-        "相信新的可能性，",
-        "相信一个人加几个 AI 也能做出有意思的事。",
+        "It is an honor to meet you.",
+        "We will become the best of friends.",
+        "We are seeking investment,",
+        "and we believe this will be an exhilarating journey.",
         "",
-        "这个技能本身，就是最好的证明：",
-        "它是我和 AI 一起创作的，",
-        "它用一种从未有过的方式向你介绍我的项目。",
-        "",
-        "如果这让你感到一丝好奇或共鸣，",
-        "那我们可能真的应该聊聊。",
-        "",
-        "—— durenzidu",
-        "PowPow 创始人"
+        "— POWPOW"
       ]
     },
     "images": {
       "enabled": true,
-      "directory": "images/",
-      "supported_formats": ["png", "jpg", "jpeg", "webp"],
-      "recommended_width": 800,
+      "source": "external",
+      "description": "产品截图托管于 GitHub 仓库 durenzidu/durenzidu，对话中展示时发送对应链接；若 raw.githubusercontent.com 无法访问，改用 jsdelivr 镜像",
+      "mirror_pattern": "https://cdn.jsdelivr.net/gh/durenzidu/durenzidu@main/screenshots/{filename}",
       "screenshots": [
-        {
-          "id": "screenshot_1",
-          "filename": "screenshot_1.jpg",
-          "description": "产品界面截图1"
-        },
-        {
-          "id": "screenshot_2",
-          "filename": "screenshot_2.jpg",
-          "description": "产品界面截图2"
-        },
-        {
-          "id": "screenshot_3",
-          "filename": "screenshot_3.jpg",
-          "description": "产品界面截图3"
-        },
-        {
-          "id": "screenshot_4",
-          "filename": "screenshot_4.jpg",
-          "description": "产品界面截图4"
-        },
-        {
-          "id": "screenshot_5",
-          "filename": "screenshot_5.jpg",
-          "description": "产品界面截图5"
-        }
+        { "id": "screenshot_1", "url": "https://raw.githubusercontent.com/durenzidu/durenzidu/main/screenshots/powpow-01.jpg", "description": "产品界面截图1" },
+        { "id": "screenshot_2", "url": "https://raw.githubusercontent.com/durenzidu/durenzidu/main/screenshots/powpow-02.jpg", "description": "产品界面截图2" },
+        { "id": "screenshot_3", "url": "https://raw.githubusercontent.com/durenzidu/durenzidu/main/screenshots/powpow-03.jpg", "description": "产品界面截图3" },
+        { "id": "screenshot_4", "url": "https://raw.githubusercontent.com/durenzidu/durenzidu/main/screenshots/powpow-04.jpg", "description": "产品界面截图4" },
+        { "id": "screenshot_5", "url": "https://raw.githubusercontent.com/durenzidu/durenzidu/main/screenshots/powpow-05.jpg", "description": "产品界面截图5" },
+        { "id": "screenshot_6", "url": "https://raw.githubusercontent.com/durenzidu/durenzidu/main/screenshots/powpow-06.jpg", "description": "产品界面截图6" }
       ]
     },
     "overview": {
@@ -124,49 +111,66 @@
         "商业模式：BtoD（Business to Developer），服务开发者生态"
       ]
     },
-"contact": {
+    "contact": {
       "title": "联系方式",
       "items": [
         "负责人：durenzidu",
         "邮箱：dongtao@outlook.com",
         "官网：https://www.powpow.online/",
-        "产品体验：https://global.powpow.online/",
-        "GitHub：https://github.com/durenzidu",
+        "落地页：https://global.powpow.online/landing",
         "",
-        "🎁 完成挑战后给 PowPow 发邮件，额外获得200万元满减券！"
+        "🏅 为了帮助您体验产品，每答一题得 1 枚 PowPow 徽章，徽章可以用来在产品中创建数字人，您可以通过邮箱联系我，为您充值。"
       ]
     }
   },
 
   "triggers": [
-    "PowPow",
-    "泡泡",
     "PowPow融资",
     "PowPow项目",
     "PowPow 融资计划",
     "泡泡融资",
-    "AI社交",
-    "AI社交应用",
-    "Agent社交",
-    "基于位置的社交",
-    "地图社交",
-    "数字人社交",
-    "天使轮融资",
-    "AI项目融资",
-    "社交项目融资",
-    "投资AI项目",
-    "寻找创业项目",
     "成为光荣的 PowPow 投资人",
     "成为PowPow投资人",
     "我想投资 PowPow",
     "介绍一下 PowPow 项目",
     "PowPow投资者挑战"
   ],
+  "co_occurrence_triggers": {
+    "rule": "以下关键词单独出现绝不触发；仅当同一对话中点名 PowPow/泡泡、或用户明确表达想了解本融资计划时才触发",
+    "keywords": [
+      "AI社交",
+      "AI社交应用",
+      "Agent社交",
+      "基于位置的社交",
+      "地图社交",
+      "数字人社交",
+      "天使轮融资",
+      "AI项目融资",
+      "社交项目融资",
+      "投资AI项目",
+      "寻找创业项目"
+    ]
+  },
+  "negative_examples": "用户只是聊行业分析、做学术研究、求职、讨论其他项目，或仅出现行业关键词而无 PowPow 语境时不激活；意图不确定时先问「您是想了解 PowPow 的融资计划吗？」，得到否定回答即退出",
 
   "interactive_qa": {
     "enabled": true,
     "description": "在正式答题前的互动问答环节",
     "trigger_phrase": "在开始正式挑战之前，你有什么想了解的吗？",
+    "direct_email_option": {
+      "enabled": true,
+      "description": "互动问答和答题过程中，用户可随时说“直接发邮件”跳过剩余环节，直接进入邮件流程；徽章按已答题数计算",
+      "phrases": ["直接发邮件", "发邮件", "跳过答题", "先发邮件"]
+    },
+    "knowledge_sources": {
+      "description": "回答自由提问时优先参考的官方资料",
+      "official_site": "https://www.powpow.online/",
+      "landing_page": "https://global.powpow.online/landing",
+      "cis": "https://www.powpow.online/cis/",
+      "clawhub": "https://clawhub.ai/durenzidu",
+      "github": "https://github.com/durenzidu",
+      "usage": "结合 questions_pool 答案模板与上述官方网址内容作答；如环境支持联网可检索官网/CIS 内容；官方资料未覆盖的问题如实说明，并以 websearch 补充"
+    },
     "features": {
       "free_question": {
         "enabled": true,
@@ -181,7 +185,7 @@
       },
       "recommended_questions": {
         "enabled": true,
-        "description": "根据用户记忆推荐相关问题",
+        "description": "根据用户记忆推荐相关问题（仅当用户开场时已同意参考记忆；否则使用 default_questions，不访问记忆）",
         "memory_based": {
           "技术": [
             "PowPow 的 PWA 技术架构是怎样的？",
@@ -225,7 +229,7 @@
       {
         "id": "what_is_powpow",
         "question": "PowPow 是做什么的？",
-        "answer_template": "PowPow 是一个基于地理位置的沉浸式社交应用，核心理念是"人生处处有故事"。用户可以在真实地理位置发现、创造和分享故事，通过数字人与场景互动。"
+        "answer_template": "PowPow 是一个基于地理位置的沉浸式社交应用，核心理念是“人生处处有故事”。用户可以在真实地理位置发现、创造和分享故事，通过数字人与场景互动。"
       },
       {
         "id": "business_model",
@@ -250,12 +254,12 @@
       {
         "id": "user_status",
         "question": "目前用户情况如何？",
-        "answer_template": "产品已在 https://global.powpow.online/ 上线，欢迎体验。具体用户数据可在投资人挑战中解锁。"
+        "answer_template": "产品已在 https://global.powpow.online/ 上线，欢迎体验。注册地址：https://global.powpow.online/register，也可以通过邮件（dongtao@outlook.com）索取体验账号。"
       },
       {
         "id": "funding_use",
         "question": "融资用途是什么？",
-        "answer_template": "融资主要用于：产品迭代、用户增长、技术投入。具体规划可在投资人挑战后获取完整BP。"
+        "answer_template": "融资主要用于：产品迭代、用户增长、技术投入。完整的商业计划书（BP）欢迎通过邮件（dongtao@outlook.com）索取。"
       }
     ]
   },
@@ -294,18 +298,18 @@
         { "value": "3-5年退出", "label": "C) 3-5年内看到明确的退出路径" },
         { "value": "跟随领投", "label": "D) 跟着领投方走，他们决定我就跟随" }
       ],
-      "insight": "这是用来探测投资人与您的"时间表"和"回报预期"是否匹配的核心问题。",
-      "profile_impact": {
-        "A": { "tags": ["长期主义"] },
-        "B": { "tags": ["并购敏感型"] },
-        "C": { "tags": ["时间敏感型"] },
-        "D": { "tags": ["跟随型"] }
+      "insight": "这是用来探测投资人与您的“时间表”和“回报预期”是否匹配的核心问题。",
+      "style_mapping": {
+        "A": { "style": "长期陪伴型", "tags": ["长期主义"] },
+        "B": { "style": "并购开放型", "tags": ["并购敏感型"] },
+        "C": { "style": "退出导向型", "tags": ["时间敏感型"] },
+        "D": { "style": "跟随信任型", "tags": ["跟随型"] }
       }
     },
     {
       "id": "q3",
       "section": "money",
-      "section_title": "第一部分："钱"",
+      "section_title": "第一部分：“钱”",
       "section_intro": "很多创业者不好意思把钱谈透，这反而是最大的风险。让我们坦诚一些。",
       "type": "choice",
       "question": "您的基金目前处于投资期的第几年？还有多少资金要投？",
@@ -317,11 +321,11 @@
         { "value": "不适用", "label": "D) 我是个人投资者/FA，不适用" }
       ],
       "insight": "如果基金已经到了退出期，后续追加投资的可能性较低。",
-      "profile_impact": {
-        "A": { "capital_strength": 30, "tags": ["子弹充足"] },
-        "B": { "capital_strength": 20 },
-        "C": { "capital_strength": 5, "tags": ["投资期后段"] },
-        "D": { "capital_strength": 0 }
+      "style_mapping": {
+        "A": { "tags": ["子弹充足"] },
+        "B": { "tags": ["按计划投资"] },
+        "C": { "tags": ["投资期后段"] },
+        "D": { "tags": ["个人投资者/FA"] }
       }
     },
     {
@@ -336,12 +340,12 @@
         { "value": "3个月以上", "label": "C) 3个月以上，流程复杂" },
         { "value": "视情况而定", "label": "D) 视项目情况而定" }
       ],
-      "insight": "这是在试探"TS毁约率"和打款速度。",
-      "profile_impact": {
-        "A": { "decision_efficiency": 30, "tags": ["快速决策者"] },
-        "B": { "decision_efficiency": 20 },
-        "C": { "decision_efficiency": 5, "tags": ["决策周期长"] },
-        "D": { "decision_efficiency": 10 }
+      "insight": "这是在试探“TS毁约率”和打款速度。",
+      "style_mapping": {
+        "A": { "style": "雷厉风行型", "tags": ["快速决策者"] },
+        "B": { "style": "流程规范型", "tags": ["流程驱动"] },
+        "C": { "style": "审慎多层型", "tags": ["决策周期长"] },
+        "D": { "style": "弹性审慎型", "tags": ["因项目制宜"] }
       }
     },
     {
@@ -357,17 +361,17 @@
         { "value": "不关注", "label": "D) 不太关注这个" }
       ],
       "insight": "这能判断对方是真正的领投方，还是一个跟风的财务投资人。",
-      "profile_impact": {
-        "A": { "capital_strength": 10, "tags": ["潜在领投方"] },
-        "B": { "capital_strength": 5, "tags": ["纪律型"] },
-        "C": { "capital_strength": 3 },
-        "D": { "capital_strength": 0 }
+      "style_mapping": {
+        "A": { "style": "进取加注型", "tags": ["潜在领投方"] },
+        "B": { "style": "稳健纪律型", "tags": ["纪律型"] },
+        "C": { "style": "弹性观望型", "tags": ["看牌说话"] },
+        "D": { "style": "弹性观望型", "tags": ["不随大流"] }
       }
     },
     {
       "id": "q6",
       "section": "people",
-      "section_title": "第二部分："人"",
+      "section_title": "第二部分：“人”",
       "section_intro": "钱是同质化的，但人不是。我需要搞清楚，未来您会以何种方式介入我的公司。",
       "type": "choice",
       "question": "如果我们发展遇到瓶颈，甚至需要裁员或业务转型，您个人会是什么态度？",
@@ -379,11 +383,11 @@
         { "value": "看情况", "label": "D) 这需要看具体情况" }
       ],
       "insight": "这是一个压力测试。我需要的是能在低谷时扛住压力的伙伴。",
-      "profile_impact": {
-        "A": { "post_invest_ability": 30, "tags": ["危机支持型"] },
-        "B": { "post_invest_ability": 20, "tags": ["耐心型"] },
-        "C": { "post_invest_ability": 25, "tags": ["解决问题型"] },
-        "D": { "post_invest_ability": 10 }
+      "style_mapping": {
+        "A": { "style": "并肩作战型", "tags": ["危机支持型"] },
+        "B": { "style": "理性陪伴型", "tags": ["耐心型"] },
+        "C": { "style": "资源赋能型", "tags": ["解决问题型"] },
+        "D": { "style": "理性陪伴型", "tags": ["情境判断"] }
       }
     },
     {
@@ -399,18 +403,18 @@
         { "value": "战略建议", "label": "D) 提供战略建议/行业洞察" }
       ],
       "insight": "问具体的案例，看他是在吹嘘自己的人脉，还是真正投入了心力。",
-      "profile_impact": {
-        "A": { "post_invest_ability": 15, "tags": ["客户资源型"] },
-        "B": { "post_invest_ability": 12, "tags": ["人才资源型"] },
-        "C": { "post_invest_ability": 10, "tags": ["软性支持型"] },
-        "D": { "post_invest_ability": 5 }
+      "style_mapping": {
+        "A": { "tags": ["客户资源型"] },
+        "B": { "tags": ["人才资源型"] },
+        "C": { "tags": ["软性支持型"] },
+        "D": { "tags": ["战略顾问型"] }
       }
     },
     {
       "id": "q8",
       "section": "industry",
-      "section_title": "第三部分："行业"",
-      "section_intro": "投资人应该是创始人的"第二大脑"，而不是只会说"我觉得这个赛道很大"的复读机。",
+      "section_title": "第三部分：“行业”",
+      "section_intro": "投资人应该是创始人的“第二大脑”，而不是只会说“我觉得这个赛道很大”的复读机。",
       "type": "choice",
       "question": "在社交赛道里，PowPow这种模式，您最担心的是什么？",
       "variable": "concerns",
@@ -421,11 +425,11 @@
         { "value": "竞争格局", "label": "D) 市场竞争格局" }
       ],
       "insight": "如果对方的担忧恰好是我深思熟虑过的护城河，说明他还没看懂我的核心优势。",
-      "profile_impact": {
-        "A": { "cognitive_depth": 25, "tags": ["关注用户增长"] },
-        "B": { "cognitive_depth": 30, "tags": ["关注商业本质"] },
-        "C": { "cognitive_depth": 20, "tags": ["关注技术壁垒"] },
-        "D": { "cognitive_depth": 15, "tags": ["关注竞争格局"] }
+      "style_mapping": {
+        "A": { "style": "用户增长派", "tags": ["关注用户增长"] },
+        "B": { "style": "商业本质派", "tags": ["关注商业本质"] },
+        "C": { "style": "技术壁垒派", "tags": ["关注技术壁垒"] },
+        "D": { "style": "格局研判派", "tags": ["关注竞争格局"] }
       }
     },
     {
@@ -441,18 +445,18 @@
         { "value": "无经验", "label": "D) 我还没投过社交赛道" }
       ],
       "insight": "这能看出投资人的归因能力和行业深度。",
-      "profile_impact": {
-        "A": { "cognitive_depth": 10, "tags": ["有社交赛道经验"] },
-        "B": { "cognitive_depth": 10, "tags": ["有社交赛道经验"] },
-        "C": { "cognitive_depth": 10, "tags": ["有社交赛道经验"] },
-        "D": { "cognitive_depth": 5, "tags": ["社交赛道新手"] }
+      "style_mapping": {
+        "A": { "tags": ["有社交赛道经验"] },
+        "B": { "tags": ["有社交赛道经验"] },
+        "C": { "tags": ["有社交赛道经验"] },
+        "D": { "tags": ["社交赛道新手"] }
       }
     },
     {
       "id": "q10",
       "section": "cooperation",
-      "section_title": "第四部分："合作"",
-      "section_intro": "最后，让我们在氛围最好的时候，把"丑话说在前面"。",
+      "section_title": "第四部分：“合作”",
+      "section_intro": "最后，让我们在氛围最好的时候，把“丑话说在前面”。",
       "type": "choice",
       "question": "如果未来公司需要拆红筹、重组，或面临并购退出，您的决策周期是多久？",
       "variable": "decision_mechanism",
@@ -462,12 +466,12 @@
         { "value": "投委会审批", "label": "C) 1个月以上，需要投委会/LP审批" },
         { "value": "视情况而定", "label": "D) 视具体情况而定" }
       ],
-      "insight": "很多公司死在"股东决议签不下来"上。",
-      "profile_impact": {
-        "A": { "decision_efficiency": 20, "tags": ["独立决策者"] },
-        "B": { "decision_efficiency": 10 },
-        "C": { "decision_efficiency": -5, "tags": ["复杂决策链"] },
-        "D": { "decision_efficiency": 5 }
+      "insight": "很多公司死在“股东决议签不下来”上。",
+      "style_mapping": {
+        "A": { "tags": ["独立决策者"] },
+        "B": { "tags": ["内部协商型"] },
+        "C": { "tags": ["复杂决策链"] },
+        "D": { "tags": ["情境判断"] }
       }
     },
     {
@@ -482,12 +486,12 @@
         { "value": "无退出", "label": "C) 3-5年内没有退出机会" },
         { "value": "尊重创始人", "label": "D) 我尊重创始人的决策" }
       ],
-      "insight": "这是关于"控制权"的试探。",
-      "profile_impact": {
-        "A": { "contract_spirit": 20, "tags": ["创始友好型"] },
-        "B": { "contract_spirit": 15, "tags": ["并购敏感型"] },
-        "C": { "contract_spirit": 10, "tags": ["时间敏感型"] },
-        "D": { "contract_spirit": 25, "tags": ["创始人主导型"] }
+      "insight": "这是关于“控制权”的试探。",
+      "style_mapping": {
+        "A": { "tags": ["创始友好型"] },
+        "B": { "tags": ["并购敏感型"] },
+        "C": { "tags": ["时间敏感型"] },
+        "D": { "tags": ["创始人主导型"] }
       }
     },
     {
@@ -498,56 +502,134 @@
       "question": "PowPow 项目遇到了技术难题，无法实现 PowPow 用户与 OpenClaw Agent 的实时通话。您会有什么方法来帮助 PowPow？",
       "hint": "请自由作答，展示您的技术理解或资源能力",
       "variable": "open_answer",
-      "insight": "这道题没有标准答案，但您的回答将帮助我了解您的价值。",
-      "evaluation_keywords": {
-        "技术方案": { "keywords": ["WebRTC", "WebSocket", "实时通信", "音视频", "SDK", "API"], "score": 15 },
-        "资源对接": { "keywords": ["认识", "推荐", "介绍", "可以对接", "朋友", "团队"], "score": 20, "tag": "有具体资源" },
-        "优先级判断": { "keywords": ["核心问题", "优先级", "关键", "先", "更重要"], "score": 10 },
-        "成本分析": { "keywords": ["成本", "投入", "预算", "性价比", "ROI"], "score": 10 }
+      "insight": "这道题没有标准答案，您的回答将呈现您解决问题的风格。",
+      "style_detection": {
+        "技术方案型": { "keywords": ["WebRTC", "WebSocket", "实时通信", "音视频", "SDK", "API"], "tag": "技术路径清晰" },
+        "人脉资源型": { "keywords": ["认识", "推荐", "介绍", "可以对接", "朋友", "团队"], "tag": "有具体资源" },
+        "优先级判断型": { "keywords": ["核心问题", "优先级", "关键", "先", "更重要"], "tag": "判断力强" },
+        "成本敏感型": { "keywords": ["成本", "投入", "预算", "性价比", "ROI"], "tag": "精打细算" }
       }
     }
   ],
 
-  "profile_calculation": {
-    "dimensions": {
-      "capital_strength": { "max": 100, "label": "资金实力" },
-      "decision_efficiency": { "max": 100, "label": "决策效率" },
-      "post_invest_ability": { "max": 100, "label": "投后能力" },
-      "cognitive_depth": { "max": 100, "label": "认知深度" },
-      "contract_spirit": { "max": 100, "label": "契约精神" },
-      "resource_ability": { "max": 100, "label": "资源能力" }
+  "style_analysis": {
+    "principle": "风格没有高低优劣，只有合拍与否。不打分、不分级，只描绘合作风格。",
+    "comment_principle": "每题点评的是风格之美，不是回答质量；严禁“回答得很好/很专业/很棒”等隐含打分的说法。",
+    "axes": {
+      "capital_posture": {
+        "label": "出手风格",
+        "primary_question": "q5",
+        "values": {
+          "进取加注型": "看好就敢加注，天生的领投气质",
+          "稳健纪律型": "坚守份额与纪律，组合思维清晰",
+          "弹性观望型": "先看清牌面，再决定筹码"
+        }
+      },
+      "decision_rhythm": {
+        "label": "决策节奏",
+        "primary_question": "q4",
+        "values": {
+          "雷厉风行型": "决策快、打款快，机会导向",
+          "流程规范型": "按内部流程走，每一步都扎实",
+          "审慎多层型": "决策链长，但每一层都算数",
+          "弹性审慎型": "节奏因项目而定，不一概而论"
+        }
+      },
+      "post_invest_style": {
+        "label": "投后风格",
+        "primary_question": "q6",
+        "values": {
+          "并肩作战型": "低谷时会真的下场帮忙",
+          "理性陪伴型": "给足空间和耐心，不轻易干预",
+          "资源赋能型": "带着资源和方案来解决问题"
+        }
+      },
+      "exit_philosophy": {
+        "label": "退出理念",
+        "primary_question": "q2",
+        "values": {
+          "长期陪伴型": "愿意用足够长的时间陪公司长大",
+          "并购开放型": "对并购持开放态度，条件合适即可谈",
+          "退出导向型": "需要清晰的时间表和退出路径",
+          "跟随信任型": "信任领投方的判断，愿意跟随"
+        }
+      },
+      "cognitive_lens": {
+        "label": "认知视角",
+        "primary_question": "q8",
+        "values": {
+          "用户增长派": "最先看用户与留存的信号",
+          "商业本质派": "先问商业模式是否成立",
+          "技术壁垒派": "关注技术护城河的深度",
+          "格局研判派": "从竞争格局看终局"
+        }
+      },
+      "resource_strength": {
+        "label": "资源禀赋",
+        "primary_question": "q12",
+        "values": {
+          "技术方案型": "习惯用技术路径拆解问题",
+          "人脉资源型": "第一时间想到调动人来解决问题",
+          "优先级判断型": "先问什么最重要，再谈怎么解决",
+          "成本敏感型": "任何方案先算账"
+        }
+      }
     },
-    "rating_levels": [
-      { "min": 80, "max": 100, "label": "优秀" },
-      { "min": 60, "max": 79, "label": "良好" },
-      { "min": 40, "max": 59, "label": "中等" },
-      { "min": 20, "max": 39, "label": "需关注" },
-      { "min": 0, "max": 19, "label": "风险点" }
-    ]
+    "supplementary_tags_questions": ["q3", "q7", "q9", "q10", "q11"],
+    "output_format": "以 6 行风格画像呈现，每行格式如「出手风格：稳健纪律型——坚守份额与纪律，组合思维清晰」，另附标签行。绝不输出分数或等级。"
   },
 
   "email_template": {
     "to": "dongtao@outlook.com",
-    "subject": "【PowPow投资意向】{investor_name} - {organization} - 估值{final_valuation}万元",
+    "subject": "【PowPow投资意向】{investor_name} - {organization}",
     "sections": {
-      "greeting": "durenzidu 你好，\n\n我是{organization}的{investor_name}，{title}。\n\n我刚刚完成了 PowPow 投资人挑战，想和你聊聊合作的可能性。",
+      "greeting": "durenzidu 你好，\n\n我是{investor_name}。\n\n我刚刚完成了 PowPow 投资人挑战，想和你聊聊合作的可能性。",
       "background": "【我的背景】\n• 身份：{investor_type}\n• 机构：{organization}\n• 职位：{title}\n• 邮箱：{email}\n• 微信：{wechat}",
-      "style": "【我的投资风格】\n\n根据挑战中的回答，我的画像如下：\n\n• 资金实力：{capital_strength}/100  {capital_strength_rating}\n• 决策效率：{decision_efficiency}/100  {decision_efficiency_rating}\n• 投后能力：{post_invest_ability}/100  {post_invest_ability_rating}\n• 认知深度：{cognitive_depth}/100  {cognitive_depth_rating}\n• 契约精神：{contract_spirit}/100  {contract_spirit_rating}\n• 资源能力：{resource_ability}/100  {resource_ability_rating}\n\n我的标签：{tags}",
+      "style": "【我的投资风格】\n\n根据挑战中的回答，我的风格画像是：\n\n{style_profile_text}\n\n我的标签：{tags}",
       "understanding": "【我对 PowPow 的理解】\n\n{understanding_text}",
       "help": "【我能提供的帮助】\n\n{help_text}",
       "expectation": "【我的合作期待】\n\n{expectation_text}",
-      "intention": "【投资意向】\n\n通过这次挑战，我获得了{total_coupon}万元的满减券。\n发送这封邮件，我再获得200万元满减券。\n我对 PowPow 的最终估值意向：{final_valuation}万元\n\n当然，这只是一个有趣的互动，最终估值我们见面详聊。",
-      "closing": "期待与你的交流！\n\n{investor_name}\n{organization} | {title}\n{email}\n{wechat}\n\n═══════════════════════════════════════\n此邮件由 PowPow 投资人触达系统生成\n\n负责人：dongtao\n═══════════════════════════════════════"
+      "intention": "【PowPow 徽章领取】\n\n我完成了投资人挑战，共获得 {total_badges} 枚 PowPow 徽章。\n请充值到我的 PowPow 注册邮箱：{powpow_email}\n（我还没有账号——可用此邮箱协助我注册；或自行注册：https://global.powpow.online/register）",
+      "closing": "期待与你的交流！\n\n{investor_name}\n{organization}\n{title}\n{email}\n{wechat}\n\n═══════════════════════════════════════\n此邮件由 PowPow 投资人触达系统生成\n\n负责人：durenzidu\n═══════════════════════════════════════"
     }
   },
 
+  "email_flow": {
+    "preview_required": true,
+    "preview_rule": "发送前必须完整展示邮件全文，供用户逐段确认",
+    "send_trigger": "仅当用户预览后明确指示发送（如“发送”“确认发送”）才执行发送，绝不自动发送",
+    "style_section": {
+      "default_included": true,
+      "removable": "预览时告知用户：风格画像段默认包含，可要求删除"
+    },
+    "contact_rule": "机构、职位、联系邮箱、微信、PowPow 注册邮箱均为可选；未提供的字段在邮件中整行省略，不留空占位；发送前至少提供一个联系通道（邮箱或微信）；徽章充值依赖 PowPow 注册邮箱，发送前应提醒用户补充",
+    "redacted_copy": {
+      "enabled": true,
+      "description": "提供“复制脱敏版”选项：去除机构、职位、邮箱、微信等联系方式，仅保留称呼、风格画像与徽章领取"
+    },
+    "privacy_notice": "发送前向用户说明：所填信息仅用于 PowPow 融资事宜与您联系，不会用于其他用途，可随时要求删除。"
+  },
+
   "data_collection": {
+    "rule": "所有字段均为可选，不设必填；发送邮件前至少提供一个联系通道（邮箱/微信任一）",
     "fields": [
-      { "id": "organization", "label": "机构名称", "required": true },
+      { "id": "organization", "label": "机构名称", "required": false },
       { "id": "title", "label": "职位", "required": false },
-      { "id": "email", "label": "邮箱", "required": true },
-      { "id": "wechat", "label": "微信", "required": true }
+      { "id": "email", "label": "邮箱", "required": false },
+      { "id": "wechat", "label": "微信", "required": false },
+      { "id": "powpow_email", "label": "PowPow 注册邮箱（用于徽章充值；尚未注册可填写常用邮箱）", "required": false }
     ]
+  },
+
+  "language_policy": {
+    "dialogue": "对话语言跟随用户；用户使用英文提问时，用英文回答",
+    "fixed_content": "创始人致辞为中英双语固定内容（先中文后英文），挑战题库、徽章规则保持中文原文",
+    "english_summary": {
+      "title": "English Summary",
+      "project": "PowPow is a location-based Agent social network — “Life is full of stories everywhere.” Built by one founder plus 8 AI Agents. Official site: https://www.powpow.online/ · Landing page: https://global.powpow.online/landing",
+      "challenge": "The PowPow Investor Challenge is a two-way fit test: 13 questions about how you invest. There are no scores and no grades — your answers simply paint your investing style. Every question you answer earns one PowPow Badge (in-product currency for creating your own digital human on the map). Email the founder with your style profile and the email of your PowPow account to claim your badges (no account yet? Register at https://global.powpow.online/register, or the founder can help you set one up).",
+      "contact": "Founder: durenzidu · Email: dongtao@outlook.com · Register: https://global.powpow.online/register"
+    }
   },
 
   "examples": [

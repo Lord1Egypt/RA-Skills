@@ -1,0 +1,11 @@
+<canvas id="fixture.stock" title="Synthetic stock snapshot" created="2026-01-15T16:00:00Z" schemaVersion="2.0" tags="synthetic,test-only" version="1">
+  <block id="stock.heading" type="section-header" width="full" title="$DEMO research fixture" subtitle="Synthetic values for renderer tests only" />
+  <block id="stock.notice" type="narrative" width="full" title="Fixture notice">Every observation on this canvas is invented test data. Never show this fixture as a live market answer.</block>
+  <row>
+    <block id="stock.price" type="metric-card" width="half" label="Delayed price" value="$101.25" asOf="2026-01-15T15:45:00Z" synthetic="true" />
+    <block id="stock.sentiment" type="sentiment" width="half" ticker="$DEMO" value="0.24" score="812" asOf="2026-01-15T15:30:00Z" synthetic="true" />
+  </row>
+  <block id="stock.chart" type="price-chart" width="full" ticker="$DEMO" range="1M" points='[{"time":"2026-01-02","value":98.5},{"time":"2026-01-15","value":101.25}]' asOf="2026-01-15T15:45:00Z" synthetic="true" />
+  <block id="stock.news" type="news-feed" width="full" ticker="$DEMO" items='[{"title":"Synthetic headline for layout testing","source":"Fixture Wire"}]' asOf="2026-01-15T15:30:00Z" synthetic="true" />
+  <block id="stock.warning" type="callout" width="full" tone="warning" title="Test data">Replace every inline synthetic block with a host snapshot reference before using this layout for a user answer.</block>
+</canvas>

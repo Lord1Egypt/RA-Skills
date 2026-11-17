@@ -1,42 +1,54 @@
-## Description: <br>
-Fetches and presents monday.com Notetaker meeting notes or prepares the user for their next meeting using calendar context and related past meeting history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches monday.com Notetaker meeting notes and prepares context for the owner's next meeting using calendar and notetaker data.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-Employees use this skill to retrieve, summarize, and review their own monday.com Notetaker meetings by person, topic, date, or recency. It can also prepare the user for the next meeting by combining Google Calendar event context with related past meeting notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access local Google Calendar credentials, calendar events, attendees, and monday.com Notetaker data. <br>
-Mitigation: Install only when this data access is expected, review the local .context file before use, and keep access scoped to OWN unless broader access is explicitly needed. <br>
-Risk: The skill can optionally create monday.com board items from meeting action items. <br>
-Mitigation: Approve item creation only after confirming the target board, item names, owners, and due dates. <br>
-Risk: Meeting notes may contain sensitive personal or business information. <br>
-Mitigation: Use the skill only in contexts where the requester is authorized to view the relevant meeting data, and avoid fetching full transcripts unless explicitly requested. <br>
+## Use Case:
 
+Employees or workspace owners use this skill to retrieve recent monday.com Notetaker summaries, search meetings by person, topic, or date, and prepare for upcoming meetings from calendar participants.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/netanel-abergel/meeting-notetaker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text with meeting summaries, prep notes, action-item prompts, and occasional shell or API command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language, omits empty sections, prefers recent matching meetings, and avoids fetching full transcripts unless explicitly asked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill may access the owner's Google Calendar, attendee lists, and notetaker history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where those data scopes are intended, use platform-managed scoped credentials, and avoid raw credential sourcing.
+
+Risk: The skill can create monday.com items from meeting action items with limited board-selection controls.
+
+Mitigation: Require explicit board selection and confirmation before creating monday.com items.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/netanel-abergel/skills/meeting-notetaker)
+- [Publisher profile](https://clawhub.ai/user/netanel-abergel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown responses with meeting summaries, participant lists, topics, action items, and next-meeting prep.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses concise same-language responses, asks for clarification on ambiguous meeting matches, and omits empty sections.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

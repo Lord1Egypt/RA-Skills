@@ -1,47 +1,66 @@
-## Description: <br>
-Generates a Codex-compatible custom pet from a source image by using RunComfy GPT Image 2 for a canonical pose and ImageMagick to assemble pet.json and spritesheet.webp. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Codex-compatible custom Codex Pet from a source image by using RunComfy and ImageMagick to create spritesheet.webp and pet.json.
 
-## Publisher: <br>
-[kalvinrv](https://clawhub.ai/user/kalvinrv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[permew](https://clawhub.ai/user/permew)
 
-## Use Case: <br>
-Developers and Codex users use this skill to create and install custom Codex Pets without Codex Pro or the internal imagegen skill, using a RunComfy token, the RunComfy CLI, and ImageMagick. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a RunComfy token and may store credentials through the RunComfy CLI. <br>
-Mitigation: Install only when comfortable with RunComfy credential handling; prefer RUNCOMFY_TOKEN in CI and protect local RunComfy configuration files. <br>
-Risk: Source image URLs are processed by RunComfy's remote service. <br>
-Mitigation: Use non-sensitive, shareable image URLs and avoid private or confidential source images. <br>
-Risk: The install step writes generated files into the Codex pets directory. <br>
-Mitigation: Review the generated pet name and destination path before running copy commands. <br>
+## Use Case:
 
+Developers and Codex users use this skill to create custom Codex Pet assets from a reference image without relying on Codex Pro or the Codex imagegen skill.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kalvinrv/codex-pet) <br>
-- [RunComfy](https://www.runcomfy.com) <br>
-- [RunComfy CLI introduction](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=codex-pet) <br>
-- [RunComfy GPT Image 2 edit endpoint](https://www.runcomfy.com/models/openai/gpt-image-2/edit?utm_source=clawhub&utm_medium=skill&utm_campaign=codex-pet) <br>
-- [RunComfy CLI troubleshooting](https://docs.runcomfy.com/cli/troubleshooting?utm_source=clawhub&utm_medium=skill&utm_campaign=codex-pet) <br>
-- [OpenAI hatch-pet skill reference](https://github.com/openai/skills/tree/main/skills/.curated/hatch-pet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, files] <br>
-**Output Format:** [Markdown with bash and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a Codex Pet manifest and WebP spritesheet for installation under the user's Codex pets directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+Risk: The workflow uses a third-party global npm CLI that may be unpinned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or verify the RunComfy CLI version before use and install it only from a trusted package source.
+
+Risk: The RunComfy token may be exposed if handled casually in shell history, logs, or shared configuration.
+
+Mitigation: Keep RUNCOMFY_TOKEN scoped, store it as a secret where possible, and avoid printing it in commands or logs.
+
+Risk: An unsafe pet name could affect output paths when files are copied into the Codex pets directory.
+
+Mitigation: Use only letters, numbers, underscores, or hyphens in pet names and confirm the final destination remains under the Codex pets directory.
+
+Risk: The source image URL is processed through RunComfy and a model endpoint.
+
+Mitigation: Use only images that are appropriate to send to the third-party service and treat externally supplied image URLs as untrusted.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/permew/skills/codex-pet)
+- [RunComfy](https://www.runcomfy.com)
+- [RunComfy CLI documentation](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=codex-pet)
+- [RunComfy GPT Image 2 edit endpoint](https://www.runcomfy.com/models/openai/gpt-image-2/edit?utm_source=clawhub&utm_medium=skill&utm_campaign=codex-pet)
+- [RunComfy CLI troubleshooting](https://docs.runcomfy.com/cli/troubleshooting?utm_source=clawhub&utm_medium=skill&utm_campaign=codex-pet)
+- [OpenAI hatch-pet skill reference](https://github.com/openai/skills/tree/main/skills/.curated/hatch-pet)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local pet.json and spritesheet.webp files through RunComfy and ImageMagick commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

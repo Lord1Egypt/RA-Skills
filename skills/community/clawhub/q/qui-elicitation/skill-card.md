@@ -1,44 +1,63 @@
-## Description: <br>
-Guides agents in psychological elicitation through natural conversation using narrative identity research, self-defining memory elicitation, and Motivational Interviewing techniques. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in designing and reviewing psychological elicitation conversations that use narrative identity research, self-defining memory prompts, and Motivational Interviewing techniques to understand values, motivations, and formative experiences.
 
-## Publisher: <br>
-[quincygunter](https://clawhub.ai/user/quincygunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quincygunter](https://clawhub.ai/user/quincygunter)
 
-## Use Case: <br>
-External users and developers can use this skill to structure transparent, consent-based interviews, coaching conversations, user research, or self-reflection that explores values, formative memories, narrative themes, and motivation patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be misused for covert psychological profiling or elicitation of sensitive personal disclosures. <br>
-Mitigation: Use only for transparent, consent-based interviewing, coaching, research, or self-reflection; do not infer mental health or sensitive traits from casual conversation, pressure users into traumatic or sexual disclosures, or retain/share intimate information without clear permission. <br>
-Risk: Language, memory, and narrative patterns are probabilistic and can lead to overconfident conclusions. <br>
-Mitigation: Treat interpretations as hypotheses, cross-check them with explicit statements and broader context, and avoid diagnosis or definitive personality scoring. <br>
+## Use Case:
 
+External users and developers use this skill to draft and review consent-based user interviews, reflective conversations, and discovery flows that explore identity themes, motivations, and formative memories without treating outputs as clinical diagnosis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/quincygunter/qui-elicitation) <br>
-- [Language Inference](artifact/language-inference.md) <br>
-- [Motivational Interviewing](artifact/motivational-interviewing.md) <br>
-- [Narrative Identity](artifact/narrative-identity.md) <br>
-- [Question Sequences](artifact/question-sequences.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown guidance with conversational examples, scoring feedback, and structured analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, shell commands, API calls, or credential use detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can enable sensitive personal profiling without sufficient consent, opt-out, privacy, or emotional-safety boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in explicit, user-consented reflective or research contexts; make sensitive questions optional and let participants decline or redirect topics.
+
+Risk: Collected responses may include sensitive personal, health, family, sexuality, grief, trauma, or identity information.
+
+Mitigation: Do not store, share, or reuse responses without informed consent and appropriate privacy controls.
+
+Risk: Psychological language and schema guidance could be mistaken for clinical assessment or diagnosis.
+
+Mitigation: Present outputs as hypotheses or reflective interview guidance only, and avoid diagnostic or therapeutic claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/quincygunter/skills/qui-elicitation)
+- [Publisher profile](https://clawhub.ai/user/quincygunter)
+- [Skill definition](artifact/SKILL.md)
+- [Language Inference](artifact/language-inference.md)
+- [Motivational Interviewing](artifact/motivational-interviewing.md)
+- [Narrative Identity](artifact/narrative-identity.md)
+- [Question Sequences](artifact/question-sequences.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with conversational prompts, scoring feedback, and review guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill; no tools, APIs, credentials, or shell commands are required by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-Provides a concise daily brief with Nantong weather and the top five V2EX hot posts when requested or on an intentional morning schedule. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a concise Chinese daily brief with Nantong weather and the top five V2EX hot topics when requested or on a scheduled morning run.
 
-## Publisher: <br>
-[muzhang111](https://clawhub.ai/user/muzhang111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[muzhang111](https://clawhub.ai/user/muzhang111)
 
-## Use Case: <br>
-Agent users use this skill to generate a short morning briefing that combines current Nantong weather with a quick scan of V2EX hot posts. It is suitable for lightweight personal or team status briefings, not professional weather forecasting or long-form news coverage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts public wttr.in and V2EX endpoints, so results depend on external service availability and current public content. <br>
-Mitigation: Handle fetch failures explicitly and tell the user when weather or hot-post data is unavailable instead of filling gaps with unsupported content. <br>
-Risk: A scheduled 8:00 AM run or broad trigger phrase could generate a brief when the user did not intend it. <br>
-Mitigation: Enable scheduled execution only after user confirmation and use specific trigger phrases for on-demand briefs. <br>
+## Use Case:
 
+Chinese-speaking users use this skill to receive a short morning briefing for Nantong weather and current V2EX discussion topics. It is suited for user-triggered briefings or a deliberately configured 8:00 AM scheduled run.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/muzhang111/muzhang111-daily-brief) <br>
-- [Publisher profile](https://clawhub.ai/user/muzhang111) <br>
-- [wttr.in Nantong weather endpoint](https://wttr.in/Nantong?format=3) <br>
-- [V2EX hot topics API](https://www.v2ex.com/api/topics/hot.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown brief with a weather line and numbered V2EX post list] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public wttr.in and V2EX data; outputs the first five hot posts with titles and node names.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A broad or frequent scheduled trigger could interrupt normal conversations with an unsolicited daily brief.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure scheduling deliberately for the intended 8:00 AM run and keep trigger phrases specific to briefings.
+
+Risk: The brief depends on public weather and V2EX endpoints, so unavailable or changed responses can produce missing or incomplete content.
+
+Mitigation: Handle request failures by telling the user to retry later, as described in the artifact notes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/muzhang111/skills/muzhang111-daily-brief)
+- [Publisher profile](https://clawhub.ai/user/muzhang111)
+- [wttr.in Nantong weather endpoint](https://wttr.in/Nantong?format=3)
+- [V2EX hot topics API](https://www.v2ex.com/api/topics/hot.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style daily brief with weather text and a numbered list of V2EX topics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language brief; normally limited to Nantong weather and five V2EX hot topics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

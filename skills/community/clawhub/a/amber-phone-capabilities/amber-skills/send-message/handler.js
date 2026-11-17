@@ -51,22 +51,15 @@ module.exports = async function sendMessageHandler(params, context) {
   const operatorName = context.operator.name || 'operator';
   const emoji = cleanUrgency === 'urgent' ? '🚨' : '📞';
 
-  // SECURITY: Caller-supplied content is wrapped in explicit delimiters to prevent
-  // prompt injection. The LLM downstream should treat everything between
-  // [CALLER MESSAGE START] / [CALLER MESSAGE END] as untrusted user data only.
+  // Preserve the operator's readable message. The gateway API JSON-wraps this
+  // entire string (including caller name and callback) as untrusted data.
   const formattedMessage = [
-    `${emoji} Message from a call:`,
-    '',
+    `${emoji} Message from a call:`, '',
     cleanName ? `From: ${cleanName}` : null,
     cleanCallback ? `Callback: ${cleanCallback}` : null,
-    cleanUrgency === 'urgent' ? 'Priority: URGENT' : null,
-    '',
-    '[CALLER MESSAGE START]',
-    cleanMessage,
-    '[CALLER MESSAGE END]',
-  ]
-    .filter(function (line) { return line !== null; })
-    .join('\n');
+    cleanUrgency === 'urgent' ? 'Priority: URGENT' : null, '',
+    '[CALLER MESSAGE START]', cleanMessage, '[CALLER MESSAGE END]',
+  ].filter(line => line !== null).join('\n');
 
   // Fire and forget — log success/failure asynchronously
   context.gateway.sendMessage(formattedMessage)

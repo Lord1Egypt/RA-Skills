@@ -1,40 +1,59 @@
-## Description: <br>
-Manage advanced Google Dialogflow CX features such as environments, webhooks, deployments, and continuous testing through REST API examples and a Python CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage advanced features in Google Dialogflow CX via REST API. Use for environments, webhooks, and deployment management. Supports v3beta1 API.
 
-## Publisher: <br>
-[Yash-Kavaiya](https://clawhub.ai/user/Yash-Kavaiya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yash-kavaiya](https://clawhub.ai/user/yash-kavaiya)
 
-## Use Case: <br>
-Developers and engineers use this skill to prepare Dialogflow CX environment, webhook, deployment, and testing operations, including commands and authentication steps for Google Cloud projects. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Google Cloud credentials or service-account files could be exposed if copied into prompts, scripts, or logs. <br>
-Mitigation: Use least-privileged Google Cloud credentials, avoid sharing tokens or service-account files, and keep credentials outside generated examples. <br>
-Risk: Create, deploy, or webhook operations can modify live Dialogflow CX agents or route conversation data to external systems. <br>
-Mitigation: Verify project, location, and agent IDs before create or deploy operations, use staging environments where possible, and configure only trusted HTTPS webhook endpoints authorized to receive conversation data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Advanced Features API Reference](references/advanced.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Yash-Kavaiya/dialogflow-cx-advanced) <br>
+## Use Case:
 
+Developers and engineers use this skill to manage Dialogflow CX environments, webhooks, deployments, and continuous testing through REST API examples and a small helper CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash, curl, JSON, and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided Google Cloud project, location, agent, credentials, and webhook endpoint values.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Dialogflow CX access tokens or service-account credentials could be exposed if copied into shared transcripts or logs.
+
+Mitigation: Use a least-privilege Google Cloud identity and avoid pasting bearer tokens or service-account JSON into shared agent conversations.
+
+Risk: Webhook destinations can receive conversation and session data from Dialogflow CX.
+
+Mitigation: Review webhook endpoints before deployment and only configure trusted destinations with appropriate data handling controls.
+
+Risk: Python dependency installation can introduce dependency hygiene risk.
+
+Mitigation: Install dependencies in an isolated environment and pin versions where possible.
+
+## Reference(s):
+
+- [Advanced Features API Reference](references/advanced.md)
+- [Dialogflow CX v3beta1 API base endpoint](https://dialogflow.googleapis.com/v3beta1)
+- [ClawHub skill page](https://clawhub.ai/yash-kavaiya/skills/dialogflow-cx-advanced)
+- [Publisher profile](https://clawhub.ai/user/yash-kavaiya)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, Python, and REST API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Dialogflow CX API endpoints, curl commands, authentication steps, and helper CLI usage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

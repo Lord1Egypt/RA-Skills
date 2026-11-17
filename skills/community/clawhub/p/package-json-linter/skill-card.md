@@ -1,40 +1,53 @@
-## Description: <br>
-Lint and validate package.json files for common mistakes, missing fields, security issues, and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lint and validate package.json files for common mistakes, missing fields, security issues, and best practices.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and maintainers use this skill to lint package.json files, validate npm package metadata, inspect dependency and script issues, and produce review-ready reports before publishing or changing Node.js projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security mode is heuristic script-risk checking, not a full npm vulnerability audit. <br>
-Mitigation: Use it as a local package.json review aid and run dedicated dependency vulnerability tooling before release. <br>
-Risk: Directory scans read package.json files under the selected project path. <br>
-Mitigation: Run the skill against a specific package.json file or intended project directory. <br>
+## Use Case:
 
+Developers and engineers use this skill to check package.json files, Node.js project configuration, and npm package metadata for structural, dependency, security, and best-practice issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/package-json-linter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Text, JSON, or Markdown lint reports with shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exit code 1 is used when errors are found or when strict mode treats warnings as failures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Text or Markdown reports may display crafted package metadata in a misleading way when linting untrusted repositories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer JSON output for automation and review text or Markdown reports before relying on them in decisions.
+
+Risk: Recursive directory scans inspect package.json files under the selected project path.
+
+Mitigation: Run the linter only on project directories you intend to inspect.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/package-json-linter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Text, JSON, or Markdown lint reports with issue counts and rule-level findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI output may exit nonzero when errors are found or when strict mode treats warnings as failures.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; STATUS.md lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

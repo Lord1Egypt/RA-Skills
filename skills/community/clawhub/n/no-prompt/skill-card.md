@@ -1,41 +1,56 @@
-## Description: <br>
-No Prompt turns plain-language requests into structured I-Lang instructions that users can copy into other AI systems as prompt drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+No Prompt turns a user's plain-language task description into a structured I-Lang instruction that can be copied into other AI systems as a starting prompt.
 
-## Publisher: <br>
-[adsorgcn](https://clawhub.ai/user/adsorgcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adsorgcn](https://clawhub.ai/user/adsorgcn)
 
-## Use Case: <br>
-External users and developers use this skill to convert everyday task descriptions into compact I-Lang prompts for reuse across AI systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated I-Lang instructions may be interpreted differently across AI systems or be unsuitable for sensitive tasks. <br>
-Mitigation: Review each generated instruction before reuse, especially for private data, financial decisions, account actions, or automation. <br>
+## Use Case:
 
+External users and developers use this skill to convert natural-language task requests into concise I-Lang prompt instructions for reuse with other AI systems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/adsorgcn/no-prompt) <br>
-- [I-Lang homepage](https://ilang.ai) <br>
-- [I-Lang dictionary](https://github.com/ilang-ai/ilang-dict) <br>
-- [I-Lang research](https://research.ilang.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with an I-Lang instruction followed by a brief explanation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates prompt text only; no command execution, file access, external service calls, credentials, or code installation are evidenced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release metadata) <br>
+Risk: Generated I-Lang instructions may be interpreted differently across AI systems or models.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated instructions before reuse and test important prompts with the target model.
+
+Risk: A generated instruction for sensitive, financial, legal, or automated work could omit context or produce unsafe downstream behavior.
+
+Mitigation: Treat generated instructions as drafts and apply domain review before using them for sensitive or automated actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adsorgcn/skills/no-prompt)
+- [I-Lang homepage](https://ilang.ai)
+- [I-Lang dictionary](https://github.com/ilang-ai/ilang-dict)
+- [I-Lang research](https://research.ilang.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with a structured I-Lang instruction followed by a brief explanation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, file access, credentials, installation, persistence, or external service calls are requested by the skill.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

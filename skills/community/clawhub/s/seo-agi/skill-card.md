@@ -1,48 +1,61 @@
-## Description: <br>
-Writes and rewrites research-driven SEO and generative-engine-optimization pages using competitive SERP, keyword, and optional Search Console data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SEO AGI helps agents research search results, analyze content gaps, write SEO and GEO pages, validate quality, and prepare publish-ready content.
 
-## Publisher: <br>
-[gbessoni](https://clawhub.ai/user/gbessoni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gbessoni](https://clawhub.ai/user/gbessoni)
 
-## Use Case: <br>
-External users, developers, and content teams use this skill to turn a target keyword or existing page into a competitive SEO page with gap analysis, structured content, verification tags, tables, and schema markup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use SEO API credentials and optional read-only Google Search Console access. <br>
-Mitigation: Use only credentials intended for this workflow, keep ~/.config/seo-agi/.env permissions restricted, and review access before installation. <br>
-Risk: Generated research and page outputs can include sensitive keyword, site, or campaign data saved locally. <br>
-Mitigation: Review ~/Documents/SEO-AGI and ~/.local/share/seo-agi for saved outputs and handle those files according to the site's data policy. <br>
-Risk: Bundled scripts install or use Python dependencies for SEO research workflows. <br>
-Mitigation: Prefer a virtual environment for dependency installation and inspect configuration before running live API workflows. <br>
+## Use Case:
 
+SEO practitioners, content teams, and developers use this skill to turn a target keyword or existing page into research-backed SEO content with competitive gap analysis, structured tables, schema markup, source-verification tags, and final quality checks.
 
-## Reference(s): <br>
-- [SEO AGI ClawHub release](https://clawhub.ai/gbessoni/seo-agi) <br>
-- [Page Templates Reference](artifact/references/page-templates.md) <br>
-- [Content Quality Checklist](artifact/references/quality-checklist.md) <br>
-- [Schema Markup Patterns](artifact/references/schema-patterns.md) <br>
-- [DataForSEO](https://dataforseo.com) <br>
-- [Google Rich Results Test](https://search.google.com/test/rich-results) <br>
-- [Schema.org Validator](https://validator.schema.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown pages with YAML frontmatter, HTML or Markdown tables, JSON-LD schema blocks, verification tags, and optional JSON research artifacts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save research, briefs, pages, and rewrites to local SEO-AGI output directories when the user runs bundled scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Setup handles API credentials and may expose plaintext secrets in local configuration or terminal output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or a credential manager where possible, avoid printing credential files, and do not enter passwords in shared or recorded terminals.
+
+Risk: Installation commands may affect the user's system Python environment.
+
+Mitigation: Review setup steps before running them and install dependencies in a virtual environment.
+
+Risk: Generated SEO claims, prices, schedules, or operational details may be inaccurate if not checked before publishing.
+
+Mitigation: Keep the skill's verification tags in draft output and have a human reviewer confirm source-backed claims before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gbessoni/skills/seo-agi)
+- [Publisher profile](https://clawhub.ai/user/gbessoni)
+- [Page templates reference](artifact/references/page-templates.md)
+- [Quality checklist](artifact/references/quality-checklist.md)
+- [Schema markup patterns](artifact/references/schema-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown pages and briefs with inline code blocks, HTML tables, schema markup, verification tags, and supporting shell commands or configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce research summaries, gap reports, rewritten page drafts, change summaries, and schema blocks; some workflows depend on user-provided API credentials.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

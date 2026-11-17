@@ -233,7 +233,7 @@
 
 #### 基础换衣（使用点播文件）
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type change_clothes \
     --input-files "File:3704211509819" \
@@ -243,7 +243,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### 换衣并使用 URL 图片
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type change_clothes \
     --input-files "Url:https://example.com/model.jpg" \
@@ -253,7 +253,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### 多件衣物换衣
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type change_clothes \
     --input-files "File:3704211509819" \
@@ -263,7 +263,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### 换衣并指定输出分辨率
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type change_clothes \
     --input-files "File:3704211509819" \
@@ -275,7 +275,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### 换衣并指定编码格式
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type change_clothes \
     --input-files "File:3704211509819" \
@@ -287,7 +287,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### 换衣并等待完成
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type change_clothes \
     --input-files "File:3704211509819" \
@@ -298,7 +298,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### 永久存储生成的图片
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type change_clothes \
     --input-files "File:3704211509819" \
@@ -314,7 +314,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### 基础商品图生成（单张产品图）
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type product_image \
     --input-files "File:3704211509819" \
@@ -323,7 +323,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### 多角度商品图生成
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type product_image \
     --input-files "File:3704211509819" "File:3704211509820" "File:3704211509821" \
@@ -332,7 +332,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### 带详细描述的商品图
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type product_image \
     --input-files "File:3704211509819" \
@@ -343,7 +343,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### 批量生成多张商品图
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type product_image \
     --input-files "File:3704211509819" \
@@ -354,7 +354,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### 指定负面提示词
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type product_image \
     --input-files "File:3704211509819" \
@@ -365,7 +365,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### 指定分类和过期时间
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type product_image \
     --input-files "File:3704211509819" \
@@ -381,7 +381,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### 基础扩图（仅指定宽高比）
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type outpainting \
     --input-files "File:3704211509819" \
@@ -390,7 +390,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### 指定具体尺寸扩图
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type outpainting \
     --input-files "File:3704211509819" \
@@ -401,7 +401,7 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### 扩图为竖屏比例
 ```bash
-python scripts/vod_scene_aigc_image.py generate \
+python3 scripts/vod_scene_aigc_image.py generate \
     --sub-app-id 251007502 \
     --scene-type outpainting \
     --input-files "File:3704211509819" \
@@ -416,20 +416,20 @@ python scripts/vod_scene_aigc_image.py generate \
 
 #### 基础查询
 ```bash
-python scripts/vod_scene_aigc_image.py query \
+python3 scripts/vod_scene_aigc_image.py query \
     --task-id "251007502-SceneAigcImageTask-abc123"
 ```
 
 #### 指定子应用查询
 ```bash
-python scripts/vod_scene_aigc_image.py query \
+python3 scripts/vod_scene_aigc_image.py query \
     --task-id "251007502-SceneAigcImageTask-abc123" \
     --sub-app-id 251007502
 ```
 
 #### JSON 格式输出
 ```bash
-python scripts/vod_scene_aigc_image.py query \
+python3 scripts/vod_scene_aigc_image.py query \
     --task-id "251007502-SceneAigcImageTask-abc123" \
     --json
 ```

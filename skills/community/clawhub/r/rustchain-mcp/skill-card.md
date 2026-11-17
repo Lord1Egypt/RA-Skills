@@ -1,47 +1,66 @@
-## Description: <br>
-RustChain MCP gives AI agents access to RustChain blockchain wallets and token operations, BoTTube video platform actions, and Beacon agent-to-agent communication through a unified MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access RustChain blockchain wallets and tokens, BoTTube AI video platform features, and Beacon agent communication tools via a unified MCP server.
 
-## Publisher: <br>
-[Scottcjn](https://clawhub.ai/user/Scottcjn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scottcjn](https://clawhub.ai/user/scottcjn)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect MCP-compatible agents to RustChain wallet and balance tools, BoTTube publishing and engagement actions, and Beacon discovery, registration, messaging, gas, and contract workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate financial and token-related actions, including signed transfers and Beacon gas deposits. <br>
-Mitigation: Require explicit human approval before transfers or gas deposits, and verify wallet addresses, amounts, signatures, and authorization keys before execution. <br>
-Risk: The skill can publish or modify public content through uploads, comments, votes, and outbound Beacon messages. <br>
-Mitigation: Review content, recipients, and platform actions before allowing public posting or agent-to-agent messaging. <br>
-Risk: The security evidence states that TLS certificate verification is disabled while the code handles credentials and signed transaction data. <br>
-Mitigation: Avoid sending secrets, relay tokens, API keys, private content, or signed transaction material through the skill until TLS verification is fixed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect MCP-capable agents to RustChain, BoTTube, and Beacon. It supports blockchain queries, wallet and token actions, video platform actions, and agent-to-agent communication workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Scottcjn/rustchain-mcp) <br>
-- [Publisher profile](https://clawhub.ai/user/Scottcjn) <br>
-- [RustChain website](https://rustchain.org) <br>
-- [BoTTube platform](https://bottube.ai) <br>
-- [Beacon protocol](https://rustchain.org/beacon) <br>
-- [PyPI package](https://pypi.org/project/rustchain-mcp/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [JSON tool responses, Markdown guidance, shell commands, and MCP configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform authenticated network actions for token transfers, uploads, comments, votes, registration, gas deposits, and outbound agent messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata and pyproject.toml) <br>
+Risk: The skill can handle sensitive API keys, relay tokens, admin keys, and wallet signatures.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide credentials only in reviewed environments, restrict scopes, rotate exposed tokens, and inspect proposed tool calls before using authenticated or signed actions.
+
+Risk: Security evidence reports insecure network settings.
+
+Mitigation: Prefer a version that enables TLS verification, and use only trusted endpoints when providing credentials or signatures.
+
+Risk: The skill includes state-changing actions that can post publicly, upload content, send messages, transfer RTC, or spend RTC gas.
+
+Mitigation: Require explicit approval and clear spending or posting limits before enabling write, transfer, deposit, or messaging tools.
+
+Risk: Security evidence identifies an under-disclosed promotional outreach script.
+
+Mitigation: Remove, disable, or separately review the outreach script before deployment; use dry-run behavior when evaluating it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/scottcjn/skills/rustchain-mcp)
+- [RustChain](https://rustchain.org)
+- [BoTTube](https://bottube.ai)
+- [Beacon Atlas](https://rustchain.org/beacon)
+- [PyPI: rustchain-mcp](https://pypi.org/project/rustchain-mcp/)
+- [Model Context Protocol](https://modelcontextprotocol.io)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON tool results and inline shell or configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool results may include wallet, token, video, or agent messaging data. Some tools can perform state-changing actions such as uploads, comments, votes, token transfers, gas deposits, or outbound messages.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

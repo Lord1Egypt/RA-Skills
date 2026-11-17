@@ -1,43 +1,62 @@
-## Description: <br>
-股票分析 AI 工具 | 智能投资简报生成器 - 自动生成个股分析报告、市场热点追踪、持仓监控。支持 A股/港股/美股，实时股价查询，技术分析，研报生成。一键生成专业 Markdown 投资报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+股票分析 AI 工具 | 智能投资简报生成器 - 自动生成个股分析报告、市场热点追踪、持仓监控。支持 A股/港股/美股，实时股价查询，技术分析，研报生成。一键生成专业 Markdown 投资报告。
 
-## Publisher: <br>
-[ryan-wuxl](https://clawhub.ai/user/ryan-wuxl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan-wuxl](https://clawhub.ai/user/ryan-wuxl)
 
-## Use Case: <br>
-External users and developers use this skill to generate stock, market, and portfolio monitoring briefs from Tavily search results. It is intended to produce concise Markdown investment research summaries for A-share, Hong Kong, and U.S. equities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted stock or name inputs may be interpolated into a local shell command. <br>
-Mitigation: Use only trusted stock/name inputs and prefer an updated release that uses argument arrays instead of shell interpolation. <br>
-Risk: The skill depends on a separate tavily-search helper installed in the user's OpenClaw skills directory. <br>
-Mitigation: Verify the helper is installed from a trusted source before running this skill. <br>
-Risk: Reports can be written to a user-provided output path. <br>
-Mitigation: Avoid writing reports to important existing files or sensitive locations. <br>
+## Use Case:
 
+External users and OpenClaw agents use this skill to generate stock, market, and portfolio-oriented investment briefs from Tavily-powered search results. It is intended for concise Markdown reporting across A-share, Hong Kong, and U.S. equity contexts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryan-wuxl/investment-brief-generator) <br>
-- [Tavily](https://tavily.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports and terminal text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write reports to a user-specified output file when --output is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Crafted stock symbols or names may be executed as local shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Accept only trusted inputs until shell-string execution is replaced with argument-array execution and input validation.
+
+Risk: The external Tavily search script receives the full environment.
+
+Mitigation: Pass only required environment variables to child processes, especially TAVILY_API_KEY.
+
+Risk: The Tavily search dependency is external to this artifact.
+
+Mitigation: Pin or vendor the dependency and review it before deployment.
+
+Risk: Investment briefs may contain incomplete or stale market information from external search results.
+
+Mitigation: Require human review and independent source checks before using generated briefs for investment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryan-wuxl/skills/investment-brief-generator)
+- [Tavily](https://tavily.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown investment brief emitted to stdout or written to a file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and TAVILY_API_KEY; generated reports depend on external search results.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

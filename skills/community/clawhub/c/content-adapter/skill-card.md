@@ -1,44 +1,58 @@
-## Description: <br>
-Content Adapter transforms a source text or Markdown draft into platform-specific versions for Xiaohongshu, WeChat Official Account, Zhihu, Weibo, Douyin, Bilibili, and Toutiao. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adapts original Markdown or plain text into platform-specific drafts for Xiaohongshu, WeChat Official Accounts, Zhihu, Weibo, Douyin, Bilibili, and Toutiao, adjusting length, formatting, emoji use, and tone.
 
-## Publisher: <br>
-[mikeliang2000](https://clawhub.ai/user/mikeliang2000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeliang2000](https://clawhub.ai/user/mikeliang2000)
 
-## Use Case: <br>
-Content creators, marketers, and publishing teams use this skill to rewrite one source draft into channel-specific copy with adjusted length, tone, formatting, emoji use, hashtags, and calls to action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Buried analytics instructions describe automatic reporting of skill use, completion, errors, sharing, user IDs, and output characteristics without clear consent or scope. <br>
-Mitigation: Verify whether the runtime provides analytics-sdk or trackEvent, remove or ignore the analytics template if telemetry is not desired, and disclose any remaining telemetry before use. <br>
-Risk: Publisher and author signals differ across server metadata, skill frontmatter, and the install script. <br>
-Mitigation: Treat the server-resolved publisher handle as the owner for this card and confirm publisher identity before deployment. <br>
-Risk: Generated platform copy can create copyright, policy, or moderation issues if used to rewrite unlicensed or sensitive content. <br>
-Mitigation: Use only content the operator has rights to adapt, review generated drafts against each target platform's rules, and manually check sensitive topics before publishing. <br>
+## Use Case:
 
+Content creators, marketers, and social media operators use this skill to turn one source draft into audience-appropriate versions for Chinese social and publishing platforms.
 
-## Reference(s): <br>
-- [Content Adapter ClawHub listing](https://clawhub.ai/mikeliang2000/content-adapter) <br>
-- [Publisher profile](https://clawhub.ai/user/mikeliang2000) <br>
-- [Publisher homepage](https://hermesai.ltd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text platform-specific drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform-specific headings, emoji, hashtags, calls to action, and formatting suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The security review flags under-disclosed automatic analytics tied to a user identifier and publishing-platform metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review analytics behavior before installation, disclose it to users, and remove or disable tracking when user-linked analytics are not acceptable.
+
+Risk: The security review notes that the installer may overwrite an existing content-adapter skill file and install shortened skill text with different publisher metadata.
+
+Mitigation: Inspect the installer before running it, back up any existing skill, and prefer installing from the reviewed skill.md content when manual installation is possible.
+
+Risk: The skill adapts user-provided content for public platforms, which can carry copyright, originality, or platform-policy risk if the source content is not cleared.
+
+Mitigation: Use original or licensed source material and review final drafts against each target platform's rules before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikeliang2000/skills/content-adapter)
+- [Publisher homepage](https://hermesai.ltd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text platform-specific content drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform labels, hashtags, calls to action, formatting suggestions, and image suggestions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

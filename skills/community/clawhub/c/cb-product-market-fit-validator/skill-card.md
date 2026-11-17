@@ -1,42 +1,53 @@
-## Description: <br>
-Validate product demand in foreign markets before investing in localization, hiring, or launch, with assumption maps, low-cost experiments, evidence scorecards, and go/no-go decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps teams validate foreign-market product demand before investing in localization, hiring, inventory, or launch.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Founders, product managers, growth teams, and expansion leaders use this skill to structure cross-border product-market-fit validation before committing major localization, hiring, inventory, or launch investment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: One ecommerce scenario recommends exchanging Amazon samples for reviews, creating platform-policy and ethical risk. <br>
-Mitigation: Remove or ignore review-exchange advice and use compliant validation methods that follow marketplace, advertising, and local legal rules. <br>
-Risk: Market-validation outputs may be mistaken for guaranteed business, legal, financial, or compliance conclusions. <br>
-Mitigation: Treat outputs as planning aids, verify current market facts and local requirements, and seek qualified professional review where needed. <br>
+## Use Case:
 
+Founders, product managers, growth teams, and expansion leaders use this skill to plan low-cost foreign-market validation work, compare demand signals, and decide whether to go, stop, narrow, or iterate before major investment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/cb-product-market-fit-validator) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured sections, tables, checklists, scorecards, and bullet-point rationale] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pure descriptive output; no code execution, API calls, browsing, network access, credentials, or external side effects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence; artifact metadata also contains 1.0.1 and SKILL.md frontmatter contains v1.0.0) <br>
+Risk: The artifact includes a marketplace review-acquisition tactic that may violate Amazon or other platform rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use compliant market research, interviews, landing pages, surveys, and policy-approved validation methods instead of incentives, samples, or review tactics that a marketplace disallows.
+
+Risk: Market validation frameworks can produce misleading confidence if local laws, platform policies, consumer expectations, or current market facts are not checked.
+
+Mitigation: Treat outputs as planning support and verify legal, compliance, platform, and market assumptions with qualified professionals and reliable current sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/cb-product-market-fit-validator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with tables, checklists, scorecards, decision frameworks, and action lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Pure descriptive planning output; no external actions are performed by the skill.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

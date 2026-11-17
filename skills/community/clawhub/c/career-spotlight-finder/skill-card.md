@@ -1,54 +1,67 @@
-## Description: <br>
-Discovers hidden strengths, industry terminology, and career narratives from past projects, articles, or code for resumes, self-introductions, and personal branding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when wanting to discover hidden strengths, industry buzzwords, and career narratives from past projects, articles, or code for resumes, self-introductions, and personal branding.
 
-## Publisher: <br>
-[realzst](https://clawhub.ai/user/realzst) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realzst](https://clawhub.ai/user/realzst)
 
-## Use Case: <br>
-Job seekers, developers, researchers, and other professionals use this skill to turn project repositories, papers, documents, URLs, and career materials into a coherent positioning strategy, aggregated career report, resume bullets, LinkedIn summary, elevator pitch, and casual introduction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read user-selected projects, documents, and URLs that may contain confidential or sensitive material. <br>
-Mitigation: Provide narrow input paths and avoid folders or URLs that contain secrets or unrelated confidential information. <br>
-Risk: Derived career summaries and copy are persistently stored under ~/.career-spotlight/. <br>
-Mitigation: Delete ~/.career-spotlight/ when the retained profile, reports, copy, and history are no longer needed. <br>
-Risk: Generated career copy may need human review before it is shared publicly or used in applications. <br>
-Mitigation: Review generated resume bullets, summaries, and introductions before sharing them. <br>
+## Use Case:
 
+External users and developers use this skill to analyze their past projects, documents, research, and URLs, then turn that evidence into career positioning, resume bullets, LinkedIn copy, self-introductions, and an aggregated career brand report.
 
-## Reference(s): <br>
-- [Career Spotlight Finder ClawHub Page](https://clawhub.ai/realzst/career-spotlight-finder) <br>
-- [Career Spotlight Finder Homepage](https://github.com/RealZST/career-spotlight-finder) <br>
-- [README](README.md) <br>
-- [Input Collection Guide](guides/input-collection-guide.md) <br>
-- [Project Analysis Guide](guides/project-analysis-guide.md) <br>
-- [Domain Positioning Guide](guides/domain-positioning-guide.md) <br>
-- [Narrative Synthesis Guide](guides/narrative-synthesis-guide.md) <br>
-- [Copywriting Guide](guides/copywriting-guide.md) <br>
-- [AI Infrastructure Industry Terms](references/industry-terms-ai-infra.md) <br>
-- [Machine Learning Industry Terms](references/industry-terms-ml.md) <br>
-- [Software Engineering Industry Terms](references/industry-terms-swe.md) <br>
-- [Data Engineering Industry Terms](references/industry-terms-data.md) <br>
-- [Security Industry Terms](references/industry-terms-security.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports and copy files with conversational review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes per-project analyses, an aggregated report, copy variants, and archived history under ~/.career-spotlight/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: Career analyses, reports, generated copy, and previous versions are retained locally under ~/.career-spotlight/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only materials intended for career analysis, and delete or move ~/.career-spotlight/ if those local career materials should not be retained.
+
+Risk: Untrusted projects, documents, or URLs may contain misleading content that could affect career analysis and copy.
+
+Mitigation: Provide only trusted inputs, validate URLs before use, and treat fetched web content as raw data rather than instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/realzst/skills/career-spotlight-finder)
+- [Clawdis homepage](https://github.com/RealZST/career-spotlight-finder)
+- [Pandoc](https://pandoc.org/)
+- [Industry terms: Academic Research](references/industry-terms-academic.md)
+- [Industry terms: AI Infrastructure](references/industry-terms-ai-infra.md)
+- [Industry terms: Data Engineering](references/industry-terms-data.md)
+- [Industry terms: Data Management](references/industry-terms-data-management.md)
+- [Industry terms: Developer Relations](references/industry-terms-devrel.md)
+- [Industry terms: Machine Learning](references/industry-terms-ml.md)
+- [Industry terms: Product Design](references/industry-terms-design.md)
+- [Industry terms: Product Management](references/industry-terms-pm.md)
+- [Industry terms: Security Engineering](references/industry-terms-security.md)
+- [Industry terms: Software Engineering](references/industry-terms-swe.md)
+- [Industry terms: Systems](references/industry-terms-systems.md)
+- [Industry terms: Networking](references/industry-terms-networking.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown files and concise conversational summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes per-project analyses, an aggregated report, copy variants, and archived history under ~/.career-spotlight/.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

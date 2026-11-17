@@ -19,8 +19,14 @@ def test(name, fn):
     try:
         data = fn()
         elapsed = round(time.time() - start, 2)
-        status = data.get("status", "N/A")
-        count = data.get("count", len(data.get("data", [])))
+        # 1.x 版本返回文本，2.x 版本返回 {"raw": ..., "text": ...}，兼容两种
+        if isinstance(data, str):
+            status = "OK"
+            count = len(data)
+        else:
+            raw = data.get("raw", data)
+            status = raw.get("status", "N/A")
+            count = raw.get("count", len(raw.get("data", [])))
         msg = f"✅ {name}  status={status}  count={count}  ({elapsed}s)"
         print(msg)
         results.append({"name": name, "ok": True, "status": status, "msg": msg})
@@ -42,83 +48,84 @@ print("Key 来源:", client.key_source)
 print("=" * 60)
 
 # 1. geocoder — 地址解析
-test("geocoder", lambda: client.geocoder("深圳市腾讯滨海大厦"))
+test("geocoder", lambda: client.geocoder("深圳市腾讯滨海大厦", raw=True))
 
 # 2. regeocoder — 逆地址解析
-test("regeocoder", lambda: client.regeocoder(22.540601, 113.93397, get_poi=False))
+test("regeocoder", lambda: client.regeocoder(22.540601, 113.93397, get_poi=False, raw=True))
 
 # 3. poi_sug — 关键词提示
-test("poi_sug", lambda: client.poi_sug("黄鹤楼", region="武汉"))
+test("poi_sug", lambda: client.poi_sug("黄鹤楼", region="武汉", raw=True))
 
 # 4. poi_search — 地点搜索（按城市）
-test("poi_search(城市)", lambda: client.poi_search("黄鹤楼", region="武汉"))
+test("poi_search(城市)", lambda: client.poi_search("黄鹤楼", region="武汉", raw=True))
 
 # 5. poi_search — 地点搜索（按坐标）
-test("poi_search(坐标)", lambda: client.poi_search("咖啡", location="22.540601,113.93397"))
+test("poi_search(坐标)", lambda: client.poi_search("咖啡", location="22.540601,113.93397", raw=True))
 
 # 6. poi_nearby — 周边搜索
-test("poi_nearby", lambda: client.poi_nearby("咖啡", location="22.540601,113.93397", radius=1000))
+test("poi_nearby", lambda: client.poi_nearby("咖啡", location="22.540601,113.93397", radius=1000, raw=True))
 
 # 7. poi_detail — POI 详情（用一个真实 POI ID）
 # 先从 poi_search 拿一个真实 ID
 try:
-    r = client.poi_search("黄鹤楼", region="武汉")
+    r = client.poi_search("黄鹤楼", region="武汉", raw=True)
     pois = r.get("data") or []
     if pois:
         poi_id = pois[0].get("id") or pois[0].get("uid", "")
         print(f"  拿到 POI ID: {poi_id}")
-        test("poi_detail", lambda: client.poi_detail(poi_id))
+        test("poi_detail", lambda: client.poi_detail(poi_id, raw=True))
     else:
         print("❌ poi_detail  无法获取测试 POI ID，跳过")
 except Exception as e:
     print(f"❌ poi_detail  准备失败: {e}")
 
 # 8. direction — 驾车路线
-test("direction(driving)", lambda: client.direction("深圳北站", "深圳湾口岸", mode="driving"))
+test("direction(driving)", lambda: client.direction("深圳北站", "深圳湾口岸", mode="driving", raw=True))
 
 # 9. direction — 步行路线
-test("direction(walking)", lambda: client.direction("深圳北站", "深圳湾口岸", mode="walking"))
+test("direction(walking)", lambda: client.direction("深圳北站", "深圳湾口岸", mode="walking", raw=True))
 
 # 10. direction — 骑行路线
-test("direction(bicycling)", lambda: client.direction("深圳北站", "深圳湾口岸", mode="bicycling"))
+test("direction(bicycling)", lambda: client.direction("深圳北站", "深圳湾口岸", mode="bicycling", raw=True))
 
 # 11. direction — 公交路线
-test("direction(transit)", lambda: client.direction("深圳北站", "深圳湾口岸", mode="transit"))
+test("direction(transit)", lambda: client.direction("深圳北站", "深圳湾口岸", mode="transit", raw=True))
 
 # 12. ip_location — IP 定位
-test("ip_location", lambda: client.ip_location())
+test("ip_location", lambda: client.ip_location(raw=True))
 
 # 13. district_list — 行政区划列表
-test("district_list", lambda: client.district_list())
+test("district_list", lambda: client.district_list(raw=True))
 
 # 14. district_search — 行政区划搜索
-test("district_search", lambda: client.district_search("深圳"))
+test("district_search", lambda: client.district_search("深圳", raw=True))
 
 # 15. district_children — 下级区划（用深圳 id）
 try:
-    r = client.district_search("深圳")
+    r = client.district_search("深圳", raw=True)
     dists = (r.get("result") or [[]])[0]  # 二维数组，取 result[0]
     if dists:
         pid = dists[0].get("id", "")
         print(f"  深圳 id: {pid}")
-        test("district_children", lambda: client.district_children(pid))
+        test("district_children", lambda: client.district_children(pid, raw=True))
     else:
         print("❌ district_children  无法获取父级 ID，跳过")
 except Exception as e:
     print(f"❌ district_children  准备失败: {e}")
 
-# 16. distance_matrix — 距离矩阵
+# 16. distance_matrix — 两点间距离
 test("distance_matrix", lambda: client.distance_matrix(
-    from_list=["22.540601,113.93397"],
-    to_list=["22.550000,113.940000", "22.530000,113.920000"],
-    mode="driving"
+    origin="22.540601,113.93397",
+    dest="22.550000,113.940000",
+    mode="driving",
+    raw=True
 ))
 
 # 17. weather — 实时天气（用 adcode）
-test("weather(adcode)", lambda: client.weather(adcode="440300", type="now"))
+test("weather(adcode)", lambda: client.weather(adcode="440300", type="now", raw=True))
 
 # 18. weather — 实时天气（用坐标）
-test("weather(location)", lambda: client.weather(location="22.540601,113.93397", type="now"))
+test("weather(location)", lambda: client.weather(location="22.540601,113.93397", type="now", raw=True))
 
 # 19. travel_guide — AI 旅游攻略（耗时较长，放最后）
 print("\n⏳ travel_guide 开始（约 30-50 秒）...")

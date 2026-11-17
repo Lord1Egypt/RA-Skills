@@ -1,41 +1,57 @@
-## Description: <br>
-Resume-to-Tags turns resume text or files into a searchable candidate tag matrix by generating an LLM extraction prompt, expanding tags with synonyms, and guiding Feishu Bitable record creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Resume To Tags helps agents turn resume text or files into normalized talent tags, expand synonyms, and structure the results for a searchable Feishu talent tag table.
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
 
-## Use Case: <br>
-Recruiters, HR teams, and talent operations users can use this skill to standardize resumes into atomic school, company, skill, tool, domain, language, certificate, and experience tags for search and candidate matching. It also guides creation of a Feishu Bitable candidate tag database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume inputs and generated outputs can contain candidate contact details and raw resume content. <br>
-Mitigation: Use only resumes the operator is authorized to process, redact contact details before sharing outputs, and apply retention and access controls for candidate data. <br>
-Risk: The workflow can write candidate records into a Feishu Bitable workspace. <br>
-Mitigation: Confirm the exact Feishu workspace, app, table, and access permissions before creating or batch-inserting records. <br>
+## Use Case:
 
+Recruiters, sourcers, and HR operations teams use this skill to extract standardized candidate tags from resumes and create a searchable Feishu talent tag matrix for matching roles to candidates.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tuobadaidai/resume-to-tags) <br>
-- [references/synonyms.json](references/synonyms.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON extraction output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated extraction prompts may include resume excerpts up to 5000 characters and basic contact details detected from the input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill processes resumes and may expose sensitive candidate data, including contact details and employment history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only resumes you are allowed to process, avoid retaining unnecessary contact details, and apply the organization's candidate-data handling policy before sharing outputs.
+
+Risk: LLM-generated tags can be inaccurate, overbroad, or biased if imported without review.
+
+Mitigation: Review and validate extracted tags against source resumes before using them for screening, matching, or Feishu import.
+
+Risk: The workflow can create, delete, or batch-import Feishu table fields and records.
+
+Mitigation: Confirm the target Feishu app and table, then inspect planned create, delete, and batch import actions before execution.
+
+## Reference(s):
+
+- [Synonym mapping reference](references/synonyms.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON tag extraction output and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve Feishu table creation and batch record import when the agent has appropriate tool access.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

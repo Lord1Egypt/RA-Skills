@@ -1,42 +1,55 @@
-## Description: <br>
-Assess stablecoin safety and risk profile across 500+ protocols, covering depeg history, reserve composition, audit status, regulatory exposure, and market cap trends for major stablecoins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assess stablecoin safety and risk profile across 500+ protocols, covering depeg history, reserve composition, audit status, regulatory exposure, and market cap trends for major stablecoins.
 
-## Publisher: <br>
-[zuoyeweb3](https://clawhub.ai/user/zuoyeweb3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zuoyeweb3](https://clawhub.ai/user/zuoyeweb3)
 
-## Use Case: <br>
-External users and agents use this skill to produce structured educational risk reports when comparing stablecoins before deposits, yield farming, or other crypto allocation decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stablecoin reserve, audit, regulatory, market-cap, and yield information can change quickly. <br>
-Mitigation: Verify current data from trusted live sources before relying on the report or moving funds. <br>
-Risk: The skill produces educational stablecoin risk summaries, not financial advice. <br>
-Mitigation: Use the report as due-diligence support and apply independent judgment before making allocation decisions. <br>
+## Use Case:
 
+External users and developers use this skill to request structured, educational stablecoin risk assessments before comparing, depositing, or yield farming with stablecoins. It is intended to summarize safety ratings, strengths, risks, and a concise verdict rather than provide financial advice.
 
-## Reference(s): <br>
-- [Stablecoin Risk Check on ClawHub](https://clawhub.ai/zuoyeweb3/stablecoin-risk-check) <br>
-- [Barker Stablecoin Yield Map](https://barker.money) <br>
-- [Barker Public API](https://api.barker.money/api/public/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown risk report with safety rating, strengths, risks, verdict, and attribution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational content only; users should verify current reserve, audit, regulatory, market-cap, and yield data before moving funds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can produce Barker-branded responses with external Barker links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when branded attribution and outbound reference links are acceptable for the intended agent experience.
+
+Risk: Embedded stablecoin market and risk information can become stale or incomplete.
+
+Mitigation: Treat outputs as educational summaries and verify current reserve, audit, regulatory, liquidity, and depeg information before making financial decisions.
+
+## Reference(s):
+
+- [Stablecoin Risk Check on ClawHub](https://clawhub.ai/zuoyeweb3/skills/stablecoin-risk-check)
+- [Barker - The Stablecoin Yield Map](https://barker.money)
+- [Barker Public API](https://api.barker.money/api/public/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown structured risk report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a safety rating, key strengths, key risks, verdict, and Barker attribution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Breaks a problem into assumptions and fundamental truths, then rebuilds a simpler solution from those fundamentals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Break any problem down to fundamental truths, then rebuild solutions from atoms up.
 
-## Publisher: <br>
-[artyomx33](https://clawhub.ai/user/artyomx33) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[artyomx33](https://clawhub.ai/user/artyomx33)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to challenge assumptions, decompose complex problems to first principles, and rebuild practical solutions from verified fundamentals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may cause ordinary requests to be answered in a structured decomposition format. <br>
-Mitigation: Confirm that first-principles decomposition is appropriate for the request before applying the full workflow. <br>
-Risk: Recommendations may be incomplete or unsuitable for important business, financial, legal, or safety-sensitive decisions. <br>
-Mitigation: Review outputs with appropriate human judgment and domain expertise before acting on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [First Principles Framework - Detailed Methodology](references/framework.md) <br>
-- [Integrated Thinking Frameworks](references/integrated-frameworks.md) <br>
-- [First Principles Examples - Artem's World](references/examples.md) <br>
+## Use Case:
 
+External users and developers use this skill to challenge assumptions, decompose product, strategy, or operational problems into fundamental truths, and rebuild simpler solution approaches.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured problem analysis with assumptions, fundamental truths, rebuilt solution, and conventional comparison.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad activation phrases may steer ordinary problem-solving requests into a structured first-principles format.
+
+Mitigation: Confirm that a first-principles decomposition is appropriate before relying on the structured output.
+
+Risk: Examples involving children's photos, face recognition, enrollment data, or scheduling are privacy-sensitive if translated into real systems.
+
+Mitigation: Treat those examples as conceptual only; real implementations need explicit consent, privacy controls, retention limits, and legal review.
+
+## Reference(s):
+
+- [First Principles Framework - Detailed Methodology](references/framework.md)
+- [First Principles Examples - Artem's World](references/examples.md)
+- [Integrated Thinking Frameworks](references/integrated-frameworks.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses sections for the problem, assumptions, fundamental truths, rebuilt solution, and conventional comparison.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,49 @@
-## Description: <br>
-Guides agents in creating, optimizing, and auditing app download pages for desktop and mobile distribution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides creation, optimization, and auditing of desktop and mobile app download pages that present value, platform options, CTAs, trust signals, and SEO metadata.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, product teams, and marketers use this skill to plan or review download pages that present app value, platform choices, trust signals, calls to action, and SEO metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use local project-context files to tailor page copy, which could expose secrets or private product details if those files contain sensitive information. <br>
-Mitigation: Review .claude/project-context.md and .cursor/project-context.md before use, and remove secrets or private details that should not inform generated page guidance. <br>
+## Use Case:
 
+Developers, marketers, and product teams use this skill to create, optimize, or audit download pages for desktop and mobile apps. It helps structure value proposition, platform selection, download CTAs, trust signals, visual proof, and SEO metadata.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/download-page-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with structured page sections, CTA copy, trust-signal placement, platform layout, and SEO metadata recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution or hidden behavior was found in the server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and SKILL.md metadata) <br>
+Risk: The skill may use existing project context files to tailor download page recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review any generated recommendations before publication and avoid including sensitive internal details from project context.
+
+## Reference(s):
+
+- [Download Page Generator on ClawHub](https://clawhub.ai/kostja94/skills/download-page-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown guidance with page structure, platform layout, CTA copy, trust signal placement, and SEO metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May tailor recommendations using existing project context files when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,71 @@
-## Description: <br>
-Hyperthink runs an unattended triple-perspective research pipeline that scopes a topic, launches Optimist, Analyst, and Critic deep-dives, audits claims, and produces a synthesis plus executive brief. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triple-perspective deep research engine triggered by /hyperthink that narrows scope with an interrogate flow, runs a fully automatic multi-stage pipeline, and produces a synthesized research report plus an executive brief.
 
-## Publisher: <br>
-[inxan3](https://clawhub.ai/user/inxan3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[inxan3](https://clawhub.ai/user/inxan3)
 
-## Use Case: <br>
-Researchers, analysts, and developers use Hyperthink to run a scoped, multi-perspective research workflow that produces section deep-dives, claim audits, a long-form synthesis, and an executive brief after one confirmation step. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unattended batch execution can run for hours and incur material Anthropic API cost. <br>
-Mitigation: Confirm scope before launch, use scoped credentials where possible, monitor batch job state, and apply account-level spend limits if available. <br>
-Risk: Research outputs and pipeline state are persisted locally under configured output directories. <br>
-Mitigation: Avoid sensitive topics unless the output location is appropriate, and restrict access to /data/hyperthink/ and batch job state directories. <br>
-Risk: Optional webhook or Telegram notifications can send completion details or deliverables outside the local environment. <br>
-Mitigation: Leave notification variables unset unless the destination is trusted and suitable for the report contents. <br>
+## Use Case:
 
+Developers and advanced agent users use Hyperthink to run long-form deep research with Optimist, Analyst, and Critic perspectives after one scope-confirmation step. It is suited to broad strategy, product, technical, investment, or evaluation questions where a synthesized markdown report and executive brief are useful.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/inxan3/hyperthink) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown research artifacts, JSON batch job definitions, shell commands, and optional DOCX brief output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces persistent pipeline files under /data/hyperthink/[slug]/; typical runs are long and can incur Anthropic API cost.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The pipeline runs unattended for many hours after the initial scope confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for topics where a single approval is acceptable, or add approval checkpoints before submitting later stages.
+
+Risk: Prompts and generated content are sent to Anthropic during batch stages.
+
+Mitigation: Use non-sensitive topics unless privacy controls and data-handling review are in place.
+
+Risk: The skill writes persistent output and job state under /data/hyperthink and batch-jobs.
+
+Mitigation: Restrict filesystem permissions, monitor stored outputs, and clean up artifacts that should not persist.
+
+Risk: Optional webhook or Telegram notifications can send completion data to external destinations.
+
+Mitigation: Enable notification environment variables only after explicit approval, and use least-privilege tokens or endpoints.
+
+Risk: Supporting helper scripts must be implemented or generated before operation.
+
+Mitigation: Review helper scripts before execution and pin dependencies such as python-docx where DOCX export is used.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/inxan3/skills/hyperthink)
+- [Publisher Profile](https://clawhub.ai/user/inxan3)
+- [Batch Worker Implementation Spec](artifact/scripts/batch-worker-spec.md)
+- [Markdown to DOCX Implementation Spec](artifact/scripts/md2docx-spec.md)
+- [Analyst Persona](artifact/agents/analyst.md)
+- [Critic Persona](artifact/agents/critic.md)
+- [Optimist Persona](artifact/agents/optimist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown reports and briefs, JSON job and state files, shell commands, configuration guidance, and optional DOCX documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Long-running multi-stage output; final brief can be exported to DOCX when python-docx is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

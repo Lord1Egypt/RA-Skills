@@ -1,44 +1,57 @@
-## Description: <br>
-Diagnose failures using reproduce, isolate, fix, and verify workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose failures using reproduce \u2192 isolate \u2192 fix \u2192 verify workflow.
 
-## Publisher: <br>
-[mzfshark](https://clawhub.ai/user/mzfshark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzfshark](https://clawhub.ai/user/mzfshark)
 
-## Use Case: <br>
-Developers and engineers use this skill to diagnose failing tests, runtime errors, performance regressions, or unexpected behavior with a structured reproduce, isolate, fix, and verify process. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Logs, stack traces, or environment details used for debugging can contain secrets. <br>
-Mitigation: Redact secrets from logs and environment details before using the skill. <br>
-Risk: Suggested fixes may be incomplete or affect unrelated behavior. <br>
-Mitigation: Review proposed changes before applying them and verify with the original reproduction plus related tests. <br>
-Risk: Activation metadata is malformed in this release. <br>
-Mitigation: Prefer an updated release with explicit trigger phrases when trigger reliability matters. <br>
+## Use Case:
 
+Developers and engineers use this skill to diagnose failing tests, runtime errors, performance regressions, and unexpected output with a structured reproduce, isolate, fix, and verify workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mzfshark/axodus-debugging) <br>
-- [Publisher Profile](https://clawhub.ai/user/mzfshark) <br>
-- [Debugging Skill Instructions](artifact/debugging.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, code] <br>
-**Output Format:** [Markdown with YAML-formatted debugging summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs root cause, fix, verification commands or tests, and optional follow-ups.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, skill.yml, and artifact metadata) <br>
+Risk: Activation trigger metadata may be unreliable, causing the skill to invoke less predictably than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review trigger metadata before release and invoke the skill explicitly when predictable activation matters.
+
+Risk: Debugging inputs can include logs, traces, environment details, or other sensitive operational data.
+
+Mitigation: Redact secrets and sensitive identifiers before sharing logs, traces, environment variables, or repro details with the agent.
+
+Risk: Debugging guidance or fix proposals could introduce incorrect changes or weaken validation.
+
+Mitigation: Require a stated root cause, minimal changes, regression tests, and verification commands; do not disable tests or checks without explicit approval and justification.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mzfshark/skills/axodus-debugging)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown or text with a YAML summary for root_cause, fix, verification, and follow_ups]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands, tests, small code changes, diagnostics, and follow-up hardening recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, skill.yml, and metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

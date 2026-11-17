@@ -1,30 +1,150 @@
 """
-知乎文章抓取器
+知乎文章抓取器 — v1.2.0
+HTTP (Cookies) → Playwright 浏览器 → 失败放弃
 """
 from bs4 import BeautifulSoup
 from fetchers.base_fetcher import BaseFetcher
 from utils.logger import logger
 import re
+import requests
 from datetime import datetime
 
 
 class ZhihuFetcher(BaseFetcher):
-    """知乎文章抓取器"""
+    """知乎文章抓取器（二级回退）"""
 
     def fetch_article(self, url: str) -> dict:
+        """抓取文章：HTTP → Playwright → 失败"""
         self.headers['Referer'] = 'https://www.zhihu.com/'
         self._apply_cookies_for_url(url)
 
+        # ① HTTP 请求
         try:
             html = self._fetch_html(url, headers=self.headers, timeout=30)
-            soup = BeautifulSoup(html, 'html.parser')
-
-            if 'answer' in url:
-                return self._extract_answer(soup, url, html)
-            return self._extract_article(soup, url, html)
+            return self._parse(html, url)
+        except requests.HTTPError as e:
+            if e.response is not None and e.response.status_code == 403:
+                logger.warning("知乎返回 403 (Cookies 可能过期)，尝试 Playwright 回退...")
+            else:
+                logger.error(f"知乎 HTTP 错误: {e.response.status_code if e.response else e}")
+                return self._empty_result(url)
         except Exception as e:
-            logger.error(f"抓取知乎内容失败: {e}")
-            return {'title': '', 'author': '', 'pub_date': '', 'content': '', 'images': [], 'original_url': url}
+            logger.error(f"知乎抓取异常: {e}")
+            return self._empty_result(url)
+
+        # ② Playwright 浏览器回退
+        try:
+            html = self._fetch_with_playwright(url)
+            if html:
+                return self._parse(html, url)
+        except Exception as e:
+            logger.error(f"Playwright 回退失败: {e}")
+
+        # ③ 失败放弃
+        logger.warning("知乎抓取完全失败（HTTP 403 + Playwright 不可用）")
+        return self._empty_result(url)
+
+    # ========== Playwright 回退 ==========
+
+    def _fetch_with_playwright(self, url: str) -> str | None:
+        """
+        使用 Playwright headless Chromium 抓取知乎页面。
+        自动加载 self.cookies_list 中的 Cookies 到浏览器上下文。
+        """
+        try:
+            from playwright.sync_api import sync_playwright
+        except ImportError:
+            logger.warning("playwright 未安装，跳过浏览器回退。请参阅 requirements.txt 安装依赖")
+            return None
+
+        logger.info("启动 Playwright headless Chromium...")
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            context = browser.new_context(
+                user_agent=(
+                    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                    'AppleWebKit/537.36 (KHTML, like Gecko) '
+                    'Chrome/120.0.0.0 Safari/537.36'
+                ),
+            )
+
+            # 注入 Cookies（从 Netscape 文件加载）
+            if self.cookies_list:
+                cookies_to_add = []
+                for c in self.cookies_list:
+                    cookies_to_add.append({
+                        'name': c['name'],
+                        'value': c['value'],
+                        'domain': c['domain'],
+                        'path': '/',
+                    })
+                context.add_cookies(cookies_to_add)
+                logger.debug(f"Playwright 注入 {len(cookies_to_add)} 个 Cookies")
+
+            page = context.new_page()
+            try:
+                page.goto(url, wait_until='networkidle', timeout=30000)
+                page.wait_for_timeout(3000)  # 等待 JS 渲染完成
+                html = page.content()
+                logger.info("Playwright 抓取成功")
+                return html
+            finally:
+                browser.close()
+
+    # ========== HTML 解析 ==========
+
+    def _parse(self, html: str, url: str) -> dict:
+        """统一解析入口：HTML → article_data dict"""
+        soup = BeautifulSoup(html, 'html.parser')
+        if 'answer' in url:
+            return self._extract_answer(soup, url, html)
+        if '/pin/' in url:
+            return self._extract_pin(soup, url, html)
+        return self._extract_article(soup, url, html)
+
+    def _empty_result(self, url: str) -> dict:
+        return {'title': '', 'author': '', 'pub_date': '', 'content': '', 'images': [], 'original_url': url}
+
+    def _extract_pin(self, soup, url, html):
+        """知乎想法（Pin）"""
+        # 标题：从 meta description 取
+        meta_desc = soup.find('meta', attrs={'name': 'description'})
+        if meta_desc and meta_desc.get('content'):
+            desc = meta_desc['content']
+            title = desc.split('|')[0].strip() if '|' in desc else desc[:50]
+        else:
+            title = '未知标题'
+
+        # 作者
+        author_meta = soup.find('meta', itemprop='author')
+        author = author_meta['content'] if author_meta and author_meta.get('content') else '未知作者'
+
+        pub_date = self._extract_date(html)
+
+        # 正文：优先 RichContent/RichText
+        content_div = soup.find('div', class_='RichContent') or soup.find('div', class_='RichText')
+        if content_div:
+            # 图片懒加载修复：data-original/data-actualsrc → src
+            for img in content_div.find_all('img'):
+                real = img.get('data-original') or img.get('data-actualsrc')
+                if real and not real.startswith('data:'):
+                    img['src'] = real
+            images = self._extract_images(content_div)
+            content = str(self._clean_zhihu_html(content_div))
+        else:
+            # fallback：取 body 可见文本
+            for tag in soup.find_all(['header', 'nav', 'footer', 'script', 'style']):
+                tag.decompose()
+            body = soup.find('body')
+            text = body.get_text(separator='\n', strip=True) if body else ''
+            lines = [l for l in text.split('\n') if len(l) > 10 and '知乎' not in l][:50]
+            content = '<p>' + '</p><p>'.join(lines) + '</p>'
+            images = self._extract_images(soup)
+
+        return {
+            'title': title, 'author': author, 'pub_date': pub_date,
+            'content': content, 'images': images, 'original_url': url,
+        }
 
     def _extract_article(self, soup, url, html):
         """专栏文章"""
@@ -39,9 +159,7 @@ class ZhihuFetcher(BaseFetcher):
         if not content_div:
             return {'title': title, 'author': author, 'pub_date': pub_date, 'content': '', 'images': [], 'original_url': url}
 
-        # 先提取图片（原始 HTML 包含完整 data-* 属性）
         images = self._extract_images(content_div)
-        # 再清理 HTML（原地修改，移除噪音）
         content = str(self._clean_zhihu_html(content_div))
         return {'title': title, 'author': author, 'pub_date': pub_date, 'content': content, 'images': images, 'original_url': url}
 
@@ -58,9 +176,7 @@ class ZhihuFetcher(BaseFetcher):
         if not content_div:
             return {'title': title, 'author': author, 'pub_date': pub_date, 'content': '', 'images': [], 'original_url': url}
 
-        # 先提取图片（原始 HTML 包含完整 data-* 属性）
         images = self._extract_images(content_div)
-        # 再清理 HTML（原地修改，移除噪音）
         content = str(self._clean_zhihu_html(content_div))
         return {'title': title, 'author': author, 'pub_date': pub_date, 'content': content, 'images': images, 'original_url': url}
 
@@ -69,16 +185,13 @@ class ZhihuFetcher(BaseFetcher):
         if not element:
             return element
 
-        # 1. 移除所有 <style> 标签（知乎 emotion CSS 内嵌，64K+ 噪音来源）
         for tag in element.find_all('style'):
             tag.decompose()
 
-        # 2. 移除脚本和元数据标签
         for tag_name in ['script', 'noscript', 'meta', 'link']:
             for tag in element.find_all(tag_name):
                 tag.decompose()
 
-        # 3. 移除知乎特有的无用容器（保留内含的图片）
         useless_classes = [
             'LinkCard', 'ExternalLinkCard', 'RichText-link',
             'RichText-actions', 'RichText-copyright', 'ContentItem-actions',
@@ -92,11 +205,8 @@ class ZhihuFetcher(BaseFetcher):
                         tag.insert_before(img)
                 tag.decompose()
 
-        # 4. 清理无用 data-* 属性，但保留图片的真实 URL
         for tag in element.find_all(True):
             if tag.name == 'img':
-                # 图片标签：只保留 data-original / data-actualsrc（真实 URL）
-                # 移除其他 data-* 属性（如 data-lazy-status, data-attachment 等）
                 keep_attrs = {'data-original', 'data-actualsrc'}
                 attrs_to_remove = [
                     k for k in tag.attrs
@@ -105,17 +215,14 @@ class ZhihuFetcher(BaseFetcher):
                 for k in attrs_to_remove:
                     del tag[k]
             else:
-                # 非图片标签：移除所有 data-* 属性
                 attrs_to_remove = [k for k in tag.attrs if k.startswith('data-')]
                 for k in attrs_to_remove:
                     del tag[k]
 
-            # 移除 JS 序列化残留属性（如 options="[object Object]"）
             js_attrs = [k for k in tag.attrs if k in ('options', 'data-zop')]
             for k in js_attrs:
                 del tag[k]
 
-            # 移除动态生成的 CSS class（css-xxxxxx 格式）
             if tag.get('class'):
                 tag['class'] = [
                     c for c in tag['class']
@@ -124,7 +231,6 @@ class ZhihuFetcher(BaseFetcher):
                 if not tag['class']:
                     del tag['class']
 
-        # 5. 移除空的 style/script 残留（防御）
         for tag in element.find_all(True):
             if tag.name in ('style', 'script'):
                 tag.decompose()
@@ -132,14 +238,12 @@ class ZhihuFetcher(BaseFetcher):
         return element
 
     def _extract_date(self, html):
-        """从 script 标签提取时间"""
         match = re.search(r'"created":\s*(\d+)', html) or re.search(r'"updatedTime":\s*(\d+)', html)
         if match:
             return datetime.fromtimestamp(int(match.group(1))).strftime('%Y-%m-%d %H:%M:%S')
-        return ''  # 缺失时留空（不伪造当前时间）
+        return ''
 
     def _extract_images(self, content_div) -> list:
-        """提取图片 URL（知乎每种图有 _r.jpg 和 _720w.jpg 两个变体，全部提取用于替换）"""
         if not content_div:
             return []
         images = []

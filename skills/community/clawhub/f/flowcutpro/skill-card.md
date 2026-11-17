@@ -1,45 +1,59 @@
-## Description: <br>
-AI-powered cinematic video production using Google Veo 3 as the renderer and OpenClaw's configured LLM for shot planning, prompt engineering, style consistency, and quality review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FlowCutPro helps agents create cinematic multi-shot videos from text concepts by planning shots with an LLM, rendering clips with Google Veo 3, and stitching them with ffmpeg.
 
-## Publisher: <br>
-[windseeker1111](https://clawhub.ai/user/windseeker1111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[windseeker1111](https://clawhub.ai/user/windseeker1111)
 
-## Use Case: <br>
-External creators, developers, and content-production teams use FlowCutPro to turn a text concept into a multi-shot cinematic video workflow with planned shots, Veo 3 prompts, rendered clips, and ffmpeg stitching. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The evidence security summary reports an embedded API key and material credential-handling concerns. <br>
-Mitigation: Remove the embedded key before installing or running the skill, then configure a restricted VEO_API_KEY through a secure environment or secret manager. <br>
-Risk: The skill sends prompts and generated shot details to external AI providers. <br>
-Mitigation: Avoid confidential, regulated, or unreleased concepts unless the operator has approved use of the relevant external providers and data flows. <br>
-Risk: The evidence security verdict is suspicious because provider and credential-handling risks are under-disclosed. <br>
-Mitigation: Review the skill carefully before installation, document external-service dependencies for users, and run only after credential handling is corrected. <br>
+## Use Case:
 
+External creators, marketers, and developers use FlowCutPro to turn text briefs into multi-shot cinematic videos, reels, TikToks, and commercials. The skill is intended for agents that can produce shot plans, run rendering commands, and guide users through video-generation setup and output handling.
 
-## Reference(s): <br>
-- [FlowCutPro ClawHub listing](https://clawhub.ai/windseeker1111/flowcutpro) <br>
-- [Publisher profile](https://clawhub.ai/user/windseeker1111) <br>
-- [Google AI Studio API keys](https://aistudio.google.com/apikeys) <br>
-- [Google Generative Language Veo endpoint](https://generativelanguage.googleapis.com/v1beta/models/veo-3.1-generate-preview:predictLongRunning) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance, JSON shot plans, shell commands, and generated MP4 files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include per-shot MP4 clips and a stitched final video in the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: A hardcoded fallback Google API key could expose credentials or allow unintended use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the fallback key, rotate any exposed key, and require credentials to come only from a user-managed secret such as VEO_API_KEY.
+
+Risk: Prompt and credential handling may disclose user content or API keys to external services.
+
+Mitigation: Clearly disclose external LLM and Google Veo 3 calls, and prefer platform-managed LLM and credential paths where available.
+
+Risk: Generated video download URLs may be fetched without trusted-host validation.
+
+Mitigation: Validate download URLs against trusted Google hosts before retrieving video artifacts.
+
+## Reference(s):
+
+- [FlowCutPro ClawHub skill page](https://clawhub.ai/windseeker1111/skills/flowcutpro)
+- [Google AI Studio API keys](https://aistudio.google.com/apikeys)
+- [Google Generative Language API endpoint used by FlowCutPro](https://generativelanguage.googleapis.com/v1beta/models/veo-3.1-generate-preview:predictLongRunning)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, generated JSON shot plans, and local MP4 output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce dry-run shot plans or render video clips and a stitched final MP4 when configured with external API access.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

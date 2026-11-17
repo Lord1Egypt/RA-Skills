@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn76a9pvwt1j665a9bp643ksk9829k65",
-  "slug": "test-slug",
-  "version": "1.0.0",
-  "publishedAt": 1779197339125
+  "owner": "wuhaichao87",
+  "slug": "clawhub-publish-tool",
+  "displayName": "ClawHub发布工具",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1773045927146,
+    "commit": "https://github.com/openclaw/skills/commit/fcb98c974f2e7984c895d6b7a7dc8013eb746501"
+  },
+  "history": []
 }

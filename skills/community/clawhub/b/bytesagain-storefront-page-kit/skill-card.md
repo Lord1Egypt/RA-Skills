@@ -1,38 +1,54 @@
-## Description: <br>
-Build product pages for Shopify-style stores and independent sites. Use when drafting PDP sections, SEO metadata, FAQ blocks, trust badges, and conversion copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build product pages for Shopify-style stores and independent sites. Use when drafting PDP sections, SEO metadata, FAQ blocks, trust badges, and conversion copy.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Ecommerce operators, marketers, and developers use this skill to draft product-page briefs, PDP outlines, SEO metadata, FAQs, trust cues, marketplace copy, and launch bundles from supplied product facts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated product claims may be incomplete, unsupported, or misaligned with marketplace policies. <br>
-Mitigation: Review all copy against source product facts and official marketplace policies before publishing. <br>
+## Use Case:
 
+External ecommerce operators, marketers, and developers use this skill to draft and audit storefront product page copy, SEO metadata, FAQ content, trust cues, and multi-channel launch bundles from product facts.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and plain text emitted by local shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are drafted from user-supplied product, feature, keyword, channel, market, and language options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Generated SEO titles include BytesAgain branding unless edited.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review SEO metadata and remove or adjust the branding before publishing.
+
+Risk: Generated ecommerce copy may include claims that need marketplace-policy or factual review.
+
+Mitigation: Check product facts, claim support, and official marketplace policies before publishing generated copy.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/bytesagain-storefront-page-kit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and plain text from local Bash command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include ecommerce briefs, PDP outlines, SEO metadata, FAQs, audits, short video scripts, localization variants, compliance checks, and launch bundles.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

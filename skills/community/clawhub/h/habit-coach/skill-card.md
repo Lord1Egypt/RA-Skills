@@ -1,43 +1,56 @@
-## Description: <br>
-习惯养成教练。充当AI问责伙伴，帮助建立、追踪和坚持好习惯。Keywords: 习惯养成, 自律, habit tracker, 打卡. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Habit Coach acts as an AI accountability partner that helps users build, track, and sustain habits.
 
-## Publisher: <br>
-[codekungfu](https://clawhub.ai/user/codekungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and developers use this skill to plan habits, record habit check-ins, review progress, and generate habit coaching reports from local habit history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Habit check-ins and routine details are stored locally in the skill directory. <br>
-Mitigation: Avoid entering sensitive health, location, or private routine details unless local retention is acceptable. <br>
-Risk: The instructions request installing requests even though the bundled tool does not use it. <br>
-Mitigation: Skip unnecessary dependency installation unless a future version requires it. <br>
+## Use Case:
 
+External users use this skill to record daily habit check-ins, review habit progress and streaks, and draft new habit-building plans with accountability-oriented guidance.
 
-## Reference(s): <br>
-- [Habit Coach Guide](references/habit_coach_guide.md) <br>
-- [Atomic Habits Framework](https://jamesclear.com/atomic-habits) <br>
-- [awesome-openclaw-usecases Habit Tracker](https://github.com/hesamsheikh/awesome-openclaw-usecases) <br>
-- [Reddit AI Habit Tracker Discussion](https://www.reddit.com/r/productivity/comments/ai_habit_tracker/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates a local habit history file under the skill directory when the bundled Python tool is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Habit entries are saved locally and may contain personal routine or health-related details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering highly sensitive personal or health information unless local JSON storage is acceptable.
+
+Risk: The documentation asks users to install requests even though the current script does not need it.
+
+Mitigation: Skip the dependency installation unless a future version of the script actually imports and requires requests.
+
+## Reference(s):
+
+- [Habit Coach Guide](references/habit_coach_guide.md)
+- [Atomic Habits framework](https://jamesclear.com/atomic-habits)
+- [awesome-openclaw-usecases Habit Tracker](https://github.com/hesamsheikh/awesome-openclaw-usecases)
+- [Reddit AI habit tracker discussion](https://www.reddit.com/r/productivity/comments/ai_habit_tracker/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown reports and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command use may write habit records to a local JSON file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

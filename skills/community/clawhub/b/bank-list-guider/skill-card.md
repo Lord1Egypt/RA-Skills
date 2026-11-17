@@ -1,44 +1,58 @@
-## Description: <br>
-Helps users query the treasury management system's supported bank list, check whether a specific bank is supported, and understand bank access status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents answer Chinese-language questions about which banks are supported by a treasury management system, including full bank lists and single-bank support checks.
 
-## Publisher: <br>
-[SongsongJiang](https://clawhub.ai/user/SongsongJiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songsongjiang](https://clawhub.ai/user/songsongjiang)
 
-## Use Case: <br>
-Customer-facing support, sales, and implementation teams use this skill to answer questions about which banks are supported by a treasury management system and to provide access-status details for a specific bank. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The supported-bank list may become outdated as bank access changes. <br>
-Mitigation: Review and update references/banks.md whenever banks are added, removed, or their access status changes. <br>
-Risk: The skill may provide unsupported-bank answers that users could treat as final product commitments. <br>
-Mitigation: For banks not listed in references/banks.md, record the request and route it to the product or implementation team before promising support. <br>
-Risk: Bank availability and access notes are business-sensitive operational data. <br>
-Mitigation: Grant only the files and tools needed for the bank-list task and confirm the artifact content is appropriate for the intended audience before deployment. <br>
+## Use Case:
 
+Customer support and treasury operations agents use this skill to answer whether specific banks are supported and to present the current supported-bank directory by category.
 
-## Reference(s): <br>
-- [Bank List Guider on ClawHub](https://clawhub.ai/SongsongJiang/bank-list-guider) <br>
-- [Publisher profile: SongsongJiang](https://clawhub.ai/user/SongsongJiang) <br>
-- [references/banks.md](references/banks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown tables and short natural-language responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are grounded in references/banks.md and may include grouped bank lists, support status, and access notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill is written for Chinese-language treasury-system bank support scenarios.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for users who need Chinese-language support, or add translation and locale handling before broader use.
+
+Risk: Unmet bank requests could contain personal or sensitive business details if recorded.
+
+Mitigation: Avoid recording such details unless the user explicitly agrees and a defined storage process is in place.
+
+Risk: Bank availability answers can become stale when supported banks change.
+
+Mitigation: Review and update artifact/references/banks.md before relying on the skill for customer-facing answers.
+
+## Reference(s):
+
+- [Supported Bank List](artifact/references/banks.md)
+- [ClawHub Skill Page](https://clawhub.ai/songsongjiang/skills/bank-list-guider)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text answers with categorized bank lists and single-bank support status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language reference answers based on the bundled supported-bank list]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

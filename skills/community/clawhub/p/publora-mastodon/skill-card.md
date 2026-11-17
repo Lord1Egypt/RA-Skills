@@ -1,45 +1,59 @@
-## Description: <br>
-Post or schedule content to Mastodon using the Publora API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post or schedule content to Mastodon using the Publora API.
 
-## Publisher: <br>
-[sergebulaev](https://clawhub.ai/user/sergebulaev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sergebulaev](https://clawhub.ai/user/sergebulaev)
 
-## Use Case: <br>
-External users, developers, and social media operators use this skill to draft, publish, or schedule Mastodon posts through Publora, including text, images, and video for the mastodon.social instance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help an agent post or schedule public, federated Mastodon content through a third-party API. <br>
-Mitigation: Review text and media before sending, avoid secrets or private personal data, and confirm the intended account and schedule. <br>
-Risk: Publora API keys grant posting capability and are sensitive credentials. <br>
-Mitigation: Store the API key securely, avoid exposing it in prompts or generated content, and rotate it if disclosure is suspected. <br>
-Risk: Current Publora support is limited to the mastodon.social instance. <br>
-Mitigation: Confirm the target account uses the supported instance before attempting to publish or schedule posts. <br>
+## Use Case:
 
+Developers and external users use this skill to draft, publish, or schedule Mastodon posts through Publora, including text posts and selected media uploads.
 
-## Reference(s): <br>
-- [Publora Mastodon skill page](https://clawhub.ai/sergebulaev/publora-mastodon) <br>
-- [Publora API base URL](https://api.publora.com/api/v1) <br>
-- [Publora create-post endpoint](https://api.publora.com/api/v1/create-post) <br>
-- [Publora get-upload-url endpoint](https://api.publora.com/api/v1/get-upload-url) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, API calls, Configuration] <br>
-**Output Format:** [Markdown with JavaScript and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Mastodon post content, scheduling payloads, media upload steps, endpoint details, and platform limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill can help publish or schedule Mastodon content through Publora.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the target account, platform ID, scheduled time, and final post content before sending requests.
+
+Risk: Publora API keys are required for publishing operations.
+
+Mitigation: Keep the Publora API key private and avoid placing real keys in shared prompts, logs, or examples.
+
+Risk: Media upload workflows may expose unintended local files.
+
+Mitigation: Upload only files the user explicitly selected for the Mastodon post.
+
+## Reference(s):
+
+- [Publora API Base URL](https://api.publora.com/api/v1)
+- [Publora Mastodon Skill Page](https://clawhub.ai/sergebulaev/skills/publora-mastodon)
+- [Publisher Profile](https://clawhub.ai/user/sergebulaev)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, API Calls, configuration]
+
+**Output Format:** [Markdown with JavaScript and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include post content, platform IDs, scheduled timestamps, and media upload steps.]
+
+## Skill Version(s):
+
+1.2.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

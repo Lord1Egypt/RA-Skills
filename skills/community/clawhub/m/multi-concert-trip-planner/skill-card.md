@@ -1,50 +1,64 @@
-## Description: <br>
-Plans trips for users who want to attend multiple concerts by searching tour dates, matching nearby shows, and optionally adding flight and hotel options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users plan a trip around multiple concerts by finding tour dates, matching nearby shows, and optionally searching flights and hotels.
 
-## Publisher: <br>
-[piaowenhao152-glitch](https://clawhub.ai/user/piaowenhao152-glitch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[piaowenhao152-glitch](https://clawhub.ai/user/piaowenhao152-glitch)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to compare concert dates for one or more artists, identify viable multi-show itineraries, and optionally add flight and nearby hotel options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local snapshots may retain concert search history and travel-planning context on shared machines. <br>
-Mitigation: Review or delete the snapshots directory after use when privacy or shared-device access matters. <br>
-Risk: Flight, hotel, ticket availability, and prices can change after the skill reports them. <br>
-Mitigation: Verify live booking pages before purchasing and treat estimates as planning guidance. <br>
-Risk: The Taiwan-related ranking penalty may not match every user's travel documents or preferences. <br>
-Mitigation: Ask the agent to ignore or adjust that ranking rule when it is not applicable. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to compare upcoming concerts for one or more artists, identify shows that can fit into a single trip, and assemble a concert itinerary with ticket links and optional flight or hotel options.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/piaowenhao152-glitch/multi-concert-trip-planner) <br>
-- [Skill Workflow](artifact/SKILL.md) <br>
-- [Concert Search Strategy](artifact/concert-search.md) <br>
-- [Combination Matching Algorithm](artifact/combination-matching.md) <br>
-- [Flight Search](artifact/flight-search.md) <br>
-- [Hotel Search](artifact/hotel-search.md) <br>
-- [Output Template](artifact/output-template.md) <br>
-- [Diff Tracking](artifact/diff-tracking.md) <br>
-- [Blocked Sites](artifact/BLOCKED_SITES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown itinerary summaries with tables, links, optional shell commands, and optional JSON snapshot records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include concert combinations, ticket links, flight and hotel options, cost estimates, and change summaries when prior snapshots exist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Dynamic travel queries can be passed into local command templates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate command arguments, avoid shell interpolation for dynamic values, and review commands before execution.
+
+Risk: Search-history snapshots may retain user trip preferences and artist lists locally.
+
+Mitigation: Let users opt in to snapshot retention, inspect saved snapshots, and delete them when they are no longer needed.
+
+Risk: Concert availability, ticket status, flight prices, and hotel prices can change quickly.
+
+Mitigation: Present prices as estimates and direct users to verify current availability and booking terms before purchase.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/piaowenhao152-glitch/skills/multi-concert-trip-planner)
+- [Concert search workflow](concert-search.md)
+- [Combination matching algorithm](combination-matching.md)
+- [Flight search workflow](flight-search.md)
+- [Hotel search workflow](hotel-search.md)
+- [Diff tracking workflow](diff-tracking.md)
+- [Output template](output-template.md)
+- [Blocked sites and fallback handling](BLOCKED_SITES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown travel plan with tables, ticket and booking links, optional fare and hotel data, and JSON search snapshots.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May retain local JSON snapshots for diff tracking; concert, flight, and hotel availability or prices are time-sensitive.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

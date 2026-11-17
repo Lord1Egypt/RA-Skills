@@ -311,9 +311,19 @@ class ShortTermMemoryRedis:
         item_ids: list[str] = []
 
         for item in items:
+            # 处理 bucket_type 类型转换：支持字符串和枚举两种形式
+            raw_bucket = item.get("bucket_type", SemanticBucketType.TASK_CONTEXT)
+            if isinstance(raw_bucket, str):
+                try:
+                    bucket_type = SemanticBucketType(raw_bucket)
+                except ValueError:
+                    bucket_type = SemanticBucketType.TASK_CONTEXT
+            else:
+                bucket_type = raw_bucket
+
             item_id = self.store(
                 content=item.get("content", ""),
-                bucket_type=item.get("bucket_type", SemanticBucketType.TASK_CONTEXT),
+                bucket_type=bucket_type,
                 topic_label=item.get("topic_label"),
                 relevance_score=item.get("relevance_score", 0.5),
             )

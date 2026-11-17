@@ -1,41 +1,52 @@
-## Description: <br>
-Call GET /api/zhihu/get-column-article-list/v1 for Zhihu Column Article List through JustOneAPI with columnId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/zhihu/get-column-article-list/v1 for Zhihu Column Article List through JustOneAPI with columnId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to call JustOneAPI's Zhihu column article-list endpoint, retrieve article metadata and ordering for a supplied columnId, and summarize the response before returning raw JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The API token may be exposed through command history, process listings, or request URLs. <br>
-Mitigation: Use a restricted, rotatable JustOneAPI token; avoid shared or heavily logged environments; prefer an implementation that reads the token directly from the environment and avoids URL-based token transport when supported. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve Zhihu column article lists through JustOneAPI for column monitoring and content collection when they have a JustOneAPI token and a columnId.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-zhihu-get-column-article-list) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_zhihu_get_column_article_list&utm_content=project_link) <br>
-- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_zhihu_get_column_article_list&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Short Markdown summary followed by raw JSON from the API response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and a JUST_ONE_API_TOKEN; the endpoint requires columnId and accepts optional offset.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The API token is sent as a URL query parameter, which may expose it in provider, proxy, gateway, diagnostic, command-line, or log records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped, revocable JustOneAPI token; avoid sharing command lines or logs that contain the token; rotate the token if URL logging exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-zhihu-get-column-article-list)
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_zhihu_get_column_article_list&utm_content=project_link)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_zhihu_get_column_article_list&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON]
+
+**Output Format:** [Markdown summary with optional shell command and JSON response payload]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and the columnId query parameter; offset is optional.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

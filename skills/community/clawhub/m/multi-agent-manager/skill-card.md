@@ -1,42 +1,59 @@
-## Description: <br>
-Monitor, visualize, and coordinate multiple OpenClaw agents with status views, task tracking, and JSON output for debugging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor and visualize multiple agents across projects in real time with JSON output for debugging and performance tracking.
 
-## Publisher: <br>
-[victory2694](https://clawhub.ai/user/victory2694) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[victory2694](https://clawhub.ai/user/victory2694)
 
-## Use Case: <br>
-Developers and teams running multiple OpenClaw agents use this skill to inspect agent state, monitor activity, coordinate messages, and trace task flow while debugging or managing agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Monitoring and JSON output can expose workspace paths, agent IDs, model names, session counts, and recent activity. <br>
-Mitigation: Run the skill only in terminals, logs, and shared environments where that local agent metadata is acceptable to display. <br>
-Risk: The communication helper can send user-provided messages to configured agents. <br>
-Mitigation: Review the target agent and message before using the helper, and use it deliberately for intended coordination tasks. <br>
+## Use Case:
 
+Developers and teams running multiple OpenClaw agents use this skill to inspect agent status, active sessions, workspaces, task flow, and basic named-agent communication.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/victory2694/multi-agent-manager) <br>
-- [README.md](artifact/README.md) <br>
-- [Reference README](artifact/references/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Terminal text, JSON, and Markdown guidance with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run in watch mode and may display workspace paths, agent IDs, models, sessions, and message results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact changelog) <br>
+Risk: The skill can display local OpenClaw agent, workspace, status, and session information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with agents and workspaces you control, and avoid sharing generated output when workspace or session details are sensitive.
+
+Risk: The communication helper can send a message to a named agent.
+
+Mitigation: Verify the target agent and message content before running the communication command.
+
+Risk: The watch mode runs as a foreground monitoring loop.
+
+Mitigation: Stop the watch process when active monitoring is no longer needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/victory2694/skills/multi-agent-manager)
+- [README](artifact/README.md)
+- [Development Notes](artifact/references/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples, plus optional text or JSON command output from helper scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper scripts can emit human-readable terminal output or JSON for agent lists, status, sessions, and task-flow inspection.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

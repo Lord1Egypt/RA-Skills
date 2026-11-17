@@ -1,5 +1,5 @@
 ---
-name: music-cog
+name: music-generation-cellcog
 description: "AI music generation powered by CellCog. Original instrumental and vocal tracks, 5 seconds to 10 minutes. Cinematic scores, background tracks, podcast intros, game soundtracks, ambient soundscapes, jingles, lo-fi beats, orchestral compositions, songs with lyrics. Royalty-free."
 metadata:
   openclaw:
@@ -12,7 +12,7 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# Music Cog - Original Music, Fully Yours
+# Music Generation - Original Music, Fully Yours
 
 Music generation — 5 seconds to 10 minutes. Instrumental and vocal tracks with high-quality AI vocals.
 
@@ -113,9 +113,16 @@ CellCog generates songs with **perfect AI vocals** — just describe the lyrical
 
 ---
 
-## Chat Mode
+## Choosing Mode & Tier
 
-**Use `chat_mode="agent"`** for music generation. Music executes well in agent mode.
+| Scenario | Recommended |
+|----------|-------------|
+| Songs, jingles, background tracks | `chat_mode="agent"` (defaults to the `"core"` tier) |
+| Multi-track projects where cohesion matters | `chat_mode="agent", chat_tier="max"` |
+
+**The core tier is the default and handles most music generation well**, balanced speed and depth. **Upgrade to `chat_tier="max"`** when quality disappoints or the work is genuinely complex: just re-run the same prompt with `chat_tier="max"`.
+
+Agent Team (`chat_mode="team"`) is reserved for deep research — don't use it for music generation.
 
 ---
 
@@ -156,6 +163,7 @@ CellCog generates songs with **perfect AI vocals** — just describe the lyrical
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

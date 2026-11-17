@@ -1,46 +1,55 @@
-## Description: <br>
-Looks up ISO 4 and MEDLINE journal or magazine abbreviations, expands abbreviations to full names, and standardizes BibTeX journal fields using a local cache with public lookup fallbacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up journal and magazine abbreviations, converts between full names and ISO 4 or MEDLINE abbreviations, and standardizes BibTeX journal fields.
 
-## Publisher: <br>
-[agents365-ai](https://clawhub.ai/user/agents365-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agents365-ai](https://clawhub.ai/user/agents365-ai)
 
-## Use Case: <br>
-Researchers, students, and developers use this skill to answer journal abbreviation questions and standardize citation data or BibTeX journal fields before reference-list preparation and manuscript submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: BibTeX processing can create rewritten output files and may change journal naming style. <br>
-Mitigation: Run --dry-run first, review the change summary, and use an explicit output path when preserving originals matters. <br>
-Risk: Lookups may contact public journal-data services or download local cache files on first use. <br>
-Mitigation: Run in an environment where public lookup requests are acceptable, or inspect and pre-populate the cache before processing. <br>
-Risk: Different sources may return ISO 4 or MEDLINE abbreviation styles. <br>
-Mitigation: Review the reported source and standard before using results in publisher-specific citation workflows. <br>
+## Use Case:
 
+Researchers, authors, editors, and developer agents use this skill to verify journal abbreviations, expand abbreviations, search uncertain journal titles, and standardize BibTeX references before manuscript submission.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agents365-ai/journal-abbrev) <br>
-- [Project homepage](https://github.com/Agents365-ai/journal-abbrev) <br>
-- [JabRef journal abbreviation data](https://raw.githubusercontent.com/JabRef/abbrv.jabref.org/main/journals) <br>
-- [AbbrevISO lookup service](https://abbreviso.toolforge.org) <br>
-- [NLM E-utilities service](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; CLI responses are JSON envelopes, tables, NDJSON streams, or BibTeX files depending on command and output mode.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write derived BibTeX output files unless --dry-run is used; first use may download public journal cache files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Remote fallback lookups may share journal names from a manuscript topic with external journal services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid remote fallback lookups for confidential manuscript topics unless sharing those journal names is acceptable.
+
+Risk: BibTeX processing and cache management can write files locally.
+
+Mitigation: Use dry-run before BibTeX changes and choose explicit output paths carefully.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agents365-ai/skills/journal-abbrev)
+- [Publisher profile](https://clawhub.ai/user/agents365-ai)
+- [Project homepage](https://github.com/Agents365-ai/journal-abbrev)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, text, JSON, files]
+
+**Output Format:** [Markdown guidance with CLI commands; the CLI can return JSON or human-readable text and can write BibTeX output files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Python 3 CLI with local cache management and optional network fallbacks to journal data services.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Plans a new software project by gathering requirements through structured questions before producing a plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans a new software project by gathering requirements through structured questions before producing a plan.
 
-## Publisher: <br>
-[dapan0902](https://clawhub.ai/user/dapan0902) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dapan0902](https://clawhub.ai/user/dapan0902)
 
-## Use Case: <br>
-Developers, product owners, and project stakeholders use this skill to gather project requirements through a structured interview and turn the answers into a software development plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask broad planning questions that lead users to share confidential project details. <br>
-Mitigation: Avoid providing sensitive business, security, or customer information unless it is appropriate to include it in the chat. <br>
-Risk: The generated plan may include incomplete or unsuitable project guidance if the requirement answers are vague. <br>
-Mitigation: Review the completed plan and refine the answers or constraints before using it for implementation decisions. <br>
+## Use Case:
 
+Developers and project stakeholders use this skill to gather core requirements, technical constraints, scale expectations, and non-negotiable requirements before producing a structured software project plan.
 
-## Reference(s): <br>
-- [Plan template](assets:plan-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown project plan with structured sections and follow-up questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a fixed multi-phase requirements interview before producing the plan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: The skill may activate for broad software-project planning requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for planning-intent conversations where a structured requirements interview is desired before producing a plan.
+
+Risk: The bundled output template is written in Chinese.
+
+Mitigation: Adapt the final plan language when the user or deployment context requires another language.
+
+## Reference(s):
+
+- [Plan Template](artifact/assets:plan-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/dapan0902/skills/project-planner-new)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown project plan after a structured multi-turn requirements interview]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the bundled Chinese plan template unless the user or agent adapts the language.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

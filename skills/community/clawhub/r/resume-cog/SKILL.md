@@ -1,5 +1,5 @@
 ---
-name: resume-cog
+name: resume-cover-letter-cellcog
 description: "AI resume and cover letter generation powered by CellCog. ATS-optimized resumes, CVs, cover letters, LinkedIn profiles, career documents — PDF or DOCX. Research-first approach that analyzes target roles before writing."
 metadata:
   openclaw:
@@ -12,11 +12,11 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# Resume Cog - AI Resume Builder Powered by CellCog
+# Resume & Cover Letter - AI Resume Builder Powered by CellCog
 
 **7 seconds.** That's how long the average recruiter spends on your resume. CellCog makes every second count.
 
-#1 on DeepResearch Bench (Apr 2026) — CellCog researches your target role, understands what hiring managers look for, optimizes for ATS systems, and generates beautifully designed resumes — PDF for polished presentation or DOCX when ATS systems require Word format. Not another template filler — a research-first resume engine.
+#1 on DeepResearch Bench (October 2026) — CellCog researches your target role, understands what hiring managers look for, optimizes for ATS systems, and generates beautifully designed resumes — PDF for polished presentation or DOCX when ATS systems require Word format. Not another template filler — a research-first resume engine.
 
 ## How to Use
 
@@ -126,15 +126,16 @@ Showcase your work:
 
 ---
 
-## Chat Mode for Resumes
+## Choosing Mode & Tier
 
-| Scenario | Recommended Mode |
-|----------|------------------|
-| Single resume or cover letter | `"agent"` |
-| Complete career package (resume + cover letter + LinkedIn + portfolio) | `"agent"` |
-| Career strategy with multiple role-specific resume variants | `"agent team"` |
+| Scenario | Recommended |
+|----------|-------------|
+| Resumes and cover letters | `chat_mode="agent"` (defaults to the `"core"` tier) |
+| Career strategy with multiple role-specific variants | `chat_mode="agent", chat_tier="max"` |
 
-**Use `"agent"` for most resume work.** It handles individual documents and even multi-document packages excellently.
+**The core tier is the default and handles most resume work well**, balanced speed and depth. **Upgrade to `chat_tier="max"`** when quality disappoints or the work is genuinely complex: just re-run the same prompt with `chat_tier="max"`.
+
+Agent Team (`chat_mode="team"`) is reserved for deep research — don't use it for resume work.
 
 ---
 
@@ -154,6 +155,7 @@ Showcase your work:
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

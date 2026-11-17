@@ -1,48 +1,65 @@
-## Description: <br>
-Bridge skill to install Celaut Nodo, package services, execute decentralized microVM workloads, and discover Unstoppable Skills on-chain or via MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Celaut Skill gives agents guidance to install and administer Nodo, package content-addressed Celaut services, run and observe microVM workloads, and discover on-chain Unstoppable Skills through a read-only MCP server.
 
-## Publisher: <br>
-[0xf965](https://clawhub.ai/user/0xf965) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xf965](https://clawhub.ai/user/0xf965)
 
-## Use Case: <br>
-Developers and operators use this skill to install and manage Celaut Nodo, package Celaut services, run decentralized microVM workloads, and query Celaut Skills through CLI or MCP workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes root-level installation, update, diagnostics, and service-control commands. <br>
-Mitigation: Use a dedicated Debian or Ubuntu host, review installer scripts before execution, prefer pinned releases or verified checksums, and require explicit approval before sudo, update, daemon restart, or diagnostic actions. <br>
-Risk: The skill can execute decentralized workloads, advertise remote networking, change gas allocation, terminate instances, remove services, and repair registries. <br>
-Mitigation: Inspect each service first, run feasibility and cost estimates before execution, and require explicit approval before workload execution, --remote networking, gas changes, kill, remove, or registry repair actions. <br>
+## Use Case:
 
+Developers and operators use this skill to work with the Celaut decentralized-compute ecosystem: installing Nodo, preparing service packages, executing workloads, observing runtime behavior, and reading the Skills registry.
 
-## Reference(s): <br>
-- [Celaut Skill on ClawHub](https://clawhub.ai/0xf965/skills/celaut) <br>
-- [Celaut Nodo Repository](https://github.com/celaut-project/nodo) <br>
-- [Nodo User Guide](https://github.com/celaut-project/nodo/blob/master/docs/USAGE.md) <br>
-- [Manual Installation Guide](https://github.com/celaut-project/nodo/blob/master/docs/INSTALL.md) <br>
-- [Know Your Assumptions](https://github.com/celaut-project/nodo/blob/master/docs/KyA.md) <br>
-- [Ergo Blockchain Integration](https://github.com/celaut-project/nodo/blob/master/docs/ERGO.md) <br>
-- [Unstoppable Skills README](https://raw.githubusercontent.com/celaut-project/skills/refs/heads/main/README.md) <br>
-- [Unstoppable Skills MCP Server Specification](https://raw.githubusercontent.com/celaut-project/skills/refs/heads/main/MCP.md) <br>
-- [Agent Skills Format Specification](https://agentskills.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes commands that can install software, manage services, execute workloads, configure networking, and query MCP tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill documents installing and running mutable network-sourced code with high host privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Linux host or VM, pin source commits, verify checksums or signatures where available, and require human review before any sudo command or installer execution.
+
+Risk: Wallet mnemonics and Ergo transactions can expose self-custodied funds, and transactions are final and irreversible.
+
+Mitigation: Never configure wallet mnemonics, initiate Ergo spending, or submit reputation/payment transactions without explicit review and consent; keep wallet secrets out of repositories and agent logs.
+
+Risk: Running Celaut workloads can consume gas or resources and may execute third-party service packages.
+
+Mitigation: Inspect service declarations, run feasibility and cost estimation before execution, pass only declared environment variables, and monitor or stop instances deliberately.
+
+## Reference(s):
+
+- [Celaut Skill on ClawHub](https://clawhub.ai/0xf965/skills/celaut)
+- [Celaut Paradigm](https://github.com/celaut-project/paradigm)
+- [Celaut Nodo Repository](https://github.com/celaut-project/nodo)
+- [Celaut Skills Repository](https://github.com/celaut-project/skills)
+- [Celaut Skills README](https://github.com/celaut-project/skills/blob/main/README.md)
+- [Celaut Skills MCP Specification](https://github.com/celaut-project/skills/blob/main/MCP.md)
+- [Nodo Stable README](https://github.com/celaut-project/nodo/blob/stable/README.md)
+- [Nodo Configuration Example](https://github.com/celaut-project/nodo/blob/stable/config.example.yaml)
+- [Ergo Manifesto](https://ergoplatform.org/en/blog/2021-04-26-the-ergo-manifesto/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON, and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing guidance for terminal-first Celaut and Nodo workflows; no autonomous blockchain spending should occur without explicit user consent.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

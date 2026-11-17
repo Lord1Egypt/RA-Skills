@@ -1,43 +1,62 @@
-## Description: <br>
-Give your agent eyes - capture screenshots, voice, and annotations from any screen, monitor, or device via MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give your agent eyes - capture screenshots, voice, and annotations from any screen, monitor, or device via MCP.
 
-## Publisher: <br>
-[wolverin0](https://clawhub.ai/user/wolverin0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wolverin0](https://clawhub.ai/user/wolverin0)
 
-## Use Case: <br>
-Developers and agent users use this skill to give an agent user-directed screen, audio, and recent context capture when visual or spoken context is needed for debugging, UI review, or workflow analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: This skill can access sensitive screen content, screen recordings, microphone audio, and recent captured context. <br>
-Mitigation: Use it only for explicit user-directed capture, confirm before audio recording, multi-monitor capture, or monitoring over time, and avoid sending captures to external vision models unless the user has configured and approved that use. <br>
-Risk: Captured files may contain private information and are stored locally for later retrieval. <br>
-Mitigation: Review local retention settings, rely on the default cleanup behavior where appropriate, and delete captured files when they are no longer needed. <br>
-Risk: Remote MCP transport uses a bearer token that grants access to capture tools. <br>
-Mitigation: Treat the token as a secret, store it only in the intended agent configuration, and rotate it if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wolverin0/eye2byte) <br>
-- [Eye2byte homepage](https://github.com/wolverin0/Eye2byte) <br>
-- [Eye2byte PyPI package](https://pypi.org/project/eye2byte/) <br>
+## Use Case:
 
+Developers and agent users use this skill to give an agent explicit, user-requested visual and audio context from a local or remote screen for debugging, UI review, transcription, and short workflow observation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured context summaries and transcriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include screenshot analysis, voice transcription, screen clip summaries, and recent captured context.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Screen, audio, transcript, and recent-context capture may expose private or sensitive information.
+
+Mitigation: Use only after explicit user request, prefer a specific window, region, or monitor, and avoid all-monitor capture unless it is necessary.
+
+Risk: The release installs an unpinned third-party package that handles sensitive local capture data.
+
+Mitigation: Install only when the package source is trusted and review the package before deployment in sensitive environments.
+
+Risk: Remote SSE use depends on EYE2BYTE_MCP_TOKEN as a bearer token.
+
+Mitigation: Treat the token as a secret, avoid logging or sharing it, and rotate it if exposure is suspected.
+
+Risk: Captured data is stored locally under the user's Eye2byte output directory.
+
+Mitigation: Use the configured cleanup window, reduce retention for sensitive work, or manually remove captures after use.
+
+## Reference(s):
+
+- [Eye2byte GitHub homepage](https://github.com/wolverin0/Eye2byte)
+- [Eye2byte PyPI package](https://pypi.org/project/eye2byte/)
+- [ClawHub skill page](https://clawhub.ai/wolverin0/skills/eye2byte)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured text or markdown context packs, analyses, and transcriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize screenshots, short screen clips, voice recordings, existing image files, audio files, and recent capture context.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter: 0.3.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

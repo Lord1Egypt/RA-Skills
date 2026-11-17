@@ -1,42 +1,58 @@
-## Description: <br>
-Automates paper or live Polymarket ETH 15-minute market trading using ETH momentum, BTC alignment, volume, timing, and configurable risk controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates a configurable ETH 15-minute Polymarket mid-candle trading strategy that checks ETH momentum, BTC alignment, volume, entry price, and optional safeguards before paper or live trade execution.
 
-## Publisher: <br>
-[DjDyll](https://clawhub.ai/user/DjDyll) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djdyll](https://clawhub.ai/user/djdyll)
 
-## Use Case: <br>
-External traders and agent operators use this skill to configure an automated ETH mid-candle strategy, test it in paper mode, and optionally place live Polymarket orders when configured market signals pass. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real-money Polymarket trades on a schedule. <br>
-Mitigation: Start in paper mode, keep bet sizes and account exposure small, and monitor behavior before enabling live mode or cron. <br>
-Risk: Live-mode safeguards can be disabled with the no-safeguards option. <br>
-Mitigation: Avoid disabling safeguards in live mode and keep slippage, flip-flop, and circuit-breaker protections enabled. <br>
-Risk: Optional Discord notifications may send trade details to a configured webhook endpoint. <br>
-Mitigation: Configure a Discord webhook only when sharing those trade details with that endpoint is acceptable. <br>
+## Use Case:
 
+External developers and traders use this skill to configure and run an automated ETH Up/Down Polymarket strategy in paper mode or live mode. It is intended for users who understand market, execution, and account-risk controls before enabling real-money trading.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DjDyll/polymarket-eth-midcandle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Terminal text with optional JSON automaton summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to paper mode; live trading, cron scheduling, smart sizing, and risk settings are user-configurable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server evidence and frontmatter) <br>
+Risk: The skill has high-impact financial authority when live trading is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper mode first, keep position sizes low, and avoid unattended cron or live mode until the strategy and account exposure are understood.
+
+Risk: Security evidence reports weak live-mode controls and fail-open safeguards.
+
+Mitigation: Do not use --no-safeguards for live trading; review safeguard behavior before deployment and monitor results closely.
+
+Risk: The skill depends on SIMMER_API_KEY and can optionally use a Discord webhook URL.
+
+Mitigation: Restrict the API key server-side where possible and avoid storing or printing webhook URLs in logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/djdyll/skills/polymarket-eth-midcandle)
+- [ClawHub publisher profile](https://clawhub.ai/user/djdyll)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, API calls]
+
+**Output Format:** [CLI text output, configuration updates, JSON automaton status, and trade API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can run in paper mode by default or live mode when configured; live mode may execute real-money Polymarket trades.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

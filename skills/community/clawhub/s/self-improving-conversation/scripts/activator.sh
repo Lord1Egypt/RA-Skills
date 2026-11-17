@@ -16,6 +16,6 @@ After completing this task, evaluate if dialogue learnings should be captured:
 - Conversation abandoned due to frustration?
 
 If yes: Log to .learnings/ using the self-improving-conversation skill format.
-If proven pattern (3+ occurrences): Promote to SOUL.md, AGENTS.md, or TOOLS.md.
+If a proven pattern (3+ occurrences): propose a reviewed diff for SOUL.md, AGENTS.md, or TOOLS.md; apply only after explicit user approval. Log redacted summaries only — no raw transcripts, PII, or secrets.
 </conversation-self-improvement-reminder>
 EOF

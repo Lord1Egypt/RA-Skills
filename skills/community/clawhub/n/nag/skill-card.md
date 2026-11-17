@@ -1,41 +1,58 @@
-## Description: <br>
-Persistent reminder system that keeps bugging you until you confirm completion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent reminder system that keeps bugging you until you confirm completion.
 
-## Publisher: <br>
-[madebydia](https://clawhub.ai/user/madebydia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[madebydia](https://clawhub.ai/user/madebydia)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to set up recurring reminders that continue through cron and heartbeat checks until the task is confirmed. It is intended for daily habits, ignored tasks, and follow-up workflows that need configurable nag windows, escalation, and natural-language confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can keep producing reminder nags after the user no longer wants them. <br>
-Mitigation: Review reminder schedules before enabling the skill, and remove the cron job plus nag-config.json and memory/nag-state.json when reminders are no longer wanted. <br>
-Risk: Broad confirmation patterns or unintended reminder entries could track tasks the user did not mean to monitor. <br>
-Mitigation: Review each reminder's schedule, nag window, and confirmation patterns before use. <br>
+## Use Case:
 
+Developers and agent users use Nag to set up recurring reminders that continue through cron and heartbeat checks until the user confirms completion.
 
-## Reference(s): <br>
-- [Nag Config Examples](references/config-examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/madebydia/nag) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON configuration examples and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces workspace-local reminder configuration, state-file guidance, cron setup guidance, and a HEARTBEAT.md nag check block.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Persistent cron jobs and heartbeat checks can keep reminding the user across sessions after the reminder is no longer wanted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each schedule before installing and remove the related cron job plus nag-config and state entries when the reminder should stop.
+
+Risk: Broad confirmation phrases may mark the wrong reminder as complete when multiple reminders are active.
+
+Mitigation: Use specific confirmation patterns and resolve ambiguous matches against reminders that are currently in their nag window.
+
+Risk: Tone-based escalation can generate messages that are more forceful than intended.
+
+Mitigation: Set explicit message text or conservative tone guidance for reminders where wording matters.
+
+## Reference(s):
+
+- [Nag Config Examples](references/config-examples.md)
+- [ClawHub Nag Skill Page](https://clawhub.ai/madebydia/skills/nag)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown instructions with JSON configuration examples and shell script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reminder setup guidance, heartbeat instructions, cron scheduling guidance, and state/configuration examples.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

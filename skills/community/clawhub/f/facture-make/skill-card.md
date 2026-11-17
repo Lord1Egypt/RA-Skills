@@ -1,44 +1,56 @@
-## Description: <br>
-Generates and prepares a professional invoice, prompts for human confirmation, then sends the confirmed invoice to Make.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a professional invoice, presents a confirmation summary, and sends the confirmed invoice data to Make.com.
 
-## Publisher: <br>
-[cimes19](https://clawhub.ai/user/cimes19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cimes19](https://clawhub.ai/user/cimes19)
 
-## Use Case: <br>
-Freelancers, consultants, and business users can use this skill to prepare invoice details, review a confirmation prompt, and send the approved invoice payload to a Make.com automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends business invoice data to a fixed Make.com webhook. <br>
-Mitigation: Use it only when the webhook destination is trusted or controlled, and confirm the destination and retention policy before sending invoice data. <br>
-Risk: Weak payload scoping could send fields beyond the intended invoice details. <br>
-Mitigation: Pass only the confirmed invoice object to the sending script and review the exact fields before execution. <br>
-Risk: Client, billing, or private business data may be exposed to an external automation service. <br>
-Mitigation: Avoid including unrelated private data and minimize invoice payloads to the fields required by the Make.com workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cimes19/facture-make) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [prepare_invoice.py](artifact/prepare_invoice.py) <br>
-- [send_invoice.py](artifact/send_invoice.py) <br>
+## Use Case:
 
+Agents use this skill when a user wants to create an invoice, calculate invoice fields, request human confirmation, and send the confirmed invoice data to a Make.com workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payloads and script execution instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires human confirmation before sending invoice data to Make.com.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends client and invoice details to an external Make.com workflow.
+
+Mitigation: Install only when the Make.com workflow is controlled and trusted, and review data-handling expectations before production use.
+
+Risk: The send workflow can report confirmation even when delivery fails.
+
+Mitigation: Validate and surface the real send result before relying on the skill for production invoicing.
+
+Risk: The Make.com webhook is embedded in the artifact.
+
+Mitigation: Move the webhook to protected configuration before production deployment.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/cimes19/skills/facture-make)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands]
+
+**Output Format:** [JSON payloads and concise user-facing text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before sending invoice data to the configured Make.com workflow.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

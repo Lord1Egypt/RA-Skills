@@ -1,42 +1,58 @@
-## Description: <br>
-Routes substantive user requests to a model selected by a 12-dimension task scorer, then guides the agent to switch models before answering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes substantive user requests to an LLM model by scoring task complexity across 12 dimensions, selecting an available model, and instructing the agent when to switch.
 
-## Publisher: <br>
-[bevanding](https://clawhub.ai/user/bevanding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bevanding](https://clawhub.ai/user/bevanding)
 
-## Use Case: <br>
-Developers and agent users use this skill to route substantive OpenClaw requests to an available model based on task complexity, model capability scores, and relative cost. It is intended for workflows where automatic model selection and session-level model switching are desired. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic routing can switch models on most substantive requests and the optional AGENTS.md reinforcement can make that behavior persistent across future agent sessions. <br>
-Mitigation: Install only when automatic routing is desired, keep higher-priority instructions in control, and avoid adding the broad AGENTS.md reinforcement unless persistent routing is acceptable. <br>
-Risk: Generated or default model scores may not match a user's actual model availability, capability, or pricing. <br>
-Mitigation: Run --setup knowingly, review the generated models.json, and adjust capability and cost scores before relying on routing decisions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to automate model selection for OpenClaw sessions, especially when they want requests routed by complexity, task type, availability, and configurable cost or capability profiles.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bevanding/model-router-pro) <br>
-- [README](README.md) <br>
-- [Skill instructions](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown instructions with CLI commands and JSON routing results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Router results include a recommended model id, tier, and confidence; setup can generate a models.json configuration from available OpenClaw models.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Broad automatic routing instructions may affect routine agent behavior and persist if the suggested AGENTS.md note is added.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when automatic model routing is desired, and review the persistent AGENTS.md instruction before adding it.
+
+Risk: The router processes raw user messages through a CLI argument, which can be unsafe if callers build shell commands by interpolation.
+
+Mitigation: Pass user messages as direct process arguments or otherwise use safe argument handling instead of shell-interpolating raw text.
+
+Risk: The skill reads OpenClaw configuration to filter available models.
+
+Mitigation: Review the declared access to ~/.openclaw/openclaw.json and inspect the generated models.json before relying on automatic switching.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bevanding/skills/model-router-pro)
+- [Publisher Profile](https://clawhub.ai/user/bevanding)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON routing result from the CLI and Markdown instructions for setup or disclosure when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Router output includes full_id, tier, confidence, and optional debug scoring details; setup can generate models.json.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

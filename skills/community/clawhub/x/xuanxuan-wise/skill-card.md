@@ -1,40 +1,58 @@
-## Description: <br>
-A Chinese-language Zhouyi advisory skill that gives traditional metaphysics perspectives on date selection, naming and five-elements checks, office feng shui, and hexagram interpretation for business decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Activates a Chinese Zhouyi and Feng Shui advisory persona for culturally framed date selection, naming, office layout, and business-timing guidance.
 
-## Publisher: <br>
-[lanxy32](https://clawhub.ai/user/lanxy32) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanxy32](https://clawhub.ai/user/lanxy32)
 
-## Use Case: <br>
-External users and business operators use this skill for Chinese-language traditional-metaphysics consultation around business timing, naming, feng shui layout, and I Ching-style interpretation. The skill frames its responses as reference material that should be combined with practical business analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide unnecessary real names, exact birth details, or other sensitive personal information for metaphysics analysis. <br>
-Mitigation: Provide only the minimum personal context needed, avoid unnecessary identifiers, and do not share sensitive details unless appropriate for the use case. <br>
-Risk: Metaphysics, fortune-style, or business-timing advice could be mistaken for authoritative life, health, financial, relationship, or business guidance. <br>
-Mitigation: Treat outputs as entertainment or general reflection, and combine any business decision with practical analysis, professional advice, and current real-world information. <br>
+## Use Case:
 
+External users and business operators use this skill to receive culturally framed Zhouyi, Feng Shui, naming, and timing suggestions for business decisions. Its guidance should be treated as cultural reference alongside practical, financial, legal, and operational analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lanxy32/xuanxuan-wise) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese-language Markdown-style consultation with structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request names, birth dates, zodiac signs, timing windows, and business context when relevant to the consultation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may over-rely on Zhouyi, Feng Shui, naming, or date-selection guidance for business decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the guidance as cultural reference and pair it with practical, financial, legal, and operational analysis before acting.
+
+Risk: The skill can request personal birth dates, zodiac details, or founder information for traditional-metaphysics analysis.
+
+Mitigation: Share only the minimum personal details needed for the interaction and avoid unnecessary sensitive personal information.
+
+Risk: The trigger scope is broad for Chinese traditional-metaphysics topics.
+
+Mitigation: Enable the skill only for users who intentionally want this advisory persona and review outputs for relevance before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lanxy32/skills/xuanxuan-wise)
+- [Skill source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style advisory response with structured sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language persona output; no code execution, persistence, tool calls, or credential handling indicated by evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

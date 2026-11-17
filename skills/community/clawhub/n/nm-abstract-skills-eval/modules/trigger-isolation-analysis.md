@@ -72,21 +72,25 @@ description: |
 
 ## Enforcement Language Compliance (5 points)
 
+Imperative wording is budgeted by what breaks when the instruction is
+wrong. Skill category does not set it.
+The budget is defined in `Skill(abstract:skill-authoring)` module
+`persuasion-principles.md`.
+
 | Score | Criteria |
 |-------|----------|
-| 5 | Language intensity matches skill category exactly |
-| 3 | Mostly appropriate, minor calibration needed |
-| 1 | Significant mismatch (e.g., reference skill with "MUST") |
-| 0 | No enforcement language when required |
+| 5 | Imperative wording appears only on invariants, each with its reason |
+| 3 | One imperative without a stated reason, or on a default |
+| 1 | Imperatives used for emphasis on ordinary guidance |
+| 0 | Pressure language such as "YOU MUST" or "NON-NEGOTIABLE" used as a category default |
 
-### Skill Categories and Required Intensity
+### What Earns Imperative Wording
 
-| Category | Examples | Required Language |
-|----------|----------|------------------|
-| Discipline-Enforcing | TDD, security, compliance | Maximum: "YOU MUST", "NON-NEGOTIABLE" |
-| Workflow | Brainstorming, debugging, review | High: "Use BEFORE", "Check even if unsure" |
-| Technique | Patterns, optimization | Medium: "Use when", "Consider for" |
-| Reference | API docs, examples | Low: "Available for", "Consult when" |
+| Strength | For | Example |
+|----------|-----|---------|
+| Invariant | Trust boundaries, credentials, destructive commands, machine contracts | "Never run `git push --force` on `master`: it rewrites shared history." |
+| Default | This repository's pick among defensible options | "Use `rg`, or `grep` when `rg` is absent." |
+| Map | Local facts the model cannot derive | "Use when a hook payload needs validation." |
 
 ## Negative Trigger Coverage (5 points)
 
@@ -109,11 +113,11 @@ The `compliance_checker.py` script checks:
 
 ```python
 # Trigger isolation checks
-- description_has_triggers()    # "Triggers:" in description
-- description_has_use_when()    # "Use when:" in description
-- description_has_not_use()     # "DO NOT use when:" in description
-- body_has_when_to_use()        # Should be False
-- body_duplicates_triggers()    # Should be False
+-description_has_triggers()  # "Triggers:" in description
+-description_has_use_when()  # "Use when:" in description
+-description_has_not_use()  # "DO NOT use when:" in description
+-body_has_when_to_use()  # Should be False
+-body_duplicates_triggers()  # Should be False
 ```
 
 ## Workflow
@@ -140,10 +144,10 @@ The `compliance_checker.py` script checks:
 
 ```bash
 # Run compliance check on all skills
-python scripts/compliance_checker.py --plugin abstract --check trigger-isolation
+python plugins/abstract/scripts/compliance_checker.py plugins/abstract/skills
 
 # Generate report
-python scripts/compliance_checker.py --plugin abstract --report markdown
+python plugins/abstract/scripts/compliance_checker.py plugins/abstract/skills --format json
 ```
 
 ## Integration with Other Modules
@@ -155,5 +159,4 @@ python scripts/compliance_checker.py --plugin abstract --report markdown
 ## Related Resources
 
 - [Trigger Patterns](../../../shared-modules/trigger-patterns.md) - Description field templates
-- [Enforcement Language](../../../shared-modules/enforcement-language.md) - Intensity calibration
-- [Anti-Rationalization](../../../shared-modules/anti-rationalization.md) - Bypass prevention
+- [Anti-Rationalization](../../../shared-modules/skill-selection-judgment.md) - Bypass prevention

@@ -1,38 +1,54 @@
-## Description: <br>
-Checks SSL/TLS certificate expiry, issuer, protocol, and Subject Alternative Names for one or more domains with custom ports, warning thresholds, and optional JSON output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check SSL/TLS certificate expiry, issuer, protocol, and SANs for one or more domains.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
 
-## Use Case: <br>
-Developers and operations teams use this skill to check SSL/TLS certificate health for production domains, internal hosts, CI/CD gates, or scheduled monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill opens network connections to user-specified domains and ports. <br>
-Mitigation: Use it only for domains or internal hosts you own or are authorized to audit. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to check certificate expiry, issuer, TLS protocol, and Subject Alternative Names for one or more domains. It can support cron jobs, CI/CD certificate gates, pre-deployment validation, and domain certificate audits.
 
-## Reference(s): <br>
-- [SSL Certificate Monitor on ClawHub](https://clawhub.ai/Johnnywang2001/jrv-ssl-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text SSL certificate report or structured JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exit codes distinguish OK, warning, expired, and failed checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Automation that uses --json may misread certificate health if it relies only on process exit codes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Parse the JSON status fields directly or wrap the command with explicit status handling before using it in CI, cron, or alerting.
+
+Risk: The checker reports certificate health details but is not a full domain security audit or certificate-chain validator.
+
+Mitigation: Use it as one certificate monitoring signal and pair it with dedicated TLS and domain security tooling for broader assurance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnnywang2001/skills/jrv-ssl-monitor)
+- [Publisher profile](https://clawhub.ai/user/johnnywang2001)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, json, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled checker accepts one or more domains plus port, timeout, warning threshold, and JSON-output options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

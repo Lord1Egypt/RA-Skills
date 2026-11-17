@@ -1,11 +1,11 @@
 # IPCB\_PrimitiveAPI interface
 
-PCB 图元接口
+PCB primitive API
 
 ## Signature
 
 ```typescript
-interface IPCB_PrimitiveAPI 
+interface IPCB_PrimitiveAPI
 ```
 
 ## Properties
@@ -14,123 +14,95 @@ interface IPCB_PrimitiveAPI
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [create](./IPCB_PrimitiveAPI.md)
 
-
 </td><td>
-
 
 </td><td>
 
 (...args: any\[\]) =&gt; [IPCB\_Primitive](./IPCB_Primitive.md) \| undefined \| Promise&lt;[IPCB\_Primitive](./IPCB_Primitive.md)<!-- -->&gt; \| Promise&lt;[IPCB\_Primitive](./IPCB_Primitive.md) \| undefined&gt;
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 [delete](./IPCB_PrimitiveAPI.md)
 
-
 </td><td>
-
 
 </td><td>
 
 (primitiveIds: string \| any \| Array&lt;string&gt; \| Array&lt;any&gt;) =&gt; boolean \| Promise&lt;boolean&gt;
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 [get](./IPCB_PrimitiveAPI.md)
 
+</td><td>
 
 </td><td>
 
+{ (primitiveIds: string): [IPCB\_Primitive](./IPCB_Primitive.md) \| undefined \| Promise&lt;[IPCB\_Primitive](./IPCB_Primitive.md) \| undefined&gt;; (primitiveIds: Array&lt;string&gt;): Array&lt;[IPCB\_Primitive](./IPCB_Primitive.md)<!-- -->&gt; \| Promise&lt;Array&lt;[IPCB\_Primitive](./IPCB_Primitive.md)<!-- -->&gt;&gt; }
 
 </td><td>
-
-{ (primitiveIds: string): [IPCB\_Primitive](./IPCB_Primitive.md) \| undefined \| Promise&lt;[IPCB\_Primitive](./IPCB_Primitive.md) \| undefined&gt;; (primitiveIds: Array&lt;string&gt;): Array&lt;[IPCB\_Primitive](./IPCB_Primitive.md)<!-- -->&gt; \| Promise&lt;Array&lt;[IPCB\_Primitive](./IPCB_Primitive.md)<!-- -->&gt;&gt;; }
-
-
-</td><td>
-
 
 </td></tr>
 <tr><td>
 
 [getAll](./IPCB_PrimitiveAPI.md)
 
-
 </td><td>
-
 
 </td><td>
 
 (...args: any\[\]) =&gt; Array&lt;[IPCB\_Primitive](./IPCB_Primitive.md)<!-- -->&gt; \| Promise&lt;Array&lt;[IPCB\_Primitive](./IPCB_Primitive.md)<!-- -->&gt;&gt;
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 [getAllPrimitiveId](./IPCB_PrimitiveAPI.md)
 
-
 </td><td>
-
 
 </td><td>
 
 (...args: any\[\]) =&gt; Array&lt;string&gt; \| Promise&lt;Array&lt;string&gt;&gt;
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 [modify](./IPCB_PrimitiveAPI.md)
 
-
 </td><td>
-
 
 </td><td>
 
 (primitiveId: string \| any, ...args: any\[\]) =&gt; [IPCB\_Primitive](./IPCB_Primitive.md) \| undefined \| Promise&lt;[IPCB\_Primitive](./IPCB_Primitive.md)<!-- -->&gt; \| Promise&lt;[IPCB\_Primitive](./IPCB_Primitive.md) \| undefined&gt;
 
-
 </td><td>
-
 
 </td></tr>
 </tbody></table>
@@ -146,7 +118,8 @@ Description
 ## Signature
 
 ```typescript
-create: (...args: any[]) => IPCB_Primitive | undefined | Promise<IPCB_Primitive> | Promise<IPCB_Primitive | undefined>;
+create: (...args: any[]) =>
+	IPCB_Primitive | undefined | Promise<IPCB_Primitive> | Promise<IPCB_Primitive | undefined>;
 ```
 
 ### delete
@@ -166,10 +139,7 @@ delete: (primitiveIds: string | any | Array<string> | Array<any>) => boolean | P
 ## Signature
 
 ```typescript
-get: {
-        (primitiveIds: string): IPCB_Primitive | undefined | Promise<IPCB_Primitive | undefined>;
-        (primitiveIds: Array<string>): Array<IPCB_Primitive> | Promise<Array<IPCB_Primitive>>;
-    };
+get: { (primitiveIds: string): IPCB_Primitive | undefined | Promise<IPCB_Primitive | undefined>; (primitiveIds: Array<string>): Array<IPCB_Primitive> | Promise<Array<IPCB_Primitive>> };
 ```
 
 ### getall
@@ -199,5 +169,6 @@ getAllPrimitiveId: (...args: any[]) => Array<string> | Promise<Array<string>>;
 ## Signature
 
 ```typescript
-modify: (primitiveId: string | any, ...args: any[]) => IPCB_Primitive | undefined | Promise<IPCB_Primitive> | Promise<IPCB_Primitive | undefined>;
+modify: (primitiveId: string | any, ...args: any[]) =>
+	IPCB_Primitive | undefined | Promise<IPCB_Primitive> | Promise<IPCB_Primitive | undefined>;
 ```

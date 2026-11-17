@@ -1,0 +1,111 @@
+[因子库] 50 个，单次 run_codes 批量拉取...
+1.4005880000186153 数据库加载
+1 - 53 - cum
+2 - 53 - buy
+3 - 53 - sell
+4 - 53 - Alpha#16
+5 - 53 - Alpha#44
+6 - 53 - CORR10
+7 - 53 - Alpha#15
+8 - 53 - Alpha#55
+9 - 53 - GTJA_Alpha176
+10 - 53 - GTJA_Alpha16
+11 - 53 - GTJA_Alpha64
+12 - 53 - VOLUME44
+13 - 53 - VOLUME59
+14 - 53 - Alpha#26
+15 - 53 - GTJA_Alpha179
+16 - 53 - VSUMP60
+17 - 53 - Alpha#27
+18 - 53 - GTJA_Alpha70
+19 - 53 - PLUS_DI14
+20 - 53 - WQ_RANK_CORR_OV
+21 - 53 - VSUMP30
+22 - 53 - VSUMN30
+23 - 53 - GTJA_Alpha74
+24 - 53 - GTJA_Alpha140
+25 - 53 - CORREL20
+26 - 53 - GTJA_Alpha36
+27 - 53 - CORD20
+28 - 53 - VOLUME21
+29 - 53 - VSUMP20
+30 - 53 - VWAP55
+31 - 53 - WVMA20
+32 - 53 - CORD5
+33 - 53 - ANOM_SKEW
+34 - 53 - GTJA_Alpha1
+35 - 53 - Alpha#6
+36 - 53 - VOLUME15
+37 - 53 - CORD60
+38 - 53 - GTJA_Alpha118
+39 - 53 - VOLUME11
+40 - 53 - Alpha#2
+41 - 53 - CS_Momentum
+42 - 53 - Alpha#69
+43 - 53 - VWAP31
+44 - 53 - GTJA_Alpha101
+45 - 53 - ANOM_IDIOVOL
+46 - 53 - QTLD20
+47 - 53 - VSUMP10
+48 - 53 - GTJA_Alpha130
+49 - 53 - GTJA_Alpha132
+50 - 53 - GTJA_Alpha94
+51 - 53 - 单位股价_资本公积
+52 - 53 - GTJA_Alpha109
+53 - 53 - KLEN
+[片段] 有效=69,436 全局均值=1.38%（69.5s）
+
+[单因子 Top8]（全局 1.38%）
+  ANOM_SKEW          IR=-0.55  改善=+1.73pp
+  GTJA_Alpha132      IR=-0.43  改善=+1.29pp
+  VOLUME59           IR=+0.66  改善=+1.28pp
+  GTJA_Alpha70       IR=-0.64  改善=+1.25pp
+  CORD60             IR=-0.50  改善=+1.24pp
+  VWAP31             IR=+0.46  改善=+1.20pp
+  VSUMP60            IR=-0.65  改善=+1.12pp
+  CORD20             IR=-0.59  改善=+0.97pp
+
+[双因子 intersect Top15]（8×8 组合）
+  ANOM_SKEW       ∩GTJA_Alpha132    改善=+2.84pp (较单因子+1.11) n=8,645
+  ANOM_SKEW       ∩VWAP31           改善=+2.55pp (较单因子+0.82) n=6,900
+  ANOM_SKEW       ∩GTJA_Alpha70     改善=+2.54pp (较单因子+0.81) n=9,061
+  GTJA_Alpha132   ∩CORD60           改善=+2.46pp (较单因子+1.16) n=8,796
+  ANOM_SKEW       ∩CORD60           改善=+2.44pp (较单因子+0.70) n=11,817
+  GTJA_Alpha132   ∩CORD20           改善=+2.25pp (较单因子+0.96) n=9,078
+  GTJA_Alpha70    ∩CORD60           改善=+2.24pp (较单因子+0.99) n=9,002
+  ANOM_SKEW       ∩CORD20           改善=+2.21pp (较单因子+0.48) n=9,229
+  GTJA_Alpha132   ∩VOLUME59         改善=+2.21pp (较单因子+0.92) n=7,894
+  GTJA_Alpha70    ∩VWAP31           改善=+2.21pp (较单因子+0.95) n=7,941
+  VOLUME59        ∩VWAP31           改善=+2.14pp (较单因子+0.85) n=8,962
+  GTJA_Alpha132   ∩VWAP31           改善=+2.14pp (较单因子+0.85) n=7,645
+  GTJA_Alpha132   ∩VSUMP60          改善=+2.05pp (较单因子+0.76) n=7,706
+  VOLUME59        ∩GTJA_Alpha70     改善=+2.01pp (较单因子+0.72) n=9,090
+  VWAP31          ∩VSUMP60          改善=+2.00pp (较单因子+0.79) n=8,320
+
+[双因子 rank 融合 Top15]
+  ANOM_SKEW       +VOLUME59         改善=+1.93pp n=19,655
+  ANOM_SKEW       +VWAP31           改善=+1.87pp n=19,655
+  ANOM_SKEW       +VSUMP60          改善=+1.80pp n=19,655
+  ANOM_SKEW       +GTJA_Alpha132    改善=+1.78pp n=19,655
+  ANOM_SKEW       +CORD60           改善=+1.71pp n=19,655
+  ANOM_SKEW       +CORD20           改善=+1.66pp n=19,655
+  ANOM_SKEW       +GTJA_Alpha70     改善=+1.62pp n=19,655
+  VOLUME59        +VWAP31           改善=+1.62pp n=19,729
+  GTJA_Alpha132   +VWAP31           改善=+1.57pp n=20,649
+  VOLUME59        +CORD20           改善=+1.51pp n=19,729
+  VOLUME59        +CORD60           改善=+1.49pp n=19,655
+  GTJA_Alpha132   +CORD60           改善=+1.49pp n=19,655
+  GTJA_Alpha70    +VWAP31           改善=+1.49pp n=20,649
+  CORD60          +VWAP31           改善=+1.48pp n=19,655
+  VWAP31          +VSUMP60          改善=+1.48pp n=19,655
+
+[多因子贪心叠加]（基于 rank 融合，逐步追加）
+  第2步 +GTJA_Alpha132    累计改善=+2.84pp
+  第3步 +CORD20           累计改善=+3.55pp
+  第4步 +VWAP31           累计改善=+4.17pp
+  第5步 +CORD60           累计改善=+4.37pp
+
+[最终组合] ANOM_SKEW ∩ GTJA_Alpha132 ∩ CORD20 ∩ VWAP31 ∩ CORD60
+[已存] scripts/segment_combo_eval_result.csv
+  总耗时 70.6s
+[DONE]

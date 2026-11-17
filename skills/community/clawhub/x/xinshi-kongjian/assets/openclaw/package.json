@@ -1,0 +1,14 @@
+{
+  "name": "private-reflection-openclaw",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "openclaw": {
+    "extensions": [
+      "./openclaw.mjs"
+    ]
+  },
+  "engines": {
+    "node": ">=22.13"
+  }
+}

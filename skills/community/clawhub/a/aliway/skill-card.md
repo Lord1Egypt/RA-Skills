@@ -1,38 +1,53 @@
-## Description: <br>
-ALIWAY helps agents rewrite technical plans and strategy documents into an Alibaba-style P10 strategic narrative using the Dao-Method-Technique-Tool framework. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ALIWAY helps agents rewrite technical documents, plans, retrospectives, and vision materials in an Alibaba-inspired strategic narrative style with selectable document frameworks, rhetoric patterns, and style checks.
 
-## Publisher: <br>
-[sunfang1cn](https://clawhub.ai/user/sunfang1cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunfang1cn](https://clawhub.ai/user/sunfang1cn)
 
-## Use Case: <br>
-Developers, product leaders, and strategy writers use ALIWAY when they want Chinese technical documents, product plans, or strategy narratives rewritten with Alibaba-style P10 framing, mission language, explicit tradeoffs, metrics, and organizational accountability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may impose a forceful Alibaba-style strategic tone on broad business-strategy prompts where that tone was not intended. <br>
-Mitigation: Use it only when the AliWay/P10 style is desired, or explicitly instruct the agent to preserve the original tone and avoid this skill when tone fidelity matters. <br>
+## Use Case:
 
+Writers, product leaders, technical leaders, and agent users use this skill to turn technical proposals, product plans, reviews, and vision documents into strategy-oriented narratives. It is intended for cases where explicit framing, tradeoffs, metrics, mission language, and organization-facing calls to action are desired.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunfang1cn/aliway) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or prose guidance for strategic document rewrites] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces culturally specific Chinese strategic-writing guidance; no shell commands, code, or system access are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad activation wording may cause ordinary writing requests to become more rhetorical or prescriptive than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill deliberately when Alibaba-inspired strategic framing is desired, and review the tone before sharing the output.
+
+Risk: The style emphasizes assertive strategic claims, metrics, and organization pressure, which can overstate certainty if applied to factual or neutral reports.
+
+Mitigation: Provide source facts explicitly and review generated claims for accuracy, neutrality, and audience appropriateness.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunfang1cn/skills/aliway)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose and structured writing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, data access, tool calls, or shell commands are produced by the skill itself.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Deprecated duplicate skill that directs users to the canonical Slashbot skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DEPRECATED - Use https://clawhub.ai/alphabot-ai/slashbot instead; this duplicate skill will be removed.
 
-## Publisher: <br>
-[alphabot-ai](https://clawhub.ai/user/alphabot-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alphabot-ai](https://clawhub.ai/user/alphabot-ai)
 
-## Use Case: <br>
-External users use this deprecated skill as a migration notice to find and install the canonical Slashbot skill instead of the duplicate slashbot-news release. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may assume the deprecated duplicate is the current skill. <br>
-Mitigation: Follow the replacement link and review the canonical Slashbot skill as a separate install, including its publisher, files, permissions, and scan results. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Canonical Slashbot skill](https://clawhub.ai/alphabot-ai/slashbot) <br>
-- [Slashbot News release page](https://clawhub.ai/alphabot-ai/slashbot-news) <br>
-- [alphabot-ai publisher profile](https://clawhub.ai/user/alphabot-ai) <br>
+## Use Case:
 
+External users and developers use this deprecated placeholder to identify that Slashbot News has moved and to install the canonical Slashbot package instead.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands] <br>
-**Output Format:** [Markdown with inline bash command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deprecated notice only; no executable code or requested access in the reviewed artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may install this deprecated duplicate expecting current Slashbot behavior.
+
+Mitigation: Install the canonical Slashbot package from the referenced ClawHub page instead.
+
+Risk: This placeholder does not contain the canonical package's actual behavior.
+
+Mitigation: Review the canonical Slashbot package's security findings and documentation before deployment.
+
+## Reference(s):
+
+- [Canonical Slashbot Skill](https://clawhub.ai/alphabot-ai/slashbot)
+- [Slashbot News Release Page](https://clawhub.ai/alphabot-ai/skills/slashbot-news)
+- [alphabot-ai Publisher Profile](https://clawhub.ai/user/alphabot-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands]
+
+**Output Format:** [Markdown with an inline bash command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deprecated pointer only; it does not contain executable code.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

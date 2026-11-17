@@ -1,0 +1,4 @@
+interface:
+  display_name: "Crun Account Credits"
+  short_description: "Check affordability before every Crun media task"
+  default_prompt: "Use $crun-account-credits to verify that my Crun account can afford this exact task."

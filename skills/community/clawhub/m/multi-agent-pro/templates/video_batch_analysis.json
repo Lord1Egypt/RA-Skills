@@ -1,0 +1,81 @@
+{
+  "name": "视频批量分析",
+  "description": "批量分析视频内容：提取关键帧、识别画面内容、生成视频摘要。适用于视频素材盘点、内容审核、短视频分析。",
+  "category": "content-generation",
+  "version": "1.0",
+  "tags": ["视频", "分析", "批量", "图像识别"],
+  "three_elements": {
+    "time_estimate": "10-20 分钟（取决于视频数量）",
+    "api_key_required": "可选",
+    "output_files": ["video_batch_report.md", "video_analysis_state.json"]
+  },
+  "dependencies": [
+    {
+      "skill_id": "kling-ai",
+      "install_link": "https://skillhub.cn/skill/kling-ai",
+      "description": "可灵 AI 视频理解（用于视频内容识别）",
+      "required": false
+    }
+  ],
+  "pipeline": {
+    "pipeline_name": "视频批量分析",
+    "version": "1.0",
+    "description": "批量视频内容分析与关键帧提取",
+    "agents": [
+      {
+        "id": "loader",
+        "name": "视频加载Agent",
+        "role": "加载本地或在线视频文件，提取元数据（分辨率/时长/编码）",
+        "type": "task",
+        "inputs": ["video_sources"],
+        "outputs": ["video_list", "metadata"],
+        "depends_on": [],
+        "retry": 3,
+        "timeout": 60,
+        "fallback": "skip"
+      },
+      {
+        "id": "frame_extractor",
+        "name": "关键帧提取Agent",
+        "role": "从每个视频中提取关键帧（场景切换点、代表性画面）",
+        "type": "task",
+        "inputs": ["video_list"],
+        "outputs": ["keyframes"],
+        "depends_on": ["loader"],
+        "retry": 2,
+        "timeout": 120,
+        "fallback": "default",
+        "default_value": {"keyframes": []}
+      },
+      {
+        "id": "analyzer",
+        "name": "画面分析Agent",
+        "role": "对关键帧进行内容识别：场景分类、文字OCR、人物/物体检测",
+        "type": "task",
+        "inputs": ["keyframes"],
+        "outputs": ["analysis_results"],
+        "depends_on": ["frame_extractor"],
+        "retry": 2,
+        "timeout": 180,
+        "fallback": "default",
+        "default_value": {"analysis_results": []}
+      },
+      {
+        "id": "summarizer",
+        "name": "摘要生成Agent",
+        "role": "汇总所有视频分析结果，生成批量分析报告",
+        "type": "task",
+        "inputs": ["analysis_results", "metadata"],
+        "outputs": ["batch_report"],
+        "depends_on": ["analyzer"],
+        "retry": 1,
+        "timeout": 120,
+        "fallback": "abort"
+      }
+    ],
+    "state_store": {
+      "type": "json",
+      "path": "./video_analysis_state.json"
+    }
+  }
+}

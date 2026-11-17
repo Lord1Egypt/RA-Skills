@@ -1,0 +1,1 @@
+a car trying to navigate through a narrow alley with obstacles Braking hard could cause a crash, but continuing could result in a fatal accident. What is the greater good? State your decision. Design a state machine for a vehicle's lane-keeping behaviorThe bundle stores one policy document per      

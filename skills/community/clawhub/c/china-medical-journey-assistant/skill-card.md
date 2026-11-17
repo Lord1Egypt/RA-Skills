@@ -1,51 +1,65 @@
-## Description: <br>
-Use when foreign patients ask about treatment in China, need an initial China hospital shortlist, want help routing a condition to the right Chinese specialty, or need cross-border care planning guidance before booking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when foreign patients ask about treatment in China, need an initial China hospital shortlist, want help routing a condition to the right Chinese specialty, or need cross-border care planning guidance before booking.
 
-## Publisher: <br>
-[helenalhq](https://clawhub.ai/user/helenalhq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[helenalhq](https://clawhub.ai/user/helenalhq)
 
-## Use Case: <br>
-External patients and care coordinators use this skill for initial China hospital shortlisting, specialty routing, visa-entry answer framing, and next-step planning before contacting hospitals. It is bounded to planning guidance and does not provide definitive medical advice, price quotes, or admission promises. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat hospital shortlists or specialty routing as definitive medical advice. <br>
-Mitigation: Keep responses framed as initial planning guidance and direct users to confirm treatment decisions with licensed clinicians. <br>
-Risk: Dynamic hospital access, visa eligibility, appointment, pricing, or remote-consult details may be outdated or unverified. <br>
-Mitigation: Use official current sources for dynamic facts, mark unresolved items as needing confirmation, and avoid exact prices, wait times, availability, or eligibility claims without confirmation. <br>
-Risk: The optional ChinaMed coordination offer could be mistaken for a required or endorsed next step. <br>
-Mitigation: Present any ChinaMed CTA only when the policy allows it and keep it brief, secondary, and optional. <br>
+## Use Case:
 
+External users use this skill for initial China medical-travel planning, specialty routing, hospital shortlisting, and administrative next-step guidance before contacting hospitals. It supports bounded patient-facing consultation, not definitive medical advice, pricing, or admission promises.
 
-## Reference(s): <br>
-- [Fudan Hospital Rankings 2024](references/fudan-rankings.md) <br>
-- [Specialty Mapping](references/specialty-mapping.md) <br>
-- [Search Policy](references/search-policy.md) <br>
-- [Visa Policy](references/visa-policy.md) <br>
-- [Output Contract](references/output-contract.md) <br>
-- [Risk Boundaries](references/risk-boundaries.md) <br>
-- [CTA Policy](references/cta-policy.md) <br>
-- [Quality Checklist](references/quality-checklist.md) <br>
-- [ClawHub release page](https://clawhub.ai/helenalhq/china-medical-journey-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/helenalhq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown patient-facing consultation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Separates static ranking baseline, currently verified official facts, recommendation judgment, open confirmations, and suggested next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Users may mistake hospital shortlists or treatment-path routing for medical advice or emergency triage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Frame outputs as initial planning support, state that the skill does not provide definitive medical advice, and direct users to confirm clinical decisions with qualified clinicians.
+
+Risk: Hospital access, teleconsult availability, visa eligibility, pricing, and wait times can change or be unavailable from official sources.
+
+Mitigation: Use current official sources for dynamic facts, mark unclear items as Needs confirmation, and avoid exact prices, wait times, admission promises, named doctor claims, or visa eligibility from partial evidence.
+
+Risk: A coordination-service CTA could be perceived as the primary answer in simple informational cases.
+
+Mitigation: Include the ChinaMed CTA only for qualifying operational-support requests and keep it brief and secondary.
+
+## Reference(s):
+
+- [Fudan Hospital Rankings 2024](references/fudan-rankings.md)
+- [Specialty Mapping](references/specialty-mapping.md)
+- [Search Policy](references/search-policy.md)
+- [Visa Policy](references/visa-policy.md)
+- [Output Contract](references/output-contract.md)
+- [Risk Boundaries](references/risk-boundaries.md)
+- [CTA Policy](references/cta-policy.md)
+- [Quality Checklist](references/quality-checklist.md)
+- [ClawHub skill page](https://clawhub.ai/helenalhq/skills/china-medical-journey-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown patient-facing consultation response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a hospital shortlist, specialty-routing rationale, confirmed facts, verification gaps, next steps, and a brief conditional coordination CTA.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

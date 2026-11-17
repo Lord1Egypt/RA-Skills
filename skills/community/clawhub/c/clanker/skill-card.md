@@ -1,44 +1,60 @@
-## Description: <br>
-Deploy ERC20 tokens on Base using Clanker SDK. Create tokens with built-in Uniswap V4 liquidity pools. Supports Base mainnet and Sepolia testnet. Requires PRIVATE_KEY in config. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy ERC20 tokens on Base using Clanker SDK. Create tokens with built-in Uniswap V4 liquidity pools. Supports Base mainnet and Sepolia testnet. Requires PRIVATE_KEY in config.
 
-## Publisher: <br>
-[spirosrap](https://clawhub.ai/user/spirosrap) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[spirosrap](https://clawhub.ai/user/spirosrap)
 
-## Use Case: <br>
-Developers and engineers use this skill to deploy ERC20 tokens on Base mainnet or Base Sepolia and to inspect token, deployer, and transaction status information through Clanker-related commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles raw wallet private keys and can read them from local configuration. <br>
-Mitigation: Use a fresh low-balance wallet, avoid storing a funded mainnet private key in the config file, and keep keys outside version control. <br>
-Risk: Mainnet deployment can submit irreversible Base transactions that spend ETH. <br>
-Mitigation: Test on Sepolia first and manually review token parameters, gas, ETH value, and network selection before any mainnet deployment. <br>
-Risk: Incorrect or stale Clanker contract addresses can cause failed or unintended interactions. <br>
-Mitigation: Verify Clanker contract addresses from official sources before deploying or interacting with contracts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clanker SDK Reference](references/clanker-sdk.md) <br>
-- [Clanker Official Website](https://clanker.world) <br>
-- [Clanker Documentation](https://docs.clanker.world) <br>
-- [ClawHub Skill Page](https://clawhub.ai/spirosrap/clanker) <br>
+## Use Case:
 
+External developers and crypto operators use this skill to configure wallets, inspect Base token data, and deploy ERC20 tokens through the Clanker protocol with optional Uniswap V4 liquidity.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include command examples, wallet configuration guidance, transaction hashes, token metadata, and deployment status output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wallet private keys may be exposed or mishandled during configuration and deployment.
+
+Mitigation: Use only throwaway testnet keys until key handling and file permissions are reviewed and fixed.
+
+Risk: Mainnet deployment can spend ETH through irreversible blockchain transactions.
+
+Mitigation: Avoid funded mainnet wallets unless the operator has reviewed the exact transaction path, contract addresses, dependency versions, and spending amount.
+
+Risk: Contract addresses and deployment dependencies may be unsafe or stale.
+
+Mitigation: Verify Clanker contract addresses against official documentation and pin deployment dependencies before using the skill for production funds.
+
+## Reference(s):
+
+- [Clanker SDK Reference](references/clanker-sdk.md)
+- [Clanker homepage](https://clanker.world)
+- [Clanker documentation](https://docs.clanker.world)
+- [Clanker GitHub](https://github.com/clanker-world)
+- [ClawHub skill page](https://clawhub.ai/spirosrap/skills/clanker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON snippets plus terminal command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May submit irreversible Base mainnet or Sepolia transactions when run with a funded private key and deployment dependencies.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

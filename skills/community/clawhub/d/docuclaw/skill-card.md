@@ -1,39 +1,55 @@
-## Description: <br>
-Sovereign document intelligence & archival system. Extracts structured data from invoices, receipts, and contracts 100% locally using AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DocuClaw extracts structured data from invoices, receipts, contracts, scans, photos, and emails into human-readable Markdown files with YAML metadata.
 
-## Publisher: <br>
-[astonysh](https://clawhub.ai/user/astonysh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[astonysh](https://clawhub.ai/user/astonysh)
 
-## Use Case: <br>
-External users and developers use DocuClaw to extract structured information from invoices, receipts, contracts, scans, photos, and email documents into a local Markdown archive for search, accounting, calendaring, and archival workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill's local-only privacy claim conflicts with optional OpenAI Vision use for confidential documents. <br>
-Mitigation: Review configuration before use and disable cloud vision providers unless the user intentionally permits document data to leave local hardware. <br>
-Risk: Calendar or accounting sync may share extracted sensitive document data with third-party services. <br>
-Mitigation: Enable sync integrations only after confirming the target service, data scope, and retention requirements for the document set. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [DocuClaw ClawHub Listing](https://clawhub.ai/astonysh/docuclaw) <br>
+## Use Case:
+
+Developers, operators, and document-heavy teams use DocuClaw to process invoices, receipts, contracts, mail, and other records into local Markdown archives for querying, archival workflows, expense tracking, and contract review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill handles potentially sensitive invoices, receipts, contracts, scans, photos, and emails.
+
+Mitigation: Review privacy requirements before use and restrict processing to approved local storage and approved model providers.
+
+Risk: The skill claims local-only processing while also describing OpenAI Vision and calendar or accounting integrations.
+
+Mitigation: Use only local models and disable external sync when documents must remain on local hardware.
+
+Risk: Calendar and accounting integrations can share extracted document data with third-party services.
+
+Mitigation: Treat each integration as an outbound data path and enable only the integrations approved for the document sensitivity level.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Shell commands] <br>
-**Output Format:** [Markdown guidance with command examples and structured archival conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes local document processing workflows that may optionally connect to cloud vision, calendar, or accounting services.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown and YAML metadata guidance for document extraction and archival workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe local model use, OpenAI Vision use, and calendar or accounting sync paths depending on deployment configuration.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

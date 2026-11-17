@@ -1,0 +1,13 @@
+{
+  "name": "system-architect-agent",
+  "displayName": "系统架构师Agent",
+  "version": "1.0.0",
+  "description": "专业系统架构设计Agent：将模糊业务需求转化为完整的系统架构方案，覆盖需求分析、平台架构设计、风险评估与成本估算。适合创业者、产品经理、技术负责人快速获得可落地的架构方案。",
+  "author": "golngod",
+  "license": "MIT",
+  "pricing": {
+    "model": "free"
+  },
+  "tags": ["architecture", "system-design", "tech-consulting", "cost-estimation", "risk-assessment"],
+  "minOpenClawVersion": "1.2.0"
+}

@@ -14,6 +14,7 @@
 | 内容 | 用途 | 管理方式 |
 |------|------|---------|
 | `data_structure.md` | 文件级索引（文件名、描述、位置路径） | AI 自动维护 |
+| `source_manifest.json` | 用户已确认的规范化源目录路径 | 仅在用户重新授权时更新 |
 | `cache/` | 按需生成的提取缓存 | 自动管理 |
 | `.bm25_index/` | BM25 全文搜索索引 | 自动管理 |
 | `快捷方式` | 原始文件夹 ↔ workspace 的双向通路 | 一次性创建 |
@@ -27,10 +28,11 @@
 ```
 knowledge-base/<项目名>/
 ├── data_structure.md           ← 文件级索引
+├── source_manifest.json         ← 已确认源目录边界
 ├── .bm25_index/                ← BM25 索引（自动管理）
 │   └── index/
 └── cache/                      ← 按需生成的缓存（自动管理）
-    ├── <文件名>.txt            ← PDF/PPTX 提取文本缓存
+    ├── document-<路径哈希>.txt  ← PDF/PPTX 提取文本缓存
     └── <文件名>.img-<页码>.txt ← 图片解读缓存
 ```
 
@@ -93,9 +95,12 @@ knowledge-base/<项目名>/
 
 **Step 1 — 创建工作区副本：**
 - 在 `workspace/knowledge-base/` 下创建目录，目录名 = 原始文件夹名
+- 先向用户确认原始文件夹、工作区目录、缓存会保存提取文本、以及所选文件可能传给模型服务商；确认后才继续。
+- 写入 `source_manifest.json`：`{"source_path": "<确认后的规范化绝对路径>"}`。后续脚本只接受与此完全一致的非 symlink 目录。
 
 **Step 2 — 扫描并生成文件索引：**
 - 遍历原始文件夹下所有文件
+- 跳过所有 symlink/junction、隐藏目录和项目工作目录外的解析路径
 - 自动推断：文件名、类型、初始描述、位置
 - 写入 data_structure.md
 
@@ -122,6 +127,5 @@ python .agents/skills/knowledge-retrieval/scripts/build_kb_index.py --project <�
 - 注册新项目 → 正常执行一次
 - 原始文件夹搬迁 → 走 Phase 0 自动处理，不需要重新 Stage 0
 - 日常文件增删 → 走 Phase 0 索引新鲜度检查自动处理
-
 
 

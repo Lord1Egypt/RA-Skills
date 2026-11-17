@@ -1,39 +1,53 @@
-## Description: <br>
-Find, classify, and update hardcoded default-like model references in a repo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find, classify, and update hardcoded default-like model references in a repo.
 
-## Publisher: <br>
-[patrick-erichsen-2](https://clawhub.ai/user/patrick-erichsen-2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[patrick-erichsen-2](https://clawhub.ai/user/patrick-erichsen-2)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit and migrate repository model defaults while avoiding broad replacement of tests, docs examples, catalogs, and compatibility references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Changing model defaults can affect CI, tests, release workflows, or runtime behavior. <br>
-Mitigation: Review the proposed checklist before approving edits, select only intended references, and run the repository's required validation after changes. <br>
-Risk: Over-broad replacement could update examples, fixtures, catalogs, or compatibility references that do not control default behavior. <br>
-Mitigation: Classify matches semantically and ignore documented noise unless a reference controls an actual default or fallback. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit and migrate repository model defaults while avoiding broad replacement of tests, examples, catalogs, and compatibility references.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with repository-relative file references and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user review before edits and validation of changed repository surfaces.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Optional workflow validation may run actionlint through Go using an unpinned '@latest' dependency when actionlint is not already installed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a preinstalled or pinned actionlint version in sensitive repositories.
+
+Risk: Repo-editing guidance can affect default model behavior if irrelevant references are selected for update.
+
+Mitigation: Review the presented candidate checklist and approve only intended default-like references before edits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/patrick-erichsen-2/skills/migrate-model-defaults)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with file references, checklists, inline commands, and code/configuration edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Asks for the existing and replacement model strings, presents candidate edits for user selection, and validates workflow changes when applicable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

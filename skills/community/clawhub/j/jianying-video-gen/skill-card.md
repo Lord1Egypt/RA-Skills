@@ -1,44 +1,63 @@
-## Description: <br>
-Automates Jianying/Xiaoyunque Seedance 2.0 video generation for text-to-video, image-to-video, and reference video-to-video workflows using Playwright and a user-provided Jianying login session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Jianying/Xiaoyunque Seedance 2.0 video generation for text-to-video, image-to-video, and reference video-to-video workflows using a configured Jianying browser session.
 
-## Publisher: <br>
-[Deemo-Soul](https://clawhub.ai/user/Deemo-Soul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deemo-soul](https://clawhub.ai/user/deemo-soul)
 
-## Use Case: <br>
-Developers and video creators use this skill to drive Jianying's web interface for AI video generation, including prompt-only generation and transformations from reference images or videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes real-looking browser session cookies and automatically uses cookies.json. <br>
-Mitigation: Delete the bundled cookies.json before use and provide only your own Jianying credentials after deciding to trust the publisher. <br>
-Risk: Prompts and selected reference media are submitted to Jianying during generation. <br>
-Mitigation: Avoid sensitive prompts or media unless sharing them with Jianying is acceptable for the intended use. <br>
-Risk: Generation can consume Jianying credits and the output path behavior may be unexpected. <br>
-Mitigation: Confirm credit costs before generation and set an explicit output_dir for all runs. <br>
+## Use Case:
 
+Developers and content creators use this skill to submit Jianying Seedance 2.0 video jobs from text prompts, reference images, or reference videos and retrieve generated MP4 outputs.
 
-## Reference(s): <br>
-- [Seedance 2.0 Prompt Guide](references/prompt-guide.md) <br>
-- [Jianying Xiaoyunque](https://xyq.jianying.com/home) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Deemo-Soul/jianying-video-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples and generated local video files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Jianying cookies.json file and may write MP4 outputs or dry-run screenshots to the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact includes browser login cookies and expects a cookies.json file for Jianying authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove bundled cookies before installation, revoke or rotate any exposed sessions, and provide a fresh user-controlled cookie file only in an isolated environment.
+
+Risk: The skill can upload prompts, images, and videos to a third-party Jianying service.
+
+Mitigation: Avoid sensitive prompts or media and run the skill with access limited to approved input and output folders.
+
+Risk: Submitted generations can consume Jianying account credits.
+
+Mitigation: Review duration and model settings before submission and use dry-run mode when checking form behavior.
+
+Risk: Browser automation runs with local file access and network access to the video-generation service.
+
+Mitigation: Run under a low-privilege account with only the required media and output directories available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deemo-soul/skills/jianying-video-gen)
+- [Seedance 2.0 prompt guide](references/prompt-guide.md)
+- [Jianying workspace](https://xyq.jianying.com/home)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [MP4 video files, JSON-RPC tool responses, and Markdown/plain-text command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated videos may consume Jianying account credits; dry-run mode can produce diagnostic screenshots without submitting generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and MCP server_info)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

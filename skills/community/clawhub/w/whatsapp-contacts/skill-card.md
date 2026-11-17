@@ -1,39 +1,54 @@
-## Description: <br>
-List, search, and lookup WhatsApp contacts from the Baileys session cache. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+List, search, and lookup WhatsApp contacts from the Baileys session cache.
 
-## Publisher: <br>
-[MarcosRippel](https://clawhub.ai/user/MarcosRippel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[marcosrippel](https://clawhub.ai/user/marcosrippel)
 
-## Use Case: <br>
-Developers and agent users use this skill to list, search, or look up contacts from a local Baileys WhatsApp session cache without opening a live WhatsApp connection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can print names, phone numbers, status, image URLs, and group identifiers from the local WhatsApp/Baileys contact cache. <br>
-Mitigation: Install only when the agent should access that local contact cache; prefer targeted searches or small list limits, and avoid sharing the JSON output outside the context where the contact details are needed. <br>
-Risk: Results may be incomplete because only contacts already present in the local Baileys session cache are available. <br>
-Mitigation: Treat missing contacts as cache absence rather than proof that a WhatsApp contact does not exist. <br>
+## Use Case:
 
+OpenClaw users and agents use this skill to list, search, and inspect WhatsApp contacts previously cached for the default local Baileys session. It is useful when a workflow needs contact names, phone numbers, or cached contact details without opening a live WhatsApp connection.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text] <br>
-**Output Format:** [JSON printed by a Node.js command-line script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports list, search, and get commands; list accepts an optional result limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can display private contact metadata from the local WhatsApp Baileys cache.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only where exposing cached contact names, phone numbers, statuses, group identifiers, and image URLs is acceptable.
+
+Risk: Contact results can be reused in later agent conversations or workflows.
+
+Mitigation: Treat output as private and avoid passing it into contexts where contact names or phone numbers should not be disclosed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/marcosrippel/skills/whatsapp-contacts)
+- [Publisher Profile](https://clawhub.ai/user/marcosrippel)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text]
+
+**Output Format:** [JSON emitted by a Node CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Contact output may include private names, phone numbers, group identifiers, statuses, and image URLs from the local cache.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

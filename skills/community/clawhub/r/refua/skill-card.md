@@ -1,39 +1,57 @@
-## Description: <br>
-Refua helps agents fold and score biomolecular complexes and optionally profile ADMET to prioritize molecules in drug discovery workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fold and score biomolecular complexes and optionally profile ADMET to prioritize molecules in drug discovery pipelines via the refua-mcp server.
 
-## Publisher: <br>
-[jbenjoseph](https://clawhub.ai/user/jbenjoseph) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jbenjoseph](https://clawhub.ai/user/jbenjoseph)
 
-## Use Case: <br>
-Drug discovery researchers and computational chemistry operators use this skill to run Refua workflows through refua-mcp for complex folding, affinity scoring, design workflows, and optional ADMET profiling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Running the local Refua MCP server and installing related Python packages can introduce package-source and environment trust risk. <br>
-Mitigation: Install only in a trusted, isolated Python environment and verify the refua and refua-mcp package sources before running the server. <br>
-Risk: Confidential molecular structures may be exposed through local server behavior, logs, caches, or downloaded assets. <br>
-Mitigation: Avoid confidential molecular structures unless the installed packages and local storage behavior are trusted and understood. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Refua on ClawHub](https://clawhub.ai/jbenjoseph/refua) <br>
+## Use Case:
 
+Developers and computational drug discovery teams use this skill to run Refua MCP workflows for complex folding, binding-affinity estimation, BoltzGen design workflows, and optional ADMET profiling when appropriate inputs are available.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown with shell commands and MCP tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the local refua-mcp server, installed Refua extras, model assets, and user-provided molecular inputs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.4.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unpinned package installs and model downloads can introduce supply-chain risk.
+
+Mitigation: Run the skill in an isolated virtualenv or container, pin reviewed package versions, and verify model asset sources where possible.
+
+Risk: Default model and molecule asset caches may write to locations unsuitable for restricted or sensitive research environments.
+
+Mitigation: Set cache directories deliberately before use, such as Boltz2 cache and BoltzGen molecule directory overrides.
+
+Risk: Drug discovery predictions may be mistaken for wet-lab, clinical, or safety guidance.
+
+Mitigation: Use outputs only as computational prioritization support and require domain review before synthesis, testing, or clinical decisions.
+
+## Reference(s):
+
+- [Refua skill page](https://clawhub.ai/jbenjoseph/skills/refua)
+- [refua-mcp repository](https://github.com/agentcures/refua-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and MCP usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup and operation guidance for connecting an agent to the refua-mcp server; model results depend on user-provided molecular inputs and installed optional extras.]
+
+## Skill Version(s):
+
+0.4.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

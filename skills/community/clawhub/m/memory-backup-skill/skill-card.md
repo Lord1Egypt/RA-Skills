@@ -1,47 +1,60 @@
-## Description: <br>
-Lobster Memory Backup & Sync helps an agent save important conversation summaries to memory files, sync them across channels, and back them up to a configured private Git repository. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lobster Memory Backup & Sync helps an agent write important conversation context into structured memory files, synchronize memories across channels, and back them up to a user-configured Git remote.
 
-## Publisher: <br>
-[nmww](https://clawhub.ai/user/nmww) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nmww](https://clawhub.ai/user/nmww)
 
-## Use Case: <br>
-Developers and agent operators use this skill to preserve durable memory, migrate workflows across machines, and coordinate channel-specific context while controlling what is saved or pushed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation summaries and workflow notes can be persisted to files and pushed to a Git remote. <br>
-Mitigation: Use a private repository, inspect the exact commit before pushing, and avoid storing secrets or raw credentials in memory files. <br>
-Risk: Cross-channel sync can expose channel-specific context more broadly than intended. <br>
-Mitigation: Require explicit confirmation of the source file and target scope before each save, sync, or push action. <br>
-Risk: Workflow cleanup guidance can remove older files during migration. <br>
-Mitigation: Prefer archive or dry-run migration steps before deleting old workflow files. <br>
-Risk: Automated backup jobs can repeatedly push unreviewed memory changes. <br>
-Mitigation: Keep scheduled backups disabled until the configuration has been tested and reviewed with a dedicated limited SSH key. <br>
+## Use Case:
 
+External users and developers use this skill to preserve useful agent conversation memory, project context, and reusable workflows across OpenClaw sessions. It is intended for users who want Git-backed backup and restore of structured memory files across machines or channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nmww/memory-backup-skill) <br>
-- [Memory structure reference](references/memory-structure.md) <br>
-- [Backup setup guide](references/setup-guide.md) <br>
-- [Workflow backup guide](references/workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and generated memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can invoke shell scripts that commit and push selected memory files to a configured Git remote.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Conversation memory, profile files, and workflow notes can be committed and pushed to a user-configured Git remote, which may expose sensitive personal or project context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private repository, a dedicated least-privilege SSH key, and review diffs before each push.
+
+Risk: Automatic or scheduled backup can push memory files without reliable user confirmation.
+
+Mitigation: Avoid cron or other unattended execution until the backup flow fails closed without approval.
+
+Risk: The built-in secret scanner is not complete protection against leaking credentials.
+
+Mitigation: Do not write actual API keys, passwords, tokens, or private keys into memory files; store only credential locations or rotation status and independently review content before syncing.
+
+## Reference(s):
+
+- [Lobster Memory Backup & Sync ClawHub release](https://clawhub.ai/nmww/skills/memory-backup-skill)
+- [Memory structure reference](references/memory-structure.md)
+- [Setup guide](references/setup-guide.md)
+- [Workflow backup guide](references/workflows.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or updates structured local memory files and can invoke bundled shell scripts for synchronization and Git backup.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

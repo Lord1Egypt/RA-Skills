@@ -1,40 +1,57 @@
-## Description: <br>
-Quad-layer memory system integration - unifies OpenClaw, Claude Code, and self-improving agent memories into a single knowledge lake <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quad-layer memory system integration - unifies OpenClaw, Claude Code, and self-improving agent memories into a single knowledge lake.
 
-## Publisher: <br>
-[hanxiao-bot](https://clawhub.ai/user/hanxiao-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanxiao-bot](https://clawhub.ai/user/hanxiao-bot)
 
-## Use Case: <br>
-Developers and agent operators use this skill to consolidate Claude Code session logs, OpenClaw daily logs, and self-improving agent metrics into a local memory lake for pattern mining, review, and long-term memory maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can copy and retain broad private Claude Code session history and OpenClaw agent metrics in a persistent local memory lake. <br>
-Mitigation: Run it only when that retention is intended, narrow the source paths before syncing, and delete the memory directory when the history is no longer needed. <br>
-Risk: Existing logs may contain secrets or sensitive project information that could be preserved in generated memory and pattern files. <br>
-Mitigation: Remove secrets from logs before syncing and inspect generated pattern files before relying on or sharing them. <br>
+## Use Case:
 
+Developers and engineers use this skill to maintain a local long-term memory lake that consolidates Claude Code session history, OpenClaw daily logs, self-improving agent metrics, derived patterns, domain notes, tool notes, and review records.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hanxiao-bot/triple-memory-lake) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash examples and Python helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and updates local memory files, indexes, and pattern summaries; no external API output is described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and frontmatter) <br>
+Risk: The sync scripts can duplicate private Claude Code session logs and OpenClaw agent metrics into persistent skill-local storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the scripts only for approved projects, review source paths before syncing, and exclude secrets, confidential sessions, or regulated data from the source directories.
+
+Risk: Generated pattern files may summarize private or sensitive session content and may be mistaken for trusted instructions.
+
+Mitigation: Review generated pattern files before use, treat them as untrusted memory artifacts, and remove sensitive or incorrect entries before relying on them.
+
+Risk: The skill does not document consent, minimization, redaction, or retention controls for copied memory data.
+
+Mitigation: Define local retention and deletion procedures before adoption, and periodically audit the memory directory for unnecessary or sensitive retained data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hanxiao-bot/skills/triple-memory-lake)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and generated local memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent local memory artifacts under the skill's memory directory; pattern mining limits copied error examples to 100 entries per run.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

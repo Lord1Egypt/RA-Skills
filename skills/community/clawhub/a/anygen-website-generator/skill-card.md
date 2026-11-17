@@ -1,43 +1,59 @@
-## Description: <br>
-Website Generator helps agents create websites and landing pages, including product pages, portfolios, event pages, blogs, signup pages, app download pages, and campaign pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates websites and landing pages through the AnyGen CLI and supporting website-generation workflow.
 
-## Publisher: <br>
-[logictortoise](https://clawhub.ai/user/logictortoise) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[logictortoise](https://clawhub.ai/user/logictortoise)
 
-## Use Case: <br>
-External users and developers use this skill to generate websites and landing pages through the AnyGen CLI and website workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Website prompts and content may be sent to AnyGen for server-side generation. <br>
-Mitigation: Use an approved AnyGen account and avoid sending sensitive or restricted content unless that transfer is authorized. <br>
-Risk: The fallback install command auto-confirms installation of an additional workflow skill. <br>
-Mitigation: Review and explicitly approve the anygen-workflow-generate skill before allowing fallback installation. <br>
-Risk: The skill depends on an AnyGen API key and CLI authentication. <br>
-Mitigation: Store the API key in the environment or approved secret storage and avoid exposing it in prompts, logs, or generated files. <br>
+## Use Case:
 
+Developers and agents use this skill to create websites or landing pages such as product pages, portfolio sites, event pages, pricing pages, blogs, signup pages, app download pages, and campaign pages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/logictortoise/anygen-website-generator) <br>
-- [AnyGen website](https://www.anygen.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and generated website output through AnyGen] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the AnyGen CLI and ANYGEN_API_KEY; may delegate website generation to the anygen-workflow-generate skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: Website-generation prompts or related content may be sent to AnyGen.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill with private customer data, unpublished product details, secrets, or regulated content unless that transfer has been reviewed and approved.
+
+Risk: The skill relies on external tools or workflow components that may not be pinned.
+
+Mitigation: Use a pinned or reviewed AnyGen CLI and workflow version before using the skill in sensitive or production contexts.
+
+Risk: The skill can install an additional workflow skill when it is unavailable.
+
+Mitigation: Require explicit approval before installing additional skills or dependencies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/logictortoise/skills/anygen-website-generator)
+- [Publisher profile](https://clawhub.ai/user/logictortoise)
+- [AnyGen website](https://www.anygen.io)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with CLI commands and workflow instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the anygen binary and ANYGEN_API_KEY; generated website assets are produced through the AnyGen workflow.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-客户跟进兵 Swarm Skill · 全流程SOP：线索获取→客户跟进→路线规划→转化漏斗 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Followup Swarm guides agents through a customer follow-up SOP for lead acquisition, customer management, visit route planning, and conversion funnel analysis.
 
-## Publisher: <br>
-[gaoshung1981888](https://clawhub.ai/user/gaoshung1981888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaoshung1981888](https://clawhub.ai/user/gaoshung1981888)
 
-## Use Case: <br>
-Sales and customer operations teams use this skill to manage customer follow-up workflows from lead capture through CRM entry, visit planning, follow-up logging, and conversion analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process customer contact and address data. <br>
-Mitigation: Define privacy, access-control, and retention rules before use, and avoid entering sensitive customer data unless those controls are in place. <br>
-Risk: The skill describes local CRM/task file creation and CRM mutations. <br>
-Mitigation: Require explicit user approval before creating files, mutating CRM records, or performing external route-planning lookups. <br>
+## Use Case:
 
+Developers and external business users can use this skill to structure customer lead capture, CRM updates, follow-up records, route planning, and conversion reporting for sales workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gaoshung1981888/followup-swarm) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/gaoshung1981888) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, CRM action examples, and JSON or Markdown file deliverables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces customer files, follow-up logs, route plans, and conversion reports when used with appropriate tools and user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The workflow may create persistent local CRM and task files containing customer information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm file-write behavior, storage location, retention, and deletion expectations before using the skill with real customer records.
+
+Risk: The workflow may send customer, contact, or location data to named external workflow tools.
+
+Mitigation: Use the skill only after confirming user consent, data-sharing boundaries, and privacy controls for the connected tools.
+
+Risk: The artifact describes customer outreach and pricing-related workflows that require human approval.
+
+Mitigation: Require a human reviewer to approve outbound communication and price or discount commitments before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gaoshung1981888/skills/followup-swarm)
+- [Publisher profile](https://clawhub.ai/user/gaoshung1981888)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe CRM records, follow-up logs, route plans, and conversion reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

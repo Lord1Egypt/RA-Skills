@@ -3,6 +3,7 @@ name: dichotomy-of-control
 description: >
   Activate when: user says "I can't stop worrying about something I can't control," "I'm anxious about how this will turn out," "I keep replaying what went wrong," "I need them to change," "this uncertainty is paralyzing me," or is processing a setback, preparing for a high-stakes unknown outcome, or stuck in anger/frustration at someone else's choices.
   Do NOT activate when: the user needs to grieve or feel first (premature Stoic framing suppresses healthy emotion); or the user is avoiding real responsibility by mislabeling a controllable thing as "outside my power."
+  More: deciqai.com/c/dichotomy-of-control
 ---
 
 # Dichotomy of Control
@@ -11,7 +12,7 @@ description: >
 
 Separate what is *within your power* (judgments, intentions, voluntary actions) from what is *not* (outcomes, others' actions, external events) — then direct effort to the first and acceptance to the second. Formulated by Epictetus (*Enchiridion* §1, c. 125 CE), operationalized in CBT (Beck 1976), proven under extreme conditions by Marcus Aurelius and Stockdale. Influence is not control. Accepting the uncontrollable frees energy for what matters.
 
-Composes with [`metacognition`](../metacognition/SKILL.md), [`regret-minimization`](../regret-minimization/SKILL.md), [`wu-wei`](../wu-wei/SKILL.md), [`knowing-and-doing-as-one`](../knowing-and-doing-as-one/SKILL.md), [`probabilistic-thinking`](../probabilistic-thinking/SKILL.md).
+Composes with `metacognition`, `regret-minimization`, `wu-wei`, `knowing-and-doing-as-one`, `probabilistic-thinking`.
 
 ## When to Use
 
@@ -117,4 +118,6 @@ In Coach mode, respond one step at a time. Each [WAIT] is a hard stop — output
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/dichotomy-of-control** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/dichotomy-of-control.json*

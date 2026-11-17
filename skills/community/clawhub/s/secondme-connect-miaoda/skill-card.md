@@ -1,49 +1,61 @@
-## Description: <br>
-SecondMe Connect helps Baidu Miaoda React and Supabase applications add SecondMe OAuth2 login and API access using ready-to-copy templates and integration guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SecondMe Connect helps Baidu Miaoda React applications add SecondMe OAuth2 login and SecondMe API access using Supabase templates and integration guidance.
 
-## Publisher: <br>
-[lijinhongucl-pixel](https://clawhub.ai/user/lijinhongucl-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lijinhongucl-pixel](https://clawhub.ai/user/lijinhongucl-pixel)
 
-## Use Case: <br>
-Developers building Baidu Miaoda, React, TypeScript, Vite, and Supabase applications use this skill to integrate SecondMe sign-in, manage the OAuth callback, initialize profile storage, and call SecondMe user, chat, memory, notes, plaza, and voice APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reusable SecondMe access and refresh tokens are stored in a client-readable Supabase profile table. <br>
-Mitigation: Move tokens to backend-only storage or deny client SELECT on token columns and proxy SecondMe API calls through Edge Functions. <br>
-Risk: Incorrect RLS policies could expose one user's SecondMe tokens to another user. <br>
-Mitigation: Test RLS with multiple authenticated users and verify profile queries only return the current user's row before production use. <br>
-Risk: Overly broad CORS settings could let untrusted origins invoke the OAuth callback flow. <br>
-Mitigation: Set ALLOWED_ORIGINS to the exact production frontend origins and avoid wildcard origins. <br>
-Risk: Browser-side bearer tokens increase impact from cross-site scripting or malicious dependencies. <br>
-Mitigation: Harden the frontend against XSS, minimize token scopes and lifetimes, and provide clear consent and privacy notices for chat, memory, notes, and public posting features. <br>
+## Use Case:
 
+Developers building Baidu Miaoda or React applications use this skill to integrate SecondMe OAuth2 sign-in, Supabase-backed account handling, and typed helper code for SecondMe chat, memory, notes, plaza, and voice APIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lijinhongucl-pixel/secondme-connect-miaoda) <br>
-- [Publisher profile](https://clawhub.ai/user/lijinhongucl-pixel) <br>
-- [SecondMe OAuth authorization endpoint](https://go.second-me.cn/oauth/) <br>
-- [SecondMe API base endpoint](https://api.mindverse.com/gate/lab/api/secondme) <br>
-- [SecondMe OAuth token endpoint](https://api.mindverse.com/gate/lab/api/oauth/token/code) <br>
-- [Integration guide](artifact/templates/INTEGRATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with TypeScript, SQL, environment variable, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reusable React components, hooks, Supabase Edge Function code, database SQL, and OAuth/API integration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: SecondMe access and refresh tokens may be exposed if frontend code reads bearer tokens or if the application is compromised or misconfigured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep SecondMe tokens in server-only storage and expose scoped backend endpoints for frontend API calls.
+
+Risk: OAuth state handling may be insufficient if state is generated or validated only in frontend browser storage.
+
+Mitigation: Generate cryptographically strong OAuth state values and validate them server-side during the callback exchange.
+
+Risk: Profile update permissions could allow credential columns to be modified by users.
+
+Mitigation: Ensure profile update policies exclude SecondMe credential columns and verify Row Level Security behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lijinhongucl-pixel/skills/secondme-connect-miaoda)
+- [SecondMe authorization endpoint](https://go.second-me.cn/oauth/)
+- [SecondMe API base endpoint](https://api.mindverse.com/gate/lab/api/secondme)
+- [SecondMe OAuth token endpoint](https://api.mindverse.com/gate/lab/api/oauth/token/code)
+- [Integration guide](artifact/templates/INTEGRATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, SQL]
+
+**Output Format:** [Markdown documentation with TypeScript, SQL, environment variable, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reusable React, Supabase Edge Function, API wrapper, hook, and database template files.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,59 @@
-## Description: <br>
-Creates and sends Selzy email marketing campaigns, manages contacts, segments and templates, schedules campaigns and A/B tests, and analyzes opens, clicks and bounces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and sends Selzy email marketing campaigns, manages contacts, templates, segments, scheduling, A/B tests, and campaign performance analysis through the Selzy API.
 
-## Publisher: <br>
-[selzy-openclaw](https://clawhub.ai/user/selzy-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[selzy-openclaw](https://clawhub.ai/user/selzy-openclaw)
 
-## Use Case: <br>
-External users and marketers use this skill to manage Selzy email marketing workflows from an agent, including contact lists, templates, campaign creation, scheduling and performance reporting. It is especially relevant when campaign sends require explicit recipient-list verification, sender checks and rate-limit discipline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent real email-campaign authority, including actions that can create or schedule sends. <br>
-Mitigation: Review before installing, use a least-privileged Selzy API key if available, and require separate explicit confirmation before any createCampaign call. <br>
-Risk: Campaigns can target the wrong audience if list_id and recipient counts are not verified. <br>
-Mitigation: Call getLists or getList before campaign creation, verify the exact list_id and recipient count, and stop when the count is zero or unexpected. <br>
-Risk: Some safety steps conflict about timing for campaign creation and scheduling. <br>
-Mitigation: Follow the stricter 1-campaign-per-hour rule everywhere and ignore stale 60-second timing guidance. <br>
+## Use Case:
 
+Marketing teams, developers, and operators use this skill to prepare and manage Selzy email campaigns from chat while checking recipient lists, sender verification, scheduling, and campaign metrics before API actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/selzy-openclaw/selzy-api-skill) <br>
-- [Selzy API base endpoint](https://api.selzy.com/en/api) <br>
-- [Selzy API limits](https://selzy.com/en/support/api/common/selzy-api-limits/) <br>
-- [README.md](artifact/README.md) <br>
-- [TEST_CHECKLIST.md](artifact/TEST_CHECKLIST.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SELZY_API_KEY and returns human-readable campaign, contact and analytics guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact metadata lists 2.3) <br>
+Risk: Campaigns can be sent or scheduled to the wrong audience if list_id, list name, recipient count, sender, subject, body, send time, or timezone are not verified immediately before campaign creation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Call getLists or getList first, require createEmailMessage to include list_id, compare recipient count against user expectations, and require fresh explicit confirmation before createCampaign.
+
+Risk: Rapid or automated campaign creation can trigger Selzy fraud controls or account blocking.
+
+Mitigation: Enforce a maximum of one createCampaign call per hour, avoid batch campaign creation, and stop immediately if API responses suggest account review or blocked campaigns.
+
+Risk: API keys and contact data may appear in GET request URLs or logs.
+
+Mitigation: Use a restricted Selzy API key when available, keep SELZY_API_KEY in environment configuration, and do not display or log full API URLs containing credentials or personal data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/selzy-openclaw/skills/selzy-api-skill)
+- [Selzy API Documentation](https://selzy.com/en/support/api/)
+- [Selzy API Limits](https://selzy.com/en/support/api/common/selzy-api-limits/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SELZY_API_KEY; campaign workflows require list, recipient count, sender, timing, and confirmation checks before campaign creation.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata; artifact metadata reports 2.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

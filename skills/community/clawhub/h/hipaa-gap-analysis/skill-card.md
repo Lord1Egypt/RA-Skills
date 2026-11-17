@@ -1,44 +1,54 @@
-## Description: <br>
-Assess compliance documents against HIPAA Security Rule and Privacy Rule requirements. Produces structured findings with evidence, gap descriptions, and remediation recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assess compliance documents against HIPAA Security Rule and Privacy Rule requirements. Produces structured findings with evidence, gap descriptions, and remediation recommendations.
 
-## Publisher: <br>
-[dangsllc](https://clawhub.ai/user/dangsllc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dangsllc](https://clawhub.ai/user/dangsllc)
 
-## Use Case: <br>
-Compliance, security, and legal operations teams use this skill to review HIPAA policy or procedure documents and identify coverage gaps against HIPAA Security Rule and Privacy Rule requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process sensitive HIPAA compliance documents supplied by the user. <br>
-Mitigation: Use it only with documents you are allowed to process, avoid unnecessary protected health information, and handle outputs according to the user's compliance obligations. <br>
-Risk: The generated gap analysis may be incomplete or unsuitable as legal advice. <br>
-Mitigation: Treat the output as compliance analysis support and have qualified compliance or legal reviewers validate findings before relying on them. <br>
+## Use Case:
 
+Compliance, privacy, and security teams use this skill to review policy or procedure documents against HIPAA Security Rule and Privacy Rule requirements and receive structured control findings, evidence, gaps, and remediation recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dangsllc/hipaa-gap-analysis) <br>
-- [Publisher Profile](https://clawhub.ai/user/dangsllc) <br>
-- [Rote Compliance Skills](https://github.com/Rote-Compliance/rote-compliance-skills) <br>
-- [Dang's Solutions](https://dangssolutions.com) <br>
-- [Rote](https://rotecompliance.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, JSON, Guidance] <br>
-**Output Format:** [JSON object containing document metadata, summary counts, and structured findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings include control identifiers, coverage status, quoted evidence, gap descriptions, recommendations, confidence, and reasoning.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence) <br>
+Risk: The skill needs access to compliance documents supplied by the user, which may contain sensitive operational, security, or health information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in environments where the agent is permitted to read those documents, and limit inputs to materials appropriate for the agent runtime.
+
+Risk: HIPAA findings and remediation recommendations may be mistaken for legal or audit conclusions.
+
+Mitigation: Treat the output as audit support and have qualified reviewers verify quoted evidence, gaps, and recommendations before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dangsllc/skills/hipaa-gap-analysis)
+- [Publisher profile](https://clawhub.ai/user/dangsllc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces structured HIPAA control findings with document title, analysis date, framework, summary counts, evidence text, gap descriptions, recommendations, confidence scores, and reasoning.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

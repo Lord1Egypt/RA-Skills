@@ -12,7 +12,7 @@ Uploads **v2020-11-01**，用于在调用 A+ Content、Messaging 等 API 之前*
 | path | `uploads/2020-11-01/uploadDestinations/{resource}` |
 | 脚本 | `create_upload_destination_for_resource.py` |
 
-`{resource}` 为下游 API 的资源路径（URL 编码），例如：
+`{resource}` 是 greedy path 参数。传入未编码的下游 API 资源路径，构造网关 `path` 时须保留其中的 `/`，不得将路径分隔符预编码为 `%2F`。例如：
 
 - `aplus/2020-11-01/contentDocuments`
 - Messaging：`messaging/v1/orders/{amazonOrderId}/messages/...`（以官方为准）

@@ -1,44 +1,59 @@
-## Description: <br>
-Company Scan helps agents filter companies by industry, region, funding round, investment amount, and recent financing, then return structured Markdown results from IYIOU data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Company Scan helps agents search the IYIOU company database for businesses matching industry, geography, financing round, financing amount, and recency filters, then return a structured company list.
 
-## Publisher: <br>
-[ai-byte](https://clawhub.ai/user/ai-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai-byte](https://clawhub.ai/user/ai-byte)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to turn company-screening requests into structured search parameters and retrieve matching companies from the IYIOU company data service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search criteria are sent to an external IYIOU API. <br>
-Mitigation: Avoid including secrets, highly sensitive business plans, or confidential strategy details in search terms. <br>
-Risk: Results are temporarily written to a local file before display. <br>
-Mitigation: Review local temporary-file handling and delete generated result files when the output contains sensitive screening criteria. <br>
-Risk: Company search results may be incomplete, stale, or affected by narrow filters. <br>
-Mitigation: Validate important company data against authoritative sources and broaden filters when the result set is unexpectedly small. <br>
+## Use Case:
 
+Developers and analysts use this skill to turn company-search requests into IYIOU query parameters, run the included Python search helper, and present matching companies with financing, location, industry, and link fields.
 
-## Reference(s): <br>
-- [Company Scan on ClawHub](https://clawhub.ai/ai-byte/company-scan-iyiou) <br>
-- [IYIOU Company Data](https://data.iyiou.com/company/comlist) <br>
-- [IYIOU Company Search API](https://api-open-data.iyiou.com/llm/company/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown tables with a query summary, company fields, and source links; JSON is available from the helper script when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results may be written to a temporary Markdown file before being read back and presented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Company-search terms are sent to IYIOU and result links point to IYIOU.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data sharing and link destination are acceptable for the deployment.
+
+Risk: The helper writes --output-temp results to a fixed shared filename in the system temp directory.
+
+Mitigation: Use a securely created per-run temporary file or an explicit private output path before treating the skill as low risk.
+
+Risk: The skill uses forceful routing and display wording that may over-trigger the skill or over-prescribe result handling.
+
+Mitigation: Review and narrow invocation and display wording before broad deployment.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/ai-byte/skills/company-scan-iyiou)
+- [IYIOU company data list](https://data.iyiou.com/company/comlist)
+- [IYIOU company search API endpoint](https://api-open-data.iyiou.com/llm/company/search)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown company table, with optional JSON output from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results can be written to a temporary Markdown file when --output-temp is used; default max results is 50.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

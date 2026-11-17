@@ -1,43 +1,60 @@
-## Description: <br>
-Poc Validator replays supplied HTTP requests or payloads and analyzes response status codes and error snippets to help validate specific vulnerability proof-of-concept claims. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated vulnerability verification and payload replay probe that executes specific HTTP requests and analyzes response status codes and error traces for signs of injection or server exceptions.
 
-## Publisher: <br>
-[whatyourname12345](https://clawhub.ai/user/whatyourname12345) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[whatyourname12345](https://clawhub.ai/user/whatyourname12345)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and security testers use this skill to replay supplied raw HTTP requests or payloads against authorized targets and produce a vulnerability validation report with status, conclusion, and response evidence.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can actively probe HTTP targets and may be misused for unauthorized vulnerability testing.
+
+Mitigation: Use only for controlled security testing on systems the operator owns or is explicitly authorized to assess.
+
+Risk: Replay requests may include sensitive cookies, tokens, or headers.
+
+Mitigation: Avoid passing production credentials and redact sensitive headers before replaying or sharing reports.
+
+Risk: HTTPS certificate verification is disabled by default in the replay script.
+
+Mitigation: Treat results cautiously and enable certificate verification or use a trusted controlled test environment when validating findings.
+
+Risk: The documented shell command template can be unsafe with untrusted request data.
+
+Mitigation: Do not pass untrusted request data directly through shell interpolation; validate and quote inputs before execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Security engineers and developers use this skill to replay a specific authorized HTTP request or payload and summarize whether the response contains evidence of a vulnerability such as SQL error-based injection. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Analysis]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can replay vulnerability payloads against live HTTP endpoints. <br>
-Mitigation: Use it only for systems where the operator has explicit authorization and avoid mass scanning or denial-of-service patterns. <br>
-Risk: Raw requests may include Cookie, Authorization, API keys, CSRF tokens, or private body fields. <br>
-Mitigation: Strip sensitive values before replay unless using controlled test credentials. <br>
-Risk: HTTPS certificate validation is disabled by default in the replay helper. <br>
-Mitigation: Review the target and network path before use, and prefer enabling certificate validation when testing systems with valid certificates. <br>
+**Output Format:** [Markdown vulnerability validation report with extracted response evidence and optional JSON from the replay script]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whatyourname12345/openclaw-poc-validator) <br>
-- [Publisher profile](https://clawhub.ai/user/whatyourname12345) <br>
+**Other Properties Related to Output:** [Reports target interface, test payload, response status, analysis conclusion, and critical evidence or stack trace snippet.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown report with command guidance, HTTP response details, and selected evidence snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The replay helper emits JSON containing status code, response headers, and a response body snippet for agent analysis.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

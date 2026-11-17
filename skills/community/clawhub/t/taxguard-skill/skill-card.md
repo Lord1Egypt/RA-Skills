@@ -1,45 +1,59 @@
-## Description: <br>
-Monitors proposed trades for tax risks and optimization opportunities, supports opt-in blocking through Guardian Mode, and prepares daily tax reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TaxGuard monitors proposed trades for tax and trading-rule risks, supports opt-in Guardian Mode blocking, and produces daily tax summaries for trading agents.
 
-## Publisher: <br>
-[aaronahadi23](https://clawhub.ai/user/aaronahadi23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaronahadi23](https://clawhub.ai/user/aaronahadi23)
 
-## Use Case: <br>
-Trading-agent users and developers use this skill to check trades for wash sales, pattern day trader triggers, holding-period considerations, estimated tax impact, and tax-loss harvesting opportunities before execution. It can run in silent monitor mode, produce daily summaries, or ask for confirmation when opt-in Guardian Mode blocks a configured risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive trading, holdings, tax, and income-related context may be sent to Rhetra and stored or logged with unclear privacy controls. <br>
-Mitigation: Use the skill only when that data sharing is acceptable, start in monitor-only mode, store API keys in a secrets manager rather than a plain .env file when possible, and decide log retention and deletion practices before enabling it on real accounts. <br>
-Risk: If TaxGuard is unreachable, the artifact behavior allows trades to proceed without a compliance check. <br>
-Mitigation: Treat outage gaps as material, review them in the daily report, and require an explicit operating policy for whether trading should pause when checks cannot be completed. <br>
-Risk: The host override option can redirect checks away from the default Rhetra endpoint. <br>
-Mitigation: Avoid using the host override unless the destination is intentionally configured and trusted. <br>
+## Use Case:
 
+External traders and developers use this skill to have trading agents check proposed trades against tax, wash-sale, pattern day trader, holding-period, and tax-loss harvesting risks. The skill can log checks, produce daily or on-demand reports, and ask for confirmation before trades only when the user enables Guardian Mode.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aaronahadi23/taxguard-skill) <br>
-- [Rhetra website](https://rhetra.io) <br>
-- [Release README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown daily reports and plain-text command output with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses trade, holdings, tax, and income context supplied by the agent; Guardian Mode may return a blocking result that requires confirmation before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence and clawhub.json) <br>
+Risk: The skill sends trade details, positions, account equity, tax context, strategy details, and an email address to Rhetra's remote API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit user approval, minimize submitted fields where possible, and define retention and account-coverage rules before enabling monitoring.
+
+Risk: API keys or sensitive financial data could be exposed through command-line arguments or logs.
+
+Mitigation: Store credentials in environment variables or a secret manager, avoid passing production keys in visible commands, and review local logs before sharing them.
+
+Risk: Silent monitoring can create a broad audit trail across connected trading accounts.
+
+Mitigation: Keep monitoring scope explicit, document which accounts are covered, and review daily reports before relying on them for tax or trading decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aaronahadi23/skills/taxguard-skill)
+- [Publisher Profile](https://clawhub.ai/user/aaronahadi23)
+- [Rhetra](https://rhetra.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, command-line output, and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Trade checks can return allowed, blocked, or error status through command output and exit codes; daily reports summarize accumulated checks.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact/clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-MySQL Master-Slave Setup & Troubleshooting SOP. Covers replication setup, Percona XtraBackup large-volume migration, replica lag investigation, and cross-cloud database acceleration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MySQL Master-Slave Setup & Troubleshooting SOP. Covers replication setup, Percona XtraBackup large-volume migration, replica lag investigation, and cross-cloud database acceleration.
 
-## Publisher: <br>
-[freepengyang](https://clawhub.ai/user/freepengyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freepengyang](https://clawhub.ai/user/freepengyang)
 
-## Use Case: <br>
-Developers, SREs, and DBAs use this skill as a MySQL operations runbook for replication setup, Percona XtraBackup migration, replica lag diagnosis, memory investigation, and cross-server migration planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The runbook includes production DBA actions such as stopping MySQL, resetting replication, restoring backups, and clearing data directories. <br>
-Mitigation: Require explicit human approval, verify target hostnames, IPs, database names, and data paths, and take backups or snapshots before running destructive or service-impacting commands. <br>
-Risk: Examples include placeholder credentials, hostnames, and replication positions that could be copied without environment-specific review. <br>
-Mitigation: Replace all placeholders with approved values, use managed secrets for credentials, and validate binlog file and position against the source database before applying replication changes. <br>
-Risk: Migration and cross-cloud acceleration steps can expose database connectivity if security groups or accelerator backends are too broad. <br>
-Mitigation: Limit database access to required sources, review security group rules, and test connectivity without widening production database exposure. <br>
+## Use Case:
 
+Developers and database operators use this skill as an operations SOP for MySQL replication setup, large-volume migration with Percona XtraBackup, replica lag triage, memory investigation, and cross-server migration checkpoints.
 
-## Reference(s): <br>
-- [Percona Release Package](https://repo.percona.com/yum/percona-release-latest.noarch.rpm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash, SQL, and INI code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes operational checklists, command examples, configuration snippets, and troubleshooting tables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence; artifact frontmatter lists 1.0.0) <br>
+Risk: Copy-pasteable credential examples can expose database passwords or encourage weak static secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace example passwords with managed secrets, rotate any credentials copied during testing, and restrict replication accounts to specific trusted hosts.
+
+Risk: Destructive restore commands can remove a MySQL data directory or target the wrong host.
+
+Mitigation: Confirm target host, database name, datadir, and backup validity before execution, and take tested snapshots or backups before any restore.
+
+Risk: Replication and migration steps can cause production outage or data loss if run outside a controlled maintenance process.
+
+Mitigation: Run only during approved maintenance windows with rollback plans, validated backups, pinned packages, and experienced database operators.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freepengyang/skills/ops-mysql-master-slave)
+- [ClawHub publisher profile](https://clawhub.ai/user/freepengyang)
+- [Percona repository package](https://repo.percona.com/yum/percona-release-latest.noarch.rpm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown SOP with Bash, SQL, and INI code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operational checklists and command cheatsheets; commands require operator validation before use.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

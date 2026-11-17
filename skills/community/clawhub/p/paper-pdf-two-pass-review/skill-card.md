@@ -1,41 +1,54 @@
-## Description: <br>
-Analyze uploaded CVPR paper PDFs with a strict two-pass workflow: first extracting verifiable facts with page, section, figure, and table evidence, then producing a grounded Chinese research critique. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes uploaded CVPR paper PDFs through a two-pass workflow that extracts evidence-tagged facts and produces a Chinese research critique grounded only in the PDF.
 
-## Publisher: <br>
-[GPIOX](https://clawhub.ai/user/GPIOX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gpiox](https://clawhub.ai/user/gpiox)
 
-## Use Case: <br>
-Researchers, students, and developers use this skill to review uploaded CVPR-style paper PDFs, extract evidence-tagged facts, and generate technical critique and reproducibility notes grounded only in the paper. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Uploaded papers may contain unpublished or private research. <br>
-Mitigation: Use the skill only with PDFs that are appropriate to share with the agent environment. <br>
-Risk: The second pass defaults to Chinese output and may not fit every review workflow. <br>
-Mitigation: Confirm the desired output language before relying on the generated critique. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/GPIOX/paper-pdf-two-pass-review) <br>
-- [Round 1 Fact Extraction Prompt](artifact/references/round1.md) <br>
-- [Round 2 Research Critique Prompt](artifact/references/round2.md) <br>
+## Use Case:
 
+Developers, researchers, and students use this skill to review uploaded CVPR-style paper PDFs, first extracting verifiable facts and then generating an evidence-grounded Chinese critique, reproducibility assessment, and research notes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown fact sheet followed by a Chinese markdown research critique with evidence tags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an uploaded PDF as input; major claims must include evidence tags and missing information must be stated explicitly.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill analyzes uploaded paper PDFs, so sensitive paper content may be processed in the active agent session.
+
+Mitigation: Use it only with PDFs appropriate for the connected agent environment and avoid uploading confidential material unless that use is approved.
+
+Risk: The critique can be incomplete when the uploaded paper lacks reproducibility details or other requested evidence.
+
+Mitigation: Require evidence tags for major claims and explicitly mark missing material as Not provided or Insufficient evidence.
+
+## Reference(s):
+
+- [Round 1 fact extraction prompt](artifact/references/round1.md)
+- [Round 2 critique prompt](artifact/references/round2.md)
+- [ClawHub skill page](https://clawhub.ai/gpiox/skills/paper-pdf-two-pass-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with evidence tags and Chinese critique sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [First pass produces a structured fact sheet; second pass produces a 2000-3000 Chinese-word critique based only on the fact sheet and PDF evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

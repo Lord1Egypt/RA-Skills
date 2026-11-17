@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn75jyeyp95fvy3c83fxady3k9829x58",
-  "slug": "lu-music-player",
+  "name": "lu-music-player",
   "version": "1.0.0",
-  "publishedAt": 1772989775552
+  "semver": "1.0.0",
+  "description": "Mopidy 音乐播放器管理技能",
+  "author": "jesson1222-ship-it",
+  "tags": ["music", "mopidy", "nas", "player", "chinese"],
+  "language": "zh-CN",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/skills",
+  "created": "2026-03-08T00:00:00Z",
+  "updated": "2026-03-08T00:00:00Z"
 }

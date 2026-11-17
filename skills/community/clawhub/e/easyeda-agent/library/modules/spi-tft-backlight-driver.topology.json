@@ -1,0 +1,305 @@
+{
+  "schemaVersion": 1,
+  "kind": "role_topology_module",
+  "source": {
+    "kind": "live_schematic_readback",
+    "containsProjectIdentity": false,
+    "containsOriginalReferenceDesign": false,
+    "evidence": [
+      "official manufacture netlist",
+      "LCSC device identity resolver"
+    ]
+  },
+  "module": {
+    "id": "lib.spi_tft_backlight_driver_live",
+    "title": "SPI TFT 与背光开关",
+    "maturity": "topology_ready",
+    "parts": [
+      {
+        "role": "DISPLAY",
+        "lcsc": "C2890616",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "1a67523763b042979a28407a6f93d651",
+          "name": "N096-1608TBBIG11-H13"
+        },
+        "footprint": "OLED-SMD_ST7735S",
+        "pins": [
+          {
+            "number": "1",
+            "name": "NC",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "2",
+            "name": "NC",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "3",
+            "name": "SDA",
+            "net": "port.DATA"
+          },
+          {
+            "number": "4",
+            "name": "SCL",
+            "net": "port.CLOCK"
+          },
+          {
+            "number": "5",
+            "name": "RS",
+            "net": "port.COMMAND_DATA"
+          },
+          {
+            "number": "6",
+            "name": "RESET",
+            "net": "port.RESET"
+          },
+          {
+            "number": "7",
+            "name": "CS",
+            "net": "port.CS"
+          },
+          {
+            "number": "8",
+            "name": "GND",
+            "net": "port.GND"
+          },
+          {
+            "number": "9",
+            "name": "NC",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "10",
+            "name": "VDD",
+            "net": "port.POWER"
+          },
+          {
+            "number": "11",
+            "name": "LEDK",
+            "net": "internal.03"
+          },
+          {
+            "number": "12",
+            "name": "LEDA",
+            "net": "internal.01"
+          },
+          {
+            "number": "13",
+            "name": "GND",
+            "net": "port.GND"
+          }
+        ]
+      },
+      {
+        "role": "BACKLIGHT_SWITCH",
+        "lcsc": "C20069125",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "f714063fa18048f2956344f6558686ce",
+          "name": "S8050"
+        },
+        "footprint": "SOT-23-3_L2.9-W1.3-P1.90-LS2.3-BR",
+        "pins": [
+          {
+            "number": "1",
+            "name": "B",
+            "net": "internal.02"
+          },
+          {
+            "number": "3",
+            "name": "C",
+            "net": "internal.03"
+          },
+          {
+            "number": "2",
+            "name": "E",
+            "net": "port.GND"
+          }
+        ]
+      },
+      {
+        "role": "BACKLIGHT_SER",
+        "lcsc": "C23345",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "dc350a4449fc446cb76492694e54aa4c",
+          "name": "0603WAF220JT5E"
+        },
+        "footprint": "R0603",
+        "pins": [
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.POWER"
+          },
+          {
+            "number": "1",
+            "name": "1",
+            "net": "internal.01"
+          }
+        ]
+      },
+      {
+        "role": "BASE_SER",
+        "lcsc": "C23138",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "7c80abced0d649bab9903f9c239fa540",
+          "name": "0603WAF3300T5E"
+        },
+        "footprint": "R0603",
+        "pins": [
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.BACKLIGHT_EN"
+          },
+          {
+            "number": "1",
+            "name": "1",
+            "net": "internal.02"
+          }
+        ]
+      },
+      {
+        "role": "BASE_PULLDOWN",
+        "lcsc": "C25804",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "b948db94476e4027ac8953235755ec96",
+          "name": "0603WAF1002T5E"
+        },
+        "footprint": "R0603",
+        "pins": [
+          {
+            "number": "2",
+            "name": "2",
+            "net": "internal.02"
+          },
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.GND"
+          }
+        ]
+      },
+      {
+        "role": "DECOUP",
+        "lcsc": "C14663",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "96b39256cc3f4d80bd3b503deb4f3328",
+          "name": "CC0603KRX7R9BB104"
+        },
+        "footprint": "C0603",
+        "pins": [
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.POWER"
+          },
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.GND"
+          }
+        ]
+      }
+    ],
+    "nets": [
+      {
+        "id": "internal.01",
+        "members": [
+          "BACKLIGHT_SER.1",
+          "DISPLAY.12"
+        ]
+      },
+      {
+        "id": "internal.02",
+        "members": [
+          "BACKLIGHT_SWITCH.1",
+          "BASE_PULLDOWN.2",
+          "BASE_SER.1"
+        ]
+      },
+      {
+        "id": "internal.03",
+        "members": [
+          "BACKLIGHT_SWITCH.3",
+          "DISPLAY.11"
+        ]
+      },
+      {
+        "id": "port.POWER",
+        "members": [
+          "BACKLIGHT_SER.2",
+          "DECOUP.1",
+          "DISPLAY.10"
+        ],
+        "port": "POWER"
+      },
+      {
+        "id": "port.GND",
+        "members": [
+          "BACKLIGHT_SWITCH.2",
+          "BASE_PULLDOWN.1",
+          "DECOUP.2",
+          "DISPLAY.13",
+          "DISPLAY.8"
+        ],
+        "port": "GND"
+      },
+      {
+        "id": "port.CS",
+        "members": [
+          "DISPLAY.7"
+        ],
+        "port": "CS"
+      },
+      {
+        "id": "port.DATA",
+        "members": [
+          "DISPLAY.3"
+        ],
+        "port": "DATA"
+      },
+      {
+        "id": "port.CLOCK",
+        "members": [
+          "DISPLAY.4"
+        ],
+        "port": "CLOCK"
+      },
+      {
+        "id": "port.COMMAND_DATA",
+        "members": [
+          "DISPLAY.5"
+        ],
+        "port": "COMMAND_DATA"
+      },
+      {
+        "id": "port.RESET",
+        "members": [
+          "DISPLAY.6"
+        ],
+        "port": "RESET"
+      },
+      {
+        "id": "port.BACKLIGHT_EN",
+        "members": [
+          "BASE_SER.2"
+        ],
+        "port": "BACKLIGHT_EN"
+      }
+    ],
+    "verification": {
+      "pinNetReadback": "passed",
+      "deviceIdentityResolution": "passed",
+      "geometry": "not_captured",
+      "pcb": "not_tested",
+      "bringup": "not_tested"
+    }
+  }
+}

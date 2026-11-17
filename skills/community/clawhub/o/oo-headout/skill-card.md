@@ -1,41 +1,58 @@
-## Description: <br>
-Headout helps agents search and read Headout bookings, products, cities, categories, inventory, variants, and pricing through OOMOL's oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Headout (headout.com). Use this skill for ANY Headout request — searching and reading data. Whenever a task involves Headout, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve Headout booking, product, city, category, inventory, variant, and pricing data from a connected Headout account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on OOMOL's oo CLI and connected Headout credentials. <br>
-Mitigation: Install only if you trust OOMOL's oo CLI, and review the OOMOL and Headout connection setup before use. <br>
-Risk: Future write or destructive Headout connector actions could change account state. <br>
-Mitigation: Confirm the exact payload, target, and expected effect with the user before running any action marked write or destructive. <br>
+## Use Case:
 
+External users can use the skill to search and read Headout information through their connected account, including cities, products, categories, inventory, and bookings.
 
-## Reference(s): <br>
-- [Headout homepage](https://www.headout.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with bash command snippets and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OOMOL-connected Headout account and live schema inspection before constructing connector payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release and SKILL.md metadata) <br>
+Risk: The required CLI can make broader, persistent changes to agent skills during startup synchronization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review CLI installation and agent-skill changes, use a reviewed fixed CLI release, and set OO_SKILLS_SYNC_DISABLED=1 before invoking oo when startup synchronization is not wanted.
+
+Risk: Remote installers, binaries, and hosted connector behavior were not verified.
+
+Mitigation: Review the remote components and approve installation separately before enabling the skill.
+
+Risk: The connected Headout account determines which account data the skill can access.
+
+Mitigation: Connect only the Headout account needed for the task.
+
+## Reference(s):
+
+- [Headout](https://www.headout.com)
+- [Headout API documentation](https://developers.headout.com/docs/api/)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text]
+
+**Output Format:** [JSON connector results with natural-language summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Response fields depend on the selected Headout action.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

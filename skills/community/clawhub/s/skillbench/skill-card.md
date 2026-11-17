@@ -1,44 +1,56 @@
-## Description: <br>
-Track skill versions, benchmark performance, compare improvements, and get self-improvement signals. Integrates with tasktime and ClawVault. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track skill versions, benchmark performance, compare improvements, and get self-improvement signals. Integrates with tasktime and ClawVault.
 
-## Publisher: <br>
-[G9Pedro](https://clawhub.ai/user/G9Pedro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[g9pedro](https://clawhub.ai/user/g9pedro)
 
-## Use Case: <br>
-Developers and agent operators use SkillBench to track agent skill versions, record benchmark outcomes, compare regressions or improvements, and generate signals for skill maintenance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Benchmark records may include secrets, customer names, sensitive project names, or detailed failure messages, especially when syncing to ClawVault. <br>
-Mitigation: Review benchmark content before recording or syncing; omit sensitive details and sync only data approved for ClawVault. <br>
-Risk: Watch and scheduled testing can create recurring activity. <br>
-Mitigation: Enable watch or schedule only when continuous monitoring is intended, and review generated cron or workflow configuration before use. <br>
-Risk: The skill depends on the @versatly/skillbench npm package and the skillbench binary. <br>
-Mitigation: Install only after verifying that the npm package source is trusted for your environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SkillBench on ClawHub](https://clawhub.ai/G9Pedro/skillbench) <br>
-- [ClawVault](https://clawvault.dev) <br>
-- [tasktime skill](https://clawhub.com/skills/tasktime) <br>
-- [ClawHub](https://clawhub.com) <br>
+## Use Case:
 
+Developers and agent operators use SkillBench to record skill benchmark results, compare skill versions, run benchmark checks, export reports, and identify improvement signals.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, JSON, Code, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with inline shell commands, JSON reports, generated HTML dashboard files, badge output, and cron or workflow configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the skillbench CLI and may sync benchmark data to ClawVault when the user enables sync.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs an unpinned global npm CLI package.
+
+Mitigation: Use a pinned package version and inspect the CLI source or package provenance before installing.
+
+Risk: Benchmark metadata may sync to ClawVault, including sensitive task names or error details.
+
+Mitigation: Confirm sync behavior can be disabled or reviewed before recording sensitive benchmark data.
+
+## Reference(s):
+
+- [SkillBench ClawHub page](https://clawhub.ai/g9pedro/skills/skillbench)
+- [Publisher profile](https://clawhub.ai/user/g9pedro)
+- [ClawVault](https://clawvault.dev)
+- [tasktime](https://clawhub.com/skills/tasktime)
+- [ClawHub](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe JSON, Markdown, dashboard, badge, CI, and cron outputs produced by the SkillBench CLI.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

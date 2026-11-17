@@ -1,41 +1,54 @@
-## Description: <br>
-Session Recover helps agents reconstruct and summarize current or previous OpenClaw sessions from local JSONL session archives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent recover and summarize current or previous OpenClaw session content from local session archive files.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to recover, search, and summarize recent session history after context loss or reset. It is intended for sessions the user owns and can access locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local session archives that can contain private conversations, secrets, internal reasoning, configuration values, and code. <br>
-Mitigation: Use it only on sessions you own, confirm the exact file or session key before parsing, and redact sensitive content before sharing any output. <br>
-Risk: Recovered context may include more historical conversation content than the user intended to expose. <br>
-Mitigation: Prefer narrow tail, keyword, and context options when possible, and review recovered excerpts before including them in summaries or follow-up work. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to locate session archives, parse JSONL records, and produce a concise session recall report with key points, unfinished tasks, and next steps.
 
-## Reference(s): <br>
-- [parse_session.py](references/parse_session.py) <br>
-- [ClawHub skill page](https://clawhub.ai/axelhu/session-recover) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown session recall report with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include recovered message excerpts, summaries, unfinished tasks, key context, and source file paths or session keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can expose archived conversations, hidden thinking fields, partial tool results, credentials, tokens, or sensitive code from local session files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on sessions the user owns or is explicitly authorized to inspect, and redact thinking fields, tool results, credentials, tokens, and sensitive code from recovery reports.
+
+Risk: The workflow can parse the wrong private, group, or reset archive if the target session is selected too broadly.
+
+Mitigation: Confirm the target session key or file path before parsing and limit the report to the requested session and necessary excerpts.
+
+## Reference(s):
+
+- [parse_session.py](references/parse_session.py)
+- [Session Recover ClawHub page](https://clawhub.ai/axelhu/skills/session-recover)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown session recall report with inline shell commands and extracted text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local file paths, message excerpts, and summarized session context; should omit credentials, tokens, private thinking, sensitive tool results, and sensitive code.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

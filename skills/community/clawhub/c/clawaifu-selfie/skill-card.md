@@ -1,41 +1,54 @@
-## Description: <br>
-Your AI waifu companion that sends anime-style selfies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Your AI waifu companion that sends anime-style selfies.
 
-## Publisher: <br>
-[swancho](https://clawhub.ai/user/swancho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[swancho](https://clawhub.ai/user/swancho)
 
-## Use Case: <br>
-External users with configured fal.ai and Telegram credentials use this skill to generate anime-style selfie images from short scene prompts and send them to a configured Telegram chat. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selfie prompts, generated image URLs, and captions are sent to external fal.ai/xAI and Telegram services. <br>
-Mitigation: Use the skill only when that data sharing is acceptable, and prefer explicit selfie requests or confirmation before sending. <br>
-Risk: The skill requires credentials that can generate images and send messages to a Telegram chat. <br>
-Mitigation: Keep FAL_KEY, BOT_TOKEN, and TELEGRAM_CHAT_ID private; use a dedicated Telegram bot and the intended chat ID. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/swancho/clawaifu-selfie) <br>
-- [fal.ai API keys dashboard](https://fal.ai/dashboard/keys) <br>
-- [Grok Imagine Edit endpoint](https://fal.run/xai/grok-imagine-image/edit) <br>
+## Use Case:
 
+External users invoke this skill when they want an agent to generate an anime-style selfie from a short scene or situation description and send it to a configured Telegram chat.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Shell execution with terminal status text and a generated image URL; successful runs also send an image to Telegram.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FAL_KEY, BOT_TOKEN, and TELEGRAM_CHAT_ID environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.14 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, generated images, captions, and Telegram destination details leave the local machine through third-party services.
+
+Mitigation: Use a dedicated low-privilege Telegram bot and Fal key, verify the chat ID, and avoid sensitive captions or context.
+
+Risk: Security evidence reports a verified file-disclosure bug in the Telegram upload command.
+
+Mitigation: Fix the curl form handling to use literal form values before using this skill where local files or credentials matter.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/swancho/skills/clawaifu-selfie)
+- [Fal API key dashboard](https://fal.ai/dashboard/keys)
+- [Grok Imagine Edit endpoint](https://fal.run/xai/grok-imagine-image/edit)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, text, configuration]
+
+**Output Format:** [Shell command invocation with status text and a generated image URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FAL_KEY, BOT_TOKEN, and TELEGRAM_CHAT_ID environment variables; sends generated image content through Fal and Telegram.]
+
+## Skill Version(s):
+
+1.0.14 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

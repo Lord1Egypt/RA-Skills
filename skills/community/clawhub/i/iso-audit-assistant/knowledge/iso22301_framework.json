@@ -1,0 +1,40 @@
+{
+  "standard": "ISO 22301:2019 业务连续性管理体系",
+  "clause_keywords": {
+    "4": ["组织环境", "业务连续性", "相关方"],
+    "5": ["领导作用", "业务连续性方针", "职责"],
+    "6": ["策划", "业务影响分析", "风险评估", "BCP"],
+    "7": ["支持", "能力", "演练", "成文信息"],
+    "8": ["运行", "业务连续性策略", "响应", "恢复"],
+    "9": ["绩效评价", "内部审核", "管理评审", "演练评审"],
+    "10": ["改进", "不符合", "纠正措施"]
+  },
+  "high_voltage_lines": [
+    {"id": "hv-bc-bia", "name_zh": "业务影响分析(BIA)完成", "name_en": "Business Impact Analysis",
+     "keywords_zh": ["业务影响分析", "BIA", "恢复时间目标", "RTO", "恢复点目标", "RPO"], "keywords_en": ["BIA", "RTO", "RPO"],
+     "description_zh": "须开展BIA，确定关键活动及恢复时间/点目标，作为连续性策略输入。",
+     "compliance_statement": ["已完成BIA并识别关键活动", "明确了RTO/RPO指标"]},
+    {"id": "hv-bc-strategy", "name_zh": "业务连续性策略与解决方案", "name_en": "BC strategy",
+     "keywords_zh": ["连续性策略", "备用", "冗余", "灾备"], "keywords_en": ["continuity strategy", "contingency"],
+     "description_zh": "须基于BIA制定连续性策略与具体解决方案（备份、冗余、异地等）。",
+     "compliance_statement": ["已制定连续性策略与方案", "关键资源有备用/冗余"]},
+    {"id": "hv-bc-exercise", "name_zh": "演练与测试", "name_en": "Exercising",
+     "keywords_zh": ["演练", "测试", "应急演练", "桌面推演"], "keywords_en": ["exercise", "test"],
+     "description_zh": "须定期演练业务连续性计划并评估有效性。",
+     "compliance_statement": ["已制定演练计划并定期实施", "演练结果用于改进BCP"]},
+    {"id": "hv-bc-response", "name_zh": "中断响应与恢复", "name_en": "Response & recovery",
+     "keywords_zh": ["应急响应", "业务恢复", "危机管理"], "keywords_en": ["incident response", "recovery"],
+     "description_zh": "须建立中断事件响应、危机沟通与业务恢复机制。",
+     "compliance_statement": ["已建立事件响应与沟通机制", "恢复流程明确并可用"]}
+  ],
+  "required_procedures": [
+    {"id": "GP-DOC", "name": "文件控制程序", "clause": "7.5", "match_keywords": ["文件控制"], "priority": "high"},
+    {"id": "GP-REC", "name": "记录控制程序", "clause": "7.5", "match_keywords": ["记录控制"], "priority": "high"},
+    {"id": "GP-CAP", "name": "不合格与纠正措施控制程序", "clause": "10.2", "match_keywords": ["纠正措施"], "priority": "high"},
+    {"id": "GP-IA", "name": "内部审核程序", "clause": "9.2", "match_keywords": ["内部审核"], "priority": "high"},
+    {"id": "GP-MR", "name": "管理评审程序", "clause": "9.3", "match_keywords": ["管理评审"], "priority": "high"},
+    {"id": "SP-BC-001", "name": "业务影响分析(BIA)程序", "clause": "8.2.3", "match_keywords": ["业务影响分析", "BIA"], "priority": "high"},
+    {"id": "SP-BC-002", "name": "业务连续性策略与计划(BCP)程序", "clause": "8.3/8.5", "match_keywords": ["连续性策略", "BCP", "业务连续性计划"], "priority": "high"},
+    {"id": "SP-BC-003", "name": "演练与测试程序", "clause": "8.4", "match_keywords": ["演练", "测试"], "priority": "high"}
+  ]
+}

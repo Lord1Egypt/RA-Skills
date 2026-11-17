@@ -1,0 +1,26 @@
+{
+  "name": "@rascalagnt001/cinema-suite",
+  "version": "1.1.0",
+  "description": "Cinema Agent remote-maintained cinema skill suite",
+  "type": "module",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "cinema-suite.json",
+    "openclaw.plugin.json"
+  ],
+  "openclaw": {
+    "kind": "skill",
+    "skill": "SKILL.md",
+    "runtimeTargets": [
+      "openclaw",
+      "cinema-agent"
+    ],
+    "compat": {
+      "pluginApi": ">=2026.4.5"
+    },
+    "build": {
+      "openclawVersion": "2026.4.5"
+    }
+  }
+}

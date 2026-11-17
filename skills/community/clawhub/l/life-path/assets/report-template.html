@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人生之路 · 六阶段智慧报告</title>
+    <style>
+        :root {
+            --bg: #f5f0e8;
+            --bg-card: #fdfbf7;
+            --ink: #2c2c2c;
+            --ink-light: #666;
+            --ink-faint: #999;
+            --gold: #c4a35a;
+            --gold-light: #e6d5a3;
+            --vermillion: #c1272d;
+            --jade: #5b8c5a;
+            --jade-light: #a3c9a3;
+            --border: #d6cfc0;
+            --shadow: rgba(0,0,0,0.06);
+            --accent: #8b6914;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Georgia", "Songti SC", "SimSun", "Noto Serif SC", serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.8;
+            padding: 0;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #2c2c2c 0%, #4a4a4a 100%);
+            color: #f5f0e8;
+            padding: 60px 20px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(ellipse at center, rgba(196,163,90,0.08) 0%, transparent 60%);
+        }
+        .hero-title {
+            font-size: 2.4em;
+            letter-spacing: 0.15em;
+            margin-bottom: 12px;
+            position: relative;
+        }
+        .hero-subtitle {
+            font-size: 1.05em;
+            color: var(--gold-light);
+            letter-spacing: 0.08em;
+            position: relative;
+        }
+        .hero-quote {
+            margin-top: 30px;
+            font-size: 0.95em;
+            color: rgba(245,240,232,0.7);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 2;
+            position: relative;
+        }
+        .hero-meta {
+            margin-top: 20px;
+            font-size: 0.8em;
+            color: rgba(245,240,232,0.5);
+            position: relative;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        /* Section */
+        .section { margin-bottom: 50px; }
+        .section-title {
+            font-size: 1.4em;
+            color: var(--ink);
+            border-left: 4px solid var(--gold);
+            padding-left: 14px;
+            margin-bottom: 24px;
+            letter-spacing: 0.05em;
+        }
+        .section-title .en {
+            font-size: 0.6em;
+            color: var(--ink-faint);
+            font-weight: normal;
+            margin-left: 8px;
+        }
+
+        /* Timeline */
+        .timeline-wrap {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 36px 24px;
+            box-shadow: 0 2px 12px var(--shadow);
+        }
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+            margin-top: 10px;
+        }
+        .timeline::before {
+            content: "";
+            position: absolute;
+            top: 28px;
+            left: 5%;
+            right: 5%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold-light), var(--gold), var(--gold-light));
+            border-radius: 2px;
+        }
+        .stage-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            transition: transform 0.3s ease;
+        }
+        .stage-node:hover { transform: translateY(-4px); }
+        .stage-dot {
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 3px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: var(--ink);
+            transition: all 0.3s ease;
+        }
+        .stage-node.current .stage-dot {
+            background: var(--vermillion);
+            border-color: var(--vermillion);
+            color: #fff;
+            box-shadow: 0 0 0 6px rgba(193,39,45,0.15);
+            transform: scale(1.12);
+        }
+        .stage-node.passed .stage-dot {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: #fff;
+        }
+        .stage-age {
+            font-size: 0.85em;
+            color: var(--ink-light);
+            margin-top: 8px;
+            font-weight: bold;
+        }
+        .stage-label {
+            font-size: 0.78em;
+            color: var(--ink-light);
+            margin-top: 4px;
+            text-align: center;
+            max-width: 80px;
+        }
+        .stage-node.current .stage-label { color: var(--vermillion); font-weight: bold; }
+
+        /* Stage Cards */
+        .stage-card {
+            background: var(--bg-card);
+            border-radius: 14px;
+            padding: 28px 30px;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 8px var(--shadow);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .stage-card:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        .stage-card.current {
+            border-color: var(--vermillion);
+            border-width: 2px;
+        }
+        .stage-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        .stage-card-title {
+            font-size: 1.25em;
+            color: var(--ink);
+        }
+        .stage-card-title .age {
+            color: var(--gold);
+            font-size: 0.7em;
+            margin-left: 8px;
+        }
+        .stage-card-badge {
+            font-size: 0.75em;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: var(--gold-light);
+            color: var(--accent);
+        }
+        .stage-card-badge.current {
+            background: var(--vermillion);
+            color: #fff;
+        }
+        .stage-original {
+            font-size: 1.05em;
+            color: var(--accent);
+            margin-bottom: 6px;
+            font-style: italic;
+        }
+        .stage-translation {
+            font-size: 0.92em;
+            color: var(--ink-light);
+            margin-bottom: 14px;
+        }
+        .stage-detail {
+            display: none;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px dashed var(--border);
+        }
+        .stage-card.expanded .stage-detail { display: block; }
+        .stage-detail h4 {
+            font-size: 0.95em;
+            color: var(--ink);
+            margin: 12px 0 6px;
+        }
+        .stage-detail p {
+            font-size: 0.9em;
+            color: var(--ink-light);
+            margin-bottom: 8px;
+        }
+        .stage-detail ul {
+            margin-left: 20px;
+            font-size: 0.9em;
+            color: var(--ink-light);
+        }
+        .stage-detail li { margin-bottom: 4px; }
+        .expand-hint {
+            font-size: 0.8em;
+            color: var(--ink-faint);
+            text-align: right;
+            margin-top: 8px;
+        }
+
+        /* Assessment Result */
+        .assessment-box {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 32px 30px;
+            box-shadow: 0 2px 12px var(--shadow);
+            border-top: 4px solid var(--vermillion);
+        }
+        .assessment-result {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .assessment-stage {
+            font-size: 2em;
+            color: var(--vermillion);
+            margin: 8px 0;
+        }
+        .assessment-desc {
+            font-size: 0.95em;
+            color: var(--ink-light);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .score-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .score-item {
+            text-align: center;
+            padding: 16px 8px;
+            background: rgba(196,163,90,0.08);
+            border-radius: 10px;
+        }
+        .score-label {
+            font-size: 0.8em;
+            color: var(--ink-light);
+            margin-bottom: 6px;
+        }
+        .score-value {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--ink);
+        }
+        .score-bar {
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        .score-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold), var(--vermillion));
+            border-radius: 3px;
+            transition: width 0.8s ease;
+        }
+
+        /* Action Guide */
+        .action-list {
+            list-style: none;
+            counter-reset: action;
+        }
+        .action-item {
+            counter-increment: action;
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 20px 24px 20px 60px;
+            margin-bottom: 12px;
+            position: relative;
+            box-shadow: 0 1px 6px var(--shadow);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        .action-item:hover {
+            box-shadow: 0 3px 14px rgba(0,0,0,0.08);
+            border-color: var(--gold);
+        }
+        .action-item::before {
+            content: counter(action);
+            position: absolute;
+            left: 20px; top: 20px;
+            width: 28px; height: 28px;
+            background: var(--gold);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+        .action-title {
+            font-size: 1.02em;
+            color: var(--ink);
+            margin-bottom: 4px;
+            font-weight: bold;
+        }
+        .action-desc {
+            font-size: 0.88em;
+            color: var(--ink-light);
+        }
+
+        /* Quotes */
+        .quotes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .quote-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 24px 20px;
+            box-shadow: 0 1px 6px var(--shadow);
+            border-left: 3px solid var(--gold);
+            position: relative;
+        }
+        .quote-text {
+            font-size: 1.02em;
+            color: var(--ink);
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+        .quote-source {
+            font-size: 0.8em;
+            color: var(--ink-faint);
+            text-align: right;
+        }
+
+        /* Wisdom */
+        .wisdom-box {
+            background: linear-gradient(135deg, #2c2c2c, #4a4a4a);
+            color: #f5f0e8;
+            border-radius: 16px;
+            padding: 36px 30px;
+            text-align: center;
+        }
+        .wisdom-box h3 {
+            font-size: 1.2em;
+            color: var(--gold-light);
+            margin-bottom: 16px;
+            letter-spacing: 0.1em;
+        }
+        .wisdom-box p {
+            font-size: 0.95em;
+            line-height: 2;
+            color: rgba(245,240,232,0.85);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .wisdom-box .highlight {
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        /* Comparison */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+        .comparison-table th {
+            background: rgba(196,163,90,0.12);
+            color: var(--ink);
+            padding: 12px 16px;
+            font-size: 0.9em;
+            text-align: left;
+            border-bottom: 2px solid var(--gold);
+        }
+        .comparison-table td {
+            padding: 12px 16px;
+            font-size: 0.88em;
+            color: var(--ink-light);
+            border-bottom: 1px solid var(--border);
+        }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .comparison-table tr:hover td { background: rgba(196,163,90,0.04); }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--ink-faint);
+            font-size: 0.8em;
+            border-top: 1px solid var(--border);
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .timeline { flex-wrap: wrap; gap: 16px; }
+            .timeline::before { display: none; }
+            .stage-node { flex: 0 0 30%; }
+            .score-grid { grid-template-columns: 1fr 1fr; }
+            .quotes-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+    <div class="hero-title">人生之路</div>
+    <div class="hero-subtitle">六阶段智慧报告</div>
+    <div class="hero-quote">
+        吾十有五而志于学，三十而立，四十而不惑，<br>
+        五十而知天命，六十而耳顺，七十而从心所欲，不逾矩。
+    </div>
+    <div class="hero-meta">——《论语·为政》 · 生成时间：{{DATE}}</div>
+</div>
+
+<div class="container">
+
+    <!-- Timeline -->
+    <div class="section">
+        <div class="section-title">人生时间线 <span class="en">Life Timeline</span></div>
+        <div class="timeline-wrap">
+            <div class="timeline">
+                <div class="stage-node {{STAGE1_CLASS}}" onclick="scrollToStage(1)">
+                    <div class="stage-dot">志</div>
+                    <div class="stage-age">15</div>
+                    <div class="stage-label">志于学</div>
+                </div>
+                <div class="stage-node {{STAGE2_CLASS}}" onclick="scrollToStage(2)">
+                    <div class="stage-dot">立</div>
+                    <div class="stage-age">30</div>
+                    <div class="stage-label">而立</div>
+                </div>
+                <div class="stage-node {{STAGE3_CLASS}}" onclick="scrollToStage(3)">
+                    <div class="stage-dot">惑</div>
+                    <div class="stage-age">40</div>
+                    <div class="stage-label">不惑</div>
+                </div>
+                <div class="stage-node {{STAGE4_CLASS}}" onclick="scrollToStage(4)">
+                    <div class="stage-dot">命</div>
+                    <div class="stage-age">50</div>
+                    <div class="stage-label">知天命</div>
+                </div>
+                <div class="stage-node {{STAGE5_CLASS}}" onclick="scrollToStage(5)">
+                    <div class="stage-dot">顺</div>
+                    <div class="stage-age">60</div>
+                    <div class="stage-label">耳顺</div>
+                </div>
+                <div class="stage-node {{STAGE6_CLASS}}" onclick="scrollToStage(6)">
+                    <div class="stage-dot">心</div>
+                    <div class="stage-age">70</div>
+                    <div class="stage-label">从心所欲</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assessment Result -->
+    {{ASSESSMENT_SECTION}}
+
+    <!-- Stage Details -->
+    <div class="section">
+        <div class="section-title">六阶段详解 <span class="en">Six Stages</span></div>
+
+        <div class="stage-card {{STAGE1_CARD_CLASS}}" id="stage-1" onclick="toggleCard(1)">
+            <div class="stage-card-header">
+                <div class="stage-card-title">吾十有五而志于学 <span class="age">15岁</span></div>
+                <span class="stage-card-badge {{STAGE1_BADGE_CLASS}}">{{STAGE1_BADGE}}</span>
+            </div>
+            <div class="stage-original">子曰："吾十有五而志于学。"</div>
+            <div class="stage-translation">十五岁时立志于学习——确立终身求学的方向和内驱力。</div>
+            <div class="stage-detail">
+                <h4>深度解读</h4>
+                <p>"志"是核心——非泛泛而学，而是心中有方向地求学。古代十五岁是入大学之年，从技能学习转向经世致用之学的转折点。孔子在此强调学习的内驱力，而非学习行为本身。"学"涵盖修身、六艺、经世致用，是"成人之学"。</p>
+                <h4>核心品质：志向</h4>
+                <h4>实践建议</h4>
+                <ul>
+                    <li>找到你的"志"——最想深入了解什么？最想成为什么样的人？</li>
+                    <li>建立学习系统——不依赖灵感，建立日常学习习惯</li>
+                    <li>拓宽学习边界——跨学科探索，全面发展</li>
+                    <li>以输出倒逼输入——学到的知识尝试教给别人或用于实践</li>
+                </ul>
+            </div>
+            <div class="expand-hint">点击展开详情 ▾</div>
+        </div>
+
+        <div class="stage-card {{STAGE2_CARD_CLASS}}" id="stage-2" onclick="toggleCard(2)">
+            <div class="stage-card-header">
+                <div class="stage-card-title">三十而立 <span class="age">30岁</span></div>
+                <span class="stage-card-badge {{STAGE2_BADGE_CLASS}}">{{STAGE2_BADGE}}</span>
+            </div>
+            <div class="stage-original">子曰："三十而立。"</div>
+            <div class="stage-translation">三十岁时言行合乎于礼，能在社会生活中独立自主地行动。</div>
+            <div class="stage-detail">
+                <h4>深度解读</h4>
+                <p>"立"是内在的定力——知道自己的方向，有自己的判断标准，不再人云亦云。包含立身（独立自主）、立业（专业能力）、立德（原则底线）、立家（家庭责任）。孔子三十岁开始授徒设教，有了独立的事业和思想体系。</p>
+                <h4>核心品质：独立</h4>
+                <h4>实践建议</h4>
+                <ul>
+                    <li>审视价值体系——列出核心人生原则，检验是否在日常中践行</li>
+                    <li>专业深耕——选择一个方向持续投入，建立不可替代的能力</li>
+                    <li>财务规划——建立储蓄习惯和理财意识</li>
+                    <li>关系经营——在亲密与独立间找到平衡</li>
+                    <li>拒绝攀比——用自己的标准衡量人生</li>
+                </ul>
+            </div>
+            <div class="expand-hint">点击展开详情 ▾</div>
+        </div>
+
+        <div class="stage-card {{STAGE3_CARD_CLASS}}" id="stage-3" onclick="toggleCard(3)">
+            <div class="stage-card-header">
+                <div class="stage-card-title">四十而不惑 <span class="age">40岁</span></div>
+                <span class="stage-card-badge {{STAGE3_BADGE_CLASS}}">{{STAGE3_BADGE}}</span>
+            </div>
+            <div class="stage-original">子曰："四十而不惑。"</div>
+            <div class="stage-translation">四十岁时明白事理而不迷惑——对方向有了深层确信。</div>
+            <div class="stage-detail">
+                <h4>深度解读</h4>
+                <p>"不惑"不是无所不知，而是不被表象迷惑、不被欲望迷惑、不被流言迷惑、不被选择迷惑。是经过大量实践和反思后的通透。30岁确立方向，40岁则对方向有了深层确信。本质是"不惑于外"——外界不再能轻易动摇内心。</p>
+                <h4>核心品质：通透</h4>
+                <h4>实践建议</h4>
+                <ul>
+                    <li>定期复盘——每季度回顾重要决策，优化判断模型</li>
+                    <li>建立"不为清单"——明确哪些事坚决不做</li>
+                    <li>深度阅读经典——读经过时间检验的书</li>
+                    <li>寻找智识伙伴——定期深度交流</li>
+                    <li>练习延迟判断——不急于下结论</li>
+                </ul>
+            </div>
+            <div class="expand-hint">点击展开详情 ▾</div>
+        </div>
+
+        <div class="stage-card {{STAGE4_CARD_CLASS}}" id="stage-4" onclick="toggleCard(4)">
+            <div class="stage-card-header">
+                <div class="stage-card-title">五十而知天命 <span class="age">50岁</span></div>
+                <span class="stage-card-badge {{STAGE4_BADGE_CLASS}}">{{STAGE4_BADGE}}</span>
+            </div>
+            <div class="stage-original">子曰："五十而知天命。"</div>
+            <div class="stage-translation">五十岁时懂得天命——理解宇宙规律和人生使命。</div>
+            <div class="stage-detail">
+                <h4>深度解读</h4>
+                <p>"天命"有三层含义：宇宙的规律、人生的使命、命运与自由的边界。知天命不是消极认命，而是知道边界、接受现实、尽人事、顺应天道。是"不惑"的深化——40岁不惑于事，50岁不惑于命。</p>
+                <h4>核心品质：智慧</h4>
+                <h4>实践建议</h4>
+                <ul>
+                    <li>人生审计——系统回顾前半生，理解命运的脉络</li>
+                    <li>传承计划——思考如何将经验传递给下一代</li>
+                    <li>健康投资——规律体检、科学运动、均衡饮食</li>
+                    <li>简化生活——减少物质追求，关注精神满足</li>
+                    <li>服务他人——从"自我成就"转向"成就他人"</li>
+                </ul>
+            </div>
+            <div class="expand-hint">点击展开详情 ▾</div>
+        </div>
+
+        <div class="stage-card {{STAGE5_CARD_CLASS}}" id="stage-5" onclick="toggleCard(5)">
+            <div class="stage-card-header">
+                <div class="stage-card-title">六十而耳顺 <span class="age">60岁</span></div>
+                <span class="stage-card-badge {{STAGE5_BADGE_CLASS}}">{{STAGE5_BADGE}}</span>
+            </div>
+            <div class="stage-original">子曰："六十而耳顺。"</div>
+            <div class="stage-translation">六十岁时能辨明真假，包容不同的观点和思想。</div>
+            <div class="stage-detail">
+                <h4>深度解读</h4>
+                <p>"耳顺"有三层境界：听之以耳（能听进不同意见）、辨之以心（辨别真伪善恶）、顺之以情（理解每个人的立场）。本质是"心顺"——内心足够强大，外界任何声音都不会造成情绪波动。不是消极忍耐，而是积极的理解。</p>
+                <h4>核心品质：包容</h4>
+                <h4>实践建议</h4>
+                <ul>
+                    <li>练习深度倾听——先听完、听懂，再回应</li>
+                    <li>主动接触不同观点——阅读不同立场的文章</li>
+                    <li>写回忆录——整理人生经验</li>
+                    <li>担任导师角色——以智慧回馈社会</li>
+                    <li>培养宽容心态——先问"他为什么这么想"</li>
+                    <li>享受独处——与自己的内心对话</li>
+                </ul>
+            </div>
+            <div class="expand-hint">点击展开详情 ▾</div>
+        </div>
+
+        <div class="stage-card {{STAGE6_CARD_CLASS}}" id="stage-6" onclick="toggleCard(6)">
+            <div class="stage-card-header">
+                <div class="stage-card-title">七十而从心所欲，不逾矩 <span class="age">70岁</span></div>
+                <span class="stage-card-badge {{STAGE6_BADGE_CLASS}}">{{STAGE6_BADGE}}</span>
+            </div>
+            <div class="stage-original">子曰："七十而从心所欲，不逾矩。"</div>
+            <div class="stage-translation">七十岁时能按内心意愿行事，又不逾越规矩——自由与规则的统一。</div>
+            <div class="stage-detail">
+                <h4>深度解读</h4>
+                <p>这是人生境界的巅峰——"从心所欲"与"不逾矩"看似矛盾，实则统一。经过六十年的修炼，外在规范已内化为人格的一部分，心中欲望已与道义合一。真正的自由不是为所欲为，而是"从心所欲"自然合度——想做的都是该做的。这是"天人合一"在个体生命中的体现。</p>
+                <h4>核心品质：自在</h4>
+                <h4>实践建议</h4>
+                <ul>
+                    <li>追求内外一致——想的、说的、做的趋于统一</li>
+                    <li>简化到极致——物质和精神都做减法</li>
+                    <li>培养直觉力——让正确的判断成为本能</li>
+                    <li>放下执念——接受"本来如此"</li>
+                    <li>享受过程——在做事的过程中找到乐趣</li>
+                    <li>传承智慧——以身示范胜过千言万语</li>
+                </ul>
+            </div>
+            <div class="expand-hint">点击展开详情 ▾</div>
+        </div>
+    </div>
+
+    <!-- Action Guide -->
+    {{ACTION_SECTION}}
+
+    <!-- Quotes -->
+    <div class="section">
+        <div class="section-title">经典金句 <span class="en">Classic Quotes</span></div>
+        <div class="quotes-grid">
+            <div class="quote-card">
+                <div class="quote-text">"三军可夺帅也，匹夫不可夺志也。"</div>
+                <div class="quote-source">——《论语·子罕》</div>
+            </div>
+            <div class="quote-card">
+                <div class="quote-text">"知者不惑，仁者不忧，勇者不惧。"</div>
+                <div class="quote-source">——《论语·子罕》</div>
+            </div>
+            <div class="quote-card">
+                <div class="quote-text">"不患无位，患所以立。"</div>
+                <div class="quote-source">——《论语·里仁》</div>
+            </div>
+            <div class="quote-card">
+                <div class="quote-text">"不知命，无以为君子也。"</div>
+                <div class="quote-source">——《论语·尧曰》</div>
+            </div>
+            <div class="quote-card">
+                <div class="quote-text">"君子和而不同，小人同而不和。"</div>
+                <div class="quote-source">——《论语·子路》</div>
+            </div>
+            <div class="quote-card">
+                <div class="quote-text">"朝闻道，夕死可矣。"</div>
+                <div class="quote-source">——《论语·里仁》</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="section">
+        <div class="section-title">古今对照 <span class="en">Cross-Cultural</span></div>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>孔子六阶段</th>
+                    <th>埃里克森八阶段</th>
+                    <th>核心发展任务</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>志于学 (15)</td>
+                    <td>青春期：同一性 vs 角色混乱</td>
+                    <td>确立方向、形成自我认同</td>
+                </tr>
+                <tr>
+                    <td>而立 (30)</td>
+                    <td>青年期：亲密 vs 孤独</td>
+                    <td>建立根基、独立自主</td>
+                </tr>
+                <tr>
+                    <td>不惑 (40)</td>
+                    <td>中年期：繁衍 vs 停滞</td>
+                    <td>形成判断、做减法</td>
+                </tr>
+                <tr>
+                    <td>知天命 (50)</td>
+                    <td>中年后期</td>
+                    <td>理解命运、找到使命</td>
+                </tr>
+                <tr>
+                    <td>耳顺 (60)</td>
+                    <td>老年期：自我整合 vs 绝望</td>
+                    <td>包容不同、回顾整合</td>
+                </tr>
+                <tr>
+                    <td>从心所欲 (70)</td>
+                    <td>老老年期</td>
+                    <td>内外统一、自由自在</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Wisdom Box -->
+    <div class="section">
+        <div class="wisdom-box">
+            <h3>人生感悟</h3>
+            <p>
+                孔子的六阶段，不是刻板的时间表，而是<span class="highlight">成长的坐标</span>。<br><br>
+                每一阶段的核心不是年龄，而是<span class="highlight">修炼的完成度</span>——<br>
+                是否找到了方向？是否建立了根基？是否形成了判断？<br>
+                是否理解了命运？是否扩展了心胸？是否达到了自在？<br><br>
+                人生不是赛跑，而是<span class="highlight">修行</span>。<br>
+                不必焦虑于年龄，但要在每个阶段完成该完成的功课。<br>
+                如此，方能在时间的长河中，<br>
+                一步步走向内心的<span class="highlight">自由与安宁</span>。
+            </p>
+        </div>
+    </div>
+
+    <div class="footer">
+        人生之路 · 基于《论语·为政》孔子自述六阶段<br>
+        子曰："吾十有五而志于学，三十而立，四十而不惑，五十而知天命，六十而耳顺，七十而从心所欲，不逾矩。"
+    </div>
+
+</div>
+
+<script>
+    function toggleCard(n) {
+        var card = document.getElementById('stage-' + n);
+        card.classList.toggle('expanded');
+        var hint = card.querySelector('.expand-hint');
+        if (card.classList.contains('expanded')) {
+            hint.textContent = '点击收起详情 ▴';
+        } else {
+            hint.textContent = '点击展开详情 ▾';
+        }
+    }
+
+    function scrollToStage(n) {
+        var card = document.getElementById('stage-' + n);
+        if (card) {
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            if (!card.classList.contains('expanded')) {
+                toggleCard(n);
+            }
+        }
+    }
+
+    // Animate score bars on load
+    window.addEventListener('load', function() {
+        var bars = document.querySelectorAll('.score-fill');
+        bars.forEach(function(bar) {
+            var w = bar.getAttribute('data-width');
+            setTimeout(function() { bar.style.width = w + '%'; }, 300);
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,43 +1,54 @@
-## Description: <br>
-Generates performance review drafting templates for self-assessments, manager feedback, KPI summaries, promotion narratives, SMART goals, and 360 feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performance Review generates Chinese-language performance review materials, including self-assessments, manager feedback, KPI summaries, promotion narratives, SMART goals, OKR conversions, and 360-degree feedback templates.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Employees, managers, and HR-adjacent reviewers use this skill to draft structured performance review materials from role, achievement, KPI, goal, or feedback prompts. It is best suited for local drafting workflows where the user reviews and edits the generated text before sharing it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Performance review prompts may include confidential HR or employee details. <br>
-Mitigation: Avoid entering sensitive personal or HR information unless local shell history, terminal output, and any saved files are acceptable for that data. <br>
-Risk: The bundled generic helper script can log command arguments to local history files if invoked. <br>
-Mitigation: Use the documented review script for drafting workflows and inspect local data directories before entering sensitive arguments. <br>
-Risk: Generated review text may overstate achievements or produce wording that needs manager or employee validation. <br>
-Mitigation: Review generated drafts against real evidence, metrics, and company performance-review policy before sharing or submitting them. <br>
+## Use Case:
 
+Employees, managers, and HR reviewers use this skill to draft structured performance review text, KPI summaries, promotion narratives, goals, and feedback templates from user-provided role, achievement, target, and feedback details.
 
-## Reference(s): <br>
-- [Performance Review skill page](https://clawhub.ai/ckchzh/performance-review) <br>
-- [绩效评估使用技巧与最佳实践](tips.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown-style review templates produced by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local command output; no external dependencies are required by the primary review script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Sensitive employee feedback, KPI data, promotion details, or other personnel information may be entered into the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review inputs before use, avoid confidential personnel data unless approved, and handle generated review text under the organization's HR data policies.
+
+Risk: The package includes an under-documented utility that can persist user-entered text in a local data directory and may misrepresent removal behavior.
+
+Mitigation: Use the documented review generator for normal workflows, avoid scripts/script.sh for sensitive data, and inspect or disable local persistence before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/performance-review)
+- [Performance review tips and best practices](artifact/tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style templates with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are generated locally from command-line arguments and may contain placeholders for reviewer completion.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

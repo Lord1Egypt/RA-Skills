@@ -1,44 +1,58 @@
-## Description: <br>
-Analyzes Bilibili, Douyin, and Toutiao video links by downloading video content, extracting frames, and using a local minicpm-v model to summarize the frame content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Bilibili, Douyin, and Toutiao video links by downloading media, extracting frames, using a local minicpm-v model to describe frames, and producing an overall content summary.
 
-## Publisher: <br>
-[murrayhoung](https://clawhub.ai/user/murrayhoung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[murrayhoung](https://clawhub.ai/user/murrayhoung)
 
-## Use Case: <br>
-Developers and content reviewers use this skill to summarize Chinese-platform video links locally. The skill guides an agent through downloading media, extracting representative frames, analyzing frames with local Ollama minicpm-v, and producing a consolidated video summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads video URLs supplied to the agent and may open Douyin pages through browser tooling. <br>
-Mitigation: Use explicit prompts and only provide video links from sources you intend the agent to access. <br>
-Risk: Video downloads and extracted frames are written to a local temporary workspace. <br>
-Mitigation: Avoid unknown or very large links and periodically clean the declared temporary workspace after analysis. <br>
-Risk: Extracted frames are sent to the user's local Ollama service for minicpm-v image analysis. <br>
-Mitigation: Use the skill only when local Ollama processing is intended and acceptable for the video content being analyzed. <br>
+## Use Case:
 
+Developers and external agent users can use this skill to process Chinese social-video URLs, extract representative frames, and summarize visible video content using a local vision model instead of a cloud API.
 
-## Reference(s): <br>
-- [Video Download Reference](artifact/references/download.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/murrayhoung/video-analyzer-cn) <br>
-- [Publisher Profile](https://clawhub.ai/user/murrayhoung) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python snippets, and narrative video summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local workflow guidance and summarized frame analysis; temporary video and image files are created during use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The downloader can fetch broadly scoped URLs and overwrite user-writable files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict downloads to intended Bilibili, Douyin, and Toutiao domains, require confirmation before downloading media, stream with size limits, and write only inside a generated temporary directory with non-conflicting filenames.
+
+Risk: The workflow downloads and processes third-party video content through browser automation and local files.
+
+Mitigation: Use only video URLs the user is authorized to process, keep browser extraction scoped to the requested page, and clean up downloaded videos and extracted frames after analysis.
+
+Risk: Extracted frames are sent to a local Ollama service for vision-model analysis.
+
+Mitigation: Confirm the Ollama endpoint is local and trusted before use, and avoid processing sensitive videos unless local retention and access controls are acceptable.
+
+## Reference(s):
+
+- [Video download scripts](artifact/references/download.md)
+- [ClawHub skill page](https://clawhub.ai/murrayhoung/skills/video-analyzer-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python snippets, and Chinese video-analysis summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a single-stream workflow summary and frame-level descriptions; generated media files and extracted frames are local artifacts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

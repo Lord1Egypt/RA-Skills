@@ -1,53 +1,69 @@
-## Description: <br>
-AI security toolkit for deepfake detection, prompt injection scanning, malware and phishing URL scanning, and AI text detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mind Security helps agents run deepfake detection, prompt-injection scanning, malware and phishing URL checks, and AI-generated text detection.
 
-## Publisher: <br>
-[Canvinus](https://clawhub.ai/user/Canvinus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[canvinus](https://clawhub.ai/user/canvinus)
 
-## Use Case: <br>
-Developers, security analysts, and external users use this skill to run user-invoked checks on media, prompts, URLs, and text for likely AI manipulation, prompt injection, phishing, malware, or AI-generated writing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected text, media, and URLs may be sent to third-party analysis providers. <br>
-Mitigation: Scan only content approved for third-party processing and review each provider's terms before use. <br>
-Risk: Secrets, regulated content, private media, tokenized links, or internal incident-response URLs could be exposed if submitted for scanning. <br>
-Mitigation: Do not scan sensitive material unless provider processing and possible retention are acceptable. <br>
-Risk: Broadly configured API credentials increase exposure across modules that are not being used. <br>
-Mitigation: Set only the API keys needed for the specific checks being run. <br>
+## Use Case:
 
+Developers, security reviewers, and agent operators use this skill to screen media, text, and URLs for AI-generation signals, prompt-injection attempts, and malware or phishing risk before relying on or forwarding content.
 
-## Reference(s): <br>
-- [Mind Security ClawHub Page](https://clawhub.ai/Canvinus/mind-security) <br>
-- [Mind Security Homepage](https://github.com/mind-sec/mind-security) <br>
-- [AI Text Detection Reference](references/ai-text-detection.md) <br>
-- [Deepfake Detection Reference](references/deepfake-detection.md) <br>
-- [URL Threat Scanning Reference](references/malware-scanning.md) <br>
-- [Prompt Injection Detection Reference](references/prompt-injection.md) <br>
-- [BitMind](https://bitmind.ai) <br>
-- [GPTZero Documentation](https://gptzero.me/docs) <br>
-- [VirusTotal](https://virustotal.com) <br>
-- [URLScan.io](https://urlscan.io) <br>
-- [Google Safe Browsing](https://safebrowsing.google.com) <br>
-- [ProtectAI Prompt Injection Model](https://huggingface.co/ProtectAI/deberta-v3-base-prompt-injection-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions and JSON analysis results from invoked scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some checks require API keys and send selected user-provided text, media, or URLs to named third-party services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.4 (source: server release metadata) <br>
+Risk: Scanned text, URLs, images, and videos may be sent to third-party analysis services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, confidential business material, regulated personal data, or private media unless the organization approves those providers and their retention policies; use local-only modes where available for sensitive inputs.
+
+Risk: Optional ML prompt-injection detection uses the llm-guard dependency and a downloaded model when enabled.
+
+Mitigation: Pin and review the optional llm-guard dependency before enabling ML scanning in controlled environments.
+
+Risk: Detection verdicts are screening signals and may be incorrect or incomplete.
+
+Mitigation: Review high-impact findings before action and combine results with application-level security controls and human judgment.
+
+## Reference(s):
+
+- [Mind Security ClawHub Page](https://clawhub.ai/canvinus/skills/mind-security)
+- [Mind Security Homepage](https://github.com/mind-sec/mind-security)
+- [Deepfake Detection](references/deepfake-detection.md)
+- [Prompt Injection Detection](references/prompt-injection.md)
+- [URL Threat Scanning](references/malware-scanning.md)
+- [AI-Generated Text Detection](references/ai-text-detection.md)
+- [BitMind](https://bitmind.ai)
+- [GPTZero Documentation](https://gptzero.me/docs)
+- [ProtectAI Prompt Injection Model](https://huggingface.co/ProtectAI/deberta-v3-base-prompt-injection-v2)
+- [VirusTotal](https://virustotal.com)
+- [URLScan.io](https://urlscan.io)
+- [Google Safe Browsing](https://safebrowsing.google.com)
+- [OWASP LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON objects from command-line scripts, with Markdown reference documentation for setup and interpretation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; API-backed modes use BITMIND_API_KEY, GPTZERO_API_KEY, VIRUSTOTAL_API_KEY, URLSCAN_API_KEY, or GOOGLE_SAFE_BROWSING_KEY when configured.]
+
+## Skill Version(s):
+
+1.2.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

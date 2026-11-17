@@ -1,44 +1,58 @@
-## Description: <br>
-QuickStatic Skills helps agents publish, update, query, and delete anonymous public static sites from zip archives through the QuickStatic API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QuickStatic Skills helps agents publish, update, query, and delete anonymous public static sites through the QuickStatic API.
 
-## Publisher: <br>
-[h5box](https://clawhub.ai/user/h5box) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[h5box](https://clawhub.ai/user/h5box)
 
-## Use Case: <br>
-Developers and agents use this skill to publish static HTML sites from zip files, reuse stable site keys for updates, inspect site state, and remove published sites when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded site contents are public and hosted by an unknown third-party service. <br>
-Mitigation: Do not upload secrets, private data, credentials, or unpublished proprietary assets through this skill. <br>
-Risk: The site_key controls future updates and deletion for a published site. <br>
-Mitigation: Generate one stable site_key per project, store it privately, and avoid exposing it in public logs or repositories. <br>
-Risk: A delete request removes the published site associated with the site_key. <br>
-Mitigation: Query the site first and ask for explicit confirmation before sending a delete request. <br>
+## Use Case:
 
+Developers and agents use this skill to package a static site as a zip, publish it to a public URL, manage a stable site_key for updates, check site status, and intentionally delete a published site.
 
-## Reference(s): <br>
-- [QuickStatic ClawHub release](https://clawhub.ai/h5box/quickstatic) <br>
-- [QuickStatic API base](https://667661.xyz) <br>
-- [Source artifact: skills.md](artifact/skills.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl examples, API parameters, response fields, and error handling notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces API usage instructions for public static-site publishing; it does not include executable installer code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Uploaded zip contents are sent to an external service and become publicly reachable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review site contents before upload and avoid publishing private, sensitive, or unlicensed material.
+
+Risk: A site_key can update or delete the associated public site.
+
+Mitigation: Keep each site_key private and reuse it only for intentional updates to the same project.
+
+Risk: Delete calls remove the public site.
+
+Mitigation: Run the delete call only when removal is intended and confirm the target site_key first.
+
+## Reference(s):
+
+- [QuickStatic ClawHub listing](https://clawhub.ai/h5box/skills/quickstatic)
+- [QuickStatic API base](https://667661.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces API usage guidance for zip upload, custom slug handling, lifecycle checks, error handling, and delete operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

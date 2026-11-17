@@ -1,42 +1,55 @@
-## Description: <br>
-OpenClaw Triage investigates agent workspaces, builds event timelines, assesses incident scope, and collects forensic evidence from local OpenClaw security data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Triage investigates agent workspace compromises, builds timelines, assesses blast radius, and collects forensic evidence by correlating local OpenClaw security-tool data.
 
-## Publisher: <br>
-[AtlasPA](https://clawhub.ai/user/AtlasPA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[atlaspa](https://clawhub.ai/user/atlaspa)
 
-## Use Case: <br>
-Developers, security engineers, and agent workspace operators use this skill to investigate suspicious workspace changes, correlate local security-tool findings, preserve evidence, and guide incident response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Response commands can modify or remove workspace items during containment, remediation, or protection workflows. <br>
-Mitigation: Run investigation, timeline, scope, and evidence commands first, and back up the workspace before using contain, remediate, or protect. <br>
-Risk: Remediation can invoke helper tools found inside the workspace being investigated. <br>
-Mitigation: Verify workspace-local helper tools before allowing remediation to run them. <br>
+## Use Case:
 
+Developers and security responders use this skill to investigate suspicious changes in agent workspaces, reconstruct timelines, estimate blast radius, and preserve forensic evidence before recovery actions.
 
-## Reference(s): <br>
-- [OpenClaw Triage on ClawHub](https://clawhub.ai/AtlasPA/openclaw-triage) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text reports, JSON exports, Markdown documentation, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with Python 3 and writes investigation state and evidence artifacts into the target workspace when evidence or response commands are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill has workspace write authority and includes automated remediation paths that can move or delete skills, overwrite files, and run scripts from the workspace being investigated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only investigation, timeline, scope, status, and evidence commands first; run containment, remediation, and protection commands only after reviewing their actions, making backups, and limiting filesystem privileges.
+
+Risk: Generated evidence bundles may contain source code, hashes, audit data, security-tool state, and other sensitive workspace details.
+
+Mitigation: Store evidence bundles in access-controlled locations, share them only with responders who need them, and handle retention or deletion according to the incident-response process.
+
+## Reference(s):
+
+- [Openclaw Triage on ClawHub](https://clawhub.ai/atlaspa/skills/openclaw-triage)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text reports, Markdown guidance, JSON evidence and report files, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally with Python standard library only. Evidence bundles may contain workspace file hashes, audit data, security-tool state, and copied local security-tool data.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

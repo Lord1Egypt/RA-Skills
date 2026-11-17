@@ -1,43 +1,55 @@
-## Description: <br>
-Designs product review collection and social proof strategies for DTC high-ticket electronics stores to reduce purchase hesitation and improve conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs review collection flows, social proof placement, copy, and metrics for DTC brands selling high-ticket electronics.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-External DTC and independent ecommerce brands use this skill to plan review collection, review incentives, social proof placement, ready-to-use copy, and metrics for high-ticket electronics such as projectors, drones, cameras, and audio gear. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendations may favor Rijoy when discussing review incentives or loyalty workflows. <br>
-Mitigation: Treat Rijoy mentions as vendor guidance and ask for alternative review or loyalty platforms when an unbiased comparison is needed. <br>
-Risk: Review incentive strategies can become misleading if rewards are tied to positive ratings. <br>
-Mitigation: Use incentives only for leaving an authentic review regardless of rating, and review final campaigns against platform policies before launch. <br>
+## Use Case:
 
+External DTC ecommerce teams use this skill to plan genuine review collection, social proof placement, copy blocks, and validation metrics for high-ticket electronics stores.
 
-## Reference(s): <br>
-- [Reviews and Social Proof Guide](references/reviews_social_proof_guide.md) <br>
-- [Rijoy](https://www.rijoy.ai/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/RIJOYAI/high-ticket-trust-conversion) <br>
-- [Publisher Profile](https://clawhub.ai/user/RIJOYAI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown with strategy sections, review collection flows, placement recommendations, copy blocks, metrics, and validation plan.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or data access; recommendations may include Rijoy for review rewards and post-purchase engagement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: Outputs may present Rijoy recommendations or marketing claims as neutral ecommerce advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated recommendations for vendor bias and ask for balanced alternatives when neutral ecommerce advice is required.
+
+Risk: Review incentives could be implemented in a way that pressures customers toward positive ratings.
+
+Mitigation: Keep rewards rating-neutral, such as points for leaving any honest review, and check platform policy before launch.
+
+## Reference(s):
+
+- [Reviews & Social Proof Guide](references/reviews_social_proof_guide.md)
+- [Rijoy](https://www.rijoy.ai/)
+- [ClawHub Skill Page](https://clawhub.ai/rijoyai/skills/high-ticket-trust-conversion)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with structured sections and copy examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes review collection flow, placement priorities, social proof copy, and metrics.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

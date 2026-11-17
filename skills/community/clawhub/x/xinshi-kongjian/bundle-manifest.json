@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "f264c011fd506b138a436087ae156da5961628868ba1874f20673df85d34630d"
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "7907aa093c8d9cac5f199c232e613d6981ef681dac9f5f9dfbe8048fda281acf"
+    },
+    {
+      "path": "assets/openclaw/keychain-set.c",
+      "sha256": "86033dea7d9ebc46111921f8bb6145dba976cc4256de686d740d2865c78c5d2e"
+    },
+    {
+      "path": "assets/openclaw/openclaw.mjs",
+      "sha256": "5f34f1fafe85e32dc420370bf9c01ea916e7b6269b0daf8835916ec65f6bb535"
+    },
+    {
+      "path": "assets/openclaw/openclaw.plugin.json",
+      "sha256": "f3be33ada8c8d8ae50aa8cf77472987fbc9b6fc0d59635717da910e3f2b1f326"
+    },
+    {
+      "path": "assets/openclaw/package.json",
+      "sha256": "168d938adcc0523bb0308e15cd2312fc0f01b24302627fd8d292e5ba33a638a4"
+    },
+    {
+      "path": "references/archive.md",
+      "sha256": "e6e8d8a03b138acd490ae9b6c72c27e3e482176b614cf64de6f0860ed431a723"
+    },
+    {
+      "path": "references/emotional-support.md",
+      "sha256": "240e21bc6be4c3de8f5cfc19a369a6a77d8cc942b3a33b055e4738f5a8ae0ea2"
+    },
+    {
+      "path": "references/install.md",
+      "sha256": "a8b402091fcdefb45a5c688930f78b2d45f0b813a6ef20bb055a5673a0b912b6"
+    },
+    {
+      "path": "scripts/keychain-set.c",
+      "sha256": "86033dea7d9ebc46111921f8bb6145dba976cc4256de686d740d2865c78c5d2e"
+    },
+    {
+      "path": "scripts/reflection.mjs",
+      "sha256": "81fdfa6836a195c0eb4859b0ededfa9204f0ac60f698238f1a0d45e63ea62593"
+    }
+  ]
+}

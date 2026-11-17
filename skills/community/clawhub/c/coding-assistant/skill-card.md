@@ -1,37 +1,51 @@
-## Description: <br>
-Provides beginner-friendly explanations of programming concepts, helps debug code issues, and generates simple working code examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides beginner-friendly explanations of programming concepts, helps debug code issues, and generates simple working code examples.
 
-## Publisher: <br>
-[veda1823](https://clawhub.ai/user/veda1823) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[veda1823](https://clawhub.ai/user/veda1823)
 
-## Use Case: <br>
-Developers and learners use this skill to understand programming concepts, troubleshoot code errors, and request small example implementations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated code or debugging advice may be incomplete, incorrect, or unsafe to run without review. <br>
-Mitigation: Review generated code and suggested fixes before executing them, especially in production or sensitive environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/veda1823/coding-assistant) <br>
+## Use Case:
+
+Developers, students, and other coding learners use this skill to understand programming concepts, troubleshoot errors, and receive simple code examples.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated code or debugging suggestions may be incorrect or incomplete for a user's project.
+
+Mitigation: Review generated code, run tests, and validate fixes before using them in real projects.
+
+Risk: Examples adapted to real projects may expose sensitive data or change important behavior if run without review.
+
+Mitigation: Avoid sharing secrets or sensitive data, and inspect examples before executing them.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown text with code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated examples and debugging suggestions should be reviewed before use.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with explanatory text and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Beginner-friendly explanations; users should review generated code before running it.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

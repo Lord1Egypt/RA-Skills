@@ -1,42 +1,59 @@
-## Description: <br>
-Submits Dataify Builder jobs that collect Facebook post comments by post URL and returns the resulting task ID and status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect comments from a known Facebook post URL. Do not use for the post body, personal profiles, or events.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to configure and submit Dataify Builder tasks for collecting comments from one or more Facebook post URLs, then receive the Dataify task ID and status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Dataify API TOKEN authorizes submission of Facebook comment collection jobs to Dataify. <br>
-Mitigation: Review submitted parameters before approval, provide the token only when needed, and avoid persistent local token storage unless the environment is trusted. <br>
-Risk: Incorrect URLs or parameter values can submit an unintended collection job. <br>
-Mitigation: Confirm the parameter table before submission and rely on the skill's validation for Facebook URL prefix, dropdown values, non-negative limits, and non-empty file names. <br>
+## Use Case:
 
+External users and developers use this skill to submit Dataify collection jobs for comments on a known Facebook post URL, monitor the asynchronous task, and return the collected result.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-facebook-comment-by-url) <br>
-- [Dataify dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [Dataify login](https://dashboard.dataify.com/login?utm_source=skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration guidance, JSON] <br>
-**Output Format:** [Markdown parameter tables and shell commands; the helper script prints a JSON task summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns task_id, status, submitted parameters, file_name, dashboard_url, and a completion message after successful Builder submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill submits Facebook URLs and collection settings to Dataify, creating an external collection job.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the user intends to submit a Dataify job for the specified Facebook post URL and understands that Dataify will process the request.
+
+Risk: The skill uses a Dataify API TOKEN that may be saved in the local environment.
+
+Mitigation: Keep the token out of chat and logs, verify only whether DATAIFY_API_TOKEN is present, and avoid printing or persisting credentials without user confirmation.
+
+Risk: Security evidence notes loose target validation and an adjacent unreviewed runtime import that could see the API token.
+
+Mitigation: Review the helper script and adjacent task runtime before installation or execution, and run it only in an environment where token exposure risk is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dataify-server/skills/dataify-facebook-comment-by-url)
+- [Dataify dashboard](https://dashboard.dataify.com?utm_source=skill)
+- [Dataify login](https://dashboard.dataify.com/login?utm_source=skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON task/result output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return a task identifier, task status, normalized collection parameters, or final collected JSON results.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -88,55 +88,83 @@ def check_gate(checklist: dict[str, list[bool]]) -> tuple[bool, list[str]]:
 def run_release_gate(
     feature: str,
     required_roles: list[str],
-    checklist: dict[str, list[str]],
+    checklist: dict[str, list[dict]],
     log_file: Optional[str] = None,
-    deployer: str = "Pods",
+    deployer: str = "agent",
 ) -> bool:
     """
-    Interactive-style gate runner (for programmatic use in agent pipelines).
+    Gate runner for programmatic use in agent pipelines.
 
-    This function is intentionally simple: it takes a pre-filled checklist
-    (all items as strings), assumes the agent has already verified each one,
-    and logs the result.
+    Validates that:
+    1. All required roles are present in the checklist.
+    2. Every checklist item for each role has passed=True.
 
-    In practice, agents should call this AFTER verifying each checklist item
-    through their own tooling (running tests, reading files, etc.).
+    BLOCKED if any role is missing OR any item has passed=False or is empty.
+    APPROVED only when every item for every required role explicitly passes.
 
     Args:
-        feature: Name of the feature/change.
+        feature: Name of the feature/change being gated.
         required_roles: Roles that must sign off (e.g. ["Dev", "Product"]).
-        checklist: {"Dev": ["Tests pass", "No hardcoded secrets"], ...}
-                   All items are assumed PASSED when passed to this function.
-                   To indicate a failure, raise before calling this function.
+        checklist: {
+            "Dev": [
+                {"item": "Tests pass", "passed": True},
+                {"item": "No hardcoded secrets", "passed": True},
+            ],
+            ...
+        }
         log_file: Optional path to log the decision.
         deployer: Name of the agent or human running the gate.
 
     Returns:
-        True if gate passes, False if any role is missing from checklist.
+        True if ALL required roles present and ALL items passed.
+        False (and logs BLOCKED) if any role missing or any item not passed.
     """
+    failures = []
+
+    # Check all required roles are present
     missing_roles = [r for r in required_roles if r not in checklist]
-    if missing_roles:
-        print(f"[release-gate] BLOCKED: Missing sign-off from: {', '.join(missing_roles)}")
+    for r in missing_roles:
+        failures.append(f"{r}: no sign-off provided")
+
+    # Validate each item in present roles
+    for role in required_roles:
+        if role not in checklist:
+            continue
+        items = checklist[role]
+        if not items:
+            failures.append(f"{role}: checklist is empty")
+            continue
+        for entry in items:
+            if not isinstance(entry, dict) or not entry.get("passed", False):
+                label = entry.get("item", "unknown item") if isinstance(entry, dict) else str(entry)
+                failures.append(f"{role}: '{label}' not cleared")
+
+    roles_log = {}
+    for r in required_roles:
+        role_failures = [f for f in failures if f.startswith(f"{r}:")]
+        roles_log[r] = "PASS" if not role_failures else f"BLOCKED ({'; '.join(role_failures)})"
+
+    if failures:
+        print(f"[release-gate] BLOCKED: {feature}")
+        for f in failures:
+            print(f"  ✗ {f}")
         if log_file:
-            roles = {r: "PASS" for r in checklist}
-            for r in missing_roles:
-                roles[r] = "BLOCKED (no sign-off)"
             log_gate_decision(
                 log_file=log_file,
                 feature=feature,
-                roles=roles,
+                roles=roles_log,
                 result=GateResult.BLOCKED,
                 deployer=deployer,
-                notes=f"Missing roles: {', '.join(missing_roles)}"
+                notes=f"Failures: {'; '.join(failures)}"
             )
         return False
 
-    roles = {r: "PASS" for r in required_roles}
+    print(f"[release-gate] APPROVED: {feature}")
     if log_file:
         log_gate_decision(
             log_file=log_file,
             feature=feature,
-            roles=roles,
+            roles=roles_log,
             result=GateResult.APPROVED,
             deployer=deployer,
         )
@@ -179,11 +207,21 @@ if __name__ == "__main__":
 
     os.unlink(log_path)
 
-    # Demonstrate check_gate
-    all_pass, failures = check_gate({
-        "Dev": [True, True, True],
-        "Product": [True, False],   # one item not cleared
-    })
-    print(f"Gate passed: {all_pass}")
-    if failures:
-        print(f"Failures: {failures}")
+    # Demonstrate run_release_gate with explicit pass/fail items
+    result = run_release_gate(
+        feature="Add Stripe checkout",
+        required_roles=["Dev", "Product"],
+        checklist={
+            "Dev": [
+                {"item": "Tests pass", "passed": True},
+                {"item": "No hardcoded secrets", "passed": True},
+            ],
+            "Product": [
+                {"item": "Pricing page updated", "passed": True},
+                {"item": "Copy accurate", "passed": False},  # blocked
+            ],
+        },
+        log_file=log_path,
+        deployer="agent",
+    )
+    print(f"Gate passed: {result}")  # False — Product item not cleared

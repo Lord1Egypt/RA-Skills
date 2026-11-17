@@ -1,39 +1,50 @@
-## Description: <br>
-Free AI text-to-image generator powered by Alibaba's open-source Wan 2.7 model. No signup needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free AI text-to-image generator powered by Alibaba's open-source Wan 2.7 model. No signup needed.
 
-## Publisher: <br>
-[walex8925](https://clawhub.ai/user/walex8925) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[walex8925](https://clawhub.ai/user/walex8925)
 
-## Use Case: <br>
-External users, content creators, designers, developers, marketers, and students use this skill to generate image prompts and assets through the Wan 2.7 image-generation website. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts or uploaded content may be processed by an external image-generation provider. <br>
-Mitigation: Avoid entering sensitive material unless the user trusts the service and has reviewed its terms, especially for commercial use of generated images. <br>
+## Use Case:
 
+External users, content creators, designers, developers, marketers, and students use this skill to generate AI images from text prompts through the Wan 2.7 web service.
 
-## Reference(s): <br>
-- [Wan 2.7 Image website](https://www.wan27.xyz) <br>
-- [ClawHub skill page](https://clawhub.ai/walex8925/wan27-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text] <br>
-**Output Format:** [Markdown guidance with external website links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill directs the agent and user to an external AI image-generation website; generated images are produced by that external service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Prompts or images submitted to the linked external service may contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the linked service's privacy, copyright, and usage terms before submitting sensitive prompts or images.
+
+## Reference(s):
+
+- [Wan 2.7 Image Website](https://www.wan27.xyz)
+- [ClawHub Skill Page](https://clawhub.ai/walex8925/skills/wan27-image)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown guidance with external website links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides an agent or user to an external web-based image generator; it does not produce local files or execute commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

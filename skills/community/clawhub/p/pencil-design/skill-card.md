@@ -1,47 +1,56 @@
-## Description: <br>
-Create high-quality visual designs such as websites, app screens, dashboards, slides, marketing materials, and social media graphics using the Pencil CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create high-quality visual designs, including websites, app screens, dashboards, slides, marketing materials, social media graphics, UI designs, mockups, wireframes, layouts, webpages, app screens, presentation slides, posters, banners, and marketing assets using the Pencil CLI tool.
 
-## Publisher: <br>
-[gerhardberger](https://clawhub.ai/user/gerhardberger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gerhardberger](https://clawhub.ai/user/gerhardberger)
 
-## Use Case: <br>
-Developers, designers, and agent users use this skill to generate and iterate on visual design assets from natural language prompts through the Pencil CLI. It supports setup, authentication, prompt handling, export, and iteration workflows for design files and rendered images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may prompt an agent to install and run external Pencil CLI tooling. <br>
-Mitigation: Require manual approval for npm installs and prefer pinned package versions before running the CLI. <br>
-Risk: The skill may involve account login, API credentials, or authenticated CLI sessions. <br>
-Mitigation: Approve account login steps manually and avoid exposing credentials in prompts, logs, or generated files. <br>
-Risk: The skill may persist fetched skill instructions or write into agent skill directories. <br>
-Mitigation: Review CDN-fetched skill files and approve any writes to agent skill directories before making them persistent. <br>
-Risk: The skill can create or overwrite local design files during generation and iteration. <br>
-Mitigation: Use versioned output filenames such as design-v2.pen and inspect target paths before allowing overwrites. <br>
+## Use Case:
 
+Developers, designers, and agents use this skill to generate and iterate on visual design artifacts from natural language prompts through the Pencil CLI.
 
-## Reference(s): <br>
-- [Pencil CLI skill file on unpkg](https://unpkg.com/@pencil.dev/cli@latest/SKILL.md) <br>
-- [Pencil CLI skill file on jsDelivr](https://cdn.jsdelivr.net/npm/@pencil.dev/cli@latest/SKILL.md) <br>
-- [OpenClaw skills documentation](https://docs.openclaw.ai/skills/) <br>
-- [ClawHub release page](https://clawhub.ai/gerhardberger/pencil-design) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated .pen design files or exported images when the CLI is run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated design work may create or overwrite local design files; use versioned output filenames for iterations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security review says the skill normalizes running mutable npm or CDN content and replacing persistent agent skill instructions without strong pinning, integrity checks, or consent gates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, project-local @pencil.dev/cli version, verify downloaded SKILL.md contents before activation, and avoid overwriting persistent agent skill directories from @latest CDN URLs.
+
+Risk: The skill can send design prompts and selected design files to external Pencil and Claude-backed AI processing.
+
+Mitigation: Install and run it only when external AI processing is acceptable for the prompts and files involved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gerhardberger/skills/pencil-design)
+- [OpenClaw skills documentation](https://docs.openclaw.ai/skills/)
+- [Pencil CLI SKILL.md on unpkg](https://unpkg.com/@pencil.dev/cli@latest/SKILL.md)
+- [Pencil CLI SKILL.md on jsDelivr](https://cdn.jsdelivr.net/npm/@pencil.dev/cli@latest/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to create .pen design files and exported image files when the Pencil CLI is available and authenticated.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

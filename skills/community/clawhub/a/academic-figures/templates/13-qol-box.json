@@ -1,0 +1,51 @@
+{
+ "_scene": "三组间评分分布比较（箱线图）",
+ "_description": "三组间评分分布比较（箱线图）（box）。用模板自带 _command 一键渲染示例。",
+ "_chart_type": "box",
+ "_command": "python3 scripts/gen_figure.py -t box -d templates/13-qol-box.json -o box.pdf --theme lancet --stats auto --verify",
+ "_caption_template": "图X | 三组生活质量评分分布：联合治疗组中位评分最高（自动显著性标注）。",
+ "_note": "示例数字仅示意；--stats auto 自动加显著性括号（各组 vs 第一组），--stats multi 全两两",
+ "labels": [
+  "Mono",
+  "Combo",
+  "Placebo"
+ ],
+ "series": {
+  "Mono": [
+   55,
+   61,
+   58,
+   64,
+   70,
+   62,
+   59,
+   67,
+   71,
+   60
+  ],
+  "Combo": [
+   68,
+   74,
+   71,
+   79,
+   82,
+   76,
+   70,
+   81,
+   77,
+   73
+  ],
+  "Placebo": [
+   42,
+   48,
+   45,
+   51,
+   47,
+   44,
+   50,
+   46,
+   49,
+   43
+  ]
+ }
+}

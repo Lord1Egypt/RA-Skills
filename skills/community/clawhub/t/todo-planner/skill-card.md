@@ -1,40 +1,53 @@
-## Description: <br>
-Organize todos with priorities, deadlines, and weekly views. Use when adding tasks, planning agendas, tracking progress, reviewing overdue items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize todos with priorities, deadlines, weekly views, progress tracking, and exports through a local command-line todo logger.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-External users and developers use Todo Planner to capture, prioritize, review, search, and export local command-line todo entries for personal or work planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local Bash script on the user's machine. <br>
-Mitigation: Install and run it only when comfortable executing the bundled script in a trusted local shell. <br>
-Risk: Todo entries, logs, and exports are stored as local plaintext files. <br>
-Mitigation: Do not store passwords, secrets, or highly sensitive personal or work information in entries. <br>
+## Use Case:
 
+Individuals and teams use this skill to capture tasks, plan daily or weekly agendas, track progress, review completed work, and search or export local todo records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain1/todo-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; script output is plain text and exports can be JSON, CSV, or TXT.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores plaintext logs and generated exports locally under ~/.local/share/todo-planner/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Local task logs and exports may contain sensitive personal or work details in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets or highly sensitive details, review local file permissions on shared systems, and handle exported files carefully.
+
+Risk: CSV exports can carry spreadsheet-opening risks if todo content is treated as executable formulas.
+
+Mitigation: Review CSV content before opening it in spreadsheet software, especially when entries came from copied or untrusted text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain1/skills/todo-planner)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and local log or export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores plaintext todo logs under ~/.local/share/todo-planner and can export json, csv, or txt files.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

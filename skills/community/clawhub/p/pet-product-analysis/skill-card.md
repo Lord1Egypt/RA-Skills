@@ -1,46 +1,60 @@
-## Description: <br>
-生成专业的宠物科技用品（智能猫砂盆、自动喂食器等）分析文档，包含产品参数对比、真实用户评测收集（小红书/B站）、优缺点分析，并自动筛选排除厂商软广内容。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language analysis reports for pet technology products by combining product specifications, competitor comparisons, public user reviews, and sponsored-content screening.
 
-## Publisher: <br>
-[hwl1413520](https://clawhub.ai/user/hwl1413520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hwl1413520](https://clawhub.ai/user/hwl1413520)
 
-## Use Case: <br>
-External users and content creators use this skill to research smart pet products, compare competing products, filter likely sponsored reviews, and generate structured Markdown buying-analysis reports. It is intended for public product research and recommendation workflows, not for handling private account data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review filtering and sponsored-content detection are heuristic and may misclassify authentic or promotional content. <br>
-Mitigation: Verify source links, compare multiple independent sources, and treat generated buying advice as research support rather than a final purchasing authority. <br>
-Risk: Product prices, availability, firmware features, and user-review sentiment can change over time. <br>
-Mitigation: Refresh searches near the purchase date and include the analysis date and source dates in generated reports. <br>
-Risk: Using private platform content or account-specific data could expose information the skill does not need. <br>
-Mitigation: Use public product information and public reviews by default, and avoid private account data unless permission and need are clear. <br>
+## Use Case:
 
+Pet owners, reviewers, and shopping researchers use this skill to compare smart cat litter boxes, automatic feeders, water fountains, and related pet devices before purchase. It helps produce structured, source-linked reports with product ratings, authenticity screening, and buying guidance.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/hwl1413520/pet-product-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/hwl1413520) <br>
-- [Analysis framework](references/ANALYSIS_FRAMEWORK.md) <br>
-- [Sponsored content guide](references/SPONSORED_CONTENT_GUIDE.md) <br>
-- [Report template](assets/report_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with product comparisons, review summaries, scoring tables, source links, and purchase guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured review data and credibility ratings when the helper script is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill may search public web platforms and ecommerce pages, which can expose sensitive prompt details if users provide private account information or personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use public product names and non-sensitive requirements, and avoid sharing private account details or sensitive personal data.
+
+Risk: Product prices, reviews, and sponsorship signals change over time, so stale or incomplete public information can affect recommendations.
+
+Mitigation: Include the analysis date, cite sources, and cross-check multiple current public sources before acting on purchase guidance.
+
+Risk: Sponsored-content screening is heuristic and can misclassify authentic reviews or promotional posts.
+
+Mitigation: Label source credibility, disclose low-confidence sources, and keep purchase advice conditional when evidence is mixed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hwl1413520/skills/pet-product-analysis)
+- [Pet Product Analysis Framework](references/ANALYSIS_FRAMEWORK.md)
+- [Sponsored Content Screening Guide](references/SPONSORED_CONTENT_GUIDE.md)
+- [Report Template](assets/report_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Chinese-language Markdown report with comparison tables, source links, ratings, and purchase guidance; optionally structured JSON/CSV or document exports when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include public source links and generated product comparison tables; report quality depends on current web search results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,52 +1,69 @@
-## Description: <br>
-Find and download digital resources such as videos, audio, ebooks, academic papers, software, images, fonts, courses, and other media using CLI workflows, resource directories, cloud-drive search references, and search techniques. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and download digital resources from URLs and resource directories, including ebooks, papers, media, software, cloud-drive links, torrents, and public media assets.
 
-## Publisher: <br>
-[hAcKlyc](https://clawhub.ai/user/hAcKlyc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hacklyc](https://clawhub.ai/user/hacklyc)
 
-## Use Case: <br>
-External users and developers use this skill to choose download tools, construct shell commands, locate resource directories, and follow workflows for retrieving digital content they are authorized to access. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide broad downloading activity, including from sources that may host unauthorized or unsafe content. <br>
-Mitigation: Use it only for content you are authorized to access, prefer official or open-access sources, and verify downloaded files before opening or installing them. <br>
-Risk: Some workflows use browser cookies for authenticated downloads, which can expose account access if reused or mishandled. <br>
-Mitigation: Avoid exporting or reusing browser cookies unless necessary, keep cookie files local and short-lived, and remove them after use. <br>
-Risk: Installer and helper scripts invoke package managers and third-party command-line tools that affect the local environment. <br>
-Mitigation: Run installers manually, review commands before execution, and use an isolated environment when possible. <br>
-Risk: The security review flags an unsafe aria2 RPC listen-all example in the artifact guidance. <br>
-Mitigation: Do not run aria2 RPC examples that listen on all interfaces; bind local services to localhost and require authentication when RPC is needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hAcKlyc/download-anything) <br>
-- [Ebooks, Academic Papers & Comics](references/ebooks.md) <br>
-- [Video & TV](references/video.md) <br>
-- [Music](references/music.md) <br>
-- [Software](references/software.md) <br>
-- [Media Assets](references/media-assets.md) <br>
-- [Cloud Drive Search](references/cloud-search.md) <br>
-- [Educational Resources](references/education.md) <br>
-- [Tools Reference](references/tools-reference.md) <br>
-- [Search Techniques](references/search-techniques.md) <br>
+## Use Case:
 
+External users and developers use this skill to choose download tools, search resource directories, and generate shell-command workflows for retrieving authorized digital content.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and script usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose command-line download workflows that create local files or invoke external tools.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can direct users toward piracy-associated sources, rotating mirrors, torrents, and cloud-drive search engines.
+
+Mitigation: Use the skill only for content the user is authorized to access, and avoid piracy-oriented source lists or mirror-hunting workflows.
+
+Risk: The toolkit installer invokes package managers and may install multiple command-line tools through brew, pip, npm, apt, or dnf.
+
+Mitigation: Review each command before execution and prefer pinned versions or operating-system-packaged dependencies over the bulk installer.
+
+Risk: Some workflows use browser cookies or cookie-export options for authenticated downloads.
+
+Mitigation: Avoid browser-cookie options unless using a dedicated low-risk browser profile and the download is authorized.
+
+Risk: aria2 network-service patterns can expose remote-control download behavior if RPC is enabled insecurely.
+
+Mitigation: Do not expose aria2 RPC; keep any download automation bound to trusted local interfaces with appropriate access controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hacklyc/skills/download-anything)
+- [Cloud Drive Search](references/cloud-search.md)
+- [Ebooks, Academic Papers & Comics](references/ebooks.md)
+- [Educational Resources](references/education.md)
+- [Media Assets: Images, Video, Audio & Fonts](references/media-assets.md)
+- [Music & Audio Downloads](references/music.md)
+- [Search Techniques & Direct Link Extraction](references/search-techniques.md)
+- [Software Downloads](references/software.md)
+- [CLI Tools Reference](references/tools-reference.md)
+- [Video, Film & TV Downloads](references/video.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and reference links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local command execution and file downloads; users should review commands before running them.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

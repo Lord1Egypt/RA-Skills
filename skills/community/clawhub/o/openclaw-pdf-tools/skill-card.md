@@ -1,41 +1,58 @@
-## Description: <br>
-A local PDF toolkit for merging, splitting, compressing, converting, and extracting text from PDF files without network access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pdf Toolkit helps agents run local PDF merge, split, compression, conversion, and text extraction workflows without network access.
 
-## Publisher: <br>
-[newaiguy](https://clawhub.ai/user/newaiguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[newaiguy](https://clawhub.ai/user/newaiguy)
 
-## Use Case: <br>
-Developers and document-processing users can use this skill to run local PDF merge, split, compression, conversion, and text-extraction workflows while keeping files offline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted filenames, paths, or page-range inputs could trigger unintended local command execution. <br>
-Mitigation: Use trusted documents and simple trusted filenames, review commands before execution, and run the skill in a sandbox when handling untrusted files. <br>
-Risk: Relaxing ImageMagick PDF policy can broaden system-wide PDF processing exposure. <br>
-Mitigation: Avoid globally changing ImageMagick PDF policy unless the operational risk is understood and accepted. <br>
-Risk: PDF passwords supplied on the command line can be exposed through shell history or process listings. <br>
-Mitigation: Avoid placing sensitive PDF passwords directly on the command line; prefer safer secret-handling workflows where available. <br>
+## Use Case:
 
+Developers and document automation agents use this skill to process PDFs locally, including merging, splitting, compressing, converting between PDFs and images, and extracting text. It is intended for offline document utility workflows where files remain on the user's machine.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and local file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local PDF utilities such as poppler-utils, Ghostscript, and ImageMagick.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and skill frontmatter) <br>
+Risk: Unsafe shell command construction can allow crafted filenames or page ranges to affect local command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted file paths and validated page-range inputs, and run the skill without elevated privileges.
+
+Risk: The documentation recommends changing the global ImageMagick PDF policy, which can weaken host-wide PDF handling protections.
+
+Mitigation: Avoid relaxing the global policy unless the host impact is understood and the change can be reversed.
+
+Risk: PDF passwords passed directly in shell commands may be exposed through command history or process listings.
+
+Mitigation: Do not put real PDF passwords directly in shell commands; use safer secret-handling patterns outside this skill when sensitive documents are involved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/newaiguy/skills/openclaw-pdf-tools)
+- [ClawHub publisher profile](https://clawhub.ai/user/newaiguy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown instructions with JavaScript CLI commands and generated PDF, image, or text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally using system PDF utilities such as Poppler, Ghostscript, ImageMagick, img2pdf, or pdftk when installed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, skill frontmatter, and manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

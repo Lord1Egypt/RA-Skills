@@ -1,45 +1,56 @@
-## Description: <br>
-Voight-Kampff Test is a Blade Runner-inspired empathy assessment that guides an agent through questions, scoring, and an informal human/replicant-style classification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a Blade Runner-inspired Chinese-language empathy questionnaire for entertainment, education, and agent or user self-assessment.
 
-## Publisher: <br>
-[aznikline](https://clawhub.ai/user/aznikline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aznikline](https://clawhub.ai/user/aznikline)
 
-## Use Case: <br>
-External users and agents use this skill for entertainment role-play and informal empathy-style questioning, producing an empathy index and classification. It should not be used for real identity, employment, security, legal, safety, or trust decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to collect sensitive emotional and behavioral observations and assign labels to a person or agent. <br>
-Mitigation: Use it only as an explicit entertainment or role-play assessment, disclose the purpose before starting, allow questions to be skipped, and avoid storing or sharing responses without consent. <br>
-Risk: The generated classification could be mistaken for a real identity, trust, employment, security, legal, or safety assessment. <br>
-Mitigation: Present results as fictional and informal, and do not use them for consequential decisions or claims about a person's identity or trustworthiness. <br>
-Risk: The referenced web version supports microphone-based interaction, which can introduce recording and site-trust concerns. <br>
-Mitigation: Avoid the external microphone-enabled web version unless the user separately trusts the site and understands any recording or microphone behavior. <br>
+## Use Case:
 
+External users and agent developers use this skill to conduct a themed empathy questionnaire, score responses, and produce an empathy index with a HUMAN, UNCERTAIN, or REPLICANT-style classification. It should be used only in a clearly opt-in entertainment or educational context, not for identity, employment, security, legal, medical, or mental-health decisions.
 
-## Reference(s): <br>
-- [Voight-Kampff Test questions](references/questions.md) <br>
-- [Voight-Kampff Test analysis guide](references/analysis.md) <br>
-- [Command-line test runner](scripts/test_runner.py) <br>
-- [Web version](https://aznikline.github.io/blade-runner-test/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text assessment report with interactive question prompts and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include an empathy score, classification, confidence, observations, and usage cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill asks for sensitive personal reflections and observations that could be misused as real identity, employment, security, legal, medical, or mental-health judgments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a controlled, clearly opt-in entertainment or educational setting, tell subjects what will be asked and recorded, allow questions to be skipped, and state that results are not valid for consequential decisions.
+
+Risk: The skill discusses recording reaction time, facial or pupil observations, and assessment reports, which can create privacy and retention concerns.
+
+Mitigation: Avoid collecting facial or pupil observations, minimize notes to what is necessary for the session, and disable or tightly control report saving and retention.
+
+## Reference(s):
+
+- [Voight-Kampff Test page](https://clawhub.ai/aznikline/skills/voight-kampff-test)
+- [GitHub Pages demo](https://aznikline.github.io/blade-runner-test/)
+- [Question Bank](references/questions.md)
+- [Result Analysis Guide](references/analysis.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text assessment report, with optional Python command-line execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include scored answers, empathy index, classification, confidence, automation signals, and operator notes.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

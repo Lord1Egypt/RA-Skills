@@ -1,42 +1,59 @@
-## Description: <br>
-Transcribes publicly accessible audio or video URLs into JSON transcripts and best-effort plain text using Aliyun DashScope. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribe publicly accessible audio or video URLs with Aliyun speech services. Use when the user wants speech-to-text via Aliyun DashScope, needs transcript JSON or extracted plain text, or wants to process a cloud-accessible media URL into transcription results.
 
-## Publisher: <br>
-[chenggongdu](https://clawhub.ai/user/chenggongdu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenggongdu](https://clawhub.ai/user/chenggongdu)
 
-## Use Case: <br>
-Developers and external users use this skill to submit cloud-accessible media URLs, including signed Qiniu URLs, to Aliyun DashScope and receive transcription JSON plus extracted text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted media URLs and resulting transcript data are shared with Aliyun DashScope. <br>
-Mitigation: Only submit media the user intends to transcribe, and use short-lived signed URLs for private media. <br>
-Risk: Credential exposure could allow unauthorized DashScope API use. <br>
-Mitigation: Use a dedicated or revocable API key through environment variables and never hardcode credentials. <br>
+## Use Case:
 
+Developers and automation users use this skill to transcribe one or more publicly accessible audio or video URLs with Aliyun DashScope and return both structured JSON and extracted plain text.
 
-## Reference(s): <br>
-- [Aliyun DashScope](https://dashscope.aliyun.com/) <br>
-- [Aliyun speech environment variables](references/env-example.md) <br>
-- [ClawHub skill page](https://clawhub.ai/chenggongdu/aliyun-speech-transcriber) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Text, Shell commands, Configuration] <br>
-**Output Format:** [JSON with transcript text and task metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an Aliyun DashScope API key and externally accessible media URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and _meta.json) <br>
+Risk: Media URLs and their audio or video contents are sent to Aliyun DashScope for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only media URLs whose contents may be disclosed to Aliyun for transcription, and avoid sensitive internal-only media unless that disclosure is approved.
+
+Risk: Aliyun API credentials could be exposed if copied into commands, source files, or shared logs.
+
+Mitigation: Provide credentials through ASR_DASHSCOPE_API_KEY or DASHSCOPE_API_KEY environment variables and do not hardcode or print them.
+
+Risk: Public or signed media URLs may remain accessible beyond the intended transcription workflow.
+
+Mitigation: Prefer scoped signed URLs for private media, limit their lifetime where possible, and share only URLs intended for transcription.
+
+## Reference(s):
+
+- [Aliyun DashScope](https://dashscope.aliyun.com/)
+- [Aliyun speech environment variables](references/env-example.md)
+- [ClawHub skill page](https://clawhub.ai/chenggongdu/skills/aliyun-speech-transcriber)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration]
+
+**Output Format:** [JSON response with transcript text and transcription metadata; agent guidance may include Markdown and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ASR_DASHSCOPE_API_KEY or DASHSCOPE_API_KEY and publicly accessible media URLs; model, language hints, polling interval, and timeout are configurable through environment variables.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

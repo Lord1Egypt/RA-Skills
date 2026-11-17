@@ -1,45 +1,59 @@
-## Description: <br>
-Six Polymarket market-scanning and trading-signal tools for NegRisk arbitrage, latency arbitrage, BTC scalping, alpha scanning, universe scanning, and edge detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polymarket Alpha Suite provides Node.js tools for scanning Polymarket prediction markets for arbitrage, latency, BTC momentum, universe, and edge signals.
 
-## Publisher: <br>
-[aiagent234-bit](https://clawhub.ai/user/aiagent234-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiagent234-bit](https://clawhub.ai/user/aiagent234-bit)
 
-## Use Case: <br>
-Prediction-market traders and agent operators use this skill to scan Polymarket markets, surface possible arbitrage or edge opportunities, and run paper-trading workflows before considering manual or live execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for wallet or API credentials for live trading, and the security evidence warns not to use a primary wallet private key. <br>
-Mitigation: Use paper-trading mode first, use a separate low-balance trading wallet or limited-scope API credentials, and keep any .env file out of version control. <br>
-Risk: The security evidence rates the release as suspicious and notes that the code mostly scans markets and records paper-trading signals rather than independently verified live order placement. <br>
-Mitigation: Treat results as market-scanning signals, manually verify order books and market conditions before trading, and avoid relying on claimed performance as a guarantee. <br>
-Risk: Local output files may reveal trading interests or strategy history. <br>
-Mitigation: Store generated data files locally with appropriate access controls and remove them when they are no longer needed. <br>
+## Use Case:
 
+External developers and trading analysts use this skill to run Node.js-based public market scans, dry-run signal monitoring, and local exports for Polymarket opportunity research.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/aiagent234-bit/polymarket-alpha-suite) <br>
-- [README](README.md) <br>
-- [Setup guide](SETUP.md) <br>
-- [Polymarket](https://polymarket.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON files written by the tools] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some tools can save local JSON history or market-analysis files under data/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The skill asks for sensitive trading and wallet credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use public-data scans and dry-run modes only; do not provide wallet private keys or live trading credentials to this version.
+
+Risk: The release advertises live automation that the reviewed code does not actually implement.
+
+Mitigation: Treat generated signals as informational output that requires manual review, not as verified automated trade execution.
+
+Risk: Continuous monitoring commands can keep running and write local JSON files under the skill directory.
+
+Mitigation: Run watch, cron, or nohup modes only when continuous monitoring is intentional, and review or clean local data files as needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiagent234-bit/skills/polymarket-alpha-suite)
+- [Publisher profile](https://clawhub.ai/user/aiagent234-bit)
+- [Polymarket](https://polymarket.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, JSON files]
+
+**Output Format:** [Markdown instructions with bash commands, terminal output, and optional JSON export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+; public-data scans can run without credentials; dry-run and export modes may write local JSON files under data/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

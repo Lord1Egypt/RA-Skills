@@ -1,42 +1,59 @@
-## Description: <br>
-Public-transit schedules and live data for Amtrak, BART, Deutsche Bahn, Swiss SBB, BC Ferries, BVG Berlin, and other transit services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Public-transit schedules and live data for Amtrak, BART, Deutsche Bahn, Swiss SBB, BC Ferries, BVG Berlin, and other transit services.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and external users use this skill to discover transit service agents, read each agent's query contract, and fetch live departures, station metadata, ferry capacity, or multi-modal journey data through Pilot Protocol. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends transit queries through Pilot Protocol over a remote overlay network. <br>
-Mitigation: Install only when Pilot Protocol and the pilotctl daemon are trusted, and review remote-query behavior before deployment. <br>
-Risk: The artifact lists bike-share entries even though its own scope directs bike-share use to a separate traffic skill. <br>
-Mitigation: Treat bike-share coverage as ambiguous and use the intended traffic skill for city bike-share unless the publisher clarifies the scope. <br>
+## Use Case:
 
+Developers and operators use this skill to query Pilot Protocol transit service agents for live departures, station lookups, multi-modal journey planning, and normalized inbox responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-service-agents-transit) <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [Pilot skills catalog](https://teoslayer.github.io/pilot-skills/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents toward read-only transit queries whose results may include plain text help, ACK envelopes, normalized JSON inbox data, or prose summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Transit or location-related queries are sent to remote Pilot Protocol service agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that use of Pilot Protocol is acceptable for the deployment and avoid sending sensitive itinerary or location data unless that exposure is approved.
+
+Risk: The inspected release has a minor scope mismatch around listed bike-share agents.
+
+Mitigation: Verify the current agent catalogue with a fresh list-agents query and use the traffic bike-share skill for city bike-share requests when appropriate.
+
+Risk: The skill depends on pilotctl, a running daemon, network 9 access, and the list-agents directory service.
+
+Mitigation: Check those prerequisites before use and treat unavailable services as an operational dependency rather than a skill failure.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-service-agents-transit)
+- [Pilot Skills](https://teoslayer.github.io/pilot-skills/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Transit agent responses may arrive asynchronously in the pilotctl inbox and may include normalized JSON envelopes or prose summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

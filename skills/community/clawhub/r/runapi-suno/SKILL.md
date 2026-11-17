@@ -1,6 +1,6 @@
 ---
 name: suno
-description: Generate and transform music with Suno through RunAPI. Use when the user asks an agent to create, extend, or transform music and audio with Suno. Default to the RunAPI CLI for one-off generation; use SDKs only when the user is integrating RunAPI into an app or backend.
+description: "Generate and transform music or compose lyrics with Suno through RunAPI. Use when the user asks an agent to create, extend, transform music/audio, generate or blend lyrics, prepare voice validation phrases, or create reusable custom voices with Suno. Default to the RunAPI CLI for one-off generation; use SDKs only when the user is integrating RunAPI into an app or backend."
 documentation: https://runapi.ai/models/suno.md
 provider_page: https://runapi.ai/providers/suno.md
 catalog: https://runapi.ai/models.md
@@ -18,65 +18,112 @@ metadata:
     envVars:
     - name: RUNAPI_API_KEY
       required: false
-      description: Optional RunAPI API key; runapi login or saved CLI config can also authenticate the runapi binary.
+      description: Optional RunAPI API key; agents should prefer environment auth or saved CLI config. Browser login is interactive fallback only.
 ---
 
 # Suno on RunAPI
 
-Generate and transform music with Suno through RunAPI. The default path for one-off agent tasks is the `runapi` CLI; SDKs are for application integration.
+## Choose route
 
-## Routing decision
+- For a one-off artifact or result, use the registered `suno` service in the `runapi` CLI. If the installed command catalog does not list it, stop and report the missing service instead of inventing a command.
+- For an app, backend, worker, library, webhook pipeline, or production codebase, go directly to **Integrate with SDK**. Never shell out to the CLI as the production runtime.
 
-- One-off generation, editing, or transformation for the user → use the **CLI path** with the `runapi` binary.
-- Building an app, backend, worker, library, or production codebase → use the **SDK integration path**.
+## Discover contract
 
-## CLI path
-
-The `runapi` binary is the runtime dependency. Authenticate with `runapi login` (browser) or set `RUNAPI_API_KEY`; a saved CLI config also works — no required environment variable.
-
-Inspect the available actions and request fields with CLI help:
+Authenticate, then inspect the installed command catalog and the selected operation's current contract:
 
 ```shell
+runapi auth status > auth.json
+jq -e '.authenticated == true' auth.json
 runapi suno --help
-runapi suno text-to-music --help
+runapi suno <operation> --help
+curl --fail --location https://runapi.ai/docs/api/suno/<operation>.md --output contract.md
 ```
 
-Run a one-off task (synchronous — polls until the task completes):
+If authentication is false, stop before submitting. Ask the user to provide a valid `RUNAPI_API_KEY`, or import a user-provided key from stdin with `runapi auth import-token --token -`; use interactive browser login only when the user explicitly requests it. Choose `<operation>` only from service help. Treat command help as authoritative for the installed operation, model, and top-level field roster. Treat its API Reference as authoritative for the complete request schema, nested fields, conditional rules, task behavior, and response variants. If the two surfaces disagree, stop and report the contract mismatch instead of guessing.
+
+Temporary Contract Bridges:
+- For a custom voice workflow, complete a validation-phrase operation, create and verify the custom voice, then pass its completed `voice_id` as `persona_id` with `persona_type: "voice"` to a supported music-generation operation. Remove when: The installed command catalog exposes the complete custom-voice operation sequence and the `voice_id` to `persona_id` handoff.
+
+## Build request
+
+Create `request.json` as valid JSON using only fields accepted by the discovered operation contract. For the chosen model and values, evaluate every applicable conditional rule as a set: satisfy every required field, omit every forbidden field, and stop on unresolved contradictions.
+
+Traverse nested objects and arrays before execution. Close every relationship stated by the discovered contract, including uniqueness constraints and cross-references between nested values.
+
+For a discovered local media input, including file-typed fields and top-level media URL fields, put an agent-readable local file path directly in `request.json`. The CLI consumes file fields as declared and uploads local paths in top-level media URL fields. Use `runapi files create` only when the user needs a reusable URL, provides Base64, or the discovered contract explicitly requires a separate upload.
+
+Validate the file before sending it:
 
 ```shell
-runapi suno text-to-music --input-file request.json
+jq empty request.json
 ```
 
-Submit asynchronously and poll separately:
+## Execute
+
+Use the branch matching the selected operation's discovered task behavior. Submit exactly once.
+
+For an asynchronous operation:
 
 ```shell
-runapi suno text-to-music --async --input-file request.json
-runapi wait <task-id> --service suno --action text-to-music
+runapi suno <operation> --async --input-file request.json > task.json
+task_id="$(jq -er '.id' task.json)"
+runapi wait "$task_id" --service suno --action <operation> > result.json
 ```
 
-Available actions: `text-to-music`, `extend-music`, `generate-artwork`, `cover-audio`, `add-instrumental`, `add-vocals`, `separate-audio-stems`, `generate-midi`, `convert-audio`, `visualize-music`, `generate-lyrics`, `get-timestamped-lyrics`, `replace-section`, `create-mashup`, `text-to-sound`, `generate-persona`, `boost-style`.
+For a synchronous operation:
 
-## SDK integration path
+```shell
+runapi suno <operation> --input-file request.json > result.out
+```
 
-When integrating Suno into an app, backend, worker, or library — not for one-off tasks — use a RunAPI SDK package:
+Do not use `--async` or `runapi wait` for a synchronous operation. For an asynchronous operation, stop after validating `task.json` only when the user explicitly asks for background execution, polling, or webhook integration; report the task id without claiming the deliverable is complete.
 
-- JavaScript / TypeScript: `@runapi.ai/suno`
-- Ruby: `runapi-suno`
-- Go: `github.com/runapi-ai/suno-sdk/go`
+## Verify
+
+A success status is not the deliverable. Read and validate the complete response according to the discovered result contract. Preserve the complete non-media result in the exact requested format, including JSON, text, SRT, or VTT.
+
+For every requested media deliverable listed anywhere in the response, download all of them rather than returning only the first URL. Before downloading, derive its expected MIME type or family from response metadata when present, then the selected output format, then an unambiguous result field such as `videos`, `images`, or `audios` in the API Reference. The Catalog-declared fallback families for this skill are `audio/*`. Stop only when no single expected type or family can be established from those sources.
+
+For every downloaded file, require both a non-empty file and the expected MIME type or family:
+
+```shell
+curl --fail --location <deliverable-url> --output <downloaded-file>
+for file in <downloaded-files>; do
+  expected_mime=<expected-MIME-or-family-pattern-for-this-file>
+  test -s "$file"
+  [[ "$(file --brief --mime-type "$file")" == $expected_mime ]]
+done
+```
+
+Do not report completion when any requested deliverable is missing, empty, or has an unexpected MIME type. Record `Skill Conformance` separately from `Task Outcome` so a service failure does not hide whether this recipe was followed.
+
+## Recover or stop
+
+- Correct a request shape at most once, and only when the discovered contract or returned validation error identifies the correction.
+- Retry a transient transport failure at most once, and only when evidence confirms that no task was created, no billing occurred, and retrying is safe.
+- If waiting times out or loses transport after `task.json` exists, preserve the error and rerun `runapi wait` for that same task at most once. Never submit a replacement task.
+- On a terminal RunAPI or service failure, preserve the task/error evidence and stop. Keep the selected model and capability, and do not submit another paid request without user authorization.
+- If the contract is missing a fact required to build or verify the request, stop and report the contract gap. Do not turn a product defect into a permanent skill workaround.
+
+## Integrate with SDK
+
+Use this route only for application or production-code integration. Open the current RunAPI SDK reference below, select the package for the target language and `Suno`, and confirm its install command, client methods, request types, response types, and error classes before coding. Build the request from the same discovered product contract and apply the same deliverable verification and stop rules. Do not invoke `runapi` as a subprocess from production code.
 
 ## References
 
 - Model overview, pricing, and rate limits: https://runapi.ai/models/suno.md
-- Provider comparison: https://runapi.ai/providers/suno.md
+- Provider overview: https://runapi.ai/providers/suno.md
 - Full model catalog: https://runapi.ai/models.md
+- SDK integration: https://github.com/runapi-ai/suno-sdk
 
 ## Variants
-
-- [v3.5](https://runapi.ai/models/suno/v3.5.md)
-- [v4](https://runapi.ai/models/suno/v4.md)
-- [v4.5](https://runapi.ai/models/suno/v4.5.md)
-- [v4.5 all](https://runapi.ai/models/suno/v4.5-all.md)
-- [v4.5 plus](https://runapi.ai/models/suno/v4.5-plus.md)
-- [v5](https://runapi.ai/models/suno/v5.md)
-- [v5.5](https://runapi.ai/models/suno/v5.5.md)
-
+- `suno-v4`: https://runapi.ai/models/suno/v4.md
+- `suno-v4.5`: https://runapi.ai/models/suno/v4.5.md
+- `suno-v4.5-all`: https://runapi.ai/models/suno/v4.5-all.md
+- `suno-v4.5-plus`: https://runapi.ai/models/suno/v4.5-plus.md
+- `suno-v5`: https://runapi.ai/models/suno/v5.md
+- `suno-v5.5`: https://runapi.ai/models/suno/v5.5.md
+- `suno-v6`: https://runapi.ai/models/suno/v6.md
+- `suno-v6-mini`: https://runapi.ai/models/suno/v6-mini.md
+- `suno-v6-wild`: https://runapi.ai/models/suno/v6-wild.md

@@ -1,44 +1,63 @@
-## Description: <br>
-Feishu Room Booking helps agents query room availability, reserve meeting rooms, manage room preferences, scan calendars for missing rooms, and maintain waitlists for ByteDance-internal Feishu users. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu Room Booking helps agents configure tenant room catalogs, query Feishu meeting-room availability, book or rebook rooms, manage room preferences, poll waitlists, and maintain workspace timelines for Feishu users.
 
-## Publisher: <br>
-[qiushibang](https://clawhub.ai/user/qiushibang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiushibang](https://clawhub.ai/user/qiushibang)
 
-## Use Case: <br>
-Employees use this skill to find and reserve Feishu meeting rooms, apply personal room preferences, and remediate accepted calendar events that lack a confirmed room. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically change calendar room reservations during scans or waitlist processing without fresh user confirmation. <br>
-Mitigation: Use confirm-before-booking or dry-run mode for scans and waitlists unless the deployment explicitly allows automatic room remediation. <br>
-Risk: The skill requires Feishu calendar and resource-booking authority and includes local preference data. <br>
-Mitigation: Install only in trusted Feishu environments, remove bundled real user preference data before release, and restrict preference list or delete actions to trusted administrators. <br>
+## Use Case:
 
+Employees and their agents use this skill to find and reserve Feishu meeting rooms, import tenant-specific room resources, and manage preferences or waitlists for scheduled meetings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qiushibang/feishu-room-booking) <br>
-- [room-mapping.json](references/room-mapping.json) <br>
-- [user-preferences.json](references/user-preferences.json) <br>
-- [room-waitlist.json](references/room-waitlist.json) <br>
-- [weekly-workspace.json](references/weekly-workspace.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands plus JSON or table script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes room availability, booking status, waitlist state, and preference or workspace updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server release evidence) <br>
+Risk: The skill requires current-user Feishu calendar access, including attendee reads and calendar or room-resource writes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the requested Feishu permissions and confirming the user is comfortable granting calendar access.
+
+Risk: Automatic rebooking and waitlist polling can submit room bookings without a fresh confirmation in some flows.
+
+Mitigation: Require explicit user opt-in before enabling automatic rebooking or waitlist polling, and verify room RSVP state before reporting success.
+
+Risk: Local JSON files may contain employee IDs, meeting summaries, room choices, event IDs, and workplace-location history.
+
+Mitigation: Review, protect, and periodically remove generated local JSON state files according to the user's data-handling requirements.
+
+Risk: The server security verdict is suspicious because the skill can read calendar details, store workplace data locally, and write calendar resources.
+
+Mitigation: Review the skill before deployment and use dry-run or status commands before enabling write-capable workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiushibang/skills/feishu-room-booking)
+- [Publisher profile](https://clawhub.ai/user/qiushibang)
+- [Room mapping catalog](references/room-mapping.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and command-line output, including JSON or table-formatted room and booking results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Feishu current-user authorization through lark-cli and local JSON state files for tenant setup, preferences, waitlists, and workspace history.]
+
+## Skill Version(s):
+
+3.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

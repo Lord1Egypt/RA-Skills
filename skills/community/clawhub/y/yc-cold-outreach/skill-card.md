@@ -1,40 +1,56 @@
-## Description: <br>
-Expert in Y Combinator (YC) cold email outreach techniques based on Startup School principles. Use to draft, critique, or iterate on cold emails to potential customers, partners, or investors. Based on Aaron Epstein's methodology for high-conversion outreach. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert in Y Combinator (YC) cold email outreach techniques based on Startup School principles. Use to draft, critique, or iterate on cold emails to potential customers, partners, or investors. Based on Aaron Epstein's methodology for high-conversion outreach.
 
-## Publisher: <br>
-[pors](https://clawhub.ai/user/pors) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pors](https://clawhub.ai/user/pors)
 
-## Use Case: <br>
-External founders, startup teams, and go-to-market operators use this skill to draft, critique, and iterate on targeted cold outreach emails for potential customers, partners, or investors. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Cold outreach can become spammy, misleading, or non-compliant if used for impersonation, bulk automated emailing, or false personalization. <br>
-Mitigation: Use the skill for truthful, targeted, manual outreach and follow applicable consent and anti-spam rules. <br>
-Risk: Personalized outreach may overstate familiarity or credibility when source facts are weak. <br>
-Mitigation: Verify personalization details and social-proof claims before sending any drafted message. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [YC Cold Email Outreach - Reference Guide](references/yc-principles.md) <br>
-- [ClawHub skill page](https://clawhub.ai/pors/yc-cold-outreach) <br>
+## Use Case:
 
+External users, founders, and go-to-market teams use this skill to draft, critique, and iterate cold outreach emails for potential customers, partners, or investors. It focuses on targeted, concise messages with one clear next step.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain-text outreach drafts, critiques, checklists, and revision guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only writing aid; no code execution, account access, or email sending.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Cold outreach drafts may include inaccurate claims about the sender, company, product, customers, or recipient relationship.
+
+Mitigation: Verify factual claims, social proof, credentials, and personalization details before sending.
+
+Risk: Persuasion-focused outreach can conflict with anti-spam rules, consent expectations, or recipient preferences.
+
+Mitigation: Use compliant recipient lists, respect opt-outs, and review messages against applicable outreach and privacy requirements.
+
+Risk: Personalized wording can imply personal knowledge or credentials the sender does not have.
+
+Mitigation: Keep personalization truthful and avoid pretending to have relationships, access, experience, or endorsements that are not real.
+
+## Reference(s):
+
+- [YC Cold Email Outreach - Reference Guide](references/yc-principles.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with drafted email copy, critique notes, and revision guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, shell commands, persistence, or hidden system access are produced.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

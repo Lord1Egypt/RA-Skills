@@ -1,0 +1,11 @@
+{
+  "_comment": "TKSeller skill config. data_service.base_url points to the SaaS backend.",
+  "data_service": {
+    "base_url": "http://54.160.24.241:8771"
+  },
+  "poll": {
+    "interval_seconds": 30,
+    "max_duration_seconds": 10800,
+    "cron_job_id": "tkseller-poll"
+  }
+}

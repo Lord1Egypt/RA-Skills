@@ -1,43 +1,59 @@
-## Description: <br>
-Automates the Fiverr gig lifecycle by creating gigs, sending buyer offers and proposals, managing inbox replies, collecting reviews, and reporting earnings through browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Fiverr gig lifecycle by creating gigs, sending buyer offers and proposals, managing inbox replies, collecting reviews, and reporting earnings through browser automation.
 
-## Publisher: <br>
-[ssidharhubble](https://clawhub.ai/user/ssidharhubble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssidharhubble](https://clawhub.ai/user/ssidharhubble)
 
-## Use Case: <br>
-External freelancers and automation-focused developers use this skill to generate and operate a browser-automation workflow for Fiverr gig setup, buyer offers, inbox replies, review requests, and earnings reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent browser-level control over a Fiverr account for high-impact marketplace actions. <br>
-Mitigation: Use a dedicated or limited-risk account and require human review before sending offers or messages. <br>
-Risk: The skill requires Fiverr login credentials. <br>
-Mitigation: Store credentials in a secure secret store and avoid logging them. <br>
-Risk: The security review found insufficient safety and secret-handling boundaries. <br>
-Mitigation: Review carefully before installing and confirm operational boundaries before deployment. <br>
+## Use Case:
 
+External users and freelance business operators can use this skill to configure agent-assisted Fiverr gig creation, buyer outreach, inbox handling, review requests, and earnings reporting workflows.
 
-## Reference(s): <br>
-- [Fiverr](https://fiverr.com) <br>
-- [ClawHub skill page](https://clawhub.ai/ssidharhubble/fiverr-gig-automation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python code snippets and setup instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce browser-automation project files and configuration guidance for Selenium and ChromeDriver.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.17 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill requests reusable Fiverr account credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use platform secret storage where available, avoid plain settings for passwords, enable MFA, and limit account access before running automation.
+
+Risk: The skill can create gigs, send offers, reply to messages, and request reviews from a business account.
+
+Mitigation: Require manual approval before outbound messages, offers, gig creation, and review requests.
+
+Risk: Automated Fiverr activity may conflict with Fiverr account or messaging policies.
+
+Mitigation: Review Fiverr policy requirements and test workflows conservatively before enabling automation on an active account.
+
+## Reference(s):
+
+- [Fiverr](https://fiverr.com)
+- [ClawHub Skill Release](https://clawhub.ai/ssidharhubble/skills/fiverr-gig-automation)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/ssidharhubble)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with code and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include browser automation workflow steps and credential setup guidance.]
+
+## Skill Version(s):
+
+1.0.17 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

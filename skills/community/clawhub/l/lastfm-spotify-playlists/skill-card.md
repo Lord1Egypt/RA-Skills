@@ -1,41 +1,56 @@
-## Description: <br>
-Build music recommendations and create Spotify playlists using Last.fm similarity and listening history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build music recommendations and create Spotify playlists using Last.fm similarity and listening history.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-External users and developers use this skill to turn Last.fm listening history, top artists, or seed tracks into ranked music recommendations and optional Spotify playlists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Spotify playlist write access can create playlists and add tracks for the authenticated Spotify account. <br>
-Mitigation: Install only when this access is acceptable, keep credential and token JSON files private, use explicit token paths when tighter control is needed, and revoke the Spotify app or delete the saved token when no longer used. <br>
+## Use Case:
 
+External users and developers use this skill to generate Last.fm-based music recommendations, match them on Spotify, and optionally create playlists in a Spotify account they control.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/stanestane/lastfm-spotify-playlists) <br>
-- [Last.fm API endpoint](https://ws.audioscrobbler.com/2.0/) <br>
-- [Spotify Web API](https://api.spotify.com/v1) <br>
-- [Spotify OAuth authorization](https://accounts.spotify.com/authorize) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, API calls] <br>
-**Output Format:** [JSON results printed to stdout, with guidance and shell commands when setup or execution is needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update Spotify playlists when run with Spotify output mode and playlist creation enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata) <br>
+Risk: The skill requires Last.fm and Spotify credentials, and the saved Spotify token can authorize future account access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use credentials only for accounts intended for this workflow, restrict token file access, and delete ~/.openclaw/spotify-token.json when the saved session is no longer needed.
+
+Risk: Playlist creation modifies the connected Spotify account.
+
+Mitigation: Use playlist creation only when requested, verify the target Spotify account during OAuth, and review playlist name, visibility, and generated track list before relying on the result.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stanestane/skills/lastfm-spotify-playlists)
+- [Last.fm API endpoint](https://ws.audioscrobbler.com/2.0/)
+- [Spotify Web API endpoint](https://api.spotify.com/v1)
+- [Spotify authorization endpoint](https://accounts.spotify.com/authorize)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts can return recommendation lists, Spotify match details, unmatched tracks, and playlist metadata.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

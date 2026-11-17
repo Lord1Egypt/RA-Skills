@@ -1,43 +1,58 @@
-## Description: <br>
-Never lose a conversation again. Auto-backup, smart recovery, and health monitoring for OpenClaw sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Session Guardian helps OpenClaw users protect long-running agent conversations with local scheduled backups, recovery commands, health checks, and collaboration tracking.
 
-## Publisher: <br>
-[1052326311](https://clawhub.ai/user/1052326311) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1052326311](https://clawhub.ai/user/1052326311)
 
-## Use Case: <br>
-OpenClaw users, agent operators, and multi-agent teams use this skill to back up session files, monitor session health, recover conversations, and preserve task context after crashes, disconnects, or token overflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently read broad OpenClaw conversation data and produce backup or Knowledge archives that may contain sensitive session content. <br>
-Mitigation: Install only where always-on local session access is intended; restrict filesystem access and treat backups, summaries, and Knowledge outputs as sensitive archives. <br>
-Risk: Cron jobs and OpenClaw summary delivery can expose conversation summaries through configured delivery channels. <br>
-Mitigation: Review scripts/config.sh and scripts/install.sh before enabling scheduled summaries; consider disabling delivery or avoiding last-channel announcements. <br>
-Risk: Restore, health-check, and cleanup behavior may affect active session files if enabled without review. <br>
-Mitigation: Review scripts/health-check.sh, scripts/restore.sh, and scripts/knowledge-extractor.sh before deployment; prefer quarantine or dry-run cleanup behavior where available. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure local session backups, monitor session health, restore agent conversations after crashes, and track multi-agent collaboration state.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1052326311/session-guardian) <br>
-- [Publisher profile](https://clawhub.ai/user/1052326311) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated local backup, status, summary, and recovery files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local session backups, health reports, collaboration records, and extracted knowledge when its scripts are installed and scheduled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server evidence release metadata) <br>
+Risk: Scheduled backup and health tasks repeatedly read and store OpenClaw agent conversations, which may contain sensitive content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review cron entries before enabling the skill, restrict backup directory permissions, and avoid the daily OpenClaw summary unless model-provider and delivery-channel exposure is acceptable.
+
+Risk: Health-check cleanup and restore features can delete or overwrite session files.
+
+Mitigation: Keep an independent backup of important sessions and test cleanup or restore behavior on noncritical sessions before using it on active work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1052326311/skills/session-guardian)
+- [SKILL.md](SKILL.md)
+- [README_EN.md](README_EN.md)
+- [EXAMPLES.md](EXAMPLES.md)
+- [TEST-REPORT-v2.0.md](TEST-REPORT-v2.0.md)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The installed scripts create local backup, health report, collaboration, and restore artifacts under the user's OpenClaw workspace.]
+
+## Skill Version(s):
+
+3.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

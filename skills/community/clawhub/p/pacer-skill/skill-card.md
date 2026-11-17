@@ -1,40 +1,54 @@
-## Description: <br>
-Your AI career companion. Helps you scan your current situation, map possible paths, simulate futures, and track progress week by week. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Your AI career companion. Helps you scan your current situation, map possible paths, simulate futures, and track progress week by week.
 
-## Publisher: <br>
-[hectormeta](https://clawhub.ai/user/hectormeta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hectormeta](https://clawhub.ai/user/hectormeta)
 
-## Use Case: <br>
-External users use Pacer Skill to scan their career situation from text or CV input, compare possible career or startup paths, simulate likely outcomes, and track weekly progress. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores broad resume-derived, financial, motivation, milestone, and weekly progress data in persistent local memory. <br>
-Mitigation: Install only after confirming that the OpenClaw environment lets users inspect, disable, or delete the Pacer memory file and weekly check-ins. <br>
-Risk: Career-planning guidance may influence employment, business, or financial decisions using incomplete user-provided context. <br>
-Mitigation: Treat outputs as planning support, review assumptions before acting, and avoid entering sensitive details that are not needed for the planning task. <br>
+## Use Case:
 
+External users use Pacer to clarify career or startup options by scanning their current situation, comparing possible paths, simulating future outcomes, and tracking weekly progress. The skill is suited to career planning, transition planning, early startup direction finding, and personal productivity follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hectormeta/pacer-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown responses with optional HTML chart output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local memory and weekly heartbeat prompts to maintain career goals, milestones, and progress history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill stores sensitive CV, career, financial runway, network, motivation, and progress details in local memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact unnecessary CV contact details, avoid exact financial or sensitive personal facts unless needed, and review local memory retention before installation.
+
+Risk: The skill renders user-derived data through generated HTML chart templates.
+
+Mitigation: Render chart HTML only in a sandboxed context and properly escape interpolated values before display.
+
+## Reference(s):
+
+- [Pacer Skill on ClawHub](https://clawhub.ai/hectormeta/skills/pacer-skill)
+- [Chart.js CDN referenced by chart templates](https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, HTML, guidance]
+
+**Output Format:** [Conversational Markdown with snapshot cards, planning tables, weekly review text, and generated HTML chart blocks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May parse CV files and persist career profile, financial runway, network, motivation, milestones, and progress details in local OpenClaw memory.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Comprehensive A-share (A 股) information gathering and analysis skills for the Chinese stock market. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive A-share (A 股) information gathering and analysis skill for the Chinese stock market, supporting stock price queries, financial data analysis, portfolio tracking, and market trend monitoring.
 
-## Publisher: <br>
-[gk-lucky](https://clawhub.ai/user/gk-lucky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gk-lucky](https://clawhub.ai/user/gk-lucky)
 
-## Use Case: <br>
-External users and developers use this skill to gather Chinese A-share market information, query prices, analyze financial data, monitor watchlists, and assemble portfolio or trend reports from referenced stock-analysis tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill points users to external npx stock-analysis packages that may fetch, store, or transmit watchlist and portfolio details. <br>
-Mitigation: Verify package publishers before use, pin package versions where practical, and avoid entering sensitive portfolio details unless the tool's data handling is understood. <br>
+## Use Case:
 
+External users and developers use this skill to gather Chinese A-share market information, query prices, analyze financial data, monitor watchlists, and prepare portfolio or trend reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gk-lucky/a-stock-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and tabular command references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance depends on external stock-analysis packages and market-data sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: The security scan reports that the skill recommends unpinned third-party npm commands that execute code outside the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin exact package versions before installing or running commands, prefer audited local installs or a locked dependency manifest, and run tools in a restricted environment without unnecessary credentials or sensitive files.
+
+Risk: The skill provides stock research and investment-analysis workflows that may produce incorrect, delayed, or misleading market guidance.
+
+Mitigation: Treat outputs as informational research support, verify market data against authoritative sources, and require human review before making investment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gk-lucky/skills/a-stock-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include stock-price summaries, financial analysis, watchlist status, portfolio reports, and market trend guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

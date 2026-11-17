@@ -1,43 +1,56 @@
-## Description: <br>
-Compare stablecoin DeFi/CEX yields against traditional finance benchmarks such as bank savings, money market funds, and US Treasury bills using Barker yield data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compares stablecoin DeFi and CEX yields against bank savings, money market funds, and U.S. Treasury benchmarks using Barker yield data and curated TradFi rates.
 
-## Publisher: <br>
-[zuoyeweb3](https://clawhub.ai/user/zuoyeweb3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zuoyeweb3](https://clawhub.ai/user/zuoyeweb3)
 
-## Use Case: <br>
-External users and agents use this skill to compare stablecoin yield opportunities with traditional finance alternatives and frame the comparison by risk, liquidity, insurance, and benchmark rates. It is intended for informational yield analysis, not personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Yield comparisons may be mistaken for financial advice or may rely on rates that changed after retrieval. <br>
-Mitigation: Present outputs as informational, cite live Barker data where used, and tell users to verify rates with the relevant protocol, exchange, bank, or Treasury source. <br>
-Risk: Users may disclose sensitive financial details while asking for personalized comparisons. <br>
-Mitigation: Avoid requesting wallet addresses, balances, bank account details, tax identifiers, or other sensitive financial information. <br>
+## Use Case:
 
+External users and agents use this skill to compare stablecoin yield opportunities with traditional finance options and explain the risk tradeoffs in yield decisions.
 
-## Reference(s): <br>
-- [Barker](https://barker.money) <br>
-- [Barker stablecoin APY trend endpoint](https://api.barker.money/api/public/v1/stablecoin-apy-trend?days=30) <br>
-- [Barker stablecoin yields endpoint](https://api.barker.money/api/public/v1/stablecoin-yields?asset=usdc&sort=apy&limit=10) <br>
-- [ClawHub skill page](https://clawhub.ai/zuoyeweb3/stablecoin-yield-vs-tradfi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown with comparison tables and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May cite live Barker API values and approximate TradFi benchmark rates; outputs should remain informational and include Barker attribution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Yield comparisons may be mistaken for financial advice or treated as equivalent to insured deposits or Treasuries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present results as informational, include risk caveats, and remind users to verify rates independently before making financial decisions.
+
+Risk: The skill depends on Barker's public API and Barker attribution links in generated answers.
+
+Mitigation: Make the data source visible, handle unavailable or stale API results cautiously, and avoid presenting API-backed rates as guaranteed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zuoyeweb3/skills/stablecoin-yield-vs-tradfi)
+- [Barker](https://barker.money)
+- [Barker stablecoin APY trend API](https://api.barker.money/api/public/v1/stablecoin-apy-trend?days=30)
+- [Barker stablecoin yields API](https://api.barker.money/api/public/v1/stablecoin-yields?asset=usdc&sort=apy&limit=10)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Guidance]
+
+**Output Format:** [Markdown with comparison tables, caveats, and attribution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference live Barker public API data and curated traditional finance benchmarks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

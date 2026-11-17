@@ -1,7 +1,4 @@
 {
   "SMARTLIB_GATEWAY_URL": "https://<your-gateway-id>.ap-shanghai.tencentscf.com",
-  "SMARTLIB_GATEWAY_SECRET": "<your-gateway-secret>",
-  "SMARTLIB_EMAIL": null,
-  "SMARTLIB_APPID": null,
-  "SMARTLIB_APPSECRET": null
+  "SMARTLIB_GATEWAY_SECRET": "<your-gateway-secret>"
 }

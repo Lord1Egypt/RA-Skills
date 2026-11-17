@@ -1,41 +1,53 @@
-## Description: <br>
-行程规划助手，支持往返/单程行程规划，涵盖航班、高铁、机场周边、时间约束筛选和详细时间线生成。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans one-way and round-trip travel in China using flights, trains, nearby airports, time constraints, and detailed itinerary timelines.
 
-## Publisher: <br>
-[doushen-cloud](https://clawhub.ai/user/doushen-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[doushen-cloud](https://clawhub.ai/user/doushen-cloud)
 
-## Use Case: <br>
-External users use this skill to compare air, rail, and local ground-transport options for China-focused one-way or round-trip travel plans under specific time constraints. The skill helps produce filtered options, an optimal itinerary timeline, and practical reminders such as airport or station buffer time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trip planning may involve sensitive travel-pattern, home, or workplace details when external travel and map services are used. <br>
-Mitigation: Avoid sending sensitive exact locations unless needed, and confirm before external lookups when a simple travel question does not require them. <br>
-Risk: Travel schedules and parsed route data can be incomplete or misleading if lazy-loaded pages, connector responses, or arrival-airport checks are not verified. <br>
-Mitigation: Load complete travel results, validate key flights or trains against source data before recommending them, and clearly label estimates or historical timetable references. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to compare flight, train, airport-transfer, and driving options for one-way or round-trip itineraries in China under concrete timing constraints.
 
-## Reference(s): <br>
-- [Trip Planner CN on ClawHub](https://clawhub.ai/doushen-cloud/trip-planner-cn) <br>
-- [doushen-cloud publisher profile](https://clawhub.ai/user/doushen-cloud) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown itinerary recommendations with comparison tables, timelines, and notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference external travel or map lookup results and should mark estimates when exact data is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Trip locations, dates, timing constraints, and itinerary details may be shared with travel and map services used by the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the trip details needed for planning, avoid unnecessary personal information, and configure the Baidu Maps API key only when driving-time lookups are desired.
+
+Risk: Incomplete or stale travel results can lead to unsuitable itinerary recommendations.
+
+Mitigation: Verify that flight and train results are complete before making decisions, and clearly label historical or estimated schedules when live data is unavailable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/doushen-cloud/skills/trip-planner-cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown itinerary summaries with comparison tables and timelines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include estimated driving times when the Baidu Maps API key is not configured.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

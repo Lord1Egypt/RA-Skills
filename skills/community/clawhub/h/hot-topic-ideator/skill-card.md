@@ -1,45 +1,60 @@
-## Description: <br>
-Generates Xiaohongshu hot-topic ideas and content concepts for brand social media operations, content planning, and trend-based marketing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Xiaohongshu trending topic ideas and content concepts for brand social media operations, content planning, and trend-based marketing.
 
-## Publisher: <br>
-[yyobject](https://clawhub.ai/user/yyobject) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yyobject](https://clawhub.ai/user/yyobject)
 
-## Use Case: <br>
-Brand marketers, social media operators, and content strategists use this skill to research Xiaohongshu notes and hot-trend data, then generate 5-10 actionable topic briefs for brand campaigns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends brand, campaign, and keyword data to the external ChatDAM/Tezign API. <br>
-Mitigation: Install only if that API is trusted for the provided data, and use a scoped CHATDAM_API_TOKEN. <br>
-Risk: The workflow writes report files and can run a local PDF conversion command. <br>
-Mitigation: Verify the local html_to_pdf.py converter before running the uv command, and review the output directory before generating files. <br>
-Risk: If the primary API fails, the skill may use web search as fallback data collection. <br>
-Mitigation: Confirm fallback web searches before sending sensitive brand or campaign inputs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yyobject/hot-topic-ideator) <br>
-- [ChatDAM note search API](https://asset.tezign.com/chatdam/api/notes/search) <br>
-- [ChatDAM note detail API](https://asset.tezign.com/chatdam/api/notes/detail) <br>
-- [ChatDAM hot trends API](https://asset.tezign.com/chatdam/api/hot-trends) <br>
-- [Tailwind CSS CDN](https://cdn.tailwindcss.com) <br>
+## Use Case:
 
+Brand social media operators, content planners, and marketing teams use this skill to research Xiaohongshu activity and produce 5-10 data-supported hot topic briefs for campaign planning.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Single-file HTML report with optional PDF conversion command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a report.html file under a brand-specific output directory and may invoke a local html_to_pdf.py converter through uv.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated reports may load mutable third-party JavaScript from the Tailwind CDN.
+
+Mitigation: Remove, pin, or vendor the styling dependency before using reports in controlled or offline environments.
+
+Risk: Derived keywords, brand context, and fallback searches may disclose confidential campaign strategy to ChatDAM or search providers.
+
+Mitigation: Review inputs for sensitivity, obtain approval for outbound data use, and avoid confidential brand or agency material unless those data flows are acceptable.
+
+Risk: Trend and note data can be incomplete or weakly scoped, which may lead to misleading content recommendations.
+
+Mitigation: Require human review of the report, verify data sources, and label recommendations based on assumptions when API evidence is insufficient.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yyobject/skills/hot-topic-ideator)
+- [ChatDAM note search API](https://asset.tezign.com/chatdam/api/notes/search?keyword=[ENCODED_KEYWORD])
+- [ChatDAM note detail API](https://asset.tezign.com/chatdam/api/notes/detail?noteId=[NOTE_ID])
+- [ChatDAM hot trends API](https://asset.tezign.com/chatdam/api/hot-trends?limit=20)
+- [Tailwind CSS CDN](https://cdn.tailwindcss.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [HTML report content with shell commands and PDF conversion guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a single-file HTML report intended to be converted to PDF; generated reports may reference Tailwind CSS from a CDN unless adjusted.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

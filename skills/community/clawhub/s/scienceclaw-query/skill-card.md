@@ -1,41 +1,49 @@
-## Description: <br>
-Run a scientific investigation on any topic and return findings directly to chat without posting to Infinite. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a scientific investigation on any topic and return findings directly to chat without posting to Infinite.
 
-## Publisher: <br>
-[fwang108](https://clawhub.ai/user/fwang108) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fwang108](https://clawhub.ai/user/fwang108)
 
-## Use Case: <br>
-Developers and researchers use this skill to run ScienceClaw dry-run investigations for scientific questions, previews, and cases where findings should return to chat instead of creating an Infinite post. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill invokes a local ScienceClaw tool, so results and side effects depend on the trusted local installation. <br>
-Mitigation: Install and run it only from a trusted ScienceClaw environment, and review the command before execution. <br>
-Risk: Workspace memory can be included in research queries and may contain confidential research, health, compound, or project details. <br>
-Mitigation: Review memory.md before use and avoid storing confidential details there unless the user accepts their inclusion in ScienceClaw research queries. <br>
+## Use Case:
 
+Developers, researchers, and external users use this skill to run dry-run ScienceClaw investigations, preview findings in chat, and decide whether to follow up with a posted or deeper investigation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fwang108/scienceclaw-query) <br>
-- [Publisher profile](https://clawhub.ai/user/fwang108) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown response with summarized findings and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local ScienceClaw installation, python3, and ANTHROPIC_API_KEY; dry-run mode avoids posting to Infinite.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill may read workspace memory.md and include stored project context in ScienceClaw research queries without explicit confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove memory.md before running the skill on sensitive, confidential, or unpublished research, or require explicit confirmation before workspace context is added to a query.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fwang108/skills/scienceclaw-query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown response with optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run research findings returned to chat; workspace memory may be included when present.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,69 @@
-## Description: <br>
-Deploy OpenClaw on Alibaba Cloud ECS and integrate it with DingTalk using Alibaba Cloud Bailian for LLM responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys OpenClaw on an Alibaba Cloud ECS instance, configures Alibaba Cloud Bailian LLM access, and connects the deployment to a DingTalk bot for group chat use.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to provision Alibaba Cloud ECS networking and compute, configure Bailian credentials, install OpenClaw, and verify a DingTalk bot integration for users to chat with the assistant. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create billable Alibaba Cloud ECS, EIP, Bailian model, and network resources. <br>
-Mitigation: Use the workflow only when those resources are intended, monitor ECS/EIP and model usage costs, and clean up resources after explicit user confirmation. <br>
-Risk: The workflow handles Bailian API keys and DingTalk client credentials. <br>
-Mitigation: Use dedicated least-privilege RAM users or roles, mask secrets in outputs, avoid logging full credential values, and rotate or revoke credentials when finished. <br>
-Risk: The deployment downloads and runs remote NodeSource and OpenClaw installation scripts on the ECS instance. <br>
-Mitigation: Review remote installation scripts before execution and keep timeout-bounded curl or wget usage in place. <br>
-Risk: Broad FullAccess RAM policies are documented as a quick setup option. <br>
-Mitigation: Prefer the custom least-privilege RAM policy from the bundled RAM policy guide for production deployments. <br>
+## Use Case:
 
+Developers and cloud engineers use this skill to provision Alibaba Cloud ECS networking and compute resources, install OpenClaw, configure Bailian credentials, and verify DingTalk bot integration. It is intended for teams that want an AI assistant reachable from DingTalk group conversations.
 
-## Reference(s): <br>
-- [Bailian API Key Guide](references/bailian-api-key-guide.md) <br>
-- [DingTalk App Setup Guide](references/dingtalk-setup-guide.md) <br>
-- [RAM Policies for OpenClaw ECS DingTalk Deployment](references/ram-policies.md) <br>
-- [Alibaba Cloud Deploy OpenClaw](https://help.aliyun.com/zh/simple-application-server/use-cases/quickly-deploy-and-use-openclaw) <br>
-- [DingTalk Open Platform ECS Deployment](https://open.dingtalk.com/document/dingstart/deployment-alibaba-cloud-ecs-server) <br>
-- [DingTalk AI Employee Setup](https://open.dingtalk.com/document/dingstart/build-dingtalk-ai-employees) <br>
-- [OpenClaw Official Website](https://openclaw.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with Alibaba Cloud CLI command blocks and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes input validation, credential handling, deployment verification, cost notes, and cleanup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata) <br>
+Risk: The skill asks for broad Alibaba Cloud control to create compute, networking, security group, EIP, and model API key resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated temporary RAM role or isolated account and prefer the least-privilege policy documented in the artifact before running commands.
+
+Risk: The deployment exposes services publicly and includes inbound SSH, HTTP, and HTTPS security group rules.
+
+Mitigation: Restrict inbound rules, especially SSH, to trusted source IP ranges before testing or production use.
+
+Risk: The workflow handles Bailian and DingTalk credentials and passes them into a remote installation process.
+
+Mitigation: Avoid sharing secrets with unverified remote scripts, mask sensitive values in logs, and rotate Bailian and DingTalk credentials after testing.
+
+Risk: Cloud resources and model usage can create ongoing cost and audit exposure.
+
+Mitigation: Monitor billing and ActionTrail logs, and run the documented cleanup steps after testing when resources are no longer needed.
+
+## Reference(s):
+
+- [Bailian API Key Guide](references/bailian-api-key-guide.md)
+- [DingTalk Bot Creation and Configuration Guide](references/dingtalk-setup-guide.md)
+- [RAM Policies for OpenClaw ECS DingTalk Deployment](references/ram-policies.md)
+- [Alibaba Cloud Deploy OpenClaw](https://help.aliyun.com/zh/simple-application-server/use-cases/quickly-deploy-and-use-openclaw)
+- [DingTalk Open Platform ECS Deployment](https://open.dingtalk.com/document/dingstart/deployment-alibaba-cloud-ecs-server)
+- [OpenClaw Official Website](https://openclaw.ai/)
+- [Bailian Console](https://bailian.console.aliyun.com/)
+- [DingTalk Open Platform](https://open.dingtalk.com/)
+- [ClawHub Skill Page](https://clawhub.ai/sdk-team/skills/alibabacloud-openclaw-ecs-dingtalk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes deployment steps, validation checks, troubleshooting guidance, and cleanup instructions.]
+
+## Skill Version(s):
+
+0.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

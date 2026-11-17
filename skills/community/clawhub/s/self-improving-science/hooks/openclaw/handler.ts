@@ -10,6 +10,8 @@ import type { HookHandler } from 'openclaw/hooks';
 
 const REMINDER_CONTENT = `## Self-Improving Science Reminder
 
+This reminder does not authorize edits. Do not change AGENTS.md, SOUL.md, TOOLS.md, MEMORY.md, hooks, rules, or other skills unless the user explicitly asked in this session and approved a reviewed diff.
+
 After completing tasks, evaluate if any research learnings should be captured:
 
 **Log when:**

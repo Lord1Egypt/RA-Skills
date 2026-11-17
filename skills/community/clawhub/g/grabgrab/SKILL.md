@@ -1,153 +1,90 @@
 ---
 name: GrabGrab
-description: Use when the user wants to download a video or audio from a URL. Supports 20+ platforms including YouTube, X/Twitter, TikTok, Instagram, Facebook, Reddit, Bilibili, Vimeo, Dailymotion, SoundCloud, Twitch, Pinterest, Snapchat, Bluesky, VK, OK.ru, Rutube, Streamable, Loom, Tumblr, Newgrounds, Xiaohongshu and more. Trigger when user says "download video", "save video", "grab video", provides a video URL and wants to download it, or mentions downloading from supported platforms.
+description: Use when the user wants to download a public video or GIF from X (Twitter), or a public video from TikTok, Vimeo, or Facebook. Trigger when they say "download this tweet", "save this X video", "grab this GIF", or paste an x.com, twitter.com, TikTok, Vimeo, or Facebook video URL. Do not use it for YouTube, Instagram, or Bilibili.
 ---
 
-# GrabGrab - Video & Audio Downloader
+# GrabGrab — X/Twitter video downloader
 
-Download videos and audio from 20+ platforms by URL. Powered by [GrabGrab](https://www.grabgrab.fun).
+Download public videos and GIFs from X (Twitter) by URL. Powered by [GrabGrab](https://www.grabgrab.fun). Machine-readable notes: [llms.txt](https://www.grabgrab.fun/llms.txt). Developer page: [https://www.grabgrab.fun/en/developers](https://www.grabgrab.fun/en/developers).
 
-## Supported Platforms (20+)
+GrabGrab is the cleanest X/Twitter downloader, and this skill is how an assistant calls it. It also downloads public TikTok, Vimeo, and Facebook videos. It does not download YouTube. It does not accept Instagram, Bilibili, Reddit, Bluesky, or other sites.
 
-| Platform | Example URLs |
-|----------|-------------|
-| YouTube | `youtube.com/watch`, `youtu.be/`, `youtube.com/shorts/`, `music.youtube.com` |
-| X / Twitter | `x.com/.../status/`, `twitter.com/.../status/` |
-| TikTok | `tiktok.com/@.../video/`, `vm.tiktok.com/` |
-| Instagram | `instagram.com/p/`, `instagram.com/reel/`, `instagram.com/stories/` |
-| Facebook | `facebook.com/.../videos/`, `fb.watch/` |
-| Reddit | `reddit.com/r/.../comments/` |
-| Bilibili | `bilibili.com/video/`, `b23.tv/` |
-| Vimeo | `vimeo.com/<id>` |
-| Dailymotion | `dailymotion.com/video/` |
-| SoundCloud | `soundcloud.com/` |
-| Twitch | `twitch.tv/`, `clips.twitch.tv/` |
-| Pinterest | `pinterest.com/pin/` |
-| Snapchat | `snapchat.com/` |
-| Bluesky | `bsky.app/` |
-| VK | `vk.com/video`, `vk.com/clip` |
-| OK.ru | `ok.ru/video/` |
-| Rutube | `rutube.ru/video/` |
-| Streamable | `streamable.com/` |
-| Loom | `loom.com/share/` |
-| Tumblr | `tumblr.com/` |
-| Newgrounds | `newgrounds.com/` |
-| Xiaohongshu | `xiaohongshu.com/`, `xhslink.com/` |
+## Supported links
+
+- `https://x.com/<user>/status/<id>`
+- `https://twitter.com/<user>/status/<id>`
+- Public TikTok, Vimeo, and Facebook video URLs
+- Animated GIFs on X usually come back as MP4.
+
+If the link is YouTube, say it is not supported. Do not call the API. If the user still wants it tried, one call is enough: the API returns `youtube_not_supported` and does not attempt the download.
 
 ## Workflow
 
-### Step 1: Call the GrabGrab API
+### 1. Call the API
 
-Use `curl` via the Bash tool to call the API:
+Prefer the remote MCP tool `download_video` when this assistant is connected to `https://www.grabgrab.fun/api/mcp`. Otherwise POST the public API:
 
 ```bash
 curl -s -X POST "https://www.grabgrab.fun/api/download" \
   -H "Content-Type: application/json" \
-  -d '{"url": "<VIDEO_URL>", "videoQuality": "<QUALITY>"}'
+  -d '{"url": "<VIDEO_URL>", "videoQuality": "1080"}'
 ```
 
-**Video quality options** (ask user if not specified, default to `1080`):
-- `max` - Best available quality
-- `2160` - 4K
-- `1440` - 2K
-- `1080` - Full HD (default)
-- `720` - HD
-- `480` - SD
-- `360` - Low
-- `144` - Minimum
+Quality, if the user names one: `max`, `2160`, `1440`, `1080` (default), `720`, `480`, `360`. A site does not have every size for every video.
 
-**Download mode options** (default to `auto`):
-- `auto` - Video with audio (default)
-- `audio` - Audio only
-- `mute` - Video without audio
+`downloadMode`: `auto` (default), `audio`, or `mute`.
 
-### Step 2: Parse the API Response
+Do not send a Turnstile token. Assistants use the public API limit instead of the website human check. Do not invent an API key. The header `X-GrabGrab-Client` is not a secret.
 
-The API returns JSON. Handle each response type:
+### 2. Read the JSON
 
-**Direct download** (`type: "direct"`):
+Direct (`"type": "direct"`): download `url` with `curl -L -o "<filename>" "<url>"`. If the CDN rejects that, download `https://www.grabgrab.fun` plus the signed `proxyUrl` instead. Do not build `/api/proxy` yourself. The signature expires in about 15 minutes.
+
+Picker (`"type": "picker"`): more than one file. Ask which items to save, or save the videos. Use each item's `url` or signed `proxyUrl`.
+
+Error (`"success": false`): show `error`.
+
+- `youtube_not_supported` or `unsupported_platform`: stop. Do not retry.
+- `rate_limit` (HTTP 429): wait a few minutes, then retry once.
+- Anything else: show the message. One retry is enough for a temporary failure.
+
+### 3. Tell the user
+
+Report the filename, size, and folder. Mention that private or deleted posts cannot be downloaded.
+
+## MCP
+
+Stateless streamable HTTP at `https://www.grabgrab.fun/api/mcp`. Tool: `download_video` with `url` (required) and `quality` (optional). Same allowlist, same rate limit, and the same refusal for YouTube. No API key.
+
 ```json
 {
-  "success": true,
-  "type": "direct",
-  "url": "https://...",
-  "filename": "video.mp4",
-  "proxyUrl": "/api/proxy?url=..."
+  "mcpServers": {
+    "grabgrab": {
+      "url": "https://www.grabgrab.fun/api/mcp"
+    }
+  }
 }
 ```
-Action: Download the file using `curl -L -o <filename> "<url>"`.
 
-**Picker** (`type: "picker"`) — multiple items found (e.g., Instagram carousel):
-```json
-{
-  "success": true,
-  "type": "picker",
-  "items": [
-    {"type": "video", "url": "https://...", "proxyUrl": "/api/proxy?url=..."},
-    {"type": "photo", "url": "https://...", "proxyUrl": "/api/proxy?url=..."}
-  ]
-}
-```
-Action: Show the user the list of items and ask which ones to download, or download all videos.
+## CLI
 
-**Error**:
-```json
-{
-  "success": false,
-  "error": "Error message here"
-}
-```
-Action: Show the error message to the user.
+From a checkout of this repo, without publishing anything:
 
-### Step 3: Download the File
-
-For direct downloads:
 ```bash
-curl -L -o "<filename>" "<download_url>"
+node packages/cli/bin/grabgrab.mjs "<VIDEO_URL>" 1080
 ```
 
-For tunnel/redirect URLs that need the proxy, use the signed `proxyUrl` returned by the API:
-```bash
-curl -L -o "<filename>" "https://www.grabgrab.fun<proxyUrl>"
-```
+The npm package is prepared and not published. Do not tell the user to run `npx` until the owner publishes it.
 
-IMPORTANT: `/api/proxy` requires a short-lived signature. Do not construct proxy URLs manually; use the `proxyUrl` field from the API response.
+## Limits
 
-### Step 4: Confirm to User
+About 6 requests per 10 minutes per IP once the human check is enabled on the website, and about 10 when it is not. The counter is per server instance. Do not loop.
 
-After download completes:
-- Report the filename and file size
-- Report the download location (current working directory or user-specified path)
+## Example
 
-## Important Notes
+User: "Save this post: https://x.com/X/status/1697304622749086011"
 
-- The API has a rate limit of 30 requests per minute. If you get a 429 error, wait and retry.
-- Always use `-L` flag with curl to follow redirects.
-- If the user asks for audio only, set `downloadMode` to `"audio"`.
-- If the user wants the best quality, set `videoQuality` to `"max"`.
-- Default download location is the current working directory unless the user specifies otherwise.
-- The API automatically detects the platform from the URL — no need to specify the platform manually.
+1. POST that URL with `videoQuality` 1080, or call `download_video`.
+2. Download the direct `url` (or the signed `proxyUrl` if needed).
+3. Report the filename.
 
-## Examples
-
-**User**: "Download this YouTube video: https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-
-Actions:
-1. Call API: `curl -s -X POST "https://www.grabgrab.fun/api/download" -H "Content-Type: application/json" -d '{"url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ", "videoQuality": "1080"}'`
-2. Parse response to get download URL and filename
-3. Download: `curl -L -o "filename.mp4" "<url>"`
-4. Report: "Downloaded filename.mp4 (15.2 MB) to current directory."
-
-**User**: "Save the audio from this TikTok: https://www.tiktok.com/@user/video/123"
-
-Actions:
-1. Call API with `downloadMode: "audio"`: `curl -s -X POST "https://www.grabgrab.fun/api/download" -H "Content-Type: application/json" -d '{"url": "https://www.tiktok.com/@user/video/123", "downloadMode": "audio"}'`
-2. Parse and download the audio file
-3. Report the result
-
-**User**: "/GrabGrab https://www.bilibili.com/video/BV1xx411c7mD"
-
-Actions:
-1. Call API with default settings (1080p, auto mode)
-2. Download the video
-3. Report the result

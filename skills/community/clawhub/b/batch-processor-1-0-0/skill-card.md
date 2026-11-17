@@ -1,39 +1,53 @@
-## Description: <br>
-Process multiple documents in bulk with parallel execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Process multiple documents in bulk with parallel execution.
 
-## Publisher: <br>
-[leowing](https://clawhub.ai/user/leowing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leowing](https://clawhub.ai/user/leowing)
 
-## Use Case: <br>
-Employees, developers, and operators use this skill to convert, extract, transform, rename, or analyze large sets of documents with parallel execution, progress tracking, and checkpointing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bulk processing can modify many files at once. <br>
-Mitigation: Use clearly scoped folders, preferably copies or backups, and request a dry run or preview before renames, conversions, or mass edits. <br>
-Risk: Optional Python dependencies and processing scripts can affect the local environment. <br>
-Mitigation: Install optional packages in a virtual environment and start with a small sample before running a full batch. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leowing/batch-processor-1-0-0) <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to plan or execute bulk document conversion, extraction, transformation, analysis, renaming, and organization with progress tracking and checkpointing.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with inline code blocks, shell commands, configuration guidance, and generated or modified files when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports progress reporting, failure logs, and checkpointing for resume-safe batch jobs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bulk document operations can modify, rename, convert, or reorganize many files at once.
+
+Mitigation: Run a preview or dry run first, and operate on copies or backed-up directories for important documents.
+
+Risk: The installation guidance uses unpinned Python packages.
+
+Mitigation: Install in a disposable or virtual Python environment and review or pin dependencies before repeated use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leowing/skills/batch-processor-1-0-0)
+- [Claude Office Skills Hub](https://github.com/claude-office-skills/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide bulk file operations that should be previewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

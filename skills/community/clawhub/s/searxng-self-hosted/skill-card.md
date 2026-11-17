@@ -1,40 +1,60 @@
-## Description: <br>
-Search the web using a self-hosted SearXNG instance. Privacy-respecting metasearch that aggregates results from multiple engines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web using a self-hosted SearXNG instance with privacy-respecting metasearch that aggregates results from multiple engines.
 
-## Publisher: <br>
-[clockworksquirrel](https://clawhub.ai/user/clockworksquirrel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[clockworksquirrel](https://clawhub.ai/user/clockworksquirrel)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure and query a self-hosted SearXNG instance for privacy-respecting metasearch with JSON output for automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A SearXNG service exposed beyond the local computer can make search access available to other network users. <br>
-Mitigation: For local-only use, bind Docker to 127.0.0.1 and review network exposure before installation. <br>
-Risk: The sample configuration uses a placeholder secret key and an unpinned Docker image tag. <br>
-Mitigation: Replace the placeholder secret key with a random value and consider pinning the Docker image version. <br>
-Risk: Search terms pass through the configured SearXNG instance and the upstream search engines it queries. <br>
-Mitigation: Review the privacy posture of the configured instance and avoid sending sensitive queries unless that routing is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineers use this skill to query a self-hosted SearXNG service, retrieve JSON search results, and work with categorized, language-specific, or paginated web search output from an agent session.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, Docker Compose, YAML, and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance depends on a reachable SearXNG service and optional SEARXNG_URL environment variable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Setup guidance can expose an unauthenticated persistent SearXNG search service.
+
+Mitigation: Bind the service to localhost or a private network before use.
+
+Risk: The sample configuration uses a placeholder secret key.
+
+Mitigation: Replace the placeholder with a random secret before operating the service.
+
+Risk: Search queries can disclose secrets, sensitive project names, or private intent to configured search engines.
+
+Mitigation: Avoid putting secrets or sensitive project details in searches.
+
+Risk: The Docker setup references a mutable container image tag.
+
+Mitigation: Pin the SearXNG container image to a reviewed version or digest for long-term use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/clockworksquirrel/skills/searxng-self-hosted)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, configuration snippets, and JSON response guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results include title, URL, content snippet, engines, score, and category when returned by the configured SearXNG JSON endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-根据用户主题生成文字游戏剧本，内置19种成熟模板（古代家族、偶像养成、末日求生、校园恋爱、修仙等），支持导出Word文档到桌面。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据用户主题生成文字游戏剧本，内置19种成熟模板（古代家族、偶像养成、末日求生、校园恋爱、修仙等），支持导出Word文档到桌面。
 
-## Publisher: <br>
-[810722796-lgtm](https://clawhub.ai/user/810722796-lgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[810722796-lgtm](https://clawhub.ai/user/810722796-lgtm)
 
-## Use Case: <br>
-Writers, game designers, and interactive-fiction creators use this skill to generate structured Chinese text-game scripts from a requested theme or one of the bundled genre templates. It can also format the generated script as Markdown and export it to a Word document when explicitly requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Word export workflow uses a user-controlled title in a shell command, which could run unintended commands if the title is malformed. <br>
-Mitigation: Use Word export only after an explicit export request, keep titles benign, and sanitize or quote the title before running the export command. <br>
-Risk: Generated game scripts may contain genre-specific romance, survival, family, or power-dynamic content that is not suitable for every audience. <br>
-Mitigation: Review the selected template and generated script before sharing or exporting it, and adjust content boundaries for the intended audience. <br>
+## Use Case:
 
+Writers, game designers, and agent users use this skill to create structured Chinese text adventure scripts from built-in genre templates or custom settings, then optionally export the generated Markdown script as a Word document.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/810722796-lgtm/text-game-generator) <br>
-- [文字游戏剧本模板汇总](artifact/references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance, files] <br>
-**Output Format:** [Markdown text-game script with optional shell command for Word export] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a .docx file on the user's desktop when the Word export workflow is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The documented export workflow can expose user-controlled title or generated content to shell interpolation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a shell-free process API, pass arguments directly, and send document content through standard input or a temporary file without shell expansion.
+
+Risk: The export workflow writes generated files to the Desktop without explicit opt-in.
+
+Mitigation: Ask for confirmation before writing, show the exact output path, and allow the user to choose or approve the destination.
+
+Risk: The Word export depends on python-docx without a pinned environment.
+
+Mitigation: Use a pinned dependency or locked environment for python-docx before deployment.
+
+## Reference(s):
+
+- [Template reference](artifact/references/templates.md)
+- [ClawHub skill page](https://clawhub.ai/810722796-lgtm/skills/text-game-generator)
+- [Publisher profile](https://clawhub.ai/user/810722796-lgtm)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown text game script with optional Word document export]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated scripts include background, characters, opening scene, player options, and mobile-oriented structured panels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Manage GitHub repositories, pull requests, issues, and workflows from OpenClaw for repository coordination tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage GitHub repositories, pull requests, issues, and workflows from OpenClaw.
 
-## Publisher: <br>
-[evezart](https://clawhub.ai/user/evezart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evezart](https://clawhub.ai/user/evezart)
 
-## Use Case: <br>
-Developers and repository maintainers use this skill to inspect pull requests, triage issues, list repositories and branches, and coordinate GitHub workflow tasks from an agent-assisted environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill advertises broad repository-changing capabilities and token-based access. <br>
-Mitigation: Use a fine-grained GitHub token scoped only to the intended repositories and permissions, and require explicit confirmation before merges, branch deletion, issue closure, release creation, or multi-repo operations. <br>
-Risk: Some advertised commands or integrations may be under-documented or not implemented by the included script. <br>
-Mitigation: Validate supported commands in a test repository before operational use, and review generated guidance against the repository's actual GitHub state. <br>
+## Use Case:
 
+Developers and repository maintainers use this skill to review pull requests, triage issues, inspect GitHub Actions state, and coordinate repository operations from OpenClaw.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/evezart/evez-github-manager) <br>
-- [GitHub token settings](https://github.com/settings/tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell examples and text summaries from GitHub API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a GitHub token and repository or organization arguments; proposed mutating actions should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill can support high-impact repository actions when used with a GitHub credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped token for the intended repositories and verify the target repository before write actions.
+
+Risk: Repository write operations such as merges, branch deletion, releases, issue closure, or multi-repo changes can have broad project impact.
+
+Mitigation: Require explicit confirmation before merges, branch deletion, releases, issue closure, or multi-repo changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evezart/skills/evez-github-manager)
+- [GitHub token settings](https://github.com/settings/tokens)
+- [GitHub REST API endpoint](https://api.github.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require a GITHUB_TOKEN with repository scopes appropriate to the requested GitHub action.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

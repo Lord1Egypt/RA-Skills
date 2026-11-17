@@ -1,44 +1,59 @@
-## Description: <br>
-Queries DataEase organizations, switches organization context, lists dashboards or data screens, and exports selected resources as screenshots or PDFs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries DataEase organizations, switches organization context, lists dashboards or big screens, and exports selected resources as screenshots or PDFs.
 
-## Publisher: <br>
-[xuwei-fit2cloud](https://clawhub.ai/user/xuwei-fit2cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuwei-fit2cloud](https://clawhub.ai/user/xuwei-fit2cloud)
 
-## Use Case: <br>
-Employees, operators, and developers use this skill to inspect DataEase organization access, find dashboards or data screens, and export selected resources for reporting or review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles live DataEase tokens and dashboard content that may be sensitive. <br>
-Mitigation: Use a least-privileged or short-lived DataEase account or token, keep .env files private, and treat exported screenshots and PDFs as confidential. <br>
-Risk: Command output or transcripts may expose live tokens, resource identifiers, or confidential dashboard details. <br>
-Mitigation: Review command output before sharing transcripts, avoid shared terminals and logs, and redact sensitive values. <br>
-Risk: The security evidence marks the release as suspicious because credential and export handling need user review. <br>
-Mitigation: Install only when the DataEase instance and execution machine are trusted, and review the skill behavior before deployment. <br>
+## Use Case:
 
+DataEase administrators and analytics operators use this skill to find organizations and visualization resources, switch to the right organization context, and export dashboards or big-screen views for sharing or review.
 
-## Reference(s): <br>
-- [DataEase ClawHub release page](https://clawhub.ai/xuwei-fit2cloud/dataease) <br>
-- [DataEase API reference](references/api.md) <br>
-- [Resource alias mappings](references/resource_aliases.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown or JSON-style status text with generated JPEG/PDF files or absolute saved-file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include matched organization or resource IDs, export parameters, candidate lists for ambiguous matches, and local output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and target metadata) <br>
+Risk: Live DataEase tokens may be exposed during browser capture or through terminal logs and generated artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted HTTPS DataEase URL, avoid command-line passwords where possible, keep logs and exported files private, and prefer short-lived least-privilege accounts or tokens.
+
+Risk: The skill accesses organization, dashboard, and big-screen data that may contain sensitive business information.
+
+Mitigation: Install and run it only in controlled environments and limit credentials to the organizations and resources required for the task.
+
+Risk: Browser capture code injects DataEase tokens into local browser storage to render preview pages.
+
+Mitigation: Review or patch the browser capture code before production use and clear local browser/session data after exports when appropriate.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xuwei-fit2cloud/skills/dataease)
+- [DataEase API Reference](references/api.md)
+- [Resource Alias Map](references/resource_aliases.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown status text with command output summaries and generated JPEG or PDF file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create dashboard or big-screen export files in the local outputs directory.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

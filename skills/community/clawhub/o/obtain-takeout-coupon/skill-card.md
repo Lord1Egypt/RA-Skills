@@ -1,43 +1,55 @@
-## Description: <br>
-Obtains hidden and large-value takeout coupons for Meituan, Taobao Flash Sale, and Ele.me in China through a local Python command that calls a third-party coupon gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches takeout coupons for Meituan, Taobao Flash/Ele.me, and JD.com, with redemption codes, instructions, and links to coupon pages.
 
-## Publisher: <br>
-[moooai](https://clawhub.ai/user/moooai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moooai](https://clawhub.ai/user/moooai)
 
-## Use Case: <br>
-External users and agents use this skill to request takeout coupon tokens for supported Chinese delivery platforms. It is intended for coupon retrieval via a shell command, not for modifying or validating coupon contents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts a third-party coupon gateway to retrieve coupon data. <br>
-Mitigation: Install and run only if the third-party gateway is acceptable for the intended environment. <br>
-Risk: The platform selector is unreliable in this version because all supported sources are routed through the same coupon endpoint. <br>
-Mitigation: Treat returned coupon data as gateway-provided output and verify that it matches the intended platform before use. <br>
-Risk: Dependencies are installed from package managers without pinned versions. <br>
-Mitigation: Use an isolated Python environment and review dependency versions before deployment. <br>
+## Use Case:
 
+People looking for takeout discounts use this skill to find platform-specific coupons and follow instructions to redeem them in the corresponding apps or coupon pages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/moooai/obtain-takeout-coupon) <br>
-- [Third-party coupon gateway](https://agskills.moontai.top) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Text, Guidance] <br>
-**Output Format:** [Command output containing coupon gateway response data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv and Python package dependencies; source selects the requested coupon platform, although the artifact routes platforms through the same endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The coupon service receives a persistent anonymous install identifier for attribution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only if comfortable with this attribution; delete scripts/.install_id to reset the local identifier.
+
+Risk: Coupon links and QR codes lead to third-party commercial redemption pages.
+
+Mitigation: Verify the destination and offer details before ordering or sharing payment information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moooai/skills/takeout-coupon)
+- [Publisher-listed project homepage](https://github.com/moooai/takeout-coupon)
+- [Takeout coupon API documentation](artifact/references/api_documentation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Platform-grouped coupon descriptions, codes, redemption instructions, and links or QR-code image URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coupon codes are reproduced exactly as returned by the coupon service.]
+
+## Skill Version(s):
+
+2.0.2 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

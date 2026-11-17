@@ -1,46 +1,60 @@
-## Description: <br>
-Secure browser automation with Chrome profile support, vault integration, approval gates, and comprehensive audit logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secure browser automation with Chrome profile support, vault integration, approval gates, and comprehensive audit logging.
 
-## Publisher: <br>
-[riverho](https://clawhub.ai/user/riverho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[riverho](https://clawhub.ai/user/riverho)
 
-## Use Case: <br>
-Developers, researchers, and external users use Browser Secure to automate Chrome sessions for authenticated or gated web content while preserving approval gates, vault-backed credential access, isolated browser profiles, and audit records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles credentials and authenticated page content. <br>
-Mitigation: Install only on a trusted, single-user machine; use a dedicated automation Chrome profile; and scope vault items narrowly to the sites being automated. <br>
-Risk: Approval bypass options can reduce human review for sensitive sites. <br>
-Mitigation: Avoid auto-approval flags such as --yes or --skip-approval for sensitive sessions and keep approval gates enabled for login, extraction, and recording. <br>
-Risk: Captured screenshots, raw HTML, full text, logs, cache, and daemon state can retain sensitive content. <br>
-Mitigation: Disable raw HTML and full-text capture unless needed, and regularly clear ~/.browser-secure scrapbook, logs, cache, and daemon state. <br>
+## Use Case:
 
+Developers and agents use Browser Secure to automate gated or authenticated browser workflows with approval gates, Chrome profile support, vault-backed credentials, and audit trails. It is intended for tasks such as site onboarding, content capture, extraction, screenshots, and exporting structured research notes.
 
-## Reference(s): <br>
-- [Browser Secure on ClawHub](https://clawhub.ai/riverho/browser-secure) <br>
-- [README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Default Configuration](artifact/config/default.yaml) <br>
-- [Package Manifest](artifact/package.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated configuration, capture, and audit artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local screenshots, YAML or JSON scrapbook records, audit logs, and browser session state during use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can access authenticated browser sessions and password-manager material, and the security summary notes weak scoping and approval controls that need review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated automation Chrome profile, avoid personal or regulated accounts, keep human approval enabled for sensitive sites, and avoid auto-vault or manual credential entry until origin binding, approval, and password-input issues are resolved.
+
+Risk: Auto-approval flags can reduce human review for sensitive browsing or destructive actions.
+
+Mitigation: Do not use --yes or --skip-approval on sensitive sites; prefer interactive approval for login, extraction, purchases, deletion, and other high-impact actions.
+
+Risk: Audit webhooks can send audit records outside the local machine when explicitly configured.
+
+Mitigation: Keep audit logging in file mode unless the webhook destination is fully trusted and approved for the captured data.
+
+## Reference(s):
+
+- [Browser Secure on ClawHub](https://clawhub.ai/riverho/skills/browser-secure)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [Bitwarden](https://bitwarden.com)
+- [1Password](https://1password.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, JSON, YAML configuration, screenshots, raw HTML, and command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save captures, screenshots, raw HTML, site profiles, audit logs, and scrapbook exports under the user's Browser Secure workspace.]
+
+## Skill Version(s):
+
+2.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,61 @@
-## Description: <br>
-VMware Aria helps agents query VMware Aria Operations metrics, alerts, capacity forecasts, anomalies, reports, and platform health through CLI or MCP workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents query VMware Aria Operations and VCF Operations for infrastructure metrics, alerts, capacity, anomalies, reports, and platform health, with a limited set of auditable operational actions.
 
-## Publisher: <br>
-[zw008](https://clawhub.ai/user/zw008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zw008](https://clawhub.ai/user/zw008)
 
-## Use Case: <br>
-Developers, infrastructure engineers, and operations teams use this skill to inspect VMware Aria Operations environments, investigate alerts, plan capacity, detect anomalies, and generate operational reports. Write-capable actions such as alert cancellation, alert-definition changes, and report deletion should be explicitly approved before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive VMware Aria Operations data and credentials. <br>
-Mitigation: Install only for agents that need this access, use least-privilege Aria accounts, protect ~/.vmware-aria/.env, and avoid storing passwords in config files. <br>
-Risk: Some actions can change alert state, alert definitions, or generated reports. <br>
-Mitigation: Require explicit approval before alert cancellation, alert-definition changes, report deletion, or any future auto-remediation behavior. <br>
-Risk: Misconfigured TLS could expose Aria Operations traffic in production. <br>
-Mitigation: Keep TLS verification enabled for production targets and limit disabled verification to controlled lab environments. <br>
+## Use Case:
 
+VMware administrators and platform engineers use the skill to investigate Aria Operations health and alerts, review infrastructure performance and capacity, and generate reports. It also supports limited alert, alert-definition, report, and resource-maintenance changes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zw008/skills/vmware-aria) <br>
-- [Project Homepage](https://github.com/zw008/VMware-Aria) <br>
-- [Capabilities](references/capabilities.md) <br>
-- [CLI Reference](references/cli-reference.md) <br>
-- [Investigation Protocol](references/investigation-protocol.md) <br>
-- [Setup Guide](references/setup-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, configuration snippets, JSON summaries, and table-style operational findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CLI or MCP workflow steps, capacity and alert summaries, setup guidance, and explicit approval boundaries for write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.3 (source: server release evidence) <br>
+Risk: ClawScan reports that setup guidance may overwrite existing configuration without warning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up and inspect existing configuration before installation or initialization, and confirm the setup behavior for the target paths before proceeding.
+
+Risk: ClawScan reports authentication-token management capability outside the stated monitoring purpose.
+
+Mitigation: Review token-related operations before use and restrict them to an authorized environment with least-privilege access; avoid token management unless it is explicitly required.
+
+Risk: The security review was partial and noted unresolved references.
+
+Mitigation: Review unresolved references and the skill's source files before installation; follow the scanner's recommendation to defer installation until the concerns are resolved.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/vmware-skills/VMware-Aria)
+- [Setup and security guide](references/setup-guide.md)
+- [Capabilities reference](references/capabilities.md)
+- [Investigation protocol](references/investigation-protocol.md)
+- [Operations playbooks](references/ops-playbooks.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance, Operational recommendations]
+
+**Output Format:** [Structured text and JSON results, Markdown summaries, and shell commands or configuration guidance when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the configured Aria Operations targets and available APIs; write operations are audit-logged.]
+
+## Skill Version(s):
+
+2.4.7 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

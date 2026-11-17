@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
+import { siteUrl, receiptUrl, requestOptions } from './receipt-url.mjs';
 
 function parseArgs(argv) {
   const args = new Map();
@@ -46,10 +47,14 @@ const username = args.get('username') || env.WORDPRESS_USERNAME;
 const password = args.get('application-password') || env.WORDPRESS_APPLICATION_PASSWORD || env.WORDPRESS_APP_PASSWORD;
 const auth = username && password ? 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64') : null;
 
-if (!apiBase && !args.get('url')) die('missing_wordpress_api_base');
+if (!apiBase) die('missing_wordpress_api_base');
+siteUrl(apiBase);
+const site = args.get('site-url') || env.WORDPRESS_SITE_URL || apiBase;
+siteUrl(site);
+if (args.get('url') && !args.get('id') && !args.get('date')) die('url_requires_post_id_or_date');
 
 async function wp(path) {
-  const res = await fetch(`${apiBase}${path}`, { headers: auth ? { Authorization: auth } : {} });
+  const res = await fetch(`${apiBase}${path}`, { ...requestOptions(), headers: auth ? { Authorization: auth } : {} });
   const text = await res.text();
   let json = null;
   try {
@@ -69,7 +74,7 @@ if (args.get('id')) {
   const posts = await wp('/posts?per_page=10&status=publish&_fields=id,date,link,status,title,author,categories');
   post = posts.find((item) => String(item.date || '').startsWith(date));
   if (!post) die('no_published_post_for_date', { date, latest: posts[0] ? { id: posts[0].id, date: posts[0].date, link: posts[0].link, title: posts[0].title?.rendered } : null });
-} else if (!args.get('url')) {
+} else {
   const timeZone = args.get('tz') || 'UTC';
   const date = localDate(timeZone);
   const posts = await wp('/posts?per_page=10&status=publish&_fields=id,date,link,status,title,author,categories');
@@ -77,8 +82,12 @@ if (args.get('id')) {
   if (!post) die('no_published_post_for_local_date', { date, timeZone });
 }
 
-const url = args.get('url') || post.link;
-const publicRes = await fetch(url, { method: 'GET' });
-const ok = publicRes.status === 200 && (!post || post.status === 'publish');
-console.log(JSON.stringify({ ok, id: post?.id, date: post?.date, status: post?.status, title: post?.title?.rendered, link: url, publicStatus: publicRes.status }, null, 2));
+if (!post || !Number.isInteger(post.id) || post.id <= 0 || post.status !== 'publish' || typeof post.link !== 'string') die('invalid_published_post');
+if (args.get('id') && String(post.id) !== args.get('id')) die('post_id_mismatch');
+const canonical = receiptUrl(post.link, site);
+const url = args.get('url') ? receiptUrl(args.get('url'), site) : canonical;
+if (url !== canonical) die('post_url_mismatch');
+const publicRes = await fetch(url, { method: 'GET', ...requestOptions() });
+const ok = publicRes.status === 200;
+console.log(JSON.stringify({ ok, id: post.id, date: post.date, status: post.status, title: post.title?.rendered, link: url, publicStatus: publicRes.status }, null, 2));
 if (!ok) process.exit(2);

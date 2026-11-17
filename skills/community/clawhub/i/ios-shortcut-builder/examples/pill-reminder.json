@@ -1,0 +1,16 @@
+{
+  "name": "PillReminder",
+  "color": "Orange",
+  "steps": [
+    {
+      "do": "notify",
+      "WFNotificationActionTitle": "该吃药了",
+      "WFNotificationActionBody": "早饭后一片，别忘了"
+    },
+    {
+      "do": "note.append",
+      "entity": "健康记录",
+      "text": "服药打卡 {now}"
+    }
+  ]
+}

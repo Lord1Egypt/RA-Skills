@@ -1,38 +1,51 @@
-## Description: <br>
-Task Tracker Pro helps agents persist multi-step task plans, progress, recovery state, and multi-agent coordination in local Markdown task files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task Tracker Pro helps an agent break multi-step work into local Markdown task files, update progress as steps complete, resume interrupted sessions, and coordinate multi-agent task ownership.
 
-## Publisher: <br>
-[yurio99](https://clawhub.ai/user/yurio99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yurio99](https://clawhub.ai/user/yurio99)
 
-## Use Case: <br>
-Developers and agent users use this skill to break multi-step work into file-backed checklists, update progress as steps complete, and resume unfinished work after an interrupted session. It also supports coordinating responsibilities across multiple agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task details persist in local Markdown files and can carry sensitive work context across sessions. <br>
-Mitigation: Avoid writing secrets or highly sensitive details into task names, steps, or logs, and review existing task files when starting a new session. <br>
+## Use Case:
 
+External users and agent developers use this skill to keep multi-step agent work visible and resumable by recording plans, progress, owners, blockers, checks, and execution logs in local Markdown task files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yurio99/task-tracker-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown task files with concise status updates and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists task state in local files under the agent workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Task names, steps, logs, and progress are persisted under ~/.openclaw/workspace/tasks/ and may contain sensitive working details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid putting secrets or sensitive details in tracked task text, and review local task files before sharing or retaining them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yurio99/skills/task-tracker-pro)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown task files with checklist items, execution logs, and brief user-facing status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists progress in local task files under ~/.openclaw/workspace/tasks/.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

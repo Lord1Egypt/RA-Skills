@@ -1,40 +1,50 @@
-## Description: <br>
-Generate FOSMVVM ViewModels for SwiftUI screens, pages, and components. Scaffolds RequestableViewModel, localization bindings, and stub factories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate FOSMVVM ViewModels for SwiftUI screens, pages, and components, including RequestableViewModel scaffolding, localization bindings, and stub factories.
 
-## Publisher: <br>
-[foscomputerservices](https://clawhub.ai/user/foscomputerservices) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[foscomputerservices](https://clawhub.ai/user/foscomputerservices)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate FOSMVVM-compliant Swift ViewModels for screens, pages, and reusable components, including server-hosted and client-hosted variants with localization and stubs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated files or localization resources could unintentionally overwrite existing project files. <br>
-Mitigation: Review proposed file paths and generated content before applying changes, and use version control so edits can be compared or reverted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/foscomputerservices/fosmvvm-viewmodel-generator) <br>
-- [FOSUtilities GitHub Homepage](https://github.com/foscomputerservices/FOSUtilities) <br>
-- [Reference Templates](artifact/reference.md) <br>
-- [FOSMVVM Architecture](../../docs/FOSMVVMArchitecture.md) <br>
+## Use Case:
 
+Developers use this skill to create SwiftUI ViewModel scaffolding for FOSMVVM applications, choosing server-hosted, client-hosted, or child ViewModel patterns based on the screen or component being built.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Swift and YAML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces proposed ViewModel, request, factory, localization, and stub patterns for review before applying to a project.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.6 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated Swift source or localization YAML may use filenames, targets, or locales that do not match the receiving application.
+
+Mitigation: Review generated filenames, module targets, resource paths, and locale keys before adding the output to a project.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/foscomputerservices/skills/fosmvvm-viewmodel-generator)
+- [FOSUtilities repository](https://github.com/foscomputerservices/FOSUtilities)
+- [ViewModel reference templates](artifact/reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [code, configuration, markdown, guidance]
+
+**Output Format:** [Markdown guidance with Swift and YAML code templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Swift source files, localization YAML, request types, and factory scaffolding depending on the selected ViewModel pattern.]
+
+## Skill Version(s):
+
+2.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

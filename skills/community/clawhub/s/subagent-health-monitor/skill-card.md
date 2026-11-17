@@ -1,39 +1,54 @@
-## Description: <br>
-MCP server that tracks Claude Code subagent performance in real time, detects silent failures, token waste from idle loops, and duplicate task spawns, and reports fleet-wide health scores and actionable alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MCP server that tracks Claude Code subagent performance in real-time. Detects silent failures, token waste from idle loops, and duplicate task spawns. Get fleet-wide health scores and actionable alerts.
 
-## Publisher: <br>
-[abhinas90](https://clawhub.ai/user/abhinas90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abhinas90](https://clawhub.ai/user/abhinas90)
 
-## Use Case: <br>
-Developers and engineering teams use this MCP server with Claude Code to register subagents, monitor progress, detect stuck or duplicate work, and review fleet health and token-waste estimates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Subagent task names and monitoring metadata are retained locally under ~/.claude. <br>
-Mitigation: Avoid putting secrets or sensitive customer details in task names or descriptions, and delete ~/.claude/subagent-health-state.json when retained state should be cleared. <br>
+## Use Case:
 
+Developers and engineers use this skill as a local Claude Code MCP server to monitor subagent health, detect stalled agents, estimate token waste, and summarize fleet status.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/abhinas90/subagent-health-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/abhinas90) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, configuration, guidance] <br>
-**Output Format:** [JSON MCP tool responses and Markdown setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local monitoring state under ~/.claude/subagent-health-state.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and frontmatter) <br>
+Risk: The local MCP server stores subagent names and task descriptions on disk under ~/.claude.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid recording secrets, credentials, customer data, or other sensitive information in task descriptions.
+
+Risk: Duplicate-detection and token-waste values are heuristic and may be incomplete.
+
+Mitigation: Use the reported values as operational signals for review rather than audited measurements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abhinas90/skills/subagent-health-monitor)
+- [ClawHub publisher profile](https://clawhub.ai/user/abhinas90)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and MCP tool text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API keys are required; the MCP server stores local state under ~/.claude.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

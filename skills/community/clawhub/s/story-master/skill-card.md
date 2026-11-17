@@ -1,40 +1,49 @@
-## Description: <br>
-Story Master helps agents generate multi-episode scripts through a persistent story pipeline with graph-managed characters, scenes, hooks, AI review, and human confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+剧情生成管道流技能。支持多剧集连续生成、图谱管理、AI质检+人工确认的双控机制。自动管理人物、场景、钩子的关联关系。
 
-## Publisher: <br>
-[hexidyg](https://clawhub.ai/user/hexidyg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hexidyg](https://clawhub.ai/user/hexidyg)
 
-## Use Case: <br>
-External creators and developers use this skill to plan, generate, review, pause, resume, and complete serialized scripts. It supports multi-episode story continuity by tracking prior episodes, characters, scenes, hooks, review results, and user confirmation state. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A crafted pipeline ID can cause graph file operations outside the intended graph storage folder. <br>
-Mitigation: Review before installing, avoid manually supplied arbitrary pipeline IDs, and use a fixed version that validates pipeline IDs and confines graph paths under data/graphs. <br>
-Risk: Story material and pipeline state may be persisted locally, and graph operations may use the documented remote endpoint. <br>
-Mitigation: Use non-sensitive story material unless local persistence and the configured endpoint are acceptable for the deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hexidyg/story-master) <br>
-- [Graph interface endpoint documented by the skill](https://framedream.art/n8n/webhook-test/open_frame_construct) <br>
+## Use Case:
 
+Writers, creative teams, and agent developers use this skill to run multi-episode story generation pipelines that preserve story state, query prior context, review episode quality, and wait for human confirmation before continuing.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON-like status objects with Python API call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes generated episode content, review prompts, pipeline status, and graph-backed story context.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Crafted pipeline IDs could cause local graph JSON reads, writes, or deletion outside the intended data folder.
+
+Mitigation: Validate pipeline IDs, enforce storage-directory containment, and require explicit confirmation before graph deletion in any workspace with important local JSON files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hexidyg/skills/story-master)
+- [Graph interface endpoint](https://framedream.art/n8n/webhook-test/open_frame_construct)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown story-generation prompts and JSON status or review payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains local pipeline state and graph JSON files for pause, resume, and multi-pipeline workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

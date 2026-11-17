@@ -1,42 +1,58 @@
-## Description: <br>
-Audit Trail records agent actions in timestamped, hash-chained JSONL logs for auditing, investigation, and accountability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Governance: immutable, timestamped, hash-chained audit log of all agent actions for compliance, investigation, and accountability.
 
-## Publisher: <br>
-[arhadnane](https://clawhub.ai/user/arhadnane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arhadnane](https://clawhub.ai/user/arhadnane)
 
-## Use Case: <br>
-Developers, operators, and governance reviewers use this skill to create local audit logs, verify log-chain integrity, query agent activity, and generate investigation reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local audit logs are mutable and should not be treated as compliance-grade immutable records. <br>
-Mitigation: Use this skill as a best-effort local audit trail and pair it with external integrity protection, restricted file permissions, and independent log retention controls. <br>
-Risk: Agent activity logs may retain secrets, private messages, memory contents, or configuration values. <br>
-Mitigation: Review and test redaction behavior before deployment, avoid logging sensitive fields where possible, and add stronger redaction rules for the target environment. <br>
-Risk: Retention and purge behavior may preserve sensitive local audit data longer than intended. <br>
-Mitigation: Define an approved retention policy before enabling the skill and periodically review stored files under .security/audit-trail. <br>
+## Use Case:
 
+Developers, operators, and governance reviewers use this skill to create and inspect a tamper-evident audit trail of agent actions for investigation, compliance review, and accountability.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/arhadnane/audit-trail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSONL audit logs, JSON verification and report objects, and Markdown usage examples with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local audit artifacts under .security/audit-trail and redacts configured secret patterns before logging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact/skill.json) <br>
+Risk: The skill records broad agent activity metadata and possible tool arguments, which can include sensitive context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where local retention of agent activity metadata is acceptable; use workspace confinement, restrictive file permissions, retention controls, and stronger redaction before sensitive use.
+
+Risk: Immutability and compliance-grade audit claims may exceed the guarantees of local append-only log files.
+
+Mitigation: Treat the logs as tamper-evident local records, not as a complete compliance system; review integrity, deletion, purge, and backup controls before relying on them.
+
+Risk: Weak redaction and path controls can expose secrets or place audit data outside the intended storage boundary.
+
+Mitigation: Review redaction coverage, avoid use around secrets until controls are improved, and constrain writable paths to approved audit storage.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arhadnane/skills/audit-trail)
+- [Publisher profile](https://clawhub.ai/user/arhadnane)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Analysis, Guidance]
+
+**Output Format:** [JSON and JSONL files with concise text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes audit records, verification results, query matches, and compliance reports under .security/audit-trail when invoked.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, skill.json, index.js)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

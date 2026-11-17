@@ -1,49 +1,58 @@
-## Description: <br>
-TRIZ Innovation Solution Analysis Assistant that identifies the root causes of technical problems through causal chain analysis and generates innovative solutions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate reviewable TRIZ innovation or TRIZ/DFMA cost-reduction concepts and expand a selected concept into a detailed solution by calling the PatSnap Solution Engine MCP endpoint over plain HTTP.
 
-## Publisher: <br>
-[wwt1995](https://clawhub.ai/user/wwt1995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwt1995](https://clawhub.ai/user/wwt1995)
 
-## Use Case: <br>
-Developers, engineers, and R&D teams use this skill to structure non-sensitive technical problems through TRIZ analysis, identify root causes, and generate candidate solution concepts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: TRIZ problem statements, solution summaries, and image prompts may contain sensitive invention or product information and are sent to remote services. <br>
-Mitigation: Use only non-sensitive, non-regulated, non-confidential inputs unless the endpoints and data handling terms are approved by the organization. <br>
-Risk: Remote TRIZ and image-generation services may fall outside an organization's approved data boundary or retention policy. <br>
-Mitigation: Review and approve the referenced service endpoints, retention terms, and data policies before using the skill in commercial workflows. <br>
+## Use Case:
 
+External users, developers, and engineers use this skill to analyze product innovation, engineering contradiction, design improvement, manufacturing simplification, assembly optimization, and cost-reduction requests through TRIZ and DFMA workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wwt1995/triz-problem-solver) <br>
-- [Eureka RD](https://eureka.patsnap.com/rd-home?search-type=triz) <br>
-- [System Component Analysis](references/01_system_component_analysis.md) <br>
-- [Contact Relationship Analysis](references/02_component_touch_analysis.md) <br>
-- [Functional Modeling](references/03_functional_modeling.md) <br>
-- [Problem Description and Core Problem Selection](references/04_functional_modeling_problem_summary.md) <br>
-- [Causal Chain Analysis](references/05_causal_chain_analysis.md) <br>
-- [Causal Chain Problem Filtering](references/06_causal_chain_problem_summary.md) <br>
-- [Solution Generation](references/07_solution.md) <br>
-- [Solution Detail Generation](references/08_solution_detail.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown analysis with JSON-derived tables, solution summaries, and optional Mermaid flowcharts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; sends staged TRIZ analysis, solution, and image prompts to remote Eureka RD services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Risk: The skill sends user-provided problem descriptions and product details to PatSnap/Eureka RD.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose the external call before use and redact or avoid trade secrets, personal data, NDA-protected material, and export-controlled content unless policy permits submission.
+
+Risk: Generated TRIZ or DFMA concepts may be incomplete, unsuitable, or misleading for a specific engineering context.
+
+Mitigation: Treat outputs as reviewable concepts and require qualified engineering review before design, manufacturing, or procurement decisions.
+
+Risk: Long-running service calls or transport failures can create ambiguity about whether a task is still processing.
+
+Mitigation: Reuse the returned job identifier for stream and detail calls, and avoid starting a replacement task when delivery is ambiguous unless the user confirms.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/wwt1995/skills/triz-problem-solver)
+- [Eureka RD](https://eureka.patsnap.com/rd/#/agentic?type=triz&start_from=hub&utm_source=clawhub&utm_medium=skill_listing&utm_campaign=triz_innovation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured TRIZ or DFMA analysis, candidate concepts, job and idea identifiers, and selected solution details when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include patent-backed concepts, implementation guidance, evaluations, scores, images, and localized Eureka RD follow-up text when returned or allowed by the workflow.]
+
+## Skill Version(s):
+
+1.0.11 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

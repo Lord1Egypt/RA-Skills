@@ -1,0 +1,29 @@
+{
+  "batch_id": "review-bad",
+  "total_findings": 3,
+  "verdicts": [
+    {
+      "finding_id": "",
+      "challenge_result": "maybe",
+      "confidence": "high",
+      "reasoning": "",
+      "counter_evidence": "src/a.ts line 1: single string instead of array",
+      "adjusted_severity": "severe",
+      "recommendation": 42
+    },
+    {
+      "finding_id": "MED-02",
+      "challenge_result": "weakened",
+      "confidence": 75,
+      "reasoning": "Partially correct but overstated.",
+      "supporting_evidence": [42],
+      "adjusted_severity": "low",
+      "metadata": { "challenge_duration_ms": "fast" }
+    }
+  ],
+  "summary": {
+    "overturned": 3,
+    "weakened": 0,
+    "confirmed": 0
+  }
+}

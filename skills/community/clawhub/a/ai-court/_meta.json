@@ -2,5 +2,25 @@
   "ownerId": "kn70yzag7nfv6ybp1dvq6hezss820q23",
   "slug": "ai-court",
   "version": "2.3.0",
-  "publishedAt": 1774869361418
+  "name": "AI 朝廷 · 多 Agent 协作系统",
+  "description": "以中国古代政治制度为蓝本的多 Agent 协作系统 - 一键部署你的 AI 朝廷。支持明朝内阁制/唐朝三省制/现代企业制三种制度，提供 1-11 Bot 灵活配置。通过 OpenClaw 实现 Discord/飞书等多平台部署，构建 7×24 在线的 AI 协作团队。",
+  "author": "菠萝王朝团队",
+  "license": "MIT",
+  "tags": [
+    "multi-agent",
+    "openclaw",
+    "三省六部",
+    "明朝",
+    "唐朝",
+    "企业协作",
+    "飞书",
+    "Discord"
+  ],
+  "category": "framework",
+  "features": [
+    "三种制度：明朝内阁/唐朝三省/现代企业",
+    "灵活配置：1/3/5/9/11 Bot 可选",
+    "多平台：飞书/Discord 支持",
+    "完整文档：配置/部署/故障排除"
+  ]
 }

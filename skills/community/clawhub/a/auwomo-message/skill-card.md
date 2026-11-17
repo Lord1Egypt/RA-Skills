@@ -1,41 +1,58 @@
-## Description: <br>
-Sends Feishu/Lark private messages to exact-match organization members through the auwomo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auwomo Message helps agents send Feishu private messages to exact organization members through the auwomo CLI.
 
-## Publisher: <br>
-[tyqqj0](https://clawhub.ai/user/tyqqj0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tyqqj0](https://clawhub.ai/user/tyqqj0)
 
-## Use Case: <br>
-Employees, developers, and operators use this skill to ask an agent to send Feishu/Lark private messages to known organization members through auwomo. It is for exact-recipient messaging and reminders, not task management or agent inbox delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A message could be sent to the wrong organization member or with unintended text. <br>
-Mitigation: Use the skill's dry-run flow first and confirm the exact recipient and message text before sending. <br>
-Risk: The skill depends on local auwomo and lark-cli tools and the configured bot account. <br>
-Mitigation: Install only in environments where those tools and the bot account are trusted and configured for the intended organization. <br>
+## Use Case:
 
+Employees and agents use this skill to send or preview Feishu private messages to organization members when the recipient is exactly known and enabled.
 
-## Reference(s): <br>
-- [message-send](references/message-send.md) <br>
-- [ClawHub skill page](https://clawhub.ai/tyqqj0/auwomo-message) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional text or JSON CLI output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may recommend dry-run before sending and should confirm the exact recipient and message text before real delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can send real Feishu private messages to organization members.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run first and require explicit confirmation of both recipient and message before sending.
+
+Risk: Broad message-related triggers could cause accidental sends.
+
+Mitigation: Activate only when the user clearly asks to message, notify, or remind a specific recipient.
+
+Risk: Shell-style command examples can become unsafe if message text is interpolated into a command string.
+
+Mitigation: Invoke the CLI with structured arguments and keep user-provided message text out of shell interpolation.
+
+## Reference(s):
+
+- [message-send](references/message-send.md)
+- [ClawHub release page](https://clawhub.ai/tyqqj0/skills/auwomo-message)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and CLI result examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses dry-run previews and exact recipient matching before sending.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

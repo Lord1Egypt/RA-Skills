@@ -1,44 +1,59 @@
-## Description: <br>
-Set up WeCom (企业微信) as a chat channel for OpenClaw using the official Tencent plugin with WebSocket long-polling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up WeCom (企业微信) as a chat channel for OpenClaw using the official Tencent plugin with WebSocket long-polling.
 
-## Publisher: <br>
-[pengtruman922-dotcom](https://clawhub.ai/user/pengtruman922-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pengtruman922-dotcom](https://clawhub.ai/user/pengtruman922-dotcom)
 
-## Use Case: <br>
-Developers and operators use this skill to configure WeCom as an OpenClaw chat channel, including plugin installation, channel settings, gateway restart, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trusting and installing the external WeCom OpenClaw plugin may expose the deployment to package or integration risk. <br>
-Mitigation: Install only when the @wecom/wecom-openclaw-plugin package is intended and trusted for the deployment. <br>
-Risk: The WeCom bot secret is required for the WebSocket connection and could be mishandled during setup. <br>
-Mitigation: Keep the bot secret protected and store it only in the intended OpenClaw configuration. <br>
-Risk: The open sample access policy can allow broad direct-message or group access. <br>
-Mitigation: Prefer allowlist or pairing policies when the bot should be limited to specific users or groups. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to connect a WeCom AI Bot to OpenClaw, configure the WeCom channel, verify model availability, restart the gateway, and troubleshoot common connection issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pengtruman922-dotcom/wecom-setup) <br>
-- [WeCom Open Platform](https://open.work.weixin.qq.com) <br>
-- [WeCom AI Bot documentation](https://open.work.weixin.qq.com/help?doc_id=21657) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup and troubleshooting instructions; it does not directly modify user configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The example configuration defaults to broad WeCom direct-message and group access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict access to known users or groups by using allowlist policies instead of open wildcard defaults.
+
+Risk: The WeCom bot secret is stored in the local OpenClaw configuration file.
+
+Mitigation: Protect ~/.openclaw/openclaw.json with owner-only permissions and keep the secret out of repositories and shared backups.
+
+Risk: The setup installs a mutable network-capable plugin.
+
+Mitigation: Prefer a pinned or otherwise verified plugin version when available.
+
+## Reference(s):
+
+- [WeCom Open Platform](https://open.work.weixin.qq.com)
+- [WeCom AI Bot documentation](https://open.work.weixin.qq.com/help?doc_id=21657)
+- [ClawHub skill page](https://clawhub.ai/pengtruman922-dotcom/skills/wecom-setup)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash, PowerShell, and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup steps, access-control options, and troubleshooting guidance for WeCom channel configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

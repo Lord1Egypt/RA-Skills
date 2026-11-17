@@ -1,43 +1,58 @@
-## Description: <br>
-Quant Strategy Searcher connects to a remote strategy database to search quantitative stock strategies and generate AI-assisted individual stock analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quant Strategy Searcher searches quantitative stock strategies, retrieves strategy holdings, and produces traceable stock analysis using financial, market, news, and prospectus-style data.
 
-## Publisher: <br>
-[gdyz](https://clawhub.ai/user/gdyz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gdyz](https://clawhub.ai/user/gdyz)
 
-## Use Case: <br>
-External users and developers use this skill to find quantitative stock strategies, inspect holdings, and generate traceable research-style reports covering financial metrics, news sentiment, and follow-up questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a password for a stated remote MySQL strategy database. <br>
-Mitigation: Use a least-privilege database password supplied through DB_PASSWORD and avoid sharing the credential outside the runtime environment. <br>
-Risk: Proxy environment values may be logged when proxy variables contain credentials. <br>
-Mitigation: Avoid running with credential-bearing proxy variables, restrict log access, or review the skill before installation to remove proxy value logging. <br>
-Risk: Outputs may be mistaken for investment advice. <br>
-Mitigation: Treat generated reports as investment research support and require human review before any trading or portfolio decision. <br>
+## Use Case:
 
+External users and agents use this skill to search quantitative equity strategies, retrieve holdings from a remote strategy database, and generate financial, news, and risk-oriented stock analysis for reference.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gdyz/quant-strategy-searcher) <br>
-- [ClawHub metadata homepage](https://clawhub.ai/GDYZ/quant-strategy-searcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown reports with structured analysis sections and JSON-style scoring blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and DB_PASSWORD for the remote MySQL strategy database.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: The skill connects to a remote strategy database using DB_PASSWORD.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege database password that is not shared with production systems, and rotate it if exposed.
+
+Risk: Proxy environment variables may contain credentials or alter data access behavior.
+
+Mitigation: Avoid running the skill with credential-bearing proxy variables unless they are required and reviewed.
+
+Risk: Financial and news analysis is generated from third-party data and should not be treated as verified investment advice.
+
+Mitigation: Review cited source links and keep human approval in any investment decision workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gdyz/skills/quant-strategy-searcher)
+- [ClawHub homepage metadata](https://clawhub.ai/GDYZ/quant-strategy-searcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and structured text with JSON-shaped analysis sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include stock scores, confidence notes, data-source links, financial indicators, news sentiment summaries, strategy matches, and follow-up analysis responses.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata; artifact frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

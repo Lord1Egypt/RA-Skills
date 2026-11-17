@@ -1,45 +1,60 @@
-## Description: <br>
-Fast file and folder search on Windows via Voidtools Everything for finding, listing, and counting files or folders by name, path, extension, size, date, or duplicates through the ev CLI and Python API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+everyfile helps agents find, list, and count files or folders on Windows using Voidtools Everything through the ev CLI or Python API.
 
-## Publisher: <br>
-[louisgamedev](https://clawhub.ai/user/louisgamedev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[louisgamedev](https://clawhub.ai/user/louisgamedev)
 
-## Use Case: <br>
-Developers and agents use this skill on Windows to locate, count, and inspect files or folders quickly through Voidtools Everything. It is useful for broad file discovery, duplicate checks, size/date filtering, and scripting search results with the CLI or Python API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Windows file searches can expose sensitive local file paths or filenames. <br>
-Mitigation: Use counts and result limits before broad searches, and require explicit authorization before collecting, exporting, or sharing results from sensitive queries such as .env, key, token, content, or full-path searches. <br>
-Risk: Search results may be piped into commands that move, copy, delete, or otherwise modify files. <br>
-Mitigation: Confirm with the user before using everyfile results in destructive or bulk file operations. <br>
-Risk: The skill depends on trusted local installations of the everyfile PyPI package and Voidtools Everything. <br>
-Mitigation: Install only from trusted sources and verify that Everything is installed and running before relying on search results. <br>
+## Use Case:
 
+Developers and agents use this skill to perform fast Windows file discovery, counts, duplicate checks, and result processing when Voidtools Everything is installed and running.
 
-## Reference(s): <br>
-- [everyfile ClawHub release](https://clawhub.ai/louisgamedev/everyfile) <br>
-- [Voidtools Everything](https://www.voidtools.com/) <br>
-- [CLI Reference](references/cli.md) <br>
-- [Python API Reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline PowerShell and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local file paths, counts, NDJSON, JSON, or one-path-per-line command output depending on the selected everyfile interface.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.4.22 (source: server release metadata) <br>
+Risk: Broad filesystem searches can reveal sensitive file paths or locate sensitive files such as .env files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Scope queries where possible, review matches before sharing or processing them, and avoid exposing sensitive paths or file contents.
+
+Risk: Examples that pipe search results into shell commands can move, modify, or otherwise affect many files if used carelessly.
+
+Mitigation: Use counts and result limits before bulk operations, inspect candidate paths, and confirm with the user before running destructive or large-scale commands.
+
+Risk: The skill depends on a Windows-only search stack and a local everyfile package installation.
+
+Mitigation: Install only reviewed or pinned package versions and use the skill only when Windows, Voidtools Everything, and the ev binary are available.
+
+## Reference(s):
+
+- [everyfile ClawHub skill page](https://clawhub.ai/louisgamedev/skills/everyfile)
+- [Voidtools Everything](https://www.voidtools.com/)
+- [CLI Reference](references/cli.md)
+- [Python API Reference](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with PowerShell commands and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs commonly include file paths, counts, NDJSON examples, and API usage patterns.]
+
+## Skill Version(s):
+
+2026.4.22 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

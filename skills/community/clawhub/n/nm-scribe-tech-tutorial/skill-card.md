@@ -1,45 +1,51 @@
-## Description: <br>
-Plans, drafts, and refines technical tutorials for developers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans, drafts, and refines technical tutorials for developers.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and technical writers use this skill to plan, draft, and refine hands-on tutorials with scoped audiences, runnable examples, expected outputs, troubleshooting coverage, and quality checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and edit repository documentation and agent instruction files, which could introduce inaccurate or unwanted guidance in sensitive repositories. <br>
-Mitigation: Use a narrow file scope, request report-only review when edits are not desired, and review proposed documentation changes before accepting them. <br>
-Risk: Tutorials produced by the skill may include code examples or shell commands that affect a user's environment. <br>
-Mitigation: Require snippets to be tested in a real or isolated environment and verify stated output before publication. <br>
+## Use Case:
 
+Developers use this skill to scope, outline, draft, and refine step-by-step technical tutorials with runnable examples and verification guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-scribe-tech-tutorial) <br>
-- [Publisher profile](https://clawhub.ai/user/athola) <br>
-- [OpenClaw homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scribe) <br>
-- [Tutorial outline structure module](artifact/modules/outline-structure.md) <br>
-- [Code examples module](artifact/modules/code-examples.md) <br>
-- [Progressive complexity module](artifact/modules/progressive-complexity.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with outlines, draft prose, code blocks, command examples, checklists, and review notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose edits to repository documentation and agent instruction files when asked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence; artifact frontmatter says 1.9.8) <br>
+Risk: Tutorial examples may ask readers to run commands that change their system, use credentials, or incur costs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each snippet and its effects before running it, especially for system changes, credentials, and potential charges.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/athola/skills/nm-scribe-tech-tutorial)
+- [Publisher profile](https://clawhub.ai/user/athola)
+- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/scribe)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown tutorials with fenced code examples and expected output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes audience, prerequisites, outline, troubleshooting, and verification guidance.]
+
+## Skill Version(s):
+
+1.10.3 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

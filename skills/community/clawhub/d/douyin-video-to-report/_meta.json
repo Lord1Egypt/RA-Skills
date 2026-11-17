@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn73ee7nkhqr2yd718wxqjkr3d8482n2",
-  "slug": "douyin-video-to-report",
+  "name": "douyin-video-to-report",
   "version": "1.0.0",
-  "publishedAt": 1776636435828
+  "description": "抖音视频链接 → 完整图文报告。自动完成：绕过验证抓视频 → 下载 → 音频提取 → 语音转文字 → 炫酷HTML报告 → 飞书发送。",
+  "triggers": [
+    "抖音视频总结",
+    "抖音视频分析",
+    "这个视频说了什么",
+    "总结这个视频",
+    "帮我看这个抖音",
+    "抖音链接"
+  ],
+  "author": "主机",
+  "tags": ["douyin", "video", "transcription", "report", "automation"]
 }

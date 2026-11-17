@@ -1,41 +1,58 @@
-## Description: <br>
-Fetches Binance BTCUSDT and ETHUSDT Event Contract market data, including K-lines, liquidity, spot index prices, and contract rule data for downstream agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Binance BTCUSDT and ETHUSDT event contract market data every minute, including K-lines, liquidity, prices, and contract rules.
 
-## Publisher: <br>
-[acwxpunh](https://clawhub.ai/user/acwxpunh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[acwxpunh](https://clawhub.ai/user/acwxpunh)
 
-## Use Case: <br>
-Developers and agent operators use this skill to collect Binance public BTC/ETH market data on a recurring schedule for strategy signal calculation, liquidity checks, and risk-control workflows. It is intended for public market-data retrieval only, not trading authority or private account access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed for continuous background polling of Binance public market data. <br>
-Mitigation: Confirm how the agent starts, stops, and disables the recurring task before deployment. <br>
-Risk: The artifact uses strong accuracy wording for market data. <br>
-Mitigation: Treat outputs as market-data retrieval results, not as a trading guarantee or investment advice. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve Binance market data for BTCUSDT and ETHUSDT event contract analysis, signal calculation, and risk-control workflows.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/acwxpunh/binance-event-contract-fetcher) <br>
-- [Binance API base endpoint](https://api.binance.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured market-data examples and shell installation command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs describe public Binance BTCUSDT and ETHUSDT data retrieval, verification, retry, cache fallback, and alert behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: The skill is described as making Binance API requests every minute in the background.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit opt-in for scheduled execution and document how to inspect, pause, and remove the recurring fetch behavior.
+
+Risk: The security summary flags the release for review before installation.
+
+Mitigation: Install a pinned version only after reviewing the skill behavior and confirming the required Binance API access pattern.
+
+Risk: Cached or fallback market data can become stale after fetch failures.
+
+Mitigation: Surface cache age in downstream use and pause signal generation when verified live data is unavailable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/acwxpunh/skills/binance-event-contract-fetcher)
+- [Publisher profile](https://clawhub.ai/user/acwxpunh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown with structured market data fields and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches and caches Binance market data on a one-minute cadence; output may include fallback data when live fetches fail.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

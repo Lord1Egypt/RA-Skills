@@ -1,40 +1,54 @@
-## Description: <br>
-Generates daily and weekly work reports in Markdown from JSON work data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates daily and weekly Markdown work reports from structured JSON or parsed text data.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Employees and teams use this skill to turn structured work updates into daily or weekly Markdown reports for review, documentation, or sharing in workplace tools such as Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may include sensitive work status, metrics, or risk details from user-provided data. <br>
-Mitigation: Review the generated Markdown before sharing it outside the intended audience. <br>
-Risk: Future automation that sends reports to Feishu, chat, email, or another destination could disclose content without a fresh permission decision. <br>
-Mitigation: Confirm the destination, schedule, and report contents before enabling automated delivery. <br>
+## Use Case:
 
+Teams and individual contributors use this skill to turn completed work, in-progress tasks, plans, risks, and metrics into Chinese-oriented daily or weekly status reports. It is suited to Feishu-style reporting workflows where the final output is copied or sent as Markdown.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/freedompixels/feishu-daily-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports and concise command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local daily or weekly report text from user-provided JSON data; no external dependencies are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.2 (source: server release metadata) <br>
+Risk: User-supplied file paths can cause the local scripts to read input data or write generated JSON where the user points them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review command arguments before execution and use expected workspace-local paths for input and output files.
+
+Risk: Promotional links in the skill text are informational and are not required for report generation.
+
+Mitigation: Treat those links as optional references and verify them separately before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/feishu-daily-report)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports and JSON data produced by local Python commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Daily or weekly report type, optional target date, optional JSON data path, and output target selection.]
+
+## Skill Version(s):
+
+1.8.2 (source: server release metadata; artifact frontmatter says 1.8.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Manage the Lumail email marketing platform through CLI and TypeScript SDK guidance for subscriber, campaign, tag, event, transactional email, email verification, and V2 tool workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage the Lumail email marketing platform through CLI commands and a TypeScript SDK.
 
-## Publisher: <br>
-[Melvynx](https://clawhub.ai/user/Melvynx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[melvynx](https://clawhub.ai/user/melvynx)
 
-## Use Case: <br>
-Developers and email operations teams use this skill to work with Lumail account workflows, including subscriber management, campaign creation and sending, tag and event operations, transactional emails, email verification, and Lumail V2 tool calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents using this skill can guide actions that send campaigns or transactional emails and modify subscriber data when connected to a Lumail account. <br>
-Mitigation: Require explicit approval before sending email, deleting or unsubscribing contacts, or running broad V2 tools. <br>
-Risk: Lumail API tokens may grant access to account data and email-sending capabilities. <br>
-Mitigation: Use the least-privileged API key available, protect saved tokens, and avoid raw token display unless necessary. <br>
+## Use Case:
 
+Developers and operators use this skill to help agents manage Lumail subscribers, campaigns, tags, transactional emails, event tracking, email verification, and V2 tools.
 
-## Reference(s): <br>
-- [Lumail API base URL](https://lumail.io/api) <br>
-- [ClawHub Lumail skill page](https://clawhub.ai/Melvynx/lumail) <br>
-- [Melvynx publisher profile](https://clawhub.ai/user/Melvynx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe CLI commands, SDK calls, JSON parameters for V2 tools, and account-safety review points.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Agents may act on live Lumail subscribers, campaigns, transactional emails, tags, and events.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before sends, deletes, unsubscribes, campaign changes, or other account-changing actions, and use least-privilege API tokens.
+
+Risk: API tokens can expose Lumail account access, especially when commands display raw credentials.
+
+Mitigation: Avoid raw token display in shared contexts, store credentials securely, rotate exposed tokens, and restrict token permissions where possible.
+
+Risk: The skill directs agents to install and run the Lumail npm package and CLI.
+
+Mitigation: Pin or otherwise verify the package before execution, and review generated commands before running them.
+
+## Reference(s):
+
+- [Lumail API endpoint](https://lumail.io/api)
+- [ClawHub skill page](https://clawhub.ai/melvynx/skills/lumail)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and TypeScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose live Lumail API and CLI actions that should be reviewed before execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

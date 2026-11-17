@@ -1,47 +1,66 @@
-## Description: <br>
-Checks cryptocurrency addresses for scam indicators such as phishing, honeypots, rug pulls, and suspicious transaction messages using local storage and Etherscan-backed synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks cryptocurrency addresses against a local scam-risk database and optional Etherscan-backed sync workflow to flag phishing, honeypots, rug pulls, exploit patterns, and related risks.
 
-## Publisher: <br>
-[princedoss77](https://clawhub.ai/user/princedoss77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[princedoss77](https://clawhub.ai/user/princedoss77)
 
-## Use Case: <br>
-External users and developers use this skill to check blockchain addresses before interacting with them, review risk scores and scam indicators, and receive cautious recommendations about suspected malicious or suspicious addresses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Uncached wallet addresses may be sent to Etherscan during normal checks despite local-only claims. <br>
-Mitigation: Deploy only with clear user consent for network lookups, document when external sync occurs, and review behavior before use with sensitive addresses. <br>
-Risk: The package requires an Etherscan API key and evidence flags any included or previously used key as exposed. <br>
-Mitigation: Configure a fresh user-controlled API key, rotate any exposed key, and avoid storing secrets in shared logs, prompts, or source files. <br>
-Risk: Address risk results may be incomplete when data is missing, stale, or unsupported for a chain. <br>
-Mitigation: Treat results as advisory, re-check high-value addresses with independent sources, and avoid using the skill as the sole basis for financial decisions. <br>
+## Use Case:
 
+External users and developers use this skill to triage cryptocurrency addresses before interacting with them. It produces heuristic risk reports and can queue unknown addresses for background synchronization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/princedoss77/crypto-address-checker) <br>
-- [README](artifact/README.md) <br>
-- [Database architecture](artifact/DATABASE_ARCHITECTURE.md) <br>
-- [Security guidance](artifact/SECURITY.md) <br>
-- [Multi-chain support](artifact/MULTICHAIN_SUPPORT.md) <br>
-- [Etherscan API key setup](https://etherscan.io/myapikey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Configuration instructions] <br>
-**Output Format:** [Human-readable terminal text or JSON, with setup and sync commands documented in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include risk score, risk level, scam indicators, suspicious transaction summaries, and recommendations when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter, package.json, manifest, and changelog declare 2.0.0) <br>
+Risk: The skill may send wallet addresses and API-key-backed requests to Etherscan despite no-external-call positioning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review network behavior before deployment, disclose background sync behavior to users, and use a rotated API key through a protected secret mechanism.
+
+Risk: Cron or systemd examples can create persistent background jobs that run with credentials.
+
+Mitigation: Avoid the provided persistence examples unless they are hardened, secrets are not embedded in job definitions, and operators can disable or remove the jobs.
+
+Risk: Risk scores are heuristic and may be incorrect or stale.
+
+Mitigation: Treat results as triage, verify important decisions with independent sources, and do not use the output as authoritative financial safety advice.
+
+Risk: Credential-handling guidance may lead users to expose or mishandle API keys.
+
+Mitigation: Use least-privilege secret management, rotate keys regularly, and avoid storing secrets in shell history, crontabs, or committed files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/princedoss77/skills/crypto-address-checker)
+- [README](artifact/README.md)
+- [Database architecture](artifact/DATABASE_ARCHITECTURE.md)
+- [Security guidance](artifact/SECURITY.md)
+- [Multichain support](artifact/MULTICHAIN_SUPPORT.md)
+- [Etherscan API key setup](https://etherscan.io/myapikey)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or JSON address-risk reports with Markdown usage guidance and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are heuristic and may depend on local database freshness and background sync configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

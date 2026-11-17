@@ -1,45 +1,55 @@
-## Description: <br>
-Validates message destination, audience, tone, privacy, claims, and explicit approval before an agent sends or posts messages on chat and SMS channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validates message destination, audience, tone, privacy, claims, and approval before an agent sends or posts messages on chat, SMS, DM, or public channels.
 
-## Publisher: <br>
-[mindbomber](https://clawhub.ai/user/mindbomber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindbomber](https://clawhub.ai/user/mindbomber)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add a pre-send review gate for Slack, Teams, Discord, SMS, direct messages, and public channel posts. It helps an agent decide whether to draft, revise, ask, redact, request approval, send, or block a message. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A configured external checker could receive private messages, customer records, logs, secrets, screenshots, or unrelated thread history. <br>
-Mitigation: Send only the minimal redacted review payload described by the skill, and omit raw private content when a summary is enough. <br>
-Risk: An agent could post to an ambiguous, broad, public, or external destination without the user intending that audience. <br>
-Mitigation: Verify channel, recipients, mentions, broadcast scope, and explicit send approval; ask for confirmation or block when destination or audience is unclear. <br>
-Risk: Unsupported claims, hostile tone, or sensitive details could be sent in high-impact messages. <br>
-Mitigation: Revise tone, retrieve evidence for claims, redact sensitive details, and route public, external, irreversible, or high-impact sends for approval before posting. <br>
+## Use Case:
 
+Developers and agent operators use this skill to make an agent pause before sending messages, check recipients, channel scope, tone, privacy, claims, and explicit approval, then decide whether to draft, revise, ask, redact, request approval, send, or block.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mindbomber/aana-message-send-guardrail-skill) <br>
-- [Packaged README](artifact/README.md) <br>
-- [Message send guardrail schema](artifact/schemas/message-send-guardrail.schema.json) <br>
-- [Redacted review payload example](artifact/examples/redacted-message-send-guardrail.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown instructions with a structured text decision pattern and optional JSON review payload schema] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; does not execute code, call messaging services, write files, persist memory, install dependencies, or send messages on its own.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: A configured external checker could receive sensitive message content if raw messages, screenshots, logs, secrets, customer records, or unrelated thread history are sent for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only the minimal redacted review payload recommended by the skill and confirm that private details are omitted when a summary is enough.
+
+Risk: An agent may otherwise send to an ambiguous, public, or overly broad destination without explicit approval.
+
+Mitigation: Require exact channel and recipient confirmation, check mentions and broadcast scope, and block or ask when destination, audience, or approval is unclear.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mindbomber/skills/aana-message-send-guardrail-skill)
+- [Message Send Guardrail Schema](artifact/schemas/message-send-guardrail.schema.json)
+- [Redacted Message Send Guardrail Example](artifact/examples/redacted-message-send-guardrail.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style checklist and decision summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only output; may include a minimal redacted review payload when an AANA checker is configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

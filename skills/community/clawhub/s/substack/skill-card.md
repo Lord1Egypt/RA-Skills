@@ -1,41 +1,56 @@
-## Description: <br>
-Publish, edit, and manage Substack posts for the Alternative Partners publication via Substack's internal REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish, edit, and manage Substack posts for the Alternative Partners publication via Substack's internal REST API.
 
-## Publisher: <br>
-[breynol01](https://clawhub.ai/user/breynol01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[breynol01](https://clawhub.ai/user/breynol01)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Content operators and developers use this skill to create drafts, publish posts, update existing posts, and retrieve post IDs for the Alternative Partners Substack publication.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can publish or edit live public Substack posts.
+
+Mitigation: Require explicit user confirmation before publishing new posts or editing live posts.
+
+Risk: The skill relies on a long-lived Substack browser session cookie.
+
+Mitigation: Treat SUBSTACK_SID as a sensitive account credential, keep it out of chat logs and shell history where possible, and rotate it if exposed.
+
+Risk: The skill is scoped to the Alternative Partners Substack publication.
+
+Mitigation: Install only when the agent is intended to manage that publication.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Content operators and publishing agents use this skill to create drafts, publish posts, update existing posts, retrieve post IDs, and manage Alternative Partners Substack publishing workflows without browser automation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish or edit live Substack content using a long-lived session cookie. <br>
-Mitigation: Install only for users authorized to operate the Alternative Partners Substack, store SUBSTACK_SID in a secrets manager, and require explicit preview plus approval naming the target post before live publish or edit actions. <br>
-Risk: Plain-text conversion produces simple paragraph-only Substack bodies, so formatting such as headings, lists, links, and emphasis may be lost. <br>
-Mitigation: Review rendered drafts before publication and use a richer ProseMirror conversion path when formatted content is required. <br>
+**Output Format:** [Markdown guidance with inline Python and shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/breynol01/substack) <br>
-- [Alternative Partners Substack](https://alternativepartners.substack.com) <br>
+**Other Properties Related to Output:** [May result in Substack API calls that create drafts, publish web posts without email blasts, edit live posts, or fetch post metadata.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, API Calls] <br>
-**Output Format:** [Markdown with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce draft or published Substack post URLs and requires a SUBSTACK_SID session cookie supplied through a secrets manager.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,63 @@
-## Description: <br>
-Humanizes AI-generated text by detecting common LLM writing patterns, statistical signals, and vocabulary markers, then rewrites drafts to sound natural while preserving meaning and tone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects common AI-writing patterns, scores text with heuristic and statistical signals, and suggests edits that make drafts sound more natural and specific.
 
-## Publisher: <br>
-[hades4501](https://clawhub.ai/user/hades4501) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hades4501](https://clawhub.ai/user/hades4501)
 
-## Use Case: <br>
-External users, writers, editors, and developers use this skill to evaluate drafts for AI-like writing patterns, get prioritized suggestions, and generate more natural rewrites or CLI analysis reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Users could apply the skill to hide AI authorship where disclosure is required. <br>
-Mitigation: Use it as an editing aid only and follow school, workplace, publication, and platform disclosure rules. <br>
-Risk: Installing the CLI without review could run untrusted local package contents. <br>
-Mitigation: Verify the source and package contents before installing or running the CLI. <br>
+## Use Case:
 
+Writers, editors, and agent builders use this skill to analyze drafts for AI-like phrasing, repetitive structure, and generic style, then apply targeted suggestions or safe mechanical fixes while preserving the draft's meaning.
 
-## Reference(s): <br>
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) <br>
-- [Copyleaks stylometric research](https://arxiv.org/abs/2503.01659) <br>
-- [blader/humanizer reference implementation](https://github.com/blader/humanizer) <br>
-- [AI vocabulary reference](references/ai-vocabulary.md) <br>
-- [Pattern documentation](docs/PATTERNS.md) <br>
-- [Examples](docs/EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text rewrites, Markdown reports, JSON analysis, and command-line examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can provide scores, pattern findings, grouped suggestions, auto-fix text, and brief change summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact package.json reports 2.1.0) <br>
+Risk: Heuristic AI-writing scores may be mistaken for proof of authorship.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat scores and labels as editing signals only, and do not use them as evidence that a person or AI wrote a text.
+
+Risk: Humanizing suggestions can be used to misrepresent authorship, identity, or personal experience.
+
+Mitigation: Use suggestions for clarity and style edits, and keep authorship, sourcing, and personal-experience claims honest.
+
+Risk: Developer tooling relies on npm development dependencies.
+
+Mitigation: Pin and audit development dependencies before running lint, test, or formatting workflows in a trusted environment.
+
+## Reference(s):
+
+- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
+- [Copyleaks stylometric research](https://arxiv.org/abs/2503.01659)
+- [Pattern documentation](docs/PATTERNS.md)
+- [Examples](docs/EXAMPLES.md)
+- [Pattern reference](references/patterns.md)
+- [AI vocabulary reference](references/ai-vocabulary.md)
+- [Style guide](references/style-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Plain text, Markdown reports, JSON analysis, and CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can emit scores, pattern findings, statistical metrics, prioritized suggestions, and optional safe autofix text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata); package version 2.1.0 (source: artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-通过小红书网页端发布和管理笔记，支持长文、图文、视频、定时发布、草稿管理、评论回复和数据查看。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through publishing and managing Xiaohongshu notes through the web interface, including text, image-text, and video posts, scheduled publishing, draft handling, comment replies, and performance review.
 
-## Publisher: <br>
-[wuritu](https://clawhub.ai/user/wuritu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuritu](https://clawhub.ai/user/wuritu)
 
-## Use Case: <br>
-External users and content operators use this skill to guide an agent through Xiaohongshu web publishing workflows, including post creation, scheduling, draft handling, comment replies, and performance checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent operating a logged-in Xiaohongshu account, including publishing, editing, deleting, scheduling, and replying to comments. <br>
-Mitigation: Use a dedicated browser profile and require explicit preview and approval before every publish, edit, delete, scheduled post, or comment reply. <br>
-Risk: Drafts, scheduled-post queues, and replied-comment records may be retained in local files. <br>
-Mitigation: Review or disable local record files and avoid storing sensitive account, audience, or unpublished content data. <br>
-Risk: Auto-reply behavior may post unintended or noncompliant responses from the account. <br>
-Mitigation: Keep comment replies in approval-only mode, limit automation frequency, and review response content before sending. <br>
+## Use Case:
 
+External creators and operators use this skill to prepare, publish, schedule, and manage Xiaohongshu posts, replies, drafts, and content performance workflows through browser-based steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuritu/temp-xhs-skill) <br>
-- [Xiaohongshu creator platform](https://creator.xiaohongshu.com/) <br>
-- [Xiaohongshu publish page](https://creator.xiaohongshu.com/publish/publish?source=official) <br>
-- [Xiaohongshu notifications](https://www.xiaohongshu.com/notification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Files] <br>
-**Output Format:** [Markdown instructions and checklists for browser-based publishing workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to maintain local draft, schedule, and replied-comment records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Persistent Xiaohongshu login and browser-profile reuse can give the skill continuing account access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Xiaohongshu account or browser profile and review login state before enabling publishing, comment, or notification workflows.
+
+Risk: The scheduled Cron auto-reply workflow can publish unattended public replies.
+
+Mitigation: Disable or remove the Cron auto-reply workflow unless unattended replies are explicitly intended and reviewed.
+
+Risk: Drafts, publishing queues, and replied-comment records are directed to hard-coded local memory paths.
+
+Mitigation: Move these records into a user-approved skill-specific storage location with documented retention and deletion rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuritu/skills/temp-xhs-skill)
+- [Xiaohongshu creator platform](https://creator.xiaohongshu.com/)
+- [Xiaohongshu publishing page](https://creator.xiaohongshu.com/publish/publish?source=official)
+- [Xiaohongshu notifications](https://www.xiaohongshu.com/notification)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown, configuration]
+
+**Output Format:** [Markdown guidance with procedural steps, checklists, and reply templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include browser navigation steps, suggested post settings, local record locations, and user confirmation checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

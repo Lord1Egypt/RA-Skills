@@ -1,39 +1,52 @@
-## Description: <br>
-Build and maintain a structured, local markdown knowledge system with automated processing, navigation, and context-aware updates for cognitive AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and maintain a structured, local markdown knowledge system with automated processing, navigation, and context-aware updates for cognitive AI agents.
 
-## Publisher: <br>
-[arscontexta](https://clawhub.ai/user/arscontexta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[arscontexta](https://clawhub.ai/user/arscontexta)
 
-## Use Case: <br>
-Developers, researchers, and personal knowledge workers use this skill to create and maintain a local markdown vault for structured memory, source processing, navigation, and context-aware updates across agent sessions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or reorganize local markdown folders, files, and automation. <br>
-Mitigation: Ask for a preview of planned folders, files, and automation before execution, and keep backups when it will modify existing notes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arscontexta/arscontexta) <br>
-- [Publisher profile](https://clawhub.ai/user/arscontexta) <br>
-- [arscontexta.org](https://arscontexta.org) <br>
+## Use Case:
 
+Developers, knowledge workers, and agent operators use this skill to set up a local markdown knowledge vault that an AI agent can organize, maintain, and expand across sessions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with proposed file structures, configuration steps, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local markdown vault plans and files after user approval; no cloud upload is indicated by the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is intended to create and maintain a persistent local markdown knowledge vault, which may affect private notes or broad local directories if pointed at sensitive locations.
+
+Mitigation: Approve a specific folder, review the proposed structure before generation, and avoid private notes or broad home directories unless that scope is intentional.
+
+Risk: Generated hooks or automation can change how the local vault is maintained over time.
+
+Mitigation: Review any hooks or automation before enabling them and keep file creation gated on explicit user approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arscontexta/skills/arscontexta)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with proposed local file and configuration structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces user-approved local knowledge-vault plans and setup guidance.]
+
+## Skill Version(s):
+
+0.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

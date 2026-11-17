@@ -1,0 +1,4 @@
+interface:
+  display_name: "Card Wallet"
+  short_description: "Audit a multi-card wallet for overlap and gaps"
+  default_prompt: "Use $card-wallet to audit Chase Sapphire Preferred, Amex Gold, and Citi Double Cash."

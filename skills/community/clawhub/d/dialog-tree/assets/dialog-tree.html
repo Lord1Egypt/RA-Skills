@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dialog Tree</title>
+<style>
+  :root {
+    --bg: #ffffff; --fg: #1f2430; --muted: #6b7280; --line: #e5e7eb;
+    --user-bg: #fef3c7; --user-border: #f59e0b;
+    --sel: #2563eb; --ok: #16a34a; --danger: #dc2626;
+    --code-bg: #f3f4f6;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 14px/1.5 "Segoe UI", system-ui, sans-serif; color: var(--fg); background: var(--bg); height: 100vh; display: flex; flex-direction: column; }
+
+  header { padding: 10px 16px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  header h1 { font-size: 16px; margin: 0; }
+  .built-up-to { color: var(--muted); font-size: 12px; }
+  .built-up-to b { color: var(--fg); }
+  header label { font-size: 12px; color: var(--muted); user-select: none; cursor: pointer; }
+  .counter { font-size: 12px; color: var(--muted); margin-left: auto; }
+
+  main { flex: 1; display: flex; min-height: 0; }
+  #tree { width: 44%; min-width: 320px; overflow: auto; padding: 12px 8px; border-right: 1px solid var(--line); }
+  #details { flex: 1; overflow: auto; padding: 16px 22px; }
+
+  ul.tree, ul.tree ul { list-style: none; margin: 0; padding-left: 18px; }
+  ul.tree { padding-left: 4px; }
+  li { margin: 2px 0; }
+
+  .node-row { display: flex; align-items: center; gap: 6px; padding: 3px 8px; border-radius: 6px; cursor: pointer; border: 1px solid transparent; }
+  .node-row:hover { background: #f8fafc; }
+  .node-row.selected { border-color: var(--sel); background: #eff6ff; }
+  .node-row.user { background: var(--user-bg); border-left: 3px solid var(--user-border); }
+  .node-row.user.selected { border-color: var(--sel); }
+  .node-row.resolved { opacity: 0.55; }
+  .node-row.resolved .label::after { content: " ✓"; color: var(--ok); font-weight: 600; }
+  .node-row.deleted .label { text-decoration: line-through; color: var(--muted); }
+  .label { flex: 1; }
+
+  .toggle { width: 16px; text-align: center; color: var(--muted); font-size: 11px; flex-shrink: 0; cursor: pointer; }
+  .toggle.leaf { visibility: hidden; }
+
+  #details .who { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+  #details h2 { margin: 0 0 12px; font-size: 18px; }
+  #details .actions { display: flex; gap: 8px; margin: 0 0 16px; }
+  button { font: inherit; font-size: 13px; padding: 5px 12px; border-radius: 6px; border: 1px solid var(--line); background: #fff; cursor: pointer; }
+  button:hover { background: #f3f4f6; }
+  button.ok { border-color: var(--ok); color: var(--ok); }
+  button.danger { border-color: var(--danger); color: var(--danger); }
+  .placeholder { color: var(--muted); margin-top: 40px; text-align: center; }
+  .error { color: var(--danger); margin: 40px auto; max-width: 480px; }
+
+  #details .body p { margin: 0 0 10px; }
+  #details .body ul { margin: 0 0 10px; padding-left: 22px; }
+  #details .body pre { background: var(--code-bg); padding: 10px 12px; border-radius: 6px; overflow-x: auto; font: 12.5px/1.45 Consolas, monospace; }
+  #details .body code { background: var(--code-bg); padding: 1px 4px; border-radius: 4px; font: 12.5px Consolas, monospace; }
+  #details .body pre code { padding: 0; background: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🌳 <span id="hTitle">Dialog Tree</span></h1>
+  <span class="built-up-to"><span id="hBuiltUpToLabel">built up to:</span> <b id="builtUpTo"></b></span>
+  <label><input type="checkbox" id="showDeleted"> <span id="hShowDeleted">show deleted</span></label>
+  <span class="counter" id="counter"></span>
+</header>
+
+<main>
+  <div id="tree"></div>
+  <div id="details"><div class="placeholder" id="hPlaceholder">Click a node on the left</div></div>
+</main>
+
+<script>
+// ============================================================
+// VIEW — a dumb renderer for META/NODES defined by the data
+// file next to this page. The data file NAME is derived from
+// the page's own file name: <name>.html → <name>-data.js, so
+// one directory (or one static server) can host several
+// independent trees without collisions. Per-project edits
+// belong in the data file only; to upgrade the view, replace
+// this whole file (any file name keeps working).
+// ============================================================
+const DATA_SRC = (location.pathname.split("/").pop() || "dialog-tree.html").replace(/\.html?$/i, "") + "-data.js";
+
+function boot() {
+  if (typeof META === "undefined" || typeof NODES === "undefined") {
+    document.getElementById("tree").innerHTML =
+      '<div class="error">Data file <code>' + DATA_SRC + '</code> is broken — it must define <code>META</code> and <code>NODES</code>.</div>';
+    return;
+  }
+
+  // UI strings: defaults, overridable from the data file via STRINGS.
+  const DEFAULTS = {
+    title: "Dialog Tree",
+    builtUpToLabel: "built up to:", showDeleted: "show deleted",
+    placeholder: "Click a node on the left",
+    userName: "🟡 User", assistantName: "🤖 Assistant",
+    resolved: "resolved ✓", open: "open", deleted: "deleted",
+    resolve: "✓ resolve", unresolve: "↩ unresolve",
+    del: "🗑 delete", restore: "↩ restore",
+    counter: (open, total) => `open: ${open} / total: ${total}`,
+  };
+  const S = Object.assign({}, DEFAULTS, typeof STRINGS !== "undefined" ? STRINGS : {});
+
+  document.title = S.title + (META.treeId ? " — " + META.treeId : "");
+  document.getElementById("hTitle").textContent = S.title;
+  document.getElementById("hBuiltUpToLabel").textContent = S.builtUpToLabel;
+  document.getElementById("hShowDeleted").textContent = S.showDeleted;
+  document.getElementById("hPlaceholder").textContent = S.placeholder;
+
+  const LS_KEY = "dialogTree." + META.treeId + ".state.v1";
+  let state = {};
+  try { state = JSON.parse(localStorage.getItem(LS_KEY)) || {}; } catch (e) { state = {}; }
+  function saveState() { localStorage.setItem(LS_KEY, JSON.stringify(state)); }
+
+  const byId = {}; NODES.forEach(n => byId[n.id] = n);
+  const children = {}; NODES.forEach(n => { (children[n.parent] = children[n.parent] || []).push(n); });
+
+  let selectedId = null;
+  const collapsed = new Set();
+
+  function nodeState(id) { return state[id] || {}; }
+  function isResolved(n) { const s = nodeState(n.id); return "resolved" in s ? s.resolved : n.status === "resolved"; }
+  function isDeleted(n) {
+    let cur = n;
+    while (cur) {
+      if (nodeState(cur.id).deleted) return true;
+      cur = byId[cur.parent];
+    }
+    return false;
+  }
+
+  function renderTree() {
+    const showDeleted = document.getElementById("showDeleted").checked;
+    const root = document.getElementById("tree");
+    root.innerHTML = "";
+    root.appendChild(buildList(null, showDeleted));
+    updateCounter();
+  }
+
+  function buildList(parentId, showDeleted) {
+    const ul = document.createElement("ul");
+    ul.className = "tree";
+    (children[parentId] || []).forEach(n => {
+      if (isDeleted(n) && !showDeleted) return;
+      const li = document.createElement("li");
+      const row = document.createElement("div");
+      row.className = "node-row " + n.who
+        + (isResolved(n) ? " resolved" : "")
+        + (isDeleted(n) ? " deleted" : "")
+        + (n.id === selectedId ? " selected" : "");
+      const kids = children[n.id] || [];
+      const tg = document.createElement("span");
+      tg.className = "toggle" + (kids.length ? "" : " leaf");
+      tg.textContent = collapsed.has(n.id) ? "▶" : "▼";
+      tg.onclick = (e) => { e.stopPropagation(); collapsed.has(n.id) ? collapsed.delete(n.id) : collapsed.add(n.id); renderTree(); };
+      const lbl = document.createElement("span");
+      lbl.className = "label";
+      lbl.textContent = n.label;
+      row.appendChild(tg); row.appendChild(lbl);
+      row.onclick = () => { selectedId = n.id; renderTree(); renderDetails(); };
+      li.appendChild(row);
+      if (kids.length && !collapsed.has(n.id)) li.appendChild(buildList(n.id, showDeleted));
+      ul.appendChild(li);
+    });
+    return ul;
+  }
+
+  function renderDetails() {
+    const pane = document.getElementById("details");
+    const n = byId[selectedId];
+    if (!n) { pane.innerHTML = ""; return; }
+    const resolved = isResolved(n), deleted = nodeState(n.id).deleted;
+    pane.innerHTML = `
+      <div class="who">${n.who === "user" ? S.userName : S.assistantName} · ${resolved ? S.resolved : S.open}${deleted ? " · " + S.deleted : ""}</div>
+      <h2>${n.label}</h2>
+      <div class="actions">
+        <button class="ok" id="btnResolve">${resolved ? S.unresolve : S.resolve}</button>
+        <button class="danger" id="btnDelete">${deleted ? S.restore : S.del}</button>
+      </div>
+      <div class="body">${n.html}</div>`;
+    document.getElementById("btnResolve").onclick = () => {
+      state[n.id] = { ...nodeState(n.id), resolved: !resolved };
+      saveState(); renderTree(); renderDetails();
+    };
+    document.getElementById("btnDelete").onclick = () => {
+      state[n.id] = { ...nodeState(n.id), deleted: !deleted };
+      saveState(); renderTree(); renderDetails();
+    };
+  }
+
+  function updateCounter() {
+    const open = NODES.filter(n => !isDeleted(n) && !isResolved(n)).length;
+    document.getElementById("counter").textContent = S.counter(open, NODES.length);
+  }
+
+  document.getElementById("builtUpTo").textContent = META.builtUpTo;
+  document.getElementById("showDeleted").onchange = renderTree;
+  renderTree();
+}
+
+(function () {
+  const s = document.createElement("script");
+  s.src = DATA_SRC;
+  s.onload = boot;
+  s.onerror = function () {
+    document.getElementById("tree").innerHTML =
+      '<div class="error">Data file <code>' + DATA_SRC + '</code> not found — it must sit next to this page.</div>';
+  };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>

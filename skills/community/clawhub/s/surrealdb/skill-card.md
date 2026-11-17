@@ -1,48 +1,67 @@
-## Description: <br>
-Provides agent-facing guidance, commands, and reference material for SurrealDB 3 architecture, SurrealQL, schema design, security, deployment, performance, SDKs, MCP, and ecosystem integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SurrealDB 3 helps coding agents design, query, secure, deploy, and tune SurrealDB projects with SurrealQL, multi-model schemas, SDK integrations, MCP, and ecosystem tooling.
 
-## Publisher: <br>
-[24601](https://clawhub.ai/user/24601) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[24601](https://clawhub.ai/user/24601)
 
-## Use Case: <br>
-Developers and engineers use this skill to design, operate, inspect, and troubleshoot SurrealDB 3 projects with agent assistance. It helps agents produce SurrealQL, schema guidance, deployment and security recommendations, SDK integration examples, shell commands, and configuration guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SurrealQL or shell commands could change production databases if run without review. <br>
-Mitigation: Review commands and queries before execution, especially against production, and prefer read-only or least-privilege credentials. <br>
-Risk: SurrealDB endpoint credentials can be exposed if passwords are placed directly on command lines or written into tracked files. <br>
-Mitigation: Use environment variables for credentials, avoid real passwords on command lines, and write .env files only in private workspaces excluded from version control. <br>
-Risk: Default root/root credentials are unsafe outside disposable local databases. <br>
-Mitigation: Use local root/root examples only for throwaway local development and create scoped users for shared or production environments. <br>
+## Use Case:
 
+Developers and engineers use this skill to get SurrealDB 3 architecture guidance, SurrealQL examples, schema design patterns, security and deployment recommendations, performance tuning help, SDK and MCP integration guidance, and diagnostics or schema introspection workflows.
 
-## Reference(s): <br>
-- [SurrealDB 3 skill page](https://clawhub.ai/24601/surrealdb) <br>
-- [Publisher profile](https://clawhub.ai/user/24601) <br>
-- [Project homepage](https://github.com/24601/surreal-skills) <br>
-- [SurrealDB documentation](https://surrealdb.com/docs) <br>
-- [Online docs reference](references/online_docs.md) <br>
-- [SurrealQL cheatsheet](references/surrealql_cheatsheet.md) <br>
-- [SOURCES provenance tracker](SOURCES.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks, shell commands, configuration snippets, and occasional JSON from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose SurrealQL and shell commands for user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.1 (source: SKILL.md frontmatter, CHANGELOG, release evidence) <br>
+Risk: Global installation and helper scripts can affect an agent setup across projects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a project-scoped or pinned installation and review the skill before installing it globally.
+
+Risk: The skill can work with live SurrealDB credentials and database endpoints.
+
+Mitigation: Use read-only or least-privilege credentials, avoid production root credentials, and review generated queries or commands before execution.
+
+Risk: Interactive setup may create local environment files containing sensitive values.
+
+Mitigation: Avoid writing real passwords to .env files unless file permissions and git ignores are verified.
+
+Risk: Auto-confirmed installation commands can bypass normal review prompts.
+
+Mitigation: Avoid auto-confirmed npx commands and inspect package, install scope, and requested changes before proceeding.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/24601/skills/surrealdb)
+- [SurrealDB Skills Repository](https://github.com/24601/surreal-skills)
+- [SurrealDB Documentation](https://surrealdb.com/docs)
+- [SurrealDB Installation Documentation](https://surrealdb.com/docs/surrealdb/installation)
+- [uv Installation Documentation](https://docs.astral.sh/uv/getting-started/installation/)
+- [Online Docs Reference](references/online_docs.md)
+- [SurrealQL Cheatsheet](references/surrealql_cheatsheet.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks, shell commands, configuration snippets, and optional JSON or schema outputs from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose database queries, installation commands, environment variables, and schema inspection commands that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.7.1 (source: frontmatter, changelog released 2026-06-17, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

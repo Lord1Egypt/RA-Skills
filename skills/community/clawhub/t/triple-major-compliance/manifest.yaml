@@ -1,0 +1,15 @@
+name: triple-major-compliance
+display_name: 国企采购三重一大决策合规专家
+version: 1.0.0
+author: 一线评标专家&ChesaraM
+agent_created: true
+description: 国企采购领域"三重一大"决策合规AI辅助技能——基于上传的企业内部制度，辅助判定采购事项是否属三重一大、校验决策程序合规性、生成内部参考合规报告。
+feedback:
+  channel: 微信公众号
+  account: 一线评标专家
+  note: 使用问题、误报反馈、实务建议，欢迎关注公众号「一线评标专家」留言交流
+tags:
+  - 国企采购
+  - 三重一大
+  - 决策合规
+  - 巡视审计

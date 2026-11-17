@@ -1,43 +1,60 @@
-## Description: <br>
-AI.MD helps agents convert human-written CLAUDE.md or similar LLM instruction files into structured, AI-native Markdown intended to improve instruction compliance and reduce token overhead. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI.MD converts human-written CLAUDE.md or other LLM instruction files into AI-native structured-label Markdown intended to reduce token load and improve rule-following.
 
-## Publisher: <br>
-[sstklen](https://clawhub.ai/user/sstklen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sstklen](https://clawhub.ai/user/sstklen)
 
-## Use Case: <br>
-Developers and agent users use AI.MD to audit and rewrite persistent assistant instructions into labeled, gate-based Markdown. The skill is aimed at reducing ambiguous prose, token overhead, and missed instruction constraints in agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to inspect and rewrite persistent Claude instruction files, which may contain secrets, private URLs, or sensitive operational details. <br>
-Mitigation: Remove secrets and sensitive operational details before use, require a diff before replacement, and review changes before installing or deploying the rewritten instructions. <br>
-Risk: The skill calls for multi-model validation, which may send instruction content outside the local environment if the user chooses remote model testing. <br>
-Mitigation: Skip multi-model validation or explicitly approve each external model run after checking that the content is safe to share. <br>
-Risk: Mutable install commands or unpinned source references can change between review and installation. <br>
-Mitigation: Install from a pinned, trusted revision rather than a mutable main-branch command. <br>
+## Use Case:
 
+External developers and agent users use AI.MD to preview instruction-token overhead and rewrite CLAUDE.md-style guidance into structured labels, gates, rules, references, and examples for agent consumption.
 
-## Reference(s): <br>
-- [AI.MD ClawHub release](https://clawhub.ai/sstklen/ai-md) <br>
-- [Publisher profile](https://clawhub.ai/user/sstklen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured-label examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose edits to persistent assistant instruction files and request review before replacement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: frontmatter and server release evidence) <br>
+Risk: CLAUDE.md and related instruction files can contain secrets, private URLs, tokens, or connection strings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove sensitive values before using the skill and review the rewritten output before replacing any live configuration.
+
+Risk: Multi-model validation can expose instruction content to external model providers without a clear separate opt-in.
+
+Mitigation: Run validation only after explicitly approving the providers and after redacting content that should not leave the local environment.
+
+Risk: A mutable main-branch curl install command can change over time.
+
+Mitigation: Install from a pinned release or reviewed commit and verify checksums before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sstklen/skills/ai-md)
+- [AI.MD Documentation Index](artifact/docs/index.md)
+- [Before Conversion Example](artifact/examples/before.md)
+- [After Conversion Example](artifact/examples/after.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, Shell commands, Guidance]
+
+**Output Format:** [Markdown with structured labels and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include before/after measurements, backup and restore commands, and model-validation score summaries.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

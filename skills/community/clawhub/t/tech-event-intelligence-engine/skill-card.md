@@ -1,43 +1,61 @@
-## Description: <br>
-Parses raw technology event search results, removes stale or duplicate entries, scores relevance, and produces a standardized digest for scheduled delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses raw technology-event search results into a deduplicated, time-filtered, relevance-scored Markdown digest for scheduled team distribution.
 
-## Publisher: <br>
-[boboy-j](https://clawhub.ai/user/boboy-j) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boboy-j](https://clawhub.ai/user/boboy-j)
 
-## Use Case: <br>
-Developers, sales engineers, and marketing operations teams use this skill to turn public technology event search results into a concise Markdown daily digest for Feishu, WeCom, or email workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A configured webhook can expose event digests or webhook credentials if left as a placeholder or shared too broadly. <br>
-Mitigation: Replace the placeholder webhook with a controlled destination, protect the webhook token, and confirm channel access before enabling scheduled delivery. <br>
-Risk: The digest is generated from public search results that may be stale, incomplete, or incorrect. <br>
-Mitigation: Review event dates, speakers, fees, and registration links against organizer announcements before relying on the digest. <br>
+## Use Case:
 
+Developers, technical practitioners, presales architects, and marketing operations teams use this skill to turn public event-search results into a concise technology-event digest for Feishu, WeCom, email, or similar team channels.
 
-## Reference(s): <br>
-- [Skill README](README.md) <br>
-- [Input and output schema](schema.json) <br>
-- [OpenClaw workflow template](assets/workflow.yaml) <br>
-- [ClawHub skill page](https://clawhub.ai/boboy-j/tech-event-intelligence-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown digest with supporting JSON and YAML configuration templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Limits results by configured count and relevance threshold, marks missing fields for verification, and includes a public-information disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Automated delivery could post event digests or registration links to the wrong team channel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the webhook destination and intended audience before enabling scheduled delivery.
+
+Risk: Public search results may include prompt-injection content or misleading event details.
+
+Mitigation: Add prompt-injection filtering or human review when the digest will be distributed to a team channel.
+
+Risk: The digest is optimized for Chinese or China-region technology events and may not fit other event-intelligence use cases.
+
+Mitigation: Install and configure it only when that regional event digest matches the deployment need.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/boboy-j/skills/tech-event-intelligence-engine)
+- [README](artifact/README.md)
+- [Input and output schema](artifact/schema.json)
+- [Usage examples](artifact/examples.json)
+- [Workflow template](artifact/assets/workflow.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown digest with structured event entries, dates, locations, organizers, highlights, participants, fees, and source links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses raw_search_data plus optional config for date window, maximum results, minimum relevance score, and region filtering.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

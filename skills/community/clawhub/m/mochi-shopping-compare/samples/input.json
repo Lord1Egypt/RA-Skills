@@ -1,0 +1,29 @@
+{
+  "action": "compare",
+  "requestId": "sample-shopping",
+  "asOf": "2026-10-24",
+  "criteria": [
+    "含运费价格"
+  ],
+  "items": [
+    {
+      "name": "示例A",
+      "url": "https://example.com/a?ref=keep",
+      "observedOn": "2026-10-24",
+      "currency": "CNY",
+      "price": "99.90",
+      "shipping": "5.00",
+      "quantity": 1,
+      "evidence": "用户提供报价：99.90元，运费5元。"
+    },
+    {
+      "name": "示例B",
+      "url": "https://example.com/b",
+      "observedOn": "2026-10-24",
+      "currency": "CNY",
+      "price": "108",
+      "shipping": "0",
+      "evidence": "用户提供报价：108元包邮。"
+    }
+  ]
+}

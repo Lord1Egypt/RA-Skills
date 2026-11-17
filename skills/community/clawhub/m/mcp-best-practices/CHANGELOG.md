@@ -2,10 +2,203 @@
 
 All notable changes to this skill will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/2.0.0/),
 and this skill adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [1.3.1] - 2026-11-05
+
+### Removed
+
+- Per-skill `LICENSE.txt`: ClawHub licenses every published skill MIT-0.
+
+## [1.3.0] - 2026-10-06
+
+### Security
+- Four TypeScript SDK advisories published 2026-09-30..10-05: GHSA-rvq5-wwqv-78pq (bearer auth accepted tokens for another service; the `expectedResource` fix is off by default and needs `AuthInfo.resource` too), GHSA-22jm-h49p-29qw (v1 tasks not bound to their session), GHSA-6qxp-vccf-f47h (client sent credentials to a server-chosen authorization server), GHSA-6prh-2h8m-c8cw (client followed cross-origin redirects). Version floor raised to sdk >= 1.32.0 / server >= 2.3.0.
+- `maxToolInputElements` argument-size bound; the `requestState` integrity MUST (HMAC/AEAD) and `createRequestStateCodec`; server-side elicitation MUSTs; no network `$ref` dereferencing; the spec's tool-server MUSTs including output sanitization; path traversal through resource templates; Host/Origin gaps in `createMcpHandler` and in non-loopback framework-factory binds (#2843, #2844); state-handle hijacking on 2026-07-28.
+
+### Added
+- Claude Code client limits: the idle timeout that progress notifications reset (5 min HTTP / 30 min stdio), the 60 s HTTP first-byte timer, auto-backgrounding at 2 min, the 50,000-char persist-to-disk threshold, ~11k-char error-text truncation, the 2,048-char description/instructions cap, and tool search on by default.
+- `createMcpHandler(factory)` as the v2 HTTP entry point, serving both eras by default (`legacy: 'stateless'`), with correct Express/Hono mounting and a stdio section.
+- `scopeChallenge`/`requireScopes`, DPoP shipped in client 2.1.0, `<scheme>://*` allowed origins, and a "2.0.0 -> 2.3.1" migration section.
+- Skills extension (SEP-2640 Final); MCP Apps `visibility` and the UI-resource CSP/permissions fields; registry remote-only publishing.
+- Field-observed: a missing `ttlMs`/`cacheScope` makes strict clients reject whole list/read results; a dual-era stdio server must not latch the modern era after answering `server/discover`; DCR must return `201`; stale DCR client scopes; optional-auth endpoints split clients ("connected" is not "authenticated"); a bare `resource_link` to a bulk export is a dead end for agents.
+
+### Changed
+- **Breaking:** "build on the 2025-era wire unless you control both ends" is replaced by "serve both eras" - Claude Code now negotiates 2026-07-28 with HTTP servers, and `rmcp` >= 3.0 advertises it by default.
+- `ctx.mcpReq.elicitInput` throws on 2026-07-28 connections; examples use the `inputRequired` return pattern.
+- The canonical stateless example moves to `createMcpHandler` plus `hostHeaderValidationResponse`/`originValidationResponse`; the raw-transport DNS-rebinding options are `@deprecated`. `server@2.3.0` enforces one server per connection and one request per stateless transport.
+- Known-bugs table re-verified: #2607 and #2650 fixed in 2.2.0, #893 closed (v2 since 2.0.0; v1 fix unreleased), #2619 closed without a fallback, #2622 v1-only, the "fixed on main" items released in 2.1.0 / 1.30.1, GHSA-345p severity High; new open issues #2873, #2916, #2949.
+- Roadmap and process status: HTTP+SSE removal window opened (SEP-2596 Final 2026-06-03), SEP-2127 in review with `ai-catalog.json` discovery, SEP-2356 superseded by SEP-2631, Core Primitives and Agent Identity still forming, Ruby SDK Tier 1, Inspector `--protocol-era`, SEPs require prior discussion, OAuth Client Credentials has its first client.
+
+### Fixed
+- A thrown tool-handler error does reach the model as an `isError` result; only the code and `data` are lost.
+- The v2 Express/Hono examples used a `createMcpExpressApp(callback, info)` signature that never existed.
+- MCP Apps CSP and permissions live on the UI resource's `_meta.ui`, not the tool; `@modelcontextprotocol/core` is a required ext-apps peer.
+- The Tasks docs link (404); the Server Card repo and discovery path; the claim that SEP-2200 is in flight; the Origin rule in the CORS section now scopes 403 to a present-and-invalid header.
+
+Verified against: @modelcontextprotocol/sdk@1.32.1, @modelcontextprotocol/server@2.3.1, @modelcontextprotocol/ext-apps@2.0.3, modelcontextprotocol-spec@2026-07-28
+
+## [1.2.1] - 2026-09-09
+
+### Fixed
+
+- `references/security-auth.md`: the malicious-command example now uses the RFC 2606 reserved
+  `attacker.example` domain instead of `evil.com`, which Snyk scored as a live exfiltration
+  endpoint (E005 CRITICAL) rather than as the attack illustration it is.
+
+## [1.2.0] - 2026-09-09
+
+### Added
+- Modern-era HTTP status duties: `404` + `-32601` for an unimplemented RPC method, `400` + `-32020` for a header/body mismatch, and `-32021` carrying `data.requiredCapabilities`.
+- The full `x-mcp-header` contract - clients MUST support it and MUST drop violating tools from `tools/list` entirely - plus the spec's "do not mark secrets or PII" warning.
+- "Long-Running Tools" in `SKILL.md`: Claude Code's per-call MCP timeout is a hard wall-clock limit that progress notifications do not extend, so long work returns a handle or a task instead.
+- Prompt-cache invalidation as a real cost of dynamic tool loading, and `list_changed` invalidating a cached list ahead of its `ttlMs`.
+- DPoP (RFC 9449 / SEP-1932) sender-constrained tokens, shipped in the v2 client on `main`.
+- The 2026-08-22 roadmap as a "what not to over-invest in" table: tool-result-shape redesign, protocol-level progressive discovery, HTTP over stdio, ETag caching, and `audience`/`priority` annotations as deprecation candidates. New working and interest groups listed.
+- Registry package types (Cargo, NuGet, MCPB) and `mcp-name:` namespace verification, including the crates.io HTML-comment gotcha.
+- Four new open SDK defects promoted to the bugs table: v1 draft-07 schema emission, zod 3-to-4 dropping `additionalProperties: false`, `registerTool` skipping `refine`/`superRefine`, and the v2 `createMcpHandler` `onclose` leak; plus four lower-severity open issues and a "fixed on `main`, not yet released" section.
+- MRTR retries require a fresh JSON-RPC id, and `inputRequests` is a keyed map with lifetime-unique keys.
+- Tasks: per-request `-32021` opt-in contract, per-request auth-binding MUST, task-ID entropy, and the durability rule for `CreateTaskResult`.
+
+### Changed
+- **Breaking:** `@modelcontextprotocol/ext-apps` 1.7.5 -> 2.0.0 (2026-09-08). New "Upgrading to ext-apps 2.0" table covers the SDK 2.0 split packages, the `zod@^4.2.0` floor, `extra.signal` -> `extra.mcpReq.signal`, and the deprecated registration overload. The wire protocol is unchanged and 1.x/2.x interoperate both ways.
+- `MCP-Protocol-Version` is a MUST on every modern POST and must match the `_meta` value or the server MUST answer `400` + `HeaderMismatch`. The former "handle it leniently" guidance is now scoped to which version you accept, on 2025-era wires.
+- The stdio pre-init probe hazard is written generically instead of naming the Rust SDK, which implemented `server/discover` in 3.0.0. What actually fails is a probe missing the two required `_meta` keys; rmcp >= 3.1.4 answers `-32602` and still closes.
+- Codex CLI's result cap is 10,000 **tokens** on every current model, not 10,000 bytes; the bytes policy survives only on legacy `gpt-5.2` and as the unknown-model fallback.
+- `_meta["anthropic/maxResultSizeChars"]` replaces `MAX_MCP_OUTPUT_TOKENS` for text rather than being bounded by it, so it can lower the cap as well as raise it.
+- Rust SDK is Tier 1 (2026-08-21), and a SEP no longer needs an SDK implementation to reach Final.
+- Sampling-with-tools is in the released schema, not a proposal; added the `sampling.{context,tools}` and `elicitation.{form,url}` sub-capabilities.
+- The 12-month deprecation window is a default, not a guarantee: a 90-day security floor exists, and HTTP+SSE is scheduled three months after SEP-2596 reaches Final.
+- The v1.x sunset now cites the SDK's own `ROADMAP.md`, including the harder deadline that v1 will never implement a revision past 2025-11-25.
+
+### Fixed
+- The canonical stateless example called `Origin` validation a server requirement while shipping it inert: `enableDnsRebindingProtection` defaults to `false` and `allowedOrigins`/`allowedHosts` are unset on the raw transport. Both `SKILL.md` and `transport-patterns.md` examples now pass them.
+- Added the gateway failure mode where an unrecognized `server/discover` POST absorbed into an empty `2xx` bricks `connect()`, while a `4xx` degrades gracefully.
+
+Verified against: @modelcontextprotocol/sdk@1.30.0, @modelcontextprotocol/server@2.0.0, @modelcontextprotocol/ext-apps@2.0.0, modelcontextprotocol-spec@2026-07-28
+
+## [1.1.2] - 2026-09-09
+
+### Changed
+- Description condensed to fit the repo's 250-character limit.
+
+## [1.1.1] - 2026-08-21
+
+### Changed
+
+- Declared ClawHub browse categories (`development, integrations`) and topics in `metadata`, so the release pipeline publishes them instead of leaving the skill in the `other` category.
+
+### Removed
+
+- `skill-card.md`. The ClawHub CLI strips a root `skill-card.md` from every publish and the registry generates its own card, so the authored file never reached ClawHub.
+
+## [1.1.0] - 2026-08-07
+
+### Added
+- New `references/sdk-bugs.md` holding the full Known SDK Bugs table (severity, status, workaround), including the `z.transform()` row that was previously only in the schema guide.
+- `references/spec-2026-07-28.md`: "Stateful Tools: Handles Instead of Sessions" (the four handle design rules) and "Other Removals and Loosenings" (`ping`/`logging/setLevel`/`notifications/roots/list_changed` removal, SSE resumability removal, elicitation-completion removal, `execution.taskSupport` removal, JSON Schema loosening, OTel trace context, the auth changes, and the conformance-suite SEP gate).
+- `references/tool-schema-guide.md`: "Other Tool-Definition Fields" (`icons`, `listChanged`, `execution.taskSupport`) and "Other Server Primitives" (prompts, resources with the `docs://` example, resource templates, pagination, completions, cancellation).
+
+### Changed
+- SKILL.md condensed from ~43.9k to ~29.4k characters with no loss of substance - duplicated matrices, doc restatement, and reference-grade detail were compressed or relocated. Untouched: the empirically-tested Claude Code result-delivery matrix and cross-client table, Quick Reference, The Two Eras, Transport Decision, the stateless pattern, `registerTool()`, annotations, token bloat, result-size budgets, the threat table core, and the v2 migration summary.
+- "Spec 2026-07-28" reduced from ten bullets to the four that change a decision today (stateless/sessionless, `server/discover` as a server MUST, the Roots/Sampling/Logging/HTTP+SSE deprecations, and application error codes outside `-32768..-32000`); the rest is delegated to the reference.
+- "Known SDK Bugs" is now a four-item must-know list (v1 union defect, the `>= 1.26.0` floor for CVE-2026-25536, register-before-connect, AJV strict extras) pointing at `references/sdk-bugs.md`.
+- Framework Integration replaced its per-framework snippets with prose naming the `hono`/`express` packages and the Workers `preloadSchemas()` note, pointing at `transport-patterns.md`.
+- Extensions collapsed to identifier format, per-request negotiation on 2026-07-28, the four-capability table, and pointers.
+
+### Removed
+- **"Module-Level Caching" section.** Its example used the v1 positional `server.tool()` API that the same document describes as removed in v2 - a self-contradiction - and its hoist list already lives in "Stateless Pattern", where it is now a single sentence.
+- Standalone "Other Server Primitives", "Other Tool-Definition Fields", "Resource Registration", and "Beyond Text: Content Types" sections (relocated to references; the pagination rule, `docs://` convention, and content-type pointer stay inline).
+- Generic security bullets duplicated from ordinary web-service hygiene, the command-injection and SSRF threat rows (kept as a one-line hygiene note), and the VS Code maintainer quote (the cross-client matrix already carries the behavior).
+
+### Added
+- New `references/spec-2026-07-28.md` covering the released revision in full: per-request `_meta` identity keys (`protocolVersion`, `clientCapabilities`, `clientInfo`, `serverInfo`), per-request `io.modelcontextprotocol/logLevel`, the `subscriptions/listen` notification filter (`toolsListChanged`/`promptsListChanged`/`resourcesListChanged`/`resourceSubscriptions`) plus `subscriptionId` tagging, `requestState`, `Mcp-Method`/`Mcp-Name` with the Base64 sentinel encoding format, `DiscoverResult`, the cacheable-result set, the error-code allocation policy, and the deprecation table.
+- "The Two Eras" section in SKILL.md: SDK v2 speaks the 2025-era wire by default and 2026-07-28 is opt-in via `versionNegotiation` (`legacy` / `auto` / `{pin}`) - upgrading the SDK does not change your protocol revision.
+- Spec "Stateful Tools" design rules (authorization, opacity, lifetime in the creation tool's description, expiry errors), replacing a single-sentence mention.
+- SSE keep-alive frames and the `keepAliveMs` option (default 15000, `0` disables), shipped in v1.30.0 and v2.
+- v2-migration: "Beta.3 -> 2.0.0" section - the beta.5 wire realignment (`serverInfo` moves to result `_meta`, `clientInfo` optional, `SERVER_INFO_META_KEY`), schema consolidation into `core`, string-valued response cache (breaking for custom `ResponseCacheStore`), `preloadSchemas()`, lazy Ajv/wire schemas, auth-probe fix, draft-07/2019-09 dialect acceptance, `ConnectOptions.prior`, restored `Protocol` export.
+- tool-schema-guide: v2 Zod guardrails (hard error on Zod 3, warning below 4.2.0, `fromJsonSchema()`); proxy/aggregator rule to strip `outputSchema` when re-listing upstream tools; middleware must spread the whole result rather than reconstruct it; per-tool cap mechanics (wire-level field, 500k clamp, text-only, bytes not code points); paging-over-truncation guidance; response-shape economy; duplicate-SDK-install diagnosis.
+- security-auth: "Client Reality" section - path-specific `resource_metadata`, wildcard `.well-known` handlers, clients that omit the RFC 8707 `resource` parameter, silent degradation on audience misconfiguration, stale-refresh-token dead-ends.
+- transport-patterns: transport-level rejections bypass application logging; exclude GET from request-rate metrics (SSE keep-alive dominates by ~2 orders of magnitude); 415 on non-JSON POSTs.
+- Conformance suite as a runnable CLI (`npx @modelcontextprotocol/conformance server --url ...`), the SDK tier roster, and the `ext-tasks` repo as the canonical Tasks home.
+- "Testing Against Each Era": the MCP Inspector is now three clients behind one binary (web / `--cli` / `--tui`) and **connects as `legacy` by default**, so a 2026-07-28 server tested without setting `protocolEra` shows an `initialize` handshake and looks broken when it isn't. Covers the `legacy`/`auto`/`modern` setting, why the default is deliberate, and the repo's composable test servers.
+- "Direction: Active Working Groups": charter-level (no wire contract) summary of File Uploads (SEP-2356), Interceptors, Triggers/Events, Agents, Skills Over MCP (SEP-2640), and Server Card, each with why it matters to a server author.
+- Pointer to the official `mcp-server-dev` plugin (`build-mcp-server` / `build-mcp-app` / `build-mcpb`) for scaffolding a server, as the complement to this decision reference.
+
+### Changed
+- **Breaking:** spec `2026-07-28` is released, not a locked Release Candidate; the SKILL.md section is re-tensed and re-scoped, with detail delegated to the new reference.
+- **Breaking:** TypeScript SDK v2 is stable (`2.0.0`, nine packages cut in lockstep 2026-07-27); v1 is the legacy line at `1.30.0`, developed on the `v1.x` branch with bug and security fixes for at least 6 months.
+- Extension negotiation moved from `initialize` to per-request `_meta["io.modelcontextprotocol/clientCapabilities"]`; the initialize-based JSON example is now labeled 2025-era.
+- `transport-patterns.md` re-framed around the two eras - sessions, the GET stream, DELETE termination, and SSE resumability are scoped to the 2025-era wire.
+- `server/discover` is MUST-implement for servers, MAY-call for clients.
+- `-32000..-32019` is **legacy** (new implementations SHOULD NOT use it), not merely implementation-defined.
+- Keep-alive is "encouraged", not SHOULD; Server Card path corrected to `GET <streamable-http-url>/server-card` with the catalog at `.well-known/mcp/catalog.json` (SEP-2127 still Draft).
+- Elicitation/sampling reframed: on 2026-07-28 servers cannot send requests to clients, so both go through MRTR.
+
+### Removed
+- **Breaking:** `execution.taskSupport` - absent from the 2026-07-28 schema; the field is now scoped to 2025-11-25 only.
+- The SEP-2260 bullet ("server-initiated requests only while processing a client request") - it never landed in the released spec, and MRTR made it moot.
+- SEP-2350 and SEP-2351 citations - no such SEPs exist. SEP-2207 dropped from the 2026-07-28 additions list (Final, but not part of that revision).
+
+### Fixed
+- **`-32042` payment-code collision.** The released spec allocates `-32042` ("URL elicitation required", 2025-11-25 only) inside the spec-reserved `-32020..-32099` sub-range, where implementations MUST NOT emit undefined codes. Payment guidance no longer recommends `-32042`/`-32043`; it leads with the `isError` pattern and directs new codes outside `-32768..-32000`.
+- Origin validation scoped to a **present and invalid** header - a blanket 403 on a missing `Origin` locks out shipping clients.
+- `MCP-Protocol-Version` guidance corrected: there is no initialization on 2026-07-28 and the version rides `_meta`; accept a range of declared versions.
+- Known SDK Bugs table: #1699 was fixed on the v2 line only (no v1 backport), #893 is open on both `main` and `v1.x` (with the dummy-registration workaround), #1596 gains the v2 `fromJsonSchema()` answer, and #702 is reframed as a permanent JSON Schema limitation rather than an open bug.
+- Union-schema breakage confirmed still present on v1.30.0 (backport PR #2017 remains open).
+- Stale "v2 pre-alpha" / "v2 alpha" / "2.0.0-beta.3" headings and the "npm `latest` resolves to a prerelease" note across references.
+- Rewrote the frontmatter `description` to the capabilities/triggers/boundary structure: replaced the trailing subject-area keyword dump with natural prose (semantic matching makes the list redundant), dropped the version pins (no trigger value, and `metadata.upstream` already carries them), and added a boundary distinguishing this decision reference from server-scaffolding skills.
+
+Verified against: @modelcontextprotocol/sdk@1.30.0, @modelcontextprotocol/server@2.0.0, @modelcontextprotocol/ext-apps@1.7.5, modelcontextprotocol-spec@2026-07-28
+
+## [0.8.2] - 2026-07-24
+
+### Added
+- RFC 9207 `iss` client-interop footgun (SKILL.md Auth bullet + `references/security-auth.md` subsection): advertising `authorization_response_iss_parameter_supported: true` (Better-Auth's `@better-auth/oauth-provider` does by default, [PR #7669](https://github.com/better-auth/better-auth/pull/7669)) makes rmcp >= 1.8.0 ([rust-sdk PR #896](https://github.com/modelcontextprotocol/rust-sdk/pull/896)) set `require_issuer = true`; Codex 0.143-0.145 drops the callback `iss` ([openai/codex#33354](https://github.com/openai/codex/issues/33354)) and hard-fails login on a spec-correct server. Server-side mitigation: advertise the flag as `false` while still sending `iss`; plus the general "absorb client bugs server-side" principle.
+
+## [0.8.1] - 2026-07-22
+
+### Added
+
+- skill-card.md release record following NVIDIA's skill-card format
+- metadata.openclaw block (emoji, homepage, envVars) for ClawHub display
+
+## [0.8.0] - 2026-07-10
+
+### Added
+- Spec-normative 405 rule for Streamable HTTP GET: a server not offering an SSE stream MUST return 405 Method Not Allowed. Hand-rolled stateless servers answering GET with an empty 200 send official-SDK clients into reconnect storms; the official TS client special-cases 405 as the benign no-stream signal, while any other non-OK status (including 406) throws. Also: stateless transport instances are single-use.
+- "Result-size budgets": per-client caps table (Claude Code 25k tokens default via `MAX_MCP_OUTPUT_TOKENS`, per-tool `_meta["anthropic/maxResultSizeChars"]` up to 500k chars; Codex 10,000-byte default truncation, configurable via `tool_output_token_limit`; Gemini CLI 40,000-char default head/tail truncation), output-cap enforcement pattern (single backstop wrapper at the registration chokepoint, item-boundary trimming with cursor hint, JSON overflow envelope, never truncate `isError` results), and connection-level configuration via URL query params (`?tools=`, `?max_chars=`).
+- 2025-11-25 tool-surface fields previously unmentioned: `icons` metadata (SEP-973), `execution.taskSupport` (`"forbidden"`/`"optional"`/`"required"`), and the `listChanged` capability + `notifications/tools/list_changed` paired with the dynamic tool loading advice.
+- Non-text tool-result content types (`image`, `audio`, `resource_link`, embedded `resource`) with content annotations (`audience`, `priority`, `lastModified`), plus the image-returning tool pattern: downscaled `ImageContent` preview + text metadata + URL to the untouched original; never inline full-res base64.
+- Forgiving input recovery principle in error handling: recover unambiguous inputs (URL vs bare handle, common param aliases) instead of erroring; reserve `isError` for genuine ambiguity with an actionable hint.
+- OAuth ops gotcha: a server-side 500 on the token endpoint surfaces to MCP clients as a misleading "requires re-authorization" and stays latent until token refresh - monitor the token endpoint distinctly, gate deploys on pending migrations.
+- RC deltas missing from the draft-direction list: SSE resumability/`Last-Event-ID` removed (SEP-2575); server-initiated requests only while processing a client request, now required (SEP-2260); `notifications/elicitation/complete` and `elicitationId` removed; sampling `includeContext` values deprecated (SEP-2596); auth hardening SEPs 837 (`application_type` at DCR), 2207 (refresh-token guidance), 2350 (scope accumulation during step-up), 2351 (`.well-known` suffix).
+- v2-migration: "Beta.1 -> Beta.3 Changes" section - CJS builds restored (PR #2405), 415 for non-JSON POSTs + `isJsonContentType()` (PR #2441), HTTP 400 for post-dispatch -32021 (PR #2399), cross-bundle `instanceof` brands + `X.isInstance()` (PR #2384), session-ID hygiene on initialize (PR #2469), `inputRequired.elicit()` accepts Standard Schema/Zod (PR #2369), runtime-neutral `requireBearerAuth` + `oauthMetadataResponse` for web-standard hosts (PRs #2420/#2422), server-legacy deprecated and frozen at beta.2.
+- Pointers: canonical SDK docs site (ts.sdk.modelcontextprotocol.io, /v2/), MCP Inspector/debugging guides, client-best-practices doc (progressive tool discovery, code mode/PTC), conformance suite + SDK tiers, Server Card WG (`.well-known/mcp.json`).
+
+### Changed
+- v2 pin beta.1 -> beta.3 (beta.2 2026-07-02, beta.3 2026-07-09); noted the npm `latest` dist-tag resolves to the beta, so a plain `npm install` gets the prerelease.
+- v2 is no longer ESM-only: beta.2 ships CommonJS builds alongside ESM; runtime support documented as Node.js 20+/Bun/Deno.
+- Softened the beta.1 "`CallToolResult.content` required at the wire boundary" claim: beta.3 normalizes legacy content-less results to `content: []` (2026-era wire schemas stay strict).
+- Next spec reframed from unstamped draft to locked Release Candidate (locked 2026-05-21; final publishes 2026-07-28); section renamed "Spec 2026-07-28 RC Direction".
+- MCP Apps client matrix expanded: Microsoft 365 Copilot, Cursor, Archestra.AI, PostHog Code; Archestra.AI is the first client with Enterprise-Managed Authorization.
+- Tool naming rules attributed as spec SHOULD, not hard requirements.
+
+### Fixed
+- Corrected the stateless-transport GET gotcha (refuted against SDK source): `WebStandardStreamableHTTPServerTransport` returns 406 only when the Accept header lacks `text/event-stream`; a conforming GET opens a hanging 200 SSE stream (it never returns 405 for GET).
+- Dead link `spec.modelcontextprotocol.io` (SSL failure) replaced with `modelcontextprotocol.io/specification/latest`.
+- Dead IETF datatracker link for `draft-payment-transport-mcp` replaced with the self-published draft at paymentauth.org; added companion `-32043` "payment verification failed" code.
+- SEP-2140 citation updated: issue closed 2026-01-23 in favor of spec PR #2145.
+
+Verified against: @modelcontextprotocol/server@2.0.0-beta.3
+
+## [0.7.1] - 2026-07-10
+
+### Changed
+- CHANGELOG preamble pinned to Keep a Changelog 2.0.0 (format unchanged; KaC 2.0.0 keeps existing changelogs valid).
 
 ## [0.7.0] - 2026-07-01
 

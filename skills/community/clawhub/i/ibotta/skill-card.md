@@ -1,39 +1,52 @@
-## Description: <br>
-Ibotta线下超市与线上购物返利工具，通过拍摄购物小票获得品牌返利，覆盖2000+品牌，已IPO上市。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ibotta线下超市与线上购物返利工具，通过拍摄购物小票获得品牌返利，覆盖2000+品牌，已IPO上市。
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External shoppers and agents use this skill for concise Ibotta cashback guidance, including receipt-based store offers, online cashback, brand tasks, and team rewards.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill is an informational cashback helper and not an official Ibotta integration, so its output could be incomplete or unsuitable for purchase or rewards decisions.
+
+Mitigation: Review the skill's cashback guidance against current Ibotta offer terms before relying on it for purchases or rewards.
+
+Risk: Broad trigger phrases may cause the skill to appear for general cashback questions.
+
+Mitigation: Review whether the skill is relevant to the specific shopping or cashback question before using its output.
+
+## Reference(s):
 
 
-## Use Case: <br>
-外部用户可用此技能查询或整理 Ibotta 线下超市和线上购物返利信息，包括品牌、返利金额、任务要求和适用商店。 <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate during generic cashback or grocery rebate conversations. <br>
-Mitigation: Review the generated response for relevance before relying on it, especially when the prompt is not specifically about Ibotta. <br>
-Risk: Receipt images, account details, or personal purchase information could be sensitive. <br>
-Mitigation: Do not share personal purchase data or account information unless a future version clearly explains how that data is handled. <br>
+**Output Format:** [Markdown text with structured cashback query fields]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [No executable code, persistence, credential handling, or hidden behavior was found in the release evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown response with structured rebate fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code, shell commands, credentials, persistence, or hidden data access reported in security evidence.] <br>
+0.1.0 (source: frontmatter and release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,61 @@
-## Description: <br>
-X Platform API. Read posts, search tweets, get bookmarks, post tweets, upload media. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+X Platform API. Read posts, search tweets, get bookmarks, post tweets, upload media.
 
-## Publisher: <br>
-[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks)
 
-## Use Case: <br>
-Developers and agents use this skill to interact with the X Platform API for reading posts, recent search results, bookmarks, and user profiles. With OAuth credentials, it can also post, delete, bookmark, and upload media on the authenticated X account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: An agent can post, delete, bookmark, and upload media on a live X account when OAuth credentials are configured. <br>
-Mitigation: Prefer read-only bearer-token configuration unless write actions are needed, and require explicit human confirmation before posting, deleting, bookmarking, or uploading media. <br>
-Risk: The security summary reports that top-level metadata under-discloses deletion capability. <br>
-Mitigation: Review the exposed tools before deployment and disclose that x_delete_tweet can delete posts from the authenticated X account. <br>
-Risk: Media upload can read a local file path supplied to the tool. <br>
-Mitigation: Limit the paths available to the agent and confirm the intended file before uploading media. <br>
+## Use Case:
 
+Developers and agents use this skill to read X posts, search recent tweets, inspect bookmarks and profiles, and perform account actions such as posting, deleting, bookmarking, and uploading media through the X Platform API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/parkertoddbrooks/wip-xai-x) <br>
-- [Skill homepage](https://github.com/wipcomputer/wip-xai-x) <br>
-- [X API base](https://api.x.com/2) <br>
-- [X API documentation](https://docs.x.com/x-api) <br>
-- [X API authentication documentation](https://docs.x.com/resources/authentication) <br>
-- [X TypeScript SDK](https://github.com/xdevplatform/xdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, API calls] <br>
-**Output Format:** [JSON API responses and text output from MCP tools, module calls, or CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires X API credentials; bearer tokens support read operations, while OAuth credentials enable write, delete, bookmark, and media upload actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release, SKILL.md frontmatter, package.json, CHANGELOG) <br>
+Risk: The skill can use X credentials that allow posting, deleting, bookmarking, and uploading media.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a read-only bearer token unless write access is required, and use a dedicated X app or account with the least permissions needed.
+
+Risk: Media upload accepts a local file path, which can expose files available to the agent process.
+
+Mitigation: Run the MCP process with minimal filesystem access and do not expose sensitive directories to the skill.
+
+Risk: Credential lookup can use a 1Password shell invocation identified by the security evidence as unsafe.
+
+Mitigation: Use explicit environment variables or avoid the 1Password auto-lookup path until the shell invocation is hardened.
+
+## Reference(s):
+
+- [Skill Homepage](https://github.com/wipcomputer/wip-xai-x)
+- [X API v2](https://docs.x.com/x-api)
+- [X API Authentication](https://docs.x.com/resources/authentication)
+- [X API Base](https://api.x.com/2)
+- [XDK SDK](https://github.com/xdevplatform/xdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON API responses, JavaScript examples, shell commands, and MCP tool output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform authenticated read and write actions against an X account when credentials are configured.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter, package.json, changelog released 2026-03-16, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

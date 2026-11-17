@@ -1,42 +1,54 @@
-## Description: <br>
-Analyze Hong Kong listed stocks and produce prediction-ready theses from price action, fundamentals, technicals, southbound flows, AH premium, liquidity, and event catalysts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Hong Kong listed stocks and produce prediction-ready theses from price action, fundamentals, technicals, southbound flows, AH premium, liquidity, and event catalysts.
 
-## Publisher: <br>
-[chinasong](https://clawhub.ai/user/chinasong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chinasong](https://clawhub.ai/user/chinasong)
 
-## Use Case: <br>
-External users and developers use this skill to standardize Hong Kong stock research, build scenario-based theses, and convert them into time-bounded prediction questions with clear resolution sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security summary flags possible high-impact crypto repair actions without enough built-in transaction safety controls. <br>
-Mitigation: Install only from a trusted project checkout, inspect referenced recovery scripts, and require explicit approval before any transaction. <br>
-Risk: Financial prediction outputs may be incomplete or misleading when market data is missing, stale, or ambiguous. <br>
-Mitigation: Use current source-attributed market data, surface missing data in warnings, and avoid presenting predictions as certain investment advice. <br>
+## Use Case:
 
+External users, developers, and market researchers use this skill to structure Hong Kong listed stock research, gather HK-specific signals, and turn analysis into time-bounded prediction candidates.
 
-## Reference(s): <br>
-- [HKEX](https://www.hkex.com.hk/) <br>
-- [ClawHub skill page](https://clawhub.ai/chinasong/hk-stock-predictor) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/chinasong) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Guidance] <br>
-**Output Format:** [Structured JSON object plus readable Markdown summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include normalized input, market context, evidence buckets, bull/base/bear scenarios, prediction candidates, a recommended prediction, and warnings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: clawhub.json and server-resolved release metadata) <br>
+Risk: Users may treat structured stock predictions as financial advice or certainty.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as research support, include uncertainty and warnings, and require users to verify market data and forecasts against current reliable sources.
+
+Risk: Stale, incomplete, or low-liquidity market data can make prediction candidates misleading.
+
+Mitigation: Use current source-attributed public market data, surface missing data in warnings, and prefer liquid Hong Kong listed securities with externally resolvable outcomes.
+
+## Reference(s):
+
+- [HK Stock Predictor on ClawHub](https://clawhub.ai/chinasong/skills/hk-stock-predictor)
+- [HKEX](https://www.hkex.com.hk/)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance, configuration]
+
+**Output Format:** [Structured object plus readable Markdown summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes normalized input, market context, evidence buckets, scenario analysis, prediction candidates, recommended prediction, and warnings.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version, artifact/clawhub.json, artifact/PUBLISH_CLAWHUB.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

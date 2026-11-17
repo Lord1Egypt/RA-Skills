@@ -1,42 +1,55 @@
-## Description: <br>
-Provides concise retrieval and summaries for public 51job job and company information without supporting application submission or account-login automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+51job helps agents summarize public job listings and company pages on 51job.com without login automation, job applications, or bulk scraping.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to summarize public 51job search results, job details, and company pages for lightweight analysis and reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill could be misused for high-volume collection or platform-control bypass attempts. <br>
-Mitigation: Use it only for small, user-directed summaries of public 51job pages; avoid login automation, application submission, bulk scraping, and attempts to bypass platform controls. <br>
-Risk: Summaries of job and company pages may become stale or omit context from dynamically rendered pages. <br>
-Mitigation: Label collection time, review source pages when decisions matter, and prefer human-triggered parsing when dynamic rendering or human verification appears. <br>
+## Use Case:
 
+Developers, analysts, and operators use this skill to produce lightweight summaries of public 51job search results, job detail pages, and company profiles for analysis or reminders.
 
-## Reference(s): <br>
-- [51job Skill Page](https://clawhub.ai/CodeKungfu/51job) <br>
-- [51job Homepage](https://www.51job.com/) <br>
-- [51job Search](https://search.51job.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries and extraction guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes collection-time labeling guidance; does not support login, application submission, or bulk scraping.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Using the skill for logged-in account actions, job applications, or large-scale scraping would exceed the stated scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for explicit public 51job research tasks; avoid login automation, job submissions, and bulk collection.
+
+Risk: Public job pages may change, require dynamic rendering, or present human verification.
+
+Mitigation: Open pages manually when needed, control request frequency, and include the collection time in generated summaries.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codekungfu/skills/51job)
+- [51job Homepage](https://www.51job.com/)
+- [51job Job Search](https://search.51job.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries and structured comparison cards]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should stay within public-page research boundaries and include collection time when data is gathered.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

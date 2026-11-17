@@ -1,41 +1,57 @@
-## Description: <br>
-Publish HTML as a live website instantly. POST HTML, get a shareable URL. No account needed. Always asks the user for confirmation before publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish HTML as a live website instantly. POST HTML, get a shareable URL. No account needed. Always asks the user for confirmation before publishing.
 
-## Publisher: <br>
-[snappyio](https://clawhub.ai/user/snappyio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[snappyio](https://clawhub.ai/user/snappyio)
 
-## Use Case: <br>
-Developers and agent operators use this skill to publish user-approved HTML, reports, dashboards, documents, landing pages, portfolios, or event pages as public websites through YeetIt. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Published sites are publicly accessible and may expose secrets, credentials, private data, or internal information if included in the HTML. <br>
-Mitigation: Review the content for sensitive data and obtain explicit user confirmation before every publish or update. <br>
-Risk: The returned edit_key can modify a published site. <br>
-Mitigation: Treat the edit_key like a password and avoid exposing it in public output or shared artifacts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snappyio/yeet-it) <br>
-- [YeetIt homepage](https://yeetit.site) <br>
-- [YeetIt publish API endpoint](https://yeetit.site/v1/publish) <br>
+## Use Case:
 
+Developers and agents use this skill to publish user-approved HTML, reports, dashboards, documents, landing pages, portfolios, or event pages as public shareable websites through YeetIt.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown guidance with curl examples and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl; publishes HTML and optional assets; returned edit_key values should be treated as secrets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Published HTML is publicly accessible and may expose secrets, credentials, private personal data, or proprietary information if the content is not reviewed.
+
+Mitigation: Before approving a publish or update, review the content for secrets, credentials, private personal data, proprietary information, environment values, and other sensitive data.
+
+Risk: A returned edit_key can authorize future changes to a published site.
+
+Mitigation: Keep edit_key values private and share only the public URL with intended viewers.
+
+Risk: Publishing or updating without user awareness can make content public unexpectedly.
+
+Mitigation: Require explicit user confirmation before every publish or update and tell the user the content will be publicly accessible to anyone with the link.
+
+## Reference(s):
+
+- [YeetIt homepage](https://yeetit.site)
+- [ClawHub skill page](https://clawhub.ai/snappyio/skills/yeet-it)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with curl commands, JSON request examples, public URL handling guidance, and confirmation steps.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and user confirmation before publishing or updating public web content.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

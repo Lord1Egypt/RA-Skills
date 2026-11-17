@@ -230,3 +230,177 @@ python3 scripts/stock.py locations                    # 列内部库位；wareho
 ```
 
 查库存走 product 的 free_qty/qty_available（限仓库走 context）；验证 button_validate 已自动跳欠单向导。
+
+## 会计（/odoo/invoices）—— accounting.py
+
+发票/账单/账簿/科目/付款（account.move / account.payment / account.journal / account.account）。
+
+```bash
+# 列出发票/账单
+python3 scripts/accounting.py invoices                    # 我的；--bills 供应商账单 / --invoices-only 客户发票
+python3 scripts/accounting.py invoices --unpaid           # 只看未付款
+python3 scripts/accounting.py invoices --draft             # 只看草稿 / --posted 已过账
+python3 scripts/accounting.py invoices --customer "某客户"   # 按客户/供应商筛
+python3 scripts/accounting.py invoices --all               # 看全部（不只我的）
+
+# 详情
+python3 scripts/accounting.py show 42                      # 发票详情 + 明细行
+
+# 建客户发票 / 供应商账单
+python3 scripts/accounting.py add --customer "某客户" --line "服务费:1:5000" --line "硬件:2:3000"
+python3 scripts/accounting.py bill --vendor "某供应商" --line "耗材:10:50" --date 2026-08-01
+
+# 状态操作（写操作，先与用户确认）
+python3 scripts/accounting.py post 42                      # 过账（draft→posted，生成凭证行）
+python3 scripts/accounting.py cancel 42                    # 作废
+python3 scripts/accounting.py draft 42                     # 回草稿
+
+# 账簿 / 科目
+python3 scripts/accounting.py journals                     # 列出账簿；--type bank 筛类型
+python3 scripts/accounting.py accounts                     # 列出科目；--type income 筛类型
+python3 scripts/accounting.py accounts --type asset_cash   # 银行现金类科目
+
+# 付款
+python3 scripts/accounting.py pay --partner "某客户" --amount 5000 --type inbound --partner-type customer
+python3 scripts/accounting.py pay --partner "某供应商" --amount 3000 --type outbound --partner-type supplier
+python3 scripts/accounting.py payments                     # 列出付款；--draft / --paid / --all
+```
+
+⚠️ account.move.state 只有 draft/posted/cancel（无 done）；move_type 区分发票/账单/退款；金额全是 compute（由 invoice_line_ids 算），不可直接 write；payment_state: not_paid/in_payment/paid/partial/reversed/blocked。过账/作废是写操作有副作用，先与用户确认。
+
+## 人力资源（/odoo/hr）—— hr.py
+
+员工/部门/考勤/请假/报销（hr.employee / hr.department / hr.attendance / hr.leave / hr.expense）。
+
+```bash
+# 员工与部门
+python3 scripts/hr.py employees                           # 在职员工
+python3 scripts/hr.py employees --department 研发部        # 按部门（含子部门）
+python3 scripts/hr.py employees --job "前端工程师"          # 按岗位
+python3 scripts/hr.py employees --name 张                  # 按名字搜
+python3 scripts/hr.py emp-show 5                           # 员工详情
+python3 scripts/hr.py departments                         # 部门列表（含层级名和人数）
+
+# 考勤
+python3 scripts/hr.py attendance                          # 今天我的考勤
+python3 scripts/hr.py attendance --employee 张三           # 指定员工
+python3 scripts/hr.py attendance --from 2026-08-01 --to 2026-08-31  # 范围
+python3 scripts/hr.py attendance --department 研发部 --from 2026-08-01 --to 2026-08-31
+python3 scripts/hr.py check-in                            # 签到（当前用户关联的员工）
+python3 scripts/hr.py check-out                           # 签退
+
+# 请假
+python3 scripts/hr.py leaves                              # 我的请假
+python3 scripts/hr.py leaves --pending                    # 待审批的
+python3 scripts/hr.py leaves --employee 张三               # 指定员工
+python3 scripts/hr.py leaves --all                        # 全部
+python3 scripts/hr.py leave-add --employee 张三 --type "年假" --from 2026-08-10 --to 2026-08-12 --reason "家里有事"
+python3 scripts/hr.py leave-approve 42                    # 批准
+python3 scripts/hr.py leave-refuse 42                     # 拒绝
+
+# 报销
+python3 scripts/hr.py expenses                            # 我的报销
+python3 scripts/hr.py expenses --draft                    # 草稿 / --submitted 待批 / --approved 已批
+python3 scripts/hr.py expense-add --employee 张三 --product "办公用品" --qty 1 --amount 200
+python3 scripts/hr.py expense-add --employee 张三 --amount 500 --name "差旅费" --payment-mode company_account
+python3 scripts/hr.py expense-submit 42                  # 提交（draft→submitted）
+python3 scripts/hr.py expense-approve 42                  # 批准（submitted→approved）
+python3 scripts/hr.py expense-post 42                    # 过账（approved→posted，建会计凭证，写操作先确认）
+python3 scripts/hr.py expense-refuse 42                  # 拒绝
+```
+
+⚠️ 考勤签到/签退走 hr.employee._attendance_action_change（不是直接建 hr.attendance）；请假用 request_date_from/to（Date）不是 date_from/to（Datetime/UTC,compute）；number_of_days 是 compute（由工作日历算）；v19 报销无 sheet（直接操作 hr.expense）；报销 action_post 有副作用（建会计凭证）。
+
+## 统一提醒 —— reminder.py
+
+「提醒我…」的统一入口。根据输入自动判断建什么类型的提醒。
+
+### 决策逻辑
+
+| 输入特征 | 创建什么 | 场景 |
+|---|---|---|
+| `--when "2026-08-05 09:00"`（有精确时间，无关联） | `calendar.event` + `alarm` | "提醒我明天9点开会" |
+| `--model crm.lead --id 88`（关联业务记录） | `mail.activity` 挂在记录上 | "3天后回访客户" |
+| `--date 2026-08-05`（只有日期，无时间无关联） | `project.task`（待办+截止日） | "提醒我周五前交报告" |
+| `--model + --when`（关联+时间） | `mail.activity`（关联记录+日期） | "后天回访某商机" |
+| `--when` 只有日期（无时间无关联） | `project.task`（待办+截止日） | "提醒我8月10日交报告" |
+
+```bash
+# 精确时间提醒 → calendar.event + alarm（到点推送）
+python3 scripts/reminder.py create --title "开会" --when "2026-08-05 09:00" --remind 15m
+python3 scripts/reminder.py create --title "下班关空调" --when "2026-08-05 18:00" --remind 0m
+
+# 关联业务提醒 → mail.activity（挂在商机/任务/客户上）
+python3 scripts/reminder.py create --title "回访客户" --model crm.lead --id 88 --type call --date 2026-08-06
+python3 scripts/reminder.py create --title "检查任务" --model project.task --id 55 --date 2026-08-07
+
+# 只有日期 → project.task（待办+截止日）
+python3 scripts/reminder.py create --title "交报告" --date 2026-08-10
+python3 scripts/reminder.py create --title "交报告" --date 2026-08-10 --desc "包含 Q2 数据" --priority 2
+
+# 查到期/即将到期
+python3 scripts/reminder.py due --within 60m          # 60分钟内要开始的会议
+python3 scripts/reminder.py due --overdue             # 逾期项（活动+待办）
+python3 scripts/reminder.py due --today               # 今日到期
+python3 scripts/reminder.py due                       # 默认：逾期+今日
+
+# 列出未完成提醒
+python3 scripts/reminder.py list
+
+# 完成 / 取消
+python3 scripts/reminder.py done 123 --type activity --feedback "已处理"
+python3 scripts/reminder.py done 88 --type event
+python3 scripts/reminder.py cancel 456 --type todo
+```
+
+**参数说明**：
+- `--when`：日期+时间（YYYY-MM-DD HH:MM）→ 建日历事件；只有日期 → 建待办
+- `--date`：仅日期（YYYY-MM-DD）→ 建待办或活动截止日
+- `--model` + `--id`：关联业务记录 → 建活动
+- `--remind`：提前提醒量（0m/15m/30m/1h/1d），仅日历事件用，默认到点
+- `--alarm-type`：notification（默认）/ email
+- `--act-type`：todo/call/meeting/email/upload（活动类型，默认 todo）
+- `--type`（done/cancel 用）：activity/event/todo，不传则自动探测
+
+## 心跳巡检 —— heartbeat_check.py
+
+为 OpenClaw 心跳（HEARTBEAT）优化的精简巡检脚本。主动检查辉火云中的逾期项和即将开始的事件。
+
+```bash
+# 默认：逾期 + 今日 + 30分钟内即将开始
+python3 scripts/heartbeat_check.py
+
+# 查 60 分钟内要开始的会议
+python3 scripts/heartbeat_check.py --imminent 60m
+
+# 只报逾期项
+python3 scripts/heartbeat_check.py --overdue-only
+
+# 只报今日到期项
+python3 scripts/heartbeat_check.py --today
+
+# JSON 输出（供 OpenClaw 解析决策）
+python3 scripts/heartbeat_check.py --json
+```
+
+**JSON 输出结构**：
+```json
+{
+  "date": "2026-08-04",
+  "overdue_todos": [...],
+  "today_activities": [...],
+  "imminent_meetings": [...],
+  "summary": {
+    "overdue_todo_count": 2,
+    "today_todo_count": 3,
+    "activity_count": 1,
+    "meeting_count": 1,
+    "total": 5
+  }
+}
+```
+
+**OpenClaw 集成建议**：
+- 心跳中跑 `--json`，`summary.total > 0` → 主动告知用户
+- Cron 每小时跑 `--imminent 60m --json`，检查一小时内到期的会议
+- 每天早 8:30 跑 `briefing.py today` 做早间总览

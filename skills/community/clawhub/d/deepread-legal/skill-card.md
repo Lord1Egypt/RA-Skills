@@ -1,43 +1,58 @@
-## Description: <br>
-Extracts structured data from contracts, legal agreements, court filings, and compliance documents, with pre-built schemas for parties, clauses, dates, obligations, and PII redaction for privilege review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract structured data from contracts, legal agreements, court filings, and compliance documents with pre-built schemas for parties, clauses, dates, and obligations, plus PII redaction for privilege review.
 
-## Publisher: <br>
-[uday390](https://clawhub.ai/user/uday390) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uday390](https://clawhub.ai/user/uday390)
 
-## Use Case: <br>
-Legal, compliance, and operations teams use this skill to extract parties, dates, clauses, obligations, signatures, and other structured fields from legal documents, and to redact sensitive information before external sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Legal-document uploads may contain privileged, regulated, confidential, or client materials. <br>
-Mitigation: Confirm that use of the third-party DeepRead API is authorized for the matter or organization before uploading documents. <br>
-Risk: Document processing depends on a third-party service and its data handling practices. <br>
-Mitigation: Review vendor retention policy, access controls, and contractual approvals before use. <br>
+## Use Case:
 
+Legal teams, compliance teams, and developers use this skill to extract contract metadata, clauses, dates, obligations, signatures, and other fields from legal documents. The skill also supports redacting privileged or sensitive information before documents are shared externally.
 
-## Reference(s): <br>
-- [DeepRead homepage](https://www.deepread.tech) <br>
-- [DeepRead dashboard](https://www.deepread.tech/dashboard) <br>
-- [DeepRead BYOK setup](https://www.deepread.tech/dashboard/byok) <br>
-- [ClawHub skill page](https://clawhub.ai/uday390/deepread-legal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with JSON schemas, Python examples, and cURL commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DEEPREAD_API_KEY and sends user-provided documents to the DeepRead API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Selected legal documents are sent to DeepRead for extraction and redaction, and may also be sent to a configured model provider when BYOK is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm client, privilege, retention, and compliance requirements before upload.
+
+Risk: Sample redacted-file download code may be reused in automation without production hardening.
+
+Mitigation: Add appropriate validation, access controls, error handling, and storage controls before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uday390/skills/deepread-legal)
+- [DeepRead homepage](https://www.deepread.tech)
+- [DeepRead dashboard](https://www.deepread.tech/dashboard)
+- [DeepRead BYOK setup](https://www.deepread.tech/dashboard/byok)
+- [DeepRead demo repository](https://github.com/deepread-tech/deepread-demo)
+- [DeepRead service issues](https://github.com/deepread-tech/deep-read-service/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON, Python, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DEEPREAD_API_KEY; extracted fields may include human-in-the-loop flags for review.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

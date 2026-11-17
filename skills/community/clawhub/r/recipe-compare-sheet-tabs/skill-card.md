@@ -1,39 +1,50 @@
-## Description: <br>
-Read data from two tabs in a Google Sheet to compare and identify differences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read data from two tabs in a Google Sheet to compare and identify differences.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers, operators, and workspace users use this recipe to read two Google Sheets tabs and compare their rows or cells for changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The recipe could read data from an unintended Google account, spreadsheet, or tab range if placeholders are reused without review. <br>
-Mitigation: Confirm gws is authenticated to the intended Google account and replace the example spreadsheet ID and tab ranges with only sheets you want read. <br>
+## Use Case:
 
+Employees, analysts, and workflow builders use this recipe to have an agent read two Google Sheets tabs and compare the ranges for differences.
 
-## Reference(s): <br>
-- [Recipe Compare Sheet Tabs on ClawHub](https://clawhub.ai/googleworkspace-bot/recipe-compare-sheet-tabs) <br>
-- [googleworkspace-bot publisher profile](https://clawhub.ai/user/googleworkspace-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and comparison notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws binary and gws-sheets skill; reads only the spreadsheet ID and tab ranges supplied for the task.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.14 (source: server release metadata; artifact metadata version 0.22.5) <br>
+Risk: Spreadsheet contents may be sensitive when the agent reads user-provided sheet ranges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the spreadsheet ID and tab ranges before running commands, and only provide ranges the agent is authorized to read.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/googleworkspace-bot/skills/recipe-compare-sheet-tabs)
+- [Publisher Profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses gws and the gws-sheets skill to read user-provided spreadsheet IDs and ranges.]
+
+## Skill Version(s):
+
+0.22.5 (source: frontmatter); ClawHub release 1.0.14
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

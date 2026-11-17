@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Strava"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["strava"]
   icon: "https://static.oomol.com/logo/third-party/Strava.svg"
 ---
@@ -54,7 +54,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_segment_effort` — Get Strava segment performance details by ID.
 - `get_segment_effort_streams` — Get streaming data for a specified Strava segment score.
 - `get_segment_streams` — Get flow data for a specified Strava segment.
-- `get_upload` — Query the status of Strava activity upload tasks. [write]
+- `get_upload` — Query the status of Strava activity upload tasks.
 - `get_zones` — Get the current Strava athlete's training partition.
 - `list_activity_comments` — Lists comments for the specified Strava activity.
 - `list_activity_kudoers` — List athletes who have liked the specified Strava activity.
@@ -101,11 +101,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Strava is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=strava
+  https://console.oomol.com/connections/strava
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Strava homepage: https://www.strava.com
+- API documentation: https://developers.strava.com/docs/reference/

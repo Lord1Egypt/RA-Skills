@@ -1,40 +1,53 @@
-## Description: <br>
-Checks the integrity and operational status of a local mem0 memory system when asked about mem0 functionality, status, or completeness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks the functional integrity and operational status of a local mem0 memory system when asked about mem0 status, functionality, or completeness.
 
-## Publisher: <br>
-[chircken891](https://clawhub.ai/user/chircken891) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chircken891](https://clawhub.ai/user/chircken891)
 
-## Use Case: <br>
-Developers and operators who maintain a local mem0 memory setup use this skill to run health checks for semantic search, memory count retrieval, cron jobs, and the Chroma vector store, then summarize normal and missing functionality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the status checks can expose local mem0 records and system paths. <br>
-Mitigation: Require explicit diagnostic consent before running checks, report counts and status by default, and redact memory contents from the final report. <br>
-Risk: The checklist includes destructive capabilities such as delete, delete_all, and reset. <br>
-Mitigation: Keep destructive checks out of any automatic status flow and require separate user confirmation before testing or invoking them. <br>
+## Use Case:
 
+Developers and local administrators use this skill to run and summarize health checks for semantic search, memory counts, cron tasks, and Chroma storage in a local mem0 setup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chircken891/mem0-status-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown status report with PowerShell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports local mem0 status and counts; raw memory contents should be redacted unless explicitly approved.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: A health check may expose full local memory contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a trusted local admin context, ask before running commands, and return sanitized health, count, and connectivity results instead of raw memory contents.
+
+Risk: The workflow runs local diagnostics against user-specific Windows paths and mem0 resources.
+
+Mitigation: Confirm the target environment and paths before execution, and avoid running diagnostics on shared or untrusted machines.
+
+## Reference(s):
+
+- [Mem0 Status Check ClawHub Page](https://clawhub.ai/chircken891/skills/mem0-status-check)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown status report with PowerShell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include counts, health statuses, missing-feature notes, and improvement suggestions for a local mem0 installation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

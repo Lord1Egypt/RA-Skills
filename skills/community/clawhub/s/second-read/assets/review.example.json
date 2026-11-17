@@ -1,0 +1,267 @@
+{
+  "schema_version": "1.0",
+  "title": "Second Read — editorial workbench",
+  "first_impression": "A reader first hears a demand for immediate free fares, while the author brief intends a limited service-reliability trial. The document later introduces that trial, but the stronger opening may continue to frame the piece.",
+  "source": {
+    "text": "Our city should make every night bus free immediately.\n\nConsider a nurse who finishes a shift after midnight and discovers the next bus will not arrive for an hour.\n\nFor someone working late, uncertainty matters as much as fare price.\n\nA six-month trial on two routes would let the city measure reliability, missed connections, and rider demand.\n\nFree fares will solve the problem for everyone.\n\nThe city could publish monthly results and decide whether to expand the service.\n\nStarting with a trial is a practical way to improve evening mobility without pretending one anecdote answers every question.",
+    "blocks": [
+      {
+        "id": "p1",
+        "thread": "policy",
+        "text": "Our city should make every night bus free immediately."
+      },
+      {
+        "id": "p2",
+        "thread": "experience",
+        "text": "Consider a nurse who finishes a shift after midnight and discovers the next bus will not arrive for an hour."
+      },
+      {
+        "id": "p3",
+        "thread": "experience",
+        "text": "For someone working late, uncertainty matters as much as fare price."
+      },
+      {
+        "id": "p4",
+        "thread": "proof",
+        "text": "A six-month trial on two routes would let the city measure reliability, missed connections, and rider demand.",
+        "spans": [
+          {
+            "start": 0,
+            "end": 31,
+            "thread": "policy"
+          },
+          {
+            "start": 51,
+            "end": 108,
+            "thread": "proof"
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "thread": "policy",
+        "text": "Free fares will solve the problem for everyone."
+      },
+      {
+        "id": "p6",
+        "thread": "proof",
+        "text": "The city could publish monthly results and decide whether to expand the service."
+      },
+      {
+        "id": "p7",
+        "thread": "policy",
+        "text": "Starting with a trial is a practical way to improve evening mobility without pretending one anecdote answers every question."
+      }
+    ]
+  },
+  "context": [
+    {
+      "id": "brief",
+      "label": "Author intention",
+      "text": "Propose a limited service-reliability pilot before making decisions about fares. Do not claim that illustrative anecdotes are representative."
+    },
+    {
+      "id": "audience",
+      "label": "Target audience",
+      "text": "Local council members and residents who do not know the transport proposal."
+    },
+    {
+      "id": "constraints",
+      "label": "Constraints",
+      "text": "Preserve the author's direct voice. Do not invent statistics, turnout, costs, ridership outcomes or actual incidents."
+    }
+  ],
+  "threads": [
+    {
+      "id": "policy",
+      "label": "What the city should do",
+      "color": "#9d69d0"
+    },
+    {
+      "id": "experience",
+      "label": "The human problem",
+      "color": "#218f88"
+    },
+    {
+      "id": "proof",
+      "label": "How to learn and verify",
+      "color": "#cf8d37"
+    }
+  ],
+  "suggestions": [
+    {
+      "id": "e1",
+      "title": "Make the opening match the proposal",
+      "priority": "high",
+      "kind": "clarify",
+      "thread": "policy",
+      "anchor": "p1",
+      "why": "The author wants a trial, but the first sentence asks for immediate free fares on every route. A reader will reasonably hold on to that larger promise.",
+      "evidence": {
+        "block_id": "p1",
+        "quote": "Our city should make every night bus free immediately."
+      },
+      "operations": [
+        {
+          "type": "replace",
+          "block_id": "p1",
+          "before": "Our city should make every night bus free immediately.",
+          "after": "The city should test more reliable night buses before deciding whether fares should change."
+        }
+      ]
+    },
+    {
+      "id": "e2",
+      "title": "Identify the illustration as an illustration",
+      "priority": "medium",
+      "kind": "clarify",
+      "thread": "experience",
+      "anchor": "p2",
+      "why": "The nurse is an empathetic example, not a measured account of typical waits. The revision keeps the human stakes without claiming citywide evidence.",
+      "evidence": {
+        "block_id": "p2",
+        "quote": "Consider a nurse who finishes a shift after midnight and discovers the next bus will not arrive for an hour."
+      },
+      "operations": [
+        {
+          "type": "replace",
+          "block_id": "p2",
+          "before": "Consider a nurse who finishes a shift after midnight and discovers the next bus will not arrive for an hour.",
+          "after": "Picture a nurse leaving a late shift and facing a long wait for the next bus. The example illustrates why reliability matters; it does not establish how often this happens."
+        }
+      ]
+    },
+    {
+      "id": "e3",
+      "title": "Remove the unsupported guarantee",
+      "priority": "high",
+      "kind": "verify",
+      "thread": "policy",
+      "anchor": "p5",
+      "why": "The document has not established that free fares alone resolve late service gaps, much less for every resident. Retain the policy possibility without inventing certainty.",
+      "evidence": {
+        "block_id": "p5",
+        "quote": "Free fares will solve the problem for everyone."
+      },
+      "operations": [
+        {
+          "type": "replace",
+          "block_id": "p5",
+          "before": "Free fares will solve the problem for everyone.",
+          "after": "Lower fares may help some riders, but the trial should establish whether service reliability is the larger obstacle."
+        }
+      ]
+    },
+    {
+      "id": "e4",
+      "title": "Keep the learning loop together",
+      "priority": "medium",
+      "kind": "move",
+      "thread": "proof",
+      "anchor": "p6",
+      "why": "After introducing the trial, the draft jumps to a fare guarantee before explaining how results would be used. Moving that sentence after the results paragraph keeps the reasoning sequential.",
+      "evidence": {
+        "block_id": "p6",
+        "quote": "The city could publish monthly results and decide whether to expand the service."
+      },
+      "operations": [
+        {
+          "type": "move_after",
+          "block_id": "p5",
+          "after_block_id": "p6"
+        }
+      ]
+    },
+    {
+      "id": "e5",
+      "title": "Offer a brief bridge from the example to the proposal",
+      "priority": "low",
+      "kind": "bridge",
+      "thread": "experience",
+      "anchor": "p3",
+      "why": "A reader who has only encountered one illustrative situation may benefit from an explicit bridge to the measurement proposal; keep it only if it improves the cadence.",
+      "evidence": {
+        "block_id": "p3",
+        "quote": "For someone working late, uncertainty matters as much as fare price."
+      },
+      "operations": [
+        {
+          "type": "insert_after",
+          "after_block_id": "p3",
+          "new_id": "p3-bridge",
+          "thread": "proof",
+          "text": "That is why the city should measure missed connections and waiting times before choosing a citywide remedy."
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "after_block_id": "p1",
+      "prompt": "After the opening sentence, what policy are you actually asking the reader to support?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Make all night buses free immediately."
+        },
+        {
+          "id": "b",
+          "text": "Run a limited reliability trial, then decide on fares."
+        },
+        {
+          "id": "c",
+          "text": "Collect opinions without committing to a plan."
+        }
+      ],
+      "reading_id": "a",
+      "suggestion_id": "e1",
+      "why": "The opening uses 'should', 'every', 'free', and 'immediately'. The intended trial arrives only later."
+    },
+    {
+      "id": "q2",
+      "after_block_id": "p2",
+      "prompt": "What does the nurse example establish for a reader at this point?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "One concrete scenario that makes a problem understandable."
+        },
+        {
+          "id": "b",
+          "text": "Measured evidence that night buses are unreliable citywide."
+        },
+        {
+          "id": "c",
+          "text": "Proof that removing fares is the only effective remedy."
+        }
+      ],
+      "reading_id": "a",
+      "suggestion_id": "e2",
+      "why": "An imagined scenario illustrates a consequence; without independent data it cannot establish frequency or prove a policy."
+    },
+    {
+      "id": "q3",
+      "after_block_id": "p5",
+      "prompt": "What does the fifth paragraph imply about the certainty of your proposal?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Free fares will solve the problem for everyone."
+        },
+        {
+          "id": "b",
+          "text": "Fare policy is an option whose effects still need testing."
+        },
+        {
+          "id": "c",
+          "text": "The proposal is only about scheduling."
+        }
+      ],
+      "reading_id": "a",
+      "suggestion_id": "e3",
+      "why": "'Will solve' and 'everyone' express certainty broader than the evidence in the preceding text."
+    }
+  ],
+  "notes": "Fictional editorial fixture. Numbers, nurse, and city policy are illustrative, not verified facts. Suggested edits are example authoring decisions, not outputs from a live model."
+}

@@ -1,40 +1,54 @@
-## Description: <br>
-Jwtdecode is a BytesAgain devtools reference skill that prints local text sections for intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools - covers intro, quickstart, patterns and more. Quick lookup for Jwtdecode concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers can run this skill to view local reference text while working in devtools contexts. Review its guidance before using it as JWT or security documentation because the security evidence flags the content as generic template material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the skill is misleadingly packaged as JWT decode guidance while mostly printing generic template documentation. <br>
-Mitigation: Treat the output as generic reference text and verify JWT or security guidance against trusted, domain-specific documentation before use. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick command-line reference for Jwtdecode concepts, common workflows, troubleshooting, performance, security, migration, and cheat sheet material.
 
-## Reference(s): <br>
-- [Jwtdecode ClawHub page](https://clawhub.ai/bytesagain1/jwtdecode) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [bytesagain1 publisher profile](https://clawhub.ai/user/bytesagain1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown reference guidance printed by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, or network access are described by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The security review says the skill is low risk but its JWT decode content is generic and may not satisfy users expecting specific decoding guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the reference text for usefulness and technical accuracy before relying on it for JWT-related work.
+
+Risk: The executable script reports version 2.0.2 while release evidence and SKILL.md identify version 2.0.3.
+
+Mitigation: Align the script version with release metadata before distributing command output that includes version information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain1/skills/jwtdecode)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown-style headings and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static command output; no credentials, API keys, or network access are required.]
+
+## Skill Version(s):
+
+2.0.3 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,47 @@
-## Description: <br>
-Generate campaign concepts, viral hooks, and marketing strategies that go beyond "buy my product." <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates campaign concepts, viral hooks, and marketing strategies beyond direct product promotion for campaign planning, content hooks, promotions, and brand messaging.
 
-## Publisher: <br>
-[mattvalenta](https://clawhub.ai/user/mattvalenta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mattvalenta](https://clawhub.ai/user/mattvalenta)
 
-## Use Case: <br>
-Marketing teams, founders, and content creators use this skill to brainstorm campaign concepts, hooks, promotions, and brand messaging with structured marketing frameworks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing copy may include claims, comparisons, or customer-result language that needs review before publication. <br>
-Mitigation: Review campaign copy for accuracy, brand fit, substantiation, and compliance before publishing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mattvalenta/pls-marketing-ideas) <br>
+## Use Case:
+
+Marketing teams, founders, and content creators use this skill to brainstorm campaign concepts, viral hooks, promotions, and brand messaging from common marketing frameworks and templates.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated marketing claims or campaign hooks may be inaccurate or misaligned with brand standards.
+
+Mitigation: Review generated concepts for factual accuracy, legal and compliance fit, and brand voice before publishing.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces brainstorming guidance, campaign templates, hook ideas, and checklist-style review prompts.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with campaign ideas, hook templates, framework prompts, and checklist items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, external access, persistence, or sensitive permissions are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

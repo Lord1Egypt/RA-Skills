@@ -2,7 +2,7 @@
 name: architecture-diagram
 description: |
   Generates a Mermaid architecture diagram showing high-level component relationships
-version: 1.9.8
+version: 1.10.3
 triggers:
   - visualizing how plugins or modules fit together
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/cartograph", "emoji": "\ud83e\udd9e"}}
@@ -10,7 +10,7 @@ source: claude-night-market
 source_plugin: cartograph
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/cartograph](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/cartograph](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Architecture Diagram
@@ -24,6 +24,11 @@ relationships in a codebase.
 - Onboarding to understand system structure
 - Documenting architecture for PR reviews
 - Answering "how does this system fit together?"
+
+## When NOT To Use
+
+- Import-level coupling (use `cartograph:dependency-graph`)
+- Runtime call paths (use `cartograph:call-chain`)
 
 ## Workflow
 
@@ -97,3 +102,16 @@ error message and retry (max 2 retries).
 
 Show the rendered diagram to the user with a brief summary
 of what it depicts (2-3 sentences).
+
+## Exit Criteria
+
+- [ ] Mermaid `flowchart` syntax generated containing at least
+      one `subgraph` block grouping related modules
+- [ ] `mcp__claude_ai_Mermaid_Chart__validate_and_render_mermaid_diagram`
+      called and returns without error (or retry attempted on first
+      failure and result reported)
+- [ ] Diagram node count is between 3 and 20 (per skill rules)
+- [ ] A 2-3 sentence description of what the diagram depicts is shown
+      alongside the rendered output
+- [ ] If the MCP render fails after 2 retries, the Mermaid syntax is
+      still presented as a code block with the error surfaced

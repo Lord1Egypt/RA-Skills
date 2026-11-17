@@ -1,44 +1,58 @@
-## Description: <br>
-Runs multiple independent tasks simultaneously by routing each to an appropriate AI model tier for faster parallel execution and combined results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parallel execution engine - run multiple tasks simultaneously for speed.
 
-## Publisher: <br>
-[nerua1](https://clawhub.ai/user/nerua1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nerua1](https://clawhub.ai/user/nerua1)
 
-## Use Case: <br>
-Developers and coding agents use this skill to split independent repository tasks across parallel agent runs, collect their results, and optionally run lightweight build or test verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can launch multiple autonomous agents that may make overlapping repository changes. <br>
-Mitigation: Use it on trusted repositories, preferably from a clean branch or disposable worktree, and keep task scopes narrow and non-overlapping. <br>
-Risk: Task prompts and repository context may be sent to selected model backends. <br>
-Mitigation: Avoid prompts containing secrets or proprietary material unless that exposure is approved for the model provider. <br>
-Risk: Verification may run project build or test scripts in the target repository. <br>
-Mitigation: Inspect package scripts before allowing verification to run and review generated changes before merging. <br>
+## Use Case:
 
+Developers and engineers use Ultrawork to delegate multiple independent OpenClaw tasks to parallel subagents, collect their results, and reduce total execution time when the tasks do not depend on one another.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nerua1/nerua1-ultrawork) <br>
-- [Ultrawork repository](https://github.com/nerua1/ultrawork) <br>
-- [Ultrawork issues](https://github.com/nerua1/ultrawork/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style task summaries with shell command examples and status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Aggregates parallel task results and may report build or test verification status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill delegates work to multiple agents or models that may modify repository files in parallel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in trusted repositories, review the resulting changes before accepting them, and reserve it for independent tasks that do not depend on each other's outputs.
+
+Risk: The advertised verification can run repository-controlled npm build and test scripts.
+
+Mitigation: Review package scripts first or run the skill in a contained environment before allowing automatic build or test verification.
+
+Risk: The release security verdict is suspicious.
+
+Mitigation: Review the skill before installation and treat its cancellation and verification behavior as requiring human oversight.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nerua1/skills/nerua1-ultrawork)
+- [Publisher profile](https://clawhub.ai/user/nerua1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown with inline bash command examples and summarized task results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include task status summaries, selected model tiers, build and test status, and combined results from parallel subagents.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

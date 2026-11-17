@@ -1,0 +1,80 @@
+# ============================================================
+# 昆明·买房顾问 — house-skills-kit 示例品牌配置
+# 业务 know-how（板块认知/话术）全部放在配置层，模板零改动
+# ============================================================
+
+brand:
+  name: "春城置业顾问"
+  company: "示例·昆明买方服务工作室"
+  slug: kunming
+  cities:
+    - 昆明
+  slogan: "在昆明，把房买明白"
+
+skill:
+  archetype: consumer-buy
+  domain: buy
+  version: "0.1.0"
+  modules:                      # 挂载增值模块(C端推荐组合)
+    - estate-review             # 楼盘七维评测
+    - ad-compliance             # 广告合规自动检查
+    - loan-calc                 # 贷款税费计算器
+    - policy-qa                 # 购房资格问答
+  # 全部23个模块见 template/modules/
+
+adapter:
+  id: mock
+  options: {}
+
+content:
+  domain_title: 买房
+  domain_verb: 买房
+  domain_query_example: "哪里值得买"
+  domain_key_field: 楼龄
+  alt_purpose: 投资
+  motivation_examples: "孩子上学（师大附小/云大附中等学区考量）、改善居住、婚房、外地养老过冬、资产配置"
+  budget_example: "100 万"
+  market_basics: "昆明主城价格梯度大致为：呈贡/经开区最低，官渡、盘龙居中，五华、西山（滇池沿岸）最高；新房看呈贡和西北新城，二手看主城二环内。以上为常见格局，具体以实时数据为准。"
+  verify_items: "户口迁出、学位占用、抵押解押"
+  jargon_examples: "得房率、梯户比、容差率、满五唯一"
+  excluded_domains: "租房、卖房、装修、行情、政策、学区专项"
+  excluded_example: "租金走势、装修报价、学位划片"
+  capability_list: |-
+    - 昆明二手房/新房检索与筛选（主城五区+呈贡）
+    - 板块对比：巫家坝、西北新城、呈贡、滇池会展、二环内老城
+    - 小区详情、价格参考、地铁/学校配套说明
+    - 看房流程与核验清单（含昆明本地特别注意项）
+  example_note: "巫家坝板块，地铁已通车，匹配你说的通勤"
+  keywords_yaml: |-
+    - 找房
+    - 买房
+    - 昆明买房
+    - 二手房
+    - 新房
+    - 楼盘
+    - 小区
+    - 看房
+    - 巫家坝
+    - 呈贡
+    - 滇池
+  trigger_keywords: "昆明买房、昆明二手房源、新房楼盘、约看房、看小区、巫家坝板块、呈贡新房、滇池度假区、西北新城"
+  adapter_usage: |-
+    本示例使用 mock 适配器（虚构数据）：
+      python3 adapters/mock/mock_cli.py search --city 昆明 --district 五华区 --max-price 120
+      python3 adapters/mock/mock_cli.py detail --id MOCK-001
+    接真实数据源时替换 adapter.id，并在本节改写为真实调用方式。
+  convert_action_short: "添加置业顾问企业微信"
+  convert_action_desc: "添加置业顾问企业微信，由本地真人顾问承接带看与议价"
+  convert_script: |-
+    昆明本地化话术结构（示例，替换为品牌自有）：
+    1. 价值铺垫："您看中的巫家坝和滇池会展这两个盘，我按地铁通勤和学区概率给您排了序。"
+    2. 提出动作："我帮您对接一位跑巫家坝最多的顾问，本周六上午有两个笋盘带看，一起去？"
+    3. 降低压力："先加个微信，带看时间您定，看完不合适就当熟悉行情。"
+    4. 本地加分项：主动提示昆明特有核验点（房东户口迁出、学位是否占用、呈贡房源的交付风险）。
+  w_location: "25%"
+  w_product: "20%"
+  w_amenity: "15%"
+  w_education: "15%"
+  w_developer: "10%"
+  w_price: "10%"
+  w_liquidity: "5%"

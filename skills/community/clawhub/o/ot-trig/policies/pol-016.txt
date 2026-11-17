@@ -1,0 +1,1 @@
+A car is moving at 10 m/s, and the observer is 40 meters behind it. The need to balance safety and efficiency in path selection under time constraints Write pseudocode for a decision-making process that prioritizes lane changes over braking when safe. Show work, then decide if the stopping distance 

@@ -1,43 +1,56 @@
-## Description: <br>
-Creates consultant-grade PowerPoint presentations from scratch using python-pptx and a McKinsey-style design system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create professional, consultant-grade PowerPoint presentations from scratch using python-pptx with McKinsey-style design.
 
-## Publisher: <br>
-[likaku](https://clawhub.ai/user/likaku) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[likaku](https://clawhub.ai/user/likaku)
 
-## Use Case: <br>
-Business users, consultants, and agents use this skill to generate professional PPTX decks, slide layouts, charts, dashboards, and design-consistent business presentations programmatically. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated decks may be posted back to the active chat or workspace when OpenClaw channel delivery is available. <br>
-Mitigation: For confidential board, finance, strategy, or personnel decks, disable or remove the delivery helper and verify the destination before sharing. <br>
-Risk: The skill creates local PPTX files that may contain sensitive presentation content. <br>
-Mitigation: Run it in a controlled workspace, review generated files before distribution, and pin dependencies before production use. <br>
+## Use Case:
 
+External users, developers, and business teams use this skill to create polished strategy decks, board presentations, quarterly reviews, pitch decks, and other consultant-style PPTX deliverables from structured prompts or generated Python code.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/likaku/mck-ppt-design) <br>
-- [Layout catalog](references/layout-catalog.md) <br>
-- [Color palette](references/color-palette.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown instructions with Python code patterns and generated PPTX files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated decks are local PPTX files; when OpenClaw channel delivery is available, the skill may post the generated deck back to the active chat or workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and changelog, released 2026-03-19) <br>
+Risk: Generated PPTX files may be sent to chat channels without a per-send confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill in a controlled environment, pin dependencies, and remove or gate deliver_to_channel() when local-save-only behavior is required.
+
+Risk: Confidential business, board, or strategy deck content could be exposed if automatic channel delivery is enabled in the wrong environment.
+
+Mitigation: Review generated scripts before execution and disable channel delivery for sensitive presentations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/likaku/skills/mck-ppt-design)
+- [Color Palette Quick Reference](references/color-palette.md)
+- [Layout Catalog](references/layout-catalog.md)
+- [python-pptx documentation](https://python-pptx.readthedocs.io)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with Python code and shell commands; generated artifacts are PPTX files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated scripts may save PPTX files locally and send them through available OpenClaw messaging channels.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

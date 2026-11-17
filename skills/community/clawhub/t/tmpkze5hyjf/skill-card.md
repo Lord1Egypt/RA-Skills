@@ -1,41 +1,54 @@
-## Description: <br>
-Generates native eNSP `.topo` topology files for Huawei network simulation from natural-language network descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate native eNSP `.topo` files for Huawei network simulation topologies from natural-language topology requests.
 
-## Publisher: <br>
-[forealmy](https://clawhub.ai/user/forealmy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[forealmy](https://clawhub.ai/user/forealmy)
 
-## Use Case: <br>
-Network engineers, instructors, and learners use this skill to turn described Huawei/eNSP network designs into ready-to-open `.topo` files with devices, links, annotations, and layout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated topology files may not accurately represent sensitive or complex networks. <br>
-Mitigation: Review device, connection, annotation, and layout details before opening or relying on the `.topo` file in eNSP. <br>
-Risk: The skill creates local topology files in the working directory. <br>
-Mitigation: Run it only in directories where creating new `.topo` files is acceptable and choose clear, non-conflicting filenames. <br>
+## Use Case:
 
+Developers, network engineers, and learners use this skill to turn requested Huawei eNSP network diagrams into ready-to-open `.topo` topology files with devices, links, labels, and area boxes.
 
-## Reference(s): <br>
-- [eNSP .topo File Format Reference](references/topo-reference.md) <br>
-- [Huawei eNSP Enterprise Support](https://support.huawei.com/enterprise/en/cloud-computing/ensp-pid-21602604) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Guidance] <br>
-**Output Format:** [eNSP `.topo` XML file plus a short Markdown response with the saved file path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a local `.topo` file in the current working directory for the user to open in eNSP.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Topology names or labels copied from untrusted input could break `.topo` XML attributes if written without escaping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Escape XML attribute content before writing the final `.topo` file.
+
+Risk: Generated topology files may not match the intended network design or eNSP compatibility requirements.
+
+Mitigation: Review the generated `.topo` file and open it in eNSP before using it for simulation work.
+
+## Reference(s):
+
+- [eNSP .topo File Format Reference](references/topo-reference.md)
+- [Huawei eNSP product page](https://support.huawei.com/enterprise/en/cloud-computing/ensp-pid-21602604)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Configuration]
+
+**Output Format:** [Native .topo XML file plus a short text completion message with the saved file path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes the generated topology to the current workspace for the user to open in eNSP.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

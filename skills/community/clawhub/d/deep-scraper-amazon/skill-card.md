@@ -1,42 +1,58 @@
-## Description: <br>
-Containerized Crawlee and Playwright web scraping skill for Amazon product data, YouTube transcripts, and generic dynamic pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Scraper + Amazon is a Dockerized Crawlee and Playwright web-scraping skill for Amazon product data, YouTube transcripts, and general dynamic web-page text.
 
-## Publisher: <br>
-[jiafar](https://clawhub.ai/user/jiafar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jiafar](https://clawhub.ai/user/jiafar)
 
-## Use Case: <br>
-Developers and agents use this skill to run a Dockerized scraper for Amazon product research, YouTube transcript capture, and extraction from dynamic webpages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Agent-operated scraping can target sites or URLs the user is not authorized to scrape. <br>
-Mitigation: Use the skill only for authorized sites, verify every generated URL before execution, and avoid internal or sensitive URLs. <br>
-Risk: Scraped content may be captured in logs or downstream agent context. <br>
-Mitigation: Treat scraper output as potentially retained, avoid collecting sensitive data, and redact or discard sensitive output before sharing it. <br>
-Risk: The browser-based scraper visits arbitrary web pages with broad scraping authority. <br>
-Mitigation: Run the Docker container non-privileged, avoid host mounts, and apply network restrictions appropriate for the environment. <br>
+## Use Case:
 
+Developers and external users can use this skill to run containerized browser scraping workflows for Amazon market research, product-detail extraction, YouTube transcript capture, and generic public web-page text extraction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiafar/deep-scraper-amazon) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Docker shell commands and JSON scraper output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Docker; generic page text is capped at 10000 characters and YouTube transcript text is capped at 15000 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and package.json) <br>
+Risk: The skill can browse arbitrary third-party URLs and return retrieved content without sufficient safeguards against unintended internal or private targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit public URLs only, avoid authenticated, private, and internal targets, and block container access to local networks and metadata services.
+
+Risk: The Dockerized browser scraper may expose sensitive page content in command output if used against non-public pages.
+
+Mitigation: Review targets before execution, avoid pages containing credentials or private data, and inspect returned content before sharing it.
+
+Risk: The skill depends on a container image and JavaScript browser automation dependencies whose provenance may not be independently established by the server evidence.
+
+Mitigation: Rebuild from reviewed source, pin and review dependencies, and verify image provenance before use in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiafar/skills/deep-scraper-amazon)
+- [Publisher profile](https://clawhub.ai/user/jiafar)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; scraper commands return JSON or plain text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generic page output is capped at 10000 characters; YouTube transcript output is capped at 15000 characters; Amazon handlers return structured product fields such as ASIN, price, rating, reviews, rank, image URL, and boughtPastMonth when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

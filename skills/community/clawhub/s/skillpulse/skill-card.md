@@ -1,41 +1,50 @@
-## Description: <br>
-Profile offline OpenClaw skill run samples to detect latency, CPU, and memory bottlenecks and compare sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Profile offline OpenClaw skill run samples to detect latency, CPU, and memory bottlenecks and compare sessions.
 
-## Publisher: <br>
-[mike007jd](https://clawhub.ai/user/mike007jd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike007jd](https://clawhub.ai/user/mike007jd)
 
-## Use Case: <br>
-Developers and engineers use SkillPulse to analyze offline OpenClaw skill run samples, detect latency, CPU, and memory bottlenecks, export JSON or HTML reports, and compare before-and-after profiling sessions before regressions reach production. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Untrusted or low-quality sample files can produce misleading profiling results or unsafe HTML report content. <br>
-Mitigation: Use sample files from trusted sources, validate input quality, and prefer JSON output or trusted samples when generating HTML reports. <br>
-Risk: User-selected report paths can write artifacts to unintended locations. <br>
-Mitigation: Choose output paths deliberately and review command arguments before running report exports. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze offline OpenClaw run samples, identify latency, CPU, and memory bottlenecks, export reports, and compare before-and-after profiling snapshots.
 
-## Reference(s): <br>
-- [SkillPulse on ClawHub](https://clawhub.ai/mike007jd/skillpulse) <br>
-- [mike007jd publisher profile](https://clawhub.ai/user/mike007jd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON or HTML report artifacts from the profiler] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and user-provided offline JSON sample files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: HTML reports generated from attacker-controlled sample data may include active browser content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Generate HTML reports only from trusted samples or open them in a constrained environment until dynamic values are escaped.
+
+## Reference(s):
+
+- [SkillPulse ClawHub Page](https://clawhub.ai/mike007jd/skills/skillpulse)
+- [README.md](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, HTML files, shell commands, guidance]
+
+**Output Format:** [CLI text, JSON envelopes, and JSON or HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports depend on user-provided offline sample arrays with latencyMs, cpuMs, and memoryMb fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

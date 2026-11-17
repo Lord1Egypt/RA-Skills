@@ -1,41 +1,59 @@
-## Description: <br>
-Ingest documents into your Senso.ai knowledge base through Edith smart glasses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ingests documents into a user's Senso.ai knowledge base for retrieval through Edith smart glasses.
 
-## Publisher: <br>
-[samdickson22](https://clawhub.ai/user/samdickson22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samdickson22](https://clawhub.ai/user/samdickson22)
 
-## Use Case: <br>
-External users and agents use this skill to upload substantial text or file contents into a Senso.ai knowledge base so the content can later be searched through Edith smart glasses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send selected user text or file contents to Senso.ai. <br>
-Mitigation: Confirm the exact text or file before ingestion and avoid uploading secrets or regulated/private documents. <br>
-Risk: The skill relies on a Senso.ai API key. <br>
-Mitigation: Use a scoped Senso API key where possible and store it only in the agent's intended memory or configuration mechanism. <br>
+## Use Case:
 
+External users with Edith smart glasses use this skill to add document-scale content or file contents to a Senso.ai knowledge base so it can be searched later.
 
-## Reference(s): <br>
-- [Senso.ai](https://senso.ai) <br>
-- [Senso.ai raw content ingestion endpoint](https://sdk.senso.ai/api/v1/content/raw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash code blocks and brief voice-ready confirmations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses SENSO_API_KEY and may upload selected text or file contents to Senso.ai.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: shipables.json and server release evidence) <br>
+Risk: Senso API keys could be exposed if users paste them into chat or store them in agent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a platform secret store for SENSO_API_KEY and avoid entering API keys directly into conversation history.
+
+Risk: Shell command templates that upload arbitrary text or file contents can create command-execution or serialization risks.
+
+Mitigation: Review commands before execution and prefer safe JSON serialization or a structured HTTP client for uploads.
+
+Risk: The skill can upload user-provided content to Senso.ai.
+
+Mitigation: Use it only for content the user intentionally wants added to the Senso.ai knowledge base.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samdickson22/skills/edith-senso-ingest)
+- [Senso.ai](https://senso.ai)
+- [Senso raw content endpoint](https://sdk.senso.ai/api/v1/content/raw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with concise voice-response text and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides content upload to Senso.ai and brief Edith voice confirmations.]
+
+## Skill Version(s):
+
+1.0.0 (source: shipables.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

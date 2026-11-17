@@ -1,41 +1,58 @@
-## Description: <br>
-Send and manage iMessages via BlueBubbles self-hosted macOS server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and manage iMessages via BlueBubbles self-hosted macOS server.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and agent users with a self-hosted BlueBubbles macOS server use this skill to send and manage iMessage conversations, including text messages, attachments, reactions, edits, unsend actions, and iMessage effects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send, attach, react to, edit, or unsend live iMessages through the configured BlueBubbles server. <br>
-Mitigation: Require explicit confirmation before any send, attachment, reaction, edit, or unsend action. <br>
-Risk: Broad sender access or exposed server credentials could allow unintended messaging. <br>
-Mitigation: Use only a BlueBubbles server you control and trust, prefer HTTPS or a private network, protect the server password, and replace allowed_senders = ["*"] with trusted contacts. <br>
+## Use Case:
 
+External developers and automation operators use this skill to send and manage iMessage conversations through a configured self-hosted BlueBubbles macOS server.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/auto-bluebubbles) <br>
-- [BlueBubbles](https://bluebubbles.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Configuration instructions, Guidance] <br>
-**Output Format:** [JSON tool call payloads and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured BlueBubbles server URL and password.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The sample configuration uses HTTP for a password-protected BlueBubbles server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use HTTPS or a trusted TLS reverse proxy before connecting the skill to the server.
+
+Risk: A wildcard sender allowlist can expose messaging actions to overly broad sender access.
+
+Mitigation: Avoid wildcard allowed_senders and restrict sender handles to trusted contacts.
+
+Risk: Attachments sent through the skill may leave the local workspace and reach external recipients.
+
+Mitigation: Review attachment paths and content before sending, and treat attachments as sensitive data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/auto-bluebubbles)
+- [BlueBubbles](https://bluebubbles.app)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Configuration, Guidance, Text, Files]
+
+**Output Format:** [Markdown with JSON examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces messaging tool-call guidance for text messages, attachments, reactions, edits, unsend actions, and iMessage effects.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

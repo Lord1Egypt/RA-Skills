@@ -1,43 +1,58 @@
-## Description: <br>
-JFTech smart door lock control skill for checking door-lock support, logging in to a device, obtaining a device API token, and sending a remote one-key unlock command. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls JFTech smart door locks by checking lock support, logging in, retrieving device access tokens, reading configuration, and sending remote unlock commands.
 
-## Publisher: <br>
-[jftech](https://clawhub.ai/user/jftech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jftech](https://clawhub.ai/user/jftech)
 
-## Use Case: <br>
-Developers and operators use this skill to integrate JFTech smart door locks with an agent workflow for device capability checks, token retrieval, configuration lookup, device login, and remote unlock operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China mainland, Asia, Europe, and North America <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can remotely unlock a physical smart door lock, and the security evidence reports weak documented safeguards around immediate unlock actions. <br>
-Mitigation: Install only when the publisher is trusted, restrict who can invoke the skill, and require explicit confirmation or stronger authorization before every unlock command. <br>
-Risk: The skill depends on API credentials, app secrets, device serial numbers, and device tokens for lock operations. <br>
-Mitigation: Store credentials outside prompts and logs, scope them to the intended device and region, rotate tokens when exposed, and avoid sharing unlock-capable environment variables. <br>
-Risk: A configurable endpoint could send lock-control requests outside the intended regional JFTech host. <br>
-Mitigation: Pin JF_ENDPOINT to the intended JFTech regional host before use and review any endpoint changes before executing device actions. <br>
+## Use Case:
 
+External users and device operators use this skill to manage bound JFTech smart door locks, verify device capabilities, retrieve access tokens, inspect lock configuration, and perform authorized remote unlock operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jftech/jf-open-pro-smart-doorlock-control) <br>
-- [JFTech open platform documentation](https://docs.jftech.com) <br>
+### Deployment Geography for Use:
 
+China mainland, Asia, Europe, and North America
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JFTech account, app credentials, device serial number, device token, and regional API endpoint configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Remote unlock operations can open a physical door if invoked without explicit approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human confirmation before unlock actions and tightly control who can invoke the skill.
+
+Risk: Lock passwords, app credentials, and printed DeviceToken values are sensitive credentials.
+
+Mitigation: Avoid passing real lock passwords on the command line, store credentials through controlled secret handling, and limit exposure of printed token values.
+
+Risk: Changing the API endpoint can send smart-lock requests outside the documented vendor hosts.
+
+Mitigation: Keep JF_ENDPOINT fixed to a documented JFTech hostname for the intended region.
+
+## Reference(s):
+
+- [JFTech Open Platform Documentation](https://docs.jftech.com)
+- [ClawHub skill listing](https://clawhub.ai/jftech/skills/jf-open-pro-smart-doorlock-control)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with command-line examples and text status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May print device tokens and lock operation status; treat DeviceToken values as sensitive temporary credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

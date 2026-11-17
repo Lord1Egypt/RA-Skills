@@ -1,42 +1,58 @@
-## Description: <br>
-Resolves a merchant name to seller IDs by querying an internal Kuaishou merchant CRM service with a locally configured username. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up merchant IDs by sending a parsed seller name and local OpenClaw username to a Kuaishou internal CRM endpoint.
 
-## Publisher: <br>
-[jimadara](https://clawhub.ai/user/jimadara) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimadara](https://clawhub.ai/user/jimadara)
 
-## Use Case: <br>
-Authorized internal operators use this skill to resolve a merchant or seller name into seller IDs from an internal CRM lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends a locally configured username and parsed merchant name to an internal Kuaishou merchant CRM service. <br>
-Mitigation: Use only in authorized environments, confirm the username configuration before lookup, and disclose the identity use to users. <br>
-Risk: The security summary reports that the skill is labeled as domain testing while its behavior is merchant CRM seller lookup. <br>
-Mitigation: Treat the skill as an internal merchant lookup tool and rename or describe it accordingly before broader release. <br>
-Risk: The artifact returns raw seller lookup results without filtering. <br>
-Mitigation: Review returned fields before sharing or storing results, and limit output to the seller IDs or fields required for the task. <br>
+## Use Case:
 
+Authorized Kuaishou operations or CRM users can use this skill to resolve merchant IDs from seller names. It requires a locally configured OpenClaw username and returns the service response directly.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jimadara/operation-platform-enterprise-knowledge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls] <br>
-**Output Format:** [Raw JSON or text returned from the seller lookup API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns the upstream lookup response without filtering according to the artifact behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter reports 0.1.0) <br>
+Risk: The release is labeled as domain testing, but server security evidence says it performs merchant CRM lookup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the intended use is authorized Kuaishou merchant CRM lookup, and rename or scope the skill before general use.
+
+Risk: The skill reads a local OpenClaw username and sends it with the parsed seller name to an internal corporate endpoint.
+
+Mitigation: Use only in approved environments with authorized user credentials and merchant data handling approval.
+
+Risk: The skill returns raw backend data directly to the user.
+
+Mitigation: Review returned data for sensitivity before sharing or using it outside the authorized workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jimadara/skills/operation-platform-enterprise-knowledge)
+- [Kuaishou merchant CRM seller search endpoint](https://merchant-lego.corp.kuaishou.com/gateway/crm/seller/manager/querySellerSearchResult)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Raw API response or error text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns backend data directly; no post-processing is described.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

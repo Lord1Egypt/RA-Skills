@@ -1,44 +1,60 @@
-## Description: <br>
-WeChat Official Account draft management toolkit for managing drafts, publishing workflows, images, materials, and account-audience lookups through official WeChat APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WeChat Official Account draft management toolkit for listing, creating, updating, and deleting drafts, uploading materials, generating cover images, and preparing article digests through the official WeChat API.
 
-## Publisher: <br>
-[andy8663](https://clawhub.ai/user/andy8663) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andy8663](https://clawhub.ai/user/andy8663)
 
-## Use Case: <br>
-Developers and content operators use this skill to manage WeChat Official Account drafts, media uploads, generated cover or inline images, published article lists, and material cleanup through guided agent commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may access WeChat publication account user or subscriber information. <br>
-Mitigation: Use lookup commands only for specific user-requested tasks and avoid pasting or exporting subscriber lists unnecessarily. <br>
-Risk: Publishing and material-management commands can affect live WeChat Official Account drafts, materials, or published-content workflows. <br>
-Mitigation: Confirm the target account, permissions, media IDs, and requested action before creating, updating, deleting, or uploading content. <br>
-Risk: The connected publishing tool may rely on account credentials or permissions. <br>
-Mitigation: Confirm which credentials and account permissions are in use before installation or execution. <br>
+## Use Case:
 
+Developers and content operators use this skill to let an agent prepare and manage WeChat Official Account drafts, convert Markdown or HTML articles for WeChat rendering, upload images, and issue publishing-related CLI commands.
 
-## Reference(s): <br>
-- [Server-resolved GitHub provenance](https://github.com/andy8663/wechat-oa) <br>
-- [ClawHub skill page](https://clawhub.ai/andy8663/wechat-oa) <br>
-- [WeChat Official Account Platform](https://mp.weixin.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Code, Files] <br>
-**Output Format:** [Markdown guidance with command examples, configuration steps, and generated or updated article/media files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce draft logs, cover images, inline infographics, uploaded media references, and WeChat draft or material management actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.1 (source: server release evidence) <br>
+Risk: Relay and hybrid modes can send WeChat account secrets and unpublished article content through a third-party relay server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer direct mode for production accounts. Use relay or hybrid only with a relay you fully trust and control, and rotate any AppSecret or relay key previously used with relay mode.
+
+Risk: Draft and material delete commands can remove WeChat content without an interactive confirmation step.
+
+Mitigation: List and inspect the target media ID and account before deletion, and restrict deletion commands to operators authorized to manage the account.
+
+Risk: Publishing workflows rely on WeChat AppID, AppSecret, access tokens, and relay keys stored in local configuration.
+
+Mitigation: Keep config.json out of source control, limit file access to trusted users, and rotate credentials after accidental exposure.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/andy8663/skills/wechat-oa)
+- [WeChat Official Account Platform](https://mp.weixin.qq.com)
+- [WeChat API Reference](references/wechat_api.md)
+- [WeChat Article Layout Specification](design.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance, CLI commands, JSON configuration examples, converted HTML article content, and generated image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update WeChat drafts, upload media, and generate a local cover image file.]
+
+## Skill Version(s):
+
+3.0.3 (source: SKILL.md frontmatter, pyproject.toml, skill.json, and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

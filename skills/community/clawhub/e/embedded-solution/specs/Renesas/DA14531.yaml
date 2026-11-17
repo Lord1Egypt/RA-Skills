@@ -1,0 +1,49 @@
+part: DA14531
+aliases:
+- R5F572N
+source_pdf: ../../embedded_dev/renesas/datasheet/DA14531_datasheet.pdf
+datasheet_revision: '3.8'
+datasheet_doc_id: R18DS0050EE0380
+extracted_at: '2026-07-05T23:50:00+08:00'
+extracted_from_pages:
+- 1
+extraction_method: reextract_da_ble.py (strategy=da14531_template; page-1 Key Features
+  + General Description)
+verified_by_human: false
+product_status: Active (per renesas.com product page, longevity 2041)
+specs:
+  cores:
+  - Arm Cortex-M0+ (single core, application + BLE)
+  max_clock_mhz: 16
+  eembc_iotmark_ble_score: 18300
+  otp_kb: 32
+  ram_kb: 48
+  rom_kb: 144
+  ble_version: '5.1'
+  rx_sensitivity_dbm: -94
+  gpio_per_package:
+    WLCSP17: 6
+    FCGQFN24: 12
+  adc_channels: 4
+  adc_resolution_bits: 10
+  crypto: AES-128
+  packages:
+  - type: WLCSP17
+    size_mm: null
+    pitch_mm: null
+  - type: FCGQFN24
+    size_mm: null
+    pitch_mm: null
+  vbat_high_min_v: 1.8
+  vbat_high_max_v: 3.6
+  vbat_low_min_v: 1.1
+  vbat_low_max_v: 1.65
+unverified:
+- exact_gpio_count_per_package
+- exact_peripheral_counts_per_package
+notes:
+- Re-extracted 2026-07-05 via scripts/reextract_da_ble.py (strategy=da14531_template).
+  Prior versions had RX72N content mislabeled with part=DA14531; previous tooling
+  (update_specs.py) wrote incomplete fields. This run produces 17 spec fields sourced
+  directly from the DA BLE datasheet page-1 Key Features block.
+link_status: verified_3-8 (datasheet-pdf-extracted, dedicated page-1 extractor)

@@ -1,0 +1,31 @@
+# 使用方法：把本文件复制到 .roo/rules/ 目录下（或全局 ~/.roo/rules/）。Roo Code 会自动加载。
+
+# English Memory Method（英语篇章背诵法 · 适配版）
+
+## 触发条件
+用户提供英文文章（议论文/说明文/叙事文等），并要求：背诵方法 / 记忆技巧 / 出背诵方案 / 帮我背。
+
+## 执行流程
+收到文章后，按以下步骤输出一份完整背诵方案（Markdown）：
+
+1. **整体策略**：判断文体与逻辑骨架（总分总/问题-方案/时间线/对比），估算句数与背诵天数
+2. **关键词串联表**：逐句给出 原句 | 关键词钩子 | 中文提示（每句 1~2 个钩子词）
+3. **链式化问题链**：把钩子按段落焊成 4~7 个路标问题（Q1...Qn），每个问题的答案就是原文的一块
+4. **复述五级阶梯**：L1 看关键词表复述 → L2 看问题链复述 → L3 看块标题复述 → L4 空手复述 → L5 转述给他人；每级至少隔一次复习再升级
+5. **当天三遍法**：第 1 遍理解朗读 ×3 → 第 2 遍看钩子复述 → 第 3 遍看问题链复述
+6. **艾宾浩斯复习计划**：背完后 5 分钟 → 当晚睡前 → 第 2 天早（挖空自测）→ 第 3 天（只背错句）→ 第 7/15 天（快背全文）
+7. **挖空自测**：每段挖 2~5 个关键空（优先钩子词），文末给答案
+8. **必背短语清单**：全文高频表达与固定搭配
+9. **记忆钩子**：头韵/押韵/排比/对比/同义换词/首尾呼应/数字锚点/逻辑路标词/引号金句
+10. **复述技巧包（纯技巧 · 通用）**：① 忘词降级法（a kind of... 兜住，停顿≤2秒）② 连接词续命法（and then / what's more 买 2 秒）③ 跳句保链法（链条完整 > 单句完整）④ 主干优先法（主谓宾先行）⑤ Paraphrase 合法化（换词是加分）⑥ 顺序词撑骨架（first/then/finally）⑦ 一句一信息 ⑧ 三遍降梯法 ⑨ 录音自查法（只挑 3 个卡壳点）⑩ 90 秒限时法
+
+## 输出要求
+- 全中文讲解，引用英文原句保留原文
+- 完整方案一次输出，不要省略任何章节
+- 若平台支持文件输出，把方案存为 <topic>-memorization-plan.md
+- 完整版（SVG 结构图 + 自包含 HTML + 逐句连读标注）请安装 skill 本体：
+  `irm https://raw.githubusercontent.com/yxdwind/english-memory-method/main/install.ps1 | iex`
+
+> 完整版 skill（SVG 结构图 + 自包含 HTML 方案 + 连读标注）安装：
+> Windows: `irm https://raw.githubusercontent.com/yxdwind/english-memory-method/main/install.ps1 | iex`
+> macOS/Linux: `curl -fsSL https://raw.githubusercontent.com/yxdwind/english-memory-method/main/install.sh | bash`

@@ -1,0 +1,51 @@
+{
+  "name": "hipaa-guard",
+  "displayName": "HIPAA 美国医疗健康护栏 (hipaa-guard)",
+  "version": "1.0.0",
+  "description": "HIPAA 美国医疗健康护栏。在面向美国市场的医疗健康产品（远程医疗 / 医疗 SaaS / 健康 App / 患者门户）的文案、隐私政策、产品描述发布前，实时检测处理受保护健康信息(PHI)、缺少商业伙伴协议(BAA)、PHI 未加密、第三方披露 PHI、缺失泄露通知、限制个人访问权等高频触发/违规表述，按风险分级输出命中与整改建议。纯本地运行，零网络、零动态执行。",
+  "author": "Wei Wu (wwumit)",
+  "license": "MIT",
+  "keywords": [
+    "护栏",
+    "guardrail",
+    "HIPAA",
+    "医疗隐私",
+    "受保护健康信息",
+    "PHI",
+    "商业伙伴协议",
+    "BAA",
+    "医疗 SaaS",
+    "compliance",
+    "health privacy"
+  ],
+  "files": [
+    "SKILL.md",
+    "package.json",
+    "requirements.txt",
+    "CHANGELOG.md",
+    "README.md",
+    "scripts/"
+  ],
+  "scripts": {
+    "guard": "python3 scripts/guard.py",
+    "detect": "python3 scripts/guard.py --format json",
+    "categories": "python3 scripts/guard.py --list-categories"
+  },
+  "openclaw": {
+    "skill": true,
+    "category": "compliance",
+    "region": "us",
+    "dependencies": [],
+    "emoji": "🛡️"
+  },
+  "security": {
+    "scanned": true,
+    "issues": 0,
+    "warnings": 0
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wwumit/hipaa-guard"
+  },
+  "homepage": "https://github.com/wwumit/hipaa-guard"
+}

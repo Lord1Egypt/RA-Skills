@@ -1,6 +1,40 @@
+//{
+//  "owner": "imaginelogo",
+//  "slug": "claw-shell",
+//  "displayName": "claw-shell",
+//  "latest": {
+//    "version": "1.0.0",
+//    "publishedAt": 1769948954608,
+//    "commit": "https://github.com/clawdbot/skills/commit/c161918d1c3b22dfc21a29dfc438f9709b822ba7"
+//  },
+//  "history": []
+//}
+//
+
+
+//
+//{
+//  "owner": "gdwebw",
+//  "slug": "my-shell",
+//  "displayName": "my-shell",
+//  "latest": {
+//    "version": "1.0.0",
+//    "publishedAt": 1769948954608
+//  },
+//  "history": []
+//}
+
+
+
+cat > ~/.openclaw/skills/claw-shell/_meta.json << 'EOF'
 {
-  "ownerId": "kn7bww6hf62t4kzd2q6tgc9ah182fag7",
+  "owner": "gdwebw",
   "slug": "my-shell",
-  "version": "1.0.0",
-  "publishedAt": 1772887364493
+  "displayName": "my-shell",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1769948954608
+  },
+  "history": []
 }
+EOF

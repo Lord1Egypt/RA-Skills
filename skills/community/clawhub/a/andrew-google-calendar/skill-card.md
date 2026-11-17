@@ -1,41 +1,58 @@
-## Description: <br>
-Helps an agent list, create, update, and delete Google Calendar events through the Google Calendar API with OAuth 2.0. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Andrew Google Calendar helps an agent use OAuth-authorized Google Calendar API access to list calendars and create, update, move, or delete calendar events.
 
-## Publisher: <br>
-[ibluewind](https://clawhub.ai/user/ibluewind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ibluewind](https://clawhub.ai/user/ibluewind)
 
-## Use Case: <br>
-People who want agent assistance with Google Calendar use this skill to inspect calendars and manage events after granting OAuth access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Google Calendar OAuth with read/write calendar access, so misuse or an over-broad grant can expose or modify calendar data. <br>
-Mitigation: Install only when comfortable granting that access, review calendar-changing actions before running them, and revoke the OAuth grant when access is no longer needed. <br>
-Risk: OAuth credentials and tokens are stored in local home-directory files. <br>
-Mitigation: Keep ~/.google-credentials.json and ~/.google-calendar-token.pickle private, use the skill on a trusted machine, and delete the token file if local access should be removed. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to connect an agent to Google Calendar for event lookup and calendar event management. It is suited for workflows where full Google Calendar read/write OAuth access is acceptable.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ibluewind/andrew-google-calendar) <br>
-- [Google Cloud Console API credentials](https://console.cloud.google.com/apis/credentials) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with Python code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Google OAuth credentials and stores a local calendar token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses full Google Calendar read/write access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with Google accounts where broad calendar access is acceptable, and review requested calendar changes before execution.
+
+Risk: The OAuth token is persisted with pickle-based storage.
+
+Mitigation: Avoid running the skill until token storage is changed to a safer serialized format and existing token files are protected or rotated.
+
+Risk: Calendar delete and move operations can change user data without built-in confirmation.
+
+Mitigation: Require explicit user confirmation and a target event preview before destructive or cross-calendar operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ibluewind/skills/andrew-google-calendar)
+- [Google Calendar OAuth scope](https://www.googleapis.com/auth/calendar)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, API calls]
+
+**Output Format:** [Markdown guidance with Python examples and shell command snippets; runtime helpers return Google Calendar API event and calendar objects.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Google OAuth client secret and stores a local OAuth token for Calendar API access.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

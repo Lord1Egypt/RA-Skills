@@ -321,8 +321,8 @@ Pull from all installed domain packs:
 - **Engineering**: git history (commits, velocity, test ratio, fix ratio, hotspots)
 - **Revenue** (@rune-pro/sales): pipeline metrics, deal velocity, churn risk
 - **Support** (@rune-pro/support): ticket volume, SLA compliance, CSAT
-- **Finance** (@rune-business/finance): burn rate, runway, budget variance
-- **Compliance** (@rune-business/legal): framework status, audit dates, open items
+- **Finance** (@rune-pro/finance): burn rate, runway, budget variance
+- **Compliance** (@rune-pro/legal): framework status, audit dates, open items
 
 ### Business Execution Steps
 
@@ -428,7 +428,7 @@ The HTML report includes: KPI cards with trend deltas, domain performance bars (
 **Scope guardrail:** retro is read-only — it analyzes and reports. It does NOT modify code, create PRs, or change any files except its own output artifacts in `.rune/retros/`.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

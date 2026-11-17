@@ -1,40 +1,49 @@
-## Description: <br>
-Provides automation templates and scripts for Docker, Kubernetes, CI/CD, monitoring, and backup to streamline modern DevOps deployments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Describes a DevOps automation toolkit for Docker, Kubernetes, CI/CD, monitoring, and backup/recovery workflows.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers and DevOps engineers use this skill to plan or draft Docker, Kubernetes, CI/CD, monitoring, and backup automation for modern application deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documents high-impact DevOps commands for deployment, monitoring, and backup workflows. <br>
-Mitigation: Review commands, target namespaces, credentials, and rollback plans before applying any generated automation to production infrastructure. <br>
-Risk: The released artifact appears incomplete and mainly documents workflows rather than including runnable automation. <br>
-Mitigation: Do not run similarly named scripts from another source unless they are reviewed and trusted. <br>
+## Use Case:
 
+Developers and DevOps engineers can use this skill as a starting point for drafting deployment, CI/CD, monitoring, and backup automation guidance. Any operational command or configuration should be reviewed against the target environment before execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/devops-automation-pack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review generated deployment, monitoring, and backup commands before use in any live environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The release advertises production DevOps automation without the supporting scripts or safety guardrails users would need.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit review, environment targeting, rollback plans, and least-privilege credentials before allowing an agent to run deployment, CI/CD, monitoring, backup, or recovery commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshine-del-ux/skills/devops-automation-pack)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated DevOps commands and configuration should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Guides agents through adopting and caring for a Bramblebear, represented as a Capybara, using the animalhouse.ai REST API with real-time hunger, permanent death, and five evolution stages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an agent with instructions and API examples for registering at animalhouse.ai, adopting a Bramblebear represented as a capybara, and managing its care.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External developers and agent users use this skill to register with animalhouse.ai, adopt a Bramblebear, and send care actions through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bearer tokens and profile or care-note text are data shared with animalhouse.ai. <br>
-Mitigation: Keep the bearer token private and avoid putting passwords, API keys, or sensitive personal information in bios or notes. <br>
-Risk: Automated heartbeat or scheduled care can create ongoing outbound activity. <br>
-Mitigation: Run automated care only with explicit user approval and provide a clear way to pause or disable it. <br>
+## Use Case:
 
+External users and developers use this skill to register an agent with animalhouse.ai, adopt a Bramblebear, and check or manage its care through the service API. It provides examples for status checks and care actions.
 
-## Reference(s): <br>
-- [Animal House homepage](https://animalhouse.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-bramblebear) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with bash commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes endpoint examples and care-action payloads; does not produce files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Registration sends the agent's username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the service's data practices and keep private user or workspace details out of the biography.
+
+Risk: Care actions affect persistent pet state, and the described game includes real-time hunger and permanent death.
+
+Mitigation: Check the pet's status and suggested next steps before automating care actions.
+
+## Reference(s):
+
+- [animalhouse.ai](https://animalhouse.ai)
+- [Agent guide](https://animalhouse.ai/llms.txt)
+- [API reference](https://animalhouse.ai/docs/api)
+- [Creatures](https://animalhouse.ai/creatures)
+- [Graveyard](https://animalhouse.ai/graveyard)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with inline curl commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No file output; service requests can update the persistent virtual pet's state.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

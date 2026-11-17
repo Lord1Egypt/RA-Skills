@@ -1,0 +1,127 @@
+# packs/finance.yaml — Financial Institution industry pack
+# Ontology Agent · Tianjin Weishu Artificial Intelligence Technology Co., Ltd.
+# Bilingual note: the Chinese counterpart of this file is `finance.zh.yaml`.
+# Zero-intrusion note: this is an added pack; it does not modify the 24-department template,
+# the 159-action library, decision/roles/semantic/logic, or init.py.
+#
+# ⚠️ Important: the compliance red lines listed here are a "reference framework, not legal or
+# compliance advice". Finance is heavily regulated; before implementation they must be verified by
+# licensed compliance / legal counsel and checked against the latest regulatory rules and approvals.
+# This pack does not replace any statutory compliance duty.
+
+meta:
+  pack_id: finance
+  display_name: Financial Institution
+  version: 0.1.0
+  base_layer_ref: references/semantic.yaml
+  logic_ref: references/logic.yaml
+  decision_ref: references/decision.yaml
+  match_keywords: [bank, securities, insurance, fund, trust, finance, licensed, credit union, finance company, payment, wealth management, asset management, futures, financial leasing]
+  description: >
+    For licensed institutions under financial regulation (banking / securities / insurance / funds /
+    trust / futures / payments / finance companies, etc.). The main pack covers financial
+    commonalities (KYC / suitability / products / risk and compliance); red lines are a reference
+    framework and not legal advice, and must be verified by licensed compliance staff.
+
+# ── 1. Financial common entities ──
+entities_extra:
+  - type: FinancialInstitution
+    extends: Organization
+    properties:
+      - { name: license_type, type: enum, enum: [banking, securities, insurance, fund, trust, futures, payment, finance company, financial leasing], required: true, desc: "Licence type" }
+      - { name: regulated_by, type: string, desc: "Regulator (banking & insurance / securities / central bank, etc.)" }
+      - { name: capital_adequacy, type: number, desc: "Capital adequacy ratio %" }
+    relations:
+      - { to: Organization, type: belongs_to, cardinality: many-to-one }
+  - type: FinancialProduct
+    extends: Product
+    properties:
+      - { name: risk_level, type: enum, enum: [R1, R2, R3, R4, R5], desc: "Product risk level" }
+      - { name: suitability, type: string, desc: "Suitability requirements" }
+      - { name: reg_no, type: string, desc: "Product registration / filing number" }
+  - type: ClientAccount
+    extends: Account
+    properties:
+      - { name: kyc_status, type: enum, enum: [unidentified, identified, enhanced due diligence], desc: "Customer identification status" }
+      - { name: suitability_level, type: enum, enum: [conservative, steady, balanced, growth, aggressive], desc: "Investor risk tolerance" }
+      - { name: aml_list_hit, type: boolean, desc: "Whether an AML list is hit" }
+  - type: Transaction
+    extends: Task
+    properties:
+      - { name: amount, type: number, desc: "Transaction amount" }
+      - { name: aml_flag, type: enum, enum: [normal, suspicious, large-pending-report], desc: "AML flag" }
+    relations:
+      - { to: ClientAccount, type: related_to, cardinality: many_to_one }
+
+# ── 2. Recommended departments ──
+recommended_departments:
+  - { code: lead,        name: Executive Decision }
+  - { code: admin,       name: Administration }
+  - { code: hr,          name: Human Resources }
+  - { code: finance,     name: Finance & Tax }
+  - { code: legal,       name: Legal & Compliance }
+  - { code: rnd,         name: R&D }
+  - { code: mkt_content, name: Content Marketing }
+  - { code: mkt_dist,    name: Channel Distribution }
+  - { code: mkt_seo,     name: SEO & Promotion }
+  - { code: sales,       name: Sales }
+  - { code: data,        name: Data }
+  - { code: strategy,    name: Strategy }
+  # Finance optional
+  - { code: risk,        name: Risk & Internal Control }  # risk / compliance / capital
+  - { code: it_security, name: IT & Security }            # data security / list screening systems
+  - { code: investor,    name: Investment & Financing }   # asset management / investment banking / products
+
+suggested_custom_departments:
+  - { code: aml_compliance, name: Compliance & AML, gender_default: male, expertise: "KYC / large & suspicious transaction reporting / list monitoring / suitability", when: "strongly recommended for any licensed operation (compliance is mandatory)" }
+  - { code: relationship,    name: Relationship Manager, gender_default: female, expertise: "acquisition / suitability matching / ongoing service", when: "recommended when serving retail / corporate clients" }
+  - { code: ib_desk,        name: Investment Banking, gender_default: male, expertise: "underwriting / M&A / asset management product design", when: "recommended when there is investment banking business" }
+
+# ── 3. Default workflow ──
+default_workflow: finance_ops
+workflow_bindings:
+  finance_ops:
+    stages: [discovery, design, build, validate, operate, grow]
+    core_loop: [acquisition & KYC, suitability matching, product delivery, ongoing service, risk & compliance, review]
+
+# ── 4. Localization policy hooks ──
+policy_hooks:
+  region: nationwide
+  redline_refs:
+    - compliance_redlines.finance             # AML / suitability / capital regulation / data grading / credit reporting (triggered by this pack; reference, not legal advice)
+    - compliance_redlines.tax                 # invoices / tax payment
+    - compliance_redlines.general             # personal information protection: minimum necessity
+  local_services: []
+  note: Red lines are a reference framework; before implementation they must be verified by licensed compliance / legal counsel against the latest regulatory rules.
+
+# ── 5. Layer-B flavor ──
+flavor:
+  default: >-
+    You serve a licensed institution under financial regulation; compliance is its lifeline and no
+    action may cross a regulatory red line. Customers must pass KYC identification, products must match
+    investor risk tolerance (suitability), and products must never be sold to unsuitable investors.
+    AML list monitoring and large / suspicious transaction reporting are mandatory. Financial accounts,
+    ID documents and transaction information must be strictly de-identified; PII is never written in
+    plain text.
+  legal: Operate within the licence scope; distribution requires licensed products; financial advertising must not promise capital protection or returns; sales must be traceable (dual recording).
+  risk: Capital adequacy / provision coverage / leverage / liquidity metrics must meet standards; models and stress tests must be documented; risk events are reported immediately.
+  finance: Financial confirmation must be consistent with regulatory reports; tax vs regulatory accounting differences are reconciled by compliance; client assets must be segregated.
+  investor: Products must be registered / filed; risk disclosure must be adequate; never promise returns; ongoing disclosure during the product life cycle must be compliant.
+  it_security: Classify and grade financial data (C1–C4); important / core data export requires a security assessment; systems must be auditable and logged.
+
+# ── 6. Instantiation prompts ──
+instance_prompts:
+  - "Please describe the institution type and licence (banking / securities / insurance / fund / payments…) and its regulator"
+  - "Please introduce the institution (name, region, capital adequacy ratio, whether you hire staff)"
+  - "Which departments do you want to build (12 core by default + risk / IT security / investment; strongly recommended to add Compliance & AML)"
+  - "Core business loop (e.g. acquisition → KYC → suitability matching → product delivery → ongoing service)"
+  - "Whether there is cross-border business / data export / high-net-worth clients (affects data and suitability red lines)"
+
+# ── 7. Finance-specific monitoring signals (pairs with the finance domain in monitoring.yaml) ──
+finance_signals:
+  signals:
+    - { id: aml_alert, name: suspicious AML transaction, owner: [aml_compliance, risk], desc: "list hit / large suspicious transaction pending reporting" }
+    - { id: suitability_breach, name: suitability mismatch, owner: [aml_compliance, sales], desc: "product risk does not match client tolerance" }
+    - { id: capital_drop, name: capital metric decline, owner: [risk, finance], desc: "capital adequacy / liquidity approaching the lower bound" }
+    - { id: reg_change, name: new regulation, owner: [legal, strategy], desc: "regulatory issuance / enforcement cases / new rules taking effect" }
+    - { id: complaint_spike, name: complaint / sentiment swing, owner: [mkt_content, csm], desc: "concentrated complaints / negative sentiment" }

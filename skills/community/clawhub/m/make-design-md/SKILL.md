@@ -1,6 +1,7 @@
 ---
 name: make-design-md
 description: 网站设计风格分析器，从网站URL、HTML文件或截图提取设计规范，生成符合 Google design.md 规范的 DESIGN.md 文档。当用户要求"分析设计风格"、"提取设计规范"、"生成设计文档"、"从XX网站提取风格"、"分析这个页面的设计"等任务时触发此skill。也支持用户直接提供URL、HTML文件路径或截图文件作为输入。
+license: MIT
 ---
 
 # Make Design MD
@@ -14,10 +15,10 @@ description: 网站设计风格分析器，从网站URL、HTML文件或截图提
 1. **YAML Front Matter** - 机器可读的设计令牌（colors, typography, spacing, rounded, components）
 2. **Markdown Body** - 人类可读的设计原理说明
 
-生成的 DESIGN.md 可通过官方 CLI 工具验证和导出：
+生成的 DESIGN.md 可通过官方 CLI 工具（当前版本 0.3.x）验证和导出：
 ```bash
-npx @google/design.md lint DESIGN.md        # 验证格式
-npx @google/design.md export --format tailwind DESIGN.md  # 导出 Tailwind 配置
+npx @google/design.md lint DESIGN.md                     # 验证格式（JSON 输出）
+npx @google/design.md export --format css-tailwind DESIGN.md  # 导出 Tailwind v4 主题
 ```
 
 ## 工作流程
@@ -45,6 +46,7 @@ npx @google/design.md export --format tailwind DESIGN.md  # 导出 Tailwind 配�
 
    **colors** - 颜色系统
    - `primary` - 主品牌色（必须）
+   - `primary-hover` - 主色悬停态（配合组件变体使用）
    - `secondary` - 次级强调色
    - `background` - 背景色（可包含多个层级如 `background-subtle`）
    - `surface` - 表面色（卡片、面板）
@@ -91,7 +93,7 @@ npx @google/design.md export --format tailwind DESIGN.md  # 导出 Tailwind 配�
    **rounded** - 圆角刻度
    ```yaml
    rounded:
-     none: "0"
+     none: "0px"
      sm: "4px"
      md: "8px"
      lg: "12px"
@@ -109,11 +111,17 @@ npx @google/design.md export --format tailwind DESIGN.md  # 导出 Tailwind 配�
        typography: "{typography.body}"
        rounded: "{rounded.md}"
        padding: "{spacing.2} {spacing.4}"
+     button-primary-hover:
+       backgroundColor: "{colors.primary-hover}"
      card:
        backgroundColor: "{colors.surface}"
        borderColor: "{colors.border}"
        rounded: "{rounded.lg}"
    ```
+
+   组件属性的规范清单：`backgroundColor`, `textColor`, `typography`, `rounded`, `padding`, `size`, `height`, `width`。其他属性（如 `borderColor`, `backdropFilter`）会被接受但 lint 时给出警告，非必要时优先使用规范内属性。
+
+   交互状态变体（hover、active、pressed）以独立的组件条目表示，命名与基础组件相关联（如 `button-primary-hover`）。
 
 3. **生成 DESIGN.md**
 
@@ -231,13 +239,13 @@ npx @google/design.md export --format tailwind DESIGN.md  # 导出 Tailwind 配�
 ### 令牌格式规范
 
 **颜色 (Color)**
-- 格式：`#` + 十六进制（sRGB）
-- 示例：`#1A1C1E`, `#FF5722`
-- RGBA 格式：`rgba(0, 0, 0, 0.8)`
+- 格式：任意 CSS 颜色（hex、`rgb()`、`rgba()`、`oklch()`、命名颜色等）
+- 示例：`#1A1C1E`, `#FF5722`, `rgba(0, 0, 0, 0.8)`, `oklch(62% 0.18 250)`
 
 **尺寸 (Dimension)**
-- 格式：数字 + 单位（`px`, `em`, `rem`）
+- 格式：数字 + 单位（`px`, `em`, `rem`）；spacing 令牌也允许纯数字
 - 示例：`48px`, `1.5rem`, `-0.02em`
+- 注意：无单位的 `"0"` 不是合法 dimension（lint 报错），零值需写成 `"0px"`
 
 **令牌引用**
 - 格式：`{path.to.token}`
@@ -276,31 +284,46 @@ heading1:
 
 ### 验证与导出
 
-生成的 DESIGN.md 可使用 Google 官方 CLI 工具：
+生成的 DESIGN.md 可使用 Google 官方 CLI 工具（所有命令接受文件路径或 `-` 表示 stdin，输出默认为 JSON）：
 
 ```bash
-# 验证文档格式
+# 验证文档格式（存在 error 时退出码为 1）
 npx @google/design.md lint DESIGN.md
 
-# 比较两个版本
+# 比较两个版本（after 文件 findings 变多时退出码为 1）
 npx @google/design.md diff DESIGN.md DESIGN-v2.md
 
-# 导出为 Tailwind 配置
-npx @google/design.md export --format tailwind DESIGN.md
+# 导出为 Tailwind v3 配置（theme.extend JSON）
+npx @google/design.md export --format json-tailwind DESIGN.md
 
-# 导出为 DTCG 格式
+# 导出为 Tailwind v4 主题（CSS @theme 块）
+npx @google/design.md export --format css-tailwind DESIGN.md
+
+# 导出为 DTCG 格式（W3C Design Tokens Format）
 npx @google/design.md export --format dtcg DESIGN.md
 
-# 查看规范
+# 查看规范（可注入 agent prompt）
 npx @google/design.md spec
 ```
 
-**Lint 规则说明**
-- `broken-ref` - 令牌引用无法解析
-- `missing-primary` - 未定义 primary 颜色
-- `contrast-ratio` - WCAG AA 对比度检查
-- `orphaned-tokens` - 未使用的颜色令牌
-- `section-order` - 章节顺序不符合规范
+**注意事项**
+- `--format tailwind` 是 `json-tailwind` 的兼容别名。
+- **Windows/PowerShell**：`design.md` 这个 bin 名的 `.md` 后缀会与 Windows 的 Markdown 文件关联冲突，导致 `npx @google/design.md` 无输出。改用无点的 `designmd` 别名：`npx -p @google/design.md designmd lint DESIGN.md`。
+- **`npm error ENOVERSIONS`**：说明 npm 未查询公共 registry（`.npmrc` 自定义了 registry 或公司镜像未同步该包）。用 `npm config get registry` 检查，正常应为 `https://registry.npmjs.org/`。
+
+**Lint 规则说明**（共 9 条规则）
+
+| 规则 | 级别 | 检查内容 |
+|------|------|---------|
+| `broken-ref` | error | 令牌引用无法解析（如 `{colors.primary}` 未定义） |
+| `missing-primary` | warning | 定义了 colors 但缺少 primary 颜色 |
+| `contrast-ratio` | warning | 组件背景/文字对比度低于 WCAG AA（4.5:1） |
+| `orphaned-tokens` | warning | 定义了但未被任何组件引用的颜色令牌 |
+| `token-summary` | info | 各部分的令牌数量统计 |
+| `missing-sections` | info | 存在其他令牌但缺少可选部分（spacing、rounded） |
+| `missing-typography` | warning | 定义了 colors 但没有 typography 令牌 |
+| `section-order` | warning | 章节顺序不符合规范 |
+| `unknown-key` | warning | 顶层 YAML 键疑似已知 schema 键的拼写错误 |
 
 ## 使用示例
 

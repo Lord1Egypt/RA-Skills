@@ -1,40 +1,53 @@
-## Description: <br>
-Guides creation, optimization, and auditing of a primary site homepage, including structure, hero messaging, conversion flow, and related SEO guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in creating, optimizing, or auditing a site homepage with homepage structure, hero copy, conversion guidance, and SEO metadata.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, designers, marketers, and site owners use this skill to plan, optimize, or audit a homepage for clear positioning, conversion, SEO metadata, trust signals, and section structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional project context files may contain secrets or sensitive product details. <br>
-Mitigation: Review .claude/project-context.md and .cursor/project-context.md before use, and remove secrets or details that should not inform homepage recommendations. <br>
-Risk: Homepage, SEO, or conversion recommendations may be incomplete or inaccurate for a specific brand, market, or regulated use case. <br>
-Mitigation: Have a qualified reviewer check generated structure, copy, metadata, and schema guidance before publishing. <br>
+## Use Case:
 
+Developers, designers, and content teams use this skill to plan or audit a primary website homepage. It helps structure the page, draft hero and section copy, prepare SEO metadata, and check conversion basics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/homepage-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with homepage outlines, copy options, metadata suggestions, checklists, and optional schema markup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May tailor recommendations from local project context files when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and release evidence) <br>
+Risk: Homepage recommendations may be based on incomplete or outdated project context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated structure, copy, and SEO metadata against the current product, audience, and value proposition before publishing.
+
+Risk: Conversion and SEO guidance may need brand, legal, or market-specific review.
+
+Mitigation: Have the relevant brand, SEO, or compliance owner review final homepage copy and metadata before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/homepage-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with structured sections, copy options, SEO metadata, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use existing project context files when present; does not request credentials, install packages, run code, or modify files by itself.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

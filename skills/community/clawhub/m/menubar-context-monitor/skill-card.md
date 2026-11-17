@@ -1,43 +1,58 @@
-## Description: <br>
-Menu bar context monitor for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+macOS menu bar context monitor for OpenClaw agents.
 
-## Publisher: <br>
-[hjklasdfg](https://clawhub.ai/user/hjklasdfg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hjklasdfg](https://clawhub.ai/user/hjklasdfg)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install and operate a macOS SwiftBar menu bar monitor that shows recent agent activity, model aliases, status, and context-token usage for local or SSH-accessible OpenClaw hosts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs a persistent SwiftBar plugin that can keep polling an OpenClaw host over SSH. <br>
-Mitigation: Install it only when persistent menu bar monitoring is intended, and remove or disable the SwiftBar plugin when polling should stop. <br>
-Risk: Remote mode copies and runs the status collector on an SSH-accessible host. <br>
-Mitigation: Use remote mode only with a host you control, review the installer before running it, and rely on SSH key authentication. <br>
-Risk: The SwiftBar plugin can use OPENCLAW_STATUS_SCRIPT to choose the remote status command. <br>
-Mitigation: Do not set OPENCLAW_STATUS_SCRIPT unless the command is fully trusted. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install and configure a macOS SwiftBar menu-bar monitor that shows agent context usage, model aliases, status, and recent activity for local or remote OpenClaw hosts.
 
-## Reference(s): <br>
-- [Context Monitor on ClawHub](https://clawhub.ai/hjklasdfg/menubar-context-monitor) <br>
-- [SwiftBar](https://github.com/swiftbar/SwiftBar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May install local files and configure a recurring SwiftBar plugin that polls a local or SSH-accessible OpenClaw host.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata; artifact SKILL.md lists 1.1.0) <br>
+Risk: The security evidence flags this release for review because it installs a persistent SwiftBar plugin that reads OpenClaw session data and may SSH to another machine every 30 seconds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup guide and scripts before installation, install only for trusted OpenClaw hosts, and verify SSH host keys manually.
+
+Risk: The security guidance warns against unattended installs and notes hidden agent setup steps.
+
+Mitigation: Avoid unattended --yes installs unless the commands have been reviewed, and require explicit approval before installing SwiftBar or deploying remote collectors.
+
+Risk: The security guidance says not to rely on environment-variable customization unless the SSH command handling is fixed.
+
+Mitigation: Use explicit installer arguments or inspect the generated SwiftBar plugin configuration instead of depending on environment-variable overrides.
+
+## Reference(s):
+
+- [Context Monitor ClawHub release](https://clawhub.ai/hjklasdfg/skills/menubar-context-monitor)
+- [SwiftBar](https://github.com/swiftbar/SwiftBar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup guidance for macOS SwiftBar monitoring and may direct installation of local or SSH-based collector scripts.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

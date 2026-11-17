@@ -1,45 +1,56 @@
-## Description: <br>
-Security audit + append-only logging + monitoring for OpenClaw skills (file-level diff, baseline approval, SHA-256 integrity). Requires Python >=3.9 and git. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security audit + append-only logging + monitoring for OpenClaw skills (file-level diff, baseline approval, SHA-256 integrity). Requires Python >=3.9 and git.
 
-## Publisher: <br>
-[ucloud-security](https://clawhub.ai/user/ucloud-security) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ucloud-security](https://clawhub.ai/user/ucloud-security)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to statically audit OpenClaw skill directories, record append-only local audit logs, compare file and content diffs, manage approved baselines, and generate monitoring notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Monitoring notifications or raw diffs may expose sensitive workspace content if sent to an external channel. <br>
-Mitigation: Confirm the notification target before enabling scheduled monitoring, send concise summaries by default, and review raw diffs for secrets before sharing them. <br>
-Risk: Scheduled monitoring may scan an unintended workspace if cron is configured with the wrong path. <br>
-Mitigation: Create cron jobs only after explicit user approval and verify the workspace path before enabling recurring scans. <br>
-Risk: Agent-level semantic analysis may handle skill source context according to the hosting Agent deployment rather than the bundled scripts. <br>
-Mitigation: Configure the hosting Agent's data handling policy appropriately, especially when audited skills may contain private code or credentials. <br>
+## Use Case:
 
+Developers and operators use this skill to audit OpenClaw skill directories, record append-only local scan logs, monitor skill changes, and prepare summarized notifications for review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ucloud-security/skills-auditor) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [scripts/README.md](artifact/scripts/README.md) <br>
-- [templates/README.md](artifact/templates/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands plus local JSON and NDJSON audit artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local SHA-256 integrity fields, diff summaries, baseline state, and optional notification text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The server security summary says the implementation can persist unintended sensitive files and can miss or suppress important security findings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run in a contained workspace or after fixing symlink rejection and containment checks, and do not rely on its risk score alone until SKILL.md scanning and metadata-based finding suppression are corrected.
+
+Risk: Diffs, snapshots, and notifications can contain sensitive workspace content.
+
+Mitigation: Keep notification targets local or trusted, send concise summaries by default, and require explicit review before sharing raw diffs externally.
+
+## Reference(s):
+
+- [Skill Auditor on ClawHub](https://clawhub.ai/ucloud-security/skills/skills-auditor)
+- [SKILL.md](artifact/SKILL.md)
+- [scripts/README.md](artifact/scripts/README.md)
+- [templates/README.md](artifact/templates/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell command examples, NDJSON logs, JSON scan records, and notification text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local files, git snapshots, and configurable risk rules; notification output is summarized by default.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

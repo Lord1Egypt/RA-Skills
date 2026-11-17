@@ -1,50 +1,69 @@
-## Description: <br>
-skelm helps developers author, run, and operate typed TypeScript pipelines that combine deterministic code, LLM calls, and agent loops under a default-deny permission model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Author, run, and operate skelm pipelines: typed TypeScript workflows that combine deterministic code, LLM inference, and agent loops behind a default-deny permission model.
 
-## Publisher: <br>
-[scottgl9](https://clawhub.ai/user/scottgl9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[scottgl9](https://clawhub.ai/user/scottgl9)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold, author, inspect, schedule, debug, and operate skelm workflow pipelines. It is also useful when configuring agent permissions, MCP wiring, backend setup, gateway operation, and migrations from other workflow tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: skelm workflows and agent steps may require sensitive credentials or inherited environment variables. <br>
-Mitigation: Install only for intended skelm workflow use, avoid broad secrets in inherited environments, and grant only the specific secrets each workflow or agent step needs. <br>
-Risk: Gateway exposure can broaden access to workflow execution, scheduling, approvals, audit data, and agent capabilities. <br>
-Mitigation: Keep the gateway bound to localhost unless bearer authentication and network controls are configured. <br>
-Risk: Agent filesystem, command, MCP, network, and secret permissions can enable privileged actions when configured too broadly. <br>
-Mitigation: Use least-privilege permissions for each workflow, profile, and agent step, and review generated pipeline changes before running them. <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold, author, validate, run, inspect, schedule, and debug skelm TypeScript pipelines, including workflows that combine code, LLM calls, MCP-backed tools, and agent steps.
 
-## Reference(s): <br>
-- [skelm documentation](https://scottgl9.github.io/skelm/) <br>
-- [skelm npm package](https://www.npmjs.com/package/skelm) <br>
-- [ClawHub skill page](https://clawhub.ai/scottgl9/skelm) <br>
-- [Pipeline Authoring Reference](artifact/references/pipeline-authoring.md) <br>
-- [Agent step reference](artifact/references/agent-step.md) <br>
-- [Permissions Reference](artifact/references/permissions.md) <br>
-- [Config reference](artifact/references/config.md) <br>
-- [Gateway Reference](artifact/references/gateway.md) <br>
-- [CLI Reference](artifact/references/cli.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May scaffold TypeScript pipeline files and skelm configuration from bundled templates when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.3 (source: server release metadata) <br>
+Risk: The scaffold helper substitutes user-provided descriptions into executable TypeScript pipeline files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted descriptions only, then inspect generated .pipeline.mts files before validation or execution.
+
+Risk: Agent workflows may receive filesystem or shell permissions that are broader than a user expects.
+
+Mitigation: Run agent steps inside an OS sandbox, container, or bounded workspace and keep permission scopes minimal.
+
+Risk: Environment values inherited by agents or MCP servers may expose secrets.
+
+Mitigation: Avoid placing real secrets in inherited .env values and scope any required credentials to the smallest necessary workflow.
+
+Risk: Installing the gateway as a systemd service creates a persistent local service.
+
+Mitigation: Install the systemd gateway only when persistent local operation is intended.
+
+## Reference(s):
+
+- [skelm documentation](https://scottgl9.github.io/skelm/)
+- [skelm npm package](https://www.npmjs.com/package/skelm)
+- [ClawHub skelm release](https://clawhub.ai/scottgl9/skills/skelm)
+- [Pipeline Authoring Reference](references/pipeline-authoring.md)
+- [Agent Step Reference](references/agent-step.md)
+- [Permissions Reference](references/permissions.md)
+- [Config Reference](references/config.md)
+- [Gateway Reference](references/gateway.md)
+- [CLI Reference](references/cli.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May scaffold or modify skelm pipeline and configuration files when the agent applies the provided workflow guidance.]
+
+## Skill Version(s):
+
+0.4.3 (source: server release metadata; artifact text also states skelm v0.4.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

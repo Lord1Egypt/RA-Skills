@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7ee577c2060r54dm1yveyhf986aab3",
-  "slug": "sai-creator",
-  "version": "1.0.0",
-  "publishedAt": 1778210717398
+  "ownerId": "kn7amrtkn0tjk2r2yxf3hjgp0s7zn6g4",
+  "slug": "sai-frontend-builder",
+  "version": "0.1.0",
+  "publishedAt": 1746662400000,
+  "fork_of": "skill-creator@0.1.0",
+  "sibling_of": ["conan-ojs-scout@0.2.0", "senku-qa-validator@0.1.0"],
+  "role": "frontend-builder"
 }

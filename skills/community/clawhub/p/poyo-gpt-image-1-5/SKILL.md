@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-gpt-image-1-5
 description: Use PoYo AI GPT Image 1.5 through the `https://api.poyo.ai/api/generate/submit` endpoint. Use when a user wants to generate or edit media with this model family, prepare PoYo-compatible payloads, submit jobs, or poll task status for `gpt-image-1.5`, `gpt-image-1.5-edit`.
-metadata: {"openclaw": {"homepage": "https://docs.poyo.ai/api-manual/image-series/gpt-image-1.5", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
+metadata: {"openclaw": {"homepage":"https://poyo.ai/models/gpt-image-1-5-api", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
 ---
 
 # PoYo GPT Image 1 5
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/gpt-image-1-5-api>
+- API docs: <https://docs.poyo.ai/api-manual/image-series/gpt-image-1.5>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill to submit and track PoYo jobs for the GPT Image 1.5 family.
 
@@ -52,4 +58,3 @@ When helping with this model family, include:
 Notes:
 
 Needs POYO_API_KEY from https://poyo.ai
-PoYo.ai - Premium AI API Platform | Image, Video, Music & Chat APIs - 80% Cheaper

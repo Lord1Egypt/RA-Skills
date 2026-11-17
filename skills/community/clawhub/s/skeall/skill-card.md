@@ -1,47 +1,67 @@
-## Description: <br>
-Agent Skills builder, auditor, and improver for cross-platform LLM agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Skills builder, auditor, and improver for cross-platform LLM agents.
 
-## Publisher: <br>
-[dorukardahan](https://clawhub.ai/user/dorukardahan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dorukardahan](https://clawhub.ai/user/dorukardahan)
 
-## Use Case: <br>
-Developers and agent-skill maintainers use this skill to scaffold new Agent Skills, audit existing SKILL.md packages, propose improvements, and run static or runtime checks for cross-platform compatibility. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Healthcheck mode can inspect local agent configs, environment-variable names, session logs, and discovered URLs in the active session. <br>
-Mitigation: Use create, scan, and improve on explicit paths; run healthcheck-all only when broader local inspection is acceptable. <br>
-Risk: The skill may propose edits to skill files that affect future agent behavior. <br>
-Mitigation: Review diffs and rerun the scan before accepting or deploying generated changes. <br>
+## Use Case:
 
+Developers and agent maintainers use Skeall to create, improve, scan, and health-check Agent Skills for cross-platform LLM coding agents.
 
-## Reference(s): <br>
-- [Agent Skills open standard](https://agentskills.io) <br>
-- [Advanced patterns](references/advanced-patterns.md) <br>
-- [Anti-patterns in Agent Skills](references/anti-patterns.md) <br>
-- [Health Check Reference](references/healthcheck.md) <br>
-- [Scoring methodology](references/scoring.md) <br>
-- [SKILL.md template](references/template.md) <br>
-- [Testing your skill](references/testing.md) <br>
-- [ClawHub skill page](https://clawhub.ai/dorukardahan/skeall) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline text, code blocks, shell commands, checklists, and edit proposals] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, scan, or improve skill files when the user authorizes edits to an explicit path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Health check mode can read sensitive agent configuration, private skill repository, or local session data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing in sensitive environments, prefer scan-only mode for untrusted skills, and avoid broad healthcheck-all runs unless local inspection is acceptable.
+
+Risk: Runtime URL validation can make network requests to destinations found in audited skills.
+
+Mitigation: Review destination URLs before active validation and avoid running URL checks on untrusted artifacts until the destination list is understood.
+
+Risk: Generated or proposed skill changes can introduce incorrect guidance or weaken existing safeguards.
+
+Mitigation: Review proposed edits and run a scan before deploying generated or modified skills.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dorukardahan/skills/skeall)
+- [Agent Skills open standard](https://agentskills.io)
+- [Anti-patterns in Agent Skills](references/anti-patterns.md)
+- [Health Check Reference](references/healthcheck.md)
+- [Testing your skill](references/testing.md)
+- [SKILL.md template](references/template.md)
+- [Scoring methodology](references/scoring.md)
+- [Advanced patterns](references/advanced-patterns.md)
+- [Anthropic skills guide](https://claude.com/blog/complete-guide-to-building-skills-for-claude)
+- [OpenAI Codex skills documentation](https://developers.openai.com/codex/skills/)
+- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with checklists, audit reports, inline code blocks, and generated skill files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose edits and commands; healthcheck modes may inspect local skill directories and validate URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

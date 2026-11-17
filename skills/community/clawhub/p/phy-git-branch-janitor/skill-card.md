@@ -1,41 +1,54 @@
-## Description: <br>
-Audits local and remote Git branches, classifies merged, stale, orphaned, and active branches, and produces a prioritized cleanup plan with review guidance and delete commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Git branch cleanup assistant that audits local and remote branches, categorizes merged, stale, orphaned, and active branches, and produces a prioritized cleanup plan with shell commands.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and repository maintainers use this skill to audit branch state, identify merged or stale branches, and prepare cleanup commands while preserving protected and active work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated delete commands can remove local or remote branches, including branches shared with collaborators. <br>
-Mitigation: Treat generated commands as a manual change plan; review branch names, the default branch, protected branch patterns, and remote deletes before running them. <br>
-Risk: Stale or unmerged branch classifications can miss context that is not visible from Git metadata or optional PR lookup. <br>
-Mitigation: Confirm stale and force-delete candidates with branch owners or PR status before deleting unmerged work. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to review Git branch state, identify branches that can be safely removed, and prepare cleanup commands for local and remote branches.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-git-branch-janitor) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with tables and inline bash command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are presented as a manual cleanup plan for user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server evidence and frontmatter) <br>
+Risk: Generated branch deletion commands can be unsafe for unusual branch names or repositories with branches created by other people.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before running them, validate and shell-quote branch names, and confirm remote deletions or force-deletes manually.
+
+Risk: Stale unmerged branches may contain work that has not been preserved elsewhere.
+
+Mitigation: Confirm with the branch owner or PR status before using force-delete commands for unmerged branches.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-git-branch-janitor)
+- [Canlah AI homepage](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with tables and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes categorized branch findings and cleanup commands that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

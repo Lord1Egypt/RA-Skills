@@ -1,46 +1,66 @@
-## Description: <br>
-Generates children’s picture-book illustrations from text prompts with Baidu ERNIE-Image-Turbo and saves PNG files at preset resolutions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Children's Picture Book Generator turns story scene prompts into PNG illustrations at preset resolutions using Baidu ERNIE-Image-Turbo through an OpenAI-compatible API.
 
-## Publisher: <br>
-[livingbody](https://clawhub.ai/user/livingbody) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[livingbody](https://clawhub.ai/user/livingbody)
 
-## Use Case: <br>
-External users and developers can generate individual picture-book illustrations from story scenes or themes by running a Python CLI with a prompt, resolution, output filename, and Baidu/ERNIE Image API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts are sent to Baidu AI Studio for image generation. <br>
-Mitigation: Install only when this data transfer is acceptable, and avoid sending sensitive story text or private details in prompts. <br>
-Risk: The skill requires a sensitive Baidu/ERNIE Image API key. <br>
-Mitigation: Prefer an environment variable for the API key and avoid command-line key arguments on shared systems. <br>
-Risk: Generated images are written to the requested filename and may overwrite an existing file. <br>
-Mitigation: Use a dedicated output folder or unique filename for each generation. <br>
+## Use Case:
 
+Agents, developers, and content creators use this skill to generate single illustration assets for children's picture-book scenes from text prompts, with explicit control over output path and resolution.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/livingbody/children-picture) <br>
-- [Baidu AI Studio](https://aistudio.baidu.com) <br>
-- [ERNIE Image](https://aistudio.baidu.com/ernieimage) <br>
-- [Baidu ERNIE Image Model Detail](https://aistudio.baidu.com/modelsdetail/46030/intro) <br>
-- [OpenAI Python SDK](https://github.com/openai/openai-python) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions] <br>
-**Output Format:** [PNG image files with command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Baidu/ERNIE Image API key; prompts are sent to Baidu AI Studio and output filenames are user-selected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts are sent to Baidu AI Studio through a Baidu-compatible API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sending the prompt content to Baidu AI Studio is acceptable for the intended workflow.
+
+Risk: API keys can be exposed when passed on the command line.
+
+Mitigation: Prefer environment variables for API keys and avoid command-line secrets in shared or logged environments.
+
+Risk: The OpenAI Python dependency may change behavior across releases.
+
+Mitigation: Pin the openai dependency in controlled deployments.
+
+Risk: Generated output is saved to a user-specified filename and can overwrite an existing file.
+
+Mitigation: Save generated images under a dedicated output folder and choose filenames that avoid accidental overwrites.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/livingbody/skills/children-picture)
+- [ClawHub publisher profile](https://clawhub.ai/user/livingbody)
+- [Baidu AI Studio](https://aistudio.baidu.com)
+- [ERNIE Image](https://aistudio.baidu.com/ernieimage)
+- [ERNIE-Image model details](https://aistudio.baidu.com/modelsdetail/46030/intro)
+- [OpenAI Python SDK](https://github.com/openai/openai-python)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [PNG image file plus command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One image per invocation; supported resolutions are 1024x1024, 1376x768, 1264x848, 1200x896, 896x1200, 848x1264, and 768x1376.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

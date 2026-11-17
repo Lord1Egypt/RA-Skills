@@ -1,43 +1,60 @@
-## Description: <br>
-Control LLM API spending per agent. Set daily/weekly/monthly limits with real-time tracking and alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control LLM API spending per agent. Set daily/weekly/monthly limits with real-time tracking and alerts.
 
-## Publisher: <br>
-[ChloePark85](https://clawhub.ai/user/ChloePark85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chloepark85](https://clawhub.ai/user/chloepark85)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set per-agent and global LLM API budgets, log token usage, calculate costs, and review budget status before or after agent activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The CLI writes budget configuration, pricing overrides, and usage logs under ~/.openclaw/budget. <br>
-Mitigation: Run it only in the intended user account and back up or archive usage.jsonl as audit data instead of deleting it. <br>
-Risk: Documentation includes a broad `pkill -f` process-stop example. <br>
-Mitigation: Verify the exact process before stopping it, and prefer targeted process controls where available. <br>
-Risk: Budget checks do not automatically block API calls unless they are integrated into a wrapper or hook. <br>
-Mitigation: Run `budget check` before LLM calls and fail closed in the calling script when it exits nonzero. <br>
+## Use Case:
 
+Developers and agent operators use this skill to set per-agent and global LLM spending limits, log token usage, check budgets before paid calls, and generate local cost reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ChloePark85/agent-budget-controller) <br>
-- [Publisher profile](https://clawhub.ai/user/ChloePark85) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and CLI text reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local budget configuration, pricing overrides, and usage logs under ~/.openclaw/budget when commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: pyproject.toml and server release metadata) <br>
+Risk: Budget checks are not an automatic hard spending cap; paid calls can bypass limits unless every caller invokes the check command before making an LLM request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Wrap every paid call with budget check and treat a nonzero exit code as a block before the request is sent.
+
+Risk: Local budget data can be modified by processes with write access, which can weaken any enforcement decision based on that data.
+
+Mitigation: Protect the configured budget data directory from untrusted writers and run enforcement wrappers in a trusted environment.
+
+Risk: Invalid numeric values can affect configured limits, prices, or usage records.
+
+Mitigation: Validate limits, token counts, and model prices as finite positive values before relying on the tool as an enforcement gate.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chloepark85/skills/agent-budget-controller)
+- [README](artifact/README.md)
+- [Usage Examples](artifact/EXAMPLE.md)
+- [Installation Guide](artifact/INSTALL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local JSON and JSONL budget, pricing, and usage files in the configured data directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

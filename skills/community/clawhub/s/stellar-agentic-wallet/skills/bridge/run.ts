@@ -7,7 +7,7 @@
  * Pure in-process import of send-payment's main() — no subprocess spawning.
  *
  * Usage:
- *   npx tsx skills/bridge/run.ts --chain <chain> --amount <decimal> \
+ *   ./node_modules/.bin/tsx skills/bridge/run.ts --chain <chain> --amount <decimal> \
  *     --my-address <addr> [base flags]
  */
 

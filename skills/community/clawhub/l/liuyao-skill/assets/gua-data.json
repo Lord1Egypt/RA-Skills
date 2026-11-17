@@ -1,0 +1,451 @@
+{
+  "_meta": {
+    "trigram_binary_order": "top_to_bottom",
+    "trigram_binary_note": "The trigrams.*.binary field is written from upper line to lower line. scripts/qigua.py builds trigram bits from bottom to top when reading generated yao arrays, so its TRIGRAM_NAMES mapping intentionally uses the reverse order for asymmetric trigrams.",
+    "lookup_note": "lookup is derived at runtime from hexagrams by scripts/qigua.py to avoid duplicate source data."
+  },
+  "trigrams": {
+    "qian": {
+      "name": "乾",
+      "symbol": "☰",
+      "nature": "天",
+      "direction": "西北",
+      "binary": "111"
+    },
+    "kun": {
+      "name": "坤",
+      "symbol": "☷",
+      "nature": "地",
+      "direction": "西南",
+      "binary": "000"
+    },
+    "zhen": {
+      "name": "震",
+      "symbol": "☳",
+      "nature": "雷",
+      "direction": "东",
+      "binary": "001"
+    },
+    "xun": {
+      "name": "巽",
+      "symbol": "☴",
+      "nature": "风",
+      "direction": "东南",
+      "binary": "110"
+    },
+    "kan": {
+      "name": "坎",
+      "symbol": "☵",
+      "nature": "水",
+      "direction": "北",
+      "binary": "010"
+    },
+    "li": {
+      "name": "离",
+      "symbol": "☲",
+      "nature": "火",
+      "direction": "南",
+      "binary": "101"
+    },
+    "gen": {
+      "name": "艮",
+      "symbol": "☶",
+      "nature": "山",
+      "direction": "东北",
+      "binary": "100"
+    },
+    "dui": {
+      "name": "兑",
+      "symbol": "☱",
+      "nature": "泽",
+      "direction": "西",
+      "binary": "011"
+    }
+  },
+  "hexagrams": {
+    "qian_qian": {
+      "name": "乾为天",
+      "upper": "qian",
+      "lower": "qian",
+      "number": 1
+    },
+    "kun_kun": {
+      "name": "坤为地",
+      "upper": "kun",
+      "lower": "kun",
+      "number": 2
+    },
+    "kan_kan": {
+      "name": "坎为水",
+      "upper": "kan",
+      "lower": "kan",
+      "number": 29
+    },
+    "li_li": {
+      "name": "离为火",
+      "upper": "li",
+      "lower": "li",
+      "number": 30
+    },
+    "zhen_zhen": {
+      "name": "震为雷",
+      "upper": "zhen",
+      "lower": "zhen",
+      "number": 51
+    },
+    "xun_xun": {
+      "name": "巽为风",
+      "upper": "xun",
+      "lower": "xun",
+      "number": 57
+    },
+    "gen_gen": {
+      "name": "艮为山",
+      "upper": "gen",
+      "lower": "gen",
+      "number": 52
+    },
+    "dui_dui": {
+      "name": "兑为泽",
+      "upper": "dui",
+      "lower": "dui",
+      "number": 58
+    },
+    "qian_xun": {
+      "name": "天风姤",
+      "upper": "qian",
+      "lower": "xun",
+      "number": 44
+    },
+    "qian_dui": {
+      "name": "天泽履",
+      "upper": "qian",
+      "lower": "dui",
+      "number": 10
+    },
+    "qian_li": {
+      "name": "天火同人",
+      "upper": "qian",
+      "lower": "li",
+      "number": 13
+    },
+    "qian_zhen": {
+      "name": "天雷无妄",
+      "upper": "qian",
+      "lower": "zhen",
+      "number": 25
+    },
+    "qian_kan": {
+      "name": "天水讼",
+      "upper": "qian",
+      "lower": "kan",
+      "number": 6
+    },
+    "qian_gen": {
+      "name": "天山遁",
+      "upper": "qian",
+      "lower": "gen",
+      "number": 33
+    },
+    "qian_kun": {
+      "name": "天地否",
+      "upper": "qian",
+      "lower": "kun",
+      "number": 12
+    },
+    "kun_qian": {
+      "name": "地天泰",
+      "upper": "kun",
+      "lower": "qian",
+      "number": 11
+    },
+    "kun_zhen": {
+      "name": "地雷复",
+      "upper": "kun",
+      "lower": "zhen",
+      "number": 24
+    },
+    "kun_xun": {
+      "name": "地风升",
+      "upper": "kun",
+      "lower": "xun",
+      "number": 46
+    },
+    "kun_kan": {
+      "name": "地水师",
+      "upper": "kun",
+      "lower": "kan",
+      "number": 7
+    },
+    "kun_li": {
+      "name": "地火明夷",
+      "upper": "kun",
+      "lower": "li",
+      "number": 36
+    },
+    "kun_gen": {
+      "name": "地山谦",
+      "upper": "kun",
+      "lower": "gen",
+      "number": 15
+    },
+    "kun_dui": {
+      "name": "地泽临",
+      "upper": "kun",
+      "lower": "dui",
+      "number": 19
+    },
+    "zhen_qian": {
+      "name": "雷天大壮",
+      "upper": "zhen",
+      "lower": "qian",
+      "number": 34
+    },
+    "zhen_kun": {
+      "name": "雷地豫",
+      "upper": "zhen",
+      "lower": "kun",
+      "number": 16
+    },
+    "zhen_xun": {
+      "name": "雷风恒",
+      "upper": "zhen",
+      "lower": "xun",
+      "number": 32
+    },
+    "zhen_kan": {
+      "name": "雷水解",
+      "upper": "zhen",
+      "lower": "kan",
+      "number": 40
+    },
+    "zhen_li": {
+      "name": "雷火丰",
+      "upper": "zhen",
+      "lower": "li",
+      "number": 55
+    },
+    "zhen_gen": {
+      "name": "雷山小过",
+      "upper": "zhen",
+      "lower": "gen",
+      "number": 62
+    },
+    "zhen_dui": {
+      "name": "雷泽归妹",
+      "upper": "zhen",
+      "lower": "dui",
+      "number": 54
+    },
+    "xun_qian": {
+      "name": "风天小畜",
+      "upper": "xun",
+      "lower": "qian",
+      "number": 9
+    },
+    "xun_kun": {
+      "name": "风地观",
+      "upper": "xun",
+      "lower": "kun",
+      "number": 20
+    },
+    "xun_zhen": {
+      "name": "风雷益",
+      "upper": "xun",
+      "lower": "zhen",
+      "number": 42
+    },
+    "xun_kan": {
+      "name": "风水涣",
+      "upper": "xun",
+      "lower": "kan",
+      "number": 59
+    },
+    "xun_li": {
+      "name": "风火家人",
+      "upper": "xun",
+      "lower": "li",
+      "number": 37
+    },
+    "xun_gen": {
+      "name": "风山渐",
+      "upper": "xun",
+      "lower": "gen",
+      "number": 53
+    },
+    "xun_dui": {
+      "name": "风泽中孚",
+      "upper": "xun",
+      "lower": "dui",
+      "number": 61
+    },
+    "kan_qian": {
+      "name": "水天需",
+      "upper": "kan",
+      "lower": "qian",
+      "number": 5
+    },
+    "kan_kun": {
+      "name": "水地比",
+      "upper": "kan",
+      "lower": "kun",
+      "number": 8
+    },
+    "kan_zhen": {
+      "name": "水雷屯",
+      "upper": "kan",
+      "lower": "zhen",
+      "number": 3
+    },
+    "kan_xun": {
+      "name": "水风井",
+      "upper": "kan",
+      "lower": "xun",
+      "number": 48
+    },
+    "kan_li": {
+      "name": "水火既济",
+      "upper": "kan",
+      "lower": "li",
+      "number": 63
+    },
+    "kan_gen": {
+      "name": "水山蹇",
+      "upper": "kan",
+      "lower": "gen",
+      "number": 39
+    },
+    "kan_dui": {
+      "name": "水泽节",
+      "upper": "kan",
+      "lower": "dui",
+      "number": 60
+    },
+    "li_qian": {
+      "name": "火天大有",
+      "upper": "li",
+      "lower": "qian",
+      "number": 14
+    },
+    "li_kun": {
+      "name": "火地晋",
+      "upper": "li",
+      "lower": "kun",
+      "number": 35
+    },
+    "li_zhen": {
+      "name": "火雷噬嗑",
+      "upper": "li",
+      "lower": "zhen",
+      "number": 21
+    },
+    "li_xun": {
+      "name": "火风鼎",
+      "upper": "li",
+      "lower": "xun",
+      "number": 50
+    },
+    "li_kan": {
+      "name": "火水未济",
+      "upper": "li",
+      "lower": "kan",
+      "number": 64
+    },
+    "li_gen": {
+      "name": "火山旅",
+      "upper": "li",
+      "lower": "gen",
+      "number": 56
+    },
+    "li_dui": {
+      "name": "火泽睽",
+      "upper": "li",
+      "lower": "dui",
+      "number": 38
+    },
+    "gen_qian": {
+      "name": "山天大畜",
+      "upper": "gen",
+      "lower": "qian",
+      "number": 26
+    },
+    "gen_kun": {
+      "name": "山地剥",
+      "upper": "gen",
+      "lower": "kun",
+      "number": 23
+    },
+    "gen_zhen": {
+      "name": "山雷颐",
+      "upper": "gen",
+      "lower": "zhen",
+      "number": 27
+    },
+    "gen_xun": {
+      "name": "山风蛊",
+      "upper": "gen",
+      "lower": "xun",
+      "number": 18
+    },
+    "gen_kan": {
+      "name": "山水蒙",
+      "upper": "gen",
+      "lower": "kan",
+      "number": 4
+    },
+    "gen_li": {
+      "name": "山火贲",
+      "upper": "gen",
+      "lower": "li",
+      "number": 22
+    },
+    "gen_dui": {
+      "name": "山泽损",
+      "upper": "gen",
+      "lower": "dui",
+      "number": 41
+    },
+    "dui_qian": {
+      "name": "泽天夬",
+      "upper": "dui",
+      "lower": "qian",
+      "number": 43
+    },
+    "dui_kun": {
+      "name": "泽地萃",
+      "upper": "dui",
+      "lower": "kun",
+      "number": 45
+    },
+    "dui_zhen": {
+      "name": "泽雷随",
+      "upper": "dui",
+      "lower": "zhen",
+      "number": 17
+    },
+    "dui_xun": {
+      "name": "泽风大过",
+      "upper": "dui",
+      "lower": "xun",
+      "number": 28
+    },
+    "dui_kan": {
+      "name": "泽水困",
+      "upper": "dui",
+      "lower": "kan",
+      "number": 47
+    },
+    "dui_li": {
+      "name": "泽火革",
+      "upper": "dui",
+      "lower": "li",
+      "number": 49
+    },
+    "dui_gen": {
+      "name": "泽山咸",
+      "upper": "dui",
+      "lower": "gen",
+      "number": 31
+    }
+  }
+}

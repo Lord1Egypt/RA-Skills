@@ -1,50 +1,67 @@
-## Description: <br>
-Drafts tutorial-style WeChat Official Account articles in an author's style, saves Markdown, and publishes drafts through wenyan-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes tutorial-style WeChat Official Account articles in Markdown by imitating an author's style and supports publishing them to the WeChat draft box.
 
-## Publisher: <br>
-[niko-yang-arch](https://clawhub.ai/user/niko-yang-arch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[niko-yang-arch](https://clawhub.ai/user/niko-yang-arch)
 
-## Use Case: <br>
-Content creators and developers use this skill to collect tutorial steps and images, draft a Markdown article in a selected author style, convert it to WeChat-compatible formatting, and publish it to a WeChat Official Account draft box. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: WeChat publishing credentials may be stored or reused in unsafe locations. <br>
-Mitigation: Use temporary environment variables or a real secret manager, and do not store AppSecret values in the skill assets directory. <br>
-Risk: Personal profile text, QR codes, and images may remain in local skill assets after use. <br>
-Mitigation: Delete stored profile, QR, and image files when publishing is complete. <br>
-Risk: Draft articles and uploaded images may contain incorrect or unintended public-facing content. <br>
-Mitigation: Review all generated Markdown and images before publishing or moving a draft toward release. <br>
-Risk: The local collection server broadens the skill's runtime exposure while active. <br>
-Mitigation: Run the local server only when collecting article inputs and stop it when finished. <br>
+## Use Case:
 
+Content creators and developers use this skill to turn tutorial steps, images, and author profile details into a WeChat-ready Markdown article, then prepare or execute publication through wenyan-cli.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/niko-yang-arch/wechat-tutorial-editor-publisher) <br>
-- [wenyan-cli GitHub](https://github.com/caol64/wenyan-cli) <br>
-- [wenyan Documentation](https://wenyan.yuzhi.tech) <br>
-- [wenyan Upload and IP Whitelist Guide](https://yuzhi.tech/docs/wenyan/upload) <br>
-- [WeChat Official Account API Documentation](https://developers.weixin.qq.com/doc/offiaccount/) <br>
-- [Themes Reference](references/themes.md) <br>
-- [Troubleshooting Reference](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown article drafts, JSON step files, shell commands, and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local profile, image, and article files and may use wenyan-cli to upload images and publish WeChat drafts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata) <br>
+Risk: The workflow handles WeChat publishing credentials and references storing or reading secrets from local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a proper secret store or short-lived environment injection; do not store WeChat AppSecret in the skill directory or TOOLS.md.
+
+Risk: The helper server accepts personal information and file uploads into writable local directories.
+
+Mitigation: Run the server only on loopback with authentication or a per-session token, and add upload size limits plus file type validation.
+
+Risk: Generated articles can append personal contact details or QR code material.
+
+Mitigation: Require explicit approval for any personal footer, QR code, or contact details before including them in an article.
+
+Risk: The publish script can install a global npm package automatically.
+
+Mitigation: Review the script before execution and prefer a pinned, local dependency installation path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/niko-yang-arch/skills/wechat-tutorial-editor-publisher)
+- [wenyan-cli GitHub](https://github.com/caol64/wenyan-cli)
+- [wenyan website](https://wenyan.yuzhi.tech)
+- [WeChat Official Account API documentation](https://developers.weixin.qq.com/doc/offiaccount/)
+- [wenyan upload and IP whitelist documentation](https://yuzhi.tech/docs/wenyan/upload)
+- [Theme reference](references/themes.md)
+- [Troubleshooting guide](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown articles with frontmatter, JSON step data, shell commands, and publishing guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local article, image, personal profile, and step-data files before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

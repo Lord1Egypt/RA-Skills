@@ -1,36 +1,53 @@
-## Description: <br>
-Build and execute email marketing campaigns for a solopreneur business, including list building, segmentation, email copywriting, sequence design, deliverability, and metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and execute email marketing campaigns for a solopreneur business, covering list building, segmentation, email copywriting, sequence design, deliverability, and metrics.
 
-## Publisher: <br>
-[JK-0001](https://clawhub.ai/user/JK-0001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jk-0001](https://clawhub.ai/user/jk-0001)
 
-## Use Case: <br>
-External users and solopreneurs use this skill to plan email list growth, write welcome, nurture, sales, and broadcast emails, improve deliverability, and measure campaign performance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Real email campaigns can create consent, privacy, unsubscribe, retention, or email-law compliance issues if the guidance is applied without review. <br>
-Mitigation: Before enabling campaigns in an email platform, add appropriate consent, privacy notice, unsubscribe, retention, and applicable email-law checks, and manually review automations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Solopreneurs, creators, and small-business marketers use this skill to plan lead capture, automated welcome, nurture, and sales sequences, broadcast campaigns, segmentation, deliverability hygiene, and metric-driven iteration.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, tables, and email sequence templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, or automatic campaign sending.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may treat tactical email marketing guidance as sufficient legal or privacy guidance for real campaigns.
+
+Mitigation: Use opt-in lists, provide clear unsubscribe and preference controls, minimize collected data, document retention, and check CAN-SPAM, GDPR, and other rules that apply to the audience before sending campaigns.
+
+Risk: Campaign advice can harm sender reputation if applied without deliverability checks or list hygiene.
+
+Mitigation: Start with engaged segments, monitor bounce, unsubscribe, spam, open, and click metrics, clean unengaged subscribers regularly, and verify SPF, DKIM, and DMARC before scaling sends.
+
+## Reference(s):
+
+- [Source skill definition](artifact/SKILL.md)
+- [ClawHub skill page](https://clawhub.ai/jk-0001/skills/email-marketing-2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with checklists, tables, and email sequence templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, API calls, or shell commands are produced by the skill.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

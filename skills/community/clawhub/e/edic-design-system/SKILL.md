@@ -2,11 +2,12 @@
 name: edic-design-system
 slug: edic-design-system
 displayName: EDIC 设计系统
-version: 1.9.1
+version: 2.9.2
 description: >-
-  Generate UI components, full pages, documents, emails, and assets that
-  strictly follow the EDIC design system (Editorial × Olive Green, OKLch
-  tokens, dark-mode ready, CJK-optimized). Use this skill whenever the user asks
+  Generate UI components, full pages, documents, emails, and assets aligned
+  with the EDIC design system (Editorial × Olive Green, OKLch tokens for
+  web/UI, dark-mode ready, CJK-optimized; emails use compatible static styles).
+  Use this skill whenever the user asks
   to build, style, or refactor anything for EDIC, or explicitly requests the
   EDIC / "editorial olive" design system. Output token-driven, accessible,
   framework-agnostic HTML/CSS.
@@ -16,9 +17,34 @@ license: MIT-0
 # EDIC Design System Skill
 
 When this skill is active, every visual artifact you produce — components, pages,
-landing sections, documentation, emails, reports — must conform to the EDIC
-design system. **Prefer design tokens (CSS custom properties). Never hard-code
-magic numbers.**
+landing sections, documentation, emails, reports — should follow the EDIC
+design system. **Prefer design tokens (CSS custom properties) for web/UI.
+Never hard-code magic numbers. Use compatible static styles for email.**
+
+## Manifest-First Workflow
+
+When this skill is active for an EDIC project, use manifest-first behavior:
+
+1. Read `edic-manifest.json` for the authoritative deliverable, token,
+   component, icon, validator, and constraint list.
+2. Read `tokens.json`, `icons.json`, and `AGENT-GUIDE.md` when generating or
+   auditing UI.
+3. Read `docs/component-gap-audit.md` and `docs/component-2.0-backlog.md`
+   before proposing, adding, or claiming completion of a component.
+4. Read `skills/edic-design-system/references/CONTRACTS.md` before creating a
+   new component or improving an interactive component.
+5. Read `references/ANTI-PATTERNS.md` before fixing or reviewing generated UI.
+
+Component generation rules:
+
+- Existing manifest core components must use the documented `ds-*` class family
+  and examples; do not invent parallel class names.
+- New components must follow the component contract in
+  `references/CONTRACTS.md`.
+- Add CSS to `styles.css` before adding HTML examples in `docs.html`.
+- Use token-only visual values and include dark-mode coverage.
+- Include ARIA metadata and keyboard behavior for interactive components.
+- Mark a task complete only after `npm run audit` passes.
 
 ## Design character
 - **Editorial × Olive Green**: magazine-grade restraint, generous whitespace,
@@ -28,22 +54,26 @@ magic numbers.**
   Mercury (refined calm).
 
 ## Hard rules (anti-patterns)
-- Define all colors in **OKLch**; mix with `color-mix(in oklch, …)`.
-- Use `var(--ds-*)` tokens for every visual value. No hard-coded `#fff` / `16px`.
-- Dark mode never uses pure black `#000` — use warm grey `oklch(15% 0.008 75)`.
+- Define web/UI colors in **OKLch**; mix with `color-mix(in oklch, …)`.
+- Use `var(--ds-*)` tokens for every web/UI visual value. No hard-coded `#fff` / `16px`.
+- Dark mode never uses pure black `#000` — use warm grey `oklch(17% 0.014 80)`.
 - In dark mode, lighten the accent ~5–10% vs. light mode.
 - Components use base + modifier: `ds-btn` / `ds-btn--primary`.
 - No inline `style=` except genuinely dynamic values (e.g. stagger `--d`).
 - Icon-only buttons need `aria-label`; decorative SVGs need `aria-hidden="true"`.
+- Prefer semantic aliases such as `--ds-color-surface-primary`,
+  `--ds-color-text-primary`, `--ds-color-border-default`,
+  `--ds-border-radius-control`, and `--ds-motion-default` over raw scale
+  tokens when both exist.
 
 ## Color tokens (core)
 Light (`:root`):
 ```
 --ds-color-bg: oklch(97% 0.012 80)          /* warm paper background */
 --ds-color-surface: oklch(99% 0.005 80)
---ds-color-surface-raised: oklch(100% 0 0)  /* popovers / modals */
+--ds-color-surface-raised: oklch(99.5% 0.006 92)  /* popovers / modals */
 --ds-color-border: oklch(89% 0.012 80)
---ds-color-muted: oklch(48% 0.015 60)       /* secondary text */
+--ds-color-muted: oklch(42% 0.015 60)       /* secondary text */
 --ds-color-fg: oklch(20% 0.02 60)           /* body text */
 --ds-color-fg-strong: oklch(14% 0.025 60)   /* headings */
 ```
@@ -55,12 +85,12 @@ Olive ramp `--ds-color-olive-50…900`; accent:
 ```
 Semantic (each has a `-bg` tint): success `oklch(55% 0.1 145)`,
 warning `oklch(65% 0.1 85)`, error `oklch(50% 0.14 30)`, info `oklch(55% 0.08 240)`.
-Dark (`[data-theme="dark"]`): base `oklch(15% 0.008 75)`, body `oklch(84% 0.008 72)`,
+Dark (`[data-theme="dark"]`): base `oklch(17% 0.014 80)`, body `oklch(88% 0.008 80)`,
 accent `oklch(57% 0.065 115)`.
 
 ## Typography
 ```
---ds-font-display: "Iowan Old Style","Charter",Georgia,"Noto Serif SC",serif
+--ds-font-display: "Playfair Display","Iowan Old Style","Charter",Georgia,"Noto Serif SC",serif
 --ds-font-body / --ds-font-ui: "Noto Sans SC",-apple-system,system-ui,sans-serif
 --ds-font-mono: "JetBrains Mono","IBM Plex Mono",monospace
 ```
@@ -99,6 +129,8 @@ h4 1.5 · h3 1.875 · h2 2.25 · h1 3 · display 3.75 · hero 4.5.
 ### Forms
 - **基础表单**: `ds-input` (`--error`) `ds-label` `ds-hint` `ds-select` `ds-checkbox` `ds-radio` `ds-toggle` (`--track`/`--thumb`)
 - **扩展表单**: `ds-form-input` `ds-form-textarea` `ds-form-select` `ds-form-row` `ds-form-group` `ds-form-label` `ds-form-checkbox` `ds-form-hint` (`--error`) `ds-form-submit` `ds-form-required`
+- **表单字段**: `ds-form-field` (`--error`/`--disabled`) `ds-form-field-label` `ds-form-field-required` `ds-form-field-hint` `ds-form-field-error`
+- **文件上传**: `ds-file-upload` (`ds-file-upload-drop`/`list`/`item`/`status`)
 
 ### Feedback
 - **徽章**: `ds-badge` (`--default`/`--accent`/`--success`/`--warning`/`--error`)
@@ -122,14 +154,17 @@ h4 1.5 · h3 1.875 · h2 2.25 · h1 3 · display 3.75 · hero 4.5.
 - **头像**: `ds-avatar` (`--sm`/`--lg`)
 - **芯片/标签**: `ds-chip` (`--active`) `ds-chip-remove`
 - **骨架屏**: `ds-skeleton`
+- **加载指示器**: `ds-spinner` (`--sm`/`--lg`) `ds-spinner-label`
 - **色卡**: `ds-swatch` `ds-swatch-color` `ds-swatch-info` `ds-swatch-name` `ds-swatch-value`
 - **类型标签**: `ds-type-label` `ds-type-label-meta`
 
 ### Overlay & Glass
 - **遮罩层**: `ds-overlay-sample` `ds-overlay-bg` `ds-overlay-layer` `ds-overlay-strong` `ds-overlay-light` `ds-overlay-label`
 - **模态框**: `ds-modal` `ds-modal-header` `ds-modal-body` `ds-modal-footer` `ds-modal-close`
-- **工具提示**: `ds-tooltip-demo` `ds-tooltip-bubble`
-- **下拉菜单**: `ds-dropdown` `ds-dropdown-item` `ds-dropdown-divider`
+- **工具提示**: `ds-tooltip-host` `ds-tooltip`
+
+- **菜单**: `ds-menu` (`--align-end`) `ds-menu-item` (`--danger`) `ds-menu-divider`
+- **确认对话框**: `ds-alert-dialog` `ds-alert-dialog-backdrop` `ds-alert-dialog-title` `ds-alert-dialog-desc` `ds-alert-dialog-actions`
 
 ### Typography
 - **标题**: `ds-display` `ds-hero` `ds-h1` `ds-h2` `ds-h3` `ds-h4` `ds-h5` `ds-subtitle`
@@ -162,7 +197,7 @@ h4 1.5 · h3 1.875 · h2 2.25 · h1 3 · display 3.75 · hero 4.5.
 - **品牌预览**: `ds-brand-preview` (`--paper`/`--ink`)
 
 ### Site Shell
-- **英雄区**: `ds-hero-section` `ds-hero-inner` `ds-hero-badge` `ds-hero-title` `ds-hero-lead` `ds-hero-actions` `ds-hero-meta` `ds-hero-mark-wrap` `ds-gradient-text`
+- **英雄区**: `ds-hero-section` `ds-hero-inner` `ds-hero-badge` `ds-hero-title` `ds-hero-actions` `ds-hero-mark-wrap` `ds-gradient-text`
 - **数据统计**: `ds-stat-grid` `ds-stat` `ds-stat-num` `ds-stat-label`
 - **步骤列表**: `ds-steps` `ds-step` `ds-step-num` `ds-step-body`
 - **兼容徽章**: `ds-compat-grid` `ds-compat-item` `ds-cta-h2`
@@ -186,7 +221,31 @@ h4 1.5 · h3 1.875 · h2 2.25 · h1 3 · display 3.75 · hero 4.5.
 ### Accessibility
 - **无障碍**: `ds-sr-only` `ds-skip` `#ds-main`
 
+## Page composition rules
+
+Before writing a single component, establish the page skeleton:
+
+1. **Pick the scene** — consult `references/RECIPES.md`. Match the user's goal
+   to a recipe (landing page / blog / docs / résumé / report). If no recipe fits,
+   compose from `references/PATTERNS.md` patterns.
+
+2. **Set section rhythm** — alternate `ds-section` (paper bg) with
+   `ds-section--alt` (surface bg). Never stack two `--alt` sections back-to-back.
+
+3. **One landmark per role** — one `<header>`, one `<main id="ds-main">`, one
+   `<footer>`. Use `<section>` for content blocks inside `<main>`.
+
+4. **Heading hierarchy** — one `<h1>` per page. Sections start with `<h2>`,
+   sub-sections with `<h3>`. Never skip a level.
+
+5. **Reveal cadence** — add `ds-reveal` to section-level elements. Stagger
+   child items with `style="--d: 0.Xs"` in 0.05–0.1 s increments. Cap at ~0.4 s.
+
+6. **Skip link** — every page must open with
+   `<a href="#ds-main" class="ds-skip">跳到主内容</a>`.
+
 ## Output expectations
+
 - Produce complete, runnable HTML fragments assuming `styles.css` (and optional
   `scripts.js`) are linked.
 - If the host has no stylesheet, include a minimal `<style>` but still use OKLch
@@ -194,6 +253,24 @@ h4 1.5 · h3 1.875 · h2 2.25 · h1 3 · display 3.75 · hero 4.5.
 - Use semantic structure (`header/main/section/nav/footer`) with correct heading order.
 - Default to light theme and guarantee the same markup works under `[data-theme="dark"]`.
 - When unsure, favor the more restrained, more whitespace, more editorial option.
+- **For email output:** use inline sRGB styles only — no `var(--ds-*)`, no `oklch()`.
+  Use olive accent `#5a6e2a` ≈ `oklch(52% 0.08 115)`. See Pattern 10 in `PATTERNS.md`.
+
+## Self-check before finalizing output
+
+Run through this checklist mentally before returning any HTML:
+
+- [ ] Every color comes from `var(--ds-*)` — no bare hex/rgb/hsl.
+- [ ] Every spacing value uses `var(--ds-space-*)` — no bare `px`/`rem`.
+- [ ] Every font-size uses `var(--ds-text-*)` — no bare `px`/`rem`.
+- [ ] Every font-family uses `var(--ds-font-*)`.
+- [ ] Dark mode: no `#000` background; warm grey `oklch(17% 0.014 80)` via `var(--ds-color-bg)`.
+- [ ] BEM: every modifier class is paired with its base class (`ds-btn ds-btn--primary`).
+- [ ] Inline `style=` only for genuinely runtime-dynamic values (`--d`, widths, heights).
+- [ ] Icon-only buttons have `aria-label`; decorative SVGs have `aria-hidden="true"`.
+- [ ] One `<h1>` on the page; heading levels never skip.
+- [ ] `<a href="#ds-main" class="ds-skip">` present on full-page output.
+- [ ] `prefers-reduced-motion` override present for any custom animation > 150ms.
 
 ## Example: token-driven card
 ```html
@@ -204,6 +281,16 @@ h4 1.5 · h3 1.875 · h2 2.25 · h1 3 · display 3.75 · hero 4.5.
   <a class="ds-btn ds-btn--primary ds-mt-4" href="#">阅读全文</a>
 </article>
 ```
+
+## Reference files
+
+Load these on demand when you need precise values, complex structure, or full-page guidance:
+
+- [Scene recipes — complete page builds step-by-step (docs, landing, blog, résumé, report)](references/RECIPES.md)
+- [Page-level patterns — 10 section templates (hero, features, pricing, timeline, dashboard, email)](references/PATTERNS.md)
+- [Component HTML examples — glass card, docs layout, navbar, toast, accordion, modal, tabs, dropdown](references/EXAMPLES.md)
+- [Complete token values — spacing, radius, shadow, blur, motion, type scale](references/TOKENS.md)
+- [Anti-patterns & correct replacements — color, spacing, inline style, BEM, a11y, motion](references/ANTI-PATTERNS.md)
 
 ## Reference
 - Website: https://edic.cgartlab.com/

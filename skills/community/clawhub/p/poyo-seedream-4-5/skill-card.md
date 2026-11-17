@@ -1,44 +1,62 @@
-## Description: <br>
-Seedream 4.5 image generation and editing on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `seedream-4.5`, `seedream-4.5-edit`, 2K/4K output, multi-reference editing, and higher image counts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Seedream 4.5 image generation and editing on PoYo via the PoYo generation API, covering standard generation, image editing, 2K or 4K output, multi-reference editing, and higher image counts.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare and submit Seedream 4.5 image generation or image-editing requests through the PoYo API, including 2K/4K output, supported aspect ratios, multi-reference image inputs, and follow-up task polling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, reference image URLs, and request parameters are sent to PoYo using the user's API key. <br>
-Mitigation: Review payloads before submission and avoid sending sensitive personal, confidential, or unapproved images or prompts. <br>
-Risk: The skill requires a PoYo API key for authenticated requests. <br>
-Mitigation: Store POYO_API_KEY securely, avoid committing it to files or chat transcripts, and pass it only through the environment or an approved secret store. <br>
+## Use Case:
 
+Developers and agents use this skill to prepare and submit PoYo Seedream 4.5 image generation or image editing requests, including prompts, reference image URLs, output size, image count, and follow-up task polling.
 
-## Reference(s): <br>
-- [PoYo Seedream 4.5 API Reference](references/api.md) <br>
-- [PoYo Seedream 4.5 Documentation](https://docs.poyo.ai/api-manual/image-series/seedream-4-5) <br>
-- [PoYo Seedream 4.5 OpenAPI JSON](https://docs.poyo.ai/api-manual/image-series/seedream-4-5.json) <br>
-- [PoYo Task Status Documentation](https://docs.poyo.ai/api-manual/task-management/status) <br>
-- [ClawHub Skill Page](https://clawhub.ai/coolhackboy/poyo-seedream-4-5) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with JSON payloads and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include the selected model id, request payload or parameter summary, reference-image status, returned task_id, and polling or webhook next step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts, reference image URLs, callback URLs, and related task metadata are sent to PoYo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sending that data to PoYo is acceptable, and avoid submitting sensitive prompts, private image URLs, or callback endpoints that should not leave the deployment environment.
+
+Risk: The helper script can receive an API key as a command-line argument.
+
+Mitigation: Set POYO_API_KEY through a protected environment or secret manager instead of passing the key on the command line; rotate any key that was previously exposed this way.
+
+Risk: The security verdict is suspicious and requires review before installation.
+
+Mitigation: Review the skill before deployment and confirm the data-sharing behavior, credential handling, and PoYo API usage match the intended environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/coolhackboy/skills/poyo-seedream-4-5)
+- [PoYo Seedream 4.5 Model Page](https://poyo.ai/models/seedream-4-5-api)
+- [PoYo Seedream 4.5 API Documentation](https://docs.poyo.ai/api-manual/image-series/seedream-4-5)
+- [PoYo Seedream 4.5 OpenAPI JSON](https://docs.poyo.ai/api-manual/image-series/seedream-4-5.json)
+- [PoYo Task Status Documentation](https://docs.poyo.ai/api-manual/task-management/status)
+- [Local API Reference](artifact/references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payload examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include selected model id, payload summary, reference-image usage, returned task_id, and polling or webhook next steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

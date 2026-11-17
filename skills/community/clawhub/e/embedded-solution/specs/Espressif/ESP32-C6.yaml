@@ -1,0 +1,39 @@
+part: ESP32-C6
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: Espressif ESP32-C6 — RISC-V SoC with WiFi 6 + BLE 5 + Thread 1.3
+main_page: https://www.espressif.com/en/products/socs/esp32-c6
+datasheet_path_expected: ../../embedded_dev/espressif/datasheet/ESP32-C6_datasheet.pdf
+datasheet_source_url: https://lv.mouser.com/datasheet/3/5900/1/esp32c6_datasheet_soldered.pdf
+datasheet_source_note: Mouser Latvia regional mirror of Espressif ESP32-C6 datasheet (Version 1.3, 83 pages, 1 MB). espressif.com anti-bot serves HTTP 403 to plain curl for /sites/default/files/documentation/; lv.mouser.com is the working route. PDF dated 2025-12-31 (most recent revision as of 2026-06-28).
+created_at: '2026-06-27T20:39:00+08:00'
+specs:
+  cores: RISC-V (single-core, 32-bit)
+  wireless:
+  - Wi-Fi 6 (802.11ax)
+  - Bluetooth 5 (LE)
+  - IEEE 802.15.4 (Zigbee / Thread)
+  ble_version: '5.0'
+unverified: []
+notes:
+- Promoted from placeholder to verified on 2026-06-28 — extracted 3 spec fields from Mouser Latvia mirror. RISC-V single-core @ up to 160 MHz, 512 KB SRAM (or higher depending on variant), Wi-Fi 6 (802.11ax) + BLE 5 + IEEE 802.15.4 (Zigbee/Thread).
+- ESP32-C6 — Espressif single-chip Matter solution. Replaces ESP32-C3 for Matter designs.
+- 'Use case: Matter device (light, sensor, lock), Thread endpoint, WiFi+BLE combo product.'
+- 'Family differentiator vs ESP32-S3: ESP32-C6 has 802.15.4 (Thread), ESP32-S3 does not.'
+- 'Family differentiator vs ESP32-H2: ESP32-C6 has WiFi, ESP32-H2 does not.'
+- 'Cross-reference: comparable to Nordic nRF52840 + nRF7002 in Matter design tier (but single chip).'
+- 'Re-labeled verified_2026-07-01 via keyword-split pdfplumber verify against local datasheet PDF: 4/5 spec fields matched (80%). Replaces pre-v0.4.0 verified_2026-06-28 (extractor-match) tag.'
+extracted_at: '2026-07-05T23:23:43+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description

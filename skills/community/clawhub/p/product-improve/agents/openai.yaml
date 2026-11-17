@@ -1,0 +1,4 @@
+interface:
+  display_name: "亚马逊产品改进建议 · 评论驱动迭代"
+  short_description: "抱怨转迭代清单，按影响人数 × 严重度排序"
+  default_prompt: "使用 $amazon-product-improvement 从评论提炼一个 Amazon ASIN 的产品改进建议。"

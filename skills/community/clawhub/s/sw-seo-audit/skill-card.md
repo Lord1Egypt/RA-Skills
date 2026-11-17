@@ -1,40 +1,49 @@
-## Description: <br>
-Conducts SEO audits by analyzing metadata, headings, content, and competitors, then returns prioritized fixes for ranking improvements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conduct comprehensive SEO audits by analyzing metadata, headings, content, and competitors to provide prioritized, actionable fixes for ranking improvements.
 
-## Publisher: <br>
-[amdf01-debug](https://clawhub.ai/user/amdf01-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amdf01-debug](https://clawhub.ai/user/amdf01-debug)
 
-## Use Case: <br>
-Developers, marketers, and content teams use this skill to audit public web pages for technical SEO, content quality, keyword targeting, and competitor gaps. It helps produce a prioritized action plan for improving a page's search performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may fetch the target page and competitor pages during an audit. <br>
-Mitigation: Confirm the URL and keyword before use, and avoid private or authenticated pages unless the user is comfortable with those pages being fetched for analysis. <br>
-Risk: SEO recommendations can be incomplete or misleading if page content, ranking competitors, or target keywords are misunderstood. <br>
-Mitigation: Review the report against current site goals, analytics, and editorial standards before changing production content. <br>
+## Use Case:
 
+Site owners, marketers, and SEO practitioners use this skill to audit a page or site, compare it with ranking competitors, and produce prioritized fixes for metadata, headings, content, links, schema, and media.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amdf01-debug/sw-seo-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Text] <br>
-**Output Format:** [Markdown SEO audit report with a score, prioritized issues, competitor comparison table, and recommended actions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require fetching the target URL and relevant competitor pages for the target keyword.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks the agent to fetch a target URL and may visit competitor pages, which can disclose browsing activity to those sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on pages and competitor targets you are comfortable having the agent access; avoid private, unpublished, or access-controlled pages unless that browsing activity is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amdf01-debug/skills/sw-seo-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown SEO audit report with issue severity, competitor comparison, and prioritized recommended actions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a target URL and can use a target keyword or competitor context when provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

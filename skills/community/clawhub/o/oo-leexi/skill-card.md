@@ -1,43 +1,51 @@
-## Description: <br>
-Leexi (leexi.ai). Use this skill for ANY Leexi request - searching and reading data. Whenever a task involves Leexi, use this skill instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Leexi (leexi.ai). Use this skill for ANY Leexi request — searching and reading data. Whenever a task involves Leexi, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent search and read calls, meetings, call notes, teams, and users from a Leexi workspace through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Connector responses can include sensitive Leexi workspace information such as calls, meeting notes, team data, and user lists. <br>
-Mitigation: Treat returned data as sensitive and share it only with users who are authorized to access the relevant Leexi workspace. <br>
-Risk: Future connector actions may write, overwrite, or remove Leexi data. <br>
-Mitigation: Approve write or destructive actions only after reviewing the exact payload, target, and expected effect. <br>
+## Use Case:
 
+Users with a connected Leexi workspace can use the skill to find and read calls, meeting notes, teams, and users. It retrieves Leexi data through the available read actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-leexi) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [Leexi homepage](https://www.leexi.ai/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return Leexi workspace data from connector calls, including calls, meeting notes, teams, and users.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and frontmatter) <br>
+Risk: Setup may execute unverified remote code and make broader agent changes without clear user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup before enabling the skill, use a separately reviewed fixed CLI version, and require approval for installation. The remote installer behavior remains unverified.
+
+## Reference(s):
+
+- [Leexi](https://www.leexi.ai/)
+- [Leexi Public API Documentation](https://docs.public-api.leexi.ai/reference/public-api)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text]
+
+**Output Format:** [JSON data and agent-readable text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Leexi call, note, team, and user data; requires an existing oo CLI sign-in and Leexi connection.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Update OpenClaw safely on macOS (brew cask install) with automatic snapshot of the npm package + .app bundle, post-update health check, and automatic rollback to the previous version if the gateway doesn't come back. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Don't Be Scary helps agents update OpenClaw on macOS by launching a detached updater that snapshots the npm package and app bundle, runs the update, checks the gateway, sends Telegram status, and rolls back if health checks fail.
 
-## Publisher: <br>
-[klouddy-cloud](https://clawhub.ai/user/klouddy-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[klouddy-cloud](https://clawhub.ai/user/klouddy-cloud)
 
-## Use Case: <br>
-Developers and operators use this skill to update an OpenClaw macOS installation while preserving a rollback path if the gateway fails to return. It is intended for brew cask installations with Telegram configured for status notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad OpenClaw maintenance authority, including update, restart, deletion, replacement, rollback, and detached background execution. <br>
-Mitigation: Install only from a trusted publisher, require explicit approval before launch, and confirm the OpenClaw binary, app bundle, npm package, LaunchAgent, and snapshot paths before running. <br>
-Risk: The update script reads Telegram bot credentials and chat targets from the OpenClaw configuration to send progress notifications. <br>
-Mitigation: Use only if Telegram credential exposure is acceptable, keep the configuration file permission-restricted, and prefer a bot token scoped to this notification workflow. <br>
-Risk: Rollback and rescue paths can remove or replace OpenClaw application files if the gateway fails to recover. <br>
-Mitigation: Verify the snapshot exists before destructive restore steps, review logs after failure, and require user approval before manual rescue or brew reinstall actions. <br>
+## Use Case:
 
+Developers and operators use this skill when they want an agent to update a macOS OpenClaw installation while preserving a rollback path if the gateway does not recover. It is intended for OpenClaw installations managed through Homebrew cask with Telegram notifications configured.
 
-## Reference(s): <br>
-- [Rescue prompt for Claude Code](references/rescue-prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Launches a detached update script and returns short user-facing status guidance; progress is reported through Telegram.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The updater can modify and delete OpenClaw installation paths, restart LaunchAgents, and run detached in the background.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher is trusted, review configured paths and environment overrides before execution, and keep the rollback snapshot location available.
+
+Risk: The script reads Telegram bot credentials from the OpenClaw configuration and sends update status to Telegram.
+
+Mitigation: Verify the configured bot and chat target before use, prefer a dedicated notification bot, and rotate credentials if the configuration is exposed.
+
+Risk: Unsafe or untrusted environment overrides could redirect snapshot, deletion, restore, or launchctl behavior.
+
+Mitigation: Use the default paths for standard Homebrew cask installations unless the operator has reviewed and approved each override.
+
+## Reference(s):
+
+- [Rescue prompt for Claude Code](references/rescue-prompt.md)
+- [ClawHub skill page](https://clawhub.ai/klouddy-cloud/skills/dont-be-scary)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Launches a detached updater and reports progress through Telegram and local log files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

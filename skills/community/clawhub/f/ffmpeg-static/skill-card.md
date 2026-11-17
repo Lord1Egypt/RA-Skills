@@ -1,46 +1,61 @@
-## Description: <br>
-FFmpeg operations via the ffmpeg-static npm package (bundled binary) with automatic fallback to a native system FFmpeg installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FFmpeg operations via the ffmpeg-static npm package (bundled binary) with automatic fallback to a native system FFmpeg installation.
 
-## Publisher: <br>
-[fantox](https://clawhub.ai/user/fantox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fantox](https://clawhub.ai/user/fantox)
 
-## Use Case: <br>
-Developers and engineers use this skill to resolve ffmpeg-static or system FFmpeg binaries and prepare FFmpeg or ffprobe commands, Node.js integration patterns, and configuration guidance for media transcoding, conversion, thumbnail extraction, streaming, and inspection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The ffmpeg-static npm package downloads a prebuilt FFmpeg binary during npm install. <br>
-Mitigation: Install only when the package and binary source are acceptable for the environment, or use a trusted system FFmpeg binary. <br>
-Risk: FFmpeg commands can overwrite existing files when examples use -y. <br>
-Mitigation: Use fresh output paths or replace -y with -n when existing files must be preserved. <br>
-Risk: Untrusted filenames or URLs passed to FFmpeg can expose arbitrary protocol or file access behavior. <br>
-Mitigation: Validate paths, URLs, and media types before passing them to FFmpeg or ffprobe. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and generate FFmpeg commands, Node.js integration snippets, and configuration guidance for transcoding, stream manipulation, thumbnail extraction, format conversion, and FFmpeg binary resolution.
 
-## Reference(s): <br>
-- [ClawHub ffmpeg-static release page](https://clawhub.ai/fantox/ffmpeg-static) <br>
-- [ffmpeg-static package homepage](https://github.com/eugeneware/ffmpeg-static) <br>
-- [npm package: ffmpeg-static](https://www.npmjs.com/package/ffmpeg-static) <br>
-- [FFmpeg Static API Reference](references/api_reference.md) <br>
-- [FFmpeg CLI documentation](https://ffmpeg.org/ffmpeg.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline bash and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes copy-paste FFmpeg command templates, Node.js spawn patterns, binary resolution guidance, and ffprobe inspection examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: The skill depends on an npm package that installs an executable FFmpeg binary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin exact package versions, use a lockfile or checksum verification, and install only from a trusted package source.
+
+Risk: Several command templates overwrite outputs by default with `-y`.
+
+Mitigation: Use unique output paths or explicit overwrite checks when preserving existing files matters.
+
+Risk: FFmpeg can read URLs and protocol inputs, so untrusted filenames or URLs can expand the scope of what a command accesses.
+
+Mitigation: Validate media paths and URLs before execution and run jobs in a low-privilege workspace.
+
+## Reference(s):
+
+- [FFmpeg Static API Reference](artifact/references/api_reference.md)
+- [ffmpeg-static GitHub repository](https://github.com/eugeneware/ffmpeg-static)
+- [ffmpeg-static npm package](https://www.npmjs.com/package/ffmpeg-static)
+- [FFmpeg documentation](https://ffmpeg.org/ffmpeg.html)
+- [ClawHub skill page](https://clawhub.ai/fantox/skills/ffmpeg-static)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and npm; outputs should account for FFMPEG_PATH overrides, system FFmpeg fallback, and bundled ffmpeg-static behavior.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

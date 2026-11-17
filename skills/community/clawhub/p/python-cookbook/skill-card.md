@@ -1,40 +1,58 @@
-## Description: <br>
-Python code patterns and recipes for everyday tasks. Use when you need file I/O snippets, list comprehensions, decorators, async functions, regex patterns, datetime handling, or need to lint and format Python files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Python code patterns and recipes for everyday tasks. Use when you need file I/O snippets, list comprehensions, decorators, async functions, regex patterns, datetime handling, or need to lint and format Python files.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve common Python recipes, run small snippets, check syntax, format Python files, and get guidance for common Python errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The run command can execute inline Python or Python files. <br>
-Mitigation: Run only trusted snippets or execute them inside a sandboxed environment. <br>
-Risk: The format command can modify Python files. <br>
-Mitigation: Use it only on files you are comfortable changing and review diffs afterward. <br>
+## Use Case:
 
+Developers and engineers use this skill to retrieve common Python recipes, run trusted Python snippets, check syntax, format Python files, and get guidance for common Python errors.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/python-cookbook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text with Python and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can execute Python snippets and format target files when the run or format commands are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence) <br>
+Risk: The run command can execute arbitrary local Python code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use run only with trusted snippets or files, preferably in an isolated workspace.
+
+Risk: The format command can rewrite Python files.
+
+Mitigation: Use version control or backups before formatting files.
+
+Risk: The security review flags this release as suspicious because clear safety controls are not described.
+
+Mitigation: Review the skill behavior and security guidance before installation or deployment.
+
+## Reference(s):
+
+- [Python Cookbook skill page](https://clawhub.ai/loutai0307-prog/skills/python-cookbook)
+- [Publisher profile](https://clawhub.ai/user/loutai0307-prog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with Python code snippets and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute trusted Python code and may modify Python files when formatting is requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Delegates Microsoft Teams inbox management to an AI agent for message summaries, priority filtering, drafts, and replies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegates Microsoft Teams inbox management to an AI agent for message summaries, priority filtering, context-aware reply drafting, and Teams responses.
 
-## Publisher: <br>
-[takeovernat](https://clawhub.ai/user/takeovernat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[takeovernat](https://clawhub.ai/user/takeovernat)
 
-## Use Case: <br>
-Employees who use Microsoft Teams can have an agent review chats, summarize unread conversations, draft context-aware replies, and send approved responses while escalating urgent, sensitive, or VIP messages. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and send Microsoft Teams messages from the user's Microsoft account. <br>
-Mitigation: Use least-privilege Microsoft Graph permissions, require human approval for sensitive or VIP messages, and keep auto-reply windows time-limited. <br>
-Risk: Broad Microsoft Graph permissions or tenant-wide admin consent could expose workplace messages beyond the intended workflow. <br>
-Mitigation: Avoid tenant-wide admin consent unless required and limit consent to the smallest scopes needed for the user's task. <br>
-Risk: Reusable authentication tokens are cached locally. <br>
-Mitigation: Protect the local token cache and delete or revoke it when the delegation period ends. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/takeovernat/teams-delegate) <br>
-- [Microsoft Graph API reference](references/graph-api.md) <br>
+## Use Case:
 
+Employees and their agents use this skill to review Teams chats, summarize pending conversations, classify messages by priority, draft replies, and send Teams messages when explicitly approved or configured for auto-reply.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and plain-text Teams summaries or replies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Microsoft Graph permissions and stores reusable Microsoft authentication tokens locally.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can monitor and send workplace Teams messages through broad Microsoft Graph permissions.
+
+Mitigation: Install only when this access is acceptable, reduce Graph permissions to the minimum needed, and require explicit approval before every sent reply.
+
+Risk: The local token cache can retain access to Teams data.
+
+Mitigation: Protect the local token cache and revoke or rotate access regularly.
+
+Risk: Unattended auto-replies could send unexpected or inappropriate messages.
+
+Mitigation: Prefer draft-only operation and avoid cron or heartbeat auto-replies unless scope and stop conditions are tightly controlled.
+
+## Reference(s):
+
+- [Graph API Reference](references/graph-api.md)
+- [Microsoft Graph API](https://graph.microsoft.com/v1.0)
+- [Azure Portal](https://portal.azure.com)
+- [ClawHub Skill Page](https://clawhub.ai/takeovernat/skills/teams-delegate)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, API calls, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can read Teams messages, summarize inbox state, and send replies through Microsoft Graph after local authentication.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

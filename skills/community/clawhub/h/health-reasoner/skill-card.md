@@ -1,45 +1,59 @@
-## Description: <br>
-Health Reasoner is a local, rule-based wellness habit scorer that uses sleep, diet, exercise, stress, smoking, and alcohol inputs to return a lifestyle score and improvement suggestions; it does not provide medical diagnosis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Health Reasoner scores daily lifestyle habits such as sleep, diet, exercise, stress, smoking, and alcohol use and returns rule-based wellness suggestions; it is not for medical diagnosis.
 
-## Publisher: <br>
-[chen-feng123](https://clawhub.ai/user/chen-feng123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chen-feng123](https://clawhub.ai/user/chen-feng123)
 
-## Use Case: <br>
-External users and developers can run this local Python tool to assess everyday lifestyle habits and receive structured, rule-based suggestions for non-medical wellness improvement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake lifestyle scoring and wellness suggestions for medical diagnosis or treatment advice. <br>
-Mitigation: Use the skill only for local wellness habit reflection and consult qualified medical professionals for health concerns. <br>
-Risk: Input files and optional history files may contain sensitive personal health or lifestyle information. <br>
-Mitigation: Keep inputs and history files private, avoid entering detailed medical history, and enable history only when local retention is intended. <br>
-Risk: The artifact includes documentation mismatches around API mode and broader health fields. <br>
-Mitigation: Prefer CLI, JSON input, and Python import workflows documented by the implemented code, and do not install Flask unless intentionally experimenting with the unfinished API path. <br>
+## Use Case:
 
+Developers and end users can run the skill locally to assess lifestyle habit inputs and generate non-diagnostic wellness scores, risk levels, and improvement suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chen-feng123/health-reasoner) <br>
-- [API specification](API_SPEC.md) <br>
-- [Use guide](USE_GUIDE.md) <br>
-- [Design notes](references/DESIGN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Structured JSON objects or human-readable CLI text containing scores, risk level, risk factors, and suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are generated locally by deterministic Python rules and may include optional local history summaries when a history file is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The installer offers an unnecessary unpinned Flask install for an API mode the code does not implement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use CLI, JSON input, or Python import modes; do not accept the Flask install prompt unless the publisher provides a working reviewed API mode with pinned dependencies.
+
+Risk: History files can contain health-related assessment summaries when a history path is configured.
+
+Mitigation: Leave history disabled by default or store history files only in private, unsynced locations and remove them when no longer needed.
+
+Risk: The skill outputs lifestyle wellness scoring and suggestions, not medical diagnosis or treatment advice.
+
+Mitigation: Treat the output as informational habit guidance and consult a qualified medical professional for health concerns.
+
+## Reference(s):
+
+- [API_SPEC.md](API_SPEC.md)
+- [USE_GUIDE.md](USE_GUIDE.md)
+- [DESIGN.md](references/DESIGN.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Structured JSON or plain text wellness assessment with score, risk level, suggestions, risk factors, and scoring details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local rule-based processing; optional history files store recent assessment summaries only when explicitly configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Transform existing images into new ones using AI via Media.io OpenAPI, including style transfers, artistic filters, and creative transformations with models such as Seedream and Nano Banana. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform existing images into new ones using AI via Media.io OpenAPI.
 
-## Publisher: <br>
-[wondershare-boop](https://clawhub.ai/user/wondershare-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wondershare-boop](https://clawhub.ai/user/wondershare-boop)
 
-## Use Case: <br>
-Developers and agents use this skill to call Media.io image-to-image generation APIs, transform source image URLs with text prompts, and poll task results for generated images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image URLs, and related task data are sent to Media.io. <br>
-Mitigation: Avoid sensitive or internal image URLs and review Media.io terms before use. <br>
-Risk: The skill requires a Media.io API key for authenticated requests. <br>
-Mitigation: Use a revocable API key, store it in the API_KEY environment variable, and rotate it if exposed. <br>
-Risk: The helper script depends on the requests Python package. <br>
-Mitigation: Install dependencies from a trusted package source and keep the runtime environment controlled. <br>
+## Use Case:
 
+Developers and agent users use this skill to call Media.io image-to-image APIs for style transfer, image remixing, artistic enhancement, and task-result lookup from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wondershare-boop/mediaio-image-to-image-api) <br>
-- [Media.io API documentation](https://platform.media.io/docs/) <br>
-- [Media.io developer portal](https://developer.media.io/) <br>
-- [Media.io pricing](https://developer.media.io/pricing.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with Python and shell examples; Media.io API calls return JSON task and result payloads.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Media.io API key and publicly reachable input image URLs; generation APIs return task IDs that must be polled for results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata) <br>
+Risk: The skill sends Media.io API keys, prompts, image URLs, and generated task identifiers to Media.io.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with images and prompts that are permitted by the user's Media.io account policies, and avoid private or regulated images unless that use is approved.
+
+Risk: The security guidance notes a fixable input-validation weakness around task-result identifiers.
+
+Mitigation: Validate or encode task IDs before passing them to the task-result helper, and keep use inside an isolated, pinned Python environment.
+
+## Reference(s):
+
+- [Media.io API Documentation](https://platform.media.io/docs/)
+- [Media.io Developer Portal](https://developer.media.io/)
+- [Media.io Pricing](https://developer.media.io/pricing.html)
+- [ClawHub Skill Page](https://clawhub.ai/wondershare-boop/skills/mediaio-image-to-image-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; API calls return JSON response payloads.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Media.io API key in API_KEY and sends prompts, image URLs, and task identifiers to Media.io.]
+
+## Skill Version(s):
+
+1.0.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,128 @@
+{
+  "schema": "hyperliquid-wallet-capture/v1",
+  "source": "fixture",
+  "scope": {
+    "address": "0x1111111111111111111111111111111111111111",
+    "network": "mainnet",
+    "startTime": 1790812800000,
+    "endTime": 1790899200000
+  },
+  "startedAt": "2026-10-03T00:00:00.000Z",
+  "finishedAt": "2026-10-03T00:00:00.008Z",
+  "evidence": [
+    {
+      "sequence": 1,
+      "endpoint": "https://api.hyperliquid.xyz/info",
+      "type": "userRole",
+      "startedAt": "2026-10-03T00:00:00.001Z",
+      "finishedAt": "2026-10-03T00:00:00.001Z",
+      "requestText": "{\"type\":\"userRole\",\"user\":\"0x1111111111111111111111111111111111111111\"}",
+      "requestSha256": "dc731c9e8c6dc7bcce54bca9e1f8f0c8d9a04980b896777640f13ff8308bea48",
+      "responseText": "{\"role\":\"user\"}",
+      "responseSha256": "6b3061507ef8cc2ca95320f790a9f9ccb3c850ae081df4b6f6e56e40d57203e4",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "sequence": 2,
+      "endpoint": "https://api.hyperliquid.xyz/info",
+      "type": "userAbstraction",
+      "startedAt": "2026-10-03T00:00:00.002Z",
+      "finishedAt": "2026-10-03T00:00:00.002Z",
+      "requestText": "{\"type\":\"userAbstraction\",\"user\":\"0x1111111111111111111111111111111111111111\"}",
+      "requestSha256": "da4c39c66c1796d999b0b7eeec9603c65b08d85632e527ef5d9567135afb64fb",
+      "responseText": "\"default\"",
+      "responseSha256": "1080a60800d9e5bddc69f51489c636a776bacaadb5368f46db4aa0947c67e3ba",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "sequence": 3,
+      "endpoint": "https://api.hyperliquid.xyz/info",
+      "type": "clearinghouseState",
+      "startedAt": "2026-10-03T00:00:00.003Z",
+      "finishedAt": "2026-10-03T00:00:00.003Z",
+      "requestText": "{\"type\":\"clearinghouseState\",\"user\":\"0x1111111111111111111111111111111111111111\",\"dex\":\"\"}",
+      "requestSha256": "a91d50e584d3668cf0d999cc8c1bc06d6e49be777522bd568c73f1dc83269d7b",
+      "responseText": "{\"assetPositions\":[{\"type\":\"oneWay\",\"position\":{\"coin\":\"ETH\",\"szi\":\"5\",\"positionValue\":\"550\",\"marginUsed\":\"55\",\"unrealizedPnl\":\"50\",\"entryPx\":\"100\",\"liquidationPx\":null}},{\"type\":\"oneWay\",\"position\":{\"coin\":\"BTC\",\"szi\":\"-2\",\"positionValue\":\"400\",\"marginUsed\":\"40\",\"unrealizedPnl\":\"-20\",\"entryPx\":\"100\",\"liquidationPx\":null}}],\"time\":1790985600000,\"marginSummary\":{\"accountValue\":\"1000\",\"totalMarginUsed\":\"95\",\"totalNtlPos\":\"950\",\"totalRawUsd\":\"50\"}}",
+      "responseSha256": "b4dc32a67a9b08245cbd84ae8e4d4fc8190aa50f2a76ba643109da52efafcc96",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "sequence": 4,
+      "endpoint": "https://api.hyperliquid.xyz/info",
+      "type": "spotClearinghouseState",
+      "startedAt": "2026-10-03T00:00:00.004Z",
+      "finishedAt": "2026-10-03T00:00:00.004Z",
+      "requestText": "{\"type\":\"spotClearinghouseState\",\"user\":\"0x1111111111111111111111111111111111111111\"}",
+      "requestSha256": "29fe6d8f2c387dfeec5e1f6093430270d1330d641b2fec6f58ae0a4f67a1d828",
+      "responseText": "{\"balances\":[{\"coin\":\"USDC\",\"token\":0,\"total\":\"100\",\"hold\":\"0\"}]}",
+      "responseSha256": "d86fca51fb90d36dd231d1aedfe1e928ba4659ce33b4fb3683e3222fbddab95d",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "sequence": 5,
+      "endpoint": "https://api.hyperliquid.xyz/info",
+      "type": "frontendOpenOrders",
+      "startedAt": "2026-10-03T00:00:00.005Z",
+      "finishedAt": "2026-10-03T00:00:00.005Z",
+      "requestText": "{\"type\":\"frontendOpenOrders\",\"user\":\"0x1111111111111111111111111111111111111111\",\"dex\":\"\"}",
+      "requestSha256": "57154085aa074c0895826d2ec08faf81029c5630cf8c56190e4b107032e209f2",
+      "responseText": "[{\"coin\":\"ETH\",\"oid\":200,\"side\":\"A\",\"sz\":\"5\",\"limitPx\":\"90\",\"timestamp\":1790985600000,\"reduceOnly\":true,\"isTrigger\":true,\"orderType\":\"Stop Market\"}]",
+      "responseSha256": "99bf34e7dfa4a59769bdea71fae4d77924df0adf8c2db644a08690c15efdb8ef",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "sequence": 6,
+      "endpoint": "https://api.hyperliquid.xyz/info",
+      "type": "userFillsByTime",
+      "startedAt": "2026-10-03T00:00:00.006Z",
+      "finishedAt": "2026-10-03T00:00:00.006Z",
+      "requestText": "{\"type\":\"userFillsByTime\",\"user\":\"0x1111111111111111111111111111111111111111\",\"startTime\":1790812800000,\"endTime\":1790899200000,\"aggregateByTime\":false}",
+      "requestSha256": "88ba12039d10d56d18e52b0f613fada39764eadfa5260784711f77d1b5c9b7f1",
+      "responseText": "[{\"coin\":\"ETH\",\"tid\":1,\"oid\":101,\"px\":\"100\",\"sz\":\"10\",\"closedPnl\":\"0\",\"fee\":\"1\",\"feeToken\":\"USDC\",\"crossed\":true,\"side\":\"B\",\"startPosition\":\"0\",\"dir\":\"Open Long\",\"time\":1790812801000,\"hash\":\"0x0000000000000000000000000000000000000000000000000000000000000001\",\"builderFee\":\"0.2\"},{\"coin\":\"ETH\",\"tid\":2,\"oid\":102,\"px\":\"110\",\"sz\":\"5\",\"closedPnl\":\"50\",\"fee\":\"-0.25\",\"feeToken\":\"USDC\",\"crossed\":false,\"side\":\"A\",\"startPosition\":\"10\",\"dir\":\"Close Long\",\"time\":1790812802000,\"hash\":\"0x0000000000000000000000000000000000000000000000000000000000000002\"},{\"coin\":\"BTC\",\"tid\":3,\"oid\":103,\"px\":\"200\",\"sz\":\"1\",\"closedPnl\":\"-10\",\"fee\":\"2\",\"feeToken\":\"USDC\",\"crossed\":true,\"side\":\"B\",\"startPosition\":\"-3\",\"dir\":\"Close Short\",\"time\":1790812803000,\"hash\":\"0x0000000000000000000000000000000000000000000000000000000000000003\"},{\"coin\":\"ETH\",\"tid\":2,\"oid\":102,\"px\":\"110\",\"sz\":\"5\",\"closedPnl\":\"50\",\"fee\":\"-0.25\",\"feeToken\":\"USDC\",\"crossed\":false,\"side\":\"A\",\"startPosition\":\"10\",\"dir\":\"Close Long\",\"time\":1790812802000,\"hash\":\"0x0000000000000000000000000000000000000000000000000000000000000002\"},{\"coin\":\"@107\",\"tid\":4,\"oid\":104,\"px\":\"1\",\"sz\":\"2\",\"closedPnl\":\"99\",\"fee\":\"0.1\",\"feeToken\":\"HYPE\",\"crossed\":true,\"side\":\"A\",\"startPosition\":\"10\",\"dir\":\"Close Long\",\"time\":1790812804000,\"hash\":\"0x0000000000000000000000000000000000000000000000000000000000000004\"},{\"coin\":\"xyz:XYZ100\",\"tid\":5,\"oid\":105,\"px\":\"10\",\"sz\":\"1\",\"closedPnl\":\"999\",\"fee\":\"1\",\"feeToken\":\"USDC\",\"crossed\":true,\"side\":\"A\",\"startPosition\":\"3\",\"dir\":\"Close Long\",\"time\":1790812805000,\"hash\":\"0x0000000000000000000000000000000000000000000000000000000000000005\"}]",
+      "responseSha256": "fb84bf81806e7421c6bd21c49587d1c64e8c410a2b80e5e82fa3e77982633b41",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "sequence": 7,
+      "endpoint": "https://api.hyperliquid.xyz/info",
+      "type": "userFunding",
+      "startedAt": "2026-10-03T00:00:00.007Z",
+      "finishedAt": "2026-10-03T00:00:00.007Z",
+      "requestText": "{\"type\":\"userFunding\",\"user\":\"0x1111111111111111111111111111111111111111\",\"startTime\":1790812800000,\"endTime\":1790899200000}",
+      "requestSha256": "b98885ce999600a7459c070256a2702ae263acb25323faf65224ae925ddc0642",
+      "responseText": "[{\"time\":1790812806000,\"hash\":\"0x000000000000000000000000000000000000000000000000000000000000000b\",\"delta\":{\"type\":\"funding\",\"coin\":\"ETH\",\"usdc\":\"-3\",\"szi\":\"5\",\"fundingRate\":\"0.0001\"}},{\"time\":1790812807000,\"hash\":\"0x000000000000000000000000000000000000000000000000000000000000000c\",\"delta\":{\"type\":\"funding\",\"coin\":\"BTC\",\"usdc\":\"0.5\",\"szi\":\"5\",\"fundingRate\":\"0.0001\"}},{\"time\":1790812808000,\"hash\":\"0x000000000000000000000000000000000000000000000000000000000000000d\",\"delta\":{\"type\":\"funding\",\"coin\":\"xyz:XYZ100\",\"usdc\":\"10\",\"szi\":\"5\",\"fundingRate\":\"0.0001\"}}]",
+      "responseSha256": "b414f873b404b35bfe190c76ac2e28c4fd9a14167dac31afb5fd365a53570f74",
+      "httpStatus": 200,
+      "error": null
+    }
+  ],
+  "history": {
+    "userFillsByTime": {
+      "pages": 1,
+      "termination": "api-exhausted",
+      "lastTime": 1790812805000,
+      "apiExhausted": true,
+      "windowCompleteness": "unverified",
+      "retentionLimit": 10000
+    },
+    "userFunding": {
+      "pages": 1,
+      "termination": "api-exhausted",
+      "lastTime": 1790812808000,
+      "apiExhausted": true,
+      "windowCompleteness": "unverified"
+    }
+  },
+  "bounds": {
+    "maxPages": 10,
+    "timeoutMs": 15000,
+    "responseByteLimit": 8388608,
+    "totalResponseByteLimit": 67108864
+  }
+}

@@ -1,15 +1,15 @@
 <div align="center">
 
-# 料理.skill
+# BrainHarness · 料理
 
 > 何を作るか迷ったら、まず冷蔵庫と気分を正直に言えばいい。
 
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blueviolet)](https://claude.ai/code)
 [![Agent Skill](https://img.shields.io/badge/Skill-Cooking-green)](#)
-[![Status](https://img.shields.io/badge/status-v0.1.0-orange)](#)
+[![Status](https://img.shields.io/badge/status-v0.2.0-orange)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-`cooking.skill` は、必要なことだけを少し聞いて、実際に作れるレシピを返す料理 Skill です。
+`brainharness-cooking` は、必要なことだけを少し聞いて、実際に作れるレシピを返す料理 Skill です。
 
 </div>
 
@@ -54,26 +54,26 @@
 共通インストール:
 
 ```bash
-npx skills add zning1994/cooking-skill
+npx skills add zning1994/brainharness-cooking
 ```
 
 OpenClaw / ClawHub:
 
 ```bash
-openclaw skills install cooking-skill
+npx clawhub@0.23.3 install brainharness-cooking
 ```
 
 現在のプロジェクトに入れる場合：
 
 ```bash
 mkdir -p .claude/skills
-git clone https://github.com/zning1994/cooking-skill .claude/skills/cooking-skill
+git clone https://github.com/zning1994/brainharness-cooking .claude/skills/brainharness-cooking
 ```
 
 グローバルに入れる場合：
 
 ```bash
-git clone https://github.com/zning1994/cooking-skill ~/.claude/skills/cooking-skill
+git clone https://github.com/zning1994/brainharness-cooking ~/.claude/skills/brainharness-cooking
 ```
 
 ## 例

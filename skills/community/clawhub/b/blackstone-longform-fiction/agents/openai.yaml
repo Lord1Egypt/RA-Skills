@@ -1,0 +1,4 @@
+interface:
+  display_name: "黑石写作助手·中长篇小说版"
+  short_description: "从灵感到长篇正文，支持大纲、续写、改稿和跨章连续性检查。"
+  default_prompt: "使用 $blackstone-longform-fiction 帮我推进这部小说；先根据我的灵感、大纲、人物或正文给出一个可用结果，必要时最多问三个问题，并推荐一个紧邻的下一步。"

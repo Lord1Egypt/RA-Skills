@@ -1,46 +1,66 @@
-## Description: <br>
-Query DSCVR crypto intelligence APIs for market news, event tracking, smart money analysis, prediction market data, AI-powered event discovery, market orderbooks, and social graph data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries DSCVR crypto intelligence APIs for market news, event tracking, smart money analysis, prediction market data, AI-powered event discovery, market orderbooks, and social graph data.
 
-## Publisher: <br>
-[dscvr-release](https://clawhub.ai/user/dscvr-release) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dscvr-release](https://clawhub.ai/user/dscvr-release)
 
-## Use Case: <br>
-External developers and agent users use this skill to query DSCVR for crypto news, prediction market intelligence, smart money trader data, orderbook depth, and DSCVR social graph records via authenticated API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: DSCVR credentials are required and the secret key can authorize API access. <br>
-Mitigation: Keep DSCVR_SECRET_KEY private, prefer environment variables or a secret manager, and avoid pasting credentials into prompts or shared logs. <br>
-Risk: Changing DSCVR_API_BASE_URL could send authenticated requests to an untrusted endpoint. <br>
-Mitigation: Use the default https://dscvr.one endpoint or another explicitly trusted DSCVR API base URL. <br>
-Risk: The social GraphQL command accepts raw user-provided queries. <br>
-Mitigation: Review GraphQL queries before execution and limit them to the intended DSCVR user, content, or portal data. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve and summarize DSCVR market intelligence, including crypto news events, smart money trader activity, prediction market data, AI-discovered events, orderbook depth, and DSCVR social graph information.
 
-## Reference(s): <br>
-- [DSCVR Intelligence API Reference](references/api-reference.md) <br>
-- [DSCVR API Authentication Reference](references/auth-reference.md) <br>
-- [DSCVR API credentials](https://dscvr.one/subscription) <br>
-- [uv installation guide](https://docs.astral.sh/uv/getting-started/installation/) <br>
-- [ClawHub release page](https://clawhub.ai/dscvr-release/dscvr-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown summaries with inline shell commands and JSON-derived API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DSCVR_API_KEY and DSCVR_SECRET_KEY; queries the DSCVR API over the network.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Endpoint configuration could direct authenticated requests to a service other than the official DSCVR API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep DSCVR_API_BASE_URL unset or set it only to the official HTTPS DSCVR service.
+
+Risk: GraphQL queries, wallet lookups, usernames, and market research requests are sent to DSCVR's external API.
+
+Mitigation: Avoid submitting sensitive internal research unless disclosure to DSCVR is acceptable.
+
+Risk: The skill requires DSCVR API credentials for authenticated network requests.
+
+Mitigation: Store DSCVR_API_KEY and DSCVR_SECRET_KEY as secrets and avoid exposing them in prompts, logs, or shared transcripts.
+
+Risk: Authentication failures, clock skew, or high request volume can trigger temporary bans or rate limiting.
+
+Mitigation: Keep system time synchronized, verify credentials before repeated retries, and throttle requests when HTTP 429 or 403 responses occur.
+
+## Reference(s):
+
+- [DSCVR Intelligence API Reference](references/api-reference.md)
+- [DSCVR API Authentication Reference](references/auth-reference.md)
+- [DSCVR API Service](https://dscvr.one)
+- [DSCVR Subscription](https://dscvr.one/subscription)
+- [uv Installation Guide](https://docs.astral.sh/uv/getting-started/installation/)
+- [PEP 723 Inline Script Metadata](https://packaging.python.org/en/latest/specifications/inline-script-metadata/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown summaries with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DSCVR API credentials and network access; results depend on DSCVR API availability, rate limits, and the requested market or social data.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

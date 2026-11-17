@@ -1,0 +1,24 @@
+From: "PayPal Support" <service@verify-account.io>
+Reply-To: paypal.resolution.center@mail-secure-net.tk
+Subject: URGENT: Your account will be permanently suspended within 24 hours
+
+Dear Customer,
+
+We detected unusual activity on your account. For your protection, your
+account will be permanently suspended within 24 hours unless you confirm
+your identity immediately.
+
+Please verify your account now by clicking the link below:
+
+http://paypal.com.verify-account.io/login?session=8842xx
+
+If the button does not work, try: https://bit.ly/3xKp2mQ
+
+Failure to confirm will result in termination of services.
+
+Thank you for your cooperation.
+PayPal Security Team
+
+NOTE: This is a synthetic example crafted for testing the phishing-spotter
+skill. It contains real attack patterns but points at no real attacker
+infrastructure.

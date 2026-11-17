@@ -1,0 +1,29 @@
+{
+  "observedAt": "2026-01-01T12:00:00Z",
+  "pages": [
+    {
+      "issues": [
+        {
+          "id": "10001",
+          "key": "EX-1",
+          "fields": {
+            "summary": "Launch readiness",
+            "issuetype": {
+              "id": "10000",
+              "name": "Epic"
+            },
+            "status": {
+              "id": "10002",
+              "name": "Verification",
+              "statusCategory": {
+                "key": "indeterminate"
+              }
+            },
+            "assignee": null
+          }
+        }
+      ],
+      "isLast": true
+    }
+  ]
+}

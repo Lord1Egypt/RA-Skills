@@ -1,42 +1,58 @@
-## Description: <br>
-AI-powered customer service guidance for banking and securities workflows, including FAQ answering, account inquiry, transaction guidance, complaint handling, and 24/7 support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides draft FAQs, customer service scripts, intent routing, complaint workflows, and compliance guidance for banking and securities teams.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Developers, customer service teams, and financial institution support operators use this skill to draft banking and securities customer-service responses, classify intents, and follow complaint-handling workflows. It is aimed at China financial institution call centers and digital customer-service teams. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger terms may cause the skill to activate for banking-adjacent requests that are not explicit customer-support workflows. <br>
-Mitigation: Invoke the skill only for explicit banking or securities customer-support questions. <br>
-Risk: Banking support workflows can involve account numbers, credentials, or sensitive personal information. <br>
-Mitigation: Avoid sharing sensitive personal or account information unless the workflow clearly explains why it is needed and how it is handled. <br>
-Risk: Customer-service guidance may be inaccurate or out of date for regulated financial services. <br>
-Mitigation: Review generated responses against applicable regulations, institutional policies, and current official guidance before use. <br>
+## Use Case:
 
+Financial institution customer service staff, supervisors, and chatbot configuration teams in China can use the skill to draft FAQs, complaint handling scripts, escalation rules, and compliance review checklists. Its outputs are reference drafts for qualified staff to verify against current official sources and institution procedures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/security-intelligent-cs) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with embedded Python examples and structured response guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include customer-service scripts, FAQ responses, intent classifications, and compliance reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Financial procedures and regulatory summaries in generated drafts may be outdated or differ from an institution's current rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have qualified staff verify time-sensitive claims against current official sources and the institution's approved procedures before use.
+
+Risk: Customer-service examples may involve sensitive account or identity information.
+
+Mitigation: Use placeholders in drafts, minimize and redact personal data, and handle any real customer information only through authorized systems and procedures.
+
+Risk: Drafts for fraud, account access, or other urgent cases could be mistaken for completed operational actions.
+
+Mitigation: Use official institution channels and authorized personnel for urgent intervention; treat the skill's examples as scripts and workflow references only.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/gechengling/skills/security-intelligent-cs)
+- [Publisher profile](https://clawhub.ai/user/gechengling)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with tables, scripted dialogue examples, and reference code templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft guidance and templates for human review; no account lookup or business-system actions.]
+
+## Skill Version(s):
+
+3.0.6 (source: artifact frontmatter, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

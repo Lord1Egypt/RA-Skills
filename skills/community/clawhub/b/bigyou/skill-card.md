@@ -1,41 +1,59 @@
-## Description: <br>
-Bigyou is a Chinese-language decision-support skill that helps users compare options by defining decision criteria, applying hard filters, scoring weighted preferences, and producing a structured recommendation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bigyou is a Chinese-language option-comparison and decision support skill that helps users define criteria, filter must-haves, score alternatives, and produce a structured recommendation.
 
-## Publisher: <br>
-[jack-xun](https://clawhub.ai/user/jack-xun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jack-xun](https://clawhub.ai/user/jack-xun)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill when they need structured help choosing between offers, plans, tools, paths, strategies, housing options, or other comparable alternatives. It is intended to turn subjective uncertainty into a criteria-driven comparison with bottom-line filters, weighted scoring, risks, and a recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad choice phrases such as "which is better" or "how should I choose," which can make it appear in a wide range of decision contexts. <br>
-Mitigation: Confirm the user's actual decision context and available options before applying the scoring framework. <br>
-Risk: The scoring framework is heuristic and may be unsuitable as the sole basis for high-stakes career, finance, investment, housing, medical, or similar decisions. <br>
-Mitigation: Ask users to verify factual inputs, review the assumptions behind each score, and seek qualified advice for high-stakes decisions. <br>
+## Use Case:
 
+External users use Bigyou to compare multiple real options, such as job offers, tools, housing choices, study paths, or strategies, by separating must-have criteria from weighted scoring factors. The skill produces a structured decision report with scores, risks, and a final recommendation.
 
-## Reference(s): <br>
-- [Profile Template](references/profile-template.md) <br>
-- [Score Matrix](references/score-matrix.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown decision report with tables and optional shell command examples for local script execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces heuristic scoring and recommendation rationale; users should verify facts before acting on the result.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: Broad comparison phrases may activate the skill when the user did not intend a full decision framework.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's decision goal and requested level of structure before applying the full comparison workflow.
+
+Risk: The bundled analyzer is reported by security evidence to crash for some scene types.
+
+Mitigation: Treat the analyzer as an optional helper and review or fix it before relying on automated output across all examples.
+
+Risk: Decision scores can be misleading when option facts, weights, or must-have criteria are incomplete or subjective.
+
+Mitigation: Ask the user to verify facts and criteria, explain the reason for each score, and present recommendations as decision support rather than authoritative advice.
+
+## Reference(s):
+
+- [Target Profile Template](references/profile-template.md)
+- [Score Matrix Example](references/score-matrix.md)
+- [ClawHub Bigyou Release Page](https://clawhub.ai/jack-xun/skills/bigyou)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown decision analysis report with scoring tables, risk notes, a checklist, and a recommendation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for human review and rely on user-provided facts for option scoring.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

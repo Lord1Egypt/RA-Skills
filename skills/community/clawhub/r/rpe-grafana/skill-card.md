@@ -1,39 +1,53 @@
-## Description: <br>
-Read current values from Grafana dashboards by dashboard and panel name without writing PromQL, SQL, or datasource queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read current values from Grafana dashboards by dashboard and panel name without requiring PromQL, SQL, or datasource knowledge.
 
-## Publisher: <br>
-[DarkStarDS9](https://clawhub.ai/user/DarkStarDS9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[darkstards9](https://clawhub.ai/user/darkstards9)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to list Grafana dashboards and panels, then retrieve current or recent metric values from existing panels using read-only Grafana access. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Grafana dashboard metrics returned by the skill may contain sensitive operational data. <br>
-Mitigation: Install only against trusted Grafana instances and restrict the configured account to dashboards the agent is allowed to read. <br>
-Risk: Overprivileged Grafana credentials could expose more dashboard and panel data than intended. <br>
-Mitigation: Use a least-privileged Viewer or read-only service account, not admin credentials. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DarkStarDS9/rpe-grafana) <br>
+## Use Case:
 
+Developers, operators, and agents use this skill to list Grafana dashboards and panels, then read recent or current metric values already exposed by existing dashboard panels.
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Text tool responses containing compact JSON arrays, with Markdown setup guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Grafana URL and credentials; query calls use dashboard UID, panel ID, and optional time range.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Grafana credentials can be exposed if the configured Grafana URL uses plain HTTP on an unprotected network.
+
+Mitigation: Configure GRAFANA_URL with HTTPS unless the Grafana instance is strictly local or otherwise protected.
+
+Risk: The skill can read dashboards and datasource-backed panel data available to the configured Grafana account.
+
+Mitigation: Use a dedicated least-privilege Viewer or service account and limit it to dashboards and datasources the agent is authorized to query.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/darkstards9/skills/rpe-grafana)
+- [ClawHub publisher profile](https://clawhub.ai/user/darkstards9)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON strings returned as text content, with setup guidance in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool outputs summarize dashboard UIDs, panel IDs, panel titles, last values, units, and Grafana query result names.]
+
+## Skill Version(s):
+
+1.0.2 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

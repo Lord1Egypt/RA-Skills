@@ -24,7 +24,8 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 
-import { createPage } from './notionctl_bridge.js';
+import { createPage, httpJson } from './notionctl_bridge.js';
+import { nowIso, loadIds, assertTarget } from './soul_io.js';
 
 function die(msg) {
   process.stderr.write(String(msg) + '\n');
@@ -43,38 +44,34 @@ function multiProp(arr) {
 }
 function dateProp(start) { return { date: start ? { start: String(start) } : null }; }
 
-function nowIso() {
-  const d = new Date();
-  const tz = -d.getTimezoneOffset();
-  const sign = tz >= 0 ? '+' : '-';
-  const pad = n => String(Math.floor(Math.abs(n))).padStart(2,'0');
-  const hh = pad(tz/60);
-  const mm = pad(tz%60);
-  const iso = d.toISOString().replace('Z','');
-  return `${iso}${sign}${hh}:${mm}`;
-}
-
 function parseArgs(argv) {
-  const out = { journalDbid: null };
+  const out = { journalDbid: null, journalDsid: null, idsFile: null };
   for (let i = 2; i < argv.length; i++) {
     if (argv[i] === '--journal-dbid') out.journalDbid = argv[++i] || '';
+    else if (argv[i] === '--journal-dsid') out.journalDsid = argv[++i] || '';
+    else if (argv[i] === '--ids-file') out.idsFile = argv[++i] || '';
+    else throw new Error('Unknown journal argument: ' + argv[i]);
   }
   return out;
 }
 
 async function main() {
   const args = parseArgs(process.argv);
-  const journalDb = args.journalDbid;
-  if (!journalDb) die('Missing --journal-dbid. Check TOOLS.md for the value.');
+  const ids = loadIds(args.idsFile);
+  const journalDb = args.journalDbid || ids.journal?.database_id;
+  if (!journalDb) die('Missing --journal-dbid. Check the workspace AGENTS.md ## Tools section for the value.');
 
   const raw = fs.readFileSync(0, 'utf-8').trim();
   if (!raw) die('Expected JSON on stdin');
   const obj = JSON.parse(raw);
 
   const when = obj.when || nowIso();
+  if (!Number.isFinite(Date.parse(when))) throw new Error('Invalid journal timestamp');
   const title = obj.title || `journal@${when}`;
   const body = (obj.body || '').trim();
   if (!body) die('Missing body');
+  await assertTarget(httpJson, 'journal', journalDb, args.journalDsid || ids.journal?.data_source_id,
+    {Name:'title', when:'date', body:'rich_text', worklog:'rich_text', session_summary:'rich_text'});
 
   const props = {
     Name: titleProp(title),

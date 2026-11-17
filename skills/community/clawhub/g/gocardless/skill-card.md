@@ -1,51 +1,63 @@
-## Description: <br>
-GoCardless compatible Payments & Wallet gives an agent CreditClaw-powered spending, wallet, checkout, and payment-management workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GoCardless-compatible payments and wallet guidance that gives agents controlled spending, card checkout, x402 wallet, and seller checkout workflows through CreditClaw.
 
-## Publisher: <br>
-[jononovo](https://clawhub.ai/user/jononovo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jononovo](https://clawhub.ai/user/jononovo)
 
-## Use Case: <br>
-External developers and agent operators use this skill to connect agents to CreditClaw payment rails, request owner-approved purchases, track balances and spending rules, create payment links, issue invoices, publish checkout pages, and receive payment webhooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate real spending, payment collection, invoices, checkout pages, and card-decryption checkout flows. <br>
-Mitigation: Use a dedicated low-limit account or payment method, keep ask-for-everything approval enabled, and require explicit human confirmation before purchases, invoice emails, public shop publishing, Crossmint orders, or card-decryption checkout flows. <br>
-Risk: CreditClaw API keys, webhook secrets, Authorization headers, and decrypted card data are sensitive payment-control materials. <br>
-Mitigation: Store CREDITCLAW_API_KEY and webhook secrets only in a secrets manager, send the API key only to creditclaw.com API endpoints, avoid logging Authorization headers or card data, and discard decrypted card details immediately after checkout. <br>
-Risk: The release is labeled GoCardless while the security evidence identifies the payment-control provider as CreditClaw, which can confuse trust decisions. <br>
-Mitigation: Install only after intentionally trusting CreditClaw to handle payment credentials and agent spending, not solely because of the GoCardless label. <br>
-Risk: Some rails have availability limits, including a private beta Stripe x402 wallet rail and a not-yet-general Crossmint wallet flow. <br>
-Mitigation: Check rail status before use, handle unavailable endpoints as non-fatal, and fall back to the active owner-approved payment rail. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent register with CreditClaw, monitor wallet status, request owner-approved purchases, sign x402 payments, and create checkout or invoice flows for receiving payments.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jononovo/gocardless) <br>
-- [CreditClaw main skill documentation](https://creditclaw.com/skill.md) <br>
-- [Encrypted Card checkout guide](https://creditclaw.com/encrypted-card.md) <br>
-- [Stripe x402 wallet guide](https://creditclaw.com/stripe-x402-wallet.md) <br>
-- [CreditClaw wallet management guide](https://creditclaw.com/management.md) <br>
-- [CreditClaw checkout guide](https://creditclaw.com/checkout.md) <br>
-- [CreditClaw heartbeat guide](https://creditclaw.com/heartbeat.md) <br>
-- [CreditClaw skill metadata](https://creditclaw.com/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with API request examples, JSON response examples, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses CREDITCLAW_API_KEY for authenticated CreditClaw API calls; purchase and checkout flows may require owner approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill grants an agent real payment authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that authority is intended, keep approval mode at ask_for_everything, and set low spending limits and allowlists.
+
+Risk: The raw-card rail can expose sensitive card-handling and PCI implications.
+
+Mitigation: Avoid the raw-card rail unless card handling has been reviewed; never store or log decrypted card details.
+
+Risk: Remote skill files may change after review.
+
+Mitigation: Use pinned and reviewed copies of remote documentation before relying on them for payment operations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jononovo/skills/gocardless)
+- [CreditClaw Main Skill Guide](https://creditclaw.com/skill.md)
+- [CreditClaw Encrypted Card Guide](https://creditclaw.com/encrypted-card.md)
+- [CreditClaw Stripe x402 Wallet Guide](https://creditclaw.com/stripe-x402-wallet.md)
+- [CreditClaw Management Guide](https://creditclaw.com/management.md)
+- [CreditClaw Checkout Guide](https://creditclaw.com/checkout.md)
+- [CreditClaw Heartbeat Guide](https://creditclaw.com/heartbeat.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with API examples, curl commands, JSON payload examples, and operational checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY and produces payment-operation guidance that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

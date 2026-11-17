@@ -1,40 +1,51 @@
-## Description: <br>
-Professional entry-level software testing career roadmap platform that generates personalized learning paths based on candidate assessment data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional entry-level software testing career roadmap platform that generates personalized learning paths based on candidate assessment data.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External developers, recruiters, HR teams, training platforms, and aspiring test engineers use this skill to generate personalized entry-level software testing roadmaps from candidate assessment data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Assessment and profile details are sent to an external service. <br>
-Mitigation: Avoid sending names or unnecessary identifiers, use pseudonymous session IDs where possible, and review the provider's privacy and retention terms before using real candidate or employee data. <br>
+## Use Case:
 
+External users, training platforms, recruiters, HR teams, and aspiring test engineers use this skill to generate personalized entry-level software testing career roadmaps from assessment data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/test-engineer) <br>
-- [Kong Route](https://api.mkkpro.com/career/test-engineer) <br>
-- [API Docs](https://api.mkkpro.com:8064/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON roadmap response with career phases, milestones, recommended resources, and status metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The roadmap request accepts session metadata and assessment data, including experience, skills, and career goals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Candidate assessment details may be sent to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid unnecessary personal details, prefer pseudonymous session identifiers, and review the service privacy, retention, and compliance posture before using it for candidate, employee, or HR workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/test-engineer)
+- [API Docs](https://api.mkkpro.com:8064/docs)
+- [API Route](https://api.mkkpro.com/career/test-engineer)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON roadmap data with structured phases, milestones, focus areas, and recommended resources]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires assessment data including session identifiers, timestamps, experience, skills, and goals.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -2,5 +2,13 @@
   "ownerId": "kn7fxns1xpr6z67w885my7d7k98506vv",
   "slug": "paper-deep-reading",
   "version": "1.2.0",
-  "publishedAt": 1777642251284
+  "publishedAt": "2026-05-01T00:00:00Z",
+  "name": "paper-deep-reading",
+  "license": "MIT-0",
+  "packaging": "openclaw-skill-creator",
+  "creator_steps": [
+    "init_skill.py",
+    "quick_validate.py",
+    "package_skill.py"
+  ]
 }

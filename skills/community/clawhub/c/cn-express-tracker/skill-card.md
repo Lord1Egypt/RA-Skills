@@ -1,44 +1,60 @@
-## Description: <br>
-Queries package tracking information from Chinese and international carriers through the Kuaidi100 API, with optional carrier auto-detection from the tracking number. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries package tracking information for Chinese and international carriers via the Kuaidi100 API, with local carrier auto-detection from tracking numbers.
 
-## Publisher: <br>
-[charles-lpf](https://clawhub.ai/user/charles-lpf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charles-lpf](https://clawhub.ai/user/charles-lpf)
 
-## Use Case: <br>
-External users and agents use this skill to check delivery status and present a package tracking timeline when a tracking number is provided. It supports carrier auto-detection for common Chinese and international carriers, with manual carrier code override when detection fails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Package lookups send tracking numbers, carrier codes, and Kuaidi100 customer identifier/signature data to Kuaidi100. <br>
-Mitigation: Use the skill only when the user is comfortable sharing those lookup details with Kuaidi100, and avoid querying sensitive shipments without consent. <br>
-Risk: Kuaidi100 credentials can expose quota or billing if reused broadly or stored on shared machines. <br>
-Mitigation: Use a dedicated API key when possible, monitor quota and billing, and avoid storing credentials in shell startup files on shared systems. <br>
-Risk: Carrier auto-detection may choose the wrong carrier or fail for unsupported tracking number formats. <br>
-Mitigation: Confirm the carrier with the user or provide a manual carrier code when auto-detection is uncertain. <br>
+## Use Case:
 
+External users and agents use this skill to check package delivery status and present a formatted logistics timeline. It is useful when a user provides a tracking number or asks for courier, express, or logistics status.
 
-## Reference(s): <br>
-- [Kuaidi100 Open Platform](https://api.kuaidi100.com/register/enterprise) <br>
-- [Kuaidi100 Dashboard](https://api.kuaidi100.com/home) <br>
-- [Kuaidi100 Carrier Codes](https://api.kuaidi100.com/manager/openapi/download/kdbm.do) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text tracking status and timeline, typically summarized for the user as Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided Kuaidi100 API key and customer ID; sends tracking number and carrier code to Kuaidi100.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Tracking numbers and the Kuaidi100 customer identifier are sent to Kuaidi100 during package lookups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that disclosure is acceptable for the package being tracked.
+
+Risk: API credentials can be exposed if stored in shell startup files or shared command history.
+
+Mitigation: Prefer temporary environment variables or a protected secrets manager for EXPRESS_TRACKER_KEY and EXPRESS_TRACKER_CUSTOMER.
+
+Risk: Untrusted or unusual tracking strings may behave unexpectedly until input validation is improved.
+
+Mitigation: Avoid submitting untrusted tracking strings and ask for the carrier code when auto-detection is uncertain.
+
+## Reference(s):
+
+- [Kuaidi100 Open Platform Registration](https://api.kuaidi100.com/register/enterprise)
+- [Kuaidi100 Dashboard](https://api.kuaidi100.com/home)
+- [Kuaidi100 Carrier Codes](https://api.kuaidi100.com/manager/openapi/download/kdbm.do)
+- [Cn Express Tracker on ClawHub](https://clawhub.ai/charles-lpf/skills/cn-express-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text tracking timeline with command-line setup and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided Kuaidi100 API credentials and local command-line dependencies: curl, jq, and one MD5 utility.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

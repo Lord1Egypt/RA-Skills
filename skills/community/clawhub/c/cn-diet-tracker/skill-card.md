@@ -1,38 +1,50 @@
-## Description: <br>
-Cn Diet Tracker helps agents guide Chinese-speaking users through local meal logging, calorie summaries, weekly reports, and daily calorie target management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cn Diet Tracker helps agents record Chinese-language meal entries, track daily and weekly calories, manage calorie targets, and summarize local diet logs.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Chinese-speaking users and agents use this skill to record meals with calorie estimates, review daily or weekly intake, and manage a daily calorie target using local data storage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Food, calorie, timestamp, and note data is stored unencrypted in a local JSON file. <br>
-Mitigation: Use only on trusted devices, avoid shared or synced home directories, and delete ~/.qclaw/workspace/diet.json when records should be removed. <br>
+## Use Case:
 
+External users and agents use this skill to maintain a Chinese-language food diary, estimate calorie intake, review weekly totals, and manage a daily calorie target through a local CLI workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-diet-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local diet records at ~/.qclaw/workspace/diet.json when the user runs the tracking command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.6 (source: server release metadata) <br>
+Risk: Food logs can contain sensitive personal health or lifestyle data stored on the local filesystem.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect or remove ~/.qclaw/workspace/diet.json on shared systems and avoid entering sensitive notes that do not need to be retained.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-diet-tracker)
+- [Publisher profile](https://clawhub.ai/user/freedompixels)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores meal, calorie, category, note, and target data locally at ~/.qclaw/workspace/diet.json.]
+
+## Skill Version(s):
+
+1.2.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

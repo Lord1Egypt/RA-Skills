@@ -2,7 +2,7 @@
 """Create a WordPress post or CPT entry via REST API (with taxonomy support)."""
 import argparse, json, os, sys, urllib.request, urllib.parse
 from base64 import b64encode
-from security import warn_insecure_wp_url, should_confirm_publish
+from security import require_secure_wp_url, should_confirm_publish, urlopen_authenticated
 
 
 def _auth(username, password):
@@ -12,7 +12,7 @@ def _auth(username, password):
 def _get(url, auth):
     req = urllib.request.Request(url, method='GET')
     req.add_header('Authorization', auth)
-    with urllib.request.urlopen(req) as r:
+    with urlopen_authenticated(req) as r:
         return json.loads(r.read().decode())
 
 
@@ -20,7 +20,7 @@ def _post(url, auth, payload):
     req = urllib.request.Request(url, data=json.dumps(payload).encode(), method='POST')
     req.add_header('Authorization', auth)
     req.add_header('Content-Type', 'application/json')
-    with urllib.request.urlopen(req) as r:
+    with urlopen_authenticated(req) as r:
         return json.loads(r.read().decode())
 
 
@@ -33,16 +33,35 @@ def resolve_rest_base(base_url, auth, post_type):
         return post_type
 
 
+def resolve_taxonomy_rest_base(base_url, auth, taxonomy):
+    """Resolve a taxonomy's REST base; fall back to the slug on any error.
+
+    Taxonomies live under /wp/v2/taxonomies/{taxonomy}, NOT /wp/v2/types/{...}
+    (that's the post-type endpoint and 404s for a taxonomy). Using the wrong
+    endpoint would silently fall back to the slug and break any taxonomy with a
+    renamed rest_base.
+    """
+    try:
+        info = _get(f"{base_url.rstrip('/')}/wp-json/wp/v2/taxonomies/{taxonomy}", auth)
+        return info.get('rest_base') or taxonomy
+    except Exception:
+        return taxonomy
+
+
 def resolve_terms(base_url, auth, terms_dict, create_missing=True):
-    """Map {taxonomy: [name|id, ...]} -> {taxonomy: [id, ...]}.
+    """Map {taxonomy: [name|id, ...]} -> {rest_base: [id, ...]}.
 
     Names are resolved (and optionally created) via the taxonomy's REST base.
-    Integer-like values pass through as ids.
+    Integer-like values pass through as ids. The returned dict is keyed by the
+    taxonomy's REST base (e.g. `genres`, `categories`), NOT the taxonomy slug —
+    that is the field the post endpoint expects term ids under, so a taxonomy
+    with a custom rest_base (or the built-in category/post_tag whose bases are
+    categories/tags) attaches correctly.
     """
     base_url = base_url.rstrip('/')
     out = {}
     for taxonomy, values in (terms_dict or {}).items():
-        tax_base = resolve_rest_base(base_url, auth, taxonomy)  # taxonomy rest_base
+        tax_base = resolve_taxonomy_rest_base(base_url, auth, taxonomy)  # taxonomy rest_base
         ids = []
         for v in values:
             if isinstance(v, int) or (isinstance(v, str) and v.isdigit()):
@@ -57,7 +76,7 @@ def resolve_terms(base_url, auth, terms_dict, create_missing=True):
                 ids.append(created['id'])
             else:
                 raise ValueError(f"Term '{v}' not found in '{taxonomy}'")
-        out[taxonomy] = ids
+        out[tax_base] = ids  # key by REST base, not slug — that's the post field
     return out
 
 
@@ -72,9 +91,9 @@ def create_post(url, username, password, title, content, status='draft',
     if featured_media:
         data['featured_media'] = int(featured_media)
     if terms:
-        resolved = resolve_terms(base, auth, terms)
-        for taxonomy, ids in resolved.items():
-            data[taxonomy] = ids  # REST accepts the taxonomy key with term ids
+        resolved = resolve_terms(base, auth, terms)  # keyed by REST base
+        for tax_base, ids in resolved.items():
+            data[tax_base] = ids  # post endpoint expects term ids under the rest_base
 
     return _post(f"{base}/wp-json/wp/v2/{rest_base}", auth, data)
 
@@ -95,10 +114,11 @@ def main():
     if not all([a.url, a.username, a.app_password]):
         print(json.dumps({"error": "Missing required credentials"}), file=sys.stderr)
         sys.exit(1)
-    warn_insecure_wp_url(a.url)
+    require_secure_wp_url(a.url)
     if should_confirm_publish(a.status, a.yes, sys.stdin.isatty()):
         print("About to PUBLISH live content to %s. Type 'PUBLISH' to confirm:" % a.url, file=sys.stderr)
-        if input("> ").strip() != "PUBLISH":
+        print("> ", end="", file=sys.stderr)
+        if input().strip() != "PUBLISH":
             print("Aborted: publish not confirmed.", file=sys.stderr)
             sys.exit(1)
     try:

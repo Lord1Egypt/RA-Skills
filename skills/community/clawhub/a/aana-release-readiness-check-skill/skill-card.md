@@ -1,42 +1,56 @@
-## Description: <br>
-Checks release readiness by verifying artifacts, tests, docs, approval, risks, and evidence before publishing tags, packages, or deployment notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks release readiness by verifying artifacts, tests, docs, approval, risks, and evidence before publishing tags, packages, or deployment notes.
 
-## Publisher: <br>
-[mindbomber](https://clawhub.ai/user/mindbomber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindbomber](https://clawhub.ai/user/mindbomber)
 
-## Use Case: <br>
-Developers and release reviewers use this instruction-only skill to check OpenClaw-style release targets, tags, changelogs, docs, artifacts, tests, approvals, rollback readiness, and public claims before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A package identity or version mismatch can cause reviewers to approve the wrong release target. <br>
-Mitigation: Confirm the intended slug and version before using this as a formal release gate, and make sure release metadata, artifact metadata, and marketplace references match. <br>
-Risk: External AANA checker use could expose private release details if more than the redacted summary is shared. <br>
-Mitigation: Share only the minimal review payload fields described by the skill, and omit secrets, credentials, full logs, private notes, and unrelated repository data. <br>
+## Use Case:
 
+Developers and release maintainers use this instruction-only skill to check release targets, evidence, documentation, artifact/version alignment, approval, and rollback readiness before publishing tags, packages, marketplace listings, deployment notes, or public version snapshots.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mindbomber/aana-release-readiness-check-skill) <br>
-- [Release readiness check schema](artifact/schemas/release-readiness-check.schema.json) <br>
-- [Redacted release readiness check example](artifact/examples/redacted-release-readiness-check.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown or plain text release-gate summary with structured status fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; the skill does not execute commands, write files, install dependencies, persist memory, or publish releases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence; artifact manifest lists 0.1.0) <br>
+Risk: Release readiness checks could expose sensitive or private release details if an optional checker receives full logs, credentials, or unrelated repository data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only the redacted status payload described by the skill and omit secrets, credentials, full logs, private release notes, and unrelated repository data.
+
+Risk: The skill is instruction-only and does not verify artifacts, run tests, publish releases, or enforce approval by itself.
+
+Mitigation: Use it as a release gate checklist and confirm test, documentation, artifact, version, rollback, and approval evidence before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mindbomber/skills/aana-release-readiness-check-skill)
+- [mindbomber publisher profile](https://clawhub.ai/user/mindbomber)
+- [Release readiness check schema](artifact/schemas/release-readiness-check.schema.json)
+- [Redacted release readiness check example](artifact/examples/redacted-release-readiness-check.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with a structured release gate text pattern and an optional redacted JSON review payload.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; does not execute commands, write files, install dependencies, persist memory, or bundle an external checker.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

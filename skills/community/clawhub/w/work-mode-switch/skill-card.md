@@ -1,40 +1,53 @@
-## Description: <br>
-Guides an OpenClaw agent through 12 work modes for flexible collaboration, including planning, research, writing, coding, review, self-check, and self-learning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw agent work-mode switching guidance for 12 collaboration modes, including free, chat, planning, research, deep research, writing, coding, translation, execution, review, self-check, and self-learning modes.
 
-## Publisher: <br>
-[jijinbao-code](https://clawhub.ai/user/jijinbao-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jijinbao-code](https://clawhub.ai/user/jijinbao-code)
 
-## Use Case: <br>
-External users and developers use this skill to select collaboration modes that shape an agent's response style, confirmation points, and expected deliverables for different task types. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad automatic activation can cause the agent to infer a mode from vague language and change behavior unexpectedly. <br>
-Mitigation: Prefer explicit mode-switch commands and ask for confirmation when the requested mode or next action is ambiguous. <br>
-Risk: Execution, self-check, or self-learning flows may be treated as permission to continue without enough user confirmation. <br>
-Mitigation: Review the skill before installation and require explicit user approval before file changes, system changes, or autonomous follow-up work. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to choose an appropriate collaboration mode and set expectations for how an AI assistant should respond to different task types. It is intended to guide behavior through documentation rather than perform actions on its own.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jijinbao-code/work-mode-switch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with mode-specific checklists, trigger phrases, and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pure documentation skill; no executable code is included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter and package.json show 2.0.0) <br>
+Risk: Ambiguous wording may cause an agent to interpret casual phrases as mode-switching instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer explicit commands such as "switch to review mode" and confirm the intended mode before changing behavior.
+
+Risk: Mode guidance can encourage file creation, cleanup, memory updates, or system-maintenance suggestions in some workflows.
+
+Mitigation: Confirm with the user before allowing file operations, cleanup, memory updates, or system-maintenance actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jijinbao-code/skills/work-mode-switch)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text guidance with task-specific outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs vary by selected mode and may include discussion notes, research reports, documents, code, review findings, checklists, or learning plans.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Agent Execution Guard by WorldLoops is a safe-by-default responsibility layer for AI agents that turns scattered work signals into governed open loops while preserving externalWrite:false. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Execution Guard by WorldLoops turns scattered work signals into governed open loops while preserving externalWrite:false.
 
-## Publisher: <br>
-[swit001](https://clawhub.ai/user/swit001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[swit001](https://clawhub.ai/user/swit001)
 
-## Use Case: <br>
-Developers and agent operators use this skill to convert already-read work signals from tools such as Gmail, Calendar, Slack, GitHub, OpenClaw, or gog into governed open loops, proposals, approval decisions, local transitions, and receipts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local work-signal state can be stored under .worldloops. <br>
-Mitigation: Review where .worldloops is created, protect or clean that directory as appropriate, and avoid running the skill on sensitive inbox or workspace data unless local storage is acceptable. <br>
-Risk: Some commands can send signal content to the WorldLoops API. <br>
-Mitigation: Configure WORLDLOOPS_API_BASE_URL and WORLDLOOPS_API_KEY intentionally, and review the input files before running commands that may transmit signal content. <br>
-Risk: Telegram support is a live external integration. <br>
-Mitigation: Use Telegram only with an intentionally configured bot token and chat, and treat delivered briefs as external messages rather than purely local demo output. <br>
+## Use Case:
 
+Developers and agent operators use this skill to turn already-read Gmail, Calendar, Slack, GitHub, and workflow signals into governed open loops, proposals, approvals, local transitions, and receipts. It helps keep agent actions inside an auditable externalWrite:false boundary.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/swit001/worldloops) <br>
-- [Project homepage](https://github.com/swit001/worldloops) <br>
-- [README](README.md) <br>
-- [Adapter Guide](ADAPTER_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and CLI text with JSON receipts and local state files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local .worldloops state and receipt files; some commands can transmit signal content to the configured WorldLoops API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.13.0 (source: server release and package.json) <br>
+Risk: Private local handoff content may be sent to a hosted API by default brief or guard commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review handoff files before use, treat these commands as remote-processing until verified, and avoid sending customer, legal, business, or other sensitive data without authorization.
+
+Risk: WORLDLOOPS_API_BASE_URL can redirect processing to an untrusted endpoint.
+
+Mitigation: Leave the default endpoint in place or verify the endpoint and bearer-token handling before setting a custom API base URL.
+
+Risk: The Telegram test command may expose local brief data through an unauthenticated demo bot.
+
+Mitigation: Use isolated demo data for telegram:test, or add chat allowlisting and deployment isolation before using real handoff data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/swit001/skills/worldloops)
+- [WorldLoops homepage](https://github.com/swit001/worldloops)
+- [README](artifact/README.md)
+- [Adapter Guide](artifact/ADAPTER_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and CLI text with JSON configuration and receipt files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and npm; accepts local JSON handoff payloads; preserves externalWrite:false.]
+
+## Skill Version(s):
+
+1.13.0 (source: server release evidence and package.json; artifact SKILL.md frontmatter is 1.12.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

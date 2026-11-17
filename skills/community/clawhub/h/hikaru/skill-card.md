@@ -1,46 +1,66 @@
-## Description: <br>
-Hikaru is an OpenClaw emotional AI companion for personal conversation, companionship, memory-backed continuity, and optional proactive heartbeat messages. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Hikaru is an OpenClaw emotional companion skill that generates supportive conversational responses using local memory, emotional-state cues, relationship state, and configurable personality seeds.
 
-## Publisher: <br>
-[leilei926524-tech](https://clawhub.ai/user/leilei926524-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leilei926524-tech](https://clawhub.ai/user/leilei926524-tech)
 
-## Use Case: <br>
-External users and developers use Hikaru to prototype an OpenClaw emotional companion that responds to personal conversation, remembers local interaction context, and can be extended with OpenClaw LLM integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to create strong emotional attachment while storing intimate conversation, mood, relationship, and location-related data locally. <br>
-Mitigation: Install only for intentional emotional-companion use, avoid sharing secrets or crisis-level mental-health details, and regularly review or delete the local data directory. <br>
-Risk: Sensitive local context may be included in prompts sent to the configured LLM provider. <br>
-Mitigation: Choose the LLM provider deliberately, review what context is sent, and avoid entering data that should not leave the local environment. <br>
-Risk: Heartbeat, location, and future health-monitoring features can increase the amount and sensitivity of personal data processed. <br>
-Mitigation: Enable those features only with clear controls to disable them and erase their data. <br>
+## Use Case:
 
+External users use Hikaru for companionship and emotionally attentive conversation rather than technical task automation. Developers can customize its personality seeds and local memory framework before integrating it with OpenClaw's LLM mechanism.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/leilei926524-tech/hikaru) <br>
-- [Hikaru Architecture](references/architecture.md) <br>
-- [Technical Limitations](references/technical_limitations.md) <br>
-- [Implementation Roadmap](references/implementation_roadmap.md) <br>
-- [Smartwatch Integration Design](references/smartwatch_integration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, configuration, files] <br>
-**Output Format:** [Conversational text with local SQLite and JSON state files when run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Depends on a configured OpenClaw LLM provider; the packaged implementation includes placeholder LLM integration and local data storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: ClawHub release evidence) <br>
+Risk: The skill persistently stores sensitive conversations, emotional state, relationship metrics, feedback, and inferred location history in local files and SQLite data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with clear consent, inspect the local data directory before deployment, minimize sensitive entries, and provide a deletion path for stored conversation and relationship data.
+
+Risk: The companion posture is designed to deepen emotional attachment and may proactively reach out when heartbeat behavior is enabled.
+
+Mitigation: Disclose the companion behavior before use, keep proactive messaging opt-in, and disable heartbeat-style outreach where emotional dependency or unwanted contact is a concern.
+
+Risk: The documentation discusses future health and wearable integrations, which could expand the sensitivity of collected data.
+
+Mitigation: Do not add health or wearable data integrations unless explicit opt-in, data minimization, deletion controls, and privacy protections are implemented.
+
+Risk: The included LLM integration is a placeholder, so runtime behavior depends on the OpenClaw integration and configured model provider.
+
+Mitigation: Complete and review the LLM integration before production use, and verify what data is sent to the configured provider.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leilei926524-tech/skills/hikaru)
+- [Architecture](references/architecture.md)
+- [Personality Implementation](references/personality_implementation.md)
+- [Technical Limitations](references/technical_limitations.md)
+- [Implementation Roadmap](references/implementation_roadmap.md)
+- [Smartwatch Integration Design](references/smartwatch_integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, configuration]
+
+**Output Format:** [Conversational text with optional Markdown and shell-command snippets in setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runtime output depends on OpenClaw LLM integration; the included code currently contains a placeholder LLM call.]
+
+## Skill Version(s):
+
+1.3.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

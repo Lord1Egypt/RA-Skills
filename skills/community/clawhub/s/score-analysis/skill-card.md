@@ -1,43 +1,60 @@
-## Description: <br>
-Analyzes class exam scores, generates visual charts and professional reports, and supports longitudinal comparison across multiple exams plus horizontal comparison with peer classes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes class exam scores and generates visual charts and professional reports with longitudinal exam comparisons and peer-class comparisons.
 
-## Publisher: <br>
-[yitutu](https://clawhub.ai/user/yitutu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yitutu](https://clawhub.ai/user/yitutu)
 
-## Use Case: <br>
-Educators, school analysts, and developers use this skill to validate class exam data, compare performance across peer classes and exam periods, identify critical or subject-imbalanced students, and generate charts and Word reports for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process student grade records and write JSON, chart, report, and presentation outputs that may contain sensitive educational data. <br>
-Mitigation: Use only with authorization for the student records involved, prefer de-identified inputs, restrict access to generated files, avoid broad report sharing, and delete outputs when they are no longer needed. <br>
-Risk: Automatic header detection, score-line interpretation, or pass-line configuration errors could lead to misleading analysis or student recommendations. <br>
-Mitigation: Require user verification of detected subject averages, student counts, anomalies, peer classes, and pass lines before analysis, then review generated reports before distribution. <br>
+## Use Case:
 
+Educators, school analysts, and external users can use this skill to validate class score data, compare results across exams or peer classes, identify critical students and subject imbalance, and generate shareable reports.
 
-## Reference(s): <br>
-- [Score Analysis Framework](references/analysis_framework.md) <br>
-- [Score Analysis ClawHub Page](https://clawhub.ai/yitutu/score-analysis) <br>
-- [matplotlib Documentation](https://matplotlib.org/) <br>
-- [python-docx Documentation](https://python-docx.readthedocs.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with Python code and generated JSON, PNG chart, DOCX report, and optional PPTX artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow requires user verification of detected score data before analysis proceeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill processes student score files and generates reports that may contain sensitive student records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment, minimize student names or IDs where possible, share outputs only with authorized recipients, and delete generated files when no longer needed.
+
+Risk: Incorrectly parsed score data or pass-line assumptions can lead to misleading analysis.
+
+Mitigation: Require user confirmation of class counts, subject averages, total averages, absences, anomalies, pass lines, and peer classes before running analysis.
+
+Risk: Unpinned dependencies can introduce reproducibility and supply-chain risk.
+
+Mitigation: Prefer pinned versions for python-docx, matplotlib, pandas, numpy, and openpyxl in an isolated Python environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yitutu/skills/score-analysis)
+- [Analysis Framework](references/analysis_framework.md)
+- [matplotlib](https://matplotlib.org/)
+- [python-docx](https://python-docx.readthedocs.io/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with JSON data, generated charts, Word reports, optional presentation files, Python code, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated files may include standardized data JSON, analysis JSON, chart images, Word reports, and optional presentation files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

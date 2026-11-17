@@ -1,44 +1,60 @@
-## Description: <br>
-Calculate complex buffer recipes with precise measurements for molecular biology and biochemistry applications, including mass and volume calculations, pH considerations, and step-by-step preparation instructions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate complex buffer recipes with precise measurements for molecular biology and biochemistry applications, including mass and volume calculations, pH considerations, and step-by-step preparation instructions.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Laboratory scientists, technicians, and developers use this skill to calculate buffer recipes, scale common PBS, RIPA, and TAE formulations, and generate preparation guidance for molecular biology and biochemistry workflows. Calculations should be independently checked before laboratory use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags a mismatch between requested file-editing permissions and the skill's stated safety posture. <br>
-Mitigation: Review before installing and remove or constrain Write/Edit permissions unless generated files are explicitly required. <br>
-Risk: The security review warns that the included script appears to produce severely incorrect reagent masses. <br>
-Mitigation: Independently validate formulas and calculated outputs before any laboratory use, and do not rely on the skill as the sole source for preparation amounts. <br>
+## Use Case:
 
+External users and lab teams use this skill to draft buffer preparation calculations and protocols for common molecular biology and biochemistry buffers such as PBS, RIPA, and TAE. Treat generated quantities as draft calculations that require correction and independent validation before real lab preparation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AIPOCH-AI/buffer-calculator) <br>
-- [AIPOCH-AI Publisher Profile](https://clawhub.ai/user/AIPOCH-AI) <br>
-- [Cold Spring Harbor Protocols](https://cshprotocols.org) <br>
-- [Thermo Fisher Buffer Reference](https://www.thermofisher.com/buffers) <br>
-- [Sigma-Aldrich Buffer Calculator](https://www.sigmaaldrich.com/biochemicals) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline command examples and structured calculation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include reagent masses, liquid volumes, pH adjustment notes, preparation steps, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+Risk: Safety-relevant lab calculations may be incorrect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Correct and independently validate the calculation code before using any quantities for real buffer preparation.
+
+Risk: Generated recipes may be mistaken for approved laboratory protocols.
+
+Mitigation: Check all output against trusted protocols, reagent labels, safety data sheets, and institutional lab procedures before preparation.
+
+Risk: The skill requests broad local Write/Edit and shell access despite mainly producing calculations and guidance.
+
+Mitigation: Run it in a restricted workspace and avoid granting broad filesystem or shell permissions unless they are needed for a reviewed workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/buffer-calculator)
+- [Cold Spring Harbor Protocols](https://cshprotocols.org)
+- [Thermo Fisher Buffer Reference](https://www.thermofisher.com/buffers)
+- [Sigma-Aldrich Buffer Calculator](https://www.sigmaaldrich.com/biochemicals)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline Python and bash examples plus text calculation results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces draft buffer recipes, component quantities, preparation steps, troubleshooting guidance, and optional local Python command examples.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,56 @@
-## Description: <br>
-Downloads Douyin videos from supplied URLs, removes watermarks and audio, and transforms the video to reduce duplicate-content matching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Douyin video download, watermark removal, remix-based deduplication, and audio removal from Douyin URLs.
 
-## Publisher: <br>
-[hanxueda](https://clawhub.ai/user/hanxueda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[hanxueda](https://clawhub.ai/user/hanxueda)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to process Douyin video URLs into deduplicated, muted MP4 files for workflows where the user has rights to process the source media.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill downloads remote media and may contact unexpected URLs if supplied a crafted link.
+
+Mitigation: Run only with trusted Douyin URLs in a network-restricted environment until URL validation is tightened.
+
+Risk: The skill removes watermarks and remixes videos, which can create rights or platform-policy concerns.
+
+Mitigation: Use only for videos the user has rights to process and review outputs before redistribution.
+
+Risk: The skill writes processed MP4 files under ~/video-dedup/output and temporary files under ~/video-dedup/workspace.
+
+Mitigation: Run in an environment where those paths are acceptable and review available storage before processing large or sensitive media.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to process Douyin video URLs into locally saved MP4 files with watermark removal, visual transformations, and audio stripping. It should be used only for videos the user owns or is authorized to modify and repost. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Files, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can remove attribution signals and alter videos to avoid duplicate-content matching. <br>
-Mitigation: Use it only for videos the user owns or is authorized to modify and repost, and retain required attribution and platform compliance checks outside the skill. <br>
-Risk: The skill downloads remote Douyin content and writes processed MP4 files to local storage. <br>
-Mitigation: Run it in a controlled workspace, review supplied URLs before execution, and clear generated files when they are no longer needed. <br>
+**Output Format:** [Command-line status text and MP4 video files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hanxueda/douyin-dedup) <br>
+**Other Properties Related to Output:** [Writes processed MP4 files under ~/video-dedup/output and temporary processing files under ~/video-dedup/workspace.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Command-line execution with local MP4 file output and status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces MP4 files under ~/video-dedup/output and temporary workspace files under ~/video-dedup/workspace.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

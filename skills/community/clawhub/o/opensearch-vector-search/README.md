@@ -1,6 +1,8 @@
 # OpenSearch Vector Search Expert
 
-An [OpenClaw](https://openclaw.ai) AgentSkill for Amazon OpenSearch vector search (k-NN). Provides comprehensive guidance on configuration, cluster tuning, quantization, cost optimization, instance sizing, and **live cluster analysis**.
+An AI agent skill for Amazon OpenSearch vector search (k-NN). Provides comprehensive guidance on configuration, cluster tuning, quantization, cost optimization, instance sizing, and **live cluster analysis**.
+
+Supports **[OpenClaw](https://openclaw.ai)** and **[Kiro](https://kiro.dev)**.
 
 ## Features
 
@@ -10,19 +12,92 @@ An [OpenClaw](https://openclaw.ai) AgentSkill for Amazon OpenSearch vector searc
 - **Cost Estimation** — Real-time AWS pricing via Pricing API, monthly cost projections
 - **Cluster Tuning** — JVM, thread pools, shard strategies, node roles
 - **Performance Benchmarks** — QPS/latency/recall data for various configurations
+- **VectorDBBench Runner Skill** — Reproducible benchmark planning for managed domains, Serverless, on-disk, quantization, and the OpenSearch s3vector engine
 - **Live Cluster Analyzer** 🆕 — Connect to any OpenSearch cluster, auto-discover k-NN indices, analyze vector configs, and generate optimization recommendations (read-only)
 
 ## Install
+
+### OpenClaw
+
+One-line install via [clawhub](https://clawhub.ai):
 
 ```bash
 npx clawhub@latest install opensearch-vector-search
 ```
 
-Or manually copy to your OpenClaw skills directory:
+Or manually:
 
 ```bash
 cp -r . ~/.openclaw/skills/opensearch-vector-search/
 ```
+
+The skill is automatically discovered by OpenClaw and activated when relevant questions are asked.
+
+### Kiro
+
+Kiro supports this skill in two ways:
+
+#### Option 1 — Global Steering (Recommended)
+
+Install once into `~/.kiro/steering/` and the skill applies to **all projects** automatically — no per-project setup needed.
+
+```bash
+# Clone this repo, then copy into Kiro's global steering directory
+git clone https://github.com/norrishuang/opensearch-vector-search-skill.git
+cd opensearch-vector-search-skill
+
+mkdir -p ~/.kiro/steering
+cp SKILL.md ~/.kiro/steering/opensearch-vector-search.md
+cp -r references ~/.kiro/steering/opensearch-references
+```
+
+That's it. Next time you ask Kiro anything about OpenSearch vector search, this skill will be in context.
+
+> **Note:** `~/.kiro/steering/` is Kiro's global steering directory — files here apply to every workspace. Steering files without a frontmatter block are always included. You can add a frontmatter header to control activation:
+> ```markdown
+> ---
+> inclusion: always
+> ---
+> ```
+
+#### Option 1b — Project-scoped Steering
+
+If you only want the skill active for a specific project:
+
+```bash
+cd /path/to/your-project
+mkdir -p .kiro/steering
+cp /path/to/opensearch-vector-search-skill/SKILL.md .kiro/steering/opensearch-vector-search.md
+cp -r /path/to/opensearch-vector-search-skill/references .kiro/steering/opensearch-references
+```
+
+#### Option 2 — Agent Skill Resource
+
+Use as a named skill attached to a specific Kiro agent (defined in `.kiro/agents/<agent>.json`):
+
+```bash
+# Copy skill into the .kiro/skills directory of your project
+mkdir -p <your-project>/.kiro/skills/opensearch-vector-search
+cp SKILL.md <your-project>/.kiro/skills/opensearch-vector-search/SKILL.md
+cp -r references <your-project>/.kiro/skills/opensearch-vector-search/references
+cp -r scripts <your-project>/.kiro/skills/opensearch-vector-search/scripts
+```
+
+Then reference it in your agent JSON (`.kiro/agents/<agent>.json`):
+
+```json
+{
+  "name": "my-opensearch-agent",
+  "description": "Agent with OpenSearch vector search expertise",
+  "prompt": "You are an OpenSearch expert. Use the opensearch-vector-search skill for guidance.",
+  "tools": ["fs_read", "shell"],
+  "resources": [
+    "skill://.kiro/skills/opensearch-vector-search/SKILL.md"
+  ]
+}
+```
+
+> **Tip:** Option 1 (Steering) is simpler and works for general questions in any Kiro chat. Option 2 (Agent Skill) is better when you want the knowledge scoped to a specific agent.
 
 ## Project Structure
 
@@ -30,6 +105,7 @@ cp -r . ~/.openclaw/skills/opensearch-vector-search/
 ├── SKILL.md                              # Skill definition and workflows
 ├── references/
 │   ├── vector-search.md                  # k-NN, HNSW, disk mode guide
+│   ├── quantization-1bit-32x.md           # 1-bit SQ on-disk tuning and cost data
 │   ├── quantization-techniques.md        # Compression techniques comparison
 │   ├── cost-optimization.md              # Instance sizing, memory formulas, cost cases
 │   ├── cluster-tuning.md                 # JVM, thread pools, node configuration
@@ -40,7 +116,32 @@ cp -r . ~/.openclaw/skills/opensearch-vector-search/
 ├── scripts/
 │   ├── get_opensearch_pricing.py         # AWS Pricing API query tool
 │   └── analyze_cluster.py               # Live cluster analyzer (read-only)
+└── opensearch-vector-benchmark/
+    ├── SKILL.md                          # VectorDBBench workflow and safety guardrails
+    ├── references/                       # Scenario, runbook, and result-analysis guidance
+    └── scripts/
+        └── generate_benchmark_plan.py    # Dry-run/run command generator
 ```
+
+## VectorDBBench Skill
+
+The bundled `opensearch-vector-benchmark` skill guides agents through controlled OpenSearch
+vector benchmarks with [VectorDBBench](https://github.com/zilliztech/VectorDBBench). It separates
+managed domains, OpenSearch Serverless, and the OpenSearch `s3vector` engine; captures experiment
+context; and explains on-disk oversampling and page-cache effects.
+
+Generate a safe dry-run plan:
+
+```bash
+python3 opensearch-vector-benchmark/scripts/generate_benchmark_plan.py \
+  --deployment managed \
+  --host search-example.us-east-1.es.amazonaws.com \
+  --case-type Performance768D1M \
+  --db-label baseline
+```
+
+The managed-domain baseline uses `NUM_PER_BATCH=20000` and 40 indexing clients. Serverless starts
+with one indexing client. The script only generates commands and never connects to a cluster.
 
 ## Live Cluster Analyzer
 

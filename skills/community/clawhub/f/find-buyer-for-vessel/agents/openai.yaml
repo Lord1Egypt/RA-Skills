@@ -1,0 +1,4 @@
+interface:
+  display_name: "租赁-卖家找买家"
+  short_description: "根据船型、载重、船龄和船旗智能匹配真实求购买家并评分"
+  default_prompt: "使用 $find-buyer-for-vessel 根据我的待售船信息匹配合适的买家需求。"

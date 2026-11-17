@@ -1,0 +1,71 @@
+{
+  "NETWORK_PATTERNS": [
+    "import requests",
+    "from requests",
+    "urllib",
+    "httpx",
+    "curl",
+    "wget",
+    "fetch\\(",
+    "XMLHttpRequest",
+    "axios",
+    "http\\.get",
+    "http\\.post",
+    "websocket"
+  ],
+  "DELETE_PATTERNS": [
+    "os\\.remove",
+    "os\\.rmdir",
+    "shutil\\.rmtree",
+    "\\bos\\.unlink\\b",
+    "\\brm\\b",
+    "\\brmdir\\b",
+    "fs\\.unlink",
+    "fs\\.rmdir",
+    "fs\\.rm"
+  ],
+  "SUBPROCESS_PATTERNS": [
+    "os\\.system",
+    "subprocess",
+    "popen",
+    "popen2",
+    "exec\\(",
+    "eval\\(",
+    "Runtime\\.getRuntime",
+    "ProcessBuilder"
+  ],
+  "SENSITIVE_PATTERNS_B64": [
+    "bWVtb3J5Lw==",
+    "XC53b3JrYnVkZHkvbWVtb3J5",
+    "TUVNT1JZXC5tZA==",
+    "XGR7NH0tXGR7Mn0tXGR7Mn1cLm1k",
+    "KD88IVthLXpBLVowLTldKWNyZWRlbnRpYWwoPyFbYS16QS1aMC05XSk=",
+    "KD88IVthLXpBLVowLTldKXBhc3N3ZCg/IVthLXpBLVowLTldKQ==",
+    "KD88IVthLXpBLVowLTldKXBhc3N3b3JkKD8hW2EtekEtWjAtOV0p",
+    "KD88IVthLXpBLVowLTldKXNlY3JldCg/IVthLXpBLVowLTldKQ==",
+    "KD88IVthLXpBLVowLTldKWFwaVtfLV0/a2V5KD8hW2EtekEtWjAtOV0p",
+    "KD88IVthLXpBLVowLTldKXRva2VuKD8hW2EtekEtWjAtOV0p",
+    "KD88IVthLXpBLVowLTldKWFjY2Vzc1tfLV0/dG9rZW4oPyFbYS16QS1aMC05XSk=",
+    "KD88IVthLXpBLVowLTldKXByaXZhdGVbXy1dP2tleSg/IVthLXpBLVowLTldKQ==",
+    "T1BFTkFJX0FQSV9LRVk=",
+    "QU5USFJPUElDX0FQSV9LRVk=",
+    "R0lUSFVCX1RPS0VO",
+    "QVdTXw=="
+  ],
+  "CRITICAL_PATH_PATTERNS_B64": [
+    "LyQ=",
+    "XltBLVphLXpdOltcL10=",
+    "QzpcV2luZG93cw==",
+    "QzpcUHJvZ3JhbSBGaWxlcw==",
+    "QzpcVXNlcnM=",
+    "L3Vzci8=",
+    "L2V0Yy8=",
+    "L3Zhci8=",
+    "L2Jvb3Qv",
+    "L3Jvb3Qv",
+    "XC5zc2gv",
+    "XC5nbnVwZy8=",
+    "XC5jb25maWcv",
+    "XC5hd3Mv"
+  ]
+}

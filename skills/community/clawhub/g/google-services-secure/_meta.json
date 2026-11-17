@@ -1,6 +1,77 @@
 {
-  "ownerId": "kn70w8hgbfqgnaa9yw0a2f2q7n828vd3",
+  "name": "google-services-secure",
   "slug": "google-services-secure",
   "version": "1.0.0",
-  "publishedAt": 1775261380898
+  "description": "Secure Google Workspace integration with enterprise-grade security. Features credential isolation, input validation, audit logging, rate limiting, and granular permissions. Supports Gmail, Drive, Calendar, Sheets, Docs, Contacts, and more. Uses OAuth 2.0 flow for secure authentication.",
+  "author": "nelson-mazonzika",
+  "license": "MIT",
+  "homepage": "https://clawhub.ai/nelson-mazonzika/google-services-secure",
+  "repository": "https://github.com/nelmaz/openclaw-google-services-secure",
+  "tags": [
+    "google",
+    "gmail",
+    "drive",
+    "calendar",
+    "sheets",
+    "docs",
+    "contacts",
+    "workspace",
+    "oauth",
+    "security",
+    "enterprise",
+    "audit-logging",
+    "rate-limiting",
+    "credential-isolation"
+  ],
+  "category": "productivity",
+  "openclaw": {
+    "requires": {
+      "bins": [],
+      "env": [
+        "GOOGLE_API_KEY",
+        "GOOGLE_CLIENT_ID",
+        "GOOGLE_CLIENT_SECRET",
+        "GOOGLE_REDIRECT_URI"
+      ],
+      "node": ">=18.0.0"
+    },
+    "security": {
+      "level": "enterprise",
+      "features": [
+        "credential-isolation",
+        "input-validation",
+        "audit-logging",
+        "rate-limiting",
+        "granular-permissions",
+        "sandbox-support",
+        "oauth-2.0-flow",
+        "https-only",
+        "confirmation-required"
+      ],
+      "tested": true,
+      "audit-trail": true
+    },
+    "emoji": "🔒"
+  },
+  "screenshots": [],
+  "publishedAt": 1712192000000,
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2024-04-04",
+      "changes": [
+        "Initial secure release",
+        "OAuth 2.0 authorization flow implementation",
+        "Credential isolation (environment variables only)",
+        "Multi-service support (Gmail, Drive, Calendar, Sheets, Docs, Contacts)",
+        "Input validation (email, file paths, data sanitization)",
+        "Audit logging with complete action trail",
+        "Rate limiting (service-specific limits)",
+        "Granular permissions (3 levels: readonly, restricted, full)",
+        "Two-factor confirmation for dangerous operations",
+        "HTTPS enforcement",
+        "Setup validation and OAuth scripts"
+      ]
+    }
+  ]
 }

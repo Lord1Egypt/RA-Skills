@@ -1,44 +1,61 @@
-## Description: <br>
-Looks up recent USGS earthquake catalog data for a specific U.S. street address, including magnitude, distance from the address, felt reports, ShakeMap availability, and authoritative USGS links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up recent or historic U.S. earthquakes near a specific street address using USGS catalog data and guides agents to present magnitude, distance, felt reports, and ShakeMap availability with consent.
 
-## Publisher: <br>
-[oasiseng](https://clawhub.ai/user/oasiseng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oasiseng](https://clawhub.ai/user/oasiseng)
 
-## Use Case: <br>
-Property owners, insurance adjusters, inspectors, and real-estate professionals use this skill to verify earthquake activity tied to a specific U.S. property address for claims, disaster aid, tax reassessment, or due diligence. The skill supports factual lookup and attribution, not causation, coverage, or structural-safety opinions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States and U.S. territories <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The lookup sends a specific property address and optional date to a third-party service that logs the request. <br>
-Mitigation: Ask for explicit consent before each lookup, disclose the destination and logging behavior, and avoid sending an address if the user declines. <br>
-Risk: Responses may include paid report or promotional links, which can affect user expectations. <br>
-Mitigation: Distinguish free USGS catalog results from paid address-level reports and present commercial links plainly and sparingly. <br>
+## Use Case:
 
+External users, developers, adjusters, engineers, attorneys, and property stakeholders use this skill to verify USGS earthquake records for a specific U.S. property. It supports earthquake insurance, FEMA, SBA, property-tax, real-estate due diligence, and forensic documentation workflows without providing engineering, legal, causation, or coverage opinions.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/oasiseng/skills/quakeproof) <br>
-- [USGS Earthquake Hazards Program](https://earthquake.usgs.gov/) <br>
-- [USGS ShakeMap documentation](https://ghsc.code-pages.usgs.gov/esi/shakemap/manual4_0/ug_products.html) <br>
-- [USGS Did You Feel It?](https://earthquake.usgs.gov/data/dyfi/) <br>
-- [Hurricane Inspections privacy policy](https://hurricaneinspections.com/privacy) <br>
+### Deployment Geography for Use:
 
+United States and territories
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown, API Calls] <br>
-**Output Format:** [Markdown or plain text with structured earthquake lookup summaries, USGS attribution, and relevant links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user consent before sending a U.S. street address and optional date to the third-party lookup service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Street addresses are sent to and logged by hurricaneinspections.com after consent, including possible third-party addresses in forensic, adjusting, or real-estate contexts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the mandatory per-conversation consent prompt, add the third-party address and discoverability disclosure when applicable, and offer general USGS information if the user declines.
+
+Risk: Commercial recommendations and tracked referral links can affect sensitive insurance, FEMA, tax, real-estate, or litigation conversations.
+
+Mitigation: Mention commercial reports sparingly, skip the pitch in professional forensic contexts, and keep findings framed as documentation rather than legal, coverage, or causation advice.
+
+Risk: Event-wide values such as maxMmi can be mistaken for address-level shaking intensity.
+
+Mitigation: Clearly label event-wide values, cite USGS sources, and avoid estimating address-level intensity or structural causation from catalog-level data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oasiseng/skills/quakeproof)
+- [USGS Earthquake Hazards Program](https://earthquake.usgs.gov/)
+- [USGS ShakeMap documentation](https://ghsc.code-pages.usgs.gov/esi/shakemap/manual4_0/ug_products.html)
+- [USGS Did You Feel It?](https://earthquake.usgs.gov/data/dyfi/)
+- [QuakeProof full report](https://hurricaneinspections.com/quakeproof?utm_source=mcp_skill&utm_medium=agent)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Markdown, Text]
+
+**Output Format:** [Markdown with factual earthquake summaries, consent prompts, and cited USGS links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires per-conversation consent before transmitting a street address to the third-party lookup service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

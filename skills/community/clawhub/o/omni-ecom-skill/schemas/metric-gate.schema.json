@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/metric-gate-2.0.json",
+  "title": "Omni E-commerce Deterministic Metric Gate Result",
+  "type": "object",
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "run_id", "client_scope", "team_version", "generated_at", "source", "source_file", "source_sha256", "source_contract", "gate_status", "issues", "rows", "notes"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "artifact_type": {"const": "metric_gate_result"},
+    "contract_name": {"const": "omni-ecom.metric-gate"},
+    "contract_version": {"const": "2.0"},
+    "created_by_team_version": {"type": "string", "minLength": 1},
+    "legacy_compatibility": {"const": {"read_only_import": ["omni-ecom.metric-gate@1.0"], "current_numeric_authority": false}},
+    "run_id": {"type": "string", "minLength": 3},
+    "client_scope": {"type": "string", "minLength": 1},
+    "team_version": {"type": "string", "minLength": 1},
+    "generated_at": {"type": "string", "minLength": 8},
+    "source": {"type": "string"},
+    "source_file": {"type": "string", "minLength": 1},
+    "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_contract": {"enum": ["direct_scoped_csv", "native_normalized_report"]},
+    "gate_status": {"enum": ["PASS", "WARN", "BLOCKED"]},
+    "issues": {"type": "array"},
+    "rows": {"type": "array"},
+    "notes": {"type": "array"}
+  }
+}

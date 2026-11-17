@@ -1,44 +1,61 @@
-## Description: <br>
-Google Forms API integration with managed OAuth. Create forms, inspect structure, review responses, change publishing settings, and manage response notification watches. Use this skill when users want to create surveys, collect responses, or manage Google Forms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Forms API integration with managed OAuth. Create forms, inspect structure, review responses, change publishing settings, and manage response notification watches.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to connect a Google account through ClawLink, discover available Google Forms tools, create and update forms, review responses, manage publishing settings, and manage response notification watches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives OpenClaw agents access to Google Forms through a connected Google account. <br>
-Mitigation: Install only when this access is intended, and disconnect the Google account when the integration is no longer needed. <br>
-Risk: Write or destructive actions can affect sharing, publishing, deletion, batch changes, or response watches. <br>
-Mitigation: Review each preview before approving write actions, and remove response watches when they are no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to Google Forms through ClawLink, then create forms, inspect form structure, review responses, adjust publishing settings, and manage response watches.
 
-## Reference(s): <br>
-- [Google Forms API Overview](https://developers.google.com/forms/api) <br>
-- [Forms Resource](https://developers.google.com/forms/api/reference/rest/v1/forms) <br>
-- [Form Responses Reference](https://developers.google.com/forms/api/reference/rest/v1/forms.responses) <br>
-- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw) <br>
-- [Google Forms Skill on ClawHub](https://clawhub.ai/hith3sh/google-forms-surveys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown with shell command examples and JSON tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ClawLink OAuth connection and user confirmation before write or destructive actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The skill connects a user's Google account through ClawLink and can access Google Forms data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the user trusts the ClawLink plugin and hosted OAuth service, and keep access scoped to the connected Google account.
+
+Risk: The available tools can modify forms, publishing settings, watches, questions, and responses.
+
+Mitigation: Preview and confirm the target resource and intended effect before any create, update, or delete operation.
+
+Risk: A missing or stale Google Forms connection can lead to failed or unavailable tool calls.
+
+Mitigation: Verify the connection with ClawLink integration and tool-list checks before relying on Google Forms tools.
+
+## Reference(s):
+
+- [Google Forms API Overview](https://developers.google.com/forms/api)
+- [Forms Resource](https://developers.google.com/forms/api/reference/rest/v1/forms)
+- [Responses Reference](https://developers.google.com/forms/api/reference/rest/v1/forms.responses)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/google-forms-surveys)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide authenticated Google Forms read and write operations through ClawLink; write actions require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-A structured workflow plugin for OpenClaw agents that guides work through brainstorm, plan, execute, verify, and deliver steps with persistent state and multi-project support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Workflow is a structured OpenClaw plugin that guides agents through brainstorming, planning, execution, verification, and delivery with persistent multi-project workflow state.
 
-## Publisher: <br>
-[kangyishuai](https://clawhub.ai/user/kangyishuai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kangyishuai](https://clawhub.ai/user/kangyishuai)
 
-## Use Case: <br>
-Developers and agent users use this plugin to run explicit structured workflows for project planning, execution, review, and delivery in OpenClaw. It is intended for tasks where workflow state, branching, verification, and multi-project tracking help coordinate longer-running work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workflow state is stored locally under the OpenClaw workspace. <br>
-Mitigation: Review the configured storage location before installation and avoid placing sensitive project details in workflow notes or outputs unless local storage is appropriate. <br>
-Risk: Cleanup or discard prompts may delete workflow artifacts. <br>
-Mitigation: Approve deletion only when the listed files are clearly temporary workflow artifacts and not user-created deliverables. <br>
-Risk: Subagent delegation can expose unnecessary private context. <br>
-Mitigation: Share only the context each subagent needs and avoid forwarding secrets, credentials, or unrelated private project details. <br>
+## Use Case:
 
+Developers and agent operators use this plugin to manage structured work sessions, persist workflow progress, branch between sequential and subagent execution, and load bundled workflow skills at the right step.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kangyishuai/agent-workflow) <br>
-- [Publisher profile](https://clawhub.ai/user/kangyishuai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and JSON tool responses with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores workflow state locally under the OpenClaw workspace and returns structured status, progress, warnings, and next-step guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and package.json) <br>
+Risk: Workflow state can include project names, progress, notes, and outputs stored on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where local persistence of this information is acceptable, and avoid recording sensitive information in workflow notes or outputs.
+
+Risk: Clawscan reports a path-handling flaw that could let tool callers reach JSON files outside the workflow storage area.
+
+Mitigation: Do not expose the agent_workflow tool to untrusted prompts or callers until workflowId validation and path containment are fixed.
+
+Risk: The security guidance calls for clearer retention or cleanup controls for persisted workflow data.
+
+Mitigation: Review and remove persisted workflow files as needed, and prefer deployments that add explicit retention or cleanup controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kangyishuai/skills/agent-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON tool responses and Markdown skill guidance with shell and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Workflow names, progress, notes, and outputs may be persisted on disk by the plugin.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

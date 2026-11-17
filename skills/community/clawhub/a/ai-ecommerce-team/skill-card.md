@@ -1,40 +1,54 @@
-## Description: <br>
-Provides a one-stop AI ecommerce automation deployment plan using five open-source tools for product monitoring, product images, backend commerce, workflow automation, and customer service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language deployment plan for an AI-assisted ecommerce operations team using open source tools for product monitoring, product imagery, ecommerce backend services, workflow automation, and customer support.
 
-## Publisher: <br>
-[wukai8289](https://clawhub.ai/user/wukai8289) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wukai8289](https://clawhub.ai/user/wukai8289)
 
-## Use Case: <br>
-Developers, consultants, and ecommerce operators use this skill to design AI-assisted ecommerce automation deployments for small businesses, including product monitoring, storefront backend setup, workflow automation, and customer service planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ecommerce deployment steps may affect live stores or customer workflows if applied without review. <br>
-Mitigation: Review generated Medusa, n8n, Chatwoot, Feishu, and cron steps before applying them to production systems. <br>
-Risk: The skill has broad activation terms for ecommerce automation work. <br>
-Mitigation: Invoke it explicitly for ecommerce automation planning and verify that its recommendations match the intended store environment. <br>
+## Use Case:
 
+Developers, operators, and ecommerce consultants use this skill to draft deployment plans, implementation steps, workflow configurations, and client-facing proposals for small-business ecommerce automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wukai8289/ai-ecommerce-team) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with deployment steps, configuration guidance, and proposal-style planning text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning and deployment guidance for Medusa, n8n, Chatwoot, Feishu, OpenClaw Cron, and related ecommerce workflows; users should review steps before applying them to live stores.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and package.json) <br>
+Risk: Suggested ecommerce integrations may affect production storefronts, workflows, or customer support processes if implemented without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the recommended integrations, deployment steps, and workflow changes before applying them to real business systems.
+
+Risk: Pricing tables and client proposal content may not match a specific market, vendor cost, or operating model.
+
+Mitigation: Validate costs, scope, and support assumptions before sending proposals or using them for commercial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wukai8289/skills/ai-ecommerce-team)
+- [Publisher profile](https://clawhub.ai/user/wukai8289)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with deployment steps, workflow configuration, pricing tables, and proposal content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language planning output; informational only and does not execute actions automatically.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

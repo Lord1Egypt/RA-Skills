@@ -1,40 +1,53 @@
-## Description: <br>
-Book tattoo services through Lokuli's MCP server by searching providers, checking availability, and creating bookings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book tattoo services through Lokuli MCP. Use when user needs to find and book tattoo. Triggers on requests like "book a tattoo", "find tattoo near me", or any tattoo service request.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users can use this skill to ask an agent to find tattoo services, check appointment availability, and create a booking through Lokuli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A booking request may send personal contact details to Lokuli's external service. <br>
-Mitigation: Confirm the customer's name, email, and phone number before submitting a booking. <br>
-Risk: An incorrect provider, service, date, or time slot could create an unintended appointment. <br>
-Mitigation: Confirm the provider, service, and selected time slot with the user before calling create_booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Book Tattoo ClawHub page](https://clawhub.ai/edwardrodriguez703-design/book-tattoo) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users and agents use this skill to find tattoo providers through Lokuli, check appointment availability, and create tattoo bookings.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, API calls] <br>
-**Output Format:** [Markdown guidance with JSON-RPC MCP tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Booking calls may include provider, service, time slot, customer name, email, and phone number.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence.release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Booking creation can send a customer's name, email, and phone number to Lokuli.
+
+Mitigation: Confirm the provider, appointment time, and contact details with the user before creating a booking.
+
+Risk: The skill depends on an external booking service and may create real appointments.
+
+Mitigation: Install and use the skill only when Lokuli is an acceptable booking provider for the user or organization.
+
+## Reference(s):
+
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/skills/book-tattoo)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls]
+
+**Output Format:** [Markdown instructions with JSON-RPC examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Lokuli MCP tools for provider search, availability checks, and booking creation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

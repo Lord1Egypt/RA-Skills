@@ -1,7 +1,7 @@
 ---
 name: math-review
 description: Verifies math-heavy code for algorithmic correctness and numerical stability
-version: 1.9.8
+version: 1.10.3
 triggers:
   - math
   - algorithms
@@ -12,36 +12,12 @@ triggers:
   - reviewing scientific algorithms
   - ML models
   - or numerical code
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.pensive:shared", "night-market.imbue:proof-of-work"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.imbue:proof-of-work", "night-market.imbue:review-core", "night-market.imbue:structured-output"]}}}
 source: claude-night-market
 source_plugin: pensive
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Quick Start](#quick-start)
-- [When to Use](#when-to-use)
-- [Required TodoWrite Items](#required-todowrite-items)
-- [Core Workflow](#core-workflow)
-- [1. Context Sync](#1-context-sync)
-- [2. Requirements Mapping](#2-requirements-mapping)
-- [3. Derivation Verification](#3-derivation-verification)
-- [4. Stability Assessment](#4-stability-assessment)
-- [5. Proof of Work](#5-proof-of-work)
-- [Progressive Loading](#progressive-loading)
-- [Essential Checklist](#essential-checklist)
-- [Output Format](#output-format)
-- [Summary](#summary)
-- [Context](#context)
-- [Requirements Analysis](#requirements-analysis)
-- [Derivation Review](#derivation-review)
-- [Stability Analysis](#stability-analysis)
-- [Issues](#issues)
-- [Recommendation](#recommendation)
-- [Exit Criteria](#exit-criteria)
+> **Night Market Skill**: ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Mathematical Algorithm Review
@@ -69,17 +45,15 @@ Intensive analysis ensuring numerical stability and alignment with standards.
 - General algorithm review -
   use architecture-review
 - Performance optimization - use parseltongue:python-performance
-- General algorithm review -
-  use architecture-review
-- Performance optimization - use parseltongue:python-performance
 
-## Required TodoWrite Items
+## Required Progress Items
 
 1. `math-review:context-synced`
 2. `math-review:requirements-mapped`
 3. `math-review:derivations-verified`
 4. `math-review:stability-assessed`
 5. `math-review:evidence-logged`
+6. `math-review:findings-verified`
 
 ## Core Workflow
 
@@ -106,6 +80,12 @@ jupyter nbconvert --execute derivation.ipynb
 ```
 **Verification:** Run `pytest -v tests/math/` to verify.
 Log deviations, recommend: Approve / Approve with actions / Block. **Load**: `modules/testing-strategies.md`
+
+### 6. Verify Findings Are Grounded (`math-review:findings-verified`)
+
+Write issues to `.review/findings.json`, run the citation verifier
+(`Skill(imbue:review-core)` Step 5), and drop or label `UNVERIFIED` any
+the verifier rejects.
 
 ## Progressive Loading
 
@@ -143,13 +123,22 @@ Files | Risk classification | Standards
 Condition number | Precision | Risks
 
 ## Issues
-[M1] [Title]: Location | Issue | Fix
+[M1] [Title]
+- Location: file.py:123
+- Anchor: `verbatim source text at line 123`
+- Issue: [what is wrong] | Fix: [remediation] | Evidence: [E1]
 
 ## Recommendation
 Approve / Approve with actions / Block
 ```
+Every issue's `Anchor` is the exact source text at `Location`.
+`citation_verifier.py` re-reads it to prove the finding is real.
 **Verification:** Run the command with `--help` flag to verify availability.
 
 ## Exit Criteria
 
-- Context synced, requirements mapped, derivations verified, stability assessed, evidence logged with citations
+- [ ] Context synced, requirements mapped, derivations verified, stability
+      assessed, evidence logged with citations
+- [ ] Every reported issue carries a `Location` + verbatim `Anchor`, and
+      `citation_verifier.py` confirmed all citations (exit `0`) or unverified
+      issues were dropped or labeled `UNVERIFIED`

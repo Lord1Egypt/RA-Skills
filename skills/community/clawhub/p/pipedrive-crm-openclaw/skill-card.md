@@ -1,41 +1,57 @@
-## Description: <br>
-Manage Pipedrive CRM from OpenClaw using API v1, including people, organizations, deals, leads, activities, notes, pipelines, and custom endpoint actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Pipedrive CRM from OpenClaw using API v1, including people, organizations, deals, leads, activities, notes, pipelines, and custom endpoint actions.
 
-## Publisher: <br>
-[danielfoch](https://clawhub.ai/user/danielfoch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danielfoch](https://clawhub.ai/user/danielfoch)
 
-## Use Case: <br>
-Employees, external operators, and developers use this skill to perform day-to-day Pipedrive CRM operations from an agent workflow, including record lookup, create/update/delete actions, deal stage movement, activity logging, notes, and custom API requests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad Pipedrive CRM mutation authority can create, update, delete, or move business records. <br>
-Mitigation: Use the least-privileged Pipedrive token available and require explicit human confirmation before delete operations or raw mutating requests. <br>
-Risk: Credential exposure or misrouting could give the agent access to sensitive CRM data. <br>
-Mitigation: Do not print raw tokens, keep credentials in environment variables, and verify that the configured API base points only to Pipedrive. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Entity Playbooks](references/entity-playbooks.md) <br>
-- [Pipedrive API v1 Notes](references/pipedrive-v1-notes.md) <br>
-- [ClawHub release page](https://clawhub.ai/danielfoch/pipedrive-crm-openclaw) <br>
+## Use Case:
 
+Developers and CRM operators use this skill to manage Pipedrive records through API-backed workflows instead of the Pipedrive UI. It supports contact, organization, deal, lead, activity, note, pipeline, stage, product, and custom endpoint operations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON request payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute Pipedrive API calls through bundled Python helper scripts when credentials are configured.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create, update, move, or delete live Pipedrive CRM records.
+
+Mitigation: Require manual review before delete, raw request, or bulk update actions, and read the target record before making changes when user intent is ambiguous.
+
+Risk: Pipedrive API credentials may be exposed through shared terminals, recordings, or overly broad permissions.
+
+Mitigation: Use the least-privileged credential available, avoid printing raw tokens, and do not run the setup wizard in shared or recorded terminals.
+
+Risk: A custom PIPEDRIVE_API_BASE can route requests to an unintended destination.
+
+Mitigation: Set PIPEDRIVE_API_BASE only after verifying that the destination is trusted and expected.
+
+## Reference(s):
+
+- [Entity Playbooks](references/entity-playbooks.md)
+- [Pipedrive API v1 Notes](references/pipedrive-v1-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API responses from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Pipedrive authentication and company routing environment variables before API calls can run.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

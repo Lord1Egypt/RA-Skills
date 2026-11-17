@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7dxr58ktjh28y80xrgmypzg582wtg5",
-  "slug": "proposal-writer-pro",
+  "name": "proposal-writer",
+  "displayName": "商业方案写作助手",
   "version": "1.0.0",
-  "publishedAt": 1775185890445
+  "slug": "proposal-writer-pro",
+  "description": "专业销售方案和报价演示策略师，支持 ROI 分析、竞争定位",
+  "author": "@bingze00000",
+  "license": "MIT",
+  "tags": ["proposal", "sales", "business", "roi", "pricing", "presentation"],
+  "pricing": {
+    "type": "paid",
+    "amount": 39,
+    "currency": "CNY"
+  },
+  "requirements": ["openai"],
+  "category": "business"
 }

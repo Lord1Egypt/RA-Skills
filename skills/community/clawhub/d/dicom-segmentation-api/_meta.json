@@ -1,6 +1,16 @@
 {
-  "ownerId": "kn754w8negkve53dntzhycyd0h82565k",
-  "slug": "dicom-segmentation-api",
+  "schema_version": "1",
+  "name": "dicom-segmentation-api",
   "version": "1.0.0",
-  "publishedAt": 1772639325519
+  "description": "Deploy medical image segmentation API using TotalSegmentator and MONAI for CT/MRI analysis",
+  "homepage": "",
+  "author": {
+    "name": "Sunshine-del-ux",
+    "email": "",
+    "url": ""
+  },
+  "repository": "",
+  "keywords": ["medical", "segmentation", "dicom", "ct", "mri", "totalsegmentator", "monai", "ai"],
+  "license": "MIT",
+  "dependencies": {}
 }

@@ -1,7 +1,7 @@
 ---
 name: api-review
 description: Evaluates API surface design, consistency, and exemplar alignment
-version: 1.9.8
+version: 1.10.3
 triggers:
   - api
   - design
@@ -9,21 +9,21 @@ triggers:
   - documentation
   - versioning
   - reviewing public API changes or before releasing a new API surface
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83d\udd0d", "requires": {"config": ["night-market.pensive:shared", "night-market.imbue:proof-of-work"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83d\udd0d", "requires": {"config": ["night-market.imbue:proof-of-work", "night-market.imbue:review-core", "night-market.imbue:structured-output"]}}}
 source: claude-night-market
 source_plugin: pensive
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # API Review Workflow
 
-## Table of Contents
+## When NOT To Use
 
-1. [Usage](#usage)
-2. [Required Progress Tracking](#required-progress-tracking)
-3. [Workflow](#workflow)
+- Internal refactors behind a stable surface (use
+  `pensive:code-refinement`)
+- Coupling and layering questions (use `pensive:architecture-review`)
 
 ## Usage
 
@@ -36,6 +36,7 @@ Use this skill to review public API changes, design new surfaces, audit consiste
 3. `api-review:consistency-audit`
 4. `api-review:docs-governance`
 5. `api-review:evidence-log`
+6. `api-review:findings-verified`
 
 ## Workflow
 
@@ -45,7 +46,7 @@ Catalog all public APIs by language. Record stability levels, feature flags, and
 
 ### Step 2: Exemplar Research
 
-Identify at least two high-quality API references for the relevant language, such as pandas, requests, or tokio. Document their patterns for namespacing, pagination, error handling, and structure to serve as a baseline for the audit.
+Identify at least two high-quality API references for the relevant language, such as pandas, requests, or tokio. Document their patterns for namespacing, pagination, error handling, and structure as a baseline for the audit.
 
 ### Step 3: Consistency Audit
 
@@ -75,11 +76,26 @@ Verify that all public APIs include usage examples and that the changelog reflec
 
 ## Output Format
 
-The final report must include a summary of the API surface, a numerical inventory of endpoints and public types, and an alignment analysis against researched exemplars. Document consistency issues and documentation gaps with precise file and line references. Conclude with a clear decision and a timed action plan.
+The final report must include a summary of the API surface, a numerical inventory
+of endpoints and public types, and an alignment analysis against researched
+exemplars. Document consistency issues and documentation gaps with precise file
+and line references. Conclude with a clear decision and a timed action plan.
+
+Each issue must follow this structure:
+
+```text
+[A1] Title
+- Location: file.py:42
+- Anchor: `verbatim source text at line 42`
+- Issue: what is wrong | Fix: remediation | Evidence: [E1]
+```
+
+The `Anchor` is the exact source text at `Location`.
+`citation_verifier.py` re-reads it to prove the finding is real.
 
 ## Technical Integration
 
-Use `imbue:proof-of-work` for reproducible command capture and `imbue:structured-output` for formatting findings. Reference `imbue:diff-analysis/modules/risk-assessment-framework` when assessing breaking changes.
+Use `imbue:proof-of-work` for reproducible command capture and `imbue:structured-output` for formatting findings. Reference `imbue:diff-analysis/modules/riREDACTED-SECRET` when assessing breaking changes.
 
 ## Module Reference
 
@@ -87,6 +103,23 @@ Use `imbue:proof-of-work` for reproducible command capture and `imbue:structured
 - See `modules/exemplar-research.md` for researching API standards
 - See `modules/consistency-audit.md` for cross-API consistency checks
 
+### Verify Findings Are Grounded (`api-review:findings-verified`)
+
+Write findings to `.review/findings.json`, run the citation verifier
+(`Skill(imbue:review-core)` Step 5), and drop or label `UNVERIFIED` any
+the verifier rejects.
+
+## Exit Criteria
+
+- [ ] Surface inventoried, exemplars researched, consistency audited,
+  documentation governance checked, and evidence logged.
+- [ ] Every reported finding carries a `Location` + verbatim `Anchor`
+  confirmed by `citation_verifier.py` (exit `0`), or unverified findings
+  were dropped or labeled `UNVERIFIED`.
+
 ## Troubleshooting
 
-If the audit command is missing, verify that dependencies are installed and accessible in the system PATH. Check file permissions if access errors occur. Use the `--verbose` flag to inspect execution logs if the tool behaves unexpectedly.
+If the audit command is missing, verify that dependencies are installed and
+accessible in the system PATH. Check file permissions if access errors
+occur. Use the `--verbose` flag to inspect execution logs if the tool
+behaves unexpectedly.

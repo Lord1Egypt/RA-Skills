@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ppp://schemas/detect@7",
+  "title": "paper-polisher-pro detect result (v7 contract)",
+  "description": "ai_detector.detect / pp_api.detect_text 的输出契约。顶层必填键与类型为兼容性承诺：新增键不破坏契约，删除/改型即破坏并在 CHANGELOG 声明。",
+  "type": "object",
+  "required": ["overall_ai_score", "overall_risk", "degraded_mode", "integrity_notice", "language", "paragraph_scores", "total_paragraphs", "risk_bands"],
+  "properties": {
+    "overall_ai_score": {"type": "number", "minimum": 0, "maximum": 100},
+    "overall_risk": {"type": "string", "enum": ["high", "medium", "low", "unknown"]},
+    "language": {"type": "string"},
+    "degraded_mode": {"type": "boolean"},
+    "degraded_notice": {"type": "string"},
+    "integrity_notice": {"type": "string"},
+    "total_paragraphs": {"type": "integer", "minimum": 0},
+    "paragraph_scores": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["text"],
+        "properties": {
+          "text": {"type": "string"},
+          "score": {"type": ["number", "null"]},
+          "class": {"type": "string"}
+        }
+      }
+    },
+    "risk_bands": {"type": "object"},
+    "supervised": {"type": ["object", "null"]},
+    "model_hints": {"type": "array"},
+    "top_patterns": {"type": "array"},
+    "mixed_signal": {"type": "boolean"},
+    "register_hint": {"type": "string"}
+  },
+  "additionalProperties": true
+}

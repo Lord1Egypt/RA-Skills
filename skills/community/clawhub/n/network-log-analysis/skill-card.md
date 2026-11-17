@@ -1,43 +1,59 @@
-## Description: <br>
-Guides device-level network log analysis and forensic timeline construction from raw syslog, console, and SNMP trap data without SIEM platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Device-level network log analysis using raw syslog data without SIEM platforms, covering forensic timeline construction, syslog pattern recognition, multi-device event correlation, anomaly detection, and NTP-aware timestamp normalization.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Network engineers and security analysts use this skill to audit syslog collection, correlate events across devices, detect anomalies, and reconstruct incident timelines from raw logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Network logs may contain sensitive infrastructure, user, and source IP data. <br>
-Mitigation: Limit analysis to approved devices and time windows, redact sensitive excerpts, and store findings according to incident-handling policy. <br>
-Risk: Configuration examples could be mistaken for approved production changes. <br>
-Mitigation: Use command examples for read-only inspection unless explicit change approval exists, and validate any production configuration through normal change control. <br>
-Risk: Incorrect time synchronization or missing logs can produce misleading timelines. <br>
-Mitigation: Verify NTP status, retention coverage, and collection gaps before asserting root cause. <br>
+## Use Case:
 
+Network engineers, security analysts, and incident responders use this skill to investigate raw device syslog data, audit syslog collection health, correlate events across devices, detect anomalies, and produce a structured forensic report.
 
-## Reference(s): <br>
-- [CLI Reference](references/cli-reference.md) <br>
-- [Syslog Patterns Reference](references/syslog-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only analysis guidance; may include commands for inspecting logs and device state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: Timestamp-conversion examples may pass log text through shell commands when used on attacker-controlled logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use safer parsing tools or scripts that avoid shell interpolation of log text before applying examples to untrusted logs.
+
+Risk: Intermediate timeline and baseline files may expose sensitive log data or collide on shared systems.
+
+Mitigation: Use private temporary directories, restrict file permissions, and run analysis under an unprivileged read-only account.
+
+Risk: Incomplete syslog collection, retention gaps, or unsynchronized clocks can make forensic conclusions unreliable.
+
+Mitigation: Verify collector coverage, retention, and NTP status before correlation, and document evidence gaps in the final report.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vahagn-madatyan/skills/network-log-analysis)
+- [CLI Reference](references/cli-reference.md)
+- [Syslog Patterns Reference](references/syslog-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration examples, tables, and report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces analyst-facing procedures and report structure; it does not execute log analysis directly.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

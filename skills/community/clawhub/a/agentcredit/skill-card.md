@@ -1,50 +1,65 @@
-## Description: <br>
-Agentcredit helps agents request and repay small USDC microloans on Base mainnet and use AgentCredit as an x402 facilitator for payment settlement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides instant $1-$5 USDC microloans on Base mainnet for AI agents, with fast disbursement, credit checks, and flexible repayment options.
 
-## Publisher: <br>
-[jbpin](https://clawhub.ai/user/jbpin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jbpin](https://clawhub.ai/user/jbpin)
 
-## Use Case: <br>
-External developers and agent operators use this skill to give an agent controlled access to Base USDC microloans for x402 payments, API calls, on-chain operations, or other short-term liquidity needs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create real USDC debt when connected to an agent wallet and used for AgentCredit microloans or x402 settlement. <br>
-Mitigation: Use test amounts first, monitor outstanding loans and fees, and install it only when an agent is intended to borrow USDC through AgentCredit. <br>
-Risk: Wallet signing and payment authority could allow an agent to request loans, settle payments, or sign transactions beyond the operator's intent. <br>
-Mitigation: Use wallet spending controls, keep signing authority scoped to the intended wallet and actions, and avoid unrestricted signing or payment access. <br>
-Risk: Facilitator mode may make borrowing part of payment settlement without a separate loan-request interruption. <br>
-Mitigation: Treat facilitator mode as borrowing, verify wallet exposure limits before use, and monitor repayments so overdue loans do not block later settlements. <br>
+## Use Case:
 
+Developers and agent operators use AgentCredit to let autonomous agents check credit, request small USDC loans, repay loans, and use an x402 facilitator when a wallet has a temporary liquidity shortfall.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jbpin/agentcredit) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jbpin) <br>
-- [AgentCredit API](https://agentlending.spekn.com) <br>
-- [AgentCredit full agent docs](https://agentlending.spekn.com/llms-full.txt) <br>
-- [AgentCredit x402 discovery](https://agentlending.spekn.com/.well-known/x402.json) <br>
-- [AgentCredit A2A agent card](https://agentlending.spekn.com/.well-known/agent-card.json) <br>
-- [AgentCredit pool wallet on BaseScan](https://basescan.org/address/0x510a64F194CB6196d34C93717d88f13aCF0C979f) <br>
-- [Base USDC contract on BaseScan](https://basescan.org/address/0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913) <br>
-- [Spekn operator site](https://spekn.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON snippets, TypeScript examples, REST endpoints, MCP configuration, and wallet-signing instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce loan, credit, repayment, x402 facilitator, and wallet-signature guidance; agent actions can involve real USDC transactions and debt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: server release evidence) <br>
+Risk: Using this skill can create real USDC debt for an enabled agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the agent should access small real-money USDC credit, use a dedicated low-balance wallet, and monitor outstanding loans.
+
+Risk: Misconfigured facilitator or pool details could route an agent to an unintended payment service.
+
+Mitigation: Verify the facilitator URL and pool address before use, and set approval or spending limits where possible.
+
+Risk: Fees increase over time for unpaid loans.
+
+Mitigation: Repay promptly and monitor loan status so overdue balances do not accumulate or block further facilitator settlements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jbpin/skills/agentcredit)
+- [AgentCredit API](https://agentlending.spekn.com)
+- [Full AgentCredit Docs](https://agentlending.spekn.com/llms-full.txt)
+- [x402 Discovery](https://agentlending.spekn.com/.well-known/x402.json)
+- [A2A Agent Card](https://agentlending.spekn.com/.well-known/agent-card.json)
+- [MCP Endpoint](https://agentlending.spekn.com/mcp)
+- [Pool Wallet on BaseScan](https://basescan.org/address/0x510a64F194CB6196d34C93717d88f13aCF0C979f)
+- [USDC Contract on BaseScan](https://basescan.org/address/0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913)
+- [Operator](https://spekn.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with TypeScript, JSON, and HTTP examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes endpoint, wallet-signing, loan-limit, fee, and repayment guidance for using the AgentCredit service.]
+
+## Skill Version(s):
+
+0.5.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

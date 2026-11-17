@@ -1,41 +1,53 @@
-## Description: <br>
-Provides QA teams with structured guidance for managing defects from submission through closure, including severity and priority classification, state transitions, lifecycle timing, defect metrics, and trend analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides QA teams through defect severity and priority grading, lifecycle transitions, closure checks, and trend analysis.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA engineers, test leads, developers, and project stakeholders use this skill to standardize defect lifecycle handling, severity and priority governance, closure checks, and defect trend analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate during general QA or project-management discussions about bugs or defect trends. <br>
-Mitigation: Confirm that the user wants bug lifecycle guidance when the request is ambiguous. <br>
-Risk: Incorrect defect severity, priority, or lifecycle guidance could affect release decisions or escalation paths. <br>
-Mitigation: Have QA leads or release owners review generated classifications, escalation recommendations, and closure decisions before using them operationally. <br>
+## Use Case:
 
+QA engineers, developers, and team leads use this skill to track reported defects from discovery through verification and closure, standardize severity and priority decisions, and analyze defect trends.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kokxi/skills/qa-bug-lifecycle) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/kokxi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Analysis, Configuration] <br>
-**Output Format:** [Markdown guidance with structured lifecycle fields and checklist-style recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces lifecycle state, state history, next actions, and closure criteria for QA defect management.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and server release evidence) <br>
+Risk: Bug examples and attachments may expose customer, identity, payment, or production information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Mask sensitive data before sharing bug reports, screenshots, or logs.
+
+Risk: The optional command to install a broader skill set is unpinned.
+
+Mitigation: Treat installation as a separate decision; verify its source or pin a trusted version before running it.
+
+## Reference(s):
+
+- [Defect analysis and metrics](references/defect-analysis.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Analysis]
+
+**Output Format:** [Markdown defect reports, lifecycle summaries, and trend analyses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Retains defect identifiers and records severity, priority, status history, next actions, and closure criteria.]
+
+## Skill Version(s):
+
+1.8.0 (source: skill frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

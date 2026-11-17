@@ -1,42 +1,59 @@
-## Description: <br>
-AI-powered data analytics knowledge management. Search data pipeline documentation, dashboard specifications, data governance policies, and reporting standards with structured extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered data analytics knowledge management. Search data pipeline documentation, dashboard specifications, data governance policies, and reporting standards with structured extraction.
 
-## Publisher: <br>
-[RooJenkins](https://clawhub.ai/user/RooJenkins) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roojenkins](https://clawhub.ai/user/roojenkins)
 
-## Use Case: <br>
-Data engineers, analysts, and governance leads use this skill to search organizational analytics knowledge, reconcile metric definitions, investigate lineage and data quality issues, and find governance documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API credentials can expose broad organizational analytics context if configured with excessive scope. <br>
-Mitigation: Install only with a trusted UPLO instance, use a least-privilege API key, and confirm accessible data domains and classification tiers before use. <br>
-Risk: Search results or exported organizational context may include confidential or restricted analytics information. <br>
-Mitigation: Respect UPLO classification tiers and review outputs before sharing them outside the organization. <br>
+## Use Case:
 
+Data engineers, analysts, and governance leads use this skill to search organizational analytics knowledge, reconcile metric definitions, investigate lineage, find data owners, and propose documentation updates grounded in UPLO-managed context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RooJenkins/uplo-data-analytics) <br>
-- [UPLO](https://uplo.ai) <br>
-- [UPLO schemas](https://uplo.ai/schemas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include search queries, context-grounded analytics findings, update proposals, and knowledge-gap reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The MCP server package is installed without a pinned version while receiving an API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify the MCP server package before deployment, and use a least-privilege UPLO token.
+
+Risk: The export_org_context capability can expose broad organizational knowledge.
+
+Mitigation: Restrict export_org_context to users approved for broad organizational data access.
+
+Risk: Knowledge-base updates or incident notes may contain credentials, PII, or sensitive operational details.
+
+Mitigation: Avoid logging sensitive incident details, credentials, or PII in updates and conversation summaries.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/roojenkins/skills/uplo-data-analytics)
+- [UPLO](https://uplo.ai)
+- [UPLO Schemas](https://uplo.ai/schemas)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline tool calls, shell commands, and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include grounded analytics findings, data-quality notes, knowledge-gap reports, and proposed knowledge-base updates.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

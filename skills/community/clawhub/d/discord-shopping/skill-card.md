@@ -1,39 +1,49 @@
-## Description: <br>
-Finds and lists the top 3 best new, used, or refurbished deals with prices, links, and coupons for products searched via Discord chat keywords. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds and lists the top 3 best new, used, or refurbished deals with prices, links, and coupons for products searched via Discord chat keywords.
 
-## Publisher: <br>
-[treylc3](https://clawhub.ai/user/treylc3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[treylc3](https://clawhub.ai/user/treylc3)
 
-## Use Case: <br>
-Discord users and community moderators use this skill to answer product shopping requests with concise deal comparisons, current prices, seller links, condition notes, and coupon information. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Automated deal suggestions may be unwanted or noisy in Discord group chats. <br>
-Mitigation: Install only where shopping suggestions are welcome and prefer explicit invocation such as a bot mention or command. <br>
-Risk: Prices, shipping, condition, seller reputation, and coupon validity can change quickly or be misread from search results. <br>
-Mitigation: Verify seller reputation, price, shipping, condition, and coupon terms before buying, and fetch top links when snippets are unclear. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/treylc3/discord-shopping) <br>
+## Use Case:
 
+Discord users use this skill to search for current shopping deals, compare the top new, refurbished, or used offers, and receive concise buying options in chat.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Concise Discord-ready Markdown with ranked bullets, links, prices, conditions, notes, and coupon details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Suppresses Discord link embeds by wrapping deal URLs in angle brackets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad Discord chat triggers could cause the agent to post shopping deal links in group chats without a clearly intentional request.
+
+Mitigation: Install only where the bot responds to explicit commands or direct mentions, especially in group chats.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/treylc3/skills/discord-shopping)
+- [ClawHub publisher profile](https://clawhub.ai/user/treylc3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style Discord message with ranked deal links, prices, conditions, notes, and coupon information when available.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Designed for concise Discord chat output with suppressed link embeds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

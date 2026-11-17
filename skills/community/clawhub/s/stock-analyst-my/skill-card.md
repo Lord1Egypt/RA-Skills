@@ -1,42 +1,58 @@
-## Description: <br>
-Performs technical and fundamental analysis of US, Malaysia, and Hong Kong stocks with real-time data, news, and actionable trading levels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform detailed technical and fundamental stock analysis of US, Malaysia, and Hong Kong equities using current market data, technical indicators, recent catalysts, macro context, and actionable trading levels.
 
-## Publisher: <br>
-[jacurtwong](https://clawhub.ai/user/jacurtwong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jacurtwong](https://clawhub.ai/user/jacurtwong)
 
-## Use Case: <br>
-External users and investors use this skill to analyze specific stock tickers across US, Malaysia, and Hong Kong markets. It combines valuation metrics, technical indicators, recent catalysts, macro context, and actionable trading levels in a concise report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release metadata advertises purchase-making capability even though the skill text does not explain or constrain trading authority. <br>
-Mitigation: Use the skill only for analysis unless trading or purchase authority is separately granted, and require explicit user confirmation before any real buy or sell action. <br>
-Risk: Stock reports may influence financial decisions and can be wrong if market data, news, or source pages are stale or inconsistent. <br>
-Mitigation: Independently verify prices, timestamps, catalysts, and trade levels against current market sources before acting on the report. <br>
+## Use Case:
 
+External users and finance-focused agents use this skill to produce stock analysis reports for specific US, Malaysia, and Hong Kong tickers. Reports combine valuation metrics, technical indicators, recent news catalysts, macro context, and entry, target, and stop-loss levels.
 
-## Reference(s): <br>
-- [Stock Analysis Workflow](artifact/references/analysis_workflow.md) <br>
-- [Market Intelligence Reference](artifact/references/market_intelligence.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jacurtwong/stock-analyst-my) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Telegram-formatted plain text with Markdown-style headings, bold key-value pairs, bullets, timestamps, and source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include ticker resolution, cross-source price checks, support and resistance levels, entry, target, and stop-loss guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Market prices, catalysts, and trading levels can change quickly, and bundled reference examples may become stale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify prices, timestamps, catalysts, and trading levels against current authoritative market sources before relying on a report.
+
+Risk: Financial analysis output may be mistaken for guaranteed investment advice.
+
+Mitigation: Treat reports as informational guidance and require user or professional review before making trading decisions.
+
+Risk: Public finance sources can disagree or expose stale values.
+
+Mitigation: Cross-check the target ticker across multiple sources, cite the data collection time, and flag material source discrepancies.
+
+## Reference(s):
+
+- [Stock Analysis Workflow](references/analysis_workflow.md)
+- [Market Intelligence Reference](references/market_intelligence.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Markdown-style stock analysis report with headings, bold key-value pairs, bullet lists, source links, and actionable trading levels.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes expected data collection timestamps, market-specific source links, and source cross-checking guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

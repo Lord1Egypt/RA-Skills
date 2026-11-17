@@ -1,0 +1,8 @@
+interface:
+  version: 0.1.5
+  display_name: "Office Collaboration Radar EN"
+  short_description: "Evidence-linked status cards from English records"
+  default_prompt: "Use $office-collaboration-radar-en to turn the English collaboration files I name into an evidence-linked status card without accessing unrelated files."
+
+policy:
+  allow_implicit_invocation: false

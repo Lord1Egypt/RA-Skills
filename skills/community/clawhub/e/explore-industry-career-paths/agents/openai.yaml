@@ -1,0 +1,4 @@
+interface:
+  display_name: "转行创业导师"
+  short_description: "从判断方向到7天验证，陪你转行、学技能、求职或创业复盘"
+  default_prompt: "使用 $explore-industry-career-paths，根据我的背景、城市、预算和时间，判断这个方向是否适合我，并给出未来7天可完成的最低成本验证。"

@@ -19,6 +19,7 @@ Usage (via OpenClaw):
 
 import json
 import sys
+import secrets
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, Any, Tuple, Optional
@@ -137,9 +138,24 @@ class NutrigenomicsOpenClaw:
             # persists on disk until the caller deletes it — there is no auto-cleanup.
             workspace_root = Path.cwd().resolve()
             if output_dir is None:
+                # Second resolution alone collides: two runs in the same second
+                # would share a directory and silently overwrite each other's
+                # report. Create exclusively and add entropy on collision, so a
+                # concurrent run can never land on an existing report.
                 ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
-                output_dir = str(workspace_root / f"nutrigenomics_output_{ts}")
-                Path(output_dir).mkdir(parents=True, exist_ok=True)
+                base = workspace_root / f"nutrigenomics_output_{ts}"
+                candidate = base
+                for _ in range(100):
+                    try:
+                        candidate.mkdir(parents=True, exist_ok=False)
+                        break
+                    except FileExistsError:
+                        candidate = base.with_name(f"{base.name}_{secrets.token_hex(3)}")
+                else:
+                    raise RuntimeError(
+                        "Could not create a unique output directory after 100 attempts"
+                    )
+                output_dir = str(candidate)
             
             output_path = validate_output_dir(output_dir, workspace_root)
             

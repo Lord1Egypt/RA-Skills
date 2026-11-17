@@ -1,43 +1,56 @@
-## Description: <br>
-Search, install, and run multi-skill automations from clawflows.com. Combine multiple skills into powerful workflows with logic, conditions, and data flow between steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, install, and run multi-skill automations from clawflows.com. Combine multiple skills into powerful workflows with logic, conditions, and data flow between steps.
 
-## Publisher: <br>
-[abeltennyson](https://clawhub.ai/user/abeltennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-Developers and automation builders use this skill to discover, install, inspect, run, schedule, and publish portable multi-skill workflows that compose abstract capabilities such as database access, chart generation, email, calendar, weather, and AI services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Downloaded automations can execute workflows that use credentials, external APIs, email, calendars, databases, or scheduled runs. <br>
-Mitigation: Inspect downloaded YAML, run the check command, use dry-run first, and provide only least-privilege credentials before execution. <br>
-Risk: The skill depends on the third-party clawflows npm package and registry. <br>
-Mitigation: Install only if the npm package and registry are trusted, and review the installed automation before enabling scheduled or state-changing behavior. <br>
+## Use Case:
 
+Developers and agent users use clawflows to discover, install, inspect, and run portable multi-skill automations that coordinate capabilities such as data access, charts, scheduling, external AI services, and workflow logging.
 
-## Reference(s): <br>
-- [ClawFlows registry](https://clawflows.com) <br>
-- [clawflows npm package](https://www.npmjs.com/package/clawflows) <br>
-- [ClawFlows registry GitHub repository](https://github.com/Cluka-399/clawflows-registry) <br>
-- [ClawHub skill page](https://clawhub.ai/abeltennyson/abe-clawflows) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the clawflows CLI and SKILLBOSS_API_KEY for automations that call SkillBoss API Hub AI services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Automations can download mutable workflow YAML that may invoke sensitive capabilities such as email, calendar, database, external AI access, or local commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review automation YAML before running it, use `clawflows check`, and run `clawflows run --dry-run` before permitting real actions.
+
+Risk: The skill relies on a global npm-installed CLI and a SKILLBOSS_API_KEY for AI-backed automation steps.
+
+Mitigation: Install the CLI only from the intended npm package, protect the API key as a secret, and avoid workflows that request access beyond the intended task.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/abeltennyson/skills/abe-clawflows)
+- [ClawFlows registry](https://clawflows.com)
+- [clawflows npm package](https://www.npmjs.com/package/clawflows)
+- [ClawFlows registry repository](https://github.com/Cluka-399/clawflows-registry)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell, YAML, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that install the clawflows CLI, manage automation YAML files, and configure SKILLBOSS_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-获取ZAKER聚合权威媒体的最新头条新闻与热点资讯. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+获取ZAKER聚合权威媒体的最新头条新闻与热点资讯。
 
-## Publisher: <br>
-[zaker-coder](https://clawhub.ai/user/zaker-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zaker-coder](https://clawhub.ai/user/zaker-coder)
 
-## Use Case: <br>
-External users and agents use this skill to fetch and summarize current ZAKER hot headlines for news, breaking-events, and broad current-affairs requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may cause vague prompts such as "what's new" to be treated as news requests. <br>
-Mitigation: Invoke the skill explicitly with news-oriented phrases such as "latest news" or "headlines" when deterministic routing is needed. <br>
-Risk: News and current-events outputs may become stale or incomplete between endpoint updates. <br>
-Mitigation: Treat results as a current headline snapshot and preserve links to original articles so users can verify details. <br>
+## Use Case:
 
+External users and agents use this skill to fetch current ZAKER hot-news headlines and summarize major domestic, global, breaking, or trending news items.
 
-## Reference(s): <br>
-- [ZAKER Hot Articles API](https://skills.myzaker.com/api/v1/article/hot?v=1.0.3) <br>
-- [ClawHub skill page](https://clawhub.ai/zaker-coder/zaker-hot-news) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, API Calls, shell commands, code] <br>
-**Output Format:** [Markdown list of linked headlines with summaries and source names; helper scripts can emit console text or raw JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns up to 20 hot articles from the configured ZAKER endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence; artifact frontmatter remains 1.0.5) <br>
+Risk: Broad trigger examples may cause vague requests about what is new or interesting to be handled as news requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm user intent when a request could reasonably refer to non-news topics.
+
+Risk: The skill contacts the documented ZAKER API to retrieve current public headlines.
+
+Mitigation: Disclose network access and avoid sending private user data to the endpoint.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zaker-coder/skills/zaker-hot-news)
+- [ClawHub publisher profile](https://clawhub.ai/user/zaker-coder)
+- [ZAKER hot articles API](https://skills.myzaker.com/api/v1/article/hot?v=1.0.3)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown headline list with article titles, links, summaries, authors, and optional JSON from the ZAKER API]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches the latest 20 hot articles from the documented public ZAKER endpoint.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata; artifact frontmatter says 1.0.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

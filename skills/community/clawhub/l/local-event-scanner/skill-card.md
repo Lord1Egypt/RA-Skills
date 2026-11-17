@@ -1,48 +1,61 @@
-## Description: <br>
-Finds real-world events in a requested city, area, or region, scores them against the user's preferences and availability context, and returns a ranked shortlist with source links and caveats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds and ranks local events for a user's location, dates, and interests, with source links and practical caveats.
 
-## Publisher: <br>
-[tobiaswestholm](https://clawhub.ai/user/tobiaswestholm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobiaswestholm](https://clawhub.ai/user/tobiaswestholm)
 
-## Use Case: <br>
-External users use this skill to discover local events for a requested geography and date window, compare candidates against their configured interests and dealbreakers, and receive a concise ranked shortlist. When explicitly requested, it can use Google Calendar availability or create one selected calendar event. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores event preferences, source choices, and run summaries in its skill folder. <br>
-Mitigation: Configure only the preferences and source lists needed for event recommendations, and avoid storing raw private data or unapproved liked/disliked event logs. <br>
-Risk: Optional Google Calendar access can expose availability information if enabled. <br>
-Mitigation: Enable the calendar connector only when availability-aware recommendations or calendar creation are wanted, review connector permissions, and prefer busy/free availability over event details. <br>
-Risk: Calendar event creation may add the wrong event if event details are incomplete or ambiguous. <br>
-Mitigation: Create calendar events only after an explicit user request and confirm title, date/time, location or link, and description before writing to Google Calendar. <br>
-Risk: Public event listings can be incomplete, stale, or missing practical details. <br>
-Mitigation: Preserve source links, confidence levels, and caveats so the user can verify details before attending, registering, or buying tickets. <br>
+## Use Case:
 
+People looking for local events use this skill to discover and shortlist upcoming gatherings that fit their interests and availability. On explicit request, it can add a selected event to Google Calendar.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tobiaswestholm/local-event-scanner) <br>
-- [Operating Model](artifact/references/operating-model.md) <br>
-- [Privacy And Access](artifact/references/privacy-and-access.md) <br>
-- [Scoring Rubric](artifact/references/scoring-rubric.md) <br>
-- [Availability Rules](artifact/references/availability-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown shortlist and run-note content with source links, recommendation labels, caveats, confidence, and optional calendar-add confirmation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates run notes and preference/source configuration files within the skill folder; optional calendar access is user-directed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release metadata) <br>
+Risk: Calendar access may expose private availability beyond what is needed to find events.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the connector only with the user's consent; limit lookups to busy/free information for the requested window and avoid storing private event details.
+
+Risk: Optional weekly scans may run unexpectedly after setup.
+
+Mitigation: Set up recurring scans only after the user agrees to their schedule and understands how to review or disable them.
+
+Risk: Adding an event writes to the user's calendar.
+
+Mitigation: Create only the specifically requested event after confirming its details; do not invite attendees or create a recurring event by default.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/tobiaswestholm/skills/local-event-scanner)
+- [Operating Model](references/operating-model.md)
+- [Privacy And Access](references/privacy-and-access.md)
+- [Availability Rules](references/availability-rules.md)
+- [Scoring Rubric](references/scoring-rubric.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown ranked shortlist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Event dates, venues, source links, price or booking details, fit, caveats, and confidence; optional calendar availability notes.]
+
+## Skill Version(s):
+
+1.1.5 (source: frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

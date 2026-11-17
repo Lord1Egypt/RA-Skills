@@ -1,40 +1,56 @@
-## Description: <br>
-将用户提供的网页链接或本地文件转换为结构化 Markdown，并保存为飞书云文档。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将任意网页链接转为结构化 Markdown 并保存到飞书云文档。
 
-## Publisher: <br>
-[lgugeng](https://clawhub.ai/user/lgugeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lgugeng](https://clawhub.ai/user/lgugeng)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to turn user-provided web links or local files into structured Markdown and save the result as Feishu cloud documents.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: User-provided web pages or local files may be uploaded into Feishu, including private or sensitive content.
+
+Mitigation: Use the skill only with content that is acceptable to store in the configured Feishu workspace, and review private URLs or local files before upload.
+
+Risk: Broad default Feishu destinations can place documents in an unintended space or folder.
+
+Mitigation: Review FEISHU_SPACE_ID and FEISHU_TARGET_FOLDER before use and prefer explicit destination confirmation before each upload.
+
+Risk: Automatic content classification can select an incorrect knowledge base or category.
+
+Mitigation: Require user confirmation when the destination is uncertain or when the content has privacy, business, or access-control implications.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Knowledge workers and developers use this skill to archive user-provided web pages, social posts, media pages, and local files into Feishu cloud documents. It helps classify content, choose a target knowledge base or folder, and create a structured document after user confirmation when classification is unclear. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Text, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches user-supplied links or files and stores the resulting content in Feishu, which can persist sensitive or private material. <br>
-Mitigation: Use it only with URLs and files intended for Feishu storage, and verify the destination space or folder before creating documents. <br>
-Risk: The skill requires Feishu application credentials for cloud document creation. <br>
-Mitigation: Configure credentials through environment variables, use a least-privilege Feishu app, and avoid hardcoding secrets in skill files or prompts. <br>
+**Output Format:** [Markdown document content, Feishu document creation actions, and concise user-facing status or confirmation text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lgugeng/web-to-feishu-doc) <br>
+**Other Properties Related to Output:** [Requires Feishu credentials from environment variables and may use configured default Feishu space and folder destinations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown content and concise conversational guidance, with commands or configuration snippets when setup is needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates persistent Feishu documents using Feishu credentials supplied through environment variables.] <br>
+2.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-2.0.0 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,10 @@
+{
+  "name": "OpenClaw Agent Orchestrator",
+  "version": "1.0.7",
+  "category": "Collaboration / Orchestration",
+  "description": "OpenClaw multi-agent orchestrator: For parallel research, batch audits, multi-perspective reviews, daily digests. OpenClaw 多 Agent 协作编排器：拆解任务→sessions_send 分发→追踪进度→聚合结果（带来源）→失败重试（最多 3 次）。读 openclaw.json 白名单授权；三档触发：点名或编排动词直接执行，模糊大任务先问，其余沉默。适用：并行调研、批量巡检、多视角审查、日报汇总。",
+  "homepage": "https://github.com/dtsola/xiaoyaoclaw-agent-orchestrator",
+  "compat": [
+    "openclaw"
+  ]
+}

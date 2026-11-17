@@ -1,40 +1,54 @@
-## Description: <br>
-Adapt markdown-style replies into Telegram-friendly rich text without broken rendering for Telegram destinations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adapt markdown-style replies into Telegram-friendly rich text without broken rendering.
 
-## Publisher: <br>
-[lqqk7](https://clawhub.ai/user/lqqk7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lqqk7](https://clawhub.ai/user/lqqk7)
 
-## Use Case: <br>
-Developers, operators, and assistants use this skill to rewrite Markdown-heavy replies into Telegram-readable rich text while preserving structure, emphasis, lists, code snippets, and links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Telegram rendering may change message presentation through bold labels, compact lists, HTML tags when supported, or message splitting. <br>
-Mitigation: Review the final Telegram output for meaning and readability before sending important messages. <br>
-Risk: Unsupported HTML tags or unescaped characters can break Telegram rich-text rendering. <br>
-Mitigation: Use only the documented safe Telegram HTML subset, escape raw angle brackets and ampersands, and fall back to structured plain text when parse-mode support is uncertain. <br>
+## Use Case:
 
+External users and developers use this skill to convert Markdown-heavy replies into Telegram-safe rich text while preserving structure, links, code, and readable sections.
 
-## Reference(s): <br>
-- [Telegram Format Rules](references/telegram-format-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Telegram-safe structured text or Markdown-style rich text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend compact message splitting, safe Telegram HTML tags, shallow lists, visible links, and concise code formatting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill can shift reply tone, language, or visual style toward Telegram-specific conventions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell the agent your preferred language and tone when using the skill.
+
+Risk: Telegram-specific formatting may be unwanted outside Telegram delivery contexts.
+
+Mitigation: Install or invoke the skill only when Telegram-friendly formatting behavior is desired.
+
+## Reference(s):
+
+- [Telegram Format Rules](references/telegram-format-rules.md)
+- [ClawHub Skill Page](https://clawhub.ai/lqqk7/skills/telegram-markdown-adapter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Telegram-safe structured text or Markdown-like rich text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use concise sections, bullets, inline code, message splitting, and safe Telegram HTML when the send path supports it.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

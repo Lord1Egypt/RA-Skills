@@ -1,43 +1,58 @@
-## Description: <br>
-X Expert is a conversational X (Twitter) publishing assistant that helps users gather context, draft posts, generate images, review content, and publish tweets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+X Expert helps users draft, review, enrich, and publish X (Twitter) posts through a conversational workflow.
 
-## Publisher: <br>
-[thousandsky2024](https://clawhub.ai/user/thousandsky2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[thousandsky2024](https://clawhub.ai/user/thousandsky2024)
 
-## Use Case: <br>
-External users, social media operators, marketers, founders, and developers use this skill to plan X posts, generate draft copy and images, preview publication settings, and publish or delete tweets through a guided workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish posts and delete tweets using live X account credentials. <br>
-Mitigation: Use revocable, least-privilege tokens and install only for accounts where these actions are acceptable. <br>
-Risk: Direct publishing or deletion can change a live account without enough review. <br>
-Mitigation: Keep manual review enabled and require confirmation before publishing, scheduling, media posting, thread posting, or deletion. <br>
-Risk: Search queries, tweet drafts, and image prompts may expose sensitive material to external services. <br>
-Mitigation: Do not include confidential information in search or image prompts, and review generated content before posting. <br>
+## Use Case:
 
+Social media operators, creators, and developers use this skill to plan X posts, collect supporting information, generate text or image prompts, review drafts, and optionally publish posts or threads through configured X account credentials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/thousandsky2024/x-expert) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/thousandsky2024) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational text and Markdown, with optional shell commands, generated prompts, publication summaries, and post URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use configured X API credentials and optional search or image-generation service credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The skill can directly post tweets, upload media, and delete tweets with live X account credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege X tokens, test with a non-production account first, and require manual review before invoking publishing, media upload, or delete scripts.
+
+Risk: Generated post text or media may be inaccurate, misleading, or unsuitable for the target account.
+
+Mitigation: Review every final post, thread, generated image, and media path before publication.
+
+Risk: The skill depends on multiple third-party APIs and local environment variables for search, image generation, and X account access.
+
+Mitigation: Store credentials only in environment variables, avoid sharing API keys, and configure only the services needed for the intended workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thousandsky2024/skills/x-expert)
+- [Publisher profile](https://clawhub.ai/user/thousandsky2024)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Conversational text with command-line script outputs and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce draft post text, thread content, image-generation prompts or URLs, search summaries, media upload results, tweet IDs, and tweet URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

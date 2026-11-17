@@ -40,6 +40,7 @@ Agent Memory System - 独立洞察模块
 
 from __future__ import annotations
 
+import threading
 import uuid
 from datetime import datetime, timedelta
 from typing import Any, TYPE_CHECKING
@@ -83,6 +84,19 @@ class InsightPool:
         """
         self._data: InsightPoolData = InsightPoolData(max_active=max_active)
 
+        # 并发安全锁
+        self._lock = threading.RLock()
+
+    # 优先级排序映射（字符串值→整数排名）
+    _PRIORITY_ORDER: dict[str, int] = {
+        "high": 3, "medium": 2, "low": 1,
+    }
+
+    @staticmethod
+    def _priority_sort_key(insight: Insight) -> int:
+        """按优先级排序的键函数（避免字符串枚举的字母序问题）"""
+        return InsightPool._PRIORITY_ORDER.get(insight.priority.value, 0)
+
     def add_insight(self, insight: Insight) -> bool:
         """
         添加洞察
@@ -93,14 +107,25 @@ class InsightPool:
         Returns:
             是否成功添加
         """
-        # 如果有空位，直接添加到活跃
-        if len(self._data.active_insights) < self._data.max_active:
-            self._data.active_insights.append(insight)
-            return True
+        with self._lock:
+            # 去重检查：如果已存在相同 ID，跳过
+            all_existing = (
+                self._data.active_insights
+                + self._data.pending_insights
+                + self._data.archived_insights
+            )
+            for existing in all_existing:
+                if existing.insight_id == insight.insight_id:
+                    return False
 
-        # 否则添加到待处理
-        self._data.pending_insights.append(insight)
-        return True
+            # 如果有空位，直接添加到活跃
+            if len(self._data.active_insights) < self._data.max_active:
+                self._data.active_insights.append(insight)
+                return True
+
+            # 否则添加到待处理
+            self._data.pending_insights.append(insight)
+            return True
 
     def promote_insight(self, insight_id: str) -> bool:
         """
@@ -112,24 +137,25 @@ class InsightPool:
         Returns:
             是否成功提升
         """
-        # 从待处理中查找
-        for i, insight in enumerate(self._data.pending_insights):
-            if insight.insight_id == insight_id:
-                # 检查活跃槽位
-                if len(self._data.active_insights) >= self._data.max_active:
-                    # 移除最低优先级的活跃洞察
-                    self._data.active_insights.sort(
-                        key=lambda x: x.priority.value, reverse=True
-                    )
-                    removed = self._data.active_insights.pop()
-                    self._data.archived_insights.append(removed)
+        with self._lock:
+            # 从待处理中查找
+            for i, insight in enumerate(self._data.pending_insights):
+                if insight.insight_id == insight_id:
+                    # 检查活跃槽位
+                    if len(self._data.active_insights) >= self._data.max_active:
+                        # 移除最低优先级的活跃洞察
+                        self._data.active_insights.sort(
+                            key=self._priority_sort_key, reverse=True
+                        )
+                        removed = self._data.active_insights.pop()
+                        self._data.archived_insights.append(removed)
 
-                # 提升到活跃
-                self._data.active_insights.append(insight)
-                self._data.pending_insights.pop(i)
-                return True
+                    # 提升到活跃
+                    self._data.active_insights.append(insight)
+                    self._data.pending_insights.pop(i)
+                    return True
 
-        return False
+            return False
 
     def archive_insight(self, insight_id: str) -> bool:
         """
@@ -141,36 +167,44 @@ class InsightPool:
         Returns:
             是否成功归档
         """
-        # 从活跃中查找
-        for i, insight in enumerate(self._data.active_insights):
-            if insight.insight_id == insight_id:
-                self._data.archived_insights.append(insight)
-                self._data.active_insights.pop(i)
+        with self._lock:
+            # 从活跃中查找
+            for i, insight in enumerate(self._data.active_insights):
+                if insight.insight_id == insight_id:
+                    self._data.archived_insights.append(insight)
+                    self._data.active_insights.pop(i)
 
-                # 从待处理中提升一个
-                if self._data.pending_insights:
-                    next_insight = self._data.pending_insights.pop(0)
-                    self._data.active_insights.append(next_insight)
+                    # 从待处理中提升一个
+                    if self._data.pending_insights:
+                        next_insight = self._data.pending_insights.pop(0)
+                        self._data.active_insights.append(next_insight)
 
-                return True
+                    return True
 
-        # 从待处理中查找
-        for i, insight in enumerate(self._data.pending_insights):
-            if insight.insight_id == insight_id:
-                self._data.archived_insights.append(insight)
-                self._data.pending_insights.pop(i)
-                return True
+            # 从待处理中查找
+            for i, insight in enumerate(self._data.pending_insights):
+                if insight.insight_id == insight_id:
+                    self._data.archived_insights.append(insight)
+                    self._data.pending_insights.pop(i)
+                    return True
 
-        return False
+            return False
 
-    def get_active_insights(self) -> list[Insight]:
+    def get_active_insights(self, sort_by_priority: bool = True) -> list[Insight]:
         """
         获取活跃洞察
+
+        Args:
+            sort_by_priority: 是否按优先级降序排序
 
         Returns:
             活跃洞察列表
         """
-        return self._data.active_insights.copy()
+        with self._lock:
+            results = self._data.active_insights.copy()
+            if sort_by_priority:
+                results.sort(key=self._priority_sort_key, reverse=True)
+            return results
 
     def get_pending_insights(self) -> list[Insight]:
         """
@@ -179,7 +213,8 @@ class InsightPool:
         Returns:
             待处理洞察列表
         """
-        return self._data.pending_insights.copy()
+        with self._lock:
+            return self._data.pending_insights.copy()
 
     def get_insights_by_type(self, insight_type: InsightType) -> list[Insight]:
         """
@@ -191,10 +226,11 @@ class InsightPool:
         Returns:
             该类型的洞察列表
         """
-        all_insights = (
-            self._data.active_insights + self._data.pending_insights
-        )
-        return [i for i in all_insights if i.insight_type == insight_type]
+        with self._lock:
+            all_insights = (
+                self._data.active_insights + self._data.pending_insights
+            )
+            return [i for i in all_insights if i.insight_type == insight_type]
 
     def get_high_priority_insights(self) -> list[Insight]:
         """
@@ -203,10 +239,11 @@ class InsightPool:
         Returns:
             高优先级洞察列表
         """
-        return [
-            i for i in self._data.active_insights
-            if i.priority == InsightPriority.HIGH
-        ]
+        with self._lock:
+            return [
+                i for i in self._data.active_insights
+                if i.priority == InsightPriority.HIGH
+            ]
 
     def clear_expired(self, max_age_hours: int = 24) -> int:
         """
@@ -218,26 +255,27 @@ class InsightPool:
         Returns:
             清理数量
         """
-        cutoff = datetime.now() - timedelta(hours=max_age_hours)
-        cleaned = 0
+        with self._lock:
+            cutoff = datetime.now() - timedelta(hours=max_age_hours)
+            cleaned = 0
 
-        # 清理活跃
-        original_len = len(self._data.active_insights)
-        self._data.active_insights = [
-            i for i in self._data.active_insights
-            if i.created_at > cutoff
-        ]
-        cleaned += original_len - len(self._data.active_insights)
+            # 清理活跃
+            original_len = len(self._data.active_insights)
+            self._data.active_insights = [
+                i for i in self._data.active_insights
+                if i.created_at > cutoff
+            ]
+            cleaned += original_len - len(self._data.active_insights)
 
-        # 清理待处理
-        original_len = len(self._data.pending_insights)
-        self._data.pending_insights = [
-            i for i in self._data.pending_insights
-            if i.created_at > cutoff
-        ]
-        cleaned += original_len - len(self._data.pending_insights)
+            # 清理待处理
+            original_len = len(self._data.pending_insights)
+            self._data.pending_insights = [
+                i for i in self._data.pending_insights
+                if i.created_at > cutoff
+            ]
+            cleaned += original_len - len(self._data.pending_insights)
 
-        return cleaned
+            return cleaned
 
     def get_stats(self) -> dict[str, Any]:
         """
@@ -646,7 +684,8 @@ class DetachedObserver:
                 insights.append(insight)
 
         # 按优先级排序
-        insights.sort(key=lambda x: x.priority.value, reverse=True)
+        _order = {"high": 3, "medium": 2, "low": 1}
+        insights.sort(key=lambda x: _order.get(x.priority.value, 0), reverse=True)
 
         return insights
 
@@ -1235,6 +1274,9 @@ class InsightModule:
             更新结果
         """
         result: dict[str, Any] = {"updated": False, "changes": []}
+
+        if decision is None:
+            return result
 
         # 根据决策类型更新相关洞察
         if decision.decision_type == DecisionType.TOOL_CHOICE:

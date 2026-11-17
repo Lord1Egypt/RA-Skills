@@ -1,43 +1,53 @@
-## Description: <br>
-Estimate TikTok affiliate ROI before launch using simple revenue, payout, and cost assumptions. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Estimate TikTok affiliate ROI before launch using simple revenue, payout, and cost assumptions.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Marketing, ecommerce, and affiliate teams use this skill to clarify assumptions and estimate whether a TikTok affiliate campaign should proceed, be watched closely, or be rejected before launch. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The license evidence indicates non-commercial terms, which may not fit a commercial campaign workflow. <br>
-Mitigation: Confirm the authoritative license and obtain any required commercial permission before using the skill for commercial work. <br>
-Risk: ROI estimates can be misleading when price, payout, refunds, sample costs, ad spend, or support costs are missing or uncertain. <br>
-Mitigation: Confirm key assumptions before finalizing and review sensitivity drivers before acting on the recommendation. <br>
-Risk: Campaign inputs may include confidential margin, cost, or revenue data. <br>
-Mitigation: Use anonymized or non-sensitive inputs unless sharing business data in the agent context is approved. <br>
+## Use Case:
 
+Marketing, ecommerce, and affiliate teams use this skill to estimate TikTok affiliate ROI before creator campaigns go live, compare baseline and scenario assumptions, and decide whether to proceed, watch, or stop.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Leooooooow/tiktok-affiliate-roi-calculator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Analysis, Code, Guidance] <br>
-**Output Format:** [Markdown sections with assumptions, ROI results, risk notes, a recommendation, and a reusable Python script when structured data is provided.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Clarifies key assumptions before calculating and avoids false precision.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: ROI recommendations can be misleading if payout, refund, cost, or volume assumptions are incomplete or unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for the preferred ROI basis and clearly show all revenue, payout, cost, and return assumptions before giving a go/watch/no-go recommendation.
+
+Risk: The skill may start in Chinese, which can cause misunderstandings for users who prefer another language.
+
+Mitigation: Ask the agent to use the user's preferred language before calculation and review all assumptions and recommendations in that language.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with optional Python code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes assumptions, ROI result, risk notes, recommendation, and reusable Python script when structured data is available.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

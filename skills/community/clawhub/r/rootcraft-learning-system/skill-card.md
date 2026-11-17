@@ -1,42 +1,54 @@
-## Description: <br>
-RootCraft Learning System helps agents guide users through a bilingual nine-step learning workflow using first principles, taxonomy-based decomposition, the Feynman technique, recursive questioning, spaced review, study-file generation, exams, and Anki-style memory cards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RootCraft Learning System helps agents guide learners through a bilingual 9-step study workflow using first principles, taxonomy-based classification, the Feynman Technique, recursive questioning, spaced review, exam generation, and Anki-style memory cards.
 
-## Publisher: <br>
-[zhangboheng](https://clawhub.ai/user/zhangboheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangboheng](https://clawhub.ai/user/zhangboheng)
 
-## Use Case: <br>
-External users, students, educators, and coding agents can use this skill to structure learning sessions, produce study notes, generate review materials, and create practice questions or Anki-style cards for a chosen topic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and replace local study files in the OpenClaw workspace. <br>
-Mitigation: Use distinct topic names, review generated files before relying on them, and avoid confidential study content unless local persistence is acceptable. <br>
-Risk: Generated explanations, exams, and memory cards may contain incomplete or inaccurate learning guidance. <br>
-Mitigation: Review generated materials against trusted sources and revise them before using them for assessment or instruction. <br>
+## Use Case:
 
+Learners, educators, and agents use this skill to turn a study topic into structured learning goals, first-principles explanations, recursive question chains, practice tasks, review schedules, exam questions, and flashcards.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangboheng/rootcraft-learning-system) <br>
-- [Publisher profile](https://clawhub.ai/user/zhangboheng) <br>
-- [Author website](https://www.luckydesigner.space) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional Python and shell command snippets plus generated local Markdown and CSV study files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce bilingual English or Chinese learning plans, recursive question chains, study notes, exam questions, review schedules, and Anki-importable CSV cards.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.5 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: Generated study materials and flashcard contents may be retained locally in OpenClaw workspace directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive study topics unless local retention is acceptable, and review or remove saved files after use.
+
+Risk: Generated practice commands or code examples may be incorrect or unsuitable for a user's environment.
+
+Mitigation: Review generated commands and examples before running them, especially when they install packages or write files.
+
+## Reference(s):
+
+- [RootCraft Learning System on ClawHub](https://clawhub.ai/zhangboheng/skills/rootcraft-learning-system)
+- [Luckydesigner author website](https://www.luckydesigner.space)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Files, Configuration instructions]
+
+**Output Format:** [Markdown guidance with Python and shell snippets plus locally saved Markdown, CSV, and optional Anki package files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save generated study notes, exam papers, review schedules, and flashcard contents under local OpenClaw workspace directories.]
+
+## Skill Version(s):
+
+1.1.5 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

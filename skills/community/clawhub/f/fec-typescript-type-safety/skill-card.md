@@ -1,40 +1,51 @@
-## Description: <br>
-Helps agents create, configure, review, and debug TypeScript project standards across tsconfig settings, module resolution, declarations, package exports, public API types, DTOs, generics, discriminated unions, type guards, and type narrowing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers in configuring and reviewing TypeScript project settings, type boundaries, public declarations, and package exports across applications and libraries.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to standardize TypeScript configuration, type boundaries, public API typing, declaration output, and validation commands across applications, libraries, SDKs, CLIs, and monorepo packages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can match a broad range of TypeScript-related requests, including tasks that are mainly about React, Vue, Next, Nuxt, routing, or state architecture. <br>
-Mitigation: Use a more specific framework or validation skill when the task is primarily framework architecture, routing, state ownership, or repair of concrete lint, typecheck, test, build, or CI failures. <br>
+## Use Case:
 
+Developers and engineers use this skill to review or establish TypeScript configuration, type-safety boundaries, and publishable type declarations for apps, libraries, SDKs, CLIs, and monorepos.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bovinphang/fec-typescript-project-standard) <br>
-- [TypeScript Type Safety](references/type-safety.md) <br>
-- [Type Safety Patterns](references/type-safety-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include tsconfig and package entry recommendations, type-boundary plans, public API or declaration-file risks, and validation commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.7.0 (source: server release metadata, package.json, metadata.json, README.md) <br>
+Risk: Broad TypeScript triggers may select this skill when a framework-specific workflow is more precise.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use framework-specific guidance for component architecture, routing, and state management; keep this skill focused on shared TypeScript contracts.
+
+## Reference(s):
+
+- [Type Safety Reference](references/type-safety.md)
+- [Type Safety Patterns](references/type-safety-patterns.md)
+- [ClawHub skill listing](https://clawhub.ai/bovinphang/skills/fec-typescript-project-standard)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Code, Shell commands]
+
+**Output Format:** [Markdown with TypeScript and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations for tsconfig, type boundaries, package declarations, and verification commands]
+
+## Skill Version(s):
+
+2.9.0 (source: ClawHub release, metadata.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

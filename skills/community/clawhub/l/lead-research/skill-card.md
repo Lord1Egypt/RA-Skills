@@ -1,42 +1,53 @@
-## Description: <br>
-Research and qualify business leads for recruiting and sales teams. Finds companies with active HR job postings, identifies decision-makers, and compiles enriched lead lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research and qualify business leads for recruiting and sales teams. Finds companies with active HR job postings, identifies decision-makers, and compiles enriched lead lists.
 
-## Publisher: <br>
-[btizzy](https://clawhub.ai/user/btizzy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[btizzy](https://clawhub.ai/user/btizzy)
 
-## Use Case: <br>
-Recruiting and sales teams use this skill to build qualified B2B lead lists by finding companies with active HR job postings, identifying likely decision-makers, and compiling source-backed outreach targets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lead research can collect personal or sensitive contact details in ways that violate privacy, site terms, or anti-spam rules. <br>
-Mitigation: Use the skill only for lawful B2B lead research, prefer publicly published business contacts or role-based addresses, avoid guessing or harvesting personal emails, and retain only the minimum contact data needed for legitimate outreach. <br>
-Risk: Unverified postings, decision-maker names, or email patterns can produce inaccurate or misleading lead lists. <br>
-Mitigation: Confirm active HR postings and decision-maker details against source URLs, and verify email patterns with appropriate tools before outreach. <br>
-Risk: Some useful sources, including LinkedIn, may require authentication or impose access restrictions. <br>
-Mitigation: Do not bypass authentication, access controls, or site terms; use only sources the user is authorized to access. <br>
+## Use Case:
 
+Recruiting and sales teams use this skill to research companies in a target industry or geography, qualify them by active HR hiring signals, identify likely decision-makers, and compile outreach-ready lead lists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/btizzy/lead-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown lead research report with structured lead entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes company, industry, location, estimated size, HR posting, decision-maker, contact email when found, and source URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Lead research may collect or guess identifiable contact emails without enough privacy or lawful-use guardrails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit collection to necessary business contact data, avoid speculative personal email harvesting, follow LinkedIn and data-provider terms, and confirm outreach complies with applicable privacy and anti-spam laws.
+
+Risk: Some lead details can be incomplete or unverifiable because LinkedIn access and email verification require authenticated or external tools.
+
+Mitigation: Mark unverified fields clearly, retain source URLs, and use approved verification tools before outreach.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/btizzy/skills/lead-research)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown lead research report with structured lead entries and source URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes qualified lead counts, company details, HR posting evidence, decision-maker data, contact email when found, and source URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

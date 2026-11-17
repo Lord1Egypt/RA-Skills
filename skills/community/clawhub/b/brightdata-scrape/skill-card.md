@@ -1,45 +1,60 @@
-## Description: <br>
-Scrape uses the Bright Data CLI to fetch web pages as clean markdown, HTML, JSON, or screenshots and guide verification of the results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrape helps agents fetch web content from one or more URLs as markdown, HTML, JSON, or screenshots through the Bright Data CLI.
 
-## Publisher: <br>
-[meirk-brd](https://clawhub.ai/user/meirk-brd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meirk-brd](https://clawhub.ai/user/meirk-brd)
 
-## Use Case: <br>
-Developers and operators use this skill to fetch page content from known URLs, scrape small or large URL lists, and handle pagination or block-page recovery through Bright Data CLI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bright Data credentials may be exposed or misused if API keys or saved login state are handled carelessly. <br>
-Mitigation: Protect Bright Data API keys and use the skill only in environments where Bright Data CLI authentication is intended. <br>
-Risk: Target URLs and fetched page data may be sent to Bright Data during scraping. <br>
-Mitigation: Review URL lists before batch runs and avoid scraping sensitive or inappropriate targets. <br>
-Risk: Scraped page content can contain untrusted text that attempts to influence the agent. <br>
-Mitigation: Treat fetched content as data, verify outputs before use, and do not follow instructions found inside scraped pages. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch raw or lightly structured web content from known URLs, URL lists, or paginated listings. It guides Bright Data CLI setup, output checks, block-page detection, and escalation when browser rendering or structured data feeds are more appropriate.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/meirk-brd/brightdata-scrape) <br>
-- [Flag reference](references/flags.md) <br>
-- [Scraping patterns](references/patterns.md) <br>
-- [Worked examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce file paths or command examples for markdown, HTML, JSON, and screenshot scrape outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requires authenticated Bright Data CLI access and may consume account resources when scraping pages or batches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify CLI installation and authentication before use, review target URLs and batch size, and keep parallel scraping capped as shown in the artifact guidance.
+
+Risk: Scraped output can be empty, blocked, or misleading if the target returns a CAPTCHA, Cloudflare page, or access-denied response.
+
+Mitigation: Check output size, scan for block-page signatures, and confirm task-specific markers before treating a scrape as successful.
+
+Risk: Legacy direct API fallback uses Bright Data credential environment variables and bypasses the preferred CLI path.
+
+Mitigation: Use the fallback only when the CLI cannot be installed, review the command before execution, and avoid exposing API keys in logs or shared files.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/meirk-brd/skills/brightdata-scrape)
+- [bdata scrape flag reference](references/flags.md)
+- [Scrape patterns](references/patterns.md)
+- [Scrape worked examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and verification guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or direct creation of markdown, HTML, JSON, and PNG screenshot files through Bright Data CLI commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,10 @@
+{
+  "name": "quant-x-v10",
+  "version": "1.0.0",
+  "description": "QUANT-X v10 量化策略仪表盘 - 600330 全维度分析。多因子加权评分 + OBI 4维度 + 5大经典策略 + 板块联动 + 大单分档。集成 3 大量化技能（quant-trading / tradingview-quantitative-skills / quant-trading-cn）。",
+  "author": "43906351-debug",
+  "license": "MIT-0",
+  "tags": ["quant", "trading", "stock", "a-share", "real-time", "dashboard", "obi", "backtest"],
+  "category": "finance",
+  "engine": "v2.4.24"
+}

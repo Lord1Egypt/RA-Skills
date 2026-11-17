@@ -1,47 +1,69 @@
-## Description: <br>
-Controls a logged-in Windows WeChat client to send text or image messages to specified contacts or groups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls a local Windows WeChat desktop session to send text or image messages to specified contacts or groups.
 
-## Publisher: <br>
-[niansen3-svg](https://clawhub.ai/user/niansen3-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[niansen3-svg](https://clawhub.ai/user/niansen3-svg)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an agent send text or image updates through a local, logged-in Windows WeChat client for notifications, forwarding, and scheduled reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real WeChat messages, including bulk messages, from a logged-in local client. <br>
-Mitigation: Require a user preview and confirmation before each send, especially for bulk or external-recipient workflows. <br>
-Risk: The local HTTP service can enqueue messages if exposed or protected by a weak token. <br>
-Mitigation: Keep the service bound to localhost and use a strong private token. <br>
-Risk: Logs, clipboard contents, image URLs, recipients, and message text may contain sensitive information. <br>
-Mitigation: Treat these values as sensitive, restrict log access, and avoid sending secrets or regulated data. <br>
-Risk: Background WPush monitoring can send third-party alerts beyond direct message sending. <br>
-Mitigation: Disable WPush monitoring unless the operator explicitly needs external alerting. <br>
+## Use Case:
 
+Agents and developers use this skill to send user-approved WeChat text or image updates from a logged-in Windows desktop client, either through the synchronous CLI or the local HTTP queue service.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/niansen3-svg/wechat-automation-api) <br>
-- [Skill invocation guide](artifact/SKILL.md) <br>
-- [Project README](artifact/README.md) <br>
-- [Changelog](artifact/docs/changelog.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Text, Configuration] <br>
-**Output Format:** [Command-line output and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sends messages through the user's local WeChat session and returns success or failure status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release metadata) <br>
+Risk: The skill can send real WeChat messages from a logged-in desktop session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where that authority is acceptable and require explicit human confirmation of recipient and content before each send.
+
+Risk: Weak, committed, or exposed tokens could allow unintended access to message-sending capability.
+
+Mitigation: Rotate or remove committed tokens, use a strong per-install secret, and keep the HTTP API bound to loopback.
+
+Risk: Bulk-send and queue behavior can amplify accidental, unwanted, or unsolicited messaging.
+
+Mitigation: Avoid unsolicited messaging, limit recipient lists, and review queued content before dispatch.
+
+Risk: Remote image URL fetching and WPush monitoring can trigger outbound network requests.
+
+Mitigation: Disable or constrain remote image fetching and WPush monitoring unless they have been reviewed and are required.
+
+Risk: Recipient names must match WeChat contact or group names exactly, which can cause failed or misdirected sends.
+
+Mitigation: Confirm the target WeChat display name and use a safe test recipient before operational use.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/niansen3-svg/skills/wechat-automation-api)
+- [Skill invocation guide](artifact/SKILL.md)
+- [Project README](artifact/README.md)
+- [Usage documentation](artifact/使用说明.md)
+- [Changelog](artifact/docs/changelog.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain-text command output with command-line and JSON API usage documented in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Windows, a logged-in WeChat desktop client, exact recipient names, and reviewed message content or image URLs.]
+
+## Skill Version(s):
+
+1.0.11 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

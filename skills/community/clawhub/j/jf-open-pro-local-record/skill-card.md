@@ -1,43 +1,59 @@
-## Description: <br>
-Helps agents manage JFTech device local recordings, including recording calendars, file lists, playback and download URLs, local alarm images, and stream switching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+JFTech local-recording skill for devices with TF card or hard-disk storage; it helps an agent query recording calendars and recording lists, generate playback or download URLs, retrieve local alarm images, and switch the recording stream.
 
-## Publisher: <br>
-[jftech](https://clawhub.ai/user/jftech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jftech](https://clawhub.ai/user/jftech)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect, play back, download, and adjust local recordings on bound JFTech devices with TF-card or hard-drive storage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with documented regional API hosts for China, Asia, Europe, and North America. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles device credentials, device tokens, and private playback, download, and alarm-image URLs. <br>
-Mitigation: Treat all configured credentials and returned media URLs as confidential, avoid logging or sharing them, and rotate tokens if exposure is suspected. <br>
-Risk: Endpoint selection is controlled by JF_ENDPOINT and could send signed requests to an unintended host. <br>
-Mitigation: Keep JF_ENDPOINT set to an official JFTech regional host before running API actions. <br>
-Risk: The current CLI has a duplicate --stream-type argument defect that can prevent normal startup. <br>
-Mitigation: Review and fix the argument conflict before relying on the playback or record-list commands in production. <br>
+## Use Case:
 
+External developers and operators use this skill to manage local recordings on supported JFTech devices, including finding stored recordings, getting temporary playback or download links, viewing alarm images, and changing future recording stream quality.
 
-## Reference(s): <br>
-- [JFTech Open Platform documentation](https://docs.jftech.com) <br>
-- [ClawHub skill listing](https://clawhub.ai/jftech/jf-open-pro-local-record) <br>
+### Deployment Geography for Use:
 
+China, Asia, Europe, and North America
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill's helper script can print recording metadata, playback or download URLs, and alarm image URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Device tokens, app secrets, and device passwords may be sent to a hostname selected through JF_ENDPOINT.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set JF_ENDPOINT only to the documented JFTech regional host for the deployment region and store credentials in a protected secret store.
+
+Risk: The skill can expose private recording metadata and temporary playback, download, or image URLs.
+
+Mitigation: Limit use to authorized device operators and avoid sharing generated URLs outside approved incident or support workflows.
+
+Risk: The skill can switch the device recording stream, affecting the quality and size of future recordings.
+
+Mitigation: Require operator confirmation before stream changes and document any change made during an investigation or maintenance session.
+
+## Reference(s):
+
+- [JFTech documentation](https://docs.jftech.com)
+- [ClawHub skill page](https://clawhub.ai/jftech/skills/jf-open-pro-local-record)
+- [ClawHub publisher profile](https://clawhub.ai/user/jftech)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include recording metadata, temporary playback or download URLs, and alarm image URLs returned by JFTech device APIs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

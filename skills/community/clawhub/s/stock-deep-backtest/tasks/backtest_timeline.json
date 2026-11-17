@@ -1,0 +1,7 @@
+{
+    "tool_name": "strategy_backtest",
+    "name": "金叉MA5_20_timeline",
+    "code": "ac = d['close'] * d['adj_factor']\nma_s = ac.rolling(5).mean()\nma_l = ac.rolling(20).mean()\nbuy = (ma_s > ma_l) & (ma_s.shift(1) <= ma_l.shift(1))\nsell = (ma_s < ma_l) & (ma_s.shift(1) >= ma_l.shift(1))\nout = hold_until(buy, sell)",
+    "view": "timeline",
+    "offset_days": 60
+}

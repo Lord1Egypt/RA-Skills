@@ -1,0 +1,5 @@
+display_name: "PlusE Financial Analysis"
+short_description: "Stock research: fundamentals, options, sentiment, macro, and predictions"
+default_prompt: "Analyze {symbol} using PlusE financial data API"
+policy:
+  allow_implicit_invocation: true

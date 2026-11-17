@@ -1,45 +1,64 @@
-## Description: <br>
-Shuzhi Open wraps the Shuzhi open platform APIs for blockchain anchoring, automated evidence collection, custody certificate generation, and electronic signing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shuzhi Open helps agents use Shuzhi Open Platform APIs for blockchain evidence anchoring, automated evidence collection, custody certificate generation, and electronic signature workflows.
 
-## Publisher: <br>
-[alex098929](https://clawhub.ai/user/alex098929) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alex098929](https://clawhub.ai/user/alex098929)
 
-## Use Case: <br>
-Developers and authorized operators use this skill to configure Shuzhi platform credentials and run API workflows for blockchain data anchoring, e-commerce or public-account evidence capture, custody certificate PDFs, and electronic contract signing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive identity, phone, contract, and signer data. <br>
-Mitigation: Use it only in a trusted workspace with authorized users, prefer interactive collection paths, and avoid placing ID numbers or phone numbers directly in command-line arguments. <br>
-Risk: Generated evidence, certificate, preview, signing, and download links may expose legally significant or private files. <br>
-Mitigation: Treat generated links as sensitive, share them only with intended recipients, and avoid logging or pasting them into untrusted systems. <br>
-Risk: Blockchain anchoring, certificate generation, and signing workflows can upload or preserve data externally. <br>
-Mitigation: Confirm the exact data, files, templates, signer identities, and product identifiers before executing upload, certificate, or signing workflows. <br>
+## Use Case:
 
+Developers and external teams use this skill to configure Shuzhi service credentials, prepare validated inputs, and run guided API workflows for on-chain records, evidence packages, custody PDFs, and contract signing. It is intended for workflows where users must explicitly provide and confirm legal, identity, contract, and service-specific fields before execution.
 
-## Reference(s): <br>
-- [Blockchain API service documentation](references/chain-api.md) <br>
-- [Automated evidence API documentation](references/evidence-api.md) <br>
-- [Custody certificate API documentation](references/certificate-api.md) <br>
-- [Electronic signature API documentation](references/sign-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to run Node.js scripts that call external Shuzhi APIs after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill handles contracts, identity data, credentials, and service-side records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect the workspace, use test credentials where possible, and treat terminal output and logs as sensitive.
+
+Risk: Real appKey and appSecret values may be stored in config.json or exposed through command history.
+
+Mitigation: Do not commit config.json with real secrets, prefer local-only secret handling, and avoid passing identity numbers or phone numbers directly on the command line.
+
+Risk: Remote delete commands can affect Shuzhi service-side enterprise, personal, seal, or template records.
+
+Mitigation: Review delete commands and target identifiers carefully before execution.
+
+Risk: Misconfigured endpoints could send sensitive legal or identity data to the wrong service.
+
+Mitigation: Verify baseUrl and product identifiers before each run.
+
+## Reference(s):
+
+- [Blockchain API service documentation](references/chain-api.md)
+- [Automated evidence API documentation](references/evidence-api.md)
+- [Custody certificate API documentation](references/certificate-api.md)
+- [Electronic signature API documentation](references/sign-api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands, JSON configuration examples, and JavaScript snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce service IDs, preview links, signing links, download links, and API results after user confirmation.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

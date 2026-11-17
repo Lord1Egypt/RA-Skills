@@ -1,40 +1,48 @@
-## Description: <br>
-Generate, review, and export tailored application materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, review, and export tailored application materials.
 
-## Publisher: <br>
-[wanghong5233](https://clawhub.ai/user/wanghong5233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wanghong5233](https://clawhub.ai/user/wanghong5233)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to generate tailored resume bullets, cover letters, and greeting messages for a job, review or regenerate drafts, and export approved materials.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Shell-based curl templates can create unintended command execution risk if job_id or thread_id values are not safely validated or encoded.
+
+Mitigation: Install only when the local service on 127.0.0.1:8010 is trusted, strictly validate identifiers, prefer structured HTTP calls or non-shell argument arrays, and confirm approve/export actions before execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Job applicants and career-support agents use this skill to generate tailored resume bullets, cover letters, and greeting messages for a job, review the draft with explicit approval or regeneration, and export approved materials. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, API calls, files]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends job and resume-version inputs to a local service on 127.0.0.1:8010, and an unexpected process on that port could receive or return application-material data. <br>
-Mitigation: Install and use the skill only when the expected resume-tailoring service is running on that port, and do not proceed if an unknown process is listening there. <br>
-Risk: Generated resumes and cover letters may contain inaccurate, overstated, or unsuitable application content. <br>
-Mitigation: Review every generated resume bullet, cover letter, and greeting message before approving or exporting materials. <br>
+**Output Format:** [Markdown responses with JSON request bodies, curl command templates, and returned file path or download URL when export succeeds.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Resume Tailor ClawHub page](https://clawhub.ai/wanghong5233/wanghong5233-offerpilot-resume-tailor) <br>
+**Other Properties Related to Output:** [Requires explicit user confirmation before approve/reject actions and surfaces API errors or invalid JSON for retry decisions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request examples, curl commands, reviewed draft content, and exported file path or download URL details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Calls a disclosed local resume-tailoring service on 127.0.0.1:8010 and requires explicit user confirmation before approve, reject, regenerate, or export actions.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,9 @@
+{
+  "name": "data-scientist",
+  "normalizedName": "data-scientist",
+  "description": "Python 数据分析与可视化技能，用于回答「这份数据能看出什么」「帮我把表画成图」「怎么做个预测模型」这类问题。覆盖数据清洗、探索性分析、统计分析、机器学习、可视化报告生成，支持 pandas / numpy / matplotlib / seaborn / scikit-learn。分析结论按真实参照法挂到实际数据与统计口径，不做数据支持不了的推断。触发词：数据分析、数据清洗、可视化、画图、图表、统计、数据探索、机器学习、预测、回归、分类、聚类、pandas、data analysis、data science、visualization、EDA。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗效或临床声明；详见包内免责声明。",
+  "author": "诺声(Logos)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.0.0",
+  "license": "MIT"
+}

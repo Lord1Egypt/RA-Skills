@@ -1,5 +1,131 @@
 # Changelog
 
+## 3.8.32
+
+- Verify all 76 active endpoints, required parameters, query/body placement, category counts, and 76 curl examples against live OpenAPI and companion MCP docs.
+- Companion MCP patches Hono to 4.13.18 and @hono/node-server to 2.1.8; npm audit reports zero vulnerabilities.
+
+## 3.8.31
+
+- Document the live OpenAPI media-upload `processing_state` response and the 30–60 second wait for videos still processing on X.
+- Verify 76 active endpoints, 221 request parameters, and 76 curl examples against the live OpenAPI; no endpoint or request parameter changes.
+
+## 3.8.30
+
+- Verify all 76 active endpoints, required parameters, query/body placement, category counts, and 76 curl examples against live OpenAPI and companion MCP docs.
+- Companion MCP updates release-tooling npm to 11.21.2, patching bundled undici and ip-address. No high/critical audit findings remain; moderate npm-bundled glob/minimatch findings remain.
+
+## 3.8.29
+
+- Add GET /twitter/user/subscriptions with required userId, optional cursor, pagination, pricing, and curl examples in the full skill and Hermes read-only bundle.
+- Sync coverage and counts to 76 active endpoints: 36 GET, 40 write, including 8 webhook/stream endpoints.
+
+## 3.8.28
+
+- Verify 75 active endpoints, 219 request parameters, method/category counts, and 75 curl examples against live OpenAPI and companion MCP docs.
+- Companion MCP patches runtime @hono/node-server to 2.1.5; npm 11.21.1 development tooling still bundles vulnerable undici and ip-address pending an upstream npm 11 fix.
+
+## 3.8.27
+
+- Sync 23 action/media prices and the overview table with the live OpenAPI: 60 credits ($0.0006 per call), previously 200 or 300 credits.
+- Companion MCP corrects the media-upload response field from `msg` to `message`.
+
+## 3.8.26
+
+- Add seven live V2 actions: unretweet, pin/unpin tweets, mute/unmute users, and block/unblock users, with required JSON bodies and curl examples.
+- Sync coverage to 75 active endpoints: 35 GET, 40 write, including 8 webhook/stream endpoints.
+- Refresh companion MCP runtime dependency security patches.
+
+## 3.8.25
+
+- security: companion MCP patches runtime `ip-address` to 10.7.4; development-only braces and npm-bundled ip-address findings remain.
+
+- docs: correct the create-tweet V2 response example from `msg` to `message`, matching the live OpenAPI response schema.
+- maintenance: verify all 68 active endpoints, 198 request parameters, category counts, and 68 curl examples.
+
+## 3.8.24
+
+- maintenance: verify all 68 active endpoints, 198 request parameters, method/category counts, and 68 curl examples against the live OpenAPI and MCP snapshot.
+- security: companion MCP updates locked Hono from 4.13.8 to 4.13.13 for GHSA-5r4p-p66f-jhc7; the development-only braces advisory GHSA-vfj7-8cjw-p6xm remains unpatched upstream.
+
+## 3.8.23
+
+- docs: sync batch user pricing with the live OpenAPI: 1-99 returned users cost 18 credits each; 100+ cost 1 credit each ($0.01/1K), previously documented as 10 credits. Update both the full skill and Hermes read-only bundle.
+- maintenance: verify 68 endpoints, 198 request parameters, category counts, and 68 curl examples; companion MCP tests pass 48/48. The development-only braces advisory GHSA-vfj7-8cjw-p6xm still has no patched release.
+
+## 3.8.22
+
+- maintenance: verify all 68 active endpoints, required parameters, query/body placement, method/category counts, and curl examples against live OpenAPI and MCP docs; no endpoint changes.
+- maintenance: companion MCP release tooling updates npm 11.21.0 to 11.21.1 to resolve bundled dependency audit findings. The unpatched braces development-tooling advisory remains tracked in the MCP changelog.
+
+## 3.8.21
+
+- docs: align Login V2 response names with live OpenAPI (`login_cookies`, `status`, `message`) and remove the obsolete singular-response/plural-request distinction.
+
+## 3.8.20
+
+- docs: align tweet creation, DM, profile update, and community action pricing with the live OpenAPI (200 credits / $0.002); update Login V2 to 10,000 credits / $0.10 and preserve media pricing.
+
+## 3.8.19
+
+- docs: remove `quote_tweet_id` and `schedule_for` from the V2 create-tweet reference; neither field appears in the live OpenAPI request schema. The legacy create-tweet endpoint still supports `quote_tweet_id`.
+
+## 3.8.18
+
+- maintenance: verify all 68 active endpoints, required parameters, request locations, method/category counts, and curl-example coverage against the live OpenAPI and MCP documentation snapshot.
+
+## 3.8.17
+
+- docs: store the API key in the OS secret store (macOS Keychain, libsecret, or an owner-only file) instead of shell startup files, and add a one-line loader that sets `TWITTERAPI_IO_KEY` for a single shell without printing it.
+
+## 3.8.16
+
+- docs: align Login V2 TOTP guidance with the live OpenAPI: optional, strongly recommended base32 seed, not a fixed 16-character value or a 6-digit code.
+- docs: clarify active legacy write paths and authentication exceptions for login, DM history, and `/oapi/` endpoints.
+
+## 3.8.15
+
+- maintenance: verify all 68 active endpoints, parameters, placements, category counts, and curl examples against the live OpenAPI; refresh the canonical ClawHub release.
+
+## 3.8.14
+
+- pricing: sync to live OpenAPI — follower/following endpoints now tiered (1-3 credits/item by page size, min 60 credits/call), follower IDs tiered (0.45-2 credits/ID by batch, min 100 credits/call), Login V2 trial price 300 -> 500 credits ($0.005). Updated SKILL.md pricing table, read/write references, and Hermes bundle.
+
+## 3.8.13
+
+- packaging: remove the cookie-based DM history endpoint from the Hermes bundled read reference and replace the bundled endpoint index with a public/API-key-only read index.
+
+## 3.8.12
+
+- docs: further clean the Hermes read-only bundle by removing login/write/proxy pricing, implementation notes, and error rows from `skills/twitterapi-io/SKILL.md`.
+
+## 3.8.11
+
+- packaging: make the Hermes bundle under `skills/twitterapi-io/` a read-only installable subset by excluding write/login/webhook mutation reference files that trigger community-skill safety blocking.
+- docs: clarify that the bundled Hermes skill is for public read/search/timeline/replies/quotes/trends workflows, while the repository root keeps complete all-endpoints documentation for manual review.
+
+## 3.8.10
+
+- packaging: add a multi-file Hermes skill bundle under `skills/twitterapi-io/` so installs can include `references/*.md` instead of only the root `SKILL.md`.
+- docs: add Hermes Agent install instructions for the bundled skill path and clarify that endpoint details are split across `SKILL.md` plus `references/`.
+
+## 3.8.9
+
+- fix: quote `metadata.updated` in `SKILL.md` so Hermes skill loading can JSON-serialize frontmatter metadata without treating the date as a YAML timestamp object.
+- docs: add a generic agent safety default clarifying that Twitter/X workflows should remain read-only unless the user explicitly confirms a specific write/login/action operation.
+
+## 3.8.8
+
+- docs: document `displayTextRange` long-tweet pitfall in the Tweet object schema. On X Premium long tweets (text > 280 chars), the API delivers the full body in `text` but `displayTextRange[1]` still points to the abbreviated 280-char preview length — a naive `text[:displayTextRange[1]]` will chop the body. Added a Gotcha block with the safe rule (`len(text) <= 280`) and right/wrong Python snippet, plus an Edge Case note covering 281–320-char bodies where `displayTextRange` alone cannot distinguish short-tweet trailing URLs from short long-tweet bodies (resolve via `entities.urls` / `extendedEntities.media`). Codex P2 fix.
+
+## 3.8.7
+
+- fix: correct method-based endpoint counts in SKILL.md, README.md, and endpoint-index.md (35 GET / 33 write / 8 webhook-stream, with `/oapi/` overlap explained)
+
+## 3.8.6
+
+- fix: add live OpenAPI read endpoint `GET /twitter/user/followers_ids` and update counts to 68 total (32 read / 28 write / 8 webhook-stream)
+
 ## 3.8.5
 
 - fix: remove duplicated `/oapi/x_user_stream/get_user_to_monitor_tweet` entry from read references so category coverage stays at 31 read / 28 write / 8 webhook-stream

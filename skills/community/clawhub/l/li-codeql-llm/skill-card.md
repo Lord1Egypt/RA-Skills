@@ -1,48 +1,62 @@
-## Description: <br>
-CodeQL security scanning and LLM-assisted analysis tool that checks CodeQL availability, scans target directories, generates vulnerability reports, supports LLM analysis, integrates with Jenkins, and outputs validation checklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CodeQL security scanning and LLM-assisted analysis tool that checks CodeQL availability, scans a target directory, generates vulnerability reports, supports LLM analysis, integrates with Jenkins, and outputs validation checklists.
 
-## Publisher: <br>
-[43622283](https://clawhub.ai/user/43622283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[43622283](https://clawhub.ai/user/43622283)
 
-## Use Case: <br>
-Developers, security engineers, and DevOps teams use this skill to run CodeQL scans on authorized codebases, summarize findings, generate Markdown and SARIF outputs, and prepare remediation or validation checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes Jenkins administration paths and credential examples that could affect CI systems if copied directly. <br>
-Mitigation: Run only against Jenkins instances you control, keep Script Console access out of automation accounts, and replace or rotate any copied credentials or similar tokens. <br>
-Risk: LLM analysis or Jenkins upload can move SARIF, file paths, vulnerability details, and code-derived snippets outside the local machine. <br>
-Mitigation: Keep LLM analysis and uploads disabled unless that data sharing is approved, and review or redact scan outputs before sending them to external services. <br>
-Risk: Exploit-style validation output may be misused or expose sensitive vulnerability details. <br>
-Mitigation: Use the generated validation checklists only for authorized systems and store reports in restricted locations. <br>
+## Use Case:
 
+Developers and security engineers use this skill to run CodeQL scans on authorized projects, review SARIF and Markdown findings, prioritize vulnerabilities with optional LLM assistance, and generate validation checklists. CI maintainers can use its Jenkins guidance to add security scanning to build workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/43622283/li-codeql-llm) <br>
-- [Publisher profile](https://clawhub.ai/user/43622283) <br>
-- [CodeQL CLI binaries](https://github.com/github/codeql-cli-binaries) <br>
-- [CodeQL documentation](https://codeql.github.com/docs/) <br>
-- [CodeQL queries](https://github.com/github/codeql) <br>
-- [SARIF format reference](https://sarifweb.azurewebsites.net/) <br>
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration examples, generated reports, SARIF files, and validation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local scan artifacts such as CODEQL_SECURITY_REPORT.md, vulnerability checklists, CodeQL databases, and SARIF results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can process source code, SARIF, vulnerability reports, and CI configuration that may contain sensitive project or security details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on authorized code, keep reports in restricted locations, exclude sensitive directories, and avoid publishing SARIF or Markdown scan outputs.
+
+Risk: LLM analysis and Jenkins workflows may move scan results outside the local environment despite local-only privacy claims.
+
+Mitigation: Disable automatic LLM analysis unless approved, review what data is sent, use non-production Jenkins targets first, and keep CSRF protections enabled.
+
+Risk: Example Jenkins credentials or tokens could be copied into real deployments.
+
+Mitigation: Replace all sample credentials, use scoped secrets, and rotate any token that may have been exposed or reused.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/43622283/skills/li-codeql-llm)
+- [CodeQL CLI Binaries](https://github.com/github/codeql-cli-binaries)
+- [CodeQL Documentation](https://codeql.github.com/docs/)
+- [CodeQL Queries](https://github.com/github/codeql)
+- [SARIF Format Reference](https://sarifweb.azurewebsites.net/)
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, SARIF scan output, Markdown reports, and validation checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the CodeQL CLI; outputs may include sensitive vulnerability details and should be stored with restricted access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

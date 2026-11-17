@@ -1,38 +1,52 @@
-## Description: <br>
-Use when encountering problems that feel messy or unclear, when unsure how to handle a situation, or when needing to communicate something more effectively. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when encountering problems that feel messy or unclear, when unsure how to handle a situation, or when needing to communicate something more effectively.
 
-## Publisher: <br>
-[0251xia](https://clawhub.ai/user/0251xia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[0251xia](https://clawhub.ai/user/0251xia)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to structure messy or unclear problems by working backward from the desired result, identifying decision branches, and confirming a clearer path forward.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The broad trigger conditions may activate this skill during ordinary uncertainty-related conversations.
+
+Mitigation: Use it when the user is asking for problem clarification or communication structure, and skip it for simple binary choices or unrelated uncertainty.
+
+Risk: Non-Chinese users may find the source guidance unsuitable without language adaptation.
+
+Mitigation: Translate or adapt the framework before applying it in non-Chinese conversations.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external support agents, and other agent users can use this Chinese-language reasoning framework to structure messy problems, clarify goals, identify decision branches, and communicate next steps more clearly. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger on broad confusion or communication problems, including potentially high-stakes legal, safety, medical, financial, workplace harassment, or crisis situations. <br>
-Mitigation: Use it as a reasoning and communication structure only, and defer to a more specific skill or qualified professional guidance for high-stakes decisions. <br>
+**Output Format:** [Markdown guidance and structured conversational prompts]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0251xia/begin-end-thinking) <br>
+**Other Properties Related to Output:** [Chinese-language problem-structuring guidance; no code execution, data access, persistence, or hidden behavior reported by security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown or plain text reasoning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, data access, credentials, persistence, or hidden behavior reported by server security evidence.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

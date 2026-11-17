@@ -1,37 +1,54 @@
-## Description: <br>
-Map key activities and their relationships. Use for operational analysis and capability development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Map key activities and their relationships. Use for operational analysis and capability development.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linuszz](https://clawhub.ai/user/linuszz)
 
-## Use Case: <br>
-Employees, external users, developers, and operations teams use this skill to map activity systems, classify core and supporting activities, analyze dependencies, identify gaps, and produce focused recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Activity maps and recommendations can be incomplete or misleading if the input business context is incomplete. <br>
-Mitigation: Review the generated map, gap analysis, and recommendations with domain experts before using them for operational decisions. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to map business or functional activities, understand dependencies, identify gaps, and generate recommendations for operational analysis or capability development.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown with tables and numbered recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an activity map, activity categories, relationship analysis, gap analysis, and recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Users may include confidential business details while asking the agent to build an activity map.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid pasting sensitive information unless the agent session is approved for that data.
+
+Risk: Activity maps and recommendations can be incomplete or misleading if the supplied business context is incomplete.
+
+Mitigation: Review the resulting map, gap analysis, and recommendations with knowledgeable stakeholders before using them for decisions.
+
+## Reference(s):
+
+- [Activity Maps ClawHub release page](https://clawhub.ai/linuszz/skills/activity-maps)
+- [linuszz ClawHub publisher profile](https://clawhub.ai/user/linuszz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis with tables and numbered recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on the business or function supplied by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

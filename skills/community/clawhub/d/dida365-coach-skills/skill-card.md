@@ -1,47 +1,62 @@
-## Description: <br>
-A task-coaching skill that combines Dida/TickTick MCP access with a local productivity system to break goals into plans, create time boxes, manage tasks, track commitments, run weekly and monthly reviews, and follow up on unfinished work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dida Coach helps agents turn goals into staged plans and time boxes, manage Dida365 tasks through MCP, and support reviews, commitment tracking, rescheduling, and follow-up.
 
-## Publisher: <br>
-[siyuanfeng636-cpu](https://clawhub.ai/user/siyuanfeng636-cpu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[siyuanfeng636-cpu](https://clawhub.ai/user/siyuanfeng636-cpu)
 
-## Use Case: <br>
-External users and agent operators use this skill to plan goals, schedule focused work, and manage Dida/TickTick tasks through natural-language coaching. It is also used to maintain a lightweight local productivity layer for commitments, focus records, dashboards, and review summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and change Dida/TickTick tasks through MCP-backed task actions. <br>
-Mitigation: Install it only when task read/write access is acceptable, and review proposed task creation, update, move, completion, or batch actions before allowing them. <br>
-Risk: Optional setup flows can modify local agent configuration files such as OpenClaw MCP settings. <br>
-Mitigation: Confirm before allowing local configuration edits, and inspect the resulting MCP server entry if the environment or client is shared. <br>
-Risk: The optional local Open API OAuth helper can store OAuth credentials in plaintext at ~/.dida-coach/dida-openapi.env. <br>
-Mitigation: Prefer the normal MCP authorization path unless local OAuth is needed; if used, protect the file permissions and delete the file when no longer required. <br>
-Risk: Broad automatic routing may select task-management behavior for varied natural-language requests. <br>
-Mitigation: Use the skill's write-after-readback pattern and require explicit confirmation for high-risk or bulk task changes. <br>
+## Use Case:
 
+External users and developers use this skill to plan, schedule, update, and review Dida365 tasks through natural-language coaching workflows. It is intended for goal breakdown, time-box creation, task CRUD, productivity-system summaries, and daily, weekly, or monthly review support.
 
-## Reference(s): <br>
-- [Dida Field Semantics](artifact/references/dida-field-semantics.md) <br>
-- [MCP Client Setup](artifact/references/mcp-client-setup.md) <br>
-- [MCP Tool Routing](artifact/references/mcp-tool-routing.md) <br>
-- [OpenAPI Auth Setup](artifact/references/openapi-auth-setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Natural-language coaching responses with Markdown, inline shell commands, configuration snippets, and MCP-backed task actions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local productivity summaries and optional OAuth credential files when the user chooses those flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and skill.yaml) <br>
+Risk: The skill can make live Dida365 task changes from broad natural-language requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed task changes before execution, require confirmation for broad or high-impact updates, and verify created or updated tasks after write operations.
+
+Risk: The optional local OAuth helper stores Dida365 credentials in a local environment file.
+
+Mitigation: Prefer the normal MCP Connect/Authorize flow; if local OAuth is used, restrict permissions on ~/.dida-coach/dida-openapi.env and rotate or delete credentials if exposed.
+
+Risk: The local productivity system writes summaries and planning files under the user's home directory.
+
+Mitigation: Disclose the target path before initialization, require explicit confirmation for first-time setup, and avoid copying the full Dida task database into local files.
+
+## Reference(s):
+
+- [Dida Coach ClawHub release page](https://clawhub.ai/siyuanfeng636-cpu/skills/dida365-coach-skills)
+- [Dida365 MCP client setup](references/mcp-client-setup.md)
+- [Dida365 MCP tool routing](references/mcp-tool-routing.md)
+- [Dida field semantics](references/dida-field-semantics.md)
+- [Dida OpenAPI auth setup](references/openapi-auth-setup.md)
+- [Dida365 MCP service](https://mcp.dida365.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets, configuration examples, and task-change summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate Dida365 task reads or writes through MCP and may create local productivity files when the user has authorized the relevant workflow.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

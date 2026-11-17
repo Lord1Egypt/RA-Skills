@@ -1,43 +1,58 @@
-## Description: <br>
-Auto-fit Markdown to one A4 page. Binary search optimal font size, render with 10 themes, export PDF+PNG+MD. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-fit Markdown to one A4 page. Binary search optimal font size, render with 10 themes, export PDF+PNG+MD.
 
-## Publisher: <br>
-[fxjhello](https://clawhub.ai/user/fxjhello) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fxjhello](https://clawhub.ai/user/fxjhello)
 
-## Use Case: <br>
-Developers use SmartPage to format Markdown or converted document content into a single A4 page and export PDF, PNG, and Markdown outputs with selectable themes and layout options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may download and run an unpinned external npm project that was not included in the reviewed artifact. <br>
-Mitigation: Review or pin the external project before use and install dependencies only in a trusted workspace. <br>
-Risk: The workflow can write generated documents to broad user locations such as the desktop. <br>
-Mitigation: Use a workspace-specific output directory for sensitive documents and inspect generated PDF, PNG, and Markdown files before sharing. <br>
-Risk: The optional web editing workflow starts a local development server. <br>
-Mitigation: Stop the local dev server after editing and avoid exposing it beyond the local machine. <br>
+## Use Case:
 
+Developers use SmartPage to format Markdown or converted document content onto a single A4 page and export PDF, PNG, and Markdown files with selectable themes and layout controls.
 
-## Reference(s): <br>
-- [SmartPage skill page](https://clawhub.ai/fxjhello/smartpage) <br>
-- [fxjhello publisher profile](https://clawhub.ai/user/fxjhello) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated document files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce PDF, PNG, and Markdown files through an external npm project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks agents to install and run mutable third-party code with broad local effects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, use a disposable or restricted workspace, and inspect and pin the upstream code before running npm install.
+
+Risk: Document formatting can expose sensitive input files or generated outputs through temporary and output locations.
+
+Mitigation: Avoid sensitive documents unless the temp and output locations are controlled.
+
+Risk: The optional web editor starts a local development server.
+
+Mitigation: Stop the dev server when editing is finished.
+
+## Reference(s):
+
+- [SmartPage on ClawHub](https://clawhub.ai/fxjhello/skills/smartpage)
+- [fxjhello publisher profile](https://clawhub.ai/user/fxjhello)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and CLI options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for PDF, PNG, and Markdown document exports through the referenced SmartPage CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

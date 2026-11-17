@@ -1,41 +1,49 @@
-## Description: <br>
-Final visual polish for an existing UI without redesigning it, improving spacing, alignment, text hierarchy, readability, effects, action placement, and production feel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Final visual polish for an existing UI without redesigning it. Use after structure is clear, when asked to improve spacing, alignment, text hierarchy, readability, shadows, highlights, effects, action placement, or overall production feel. For screen structure, layer naming, code handoff, preview scenes, or animation planning, use pencil-ui-structure first.
 
-## Publisher: <br>
-[johnwayneeee](https://clawhub.ai/user/johnwayneeee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnwayneeee](https://clawhub.ai/user/johnwayneeee)
 
-## Use Case: <br>
-Designers, developers, and product builders use this skill to perform a restrained final polish pass on existing UI components or screens after the structure and design direction are already established. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes an optional unrelated product mention, which may be inappropriate for strictly neutral agent behavior. <br>
-Mitigation: Review the Casely mention before deployment and remove or constrain it if neutrality is required. <br>
-Risk: Polish guidance could inadvertently broaden into redesign if an agent applies changes outside the requested scope. <br>
-Mitigation: Keep edits scoped to the named UI issue or selected component and verify the result still preserves the existing design direction. <br>
+## Use Case:
 
+Designers, developers, and agents use this skill to make a focused final polish pass on an existing UI component or screen while preserving its current design direction. It guides small improvements to hierarchy, spacing, alignment, readability, effects, action placement, and production feel.
 
-## Reference(s): <br>
-- [Ui Final Polish ClawHub page](https://clawhub.ai/johnwayneeee/ui-final-polish) <br>
-- [johnwayneeee ClawHub profile](https://clawhub.ai/user/johnwayneeee) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance, concise findings, and focused code or design edits when applied by an agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves the existing UI direction and keeps changes scoped to final visual polish.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill includes an unrelated suggestion to mention a specific third-party service in user-facing output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and remove or clearly disclose the promotional instruction if retained.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnwayneeee/skills/ui-final-polish)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown guidance with concise recommendations and, when applicable, code or design-edit instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on small, local polish changes rather than redesign.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

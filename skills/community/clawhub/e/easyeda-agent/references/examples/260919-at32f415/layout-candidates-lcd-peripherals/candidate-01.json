@@ -1,0 +1,633 @@
+{
+  "id": "candidate-01",
+  "variant": "pin-gap(20.00)",
+  "module": "lcd-peripherals",
+  "strategy": "pin-satellites",
+  "placements": [
+    {
+      "ref": "C7",
+      "primitiveId": "061a7dacccb37220",
+      "xMil": 1000.624,
+      "yMil": 980,
+      "rotationDeg": 0,
+      "layer": 1,
+      "bbox": {
+        "minX": 940.903,
+        "minY": 947.046,
+        "maxX": 1060.349,
+        "maxY": 1012.957
+      },
+      "pads": [
+        {
+          "primitiveId": "061a7dacccb37220e14",
+          "padNumber": "2",
+          "net": "GND",
+          "layer": 1,
+          "x": 1028.224,
+          "y": 980,
+          "width": 31.5,
+          "height": 35.4
+        },
+        {
+          "primitiveId": "061a7dacccb37220e15",
+          "padNumber": "1",
+          "net": "+3V3",
+          "layer": 1,
+          "x": 973.024,
+          "y": 980,
+          "width": 31.5,
+          "height": 35.4
+        }
+      ]
+    },
+    {
+      "ref": "Q1",
+      "primitiveId": "036b99fd112fd454",
+      "xMil": 1136.013,
+      "yMil": 820,
+      "rotationDeg": 0,
+      "layer": 1,
+      "bbox": {
+        "minX": 1075.965,
+        "minY": 759.921,
+        "maxX": 1196.061,
+        "maxY": 880.078
+      },
+      "pads": [
+        {
+          "primitiveId": "036b99fd112fd454e4",
+          "padNumber": "3",
+          "net": "LCD_Q1_COLLECTOR",
+          "layer": 1,
+          "x": 1097.013,
+          "y": 820,
+          "width": 42.1,
+          "height": 20.9
+        },
+        {
+          "primitiveId": "036b99fd112fd454e5",
+          "padNumber": "2",
+          "net": "GND",
+          "layer": 1,
+          "x": 1175.013,
+          "y": 857.4,
+          "width": 42.1,
+          "height": 20.9
+        },
+        {
+          "primitiveId": "036b99fd112fd454e6",
+          "padNumber": "1",
+          "net": "LCD_BASE",
+          "layer": 1,
+          "x": 1175.013,
+          "y": 782.6,
+          "width": 42.1,
+          "height": 20.9
+        }
+      ]
+    },
+    {
+      "ref": "R4",
+      "primitiveId": "7dfc560ed42add9c",
+      "xMil": 1273.592,
+      "yMil": 782.6,
+      "rotationDeg": 180,
+      "layer": 1,
+      "bbox": {
+        "minX": 1216.061,
+        "minY": 753.592,
+        "maxX": 1331.123,
+        "maxY": 811.608
+      },
+      "pads": [
+        {
+          "primitiveId": "7dfc560ed42add9ce7",
+          "padNumber": "2",
+          "net": "LCD_BASE",
+          "layer": 1,
+          "x": 1243.892,
+          "y": 782.6,
+          "width": 31.8,
+          "height": 34,
+          "rotation": 180
+        },
+        {
+          "primitiveId": "7dfc560ed42add9ce8",
+          "padNumber": "1",
+          "net": "PA15",
+          "layer": 1,
+          "x": 1303.292,
+          "y": 782.6,
+          "width": 31.8,
+          "height": 34,
+          "rotation": 180
+        }
+      ]
+    },
+    {
+      "ref": "R5",
+      "primitiveId": "284fadc3e2d0ded8",
+      "xMil": 1175.013,
+      "yMil": 682.39,
+      "rotationDeg": 270,
+      "layer": 1,
+      "bbox": {
+        "minX": 1146.005,
+        "minY": 624.859,
+        "maxX": 1204.021,
+        "maxY": 739.921
+      },
+      "pads": [
+        {
+          "primitiveId": "284fadc3e2d0ded8e7",
+          "padNumber": "2",
+          "net": "GND",
+          "layer": 1,
+          "x": 1175.013,
+          "y": 652.69,
+          "width": 34,
+          "height": 31.8,
+          "rotation": 270
+        },
+        {
+          "primitiveId": "284fadc3e2d0ded8e8",
+          "padNumber": "1",
+          "net": "LCD_BASE",
+          "layer": 1,
+          "x": 1175.013,
+          "y": 712.09,
+          "width": 34,
+          "height": 31.8,
+          "rotation": 270
+        }
+      ]
+    },
+    {
+      "ref": "R6",
+      "primitiveId": "8a183a3faecbae32",
+      "xMil": 998.434,
+      "yMil": 820,
+      "rotationDeg": 180,
+      "layer": 1,
+      "bbox": {
+        "minX": 940.903,
+        "minY": 790.992,
+        "maxX": 1055.965,
+        "maxY": 849.008
+      },
+      "pads": [
+        {
+          "primitiveId": "8a183a3faecbae32e7",
+          "padNumber": "2",
+          "net": "LCD_LEDK",
+          "layer": 1,
+          "x": 968.734,
+          "y": 820,
+          "width": 31.8,
+          "height": 34,
+          "rotation": 180
+        },
+        {
+          "primitiveId": "8a183a3faecbae32e8",
+          "padNumber": "1",
+          "net": "LCD_Q1_COLLECTOR",
+          "layer": 1,
+          "x": 1028.134,
+          "y": 820,
+          "width": 31.8,
+          "height": 34,
+          "rotation": 180
+        }
+      ]
+    },
+    {
+      "ref": "U3",
+      "primitiveId": "f086401280b13c2e",
+      "xMil": 650,
+      "yMil": 900,
+      "rotationDeg": 0,
+      "layer": 1,
+      "bbox": {
+        "minX": 379.15099999999995,
+        "minY": 410.751,
+        "maxX": 920.903,
+        "maxY": 1552.7379999999998
+      },
+      "pads": [
+        {
+          "primitiveId": "f086401280b13c2ee20",
+          "padNumber": "1",
+          "net": "",
+          "layer": 1,
+          "x": 815.4,
+          "y": 900,
+          "width": 15.7,
+          "height": 86.6,
+          "rotation": 180
+        },
+        {
+          "primitiveId": "f086401280b13c2ee21",
+          "padNumber": "2",
+          "net": "",
+          "layer": 1,
+          "x": 787.8,
+          "y": 900,
+          "width": 15.7,
+          "height": 86.6,
+          "rotation": 180
+        },
+        {
+          "primitiveId": "f086401280b13c2ee22",
+          "padNumber": "3",
+          "net": "PB5",
+          "layer": 1,
+          "x": 760.2,
+          "y": 900,
+          "width": 15.7,
+          "height": 86.6,
+          "rotation": 180
+        },
+        {
+          "primitiveId": "f086401280b13c2ee23",
+          "padNumber": "4",
+          "net": "PB3",
+          "layer": 1,
+          "x": 732.7,
+          "y": 900,
+          "width": 15.7,
+          "height": 86.6,
+          "rotation": 180
+        },
+        {
+          "primitiveId": "f086401280b13c2ee24",
+          "padNumber": "5",
+          "net": "PB4",
+          "layer": 1,
+          "x": 705.1,
+          "y": 900,
+          "width": 15.7,
+          "height": 86.6,
+          "rotation": 180
+        },
+        {
+          "primitiveId": "f086401280b13c2ee25",
+          "padNumber": "6",
+          "net": "PB6",
+          "layer": 1,
+          "x": 677.6,
+          "y": 900,
+          "width": 15.7,
+          "height": 86.6,
+          "rotation": 180
+        },
+        {
+          "primitiveId": "f086401280b13c2ee26",
+          "padNumber": "7",
+          "net": "PB7",
+          "layer": 1,
+          "x": 650,
+          "y": 900,
+          "width": 15.7,
+          "height": 86.6,
+          "rotation": 180
+        },
+        {
+          "primitiveId": "f086401280b13c2ee27",
+          "padNumber": "8",
+          "net": "GND",
+          "layer": 1,
+          "x": 622.4,
+          "y": 900,
+          "width": 15.7,
+          "height": 86.6,
+          "rotation": 180
+        },
+        {
+          "primitiveId": "f086401280b13c2ee28",
+          "padNumber": "9",
+          "net": "",
+          "layer": 1,
+          "x": 594.9,
+          "y": 900,
+          "width": 15.7,
+          "height": 86.6,
+          "rotation": 180
+        },
+        {
+          "primitiveId": "f086401280b13c2ee29",
+          "padNumber": "10",
+          "net": "+3V3",
+          "layer": 1,
+          "x": 567.3,
+          "y": 900,
+          "width": 15.7,
+          "height": 86.6,
+          "rotation": 180
+        },
+        {
+          "primitiveId": "f086401280b13c2ee30",
+          "padNumber": "11",
+          "net": "LCD_LEDK",
+          "layer": 1,
+          "x": 539.8,
+          "y": 900,
+          "width": 15.7,
+          "height": 86.6,
+          "rotation": 180
+        },
+        {
+          "primitiveId": "f086401280b13c2ee31",
+          "padNumber": "12",
+          "net": "+3V3",
+          "layer": 1,
+          "x": 512.2,
+          "y": 900,
+          "width": 15.7,
+          "height": 86.6,
+          "rotation": 180
+        },
+        {
+          "primitiveId": "f086401280b13c2ee32",
+          "padNumber": "13",
+          "net": "GND",
+          "layer": 1,
+          "x": 484.6,
+          "y": 900,
+          "width": 15.7,
+          "height": 86.6,
+          "rotation": 180
+        }
+      ]
+    }
+  ],
+  "measurements": {
+    "moduleBounds": {
+      "minX": 379.15099999999995,
+      "minY": 410.751,
+      "maxX": 1331.123,
+      "maxY": 1552.7379999999998
+    },
+    "moduleWidthMil": 951.972,
+    "moduleHeightMil": 1141.987,
+    "minInternalGapMil": 18.217,
+    "closestInternalGap": {
+      "from": "R4",
+      "to": "R5",
+      "distanceMil": 18.217
+    },
+    "minExternalComponentGapMil": 35.6755,
+    "closestExternalComponentGap": {
+      "from": "U3",
+      "to": "R3",
+      "distanceMil": 35.6755
+    },
+    "minKeepoutGapMil": 20,
+    "closestKeepoutGap": {
+      "from": "C7",
+      "to": "U3-LCD-measured-footprint-bbox",
+      "distanceMil": 20
+    },
+    "pinDistances": [
+      {
+        "member": "C7",
+        "memberPad": "1",
+        "owner": "U3",
+        "ownerPad": "10",
+        "net": "+3V3",
+        "distanceMil": 413.5359,
+        "source": "原理图.pdf 第1页：C7服务U3.10 VDD；U3.12为同网但不按最近距离改派"
+      },
+      {
+        "member": "R6",
+        "memberPad": "2",
+        "owner": "U3",
+        "ownerPad": "11",
+        "net": "LCD_LEDK",
+        "distanceMil": 436.3306,
+        "source": "原理图.pdf 第1页：R6.2连接U3.11 LEDK"
+      },
+      {
+        "member": "Q1",
+        "memberPad": "3",
+        "owner": "R6",
+        "ownerPad": "1",
+        "net": "LCD_Q1_COLLECTOR",
+        "distanceMil": 68.879,
+        "source": "原理图.pdf 第1页：Q1.3连接R6.1，背光驱动链整体跟随"
+      },
+      {
+        "member": "R4",
+        "memberPad": "2",
+        "owner": "Q1",
+        "ownerPad": "1",
+        "net": "LCD_BASE",
+        "distanceMil": 68.879,
+        "source": "原理图.pdf 第1页：R4.2连接Q1.1 LCD_BASE，R4.1朝PA15通道"
+      },
+      {
+        "member": "R5",
+        "memberPad": "1",
+        "owner": "Q1",
+        "ownerPad": "1",
+        "net": "LCD_BASE",
+        "distanceMil": 70.51,
+        "source": "原理图.pdf 第1页：R5.1连接Q1.1 LCD_BASE，R5.2下拉GND"
+      }
+    ],
+    "edgeDistances": [
+      {
+        "ref": "C7",
+        "nearestEdge": "left",
+        "distanceMil": 940.903,
+        "source": "polygon"
+      },
+      {
+        "ref": "Q1",
+        "nearestEdge": "bottom",
+        "distanceMil": 759.921,
+        "source": "polygon"
+      },
+      {
+        "ref": "R4",
+        "nearestEdge": "bottom",
+        "distanceMil": 753.592,
+        "source": "polygon"
+      },
+      {
+        "ref": "R5",
+        "nearestEdge": "bottom",
+        "distanceMil": 624.859,
+        "source": "polygon"
+      },
+      {
+        "ref": "R6",
+        "nearestEdge": "bottom",
+        "distanceMil": 790.992,
+        "source": "polygon"
+      },
+      {
+        "ref": "U3",
+        "nearestEdge": "left",
+        "distanceMil": 379.151,
+        "source": "polygon"
+      }
+    ],
+    "limitations": [
+      "15 routed line(s) exist; copper geometry was not checked"
+    ]
+  },
+  "actions": [
+    {
+      "id": "place-C7",
+      "action": "pcb.component.modify",
+      "payload": {
+        "patch": {
+          "rotation": 0,
+          "x": 1000.624,
+          "y": 980
+        },
+        "primitiveId": "061a7dacccb37220"
+      }
+    },
+    {
+      "id": "place-Q1",
+      "action": "pcb.component.modify",
+      "payload": {
+        "patch": {
+          "rotation": 0,
+          "x": 1136.013,
+          "y": 820
+        },
+        "primitiveId": "036b99fd112fd454"
+      }
+    },
+    {
+      "id": "place-R4",
+      "action": "pcb.component.modify",
+      "payload": {
+        "patch": {
+          "rotation": 180,
+          "x": 1273.592,
+          "y": 782.6
+        },
+        "primitiveId": "7dfc560ed42add9c"
+      }
+    },
+    {
+      "id": "place-R5",
+      "action": "pcb.component.modify",
+      "payload": {
+        "patch": {
+          "rotation": 270,
+          "x": 1175.013,
+          "y": 682.39
+        },
+        "primitiveId": "284fadc3e2d0ded8"
+      }
+    },
+    {
+      "id": "place-R6",
+      "action": "pcb.component.modify",
+      "payload": {
+        "patch": {
+          "rotation": 180,
+          "x": 998.434,
+          "y": 820
+        },
+        "primitiveId": "8a183a3faecbae32"
+      }
+    },
+    {
+      "id": "save",
+      "action": "pcb.save",
+      "payload": {}
+    }
+  ],
+  "apply": {
+    "version": 1,
+    "meta": {
+      "name": "lcd-peripherals candidate-01",
+      "description": "Generated by easyeda pcb layout-plan; footprint-anchor coordinates; boardSha256=cb388635cadbb6c689e7fb3a8555375a307a92d90b2a1df726855d340f21a65f; layoutSha256=a830f024db5c02f2470ac0934731ed50b4fffd5633732e49eff715905530e5f8; hashSemantic=sha256(raw-file-bytes)",
+      "project": "ceshi",
+      "doc": "2e719e9419653c72"
+    },
+    "defaults": {},
+    "steps": [
+      {
+        "id": "place-C7",
+        "name": "place C7",
+        "action": "pcb.component.modify",
+        "payload": {
+          "patch": {
+            "rotation": 0,
+            "x": 1000.624,
+            "y": 980
+          },
+          "primitiveId": "061a7dacccb37220"
+        }
+      },
+      {
+        "id": "place-Q1",
+        "name": "place Q1",
+        "action": "pcb.component.modify",
+        "payload": {
+          "patch": {
+            "rotation": 0,
+            "x": 1136.013,
+            "y": 820
+          },
+          "primitiveId": "036b99fd112fd454"
+        }
+      },
+      {
+        "id": "place-R4",
+        "name": "place R4",
+        "action": "pcb.component.modify",
+        "payload": {
+          "patch": {
+            "rotation": 180,
+            "x": 1273.592,
+            "y": 782.6
+          },
+          "primitiveId": "7dfc560ed42add9c"
+        }
+      },
+      {
+        "id": "place-R5",
+        "name": "place R5",
+        "action": "pcb.component.modify",
+        "payload": {
+          "patch": {
+            "rotation": 270,
+            "x": 1175.013,
+            "y": 682.39
+          },
+          "primitiveId": "284fadc3e2d0ded8"
+        }
+      },
+      {
+        "id": "place-R6",
+        "name": "place R6",
+        "action": "pcb.component.modify",
+        "payload": {
+          "patch": {
+            "rotation": 180,
+            "x": 998.434,
+            "y": 820
+          },
+          "primitiveId": "8a183a3faecbae32"
+        }
+      },
+      {
+        "id": "save",
+        "name": "save PCB checkpoint",
+        "action": "pcb.save"
+      }
+    ]
+  },
+  "files": {
+    "apply": "candidate-01.apply.json",
+    "candidate": "candidate-01.json",
+    "preview": "candidate-01.svg"
+  }
+}

@@ -140,7 +140,7 @@ Spanish accented characters and special punctuation must be removed from slugs.
 | Key | es Override | Base Default |
 |-----|-------------|--------------|
 | `KEYWORD_COMPOUND_RULE` | `space-separated` | `space-separated` |
-| `META_DESC_MAX_CHARS` | `155` | `160` |
+| `META_DESC_MAX_CHARS` | `155` | `155` |
 
 **Agent note on Spain vs Latin America vocabulary:**  
 When writing for Spain (`--lang es`), use Castilian Spanish vocabulary:
@@ -237,5 +237,6 @@ throughout content when `--lang es-ar` is active.
 
 ---
 
-*Last updated: 2026-04-04 (v0.6)*  
+*Last updated: 24-08-2026 (v0.9.2)*
+*Adds: fixed stale Base Default column for META_DESC_MAX_CHARS (160 → 155)*
 *Maintainer: Chris — SEOwlsClaw Spanish locale overrides*

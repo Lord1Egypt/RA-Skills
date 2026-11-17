@@ -1,56 +1,67 @@
-## Description: <br>
-Generates plain-text, platform-optimized social media posts from research articles and source material for LinkedIn, Facebook, Twitter/X, TikTok captions, and Threads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-quality social media posts from research articles and source data for LinkedIn, Facebook, Twitter/X, TikTok captions, and Threads, with multiple formats, tones, lengths, and English or Vietnamese output.
 
-## Publisher: <br>
-[mcbaivn](https://clawhub.ai/user/mcbaivn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcbaivn](https://clawhub.ai/user/mcbaivn)
 
-## Use Case: <br>
-Marketing teams, founders, growth leads, and content creators use this skill to turn source articles, summaries, or raw data into social media post drafts in English or Vietnamese. It supports platform-specific formats, tones, and lengths for LinkedIn, Facebook, Twitter/X, TikTok captions, and Threads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated posts can make unsupported or misleading public claims if the supplied source material is incomplete or inaccurate. <br>
-Mitigation: Provide specific source material and review generated posts before publishing. <br>
-Risk: Private or sensitive inputs can be transformed into public-facing copy. <br>
-Mitigation: Avoid providing private or sensitive source material unless it is approved for public use. <br>
-Risk: Strict platform formatting requirements can be missed, making posts unsuitable for publication. <br>
-Mitigation: Check drafts against the bundled formatting and platform rules before posting. <br>
+## Use Case:
 
+External users and content teams use this skill to turn articles, URLs, summaries, or source data into ready-to-publish social posts. It is oriented toward MCB AI-style content and supports platform-specific formats, tones, lengths, and English or Vietnamese language choices.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mcbaivn/content-writer-mcbai) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
-- [Brand Context - MCB AI](references/brand-context.md) <br>
-- [Platform Rules - Content Writer](references/platform-rules.md) <br>
-- [Formatting Rules - Critical Reference](references/formatting-rules.md) <br>
-- [Tone Presets Reference](references/tone-presets.md) <br>
-- [Toplist Format](references/format-toplist.md) <br>
-- [POV Format](references/format-pov.md) <br>
-- [Case Study Format](references/format-case-study.md) <br>
-- [How-to Format](references/format-how-to.md) <br>
-- [Story Format](references/format-story.md) <br>
-- [Hook-List-CTA Format](references/format-hook-list-cta.md) <br>
-- [MCB AI](https://www.mcbai.vn) <br>
-- [OpenClaw Cheatsheet](https://openclaw.mcbai.vn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text social media post drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include one or more platform variants; output rules prohibit markdown, asterisks, em dashes, and source URLs in post bodies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may steer otherwise general content toward MCB AI branding.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when MCB AI-oriented content is desired, or explicitly provide the intended brand and review generated posts for MCB AI names, domains, calls to follow, or watermarks before publishing.
+
+Risk: The documented install command uses a mutable latest installer.
+
+Mitigation: Prefer a pinned or trusted installer version when installing the skill.
+
+Risk: Generated posts may contain metrics or claims that need source support.
+
+Mitigation: Check numbers, company names, and factual claims against the provided source material before posting.
+
+## Reference(s):
+
+- [Skill README](artifact/README.md)
+- [Brand Context](artifact/references/brand-context.md)
+- [Platform Rules](artifact/references/platform-rules.md)
+- [Formatting Rules](artifact/references/formatting-rules.md)
+- [Tone Presets](artifact/references/tone-presets.md)
+- [Toplist Format](artifact/references/format-toplist.md)
+- [POV Format](artifact/references/format-pov.md)
+- [Case Study Format](artifact/references/format-case-study.md)
+- [How-to Format](artifact/references/format-how-to.md)
+- [Story Format](artifact/references/format-story.md)
+- [Hook-List-CTA Format](artifact/references/format-hook-list-cta.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text social media posts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Posts are intended to avoid markdown, source URLs, asterisks, and em dashes; users can request platform, format, tone, length, language, and variant changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

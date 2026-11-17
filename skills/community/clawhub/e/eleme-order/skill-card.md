@@ -1,41 +1,63 @@
-## Description: <br>
-Order food, drinks, or groceries from Ele.me (饿了么) by using Playwright browser automation to browse restaurants, add items to cart, and pause for user confirmation and manual payment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Order food delivery from Ele.me (饿了么) using Playwright MCP browser automation while leaving payment to the user.
 
-## Publisher: <br>
-[Xbralready](https://clawhub.ai/user/Xbralready) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xbralready](https://clawhub.ai/user/xbralready)
 
-## Use Case: <br>
-External users use this skill to have an agent navigate Ele.me, choose restaurants and items, prepare a food, drink, or grocery order, and pause for user confirmation before order submission and manual payment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent controls a real browser session on Ele.me and may view delivery details while preparing an order. <br>
-Mitigation: Install only when this access is acceptable, and review the final address, items, and total before confirming. <br>
-Risk: The skill can prepare an order that affects real-world purchases. <br>
-Mitigation: Require user confirmation on the order page before submission and complete payment manually. <br>
+## Use Case:
 
+External users use this skill to order food, drinks, or groceries from Ele.me through a browser workflow that searches restaurants, adds items to a cart, reviews checkout details, and stops for manual payment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Xbralready/eleme-order) <br>
-- [Ele.me H5](https://h5.ele.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text] <br>
-**Output Format:** [Markdown guidance with browser automation actions and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npx and a Playwright MCP server; the user confirms order details and completes payment manually.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The browser workflow exposes Ele.me login, SMS verification, delivery address, cart, and checkout details to the agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted browser context, provide sensitive values only when needed, and review address, items, and total before order submission.
+
+Risk: An order could be submitted with the wrong items, address, or total if checkout details are not reviewed carefully.
+
+Mitigation: Pause at the confirmation page, present the order details to the user, and submit only after explicit user confirmation.
+
+Risk: Using @playwright/mcp@latest can introduce dependency behavior changes over time.
+
+Mitigation: Pin a tested Playwright MCP package version for stable operational use.
+
+Risk: Payment credentials or biometric approvals are outside the safe automation boundary.
+
+Mitigation: Keep payment manual and do not enter payment passwords or complete payment approval on the user's behalf.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xbralready/skills/eleme-order)
+- [Publisher profile: xbralready](https://clawhub.ai/user/xbralready)
+- [Ele.me H5 service](https://h5.ele.me)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline JSON configuration and browser-action instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires npx and a Playwright MCP server; order payment remains manual.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

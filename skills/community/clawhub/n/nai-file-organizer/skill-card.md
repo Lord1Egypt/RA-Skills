@@ -1,41 +1,50 @@
-## Description: <br>
-Scan, deduplicate, and organize files in a directory by type, generating a dry-run plan before optionally moving files without deleting anything. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan, deduplicate, and organize files in a directory by generating a dry-run cleanup plan before any optional file moves.
 
-## Publisher: <br>
-[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte)
 
-## Use Case: <br>
-Developers and agent users use this skill to inspect cluttered local folders, find duplicate files, generate organization plans, optionally move files into type-based folders, and produce inventory or before/after reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skip-confirmation execution mode can overwrite existing destination files despite the skill's conservative default posture. <br>
-Mitigation: Run a dry run first, inspect destination conflicts, keep backups, and avoid --execute --yes unless overwrites are intentional. <br>
-Risk: Generated inventories and reports can expose private local file names, paths, timestamps, and folder structure. <br>
-Mitigation: Treat generated JSON and Markdown reports as private and review them before sharing. <br>
+## Use Case:
 
+External users and developers use this skill to scan folders such as Downloads or Desktop, identify duplicate files, create file inventories, generate dry-run organization plans, and optionally move files after review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/newageinvestments25-byte/nai-file-organizer) <br>
-- [File category mappings](artifact/references/categories.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples, JSON inventories and plans, and Markdown manifest reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run plans are the default; execution requires an explicit flag and generated reports may include local file names and paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Execute mode can move or overwrite files beyond the intended folder if run from a crafted scan file or with non-interactive confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run first, inspect the complete JSON plan, avoid plans from untrusted scan files, and use --execute --yes only after checking backups and destination conflicts.
+
+## Reference(s):
+
+- [File category mappings](artifact/references/categories.md)
+- [ClawHub skill page](https://clawhub.ai/newageinvestments25-byte/skills/nai-file-organizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON inventories and move plans, and markdown manifest reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run by default; optional execution moves files and should be reviewed before confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

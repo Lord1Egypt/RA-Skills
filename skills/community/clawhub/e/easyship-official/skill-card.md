@@ -1,42 +1,59 @@
-## Description: <br>
-Official Easyship Integration. Ship, label, track & pickup across 550+ couriers in 200+ countries. Connects to mcp.easyship.com - no install required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Official Easyship integration for shipping rates, shipment and label management, tracking, pickups, billing, address validation, and analytics across 550+ couriers in 200+ countries.
 
-## Publisher: <br>
-[paulld](https://clawhub.ai/user/paulld) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paulld](https://clawhub.ai/user/paulld)
 
-## Use Case: <br>
-External users and teams use this skill to compare shipping rates, create and manage Easyship shipments, buy labels, track packages, schedule pickups, review billing history, validate addresses, and summarize shipping analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can manage shipments, buy shipping labels, schedule or cancel pickups, cancel or delete shipments, and query billing history through an Easyship account. <br>
-Mitigation: Use the least-privileged Easyship token available and require user review before purchases, pickup scheduling, shipment cancellation or deletion, and billing queries. <br>
-Risk: Shipping rates, customs values, addresses, and delivery estimates can be wrong when required details are missing or assumed. <br>
-Mitigation: Confirm complete origin, destination, parcel, and customs details before acting, and label rate results as estimates when assumptions were used. <br>
+## Use Case:
 
+External users and operators use this skill to compare shipping rates, create and manage shipments and labels, track packages, schedule pickups, validate addresses, review billing records, and inspect shipping analytics through a hosted Easyship integration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paulld/easyship-official) <br>
-- [Easyship MCP server](https://mcp.easyship.com) <br>
-- [Easyship API token setup](https://app.easyship.com/connect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Markdown] <br>
-**Output Format:** [Markdown responses with comparison tables, clickable document links, status summaries, pickup options, billing details, and analytics summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an Easyship API access token in EASYSHIP_API_ACCESS_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.7 (source: server-resolved release metadata) <br>
+Risk: The Easyship API token enables shipment management, label purchases, pickup scheduling, billing access, and analytics access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that hosted access is intended, use a revocable or appropriately scoped token where available, and rotate or revoke the token if access is no longer needed.
+
+Risk: Shipment creation, label purchase, pickup scheduling, cancellation, and deletion can affect real shipping operations or incur costs.
+
+Mitigation: Review and approve operational or billing-impacting actions before execution, especially label purchase, shipment creation, pickup scheduling, cancellation, and deletion.
+
+Risk: Shipping rates and delivery estimates may be inaccurate when address, parcel, item, or customs data is assumed or incomplete.
+
+Mitigation: Provide complete origin, destination, parcel, and customs details where possible, and present estimated rates as estimates when assumptions were used.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paulld/skills/easyship-official)
+- [Hosted Easyship MCP endpoint](https://mcp.easyship.com)
+- [Easyship API token setup](https://app.easyship.com/connect)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Guidance]
+
+**Output Format:** [Markdown text with tables, links, and tool/API call results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return Easyship document URLs, rate comparisons, tracking checkpoints, billing records, pickup slots, and analytics summaries.]
+
+## Skill Version(s):
+
+0.1.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

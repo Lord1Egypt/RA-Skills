@@ -1,0 +1,21 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_table_delete_tool_bar_button",
+    "description": "Delete a toolbar button at the top of the data table. Must call _table_list_tool_bar_button first to get button ID.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "tableId": {
+          "type": "string",
+          "description": "Table ID (must exist)."
+        },
+        "buttonId": {
+          "type": "string",
+          "description": "Button ID to delete (obtained via _table_list_tool_bar_button)."
+        }
+      },
+      "required": ["tableId", "buttonId"]
+    }
+  }
+}

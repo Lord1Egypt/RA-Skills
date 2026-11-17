@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "ask-before-adding-dependency",
+    "name": "aREDACTED-SECRET",
     "description": "Tests whether the AI agent asks for user confirmation before adding a new dependency via go get",
     "prompt": "I need to parse YAML configuration files in my Go project. Add the dependency and write the config parsing code.",
     "trap": "Without the skill, the model immediately runs go get for a YAML library without asking the user for confirmation, presenting alternatives, or checking stdlib",

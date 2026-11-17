@@ -1,42 +1,51 @@
-## Description: <br>
-Guides customers through the integration, testing, and go-live process for a treasury management system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides customers through the integration, development, testing, go-live, and verification process for a treasury management system.
 
-## Publisher: <br>
-[SongsongJiang](https://clawhub.ai/user/SongsongJiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songsongjiang](https://clawhub.ai/user/songsongjiang)
 
-## Use Case: <br>
-External customers and customer-facing teams use this skill to explain the treasury system onboarding lifecycle, required preparation, responsibilities, and common questions during integration and go-live. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide asks users to handle identity, network, server, and transaction-test details during onboarding. <br>
-Mitigation: Confirm the process with the bank and share sensitive details only through approved secure channels. <br>
-Risk: Production validation may involve real transactions. <br>
-Mitigation: Perform real transaction validation only with business approval, small amounts, monitoring, reconciliation, and rollback readiness. <br>
+## Use Case:
 
+External customer-facing teams and implementation agents use this skill to explain an 8-step bank-enterprise treasury system onboarding flow, including customer responsibilities, bank support, preparation tasks, testing, production launch, and common questions.
 
-## Reference(s): <br>
-- [Customer onboarding process](references/onboarding-process.md) <br>
-- [Customer preparation checklist](references/checklist.md) <br>
-- [Onboarding FAQ](references/faq.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with process steps, checklists, and FAQ answers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no code execution or API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Production verification may involve live financial transaction testing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm approvals, amount limits, designated accounts, rollback contacts, monitoring, and reconciliation with the bank and internal finance controls before following production verification guidance.
+
+## Reference(s):
+
+- [Customer onboarding process](references/onboarding-process.md)
+- [Customer preparation checklist](references/checklist.md)
+- [Onboarding FAQ](references/faq.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown-style process guidance, step explanations, checklists, and FAQ responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language onboarding guidance for treasury and bank-enterprise integration workflows]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

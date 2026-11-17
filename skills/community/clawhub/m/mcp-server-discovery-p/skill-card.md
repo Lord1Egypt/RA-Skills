@@ -1,44 +1,56 @@
-## Description: <br>
-Discover, search, and manage Model Context Protocol servers, including retrieving server details and generating MCP client configuration JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover, search, inspect, and generate client configuration for MCP servers across common categories such as filesystem, development, database, web, search, and memory.
 
-## Publisher: <br>
-[subaru0573](https://clawhub.ai/user/subaru0573) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[subaru0573](https://clawhub.ai/user/subaru0573)
 
-## Use Case: <br>
-Developers and agents use this skill to find MCP servers by category or keyword, inspect installation details, and generate starter client configuration for selected servers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated MCP configurations can enable downstream servers with sensitive filesystem, database, memory, or API-token access. <br>
-Mitigation: Review each selected server before installation, prefer trusted and pinned packages where possible, and grant only the paths, credentials, and services required for the intended task. <br>
-Risk: Server lookup and configuration details may become stale as MCP packages and registries change. <br>
-Mitigation: Confirm package names, install commands, and server documentation from the referenced MCP sources before deploying generated configurations. <br>
+## Use Case:
 
+Developers and agents use this skill to find MCP servers, review server details, and generate starter MCP client configuration for selected servers. It is useful when setting up MCP clients or comparing available server options by category or keyword.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/subaru0573/mcp-server-discovery-p) <br>
-- [MCP Server Registry Reference](references/registry.md) <br>
-- [Model Context Protocol documentation](https://modelcontextprotocol.io/) <br>
-- [Official MCP servers repository](https://github.com/modelcontextprotocol/servers) <br>
-- [Awesome MCP Servers](https://github.com/appcypher/awesome-mcp-servers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Plain text and JSON, with shell commands and MCP client configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Configuration output may reference downstream MCP servers that require user-scoped filesystem, database, memory, or API-token access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated MCP configurations can later auto-run unpinned third-party server packages with broad access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated configurations before installing, pin package versions, remove automatic -y installs where possible, and grant MCP servers only the directories, tokens, databases, and memory retention they need.
+
+Risk: Some MCP server configurations require credentials such as GITHUB_TOKEN.
+
+Mitigation: Use least-privileged credentials, store secrets outside shared configuration files, and verify each server's requested access before enabling it.
+
+## Reference(s):
+
+- [MCP Server Registry Reference](references/registry.md)
+- [Model Context Protocol Documentation](https://modelcontextprotocol.io/)
+- [Official MCP Servers Repository](https://github.com/modelcontextprotocol/servers)
+- [Awesome MCP Servers](https://github.com/appcypher/awesome-mcp-servers)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown, JSON, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands support JSON output for programmatic use.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

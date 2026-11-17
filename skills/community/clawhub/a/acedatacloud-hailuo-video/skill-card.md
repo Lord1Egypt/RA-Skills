@@ -1,41 +1,59 @@
-## Description: <br>
-Generate AI videos with Hailuo (MiniMax) via AceDataCloud API from text descriptions or source images, including image-to-video director mode for finer motion control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in generating Hailuo videos from text or images through AceDataCloud's API, including director-mode animation.
 
-## Publisher: <br>
-[Germey](https://clawhub.ai/user/Germey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[acedatacloud](https://clawhub.ai/user/acedatacloud)
 
-## Use Case: <br>
-Developers and creators use this skill to generate Hailuo videos from prompts or animate still images through AceDataCloud's API. It is useful when an agent needs to provide request guidance, curl commands, parameter choices, or polling steps for video generation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video prompts, source image URLs, and callback URLs are sent to AceDataCloud/Hailuo. <br>
-Mitigation: Avoid secrets, private internal URLs, proprietary images, regulated data, or unapproved callback targets unless the provider, retention, and billing terms have been reviewed. <br>
-Risk: The skill requires an AceDataCloud API token for authenticated requests. <br>
-Mitigation: Store ACEDATACLOUD_API_TOKEN in the runtime environment and do not place the token in prompts, generated examples, or committed files. <br>
+## Use Case:
 
+Developers and creators use this skill to request text-to-video and image-to-video generation and monitor asynchronous tasks through AceDataCloud's Hailuo API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Germey/acedatacloud-hailuo-video) <br>
-- [AceDataCloud Hailuo videos API endpoint](https://api.acedata.cloud/hailuo/videos) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls, JSON] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include request parameters, model choices, authentication setup, and task polling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The AceDataCloud API key could be exposed or used beyond the intended video endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the key out of prompts and committed files, and restrict allowed APIs to the endpoints needed.
+
+Risk: Submitted prompts and source image URLs are sent to AceDataCloud's hosted service.
+
+Mitigation: Submit only prompts and image URLs approved for sharing with the provider.
+
+Risk: Retrying video generation while an asynchronous task is pending can incur additional charges.
+
+Mitigation: Check the existing task ID and balance before submitting another generation request.
+
+## Reference(s):
+
+- [Hailuo Video on ClawHub](https://clawhub.ai/acedatacloud/skills/hailuo)
+- [AceDataCloud application and API key setup](https://platform.acedata.cloud/console/applications)
+- [Asynchronous task polling guide referenced by the skill](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/async-tasks.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, API request guidance]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides asynchronous task polling; generated videos come from the external service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

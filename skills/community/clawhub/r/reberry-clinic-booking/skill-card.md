@@ -1,43 +1,63 @@
-## Description: <br>
-Reberry helps users view booking guidance, submit appointment requests, consult customer service, and check prices for reberry医院 明洞店 through BeautsGO. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reberry helps users view booking guidance, submit appointment requests, consult customer service, check prices, and open BeautsGO links for reberry clinic Myeongdong.
 
-## Publisher: <br>
-[beautsgo](https://clawhub.ai/user/beautsgo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beautsgo](https://clawhub.ai/user/beautsgo)
 
-## Use Case: <br>
-External users use this skill to book or prepare bookings for reberry clinic Myeongdong through BeautsGO, including viewing guidance, opening clinic pages, checking prices, and submitting appointment details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Appointment time, party size, and any phone number the user provides may be sent to BeautsGO when requesting a booking. <br>
-Mitigation: Use the booking flow only after confirming the user is comfortable sharing those details with BeautsGO. <br>
-Risk: The skill may submit a booking request once enough appointment information is present. <br>
-Mitigation: Review the clinic, appointment details, and contact information before asking the skill to book. <br>
+## Use Case:
 
+External users use this skill to get booking guidance and submit appointment details for reberry clinic Myeongdong through BeautsGO, including price lookup and customer-service handoff.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/beautsgo/reberry-clinic-booking) <br>
-- [BeautsGO publisher profile](https://clawhub.ai/user/beautsgo) <br>
-- [reberry clinic Myeongdong page](https://i.beautsgo.com/cn/hospital/reberry-clinic-myeongdong?from=skill) <br>
-- [reberry clinic Myeongdong booking page](https://i.beautsgo.com/cn/hospital/reberry-clinic-myeongdong/skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [String, often formatted as Markdown booking guidance or booking and price query results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports Chinese and English responses; may return links to BeautsGO pages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release evidence) <br>
+Risk: Appointment details, including date and phone number when provided, may be submitted to an external booking API immediately.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit confirmation step before submitting any booking request or contact details.
+
+Risk: Hardcoded API tokens are bundled with the skill.
+
+Mitigation: Move tokens to a managed secret store or runtime configuration and rotate exposed credentials before release.
+
+Risk: The local URL opener uses shell command execution.
+
+Mitigation: Replace shell-based opening with a safer platform API or strictly escaped argument execution.
+
+Risk: Language file loading accepts runtime language input.
+
+Mitigation: Restrict language selection to an explicit allowlist such as zh and en.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/beautsgo/skills/reberry-clinic-booking)
+- [BeautsGO publisher profile](https://clawhub.ai/user/beautsgo)
+- [BeautsGO reberry clinic booking page](https://i.beautsgo.com/cn/hospital/reberry-clinic-myeongdong/skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and plain-text responses with links and booking status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate external booking or price lookups and may open approved BeautsGO URLs based on user intent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, SKILL.md frontmatter, package.json, skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

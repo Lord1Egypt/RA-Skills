@@ -1,38 +1,49 @@
-## Description: <br>
-中文 VDV 真相视觉 helps an agent apply the Merlin VDV and CMT 5x5 reasoning lens to analyze complex systems, surface tensions, check ethical alignment, and propose a truth-oriented action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Merlin VDV - 真相视觉 (Vision de Verite) helps agents apply a CMT 5x5-style reasoning loop to analyze complex systems, dense information, ethical alignment, ambiguous communication, and paths toward a claimed truth axis.
 
-## Publisher: <br>
-[kofna3369](https://clawhub.ai/user/kofna3369) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kofna3369](https://clawhub.ai/user/kofna3369)
 
-## Use Case: <br>
-Agents use this prompt-only skill when a user wants a structured Merlin VDV perspective on complex information, ambiguous communication, ethical alignment, or decision paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill frames outputs through a strong truth-vision perspective, which may sound more definitive than the evidence supports. <br>
-Mitigation: Treat outputs as structured perspective, not verified truth, and independently check important decisions. <br>
+## Use Case:
 
+External users and agent builders can use this skill to guide reflective analysis of complex situations, ambiguous messages, ethical consistency, and decision paths through the VDV and CMT 5x5 framing. It is best treated as a qualitative reasoning framework rather than a technical security or factual verification tool.
 
-## Reference(s): <br>
-- [CMT 5x5 VDV Reference](references/cmt5x5-vdv.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only analytical guidance; no code execution, credentials, local data access, persistence, or network activity requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill uses broad and stylized reasoning guidance, which may be too imprecise for exact task routing or high-stakes conclusions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a reflective analysis aid, keep human review in the loop, and verify factual or security-relevant conclusions against authoritative sources.
+
+## Reference(s):
+
+- [CMT 5x5 - VDV Reference](references/cmt5x5-vdv.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown, Text]
+
+**Output Format:** [Markdown or plain text reasoning outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces qualitative analysis, conclusions, resonance labels, and suggested actions; no code execution or credential access is described in the reviewed artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

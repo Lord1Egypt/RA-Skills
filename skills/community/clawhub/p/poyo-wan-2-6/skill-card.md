@@ -1,45 +1,58 @@
-## Description: <br>
-Helps agents prepare, submit, and track PoYo Wan 2.6 video generation jobs for text-to-video, image-to-video, video-to-video, and multi_shot workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents submit Wan 2.6 text-to-video, image-to-video, and video-to-video generation jobs through PoYo.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and automation agents use this skill to construct PoYo Wan 2.6 payloads, choose the correct model variant, submit generation jobs with curl, and preserve task IDs for polling or webhook follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts, media URLs, and optional callback URLs to PoYo when submitting generation jobs. <br>
-Mitigation: Review payload contents before submission and only include media URLs and callback URLs intended for PoYo processing. <br>
-Risk: API credentials could be exposed if passed directly on a command line or embedded in shared payloads. <br>
-Mitigation: Store POYO_API_KEY securely and prefer an environment variable for authentication. <br>
+## Use Case:
 
+Developers and agents use this skill to prepare and submit PoYo Wan 2.6 video generation requests, choose the appropriate model variant, and report task IDs for follow-up status checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/coolhackboy/poyo-wan-2-6) <br>
-- [PoYo Wan 2.6 API docs](https://docs.poyo.ai/api-manual/video-series/wan-2-6) <br>
-- [PoYo task status docs](https://docs.poyo.ai/api-manual/task-management/status) <br>
-- [PoYo Wan 2.6 OpenAPI JSON](https://docs.poyo.ai/api-manual/video-series/wan-2-6.json) <br>
-- [PoYo API key dashboard](https://poyo.ai/dashboard/api-key) <br>
-- [Local API reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payload examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include selected model id, final payload or parameter summary, reference-media involvement, returned task_id, and polling or webhook next step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts, media URLs, and optional callback URLs are sent to PoYo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sending that content to PoYo is acceptable, and avoid sensitive prompts, private media URLs, or callback endpoints that should not be shared.
+
+Risk: The helper script can expose the PoYo API key through command and process arguments.
+
+Mitigation: Avoid passing the API key on the command line; prefer safer secret handling or modify the helper so the bearer token is not placed in process arguments.
+
+## Reference(s):
+
+- [PoYo Wan 2 6 API Reference](references/api.md)
+- [PoYo Wan 2.6 Model Page](https://poyo.ai/models/wan-2-6)
+- [PoYo Wan 2.6 API Docs](https://docs.poyo.ai/api-manual/video-series/wan-2-6)
+- [PoYo Wan 2.6 OpenAPI JSON](https://docs.poyo.ai/api-manual/video-series/wan-2-6.json)
+- [PoYo Task Status Docs](https://docs.poyo.ai/api-manual/task-management/status)
+- [ClawHub Skill Page](https://clawhub.ai/coolhackboy/skills/poyo-wan-2-6)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON payloads and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include selected model ID, request payload summary, reference media usage, returned task_id, and polling or webhook next steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

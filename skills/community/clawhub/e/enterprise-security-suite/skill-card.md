@@ -1,41 +1,57 @@
-## Description: <br>
-Enterprise Security Suite provides OpenClaw helpers for high-risk operation prompts, file backups, rollback, changelog logging, and skill-installation checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise Security Suite helps agents request confirmation for high-risk actions, create file backups, record change logs, roll back from backups, and assess skill installation risk.
 
-## Publisher: <br>
-[gk752448784](https://clawhub.ai/user/gk752448784) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gk752448784](https://clawhub.ai/user/gk752448784)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add operational guardrails around file changes, rollbacks, change logging, and skill-installation review in OpenClaw environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The main confirmation safeguard currently auto-approves high-risk actions instead of waiting for explicit approval. <br>
-Mitigation: Do not rely on this version to block high-risk actions; require an external manual confirmation step or patch confirmHighRisk before deployment. <br>
-Risk: The activation script persistently changes agent memory through shell-driven writes to a local pgmemory Docker/Postgres setup. <br>
-Mitigation: Run activate.js only when those persistent rules are intended, and plan how to inspect or remove the inserted memory records during uninstall or rollback. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add operational guardrails around high-risk agent actions, including confirmation prompts, backups, change logging, rollback, and pre-installation skill checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gk752448784/enterprise-security-suite) <br>
-- [Publisher profile](https://clawhub.ai/user/gk752448784) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Console text, Markdown reports, JavaScript return objects, backup files, changelog entries, and activation commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Activation can persist memory rules through the local pgmemory Docker/Postgres setup; security evidence says the confirmation safeguard currently auto-approves.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0) <br>
+Risk: The security scan states that the core safety protections are unreliable as an enforcement-grade security layer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and keep independent human approval controls in place for high-risk actions until confirmation enforcement is verified.
+
+Risk: Activation persistently changes the agent's memory.
+
+Mitigation: Run activation only in a controlled workspace after documenting the intended scope and rollback path.
+
+Risk: The security guidance calls out repository verification and rollback validation as areas that need hardening.
+
+Mitigation: Validate source provenance and backup targets before relying on source trust decisions or rollback behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gk752448784/skills/enterprise-security-suite)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell, JavaScript, and JSON examples; runtime helpers return JavaScript objects or booleans.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for human review before risky operations are executed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

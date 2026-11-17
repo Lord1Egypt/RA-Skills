@@ -1,44 +1,58 @@
-## Description: <br>
-Analyzes code-change risk, assesses impact scope, and generates practical refactoring plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assesses code migration and refactoring risks, maps affected components, and produces practical action plans for developers.
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review pull requests, repository changes, large refactors, external code migrations, and API upgrades for risk level, affected modules, and a step-by-step remediation plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may inspect repository diffs, commit history, code search results, and audit-style operational data. <br>
-Mitigation: Run it only on repositories and logs the reviewing agent is authorized to access, and avoid exposing secrets in diffs or prompts. <br>
-Risk: GitHub or related access tokens could grant more repository access than the assessment requires. <br>
-Mitigation: Use least-privilege tokens and limit token scope to the repositories and read operations needed for the review. <br>
-Risk: Generated risk ratings and refactoring plans can be incomplete or incorrect for complex production changes. <br>
-Mitigation: Treat results as review guidance and have qualified engineers validate high-risk findings, migration steps, and test coverage before acting. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to assess PR, repository, or release migration risks, understand impacted modules, and plan refactoring work before applying changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/ai-code-migration-risk-assessor) <br>
-- [README.md](artifact/README.md) <br>
-- [workflow.json](artifact/workflow.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown risk report with risk levels, affected-module lists, refactoring steps, and action-plan guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use repository diffs, commit history, code search results, and dependent analysis skills when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Repository analysis may require access to private or sensitive code through GitHub credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege GitHub token scoped only to the repositories needed for the assessment.
+
+Risk: Generated refactoring plans or diffs may be incomplete or unsuitable for the target codebase.
+
+Mitigation: Review the generated plan or diff before applying changes and validate it with the project's normal tests and code review process.
+
+Risk: The workflow and primary artifact text are in Chinese, which may affect operator understanding.
+
+Mitigation: Install and use it only when the operator is comfortable with a Chinese-language workflow or has the output reviewed by someone who is.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/skills/ai-code-migration-risk-assessor)
+- [Publisher profile](https://clawhub.ai/user/zlszhonglongshen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown risk report with prioritized findings, affected-module list, and refactoring action plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference GitHub PRs, repositories, diffs, P0-P3 risk levels, suggested code changes, and GITHUB_TOKEN access.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

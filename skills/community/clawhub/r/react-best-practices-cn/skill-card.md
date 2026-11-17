@@ -1,48 +1,64 @@
-## Description: <br>
-Provides React and Next.js performance best-practice guidance for writing, reviewing, and refactoring application code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language React and Next.js performance guidance for agents that write, review, or refactor components, pages, data fetching, bundle behavior, and rendering patterns.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and engineers use this skill to guide React and Next.js component design, data fetching, rendering, server behavior, and bundle-size optimization. It is intended for code generation, code review, and refactoring tasks where performance patterns matter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary says examples may steer agents toward unsafe inline scripts, auth-state handling, cookie logging, or shared user caches. <br>
-Mitigation: Review generated React and Next.js changes before use, especially changes involving inline scripts, dangerouslySetInnerHTML, localStorage, cookies, logging, or server caches. <br>
-Risk: Guidance involving auth behavior or shared server caches can create authorization or data-exposure issues if applied without context. <br>
-Mitigation: Require server-side authorization checks, redaction for sensitive logs, and authorization-aware cache scoping for any generated implementation. <br>
-Risk: Inline scripts and direct DOM or storage patterns may increase CSP or XSS exposure. <br>
-Mitigation: Require explicit CSP and XSS protections when accepting generated changes that add inline scripts, dangerouslySetInnerHTML, or browser storage behavior. <br>
+## Use Case:
 
+Developers and AI coding agents use this skill to apply React and Next.js performance best practices during code generation, review, and refactoring. It focuses on avoiding waterfalls, reducing bundle size, improving server and client data access, and minimizing unnecessary rendering work.
 
-## Reference(s): <br>
-- [React Documentation](https://react.dev) <br>
-- [Next.js Documentation](https://nextjs.org) <br>
-- [SWR Documentation](https://swr.vercel.app) <br>
-- [better-all](https://github.com/shuding/better-all) <br>
-- [node-lru-cache](https://github.com/isaacs/node-lru-cache) <br>
-- [How We Optimized Package Imports in Next.js](https://vercel.com/blog/how-we-optimized-package-imports-in-next-js) <br>
-- [How We Made the Vercel Dashboard Twice as Fast](https://vercel.com/blog/how-we-made-the-vercel-dashboard-twice-as-fast) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with TypeScript and React examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language guidance derived from rule files and compiled agent documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, skill frontmatter) <br>
+Risk: Agents may apply performance examples without adapting them to application security requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code before use and verify that authentication, authorization, tenant scoping, and data handling remain correct.
+
+Risk: Caching examples can lead to exposure of user-specific records across requests or tenants.
+
+Mitigation: Scope caches by request, user, and tenant where applicable, and avoid cross-request caching for sensitive data unless authorization boundaries are enforced.
+
+Risk: Examples involving inline scripts, logging, or package-manager execution can introduce CSP, secret-handling, or supply-chain risk.
+
+Mitigation: Avoid logging raw session cookies or tokens, control CSP and interpolation risks for inline scripts, and pin package-manager tooling before execution.
+
+## Reference(s):
+
+- [React documentation](https://react.dev)
+- [Next.js documentation](https://nextjs.org)
+- [SWR documentation](https://swr.vercel.app)
+- [better-all](https://github.com/shuding/better-all)
+- [node-lru-cache](https://github.com/isaacs/node-lru-cache)
+- [How we optimized package imports in Next.js](https://vercel.com/blog/how-we-optimized-package-imports-in-next-js)
+- [How we made the Vercel Dashboard twice as fast](https://vercel.com/blog/how-we-made-the-vercel-dashboard-twice-as-fast)
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/react-best-practices-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown guidance with TypeScript and React examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance organized as prioritized React and Next.js performance rules.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, artifact metadata, and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

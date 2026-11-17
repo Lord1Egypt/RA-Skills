@@ -1,0 +1,152 @@
+{
+  "_comment": "超级股票操盘 Skill 配置文件。SKILL.md / scripts / daily_pipeline.py 均会读取本文件。首次使用请填入真实值或通过 scripts/install.sh 交互式生成。所有 API Key 字段为占位符，请勿提交真实密钥到公开仓库。",
+  "skill": {
+    "name": "super-stock-trading",
+    "version": "1.0.0",
+    "language": "zh-CN",
+    "market": "A-Share",
+    "entry": "SKILL.md"
+  },
+  "data_sources": {
+    "akshare": {
+      "enabled": true,
+      "priority": 1,
+      "description": "开源金融数据接口，行情/资金流/龙虎榜/财报/宏观，无需 Key",
+      "rate_limit_per_min": 60,
+      "timeout_sec": 15,
+      "fallback_to": "tushare"
+    },
+    "wind_aifin_market": {
+      "enabled": false,
+      "priority": 2,
+      "description": "Wind 终端行情与资讯接口，高质量盘口/深度资金/研报，需 API Key",
+      "rate_limit_per_min": 120,
+      "timeout_sec": 10,
+      "fallback_to": "akshare"
+    },
+    "tushare": {
+      "enabled": false,
+      "priority": 3,
+      "description": "Pro 版接口，财务三大表/分红送转/指数成分，需 Token",
+      "rate_limit_per_min": 200,
+      "timeout_sec": 15,
+      "fallback_to": "akshare"
+    },
+    "routing_rule": "按字段路由：行情/资金流优先 akshare；深度盘口/研报优先 wind_aifin_market；财务三表优先 tushare；主源失败自动降级到 fallback_to"
+  },
+  "api_keys": {
+    "_comment": "以下均为占位符，请通过环境变量覆盖：WIND_API_KEY / TUSHARE_TOKEN / ALPHAVANTAGE_API_KEY",
+    "wind_api_key": "YOUR_WIND_API_KEY_PLACEHOLDER",
+    "tushare_token": "YOUR_TUSHARE_TOKEN_PLACEHOLDER",
+    "alphavantage_api_key": "YOUR_ALPHAVANTAGE_API_KEY_PLACEHOLDER",
+    "serenity_graph_token": "YOUR_SERENITY_TOKEN_PLACEHOLDER",
+    "use_env_override": true
+  },
+  "watchlist": {
+    "_comment": "自选股 / 关注指数 / 关注题材占位，请按需替换",
+    "stocks": [
+      { "code": "600519", "name": "贵州茅台", "exchange": "SH" },
+      { "code": "000858", "name": "五粮液", "exchange": "SZ" },
+      { "code": "300750", "name": "宁德时代", "exchange": "SZ" },
+      { "code": "601318", "name": "中国平安", "exchange": "SH" },
+      { "code": "002594", "name": "比亚迪", "exchange": "SZ" }
+    ],
+    "indices": ["000001.SH", "399001.SZ", "399006.SZ", "000688.SH"],
+    "themes": ["人工智能", "新能源", "半导体", "创新药", "高股息"]
+  },
+  "risk_control": {
+    "_comment": "7 条风控规则参数，对应 references/risk_rules.md。hard_limit 为硬性上限，不建议突破",
+    "rules": {
+      "stop_loss": {
+        "enabled": true,
+        "type": "individual",
+        "threshold_pct": -5.0,
+        "action": "触发止损评估，生成减仓/清仓建议",
+        "hard_limit": false
+      },
+      "portfolio_stop_loss": {
+        "enabled": true,
+        "type": "portfolio",
+        "threshold_pct": -8.0,
+        "action": "组合级降仓，权益仓位上限临时下调一档",
+        "hard_limit": false
+      },
+      "single_position_limit": {
+        "enabled": true,
+        "type": "concentration",
+        "threshold_pct": 30.0,
+        "action": "触发再平衡提醒，建议减仓至阈值以内",
+        "hard_limit": true
+      },
+      "industry_concentration_limit": {
+        "enabled": true,
+        "type": "concentration",
+        "threshold_pct": 50.0,
+        "classification": "申万一级行业",
+        "action": "触发分散化提醒，建议跨行业分散",
+        "hard_limit": true
+      },
+      "black_swan_circuit_breaker": {
+        "enabled": true,
+        "type": "systemic",
+        "triggers": ["千股跌停", "流动性骤缩", "指数单日跌幅>5%"],
+        "action": "暂停新开仓，启动对冲评估，需人工确认解除",
+        "hard_limit": true
+      },
+      "event_pre_check": {
+        "enabled": true,
+        "type": "event",
+        "cooldown_min": 30,
+        "action": "重大公告/异动后30分钟内禁止新增仓位，须先完成事件评估",
+        "hard_limit": true
+      },
+      "liquidity_constraint": {
+        "enabled": true,
+        "type": "execution",
+        "max_order_pct_of_adv20": 10.0,
+        "action": "单笔委托量不得超过近20日均量的10%，避免冲击成本",
+        "hard_limit": true
+      }
+    },
+    "equity_position_cap_pct": 80.0,
+    "cash_reserve_min_pct": 20.0
+  },
+  "pipeline": {
+    "phases": {
+      "pre_market_start": "07:00",
+      "pre_market_end": "09:15",
+      "market_open": "09:30",
+      "lunch_start": "11:30",
+      "lunch_end": "13:00",
+      "market_close": "15:00",
+      "post_market_end": "22:00"
+    },
+    "auto_run": false,
+    "report_output_dir": "reports/"
+  },
+
+  "wealth_reports": {
+    "directory": "references/wealth_reports",
+    "reports": [
+      {
+        "name": "莱坊2026财富报告",
+        "file": "莱坊2026财富报告_中文版.html",
+        "publisher": "Knight Frank",
+        "topics": ["超高净值人群", "全球地产", "奢侈品投资", "财富态度"]
+      },
+      {
+        "name": "瑞银2026全球财富报告",
+        "file": "瑞银2026全球财富报告_中文版.html",
+        "publisher": "UBS",
+        "topics": ["全球财富分布", "财富不平等", "代际传承", "人均财富"]
+      },
+      {
+        "name": "BCG2026全球财富报告",
+        "file": "BCG_2026全球财富报告_中文版.html",
+        "publisher": "BCG",
+        "topics": ["金融财富333万亿", "大重构", "新兴市场", "AI财富管理", "代际传承"]
+      }
+    ],
+    "auto_reference": true
+  }
+}

@@ -1,41 +1,58 @@
-## Description: <br>
-Manage vacation rental properties, guest reservations, and cleaning checklists with the TIDY platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage vacation rental properties, guest reservations, and cleaning checklists with the TIDY platform.
 
-## Publisher: <br>
-[mchusma](https://clawhub.ai/user/mchusma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mchusma](https://clawhub.ai/user/mchusma)
 
-## Use Case: <br>
-Short-term rental hosts, vacation property managers, and Airbnb or VRBO operators use this skill to manage TIDY properties, guest reservations, and cleaning checklists from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: TIDY_API_TOKEN is a long-lived bearer token for the connected TIDY account. <br>
-Mitigation: Protect the token as a secret, prefer a limited or test account when possible, and rotate the token if it may have been exposed. <br>
-Risk: Delete or natural-language requests can modify properties or reservations. <br>
-Mitigation: Require explicit confirmation before running delete commands or natural-language requests that change account data. <br>
+## Use Case:
 
+External short-term rental hosts, vacation property managers, and Airbnb/VRBO operators use this skill to manage TIDY properties, guest reservations, cleaning checklists, and related API workflows.
 
-## Reference(s): <br>
-- [TIDY homepage](https://tidy.com) <br>
-- [ClawHub skill page](https://clawhub.ai/mchusma/vacation-property-management) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with inline curl commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TIDY_API_TOKEN as a bearer token; examples cover property, reservation, cleaning checklist, and natural-language TIDY API operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence and skill frontmatter) <br>
+Risk: Long-lived TIDY_API_TOKEN credentials can expose TIDY property, reservation, and access-note data if mishandled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect TIDY_API_TOKEN like a password, use a dedicated or least-privileged account where possible, and avoid sharing token values in prompts, logs, or examples.
+
+Risk: The skill includes live create, update, and delete workflows for property and reservation records.
+
+Mitigation: Require user confirmation before update or delete actions and review the target property, reservation, dates, and access notes before executing requests.
+
+Risk: The optional global CLI installation may install an unpinned package.
+
+Mitigation: Prefer direct API requests when package provenance is unclear, or verify and pin the CLI package source before installing it globally.
+
+## Reference(s):
+
+- [TIDY homepage](https://tidy.com)
+- [ClawHub skill page](https://clawhub.ai/mchusma/skills/vacation-property-management)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TIDY_API_TOKEN for authenticated TIDY API requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

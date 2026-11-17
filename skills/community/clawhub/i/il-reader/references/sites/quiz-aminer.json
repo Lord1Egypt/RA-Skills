@@ -1,0 +1,223 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-aminer",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:03:43.551Z",
+  "entry": {
+    "url": "https://www.aminer.cn",
+    "final_url": "https://www.aminer.cn/",
+    "title": "AMiner - GLM满血模型-AI科研助手-论文检索-学术搜索",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:03:43.551Z",
+    "identity": {
+      "declared_name": "AMiner",
+      "hostname": "www.aminer.cn",
+      "domain_matches": true
+    },
+    "links": [],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "textarea",
+      "type": null,
+      "text": "请输入想检索的问题",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "请输入想检索的问题",
+      "name": null,
+      "id": "",
+      "css": "textarea[placeholder=\"请输入想检索的问题\"]",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "textarea[placeholder=\"请输入想检索的问题\"]"
+      },
+      "observed_url": "https://www.aminer.cn/",
+      "observed_at": "2026-10-09T09:03:41.624Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "连 接",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "连 接",
+        "exact": true
+      },
+      "observed_url": "https://www.aminer.cn/",
+      "observed_at": "2026-10-09T09:03:41.624Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "关",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "switch",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "关",
+        "exact": true
+      },
+      "observed_url": "https://www.aminer.cn/",
+      "observed_at": "2026-10-09T09:03:41.624Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-aminer:record-lookup",
+      "source_id": "quiz-aminer",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.aminer.cn/",
+      "controls": [
+        {
+          "tag": "textarea",
+          "type": null,
+          "text": "请输入想检索的问题",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "请输入想检索的问题",
+          "name": null,
+          "id": "",
+          "css": "textarea[placeholder=\"请输入想检索的问题\"]",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "textarea[placeholder=\"请输入想检索的问题\"]"
+          },
+          "observed_url": "https://www.aminer.cn/",
+          "observed_at": "2026-10-09T09:03:41.624Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "连 接",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "连 接",
+            "exact": true
+          },
+          "observed_url": "https://www.aminer.cn/",
+          "observed_at": "2026-10-09T09:03:41.624Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "关",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "switch",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "关",
+            "exact": true
+          },
+          "observed_url": "https://www.aminer.cn/",
+          "observed_at": "2026-10-09T09:03:41.624Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-012"
+    ],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:03:43.551Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-aminer-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-aminer-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

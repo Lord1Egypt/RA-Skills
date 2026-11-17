@@ -1,0 +1,14 @@
+# 图片转知识库系统 - 核心依赖（必需）
+# 用于配置向导 setup_wizard.py
+
+# 配置管理
+PyYAML>=5.4.0
+
+# HTTP请求
+requests>=2.28.0
+
+# .env文件支持
+python-dotenv>=0.21.0
+
+# 图像处理
+Pillow>=8.0.0

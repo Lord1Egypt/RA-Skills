@@ -1,44 +1,59 @@
-## Description: <br>
-Use Chanjing Avatar API for lip-syncing video generation by uploading audio or video, creating tasks, and polling for results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Chanjing Avatar API for lip-syncing video generation by uploading audio or video, creating tasks, and polling for results.
 
-## Publisher: <br>
-[binkes](https://clawhub.ai/user/binkes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binkes](https://clawhub.ai/user/binkes)
 
-## Use Case: <br>
-Developers and agents use this skill to automate Chanjing Avatar lip-sync video creation, including media upload, task creation, task polling, and retrieval of generated video URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads Chanjing credentials and persists access tokens in a local credentials.json file. <br>
-Mitigation: Store credentials.json in a protected local directory, use CHANJING_OPENAPI_CREDENTIALS_DIR when needed, and do not commit credentials.json to version control. <br>
-Risk: The skill uploads user-selected media to Chanjing for lip-sync video processing. <br>
-Mitigation: Upload only media you are comfortable sending to Chanjing and keep the API base URL on the official Chanjing endpoint. <br>
-Risk: Generated video result URLs may be returned by the API and downloaded or shared by the agent workflow. <br>
-Mitigation: Review returned video URLs and generated media before downloading, storing, or sharing them outside the workspace. <br>
+## Use Case:
 
+Developers and creators use this skill to create digital avatar lip-sync videos from text or uploaded audio and video media through Chanjing's Avatar Open API.
 
-## Reference(s): <br>
-- [Chanjing API Documentation](https://doc.chanjing.cc) <br>
-- [Chanjing File Management API](https://doc.chanjing.cc/api/file/file-management.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/binkes/chanjing-avatar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python CLI commands; scripts return JSON, file IDs, task IDs, and video URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uploads user-selected media to Chanjing, persists access tokens in credentials.json, and polls asynchronous video-generation tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+Risk: Credential-bearing requests can be redirected if CHANJING_OPENAPI_BASE_URL or CHANJING_API_BASE is set to an untrusted endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Leave those variables unset or set them only to the legitimate Chanjing API before running the skill.
+
+Risk: Chanjing credentials and access tokens are stored in ~/.chanjing/credentials.json or the configured credentials directory.
+
+Mitigation: Protect the credentials file with owner-only permissions and do not commit credentials.json to version control.
+
+Risk: Uploaded audio, video, and text leave the local machine for Chanjing processing.
+
+Mitigation: Use only media and text that are approved for third-party processing.
+
+## Reference(s):
+
+- [Chanjing API Documentation](https://doc.chanjing.cc)
+- [Chanjing File Management API](https://doc.chanjing.cc/api/file/file-management.html)
+- [Chanjing Avatar on ClawHub](https://clawhub.ai/binkes/skills/chanjing-avatar)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, API calls, JSON, Text]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API examples; scripts print JSON, file IDs, task IDs, or result URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Chanjing credentials from credentials.json and may upload user-provided media to Chanjing for processing.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

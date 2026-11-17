@@ -1,41 +1,58 @@
-## Description: <br>
-Designs refreshable Excel dashboards (Power Query + structured tables + validation + pivot reporting). Use when you need a repeatable weekly KPI workbook that updates from files with minimal manual work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs refreshable Excel dashboards with Power Query, structured tables, validation, and pivot reporting for repeatable weekly KPI workbooks.
 
-## Publisher: <br>
-[KOwl64](https://clawhub.ai/user/KOwl64) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kowl64](https://clawhub.ai/user/kowl64)
 
-## Use Case: <br>
-Employees, external operators, and developers use this skill to design repeatable weekly KPI workbooks in Excel with Power Query ingestion, structured tables, validation checks, pivot dashboards, and refresh status reporting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated Power Query snippets or workbook guidance could be applied to the wrong folder or unsuitable business data. <br>
-Mitigation: Use a dedicated source folder, review snippets before applying them, and keep visible refresh status checks for row counts, query errors, and latest week coverage. <br>
-Risk: PDF or DOCX table extraction can be unreliable for repeatable reporting pipelines. <br>
-Mitigation: Require user-provided CSV or XLSX exports when extraction reliability is uncertain, or clearly mark the extraction risk before building the workbook workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/KOwl64/excel-weekly-dashboard) <br>
-- [Power Query folder ingest template](assets/power-query-folder-ingest-template.pq.md) <br>
-- [Weekly refresh checklist](assets/refresh-checklist.md) <br>
+## Use Case:
 
+Employees, analysts, and operations teams use this skill to design weekly Excel KPI dashboards that refresh from CSV, XLSX, DOCX-exported table, or PDF-exported table inputs. It helps create repeatable workbook plans, Power Query steps, validation rules, pivot layouts, and refresh checks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with Power Query M snippets and structured workbook guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces plans by default; generates workbook specification, Power Query template, and refresh checklist artifacts only when explicitly requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A broad Power Query folder path could ingest unrelated personal or business files.
+
+Mitigation: Set the generated folder path to a narrow export directory that contains only the intended weekly source files.
+
+Risk: Incorrect schema, validation, or refresh assumptions could produce misleading KPI reports.
+
+Mitigation: Review generated validation rules, row counts, query errors, and latest-week checks before publishing or sharing dashboard outputs.
+
+Risk: PDF or DOCX table extraction can be unreliable when source tables are not cleanly exported.
+
+Mitigation: Use user-provided CSV or XLSX exports when possible, or clearly mark extraction risk before relying on those inputs.
+
+## Reference(s):
+
+- [Power Query folder ingest template](assets/power-query-folder-ingest-template.pq.md)
+- [Weekly refresh checklist](assets/refresh-checklist.md)
+- [ClawHub skill page](https://clawhub.ai/kowl64/skills/excel-weekly-dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown plans with Power Query M code snippets and optional generated files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workbook_spec.md, power_query_steps.pq, and refresh-checklist.md when explicitly requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

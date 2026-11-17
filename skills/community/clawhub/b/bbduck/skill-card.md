@@ -1,41 +1,55 @@
-## Description: <br>
-BBDuck helps agents compress local images with a visual-lossless default, stream compression logs, and prepare compressed results for ZIP download. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BBDuck helps agents compress local JPG, PNG, WEBP, and GIF images with a visual-lossless default, streaming compression logs, and optional ZIP downloads.
 
-## Publisher: <br>
-[zhaoolee](https://clawhub.ai/user/zhaoolee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaoolee](https://clawhub.ai/user/zhaoolee)
 
-## Use Case: <br>
-Developers and automation agents use BBDuck to compress local JPG, PNG, WebP, and GIF images through a localhost Docker service while prioritizing visual-lossless output. It is especially useful when users need streaming progress logs, per-step timing, and optional ZIP packaging of compressed outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to run a third-party Docker image locally and expose a service port. <br>
-Mitigation: Install only after reviewing the Docker image source or digest, bind the service to localhost with 127.0.0.1:28642:8000, stop the container when finished, and send only images intended for compression. <br>
+## Use Case:
 
+Developers and automation users use BBDuck to compress local images through a local Docker-backed API while preserving visual quality and observing stream logs. It is suited for single-image compression workflows and packaging completed outputs into a ZIP.
 
-## Reference(s): <br>
-- [ClawHub BBDuck listing](https://clawhub.ai/zhaoolee/bbduck) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Local Swagger UI](http://127.0.0.1:28642/docs) <br>
-- [Local OpenAPI JSON](http://127.0.0.1:28642/openapi.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with curl examples, NDJSON log summaries, API request details, and file or ZIP handling instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Primarily targets local images and the localhost BBDuck service at http://127.0.0.1:28642.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release metadata and frontmatter) <br>
+Risk: The skill asks users to run an unpinned third-party Docker image that may change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Docker service before installing and prefer a pinned image digest.
+
+Risk: The local Docker service may be exposed beyond the intended local machine.
+
+Mitigation: Bind the service to 127.0.0.1 only, add resource limits, control network exposure, and avoid uploading sensitive images unless the container publisher is trusted.
+
+## Reference(s):
+
+- [ClawHub BBDuck skill page](https://clawhub.ai/zhaoolee/skills/bbduck)
+- [BBDuck local Swagger UI](http://127.0.0.1:28642/docs)
+- [BBDuck local OpenAPI JSON](http://127.0.0.1:28642/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell commands, API request examples, JSON snippets, and concise result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include streaming log summaries with spend_time_ms and ZIP download instructions.]
+
+## Skill Version(s):
+
+0.2.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

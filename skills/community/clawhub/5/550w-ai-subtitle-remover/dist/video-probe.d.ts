@@ -1,13 +1,11 @@
-import { ApiClient } from "./api-client";
 export interface VideoMetadata {
     width: number;
     height: number;
     duration: number;
 }
+export declare function assertPublicVideoUrl(videoUrl: string): Promise<void>;
 /**
- * 为远程视频 URL 提供默认元信息参数
- *
- * 服务端 submitTask 接口内部会通过 probeThreeTier 自动探测视频真实的 width/height/duration，
- * 并用探测到的真实值进行计费。这里返回一组安全的默认值作为 API 请求的 fallback 参数。
+ * 使用本机 ffprobe 获取远程视频的真实元信息。不得伪造默认宽高和时长：这些字段既参与
+ * 服务端快速拒绝，也可能在远程媒体暂时无法探测时成为兜底依据。
  */
-export declare function probeVideoUrl(videoUrl: string, client: ApiClient): Promise<VideoMetadata>;
+export declare function probeVideoUrl(videoUrl: string): Promise<VideoMetadata>;

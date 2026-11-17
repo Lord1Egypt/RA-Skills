@@ -1,45 +1,58 @@
-## Description: <br>
-Provides command-line Outlook automation through local pywin32 for mail, calendar, account, and folder management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Outlook Pywin32 is a pywin32-based command-line tool for local Microsoft Outlook mail, calendar, account, and folder automation.
 
-## Publisher: <br>
-[jonathanhuangfirst](https://clawhub.ai/user/jonathanhuangfirst) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jonathanhuangfirst](https://clawhub.ai/user/jonathanhuangfirst)
 
-## Use Case: <br>
-Employees, developers, and automation agents use this skill to inspect and update a local Microsoft Outlook profile, including mailbox folders, messages, accounts, calendar events, and default folders. It is intended for Windows environments with Outlook and pywin32 installed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive local mailbox and calendar data. <br>
-Mitigation: Use it only with Outlook accounts the agent is authorized to access, preferably through a limited Outlook profile. <br>
-Risk: Mail and calendar commands can change local Outlook state, including marking messages as read and editing events. <br>
-Mitigation: Review and confirm commands before execution, especially message reads and calendar changes. <br>
-Risk: Calendar edits involving attendees may have effects beyond a local note. <br>
-Mitigation: Confirm attendee-related calendar operations before running them and validate the resulting Outlook item. <br>
+## Use Case:
 
+Developers and end-user automation agents use this skill to operate a local Outlook profile on Windows through command-line actions for mail, calendar, account, and folder management.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jonathanhuangfirst/outlook-pywin32) <br>
-- [Publisher profile](https://clawhub.ai/user/jonathanhuangfirst) <br>
-- [README](artifact/README.md) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text output with Python return values for Outlook operations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Windows, a local Outlook client, and pywin32; account selection may come from command arguments, OUTLOOK_ACCOUNT, or scripts/config.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.8.0 (source: release evidence) <br>
+Risk: The skill can access sensitive mailbox and calendar data from a local Outlook profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only on trusted machines and use explicit account settings so commands target the intended mailbox.
+
+Risk: Mail reading can change message state by marking messages as read.
+
+Mitigation: Review read operations before execution and avoid running them against shared or work mailboxes without approval.
+
+Risk: Calendar creation and edit commands can change user scheduling data.
+
+Mitigation: Verify the target account, event subject, start time, and proposed changes before running calendar-new or calendar-edit.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jonathanhuangfirst/skills/outlook-pywin32)
+- [Publisher Profile](https://clawhub.ai/user/jonathanhuangfirst)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline command examples and structured command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Windows, Microsoft Outlook, Python 3.7+, and pywin32.]
+
+## Skill Version(s):
+
+0.8.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

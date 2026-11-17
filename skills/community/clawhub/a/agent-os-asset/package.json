@@ -1,0 +1,7 @@
+{
+  "name": "agent-os-asset",
+  "version": "0.2.0",
+  "private": false,
+  "description": "Turn forgotten files into privacy-aware AI Agent assets for a second brain / 将吃灰文件转化为隐私安全的 AI Agent 资产，构建第二大脑",
+  "license": "Apache-2.0 OR MIT-0"
+}

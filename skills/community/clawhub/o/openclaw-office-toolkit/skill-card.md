@@ -1,41 +1,53 @@
-## Description: <br>
-Helps agents read, create, edit, and validate Word, Excel, PowerPoint, and PDF documents using local Office and PDF tooling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Office Toolkit helps agents read, create, and edit Word, Excel, PowerPoint, CSV, and PDF documents using common Python document libraries plus Pandoc and LibreOffice when needed.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to inspect, generate, modify, and validate common Office and PDF files in local workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process local Office and PDF files, including untrusted documents. <br>
-Mitigation: Use a sandbox or controlled environment for untrusted files and review generated file changes before relying on them. <br>
-Risk: Dependency metadata is incomplete for required local tools and Python libraries. <br>
-Mitigation: Verify python-docx, openpyxl, python-pptx, pypdf, pandoc, and LibreOffice or soffice are installed before use. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect, generate, format, convert, and update Office documents and PDFs during document automation workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/axelhu/openclaw-office-toolkit) <br>
-- [Publisher Profile](https://clawhub.ai/user/axelhu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation or editing of local .docx, .xlsx, .csv, .pptx, and .pdf files when the required local tools are installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Privileged and unpinned setup commands can modify host system packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup commands before installing, prefer a virtual environment, avoid --break-system-packages, and only use sudo apt install with trusted OS package sources.
+
+Risk: Document editing workflows can overwrite or damage existing files.
+
+Mitigation: Keep backups before editing existing documents and verify outputs with the appropriate Office or PDF tooling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/axelhu/skills/openclaw-office-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and file-operation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or modify Office document files when the agent applies the guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

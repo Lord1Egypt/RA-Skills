@@ -1,41 +1,53 @@
-## Description: <br>
-Calculate allowable and break-even CPA for ecommerce offers using margin, refunds, and conversion assumptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate allowable and break-even CPA for ecommerce offers using margin, refunds, and conversion assumptions.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Marketing teams, ecommerce operators, and growth analysts use this skill before launching campaigns, adjusting bids, or comparing offers to calculate break-even CPA and conservative acquisition guardrails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CPA thresholds may be misleading if pricing, margin, refund, discount, fulfillment, or conversion assumptions are inaccurate. <br>
-Mitigation: Review the assumption table before acting on the recommendation and update calculations with current ecommerce economics. <br>
-Risk: The supplied security adjudication could not inspect artifact files directly. <br>
-Mitigation: Review the skill contents and setup instructions before installation or deployment. <br>
+## Use Case:
 
+Marketing and ecommerce teams use this skill before launching campaigns, adjusting bids, or comparing offers to estimate break-even CPA and a more conservative allowable CPA range.
 
-## Reference(s): <br>
-- [CPA Calculator Ecommerce Output Template](references/output-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Leooooooow/cpa-calculator-ecommerce) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with assumptions, unit economics, CPA thresholds, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided pricing, margin, refund, discount, conversion, and optional repeat-purchase assumptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill relies on user-provided business assumptions, so incorrect prices, margins, refund rates, fulfillment costs, or conversion assumptions can produce misleading CPA thresholds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the assumptions table before acting on the recommendation and validate the inputs against current ecommerce financial data.
+
+Risk: The source material appears intended for Chinese-language use unless the user asks otherwise.
+
+Mitigation: Confirm the desired language and localize terminology before presenting results to stakeholders.
+
+## Reference(s):
+
+- [CPA Calculator Ecommerce Output Template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with assumptions, unit economics, CPA thresholds, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided pricing, margin, refund, discount, fulfillment cost, conversion, and optional repeat-purchase assumptions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

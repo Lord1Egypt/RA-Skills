@@ -1,42 +1,54 @@
-## Description: <br>
-Peace Evolution reviews and iterates a Peace Seeds HTML game through a jury-review workflow, applies feedback to generate a new version, and can notify the user through Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Peace Evolution automates multi-round review of a Peace Seeds HTML game, applies review feedback to generate a new version, and sends a Feishu notification.
 
-## Publisher: <br>
-[kukuxNd](https://clawhub.ai/user/kukuxNd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kukuxnd](https://clawhub.ai/user/kukuxnd)
 
-## Use Case: <br>
-Developers and game creators use this skill to review a Peace Seeds HTML game across art, performance, security, testing, and cultural criteria, then generate an improved version. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill operates on Peace Seeds HTML files under /root/.openclaw/workspace/peace*.html and may create a new version. <br>
-Mitigation: Confirm the intended file scope before use and review the generated HTML before sharing or relying on it. <br>
-Risk: The workflow depends on a jury-review process that can produce subjective or incorrect improvement recommendations. <br>
-Mitigation: Use a trusted review process and manually check proposed changes against the project goals. <br>
-Risk: Feishu notifications may send generated output to an unintended account or recipient. <br>
-Mitigation: Verify the Feishu destination before enabling notifications. <br>
+## Use Case:
 
+OpenClaw users and HTML game maintainers use this skill to review a peace-themed game across art, performance, security, testing, and cultural dimensions, then produce the next versioned HTML file.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kukuxNd/peace-evolution) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown review notes with generated HTML file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May iterate up to 3 rounds and send a Feishu notification when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill reads peace*.html files from the OpenClaw workspace and creates new versioned HTML files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit invocation wording and review generated files before adopting or sharing them.
+
+Risk: The workflow can send a Feishu notification with the new version.
+
+Mitigation: Confirm the recipient and review the generated output before sending it externally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kukuxnd/skills/peace-evolution)
+- [Publisher profile](https://clawhub.ai/user/kukuxnd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, files, guidance]
+
+**Output Format:** [Markdown status and review summaries with generated HTML file content or file creation steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces up to three review-and-revision iterations by default, using an acceptance threshold of 85 when the workflow is followed.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

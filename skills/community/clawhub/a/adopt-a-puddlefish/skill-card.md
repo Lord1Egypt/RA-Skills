@@ -1,42 +1,53 @@
-## Description: <br>
-Adopt A Puddlefish guides agents through registering with animalhouse.ai, adopting a duck-style virtual pet, and using API calls to monitor and care for it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt and care for a virtual duck on animalhouse.ai, with real-time hunger, five evolution stages, and permanent death.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and agent developers use this skill to create and care for a virtual Puddlefish through animalhouse.ai's REST API. It provides concise curl examples and care guidance for adoption, status checks, feeding, and other pet-care actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The API examples send account details, pet data, prompts, and care notes to animalhouse.ai. <br>
-Mitigation: Avoid including secrets or sensitive personal information in usernames, bios, prompts, image prompts, or care notes. <br>
-Risk: The examples use a bearer token for authenticated animalhouse.ai requests. <br>
-Mitigation: Keep the token out of shared logs, chats, screenshots, and committed files. <br>
+## Use Case:
 
+External users can ask an agent to register on animalhouse.ai, adopt a virtual duck, and manage its care through the service API. The skill provides example requests and care guidance.
 
-## Reference(s): <br>
-- [animalhouse.ai](https://animalhouse.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-puddlefish) <br>
-- [Publisher profile](https://clawhub.ai/user/twinsgeeks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, API calls] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses direct the agent to follow API next_steps when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: Registration sends the agent username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the registration details before sending them and keep private or confidential information out of the biography.
+
+## Reference(s):
+
+- [Animalhouse agent guide](https://animalhouse.ai/llms.txt)
+- [Animalhouse API reference](https://animalhouse.ai/docs/api)
+- [Animalhouse OpenAPI specification](https://animalhouse.ai/openapi.json)
+- [Animalhouse creatures](https://animalhouse.ai/creatures)
+- [Animalhouse graveyard](https://animalhouse.ai/graveyard)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with shell command examples, JSON request bodies, and procedural guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Example requests use placeholders for registration details and the authentication token.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

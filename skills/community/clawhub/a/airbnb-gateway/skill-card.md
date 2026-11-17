@@ -1,47 +1,62 @@
-## Description: <br>
-Airbnb Gateway standardizes safe Airbnb host operations for agents, including inbox checks, reservation and calendar reads, reply drafting, single-attempt guest message sends, and post-send verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A skill for safe, coherent Airbnb operations in OpenClaw-style agent environments, including inbox and reservation reads, guest reply drafting, verified message sending, calendar inspection, and operator-approved calendar mutations.
 
-## Publisher: <br>
-[jason-vaughan](https://clawhub.ai/user/jason-vaughan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jason-vaughan](https://clawhub.ai/user/jason-vaughan)
 
-## Use Case: <br>
-External rental operators and developers use this skill to give agents a consistent operating contract for Airbnb inbox, reservation, calendar, drafting, and verified guest-message workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Airbnb tool-role mappings could point agents at tools the operator did not intend to authorize. <br>
-Mitigation: Before installation, review the role map and bind only approved Airbnb, browser, DevTools, and fallback tools. <br>
-Risk: Guest-facing sends can create duplicate or incorrect messages if retried from ambiguous state. <br>
-Mitigation: Use per-message approval where required, send each draft once, verify by re-reading the live thread, and escalate unconfirmed sends instead of resending automatically. <br>
-Risk: A persistent send ledger may contain guest, thread, and reservation metadata. <br>
-Mitigation: Store the ledger only in an approved location with access controls and retention appropriate for guest and reservation data. <br>
+## Use Case:
 
+External rental operators and developers use this skill to make agents handle Airbnb host operations consistently: reading inboxes and reservations, drafting and verifying guest messages, inspecting calendars, and performing explicitly approved calendar changes.
 
-## Reference(s): <br>
-- [Airbnb Gateway ClawHub listing](https://clawhub.ai/jason-vaughan/airbnb-gateway) <br>
-- [Airbnb tool priority and role mapping](references/airbnb-tool-priority.md) <br>
-- [Airbnb message send state machine](references/airbnb-message-state-machine.md) <br>
-- [Airbnb safety rules](references/airbnb-safety-rules.md) <br>
-- [Future adapter interface](references/future-adapter-interface.md) <br>
-- [Send log schema](state/send-log.schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown guidance with structured status examples and JSON schema references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational procedures, escalation guidance, draft-review workflows, and deployment-specific tool-role mapping instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: frontmatter and server release metadata) <br>
+Risk: Calendar or price changes affect live production inventory for a revenue-bearing Airbnb account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit per-operation operator approval, perform exactly the approved change, independently verify the after-state, and report the inverse operation.
+
+Risk: Guest messages may be duplicated or falsely reported as sent if endpoint acknowledgments are treated as final confirmation.
+
+Mitigation: Treat send acknowledgments as attempted, re-read the live thread before claiming success, and never auto-resend from failed or unconfirmed state.
+
+Risk: Production use involves broad authenticated browser control and sensitive local token or temporary-file handling.
+
+Mitigation: Use only a trusted local bridge, an account the operator owns, short-lived or scoped tokens where possible, private unique temporary paths, and human approval for every guest send or calendar or price change.
+
+## Reference(s):
+
+- [Airbnb Tool Priority](references/airbnb-tool-priority.md)
+- [Airbnb Message State Machine](references/airbnb-message-state-machine.md)
+- [Airbnb Safety Rules](references/airbnb-safety-rules.md)
+- [Calendar Mutation Procedure](references/calendar-mutation-procedure.md)
+- [Future Adapter Interface](references/future-adapter-interface.md)
+- [ClawHub Skill Page](https://clawhub.ai/jason-vaughan/skills/airbnb-gateway)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured operation states, command examples, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce guest reply drafts, send or mutation status reports, refusals, escalation guidance, and verification steps.]
+
+## Skill Version(s):
+
+0.2.1 (source: evidence release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

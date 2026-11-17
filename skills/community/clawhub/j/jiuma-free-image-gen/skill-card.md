@@ -1,42 +1,60 @@
-## Description: <br>
-Generates images from text prompts through the Jiuma AI API, with configurable image dimensions up to 832 by 832 pixels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jiuma AI's free image generation skill uses the Jiuma AI API to generate images from text prompts with configurable image dimensions.
 
-## Publisher: <br>
-[dddcn1](https://clawhub.ai/user/dddcn1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dddcn1](https://clawhub.ai/user/dddcn1)
 
-## Use Case: <br>
-Agents and developers use this skill to submit text-to-image generation jobs to Jiuma, check job status, and retrieve generated image URLs. It is suited for workflows that need quick image generation from user-provided prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts and task metadata are sent to Jiuma's remote service. <br>
-Mitigation: Avoid submitting confidential, personal, or sensitive prompt content unless the user accepts the remote-service data handling risk. <br>
-Risk: The login flow can save a Jiuma API key locally in plaintext. <br>
-Mitigation: Use private local workspaces, avoid synced or shared directories for the saved key, and delete or rotate the key if exposure is suspected. <br>
+## Use Case:
 
+External users and developers use this skill to submit text prompts to Jiuma AI, poll generation status, and retrieve generated image URLs. It is suited for agent workflows that need lightweight text-to-image generation with optional login for additional free usage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dddcn1/jiuma-free-image-gen) <br>
-- [Jiuma text-to-image submission API](https://api.jiuma.com/api/textImage/add) <br>
-- [Jiuma text-to-image status API](https://api.jiuma.com/api/textImage/status) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON responses and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns task identifiers, generation status, and image URLs when generation succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Prompts and login workflow data are sent to Jiuma services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing that content with Jiuma is acceptable, and avoid prompts containing sensitive or personal information.
+
+Risk: The Jiuma API key is stored locally in plaintext without enforced private permissions.
+
+Mitigation: Run the skill in an isolated environment and inspect or harden the key file permissions before use.
+
+Risk: The artifact documentation asks the agent to persist a memory entry.
+
+Mitigation: Remove or ignore that memory-recording instruction before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dddcn1/skills/jiuma-free-image-gen)
+- [Jiuma text-to-image submit API](https://api.jiuma.com/api/textImage/add)
+- [Jiuma text-to-image status API](https://api.jiuma.com/api/textImage/status)
+- [Jiuma login guide](artifact/LOGIN.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The runtime response includes task IDs for submitted jobs and image URLs when generation succeeds.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

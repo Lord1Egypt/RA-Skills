@@ -1,0 +1,11 @@
+id,keyword,action,note
+1,群聊导出,run_inventory,用户给导出路径时先 inventory
+2,私聊记录,run_inventory,私聊同样先概况再点选
+3,有价值内容,deep_after_target,必须先指定会话或人物
+4,聊天分析,use_chat_value_insight,不要走 creator-insight
+5,creator insight,route_away,公开主页作品用 douyin-creator-insight
+6,登录拉群,refuse_im_crawl,公开 skill 拒绝代登 IM
+7,阿里百炼,bailian_not_required,核心路径不需要 AppKey
+8,sessionid,refuse_collect_secret,不收集 cookie/sessionid
+9,inventory,no_deep_default,未点选不做深挖
+10,JSONL,load_chatlab,优先 ChatLab JSONL

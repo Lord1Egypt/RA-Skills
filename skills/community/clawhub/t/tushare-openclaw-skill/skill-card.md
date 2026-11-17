@@ -1,43 +1,56 @@
-## Description: <br>
-Tushare Openclaw Skill helps agents guide users through Tushare Pro financial data queries for China stocks, funds, futures, bonds, macroeconomic data, and related market information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tushare Pro 金融数据 API 查询助手。用于帮助用户查询中国股票、基金、期货、债券等金融数据。当用户需要获取股票行情、财务数据、基础信息、宏观经济数据时使用此 skill。
 
-## Publisher: <br>
-[ulnacranium17](https://clawhub.ai/user/ulnacranium17) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ulnacranium17](https://clawhub.ai/user/ulnacranium17)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to answer questions about Tushare Pro APIs, stock-code formats, token-based access, point consumption, and common data endpoints. It is most useful when a user needs guidance for querying China financial-market data through the Python SDK or HTTP API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to use a Tushare token for external API calls. <br>
-Mitigation: Keep the token out of public chats and committed files, and provide it only in trusted execution contexts. <br>
-Risk: Repeated or high-frequency Tushare queries can consume quota or points. <br>
-Mitigation: Monitor Tushare quota and point consumption before running repeated or automated queries. <br>
+## Use Case:
 
+Developers and analysts use this skill to get concise guidance for querying Tushare Pro financial data across China stocks, funds, futures, bonds, and macroeconomic datasets. It helps users choose common Tushare interfaces, format security codes, and prepare Python SDK or HTTP API requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ulnacranium17/tushare-openclaw-skill) <br>
-- [Tushare Pro](https://tushare.pro) <br>
-- [Tushare API documentation](https://tushare.pro/document/2) <br>
-- [Tushare points and frequency documentation](https://tushare.pro/document/1?doc_id=290) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with Python and bash code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Tushare API names, stock-code suffix guidance, token setup notes, and quota or point-consumption cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Using the skill can involve sending a Tushare token and query parameters to Tushare's API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a proper Tushare token, avoid pasting unrelated secrets, and review requests before sending them.
+
+Risk: Tushare account points, rate limits, or frequency limits may be consumed by generated API requests.
+
+Mitigation: Monitor account usage and confirm that high-frequency or point-consuming calls are necessary before running them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ulnacranium17/skills/tushare-openclaw-skill)
+- [Tushare Official Website](https://tushare.pro)
+- [Tushare API Documentation](https://tushare.pro/document/2)
+- [Tushare Points and Frequency Documentation](https://tushare.pro/document/1?doc_id=290)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Python and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Tushare API names, stock-code formats, request parameters, and token setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

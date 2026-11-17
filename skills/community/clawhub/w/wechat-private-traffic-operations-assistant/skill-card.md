@@ -1,42 +1,58 @@
-## Description: <br>
-根据业务类型、客户画像和运营目标，生成微信朋友圈剧本、社群 SOP、群发话术、活动方案和客户分层管理建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据业务类型和客户画像，生成微信朋友圈剧本、社群 SOP、群发话术及客户分层管理的私域流量运营方案。
 
-## Publisher: <br>
-[jessabuivolova-sketch](https://clawhub.ai/user/jessabuivolova-sketch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jessabuivolova-sketch](https://clawhub.ai/user/jessabuivolova-sketch)
 
-## Use Case: <br>
-Private-domain marketing operators, small business owners, social commerce sellers, and agency teams use this skill to plan WeChat and WeCom customer engagement workflows, campaign copy, customer tiers, and community operating routines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated broadcast or community messages could be used in ways that violate WeChat or WeCom platform rules. <br>
-Mitigation: Review copy and campaign mechanics against current platform rules before sending, and avoid unsolicited bulk messaging. <br>
-Risk: Customer segmentation and personalized outreach may involve personal or sensitive customer data. <br>
-Mitigation: Use only data collected with appropriate consent, minimize personal data in prompts, and follow applicable privacy requirements. <br>
-Risk: Promotional rewards or limited-time activities could mislead customers if the promised benefits are not honored. <br>
-Mitigation: Confirm offer terms, inventory, eligibility, and fulfillment processes before publishing activity plans. <br>
+## Use Case:
 
+微信私域运营人员、社交电商、实体店、品牌方和代运营服务商用它生成朋友圈发布计划、社群 SOP、群发话术、客户分层策略和活动策划方案。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jessabuivolova-sketch/wechat-private-traffic-operations-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown planning templates and Chinese-language marketing copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only outputs for human review and adaptation before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Customer privacy or consent could be mishandled when adapting private-domain marketing plans.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review customer data handling before use, avoid buying or selling personal information, and keep outreach aligned with applicable privacy requirements.
+
+Risk: Frequent or unsolicited WeChat and Enterprise WeChat group messaging could violate platform rules or trigger account restrictions.
+
+Mitigation: Control send frequency, avoid excessive group messaging, and check current WeChat and Enterprise WeChat platform rules before deployment.
+
+Risk: Campaign rewards or promotional claims could mislead customers if they are not fulfilled.
+
+Mitigation: Confirm reward inventory, eligibility rules, deadlines, and fulfillment workflow before publishing campaign materials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jessabuivolova-sketch/skills/wechat-private-traffic-operations-assistant)
+- [ClawHub publisher profile](https://clawhub.ai/user/jessabuivolova-sketch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with tables, SOP checklists, message scripts, and campaign templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language outputs intended for review and adaptation to brand tone, customer privacy requirements, and platform rules.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

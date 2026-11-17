@@ -1,40 +1,52 @@
-## Description: <br>
-The Sovereign Asset Title & Ownership Protocol is a cognitive framework for registering, verifying, and transferring real-world assets and synthetic digital estates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The Sovereign Asset Title & Ownership Protocol is a cognitive framework for the registration, verification, and transfer of real-world assets and synthetic digital estates.
 
-## Publisher: <br>
-[Duclawbot](https://clawhub.ai/user/Duclawbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[duclawbot](https://clawhub.ai/user/duclawbot)
 
-## Use Case: <br>
-External users and developers can use this skill as a conceptual drafting or research aid for asset title, ownership metadata, chain-of-custody, conveyance, and dispute-resolution workflows. It should not be used to file deeds, transfer assets, resolve ownership disputes, or make legal title determinations without explicit approval and qualified legal counsel. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill describes workflows for real-world ownership transfers and deed issuance without clear legal safeguards. <br>
-Mitigation: Use it only for conceptual drafting or research, and require explicit approval and qualified legal counsel before any deed filing, asset transfer, or title determination. <br>
-Risk: The dispute-resolution behavior could be treated as an authoritative decision about superior title. <br>
-Mitigation: Treat any dispute analysis as non-binding guidance that must be reviewed against official records and applicable law by qualified professionals. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Deed Skill Page](https://clawhub.ai/Duclawbot/deed) <br>
-- [Duclawbot Publisher Profile](https://clawhub.ai/user/Duclawbot) <br>
+## Use Case:
 
+External users and developers can use this skill as conceptual guidance for reasoning about asset-title metadata, provenance, encumbrances, conveyance, and dispute review. It should not be used as an autonomous legal, escrow, lien, or title-transfer authority.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown, Configuration] <br>
-**Output Format:** [Markdown and structured guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Conceptual title and ownership workflow guidance; no executable tools or API calls are included in the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may lead an agent to treat high-impact title, deed, lien, escrow, or ownership-dispute decisions as autonomous actions.
+
+Mitigation: Use it only as a conceptual or drafting aid unless explicit human approval, verified legal data sources, jurisdiction-specific limits, and refusal rules are added.
+
+Risk: Property-title reasoning can be wrong or incomplete without authoritative registry data, case law review, and jurisdiction-specific legal constraints.
+
+Mitigation: Require qualified human review before relying on any output for real deed transfers, lien determinations, escrow actions, or ownership disputes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duclawbot/skills/deed)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or tool calls are included in the artifact; legal and property-title outputs require human review.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Provides AI-assisted skincare guidance, including skin-type assessment, ingredient-focused selections, aesthetic treatment education, and personal care plan customization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The skill presents itself as skincare assistance for skin assessment, ingredient curation, cosmetic procedure education, and personal care planning.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users use this skill to request skincare or professional skincare discovery guidance, including filtering by distance, community popularity, and price tier. The artifact also describes local venue outputs such as queue status, booking channels, hours, parking, navigation, community photos, visit notes, and avoidance tips. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release advertises skincare help while the artifact also describes venue, queue, reservation, parking, and navigation workflows, which may confuse users about the skill's scope. <br>
-Mitigation: Review the skill text before installing, confirm that the intended workflow is local venue or shop discovery, and avoid granting location or booking authority unless the skill is renamed and scoped clearly. <br>
+## Use Case:
 
+External users can use this skill for skincare-related visit planning and local merchant discovery details, including distance filters, popularity, booking channels, queue status, hours, parking, and navigation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/skincare) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text recommendations and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include location-aware venue details when the agent has access to current local information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill name and summary suggest skincare advice, while the artifact behavior centers on local merchant discovery, booking, queues, and navigation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing and present it to users as a local merchant or visit-planning helper unless the artifact is corrected.
+
+Risk: Location, navigation, queue, appointment, and parking requests can expose sensitive visit-planning details.
+
+Mitigation: Ask only for the minimum location context needed and avoid collecting or retaining precise personal itinerary details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/skincare)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include location, queue, booking, hours, parking, navigation, social popularity, and community review details.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

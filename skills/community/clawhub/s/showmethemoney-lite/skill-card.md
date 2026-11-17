@@ -1,39 +1,57 @@
-## Description: <br>
-ShowMeTheMoney Lite guides users through a StablePay-backed paid demo flow with wallet setup, visible pricing, a free preview, and payment confirmation before premium output. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+ShowMeTheMoney Lite guides users through a lightweight StablePay paid demo flow with wallet setup, visible pricing, and in-chat payment handling.
 
-## Publisher: <br>
-[bubblevan](https://clawhub.ai/user/bubblevan) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bubblevan](https://clawhub.ai/user/bubblevan)
 
-## Use Case: <br>
-External users and developers use this skill to test a monetized OpenClaw skill flow: previewing a paid action, configuring StablePay wallet prerequisites, approving payment, and receiving a premium demo result only after confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This skill can lead the user into a real StablePay-style payment flow. <br>
-Mitigation: Confirm the price, currency, merchant DID, and endpoint values before approval, and use test funds or strict spending limits where possible. <br>
-Risk: The skill is a weak-protection demo and includes placeholder merchant configuration. <br>
-Mitigation: Replace placeholders before real use, require StablePay backend confirmation for purchase status, and do not treat local wallet or policy state as proof of payment. <br>
+## Use Case:
 
+External users and developers can use this skill to try a monetized StablePay workflow for a lightweight premium action, including free preview behavior and explicit payment confirmation before premium output.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, API Calls] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include StablePay payment-flow calls and must wait for payment confirmation before premium output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may initiate a real StablePay payment flow for the premium demo action.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the displayed price, currency, skill DID, and payment confirmation before approving payment.
+
+Risk: Published merchant placeholders could make payment details ambiguous or unusable.
+
+Mitigation: Confirm the published version uses real merchant values before installation or payment.
+
+Risk: The skill is designed as a weak-protection paid demo and should not be treated as fully tamper-resistant.
+
+Mitigation: Use it only for demos or lightweight premium actions and rely on StablePay confirmation before treating a purchase as complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bubblevan/skills/showmethemoney-lite)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, API Calls]
+
+**Output Format:** [Markdown with structured payment setup steps, preview text, and payment status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide StablePay wallet setup and initiate payment only after an explicit paid demo request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

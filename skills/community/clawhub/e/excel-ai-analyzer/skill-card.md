@@ -1,45 +1,61 @@
-## Description: <br>
-Automatically analyzes provided Excel files to generate statistical summaries, anomaly findings, Markdown reports, and data-quality suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically analyzes Excel files to summarize structure and statistics, identify anomalies, and generate Markdown reports with data insights.
 
-## Publisher: <br>
-[oct1st85](https://clawhub.ai/user/oct1st85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oct1st85](https://clawhub.ai/user/oct1st85)
 
-## Use Case: <br>
-Analysts, operators, and developers use this skill to inspect a user-provided Excel workbook and receive quick summaries of columns, numeric statistics, missing values, outliers, and suggested follow-up checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Spreadsheet contents may include secrets, regulated personal data, or confidential financial or business information. <br>
-Mitigation: Use only in an agent environment approved for the workbook's data classification, and avoid providing sensitive spreadsheets unless the analysis is necessary. <br>
-Risk: The release advertises chart generation, but the reviewed version does not implement that feature. <br>
-Mitigation: Treat chart output as unsupported in this version and rely on the Markdown report and statistical summaries instead. <br>
-Risk: Automated statistics and anomaly flags can be incomplete or misleading without domain review. <br>
-Mitigation: Review the generated report against the source workbook before using findings for financial, operational, or compliance decisions. <br>
+## Use Case:
 
+Developers, analysts, and business users can use this skill to inspect local Excel workbooks, produce statistical summaries, flag unusual values, and create Markdown analysis reports for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oct1st85/excel-ai-analyzer) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Test report](artifact/test-report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with a structured analysis result object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a user-selected Excel file and summarizes the first worksheet; chart generation is advertised but not implemented in the reviewed artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, SKILL.md, README.md) <br>
+Risk: The skill parses user-provided Excel workbooks with an xlsx dependency identified by the security evidence as a known vulnerable parser.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installation, avoid untrusted or attacker-supplied spreadsheets, and replace or constrain the xlsx dependency before broader deployment.
+
+Risk: Generated Markdown reports may include workbook-derived content that could be unsafe if rendered directly or passed into another AI workflow.
+
+Mitigation: Treat generated reports as untrusted output, review them before publishing, and sanitize or escape report content before rendering in downstream systems.
+
+Risk: The README installation command uses the latest ClawHub installer version.
+
+Mitigation: Prefer a pinned ClawHub installer version for repeatable installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oct1st85/skills/excel-ai-analyzer)
+- [README](artifact/README.md)
+- [Skill documentation](artifact/SKILL.md)
+- [Package manifest](artifact/package.json)
+- [Test report](artifact/test-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [JSON result object containing analysis data and a Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads a local Excel file path, analyzes the first worksheet, and returns row and column summaries, statistics, anomaly details, and generated insights.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, README, SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

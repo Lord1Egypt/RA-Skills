@@ -1,39 +1,48 @@
-## Description: <br>
-PostgreSQL vector database skill with pgvector extension. Enables vector similarity search, embeddings storage, RAG (Retrieval-Augmented Generation) pipelines, and hybrid search combining vector and keyword search. Use when: storing/retrieving embeddings, building AI applications with vector search, implementing RAG, similarity matching, semantic search, or any use case requiring vector database functionality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+pgvector provides PostgreSQL vector database guidance for embedding storage, vector similarity search, RAG pipelines, and hybrid vector-keyword search.
 
-## Publisher: <br>
-[damienCronw](https://clawhub.ai/user/damienCronw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[damiencronw](https://clawhub.ai/user/damiencronw)
 
-## Use Case: <br>
-Developers and engineers use this skill as a pgvector reference for setting up vector tables, indexes, similarity queries, hybrid search, and RAG retrieval patterns in PostgreSQL. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Example SQL includes write and delete operations that could modify real PostgreSQL data if run unchanged. <br>
-Mitigation: Use a dedicated database or schema, review write and delete statements before execution, and test with non-production data first. <br>
-Risk: The connection examples include an empty password suitable only for local development. <br>
-Mitigation: Use a least-privilege PostgreSQL user and configure appropriate credentials before applying examples outside local development. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/damienCronw/pgvector) <br>
+## Use Case:
 
+Developers and engineers use this skill to design PostgreSQL-backed vector search workflows, including embedding storage, similarity search, hybrid search, and retrieval-augmented generation patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with SQL, Python, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides database examples for pgvector setup, search, indexing, monitoring, updates, deletes, and batch inserts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The artifact documents an empty local PostgreSQL password and includes SQL that can create, update, delete, or insert data.
+
+Mitigation: Use secret-managed credentials for non-throwaway environments and review generated SQL before running it against valuable databases.
+
+## Reference(s):
+
+- [ClawHub pgvector Skill Page](https://clawhub.ai/damiencronw/skills/pgvector)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with SQL, Python, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-readable database guidance and executable examples that should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

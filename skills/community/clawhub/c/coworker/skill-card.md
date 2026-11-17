@@ -1,46 +1,63 @@
-## Description: <br>
-Connect to Hannah and Elena agents from Serviceplan - specialized AI coworkers for marketing research and operations planning. Access via email or OpenAI-compatible API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to Hannah and Elena agents from Serviceplan - specialized AI coworkers for marketing research and operations planning.
 
-## Publisher: <br>
-[Sarthib7](https://clawhub.ai/user/Sarthib7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sarthib7](https://clawhub.ai/user/sarthib7)
 
-## Use Case: <br>
-Developers and agent users use this skill to connect an OpenClaw-compatible agent to Serviceplan's Hannah and Elena AI coworkers for marketing research, operations planning, task tracking, and result retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Task prompts, campaign details, and optional attachments may be sent to Serviceplan/sumike.ai services. <br>
-Mitigation: Use only with organizational approval for third-party processing, and avoid sending secrets, regulated data, customer data, or confidential documents unless approved. <br>
-Risk: Hannah and Elena API keys can be exposed if stored in source control, logs, or shared configuration. <br>
-Mitigation: Store API keys through a secure secret mechanism where possible, keep them out of source control and logs, and rotate or revoke them according to organizational policy. <br>
-Risk: The reviewed bundle does not include the referenced dist runtime files. <br>
-Mitigation: Verify the installed package source and runtime artifacts before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to route marketing research, consumer insight, competitive analysis, operations planning, and project orchestration tasks to Hannah and Elena through API or email access.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Sarthib7/coworker) <br>
-- [Hannah & Elena Homepage](https://sumike.ai) <br>
-- [Hannah API Endpoint](https://hannah.sumike.ai/v1) <br>
-- [Elena API Endpoint](https://elena.sumike.ai/v1) <br>
-- [API Guide](API_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, API request examples, task status text, and result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce external API or email requests to Hannah and Elena when configured with required API keys or email access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and package.json) <br>
+Risk: Requests, prompts, and attachments sent through this skill are shared with external Serviceplan/Sumike services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only after organizational approval of the service terms, data processing agreement, retention policy, and credential handling practices.
+
+Risk: The skill depends on Hannah and Elena API credentials and can fail or expose data if keys are mishandled.
+
+Mitigation: Store API keys in approved environment variables, avoid placing secrets in prompts or files, and rotate credentials according to your organization's policy.
+
+Risk: Hannah and Elena tasks are asynchronous and may take several minutes, so aggressive polling can hit rate limits or degrade reliability.
+
+Mitigation: Wait 2-3 minutes before the first status check, use appropriate request timeouts, and back off after rate-limit or service-unavailable responses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sarthib7/skills/coworker)
+- [Publisher profile](https://clawhub.ai/user/sarthib7)
+- [Skill documentation](artifact/SKILL.md)
+- [API testing guide](artifact/API_GUIDE.md)
+- [Sumike homepage](https://sumike.ai)
+- [Hannah API endpoint](https://hannah.sumike.ai/v1)
+- [Elena API endpoint](https://elena.sumike.ai/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API task results, email requests, JSON responses, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Hannah and Elena API keys or email access; tasks are asynchronous and may return deliverable links or attachments.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, plugin.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

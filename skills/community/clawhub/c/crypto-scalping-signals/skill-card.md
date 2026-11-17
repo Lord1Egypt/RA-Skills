@@ -1,41 +1,57 @@
-## Description: <br>
-Provides crypto futures scalping analysis and signal prompts using market-structure, order-flow, session timing, and risk-management filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time crypto futures scalping signals using multiple strategy filters with risk management, market structure, order flow, and session timing guidance.
 
-## Publisher: <br>
-[avidjunior](https://clawhub.ai/user/avidjunior) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[avidjunior](https://clawhub.ai/user/avidjunior)
 
-## Use Case: <br>
-External users and agents use this skill to request crypto futures setup scans, pair analysis, risk calculations, and session-aware scalping guidance. It is intended for analysis and signal generation, not automatic trade execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trading signals and stated strategy performance may be incorrect, stale, or unsuitable for a user's account and market conditions. <br>
-Mitigation: Verify all signals independently, paper trade first, and treat the skill's win-rate and risk-management claims as unverified guidance rather than guarantees. <br>
-Risk: Exchange integrations or downstream automation could turn analysis into real trades with financial loss exposure. <br>
-Mitigation: Keep exchange integrations read-only unless the user separately intends to automate trading, and apply explicit position-size, leverage, daily-loss, and concurrent-trade limits. <br>
+## Use Case:
 
+Developers and trading-focused agent users use this skill to have an agent analyze crypto futures scalping setups, calculate risk constraints, and provide non-executing signal guidance for pairs and trading sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/avidjunior/crypto-scalping-signals) <br>
-- [Publisher profile](https://clawhub.ai/user/avidjunior) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and plain-text trading analysis, prompts, setup summaries, and risk guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are informational trading analysis and should be independently verified before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact claw.json) <br>
+Risk: Trading strategy win-rate claims and signal references may be unaudited or unreliable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as decision support, validate signals independently, and paper trade before using real funds.
+
+Risk: Pairing the skill with external exchange tooling could expose credentials or enable trades beyond the skill's stated analysis-only behavior.
+
+Mitigation: Avoid giving exchange credentials unless separate trusted tooling is reviewed, constrained, and intentionally configured.
+
+Risk: Leverage, fees, slippage, and rapid market movement can turn scalping guidance into financial loss.
+
+Mitigation: Use conservative leverage, position sizing, daily loss limits, and fee/slippage checks before acting on any signal.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/avidjunior/skills/crypto-scalping-signals)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or plain text trading-analysis guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces analysis and signals only; no bundled code, persistence, credential use, or automatic trade execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

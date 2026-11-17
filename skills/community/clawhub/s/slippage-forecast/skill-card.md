@@ -1,41 +1,52 @@
-## Description: <br>
-Predicts expected slippage for a given order size and market condition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A paid x402 endpoint that returns expected slippage estimates for a given order size and market condition.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-External developers and trading agents use this skill before placing large crypto orders to estimate expected slippage, compare venues, and understand realistic execution costs from APEX Runner's live trading signal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: x402-authenticated requests can automatically spend wallet funds per call. <br>
-Mitigation: Use a dedicated low-balance wallet and configure X402_POLICY_PATH with per-transaction caps, daily caps, and recipient allowlists before use. <br>
-Risk: The skill is a paid API gateway, and spending limits are optional rather than guaranteed. <br>
-Mitigation: Review wallet balances, policy settings, and expected call volume before broad or automated use. <br>
+## Use Case:
 
+Trading agents and developers use this endpoint to request expected slippage estimates by order size and market condition, helping assess execution costs or compare venues before placing orders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kynto2001-ctrl/skills/slippage-forecast) <br>
-- [APEX Runner slippage forecast signal](https://apexrunner.ai/signals/slippage-forecast) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON API response examples and Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVM_PRIVATE_KEY for x402-authenticated paid requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: A paid request uses an EVM wallet private key and can authorize a USDC charge.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the private key in a secret store and set the x402 maximum-payment policy to the amount intended for each call; check the endpoint price before use.
+
+## Reference(s):
+
+- [Slippage Forecast endpoint](https://apexrunner.ai/signals/slippage-forecast)
+- [Optimal Order Routing signal](https://apexrunner.ai/signals/optimal-order-routing)
+- [Execution Window Optimizer signal](https://apexrunner.ai/signals/execution-window-optimizer)
+- [ClawHub skill page](https://clawhub.ai/kynto2001-ctrl/skills/slippage-forecast)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Analysis]
+
+**Output Format:** [JSON slippage forecast with asset, venue, order-size range, average slippage, confidence, and timestamp fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Forecast values are returned per asset, venue, and order-size range.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

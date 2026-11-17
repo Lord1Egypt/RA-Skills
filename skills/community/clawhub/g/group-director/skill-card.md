@@ -1,44 +1,56 @@
-## Description: <br>
-Group Director creates short videos from Claw-prepared prompts for Feishu or Lark group-chat scenarios, then returns a plain video URL or failure text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Group Director creates short SenseAudio videos from finalized Claw-prepared prompts for Feishu or Lark group chat scenarios.
 
-## Publisher: <br>
-[Hei-MaoM](https://clawhub.ai/user/Hei-MaoM) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hei-maom](https://clawhub.ai/user/hei-maom)
 
-## Use Case: <br>
-Developers and agents using Claw in Feishu or Lark group chats use this skill after Claw has already prepared the final video prompt. The skill creates a SenseAudio video task, polls for completion, and returns a plain video URL or plain-text failure message. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Final video prompts are sent to SenseAudio for generation. <br>
-Mitigation: Install only when SenseAudio processing is acceptable and avoid including sensitive group-chat details in prompts. <br>
-Risk: The skill requires a SenseAudio API key and supports an overrideable provider base URL. <br>
-Mitigation: Use a dedicated SENSEAUDIO_API_KEY where possible and keep SENSEAUDIO_BASE_URL fixed to the intended provider endpoint. <br>
-Risk: Provider errors or raw responses could expose unnecessary operational details if pasted into Feishu or Lark. <br>
-Mitigation: Return only plain natural-language status, failure text, or the final video URL, and do not paste raw error output into chat. <br>
+## Use Case:
 
+Developers and operators use this skill when Claw has already prepared a final video prompt and needs a narrow execution layer to create a SenseAudio video task, poll until completion, and return a plain video URL or plain-text failure message.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Hei-MaoM/group-director) <br>
-- [Claw Integration Notes](references/integration_cn.md) <br>
-- [Provider Notes](references/provider_notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Plain text and Markdown with inline bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Create returns a task_id; polling returns a video URL, status, failure, or timeout message. Feishu/Lark delivery should not include raw JSON or provider payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: A configurable SenseAudio base URL can send the API key and finalized video prompts to an unintended endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep SENSEAUDIO_BASE_URL unset or set only to the real HTTPS SenseAudio host, and use scoped, rotatable API keys.
+
+Risk: Finalized video prompts are sent to the external video provider.
+
+Mitigation: Treat prompts as provider-bound data and avoid including sensitive content unless the runtime and provider use are approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hei-maom/skills/group-director)
+- [Provider notes](references/provider_notes.md)
+- [Claw integration notes](references/integration_cn.md)
+- [SenseAudio API endpoint](https://api.senseaudio.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, API Calls, Guidance]
+
+**Output Format:** [Plain text or Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a task ID during creation, then a video URL or plain-text error after polling; Feishu/Lark responses should not include raw JSON.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

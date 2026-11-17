@@ -1,46 +1,65 @@
-## Description: <br>
-Uploads selected local files to 123pan and returns shareable short, direct, or WebDAV-backed links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload files to 123pan (123云盘) and generate shareable links, including short share links and direct download links.
 
-## Publisher: <br>
-[solarise94](https://clawhub.ai/user/solarise94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solarise94](https://clawhub.ai/user/solarise94)
 
-## Use Case: <br>
-External users and developers use this skill to upload selected local files to 123pan and receive a shareable link for distribution or download. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: 123pan API tokens, WebDAV credentials, or unrelated rclone credentials could be exposed through shared configuration files. <br>
-Mitigation: Use environment variables or a local .env file outside version control, keep real tokens out of config.json, and set RCLONE_CONFIG to a dedicated 123pan-only rclone config. <br>
-Risk: The selected local file is uploaded to 123pan and the generated link may be shareable outside the local environment. <br>
-Mitigation: Confirm the file path and intended recipient before running the upload, and inspect the generated link before sharing it. <br>
-Risk: Direct or short-direct links may expose a 123pan user ID or path details depending on link type. <br>
-Mitigation: Prefer share links when privacy is important, and check whether the generated URL exposes user or path information before distribution. <br>
-Risk: WebDAV/rclone workflows depend on the local rclone binary and its configured remote scope. <br>
-Mitigation: Verify RCLONE_BIN points to a trusted rclone binary and use a dedicated 123pan remote rather than a general-purpose rclone configuration. <br>
+## Use Case:
 
+Developers and agent users use this skill to upload selected local files to 123pan and return shareable links for downstream sharing or download workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/solarise94/123pan-upload) <br>
-- [123pan developer dashboard](https://www.123pan.com/dashboard/dev) <br>
-- [123pan WebDAV service](https://webdav.123pan.cn/webdav) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON upload result plus markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes success status, file ID, filename, size, generated link, and link type; upload helpers may also emit progress and retry messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Selected local files leave the machine and are stored on 123pan, and generated links may make those files accessible to others.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for files intended for 123pan storage, review generated links before sharing, and prefer the least-exposing link type for the use case.
+
+Risk: 123pan API, WebDAV, and rclone credentials are sensitive and may expose broader account access if reused or stored unsafely.
+
+Mitigation: Use a dedicated low-privilege 123pan token, keep credentials in environment variables or ignored local files, and avoid committing credentials.
+
+Risk: The optional rclone/WebDAV paths may read existing rclone configuration that contains unrelated cloud service credentials.
+
+Mitigation: Set an isolated RCLONE_CONFIG for 123pan and avoid running WebDAV/rclone paths with unrelated secrets in the environment.
+
+Risk: Subprocess and network upload paths broaden dependency and execution risk.
+
+Mitigation: Pin dependencies in a virtual environment and review the selected upload path before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/solarise94/skills/123pan-upload)
+- [123pan developer dashboard](https://www.123pan.com/dashboard/dev)
+- [123pan website](https://www.123pan.com)
+- [123pan OpenAPI endpoint](https://open-api.123pan.com)
+- [123pan WebDAV endpoint](https://webdav.123pan.cn/webdav)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON upload results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns upload status, file metadata, and a short, direct, or share link when upload succeeds.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

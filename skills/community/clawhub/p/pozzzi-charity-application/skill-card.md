@@ -1,44 +1,58 @@
-## Description: <br>
-噗滋（pozzzi）慈善 - 帮助中小型 NGO 自动生成项目申报书草稿，支持腾讯公益99公益日、通用基金会申请和政府购买服务三种格式，内置占位符强制机制防止 AI 编造预算和编号数据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+噗滋（pozzzi）慈善 - 帮助中小型 NGO 自动生成项目申报书草稿，支持腾讯公益99公益日、通用基金会申请和政府购买服务三种格式，内置占位符强制机制防止 AI 编造预算和编号数据。
 
-## Publisher: <br>
-[aikawabigsky309](https://clawhub.ai/user/aikawabigsky309) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aikawabigsky309](https://clawhub.ai/user/aikawabigsky309)
 
-## Use Case: <br>
-External NGO staff and grant writers use this skill to draft Chinese charity project application materials for general foundation applications, Tencent 99 Giving Day, and government service-purchase submissions. It structures user-provided project, budget, team, timeline, and impact details into review-ready Markdown drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Application and budget details may be sent to the configured model provider. <br>
-Mitigation: Confirm the model provider and data handling terms before use, and avoid entering information that should not be processed by that provider. <br>
-Risk: Limited local history may be retained through the configured storage adapter. <br>
-Mitigation: Confirm the storage adapter and retention policy before installation, and review stored history according to the deploying organization's privacy requirements. <br>
-Risk: Generated application drafts may contain legal, financial, submission, or factual errors. <br>
-Mitigation: Treat output as a draft, manually fill placeholders, and have qualified staff review all budgets, identifiers, compliance statements, and submission details before filing. <br>
+## Use Case:
 
+External NGO staff and grant writers use this skill to draft Chinese project application materials for foundation funding, Tencent 99 Giving Day, and government service procurement. It helps structure provided organization, project, timeline, budget, and impact data into Markdown application drafts for human review.
 
-## Reference(s): <br>
-- [Tencent Charity](https://gongyi.qq.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/aikawabigsky309/pozzzi-charity-application) <br>
-- [Publisher profile](https://clawhub.ai/user/aikawabigsky309) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, guidance] <br>
-**Output Format:** [Markdown application draft with warnings and generation metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports full application drafts and single-section regeneration; outputs include AI disclosure text and placeholder replacement metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Draft inputs may contain personal information about staff, volunteers, partners, beneficiaries, or minors, including personal data embedded in narrative or nested fields.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review inputs before use, remove individual-level details, and only provide data that may be sent to the configured model provider.
+
+Risk: The local validator is not a complete PII blocker.
+
+Mitigation: Treat validation as a support control, not a privacy boundary, and perform human privacy review before generating or submitting drafts.
+
+Risk: Generated application drafts can contain incomplete, incorrect, or placeholder financial and registration details.
+
+Mitigation: Require responsible staff to replace placeholders, verify budgets, confirm identifiers, and review all AI-assisted content before submission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aikawabigsky309/skills/pozzzi-charity-application)
+- [Tencent Gongyi](https://gongyi.qq.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown application draft with warnings and generation metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include AI disclosure text, placeholder substitutions for sensitive identifiers, and warnings when validation or placeholder enforcement detects issues.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,15 +1,21 @@
 ---
 name: md-web
-version: 1.1.0
-description: Render a markdown file as a beautiful, shareable web page in the browser instead of dumping long text in chat. Use when the user wants to preview, view, share, export, or publish markdown as a web page, wants a shareable link to content, or when you need to present long markdown without flooding the conversation. Uploads the file to the user's own S3-compatible storage bucket; the rendered page is publicly accessible via the returned URL.
-tags: [markdown, web, docsify, s3, preview, share, publish, export]
-homepage: https://github.com/rockbenben/aishort-skills/tree/main/skills/md-web
+description: Use when the user explicitly asks to publish Markdown online or obtain a public share link through their S3 bucket. 发布 Markdown / 生成公开分享链接 / /md-web. Reads ~/.md-web/config.json. Viewer setup overwrites bucket-root files; optional expire_days manages retention. Local preview uses a local tool.
 
 metadata:
-  clawdbot:
+  version: "1.3.12"
+  openclaw:
+    homepage: https://github.com/rockbenben/aishort-skills/tree/main/skills/md-web
     emoji: "🌐"
     requires:
       bins: ["node"]
+    envVars:
+      - name: MD_WEB_ACCESS_KEY
+        required: false
+        description: Bucket access key fallback when access_key is omitted from config.json.
+      - name: MD_WEB_SECRET_KEY
+        required: false
+        description: Bucket secret key fallback when secret_key is omitted from config.json.
     files:
       - upload.js
       - "docsify-server/**"
@@ -17,98 +23,101 @@ metadata:
 
 # MD Web - Markdown to Web Page
 
-Upload raw `.md` files to an S3-compatible storage bucket, where a pre-deployed Docsify server automatically renders them as web pages. This avoids sending long text in the conversation.
+Upload one raw `.md` file to the user's S3-compatible bucket; a Docsify viewer already in that bucket renders it at a public URL. `{SKILL_DIR}` below is this skill's base directory — always keep it quoted.
 
-## When to use this skill
+## Data and writes
 
-**Uploaded content is publicly accessible.** Only use this skill when the user explicitly requests it:
+- Publishing writes one Markdown object under the configured bucket's `md-web/` prefix. Re-publishing creates a new link.
+- Separate `--setup` uploads `assets/<bundle-hash>/` and replaces root `README.md` / `index.html`, which all document links share. Old assets remain available to cached pages.
+- Optional `expire_days` manages one lifecycle rule for `md-web/`; uploads expire after N days, and `0` removes the rule. Other rules are preserved.
+- Configuration and the deployment hint live in `~/.md-web/config.json` and `~/.md-web/.deployed`. Requests go to the configured S3 endpoint; publishing checks the active remote viewer. Legacy adjacent config is migrated automatically.
 
-- User wants to **show or preview content as a web page** in a browser
-- User wants to **generate, export, or publish** content as a web page
-- User wants a **shareable link** to content
-- User wants output **delivered as a web page** rather than as long text in chat
-- User wants to **compile or organize content and present it as a web page**
-- User invokes this skill by name (e.g., `/md-web`)
+## Ground rules
 
-## How to use this skill
+- **Document publishing.** An explicit request for online publication or a public/shareable Markdown link authorizes uploading that document, including retries. Tell the user the link is public before uploading; resolve unclear sharing scope first. Local preview or text organization stays local.
+- **Viewer setup.** Running `--setup` overwrites bucket-root files used by all published documents. Explain the affected paths and obtain authorization for setup, unless the user already authorized it in this task.
+- **Retention.** Adding, changing or removing `expire_days` changes the bucket policy. Obtain authorization for the requested retention change, unless it was already included in the user's instruction.
+- **Check the public scope.** Review for sensitive material outside the intended sharing scope and redact or clarify it before uploading. Publish raw Markdown; do not convert it to HTML.
 
-### Step 1: Check configuration
+## Workflow
 
-Check if `~/.md-web/config.json` exists (cross-platform: use the user's home directory). If it does NOT exist or has empty fields, follow the **Configuration** section below first.
+### 1. Configuration
 
-### Step 2: Prepare the markdown file
+Check for `~/.md-web/config.json` (`%USERPROFILE%\.md-web\config.json` on Windows). If it is missing or incomplete, run **First-time configuration** below.
 
-Either use an existing `.md` file, or write the content to a temporary file. Choose the temp path based on the current platform (e.g., `/tmp/` on Linux/macOS, system temp dir on Windows). Use whichever path works in the current shell environment.
+Exception: if it is missing but a legacy `config.json` sits next to `upload.js`, skip the wizard and just upload — the script migrates it (and `.deployed`) to `~/.md-web/` and prints `Config migrated to:`.
 
-### Step 3: Upload via upload.js
+### 2. Prepare the file
+
+Use the existing `.md` file, or write the content to a temp file in the **OS temp directory** (`/tmp/` on Linux/macOS; `$TEMP` in Git Bash, `%TEMP%` in cmd).
+
+Use a unique scratch path and remove only the temporary file you created after the upload attempt. Preserve an existing user file.
+
+Viewer limits — write for them:
+- Only the `.md` is uploaded: relative images (`![](a.png)`) break. Use absolute `https://` image URLs.
+- GFM, tables, `<details>` and inline HTML render; the CSP blocks inline scripts, but HTML can still insert page elements. Review third-party markup before publishing (see **Security & privacy**). **Mermaid and LaTeX/KaTeX are not rendered** (shown as code) — use tables, lists or images instead.
+- Start with a `# Title`: it becomes the browser tab title. YAML front matter is stripped automatically.
+
+### 3. Publish
 
 ```bash
-node {SKILL_DIR}/upload.js <local-file> <remote-key>
+node "{SKILL_DIR}/upload.js" <local-file> <remote-key>
 ```
 
-- `{SKILL_DIR}`: the base directory of this skill (shown at the top when skill is loaded)
-- `<remote-key>`: a descriptive lowercase name with hyphens (e.g., `api-docs.md`, `project-guide.md`). A timestamp is prepended automatically to avoid filename collisions.
-- On first run, the script auto-detects and deploys Docsify server files. No manual setup needed.
+- `<remote-key>`: short lowercase ASCII slug describing the content, e.g. `api-docs`, even for Chinese documents. The script slugifies whatever it gets — a key with no ASCII letters or digits collapses to `doc` — prepends a timestamp, appends a short random suffix so two documents published in the same second cannot land on the same object, forces `.md` and stores it under `md-web/`.
+- If stderr contains `SETUP_REQUIRED`, **follow the viewer-setup authorization rule above** — `--setup` rewrites shared bucket-root files — then run setup and retry the same publish command:
 
-### Step 4: Return the result
+  ```bash
+  node "{SKILL_DIR}/upload.js" --setup --confirm-shared-writes
+  ```
 
-- **On success**: the script prints the URL. Reply with only the filename and clickable link. Do NOT paste the markdown content into the chat.
-- **On failure** (non-zero exit code): report the error to the user, then fall back to sending the markdown content as text directly in the chat.
+  The required `--confirm-shared-writes` flag records the already obtained setup/retention authorization; never add it merely to bypass a missing-confirmation error. Setup performs the shared writes listed above and applies `expire_days`; both authorization rules still apply. Run it on first use, after a viewer upgrade, after changing `bucket` / `endpoint`, or when the active viewer differs. Existing document URLs stay unchanged. Retention changes also need setup, but publishing does not detect them; changing `public_url` only changes the printed link.
+- `SETUP_CONFLICT` means a concurrent setup changed the entry point or the provider did not return an ETag. Inspect the active viewer before retrying; do not automatically overwrite it. Setup requires S3 conditional object writes (`If-Match` / `If-None-Match`); unsupported providers fail without an unconditional fallback. An upgrade from the old flat-asset layout requires one explicit setup; old flat assets and version directories are not deleted.
+- `Warning: lifecycle —` means retention was not confirmed even if viewer setup succeeded. Follow the detail: a permission error may require lifecycle access or a provider-dashboard change; unsupported XML, a rule conflict or concurrent edit requires inspecting the actual policy. Do not treat every warning as a reason to broaden credentials.
+- Lifecycle administration has no atomic per-rule update: serialize it with other administrators. Setup re-reads before replacing the policy and warns on a detected edit, unsupported/incomplete XML, or a conflicting rule ID. Policy writes are not automatically retried; a warning does not mean the requested retention took effect. A narrow race remains between the final read and write.
 
-Example success output:
-> `api-docs` - https://example.r2.dev/index.html#/md-web/20260305-091500-api-docs
+### 4. Reply
 
-## Configuration
+- **Success:** the last stdout line is the URL. Reply with the document name and clickable link, plus any material setup or retention warning. Avoid repeating the full document unless requested. Example: `api-docs` — https://pub-xxxx.r2.dev/index.html#/md-web/20260305-091500-api-docs-4f2a
+- **Failure** (non-zero exit, `UPLOAD_FAILED` / `CONFIG_MISSING` / `CONFIG_INVALID` / `Missing config fields`): report the error in one line with the likely fix (table below), then deliver the content in chat.
 
-This only needs to happen once. On subsequent runs, `config.json` already exists.
+| Error contains | Likely cause |
+|---|---|
+| `SignatureDoesNotMatch`, `InvalidAccessKeyId` | Wrong keys, or wrong `region` (`auto` for R2; the real region for AWS) |
+| `AccessDenied` on upload | Token lacks Object Read & Write, or is scoped to another bucket |
+| `NoSuchBucket` | Typo in `bucket`, or endpoint of another account |
+| `ENOTFOUND`, `CONFIG_INVALID` | `endpoint` must be a bare hostname; `public_url` must be an HTTP(S) URL; prefer HTTPS for public sharing |
+| `Missing config fields` | `config.json` is incomplete — fill in the fields it lists, or set `MD_WEB_ACCESS_KEY` / `MD_WEB_SECRET_KEY` for the two keys |
+| Link opens the "Looking for a document?" page | Document expired (`expire_days`) or `public_url` points to another bucket |
 
-1. Tell the user this skill needs an S3-compatible storage bucket with public access. Point them to `{SKILL_DIR}/README.md` for detailed setup instructions (Cloudflare R2 / AWS S3 / other S3-compatible services).
-2. Ask the user to provide these 5 required fields:
-   - **access_key**: API access key ID
-   - **secret_key**: API secret access key
-   - **endpoint**: S3 endpoint hostname, without `https://` (e.g., `ACCOUNT_ID.r2.cloudflarestorage.com`)
-   - **bucket**: bucket name
-   - **public_url**: public access URL. If the user has a custom domain bound to the bucket, use that (e.g., `https://docs.example.com`); otherwise use the default R2.dev URL (e.g., `https://pub-XXXX.r2.dev`). **Recommend custom domain** for production use — R2.dev URLs have rate limits.
-3. Ask about optional settings:
-   - **region**: S3 region. Use `auto` for Cloudflare R2, or the actual region for AWS S3 (e.g., `us-east-1`). Default is `auto`.
-   - **expire_days**: how many days before uploaded markdown files are automatically deleted from the bucket. Default is `30`. Set to `0` to keep files forever. The script sets an S3 lifecycle rule **scoped to the `md-web/` key prefix**, so only this skill's own uploads are affected — Docsify server files and any other objects in the bucket are never touched. **Note**: this requires the API token to have **Admin Read & Write** permission (not just Object Read & Write). If the token lacks permission, the script will warn but still upload normally — the user can set the lifecycle rule manually in the Cloudflare Dashboard instead.
-4. Write the config to `~/.md-web/config.json` (create the `~/.md-web/` directory if it doesn't exist). Use the user's home directory (`$HOME` on Unix, `%USERPROFILE%` on Windows):
+## First-time configuration
+
+1. Explain that the skill needs an S3-compatible bucket with public read access. Setup guide: [README.md](README.md) ([中文](README.zh.md)) — Cloudflare R2 step by step, plus AWS S3, B2, Spaces, Wasabi, COS endpoints.
+2. Collect the required fields:
+   - `access_key`, `secret_key` — credentials for object read/write access (R2 token label: **Object Read & Write**); bucket lifecycle administration is separate below.
+   - `endpoint` — hostname without `https://`, e.g. `ACCOUNT_ID.r2.cloudflarestorage.com`
+   - `bucket`
+   - `public_url` — custom domain if bound (recommended; `r2.dev` URLs are rate-limited), else `https://pub-XXXX.r2.dev`
+
+   Secrets should not travel through chat if avoidable: offer that the user writes `config.json` themselves, or omits the two keys and exports `MD_WEB_ACCESS_KEY` / `MD_WEB_SECRET_KEY` instead (the file wins when both are set).
+3. Optional: `region` (default `auto`; AWS needs the real region, e.g. `us-east-1`) and `expire_days` (auto-delete uploads after N days; `0` removes the rule). **Omit `expire_days` unless the user asks for auto-expiry**. Lifecycle administration needs provider-specific bucket permissions: R2 uses [Admin Read & Write](https://developers.cloudflare.com/r2/api/tokens/#permissions), while AWS uses [lifecycle IAM permissions](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLifecycleConfiguration.html), not an R2 token label. The script only edits its own `md-web/` rule and preserves other rules.
+4. Write `~/.md-web/config.json` (create the directory; on macOS/Linux create the directory with mode `0700` and the file with mode `0600` before writing secrets; the script also checks owner-only file access; it never asks for root and never needs elevated privileges):
 
 ```json
 {
   "access_key": "...",
   "secret_key": "...",
-  "endpoint": "...",
-  "bucket": "...",
+  "endpoint": "ACCOUNT_ID.r2.cloudflarestorage.com",
+  "bucket": "md-web",
   "region": "auto",
-  "public_url": "...",
-  "expire_days": 30
+  "public_url": "https://pub-XXXX.r2.dev"
 }
 ```
 
-5. Then proceed with the upload.
-
-## Important notes
-
-- Do NOT generate HTML. Just upload the raw `.md` file — Docsify handles rendering.
-- Do NOT send markdown content to the chat unless upload fails.
-- `upload.js` uses only Node.js built-in modules (zero dependencies).
-- All Docsify assets (JS/CSS) are bundled locally — no external CDN dependency at runtime.
-
-## External endpoints
-
-This skill connects only to the S3 endpoint configured by the user in `config.json`. No data is sent to the skill author or any third-party service.
-
-| Endpoint | Purpose | Data sent |
-|----------|---------|-----------|
-| User's S3 endpoint (`config.json → endpoint`) | Upload .md files and Docsify server assets | File content, S3 auth headers |
+5. Run `--setup`, then publish (step 3), using the authorization rules above for each action.
 
 ## Security & privacy
 
-- **Anything you upload becomes publicly accessible** at the returned URL — never upload secrets, credentials, PII, or other sensitive content.
-- Credentials (`access_key`, `secret_key`) are stored **in plaintext** in `~/.md-web/config.json` (outside the skill directory, safe from upgrades) and only sent to the user's own S3 endpoint for authentication. Protect this file — don't commit it or share it.
-- **Use a dedicated bucket.** Uploads live under the `md-web/` key prefix and the auto-expiry rule is scoped to it, but `expire_days: 0` clears the bucket's lifecycle config entirely — a dedicated bucket guarantees the skill never affects unrelated objects or lifecycle rules you set yourself.
-- No telemetry, analytics, or data collection by the skill itself.
-- `upload.js` uses only Node.js built-in modules — no third-party dependencies.
+Credentials are plaintext in `~/.md-web/config.json` unless supplied through the environment. Migration creates the destination with mode `0600` before writing credentials and tightens its dedicated directory to `0700` on macOS/Linux. Permission failures stop the command. Windows chmod does not enforce ACLs: use a private user directory or environment credentials. Keep credentials out of version control and shared output; a dedicated bucket limits the impact of setup and administration.
 
-By using this skill, markdown content is uploaded to **your own** S3-compatible storage bucket and made publicly accessible. No data is sent to the skill author or any third-party service. Only install if you trust the storage provider you configure.
+The viewer accepts inline HTML. Its CSP blocks inline scripts and the route guard loads same-origin documents under `md-web/`, but neither sanitizes page elements. Review unfamiliar markup and treat published pages as untrusted content. Document language is preserved.

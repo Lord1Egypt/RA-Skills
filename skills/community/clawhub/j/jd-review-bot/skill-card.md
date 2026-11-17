@@ -1,43 +1,58 @@
-## Description: <br>
-Automates pending JD product reviews in a logged-in browser by filling review text, selecting five-star ratings, choosing positive service tags, submitting reviews, and checking completion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates bulk posting of preset five-star JD.com product reviews from a logged-in real browser session.
 
-## Publisher: <br>
-[fzuim](https://clawhub.ai/user/fzuim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fzuim](https://clawhub.ai/user/fzuim)
 
-## Use Case: <br>
-People managing a JD account use this skill to automate reviews for pending JD orders, including review text entry, five-star scoring, service-impression selection, submission, and final status checks. It is intended only for users who deliberately want an agent to operate their own logged-in JD account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a logged-in JD account and publish bulk five-star reviews publicly. <br>
-Mitigation: Use it only when the account owner intentionally authorizes that behavior, review each review before submission, and confirm the activity complies with JD rules and the user's authenticity expectations. <br>
-Risk: The skill may install or run browser automation tooling and Chromium/system dependencies. <br>
-Mitigation: Provision and audit browser-use yourself where possible, run it in a controlled browser profile, and inspect commands before execution. <br>
-Risk: Automated submissions may post inaccurate or difficult-to-reverse public content. <br>
-Mitigation: Keep the browser headed and visible, require a pre-submit check, and only submit reviews whose text accurately reflects the user's real purchase experience. <br>
+## Use Case:
 
+Developers or power users can use this skill to drive browser-use automation that collects pending JD.com review orders and submits preset positive reviews from their own logged-in JD account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fzuim/jd-review-bot) <br>
-- [JD review list](https://club.jd.com/myJdcomments/myJdcomment.action) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with bash, JavaScript, and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires browser-use, a visible real browser session, and an already logged-in JD account; actions can submit public reviews.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: The skill can post many public five-star reviews from a real JD account using preset text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit account-owner approval, review each batch before submission, and start with a small supervised run.
+
+Risk: The skill lacks clear confirmation controls before public review submission.
+
+Mitigation: Run in headed mode under human supervision and add a manual confirmation step before clicking publish.
+
+Risk: The artifact can install unpinned third-party browser automation tooling.
+
+Mitigation: Install dependencies in an isolated environment and pin or review browser-use and browser dependencies before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fzuim/skills/jd-review-bot)
+- [JD review center](https://club.jd.com/myJdcomments/myJdcomment.action)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown instructions with bash, JavaScript, and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a Python automation script and browser-use CLI commands for a headed real-browser session.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

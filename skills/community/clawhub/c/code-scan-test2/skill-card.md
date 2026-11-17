@@ -1,39 +1,53 @@
-## Description: <br>
-This release contains a short placeholder Markdown skill artifact for a listed code scanning workflow, but the reviewed files do not implement that workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This release is a minimal placeholder Markdown skill whose listing describes code compliance scanning, but the packaged artifact does not contain executable scanning behavior.
 
-## Publisher: <br>
-[yinwuzhe](https://clawhub.ai/user/yinwuzhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinwuzhe](https://clawhub.ai/user/yinwuzhe)
 
-## Use Case: <br>
-Developers evaluating this ClawHub release can inspect it as a placeholder for a code scanning assistant; the reviewed artifact does not provide an executable CodeCC or repository scanning workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake this placeholder release for a functional code scanning workflow. <br>
-Mitigation: Review the artifact before use and do not grant repository, CodeCC, credential, or account access unless a future version clearly documents and scopes those capabilities. <br>
+## Use Case:
 
+Developers evaluating this ClawHub release can inspect the placeholder skill package and its code-scan-oriented listing. It should not be treated as a functional scanner unless future artifacts add operational instructions or tooling.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/yinwuzhe/code-scan-test2) <br>
-- [Artifact skill.md](artifact/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The reviewed artifact contains placeholder Markdown and no executable workflow or tool integration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Users may mistake the placeholder artifact for a functional code scanning tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installed artifact before relying on it, and require future releases to include concrete scanner instructions or tooling before operational use.
+
+Risk: Chinese-language placeholder text may affect usability for readers who do not read Chinese.
+
+Mitigation: Confirm the intended audience and provide localized or English-facing documentation before broad deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yinwuzhe/skills/code-scan-test2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Packaged artifact is placeholder Markdown with no commands, permissions, or data access.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

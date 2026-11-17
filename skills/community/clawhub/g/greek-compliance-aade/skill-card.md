@@ -1,44 +1,64 @@
-## Description: <br>
-Greek tax compliance with AADE/TAXIS integration for VAT, payroll, EFKA, municipal taxes, and stamp duty, with human confirmation required for submissions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Greek tax compliance with AADE/TAXIS integration for VAT, payroll, EFKA, municipal taxes, and stamp duty, with human confirmation for all submissions.
 
-## Publisher: <br>
-[satoshistackalotto](https://clawhub.ai/user/satoshistackalotto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[satoshistackalotto](https://clawhub.ai/user/satoshistackalotto)
 
-## Use Case: <br>
-Greek accountants, finance teams, and businesses use this skill to prepare VAT returns, payroll calculations, EFKA materials, myDATA records, municipal tax tracking, and audit-ready compliance outputs. When AADE/TAXIS credentials are configured, it supports approved government submissions after human review. <br>
-
-### Deployment Geography for Use: <br>
-Greece <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles AADE/TAXIS credentials and sensitive tax, payroll, client, and audit records. <br>
-Mitigation: Prepare filings offline when possible, set AADE credentials only for explicit submissions, and protect OPENCLAW_DATA_DIR as sensitive financial data storage. <br>
-Risk: Generated filings, calculations, or payment details could be incorrect for a specific business or filing period. <br>
-Mitigation: Manually review generated filings and payment details before relying on them, and use the required four-eyes approval workflow before submission. <br>
-Risk: A government filing could be submitted before the responsible people intend to submit it. <br>
-Mitigation: Require a prepared filing to be separately reviewed and approved by a different approver before any AADE/TAXIS submission. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/satoshistackalotto/greek-compliance-aade) <br>
-- [AADE TAXIS portal](https://www1.aade.gr/taxisnet) <br>
-- [AADE myDATA production API](https://mydatapi.aade.gr) <br>
-- [EFKA portal](https://www.efka.gov.gr) <br>
+## Use Case:
 
+Accountants, finance teams, and developers use this skill to prepare Greek compliance outputs for VAT, payroll, EFKA, myDATA, TAXIS, municipal taxes, and filing deadline workflows. It supports offline preparation and requires human confirmation before government submissions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with XML, JSON, YAML, CSV, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce draft filings, calculations, payment details, audit records, setup steps, and submission guidance; official submissions require human approval.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Greece
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive AADE, EFKA, banking, payroll, or client data could be exposed if live credentials or taxpayer data are shared broadly.
+
+Mitigation: Isolate submission credentials, keep credentials in environment variables, and do not expose live compliance data unless the workflow and access controls require it.
+
+Risk: Government filings can create legal or financial consequences if prepared outputs are submitted without review.
+
+Mitigation: Force each filing through implemented prepare, review, approve, and submit gates, with different preparer and approver identities before transmission.
+
+Risk: Greek tax, payroll, and portal requirements may change after the skill content was authored.
+
+Mitigation: Validate rates, deadlines, schemas, and submission requirements against current official sources before filing or advising a client.
+
+Risk: Companion skill installation examples could pull unpinned or unreviewed dependencies into a compliance workflow.
+
+Mitigation: Review companion skills before installation and pin trusted versions for production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/satoshistackalotto/skills/greek-compliance-aade)
+- [AADE TAXIS portal](https://www1.aade.gr/taxisnet)
+- [myDATA test endpoint](https://mydata-dev.azure-api.net)
+- [myDATA production API](https://mydatapi.aade.gr)
+- [EFKA portal](https://www.efka.gov.gr)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline command, XML, JSON, YAML, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local compliance files, environment variables, generated filing data, and human approval steps.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata; artifact frontmatter declares 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

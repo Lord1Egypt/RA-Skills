@@ -1,44 +1,60 @@
-## Description: <br>
-Optimize TikTok Shop product listings for search visibility by improving titles, descriptions, tags, and backend keywords based on platform-specific ranking factors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize TikTok Shop product listings for search visibility by improving titles, descriptions, tags, and backend keywords based on platform-specific ranking factors.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External TikTok Shop sellers and marketplace operators use this skill to audit product listings, analyze competing listings, and draft search-oriented improvements to titles, descriptions, tags, categories, images, backend attributes, pricing, and monitoring plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Listing, category, image, backend attribute, pricing, or promotion recommendations could affect marketplace performance if published without review. <br>
-Mitigation: Manually approve every proposed title, tag, category, image, backend attribute, pricing, and promotion change before publishing. <br>
-Risk: The audit may use seller listing, competitor, and analytics data that is not needed outside the optimization task. <br>
-Mitigation: Provide only the listing, competitor, and analytics data needed for the audit, and do not share account passwords or unnecessary Seller Center access. <br>
+## Use Case:
 
+External sellers and ecommerce operators use this skill to audit TikTok Shop listings, compare search competitors, and prepare optimized listing content. It supports title, description, tag, category, image, backend attribute, pricing, keyword map, and post-publish monitoring recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leooooooow/tiktok-shop-seo) <br>
-- [TikTok Shop Listing Optimization Guide](listing-optimization-guide.md) <br>
-- [TikTok Shop Competitive Analysis Framework](competitive-analysis-framework.md) <br>
-- [TikTok Shop SEO Audit Output Template](output-template.md) <br>
-- [TikTok Shop SEO Quality Checklist](quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown audit notes, optimization recommendations, comparison tables, and drafted listing copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory SEO deliverables for human review; it does not execute account changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill may use product listing details and Seller Center analytics supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep account credentials private and provide only the listing and performance data needed for the audit.
+
+Risk: SEO recommendations and performance targets may be inaccurate, outdated, or unsuitable for a specific product category.
+
+Mitigation: Review recommendations against current TikTok Shop policy, live search results, and Seller Center metrics before publishing changes.
+
+Risk: Published listing changes can affect commercial visibility, conversion, and pricing perception.
+
+Mitigation: Apply changes through a human-approved seller workflow and monitor search impressions, CTR, conversion rate, and keyword rank after publication.
+
+## Reference(s):
+
+- [TikTok Shop Listing Optimization Guide](artifact/listing-optimization-guide.md)
+- [TikTok Shop Competitive Analysis Framework](artifact/competitive-analysis-framework.md)
+- [TikTok Shop SEO Audit Output Template](artifact/output-template.md)
+- [TikTok Shop Listing SEO Quality Checklist](artifact/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown guidance with structured audit templates and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; output depends on user-provided listing details, Seller Center analytics, and manual competitor observations.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Find and rank GitHub developers by location, technology, and role. Search for candidates, get scored profiles with tech stack matches, activity, and contact info. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and rank GitHub developers by location, technology, and role. Search for candidates, get scored profiles with tech stack matches, activity, and contact info.
 
-## Publisher: <br>
-[mordka](https://clawhub.ai/user/mordka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mordka](https://clawhub.ai/user/mordka)
 
-## Use Case: <br>
-Recruiters, sourcers, and hiring teams use this skill to search for GitHub developers by location, role, and technology stack, then review scored candidate profiles and contact fields. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search terms, locations, skills, and candidate usernames are sent to githunt.ai. <br>
-Mitigation: Use only approved recruiting queries and avoid sending confidential or sensitive internal criteria. <br>
-Risk: Results may include developer profile and contact data such as emails or social handles. <br>
-Mitigation: Use contact data in compliance with privacy law, platform terms, recruiting rules, and anti-spam requirements; avoid bulk unsolicited outreach and retain only what is needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mordka/githunt) <br>
-- [GitHunt Website](https://githunt.ai) <br>
-- [GitHunt API](https://api.githunt.ai/v1) <br>
+## Use Case:
 
+Recruiters, sourcers, hiring teams, and developers use this skill to find GitHub developer candidates by location, technology stack, and role, then review scored profiles and available contact details.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, JSON, Text] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return streaming Server-Sent Events or JSON profile and contact fields from the GitHunt API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Returned emails, websites, and social profiles may be personal data.
+
+Mitigation: Confirm a lawful basis for collection, storage, and outreach before using candidate contact data.
+
+Risk: Search requests may disclose sensitive sourcing strategy to the GitHunt API.
+
+Mitigation: Avoid sending sensitive recruiting criteria unless the user trusts GitHunt's handling of that data.
+
+Risk: The helper scripts accept user-provided search arguments and a configurable GITHUNT_API_URL.
+
+Mitigation: Run scripts only with trusted arguments and a trusted API URL value.
+
+## Reference(s):
+
+- [GitHunt website](https://githunt.ai)
+- [GitHunt API base URL](https://api.githunt.ai/v1)
+- [ClawHub GitHunt release page](https://clawhub.ai/mordka/skills/githunt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and JSON examples; helper script output is plain text parsed from API JSON or Server-Sent Events.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces candidate search guidance and command output for GitHunt API requests; API responses may include personal contact data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

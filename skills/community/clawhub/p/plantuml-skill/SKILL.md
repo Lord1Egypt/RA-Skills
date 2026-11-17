@@ -1,13 +1,13 @@
 ---
 name: plantuml
 description: Turn natural language into uml-diagrams.org style PlantUML diagrams (sequence, class, activity, use case, component, state…) and render to SVG/PNG/PDF. Use when the user asks to draw a UML diagram.
-version: 1.4.1
+version: 1.7.2
 emoji: "📐"
 homepage: https://github.com/samonysh/plantuml-skill
 metadata:
   openclaw:
     # The render script is local-first: it tries Docker, then a local plantuml.jar.
-    # The Kroki public server is OPT-IN ONLY (--use-public-server / -UsePublicServer)
+    # The Kroki public server is OPT-IN ONLY (--use-public-server)
     # because it uploads diagram source to a third-party service (kroki.io by default,
     # overridable to a self-hosted Kroki via PLANTUML_PUBLIC_SERVER).
     requires:
@@ -45,12 +45,12 @@ No exceptions unless the user explicitly requests otherwise.
 - **Black and white only**: Pure black lines (`#000000`) on a pure white background (`#FFFFFF`). No colors, no grayscale fills, no gradients, no themed accents.
 - **Thin uniform line weight**: All borders, arrows and connectors use the default hair-line stroke (≈0.75pt). Never thicken or stylize lines.
 - **No circle visibility icons**: Class attributes MUST NOT show colored circle icons (● public / ◐ protected / ○ private). Enforced via `skinparam classAttributeIconSize 0`. Use `+ - # ~` text markers only.
-- **No circle stereotype icons**: Class and interface headers MUST NOT show circle-with-letter icons (Ⓒ / Ⓘ / Ⓐ / Ⓔ). `skinparam style strictuml` enforces text stereotypes (`«interface»`, `«abstract»`, `«enumeration»`). Always declare interfaces/abstract classes via `class <<interface>>` or `class <<abstract>>` — never use the `interface` or `abstract class` keywords.
-- **Abstract classifiers in italics**: Per UML 2.5 §9 and uml-diagrams.org "Name of an abstract classifier is shown in italics" — using the `<<abstract>>` text stereotype with `strictuml` produces the correct italic rendering automatically.
+- **No circle stereotype icons**: Class and interface headers MUST NOT show circle-with-letter icons (Ⓒ / Ⓘ / Ⓐ / Ⓔ). Instead of relying on `skinparam style strictuml` (which degrades actors into plain text and use cases into rectangles — see [Common Failure Patterns](#common-failure-patterns)), we suppress the circle adornments purely at the **syntax level**: always declare interfaces / abstract classes / enumerations via a `class <<interface>>` / `class <<abstract>>` / `class <<enumeration>>` text stereotype — never use the `interface` / `abstract class` / `enum` keywords, which are what trigger the circle icons in the first place.
+- **Abstract classifiers in italics**: Per UML 2.5 §9 and uml-diagrams.org "Name of an abstract classifier is shown in italics" — the `<<abstract>>` text stereotype combined with `{abstract}` method markers renders correctly without needing `strictuml`.
 - **No 3D effects**: Drop shadows MUST be disabled (`skinparam shadowing false`).
 - **Clean typography**: Sans-serif font (Helvetica, equivalent to the Arial used by Visio stencils on uml-diagrams.org), 12pt default. No colored or bold text except diagram titles. When CJK characters are present, use `--cjk` flag to switch to a CJK-compatible font (see [CJK Font Support](#cjk-chinesejapanesekorean-font-support)).
-- **Aspect ratio**: Generated diagrams are automatically validated for extreme aspect ratios. If a diagram is excessively wide or tall (exceeding 2.5:1 by default), the renderer applies layout corrections and re-renders. Use `--no-fix` to disable this behavior (see Step 3).
-- **A4 paper fit**: After aspect-ratio validation passes, the diagram is checked against A4 paper (210×297 mm). At the **96 DPI CSS standard**, this works out to **794×1123 px portrait** and **1123×794 px landscape**. The renderer accepts the diagram if it fits in EITHER orientation; otherwise it injects a computed PlantUML `scale N` directive and re-renders up to once. The default body font of 12 px (from the mandatory preamble) shrinks proportionally; if the estimated on-paper font drops below `--min-font-pt` (default **8 pt**), the script prints a legibility warning — at that point no further down-scaling helps and the user must split the diagram or abbreviate labels. A4 fit is **ON by default**; disable with `--no-a4-check` (`-NoA4Check` on PowerShell).
+- **Aspect ratio**: Generated diagrams are automatically validated for an aspect-ratio band. By default the renderer tries to keep width/height between **0.7 and 1.4** (a comfortable page-like shape), re-rendering with layout corrections when the output falls outside that band. Diagrams that cannot be fixed safely after a few attempts are kept with a warning, so unusual diagrams are not destroyed. Use `--no-fix` to disable this behavior (see Step 3).
+- **A4 paper fit**: After aspect-ratio validation passes, the diagram is checked against A4 paper (210×297 mm). At the **96 DPI CSS standard**, this works out to **794×1123 px portrait** and **1123×794 px landscape**. The renderer accepts the diagram if it fits in EITHER orientation; otherwise it injects a computed PlantUML `scale N` directive and re-renders up to once. The default body font of 12 px (from the mandatory preamble) shrinks proportionally; if the estimated on-paper font drops below `--min-font-pt` (default **8 pt**), the script prints a legibility warning — at that point no further down-scaling helps and the user must split the diagram or abbreviate labels. A4 fit is **ON by default**; disable with `--no-a4-check`.
 - **Standard UML shapes**:
   - Actors are **stick figures** (never Visio icons or images).
   - Classes / components / nodes are plain rectangles; activities are round-cornered rectangles with the activity name in the upper-left.
@@ -105,7 +105,8 @@ Write the PlantUML source following these rules:
 1. Start EVERY file with one of the two mandatory uml-diagrams.org-style preambles
    immediately after `@startuml`:
    - **Default**: the `skinparam` preamble — see [OMG-UML / uml-diagrams.org Style Configuration](#omg-uml--uml-diagramsorg-style-configuration-mandatory).
-     Maximum backward compatibility, used by every example except #07.
+      Maximum backward compatibility, used by every example except #07.
+      (Example #07 is a legacy alias of #01_css — same OAuth2 sequence diagram, same CSS preamble.)
    - **Backup option**: the CSS-style `<style>` preamble — see [Alternative — CSS-style Preamble](#alternative--css-style-preamble-modern-backup-option).
      Recommended on PlantUML ≥ 1.2019.9 where `skinparam` is being phased out.
    Pick ONE per file — never mix both inside the same `.puml`.
@@ -119,34 +120,39 @@ Save the PlantUML source to a `.puml` file in the working directory.
 
 ### Step 3: Render to Image
 
-Use the bundled conversion script. Pick the variant that matches the current OS / shell:
-
-**Linux, macOS, or Windows with a POSIX shell (Git Bash, MSYS2, WSL, Cygwin):**
+Use the bundled conversion script. It is a single, unified Python 3.8+ script
+that works identically on Linux, macOS, and Windows (native PowerShell, cmd,
+Git Bash, WSL — anywhere `python` is on PATH):
 
 ```bash
-bash .opencode/skills/plantuml/scripts/generate-plantuml.sh <input.puml> <output_dir> --format <svg|png|pdf|txt>
+python skills/plantuml/scripts/generate_plantuml.py <input.puml> <output_dir> --format <svg|png|pdf|txt>
 ```
 
-**Windows native PowerShell (no bash required):**
+On Windows PowerShell / cmd the invocation is identical (use backslashes if
+you prefer):
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .opencode\skills\plantuml\scripts\generate-plantuml.ps1 <input.puml> <output_dir> -Format <svg|png|pdf|txt>
+python skills\plantuml\scripts\generate_plantuml.py <input.puml> <output_dir> --format <svg|png|pdf|txt>
 ```
 
-Both scripts accept the same arguments and try three backends in **strict priority
-order — local-first**. Docker and the local JAR are tried first; the Kroki
-public server is **OPT-IN ONLY** because it uploads your diagram source to a
-third-party service (kroki.io by default):
+> **Historical note** — earlier versions shipped a `generate-plantuml.sh` /
+> `generate-plantuml.ps1` pair. Those have been consolidated into this single
+> Python script. All flags use the same `--kebab-case` names on every OS; the
+> previous PowerShell-style `-CamelCase` flag names are no longer used.
+
+The script tries three backends in **strict priority order — local-first**.
+Docker and the local JAR are tried first; the Kroki public server is
+**OPT-IN ONLY** because it uploads your diagram source to a third-party
+service (kroki.io by default):
 
 1. **Docker** (`plantuml/plantuml:latest`) — preferred default, fully local
 2. **Local `plantuml.jar`** (requires Java) — offline fallback
 3. **Kroki public server** (https://kroki.io by default) — **OPT-IN**
-   via `--use-public-server` (Bash) or `-UsePublicServer` (PowerShell).
-   Override the host with `PLANTUML_PUBLIC_SERVER=<url>` (Bash) or
-   `$env:PLANTUML_PUBLIC_SERVER='<url>'` (PowerShell) to point at a
+   via `--use-public-server`. Override the host with the
+   `PLANTUML_PUBLIC_SERVER=<url>` environment variable to point at a
    self-hosted Kroki instance.
 
-> ⚠ **Privacy notice** — passing `--use-public-server` / `-UsePublicServer`
+> ⚠ **Privacy notice** — passing `--use-public-server`
 > POSTs the entire `.puml` source to `kroki.io` (or your override host).
 > **Never** enable this flag for diagrams containing confidential architecture,
 > credentials, customer data, or proprietary business logic. When in doubt,
@@ -157,7 +163,7 @@ third-party service (kroki.io by default):
 **CJK font support**: When the `.puml` contains Chinese, Japanese, or Korean characters, add the `--cjk` flag:
 
 ```bash
-bash generate-plantuml.sh diagram.puml ./output --format svg --cjk
+python skills/plantuml/scripts/generate_plantuml.py diagram.puml ./output --format svg --cjk
 ```
 
 The `--cjk` flag:
@@ -169,21 +175,38 @@ The `--cjk` flag:
   - Fedora: `sudo dnf install wqy-zenhei-fonts`
   - macOS: CJK fonts are pre-installed (PingFang SC)
 
-**Aspect ratio validation**: After rendering (SVG or PNG), the script automatically checks the image dimensions. If the aspect ratio exceeds `--max-aspect` (default: 2.5:1), the script applies corrective layout directives and re-renders:
+**Aspect ratio validation**: After rendering (SVG or PNG), the script measures width/height and checks whether it sits inside the configured band. The default band is **0.7–1.4** (width/height), i.e. diagrams should be neither extremely tall nor extremely wide. If the output falls outside the band, the script injects layout corrections and re-renders:
 
-- **Too tall**: Applies `left to right direction` and reduces sequence diagram padding
-- **Too wide**: Applies `top to bottom direction`, removes left-to-right direction, and applies `scale 0.8`
-- Maximum 2 correction attempts before giving up
+- **Too tall** (width/height < `--min-aspect`): applies `left to right direction` and adds spacing guards so labels do not crowd.
+- **Too wide** (width/height > `--max-aspect`): applies `top to bottom direction` and adds spacing guards.
+- Sequence, activity, and state diagrams skip the direction directive because it is either unsupported or counter-productive for those diagram types; only spacing guards are applied.
+- Up to 3 correction attempts are made. If a diagram still cannot be brought into the band (for example a very narrow use-case or state machine), the script keeps the best output and prints a warning rather than forcing an unusable layout.
+
+Spacing guards added during auto-fix include `Padding`, `BoxPadding`, `ParticipantPadding`, `MinClassWidth`, `WrapWidth`, `NodeSep`, and `RankSep`. These prevent text from becoming cramped when the layout is re-directed.
 
 To disable automatic correction:
 ```bash
-bash generate-plantuml.sh diagram.puml ./output --no-fix
+python skills/plantuml/scripts/generate_plantuml.py diagram.puml ./output --no-fix
 ```
 
-To set a custom aspect ratio threshold:
+To set a custom band:
 ```bash
-bash generate-plantuml.sh diagram.puml ./output --max-aspect 3.0
+python skills/plantuml/scripts/generate_plantuml.py diagram.puml ./output --min-aspect 0.6 --max-aspect 1.5
 ```
+
+**Dark mode (opt-in)**: The default output follows the strict uml-diagrams.org black-and-white style. When the user explicitly asks for a dark variant, add `--dark-mode`. This emits **both** the regular light output and a dark companion named `<basename>.dark.<fmt>`:
+
+```bash
+python skills/plantuml/scripts/generate_plantuml.py diagram.puml ./output --format svg --dark-mode
+```
+
+Behaviour:
+- Light output is rendered normally with the monochrome preamble.
+- The dark companion is produced by injecting a CSS `@media (prefers-color-scheme: dark)` block into the SVG, which automatically adapts to the user's system theme.
+- SVG is fully supported. PNG is supported when ImageMagick `convert` is available. PDF/TXT dark companions are not generated because there is no reliable local post-processor.
+- The dark palette uses `#1e1e2e` canvas, `#c9d1d9` text/strokes, `#f0f6fc` bold text, and `#6e7681` lifelines.
+- Bare-stroke injection: PlantUML's CSS mode may render some elements (use case ellipses, component rects, actor paths) with `fill="none"` and no `stroke` attribute. The script injects CSS rules to add strokes to these elements in both light (`#000000`) and dark (`#c9d1d9`) variants.
+- **`skinparam style strictuml` is FORBIDDEN** — despite past documentation claiming it was "essential", `strictuml` actively degrades key UML shapes: actors collapse into plain-text labels, use cases collapse from ellipses into rectangles, and classes lose their header separator. The correct fix is a **complete per-element skinparam block** (see [OMG-UML Style Configuration](#omg-uml--uml-diagramsorg-style-configuration-mandatory)) that explicitly sets `BackgroundColor`/`BorderColor`/`FontColor` for every element category. The render script also **defensively strips** any leftover `skinparam style strictuml` line before dispatching to the backend, so even if a diagram source accidentally re-introduces it, the rendering pipeline will remove it.
 
 **A4 paper fit validation**: After the aspect-ratio check passes, the render script validates the diagram's pixel dimensions against A4 paper. PlantUML writes SVG in CSS pixels at the 96 DPI standard, so A4 (210×297 mm = 8.27×11.69 in) maps to **794×1123 px portrait** or **1123×794 px landscape**. The check is **ON by default** and runs right after the aspect check.
 
@@ -194,27 +217,32 @@ Behaviour:
 
 Flags:
 
-| Flag (Bash) | Flag (PowerShell) | Purpose | Default |
-|---|---|---|---|
-| `--no-a4-check` | `-NoA4Check` | Disable A4 fit validation entirely | off (check ON) |
-| `--min-font-pt N` | `-MinFontPt N` | Minimum legible on-paper font size in pt | `8.0` |
+| Flag | Purpose | Default |
+|---|---|---|
+| `--no-fix` | Disable automatic aspect-ratio correction | off (correction ON) |
+| `--min-aspect N` | Lower bound of acceptable width/height band | `0.7` |
+| `--max-aspect N` | Upper bound of acceptable width/height band | `1.4` |
+| `--no-a4-check` | Disable A4 fit validation entirely | off (check ON) |
+| `--min-font-pt N` | Minimum legible on-paper font size in pt | `8.0` |
+| `--dark-mode` | Also emit a dark companion (`<basename>.dark.<fmt>`) with CSS `@media` theme | off |
 
 Examples:
 ```bash
 # Disable A4 fit
-bash generate-plantuml.sh diagram.puml ./output --no-a4-check
+python skills/plantuml/scripts/generate_plantuml.py diagram.puml ./output --no-a4-check
 
 # Tighten legibility threshold (warn if effective font drops below 10 pt)
-bash generate-plantuml.sh diagram.puml ./output --min-font-pt 10
+python skills/plantuml/scripts/generate_plantuml.py diagram.puml ./output --min-font-pt 10
+
+# Allow narrower diagrams and also emit a dark SVG companion
+python skills/plantuml/scripts/generate_plantuml.py diagram.puml ./output --format svg --min-aspect 0.5 --dark-mode
 ```
 
-```powershell
-# PowerShell equivalents
-powershell -ExecutionPolicy Bypass -File generate-plantuml.ps1 diagram.puml .\out -NoA4Check
-powershell -ExecutionPolicy Bypass -File generate-plantuml.ps1 diagram.puml .\out -MinFontPt 10
-```
+On Windows the same commands work verbatim in PowerShell / cmd — just swap
+forward slashes for backslashes if you prefer native path style. There is no
+longer a separate PowerShell flag namespace.
 
-A4 fit is skipped automatically for `txt` and `pdf` output (TXT has no image dimensions; PDF is already a print-oriented format the PlantUML renderer pages itself). The check shares the same 2-attempt auto-fix budget as aspect-ratio correction — running both does not double the cap.
+A4 fit is skipped automatically for `txt` and `pdf` output (TXT has no image dimensions; PDF is already a print-oriented format the PlantUML renderer pages itself). The check shares the same 3-attempt auto-fix budget as aspect-ratio correction — running both does not double the cap.
 
 **After rendering, show the user the output.** If SVG is generated, read and display it inline.
 If PNG/PDF is generated, tell the user where the file is saved.
@@ -242,13 +270,8 @@ local installation, but doing so **POSTs the full `.puml` source to a third
 party**. To use it you must explicitly opt in:
 
 ```bash
-# Bash — explicit opt-in required
-bash generate-plantuml.sh diagram.puml ./output --use-public-server
-```
-
-```powershell
-# PowerShell — explicit opt-in required
-powershell -ExecutionPolicy Bypass -File generate-plantuml.ps1 diagram.puml .\output -UsePublicServer
+# Explicit opt-in required (same flag on every OS)
+python skills/plantuml/scripts/generate_plantuml.py diagram.puml ./output --use-public-server
 ```
 
 When opt-in is active, the script:
@@ -265,15 +288,15 @@ opt-in traffic to your own instance instead of the public `kroki.io`, set the
 `PLANTUML_PUBLIC_SERVER` env var to your base URL:
 
 ```bash
-# Bash
+# Linux / macOS / Git Bash / WSL
 PLANTUML_PUBLIC_SERVER=https://kroki.internal.example.com \
-  bash generate-plantuml.sh diagram.puml ./output --use-public-server
+  python skills/plantuml/scripts/generate_plantuml.py diagram.puml ./output --use-public-server
 ```
 
 ```powershell
-# PowerShell
+# Windows PowerShell
 $env:PLANTUML_PUBLIC_SERVER = 'https://kroki.internal.example.com'
-powershell -ExecutionPolicy Bypass -File generate-plantuml.ps1 diagram.puml .\output -UsePublicServer
+python skills\plantuml\scripts\generate_plantuml.py diagram.puml .\output --use-public-server
 ```
 
 The runtime privacy warning surfaces the resolved host name so you can confirm
@@ -313,7 +336,7 @@ download `plantuml.jar` and render locally.
 
 ### CJK Docker mode and host font directories
 
-When `--cjk` / `-Cjk` is combined with the Docker backend, the script mounts
+When `--cjk` is combined with the Docker backend, the script mounts
 host font directories **read-only** into the container so PlantUML can
 discover system-installed CJK fonts. The mounts are:
 
@@ -376,20 +399,37 @@ Key syntax: `->` sync message, `-->` async/return, `->>` async, `alt/else/end` b
 
 ```
 @startuml
-' OMG-UML Monochrome Style
-skinparam style strictuml
-skinparam monochrome true
-skinparam backgroundColor white
-skinparam defaultFontName Helvetica
-skinparam shadowing false
+' OMG-UML Monochrome Style — CSS variant
+<style>
+root {
+  FontName Helvetica
+  FontSize 12
+  FontColor #000000
+  BackGroundColor #FFFFFF
+  LineColor #000000
+  LineThickness 0.75
+  RoundCorner 0
+  Shadowing 0
+}
+title {
+  FontSize 14
+  FontStyle bold
+  FontColor #000000
+  BackGroundColor transparent
+  LineColor transparent
+  LineThickness 0
+}
+note {
+  BackGroundColor #FFFFFF
+  LineColor #000000
+  FontColor #000000
+}
+classDiagram {
+  class { BackGroundColor #FFFFFF; LineColor #000000; FontColor #000000 }
+  arrow { LineColor #000000; LineThickness 0.75 }
+}
+</style>
 skinparam classAttributeIconSize 0
-skinparam sequenceMessageAlign center
-skinparam ActorBackgroundColor white
-skinparam ParticipantBackgroundColor white
-skinparam NoteBackgroundColor white
-skinparam SequenceGroupBackgroundColor white
-skinparam PackageBackgroundColor white
-skinparam ClassBackgroundColor white
 
 title Payment System
 
@@ -643,99 +683,17 @@ Colors: `<style> * { BackgroundColor lightblue } </style>`
 
 ## OMG-UML / uml-diagrams.org Style Configuration (MANDATORY)
 
-Every generated `.puml` file MUST include this preamble immediately after `@startuml`.
+Every generated `.puml` file MUST include this CSS-style preamble immediately after `@startuml`.
 It locks PlantUML's rendering to the **uml-diagrams.org reference style** (strict OMG UML 2.x,
-black-and-white Visio stencils):
-
-```
-' uml-diagrams.org reference style — strict OMG UML 2.x, monochrome
-skinparam monochrome true
-skinparam backgroundColor #FFFFFF
-skinparam defaultFontName Helvetica
-skinparam defaultFontSize 12
-skinparam shadowing false
-skinparam style strictuml
-skinparam classAttributeIconSize 0
-skinparam sequenceMessageAlign center
-skinparam roundCorner 0
-
-' Force every fill to white so monochrome never falls back to grey
-skinparam ActorBackgroundColor #FFFFFF
-skinparam ParticipantBackgroundColor #FFFFFF
-skinparam NoteBackgroundColor #FFFFFF
-skinparam SequenceGroupBackgroundColor #FFFFFF
-skinparam PackageBackgroundColor #FFFFFF
-skinparam ClassBackgroundColor #FFFFFF
-skinparam ObjectBackgroundColor #FFFFFF
-skinparam StateBackgroundColor #FFFFFF
-skinparam UsecaseBackgroundColor #FFFFFF
-skinparam ComponentBackgroundColor #FFFFFF
-skinparam ActivityBackgroundColor #FFFFFF
-skinparam NodeBackgroundColor #FFFFFF
-skinparam DatabaseBackgroundColor #FFFFFF
-skinparam StereotypeCBackgroundColor #FFFFFF
-skinparam StereotypeIBackgroundColor #FFFFFF
-skinparam StereotypeABackgroundColor #FFFFFF
-skinparam StereotypeEBackgroundColor #FFFFFF
-
-' Sequence diagrams — match the lifeline / activation look on uml-diagrams.org:
-'   * lifeline = dashed black vertical line
-'   * activation bar = thin WHITE rectangle with black border (NOT yellow)
-skinparam SequenceLifeLineBorderColor #000000
-skinparam SequenceLifeLineBackgroundColor #FFFFFF
-skinparam SequenceLifeLineBorderThickness 0.75
-skinparam SequenceActivationBackgroundColor #FFFFFF
-skinparam SequenceActivationBorderColor #000000
-skinparam SequenceArrowColor #000000
-skinparam SequenceArrowThickness 0.75
-skinparam SequenceBoxBackgroundColor #FFFFFF
-
-' Default arrow / border colour everywhere
-skinparam ArrowColor #000000
-skinparam ArrowThickness 0.75
-skinparam DefaultTextColor #000000
-```
-
-**What each directive does (mapped to uml-diagrams.org figures):**
-
-| Directive | Effect / uml-diagrams.org reference |
-|---|---|
-| `skinparam monochrome true` | Strips all PlantUML colour themes. Matches the Visio UML 2.x stencil look used across uml-diagrams.org. |
-| `skinparam backgroundColor #FFFFFF` | Pure white canvas — same as every figure on uml-diagrams.org. |
-| `skinparam *BackgroundColor #FFFFFF` (all element kinds) | Forces every classifier / actor / note / package / lifeline / state / use case / component / activity / node / database fill to pure white. Eliminates the grey fills `monochrome` would otherwise leave. |
-| `skinparam defaultFontName Helvetica` + size 12 | Sans-serif typography equivalent to Arial used by Visio stencils on uml-diagrams.org. |
-| `skinparam shadowing false` | Disables drop shadows — uml-diagrams.org figures never have shadows. |
-| `skinparam style strictuml` | **Critical**. Enforces text stereotypes (`«interface»`, `«abstract»`, `«enumeration»`) and removes the Ⓒ/Ⓘ/Ⓐ/Ⓔ circle adornments. Abstract classifier names render in italics, matching uml-diagrams.org §"Classifier". |
-| `skinparam classAttributeIconSize 0` | Removes the coloured visibility dots (●/◐/○). uml-diagrams.org uses `+`/`-`/`#`/`~` text markers only. |
-| `skinparam roundCorner 0` | Square corners on rectangles (matches Visio stencils). Activity diagrams override locally for round-cornered actions. |
-| `skinparam SequenceLifeLineBorderStyle` (implicit dashed via `strictuml`) + `SequenceLifeLineBorderColor #000000` | Lifelines render as **dashed black lines** — exactly the lifeline notation shown on uml-diagrams.org/sequence-diagrams.html. |
-| `skinparam SequenceActivationBackgroundColor #FFFFFF` + `SequenceActivationBorderColor #000000` | Activation bar (execution specification) is a **thin white rectangle with black border**, per the uml-diagrams.org definition: *"Execution is represented as a thin grey or white rectangle on the lifeline"*. |
-| `skinparam ArrowColor #000000` + `ArrowThickness 0.75` | All arrows are thin black — matches Visio stencil hair-line strokes. |
-
-**NEVER** apply colored themes (`!theme blueprint`, `!theme cerulean`, etc.), custom colors,
-gradients, shadows, or decorative styling — doing so breaks compliance with the
-uml-diagrams.org reference style. If a user explicitly and unambiguously requests colour,
-add it on top of this preamble rather than removing the preamble.
-
----
-
-## Alternative — CSS-style Preamble (modern, backup option)
+black-and-white Visio stencils).
 
 Since PlantUML `1.2019.9` the project officially recommends the **CSS-like `<style>` block**
 ([plantuml.com/style-evolution](https://plantuml.com/style-evolution)) as the preferred
 styling mechanism — *"`skinparam` is being phased out … users should migrate to `style`"*.
 
-This skill ships a **second, visually equivalent preamble** based on `<style>`. Both
-preambles produce the **same uml-diagrams.org reference look**; choose one according to the
-PlantUML version available at render time:
-
-| Use the `skinparam` preamble (default) when… | Use the `<style>` preamble (alternative) when… |
-|---|---|
-| You need maximum backward compatibility (PlantUML < 1.2019.9) | You are on a modern PlantUML version and want forward-looking syntax |
-| You want a single flat block of `skinparam` lines that's easy to grep | You want CSS-style nested scoping (`sequenceDiagram { lifeLine { … } }`) |
-| You need fine-grained per-element-type `*BackgroundColor` knobs | You want fewer lines and per-diagram-type cascading rules |
-
 **Do NOT mix both inside the same `.puml` file.** Pick one preamble per diagram.
+
+### Primary — CSS `<style>` Preamble (recommended)
 
 ```
 @startuml
@@ -803,37 +761,177 @@ stateDiagram {
 }
 </style>
 
-' Two settings still have NO CSS equivalent yet — keep them as skinparams:
-skinparam style strictuml
+' ── Per-element skinparam fallback (mandatory) ─────────────────────────────
+' The CSS <style> block above does NOT cover every PlantUML element category.
+' Without the following block, some shapes fall back to PlantUML defaults
+' (yellow activation bars, coloured actors, grey component fills, etc.).
+' NEVER add `skinparam style strictuml` — it degrades actors into plain text
+' and use cases into rectangles.
 skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontColor #000000
+
+skinparam actor       { BackgroundColor #FFFFFF; BorderColor #000000; FontColor #000000 }
+skinparam usecase     { BackgroundColor #FFFFFF; BorderColor #000000; FontColor #000000 }
+skinparam rectangle   { BackgroundColor #FFFFFF; BorderColor #000000; FontColor #000000 }
+skinparam class       { BackgroundColor #FFFFFF; BorderColor #000000; FontColor #000000 }
+skinparam object      { BackgroundColor #FFFFFF; BorderColor #000000; FontColor #000000 }
+skinparam component   { BackgroundColor #FFFFFF; BorderColor #000000; FontColor #000000 }
+skinparam interface   { BackgroundColor #FFFFFF; BorderColor #000000; FontColor #000000 }
+skinparam package     { BackgroundColor #FFFFFF; BorderColor #000000; FontColor #000000 }
+skinparam node        { BackgroundColor #FFFFFF; BorderColor #000000; FontColor #000000 }
+skinparam database    { BackgroundColor #FFFFFF; BorderColor #000000; FontColor #000000 }
+skinparam cloud       { BackgroundColor #FFFFFF; BorderColor #000000; FontColor #000000 }
+skinparam state       { BackgroundColor #FFFFFF; BorderColor #000000; FontColor #000000 }
+skinparam activity    { BackgroundColor #FFFFFF; BorderColor #000000; FontColor #000000 }
+skinparam sequence    { ArrowColor #000000; LifeLineBorderColor #000000; LifeLineBackgroundColor #FFFFFF; ParticipantBackgroundColor #FFFFFF; ParticipantBorderColor #000000; ActorBackgroundColor #FFFFFF; ActorBorderColor #000000; BoxBackgroundColor #FFFFFF; BoxBorderColor #000000 }
+skinparam note        { BackgroundColor #FFFFFF; BorderColor #000000; FontColor #000000 }
 ```
 
-**Notes on the CSS preamble:**
+**What each CSS block does (mapped to uml-diagrams.org figures):**
 
-- `LineStyle 5-5` is the CSS equivalent of `skinparam *LineStyle dashed` — gives the
-  uml-diagrams.org dashed lifeline.
-- `Shadowing 0` replaces `skinparam shadowing false`.
-- `RoundCorner 0` at `root` keeps every rectangle square; `activityDiagram.activity`
-  overrides it to `10` for the round-cornered action shape used on uml-diagrams.org.
-- `strictuml` (removes circle stereotype icons) and `classAttributeIconSize 0` (removes
-  attribute visibility dots) have **no CSS equivalent yet** as of PlantUML 1.2026.x —
-  keep them as `skinparam` lines beside the `<style>` block. This is the only place where
-  the two systems must coexist.
-- One example file ships with the CSS preamble: [`examples/07_sequence_oauth2_css_style.puml`](../../../examples/07_sequence_oauth2_css_style.puml).
-  All other example files keep the `skinparam` preamble for backward compatibility.
+| CSS Block | Effect / uml-diagrams.org reference |
+|---|---|
+| `root` | Global defaults: Helvetica 12px black-on-white, 0.75pt lines, no shadows, square corners. Matches Visio UML 2.x stencil look. |
+| `root > Shadowing 0` | Disables drop shadows — uml-diagrams.org figures never have shadows. |
+| `root > RoundCorner 0` | Square corners on rectangles (matches Visio stencils). `activityDiagram.activity` overrides to `10` for round-cornered actions. |
+| `title` | Bold 14px black text, transparent background/border. |
+| `note` | White fill, black border, black text — matches uml-diagrams.org note style. |
+| `sequenceDiagram.lifeLine` | **Dashed black lines** (`LineStyle 5-5`) — exactly the lifeline notation on uml-diagrams.org/sequence-diagrams.html. |
+| `sequenceDiagram.arrow` | Thin black arrows (0.75pt) — matches Visio stencil hair-line strokes. |
+| `classDiagram.class` | White fill, black border — no grey fills. |
+| `activityDiagram.activity` | White fill with **round corners** (`RoundCorner 10`) — matches uml-diagrams.org activity shape. |
+| `activityDiagram.diamond` | White fill, black border for decision/merge diamonds. |
+| `useCaseDiagram` | White actors, use cases, and rectangles — no colored fills. |
+| `componentDiagram` | White components and packages — no colored fills. |
+| `stateDiagram.state` | White fill, black border — no grey fills. |
+
+**STYLING POLICY — keep the FULL preamble, NEVER use `strictuml`**
+
+The CSS `<style>` block above tells PlantUML how to render **CSS-aware** elements
+(sequence lifelines, class boxes, activity nodes, notes). It does **NOT** cover
+every PlantUML element category — actor stick-figures, use case ellipses,
+component silhouettes, database cylinders and cloud shapes still fall back to
+PlantUML's built-in defaults (colored fills, yellow activation bars, missing
+borders on white canvas) when only a `<style>` block is present.
+
+The **per-element `skinparam` block** immediately after `</style>` is therefore
+mandatory — treat CSS and skinparam as **complementary layers**, not
+alternatives. Together they guarantee black borders + white fills for actor /
+usecase / rectangle / class / component / interface / package / node / database
+/ cloud / state / activity / sequence / note across every diagram type and both
+light and dark backgrounds.
+
+The **only** allowed `skinparam ... style` value is the default — do NOT add
+`skinparam style strictuml`. Even though `strictuml` sounds like a "make it
+more UML-compliant" flag, in practice it:
+
+- collapses `actor Foo` from a stick figure into a plain text label
+- collapses `usecase "X" as UC` from an ellipse into a plain rectangle
+- removes the class-header separator line so name/attribute/method sections merge
+
+The render script also **defensively strips** any leftover
+`skinparam style strictuml` line before dispatching to the backend, so
+accidental re-introductions from user edits or LLM output are neutralized at
+the pipeline level.
+
+`skinparam classAttributeIconSize 0` is retained separately because it only
+removes the colored visibility dots (●/◐/○) and has no side effects on shapes.
+
+### Common Failure Patterns
+
+Symptoms and their root cause — check this list first if a rendered diagram
+looks visually wrong:
+
+| Symptom | Root cause | Fix |
+|---|---|---|
+| Actor rendered as bare text, no stick figure | `skinparam style strictuml` in the source | Remove the line; rely on the per-element skinparam fallback (the render script also auto-strips it). |
+| Use case rendered as a plain rectangle instead of an ellipse | Same as above (`strictuml`) | Same as above. |
+| Class header separator line missing / name+attributes merged | Same as above (`strictuml`) | Same as above. |
+| Ellipses / actor paths lose their black border on light background | CSS `<style>` alone is used; the per-element `skinparam actor/usecase` block is missing | Restore the full preamble including the per-element skinparam fallback block. |
+| Sequence activation bar rendered yellow instead of white | Missing `skinparam sequence { ActorBackgroundColor #FFFFFF ... }` | Restore the full preamble. |
+| Class attributes show `●` / `◐` / `○` visibility icons | Missing `skinparam classAttributeIconSize 0` | Add the line. |
+| Header header sub-elements show `Ⓒ`/`Ⓘ`/`Ⓐ`/`Ⓔ` circle icons | Diagram used `interface Foo` / `abstract class Foo` / `enum Foo` keywords | Rewrite as `class Foo <<interface>>` / `class Foo <<abstract>>` / `class Foo <<enumeration>>`. |
+| Any decorative color / gradient / drop shadow appears | A `!theme` directive or extra `skinparam ...Color` overrides sneaked in | Remove them; the mandatory preamble is the single source of styling truth. |
+
+### Backup - `skinparam` Preamble (backward-compatible)
+
+Use this preamble only when you need maximum backward compatibility with PlantUML < 1.2019.9.
+Both preambles produce the **same uml-diagrams.org reference look**.
+
+```
+' uml-diagrams.org reference style — strict OMG UML 2.x, monochrome
+skinparam monochrome true
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam sequenceMessageAlign center
+skinparam roundCorner 0
+
+' Force every fill to white so monochrome never falls back to grey
+skinparam ActorBackgroundColor #FFFFFF
+skinparam ParticipantBackgroundColor #FFFFFF
+skinparam NoteBackgroundColor #FFFFFF
+skinparam SequenceGroupBackgroundColor #FFFFFF
+skinparam PackageBackgroundColor #FFFFFF
+skinparam ClassBackgroundColor #FFFFFF
+skinparam ObjectBackgroundColor #FFFFFF
+skinparam StateBackgroundColor #FFFFFF
+skinparam UsecaseBackgroundColor #FFFFFF
+skinparam ComponentBackgroundColor #FFFFFF
+skinparam ActivityBackgroundColor #FFFFFF
+skinparam NodeBackgroundColor #FFFFFF
+skinparam DatabaseBackgroundColor #FFFFFF
+skinparam StereotypeCBackgroundColor #FFFFFF
+skinparam StereotypeIBackgroundColor #FFFFFF
+skinparam StereotypeABackgroundColor #FFFFFF
+skinparam StereotypeEBackgroundColor #FFFFFF
+
+' Sequence diagrams — match the lifeline / activation look on uml-diagrams.org:
+'   * lifeline = dashed black vertical line
+'   * activation bar = thin WHITE rectangle with black border (NOT yellow)
+skinparam SequenceLifeLineBorderColor #000000
+skinparam SequenceLifeLineBackgroundColor #FFFFFF
+skinparam SequenceLifeLineBorderThickness 0.75
+skinparam SequenceActivationBackgroundColor #FFFFFF
+skinparam SequenceActivationBorderColor #000000
+skinparam SequenceArrowColor #000000
+skinparam SequenceArrowThickness 0.75
+skinparam SequenceBoxBackgroundColor #FFFFFF
+
+' Default arrow / border colour everywhere
+skinparam ArrowColor #000000
+skinparam ArrowThickness 0.75
+skinparam DefaultTextColor #000000
+```
+
+**NEVER** apply colored themes (`!theme blueprint`, `!theme cerulean`, etc.), custom colors,
+gradients, shadows, or decorative styling — doing so breaks compliance with the
+uml-diagrams.org reference style. If a user explicitly and unambiguously requests colour,
+add it on top of this preamble rather than removing the preamble.
 
 ### CJK (Chinese/Japanese/Korean) Font Support
 
 When diagrams contain CJK characters, `Helvetica` cannot render them — characters will appear as empty boxes (□) or tofu (▯).
 
-**In `.puml` files**: Replace `skinparam defaultFontName Helvetica` with a CJK-compatible font:
+**In `.puml` files**: Replace `FontName Helvetica` in the CSS `<style>` block with a CJK-compatible font:
+```css
+root {
+  FontName "WenQuanYi Micro Hei"
+}
+```
+
+For the `skinparam` preamble (backward-compatible):
 ```
 skinparam defaultFontName "WenQuanYi Micro Hei"
 ```
 
 **When rendering**: Use the `--cjk` flag, which automatically applies the font substitution and configures Docker font mounting if needed:
 ```bash
-bash generate-plantuml.sh diagram.puml ./output --cjk
+python skills/plantuml/scripts/generate_plantuml.py diagram.puml ./output --cjk
 ```
 
 **Host prerequisites** for CJK rendering:
@@ -858,7 +956,7 @@ If the PlantUML server returns an error:
 1. Check for syntax errors in the `.puml` file
 2. Validate that `@startuml` / `@enduml` are properly paired
 3. Ensure diagram-type-specific syntax is correct (e.g., `@startmindmap` for mind maps)
-4. Try the Docker fallback: `docker pull plantuml/plantuml:latest && bash generate-plantuml.sh ...`
+4. Try the Docker fallback: `docker pull plantuml/plantuml:latest && python skills/plantuml/scripts/generate_plantuml.py ...`
 5. If all else fails, offer to install Java + plantuml.jar
 
 If CJK characters render as empty boxes (□):
@@ -867,7 +965,7 @@ If CJK characters render as empty boxes (□):
 3. If using Docker, check that font directories are mounted (the script handles this automatically with `--cjk`)
 
 If aspect ratio warnings appear:
-1. The script applies up to 2 automatic corrections (direction toggle + scale)
+1. The script applies up to 3 automatic corrections (direction toggle + scale)
 2. If warnings persist, manually adjust the `.puml`:
    - For too-wide diagrams: add `top to bottom direction` and reduce `skinparam BoxPadding`
    - For too-tall diagrams: add `left to right direction` and reduce `skinparam ParticipantPadding`
@@ -880,7 +978,7 @@ If A4 fit warnings appear (the script prints `📄 A4 fit: ... exceeds A4 ...`):
    - Split the diagram at a natural boundary (per use case, per subsystem, per actor).
    - Shorten long labels — e.g. replace `client_id, redirect_uri` with shortened param names.
    - For sequence diagrams with many participants: group messages into sub-diagrams, or abbreviate participant display names.
-3. If you do not need A4 conformance for the current output, re-run with `--no-a4-check` (`-NoA4Check`) to keep the larger original.
+3. If you do not need A4 conformance for the current output, re-run with `--no-a4-check` to keep the larger original.
 4. To let the diagram stretch across multiple A4 sheets, set `--min-font-pt 6` (or lower) and accept reduced legibility — the script will warn but still emit the smaller-than-A4 final image.
 
 ---

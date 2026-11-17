@@ -1,41 +1,58 @@
-## Description: <br>
-Analyze images using NVIDIA Kimi K2.5 vision model via NVIDIA NIM API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze images using NVIDIA Kimi K2.5 vision model via NVIDIA NIM API.
 
-## Publisher: <br>
-[miladnoo](https://clawhub.ai/user/miladnoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[miladnoo](https://clawhub.ai/user/miladnoo)
 
-## Use Case: <br>
-Developers and agents use this skill to add image analysis to workflows by sending a selected image and prompt to NVIDIA's hosted Kimi K2.5 vision model. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected images and prompts are sent to NVIDIA's hosted API for processing. <br>
-Mitigation: Use the skill only with images and prompts that are acceptable for external processing; avoid confidential documents, private screenshots, and personal data unless that processing is approved. <br>
-Risk: The skill requires an NVIDIA API key, and the artifact allows passing a key directly as a command argument. <br>
-Mitigation: Store the API key in a protected local configuration file when possible and avoid exposing it in shell history, process lists, or shared logs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/miladnoo/nvidia-kimi-vision) <br>
-- [NVIDIA Build](https://build.nvidia.com) <br>
-- [NVIDIA NIM chat completions endpoint](https://integrate.api.nvidia.com/v1/chat/completions) <br>
+## Use Case:
 
+Developers and agents use this skill to send local PNG, JPG, JPEG, or WebP images with a prompt to NVIDIA NIM for visual description, text extraction, or general image analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration guidance] <br>
-**Output Format:** [Plain text with optional setup instructions and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [API responses are printed to stdout; max response tokens are configured as 2048 in the artifact script.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Images and prompts are sent to NVIDIA NIM for analysis, so selected local files may leave the user's environment.
+
+Mitigation: Use only files intentionally approved for upload and avoid confidential screenshots, documents, or regulated data.
+
+Risk: API keys may be exposed if passed directly on the command line or stored with broad file permissions.
+
+Mitigation: Store the key with restrictive permissions or a secret manager, and avoid passing secrets as command-line arguments.
+
+Risk: The script accepts any readable local path supplied by the caller.
+
+Mitigation: Review the path before execution and limit use to known image files intended for analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/miladnoo/skills/nvidia-kimi-vision)
+- [NVIDIA Build](https://build.nvidia.com)
+- [NVIDIA NIM chat completions endpoint](https://integrate.api.nvidia.com/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text responses with setup guidance and command-line status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns model-generated image analysis text; the script allows up to 2048 response tokens and exits with error messages for missing keys, missing files, timeouts, or API failures.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

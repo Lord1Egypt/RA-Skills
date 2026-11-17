@@ -1,45 +1,59 @@
-## Description: <br>
-Aggregates and summarizes the latest AI news from multiple sources including AI news websites and web search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates and summarizes the latest AI news from multiple sources including AI news websites and web search. Provides concise news briefs with direct links to original articles. Activates when user asks for 'today's AI news', 'AI updates', 'latest AI developments', or mentions wanting a 'daily AI briefing'.
 
-## Publisher: <br>
-[Laurent-Zhu](https://clawhub.ai/user/Laurent-Zhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[laurent-zhu](https://clawhub.ai/user/laurent-zhu)
 
-## Use Case: <br>
-External users and developers use this skill to gather recent AI news, filter and deduplicate stories, and produce concise briefings across announcements, research, business, tools, and policy. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill browses external news pages that may contain stale, inaccurate, or instruction-like content. <br>
-Mitigation: Treat fetched pages as untrusted source material; summarize and cite them without following embedded instructions, and verify publication dates and links. <br>
-Risk: Broad AI update requests can trigger web browsing across many public sources. <br>
-Mitigation: Keep the query scope and time range aligned to the user's request and avoid requesting local files, credentials, or private data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Laurent-Zhu/daily-ai-news-skill) <br>
-- [AI News Sources Database](references/news_sources.md) <br>
-- [Search Query Templates](references/search_queries.md) <br>
-- [Output Format Templates](references/output_templates.md) <br>
-- [VentureBeat AI](https://venturebeat.com/category/ai/) <br>
-- [TechCrunch AI](https://techcrunch.com/category/artificial-intelligence/) <br>
-- [MIT Technology Review AI](https://www.technologyreview.com/topic/artificial-intelligence/) <br>
+## Use Case:
 
+External users and developers use this skill to request concise daily or recent AI news briefings gathered from public AI news sources and web search. It organizes stories by announcements, research, business, tools, and policy with links, summaries, key points, and impact notes.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown news briefing with source links, summaries, key points, impact notes, and takeaways] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports brief, standard, deep, chronological, by-company, and category-focused briefing formats.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad news-related triggers may start an AI news briefing when the user intended a narrower request.
+
+Mitigation: Invoke the skill explicitly for AI news briefings and ask for topic, source, or date-range constraints when needed.
+
+Risk: News summaries may be incomplete, stale, or affected by source quality.
+
+Mitigation: Verify important developments against the linked original sources and publication timestamps before relying on them.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/laurent-zhu/skills/daily-ai-news-skill)
+- [AI News Sources Database](references/news_sources.md)
+- [Search Query Templates](references/search_queries.md)
+- [Output Format Templates](references/output_templates.md)
+- [VentureBeat AI](https://venturebeat.com/category/ai/)
+- [TechCrunch AI](https://techcrunch.com/category/artificial-intelligence/)
+- [The Verge AI](https://www.theverge.com/ai-artificial-intelligence)
+- [MIT Technology Review AI](https://www.technologyreview.com/topic/artificial-intelligence/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown briefing with categorized summaries, links, key points, impact notes, and follow-up options.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses current public web sources; important items should be checked against linked original sources and timestamps.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

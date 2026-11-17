@@ -1,40 +1,53 @@
-## Description: <br>
-Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and agent builders use this skill to design, structure, validate, package, and update AgentSkills, including skills that declare vault-backed credential requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or update persistent skill files that may influence future agent behavior. <br>
-Mitigation: Confirm the intended output location and review generated or modified skill files before placing them in an auto-loaded skills directory. <br>
-Risk: Generated scripts or credential instructions could mishandle secrets if reviewed carelessly. <br>
-Mitigation: Review generated scripts and credential sections, and use vault-backed environment variables instead of plaintext keys. <br>
+## Use Case:
 
+Developers and skill authors use this skill to design, structure, validate, and package AgentSkills, including skills that need vault-aware credential guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maverick-software/skill-creator-vault-enhancement) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update skill files and packaging artifacts when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated or edited skill content can introduce incorrect or misleading guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review SKILL.md and bundled resources before deployment, and test helper scripts on representative examples.
+
+Risk: The packaging validator warns about possible secrets but does not block packaging them.
+
+Mitigation: Review generated or edited skills for plaintext secrets, use vault-based environment references, and run a separate secret scan before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maverick-software/skills/skill-creator-vault-enhancement)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify skill files and package .skill archives when used by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,60 @@
-## Description: <br>
-Creates Qimen Dunjia charts and interpretations using Shi Jia methods, four-plate layout, pattern recognition, heavenly-stem combinations, and question-specific readings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+专业级奇门遁甲排盘与解盘技能，支持时家奇门排盘、天地人神四盘排列、格局识别、天干克应和多类问题解读。
 
-## Publisher: <br>
-[tigerleon529](https://clawhub.ai/user/tigerleon529) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tigerleon529](https://clawhub.ai/user/tigerleon529)
 
-## Use Case: <br>
-External users and agents use this skill to generate Qimen Dunjia charts, identify auspicious and inauspicious patterns, and produce culturally framed readings for general, wealth, career, relationship, health, travel, legal, exam, lost-item, weather, feng shui, and investment questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce health, legal, investment, travel, and other decision-oriented readings. <br>
-Mitigation: Treat these outputs as cultural or reference material and verify important decisions with appropriate authoritative sources or professionals. <br>
-Risk: Reports may be shared through external Feishu or email tools outside the local charting script. <br>
-Mitigation: Review the generated content and confirm the external sharing tool, recipient, and permissions before sending. <br>
+## Use Case:
 
+External users and agents use this skill to generate Chinese-language Qimen Dunjia charts and cultural divination-style interpretations for timing, direction, and question-specific readings. It is intended for reference and planning support, not professional health, legal, financial, or safety advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tigerleon529/qimen-dunjia-pro) <br>
-- [Qimen Dunjia basics](references/basics.md) <br>
-- [Four-plate system](references/four-plates.md) <br>
-- [Pattern catalog](references/gejus.md) <br>
-- [Heavenly-stem combinations](references/stem-combinations.md) <br>
-- [Yongshen selection](references/yongshen.md) <br>
-- [Wuxing relationships](references/wuxing.md) <br>
-- [Beginner guide](references/guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Terminal text, Markdown-style reports, and optional structured JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a nine-palace chart, pattern analysis, score, directions, colors, timing, and culturally framed advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Health, legal, investment, and other high-impact readings may be mistaken for professional advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present those readings as cultural reference only and direct users to qualified professionals for consequential decisions.
+
+Risk: Documentation claims Feishu document and email report outputs that are not implemented in the local scripts.
+
+Mitigation: Ask explicitly before creating Feishu documents or sending email, and disclose when only local text, Markdown, or JSON output is available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tigerleon529/skills/qimen-dunjia-pro)
+- [奇门遁甲基础理论](references/basics.md)
+- [天地人神四盘详解](references/four-plates.md)
+- [格局大全](references/gejus.md)
+- [100种天干克应](references/stem-combinations.md)
+- [用神取法系统](references/yongshen.md)
+- [五行旺衰与宫位关系](references/wuxing.md)
+- [初学者使用指南](references/guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Chinese-language text or Markdown report with optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js; local scripts perform pure Node.js chart calculations without npm install.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

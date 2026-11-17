@@ -1,44 +1,61 @@
-## Description: <br>
-Identify coins from photos using evidence-based visual checks, ranked candidates, mint-mark reasoning, and a reusable local catalog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identify coins from photos using evidence-based visual checks, ranked candidates, mint-mark reasoning, and a reusable local catalog.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and collecting-focused agents use this skill to identify coins from user-supplied photos, return ranked candidates, and separate likely identification from grading, pricing, authenticity, or metal-purity claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may save coin identification notes and preferences locally if the user enables memory. <br>
-Mitigation: Ask for user approval before writing files and keep saved data under ~/coin-identifier/. <br>
-Risk: Photo-based coin identification can be mistaken for grading, authentication, metal-purity, or market-value advice. <br>
-Mitigation: State confidence and missing evidence, and keep grading, authenticity, composition, and value claims provisional. <br>
+## Use Case:
 
+External users and agents use this skill to identify coins from user-provided photos, compare ranked candidates, request missing visual evidence, and optionally keep approved local identification notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/coin-identifier) <br>
-- [Skill homepage](https://clawic.com/skills/coin-identifier) <br>
-- [Coin Evidence Guide](artifact/evidence-guide.md) <br>
-- [Setup Guide](artifact/setup.md) <br>
-- [Memory Template](artifact/memory-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown with ranked candidates, confidence bands, missing evidence, and optional local note templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local identification notes under ~/coin-identifier/ only after user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Local coin-identification notes could accidentally include unrelated personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for user approval before local storage and save only durable coin-identification preferences or approved identification notes.
+
+Risk: Photo-only identification can be mistaken for grading, authenticity, composition, or market-value advice.
+
+Mitigation: Return ranked candidates with confidence and explicitly state that photos do not prove authenticity, grade, metal purity, or value.
+
+Risk: Poor image quality can lead to overconfident or incorrect identification.
+
+Mitigation: Check glare, blur, crop, orientation, and missing obverse, reverse, or edge views, then ask for the single most useful next image or measurement.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/coin-identifier)
+- [Skill Homepage](https://clawic.com/skills/coin-identifier)
+- [Coin Evidence Guide](artifact/evidence-guide.md)
+- [Setup Guide](artifact/setup.md)
+- [Memory Template](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown responses with ranked candidate lists, confidence bands, missing-evidence notes, and optional local note templates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local memory and identification notes only after user approval; no network requests are described.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

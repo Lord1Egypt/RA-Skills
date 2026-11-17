@@ -2,23 +2,26 @@
 
 Detailed technical reference for all Notion sync scripts and utilities.
 
-## Environment Setup
+## Credential setup
 
 ### Notion Token
 
-All scripts require a Notion integration token. Supported sources (priority order):
+All scripts require `NOTION_API_KEY`, supplied through the host runtime's
+secret manager. The portable client uses direct HTTPS and supports Node.js 18+.
 
-1. `--token-file <path>` (supports `~` expansion)
-2. `--token-stdin` (pipe token through stdin)
-3. `~/.notion-token` (auto-detected if present)
-4. `NOTION_API_KEY` env var
+With OpenClaw, use its protected secret workflow:
 
-```bash
-node scripts/search-notion.js "query" --token-file ~/.notion-token
-# or
+1. List secret metadata with the `secrets` tool.
+2. If missing, request `NOTION_API_KEY` as `kind: secret` with
+   `allowedHosts: ["api.notion.com"]`.
+3. Run the script with Gateway-hosted exec after the secret exists.
 
-echo "$NOTION_API_KEY" | node scripts/search-notion.js "query" --token-stdin
-```
+OpenClaw injects an opaque environment sentinel. The scripts detect it and use
+the Gateway proxy, allowing substitution only for `https://api.notion.com`.
+Never inspect or print the environment variable.
+
+Removed in v3: `--token`, `--token-file`, `--token-stdin`, and automatic
+`~/.notion-token` loading. See [MIGRATION-V3.md](MIGRATION-V3.md).
 
 ## JSON Output Mode
 
@@ -26,6 +29,17 @@ All scripts accept `--json` to emit machine-readable output and suppress stderr 
 
 - Success output is JSON
 - Errors are JSON objects: `{ "error": "..." }`
+
+## Path Safety Mode
+
+Scripts that read/write local files are restricted to the current working directory by default.
+
+- Applies to: `md-to-notion.js`, `notion-to-md.js`, `watch-notion.js`, `add-to-database.js`
+- Write-path checks resolve symlink ancestors before enforcement to prevent workspace escape via nested missing directories
+- External inputs require `--allow-read-path <exact-path>`; external outputs
+  require `--allow-write-path <exact-path>`
+- Each authorization is mode-specific and matches one canonical path only; it
+  does not grant access to parent, child, or sibling paths
 
 ## Scripts Reference
 
@@ -41,7 +55,7 @@ node scripts/search-notion.js "<query>" [--filter page|database] [--limit 10] [-
 **Options:**
 - `query` (required): Search term
 - `--filter`: Restrict to `page` or `database`
-- `--limit`: Max results (default: 10)
+- `--limit`: Max results, 1-100 (default: 10)
 
 **Returns:** JSON array of matching pages/databases with id, title, url, lastEdited
 
@@ -69,6 +83,9 @@ node scripts/query-database.js <database-id> [--filter <json>] [--sort <json>] [
 [{"property": "Date", "direction": "descending"}]
 ```
 
+**Options:**
+- `--limit`: Max results, 1-100 (default: 10)
+
 ### update-page-properties.js
 
 Update database page properties.
@@ -86,7 +103,7 @@ node scripts/update-page-properties.js <page-id> <property-name> <value> [--type
 - `url`: URL string
 - `email`: Email address
 - `date`: ISO date (YYYY-MM-DD)
-- `rich_text`: Plain text
+- `rich_text`: Plain text (automatically split to Notion's 2,000-character per-item limit)
 
 ### batch-update.js
 
@@ -106,9 +123,10 @@ echo "page-id-1\npage-id-2" | node scripts/batch-update.js --stdin <property-nam
 - `--stdin`: read page IDs (one per line) from stdin instead of querying a database
 - `--type <type>`: `select`, `multi_select`, `checkbox`, `number`, `url`, `email`, `date`, `rich_text`
 - `--dry-run`: no writes; prints page IDs + current values to stderr and returns preview JSON
-- `--limit <n>`: max pages to process (default: 100)
+- `--limit <n>`: positive integer max pages to process (default: 100)
 
 **Behavior:**
+- Refuses query-mode updates without `--filter` to avoid accidental whole-database changes
 - Uses database `data_source_id` when available
 - Supports query pagination (`has_more` + `next_cursor`) up to `--limit`
 - Adds 300ms delay between updates to reduce 429 rate limits
@@ -120,7 +138,7 @@ Convert markdown to Notion page.
 
 **Signature:**
 ```bash
-node scripts/md-to-notion.js "<markdown-file>" "<parent-page-id>" "<title>" [--json]
+node scripts/md-to-notion.js "<markdown-file>" "<parent-page-id>" "<title>" [--json] [--allow-read-path <exact-path>]
 ```
 
 **Supported Markdown:**
@@ -129,12 +147,14 @@ node scripts/md-to-notion.js "<markdown-file>" "<parent-page-id>" "<title>" [--j
 - Italic: `*text*`
 - Links: `[text](url)`
 - Lists: `- item`
-- Code: ` ```lang ... ``` `
+- Code: fenced blocks with ```lang ... ``` or ~~~lang ... ~~~
 - Dividers: `---`
 
 **Output:** Notion page URL and ID
 
 **Rich text safety:** markdown rich_text segments are automatically split to Notion's 2000-character per-item limit (plain, bold, italic, and links).
+
+**Code fence safety:** unclosed fenced code blocks (``` or ~~~) at end-of-file are still emitted as Notion `code` blocks instead of being dropped, and fence-like lines with info strings inside code blocks are preserved as content.
 
 **Rate Limiting:** 350ms between batch uploads (100 blocks per batch)
 
@@ -144,10 +164,12 @@ Convert Notion page to markdown.
 
 **Signature:**
 ```bash
-node scripts/notion-to-md.js <page-id> [output-file] [--json]
+node scripts/notion-to-md.js <page-id> [output-file] [--json] [--allow-write-path <exact-path>]
 ```
 
 **Output:** Writes markdown to file or stdout
+
+**Title resolution:** Uses the page's actual Notion `title`-type property (works even when the property key is not literally `title`).
 
 ### watch-notion.js
 
@@ -155,7 +177,7 @@ Monitor page for changes.
 
 **Signature:**
 ```bash
-node scripts/watch-notion.js [--state-file <path>] <page-id> <local-path> [--json]
+node scripts/watch-notion.js [--state-file <path>] <page-id> <local-path> [--json] [--allow-read-path <exact-path>] [--allow-write-path <exact-path>]
 ```
 
 **State File:** Default `memory/notion-watch-state.json` (relative to cwd), overridable with `--state-file` (supports `~` expansion)
@@ -192,10 +214,12 @@ Archive page (soft delete).
 
 **Signature:**
 ```bash
-node scripts/delete-notion-page.js <page-id> [--json]
+node scripts/delete-notion-page.js <page-id> --confirm-archive [--json]
 ```
 
-**Note:** Sets `archived: true`, doesn't permanently delete
+**Note:** Sets `archived: true`, doesn't permanently delete. The
+`--confirm-archive` flag is mandatory so incomplete or inferred commands fail
+before any API request.
 
 ## Notion API Utilities
 
@@ -213,10 +237,16 @@ Makes authenticated API requests to Notion.
 - `method`: HTTP method (GET, POST, PATCH, DELETE)
 - `body`: Optional request body (object)
 
+**Transport:** direct Node.js `https.request` by default. When an OpenClaw
+protected sentinel is detected, the request uses a native proxy-aware
+`https.Agent`. That agent receives only the Gateway-provided `HTTPS_PROXY`
+value, so inherited `NO_PROXY` or lowercase proxy overrides cannot bypass
+protected-secret egress.
+
 **Returns:** Promise resolving to response JSON
 
 **Error Handling:** Throws actionable messages for common failures:
-- Missing token: guidance for `--token-file`, `--token-stdin`, and `NOTION_API_KEY`
+- Missing token: guidance for the runtime-neutral `NOTION_API_KEY` migration
 - 401: authentication/access guidance
 - 404: page/database access/id guidance
 - Network errors: connectivity guidance
@@ -255,7 +285,9 @@ Notion API limits:
 **Solutions:**
 1. Verify page/database is shared with your integration
 2. Check page ID format (32 chars, no extra characters)
-3. Confirm your integration token is valid and available via --token-file, --token-stdin, ~/.notion-token, or NOTION_API_KEY
+3. Confirm `NOTION_API_KEY` is available through your runtime's secret manager.
+   With OpenClaw, also confirm it is protected, bound to `api.notion.com`, and
+   running through Gateway-hosted exec.
 
 ### Property Update Failures
 
@@ -267,9 +299,11 @@ Notion API limits:
 
 ### Module Not Found
 
-**Error:** `Cannot find module 'https'`
+**Error:** protected-secret proxy support is unavailable
 
-**Solution:** Ensure using Node.js v18+ (built-in modules)
+**Solution:** This applies only when an OpenClaw protected sentinel is present.
+Use Node.js 22.21+ (22.x), 24.5+ (24.x), or 25+, and run through OpenClaw
+Gateway-hosted exec with the egress proxy enabled.
 
 ## Page ID Extraction
 

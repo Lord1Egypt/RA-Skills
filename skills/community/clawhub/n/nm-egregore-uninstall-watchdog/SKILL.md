@@ -1,7 +1,7 @@
 ---
 name: uninstall-watchdog
 description: Removes the egregore watchdog daemon and its associated files
-version: 1.9.8
+version: 1.10.3
 triggers:
   - stopping automated session relaunching or cleaning up egregore infrastructure
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/egregore", "emoji": "\ud83e\udd9e"}}
@@ -9,7 +9,7 @@ source: claude-night-market
 source_plugin: egregore
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/egregore](https://github.com/athola/claude-night-market/tree/master/plugins/egregore). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/egregore](https://github.com/athola/claude-night-market/tree/master/plugins/egregore). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Uninstall Watchdog
@@ -107,3 +107,18 @@ automatic relaunching is disabled.
 | `~/.config/systemd/user/egregore-watchdog.service` | Linux | systemd service unit |
 | `~/.egregore/watchdog.pid` | both | PID of last watchdog run |
 | `~/.egregore/watchdog.log` | macOS | watchdog output log |
+
+## Exit Criteria
+
+- [ ] On macOS: `~/Library/LaunchAgents/com.egregore.watchdog.plist`
+      does not exist after uninstall completes
+- [ ] On Linux: `~/.config/systemd/user/egregore-watchdog.timer` and
+      `egregore-watchdog.service` are both removed and `systemctl
+      --user daemon-reload` has run
+- [ ] Verification command returns empty output: `launchctl list |
+      grep egregore` (macOS) or `systemctl --user list-timers | grep
+      egregore` (Linux)
+- [ ] `~/.egregore/watchdog.pid` and `~/.egregore/watchdog.log` are
+      removed (or absent if they were never created)
+- [ ] User is notified that the watchdog has been removed and
+      automatic relaunching is disabled

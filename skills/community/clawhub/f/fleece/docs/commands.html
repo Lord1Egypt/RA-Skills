@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>CLI Commands — Fleece Credit Card Research</title>
+  <meta name="description" content="Complete reference for all 13 Fleece CLI commands — card research, wallet management, MCC lookup, award flight and hotel search, spending profile, and ROI estimation." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Yuan Chen" />
+  <link rel="canonical" href="https://getfleece.io/commands" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getfleece.io/commands" />
+  <meta property="og:title" content="CLI Commands — Fleece Credit Card Research" />
+  <meta property="og:description" content="Complete reference for all 13 Fleece CLI commands." />
+  <meta property="og:site_name" content="Fleece" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow: #FFD100;
+      --black:  #111111;
+      --white:  #FFFFFF;
+      --gray:   #F5F5F3;
+      --mid:    #555555;
+      --border: #E0E0E0;
+      --font-head: 'Oswald', sans-serif;
+      --font-body: 'Source Sans 3', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 17px;
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+
+    /* ── NAV ──────────────────────────────────── */
+    nav {
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: var(--font-head);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--yellow);
+      text-decoration: none;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--yellow); }
+    .nav-links a.active { color: var(--yellow); }
+
+    .nav-links .btn-pill {
+      background: var(--yellow);
+      color: var(--black);
+      padding: 0.45rem 1.25rem;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .nav-links .btn-pill:hover { background: #e6bc00; color: var(--black); }
+
+    /* ── MOBILE NAV ──────────────────────────── */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: rgba(255,255,255,0.75);
+      transition: background 0.15s;
+    }
+    .nav-toggle:hover span { background: var(--yellow); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1.25rem; position: relative; }
+      .nav-toggle { display: flex; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--black);
+        border-top: 1px solid #222;
+        padding: 0.5rem 1.25rem 1.25rem;
+        gap: 0;
+        z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { padding: 0.6rem 0; border-bottom: 1px solid #1e1e1e; }
+      .nav-links li:last-child { border-bottom: none; padding-top: 0.9rem; }
+      .nav-links .btn-pill { display: inline-block; }
+    }
+
+    /* ── PAGE HEADER ──────────────────────────── */
+    .page-header {
+      background: var(--black);
+      padding: 4rem 2.5rem 3.5rem;
+    }
+
+    .page-header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .page-header h1 {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--white);
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+    }
+
+    .page-header h1 span { color: var(--yellow); }
+
+    .page-header p {
+      color: rgba(255,255,255,0.55);
+      font-size: 1rem;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    .page-header .install-strip {
+      margin-top: 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .install-cmd {
+      background: #0d0d0d;
+      border: 1px solid #333;
+      border-radius: 6px;
+      padding: 0.6rem 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      color: var(--yellow);
+    }
+
+    .install-cmd span { color: #555; margin-right: 0.5rem; }
+
+    .badge {
+      background: #1e1e1e;
+      border: 1px solid #333;
+      color: #aaa;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    /* ── SIDEBAR + CONTENT LAYOUT ─────────────── */
+    .docs-layout {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 2.5rem 5rem;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .docs-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .sidebar { display: none; }
+    }
+
+    /* ── SIDEBAR ──────────────────────────────── */
+    .sidebar {
+      position: sticky;
+      top: 80px;
+    }
+
+    .sidebar-group {
+      margin-bottom: 1.75rem;
+    }
+
+    .sidebar-group-label {
+      font-family: var(--font-head);
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--mid);
+      margin-bottom: 0.6rem;
+    }
+
+    .sidebar-group a {
+      display: block;
+      font-size: 0.875rem;
+      color: var(--mid);
+      text-decoration: none;
+      padding: 0.3rem 0;
+      border-left: 2px solid transparent;
+      padding-left: 0.75rem;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .sidebar-group a:hover {
+      color: var(--black);
+      border-left-color: var(--yellow);
+    }
+
+    .offline-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: var(--yellow);
+      color: var(--black);
+      padding: 1px 6px;
+      border-radius: 3px;
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+
+    /* ── COMMAND SECTIONS ─────────────────────── */
+    .cmd-section {
+      margin-bottom: 4rem;
+    }
+
+    .cmd-section-title {
+      font-family: var(--font-head);
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--mid);
+      margin-bottom: 1.75rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cmd-block {
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cmd-block:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .cmd-block-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .cmd-name {
+      font-family: 'Courier New', monospace;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .cmd-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 8px;
+      border-radius: 3px;
+    }
+
+    .cmd-tag-offline {
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    .cmd-tag-research {
+      background: #f0f0f0;
+      color: var(--mid);
+    }
+
+    .cmd-desc {
+      font-size: 1rem;
+      color: var(--mid);
+      margin-bottom: 1.25rem;
+      line-height: 1.65;
+    }
+
+    /* usage line */
+    .cmd-usage {
+      font-family: 'Courier New', monospace;
+      font-size: 0.875rem;
+      background: #f7f7f5;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.25rem;
+      color: var(--black);
+      overflow-x: auto;
+    }
+
+    /* args / options table */
+    .args-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.25rem;
+      font-size: 0.875rem;
+    }
+
+    .args-table th {
+      text-align: left;
+      font-family: var(--font-head);
+      font-size: 0.6rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--mid);
+      padding: 0 0.5rem 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .args-table th:first-child { padding-left: 0; }
+
+    .args-table td {
+      padding: 0.55rem 0.5rem;
+      vertical-align: top;
+      border-bottom: 1px solid #f0f0f0;
+      color: var(--mid);
+      line-height: 1.5;
+    }
+
+    .args-table td:first-child {
+      padding-left: 0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      color: var(--black);
+      white-space: nowrap;
+    }
+
+    .args-table td.required {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+      color: #c0392b;
+    }
+
+    .args-table td.optional {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #aaa;
+    }
+
+    /* example block */
+    .example-block {
+      background: #111;
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      line-height: 1.9;
+      overflow-x: auto;
+    }
+
+    .example-block .prompt { color: #666; }
+    .example-block .cmd-text { color: var(--yellow); }
+    .example-block .output { color: #888; }
+
+    /* ── GLOBAL OPTIONS ───────────────────────── */
+    .global-opts {
+      background: var(--gray);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 3rem;
+      font-size: 0.9rem;
+    }
+
+    .global-opts h3 {
+      font-family: var(--font-head);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--mid);
+      margin-bottom: 1rem;
+    }
+
+    .global-opts table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+
+    .global-opts td {
+      padding: 0.45rem 0.5rem;
+      vertical-align: top;
+      color: var(--mid);
+      border-bottom: 1px solid #eee;
+    }
+
+    .global-opts td:first-child {
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      color: var(--black);
+      white-space: nowrap;
+      padding-left: 0;
+      width: 180px;
+    }
+
+    /* ── FOOTER ───────────────────────────────── */
+    footer {
+      background: var(--black);
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      font-family: var(--font-head);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--yellow);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .footer-copy {
+      color: rgba(255,255,255,0.35);
+      font-size: 0.85rem;
+    }
+
+    .footer-right a {
+      color: rgba(255,255,255,0.35);
+      font-size: 0.85rem;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .footer-right a:hover { color: var(--yellow); }
+
+    /* ── GLOBAL MOBILE FIXES ─────────────────── */
+    @media (max-width: 768px) {
+      body { font-size: 16px; }
+
+      .page-header { padding: 2.5rem 1.25rem 2rem; }
+
+      .docs-layout { padding: 2rem 1.25rem 3.5rem; }
+
+      .cmd-name { font-size: 1.05rem; }
+      .cmd-block-header { gap: 0.6rem; }
+
+      /* make tables horizontally scrollable */
+      .args-table, .global-opts table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+      }
+      .args-table td, .args-table th { white-space: normal; min-width: 120px; }
+      .args-table td:first-child { white-space: nowrap; }
+
+      .global-opts { padding: 1.25rem; }
+      .global-opts td { white-space: normal; }
+      .global-opts td:first-child { white-space: nowrap; width: auto; min-width: 130px; }
+
+      .example-block { font-size: 0.75rem; padding: 0.85rem 0.9rem; }
+
+      footer { padding: 1.5rem 1.25rem; flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+      .footer-right { flex-wrap: wrap; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="/">Fleece</a>
+  <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="/#features">Features</a></li>
+    <li><a href="/#workflows">Workflows</a></li>
+    <li><a href="/#agents">Agents</a></li>
+    <li><a href="/commands" class="active">Commands</a></li>
+    <li><a href="https://github.com/chenyuan99/fleece" target="_blank" class="btn-pill">GitHub</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <h1>CLI <span>Commands</span></h1>
+    <p>Complete reference for all Fleece commands. Commands marked <span style="background:var(--yellow);color:var(--black);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;padding:1px 6px;border-radius:3px;vertical-align:middle;">offline</span> require no API key.</p>
+    <div class="install-strip">
+      <div class="install-cmd"><span>$</span> pip install fleece-cli</div>
+      <span class="badge">v0.4.0</span>
+      <span class="badge">Python 3.11+</span>
+    </div>
+  </div>
+</div>
+
+<!-- DOCS LAYOUT -->
+<div class="docs-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">Research</div>
+      <a href="#cmd-card">card</a>
+      <a href="#cmd-rates">rates</a>
+      <a href="#cmd-partners">partners</a>
+      <a href="#cmd-credits">credits</a>
+      <a href="#cmd-news">news</a>
+      <a href="#cmd-compare">compare</a>
+      <a href="#cmd-roi">roi</a>
+      <a href="#cmd-recommend">recommend</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">Wallet</div>
+      <a href="#cmd-wallet">wallet</a>
+      <a href="#cmd-cards-list">cards list <span class="offline-badge">offline</span></a>
+      <a href="#cmd-cards-add">cards add <span class="offline-badge">offline</span></a>
+      <a href="#cmd-cards-remove">cards remove <span class="offline-badge">offline</span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">Redemption</div>
+      <a href="#cmd-mcc">mcc <span class="offline-badge">offline</span></a>
+      <a href="#cmd-flights">flights <span class="offline-badge">offline</span></a>
+      <a href="#cmd-hotels">hotels <span class="offline-badge">offline</span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">Profile</div>
+      <a href="#cmd-profile-show">profile show <span class="offline-badge">offline</span></a>
+      <a href="#cmd-profile-set">profile set <span class="offline-badge">offline</span></a>
+      <a href="#cmd-profile-unset">profile unset <span class="offline-badge">offline</span></a>
+      <a href="#cmd-profile-fields">profile fields <span class="offline-badge">offline</span></a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main>
+
+    <!-- Global options -->
+    <div class="global-opts">
+      <h3>Global Options</h3>
+      <table>
+        <tr>
+          <td>--json, -j</td>
+          <td>Emit machine-readable JSON — compatible with AI agents and shell pipelines.</td>
+        </tr>
+        <tr>
+          <td>--api-key TEXT</td>
+          <td>Override the <code>BRAVE_API_KEY</code> environment variable for this invocation.</td>
+        </tr>
+        <tr>
+          <td>--no-dotenv</td>
+          <td>Skip loading a <code>.env</code> file from the current directory.</td>
+        </tr>
+      </table>
+      <p style="margin-top:0.9rem;font-size:0.82rem;color:#888;">Most arguments accept <code>-</code> in place of a value to read from stdin — useful for shell pipelines and agent tool calls.</p>
+    </div>
+
+    <!-- ── RESEARCH ──────────────────────────── -->
+    <section class="cmd-section" id="research">
+      <div class="cmd-section-title">Research Commands — require BRAVE_API_KEY</div>
+
+      <!-- card -->
+      <div class="cmd-block" id="cmd-card">
+        <div class="cmd-block-header">
+          <span class="cmd-name">fleece card</span>
+          <span class="cmd-tag cmd-tag-research">requires api key</span>
+        </div>
+        <p class="cmd-desc">Full card report — annual fee, welcome offer, earning rates, statement credits, benefits, and strategy tips.</p>
+        <div class="cmd-usage">fleece card &lt;name&gt; [OPTIONS]</div>
+        <table class="args-table">
+          <tr><th>Argument / Option</th><th>Required</th><th>Description</th></tr>
+          <tr><td>&lt;name&gt;</td><td class="required">required</td><td>Card name, e.g. <code>"Chase Sapphire Preferred"</code>. Pass <code>-</code> to read from stdin.</td></tr>
+        </table>
+        <div class="example-block">
+          <div><span class="prompt">$</span> <span class="cmd-text">fleece card "Amex Gold"</span></div>
+          <div><span class="output">American Express Gold Card</span></div>
+          <div><span class="output">Annual fee: $250 | Welcome offer: 60,000 MR points ...</span></div>
+          <div style="margin-top:0.5rem;"><span class="prompt">$</span> <span class="cmd-text">fleece card "Chase Sapphire Preferred" --json</span></div>
+          <div><span class="output">{"command": "card", "query": "...", "result": "...", "ok": true}</span></div>
+        </div>
+      </div>
+
+      <!-- rates -->
+      <div class="cmd-block" id="cmd-rates">
+        <div class="cmd-block-header">
+          <span class="cmd-name">fleece rates</span>
+          <span class="cmd-tag cmd-tag-research">requires api key</span>
+        </div>
+        <p class="cmd-desc">Earning rates by spend category — points, miles, or cash back per dollar. Optionally narrow to a single category.</p>
+        <div class="cmd-usage">fleece rates &lt;name&gt; [--category TEXT] [OPTIONS]</div>
+        <table class="args-table">
+          <tr><th>Argument / Option</th><th>Required</th><th>Description</th></tr>
+          <tr><td>&lt;name&gt;</td><td class="required">required</td><td>Card name. Pass <code>-</code> to read from stdin.</td></tr>
+          <tr><td>--category, -c</td><td class="optional">optional</td><td>Spending category to focus on, e.g. <code>dining</code>, <code>travel</code>, <code>groceries</code>.</td></tr>
+        </table>
+        <div class="example-block">
+          <div><span class="prompt">$</span> <span class="cmd-text">fleece rates "Amex Gold" --category dining</span></div>
+          <div><span class="output">Dining: 4x Membership Rewards at restaurants worldwide</span></div>
+          <div><span class="output">US supermarkets: 4x MR (up to $25,000/yr) ...</span></div>
+        </div>
+      </div>
+
+      <!-- partners -->
+      <div class="cmd-block" id="cmd-partners">
+        <div class="cmd-block-header">
+          <span class="cmd-name">fleece partners</span>
+          <span class="cmd-tag cmd-tag-research">requires api key</span>
+        </div>
+        <p class="cmd-desc">Transfer partners — airline and hotel programs, transfer ratios, and how long transfers take.</p>
+        <div class="cmd-usage">fleece partners &lt;name&gt; [OPTIONS]</div>
+        <table class="args-table">
+          <tr><th>Argument / Option</th><th>Required</th><th>Description</th></tr>
+          <tr><td>&lt;name&gt;</td><td class="required">required</td><td>Card name. Pass <code>-</code> to read from stdin.</td></tr>
+        </table>
+        <div class="example-block">
+          <div><span class="prompt">$</span> <span class="cmd-text">fleece partners "Chase Sapphire Preferred"</span></div>
+          <div><span class="output">Transfer partners (1:1): United MileagePlus, Hyatt,</span></div>
+          <div><span class="output">Singapore KrisFlyer, Air France/KLM Flying Blue ...</span></div>
+        </div>
+      </div>
+
+      <!-- credits -->
+      <div class="cmd-block" id="cmd-credits">
+        <div class="cmd-block-header">
+          <span class="cmd-name">fleece credits</span>
+          <span class="cmd-tag cmd-tag-research">requires api key</span>
+        </div>
+        <p class="cmd-desc">Statement credits and perks — amounts, cadence (monthly/annual), and any enrollment requirements.</p>
+        <div class="cmd-usage">fleece credits &lt;name&gt; [OPTIONS]</div>
+        <table class="args-table">
+          <tr><th>Argument / Option</th><th>Required</th><th>Description</th></tr>
+          <tr><td>&lt;name&gt;</td><td class="required">required</td><td>Card name. Pass <code>-</code> to read from stdin.</td></tr>
+        </table>
+        <div class="example-block">
+          <div><span class="prompt">$</span> <span class="cmd-text">fleece credits "Amex Platinum"</span></div>
+          <div><span class="output">$200 airline fee credit (annually, must select airline)</span></div>
+          <div><span class="output">$200 hotel credit (Fine Hotels + Resorts bookings) ...</span></div>
+        </div>
+      </div>
+
+      <!-- news -->
+      <div class="cmd-block" id="cmd-news">
+        <div class="cmd-block-header">
+          <span class="cmd-name">fleece news</span>
+          <span class="cmd-tag cmd-tag-research">requires api key</span>
+        </div>
+        <p class="cmd-desc">Recent changes in the past month — fee increases, benefit cuts, new perks, or limited-time offers. Results are freshness-filtered to the past 30 days.</p>
+        <div class="cmd-usage">fleece news &lt;name&gt; [OPTIONS]</div>
+        <table class="args-table">
+          <tr><th>Argument / Option</th><th>Required</th><th>Description</th></tr>
+          <tr><td>&lt;name&gt;</td><td class="required">required</td><td>Card name. Pass <code>-</code> to read from stdin.</td></tr>
+        </table>
+        <div class="example-block">
+          <div><span class="prompt">$</span> <span class="cmd-text">fleece news "Chase Sapphire Reserve"</span></div>
+          <div><span class="output">May 2026: Annual fee increases to $650. New $300 travel</span></div>
+          <div><span class="output">credit now covers more categories ...</span></div>
+        </div>
+      </div>
+
+      <!-- compare -->
+      <div class="cmd-block" id="cmd-compare">
+        <div class="cmd-block-header">
+          <span class="cmd-name">fleece compare</span>
+          <span class="cmd-tag cmd-tag-research">requires api key</span>
+        </div>
+        <p class="cmd-desc">Side-by-side comparison of two cards across fees, rewards, welcome offers, credits, and transfer partners.</p>
+        <div class="cmd-usage">fleece compare &lt;card-a&gt; &lt;card-b&gt; [--aspects TEXT] [OPTIONS]</div>
+        <table class="args-table">
+          <tr><th>Argument / Option</th><th>Required</th><th>Description</th></tr>
+          <tr><td>&lt;card-a&gt;</td><td class="required">required</td><td>First card name.</td></tr>
+          <tr><td>&lt;card-b&gt;</td><td class="required">required</td><td>Second card name.</td></tr>
+          <tr><td>--aspects</td><td class="optional">optional</td><td>Comma-separated list of aspects to compare. Default: <code>fees,rewards,welcome_offer,credits,transfer_partners</code>.</td></tr>
+        </table>
+        <div class="example-block">
+          <div><span class="prompt">$</span> <span class="cmd-text">fleece compare "Amex Gold" "Chase Sapphire Preferred"</span></div>
+          <div><span class="output">## Amex Gold</span></div>
+          <div><span class="output">Annual fee: $250 | 4x dining, 4x US supermarkets ...</span></div>
+          <div><span class="output">## Chase Sapphire Preferred</span></div>
+          <div><span class="output">Annual fee: $95 | 3x dining, 2x travel ...</span></div>
+        </div>
+      </div>
+
+      <!-- roi -->
+      <div class="cmd-block" id="cmd-roi">
+        <div class="cmd-block-header">
+          <span class="cmd-name">fleece roi</span>
+          <span class="cmd-tag cmd-tag-research">requires api key</span>
+        </div>
+        <p class="cmd-desc">First-year ROI estimate — welcome bonus value + projected annual earn + credits minus the annual fee. Spend values are auto-pulled from your saved profile when not passed as flags.</p>
+        <div class="cmd-usage">fleece roi &lt;name&gt; [--travel FLOAT] [--dining FLOAT] [--other FLOAT] [OPTIONS]</div>
+        <table class="args-table">
+          <tr><th>Argument / Option</th><th>Required</th><th>Description</th></tr>
+          <tr><td>&lt;name&gt;</td><td class="required">required</td><td>Card name. Pass <code>-</code> to read from stdin.</td></tr>
+          <tr><td>--travel</td><td class="optional">optional</td><td>Monthly travel spend in dollars. Falls back to <code>travel_monthly</code> from your profile.</td></tr>
+          <tr><td>--dining</td><td class="optional">optional</td><td>Monthly dining spend in dollars. Falls back to <code>dining_monthly</code> from your profile.</td></tr>
+          <tr><td>--other</td><td class="optional">optional</td><td>Monthly other spend in dollars. Falls back to <code>other_monthly</code> from your profile.</td></tr>
+        </table>
+        <div class="example-block">
+          <div><span class="prompt">$</span> <span class="cmd-text">fleece profile set dining_monthly 500</span></div>
+          <div><span class="prompt">$</span> <span class="cmd-text">fleece roi "Amex Gold"</span></div>
+          <div><span class="output">Annual spend — Dining: $6,000 | Travel: $0 | Other: $0</span></div>
+          <div><span class="output">First-year value: ~$1,060 (after $250 annual fee)</span></div>
+          <div style="margin-top:0.5rem;"><span class="prompt">$</span> <span class="cmd-text">fleece roi "Chase Sapphire Preferred" --travel 300 --dining 400</span></div>
+        </div>
+      </div>
+
+      <!-- recommend -->
+      <div class="cmd-block" id="cmd-recommend">
+        <div class="cmd-block-header">
+          <span class="cmd-name">fleece recommend</span>
+          <span class="cmd-tag cmd-tag-research">requires api key</span>
+        </div>
+        <p class="cmd-desc">Card recommendations matched to a free-text spending profile description. Automatically enriched with your saved profile and current wallet cards.</p>
+        <div class="cmd-usage">fleece recommend &lt;profile&gt; [--preferences TEXT] [OPTIONS]</div>
+        <table class="args-table">
+          <tr><th>Argument / Option</th><th>Required</th><th>Description</th></tr>
+          <tr><td>&lt;profile&gt;</td><td class="required">required</td><td>Free-text spending description. Pass <code>-</code> to read from stdin.</td></tr>
+          <tr><td>--preferences, -p</td><td class="optional">optional</td><td>Extra constraints, e.g. <code>"no annual fee"</code> or <code>"prefer cash back"</code>.</td></tr>
+        </table>
+        <div class="example-block">
+          <div><span class="prompt">$</span> <span class="cmd-text">fleece recommend "heavy diner, occasional traveler"</span></div>
+          <div><span class="output">1. Amex Gold — 4x dining, $120 dining credit</span></div>
+          <div><span class="output">2. Capital One Savor — 3x dining, no foreign tx fee ...</span></div>
+          <div style="margin-top:0.5rem;"><span class="prompt">$</span> <span class="cmd-text">fleece recommend "groceries and gas" --preferences "no annual fee"</span></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── WALLET ─────────────────────────────── -->
+    <section class="cmd-section" id="wallet">
+      <div class="cmd-section-title">Wallet Commands — no API key required</div>
+
+      <!-- wallet -->
+      <div class="cmd-block" id="cmd-wallet">
+        <div class="cmd-block-header">
+          <span class="cmd-name">fleece wallet</span>
+          <span class="cmd-tag cmd-tag-research">requires api key</span>
+        </div>
+        <p class="cmd-desc">Portfolio analysis — fetches live earning-rate data for every card in your wallet and returns structured research for computing a category coverage map, overlaps, gaps, and next-card suggestions. Cards are read from the local database; add them first with <code>fleece cards add</code>.</p>
+        <div class="cmd-usage">fleece wallet [OPTIONS]</div>
+        <table class="args-table">
+          <tr><th>Argument / Option</th><th>Required</th><th>Description</th></tr>
+          <tr><td>--json, -j</td><td class="optional">optional</td><td>Returns structured JSON with per-card research, profile context, and an <code>analysis_prompt</code> field ready for an agent to synthesize.</td></tr>
+        </table>
+        <div class="example-block">
+          <div><span class="prompt">$</span> <span class="cmd-text">fleece wallet</span></div>
+          <div><span class="output">### Amex Gold</span></div>
+          <div><span class="output">4x dining, 4x US supermarkets, 3x flights ...</span></div>
+          <div><span class="output">### Chase Sapphire Preferred</span></div>
+          <div><span class="output">3x dining, 2x travel, 1x other ...</span></div>
+          <div><span class="output"></span></div>
+          <div><span class="output">Using the research above, compute a wallet analysis:</span></div>
+          <div><span class="output">1. Category coverage map ...</span></div>
+          <div style="margin-top:0.5rem;"><span class="prompt">$</span> <span class="cmd-text">fleece wallet --json</span></div>
+          <div><span class="output">{"command": "wallet", "cards": [...], "research": {...}, "analysis_prompt": "...", "ok": true}</span></div>
+        </div>
+      </div>
+
+      <!-- cards list -->
+      <div class="cmd-block" id="cmd-cards-list">
+        <div class="cmd-block-header">
+          <span class="cmd-name">fleece cards list</span>
+          <span class="cmd-tag cmd-tag-offline">offline</span>
+        </div>
+        <p class="cmd-desc">List all cards saved in your profile with their annual fees.</p>
+        <div class="cmd-usage">fleece cards list [OPTIONS]</div>
+        <div class="example-block">
+          <div><span class="prompt">$</span> <span class="cmd-text">fleece cards list</span></div>
+          <div><span class="output">1. Chase Sapphire Preferred  (fee: $95)</span></div>
+          <div><span class="output">2. Amex Gold  (fee: $250)</span></div>
+        </div>
+      </div>
+
+      <!-- cards add -->
+      <div class="cmd-block" id="cmd-cards-add">
+        <div class="cmd-block-header">
+          <span class="cmd-name">fleece cards add</span>
+          <span class="cmd-tag cmd-tag-offline">offline</span>
+        </div>
+        <p class="cmd-desc">Add a card to your saved wallet. The card name is used by <code>wallet</code>, <code>mcc --wallet</code>, <code>recommend</code>, and <code>roi</code>.</p>
+        <div class="cmd-usage">fleece cards add &lt;name&gt; [--fee TEXT] [OPTIONS]</div>
+        <table class="args-table">
+          <tr><th>Argument / Option</th><th>Required</th><th>Description</th></tr>
+          <tr><td>&lt;name&gt;</td><td class="required">required</td><td>Card name to add, e.g. <code>"Amex Gold"</code>.</td></tr>
+          <tr><td>--fee</td><td class="optional">optional</td><td>Annual fee string, e.g. <code>$95</code>. Defaults to <code>$0</code>.</td></tr>
+        </table>
+        <div class="example-block">
+          <div><span class="prompt">$</span> <span class="cmd-text">fleece cards add "Chase Sapphire Preferred" --fee "$95"</span></div>
+          <div><span class="output">Added "Chase Sapphire Preferred" to your profile. (1 card(s) total)</span></div>
+          <div style="margin-top:0.5rem;"><span class="prompt">$</span> <span class="cmd-text">fleece cards add "Amex Gold" --fee "$250"</span></div>
+          <div><span class="output">Added "Amex Gold" to your profile. (2 card(s) total)</span></div>
+        </div>
+      </div>
+
+      <!-- cards remove -->
+      <div class="cmd-block" id="cmd-cards-remove">
+        <div class="cmd-block-header">
+          <span class="cmd-name">fleece cards remove</span>
+          <span class="cmd-tag cmd-tag-offline">offline</span>
+        </div>
+        <p class="cmd-desc">Remove a card from your wallet. Partial name matching is supported — the command errors if the match is ambiguous.</p>
+        <div class="cmd-usage">fleece cards remove &lt;name&gt; [OPTIONS]</div>
+        <table class="args-table">
+          <tr><th>Argument / Option</th><th>Required</th><th>Description</th></tr>
+          <tr><td>&lt;name&gt;</td><td class="required">required</td><td>Card name or partial name to remove.</td></tr>
+        </table>
+        <div class="example-block">
+          <div><span class="prompt">$</span> <span class="cmd-text">fleece cards remove "Amex Gold"</span></div>
+          <div><span class="output">Removed "Amex Gold" from your profile. (1 card(s) remaining)</span></div>
+          <div style="margin-top:0.5rem;"><span class="prompt">$</span> <span class="cmd-text">fleece cards remove "sapphire"</span></div>
+          <div><span class="output">Removed "Chase Sapphire Preferred" from your profile. (0 card(s) remaining)</span></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── REDEMPTION ─────────────────────────── -->
+    <section class="cmd-section" id="redemption">
+      <div class="cmd-section-title">Redemption Commands — no API key required</div>
+
+      <!-- mcc -->
+      <div class="cmd-block" id="cmd-mcc">
+        <div class="cmd-block-header">
+          <span class="cmd-name">fleece mcc</span>
+          <span class="cmd-tag cmd-tag-offline">offline</span>
+        </div>
+        <p class="cmd-desc">Look up any of the 981 bundled Merchant Category Codes to find the spend category for a merchant. Add <code>--wallet</code> to cross-reference earning rates across your saved cards and pick the best one (requires API key in wallet mode).</p>
+        <div class="cmd-usage">fleece mcc &lt;code&gt; [--wallet] [OPTIONS]</div>
+        <table class="args-table">
+          <tr><th>Argument / Option</th><th>Required</th><th>Description</th></tr>
+          <tr><td>&lt;code&gt;</td><td class="required">required</td><td>4-digit MCC code, e.g. <code>5812</code>.</td></tr>
+          <tr><td>--wallet, -w</td><td class="optional">optional</td><td>Cross-reference with saved wallet cards to find the best card to use. Requires <code>BRAVE_API_KEY</code>.</td></tr>
+        </table>
+        <div class="example-block">
+          <div><span class="prompt">$</span> <span class="cmd-text">fleece mcc 5812</span></div>
+          <div><span class="output">MCC 5812: Eating Places, Restaurants</span></div>
+          <div style="margin-top:0.5rem;"><span class="prompt">$</span> <span class="cmd-text">fleece mcc 5812 --wallet</span></div>
+          <div><span class="output">MCC 5812: Eating Places, Restaurants</span></div>
+          <div><span class="output">Best card: Amex Gold (4x) › Chase Sapphire Preferred (3x)</span></div>
+          <div style="margin-top:0.5rem;"><span class="prompt">$</span> <span class="cmd-text">fleece mcc 7832 --json</span></div>
+          <div><span class="output">{"mcc": "7832", "category": "Motion Picture Theaters", "ok": true}</span></div>
+        </div>
+      </div>
+
+      <!-- flights -->
+      <div class="cmd-block" id="cmd-flights">
+        <div class="cmd-block-header">
+          <span class="cmd-name">fleece flights</span>
+          <span class="cmd-tag cmd-tag-offline">offline</span>
+        </div>
+        <p class="cmd-desc">Generate a PointsYeah award flight search URL for a given route, date, and cabin class. Use <code>--open</code> to launch the URL directly in your browser.</p>
+        <div class="cmd-usage">fleece flights &lt;origin&gt; &lt;destination&gt; --date YYYY-MM-DD [OPTIONS]</div>
+        <table class="args-table">
+          <tr><th>Argument / Option</th><th>Required</th><th>Description</th></tr>
+          <tr><td>&lt;origin&gt;</td><td class="required">required</td><td>Origin airport IATA code, e.g. <code>JFK</code>.</td></tr>
+          <tr><td>&lt;destination&gt;</td><td class="required">required</td><td>Destination airport IATA code, e.g. <code>NRT</code>.</td></tr>
+          <tr><td>--date</td><td class="required">required</td><td>Departure date in <code>YYYY-MM-DD</code> format.</td></tr>
+          <tr><td>--return</td><td class="optional">optional</td><td>Return date in <code>YYYY-MM-DD</code> format for round trips.</td></tr>
+          <tr><td>--adults</td><td class="optional">optional</td><td>Number of adult passengers. Default: <code>1</code>.</td></tr>
+          <tr><td>--cabin</td><td class="optional">optional</td><td>Cabin class: <code>economy</code>, <code>premium-economy</code>, <code>business</code>, <code>first</code>. Default: <code>economy</code>.</td></tr>
+          <tr><td>--open</td><td class="optional">optional</td><td>Open the generated URL in the default browser.</td></tr>
+        </table>
+        <div class="example-block">
+          <div><span class="prompt">$</span> <span class="cmd-text">fleece flights JFK NRT --date 2026-06-01 --cabin business</span></div>
+          <div><span class="output">https://pointsyeah.com/flights?...</span></div>
+          <div style="margin-top:0.5rem;"><span class="prompt">$</span> <span class="cmd-text">fleece flights LAX LHR --date 2026-09-10 --return 2026-09-20 --cabin first --open</span></div>
+          <div><span class="output">https://pointsyeah.com/flights?... (opening in browser)</span></div>
+        </div>
+      </div>
+
+      <!-- hotels -->
+      <div class="cmd-block" id="cmd-hotels">
+        <div class="cmd-block-header">
+          <span class="cmd-name">fleece hotels</span>
+          <span class="cmd-tag cmd-tag-offline">offline</span>
+        </div>
+        <p class="cmd-desc">Generate a PointsYeah award hotel search URL for a given location and date range.</p>
+        <div class="cmd-usage">fleece hotels &lt;location&gt; --checkin YYYY-MM-DD --checkout YYYY-MM-DD [OPTIONS]</div>
+        <table class="args-table">
+          <tr><th>Argument / Option</th><th>Required</th><th>Description</th></tr>
+          <tr><td>&lt;location&gt;</td><td class="required">required</td><td>City, area, or hotel keyword, e.g. <code>"Tokyo"</code>.</td></tr>
+          <tr><td>--checkin</td><td class="required">required</td><td>Check-in date in <code>YYYY-MM-DD</code> format.</td></tr>
+          <tr><td>--checkout</td><td class="required">required</td><td>Check-out date in <code>YYYY-MM-DD</code> format.</td></tr>
+          <tr><td>--guests</td><td class="optional">optional</td><td>Number of guests. Default: <code>1</code>.</td></tr>
+          <tr><td>--rooms</td><td class="optional">optional</td><td>Number of rooms. Default: <code>1</code>.</td></tr>
+          <tr><td>--open</td><td class="optional">optional</td><td>Open the generated URL in the default browser.</td></tr>
+        </table>
+        <div class="example-block">
+          <div><span class="prompt">$</span> <span class="cmd-text">fleece hotels "Tokyo" --checkin 2026-06-01 --checkout 2026-06-07</span></div>
+          <div><span class="output">https://pointsyeah.com/hotels?...</span></div>
+          <div style="margin-top:0.5rem;"><span class="prompt">$</span> <span class="cmd-text">fleece hotels "Paris" --checkin 2026-08-10 --checkout 2026-08-15 --guests 2 --open</span></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── PROFILE ────────────────────────────── -->
+    <section class="cmd-section" id="profile">
+      <div class="cmd-section-title">Profile Commands — no API key required</div>
+
+      <p style="font-size:0.9rem;color:var(--mid);margin-bottom:2rem;line-height:1.65;">Your spending profile is stored locally in <code>fleece.db</code>. Once set, profile values are automatically injected into <code>roi</code>, <code>recommend</code>, and <code>wallet</code> to personalise results without repeating flags each time.</p>
+
+      <!-- profile show -->
+      <div class="cmd-block" id="cmd-profile-show">
+        <div class="cmd-block-header">
+          <span class="cmd-name">fleece profile show</span>
+          <span class="cmd-tag cmd-tag-offline">offline</span>
+        </div>
+        <p class="cmd-desc">Display your current spending profile.</p>
+        <div class="cmd-usage">fleece profile show [OPTIONS]</div>
+        <div class="example-block">
+          <div><span class="prompt">$</span> <span class="cmd-text">fleece profile show</span></div>
+          <div><span class="output">  Monthly dining spend                          500</span></div>
+          <div><span class="output">  Monthly travel spend                          300</span></div>
+          <div><span class="output">  Home airport                                  JFK</span></div>
+          <div><span class="output">  Points programs                               Amex MR, Chase UR</span></div>
+        </div>
+      </div>
+
+      <!-- profile set -->
+      <div class="cmd-block" id="cmd-profile-set">
+        <div class="cmd-block-header">
+          <span class="cmd-name">fleece profile set</span>
+          <span class="cmd-tag cmd-tag-offline">offline</span>
+        </div>
+        <p class="cmd-desc">Set a single profile field. Run <code>fleece profile fields</code> to see all available field names.</p>
+        <div class="cmd-usage">fleece profile set &lt;field&gt; &lt;value&gt; [OPTIONS]</div>
+        <table class="args-table">
+          <tr><th>Argument / Option</th><th>Required</th><th>Description</th></tr>
+          <tr><td>&lt;field&gt;</td><td class="required">required</td><td>Field name, e.g. <code>dining_monthly</code>.</td></tr>
+          <tr><td>&lt;value&gt;</td><td class="required">required</td><td>Value to store.</td></tr>
+        </table>
+        <div class="example-block">
+          <div><span class="prompt">$</span> <span class="cmd-text">fleece profile set dining_monthly 500</span></div>
+          <div><span class="output">Profile updated: dining_monthly = 500</span></div>
+          <div style="margin-top:0.5rem;"><span class="prompt">$</span> <span class="cmd-text">fleece profile set home_airport JFK</span></div>
+          <div><span class="output">Profile updated: home_airport = JFK</span></div>
+          <div style="margin-top:0.5rem;"><span class="prompt">$</span> <span class="cmd-text">fleece profile set goal "maximize dining and travel rewards"</span></div>
+        </div>
+      </div>
+
+      <!-- profile unset -->
+      <div class="cmd-block" id="cmd-profile-unset">
+        <div class="cmd-block-header">
+          <span class="cmd-name">fleece profile unset</span>
+          <span class="cmd-tag cmd-tag-offline">offline</span>
+        </div>
+        <p class="cmd-desc">Clear a single profile field.</p>
+        <div class="cmd-usage">fleece profile unset &lt;field&gt; [OPTIONS]</div>
+        <table class="args-table">
+          <tr><th>Argument / Option</th><th>Required</th><th>Description</th></tr>
+          <tr><td>&lt;field&gt;</td><td class="required">required</td><td>Field name to clear.</td></tr>
+        </table>
+        <div class="example-block">
+          <div><span class="prompt">$</span> <span class="cmd-text">fleece profile unset annual_fee_tolerance</span></div>
+          <div><span class="output">Cleared: annual_fee_tolerance</span></div>
+        </div>
+      </div>
+
+      <!-- profile fields -->
+      <div class="cmd-block" id="cmd-profile-fields">
+        <div class="cmd-block-header">
+          <span class="cmd-name">fleece profile fields</span>
+          <span class="cmd-tag cmd-tag-offline">offline</span>
+        </div>
+        <p class="cmd-desc">List all 10 available profile fields and their descriptions.</p>
+        <div class="cmd-usage">fleece profile fields</div>
+        <div class="example-block">
+          <div><span class="prompt">$</span> <span class="cmd-text">fleece profile fields</span></div>
+          <div><span class="output">  dining_monthly        Monthly dining spend ($)</span></div>
+          <div><span class="output">  groceries_monthly     Monthly groceries spend ($)</span></div>
+          <div><span class="output">  travel_monthly        Monthly travel spend ($)</span></div>
+          <div><span class="output">  gas_monthly           Monthly gas spend ($)</span></div>
+          <div><span class="output">  other_monthly         Monthly other spend ($)</span></div>
+          <div><span class="output">  annual_fee_tolerance  Max annual fee you'll pay ($)</span></div>
+          <div><span class="output">  points_programs       Preferred points programs</span></div>
+          <div><span class="output">  home_airport          Home airport (IATA code)</span></div>
+          <div><span class="output">  goal                  Rewards goal (free-text)</span></div>
+          <div><span class="output">  preferences           Other preferences (free-text)</span></div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a class="footer-logo" href="/">Fleece</a>
+  <div class="footer-right">
+    <span class="footer-copy">© 2026 Fleece. Built by Yuan Chen.</span>
+    <a href="https://github.com/chenyuan99/fleece" target="_blank">GitHub</a>
+    <a href="https://github.com/chenyuan99/fleece/blob/main/LICENSE" target="_blank">MIT License</a>
+  </div>
+</footer>
+
+<script>
+  var toggle = document.querySelector('.nav-toggle');
+  var links  = document.querySelector('.nav-links');
+  toggle.addEventListener('click', function() {
+    var open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  links.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+</body>
+</html>

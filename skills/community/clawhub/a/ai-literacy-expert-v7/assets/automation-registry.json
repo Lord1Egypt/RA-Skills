@@ -1,0 +1,257 @@
+{
+  "schema": "ai-literacy-automation-registry/v1",
+  "skill": "ai-literacy-expert-v5",
+  "skillVersion": "7.0.0",
+  "description": "L4 调度任务注册表：记录本技能已/待注册的自动化任务（任务 id ↔ OPS 流 ↔ 幂等规则 ↔ 状态源）。注册后请回填 id 与 status；注销后请更新 status 为 deleted。",
+  "updatedAt": "2026-08-28T18:59:44+08:00",
+  "registeredCount": 1,
+  "stateSource": {
+    "authoritative": "IMA 知识库《AI教学·自动化状态》",
+    "cache": "<宿主工作目录>/.ai-literacy-state/<TASK_ID>.json",
+    "cachePathRule": "宿主工作目录 = 执行时 AI 的当前工作目录（Linux/macOS 常见 /workspace，Windows 为对应工作区目录），运行时解析，禁止硬编码绝对前缀",
+    "ledger": "IMA 知识库《AI教学·执行台账》（JSONL，见 run-ledger-template.jsonl）"
+  },
+  "quota": {
+    "hostLimit": 100,
+    "recommendedMaxForThisSkill": 10,
+    "note": "注册前先执行 scheduler-api.sh list 查询余量；超出建议上限时应合并任务而非新增。"
+  },
+  "tasks": [
+    {
+      "key": "OPS-1",
+      "id": null,
+      "name": "AI教学·BNBU新生4周上手自动驾驶",
+      "status": "not_registered",
+      "enabled": false,
+      "cron": "0 0 8 * * 1",
+      "cronHuman": "每周一 08:00",
+      "frequencyType": "daily",
+      "timeoutSec": 900,
+      "retryCount": 2,
+      "idempotency": {
+        "rule": "OPS-1:<ISO-WEEK>",
+        "example": "OPS-1:2026-W35"
+      },
+      "covers": {
+        "modules": [
+          "E·N",
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "abilities": [
+          "courseware",
+          "game",
+          "lesson",
+          "assessment"
+        ]
+      },
+      "verify": "harness required",
+      "deliverTo": [
+        "日历",
+        "闹钟",
+        "IMA",
+        "腾讯文档"
+      ],
+      "ref": "references/automation-ops.md#OPS-1"
+    },
+    {
+      "key": "OPS-2",
+      "id": 6609542,
+      "taskKey": "taREDACTED-SECRET",
+      "name": "AI教学·每日AI速递",
+      "status": "active",
+      "enabled": true,
+      "cron": "0 2 19 * * 1-5",
+      "cronHuman": "工作日每天 19:02",
+      "frequencyType": "daily",
+      "timeoutSec": 900,
+      "retryCount": 2,
+      "registeredAt": "2026-08-28T18:55:36+08:00",
+      "nextRunAt": "2026-08-28T19:02:00+08:00",
+      "ownerType": "personal",
+      "idempotency": {
+        "rule": "OPS-2:<YYYY-MM-DD>",
+        "example": "OPS-2:2026-08-29"
+      },
+      "covers": {
+        "modules": [
+          "G"
+        ],
+        "abilities": [
+          "courseware"
+        ]
+      },
+      "verify": "事实可核 + 题目答案唯一（无 HTML 产物，不需 harness）",
+      "deliverTo": [
+        "IMA",
+        "腾讯文档",
+        "备忘录"
+      ],
+      "ref": "references/automation-ops.md#OPS-2",
+      "updatedAt": "2026-08-28T18:59:44+08:00"
+    },
+    {
+      "key": "OPS-3",
+      "id": null,
+      "name": "AI教学·考前复习自动提醒",
+      "status": "not_registered",
+      "enabled": false,
+      "cron": "0 0 19 14 1 *",
+      "cronHuman": "考试前 1 天 19:00（按实际考试日期填写，如 1月14日）",
+      "frequencyType": "once",
+      "timeoutSec": 300,
+      "retryCount": 3,
+      "idempotency": {
+        "rule": "OPS-3:<exam-id>",
+        "example": "OPS-3:final-2026-01-15"
+      },
+      "covers": {
+        "modules": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G"
+        ],
+        "abilities": [
+          "assessment"
+        ]
+      },
+      "verify": "复习清单覆盖已完成模块；自测题可答",
+      "deliverTo": [
+        "闹钟",
+        "备忘录",
+        "IMA"
+      ],
+      "ref": "references/automation-ops.md#OPS-3"
+    },
+    {
+      "key": "OPS-4",
+      "id": null,
+      "name": "AI教学·教研组周报",
+      "status": "not_registered",
+      "enabled": false,
+      "cron": "0 0 17 * * 5",
+      "cronHuman": "每周五 17:00",
+      "frequencyType": "daily",
+      "timeoutSec": 600,
+      "retryCount": 2,
+      "idempotency": {
+        "rule": "OPS-4:<ISO-WEEK>",
+        "example": "OPS-4:2026-W35"
+      },
+      "covers": {
+        "modules": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G"
+        ],
+        "abilities": [
+          "collab",
+          "assessment"
+        ]
+      },
+      "verify": "数据来源可追溯（IMA 落库清单 / 评估数据 / 协作版本）",
+      "deliverTo": [
+        "腾讯文档",
+        "分享",
+        "备忘录"
+      ],
+      "ref": "references/automation-ops.md#OPS-4"
+    },
+    {
+      "key": "OPS-5",
+      "id": null,
+      "name": "AI教学·模块轮转课件（A→G）",
+      "status": "not_registered",
+      "enabled": false,
+      "cron": "0 0 10 * * 3",
+      "cronHuman": "每周三 10:00",
+      "frequencyType": "daily",
+      "timeoutSec": 900,
+      "retryCount": 2,
+      "idempotency": {
+        "rule": "OPS-5:<ISO-WEEK>",
+        "example": "OPS-5:2026-W35"
+      },
+      "covers": {
+        "modules": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "E·N",
+          "F",
+          "G"
+        ],
+        "abilities": [
+          "courseware",
+          "game"
+        ]
+      },
+      "verify": "harness required（课件/游戏产物必须自动实测）",
+      "deliverTo": [
+        "IMA",
+        "预览面板",
+        "腾讯文档"
+      ],
+      "ref": "references/automation-ops.md#OPS-5"
+    },
+    {
+      "key": "OPS-6",
+      "id": null,
+      "name": "AI教学·学习进度周检与补学回流",
+      "status": "not_registered",
+      "enabled": false,
+      "cron": "0 0 20 * * 0",
+      "cronHuman": "每周日 20:00",
+      "frequencyType": "daily",
+      "timeoutSec": 900,
+      "retryCount": 2,
+      "idempotency": {
+        "rule": "OPS-6:<ISO-WEEK>",
+        "example": "OPS-6:2026-W35"
+      },
+      "covers": {
+        "modules": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G"
+        ],
+        "abilities": [
+          "assessment",
+          "recommend",
+          "courseware"
+        ]
+      },
+      "verify": "薄弱点诊断有据；补学建议可执行（含具体模块与产物）",
+      "deliverTo": [
+        "IMA",
+        "备忘录",
+        "日历"
+      ],
+      "ref": "references/automation-ops.md#OPS-6"
+    }
+  ],
+  "lifecycle": {
+    "register": "按 assets/self-contained-prompt-template.md 生成 prompt → 向用户展示创建预览 → 用户确认后执行 scheduler-api.sh create → 回填本文件 id/status/enabled",
+    "pause": "scheduler-api.sh update --id <id> --status 0（须先 get + 预览 + 确认）",
+    "resume": "scheduler-api.sh update --id <id> --status 1（须先 get + 预览 + 确认）",
+    "delete": "scheduler-api.sh delete --id <id>（须先 get + 预览 + 确认『确认删除』）→ 本文件 status 置 deleted",
+    "constraint": "写操作必须先预览、经用户确认后再执行；automation 会话内严禁调用 automation-task-manager"
+  },
+  "note": "OPS-2 触发时间已由 08:30 调整为 19:02（用户要求尽快观察首跑效果）；观察完毕后可改回 08:30。"
+}

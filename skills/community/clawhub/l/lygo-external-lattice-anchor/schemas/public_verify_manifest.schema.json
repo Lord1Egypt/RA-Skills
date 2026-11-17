@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://deepseekoracle.github.io/lygo-protocol-stack/schemas/public_verify_manifest.schema.json",
+  "title": "LYGO Public Verify Manifest",
+  "type": "object",
+  "required": ["signature", "created_utc", "layers", "public_endpoints", "user_protection"],
+  "properties": {
+    "signature": { "type": "string" },
+    "created_utc": { "type": "string" },
+    "layers": {
+      "type": "object",
+      "properties": {
+        "A_classic": { "type": "object" },
+        "B_sovereign": { "type": "object" },
+        "C_external": { "type": "object" },
+        "D_living_mesh": { "type": "object" }
+      },
+      "additionalProperties": true
+    },
+    "public_endpoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "url", "role"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]{2,64}$",
+            "description": "Stable endpoint id (snake_case). Not a command."
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^https://",
+            "description": "HTTPS URL only. Fetched with HTTP GET by verify_public_anchors."
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "ledger",
+              "classic_egg_registry_public",
+              "public_verify_ui",
+              "world_map",
+              "world_map_portal",
+              "sovereign_mirror",
+              "free_public_media_cas",
+              "stack_dataset_mirror",
+              "public_http_mirror",
+              "skill_registry",
+              "layer_d_skill",
+              "layer_d_docs",
+              "public_hub",
+              "docs",
+              "mirror",
+              "other"
+            ],
+            "description": "Classification only — not executable routing."
+          },
+          "verify": {
+            "type": "string",
+            "enum": ["http_required", "http_soft", "skip"],
+            "description": "GET strictness only: required fail hard, soft warn, or skip."
+          },
+          "mirror": { "type": "string", "pattern": "^https://" },
+          "source": { "type": "string", "maxLength": 256 },
+          "note": { "type": "string", "maxLength": 512 }
+        }
+      }
+    },
+    "star_chart": { "type": "object" },
+    "user_protection": { "type": "object" },
+    "immutable_anchors": { "type": "object" },
+    "last_unified_verify": {},
+    "sync_order": { "type": "array" },
+    "stack_root": { "type": "string" }
+  },
+  "additionalProperties": true
+}

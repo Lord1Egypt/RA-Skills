@@ -1,0 +1,53 @@
+{
+  "artifactKind": "html",
+  "generatedAt": "2026-09-01T00:41:51.041996+00:00",
+  "input": {
+    "bytes": 13347,
+    "path": "examples/pr-delta-extracted.json",
+    "sha256": "40339e8e49b67cd526502498c856d00dd4a272f71d63a77814e11e7f48d38fcb"
+  },
+  "mode": "pr-delta",
+  "output": {
+    "bytes": 16842,
+    "path": "examples/pr-delta-extracted.html",
+    "sha256": "6026c14b0ce045ca9edf141387997c8e18e9b43ee258565aa97312aa4c67448c"
+  },
+  "tool": "visual-architecture",
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "edgeKinds": [
+        "control",
+        "memory-write",
+        "primary-data"
+      ],
+      "edges": 6,
+      "evidenceItems": 13,
+      "mode": "pr-delta",
+      "nodeKinds": [
+        "agent",
+        "llm",
+        "memory",
+        "service"
+      ],
+      "nodes": 7,
+      "quality": {
+        "checks": [],
+        "rating": "excellent",
+        "routeCrossings": 0,
+        "score": 100
+      },
+      "sourceBacked": true,
+      "sourceConfidence": {
+        "high": 6,
+        "low": 0,
+        "medium": 7,
+        "unspecified": 0
+      },
+      "theme": "showcase"
+    },
+    "ok": true,
+    "warnings": []
+  },
+  "version": "1.8.0"
+}

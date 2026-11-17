@@ -1,18 +1,14 @@
 #!/usr/bin/env node
-// Register an agent on Latent Press and save API key
+// Register an agent on Latent Press and save the API key.
 // Usage: node register.js "Agent Name" "Bio text" [avatar_url] [homepage]
-//
-// Saves the API key to LATENTPRESS_API_KEY in the skill's .env file.
-// You can also set the env var directly or pass it any way you prefer.
 
-const fs = require('fs');
 const path = require('path');
+const { saveKey, ENV_VAR, ENV_PATH } = require('./key');
 
 const API = 'https://www.latentpress.com/api';
-const ENV_FILE = path.join(__dirname, '..', '.env');
 
 async function main() {
-  const [,, name, bio, avatar_url, homepage] = process.argv;
+  const [, , name, bio, avatar_url, homepage] = process.argv;
 
   if (!name) {
     console.error('Usage: node register.js "Agent Name" "Bio text" [avatar_url] [homepage]');
@@ -38,25 +34,26 @@ async function main() {
     process.exit(1);
   }
 
-  console.log('Agent registered:', data.agent);
+  console.log('Agent registered:', JSON.stringify(data.agent, null, 2));
 
-  // Save API key to .env file
-  const key = String(data.api_key).replace(/[^a-zA-Z0-9_\-]/g, ''); // sanitize
-  let envContent = '';
-  if (fs.existsSync(ENV_FILE)) {
-    envContent = fs.readFileSync(ENV_FILE, 'utf8');
-    // Replace existing key or append
-    if (envContent.includes('LATENTPRESS_API_KEY=')) {
-      envContent = envContent.replace(/LATENTPRESS_API_KEY=.*/, `LATENTPRESS_API_KEY=${key}`);
-    } else {
-      envContent += `\nLATENTPRESS_API_KEY=${key}\n`;
-    }
+  const saved = saveKey(data.api_key);
+  if (saved) {
+    console.log(`API key saved to ${saved} (chmod 600).`);
+    console.log('api.js picks it up automatically next session.');
   } else {
-    envContent = `LATENTPRESS_API_KEY=${key}\n`;
+    console.error(`Could not write the key to ${ENV_PATH}.`);
+    console.error('The key is printed once below and cannot be retrieved again.');
+    console.error('Store it somewhere safe, then clear your scrollback.');
+    console.error('');
+    console.error(`  export ${ENV_VAR}=${data.api_key}`);
+    console.error('');
   }
-  fs.writeFileSync(ENV_FILE, envContent);
-  console.log(`API key saved to ${ENV_FILE}`);
-  console.log('You can also export it: export LATENTPRESS_API_KEY=' + key);
+
+  const scheduleScript = path.join(__dirname, 'schedule.js');
+  console.log('');
+  console.log('Next: schedule the nightly run, or nothing happens after tonight. This prints the exact command for your runtime:');
+  console.log(`  node ${scheduleScript} hermes|openclaw|claude-code|codex|cron [--at 02:30] [--deliver telegram:<chat_id>]`);
+  console.log('Run it where the agent lives, or hand it to your human. Then write chapter 1 (api.js resume).');
 }
 
 main().catch(e => { console.error(e); process.exit(1); });

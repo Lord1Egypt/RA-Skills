@@ -34,18 +34,29 @@ ClawTrader CLI — OpenClaw Agent 调用的统一入口。
 
 import sys
 import json
+import os
 import socket
 import argparse
 import subprocess
 import platform
+import tempfile
 import time
 from pathlib import Path
 
 _SCRIPTS = Path(__file__).parent
 sys.path.insert(0, str(_SCRIPTS))
 import state
+from accounts import AccountPaths, AccountRegistry, AccountRegistryError
 
 _TIMEOUT = 10.0   # CLI 等待 daemon 响应超时秒数
+_REGISTRY: AccountRegistry | None = None
+_INSTANCE: AccountPaths | None = None
+
+
+def _require_instance() -> AccountPaths:
+    if _INSTANCE is None:
+        raise RuntimeError("尚未选择账户实例")
+    return _INSTANCE
 
 
 # ------------------------------------------------------------------ #
@@ -53,9 +64,12 @@ _TIMEOUT = 10.0   # CLI 等待 daemon 响应超时秒数
 # ------------------------------------------------------------------ #
 
 def _send(cmd: dict) -> dict:
+    instance = _require_instance()
+    cmd = {**cmd, "account_id": instance.account_id}
     port = state.get_port()
     if not port:
-        return {"ok": False, "error": "daemon 未运行，请先执行: python clawtrader.py start"}
+        return {"ok": False, "account_id": instance.account_id,
+                "error": "daemon 未运行，请先执行 start"}
     try:
         s = socket.create_connection(("127.0.0.1", port), timeout=_TIMEOUT)
         s.sendall((json.dumps(cmd, ensure_ascii=False) + "\n").encode())
@@ -84,11 +98,12 @@ def _out(data: dict) -> None:
 def _config_wizard() -> None:
     """交互式引导用户填写账户信息并写入 config.json。"""
     import getpass
-    cfg_path = _SCRIPTS.parent / "config.json"
+    instance = _require_instance()
+    cfg_path = instance.config_file
 
     print()
     print("=" * 54)
-    print("  ClawTrader 初始配置向导")
+    print(f"  ClawTrader 账户配置向导 · {instance.display_name}")
     print("  括号内为填写示例，直接回车使用默认值")
     print("=" * 54)
 
@@ -115,15 +130,91 @@ def _config_wizard() -> None:
     cfg["md_front"]    = ask("行情前置   (如 tcp://180.168.146.187:10211)")
     default_inst = input("  默认订阅合约 (逗号分隔，不订阅直接回车): ").strip()
     cfg["default_instruments"] = default_inst
-    cfg["daemon_port"] = 17777
+    cfg["account_id"] = instance.account_id
+    cfg["daemon_port"] = instance.daemon_port or 17777
 
-    cfg_path.write_text(
-        json.dumps(cfg, ensure_ascii=False, indent=2),
-        encoding="utf-8",
-    )
-    print(f"\n  ✓ 配置已保存至 {cfg_path.name}")
+    payload = json.dumps(cfg, ensure_ascii=False, indent=2) + "\n"
+    # Replace atomically so an interrupted configuration cannot leave a
+    # partially-written credential file behind.
+    if cfg_path.exists():
+        try:
+            if cfg_path.read_text(encoding="utf-8") == payload:
+                print(f"\n  ✓ 配置未变化，保留 {cfg_path.name}")
+            else:
+                _atomic_write_text(cfg_path, payload)
+                print(f"\n  ✓ 配置已保存至 {cfg_path.name}")
+        except OSError:
+            _atomic_write_text(cfg_path, payload)
+            print(f"\n  ✓ 配置已保存至 {cfg_path.name}")
+    else:
+        _atomic_write_text(cfg_path, payload)
+        print(f"\n  ✓ 配置已保存至 {cfg_path.name}")
     print("=" * 54)
     print()
+
+
+def _atomic_write_text(path: Path, payload: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fd, temp_name = tempfile.mkstemp(
+        prefix=path.name + ".",
+        suffix=".tmp",
+        dir=str(path.parent),
+    )
+    try:
+        os.fchmod(fd, 0o600)
+        with os.fdopen(fd, "w", encoding="utf-8") as handle:
+            handle.write(payload)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temp_name, path)
+    finally:
+        try:
+            os.unlink(temp_name)
+        except FileNotFoundError:
+            pass
+
+
+def _try_start_lock() -> bool:
+    """Acquire a short-lived cross-process guard for daemon startup."""
+    lock_file = _require_instance().start_lock_file
+    lock_file.parent.mkdir(parents=True, exist_ok=True)
+    for _ in range(2):
+        try:
+            fd = os.open(
+                lock_file,
+                os.O_CREAT | os.O_EXCL | os.O_WRONLY,
+                0o600,
+            )
+        except FileExistsError:
+            try:
+                owner_pid = int(lock_file.read_text(encoding="ascii").strip())
+                if owner_pid > 0:
+                    os.kill(owner_pid, 0)
+                    return False
+            except ProcessLookupError:
+                pass
+            except (FileNotFoundError, ValueError, OSError):
+                return False
+            try:
+                lock_file.unlink()
+            except FileNotFoundError:
+                pass
+            continue
+        else:
+            try:
+                os.write(fd, str(os.getpid()).encode("ascii"))
+            finally:
+                os.close(fd)
+            return True
+    return False
+
+
+def _release_start_lock() -> None:
+    lock_file = _require_instance().start_lock_file
+    try:
+        lock_file.unlink()
+    except FileNotFoundError:
+        pass
 
 
 # ------------------------------------------------------------------ #
@@ -131,49 +222,104 @@ def _config_wizard() -> None:
 # ------------------------------------------------------------------ #
 
 def cmd_start(args) -> None:
+    instance = _require_instance()
     if state.is_running():
-        _out({"ok": False, "error": "daemon 已在运行"})
+        _out({"ok": True, "already_running": True, "pid": state.read().get("pid")})
         return
 
-    # 账户未配置时先运行向导
-    cfg_path = _SCRIPTS.parent / "config.json"
-    if not cfg_path.exists():
-        print("尚未配置账户，即将启动配置向导...")
-        try:
-            _config_wizard()
-        except (KeyboardInterrupt, EOFError):
-            print("\n配置已取消，daemon 未启动。")
+    if not _try_start_lock():
+        # Another CLI process is starting.  Wait briefly for its state file,
+        # then report the resulting daemon rather than spawning a second one.
+        for _ in range(100):
+            if state.is_running():
+                _out({"ok": True, "already_running": True,
+                      "pid": state.read().get("pid")})
+                return
+            time.sleep(0.1)
+        _out({"ok": False, "error": "另一个 start 请求仍在执行，请稍后重试"})
+        return
+
+    try:
+        # Recheck after acquiring the guard to close the check-then-start race.
+        if state.is_running():
+            _out({"ok": True, "already_running": True, "pid": state.read().get("pid")})
             return
 
-    daemon_py = _SCRIPTS / "daemon.py"
-    proc = subprocess.Popen(
-        [sys.executable, str(daemon_py)],
-        creationflags=subprocess.CREATE_NEW_CONSOLE if sys.platform == "win32" else 0,
-    )
-    # 等待 daemon 写 state 文件
-    for _ in range(30):
-        time.sleep(0.5)
-        if state.is_running():
-            _out({"ok": True, "pid": proc.pid, "msg": "daemon 已启动"})
-            return
-    _out({"ok": False, "error": "daemon 启动超时，请检查日志 clawtrader.log"})
+        # 账户未配置时先运行向导
+        cfg_path = instance.config_file
+        if not cfg_path.exists():
+            print("尚未配置账户，即将启动配置向导...")
+            try:
+                _config_wizard()
+            except (KeyboardInterrupt, EOFError):
+                print("\n配置已取消，daemon 未启动。")
+                return
+
+        daemon_py = _SCRIPTS / "daemon.py"
+        daemon_cmd = [sys.executable, str(daemon_py), "--account", instance.account_id]
+        if _REGISTRY and _REGISTRY.path.exists():
+            daemon_cmd.extend(["--registry", str(_REGISTRY.path)])
+        proc = subprocess.Popen(
+            daemon_cmd,
+            creationflags=subprocess.CREATE_NEW_CONSOLE if sys.platform == "win32" else 0,
+        )
+        # 等待 daemon 写 state 文件
+        for _ in range(30):
+            time.sleep(0.5)
+            if state.is_running():
+                _out({"ok": True, "pid": proc.pid, "msg": "daemon 已启动"})
+                return
+        _out({"ok": False, "account_id": instance.account_id,
+              "error": f"daemon 启动超时，请检查日志 {instance.log_file}"})
+    finally:
+        _release_start_lock()
 
 
 def cmd_stop(args) -> None:
-    _out(_send({"cmd": "stop"}))
+    if not state.is_running():
+        _out({"ok": True, "already_stopped": True})
+        return
+    cmd = {"cmd": "stop"}
+    if args.idempotency_key:
+        cmd["idempotency_key"] = args.idempotency_key
+    _out(_send(cmd))
 
 
 def cmd_ping(args) -> None:
     _out(_send({"cmd": "ping"}))
 
 
+def cmd_accounts(args) -> None:
+    registry = _REGISTRY or AccountRegistry()
+    rows = []
+    for item in registry.public_accounts():
+        row = dict(item)
+        if row["enabled"]:
+            paths = registry.resolve(row["account_id"])
+            running = state.is_running_path(paths.state_file)
+            daemon_state = state.read_path(paths.state_file)
+            row.update({
+                "running": running,
+                "pid": daemon_state.get("pid") if running else None,
+                "port": daemon_state.get("port") if running else paths.daemon_port,
+            })
+        rows.append(row)
+    _out({"ok": True, "accounts": rows})
+
+
 def cmd_subscribe(args) -> None:
     instruments = args.instruments
-    _out(_send({"cmd": "subscribe", "instruments": instruments}))
+    cmd = {"cmd": "subscribe", "instruments": instruments}
+    if args.idempotency_key:
+        cmd["idempotency_key"] = args.idempotency_key
+    _out(_send(cmd))
 
 
 def cmd_unsubscribe(args) -> None:
-    _out(_send({"cmd": "unsubscribe", "instruments": args.instruments}))
+    cmd = {"cmd": "unsubscribe", "instruments": args.instruments}
+    if args.idempotency_key:
+        cmd["idempotency_key"] = args.idempotency_key
+    _out(_send(cmd))
 
 
 def cmd_order(args) -> None:
@@ -189,6 +335,8 @@ def cmd_order(args) -> None:
         "time_cond":  args.time_cond,
         "vol_cond":   args.vol_cond,
     }
+    if args.idempotency_key:
+        cmd["idempotency_key"] = args.idempotency_key
     _out(_send(cmd))
 
 
@@ -200,6 +348,8 @@ def cmd_cancel(args) -> None:
         "order_sys_id": args.order_sys_id or "",
         "order_ref":    args.order_ref    or "",
     }
+    if args.idempotency_key:
+        cmd["idempotency_key"] = args.idempotency_key
     _out(_send(cmd))
 
 
@@ -228,7 +378,10 @@ def cmd_alert(args) -> None:
         "action":     "alert",
         "msg":        args.msg or f"{args.instrument} 触发条件 {args.cond}={args.threshold}",
     }
-    _out(_send({"cmd": "add_alert", "condition": cond}))
+    cmd = {"cmd": "add_alert", "condition": cond}
+    if args.idempotency_key:
+        cmd["idempotency_key"] = args.idempotency_key
+    _out(_send(cmd))
 
 
 def cmd_alert_order(args) -> None:
@@ -248,7 +401,10 @@ def cmd_alert_order(args) -> None:
             "volume":     args.vol,
         },
     }
-    _out(_send({"cmd": "add_alert", "condition": cond}))
+    cmd = {"cmd": "add_alert", "condition": cond}
+    if args.idempotency_key:
+        cmd["idempotency_key"] = args.idempotency_key
+    _out(_send(cmd))
 
 
 def cmd_list_alerts(args) -> None:
@@ -256,12 +412,16 @@ def cmd_list_alerts(args) -> None:
 
 
 def cmd_remove_alert(args) -> None:
-    _out(_send({"cmd": "remove_alert", "cond_id": args.cond_id}))
+    cmd = {"cmd": "remove_alert", "cond_id": args.cond_id}
+    if args.idempotency_key:
+        cmd["idempotency_key"] = args.idempotency_key
+    _out(_send(cmd))
 
 
 def cmd_poll(args) -> None:
     """拉取 daemon 推送的事件（告警、成交等）"""
-    _out(_send({"cmd": "poll_events"}))
+    _out(_send({"cmd": "poll_events", "after_seq": args.after_seq,
+                "limit": args.limit}))
 
 
 def cmd_report(args) -> None:
@@ -275,7 +435,10 @@ def cmd_price(args) -> None:
 
 def cmd_cancel_all(args) -> None:
     """批量撤销所有未成交委托"""
-    _out(_send({"cmd": "cancel_all"}))
+    cmd = {"cmd": "cancel_all"}
+    if args.idempotency_key:
+        cmd["idempotency_key"] = args.idempotency_key
+    _out(_send(cmd))
 
 
 def cmd_schedule_order(args) -> None:
@@ -295,7 +458,10 @@ def cmd_schedule_order(args) -> None:
             "vol_cond":   args.vol_cond,
         },
     }
-    _out(_send({"cmd": "add_schedule", "schedule": sched}))
+    cmd = {"cmd": "add_schedule", "schedule": sched}
+    if args.idempotency_key:
+        cmd["idempotency_key"] = args.idempotency_key
+    _out(_send(cmd))
 
 
 def cmd_schedule_login(args) -> None:
@@ -304,7 +470,10 @@ def cmd_schedule_login(args) -> None:
         "type": "login",
         "time": args.time,
     }
-    _out(_send({"cmd": "add_schedule", "schedule": sched}))
+    cmd = {"cmd": "add_schedule", "schedule": sched}
+    if args.idempotency_key:
+        cmd["idempotency_key"] = args.idempotency_key
+    _out(_send(cmd))
 
 
 def cmd_list_schedules(args) -> None:
@@ -312,7 +481,10 @@ def cmd_list_schedules(args) -> None:
 
 
 def cmd_remove_schedule(args) -> None:
-    _out(_send({"cmd": "remove_schedule", "schedule_id": args.schedule_id}))
+    cmd = {"cmd": "remove_schedule", "schedule_id": args.schedule_id}
+    if args.idempotency_key:
+        cmd["idempotency_key"] = args.idempotency_key
+    _out(_send(cmd))
 
 
 def cmd_config(args) -> None:
@@ -328,6 +500,16 @@ def cmd_setup(args) -> None:
     """强制重新编译 ctp_bridge（升级 SDK 或修复编译问题后使用）"""
     system = platform.system()
     bridge_dir = _SCRIPTS / "bridge"
+    lib_names = {
+        "Windows": "ctp_bridge.dll",
+        "Darwin": "libctp_bridge.dylib",
+        "Linux": "libctp_bridge.so",
+    }
+    lib_path = _SCRIPTS / lib_names.get(system, "")
+    if system in lib_names and not args.force and lib_path.exists():
+        _out({"ok": True, "already_configured": True,
+              "msg": f"ctp_bridge 已存在: {lib_path.name}"})
+        return
     if system == "Windows":
         cmd = ["cmd", "/c", str(bridge_dir / "build.bat")]
     elif system == "Darwin":
@@ -360,6 +542,8 @@ def _add_order_args(p):
     p.add_argument("--vol",         type=int,   required=True)
     p.add_argument("--time-cond",   dest="time_cond", default="gfd", choices=["gfd","ioc"])
     p.add_argument("--vol-cond",    dest="vol_cond",  default="any", choices=["any","all"])
+    p.add_argument("--idempotency-key", dest="idempotency_key", default="",
+                   help="幂等键；省略时由规范化请求自动生成")
 
 
 def _add_alert_trigger_args(p, add_instrument=True):
@@ -370,25 +554,37 @@ def _add_alert_trigger_args(p, add_instrument=True):
     p.add_argument("--threshold",  required=True, type=float)
 
 
+def _add_idempotency_arg(p):
+    p.add_argument("--idempotency-key", dest="idempotency_key", default="",
+                   help="幂等键；省略时由规范化请求自动生成")
+
+
 def build_parser() -> argparse.ArgumentParser:
     root = argparse.ArgumentParser(prog="clawtrader", description="ClawTrader CLI")
+    root.add_argument("--account", default="", help="账户别名，如 A/B/C")
+    root.add_argument("--registry", default="", help="账户注册表路径")
     sub  = root.add_subparsers(dest="subcmd", required=True)
 
     # setup / config
-    sub.add_parser("setup",  help="编译 ctp_bridge（升级 SDK 后使用）")
+    p = sub.add_parser("setup", help="编译 ctp_bridge（已存在时默认跳过）")
+    p.add_argument("--force", action="store_true", help="明确要求重新编译")
     sub.add_parser("config", help="重新配置账户信息")
+    sub.add_parser("accounts", help="列出全部账户及实例状态")
 
     # start / stop / ping
     sub.add_parser("start", help="启动 daemon（账户未配置时自动引导）")
-    sub.add_parser("stop",  help="停止 daemon")
+    p = sub.add_parser("stop", help="停止 daemon")
+    _add_idempotency_arg(p)
     sub.add_parser("ping",  help="检测 daemon 状态")
 
     # subscribe / unsubscribe
     p = sub.add_parser("subscribe", help="订阅行情")
     p.add_argument("instruments", help="逗号分隔合约, 如 IF2505,rb2510")
+    _add_idempotency_arg(p)
 
     p = sub.add_parser("unsubscribe", help="退订行情")
     p.add_argument("instruments")
+    _add_idempotency_arg(p)
 
     # order
     p = sub.add_parser("order", help="报单")
@@ -400,6 +596,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--instrument",    default="")
     p.add_argument("--order-sys-id",  dest="order_sys_id", default="", help="通过 OrderSysID 撤单")
     p.add_argument("--order-ref",     dest="order_ref",    default="", help="通过 OrderRef 撤单")
+    _add_idempotency_arg(p)
 
     # position / account
     p = sub.add_parser("position", help="查持仓（实时向 CTP 查询）")
@@ -413,6 +610,7 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("alert", help="设置价格告警")
     _add_alert_trigger_args(p)
     p.add_argument("--msg", default="", help="告警消息文本")
+    _add_idempotency_arg(p)
 
     # alert-order：--instrument 由 _add_order_args 提供，避免重复注册
     p = sub.add_parser("alert-order", help="设置条件单")
@@ -423,8 +621,11 @@ def build_parser() -> argparse.ArgumentParser:
 
     p = sub.add_parser("remove-alert", help="删除条件")
     p.add_argument("cond_id")
+    _add_idempotency_arg(p)
 
-    sub.add_parser("poll",   help="拉取推送事件")
+    p = sub.add_parser("poll", help="读取指定游标之后的事件")
+    p.add_argument("--after-seq", type=int, default=0)
+    p.add_argument("--limit", type=int, default=500)
     sub.add_parser("report", help="生成收盘日报")
 
     # price
@@ -432,7 +633,8 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("instrument", help="合约代码, 如 IF2505")
 
     # cancel-all
-    sub.add_parser("cancel-all", help="批量撤销所有未成交委托")
+    p = sub.add_parser("cancel-all", help="批量撤销所有未成交委托")
+    _add_idempotency_arg(p)
 
     # schedule-order
     p = sub.add_parser("schedule-order", help="定时报单")
@@ -442,12 +644,14 @@ def build_parser() -> argparse.ArgumentParser:
     # schedule-login
     p = sub.add_parser("schedule-login", help="定时登录")
     p.add_argument("--time", required=True, help="触发时间 HH:MM, 如 08:55")
+    _add_idempotency_arg(p)
 
     # list-schedules / remove-schedule
     sub.add_parser("list-schedules", help="查看所有定时任务")
 
     p = sub.add_parser("remove-schedule", help="删除定时任务")
     p.add_argument("schedule_id", help="任务 ID")
+    _add_idempotency_arg(p)
 
     return root
 
@@ -455,6 +659,7 @@ def build_parser() -> argparse.ArgumentParser:
 _HANDLERS = {
     "setup":            cmd_setup,
     "config":           cmd_config,
+    "accounts":         cmd_accounts,
     "start":            cmd_start,
     "stop":             cmd_stop,
     "ping":             cmd_ping,
@@ -482,8 +687,18 @@ _HANDLERS = {
 
 
 def main():
+    global _REGISTRY, _INSTANCE
     parser = build_parser()
     args   = parser.parse_args()
+    try:
+        _REGISTRY = AccountRegistry(Path(args.registry) if args.registry else None)
+        if args.subcmd not in {"setup", "accounts"}:
+            _INSTANCE = _REGISTRY.resolve(args.account or None)
+            _INSTANCE.ensure_layout()
+            state.configure(_INSTANCE.state_file, _INSTANCE.runtime_file)
+    except AccountRegistryError as exc:
+        _out({"ok": False, "error": str(exc)})
+        return
     handler = _HANDLERS.get(args.subcmd)
     if handler:
         handler(args)

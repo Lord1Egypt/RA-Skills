@@ -1,44 +1,55 @@
-## Description: <br>
-Record daily work items into structured local Markdown logs and generate weekly, biweekly, or custom date range work reports from accumulated entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Record daily work items into structured logs and generate weekly or biweekly reports from accumulated data.
 
-## Publisher: <br>
-[apple-sugar-xing](https://clawhub.ai/user/apple-sugar-xing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[apple-sugar-xing](https://clawhub.ai/user/apple-sugar-xing)
 
-## Use Case: <br>
-Employees and developers use this skill to capture daily work activities in local Markdown logs and turn them into structured weekly, biweekly, or custom date range reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local work-history files may retain sensitive project details. <br>
-Mitigation: Avoid recording sensitive details that should not be retained, and periodically review or delete logs under ~/.workbuddy/work-logs/. <br>
-Risk: Generated reports may contain confidential work information and are written into the workspace by default. <br>
-Mitigation: Review generated reports before sharing and specify an appropriate output path when the current workspace is not suitable. <br>
-Risk: Accidental activation could append unwanted work-log entries. <br>
-Mitigation: Use explicit work-log or report-generation commands and review daily Markdown logs for unintended entries. <br>
+## Use Case:
 
+Employees, developers, and individual contributors use this skill to record daily work activities in local Markdown logs and generate Chinese weekly, biweekly, or custom-range work reports for status updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/apple-sugar-xing/skills/biweekly-work-report) <br>
-- [Report Generation Template](references/report-template.md) <br>
-- [Work Log Format Specification](references/work-log-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown files and inline Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local daily work-log files under ~/.workbuddy/work-logs/ and writes generated reports to the current workspace or a user-specified path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Daily work logs and generated reports are stored as persistent plaintext Markdown files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid logging secrets, confidential incidents, customer data, or other sensitive material, and review generated reports before sharing.
+
+Risk: Generated summaries and next-week plans may infer priorities from incomplete or uneven daily logs.
+
+Mitigation: Review the generated report for accuracy and fill gaps before using it as an official status update.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/apple-sugar-xing/skills/biweekly-work-report)
+- [Report Generation Template](references/report-template.md)
+- [Work Log Format Specification](references/work-log-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown daily work logs and Markdown weekly, biweekly, or custom date-range reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes daily logs under ~/.workbuddy/work-logs and writes generated report files to the current workspace or a user-specified path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

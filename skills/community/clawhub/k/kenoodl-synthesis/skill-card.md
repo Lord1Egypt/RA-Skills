@@ -1,48 +1,62 @@
-## Description: <br>
-kenoodl is an orthogonal injection engine -- it synthesizes patterns from domains outside your agent's training data and maps them onto whatever problem it's working on. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+kenoodl is an orthogonal injection engine that sends an agent's working context to an external synthesis service and returns cross-domain structure for problems where the agent is looping or losing novelty.
 
-## Publisher: <br>
-[kenoodl-synthesis](https://clawhub.ai/user/kenoodl-synthesis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kenoodl-synthesis](https://clawhub.ai/user/kenoodl-synthesis)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give an agent instructions, API calls, and optional MCP tooling for sending sanitized problem context to kenoodl.com for external synthesis when its own reasoning is stagnating. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may send broad working context to a paid third-party service. <br>
-Mitigation: Require approval before each call, send only a sanitized task summary, and avoid secrets, source code, personal data, and regulated data. <br>
-Risk: The KENOODL_TOKEN authorizes API use and may incur paid usage. <br>
-Mitigation: Use a revocable, low-balance token and keep it in the runtime environment rather than skill files. <br>
-Risk: Raw on-chain calldata can expose submitted context. <br>
-Mitigation: Avoid raw context in on-chain calldata; use the documented ECIES encryption path only after confirming the recipient and trust model. <br>
+## Use Case:
 
+Developers and agent operators use this skill to let an agent submit sanitized working context to kenoodl.com when it detects stagnation, then integrate the returned synthesis into ongoing reasoning or coding work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kenoodl-synthesis/kenoodl-synthesis) <br>
-- [kenoodl API documentation](https://kenoodl.com/api) <br>
-- [OpenAPI specification](https://kenoodl.com/api/openapi.json) <br>
-- [Agent discovery card](https://kenoodl.com/.well-known/agent-card.json) <br>
-- [AI discovery surface](https://kenoodl.com/.well-known/ai.json) <br>
-- [README](README.md) <br>
-- [Agent instructions](instructions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with HTTP examples, shell commands, configuration snippets, and MCP tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access to kenoodl.com; CLI and MCP paths require KENOODL_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: ClawHub release evidence) <br>
+Risk: The skill sends working context to kenoodl.com for external synthesis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Sanitize every payload and exclude secrets, credentials, private customer data, proprietary code, and regulated information unless the exact payload is explicitly approved.
+
+Risk: The skill describes funded token and autonomous crypto payment flows.
+
+Mitigation: Require human approval for paid calls and disable or avoid autonomous wallet and payment flows.
+
+Risk: On-chain calldata can expose submitted context.
+
+Mitigation: Do not submit sensitive context on-chain; use an approved encrypted path only when the payload and encryption behavior have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kenoodl-synthesis/skills/kenoodl-synthesis)
+- [Publisher profile](https://clawhub.ai/user/kenoodl-synthesis)
+- [kenoodl API documentation](https://kenoodl.com/api)
+- [kenoodl OpenAPI specification](https://kenoodl.com/api/openapi.json)
+- [kenoodl agent card](https://kenoodl.com/.well-known/agent-card.json)
+- [kenoodl AI discovery document](https://kenoodl.com/.well-known/ai.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with HTTP examples, curl commands, JSON snippets, and MCP text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include queued job IDs, polling status, account balance text, or synthesis content returned by the external service.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

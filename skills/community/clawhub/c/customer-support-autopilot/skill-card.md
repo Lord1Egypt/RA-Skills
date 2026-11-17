@@ -1,45 +1,59 @@
-## Description: <br>
-Classify customer support tickets, draft accurate responses, suggest macros, and route escalations based on risk, SLA, and business impact. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Classify customer support tickets, draft accurate responses, suggest macros, and route escalations based on risk, SLA, and business impact.
 
-## Publisher: <br>
-[anugotta](https://clawhub.ai/user/anugotta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anugotta](https://clawhub.ai/user/anugotta)
 
-## Use Case: <br>
-Support teams use this skill to triage incoming customer tickets, draft policy-aware responses, recommend macros, and route cases to the right escalation tier. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafts may include inaccurate SLA, refund, billing, or policy statements. <br>
-Mitigation: Review drafts before sending and verify policy-specific statements against current support references. <br>
-Risk: Customer tickets may contain sensitive personal or account information. <br>
-Mitigation: Avoid including unnecessary sensitive customer information in prompts and do not disclose sensitive internal information. <br>
-Risk: Legal, security, billing, fraud, abuse, or other regulated cases may require higher-touch handling. <br>
-Mitigation: Escalate high-risk cases immediately according to approved L1/L2/L3 routing and incident contacts. <br>
+## Use Case:
 
+Support teams and customer-facing agents use this skill to triage tickets, draft policy-grounded replies, recommend macros, and route escalations for risky or urgent cases.
 
-## Reference(s): <br>
-- [Customer Support Autopilot on ClawHub](https://clawhub.ai/anugotta/customer-support-autopilot) <br>
-- [Publisher profile: anugotta](https://clawhub.ai/user/anugotta) <br>
-- [Setup](setup.md) <br>
-- [Examples](examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured text containing category, severity, draft response, escalation recommendation, SLA target, and required follow-up.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent drafts should be reviewed against current support policy before sending to customers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Drafted support responses may be wrong if required support policies, SLA rules, or escalation criteria are missing or stale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide current support policies, SLA definitions, escalation rules, tone guidance, and prohibited claims before use.
+
+Risk: Legal, security, billing, fraud, abuse, or other high-risk cases may need judgment beyond automated drafting.
+
+Mitigation: Keep a human review and escalation step for high-risk cases before sending responses or taking action.
+
+Risk: Ticket data and support policy context can contain sensitive information.
+
+Mitigation: Provide only the ticket data and policy references needed for the task and avoid disclosing sensitive internal information in generated replies.
+
+## Reference(s):
+
+- [Customer Support Autopilot on ClawHub](https://clawhub.ai/anugotta/skills/customer-support-autopilot)
+- [setup.md](artifact/setup.md)
+- [examples.md](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text containing ticket category, severity, draft response, escalation recommendation, SLA target, and follow-up notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires relevant support policies, escalation rules, SLA definitions, tone guidance, and prohibited claims to produce grounded recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

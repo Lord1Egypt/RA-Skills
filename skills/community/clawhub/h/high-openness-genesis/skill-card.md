@@ -1,40 +1,58 @@
-## Description: <br>
-A prompt-only behavioral skill that pushes an agent toward unconventional, cross-disciplinary, sensory, and surprising responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-Openness Genesis is a prompt-only behavioral modifier that encourages agent responses to be more creative, unconventional, cross-disciplinary, sensory, and surprising.
 
-## Publisher: <br>
-[liuxudong0031-star](https://clawhub.ai/user/liuxudong0031-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuxudong0031-star](https://clawhub.ai/user/liuxudong0031-star)
 
-## Use Case: <br>
-Users install this skill to make an agent produce more adventurous creative, design, writing, coding, and planning responses. It is best suited for exploratory ideation rather than tasks that need cautious, standard, or highly factual answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill globally favors adventurous answers over cautious or standard responses, which can reduce reliability in high-stakes or fact-sensitive work. <br>
-Mitigation: Install it only for creative or exploratory tasks, and do not use it for medical, legal, financial, security, compliance, factual, or production-code work where conservative answers are needed. <br>
-Risk: The prompt-only behavior asks the agent to reject answers that seem too safe, which may amplify unusual suggestions beyond the user's actual needs. <br>
-Mitigation: Keep normal safety constraints and human review in place, and disable the skill unless the task explicitly benefits from experimental creativity. <br>
+## Use Case:
 
+Developers, writers, designers, and other agent users can apply this skill when they intentionally want more unconventional brainstorming, creative writing, design ideation, or exploratory code suggestions. It is best suited to creative work where novelty is more important than concise, standard, or risk-minimized answers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuxudong0031-star/high-openness-genesis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language responses, usually Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only behavior that applies broadly to generation tasks when installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.md) <br>
+Risk: The skill broadly tries to override agent behavior across conversations and pushes the agent away from safe, standard answers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only when the user explicitly wants experimental creativity, and disable or narrow it for routine, safety-sensitive, or precision-focused tasks.
+
+Risk: Ordinary responses may become longer, less direct, less conventional, or less aligned with requests for simple solutions.
+
+Mitigation: Review outputs for relevance and concision before use, especially when the user asks for a straightforward answer.
+
+Risk: Creative pressure can make outputs less suitable for coding, security, legal, medical, financial, or operational work.
+
+Mitigation: Use stricter task-specific instructions and human review for high-impact domains, and prefer standard safe guidance over novelty when correctness or compliance matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuxudong0031-star/skills/high-openness-genesis)
+- [Publisher profile](https://clawhub.ai/user/liuxudong0031-star)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Natural-language agent responses, often in Markdown or code blocks depending on the user's task]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only behavior modifier; it does not execute code or create files by itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact text)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

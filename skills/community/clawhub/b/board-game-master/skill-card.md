@@ -1,42 +1,55 @@
-## Description: <br>
-Board game strategy coach for social deduction games: Decrypto (截码战/谍报风云), Blood on the Clocktower (血染钟楼), and Avalon (阿瓦隆). Provides role-specific tactics, team strategies, and advanced meta-game analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Board game strategy coach for social deduction games: Decrypto (截码战/谍报风云), Blood on the Clocktower (血染钟楼), and Avalon (阿瓦隆). Provides role-specific tactics, team strategies, and advanced meta-game analysis.
 
-## Publisher: <br>
-[enihsago](https://clawhub.ai/user/enihsago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[enihsago](https://clawhub.ai/user/enihsago)
 
-## Use Case: <br>
-External users use this skill to get bilingual, actionable strategy guidance for supported social deduction board games, including role tactics, team strategy, vote tracking, and meta-game analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Strategic recommendations may be incorrect for a group's house rules, edition, or live table context. <br>
-Mitigation: Treat guidance as game advice, compare it with the official rules and table agreements, and adjust decisions to the current game state. <br>
-Risk: The skill discusses bluffing, hidden-role reads, and social deduction tactics intended for gameplay. <br>
-Mitigation: Use the advice only in consensual board game settings and avoid applying deception-oriented tactics outside the game. <br>
+## Use Case:
 
+External players use this agent skill to get bilingual, actionable strategy guidance for Decrypto, Blood on the Clocktower, and Avalon. It helps users reason about roles, voting patterns, clue-giving, team composition, and game-specific tactics.
 
-## Reference(s): <br>
-- [Avalon / 阿瓦隆 Strategy Guide](references/avalon.md) <br>
-- [Blood on the Clocktower / 血染钟楼 Strategy Guide](references/blood-on-the-clocktower.md) <br>
-- [Decrypto / 截码战 Strategy Guide](references/decrypto.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with bilingual explanations and tables when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Matches the user's dominant language and asks for the target game when unclear.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill discusses deception, killing, assassination, poisoning, and similar terms as board-game mechanics, which could be misread outside the game context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep responses clearly scoped to supported board games and avoid turning game tactics into real-world instructions.
+
+Risk: Opinionated strategy advice can be inaccurate for a specific table, edition, player count, or house rule.
+
+Mitigation: Ask for the game, edition, role setup, player count, and current state before giving decisive recommendations.
+
+## Reference(s):
+
+- [Avalon / 阿瓦隆 Strategy Guide](references/avalon.md)
+- [Blood on the Clocktower / 血染钟楼 Strategy Guide](references/blood-on-the-clocktower.md)
+- [Decrypto Strategy Guide / 截码战策略指南](references/decrypto.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown]
+
+**Output Format:** [Markdown text, often bilingual and sometimes structured as tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No files, shell commands, API calls, or configuration changes are produced.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

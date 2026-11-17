@@ -2,7 +2,7 @@
 name: supply-chain-advisory
 description: |
   Audits dependency supply chains for bad versions, lockfile drift, and artifact integrity
-version: 1.9.8
+version: 1.10.3
 triggers:
   - security
   - supply-chain
@@ -17,7 +17,7 @@ source: claude-night-market
 source_plugin: leyline
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 ## Overview
@@ -44,9 +44,10 @@ responding to compromised packages in Python ecosystems.
 The blocklist is at `${CLAUDE_SKILL_DIR}/known-bad-versions.json`.
 It is consumed by:
 
-1. **SessionStart hook** — warns per-session when compromised versions detected
-2. **`make supply-chain-scan`** — CI/local scanning target
-3. **This skill** — manual audit guidance
+1. **SessionStart hook**: warns per-session when compromised
+   versions detected
+2. **`make supply-chain-scan`**: CI/local scanning target
+3. **This skill**: manual audit guidance
 
 ### Blocklist Format
 
@@ -104,7 +105,23 @@ will fail with a hash mismatch. This is your strongest automatic defense.
 
 ## Limitations
 
-- Zero-day supply chain attacks have no prior advisory — lockfile hashes
+- Zero-day supply chain attacks have no prior advisory: lockfile hashes
   are the only automatic defense during the attack window
 - Safety/CVE databases lag behind real-world compromises
 - OSV provides broader coverage but is still reactive
+
+## Exit Criteria
+
+- [ ] `${CLAUDE_SKILL_DIR}/known-bad-versions.json` checked against
+  all lockfiles in scope; any match reported with package name,
+  bad version, severity, and advisory URL
+- [ ] When a new known-bad entry is added: version exclusion
+  (`!=x.y.z`) added to the affected `pyproject.toml`, entry
+  documented in `docs/dependency-audit.md`, and
+  `make supply-chain-scan` run to confirm detection works
+- [ ] `uv.lock` SHA256 hash integrity verified; `uv sync` failure
+  on hash mismatch surfaces as an explicit supply-chain warning
+  rather than a generic install error
+- [ ] Artifact scan checks for malicious file patterns (`.pth`
+  files, unexpected scripts) in virtualenv paths before the
+  session proceeds

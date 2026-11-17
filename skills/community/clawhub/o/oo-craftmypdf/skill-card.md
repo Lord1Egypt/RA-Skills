@@ -1,45 +1,56 @@
-## Description: <br>
-CraftMyPDF helps an agent use the OOMOL `oo` CLI to inspect CraftMyPDF schemas, generate hosted PDFs from templates, and read account or template information through an OOMOL-connected CraftMyPDF account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inspect CraftMyPDF account and template data and generate PDFs from CraftMyPDF templates.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to create PDFs from CraftMyPDF templates and inspect CraftMyPDF account or template data without handling raw API tokens directly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The one-time `oo` CLI installer uses shell or PowerShell commands that should be reviewed before execution. <br>
-Mitigation: Review the official install guide and installer script, or use a trusted package path, before running installation commands. <br>
-Risk: PDF generation is a write action that can create hosted output from user-provided template data. <br>
-Mitigation: Confirm the exact template ID, payload, and expected effect with the user before running `create_pdf`. <br>
-Risk: The skill depends on OOMOL as the credential broker for CraftMyPDF. <br>
-Mitigation: Install only when using OOMOL for credential mediation is acceptable, and reconnect CraftMyPDF only after authentication or connection failures. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect CraftMyPDF account and template details and generate PDFs from templates.
 
-## Reference(s): <br>
-- [CraftMyPDF homepage](https://craftmypdf.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [CraftMyPDF ClawHub listing](https://clawhub.ai/oomol/oo-craftmypdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent actions can return JSON responses from the `oo` CLI, including hosted PDF URLs and execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and skill frontmatter) <br>
+Risk: First-time setup may execute unverified downloaded code and may install additional persistent agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify a fixed oo CLI release before setup; consider disabling automatic skill synchronization.
+
+Risk: PDF generation is a write action, and generated PDFs are returned through hosted output links.
+
+Mitigation: Confirm the exact payload and effect before generation, and review how the hosted PDF output will be handled.
+
+## Reference(s):
+
+- [CraftMyPDF API documentation](https://craftmypdf.com/docs/index.html)
+- [CraftMyPDF homepage](https://craftmypdf.com)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-craftmypdf)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text]
+
+**Output Format:** [JSON responses and natural-language guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Account and template data, or a hosted PDF URL with transaction metadata.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

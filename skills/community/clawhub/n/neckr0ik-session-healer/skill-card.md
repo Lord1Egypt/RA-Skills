@@ -1,42 +1,55 @@
-## Description: <br>
-Automatically detects and repairs locked OpenClaw session files by reporting stale locks, clearing them, and recovering failed sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically detects and heals locked OpenClaw session files, clears stale locks, and recovers failed sessions after lock timeout errors.
 
-## Publisher: <br>
-[Neckr0ik](https://clawhub.ai/user/Neckr0ik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[neckr0ik](https://clawhub.ai/user/neckr0ik)
 
-## Use Case: <br>
-Developers and operators use this skill to diagnose OpenClaw session lock timeouts, identify stale lock files, and repair or recover affected sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can alter OpenClaw session files and remove lock files, which may disrupt running agents or corrupt session state. <br>
-Mitigation: Inspect sessions first with check or dry-run behavior, keep backups, and avoid force-clearing locks while OpenClaw agents are running. <br>
-Risk: Unlocking or recovering the wrong session can affect active or recoverable session data. <br>
-Mitigation: Manually verify that a session is inactive before unlocking or recovering it, and rely on backups before modifying session files. <br>
+## Use Case:
 
+Developers and engineers use this skill to diagnose OpenClaw session lock errors, clear stale lock files, unlock specific sessions, and recover corrupted session JSONL files.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Neckr0ik/neckr0ik-session-healer) <br>
-- [Skill documentation](SKILL.md) <br>
-- [Main healer script](scripts/healer.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify OpenClaw lock and session files when heal, unlock, or recover commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, claw.json, server release metadata) <br>
+Risk: The tool can delete OpenClaw session lock files, including active locks when force options are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run dry-run checks first, stop active OpenClaw processes before unlocking or healing, and avoid force options unless the active process state has been verified.
+
+Risk: The recovery command can modify session JSONL files while removing corrupted lines.
+
+Mitigation: Use exact session IDs and keep backups before recovery; confirm the recovered session contents before continuing work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neckr0ik/skills/neckr0ik-session-healer)
+- [SKILL.md](artifact/SKILL.md)
+- [healer.py](artifact/scripts/healer.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with CLI command examples and terminal status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or run local repair commands that inspect, delete, or rewrite OpenClaw session files.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, artifact/claw.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

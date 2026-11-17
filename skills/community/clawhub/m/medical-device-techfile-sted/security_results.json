@@ -1,0 +1,49 @@
+{
+  "skill": "medical-device-techfile-sted",
+  "version": "1.0.0",
+  "timestamp_local": "2026-08-28T00:00:25",
+  "scope": "本地闭环 · 零真实凭据 · 可重复",
+  "dimensions": [
+    {
+      "name": "官方链接可信度",
+      "score": 5.0,
+      "note": "9 条外链全部官方域"
+    },
+    {
+      "name": "敏感信息隔离",
+      "score": 5.0,
+      "note": "0 命中"
+    },
+    {
+      "name": "法规时效标注",
+      "score": 5.0,
+      "note": "时效关键词命中 4/6"
+    },
+    {
+      "name": "边界与免责",
+      "score": 5.0,
+      "note": "边界关键词命中 5/6"
+    },
+    {
+      "name": "权属与许可",
+      "score": 5,
+      "note": "LICENSE.md+©+知识版权+品牌署名"
+    },
+    {
+      "name": "frontmatter 全字段",
+      "score": 5.0,
+      "note": "13 字段齐全"
+    },
+    {
+      "name": "导航一致性",
+      "score": 5.0,
+      "note": "导航引用 1 文件、覆盖 7 章"
+    },
+    {
+      "name": "打包纯净",
+      "score": 5.0,
+      "note": "无缓存/二进制/元数据"
+    }
+  ],
+  "overall": 5.0
+}

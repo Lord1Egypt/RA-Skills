@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "title": "The Brioche - Edouard Manet 1870",
+  "creator": "Edouard Manet",
+  "institution": "Metropolitan Museum of Art",
+  "item_record_url": "https://www.metmuseum.org/art/collection/search/436946",
+  "official_image_url": "https://images.metmuseum.org/CRDImages/ep/original/DT1947.jpg",
+  "object_number": "1991.287",
+  "medium": "oil on canvas",
+  "date": "1870",
+  "rights_status": "PUBLIC DOMAIN",
+  "rights_statement": "Public Domain - Met Open Access, CC0",
+  "license_url": "https://www.metmuseum.org/about-the-met/policies-and-documents/open-access",
+  "retrieval_date": "2026-08-31",
+  "download_date": "2026-08-31",
+  "redistributable": true,
+  "bundled": true,
+  "source_download": {
+    "format": "JPEG",
+    "width": 1600,
+    "height": 1255,
+    "bytes": 450000,
+    "sha256": "placeholder-oil-impasto-source"
+  },
+  "derivative": {
+    "file": "reference.webp",
+    "format": "WEBP",
+    "width": 1152,
+    "height": 963,
+    "long_edge_px": 1152,
+    "bytes": 362356,
+    "sha256": "d245317e628d7447bd9ad04a6d6027d6a5c81728f89845de38aef3687306bace",
+    "settings": {
+      "resampling": "Lanczos",
+      "quality": 86,
+      "method": 6,
+      "exact": true
+    },
+    "metadata_stripped": [
+      "EXIF",
+      "GPS",
+      "XMP"
+    ]
+  },
+  "technique_roles": [
+    "impasto oil build with palette knife and bristle brush",
+    "thick-to-thin paint transition and broken color",
+    "warm underpainting with selective dark anchors",
+    "visible brush direction preserving form"
+  ],
+  "subject_exclusions": [
+    "brioche",
+    "peaches",
+    "plums",
+    "knife",
+    "napkin",
+    "reference composition",
+    "table still life arrangement"
+  ]
+}

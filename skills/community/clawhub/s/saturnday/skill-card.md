@@ -1,44 +1,58 @@
-## Description: <br>
-Saturnday provides governed AI software execution with deterministic governance checks, LLM-assisted security triage, AI-backed build workflows, governed document generation, release preflight inspection, and auto-repair. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Saturnday helps developers govern AI-built software from scan to build to repair with deterministic checks, LLM-assisted security triage, governed execution, document generation, release inspection, and auto-fix workflows.
 
-## Publisher: <br>
-[honouralexwill](https://clawhub.ai/user/honouralexwill) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[honouralexwill](https://clawhub.ai/user/honouralexwill)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to scan skills and repositories, run governance checks before merge or deployment, build projects from briefs under per-commit governance, create governed documents, inspect release artifacts, and repair findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Run, guard, and repair modes can modify the target repository through commits, generated evidence, and related workflow files. <br>
-Mitigation: Use these modes only on intended repositories with a clean git state, backup, or disposable branch; use scan mode for lower-impact review. <br>
-Risk: AI-backed run mode can transmit repository contents to the selected backend provider. <br>
-Mitigation: Choose an explicit approved backend and avoid running it on confidential or regulated code unless that provider is authorized for the data. <br>
-Risk: The skill depends on installing and executing the external Saturnday package. <br>
-Mitigation: Install only when you trust the package source and verify the installed Saturnday version before use. <br>
+## Use Case:
 
+Developers and engineers use Saturnday to scan skills and repositories, run governance checks, build projects from briefs under per-commit governance, produce governed documents, inspect release artifacts, and repair findings.
 
-## Reference(s): <br>
-- [ClawHub Saturnday skill page](https://clawhub.ai/honouralexwill/saturnday) <br>
-- [Saturnday homepage](https://www.saturnday.dev) <br>
-- [Saturnday skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON results from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Run and guard workflows may create governance evidence, reports, progress logs, plans, and commits in the target repository.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.1 (source: server release evidence; artifact frontmatter reports 1.8.0) <br>
+Risk: Guard and Run modes can modify a target repository, including creating commits and evidence directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use Scan mode for read-mostly review work, and run Guard or Run only on repositories or branches prepared for automated changes.
+
+Risk: Run mode can transmit repository contents to the selected AI backend for code generation.
+
+Mitigation: Expose only the repository and backend credentials required for the task, and avoid using Run mode on sensitive code unless that data transfer is approved.
+
+Risk: The skill depends on the external Saturnday package and optional AI backend credentials or CLI tools.
+
+Mitigation: Install Saturnday in a virtual environment or container and provide only the API key or CLI access needed for the chosen backend.
+
+## Reference(s):
+
+- [Saturnday homepage](https://www.saturnday.dev)
+- [ClawHub Saturnday skill page](https://clawhub.ai/honouralexwill/skills/saturnday)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Terminal output with JSON results, Markdown reports, evidence directories, generated code, and configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scan mode is read-mostly; Guard and Run modes may create git commits, evidence directories, progress logs, review reports, and project files.]
+
+## Skill Version(s):
+
+1.8.1 (source: server release metadata; artifact frontmatter reports 1.8.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

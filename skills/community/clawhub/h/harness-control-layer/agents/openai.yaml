@@ -1,0 +1,5 @@
+interface:
+  display_name: "Harness Control Layer"
+  short_description: "Route skills, memory, safety checks, and verification in large OpenClaw setups."
+  default_prompt: "Use $harness-control-layer to route this OpenClaw task through the right skill, memory surface, safety preflight, and verification checks."
+

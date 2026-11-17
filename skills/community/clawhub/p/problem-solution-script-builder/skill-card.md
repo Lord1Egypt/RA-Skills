@@ -1,41 +1,49 @@
-## Description: <br>
-Creates clear, creator-style ecommerce scripts that outline a real problem, introduce a believable product solution, and end with a targeted call to action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates clear, creator-style ecommerce scripts that outline a real problem, introduce a believable product solution, and end with a targeted call to action.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Creators, marketers, and ecommerce teams use this skill to turn a product, audience, pain point, and proof into short-form direct-response scripts for TikTok Shop, UGC, affiliate, PDP video, and similar ecommerce content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts may include unsupported product claims, proof points, testimonials, or calls to action if the input is inaccurate or incomplete. <br>
-Mitigation: Verify product facts, substantiation, compliance constraints, and advertising claims before publishing. <br>
-Risk: Problem-solution scripts can overstate urgency or outcomes when optimized for direct response. <br>
-Mitigation: Keep language specific, avoid guarantees, and align the CTA with the documented offer and funnel stage. <br>
+## Use Case:
 
+External creators, ecommerce teams, and affiliate marketers use this skill to turn product details, buyer pain points, proof, and CTA goals into short-form problem-solution scripts for TikTok Shop, UGC briefs, PDP videos, and direct-response creator content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Leooooooow/problem-solution-script-builder) <br>
-- [Output template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with a beat-by-beat script, hook, problem setup, agitation, solution introduction, proof cue, CTA, optional variants, and next actions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided product, audience, pain point, mechanism, proof, platform, target length, and CTA goal.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated ecommerce scripts can contain unsupported guarantees, exaggerated product claims, or platform-noncompliant marketing language if the user supplies weak proof.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide accurate product proof, review all claims for truthfulness, and check platform compliance before publishing.
+
+## Reference(s):
+
+- [Problem Solution Script Builder Output Template](artifact/references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with beat-by-beat script sections, hooks, proof or demonstration cues, CTA, and optional variants]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include shorter or punchier alternate versions when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

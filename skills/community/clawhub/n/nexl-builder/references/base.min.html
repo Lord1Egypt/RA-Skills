@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{BRAND_NAME} — 极简作品集</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0A0A; --fg:#F5F5F5; --muted:#8A8A8A; --accent:{BRAND_ACCENT}; /* 替换为品牌主色 hex */
+    --line:rgba(245,245,245,.12);
+    --display:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --ease:cubic-bezier(.22,1,.36,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--fg);font-family:var(--display);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:var(--accent);color:#0A0A0A}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+  .mono{font-family:var(--mono)}
+  .cursor-dot,.cursor-ring{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;border-radius:50%;mix-blend-mode:difference;transform:translate(-50%,-50%)}
+  .cursor-dot{width:6px;height:6px;background:#fff}
+  .cursor-ring{width:38px;height:38px;border:1px solid #fff;transition:width .25s var(--ease),height .25s var(--ease),opacity .25s}
+  .cursor-ring.is-hover{width:64px;height:64px;background:rgba(255,255,255,.08)}
+  nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:20px 28px;background:rgba(10,10,10,0);border-bottom:1px solid transparent;transition:background .4s var(--ease),border-color .4s var(--ease),padding .4s var(--ease)}
+  nav.scrolled{background:rgba(10,10,10,.7);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:14px 28px}
+  nav .brand{font-family:var(--mono);font-weight:500;font-size:15px;letter-spacing:-.06em}
+  nav .menu{display:flex;gap:26px}
+  nav .menu a{color:var(--fg);text-decoration:none;font-family:var(--mono);font-size:13px;letter-spacing:-.02em;position:relative;padding:4px 0}
+  nav .menu a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--accent);transition:width .3s var(--ease)}
+  nav .menu a:hover{color:var(--accent)}
+  nav .menu a:hover::after{width:100%}
+  header{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative}
+  .eyebrow{font-family:var(--mono);color:var(--accent);font-size:13px;letter-spacing:.24em;text-transform:uppercase;margin-bottom:28px;opacity:0;transform:translateY(12px);animation:fadeUp .8s var(--ease) .1s forwards}
+  h1{font-weight:700;line-height:.9;letter-spacing:-.045em;font-size:clamp(64px,13vw,168px)}
+  h1 .line{display:block;overflow:hidden}
+  h1 .char{display:inline-block;transform:translateY(110%);animation:charIn .9s var(--ease) forwards;animation-delay:calc(.25s + var(--i) * .035s)}
+  .lede{margin-top:34px;font-size:clamp(18px,2.2vw,25px);color:var(--muted);max-width:34ch;line-height:1.45;opacity:0;transform:translateY(16px);animation:fadeUp .9s var(--ease) .9s forwards}
+  .lede b{color:var(--fg);font-weight:500}
+  .scroll-hint{position:absolute;bottom:36px;left:28px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeUp 1s var(--ease) 1.4s forwards}
+  .scroll-hint .bar{width:36px;height:1px;background:var(--muted);position:relative;overflow:hidden}
+  .scroll-hint .bar::after{content:"";position:absolute;inset:0;background:var(--accent);transform:translateX(-100%);animation:slide 2.2s var(--ease) infinite}
+  section{padding:130px 0;border-top:1px solid var(--line)}
+  h2{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:54px;display:flex;align-items:center;gap:14px}
+  h2::before{content:"";width:28px;height:1px;background:var(--accent)}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .card{position:relative;aspect-ratio:4/3;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:flex-end;padding:26px;overflow:hidden;transition:transform .4s var(--ease),border-color .4s var(--ease);text-decoration:none;color:inherit}
+  .card::before{content:"";position:absolute;inset:0;background:var(--accent);transform:scaleY(0);transform-origin:bottom;opacity:.06;transition:transform .5s var(--ease)}
+  .card:hover{transform:translateY(-6px);border-color:var(--accent)}
+  .card:hover::before{transform:scaleY(1)}
+  .card .index{position:absolute;top:22px;right:26px;font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.1em}
+  .card .k{font-family:var(--mono);color:var(--accent);font-size:12px;letter-spacing:.14em;position:relative}
+  .card .t{font-size:24px;font-weight:600;margin-top:10px;letter-spacing:-.02em;position:relative;transition:transform .4s var(--ease)}
+  .card .d{color:var(--muted);font-size:14px;margin-top:8px;position:relative}
+  .card:hover .t{transform:translateX(6px)}
+  .about{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:start}
+  .about p{font-size:18px;color:var(--muted);line-height:1.6}
+  .about p b{color:var(--fg);font-weight:500}
+  .about p + p{margin-top:20px}
+  .about .tag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:4px 12px;margin-bottom:26px}
+  .contact h3{font-size:clamp(34px,6.5vw,72px);font-weight:700;letter-spacing:-.03em;line-height:1.02}
+  .contact a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:3px;transition:opacity .3s var(--ease)}
+  .contact a:hover{opacity:.7}
+  .contact .mail{margin-top:32px;font-family:var(--mono);font-size:clamp(16px,2vw,22px)}
+  footer{padding:54px 0;border-top:1px solid var(--line);color:var(--muted);font-family:var(--mono);font-size:12px;letter-spacing:.02em;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+  footer a{color:var(--muted);text-decoration:none;transition:color .3s}
+  footer a:hover{color:var(--fg)}
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  @keyframes charIn{to{transform:translateY(0)}}
+  @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+  @keyframes slide{to{transform:translateX(100%)}}
+  @media(max-width:720px){.grid,.about{grid-template-columns:1fr}nav .menu{gap:16px}section{padding:96px 0}}
+  @media(hover:none){.cursor-dot,.cursor-ring{display:none}.card:hover{transform:none}}
+</style>
+</head>
+<body>
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+<nav id="nav">
+  <span class="brand">{BRAND_NAME}</span>
+  <span class="menu"><a href="#work" data-magnetic>作品</a><a href="#about" data-magnetic>关于</a><a href="#contact" data-magnetic>联系</a></span>
+</nav>
+<header class="wrap">
+  <div class="eyebrow">{BRAND_KICKER}</div>
+  <h1>
+    <span class="line" data-split>{BRAND_NAME_LINE1}</span>
+    <span class="line" data-split>{BRAND_NAME_LINE2}</span>
+  </h1>
+  <p class="lede">{BRAND_TAGLINE}</p>
+  <div class="scroll-hint"><span class="bar"></span> Scroll</div>
+</header>
+<section id="work" class="wrap">
+  <h2 class="reveal">精选作品 / Selected Work</h2>
+  <div class="grid">
+    <a class="card reveal" href="#" data-magnetic><span class="index">01</span><span class="k">{PROJECT_1_KIND}</span><span class="t">{PROJECT_1_TITLE}</span><span class="d">{PROJECT_1_DESC}</span></a>
+    <a class="card reveal" href="#" data-magnetic><span class="index">02</span><span class="k">{PROJECT_2_KIND}</span><span class="t">{PROJECT_2_TITLE}</span><span class="d">{PROJECT_2_DESC}</span></a>
+    <a class="card reveal" href="#" data-magnetic><span class="index">03</span><span class="k">{PROJECT_3_KIND}</span><span class="t">{PROJECT_3_TITLE}</span><span class="d">{PROJECT_3_DESC}</span></a>
+    <a class="card reveal" href="#" data-magnetic><span class="index">04</span><span class="k">{PROJECT_4_KIND}</span><span class="t">{PROJECT_4_TITLE}</span><span class="d">{PROJECT_4_DESC}</span></a>
+  </div>
+</section>
+<section id="about" class="wrap about">
+  <div><span class="tag reveal">ABOUT</span><p class="reveal">{ABOUT_P1}</p><p class="reveal">{ABOUT_P2}</p></div>
+  <div><p class="reveal">{ABOUT_P3}</p><p class="reveal">{ABOUT_P4}</p></div>
+</section>
+<section id="contact" class="wrap contact">
+  <h2 class="reveal">联系 / Contact</h2>
+  <h3 class="reveal">{CONTACT_HEADLINE}</h3>
+  <p class="mail reveal"><a href="mailto:{BRAND_EMAIL}" data-magnetic>{BRAND_EMAIL}</a></p>
+</section>
+<footer class="wrap">
+  <span>{BRAND_COPYRIGHT}</span>
+  <span>由 <a href="https://github.com/nexl-web-skills/nexl-web-skills" target="_blank" rel="noopener">nexl</a> 驱动 · 独立站数字资产</span>
+</footer>
+<script>
+(function(){
+  document.querySelectorAll('[data-split]').forEach(function(el){
+    var chars = Array.from(el.textContent);
+    el.textContent = '';
+    chars.forEach(function(ch, i){
+      var s = document.createElement('span');
+      s.className = 'char';
+      s.style.setProperty('--i', i);
+      s.textContent = ch === ' ' ? '\u00A0' : ch;
+      el.appendChild(s);
+    });
+  });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  var nav = document.getElementById('nav');
+  var onScroll = function(){ nav.classList.toggle('scrolled', window.scrollY > 24); };
+  window.addEventListener('scroll', onScroll, { passive:true }); onScroll();
+  var dot = document.querySelector('.cursor-dot');
+  var ring = document.querySelector('.cursor-ring');
+  var mx = 0, my = 0, rx = 0, ry = 0;
+  window.addEventListener('mousemove', function(e){ mx = e.clientX; my = e.clientY; });
+  (function loop(){
+    rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;
+    dot.style.transform = 'translate(' + mx + 'px,' + my + 'px) translate(-50%,-50%)';
+    ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px) translate(-50%,-50%)';
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a, [data-magnetic]').forEach(function(el){
+    el.addEventListener('mouseenter', function(){ ring.classList.add('is-hover'); });
+    el.addEventListener('mouseleave', function(){ ring.classList.remove('is-hover'); });
+  });
+  document.querySelectorAll('[data-magnetic]').forEach(function(el){
+    el.addEventListener('mousemove', function(e){
+      var r = el.getBoundingClientRect();
+      var x = e.clientX - r.left - r.width/2;
+      var y = e.clientY - r.top - r.height/2;
+      el.style.transform = 'translate(' + x*0.25 + 'px,' + y*0.35 + 'px)';
+    });
+    el.addEventListener('mouseleave', function(){ el.style.transform = ''; });
+  });
+})();
+</script>
+</body>
+</html>

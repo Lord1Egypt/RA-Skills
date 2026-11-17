@@ -2,10 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MD Web</title>
     <meta name="description" content="share and display markdown files online" />
+    <!--
+      Two directives carry the weight here:
+        script-src 'self'  — no 'unsafe-inline', so HTML embedded in a rendered
+                             document cannot run a script, an onerror= handler or a
+                             javascript: URL. It is why the docsify config lives in
+                             assets/config.js rather than in an inline <script>.
+        connect-src 'self' — the viewer only ever fetches Markdown from the bucket
+                             serving it, so a document route that somehow slipped
+                             through the guard in config.js still cannot be fetched
+                             from another origin.
+      Images, fonts and frames stay open to https: because documents routinely embed
+      remote images and videos, and a cross-origin frame cannot reach this origin
+      anyway. Inline styles are allowed because docsify writes element.style.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; font-src 'self' data: https:; frame-src https:; object-src 'none'; base-uri 'none'; form-action 'none'"
+    />
     <link rel="stylesheet" href="assets/vue.css" />
     <link rel="stylesheet" href="assets/toc.css" />
     <style>
@@ -59,40 +76,9 @@
 
   <body class="body--ready">
     <div id="app">Loading...</div>
-    <script>
-      window.$docsify = {
-        name: "<p>MD Web</p>",
-        nameLink: "/index.html#/",
-        repo: "https://github.com/rockbenben/aishort-skills/tree/main/skills/md-web",
-        notFoundPage: "README.md",
-        auto2top: true,
 
-        loadNavbar: false,
-        mergeNavbar: true,
-        topMargin: 40,
-
-        loadSidebar: false,
-
-        maxLevel: 4,
-        subMaxLevel: 2,
-
-        search: {
-          maxAge: 86400000,
-          paths: "auto",
-          placeholder: "Search",
-          noData: "No results found",
-          depth: 2,
-          hideOtherSidebarContent: false,
-        },
-
-        toc: {
-          scope: ".markdown-section",
-          headings: "h2, h3, h4, h5, h6",
-          title: "",
-        },
-      };
-    </script>
-
+    <!-- config.js first: it normalizes the document route before docsify reads it. -->
+    <script src="assets/config.js"></script>
     <script src="assets/docsify.min.js"></script>
     <script src="assets/search.min.js"></script>
     <script src="assets/zoom-image.min.js"></script>

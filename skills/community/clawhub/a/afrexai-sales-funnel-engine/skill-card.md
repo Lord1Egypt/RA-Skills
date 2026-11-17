@@ -1,41 +1,53 @@
-## Description: <br>
-Designs, builds, optimizes, and scales sales funnels across B2B, B2C, SaaS, services, ecommerce, and hybrid business models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design, build, optimize, and scale sales funnels for any business model.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Marketing, sales, growth, and founder teams use this skill to map customer journeys, diagnose conversion leaks, select funnel models, draft funnel assets, review funnel economics, and plan stage-by-stage optimization. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Funnel recommendations and benchmarks may be misapplied when the agent has incomplete business context. <br>
-Mitigation: Provide current funnel metrics, business model, target customer, offer, traffic sources, and constraints before relying on the guidance. <br>
-Risk: Generated campaign copy or strategy could be inaccurate or unsuitable for live campaigns. <br>
-Mitigation: Review generated copy, benchmarks, and tactical recommendations before publishing or applying them to production sales and marketing workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1kalin/afrexai-sales-funnel-engine) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+## Use Case:
 
+External users, marketing teams, sales teams, and founders use this skill to design funnel blueprints, diagnose conversion leaks, draft landing page and nurture sequence content, set attribution, plan A/B tests, and review funnel economics across B2B, B2C, SaaS, services, ecommerce, and hybrid models.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Text] <br>
-**Output Format:** [Markdown and structured text with occasional YAML templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces business guidance, funnel diagnostics, templates, copy outlines, test plans, and metric review frameworks for agent responses.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Marketing recommendations may be applied to real customer data or analytics workflows without sufficient privacy review.
+
+Mitigation: Review recommendations before use and confirm consent, privacy notices, and visitor-data handling requirements for analytics or session replay tools.
+
+Risk: Generic funnel benchmarks and tactics may not match a specific market, offer, audience, or sales cycle.
+
+Mitigation: Treat outputs as planning guidance and validate them against current business metrics, customer research, and controlled tests before launch.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-sales-funnel-engine)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured templates, checklists, tables, and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces non-executable marketing and sales-funnel recommendations for agent responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

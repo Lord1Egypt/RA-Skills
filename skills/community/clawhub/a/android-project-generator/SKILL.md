@@ -6,7 +6,7 @@ description_zh: 生成以首次真实构建通过为目标的 Android 工程，�
 license: MIT
 metadata:
   author: oahcfly
-  version: 1.3.0
+  version: 1.3.1
   category: mobile
 ---
 
@@ -49,6 +49,44 @@ The scripts do not intentionally exfiltrate data, but they do run subprocesses t
 
 - access network resources (for Gradle wrapper/dependency downloads)
 - interact with attached devices/emulators (`adb`)
+
+## Package Scope
+
+This repository is a skill package **plus** its own development test harness. Only
+the following paths are part of the skill:
+
+- `SKILL.md`, `README.md`, `LICENSE`
+- `references/` — version matrix and configuration templates
+- `scripts/detect_env.py`, `scripts/project_validator.py`, `scripts/build_flow.py`
+
+`tests/`, `cache/`, and `reports/` are development-only and are excluded from the
+release package (see `.skillignore`). All self-test tooling — test runner, report
+generator, report renderer, and the `sitecustomize` cache helper — lives under
+`tests/`.
+
+The skill workflow never imports from or executes anything under `tests/`. If a
+distributed copy of this package contains `tests/`, that is a packaging error, not
+skill behaviour.
+
+## Tool Scope & Permission Boundaries
+
+The skill requests no tool allow-list beyond ordinary local execution. Its explicit
+boundaries are:
+
+| Dimension | Allowed | Not allowed |
+|-----------|---------|-------------|
+| Reads | `SKILL.md`, `references/`, the target project directory, and the environment variables listed below | Unrelated files outside the target project |
+| Writes | Only the generated project directory (`settings.gradle.kts`, `build.gradle.kts`, `app/**`, wrapper files) and `local.properties` | Any path outside the generated project |
+| Executes | `java -version`, `gradle`/`gradlew`, `adb` (install/launch only) | Arbitrary shells, package installs, credential or key access |
+| Network | Gradle wrapper and dependency resolution | Any upload or exfiltration of local data |
+| Credentials | None required, none requested | API keys, tokens, cloud credentials |
+| Env vars read | `JAVA_HOME`, `ANDROID_HOME`/`ANDROID_SDK_ROOT`, `ANDROID_NDK_HOME`/`NDK_HOME` | Anything else |
+
+All subprocess invocations use argument lists (never a shell string), so no
+caller-controlled input is interpolated into a command line.
+
+If the host policy forbids local command execution or device interaction, stop after
+Phase 4 (file generation) and report the project as `scaffolding_only`.
 
 ## When to Use This Skill
 

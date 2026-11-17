@@ -1,40 +1,55 @@
-## Description: <br>
-Query real-time weather information using Amap Weather API for Chinese cities, including weather, temperature, wind, and humidity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query real-time weather information using Amap (Gaode Maps) Weather API for weather, temperature, wind, and humidity in Chinese cities.
 
-## Publisher: <br>
-[George-China](https://clawhub.ai/user/George-China) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[george-china](https://clawhub.ai/user/george-china)
 
-## Use Case: <br>
-Developers and agent users use this skill to look up current weather data for Chinese cities by city name, city code, or coordinates through the Amap Weather API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends requested city or coordinate weather queries to Amap and requires an Amap API key. <br>
-Mitigation: Use only with queries appropriate to send to Amap, keep AMAP_API_KEY scoped where possible, and avoid exposing the key in shared shells, logs, or command histories. <br>
+## Use Case:
 
+Developers and agents use this skill to look up current Amap weather data for Chinese cities by city name or city code. It is useful for answering user questions about conditions such as temperature, wind, humidity, and weather status.
 
-## Reference(s): <br>
-- [ClawHub Weather Search Skill Page](https://clawhub.ai/George-China/weather-search) <br>
-- [Amap Weather API Documentation](https://lbs.amap.com/api/javascript-api/guide/services/weather) <br>
-- [Amap Developer Console](https://console.amap.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and a user-provided AMAP_API_KEY; optional pretty or human-readable formatting uses jq when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Weather queries and optional coordinate lookups share city or location data with Amap.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when Amap is an acceptable weather provider and avoid precise coordinates unless they are needed for the task.
+
+Risk: The Amap API key may appear in command-line arguments, logs, or monitoring output.
+
+Mitigation: Use a restricted, low-quota AMAP_API_KEY and rotate it if logs or monitoring systems may have captured it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/george-china/skills/weather-search)
+- [Amap Weather API Documentation](https://lbs.amap.com/api/javascript-api/guide/services/weather)
+- [Amap Developer Console](https://console.amap.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and JSON weather API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and an AMAP_API_KEY environment variable; optional pretty and human-readable script output may use jq when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

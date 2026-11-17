@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn76erws4m1dwkkt5zveedzccn8248fw",
+  "name": "Paper Compare",
   "slug": "paper-compare",
   "version": "1.2.1",
-  "publishedAt": 1772607165327
+  "description": "Compare academic research papers side-by-side to identify similarities, differences, and research gaps.",
+  "tags": ["research", "academic", "papers"]
 }

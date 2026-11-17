@@ -1,39 +1,53 @@
-## Description: <br>
-Link All helps an agent research, select, configure, and test ways to connect external platforms through plugins, CLIs, or APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users research, select, and configure external platform integrations through plugins, CLI tools, or APIs, then verify the first connection.
 
-## Publisher: <br>
-[jeandoom](https://clawhub.ai/user/jeandoom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeandoom](https://clawhub.ai/user/jeandoom)
 
-## Use Case: <br>
-Developers and operators use this skill when they need an agent to find official connection options for an external service, present choices for confirmation, configure the chosen plugin, CLI, or API approach, and document the successful setup for reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Connecting external services can expose accounts or data if broad OAuth scopes, tokens, or untrusted tools are used. <br>
-Mitigation: Confirm each tool and permission scope before use, prefer official plugins or CLIs, and use least-privilege OAuth grants or tokens. <br>
-Risk: Generated scripts or saved skills may preserve incorrect setup details or sensitive configuration. <br>
-Mitigation: Review generated code and any SKILL.md before saving or running it, and keep secrets in approved credential stores rather than skill text. <br>
+## Use Case:
 
+Developers and operators use this skill to evaluate connection options for external platforms, configure authentication, test first access, and optionally package a working connection approach as a reusable skill.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with inline commands, configuration steps, and generated scripts when APIs are selected.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before executing a selected linking approach or saving a new skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated reusable skills could persist authentication details or sensitive account information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preview any generated skill files before saving or installing them, and store credentials only as secret-store or environment-variable references.
+
+Risk: Connecting external platforms through plugins, CLIs, or APIs can affect real accounts and services.
+
+Mitigation: Review proposed tools, commands, and configuration steps before execution, especially when working with account authorization or API access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jeandoom/skills/link-all)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, conversational guidance, code snippets, shell commands, and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform research summaries, recommended connection methods, authentication setup guidance, first-call test results, and reusable skill drafts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

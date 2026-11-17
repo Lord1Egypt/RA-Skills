@@ -1,39 +1,49 @@
-## Description: <br>
-从教学大纲或考试说明中提取核心考点，标注重要等级和可能题型，并生成结构化考点地图。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts structured exam key-point maps from Chinese teaching outlines or exam guides, including importance levels and likely question types.
 
-## Publisher: <br>
-[m18608401605](https://clawhub.ai/user/m18608401605) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[m18608401605](https://clawhub.ai/user/m18608401605)
 
-## Use Case: <br>
-Educators, tutors, and students use this skill to turn syllabi, exam outlines, prior questions, or course requirements into a concise exam-point map with priorities and likely question types. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide confidential, copyrighted, or restricted exam materials for analysis. <br>
-Mitigation: Use only materials the user is authorized to share with the agent, and avoid submitting restricted exam content. <br>
+## Use Case:
 
+Students, instructors, and education-focused agents use this skill to turn Chinese syllabi, exam instructions, past papers, or course outlines into a strict JSON study map. It filters vague administrative language, identifies concrete concepts and requirements, estimates priority from instructional verbs, and suggests likely question types.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/m18608401605/exam-analyzer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/m18608401605) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill instructs the agent to return strict JSON without explanatory text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Predicted exam weights or likely question types may be inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated study map against official exam guidance or instructor-provided materials before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/m18608401605/skills/exam-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Strict JSON object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language structured study map with course name, assessment requirements, exam structure, chapter key points, importance levels, required ability, and likely question types.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

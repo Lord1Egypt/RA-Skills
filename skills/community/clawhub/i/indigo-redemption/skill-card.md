@@ -1,43 +1,62 @@
-## Description: <br>
-Manage redemptions and Redemption Order Book (ROB) positions on Indigo Protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage redemptions and Redemption Order Book (ROB) positions on Indigo Protocol.
 
-## Publisher: <br>
-[adacapo21](https://clawhub.ai/user/adacapo21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adacapo21](https://clawhub.ai/user/adacapo21)
 
-## Use Case: <br>
-External Indigo Protocol users and Cardano developers use this skill to inspect ROB order books, review redemption queues, and prepare unsigned ROB management or redemption transactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide unsigned blockchain transactions that affect ROB UTxOs and asset movements. <br>
-Mitigation: Independently verify the ROB UTxO, address, oracle and iAsset references, amounts, and expected asset movements before signing any transaction. <br>
-Risk: Queue timing, fill-rate, and financial estimates may be unreliable without documented data sources. <br>
-Mitigation: Treat estimates as advisory only and require a documented data source before using them for financial decisions. <br>
+## Use Case:
 
+Developers and DeFi operators use this skill to inspect Indigo Protocol redemption queues, review ROB order book liquidity, and prepare unsigned transactions for opening, adjusting, cancelling, claiming, or redeeming ROB positions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/adacapo21/indigo-redemption) <br>
-- [Publisher profile](https://clawhub.ai/user/adacapo21) <br>
-- [MCP Tools Reference](references/mcp-tools.md) <br>
-- [Redemption Concepts](references/concepts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with MCP tool calls and unsigned transaction review notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Write operations return unsigned Cardano transaction CBOR for client-side review and signing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release uses an unpinned MCP package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify the MCP server version before installation or execution.
+
+Risk: The skill prepares financial transactions without enough built-in safety guidance.
+
+Mitigation: Inspect every unsigned transaction in the wallet before signing, including recipients, assets, amounts, fees, inputs, scripts, and network.
+
+Risk: The security verdict is suspicious.
+
+Mitigation: Review the skill carefully and run it in a constrained environment without unnecessary secrets.
+
+## Reference(s):
+
+- [Indigo Redemption skill page](https://clawhub.ai/adacapo21/skills/indigo-redemption)
+- [Redemption MCP Tools Reference](references/mcp-tools.md)
+- [Redemption & ROB Concepts](references/concepts.md)
+- [Order Book](sub-skills/order-book.md)
+- [Redemption Queue](sub-skills/redemption-queue.md)
+- [ROB Management](sub-skills/rob-manage.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with MCP tool calls, tabular summaries, and unsigned transaction data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write operations return unsigned Cardano transaction CBOR for client-side signing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

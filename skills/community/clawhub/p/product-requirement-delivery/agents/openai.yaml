@@ -1,0 +1,4 @@
+interface:
+  display_name: "飞书产品需求交付"
+  short_description: "调研真实页面，明确角色、规则与异常场景并发布飞书需求文档"
+  default_prompt: "使用 $product-requirement-delivery 调研关联页面、补齐角色和异常规则，经我确认后发布一份飞书产品需求文档。"

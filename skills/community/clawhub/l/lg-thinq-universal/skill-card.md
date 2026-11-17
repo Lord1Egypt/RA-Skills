@@ -1,48 +1,67 @@
-## Description: <br>
-Universal LG ThinQ device manager that discovers appliances, helps users obtain and configure LG ThinQ credentials, and generates device-specific OpenClaw skills for home automation control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal LG ThinQ device setup and control that discovers appliances and generates device-specific OpenClaw skills.
 
-## Publisher: <br>
-[UtkarshTheDev](https://clawhub.ai/user/UtkarshTheDev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[utkarshthedev](https://clawhub.ai/user/utkarshthedev)
 
-## Use Case: <br>
-External users and developers use this skill to discover LG ThinQ appliances connected to their account, create local per-device control skills, and operate supported appliances through OpenClaw workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an LG ThinQ Personal Access Token that can list and control appliances on the user's account. <br>
-Mitigation: Install only from a trusted publisher, use the least privilege available for the PAT, keep the token in the shell environment or universal skill root, and avoid copying it into generated device folders. <br>
-Risk: Generated commands can perform physical device actions through the LG ThinQ API. <br>
-Mitigation: Review each setup manifest and generated command before approval, then verify device state before and after mutating controls. <br>
-Risk: The skill workflow asks the agent to persist trigger phrases, skill paths, and command summaries in global memory. <br>
-Mitigation: Decline or remove global MEMORY.md persistence unless those device details should be retained across sessions. <br>
+## Use Case:
 
+External users and home automation developers use this skill to connect LG ThinQ accounts, discover linked appliances, and generate isolated device-specific skills for appliance setup and control.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/UtkarshTheDev/lg-thinq-universal) <br>
-- [LG ThinQ PAT portal](https://connect-pat.lgthinq.com) <br>
-- [LG ThinQ API technical reference](references/api-reference.md) <br>
-- [Manual setup guide](references/manual-setup.md) <br>
-- [Device skill generation guide](references/skill-generation-guide.md) <br>
-- [Device skill template](references/device-skill-template.md) <br>
-- [Generated device skill example](references/device-example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands plus generated Python, JSON, and configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local device profiles and per-device skill workspaces after user-confirmed setup steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and release evidence) <br>
+Risk: The skill handles an LG account personal access token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep LG_PAT in a protected shell environment or secret manager and do not paste it into chat or copy it into generated device skill directories.
+
+Risk: API server routing can be overridden or cached.
+
+Mitigation: Do not set LG_API_SERVER unless the destination is trusted, and inspect .api_server_cache before use.
+
+Risk: Generated device skills and shell commands can control real appliances.
+
+Mitigation: Review generated files and command manifests before approving execution.
+
+Risk: The workflow may persist setup details to memory.
+
+Mitigation: Approve memory persistence only when the exact entry is shown and limited to the minimum useful device-skill details.
+
+## Reference(s):
+
+- [LG ThinQ Universal Skill README](artifact/README.md)
+- [LG ThinQ API: Technical Reference](artifact/references/api-reference.md)
+- [Manual Setup Guide](artifact/references/manual-setup.md)
+- [LG Device Skill: Complete Example](artifact/references/device-example.md)
+- [LG Device Skill Template](artifact/references/device-skill-template.md)
+- [LG Device Skill Generation Guide](artifact/references/skill-generation-guide.md)
+- [LG ThinQ PAT Portal](https://connect-pat.lgthinq.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, generated files, and JSON device data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate device-specific skill files and command scripts after user approval.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

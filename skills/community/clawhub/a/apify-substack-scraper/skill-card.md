@@ -1,39 +1,53 @@
-## Description: <br>
-Scrape Substack newsletters and articles through an Apify Actor using the user's APIFY_TOKEN. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrape Substack newsletters and articles when users need to search Substack, find newsletter posts, extract Substack content, or monitor Substack publications.
 
-## Publisher: <br>
-[MarcinDudekDev](https://clawhub.ai/user/MarcinDudekDev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[marcindudekdev](https://clawhub.ai/user/marcindudekdev)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to run an Apify Substack scraping actor, collect article metadata or content from Substack publication URLs, and summarize or export the results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Substack URLs, scrape parameters, and results are processed through Apify under the user's APIFY_TOKEN. <br>
-Mitigation: Review the referenced Apify actor before use and use a minimally scoped Apify token where possible. <br>
-Risk: Execution depends on APIFY_TOKEN, curl, jq, and external network access to Apify. <br>
-Mitigation: Confirm the required environment variable, binaries, and network access before running the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/MarcinDudekDev/apify-substack-scraper) <br>
+## Use Case:
 
+Developers and analysts use this skill to scrape Substack publication URLs through an Apify Actor, then summarize article metadata and optionally full article content.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with bash command snippets and JSON result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires APIFY_TOKEN, curl, and jq; may offer JSON or CSV export.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Example commands place the Apify token in URLs where it may be logged or exposed.
+
+Mitigation: Use a narrowly scoped Apify token, avoid shell tracing or command logging, and prefer header-based authorization where supported.
+
+Risk: Scraping unsuitable Substack URLs can collect content that is not approved for the intended use.
+
+Mitigation: Use only public or approved Substack URLs and review extracted results before sharing or exporting them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/marcindudekdev/skills/apify-substack-scraper)
+- [Apify Actor API Endpoint](https://api.apify.com/v2/acts/BULaGFURBV7WG3K81)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with bash commands and JSON result handling]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires APIFY_TOKEN plus curl and jq; supported inputs include urls, maxArticles, and includeContent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

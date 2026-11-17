@@ -1,43 +1,49 @@
-## Description: <br>
-Meta-cognitive reasoning skill that improves agent decision-making by applying inversion, premortem reasoning, and via negativa checks before consequential actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meta-cognitive reasoning skill that improves agent decision-making by applying inversion, premortem, and via negativa checks before consequential actions.
 
-## Publisher: <br>
-[jcools1977](https://clawhub.ai/user/jcools1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcools1977](https://clawhub.ai/user/jcools1977)
 
-## Use Case: <br>
-Developers, operators, researchers, and other agent users use this skill to add a short reasoning checkpoint before code changes, commands, debugging, architecture decisions, and high-accuracy answers where preventable mistakes matter. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Server security evidence marks the release suspicious and notes a maintainer workflow risk involving a nested reviewer with broad unsandboxed access by default. <br>
-Mitigation: Install only if that workflow risk is acceptable; prefer safer review settings such as disabling default full-access behavior unless explicitly intended. <br>
-Risk: The skill can influence consequential agent decisions but is not itself a safety filter or policy enforcement layer. <br>
-Mitigation: Use it as an additional reasoning checkpoint and keep normal review, scanning, sandboxing, and approval controls in place for sensitive actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Mental Models Behind the Inversion Protocol](references/mental-models.md) <br>
-- [Coding Scenarios](examples/coding-scenarios.md) <br>
-- [General Agent Scenarios](examples/general-scenarios.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jcools1977/inversion-protocol) <br>
-- [Project Homepage](https://github.com/jcools1977/Opensaw) <br>
+## Use Case:
 
+Developers, engineers, and other agent users use this skill to add a lightweight reasoning checkpoint before code changes, commands, debugging, architecture decisions, complex answers, and other actions where mistakes have consequences.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown, Shell commands, Code] <br>
-**Output Format:** [Markdown guidance with structured reasoning checkpoints and optional inline code or shell command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No runtime dependencies, APIs, binaries, environment variables, or external services are described by the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may add verbosity or small delays if the reasoning checklist is applied to too many routine tasks.
+
+Mitigation: Apply the protocol before consequential actions and use the shorter quick check for routine work.
+
+## Reference(s):
+
+- [Mental Models Behind the Inversion Protocol](references/mental-models.md)
+- [OpenClaw homepage](https://github.com/jcools1977/Opensaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with checklist-style reasoning prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reasoning guidance only; no tools, credentials, network access, persistence, or runtime dependencies are added.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

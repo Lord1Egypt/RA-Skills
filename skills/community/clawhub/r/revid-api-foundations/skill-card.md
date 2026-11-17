@@ -1,42 +1,58 @@
-## Description: <br>
-Foundation knowledge for Revid skills covering authentication, the render endpoint, workflow selection, polling, webhooks, and the response envelope. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Foundation knowledge for every Revid skill: auth, the single render endpoint, the workflow discriminator, polling, webhooks, and the response envelope.
 
-## Publisher: <br>
-[api00](https://clawhub.ai/user/api00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[api00](https://clawhub.ai/user/api00)
 
-## Use Case: <br>
-Developers and agents use this skill as foundational guidance for calling the Revid Public API v3, including authentication, request shape, workflow selection, status polling, webhooks, and common failure handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Revid API key and sends video-generation inputs to Revid.ai. <br>
-Mitigation: Use a scoped or dedicated API key where possible, avoid sharing confidential prompts, scripts, URLs, or secrets, and rotate the key if exposure is suspected. <br>
-Risk: Webhook URLs can expose generated job data or send callbacks to an unintended endpoint. <br>
-Mitigation: Use webhooks only with a trusted public endpoint; otherwise prefer polling the status endpoint. <br>
+## Use Case:
 
+Developers and agents use this foundation when composing Revid API calls, selecting workflows, configuring authentication, polling render status, and handling common failures for video generation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/api00/revid-api-foundations) <br>
-- [api00 publisher profile](https://clawhub.ai/user/api00) <br>
-- [Revid Public API v3 spec](https://documenter.getpostman.com/view/36975521/2sBXcGEfaB) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with API examples, JSON snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REVID_API_KEY for API calls; guidance covers polling and optional webhook use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: REVID_API_KEY can grant access to Revid API usage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the key private, read it from configuration, and avoid exposing it in prompts, logs, or shared outputs.
+
+Risk: Render calls may send scripts, URLs, media, or other source material to Revid.
+
+Mitigation: Avoid sensitive source material unless the user accepts processing by Revid.
+
+Risk: High-quality renders or credit purchases can spend credits.
+
+Mitigation: Require explicit approval before actions that spend or purchase credits, and estimate credits before expensive renders.
+
+## Reference(s):
+
+- [Revid Public API v3 spec](https://documenter.getpostman.com/view/36975521/2sBXcGEfaB)
+- [ClawHub skill page](https://clawhub.ai/api00/skills/revid-api-foundations)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with HTTP examples, JSON snippets, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REVID_API_KEY for live Revid API use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

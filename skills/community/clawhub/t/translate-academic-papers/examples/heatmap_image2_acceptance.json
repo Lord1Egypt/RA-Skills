@@ -1,0 +1,29 @@
+{
+  "purpose": "real Image2 text-localization acceptance example, not a universal paper fixture",
+  "generator": "Image2",
+  "status": "accepted",
+  "original_path": "examples/heatmap_english_original.png",
+  "translated_path": "examples/heatmap_image2_zh_accepted.png",
+  "original_sha256": "374990e82db61a3013e1f709f60b81c40c691c9337a71fb27a8e49604cc14098",
+  "translated_sha256": "e9fb7f33be90ffd806d250f865bbeb33946b834e17be52a5da4b2f0b9f294ecf",
+  "label_map": {
+    "PainCue": "疼痛线索",
+    "VicCue": "替代性疼痛线索",
+    "CogCue": "认知努力线索",
+    "PainStim": "疼痛刺激",
+    "VicStim": "替代性疼痛刺激",
+    "CogStim": "认知努力刺激"
+  },
+  "label_audit": {
+    "result": "pass",
+    "items": [
+      "all y-axis labels are Chinese",
+      "all x-axis labels are Chinese",
+      "all 36 matrix values match the original",
+      "yellow outlines and heatmap geometry are preserved",
+      "the complete colorbar and ticks from 0.8 to -0.8 are visible"
+    ]
+  },
+  "residual_semantic_english": false,
+  "clipped": false
+}

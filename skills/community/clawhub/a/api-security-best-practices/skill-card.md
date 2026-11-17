@@ -1,42 +1,56 @@
-## Description: <br>
-Implement secure API design patterns including authentication, authorization, input validation, rate limiting, and protection against common API vulnerabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement secure API design patterns including authentication, authorization, input validation, rate limiting, and protection against common API vulnerabilities.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Developers and engineers use this skill to design, review, and harden REST, GraphQL, and WebSocket APIs with authentication, authorization, validation, rate limiting, and secure error-handling practices. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated security code or configuration examples may not fit the application's authentication, authorization, logging, rate-limiting, or threat model requirements. <br>
-Mitigation: Review all generated code before production use and adapt the controls to the application's architecture, data sensitivity, and operational environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mupengi-bot/api-security-best-practices) <br>
-- [OWASP API Security Top 10](https://owasp.org/www-project-api-security/) <br>
-- [JWT Best Current Practices](https://tools.ietf.org/html/rfc8725) <br>
-- [Express Security Best Practices](https://expressjs.com/en/advanced/best-practice-security.html) <br>
-- [Node.js Security Checklist](https://blog.risingstack.com/node-js-security-checklist/) <br>
-- [API Security Checklist](https://github.com/shieldfy/API-Security-Checklist) <br>
+## Use Case:
 
+Developers and engineers use this skill when designing, securing, or reviewing APIs across authentication, authorization, input validation, rate limiting, data protection, monitoring, and common API vulnerability controls.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript code examples, checklists, and configuration recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; generated examples should be reviewed and adapted before production use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The refresh-token example stores raw refresh tokens directly, which could create replayable session tokens if copied into a real application.
+
+Mitigation: Review and revise refresh-token implementations before use; prefer hashed or HMACed opaque refresh tokens, token rotation, revocation, and replay detection.
+
+Risk: The skill provides general API security guidance that may not fully fit a specific production threat model or compliance environment.
+
+Mitigation: Treat the guidance as a starting checklist and validate controls through application-specific security review, testing, and audit requirements.
+
+## Reference(s):
+
+- [OWASP API Security Top 10](https://owasp.org/www-project-api-security/)
+- [JWT Best Practices](https://tools.ietf.org/html/rfc8725)
+- [Express Security Best Practices](https://expressjs.com/en/advanced/best-practice-security.html)
+- [Node.js Security Checklist](https://blog.risingstack.com/node-js-security-checklist/)
+- [API Security Checklist](https://github.com/shieldfy/API-Security-Checklist)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration, shell commands]
+
+**Output Format:** [Markdown guidance with inline JavaScript, configuration examples, shell commands, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes security review checklists and implementation examples for REST, GraphQL, and WebSocket APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

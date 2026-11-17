@@ -1,41 +1,55 @@
-## Description: <br>
-Use when working with Halo CLI login, bearer token or basic auth, profile setup, profile switching, current profile inspection, or fixing missing keyring credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when working with Halo CLI login, bearer token or basic auth, profile setup, profile switching, current profile inspection, or fixing missing keyring credentials.
 
-## Publisher: <br>
-[ruibaby](https://clawhub.ai/user/ruibaby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruibaby](https://clawhub.ai/user/ruibaby)
 
-## Use Case: <br>
-Developers and operators use this skill to set up, inspect, switch, and repair Halo CLI authentication profiles for bearer-token or basic-auth workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authentication tokens or passwords could be exposed in shared transcripts, terminal history, or copied command examples. <br>
-Mitigation: Review commands before running them and avoid exposing bearer tokens or basic-auth passwords in shared logs or shell history. <br>
-Risk: Using profile delete --force against the wrong profile can remove credentials or configuration needed for a Halo CLI environment. <br>
-Mitigation: Confirm the current target profile and URL before running destructive profile deletion commands. <br>
+## Use Case:
 
+Developers and operators use this skill to configure Halo CLI authentication, inspect and switch auth profiles, and diagnose missing or broken keyring credentials.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/ruibaby/halo-cli-auth) <br>
-- [Publisher profile](https://clawhub.ai/user/ruibaby) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend --json for structured CLI output when another tool consumes profile information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata; artifact frontmatter shows 1.0.0) <br>
+Risk: Login examples can place real passwords or tokens on the command line if copied literally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer secure login methods such as an interactive prompt, stdin, or another non-history mechanism if supported; avoid shared systems and logs, disable command tracing, and rotate any exposed credential.
+
+Risk: Profile deletion is destructive.
+
+Mitigation: Review the target profile before deletion and use --force only when deletion is intentional in non-interactive workflows.
+
+## Reference(s):
+
+- [Halo Cli Auth on ClawHub](https://clawhub.ai/ruibaby/skills/halo-cli-auth)
+- [Publisher profile: ruibaby](https://clawhub.ai/user/ruibaby)
+- [Shared Halo CLI skill reference](../halo-cli-shared)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Halo CLI commands that handle credentials and profile configuration.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

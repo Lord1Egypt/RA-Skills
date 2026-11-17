@@ -1,46 +1,65 @@
-## Description: <br>
-Detects mispricings on Polymarket by cross-referencing Kalshi and Manifold consensus probability, then trades the gap using Kelly criterion sizing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects Polymarket mispricings by comparing prices with Kalshi and Manifold consensus probabilities and can place Simmer trades sized with a quarter-Kelly rule.
 
-## Publisher: <br>
-[Mibayy](https://clawhub.ai/user/Mibayy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mibayy](https://clawhub.ai/user/mibayy)
 
-## Use Case: <br>
-External users and trading automaton operators use this skill to scan prediction markets for cross-platform pricing gaps and execute configured Polymarket trades through Simmer. It is intended for users who can manage API credentials, paper-trading tests, position limits, and live-money trading controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run on a schedule and place live-money prediction-market trades without a clear per-trade approval step. <br>
-Mitigation: Keep TRADING_VENUE set to sim until fully tested, confirm how to pause or uninstall the scheduled job, and enable live trading only after reviewing the behavior. <br>
-Risk: Trading credentials can authorize automated actions if exposed or over-permissioned. <br>
-Mitigation: Use restricted API credentials and rotate or revoke them if the deployment environment is no longer trusted. <br>
-Risk: Automated trade sizing and market matching can create financial loss if configured too aggressively or matched incorrectly. <br>
-Mitigation: Set conservative trade size and position limits, start with paper trading, and review live results before increasing exposure. <br>
+## Use Case:
 
+External users running ClawHub automations use this skill to scan active prediction markets for cross-platform price gaps and, with a Simmer API key, place scheduled Polymarket trades in sim or live mode.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Mibayy/polymarket-mispricing-events) <br>
-- [Polymarket Gamma API](https://gamma-api.polymarket.com) <br>
-- [Polymarket CLOB API](https://clob.polymarket.com) <br>
-- [Kalshi Trade API](https://api.elections.kalshi.com/trade-api/v2) <br>
-- [Manifold Markets API](https://api.manifold.markets/v0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Configuration] <br>
-**Output Format:** [Console log text and configured trading API requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs on a 15-minute schedule when installed as a managed automaton; requires SIMMER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Automated trading authority can place scheduled trades when live credentials are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with the sim venue and avoid live credentials until position limits, portfolio checks, and operational controls have been reviewed.
+
+Risk: Fuzzy cross-platform market matching can produce false positives or compare markets with different resolution criteria.
+
+Mitigation: Require high-confidence matches, review thresholds against representative markets, and keep position sizes conservative.
+
+Risk: Portfolio and market-context checks may fail open if upstream calls are unavailable.
+
+Mitigation: Make portfolio and context validation fail closed before deploying with live trading authority.
+
+Risk: Unpinned Python dependencies can change behavior over time.
+
+Mitigation: Pin and review dependency versions before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mibayy/skills/polymarket-mispricing-events)
+- [Polymarket Gamma API endpoint](https://gamma-api.polymarket.com)
+- [Polymarket CLOB API endpoint](https://clob.polymarket.com)
+- [Kalshi trade API endpoint](https://api.elections.kalshi.com/trade-api/v2)
+- [Manifold markets API endpoint](https://api.manifold.markets/v0)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, Configuration]
+
+**Output Format:** [Scheduled Python automation with log output and Simmer trade requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY; default venue is sim; live mode can place real trades when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, clawhub.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

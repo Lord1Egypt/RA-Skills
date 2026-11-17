@@ -1,41 +1,54 @@
-## Description: <br>
-Generate and preview CSS shadow effects using CLI tools for box-shadow, text-shadow, drop-shadow, layered shadows, presets, animations, and export workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and preview CSS shadow effects using CLI tools for box-shadow, text-shadow, drop-shadow, layered shadows, presets, animations, and exports.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to generate, save, preview, animate, and export CSS shadow values for interface design and design-system work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local Bash/Python CLI and may write saved presets under ~/.shadow/data.jsonl. <br>
-Mitigation: Review the script before installation and use save options only when local preset storage is expected. <br>
-Risk: HTML preview generation can write to a user-supplied output path. <br>
-Mitigation: Confirm the --output path before generating preview files to avoid overwriting unintended files. <br>
+## Use Case:
 
+Developers and frontend engineers use Shadow to generate reusable CSS shadow values, compose saved shadow presets, preview effects, and export CSS, JSON, or SCSS for design systems and UI implementation.
 
-## Reference(s): <br>
-- [Shadow on ClawHub](https://clawhub.ai/bytesagain-lab/shadow) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text output, CSS/JSON/SCSS exports, and optional HTML preview files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saved presets are written to ~/.shadow/data.jsonl when save options are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Saved shadow names and CSS values are stored locally in ~/.shadow/data.jsonl.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid saving names or CSS/color values from untrusted sources and review saved records before reuse.
+
+Risk: Generated HTML previews may contain saved shadow values that are not escaped or validated.
+
+Mitigation: Review generated preview files before opening them in a browser, especially when inputs came from another user or system.
+
+## Reference(s):
+
+- [Shadow on ClawHub](https://clawhub.ai/bytesagain-lab/skills/shadow)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [CLI text output with CSS, JSON, SCSS, Markdown command examples, and optional HTML preview files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can persist saved shadow records to ~/.shadow/data.jsonl and write preview or export files when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

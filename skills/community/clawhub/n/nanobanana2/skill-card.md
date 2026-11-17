@@ -1,43 +1,59 @@
-## Description: <br>
-Generate/edit images with nanobanana2 (Gemini 3.1 Flash Image preview). Use for image create/modify requests incl. edits. Supports text-to-image + image-to-image; 512/1K/2K/4K; aspect ratios; use --input-image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate/edit images with nanobanana2 (Gemini 3.1 Flash Image preview). Use for image create/modify requests incl. edits. Supports text-to-image + image-to-image; 512/1K/2K/4K; aspect ratios; use --input-image.
 
-## Publisher: <br>
-[zealman2025](https://clawhub.ai/user/zealman2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zealman2025](https://clawhub.ai/user/zealman2025)
 
-## Use Case: <br>
-Developers, creators, and agents use this skill to generate new images or edit existing local images through Google's Gemini image API, with controls for prompt, input image, resolution, aspect ratio, and output filename. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected input images are sent to Google's Gemini API for third-party processing. <br>
-Mitigation: Use this skill only with prompts and images that may be processed under the applicable Google API terms and privacy requirements; avoid confidential or regulated images unless those requirements allow it. <br>
-Risk: API keys may be exposed if pasted into chat or command arguments. <br>
-Mitigation: Prefer GEMINI_API_KEY or a platform secret store instead of passing API keys in conversation text or shell history. <br>
-Risk: Generated or edited images may not match the intended prompt, resolution, or editing constraint. <br>
-Mitigation: Use the documented draft-iterate-final workflow, inspect outputs before reuse, and keep filenames unique so previous outputs are not overwritten unintentionally. <br>
+## Use Case:
 
+Developers and agent users use this skill to create or edit PNG images through Google's Gemini image API from natural-language prompts, including text-to-image and image-to-image workflows.
 
-## Reference(s): <br>
-- [Google Gemini API image generation documentation](https://ai.google.dev/gemini-api/docs/image-generation?hl=zh-cn) <br>
-- [ClawHub skill page](https://clawhub.ai/zealman2025/nanobanana2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with bash commands; generated PNG image files and saved file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated or edited images are saved to the user's working directory or to the path supplied in the filename argument.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence) <br>
+Risk: The skill handles a Gemini API key and allows passing it as a command-line argument, which can expose credentials in chat, shell history, or process listings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer setting GEMINI_API_KEY in a protected environment and avoid pasting API keys in chat or using --api-key unless necessary.
+
+Risk: The local Python script contacts Google's Gemini image API and writes files in the user's working directory.
+
+Mitigation: Install only when external API use is acceptable, run from an intended working directory, and consider a restricted environment for execution.
+
+Risk: Dependencies are declared with lower bounds and may resolve to newer package versions over time.
+
+Mitigation: Consider pinning dependencies before deployment in controlled or sensitive environments.
+
+## Reference(s):
+
+- [Google Gemini API image generation documentation](https://ai.google.dev/gemini-api/docs/image-generation?hl=zh-cn)
+- [ClawHub skill page](https://clawhub.ai/zealman2025/skills/nanobanana2)
+- [ClawHub publisher profile](https://clawhub.ai/user/zealman2025)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and generated PNG file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated or edited PNG images are saved to the user's working directory or specified output path; generated images include SynthID watermarking per the skill documentation.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,8 +1,13 @@
 {
   "name": "schedule-planner-cxf",
-  "version": "1.0.8",
-  "description": "全能出行管家技能 - 处理用户生活类出行场景，提供有温度、能感知场景、会主动共情的交互体验",
+  "version": "1.0.13",
+  "description": "出行价格查询、比价与本地行程网页，可选生成平台公开首页二维码。无预订、订单或支付操作。",
   "author": "cryptocxf",
-  "tags": ["travel", "trip-planning", "flight", "hotel"],
+  "tags": [
+    "travel",
+    "trip-planning",
+    "flight",
+    "hotel"
+  ],
   "entry": "scripts/generate-trip-page.js"
 }

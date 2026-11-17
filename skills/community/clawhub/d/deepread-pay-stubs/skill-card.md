@@ -1,44 +1,60 @@
-## Description: <br>
-Extracts structured data from pay stubs and earnings statements, including employer, employee, pay period, gross and net pay, taxes, deductions, and year-to-date totals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract structured data from pay stubs and earnings statements, including employer, employee, pay period, gross and net pay, taxes, deductions, and year-to-date totals, as typed JSON.
 
-## Publisher: <br>
-[uday390](https://clawhub.ai/user/uday390) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uday390](https://clawhub.ai/user/uday390)
 
-## Use Case: <br>
-Lenders, tenant-screening teams, payroll auditors, and benefits reviewers use this skill to extract income-verification fields from pay stubs and earnings statements as structured JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pay stubs can contain highly sensitive payroll, tax, identity, and banking information that may be sent to DeepRead for extraction. <br>
-Mitigation: Review DeepRead's privacy and data-retention terms before use, and only send documents when that handling is acceptable for the workflow. <br>
-Risk: The skill claims PII redaction is built in, but the security evidence says the claim is not sufficiently explained for highly sensitive payroll documents. <br>
-Mitigation: Do not rely on built-in redaction until the publisher documents what is redacted, when redaction occurs, and whether it happens before external upload. <br>
-Risk: Extracted income fields may affect lending, rental, benefits, or payroll decisions. <br>
-Mitigation: Use the per-field needs_review flags and manually review flagged values before relying on the extraction. <br>
+## Use Case:
 
+External users, lending teams, tenant-screening teams, HR auditors, and benefits reviewers use this skill to extract pay stub fields and support income verification workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/uday390/deepread-pay-stubs) <br>
-- [DeepRead homepage](https://www.deepread.tech) <br>
-- [DeepRead dashboard](https://www.deepread.tech/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown instructions with JSON examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DEEPREAD_API_KEY and sends documents to the DeepRead API for extraction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Pay stubs may contain highly sensitive personal and financial information that is sent to DeepRead's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review DeepRead's privacy, retention, deletion, and compliance terms before use, and only upload documents when external processing is acceptable.
+
+Risk: The skill's redaction guidance is incomplete and may leave unnecessary personal data in uploaded documents.
+
+Mitigation: Redact unnecessary PII before upload and verify redaction quality before sending documents externally.
+
+Risk: Related DeepRead install commands reference separate packages that are outside this skill's security review.
+
+Mitigation: Review and scan each related skill independently before installation or use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uday390/skills/deepread-pay-stubs)
+- [Publisher profile](https://clawhub.ai/user/uday390)
+- [DeepRead homepage](https://www.deepread.tech)
+- [DeepRead dashboard](https://www.deepread.tech/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples, shell setup commands, and Python verification code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DEEPREAD_API_KEY and sends pay stub documents to the DeepRead external API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,49 @@
-## Description: <br>
-Guides teams through planning and executing a Product Hunt launch with timing, supporter engagement, tagline, comment response, and follow-up practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides launch teams through planning and executing a Product Hunt launch, including timing, supporter engagement, tagline writing, comment responses, and post-launch follow-up.
 
-## Publisher: <br>
-[wellyxy](https://clawhub.ai/user/wellyxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wellyxy](https://clawhub.ai/user/wellyxy)
 
-## Use Case: <br>
-External founders, marketers, and product teams use this skill to plan a Product Hunt launch, coordinate launch-day outreach and responses, and follow up on launch traffic while staying aware of platform-rule and consent risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Launch outreach or follow-up could violate Product Hunt rules or consent expectations if applied without checking current requirements. <br>
-Mitigation: Verify Product Hunt's current rules, avoid asking for or incentivizing votes, and keep retargeting or email follow-up consent-based. <br>
+## Use Case:
 
+Founders, marketers, and launch teams use this skill to prepare Product Hunt launch timing, outreach, messaging, response handling, and post-launch follow-up.
 
-## Reference(s): <br>
-- [Growth Product Hunt on ClawHub](https://clawhub.ai/wellyxy/growth-product-hunt) <br>
-- [Racoonn waitlist](https://racoonn.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with checklist-style launch planning steps and a quick-reference table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution or file generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill advises coordinated Product Hunt upvotes and wording that can mask vote solicitation, which could violate platform rules or harm launch credibility.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the neutral preparation, content, and response guidance; verify current Product Hunt policies before outreach; ask people to review or check out the launch rather than vote.
+
+## Reference(s):
+
+- [Growth Product Hunt on ClawHub](https://clawhub.ai/wellyxy/skills/growth-product-hunt)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown guidance with launch steps, a launch-day timeline table, and common mistakes to avoid.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Product Hunt launch planning advice and an external Racoonn waitlist link.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

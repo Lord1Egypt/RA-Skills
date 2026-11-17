@@ -1,42 +1,50 @@
-## Description: <br>
-Bootstrap skill for DiagForge that helps an agent enter the repository, understand the project structure, run the canonical cold-start smoke test, and start the Visio-based drawing workflow safely. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bootstrap skill for DiagForge. Use this skill to onboard an agent into the DiagForge GitHub repository, understand the project structure, run the canonical cold-start smoke test, and begin working with the Visio-based drawing loop safely.
 
-## Publisher: <br>
-[qweadzchn](https://clawhub.ai/user/qweadzchn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qweadzchn](https://clawhub.ai/user/qweadzchn)
 
-## Use Case: <br>
-Developers and agents use this skill to onboard into the DiagForge workflow, locate the source repository and entry documents, validate the Visio bridge through a smoke test, and begin producing editable Visio diagram assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to clone and operate an external DiagForge repository that is not bundled in the release. <br>
-Mitigation: Review or pin the external repository before use and run the smoke test in a prepared local clone. <br>
-Risk: The referenced workflow uses VISIO_BRIDGE_TOKEN and can create preview and editable output files. <br>
-Mitigation: Keep VISIO_BRIDGE_TOKEN out of logs, commits, and shared transcripts, and run the workflow in an environment where generated PNG and VSDX outputs are expected. <br>
+## Use Case:
 
+Developers and external agents use this skill to bootstrap into the DiagForge repository, follow the intended first-read documents, validate the Visio bridge with a cold-start smoke test, and begin figure reproduction work that targets editable Visio outputs.
 
-## Reference(s): <br>
-- [DiagForge GitHub Repository](https://github.com/qweadzchn/DiagForge) <br>
-- [ClawHub Skill Page](https://clawhub.ai/qweadzchn/diagforge-agent-visio-user) <br>
-- [Publisher Profile](https://clawhub.ai/user/qweadzchn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell and PowerShell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides use of an external DiagForge repository and may result in preview PNG and editable VSDX files after the user runs the referenced workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata; artifact frontmatter states 0.1.0) <br>
+Risk: The skill directs agents to clone and run unpinned external repository code while using a token-bearing environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or trust the DiagForge repository before running scripts, use an isolated environment, pin or inspect a specific commit, and expose VISIO_BRIDGE_TOKEN only when required.
+
+## Reference(s):
+
+- [DiagForge repository](https://github.com/qweadzchn/DiagForge)
+- [Agent Visio User on ClawHub](https://clawhub.ai/qweadzchn/skills/diagforge-agent-visio-user)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline bash and PowerShell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes repository links, read-order guidance, smoke-test commands, and environment requirements for git, python, and VISIO_BRIDGE_TOKEN.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; artifact frontmatter is 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,311 @@
+#!/usr/bin/env python3
+import json
+import os
+import subprocess
+import sys
+import time
+
+OPT_ROOT = os.environ.get('OPT_ROOT', '/opt')
+COMPOSE_NAMES = ['docker-compose.clawdydaapps.yml', 'docker-compose.yml', 'compose.yml', 'compose.yaml']
+
+
+def usage(exit_code=2):
+    print(
+        'Usage: sudo /opt/docker-container-control <list|status|restart|recreate|deploy|dry-run> [name]\n\n'
+        'Names are discovered from Docker compose labels and compose files under /opt.\n'
+        'Use the folder-style name, compose project name, or running container name.\n\n'
+        '  list              Show detected deployments.\n'
+        '  status <name>     Show compose status for one deployment.\n'
+        '  restart <name>    docker compose restart for the deployment.\n'
+        '  recreate <name>   docker compose up -d --build --force-recreate.\n'
+        '  deploy <name>     git pull --ff-only when applicable, pull images, build, restart.\n'
+        '  dry-run <name>    Show what deploy would run without changing containers.',
+        file=sys.stderr,
+    )
+    raise SystemExit(exit_code)
+
+
+def fail(message, exit_code=2):
+    print(f'ERROR: {message}', file=sys.stderr)
+    usage(exit_code)
+
+
+def run(args, cwd=None, check=False, capture=True):
+    kwargs = {'cwd': cwd, 'text': True}
+    if capture:
+        kwargs.update({'stdout': subprocess.PIPE, 'stderr': subprocess.PIPE})
+    proc = subprocess.run(args, **kwargs)
+    if check and proc.returncode != 0:
+        if capture:
+            if proc.stdout:
+                print(proc.stdout, end='')
+            if proc.stderr:
+                print(proc.stderr, end='', file=sys.stderr)
+        raise subprocess.CalledProcessError(proc.returncode, args)
+    return proc
+
+
+def compose_base():
+    if run(['docker', 'compose', 'version'], capture=True).returncode == 0:
+        return ['docker', 'compose']
+    if run(['docker-compose', '--version'], capture=True).returncode == 0:
+        return ['docker-compose']
+    fail('docker compose/docker-compose is not installed')
+
+
+def compose(dep, extra, check=True, capture=False):
+    args = compose_base() + ['-p', dep['project'], '-f', dep['configs'][0]] + extra
+    return run(args, cwd=dep['workdir'], check=check, capture=capture)
+
+
+def compose_files_for(workdir, raw):
+    files = []
+    for item in (raw or '').split(','):
+        item = item.strip()
+        if not item:
+            continue
+        path = item if os.path.isabs(item) else os.path.join(workdir, item)
+        files.append(os.path.abspath(path))
+    return files
+
+
+def package_root(workdir):
+    workdir = os.path.abspath(workdir)
+    opt = os.path.abspath(OPT_ROOT)
+    if os.path.basename(workdir) == 'infra' and os.path.dirname(workdir).startswith(opt + os.sep):
+        return os.path.dirname(workdir)
+    return workdir
+
+
+def add(deployments, alias, project, workdir, configs, source, container=None, service=None, image=None, status=None):
+    if not alias or not project or not workdir or not configs:
+        return
+    workdir = os.path.abspath(workdir)
+    configs = [os.path.abspath(c) for c in configs]
+    if not os.path.isdir(workdir):
+        return
+    if not all(os.path.isfile(c) for c in configs):
+        return
+    folder = package_root(workdir)
+    if not folder.startswith(os.path.abspath(OPT_ROOT) + os.sep):
+        return
+    key = (alias, project, workdir, tuple(configs))
+    dep = deployments.setdefault(key, {
+        'name': alias,
+        'project': project,
+        'folder': folder,
+        'workdir': workdir,
+        'configs': configs,
+        'source': source,
+        'containers': [],
+        'services': set(),
+        'images': set(),
+        'aliases': set([alias, project, os.path.basename(folder)]),
+    })
+    if container:
+        dep['containers'].append({'name': container, 'service': service or '', 'image': image or '', 'status': status or ''})
+        dep['aliases'].add(container)
+    if service:
+        dep['services'].add(service)
+    if image:
+        dep['images'].add(image)
+
+
+def discover():
+    deployments = {}
+    ps = run(['docker', 'ps', '-a', '--format', '{{json .}}'], capture=True)
+    names = []
+    for line in ps.stdout.splitlines():
+        try:
+            item = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        name = item.get('Names') or item.get('Name') or ''
+        if name:
+            names.append(name)
+    if names:
+        inspected = run(['docker', 'inspect', *names], capture=True)
+        if inspected.returncode == 0:
+            for obj in json.loads(inspected.stdout):
+                labels = (obj.get('Config') or {}).get('Labels') or {}
+                project = labels.get('com.docker.compose.project')
+                workdir = labels.get('com.docker.compose.project.working_dir')
+                configs = compose_files_for(workdir or '', labels.get('com.docker.compose.project.config_files'))
+                if not project or not workdir or not configs:
+                    continue
+                folder = package_root(workdir)
+                alias = os.path.basename(folder)
+                state_obj = obj.get('State') or {}
+                state = state_obj.get('Status') or ''
+                health = (state_obj.get('Health') or {}).get('Status')
+                status = f'{state} ({health})' if health else state
+                add(
+                    deployments,
+                    alias=alias,
+                    project=project,
+                    workdir=workdir,
+                    configs=configs,
+                    source='docker-label',
+                    container=(obj.get('Name') or '').lstrip('/'),
+                    service=labels.get('com.docker.compose.service'),
+                    image=(obj.get('Config') or {}).get('Image'),
+                    status=status,
+                )
+    opt = os.path.abspath(OPT_ROOT)
+    for root, dirs, files in os.walk(opt):
+        rel = os.path.relpath(root, opt)
+        depth = 0 if rel == '.' else rel.count(os.sep) + 1
+        if depth > 2:
+            dirs[:] = []
+            continue
+        compose_file = next((name for name in COMPOSE_NAMES if name in files), None)
+        if not compose_file:
+            continue
+        path = os.path.abspath(os.path.join(root, compose_file))
+        folder = package_root(root)
+        alias = os.path.basename(folder)
+        project = alias
+        for dep in deployments.values():
+            if dep['folder'] == folder or path in dep['configs']:
+                project = dep['project']
+                break
+        add(deployments, alias=alias, project=project, workdir=root, configs=[path], source='opt-scan')
+    result = []
+    for dep in deployments.values():
+        dep['services'] = sorted(dep['services'])
+        dep['images'] = sorted(dep['images'])
+        dep['aliases'] = sorted(a for a in dep['aliases'] if a)
+        dep['containers'] = sorted(dep['containers'], key=lambda c: c['name'])
+        result.append(dep)
+    return sorted(result, key=lambda d: d['name'])
+
+
+def select(name):
+    matches = []
+    for dep in discover():
+        aliases = set(dep['aliases']) | {c['name'] for c in dep['containers']}
+        if name in aliases:
+            matches.append(dep)
+    if not matches:
+        detected = ', '.join(dep['name'] for dep in discover()) or '(none)'
+        print(f"ERROR: no deployment matched '{name}'", file=sys.stderr)
+        print(f'Detected names: {detected}', file=sys.stderr)
+        raise SystemExit(3)
+    if len(matches) > 1:
+        print(f"ERROR: '{name}' matched multiple deployments: " + ', '.join(dep['name'] for dep in matches), file=sys.stderr)
+        raise SystemExit(4)
+    return matches[0]
+
+
+def list_projects():
+    data = discover()
+    if not data:
+        print('No deployments detected.')
+        return
+    print('NAME\tPROJECT\tFOLDER\tCOMPOSE\tSERVICES\tCONTAINERS')
+    for dep in data:
+        containers = ','.join(c['name'] for c in dep['containers']) or '-'
+        services = ','.join(dep['services']) or '-'
+        print(f"{dep['name']}\t{dep['project']}\t{dep['folder']}\t{','.join(dep['configs'])}\t{services}\t{containers}")
+
+
+def wait_healthy(dep):
+    names = [c['name'] for c in dep['containers']]
+    if not names:
+        return True
+    deadline = time.time() + 120
+    while time.time() < deadline:
+        ok = True
+        for name in names:
+            proc = run(['docker', 'inspect', name, '--format', '{{.State.Status}} {{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}'], capture=True)
+            if proc.returncode != 0:
+                ok = False
+                continue
+            parts = proc.stdout.strip().split()
+            state = parts[0] if parts else ''
+            health = parts[1] if len(parts) > 1 else 'none'
+            if state != 'running' or health not in ('healthy', 'none'):
+                ok = False
+        if ok:
+            return True
+        time.sleep(2)
+    return False
+
+
+def status(dep):
+    compose(dep, ['ps'])
+
+
+def git_clean(folder):
+    proc = run(['git', '-C', folder, 'status', '--porcelain', '--untracked-files=no'], capture=True)
+    return proc.returncode == 0 and not proc.stdout.strip()
+
+
+def deploy(dep, dry=False):
+    print(f"Deployment: {dep['name']}")
+    print(f"Folder: {dep['folder']}")
+    print(f"Compose project: {dep['project']}")
+    print(f"Working dir: {dep['workdir']}")
+    print(f"Compose file: {dep['configs'][0]}")
+    if os.path.isdir(os.path.join(dep['folder'], '.git')):
+        if not git_clean(dep['folder']):
+            fail(f"{dep['folder']} has uncommitted changes; refusing to deploy")
+        print('Git: fetch --prune origin; pull --ff-only')
+        if not dry:
+            run(['git', '-C', dep['folder'], 'fetch', '--prune', 'origin'], check=True, capture=False)
+            run(['git', '-C', dep['folder'], 'pull', '--ff-only'], check=True, capture=False)
+    else:
+        print('Git: skipped, folder is not a git checkout.')
+    print('Compose: pull --ignore-pull-failures; up -d --build')
+    if dry:
+        return
+    compose(dep, ['pull', '--ignore-pull-failures'], check=False)
+    compose(dep, ['up', '-d', '--build'])
+    refreshed = select(dep['name'])
+    if not wait_healthy(refreshed):
+        status(refreshed)
+        print('ERROR: deployment did not become healthy/running in time', file=sys.stderr)
+        raise SystemExit(1)
+    status(refreshed)
+
+
+def main():
+    if os.geteuid() != 0:
+        print('ERROR: run this script with sudo', file=sys.stderr)
+        raise SystemExit(2)
+    action = sys.argv[1] if len(sys.argv) > 1 else 'list'
+    if action == 'list':
+        if len(sys.argv) != 2:
+            fail('list does not take a name')
+        list_projects()
+        return
+    if len(sys.argv) != 3:
+        fail(f'{action} requires a name')
+    dep = select(sys.argv[2])
+    if action == 'status':
+        status(dep)
+    elif action == 'restart':
+        compose(dep, ['restart'])
+        refreshed = select(dep['name'])
+        if not wait_healthy(refreshed):
+            print('ERROR: deployment did not become healthy/running in time', file=sys.stderr)
+            raise SystemExit(1)
+        status(refreshed)
+    elif action == 'recreate':
+        compose(dep, ['up', '-d', '--build', '--force-recreate'])
+        refreshed = select(dep['name'])
+        if not wait_healthy(refreshed):
+            print('ERROR: deployment did not become healthy/running in time', file=sys.stderr)
+            raise SystemExit(1)
+        status(refreshed)
+    elif action == 'deploy':
+        deploy(dep, dry=False)
+    elif action == 'dry-run':
+        deploy(dep, dry=True)
+    else:
+        fail(f"unknown action '{action}'")
+
+
+if __name__ == '__main__':
+    main()
+

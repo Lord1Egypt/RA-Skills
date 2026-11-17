@@ -1,44 +1,58 @@
-## Description: <br>
-Multi-stage deep research with reflection loops, multi-query retrieval, LLM chunk selection, and citation integrity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Research Pipeline turns broad questions into cited reports through planning, multi-query retrieval, chunk selection, analysis, reflection, writing, and optional verification.
 
-## Publisher: <br>
-[vardhineediganesh877-ui](https://clawhub.ai/user/vardhineediganesh877-ui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vardhineediganesh877-ui](https://clawhub.ai/user/vardhineediganesh877-ui)
 
-## Use Case: <br>
-Developers, analysts, and researchers use this skill to turn broad research questions into cited reports, summaries, briefs, or structured JSON through staged planning, retrieval, analysis, reflection, and writing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research questions, prompts, and retrieved source text can be sent to configured search, GitHub, documentation, and LLM providers. <br>
-Mitigation: Use mock/offline modes or a trusted local provider for sensitive work, and only configure providers approved for the data being researched. <br>
-Risk: The skill can save research outputs, checkpoints, and source-derived artifacts locally. <br>
-Mitigation: Run it in a sandboxed workspace and choose explicit output and checkpoint paths before execution. <br>
-Risk: Generated reports may contain incorrect, stale, or weakly supported claims despite citation-oriented workflow controls. <br>
-Mitigation: Review cited sources and verify citations before relying on generated reports for decisions. <br>
+## Use Case:
 
+Developers, analysts, and research-oriented agents use this skill to run multi-source investigations, synthesize findings, track contradictions and gaps, and produce cited reports or structured research outputs.
 
-## Reference(s): <br>
-- [Deep Research Pipeline documentation](DOCS.md) <br>
-- [Deep Research Pipeline skill definition](SKILL.md) <br>
-- [ClawHub release page](https://clawhub.ai/vardhineediganesh877-ui/deep-research-pipeline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, summaries, briefs, structured JSON, and command/configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports report, summary, brief, and json outputs with optional checkpoints, mock mode, time limits, and token budgets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill can make outbound web, GitHub, documentation, and LLM-provider requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in environments where that outbound access is acceptable, prefer trusted HTTPS endpoints, and review source lists before relying on generated research.
+
+Risk: Research topics, retrieved content, and intermediate findings may be sent to configurable LLM endpoints.
+
+Mitigation: Avoid confidential research topics unless you control or have approved the provider endpoint and workspace; review custom LLM_API_BASE, OPENAI_BASE_URL, OPENAI_API_BASE, and ZAI_API_ENDPOINT values before use.
+
+Risk: Generated reports, checkpoints, and provenance files may retain sensitive research data.
+
+Mitigation: Write outputs to approved locations, manage retention deliberately, and treat generated files as sensitive when the research topic is sensitive.
+
+## Reference(s):
+
+- [Deep Research Pipeline on ClawHub](https://clawhub.ai/vardhineediganesh877-ui/skills/deep-research-pipeline)
+- [Deep Research Pipeline Skill Documentation](DOCS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, executive summaries, bullet briefs, or structured JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports report, summary, brief, and json formats with checkpoint/resume, time limits, token budgets, and mock mode.]
+
+## Skill Version(s):
+
+2.0.1 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

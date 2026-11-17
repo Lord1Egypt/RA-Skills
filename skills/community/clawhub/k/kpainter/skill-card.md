@@ -1,47 +1,57 @@
-## Description: <br>
-Explain any topic with explainer videos, slides, images, and interactive lessons. Latest image support includes GPT-Image-2. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explain any topic with precision. Use KPainter to turn PDFs, PPTs, web links, and other documents into precise, clearly structured explainer videos and interactive lessons, then monitor or refine the results.
 
-## Publisher: <br>
-[bbgasj](https://clawhub.ai/user/bbgasj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bbgasj](https://clawhub.ai/user/bbgasj)
 
-## Use Case: <br>
-External users and developers use KPainter to guide an agent through connecting their own KPainter account, choosing the right content format, and creating or refining explainer videos, slides, images, vector animations, and interactive lessons from prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires the user's own KPainter API key. <br>
-Mitigation: Connect the key only through the current agent's credential flow and do not share it with unrelated services. <br>
-Risk: KPainter actions may consume account credits. <br>
-Mitigation: Confirm the requested output type before creation and monitor credit usage, especially for full explainer videos. <br>
-Risk: User-provided source material may be processed by KPainter. <br>
-Mitigation: Avoid submitting sensitive source material unless the user is comfortable with KPainter processing it. <br>
+## Use Case:
 
+External users, developers, and content teams use this skill to route requests into KPainter products for explainer videos, read-aloud videos, vector animations, AI images, AI videos, slide decks, and interactive lessons from topics or source material.
 
-## Reference(s): <br>
-- [KPainter skill page on ClawHub](https://clawhub.ai/bbgasj/kpainter) <br>
-- [KPainter homepage](https://kpainter.ai/) <br>
-- [KPainter skill file](https://kpainter.ai/skill.md) <br>
-- [KPainter skills documentation](https://kpainter.ai/docs/skills) <br>
-- [KPainter OpenAPI documentation](https://kpainter.ai/docs/openapi) <br>
-- [KPainter API key setup](https://kpainter.ai/api-key) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with inline commands and setup steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides account and API key setup, content-format selection, and refinement workflows for KPainter-generated media.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.9 (source: SKILL.md metadata and server release evidence) <br>
+Risk: Some install examples fetch mutable remote content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the OpenClaw/ClawHub install path when available, or review and pin fetched content before installation.
+
+Risk: The skill uses a KPainter API key for creation and refinement workflows.
+
+Mitigation: Connect only a KPainter API key intended for agent use and keep it within the current agent connection flow.
+
+## Reference(s):
+
+- [KPainter Homepage](https://kpainter.ai/)
+- [KPainter Skill File](https://kpainter.ai/skill.md)
+- [KPainter Skills Documentation](https://kpainter.ai/docs/skills)
+- [KPainter OpenAPI Documentation](https://kpainter.ai/docs/openapi)
+- [KPainter API Key](https://kpainter.ai/api-key)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with JSON API request examples and shell installation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May result in KPainter creation URLs and media artifacts after API execution.]
+
+## Skill Version(s):
+
+0.8.0 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

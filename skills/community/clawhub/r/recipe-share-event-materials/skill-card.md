@@ -1,42 +1,49 @@
-## Description: <br>
-Share Google Drive files with all attendees of a Google Calendar event. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Share Google Drive files with all attendees of a Google Calendar event.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Employees or operators with Google Workspace access use this recipe to share a selected Drive file with attendees from a Google Calendar event and verify the resulting permissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The recipe can grant Google Drive access to the wrong people if the calendar event, file, or attendee list is incorrect. <br>
-Mitigation: Confirm the exact event, Drive file, and recipients before creating permissions, then review the permission list after sharing. <br>
-Risk: Drive access may remain longer than intended for external guests or broad meeting lists. <br>
-Mitigation: Revoke permissions after the event when access should be temporary. <br>
-Risk: Execution depends on local gws tooling and referenced Google Workspace skills. <br>
-Mitigation: Install and use this recipe only in environments where the gws toolchain and required skills are trusted. <br>
+## Use Case:
 
+Employees, workspace administrators, and agents use this skill to share Google Drive materials with attendees of a Google Calendar event and verify the resulting permissions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/recipe-share-event-materials) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws binary and the gws-calendar and gws-drive skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata) <br>
+Risk: Drive files may be shared with unintended recipients if the event attendee list includes external guests, groups, or forwarded invitations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the attendee list and file sensitivity before granting access, share only with intended recipients, and remove permissions afterward when access is temporary.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/recipe-share-event-materials)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws command-line tool and the gws-calendar and gws-drive skills.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata; artifact metadata version 0.22.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

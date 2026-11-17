@@ -1,6 +1,70 @@
 {
-  "ownerId": "kn7c9befcjfq01jttd5mqq6qcd84m5yd",
-  "slug": "ai-news-hub",
+  "name": "ai-news-hub",
   "version": "2.3.1",
-  "publishedAt": 1776135183690
+  "description": "AI新闻阅读助手。100+ RSS源并发抓取、兴趣评分、跨天去重、统一预取。智能聚合AI/技术新闻、arXiv论文、GitHub热门项目、AI公司动态。支持日报/周报生成、关键词筛选、分类订阅。",
+  "author": "Claw VM Agent",
+  "license": "MIT",
+  "category": "资讯服务",
+  "tags": [
+    "AI",
+    "新闻",
+    "技术",
+    "论文",
+    "GitHub",
+    "OpenAI",
+    "Anthropic",
+    "聚合",
+    "日报",
+    "周报"
+  ],
+  "trigger": [
+    "AI新闻",
+    "技术新闻",
+    "今天新闻",
+    "最新论文",
+    "arXiv",
+    "GitHub热门",
+    "OpenAI动态",
+    "科技早报",
+    "AI资讯",
+    "行业动态"
+  ],
+  "rating": "all",
+  "language": "zh-CN",
+  "features": [
+    "100+ RSS源并发抓取",
+    "智能兴趣评分",
+    "跨天去重",
+    "统一预取缓存",
+    "arXiv论文搜索",
+    "GitHub Trending",
+    "AI公司动态",
+    "日报/周报生成",
+    "关键词筛选",
+    "分类订阅"
+  ],
+  "dependencies": [
+    "python3",
+    "feedparser"
+  ],
+  "external_apis": [
+    "arXiv",
+    "GitHub Trending",
+    "RSS feeds"
+  ],
+  "data_sources": [
+    "OpenAI Blog",
+    "Anthropic Blog",
+    "Google DeepMind",
+    "HuggingFace",
+    "arXiv",
+    "GitHub Trending",
+    "MIT Tech Review",
+    "The Verge",
+    "TechCrunch",
+    "机器之心",
+    "量子位"
+  ],
+  "created_at": "2026-04-10T12:00:00+08:00",
+  "updated_at": "2026-04-14T10:47:00+08:00"
 }

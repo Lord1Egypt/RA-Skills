@@ -220,19 +220,7 @@ python "C:\Users\Juxin\.openclaw\workspace\skills\info-research-report\run.py" "
 - `OPENAI_API_KEY` - OpenAI API Key（备用）
 - `OPENCLAW_SKILLS_DIR` - 技能根目录（默认：`C:\Users\Juxin\.openclaw\workspace\skills`）
 
-> ⚠️ **配置方法**：
-> 1. 复制 `.env.template` 为 `.env`
-> 2. 填入你的 API Key
-> 3. 运行脚本时会自动加载
-
-### 快速配置命令
-```bash
-# 复制模板
-copy "C:\Users\Juxin\.openclaw\workspace\skills\info-research-report\.env.template" "C:\Users\Juxin\.openclaw\workspace\skills\info-research-report\.env"
-
-# 编辑 .env 文件，填入你的 API Key
-notepad "C:\Users\Juxin\.openclaw\workspace\skills\info-research-report\.env"
-```
+> ⚠️ **用户需自行配置**：请设置 `MINIMAX_API_KEY` 环境变量，或在运行脚本时传入。
 
 ### 外部工具
 - `mcporter` + `browseros MCP` - 网页内容抓取

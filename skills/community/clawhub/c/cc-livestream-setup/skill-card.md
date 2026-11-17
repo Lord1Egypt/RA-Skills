@@ -1,45 +1,60 @@
-## Description: <br>
-Creates and configures CC live streaming rooms through the CC HTTP API, including room setup, authentication, and credential handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill should be used when the user needs to create or configure a CC live streaming room via API, including room creation, authentication setup, and credential management.
 
-## Publisher: <br>
-[elberren](https://clawhub.ai/user/elberren) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elberren](https://clawhub.ai/user/elberren)
 
-## Use Case: <br>
-Developers and operators use this skill to create CC live streaming rooms, choose room templates, configure mobile viewing behavior, and run the room creation API flow with user-supplied CC credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The room creation script uses weak fixed privileged room passwords for publisher and assistant access. <br>
-Mitigation: Generate or request strong per-room publisher and assistant passwords before running the script, then verify or rotate room credentials in the CC console after use. <br>
-Risk: The script prints request URLs that may contain sensitive request details. <br>
-Mitigation: Redact request URLs and avoid logging credentials, hashes, or account identifiers before using the script in a shared terminal, log collector, or support workflow. <br>
-Risk: The skill creates resources in the user's CC account. <br>
-Mitigation: Review the selected template, authentication settings, and account context before execution, and confirm the created room settings in the CC console afterward. <br>
+## Use Case:
 
+Developers and operators use this skill to create CC live streaming rooms, collect required CC account credentials, choose a room template, and return the room creation result.
 
-## Reference(s): <br>
-- [CC Live API Documentation Reference](references/api_docs.md) <br>
-- [CC Live API Base URL](https://api.csslcloud.net/api/) <br>
-- [CC Live Room Creation Endpoint](https://api.csslcloud.net/api/room/create) <br>
-- [CC THQS Signature Documentation](https://doc.bokecc.com/live/developer/live_api/Appendix_2.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with command-line script usage and API response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces room creation status and room identifiers when the CC API call succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill handles sensitive CC account credentials and API keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Request credentials only when needed, do not store or cache them, and avoid exposing API keys through command-line history or logs.
+
+Risk: The helper script creates rooms with weak hard-coded publisher and assistant passwords.
+
+Mitigation: Replace the default passwords with unique strong values before real use, and rotate any passwords that may have been exposed.
+
+Risk: The security review notes that full request URLs and sensitive responses may be logged.
+
+Mitigation: Remove or redact sensitive request and response logging before using the skill with production credentials.
+
+## Reference(s):
+
+- [CC Live API Documentation Reference](references/api_docs.md)
+- [CC Live API Appendix](https://doc.bokecc.com/live/developer/live_api/Appendix_2.html)
+- [ClawHub Skill Page](https://clawhub.ai/elberren/skills/cc-livestream-setup)
+- [Publisher Profile](https://clawhub.ai/user/elberren)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Conversational guidance with shell command usage and API result summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Collects CC userid, API key, room name, template type, and optional mobile view mode from the user.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

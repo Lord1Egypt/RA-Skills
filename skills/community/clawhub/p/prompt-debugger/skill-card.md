@@ -1,42 +1,53 @@
-## Description: <br>
-Debug prompts that produce unexpected AI outputs by diagnosing failure modes, identifying ambiguity and conflicting instructions, testing variations, comparing model responses, and improving prompt quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Debug prompts that produce unexpected AI outputs - diagnose failure modes, identify ambiguity and conflicting instructions, test variations, compare model responses, and iteratively improve prompt quality.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers, prompt authors, and agent builders use this skill to diagnose prompts that produce unexpected outputs, compare prompt variations, detect prompt anti-patterns, score prompt quality, and produce improved prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rewritten prompts may introduce incorrect, misleading, or overly broad instructions if accepted without review. <br>
-Mitigation: Review and test rewritten prompts before using them as production system or agent instructions. <br>
-Risk: Prompt debugging often requires sharing the original prompt, which may contain secrets or confidential information. <br>
-Mitigation: Remove secrets and confidential data before using the skill unless that information can be exposed to the active AI session. <br>
-Risk: Static prompt analysis may not predict every model-specific behavior. <br>
-Mitigation: Validate proposed prompt changes with the intended model, data, and use case. <br>
+## Use Case:
 
+Developers, prompt authors, and AI application teams use this skill to diagnose prompts that produce unexpected model outputs, compare prompt variations, and produce clearer rewritten prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/prompt-debugger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Text, Markdown, or JSON diagnostic reports with prompt rewrites, variation comparisons, quality scores, and anti-pattern findings.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not execute prompts; analysis is static and should be tested with the target model and use case.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill may activate for broad prompt-improvement requests and produce reasoning-heavy prompt patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated prompts before use and prefer concise justification wording when hidden reasoning disclosure is not desired.
+
+Risk: Prompt examples supplied for debugging may contain sensitive content.
+
+Mitigation: Remove secrets, personal data, and confidential business context before sharing prompts for analysis.
+
+## Reference(s):
+
+- [Prompt Debugger ClawHub release](https://clawhub.ai/charlie-morrison/skills/prompt-debugger)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown or JSON diagnostic reports with rewritten prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static prompt analysis only; no prompt execution or external tool access is described.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

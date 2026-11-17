@@ -1,40 +1,50 @@
-## Description: <br>
-Provides a Yu Minhong-style perspective prompt for resilience, education-minded entrepreneurship, crisis transformation, personal growth, and team-building decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Yu Minhong-inspired perspective for resilient education entrepreneurship, crisis transformation, personal growth, and team-building guidance.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External users and agents use this skill to frame education, entrepreneurship, crisis response, personal growth, and team-building questions through a Yu Minhong-inspired mental-model perspective. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may steer broad education or transformation topics into a Yu Minhong-style perspective even when a neutral answer is expected. <br>
-Mitigation: Use it only when that persona framing is desired, and remove or disclose the framing when neutral guidance is needed. <br>
-Risk: Quotations, biographical details, and business claims in the prompt are style context and may be inaccurate. <br>
-Mitigation: Independently verify factual claims before relying on them or presenting them as citations. <br>
+## Use Case:
 
+External users and agent developers can use this skill to frame education, entrepreneurship, crisis response, personal-growth, and team-building questions through a Yu Minhong-inspired set of mental models and communication patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/yu-minhong-perspective-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain-text persona-framed guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, data access, or persistence; factual claims and quotations should be independently verified before reuse.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server-resolved release metadata) <br>
+Risk: Broad education-transformation phrasing may activate the perspective when the user did not intend this viewpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrower trigger phrases or review activation settings before deployment.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/xiejianjun000/skills/yu-minhong-perspective-v2)
+- [Publisher profile](https://clawhub.ai/user/xiejianjun000)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces perspective-taking advice and decision heuristics; does not execute commands or create files.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

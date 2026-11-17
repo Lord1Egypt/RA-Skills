@@ -1,46 +1,58 @@
-## Description: <br>
-Play casino games (dice, coinflip, roulette) on Agent Casino with real cryptocurrency through a provably fair gambling API for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Casino helps agents interact with a provably fair gambling API for dice, coinflip, roulette, deposits, withdrawals, balance checks, and bet verification using real cryptocurrency.
 
-## Publisher: <br>
-[rollhub-dev](https://clawhub.ai/user/rollhub-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rollhub-dev](https://clawhub.ai/user/rollhub-dev)
 
-## Use Case: <br>
-External users and developers use this skill to register an agent with Agent Casino, deposit cryptocurrency, place dice, coinflip, and roulette wagers, verify bet outcomes, withdraw funds, and check affiliate statistics. <br>
-
-### Deployment Geography for Use: <br>
-Global, subject to jurisdictions where online cryptocurrency gambling is legal. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill enables real-money cryptocurrency gambling through an external casino. <br>
-Mitigation: Use only with adults in jurisdictions where online cryptocurrency gambling is legal, and require explicit user consent before each registration, deposit, wager, or withdrawal. <br>
-Risk: Cryptocurrency transfers and gambling losses may be irreversible. <br>
-Mitigation: Confirm wallet addresses, chain selections, amounts, and bet details before making API calls, and keep wager limits conservative. <br>
-Risk: The registration flow may include an affiliate referral that benefits the publisher. <br>
-Mitigation: Disclose the referral code before registration and proceed only after the user accepts the affiliate relationship. <br>
-Risk: API keys and wallet addresses are sensitive operational data. <br>
-Mitigation: Avoid logging or sharing API keys, keep credentials in the user's controlled environment, and redact them from generated examples or reports. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Agent Casino](https://agent.rollhub.com) <br>
-- [Agent Casino API Base](https://agent.rollhub.com/api/v1) <br>
-- [ClawHub Skill Page](https://clawhub.ai/rollhub-dev/rollhub-casino) <br>
-- [Publisher Profile](https://clawhub.ai/user/rollhub-dev) <br>
+## Use Case:
 
+External users and developers use this skill to register agents, manage balances, place and verify casino bets, and withdraw funds through the Agent Casino API. Because the workflow involves real cryptocurrency gambling, users should confirm legal eligibility and approve each money-moving action before execution.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash curl examples and API parameter guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include API endpoint instructions for registration, deposit, balance, betting, verification, withdrawal, and affiliate statistics.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is for real cryptocurrency gambling and includes high-impact money-moving registration, deposit, bet, and withdrawal commands.
+
+Mitigation: Use it only where gambling is legally allowed, require explicit confirmation for every registration, deposit, bet, and withdrawal, and set strict spending and loss limits before use.
+
+Risk: Commands handle API keys, wallet information, currency, chain, amount, and withdrawal address values.
+
+Mitigation: Keep API keys out of prompts, logs, and source files, and verify currency, chain, amount, and withdrawal address before submitting any transfer.
+
+Risk: The security evidence notes a hard-coded referral code that may financially benefit someone else.
+
+Mitigation: Remove or replace the referral code unless the user intentionally approves it.
+
+## Reference(s):
+
+- [Agent Casino](https://agent.rollhub.com)
+- [Agent Casino API Base](https://agent.rollhub.com/api/v1)
+- [ClawHub Skill Page](https://clawhub.ai/rollhub-dev/skills/rollhub-casino)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes real-money gambling API requests and requires an API key, wallet details, and explicit confirmation for registration, deposit, bet, and withdrawal actions.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

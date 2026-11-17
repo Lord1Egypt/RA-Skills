@@ -1,40 +1,53 @@
-## Description: <br>
-Control AirPlay speakers via Airfoil from the command line. Connect, disconnect, set volume, and manage multi-room audio with simple CLI commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control AirPlay speakers via Airfoil from the command line. Connect, disconnect, set volume, and manage multi-room audio with simple CLI commands.
 
-## Publisher: <br>
-[asteinberger](https://clawhub.ai/user/asteinberger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[asteinberger](https://clawhub.ai/user/asteinberger)
 
-## Use Case: <br>
-Developers and macOS users use this skill to let an agent manage Airfoil-connected AirPlay speakers, including listing speakers, connecting or disconnecting rooms, setting volume, and checking playback status. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Crafted speaker names may be interpreted as unintended AppleScript commands when passed through the shell script. <br>
-Mitigation: Use only trusted speaker names, avoid names with quotes or unusual syntax, validate volume values manually, and consider patching the script to pass speaker names as osascript arguments before use. <br>
-Risk: The skill requires macOS Accessibility permissions for the terminal or agent environment controlling Airfoil. <br>
-Mitigation: Grant Accessibility permissions only to trusted environments and revoke them when the skill is no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Airfoil for Mac](https://rogueamoeba.com/airfoil/mac/) <br>
-- [ClawHub Airfoil Skill](https://clawhub.ai/asteinberger/airfoil) <br>
+## Use Case:
 
+External users and developers on macOS use this skill to control Airfoil-managed AirPlay speakers from an agent or terminal, including listing speakers, connecting or disconnecting them, setting volume, and checking status.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text command output and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs on macOS with Airfoil, osascript, and macOS Accessibility permissions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Crafted or untrusted speaker names could be handled unsafely by the AppleScript command path.
+
+Mitigation: Use only trusted speaker names until the script passes speaker names as AppleScript arguments and validates or escapes inputs.
+
+Risk: Unvalidated volume values could cause unexpected command behavior.
+
+Mitigation: Constrain volume input to numeric values from 0 to 100 before invoking the volume command.
+
+## Reference(s):
+
+- [ClawHub Airfoil Skill Page](https://clawhub.ai/asteinberger/skills/airfoil)
+- [Airfoil for Mac](https://rogueamoeba.com/airfoil/mac/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text with shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS, Airfoil, osascript, and trusted speaker names and volume values.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

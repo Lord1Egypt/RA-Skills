@@ -1,41 +1,58 @@
-## Description: <br>
-Generate and send a daily briefing to your owner covering today's meetings, urgent emails, open tasks, and anything that needs attention. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and send a daily briefing to your owner covering today's meetings, urgent emails, open tasks, and anything that needs attention.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-Employees, operators, and personal assistants use this skill to prepare and send a concise daily owner briefing from calendar events, unread email, open monday.com tasks, and items needing attention. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The briefing may expose meeting titles, email senders, subjects, and task names through the selected delivery channel. <br>
-Mitigation: Use the skill only with an approved channel and recipient, and confirm that WhatsApp or email is appropriate for the organization's data. <br>
-Risk: Incorrect account, board, token, recipient, or timezone settings can send incomplete or misdirected briefings. <br>
-Mitigation: Before enabling cron, verify the Google account, monday.com board ID, token scope, OWNER_PHONE or email recipient, and timezone. <br>
+## Use Case:
 
+Employees or personal operations users use this skill to assemble and send a concise daily owner briefing from calendar events, unread email, and open task data. It can be run on request or scheduled for weekday delivery.
 
-## Reference(s): <br>
-- [Owner Briefing on ClawHub](https://clawhub.ai/netanel-abergel/owner-briefing) <br>
-- [monday.com API endpoint](https://api.monday.com/v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with bash and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a concise briefing message and optional cron configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The briefing may include sensitive calendar, email, and task content and send it through a configured messaging or email channel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the Google, monday.com, and messaging or email accounts are approved, and verify the destination is private before enabling scheduled delivery.
+
+Risk: The monday.com API token could expose task data if stored insecurely or granted broad access.
+
+Mitigation: Store the token securely and use the least privilege access needed for the selected board.
+
+Risk: Unreplaced owner, account, phone, email, or board placeholders could send incomplete or misdirected briefings.
+
+Mitigation: Replace all placeholders and run a manual test before enabling the cron schedule.
+
+## Reference(s):
+
+- [Owner Briefing ClawHub listing](https://clawhub.ai/netanel-abergel/skills/owner-briefing)
+- [monday.com API endpoint](https://api.monday.com/v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown briefing text with inline bash examples and JSON cron configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sections can be marked unavailable when calendar, email, or task data cannot be fetched.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

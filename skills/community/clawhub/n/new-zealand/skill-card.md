@@ -1,43 +1,50 @@
-## Description: <br>
-Discover New Zealand with island-aware routing, practical road-trip logistics, outdoor safety, and local food and region guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover New Zealand with island-aware routing, practical road-trip logistics, outdoor safety, and local food and region guidance.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Travelers and travel-planning agents use this skill to plan New Zealand trips by island, corridor, season, transport mode, interests, and practical safety constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retain trip preferences in a local memory file. <br>
-Mitigation: Avoid storing passport numbers, payment details, or sensitive documents in ~/new-zealand/memory.md, and review or delete the file when trip context is no longer needed. <br>
-Risk: Travel, entry, road, ferry, weather, and outdoor-safety information can change. <br>
-Mitigation: Confirm rules and conditions with official sources before making bookings, crossing borders, driving long routes, or starting hikes. <br>
+## Use Case:
 
+External users planning New Zealand travel use this skill to compare regions, choose routes, plan transport, handle entry and biosecurity considerations, and tailor itineraries around season, budget, food, family, and outdoor priorities.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/new-zealand) <br>
-- [Publisher Profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Skill Homepage](https://clawic.com/skills/new-zealand) <br>
-- [Official Source Map](sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown travel-planning guidance with concise recommendations and practical checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain local trip context in ~/new-zealand/memory.md when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Plaintext trip-memory notes in ~/new-zealand/memory.md may contain sensitive travel, booking, family, dietary, or mobility details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing passport numbers, payment details, ticket barcodes, full booking confirmation codes, or sensitive family and accessibility details; edit or delete the memory file when the trip is done.
+
+## Reference(s):
+
+- [New Zealand skill page](https://clawic.com/skills/new-zealand)
+- [Official Source Map](sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown travel guidance with optional plaintext trip-memory notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use ~/new-zealand/memory.md to retain trip context when present.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

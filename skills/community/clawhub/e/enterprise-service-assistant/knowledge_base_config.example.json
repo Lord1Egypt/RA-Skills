@@ -1,0 +1,18 @@
+{
+  "source_type": "local",
+  "source_config": {
+    "file_path": "[请配置你的Excel文件路径，例如：path/to/园区数据.xlsx]"
+  },
+  "cache_config": {
+    "enabled": true,
+    "cache_dir": "~/.workbuddy/workspace/enterprise-service-assistant/cache",
+    "ttl_minutes": {
+      "客户管理": 60,
+      "费用收缴": 30,
+      "报修情况汇总": 15,
+      "库存管理": 60,
+      "C+服务记录": 30,
+      "认股权台账": 60
+    }
+  }
+}

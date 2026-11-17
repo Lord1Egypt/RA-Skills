@@ -1,48 +1,60 @@
-## Description: <br>
-Creates, edits, validates, and manages KNX Gateway scenes and automation workflows through a REST API for device control and workflow lifecycle tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, edit, validate, and manage KNX Gateway automation workflows and scenes through a REST API.
 
-## Publisher: <br>
-[tmpbin](https://clawhub.ai/user/tmpbin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tmpbin](https://clawhub.ai/user/tmpbin)
 
-## Use Case: <br>
-Developers and smart-home operators use this skill to author, validate, import, export, enable, and execute KNX Gateway scenes and automation workflows on a trusted LAN or VPN. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through physical smart-home actions, including locks, doors, windows, scenes, workflows, and device control. <br>
-Mitigation: Install only for a trusted KNX Gateway and require explicit confirmation before unlock, garage or window movement, scene execution, workflow enable or execute actions, deletes, or other high-impact changes. <br>
-Risk: A KNX token gives access to the gateway API and could expose device control if mishandled. <br>
-Mitigation: Keep KNX_TOKEN in a secret store or local environment variable, avoid pasting it into conversations, and never hardcode it in shared files or examples. <br>
-Risk: Gateway access over local HTTP or off-LAN integrations can weaken transport and network boundaries. <br>
-Mitigation: Restrict the gateway to a trusted LAN or VPN, prefer HTTPS or isolated networking where available, and review any HTTP, MQTT, email, or webhook destination before enabling it. <br>
+## Use Case:
 
+Developers, smart-home operators, and automation engineers use this skill to discover KNX devices, create scenes, generate importable workflows, validate configurations, and manage workflow lifecycle through a user-provided KNX Gateway.
 
-## Reference(s): <br>
-- [KNX Gateway Skills Homepage](https://github.com/tmpbin/knx-gateway-skills) <br>
-- [Device Reference](ref/devices.md) <br>
-- [Scene Reference](ref/scenes.md) <br>
-- [Trigger Reference](ref/triggers.md) <br>
-- [Node Reference](ref/nodes.md) <br>
-- [API Reference](ref/api.md) <br>
-- [Workflow Examples](ref/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, JSON, API calls] <br>
-**Output Format:** [Markdown with REST endpoint guidance and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API endpoints, request bodies, validation steps, and lifecycle guidance for a user-provided KNX Gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can enable persistent automations and perform high-impact smart-home actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before deletes, lock, garage, window, scene execution, workflow enablement, webhook exposure, or HTTP/MQTT/email destination changes.
+
+Risk: The gateway access pattern uses a bearer token and may default to plaintext HTTP.
+
+Mitigation: Use a secret store for KNX_TOKEN, prefer HTTPS or an encrypted tunnel, connect only on a trusted LAN or VPN, and use a least-privilege token if supported.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tmpbin/skills/ycznwl-smarthome)
+- [Source Homepage](https://github.com/tmpbin/knx-gateway-skills)
+- [API Reference](ref/api.md)
+- [Device Reference](ref/devices.md)
+- [Scene Reference](ref/scenes.md)
+- [Trigger Reference](ref/triggers.md)
+- [Node Reference](ref/nodes.md)
+- [Workflow Examples](ref/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with REST API requests and JSON scene or workflow payloads.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include device-control actions, workflow import JSON, scene definitions, validation steps, and token-handling guidance.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

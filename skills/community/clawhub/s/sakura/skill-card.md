@@ -1,38 +1,54 @@
-## Description: <br>
-Guides an agent to produce Python turtle code that draws a recursive fractal sakura tree with animated falling petals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to produce Python turtle code that recursively draws a fractal cherry blossom tree and animates falling petals with randomized drift.
 
-## Publisher: <br>
-[DuanC-Chao](https://clawhub.ai/user/DuanC-Chao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duanc-chao](https://clawhub.ai/user/duanc-chao)
 
-## Use Case: <br>
-Developers and learners use this skill to ask an agent for an educational Python turtle example that draws a fractal sakura tree and explains recursion, randomness, and animation behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the turtle example opens a local graphics window and keeps animating until the window is closed. <br>
-Mitigation: Run it in an environment where a local GUI window is expected, and close the window or interrupt the process to stop the animation. <br>
+## Use Case:
 
+Developers and learners use this skill to generate and understand a Python turtle example that combines recursion, randomized branching, color changes, and a simple animation loop for a cherry blossom drawing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DuanC-Chao/sakura) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes runnable Python turtle example code and explanatory guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The sample code opens a local graphics window and starts an animation loop that continues until the window is closed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the code in an interactive local environment and close the turtle window to stop the animation.
+
+Risk: The skill documentation is written in Chinese, which may affect review or maintenance for teams that do not use Chinese-language materials.
+
+Mitigation: Review or translate the instructions before adopting the generated code in workflows that require English documentation.
+
+## Reference(s):
+
+- [Skill Source](artifact/SKILL.md)
+- [ClawHub Skill Page](https://clawhub.ai/duanc-chao/skills/sakura)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Python turtle code that opens a local graphics window and runs an animation loop until the window is closed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

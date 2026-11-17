@@ -1,39 +1,53 @@
-## Description: <br>
-Transforms communication notes, meeting records, and one-page report requests into concise objective conclusions and styled HTML one-page summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Elegant One Pager Architect turns meeting notes, communication records, and one-page report requests into concise Chinese business summaries rendered as styled HTML.
 
-## Publisher: <br>
-[vector4wang](https://clawhub.ai/user/vector4wang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vector4wang](https://clawhub.ai/user/vector4wang)
 
-## Use Case: <br>
-Business users, operators, and developers can use this skill to turn raw communication notes or meeting records into a concise HTML brief for reporting, executive summaries, PDF export, or image export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML may be unsafe or inappropriate to render directly when the source notes are untrusted. <br>
-Mitigation: Review and sanitize the generated HTML before rendering or sharing it, especially when the input text comes from an untrusted source. <br>
-Risk: The skill is designed to output HTML even when a user may only need a plain summary. <br>
-Mitigation: Confirm that HTML output is desired before using the generated result for reporting, PDF export, or image export. <br>
+## Use Case:
 
+Employees and external business users can use this skill to turn raw meeting or communication notes into polished one-page HTML summaries for briefings, reporting, or export workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [HTML code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a single styled HTML one-page summary; no shell commands, API calls, or persistent system access are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Generated HTML may include unsafe markup when source notes contain user-derived HTML.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated HTML as untrusted and sanitize or escape user-derived content before rendering it in a browser or publishing it.
+
+Risk: A generated one-page report may omit context if the input notes are incomplete or ambiguous.
+
+Mitigation: Review the extracted conclusions, metrics, timelines, and next steps against the source notes before using the output for decisions or publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vector4wang/skills/sample-one-page)
+
+## Skill Output:
+
+**Output Type(s):** [text, code]
+
+**Output Format:** [HTML code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Direct final HTML output with no explanatory text; sections are omitted when supporting facts are absent.]
+
+## Skill Version(s):
+
+0.1.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

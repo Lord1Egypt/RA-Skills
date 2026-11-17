@@ -1,15 +1,28 @@
 #!/usr/bin/env python3
-# SECURITY: This script makes NO network calls and spawns NO subprocesses.
+# SECURITY: Local-only. No network access and no child processes.
 # All I/O is local file operations only:
-#   READS:  swarm-blackboard.md, data/pending_changes/<id>.json
-#   WRITES: swarm-blackboard.md, data/pending_changes/<id>.json
+#   READS:  <data_dir>/swarm-blackboard.md, <data_dir>/pending_changes/<id>.json,
+#           <data_dir>/.blackboard.lock
+#   WRITES: <data_dir>/swarm-blackboard.md, <data_dir>/pending_changes/<id>.json,
+#           <data_dir>/pending_changes/archive/<id>.<committed|aborted>.json,
+#           <data_dir>/.blackboard.lock
+#   DELETES: <data_dir>/pending_changes/<id>.json (after archiving it)
+#   where <data_dir> is "data/" by default, or "data/<env>/" when NETWORK_AI_ENV
+#   is set or --env is passed. <env> must be one of dev|st|sit|qa|sandbox|preprod|prod
+#   (anything else is rejected); the directory name comes from that fixed list,
+#   never from the caller's input.
+# Every write goes through _open_confined(): the file's real parent directory must
+# sit inside data/ (or the project root, for --path), and a symlink at the file
+# itself is refused (O_NOFOLLOW where the OS provides it). A planted symlink can
+# therefore never redirect the lock, pending, archive, or blackboard writes.
 # --path controls the blackboard file path only and is validated against the project
 # root directory; paths outside the project directory are rejected (CWE-22).
-# Lock files and pending-change files always resolve from the global data/ directory
-# regardless of --path; only the main blackboard file path is affected by --path.
+# Lock files and pending-change files always resolve from the active env-scoped
+# data directory regardless of --path; only the main blackboard file path is
+# affected by --path.
 # Imports used: argparse, json, os, re, sys, time, hashlib, datetime, pathlib,
-#               typing, contextlib, fcntl (Unix file-lock only, no network use)
-# No imports of: requests, socket, subprocess, urllib, http, ssl, ftplib, smtplib
+#               typing, contextlib, fcntl (Unix) / msvcrt (Windows) for OS file locks only
+# Standard library only; no networking or process-spawning modules are imported.
 """
 Shared Blackboard - Agent Coordination State Manager (Atomic Commit Edition)
 
@@ -19,7 +32,9 @@ Stores key-value pairs with optional TTL (time-to-live) expiration.
 FEATURES:
   - File Locking: Prevents race conditions in multi-agent environments
   - Staging Area: propose → validate → commit workflow
-  - Atomic Commits: Changes are all-or-nothing
+  - Checked Commits: each commit re-checks, under the lock, that the key has not
+    changed since the proposal, then applies that one change; the blackboard
+    file is replaced atomically (write to a temp file, then rename)
 
 Usage:
     python blackboard.py write KEY VALUE [--ttl SECONDS]
@@ -44,13 +59,14 @@ Examples:
     # Safe multi-agent update:
     python blackboard.py propose "chg_001" "order:123" '{"status": "approved"}'
     python blackboard.py validate "chg_001"  # Orchestrator checks for conflicts
-    python blackboard.py commit "chg_001"    # Apply atomically
+    python blackboard.py commit "chg_001"    # Re-check for conflicts, then apply
 """
 
 import argparse
 import json
 import os
 import re
+import stat
 import sys
 import time
 import hashlib
@@ -59,25 +75,72 @@ from pathlib import Path
 from typing import Any, Optional
 from contextlib import contextmanager
 
-# Try to import fcntl (Unix only), fall back to file-based locking on Windows
+# OS file locks: fcntl on Unix, msvcrt on Windows (both standard library)
 _fcntl: Any = None
+_msvcrt: Any = None
 try:
     import fcntl as _fcntl_import
     _fcntl = _fcntl_import
 except ImportError:
-    pass  # fcntl unavailable on Windows; file-based lock fallback is used instead
+    try:
+        import msvcrt as _msvcrt_import
+        _msvcrt = _msvcrt_import
+    except ImportError:
+        pass  # FileLock.acquire fails closed if neither is available
 
-# Default blackboard location — respects NETWORK_AI_ENV for multi-env isolation
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent
+_DATA_ROOT = _PROJECT_ROOT / "data"
+
+# The only environments a data/<env>/ directory is used for.
+_ENVIRONMENTS = ("dev", "st", "sit", "qa", "sandbox", "preprod", "prod")
+
+
 def _resolve_data_dir(env: str = "") -> Path:
-    """Return the active data directory, scoped to <env> when set."""
-    _env = env or os.environ.get("NETWORK_AI_ENV", "")
-    base = Path(__file__).parent.parent / "data"
-    if _env:
-        # Validate to prevent path traversal (CWE-22)
-        if not re.match(r'^[a-zA-Z0-9_-]+$', _env):
-            raise ValueError(f"Invalid NETWORK_AI_ENV value: {_env!r}")
-        return base / _env
-    return base
+    """Return data/, or data/<env>/ for one of the documented environments."""
+    requested = env or os.environ.get("NETWORK_AI_ENV", "")
+    if not requested:
+        return _DATA_ROOT
+    for name in _ENVIRONMENTS:
+        if requested == name:
+            return _DATA_ROOT / name  # built from the fixed list, not the input
+    raise ValueError(
+        f"Unknown environment {requested!r}; expected one of: {', '.join(_ENVIRONMENTS)}"
+    )
+
+
+_O_NOFOLLOW = getattr(os, "O_NOFOLLOW", 0)
+_O_BINARY = getattr(os, "O_BINARY", 0)
+
+
+def _require_inside(directory: Path, root: Path) -> None:
+    """Refuse `directory` unless, with symlinks resolved, it is `root` or beneath it."""
+    real_root = root.resolve()
+    real_dir = directory.resolve()
+    if real_dir != real_root and real_root not in real_dir.parents:
+        raise PermissionError(f"Refusing to write outside {real_root}: {directory}")
+
+
+def _check_confined(path: Path, root: Path) -> None:
+    """Refuse `path` unless its real parent is inside `root` and it is not a symlink."""
+    _require_inside(path.parent, root)
+    if path.is_symlink():
+        raise PermissionError(f"Refusing to write through a symlink: {path}")
+
+
+def _open_confined(path: Path, flags: int, root: Path = _DATA_ROOT) -> int:
+    """Open `path` for writing without leaving `root` or following a symlink."""
+    _check_confined(path, root)
+    return os.open(path, flags | _O_NOFOLLOW | _O_BINARY, 0o600)
+
+
+def _write_confined(path: Path, text: str, root: Path = _DATA_ROOT,
+                    exclusive: bool = False) -> None:
+    """Write `text` to `path` (truncating, or create-only when `exclusive`)."""
+    mode = os.O_EXCL if exclusive else os.O_TRUNC
+    fd = _open_confined(path, os.O_WRONLY | os.O_CREAT | mode, root)
+    with os.fdopen(fd, "w", encoding="utf-8") as fh:
+        fh.write(text)
+
 
 _DATA_DIR = _resolve_data_dir()
 BLACKBOARD_PATH = _DATA_DIR / "swarm-blackboard.md"
@@ -91,46 +154,43 @@ LOCK_RETRY_INTERVAL = 0.1
 
 class FileLock:
     """
-    Cross-platform file lock for preventing race conditions.
-    Uses fcntl on Unix, fallback to lock file on Windows.
+    Cross-platform exclusive file lock (fcntl.flock on Unix, msvcrt.locking on Windows).
+    The OS releases it if the holding process dies, so there are no stale locks to guess about.
     """
     
     def __init__(self, lock_path: Path, timeout: float = LOCK_TIMEOUT_SECONDS):
         self.lock_path = lock_path
         self.timeout = timeout
         self.lock_file: Optional[Any] = None
-        self.lock_marker: Optional[Path] = None
+        _check_confined(self.lock_path, _DATA_ROOT)
         self.lock_path.parent.mkdir(parents=True, exist_ok=True)
     
     def acquire(self) -> bool:
         """Acquire the lock with timeout."""
+        _check_confined(self.lock_path, _DATA_ROOT)
         start_time = time.time()
         
         while True:
             try:
-                self.lock_file = open(self.lock_path, 'w')
+                # No O_TRUNC: opening never truncates a file another process holds locked.
+                fd = os.open(self.lock_path, os.O_RDWR | os.O_CREAT | _O_NOFOLLOW | _O_BINARY, 0o600)
+                self.lock_file = os.fdopen(fd, "r+", encoding="utf-8")
                 
                 if _fcntl is not None:
-                    # Unix/Linux/Mac - use fcntl
                     _fcntl.flock(self.lock_file.fileno(), _fcntl.LOCK_EX | _fcntl.LOCK_NB)
+                elif _msvcrt is not None:
+                    self.lock_file.seek(0)
+                    _msvcrt.locking(self.lock_file.fileno(), _msvcrt.LK_NBLCK, 1)
                 else:
-                    # Windows fallback: use lock marker file
-                    self.lock_marker = self.lock_path.with_suffix('.locked')
-                    if self.lock_marker.exists():
-                        # Check if stale (older than timeout)
-                        age = time.time() - self.lock_marker.stat().st_mtime
-                        if age < self.timeout:
-                            self.lock_file.close()
-                            raise BlockingIOError("Lock held by another process")
-                        # Stale lock, remove it
-                        self.lock_marker.unlink()
-                    self.lock_marker.write_text(str(time.time()))
+                    raise RuntimeError("No OS file-locking primitive is available on this platform")
                 
-                # Write lock holder info
+                # Holder info is diagnostic only; we own the lock, so rewriting is safe.
+                self.lock_file.seek(0)
+                self.lock_file.truncate()
                 self.lock_file.write(json.dumps({
                     "pid": os.getpid(),
                     "acquired_at": datetime.now(timezone.utc).isoformat()
-                }))
+                }) + "\n")
                 self.lock_file.flush()
                 return True
                 
@@ -148,15 +208,14 @@ class FileLock:
             try:
                 if _fcntl is not None:
                     _fcntl.flock(self.lock_file.fileno(), _fcntl.LOCK_UN)
-                elif self.lock_marker and self.lock_marker.exists():
-                    self.lock_marker.unlink()
-                
-                self.lock_file.close()
-            except Exception:
-                pass  # best-effort unlock; fd and marker cleaned up in finally
+                elif _msvcrt is not None:
+                    self.lock_file.seek(0)
+                    _msvcrt.locking(self.lock_file.fileno(), _msvcrt.LK_UNLCK, 1)
+            except OSError:
+                pass  # closing the file below releases the lock anyway
             finally:
+                self.lock_file.close()
                 self.lock_file = None
-                self.lock_marker = None
 
 
 @contextmanager
@@ -177,10 +236,16 @@ def blackboard_lock(lock_path: Path = LOCK_PATH):
 class SharedBlackboard:
     """Markdown-based shared state for agent coordination with atomic commits."""
     
-    def __init__(self, path: Path = BLACKBOARD_PATH):
+    def __init__(self, path: Path = BLACKBOARD_PATH, data_dir: Optional[Path] = None):
         self.path = path
+        # Pending changes and the lock share the blackboard's env-scoped directory.
+        self.data_dir = data_dir if data_dir is not None else _DATA_DIR
+        self.lock_path = self.data_dir / ".blackboard.lock"
         self.cache: dict[str, dict[str, Any]] = {}
-        self.pending_dir = PENDING_DIR
+        self.pending_dir = self.data_dir / "pending_changes"
+        # Check before mkdir so a symlinked directory cannot create folders elsewhere.
+        _require_inside(self.pending_dir / "archive", _DATA_ROOT)
+        _check_confined(self.path, _PROJECT_ROOT)
         self.pending_dir.mkdir(parents=True, exist_ok=True)
         self._initialize()
         self._load_from_disk()
@@ -205,12 +270,20 @@ Last Updated: {datetime.now(timezone.utc).isoformat()}
 ## Execution History
 <!-- Chronological log of completed tasks -->
 """
-            self.path.write_text(initial_content, encoding="utf-8")
+            try:
+                _write_confined(self.path, initial_content, _PROJECT_ROOT, exclusive=True)
+            except FileExistsError:
+                pass  # another process created it first
     
-    def _load_from_disk(self):
-        """Load entries from the markdown blackboard."""
+    def _load_from_disk(self, strict: bool = False):
+        """Replace the in-memory cache with the entries on disk.
+
+        With strict=True a read failure raises instead of keeping the old cache,
+        so a locked write never persists stale state.
+        """
         try:
             content = self.path.read_text(encoding="utf-8")
+            fresh: dict[str, dict[str, Any]] = {}
             
             # Parse Knowledge Cache section
             cache_match = re.search(
@@ -229,11 +302,14 @@ Last Updated: {datetime.now(timezone.utc).isoformat()}
                 for key, value_str in entries:
                     try:
                         entry = json.loads(value_str.strip())
-                        self.cache[key] = entry
+                        fresh[key] = entry
                     except json.JSONDecodeError:
                         # Skip malformed entries
                         pass
+            self.cache = fresh
         except Exception as e:
+            if strict:
+                raise RuntimeError(f"Failed to load blackboard: {e}") from e
             print(f"Warning: Failed to load blackboard: {e}", file=sys.stderr)
     
     def _persist_to_disk(self):
@@ -265,7 +341,12 @@ Last Updated: {datetime.now(timezone.utc).isoformat()}
             "## Execution History",
         ])
         
-        self.path.write_text("\n".join(sections), encoding="utf-8")
+        # Readers never see a half-written file: write a temp file, then rename over.
+        tmp = self.path.with_name(f"{self.path.name}.{os.getpid()}.tmp")
+        tmp.unlink(missing_ok=True)  # a stale tmp (or a planted link) is removed, never followed
+        _write_confined(tmp, "\n".join(sections), _PROJECT_ROOT, exclusive=True)
+        _check_confined(self.path, _PROJECT_ROOT)
+        os.replace(tmp, self.path)  # replaces the directory entry; never writes through a link
     
     def _is_expired(self, entry: dict[str, Any]) -> bool:
         """Check if an entry has expired based on TTL."""
@@ -286,16 +367,10 @@ Last Updated: {datetime.now(timezone.utc).isoformat()}
             return False
     
     def read(self, key: str) -> Optional[dict[str, Any]]:
-        """Read an entry from the blackboard."""
+        """Read an entry from the blackboard (expired entries read as missing)."""
         entry = self.cache.get(key)
-        if entry is None:
+        if entry is None or self._is_expired(entry):
             return None
-        
-        if self._is_expired(entry):
-            del self.cache[key]
-            self._persist_to_disk()
-            return None
-        
         return entry
     
     def write(self, key: str, value: Any, source_agent: str = "unknown", 
@@ -309,9 +384,9 @@ Last Updated: {datetime.now(timezone.utc).isoformat()}
             "ttl": ttl,
         }
         
-        with blackboard_lock():
+        with blackboard_lock(self.lock_path):
             # Reload to get latest state
-            self._load_from_disk()
+            self._load_from_disk(strict=True)
             self.cache[key] = entry
             self._persist_to_disk()
         
@@ -319,8 +394,8 @@ Last Updated: {datetime.now(timezone.utc).isoformat()}
     
     def delete(self, key: str) -> bool:
         """Delete an entry from the blackboard (with file locking)."""
-        with blackboard_lock():
-            self._load_from_disk()
+        with blackboard_lock(self.lock_path):
+            self._load_from_disk(strict=True)
             if key in self.cache:
                 del self.cache[key]
                 self._persist_to_disk()
@@ -355,12 +430,66 @@ Last Updated: {datetime.now(timezone.utc).isoformat()}
         return sanitized
 
     def _safe_pending_path(self, change_id: str, suffix: str = ".pending.json") -> Path:
-        """Build a pending-file path and verify it stays inside pending_dir."""
+        """
+        Build a pending-file path inside pending_dir without resolving it.
+
+        Symlinks are never followed: the directory's real path must be inside
+        data/ (checked by path components, so a sibling such as
+        pending_changes_extra/ cannot pass), and the file itself must not be a
+        symlink or anything other than a regular file. Every later open uses
+        O_NOFOLLOW, so a link planted after this check is refused, not followed.
+        """
         safe_id = self._sanitize_change_id(change_id)
-        target = (self.pending_dir / f"{safe_id}{suffix}").resolve()
-        if not str(target).startswith(str(self.pending_dir.resolve())):
+        _require_inside(self.pending_dir, _DATA_ROOT)
+        target = self.pending_dir / f"{safe_id}{suffix}"
+        if target.parent != self.pending_dir or target.name != f"{safe_id}{suffix}":
             raise ValueError(f"Path traversal blocked for change_id '{change_id}'")
+        self._pending_exists(target)  # raises on a symlink or non-regular entry
         return target
+
+    @staticmethod
+    def _pending_exists(path: Path) -> bool:
+        """Whether a pending file exists, without following links. Refuses links and non-files."""
+        try:
+            st = os.lstat(path)
+        except FileNotFoundError:
+            return False
+        if stat.S_ISLNK(st.st_mode) or not stat.S_ISREG(st.st_mode):
+            raise PermissionError(f"Refusing pending entry that is not a regular file: {path}")
+        return True
+
+    @staticmethod
+    def _read_pending(path: Path) -> dict[str, Any]:
+        """Read a pending file without following a symlink."""
+        fd = os.open(path, os.O_RDONLY | _O_NOFOLLOW | _O_BINARY)
+        try:
+            if not stat.S_ISREG(os.fstat(fd).st_mode):
+                raise PermissionError(f"Refusing pending entry that is not a regular file: {path}")
+            with os.fdopen(fd, "r", encoding="utf-8") as fh:
+                fd = -1
+                return json.load(fh)
+        finally:
+            if fd >= 0:
+                os.close(fd)
+
+    @staticmethod
+    def _entry_hash(entry: Optional[dict[str, Any]]) -> Optional[str]:
+        """Hash of a stored entry, used to detect changes since a proposal."""
+        if not entry:
+            return None
+        return hashlib.sha256(json.dumps(entry, sort_keys=True).encode()).hexdigest()[:16]
+
+    def _archive(self, change_set: dict[str, Any], pending_file: Path, outcome: str) -> None:
+        """Move a finished change into pending_changes/archive/. Call with the lock held."""
+        safe_id = self._sanitize_change_id(change_set["change_id"])
+        archive_dir = self.pending_dir / "archive"
+        _require_inside(archive_dir, _DATA_ROOT)
+        archive_dir.mkdir(exist_ok=True)
+        _write_confined(archive_dir / f"{safe_id}.{outcome}.json", json.dumps(change_set, indent=2))
+        # Re-check without following links; unlinking then removes the entry itself, never a link target.
+        self._pending_exists(pending_file)
+        _require_inside(pending_file.parent, _DATA_ROOT)
+        pending_file.unlink()
 
     def propose_change(self, change_id: str, key: str, value: Any, 
                        source_agent: str = "unknown", ttl: Optional[int] = None,
@@ -373,34 +502,31 @@ Last Updated: {datetime.now(timezone.utc).isoformat()}
         """
         pending_file = self._safe_pending_path(change_id)
         
-        # Check for duplicate change_id
-        if pending_file.exists():
-            return {
-                "success": False,
-                "error": f"Change ID '{change_id}' already exists. Use a unique ID."
+        with blackboard_lock(self.lock_path):
+            # Check for duplicate change_id
+            if self._pending_exists(pending_file):
+                return {
+                    "success": False,
+                    "error": f"Change ID '{change_id}' already exists. Use a unique ID."
+                }
+            
+            # Base hash from the current on-disk state, for conflict detection
+            self._load_from_disk(strict=True)
+            current_hash = self._entry_hash(self.cache.get(key))
+            
+            change_set: dict[str, Any] = {
+                "change_id": change_id,
+                "operation": operation,  # "write" or "delete"
+                "key": key,
+                "value": value,
+                "source_agent": source_agent,
+                "ttl": ttl,
+                "proposed_at": datetime.now(timezone.utc).isoformat(),
+                "status": "pending",
+                "base_hash": current_hash,  # For conflict detection
             }
-        
-        # Get current value for conflict detection
-        current_entry = self.cache.get(key)
-        current_hash = None
-        if current_entry:
-            current_hash = hashlib.sha256(
-                json.dumps(current_entry, sort_keys=True).encode()
-            ).hexdigest()[:16]
-        
-        change_set: dict[str, Any] = {
-            "change_id": change_id,
-            "operation": operation,  # "write" or "delete"
-            "key": key,
-            "value": value,
-            "source_agent": source_agent,
-            "ttl": ttl,
-            "proposed_at": datetime.now(timezone.utc).isoformat(),
-            "status": "pending",
-            "base_hash": current_hash,  # For conflict detection
-        }
-        
-        pending_file.write_text(json.dumps(change_set, indent=2))
+            
+            _write_confined(pending_file, json.dumps(change_set, indent=2), exclusive=True)
         
         return {
             "success": True,
@@ -421,65 +547,65 @@ Last Updated: {datetime.now(timezone.utc).isoformat()}
         """
         pending_file = self._safe_pending_path(change_id)
         
-        if not pending_file.exists():
-            return {
-                "valid": False,
-                "error": f"Change '{change_id}' not found. Was it proposed?"
-            }
-        
-        change_set = json.loads(pending_file.read_text())
-        
-        if change_set["status"] != "pending":
-            return {
-                "valid": False,
-                "error": f"Change is in '{change_set['status']}' state, not 'pending'"
-            }
-        
-        key = change_set["key"]
-        base_hash = change_set["base_hash"]
-        
-        # Check for conflicts: has the key changed since we proposed?
-        with blackboard_lock():
-            self._load_from_disk()
+        with blackboard_lock(self.lock_path):
+            if not self._pending_exists(pending_file):
+                return {
+                    "valid": False,
+                    "error": f"Change '{change_id}' not found. Was it proposed?"
+                }
+            
+            change_set = self._read_pending(pending_file)
+            
+            if change_set["status"] != "pending":
+                return {
+                    "valid": False,
+                    "error": f"Change is in '{change_set['status']}' state, not 'pending'"
+                }
+            
+            key = change_set["key"]
+            base_hash = change_set["base_hash"]
+            
+            # Check for conflicts: has the key changed since we proposed?
+            self._load_from_disk(strict=True)
             current_entry = self.cache.get(key)
-        
-        current_hash = None
-        if current_entry:
-            current_hash = hashlib.sha256(
-                json.dumps(current_entry, sort_keys=True).encode()
-            ).hexdigest()[:16]
-        
-        if base_hash != current_hash:
-            return {
-                "valid": False,
-                "conflict": True,
-                "error": f"CONFLICT: Key '{key}' was modified since proposal. "
-                         f"Expected hash {base_hash}, got {current_hash}. "
-                         "Abort and re-propose with fresh data.",
-                "current_value": current_entry
-            }
-        
-        # Check for other pending changes to the same key
-        conflicts: list[str] = []
-        for other_file in self.pending_dir.glob("*.pending.json"):
-            if other_file.name == pending_file.name:
-                continue
-            other_change = json.loads(other_file.read_text())
-            if other_change["key"] == key and other_change["status"] == "pending":
-                conflicts.append(other_change["change_id"])
-        
-        if conflicts:
-            return {
-                "valid": False,
-                "conflict": True,
-                "error": f"CONFLICT: Other pending changes affect key '{key}': {conflicts}. "
-                         "Resolve conflicts before committing."
-            }
-        
-        # Mark as validated
-        change_set["status"] = "validated"
-        change_set["validated_at"] = datetime.now(timezone.utc).isoformat()
-        pending_file.write_text(json.dumps(change_set, indent=2))
+            current_hash = self._entry_hash(current_entry)
+            
+            if base_hash != current_hash:
+                return {
+                    "valid": False,
+                    "conflict": True,
+                    "error": f"CONFLICT: Key '{key}' was modified since proposal. "
+                             f"Expected hash {base_hash}, got {current_hash}. "
+                             "Abort and re-propose with fresh data.",
+                    "current_value": current_entry
+                }
+            
+            # Check for other pending changes to the same key
+            conflicts: list[str] = []
+            for other_file in self.pending_dir.glob("*.pending.json"):
+                if other_file.name == pending_file.name:
+                    continue
+                try:
+                    if not self._pending_exists(other_file):
+                        continue
+                    other_change = self._read_pending(other_file)
+                except (PermissionError, OSError, ValueError):
+                    continue  # links and non-regular entries are never followed
+                if other_change["key"] == key and other_change["status"] in ("pending", "validated"):
+                    conflicts.append(other_change["change_id"])
+            
+            if conflicts:
+                return {
+                    "valid": False,
+                    "conflict": True,
+                    "error": f"CONFLICT: Other pending changes affect key '{key}': {conflicts}. "
+                             "Resolve conflicts before committing."
+                }
+            
+            # Mark as validated
+            change_set["status"] = "validated"
+            change_set["validated_at"] = datetime.now(timezone.utc).isoformat()
+            _write_confined(pending_file, json.dumps(change_set, indent=2))
         
         return {
             "valid": True,
@@ -491,87 +617,83 @@ Last Updated: {datetime.now(timezone.utc).isoformat()}
     
     def commit_change(self, change_id: str) -> dict[str, Any]:
         """
-        Apply a validated change atomically (Step 3 of atomic commit).
+        Apply a validated change (Step 3 of atomic commit).
+
+        Status check, conflict re-check, the write, and archiving all happen
+        under one lock, so a change validated against an older value can never
+        overwrite a newer one and a change is never applied twice.
         """
         pending_file = self._safe_pending_path(change_id)
         
-        if not pending_file.exists():
-            return {
-                "committed": False,
-                "error": f"Change '{change_id}' not found."
-            }
-        
-        change_set = json.loads(pending_file.read_text())
-        
-        if change_set["status"] != "validated":
-            return {
-                "committed": False,
-                "error": f"Change must be validated first. Current status: {change_set['status']}"
-            }
-        
-        # Apply the change atomically
-        with blackboard_lock():
-            self._load_from_disk()
+        with blackboard_lock(self.lock_path):
+            if not self._pending_exists(pending_file):
+                return {
+                    "committed": False,
+                    "error": f"Change '{change_id}' not found."
+                }
+            
+            change_set = self._read_pending(pending_file)
+            
+            if change_set["status"] != "validated":
+                return {
+                    "committed": False,
+                    "error": f"Change must be validated first. Current status: {change_set['status']}"
+                }
+            
+            self._load_from_disk(strict=True)
+            key = change_set["key"]
+            current_hash = self._entry_hash(self.cache.get(key))
+            if current_hash != change_set["base_hash"]:
+                return {
+                    "committed": False,
+                    "conflict": True,
+                    "error": f"CONFLICT: Key '{key}' changed after validation "
+                             f"(expected {change_set['base_hash']}, got {current_hash}). "
+                             "Nothing was written; abort and re-propose with fresh data."
+                }
             
             if change_set["operation"] == "delete":
-                if change_set["key"] in self.cache:
-                    del self.cache[change_set["key"]]
+                self.cache.pop(key, None)
             else:
                 entry: dict[str, Any] = {
-                    "key": change_set["key"],
+                    "key": key,
                     "value": change_set["value"],
                     "source_agent": change_set["source_agent"],
                     "timestamp": datetime.now(timezone.utc).isoformat(),
                     "ttl": change_set["ttl"],
                     "committed_from": change_id
                 }
-                self.cache[change_set["key"]] = entry
+                self.cache[key] = entry
             
             self._persist_to_disk()
-        
-        # Archive the committed change
-        change_set["status"] = "committed"
-        change_set["committed_at"] = datetime.now(timezone.utc).isoformat()
-        
-        safe_id = self._sanitize_change_id(change_id)
-        archive_dir = self.pending_dir / "archive"
-        archive_dir.mkdir(exist_ok=True)
-        archive_file = archive_dir / f"{safe_id}.committed.json"
-        archive_file.write_text(json.dumps(change_set, indent=2))
-        
-        # Remove pending file
-        pending_file.unlink()
+            
+            change_set["status"] = "committed"
+            change_set["committed_at"] = datetime.now(timezone.utc).isoformat()
+            self._archive(change_set, pending_file, "committed")
         
         return {
             "committed": True,
             "change_id": change_id,
-            "key": change_set["key"],
+            "key": key,
             "operation": change_set["operation"],
-            "message": "Change committed atomically."
+            "message": "Change committed after a conflict re-check."
         }
     
     def abort_change(self, change_id: str) -> dict[str, Any]:
         """Abort a pending change without applying it."""
         pending_file = self._safe_pending_path(change_id)
         
-        if not pending_file.exists():
-            return {
-                "aborted": False,
-                "error": f"Change '{change_id}' not found."
-            }
-        
-        change_set = json.loads(pending_file.read_text())
-        change_set["status"] = "aborted"
-        change_set["aborted_at"] = datetime.now(timezone.utc).isoformat()
-        
-        # Archive the aborted change
-        safe_id = self._sanitize_change_id(change_id)
-        archive_dir = self.pending_dir / "archive"
-        archive_dir.mkdir(exist_ok=True)
-        archive_file = archive_dir / f"{safe_id}.aborted.json"
-        archive_file.write_text(json.dumps(change_set, indent=2))
-        
-        pending_file.unlink()
+        with blackboard_lock(self.lock_path):
+            if not self._pending_exists(pending_file):
+                return {
+                    "aborted": False,
+                    "error": f"Change '{change_id}' not found."
+                }
+            
+            change_set = self._read_pending(pending_file)
+            change_set["status"] = "aborted"
+            change_set["aborted_at"] = datetime.now(timezone.utc).isoformat()
+            self._archive(change_set, pending_file, "aborted")
         
         return {
             "aborted": True,
@@ -582,8 +704,14 @@ Last Updated: {datetime.now(timezone.utc).isoformat()}
     def list_pending_changes(self) -> list[dict[str, Any]]:
         """List all pending changes awaiting commit."""
         pending: list[dict[str, Any]] = []
+        _require_inside(self.pending_dir, _DATA_ROOT)
         for pending_file in self.pending_dir.glob("*.pending.json"):
-            change_set = json.loads(pending_file.read_text())
+            try:
+                if not self._pending_exists(pending_file):
+                    continue
+                change_set = self._read_pending(pending_file)
+            except (PermissionError, OSError, ValueError):
+                continue  # links and non-regular entries are skipped, never followed
             pending.append({
                 "change_id": change_set["change_id"],
                 "key": change_set["key"],
@@ -631,7 +759,7 @@ Commands:
 Atomic Commit Workflow (for multi-agent safety):
   propose CHANGE_ID KEY VALUE         Stage a change (Step 1)
   validate CHANGE_ID                  Check for conflicts (Step 2)
-  commit CHANGE_ID                    Apply atomically (Step 3)
+  commit CHANGE_ID                    Re-check for conflicts, then apply (Step 3)
   abort CHANGE_ID                     Cancel a pending change
   list-pending                        Show all pending changes
 
@@ -690,9 +818,9 @@ Examples:
     )
     
     args = parser.parse_args()
-    # Re-resolve data dir if --env was provided explicitly
+    # One env-scoped data dir drives the blackboard, pending changes, and lock.
+    _data = _resolve_data_dir(args.env) if args.env else _DATA_DIR
     if args.env:
-        _data = _resolve_data_dir(args.env)
         args.path = _data / "swarm-blackboard.md"
 
     # Validate --path against the project root to prevent path traversal (CWE-22).
@@ -708,9 +836,9 @@ Examples:
         )
         sys.exit(1)
 
-    bb = SharedBlackboard(args.path)
-    
     try:
+        bb = SharedBlackboard(args.path, data_dir=_data)
+
         if args.command == "write":
             if not args.key or not args.value:
                 print("Error: write requires KEY and VALUE", file=sys.stderr)
@@ -891,6 +1019,9 @@ Examples:
     
     except TimeoutError as e:
         print(f"🔒 LOCK TIMEOUT: {e}", file=sys.stderr)
+        sys.exit(1)
+    except PermissionError as e:
+        print(f"Refused: {e}", file=sys.stderr)
         sys.exit(1)
 
 

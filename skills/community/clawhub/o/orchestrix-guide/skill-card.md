@@ -1,42 +1,60 @@
-## Description: <br>
-Orchestrix multi-agent workflow guide for OpenClaw, covering planning, development, tmux command protocol, task completion detection, and supplementary bug fix, iteration, brownfield, and change-management flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrix Guide provides an OpenClaw operating guide for coordinating Orchestrix agents through Claude Code and tmux across planning, development, testing, bug-fix, iteration, brownfield, and change-management workflows.
 
-## Publisher: <br>
-[dorayo](https://clawhub.ai/user/dorayo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dorayo](https://clawhub.ai/user/dorayo)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this guide to coordinate Orchestrix agents through tmux and Claude Code across planning, development, testing, bug fix, iteration, and brownfield workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes hands-off coding automation while bypassing Claude Code safety prompts. <br>
-Mitigation: Remove the skipped-permissions alias, keep Claude Code approvals and folder trust prompts manual, and monitor tmux sessions while workflows run. <br>
-Risk: Project-local .orchestrix-core scripts may execute automation that changes files or routes agent work. <br>
-Mitigation: Inspect .orchestrix-core scripts in the target project before use and review generated changes before deployment. <br>
+## Use Case:
 
+Developers and automation operators use this skill to guide OpenClaw-driven Orchestrix workflows that create planning documents, coordinate multi-agent development handoffs, run epic smoke tests, and handle bug-fix or change-management paths.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dorayo/orchestrix-guide) <br>
-- [Orchestrix MCP homepage](https://orchestrix-mcp.youlidao.ai) <br>
-- [Claude Code download](https://claude.ai/download) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guide with shell command examples and workflow tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only operational guide for macOS and Linux environments using OpenClaw, tmux, Claude Code, and Orchestrix project scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The workflow can bypass normal Claude Code permission checks during code-changing tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep normal Claude Code approvals enabled and avoid the --dangerously-skip-permissions alias.
+
+Risk: The workflow can auto-accept folder trust and approval prompts in repositories that have not been inspected.
+
+Mitigation: Use the skill only in an isolated project or container and inspect repositories before trusting them.
+
+Risk: tmux automation can send commands to the wrong session, window, or project directory if configured incorrectly.
+
+Mitigation: Verify the target session, window, and project path before running commands, and review generated file changes before committing.
+
+## Reference(s):
+
+- [Orchestrix MCP Homepage](https://orchestrix-mcp.youlidao.ai)
+- [Claude Code Download](https://claude.ai/download)
+- [ClawHub Skill Page](https://clawhub.ai/dorayo/skills/orchestrix-guide)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/dorayo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash snippets, workflow diagrams, command tables, and operational checklists.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands and guidance are intended for macOS or Linux environments with Claude Code, tmux, git, and optional jq.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,9 @@
+interface:
+  display_name: "中文小说工匠"
+  short_description: "离线管理中文长篇小说的人物、世界观、大纲、章节和连续性"
+  icon_small: "./assets/icon-512.png"
+  icon_large: "./assets/icon-512.png"
+  brand_color: "#2D8A70"
+  default_prompt: "使用 $fiction-crafter-cn 建立作品目录并检查人物和章节连续性。"
+policy:
+  allow_implicit_invocation: true

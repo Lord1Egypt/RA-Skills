@@ -1,0 +1,8 @@
+interface:
+  display_name: 旧内容二次利用清单
+  short_description: 从自有内容库找出可更新、拆分与合集的下一轮选题清单
+  default_prompt: 请根据我提供的自有内容清单和原文摘要，制作旧内容二次利用清单；缺少字段时先指出，不要编造或引用外部爆款。
+  icon_small: ./icon-512.png
+  icon_large: ./icon-512.png
+policy:
+  allow_implicit_invocation: true

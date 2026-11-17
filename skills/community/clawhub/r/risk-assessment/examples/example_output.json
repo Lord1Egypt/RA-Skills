@@ -1,0 +1,83 @@
+{
+  "findings": [
+    {
+      "risk_id": "RSK-001",
+      "asset_or_system": "Remote Access Portal / EHR Database",
+      "asset_classification": "regulated_data",
+      "threat_event": "Compromise of remote access credentials via phishing, credential stuffing, or brute force.",
+      "vulnerability": "Absence of Multi-Factor Authentication (MFA) for remote access to systems containing sensitive regulated data.",
+      "framework_control_mapping": {
+        "framework": "NIST CSF 2.0",
+        "control_id": "PR.AA",
+        "control_name": "Identity Management, Authentication, and Access Control"
+      },
+      "likelihood_score": 3,
+      "impact_score": 3,
+      "risk_score": 9,
+      "risk_level": "high",
+      "risk_treatment": "remediate",
+      "existing_controls": ["Username and password requirements"],
+      "recommended_mitigation": [
+        "Implement MFA for all remote access connections immediately.",
+        "Restrict remote access to trusted corporate devices or a secure VPN tunnel.",
+        "Deploy conditional access policies that require additional verification for unusual login patterns."
+      ],
+      "rationale": "Likelihood is High (3) because RDP without MFA is heavily targeted by ransomware operators. Impact is High (3) because the connection leads directly to the EHR database containing regulated patient data. Treatment is remediate because MFA implementation is straightforward and dramatically reduces credential-based attack risk."
+    },
+    {
+      "risk_id": "RSK-002",
+      "asset_or_system": "Server Infrastructure (Windows/Linux fleet)",
+      "asset_classification": "business_critical",
+      "threat_event": "Exploitation of known software vulnerabilities by threat actors using publicly available exploit code.",
+      "vulnerability": "Quarterly patching cycle leaves a 60-90 day window where known vulnerabilities remain unpatched.",
+      "framework_control_mapping": {
+        "framework": "NIST CSF 2.0",
+        "control_id": "PR.PS",
+        "control_name": "Platform Security"
+      },
+      "likelihood_score": 2,
+      "impact_score": 2,
+      "risk_score": 4,
+      "risk_level": "medium",
+      "risk_treatment": "remediate",
+      "existing_controls": ["Quarterly OS patching cycle", "Firewall perimeter controls"],
+      "recommended_mitigation": [
+        "Increase patch cadence to monthly for standard patches and 72 hours for critical CVEs.",
+        "Implement automated vulnerability scanning on at least a weekly basis.",
+        "Establish a formal vulnerability management policy with defined SLAs by severity."
+      ],
+      "rationale": "Likelihood is Medium (2) because patching does occur but the quarterly cycle creates exposure. Impact is Medium (2) because servers are business-critical but network segmentation limits lateral movement."
+    },
+    {
+      "risk_id": "RSK-003",
+      "asset_or_system": "Physical Access Control / Visitor Management",
+      "asset_classification": "internal",
+      "threat_event": "Unauthorized disclosure of visitor identity and visit patterns through exposed visitor log.",
+      "vulnerability": "Paper visitor log visible to all visitors at sign-in.",
+      "framework_control_mapping": {
+        "framework": "NIST CSF 2.0",
+        "control_id": "PR.AA",
+        "control_name": "Identity Management, Authentication, and Access Control"
+      },
+      "likelihood_score": 1,
+      "impact_score": 1,
+      "risk_score": 1,
+      "risk_level": "low",
+      "risk_treatment": "accept",
+      "existing_controls": ["Front desk staff monitors visitor sign-in", "Visitors escorted to meeting rooms"],
+      "recommended_mitigation": [
+        "Consider a digital visitor management system when the current system is replaced."
+      ],
+      "rationale": "Likelihood is Low (1) because visitor volume is minimal. Impact is Low (1) because no regulated data is at the facility. Treatment is accept because cost of remediation outweighs the minimal risk."
+    }
+  ],
+  "overall_risk_score": 4.67,
+  "overall_risk_level": "high",
+  "executive_summary": "This assessment identified three risks across remote access, server infrastructure, and physical access controls. The most critical finding is the absence of MFA on remote access to the EHR database (RSK-001, score 9/9), which presents an immediate threat of credential-based compromise leading to a regulated data breach.\n\nServer patching practices (RSK-002, score 4/9) represent a medium risk that should be addressed within 90 days through improved patch cadence and vulnerability scanning. The paper visitor log (RSK-003, score 1/9) is a low risk accepted by management.\n\nImmediate action should focus on MFA deployment for all remote access, followed by patch management improvements.",
+  "prioritized_actions": [
+    "Deploy MFA on all remote access portals within 30 days",
+    "Increase server patching to monthly cadence with 72-hour SLA for critical CVEs",
+    "Implement weekly automated vulnerability scanning",
+    "Establish formal vulnerability management policy with severity-based SLAs"
+  ]
+}

@@ -1,0 +1,393 @@
+{
+  "schema_version": 1,
+  "confidence": {
+    "direct_label": 0.95,
+    "pattern_match": 0.78,
+    "geometry_pattern": 0.86,
+    "inferred": 0.5
+  },
+  "view_rules": [
+    {
+      "type": "structure_plan",
+      "patterns": [
+        "结构平面图",
+        "梁平面图",
+        "板平面图",
+        "柱平面图",
+        "墙平面图",
+        "STRUCTURE PLAN",
+        "BEAM PLAN",
+        "SLAB PLAN",
+        "COLUMN PLAN"
+      ]
+    },
+    {
+      "type": "rebar_plan",
+      "patterns": [
+        "配筋图",
+        "梁配筋",
+        "板配筋",
+        "柱配筋",
+        "墙配筋",
+        "REBAR",
+        "REINFORCEMENT"
+      ]
+    },
+    {
+      "type": "foundation_plan",
+      "patterns": [
+        "基础图",
+        "承台",
+        "筏板",
+        "条形基础",
+        "独立基础",
+        "桩基图",
+        "FOUNDATION",
+        "PILE PLAN"
+      ]
+    },
+    {
+      "type": "stair_detail",
+      "patterns": [
+        "楼梯",
+        "坡道",
+        "STAI",
+        "RAMP"
+      ]
+    },
+    {
+      "type": "detail",
+      "patterns": [
+        "节点详图",
+        "大样",
+        "构造详图",
+        "DETAIL"
+      ]
+    },
+    {
+      "type": "column_schedule",
+      "patterns": [
+        "柱表",
+        "柱网",
+        "墙身表",
+        "配筋表",
+        "SCHEDULE",
+        "LEGEND"
+      ]
+    },
+    {
+      "type": "structure_note",
+      "patterns": [
+        "结构设计说明",
+        "结构总说明",
+        "抗震等级",
+        "混凝土强度",
+        "钢筋",
+        "GENERAL NOTE"
+      ]
+    },
+    {
+      "type": "civil_defense_structure_plan",
+      "patterns": [
+        "人防结构平面图",
+        "人防顶板配筋图",
+        "人防底板配筋图",
+        "人防墙柱图",
+        "人防门框墙",
+        "防护单元结构",
+        "口部结构"
+      ]
+    }
+  ],
+  "system_rules": [
+    {
+      "system": "concrete",
+      "patterns": [
+        "混凝土",
+        "剪力墙",
+        "框架",
+        "构造",
+        "CONCRETE",
+        "RC"
+      ]
+    },
+    {
+      "system": "rebar",
+      "patterns": [
+        "钢筋",
+        "配筋",
+        "纵筋",
+        "箍筋",
+        "附加筋",
+        "负筋",
+        "抗剪",
+        "REBAR"
+      ]
+    },
+    {
+      "system": "foundation",
+      "patterns": [
+        "基础",
+        "承台",
+        "筏板",
+        "桩",
+        "锚杆",
+        "FOUNDATION",
+        "PILE"
+      ]
+    },
+    {
+      "system": "stair",
+      "patterns": [
+        "楼梯",
+        "梯梁",
+        "梯板",
+        "STAI"
+      ]
+    },
+    {
+      "system": "pc",
+      "patterns": [
+        "预制",
+        "叠合板",
+        "装配式",
+        "PC",
+        "叠合"
+      ]
+    },
+    {
+      "system": "retrofit",
+      "patterns": [
+        "加固",
+        "粘钢",
+        "碳纤维",
+        "增大截面",
+        "RETROFIT"
+      ]
+    },
+    {
+      "system": "civil_defense",
+      "patterns": [
+        "人防",
+        "防护单元",
+        "临空墙",
+        "密闭墙",
+        "门框墙",
+        "防护密闭",
+        "防毒通道",
+        "口部",
+        "洗消间"
+      ]
+    }
+  ],
+  "member_rules": [
+    {
+      "category": "beam",
+      "system": "concrete",
+      "patterns": [
+        "KL",
+        "L",
+        "WKL",
+        "XL",
+        "连梁",
+        "梁"
+      ]
+    },
+    {
+      "category": "slab",
+      "system": "concrete",
+      "patterns": [
+        "板",
+        "LB",
+        "WB",
+        "XB",
+        "SLAB"
+      ]
+    },
+    {
+      "category": "column",
+      "system": "concrete",
+      "patterns": [
+        "柱",
+        "KZ",
+        "YBZ",
+        "GBZ",
+        "AZ",
+        "COLUMN"
+      ]
+    },
+    {
+      "category": "wall",
+      "system": "civil_defense",
+      "patterns": [
+        "临空墙",
+        "密闭隔墙",
+        "防护外墙",
+        "门框墙",
+        "防护密闭墙",
+        "防爆波活门"
+      ]
+    },
+    {
+      "category": "slab",
+      "system": "civil_defense",
+      "patterns": [
+        "人防顶板",
+        "人防底板",
+        "人防临空顶板"
+      ]
+    },
+    {
+      "category": "opening_strengthening",
+      "system": "civil_defense",
+      "patterns": [
+        "人防门洞",
+        "防护密闭门",
+        "口部洞口",
+        "封堵板"
+      ]
+    },
+    {
+      "category": "wall",
+      "system": "concrete",
+      "patterns": [
+        "墙",
+        "Q",
+        "剪力墙",
+        "WALL",
+        "连梁"
+      ]
+    },
+    {
+      "category": "foundation",
+      "system": "foundation",
+      "patterns": [
+        "承台",
+        "筏板",
+        "基础",
+        "桩",
+        "CT",
+        "FB",
+        "FOUNDATION",
+        "PILE"
+      ]
+    },
+    {
+      "category": "stair",
+      "system": "stair",
+      "patterns": [
+        "楼梯",
+        "梯梁",
+        "梯板",
+        "STAI"
+      ]
+    },
+    {
+      "category": "rebar_set",
+      "system": "rebar",
+      "patterns": [
+        "纵筋",
+        "箍筋",
+        "附加筋",
+        "负筋",
+        "抗扭",
+        "拉筋",
+        "分布筋",
+        "盖筋"
+      ]
+    },
+    {
+      "category": "opening_strengthening",
+      "system": "rebar",
+      "patterns": [
+        "洞口",
+        "洞口加强",
+        "暗梁",
+        "暗柱",
+        "附加筋",
+        "OPENING"
+      ]
+    },
+    {
+      "category": "node_strengthening",
+      "system": "retrofit",
+      "patterns": [
+        "节点核心区",
+        "锚固",
+        "搭接",
+        "封边",
+        "节点"
+      ]
+    }
+  ],
+  "rebar_pattern": "(?<![A-Za-z0-9])((?:HPB300|HRB300|HRB335|HRB400|HRB500|CRB550|RRB400|C8|C10|C12|C14|C16|C18|C20|C22|C25|C28|C32|B8|B10|B12|B14|B16|B18|B20|B22|B25|B28|B32)(?:@|\\\\s*[-@]\\s*|\\s)\\d{2,3}(?:\\(\\d+\\))?|\\d+\\s*[xX×]\\s*\\d+\\s*[xX×]?\\s*\\d*)",
+  "member_code_pattern": "(?<![A-Za-z0-9])((?:KZL|L|KL|WKL|XL|KZ|YBZ|GBZ|AZ|LB|WB|XB|Q|CT|FB|JZL|DKL|CL|LT|PTB|TGB)\\d{1,4}[A-Za-z]?)(?![A-Za-z0-9])",
+  "node_pattern": "(?<![A-Za-z0-9])((?:JD|SD|YD|D|节点)\\s*[-_]?\\s*\\d{1,4}[A-Za-z]?)",
+  "grid_pattern": "(?<![A-Za-z0-9])((?:[A-Z]{1,3}|[一二三四五六七八九十]+)\\d{0,3})(?!\\d)|标高\\s*[-+]?\\d+(?:\\.\\d+)?",
+  "scale_pattern": "1\\s*[:：]\\s*\\d{1,4}",
+  "unit_patterns": {
+    "mm": [
+      "单位\\s*[:：]?\\s*mm",
+      "mm"
+    ],
+    "m": [
+      "单位\\s*[:：]?\\s*m"
+    ]
+  },
+  "layer_rules": [
+    {
+      "category": "beam",
+      "patterns": [
+        "梁",
+        "BEAM",
+        "KL",
+        "WKL"
+      ]
+    },
+    {
+      "category": "slab",
+      "patterns": [
+        "板",
+        "SLAB",
+        "LB"
+      ]
+    },
+    {
+      "category": "column",
+      "patterns": [
+        "柱",
+        "COLUMN",
+        "KZ"
+      ]
+    },
+    {
+      "category": "wall",
+      "patterns": [
+        "墙",
+        "WALL",
+        "Q",
+        "人防墙",
+        "临空墙",
+        "密闭墙",
+        "门框墙"
+      ]
+    },
+    {
+      "category": "foundation",
+      "patterns": [
+        "基础",
+        "承台",
+        "FOUNDATION"
+      ]
+    },
+    {
+      "category": "rebar",
+      "patterns": [
+        "钢筋",
+        "REBAR",
+        "配筋",
+        "钢筋直径"
+      ]
+    }
+  ]
+}

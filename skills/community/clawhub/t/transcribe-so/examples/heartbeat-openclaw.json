@@ -1,0 +1,14 @@
+{
+  "_comment": "OpenClaw heartbeat entry: watch a folder and transcribe anything new on a schedule. Pair with examples/batch-transcribe.sh (idempotent: finished files are skipped via their transcripts/ output).",
+  "name": "transcribe-watch-folder",
+  "schedule": "*/15 * * * *",
+  "command": "bash examples/batch-transcribe.sh ~/Recordings 5",
+  "env": {
+    "TRANSCRIBE_API_KEY": "tsk_live_..."
+  },
+  "requires": {
+    "bins": ["transcribe-so", "jq"],
+    "env": ["TRANSCRIBE_API_KEY"]
+  },
+  "on_failure": "Exit 4 means the wallet or key spend cap needs attention; exit 5 is transient, retry next tick; exit 6 means raise the per-file budget in the command."
+}

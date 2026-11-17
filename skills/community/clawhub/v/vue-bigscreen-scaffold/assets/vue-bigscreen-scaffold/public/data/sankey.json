@@ -1,0 +1,22 @@
+{
+  "name": "产品流向",
+  "nodes": [
+    { "name": "访问" },
+    { "name": "咨询" },
+    { "name": "意向" },
+    { "name": "成交" },
+    { "name": "产品A" },
+    { "name": "产品B" },
+    { "name": "产品C" },
+    { "name": "产品D" }
+  ],
+  "links": [
+    { "source": "访问", "target": "咨询", "value": 6400 },
+    { "source": "咨询", "target": "意向", "value": 3600 },
+    { "source": "意向", "target": "成交", "value": 1850 },
+    { "source": "成交", "target": "产品A", "value": 780 },
+    { "source": "成交", "target": "产品B", "value": 600 },
+    { "source": "成交", "target": "产品C", "value": 320 },
+    { "source": "成交", "target": "产品D", "value": 150 }
+  ]
+}

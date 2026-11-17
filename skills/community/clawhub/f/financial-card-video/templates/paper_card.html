@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<!--
+  paper_card.html — 通用"报纸风金融卡片"模板 (占位符驱动, 零业务依赖)
+
+  本文件不直接渲染; 由 scripts/make_card_video.py 按"区块注释"切成若干片段:
+    CSS 区块        : 样式表 (含配色占位符)
+    COVER 区块      : 封面卡片段 (一个 <div class="card">)
+    COVER_ITEM 区块 : 封面清单的单个条目
+    CARD 区块       : 正文卡片段
+    KEYLINE 区块    : 关键位一行
+    FIGURES/FIG_ITEM: 指标行及其单项
+    CLOSING 区块    : 结束卡片段
+
+  区块标记一律独占一行, 形如 <!--#名字--> ... <!--/#名字--> (脚本按行首/行尾锚定解析,
+  因此正文注释里不要原样写出这两个标记, 否则会被误判成区块边界)。
+  脚本把片段包进统一的 HTML 文档壳, 再交给 Chrome 无头截图。
+
+  占位符: {{X}} 形式, 由脚本用 str.replace 全量替换 (不用 jinja2, 避免额外依赖)。
+  配色占位符: PAPER / INK / RULE / RED / GOLD / SOFT (见脚本顶部常量)。
+
+  设计铁律 (通用工程约束, 与任何业务无关):
+  - 竖版 1080x1920 单屏, 无滚动 (html/body overflow:hidden)
+  - 无圆角卡 / 无进度条 / 无渐变 / 无 emoji / 无英文大写装饰标签
+  - 细线分隔 (thin rules) 代替卡片底色块; 间距全用 8 的倍数
+  - 禁用绿色: 涨跌用 朱红 / 灰墨 表意, 机器可验 (见脚本 count_green)
+-->
+<html lang="zh-CN">
+
+<!--#CSS-->
+@page { size: 1080px 1920px; margin: 0; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; }
+body {
+  background: {{PAPER}};
+  color: {{INK}};
+  font-family: "Microsoft YaHei", "微软雅黑", "MSYH", sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+.card {
+  position: relative; width: 1080px; height: 1920px;
+  padding: 120px 88px 104px 88px;              /* 8 的倍数: 视觉韵律 */
+  display: flex; flex-direction: column;
+  background: {{PAPER}};
+}
+
+/* --- 报头 masthead: 朱红刊名 + 粗红线 + 发丝线 --- */
+.mast { display: flex; justify-content: space-between; align-items: flex-end; }
+.mast .pname { font-size: 68px; font-weight: 700; letter-spacing: 14px; color: {{RED}}; }
+.mast .side  { font-size: 28px; letter-spacing: 6px; color: {{SOFT}}; padding-bottom: 12px; }
+.mast-rule { height: 5px; background: {{RED}}; margin-top: 24px; }
+.mast-hair { height: 1px; background: {{INK}}; opacity: 0.5; margin-top: 8px; }
+
+/* --- 眉题行: 左 = 栏目/编号, 右 = 副题/代码行 --- */
+.kicker {
+  margin-top: 44px; display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 28px; letter-spacing: 5px; color: {{SOFT}};
+}
+.kicker .sub { letter-spacing: 2px; }
+.kicker .strength { letter-spacing: 2px; }
+.kicker .strength b {
+  font-size: 34px; font-weight: 700; color: {{RED}}; margin-left: 10px;
+  font-variant-numeric: tabular-nums; letter-spacing: 0;
+}
+
+/* --- 头条 --- */
+.headline {
+  margin-top: 36px; font-size: 132px; font-weight: 700; line-height: 1.12;
+  letter-spacing: 3px; color: {{INK}};
+}
+.headline.red { color: {{RED}}; }
+
+/* --- 副题/价格行 --- */
+.standfirst { margin-top: 36px; font-size: 38px; line-height: 1.5; letter-spacing: 1px; color: {{INK}}; }
+.standfirst .plab { font-size: 28px; letter-spacing: 6px; color: {{SOFT}}; margin-right: 20px; }
+.standfirst .big {
+  font-size: 96px; font-weight: 700; line-height: 1;
+  font-variant-numeric: tabular-nums; letter-spacing: 0; color: {{INK}};
+}
+.standfirst .soft { color: {{SOFT}}; font-size: 32px; letter-spacing: 1px; }
+
+/* --- 细线 --- */
+.rule { height: 1px; background: {{RULE}}; }
+.rule.strong { height: 2px; background: {{INK}}; }
+
+/* --- 正文 (支持 **强调** / ##数字## 标记) --- */
+.body-text { margin-top: 40px; font-size: 46px; line-height: 1.8; letter-spacing: 1px; color: {{INK}}; }
+.body-text .hl  { color: {{RED}}; }
+.body-text .num { font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* --- 关键位 --- */
+.keyline { margin-top: 52px; font-size: 40px; letter-spacing: 1px; color: {{INK}}; }
+.keyline .lab { color: {{GOLD}}; font-size: 32px; letter-spacing: 4px; margin-right: 14px; }
+.keyline b { font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* --- 指标行: 纯文字平铺 (无进度条/无评分条/无大色块) --- */
+.figures { margin-top: 60px; display: flex; justify-content: space-between; }
+.figures .f .lab { font-size: 28px; letter-spacing: 4px; color: {{SOFT}}; }
+.figures .f .val {
+  margin-top: 18px; font-size: 58px; font-weight: 700; line-height: 1;
+  color: {{INK}}; font-variant-numeric: tabular-nums;
+}
+.figures .f .val.gold { color: {{GOLD}}; }
+
+.spacer { flex: 1; }
+
+/* --- 页脚: 一行免责声明, 无编号 --- */
+.footer { margin-top: 36px; }
+.footer .rule { margin-bottom: 24px; }
+.footer .txt { font-size: 27px; letter-spacing: 2px; color: {{SOFT}}; }
+
+/* --- 封面: 清单列表 (报纸列表式, 细横线分隔, 无圆角卡) --- */
+.cover-list { margin-top: 36px; }
+.cover-item {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding: 42px 0; border-top: 1px solid {{RULE}};
+}
+.cover-item.last { border-bottom: 1px solid {{RULE}}; }
+.cover-item .cl { display: flex; align-items: baseline; }
+.cover-item .no { font-size: 30px; letter-spacing: 2px; color: {{GOLD}}; font-variant-numeric: tabular-nums; }
+.cover-item .cn { margin-left: 28px; font-size: 54px; font-weight: 700; color: {{INK}}; letter-spacing: 1px; }
+.cover-item .cc { margin-left: 22px; font-size: 28px; color: {{SOFT}}; letter-spacing: 1px; }
+.cover-item .cp { font-size: 46px; color: {{INK}}; font-variant-numeric: tabular-nums; }
+
+/* --- 封面"看点"横带 --- */
+.focus {
+  margin-top: 40px; border-top: 2px solid {{INK}}; border-bottom: 1px solid {{RULE}};
+  padding: 32px 0 34px 0;
+}
+.focus .fl { font-size: 27px; letter-spacing: 1px; color: {{SOFT}}; }
+.focus .fn { margin-top: 22px; font-size: 68px; font-weight: 700; color: {{RED}}; letter-spacing: 4px; }
+.focus .fs { margin-top: 18px; font-size: 34px; line-height: 1.62; color: {{SOFT}}; }
+.focus .fs b   { color: {{INK}}; font-weight: 700; }
+.focus .fs .hl { color: {{RED}}; }
+
+/* --- 结束卡引导语 --- */
+.lead { margin-top: 40px; font-size: 52px; line-height: 1.75; letter-spacing: 1px; color: {{INK}}; }
+.lead .hl { color: {{RED}}; }
+<!--/#CSS-->
+
+<!--#COVER-->
+  <div class="card">
+
+    <div class="mast">
+      <div class="pname">{{BRAND}}</div>
+      <div class="side">{{MAST_SIDE}}</div>
+    </div>
+    <div class="mast-rule"></div>
+    <div class="mast-hair"></div>
+
+    <div class="headline">{{HEADLINE}}</div>
+
+    <div class="kicker" style="margin-top:32px">
+      <div>{{DATE}}</div>
+      <div class="strength">{{KICKER_RIGHT}}</div>
+    </div>
+
+    <div class="rule" style="margin-top:40px"></div>
+
+    <div class="cover-list">
+{{ITEMS}}
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="focus">
+      <div class="fl">{{FOCUS_LABEL}}</div>
+{{FOCUS_NAME}}
+      <div class="fs">{{FOCUS_TEXT}}</div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="footer">
+      <div class="rule"></div>
+      <div class="txt">{{FOOTER}}</div>
+    </div>
+
+  </div>
+<!--/#COVER-->
+
+<!--#COVER_ITEM-->
+      <div class="cover-item{{LAST}}">
+        <div class="cl">
+          <span class="no">{{NO}}</span>
+          <span class="cn">{{NAME}}</span>
+          <span class="cc">{{CODE}}</span>
+        </div>
+        <div class="cp">{{PRICE}}</div>
+      </div>
+<!--/#COVER_ITEM-->
+
+<!--#CARD-->
+  <div class="card">
+
+    <div class="mast">
+      <div class="pname">{{BRAND}}</div>
+      <div class="side">{{MAST_SIDE}}</div>
+    </div>
+    <div class="mast-rule"></div>
+    <div class="mast-hair"></div>
+
+    <div class="kicker">
+      <div>{{KICKER}}</div>
+      <div class="sub">{{SUBTITLE}}</div>
+    </div>
+
+    <div class="headline">{{TITLE}}</div>
+
+    <div class="standfirst">
+      <span class="plab">{{PRICE_LABEL}}</span><span class="big">{{PRICE}}</span>
+    </div>
+
+    <div class="rule" style="margin-top:56px"></div>
+
+    <div class="body-text">{{BODY}}</div>
+
+{{KEYLINE}}
+
+{{FIGURES}}
+
+    <div class="spacer"></div>
+
+    <div class="footer">
+      <div class="rule"></div>
+      <div class="txt">{{FOOTER}}</div>
+    </div>
+
+  </div>
+<!--/#CARD-->
+
+<!--#KEYLINE-->
+    <div class="keyline"><span class="lab">{{KEYLINE_LABEL}}</span><b>{{KEYLINE}}</b></div>
+<!--/#KEYLINE-->
+
+<!--#FIGURES-->
+    <div class="figures">
+{{FIG_ITEMS}}
+    </div>
+<!--/#FIGURES-->
+
+<!--#FIG_ITEM-->
+      <div class="f"><div class="lab">{{LABEL}}</div><div class="val{{ACCENT}}">{{VALUE}}</div></div>
+<!--/#FIG_ITEM-->
+
+<!--#CLOSING-->
+  <div class="card">
+
+    <div class="mast">
+      <div class="pname">{{BRAND}}</div>
+      <div class="side">{{MAST_SIDE}}</div>
+    </div>
+    <div class="mast-rule"></div>
+    <div class="mast-hair"></div>
+
+    <div class="headline">{{HEADLINE}}</div>
+
+    <div class="rule" style="margin-top:40px"></div>
+
+    <div class="lead">{{TEXT}}</div>
+
+    <div class="spacer"></div>
+
+    <div class="footer">
+      <div class="rule"></div>
+      <div class="txt">{{FOOTER}}</div>
+    </div>
+
+  </div>
+<!--/#CLOSING-->
+
+</html>

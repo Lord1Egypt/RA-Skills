@@ -1,0 +1,60 @@
+{
+  "id": "wm-skillhub",
+  "name": "SkillHub 管家",
+  "version": "1.0.29",
+  "tier": 0,
+  "visibility": "public",
+  "description": "配置赢麻了 API 凭证、浏览官方技能与 Role 目录，或安装/更新其它官方技能与 Role 时使用。请先安装本技能，再由它管理其余条目。",
+  "icon": "Hub",
+  "category": "SkillHub",
+  "author": "赢麻了官方",
+  "official": true,
+  "summary": "投研助手入口：先装管家保存凭证，再浏览并安装官方场景与能力。",
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "status",
+          "list",
+          "install",
+          "update",
+          "update_all"
+        ],
+        "description": "Agent 侧动作提示（本技能无 skills/run 入口）"
+      },
+      "skill_id": {
+        "type": "string",
+        "description": "install/update 时的目标技能或 Role id"
+      }
+    }
+  },
+  "runtime": {
+    "mode": "hub",
+    "entry": "Agent skill: install from open.winmale.com/install/skillhub.md"
+  },
+  "required_scopes": [
+    "analysis:xs:discover",
+    "analysis:skills:run"
+  ],
+  "context_deps": [],
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "local_skills": {
+        "type": "array"
+      },
+      "catalog_hub_version": {
+        "type": "string"
+      }
+    }
+  },
+  "sample_prompts": [
+    "先帮我装好赢麻了投研管家。",
+    "我已经有凭证了，下一步怎么选场景？"
+  ],
+  "expertise_tags": [
+    "管家"
+  ]
+}

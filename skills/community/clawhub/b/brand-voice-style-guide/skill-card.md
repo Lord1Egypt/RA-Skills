@@ -1,43 +1,64 @@
-## Description: <br>
-Generates a comprehensive brand voice and style guide with a personality profile, writing rules, platform adaptations, and on-brand example rewrites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a comprehensive brand voice and style guide with personality profiling, writing rules, platform adaptations, and on-brand example rewrites.
 
-## Publisher: <br>
-[gitflopez](https://clawhub.ai/user/gitflopez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitflopez](https://clawhub.ai/user/gitflopez)
 
-## Use Case: <br>
-Startups, agencies, solopreneurs, marketing teams, and e-commerce brands use this skill to build a reusable brand voice guide that keeps copy consistent across writers, contractors, AI tools, and customer-facing channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste proprietary client work, unreleased campaigns, customer data, or sensitive business plans while generating the guide. <br>
-Mitigation: Avoid submitting confidential or sensitive material unless it is acceptable for that material to appear in generated outputs and be shared with writers, contractors, or other AI tools. <br>
+## Use Case:
 
+Marketing teams, agencies, startups, solopreneurs, and e-commerce brands use this skill to create consistent brand voice documentation that can guide writers, contractors, and AI-assisted content workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gitflopez/brand-voice-style-guide) <br>
-- [Brand Voice & Style Guide Generator README](README.md) <br>
-- [Brand Voice Discovery & Personality Profile prompt](prompts/01-voice-discovery.md) <br>
-- [Writing Style Rules & Grammar Guide prompt](prompts/02-style-rules.md) <br>
-- [Platform Adaptation Guide prompt](prompts/03-platform-adaptation.md) <br>
-- [Brand Voice Example Bank prompt](prompts/04-example-bank.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style guided brand voice documentation and example rewrites] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are generated through four sequential prompts that build on prior user-provided brand inputs and copy samples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, SKILL.md) <br>
+Risk: Generated brand rules may be inaccurate for a specific region, audience, or regulated industry.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the final guide against local language, audience expectations, and industry requirements before using it as a source of truth.
+
+Risk: Users may paste confidential unreleased copy into the agent session for examples or rewrites.
+
+Mitigation: Use sanitized samples or only provide confidential copy when the agent processing environment is approved for that material.
+
+Risk: The guide may overfit to limited examples or admired brands and produce a voice that feels derivative.
+
+Mitigation: Have a human reviewer adjust the generated style rules and example bank against actual brand strategy and customer feedback.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gitflopez/skills/brand-voice-style-guide)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [Prompt 1 - Brand Voice Discovery](artifact/prompts/01-voice-discovery.md)
+- [Prompt 2 - Style Rules](artifact/prompts/02-style-rules.md)
+- [Prompt 3 - Platform Adaptation](artifact/prompts/03-platform-adaptation.md)
+- [Prompt 4 - Example Bank](artifact/prompts/04-example-bank.md)
+- [Worked Example](artifact/examples/tilebound-full-example.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style brand voice guide sections, rules, platform notes, rewrites, examples, and onboarding quiz content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Four sequential prompts; later outputs depend on earlier brand voice and style-rule outputs plus optional user-provided copy samples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,22 +1,33 @@
 # CLI Reference — vmware-pilot
 
-vmware-pilot is an **MCP-only** server. It does not provide a standalone CLI binary.
-All workflow operations are performed via MCP tool calls through an AI agent or MCP client.
+The `vmware-pilot` CLI is a **launcher, not a second interface to workflows**. It starts the
+MCP server and reports its version — nothing else. Every workflow operation (design, plan,
+run, approve, rollback, cancel) is performed via MCP tool calls through an AI agent or MCP
+client.
 
 ---
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `vmware-pilot mcp` | Start the MCP server on stdio transport |
+| `vmware-pilot version` | Print the installed version |
+| `vmware-pilot --help` | Show usage |
 
 ## MCP Server Launch
 
 ```bash
-# Recommended: via uvx (isolated environment)
-uvx --from vmware-pilot vmware-pilot-mcp
+# Recommended: installed entry point, never touches the network
+uv tool install vmware-pilot==2.5.1
+vmware-pilot mcp
 
-# Alternative: via pip install
-pip install vmware-pilot
-vmware-pilot-mcp
+# Fallback: uvx re-resolves against PyPI each start and fails behind a
+# TLS-inspecting corporate proxy — set UV_NATIVE_TLS=true if you must use it
+uvx --from vmware-pilot==2.5.1 vmware-pilot-mcp
 ```
 
-The server runs on **stdio** transport and exposes 11 MCP tools.
+The server runs on **stdio** transport and exposes 13 MCP tools (4 read, 9 write).
 
 ---
 
@@ -83,14 +94,14 @@ confirm_draft(
 
 ### Execution Tools
 
-#### plan_workflow
+#### create_workflow_from_template
 
 Create a workflow from a built-in or custom template.
 
 ```
-plan_workflow(
+create_workflow_from_template(
     workflow_type="clone_and_test",
-    params={target_vm: "db01", change_spec: {memory_mb: 32768}}
+    params={target_vm: "db01", change_spec: {memory_mb: 32768}, snapshot_name: "pre-change"}
 )
 → {workflow_id: "wf-...", steps: [...]}
 ```
@@ -102,7 +113,9 @@ Available types: `clone_and_test`, `incident_response`, `plan_and_approve`, `com
 
 #### create_workflow
 
-Create a custom workflow directly from a step list.
+Create a custom workflow directly from a step list. Refused — nothing saved —
+if any destructive or unclassifiable step has no `require_approval` step before
+it; the error names each step and the gate to insert.
 
 ```
 create_workflow(
@@ -139,12 +152,27 @@ approve(
 
 #### rollback
 
-Abort and reverse completed steps in reverse order.
+Explicit, best-effort undo — never runs on its own. Reverses, last first, only
+the steps pilot recorded as `success`; on the MCP server the steps you performed
+are `not_executed`, so undo them yourself with each step's `rollback_tool`.
 
 ```
 rollback(workflow_id="wf-...")
-→ {state: "failed", rollback_results: [...]}
+→ {action: "preview", blast_radius: {would_roll_back: [...], left_in_place: [...], blockers: [], ...}}
+
+rollback(workflow_id="wf-...", confirm=True)   # after the user has seen the preview
+→ {action: "rolled_back", state: "failed", rollback_results: [...], blast_radius: {...}}
 ```
+
+`cancel_workflow(workflow_id, reason, confirm=False)` works the same way: the
+preview lists the executed steps that stay applied, the steps already handed to
+you in `pending_dispatch` (`handed_out_to_caller` — cancel neither stops nor undoes
+them) and the steps that would be skipped; `confirm=True` cancels.
+
+Both refuse `confirm=True` while a step is in `unknown_effects` (left `running`
+or `interrupted` when a Pilot process stopped mid-dispatch). Check in the target
+system whether that step took effect, then re-run with
+`acknowledge_unknown_effects=True`.
 
 #### get_workflow_status
 
@@ -161,17 +189,17 @@ get_workflow_status(workflow_id="wf-...")
 
 ### validate_workflow.py
 
-Validate a custom YAML workflow template before use.
+Validate a custom YAML workflow template before use. It runs pilot's own
+approval-gate check, so use the Python vmware-pilot is installed in:
 
 ```bash
-python3 scripts/validate_workflow.py ~/.vmware/workflows/my_workflow.yaml
+"$(uv tool dir)/vmware-pilot/bin/python" scripts/validate_workflow.py ~/.vmware/workflows/my_workflow.yaml
 ```
 
 Checks:
-- All referenced skills exist in the catalog
-- Tool names are recognized
-- Approval gates are placed before destructive steps
 - Step structure has required fields
+- **Error** (exit 1): a destructive or unclassifiable step with no `require_approval` before it — `create_workflow_from_template` would refuse the file
+- Warning: skills or tools not in the catalog
 
 ### list_available_tools.py
 
@@ -215,10 +243,10 @@ steps:
 
   - action: apply_change
     skill: aiops
-    tool: vm_power_off
+    tool: power_off_vm
     params:
       vm_name: "{{vm_name}}"
-    rollback_tool: vm_power_on
+    rollback_tool: power_on_vm
     rollback_params:
       vm_name: "{{vm_name}}"
 ```

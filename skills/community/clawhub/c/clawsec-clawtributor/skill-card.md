@@ -1,42 +1,61 @@
-## Description: <br>
-Harness-neutral community incident reporting for AI agents. Contribute to collective security by reporting threats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawtributor helps AI agents prepare approval-gated community incident reports about malicious prompts, vulnerable skills, and tampering attempts.
 
-## Publisher: <br>
-[davida-ps](https://clawhub.ai/user/davida-ps) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0-or-later <br>
+## Publisher:
 
+[davida-ps](https://clawhub.ai/user/davida-ps)
 
-## Use Case: <br>
-Developers, security reviewers, and agent operators use Clawtributor to draft structured reports for malicious prompts, vulnerable skills or plugins, and tampering attempts. Reports stay local until the user reviews the exact contents and approves manual browser submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0-or-later
 
-## Known Risks and Mitigations: <br>
-Risk: Security reports may contain sensitive evidence such as prompts, indicators, or affected package details. <br>
-Mitigation: Review and sanitize every report before submission, and only approve browser submission when the exact contents are safe to share with maintainers. <br>
-Risk: The skill can activate during general security-reporting requests and may prepare reports that leave the host after user action. <br>
-Mitigation: Keep drafts local by default, require explicit approval for each submission, and use the manual browser form only after review. <br>
+## Use Case:
 
+Developers and security-minded agent users use this skill to draft local, structured reports for malicious prompts, vulnerable skills or plugins, and tampering attempts. The workflow keeps reporting approval-gated and asks the user to review and sanitize evidence before manual submission.
 
-## Reference(s): <br>
-- [ClawSec Homepage](https://clawsec.prompt.security) <br>
-- [Prompt Security](https://prompt.security) <br>
-- [Security Incident Report Form](https://github.com/prompt-security/clawsec/issues/new?template=security_incident_report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON report templates and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local report drafts and state-tracking guidance; submission remains manual and approval-gated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.9 (source: frontmatter, skill.json, changelog released 2026-06-23) <br>
+Risk: Unpinned npx install examples can create supply-chain ambiguity before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the signed release verification workflow or a version-pinned installer before trusting release files.
+
+Risk: Manual report submission can disclose sensitive host, user, or conversation data if evidence is not sanitized.
+
+Mitigation: Review the exact payload with the user and remove personal data, credentials, secrets, and confidential details before approval.
+
+Risk: Local incident reports and state files may contain sensitive security observations.
+
+Mitigation: Store report files under the documented local path with private file permissions such as chmod 600.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/davida-ps/skills/clawsec-clawtributor)
+- [ClawSec Homepage](https://clawsec.prompt.security)
+- [Prompt Security](https://prompt.security)
+- [Security Incident Report Form](https://github.com/prompt-security/clawsec/issues/new?template=security_incident_report.md)
+- [Reporting Guide](artifact/reporting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with JSON report templates and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local report drafts and approval prompts; report submission remains manual and user-approved.]
+
+## Skill Version(s):
+
+0.0.9 (source: frontmatter, skill.json, changelog, released 2026-06-23)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

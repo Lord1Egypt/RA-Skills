@@ -1,0 +1,384 @@
+{
+  "components": [
+    {
+      "primitiveId": "fixture-U1",
+      "designator": "U1",
+      "layer": 1,
+      "x": 300,
+      "y": 300,
+      "rotation": 0,
+      "bbox": {
+        "minX": 260,
+        "minY": 270,
+        "maxX": 370,
+        "maxY": 340
+      },
+      "pads": [
+        {
+          "primitiveId": "fixture-U1-1",
+          "padNumber": "1",
+          "net": "VDD",
+          "layer": 1,
+          "x": 280,
+          "y": 320,
+          "width": 10,
+          "height": 10,
+          "shape": [
+            "RECT",
+            10,
+            10,
+            0
+          ]
+        },
+        {
+          "primitiveId": "fixture-U1-2",
+          "padNumber": "2",
+          "net": "OUT",
+          "layer": 1,
+          "x": 350,
+          "y": 300,
+          "width": 10,
+          "height": 10,
+          "shape": [
+            "RECT",
+            10,
+            10,
+            0
+          ]
+        },
+        {
+          "primitiveId": "fixture-U1-3",
+          "padNumber": "3",
+          "net": "GND",
+          "layer": 1,
+          "x": 300,
+          "y": 285,
+          "width": 10,
+          "height": 10,
+          "shape": [
+            "RECT",
+            10,
+            10,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "primitiveId": "fixture-C1",
+      "designator": "C1",
+      "layer": 1,
+      "x": 210,
+      "y": 300,
+      "rotation": 0,
+      "bbox": {
+        "minX": 190,
+        "minY": 285,
+        "maxX": 230,
+        "maxY": 315
+      },
+      "pads": [
+        {
+          "primitiveId": "fixture-C1-1",
+          "padNumber": "1",
+          "net": "VDD",
+          "layer": 1,
+          "x": 200,
+          "y": 300,
+          "width": 10,
+          "height": 10,
+          "shape": [
+            "RECT",
+            10,
+            10,
+            0
+          ]
+        },
+        {
+          "primitiveId": "fixture-C1-2",
+          "padNumber": "2",
+          "net": "GND",
+          "layer": 1,
+          "x": 220,
+          "y": 300,
+          "width": 10,
+          "height": 10,
+          "shape": [
+            "RECT",
+            10,
+            10,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "primitiveId": "fixture-C2",
+      "designator": "C2",
+      "layer": 1,
+      "x": 300,
+      "y": 210,
+      "rotation": 90,
+      "bbox": {
+        "minX": 285,
+        "minY": 190,
+        "maxX": 315,
+        "maxY": 230
+      },
+      "pads": [
+        {
+          "primitiveId": "fixture-C2-1",
+          "padNumber": "1",
+          "net": "VDD",
+          "layer": 1,
+          "x": 300,
+          "y": 200,
+          "width": 10,
+          "height": 10,
+          "shape": [
+            "RECT",
+            10,
+            10,
+            0
+          ]
+        },
+        {
+          "primitiveId": "fixture-C2-2",
+          "padNumber": "2",
+          "net": "GND",
+          "layer": 1,
+          "x": 300,
+          "y": 220,
+          "width": 10,
+          "height": 10,
+          "shape": [
+            "RECT",
+            10,
+            10,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "primitiveId": "fixture-R1",
+      "designator": "R1",
+      "layer": 1,
+      "x": 410,
+      "y": 300,
+      "rotation": 0,
+      "bbox": {
+        "minX": 390,
+        "minY": 290,
+        "maxX": 430,
+        "maxY": 310
+      },
+      "pads": [
+        {
+          "primitiveId": "fixture-R1-1",
+          "padNumber": "1",
+          "net": "OUT",
+          "layer": 1,
+          "x": 400,
+          "y": 300,
+          "width": 10,
+          "height": 10,
+          "shape": [
+            "RECT",
+            10,
+            10,
+            0
+          ]
+        },
+        {
+          "primitiveId": "fixture-R1-2",
+          "padNumber": "2",
+          "net": "LED",
+          "layer": 1,
+          "x": 420,
+          "y": 300,
+          "width": 10,
+          "height": 10,
+          "shape": [
+            "RECT",
+            10,
+            10,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "primitiveId": "fixture-D1",
+      "designator": "D1",
+      "layer": 1,
+      "x": 410,
+      "y": 370,
+      "rotation": 90,
+      "bbox": {
+        "minX": 395,
+        "minY": 350,
+        "maxX": 425,
+        "maxY": 390
+      },
+      "pads": [
+        {
+          "primitiveId": "fixture-D1-1",
+          "padNumber": "1",
+          "net": "LED",
+          "layer": 1,
+          "x": 410,
+          "y": 360,
+          "width": 10,
+          "height": 10,
+          "shape": [
+            "RECT",
+            10,
+            10,
+            0
+          ]
+        },
+        {
+          "primitiveId": "fixture-D1-2",
+          "padNumber": "2",
+          "net": "GND",
+          "layer": 1,
+          "x": 410,
+          "y": 380,
+          "width": 10,
+          "height": 10,
+          "shape": [
+            "RECT",
+            10,
+            10,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "primitiveId": "fixture-J1",
+      "designator": "J1",
+      "layer": 1,
+      "x": 70,
+      "y": 300,
+      "rotation": 0,
+      "locked": true,
+      "bbox": {
+        "minX": 40,
+        "minY": 265,
+        "maxX": 100,
+        "maxY": 335
+      },
+      "pads": [
+        {
+          "primitiveId": "fixture-J1-1",
+          "padNumber": "1",
+          "net": "VDD",
+          "layer": 1,
+          "x": 70,
+          "y": 280,
+          "width": 10,
+          "height": 10,
+          "shape": [
+            "RECT",
+            10,
+            10,
+            0
+          ]
+        },
+        {
+          "primitiveId": "fixture-J1-2",
+          "padNumber": "2",
+          "net": "GND",
+          "layer": 1,
+          "x": 70,
+          "y": 320,
+          "width": 10,
+          "height": 10,
+          "shape": [
+            "RECT",
+            10,
+            10,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "primitiveId": "fixture-H1",
+      "designator": "H1",
+      "layer": 1,
+      "x": 930,
+      "y": 640,
+      "rotation": 0,
+      "locked": true,
+      "bbox": {
+        "minX": 910,
+        "minY": 620,
+        "maxX": 950,
+        "maxY": 660
+      },
+      "pads": []
+    }
+  ],
+  "outline": {
+    "source": "polygon",
+    "format": "polyline",
+    "bbox": {
+      "minX": 0,
+      "minY": 0,
+      "maxX": 1000,
+      "maxY": 700
+    },
+    "points": [
+      [
+        0,
+        0
+      ],
+      [
+        1000,
+        0
+      ],
+      [
+        1000,
+        700
+      ],
+      [
+        0,
+        700
+      ]
+    ]
+  },
+  "copperLayers": 2,
+  "routedLines": 0,
+  "rules": {
+    "clearanceMil": 5,
+    "clearanceTrackTrackMil": 5,
+    "trackWidthMil": 6,
+    "powerWidthMil": 12,
+    "trackWidthMinMil": 4,
+    "viaDrillMil": 8,
+    "viaDiameterMil": 16,
+    "copperToEdgeMil": 5,
+    "source": "fixture"
+  },
+  "copper": {
+    "availability": {
+      "routing": "available",
+      "vias": "available",
+      "pours": "available",
+      "poured": "available",
+      "regions": "available",
+      "fills": "available"
+    },
+    "arcsAvailable": true,
+    "lines": [],
+    "arcs": [],
+    "vias": [],
+    "pours": [],
+    "poured": [],
+    "regions": [],
+    "fills": []
+  }
+}

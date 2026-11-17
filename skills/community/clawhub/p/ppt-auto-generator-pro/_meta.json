@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7dxr58ktjh28y80xrgmypzg582wtg5",
-  "slug": "ppt-auto-generator-pro",
+  "name": "ppt-auto-generator",
+  "displayName": "PPT 自动生成器",
   "version": "1.0.0",
-  "publishedAt": 1774767993905
+  "slug": "ppt-auto-generator-pro",
+  "description": "AI PPT 演示文稿自动生成工具，一键生成专业幻灯片",
+  "author": "@bingze00000",
+  "license": "MIT",
+  "tags": ["ppt", "presentation", "ai", "slide", "powerpoint", "auto", "template"],
+  "pricing": {
+    "type": "paid",
+    "amount": 35,
+    "currency": "CNY"
+  },
+  "requirements": ["python-pptx", "openai"],
+  "category": "productivity"
 }

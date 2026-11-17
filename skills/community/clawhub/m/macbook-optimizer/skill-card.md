@@ -1,41 +1,54 @@
-## Description: <br>
-MacBook system optimization, performance monitoring, and troubleshooting tools for macOS users. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MacBook system optimization, performance monitoring, and troubleshooting tools for macOS users.
 
-## Publisher: <br>
-[drg3nz0](https://clawhub.ai/user/drg3nz0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[drg3nz0](https://clawhub.ai/user/drg3nz0)
 
-## Use Case: <br>
-External macOS users use this skill to ask an agent for system health checks, performance troubleshooting, disk cleanup recommendations, process review, and GUI-guided optimization workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide cleanup or system changes that affect user files, login items, background services, cron jobs, or power settings. <br>
-Mitigation: Start with read-only health checks, require a preview before any change, and approve each cleanup or system setting change one at a time. <br>
-Risk: Broad macOS permissions such as Full Disk Access or Accessibility can increase the impact of agent mistakes. <br>
-Mitigation: Avoid granting broad permissions unless a specific task requires them, and revoke them after the task is complete. <br>
+## Use Case:
 
+Mac users and support-oriented agents use this skill to inspect local macOS performance, storage, battery health, thermal state, startup items, and process activity, then receive plain-language troubleshooting and optimization guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/drg3nz0/macbook-optimizer) <br>
-- [Publisher profile](https://clawhub.ai/user/drg3nz0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and step-by-step guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include visual summaries, cleanup previews, and macOS GUI navigation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Cleanup, duplicate removal, process termination, startup changes, and cron-based monitoring can affect files, running applications, or future system behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Show a preview of proposed changes and wait for explicit user approval before making modifications.
+
+Risk: Performance and storage recommendations are based on local inspection and may be incomplete or context-dependent.
+
+Mitigation: Ask the user to review recommendations before acting, especially when deleting files or changing system settings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/drg3nz0/skills/macbook-optimizer)
+- [Project homepage](https://github.com/T4btc/macbook-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local macOS cleanup previews, process recommendations, GUI navigation steps, and visual report guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

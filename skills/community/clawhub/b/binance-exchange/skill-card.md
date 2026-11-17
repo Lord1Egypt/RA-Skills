@@ -1,41 +1,55 @@
-## Description: <br>
-Fetch real-time prices, 24-hour statistics, K-line charts, and market information for Binance spot trading pairs using the Binance API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch real-time prices, 24h statistics, K-line charts, and market information for Binance spot trading pairs using the Binance API.
 
-## Publisher: <br>
-[torchesfrms](https://clawhub.ai/user/torchesfrms) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[torchesfrms](https://clawhub.ai/user/torchesfrms)
 
-## Use Case: <br>
-External users and developers use this skill to query Binance spot market data for trading pairs, including current prices, 24-hour movement, candlestick data, and basic token market details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to Binance API availability, local rules, and Binance terms. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market-data requests may be routed through a configured HTTP proxy, exposing requested symbols and API traffic metadata to the proxy operator. <br>
-Mitigation: Use only a proxy you control or trust, and verify that proxy use complies with local rules and Binance terms before running the scripts. <br>
-Risk: Binance API access may be unavailable or restricted in some regions. <br>
-Mitigation: Confirm Binance API availability and applicable terms for the intended location before relying on the skill. <br>
+## Use Case:
 
+External users and developers use this skill to query public Binance spot-market data, including prices, 24-hour statistics, trading volume, and candlestick data for selected trading pairs.
 
-## Reference(s): <br>
-- [Binance Spot API](https://api.binance.com/api/v3) <br>
-- [ClawHub Skill Page](https://clawhub.ai/torchesfrms/binance-exchange) <br>
+### Deployment Geography for Use:
 
+Global, subject to Binance API availability and regional access restrictions.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and command output in plain text or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access to Binance market-data endpoints and may use a user-configured HTTP proxy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Market-data queries are sent to Binance and most scripts route requests through a local proxy at 127.0.0.1:1082.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if this network behavior is acceptable, verify the proxy endpoint before use, and avoid running it with sensitive proxy settings.
+
+Risk: The scripts depend on local command-line tools such as curl, jq, and bc.
+
+Mitigation: Confirm required tools are installed and review command output before relying on the returned market data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/torchesfrms/skills/binance-exchange)
+- [Publisher Profile](https://clawhub.ai/user/torchesfrms)
+- [Binance Spot API Base URL](https://api.binance.com/api/v3)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON or text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public Binance market-data endpoints; most scripts expect curl, jq, bc, and a local HTTP proxy at 127.0.0.1:1082.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

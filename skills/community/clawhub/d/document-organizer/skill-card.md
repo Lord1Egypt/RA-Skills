@@ -1,48 +1,63 @@
-## Description: <br>
-Batch converts Office documents and PDFs into Markdown while preserving directory structure and recording conversion failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Document Organizer helps agents batch-convert legacy Office documents, modern Office files, and PDFs into searchable Markdown while preserving directory structure.
 
-## Publisher: <br>
-[byteuser1977](https://clawhub.ai/user/byteuser1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byteuser1977](https://clawhub.ai/user/byteuser1977)
 
-## Use Case: <br>
-Developers, knowledge-base maintainers, and operations teams use this skill to convert legacy Office, modern Office, and PDF document collections into searchable Markdown. It is suited to local archive migration and document-library normalization where source folders and output folders can be scoped deliberately. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk conversion can process sensitive or untrusted documents through local conversion tools. <br>
-Mitigation: Use a narrow source folder, write to a private output folder, and sandbox conversion when files come from untrusted people or locations. <br>
-Risk: A broad source path or cleanup operation can affect more files than intended. <br>
-Mitigation: Run with --dry-run first, review matched files and paths, and avoid copying cleanup commands unless the target directory has been verified. <br>
-Risk: External conversion dependencies affect both security posture and output quality. <br>
-Mitigation: Install LibreOffice and markitdown from trusted sources and avoid administrator or root privileges unless they are required. <br>
+## Use Case:
 
+Developers, engineers, and knowledge-base maintainers use this skill to convert archives of Office documents and PDFs into searchable Markdown. It is suited for document digitization, project archiving, and knowledge-base preparation where folder structure should be preserved.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/byteuser1977/document-organizer) <br>
-- [Reference index](references/INDEX.md) <br>
-- [API reference](references/API_REFERENCE.md) <br>
-- [Supported formats](references/FORMATS.md) <br>
-- [Configuration guide](references/CONFIGURATION.md) <br>
-- [Troubleshooting](references/TROUBLESHOOTING.md) <br>
-- [LibreOffice](https://zh-cn.libreoffice.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files with terminal status output and optional conversion logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves the source directory structure in the output folder and writes failed conversions to a configurable log file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence, manifest.json, package.json) <br>
+Risk: The skill can unexpectedly delete a local temp directory, including during dry-run setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only from a controlled working directory with no valuable `temp_batch` folder, and back up important source and output data before bulk conversion.
+
+Risk: Bulk document conversion can overwrite or produce large output sets and may fail on dependency or file-permission issues.
+
+Mitigation: Use `--dry-run` first, choose an explicit output directory, avoid running as admin/root, and review conversion logs before relying on the output.
+
+Risk: The workflow depends on local CLI and Python tools for document parsing.
+
+Mitigation: Pin LibreOffice, MarkItDown, and Python dependencies in the deployment environment before installing or running the skill.
+
+## Reference(s):
+
+- [API Reference](artifact/references/API_REFERENCE.md)
+- [Format Support](artifact/references/FORMATS.md)
+- [Configuration Guide](artifact/references/CONFIGURATION.md)
+- [Troubleshooting Guide](artifact/references/TROUBLESHOOTING.md)
+- [Performance Guide](artifact/references/PERFORMANCE.md)
+- [Examples](artifact/references/EXAMPLES.md)
+- [LibreOffice](https://zh-cn.libreoffice.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files with command-line guidance and conversion logs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Batch conversion may create output directories, logs, and temporary working files.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata, manifest.json, package.json, artifact changelog; released 2026-03-12)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

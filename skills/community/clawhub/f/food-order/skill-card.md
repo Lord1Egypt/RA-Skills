@@ -1,42 +1,59 @@
-## Description: <br>
-Reorder previous Foodora orders and track ETA or status with ordercli, requiring explicit user approval before any order is placed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents preview and reorder previous Foodora orders with ordercli and track ETA/status, requiring explicit approval before placing an order.
 
-## Publisher: <br>
-[steipete](https://clawhub.ai/user/steipete) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[steipete](https://clawhub.ai/user/steipete)
 
-## Use Case: <br>
-External Foodora users can ask an agent to preview and reorder prior meals through ordercli, then track active delivery status. The skill is intended to stop before checkout unless the user explicitly confirms placing the order. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a Foodora login or Chrome profile session to access account order history. <br>
-Mitigation: Install only if the user trusts the ordercli project and is comfortable with the selected Foodora authentication method. <br>
-Risk: A reorder command with confirmation can place a real food order. <br>
-Mitigation: Review the preview carefully and run the confirmation command only after the user explicitly approves placing that order. <br>
-Risk: The broad food-ordering trigger could activate when the user is only exploring options. <br>
-Mitigation: Use food-specific wording, stop at preview when intent is unclear, and ask clarifying questions before checkout. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Food Order skill page](https://clawhub.ai/steipete/food-order) <br>
-- [ordercli homepage](https://ordercli.sh) <br>
+## Use Case:
 
+External users use this skill to safely preview and reorder prior Foodora meals and monitor active order status through ordercli. It is intended for workflows where the user explicitly confirms before any purchase is placed.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preview-first ordering flow; explicit confirmation required before commands that place an order.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Foodora-supported regions; example setup uses Austria (AT).
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs a mutable third-party ordercli release that handles Foodora account sessions.
+
+Mitigation: Review and pin a trusted ordercli version before use, and install it only if the publisher and dependency chain are acceptable.
+
+Risk: The skill can place purchases through Foodora when confirmation flags are used.
+
+Mitigation: Run preview-only commands first and require explicit user confirmation before any command that places or confirms an order.
+
+Risk: Vague prompts such as 'order food' could trigger unintended purchasing workflows.
+
+Mitigation: Ask clarifying questions and stop at preview unless the user clearly intends to use Foodora and confirms the specific order.
+
+## Reference(s):
+
+- [Food Order skill page](https://clawhub.ai/steipete/skills/food-order)
+- [ordercli homepage](https://ordercli.sh)
+- [Foodora Austria](https://www.foodora.at/)
+- [ordercli Go install module](https://github.com/steipete/ordercli/tree/main/cmd/ordercli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include preview details, confirmation prompts, status summaries, and ordercli commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

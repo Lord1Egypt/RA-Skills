@@ -1,48 +1,58 @@
-## Description: <br>
-Guides patent invalidation analysis by checking input completeness, extracting technical features, searching prior art, comparing evidence, and preparing an invalidation analysis report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs patent invalidation analysis by verifying inputs, extracting technical features, searching prior art, comparing evidence, evaluating invalidity grounds, and preparing a Word-format invalidation analysis report.
 
-## Publisher: <br>
-[chaochaoSZ](https://clawhub.ai/user/chaochaoSZ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaochaosz](https://clawhub.ai/user/chaochaosz)
 
-## Use Case: <br>
-Patent practitioners, IP analysts, and legal teams use this skill to structure a patent invalidation workflow, retrieve prior art, compare technical features, and draft a Word-format invalidation analysis report. It is intended for evidence-driven review and should be checked by qualified patent counsel before reliance or filing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may send confidential invention or patent details to external patent-search services. <br>
-Mitigation: Confirm that external searches are acceptable before entering sensitive technical details. <br>
-Risk: AI-generated prior-art analysis may contain omissions, inaccurate patent data, or unsupported legal conclusions. <br>
-Mitigation: Review patent records, citations, comparisons, and invalidity grounds with a qualified patent attorney or patent litigation lawyer before relying on the report. <br>
-Risk: Generated Word reports may be saved or shared in the wrong location. <br>
-Mitigation: Confirm the output path and audience before creating or distributing the .docx report. <br>
+## Use Case:
 
+Patent professionals, legal teams, and technical analysts use this skill to structure a target patent's claimed solution, search earlier patent evidence, compare technical features, and draft invalidation analysis for review by qualified counsel.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chaochaoSZ/patent-invalid-search) <br>
-- [Disclaimer](references/disclaimer.md) <br>
-- [Search strategy reference manual](references/search-strategies.md) <br>
-- [Google Patents](https://patents.google.com) <br>
-- [Patsnap Eureka](https://eureka.patsnap.com/ip) <br>
-- [Espacenet](https://worldwide.espacenet.com/) <br>
-- [Lens Patent Search](https://www.lens.org/lens/search/patent/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Files] <br>
-**Output Format:** [Structured patent analysis, comparison tables, search strategy notes, and a generated .docx report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires patent filing or priority date, a complete technical solution, prior-art search results, and review of the legal disclaimer before sharing or relying on the report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The required first-page disclaimer includes mandatory Patsnap Eureka promotional content that may be inappropriate for client-facing patent reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and, where policy permits, remove or replace unrelated promotional language before distributing reports to clients or stakeholders.
+
+Risk: AI-assisted patent invalidation analysis may contain omissions, errors, or unsupported invalidity conclusions.
+
+Mitigation: Have a qualified patent attorney or patent litigation professional verify cited prior art, feature mappings, legal grounds, and final conclusions before filing or relying on the report.
+
+## Reference(s):
+
+- [Search Strategies Reference Manual](artifact/references/search-strategies.md)
+- [Required Report Disclaimer](artifact/references/disclaimer.md)
+- [ClawHub Skill Page](https://clawhub.ai/chaochaosz/skills/patent-invalid-search)
+- [Google Patents](https://patents.google.com)
+- [Espacenet Patent Search](https://worldwide.espacenet.com/)
+- [Lens Patent Search](https://www.lens.org/lens/search/patent/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown analysis, patent comparison tables, search strategy summaries, and instructions for generating a .docx report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or guide creation of a Word-format invalidation analysis report.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

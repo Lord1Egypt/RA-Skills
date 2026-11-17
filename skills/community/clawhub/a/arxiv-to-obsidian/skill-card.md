@@ -1,43 +1,55 @@
-## Description: <br>
-Fetches the latest arXiv cs.AI papers, translates titles and abstracts into Simplified Chinese, and appends a Markdown table to a configured Obsidian daily note. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches recent arXiv cs.AI paper metadata, translates titles and abstracts into Simplified Chinese, and appends a Markdown table to a configured Obsidian note.
 
-## Publisher: <br>
-[SenryLee](https://clawhub.ai/user/SenryLee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[senrylee](https://clawhub.ai/user/senrylee)
 
-## Use Case: <br>
-External users and developers who organize AI research in Obsidian use this skill to collect current arXiv cs.AI paper metadata, translate it to Simplified Chinese, and write it into a daily literature note. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Misconfigured vault or folder settings can write the generated paper table to the wrong Obsidian location. <br>
-Mitigation: Review scripts/config.sh, confirm VAULT_NAME and VAULT_FOLDER, and run with DRY_RUN=1 before first use. <br>
-Risk: The translation step sends public arXiv metadata through the local Claude CLI account configured on the user's machine. <br>
-Mitigation: Use only when comfortable translating public arXiv metadata with the local Claude CLI account. <br>
+## Use Case:
 
+Researchers, developers, and Obsidian users use this skill to collect the latest arXiv AI papers, translate their titles and abstracts into Simplified Chinese, and add them to a daily literature note.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SenryLee/arxiv-to-obsidian) <br>
-- [Publisher profile](https://clawhub.ai/user/SenryLee) <br>
-- [arXiv cs.AI RSS feed](https://export.arxiv.org/rss/cs.AI) <br>
-- [Obsidian](https://obsidian.md/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown table appended to an Obsidian note, with shell command guidance for setup and dry-run execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local curl, python3, claude, and obsidian commands; supports environment-variable configuration and DRY_RUN=1 preview mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can write generated paper summaries into the wrong Obsidian vault or folder if local configuration is left at defaults or set incorrectly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure the target vault, folder, and note before use, then run with DRY_RUN=1 to confirm the destination and generated content before allowing writes.
+
+Risk: Paper metadata from the configured RSS feed is translated through the local Claude CLI and then inserted into an Obsidian note.
+
+Mitigation: Use trusted RSS sources and review generated note content, especially because the security guidance says generated content is not strongly sanitized.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/senrylee/skills/arxiv-to-obsidian)
+- [arXiv cs.AI RSS feed](https://export.arxiv.org/rss/cs.AI)
+- [Obsidian](https://obsidian.md/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown table appended through Obsidian CLI, with optional shell command guidance and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output includes up to 10 papers with translated title, translated abstract, original link, and publication date.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.
